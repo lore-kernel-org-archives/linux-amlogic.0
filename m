@@ -1,194 +1,170 @@
 From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun,  8 May 2016 08:30:15 +0200
-Subject: [PATCH v7 2/4] net: designware: fix descriptor layout and warnings on
- 64-bit archs
+Date: Sun,  8 May 2016 08:30:17 +0200
+Subject: [PATCH v7 4/4] arm: meson: implement calls to secure monitor
 In-Reply-To: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
 References: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
-Message-ID: <1462689017-3160-3-git-send-email-b.galvani@gmail.com>
+Message-ID: <1462689017-3160-5-git-send-email-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-All members of the DMA descriptor must be 32-bit, even on 64-bit
-architectures: change the type to u32 to ensure this. Also, fix
-other warnings.
+Implement calls to secure monitor to read the MAC address from e-fuse.
 
 Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-Acked-by: Joe Hershberger <joe.hershberger@ni.com>
 ---
- drivers/net/designware.c | 59 ++++++++++++++++++++++++++----------------------
- drivers/net/designware.h |  4 ++--
- 2 files changed, 34 insertions(+), 29 deletions(-)
+ arch/arm/include/asm/arch-meson/sm.h   | 12 +++++++
+ arch/arm/mach-meson/Makefile           |  2 +-
+ arch/arm/mach-meson/board.c            |  1 +
+ arch/arm/mach-meson/sm.c               | 57 ++++++++++++++++++++++++++++++++++
+ board/hardkernel/odroid-c2/odroid-c2.c | 16 ++++++++++
+ 5 files changed, 87 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/include/asm/arch-meson/sm.h
+ create mode 100644 arch/arm/mach-meson/sm.c
 
-diff --git a/drivers/net/designware.c b/drivers/net/designware.c
-index ca58f34..2eda461 100644
---- a/drivers/net/designware.c
-+++ b/drivers/net/designware.c
-@@ -98,8 +98,8 @@ static void tx_descs_init(struct dw_eth_dev *priv)
+diff --git a/arch/arm/include/asm/arch-meson/sm.h b/arch/arm/include/asm/arch-meson/sm.h
+new file mode 100644
+index 0000000..225438d
+--- /dev/null
++++ b/arch/arm/include/asm/arch-meson/sm.h
+@@ -0,0 +1,12 @@
++/*
++ * (C) Copyright 2016 - Beniamino Galvani <b.galvani@gmail.com>
++ *
++ * SPDX-License-Identifier:	GPL-2.0+
++ */
++
++#ifndef __MESON_SM_H__
++#define __MESON_SM_H__
++
++ssize_t meson_sm_read_efuse(uintptr_t offset, void *buffer, size_t size);
++
++#endif /* __MESON_SM_H__ */
+diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
+index 44e3d63..bf49b8b 100644
+--- a/arch/arm/mach-meson/Makefile
++++ b/arch/arm/mach-meson/Makefile
+@@ -4,4 +4,4 @@
+ # SPDX-License-Identifier:	GPL-2.0+
+ #
  
- 	for (idx = 0; idx < CONFIG_TX_DESCR_NUM; idx++) {
- 		desc_p = &desc_table_p[idx];
--		desc_p->dmamac_addr = &txbuffs[idx * CONFIG_ETH_BUFSIZE];
--		desc_p->dmamac_next = &desc_table_p[idx + 1];
-+		desc_p->dmamac_addr = (ulong)&txbuffs[idx * CONFIG_ETH_BUFSIZE];
-+		desc_p->dmamac_next = (ulong)&desc_table_p[idx + 1];
+-obj-y += board.o
++obj-y += board.o sm.o
+diff --git a/arch/arm/mach-meson/board.c b/arch/arm/mach-meson/board.c
+index 782f86c..64fa3c1 100644
+--- a/arch/arm/mach-meson/board.c
++++ b/arch/arm/mach-meson/board.c
+@@ -8,6 +8,7 @@
+ #include <libfdt.h>
+ #include <linux/err.h>
+ #include <asm/arch/gxbb.h>
++#include <asm/arch/sm.h>
+ #include <asm/armv8/mmu.h>
+ #include <asm/unaligned.h>
  
- #if defined(CONFIG_DW_ALTDESCRIPTOR)
- 		desc_p->txrx_status &= ~(DESC_TXSTS_TXINT | DESC_TXSTS_TXLAST |
-@@ -117,11 +117,11 @@ static void tx_descs_init(struct dw_eth_dev *priv)
- 	}
+diff --git a/arch/arm/mach-meson/sm.c b/arch/arm/mach-meson/sm.c
+new file mode 100644
+index 0000000..1b35a22
+--- /dev/null
++++ b/arch/arm/mach-meson/sm.c
+@@ -0,0 +1,57 @@
++/*
++ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
++ *
++ * SPDX-License-Identifier:	GPL-2.0+
++ *
++ * Secure monitor calls.
++ */
++
++#include <common.h>
++#include <asm/arch/gxbb.h>
++#include <linux/kernel.h>
++
++#define FN_GET_SHARE_MEM_INPUT_BASE	0x82000020
++#define FN_GET_SHARE_MEM_OUTPUT_BASE	0x82000021
++#define FN_EFUSE_READ			0x82000030
++#define FN_EFUSE_WRITE			0x82000031
++
++static void *shmem_input;
++static void *shmem_output;
++
++static void meson_init_shmem(void)
++{
++	struct pt_regs regs;
++
++	if (shmem_input && shmem_output)
++		return;
++
++	regs.regs[0] = FN_GET_SHARE_MEM_INPUT_BASE;
++	smc_call(&regs);
++	shmem_input = (void *)regs.regs[0];
++
++	regs.regs[0] = FN_GET_SHARE_MEM_OUTPUT_BASE;
++	smc_call(&regs);
++	shmem_output = (void *)regs.regs[0];
++
++	debug("Secure Monitor shmem: 0x%p 0x%p\n", shmem_input, shmem_output);
++}
++
++ssize_t meson_sm_read_efuse(uintptr_t offset, void *buffer, size_t size)
++{
++	struct pt_regs regs;
++
++	meson_init_shmem();
++
++	regs.regs[0] = FN_EFUSE_READ;
++	regs.regs[1] = offset;
++	regs.regs[2] = size;
++
++	smc_call(&regs);
++
++	if (regs.regs[0] == 0)
++		return -1;
++
++	memcpy(buffer, shmem_output, min(size, regs.regs[0]));
++
++	return regs.regs[0];
++}
+diff --git a/board/hardkernel/odroid-c2/odroid-c2.c b/board/hardkernel/odroid-c2/odroid-c2.c
+index c258d4f..bd72100 100644
+--- a/board/hardkernel/odroid-c2/odroid-c2.c
++++ b/board/hardkernel/odroid-c2/odroid-c2.c
+@@ -7,9 +7,15 @@
+ #include <common.h>
+ #include <asm/io.h>
+ #include <asm/arch/gxbb.h>
++#include <asm/arch/sm.h>
+ #include <dm/platdata.h>
+ #include <phy.h>
  
- 	/* Correcting the last pointer of the chain */
--	desc_p->dmamac_next = &desc_table_p[0];
-+	desc_p->dmamac_next = (ulong)&desc_table_p[0];
- 
- 	/* Flush all Tx buffer descriptors at once */
--	flush_dcache_range((unsigned int)priv->tx_mac_descrtable,
--			   (unsigned int)priv->tx_mac_descrtable +
-+	flush_dcache_range((ulong)priv->tx_mac_descrtable,
-+			   (ulong)priv->tx_mac_descrtable +
- 			   sizeof(priv->tx_mac_descrtable));
- 
- 	writel((ulong)&desc_table_p[0], &dma_p->txdesclistaddr);
-@@ -142,13 +142,12 @@ static void rx_descs_init(struct dw_eth_dev *priv)
- 	 * Otherwise there's a chance to get some of them flushed in RAM when
- 	 * GMAC is already pushing data to RAM via DMA. This way incoming from
- 	 * GMAC data will be corrupted. */
--	flush_dcache_range((unsigned int)rxbuffs, (unsigned int)rxbuffs +
--			   RX_TOTAL_BUFSIZE);
-+	flush_dcache_range((ulong)rxbuffs, (ulong)rxbuffs + RX_TOTAL_BUFSIZE);
- 
- 	for (idx = 0; idx < CONFIG_RX_DESCR_NUM; idx++) {
- 		desc_p = &desc_table_p[idx];
--		desc_p->dmamac_addr = &rxbuffs[idx * CONFIG_ETH_BUFSIZE];
--		desc_p->dmamac_next = &desc_table_p[idx + 1];
-+		desc_p->dmamac_addr = (ulong)&rxbuffs[idx * CONFIG_ETH_BUFSIZE];
-+		desc_p->dmamac_next = (ulong)&desc_table_p[idx + 1];
- 
- 		desc_p->dmamac_cntl =
- 			(MAC_MAX_FRAME_SZ & DESC_RXCTRL_SIZE1MASK) |
-@@ -158,11 +157,11 @@ static void rx_descs_init(struct dw_eth_dev *priv)
- 	}
- 
- 	/* Correcting the last pointer of the chain */
--	desc_p->dmamac_next = &desc_table_p[0];
-+	desc_p->dmamac_next = (ulong)&desc_table_p[0];
- 
- 	/* Flush all Rx buffer descriptors at once */
--	flush_dcache_range((unsigned int)priv->rx_mac_descrtable,
--			   (unsigned int)priv->rx_mac_descrtable +
-+	flush_dcache_range((ulong)priv->rx_mac_descrtable,
-+			   (ulong)priv->rx_mac_descrtable +
- 			   sizeof(priv->rx_mac_descrtable));
- 
- 	writel((ulong)&desc_table_p[0], &dma_p->rxdesclistaddr);
-@@ -290,12 +289,11 @@ static int _dw_eth_send(struct dw_eth_dev *priv, void *packet, int length)
- 	struct eth_dma_regs *dma_p = priv->dma_regs_p;
- 	u32 desc_num = priv->tx_currdescnum;
- 	struct dmamacdescr *desc_p = &priv->tx_mac_descrtable[desc_num];
--	uint32_t desc_start = (uint32_t)desc_p;
--	uint32_t desc_end = desc_start +
-+	ulong desc_start = (ulong)desc_p;
-+	ulong desc_end = desc_start +
- 		roundup(sizeof(*desc_p), ARCH_DMA_MINALIGN);
--	uint32_t data_start = (uint32_t)desc_p->dmamac_addr;
--	uint32_t data_end = data_start +
--		roundup(length, ARCH_DMA_MINALIGN);
-+	ulong data_start = desc_p->dmamac_addr;
-+	ulong data_end = data_start + roundup(length, ARCH_DMA_MINALIGN);
- 	/*
- 	 * Strictly we only need to invalidate the "txrx_status" field
- 	 * for the following check, but on some platforms we cannot
-@@ -312,7 +310,7 @@ static int _dw_eth_send(struct dw_eth_dev *priv, void *packet, int length)
- 		return -EPERM;
- 	}
- 
--	memcpy(desc_p->dmamac_addr, packet, length);
-+	memcpy((void *)data_start, packet, length);
- 
- 	/* Flush data to be sent */
- 	flush_dcache_range(data_start, data_end);
-@@ -352,11 +350,11 @@ static int _dw_eth_recv(struct dw_eth_dev *priv, uchar **packetp)
- 	u32 status, desc_num = priv->rx_currdescnum;
- 	struct dmamacdescr *desc_p = &priv->rx_mac_descrtable[desc_num];
- 	int length = -EAGAIN;
--	uint32_t desc_start = (uint32_t)desc_p;
--	uint32_t desc_end = desc_start +
-+	ulong desc_start = (ulong)desc_p;
-+	ulong desc_end = desc_start +
- 		roundup(sizeof(*desc_p), ARCH_DMA_MINALIGN);
--	uint32_t data_start = (uint32_t)desc_p->dmamac_addr;
--	uint32_t data_end;
-+	ulong data_start = desc_p->dmamac_addr;
-+	ulong data_end;
- 
- 	/* Invalidate entire buffer descriptor */
- 	invalidate_dcache_range(desc_start, desc_end);
-@@ -372,7 +370,7 @@ static int _dw_eth_recv(struct dw_eth_dev *priv, uchar **packetp)
- 		/* Invalidate received data */
- 		data_end = data_start + roundup(length, ARCH_DMA_MINALIGN);
- 		invalidate_dcache_range(data_start, data_end);
--		*packetp = desc_p->dmamac_addr;
-+		*packetp = (uchar *)(ulong)desc_p->dmamac_addr;
- 	}
- 
- 	return length;
-@@ -382,8 +380,8 @@ static int _dw_free_pkt(struct dw_eth_dev *priv)
++#define EFUSE_SN_OFFSET		20
++#define EFUSE_SN_SIZE		16
++#define EFUSE_MAC_OFFSET	52
++#define EFUSE_MAC_SIZE		6
++
+ int board_init(void)
  {
- 	u32 desc_num = priv->rx_currdescnum;
- 	struct dmamacdescr *desc_p = &priv->rx_mac_descrtable[desc_num];
--	uint32_t desc_start = (uint32_t)desc_p;
--	uint32_t desc_end = desc_start +
-+	ulong desc_start = (ulong)desc_p;
-+	ulong desc_end = desc_start +
- 		roundup(sizeof(*desc_p), ARCH_DMA_MINALIGN);
+ 	return 0;
+@@ -27,6 +33,9 @@ U_BOOT_DEVICE(meson_eth) = {
  
- 	/*
-@@ -488,6 +486,11 @@ int designware_initialize(ulong base_addr, u32 interface)
- 		return -ENOMEM;
- 	}
+ int misc_init_r(void)
+ {
++	u8 mac_addr[EFUSE_MAC_SIZE];
++	ssize_t len;
++
+ 	/* Select Ethernet function */
+ 	setbits_le32(GXBB_PINMUX(6), 0x3fff);
  
-+	if ((unsigned long long)priv + sizeof(*priv) > (1ULL << 32)) {
-+		printf("designware: buffers are outside DMA memory\n");
-+		return -EINVAL;
+@@ -47,5 +56,12 @@ int misc_init_r(void)
+ 	mdelay(10);
+ 	setbits_le32(GXBB_GPIO_OUT(3), BIT(14));
+ 
++	if (!eth_getenv_enetaddr("ethaddr", mac_addr)) {
++		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
++					  mac_addr, EFUSE_MAC_SIZE);
++		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
++			eth_setenv_enetaddr("ethaddr", mac_addr);
 +	}
 +
- 	memset(dev, 0, sizeof(struct eth_device));
- 	memset(priv, 0, sizeof(struct dw_eth_dev));
- 
-@@ -583,6 +586,7 @@ static int designware_eth_probe(struct udevice *dev)
- 	struct eth_pdata *pdata = dev_get_platdata(dev);
- 	struct dw_eth_dev *priv = dev_get_priv(dev);
- 	u32 iobase = pdata->iobase;
-+	ulong ioaddr;
- 	int ret;
- 
- #ifdef CONFIG_DM_PCI
-@@ -601,8 +605,9 @@ static int designware_eth_probe(struct udevice *dev)
- #endif
- 
- 	debug("%s, iobase=%x, priv=%p\n", __func__, iobase, priv);
--	priv->mac_regs_p = (struct eth_mac_regs *)iobase;
--	priv->dma_regs_p = (struct eth_dma_regs *)(iobase + DW_DMA_BASE_OFFSET);
-+	ioaddr = iobase;
-+	priv->mac_regs_p = (struct eth_mac_regs *)ioaddr;
-+	priv->dma_regs_p = (struct eth_dma_regs *)(ioaddr + DW_DMA_BASE_OFFSET);
- 	priv->interface = pdata->phy_interface;
- 	priv->max_speed = pdata->max_speed;
- 
-diff --git a/drivers/net/designware.h b/drivers/net/designware.h
-index ed6344c..d48df7b 100644
---- a/drivers/net/designware.h
-+++ b/drivers/net/designware.h
-@@ -110,8 +110,8 @@ struct eth_dma_regs {
- struct dmamacdescr {
- 	u32 txrx_status;
- 	u32 dmamac_cntl;
--	void *dmamac_addr;
--	struct dmamacdescr *dmamac_next;
-+	u32 dmamac_addr;
-+	u32 dmamac_next;
- } __aligned(ARCH_DMA_MINALIGN);
- 
- /*
+ 	return 0;
+ }
 -- 
 2.7.3
