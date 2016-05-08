@@ -1,101 +1,194 @@
 From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun,  8 May 2016 08:30:13 +0200
-Subject: [PATCH v7 0/4] Amlogic Meson GXBaby and ODROID-C2 support
-Message-ID: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
+Date: Sun,  8 May 2016 08:30:15 +0200
+Subject: [PATCH v7 2/4] net: designware: fix descriptor layout and warnings on
+ 64-bit archs
+In-Reply-To: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
+References: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
+Message-ID: <1462689017-3160-3-git-send-email-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+All members of the DMA descriptor must be 32-bit, even on 64-bit
+architectures: change the type to u32 to ensure this. Also, fix
+other warnings.
 
-this series adds a very basic support for Amlogic S905 SoC (GXBaby)
-and for the ODROID-C2 board [1], and is based on u-boot sources
-available from the board vendor [2]. At the moment the only supported
-devices are the integrated UART and Ethernet adapter.
+Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+Acked-by: Joe Hershberger <joe.hershberger@ni.com>
+---
+ drivers/net/designware.c | 59 ++++++++++++++++++++++++++----------------------
+ drivers/net/designware.h |  4 ++--
+ 2 files changed, 34 insertions(+), 29 deletions(-)
 
-Changes since v6:
- - documented ARCH_MESON Kconfig entry
-
-Changes since v5:
- - used default CONFIG_SYS_BAUDRATE_TABLE
- - removed check for CONFIG_IDENT_STRING
-
-Changes since v4:
- - added patch to implement generic PSCI reset
- - used min() macro from linux/kernel.h
-
-Changes since v3:
- - designware eth: added check that buffer addresses are in first 4GiB
-   as suggested by Marek (and thus removed the ack tags)
- - consolidated pinmux and gpio macros
- - used get_unaligned_be64() to avoid alignment faults in dram_init()
- - uint32_t -> u32 in serial_meson.c
- - implemented reboot and read from e-fuse through secure monitor
-
-Changes since v2:
- - squashed all platform patches into a single one
- - got rid of additional non-upstream DTS node for ethernet
- - improved board README
- - added macros for SoC registers fields
-
-Changes since v1:
- - updated DTS files from Linux kernel
- - added Ethernet support
- - first 16MiB of RAM are now marked as unavailable; this seems to
-   be required to successfully boot Linux
- - fixed typo in config file
-
-[1] http://www.hardkernel.com/main/products/prdt_info.php?g_code=G145457216438
-[2] https://github.com/hardkernel/u-boot/tree/odroidc2-v2015.01
-
-Beniamino Galvani (4):
-  arm: implement generic PSCI reset call for armv8
-  net: designware: fix descriptor layout and warnings on 64-bit archs
-  arm: add initial support for Amlogic Meson and ODROID-C2
-  arm: meson: implement calls to secure monitor
-
- arch/arm/Kconfig                       |   9 ++
- arch/arm/Makefile                      |   1 +
- arch/arm/cpu/armv8/fwcall.c            |  16 +++
- arch/arm/dts/Makefile                  |   2 +
- arch/arm/dts/meson-gxbb-odroidc2.dts   |  69 +++++++++++++
- arch/arm/dts/meson-gxbb.dtsi           | 178 +++++++++++++++++++++++++++++++++
- arch/arm/include/asm/arch-meson/gxbb.h |  52 ++++++++++
- arch/arm/include/asm/arch-meson/sm.h   |  12 +++
- arch/arm/include/asm/psci.h            |  17 +++-
- arch/arm/include/asm/system.h          |   2 +
- arch/arm/mach-meson/Kconfig            |  31 ++++++
- arch/arm/mach-meson/Makefile           |   7 ++
- arch/arm/mach-meson/board.c            |  67 +++++++++++++
- arch/arm/mach-meson/sm.c               |  57 +++++++++++
- board/hardkernel/odroid-c2/Kconfig     |  12 +++
- board/hardkernel/odroid-c2/MAINTAINERS |   6 ++
- board/hardkernel/odroid-c2/Makefile    |   7 ++
- board/hardkernel/odroid-c2/README      |  60 +++++++++++
- board/hardkernel/odroid-c2/odroid-c2.c |  67 +++++++++++++
- configs/odroid-c2_defconfig            |  23 +++++
- drivers/net/designware.c               |  59 ++++++-----
- drivers/net/designware.h               |   4 +-
- drivers/serial/Kconfig                 |  15 +++
- drivers/serial/Makefile                |   1 +
- drivers/serial/serial_meson.c          | 162 ++++++++++++++++++++++++++++++
- include/configs/odroid-c2.h            |  51 ++++++++++
- 26 files changed, 957 insertions(+), 30 deletions(-)
- create mode 100644 arch/arm/dts/meson-gxbb-odroidc2.dts
- create mode 100644 arch/arm/dts/meson-gxbb.dtsi
- create mode 100644 arch/arm/include/asm/arch-meson/gxbb.h
- create mode 100644 arch/arm/include/asm/arch-meson/sm.h
- create mode 100644 arch/arm/mach-meson/Kconfig
- create mode 100644 arch/arm/mach-meson/Makefile
- create mode 100644 arch/arm/mach-meson/board.c
- create mode 100644 arch/arm/mach-meson/sm.c
- create mode 100644 board/hardkernel/odroid-c2/Kconfig
- create mode 100644 board/hardkernel/odroid-c2/MAINTAINERS
- create mode 100644 board/hardkernel/odroid-c2/Makefile
- create mode 100644 board/hardkernel/odroid-c2/README
- create mode 100644 board/hardkernel/odroid-c2/odroid-c2.c
- create mode 100644 configs/odroid-c2_defconfig
- create mode 100644 drivers/serial/serial_meson.c
- create mode 100644 include/configs/odroid-c2.h
-
+diff --git a/drivers/net/designware.c b/drivers/net/designware.c
+index ca58f34..2eda461 100644
+--- a/drivers/net/designware.c
++++ b/drivers/net/designware.c
+@@ -98,8 +98,8 @@ static void tx_descs_init(struct dw_eth_dev *priv)
+ 
+ 	for (idx = 0; idx < CONFIG_TX_DESCR_NUM; idx++) {
+ 		desc_p = &desc_table_p[idx];
+-		desc_p->dmamac_addr = &txbuffs[idx * CONFIG_ETH_BUFSIZE];
+-		desc_p->dmamac_next = &desc_table_p[idx + 1];
++		desc_p->dmamac_addr = (ulong)&txbuffs[idx * CONFIG_ETH_BUFSIZE];
++		desc_p->dmamac_next = (ulong)&desc_table_p[idx + 1];
+ 
+ #if defined(CONFIG_DW_ALTDESCRIPTOR)
+ 		desc_p->txrx_status &= ~(DESC_TXSTS_TXINT | DESC_TXSTS_TXLAST |
+@@ -117,11 +117,11 @@ static void tx_descs_init(struct dw_eth_dev *priv)
+ 	}
+ 
+ 	/* Correcting the last pointer of the chain */
+-	desc_p->dmamac_next = &desc_table_p[0];
++	desc_p->dmamac_next = (ulong)&desc_table_p[0];
+ 
+ 	/* Flush all Tx buffer descriptors at once */
+-	flush_dcache_range((unsigned int)priv->tx_mac_descrtable,
+-			   (unsigned int)priv->tx_mac_descrtable +
++	flush_dcache_range((ulong)priv->tx_mac_descrtable,
++			   (ulong)priv->tx_mac_descrtable +
+ 			   sizeof(priv->tx_mac_descrtable));
+ 
+ 	writel((ulong)&desc_table_p[0], &dma_p->txdesclistaddr);
+@@ -142,13 +142,12 @@ static void rx_descs_init(struct dw_eth_dev *priv)
+ 	 * Otherwise there's a chance to get some of them flushed in RAM when
+ 	 * GMAC is already pushing data to RAM via DMA. This way incoming from
+ 	 * GMAC data will be corrupted. */
+-	flush_dcache_range((unsigned int)rxbuffs, (unsigned int)rxbuffs +
+-			   RX_TOTAL_BUFSIZE);
++	flush_dcache_range((ulong)rxbuffs, (ulong)rxbuffs + RX_TOTAL_BUFSIZE);
+ 
+ 	for (idx = 0; idx < CONFIG_RX_DESCR_NUM; idx++) {
+ 		desc_p = &desc_table_p[idx];
+-		desc_p->dmamac_addr = &rxbuffs[idx * CONFIG_ETH_BUFSIZE];
+-		desc_p->dmamac_next = &desc_table_p[idx + 1];
++		desc_p->dmamac_addr = (ulong)&rxbuffs[idx * CONFIG_ETH_BUFSIZE];
++		desc_p->dmamac_next = (ulong)&desc_table_p[idx + 1];
+ 
+ 		desc_p->dmamac_cntl =
+ 			(MAC_MAX_FRAME_SZ & DESC_RXCTRL_SIZE1MASK) |
+@@ -158,11 +157,11 @@ static void rx_descs_init(struct dw_eth_dev *priv)
+ 	}
+ 
+ 	/* Correcting the last pointer of the chain */
+-	desc_p->dmamac_next = &desc_table_p[0];
++	desc_p->dmamac_next = (ulong)&desc_table_p[0];
+ 
+ 	/* Flush all Rx buffer descriptors at once */
+-	flush_dcache_range((unsigned int)priv->rx_mac_descrtable,
+-			   (unsigned int)priv->rx_mac_descrtable +
++	flush_dcache_range((ulong)priv->rx_mac_descrtable,
++			   (ulong)priv->rx_mac_descrtable +
+ 			   sizeof(priv->rx_mac_descrtable));
+ 
+ 	writel((ulong)&desc_table_p[0], &dma_p->rxdesclistaddr);
+@@ -290,12 +289,11 @@ static int _dw_eth_send(struct dw_eth_dev *priv, void *packet, int length)
+ 	struct eth_dma_regs *dma_p = priv->dma_regs_p;
+ 	u32 desc_num = priv->tx_currdescnum;
+ 	struct dmamacdescr *desc_p = &priv->tx_mac_descrtable[desc_num];
+-	uint32_t desc_start = (uint32_t)desc_p;
+-	uint32_t desc_end = desc_start +
++	ulong desc_start = (ulong)desc_p;
++	ulong desc_end = desc_start +
+ 		roundup(sizeof(*desc_p), ARCH_DMA_MINALIGN);
+-	uint32_t data_start = (uint32_t)desc_p->dmamac_addr;
+-	uint32_t data_end = data_start +
+-		roundup(length, ARCH_DMA_MINALIGN);
++	ulong data_start = desc_p->dmamac_addr;
++	ulong data_end = data_start + roundup(length, ARCH_DMA_MINALIGN);
+ 	/*
+ 	 * Strictly we only need to invalidate the "txrx_status" field
+ 	 * for the following check, but on some platforms we cannot
+@@ -312,7 +310,7 @@ static int _dw_eth_send(struct dw_eth_dev *priv, void *packet, int length)
+ 		return -EPERM;
+ 	}
+ 
+-	memcpy(desc_p->dmamac_addr, packet, length);
++	memcpy((void *)data_start, packet, length);
+ 
+ 	/* Flush data to be sent */
+ 	flush_dcache_range(data_start, data_end);
+@@ -352,11 +350,11 @@ static int _dw_eth_recv(struct dw_eth_dev *priv, uchar **packetp)
+ 	u32 status, desc_num = priv->rx_currdescnum;
+ 	struct dmamacdescr *desc_p = &priv->rx_mac_descrtable[desc_num];
+ 	int length = -EAGAIN;
+-	uint32_t desc_start = (uint32_t)desc_p;
+-	uint32_t desc_end = desc_start +
++	ulong desc_start = (ulong)desc_p;
++	ulong desc_end = desc_start +
+ 		roundup(sizeof(*desc_p), ARCH_DMA_MINALIGN);
+-	uint32_t data_start = (uint32_t)desc_p->dmamac_addr;
+-	uint32_t data_end;
++	ulong data_start = desc_p->dmamac_addr;
++	ulong data_end;
+ 
+ 	/* Invalidate entire buffer descriptor */
+ 	invalidate_dcache_range(desc_start, desc_end);
+@@ -372,7 +370,7 @@ static int _dw_eth_recv(struct dw_eth_dev *priv, uchar **packetp)
+ 		/* Invalidate received data */
+ 		data_end = data_start + roundup(length, ARCH_DMA_MINALIGN);
+ 		invalidate_dcache_range(data_start, data_end);
+-		*packetp = desc_p->dmamac_addr;
++		*packetp = (uchar *)(ulong)desc_p->dmamac_addr;
+ 	}
+ 
+ 	return length;
+@@ -382,8 +380,8 @@ static int _dw_free_pkt(struct dw_eth_dev *priv)
+ {
+ 	u32 desc_num = priv->rx_currdescnum;
+ 	struct dmamacdescr *desc_p = &priv->rx_mac_descrtable[desc_num];
+-	uint32_t desc_start = (uint32_t)desc_p;
+-	uint32_t desc_end = desc_start +
++	ulong desc_start = (ulong)desc_p;
++	ulong desc_end = desc_start +
+ 		roundup(sizeof(*desc_p), ARCH_DMA_MINALIGN);
+ 
+ 	/*
+@@ -488,6 +486,11 @@ int designware_initialize(ulong base_addr, u32 interface)
+ 		return -ENOMEM;
+ 	}
+ 
++	if ((unsigned long long)priv + sizeof(*priv) > (1ULL << 32)) {
++		printf("designware: buffers are outside DMA memory\n");
++		return -EINVAL;
++	}
++
+ 	memset(dev, 0, sizeof(struct eth_device));
+ 	memset(priv, 0, sizeof(struct dw_eth_dev));
+ 
+@@ -583,6 +586,7 @@ static int designware_eth_probe(struct udevice *dev)
+ 	struct eth_pdata *pdata = dev_get_platdata(dev);
+ 	struct dw_eth_dev *priv = dev_get_priv(dev);
+ 	u32 iobase = pdata->iobase;
++	ulong ioaddr;
+ 	int ret;
+ 
+ #ifdef CONFIG_DM_PCI
+@@ -601,8 +605,9 @@ static int designware_eth_probe(struct udevice *dev)
+ #endif
+ 
+ 	debug("%s, iobase=%x, priv=%p\n", __func__, iobase, priv);
+-	priv->mac_regs_p = (struct eth_mac_regs *)iobase;
+-	priv->dma_regs_p = (struct eth_dma_regs *)(iobase + DW_DMA_BASE_OFFSET);
++	ioaddr = iobase;
++	priv->mac_regs_p = (struct eth_mac_regs *)ioaddr;
++	priv->dma_regs_p = (struct eth_dma_regs *)(ioaddr + DW_DMA_BASE_OFFSET);
+ 	priv->interface = pdata->phy_interface;
+ 	priv->max_speed = pdata->max_speed;
+ 
+diff --git a/drivers/net/designware.h b/drivers/net/designware.h
+index ed6344c..d48df7b 100644
+--- a/drivers/net/designware.h
++++ b/drivers/net/designware.h
+@@ -110,8 +110,8 @@ struct eth_dma_regs {
+ struct dmamacdescr {
+ 	u32 txrx_status;
+ 	u32 dmamac_cntl;
+-	void *dmamac_addr;
+-	struct dmamacdescr *dmamac_next;
++	u32 dmamac_addr;
++	u32 dmamac_next;
+ } __aligned(ARCH_DMA_MINALIGN);
+ 
+ /*
 -- 
 2.7.3
