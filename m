@@ -1,31 +1,22 @@
-From: serveralex@gmail.com (=?UTF-8?q?Alexander=20M=C3=BCller?=)
-Date: Sun,  8 May 2016 19:59:49 +0200
-Subject: [PATCH] pinctrl: meson: Fix eth_tx_en bit index
-In-Reply-To: <1462730389-10961-1-git-send-email-serveralex@gmail.com>
-References: <1462730389-10961-1-git-send-email-serveralex@gmail.com>
-Message-ID: <1462730389-10961-2-git-send-email-serveralex@gmail.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Mon, 09 May 2016 16:12:43 +0200
+Subject: [PATCH] MAINTAINERS: ARM/Amlogic: add co-maintainer, misc. updates
+In-Reply-To: <CAOQ7t2ZT5t+C1qRjvxP5Yj6wuGgZc3-Ti7CT1eXbpH2ZLZRxAg@mail.gmail.com>
+References: <1462543166-8065-1-git-send-email-khilman@baylibre.com>
+ <CAOQ7t2ZT5t+C1qRjvxP5Yj6wuGgZc3-Ti7CT1eXbpH2ZLZRxAg@mail.gmail.com>
+Message-ID: <4124726.3fr6tUn8yX@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Fix pinctrl eth_tx_en bit index according to Hardkernel ODROID-C1 datasheet.
+On Friday 06 May 2016 16:13:38 Carlo Caione wrote:
+> On Fri, May 6, 2016 at 3:59 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> > Add myself as co-maintainer, update mailing list entry and add a couple
+> > more directories.
+> >
+> > Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> 
+> Acked-by: Carlo Caione <carlo@caione.org>
 
-Signed-off-by: Alexander M?ller <serveralex@gmail.com>
----
- drivers/pinctrl/meson/pinctrl-meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied to next/soc, thanks!
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
-index a100bcf..874f2ed 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8b.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
-@@ -564,7 +564,7 @@ static struct meson_pmx_group meson8b_cbus_groups[] = {
- 	GROUP(eth_rx_clk,	6,	3),
- 	GROUP(eth_txd0_1,	6,	4),
- 	GROUP(eth_txd1_1,	6,	5),
--	GROUP(eth_tx_en,	6,	0),
-+	GROUP(eth_tx_en,	6,	6),
- 	GROUP(eth_ref_clk,	6,	8),
- 	GROUP(eth_mdc,		6,	9),
- 	GROUP(eth_mdio_en,	6,	10),
--- 
-2.5.0
+	Arnd
