@@ -1,37 +1,25 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Wed, 11 May 2016 11:18:11 +0200
-Subject: [PATCH 0/7] pinctrl: meson: Add a bunch more pins
-In-Reply-To: <CACRpkdY99HWOQ4fhuYuPZ4JpwK6s75TXYpaBaBxhLLJFRLCd6w@mail.gmail.com>
-References: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
- <CACRpkdY99HWOQ4fhuYuPZ4JpwK6s75TXYpaBaBxhLLJFRLCd6w@mail.gmail.com>
-Message-ID: <CAOQ7t2Ys-zow-wn4p5chYxrYrjun-9_5p4_Xij6bXLApyt5itw@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 11 May 2016 11:48:39 +0200
+Subject: [PATCH 1/6] pinctrl: meson: Fix eth_tx_en bit index
+In-Reply-To: <1462910920-5462-2-git-send-email-serveralex@gmail.com>
+ ("Alexander =?utf-8?Q?M=C3=BCller=22's?= message of "Tue, 10 May 2016
+ 22:08:35 +0200")
+References: <1462910920-5462-1-git-send-email-serveralex@gmail.com>
+ <1462910920-5462-2-git-send-email-serveralex@gmail.com>
+Message-ID: <m2r3d97wnc.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, May 11, 2016 at 10:57 AM, Linus Walleij
-<linus.walleij@linaro.org> wrote:
-> On Fri, May 6, 2016 at 4:21 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+Alexander M?ller <serveralex@gmail.com> writes:
+
+> Fix pinctrl eth_tx_en bit index according to Hardkernel ODROID-C1 datasheet.
 >
->> Add support for several more devices, both in the EE domain and in the
->> AO domain.  Also, add the pins to the corresponding DTS files.
->>
->> Tested on odroid-c2 and Amlogic P200 boards, and verified with working
->> ethernet.
->>
->> Depends on the initial GXBB pinctrl support from Carlo[1].  Also
->> available in my git tree[2] with all the dependencies included.
->
-> Carlo can you review Kevin's patches? I'd like to apply them if
-> nothing's controversial about them.
+> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
 
-Go ahead and apply them:
+Tested-by: Kevin Hilman <khilman@baylibre.com>
 
-Acked-by: Carlo Caione <carlo@endlessm.com>
+Linus, with your ack, we can take this through the amlogic tree, or feel
+free to merge as a fix as it can go independetly of the rest of the
+series if needed.
 
-The ack is on the formal correctness since I still do not have access
-to the datasheet.
-
-Thanks,
-
--- 
-Carlo Caione
+Kevin
