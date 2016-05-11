@@ -1,29 +1,37 @@
 From: carlo@caione.org (Carlo Caione)
-Date: Wed, 11 May 2016 11:13:23 +0200
-Subject: [PATCH] pinctrl: meson: Fix eth_tx_en bit index
-In-Reply-To: <CACRpkdZz631dio28wqa71uZe3=NSZO55RCxZaQSixfH-o1f4Cw@mail.gmail.com>
-References: <1462730389-10961-1-git-send-email-serveralex@gmail.com>
- <1462730389-10961-2-git-send-email-serveralex@gmail.com>
- <CACRpkdZz631dio28wqa71uZe3=NSZO55RCxZaQSixfH-o1f4Cw@mail.gmail.com>
-Message-ID: <CAOQ7t2bK-9Ogw4aRhLYPFFJrwEevq_SuOJ6LjxwhJrJgcW+e-A@mail.gmail.com>
+Date: Wed, 11 May 2016 11:18:11 +0200
+Subject: [PATCH 0/7] pinctrl: meson: Add a bunch more pins
+In-Reply-To: <CACRpkdY99HWOQ4fhuYuPZ4JpwK6s75TXYpaBaBxhLLJFRLCd6w@mail.gmail.com>
+References: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
+ <CACRpkdY99HWOQ4fhuYuPZ4JpwK6s75TXYpaBaBxhLLJFRLCd6w@mail.gmail.com>
+Message-ID: <CAOQ7t2Ys-zow-wn4p5chYxrYrjun-9_5p4_Xij6bXLApyt5itw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, May 11, 2016 at 10:58 AM, Linus Walleij
+On Wed, May 11, 2016 at 10:57 AM, Linus Walleij
 <linus.walleij@linaro.org> wrote:
-> On Sun, May 8, 2016 at 7:59 PM, Alexander M?ller <serveralex@gmail.com> wrote:
+> On Fri, May 6, 2016 at 4:21 PM, Kevin Hilman <khilman@baylibre.com> wrote:
 >
->> Fix pinctrl eth_tx_en bit index according to Hardkernel ODROID-C1 datasheet.
+>> Add support for several more devices, both in the EE domain and in the
+>> AO domain.  Also, add the pins to the corresponding DTS files.
 >>
->> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
+>> Tested on odroid-c2 and Amlogic P200 boards, and verified with working
+>> ethernet.
+>>
+>> Depends on the initial GXBB pinctrl support from Carlo[1].  Also
+>> available in my git tree[2] with all the dependencies included.
 >
-> Carlo can you review this change?
+> Carlo can you review Kevin's patches? I'd like to apply them if
+> nothing's controversial about them.
+
+Go ahead and apply them:
 
 Acked-by: Carlo Caione <carlo@endlessm.com>
 
-just to let you know this patch has been posted also as part of a
-bigger patchset here
-http://permalink.gmane.org/gmane.linux.ports.arm.kernel/498960
+The ack is on the formal correctness since I still do not have access
+to the datasheet.
+
+Thanks,
 
 -- 
 Carlo Caione
