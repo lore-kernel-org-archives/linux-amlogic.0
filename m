@@ -1,28 +1,30 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 12 May 2016 15:41:12 +0200
-Subject: [PATCH 1/6] pinctrl: meson: Fix eth_tx_en bit index
-In-Reply-To: <m2r3d97wnc.fsf@baylibre.com>
-References: <1462910920-5462-1-git-send-email-serveralex@gmail.com>
- <1462910920-5462-2-git-send-email-serveralex@gmail.com>
- <m2r3d97wnc.fsf@baylibre.com>
-Message-ID: <CACRpkda40Gb4ye7_dBwOcsWZTT2V6qByVOyv_Z_Mg4RX+CLNiA@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 13 May 2016 15:46:00 +0200
+Subject: [PATCH 1/2] mmc: Add Amlogic Meson driver
+In-Reply-To: <1463056902-8533-2-git-send-email-carlo@caione.org> (Carlo
+ Caione's message of "Thu, 12 May 2016 14:41:41 +0200")
+References: <1463056902-8533-1-git-send-email-carlo@caione.org>
+ <1463056902-8533-2-git-send-email-carlo@caione.org>
+Message-ID: <m2lh3e2hrb.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, May 11, 2016 at 11:48 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Alexander M?ller <serveralex@gmail.com> writes:
->
->> Fix pinctrl eth_tx_en bit index according to Hardkernel ODROID-C1 datasheet.
->>
->> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
->
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
->
-> Linus, with your ack, we can take this through the amlogic tree, or feel
-> free to merge as a fix as it can go independetly of the rest of the
-> series if needed.
+Carlo Caione <carlo@caione.org> writes:
 
-I've merged this patch.
+> From: Carlo Caione <carlo@endlessm.com>
+>
+> This is a port / rewrite of the Amlogic driver shipped whithin the
+> Amlogic SDK for the Meson GXBaby (S905) SoC.
+>
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
 
-Yours,
-Linus Walleij
+[...]
+
+> +static const struct udevice_id meson_mmc_match[] = {
+> +	{ .compatible = "amlogic,meson-mmc" },
+> +	{ /* sentinel */ }
+
+IIUC, this controller is different between meson8* and gxbb.  If that's
+the case, this compatible should probably be more specific.
+
+Kevin
