@@ -1,38 +1,30 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Sat, 14 May 2016 17:09:47 +0200
-Subject: [RFC PATCH 0/3] Amlogic: GXBB: Add reset controller
-In-Reply-To: <1463148012-25988-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Fri, 13 May 2016 16:00:09 +0200")
+Date: Sat, 14 May 2016 10:45:54 -0700
+Subject: [RFC PATCH 1/3] reset: Add support for the Amlogic Meson GXBB
+ Reset Controller
+In-Reply-To: <1463148012-25988-2-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Fri, 13 May 2016 16:00:10 +0200")
 References: <1463148012-25988-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2h9e01xs4.fsf@baylibre.com>
+ <1463148012-25988-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7hzirsh6st.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
-
 Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> Patchset to add and enable the reset controller driver on GXBB platforms.
+> This patch adds the platform driver for the Amlogic Meson GXBB Reset
+> Controller.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Looking closer at the vendor BSP reset driver, I realized that that
-kernel doesn't seem to be using this reset IP at all.  Their reset
-driver is actually just using clock gating in the HHI_GCLK_MPEGx
-registers.
+[...]
 
-I'm not sure I understand why they made that choice (I've asked
-off-list), but we'll need to keep in mind that any usage of the reset
-driver in the vendor DTs corresponds do clock gating, and not this reset
-IP.
+> +struct meson_gxbb_reset {
+> +	void *reg_base;
 
-In any case, other than the minor comments, this looks like a good
-driver for the reset IP in the S905/GXBB.
+nit: along wit the readw/writel, this should be void __iomem *.
 
-Also, I gave this driver a quick test with the network driver support I
-recently posted.  When the network driver is loaded, it deasserts the
-reset and when unloaded, it asserts the reset.  Interestingly, the
-assert cases a full system lockup. :(
-
-I've asked some Amlogic folks off-list about this issue too, and hope to
-get some more clarifcation (and ideally docs) about this reset IP soon.
+> +	struct reset_controller_dev rcdev;
+> +};
 
 Kevin
