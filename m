@@ -1,46 +1,73 @@
 From: carlo@caione.org (Carlo Caione)
-Date: Wed, 18 May 2016 16:56:21 +0200
-Subject: [PATCH v2 3/4] ARM64: dts: amlogic: gxbb: Enable secure monitor
+Date: Wed, 18 May 2016 16:56:20 +0200
+Subject: [PATCH v2 2/4] soc: dt-bindings: Add secure monitor header file for
+ GXBB
 In-Reply-To: <1463583382-15614-1-git-send-email-carlo@caione.org>
 References: <1463583382-15614-1-git-send-email-carlo@caione.org>
-Message-ID: <1463583382-15614-4-git-send-email-carlo@caione.org>
+Message-ID: <1463583382-15614-3-git-send-email-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Carlo Caione <carlo@endlessm.com>
 
-Add the secure monitor node in the Amlogic Meson GXBB DTSI file to
-enable it.
+This patch adds the header file describing all the SMC function
+identifiers for the Amlogic Meson GXBB SoC.
 
 Signed-off-by: Carlo Caione <carlo@endlessm.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ include/dt-bindings/soc/meson-gxbb-sm.h | 44 +++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 include/dt-bindings/soc/meson-gxbb-sm.h
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 76b3b6d..003e298 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -44,6 +44,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/meson-gxbb-gpio.h>
-+#include <dt-bindings/soc/meson-gxbb-sm.h>
- 
- / {
- 	compatible = "amlogic,meson-gxbb";
-@@ -98,6 +99,12 @@
- 		method = "smc";
- 	};
- 
-+	sm {
-+		compatible = "amlogic,meson-sm";
-+		amlogic,sm_cmd_input_base = <SM_GET_SHARE_MEM_INPUT_BASE>;
-+		amlogic,sm_cmd_output_base = <SM_GET_SHARE_MEM_OUTPUT_BASE>;
-+	};
+diff --git a/include/dt-bindings/soc/meson-gxbb-sm.h b/include/dt-bindings/soc/meson-gxbb-sm.h
+new file mode 100644
+index 0000000..b7d02df
+--- /dev/null
++++ b/include/dt-bindings/soc/meson-gxbb-sm.h
+@@ -0,0 +1,44 @@
++/*
++ * Copyright (C) 2016 Endless Mobile, Inc.
++ * Author: Carlo Caione <carlo@endlessm.com>
++ *
++ * This program is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU General Public License
++ * version 2 as published by the Free Software Foundation.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program. If not, see <http://www.gnu.org/licenses/>.
++ */
 +
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
++#ifndef _MESON_SM_GXBB_H_
++#define _MESON_SM_GXBB_H_
++
++#define SM_GET_SHARE_MEM_INPUT_BASE		0x82000020
++#define SM_GET_SHARE_MEM_OUTPUT_BASE		0x82000021
++#define SM_GET_REBOOT_REASON			0x82000022
++#define SM_GET_SHARE_STORAGE_IN_BASE		0x82000023
++#define SM_GET_SHARE_STORAGE_OUT_BASE		0x82000024
++#define SM_GET_SHARE_STORAGE_BLOCK_BASE		0x82000025
++#define SM_GET_SHARE_STORAGE_MESSAGE_BASE	0x82000026
++#define SM_GET_SHARE_STORAGE_BLOCK_SIZE		0x82000027
++#define SM_EFUSE_READ				0x82000030
++#define SM_EFUSE_WRITE				0x82000031
++#define SM_EFUSE_WRITE_PATTERN			0x82000032
++#define SM_EFUSE_USER_MAX			0x82000033
++#define SM_JTAG_ON				0x82000040
++#define SM_JTAG_OFF				0x82000041
++#define SM_SET_USB_BOOT_FUNC			0x82000043
++#define SM_SECURITY_KEY_QUERY			0x82000060
++#define SM_SECURITY_KEY_READ			0x82000061
++#define SM_SECURITY_KEY_WRITE			0x82000062
++#define SM_SECURITY_KEY_TELL			0x82000063
++#define SM_SECURITY_KEY_VERIFY			0x82000064
++#define SM_SECURITY_KEY_STATUS			0x82000065
++#define SM_SECURITY_KEY_NOTIFY			0x82000066
++#define SM_SECURITY_KEY_LIST			0x82000067
++#define SM_SECURITY_KEY_REMOVE			0x82000068
++#define SM_DEBUG_EFUSE_WRITE_PATTERN		0x820000F0
++#define SM_DEBUG_EFUSE_READ_PATTERN		0x820000F1
++#define SM_AML_DATA_PROCESS			0x820000FF
++
++#endif /* _MESON_SM_GXBB_H_ */
 -- 
 2.7.4
