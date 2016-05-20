@@ -1,35 +1,36 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 20 May 2016 10:27:52 +0200
-Subject: [PATCH 0/3] Amlogic: GXBB: Add reset controller
-Message-ID: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
+Date: Fri, 20 May 2016 10:27:55 +0200
+Subject: [PATCH 3/3] ARM64: dts: amlogic: Enable Reset Controller on
+ GXBB-based platforms
+In-Reply-To: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
+References: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1463732875-23141-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Patchset to add and enable the reset controller driver on GXBB platforms.
+Update DTSI file to add the reset controller node.
 
-This reset controller has up to 256 reset lines with reset pulse generation only,
-so the assert and deassert calls are not available.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
-- Fix register mapping and bit defines in bindings header
-- Remove assert and unassert calls
-- Fix missing __iomem
-
-Neil Armstrong (3):
-  reset: Add support for the Amlogic Meson GXBB Reset Controller
-  dt-bindings: reset: Add bindings for the Meson GXBB Reset Controller
-  ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
-
- .../bindings/reset/amlogic,meson-gxbb-reset.txt    |  18 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   6 +
- drivers/reset/Kconfig                              |   6 +
- drivers/reset/Makefile                             |   1 +
- drivers/reset/reset-meson-gxbb.c                   | 129 +++++++++++++
- .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 199 +++++++++++++++++++++
- 6 files changed, 359 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-gxbb-reset.txt
- create mode 100644 drivers/reset/reset-meson-gxbb.c
- create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 832815d..2463e04 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -129,6 +129,12 @@
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xc1100000 0x0 0x100000>;
+ 
++			reset: reset-controller at 4404 {
++				compatible = "amlogic,meson-gxbb-reset";
++				reg = <0x0 0x04404 0x0 0x20>;
++				#reset-cells = <1>;
++			};
++
+ 			uart_A: serial at 84c0 {
+ 				compatible = "amlogic,meson-uart";
+ 				reg = <0x0 0x084c0 0x0 0x14>;
 -- 
 2.7.0
