@@ -1,55 +1,106 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Fri, 20 May 2016 11:10:50 +0200
-Subject: [PATCH 3/3] ARM64: dts: amlogic: Enable Reset Controller on
- GXBB-based platforms
-In-Reply-To: <573ED06F.9070909@baylibre.com>
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Fri, 20 May 2016 11:27:58 +0200
+Subject: [PATCH 1/3] reset: Add support for the Amlogic Meson GXBB Reset
+ Controller
+In-Reply-To: <1463732875-23141-2-git-send-email-narmstrong@baylibre.com>
 References: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
- <1463732875-23141-4-git-send-email-narmstrong@baylibre.com>
- <20160520084748.GC16732@mephisto> <573ED06F.9070909@baylibre.com>
-Message-ID: <20160520091050.GC19888@mephisto>
+ <1463732875-23141-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1463736478.4322.31.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 20/05/16 10:53, Neil Armstrong wrote:
-> On 05/20/2016 10:47 AM, Carlo Caione wrote:
-> > On 20/05/16 10:27, Neil Armstrong wrote:
-> >> Update DTSI file to add the reset controller node.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 6 ++++++
-> >>  1 file changed, 6 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> >> index 832815d..2463e04 100644
-> >> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> >> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> >> @@ -129,6 +129,12 @@
-> >>  			#size-cells = <2>;
-> >>  			ranges = <0x0 0x0 0x0 0xc1100000 0x0 0x100000>;
-> >>  
-> >> +			reset: reset-controller at 4404 {
-> >> +				compatible = "amlogic,meson-gxbb-reset";
-> >> +				reg = <0x0 0x04404 0x0 0x20>;
-> >> +				#reset-cells = <1>;
-> >> +			};
-> >> +
-> >>  			uart_A: serial at 84c0 {
-> >>  				compatible = "amlogic,meson-uart";
-> >>  				reg = <0x0 0x084c0 0x0 0x14>;
-> > 
-> > Missing #include <dt-bindings/reset/amlogic,meson-gxbb-reset.h> ?
-> > 
-> > Thanks,
-> > 
+Hi Neil,
+
+Am Freitag, den 20.05.2016, 10:27 +0200 schrieb Neil Armstrong:
+> This patch adds the platform driver for the Amlogic Meson GXBB Reset
+> Controller.
 > 
-> Shouldn't we wait until the reset bindings are actually used in the dtsi ?
-> I'm quite sure kevin will post it with the Ethernet nodes.
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/reset/Kconfig            |   6 ++
+>  drivers/reset/Makefile           |   1 +
+>  drivers/reset/reset-meson-gxbb.c | 129 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 136 insertions(+)
+>  create mode 100644 drivers/reset/reset-meson-gxbb.c
+> 
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index df37212..4ac5c4d 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -12,5 +12,11 @@ menuconfig RESET_CONTROLLER
+>  
+>  	  If unsure, say no.
+>  
+> +config MESON_GXBB_RESET
+> +	tristate "Amlogic Meson GXBB Reset Driver"
+> +	depends on (ARCH_MESON && RESET_CONTROLLER)
 
-Why? The header file is related to the reset controller. Better add it
-now with this patchset.
+With the "reset: fix Kconfig menu to include reset drivers in sub-menu"
+patch [1] applied this is wrapped in "if RESET_CONTROLLER ... endif", so
+no need to depend on RESET_CONTROLLER.
+Is there a reason to have this configurable at all, though?
 
-Cheers,
+[1] https://patchwork.kernel.org/patch/9000591/
 
--- 
-Carlo Caione
+> +	help
+> +	  Build the Amlogic Meson GxBB reset driver.
+> +
+>  source "drivers/reset/sti/Kconfig"
+>  source "drivers/reset/hisilicon/Kconfig"
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index a1fc8ed..5ff83a1 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -3,6 +3,7 @@ obj-$(CONFIG_ARCH_LPC18XX) += reset-lpc18xx.o
+>  obj-$(CONFIG_ARCH_SOCFPGA) += reset-socfpga.o
+>  obj-$(CONFIG_ARCH_BERLIN) += reset-berlin.o
+>  obj-$(CONFIG_MACH_PISTACHIO) += reset-pistachio.o
+> +obj-$(CONFIG_MESON_GXBB_RESET) += reset-meson-gxbb.o
+
+Or drop CONFIG_MESON_GXBB_RESET and use CONFIG_ARCH_MESON directly.
+
+[...]
+> +static int meson_gxbb_reset_probe(struct platform_device *pdev)
+> +{
+> +	struct meson_gxbb_reset *data;
+> +	struct resource *res;
+> +
+> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	data->reg_base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(data->reg_base))
+> +		return PTR_ERR(data->reg_base);
+> +
+> +	platform_set_drvdata(pdev, data);
+> +
+> +	data->rcdev.owner = THIS_MODULE;
+> +	data->rcdev.nr_resets = REG_COUNT * BITS_PER_REG;
+> +	data->rcdev.ops = &meson_gxbb_reset_ops;
+> +	data->rcdev.of_node = pdev->dev.of_node;
+> +
+> +	return reset_controller_register(&data->rcdev);
+
+With the "reset: add devm_reset_controller_register API" patch [2]
+applied you can use devm_reset_controller_register() here and remove the
+meson_gxbb_reset_remove() function below.
+
+[2] https://patchwork.kernel.org/patch/8988471/
+
+> +}
+> +
+> +static int meson_gxbb_reset_remove(struct platform_device *pdev)
+> +{
+> +	struct meson_gxbb_reset *data = platform_get_drvdata(pdev);
+> +
+> +	reset_controller_unregister(&data->rcdev);
+> +
+> +	return 0;
+> +}
+
+Could be removed, then.
+
+regards
+Philipp
