@@ -1,61 +1,60 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Fri, 20 May 2016 12:04:37 +0200
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 20 May 2016 14:18:03 +0200
 Subject: [PATCH 1/3] reset: Add support for the Amlogic Meson GXBB Reset
  Controller
-In-Reply-To: <573ED483.10101@baylibre.com>
+In-Reply-To: <1463736478.4322.31.camel@pengutronix.de>
 References: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
  <1463732875-23141-2-git-send-email-narmstrong@baylibre.com>
- <20160520090448.GA19888@mephisto> <573ED483.10101@baylibre.com>
-Message-ID: <20160520100437.GA21213@mephisto>
+ <1463736478.4322.31.camel@pengutronix.de>
+Message-ID: <573F007B.6030502@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 20/05/16 11:10, Neil Armstrong wrote:
-> On 05/20/2016 11:04 AM, Carlo Caione wrote:
-> > On 20/05/16 10:27, Neil Armstrong wrote:
-> >> This patch adds the platform driver for the Amlogic Meson GXBB Reset
-> >> Controller.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/reset/Kconfig            |   6 ++
-> >>  drivers/reset/Makefile           |   1 +
-> >>  drivers/reset/reset-meson-gxbb.c | 129 +++++++++++++++++++++++++++++++++++++++
-> >>  3 files changed, 136 insertions(+)
-> >>  create mode 100644 drivers/reset/reset-meson-gxbb.c
-> > 
-> > Do we really need to be that specific (-gxbb)? This driver looks generic
-> > and simple enough to be used for several Amlogic families. You are
-> > already differentiating between them with the include file defining the
-> > reset indexes for the SoC.
+Hi Philipp,
+
+On 05/20/2016 11:27 AM, Philipp Zabel wrote:
+> Hi Neil,
 > 
-> This is a good question, do the S805 have similar registers ? Same count and width ?
-> I no, it should need a rework to add a data structure per-SoC.
-
-According to the datasheet on S805 we have 7 registers with 16 reset
-bits per register.
-
-[...]
-> > 
-> > [...]
-> >> +static struct platform_driver meson_gxbb_reset_driver = {
-> >> +	.probe	= meson_gxbb_reset_probe,
-> >> +	.remove	= meson_gxbb_reset_remove,
-> >> +	.driver = {
-> >> +		.name		= "meson_gxbb_reset",
-> >> +		.of_match_table	= meson_gxbb_reset_dt_ids,
-> >> +	},
-> >> +};
-> >> +
-> >> +module_platform_driver(meson_gxbb_reset_driver);
-> > 
-> > No MODULE_AUTHOR, MODULE_LICENSE, etc... ?
+> Am Freitag, den 20.05.2016, 10:27 +0200 schrieb Neil Armstrong:
+>> +config MESON_GXBB_RESET
+>> +	tristate "Amlogic Meson GXBB Reset Driver"
+>> +	depends on (ARCH_MESON && RESET_CONTROLLER)
 > 
-> What is the MODULE_LICENCE format for dual licensing ?
+> With the "reset: fix Kconfig menu to include reset drivers in sub-menu"
+> patch [1] applied this is wrapped in "if RESET_CONTROLLER ... endif", so
+> no need to depend on RESET_CONTROLLER.
+> Is there a reason to have this configurable at all, though?
+> 
+> [1] https://patchwork.kernel.org/patch/9000591/
+> 
+> Or drop CONFIG_MESON_GXBB_RESET and use CONFIG_ARCH_MESON directly.
 
-Dual BSD/GPL ?
+No strong reason, I will switch to CONFIG_ARCH_MESON.
 
-Cheers,
+> [...]
+> 
+> With the "reset: add devm_reset_controller_register API" patch [2]
+> applied you can use devm_reset_controller_register() here and remove the
+> meson_gxbb_reset_remove() function below.
+> 
+> [2] https://patchwork.kernel.org/patch/8988471/
+> 
+>> +}
+>> +
+>> +static int meson_gxbb_reset_remove(struct platform_device *pdev)
+>> +{
+>> +	struct meson_gxbb_reset *data = platform_get_drvdata(pdev);
+>> +
+>> +	reset_controller_unregister(&data->rcdev);
+>> +
+>> +	return 0;
+>> +}
+> 
+> Could be removed, then.
+> 
+> regards
+> Philipp
 
--- 
-Carlo Caione
+It will be for sure !
+
+Neil
