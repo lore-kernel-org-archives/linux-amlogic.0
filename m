@@ -1,46 +1,46 @@
 From: carlo@caione.org (Carlo Caione)
-Date: Fri, 20 May 2016 14:25:23 +0200
-Subject: [PATCH 1/3] reset: Add support for the Amlogic Meson GXBB Reset
- Controller
-In-Reply-To: <573F0109.9080302@baylibre.com>
-References: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
- <1463732875-23141-2-git-send-email-narmstrong@baylibre.com>
- <20160520090448.GA19888@mephisto> <573ED483.10101@baylibre.com>
- <20160520100437.GA21213@mephisto> <573F0109.9080302@baylibre.com>
-Message-ID: <20160520122523.GA9913@mephisto>
+Date: Fri, 20 May 2016 16:44:52 +0200
+Subject: [PATCH v7 3/4] arm: add initial support for Amlogic Meson and
+ ODROID-C2
+In-Reply-To: <1462689017-3160-4-git-send-email-b.galvani@gmail.com>
+References: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
+ <1462689017-3160-4-git-send-email-b.galvani@gmail.com>
+Message-ID: <20160520144452.GA20005@mephisto>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 20/05/16 14:20, Neil Armstrong wrote:
-> On 05/20/2016 12:04 PM, Carlo Caione wrote:
-> > On 20/05/16 11:10, Neil Armstrong wrote:
-> >> On 05/20/2016 11:04 AM, Carlo Caione wrote:
-> >>> On 20/05/16 10:27, Neil Armstrong wrote:
-> >>>> This patch adds the platform driver for the Amlogic Meson GXBB Reset
-> >>>> Controller.
-> >>>>
-> >>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >>>> ---
-> >>>>  drivers/reset/Kconfig            |   6 ++
-> >>>>  drivers/reset/Makefile           |   1 +
-> >>>>  drivers/reset/reset-meson-gxbb.c | 129 +++++++++++++++++++++++++++++++++++++++
-> >>>>  3 files changed, 136 insertions(+)
-> >>>>  create mode 100644 drivers/reset/reset-meson-gxbb.c
-> >>>
-> >>> Do we really need to be that specific (-gxbb)? This driver looks generic
-> >>> and simple enough to be used for several Amlogic families. You are
-> >>> already differentiating between them with the include file defining the
-> >>> reset indexes for the SoC.
-> >>
-> >> This is a good question, do the S805 have similar registers ? Same count and width ?
-> >> I no, it should need a rework to add a data structure per-SoC.
-> > 
-> > According to the datasheet on S805 we have 7 registers with 16 reset
-> > bits per register.
+On 08/05/16 08:30, Beniamino Galvani wrote:
+> This adds platform code for the Amlogic Meson GXBaby (S905) SoC and a
+> board definition for ODROID-C2. This initial submission only supports
+> UART and Ethernet (through the existing Designware driver). DTS files
+> are the ones submitted to Linux arm-soc for 4.7 [1].
 > 
-> It will fit, I made the change to be generic. Do you know if the meson8 and previous meson6 has these registers ?
+> [1] https://patchwork.ozlabs.org/patch/603583/
+> 
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> Reviewed-by: Simon Glass <sjg@chromium.org>
+> ---
+>  arch/arm/Kconfig                       |   9 ++
+>  arch/arm/Makefile                      |   1 +
+>  arch/arm/dts/Makefile                  |   2 +
+>  arch/arm/dts/meson-gxbb-odroidc2.dts   |  69 +++++++++++++
+>  arch/arm/dts/meson-gxbb.dtsi           | 178 +++++++++++++++++++++++++++++++++
+>  arch/arm/include/asm/arch-meson/gxbb.h |  52 ++++++++++
+>  arch/arm/mach-meson/Kconfig            |  31 ++++++
+>  arch/arm/mach-meson/Makefile           |   7 ++
+>  arch/arm/mach-meson/board.c            |  66 ++++++++++++
+>  board/hardkernel/odroid-c2/Kconfig     |  12 +++
+>  board/hardkernel/odroid-c2/MAINTAINERS |   6 ++
+>  board/hardkernel/odroid-c2/Makefile    |   7 ++
+>  board/hardkernel/odroid-c2/README      |  60 +++++++++++
+>  board/hardkernel/odroid-c2/odroid-c2.c |  51 ++++++++++
 
-No idea. No datasheet for those.
+I suggest to have s/hardkernel/amlogic/ so that we can have all the
+amlogic boards in the same place.
+
+Also I wonder if it's worth to have one single board file board.c so to
+avoid duplicating code among the boards, especially now that the DT
+support is still incomplete. 
 
 Cheers,
 
