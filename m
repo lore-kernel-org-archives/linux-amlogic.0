@@ -1,24 +1,35 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Fri, 20 May 2016 10:07:32 +0200
-Subject: [PATCH 0/2] Add support for Amlogic Meson MMC controller
-In-Reply-To: <20160520062700.GA16199@mephisto>
-References: <1463056902-8533-1-git-send-email-carlo@caione.org>
- <573E97BB.1090903@gmail.com> <20160520062700.GA16199@mephisto>
-Message-ID: <20160520080732.GA16732@mephisto>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 20 May 2016 10:27:52 +0200
+Subject: [PATCH 0/3] Amlogic: GXBB: Add reset controller
+Message-ID: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 20/05/16 08:27, Carlo Caione wrote:
-> On 19/05/16 21:51, Robert Gadsdon wrote:
-> > Applied this on my Odroid C2, and it worked OK when installed on the
-> > SDcard, but failed when installed on the eMMC module:
+Patchset to add and enable the reset controller driver on GXBB platforms.
 
-Oh, reading this again you meant that you put u-boot directly on the
-eMMC? Ok then, something is wrong when using the driver with the eMMC.
+This reset controller has up to 256 reset lines with reset pulse generation only,
+so the assert and deassert calls are not available.
 
-I'll try to boot it on the P20x and check what's wrong with it.
+Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
+- Fix register mapping and bit defines in bindings header
+- Remove assert and unassert calls
+- Fix missing __iomem
 
-Thanks,
+Neil Armstrong (3):
+  reset: Add support for the Amlogic Meson GXBB Reset Controller
+  dt-bindings: reset: Add bindings for the Meson GXBB Reset Controller
+  ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
+
+ .../bindings/reset/amlogic,meson-gxbb-reset.txt    |  18 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   6 +
+ drivers/reset/Kconfig                              |   6 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-meson-gxbb.c                   | 129 +++++++++++++
+ .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 199 +++++++++++++++++++++
+ 6 files changed, 359 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-gxbb-reset.txt
+ create mode 100644 drivers/reset/reset-meson-gxbb.c
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
 
 -- 
-Carlo Caione
+2.7.0
