@@ -1,50 +1,26 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 23 May 2016 13:58:05 -0700
-Subject: [PATCH v3 1/4] firmware: Amlogic: Add secure monitor driver
-In-Reply-To: <1464021024-29380-2-git-send-email-carlo@caione.org> (Carlo
- Caione's message of "Mon, 23 May 2016 18:30:21 +0200")
-References: <1464021024-29380-1-git-send-email-carlo@caione.org>
- <1464021024-29380-2-git-send-email-carlo@caione.org>
-Message-ID: <m2posco5k2.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 23 May 2016 16:04:06 -0500
+Subject: [PATCH 2/3] dt-bindings: reset: Add bindings for the Meson GXBB
+ Reset Controller
+In-Reply-To: <1463732875-23141-3-git-send-email-narmstrong@baylibre.com>
+References: <1463732875-23141-1-git-send-email-narmstrong@baylibre.com>
+ <1463732875-23141-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20160523210406.GA26743@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Carlo Caione <carlo@caione.org> writes:
+On Fri, May 20, 2016 at 10:27:54AM +0200, Neil Armstrong wrote:
+> Add DT bindings for the Meson GXBB SoC Reset Controller documentation and the
+> associated include file.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/reset/amlogic,meson-gxbb-reset.txt    |  18 ++
+>  .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 199 +++++++++++++++++++++
+>  2 files changed, 217 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-gxbb-reset.txt
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
 
-> From: Carlo Caione <carlo@endlessm.com>
->
-> Introduce a driver to provide calls into secure monitor mode.
->
-> In the Amlogic SoCs these calls are used for multiple reasons: access to
-> NVMEM, set USB boot, enable JTAG, etc...
->
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+Other than the whitespace comments,
 
-[...]
-
-> +static int meson_sm_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct meson_sm_firmware *fw;
-> +	u32 sm_phy_in_base, sm_phy_out_base;
-> +	int cmd_in, cmd_out;
-> +
-> +	fw = devm_kzalloc(&pdev->dev, sizeof(*fw), GFP_KERNEL);
-> +	if (!fw)
-> +		return -ENOMEM;
-> +
-> +	fw->dev = &pdev->dev;
-> +
-> +	if (of_property_read_u32(np, "amlogic,sm-cmd-input-base", &cmd_in))
-> +		return -EINVAL;
-> +
-> +	if (of_property_read_u32(np, "amlogic,sm-cmd-output-base", &cmd_out))
-> +		return -EINVAL;
-> +
-> +	sm_phy_in_base = meson_sm_call(cmd_in, 0, 0, 0, 0, 0);
-
-Should there be any error checking here?  Do we have any info on the
-return values here in case of error, or in case of missing firmware,
-etc.
-
-Kevin
+Acked-by: Rob Herring <robh@kernel.org>
