@@ -1,138 +1,62 @@
 From: carlo@caione.org (Carlo Caione)
-Date: Mon, 23 May 2016 13:43:58 +0200
-Subject: [PATCH v2 1/4] soc: Amlogic: Add secure monitor driver
-In-Reply-To: <5742EBC4.3050704@gmail.com>
-References: <1463583382-15614-1-git-send-email-carlo@caione.org>
- <1463583382-15614-2-git-send-email-carlo@caione.org>
- <5742EBC4.3050704@gmail.com>
-Message-ID: <20160523114358.GC17269@mephisto>
+Date: Mon, 23 May 2016 18:30:20 +0200
+Subject: [PATCH v3 0/4] Add Amlogic secure monitor driver
+Message-ID: <1464021024-29380-1-git-send-email-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 23/05/16 13:38, Matthias Brugger wrote:
-> 
+From: Carlo Caione <carlo@endlessm.com>
 
-[...]
-> >+#include <stdarg.h>
-> >+#include <asm/cacheflush.h>
-> >+#include <asm/compiler.h>
-> >+#include <linux/arm-smccc.h>
-> >+#include <linux/io.h>
-> >+#include <linux/ioport.h>
-> >+#include <linux/module.h>
-> >+#include <linux/platform_device.h>
-> >+#include <linux/of.h>
-> >+#include <linux/smp.h>
-> >+
-> >+#include <linux/soc/meson/meson_sm.h>
-> >+
-> >+#define SM_MEM_SIZE	0x1000
-> >+
-> >+/*
-> >+ * To read from / write to the secure monitor we use two bounce buffers. The
-> >+ * physical addresses of the two buffers are obtained by querying the secure
-> >+ * monitor itself.
-> >+ */
-> >+
-> >+static u32 sm_phy_in_base;
-> >+static u32 sm_phy_out_base;
-> 
-> You can put this two variable in meson_sm_probe, right?
+In the Amlogic SoCs the secure monitor calls are used for a lot of reasons:
+interact with the NVMEM (efuses), check the reboot reason, set USB boot, ...
 
-Yeah, actually no need to be there.
+This driver defines a generic interface towards the secure monitor that can be
+used by more specialized drivers to interact with the secure monitor itself
+without worrying about bounce buffers managing.
 
-> >+
-> >+static void __iomem *sm_sharemem_in_base;
-> >+static void __iomem *sm_sharemem_out_base;
-> >+
-> >+struct meson_sm_data {
-> >+	u32 cmd;
-> >+	u32 arg0;
-> >+	u32 arg1;
-> >+	u32 arg2;
-> >+	u32 arg3;
-> >+	u32 arg4;
-> >+	u32 ret;
-> >+};
-> >+
-> >+static void __meson_sm_call(void *info)
-> >+{
-> >+	struct meson_sm_data *data = info;
-> >+	struct arm_smccc_res res;
-> >+
-> >+	arm_smccc_smc(data->cmd,
-> >+		      data->arg0, data->arg1, data->arg2,
-> >+		      data->arg3, data->arg4, 0, 0, &res);
-> >+	data->ret = res.a0;
-> >+}
-> >+
-> >+u32 meson_sm_call(u32 cmd, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-> 
-> Can the function be static or will it be called from another driver?
+Changelog:
 
-It _can_ be called from another driver. It depends on the SMC used, so
-better making it available.
+v3:
+  * Moved driver to drivers/firmware
+  * Added EXPORT_SYMBOL macros
+  * Changed '_' in '-'
+  * Introduced 'struct meson_sm_firmware' and 'meson_sm_get_fw()' to be used by
+    drivers using the secure-monitor to enforce probe ordering
 
-> 
-> >+{
-> >+	struct meson_sm_data data;
-> >+
-> >+	data.cmd = cmd;
-> >+	data.arg0 = arg0;
-> >+	data.arg1 = arg1;
-> >+	data.arg2 = arg2;
-> >+	data.arg3 = arg3;
-> >+	data.arg4 = arg4;
-> >+	data.ret = 0;
-> >+
-> >+	__meson_sm_call(&data);
-> >+
-> >+	return data.ret;
-> >+}
-> >+
-> >+u32 meson_sm_call_read(void *buffer, u32 cmd, u32 arg0, u32 arg1,
-> >+		       u32 arg2, u32 arg3, u32 arg4)
-> >+{
-> >+	u32 size;
-> >+
-> >+	size = meson_sm_call(cmd, arg0, arg1, arg2, arg3, arg4);
-> >+
-> >+	if (!size || size > SM_MEM_SIZE)
-> >+		return -EINVAL;
-> >+
-> >+	memcpy(buffer, sm_sharemem_out_base, size);
-> >+	return size;
-> >+}
-> 
-> This function will be needed to be exported to be callable from modules.
+v2:
+  * All the SMC function identifiers are now in a SoC-specific header file to
+    be included by the DTS files so the SMC commands are now defined in the DT
+    instead to be hardcoded into the driver
+  * Patchset is no longer an RFC
+  * Better error management and boundary checking
+  * s/unsigned int/u32/
+  * SMC call not only on CPU 0
+  * Fix memory leaking
+  * s/amlogic/meson/ in the directory names
 
-Fix in v3.
 
-> >+
-> >+u32 meson_sm_call_write(void *buffer, unsigned int b_size, u32 cmd, u32 arg0,
-> >+			u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-> >+{
-> >+	u32 size;
-> >+
-> >+	if (b_size > SM_MEM_SIZE)
-> >+		return -EINVAL;
-> >+
-> >+	memcpy(sm_sharemem_in_base, buffer, b_size);
-> >+
-> >+	size = meson_sm_call(cmd, arg0, arg1, arg2, arg3, arg4);
-> >+
-> >+	if (!size)
-> >+		return -EINVAL;
-> >+
-> >+	return size;
-> >+}
-> >+
-> 
-> Same here.
+Carlo Caione (4):
+  firmware: Amlogic: Add secure monitor driver
+  firmware: dt-bindings: Add secure monitor header file for GXBB
+  ARM64: dts: amlogic: gxbb: Enable secure monitor
+  documentation: Add secure monitor binding documentation
 
-Thanks.
-
-Cheers,
+ .../bindings/firmware/meson/meson_sm.txt           |  51 ++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  11 ++
+ drivers/firmware/Kconfig                           |   1 +
+ drivers/firmware/Makefile                          |   1 +
+ drivers/firmware/meson/Kconfig                     |   8 +
+ drivers/firmware/meson/Makefile                    |   1 +
+ drivers/firmware/meson/meson_sm.c                  | 179 +++++++++++++++++++++
+ include/dt-bindings/firmware/meson-gxbb-sm.h       |  44 +++++
+ include/linux/firmware/meson/meson_sm.h            |  38 +++++
+ 9 files changed, 334 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+ create mode 100644 drivers/firmware/meson/Kconfig
+ create mode 100644 drivers/firmware/meson/Makefile
+ create mode 100644 drivers/firmware/meson/meson_sm.c
+ create mode 100644 include/dt-bindings/firmware/meson-gxbb-sm.h
+ create mode 100644 include/linux/firmware/meson/meson_sm.h
 
 -- 
-Carlo Caione
+2.7.4
