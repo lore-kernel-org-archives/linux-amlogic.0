@@ -1,11 +1,11 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 24 May 2016 09:14:28 -0700
+Date: Tue, 24 May 2016 11:29:00 -0700
 Subject: [PATCH 0/7] pinctrl: meson: Add a bunch more pins
 In-Reply-To: <CACRpkdY9oGZLt431NwTaFmZk98O8n3ZnMA1odhYZtcH7P1p=Jg@mail.gmail.com>
  (Linus Walleij's message of "Tue, 24 May 2016 11:23:37 +0200")
 References: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
  <CACRpkdY9oGZLt431NwTaFmZk98O8n3ZnMA1odhYZtcH7P1p=Jg@mail.gmail.com>
-Message-ID: <m2eg8rigbf.fsf@baylibre.com>
+Message-ID: <m260u3ia37.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -26,6 +26,12 @@ Linus Walleij <linus.walleij@linaro.org> writes:
 > Torvalds' HEAD and resend, and include Carlo's ACK on them
 > so I can merge them in the next kernel cycle?
 
-Coming right up...
+Looking closer, these have dependencies on the DT changes that you've
+suggested we take through arm-soc, so it would be cleaner if I take
+these with your ack through the amlogic tree.
+
+Since it's a brand new driver, I don't expect there to be conflicts.
+
+Does that work for you?
 
 Kevin
