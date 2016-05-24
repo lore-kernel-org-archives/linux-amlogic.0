@@ -1,31 +1,26 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Tue, 24 May 2016 10:08:03 +0200
-Subject: [PATCH v3 1/4] firmware: Amlogic: Add secure monitor driver
-In-Reply-To: <m2posco5k2.fsf@baylibre.com>
-References: <1464021024-29380-1-git-send-email-carlo@caione.org>
- <1464021024-29380-2-git-send-email-carlo@caione.org>
- <m2posco5k2.fsf@baylibre.com>
-Message-ID: <20160524080803.GB18935@mephisto>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Tue, 24 May 2016 11:23:37 +0200
+Subject: [PATCH 0/7] pinctrl: meson: Add a bunch more pins
+In-Reply-To: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
+References: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
+Message-ID: <CACRpkdY9oGZLt431NwTaFmZk98O8n3ZnMA1odhYZtcH7P1p=Jg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 23/05/16 13:58, Kevin Hilman wrote:
+On Fri, May 6, 2016 at 4:21 PM, Kevin Hilman <khilman@baylibre.com> wrote:
 
-[...]
-> > +	if (of_property_read_u32(np, "amlogic,sm-cmd-input-base", &cmd_in))
-> > +		return -EINVAL;
-> > +
-> > +	if (of_property_read_u32(np, "amlogic,sm-cmd-output-base", &cmd_out))
-> > +		return -EINVAL;
-> > +
-> > +	sm_phy_in_base = meson_sm_call(cmd_in, 0, 0, 0, 0, 0);
-> 
-> Should there be any error checking here?  Do we have any info on the
-> return values here in case of error, or in case of missing firmware,
-> etc.
+> Add support for several more devices, both in the EE domain and in the
+> AO domain.  Also, add the pins to the corresponding DTS files.
+>
+> Tested on odroid-c2 and Amlogic P200 boards, and verified with working
+> ethernet.
+>
+> Depends on the initial GXBB pinctrl support from Carlo[1].  Also
+> available in my git tree[2] with all the dependencies included.
 
-We do not have any info on that but I can assume 0 is considered an
-error as for other SMC calls. Fix in v4.
+These don't apply anomore sadly, Kevin can you rebase on
+Torvalds' HEAD and resend, and include Carlo's ACK on them
+so I can merge them in the next kernel cycle?
 
--- 
-Carlo Caione
+Yours,
+Linus Walleij
