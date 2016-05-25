@@ -1,45 +1,52 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 24 May 2016 14:45:17 -0700
-Subject: [PATCH 0/7] pinctrl: meson: Add a bunch more pins
-In-Reply-To: <m260u3ia37.fsf@baylibre.com> (Kevin Hilman's message of "Tue, 24
- May 2016 11:29:00 -0700")
-References: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
- <CACRpkdY9oGZLt431NwTaFmZk98O8n3ZnMA1odhYZtcH7P1p=Jg@mail.gmail.com>
- <m260u3ia37.fsf@baylibre.com>
-Message-ID: <m2posbgmfm.fsf@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 25 May 2016 11:49:14 +0200
+Subject: [PATCH v2 0/4] Amlogic: Meson: Add reset controller
+Message-ID: <1464169758-26975-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
+Patchset to add and enable the reset controller driver on Meson SoCs platforms.
 
-> Linus Walleij <linus.walleij@linaro.org> writes:
->
->> On Fri, May 6, 2016 at 4:21 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->>
->>> Add support for several more devices, both in the EE domain and in the
->>> AO domain.  Also, add the pins to the corresponding DTS files.
->>>
->>> Tested on odroid-c2 and Amlogic P200 boards, and verified with working
->>> ethernet.
->>>
->>> Depends on the initial GXBB pinctrl support from Carlo[1].  Also
->>> available in my git tree[2] with all the dependencies included.
->>
->> These don't apply anomore sadly, Kevin can you rebase on
->> Torvalds' HEAD and resend, and include Carlo's ACK on them
->> so I can merge them in the next kernel cycle?
->
-> Looking closer, these have dependencies on the DT changes that you've
-> suggested we take through arm-soc, so it would be cleaner if I take
-> these with your ack through the amlogic tree.
->
-> Since it's a brand new driver, I don't expect there to be conflicts.
->
-> Does that work for you?
+This reset controller has up to 256 reset lines with reset pulse generation only,
+so the assert and deassert calls are not available.
 
-FWIW, rebase available here (with all deps, some of which I think
-you'ved already merged):
+Depends on the patch :
+ - "reset: add devm_reset_controller_register API" [1]
 
-git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux.git amlogic/v4.7/pinctrl
+Changes since v1 at http://lkml.kernel.org/r/1463732875-23141-1-git-send-email-narmstrong at baylibre.com :
+- Remove _gxbb_ in names
+- Depends build on ARCH_MESON only
+- Add meson8b compatible and bindings
+- Re-indent dt-bindings headers
+- Switch to devm_ reset controller register
+- Remove platform "remove" callback
+- Update Dual BSD/GPL file headers
 
-Kevin
+Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
+- Fix register mapping and bit defines in bindings header
+- Remove assert and unassert calls
+- Fix missing __iomem
+
+[1] https://patchwork.kernel.org/patch/8988471/
+
+Neil Armstrong (4):
+  reset: Add support for the Amlogic Meson SoC Reset Controller
+  dt-bindings: reset: Add bindings for the Meson SoC Reset Controller
+  ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
+  ARM: dts: amlogic: Enable Reset Controller on Meson8b platforms
+
+ .../bindings/reset/amlogic,meson-reset.txt         |  18 ++
+ arch/arm/boot/dts/meson8b.dtsi                     |   7 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   7 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-meson.c                        | 137 ++++++++++++++
+ .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 210 +++++++++++++++++++++
+ include/dt-bindings/reset/amlogic,meson8b-reset.h  | 175 +++++++++++++++++
+ 7 files changed, 555 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+ create mode 100644 drivers/reset/reset-meson.c
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
+ create mode 100644 include/dt-bindings/reset/amlogic,meson8b-reset.h
+
+-- 
+2.7.0
