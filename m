@@ -1,48 +1,39 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Wed, 25 May 2016 22:18:31 +0200
-Subject: [PATCH v4 3/3] ARM64: dts: amlogic: gxbb: Enable secure monitor
-In-Reply-To: <1464207511-11786-1-git-send-email-carlo@caione.org>
-References: <1464207511-11786-1-git-send-email-carlo@caione.org>
-Message-ID: <1464207511-11786-4-git-send-email-carlo@caione.org>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 25 May 2016 19:42:59 -0700
+Subject: [PATCH v2 1/4] reset: Add support for the Amlogic Meson SoC Reset
+ Controller
+In-Reply-To: <1464169758-26975-2-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Wed, 25 May 2016 11:49:15 +0200")
+References: <1464169758-26975-1-git-send-email-narmstrong@baylibre.com>
+ <1464169758-26975-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2iny1h74c.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Carlo Caione <carlo@endlessm.com>
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Add the secure monitor node in the Amlogic Meson GXBB DTSI file to
-enable it.
+> This patch adds the platform driver for the Amlogic Meson SoC Reset
+> Controller.
+>
+> The Meson8b and GXBB SoCs are supported.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Signed-off-by: Carlo Caione <carlo@endlessm.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Maybe a question for Philipp, but when testog this version with the
+stmmac ethernet driver on the Amlogic boards, I noticed that ->reset was
+never getting called.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 76b3b6d..735a751 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -44,6 +44,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/meson-gxbb-gpio.h>
-+#include <dt-bindings/firmware/meson-sm.h>
- 
- / {
- 	compatible = "amlogic,meson-gxbb";
-@@ -98,6 +99,14 @@
- 		method = "smc";
- 	};
- 
-+	firmware {
-+		compatible = "simple-bus";
-+
-+		sm: secure-monitor {
-+			compatible = "amlogic,meson-gxbb-sm";
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
--- 
-2.7.4
+Turns out, the stmmac driver only uses reset_control_assert() and
+reset_control_deassert(), both of which return -ENOTSUPP since this
+driver doesn't provide ->assert or ->deassert, so the driver's ->reset()
+never gets called.
+
+I haven't looked into the reset framework in detail, but if there's only
+a ->reset hook, I kind of expected that reset_control_deassert() would
+use that instead of returning -ENOTSUPP.
+
+If not, what's the proper way of handling hardware that only supports a
+write-only reset pulse?  Should users of reset_control_* be adapted to
+check if ->deassert returns -ENOTSUPP and call ->reset?
+
+Kevin
