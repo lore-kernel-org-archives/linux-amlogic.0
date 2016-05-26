@@ -1,39 +1,45 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 25 May 2016 19:42:59 -0700
-Subject: [PATCH v2 1/4] reset: Add support for the Amlogic Meson SoC Reset
- Controller
-In-Reply-To: <1464169758-26975-2-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Wed, 25 May 2016 11:49:15 +0200")
-References: <1464169758-26975-1-git-send-email-narmstrong@baylibre.com>
- <1464169758-26975-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2iny1h74c.fsf@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 26 May 2016 09:17:28 +0200
+Subject: [PATCH v4 1/3] firmware: Amlogic: Add secure monitor driver
+In-Reply-To: <1464207511-11786-2-git-send-email-carlo@caione.org>
+References: <1464207511-11786-1-git-send-email-carlo@caione.org>
+ <1464207511-11786-2-git-send-email-carlo@caione.org>
+Message-ID: <5746A308.8070606@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Hi Carlo,
 
-> This patch adds the platform driver for the Amlogic Meson SoC Reset
-> Controller.
->
-> The Meson8b and GXBB SoCs are supported.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+On 05/25/2016 10:18 PM, Carlo Caione wrote:
+> diff --git a/include/dt-bindings/firmware/meson-sm.h b/include/dt-bindings/firmware/meson-sm.h
+> new file mode 100644
+> index 0000000..3a52a13
+> --- /dev/null
+> +++ b/include/dt-bindings/firmware/meson-sm.h
+> @@ -0,0 +1,20 @@
+> +/*
+> + * Copyright (C) 2016 Endless Mobile, Inc.
+> + * Author: Carlo Caione <carlo@endlessm.com>
+> + *
+> + * This program is free software; you can redistribute it and/or
+> + * modify it under the terms of the GNU General Public License
+> + * version 2 as published by the Free Software Foundation.
+> + *
+> + * You should have received a copy of the GNU General Public License
+> + * along with this program. If not, see <http://www.gnu.org/licenses/>.
+> + */
+> +
+> +#ifndef _MESON_DT_H_
+> +#define _MESON_DT_H_
+> +
+> +#define SM_EFUSE_READ		0
+> +#define SM_EFUSE_WRITE		1
+> +#define SM_EFUSE_USER_MAX	2
+> +
+> +#endif /* _MESON_DT_H_ */
 
-Maybe a question for Philipp, but when testog this version with the
-stmmac ethernet driver on the Amlogic boards, I noticed that ->reset was
-never getting called.
+Now this has been refactored, I don't see the point of this dt-bindings header ?
 
-Turns out, the stmmac driver only uses reset_control_assert() and
-reset_control_deassert(), both of which return -ENOTSUPP since this
-driver doesn't provide ->assert or ->deassert, so the driver's ->reset()
-never gets called.
+These defines should take place in linux/firmware/meson/meson-sm.h
 
-I haven't looked into the reset framework in detail, but if there's only
-a ->reset hook, I kind of expected that reset_control_deassert() would
-use that instead of returning -ENOTSUPP.
-
-If not, what's the proper way of handling hardware that only supports a
-write-only reset pulse?  Should users of reset_control_* be adapted to
-check if ->deassert returns -ENOTSUPP and call ->reset?
-
-Kevin
+Neil
