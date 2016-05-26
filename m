@@ -1,84 +1,52 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 26 May 2016 11:42:07 -0700
-Subject: [PATCH v2 1/4] reset: Add support for the Amlogic Meson SoC Reset
- Controller
-In-Reply-To: <1464260562.4109.77.camel@pengutronix.de> (Philipp Zabel's
- message of "Thu, 26 May 2016 13:02:42 +0200")
-References: <1464169758-26975-1-git-send-email-narmstrong@baylibre.com>
- <1464169758-26975-2-git-send-email-narmstrong@baylibre.com>
- <m2iny1h74c.fsf@baylibre.com>
- <1464260562.4109.77.camel@pengutronix.de>
-Message-ID: <m28tywhda8.fsf@baylibre.com>
+Date: Thu, 26 May 2016 14:05:50 -0700
+Subject: [PATCH 0/7] pinctrl: meson: Add a bunch more pins
+In-Reply-To: <CACRpkdbURowJNT_ZkKuv7C_3oW3BJGPBK6etKc4cBc4ujQdPXw@mail.gmail.com>
+ (Linus Walleij's message of "Thu, 26 May 2016 11:28:44 +0200")
+References: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
+ <CACRpkdY9oGZLt431NwTaFmZk98O8n3ZnMA1odhYZtcH7P1p=Jg@mail.gmail.com>
+ <m260u3ia37.fsf@baylibre.com>
+ <CACRpkdbURowJNT_ZkKuv7C_3oW3BJGPBK6etKc4cBc4ujQdPXw@mail.gmail.com>
+Message-ID: <m21t4ofs29.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Philipp Zabel <p.zabel@pengutronix.de> writes:
+Linus Walleij <linus.walleij@linaro.org> writes:
 
-> Am Mittwoch, den 25.05.2016, 19:42 -0700 schrieb Kevin Hilman:
->> Neil Armstrong <narmstrong@baylibre.com> writes:
->> 
->> > This patch adds the platform driver for the Amlogic Meson SoC Reset
->> > Controller.
->> >
->> > The Meson8b and GXBB SoCs are supported.
->> >
->> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> 
->> Maybe a question for Philipp, but when testog this version with the
->> stmmac ethernet driver on the Amlogic boards, I noticed that ->reset was
->> never getting called.
->> 
->> Turns out, the stmmac driver only uses reset_control_assert() and
->> reset_control_deassert(), both of which return -ENOTSUPP since this
->> driver doesn't provide ->assert or ->deassert, so the driver's ->reset()
->> never gets called.
->> 
->> I haven't looked into the reset framework in detail, but if there's only
->> a ->reset hook, I kind of expected that reset_control_deassert() would
->> use that instead of returning -ENOTSUPP.
->> 
->> If not, what's the proper way of handling hardware that only supports a
->> write-only reset pulse?  Should users of reset_control_* be adapted to
->> check if ->deassert returns -ENOTSUPP and call ->reset?
+> On Tue, May 24, 2016 at 8:29 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> Linus Walleij <linus.walleij@linaro.org> writes:
 >
-> I initially came up with this for i.MX6, which has a reset controller
-> that just like the Meson ones doesn't support manual assertion and
-> deassertion of the reset line.
-> My assumption then was that reset() is the default for all devices that
-> just need their internal state to be reset at some point. I didn't
-> expect the clock-like usage of manual deassert()/assert() for power
-> management to become so common.
-> So assert() and deassert() return -ENOTSUPP if the reset controller
-> doesn't support manually asserting or deasserting the reset line.
+>> Looking closer, these have dependencies on the DT changes that you've
+>> suggested we take through arm-soc, so it would be cleaner if I take
+>> these with your ack through the amlogic tree.
 >
-> Of course you can argue that after a reset() pulse the reset line is
-> deasserted, and if you instead interpret the API in terms of expected
-> outcome, that would be similar to the state after call to deassert()
-> (iff the line was asserted before).
-> That would blur the line between reset() and deassert() somewhat, and in
-> my opinion having a call to deassert() first doing the exact opposite
-> isn't good nomenclature.
-> Personally, I'd prefer if the driver could switch to only using
-> 	reset_control_reset(rstc);
-
-Then what would happen if that same driver is used on platforms that
-have ->assert and ->deassert but no -reset?
-
-The bind I'm in is that I'm using an exsting network driver
-(stmicro/stmmac) which is used on a bunch of platforms and I dont' know
-what all those reset controllers are actually doing, so going and
-changing the driver seems problematic.
-
-> or, if the reset line needs to stay asserted during powerdown where the
-> reset controller supports it, but doesn't matter whert not, use:
-> 	ret = reset_control_deassert(rstc);
-> 	if (ret == -ENOTSUPP)
-> 		ret = reset_control_reset(rstc);
+> I really prefer to take DT changes and driver code in different
+> trees i possible.
 >
-> We could add a helper reset_control_deassert_or_reset() for that.
+> My reasoning is plainly: if the DT stuff was a separate git, as
+> has been explicitly suggested as a goal off and on, this should
+> be merge:able still. So DT changes and driver code should ideally
+> be orthogonal.
+>
+> I don't know about this case but is it a disaster if one or the other
+> of the DT changes and the driver arrive in different order to Torvald's
+> tree, or will it simply be that the lights go on when the last patch
+> arrives?
 
-IMO, that would be a useful helper function, but I still think that
-should be the default behavior of _deassert, otherwise it will still
-require changing all the drivers.
+Actually, it wasn't about built/boot dependencies but rather one of the
+patches (mistakenly) had both a pinctrl change and a DT change, so a
+simple rebase failed (and I gave up early since I was busy with
+something else... and also lazy.)
+
+Anyways, I've now separated things, so the pinctrl patches can go
+through your tree, and we'll submit the rest (DT, kconfig etc.)  through
+arm-soc, and things will "just work" when they both land in mainline.
+
+I'll repost the series shortly, but if you prefer to just pull, the
+pinctrl-only stuff based on linus/master is here:
+
+git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux.git amlogic/v4.7/pinctrl-drv
+
+Thanks for the nudge in the right direction,
 
 Kevin
