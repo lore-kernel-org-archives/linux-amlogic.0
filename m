@@ -1,41 +1,56 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 26 May 2016 09:30:32 +0200
-Subject: [PATCH v2 2/4] dt-bindings: reset: Add bindings for the Meson SoC
- Reset Controller
-In-Reply-To: <20160525191026.GA24249@rob-hp-laptop>
-References: <1464169758-26975-1-git-send-email-narmstrong@baylibre.com>
- <1464169758-26975-3-git-send-email-narmstrong@baylibre.com>
- <20160525191026.GA24249@rob-hp-laptop>
-Message-ID: <5746A618.2020304@baylibre.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Thu, 26 May 2016 09:45:16 +0200
+Subject: [PATCH v4 1/3] firmware: Amlogic: Add secure monitor driver
+In-Reply-To: <5746A308.8070606@baylibre.com>
+References: <1464207511-11786-1-git-send-email-carlo@caione.org>
+ <1464207511-11786-2-git-send-email-carlo@caione.org>
+ <5746A308.8070606@baylibre.com>
+Message-ID: <20160526074516.GA14703@mephisto>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/25/2016 09:10 PM, Rob Herring wrote:
-> On Wed, May 25, 2016 at 11:49:16AM +0200, Neil Armstrong wrote:
->> Add DT bindings for the Meson SoC Reset Controller documentation and the
->> associated include file.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  .../bindings/reset/amlogic,meson-reset.txt         |  18 ++
->>  .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 210 +++++++++++++++++++++
->>  include/dt-bindings/reset/amlogic,meson8b-reset.h  | 175 +++++++++++++++++
->>  3 files changed, 403 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
->>  create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
->>  create mode 100644 include/dt-bindings/reset/amlogic,meson8b-reset.h
-> 
-> Please add acks when posting new versions.
-> 
-> Rob
-> 
+On 26/05/16 09:17, Neil Armstrong wrote:
+> Hi Carlo,
 
-Hi Rob,
+Hi Neil,
 
-Actually I made a lot of changes here since I added support for the meson8b.
-I asked myself if I could carry your ack actually...
+> On 05/25/2016 10:18 PM, Carlo Caione wrote:
+> > diff --git a/include/dt-bindings/firmware/meson-sm.h b/include/dt-bindings/firmware/meson-sm.h
+> > new file mode 100644
+> > index 0000000..3a52a13
+> > --- /dev/null
+> > +++ b/include/dt-bindings/firmware/meson-sm.h
+> > @@ -0,0 +1,20 @@
+> > +/*
+> > + * Copyright (C) 2016 Endless Mobile, Inc.
+> > + * Author: Carlo Caione <carlo@endlessm.com>
+> > + *
+> > + * This program is free software; you can redistribute it and/or
+> > + * modify it under the terms of the GNU General Public License
+> > + * version 2 as published by the Free Software Foundation.
+> > + *
+> > + * You should have received a copy of the GNU General Public License
+> > + * along with this program. If not, see <http://www.gnu.org/licenses/>.
+> > + */
+> > +
+> > +#ifndef _MESON_DT_H_
+> > +#define _MESON_DT_H_
+> > +
+> > +#define SM_EFUSE_READ		0
+> > +#define SM_EFUSE_WRITE		1
+> > +#define SM_EFUSE_USER_MAX	2
+> > +
+> > +#endif /* _MESON_DT_H_ */
+> 
+> Now this has been refactored, I don't see the point of this dt-bindings header ?
+> 
+> These defines should take place in linux/firmware/meson/meson-sm.h
 
-If the ack is still valid, I'll won't forget it for v4.
+Yes, that is a possibility I considered before submitting this version
+and now it also seems probably the best way to do it. I'll change it in
+the next revision.
 
 Thanks,
-Neil
+
+-- 
+Carlo Caione
