@@ -1,33 +1,73 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 26 May 2016 11:28:44 +0200
-Subject: [PATCH 0/7] pinctrl: meson: Add a bunch more pins
-In-Reply-To: <m260u3ia37.fsf@baylibre.com>
-References: <1462544486-9516-1-git-send-email-khilman@baylibre.com>
- <CACRpkdY9oGZLt431NwTaFmZk98O8n3ZnMA1odhYZtcH7P1p=Jg@mail.gmail.com>
- <m260u3ia37.fsf@baylibre.com>
-Message-ID: <CACRpkdbURowJNT_ZkKuv7C_3oW3BJGPBK6etKc4cBc4ujQdPXw@mail.gmail.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Thu, 26 May 2016 12:06:55 +0200
+Subject: [RFC PATCH 1/3] watchdog: Add Meson GXBB Watchdog Driver
+In-Reply-To: <1464249112-13658-2-git-send-email-narmstrong@baylibre.com>
+References: <1464249112-13658-1-git-send-email-narmstrong@baylibre.com>
+ <1464249112-13658-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20160526100655.GB14703@mephisto>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, May 24, 2016 at 8:29 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Linus Walleij <linus.walleij@linaro.org> writes:
+On 26/05/16 09:51, Neil Armstrong wrote:
+> Add watchdog specific driver for Amlogic Meson GXBB SoC.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> +
 
-> Looking closer, these have dependencies on the DT changes that you've
-> suggested we take through arm-soc, so it would be cleaner if I take
-> these with your ack through the amlogic tree.
+[...]
+> +#define DEFAULT_TIMEOUT	10	/* seconds */
+> +
+> +#define GXBB_WDT_CTRL_REG	0x0
+> +#define GXBB_WDT_CTRL1_REG	0x4
+> +#define GXBB_WDT_TCNT_REG	0x8
+> +#define GXBB_WDT_RSET_REG	0xc
+> +
+> +#define GXBB_WDT_CTRL_EE_RESET_NOW	BIT(26)
+> +
+> +#define GXBB_WDT_CTRL_CLKDIV_EN	BIT(25)
+> +#define GXBB_WDT_CTRL_CLK_EN	BIT(24)
+> +#define GXBB_WDT_CTRL_IRQ_EN	BIT(23)
+> +#define GXBB_WDT_CTRL_EE_RESET	BIT(21)
+> +#define GXBB_WDT_CTRL_XTAL_SEL	(0)
+> +#define GXBB_WDT_CTRL_CLK81_SEL	BIT(19)
+> +#define GXBB_WDT_CTRL_EN	BIT(18)
+> +#define GXBB_WDT_CTRL_DIV_MASK	(BIT(18)-1)
+> +
+> +#define GXBB_WDT_CTRL1_GPIO_PULSE	BIT(17)
+> +#define GXBB_WDT_CTRL1_GPIO_POL_RESET_0	BIT(16)
+> +#define GXBB_WDT_CTRL1_GPIO_POL_RESET_1	(0)
+> +#define GXBB_WDT_CTRL1_GPIO_PULSE_CNT	(BIT(16)-1)
+> +
+> +#define GXBB_WDT_TCNT_SETUP_MASK	(BIT(16)-1)
+> +#define GXBB_WDT_TCNT_CNT_SHIFT		16
 
-I really prefer to take DT changes and driver code in different
-trees i possible.
+Indentation
 
-My reasoning is plainly: if the DT stuff was a separate git, as
-has been explicitly suggested as a goal off and on, this should
-be merge:able still. So DT changes and driver code should ideally
-be orthogonal.
+[...]
+> +int meson_gxbb_wdt_set_timeout(struct watchdog_device *wdt_dev,
+> +			       unsigned int timeout)
+> +{
+> +	struct meson_gxbb_wdt *data = watchdog_get_drvdata(wdt_dev);
+> +
+> +	if (watchdog_active(wdt_dev))
+> +		meson_gxbb_wdt_stop(wdt_dev);
+> +
+> +	meson_gxbb_wdt_ping(wdt_dev);
+> +
+> +	writel(timeout*1000, data->reg_base + GXBB_WDT_TCNT_REG);
 
-I don't know about this case but is it a disaster if one or the other
-of the DT changes and the driver arrive in different order to Torvald's
-tree, or will it simply be that the lights go on when the last patch
-arrives?
+nit: spaces around "*"
 
-Yours,
-Linus Walleij
+[...]
+> +	data->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(data->clk))
+> +		return PTR_ERR(data->clk);
+> +
+> +	clk_prepare_enable(data->clk);
+
+Do we need to merge the clock controller driver before this?
+
+Cheers,
+
+-- 
+Carlo Caione
