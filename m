@@ -1,90 +1,78 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 26 May 2016 14:24:25 -0700
-Subject: [PATCH v2 4/4] pinctrl: amlogic: gxbb: add ethernet pins
-In-Reply-To: <1464297865-8965-1-git-send-email-khilman@baylibre.com>
-References: <1464297865-8965-1-git-send-email-khilman@baylibre.com>
-Message-ID: <1464297865-8965-5-git-send-email-khilman@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 27 May 2016 10:22:07 +0200
+Subject: [RFC PATCH 1/3] watchdog: Add Meson GXBB Watchdog Driver
+In-Reply-To: <20160526100655.GB14703@mephisto>
+References: <1464249112-13658-1-git-send-email-narmstrong@baylibre.com>
+ <1464249112-13658-2-git-send-email-narmstrong@baylibre.com>
+ <20160526100655.GB14703@mephisto>
+Message-ID: <574803AF.5020409@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add EE domain pins for ethernet interface.
+On 05/26/2016 12:06 PM, Carlo Caione wrote:
+> On 26/05/16 09:51, Neil Armstrong wrote:
+>> Add watchdog specific driver for Amlogic Meson GXBB SoC.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> +
+> 
+> [...]
+>> +#define DEFAULT_TIMEOUT	10	/* seconds */
+>> +
+>> +#define GXBB_WDT_CTRL_REG	0x0
+>> +#define GXBB_WDT_CTRL1_REG	0x4
+>> +#define GXBB_WDT_TCNT_REG	0x8
+>> +#define GXBB_WDT_RSET_REG	0xc
+>> +
+>> +#define GXBB_WDT_CTRL_EE_RESET_NOW	BIT(26)
+>> +
+>> +#define GXBB_WDT_CTRL_CLKDIV_EN	BIT(25)
+>> +#define GXBB_WDT_CTRL_CLK_EN	BIT(24)
+>> +#define GXBB_WDT_CTRL_IRQ_EN	BIT(23)
+>> +#define GXBB_WDT_CTRL_EE_RESET	BIT(21)
+>> +#define GXBB_WDT_CTRL_XTAL_SEL	(0)
+>> +#define GXBB_WDT_CTRL_CLK81_SEL	BIT(19)
+>> +#define GXBB_WDT_CTRL_EN	BIT(18)
+>> +#define GXBB_WDT_CTRL_DIV_MASK	(BIT(18)-1)
+>> +
+>> +#define GXBB_WDT_CTRL1_GPIO_PULSE	BIT(17)
+>> +#define GXBB_WDT_CTRL1_GPIO_POL_RESET_0	BIT(16)
+>> +#define GXBB_WDT_CTRL1_GPIO_POL_RESET_1	(0)
+>> +#define GXBB_WDT_CTRL1_GPIO_PULSE_CNT	(BIT(16)-1)
+>> +
+>> +#define GXBB_WDT_TCNT_SETUP_MASK	(BIT(16)-1)
+>> +#define GXBB_WDT_TCNT_CNT_SHIFT		16
+> 
+> Indentation
+> 
+> [...]
+>> +int meson_gxbb_wdt_set_timeout(struct watchdog_device *wdt_dev,
+>> +			       unsigned int timeout)
+>> +{
+>> +	struct meson_gxbb_wdt *data = watchdog_get_drvdata(wdt_dev);
+>> +
+>> +	if (watchdog_active(wdt_dev))
+>> +		meson_gxbb_wdt_stop(wdt_dev);
+>> +
+>> +	meson_gxbb_wdt_ping(wdt_dev);
+>> +
+>> +	writel(timeout*1000, data->reg_base + GXBB_WDT_TCNT_REG);
+> 
+> nit: spaces around "*"
+> 
+> [...]
+>> +	data->clk = devm_clk_get(&pdev->dev, NULL);
+>> +	if (IS_ERR(data->clk))
+>> +		return PTR_ERR(data->clk);
+>> +
+>> +	clk_prepare_enable(data->clk);
+> 
+> Do we need to merge the clock controller driver before this?
 
-Acked-by: Carlo Caione <carlo@endlessm.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 39 ++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+It's not necessary, currently it only selects the xtal source, so it's works with the current upstream architecture.
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index b2ec5f8ada33..cb4d6ad30530 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -178,6 +178,21 @@ static const unsigned int uart_rx_c_pins[]	= { PIN(GPIOY_14, EE_OFF) };
- static const unsigned int uart_cts_c_pins[]	= { PIN(GPIOX_11, EE_OFF) };
- static const unsigned int uart_rts_c_pins[]	= { PIN(GPIOX_12, EE_OFF) };
- 
-+static const unsigned int eth_mdio_pins[]	= { PIN(GPIOZ_0, EE_OFF) };
-+static const unsigned int eth_mdc_pins[]	= { PIN(GPIOZ_1, EE_OFF) };
-+static const unsigned int eth_clk_rx_clk_pins[]	= { PIN(GPIOZ_2, EE_OFF) };
-+static const unsigned int eth_rx_dv_pins[]	= { PIN(GPIOZ_3, EE_OFF) };
-+static const unsigned int eth_rxd0_pins[]	= { PIN(GPIOZ_4, EE_OFF) };
-+static const unsigned int eth_rxd1_pins[]	= { PIN(GPIOZ_5, EE_OFF) };
-+static const unsigned int eth_rxd2_pins[]	= { PIN(GPIOZ_6, EE_OFF) };
-+static const unsigned int eth_rxd3_pins[]	= { PIN(GPIOZ_7, EE_OFF) };
-+static const unsigned int eth_rgmii_tx_clk_pins[] = { PIN(GPIOZ_8, EE_OFF) };
-+static const unsigned int eth_tx_en_pins[]	= { PIN(GPIOZ_9, EE_OFF) };
-+static const unsigned int eth_txd0_pins[]	= { PIN(GPIOZ_10, EE_OFF) };
-+static const unsigned int eth_txd1_pins[]	= { PIN(GPIOZ_11, EE_OFF) };
-+static const unsigned int eth_txd2_pins[]	= { PIN(GPIOZ_12, EE_OFF) };
-+static const unsigned int eth_txd3_pins[]	= { PIN(GPIOZ_13, EE_OFF) };
-+
- static const struct pinctrl_pin_desc meson_gxbb_aobus_pins[] = {
- 	MESON_PIN(GPIOAO_0, 0),
- 	MESON_PIN(GPIOAO_1, 0),
-@@ -351,6 +366,22 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
- 	GROUP(uart_tx_c,	1,	17),
- 	GROUP(uart_rx_c,	1,	16),
- 
-+	/* Bank Z */
-+	GROUP(eth_mdio,		6,	1),
-+	GROUP(eth_mdc,		6,	0),
-+	GROUP(eth_clk_rx_clk,	6,	13),
-+	GROUP(eth_rx_dv,	6,	12),
-+	GROUP(eth_rxd0,		6,	11),
-+	GROUP(eth_rxd1,		6,	10),
-+	GROUP(eth_rxd2,		6,	9),
-+	GROUP(eth_rxd3,		6,	8),
-+	GROUP(eth_rgmii_tx_clk,	6,	7),
-+	GROUP(eth_tx_en,	6,	6),
-+	GROUP(eth_txd0,		6,	5),
-+	GROUP(eth_txd1,		6,	4),
-+	GROUP(eth_txd2,		6,	3),
-+	GROUP(eth_txd3,		6,	2),
-+
- 	/* Bank DV */
- 	GROUP(uart_tx_b,	2,	29),
- 	GROUP(uart_rx_b,	2,	28),
-@@ -461,6 +492,13 @@ static const char * const uart_c_groups[] = {
- 	"uart_tx_c", "uart_rx_c", "uart_cts_c", "uart_rts_c",
- };
- 
-+static const char * const eth_groups[] = {
-+	"eth_mdio", "eth_mdc", "eth_clk_rx_clk", "eth_rx_dv",
-+	"eth_rxd0", "eth_rxd1", "eth_rxd2", "eth_rxd3",
-+	"eth_rgmii_tx_clk", "eth_tx_en",
-+	"eth_txd0", "eth_txd1", "eth_txd2", "eth_txd3",
-+};
-+
- static const char * const gpio_aobus_groups[] = {
- 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
- 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
-@@ -490,6 +528,7 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
- 	FUNCTION(uart_a),
- 	FUNCTION(uart_b),
- 	FUNCTION(uart_c),
-+	FUNCTION(eth),
- };
- 
- static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
--- 
-2.7.4
+Neil
+
+> 
+> Cheers,
+> 
