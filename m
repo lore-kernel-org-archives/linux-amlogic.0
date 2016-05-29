@@ -1,62 +1,73 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 27 May 2016 17:24:55 +0200
-Subject: [RFC PATCH 1/3] watchdog: Add Meson GXBB Watchdog Driver
-In-Reply-To: <57485045.70707@roeck-us.net>
-References: <1464249112-13658-1-git-send-email-narmstrong@baylibre.com>
- <1464249112-13658-2-git-send-email-narmstrong@baylibre.com>
- <57470026.3000501@roeck-us.net> <57480470.4000708@baylibre.com>
- <57485045.70707@roeck-us.net>
-Message-ID: <574866C7.1090201@baylibre.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Sun, 29 May 2016 13:12:00 +0200
+Subject: [PATCH v5 0/3] Add Amlogic secure monitor driver
+Message-ID: <1464520323-19531-1-git-send-email-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/27/2016 03:48 PM, Guenter Roeck wrote:
-> On 05/27/2016 01:25 AM, Neil Armstrong wrote:
-> [ ... ]
->>>> +    data->wdt_dev.max_hw_heartbeat_ms = GXBB_WDT_TCNT_SETUP_MASK;
->>>> +    data->wdt_dev.min_hw_heartbeat_ms = 1;
->>>
->>> Does the device require a minimum time between heartbeats ?
->>> Just asking, because you violate it yourself below.
->>>
->>> If you want to set the minimum timeout, that would be min_timeout.
->>
->> Ok, these values are not very clear actually.
->>
-> Hmmm .. yes, reading the description again, it doesn't really describe well
-> what it is doing. Essentially, min_hw_heartbeat_ms is enforced by the watchdog
-> core, and should be used if a watchdog hardware can not tolerate short intervals
-> between heartbeats. min_timeout is the minimum timeout value configurable from
-> user space.
-OK, I'll switch to min_timeout = 1.
+From: Carlo Caione <carlo@endlessm.com>
 
-> 
+In the Amlogic SoCs the secure monitor calls are used for a lot of reasons:
+interact with the NVMEM (efuses), check the reboot reason, set USB boot, ...
 
-[ ... ]
+This driver defines a generic interface towards the secure monitor that can be
+used by more specialized drivers to interact with the secure monitor itself
+without worrying about bounce buffers managing.
 
->>>
->>> This is unusual. If the watchdog can be already running, it might make sense
->>> to tell the core about it (set WDOG_HW_RUNNING in the status field), so it
->>> can send heartbeats until user space opens the device.
->>
->> Yes, since meson_gxbb_wdt_set_timeout() already ping, this is useless.
->>
-> 
-> Not only that - if the watchdog _is_ already running at boot time, you should
-> really set WDOG_HW_RUNNING to let the watchdog core know. You status function
-> would come handy there.
-> 
->     if (meson_gxbb_wdt_status(data))    // note the changed parameter
->         set_bit(WDOG_HW_RUNNING, &data->wdt_dev.status);
-Yes, it can be handy.
+Changelog:
 
-I will push this feature in a next version, I'll stick to a simpler behavior and check
-if it would be running before the kernel starts.
+v5:
+  * Moved IDs from DT to header file
+  * Made read/write bounce buffers not mandatory
+  * Introduced helper meson_sm_map_shmem()
 
-Thanks,
-Neil
+v4:
+  * Changed patches order
+  * Removed now useless PATCH 2/4
+  * Changed compatible to be SoC-specific
+  * In the DT now we use SoC-agnostic IDs for the SMC functions. These IDs are
+    traslated into SoC specific function IDs inside the driver
+  * Added error checking on meson_sm_call() to retrieve the base address
+  * Improved printing on errors
 
-> 
-> Thanks,
-> Guenter
-> 
+v3:
+  * Moved driver to drivers/firmware
+  * Added EXPORT_SYMBOL macros
+  * Changed '_' in '-'
+  * Introduced 'struct meson_sm_firmware' and 'meson_sm_get_fw()' to be used by
+    drivers using the secure-monitor to enforce probe ordering
+
+v2:
+  * All the SMC function identifiers are now in a SoC-specific header file to
+    be included by the DTS files so the SMC commands are now defined in the DT
+    instead to be hardcoded into the driver
+  * Patchset is no longer an RFC
+  * Better error management and boundary checking
+  * s/unsigned int/u32/
+  * SMC call not only on CPU 0
+  * Fix memory leaking
+  * s/amlogic/meson/ in the directory names
+
+
+Carlo Caione (3):
+  firmware: Amlogic: Add secure monitor driver
+  documentation: Add secure monitor binding documentation
+  ARM64: dts: amlogic: gxbb: Enable secure monitor
+
+ .../bindings/firmware/meson/meson_sm.txt           |  33 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   8 +
+ drivers/firmware/Kconfig                           |   1 +
+ drivers/firmware/Makefile                          |   1 +
+ drivers/firmware/meson/Kconfig                     |   8 +
+ drivers/firmware/meson/Makefile                    |   1 +
+ drivers/firmware/meson/meson_sm.c                  | 223 +++++++++++++++++++++
+ include/linux/firmware/meson/meson_sm.h            |  32 +++
+ 8 files changed, 307 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+ create mode 100644 drivers/firmware/meson/Kconfig
+ create mode 100644 drivers/firmware/meson/Makefile
+ create mode 100644 drivers/firmware/meson/meson_sm.c
+ create mode 100644 include/linux/firmware/meson/meson_sm.h
+
+-- 
+2.7.4
