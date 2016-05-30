@@ -1,9 +1,9 @@
 From: trini@konsulko.com (Tom Rini)
-Date: Mon, 30 May 2016 13:57:10 -0400
+Date: Mon, 30 May 2016 13:57:15 -0400
 Subject: [U-Boot,v7,1/4] arm: implement generic PSCI reset call for armv8
 In-Reply-To: <1462689017-3160-2-git-send-email-b.galvani@gmail.com>
 References: <1462689017-3160-2-git-send-email-b.galvani@gmail.com>
-Message-ID: <20160530175710.GR7419@bill-the-cat>
+Message-ID: <20160530175715.GS7419@bill-the-cat>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -26,4 +26,4 @@ Name: signature.asc
 Type: application/pgp-signature
 Size: 819 bytes
 Desc: Digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160530/4de241c3/attachment.sig>
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160530/0aaa3a64/attachment.sig>
