@@ -1,35 +1,56 @@
-From: trini@konsulko.com (Tom Rini)
-Date: Sun, 29 May 2016 13:09:03 -0400
-Subject: [PATCH v7 0/4] Amlogic Meson GXBaby and ODROID-C2 support
-In-Reply-To: <20160529163814.GB21309@mephisto>
-References: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
- <20160529163814.GB21309@mephisto>
-Message-ID: <20160529170903.GV7419@bill-the-cat>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 30 May 2016 15:27:14 +0200
+Subject: [PATCH v3 0/4] Amlogic: Meson: Add reset controller
+Message-ID: <1464614838-28107-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, May 29, 2016 at 06:38:14PM +0200, Carlo Caione wrote:
-> On 08/05/16 08:30, Beniamino Galvani wrote:
-> > Hi,
-> > 
-> > this series adds a very basic support for Amlogic S905 SoC (GXBaby)
-> > and for the ODROID-C2 board [1], and is based on u-boot sources
-> > available from the board vendor [2]. At the moment the only supported
-> > devices are the integrated UART and Ethernet adapter.
-> 
-> Hey guys,
-> what's left for this patchset to be merged?
+Patchset to add and enable the reset controller driver on Meson SoCs platforms.
 
-Good timing.  I've got this locally and just need to finish my unit
-tests before I can merge.  But, due to the DM PR I've had to disable eth
-as you'll need to address GPIO for this platform next.  Thanks!
+This reset controller has up to 256 reset lines with reset pulse generation only,
+so the assert and deassert calls are not available.
+
+Depends on the patch :
+ - "reset: add devm_reset_controller_register API" [1]
+
+Changes since v2 at http://lkml.kernel.org/r/1464169758-26975-1-git-send-email-narmstrong at baylibre.com :
+- Get back __iomem in _reset() callback
+- Get rid of MODULE_ALIAS
+
+Changes since v1 at http://lkml.kernel.org/r/1463732875-23141-1-git-send-email-narmstrong at baylibre.com :
+- Remove _gxbb_ in names
+- Depends build on ARCH_MESON only
+- Add meson8b compatible and bindings
+- Re-indent dt-bindings headers
+- Switch to devm_ reset controller register
+- Remove platform "remove" callback
+- Update Dual BSD/GPL file headers
+
+Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
+- Fix register mapping and bit defines in bindings header
+- Remove assert and unassert calls
+- Fix missing __iomem
+
+[1] https://patchwork.kernel.org/patch/8988471/
+
+Neil Armstrong (4):
+  reset: Add support for the Amlogic Meson SoC Reset Controller
+  dt-bindings: reset: Add bindings for the Meson SoC Reset Controller
+  ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
+  ARM: dts: amlogic: Enable Reset Controller on Meson8b platforms
+
+ .../bindings/reset/amlogic,meson-reset.txt         |  18 ++
+ arch/arm/boot/dts/meson8b.dtsi                     |   7 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   7 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-meson.c                        | 136 +++++++++++++
+ .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 210 +++++++++++++++++++++
+ include/dt-bindings/reset/amlogic,meson8b-reset.h  | 175 +++++++++++++++++
+ 7 files changed, 554 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+ create mode 100644 drivers/reset/reset-meson.c
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
+ create mode 100644 include/dt-bindings/reset/amlogic,meson8b-reset.h
 
 -- 
-Tom
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: Digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160529/af097ebe/attachment.sig>
+2.7.0
