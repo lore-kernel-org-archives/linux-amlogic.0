@@ -1,26 +1,22 @@
-From: trini@konsulko.com (Tom Rini)
-Date: Mon, 30 May 2016 13:57:30 -0400
-Subject: [U-Boot,v7,4/4] arm: meson: implement calls to secure monitor
-In-Reply-To: <1462689017-3160-5-git-send-email-b.galvani@gmail.com>
-References: <1462689017-3160-5-git-send-email-b.galvani@gmail.com>
-Message-ID: <20160530175730.GV7419@bill-the-cat>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Tue, 31 May 2016 10:35:08 +0200
+Subject: [PATCH v2 1/4] pinctrl: amlogic: gxbb: add UART_AO_B, I2C
+In-Reply-To: <1464297865-8965-2-git-send-email-khilman@baylibre.com>
+References: <1464297865-8965-1-git-send-email-khilman@baylibre.com>
+ <1464297865-8965-2-git-send-email-khilman@baylibre.com>
+Message-ID: <CACRpkdZSXtuHxpxxQB3JEOQPYHuWzQrDt5=F627ujNMFnBnKog@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, May 08, 2016 at 08:30:17AM +0200, Beniamino Galvani wrote:
+On Thu, May 26, 2016 at 11:24 PM, Kevin Hilman <khilman@baylibre.com> wrote:
 
-> Implement calls to secure monitor to read the MAC address from e-fuse.
-> 
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> Add pins for some more AO domain devices: UART_AO_B and I2C master &
+> slave.
+>
+> Acked-by: Carlo Caione <carlo@endlessm.com>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 
-Applied to u-boot/master, thanks!
+Patch applied.
 
--- 
-Tom
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: Digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160530/c88cc854/attachment.sig>
+Yours,
+Linus Walleij
