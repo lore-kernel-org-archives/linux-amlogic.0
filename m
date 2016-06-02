@@ -1,65 +1,78 @@
-From: p.zabel@pengutronix.de (Philipp Zabel)
-Date: Thu, 02 Jun 2016 09:42:13 +0200
-Subject: [PATCH v3 0/4] Amlogic: Meson: Add reset controller
-In-Reply-To: <1464614838-28107-1-git-send-email-narmstrong@baylibre.com>
-References: <1464614838-28107-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1464853333.3307.1.camel@pengutronix.de>
+From: carlo@caione.org (Carlo Caione)
+Date: Thu,  2 Jun 2016 16:16:01 +0200
+Subject: [PATCH v6 0/3] Add Amlogic secure monitor driver
+Message-ID: <1464876964-13001-1-git-send-email-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+From: Carlo Caione <carlo@endlessm.com>
 
-Am Montag, den 30.05.2016, 15:27 +0200 schrieb Neil Armstrong:
-> Patchset to add and enable the reset controller driver on Meson SoCs platforms.
-> 
-> This reset controller has up to 256 reset lines with reset pulse generation only,
-> so the assert and deassert calls are not available.
-> 
-> Depends on the patch :
->  - "reset: add devm_reset_controller_register API" [1]
-> 
-> Changes since v2 at http://lkml.kernel.org/r/1464169758-26975-1-git-send-email-narmstrong at baylibre.com :
-> - Get back __iomem in _reset() callback
-> - Get rid of MODULE_ALIAS
-> 
-> Changes since v1 at http://lkml.kernel.org/r/1463732875-23141-1-git-send-email-narmstrong at baylibre.com :
-> - Remove _gxbb_ in names
-> - Depends build on ARCH_MESON only
-> - Add meson8b compatible and bindings
-> - Re-indent dt-bindings headers
-> - Switch to devm_ reset controller register
-> - Remove platform "remove" callback
-> - Update Dual BSD/GPL file headers
-> 
-> Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
-> - Fix register mapping and bit defines in bindings header
-> - Remove assert and unassert calls
-> - Fix missing __iomem
-> 
-> [1] https://patchwork.kernel.org/patch/8988471/
-> 
-> Neil Armstrong (4):
->   reset: Add support for the Amlogic Meson SoC Reset Controller
->   dt-bindings: reset: Add bindings for the Meson SoC Reset Controller
+In the Amlogic SoCs the secure monitor calls are used for a lot of reasons:
+interact with the NVMEM (efuses), check the reboot reason, set USB boot, ...
 
-I've applied these two patches to the reset/next branch.
+This driver defines a generic interface towards the secure monitor that can be
+used by more specialized drivers to interact with the secure monitor itself
+without worrying about bounce buffers managing.
 
-regards
-Philipp
+Changelog:
 
->   ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
->   ARM: dts: amlogic: Enable Reset Controller on Meson8b platforms
-> 
->  .../bindings/reset/amlogic,meson-reset.txt         |  18 ++
->  arch/arm/boot/dts/meson8b.dtsi                     |   7 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   7 +
->  drivers/reset/Makefile                             |   1 +
->  drivers/reset/reset-meson.c                        | 136 +++++++++++++
->  .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 210 +++++++++++++++++++++
->  include/dt-bindings/reset/amlogic,meson8b-reset.h  | 175 +++++++++++++++++
->  7 files changed, 554 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
->  create mode 100644 drivers/reset/reset-meson.c
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
->  create mode 100644 include/dt-bindings/reset/amlogic,meson8b-reset.h
-> 
+v6:
+  * Added comments
+  * Fix checking u32 < 0
+  * s/-ENODEV/-EINVAL/ in the probe function
+  * Use WARN_ON()
+
+v5:
+  * Moved IDs from DT to header file
+  * Made read/write bounce buffers not mandatory
+  * Introduced helper meson_sm_map_shmem()
+
+v4:
+  * Changed patches order
+  * Removed now useless PATCH 2/4
+  * Changed compatible to be SoC-specific
+  * In the DT now we use SoC-agnostic IDs for the SMC functions. These IDs are
+    traslated into SoC specific function IDs inside the driver
+  * Added error checking on meson_sm_call() to retrieve the base address
+  * Improved printing on errors
+
+v3:
+  * Moved driver to drivers/firmware
+  * Added EXPORT_SYMBOL macros
+  * Changed '_' in '-'
+  * Introduced 'struct meson_sm_firmware' and 'meson_sm_get_fw()' to be used by
+    drivers using the secure-monitor to enforce probe ordering
+
+v2:
+  * All the SMC function identifiers are now in a SoC-specific header file to
+    be included by the DTS files so the SMC commands are now defined in the DT
+    instead to be hardcoded into the driver
+  * Patchset is no longer an RFC
+  * Better error management and boundary checking
+  * s/unsigned int/u32/
+  * SMC call not only on CPU 0
+  * Fix memory leaking
+  * s/amlogic/meson/ in the directory names
+
+Carlo Caione (3):
+  firmware: Amlogic: Add secure monitor driver
+  documentation: Add secure monitor binding documentation
+  ARM64: dts: amlogic: gxbb: Enable secure monitor
+
+ .../bindings/firmware/meson/meson_sm.txt           |  29 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   8 +
+ drivers/firmware/Kconfig                           |   1 +
+ drivers/firmware/Makefile                          |   1 +
+ drivers/firmware/meson/Kconfig                     |   8 +
+ drivers/firmware/meson/Makefile                    |   1 +
+ drivers/firmware/meson/meson_sm.c                  | 283 +++++++++++++++++++++
+ include/linux/firmware/meson/meson_sm.h            |  32 +++
+ 8 files changed, 363 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+ create mode 100644 drivers/firmware/meson/Kconfig
+ create mode 100644 drivers/firmware/meson/Makefile
+ create mode 100644 drivers/firmware/meson/meson_sm.c
+ create mode 100644 include/linux/firmware/meson/meson_sm.h
+
+-- 
+2.7.4
