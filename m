@@ -1,65 +1,65 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 01 Jun 2016 10:43:28 -0700
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Thu, 02 Jun 2016 09:42:13 +0200
 Subject: [PATCH v3 0/4] Amlogic: Meson: Add reset controller
-In-Reply-To: <1464790113.3522.4.camel@pengutronix.de> (Philipp Zabel's message
- of "Wed, 01 Jun 2016 16:08:33 +0200")
+In-Reply-To: <1464614838-28107-1-git-send-email-narmstrong@baylibre.com>
 References: <1464614838-28107-1-git-send-email-narmstrong@baylibre.com>
- <1464790113.3522.4.camel@pengutronix.de>
-Message-ID: <7heg8geren.fsf@baylibre.com>
+Message-ID: <1464853333.3307.1.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Philipp Zabel <p.zabel@pengutronix.de> writes:
+Hi Neil,
 
-> Hi Kevin,
->
-> Am Montag, den 30.05.2016, 15:27 +0200 schrieb Neil Armstrong:
->> Patchset to add and enable the reset controller driver on Meson SoCs platforms.
->> 
->> This reset controller has up to 256 reset lines with reset pulse generation only,
->> so the assert and deassert calls are not available.
->> 
->> Depends on the patch :
->>  - "reset: add devm_reset_controller_register API" [1]
->> 
->> Changes since v2 at http://lkml.kernel.org/r/1464169758-26975-1-git-send-email-narmstrong at baylibre.com :
->> - Get back __iomem in _reset() callback
->> - Get rid of MODULE_ALIAS
->> 
->> Changes since v1 at http://lkml.kernel.org/r/1463732875-23141-1-git-send-email-narmstrong at baylibre.com :
->> - Remove _gxbb_ in names
->> - Depends build on ARCH_MESON only
->> - Add meson8b compatible and bindings
->> - Re-indent dt-bindings headers
->> - Switch to devm_ reset controller register
->> - Remove platform "remove" callback
->> - Update Dual BSD/GPL file headers
->> 
->> Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
->> - Fix register mapping and bit defines in bindings header
->> - Remove assert and unassert calls
->> - Fix missing __iomem
->> 
->> [1] https://patchwork.kernel.org/patch/8988471/
->> 
->> Neil Armstrong (4):
->>   reset: Add support for the Amlogic Meson SoC Reset Controller
->>   dt-bindings: reset: Add bindings for the Meson SoC Reset Controller
->>   ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
->>   ARM: dts: amlogic: Enable Reset Controller on Meson8b platforms
->
-> Should I take the two device tree patches into the reset tree?
+Am Montag, den 30.05.2016, 15:27 +0200 schrieb Neil Armstrong:
+> Patchset to add and enable the reset controller driver on Meson SoCs platforms.
+> 
+> This reset controller has up to 256 reset lines with reset pulse generation only,
+> so the assert and deassert calls are not available.
+> 
+> Depends on the patch :
+>  - "reset: add devm_reset_controller_register API" [1]
+> 
+> Changes since v2 at http://lkml.kernel.org/r/1464169758-26975-1-git-send-email-narmstrong at baylibre.com :
+> - Get back __iomem in _reset() callback
+> - Get rid of MODULE_ALIAS
+> 
+> Changes since v1 at http://lkml.kernel.org/r/1463732875-23141-1-git-send-email-narmstrong at baylibre.com :
+> - Remove _gxbb_ in names
+> - Depends build on ARCH_MESON only
+> - Add meson8b compatible and bindings
+> - Re-indent dt-bindings headers
+> - Switch to devm_ reset controller register
+> - Remove platform "remove" callback
+> - Update Dual BSD/GPL file headers
+> 
+> Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
+> - Fix register mapping and bit defines in bindings header
+> - Remove assert and unassert calls
+> - Fix missing __iomem
+> 
+> [1] https://patchwork.kernel.org/patch/8988471/
+> 
+> Neil Armstrong (4):
+>   reset: Add support for the Amlogic Meson SoC Reset Controller
+>   dt-bindings: reset: Add bindings for the Meson SoC Reset Controller
 
-You can take the driver and the bindings. We will take the DT patches
-through the amlogic tree, and submit via arm-soc.
+I've applied these two patches to the reset/next branch.
 
-> Is resolving the reset/deassert situation a prerequisite for these
-> patches?
+regards
+Philipp
 
-No, not a prerequisite.  Go ahead and merge the driver.
-
-It just means that hardware reset doesn't actually happen when using
-drivers/net/ethernet/stmicro/stmmac/* because it only uses
-assert/reassert currently.
-
-Kevin
+>   ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
+>   ARM: dts: amlogic: Enable Reset Controller on Meson8b platforms
+> 
+>  .../bindings/reset/amlogic,meson-reset.txt         |  18 ++
+>  arch/arm/boot/dts/meson8b.dtsi                     |   7 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   7 +
+>  drivers/reset/Makefile                             |   1 +
+>  drivers/reset/reset-meson.c                        | 136 +++++++++++++
+>  .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 210 +++++++++++++++++++++
+>  include/dt-bindings/reset/amlogic,meson8b-reset.h  | 175 +++++++++++++++++
+>  7 files changed, 554 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+>  create mode 100644 drivers/reset/reset-meson.c
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson8b-reset.h
+> 
