@@ -1,40 +1,33 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  3 Jun 2016 10:36:46 +0200
-Subject: [PATCH v2 2/3] dt-bindings: watchdog: Add Meson GXBB Watchdog bindings
+Date: Fri,  3 Jun 2016 10:36:47 +0200
+Subject: [PATCH v2 3/3] ARM64: dts: amlogic: meson-gxbb: Add watchdog node
 In-Reply-To: <1464943007-18000-1-git-send-email-narmstrong@baylibre.com>
 References: <1464943007-18000-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1464943007-18000-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1464943007-18000-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../devicetree/bindings/watchdog/meson-gxbb-wdt.txt      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
-new file mode 100644
-index 0000000..c7fe36f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
-@@ -0,0 +1,16 @@
-+Meson GXBB SoCs Watchdog timer
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 832815d..bcca82f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -136,6 +136,12 @@
+ 				clocks = <&xtal>;
+ 				status = "disabled";
+ 			};
 +
-+Required properties:
-+
-+- compatible : should be "amlogic,meson-gxbb-wdt"
-+- reg : Specifies base physical address and size of the registers.
-+- clocks : Should be a phandle to the Watchdog clock source, for GXBB the xtal
-+	   is the default clock source.
-+
-+Example:
-+
-+wdt: watchdog at 98d0 {
-+	compatible = "amlogic,meson-gxbb-wdt";
-+	reg = <0 0x98d0 0x0 0x10>;
-+	clocks = <&xtal>;
-+};
++			watchdog at 98d0 {
++				compatible = "amlogic,meson-gxbb-wdt";
++				reg = <0x0 0x098d0 0x0 0x10>;
++				clocks = <&xtal>;
++			};
+ 		};
+ 
+ 		gic: interrupt-controller at c4301000 {
 -- 
 2.7.0
