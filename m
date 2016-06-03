@@ -1,18 +1,31 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 3 Jun 2016 14:49:01 -0700
-Subject: linux-next: request to include linux-amlogic tree
-Message-ID: <CAOi56cXb7TjsctpeFWqGCmEx2LG-i11qoLBGDhi1OBJpbyko4A@mail.gmail.com>
+Date: Fri,  3 Jun 2016 15:38:15 -0700
+Subject: [PATCH] arm64: defconfig: enable stmmac and realtek PHY as modules
+Message-ID: <1464993495-19018-1-git-send-email-khilman@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Stephen,
+Some Amlogic GXBB boards use the stmmac ethernet driver.  Also, enable
+the realtek PHY used on meson-gxbb-odroidc2.  The micrel PHY used on the
+meson-gxbb-p20x boards is already enabled.
 
-Please add the following tree/branch to linux-next.  This is used for
-the kernel development of the ARM-based Amlogic SoCs:
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+---
+ arch/arm64/configs/defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
 
-   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git
-for-next
-
-Thanks,
-
-Kevin
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index fd2d74d0491e..987a6158c19d 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -127,6 +127,8 @@ CONFIG_SKY2=y
+ CONFIG_RAVB=y
+ CONFIG_SMC91X=y
+ CONFIG_SMSC911X=y
++CONFIG_STMMAC_ETH=m
++CONFIG_REALTEK_PHY=m
+ CONFIG_MICREL_PHY=y
+ CONFIG_USB_PEGASUS=m
+ CONFIG_USB_RTL8150=m
+-- 
+2.7.4
