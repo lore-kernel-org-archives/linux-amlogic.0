@@ -1,38 +1,52 @@
-From: sjg@chromium.org (Simon Glass)
-Date: Fri, 10 Jun 2016 10:44:46 -0600
-Subject: [PATCH 2/2] board: amlogic: Rename folder for Amlogic boards
-In-Reply-To: <20160610081912.GA5293@localhost>
-References: <1465483543-2240-1-git-send-email-carlo@caione.org>
- <1465483543-2240-3-git-send-email-carlo@caione.org>
- <CAPnjgZ1zDSUbUh0YkXD4f+SD6rZU+Q8B8rW9+w-qnkg59xus3w@mail.gmail.com>
- <CANe6Qb8gdVpENDGTeR+tz6Y+0mvTRyEZJGHppDngEH8V3MAxCg@mail.gmail.com>
- <20160610081912.GA5293@localhost>
-Message-ID: <CAPnjgZ3LqNyC3P1khtT-k1A4dADP6NYDX1MNXJFnTMYXd_wmhw@mail.gmail.com>
+From: lkp@intel.com (kbuild test robot)
+Date: Sun, 5 Jun 2016 09:24:03 +0800
+Subject: [PATCH 5/5] mfd: rn5t618: register restart handler
+In-Reply-To: <20160605001749.4062-7-stefan@agner.ch>
+Message-ID: <201606050940.RZVDWPsV%fengguang.wu@intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Carlo,
+Hi,
 
-On 10 June 2016 at 02:19, Carlo Caione <carlo@caione.org> wrote:
-> On 10/06/16 09:03, Ben Dooks wrote:
->> do you have git rename-detection enabled?
->
-> I simply forgot to pass '-M' to git-format-patch. I can submit a v2 if
-> requested.
+[auto build test ERROR on ljones-mfd/for-mfd-next]
+[also build test ERROR on v4.7-rc1 next-20160603]
+[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
 
-Yes please. Also you can use patman which does this for you.
+url:    https://github.com/0day-ci/linux/commits/Stefan-Agner/regulator-add-Ricoh-RN5T567-PMIC-support/20160605-082219
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+config: i386-allmodconfig (attached as .config)
+compiler: gcc-6 (Debian 6.1.1-1) 6.1.1 20160430
+reproduce:
+        # save the attached .config to linux build tree
+        make ARCH=i386 
 
-If your patches are in a branch with the correct upstream:
+All errors (new ones prefixed by >>):
 
-patman -nt
+>> drivers/mfd/rn5t618.c:24:29: fatal error: asm/system_misc.h: No such file or directory
+    #include <asm/system_misc.h>
+                                ^
+   compilation terminated.
 
-will generate patches and
+vim +24 drivers/mfd/rn5t618.c
 
-patman -t
+    18	#include <linux/mfd/rn5t618.h>
+    19	#include <linux/module.h>
+    20	#include <linux/of_device.h>
+    21	#include <linux/reboot.h>
+    22	#include <linux/regmap.h>
+    23	
+  > 24	#include <asm/system_misc.h>
+    25	
+    26	static const struct mfd_cell rn5t618_cells[] = {
+    27		{ .name = "rn5t618-regulator" },
 
-will send them
-
-(you need -t because amlogic is unlikely to be a valid alias)
-
-Regards,
-Simon
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: .config.gz
+Type: application/octet-stream
+Size: 54448 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160605/243ab485/attachment.obj>
