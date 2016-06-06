@@ -1,81 +1,54 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 6 Jun 2016 09:48:41 +0200
-Subject: [PATCH v2 1/3] watchdog: Add Meson GXBB Watchdog Driver
-In-Reply-To: <575316A6.9080403@roeck-us.net>
-References: <1464943007-18000-1-git-send-email-narmstrong@baylibre.com>
- <1464943007-18000-2-git-send-email-narmstrong@baylibre.com>
- <575316A6.9080403@roeck-us.net>
-Message-ID: <57552AD9.7040903@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 6 Jun 2016 08:19:55 -0500
+Subject: [PATCH v5 2/3] documentation: Add secure monitor binding
+ documentation
+In-Reply-To: <20160603092517.GA18149@mephisto>
+References: <1464520323-19531-1-git-send-email-carlo@caione.org>
+ <1464520323-19531-3-git-send-email-carlo@caione.org>
+ <20160602171422.GA17166@rob-hp-laptop>
+ <20160603092517.GA18149@mephisto>
+Message-ID: <CAL_Jsq+JqWjd9VBS_Wxbnada46k+cK0p9dVARCCJnqT1EajHbA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Guenter,
+On Fri, Jun 3, 2016 at 4:25 AM, Carlo Caione <carlo@caione.org> wrote:
+> On 02/06/16 12:14, Rob Herring wrote:
+>> On Sun, May 29, 2016 at 01:12:02PM +0200, Carlo Caione wrote:
+>> > From: Carlo Caione <carlo@endlessm.com>
+>> >
+>> > Add the binding documentation for the Amlogic secure monitor driver.
+>> >
+>> > Signed-off-by: Carlo Caione <carlo@endlessm.com>
+>> > ---
+>> >  .../bindings/firmware/meson/meson_sm.txt           | 33 ++++++++++++++++++++++
+>> >  1 file changed, 33 insertions(+)
+>> >  create mode 100644 Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+>> >
+>> > diff --git a/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt b/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+>> > new file mode 100644
+>> > index 0000000..6f0b5bc
+>> > --- /dev/null
+>> > +++ b/Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+>> > @@ -0,0 +1,33 @@
+>> > +* Amlogic Secure Monitor
+>> > +
+>> > +In the Amlogic SoCs the Secure Monitor code is used to provide access to the
+>> > +NVMEM, enable JTAG, set USB boot, etc...
+>> > +
+>> > +Required properties for the secure monitor node:
+>> > +- compatible: Should be "amlogic,meson-gxbb-sm"
+>> > +
+>> > +Example:
+>> > +
+>> > +   firmware {
+>> > +           compatible = "simple-bus";
+>>
+>> Drop this. Sorry, but no abusing simple-bus to get automagic creation of
+>> your platform device.
+>
+> Sounds reasonable. I can hook this up to some *_initcall. What about
+> introducing a new FIRMWARE_OF_DECLARE() ?
 
-On 06/04/2016 07:57 PM, Guenter Roeck wrote:
-> On 06/03/2016 01:36 AM, Neil Armstrong wrote:
-[...]
->> +++ b/drivers/watchdog/meson_gxbb_wdt.c
->> @@ -0,0 +1,268 @@
->> +/*
->> + * This file is provided under a dual BSD/GPLv2 license.  When using or
->> + * redistributing this file, you may do so under either license.
->> + *
->> + * GPL LICENSE SUMMARY
->> + *
->> + * Copyright (c) 2016 BayLibre, SAS.
->> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->> + *
->> + * This program is free software; you can redistribute it and/or modify
->> + * it under the terms of version 2 of the GNU General Public License as
->> + * published by the Free Software Foundation.
->> + *
->> + * This program is distributed in the hope that it will be useful, but
->> + * WITHOUT ANY WARRANTY; without even the implied warranty of
->> + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
->> + * General Public License for more details.
->> + *
->> + * You should have received a copy of the GNU General Public License
->> + * along with this program; if not, see <http://www.gnu.org/licenses/>.
->> + * The full GNU General Public License is included in this distribution
->> + * in the file called COPYING.
->> + *
->> + * BSD LICENSE
->> + *
->> + * Copyright (c) 2016 BayLibre, SAS.
->> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->> + *
-> Nitpick, but you don't really need the copyright and author lines twice.
+Please don't add FIRMWARE_OF_DECLARE unless it needs to be early.
 
-Sorry, but I was asked to use this particular header format since I am not
-the copyright holder of this file.
-
-> 
->> + * Redistribution and use in source and binary forms, with or without
->> + * modification, are permitted provided that the following conditions
->> + * are met:
->> + *
->> + *   * Redistributions of source code must retain the above copyright
->> + *     notice, this list of conditions and the following disclaimer.
->> + *   * Redistributions in binary form must reproduce the above copyright
->> + *     notice, this list of conditions and the following disclaimer in
->> + *     the documentation and/or other materials provided with the
->> + *     distribution.
->> + *   * Neither the name of Intel Corporation nor the names of its
->> + *     contributors may be used to endorse or promote products derived
->> + *     from this software without specific prior written permission.
->> + *
->> + * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
->> + * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
->> + * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
->> + * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
->> + * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
->> + * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
->> + * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
->> + * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
->> + * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
->> + * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
->> + * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
->> + */
-
-Thanks,
-Neil
+Rob
