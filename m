@@ -1,22 +1,25 @@
-From: broonie@kernel.org (Mark Brown)
-Date: Mon, 6 Jun 2016 18:35:39 +0100
+From: stefan@agner.ch (Stefan Agner)
+Date: Mon, 06 Jun 2016 10:47:40 -0700
 Subject: [PATCH 3/5] regulator: rn5t618: add RN5T567 PMIC support
-In-Reply-To: <20160605001749.4062-5-stefan@agner.ch>
+In-Reply-To: <20160606173539.GC7510@sirena.org.uk>
 References: <20160605001749.4062-1-stefan@agner.ch>
  <20160605001749.4062-5-stefan@agner.ch>
-Message-ID: <20160606173539.GC7510@sirena.org.uk>
+ <20160606173539.GC7510@sirena.org.uk>
+Message-ID: <c6edd422420533d16c076ad5e721e549@agner.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Jun 04, 2016 at 05:17:47PM -0700, Stefan Agner wrote:
-> Extend the driver to support Ricoh RN5T567. Support the additional
-> DCDC and slightly different voltage range of LDORTC1.
+On 2016-06-06 10:35, Mark Brown wrote:
+> On Sat, Jun 04, 2016 at 05:17:47PM -0700, Stefan Agner wrote:
+>> Extend the driver to support Ricoh RN5T567. Support the additional
+>> DCDC and slightly different voltage range of LDORTC1.
+> 
+> Acked-by: Mark Brown <broonie@kernel.org>
 
-Acked-by: Mark Brown <broonie@kernel.org>
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 473 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160606/78f21190/attachment.sig>
+Thanks Mark.
+
+Do you have an idea how the patchset should be handled with the
+dependent dt change in patch 1?
+
+--
+Stefan
