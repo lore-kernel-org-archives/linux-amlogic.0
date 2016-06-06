@@ -1,56 +1,47 @@
-From: stefan@agner.ch (Stefan Agner)
-Date: Sat, 04 Jun 2016 19:52:38 -0700
-Subject: [PATCH 5/5] mfd: rn5t618: register restart handler
-In-Reply-To: <201606050940.RZVDWPsV%fengguang.wu@intel.com>
-References: <201606050940.RZVDWPsV%fengguang.wu@intel.com>
-Message-ID: <7f3c252eb0cb1713a71f8a6b5f52aa93@agner.ch>
+From: marc.zyngier@arm.com (Marc Zyngier)
+Date: Mon,  6 Jun 2016 18:56:29 +0100
+Subject: [PATCH v3 0/2] arm/arm64: Fix architected timer interrupt trigger
+Message-ID: <1465235791-7064-1-git-send-email-marc.zyngier@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 2016-06-04 18:24, kbuild test robot wrote:
-> Hi,
-> 
-> [auto build test ERROR on ljones-mfd/for-mfd-next]
-> [also build test ERROR on v4.7-rc1 next-20160603]
-> [if your patch is applied to the wrong git tree, please drop us a note
-> to help improve the system]
-> 
-> url:   
-> https://github.com/0day-ci/linux/commits/Stefan-Agner/regulator-add-Ricoh-RN5T567-PMIC-support/20160605-082219
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-> config: i386-allmodconfig (attached as .config)
-> compiler: gcc-6 (Debian 6.1.1-1) 6.1.1 20160430
-> reproduce:
->         # save the attached .config to linux build tree
->         make ARCH=i386 
-> 
-> All errors (new ones prefixed by >>):
-> 
->>> drivers/mfd/rn5t618.c:24:29: fatal error: asm/system_misc.h: No such file or directory
->     #include <asm/system_misc.h>
->                                 ^
->    compilation terminated.
-> 
-> vim +24 drivers/mfd/rn5t618.c
-> 
->     18	#include <linux/mfd/rn5t618.h>
->     19	#include <linux/module.h>
->     20	#include <linux/of_device.h>
->     21	#include <linux/reboot.h>
->     22	#include <linux/regmap.h>
->     23
->   > 24	#include <asm/system_misc.h>
+I've noticed a while ago that we had a pretty creative approach to the
+arch timer trigger, with some platform describing as edge-triggered
+something that is architecturally a level interrupt.
 
-Hm, that is an artifact of the older kernel version for which I wrote
-the kernel first where this was required. Will remove this in v2.
+This short patch series tries to address it in two ways:
 
---
-Stefan
+- Enforce the level aspect of the interrupt in the timer driver (and
+  shout at the user if the firmware describes it as edge)
+- Repaint all the in-tree platforms that are obviously doing the wrong
+  thing.
 
->     25
->     26	static const struct mfd_cell rn5t618_cells[] = {
->     27		{ .name = "rn5t618-regulator" },
-> 
-> ---
-> 0-DAY kernel test infrastructure                Open Source Technology Center
-> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+Hopefully, this will stop DTs that are wrong from being blindly
+copy/pasted.
+
+Thanks,
+
+	M.
+
+- From v2: Fix all in-tree device-trees.
+
+Marc Zyngier (2):
+  clocksource/arm_arch_timer: Force per-CPU interrupt to be
+    level-triggered
+  arm64: dts: Fix broken architected timer interrupt trigger
+
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi  |  8 +++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  8 +++----
+ arch/arm64/boot/dts/apm/apm-storm.dtsi             |  8 +++----
+ arch/arm64/boot/dts/broadcom/ns2.dtsi              |  8 +++----
+ arch/arm64/boot/dts/cavium/thunder-88xx.dtsi       |  8 +++----
+ arch/arm64/boot/dts/exynos/exynos7.dtsi            |  8 +++----
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi     |  8 +++----
+ arch/arm64/boot/dts/marvell/armada-ap806.dtsi      |  8 +++----
+ .../boot/dts/socionext/uniphier-ph1-ld20.dtsi      |  8 +++----
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |  8 +++----
+ drivers/clocksource/arm_arch_timer.c               | 27 +++++++++++++++++++---
+ 11 files changed, 64 insertions(+), 43 deletions(-)
+
+-- 
+2.1.4
