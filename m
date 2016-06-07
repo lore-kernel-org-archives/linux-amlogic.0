@@ -1,32 +1,27 @@
-From: broonie@kernel.org (Mark Brown)
-Date: Mon, 6 Jun 2016 19:04:11 +0100
-Subject: [PATCH 3/5] regulator: rn5t618: add RN5T567 PMIC support
-In-Reply-To: <c6edd422420533d16c076ad5e721e549@agner.ch>
-References: <20160605001749.4062-1-stefan@agner.ch>
- <20160605001749.4062-5-stefan@agner.ch>
- <20160606173539.GC7510@sirena.org.uk>
- <c6edd422420533d16c076ad5e721e549@agner.ch>
-Message-ID: <20160606180411.GG7510@sirena.org.uk>
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Tue, 7 Jun 2016 08:35:52 -0700
+Subject: [PATCH v2 1/3] watchdog: Add Meson GXBB Watchdog Driver
+In-Reply-To: <57552AD9.7040903@baylibre.com>
+References: <1464943007-18000-1-git-send-email-narmstrong@baylibre.com>
+ <1464943007-18000-2-git-send-email-narmstrong@baylibre.com>
+ <575316A6.9080403@roeck-us.net> <57552AD9.7040903@baylibre.com>
+Message-ID: <20160607153552.GA2264@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 06, 2016 at 10:47:40AM -0700, Stefan Agner wrote:
-> On 2016-06-06 10:35, Mark Brown wrote:
+On Mon, Jun 06, 2016 at 09:48:41AM +0200, Neil Armstrong wrote:
+> Hi Guenter,
+> 
+[ ... ]
+> >> + *
+> >> + * Copyright (c) 2016 BayLibre, SAS.
+> >> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> >> + *
+> > Nitpick, but you don't really need the copyright and author lines twice.
+> 
+> Sorry, but I was asked to use this particular header format since I am not
+> the copyright holder of this file.
+> 
+Ok, no problem.
 
-> > Acked-by: Mark Brown <broonie@kernel.org>
-
-> Thanks Mark.
-
-> Do you have an idea how the patchset should be handled with the
-> dependent dt change in patch 1?
-
-Lee will need to apply at least the first patch, I'd expect he'll also
-apply this and send me a pull request (or perhaps just send me a pull
-request for the MFD change).
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 473 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160606/5bd19d37/attachment.sig>
+Guenter
