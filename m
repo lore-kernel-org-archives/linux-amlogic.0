@@ -1,102 +1,48 @@
-From: stefan@agner.ch (Stefan Agner)
-Date: Tue,  7 Jun 2016 18:04:29 -0700
-Subject: [PATCH v2 5/5] mfd: rn5t618: register restart handler
-In-Reply-To: <20160608010429.19618-1-stefan@agner.ch>
+From: robh@kernel.org (Rob Herring)
+Date: Wed, 8 Jun 2016 15:22:57 -0500
+Subject: [PATCH v2 2/5] mfd: add Ricoh RN5T567 PMIC support
+In-Reply-To: <20160608010429.19618-3-stefan@agner.ch>
 References: <20160608010429.19618-1-stefan@agner.ch>
-Message-ID: <20160608010429.19618-6-stefan@agner.ch>
+ <20160608010429.19618-3-stefan@agner.ch>
+Message-ID: <20160608202257.GA22463@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Use the PMIC's repower capability for reboots. Register a restart
-handler with use a default priority of 128.
+On Tue, Jun 07, 2016 at 06:04:26PM -0700, Stefan Agner wrote:
+> The Ricoh RN5T567 is from the same family as the Ricoh RN5T618 is,
+> the differences are:
+> 
+> + DCDC4
+> + Slightly different output voltage/currents
+> + 32kHz Output
+> - ADC/Charger capabilities
+> 
+> Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Signed-off-by: Stefan Agner <stefan@agner.ch>
+> ---
+>  Documentation/devicetree/bindings/mfd/rn5t618.txt | 19 ++++++++++-------
+>  drivers/mfd/Kconfig                               |  7 +++---
+>  drivers/mfd/rn5t618.c                             | 26 +++++++++++++++++------
+>  include/linux/mfd/rn5t618.h                       | 12 +++++++++++
+>  4 files changed, 46 insertions(+), 18 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/rn5t618.txt b/Documentation/devicetree/bindings/mfd/rn5t618.txt
+> index 937785a..5b493ed 100644
+> --- a/Documentation/devicetree/bindings/mfd/rn5t618.txt
+> +++ b/Documentation/devicetree/bindings/mfd/rn5t618.txt
+> @@ -1,18 +1,21 @@
+> -* Ricoh RN5T618 PMIC
+> +* Ricoh RN5T567/RN5T618 PMIC
+>  
+> -Ricoh RN5T618 is a power management IC which integrates 3 step-down
+> -DCDC converters, 7 low-dropout regulators, a Li-ion battery charger,
+> -fuel gauge, ADC, GPIOs and a watchdog timer. It can be controlled
+> -through a I2C interface.
+> +Ricoh RN5T567/RN5T618 is a power management IC family which integrates
+> +3 to 5 step-down DCDC converters, 7 low-dropout regulators, GPIOs and
 
-Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Signed-off-by: Stefan Agner <stefan@agner.ch>
----
- drivers/mfd/rn5t618.c | 40 ++++++++++++++++++++++++++++++++++------
- 1 file changed, 34 insertions(+), 6 deletions(-)
+I count 4?
 
-diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-index d9b4d40..6bc0863 100644
---- a/drivers/mfd/rn5t618.c
-+++ b/drivers/mfd/rn5t618.c
-@@ -12,11 +12,13 @@
-  * along with this program. If not, see <http://www.gnu.org/licenses/>.
-  */
- 
-+#include <linux/delay.h>
- #include <linux/i2c.h>
- #include <linux/mfd/core.h>
- #include <linux/mfd/rn5t618.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-+#include <linux/reboot.h>
- #include <linux/regmap.h>
- 
- static const struct mfd_cell rn5t618_cells[] = {
-@@ -50,17 +52,34 @@ static const struct regmap_config rn5t618_regmap_config = {
- };
- 
- static struct rn5t618 *rn5t618_pm_power_off;
-+static struct notifier_block rn5t618_restart_handler;
- 
--static void rn5t618_power_off(void)
-+static void rn5t618_trigger_poweroff_sequence(bool repower)
- {
- 	/* disable automatic repower-on */
- 	regmap_update_bits(rn5t618_pm_power_off->regmap, RN5T618_REPCNT,
--			   RN5T618_REPCNT_REPWRON, 0);
-+			   RN5T618_REPCNT_REPWRON, repower);
- 	/* start power-off sequence */
- 	regmap_update_bits(rn5t618_pm_power_off->regmap, RN5T618_SLPCNT,
- 			   RN5T618_SLPCNT_SWPWROFF, RN5T618_SLPCNT_SWPWROFF);
- }
- 
-+static void rn5t618_power_off(void)
-+{
-+	rn5t618_trigger_poweroff_sequence(false);
-+}
-+
-+static int rn5t618_restart(struct notifier_block *this,
-+			    unsigned long mode, void *cmd)
-+{
-+	rn5t618_trigger_poweroff_sequence(true);
-+
-+	mdelay(10);
-+
-+	return NOTIFY_DONE;
-+}
-+
-+
- static const struct of_device_id rn5t618_of_match[] = {
- 	{ .compatible = "ricoh,rn5t567", .data = (void *)RN5T567 },
- 	{ .compatible = "ricoh,rn5t618", .data = (void *)RN5T618 },
-@@ -103,13 +122,22 @@ static int rn5t618_i2c_probe(struct i2c_client *i2c,
- 		return ret;
- 	}
- 
-+	rn5t618_pm_power_off = priv;
- 	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
--		if (!pm_power_off) {
--			rn5t618_pm_power_off = priv;
-+		if (!pm_power_off)
- 			pm_power_off = rn5t618_power_off;
--		} else {
-+		else
- 			dev_err(&i2c->dev, "Failed to set poweroff capability, already defined\n");
--		}
-+	}
-+
-+	rn5t618_restart_handler.notifier_call = rn5t618_restart;
-+	rn5t618_restart_handler.priority = 128;
-+
-+	ret = register_restart_handler(&rn5t618_restart_handler);
-+	if (ret) {
-+		dev_err(&i2c->dev, "%s: cannot register restart handler, %d\n",
-+				__func__, ret);
-+		return ret;
- 	}
- 
- 	return 0;
--- 
-2.8.3
+Otherwise, for the binding:
+
+Acked-by: Rob Herring <robh@kernel.org>
