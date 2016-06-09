@@ -1,15 +1,15 @@
-From: michal.simek@xilinx.com (Michal Simek)
-Date: Tue, 7 Jun 2016 09:19:24 +0200
+From: dinguyen@opensource.altera.com (Dinh Nguyen)
+Date: Thu, 9 Jun 2016 10:05:38 -0500
 Subject: [PATCH v3 2/2] arm64: dts: Fix broken architected timer interrupt
  trigger
 In-Reply-To: <1465235791-7064-3-git-send-email-marc.zyngier@arm.com>
 References: <1465235791-7064-1-git-send-email-marc.zyngier@arm.com>
  <1465235791-7064-3-git-send-email-marc.zyngier@arm.com>
-Message-ID: <5756757C.8040000@xilinx.com>
+Message-ID: <575985C2.4050109@opensource.altera.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 6.6.2016 19:56, Marc Zyngier wrote:
+On 06/06/2016 12:56 PM, Marc Zyngier wrote:
 > The ARM architected timer specification mandates that the interrupt
 > associated with each timer is level triggered (which corresponds to
 > the "counter >= comparator" condition).
@@ -58,189 +58,10 @@ On 6.6.2016 19:56, Marc Zyngier wrote:
 > +				     <1 14 0xf08>,
 > +				     <1 11 0xf08>,
 > +				     <1 10 0xf08>;
->  		};
->  
->  		timer0: timer0 at ffc03000 {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index 832815d..4d9d144 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> @@ -100,13 +100,13 @@
->  	timer {
->  		compatible = "arm,armv8-timer";
->  		interrupts = <GIC_PPI 13
-> -			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_EDGE_RISING)>,
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
->  			     <GIC_PPI 14
-> -			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_EDGE_RISING)>,
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
->  			     <GIC_PPI 11
-> -			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_EDGE_RISING)>,
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
->  			     <GIC_PPI 10
-> -			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_EDGE_RISING)>;
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
->  	};
->  
->  	xtal: xtal-clk {
-> diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
-> index 5147d76..1c4193f 100644
-> --- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
-> +++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
-> @@ -110,10 +110,10 @@
->  
->  	timer {
->  		compatible = "arm,armv8-timer";
-> -		interrupts = <1 0 0xff01>,	/* Secure Phys IRQ */
-> -			     <1 13 0xff01>,	/* Non-secure Phys IRQ */
-> -			     <1 14 0xff01>,	/* Virt IRQ */
-> -			     <1 15 0xff01>;	/* Hyp IRQ */
-> +		interrupts = <1 0 0xff08>,	/* Secure Phys IRQ */
-> +			     <1 13 0xff08>,	/* Non-secure Phys IRQ */
-> +			     <1 14 0xff08>,	/* Virt IRQ */
-> +			     <1 15 0xff08>;	/* Hyp IRQ */
->  		clock-frequency = <50000000>;
->  	};
->  
-> diff --git a/arch/arm64/boot/dts/broadcom/ns2.dtsi b/arch/arm64/boot/dts/broadcom/ns2.dtsi
-> index ec68ec1..9c2d8a7 100644
-> --- a/arch/arm64/boot/dts/broadcom/ns2.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/ns2.dtsi
-> @@ -88,13 +88,13 @@
->  	timer {
->  		compatible = "arm,armv8-timer";
->  		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_RAW(0xff) |
-> -			      IRQ_TYPE_EDGE_RISING)>,
-> +			      IRQ_TYPE_LEVEL_LOW)>,
->  			     <GIC_PPI 14 (GIC_CPU_MASK_RAW(0xff) |
-> -			      IRQ_TYPE_EDGE_RISING)>,
-> +			      IRQ_TYPE_LEVEL_LOW)>,
->  			     <GIC_PPI 11 (GIC_CPU_MASK_RAW(0xff) |
-> -			      IRQ_TYPE_EDGE_RISING)>,
-> +			      IRQ_TYPE_LEVEL_LOW)>,
->  			     <GIC_PPI 10 (GIC_CPU_MASK_RAW(0xff) |
-> -			      IRQ_TYPE_EDGE_RISING)>;
-> +			      IRQ_TYPE_LEVEL_LOW)>;
->  	};
->  
->  	pmu {
-> diff --git a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi b/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-> index 2eb9b22..382d86f 100644
-> --- a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-> +++ b/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-> @@ -354,10 +354,10 @@
->  
->  	timer {
->  		compatible = "arm,armv8-timer";
-> -		interrupts = <1 13 0xff01>,
-> -		             <1 14 0xff01>,
-> -		             <1 11 0xff01>,
-> -		             <1 10 0xff01>;
-> +		interrupts = <1 13 8>,
-> +		             <1 14 8>,
-> +		             <1 11 8>,
-> +		             <1 10 8>;
->  	};
->  
->  	pmu {
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> index ca663df..1628315 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> @@ -473,10 +473,10 @@
->  
->  		timer {
->  			compatible = "arm,armv8-timer";
-> -			interrupts = <1 13 0xff01>,
-> -				     <1 14 0xff01>,
-> -				     <1 11 0xff01>,
-> -				     <1 10 0xff01>;
-> +			interrupts = <1 13 0xff08>,
-> +				     <1 14 0xff08>,
-> +				     <1 11 0xff08>,
-> +				     <1 10 0xff08>;
->  		};
->  
->  		pmu_system_controller: system-controller at 105c0000 {
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-> index c277ba6..b92543d 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-> @@ -111,10 +111,10 @@
->  
->  	timer {
->  		compatible = "arm,armv8-timer";
-> -		interrupts = <1 13 0x1>, /* Physical Secure PPI */
-> -			     <1 14 0x1>, /* Physical Non-Secure PPI */
-> -			     <1 11 0x1>, /* Virtual PPI */
-> -			     <1 10 0x1>; /* Hypervisor PPI */
-> +		interrupts = <1 13 0xf08>, /* Physical Secure PPI */
-> +			     <1 14 0xf08>, /* Physical Non-Secure PPI */
-> +			     <1 11 0xf08>, /* Virtual PPI */
-> +			     <1 10 0xf08>; /* Hypervisor PPI */
->  		fsl,erratum-a008585;
->  	};
->  
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-> index 20d256b..b1d6bb8 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-> @@ -122,10 +122,10 @@
->  
->  			timer {
->  				compatible = "arm,armv8-timer";
-> -				interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>,
-> -					     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>,
-> -					     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>,
-> -					     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
-> +				interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +					     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +					     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +					     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
->  			};
->  
->  			odmi: odmi at 300000 {
-> diff --git a/arch/arm64/boot/dts/socionext/uniphier-ph1-ld20.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ph1-ld20.dtsi
-> index 9532880..5a8e0f4 100644
-> --- a/arch/arm64/boot/dts/socionext/uniphier-ph1-ld20.dtsi
-> +++ b/arch/arm64/boot/dts/socionext/uniphier-ph1-ld20.dtsi
-> @@ -127,10 +127,10 @@
->  
->  	timer {
->  		compatible = "arm,armv8-timer";
-> -		interrupts = <1 13 0xf01>,
-> -			     <1 14 0xf01>,
-> -			     <1 11 0xf01>,
-> -			     <1 10 0xf01>;
-> +		interrupts = <1 13 0xf08>,
-> +			     <1 14 0xf08>,
-> +			     <1 11 0xf08>,
-> +			     <1 10 0xf08>;
->  	};
->  
->  	soc {
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index e595f22..3e2e51f 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -65,10 +65,10 @@
->  	timer {
->  		compatible = "arm,armv8-timer";
->  		interrupt-parent = <&gic>;
-> -		interrupts = <1 13 0xf01>,
-> -			     <1 14 0xf01>,
-> -			     <1 11 0xf01>,
-> -			     <1 10 0xf01>;
-> +		interrupts = <1 13 0xf08>,
-> +			     <1 14 0xf08>,
-> +			     <1 11 0xf08>,
-> +			     <1 10 0xf08>;
->  	};
->  
->  	amba_apu {
-> 
 
-Acked-by: Michal Simek <michal.simek@xilinx.com> # ZynqMP
+For SOCFPGA:
+
+Acked-by: Dinh Nguyen <dinguyen@opensource.altera.com>
 
 Thanks,
-Michal
+Dinh
