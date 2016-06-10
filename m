@@ -1,41 +1,80 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu,  9 Jun 2016 17:27:46 -0700
-Subject: [PATCH 09/10] arm: meson: explicitly select clk drivers
+Date: Thu,  9 Jun 2016 17:27:47 -0700
+Subject: [PATCH 10/10] clk: meson: only build selected platforms
 In-Reply-To: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
 References: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <1465518467-23939-10-git-send-email-mturquette@baylibre.com>
+Message-ID: <1465518467-23939-11-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The AmLogic clock controller code is used by both arm and arm64
-architectures. Explicitly select the core code for all Meson (32-bit
-arm) builds, and also select the Meson8b driver when that machine is
-built.
+Break the AmLogic clock code up so that only the necessary parts are
+compiled and linked. The core code is selected by both arm and arm64
+builds with COMMON_CLK_AMLOGIC. The individual drivers have their own
+config options as well.
 
 Signed-off-by: Michael Turquette <mturquette@baylibre.com>
 ---
- arch/arm/mach-meson/Kconfig | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/clk/Kconfig        |  1 +
+ drivers/clk/Makefile       |  2 +-
+ drivers/clk/meson/Kconfig  | 12 ++++++++++++
+ drivers/clk/meson/Makefile |  4 ++--
+ 4 files changed, 16 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/clk/meson/Kconfig
 
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index 31bdd91..c689219 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -7,6 +7,8 @@ menuconfig ARCH_MESON
- 	select CACHE_L2X0
- 	select PINCTRL
- 	select PINCTRL_MESON
-+	select COMMON_CLK
-+	select COMMON_CLK_AMLOGIC
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+index 53ddba2..30feb6b 100644
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -208,6 +208,7 @@ config COMMON_CLK_OXNAS
  
- if ARCH_MESON
- 
-@@ -24,5 +26,6 @@ config MACH_MESON8B
- 	bool "Amlogic Meson8b SoCs support"
- 	default ARCH_MESON
- 	select MESON6_TIMER
-+	select COMMON_CLK_MESON8B
- 
+ source "drivers/clk/bcm/Kconfig"
+ source "drivers/clk/hisilicon/Kconfig"
++source "drivers/clk/meson/Kconfig"
+ source "drivers/clk/mvebu/Kconfig"
+ source "drivers/clk/qcom/Kconfig"
+ source "drivers/clk/renesas/Kconfig"
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+index dcc5e69..af03eb2 100644
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -65,7 +65,7 @@ ifeq ($(CONFIG_COMMON_CLK), y)
+ obj-$(CONFIG_ARCH_MMP)			+= mmp/
  endif
+ obj-y					+= mvebu/
+-obj-$(CONFIG_ARCH_MESON)		+= meson/
++obj-$(CONFIG_COMMON_CLK_AMLOGIC)	+= meson/
+ obj-$(CONFIG_ARCH_MXS)			+= mxs/
+ obj-$(CONFIG_MACH_PISTACHIO)		+= pistachio/
+ obj-$(CONFIG_COMMON_CLK_NXP)		+= nxp/
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+new file mode 100644
+index 0000000..7bb19ad
+--- /dev/null
++++ b/drivers/clk/meson/Kconfig
+@@ -0,0 +1,12 @@
++config COMMON_CLK_AMLOGIC
++	bool
++	depends on OF
++	depends on ARCH_MESON || COMPILE_TEST
++
++config COMMON_CLK_MESON8B
++	bool
++	depends on COMMON_CLK_AMLOGIC
++	help
++	  Support for the clock controller on AmLogic S805 devices, aka
++	  meson8b. Say Y if you want peripherals and CPU frequency scaling to
++	  work.
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 901b5d4..b3d60fe 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -2,5 +2,5 @@
+ # Makefile for Meson specific clk
+ #
+ 
+-obj-y += clk-pll.o clk-cpu.o
+-obj-y += meson8b-clkc.o
++obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o
++obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b-clkc.o
 -- 
 2.1.4
