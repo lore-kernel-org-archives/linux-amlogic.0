@@ -1,323 +1,454 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu,  9 Jun 2016 17:27:42 -0700
-Subject: [PATCH 05/10] clk: meson8b: clean up cpu clocks
+Date: Thu,  9 Jun 2016 17:27:44 -0700
+Subject: [PATCH 07/10] clk: meson8b: clean up composite clocks
 In-Reply-To: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
 References: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <1465518467-23939-6-git-send-email-mturquette@baylibre.com>
+Message-ID: <1465518467-23939-8-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove the cpu clock registration function and helpers. Replace
+Remove the composite clock registration function and helpers. Replace
 unnecessary configuration struct with static initialization of the
 desired clock type.
 
-Ninja rename a5_clk to cpu_clk to better align with cpufreq convention.
+To preserve git bisect this patch also flips the switch and starts using
+of_clk_add_hw_provider instead of the deprecated meson_clk_register_clks
+method. As a byproduct clk.c can be deleted.
 
 Signed-off-by: Michael Turquette <mturquette@baylibre.com>
 ---
- drivers/clk/meson/clk-cpu.c      | 73 +++-------------------------------------
- drivers/clk/meson/clkc.c         |  4 ---
- drivers/clk/meson/clkc.h         | 25 ++++++--------
- drivers/clk/meson/meson8b-clkc.c | 47 ++++++++++++++++++++++++--
- 4 files changed, 59 insertions(+), 90 deletions(-)
+ drivers/clk/meson/Makefile               |   2 +-
+ drivers/clk/meson/clkc.c                 | 161 -------------------------------
+ drivers/clk/meson/clkc.h                 |  56 -----------
+ drivers/clk/meson/meson8b-clkc.c         |  93 ++++++++++++------
+ include/dt-bindings/clock/meson8b-clkc.h |   4 +-
+ 5 files changed, 69 insertions(+), 247 deletions(-)
+ delete mode 100644 drivers/clk/meson/clkc.c
 
-diff --git a/drivers/clk/meson/clk-cpu.c b/drivers/clk/meson/clk-cpu.c
-index f7c30ea..f8b2b7e 100644
---- a/drivers/clk/meson/clk-cpu.c
-+++ b/drivers/clk/meson/clk-cpu.c
-@@ -51,13 +51,6 @@
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 6d45531..901b5d4 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -2,5 +2,5 @@
+ # Makefile for Meson specific clk
+ #
  
- #include "clkc.h"
- 
--struct meson_clk_cpu {
--	struct notifier_block		clk_nb;
--	const struct clk_div_table	*div_table;
--	struct clk_hw			hw;
--	void __iomem			*base;
--	u16				reg_off;
--};
- #define to_meson_clk_cpu_hw(_hw) container_of(_hw, struct meson_clk_cpu, hw)
- #define to_meson_clk_cpu_nb(_nb) container_of(_nb, struct meson_clk_cpu, clk_nb)
- 
-@@ -119,6 +112,7 @@ static unsigned long meson_clk_cpu_recalc_rate(struct clk_hw *hw,
- 	return parent_rate / div;
- }
- 
-+/* FIXME MUX1 & MUX2 should be struct clk_hw objects */
- static int meson_clk_cpu_pre_rate_change(struct meson_clk_cpu *clk_cpu,
- 					 struct clk_notifier_data *ndata)
- {
-@@ -140,6 +134,7 @@ static int meson_clk_cpu_pre_rate_change(struct meson_clk_cpu *clk_cpu,
- 	return 0;
- }
- 
-+/* FIXME MUX1 & MUX2 should be struct clk_hw objects */
- static int meson_clk_cpu_post_rate_change(struct meson_clk_cpu *clk_cpu,
- 					  struct clk_notifier_data *ndata)
- {
-@@ -161,7 +156,7 @@ static int meson_clk_cpu_post_rate_change(struct meson_clk_cpu *clk_cpu,
-  * PLL clock is to be changed. We use the xtal input as temporary parent
-  * while the PLL frequency is stabilized.
-  */
--static int meson_clk_cpu_notifier_cb(struct notifier_block *nb,
-+int meson_clk_cpu_notifier_cb(struct notifier_block *nb,
- 				     unsigned long event, void *data)
- {
- 	struct clk_notifier_data *ndata = data;
-@@ -176,68 +171,8 @@ static int meson_clk_cpu_notifier_cb(struct notifier_block *nb,
- 	return notifier_from_errno(ret);
- }
- 
--static const struct clk_ops meson_clk_cpu_ops = {
-+const struct clk_ops meson_clk_cpu_ops = {
- 	.recalc_rate	= meson_clk_cpu_recalc_rate,
- 	.round_rate	= meson_clk_cpu_round_rate,
- 	.set_rate	= meson_clk_cpu_set_rate,
- };
+-obj-y += clkc.o clk-pll.o clk-cpu.o
++obj-y += clk-pll.o clk-cpu.o
+ obj-y += meson8b-clkc.o
+diff --git a/drivers/clk/meson/clkc.c b/drivers/clk/meson/clkc.c
+deleted file mode 100644
+index 0f96553..0000000
+--- a/drivers/clk/meson/clkc.c
++++ /dev/null
+@@ -1,161 +0,0 @@
+-/*
+- * Copyright (c) 2015 Endless Mobile, Inc.
+- * Author: Carlo Caione <carlo@endlessm.com>
+- *
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms and conditions of the GNU General Public License,
+- * version 2, as published by the Free Software Foundation.
+- *
+- * This program is distributed in the hope it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+- * more details.
+- *
+- * You should have received a copy of the GNU General Public License along with
+- * this program.  If not, see <http://www.gnu.org/licenses/>.
+- */
 -
--struct clk *meson_clk_register_cpu(const struct clk_conf *clk_conf,
--				   void __iomem *reg_base,
--				   spinlock_t *lock)
+-#include <linux/clk-provider.h>
+-#include <linux/mfd/syscon.h>
+-#include <linux/slab.h>
+-
+-#include "clkc.h"
+-
+-DEFINE_SPINLOCK(clk_lock);
+-
+-static struct clk **clks;
+-static struct clk_onecell_data clk_data;
+-
+-struct clk ** __init meson_clk_init(struct device_node *np,
+-				   unsigned long nr_clks)
 -{
--	struct clk *clk;
--	struct clk *pclk;
--	struct meson_clk_cpu *clk_cpu;
--	struct clk_init_data init;
--	int ret;
--
--	clk_cpu = kzalloc(sizeof(*clk_cpu), GFP_KERNEL);
--	if (!clk_cpu)
+-	clks = kcalloc(nr_clks, sizeof(*clks), GFP_KERNEL);
+-	if (!clks)
 -		return ERR_PTR(-ENOMEM);
 -
--	clk_cpu->base = reg_base;
--	clk_cpu->reg_off = clk_conf->reg_off;
--	clk_cpu->div_table = clk_conf->conf.div_table;
--	clk_cpu->clk_nb.notifier_call = meson_clk_cpu_notifier_cb;
+-	clk_data.clks = clks;
+-	clk_data.clk_num = nr_clks;
+-	of_clk_add_provider(np, of_clk_src_onecell_get, &clk_data);
 -
--	init.name = clk_conf->clk_name;
--	init.ops = &meson_clk_cpu_ops;
--	init.flags = clk_conf->flags | CLK_GET_RATE_NOCACHE;
--	init.flags |= CLK_SET_RATE_PARENT;
--	init.parent_names = clk_conf->clks_parent;
--	init.num_parents = 1;
+-	return clks;
+-}
 -
--	clk_cpu->hw.init = &init;
+-static void meson_clk_add_lookup(struct clk *clk, unsigned int id)
+-{
+-	if (clks && id)
+-		clks[id] = clk;
+-}
 -
--	pclk = __clk_lookup(clk_conf->clks_parent[0]);
--	if (!pclk) {
--		pr_err("%s: could not lookup parent clock %s\n",
--				__func__, clk_conf->clks_parent[0]);
--		ret = -EINVAL;
--		goto free_clk;
+-static struct clk * __init
+-meson_clk_register_composite(const struct clk_conf *clk_conf,
+-			     void __iomem *clk_base)
+-{
+-	struct clk *clk;
+-	struct clk_mux *mux = NULL;
+-	struct clk_divider *div = NULL;
+-	struct clk_gate *gate = NULL;
+-	const struct clk_ops *mux_ops = NULL;
+-	const struct composite_conf *composite_conf;
+-
+-	composite_conf = clk_conf->conf.composite;
+-
+-	if (clk_conf->num_parents > 1) {
+-		mux = kzalloc(sizeof(*mux), GFP_KERNEL);
+-		if (!mux)
+-			return ERR_PTR(-ENOMEM);
+-
+-		mux->reg = clk_base + clk_conf->reg_off
+-				+ composite_conf->mux_parm.reg_off;
+-		mux->shift = composite_conf->mux_parm.shift;
+-		mux->mask = BIT(composite_conf->mux_parm.width) - 1;
+-		mux->flags = composite_conf->mux_flags;
+-		mux->lock = &clk_lock;
+-		mux->table = composite_conf->mux_table;
+-		mux_ops = (composite_conf->mux_flags & CLK_MUX_READ_ONLY) ?
+-			  &clk_mux_ro_ops : &clk_mux_ops;
 -	}
 -
--	ret = clk_notifier_register(pclk, &clk_cpu->clk_nb);
--	if (ret) {
--		pr_err("%s: failed to register clock notifier for %s\n",
--				__func__, clk_conf->clk_name);
--		goto free_clk;
+-	if (MESON_PARM_APPLICABLE(&composite_conf->div_parm)) {
+-		div = kzalloc(sizeof(*div), GFP_KERNEL);
+-		if (!div) {
+-			clk = ERR_PTR(-ENOMEM);
+-			goto error;
+-		}
+-
+-		div->reg = clk_base + clk_conf->reg_off
+-				+ composite_conf->div_parm.reg_off;
+-		div->shift = composite_conf->div_parm.shift;
+-		div->width = composite_conf->div_parm.width;
+-		div->lock = &clk_lock;
+-		div->flags = composite_conf->div_flags;
+-		div->table = composite_conf->div_table;
 -	}
 -
--	clk = clk_register(NULL, &clk_cpu->hw);
--	if (IS_ERR(clk)) {
--		ret = PTR_ERR(clk);
--		goto unregister_clk_nb;
+-	if (MESON_PARM_APPLICABLE(&composite_conf->gate_parm)) {
+-		gate = kzalloc(sizeof(*gate), GFP_KERNEL);
+-		if (!gate) {
+-			clk = ERR_PTR(-ENOMEM);
+-			goto error;
+-		}
+-
+-		gate->reg = clk_base + clk_conf->reg_off
+-				+ composite_conf->div_parm.reg_off;
+-		gate->bit_idx = composite_conf->gate_parm.shift;
+-		gate->flags = composite_conf->gate_flags;
+-		gate->lock = &clk_lock;
 -	}
+-
+-	clk = clk_register_composite(NULL, clk_conf->clk_name,
+-				    clk_conf->clks_parent,
+-				    clk_conf->num_parents,
+-				    mux ? &mux->hw : NULL, mux_ops,
+-				    div ? &div->hw : NULL, &clk_divider_ops,
+-				    gate ? &gate->hw : NULL, &clk_gate_ops,
+-				    clk_conf->flags);
+-	if (IS_ERR(clk))
+-		goto error;
 -
 -	return clk;
 -
--unregister_clk_nb:
--	clk_notifier_unregister(pclk, &clk_cpu->clk_nb);
--free_clk:
--	kfree(clk_cpu);
+-error:
+-	kfree(gate);
+-	kfree(div);
+-	kfree(mux);
 -
--	return ERR_PTR(ret);
+-	return clk;
 -}
 -
-diff --git a/drivers/clk/meson/clkc.c b/drivers/clk/meson/clkc.c
-index 275da27..0f96553 100644
---- a/drivers/clk/meson/clkc.c
-+++ b/drivers/clk/meson/clkc.c
-@@ -140,10 +140,6 @@ void __init meson_clk_register_clks(const struct clk_conf *clk_confs,
- 			clk = meson_clk_register_composite(clk_conf,
- 							   clk_base);
- 			break;
--		case CLK_CPU:
--			clk = meson_clk_register_cpu(clk_conf, clk_base,
--						     &clk_lock);
+-void __init meson_clk_register_clks(const struct clk_conf *clk_confs,
+-				    unsigned int nr_confs,
+-				    void __iomem *clk_base)
+-{
+-	unsigned int i;
+-	struct clk *clk = NULL;
+-
+-	for (i = 0; i < nr_confs; i++) {
+-		const struct clk_conf *clk_conf = &clk_confs[i];
+-
+-		switch (clk_conf->clk_type) {
+-		case CLK_COMPOSITE:
+-			clk = meson_clk_register_composite(clk_conf,
+-							   clk_base);
 -			break;
- 		default:
- 			clk = NULL;
- 		}
+-		default:
+-			clk = NULL;
+-		}
+-
+-		if (!clk) {
+-			pr_err("%s: unknown clock type %d\n", __func__,
+-			       clk_conf->clk_type);
+-			continue;
+-		}
+-
+-		if (IS_ERR(clk)) {
+-			pr_warn("%s: Unable to create %s clock\n", __func__,
+-				clk_conf->clk_name);
+-			continue;
+-		}
+-
+-		meson_clk_add_lookup(clk, clk_conf->clk_id);
+-	}
+-}
 diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 97dd4d7..bfa5ae2 100644
+index bfa5ae2..f3f3961 100644
 --- a/drivers/clk/meson/clkc.h
 +++ b/drivers/clk/meson/clkc.h
-@@ -69,6 +69,14 @@ struct meson_clk_pll {
- 
- #define to_meson_clk_pll(_hw) container_of(_hw, struct meson_clk_pll, hw)
- 
-+struct meson_clk_cpu {
-+	struct clk_hw hw;
-+	void __iomem *base;
-+	u16 reg_off;
-+	struct notifier_block clk_nb;
-+	const struct clk_div_table *div_table;
-+};
-+
- struct composite_conf {
- 	struct parm		mux_parm;
- 	struct parm		div_parm;
-@@ -84,7 +92,6 @@ struct composite_conf {
- 
- enum clk_type {
- 	CLK_COMPOSITE,
--	CLK_CPU,
+@@ -35,13 +35,6 @@ struct parm {
+ 	u8	width;
  };
  
- struct clk_conf {
-@@ -101,17 +108,6 @@ struct clk_conf {
- 	} conf;
+-#define PARM(_r, _s, _w)                                               \
+-{                                                                      \
+-	.reg_off        = (_r),                                        \
+-	.shift          = (_s),                                        \
+-	.width          = (_w),                                        \
+-}                                                                      \
+-
+ struct pll_rate_table {
+ 	unsigned long	rate;
+ 	u16		m;
+@@ -77,58 +70,9 @@ struct meson_clk_cpu {
+ 	const struct clk_div_table *div_table;
  };
  
--#define CPU(_ro, _ci, _cn, _cp, _dt)					\
+-struct composite_conf {
+-	struct parm		mux_parm;
+-	struct parm		div_parm;
+-	struct parm		gate_parm;
+-	struct clk_div_table	*div_table;
+-	u32			*mux_table;
+-	u8			mux_flags;
+-	u8			div_flags;
+-	u8			gate_flags;
+-};
+-
+-#define PNAME(x) static const char *x[]
+-
+-enum clk_type {
+-	CLK_COMPOSITE,
+-};
+-
+-struct clk_conf {
+-	u16				reg_off;
+-	enum clk_type			clk_type;
+-	unsigned int			clk_id;
+-	const char			*clk_name;
+-	const char			**clks_parent;
+-	int				num_parents;
+-	unsigned long			flags;
+-	union {
+-		const struct composite_conf		*composite;
+-		const struct clk_div_table	*div_table;
+-	} conf;
+-};
+-
+-#define COMPOSITE(_ro, _ci, _cn, _cp, _f, _c)				\
 -	{								\
 -		.reg_off			= (_ro),		\
--		.clk_type			= CLK_CPU,		\
+-		.clk_type			= CLK_COMPOSITE,	\
 -		.clk_id				= (_ci),		\
 -		.clk_name			= (_cn),		\
 -		.clks_parent			= (_cp),		\
 -		.num_parents			= ARRAY_SIZE(_cp),	\
--		.conf.div_table			= (_dt),		\
+-		.flags				= (_f),			\
+-		.conf.composite			= (_c),			\
 -	}								\
 -
- #define COMPOSITE(_ro, _ci, _cn, _cp, _f, _c)				\
- 	{								\
- 		.reg_off			= (_ro),		\
-@@ -127,8 +123,8 @@ struct clk_conf {
- struct clk **meson_clk_init(struct device_node *np, unsigned long nr_clks);
- void meson_clk_register_clks(const struct clk_conf *clk_confs,
- 			     unsigned int nr_confs, void __iomem *clk_base);
--struct clk *meson_clk_register_cpu(const struct clk_conf *clk_conf,
--				   void __iomem *reg_base, spinlock_t *lock);
-+int meson_clk_cpu_notifier_cb(struct notifier_block *nb, unsigned long event,
-+		void *data);
+-struct clk **meson_clk_init(struct device_node *np, unsigned long nr_clks);
+-void meson_clk_register_clks(const struct clk_conf *clk_confs,
+-			     unsigned int nr_confs, void __iomem *clk_base);
+ int meson_clk_cpu_notifier_cb(struct notifier_block *nb, unsigned long event,
+ 		void *data);
  
- /* shared data */
- extern spinlock_t clk_lock;
-@@ -136,5 +132,6 @@ extern spinlock_t clk_lock;
+-/* shared data */
+-extern spinlock_t clk_lock;
+-
  /* clk_ops */
  extern const struct clk_ops meson_clk_pll_ro_ops;
  extern const struct clk_ops meson_clk_pll_ops;
-+extern const struct clk_ops meson_clk_cpu_ops;
- 
- #endif /* __CLKC_H */
 diff --git a/drivers/clk/meson/meson8b-clkc.c b/drivers/clk/meson/meson8b-clkc.c
-index 6571e66..94512b6 100644
+index dcd8f03..57dea03 100644
 --- a/drivers/clk/meson/meson8b-clkc.c
 +++ b/drivers/clk/meson/meson8b-clkc.c
-@@ -15,6 +15,7 @@
-  * this program.  If not, see <http://www.gnu.org/licenses/>.
-  */
+@@ -41,6 +41,8 @@
+ #define MESON8B_REG_PLL_SYS		0x0300
+ #define MESON8B_REG_PLL_VID		0x0320
  
-+#include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/kernel.h>
- #include <linux/of.h>
-@@ -110,7 +111,6 @@ static const struct clk_div_table cpu_div_table[] = {
++static DEFINE_SPINLOCK(clk_lock);
++
+ static const struct pll_rate_table sys_pll_rate_table[] = {
+ 	PLL_RATE(312000000, 52, 1, 2),
+ 	PLL_RATE(336000000, 56, 1, 2),
+@@ -111,18 +113,6 @@ static const struct clk_div_table cpu_div_table[] = {
  	{ /* sentinel */ },
  };
  
--PNAME(p_cpu_clk)	= { "sys_pll" };
- PNAME(p_clk81)		= { "fclk_div3", "fclk_div4", "fclk_div5" };
- PNAME(p_mali)		= { "fclk_div3", "fclk_div4", "fclk_div5",
- 			    "fclk_div7", "zero" };
-@@ -286,9 +286,19 @@ static struct clk_fixed_factor meson8b_fclk_div7 = {
+-PNAME(p_clk81)		= { "fclk_div3", "fclk_div4", "fclk_div5" };
+-
+-static u32 mux_table_clk81[]	= { 6, 5, 7 };
+-
+-static const struct composite_conf clk81_conf __initconst = {
+-	.mux_table		= mux_table_clk81,
+-	.mux_flags		= CLK_MUX_READ_ONLY,
+-	.mux_parm		= PARM(0x00, 12, 3),
+-	.div_parm		= PARM(0x00, 0, 7),
+-	.gate_parm		= PARM(0x00, 7, 1),
+-};
+-
+ static struct clk_fixed_rate meson8b_xtal = {
+ 	.fixed_rate = 24000000,
+ 	.hw.init = &(struct clk_init_data){
+@@ -267,6 +257,11 @@ static struct clk_fixed_factor meson8b_fclk_div7 = {
  	},
  };
  
-+static struct meson_clk_cpu meson8b_cpu_clk = {
-+	.reg_off = MESON8B_REG_SYS_CPU_CNTL1,
-+	.div_table = cpu_div_table,
-+	.clk_nb.notifier_call = meson_clk_cpu_notifier_cb,
++/*
++ * FIXME cpu clocks and the legacy composite clocks (e.g. clk81) are both PLL
++ * post-dividers and should be modeled with their respective PLLs via the
++ * forthcoming coordinated clock rates feature
++ */
+ static struct meson_clk_cpu meson8b_cpu_clk = {
+ 	.reg_off = MESON8B_REG_SYS_CPU_CNTL1,
+ 	.div_table = cpu_div_table,
+@@ -279,18 +274,57 @@ static struct meson_clk_cpu meson8b_cpu_clk = {
+ 	},
+ };
+ 
+-static const struct clk_conf meson8b_clk_confs[] __initconst = {
+-	COMPOSITE(MESON8B_REG_HHI_MPEG, CLKID_CLK81, "clk81", p_clk81,
+-		  CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED, &clk81_conf),
++static u32 mux_table_clk81[]	= { 6, 5, 7 };
++
++struct clk_mux meson8b_mpeg_clk_sel = {
++	.reg = (void *)MESON8B_REG_HHI_MPEG,
++	.mask = 0x7,
++	.shift = 12,
++	.flags = CLK_MUX_READ_ONLY,
++	.table = mux_table_clk81,
++	.lock = &clk_lock,
 +	.hw.init = &(struct clk_init_data){
-+		.name = "cpu_clk",
-+		.ops = &meson_clk_cpu_ops,
-+		.parent_names = (const char *[]){ "sys_pll" },
-+		.num_parents = 1,
++		.name = "mpeg_clk_sel",
++		.ops = &clk_mux_ro_ops,
++		/*
++		 * FIXME bits 14:12 selects from 8 possible parents:
++		 * xtal, 1'b0 (wtf), fclk_div7, mpll_clkout1, mpll_clkout2,
++		 * fclk_div4, fclk_div3, fclk_div5
++		 */
++		.parent_names = (const char *[]){ "fclk_div3", "fclk_div4",
++			"fclk_div5" },
++		.num_parents = 3,
++		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
 +	},
 +};
 +
- static const struct clk_conf meson8b_clk_confs[] __initconst = {
--	CPU(MESON8B_REG_SYS_CPU_CNTL1, CLKID_CPUCLK, "a5_clk", p_cpu_clk,
--	    cpu_div_table),
- 	COMPOSITE(MESON8B_REG_HHI_MPEG, CLKID_CLK81, "clk81", p_clk81,
- 		  CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED, &clk81_conf),
- 	COMPOSITE(MESON8B_REG_MALI, CLKID_MALI, "mali", p_mali,
-@@ -314,6 +324,7 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_FCLK_DIV4] = &meson8b_fclk_div4.hw,
++struct clk_divider meson8b_mpeg_clk_div = {
++	.reg = (void *)MESON8B_REG_HHI_MPEG,
++	.shift = 0,
++	.width = 7,
++	.lock = &clk_lock,
++	.hw.init = &(struct clk_init_data){
++		.name = "mpeg_clk_div",
++		.ops = &clk_divider_ops,
++		.parent_names = (const char *[]){ "mpeg_clk_sel" },
++		.num_parents = 1,
++		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
++	},
++};
++
++struct clk_gate meson8b_clk81 = {
++	.reg = (void *)MESON8B_REG_HHI_MPEG,
++	.bit_idx = 7,
++	.lock = &clk_lock,
++	.hw.init = &(struct clk_init_data){
++		.name = "clk81",
++		.ops = &clk_gate_ops,
++		.parent_names = (const char *[]){ "mpeg_clk_div" },
++		.num_parents = 1,
++		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
++	},
+ };
+ 
+-/*
+- * FIXME we cannot register two providers w/o breaking things. Luckily only
+- * clk81 is actually used by any drivers. Convert clk81 to use
+- * clk_hw_onecell_data last and flip the switch to call of_clk_add_hw_provider
+- * instead of of_clk_add_provider in the clk81 conversion patch to keep from
+- * breaking bisect. Then delete this comment ;-)
+- */
+ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+ 	.hws = {
+ 		[CLKID_XTAL] = &meson8b_xtal.hw,
+@@ -303,6 +337,9 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
  		[CLKID_FCLK_DIV5] = &meson8b_fclk_div5.hw,
  		[CLKID_FCLK_DIV7] = &meson8b_fclk_div7.hw,
-+		[CLKID_CPUCLK] = &meson8b_cpu_clk.hw,
+ 		[CLKID_CPUCLK] = &meson8b_cpu_clk.hw,
++		[CLKID_MPEG_SEL] = &meson8b_mpeg_clk_sel.hw,
++		[CLKID_MPEG_DIV] = &meson8b_mpeg_clk_div.hw,
++		[CLKID_CLK81] = &meson8b_clk81.hw,
  	},
  	.num = CLK_NR_CLKS,
  };
-@@ -328,6 +339,8 @@ static void __init meson8b_clkc_init(struct device_node *np)
- {
- 	void __iomem *clk_base;
- 	int ret, clkid, i;
-+	struct clk_hw *parent_hw;
-+	struct clk *parent_clk;
+@@ -320,9 +357,6 @@ static void __init meson8b_clkc_init(struct device_node *np)
+ 	struct clk_hw *parent_hw;
+ 	struct clk *parent_clk;
  
- 	if (!meson_clk_init(np, CLK_NR_CLKS))
- 		return;
-@@ -343,6 +356,9 @@ static void __init meson8b_clkc_init(struct device_node *np)
- 	for (i = 0; i < ARRAY_SIZE(meson8b_clk_plls); i++)
- 		meson8b_clk_plls[i]->base = clk_base;
+-	if (!meson_clk_init(np, CLK_NR_CLKS))
+-		return;
+-
+ 	/*  Generic clocks and PLLs */
+ 	clk_base = of_iomap(np, 1);
+ 	if (!clk_base) {
+@@ -337,6 +371,11 @@ static void __init meson8b_clkc_init(struct device_node *np)
+ 	/* Populate the base address for CPU clk */
+ 	meson8b_cpu_clk.base = clk_base;
  
-+	/* Populate the base address for CPU clk */
-+	meson8b_cpu_clk.base = clk_base;
++	/* Populate the base address for the MPEG clks */
++	meson8b_mpeg_clk_sel.reg = clk_base + (u32)meson8b_mpeg_clk_sel.reg;
++	meson8b_mpeg_clk_div.reg = clk_base + (u32)meson8b_mpeg_clk_div.reg;
++	meson8b_clk81.reg = clk_base + (u32)meson8b_clk81.reg;
 +
  	/*
  	 * register all clks
  	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
-@@ -358,12 +374,37 @@ static void __init meson8b_clkc_init(struct device_node *np)
- 			goto unregister;
+@@ -375,9 +414,7 @@ static void __init meson8b_clkc_init(struct device_node *np)
+ 		goto unregister_clk_nb;
  	}
  
-+	/*
-+	 * Register CPU clk notifier
-+	 *
-+	 * FIXME this is wrong for a lot of reasons. First, the muxes should be
-+	 * struct clk_hw objects. Second, we shouldn't program the muxes in
-+	 * notifier handlers. The tricky programming sequence will be handled
-+	 * by the forthcoming coordinated clock rates mechanism once that
-+	 * feature is released.
-+	 *
-+	 * Furthermore, looking up the parent this way is terrible. At some
-+	 * point we will stop allocating a default struct clk when registering
-+	 * a new clk_hw, and this hack will no longer work. Releasing the ccr
-+	 * feature before that time solves the problem :-)
-+	 */
-+	parent_hw = clk_hw_get_parent(&meson8b_cpu_clk.hw);
-+	parent_clk = parent_hw->clk;
-+	ret = clk_notifier_register(parent_clk, &meson8b_cpu_clk.clk_nb);
-+	if (ret) {
-+		pr_err("%s: failed to register clock notifier for cpu_clk\n",
-+				__func__);
-+		goto unregister_clk_nb;
-+	}
-+
- 	meson_clk_register_clks(meson8b_clk_confs,
- 				ARRAY_SIZE(meson8b_clk_confs),
- 				clk_base);
+-	meson_clk_register_clks(meson8b_clk_confs,
+-				ARRAY_SIZE(meson8b_clk_confs),
+-				clk_base);
++	of_clk_add_hw_provider(np, of_clk_hw_onecell_get, &meson8b_hw_onecell_data);
  	return;
  
  /* FIXME remove after converting to platform_driver/devm_clk_register */
-+unregister_clk_nb:
-+	clk_notifier_unregister(parent_clk, &meson8b_a5_clk.clk_nb);
- unregister:
- 	for (clkid = CLK_NR_CLKS - 1; clkid >= 0; clkid--)
- 		clk_hw_unregister(meson8b_hw_onecell_data.hws[clkid]);
+diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
+index bd2720d..595a58d 100644
+--- a/include/dt-bindings/clock/meson8b-clkc.h
++++ b/include/dt-bindings/clock/meson8b-clkc.h
+@@ -19,7 +19,9 @@
+ #define CLKID_MALI		11
+ #define CLKID_CPUCLK		12
+ #define CLKID_ZERO		13
++#define CLKID_MPEG_SEL		14
++#define CLKID_MPEG_DIV		15
+ 
+-#define CLK_NR_CLKS		(CLKID_ZERO + 1)
++#define CLK_NR_CLKS		(CLKID_MPEG_DIV + 1)
+ 
+ #endif /* __MESON8B_CLKC_H */
 -- 
 2.1.4
