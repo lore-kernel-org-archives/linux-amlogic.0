@@ -1,68 +1,38 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 10 Jun 2016 11:12:18 +0200
-Subject: [PATCH 0/7] Add support for AmLogic GXBB clock controller
-In-Reply-To: <1465518774-26924-1-git-send-email-mturquette@baylibre.com>
-References: <1465518774-26924-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <575A8472.3090403@baylibre.com>
+From: sjg@chromium.org (Simon Glass)
+Date: Fri, 10 Jun 2016 10:44:46 -0600
+Subject: [PATCH 2/2] board: amlogic: Rename folder for Amlogic boards
+In-Reply-To: <20160610081912.GA5293@localhost>
+References: <1465483543-2240-1-git-send-email-carlo@caione.org>
+ <1465483543-2240-3-git-send-email-carlo@caione.org>
+ <CAPnjgZ1zDSUbUh0YkXD4f+SD6rZU+Q8B8rW9+w-qnkg59xus3w@mail.gmail.com>
+ <CANe6Qb8gdVpENDGTeR+tz6Y+0mvTRyEZJGHppDngEH8V3MAxCg@mail.gmail.com>
+ <20160610081912.GA5293@localhost>
+Message-ID: <CAPnjgZ3LqNyC3P1khtT-k1A4dADP6NYDX1MNXJFnTMYXd_wmhw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/10/2016 02:32 AM, Michael Turquette wrote:
-> This series is based on the AmLogic Meson8b rewrite/cleanup[0]. The
-> AmLogic GXBB is an ARMv8-based SoC, fed by a 24MHZ xtal, and it provides
-> several PLLs, muxes dividers and gates to drive CPUs and peripherals.
-> 
-> While based on the Meson8b clock controller driver, this series adds
-> supports for Multi-phase Locked Loops (mpll) and support for PLLs with
-> fractional rates.
-> 
-> This series introduces the clock controller driver for the gxbb,
-> including the DT binding description and accompanying change in the gxbb
-> dtsi. Only three clocks are exposed via the headers in the dt-bindings
-> include-chroot. More can be added later, but since these values
-> represent an ABI I wanted to start small. I'm not sure about the names
-> for the gate clocks, so I especially tried to avoid putting those in the
-> binding (with the exception of the Ethernet gate, which Kevin has needed
-> for a while).
-> 
-> Notably missing from this driver are the branch clocks (e.g. the mess of
-> muxes and dividers that come after the PLLs and MPLLs). I could have
-> guessed how things were wired up from the resources available to me, but
-> I'm hoping to get some improved documentation soon and then I'll go back
-> and fill them in.
-> 
-> [0] http://lkml.kernel.org/g/1465518467-23939-1-git-send-email-mturquette at baylibre.com
-> 
-> Michael Turquette (7):
->   clk: meson: add peripheral gate macro
->   clk: meson: add mpll support
->   clk: meson: fractional pll support
->   clk: gxbb: Document bindings for the GXBB clock controller
->   clk: gxbb: add AmLogic GXBB clk controller driver
->   arm64: amlogic: select gxbb clk driver
->   arm64: dts: gxbb clock controller
-> 
->  .../bindings/clock/amlogic,gxbb-clkc.txt           |  36 +
->  arch/arm64/Kconfig.platforms                       |   2 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   7 +
->  drivers/clk/meson/Kconfig                          |   7 +
->  drivers/clk/meson/Makefile                         |   3 +-
->  drivers/clk/meson/clk-mpll.c                       |  94 ++
->  drivers/clk/meson/clk-pll.c                        |  32 +-
->  drivers/clk/meson/clkc.h                           |  39 +
->  drivers/clk/meson/gxbb.c                           | 954 +++++++++++++++++++++
->  drivers/clk/meson/gxbb.h                           | 271 ++++++
->  include/dt-bindings/clock/gxbb-clkc.h              |  12 +
->  11 files changed, 1454 insertions(+), 3 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
->  create mode 100644 drivers/clk/meson/clk-mpll.c
->  create mode 100644 drivers/clk/meson/gxbb.c
->  create mode 100644 drivers/clk/meson/gxbb.h
->  create mode 100644 include/dt-bindings/clock/gxbb-clkc.h
-> 
+Hi Carlo,
 
-Mike,
+On 10 June 2016 at 02:19, Carlo Caione <carlo@caione.org> wrote:
+> On 10/06/16 09:03, Ben Dooks wrote:
+>> do you have git rename-detection enabled?
+>
+> I simply forgot to pass '-M' to git-format-patch. I can submit a v2 if
+> requested.
 
-I did not receive the 5/7 on the mailing list, can you resend ?
+Yes please. Also you can use patman which does this for you.
 
-Neil
+If your patches are in a branch with the correct upstream:
+
+patman -nt
+
+will generate patches and
+
+patman -t
+
+will send them
+
+(you need -t because amlogic is unlikely to be a valid alias)
+
+Regards,
+Simon
