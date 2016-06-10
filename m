@@ -1,58 +1,46 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu,  9 Jun 2016 17:27:37 -0700
-Subject: [PATCH 00/10] meson8b clock driver rewrite/cleanup
-Message-ID: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
+Date: Thu,  9 Jun 2016 17:27:38 -0700
+Subject: [PATCH 01/10] clk: meson8b: rectify reg offsets with datasheet
+In-Reply-To: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
+References: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
+Message-ID: <1465518467-23939-2-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series came about while writing the clock driver for the AmLogic
-GXBB clock controller. GXBB shares much of the same clock controller IP
-as the Meson8b clock controller and the source for the drivers is very
-similar. However, I wanted the GXBB driver to actually be a real
-platform_driver, and not an early initcall, which led to the same
-changes in the Meson8b driver. From there a lot of other changes came
-about.
+The register offsets in the data sheet are confusing. Document them more
+thoroughly.
 
-This series improves documentation, refactors statically initialized
-data, removes unnecessary registration functions and converts the
-meson8b clock controller code into a proper platform_driver. It also
-changes up the Kconfig bits to prepare for the gxbb clock controller.
-The diffstat is -190, which is nice as well.
+Signed-off-by: Michael Turquette <mturquette@baylibre.com>
+---
+ drivers/clk/meson/meson8b-clkc.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-As a consequence of the shift to platform_driver, all of clocks are
-registered at module_init time. If any are needed very early during boot
-then the OF_CLK_DECLARE stuff can be added back in, but I doubt it is
-necessary.
-
-Additionally this series makes use of some of the nice clk_hw helper
-introduced by Stephen, especially clk_hw_onecell_data.
-
-Michael Turquette (10):
-  clk: meson8b: rectify reg offsets with datasheet
-  clk: meson8b: clean up fixed rate clocks
-  clk: meson8b: clean up pll clocks
-  clk: meson8b: clean up fixed factor clocks
-  clk: meson8b: clean up cpu clocks
-  clk: meson8b: remove mali clk
-  clk: meson8b: clean up composite clocks
-  clk: meson8b: convert to platform_driver
-  arm: meson: explicitly select clk drivers
-  clk: meson: only build selected platforms
-
- arch/arm/mach-meson/Kconfig              |   3 +
- drivers/clk/Kconfig                      |   1 +
- drivers/clk/Makefile                     |   2 +-
- drivers/clk/meson/Kconfig                |  12 +
- drivers/clk/meson/Makefile               |   4 +-
- drivers/clk/meson/clk-cpu.c              |  73 +-----
- drivers/clk/meson/clk-pll.c              |  72 +----
- drivers/clk/meson/clkc.c                 | 249 ------------------
- drivers/clk/meson/clkc.h                 | 150 ++---------
- drivers/clk/meson/meson8b-clkc.c         | 436 +++++++++++++++++++++++++------
- include/dt-bindings/clock/meson8b-clkc.h |   4 +-
- 11 files changed, 408 insertions(+), 598 deletions(-)
- create mode 100644 drivers/clk/meson/Kconfig
- delete mode 100644 drivers/clk/meson/clkc.c
-
+diff --git a/drivers/clk/meson/meson8b-clkc.c b/drivers/clk/meson/meson8b-clkc.c
+index 4d057b3..444ef94 100644
+--- a/drivers/clk/meson/meson8b-clkc.c
++++ b/drivers/clk/meson/meson8b-clkc.c
+@@ -24,10 +24,19 @@
+ 
+ #include "clkc.h"
+ 
++/*
++ * Clock controller register offsets
++ *
++ * Register offsets from the HardKernel[0] data sheet are listed in comment
++ * blocks below. Those offsets must be multiplied by 4 before adding them to
++ * the base address to get the right value
++ *
++ * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
++ */
+ #define MESON8B_REG_CTL0_ADDR		0x0000
+-#define MESON8B_REG_SYS_CPU_CNTL1	0x015c
+-#define MESON8B_REG_HHI_MPEG		0x0174
+-#define MESON8B_REG_MALI		0x01b0
++#define MESON8B_REG_SYS_CPU_CNTL1	0x015c /* 0x57 offset in data sheet */
++#define MESON8B_REG_HHI_MPEG		0x0174 /* 0x5d offset in data sheet */
++#define MESON8B_REG_MALI		0x01b0 /* 0x6c offset in data sheet */
+ #define MESON8B_REG_PLL_FIXED		0x0280
+ #define MESON8B_REG_PLL_SYS		0x0300
+ #define MESON8B_REG_PLL_VID		0x0320
 -- 
 2.1.4
