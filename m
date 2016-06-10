@@ -1,35 +1,24 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu,  9 Jun 2016 17:32:54 -0700
-Subject: [PATCH 7/7] arm64: dts: gxbb clock controller
-In-Reply-To: <1465518774-26924-1-git-send-email-mturquette@baylibre.com>
-References: <1465518774-26924-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <1465518774-26924-8-git-send-email-mturquette@baylibre.com>
+From: sjg@chromium.org (Simon Glass)
+Date: Thu, 9 Jun 2016 17:36:05 -0700
+Subject: [PATCH 1/2] configs: gxbb: Introduce a common config header file
+In-Reply-To: <1465483543-2240-2-git-send-email-carlo@caione.org>
+References: <1465483543-2240-1-git-send-email-carlo@caione.org>
+ <1465483543-2240-2-git-send-email-carlo@caione.org>
+Message-ID: <CAPnjgZ3KifMiYLjqbtrG1gK8rsrKHJaZYBVCdNOwza94Z31vkw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the clock controller node for the AmLogic GXBB machine.
+On 9 June 2016 at 08:45, Carlo Caione <carlo@caione.org> wrote:
+> From: Carlo Caione <carlo@endlessm.com>
+>
+> Introduce a meson-gxbb-common.h header file and derive the
+> configuration for Hardkernel Odroid-C2 board from that.
+>
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+> ---
+>  include/configs/meson-gxbb-common.h | 45 +++++++++++++++++++++++++++++++++++++
+>  include/configs/odroid-c2.h         | 34 +---------------------------
+>  2 files changed, 46 insertions(+), 33 deletions(-)
+>  create mode 100644 include/configs/meson-gxbb-common.h
 
-Signed-off-by: Michael Turquette <mturquette@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 832815d..3badfab 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -174,5 +174,12 @@
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xd0000000 0x0 0x200000>;
- 		};
-+
-+		clkc: clock-controller at c883c000 {
-+			compatible = "amlogic,gxbb-clkc";
-+			#clock-cells = <1>;
-+			reg = <0x0 0xc883c000 0x0 0x3db>;
-+		};
-+
- 	};
- };
--- 
-2.1.4
+Reviewed-by: Simon Glass <sjg@chromium.org>
