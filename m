@@ -1,163 +1,114 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu,  9 Jun 2016 17:32:49 -0700
-Subject: [PATCH 2/7] clk: meson: add mpll support
+Date: Thu,  9 Jun 2016 17:32:50 -0700
+Subject: [PATCH 3/7] clk: meson: fractional pll support
 In-Reply-To: <1465518774-26924-1-git-send-email-mturquette@baylibre.com>
 References: <1465518774-26924-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <1465518774-26924-3-git-send-email-mturquette@baylibre.com>
+Message-ID: <1465518774-26924-4-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-MPLLs are adjustable rate clocks derived from PLLs. On both Meson8b and
-GXBB they appear to be only derived from fixed_pll.
-
-Add support for these clock types so that they can be added to their
-respective drivers.
-
 Signed-off-by: Michael Turquette <mturquette@baylibre.com>
 ---
- drivers/clk/meson/Makefile   |  2 +-
- drivers/clk/meson/clk-mpll.c | 94 ++++++++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/clkc.h     | 10 +++++
- 3 files changed, 105 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/meson/clk-mpll.c
+ drivers/clk/meson/clk-pll.c | 32 ++++++++++++++++++++++++++++++--
+ drivers/clk/meson/clkc.h    | 15 +++++++++++++++
+ 2 files changed, 45 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index b3d60fe..7667218 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -2,5 +2,5 @@
- # Makefile for Meson specific clk
- #
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 60c6b94..4adc1e8 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -53,7 +53,7 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+ 	struct parm *p;
+ 	unsigned long parent_rate_mhz = parent_rate / 1000000;
+ 	unsigned long rate_mhz;
+-	u16 n, m, od;
++	u16 n, m, frac = 0, od, od2 = 0;
+ 	u32 reg;
  
--obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o
-+obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o
- obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b-clkc.o
-diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
-new file mode 100644
-index 0000000..03af790
---- /dev/null
-+++ b/drivers/clk/meson/clk-mpll.c
-@@ -0,0 +1,94 @@
-+/*
-+ * This file is provided under a dual BSD/GPLv2 license.  When using or
-+ * redistributing this file, you may do so under either license.
-+ *
-+ * GPL LICENSE SUMMARY
-+ *
-+ * Copyright (c) 2016 AmLogic, Inc.
-+ * Author: Michael Turquette <mturquette@baylibre.com>
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of version 2 of the GNU General Public License as
-+ * published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful, but
-+ * WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+ * General Public License for more details.
-+ *
-+ * You should have received a copy of the GNU General Public License
-+ * along with this program; if not, write to the Free Software
-+ * Foundation, Inc., 51 Franklin St - Fifth Floor, Boston, MA 02110-1301 USA.
-+ * The full GNU General Public License is included in this distribution
-+ * in the file called COPYING
-+ *
-+ * BSD LICENSE
-+ *
-+ * Copyright (c) 2016 AmLogic, Inc.
-+ * Author: Michael Turquette <mturquette@baylibre.com>
-+ *
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions
-+ * are met:
-+ *
-+ *   * Redistributions of source code must retain the above copyright
-+ *     notice, this list of conditions and the following disclaimer.
-+ *   * Redistributions in binary form must reproduce the above copyright
-+ *     notice, this list of conditions and the following disclaimer in
-+ *     the documentation and/or other materials provided with the
-+ *     distribution.
-+ *   * Neither the name of Intel Corporation nor the names of its
-+ *     contributors may be used to endorse or promote products derived
-+ *     from this software without specific prior written permission.
-+ *
-+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-+ */
+ 	p = &pll->n;
+@@ -68,7 +68,21 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+ 	reg = readl(pll->base + p->reg_off);
+ 	od = PARM_GET(p->width, p->shift, reg);
+ 
+-	rate_mhz = (parent_rate_mhz * m / n) >> od;
++	p = &pll->od2;
++	if (p->width) {
++		reg = readl(pll->base + p->reg_off);
++		od2 = PARM_GET(p->width, p->shift, reg);
++	}
 +
-+/*
-+ * MultiPhase Locked Loops are outputs from a PLL with additional frequency
-+ * scaling capabilities. MPLL rates are calculated as:
-+ *
-+ * f(N2_integer, SDM_IN ) = 2.0G/(N2_integer + SDM_IN/16384)
-+ */
++	p = &pll->frac;
++	if (p->width) {
++		reg = readl(pll->base + p->reg_off);
++		frac = PARM_GET(p->width, p->shift, reg);
++		rate_mhz = (parent_rate_mhz * m + \
++				(parent_rate_mhz * frac >> 12)) * 2 / n;
++		rate_mhz = rate_mhz >> od >> od2;
++	} else
++		rate_mhz = (parent_rate_mhz * m / n) >> od >> od2;
+ 
+ 	return rate_mhz * 1000000;
+ }
+@@ -155,6 +169,20 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+ 	reg = PARM_SET(p->width, p->shift, reg, rate_set->od);
+ 	writel(reg, pll->base + p->reg_off);
+ 
++	p = &pll->od2;
++	if (p->width) {
++		reg = readl(pll->base + p->reg_off);
++		reg = PARM_SET(p->width, p->shift, reg, rate_set->od2);
++		writel(reg, pll->base + p->reg_off);
++	}
 +
-+#include <linux/clk-provider.h>
-+#include "clkc.h"
++	p = &pll->frac;
++	if (p->width) {
++		reg = readl(pll->base + p->reg_off);
++		reg = PARM_SET(p->width, p->shift, reg, rate_set->frac);
++		writel(reg, pll->base + p->reg_off);
++	}
 +
-+#define SDM_MAX 16384
-+
-+#define to_meson_clk_mpll(_hw) container_of(_hw, struct meson_clk_mpll, hw)
-+
-+static unsigned long mpll_recalc_rate(struct clk_hw *hw,
-+		unsigned long parent_rate)
-+{
-+	struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
-+	struct parm *p;
-+	unsigned long rate = 0;
-+	unsigned long reg, sdm, n2;
-+
-+	p = &mpll->sdm;
-+	reg = readl(mpll->base + p->reg_off);
-+	sdm = PARM_GET(p->width, p->shift, reg);
-+
-+	p = &mpll->n2;
-+	reg = readl(mpll->base + p->reg_off);
-+	n2 = PARM_GET(p->width, p->shift, reg);
-+
-+	rate = (parent_rate * SDM_MAX) / ((SDM_MAX * n2) + sdm);
-+
-+	return rate;
-+}
-+
-+const struct clk_ops meson_clk_mpll_ro_ops = {
-+	.recalc_rate = mpll_recalc_rate,
-+};
+ 	p = &pll->n;
+ 	ret = meson_clk_pll_wait_lock(pll, p);
+ 	if (ret) {
 diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 9436932..73f0146 100644
+index 73f0146..53326c3 100644
 --- a/drivers/clk/meson/clkc.h
 +++ b/drivers/clk/meson/clkc.h
-@@ -73,6 +73,15 @@ struct meson_clk_cpu {
- int meson_clk_cpu_notifier_cb(struct notifier_block *nb, unsigned long event,
- 		void *data);
- 
-+struct meson_clk_mpll {
-+	struct clk_hw hw;
-+	void __iomem *base;
-+	struct parm sdm;
-+	struct parm n2;
-+	/* FIXME ssen gate control? */
-+	spinlock_t *lock;
-+};
+@@ -40,7 +40,10 @@ struct pll_rate_table {
+ 	u16		m;
+ 	u16		n;
+ 	u16		od;
++	u16		od2;
++	u16		frac;
+ };
 +
- #define MESON_GATE(_name, _reg, _bit)					\
- struct clk_gate gxbb_##_name = { 						\
- 	.reg = (void __iomem *) _reg, 					\
-@@ -91,5 +100,6 @@ struct clk_gate gxbb_##_name = { 						\
- extern const struct clk_ops meson_clk_pll_ro_ops;
- extern const struct clk_ops meson_clk_pll_ops;
- extern const struct clk_ops meson_clk_cpu_ops;
-+extern const struct clk_ops meson_clk_mpll_ro_ops;
+ #define PLL_RATE(_r, _m, _n, _od)					\
+ 	{								\
+ 		.rate		= (_r),					\
+@@ -49,12 +52,24 @@ struct pll_rate_table {
+ 		.od		= (_od),				\
+ 	}								\
  
- #endif /* __CLKC_H */
++#define PLL_FRAC_RATE(_r, _m, _n, _od, _od2, _frac)			\
++	{								\
++		.rate		= (_r),					\
++		.m		= (_m),					\
++		.n		= (_n),					\
++		.od		= (_od),				\
++		.od2		= (_od2),				\
++		.frac		= (_frac),				\
++	}								\
++
+ struct meson_clk_pll {
+ 	struct clk_hw hw;
+ 	void __iomem *base;
+ 	struct parm m;
+ 	struct parm n;
++	struct parm frac;
+ 	struct parm od;
++	struct parm od2;
+ 	const struct pll_rate_table *rate_table;
+ 	unsigned int rate_count;
+ 	spinlock_t *lock;
 -- 
 2.1.4
