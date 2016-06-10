@@ -1,125 +1,87 @@
 From: carlo@caione.org (Carlo Caione)
-Date: Fri, 10 Jun 2016 20:18:22 +0200
-Subject: [PATCH v2 1/2] configs: gxbb: Introduce a common config header file
+Date: Fri, 10 Jun 2016 20:18:23 +0200
+Subject: [PATCH v2 2/2] board: amlogic: Rename folder for Amlogic boards
 In-Reply-To: <1465582703-20895-1-git-send-email-carlo@caione.org>
 References: <1465582703-20895-1-git-send-email-carlo@caione.org>
-Message-ID: <1465582703-20895-2-git-send-email-carlo@caione.org>
+Message-ID: <1465582703-20895-3-git-send-email-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Carlo Caione <carlo@endlessm.com>
 
-Introduce a meson-gxbb-common.h header file and derive the
-configuration for Hardkernel Odroid-C2 board from that.
+s/hardkernel/amlogic/ to have a single place for all the amlogic-based
+boards.
 
 Reviewed-by: Simon Glass <sjg@chromium.org>
 Signed-off-by: Carlo Caione <carlo@endlessm.com>
 ---
- include/configs/meson-gxbb-common.h | 45 +++++++++++++++++++++++++++++++++++++
- include/configs/odroid-c2.h         | 34 +---------------------------
- 2 files changed, 46 insertions(+), 33 deletions(-)
- create mode 100644 include/configs/meson-gxbb-common.h
+ arch/arm/mach-meson/Kconfig                         | 2 +-
+ board/{hardkernel => amlogic}/odroid-c2/Kconfig     | 2 +-
+ board/{hardkernel => amlogic}/odroid-c2/MAINTAINERS | 2 +-
+ board/{hardkernel => amlogic}/odroid-c2/Makefile    | 0
+ board/{hardkernel => amlogic}/odroid-c2/README      | 0
+ board/{hardkernel => amlogic}/odroid-c2/odroid-c2.c | 0
+ 6 files changed, 3 insertions(+), 3 deletions(-)
+ rename board/{hardkernel => amlogic}/odroid-c2/Kconfig (85%)
+ rename board/{hardkernel => amlogic}/odroid-c2/MAINTAINERS (80%)
+ rename board/{hardkernel => amlogic}/odroid-c2/Makefile (100%)
+ rename board/{hardkernel => amlogic}/odroid-c2/README (100%)
+ rename board/{hardkernel => amlogic}/odroid-c2/odroid-c2.c (100%)
 
-diff --git a/include/configs/meson-gxbb-common.h b/include/configs/meson-gxbb-common.h
-new file mode 100644
-index 0000000..d1c0050
---- /dev/null
-+++ b/include/configs/meson-gxbb-common.h
-@@ -0,0 +1,45 @@
-+/*
-+ * Configuration for Amlogic Meson GXBB SoCs
-+ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-+ *
-+ * SPDX-License-Identifier:	GPL-2.0+
-+ */
-+
-+#ifndef __MESON_GXBB_COMMON_CONFIG_H
-+#define __MESON_GXBB_COMMON_CONFIG_H
-+
-+#define CONFIG_CPU_ARMV8
-+#define CONFIG_REMAKE_ELF
-+#define CONFIG_SYS_CACHELINE_SIZE	64
-+#define CONFIG_SYS_NO_FLASH
-+#define CONFIG_NR_DRAM_BANKS		1
-+#define CONFIG_ENV_IS_NOWHERE		1
-+#define CONFIG_ENV_SIZE			0x2000
-+#define CONFIG_SYS_MAXARGS		32
-+#define CONFIG_SYS_MALLOC_LEN		(32 << 20)
-+#define CONFIG_SYS_CBSIZE		1024
-+#define CONFIG_MISC_INIT_R
-+
-+#define CONFIG_SYS_SDRAM_BASE		0
-+#define CONFIG_SYS_TEXT_BASE		0x01000000
-+#define CONFIG_SYS_INIT_SP_ADDR		0x20000000
-+#define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
-+
-+/* Generic Interrupt Controller Definitions */
-+#define GICD_BASE			0xc4301000
-+#define GICC_BASE			0xc4302000
-+
-+#define CONFIG_CMD_ENV
-+
-+/* Monitor Command Prompt */
-+/* Console I/O Buffer Size */
-+#define CONFIG_SYS_PBSIZE		(CONFIG_SYS_CBSIZE + \
-+					sizeof(CONFIG_SYS_PROMPT) + 16)
-+#define CONFIG_SYS_HUSH_PARSER
-+#define CONFIG_SYS_BARGSIZE		CONFIG_SYS_CBSIZE
-+#define CONFIG_SYS_LONGHELP
-+#define CONFIG_CMDLINE_EDITING
-+
-+#include <config_distro_defaults.h>
-+
-+#endif /* __MESON_GXBB_COMMON_CONFIG_H */
-diff --git a/include/configs/odroid-c2.h b/include/configs/odroid-c2.h
-index 37a5671..bf5df9c 100644
---- a/include/configs/odroid-c2.h
-+++ b/include/configs/odroid-c2.h
-@@ -8,44 +8,12 @@
- #ifndef __CONFIG_H
- #define __CONFIG_H
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index 77d3cfe..af3be59 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -26,6 +26,6 @@ config SYS_SOC
+ config SYS_MALLOC_F_LEN
+ 	default 0x1000
  
--#define CONFIG_CPU_ARMV8
--#define CONFIG_REMAKE_ELF
--#define CONFIG_SYS_CACHELINE_SIZE	64
--#define CONFIG_SYS_NO_FLASH
--#define CONFIG_NR_DRAM_BANKS		1
--#define CONFIG_ENV_IS_NOWHERE		1
--#define CONFIG_ENV_SIZE			0x2000
--#define CONFIG_SYS_MAXARGS		32
--#define CONFIG_SYS_MALLOC_LEN		(32 << 20)
--#define CONFIG_SYS_CBSIZE		1024
--#define CONFIG_MISC_INIT_R
--
--#define CONFIG_SYS_SDRAM_BASE		0
--#define CONFIG_SYS_TEXT_BASE		0x01000000
--#define CONFIG_SYS_INIT_SP_ADDR		0x20000000
--#define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
--
--/* Generic Interrupt Controller Definitions */
--#define GICD_BASE			0xc4301000
--#define GICC_BASE			0xc4302000
--
- #define CONFIG_IDENT_STRING		" odroid-c2"
+-source "board/hardkernel/odroid-c2/Kconfig"
++source "board/amlogic/odroid-c2/Kconfig"
  
- /* Serial setup */
- #define CONFIG_CONS_INDEX		0
- #define CONFIG_BAUDRATE			115200
+ endif
+diff --git a/board/hardkernel/odroid-c2/Kconfig b/board/amlogic/odroid-c2/Kconfig
+similarity index 85%
+rename from board/hardkernel/odroid-c2/Kconfig
+rename to board/amlogic/odroid-c2/Kconfig
+index 687d9c6..2b16889 100644
+--- a/board/hardkernel/odroid-c2/Kconfig
++++ b/board/amlogic/odroid-c2/Kconfig
+@@ -4,7 +4,7 @@ config SYS_BOARD
+ 	default "odroid-c2"
  
--#define CONFIG_CMD_ENV
--
--/* Monitor Command Prompt */
--/* Console I/O Buffer Size */
--#define CONFIG_SYS_PBSIZE		(CONFIG_SYS_CBSIZE + \
--					sizeof(CONFIG_SYS_PROMPT) + 16)
--#define CONFIG_SYS_HUSH_PARSER
--#define CONFIG_SYS_BARGSIZE		CONFIG_SYS_CBSIZE
--#define CONFIG_SYS_LONGHELP
--#define CONFIG_CMDLINE_EDITING
--
--#include <config_distro_defaults.h>
-+#include <configs/meson-gxbb-common.h>
+ config SYS_VENDOR
+-	default "hardkernel"
++	default "amlogic"
  
- #endif /* __CONFIG_H */
+ config SYS_CONFIG_NAME
+ 	default "odroid-c2"
+diff --git a/board/hardkernel/odroid-c2/MAINTAINERS b/board/amlogic/odroid-c2/MAINTAINERS
+similarity index 80%
+rename from board/hardkernel/odroid-c2/MAINTAINERS
+rename to board/amlogic/odroid-c2/MAINTAINERS
+index 23ae1e7..699850f 100644
+--- a/board/hardkernel/odroid-c2/MAINTAINERS
++++ b/board/amlogic/odroid-c2/MAINTAINERS
+@@ -1,6 +1,6 @@
+ ODROID-C2
+ M:	Beniamino Galvani <b.galvani@gmail.com>
+ S:	Maintained
+-F:	board/hardkernel/odroid-c2/
++F:	board/amlogic/odroid-c2/
+ F:	include/configs/odroid-c2.h
+ F:	configs/odroid-c2_defconfig
+diff --git a/board/hardkernel/odroid-c2/Makefile b/board/amlogic/odroid-c2/Makefile
+similarity index 100%
+rename from board/hardkernel/odroid-c2/Makefile
+rename to board/amlogic/odroid-c2/Makefile
+diff --git a/board/hardkernel/odroid-c2/README b/board/amlogic/odroid-c2/README
+similarity index 100%
+rename from board/hardkernel/odroid-c2/README
+rename to board/amlogic/odroid-c2/README
+diff --git a/board/hardkernel/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
+similarity index 100%
+rename from board/hardkernel/odroid-c2/odroid-c2.c
+rename to board/amlogic/odroid-c2/odroid-c2.c
 -- 
 2.7.4
