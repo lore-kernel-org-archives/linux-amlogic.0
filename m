@@ -1,24 +1,46 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Thu, 9 Jun 2016 17:36:05 -0700
-Subject: [PATCH 1/2] configs: gxbb: Introduce a common config header file
-In-Reply-To: <1465483543-2240-2-git-send-email-carlo@caione.org>
+Date: Thu, 9 Jun 2016 17:36:07 -0700
+Subject: [PATCH 2/2] board: amlogic: Rename folder for Amlogic boards
+In-Reply-To: <1465483543-2240-3-git-send-email-carlo@caione.org>
 References: <1465483543-2240-1-git-send-email-carlo@caione.org>
- <1465483543-2240-2-git-send-email-carlo@caione.org>
-Message-ID: <CAPnjgZ3KifMiYLjqbtrG1gK8rsrKHJaZYBVCdNOwza94Z31vkw@mail.gmail.com>
+ <1465483543-2240-3-git-send-email-carlo@caione.org>
+Message-ID: <CAPnjgZ1zDSUbUh0YkXD4f+SD6rZU+Q8B8rW9+w-qnkg59xus3w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 9 June 2016 at 08:45, Carlo Caione <carlo@caione.org> wrote:
 > From: Carlo Caione <carlo@endlessm.com>
 >
-> Introduce a meson-gxbb-common.h header file and derive the
-> configuration for Hardkernel Odroid-C2 board from that.
+> s/hardkernel/amlogic/ to have a single place for all the amlogic-based
+> boards.
 >
 > Signed-off-by: Carlo Caione <carlo@endlessm.com>
 > ---
->  include/configs/meson-gxbb-common.h | 45 +++++++++++++++++++++++++++++++++++++
->  include/configs/odroid-c2.h         | 34 +---------------------------
->  2 files changed, 46 insertions(+), 33 deletions(-)
->  create mode 100644 include/configs/meson-gxbb-common.h
+>  arch/arm/mach-meson/Kconfig            |  2 +-
+>  board/amlogic/odroid-c2/Kconfig        | 12 ++++++
+>  board/amlogic/odroid-c2/MAINTAINERS    |  6 +++
+>  board/amlogic/odroid-c2/Makefile       |  7 ++++
+>  board/amlogic/odroid-c2/README         | 60 ++++++++++++++++++++++++++++++
+>  board/amlogic/odroid-c2/odroid-c2.c    | 67 ++++++++++++++++++++++++++++++++++
+>  board/hardkernel/odroid-c2/Kconfig     | 12 ------
+>  board/hardkernel/odroid-c2/MAINTAINERS |  6 ---
+>  board/hardkernel/odroid-c2/Makefile    |  7 ----
+>  board/hardkernel/odroid-c2/README      | 60 ------------------------------
+>  board/hardkernel/odroid-c2/odroid-c2.c | 67 ----------------------------------
+>  11 files changed, 153 insertions(+), 153 deletions(-)
+>  create mode 100644 board/amlogic/odroid-c2/Kconfig
+>  create mode 100644 board/amlogic/odroid-c2/MAINTAINERS
+>  create mode 100644 board/amlogic/odroid-c2/Makefile
+>  create mode 100644 board/amlogic/odroid-c2/README
+>  create mode 100644 board/amlogic/odroid-c2/odroid-c2.c
+>  delete mode 100644 board/hardkernel/odroid-c2/Kconfig
+>  delete mode 100644 board/hardkernel/odroid-c2/MAINTAINERS
+>  delete mode 100644 board/hardkernel/odroid-c2/Makefile
+>  delete mode 100644 board/hardkernel/odroid-c2/README
+>  delete mode 100644 board/hardkernel/odroid-c2/odroid-c2.c
 
 Reviewed-by: Simon Glass <sjg@chromium.org>
+
+Although I'm surprised this did not come through as a rename in your patch.
+
+- Simon
