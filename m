@@ -1,22 +1,33 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Fri, 10 Jun 2016 10:19:12 +0200
-Subject: [PATCH 2/2] board: amlogic: Rename folder for Amlogic boards
-In-Reply-To: <CANe6Qb8gdVpENDGTeR+tz6Y+0mvTRyEZJGHppDngEH8V3MAxCg@mail.gmail.com>
-References: <1465483543-2240-1-git-send-email-carlo@caione.org>
- <1465483543-2240-3-git-send-email-carlo@caione.org>
- <CAPnjgZ1zDSUbUh0YkXD4f+SD6rZU+Q8B8rW9+w-qnkg59xus3w@mail.gmail.com>
- <CANe6Qb8gdVpENDGTeR+tz6Y+0mvTRyEZJGHppDngEH8V3MAxCg@mail.gmail.com>
-Message-ID: <20160610081912.GA5293@localhost>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 10 Jun 2016 10:21:52 +0200
+Subject: [PATCH v2 0/3] hw_random: Add Amlogic Meson SoCs Random Generator
+ driver
+Message-ID: <1465546915-24229-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/06/16 09:03, Ben Dooks wrote:
-> do you have git rename-detection enabled?
+Add support for the Amlogic Meson SoCs Hardware Random generator as a hw_random char driver.
+The generator is a single 32bit wide register.
+Also adds the Meson GXBB SoC DTSI node and corresponding DT bindings.
 
-I simply forgot to pass '-M' to git-format-patch. I can submit a v2 if
-requested.
+Changes since v1 at http://lkml.kernel.org/r/1464943621-18278-1-git-send-email-narmstrong at baylibre.com :
+- change to depend on ARCH_MESON || COMPILE_TEST
+- check buffer max size in read
 
-Cheers,
+Neil Armstrong (3):
+  char: hw_random: Add Amlogic Meson Hardware Random Generator
+  dt-bindings: hwrng: Add Amlogic Meson Hardware Random Generator
+    bindings
+  ARM64: dts: meson-gxbb: Add Hardware Random Generator node
+
+ .../devicetree/bindings/rng/amlogic,meson-rng.txt  |  14 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   5 +
+ drivers/char/hw_random/Kconfig                     |  14 +++
+ drivers/char/hw_random/Makefile                    |   1 +
+ drivers/char/hw_random/meson-rng.c                 | 131 +++++++++++++++++++++
+ 5 files changed, 165 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+ create mode 100644 drivers/char/hw_random/meson-rng.c
 
 -- 
-Carlo Caione
+2.7.0
