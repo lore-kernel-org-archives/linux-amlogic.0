@@ -1,37 +1,58 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 09 Jun 2016 15:43:03 -0700
-Subject: linux-next: request to include linux-amlogic tree
-In-Reply-To: <20160606010007.6941cc2d@canb.auug.org.au> (Stephen Rothwell's
- message of "Mon, 6 Jun 2016 01:00:07 +1000")
-References: <CAOi56cXb7TjsctpeFWqGCmEx2LG-i11qoLBGDhi1OBJpbyko4A@mail.gmail.com>
- <20160606010007.6941cc2d@canb.auug.org.au>
-Message-ID: <7h60tidlvs.fsf@baylibre.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Thu,  9 Jun 2016 17:27:37 -0700
+Subject: [PATCH 00/10] meson8b clock driver rewrite/cleanup
+Message-ID: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Stephen Rothwell <sfr@canb.auug.org.au> writes:
+This series came about while writing the clock driver for the AmLogic
+GXBB clock controller. GXBB shares much of the same clock controller IP
+as the Meson8b clock controller and the source for the drivers is very
+similar. However, I wanted the GXBB driver to actually be a real
+platform_driver, and not an early initcall, which led to the same
+changes in the Meson8b driver. From there a lot of other changes came
+about.
 
-> Hi Kevin,
->
-> On Fri, 3 Jun 2016 14:49:01 -0700 Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Please add the following tree/branch to linux-next.  This is used for
->> the kernel development of the ARM-based Amlogic SoCs:
->> 
->>    git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git
->> for-next
->
-> Added from today.
+This series improves documentation, refactors statically initialized
+data, removes unnecessary registration functions and converts the
+meson8b clock controller code into a proper platform_driver. It also
+changes up the Kconfig bits to prepare for the gxbb clock controller.
+The diffstat is -190, which is nice as well.
 
-Thanks.
+As a consequence of the shift to platform_driver, all of clocks are
+registered at module_init time. If any are needed very early during boot
+then the OF_CLK_DECLARE stuff can be added back in, but I doubt it is
+necessary.
 
-> I assume that this will be merged via the arm-soc tree?
+Additionally this series makes use of some of the nice clk_hw helper
+introduced by Stephen, especially clk_hw_onecell_data.
 
-Yes.
+Michael Turquette (10):
+  clk: meson8b: rectify reg offsets with datasheet
+  clk: meson8b: clean up fixed rate clocks
+  clk: meson8b: clean up pll clocks
+  clk: meson8b: clean up fixed factor clocks
+  clk: meson8b: clean up cpu clocks
+  clk: meson8b: remove mali clk
+  clk: meson8b: clean up composite clocks
+  clk: meson8b: convert to platform_driver
+  arm: meson: explicitly select clk drivers
+  clk: meson: only build selected platforms
 
-> I also have just you as the contact - I can add more contacts if
-> that makes sense.
+ arch/arm/mach-meson/Kconfig              |   3 +
+ drivers/clk/Kconfig                      |   1 +
+ drivers/clk/Makefile                     |   2 +-
+ drivers/clk/meson/Kconfig                |  12 +
+ drivers/clk/meson/Makefile               |   4 +-
+ drivers/clk/meson/clk-cpu.c              |  73 +-----
+ drivers/clk/meson/clk-pll.c              |  72 +----
+ drivers/clk/meson/clkc.c                 | 249 ------------------
+ drivers/clk/meson/clkc.h                 | 150 ++---------
+ drivers/clk/meson/meson8b-clkc.c         | 436 +++++++++++++++++++++++++------
+ include/dt-bindings/clock/meson8b-clkc.h |   4 +-
+ 11 files changed, 408 insertions(+), 598 deletions(-)
+ create mode 100644 drivers/clk/meson/Kconfig
+ delete mode 100644 drivers/clk/meson/clkc.c
 
-Please also add Carlo Caione <carlo@caione.org>
-
-Kevin
+-- 
+2.1.4
