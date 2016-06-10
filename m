@@ -1,246 +1,447 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu,  9 Jun 2016 17:27:39 -0700
-Subject: [PATCH 02/10] clk: meson8b: clean up fixed rate clocks
+Date: Thu,  9 Jun 2016 17:27:40 -0700
+Subject: [PATCH 03/10] clk: meson8b: clean up pll clocks
 In-Reply-To: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
 References: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <1465518467-23939-3-git-send-email-mturquette@baylibre.com>
+Message-ID: <1465518467-23939-4-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove the fixed_rate registration function and helpers from clkc.[ch].
-Replace unnecessary configuration struct with static initialization of
-the desired clock type.
-
-While we're here, begin the transition to a proper platform_driver and
-call of_clk_add_hw_provider with a shiny new struct clk_hw_onecell_data.
+Remove the pll registration function and helpers. Replace unnecessary
+configuration struct with static initialization of the desired clock
+type.
 
 Signed-off-by: Michael Turquette <mturquette@baylibre.com>
 ---
- drivers/clk/meson/clkc.c         | 34 --------------------
- drivers/clk/meson/clkc.h         | 26 ---------------
- drivers/clk/meson/meson8b-clkc.c | 69 +++++++++++++++++++++++++++++++---------
- 3 files changed, 54 insertions(+), 75 deletions(-)
+ drivers/clk/meson/clk-pll.c      |  72 ++++--------------------
+ drivers/clk/meson/clkc.c         |   6 +-
+ drivers/clk/meson/clkc.h         |  52 +++++++++---------
+ drivers/clk/meson/meson8b-clkc.c | 115 ++++++++++++++++++++++++++++++++-------
+ 4 files changed, 131 insertions(+), 114 deletions(-)
 
-diff --git a/drivers/clk/meson/clkc.c b/drivers/clk/meson/clkc.c
-index d920d41..c6802fd 100644
---- a/drivers/clk/meson/clkc.c
-+++ b/drivers/clk/meson/clkc.c
-@@ -167,36 +167,6 @@ meson_clk_register_fixed_factor(const struct clk_conf *clk_conf,
- 	return clk;
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 664edf0..60c6b94 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -44,13 +44,6 @@
+ #define MESON_PLL_RESET				BIT(29)
+ #define MESON_PLL_LOCK				BIT(31)
+ 
+-struct meson_clk_pll {
+-	struct clk_hw	hw;
+-	void __iomem	*base;
+-	struct pll_conf	*conf;
+-	unsigned int	rate_count;
+-	spinlock_t	*lock;
+-};
+ #define to_meson_clk_pll(_hw) container_of(_hw, struct meson_clk_pll, hw)
+ 
+ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+@@ -63,15 +56,15 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+ 	u16 n, m, od;
+ 	u32 reg;
+ 
+-	p = &pll->conf->n;
++	p = &pll->n;
+ 	reg = readl(pll->base + p->reg_off);
+ 	n = PARM_GET(p->width, p->shift, reg);
+ 
+-	p = &pll->conf->m;
++	p = &pll->m;
+ 	reg = readl(pll->base + p->reg_off);
+ 	m = PARM_GET(p->width, p->shift, reg);
+ 
+-	p = &pll->conf->od;
++	p = &pll->od;
+ 	reg = readl(pll->base + p->reg_off);
+ 	od = PARM_GET(p->width, p->shift, reg);
+ 
+@@ -84,7 +77,7 @@ static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+ 				     unsigned long *parent_rate)
+ {
+ 	struct meson_clk_pll *pll = to_meson_clk_pll(hw);
+-	const struct pll_rate_table *rate_table = pll->conf->rate_table;
++	const struct pll_rate_table *rate_table = pll->rate_table;
+ 	int i;
+ 
+ 	for (i = 0; i < pll->rate_count; i++) {
+@@ -99,7 +92,7 @@ static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+ static const struct pll_rate_table *meson_clk_get_pll_settings(struct meson_clk_pll *pll,
+ 							       unsigned long rate)
+ {
+-	const struct pll_rate_table *rate_table = pll->conf->rate_table;
++	const struct pll_rate_table *rate_table = pll->rate_table;
+ 	int i;
+ 
+ 	for (i = 0; i < pll->rate_count; i++) {
+@@ -145,24 +138,24 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+ 		return -EINVAL;
+ 
+ 	/* PLL reset */
+-	p = &pll->conf->n;
++	p = &pll->n;
+ 	reg = readl(pll->base + p->reg_off);
+ 	writel(reg | MESON_PLL_RESET, pll->base + p->reg_off);
+ 
+ 	reg = PARM_SET(p->width, p->shift, reg, rate_set->n);
+ 	writel(reg, pll->base + p->reg_off);
+ 
+-	p = &pll->conf->m;
++	p = &pll->m;
+ 	reg = readl(pll->base + p->reg_off);
+ 	reg = PARM_SET(p->width, p->shift, reg, rate_set->m);
+ 	writel(reg, pll->base + p->reg_off);
+ 
+-	p = &pll->conf->od;
++	p = &pll->od;
+ 	reg = readl(pll->base + p->reg_off);
+ 	reg = PARM_SET(p->width, p->shift, reg, rate_set->od);
+ 	writel(reg, pll->base + p->reg_off);
+ 
+-	p = &pll->conf->n;
++	p = &pll->n;
+ 	ret = meson_clk_pll_wait_lock(pll, p);
+ 	if (ret) {
+ 		pr_warn("%s: pll did not lock, trying to restore old rate %lu\n",
+@@ -173,55 +166,12 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+ 	return ret;
  }
  
--static struct clk * __init
--meson_clk_register_fixed_rate(const struct clk_conf *clk_conf,
--			      void __iomem *clk_base)
+-static const struct clk_ops meson_clk_pll_ops = {
++const struct clk_ops meson_clk_pll_ops = {
+ 	.recalc_rate	= meson_clk_pll_recalc_rate,
+ 	.round_rate	= meson_clk_pll_round_rate,
+ 	.set_rate	= meson_clk_pll_set_rate,
+ };
+ 
+-static const struct clk_ops meson_clk_pll_ro_ops = {
++const struct clk_ops meson_clk_pll_ro_ops = {
+ 	.recalc_rate	= meson_clk_pll_recalc_rate,
+ };
+-
+-struct clk *meson_clk_register_pll(const struct clk_conf *clk_conf,
+-				   void __iomem *reg_base,
+-				   spinlock_t *lock)
 -{
 -	struct clk *clk;
--	const struct fixed_rate_conf *fixed_rate_conf;
--	const struct parm *r;
--	unsigned long rate;
--	u32 reg;
+-	struct meson_clk_pll *clk_pll;
+-	struct clk_init_data init;
 -
--	fixed_rate_conf = &clk_conf->conf.fixed_rate;
--	rate = fixed_rate_conf->rate;
+-	clk_pll = kzalloc(sizeof(*clk_pll), GFP_KERNEL);
+-	if (!clk_pll)
+-		return ERR_PTR(-ENOMEM);
 -
--	if (!rate) {
--		r = &fixed_rate_conf->rate_parm;
--		reg = readl(clk_base + clk_conf->reg_off + r->reg_off);
--		rate = PARM_GET(r->width, r->shift, reg);
+-	clk_pll->base = reg_base + clk_conf->reg_off;
+-	clk_pll->lock = lock;
+-	clk_pll->conf = clk_conf->conf.pll;
+-
+-	init.name = clk_conf->clk_name;
+-	init.flags = clk_conf->flags | CLK_GET_RATE_NOCACHE;
+-
+-	init.parent_names = &clk_conf->clks_parent[0];
+-	init.num_parents = 1;
+-	init.ops = &meson_clk_pll_ro_ops;
+-
+-	/* If no rate_table is specified we assume the PLL is read-only */
+-	if (clk_pll->conf->rate_table) {
+-		int len;
+-
+-		for (len = 0; clk_pll->conf->rate_table[len].rate != 0; )
+-			len++;
+-
+-		 clk_pll->rate_count = len;
+-		 init.ops = &meson_clk_pll_ops;
 -	}
 -
--	rate *= 1000000;
+-	clk_pll->hw.init = &init;
 -
--	clk = clk_register_fixed_rate(NULL,
--			clk_conf->clk_name,
--			clk_conf->num_parents
--				? clk_conf->clks_parent[0] : NULL,
--			clk_conf->flags, rate);
+-	clk = clk_register(NULL, &clk_pll->hw);
+-	if (IS_ERR(clk))
+-		kfree(clk_pll);
 -
 -	return clk;
 -}
--
- void __init meson_clk_register_clks(const struct clk_conf *clk_confs,
- 				    unsigned int nr_confs,
- 				    void __iomem *clk_base)
-@@ -208,10 +178,6 @@ void __init meson_clk_register_clks(const struct clk_conf *clk_confs,
- 		const struct clk_conf *clk_conf = &clk_confs[i];
+diff --git a/drivers/clk/meson/clkc.c b/drivers/clk/meson/clkc.c
+index c6802fd..2161ea3 100644
+--- a/drivers/clk/meson/clkc.c
++++ b/drivers/clk/meson/clkc.c
+@@ -21,7 +21,7 @@
  
- 		switch (clk_conf->clk_type) {
--		case CLK_FIXED_RATE:
--			clk = meson_clk_register_fixed_rate(clk_conf,
--							    clk_base);
+ #include "clkc.h"
+ 
+-static DEFINE_SPINLOCK(clk_lock);
++DEFINE_SPINLOCK(clk_lock);
+ 
+ static struct clk **clks;
+ static struct clk_onecell_data clk_data;
+@@ -190,10 +190,6 @@ void __init meson_clk_register_clks(const struct clk_conf *clk_confs,
+ 			clk = meson_clk_register_cpu(clk_conf, clk_base,
+ 						     &clk_lock);
+ 			break;
+-		case CLK_PLL:
+-			clk = meson_clk_register_pll(clk_conf, clk_base,
+-						     &clk_lock);
 -			break;
- 		case CLK_FIXED_FACTOR:
- 			clk = meson_clk_register_fixed_factor(clk_conf,
- 							      clk_base);
+ 		default:
+ 			clk = NULL;
+ 		}
 diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 609ae92..b23b057 100644
+index b23b057..0bb4fb8 100644
 --- a/drivers/clk/meson/clkc.h
 +++ b/drivers/clk/meson/clkc.h
-@@ -69,11 +69,6 @@ struct fixed_fact_conf {
- 	struct parm	mult_parm;
+@@ -34,12 +34,13 @@ struct parm {
+ 	u8	shift;
+ 	u8	width;
+ };
+-#define PARM(_r, _s, _w)						\
+-	{								\
+-		.reg_off	= (_r),					\
+-		.shift		= (_s),					\
+-		.width		= (_w),					\
+-	}								\
++
++#define PARM(_r, _s, _w)                                               \
++{                                                                      \
++	.reg_off        = (_r),                                        \
++	.shift          = (_s),                                        \
++	.width          = (_w),                                        \
++}                                                                      \
+ 
+ struct pll_rate_table {
+ 	unsigned long	rate;
+@@ -55,13 +56,19 @@ struct pll_rate_table {
+ 		.od		= (_od),				\
+ 	}								\
+ 
+-struct pll_conf {
+-	const struct pll_rate_table	*rate_table;
+-	struct parm			m;
+-	struct parm			n;
+-	struct parm			od;
++struct meson_clk_pll {
++	struct clk_hw hw;
++	void __iomem *base;
++	struct parm m;
++	struct parm n;
++	struct parm od;
++	const struct pll_rate_table *rate_table;
++	unsigned int rate_count;
++	spinlock_t *lock;
  };
  
--struct fixed_rate_conf {
--	unsigned long	rate;
--	struct parm	rate_parm;
--};
--
- struct composite_conf {
- 	struct parm		mux_parm;
- 	struct parm		div_parm;
-@@ -89,7 +84,6 @@ struct composite_conf {
- 
- enum clk_type {
++#define to_meson_clk_pll(_hw) container_of(_hw, struct meson_clk_pll, hw)
++
+ struct fixed_fact_conf {
+ 	unsigned int	div;
+ 	unsigned int	mult;
+@@ -86,7 +93,6 @@ enum clk_type {
  	CLK_FIXED_FACTOR,
--	CLK_FIXED_RATE,
  	CLK_COMPOSITE,
  	CLK_CPU,
- 	CLK_PLL,
-@@ -105,32 +99,12 @@ struct clk_conf {
- 	unsigned long			flags;
+-	CLK_PLL,
+ };
+ 
+ struct clk_conf {
+@@ -100,23 +106,10 @@ struct clk_conf {
  	union {
  		struct fixed_fact_conf		fixed_fact;
--		struct fixed_rate_conf		fixed_rate;
  		const struct composite_conf		*composite;
- 		struct pll_conf			*pll;
+-		struct pll_conf			*pll;
  		const struct clk_div_table	*div_table;
  	} conf;
  };
  
--#define FIXED_RATE_P(_ro, _ci, _cn, _f, _c)				\
+-#define PLL(_ro, _ci, _cn, _cp, _f, _c)					\
 -	{								\
 -		.reg_off			= (_ro),		\
--		.clk_type			= CLK_FIXED_RATE,	\
+-		.clk_type			= CLK_PLL,		\
 -		.clk_id				= (_ci),		\
 -		.clk_name			= (_cn),		\
+-		.clks_parent			= (_cp),		\
+-		.num_parents			= ARRAY_SIZE(_cp),	\
 -		.flags				= (_f),			\
--		.conf.fixed_rate.rate_parm	= _c,			\
+-		.conf.pll			= (_c),			\
 -	}								\
 -
--#define FIXED_RATE(_ci, _cn, _f, _r)					\
--	{								\
--		.clk_type			= CLK_FIXED_RATE,	\
--		.clk_id				= (_ci),		\
--		.clk_name			= (_cn),		\
--		.flags				= (_f),			\
--		.conf.fixed_rate.rate		= (_r),			\
--	}								\
--
- #define PLL(_ro, _ci, _cn, _cp, _f, _c)					\
+ #define FIXED_FACTOR_DIV(_ci, _cn, _cp, _f, _d)				\
  	{								\
- 		.reg_off			= (_ro),		\
+ 		.clk_type			= CLK_FIXED_FACTOR,	\
+@@ -155,7 +148,12 @@ void meson_clk_register_clks(const struct clk_conf *clk_confs,
+ 			     unsigned int nr_confs, void __iomem *clk_base);
+ struct clk *meson_clk_register_cpu(const struct clk_conf *clk_conf,
+ 				   void __iomem *reg_base, spinlock_t *lock);
+-struct clk *meson_clk_register_pll(const struct clk_conf *clk_conf,
+-				   void __iomem *reg_base, spinlock_t *lock);
++
++/* shared data */
++extern spinlock_t clk_lock;
++
++/* clk_ops */
++extern const struct clk_ops meson_clk_pll_ro_ops;
++extern const struct clk_ops meson_clk_pll_ops;
+ 
+ #endif /* __CLKC_H */
 diff --git a/drivers/clk/meson/meson8b-clkc.c b/drivers/clk/meson/meson8b-clkc.c
-index 444ef94..9afd480 100644
+index 9afd480..a3d8e66 100644
 --- a/drivers/clk/meson/meson8b-clkc.c
 +++ b/drivers/clk/meson/meson8b-clkc.c
-@@ -33,7 +33,6 @@
-  *
-  * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-  */
--#define MESON8B_REG_CTL0_ADDR		0x0000
- #define MESON8B_REG_SYS_CPU_CNTL1	0x015c /* 0x57 offset in data sheet */
- #define MESON8B_REG_HHI_MPEG		0x0174 /* 0x5d offset in data sheet */
- #define MESON8B_REG_MALI		0x01b0 /* 0x6c offset in data sheet */
-@@ -149,12 +148,25 @@ static const struct composite_conf mali_conf __initconst = {
- 	.gate_parm		= PARM(0x00, 8, 1),
+@@ -110,7 +110,6 @@ static const struct clk_div_table cpu_div_table[] = {
+ 	{ /* sentinel */ },
  };
  
--static const struct clk_conf meson8b_xtal_conf __initconst =
--	FIXED_RATE_P(MESON8B_REG_CTL0_ADDR, CLKID_XTAL, "xtal", 0,
--			PARM(0x00, 4, 7));
-+static struct clk_fixed_rate meson8b_xtal = {
-+	.fixed_rate = 24000000,
+-PNAME(p_xtal)		= { "xtal" };
+ PNAME(p_fclk_div)	= { "fixed_pll" };
+ PNAME(p_cpu_clk)	= { "sys_pll" };
+ PNAME(p_clk81)		= { "fclk_div3", "fclk_div4", "fclk_div5" };
+@@ -120,19 +119,6 @@ PNAME(p_mali)		= { "fclk_div3", "fclk_div4", "fclk_div5",
+ static u32 mux_table_clk81[]	= { 6, 5, 7 };
+ static u32 mux_table_mali[]	= { 6, 5, 7, 4, 0 };
+ 
+-static struct pll_conf pll_confs = {
+-	.m		= PARM(0x00, 0,  9),
+-	.n		= PARM(0x00, 9,  5),
+-	.od		= PARM(0x00, 16, 2),
+-};
+-
+-static struct pll_conf sys_pll_conf = {
+-	.m		= PARM(0x00, 0,  9),
+-	.n		= PARM(0x00, 9,  5),
+-	.od		= PARM(0x00, 16, 2),
+-	.rate_table	= sys_pll_rate_table,
+-};
+-
+ static const struct composite_conf clk81_conf __initconst = {
+ 	.mux_table		= mux_table_clk81,
+ 	.mux_flags		= CLK_MUX_READ_ONLY,
+@@ -166,13 +152,87 @@ static struct clk_fixed_rate meson8b_zero = {
+ 	},
+ };
+ 
++static struct meson_clk_pll meson8b_fixed_pll = {
++	.m = {
++		.reg_off = MESON8B_REG_PLL_FIXED,
++		.shift   = 0,
++		.width   = 9,
++	},
++	.n = {
++		.reg_off = MESON8B_REG_PLL_FIXED,
++		.shift   = 9,
++		.width   = 5,
++	},
++	.od = {
++		.reg_off = MESON8B_REG_PLL_FIXED,
++		.shift   = 16,
++		.width   = 2,
++	},
++	.lock = &clk_lock,
 +	.hw.init = &(struct clk_init_data){
-+		.name = "xtal",
-+		.num_parents = 0,
-+		.ops = &clk_fixed_rate_ops,
++		.name = "fixed_pll",
++		.ops = &meson_clk_pll_ro_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++		.flags = CLK_GET_RATE_NOCACHE,
 +	},
 +};
 +
-+static struct clk_fixed_rate meson8b_zero = {
-+	.fixed_rate = 0,
++static struct meson_clk_pll meson8b_vid_pll = {
++	.m = {
++		.reg_off = MESON8B_REG_PLL_VID,
++		.shift   = 0,
++		.width   = 9,
++	},
++	.n = {
++		.reg_off = MESON8B_REG_PLL_VID,
++		.shift   = 9,
++		.width   = 5,
++	},
++	.od = {
++		.reg_off = MESON8B_REG_PLL_VID,
++		.shift   = 16,
++		.width   = 2,
++	},
++	.lock = &clk_lock,
 +	.hw.init = &(struct clk_init_data){
-+		.name = "zero",
-+		.num_parents = 0,
-+		.ops = &clk_fixed_rate_ops,
++		.name = "vid_pll",
++		.ops = &meson_clk_pll_ro_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++		.flags = CLK_GET_RATE_NOCACHE,
 +	},
 +};
- 
++
++static struct meson_clk_pll meson8b_sys_pll = {
++	.m = {
++		.reg_off = MESON8B_REG_PLL_SYS,
++		.shift   = 0,
++		.width   = 9,
++	},
++	.n = {
++		.reg_off = MESON8B_REG_PLL_SYS,
++		.shift   = 9,
++		.width   = 5,
++	},
++	.od = {
++		.reg_off = MESON8B_REG_PLL_SYS,
++		.shift   = 16,
++		.width   = 2,
++	},
++	.rate_table = sys_pll_rate_table,
++	.rate_count = ARRAY_SIZE(sys_pll_rate_table),
++	.lock = &clk_lock,
++	.hw.init = &(struct clk_init_data){
++		.name = "sys_pll",
++		.ops = &meson_clk_pll_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++		.flags = CLK_GET_RATE_NOCACHE,
++	},
++};
++
  static const struct clk_conf meson8b_clk_confs[] __initconst = {
--	FIXED_RATE(CLKID_ZERO, "zero", 0, 0),
- 	PLL(MESON8B_REG_PLL_FIXED, CLKID_PLL_FIXED, "fixed_pll",
- 	    p_xtal, 0, &pll_confs),
- 	PLL(MESON8B_REG_PLL_VID, CLKID_PLL_VID, "vid_pll",
-@@ -174,23 +186,29 @@ static const struct clk_conf meson8b_clk_confs[] __initconst = {
- 		  CLK_IGNORE_UNUSED, &mali_conf),
+-	PLL(MESON8B_REG_PLL_FIXED, CLKID_PLL_FIXED, "fixed_pll",
+-	    p_xtal, 0, &pll_confs),
+-	PLL(MESON8B_REG_PLL_VID, CLKID_PLL_VID, "vid_pll",
+-	    p_xtal, 0, &pll_confs),
+-	PLL(MESON8B_REG_PLL_SYS, CLKID_PLL_SYS, "sys_pll",
+-	    p_xtal, 0, &sys_pll_conf),
+ 	FIXED_FACTOR_DIV(CLKID_FCLK_DIV2, "fclk_div2", p_fclk_div, 0, 2),
+ 	FIXED_FACTOR_DIV(CLKID_FCLK_DIV3, "fclk_div3", p_fclk_div, 0, 3),
+ 	FIXED_FACTOR_DIV(CLKID_FCLK_DIV4, "fclk_div4", p_fclk_div, 0, 4),
+@@ -197,14 +257,23 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+ 	.hws = {
+ 		[CLKID_XTAL] = &meson8b_xtal.hw,
+ 		[CLKID_ZERO] = &meson8b_zero.hw,
++		[CLKID_PLL_FIXED] = &meson8b_fixed_pll.hw,
++		[CLKID_PLL_VID] = &meson8b_vid_pll.hw,
++		[CLKID_PLL_SYS] = &meson8b_sys_pll.hw,
+ 	},
+ 	.num = CLK_NR_CLKS,
  };
  
-+/*
-+ * FIXME we cannot register two providers w/o breaking things. Luckily only
-+ * clk81 is actually used by any drivers. Convert clk81 to use
-+ * clk_hw_onecell_data last and flip the switch to call of_clk_add_hw_provider
-+ * instead of of_clk_add_provider in the clk81 conversion patch to keep from
-+ * breaking bisect. Then delete this comment ;-)
-+ */
-+static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
-+	.hws = {
-+		[CLKID_XTAL] = &meson8b_xtal.hw,
-+		[CLKID_ZERO] = &meson8b_zero.hw,
-+	},
-+	.num = CLK_NR_CLKS,
++static struct meson_clk_pll *const meson8b_clk_plls[] = {
++	&meson8b_fixed_pll,
++	&meson8b_vid_pll,
++	&meson8b_sys_pll,
 +};
 +
  static void __init meson8b_clkc_init(struct device_node *np)
  {
  	void __iomem *clk_base;
-+	int ret, clkid;
+-	int ret, clkid;
++	int ret, clkid, i;
  
  	if (!meson_clk_init(np, CLK_NR_CLKS))
  		return;
- 
--	/* XTAL */
--	clk_base = of_iomap(np, 0);
--	if (!clk_base) {
--		pr_err("%s: Unable to map xtal base\n", __func__);
--		return;
--	}
--
--	meson_clk_register_clks(&meson8b_xtal_conf, 1, clk_base);
--	iounmap(clk_base);
--
- 	/*  Generic clocks and PLLs */
- 	clk_base = of_iomap(np, 1);
- 	if (!clk_base) {
-@@ -198,8 +216,29 @@ static void __init meson8b_clkc_init(struct device_node *np)
+@@ -216,6 +285,10 @@ static void __init meson8b_clkc_init(struct device_node *np)
  		return;
  	}
  
-+	/*
-+	 * register all clks
-+	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
-+	 */
-+	for (clkid = CLKID_XTAL; clkid < CLK_NR_CLKS; clkid++) {
-+		/* array might be sparse */
-+		if (!meson8b_hw_onecell_data.hws[clkid])
-+			continue;
++	/* Populate base address for PLLs */
++	for (i = 0; i < ARRAY_SIZE(meson8b_clk_plls); i++)
++		meson8b_clk_plls[i]->base = clk_base;
 +
-+		/* FIXME convert to devm_clk_register */
-+		ret = clk_hw_register(NULL, meson8b_hw_onecell_data.hws[clkid]);
-+		if (ret)
-+			goto unregister;
-+	}
-+
- 	meson_clk_register_clks(meson8b_clk_confs,
- 				ARRAY_SIZE(meson8b_clk_confs),
- 				clk_base);
-+	return;
-+
-+/* FIXME remove after converting to platform_driver/devm_clk_register */
-+unregister:
-+	for (clkid = CLK_NR_CLKS - 1; clkid >= 0; clkid--)
-+		clk_hw_unregister(meson8b_hw_onecell_data.hws[clkid]);
- }
- CLK_OF_DECLARE(meson8b_clock, "amlogic,meson8b-clkc", meson8b_clkc_init);
+ 	/*
+ 	 * register all clks
+ 	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
 -- 
 2.1.4
