@@ -1,432 +1,96 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Fri, 10 Jun 2016 21:44:09 +0200
-Subject: [PATCH v7 1/3] firmware: Amlogic: Add secure monitor driver
-In-Reply-To: <1465587851-24184-1-git-send-email-carlo@caione.org>
-References: <1465587851-24184-1-git-send-email-carlo@caione.org>
-Message-ID: <1465587851-24184-2-git-send-email-carlo@caione.org>
+From: marc.zyngier@arm.com (Marc Zyngier)
+Date: Sat, 11 Jun 2016 10:41:00 +0100
+Subject: [PATCH v3 1/2] clocksource/arm_arch_timer: Force per-CPU
+ interrupt to be level-triggered
+In-Reply-To: <575AFB4A.3030508@gmail.com>
+References: <1465235791-7064-1-git-send-email-marc.zyngier@arm.com>
+ <1465235791-7064-2-git-send-email-marc.zyngier@arm.com>
+ <5759DB58.5070906@gmail.com> <20160610082952.4f20d732@arm.com>
+ <575AFB4A.3030508@gmail.com>
+Message-ID: <20160611104100.7475689e@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Carlo Caione <carlo@endlessm.com>
+On Fri, 10 Jun 2016 10:39:22 -0700
+David Daney <ddaney.cavm@gmail.com> wrote:
 
-Introduce a driver to provide calls into secure monitor mode.
+> On 06/10/2016 12:29 AM, Marc Zyngier wrote:
+> > On Thu, 09 Jun 2016 14:10:48 -0700
+> > David Daney <ddaney.cavm@gmail.com> wrote:
+> >
+> >> On 06/06/2016 10:56 AM, Marc Zyngier wrote:
+> >>> The ARM architected timer produces level-triggered interrupts (this
+> >>> is mandated by the architecture). Unfortunately, most device-trees
+> >>> get this wrong, and expose an edge-triggered interrupt.
+> >>>
+> >>> Until now, this wasn't too much an issue, as the programming of the
+> >>> trigger would fail (the corresponding PPI cannot be reconfigured),
+> >>> and the kernel would be happy with this. But we're about to change
+> >>> this, and trust DT a lot if the driver doesn't provide its own
+> >>> trigger information. In that context, the timer breaks badly.
+> >>>
+> >>> While we do need to fix the DTs, there is also some userspace out
+> >>> there (kvmtool) that generates the same kind of broken DT on the
+> >>> fly, and that will completely break with newer kernels.
+> >>>
+> >>> As a safety measure, and to keep buggy software alive as well as
+> >>> buying us some time to fix DTs all over the place, let's check
+> >>> what trigger configuration has been given us by the firmware.
+> >>> If this is not a level configuration, then we know that the
+> >>> DT/ACPI configuration is bust, and we pick some defaults which
+> >>> won't be worse than the existing setup.
+> >>>
+> >>> Signed-off-by: Marc Zyngier <marc.zyngier@arm.com>
+> >>
+> >>
+> >> I tried to test this patch, but there is a problem somewhere that I have
+> >> not yet tracked down.  On Cavium Thunder (gic-v3 based) I have tested
+> >> with the device tree interrupt type of both 4 and 8 and get the same result:
+> >>
+> >>
+> >> [    0.000000] arm_arch_timer: WARNING: Invalid trigger for IRQ2,
+> >> assuming level low
+> >> [    0.000000] arm_arch_timer: WARNING: Please fix your firmware
+> >> [    0.000000] arm_arch_timer: WARNING: Invalid trigger for IRQ3,
+> >> assuming level low
+> >> [    0.000000] arm_arch_timer: WARNING: Please fix your firmware
+> >> [    0.000000] arm_arch_timer: Architected cp15 timer(s) running at
+> >> 100.00MHz (phys).
+> >> [    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff
+> >> max_cycles: 0x171024e7e0, max_idle_ns: 440795205315 ns
+> >> [    0.000002] sched_clock: 56 bits at 100MHz, resolution 10ns, wraps
+> >> every 4398046511100ns
+> >>
+> >> It could be that the gic-v3 irq mapping code is broken.  I will try to
+> >> look into it, but there may be other fixes needed before we would
+> >> consider this patch to be an improvement.
+> >
+> > That's because the core kernel has other bugs which are going to be
+> > addressed in 4.8. So far, we cannot set the trigger of a per-cpu
+> > interrupt from the device tree, and we end-up with whatever is the
+> > default (edge). You can put whatever you want in the DT, it will be
+> > ignored.
+> 
+> Yes, after looking into it, I see what you mean.
+> 
+> >
+> > This series in preparation of these fixes landing in 4.8, where we'll
+> > be able to do the right thing, and will start noticing stupid things
+> > coming from the DT.
+> >
+> 
+> I don't object to the patch, but would suggest a couple of things:
+> 
+> o We need to test it *after* the irq configuration issues are corrected.
+> 
+> o The merging order be such that we never get the WARNING messages.
 
-In the Amlogic SoCs these calls are used for multiple reasons: access to
-NVMEM, set USB boot, enable JTAG, etc...
+What do you prefer? A benign warning message? or a broken system? You
+sound more afraid of the former than the later (and yes, things *are*
+broken at the moment).
 
-Signed-off-by: Carlo Caione <carlo@endlessm.com>
----
- drivers/firmware/Kconfig                |   1 +
- drivers/firmware/Makefile               |   1 +
- drivers/firmware/meson/Kconfig          |   8 +
- drivers/firmware/meson/Makefile         |   1 +
- drivers/firmware/meson/meson_sm.c       | 312 ++++++++++++++++++++++++++++++++
- include/linux/firmware/meson/meson_sm.h |  32 ++++
- 6 files changed, 355 insertions(+)
- create mode 100644 drivers/firmware/meson/Kconfig
- create mode 100644 drivers/firmware/meson/Makefile
- create mode 100644 drivers/firmware/meson/meson_sm.c
- create mode 100644 include/linux/firmware/meson/meson_sm.h
+Thanks,
 
-diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
-index 6664f11..686e395 100644
---- a/drivers/firmware/Kconfig
-+++ b/drivers/firmware/Kconfig
-@@ -199,5 +199,6 @@ config HAVE_ARM_SMCCC
- source "drivers/firmware/broadcom/Kconfig"
- source "drivers/firmware/google/Kconfig"
- source "drivers/firmware/efi/Kconfig"
-+source "drivers/firmware/meson/Kconfig"
- 
- endmenu
-diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
-index 474bada..fc4bb09 100644
---- a/drivers/firmware/Makefile
-+++ b/drivers/firmware/Makefile
-@@ -21,6 +21,7 @@ obj-$(CONFIG_QCOM_SCM_32)	+= qcom_scm-32.o
- CFLAGS_qcom_scm-32.o :=$(call as-instr,.arch armv7-a\n.arch_extension sec,-DREQUIRES_SEC=1) -march=armv7-a
- 
- obj-y				+= broadcom/
-+obj-y				+= meson/
- obj-$(CONFIG_GOOGLE_FIRMWARE)	+= google/
- obj-$(CONFIG_EFI)		+= efi/
- obj-$(CONFIG_UEFI_CPER)		+= efi/
-diff --git a/drivers/firmware/meson/Kconfig b/drivers/firmware/meson/Kconfig
-new file mode 100644
-index 0000000..fff11a3
---- /dev/null
-+++ b/drivers/firmware/meson/Kconfig
-@@ -0,0 +1,8 @@
-+#
-+# Amlogic Secure Monitor driver
-+#
-+config MESON_SM
-+	bool
-+	default ARCH_MESON
-+	help
-+	  Say y here to enable the Amlogic secure monitor driver
-diff --git a/drivers/firmware/meson/Makefile b/drivers/firmware/meson/Makefile
-new file mode 100644
-index 0000000..9ab3884
---- /dev/null
-+++ b/drivers/firmware/meson/Makefile
-@@ -0,0 +1 @@
-+obj-$(CONFIG_MESON_SM) +=	meson_sm.o
-diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-new file mode 100644
-index 0000000..ef548ad
---- /dev/null
-+++ b/drivers/firmware/meson/meson_sm.c
-@@ -0,0 +1,312 @@
-+/*
-+ * Amlogic Secure Monitor driver
-+ *
-+ * Copyright (C) 2016 Endless Mobile, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ *
-+ * This program is free software; you can redistribute it and/or
-+ * modify it under the terms of the GNU General Public License
-+ * version 2 as published by the Free Software Foundation.
-+ *
-+ * You should have received a copy of the GNU General Public License
-+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
-+ */
-+
-+#include <stdarg.h>
-+#include <asm/cacheflush.h>
-+#include <asm/compiler.h>
-+#include <linux/arm-smccc.h>
-+#include <linux/io.h>
-+#include <linux/ioport.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/smp.h>
-+#include <linux/firmware/meson/meson_sm.h>
-+
-+struct meson_sm_cmd {
-+	unsigned int index;
-+	u32 smc_id;
-+};
-+#define CMD(d, s) { .index = (d), .smc_id = (s), }
-+
-+struct meson_sm_chip {
-+	unsigned int shmem_size;
-+	u32 cmd_shmem_in_base;
-+	u32 cmd_shmem_out_base;
-+	struct meson_sm_cmd cmd[];
-+};
-+
-+struct meson_sm_firmware {
-+	struct device *dev;
-+	const struct meson_sm_chip *chip;
-+	void __iomem *sm_shmem_in_base;
-+	void __iomem *sm_shmem_out_base;
-+};
-+
-+struct meson_sm_chip gxbb_chip = {
-+	.shmem_size		= 0x1000,
-+	.cmd_shmem_in_base	= 0x82000020,
-+	.cmd_shmem_out_base	= 0x82000021,
-+	.cmd = {
-+		CMD(SM_EFUSE_READ,	0x82000030),
-+		CMD(SM_EFUSE_WRITE,	0x82000031),
-+		CMD(SM_EFUSE_USER_MAX,	0x82000033),
-+		{ /* sentinel */ },
-+	},
-+};
-+
-+static u32 meson_sm_get_cmd(const struct meson_sm_chip *chip, unsigned int cmd_index)
-+{
-+	unsigned int i;
-+
-+	for (i = 0; chip->cmd[i].smc_id; i++)
-+		if (chip->cmd[i].index == cmd_index)
-+			return chip->cmd[i].smc_id;
-+
-+	return 0;
-+}
-+
-+static u32 __meson_sm_call(u32 cmd, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-+{
-+	struct arm_smccc_res res;
-+
-+	arm_smccc_smc(cmd, arg0, arg1, arg2, arg3, arg4, 0, 0, &res);
-+	return res.a0;
-+}
-+
-+static void __iomem *meson_sm_map_shmem(u32 cmd_shmem, unsigned int size)
-+{
-+	u32 sm_phy_base;
-+
-+	sm_phy_base = __meson_sm_call(cmd_shmem, 0, 0, 0, 0, 0);
-+	if (!sm_phy_base)
-+		return 0;
-+
-+	return ioremap_cache(sm_phy_base, size);
-+}
-+
-+/**
-+ * meson_sm_call - generic SMC32 call to the secure-monitor
-+ *
-+ * @fw:		Meson secure-monitor firmware pointer
-+ * @cmd_index:	Index of the SMC32 function ID
-+ * @ret:	Returned value
-+ * @arg0:	SMC32 Argument 0
-+ * @arg1:	SMC32 Argument 1
-+ * @arg2:	SMC32 Argument 2
-+ * @arg3:	SMC32 Argument 3
-+ * @arg4:	SMC32 Argument 4
-+ *
-+ * Return:	0 on success, a negative value on error
-+ */
-+int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
-+		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-+{
-+	u32 cmd, lret;
-+
-+	if (!fw)
-+		return -EINVAL;
-+
-+	cmd = meson_sm_get_cmd(fw->chip, cmd_index);
-+	if (!cmd)
-+		return -EINVAL;
-+
-+	lret = __meson_sm_call(cmd, arg0, arg1, arg2, arg3, arg4);
-+
-+	if (ret)
-+		*ret = lret;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(meson_sm_call);
-+
-+/**
-+ * meson_sm_call_read - retrieve data from secure-monitor
-+ *
-+ * @fw:		Meson secure-monitor firmware pointer
-+ * @buffer:	Buffer to store the retrieved data
-+ * @cmd_index:	Index of the SMC32 function ID
-+ * @arg0:	SMC32 Argument 0
-+ * @arg1:	SMC32 Argument 1
-+ * @arg2:	SMC32 Argument 2
-+ * @arg3:	SMC32 Argument 3
-+ * @arg4:	SMC32 Argument 4
-+ *
-+ * Return:	size of read data on success, a negative value on error
-+ */
-+int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
-+		       unsigned int cmd_index, u32 arg0, u32 arg1,
-+		       u32 arg2, u32 arg3, u32 arg4)
-+{
-+	u32 size;
-+
-+	if (!fw->chip->cmd_shmem_out_base)
-+		return -EINVAL;
-+
-+	if (meson_sm_call(fw, cmd_index, &size, arg0, arg1, arg2, arg3, arg4) < 0)
-+		return -EINVAL;
-+
-+	if (!size || size > fw->chip->shmem_size)
-+		return -EINVAL;
-+
-+	if (buffer)
-+		memcpy(buffer, fw->sm_shmem_out_base, size);
-+
-+	return size;
-+}
-+EXPORT_SYMBOL(meson_sm_call_read);
-+
-+/**
-+ * meson_sm_call_write - send data to secure-monitor
-+ *
-+ * @fw:		Meson secure-monitor firmware pointer
-+ * @buffer:	Buffer containing data to send
-+ * @b_size:	Size of the data to send
-+ * @cmd_index:	Index of the SMC32 function ID
-+ * @arg0:	SMC32 Argument 0
-+ * @arg1:	SMC32 Argument 1
-+ * @arg2:	SMC32 Argument 2
-+ * @arg3:	SMC32 Argument 3
-+ * @arg4:	SMC32 Argument 4
-+ *
-+ * Return:	size of sent data on success, a negative value on error
-+ */
-+int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
-+			unsigned int b_size, unsigned int cmd_index,
-+			u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-+{
-+	u32 size;
-+
-+	if (b_size > fw->chip->shmem_size)
-+		return -EINVAL;
-+
-+	if (!fw->chip->cmd_shmem_in_base)
-+		return -EINVAL;
-+
-+	memcpy(fw->sm_shmem_in_base, buffer, b_size);
-+
-+	if (meson_sm_call(fw, cmd_index, &size, arg0, arg1, arg2, arg3, arg4) < 0)
-+		return -EINVAL;
-+
-+	if (!size)
-+		return -EINVAL;
-+
-+	return size;
-+}
-+EXPORT_SYMBOL(meson_sm_call_write);
-+
-+/**
-+ * meson_sm_get_fw - get Meson firmware struct
-+ *
-+ * @firmware_node:	Device node of the secure-monitor
-+ *
-+ * Return:		Meson secure-monitor firmware struct on success, NULL on error
-+ */
-+struct meson_sm_firmware *meson_sm_get_fw(struct device_node *firmware_node)
-+{
-+	struct platform_device *pdev = of_find_device_by_node(firmware_node);
-+
-+	/*
-+	 * Returns NULL is the firmware device is not ready.
-+	 */
-+	if (!pdev)
-+		return NULL;
-+
-+	return platform_get_drvdata(pdev);
-+}
-+EXPORT_SYMBOL(meson_sm_get_fw);
-+
-+static const struct of_device_id meson_sm_ids[] = {
-+	{ .compatible = "amlogic,meson-gxbb-sm", .data = &gxbb_chip },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, meson_sm_ids);
-+
-+static int meson_sm_probe(struct platform_device *pdev)
-+{
-+	const struct meson_sm_chip *chip;
-+	struct meson_sm_firmware *fw;
-+	struct device_node *np;
-+	const struct of_device_id *matched_np;
-+
-+	np = of_find_matching_node_and_match(NULL, meson_sm_ids, &matched_np);
-+	if (!np) {
-+		dev_err(&pdev->dev, "no matching node\n");
-+		return -EINVAL;
-+	}
-+
-+	chip = matched_np->data;
-+	if (!chip) {
-+		dev_err(&pdev->dev, "unable to setup secure-monitor data\n");
-+		return -EINVAL;
-+	}
-+
-+	fw = devm_kzalloc(&pdev->dev, sizeof(*fw), GFP_KERNEL);
-+	if (!fw)
-+		return -ENOMEM;
-+
-+	if (chip->cmd_shmem_in_base) {
-+		fw->sm_shmem_in_base = meson_sm_map_shmem(chip->cmd_shmem_in_base,
-+							  chip->shmem_size);
-+		if (WARN_ON(!fw->sm_shmem_in_base))
-+			goto out;
-+	}
-+
-+	if (chip->cmd_shmem_out_base) {
-+		fw->sm_shmem_out_base = meson_sm_map_shmem(chip->cmd_shmem_out_base,
-+							   chip->shmem_size);
-+		if (WARN_ON(!fw->sm_shmem_out_base))
-+			goto out;
-+	}
-+
-+	fw->dev = &pdev->dev;
-+	fw->chip = chip;
-+	platform_set_drvdata(pdev, fw);
-+
-+	dev_info(fw->dev, "enabled\n");
-+
-+	return 0;
-+
-+out:
-+	if (fw->sm_shmem_in_base)
-+		iounmap(fw->sm_shmem_in_base);
-+
-+	return -EINVAL;
-+}
-+
-+static struct platform_driver meson_sm_platform_driver = {
-+	.probe	= meson_sm_probe,
-+	.driver	= {
-+		.name		= "meson-sm",
-+		.of_match_table	= meson_sm_ids,
-+	},
-+};
-+
-+static int __init meson_sm_init(void)
-+{
-+	struct platform_device *meson_sm_device;
-+	int ret;
-+
-+	ret = platform_driver_register(&meson_sm_platform_driver);
-+	if (ret) {
-+		pr_err("unable to register driver\n");
-+		return ret;
-+	}
-+
-+	meson_sm_device = platform_device_register_simple("meson-sm",
-+							  -1, NULL, 0);
-+	if (IS_ERR(meson_sm_device)) {
-+		pr_err("unable to register device\n");
-+		platform_driver_unregister(&meson_sm_platform_driver);
-+		return PTR_ERR(meson_sm_device);
-+	}
-+
-+	return 0;
-+}
-+device_initcall(meson_sm_init);
-+
-+MODULE_AUTHOR("Carlo Caione <carlo@endlessm.com>");
-+MODULE_DESCRIPTION("Amlogic secure monitor driver");
-+MODULE_LICENSE("GPL");
-diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-new file mode 100644
-index 0000000..863b231
---- /dev/null
-+++ b/include/linux/firmware/meson/meson_sm.h
-@@ -0,0 +1,32 @@
-+/*
-+ * Copyright (C) 2016 Endless Mobile, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ *
-+ * This program is free software; you can redistribute it and/or
-+ * modify it under the terms of the GNU General Public License
-+ * version 2 as published by the Free Software Foundation.
-+ *
-+ * You should have received a copy of the GNU General Public License
-+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
-+ */
-+
-+#ifndef _MESON_SM_FW_H_
-+#define _MESON_SM_FW_H_
-+
-+#define SM_EFUSE_READ		0
-+#define SM_EFUSE_WRITE		1
-+#define SM_EFUSE_USER_MAX	2
-+
-+struct meson_sm_firmware;
-+
-+int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
-+		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-+int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
-+			unsigned int b_size, unsigned int cmd_index,
-+			u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-+int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
-+		       unsigned int cmd_index, u32 arg0, u32 arg1,
-+		       u32 arg2, u32 arg3, u32 arg4);
-+struct meson_sm_firmware *meson_sm_get_fw(struct device_node *firmware_node);
-+
-+#endif /* _MESON_SM_FW_H_ */
+	M.
 -- 
-2.7.4
+Jazz is not dead. It just smells funny.
