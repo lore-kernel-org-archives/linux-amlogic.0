@@ -1,46 +1,43 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 13 Jun 2016 14:24:30 -0700
-Subject: [GIT PULL] Amlogic DT changes for v4.8
-Message-ID: <7h60tcdbox.fsf@baylibre.com>
+Date: Mon, 13 Jun 2016 15:09:55 -0700
+Subject: [PATCH v2 3/3] ARM64: dts: meson-gxbb: Add Hardware Random
+ Generator node
+In-Reply-To: <1465546915-24229-4-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Fri, 10 Jun 2016 10:21:55 +0200")
+References: <1465546915-24229-1-git-send-email-narmstrong@baylibre.com>
+ <1465546915-24229-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2ziqoviz0.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The following changes since commit 1a695a905c18548062509178b98bc91e67510864:
+Hi Neil,
 
-  Linux 4.7-rc1 (2016-05-29 09:29:24 -0700)
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-are available in the git repository at:
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> index 832815d..8353621 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> @@ -167,6 +167,11 @@
+>  			};
+>  		};
+>  
+> +		rng {
+> +			compatible = "amlogic,meson-rng";
+> +			reg = <0x0 0xc8834000 0x0 0x4>;
+> +		};
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt
+This should be under the periphs bus, with an offset of 0x0 instead of
+at the top level.
 
-for you to fetch changes up to bf205ad75a17a878aa0c350d1ce376adaeb69fea:
+See the for-next branch in the linux-amlogic tree[1] which has separate
+busses for periphs and hiu.
 
-  ARM: dts: amlogic: Enable Reset Controller on Meson8b platforms (2016-06-01 10:57:42 -0700)
+Kevin
 
-----------------------------------------------------------------
-Amlogic DT changes for v4.8
-- add pinctrl driver and pins for several devices
-- add reset driver
-
-----------------------------------------------------------------
-Carlo Caione (3):
-      ARM64: dts: amlogic: Add hiu and periphs buses
-      documentation: Add compatibles for Amlogic Meson GXBB pin controllers
-      ARM64: dts: amlogic: Enable pin controller on GXBB-based platforms
-
-Kevin Hilman (3):
-      ARM64: dts: amlogic: add pins for EMMC, SD
-      ARM64: dts: amlogic: gxbb: pinctrl: add/update UART
-      ARM64: dts: amlogic: gxbb: add ethernet
-
-Neil Armstrong (2):
-      ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms
-      ARM: dts: amlogic: Enable Reset Controller on Meson8b platforms
-
- Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt |   2 ++
- arch/arm/boot/dts/meson8b.dtsi                              |   7 ++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts         |  20 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi            |   9 ++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi        |   3 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                 | 159 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
- 6 files changed, 199 insertions(+), 1 deletion(-)
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git
