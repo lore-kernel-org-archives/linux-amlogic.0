@@ -1,19 +1,27 @@
-From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun, 12 Jun 2016 23:05:29 +0200
-Subject: [PATCH v2 2/2] board: amlogic: Rename folder for Amlogic boards
-In-Reply-To: <1465582703-20895-3-git-send-email-carlo@caione.org>
-References: <1465582703-20895-1-git-send-email-carlo@caione.org>
- <1465582703-20895-3-git-send-email-carlo@caione.org>
-Message-ID: <20160612210529.GB14048@gmail.com>
+From: sfr@canb.auug.org.au (Stephen Rothwell)
+Date: Mon, 13 Jun 2016 12:03:34 +1000
+Subject: linux-next: request to include linux-amlogic tree
+In-Reply-To: <7h60tidlvs.fsf@baylibre.com>
+References: <CAOi56cXb7TjsctpeFWqGCmEx2LG-i11qoLBGDhi1OBJpbyko4A@mail.gmail.com>
+ <20160606010007.6941cc2d@canb.auug.org.au>
+ <7h60tidlvs.fsf@baylibre.com>
+Message-ID: <20160613120334.5bd8edd9@canb.auug.org.au>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Jun 10, 2016 at 08:18:23PM +0200, Carlo Caione wrote:
-> From: Carlo Caione <carlo@endlessm.com>
+Hi Kevin,
+
+On Thu, 09 Jun 2016 15:43:03 -0700 Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Stephen Rothwell <sfr@canb.auug.org.au> writes:
 > 
-> s/hardkernel/amlogic/ to have a single place for all the amlogic-based
-> boards.
+> > I also have just you as the contact - I can add more contacts if
+> > that makes sense.  
+> 
+> Please also add Carlo Caione <carlo@caione.org>
 
-Makes sense.
+Done.
 
-Acked-by: Beniamino Galvani <b.galvani@gmail.com>
+-- 
+Cheers,
+Stephen Rothwell
