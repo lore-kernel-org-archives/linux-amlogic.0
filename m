@@ -1,27 +1,30 @@
-From: sfr@canb.auug.org.au (Stephen Rothwell)
-Date: Mon, 13 Jun 2016 12:03:34 +1000
-Subject: linux-next: request to include linux-amlogic tree
-In-Reply-To: <7h60tidlvs.fsf@baylibre.com>
-References: <CAOi56cXb7TjsctpeFWqGCmEx2LG-i11qoLBGDhi1OBJpbyko4A@mail.gmail.com>
- <20160606010007.6941cc2d@canb.auug.org.au>
- <7h60tidlvs.fsf@baylibre.com>
-Message-ID: <20160613120334.5bd8edd9@canb.auug.org.au>
+From: herbert@gondor.apana.org.au (Herbert Xu)
+Date: Mon, 13 Jun 2016 20:31:09 +0800
+Subject: [PATCH v2 0/3] hw_random: Add Amlogic Meson SoCs Random
+ Generator driver
+In-Reply-To: <1465546915-24229-1-git-send-email-narmstrong@baylibre.com>
+References: <1465546915-24229-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20160613123109.GA8674@gondor.apana.org.au>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
-
-On Thu, 09 Jun 2016 15:43:03 -0700 Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Stephen Rothwell <sfr@canb.auug.org.au> writes:
+On Fri, Jun 10, 2016 at 10:21:52AM +0200, Neil Armstrong wrote:
+> Add support for the Amlogic Meson SoCs Hardware Random generator as a hw_random char driver.
+> The generator is a single 32bit wide register.
+> Also adds the Meson GXBB SoC DTSI node and corresponding DT bindings.
 > 
-> > I also have just you as the contact - I can add more contacts if
-> > that makes sense.  
+> Changes since v1 at http://lkml.kernel.org/r/1464943621-18278-1-git-send-email-narmstrong at baylibre.com :
+> - change to depend on ARCH_MESON || COMPILE_TEST
+> - check buffer max size in read
 > 
-> Please also add Carlo Caione <carlo@caione.org>
+> Neil Armstrong (3):
+>   char: hw_random: Add Amlogic Meson Hardware Random Generator
+>   dt-bindings: hwrng: Add Amlogic Meson Hardware Random Generator
+>     bindings
+>   ARM64: dts: meson-gxbb: Add Hardware Random Generator node
 
-Done.
-
+All applied.  Thanks.
 -- 
-Cheers,
-Stephen Rothwell
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
