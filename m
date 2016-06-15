@@ -1,33 +1,24 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 15 Jun 2016 12:01:46 +0200
-Subject: [RESEND PATCH 2/2] ARM64: dts: meson-gxbb: Add Hardware Random
- Generator node
-In-Reply-To: <1465984906-17840-1-git-send-email-narmstrong@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 15 Jun 2016 08:57:04 -0700
+Subject: [RESEND PATCH 0/2] hw_random: Add Amlogic Meson SoCs Random
+ Generator driver
+In-Reply-To: <1465984906-17840-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Wed, 15 Jun 2016 12:01:44 +0200")
 References: <1465984906-17840-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1465984906-17840-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2shweqwbz.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 063e3b6..806b903 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -221,6 +221,11 @@
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xc8834000 0x0 0x2000>;
- 
-+			rng {
-+				compatible = "amlogic,meson-rng";
-+				reg = <0x0 0x0 0x0 0x4>;
-+			};
-+
- 			pinctrl_periphs: pinctrl at 4b0 {
- 				compatible = "amlogic,meson-gxbb-periphs-pinctrl";
- 				#address-cells = <2>;
--- 
-2.7.0
+> NOTE: This is a resent of the DT Bindings and DTSI patches based on the Amlogic DT 64bit
+> GIT pull request from Kevin Hilman at [1].
+>
+> Changes since v2 at http://lkml.kernel.org/r/1465546915-24229-1-git-send-email-narmstrong at baylibre.com :
+> - Move rng peripheral node into periphs simple-bus node
+
+Thanks for the update.
+
+Applied to the dt64 branch of the amlogic tree.
+
+Kevin
