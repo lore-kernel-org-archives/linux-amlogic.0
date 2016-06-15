@@ -1,24 +1,44 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 15 Jun 2016 08:57:04 -0700
-Subject: [RESEND PATCH 0/2] hw_random: Add Amlogic Meson SoCs Random
- Generator driver
-In-Reply-To: <1465984906-17840-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Wed, 15 Jun 2016 12:01:44 +0200")
-References: <1465984906-17840-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2shweqwbz.fsf@baylibre.com>
+Date: Wed, 15 Jun 2016 11:27:46 -0700
+Subject: [PATCH] arm64: defconfig: enable stmmac and realtek PHY as modules
+In-Reply-To: <1464993495-19018-1-git-send-email-khilman@baylibre.com>
+References: <1464993495-19018-1-git-send-email-khilman@baylibre.com>
+Message-ID: <CAOi56cUGq87cEm0uhfVS=tVnwPoUCKVF5YX-G0Z_wW_zezYXfA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Hi Catalin, Will,
 
-> NOTE: This is a resent of the DT Bindings and DTSI patches based on the Amlogic DT 64bit
-> GIT pull request from Kevin Hilman at [1].
+On Fri, Jun 3, 2016 at 3:38 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Some Amlogic GXBB boards use the stmmac ethernet driver.  Also, enable
+> the realtek PHY used on meson-gxbb-odroidc2.  The micrel PHY used on the
+> meson-gxbb-p20x boards is already enabled.
 >
-> Changes since v2 at http://lkml.kernel.org/r/1465546915-24229-1-git-send-email-narmstrong at baylibre.com :
-> - Move rng peripheral node into periphs simple-bus node
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 
-Thanks for the update.
+Gentle reminder ping.
 
-Applied to the dt64 branch of the amlogic tree.
+Thanks,
 
 Kevin
+
+> ---
+>  arch/arm64/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index fd2d74d0491e..987a6158c19d 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -127,6 +127,8 @@ CONFIG_SKY2=y
+>  CONFIG_RAVB=y
+>  CONFIG_SMC91X=y
+>  CONFIG_SMSC911X=y
+> +CONFIG_STMMAC_ETH=m
+> +CONFIG_REALTEK_PHY=m
+>  CONFIG_MICREL_PHY=y
+>  CONFIG_USB_PEGASUS=m
+>  CONFIG_USB_RTL8150=m
+> --
+> 2.7.4
+>
