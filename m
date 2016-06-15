@@ -1,53 +1,36 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Tue, 14 Jun 2016 18:41:48 -0700
-Subject: [PATCH 7/7] arm64: dts: gxbb clock controller
-In-Reply-To: <m260tbsigp.fsf@baylibre.com>
-References: <1465518774-26924-1-git-send-email-mturquette@baylibre.com>
- <1465518774-26924-8-git-send-email-mturquette@baylibre.com>
- <m260tbsigp.fsf@baylibre.com>
-Message-ID: <20160615014148.5467.29763@quark.deferred.io>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 15 Jun 2016 12:01:44 +0200
+Subject: [RESEND PATCH 0/2] hw_random: Add Amlogic Meson SoCs Random Generator
+ driver
+Message-ID: <1465984906-17840-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Kevin Hilman (2016-06-14 12:01:26)
-> Michael Turquette <mturquette@baylibre.com> writes:
-> 
-> > Add the clock controller node for the AmLogic GXBB machine.
-> >
-> > Signed-off-by: Michael Turquette <mturquette@baylibre.com>
-> > ---
-> >  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> > index 832815d..3badfab 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> > @@ -174,5 +174,12 @@
-> >                       #size-cells = <2>;
-> >                       ranges = <0x0 0x0 0x0 0xd0000000 0x0 0x200000>;
-> >               };
-> > +
-> > +             clkc: clock-controller at c883c000 {
-> > +                     compatible = "amlogic,gxbb-clkc";
-> > +                     #clock-cells = <1>;
-> > +                     reg = <0x0 0xc883c000 0x0 0x3db>;
-> > +             };
-> > +
-> >       };
-> >  };
-> 
-> minor nit: could you put this under the (recently added) hibus node (at
-> offset 0).  See the DT in my for-next branch for reference:
+NOTE: This is a resent of the DT Bindings and DTSI patches based on the Amlogic DT 64bit
+GIT pull request from Kevin Hilman at [1].
 
-Ah, I had wondered about that. Will do.
+Changes since v2 at http://lkml.kernel.org/r/1465546915-24229-1-git-send-email-narmstrong at baylibre.com :
+- Move rng peripheral node into periphs simple-bus node
 
-Thanks for reviewing,
-Mike
+Add support for the Amlogic Meson SoCs Hardware Random generator as a hw_random char driver.
+The generator is a single 32bit wide register.
+Also adds the Meson GXBB SoC DTSI node and corresponding DT bindings.
 
-> 
-> https://git.kernel.org/cgit/linux/kernel/git/khilman/linux-amlogic.git/log/?h=for-next
-> 
-> Thanks,
-> 
-> Kevin
+Changes since v1 at http://lkml.kernel.org/r/1464943621-18278-1-git-send-email-narmstrong at baylibre.com :
+- change to depend on ARCH_MESON || COMPILE_TEST
+- check buffer max size in read
+
+[1] [GIT PULL] Amlogic DT 64-bit changes for v4.8 : http://lkml.kernel.org/r/7hshwfbiit.fsf at baylibre.com
+
+Neil Armstrong (2):
+  dt-bindings: hwrng: Add Amlogic Meson Hardware Random Generator
+    bindings
+  ARM64: dts: meson-gxbb: Add Hardware Random Generator node
+
+ .../devicetree/bindings/rng/amlogic,meson-rng.txt          | 14 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                |  5 +++++
+ 2 files changed, 19 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+
+-- 
+2.7.0
