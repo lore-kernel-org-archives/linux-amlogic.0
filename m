@@ -1,26 +1,24 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 15 Jun 2016 14:04:23 -0700
-Subject: [PATCH] arm64: defconfig: enable stmmac and realtek PHY as modules
-In-Reply-To: <CAOi56cUGq87cEm0uhfVS=tVnwPoUCKVF5YX-G0Z_wW_zezYXfA@mail.gmail.com>
-References: <1464993495-19018-1-git-send-email-khilman@baylibre.com>
- <CAOi56cUGq87cEm0uhfVS=tVnwPoUCKVF5YX-G0Z_wW_zezYXfA@mail.gmail.com>
-Message-ID: <CAOi56cXzqp3uDRUsmies4PKgoZgDdZU3i1yrqt8y0=Qh+VSvSw@mail.gmail.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Thu, 16 Jun 2016 08:06:52 +0200
+Subject: [PATCH v7 1/3] firmware: Amlogic: Add secure monitor driver
+In-Reply-To: <1465587851-24184-2-git-send-email-carlo@caione.org>
+References: <1465587851-24184-1-git-send-email-carlo@caione.org>
+ <1465587851-24184-2-git-send-email-carlo@caione.org>
+Message-ID: <20160616060652.GA2845@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Jun 15, 2016 at 11:27 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Hi Catalin, Will,
->
-> On Fri, Jun 3, 2016 at 3:38 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->> Some Amlogic GXBB boards use the stmmac ethernet driver.  Also, enable
->> the realtek PHY used on meson-gxbb-odroidc2.  The micrel PHY used on the
->> meson-gxbb-p20x boards is already enabled.
->>
->> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
->
-> Gentle reminder ping.
+On 10/06/16 21:44, Carlo Caione wrote:
+> From: Carlo Caione <carlo@endlessm.com>
+> 
+> Introduce a driver to provide calls into secure monitor mode.
+> 
+> In the Amlogic SoCs these calls are used for multiple reasons: access to
+> NVMEM, set USB boot, enable JTAG, etc...
+> 
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
 
-Oops, nevermind.  I guess we've been taking these through arm-soc.
-Sorry for the noise.
+Ping?
 
-Kevin
+-- 
+Carlo Caione
