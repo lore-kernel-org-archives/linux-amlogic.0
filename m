@@ -1,63 +1,31 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu, 16 Jun 2016 21:48:56 -0700
-Subject: [PATCH 00/10] meson8b clock driver rewrite/cleanup
-In-Reply-To: <m2ziqnr3d9.fsf@baylibre.com>
-References: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
- <m2ziqnr3d9.fsf@baylibre.com>
-Message-ID: <20160617044856.27203.7659@quark.deferred.io>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 17 Jun 2016 16:29:40 +0200
+Subject: [PATCH 0/4] pwm: Add Amlogic Meson SoC PWM Controller
+Message-ID: <1466173784-15625-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Kevin Hilman (2016-06-14 12:12:50)
-> Michael Turquette <mturquette@baylibre.com> writes:
-> 
-> > This series came about while writing the clock driver for the AmLogic
-> > GXBB clock controller. GXBB shares much of the same clock controller IP
-> > as the Meson8b clock controller and the source for the drivers is very
-> > similar. However, I wanted the GXBB driver to actually be a real
-> > platform_driver, and not an early initcall, which led to the same
-> > changes in the Meson8b driver. From there a lot of other changes came
-> > about.
-> >
-> > This series improves documentation, refactors statically initialized
-> > data, removes unnecessary registration functions and converts the
-> > meson8b clock controller code into a proper platform_driver. It also
-> > changes up the Kconfig bits to prepare for the gxbb clock controller.
-> > The diffstat is -190, which is nice as well.
-> >
-> > As a consequence of the shift to platform_driver, all of clocks are
-> > registered at module_init time. If any are needed very early during boot
-> > then the OF_CLK_DECLARE stuff can be added back in, but I doubt it is
-> > necessary.
-> >
-> > Additionally this series makes use of some of the nice clk_hw helper
-> > introduced by Stephen, especially clk_hw_onecell_data.
-> 
-> Not sure if it qualifies as much of a clock test, but I at least boot
-> tested this on meson8b-odroidc1 and nothing exploded, and the
-> clk_summary looks sane:
-> 
-> / # cat /debug/clk/clk_summary
->    clock                         enable_cnt  prepare_cnt        rate   accuracy   phase
->    ----------------------------------------------------------------------------------------
->     xtal                                     0            0    24000000   0 0
->        sys_pll                               0            0  1200000000   0 0
->           cpu_clk                            0            0  1200000000   0 0
->        vid_pll                               0            0   732000000   0 0
->        fixed_pll                             0            0  2550000000   0 0
->           fclk_div7                          0            0   364285714   0 0
->           fclk_div5                          0            0   510000000   0 0
->           fclk_div4                          0            0   637500000   0 0
->              mpeg_clk_sel                    0            0   637500000   0 0
->                 mpeg_clk_div                 0            0   159375000   0 0
->                    clk81                     0            0   159375000   0 0
->           fclk_div3                          0            0   850000000   0 0
->           fclk_div2                          0            0  1275000000   0 0
+Add support for the PWM controller found in Amlogic Meson SoCs.
+This controller provides a dual PWM output with 4 selectable clock source
+and a two level divider to achieve a better PWM range.
 
-Thanks Kevin. I'll take that as a Tested-by.
+Currently Meson8b and GXBB SoCs are supported.
 
-Regards,
-Mike
+Neil Armstrong (4):
+  pwm: Add support for Meson PWM Controller
+  dt-bindings: pwm: Add bindings for Meson PWM Controller
+  ARM64: dts: meson-gxbb: Add Meson GXBB PWM Controller nodes
+  ARM: dts: meson8b: Add Meson8b PWM Controller nodes
 
-> 
-> Kevin
+ .../devicetree/bindings/pwm/pwm-meson.txt          |  21 +
+ arch/arm/boot/dts/meson8b.dtsi                     |  21 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  28 ++
+ drivers/pwm/Kconfig                                |   9 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-meson.c                            | 492 +++++++++++++++++++++
+ 6 files changed, 572 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+ create mode 100644 drivers/pwm/pwm-meson.c
+
+-- 
+2.7.0
