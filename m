@@ -1,200 +1,100 @@
-From: srinivas.kandagatla@linaro.org (Srinivas Kandagatla)
-Date: Mon, 20 Jun 2016 12:13:52 +0100
-Subject: [PATCH 4/6] nvmem: amlogic: Add Amlogic Meson EFUSE driver
-In-Reply-To: <1466339944-602-5-git-send-email-carlo@caione.org>
-References: <1466339944-602-1-git-send-email-carlo@caione.org>
- <1466339944-602-5-git-send-email-carlo@caione.org>
-Message-ID: <5767CFF0.5040102@linaro.org>
+From: slemieux.tyco@gmail.com (Sylvain Lemieux)
+Date: Mon, 20 Jun 2016 13:03:27 -0400
+Subject: [PATCH V2 63/63] clocksources: Switch back to the clksrc table
+In-Reply-To: <1466112442-31105-64-git-send-email-daniel.lezcano@linaro.org>
+References: <1466112442-31105-1-git-send-email-daniel.lezcano@linaro.org>
+ <1466112442-31105-64-git-send-email-daniel.lezcano@linaro.org>
+Message-ID: <1466442207.1887.3.camel@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Carlo,
-
-On 19/06/16 13:39, Carlo Caione wrote:
-> From: Carlo Caione <carlo@endlessm.com>
->
-> Add Amlogic EFUSE driver to access hardware data like ethernet address,
-> serial number or IDs.
->
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+On Thu, 2016-06-16 at 23:27 +0200, Daniel Lezcano wrote:
+> All the clocksource drivers's init function are now converted to return
+> an error code. CLOCKSOURCE_OF_DECLARE is no longer used as well as the
+> clksrc-of table.
+> 
+> Let's convert back the names:
+>  - CLOCKSOURCE_OF_DECLARE_RET => CLOCKSOURCE_OF_DECLARE
+>  - clksrc-of-ret              => clksrc-of
+> 
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 > ---
->   drivers/nvmem/Kconfig       |  11 ++++
->   drivers/nvmem/Makefile      |   2 +
->   drivers/nvmem/meson-efuse.c | 130 ++++++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 143 insertions(+)
->   create mode 100644 drivers/nvmem/meson-efuse.c
->
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index ca52952..ef17bc9 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -102,4 +102,15 @@ config NVMEM_VF610_OCOTP
->   	  This driver can also be build as a module. If so, the module will
->   	  be called nvmem-vf610-ocotp.
->
-> +config MESON_EFUSE
-> +	tristate "Amlogic eFuse Support"
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	select REGMAP_MMIO
+>  arch/arc/kernel/time.c                    |  6 +++---
+>  arch/arm/kernel/smp_twd.c                 |  6 +++---
+>  arch/microblaze/kernel/timer.c            |  2 +-
+>  arch/mips/ralink/cevt-rt3352.c            |  2 +-
+>  arch/nios2/kernel/time.c                  |  2 +-
+>  drivers/clocksource/arm_arch_timer.c      |  6 +++---
+>  drivers/clocksource/arm_global_timer.c    |  2 +-
+>  drivers/clocksource/armv7m_systick.c      |  2 +-
+>  drivers/clocksource/asm9260_timer.c       |  2 +-
+>  drivers/clocksource/bcm2835_timer.c       |  2 +-
+>  drivers/clocksource/bcm_kona_timer.c      |  4 ++--
+>  drivers/clocksource/cadence_ttc_timer.c   |  2 +-
+>  drivers/clocksource/clksrc-dbx500-prcmu.c |  2 +-
+>  drivers/clocksource/clksrc-probe.c        | 14 --------------
+>  drivers/clocksource/clksrc_st_lpc.c       |  2 +-
+>  drivers/clocksource/clps711x-timer.c      |  2 +-
+>  drivers/clocksource/dw_apb_timer_of.c     |  8 ++++----
+>  drivers/clocksource/exynos_mct.c          |  4 ++--
+>  drivers/clocksource/fsl_ftm_timer.c       |  2 +-
+>  drivers/clocksource/h8300_timer16.c       |  2 +-
+>  drivers/clocksource/h8300_timer8.c        |  2 +-
+>  drivers/clocksource/h8300_tpu.c           |  2 +-
+>  drivers/clocksource/meson6_timer.c        |  2 +-
+>  drivers/clocksource/mips-gic-timer.c      |  2 +-
+>  drivers/clocksource/moxart_timer.c        |  2 +-
+>  drivers/clocksource/mps2-timer.c          |  2 +-
+>  drivers/clocksource/mtk_timer.c           |  2 +-
+>  drivers/clocksource/mxs_timer.c           |  2 +-
+>  drivers/clocksource/nomadik-mtu.c         |  2 +-
+>  drivers/clocksource/pxa_timer.c           |  2 +-
+>  drivers/clocksource/qcom-timer.c          |  4 ++--
+>  drivers/clocksource/rockchip_timer.c      |  8 ++++----
+>  drivers/clocksource/samsung_pwm_timer.c   |  8 ++++----
+>  drivers/clocksource/sun4i_timer.c         |  2 +-
+>  drivers/clocksource/tango_xtal.c          |  2 +-
+>  drivers/clocksource/tegra20_timer.c       |  4 ++--
+>  drivers/clocksource/time-armada-370-xp.c  |  6 +++---
+>  drivers/clocksource/time-efm32.c          |  4 ++--
+>  drivers/clocksource/time-lpc32xx.c        |  2 +-
+>  drivers/clocksource/time-orion.c          |  2 +-
+>  drivers/clocksource/time-pistachio.c      |  2 +-
+>  drivers/clocksource/timer-atlas7.c        |  2 +-
+>  drivers/clocksource/timer-atmel-pit.c     |  2 +-
+>  drivers/clocksource/timer-atmel-st.c      |  2 +-
+>  drivers/clocksource/timer-digicolor.c     |  2 +-
+>  drivers/clocksource/timer-imx-gpt.c       | 24 ++++++++++++------------
+>  drivers/clocksource/timer-integrator-ap.c |  2 +-
+>  drivers/clocksource/timer-keystone.c      |  2 +-
+>  drivers/clocksource/timer-nps.c           |  4 ++--
+>  drivers/clocksource/timer-oxnas-rps.c     |  4 ++--
+>  drivers/clocksource/timer-prima2.c        |  2 +-
+>  drivers/clocksource/timer-sp804.c         |  4 ++--
+>  drivers/clocksource/timer-stm32.c         |  2 +-
+>  drivers/clocksource/timer-sun5i.c         |  4 ++--
+>  drivers/clocksource/timer-ti-32k.c        |  2 +-
+>  drivers/clocksource/timer-u300.c          |  2 +-
+>  drivers/clocksource/versatile.c           |  4 ++--
+>  drivers/clocksource/vf_pit_timer.c        |  2 +-
+>  drivers/clocksource/vt8500_timer.c        |  2 +-
+>  drivers/clocksource/zevio-timer.c         |  2 +-
+>  include/asm-generic/vmlinux.lds.h         |  2 --
+>  include/linux/clocksource.h               |  5 +----
+>  62 files changed, 98 insertions(+), 117 deletions(-)
+> 
+[..]
 
-NVMEM recently moved out of using regmap, as regmap did not provide 
-better abstraction, could you rebase your patch on top of mainline.
+> diff --git a/drivers/clocksource/time-lpc32xx.c b/drivers/clocksource/time-lpc32xx.c
+> index cb5b866..9649cfd 100644
+> --- a/drivers/clocksource/time-lpc32xx.c
+> +++ b/drivers/clocksource/time-lpc32xx.c
+> @@ -311,4 +311,4 @@ static int __init lpc32xx_timer_init(struct device_node *np)
+>  
+>  	return ret;
+>  }
+> -CLOCKSOURCE_OF_DECLARE_RET(lpc32xx_timer, "nxp,lpc3220-timer", lpc32xx_timer_init);
+> +CLOCKSOURCE_OF_DECLARE(lpc32xx_timer, "nxp,lpc3220-timer", lpc32xx_timer_init);
 
-Thanks,
-srini
-
-> +	help
-> +	  This is a driver to retrieve specific values from the eFuse found on
-> +	  the Amlogic Meson SoCs.
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called nvmem_meson_efuse.
-> +
->   endif
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 45ab1ae..8f942a0 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -22,3 +22,5 @@ obj-$(CONFIG_NVMEM_SUNXI_SID)	+= nvmem_sunxi_sid.o
->   nvmem_sunxi_sid-y		:= sunxi_sid.o
->   obj-$(CONFIG_NVMEM_VF610_OCOTP)	+= nvmem-vf610-ocotp.o
->   nvmem-vf610-ocotp-y		:= vf610-ocotp.o
-> +obj-$(CONFIG_MESON_EFUSE)	+= nvmem_meson_efuse.o
-> +nvmem_meson_efuse-y		:= meson-efuse.o
-> diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
-> new file mode 100644
-> index 0000000..7c80e1c
-> --- /dev/null
-> +++ b/drivers/nvmem/meson-efuse.c
-> @@ -0,0 +1,130 @@
-> +/*
-> + * Amlogic eFuse Driver
-> + *
-> + * Copyright (c) 2016 Endless Computers, Inc.
-> + * Author: Carlo Caione <carlo@endlessm.com>
-> + *
-> + * This program is free software; you can redistribute it and/or modify it
-> + * under the terms of version 2 of the GNU General Public License as
-> + * published by the Free Software Foundation.
-> + *
-> + * This program is distributed in the hope that it will be useful, but WITHOUT
-> + * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-> + * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-> + * more details.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/slab.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <linux/firmware/meson/meson_sm.h>
-> +
-> +static struct meson_sm_firmware *fw;
-> +
-> +static int meson_efuse_write(void *context, const void *data, size_t count)
-> +{
-> +	/* Nothing TBD, Read-Only */
-> +	return 0;
-> +}
-> +
-> +static int meson_efuse_read(void *context,
-> +			    const void *reg, size_t reg_size,
-> +			    void *val, size_t val_size)
-> +{
-> +	unsigned int offset = *(u32 *)reg;
-> +	u8 *buf = val;
-> +	int ret;
-> +
-> +	ret = meson_sm_call_read(fw, buf, SM_EFUSE_READ, offset,
-> +				 val_size, 0, 0, 0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct nvmem_config econfig = {
-> +	.name = "meson-efuse",
-> +	.owner = THIS_MODULE,
-> +	.read_only = true,
-> +};
-> +
-> +static struct regmap_bus meson_efuse_bus = {
-> +	.read = meson_efuse_read,
-> +	.write = meson_efuse_write,
-> +	.reg_format_endian_default = REGMAP_ENDIAN_NATIVE,
-> +	.val_format_endian_default = REGMAP_ENDIAN_NATIVE,
-> +};
-> +
-> +static struct regmap_config meson_efuse_regmap_config = {
-> +	.reg_bits = 32,
-> +	.reg_stride = 1,
-> +	.val_bits = 8,
-> +};
-> +
-> +static const struct of_device_id meson_efuse_match[] = {
-> +	{ .compatible = "amlogic,meson-gxbb-efuse", },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_efuse_match);
-> +
-> +static int meson_efuse_probe(struct platform_device *pdev)
-> +{
-> +	struct nvmem_device *nvmem;
-> +	struct regmap *regmap;
-> +	unsigned int size;
-> +
-> +	fw = meson_sm_get_fw();
-> +	if (!fw)
-> +		return -EPROBE_DEFER;
-> +
-> +	if (meson_sm_call(fw, SM_EFUSE_USER_MAX, &size, 0, 0, 0, 0, 0) < 0)
-> +		return -EINVAL;
-> +	meson_efuse_regmap_config.max_register = size - 1;
-> +
-> +	regmap = devm_regmap_init(&pdev->dev, &meson_efuse_bus,
-> +				  NULL, &meson_efuse_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&pdev->dev, "regmap init failed\n");
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	econfig.dev = &pdev->dev;
-> +	nvmem = nvmem_register(&econfig);
-> +	if (IS_ERR(nvmem))
-> +		return PTR_ERR(nvmem);
-> +
-> +	platform_set_drvdata(pdev, nvmem);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_efuse_remove(struct platform_device *pdev)
-> +{
-> +	struct nvmem_device *nvmem = platform_get_drvdata(pdev);
-> +
-> +	return nvmem_unregister(nvmem);
-> +}
-> +
-> +static struct platform_driver meson_efuse_driver = {
-> +	.probe = meson_efuse_probe,
-> +	.remove = meson_efuse_remove,
-> +	.driver = {
-> +		.name = "meson-efuse",
-> +		.of_match_table = meson_efuse_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(meson_efuse_driver);
-> +
-> +MODULE_AUTHOR("Carlo Caione <carlo@endlessm.com>");
-> +MODULE_DESCRIPTION("Amlogic Meson NVMEM driver");
-> +MODULE_LICENSE("GPL v2");
->
+For LPC32xx driver:
+Acked-by: Sylvain Lemieux <slemieux.tyco@gmail.com>
