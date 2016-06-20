@@ -1,87 +1,107 @@
-From: lee.jones@linaro.org (Lee Jones)
-Date: Mon, 20 Jun 2016 10:00:46 +0100
-Subject: [PATCH v2 4/5] mfd: rn5t618: register power off callback
- optionally
-In-Reply-To: <876c6fc0a1e300e95eda616c8c71a3ec@agner.ch>
-References: <20160608010429.19618-1-stefan@agner.ch>
- <20160608010429.19618-5-stefan@agner.ch>
- <20160616145907.GD4948@dell>
- <876c6fc0a1e300e95eda616c8c71a3ec@agner.ch>
-Message-ID: <20160620090046.GC1465@dell>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 20 Jun 2016 11:19:21 +0200
+Subject: [PATCH V2 63/63] clocksources: Switch back to the clksrc table
+In-Reply-To: <1466112442-31105-64-git-send-email-daniel.lezcano@linaro.org>
+References: <1466112442-31105-1-git-send-email-daniel.lezcano@linaro.org>
+ <1466112442-31105-64-git-send-email-daniel.lezcano@linaro.org>
+Message-ID: <5767B519.5010501@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 18 Jun 2016, Stefan Agner wrote:
-
-> On 2016-06-16 07:59, Lee Jones wrote:
-> > On Tue, 07 Jun 2016, Stefan Agner wrote:
-> > 
-> >> Only register power off if the PMIC is defined as system power
-> >> controller (see Documentation/devicetree/bindings/power/
-> >> power-controller.txt).
-> >>
-> >> Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> >> Signed-off-by: Stefan Agner <stefan@agner.ch>
-> > 
-> > These should be chronological.
-> > 
+On 06/16/2016 11:27 PM, Daniel Lezcano wrote:
+> All the clocksource drivers's init function are now converted to return
+> an error code. CLOCKSOURCE_OF_DECLARE is no longer used as well as the
+> clksrc-of table.
 > 
-> Has been discussed already here:
-> http://lists.infradead.org/pipermail/linux-arm-kernel/2015-May/345835.html
+> Let's convert back the names:
+>  - CLOCKSOURCE_OF_DECLARE_RET => CLOCKSOURCE_OF_DECLARE
+>  - clksrc-of-ret              => clksrc-of
 > 
-> It's an artifact of my development process, I keep the commits in my
-> local branches without signed off lines and add them before sending out
-> patches. So whenever I prepare a new revision, collected acks, sobs are
-> chronological, but end up before my sob.
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+>  arch/arc/kernel/time.c                    |  6 +++---
+>  arch/arm/kernel/smp_twd.c                 |  6 +++---
+>  arch/microblaze/kernel/timer.c            |  2 +-
+>  arch/mips/ralink/cevt-rt3352.c            |  2 +-
+>  arch/nios2/kernel/time.c                  |  2 +-
+>  drivers/clocksource/arm_arch_timer.c      |  6 +++---
+>  drivers/clocksource/arm_global_timer.c    |  2 +-
+>  drivers/clocksource/armv7m_systick.c      |  2 +-
+>  drivers/clocksource/asm9260_timer.c       |  2 +-
+>  drivers/clocksource/bcm2835_timer.c       |  2 +-
+>  drivers/clocksource/bcm_kona_timer.c      |  4 ++--
+>  drivers/clocksource/cadence_ttc_timer.c   |  2 +-
+>  drivers/clocksource/clksrc-dbx500-prcmu.c |  2 +-
+>  drivers/clocksource/clksrc-probe.c        | 14 --------------
+>  drivers/clocksource/clksrc_st_lpc.c       |  2 +-
+>  drivers/clocksource/clps711x-timer.c      |  2 +-
+>  drivers/clocksource/dw_apb_timer_of.c     |  8 ++++----
+>  drivers/clocksource/exynos_mct.c          |  4 ++--
+>  drivers/clocksource/fsl_ftm_timer.c       |  2 +-
+>  drivers/clocksource/h8300_timer16.c       |  2 +-
+>  drivers/clocksource/h8300_timer8.c        |  2 +-
+>  drivers/clocksource/h8300_tpu.c           |  2 +-
+>  drivers/clocksource/meson6_timer.c        |  2 +-
+>  drivers/clocksource/mips-gic-timer.c      |  2 +-
+>  drivers/clocksource/moxart_timer.c        |  2 +-
+>  drivers/clocksource/mps2-timer.c          |  2 +-
+>  drivers/clocksource/mtk_timer.c           |  2 +-
+>  drivers/clocksource/mxs_timer.c           |  2 +-
+>  drivers/clocksource/nomadik-mtu.c         |  2 +-
+>  drivers/clocksource/pxa_timer.c           |  2 +-
+>  drivers/clocksource/qcom-timer.c          |  4 ++--
+>  drivers/clocksource/rockchip_timer.c      |  8 ++++----
+>  drivers/clocksource/samsung_pwm_timer.c   |  8 ++++----
+>  drivers/clocksource/sun4i_timer.c         |  2 +-
+>  drivers/clocksource/tango_xtal.c          |  2 +-
+>  drivers/clocksource/tegra20_timer.c       |  4 ++--
+>  drivers/clocksource/time-armada-370-xp.c  |  6 +++---
+>  drivers/clocksource/time-efm32.c          |  4 ++--
+>  drivers/clocksource/time-lpc32xx.c        |  2 +-
+>  drivers/clocksource/time-orion.c          |  2 +-
+>  drivers/clocksource/time-pistachio.c      |  2 +-
+>  drivers/clocksource/timer-atlas7.c        |  2 +-
+>  drivers/clocksource/timer-atmel-pit.c     |  2 +-
+>  drivers/clocksource/timer-atmel-st.c      |  2 +-
+>  drivers/clocksource/timer-digicolor.c     |  2 +-
+>  drivers/clocksource/timer-imx-gpt.c       | 24 ++++++++++++------------
+>  drivers/clocksource/timer-integrator-ap.c |  2 +-
+>  drivers/clocksource/timer-keystone.c      |  2 +-
+>  drivers/clocksource/timer-nps.c           |  4 ++--
+>  drivers/clocksource/timer-oxnas-rps.c     |  4 ++--
+>  drivers/clocksource/timer-prima2.c        |  2 +-
+>  drivers/clocksource/timer-sp804.c         |  4 ++--
+>  drivers/clocksource/timer-stm32.c         |  2 +-
+>  drivers/clocksource/timer-sun5i.c         |  4 ++--
+>  drivers/clocksource/timer-ti-32k.c        |  2 +-
+>  drivers/clocksource/timer-u300.c          |  2 +-
+>  drivers/clocksource/versatile.c           |  4 ++--
+>  drivers/clocksource/vf_pit_timer.c        |  2 +-
+>  drivers/clocksource/vt8500_timer.c        |  2 +-
+>  drivers/clocksource/zevio-timer.c         |  2 +-
+>  include/asm-generic/vmlinux.lds.h         |  2 --
+>  include/linux/clocksource.h               |  5 +----
+>  62 files changed, 98 insertions(+), 117 deletions(-)
 > 
-> But since you are the second maintainer which has objection to that
-> style I probably should change that...
 
-It would make your life easier in the long run. :)
+[...]
 
-> >> ---
-> >>  drivers/mfd/rn5t618.c | 10 +++++++---
-> >>  1 file changed, 7 insertions(+), 3 deletions(-)
-> >>
-> >> diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-> >> index 7607ced..d9b4d40 100644
-> >> --- a/drivers/mfd/rn5t618.c
-> >> +++ b/drivers/mfd/rn5t618.c
-> >> @@ -103,9 +103,13 @@ static int rn5t618_i2c_probe(struct i2c_client *i2c,
-> >>  		return ret;
-> >>  	}
-> >>
-> >> -	if (!pm_power_off) {
-> >> -		rn5t618_pm_power_off = priv;
-> >> -		pm_power_off = rn5t618_power_off;
-> >> +	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
-> >> +		if (!pm_power_off) {
-> >> +			rn5t618_pm_power_off = priv;
-> >> +			pm_power_off = rn5t618_power_off;
-> >> +		} else {
-> >> +			dev_err(&i2c->dev, "Failed to set poweroff capability, already defined\n");
-> > 
-> > This is not an error.  Please use dev_warn() instead.
-> > 
-> 
-> Hm, I agree... FWIW, I copied the code (and that message) from here,
-> where dev_err is probably also not appropriate:
-> drivers/regulator/act8865-regulator.c
+> diff --git a/drivers/clocksource/timer-oxnas-rps.c b/drivers/clocksource/timer-oxnas-rps.c
+> index 0d99f40..bd887e2 100644
+> --- a/drivers/clocksource/timer-oxnas-rps.c
+> +++ b/drivers/clocksource/timer-oxnas-rps.c
+> @@ -293,5 +293,5 @@ err_alloc:
+>  	return ret;
+>  }
+>  
+> -CLOCKSOURCE_OF_DECLARE_RET(ox810se_rps,
+> -			   "oxsemi,ox810se-rps-timer", oxnas_rps_timer_init);
+> +CLOCKSOURCE_OF_DECLARE(ox810se_rps,
+> +		       "oxsemi,ox810se-rps-timer", oxnas_rps_timer_init);
 
-Mark (Regulator maintainer) also accepts patches.
+For the OXNAS part :
 
-> > Also, is this message actually accurate?  Your commit message would
-> > indicate that it's not.
-> 
-> Hm, maybe we should bail out with an error in that case since DT
-> explicitly asks to be power controller... Is that what you mean?
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
-I think I misunderstood the message.  To fix this I would reword it.
-
-"Poweroff call-back already defined"
-
--- 
-Lee Jones
-Linaro STMicroelectronics Landing Team Lead
-Linaro.org ? Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Thanks,
+Neil
