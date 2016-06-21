@@ -1,36 +1,50 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Jun 2016 12:02:53 +0200
-Subject: [RFC PATCH v2 8/9] ARM64: dts: meson-gxbb: Add SRAM node
+Date: Tue, 21 Jun 2016 12:02:52 +0200
+Subject: [RFC PATCH v2 7/9] dt-bindings: arm: Update arm,
+ scpi bindings with Meson GXBB SCPI
 In-Reply-To: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
 References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1466503374-28841-9-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1466503374-28841-8-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ Documentation/devicetree/bindings/arm/arm,scpi.txt | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 77381d0..913ba86 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -124,6 +124,15 @@
- 		#size-cells = <2>;
- 		ranges;
+diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+index 313dabd..fe58212 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+@@ -7,7 +7,7 @@ by Linux to initiate various system control and power operations.
  
-+		sram: sram at c8000000 {
-+			compatible = "amlogic,meson-gxbb-sram", "mmio-sram";
-+			reg = <0x0 0xc8000000 0x0 0x14000>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x0 0xc8000000 0x14000>;
-+		};
-+
- 		cbus: cbus at c1100000 {
- 			compatible = "simple-bus";
- 			reg = <0x0 0xc1100000 0x0 0x100000>;
+ Required properties:
+ 
+-- compatible : should be "arm,scpi"
++- compatible : should be "arm,scpi" or "amlogic,meson-gxbb-scpi"
+ - mboxes: List of phandle and mailbox channel specifiers
+ 	  All the channels reserved by remote SCP firmware for use by
+ 	  SCPI message protocol should be specified in any order
+@@ -60,7 +60,8 @@ A small area of SRAM is reserved for SCPI communication between application
+ processors and SCP.
+ 
+ Required properties:
+-- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno
++- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno,
++		or "amlogic,meson-gxbb-sram" for Amlogic GXBB SoC.
+ 
+ The rest of the properties should follow the generic mmio-sram description
+ found in ../../sram/sram.txt
+@@ -70,7 +71,8 @@ Each sub-node represents the reserved area for SCPI.
+ Required sub-node properties:
+ - reg : The base offset and size of the reserved area with the SRAM
+ - compatible : should be "arm,juno-scp-shmem" for Non-secure SRAM based
+-	       shared memory on Juno platforms
++	       shared memory on Juno platforms or
++	       "amlogic,meson-gxbb-scp-shmem" for Amlogic GXBB SoC.
+ 
+ Sensor bindings for the sensors based on SCPI Message Protocol
+ --------------------------------------------------------------
 -- 
 2.7.0
