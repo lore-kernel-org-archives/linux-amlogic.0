@@ -1,184 +1,236 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Jun 2016 12:02:49 +0200
-Subject: [RFC PATCH v2 4/9] firmware: Add a SCPI registry to handle multiple
- implementations
+Date: Tue, 21 Jun 2016 12:02:46 +0200
+Subject: [RFC PATCH v2 1/9] mailbox: Add Amlogic Meson Message-Handling-Unit
 In-Reply-To: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
 References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1466503374-28841-5-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1466503374-28841-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add a thin registry layer to store the current scpi_ops pointer out of the
-arm_scpi.c location.
-Add a register/unregister and devres managed unregister calls, and their
-static inline disabled stubs.
-Add the SCPI_FW config to enable the registry layer build.
+Add Amlogic Meson SoCs Message-Handling-Unit as mailbox controller
+with 2 independent channels/links to communicate with a remote processor.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/firmware/Kconfig      |  4 ++
- drivers/firmware/Makefile     |  1 +
- drivers/firmware/scpi.c       | 94 +++++++++++++++++++++++++++++++++++++++++++
- include/linux/scpi_protocol.h | 15 ++++++-
- 4 files changed, 113 insertions(+), 1 deletion(-)
- create mode 100644 drivers/firmware/scpi.c
+ drivers/mailbox/Makefile    |   2 +
+ drivers/mailbox/meson_mhu.c | 199 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 201 insertions(+)
+ create mode 100644 drivers/mailbox/meson_mhu.c
 
-diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
-index 6664f11..95b01f4 100644
---- a/drivers/firmware/Kconfig
-+++ b/drivers/firmware/Kconfig
-@@ -8,9 +8,13 @@ menu "Firmware Drivers"
- config ARM_PSCI_FW
- 	bool
+diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+index 0be3e74..6aa9dbe 100644
+--- a/drivers/mailbox/Makefile
++++ b/drivers/mailbox/Makefile
+@@ -25,3 +25,5 @@ obj-$(CONFIG_TI_MESSAGE_MANAGER) += ti-msgmgr.o
+ obj-$(CONFIG_XGENE_SLIMPRO_MBOX) += mailbox-xgene-slimpro.o
  
-+config SCPI_FW
-+	bool
+ obj-$(CONFIG_HI6220_MBOX)	+= hi6220-mailbox.o
 +
- config ARM_SCPI_PROTOCOL
- 	tristate "ARM System Control and Power Interface (SCPI) Message Protocol"
- 	depends on ARM_MHU
-+	select SCPI_FW
- 	help
- 	  System Control and Power Interface (SCPI) Message Protocol is
- 	  defined for the purpose of communication between the Application
-diff --git a/drivers/firmware/Makefile b/drivers/firmware/Makefile
-index 474bada..b697462 100644
---- a/drivers/firmware/Makefile
-+++ b/drivers/firmware/Makefile
-@@ -2,6 +2,7 @@
- # Makefile for the linux kernel.
- #
- obj-$(CONFIG_ARM_PSCI_FW)	+= psci.o
-+obj-$(CONFIG_SCPI_FW)		+= scpi.o
- obj-$(CONFIG_ARM_SCPI_PROTOCOL)	+= arm_scpi.o
- obj-$(CONFIG_DMI)		+= dmi_scan.o
- obj-$(CONFIG_DMI_SYSFS)		+= dmi-sysfs.o
-diff --git a/drivers/firmware/scpi.c b/drivers/firmware/scpi.c
++obj-$(CONFIG_ARCH_MESON)	+= meson_mhu.o
+diff --git a/drivers/mailbox/meson_mhu.c b/drivers/mailbox/meson_mhu.c
 new file mode 100644
-index 0000000..87a559a
+index 0000000..0576b92
 --- /dev/null
-+++ b/drivers/firmware/scpi.c
-@@ -0,0 +1,94 @@
++++ b/drivers/mailbox/meson_mhu.c
+@@ -0,0 +1,199 @@
 +/*
-+ * System Control and Power Interface (SCPI) Message Protocol registry
-+ *
-+ * SCPI Message Protocol is used between the System Control Processor(SCP)
-+ * and the Application Processors(AP). The Message Handling Unit(MHU)
-+ * provides a mechanism for inter-processor communication between SCP's
-+ * Cortex M3 and AP.
-+ *
-+ * SCP offers control and management of the core/cluster power states,
-+ * various power domain DVFS including the core/cluster, certain system
-+ * clocks configuration, thermal sensors and many others.
-+ *
-+ * Copyright (C) 2015 ARM Ltd.
-+ * Copyright (C) 2016 BayLibre, SAS.
++ * Copyright (C) 2016 BayLibre SAS.
 + * Author: Neil Armstrong <narmstrong@baylibre.com>
++ * Heavily based on meson_mhu.c from :
++ * Copyright (C) 2013-2015 Fujitsu Semiconductor Ltd.
++ * Copyright (C) 2015 Linaro Ltd.
++ * Author: Jassi Brar <jaswinder.singh@linaro.org>
 + *
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms and conditions of the GNU General Public License,
-+ * version 2, as published by the Free Software Foundation.
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2 of the License.
 + *
-+ * This program is distributed in the hope it will be useful, but WITHOUT
-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
-+ * more details.
-+ *
-+ * You should have received a copy of the GNU General Public License along
-+ * with this program. If not, see <http://www.gnu.org/licenses/>.
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
 + */
 +
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/export.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/list.h>
-+#include <linux/of.h>
-+#include <linux/scpi_protocol.h>
++#include <linux/interrupt.h>
 +#include <linux/spinlock.h>
++#include <linux/mutex.h>
++#include <linux/delay.h>
++#include <linux/slab.h>
++#include <linux/err.h>
++#include <linux/io.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/mailbox_controller.h>
 +
-+static struct scpi_ops *g_ops;
++#define INTR_SET_OFS	0x0
++#define INTR_STAT_OFS	0x4
++#define INTR_CLR_OFS	0x8
 +
-+struct scpi_ops *get_scpi_ops(void)
++#define MHU_LP_OFFSET	0x10
++#define MHU_HP_OFFSET	0x1c
++
++#define TX_REG_OFFSET	0x24
++
++#define MHU_CHANS	2
++
++struct meson_mhu_link {
++	unsigned int irq;
++	void __iomem *tx_reg;
++	void __iomem *rx_reg;
++};
++
++struct meson_mhu {
++	void __iomem *base;
++	struct meson_mhu_link mlink[MHU_CHANS];
++	struct mbox_chan chan[MHU_CHANS];
++	struct mbox_controller mbox;
++};
++
++static irqreturn_t meson_mhu_rx_interrupt(int irq, void *p)
 +{
-+	return g_ops;
++	struct mbox_chan *chan = p;
++	struct meson_mhu_link *mlink = chan->con_priv;
++	u32 val;
++
++	val = readl_relaxed(mlink->rx_reg + INTR_STAT_OFS);
++	if (!val)
++		return IRQ_NONE;
++
++	mbox_chan_received_data(chan, (void *)&val);
++
++	writel_relaxed(~0, mlink->rx_reg + INTR_CLR_OFS);
++
++	return IRQ_HANDLED;
 +}
-+EXPORT_SYMBOL_GPL(get_scpi_ops);
 +
-+int scpi_ops_register(struct scpi_ops *ops)
++static bool meson_mhu_last_tx_done(struct mbox_chan *chan)
 +{
-+	if (!ops)
-+		return -EINVAL;
++	struct meson_mhu_link *mlink = chan->con_priv;
++	u32 val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
 +
-+	if (g_ops)
-+		return -EEXIST;
++	return (val == 0);
++}
 +
-+	g_ops = ops;
++static int meson_mhu_send_data(struct mbox_chan *chan, void *data)
++{
++	struct meson_mhu_link *mlink = chan->con_priv;
++	u32 *arg = data;
++
++	writel_relaxed(*arg, mlink->tx_reg + INTR_SET_OFS);
 +
 +	return 0;
 +}
-+EXPORT_SYMBOL_GPL(scpi_ops_register);
 +
-+void scpi_ops_unregister(struct scpi_ops *ops)
++static int meson_mhu_startup(struct mbox_chan *chan)
 +{
-+	if (g_ops == ops)
-+		g_ops = NULL;
-+}
-+EXPORT_SYMBOL_GPL(scpi_ops_unregister);
-+
-+static void devm_scpi_ops_unregister(struct device *dev, void *res)
-+{
-+	scpi_ops_unregister(*(struct scpi_ops **)res);
-+}
-+
-+int devm_scpi_ops_register(struct device *dev,
-+				struct scpi_ops *ops)
-+{
-+	struct scpi_ops **rcops;
++	struct meson_mhu_link *mlink = chan->con_priv;
 +	int ret;
 +
-+	rcops = devres_alloc(devm_scpi_ops_unregister, sizeof(*ops),
-+			     GFP_KERNEL);
-+	if (!rcops)
++	ret = request_irq(mlink->irq, meson_mhu_rx_interrupt,
++			  IRQF_ONESHOT, "meson_mhu_link", chan);
++	if (ret) {
++		dev_err(chan->mbox->dev,
++			"Unable to acquire IRQ %d\n", mlink->irq);
++		return ret;
++	}
++
++	return 0;
++}
++
++static void meson_mhu_shutdown(struct mbox_chan *chan)
++{
++	struct meson_mhu_link *mlink = chan->con_priv;
++
++	free_irq(mlink->irq, chan);
++}
++
++static const struct mbox_chan_ops meson_mhu_ops = {
++	.send_data = meson_mhu_send_data,
++	.startup = meson_mhu_startup,
++	.shutdown = meson_mhu_shutdown,
++	.last_tx_done = meson_mhu_last_tx_done,
++};
++
++static int meson_mhu_probe(struct platform_device *pdev)
++{
++	int i, err;
++	struct meson_mhu *mhu;
++	struct device *dev = &pdev->dev;
++	struct resource *res;
++	int meson_mhu_reg[MHU_CHANS] = {MHU_LP_OFFSET, MHU_HP_OFFSET};
++
++	/* Allocate memory for device */
++	mhu = devm_kzalloc(dev, sizeof(*mhu), GFP_KERNEL);
++	if (!mhu)
 +		return -ENOMEM;
 +
-+	ret = scpi_ops_register(ops);
-+	if (!ret) {
-+		*rcops = ops;
-+		devres_add(dev, rcops);
-+	} else
-+		devres_free(rcops);
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	mhu->base = devm_ioremap_resource(dev, res);
++	if (IS_ERR(mhu->base)) {
++		dev_err(dev, "ioremap failed\n");
++		return PTR_ERR(mhu->base);
++	}
 +
-+	return ret;
++	for (i = 0; i < MHU_CHANS; i++) {
++		mhu->chan[i].con_priv = &mhu->mlink[i];
++		mhu->mlink[i].irq = platform_get_irq(pdev, i);
++		if (mhu->mlink[i].irq < 0) {
++			dev_err(dev, "failed to get irq%d\n", i);
++			return mhu->mlink[i].irq;
++		}
++		mhu->mlink[i].rx_reg = mhu->base + meson_mhu_reg[i];
++		mhu->mlink[i].tx_reg = mhu->mlink[i].rx_reg + TX_REG_OFFSET;
++	}
++
++	mhu->mbox.dev = dev;
++	mhu->mbox.chans = &mhu->chan[0];
++	mhu->mbox.num_chans = MHU_CHANS;
++	mhu->mbox.ops = &meson_mhu_ops;
++	mhu->mbox.txdone_irq = false;
++	mhu->mbox.txdone_poll = true;
++	mhu->mbox.txpoll_period = 1;
++
++	platform_set_drvdata(pdev, mhu);
++
++	err = mbox_controller_register(&mhu->mbox);
++	if (err) {
++		dev_err(dev, "Failed to register mailboxes %d\n", err);
++		return err;
++	}
++
++	dev_info(dev, "Meson MHU Mailbox registered\n");
++	return 0;
 +}
-+EXPORT_SYMBOL_GPL(devm_scpi_ops_register);
-diff --git a/include/linux/scpi_protocol.h b/include/linux/scpi_protocol.h
-index 35de50a..38c15d1 100644
---- a/include/linux/scpi_protocol.h
-+++ b/include/linux/scpi_protocol.h
-@@ -72,8 +72,21 @@ struct scpi_ops {
- 	int (*sensor_get_value)(u16, u64 *);
- };
- 
--#if IS_REACHABLE(CONFIG_ARM_SCPI_PROTOCOL)
-+#if IS_REACHABLE(CONFIG_SCPI_FW)
- struct scpi_ops *get_scpi_ops(void);
-+int scpi_ops_register(struct scpi_ops *drv);
-+void scpi_ops_unregister(struct scpi_ops *drv);
-+int devm_scpi_ops_register(struct device *dev, struct scpi_ops *drv);
- #else
- static inline struct scpi_ops *get_scpi_ops(void) { return NULL; }
 +
-+static inline int scpi_ops_register(struct scpi_ops *drv) { return -ENOTSUPP; }
-+
-+static inline void scpi_ops_unregister(struct scpi_ops *drv) { }
-+
-+static inline int devm_scpi_ops_register(struct device *dev,
-+					 struct scpi_ops *drv)
++static int meson_mhu_remove(struct platform_device *pdev)
 +{
-+	return -ENOTSUPP;
++	struct meson_mhu *mhu = platform_get_drvdata(pdev);
++
++	mbox_controller_unregister(&mhu->mbox);
++
++	return 0;
 +}
- #endif
++
++static const struct of_device_id meson_mhu_dt_ids[] = {
++	{ .compatible = "amlogic,meson-gxbb-mhu", },
++	{ /* sentinel */ },
++};
++MODULE_DEVICE_TABLE(of, meson_mhu_ids);
++
++static struct platform_driver meson_wdt_driver = {
++	.probe	= meson_mhu_probe,
++	.remove	= meson_mhu_remove,
++	.driver = {
++		.name = "meson-mhu",
++		.of_match_table	= meson_mhu_dt_ids,
++	},
++};
++
++module_platform_driver(meson_wdt_driver);
++
++MODULE_LICENSE("GPL v2");
++MODULE_ALIAS("platform:meson-mhu");
++MODULE_DESCRIPTION("Amlogic Meson MHU Driver");
++MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
 -- 
 2.7.0
