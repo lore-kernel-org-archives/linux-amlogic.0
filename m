@@ -1,236 +1,65 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Jun 2016 12:02:46 +0200
-Subject: [RFC PATCH v2 1/9] mailbox: Add Amlogic Meson Message-Handling-Unit
+Date: Tue, 21 Jun 2016 12:02:50 +0200
+Subject: [RFC PATCH v2 5/9] firmware: scpi: Switch arm_scpi to use new registry
 In-Reply-To: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
 References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1466503374-28841-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1466503374-28841-6-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add Amlogic Meson SoCs Message-Handling-Unit as mailbox controller
-with 2 independent channels/links to communicate with a remote processor.
+Change the arm_scpi.c to use the registry layer instead of returning it's
+context ->ops pointer.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/mailbox/Makefile    |   2 +
- drivers/mailbox/meson_mhu.c | 199 ++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 201 insertions(+)
- create mode 100644 drivers/mailbox/meson_mhu.c
+ drivers/firmware/arm_scpi.c | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 0be3e74..6aa9dbe 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -25,3 +25,5 @@ obj-$(CONFIG_TI_MESSAGE_MANAGER) += ti-msgmgr.o
- obj-$(CONFIG_XGENE_SLIMPRO_MBOX) += mailbox-xgene-slimpro.o
+diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+index 7e3e595..ba6bc53 100644
+--- a/drivers/firmware/arm_scpi.c
++++ b/drivers/firmware/arm_scpi.c
+@@ -162,7 +162,6 @@ struct scpi_drvinfo {
+ 	u32 firmware_version;
+ 	int num_chans;
+ 	atomic_t next_chan;
+-	struct scpi_ops *scpi_ops;
+ 	struct scpi_chan *channels;
+ 	struct scpi_dvfs_info *dvfs[MAX_DVFS_DOMAINS];
+ };
+@@ -526,7 +525,7 @@ static int scpi_sensor_get_info(u16 sensor_id, struct scpi_sensor_info *info)
+ 	return ret;
+ }
  
- obj-$(CONFIG_HI6220_MBOX)	+= hi6220-mailbox.o
+-int scpi_sensor_get_value(u16 sensor, u64 *val)
++static int scpi_sensor_get_value(u16 sensor, u64 *val)
+ {
+ 	__le16 id = cpu_to_le16(sensor);
+ 	struct sensor_value buf;
+@@ -554,12 +553,6 @@ static struct scpi_ops scpi_ops = {
+ 	.sensor_get_value = scpi_sensor_get_value,
+ };
+ 
+-struct scpi_ops *get_scpi_ops(void)
+-{
+-	return scpi_info ? scpi_info->scpi_ops : NULL;
+-}
+-EXPORT_SYMBOL_GPL(get_scpi_ops);
+-
+ static int scpi_init_versions(struct scpi_drvinfo *info)
+ {
+ 	int ret;
+@@ -743,7 +736,10 @@ err:
+ 		  FW_REV_MAJOR(scpi_info->firmware_version),
+ 		  FW_REV_MINOR(scpi_info->firmware_version),
+ 		  FW_REV_PATCH(scpi_info->firmware_version));
+-	scpi_info->scpi_ops = &scpi_ops;
 +
-+obj-$(CONFIG_ARCH_MESON)	+= meson_mhu.o
-diff --git a/drivers/mailbox/meson_mhu.c b/drivers/mailbox/meson_mhu.c
-new file mode 100644
-index 0000000..0576b92
---- /dev/null
-+++ b/drivers/mailbox/meson_mhu.c
-@@ -0,0 +1,199 @@
-+/*
-+ * Copyright (C) 2016 BayLibre SAS.
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Heavily based on meson_mhu.c from :
-+ * Copyright (C) 2013-2015 Fujitsu Semiconductor Ltd.
-+ * Copyright (C) 2015 Linaro Ltd.
-+ * Author: Jassi Brar <jaswinder.singh@linaro.org>
-+ *
-+ * This program is free software: you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License as published by
-+ * the Free Software Foundation, version 2 of the License.
-+ *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ */
-+
-+#include <linux/interrupt.h>
-+#include <linux/spinlock.h>
-+#include <linux/mutex.h>
-+#include <linux/delay.h>
-+#include <linux/slab.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/mailbox_controller.h>
-+
-+#define INTR_SET_OFS	0x0
-+#define INTR_STAT_OFS	0x4
-+#define INTR_CLR_OFS	0x8
-+
-+#define MHU_LP_OFFSET	0x10
-+#define MHU_HP_OFFSET	0x1c
-+
-+#define TX_REG_OFFSET	0x24
-+
-+#define MHU_CHANS	2
-+
-+struct meson_mhu_link {
-+	unsigned int irq;
-+	void __iomem *tx_reg;
-+	void __iomem *rx_reg;
-+};
-+
-+struct meson_mhu {
-+	void __iomem *base;
-+	struct meson_mhu_link mlink[MHU_CHANS];
-+	struct mbox_chan chan[MHU_CHANS];
-+	struct mbox_controller mbox;
-+};
-+
-+static irqreturn_t meson_mhu_rx_interrupt(int irq, void *p)
-+{
-+	struct mbox_chan *chan = p;
-+	struct meson_mhu_link *mlink = chan->con_priv;
-+	u32 val;
-+
-+	val = readl_relaxed(mlink->rx_reg + INTR_STAT_OFS);
-+	if (!val)
-+		return IRQ_NONE;
-+
-+	mbox_chan_received_data(chan, (void *)&val);
-+
-+	writel_relaxed(~0, mlink->rx_reg + INTR_CLR_OFS);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static bool meson_mhu_last_tx_done(struct mbox_chan *chan)
-+{
-+	struct meson_mhu_link *mlink = chan->con_priv;
-+	u32 val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
-+
-+	return (val == 0);
-+}
-+
-+static int meson_mhu_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct meson_mhu_link *mlink = chan->con_priv;
-+	u32 *arg = data;
-+
-+	writel_relaxed(*arg, mlink->tx_reg + INTR_SET_OFS);
-+
-+	return 0;
-+}
-+
-+static int meson_mhu_startup(struct mbox_chan *chan)
-+{
-+	struct meson_mhu_link *mlink = chan->con_priv;
-+	int ret;
-+
-+	ret = request_irq(mlink->irq, meson_mhu_rx_interrupt,
-+			  IRQF_ONESHOT, "meson_mhu_link", chan);
-+	if (ret) {
-+		dev_err(chan->mbox->dev,
-+			"Unable to acquire IRQ %d\n", mlink->irq);
++	ret = devm_scpi_ops_register(dev, &scpi_ops);
++	if (ret)
 +		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void meson_mhu_shutdown(struct mbox_chan *chan)
-+{
-+	struct meson_mhu_link *mlink = chan->con_priv;
-+
-+	free_irq(mlink->irq, chan);
-+}
-+
-+static const struct mbox_chan_ops meson_mhu_ops = {
-+	.send_data = meson_mhu_send_data,
-+	.startup = meson_mhu_startup,
-+	.shutdown = meson_mhu_shutdown,
-+	.last_tx_done = meson_mhu_last_tx_done,
-+};
-+
-+static int meson_mhu_probe(struct platform_device *pdev)
-+{
-+	int i, err;
-+	struct meson_mhu *mhu;
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	int meson_mhu_reg[MHU_CHANS] = {MHU_LP_OFFSET, MHU_HP_OFFSET};
-+
-+	/* Allocate memory for device */
-+	mhu = devm_kzalloc(dev, sizeof(*mhu), GFP_KERNEL);
-+	if (!mhu)
-+		return -ENOMEM;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	mhu->base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(mhu->base)) {
-+		dev_err(dev, "ioremap failed\n");
-+		return PTR_ERR(mhu->base);
-+	}
-+
-+	for (i = 0; i < MHU_CHANS; i++) {
-+		mhu->chan[i].con_priv = &mhu->mlink[i];
-+		mhu->mlink[i].irq = platform_get_irq(pdev, i);
-+		if (mhu->mlink[i].irq < 0) {
-+			dev_err(dev, "failed to get irq%d\n", i);
-+			return mhu->mlink[i].irq;
-+		}
-+		mhu->mlink[i].rx_reg = mhu->base + meson_mhu_reg[i];
-+		mhu->mlink[i].tx_reg = mhu->mlink[i].rx_reg + TX_REG_OFFSET;
-+	}
-+
-+	mhu->mbox.dev = dev;
-+	mhu->mbox.chans = &mhu->chan[0];
-+	mhu->mbox.num_chans = MHU_CHANS;
-+	mhu->mbox.ops = &meson_mhu_ops;
-+	mhu->mbox.txdone_irq = false;
-+	mhu->mbox.txdone_poll = true;
-+	mhu->mbox.txpoll_period = 1;
-+
-+	platform_set_drvdata(pdev, mhu);
-+
-+	err = mbox_controller_register(&mhu->mbox);
-+	if (err) {
-+		dev_err(dev, "Failed to register mailboxes %d\n", err);
-+		return err;
-+	}
-+
-+	dev_info(dev, "Meson MHU Mailbox registered\n");
-+	return 0;
-+}
-+
-+static int meson_mhu_remove(struct platform_device *pdev)
-+{
-+	struct meson_mhu *mhu = platform_get_drvdata(pdev);
-+
-+	mbox_controller_unregister(&mhu->mbox);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id meson_mhu_dt_ids[] = {
-+	{ .compatible = "amlogic,meson-gxbb-mhu", },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, meson_mhu_ids);
-+
-+static struct platform_driver meson_wdt_driver = {
-+	.probe	= meson_mhu_probe,
-+	.remove	= meson_mhu_remove,
-+	.driver = {
-+		.name = "meson-mhu",
-+		.of_match_table	= meson_mhu_dt_ids,
-+	},
-+};
-+
-+module_platform_driver(meson_wdt_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:meson-mhu");
-+MODULE_DESCRIPTION("Amlogic Meson MHU Driver");
-+MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
+ 
+ 	ret = sysfs_create_groups(&dev->kobj, versions_groups);
+ 	if (ret)
 -- 
 2.7.0
