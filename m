@@ -1,57 +1,35 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Jun 2016 12:02:45 +0200
-Subject: [RFC PATCH v2 0/9] scpi: Add SCPI registry to handle legacy protocol
-Message-ID: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 21 Jun 2016 12:02:48 +0200
+Subject: [RFC PATCH v2 3/9] ARM64: dts: meson-gxbb: Add Meson MHU Node
+In-Reply-To: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1466503374-28841-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset aims to support the legacy SCPI firmware implementation that was
-delivered as early technology preview for the JUNO platform.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Finally a stable, maintained and public implementation for the SCPI protocol
-has been upstreamed part of the JUNO support and it is the recommended way
-of implementing SCP communication on ARMv8 platforms.
-
-The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
-platforms. Only the GXBB example is provided here, but it's unclear if other
-Amlogic ARMv8 based SoCs uses this legacy procotol.
-
-In order to support the legacy protocol :
- - Move the scpi_get_ops to a thin registry layer
- - Change the arm_scpi.c to use the registry layer
- - Add a separate config option to build the registry layer
- - Add the legacy SCPI driver based on the new implementation
- - For example, add the Amlogic GXBB MHU and SCPI DT cpufreq & sensors nodes
-
-Initial RFC discution tread can be found at https://lkml.org/lkml/2016/5/26/111
-
-Neil Armstrong (9):
-  mailbox: Add Amlogic Meson Message-Handling-Unit
-  dt-bindings: mailbox: Add Amlogic Meson MHU Bindings
-  ARM64: dts: meson-gxbb: Add Meson MHU Node
-  firmware: Add a SCPI registry to handle multiple implementations
-  firmware: scpi: Switch arm_scpi to use new registry
-  firmware: Add legacy SCPI protocol driver
-  dt-bindings: arm: Update arm,scpi bindings with Meson GXBB SCPI
-  ARM64: dts: meson-gxbb: Add SRAM node
-  ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
-
- Documentation/devicetree/bindings/arm/arm,scpi.txt |   8 +-
- .../devicetree/bindings/mailbox/meson-mhu.txt      |  33 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  53 ++
- drivers/firmware/Kconfig                           |  24 +
- drivers/firmware/Makefile                          |   2 +
- drivers/firmware/arm_scpi.c                        |  14 +-
- drivers/firmware/legacy_scpi.c                     | 644 +++++++++++++++++++++
- drivers/firmware/scpi.c                            |  94 +++
- drivers/mailbox/Makefile                           |   2 +
- drivers/mailbox/meson_mhu.c                        | 199 +++++++
- include/linux/scpi_protocol.h                      |  15 +-
- 11 files changed, 1075 insertions(+), 13 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
- create mode 100644 drivers/firmware/legacy_scpi.c
- create mode 100644 drivers/firmware/scpi.c
- create mode 100644 drivers/mailbox/meson_mhu.c
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 806b903..77381d0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -315,6 +315,14 @@
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xc883c000 0x0 0x2000>;
++
++			mailbox: mailbox at 400 {
++				compatible = "amlogic,meson-gxbb-mhu";
++				reg = <0 0x400 0 0x4c>;
++				interrupts = <0 209 IRQ_TYPE_EDGE_RISING>,
++					     <0 210 IRQ_TYPE_EDGE_RISING>;
++				#mbox-cells = <1>;
++			 };
+ 		};
+ 
+ 		apb: apb at d0000000 {
 -- 
 2.7.0
