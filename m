@@ -1,101 +1,84 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Jun 2016 12:02:54 +0200
-Subject: [RFC PATCH v2 9/9] ARM64: dts: meson-gxbb: Add SCPI with cpufreq &
- sensors Nodes
+From: frank.wang@rock-chips.com (Frank Wang)
+Date: Wed, 22 Jun 2016 10:54:13 +0800
+Subject: [RFC PATCH v2 0/9] scpi: Add SCPI registry to handle legacy
+ protocol
 In-Reply-To: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
 References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1466503374-28841-10-git-send-email-narmstrong@baylibre.com>
+Message-ID: <2a58b7d6-aadc-19fb-dd24-ea6bf51c1857@rock-chips.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the vcpu DVFS clock, the SCPU shared SRAM and the SCPI sensors nodes.
+Hi Neil,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 36 +++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+On 2016/6/21 18:02, Neil Armstrong wrote:
+> This patchset aims to support the legacy SCPI firmware implementation that was
+> delivered as early technology preview for the JUNO platform.
+>
+> Finally a stable, maintained and public implementation for the SCPI protocol
+> has been upstreamed part of the JUNO support and it is the recommended way
+> of implementing SCP communication on ARMv8 platforms.
+>
+> The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
+> platforms. Only the GXBB example is provided here, but it's unclear if other
+> Amlogic ARMv8 based SoCs uses this legacy procotol.
+>
+> In order to support the legacy protocol :
+>   - Move the scpi_get_ops to a thin registry layer
+>   - Change the arm_scpi.c to use the registry layer
+>   - Add a separate config option to build the registry layer
+>   - Add the legacy SCPI driver based on the new implementation
+>   - For example, add the Amlogic GXBB MHU and SCPI DT cpufreq & sensors nodes
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 913ba86..0f2596e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -61,6 +61,7 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 
- 		cpu1: cpu at 1 {
-@@ -68,6 +69,7 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 
- 		cpu2: cpu at 2 {
-@@ -75,6 +77,7 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x2>;
- 			enable-method = "psci";
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 
- 		cpu3: cpu at 3 {
-@@ -82,6 +85,7 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x3>;
- 			enable-method = "psci";
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 	};
- 
-@@ -99,6 +103,28 @@
- 		method = "smc";
- 	};
- 
-+	scpi {
-+		compatible = "amlogic,meson-gxbb-scpi";
-+		mboxes = <&mailbox 0 &mailbox 1>;
-+		shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
-+
-+		clocks {
-+			compatible = "arm,scpi-clocks";
-+
-+			scpi_dvfs: scpi_clocks at 0 {
-+				compatible = "arm,scpi-dvfs-clocks";
-+				#clock-cells = <1>;
-+				clock-indices = <0>;
-+				clock-output-names = "vcpu";
-+	   		};
-+		};
-+
-+		scpi_sensors: sensors {
-+			compatible = "arm,scpi-sensors";
-+			#thermal-sensor-cells = <1>;
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
-@@ -131,6 +157,16 @@
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0x0 0xc8000000 0x14000>;
-+
-+			cpu_scp_lpri: scp-shmem at 0 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
-+				reg = <0x13000 0x400>;
-+			};
-+
-+			cpu_scp_hpri: scp-shmem at 200 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
-+				reg = <0x13400 0x400>;
-+			};
- 		};
- 
- 		cbus: cbus at c1100000 {
--- 
-2.7.0
+Two comments may be not very associated with this series.
+
+First, do you have any plan to implement the APIs for extended set ID of 
+SCPI? If these APIs do not care commands, just focus on a message 
+transmission access, something like a library role, and extended command 
+can define in consumers driver module, I think it can more help for 
+other consumers like Rockchip to send/receive nonstandard command data 
+conveniently. Can it be?
+
+Second, As far as I know, some legacy mailbox hardware which like 
+Altera, Rockchip...  need write command and data register sequentially, 
+then it can create a interrupt, however, arm-scpi first use inner 
+scpi_xfer structure to package the message, then data is passed to 
+msg_submit (At mailbox.c), further into the bottom mailbox driver, but 
+the data type is converted void*, so the mailbox driver could not 
+extract the contents of message, if it do cast type, it may become 
+non-general from driver view. Hence, is it possible to add a message 
+header into scpi_xfer which for the bottom mailbox driver or dope out 
+any other methods to solve it?
+
+BR.
+Frank
+
+> Initial RFC discution tread can be found at https://lkml.org/lkml/2016/5/26/111
+>
+> Neil Armstrong (9):
+>    mailbox: Add Amlogic Meson Message-Handling-Unit
+>    dt-bindings: mailbox: Add Amlogic Meson MHU Bindings
+>    ARM64: dts: meson-gxbb: Add Meson MHU Node
+>    firmware: Add a SCPI registry to handle multiple implementations
+>    firmware: scpi: Switch arm_scpi to use new registry
+>    firmware: Add legacy SCPI protocol driver
+>    dt-bindings: arm: Update arm,scpi bindings with Meson GXBB SCPI
+>    ARM64: dts: meson-gxbb: Add SRAM node
+>    ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
+>
+>   Documentation/devicetree/bindings/arm/arm,scpi.txt |   8 +-
+>   .../devicetree/bindings/mailbox/meson-mhu.txt      |  33 ++
+>   arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  53 ++
+>   drivers/firmware/Kconfig                           |  24 +
+>   drivers/firmware/Makefile                          |   2 +
+>   drivers/firmware/arm_scpi.c                        |  14 +-
+>   drivers/firmware/legacy_scpi.c                     | 644 +++++++++++++++++++++
+>   drivers/firmware/scpi.c                            |  94 +++
+>   drivers/mailbox/Makefile                           |   2 +
+>   drivers/mailbox/meson_mhu.c                        | 199 +++++++
+>   include/linux/scpi_protocol.h                      |  15 +-
+>   11 files changed, 1075 insertions(+), 13 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+>   create mode 100644 drivers/firmware/legacy_scpi.c
+>   create mode 100644 drivers/firmware/scpi.c
+>   create mode 100644 drivers/mailbox/meson_mhu.c
+>
