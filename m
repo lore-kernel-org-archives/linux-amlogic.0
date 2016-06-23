@@ -1,121 +1,65 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 22 Jun 2016 19:01:18 -0700
-Subject: [PATCH v2 4/6] clk: meson: fractional pll support
+Date: Wed, 22 Jun 2016 19:01:19 -0700
+Subject: [PATCH v2 5/6] clk: gxbb: Document bindings for the GXBB clock
+ controller
 In-Reply-To: <1466647280-17596-1-git-send-email-mturquette@baylibre.com>
 References: <1466647280-17596-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <1466647280-17596-5-git-send-email-mturquette@baylibre.com>
+Message-ID: <1466647280-17596-6-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Fractional MPLLs are a superset of the existing AmLogic MPLLs. They add
-in a couple of new bitfields for further dividing the clock rate to
-achieve rates with fractional hertz.
+Add documentations for the clock controller.
 
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Michael Turquette <mturquette@baylibre.com>
 ---
 No change in v2.
 
- drivers/clk/meson/clk-pll.c | 32 ++++++++++++++++++++++++++++++--
- drivers/clk/meson/clkc.h    | 15 +++++++++++++++
- 2 files changed, 45 insertions(+), 2 deletions(-)
+ .../bindings/clock/amlogic,gxbb-clkc.txt           | 36 ++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index 60c6b94fe9b1..4adc1e89212c 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -53,7 +53,7 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- 	struct parm *p;
- 	unsigned long parent_rate_mhz = parent_rate / 1000000;
- 	unsigned long rate_mhz;
--	u16 n, m, od;
-+	u16 n, m, frac = 0, od, od2 = 0;
- 	u32 reg;
- 
- 	p = &pll->n;
-@@ -68,7 +68,21 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- 	reg = readl(pll->base + p->reg_off);
- 	od = PARM_GET(p->width, p->shift, reg);
- 
--	rate_mhz = (parent_rate_mhz * m / n) >> od;
-+	p = &pll->od2;
-+	if (p->width) {
-+		reg = readl(pll->base + p->reg_off);
-+		od2 = PARM_GET(p->width, p->shift, reg);
-+	}
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+new file mode 100644
+index 000000000000..ce06435d28ed
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+@@ -0,0 +1,36 @@
++* Amlogic GXBB Clock and Reset Unit
 +
-+	p = &pll->frac;
-+	if (p->width) {
-+		reg = readl(pll->base + p->reg_off);
-+		frac = PARM_GET(p->width, p->shift, reg);
-+		rate_mhz = (parent_rate_mhz * m + \
-+				(parent_rate_mhz * frac >> 12)) * 2 / n;
-+		rate_mhz = rate_mhz >> od >> od2;
-+	} else
-+		rate_mhz = (parent_rate_mhz * m / n) >> od >> od2;
- 
- 	return rate_mhz * 1000000;
- }
-@@ -155,6 +169,20 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- 	reg = PARM_SET(p->width, p->shift, reg, rate_set->od);
- 	writel(reg, pll->base + p->reg_off);
- 
-+	p = &pll->od2;
-+	if (p->width) {
-+		reg = readl(pll->base + p->reg_off);
-+		reg = PARM_SET(p->width, p->shift, reg, rate_set->od2);
-+		writel(reg, pll->base + p->reg_off);
-+	}
++The Amlogic GXBB clock controller generates and supplies clock to various
++controllers within the SoC.
 +
-+	p = &pll->frac;
-+	if (p->width) {
-+		reg = readl(pll->base + p->reg_off);
-+		reg = PARM_SET(p->width, p->shift, reg, rate_set->frac);
-+		writel(reg, pll->base + p->reg_off);
-+	}
++Required Properties:
 +
- 	p = &pll->n;
- 	ret = meson_clk_pll_wait_lock(pll, p);
- 	if (ret) {
-diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 73f014691240..53326c32e853 100644
---- a/drivers/clk/meson/clkc.h
-+++ b/drivers/clk/meson/clkc.h
-@@ -40,7 +40,10 @@ struct pll_rate_table {
- 	u16		m;
- 	u16		n;
- 	u16		od;
-+	u16		od2;
-+	u16		frac;
- };
++- compatible: should be "amlogic,gxbb-clkc"
++- reg: physical base address of the clock controller and length of memory
++       mapped region.
 +
- #define PLL_RATE(_r, _m, _n, _od)					\
- 	{								\
- 		.rate		= (_r),					\
-@@ -49,12 +52,24 @@ struct pll_rate_table {
- 		.od		= (_od),				\
- 	}								\
- 
-+#define PLL_FRAC_RATE(_r, _m, _n, _od, _od2, _frac)			\
-+	{								\
-+		.rate		= (_r),					\
-+		.m		= (_m),					\
-+		.n		= (_n),					\
-+		.od		= (_od),				\
-+		.od2		= (_od2),				\
-+		.frac		= (_frac),				\
-+	}								\
++- #clock-cells: should be 1.
 +
- struct meson_clk_pll {
- 	struct clk_hw hw;
- 	void __iomem *base;
- 	struct parm m;
- 	struct parm n;
-+	struct parm frac;
- 	struct parm od;
-+	struct parm od2;
- 	const struct pll_rate_table *rate_table;
- 	unsigned int rate_count;
- 	spinlock_t *lock;
++Each clock is assigned an identifier and client nodes can use this identifier
++to specify the clock which they consume. All available clocks are defined as
++preprocessor macros in the dt-bindings/clock/gxbb-clkc.h header and can be
++used in device tree sources.
++
++Example: Clock controller node:
++
++	clkc: clock-controller at c883c000 {
++		#clock-cells = <1>;
++		compatible = "amlogic,gxbb-clkc";
++		reg = <0x0 0xc883c000 0x0 0x3db>;
++	};
++
++Example: UART controller node that consumes the clock generated by the clock
++  controller:
++
++	uart_AO: serial at c81004c0 {
++		compatible = "amlogic,meson-uart";
++		reg = <0xc81004c0 0x14>;
++		interrupts = <0 90 1>;
++		clocks = <&clkc CLKID_CLK81>;
++		status = "disabled";
++	};
 -- 
 2.1.4
