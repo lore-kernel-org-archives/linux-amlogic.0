@@ -1,50 +1,68 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu, 23 Jun 2016 21:40:03 -0700
-Subject: [PATCH v2 0/3] arm64: amlogic: support gxbb clock controller
-In-Reply-To: <m27fdfwlo2.fsf@baylibre.com>
-References: <1466647943-23193-1-git-send-email-mturquette@baylibre.com>
- <m27fdfwlo2.fsf@baylibre.com>
-Message-ID: <146674320355.35033.8992522940300504889@resonance>
+Date: Wed, 22 Jun 2016 19:07:34 -0700
+Subject: [PATCH 00/10] meson8b clock driver rewrite/cleanup
+In-Reply-To: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
+References: <1465518467-23939-1-git-send-email-mturquette@baylibre.com>
+Message-ID: <146664765420.35033.6148572558563627206@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Kevin Hilman (2016-06-23 16:05:49)
-> Michael Turquette <mturquette@baylibre.com> writes:
-> 
-> > This series breaks out some clean-up patches and the changes to dts from
-> > v1 of the meson8b[0] and gxbb[1] clk driver series. This was done to
-> > make it easy for the AmLogic maintainers to take only these patches if
-> > they want. Additionally there is a shared, immutable branch with the
-> > gxbb clk driver if the amlogic maintainers wish to merge that into their
-> > tree:
-> 
-> Thanks for splitting these out.  I've applied the first to to the 'soc'
-> branch and the 3rd to the 'dt64' branch of the amlogic tree.
-> 
-> > git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-s905
-> 
-> I assume you plan to merge this merged for v4.8?
+Quoting Michael Turquette (2016-06-09 17:27:37)
+> This series came about while writing the clock driver for the AmLogic
+> GXBB clock controller. GXBB shares much of the same clock controller IP
+> as the Meson8b clock controller and the source for the drivers is very
+> similar. However, I wanted the GXBB driver to actually be a real
+> platform_driver, and not an early initcall, which led to the same
+> changes in the Meson8b driver. From there a lot of other changes came
+> about.
 
-I've just applied it to clk-next.
+Applied to clk-next.
 
 Regards,
 Mike
 
 > 
-> Kevin
+> This series improves documentation, refactors statically initialized
+> data, removes unnecessary registration functions and converts the
+> meson8b clock controller code into a proper platform_driver. It also
+> changes up the Kconfig bits to prepare for the gxbb clock controller.
+> The diffstat is -190, which is nice as well.
 > 
-> > The only functional change was to nest the clock-controller node inside
-> > of the hiubus node, as suggested by Kevin.
+> As a consequence of the shift to platform_driver, all of clocks are
+> registered at module_init time. If any are needed very early during boot
+> then the OF_CLK_DECLARE stuff can be added back in, but I doubt it is
+> necessary.
 > 
-> > [0] Link: lkml.kernel.org/g/1465518467-23939-1-git-send-email-mturquette at baylibre.com
-> > [1] Link: lkml.kernel.org/g/1465518774-26924-1-git-send-email-mturquette at baylibre.com
-> >
-> > Michael Turquette (3):
-> >   arm: meson: explicitly select clk drivers
-> >   arm64: amlogic: select gxbb clk driver
-> >   arm64: dts: gxbb clock controller
-> >
-> >  arch/arm/mach-meson/Kconfig                 | 3 +++
-> >  arch/arm64/Kconfig.platforms                | 2 ++
-> >  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 6 ++++++
-> >  3 files changed, 11 insertions(+)
+> Additionally this series makes use of some of the nice clk_hw helper
+> introduced by Stephen, especially clk_hw_onecell_data.
+> 
+> Michael Turquette (10):
+>   clk: meson8b: rectify reg offsets with datasheet
+>   clk: meson8b: clean up fixed rate clocks
+>   clk: meson8b: clean up pll clocks
+>   clk: meson8b: clean up fixed factor clocks
+>   clk: meson8b: clean up cpu clocks
+>   clk: meson8b: remove mali clk
+>   clk: meson8b: clean up composite clocks
+>   clk: meson8b: convert to platform_driver
+>   arm: meson: explicitly select clk drivers
+>   clk: meson: only build selected platforms
+> 
+>  arch/arm/mach-meson/Kconfig              |   3 +
+>  drivers/clk/Kconfig                      |   1 +
+>  drivers/clk/Makefile                     |   2 +-
+>  drivers/clk/meson/Kconfig                |  12 +
+>  drivers/clk/meson/Makefile               |   4 +-
+>  drivers/clk/meson/clk-cpu.c              |  73 +-----
+>  drivers/clk/meson/clk-pll.c              |  72 +----
+>  drivers/clk/meson/clkc.c                 | 249 ------------------
+>  drivers/clk/meson/clkc.h                 | 150 ++---------
+>  drivers/clk/meson/meson8b-clkc.c         | 436 +++++++++++++++++++++++++------
+>  include/dt-bindings/clock/meson8b-clkc.h |   4 +-
+>  11 files changed, 408 insertions(+), 598 deletions(-)
+>  create mode 100644 drivers/clk/meson/Kconfig
+>  delete mode 100644 drivers/clk/meson/clkc.c
+> 
+> -- 
+> 2.1.4
+> 
