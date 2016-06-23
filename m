@@ -1,67 +1,83 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 22 Jun 2016 19:01:14 -0700
-Subject: [PATCH v2 0/6] Add support for AmLogic GXBB clock controller
-Message-ID: <1466647280-17596-1-git-send-email-mturquette@baylibre.com>
+Date: Wed, 22 Jun 2016 19:01:15 -0700
+Subject: [PATCH v2 1/6] clk: meson: only build selected platforms
+In-Reply-To: <1466647280-17596-1-git-send-email-mturquette@baylibre.com>
+References: <1466647280-17596-1-git-send-email-mturquette@baylibre.com>
+Message-ID: <1466647280-17596-2-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series is based on the AmLogic Meson8b rewrite/cleanup[0]. The
-AmLogic GXBB is an ARMv8-based SoC, fed by a 24MHZ xtal, and it provides
-several PLLs, muxes dividers and gates to drive CPUs and peripherals.
+Break the AmLogic clock code up so that only the necessary parts are
+compiled and linked. The core code is selected by both arm and arm64
+builds with COMMON_CLK_AMLOGIC. The individual drivers have their own
+config options as well.
 
-The main change from v1[1] is that I have moved all of the arch/arm64
-changes to a separate patch series to be picked up by the amlogic
-maintainers. This series will go through the clk tree and everyone will
-meet up and be friends in linux-next, as usual. Additionally the last
-patch includes a fix to set the CLK_IS_CRITICAL flag for clk81,
-suggested by Kevin Hilman.
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Michael Turquette <mturquette@baylibre.com>
+---
+No change in v2.
 
-A stable, immutable branch based on -rc1 with this series is available here:
-git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-s905
-
-While based on the Meson8b clock controller driver, this series adds
-supports for Multi-phase Locked Loops (mpll) and support for PLLs with
-fractional rates.
-
-This series introduces support for the new clock types and the clock controller
-platform_driver. I'm not sure about the names for the gate clocks, and
-suggestions/patches are welcome.
-
-Notably missing from this driver are the branch clocks (e.g. the mess of
-muxes and dividers that come after the PLLs and MPLLs). I could have
-guessed how things were wired up from the resources available to me, but
-I'm hoping to get some improved documentation soon and then I'll go back
-and fill them in.
-
-[0] http://lkml.kernel.org/g/1465518467-23939-1-git-send-email-mturquette at baylibre.com
-[1] Link: 1465518774-26924-1-git-send-email-mturquette at baylibre.com
-
-Michael Turquette (6):
-  clk: meson: only build selected platforms
-  clk: meson: add peripheral gate macro
-  clk: meson: add mpll support
-  clk: meson: fractional pll support
-  clk: gxbb: Document bindings for the GXBB clock controller
-  clk: gxbb: add AmLogic GXBB clk controller driver
-
- .../bindings/clock/amlogic,gxbb-clkc.txt           |  36 +
- drivers/clk/Kconfig                                |   1 +
- drivers/clk/Makefile                               |   2 +-
- drivers/clk/meson/Kconfig                          |  19 +
- drivers/clk/meson/Makefile                         |   5 +-
- drivers/clk/meson/clk-mpll.c                       |  94 ++
- drivers/clk/meson/clk-pll.c                        |  32 +-
- drivers/clk/meson/clkc.h                           |  39 +
- drivers/clk/meson/gxbb.c                           | 954 +++++++++++++++++++++
- drivers/clk/meson/gxbb.h                           | 271 ++++++
- include/dt-bindings/clock/gxbb-clkc.h              |  12 +
- 11 files changed, 1460 insertions(+), 5 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+ drivers/clk/Kconfig        |  1 +
+ drivers/clk/Makefile       |  2 +-
+ drivers/clk/meson/Kconfig  | 12 ++++++++++++
+ drivers/clk/meson/Makefile |  4 ++--
+ 4 files changed, 16 insertions(+), 3 deletions(-)
  create mode 100644 drivers/clk/meson/Kconfig
- create mode 100644 drivers/clk/meson/clk-mpll.c
- create mode 100644 drivers/clk/meson/gxbb.c
- create mode 100644 drivers/clk/meson/gxbb.h
- create mode 100644 include/dt-bindings/clock/gxbb-clkc.h
 
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+index 53ddba26578c..30feb6b40305 100644
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -208,6 +208,7 @@ config COMMON_CLK_OXNAS
+ 
+ source "drivers/clk/bcm/Kconfig"
+ source "drivers/clk/hisilicon/Kconfig"
++source "drivers/clk/meson/Kconfig"
+ source "drivers/clk/mvebu/Kconfig"
+ source "drivers/clk/qcom/Kconfig"
+ source "drivers/clk/renesas/Kconfig"
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+index dcc5e698ff6d..af03eb2f6c05 100644
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -65,7 +65,7 @@ ifeq ($(CONFIG_COMMON_CLK), y)
+ obj-$(CONFIG_ARCH_MMP)			+= mmp/
+ endif
+ obj-y					+= mvebu/
+-obj-$(CONFIG_ARCH_MESON)		+= meson/
++obj-$(CONFIG_COMMON_CLK_AMLOGIC)	+= meson/
+ obj-$(CONFIG_ARCH_MXS)			+= mxs/
+ obj-$(CONFIG_MACH_PISTACHIO)		+= pistachio/
+ obj-$(CONFIG_COMMON_CLK_NXP)		+= nxp/
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+new file mode 100644
+index 000000000000..7bb19ad7369e
+--- /dev/null
++++ b/drivers/clk/meson/Kconfig
+@@ -0,0 +1,12 @@
++config COMMON_CLK_AMLOGIC
++	bool
++	depends on OF
++	depends on ARCH_MESON || COMPILE_TEST
++
++config COMMON_CLK_MESON8B
++	bool
++	depends on COMMON_CLK_AMLOGIC
++	help
++	  Support for the clock controller on AmLogic S805 devices, aka
++	  meson8b. Say Y if you want peripherals and CPU frequency scaling to
++	  work.
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 901b5d435812..b3d60fecd846 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -2,5 +2,5 @@
+ # Makefile for Meson specific clk
+ #
+ 
+-obj-y += clk-pll.o clk-cpu.o
+-obj-y += meson8b-clkc.o
++obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o
++obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b-clkc.o
 -- 
 2.1.4
