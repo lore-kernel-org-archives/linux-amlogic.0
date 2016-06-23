@@ -1,83 +1,48 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 22 Jun 2016 19:01:15 -0700
-Subject: [PATCH v2 1/6] clk: meson: only build selected platforms
+Date: Wed, 22 Jun 2016 19:01:16 -0700
+Subject: [PATCH v2 2/6] clk: meson: add peripheral gate macro
 In-Reply-To: <1466647280-17596-1-git-send-email-mturquette@baylibre.com>
 References: <1466647280-17596-1-git-send-email-mturquette@baylibre.com>
-Message-ID: <1466647280-17596-2-git-send-email-mturquette@baylibre.com>
+Message-ID: <1466647280-17596-3-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Break the AmLogic clock code up so that only the necessary parts are
-compiled and linked. The core code is selected by both arm and arm64
-builds with COMMON_CLK_AMLOGIC. The individual drivers have their own
-config options as well.
+There are a series of peripheral and system gate clocks that fan out
+from the clk81 signal. Add a helper macro to statically initialize these
+gate clocks.
 
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Michael Turquette <mturquette@baylibre.com>
 ---
 No change in v2.
 
- drivers/clk/Kconfig        |  1 +
- drivers/clk/Makefile       |  2 +-
- drivers/clk/meson/Kconfig  | 12 ++++++++++++
- drivers/clk/meson/Makefile |  4 ++--
- 4 files changed, 16 insertions(+), 3 deletions(-)
- create mode 100644 drivers/clk/meson/Kconfig
+ drivers/clk/meson/clkc.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 53ddba26578c..30feb6b40305 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -208,6 +208,7 @@ config COMMON_CLK_OXNAS
+diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+index f3f396168ba4..9436932880c0 100644
+--- a/drivers/clk/meson/clkc.h
++++ b/drivers/clk/meson/clkc.h
+@@ -73,6 +73,20 @@ struct meson_clk_cpu {
+ int meson_clk_cpu_notifier_cb(struct notifier_block *nb, unsigned long event,
+ 		void *data);
  
- source "drivers/clk/bcm/Kconfig"
- source "drivers/clk/hisilicon/Kconfig"
-+source "drivers/clk/meson/Kconfig"
- source "drivers/clk/mvebu/Kconfig"
- source "drivers/clk/qcom/Kconfig"
- source "drivers/clk/renesas/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index dcc5e698ff6d..af03eb2f6c05 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -65,7 +65,7 @@ ifeq ($(CONFIG_COMMON_CLK), y)
- obj-$(CONFIG_ARCH_MMP)			+= mmp/
- endif
- obj-y					+= mvebu/
--obj-$(CONFIG_ARCH_MESON)		+= meson/
-+obj-$(CONFIG_COMMON_CLK_AMLOGIC)	+= meson/
- obj-$(CONFIG_ARCH_MXS)			+= mxs/
- obj-$(CONFIG_MACH_PISTACHIO)		+= pistachio/
- obj-$(CONFIG_COMMON_CLK_NXP)		+= nxp/
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-new file mode 100644
-index 000000000000..7bb19ad7369e
---- /dev/null
-+++ b/drivers/clk/meson/Kconfig
-@@ -0,0 +1,12 @@
-+config COMMON_CLK_AMLOGIC
-+	bool
-+	depends on OF
-+	depends on ARCH_MESON || COMPILE_TEST
++#define MESON_GATE(_name, _reg, _bit)					\
++struct clk_gate gxbb_##_name = { 						\
++	.reg = (void __iomem *) _reg, 					\
++	.bit_idx = (_bit), 						\
++	.lock = &clk_lock,						\
++	.hw.init = &(struct clk_init_data) { 				\
++		.name = #_name,					\
++		.ops = &clk_gate_ops,					\
++		.parent_names = (const char *[]){ "clk81" },		\
++		.num_parents = 1,					\
++		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED), 	\
++	},								\
++};
 +
-+config COMMON_CLK_MESON8B
-+	bool
-+	depends on COMMON_CLK_AMLOGIC
-+	help
-+	  Support for the clock controller on AmLogic S805 devices, aka
-+	  meson8b. Say Y if you want peripherals and CPU frequency scaling to
-+	  work.
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 901b5d435812..b3d60fecd846 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -2,5 +2,5 @@
- # Makefile for Meson specific clk
- #
- 
--obj-y += clk-pll.o clk-cpu.o
--obj-y += meson8b-clkc.o
-+obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o
-+obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b-clkc.o
+ /* clk_ops */
+ extern const struct clk_ops meson_clk_pll_ro_ops;
+ extern const struct clk_ops meson_clk_pll_ops;
 -- 
 2.1.4
