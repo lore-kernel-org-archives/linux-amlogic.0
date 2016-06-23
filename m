@@ -1,34 +1,43 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 22 Jun 2016 19:12:20 -0700
-Subject: [PATCH v2 0/3] arm64: amlogic: support gxbb clock controller
-Message-ID: <1466647943-23193-1-git-send-email-mturquette@baylibre.com>
+Date: Wed, 22 Jun 2016 19:12:21 -0700
+Subject: [PATCH v2 1/3] arm: meson: explicitly select clk drivers
+In-Reply-To: <1466647943-23193-1-git-send-email-mturquette@baylibre.com>
+References: <1466647943-23193-1-git-send-email-mturquette@baylibre.com>
+Message-ID: <1466647943-23193-2-git-send-email-mturquette@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series breaks out some clean-up patches and the changes to dts from
-v1 of the meson8b[0] and gxbb[1] clk driver series. This was done to
-make it easy for the AmLogic maintainers to take only these patches if
-they want. Additionally there is a shared, immutable branch with the
-gxbb clk driver if the amlogic maintainers wish to merge that into their
-tree:
+The AmLogic clock controller code is used by both arm and arm64
+architectures. Explicitly select the core code for all Meson (32-bit
+arm) builds, and also select the Meson8b driver when that machine is
+built.
 
-git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-s905
+Signed-off-by: Michael Turquette <mturquette@baylibre.com>
+---
+No changes in v2
 
-The only functional change was to nest the clock-controller node inside
-of the hiubus node, as suggested by Kevin.
+ arch/arm/mach-meson/Kconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
-[0] Link: lkml.kernel.org/g/1465518467-23939-1-git-send-email-mturquette at baylibre.com
-[1] Link: lkml.kernel.org/g/1465518774-26924-1-git-send-email-mturquette at baylibre.com
-
-Michael Turquette (3):
-  arm: meson: explicitly select clk drivers
-  arm64: amlogic: select gxbb clk driver
-  arm64: dts: gxbb clock controller
-
- arch/arm/mach-meson/Kconfig                 | 3 +++
- arch/arm64/Kconfig.platforms                | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 6 ++++++
- 3 files changed, 11 insertions(+)
-
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index 31bdd91098b6..c689219501e0 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -7,6 +7,8 @@ menuconfig ARCH_MESON
+ 	select CACHE_L2X0
+ 	select PINCTRL
+ 	select PINCTRL_MESON
++	select COMMON_CLK
++	select COMMON_CLK_AMLOGIC
+ 
+ if ARCH_MESON
+ 
+@@ -24,5 +26,6 @@ config MACH_MESON8B
+ 	bool "Amlogic Meson8b SoCs support"
+ 	default ARCH_MESON
+ 	select MESON6_TIMER
++	select COMMON_CLK_MESON8B
+ 
+ endif
 -- 
 2.1.4
