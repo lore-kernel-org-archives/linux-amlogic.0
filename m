@@ -1,27 +1,36 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Fri, 24 Jun 2016 16:47:08 +0100
-Subject: S805 RTC driver
-In-Reply-To: <576D43B2.9060404@baylibre.com>
-References: <1466713278-24419-1-git-send-email-ben.dooks@codethink.co.uk>
- <576D43B2.9060404@baylibre.com>
-Message-ID: <80ede4a5-6d9c-79cd-b022-dce6102e5623@codethink.co.uk>
+Date: Fri, 24 Jun 2016 18:36:12 +0100
+Subject: [RFCv2 3/4] ARM: dts: amlogic: add rtc node for meson8b
+In-Reply-To: <1466789773-1609-1-git-send-email-ben.dooks@codethink.co.uk>
+References: <1466789773-1609-1-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <1466789773-1609-4-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 24/06/16 15:29, Neil Armstrong wrote:
-> On 06/23/2016 10:21 PM, Ben Dooks wrote:
->> This has been sitting in my tree for a while, so I thought
->> it would be a good idea to try and get it moving along and
->> possibly submittied soon.
->>
->> I've not been able to fully test this as I don't have an
->> S805 MMC driver to allow me to boot to a userland on my
->> ODroid-C1 board.
-> 
-> You could generate a dummy buildroot initramfs loaded in the Image with the RTC tools.
+Add the DT node for the RTC support.
 
-Thanks for the review, will try and send a RFCv2 today.
+Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+---
+ arch/arm/boot/dts/meson8b.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index 6519b80..e3b4a1a 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -156,6 +156,13 @@
+ 			status = "disabled";
+ 		};
+ 
++		rtc: rtc at c8100740 {
++			compatible = "amlogic,meson8b-rtc";
++			reg = <0xc8100740 0x14>;
++			resets = <&reset RESET_RTC>;
++			status = "disabled";
++		};
++
+ 		clkc: clock-controller at c1104000 {
+ 			#clock-cells = <1>;
+ 			compatible = "amlogic,meson8b-clkc";
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+2.8.1
