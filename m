@@ -1,28 +1,38 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Fri, 24 Jun 2016 23:05:14 +0200
-Subject: [PATCH 1/6] firmware: Amlogic: Add secure monitor driver
-In-Reply-To: <1466339944-602-2-git-send-email-carlo@caione.org>
-References: <1466339944-602-1-git-send-email-carlo@caione.org>
- <1466339944-602-2-git-send-email-carlo@caione.org>
-Message-ID: <20160624210514.GB5083@localhost>
+From: trini@konsulko.com (Tom Rini)
+Date: Fri, 24 Jun 2016 17:11:10 -0400
+Subject: [PATCH v2 0/2] Prepare U-Boot for more Amlogic boards
+In-Reply-To: <20160624210103.GA5083@localhost>
+References: <1465582703-20895-1-git-send-email-carlo@caione.org>
+ <20160624210103.GA5083@localhost>
+Message-ID: <20160624211110.GG19080@bill-the-cat>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 19/06/16 14:38, Carlo Caione wrote:
-> From: Carlo Caione <carlo@endlessm.com>
+On Fri, Jun 24, 2016 at 11:01:03PM +0200, Carlo Caione wrote:
+> On 10/06/16 20:18, Carlo Caione wrote:
+> > From: Carlo Caione <carlo@endlessm.com>
+> > 
+> > Refactor the Odroid-C2 support code to prepare U-Boot for more Amlogic board
+> > submissions.
+> > The goal is to reduce the redundancy of the configuration files and unify all
+> > the board support files onto a single amlogic directory.
+> > 
+> > Changelog:
+> > v2:
+> >  - Added Reviewed-by
+> >  - Now 2/2 clearly shows the renaming
 > 
-> Introduce a driver to provide calls into secure monitor mode.
-> 
-> In the Amlogic SoCs these calls are used for multiple reasons: access to
-> NVMEM, set USB boot, enable JTAG, etc...
-> 
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+> What's left for this patchset? I have a couple of submissions depending
+> on this one.
 
-Hey Mark,
-can you take a look to this patch? Not sure who is supposed to ACK /
-review it.
-
-Thanks,
+Sorry for the delay, working on this shortly.
 
 -- 
-Carlo Caione
+Tom
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: Digital signature
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160624/71992a29/attachment.sig>
