@@ -1,44 +1,16 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 25 Jun 2016 18:34:45 +0200
-Subject: [PATCH 2/3] ARM64: dts: amlogic: enable uart_A on all Tronsmart Vega
- S95 devices
-In-Reply-To: <20160625163446.7245-1-martin.blumenstingl@googlemail.com>
-References: <20160625163446.7245-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160625163446.7245-3-martin.blumenstingl@googlemail.com>
+Date: Sat, 25 Jun 2016 18:50:10 +0200
+Subject: [RFC] meson: add support for configuring the ethernet clocks
+Message-ID: <20160625165013.15917-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-An UART bluetooth device is attached to this serial port.
+This adds support for configuring the PRG_ETHERNET_ADDR registers on
+Meson 8b (S805) and GXBB (S905) devices. The registers there are
+completely different from those found in the earlier Meson 6b SoC
+series, which is why a new driver was implemented.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index e36b509..b003729 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -47,6 +47,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		serial1 = &uart_A;
- 	};
- 
- 	chosen {
-@@ -54,6 +55,12 @@
- 	};
- };
- 
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
- &uart_AO {
- 	status = "okay";
- 	pinctrl-0 = <&uart_ao_a_pins>;
--- 
-2.9.0
+This configuration is required when the bootloader does not configure
+these registers based on the connected PHY. Symptoms are that the
+DWMAC device is detected, but no packets are getting through, even
+though everything else is configured correctly.
