@@ -1,33 +1,46 @@
-From: linux@bluematt.me (Matt Corallo)
-Date: Sat, 25 Jun 2016 19:35:03 +0000
-Subject: [PATCH] net: stmmac: Fix null-function call in ISR on stmmac1000
-Message-ID: <E5152E61-5896-46FD-BF4A-16CDFB3796F6@bluematt.me>
+From: stefan@agner.ch (Stefan Agner)
+Date: Sat, 25 Jun 2016 18:15:10 -0700
+Subject: [PATCH v3 0/5] regulator: add Ricoh RN5T567 PMIC support
+Message-ID: <20160626011515.4428-1-stefan@agner.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-At least on Meson GXBB, the CORE_IRQ_MTL_RX_OVERFLOW interrupt is thrown
-with the stmmac1000 driver, which does not support set_rx_tail_ptr. With
-this patch and the clock fixes, 1G ethernet works on ODROID-C2.
+This patchset adds RN5T567 PMIC support which is used on the 
+Toradex Colibri iMX7S/iMX7D modules. The existing RN5T618 is from
+the same family, hence this patchset uses the same driver and adds
+variant support.
 
-Signed-off-by: Matt Corallo <git@bluematt.me>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The Colibris currently do not use the PMIC's power off capabilities,
+as do the current users of that PMIC driver. Therefore this patchset
+also makes the use of the system-power-controller property mandatory
+if the power off capabilties are required.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index a473c18..e407126 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -2804,7 +2804,7 @@ static irqreturn_t stmmac_interrupt(int irq, void
-*dev_id)
- 				priv->tx_path_in_lpi_mode = true;
- 			if (status & CORE_IRQ_TX_PATH_EXIT_LPI_MODE)
- 				priv->tx_path_in_lpi_mode = false;
--			if (status & CORE_IRQ_MTL_RX_OVERFLOW)
-+			if (status & CORE_IRQ_MTL_RX_OVERFLOW && priv->hw->dma->set_rx_tail_ptr)
- 				priv->hw->dma->set_rx_tail_ptr(priv->ioaddr,
- 							priv->rx_tail_addr,
- 							STMMAC_CHAN0);
+Changes since v2:
+- Elevate restart priority to 192 to make sure PMIC takes presedence
+  over SoC level restart capabilities (e.g. watchdog)
+- Print a warning if poweroff callback is already assigned
+- Reorder of_id and variant assignment
+- Lower delay to 1ms and justify why it is required
+- Fix DCDC count and a typos in device tree bindings
+
+Changes since v1:
+- Removed obsolete include <asm/system_misc.h>
+
+Stefan Agner (5):
+  ARM: dts: meson: minix-neo-x8: define PMIC as power controller
+  mfd: add Ricoh RN5T567 PMIC support
+  regulator: rn5t618: add RN5T567 PMIC support
+  mfd: rn5t618: register power off callback optionally
+  mfd: rn5t618: register restart handler
+
+ Documentation/devicetree/bindings/mfd/rn5t618.txt | 19 ++++---
+ arch/arm/boot/dts/meson8-minix-neo-x8.dts         |  1 +
+ drivers/mfd/Kconfig                               |  7 ++-
+ drivers/mfd/rn5t618.c                             | 69 +++++++++++++++++++----
+ drivers/regulator/Kconfig                         |  5 +-
+ drivers/regulator/rn5t618-regulator.c             | 40 +++++++++++--
+ include/linux/mfd/rn5t618.h                       | 13 +++++
+ 7 files changed, 125 insertions(+), 29 deletions(-)
+
 -- 
-2.1.4
+2.8.3
