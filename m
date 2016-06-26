@@ -1,59 +1,26 @@
-From: linux@roeck-us.net (Guenter Roeck)
-Date: Sun, 26 Jun 2016 08:13:18 -0700
-Subject: [v3,5/5] mfd: rn5t618: register restart handler
-In-Reply-To: <20160626011515.4428-6-stefan@agner.ch>
-References: <20160626011515.4428-6-stefan@agner.ch>
-Message-ID: <20160626151318.GA15869@roeck-us.net>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 26 Jun 2016 22:29:04 +0200
+Subject: media: rc: fix Meson IR decoder
+Message-ID: <20160626202905.21817-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Jun 25, 2016 at 06:15:15PM -0700, Stefan Agner wrote:
-> Use the PMIC's repower capability for reboots. Register a restart
-> handler and use a slightly elevated priority of 192 since the PMIC
-> has suprior reset capability (causing a system wide reset).
-> 
-> Signed-off-by: Stefan Agner <stefan@agner.ch>
-> Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> ---
->  drivers/mfd/rn5t618.c | 42 ++++++++++++++++++++++++++++++++++++------
->  1 file changed, 36 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-> index 1831740..14f3b5f 100644
-> --- a/drivers/mfd/rn5t618.c
-> +++ b/drivers/mfd/rn5t618.c
-> @@ -12,11 +12,13 @@
->   * along with this program. If not, see <http://www.gnu.org/licenses/>.
->   */
->  
-> +#include <linux/delay.h>
->  #include <linux/i2c.h>
->  #include <linux/mfd/core.h>
->  #include <linux/mfd/rn5t618.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
-> +#include <linux/reboot.h>
->  #include <linux/regmap.h>
->  
->  static const struct mfd_cell rn5t618_cells[] = {
-> @@ -50,17 +52,37 @@ static const struct regmap_config rn5t618_regmap_config = {
->  };
->  
->  static struct rn5t618 *rn5t618_pm_power_off;
-> +static struct notifier_block rn5t618_restart_handler;
->  
-> -static void rn5t618_power_off(void)
-> +static void rn5t618_trigger_poweroff_sequence(bool repower)
->  {
->  	/* disable automatic repower-on */
->  	regmap_update_bits(rn5t618_pm_power_off->regmap, RN5T618_REPCNT,
-> -			   RN5T618_REPCNT_REPWRON, 0);
-> +			   RN5T618_REPCNT_REPWRON, repower);
+The meson-ir driver uses the wrong offset (at least according to
+Amlogic's reference driver as well as the datasheets of the
+Meson8b/S805 and GXBB/S905).
+This means that we are getting incorrect durations (REG1_TIME_IV)
+reported from the hardware.
 
-This only works because RN5T618_REPCNT_REPWRON happens to be BIT(0).
-Better would be
+This problem was also noticed by some people trying to use this on an
+ODROID-C1 and ODROID-C2 - the workaround there (probably because the
+datasheets were not publicy available yet at that time) was to switch
+to ir_raw_event_store_edge (which leaves it up to the kernel to measure
+the duration of a pulse). See [0] and [1] for the corresponding
+patches.
 
-			RN5T618_REPCNT_REPWRON,
-			repower ?  RN5T618_REPCNT_REPWRON : 0
+Please note that I was only able to test this on an GXBB/S905 based
+device (due to lack of other hardware).
 
-Guenter
+
+[0] https://github.com/erdoukki/linux-amlogic-1/commit/969b2e2242fb14a13cb651f9a1cf771b599c958b
+[1] http://forum.odroid.com/viewtopic.php?f=135&t=20504
