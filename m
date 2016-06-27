@@ -1,21 +1,28 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Mon, 27 Jun 2016 16:25:32 +0100
-Subject: usb on odroid-c1
-In-Reply-To: <50c496de-5756-d0ff-5852-ed6ea8510ad9@codethink.co.uk>
-References: <50c496de-5756-d0ff-5852-ed6ea8510ad9@codethink.co.uk>
-Message-ID: <f632ca09-3f93-4184-8e85-83306e77ec13@codethink.co.uk>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 27 Jun 2016 08:46:41 -0700
+Subject: [RFC] improve support for the Tronsmart Vega S95 devices
+In-Reply-To: <20160625163446.7245-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sat, 25 Jun 2016 18:34:43 +0200")
+References: <20160625163446.7245-1-martin.blumenstingl@googlemail.com>
+Message-ID: <m2twgetz1a.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 24/06/16 15:27, Ben Dooks wrote:
-> Hi, is anyone else working on this? I am considering having a go at
-> getting USB going and wanted to ensure I am not duplicating other
-> peoples efforts.
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-I managed to get the onboard hub detected, but the series is still a
-bit of a mess. I'll see if I can get some further cleanup down and
-let people test this with other systems.
+> This series enables the following functionality:
+> - ethernet support
+> - enable uart_A (serial1) to which the bluetooth device is attached
+>   (currently not usable yet because the clocks for the WIFI + BT combo
+>   chip are not set up yet)
+> - SD-card support
+>
+> Please note that this is an RFC because it was only tested on a *CLONE*
+> of the "Tronsmart Vega S95 Meta". According to the .dts of my device
+> and all Tronsmart Vega S95 devices everything which was enabled in this
+> series should be identical across all devices.
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+I'll let Andreas (or anyone else with a this board) verify if this
+series works on the Vega S95 Meta.)
+
+Kevin
