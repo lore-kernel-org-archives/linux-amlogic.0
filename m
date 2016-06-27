@@ -1,40 +1,40 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 26 Jun 2016 23:06:22 +0200
-Subject: [PATCH v2 2/2] ARM: dts: meson: fixed size of the meson-ir registers
-In-Reply-To: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
-References: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160626210622.5257-3-martin.blumenstingl@googlemail.com>
+From: peppe.cavallaro@st.com (Giuseppe CAVALLARO)
+Date: Mon, 27 Jun 2016 07:50:30 +0200
+Subject: [PATCH] net: stmmac: Fix null-function call in ISR on stmmac1000
+In-Reply-To: <E5152E61-5896-46FD-BF4A-16CDFB3796F6@bluematt.me>
+References: <E5152E61-5896-46FD-BF4A-16CDFB3796F6@bluematt.me>
+Message-ID: <a5e5b8ed-9022-7de5-689b-6ea6e8f7a2e4@st.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-According to the reference driver (and the datasheet of the newer
-Meson8b/S805 and GXBB/S905 SoCs) there are 14 registers, each 32 bit
-wide.
-Adjust the register size to reflect that, as register offset 0x20 is
-now also needed by the meson-ir driver.
+Thanks Matt for the fix
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
-changes in v1 -> v2:
-- new patch, this is needed because we are now trying to read/write
-  offset 0x20 which is beyond the space which was reserved previously
-  
+On 6/25/2016 9:35 PM, Matt Corallo wrote:
+> At least on Meson GXBB, the CORE_IRQ_MTL_RX_OVERFLOW interrupt is thrown
+> with the stmmac1000 driver, which does not support set_rx_tail_ptr. With
+> this patch and the clock fixes, 1G ethernet works on ODROID-C2.
+>
+> Signed-off-by: Matt Corallo <git@bluematt.me>
 
- arch/arm/boot/dts/meson.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Acked-by: Giuseppe Cavallaro <peppe.cavallaro@st.com>
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index 8c77c87..0f5722a 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -147,7 +147,7 @@
- 
- 		ir_receiver: ir-receiver at c8100480 {
- 			compatible= "amlogic,meson6-ir";
--			reg = <0xc8100480 0x20>;
-+			reg = <0xc8100480 0x34>;
- 			interrupts = <0 15 1>;
- 			status = "disabled";
- 		};
--- 
-2.9.0
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index a473c18..e407126 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -2804,7 +2804,7 @@ static irqreturn_t stmmac_interrupt(int irq, void
+> *dev_id)
+>  				priv->tx_path_in_lpi_mode = true;
+>  			if (status & CORE_IRQ_TX_PATH_EXIT_LPI_MODE)
+>  				priv->tx_path_in_lpi_mode = false;
+> -			if (status & CORE_IRQ_MTL_RX_OVERFLOW)
+> +			if (status & CORE_IRQ_MTL_RX_OVERFLOW && priv->hw->dma->set_rx_tail_ptr)
+>  				priv->hw->dma->set_rx_tail_ptr(priv->ioaddr,
+>  							priv->rx_tail_addr,
+>  							STMMAC_CHAN0);
+>
