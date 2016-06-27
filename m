@@ -1,36 +1,38 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 27 Jun 2016 12:53:20 +0200
-Subject: [v2] media: rc: fix Meson IR decoder
-In-Reply-To: <5770C74B.9000000@baylibre.com>
-References: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
- <5770C74B.9000000@baylibre.com>
-Message-ID: <CAFBinCCyx3gnYUc2uLD6OnwK3GfJ4rGn8zq80MG4H6dYqH4jcA@mail.gmail.com>
+Date: Mon, 27 Jun 2016 13:33:49 +0200
+Subject: [PATCH RFC 3/3] ARM64: dts: meson-gxbb: use the new meson8b DWMAC
+ glue
+In-Reply-To: <CAFBinCB6i2-ZUDupAXUZkQO9y93rtCvguD_avdY=Ze72wxQKpw@mail.gmail.com>
+References: <20160625165013.15917-1-martin.blumenstingl@googlemail.com>
+ <20160625165013.15917-4-martin.blumenstingl@googlemail.com>
+ <20160627092448.GA3275@localhost>
+ <CAFBinCB6i2-ZUDupAXUZkQO9y93rtCvguD_avdY=Ze72wxQKpw@mail.gmail.com>
+Message-ID: <CAFBinCBcv+4MHe9sFeGLRRRvb7hjX4=XYOtxN_rO1yzVFZisaQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 27, 2016 at 8:27 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> I'm quite sure the registers are good for meson6 actually, and
-> it seems reasonable Amlogic made the HW evolve for the Meson8 and GXBB platforms.
-OK, then from now on I will NOT assume anymore that the reference code
-also works on Meson6 platforms. Thanks for clarifying this.
+On Mon, Jun 27, 2016 at 12:44 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> On Mon, Jun 27, 2016 at 11:24 AM, Carlo Caione <carlo@caione.org> wrote:
+>> A syscon is a region containing a set of miscellaneous registers used
+>> for several reasons by several devices [1]. It this case there is really
+>> no need to define a new syscon node since those two registers are only
+>> used by your driver.
+> I can easily change it back if that's the way to go.
+> Before I do that: could you please confirm that "mp2_clk_out" (which
+> is controlled by PRG_ETH0/offset 0x0 bits 7-9) is not something which
+> has to be available through the common clk framework?
+there was just an IRC discussion with Carlo on this topic:
+We tried to find whether PRG_ETH0 is used to actually configure
+"mp2_clk_out". Carlo brought up that it could also be the case that
+the ethernet block simply needs to be informed about the rate of the
+mp2_clk_out (which is *probably* the "mpll2" clock).
 
-> Since we are using devicetree, the correct way to achieve this fix is not
-> to drop support for meson6 (what you do) but add a logic to select the correct
-> register for meson8 and gxbb if their compatible string are encountered.
+I'm adding Michael Turquette to this mail, maybe you can comment on this topic.
 
-> I made this fix already but lacked time to actually test it on HW :
-> https://github.com/torvalds/linux/compare/master...superna9999:amlogic/v4.7/ir
->
-> My patch is missing the meson8b support, and may need a supplementary compatible check or
-> a separate dt match table.
-I can test it on GXBB (only, I do not have Meson8b hardware, but
-according to the datasheet the registers are the same).
-If you want I can start based on your patch series. Should we add only
-a binding for amlogic,meson8b and re-use that in meson-gxbb.dtsi or
-should we add both (8b and gxbb) bindings instead?
-
-> PS: BTW could you format the cover letter using the git format-patch --cover-letter instead and
-> add the v2 using the -subject-prefix like :
-> # git format-patch --cover-letter --signoff --subject-prefix "PATCH v2" -2
-sounds like this is what other devs are using as well - thanks for
-letting me know
+If it turns out that the etthernet block just has to know about the
+clock rate then we have two tasks:
+1. identify why the mpll2 rate returns 0 on my GXBB device
+2. change my patch so the new DWMAC glue gets a reference to the mpll2
+clock and then use "clk_get_rate(mpll2) / (250 * 1000000)" to
+configure the PRG_ETH0_MP2_CLK bits.
