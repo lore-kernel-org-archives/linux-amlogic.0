@@ -1,34 +1,46 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Mon, 27 Jun 2016 17:44:09 +0100
-Subject: [PATCH v2 4/4] ARM: meson: enable RTC for ODroid-C1
+Date: Mon, 27 Jun 2016 17:44:07 +0100
+Subject: [PATCH v2 2/4] meson-rtc: add device-tree binding
 In-Reply-To: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
 References: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
-Message-ID: <1467045849-495-5-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <1467045849-495-3-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Now the RTC node has been added, enable it on the ODroid-C1
-board. Note, the C1 does not have a battery by default, so
-the RTC will error out on those boards. The C1+ does have
-power to the RTC block whilst the external power is applied.
+Add documentation for the AMLogic Meson RTC.
 
 Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
 ---
- arch/arm/boot/dts/meson8b-odroidc1.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../devicetree/bindings/rtc/rtc-amlogic.txt         | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
 
-diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-index e50f1a1..5c7826f 100644
---- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-+++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-@@ -76,3 +76,8 @@
- 	pinctrl-0 = <&uart_ao_a_pins>;
- 	pinctrl-names = "default";
- };
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt b/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
+new file mode 100644
+index 0000000..efc7672
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
+@@ -0,0 +1,21 @@
++* AMlogic Meson RTC
 +
-+&rtc {
-+	status = "okay";
-+};
++Required properties:
++- compatible: should be one of the following describing the hardware:
++	* "amlogic,meson6-rtc"
++	* "amlogic,meson8-rtc"
++	* "amlogic,meson8b-rtc"
 +
++- reg: physical register space for the controller's memory mapped registers.
++
++Optional properties:
++- resets: reset controller reference to allow reset of the controller
++- interrupts: single interrupt reference if interrupt support needed
++
++Example:
++
++	rtc: rtc at c8100740 {
++		compatible = "amlogic,meson6-rtc";
++		reg = <0xc8100740 0x14>;
++		status = "disabled";
++	};
 -- 
 2.8.1
