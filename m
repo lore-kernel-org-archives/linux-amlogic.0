@@ -1,36 +1,34 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Mon, 27 Jun 2016 17:44:08 +0100
-Subject: [PATCH v2 3/4] ARM: dts: amlogic: add rtc node for meson8b
+Date: Mon, 27 Jun 2016 17:44:09 +0100
+Subject: [PATCH v2 4/4] ARM: meson: enable RTC for ODroid-C1
 In-Reply-To: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
 References: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
-Message-ID: <1467045849-495-4-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <1467045849-495-5-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the DT node for the RTC support.
+Now the RTC node has been added, enable it on the ODroid-C1
+board. Note, the C1 does not have a battery by default, so
+the RTC will error out on those boards. The C1+ does have
+power to the RTC block whilst the external power is applied.
 
 Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 2bfe401..ff97aa8 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -149,6 +149,13 @@
- 			status = "disabled";
- 		};
- 
-+		rtc: rtc at c8100740 {
-+			compatible = "amlogic,meson8b-rtc";
-+			reg = <0xc8100740 0x14>;
-+			resets = <&reset RESET_RTC>;
-+			status = "disabled";
-+		};
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index e50f1a1..5c7826f 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -76,3 +76,8 @@
+ 	pinctrl-0 = <&uart_ao_a_pins>;
+ 	pinctrl-names = "default";
+ };
 +
- 		clkc: clock-controller at c1104000 {
- 			#clock-cells = <1>;
- 			compatible = "amlogic,meson8b-clkc";
++&rtc {
++	status = "okay";
++};
++
 -- 
 2.8.1
