@@ -1,40 +1,58 @@
-From: peppe.cavallaro@st.com (Giuseppe CAVALLARO)
-Date: Mon, 27 Jun 2016 07:50:30 +0200
-Subject: [PATCH] net: stmmac: Fix null-function call in ISR on stmmac1000
-In-Reply-To: <E5152E61-5896-46FD-BF4A-16CDFB3796F6@bluematt.me>
-References: <E5152E61-5896-46FD-BF4A-16CDFB3796F6@bluematt.me>
-Message-ID: <a5e5b8ed-9022-7de5-689b-6ea6e8f7a2e4@st.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 27 Jun 2016 08:27:23 +0200
+Subject: [v2] media: rc: fix Meson IR decoder
+In-Reply-To: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
+References: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
+Message-ID: <5770C74B.9000000@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Thanks Matt for the fix
+On 06/26/2016 11:06 PM, Martin Blumenstingl wrote:
+> The meson-ir driver uses the wrong offset (at least according to
+> Amlogic's reference driver as well as the datasheets of the
+> Meson8b/S805 and GXBB/S905).
+> This means that we are getting incorrect durations (REG1_TIME_IV)
+> reported from the hardware.
 
-On 6/25/2016 9:35 PM, Matt Corallo wrote:
-> At least on Meson GXBB, the CORE_IRQ_MTL_RX_OVERFLOW interrupt is thrown
-> with the stmmac1000 driver, which does not support set_rx_tail_ptr. With
-> this patch and the clock fixes, 1G ethernet works on ODROID-C2.
->
-> Signed-off-by: Matt Corallo <git@bluematt.me>
+Hi,
 
-Acked-by: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+I'm quite sure the registers are good for meson6 actually, and
+it seems reasonable Amlogic made the HW evolve for the Meson8 and GXBB platforms.
 
-> ---
->  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index a473c18..e407126 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -2804,7 +2804,7 @@ static irqreturn_t stmmac_interrupt(int irq, void
-> *dev_id)
->  				priv->tx_path_in_lpi_mode = true;
->  			if (status & CORE_IRQ_TX_PATH_EXIT_LPI_MODE)
->  				priv->tx_path_in_lpi_mode = false;
-> -			if (status & CORE_IRQ_MTL_RX_OVERFLOW)
-> +			if (status & CORE_IRQ_MTL_RX_OVERFLOW && priv->hw->dma->set_rx_tail_ptr)
->  				priv->hw->dma->set_rx_tail_ptr(priv->ioaddr,
->  							priv->rx_tail_addr,
->  							STMMAC_CHAN0);
->
+> 
+> This problem was also noticed by some people trying to use this on an
+> ODROID-C1 and ODROID-C2 - the workaround there (probably because the
+> datasheets were not publicy available yet at that time) was to switch
+> to ir_raw_event_store_edge (which leaves it up to the kernel to measure
+> the duration of a pulse). See [0] and [1] for the corresponding
+> patches.
+
+Since we are using devicetree, the correct way to achieve this fix is not
+to drop support for meson6 (what you do) but add a logic to select the correct
+register for meson8 and gxbb if their compatible string are encountered.
+
+> Please note that I was only able to test this on an GXBB/S905 based
+> device (due to lack of other hardware).
+
+I made this fix already but lacked time to actually test it on HW :
+https://github.com/torvalds/linux/compare/master...superna9999:amlogic/v4.7/ir
+
+My patch is missing the meson8b support, and may need a supplementary compatible check or
+a separate dt match table.
+
+Neil
+
+> 
+> [0] https://github.com/erdoukki/linux-amlogic-1/commit/969b2e2242fb14a13cb651f9a1cf771b599c958b
+> [1] http://forum.odroid.com/viewtopic.php?f=135&t=20504
+> 
+
+PS: BTW could you format the cover letter using the git format-patch --cover-letter instead and
+add the v2 using the -subject-prefix like :
+# git format-patch --cover-letter --signoff --subject-prefix "PATCH v2" -2
+
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
