@@ -1,106 +1,57 @@
-From: stefan@agner.ch (Stefan Agner)
-Date: Mon, 27 Jun 2016 23:27:57 -0700
-Subject: [PATCH v4 5/5] mfd: rn5t618: register restart handler
-In-Reply-To: <20160628062757.24490-1-stefan@agner.ch>
-References: <20160628062757.24490-1-stefan@agner.ch>
-Message-ID: <20160628062757.24490-6-stefan@agner.ch>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 28 Jun 2016 09:22:11 +0200
+Subject: AMLogic RTC series (second round)
+In-Reply-To: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
+References: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <577225A3.9010409@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Use the PMIC's repower capability for reboots. Register a restart
-handler and use a slightly elevated priority of 192 since the PMIC
-has suprior reset capability (causing a system wide reset).
+On 06/27/2016 06:44 PM, Ben Dooks wrote:
+> Apologies, forgot to put the RTC driver through checkpatch
+> before sending. This gets rid of most of the warnings.
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
 
-Signed-off-by: Stefan Agner <stefan@agner.ch>
-Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
----
- drivers/mfd/rn5t618.c | 43 +++++++++++++++++++++++++++++++++++++------
- 1 file changed, 37 insertions(+), 6 deletions(-)
+Hi Ben,
 
-diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-index 1831740..b3ca6df 100644
---- a/drivers/mfd/rn5t618.c
-+++ b/drivers/mfd/rn5t618.c
-@@ -12,11 +12,13 @@
-  * along with this program. If not, see <http://www.gnu.org/licenses/>.
-  */
- 
-+#include <linux/delay.h>
- #include <linux/i2c.h>
- #include <linux/mfd/core.h>
- #include <linux/mfd/rn5t618.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-+#include <linux/reboot.h>
- #include <linux/regmap.h>
- 
- static const struct mfd_cell rn5t618_cells[] = {
-@@ -50,17 +52,38 @@ static const struct regmap_config rn5t618_regmap_config = {
- };
- 
- static struct rn5t618 *rn5t618_pm_power_off;
-+static struct notifier_block rn5t618_restart_handler;
- 
--static void rn5t618_power_off(void)
-+static void rn5t618_trigger_poweroff_sequence(bool repower)
- {
- 	/* disable automatic repower-on */
- 	regmap_update_bits(rn5t618_pm_power_off->regmap, RN5T618_REPCNT,
--			   RN5T618_REPCNT_REPWRON, 0);
-+			   RN5T618_REPCNT_REPWRON,
-+			   repower ? RN5T618_REPCNT_REPWRON : 0);
- 	/* start power-off sequence */
- 	regmap_update_bits(rn5t618_pm_power_off->regmap, RN5T618_SLPCNT,
- 			   RN5T618_SLPCNT_SWPWROFF, RN5T618_SLPCNT_SWPWROFF);
- }
- 
-+static void rn5t618_power_off(void)
-+{
-+	rn5t618_trigger_poweroff_sequence(false);
-+}
-+
-+static int rn5t618_restart(struct notifier_block *this,
-+			    unsigned long mode, void *cmd)
-+{
-+	rn5t618_trigger_poweroff_sequence(true);
-+
-+	/*
-+	 * Repower factor detection on PMIC side is not instant. 1ms
-+	 * proved to be enouth time until reset takes effect.
-+	 */
-+	mdelay(1);
-+
-+	return NOTIFY_DONE;
-+}
-+
- static const struct of_device_id rn5t618_of_match[] = {
- 	{ .compatible = "ricoh,rn5t567", .data = (void *)RN5T567 },
- 	{ .compatible = "ricoh,rn5t618", .data = (void *)RN5T618 },
-@@ -102,13 +125,21 @@ static int rn5t618_i2c_probe(struct i2c_client *i2c,
- 		return ret;
- 	}
- 
-+	rn5t618_pm_power_off = priv;
- 	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
--		if (!pm_power_off) {
--			rn5t618_pm_power_off = priv;
-+		if (!pm_power_off)
- 			pm_power_off = rn5t618_power_off;
--		} else {
-+		else
- 			dev_warn(&i2c->dev, "Poweroff callback already assigned\n");
--		}
-+	}
-+
-+	rn5t618_restart_handler.notifier_call = rn5t618_restart;
-+	rn5t618_restart_handler.priority = 192;
-+
-+	ret = register_restart_handler(&rn5t618_restart_handler);
-+	if (ret) {
-+		dev_err(&i2c->dev, "cannot register restart handler, %d\n", ret);
-+		return ret;
- 	}
- 
- 	return 0;
--- 
-2.8.3
+The patchset looks good but misses some quick introduction on how
+the RTC works, it seems to be connected to an internal serial bus,
+do you have some informations about this ?
+
+Then, the cover letter of your patchset should contain much more informations
+that "git format-patch --cover-letter" generates.
+
+My personal workflow when I have a set ready is :
+
+* run checkpatch on C files and check my changes
+# scripts/checkpatch.pl -f path/to/my/driver.c
+* I identify the number of patches to include
+* I generate the patches with cover-letter, signoff and eventually subject-prefix, here for 4 commits
+# git format-patch --cover-letter -s -4 --subject-prefix "PATCH v2" -o my_drivers_patches_v2
+* Then I complete the cover letter in my_drivers_patches_v2/0000-cover-letter
+* I also reference a small changelog between patchset version and identify the previous cover letter via it's message id
+Use the http://lkml.kernel.org service to reference a message-id, i.e this email I answer would be referenced by :
+http://lkml.kernel.org/r/1467045849-495-1-git-send-email-ben.dooks at codethink.co.uk
+while looking at the email headers at :
+Message-Id: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
+* Then I look again all the patches and check all the descriptions
+* I re-run a checkpatch.pl on all the patches (and ignore errors on the cover letter)
+# scripts/checkpatch.pl my_drivers_patches_v2/*
+* I identify all the maintainers and mailing lists
+# scripts/get_maintainer.pl my_drivers_patches_v2/*
+* Personally, I fill the CC: and To: in the headers of each patches, only adding the devicetree mailing list on DT related patches
+* Then I send them via git send-email
+# git send-email my_drivers_patches_v2/*
+=> here you can also select the recipients
+=> you can also do a dry run or send yourself the patchset to check before final sending
+
+Another rule is time, please wait at least 1 week after the last review before send another run,
+and give yourself more time to check the integrity of the patchset.
+
+Neil
