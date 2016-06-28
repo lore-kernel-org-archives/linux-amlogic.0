@@ -1,71 +1,86 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Tue, 28 Jun 2016 11:19:47 +0100
-Subject: AMLogic RTC series (second round)
-In-Reply-To: <577225A3.9010409@baylibre.com>
-References: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
- <577225A3.9010409@baylibre.com>
-Message-ID: <aea5e2f4-2440-a192-e15a-1f4ff5a30a1c@codethink.co.uk>
+From: daniel.lezcano@linaro.org (Daniel Lezcano)
+Date: Tue, 28 Jun 2016 12:30:51 +0200
+Subject: [PATCH 32/92] clocksource/drivers/meson6_timer.c: Convert init
+ function to return error
+In-Reply-To: <1467109911-11060-1-git-send-email-daniel.lezcano@linaro.org>
+References: <577251A4.7030508@linaro.org>
+ <1467109911-11060-1-git-send-email-daniel.lezcano@linaro.org>
+Message-ID: <1467109911-11060-32-git-send-email-daniel.lezcano@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 28/06/16 08:22, Neil Armstrong wrote:
-> On 06/27/2016 06:44 PM, Ben Dooks wrote:
->> Apologies, forgot to put the RTC driver through checkpatch
->> before sending. This gets rid of most of the warnings.
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic at lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>
-> 
-> Hi Ben,
-> 
-> The patchset looks good but misses some quick introduction on how
-> the RTC works, it seems to be connected to an internal serial bus,
-> do you have some informations about this ?
+The init functions do not return any error. They behave as the following:
 
-I might add a few lines into the rtc-meson.c driver, but that's all
-detailed in the datasheet (for once this seems to be documented enough
-to be able to function)
+  - panic, thus leading to a kernel crash while another timer may work and
+       make the system boot up correctly
 
-> Then, the cover letter of your patchset should contain much more informations
-> that "git format-patch --cover-letter" generates.
+  or
 
-I may just re-submit once patch to add the RTC and the binding
-documentation, and then wait until the reset controller bits have
-landed before submitting the
+  - print an error and let the caller unaware if the state of the system
 
-> My personal workflow when I have a set ready is :
-> 
-> * run checkpatch on C files and check my changes
-> # scripts/checkpatch.pl -f path/to/my/driver.c
-> * I identify the number of patches to include
-> * I generate the patches with cover-letter, signoff and eventually subject-prefix, here for 4 commits
-> # git format-patch --cover-letter -s -4 --subject-prefix "PATCH v2" -o my_drivers_patches_v2
-> * Then I complete the cover letter in my_drivers_patches_v2/0000-cover-letter
-> * I also reference a small changelog between patchset version and identify the previous cover letter via it's message id
-> Use the http://lkml.kernel.org service to reference a message-id, i.e this email I answer would be referenced by :
-> http://lkml.kernel.org/r/1467045849-495-1-git-send-email-ben.dooks at codethink.co.uk
+Change that by converting the init functions to return an error conforming
+to the CLOCKSOURCE_OF_RET prototype.
 
-I keep a copy of sent email anyway, so can get the message-ids out of it.
+Proper error handling (rollback, errno value) will be changed later case
+by case, thus this change just return back an error or success in the init
+function.
 
-> while looking at the email headers at :
-> Message-Id: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
-> * Then I look again all the patches and check all the descriptions
-> * I re-run a checkpatch.pl on all the patches (and ignore errors on the cover letter)
-> # scripts/checkpatch.pl my_drivers_patches_v2/*
-> * I identify all the maintainers and mailing lists
-> # scripts/get_maintainer.pl my_drivers_patches_v2/*
-> * Personally, I fill the CC: and To: in the headers of each patches, only adding the devicetree mailing list on DT related patches
-> * Then I send them via git send-email
-> # git send-email my_drivers_patches_v2/*
-> => here you can also select the recipients
-> => you can also do a dry run or send yourself the patchset to check before final sending
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ drivers/clocksource/meson6_timer.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
-I got sparse and checkpatch confused, and only did sparse on the series.
-
+diff --git a/drivers/clocksource/meson6_timer.c b/drivers/clocksource/meson6_timer.c
+index 1fa22c4..3a6e78f 100644
+--- a/drivers/clocksource/meson6_timer.c
++++ b/drivers/clocksource/meson6_timer.c
+@@ -126,18 +126,22 @@ static struct irqaction meson6_timer_irq = {
+ 	.dev_id		= &meson6_clockevent,
+ };
+ 
+-static void __init meson6_timer_init(struct device_node *node)
++static int __init meson6_timer_init(struct device_node *node)
+ {
+ 	u32 val;
+ 	int ret, irq;
+ 
+ 	timer_base = of_io_request_and_map(node, 0, "meson6-timer");
+-	if (IS_ERR(timer_base))
+-		panic("Can't map registers");
++	if (IS_ERR(timer_base)) {
++		pr_err("Can't map registers");
++		return -ENXIO;
++	}
+ 
+ 	irq = irq_of_parse_and_map(node, 0);
+-	if (irq <= 0)
+-		panic("Can't parse IRQ");
++	if (irq <= 0) {
++		pr_err("Can't parse IRQ");
++		return -EINVAL;
++	}
+ 
+ 	/* Set 1us for timer E */
+ 	val = readl(timer_base + TIMER_ISA_MUX);
+@@ -158,14 +162,17 @@ static void __init meson6_timer_init(struct device_node *node)
+ 	meson6_clkevt_time_stop(CED_ID);
+ 
+ 	ret = setup_irq(irq, &meson6_timer_irq);
+-	if (ret)
++	if (ret) {
+ 		pr_warn("failed to setup irq %d\n", irq);
++		return ret;
++	}
+ 
+ 	meson6_clockevent.cpumask = cpu_possible_mask;
+ 	meson6_clockevent.irq = irq;
+ 
+ 	clockevents_config_and_register(&meson6_clockevent, USEC_PER_SEC,
+ 					1, 0xfffe);
++	return 0;
+ }
+-CLOCKSOURCE_OF_DECLARE(meson6, "amlogic,meson6-timer",
++CLOCKSOURCE_OF_DECLARE_RET(meson6, "amlogic,meson6-timer",
+ 		       meson6_timer_init);
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+1.9.1
