@@ -1,40 +1,42 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 28 Jun 2016 21:17:59 +0200
-Subject: [PATCH v3 1/4] dt-bindings: media: meson-ir: Add Meson8b and GXBB
- compatible strings
+Date: Tue, 28 Jun 2016 21:18:01 +0200
+Subject: [PATCH v3 3/4] ARM64: meson-gxbb: Add Infrared Remote Controller
+ decoder
 In-Reply-To: <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
 References: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
  <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160628191802.21227-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20160628191802.21227-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Neil Armstrong <narmstrong@baylibre.com>
 
-New bindings are needed as the register layout on the newer platforms
-is slightly different compared to Meson6b.
+This adds the Infrared Remote Controller node so boards with an IR
+remote can simply enable it.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- Documentation/devicetree/bindings/media/meson-ir.txt | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
-index 407848e..e7e3f3c 100644
---- a/Documentation/devicetree/bindings/media/meson-ir.txt
-+++ b/Documentation/devicetree/bindings/media/meson-ir.txt
-@@ -1,7 +1,10 @@
- * Amlogic Meson IR remote control receiver
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 6c23965..fa88f80 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -213,6 +213,13 @@
+ 				clocks = <&xtal>;
+ 				status = "disabled";
+ 			};
++
++			ir: ir at 580 {
++				compatible = "amlogic,meson-gxbb-ir";
++				reg = <0x0 0x00580 0x0 0x40>;
++				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++			};
+ 		};
  
- Required properties:
-- - compatible	: should be "amlogic,meson6-ir"
-+ - compatible	: depending on the platform this should be one of:
-+		  - "amlogic,meson6-ir"
-+		  - "amlogic,meson8b-ir"
-+		  - "amlogic,meson-gxbb-ir"
-  - reg		: physical base address and length of the device registers
-  - interrupts	: a single specifier for the interrupt from the device
- 
+ 		periphs: periphs at c8834000 {
 -- 
 2.9.0
