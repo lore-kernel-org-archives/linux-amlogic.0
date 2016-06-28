@@ -1,60 +1,58 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 28 Jun 2016 10:06:55 +0200
-Subject: [PATCH 0/2] pinctrl: Enable support for external GPIO interrupts
-Message-ID: <5772301F.3030904@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 28 Jun 2016 21:17:58 +0200
+Subject: [PATCH v3 0/4] Add Meson 8b / GXBB support to the IR driver
+In-Reply-To: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
+References: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-> From: Carlo Caione <carlo@endlessm.com>
-> 
-> In Meson SoCs we have 8 independent GPIO interrupts that can be programmed to
-> use any of the GPIOs in the chip as interrupt source.
-> 
-> These GPIOs are managed by GIC but they can be conditioned (and enabled) by
-> some registers external to the GIC.
-> 
-> GPIOs |--[mux1 or mux2]--[polarity]--[filter]--[edge_select]--> GIC
-> 
-> The original work has been done by Beniamino. I cleaned it up, fixed a couple
-> of bugs, added support for Meson8b and the fix for the .to_irq hook.
+Newer Amlogic platforms (Meson 8b and GXBB) use a slightly different
+register layout for their Infrared Remoete Controller. The decoder mode
+is now configured in another register. Without the changes to the
+meson-ir driver we are simply getting incorrect "durations" reported
+from the hardware (because the hardware is not in time measurement aka
+software decode mode).
 
-Hi Carlo, Linus,
+This problem was also noticed by some people trying to use this on an
+ODROID-C1 and ODROID-C2 - the workaround there (probably because the
+datasheets were not publicy available yet at that time) was to switch
+to ir_raw_event_store_edge (which leaves it up to the kernel to measure
+the duration of a pulse). See [0] and [1] for the corresponding
+patches.
 
-I have another implementation idea about this subject, by using static GPIO-irq
-association in DT instead of using a very complex dynamic allocation.
 
-The idea is to add a simple property :
-irqs-gpios = <>
+Changes in v3:
+- based on the patches of Neil Armstrong
+- depending on the platform either the old (default) or new registers
+  (this has to be enabled explicitly by using "amlogic,meson8b-ir" or
+  "amlogic,meson-gxbb-ir")
+- the changes to arch/arm/boot/dts/meson.dtsi are not part of this
+  series anymore, because the size specified there is valid for the
+  Meson 6b version of the IR decoder
+- Add the IR decoder to meson-gxbb.dtsi and enable it on the supported
+  boards
 
-To map a GPIO to the irqs, then we can either use the DT irq mapping or use the
-gpiolib to_irq() if the gpio is in the table.
 
-The relative drawback is that we will need DT changes to enable routing of a gpio
-to an IRQ, but the complete system is based on a DT description anyway.
+[0] https://github.com/erdoukki/linux-amlogic-1/commit/969b2e2242fb14a13cb651f9a1cf771b599c958b
+[1] http://forum.odroid.com/viewtopic.php?f=135&t=20504
 
-In this case, we could use gpiochip_irqchip.
 
-Do you think this structure would be acceptable ?
+Martin Blumenstingl (1):
+  ARM64: dts: meson-gxbb: Enable the the IR decoder on supported boards
 
-Neil
+Neil Armstrong (3):
+  dt-bindings: media: meson-ir: Add Meson8b and GXBB compatible strings
+  media: rc: meson-ir: Add support for newer versions of the IR decoder
+  ARM64: meson-gxbb: Add Infrared Remote Controller decoder
 
-> Beniamino Galvani (2):
->   pinctrl: meson: Enable GPIO IRQs
->   pinctrl: dt-binding: Extend meson documentation with GPIO IRQs support
-> 
->  .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |  12 +
->  drivers/pinctrl/Kconfig                            |   1 +
->  drivers/pinctrl/meson/pinctrl-meson.c              | 254 +++++++++++++++++++++
->  drivers/pinctrl/meson/pinctrl-meson.h              |  18 +-
->  drivers/pinctrl/meson/pinctrl-meson8.c             |  36 +--
->  drivers/pinctrl/meson/pinctrl-meson8b.c            |  36 +--
->  6 files changed, 326 insertions(+), 31 deletions(-)
-> 
-> -- 
-> 1.9.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+ .../devicetree/bindings/media/meson-ir.txt         |  5 +++-
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  4 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |  4 +++
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  4 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  7 ++++++
+ drivers/media/rc/meson-ir.c                        | 29 ++++++++++++++++++----
+ 6 files changed, 47 insertions(+), 6 deletions(-)
+
+-- 
+2.9.0
