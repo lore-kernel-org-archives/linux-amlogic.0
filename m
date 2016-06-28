@@ -1,45 +1,49 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Mon, 27 Jun 2016 20:49:28 +0100
-Subject: RTC support for AMlogic devies
-In-Reply-To: <m2bn2mtut1.fsf@baylibre.com>
-References: <1467039135-26588-1-git-send-email-ben.dooks@codethink.co.uk>
- <m2bn2mtut1.fsf@baylibre.com>
-Message-ID: <70b8eaf9-b07c-8a56-8205-58bf6475a3f4@codethink.co.uk>
+From: stefan@agner.ch (Stefan Agner)
+Date: Mon, 27 Jun 2016 23:27:52 -0700
+Subject: [PATCH v4 0/5] regulator: add Ricoh RN5T567 PMIC support
+Message-ID: <20160628062757.24490-1-stefan@agner.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 27/06/16 18:18, Kevin Hilman wrote:
-> Ben Dooks <ben.dooks@codethink.co.uk> writes:
-> 
->> This series is support for the RTC block on some of the AMLogic
->> Meson ARM SoCs.
->>
->> The first patch is the driver, followed by device-tree patches
->> and enablement for the ODRoid-C1 (where it has been tested)
-> 
-> In the cover letter, please be explicit about any dependencies that are
-> not upstream.  This series applies to mainline (v4.7-rc*) but does not
-> build.  I tested it with my v4.7/integ branch and it seems to work.
+This patchset adds RN5T567 PMIC support which is used on the 
+Toradex Colibri iMX7S/iMX7D modules. The existing RN5T618 is from
+the same family, hence this patchset uses the same driver and adds
+variant support.
 
-I think this is just the DT bindings for the reset controller which
-are currently in -next.
+The Colibris currently do not use the PMIC's power off capabilities,
+as do the current users of that PMIC driver. Therefore this patchset
+also makes the use of the system-power-controller property mandatory
+if the power off capabilties are required.
 
-> The series also has a handful of checkpatch warnings that should be
-> addressed (see: http://hastebin.com/tacurokasu.pas)
+Changes since v3:
+- Use RN5T618_REPCNT_REPWRON macro when writing RN5T618_REPCNT register
 
-The msleep() ones I think are not a big isuse. The line length could
-be solved, but at the moment is one of the few issues that are in the
-rtc-meson.c driver.
+Changes since v2:
+- Elevate restart priority to 192 to make sure PMIC takes presedence
+  over SoC level restart capabilities (e.g. watchdog)
+- Print a warning if poweroff callback is already assigned
+- Reorder of_id and variant assignment
+- Lower delay to 1ms and justify why it is required
+- Fix DCDC count and a typos in device tree bindings
 
-The documentation one is solved by the patch adding the device-tree
-binding information.
+Changes since v1:
+- Removed obsolete include <asm/system_misc.h>
 
-> Other than that, I gave it a quick spin on meson8b-odroidc1 using
-> tools/testing/selftests/timers/rtctest.c, and the basic time stuff seems
-> to be working:
+Stefan Agner (5):
+  ARM: dts: meson: minix-neo-x8: define PMIC as power controller
+  mfd: add Ricoh RN5T567 PMIC support
+  regulator: rn5t618: add RN5T567 PMIC support
+  mfd: rn5t618: register power off callback optionally
+  mfd: rn5t618: register restart handler
 
-Thank you.
+ Documentation/devicetree/bindings/mfd/rn5t618.txt | 19 +++---
+ arch/arm/boot/dts/meson8-minix-neo-x8.dts         |  1 +
+ drivers/mfd/Kconfig                               |  7 ++-
+ drivers/mfd/rn5t618.c                             | 70 +++++++++++++++++++----
+ drivers/regulator/Kconfig                         |  5 +-
+ drivers/regulator/rn5t618-regulator.c             | 40 +++++++++++--
+ include/linux/mfd/rn5t618.h                       | 13 +++++
+ 7 files changed, 126 insertions(+), 29 deletions(-)
 
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+2.8.3
