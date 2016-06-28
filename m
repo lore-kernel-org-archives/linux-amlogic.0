@@ -1,59 +1,20 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 28 Jun 2016 21:18:02 +0200
-Subject: [PATCH v3 4/4] ARM64: dts: meson-gxbb: Enable the the IR decoder on
- supported boards
-In-Reply-To: <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
-References: <20160626210622.5257-1-martin.blumenstingl@googlemail.com>
- <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160628191802.21227-5-martin.blumenstingl@googlemail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Tue, 28 Jun 2016 15:57:31 -0500
+Subject: [PATCH v2 2/4] meson-rtc: add device-tree binding
+In-Reply-To: <1467045849-495-3-git-send-email-ben.dooks@codethink.co.uk>
+References: <1467045849-495-1-git-send-email-ben.dooks@codethink.co.uk>
+ <1467045849-495-3-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <20160628205731.GW3737@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable the Infrared Remote Controller on boards which have an Infrared
-receiver.
+On Mon, Jun 27, 2016 at 05:44:07PM +0100, Ben Dooks wrote:
+> Add documentation for the AMLogic Meson RTC.
+> 
+> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+> ---
+>  .../devicetree/bindings/rtc/rtc-amlogic.txt         | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi     | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 4 ++++
- 3 files changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index b06bf8a..9a451ce 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -120,3 +120,7 @@
- 	vmmc-supply = <&mmc_iv>;
- 	voltage-ranges = <1800 3300>;
- };
-+
-+&ir {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 5dfd849..2650bb7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -102,3 +102,7 @@
- 	voltage-ranges = <1800 3300>;
- 	vmmc-supply = <&mmc_iv>;
- };
-+
-+&ir {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index 54bb7c7..934deb9 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -60,3 +60,7 @@
- 	pinctrl-names = "default";
- 
- };
-+
-+&ir {
-+	status = "okay";
-+};
--- 
-2.9.0
+Acked-by: Rob Herring <robh@kernel.org>
