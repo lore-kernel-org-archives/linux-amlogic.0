@@ -1,120 +1,237 @@
-From: lee.jones@linaro.org (Lee Jones)
-Date: Tue, 28 Jun 2016 13:03:56 +0100
-Subject: [PATCH v4 5/5] mfd: rn5t618: register restart handler
-In-Reply-To: <20160628062757.24490-6-stefan@agner.ch>
-References: <20160628062757.24490-1-stefan@agner.ch>
- <20160628062757.24490-6-stefan@agner.ch>
-Message-ID: <20160628120356.GF24982@dell>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 28 Jun 2016 16:00:57 +0200
+Subject: [RFC PATCH v2 1/9] mailbox: Add Amlogic Meson
+ Message-Handling-Unit
+In-Reply-To: <CABb+yY0Oa7TNHsnt1HRAz1NUQ1QA_gR0-B-ki6qkuT332CnrmQ@mail.gmail.com>
+References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+ <1466503374-28841-2-git-send-email-narmstrong@baylibre.com>
+ <CABb+yY3r3_B9wbW6D-do8h8xMKCANQWfz1gFGyre1oWadd7A8Q@mail.gmail.com>
+ <576C045A.3070701@baylibre.com>
+ <CABb+yY0Oa7TNHsnt1HRAz1NUQ1QA_gR0-B-ki6qkuT332CnrmQ@mail.gmail.com>
+Message-ID: <57728319.5060701@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 27 Jun 2016, Stefan Agner wrote:
-
-> Use the PMIC's repower capability for reboots. Register a restart
-> handler and use a slightly elevated priority of 192 since the PMIC
-> has suprior reset capability (causing a system wide reset).
+On 06/25/2016 07:50 PM, Jassi Brar wrote:
+> -#define INTR_STAT_OFS  0x0
+> -#define INTR_SET_OFS   0x8
+> -#define INTR_CLR_OFS   0x10
+> -
+> -#define MHU_LP_OFFSET  0x0
+> -#define MHU_HP_OFFSET  0x20
+> -#define MHU_SEC_OFFSET 0x200
+> -#define TX_REG_OFFSET  0x100
+> +#define INTR_SET_OFS   0x0
+> +#define INTR_STAT_OFS  0x4
+> +#define INTR_CLR_OFS   0x8
 > 
-> Signed-off-by: Stefan Agner <stefan@agner.ch>
-> Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> ---
->  drivers/mfd/rn5t618.c | 43 +++++++++++++++++++++++++++++++++++++------
->  1 file changed, 37 insertions(+), 6 deletions(-)
+> -#define MHU_CHANS      3
+> +#define MHU_LP_OFFSET  0x10
+> +#define MHU_HP_OFFSET  0x1c
+> +
+> +#define TX_REG_OFFSET  0x24
+> +
+> +#define MHU_CHANS      2
 > 
-> diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-> index 1831740..b3ca6df 100644
-> --- a/drivers/mfd/rn5t618.c
-> +++ b/drivers/mfd/rn5t618.c
-> @@ -12,11 +12,13 @@
->   * along with this program. If not, see <http://www.gnu.org/licenses/>.
->   */
->  
-> +#include <linux/delay.h>
->  #include <linux/i2c.h>
->  #include <linux/mfd/core.h>
->  #include <linux/mfd/rn5t618.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
-> +#include <linux/reboot.h>
->  #include <linux/regmap.h>
->  
->  static const struct mfd_cell rn5t618_cells[] = {
-> @@ -50,17 +52,38 @@ static const struct regmap_config rn5t618_regmap_config = {
->  };
->  
->  static struct rn5t618 *rn5t618_pm_power_off;
-> +static struct notifier_block rn5t618_restart_handler;
->  
-> -static void rn5t618_power_off(void)
-> +static void rn5t618_trigger_poweroff_sequence(bool repower)
->  {
->  	/* disable automatic repower-on */
->  	regmap_update_bits(rn5t618_pm_power_off->regmap, RN5T618_REPCNT,
-> -			   RN5T618_REPCNT_REPWRON, 0);
-> +			   RN5T618_REPCNT_REPWRON,
-> +			   repower ? RN5T618_REPCNT_REPWRON : 0);
->  	/* start power-off sequence */
->  	regmap_update_bits(rn5t618_pm_power_off->regmap, RN5T618_SLPCNT,
->  			   RN5T618_SLPCNT_SWPWROFF, RN5T618_SLPCNT_SWPWROFF);
->  }
->  
-> +static void rn5t618_power_off(void)
-> +{
-> +	rn5t618_trigger_poweroff_sequence(false);
-> +}
-> +
-> +static int rn5t618_restart(struct notifier_block *this,
-> +			    unsigned long mode, void *cmd)
-> +{
-> +	rn5t618_trigger_poweroff_sequence(true);
-> +
-> +	/*
-> +	 * Repower factor detection on PMIC side is not instant. 1ms
-> +	 * proved to be enouth time until reset takes effect.
+> ^^^^^^^^ this is precisely the difference if we ignore cosmetic
+> differences. So the IP is essentially the same.
 
-Spell check.
+Well, no. The overall design is similar. but clearly it's a different IP.
 
-Please fix this, add all the Acks you received and resubmit the set.
+> [snip]
+> 
+>> -------------------------------------------------------------------------------------------
+>> From: Neil Armstrong <narmstrong@baylibre.com>
+>> Subject: [PATCH] mailbox: arm_mhu: Add support for Amlogic Meson MHU
+>>
+> Is there some version of MHU specified anywhere in manuals? It seems
+> weird Amlogic took the IP and only rearranged the registers. Maybe the
+> order is specific to non-Amba version of the IP?  Lets call it that.
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+I think Amlogic took an early Juno platform release and re-implemented the
+MHU using the same concept but following their design rules.
 
-> +	 */
-> +	mdelay(1);
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
->  static const struct of_device_id rn5t618_of_match[] = {
->  	{ .compatible = "ricoh,rn5t567", .data = (void *)RN5T567 },
->  	{ .compatible = "ricoh,rn5t618", .data = (void *)RN5T618 },
-> @@ -102,13 +125,21 @@ static int rn5t618_i2c_probe(struct i2c_client *i2c,
->  		return ret;
->  	}
->  
-> +	rn5t618_pm_power_off = priv;
->  	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
-> -		if (!pm_power_off) {
-> -			rn5t618_pm_power_off = priv;
-> +		if (!pm_power_off)
->  			pm_power_off = rn5t618_power_off;
-> -		} else {
-> +		else
->  			dev_warn(&i2c->dev, "Poweroff callback already assigned\n");
-> -		}
-> +	}
-> +
-> +	rn5t618_restart_handler.notifier_call = rn5t618_restart;
-> +	rn5t618_restart_handler.priority = 192;
-> +
-> +	ret = register_restart_handler(&rn5t618_restart_handler);
-> +	if (ret) {
-> +		dev_err(&i2c->dev, "cannot register restart handler, %d\n", ret);
-> +		return ret;
->  	}
->  
->  	return 0;
+> 
+>> To achieve this integration, add support for generic probe from amba
+>> or platform.
+>> Move all register offsets to a data structure passed in either amba id or
+>> platform dt id match table.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/mailbox/arm_mhu.c | 217 ++++++++++++++++++++++++++++++++++++++--------
+>>  1 file changed, 181 insertions(+), 36 deletions(-)
+>>
+>> diff --git a/drivers/mailbox/arm_mhu.c b/drivers/mailbox/arm_mhu.c
+>> index 99befa7..d7fb843 100644
+>> --- a/drivers/mailbox/arm_mhu.c
+>> +++ b/drivers/mailbox/arm_mhu.c
+>> @@ -22,45 +22,68 @@
+>>  #include <linux/io.h>
+>>  #include <linux/module.h>
+>>  #include <linux/amba/bus.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/platform_device.h>
+>>  #include <linux/mailbox_controller.h>
+>>
+>> -#define INTR_STAT_OFS  0x0
+>> -#define INTR_SET_OFS   0x8
+>> -#define INTR_CLR_OFS   0x10
+>> +#define MHU_INTR_STAT_OFS      0x0
+>> +#define MHU_INTR_SET_OFS       0x8
+>> +#define MHU_INTR_CLR_OFS       0x10
+>>
+>>  #define MHU_LP_OFFSET  0x0
+>>  #define MHU_HP_OFFSET  0x20
+>>  #define MHU_SEC_OFFSET 0x200
+>> -#define TX_REG_OFFSET  0x100
+>> +#define MHU_TX_REG_OFFSET      0x100
+>>
+>> -#define MHU_CHANS      3
+>> +#define MESON_INTR_SET_OFS     0x0
+>> +#define MESON_INTR_STAT_OFS    0x4
+>> +#define MESON_INTR_CLR_OFS     0x8
+>> +
+>> +#define MESON_MHU_LP_OFFSET    0x10
+>> +#define MESON_MHU_HP_OFFSET    0x1c
+>> +#define MESON_MHU_TX_OFFSET    0x24
+>> +
+>> +#define MAX_MHU_CHANS  3
+>>
+> MHU_CHANS always 3 doesn't hurt. Lets keep it unchanged.
+> 
+>>  struct mhu_link {
+>>         unsigned irq;
+>> -       void __iomem *tx_reg;
+>> -       void __iomem *rx_reg;
+>> +       void __iomem *tx_stat_reg;
+>> +       void __iomem *tx_set_reg;
+>> +       void __iomem *tx_clr_reg;
+>> +       void __iomem *rx_stat_reg;
+>> +       void __iomem *rx_set_reg;
+>> +       void __iomem *rx_clr_reg;
+>>  };
+> 
+> Yeah, this is OK.
+> 
+> 
+>>
+>>  struct arm_mhu {
+>>         void __iomem *base;
+>> -       struct mhu_link mlink[MHU_CHANS];
+>> -       struct mbox_chan chan[MHU_CHANS];
+>> +       struct mhu_link mlink[MAX_MHU_CHANS];
+>> +       struct mbox_chan chan[MAX_MHU_CHANS];
+>>         struct mbox_controller mbox;
+>>  };
+> just leave it MHU_CHANS
+> 
+>>
+>> +struct arm_mhu_data {
+>> +       unsigned int channels;
+>> +       int rx_offsets[MAX_MHU_CHANS];
+>> +       int tx_offsets[MAX_MHU_CHANS];
+>> +       unsigned int intr_stat_offs;
+>> +       unsigned int intr_set_offs;
+>> +       unsigned int intr_clr_offs;
+>> +};
+> This is unnecessary. Please remove it and code will be simpler -
+> assign rx/tx_regs directly in probe.
 
--- 
-Lee Jones
-Linaro STMicroelectronics Landing Team Lead
-Linaro.org ? Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+I won't assume the platform driver is only for Amlogic, it does not
+make sense.
+
+> 
+>> +
+>>  static irqreturn_t mhu_rx_interrupt(int irq, void *p)
+>>  {
+>>         struct mbox_chan *chan = p;
+>>         struct mhu_link *mlink = chan->con_priv;
+>>         u32 val;
+>>
+>> -       val = readl_relaxed(mlink->rx_reg + INTR_STAT_OFS);
+>> +       val = readl_relaxed(mlink->rx_stat_reg);
+>>         if (!val)
+>>                 return IRQ_NONE;
+>>
+>>         mbox_chan_received_data(chan, (void *)&val);
+>>
+>> -       writel_relaxed(val, mlink->rx_reg + INTR_CLR_OFS);
+>> +       writel_relaxed(val, mlink->rx_clr_reg);
+>>
+>>         return IRQ_HANDLED;
+>>  }
+>> @@ -68,7 +91,7 @@ static irqreturn_t mhu_rx_interrupt(int irq, void *p)
+>>  static bool mhu_last_tx_done(struct mbox_chan *chan)
+>>  {
+>>         struct mhu_link *mlink = chan->con_priv;
+>> -       u32 val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
+>> +       u32 val = readl_relaxed(mlink->tx_stat_reg);
+>>
+>>         return (val == 0);
+>>  }
+>> @@ -78,7 +101,7 @@ static int mhu_send_data(struct mbox_chan *chan, void *data)
+>>         struct mhu_link *mlink = chan->con_priv;
+>>         u32 *arg = data;
+>>
+>> -       writel_relaxed(*arg, mlink->tx_reg + INTR_SET_OFS);
+>> +       writel_relaxed(*arg, mlink->tx_set_reg);
+>>
+>>         return 0;
+>>  }
+>> @@ -89,8 +112,8 @@ static int mhu_startup(struct mbox_chan *chan)
+>>         u32 val;
+>>         int ret;
+>>
+>> -       val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
+>> -       writel_relaxed(val, mlink->tx_reg + INTR_CLR_OFS);
+>> +       val = readl_relaxed(mlink->tx_stat_reg);
+>> +       writel_relaxed(val, mlink->tx_clr_reg);
+>>
+>>         ret = request_irq(mlink->irq, mhu_rx_interrupt,
+>>                           IRQF_SHARED, "mhu_link", chan);
+>> @@ -117,52 +140,155 @@ static const struct mbox_chan_ops mhu_ops = {
+>>         .last_tx_done = mhu_last_tx_done,
+>>  };
+>>
+>> -static int mhu_probe(struct amba_device *adev, const struct amba_id *id)
+>> +static struct arm_mhu_data arm_mhu_amba_data = {
+>> +       .channels = 3,
+>> +       .rx_offsets = {MHU_LP_OFFSET, MHU_HP_OFFSET, MHU_SEC_OFFSET},
+>> +       .tx_offsets = {MHU_LP_OFFSET + MHU_TX_REG_OFFSET,
+>> +                      MHU_HP_OFFSET + MHU_TX_REG_OFFSET,
+>> +                      MHU_SEC_OFFSET + MHU_TX_REG_OFFSET},
+>> +       .intr_stat_offs = MHU_INTR_STAT_OFS,
+>> +       .intr_set_offs = MHU_INTR_SET_OFS,
+>> +       .intr_clr_offs = MHU_INTR_CLR_OFS,
+>> +};
+>> +
+>> +static const struct arm_mhu_data meson_mhu_data = {
+>> +       .channels = 2,
+>> +       .rx_offsets = {MESON_MHU_LP_OFFSET, MESON_MHU_HP_OFFSET},
+>> +       .tx_offsets = {MESON_MHU_LP_OFFSET + MESON_MHU_TX_OFFSET,
+>> +                      MESON_MHU_HP_OFFSET + MESON_MHU_TX_OFFSET},
+>> +       .intr_stat_offs = MESON_INTR_STAT_OFS,
+>> +       .intr_set_offs = MESON_INTR_SET_OFS,
+>> +       .intr_clr_offs = MESON_INTR_CLR_OFS,
+>> +};
+>> +
+> These could be directly set in amba vs platform probes ?
+
+It does not make sense to assume the platform driver is only for
+amlogic gxbb, it could match other vendors aswell.
+
+The amba could force a single struct, but it's smarter to use the
+same mechanism and associate the struct to an ID.
+
+> Thanks.
+> 
+
+My main question is : do you really want to transform this simple driver into
+a dirty multi-bus generic mailbox driver ?
+The meson_mhu is only 199 lines and this patch adds 181 lines to the arm_mhu driver.
+
+I'll personally push to have two separate drivers here.
+
+Thanks,
+Neil
