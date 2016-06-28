@@ -1,252 +1,60 @@
-From: jassisinghbrar@gmail.com (Jassi Brar)
-Date: Tue, 28 Jun 2016 20:36:14 +0530
-Subject: [RFC PATCH v2 1/9] mailbox: Add Amlogic Meson
- Message-Handling-Unit
-In-Reply-To: <57728319.5060701@baylibre.com>
-References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
- <1466503374-28841-2-git-send-email-narmstrong@baylibre.com>
- <CABb+yY3r3_B9wbW6D-do8h8xMKCANQWfz1gFGyre1oWadd7A8Q@mail.gmail.com>
- <576C045A.3070701@baylibre.com>
- <CABb+yY0Oa7TNHsnt1HRAz1NUQ1QA_gR0-B-ki6qkuT332CnrmQ@mail.gmail.com>
- <57728319.5060701@baylibre.com>
-Message-ID: <CABb+yY3mD3chLtM02a5NvOO_HF2JAeu-SELkxzTxkkf5i+Bftg@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 28 Jun 2016 10:06:55 +0200
+Subject: [PATCH 0/2] pinctrl: Enable support for external GPIO interrupts
+Message-ID: <5772301F.3030904@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jun 28, 2016 at 7:30 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> On 06/25/2016 07:50 PM, Jassi Brar wrote:
->> -#define INTR_STAT_OFS  0x0
->> -#define INTR_SET_OFS   0x8
->> -#define INTR_CLR_OFS   0x10
->> -
->> -#define MHU_LP_OFFSET  0x0
->> -#define MHU_HP_OFFSET  0x20
->> -#define MHU_SEC_OFFSET 0x200
->> -#define TX_REG_OFFSET  0x100
->> +#define INTR_SET_OFS   0x0
->> +#define INTR_STAT_OFS  0x4
->> +#define INTR_CLR_OFS   0x8
->>
->> -#define MHU_CHANS      3
->> +#define MHU_LP_OFFSET  0x10
->> +#define MHU_HP_OFFSET  0x1c
->> +
->> +#define TX_REG_OFFSET  0x24
->> +
->> +#define MHU_CHANS      2
->>
->> ^^^^^^^^ this is precisely the difference if we ignore cosmetic
->> differences. So the IP is essentially the same.
->
-> Well, no. The overall design is similar. but clearly it's a different IP.
->
-If your this patch works on your platform, then the diff from arm_mhu
-tells the controller is the same but only with re-ordered registers.
-And you already call it 'MHU' :)
+> From: Carlo Caione <carlo@endlessm.com>
+> 
+> In Meson SoCs we have 8 independent GPIO interrupts that can be programmed to
+> use any of the GPIOs in the chip as interrupt source.
+> 
+> These GPIOs are managed by GIC but they can be conditioned (and enabled) by
+> some registers external to the GIC.
+> 
+> GPIOs |--[mux1 or mux2]--[polarity]--[filter]--[edge_select]--> GIC
+> 
+> The original work has been done by Beniamino. I cleaned it up, fixed a couple
+> of bugs, added support for Meson8b and the fix for the .to_irq hook.
 
+Hi Carlo, Linus,
 
->> [snip]
->>
->>> -------------------------------------------------------------------------------------------
->>> From: Neil Armstrong <narmstrong@baylibre.com>
->>> Subject: [PATCH] mailbox: arm_mhu: Add support for Amlogic Meson MHU
->>>
->> Is there some version of MHU specified anywhere in manuals? It seems
->> weird Amlogic took the IP and only rearranged the registers. Maybe the
->> order is specific to non-Amba version of the IP?  Lets call it that.
->
-> I think Amlogic took an early Juno platform release and re-implemented the
-> MHU using the same concept but following their design rules.
->
->>
->>> To achieve this integration, add support for generic probe from amba
->>> or platform.
->>> Move all register offsets to a data structure passed in either amba id or
->>> platform dt id match table.
->>>
->>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>> ---
->>>  drivers/mailbox/arm_mhu.c | 217 ++++++++++++++++++++++++++++++++++++++--------
->>>  1 file changed, 181 insertions(+), 36 deletions(-)
->>>
->>> diff --git a/drivers/mailbox/arm_mhu.c b/drivers/mailbox/arm_mhu.c
->>> index 99befa7..d7fb843 100644
->>> --- a/drivers/mailbox/arm_mhu.c
->>> +++ b/drivers/mailbox/arm_mhu.c
->>> @@ -22,45 +22,68 @@
->>>  #include <linux/io.h>
->>>  #include <linux/module.h>
->>>  #include <linux/amba/bus.h>
->>> +#include <linux/of_platform.h>
->>> +#include <linux/platform_device.h>
->>>  #include <linux/mailbox_controller.h>
->>>
->>> -#define INTR_STAT_OFS  0x0
->>> -#define INTR_SET_OFS   0x8
->>> -#define INTR_CLR_OFS   0x10
->>> +#define MHU_INTR_STAT_OFS      0x0
->>> +#define MHU_INTR_SET_OFS       0x8
->>> +#define MHU_INTR_CLR_OFS       0x10
->>>
->>>  #define MHU_LP_OFFSET  0x0
->>>  #define MHU_HP_OFFSET  0x20
->>>  #define MHU_SEC_OFFSET 0x200
->>> -#define TX_REG_OFFSET  0x100
->>> +#define MHU_TX_REG_OFFSET      0x100
->>>
->>> -#define MHU_CHANS      3
->>> +#define MESON_INTR_SET_OFS     0x0
->>> +#define MESON_INTR_STAT_OFS    0x4
->>> +#define MESON_INTR_CLR_OFS     0x8
->>> +
->>> +#define MESON_MHU_LP_OFFSET    0x10
->>> +#define MESON_MHU_HP_OFFSET    0x1c
->>> +#define MESON_MHU_TX_OFFSET    0x24
->>> +
->>> +#define MAX_MHU_CHANS  3
->>>
->> MHU_CHANS always 3 doesn't hurt. Lets keep it unchanged.
->>
->>>  struct mhu_link {
->>>         unsigned irq;
->>> -       void __iomem *tx_reg;
->>> -       void __iomem *rx_reg;
->>> +       void __iomem *tx_stat_reg;
->>> +       void __iomem *tx_set_reg;
->>> +       void __iomem *tx_clr_reg;
->>> +       void __iomem *rx_stat_reg;
->>> +       void __iomem *rx_set_reg;
->>> +       void __iomem *rx_clr_reg;
->>>  };
->>
->> Yeah, this is OK.
->>
->>
->>>
->>>  struct arm_mhu {
->>>         void __iomem *base;
->>> -       struct mhu_link mlink[MHU_CHANS];
->>> -       struct mbox_chan chan[MHU_CHANS];
->>> +       struct mhu_link mlink[MAX_MHU_CHANS];
->>> +       struct mbox_chan chan[MAX_MHU_CHANS];
->>>         struct mbox_controller mbox;
->>>  };
->> just leave it MHU_CHANS
->>
->>>
->>> +struct arm_mhu_data {
->>> +       unsigned int channels;
->>> +       int rx_offsets[MAX_MHU_CHANS];
->>> +       int tx_offsets[MAX_MHU_CHANS];
->>> +       unsigned int intr_stat_offs;
->>> +       unsigned int intr_set_offs;
->>> +       unsigned int intr_clr_offs;
->>> +};
->> This is unnecessary. Please remove it and code will be simpler -
->> assign rx/tx_regs directly in probe.
->
-> I won't assume the platform driver is only for Amlogic, it does not
-> make sense.
->
-It is unlikely other platforms will come with more random register
-arrangements of MHU.
+I have another implementation idea about this subject, by using static GPIO-irq
+association in DT instead of using a very complex dynamic allocation.
 
+The idea is to add a simple property :
+irqs-gpios = <>
 
->>
->>> +
->>>  static irqreturn_t mhu_rx_interrupt(int irq, void *p)
->>>  {
->>>         struct mbox_chan *chan = p;
->>>         struct mhu_link *mlink = chan->con_priv;
->>>         u32 val;
->>>
->>> -       val = readl_relaxed(mlink->rx_reg + INTR_STAT_OFS);
->>> +       val = readl_relaxed(mlink->rx_stat_reg);
->>>         if (!val)
->>>                 return IRQ_NONE;
->>>
->>>         mbox_chan_received_data(chan, (void *)&val);
->>>
->>> -       writel_relaxed(val, mlink->rx_reg + INTR_CLR_OFS);
->>> +       writel_relaxed(val, mlink->rx_clr_reg);
->>>
->>>         return IRQ_HANDLED;
->>>  }
->>> @@ -68,7 +91,7 @@ static irqreturn_t mhu_rx_interrupt(int irq, void *p)
->>>  static bool mhu_last_tx_done(struct mbox_chan *chan)
->>>  {
->>>         struct mhu_link *mlink = chan->con_priv;
->>> -       u32 val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
->>> +       u32 val = readl_relaxed(mlink->tx_stat_reg);
->>>
->>>         return (val == 0);
->>>  }
->>> @@ -78,7 +101,7 @@ static int mhu_send_data(struct mbox_chan *chan, void *data)
->>>         struct mhu_link *mlink = chan->con_priv;
->>>         u32 *arg = data;
->>>
->>> -       writel_relaxed(*arg, mlink->tx_reg + INTR_SET_OFS);
->>> +       writel_relaxed(*arg, mlink->tx_set_reg);
->>>
->>>         return 0;
->>>  }
->>> @@ -89,8 +112,8 @@ static int mhu_startup(struct mbox_chan *chan)
->>>         u32 val;
->>>         int ret;
->>>
->>> -       val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
->>> -       writel_relaxed(val, mlink->tx_reg + INTR_CLR_OFS);
->>> +       val = readl_relaxed(mlink->tx_stat_reg);
->>> +       writel_relaxed(val, mlink->tx_clr_reg);
->>>
->>>         ret = request_irq(mlink->irq, mhu_rx_interrupt,
->>>                           IRQF_SHARED, "mhu_link", chan);
->>> @@ -117,52 +140,155 @@ static const struct mbox_chan_ops mhu_ops = {
->>>         .last_tx_done = mhu_last_tx_done,
->>>  };
->>>
->>> -static int mhu_probe(struct amba_device *adev, const struct amba_id *id)
->>> +static struct arm_mhu_data arm_mhu_amba_data = {
->>> +       .channels = 3,
->>> +       .rx_offsets = {MHU_LP_OFFSET, MHU_HP_OFFSET, MHU_SEC_OFFSET},
->>> +       .tx_offsets = {MHU_LP_OFFSET + MHU_TX_REG_OFFSET,
->>> +                      MHU_HP_OFFSET + MHU_TX_REG_OFFSET,
->>> +                      MHU_SEC_OFFSET + MHU_TX_REG_OFFSET},
->>> +       .intr_stat_offs = MHU_INTR_STAT_OFS,
->>> +       .intr_set_offs = MHU_INTR_SET_OFS,
->>> +       .intr_clr_offs = MHU_INTR_CLR_OFS,
->>> +};
->>> +
->>> +static const struct arm_mhu_data meson_mhu_data = {
->>> +       .channels = 2,
->>> +       .rx_offsets = {MESON_MHU_LP_OFFSET, MESON_MHU_HP_OFFSET},
->>> +       .tx_offsets = {MESON_MHU_LP_OFFSET + MESON_MHU_TX_OFFSET,
->>> +                      MESON_MHU_HP_OFFSET + MESON_MHU_TX_OFFSET},
->>> +       .intr_stat_offs = MESON_INTR_STAT_OFS,
->>> +       .intr_set_offs = MESON_INTR_SET_OFS,
->>> +       .intr_clr_offs = MESON_INTR_CLR_OFS,
->>> +};
->>> +
->> These could be directly set in amba vs platform probes ?
->
-> It does not make sense to assume the platform driver is only for
-> amlogic gxbb, it could match other vendors aswell.
->
-Perhaps you didn't get my suggestion.
+To map a GPIO to the irqs, then we can either use the DT irq mapping or use the
+gpiolib to_irq() if the gpio is in the table.
 
-> The amba could force a single struct, but it's smarter to use the
-> same mechanism and associate the struct to an ID.
->
->> Thanks.
->>
->
-> My main question is : do you really want to transform this simple driver into
-> a dirty multi-bus generic mailbox driver ?
-> The meson_mhu is only 199 lines and this patch adds 181 lines to the arm_mhu driver.
->
-> I'll personally push to have two separate drivers here.
->
-It is a shame if we need to copy a driver only due to changed register
-offsets. Let me give it a shot and see how worse off we would be.
+The relative drawback is that we will need DT changes to enable routing of a gpio
+to an IRQ, but the complete system is based on a DT description anyway.
 
-Thanks.
+In this case, we could use gpiochip_irqchip.
+
+Do you think this structure would be acceptable ?
+
+Neil
+
+> Beniamino Galvani (2):
+>   pinctrl: meson: Enable GPIO IRQs
+>   pinctrl: dt-binding: Extend meson documentation with GPIO IRQs support
+> 
+>  .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |  12 +
+>  drivers/pinctrl/Kconfig                            |   1 +
+>  drivers/pinctrl/meson/pinctrl-meson.c              | 254 +++++++++++++++++++++
+>  drivers/pinctrl/meson/pinctrl-meson.h              |  18 +-
+>  drivers/pinctrl/meson/pinctrl-meson8.c             |  36 +--
+>  drivers/pinctrl/meson/pinctrl-meson8b.c            |  36 +--
+>  6 files changed, 326 insertions(+), 31 deletions(-)
+> 
+> -- 
+> 1.9.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
