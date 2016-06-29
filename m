@@ -1,41 +1,48 @@
-From: drake@endlessm.com (Daniel Drake)
-Date: Wed, 29 Jun 2016 08:41:34 -0600
-Subject: [PATCH 0/2] pinctrl: Enable support for external GPIO interrupts
-In-Reply-To: <CACRpkdZivUN8HKZ7oTDW6C35vSMv6+9G6-8M7=-kJM3B9vmH-A@mail.gmail.com>
-References: <5772301F.3030904@baylibre.com>
- <CACRpkdZivUN8HKZ7oTDW6C35vSMv6+9G6-8M7=-kJM3B9vmH-A@mail.gmail.com>
-Message-ID: <CAD8Lp44SGNwYmeMPKMxbho8EXv9xZFtgHVGh5PKT7_4svYmiFA@mail.gmail.com>
+From: lee.jones@linaro.org (Lee Jones)
+Date: Wed, 29 Jun 2016 17:25:16 +0100
+Subject: [GIT PULL] Immutable branch between MFD, Regulator and ARM for v4.8
+In-Reply-To: <20160629055322.23038-1-stefan@agner.ch>
+References: <20160629055322.23038-1-stefan@agner.ch>
+Message-ID: <20160629162516.GB1707@dell>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Jun 29, 2016 at 2:53 AM, Linus Walleij <linus.walleij@linaro.org> wrote:
-> I think the dynamic solution is always more elegant, computers should resolve
-> complex problems, doing it in DT makes a human do a machine's work which
-> is as a rule of thumb not a good idea. But there is also the question
-> of maintenance
-> cost and what makes sense at a human level so I'm not totally
-> inflexible on this.
+Enjoy!
 
-On this hardware we only have 8 GPIO IRQs available, for 100+ GPIOs.
-If you want to monitor for both rising and falling edge of a GPIO then
-you have to use 2 GPIO IRQs. 2 are used for the common case of SD card
-detect. You can quickly lose several more (2 for audio jack detection,
-power button, etc). So these are a very limited resource.
+The following changes since commit af8c34ce6ae32addda3788d54a7e340cad22516b:
 
-If the allocation is done dynamically I see 2 slight advantages:
+  Linux 4.7-rc2 (2016-06-05 14:31:26 -0700)
 
- 1. If the number of GPIO-IRQ users is greater than the number
-available, the distributor can exclude drivers that are not of
-interest to him and the corresponding GPIO-IRQs will automatically and
-dynamically become available for the drivers that are of interest.
+are available in the git repository at:
 
- 2. If the device tree encodes these assignments then the management
-could be a bit complex, because some will be defined in the SoC dtsi
-files and others will be defined in the board dts files (e.g.
-Endless's CVBS mode selection switch), we'll have to make sure that
-there are not conflicting assignments. Similarly if we end up sharing
-dtsi files over different SoC versions then things could get tricky
-especially in such a small namespace of 8 GPIO-IRQs. In the dynamic
-case this is not an issue.
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-arm-v4.8
 
-Daniel
+for you to fetch changes up to a370f60a58ec7bad7045803041524ccdc4d79c75:
+
+  mfd: rn5t618: Register restart handler (2016-06-29 10:11:35 +0100)
+
+----------------------------------------------------------------
+Immutable branch between MFD, Regulator and ARM, due for v4.8
+
+----------------------------------------------------------------
+Stefan Agner (5):
+      ARM: dts: meson: minix-neo-x8: define PMIC as power controller
+      mfd: rn5t618: Add Ricoh RN5T567 PMIC support
+      regulator: rn5t618: Add RN5T567 PMIC support
+      mfd: rn5t618: Register power off callback optionally
+      mfd: rn5t618: Register restart handler
+
+ Documentation/devicetree/bindings/mfd/rn5t618.txt | 19 +++---
+ arch/arm/boot/dts/meson8-minix-neo-x8.dts         |  1 +
+ drivers/mfd/Kconfig                               |  7 ++-
+ drivers/mfd/rn5t618.c                             | 70 +++++++++++++++++++----
+ drivers/regulator/Kconfig                         |  5 +-
+ drivers/regulator/rn5t618-regulator.c             | 40 +++++++++++--
+ include/linux/mfd/rn5t618.h                       | 13 +++++
+ 7 files changed, 126 insertions(+), 29 deletions(-)
+
+-- 
+Lee Jones
+Linaro STMicroelectronics Landing Team Lead
+Linaro.org ? Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
