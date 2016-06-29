@@ -1,49 +1,74 @@
 From: carlo@caione.org (Carlo Caione)
-Date: Wed, 29 Jun 2016 14:34:16 +0200
-Subject: [PATCH v2 6/6] ARM64: dts: amlogic: gxbb: Enable NVMEM
-In-Reply-To: <1467203656-14381-1-git-send-email-carlo@caione.org>
-References: <1467203656-14381-1-git-send-email-carlo@caione.org>
-Message-ID: <1467203656-14381-7-git-send-email-carlo@caione.org>
+Date: Wed, 29 Jun 2016 16:07:00 +0200
+Subject: [PATCH 0/2] pinctrl: Enable support for external GPIO interrupts
+In-Reply-To: <CACRpkdZivUN8HKZ7oTDW6C35vSMv6+9G6-8M7=-kJM3B9vmH-A@mail.gmail.com>
+References: <5772301F.3030904@baylibre.com>
+ <CACRpkdZivUN8HKZ7oTDW6C35vSMv6+9G6-8M7=-kJM3B9vmH-A@mail.gmail.com>
+Message-ID: <20160629140700.GA21287@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Carlo Caione <carlo@endlessm.com>
+On 29/06/16 10:53, Linus Walleij wrote:
+> On Tue, Jun 28, 2016 at 10:06 AM, Neil Armstrong
+> <narmstrong@baylibre.com> wrote:
+> 
+> > I have another implementation idea about this subject, by using static GPIO-irq
+> > association in DT instead of using a very complex dynamic allocation.
+> >
+> > The idea is to add a simple property :
+> > irqs-gpios = <>
+> >
+> > To map a GPIO to the irqs, then we can either use the DT irq mapping or use the
+> > gpiolib to_irq() if the gpio is in the table.
+> >
+> > The relative drawback is that we will need DT changes to enable routing of a gpio
+> > to an IRQ, but the complete system is based on a DT description anyway.
+> >
+> > In this case, we could use gpiochip_irqchip.
+> >
+> > Do you think this structure would be acceptable ?
 
-Add the NVMEM device node in the DTSI.
+I put some thoughts on this.
 
-Signed-off-by: Carlo Caione <carlo@endlessm.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Having to statically define the IRQ-GPIO relation in the DT is not the
+most elegant solution but this is a really stupid controller and the
+whole cascade IRQ controller story revealed to be really a PITA with
+this hw when I was trying to write the driver. 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index f2a4734..f20f990 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -103,6 +103,24 @@
- 		};
- 	};
- 
-+	efuse: efuse {
-+		compatible = "amlogic,meson-gxbb-efuse";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		sn: sn at 14 {
-+			reg = <0x14 0x10>;
-+		};
-+
-+		eth_mac: eth_mac at 34 {
-+			reg = <0x34 0x10>;
-+		};
-+
-+		bid: bid at 46 {
-+			reg = <0x46 0x30>;
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
+On a side note the driver was working fine but the real problem was on
+some misunderstanding on the gpiolib .to_irq hook. My bad in having lost
+interest in fixing / clarifying that mess, sorry for that.
+
+The latest respin was https://patchwork.kernel.org/patch/7738781/. Neil,
+probably you want also to review that (also privately since after 1 year
+I guess it needs to be updated) before someone starts writing the code
+for the DT-only solution?
+
+> That depends on:
+> 
+> - A nod from the DT maintainers that this is acceptable from a HW description
+>   point of view and a simplification that probably all other OS:es
+> will also want
+>   to do.
+
+hardware wise this makes sense at board level and to the best of my
+knowledge we are the only one OS using this DT.
+
+> - Rough consensus from the maintainess of the platform that this makes
+>   sense, do noone appear three months down the road and says "oh wait I
+>   have this usecase that require us to do this dynamically".
+
+this is the real problem I see especially in case someone comes up with
+some homemade driver for some expansion board hooked up on the headers.
+
+> I think the dynamic solution is always more elegant, computers should resolve
+> complex problems, doing it in DT makes a human do a machine's work which
+> is as a rule of thumb not a good idea. But there is also the question
+> of maintenance
+> cost and what makes sense at a human level so I'm not totally
+> inflexible on this.
+
+Totally agree on this.
+
 -- 
-2.7.4
+Carlo Caione
