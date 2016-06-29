@@ -1,48 +1,58 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 29 Jun 2016 10:53:51 +0200
-Subject: [PATCH 0/2] pinctrl: Enable support for external GPIO interrupts
-In-Reply-To: <5772301F.3030904@baylibre.com>
-References: <5772301F.3030904@baylibre.com>
-Message-ID: <CACRpkdZivUN8HKZ7oTDW6C35vSMv6+9G6-8M7=-kJM3B9vmH-A@mail.gmail.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Wed, 29 Jun 2016 14:34:10 +0200
+Subject: [PATCH v2 0/6] Add Amlogic secure monitor and NVMEM drivers
+Message-ID: <1467203656-14381-1-git-send-email-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jun 28, 2016 at 10:06 AM, Neil Armstrong
-<narmstrong@baylibre.com> wrote:
+From: Carlo Caione <carlo@endlessm.com>
 
-> I have another implementation idea about this subject, by using static GPIO-irq
-> association in DT instead of using a very complex dynamic allocation.
->
-> The idea is to add a simple property :
-> irqs-gpios = <>
->
-> To map a GPIO to the irqs, then we can either use the DT irq mapping or use the
-> gpiolib to_irq() if the gpio is in the table.
->
-> The relative drawback is that we will need DT changes to enable routing of a gpio
-> to an IRQ, but the complete system is based on a DT description anyway.
->
-> In this case, we could use gpiochip_irqchip.
->
-> Do you think this structure would be acceptable ?
+I decided to respin again the secure monitor driver this time with the NVMEM
+driver in the same patchset to have a clear view on how a generic driver can
+use the monitor.
 
-That depends on:
+The latest patchset for the secure monitor with the Changelog is here [1].
 
-- A nod from the DT maintainers that this is acceptable from a HW description
-  point of view and a simplification that probably all other OS:es
-will also want
-  to do.
+[1] http://www.spinics.net/lists/arm-kernel/msg510441.html
 
-- Rough consensus from the maintainess of the platform that this makes
-  sense, do noone appear three months down the road and says "oh wait I
-  have this usecase that require us to do this dynamically".
+Changelog:
+v2:
+  - nvmem driver not using regmap anymore
+  - headers list cleanup
+  - disable sm driver for !4K kernels
+  - removed meson_sm_get_fw()
+  - better debug printing
+  - general cleanup  
 
-I think the dynamic solution is always more elegant, computers should resolve
-complex problems, doing it in DT makes a human do a machine's work which
-is as a rule of thumb not a good idea. But there is also the question
-of maintenance
-cost and what makes sense at a human level so I'm not totally
-inflexible on this.
 
-Yours,
-Linus Walleij
+Carlo Caione (6):
+  firmware: Amlogic: Add secure monitor driver
+  documentation: Add secure monitor bindings documentation
+  ARM64: dts: amlogic: gxbb: Enable secure monitor
+  nvmem: amlogic: Add Amlogic Meson EFUSE driver
+  documentation: Add nvmem bindings documentation
+  ARM64: dts: amlogic: gxbb: Enable NVMEM
+
+ .../bindings/firmware/meson/meson_sm.txt           |  15 ++
+ .../devicetree/bindings/nvmem/amlogic-efuse.txt    |  39 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  24 ++
+ drivers/firmware/Kconfig                           |   1 +
+ drivers/firmware/Makefile                          |   1 +
+ drivers/firmware/meson/Kconfig                     |   9 +
+ drivers/firmware/meson/Makefile                    |   1 +
+ drivers/firmware/meson/meson_sm.c                  | 247 +++++++++++++++++++++
+ drivers/nvmem/Kconfig                              |  10 +
+ drivers/nvmem/Makefile                             |   2 +
+ drivers/nvmem/meson-efuse.c                        |  93 ++++++++
+ include/linux/firmware/meson/meson_sm.h            |  31 +++
+ 12 files changed, 473 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/meson/meson_sm.txt
+ create mode 100644 Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+ create mode 100644 drivers/firmware/meson/Kconfig
+ create mode 100644 drivers/firmware/meson/Makefile
+ create mode 100644 drivers/firmware/meson/meson_sm.c
+ create mode 100644 drivers/nvmem/meson-efuse.c
+ create mode 100644 include/linux/firmware/meson/meson_sm.h
+
+-- 
+2.7.4
