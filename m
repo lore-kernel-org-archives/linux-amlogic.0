@@ -1,48 +1,75 @@
-From: lee.jones@linaro.org (Lee Jones)
-Date: Wed, 29 Jun 2016 17:25:16 +0100
-Subject: [GIT PULL] Immutable branch between MFD, Regulator and ARM for v4.8
-In-Reply-To: <20160629055322.23038-1-stefan@agner.ch>
-References: <20160629055322.23038-1-stefan@agner.ch>
-Message-ID: <20160629162516.GB1707@dell>
+From: broonie@kernel.org (Mark Brown)
+Date: Wed, 29 Jun 2016 19:05:18 +0100
+Subject: Applied "mfd: rn5t618: Register power off callback optionally" to the
+ regulator tree
+In-Reply-To: <20160626011515.4428-5-stefan@agner.ch>
+Message-ID: <E1bIJrS-0003eP-5Y@finisterre>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enjoy!
+The patch
 
-The following changes since commit af8c34ce6ae32addda3788d54a7e340cad22516b:
+   mfd: rn5t618: Register power off callback optionally
 
-  Linux 4.7-rc2 (2016-06-05 14:31:26 -0700)
+has been applied to the regulator tree at
 
-are available in the git repository at:
+   git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git 
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-regulator-arm-v4.8
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
-for you to fetch changes up to a370f60a58ec7bad7045803041524ccdc4d79c75:
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-  mfd: rn5t618: Register restart handler (2016-06-29 10:11:35 +0100)
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-----------------------------------------------------------------
-Immutable branch between MFD, Regulator and ARM, due for v4.8
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-----------------------------------------------------------------
-Stefan Agner (5):
-      ARM: dts: meson: minix-neo-x8: define PMIC as power controller
-      mfd: rn5t618: Add Ricoh RN5T567 PMIC support
-      regulator: rn5t618: Add RN5T567 PMIC support
-      mfd: rn5t618: Register power off callback optionally
-      mfd: rn5t618: Register restart handler
+Thanks,
+Mark
 
- Documentation/devicetree/bindings/mfd/rn5t618.txt | 19 +++---
- arch/arm/boot/dts/meson8-minix-neo-x8.dts         |  1 +
- drivers/mfd/Kconfig                               |  7 ++-
- drivers/mfd/rn5t618.c                             | 70 +++++++++++++++++++----
- drivers/regulator/Kconfig                         |  5 +-
- drivers/regulator/rn5t618-regulator.c             | 40 +++++++++++--
- include/linux/mfd/rn5t618.h                       | 13 +++++
- 7 files changed, 126 insertions(+), 29 deletions(-)
+>From fd65ae4cb65a9e41af44e37318afb39045d86bf2 Mon Sep 17 00:00:00 2001
+From: Stefan Agner <stefan@agner.ch>
+Date: Tue, 28 Jun 2016 22:53:21 -0700
+Subject: [PATCH] mfd: rn5t618: Register power off callback optionally
 
+Only register power off if the PMIC is defined as system power
+controller (see Documentation/devicetree/bindings/power/
+power-controller.txt).
+
+Signed-off-by: Stefan Agner <stefan@agner.ch>
+Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+---
+ drivers/mfd/rn5t618.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
+index c86160d3a773..1831740d9016 100644
+--- a/drivers/mfd/rn5t618.c
++++ b/drivers/mfd/rn5t618.c
+@@ -102,9 +102,13 @@ static int rn5t618_i2c_probe(struct i2c_client *i2c,
+ 		return ret;
+ 	}
+ 
+-	if (!pm_power_off) {
+-		rn5t618_pm_power_off = priv;
+-		pm_power_off = rn5t618_power_off;
++	if (of_device_is_system_power_controller(i2c->dev.of_node)) {
++		if (!pm_power_off) {
++			rn5t618_pm_power_off = priv;
++			pm_power_off = rn5t618_power_off;
++		} else {
++			dev_warn(&i2c->dev, "Poweroff callback already assigned\n");
++		}
+ 	}
+ 
+ 	return 0;
 -- 
-Lee Jones
-Linaro STMicroelectronics Landing Team Lead
-Linaro.org ? Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.8.1
