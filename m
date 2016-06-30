@@ -1,253 +1,225 @@
-From: lee.jones@linaro.org (Lee Jones)
-Date: Thu, 30 Jun 2016 08:43:17 +0100
-Subject: Applied "mfd: rn5t618: Add Ricoh RN5T567 PMIC support" to the
- regulator tree
-In-Reply-To: <E1bIJrb-0003hB-Ll@finisterre>
-References: <20160626011515.4428-3-stefan@agner.ch>
- <E1bIJrb-0003hB-Ll@finisterre>
-Message-ID: <20160630074317.GD1707@dell>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Thu, 30 Jun 2016 11:53:09 +0100
+Subject: [RFC PATCH v2 6/9] firmware: Add legacy SCPI protocol driver
+In-Reply-To: <1466503374-28841-7-git-send-email-narmstrong@baylibre.com>
+References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+ <1466503374-28841-7-git-send-email-narmstrong@baylibre.com>
+Message-ID: <5774FA15.6060302@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 29 Jun 2016, Mark Brown wrote:
 
-> The patch
-> 
->    mfd: rn5t618: Add Ricoh RN5T567 PMIC support
 
-Are all of these 'applied' emails because you merged my PR?
+On 21/06/16 11:02, Neil Armstrong wrote:
+> Add legacy SCPI driver based on the latest SCPI driver but modified to behave
+> like an earlier technology preview SCPI implementation that at least the
+> Amlogic GXBB ARMv8 based platform uses in it's SCP firmware implementation.
+>
+> The main differences between the mainline, public and recommended SCPI
+> implementation are :
+>   - virtual channels is not implemented
+>   - command word is passed by the MHU instead of the virtual channel ID
+>   - uses "sender id" in the command word for each commands groups
+>   - payload size shift in command word is different
+>   - command word is not in SRAM, so command queuing is not possible
+>   - command indexes are different
+>   - command data structures differs
+>   - commands are redirected to low or high priority channels by their indexes,
+>     so round-robin redirection is not possible
 
-> has been applied to the regulator tree at
-> 
->    git://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git 
-> 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent to Linus during
-> the next merge window (or sooner if it is a bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.  
-> 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
-> 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
-> 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> Thanks,
-> Mark
-> 
-> From a99ab50dbbb1f982d076d19e0a9959fe2efa3126 Mon Sep 17 00:00:00 2001
-> From: Stefan Agner <stefan@agner.ch>
-> Date: Tue, 28 Jun 2016 22:53:19 -0700
-> Subject: [PATCH] mfd: rn5t618: Add Ricoh RN5T567 PMIC support
-> 
-> The Ricoh RN5T567 is from the same family as the Ricoh RN5T618 is,
-> the differences are:
-> 
-> + DCDC4
-> + Slightly different output voltage/currents
-> + 32kHz Output
-> - ADC/Charger capabilities
-> 
-> Signed-off-by: Stefan Agner <stefan@agner.ch>
-> Reviewed-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+I doubt if that's the case. At-least the original arm scp f/w didn't
+check that. Can you please trying sending any commands on any channel ?
+
+>
+> A clear disclaimer is added to make it clear this implementation should not
+> be used for new products and is only here to support already released SoCs.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/mfd/rn5t618.txt | 19 +++++++++--------
->  drivers/mfd/Kconfig                               |  7 ++++---
->  drivers/mfd/rn5t618.c                             | 25 ++++++++++++++++-------
->  include/linux/mfd/rn5t618.h                       | 12 +++++++++++
->  4 files changed, 45 insertions(+), 18 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/rn5t618.txt b/Documentation/devicetree/bindings/mfd/rn5t618.txt
-> index 937785a3eddc..9e6770b105c9 100644
-> --- a/Documentation/devicetree/bindings/mfd/rn5t618.txt
-> +++ b/Documentation/devicetree/bindings/mfd/rn5t618.txt
-> @@ -1,18 +1,21 @@
-> -* Ricoh RN5T618 PMIC
-> +* Ricoh RN5T567/RN5T618 PMIC
->  
-> -Ricoh RN5T618 is a power management IC which integrates 3 step-down
-> -DCDC converters, 7 low-dropout regulators, a Li-ion battery charger,
-> -fuel gauge, ADC, GPIOs and a watchdog timer. It can be controlled
-> -through a I2C interface.
-> +Ricoh RN5T567/RN5T618 is a power management IC family which integrates
-> +3 to 4 step-down DCDC converters, 7 low-dropout regulators, GPIOs and
-> +a watchdog timer. The RN5T618 provides additionally a Li-ion battery
-> +charger, fuel gauge and an ADC. It can be controlled through an I2C
-> +interface.
->  
->  Required properties:
-> - - compatible: should be "ricoh,rn5t618"
-> + - compatible: must be one of
-> +		"ricoh,rn5t567"
-> +		"ricoh,rn5t618"
->   - reg: the I2C slave address of the device
->  
->  Sub-nodes:
->   - regulators: the node is required if the regulator functionality is
-> -   needed. The valid regulator names are: DCDC1, DCDC2, DCDC3, LDO1,
-> -   LDO2, LDO3, LDO4, LDO5, LDORTC1 and LDORTC2.
-> +   needed. The valid regulator names are: DCDC1, DCDC2, DCDC3, DCDC4
-> +   (RN5T567), LDO1, LDO2, LDO3, LDO4, LDO5, LDORTC1 and LDORTC2.
->     The common bindings for each individual regulator can be found in:
->     Documentation/devicetree/bindings/regulator/regulator.txt
->  
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 1bcf601de5bc..ff031a7735a5 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -852,13 +852,14 @@ config MFD_RK808
->  	  including interrupts, RTC, LDO & DCDC regulators, and onkey.
->  
->  config MFD_RN5T618
-> -	tristate "Ricoh RN5T5618 PMIC"
-> +	tristate "Ricoh RN5T567/618 PMIC"
->  	depends on I2C
-> +	depends on OF
->  	select MFD_CORE
->  	select REGMAP_I2C
->  	help
-> -	  Say yes here to add support for the Ricoh RN5T618 PMIC. This
-> -	  driver provides common support for accessing the device,
-> +	  Say yes here to add support for the Ricoh RN5T567 or R5T618 PMIC.
-> +	  This driver provides common support for accessing the device,
->  	  additional drivers must be enabled in order to use the
->  	  functionality of the device.
->  
-> diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-> index 0ad51d792feb..c86160d3a773 100644
-> --- a/drivers/mfd/rn5t618.c
-> +++ b/drivers/mfd/rn5t618.c
-> @@ -2,6 +2,7 @@
->   * MFD core driver for Ricoh RN5T618 PMIC
->   *
->   * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
-> + * Copyright (C) 2016 Toradex AG
->   *
->   * This program is free software; you can redistribute it and/or
->   * modify it under the terms of the GNU General Public License
-> @@ -15,6 +16,7 @@
->  #include <linux/mfd/core.h>
->  #include <linux/mfd/rn5t618.h>
->  #include <linux/module.h>
-> +#include <linux/of_device.h>
->  #include <linux/regmap.h>
->  
->  static const struct mfd_cell rn5t618_cells[] = {
-> @@ -59,17 +61,32 @@ static void rn5t618_power_off(void)
->  			   RN5T618_SLPCNT_SWPWROFF, RN5T618_SLPCNT_SWPWROFF);
->  }
->  
-> +static const struct of_device_id rn5t618_of_match[] = {
-> +	{ .compatible = "ricoh,rn5t567", .data = (void *)RN5T567 },
-> +	{ .compatible = "ricoh,rn5t618", .data = (void *)RN5T618 },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, rn5t618_of_match);
+>   drivers/firmware/Kconfig       |  20 ++
+>   drivers/firmware/Makefile      |   1 +
+>   drivers/firmware/legacy_scpi.c | 644 +++++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 665 insertions(+)
+>   create mode 100644 drivers/firmware/legacy_scpi.c
+>
+> diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
+> index 95b01f4..b9c2a33 100644
+> --- a/drivers/firmware/Kconfig
+> +++ b/drivers/firmware/Kconfig
+> @@ -31,6 +31,26 @@ config ARM_SCPI_PROTOCOL
+>   	  This protocol library provides interface for all the client drivers
+>   	  making use of the features offered by the SCP.
+>
+> +config LEGACY_SCPI_PROTOCOL
+> +	bool "Legacy System Control and Power Interface (SCPI) Message Protocol"
+
+Do we really need to add another config ? I thought we could just manage
+with compatibles.
+
+> +	default y if ARCH_MESON
+> +	select ARM_SCPI_FW
+> +	help
+> +	  System Control and Power Interface (SCPI) Message Protocol is
+> +	  defined for the purpose of communication between the Application
+> +	  Cores(AP) and the System Control Processor(SCP). The MHU peripheral
+> +	  provides a mechanism for inter-processor communication between SCP
+> +	  and AP.
+
+[...]
+
+> diff --git a/drivers/firmware/legacy_scpi.c b/drivers/firmware/legacy_scpi.c
+> new file mode 100644
+> index 0000000..4bd3ff7
+> --- /dev/null
+> +++ b/drivers/firmware/legacy_scpi.c
+> @@ -0,0 +1,644 @@
+
+[...]
+
 > +
->  static int rn5t618_i2c_probe(struct i2c_client *i2c,
->  			     const struct i2c_device_id *id)
->  {
-> +	const struct of_device_id *of_id;
->  	struct rn5t618 *priv;
->  	int ret;
->  
-> +	of_id = of_match_device(rn5t618_of_match, &i2c->dev);
-> +	if (!of_id) {
-> +		dev_err(&i2c->dev, "Failed to find matching DT ID\n");
-> +		return -EINVAL;
-> +	}
+> +#define CMD_ID_SHIFT		0
+> +#define CMD_ID_MASK		0x7f
+> +#define CMD_SENDER_ID_SHIFT	8
+> +#define CMD_SENDER_ID_MASK	0xff
+
+Again this is something I introduced in the earlier driver. But from SCP
+f/w perspective, it just sends that as is to the sender. I think we
+retain token concept as is from the latest driver. Could you check
+dropping them and check if f/w makes any assumption about these. It
+should not IMO.
+
+> +#define CMD_DATA_SIZE_SHIFT	20
+> +#define CMD_DATA_SIZE_MASK	0x1ff
+> +#define PACK_SCPI_CMD(cmd_id, sender, tx_sz)				\
+> +	((((cmd_id) & CMD_ID_MASK) << CMD_ID_SHIFT) |			\
+> +	(((sender) & CMD_SENDER_ID_MASK) << CMD_SENDER_ID_SHIFT) |	\
+> +	(((tx_sz) & CMD_DATA_SIZE_MASK) << CMD_DATA_SIZE_SHIFT))
 > +
->  	priv = devm_kzalloc(&i2c->dev, sizeof(*priv), GFP_KERNEL);
->  	if (!priv)
->  		return -ENOMEM;
->  
->  	i2c_set_clientdata(i2c, priv);
-> +	priv->variant = (long)of_id->data;
->  
->  	priv->regmap = devm_regmap_init_i2c(i2c, &rn5t618_regmap_config);
->  	if (IS_ERR(priv->regmap)) {
-> @@ -105,12 +122,6 @@ static int rn5t618_i2c_remove(struct i2c_client *i2c)
->  	return 0;
->  }
->  
-> -static const struct of_device_id rn5t618_of_match[] = {
-> -	{ .compatible = "ricoh,rn5t618" },
-> -	{ }
-> -};
-> -MODULE_DEVICE_TABLE(of, rn5t618_of_match);
-> -
->  static const struct i2c_device_id rn5t618_i2c_id[] = {
->  	{ }
->  };
-> @@ -129,5 +140,5 @@ static struct i2c_driver rn5t618_i2c_driver = {
->  module_i2c_driver(rn5t618_i2c_driver);
->  
->  MODULE_AUTHOR("Beniamino Galvani <b.galvani@gmail.com>");
-> -MODULE_DESCRIPTION("Ricoh RN5T618 MFD driver");
-> +MODULE_DESCRIPTION("Ricoh RN5T567/618 MFD driver");
->  MODULE_LICENSE("GPL v2");
-> diff --git a/include/linux/mfd/rn5t618.h b/include/linux/mfd/rn5t618.h
-> index c72d5344f3b3..54179c2577ae 100644
-> --- a/include/linux/mfd/rn5t618.h
-> +++ b/include/linux/mfd/rn5t618.h
-> @@ -20,6 +20,7 @@
->  #define RN5T618_OTPVER			0x01
->  #define RN5T618_IODAC			0x02
->  #define RN5T618_VINDAC			0x03
-> +#define RN5T618_OUT32KEN		0x05
->  #define RN5T618_CPUCNT			0x06
->  #define RN5T618_PSWR			0x07
->  #define RN5T618_PONHIS			0x09
-> @@ -38,6 +39,7 @@
->  #define RN5T618_DC1_SLOT		0x16
->  #define RN5T618_DC2_SLOT		0x17
->  #define RN5T618_DC3_SLOT		0x18
-> +#define RN5T618_DC4_SLOT		0x19
->  #define RN5T618_LDO1_SLOT		0x1b
->  #define RN5T618_LDO2_SLOT		0x1c
->  #define RN5T618_LDO3_SLOT		0x1d
-> @@ -54,12 +56,16 @@
->  #define RN5T618_DC2CTL2			0x2f
->  #define RN5T618_DC3CTL			0x30
->  #define RN5T618_DC3CTL2			0x31
-> +#define RN5T618_DC4CTL			0x32
-> +#define RN5T618_DC4CTL2			0x33
->  #define RN5T618_DC1DAC			0x36
->  #define RN5T618_DC2DAC			0x37
->  #define RN5T618_DC3DAC			0x38
-> +#define RN5T618_DC4DAC			0x39
->  #define RN5T618_DC1DAC_SLP		0x3b
->  #define RN5T618_DC2DAC_SLP		0x3c
->  #define RN5T618_DC3DAC_SLP		0x3d
-> +#define RN5T618_DC4DAC_SLP		0x3e
->  #define RN5T618_DCIREN			0x40
->  #define RN5T618_DCIRQ			0x41
->  #define RN5T618_DCIRMON			0x42
-> @@ -221,8 +227,14 @@ enum {
->  	RN5T618_REG_NUM,
->  };
->  
-> +enum {
-> +	RN5T567 = 0,
-> +	RN5T618,
+> +#define CMD_SIZE(cmd)	(((cmd) >> CMD_DATA_SIZE_SHIFT) & CMD_DATA_SIZE_MASK)
+> +#define CMD_UNIQ_MASK	(CMD_TOKEN_ID_MASK << CMD_TOKEN_ID_SHIFT | CMD_ID_MASK)
+> +#define CMD_XTRACT_UNIQ(cmd)	((cmd) & CMD_UNIQ_MASK)
+> +
+> +#define MAX_DVFS_DOMAINS	3
+> +#define MAX_DVFS_OPPS		16
+> +#define DVFS_LATENCY(hdr)	(le32_to_cpu(hdr) >> 16)
+> +#define DVFS_OPP_COUNT(hdr)	((le32_to_cpu(hdr) >> 8) & 0xff)
+> +
+> +#define MAX_RX_TIMEOUT          (msecs_to_jiffies(30))
+> +
+> +enum legacy_scpi_error_codes {
+
+This along with many other defines are exactly same, not need to
+duplicate them.
+
+> +	SCPI_SUCCESS = 0, /* Success */
+> +	SCPI_ERR_PARAM = 1, /* Invalid parameter(s) */
+> +	SCPI_ERR_ALIGN = 2, /* Invalid alignment */
+> +	SCPI_ERR_SIZE = 3, /* Invalid size */
+> +	SCPI_ERR_HANDLER = 4, /* Invalid handler/callback */
+> +	SCPI_ERR_ACCESS = 5, /* Invalid access/permission denied */
+> +	SCPI_ERR_RANGE = 6, /* Value out of range */
+> +	SCPI_ERR_TIMEOUT = 7, /* Timeout has occurred */
+> +	SCPI_ERR_NOMEM = 8, /* Invalid memory area or pointer */
+> +	SCPI_ERR_PWRSTATE = 9, /* Invalid power state */
+> +	SCPI_ERR_SUPPORT = 10, /* Not supported or disabled */
+> +	SCPI_ERR_DEVICE = 11, /* Device error */
+> +	SCPI_ERR_BUSY = 12, /* Device busy */
+> +	SCPI_ERR_MAX
 > +};
 > +
->  struct rn5t618 {
->  	struct regmap *regmap;
-> +	long variant;
->  };
->  
->  #endif /* __LINUX_MFD_RN5T618_H */
+> +enum legacy_scpi_client_id {
+
+Could be removed as mentioned above ?
+
+> +	SCPI_CL_NONE,
+> +	SCPI_CL_CLOCKS,
+> +	SCPI_CL_DVFS,
+> +	SCPI_CL_POWER,
+> +	SCPI_CL_THERMAL,
+> +	SCPI_CL_REMOTE,
+> +	SCPI_CL_LED_TIMER,
+> +	SCPI_MAX,
+> +};
+> +
+> +enum legacy_scpi_std_cmd {
+> +	SCPI_CMD_INVALID		= 0x00,
+> +	SCPI_CMD_SCPI_READY		= 0x01,
+> +	SCPI_CMD_SCPI_CAPABILITIES	= 0x02,
+> +	SCPI_CMD_EVENT			= 0x03,
+> +	SCPI_CMD_SET_CSS_PWR_STATE	= 0x04,
+> +	SCPI_CMD_GET_CSS_PWR_STATE	= 0x05,
+> +	SCPI_CMD_CFG_PWR_STATE_STAT	= 0x06,
+> +	SCPI_CMD_GET_PWR_STATE_STAT	= 0x07,
+> +	SCPI_CMD_SYS_PWR_STATE		= 0x08,
+> +	SCPI_CMD_L2_READY		= 0x09,
+> +	SCPI_CMD_SET_AP_TIMER		= 0x0a,
+> +	SCPI_CMD_CANCEL_AP_TIME		= 0x0b,
+> +	SCPI_CMD_DVFS_CAPABILITIES	= 0x0c,
+> +	SCPI_CMD_GET_DVFS_INFO		= 0x0d,
+> +	SCPI_CMD_SET_DVFS		= 0x0e,
+> +	SCPI_CMD_GET_DVFS		= 0x0f,
+> +	SCPI_CMD_GET_DVFS_STAT		= 0x10,
+> +	SCPI_CMD_SET_RTC		= 0x11,
+> +	SCPI_CMD_GET_RTC		= 0x12,
+> +	SCPI_CMD_CLOCK_CAPABILITIES	= 0x13,
+> +	SCPI_CMD_SET_CLOCK_INDEX	= 0x14,
+> +	SCPI_CMD_SET_CLOCK_VALUE	= 0x15,
+> +	SCPI_CMD_GET_CLOCK_VALUE	= 0x16,
+> +	SCPI_CMD_PSU_CAPABILITIES	= 0x17,
+> +	SCPI_CMD_SET_PSU		= 0x18,
+> +	SCPI_CMD_GET_PSU		= 0x19,
+> +	SCPI_CMD_SENSOR_CAPABILITIES	= 0x1a,
+> +	SCPI_CMD_SENSOR_INFO		= 0x1b,
+> +	SCPI_CMD_SENSOR_VALUE		= 0x1c,
+> +	SCPI_CMD_SENSOR_CFG_PERIODIC	= 0x1d,
+> +	SCPI_CMD_SENSOR_CFG_BOUNDS	= 0x1e,
+> +	SCPI_CMD_SENSOR_ASYNC_VALUE	= 0x1f,
+> +	SCPI_CMD_COUNT
+> +};
+> +
+> +struct legacy_scpi_xfer {
+> +	u32 cmd;
+> +	u32 status;
+> +	const void *tx_buf;
+> +	void *rx_buf;
+> +	unsigned int tx_len;
+> +	unsigned int rx_len;
+> +	struct completion done;
+> +};
+> +
+> +struct legacy_scpi_chan {
+> +	struct mbox_client cl;
+> +	struct mbox_chan *chan;
+> +	void __iomem *tx_payload;
+> +	void __iomem *rx_payload;
+> +	spinlock_t rx_lock; /* locking for the rx pending list */
+> +	struct mutex xfers_lock;
+> +	struct legacy_scpi_xfer t;
+> +};
+> +
+> +struct legacy_scpi_drvinfo {
+> +	int num_chans;
+> +	struct legacy_scpi_chan *channels;
+> +	struct scpi_dvfs_info *dvfs[MAX_DVFS_DOMAINS];
+> +};
+> +
+
+Even these data structures could remain, and mended wherever needed or
+an alternate can be added at worse. Complete copy paste seems
+unnecessary to me.
+
+> +	legacy_scpi_info->channels = legacy_scpi_chan;
+> +	legacy_scpi_info->num_chans = count;
+> +	platform_set_drvdata(pdev, legacy_scpi_info);
+> +
+> +	ret = devm_scpi_ops_register(dev, &legacy_scpi_ops);
+
+Though the concept of registering scpi ops is really nice, I think we
+may not require that for support this legacy scpi protocol.
+
+In general, I see lot of code duplication, can you try not add another
+file or config and introduce the legacy support into arm_scpi.c itself ?
 
 -- 
-Lee Jones
-Linaro STMicroelectronics Landing Team Lead
-Linaro.org ? Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards,
+Sudeep
