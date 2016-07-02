@@ -1,37 +1,21 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Sat, 2 Jul 2016 10:27:21 +0200
-Subject: [PATCH v2 4/6] nvmem: amlogic: Add Amlogic Meson EFUSE driver
-In-Reply-To: <57763F42.3070106@linaro.org>
-References: <1467203656-14381-1-git-send-email-carlo@caione.org>
- <1467203656-14381-5-git-send-email-carlo@caione.org>
- <57763F42.3070106@linaro.org>
-Message-ID: <20160702082721.GA16826@localhost>
+From: davem@davemloft.net (David Miller)
+Date: Sat, 02 Jul 2016 14:36:44 -0400 (EDT)
+Subject: [PATCH] net: stmmac: Fix null-function call in ISR on stmmac1000
+In-Reply-To: <4B218985-EF8E-47C0-A682-A3E41BE90003@bluematt.me>
+References: <4B218985-EF8E-47C0-A682-A3E41BE90003@bluematt.me>
+Message-ID: <20160702.143644.1206479755314521348.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/07/16 11:00, Srinivas Kandagatla wrote:
-> 
-> 
-> On 29/06/16 13:34, Carlo Caione wrote:
-> >From: Carlo Caione <carlo@endlessm.com>
-> >
-> >Add Amlogic EFUSE driver to access hardware data like ethernet address,
-> >serial number or IDs.
-> >
-> >Signed-off-by: Carlo Caione <carlo@endlessm.com>
-> 
-> Patch looks good to me,
-> 
-> Looks like there are some dependencies to this patch w.r.t sm_calls, it
-> would be easy to take this series from single tree.
-> 
-> Just incase you want to take this patch via some other tree, here is Ack.
-> 
-> Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+From: Matt Corallo <linux@bluematt.me>
+Date: Thu, 30 Jun 2016 19:46:16 +0000
 
-Thanks, probably it's better to merge everything through the arm-soc tree.
+> (resent due to overhelpful mail client corrupting patch)
+> 
+> At least on Meson GXBB, the CORE_IRQ_MTL_RX_OVERFLOW interrupt is thrown
+> with the stmmac1000 driver, which does not support set_rx_tail_ptr. With
+> this patch and the clock fixes, 1G ethernet works on ODROID-C2.
+> 
+> Signed-off-by: Matt Corallo <git@bluematt.me>
 
-Cheers,
-
--- 
-Carlo Caione
+Applied.
