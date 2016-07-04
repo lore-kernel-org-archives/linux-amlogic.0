@@ -1,42 +1,44 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Sun, 3 Jul 2016 17:57:00 +0200
-Subject: [PATCH] ARM64: dts: amlogic: Add basic support for Amlogic S905X
-In-Reply-To: <1467399478-7183-1-git-send-email-carlo@caione.org>
-References: <1467399478-7183-1-git-send-email-carlo@caione.org>
-Message-ID: <577935CC.80001@suse.de>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Mon, 4 Jul 2016 13:21:01 +0200
+Subject: [PATCH 0/2] pinctrl: Enable support for external GPIO interrupts
+In-Reply-To: <CAD8Lp44SGNwYmeMPKMxbho8EXv9xZFtgHVGh5PKT7_4svYmiFA@mail.gmail.com>
+References: <5772301F.3030904@baylibre.com>
+ <CACRpkdZivUN8HKZ7oTDW6C35vSMv6+9G6-8M7=-kJM3B9vmH-A@mail.gmail.com>
+ <CAD8Lp44SGNwYmeMPKMxbho8EXv9xZFtgHVGh5PKT7_4svYmiFA@mail.gmail.com>
+Message-ID: <CACRpkdbDJCYYfMdq1yu1L6X6Lf0MPSNGriF_9J=4u4jQsGhkcA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 01.07.2016 um 20:57 schrieb Carlo Caione:
-> From: Carlo Caione <carlo@endlessm.com>
-> 
-> This patch introduces the basic support for the Amlogic S905X (Meson
-> GXL) and for the Amlogic evaluation board P212.
-> No documentation has been released yet for this SoC, so for now only the
-> bare minimum has been added in the DT.
-> 
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.txt |   5 +
->  arch/arm64/boot/dts/amlogic/Makefile              |   1 +
->  arch/arm64/boot/dts/amlogic/meson-gxl-p212.dts    |  70 +++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 179 ++++++++++++++++++++++
->  4 files changed, 255 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-p212.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+On Wed, Jun 29, 2016 at 4:41 PM, Daniel Drake <drake@endlessm.com> wrote:
 
-I don't have documentation either, but looks sane to me.
+> On this hardware we only have 8 GPIO IRQs available, for 100+ GPIOs.
+> If you want to monitor for both rising and falling edge of a GPIO then
+> you have to use 2 GPIO IRQs. 2 are used for the common case of SD card
+> detect. You can quickly lose several more (2 for audio jack detection,
+> power button, etc). So these are a very limited resource.
+>
+> If the allocation is done dynamically I see 2 slight advantages:
+>
+>  1. If the number of GPIO-IRQ users is greater than the number
+> available, the distributor can exclude drivers that are not of
+> interest to him and the corresponding GPIO-IRQs will automatically and
+> dynamically become available for the drivers that are of interest.
+>
+>  2. If the device tree encodes these assignments then the management
+> could be a bit complex, because some will be defined in the SoC dtsi
+> files and others will be defined in the board dts files (e.g.
+> Endless's CVBS mode selection switch), we'll have to make sure that
+> there are not conflicting assignments. Similarly if we end up sharing
+> dtsi files over different SoC versions then things could get tricky
+> especially in such a small namespace of 8 GPIO-IRQs. In the dynamic
+> case this is not an issue.
 
-Reviewed-by: Andreas F?rber <afaerber@suse.de>
+I think I'm siding with Daniel's analysis.
 
-With the recent driver progress have you checked whether /memory at 0
-actually works or whether U-Boot gives us a /memory node that Linux is
-using instead?
+These IRQs should be dynamically assigned, if practically feasible.
 
-Regards,
-Andreas
+BTW isn't the hierarchical irqdomain invented for exactly this
+usecase?
 
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+Yours,
+Linus Walleij
