@@ -1,44 +1,36 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Mon, 4 Jul 2016 13:21:01 +0200
-Subject: [PATCH 0/2] pinctrl: Enable support for external GPIO interrupts
-In-Reply-To: <CAD8Lp44SGNwYmeMPKMxbho8EXv9xZFtgHVGh5PKT7_4svYmiFA@mail.gmail.com>
-References: <5772301F.3030904@baylibre.com>
- <CACRpkdZivUN8HKZ7oTDW6C35vSMv6+9G6-8M7=-kJM3B9vmH-A@mail.gmail.com>
- <CAD8Lp44SGNwYmeMPKMxbho8EXv9xZFtgHVGh5PKT7_4svYmiFA@mail.gmail.com>
-Message-ID: <CACRpkdbDJCYYfMdq1yu1L6X6Lf0MPSNGriF_9J=4u4jQsGhkcA@mail.gmail.com>
+From: jassisinghbrar@gmail.com (Jassi Brar)
+Date: Mon, 4 Jul 2016 20:55:50 +0530
+Subject: [RFC PATCH v2 1/9] mailbox: Add Amlogic Meson
+ Message-Handling-Unit
+In-Reply-To: <CABb+yY3mD3chLtM02a5NvOO_HF2JAeu-SELkxzTxkkf5i+Bftg@mail.gmail.com>
+References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+ <1466503374-28841-2-git-send-email-narmstrong@baylibre.com>
+ <CABb+yY3r3_B9wbW6D-do8h8xMKCANQWfz1gFGyre1oWadd7A8Q@mail.gmail.com>
+ <576C045A.3070701@baylibre.com>
+ <CABb+yY0Oa7TNHsnt1HRAz1NUQ1QA_gR0-B-ki6qkuT332CnrmQ@mail.gmail.com>
+ <57728319.5060701@baylibre.com>
+ <CABb+yY3mD3chLtM02a5NvOO_HF2JAeu-SELkxzTxkkf5i+Bftg@mail.gmail.com>
+Message-ID: <CABb+yY0Wnqz9sHq5cq-HM0PnaoQEGZD4h3OFTrxNXFY-v5g_4w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Jun 29, 2016 at 4:41 PM, Daniel Drake <drake@endlessm.com> wrote:
+On Tue, Jun 28, 2016 at 8:36 PM, Jassi Brar <jassisinghbrar@gmail.com> wrote:
+> On Tue, Jun 28, 2016 at 7:30 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-> On this hardware we only have 8 GPIO IRQs available, for 100+ GPIOs.
-> If you want to monitor for both rising and falling edge of a GPIO then
-> you have to use 2 GPIO IRQs. 2 are used for the common case of SD card
-> detect. You can quickly lose several more (2 for audio jack detection,
-> power button, etc). So these are a very limited resource.
+>>
+>> My main question is : do you really want to transform this simple driver into
+>> a dirty multi-bus generic mailbox driver ?
+>> The meson_mhu is only 199 lines and this patch adds 181 lines to the arm_mhu driver.
+>>
+>> I'll personally push to have two separate drivers here.
+>>
+> It is a shame if we need to copy a driver only due to changed register
+> offsets. Let me give it a shot and see how worse off we would be.
 >
-> If the allocation is done dynamically I see 2 slight advantages:
->
->  1. If the number of GPIO-IRQ users is greater than the number
-> available, the distributor can exclude drivers that are not of
-> interest to him and the corresponding GPIO-IRQs will automatically and
-> dynamically become available for the drivers that are of interest.
->
->  2. If the device tree encodes these assignments then the management
-> could be a bit complex, because some will be defined in the SoC dtsi
-> files and others will be defined in the board dts files (e.g.
-> Endless's CVBS mode selection switch), we'll have to make sure that
-> there are not conflicting assignments. Similarly if we end up sharing
-> dtsi files over different SoC versions then things could get tricky
-> especially in such a small namespace of 8 GPIO-IRQs. In the dynamic
-> case this is not an issue.
+OK, so I trimmed the differences further but it still doesn't look any
+better. The best approach seems to be have a separate driver but with
+consideration that its a 3rd party IP and hence likely to be used by
+other platforms. That is, call it something meson-neutral. I will make
+a few comments on the patch post.
 
-I think I'm siding with Daniel's analysis.
-
-These IRQs should be dynamically assigned, if practically feasible.
-
-BTW isn't the hierarchical irqdomain invented for exactly this
-usecase?
-
-Yours,
-Linus Walleij
+Thanks
