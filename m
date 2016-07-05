@@ -1,7 +1,7 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Tue,  5 Jul 2016 20:48:06 +0100
+Date: Tue,  5 Jul 2016 20:48:39 +0100
 Subject: [PATCH v3 0/2] AMLogic Meson SoC RTC driver
-Message-ID: <1467748089-14718-1-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <1467748122-14833-1-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -12,6 +12,8 @@ as they depend on the reset-controller support in -next.
 The series does not have any build dependencies, but does require
 the reset controller and device-tree entries for the relevant boards
 and has been tested on the ODroid-C1 board.
+
+Thanks to Kevin Hilmand and Neil Armstrong for reviewing the driver.
 
 Changes since V1:
   <1467039135-26588-1-git-send-email-ben.dooks@codethink.co.uk>
