@@ -1,34 +1,39 @@
-From: serveralex@gmail.com (=?UTF-8?q?Alexander=20M=C3=BCller?=)
-Date: Tue,  5 Jul 2016 21:15:31 +0200
-Subject: [PATCH 1/7] clk: meson: Rename meson8b-clkc.c to reflect gxbb
- naming convention
-In-Reply-To: <20160705185527.GA17348@localhost>
-References: <20160705185527.GA17348@localhost>
-Message-ID: <1467746131-1865-1-git-send-email-serveralex@gmail.com>
+From: ben.dooks@codethink.co.uk (Ben Dooks)
+Date: Tue,  5 Jul 2016 20:48:06 +0100
+Subject: [PATCH v3 0/2] AMLogic Meson SoC RTC driver
+Message-ID: <1467748089-14718-1-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Alexander M?ller <serveralex@gmail.com>
----
- drivers/clk/meson/Makefile                      | 2 +-
- drivers/clk/meson/{meson8b-clkc.c => meson8b.c} | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
- rename drivers/clk/meson/{meson8b-clkc.c => meson8b.c} (100%)
+This series adds support for the on SoC RTC driver on the
+AMLogic Meson devices. The device-tree updates are not included
+as they depend on the reset-controller support in -next.
 
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 197e401..1a66799 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -3,5 +3,5 @@
- #
- 
- obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o
--obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b-clkc.o
-+obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
- obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o
-diff --git a/drivers/clk/meson/meson8b-clkc.c b/drivers/clk/meson/meson8b.c
-similarity index 100%
-rename from drivers/clk/meson/meson8b-clkc.c
-rename to drivers/clk/meson/meson8b.c
+The series does not have any build dependencies, but does require
+the reset controller and device-tree entries for the relevant boards
+and has been tested on the ODroid-C1 board.
+
+Changes since V1:
+  <1467039135-26588-1-git-send-email-ben.dooks@codethink.co.uk>
+
+ - Fixed checkpatch and sparse errors
+ - Fixed minor locking bug when writing static-control register
+ - Updated the code ordering in the rtc-meson.c driver
+ - Fixed alphanumeric ordering in on-cpu rtc block
+ - Added Rob Hering's ack for the DT binding documentation
+ - Added better description to the RTC driver header.
+
+Ben Dooks (2):
+  rtc: support for amlogic meson rtc
+  meson-rtc: add device-tree binding
+
+ .../devicetree/bindings/rtc/rtc-amlogic.txt        |  21 ++
+ drivers/rtc/Kconfig                                |   9 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-meson.c                            | 349 +++++++++++++++++++++
+ 6 files changed, 392 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
+ create mode 100644 drivers/rtc/rtc-meson.c
+
 -- 
-2.5.0
+2.8.1
