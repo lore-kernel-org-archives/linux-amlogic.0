@@ -1,134 +1,89 @@
-From: paul.gortmaker@windriver.com (Paul Gortmaker)
-Date: Mon, 4 Jul 2016 17:12:10 -0400
-Subject: [PATCH 00/10] clk: fix/remove module usage in non-modular code
-Message-ID: <20160704211220.5685-1-paul.gortmaker@windriver.com>
+From: dhdang@apm.com (Duc Dang)
+Date: Tue, 05 Jul 2016 04:37:15 -0000
+Subject: [PATCH v3 1/2] clocksource/arm_arch_timer: Force per-CPU
+ interrupt to be level-triggered
+In-Reply-To: <20160610082952.4f20d732@arm.com>
+References: <1465235791-7064-1-git-send-email-marc.zyngier@arm.com>
+ <1465235791-7064-2-git-send-email-marc.zyngier@arm.com>
+ <5759DB58.5070906@gmail.com> <20160610082952.4f20d732@arm.com>
+Message-ID: <CADaLND=gft2NEsoAHKBOUkK=ufDf7=xyqgwk-30+0C8Ui6iZRw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series covers the audit of non-modular module code use in the
-drivers/clk/ directory.
+On Fri, Jun 10, 2016 at 12:29 AM, Marc Zyngier <marc.zyngier@arm.com> wrote:
+> On Thu, 09 Jun 2016 14:10:48 -0700
+> David Daney <ddaney.cavm@gmail.com> wrote:
+>
+>> On 06/06/2016 10:56 AM, Marc Zyngier wrote:
+>> > The ARM architected timer produces level-triggered interrupts (this
+>> > is mandated by the architecture). Unfortunately, most device-trees
+>> > get this wrong, and expose an edge-triggered interrupt.
+>> >
+>> > Until now, this wasn't too much an issue, as the programming of the
+>> > trigger would fail (the corresponding PPI cannot be reconfigured),
+>> > and the kernel would be happy with this. But we're about to change
+>> > this, and trust DT a lot if the driver doesn't provide its own
+>> > trigger information. In that context, the timer breaks badly.
+>> >
+>> > While we do need to fix the DTs, there is also some userspace out
+>> > there (kvmtool) that generates the same kind of broken DT on the
+>> > fly, and that will completely break with newer kernels.
+>> >
+>> > As a safety measure, and to keep buggy software alive as well as
+>> > buying us some time to fix DTs all over the place, let's check
+>> > what trigger configuration has been given us by the firmware.
+>> > If this is not a level configuration, then we know that the
+>> > DT/ACPI configuration is bust, and we pick some defaults which
+>> > won't be worse than the existing setup.
+>> >
+>> > Signed-off-by: Marc Zyngier <marc.zyngier@arm.com>
+>>
+>>
+>> I tried to test this patch, but there is a problem somewhere that I have
+>> not yet tracked down.  On Cavium Thunder (gic-v3 based) I have tested
+>> with the device tree interrupt type of both 4 and 8 and get the same result:
+>>
+>>
+>> [    0.000000] arm_arch_timer: WARNING: Invalid trigger for IRQ2,
+>> assuming level low
+>> [    0.000000] arm_arch_timer: WARNING: Please fix your firmware
+>> [    0.000000] arm_arch_timer: WARNING: Invalid trigger for IRQ3,
+>> assuming level low
+>> [    0.000000] arm_arch_timer: WARNING: Please fix your firmware
+>> [    0.000000] arm_arch_timer: Architected cp15 timer(s) running at
+>> 100.00MHz (phys).
+>> [    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff
+>> max_cycles: 0x171024e7e0, max_idle_ns: 440795205315 ns
+>> [    0.000002] sched_clock: 56 bits at 100MHz, resolution 10ns, wraps
+>> every 4398046511100ns
+>>
+>> It could be that the gic-v3 irq mapping code is broken.  I will try to
+>> look into it, but there may be other fixes needed before we would
+>> consider this patch to be an improvement.
+>
+> That's because the core kernel has other bugs which are going to be
+> addressed in 4.8. So far, we cannot set the trigger of a per-cpu
+> interrupt from the device tree, and we end-up with whatever is the
+> default (edge). You can put whatever you want in the DT, it will be
+> ignored.
+>
+> This series in preparation of these fixes landing in 4.8, where we'll
+> be able to do the right thing, and will start noticing stupid things
+> coming from the DT.
+Hi Marc,
 
-Quasi generic boiler plate description follows; included for folks who
-haven't yet seen what we are aiming to achieve with this operation.
+I also see the same warning that David saw. Can you please cc me when
+the bug fix series
+is available? I will test it out for X-Gene 1 and will need to change
+the interrupt setting for timer
+events on X-Gene 2 as well.
 
-We are trying to not use module support for code that can never be built
-as a module because:
+Regards,
+Duc Dang.
 
- (1) it is easy to accidentally write unused module_exit and remove code
- (2) it can be misleading when reading the source, thinking it can be
-     modular when the Makefile and/or Kconfig prohibit it
- (3) it requires the include of the module.h header file which in turn
-     includes nearly everything else, thus adding to CPP overhead.
- (4) it gets copied/replicated into other code and spreads like weeds.
-
-With respect to #1 in this instance, we see for these 10 commits:
-    15 files changed, 37 insertions(+), 227 deletions(-)
-...which is a respectable (IMHO) net amount of removal of unused code.
-
-Changes seen here cover the following categories:
-
-  -just replacement of modular macros with their non-modular
-   equivalents that CPP would have inserted anyway, such as:
-	module_init --> device_initcall
-	module_platform_driver --> builtin_platform_driver
-
-  -the removal of including module.h ; replaced with init.h
-   as required based on whether the file used it.
-
-  -the removal of any/all unused/orphaned __exit functions that
-   would never be called.
-
-  -the removal of instances of MODULE_DEVICE_TABLE and MODULE_ALIAS
-   that become no-ops in the non-modular case.
-
-  -the removal of any ".remove" functions that were hooked into
-   the driver struct.   This ".remove" function would of
-   course not be called from the __exit function since that was
-   never run.  However in theory, someone could have triggered it
-   via sysfs unbind, even though there isn't a sensible use case
-   for doing so.  So to cover that possibility, we've also disabled
-   sysfs unbind in the driver.
-
-  -the removal of MODULE_DESCRIIPTION/AUTHOR/LICENSE tags that are
-   also no-ops for non-modular ; we ensure the information in those
-   tags is present in the top of file comments in each case.
-
-There are no initcall level changes here; everything stays at the level
-of initcall it was previously - either by not using modular versions to
-begin with, or by using the builtin level equivalents.
-
-As usual, we can consider making some of these tristate if an author
-has strong feelings about extending support into the modular realm,
-but I won't be able to run-time test any of that.
-
-I batched the sunxi changes together since they had similar author
-and maintainer fields and it helps avoid polluting history with too
-many mundane commits, but I can split that up if so desired.
-
-Build testing done on linux-next on arm/arm64 and x86/x86_64.
-
-Paul.
----
-
-Cc: Aleksandr Frid <afrid@nvidia.com>
-Cc: Alexandre Courbot <gnurou@gmail.com>
-Cc: Boris BREZILLON <boris.brezillon@free-electrons.com>
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Chen-Yu Tsai <wens@csie.org>
-Cc: "Emilio L?pez" <emilio@elopez.com.ar>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Krzysztof Kozlowski <k.kozlowski@samsung.com>
-Cc: Kukjin Kim <kgene@kernel.org>
-Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Padmavathi Venna <padma.v@samsung.com>
-Cc: Paul Walmsley <pwalmsley@nvidia.com>
-Cc: Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc: Prashant Gaikwad <pgaikwad@nvidia.com>
-Cc: Stephen Boyd <sboyd@codeaurora.org>
-Cc: Stephen Warren <swarren@wwwdotorg.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc: Tero Kristo <t-kristo@ti.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-Cc: Tomasz Figa <tomasz.figa@gmail.com>
-
-Cc: linux-amlogic at lists.infradead.org
-Cc: linux-clk at vger.kernel.org
-Cc: linux-omap at vger.kernel.org
-Cc: linux-samsung-soc at vger.kernel.org
-Cc: linux-tegra at vger.kernel.org
-
-Paul Gortmaker (10):
-  clk: meson8b: make it explicitly non-modular
-  clk: meson: make gxbb explicitly non-modular
-  clk: mvebu: make cp110-system-controller explicitly non-modular
-  clk: mvebu: make ap806-system-controller explicitly non-modular
-  clk: oxnas: make it explicitly non-modular
-  clk: samsung make clk-exynos-audss explicitly non-modular
-  clk: samsung: make clk-s5pv210-audss explicitly non-modular
-  clk: sunxi: make clk-* explicitly non-modular
-  clk: tegra: make clk-tegra124-dfll-fcpu explicitly non-modular
-  clk: ti: make clk-dra7-atl explicitly non-modular
-
- drivers/clk/clk-oxnas.c                     | 15 +++----------
- drivers/clk/meson/gxbb.c                    | 18 ++++-----------
- drivers/clk/meson/meson8b-clkc.c            | 19 ++++------------
- drivers/clk/mvebu/ap806-system-controller.c | 23 +++----------------
- drivers/clk/mvebu/cp110-system-controller.c | 34 +++--------------------------
- drivers/clk/samsung/clk-exynos-audss.c      | 13 +----------
- drivers/clk/samsung/clk-s5pv210-audss.c     | 29 ++----------------------
- drivers/clk/sunxi/clk-factors.c             |  1 -
- drivers/clk/sunxi/clk-sun6i-apb0-gates.c    |  9 ++------
- drivers/clk/sunxi/clk-sun6i-apb0.c          |  9 ++------
- drivers/clk/sunxi/clk-sun6i-ar100.c         | 21 +++---------------
- drivers/clk/sunxi/clk-sun8i-apb0.c          |  9 ++------
- drivers/clk/sunxi/clk-sun9i-mmc.c           | 28 +++---------------------
- drivers/clk/tegra/clk-tegra124-dfll-fcpu.c  | 16 ++------------
- drivers/clk/ti/clk-dra7-atl.c               | 20 +++--------------
- 15 files changed, 37 insertions(+), 227 deletions(-)
-
--- 
-2.8.4
+>
+> Thanks,
+>
+>         M.
+> --
+> Jazz is not dead. It just smells funny.
