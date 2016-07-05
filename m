@@ -1,47 +1,41 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Tue,  5 Jul 2016 20:48:42 +0100
-Subject: [PATCH v3 2/4] meson-rtc: add device-tree binding
+Date: Tue,  5 Jul 2016 20:48:40 +0100
+Subject: [PATCH v3 0/2] AMLogic Meson SoC RTC driver
 In-Reply-To: <1467748122-14833-1-git-send-email-ben.dooks@codethink.co.uk>
 References: <1467748122-14833-1-git-send-email-ben.dooks@codethink.co.uk>
-Message-ID: <1467748122-14833-4-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <1467748122-14833-2-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add documentation for the AMLogic Meson RTC.
+This series adds support for the on SoC RTC driver on the
+AMLogic Meson devices. The device-tree updates are not included
+as they depend on the reset-controller support in -next.
 
-Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-Acked-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/rtc/rtc-amlogic.txt         | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+The series does not have any build dependencies, but does require
+the reset controller and device-tree entries for the relevant boards
+and has been tested on the ODroid-C1 board.
+
+Changes since V1:
+  <1467039135-26588-1-git-send-email-ben.dooks@codethink.co.uk>
+
+ - Fixed checkpatch and sparse errors
+ - Fixed minor locking bug when writing static-control register
+ - Updated the code ordering in the rtc-meson.c driver
+ - Fixed alphanumeric ordering in on-cpu rtc block
+ - Added Rob Hering's ack for the DT binding documentation
+ - Added better description to the RTC driver header.
+
+Ben Dooks (2):
+  rtc: support for amlogic meson rtc
+  meson-rtc: add device-tree binding
+
+ .../devicetree/bindings/rtc/rtc-amlogic.txt        |  21 ++
+ drivers/rtc/Kconfig                                |   9 +
+ drivers/rtc/Makefile                               |   1 +
+ drivers/rtc/rtc-meson.c                            | 349 +++++++++++++++++++++
+ 6 files changed, 392 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
+ create mode 100644 drivers/rtc/rtc-meson.c
 
-diff --git a/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt b/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
-new file mode 100644
-index 0000000..efc7672
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
-@@ -0,0 +1,21 @@
-+* AMlogic Meson RTC
-+
-+Required properties:
-+- compatible: should be one of the following describing the hardware:
-+	* "amlogic,meson6-rtc"
-+	* "amlogic,meson8-rtc"
-+	* "amlogic,meson8b-rtc"
-+
-+- reg: physical register space for the controller's memory mapped registers.
-+
-+Optional properties:
-+- resets: reset controller reference to allow reset of the controller
-+- interrupts: single interrupt reference if interrupt support needed
-+
-+Example:
-+
-+	rtc: rtc at c8100740 {
-+		compatible = "amlogic,meson6-rtc";
-+		reg = <0xc8100740 0x14>;
-+		status = "disabled";
-+	};
 -- 
 2.8.1
