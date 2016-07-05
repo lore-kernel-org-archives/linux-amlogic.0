@@ -1,7 +1,9 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Tue,  5 Jul 2016 19:19:48 +0100
-Subject: [PATCH] i2c: meson: allow build with COMPILE_TEST
-Message-ID: <1467742788-16431-1-git-send-email-ben.dooks@codethink.co.uk>
+Date: Tue,  5 Jul 2016 19:24:03 +0100
+Subject: [PATCHv2] i2c: meson: allow build with COMPILE_TEST
+In-Reply-To: <1467742788-16431-1-git-send-email-ben.dooks@codethink.co.uk>
+References: <1467742788-16431-1-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <1467743043-18703-1-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -10,6 +12,7 @@ From: Ben Dooks <ben-linux@fluff.org>
 This driver could be included in COMPILE_TEST so allow it to be
 compiled when COMPILE_TEST is selected.
 
+Signed-off-by: Ben Dooks <ben-linux@fluff.org>
 Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
 ---
 Cc: linux-amlogic at lists.infradead.org
