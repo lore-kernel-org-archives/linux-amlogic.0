@@ -1,47 +1,27 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 06 Jul 2016 15:50:06 -0700
-Subject: [GIT PULL] Amlogic DT 64-bit updates for v4.8 (#2)
-Message-ID: <m237nmqt41.fsf@baylibre.com>
+Date: Wed,  6 Jul 2016 16:07:49 -0700
+Subject: [PATCH] clk: gxbb: expose CLKID_MMC_PCLK
+Message-ID: <20160706230749.9620-1-khilman@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This is the 2nd round of 64-bit DT updates for Amlogic.  Please pull.
+The MMC_PCLK is needed for the SD/eMMC driver.
 
-Thanks,
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+---
+ include/dt-bindings/clock/gxbb-clkc.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-Kevin
-
-
-
-
-The following changes since commit 6d1a5c9381eb022104442b2e036124f12ac748e4:
-
-  ARM64: dts: amlogic: Enable Reset Controller on GXBB-based platforms (2016-06-01 10:57:35 -0700)
-
-are available in the git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
-
-for you to fetch changes up to f3abd6296168d9d356192b50a92a7a980ca99a2f:
-
-  ARM64: DTS: meson-gxbb: switch ethernet to real clock (2016-06-23 15:59:31 -0700)
-
-----------------------------------------------------------------
-Amlogic 64-bit DT updates
-- add RNG and new clock driver support
-
-----------------------------------------------------------------
-Kevin Hilman (1):
-      ARM64: DTS: meson-gxbb: switch ethernet to real clock
-
-Michael Turquette (1):
-      arm64: dts: gxbb clock controller
-
-Neil Armstrong (2):
-      dt-bindings: hwrng: Add Amlogic Meson Hardware Random Generator bindings
-      ARM64: dts: meson-gxbb: Add Hardware Random Generator node
-
- Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt | 14 ++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                 | 14 +++++++++++++-
- 2 files changed, 27 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index f889d80246cb..5eb69ec74f6b 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -8,5 +8,6 @@
+ #define CLKID_CPUCLK		1
+ #define CLKID_CLK81		12
+ #define CLKID_ETH		36
++#define CLKID_MMC_PCLK		66
+ 
+ #endif /* __GXBB_CLKC_H */
+-- 
+2.9.0
