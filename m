@@ -1,54 +1,29 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Tue, 05 Jul 2016 17:54:40 -0700
-Subject: [PATCH 7/7] arm: amlogic: select meson8b clk driver
-In-Reply-To: <1467741391-60534-8-git-send-email-serveralex@gmail.com>
-References: <1467741391-60534-1-git-send-email-serveralex@gmail.com>
- <1467741391-60534-8-git-send-email-serveralex@gmail.com>
-Message-ID: <146776648028.35356.7816151912503029258@resonance>
+From: ben.dooks@codethink.co.uk (Ben Dooks)
+Date: Wed, 6 Jul 2016 08:33:48 +0100
+Subject: [PATCHv2] i2c: meson: allow build with COMPILE_TEST
+In-Reply-To: <20160706000935.GA1349@tetsubishi>
+References: <1467742788-16431-1-git-send-email-ben.dooks@codethink.co.uk>
+ <1467743043-18703-1-git-send-email-ben.dooks@codethink.co.uk>
+ <20160706000935.GA1349@tetsubishi>
+Message-ID: <5de63894-cb33-f2be-4c53-93e8865a24a9@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Alex,
-
-Quoting Alexander M?ller (2016-07-05 10:56:31)
-> Select the Amlogic clk code for meson SoCs and the more specific meson8b clk
-> driver for Amlogic meson8b.
+On 06/07/16 01:09, Wolfram Sang wrote:
+> On Tue, Jul 05, 2016 at 07:24:03PM +0100, Ben Dooks wrote:
+>> From: Ben Dooks <ben-linux@fluff.org>
+>>
+>> This driver could be included in COMPILE_TEST so allow it to be
+>> compiled when COMPILE_TEST is selected.
+>>
+>> Signed-off-by: Ben Dooks <ben-linux@fluff.org>
+>> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
 > 
-> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
+> Two signed-offs by you?
 
-This patch isn't necessary as an alternative is already queued. See:
-https://git.kernel.org/cgit/linux/kernel/git/mturquette/linux.git/commit/?h=gxbb-dt-clk&id=bae5d70ba6f8726ea6306aa07b7d2eb4357d3c81
+two different emails, got a patch written at home left in my work
+tree so used both emails.
 
-However, if you're basing on top of clk-next (or clk-s905) then you
-won't see the three patches linked above because they are queued through
-Kevin & Carlo via the amlogic tree.
-
-Regards,
-Mike
-
-> ---
->  arch/arm/mach-meson/Kconfig | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-> index 31bdd91..b3add39 100644
-> --- a/arch/arm/mach-meson/Kconfig
-> +++ b/arch/arm/mach-meson/Kconfig
-> @@ -7,6 +7,7 @@ menuconfig ARCH_MESON
->         select CACHE_L2X0
->         select PINCTRL
->         select PINCTRL_MESON
-> +       select COMMON_CLK_AMLOGIC
->  
->  if ARCH_MESON
->  
-> @@ -24,5 +25,6 @@ config MACH_MESON8B
->         bool "Amlogic Meson8b SoCs support"
->         default ARCH_MESON
->         select MESON6_TIMER
-> +       select COMMON_CLK_MESON8B
->  
->  endif
-> -- 
-> 2.5.0
-> 
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
