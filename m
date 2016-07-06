@@ -1,94 +1,36 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 06 Jul 2016 15:21:37 -0700
-Subject: [PATCH 02/10] clk: meson: make gxbb explicitly non-modular
-In-Reply-To: <20160704211220.5685-3-paul.gortmaker@windriver.com>
-References: <20160704211220.5685-1-paul.gortmaker@windriver.com>
- <20160704211220.5685-3-paul.gortmaker@windriver.com>
-Message-ID: <146784369681.73491.7863077914302443664@resonance>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 06 Jul 2016 15:48:24 -0700
+Subject: [GIT PULL] Amlogic SoC updates for v4.8 (#2)
+Message-ID: <m28txeqt6v.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Paul Gortmaker (2016-07-04 14:12:12)
-> The Kconfig currently controlling compilation of this code is:
-> 
-> drivers/clk/meson/Kconfig:config COMMON_CLK_GXBB
-> drivers/clk/meson/Kconfig:      bool
-> 
-> ...meaning that it currently is not being built as a module by anyone.
-> 
-> Lets remove the modular code that is essentially orphaned, so that
-> when reading the driver there is no doubt it is builtin-only.
-> 
-> Since module_init translates to device_initcall in the non-modular
-> case, the init ordering remains unchanged with this commit.
-> 
-> Also note that MODULE_DEVICE_TABLE and ALIAS are no-op for non-modules.
-> 
-> We also delete the MODULE_LICENSE tag etc. since all that information
-> was (or is now) contained at the top of the file in the comments.
-> 
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Stephen Boyd <sboyd@codeaurora.org>
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: linux-clk at vger.kernel.org
-> Cc: linux-amlogic at lists.infradead.org
-> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
+This is the 2nd round of SoC changes for Amlogic.
 
-Applied.
+Kevin
 
-Regards,
-Mike
 
-> ---
->  drivers/clk/meson/gxbb.c | 18 ++++--------------
->  1 file changed, 4 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 007b7157cf4b..a4c6684b3019 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -1,4 +1,6 @@
->  /*
-> + * AmLogic S905 / GXBB Clock Controller Driver
-> + *
->   * Copyright (c) 2016 AmLogic, Inc.
->   * Michael Turquette <mturquette@baylibre.com>
->   *
-> @@ -19,7 +21,7 @@
->  #include <linux/clk-provider.h>
->  #include <linux/of_address.h>
->  #include <linux/platform_device.h>
-> -#include <linux/module.h>
-> +#include <linux/init.h>
->  
->  #include "clkc.h"
->  #include "gxbb.h"
-> @@ -926,7 +928,6 @@ static const struct of_device_id gxbb_clkc_match_table[] = {
->         { .compatible = "amlogic,gxbb-clkc" },
->         { }
->  };
-> -MODULE_DEVICE_TABLE(of, gxbb_match_table);
->  
->  static struct platform_driver gxbb_driver = {
->         .probe          = gxbb_clkc_probe,
-> @@ -940,15 +941,4 @@ static int __init gxbb_clkc_init(void)
->  {
->         return platform_driver_register(&gxbb_driver);
->  }
-> -module_init(gxbb_clkc_init);
-> -
-> -static void __exit gxbb_clkc_exit(void)
-> -{
-> -       platform_driver_unregister(&gxbb_driver);
-> -}
-> -module_exit(gxbb_clkc_exit);
-> -
-> -MODULE_DESCRIPTION("AmLogic S905 / GXBB Clock Controller Driver");
-> -MODULE_LICENSE("GPL v2");
-> -MODULE_ALIAS("platform:gxbb-clkc");
-> -MODULE_AUTHOR("Michael Turquette <mturquette@baylibre.com>");
-> +device_initcall(gxbb_clkc_init);
-> -- 
-> 2.8.4
-> 
+The following changes since commit bf56c7762df2ef60512eb58c5f4525d173a4da22:
+
+  ARM64: Kconfig: Select the Amlogic Meson pin controller driver (2016-06-01 10:55:05 -0700)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-soc-2
+
+for you to fetch changes up to 59f910d8fbd9d7c2957ad4df642dc262fbfdcd59:
+
+  arm64: amlogic: select gxbb clk driver (2016-06-23 15:22:37 -0700)
+
+----------------------------------------------------------------
+Amlogic SoC updates:
+- Kconfig updates for new GXBB clock driver
+
+----------------------------------------------------------------
+Michael Turquette (2):
+      arm: meson: explicitly select clk drivers
+      arm64: amlogic: select gxbb clk driver
+
+ arch/arm/mach-meson/Kconfig  | 3 +++
+ arch/arm64/Kconfig.platforms | 2 ++
+ 2 files changed, 5 insertions(+)
