@@ -1,28 +1,22 @@
-From: wsa@the-dreams.de (Wolfram Sang)
-Date: Wed, 6 Jul 2016 09:09:36 +0900
-Subject: [PATCHv2] i2c: meson: allow build with COMPILE_TEST
-In-Reply-To: <1467743043-18703-1-git-send-email-ben.dooks@codethink.co.uk>
-References: <1467742788-16431-1-git-send-email-ben.dooks@codethink.co.uk>
- <1467743043-18703-1-git-send-email-ben.dooks@codethink.co.uk>
-Message-ID: <20160706000935.GA1349@tetsubishi>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Tue, 05 Jul 2016 17:28:23 -0700
+Subject: [PATCH 3/7] meson: clk: Rename register names according to Amlogic
+ datasheet
+In-Reply-To: <1467741391-60534-4-git-send-email-serveralex@gmail.com>
+References: <1467741391-60534-1-git-send-email-serveralex@gmail.com>
+ <1467741391-60534-4-git-send-email-serveralex@gmail.com>
+Message-ID: <146776490365.35356.4549950541188860670@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jul 05, 2016 at 07:24:03PM +0100, Ben Dooks wrote:
-> From: Ben Dooks <ben-linux@fluff.org>
-> 
-> This driver could be included in COMPILE_TEST so allow it to be
-> compiled when COMPILE_TEST is selected.
-> 
-> Signed-off-by: Ben Dooks <ben-linux@fluff.org>
-> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+Quoting Alexander M?ller (2016-07-05 10:56:27)
+> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
+> +#define HHI_MPLL_CNTL                  0x280 /* 0xa0 offset in data sheet */
+> +#define HHI_SYS_PLL_CNTL               0x300 /* 0xc0 offset in data sheet */
+> +#define HHI_VID_PLL_CNTL               0x320 /* 0xc8 offset in data sheet */
 
-Two signed-offs by you?
+Nitpick: these three regs are not present in the data sheet, which is
+why I did not include the comment for these three addresses originally.
 
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160706/460dc217/attachment.sig>
+Regards,
+Mike
