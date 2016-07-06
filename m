@@ -1,41 +1,54 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Tue, 05 Jul 2016 17:51:08 -0700
-Subject: [PATCH 6/7] meson: clk: Add support for clock gates
-In-Reply-To: <b42e2bb3-2cd0-3115-9be4-16e3a48b46fd@codethink.co.uk>
+Date: Tue, 05 Jul 2016 17:54:40 -0700
+Subject: [PATCH 7/7] arm: amlogic: select meson8b clk driver
+In-Reply-To: <1467741391-60534-8-git-send-email-serveralex@gmail.com>
 References: <1467741391-60534-1-git-send-email-serveralex@gmail.com>
- <1467741391-60534-7-git-send-email-serveralex@gmail.com>
- <b42e2bb3-2cd0-3115-9be4-16e3a48b46fd@codethink.co.uk>
-Message-ID: <146776626852.35356.9847034661606022714@resonance>
+ <1467741391-60534-8-git-send-email-serveralex@gmail.com>
+Message-ID: <146776648028.35356.7816151912503029258@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Ben,
+Hi Alex,
 
-Quoting Ben Dooks (2016-07-05 11:01:14)
-> On 05/07/16 18:56, Alexander M?ller wrote:
-> > This patch adds support for the meson8b clock gates. Most of
-> > them are disabled by Amlogic U-Boot, but need to be enabled
-> > for ethernet, USB and many other components.
-> > 
-> > Signed-off-by: Alexander M?ller <serveralex@gmail.com>
-> > ---
+Quoting Alexander M?ller (2016-07-05 10:56:31)
+> Select the Amlogic clk code for meson SoCs and the more specific meson8b clk
+> driver for Amlogic meson8b.
 > 
-> This seems to be a lot of structures for clocks that may
-> never be use. I think it would be better to provide a custom
-> lookup function that creates these as needed and use the ID
-> in the dt as a offset+bit id.
+> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
 
-We want the real clocks registered so that we can disable spuriously
-enabled at late_initcall time with clk_disable_unused.
+This patch isn't necessary as an alternative is already queued. See:
+https://git.kernel.org/cgit/linux/kernel/git/mturquette/linux.git/commit/?h=gxbb-dt-clk&id=bae5d70ba6f8726ea6306aa07b7d2eb4357d3c81
 
-Furthermore, I'd like to not represent all of these gates in the DT
-binding description (see my response to the earlier patches in this
-series), since it becomes ABI (and a maintenance nightmare).
+However, if you're basing on top of clk-next (or clk-s905) then you
+won't see the three patches linked above because they are queued through
+Kevin & Carlo via the amlogic tree.
 
 Regards,
 Mike
 
+> ---
+>  arch/arm/mach-meson/Kconfig | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+> index 31bdd91..b3add39 100644
+> --- a/arch/arm/mach-meson/Kconfig
+> +++ b/arch/arm/mach-meson/Kconfig
+> @@ -7,6 +7,7 @@ menuconfig ARCH_MESON
+>         select CACHE_L2X0
+>         select PINCTRL
+>         select PINCTRL_MESON
+> +       select COMMON_CLK_AMLOGIC
+>  
+>  if ARCH_MESON
+>  
+> @@ -24,5 +25,6 @@ config MACH_MESON8B
+>         bool "Amlogic Meson8b SoCs support"
+>         default ARCH_MESON
+>         select MESON6_TIMER
+> +       select COMMON_CLK_MESON8B
+>  
+>  endif
 > -- 
-> Ben Dooks                               http://www.codethink.co.uk/
-> Senior Engineer                         Codethink - Providing Genius
+> 2.5.0
+> 
