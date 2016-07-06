@@ -1,132 +1,275 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Wed, 6 Jul 2016 09:50:49 +0100
-Subject: [PATCH 6/7] meson: clk: Add support for clock gates
-In-Reply-To: <146779266886.35356.2727828069246665428@resonance>
-References: <1467741391-60534-1-git-send-email-serveralex@gmail.com>
- <1467741391-60534-7-git-send-email-serveralex@gmail.com>
- <b42e2bb3-2cd0-3115-9be4-16e3a48b46fd@codethink.co.uk>
- <146776626852.35356.9847034661606022714@resonance>
- <07f37b8b-cfd2-ebc6-a693-4372d6c34293@codethink.co.uk>
- <146779266886.35356.2727828069246665428@resonance>
-Message-ID: <3d8bea0d-043e-b9ca-386c-3007f7989974@codethink.co.uk>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 6 Jul 2016 15:17:59 +0200
+Subject: [RFC PATCH v2 1/9] mailbox: Add Amlogic Meson
+ Message-Handling-Unit
+In-Reply-To: <CABb+yY3HqJG2+GMWCWF9PomxobrwWGZ=TZe5NvXPcHMDdLhkcQ@mail.gmail.com>
+References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+ <1466503374-28841-2-git-send-email-narmstrong@baylibre.com>
+ <CABb+yY3HqJG2+GMWCWF9PomxobrwWGZ=TZe5NvXPcHMDdLhkcQ@mail.gmail.com>
+Message-ID: <CAA3gFWuY78ouBwiXfcArojbc5wOBq_5AfLQTKrr-+ELYyMcmhw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/07/16 09:11, Michael Turquette wrote:
-> Quoting Ben Dooks (2016-07-06 00:35:28)
->> On 06/07/16 01:51, Michael Turquette wrote:
->>> Hi Ben,
->>>
->>> Quoting Ben Dooks (2016-07-05 11:01:14)
->>>> On 05/07/16 18:56, Alexander M?ller wrote:
->>>>> This patch adds support for the meson8b clock gates. Most of
->>>>> them are disabled by Amlogic U-Boot, but need to be enabled
->>>>> for ethernet, USB and many other components.
->>>>>
->>>>> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
->>>>> ---
->>>>
->>>> This seems to be a lot of structures for clocks that may
->>>> never be use. I think it would be better to provide a custom
->>>> lookup function that creates these as needed and use the ID
->>>> in the dt as a offset+bit id.
->>>
->>> We want the real clocks registered so that we can disable spuriously
->>> enabled at late_initcall time with clk_disable_unused.
->>>
->>> Furthermore, I'd like to not represent all of these gates in the DT
->>> binding description (see my response to the earlier patches in this
->>> series), since it becomes ABI (and a maintenance nightmare).
+2016-07-04 17:38 GMT+02:00 Jassi Brar <jassisinghbrar@gmail.com>:
+> On Tue, Jun 21, 2016 at 3:32 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> Add Amlogic Meson SoCs Message-Handling-Unit as mailbox controller
+>> with 2 independent channels/links to communicate with a remote processor.
 >>
->> Erm, so writing /more/ code and having them defined in /two/ places
->> is a nightmare? Sounds more of a nightmare of having the ID in the DT
->> represent the register/bit offset and then having them created at
->> lookup time.
-> 
-> I apologize, but I really don't understand what side of the argument
-> that you are pushing for based on the above text. Something is a
-> nightmare, but I'm not sure which design pattern you are attributing
-> nightmare status too.
-> 
-> Anyways, clock string name is required always, so even if you encode
-> register and bitfield in DT cleverly, you've still got data in C,
-> assuming your point was to remove stuff from C. That might change some
-> day, but not today. Memory footprint should remain the same with either
-> implementation.
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/mailbox/Makefile    |   2 +
+>>  drivers/mailbox/meson_mhu.c | 199 ++++++++++++++++++++++++++++++++++++++++++++
+>>
+> Can we call it pdev_mhu.c or similar so that some other platform using
+> the MHU as a platform_device wouldn't have to embarrassingly call it
+> 'Meson's MHU'?  And also the replace meson with that prefix in the
+> code.
 
-Is that actually useful for anything other than debug?
+Yes, it may deserve a more generic naming, but pdev_mhu is not good
+looking at all !
+What about platform_mhu ?
 
-> If you have an alternative implementation, patches are always welcome.
+>
+>>  2 files changed, 201 insertions(+)
+>>  create mode 100644 drivers/mailbox/meson_mhu.c
+>>
+>> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+>> index 0be3e74..6aa9dbe 100644
+>> --- a/drivers/mailbox/Makefile
+>> +++ b/drivers/mailbox/Makefile
+>> @@ -25,3 +25,5 @@ obj-$(CONFIG_TI_MESSAGE_MANAGER) += ti-msgmgr.o
+>>  obj-$(CONFIG_XGENE_SLIMPRO_MBOX) += mailbox-xgene-slimpro.o
+>>
+>>  obj-$(CONFIG_HI6220_MBOX)      += hi6220-mailbox.o
+>> +
+>> +obj-$(CONFIG_ARCH_MESON)       += meson_mhu.o
+>> diff --git a/drivers/mailbox/meson_mhu.c b/drivers/mailbox/meson_mhu.c
+>> new file mode 100644
+>> index 0000000..0576b92
+>> --- /dev/null
+>> +++ b/drivers/mailbox/meson_mhu.c
+>> @@ -0,0 +1,199 @@
+>> +/*
+>> + * Copyright (C) 2016 BayLibre SAS.
+>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>> + * Heavily based on meson_mhu.c from :
+>> + * Copyright (C) 2013-2015 Fujitsu Semiconductor Ltd.
+>> + * Copyright (C) 2015 Linaro Ltd.
+>> + * Author: Jassi Brar <jaswinder.singh@linaro.org>
+>> + *
+>> + * This program is free software: you can redistribute it and/or modify
+>> + * it under the terms of the GNU General Public License as published by
+>> + * the Free Software Foundation, version 2 of the License.
+>> + *
+>> + * This program is distributed in the hope that it will be useful,
+>> + * but WITHOUT ANY WARRANTY; without even the implied warranty of
+>> + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+>> + * GNU General Public License for more details.
+>> + */
+>> +
+>> +#include <linux/interrupt.h>
+>> +#include <linux/spinlock.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/err.h>
+>> +#include <linux/io.h>
+>> +#include <linux/module.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/mailbox_controller.h>
+>> +
+>> +#define INTR_SET_OFS   0x0
+>> +#define INTR_STAT_OFS  0x4
+>> +#define INTR_CLR_OFS   0x8
+>> +
+>> +#define MHU_LP_OFFSET  0x10
+>> +#define MHU_HP_OFFSET  0x1c
+>> +
+>> +#define TX_REG_OFFSET  0x24
+>> +
+>> +#define MHU_CHANS      2
+>> +
+>> +struct meson_mhu_link {
+>> +       unsigned int irq;
+>> +       void __iomem *tx_reg;
+>> +       void __iomem *rx_reg;
+>> +};
+>> +
+>> +struct meson_mhu {
+>> +       void __iomem *base;
+>> +       struct meson_mhu_link mlink[MHU_CHANS];
+>> +       struct mbox_chan chan[MHU_CHANS];
+>> +       struct mbox_controller mbox;
+>> +};
+>> +
+>> +static irqreturn_t meson_mhu_rx_interrupt(int irq, void *p)
+>> +{
+>> +       struct mbox_chan *chan = p;
+>> +       struct meson_mhu_link *mlink = chan->con_priv;
+>> +       u32 val;
+>> +
+>> +       val = readl_relaxed(mlink->rx_reg + INTR_STAT_OFS);
+>> +       if (!val)
+>> +               return IRQ_NONE;
+>> +
+>> +       mbox_chan_received_data(chan, (void *)&val);
+>> +
+>> +       writel_relaxed(~0, mlink->rx_reg + INTR_CLR_OFS);
+>> +
+> How about sync with arm_mhu.c by doing writel_relaxed(val,
+> mlink->rx_reg + INTR_CLR_OFS) ?
 
-I can think of a few ways we could do this, depending on how much
-code is to be added either to the meson-clk driver or to something
-that is more generic.
+The ~0 was taken from the vendor driver, but writing val should work,
+I must test this change.
 
-If we add gate support to the meson clkock driver, we could have
-two implementations, we can either encode the reg/bit into the ID
-and have a valid bitmask fro the clock registers to define which
-are valid:
+>
+>> +       return IRQ_HANDLED;
+>> +}
+>> +
+>> +static bool meson_mhu_last_tx_done(struct mbox_chan *chan)
+>> +{
+>> +       struct meson_mhu_link *mlink = chan->con_priv;
+>> +       u32 val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
+>> +
+>> +       return (val == 0);
+>> +}
+>> +
+>> +static int meson_mhu_send_data(struct mbox_chan *chan, void *data)
+>> +{
+>> +       struct meson_mhu_link *mlink = chan->con_priv;
+>> +       u32 *arg = data;
+>> +
+>> +       writel_relaxed(*arg, mlink->tx_reg + INTR_SET_OFS);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int meson_mhu_startup(struct mbox_chan *chan)
+>> +{
+>> +       struct meson_mhu_link *mlink = chan->con_priv;
+>> +       int ret;
+>> +
+> arm_mhu.c clears any pending TX before taking over by doing ...
+>        val = readl_relaxed(mlink->tx_reg + INTR_STAT_OFS);
+>        writel_relaxed(val, mlink->tx_reg + INTR_CLR_OFS);
 
-#define CLK81_GATE_BASE			(0x10000)
-#define CLK81_GATE(__reg, __bit)	(CLK81_GATE_BASE + ((__reg) * 32) +
-(__bit))
+I dropped it not knowing it it was necessary because not pressent in
+the vendor code, but yes it would clearly be good to get it back.
 
-	clks: meson-clock-driver at xxx {
-		valid-clk-masks = <...>, <...>, <...>;
-	};
+>> +       ret = request_irq(mlink->irq, meson_mhu_rx_interrupt,
+>> +                         IRQF_ONESHOT, "meson_mhu_link", chan);
+>> +       if (ret) {
+>> +               dev_err(chan->mbox->dev,
+>> +                       "Unable to acquire IRQ %d\n", mlink->irq);
+>> +               return ret;
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static void meson_mhu_shutdown(struct mbox_chan *chan)
+>> +{
+>> +       struct meson_mhu_link *mlink = chan->con_priv;
+>> +
+>> +       free_irq(mlink->irq, chan);
+>> +}
+>> +
+>> +static const struct mbox_chan_ops meson_mhu_ops = {
+>> +       .send_data = meson_mhu_send_data,
+>> +       .startup = meson_mhu_startup,
+>> +       .shutdown = meson_mhu_shutdown,
+>> +       .last_tx_done = meson_mhu_last_tx_done,
+>> +};
+>>
+> My two comments above may not be necessary for your platform, but I
+> would suggest we keep the core (from the declaration of struct
+> meson_mhu_link to this point) in sync with arm_mhu.c
 
-We could even have one sub-node for each 32bit gate
+Yes, I'll keep them as synced as possible.
 
+>> +static int meson_mhu_probe(struct platform_device *pdev)
+>> +{
+>> +       int i, err;
+>> +       struct meson_mhu *mhu;
+>> +       struct device *dev = &pdev->dev;
+>> +       struct resource *res;
+>> +       int meson_mhu_reg[MHU_CHANS] = {MHU_LP_OFFSET, MHU_HP_OFFSET};
+>> +
+>> +       /* Allocate memory for device */
+>> +       mhu = devm_kzalloc(dev, sizeof(*mhu), GFP_KERNEL);
+>> +       if (!mhu)
+>> +               return -ENOMEM;
+>> +
+>> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>> +       mhu->base = devm_ioremap_resource(dev, res);
+>> +       if (IS_ERR(mhu->base)) {
+>> +               dev_err(dev, "ioremap failed\n");
+>> +               return PTR_ERR(mhu->base);
+>> +       }
+>> +
+>> +       for (i = 0; i < MHU_CHANS; i++) {
+>> +               mhu->chan[i].con_priv = &mhu->mlink[i];
+>> +               mhu->mlink[i].irq = platform_get_irq(pdev, i);
+>> +               if (mhu->mlink[i].irq < 0) {
+>> +                       dev_err(dev, "failed to get irq%d\n", i);
+>> +                       return mhu->mlink[i].irq;
+>> +               }
+>> +               mhu->mlink[i].rx_reg = mhu->base + meson_mhu_reg[i];
+>> +               mhu->mlink[i].tx_reg = mhu->mlink[i].rx_reg + TX_REG_OFFSET;
+>> +       }
+>> +
+>> +       mhu->mbox.dev = dev;
+>> +       mhu->mbox.chans = &mhu->chan[0];
+>> +       mhu->mbox.num_chans = MHU_CHANS;
+>> +       mhu->mbox.ops = &meson_mhu_ops;
+>> +       mhu->mbox.txdone_irq = false;
+>> +       mhu->mbox.txdone_poll = true;
+>> +       mhu->mbox.txpoll_period = 1;
+>> +
+>> +       platform_set_drvdata(pdev, mhu);
+>> +
+>> +       err = mbox_controller_register(&mhu->mbox);
+>> +       if (err) {
+>> +               dev_err(dev, "Failed to register mailboxes %d\n", err);
+>> +               return err;
+>> +       }
+>> +
+>> +       dev_info(dev, "Meson MHU Mailbox registered\n");
+>> +       return 0;
+>> +}
+>> +
+>> +static int meson_mhu_remove(struct platform_device *pdev)
+>> +{
+>> +       struct meson_mhu *mhu = platform_get_drvdata(pdev);
+>> +
+>> +       mbox_controller_unregister(&mhu->mbox);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static const struct of_device_id meson_mhu_dt_ids[] = {
+>> +       { .compatible = "amlogic,meson-gxbb-mhu", },
+>> +       { /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, meson_mhu_ids);
+>> +
+>> +static struct platform_driver meson_wdt_driver = {
+>> +       .probe  = meson_mhu_probe,
+>> +       .remove = meson_mhu_remove,
+>> +       .driver = {
+>> +               .name = "meson-mhu",
+>> +               .of_match_table = meson_mhu_dt_ids,
+>> +       },
+>> +};
+>> +
+>> +module_platform_driver(meson_wdt_driver);
+>> +
+> wdt as in watchdog-timer from drivers/watchdog/meson_wdt.c ? :)
 
-	clks: meson-clock-driver at xxx {
-		clk81_gate0: {
-			compatible = "meson,meson-gate-reg";
-			valid-clk-mask = <0x1f1>;
-		}
-	};
+Sorry, it was a leftover from another pdev driver, but the freshly
+pushed meson_gxbb_wdt !
 
-Both of these allow easy changing of the bitmask or number of clock
-gates in the DT. It also means the work is done in one place, and
-is re-usable by other operating systems.
+> Thanks.
 
-In this case, you could also have a generic clock gate driver which
-could be define. I'll try and dig out my previous implementation of
-this which may need a bit of updating.
-
-clk81_gate0: clk-gate at regaddr {
-	reg = <regaddr>;
-	compatible = "clock,clock-32git-gate";
-	valid-clocks = <0x1f1>;
-	clk-parent = <&clk81>;
-	has-single-parent;
-};
-
-Note, all these could be extended with a clk-names = "a", "b", "c";
-and there is already precedent for having a list of valid clock
-as an array of integers if bitmasks are not acceptable.
-
-My side comes down to:
-
-1) We end up with an ID to register mapping which is not clear to
-   see from the DT to the actual register and bit combination being
-   used.
-
-2) If the DT is updated, then we have to update the kernel too if we
-   are using the ID scheme suggested originally.
-
-3) Some of the drivers would provide a generic solution to other SoCs
-
-4) We could even re-use a generic clk-gate driver outside of AMLogic
-
-5) This makes it easier to port to other operating systems as all the
-   data is available in the DT. See also #1
-
-A second note, if we don't want to register n*32 clocks then adding
-a clk_unused callback called at the end of the initcalls could use
-the mask/list of clocks to mask out the unused clocks so we don't
-end up with unused clk structures lying aroudn (could even be a
-cmdline or kconfig config)
-
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+Thanks for the feedback,
+Neil
