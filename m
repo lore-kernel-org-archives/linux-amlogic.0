@@ -1,23 +1,24 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Thu, 7 Jul 2016 09:05:49 +0100
-Subject: [PATCH v2] i2c: meson: allow build with COMPILE_TEST
-In-Reply-To: <1467836225-2427-1-git-send-email-ben-linux@fluff.org>
-References: <1467836225-2427-1-git-send-email-ben-linux@fluff.org>
-Message-ID: <91720673-d156-45c7-a66d-5e6d843efa3d@codethink.co.uk>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Thu, 07 Jul 2016 15:11:17 +0200
+Subject: [GIT PULL] Amlogic SoC updates for v4.8 (#2)
+In-Reply-To: <m28txeqt6v.fsf@baylibre.com>
+References: <m28txeqt6v.fsf@baylibre.com>
+Message-ID: <3439252.vVJRtn8n7i@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/07/16 21:17, Ben Dooks wrote:
-> This driver should be buildable with COMPILE_TEST so
-> add this to the dependency for it.
+On Wednesday, July 6, 2016 3:48:24 PM CEST Kevin Hilman wrote:
+> Amlogic SoC updates:
+> - Kconfig updates for new GXBB clock driver
 > 
-> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-> ---
-> V2:
-> - reduced to just personal signnoff.
+> ----------------------------------------------------------------
+> Michael Turquette (2):
+>       arm: meson: explicitly select clk drivers
+>       arm64: amlogic: select gxbb clk driver
 
-the first one was better :(
+Hmm, two patches that should go on two different branches...
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+I know it's silly to send send two pull requests here, if you like
+I'll just cherry-pick them into next/soc and next/arm64 instead.
+
+	Arnd
