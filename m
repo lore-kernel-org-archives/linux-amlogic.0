@@ -1,42 +1,34 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed,  6 Jul 2016 20:38:37 -0700
-Subject: [PATCH v2] clk: gxbb: expose CLKID_MMC_PCLK
-Message-ID: <20160707033837.20029-1-khilman@baylibre.com>
+From: jassisinghbrar@gmail.com (Jassi Brar)
+Date: Thu, 7 Jul 2016 09:57:48 +0530
+Subject: [RFC PATCH v2 1/9] mailbox: Add Amlogic Meson
+ Message-Handling-Unit
+In-Reply-To: <CAA3gFWuY78ouBwiXfcArojbc5wOBq_5AfLQTKrr-+ELYyMcmhw@mail.gmail.com>
+References: <1466503374-28841-1-git-send-email-narmstrong@baylibre.com>
+ <1466503374-28841-2-git-send-email-narmstrong@baylibre.com>
+ <CABb+yY3HqJG2+GMWCWF9PomxobrwWGZ=TZe5NvXPcHMDdLhkcQ@mail.gmail.com>
+ <CAA3gFWuY78ouBwiXfcArojbc5wOBq_5AfLQTKrr-+ELYyMcmhw@mail.gmail.com>
+Message-ID: <CABb+yY2X+BTKDOb+dT4LHURCV+w+XdbTCCR+OcMKLnYoV48rsg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The MMC_PCLK is needed for the SD/eMMC driver, expose to DT (and comment
-out in clk driver)
-
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- drivers/clk/meson/gxbb.h              | 2 +-
- include/dt-bindings/clock/gxbb-clkc.h | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index a2adf3448b59..8355ecd27b81 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -234,7 +234,7 @@
- #define CLKID_HDMI_PCLK		  63
- #define CLKID_USB1_DDR_BRIDGE	  64
- #define CLKID_USB0_DDR_BRIDGE	  65
--#define CLKID_MMC_PCLK		  66
-+/* CLKID_MMC_PCLK */	       
- #define CLKID_DVIN		  67
- #define CLKID_UART2		  68
- #define CLKID_SANA		  69
-diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-index f889d80246cb..5eb69ec74f6b 100644
---- a/include/dt-bindings/clock/gxbb-clkc.h
-+++ b/include/dt-bindings/clock/gxbb-clkc.h
-@@ -8,5 +8,6 @@
- #define CLKID_CPUCLK		1
- #define CLKID_CLK81		12
- #define CLKID_ETH		36
-+#define CLKID_MMC_PCLK		66
- 
- #endif /* __GXBB_CLKC_H */
--- 
-2.9.0
+On Wed, Jul 6, 2016 at 6:47 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> 2016-07-04 17:38 GMT+02:00 Jassi Brar <jassisinghbrar@gmail.com>:
+>> On Tue, Jun 21, 2016 at 3:32 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>> Add Amlogic Meson SoCs Message-Handling-Unit as mailbox controller
+>>> with 2 independent channels/links to communicate with a remote processor.
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>> ---
+>>>  drivers/mailbox/Makefile    |   2 +
+>>>  drivers/mailbox/meson_mhu.c | 199 ++++++++++++++++++++++++++++++++++++++++++++
+>>>
+>> Can we call it pdev_mhu.c or similar so that some other platform using
+>> the MHU as a platform_device wouldn't have to embarrassingly call it
+>> 'Meson's MHU'?  And also the replace meson with that prefix in the
+>> code.
+>
+> Yes, it may deserve a more generic naming, but pdev_mhu is not good
+> looking at all !
+> What about platform_mhu ?
+>
+OK
