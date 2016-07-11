@@ -1,7 +1,7 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Tue, 12 Jul 2016 00:54:25 +0200
+From: carlo@caione.org (Carlo Caione)
+Date: Tue, 12 Jul 2016 01:04:14 +0200
 Subject: [U-Boot] [PATCH v7 0/4] Amlogic Meson GXBaby and ODROID-C2 support
-In-Reply-To: <CAOQ7t2ZhnZNYXhuzntEvkETOUbX27H5LmuZ9rZtA-b1UjMAZFA@mail.gmail.com>
+In-Reply-To: <945f7f81-b971-4c3a-5925-849eda461500@suse.de>
 References: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
  <57831945.2040009@suse.de>
  <CALeDE9OM__RZT7Re1+bHn0h41Hku9=k_yj_0hqiW8REjsYx0Uw@mail.gmail.com>
@@ -9,49 +9,50 @@ References: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
  <CAOQ7t2ZKB_9w=Z3UNcy99FwCv74V=BMJxDHhjzNEY4TcriLtRw@mail.gmail.com>
  <7b67ed3e-59cc-c89c-c6dc-71867884736c@suse.de>
  <CAOQ7t2ZhnZNYXhuzntEvkETOUbX27H5LmuZ9rZtA-b1UjMAZFA@mail.gmail.com>
-Message-ID: <945f7f81-b971-4c3a-5925-849eda461500@suse.de>
+ <945f7f81-b971-4c3a-5925-849eda461500@suse.de>
+Message-ID: <CAOQ7t2aAjOAMTOPZALVMg3U8qskU8DLRSq-mnV+yzS3NRHX3Xg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 12.07.2016 um 00:52 schrieb Carlo Caione:
-> On Mon, Jul 11, 2016 at 11:38 PM, Andreas F?rber <afaerber@suse.de> wrote:
->> Am 11.07.2016 um 22:36 schrieb Carlo Caione:
->>> On Mon, Jul 11, 2016 at 10:15 PM, Andreas F?rber <afaerber@suse.de> wrote:
-> 
-> [...]
-> 
+On Tue, Jul 12, 2016 at 12:54 AM, Andreas F?rber <afaerber@suse.de> wrote:
+> Am 12.07.2016 um 00:52 schrieb Carlo Caione:
+>> On Mon, Jul 11, 2016 at 11:38 PM, Andreas F?rber <afaerber@suse.de> wrote:
+>>> Am 11.07.2016 um 22:36 schrieb Carlo Caione:
+>>>> On Mon, Jul 11, 2016 at 10:15 PM, Andreas F?rber <afaerber@suse.de> wrote:
+>>
+>> [...]
+>>
+>>>>>
+>>>>> DRAM:  2 GiB
+>>>>> No maUsing default environment
+>>>>>
+>>>>> In:    serial at 4c0
+>>>>> Out:   serial at 4c0
+>>>>> Err:   serial at 4c0
+>>>>> Net:   No ethernet found.
+>>>>> =>
+>>>>>
+>>>>> The eth_designware line (twice, if counting "No ma") is due to what Tom
+>>>>> mentioned wrt DM GPIO, I guess.
+>>>>>
+>>>>> Shouldn't we get a version line from SPL, too? A serial driver issue?
 >>>>
->>>> DRAM:  2 GiB
->>>> No maUsing default environment
->>>>
->>>> In:    serial at 4c0
->>>> Out:   serial at 4c0
->>>> Err:   serial at 4c0
->>>> Net:   No ethernet found.
->>>> =>
->>>>
->>>> The eth_designware line (twice, if counting "No ma") is due to what Tom
->>>> mentioned wrt DM GPIO, I guess.
->>>>
->>>> Shouldn't we get a version line from SPL, too? A serial driver issue?
+>>>> AFAIKT there is no SPL. U-Boot is loaded by BL3-1 also in the U-Boot
+>>>> shipped by amlogic.
 >>>
->>> AFAIKT there is no SPL. U-Boot is loaded by BL3-1 also in the U-Boot
->>> shipped by amlogic.
+>>> You're right, Hardkernel's version is without SPL, too.
+>>>
+>>> Still I wonder about that "No ma" (after the DRAM line).
 >>
->> You're right, Hardkernel's version is without SPL, too.
+>> drivers/core/lists.c:                   dm_warn("No match for driver
+>> '%s'\n", entry->name);
 >>
->> Still I wonder about that "No ma" (after the DRAM line).
-> 
-> drivers/core/lists.c:                   dm_warn("No match for driver
-> '%s'\n", entry->name);
-> 
-> :)
+>> :)
+>
+> How does that explain the incomplete "No ma"?
 
-How does that explain the incomplete "No ma"?
-
-Andreas
+The only thing I can think of is a shitty queueing by the UART driver
+/ hardware.
 
 -- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+Carlo Caione
