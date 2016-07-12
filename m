@@ -1,42 +1,47 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Tue, 12 Jul 2016 17:45:22 +0100
-Subject: [PATCH v3 0/2] AMLogic Meson SoC RTC driver
-In-Reply-To: <7hinwg85k7.fsf@baylibre.com>
-References: <1467748089-14718-1-git-send-email-ben.dooks@codethink.co.uk>
- <7hinwg85k7.fsf@baylibre.com>
-Message-ID: <53016146-6647-224c-ba1a-f2a9dc364a86@codethink.co.uk>
+Date: Tue, 12 Jul 2016 18:16:39 +0100
+Subject: [PATCH v4 2/2] meson-rtc: add device-tree binding
+In-Reply-To: <1468343799-12844-1-git-send-email-ben.dooks@codethink.co.uk>
+References: <1468343799-12844-1-git-send-email-ben.dooks@codethink.co.uk>
+Message-ID: <1468343799-12844-3-git-send-email-ben.dooks@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/07/16 17:20, Kevin Hilman wrote:
-> Ben Dooks <ben.dooks@codethink.co.uk> writes:
-> 
->> This series adds support for the on SoC RTC driver on the
->> AMLogic Meson devices.
-> 
-> -ECONFUSED
-> 
-> In reply to this patch, there are two other "PATCH v3 0/2" replies, an
-> then the two patches themselves, have "PATCH n/4" subjects when one
-> would expect "PATCH n/2" subjects.
+Add documentation for the AMLogic Meson RTC.
 
-This was my mistake of formatting the patch then thinking it would
-be easy to remove the other two patches I decided to keep separate
-(for reasons below)
+Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/rtc/rtc-amlogic.txt         | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
 
-> Anyways, I was able to test this version with the DTs from the previous
-> version, and it works ok.
-
-Yes, no changes for the DT bits so I decided to remove them as firstly
-they depend on the reset-controller changes going in and secondly
-the rtc driver part doesn't need them to be there to be able to build.
-
-> Can you respin one more time (including the Tested-by) so the RTC
-> maintainers can pick it up?
-
-I'll do that now and try and post them tonight.
-Thankyou for testing.
-
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt b/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
+new file mode 100644
+index 0000000..efc7672
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/rtc-amlogic.txt
+@@ -0,0 +1,21 @@
++* AMlogic Meson RTC
++
++Required properties:
++- compatible: should be one of the following describing the hardware:
++	* "amlogic,meson6-rtc"
++	* "amlogic,meson8-rtc"
++	* "amlogic,meson8b-rtc"
++
++- reg: physical register space for the controller's memory mapped registers.
++
++Optional properties:
++- resets: reset controller reference to allow reset of the controller
++- interrupts: single interrupt reference if interrupt support needed
++
++Example:
++
++	rtc: rtc at c8100740 {
++		compatible = "amlogic,meson6-rtc";
++		reg = <0xc8100740 0x14>;
++		status = "disabled";
++	};
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+2.8.1
