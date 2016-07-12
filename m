@@ -1,58 +1,30 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Tue, 12 Jul 2016 01:04:14 +0200
-Subject: [U-Boot] [PATCH v7 0/4] Amlogic Meson GXBaby and ODROID-C2 support
-In-Reply-To: <945f7f81-b971-4c3a-5925-849eda461500@suse.de>
-References: <1462689017-3160-1-git-send-email-b.galvani@gmail.com>
- <57831945.2040009@suse.de>
- <CALeDE9OM__RZT7Re1+bHn0h41Hku9=k_yj_0hqiW8REjsYx0Uw@mail.gmail.com>
- <20160711194858.GA12930@gmail.com> <5783FE7A.9070400@suse.de>
- <CAOQ7t2ZKB_9w=Z3UNcy99FwCv74V=BMJxDHhjzNEY4TcriLtRw@mail.gmail.com>
- <7b67ed3e-59cc-c89c-c6dc-71867884736c@suse.de>
- <CAOQ7t2ZhnZNYXhuzntEvkETOUbX27H5LmuZ9rZtA-b1UjMAZFA@mail.gmail.com>
- <945f7f81-b971-4c3a-5925-849eda461500@suse.de>
-Message-ID: <CAOQ7t2aAjOAMTOPZALVMg3U8qskU8DLRSq-mnV+yzS3NRHX3Xg@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 11 Jul 2016 21:12:08 -0700
+Subject: [PATCH v3 3/3] ARM64: dts: amlogic: meson-gxbb: Add watchdog node
+In-Reply-To: <578271D3.4080704@roeck-us.net> (Guenter Roeck's message of "Sun,
+ 10 Jul 2016 09:03:31 -0700")
+References: <1468141867-4172-1-git-send-email-narmstrong@baylibre.com>
+ <1468141867-4172-4-git-send-email-narmstrong@baylibre.com>
+ <578271D3.4080704@roeck-us.net>
+Message-ID: <7hbn237aw7.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jul 12, 2016 at 12:54 AM, Andreas F?rber <afaerber@suse.de> wrote:
-> Am 12.07.2016 um 00:52 schrieb Carlo Caione:
->> On Mon, Jul 11, 2016 at 11:38 PM, Andreas F?rber <afaerber@suse.de> wrote:
->>> Am 11.07.2016 um 22:36 schrieb Carlo Caione:
->>>> On Mon, Jul 11, 2016 at 10:15 PM, Andreas F?rber <afaerber@suse.de> wrote:
->>
->> [...]
->>
->>>>>
->>>>> DRAM:  2 GiB
->>>>> No maUsing default environment
->>>>>
->>>>> In:    serial at 4c0
->>>>> Out:   serial at 4c0
->>>>> Err:   serial at 4c0
->>>>> Net:   No ethernet found.
->>>>> =>
->>>>>
->>>>> The eth_designware line (twice, if counting "No ma") is due to what Tom
->>>>> mentioned wrt DM GPIO, I guess.
->>>>>
->>>>> Shouldn't we get a version line from SPL, too? A serial driver issue?
->>>>
->>>> AFAIKT there is no SPL. U-Boot is loaded by BL3-1 also in the U-Boot
->>>> shipped by amlogic.
->>>
->>> You're right, Hardkernel's version is without SPL, too.
->>>
->>> Still I wonder about that "No ma" (after the DRAM line).
->>
->> drivers/core/lists.c:                   dm_warn("No match for driver
->> '%s'\n", entry->name);
->>
->> :)
+Guenter Roeck <linux@roeck-us.net> writes:
+
+> On 07/10/2016 02:11 AM, Neil Armstrong wrote:
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >
-> How does that explain the incomplete "No ma"?
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+>
+> Would this go in through one of the arm trees ?
 
-The only thing I can think of is a shitty queueing by the UART driver
-/ hardware.
+You can take the driver through the watchdog tree, but I'll take the DT
+stuff through the amlogic tree (and submit via arm-soc).  
 
--- 
-Carlo Caione
+However, with your ack, and since this is a brand new driver, I could
+take the driver as well.  Just let me know your preference.
+
+Thanks,
+
+Kevin
