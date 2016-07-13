@@ -1,50 +1,104 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 13 Jul 2016 14:32:34 -0700
-Subject: [PATCH v2 6/7] gxbb: clk: Move MESON_GATE macro to gxbb
-In-Reply-To: <1468432181-9550-7-git-send-email-serveralex@gmail.com>
+Date: Wed, 13 Jul 2016 14:34:45 -0700
+Subject: [PATCH v2 2/7] meson: clk: Move register definitions to meson8b.h
+In-Reply-To: <1468432181-9550-3-git-send-email-serveralex@gmail.com>
 References: <1468432181-9550-1-git-send-email-serveralex@gmail.com>
- <1468432181-9550-7-git-send-email-serveralex@gmail.com>
-Message-ID: <146844555421.73491.17534974282265619018@resonance>
+ <1468432181-9550-3-git-send-email-serveralex@gmail.com>
+Message-ID: <146844568505.73491.2805335483621221629@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Alexander,
 
-Quoting Alexander M?ller (2016-07-13 10:49:40)
+Quoting Alexander M?ller (2016-07-13 10:49:36)
 > Signed-off-by: Alexander M?ller <serveralex@gmail.com>
-> ---
->  drivers/clk/meson/clkc.h |  14 ----
->  drivers/clk/meson/gxbb.c | 176 +++++++++++++++++++++++++----------------------
->  2 files changed, 95 insertions(+), 95 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-> index 53326c3..061a01e 100644
-> --- a/drivers/clk/meson/clkc.h
-> +++ b/drivers/clk/meson/clkc.h
-> @@ -97,20 +97,6 @@ struct meson_clk_mpll {
->         spinlock_t *lock;
->  };
->  
-> -#define MESON_GATE(_name, _reg, _bit)                                  \
-> -struct clk_gate gxbb_##_name = {                                               \
 
-Please leave this macro in clkc.h, but change the above line to:
-
-	#define MESON_GATE(_name, _reg, _bit)	\
-	struct clk_gate _name = {		\
-
-Note that gxbb_##_name is replaced with _name. I should have done it
-like this from the beginning but it's a bit of a brain fart.
-
->  /* Everything Else (EE) domain gates */
-> -static MESON_GATE(ddr, HHI_GCLK_MPEG0, 0);
-
-Then reflow the above gxbb gate clock like so:
-
-	static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
-
-Then you can re-use the same macro in your meson8b driver by prefixing
-all of your gate clocks with "meson8b_".
+Please explain why you are moving them in the changelog. It's clear
+*what* you are doing, but the *why* is missing.
 
 Regards,
 Mike
+
+> ---
+>  drivers/clk/meson/meson8b.c | 17 +----------------
+>  drivers/clk/meson/meson8b.h | 40 ++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 41 insertions(+), 16 deletions(-)
+>  create mode 100644 drivers/clk/meson/meson8b.h
+> 
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index b1902e9..537cc53 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -26,22 +26,7 @@
+>  #include <linux/module.h>
+>  
+>  #include "clkc.h"
+> -
+> -/*
+> - * Clock controller register offsets
+> - *
+> - * Register offsets from the HardKernel[0] data sheet are listed in comment
+> - * blocks below. Those offsets must be multiplied by 4 before adding them to
+> - * the base address to get the right value
+> - *
+> - * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
+> - */
+> -#define MESON8B_REG_SYS_CPU_CNTL1      0x015c /* 0x57 offset in data sheet */
+> -#define MESON8B_REG_HHI_MPEG           0x0174 /* 0x5d offset in data sheet */
+> -#define MESON8B_REG_MALI               0x01b0 /* 0x6c offset in data sheet */
+> -#define MESON8B_REG_PLL_FIXED          0x0280
+> -#define MESON8B_REG_PLL_SYS            0x0300
+> -#define MESON8B_REG_PLL_VID            0x0320
+> +#include "meson8b.h"
+>  
+>  static DEFINE_SPINLOCK(clk_lock);
+>  
+> diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+> new file mode 100644
+> index 0000000..5b9cb9f
+> --- /dev/null
+> +++ b/drivers/clk/meson/meson8b.h
+> @@ -0,0 +1,40 @@
+> +/*
+> + * Copyright (c) 2015 Endless Mobile, Inc.
+> + * Author: Carlo Caione <carlo@endlessm.com>
+> + *
+> + * Copyright (c) 2016 BayLibre, Inc.
+> + * Michael Turquette <mturquette@baylibre.com>
+> + *
+> + * This program is free software; you can redistribute it and/or modify it
+> + * under the terms and conditions of the GNU General Public License,
+> + * version 2, as published by the Free Software Foundation.
+> + *
+> + * This program is distributed in the hope it will be useful, but WITHOUT
+> + * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+> + * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+> + * more details.
+> + *
+> + * You should have received a copy of the GNU General Public License along with
+> + * this program.  If not, see <http://www.gnu.org/licenses/>.
+> + */
+> +
+> +#ifndef __MESON8B_H
+> +#define __MESON8B_H
+> +
+> +/*
+> + * Clock controller register offsets
+> + *
+> + * Register offsets from the HardKernel[0] data sheet are listed in comment
+> + * blocks below. Those offsets must be multiplied by 4 before adding them to
+> + * the base address to get the right value
+> + *
+> + * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
+> + */
+> +#define MESON8B_REG_SYS_CPU_CNTL1      0x015c /* 0x57 offset in data sheet */
+> +#define MESON8B_REG_HHI_MPEG           0x0174 /* 0x5d offset in data sheet */
+> +#define MESON8B_REG_MALI               0x01b0 /* 0x6c offset in data sheet */
+> +#define MESON8B_REG_PLL_FIXED          0x0280
+> +#define MESON8B_REG_PLL_SYS            0x0300
+> +#define MESON8B_REG_PLL_VID            0x0320
+> +
+> +#endif /* __MESON8B_H */
+> -- 
+> 2.5.0
+> 
