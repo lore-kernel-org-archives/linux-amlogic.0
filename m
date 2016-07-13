@@ -1,104 +1,119 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 13 Jul 2016 14:34:45 -0700
-Subject: [PATCH v2 2/7] meson: clk: Move register definitions to meson8b.h
-In-Reply-To: <1468432181-9550-3-git-send-email-serveralex@gmail.com>
+Date: Wed, 13 Jul 2016 14:39:51 -0700
+Subject: [PATCH v2 5/7] meson: clk: Add CLKIDs for clock gates
+In-Reply-To: <1468432181-9550-6-git-send-email-serveralex@gmail.com>
 References: <1468432181-9550-1-git-send-email-serveralex@gmail.com>
- <1468432181-9550-3-git-send-email-serveralex@gmail.com>
-Message-ID: <146844568505.73491.2805335483621221629@resonance>
+ <1468432181-9550-6-git-send-email-serveralex@gmail.com>
+Message-ID: <146844599156.73491.8466487898310327170@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Alexander,
-
-Quoting Alexander M?ller (2016-07-13 10:49:36)
+Quoting Alexander M?ller (2016-07-13 10:49:39)
+> Add clock ids for the clock gates to private meson8b header file.
+> 
 > Signed-off-by: Alexander M?ller <serveralex@gmail.com>
+> ---
+>  drivers/clk/meson/meson8b.h | 79 ++++++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 78 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+> index f8c6942..4ba8be5 100644
+> --- a/drivers/clk/meson/meson8b.h
+> +++ b/drivers/clk/meson/meson8b.h
+> @@ -60,7 +60,84 @@
+>  #define CLKID_ZERO             13
+>  #define CLKID_MPEG_SEL         14
+>  #define CLKID_MPEG_DIV         15
+> +#define CLKID_DDR              16
+> +#define CLKID_DOS              17
+> +#define CLKID_ISA              18
+> +#define CLKID_PL301            19
+> +#define CLKID_PERIPHS          20
+> +#define CLKID_SPICC            21
+> +#define CLKID_I2C              22
+> +#define CLKID_SAR_ADC          23
+> +#define CLKID_SMART_CARD       24
+> +#define CLKID_RNG0             25
+> +#define CLKID_UART0            26
+> +#define CLKID_SDHC             27
+> +#define CLKID_STREAM           28
+> +#define CLKID_ASYNC_FIFO       29
+> +#define CLKID_SDIO             30
+> +#define CLKID_ABUF             31
+> +#define CLKID_HIU_IFACE                32
+> +#define CLKID_ASSIST_MISC      33
+> +#define CLKID_SPI              34
+> +#define CLKID_I2S_SPDIF                35
+> +#define CLKID_ETH              36
+> +#define CLKID_DEMUX            37
+> +#define CLKID_AIU_GLUE         38
+> +#define CLKID_IEC958           39
+> +#define CLKID_I2S_OUT          40
+> +#define CLKID_AMCLK            41
+> +#define CLKID_AIFIFO2          42
+> +#define CLKID_MIXER            43
+> +#define CLKID_MIXER_IFACE      44
+> +#define CLKID_ADC              45
+> +#define CLKID_BLKMV            46
+> +#define CLKID_AIU              47
+> +#define CLKID_UART1            48
+> +#define CLKID_G2D              49
+> +#define CLKID_USB0             50
+> +#define CLKID_USB1             51
+> +#define CLKID_RESET            52
+> +#define CLKID_NAND             53
+> +#define CLKID_DOS_PARSER       54
+> +#define CLKID_USB              55
+> +#define CLKID_VDIN1            56
+> +#define CLKID_AHB_ARB0         57
+> +#define CLKID_EFUSE            58
+> +#define CLKID_BOOT_ROM         59
+> +#define CLKID_AHB_DATA_BUS     60
+> +#define CLKID_AHB_CTRL_BUS     61
+> +#define CLKID_HDMI_INTR_SYNC   62
+> +#define CLKID_HDMI_PCLK                63
+> +#define CLKID_USB1_DDR_BRIDGE  64
+> +#define CLKID_USB0_DDR_BRIDGE  65
+> +#define CLKID_MMC_PCLK         66
+> +#define CLKID_DVIN             67
+> +#define CLKID_UART2            68
+> +#define CLKID_SANA             69
+> +#define CLKID_VPU_INTR         70
+> +#define CLKID_SEC_AHB_AHB3_BRIDGE      71
+> +#define CLKID_CLK81_A9         72
+> +#define CLKID_VCLK2_VENCI0     73
+> +#define CLKID_VCLK2_VENCI1     74
+> +#define CLKID_VCLK2_VENCP0     75
+> +#define CLKID_VCLK2_VENCP1     76
+> +#define CLKID_GCLK_VENCI_INT   77
+> +#define CLKID_GCLK_VENCP_INT   78
+> +#define CLKID_DAC_CLK          79
+> +#define CLKID_AOCLK_GATE       80
+> +#define CLKID_IEC958_GATE      81
+> +#define CLKID_ENC480P          82
+> +#define CLKID_RNG1             83
+> +#define CLKID_GCLK_VENCL_INT   84
+> +#define CLKID_VCLK2_VENCLMCC   85
+> +#define CLKID_VCLK2_VENCL      86
+> +#define CLKID_VCLK2_OTHER      87
+> +#define CLKID_EDP              88
+> +#define CLKID_AO_MEDIA_CPU     89
+> +#define CLKID_AO_AHB_SRAM      90
+> +#define CLKID_AO_AHB_BUS       91
+> +#define CLKID_AO_IFACE         92
+>  
+> -#define CLK_NR_CLKS            (CLKID_MPEG_DIV + 1)
+> +#define CLK_NR_CLKS            (CLKID_AO_IFACE + 1)
 
-Please explain why you are moving them in the changelog. It's clear
-*what* you are doing, but the *why* is missing.
+You can just make this:
+
+	#define NR_CLKS		93
 
 Regards,
 Mike
 
-> ---
->  drivers/clk/meson/meson8b.c | 17 +----------------
->  drivers/clk/meson/meson8b.h | 40 ++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 41 insertions(+), 16 deletions(-)
->  create mode 100644 drivers/clk/meson/meson8b.h
-> 
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index b1902e9..537cc53 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -26,22 +26,7 @@
->  #include <linux/module.h>
 >  
->  #include "clkc.h"
-> -
-> -/*
-> - * Clock controller register offsets
-> - *
-> - * Register offsets from the HardKernel[0] data sheet are listed in comment
-> - * blocks below. Those offsets must be multiplied by 4 before adding them to
-> - * the base address to get the right value
-> - *
-> - * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-> - */
-> -#define MESON8B_REG_SYS_CPU_CNTL1      0x015c /* 0x57 offset in data sheet */
-> -#define MESON8B_REG_HHI_MPEG           0x0174 /* 0x5d offset in data sheet */
-> -#define MESON8B_REG_MALI               0x01b0 /* 0x6c offset in data sheet */
-> -#define MESON8B_REG_PLL_FIXED          0x0280
-> -#define MESON8B_REG_PLL_SYS            0x0300
-> -#define MESON8B_REG_PLL_VID            0x0320
-> +#include "meson8b.h"
->  
->  static DEFINE_SPINLOCK(clk_lock);
->  
-> diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-> new file mode 100644
-> index 0000000..5b9cb9f
-> --- /dev/null
-> +++ b/drivers/clk/meson/meson8b.h
-> @@ -0,0 +1,40 @@
-> +/*
-> + * Copyright (c) 2015 Endless Mobile, Inc.
-> + * Author: Carlo Caione <carlo@endlessm.com>
-> + *
-> + * Copyright (c) 2016 BayLibre, Inc.
-> + * Michael Turquette <mturquette@baylibre.com>
-> + *
-> + * This program is free software; you can redistribute it and/or modify it
-> + * under the terms and conditions of the GNU General Public License,
-> + * version 2, as published by the Free Software Foundation.
-> + *
-> + * This program is distributed in the hope it will be useful, but WITHOUT
-> + * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-> + * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-> + * more details.
-> + *
-> + * You should have received a copy of the GNU General Public License along with
-> + * this program.  If not, see <http://www.gnu.org/licenses/>.
-> + */
-> +
-> +#ifndef __MESON8B_H
-> +#define __MESON8B_H
-> +
-> +/*
-> + * Clock controller register offsets
-> + *
-> + * Register offsets from the HardKernel[0] data sheet are listed in comment
-> + * blocks below. Those offsets must be multiplied by 4 before adding them to
-> + * the base address to get the right value
-> + *
-> + * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-> + */
-> +#define MESON8B_REG_SYS_CPU_CNTL1      0x015c /* 0x57 offset in data sheet */
-> +#define MESON8B_REG_HHI_MPEG           0x0174 /* 0x5d offset in data sheet */
-> +#define MESON8B_REG_MALI               0x01b0 /* 0x6c offset in data sheet */
-> +#define MESON8B_REG_PLL_FIXED          0x0280
-> +#define MESON8B_REG_PLL_SYS            0x0300
-> +#define MESON8B_REG_PLL_VID            0x0320
-> +
-> +#endif /* __MESON8B_H */
+>  #endif /* __MESON8B_H */
 > -- 
 > 2.5.0
 > 
