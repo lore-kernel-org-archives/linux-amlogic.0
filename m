@@ -1,44 +1,34 @@
 From: serveralex@gmail.com (=?UTF-8?q?Alexander=20M=C3=BCller?=)
-Date: Wed, 13 Jul 2016 19:49:34 +0200
-Subject: [PATCH v2 0/7] Add Amlogic meson8b clock gates
-Message-ID: <1468432181-9550-1-git-send-email-serveralex@gmail.com>
+Date: Wed, 13 Jul 2016 19:49:35 +0200
+Subject: [PATCH v2 1/7] clk: meson: Rename meson8b-clkc.c to reflect gxbb
+ naming convention
+In-Reply-To: <1468432181-9550-1-git-send-email-serveralex@gmail.com>
+References: <1468432181-9550-1-git-send-email-serveralex@gmail.com>
+Message-ID: <1468432181-9550-2-git-send-email-serveralex@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch series adds support for the Amlogic meson8b clock gates. The Amlogic
-U-Boot disables most of them at boot. In order to enable ethernet, USB and other
-components it's mandatory to enable the clock gates when loading the corresponding
-drivers.
+Signed-off-by: Alexander M?ller <serveralex@gmail.com>
+---
+ drivers/clk/meson/Makefile                      | 2 +-
+ drivers/clk/meson/{meson8b-clkc.c => meson8b.c} | 0
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+ rename drivers/clk/meson/{meson8b-clkc.c => meson8b.c} (100%)
 
-The meson8b clock gate support is based on the previous work done for Amlogic gxbb
-currently available in clk-next.
-
-Changes since v1:
-  - Fixed GXBB spelling
-  - Moved newly introduced CLKID defines to private header
-  - Moved CLK_NR_CLKS define from DT binding to private header
-  - Rebased to linux-amlogic/v4.7/integ making Kconfig select obsolete
-
-Alexander M?ller (7):
-  clk: meson: Rename meson8b-clkc.c to reflect gxbb naming convention
-  meson: clk: Move register definitions to meson8b.h
-  meson: clk: Rename register names according to Amlogic datasheet
-  clk: meson: Copy meson8b CLKID defines to private header file
-  meson: clk: Add CLKIDs for clock gates
-  gxbb: clk: Move MESON_GATE macro to gxbb
-  meson: clk: Add support for clock gates
-
- drivers/clk/meson/Makefile               |   2 +-
- drivers/clk/meson/clkc.h                 |  14 -
- drivers/clk/meson/gxbb.c                 | 176 ++++----
- drivers/clk/meson/meson8b-clkc.c         | 458 --------------------
- drivers/clk/meson/meson8b.c              | 705 +++++++++++++++++++++++++++++++
- drivers/clk/meson/meson8b.h              | 148 +++++++
- include/dt-bindings/clock/meson8b-clkc.h |   2 -
- 7 files changed, 949 insertions(+), 556 deletions(-)
- delete mode 100644 drivers/clk/meson/meson8b-clkc.c
- create mode 100644 drivers/clk/meson/meson8b.c
- create mode 100644 drivers/clk/meson/meson8b.h
-
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 197e401..1a66799 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -3,5 +3,5 @@
+ #
+ 
+ obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o
+-obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b-clkc.o
++obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+ obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o
+diff --git a/drivers/clk/meson/meson8b-clkc.c b/drivers/clk/meson/meson8b.c
+similarity index 100%
+rename from drivers/clk/meson/meson8b-clkc.c
+rename to drivers/clk/meson/meson8b.c
 -- 
 2.5.0
