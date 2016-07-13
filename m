@@ -1,46 +1,78 @@
-From: serveralex@gmail.com (=?utf-8?Q?Alexander_M=C3=BCller?=)
-Date: Wed, 13 Jul 2016 19:53:12 +0200
-Subject: [PATCH 7/7] arm: amlogic: select meson8b clk driver
-In-Reply-To: <m2inwiqwaa.fsf@baylibre.com>
-References: <1467741391-60534-1-git-send-email-serveralex@gmail.com>
- <1467741391-60534-8-git-send-email-serveralex@gmail.com>
- <146776648028.35356.7816151912503029258@resonance>
- <m2inwiqwaa.fsf@baylibre.com>
-Message-ID: <41983A35-37D0-40D0-BFD2-1EF7DC655B93@gmail.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Wed, 13 Jul 2016 14:01:14 -0700
+Subject: [PATCH RFC 3/3] ARM64: dts: meson-gxbb: use the new meson8b DWMAC
+ glue
+In-Reply-To: <CAFBinCBcv+4MHe9sFeGLRRRvb7hjX4=XYOtxN_rO1yzVFZisaQ@mail.gmail.com>
+References: <20160625165013.15917-1-martin.blumenstingl@googlemail.com>
+ <20160625165013.15917-4-martin.blumenstingl@googlemail.com>
+ <20160627092448.GA3275@localhost>
+ <CAFBinCB6i2-ZUDupAXUZkQO9y93rtCvguD_avdY=Ze72wxQKpw@mail.gmail.com>
+ <CAFBinCBcv+4MHe9sFeGLRRRvb7hjX4=XYOtxN_rO1yzVFZisaQ@mail.gmail.com>
+Message-ID: <146844367410.73491.117379762912178421@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin, 
+Hi Martin,
 
-I did the proposed changes and rebased to integ. 
+Quoting Martin Blumenstingl (2016-06-27 04:33:49)
+> On Mon, Jun 27, 2016 at 12:44 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> > On Mon, Jun 27, 2016 at 11:24 AM, Carlo Caione <carlo@caione.org> wrote:
+> >> A syscon is a region containing a set of miscellaneous registers used
+> >> for several reasons by several devices [1]. It this case there is really
+> >> no need to define a new syscon node since those two registers are only
+> >> used by your driver.
+> > I can easily change it back if that's the way to go.
+> > Before I do that: could you please confirm that "mp2_clk_out" (which
+> > is controlled by PRG_ETH0/offset 0x0 bits 7-9) is not something which
+> > has to be available through the common clk framework?
+> there was just an IRC discussion with Carlo on this topic:
+> We tried to find whether PRG_ETH0 is used to actually configure
+> "mp2_clk_out". Carlo brought up that it could also be the case that
+> the ethernet block simply needs to be informed about the rate of the
+> mp2_clk_out (which is *probably* the "mpll2" clock).
+> 
+> I'm adding Michael Turquette to this mail, maybe you can comment on this topic.
+> 
+> If it turns out that the etthernet block just has to know about the
+> clock rate then we have two tasks:
+> 1. identify why the mpll2 rate returns 0 on my GXBB device
 
-Please review and let me know if I missed something.
+This is in progress, but turns out it doesn't matter for Ethernet. Bit 4
+in PRG_ETHERNET_ADDR0 control a mux clock inside of the Ethernet
+controller.
 
-Alex
+A value of 0x0 selects fclk_div2 and a value of 0x1 selects mp2_clk_out.
+The bootloader programs in sets the mux to zero, or fclk_div2 as the
+input clock (which runs at 1GHz).
 
-> On 06 Jul 2016, at 23:41, Kevin Hilman <khilman@baylibre.com> wrote:
-> 
-> Michael Turquette <mturquette@baylibre.com> writes:
-> 
->> Hi Alex,
->> 
->> Quoting Alexander M?ller (2016-07-05 10:56:31)
->>> Select the Amlogic clk code for meson SoCs and the more specific meson8b clk
->>> driver for Amlogic meson8b.
->>> 
->>> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
->> 
->> This patch isn't necessary as an alternative is already queued. See:
->> https://git.kernel.org/cgit/linux/kernel/git/mturquette/linux.git/commit/?h=gxbb-dt-clk&id=bae5d70ba6f8726ea6306aa07b7d2eb4357d3c81
->> 
->> However, if you're basing on top of clk-next (or clk-s905) then you
->> won't see the three patches linked above because they are queued through
->> Kevin & Carlo via the amlogic tree.
-> 
-> ...which you can find here[1] and specifically, the "integ" branch where
-> I'm keeping the latest queued versions of various things merged together
-> for easier testing.
-> 
-> Kevin
-> 
-> [1] https://git.kernel.org/cgit/linux/kernel/git/khilman/linux-amlogic.git/
+> 2. change my patch so the new DWMAC glue gets a reference to the mpll2
+> clock and then use "clk_get_rate(mpll2) / (250 * 1000000)" to
+> configure the PRG_ETH0_MP2_CLK bits.
+
+Hmm, I'm not sure about that part. Bits 7-9 is a divider that further
+divides the clock signal selected by bit 4. This is set to 0x4, which
+means we divide the 1GHz fclk_div2 down to 250MHz, which seems to be the
+expected value coming out of this divider.
+
+I haven't looked further to see if there is a further programmable
+divider to divide 250MHz down to 50MHz, or (more likely) there is simply
+a fixed-factor divide-by-5 that results in the 50MHz rate consumed by
+the PHY.
+
+Modeling this all in the mmc driver makes sense. So we would have:
+
+struct clk_mux clk_m250_sel ->
+	struct clk_divider clk_m250_div ->
+		struct clk_fixed_factor enet_phy_clk
+
+I don't know what the name should be for that last one, I just chose
+enet_phy_clk since it illustrates the point. The updated docs suggest
+that clk_m250_{sel,div} might be reasonable names for the mux and
+divider.
+
+Kevin and I just got this info from AmLogic earlier today. The next rev
+of documentation should correct these register definitions.
+
+Regards,
+Mike
