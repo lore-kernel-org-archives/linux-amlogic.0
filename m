@@ -1,60 +1,33 @@
-From: serveralex@gmail.com (=?utf-8?Q?Alexander_M=C3=BCller?=)
-Date: Thu, 14 Jul 2016 19:09:33 +0200
-Subject: [PATCH v2 6/7] gxbb: clk: Move MESON_GATE macro to gxbb
-In-Reply-To: <146844555421.73491.17534974282265619018@resonance>
-References: <1468432181-9550-1-git-send-email-serveralex@gmail.com>
- <1468432181-9550-7-git-send-email-serveralex@gmail.com>
- <146844555421.73491.17534974282265619018@resonance>
-Message-ID: <0F4FC964-B9DE-4880-AF38-469A52FE24D2@gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 15 Jul 2016 09:48:30 -0700
+Subject: [PATCH v2] clk: gxbb: expose CLKID_MMC_PCLK
+In-Reply-To: <146794722863.73491.474750140948566962@resonance> (Michael
+ Turquette's message of "Thu, 07 Jul 2016 20:07:08 -0700")
+References: <20160707033837.20029-1-khilman@baylibre.com>
+ <146794722863.73491.474750140948566962@resonance>
+Message-ID: <m28tx23l0h.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Mike, 
+Michael Turquette <mturquette@baylibre.com> writes:
 
-What about the clk name set by the macro MESON_GATE (#_name)? That would change too and I guess that's not desired here.
-
-Regards, 
-Alex
-
-> On 13 Jul 2016, at 23:32, Michael Turquette <mturquette@baylibre.com> wrote:
-> 
-> Hi Alexander,
-> 
-> Quoting Alexander M?ller (2016-07-13 10:49:40)
->> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
->> ---
->> drivers/clk/meson/clkc.h |  14 ----
->> drivers/clk/meson/gxbb.c | 176 +++++++++++++++++++++++++----------------------
->> 2 files changed, 95 insertions(+), 95 deletions(-)
+> Quoting Kevin Hilman (2016-07-06 20:38:37)
+>> The MMC_PCLK is needed for the SD/eMMC driver, expose to DT (and comment
+>> out in clk driver)
 >> 
->> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
->> index 53326c3..061a01e 100644
->> --- a/drivers/clk/meson/clkc.h
->> +++ b/drivers/clk/meson/clkc.h
->> @@ -97,20 +97,6 @@ struct meson_clk_mpll {
->>        spinlock_t *lock;
->> };
->> 
->> -#define MESON_GATE(_name, _reg, _bit)                                  \
->> -struct clk_gate gxbb_##_name = {                                               \
-> 
-> Please leave this macro in clkc.h, but change the above line to:
-> 
-> 	#define MESON_GATE(_name, _reg, _bit)	\
-> 	struct clk_gate _name = {		\
-> 
-> Note that gxbb_##_name is replaced with _name. I should have done it
-> like this from the beginning but it's a bit of a brain fart.
-> 
->> /* Everything Else (EE) domain gates */
->> -static MESON_GATE(ddr, HHI_GCLK_MPEG0, 0);
-> 
-> Then reflow the above gxbb gate clock like so:
-> 
-> 	static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
-> 
-> Then you can re-use the same macro in your meson8b driver by prefixing
-> all of your gate clocks with "meson8b_".
-> 
-> Regards,
-> Mike
+>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+>
+> Applied to the same clk-s905 branch if you need to re-pull it as a
+> dependency.
+
+Ugh.  Just received some updated documentation, and turns out this clock
+is not used at all. :(
+
+Feel free to revert now before it becomes ABI.
+
+Now that I have actual docs, I'll have a new series coming that will
+have the right clock details.
+
+Thanks, and sorry for the noise,
+
+Kevin
