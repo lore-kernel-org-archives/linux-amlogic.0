@@ -1,73 +1,46 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Sat, 16 Jul 2016 13:14:36 -0700
-Subject: [PATCH v2 6/7] gxbb: clk: Move MESON_GATE macro to gxbb
-In-Reply-To: <0F4FC964-B9DE-4880-AF38-469A52FE24D2@gmail.com>
-References: <1468432181-9550-1-git-send-email-serveralex@gmail.com>
- <1468432181-9550-7-git-send-email-serveralex@gmail.com>
- <146844555421.73491.17534974282265619018@resonance>
- <0F4FC964-B9DE-4880-AF38-469A52FE24D2@gmail.com>
-Message-ID: <146870007657.73491.11201111468665530811@resonance>
+From: serveralex@gmail.com (=?UTF-8?q?Alexander=20M=C3=BCller?=)
+Date: Sun, 17 Jul 2016 20:44:45 +0200
+Subject: [PATCH v3 0/6] Add Amlogic meson8b clock gates
+Message-ID: <1468781091-39119-1-git-send-email-serveralex@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Alexander M?ller (2016-07-14 10:09:33)
-> Hi Mike, 
-> 
-> What about the clk name set by the macro MESON_GATE (#_name)? That would change too and I guess that's not desired here.
+This patch series adds support for the Amlogic meson8b clock gates. The Amlogic
+U-Boot disables most of them at boot. In order to enable ethernet, USB and other
+components it's mandatory to enable the clock gates when loading the corresponding
+drivers.
 
-Yes it is desired. The names passed into the macro will have to change
-for both the meson8b driver and the gxbb driver. That's OK because we
-don't want to copy/paste this little macro for every new chip that
-AmLogic releases. Better to refactor now while we only have two affected
-drivers, and one of them does not yet have gate support merged.
+The meson8b clock gate support is based on the previous work done for Amlogic gxbb
+currently available in clk-next.
 
-Regards,
-Mike
+Changes since v2:
+  - Added commit description for patch 2
+  - Changed CLK_NR_CLOCKS macro to constant int
+  - Moved back MESON_GATE macro to share it between gxbb and meson8b
 
-> 
-> Regards, 
-> Alex
-> 
-> > On 13 Jul 2016, at 23:32, Michael Turquette <mturquette@baylibre.com> wrote:
-> > 
-> > Hi Alexander,
-> > 
-> > Quoting Alexander M?ller (2016-07-13 10:49:40)
-> >> Signed-off-by: Alexander M?ller <serveralex@gmail.com>
-> >> ---
-> >> drivers/clk/meson/clkc.h |  14 ----
-> >> drivers/clk/meson/gxbb.c | 176 +++++++++++++++++++++++++----------------------
-> >> 2 files changed, 95 insertions(+), 95 deletions(-)
-> >> 
-> >> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-> >> index 53326c3..061a01e 100644
-> >> --- a/drivers/clk/meson/clkc.h
-> >> +++ b/drivers/clk/meson/clkc.h
-> >> @@ -97,20 +97,6 @@ struct meson_clk_mpll {
-> >>        spinlock_t *lock;
-> >> };
-> >> 
-> >> -#define MESON_GATE(_name, _reg, _bit)                                  \
-> >> -struct clk_gate gxbb_##_name = {                                               \
-> > 
-> > Please leave this macro in clkc.h, but change the above line to:
-> > 
-> >       #define MESON_GATE(_name, _reg, _bit)   \
-> >       struct clk_gate _name = {               \
-> > 
-> > Note that gxbb_##_name is replaced with _name. I should have done it
-> > like this from the beginning but it's a bit of a brain fart.
-> > 
-> >> /* Everything Else (EE) domain gates */
-> >> -static MESON_GATE(ddr, HHI_GCLK_MPEG0, 0);
-> > 
-> > Then reflow the above gxbb gate clock like so:
-> > 
-> >       static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
-> > 
-> > Then you can re-use the same macro in your meson8b driver by prefixing
-> > all of your gate clocks with "meson8b_".
-> > 
-> > Regards,
-> > Mike
-> 
+Changes since v1:
+  - Fixed GXBB spelling
+  - Moved newly introduced CLKID defines to private header
+  - Moved CLK_NR_CLKS define from DT binding to private header
+  - Rebased to linux-amlogic/v4.7/integ making Kconfig select obsolete
+
+Alexander M?ller (6):
+  clk: meson: Rename meson8b-clkc.c to reflect gxbb naming convention
+  meson: clk: Move register definitions to meson8b.h
+  meson: clk: Rename register names according to Amlogic datasheet
+  clk: meson: Copy meson8b CLKID defines to private header file
+  gxbb: clk: Adjust MESON_GATE macro to be shared with meson8b
+  meson: clk: Add support for clock gates
+
+ drivers/clk/meson/Makefile                      |   2 +-
+ drivers/clk/meson/clkc.h                        |   2 +-
+ drivers/clk/meson/gxbb.c                        | 162 ++++++-------
+ drivers/clk/meson/{meson8b-clkc.c => meson8b.c} | 293 +++++++++++++++++++++---
+ drivers/clk/meson/meson8b.h                     | 148 ++++++++++++
+ include/dt-bindings/clock/meson8b-clkc.h        |   2 -
+ 6 files changed, 494 insertions(+), 115 deletions(-)
+ rename drivers/clk/meson/{meson8b-clkc.c => meson8b.c} (52%)
+ create mode 100644 drivers/clk/meson/meson8b.h
+
+-- 
+2.5.0
