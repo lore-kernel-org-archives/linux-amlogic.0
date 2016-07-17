@@ -1,159 +1,211 @@
 From: serveralex@gmail.com (=?UTF-8?q?Alexander=20M=C3=BCller?=)
-Date: Sun, 17 Jul 2016 20:44:49 +0200
-Subject: [PATCH v3 4/6] clk: meson: Copy meson8b CLKID defines to private
- header file
+Date: Sun, 17 Jul 2016 20:44:50 +0200
+Subject: [PATCH v3 5/6] gxbb: clk: Adjust MESON_GATE macro to be shared with
+ meson8b
 In-Reply-To: <1468781091-39119-1-git-send-email-serveralex@gmail.com>
 References: <1468781091-39119-1-git-send-email-serveralex@gmail.com>
-Message-ID: <1468781091-39119-5-git-send-email-serveralex@gmail.com>
+Message-ID: <1468781091-39119-6-git-send-email-serveralex@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Only expose future CLKID constants if necessary. This patch
-removes CLK_NR_CLKS from the DT bindings but leaves all previously
-defined CLKIDs there to keep backward compatibility.
+The macro used gxbb_ prefix for clock definitions. In order
+to share the macro between gxbb and meson8b, the prefix must
+be moved to gxbb.c.
 
 Signed-off-by: Alexander M?ller <serveralex@gmail.com>
 ---
- drivers/clk/meson/meson8b.c              |   1 -
- drivers/clk/meson/meson8b.h              | 104 +++++++++++++++++++++++++++++++
- include/dt-bindings/clock/meson8b-clkc.h |   2 -
- 3 files changed, 104 insertions(+), 3 deletions(-)
+ drivers/clk/meson/clkc.h |   2 +-
+ drivers/clk/meson/gxbb.c | 162 +++++++++++++++++++++++------------------------
+ 2 files changed, 82 insertions(+), 82 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 0c6e26f..9a656d9 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -21,7 +21,6 @@
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/of_address.h>
--#include <dt-bindings/clock/meson8b-clkc.h>
- #include <linux/platform_device.h>
- #include <linux/module.h>
+diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+index 53326c3..9bb70e7 100644
+--- a/drivers/clk/meson/clkc.h
++++ b/drivers/clk/meson/clkc.h
+@@ -98,7 +98,7 @@ struct meson_clk_mpll {
+ };
  
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index b2f29f7..8bd91cf 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -36,4 +36,108 @@
- #define HHI_SYS_PLL_CNTL		0x300 /* 0xc0 offset in data sheet */
- #define HHI_VID_PLL_CNTL		0x320 /* 0xc8 offset in data sheet */
+ #define MESON_GATE(_name, _reg, _bit)					\
+-struct clk_gate gxbb_##_name = { 						\
++struct clk_gate _name = { 						\
+ 	.reg = (void __iomem *) _reg, 					\
+ 	.bit_idx = (_bit), 						\
+ 	.lock = &clk_lock,						\
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 007b715..0e6d163 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -563,90 +563,90 @@ static struct clk_gate gxbb_clk81 = {
+ };
  
-+/*
-+ * CLKID index values
-+ *
-+ * These indices are entirely contrived and do not map onto the hardware.
-+ * Migrate them out of this header and into the DT header file when they need
-+ * to be exposed to client nodes in DT: include/dt-bindings/clock/meson8b-clkc.h
-+ */
-+
-+#define CLKID_UNUSED		0
-+#define CLKID_XTAL		1
-+#define CLKID_PLL_FIXED		2
-+#define CLKID_PLL_VID		3
-+#define CLKID_PLL_SYS		4
-+#define CLKID_FCLK_DIV2		5
-+#define CLKID_FCLK_DIV3		6
-+#define CLKID_FCLK_DIV4		7
-+#define CLKID_FCLK_DIV5		8
-+#define CLKID_FCLK_DIV7		9
-+#define CLKID_CLK81		10
-+#define CLKID_MALI		11
-+#define CLKID_CPUCLK		12
-+#define CLKID_ZERO		13
-+#define CLKID_MPEG_SEL		14
-+#define CLKID_MPEG_DIV		15
-+#define CLKID_DDR		16
-+#define CLKID_DOS		17
-+#define CLKID_ISA		18
-+#define CLKID_PL301		19
-+#define CLKID_PERIPHS		20
-+#define CLKID_SPICC		21
-+#define CLKID_I2C		22
-+#define CLKID_SAR_ADC		23
-+#define CLKID_SMART_CARD	24
-+#define CLKID_RNG0		25
-+#define CLKID_UART0		26
-+#define CLKID_SDHC		27
-+#define CLKID_STREAM		28
-+#define CLKID_ASYNC_FIFO	29
-+#define CLKID_SDIO		30
-+#define CLKID_ABUF		31
-+#define CLKID_HIU_IFACE		32
-+#define CLKID_ASSIST_MISC	33
-+#define CLKID_SPI		34
-+#define CLKID_I2S_SPDIF		35
-+#define CLKID_ETH		36
-+#define CLKID_DEMUX		37
-+#define CLKID_AIU_GLUE		38
-+#define CLKID_IEC958		39
-+#define CLKID_I2S_OUT		40
-+#define CLKID_AMCLK		41
-+#define CLKID_AIFIFO2		42
-+#define CLKID_MIXER		43
-+#define CLKID_MIXER_IFACE	44
-+#define CLKID_ADC		45
-+#define CLKID_BLKMV		46
-+#define CLKID_AIU		47
-+#define CLKID_UART1		48
-+#define CLKID_G2D		49
-+#define CLKID_USB0		50
-+#define CLKID_USB1		51
-+#define CLKID_RESET		52
-+#define CLKID_NAND		53
-+#define CLKID_DOS_PARSER	54
-+#define CLKID_USB		55
-+#define CLKID_VDIN1		56
-+#define CLKID_AHB_ARB0		57
-+#define CLKID_EFUSE		58
-+#define CLKID_BOOT_ROM		59
-+#define CLKID_AHB_DATA_BUS	60
-+#define CLKID_AHB_CTRL_BUS	61
-+#define CLKID_HDMI_INTR_SYNC	62
-+#define CLKID_HDMI_PCLK		63
-+#define CLKID_USB1_DDR_BRIDGE	64
-+#define CLKID_USB0_DDR_BRIDGE	65
-+#define CLKID_MMC_PCLK		66
-+#define CLKID_DVIN		67
-+#define CLKID_UART2		68
-+#define CLKID_SANA		69
-+#define CLKID_VPU_INTR		70
-+#define CLKID_SEC_AHB_AHB3_BRIDGE	71
-+#define CLKID_CLK81_A9		72
-+#define CLKID_VCLK2_VENCI0	73
-+#define CLKID_VCLK2_VENCI1	74
-+#define CLKID_VCLK2_VENCP0	75
-+#define CLKID_VCLK2_VENCP1	76
-+#define CLKID_GCLK_VENCI_INT	77
-+#define CLKID_GCLK_VENCP_INT	78
-+#define CLKID_DAC_CLK		79
-+#define CLKID_AOCLK_GATE	80
-+#define CLKID_IEC958_GATE	81
-+#define CLKID_ENC480P		82
-+#define CLKID_RNG1		83
-+#define CLKID_GCLK_VENCL_INT	84
-+#define CLKID_VCLK2_VENCLMCC	85
-+#define CLKID_VCLK2_VENCL	86
-+#define CLKID_VCLK2_OTHER	87
-+#define CLKID_EDP		88
-+#define CLKID_AO_MEDIA_CPU	89
-+#define CLKID_AO_AHB_SRAM	90
-+#define CLKID_AO_AHB_BUS	91
-+#define CLKID_AO_IFACE		92
-+
-+#define CLK_NR_CLKS		93
-+
- #endif /* __MESON8B_H */
-diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
-index 595a58d..a55ff8c 100644
---- a/include/dt-bindings/clock/meson8b-clkc.h
-+++ b/include/dt-bindings/clock/meson8b-clkc.h
-@@ -22,6 +22,4 @@
- #define CLKID_MPEG_SEL		14
- #define CLKID_MPEG_DIV		15
- 
--#define CLK_NR_CLKS		(CLKID_MPEG_DIV + 1)
+ /* Everything Else (EE) domain gates */
+-static MESON_GATE(ddr, HHI_GCLK_MPEG0, 0);
+-static MESON_GATE(dos, HHI_GCLK_MPEG0, 1);
+-static MESON_GATE(isa, HHI_GCLK_MPEG0, 5);
+-static MESON_GATE(pl301, HHI_GCLK_MPEG0, 6);
+-static MESON_GATE(periphs, HHI_GCLK_MPEG0, 7);
+-static MESON_GATE(spicc, HHI_GCLK_MPEG0, 8);
+-static MESON_GATE(i2c, HHI_GCLK_MPEG0, 9);
+-static MESON_GATE(sar_adc, HHI_GCLK_MPEG0, 10);
+-static MESON_GATE(smart_card, HHI_GCLK_MPEG0, 11);
+-static MESON_GATE(rng0, HHI_GCLK_MPEG0, 12);
+-static MESON_GATE(uart0, HHI_GCLK_MPEG0, 13);
+-static MESON_GATE(sdhc, HHI_GCLK_MPEG0, 14);
+-static MESON_GATE(stream, HHI_GCLK_MPEG0, 15);
+-static MESON_GATE(async_fifo, HHI_GCLK_MPEG0, 16);
+-static MESON_GATE(sdio, HHI_GCLK_MPEG0, 17);
+-static MESON_GATE(abuf, HHI_GCLK_MPEG0, 18);
+-static MESON_GATE(hiu_iface, HHI_GCLK_MPEG0, 19);
+-static MESON_GATE(assist_misc, HHI_GCLK_MPEG0, 23);
+-static MESON_GATE(spi, HHI_GCLK_MPEG0, 30);
 -
- #endif /* __MESON8B_CLKC_H */
+-static MESON_GATE(i2s_spdif, HHI_GCLK_MPEG1, 2);
+-static MESON_GATE(eth, HHI_GCLK_MPEG1, 3);
+-static MESON_GATE(demux, HHI_GCLK_MPEG1, 4);
+-static MESON_GATE(aiu_glue, HHI_GCLK_MPEG1, 6);
+-static MESON_GATE(iec958, HHI_GCLK_MPEG1, 7);
+-static MESON_GATE(i2s_out, HHI_GCLK_MPEG1, 8);
+-static MESON_GATE(amclk, HHI_GCLK_MPEG1, 9);
+-static MESON_GATE(aififo2, HHI_GCLK_MPEG1, 10);
+-static MESON_GATE(mixer, HHI_GCLK_MPEG1, 11);
+-static MESON_GATE(mixer_iface, HHI_GCLK_MPEG1, 12);
+-static MESON_GATE(adc, HHI_GCLK_MPEG1, 13);
+-static MESON_GATE(blkmv, HHI_GCLK_MPEG1, 14);
+-static MESON_GATE(aiu, HHI_GCLK_MPEG1, 15);
+-static MESON_GATE(uart1, HHI_GCLK_MPEG1, 16);
+-static MESON_GATE(g2d, HHI_GCLK_MPEG1, 20);
+-static MESON_GATE(usb0, HHI_GCLK_MPEG1, 21);
+-static MESON_GATE(usb1, HHI_GCLK_MPEG1, 22);
+-static MESON_GATE(reset, HHI_GCLK_MPEG1, 23);
+-static MESON_GATE(nand, HHI_GCLK_MPEG1, 24);
+-static MESON_GATE(dos_parser, HHI_GCLK_MPEG1, 25);
+-static MESON_GATE(usb, HHI_GCLK_MPEG1, 26);
+-static MESON_GATE(vdin1, HHI_GCLK_MPEG1, 28);
+-static MESON_GATE(ahb_arb0, HHI_GCLK_MPEG1, 29);
+-static MESON_GATE(efuse, HHI_GCLK_MPEG1, 30);
+-static MESON_GATE(boot_rom, HHI_GCLK_MPEG1, 31);
+-
+-static MESON_GATE(ahb_data_bus, HHI_GCLK_MPEG2, 1);
+-static MESON_GATE(ahb_ctrl_bus, HHI_GCLK_MPEG2, 2);
+-static MESON_GATE(hdmi_intr_sync, HHI_GCLK_MPEG2, 3);
+-static MESON_GATE(hdmi_pclk, HHI_GCLK_MPEG2, 4);
+-static MESON_GATE(usb1_ddr_bridge, HHI_GCLK_MPEG2, 8);
+-static MESON_GATE(usb0_ddr_bridge, HHI_GCLK_MPEG2, 9);
+-static MESON_GATE(mmc_pclk, HHI_GCLK_MPEG2, 11);
+-static MESON_GATE(dvin, HHI_GCLK_MPEG2, 12);
+-static MESON_GATE(uart2, HHI_GCLK_MPEG2, 15);
+-static MESON_GATE(sana, HHI_GCLK_MPEG2, 22);
+-static MESON_GATE(vpu_intr, HHI_GCLK_MPEG2, 25);
+-static MESON_GATE(sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
+-static MESON_GATE(clk81_a53, HHI_GCLK_MPEG2, 29);
+-
+-static MESON_GATE(vclk2_venci0, HHI_GCLK_OTHER, 1);
+-static MESON_GATE(vclk2_venci1, HHI_GCLK_OTHER, 2);
+-static MESON_GATE(vclk2_vencp0, HHI_GCLK_OTHER, 3);
+-static MESON_GATE(vclk2_vencp1, HHI_GCLK_OTHER, 4);
+-static MESON_GATE(gclk_venci_int0, HHI_GCLK_OTHER, 8);
+-static MESON_GATE(gclk_vencp_int, HHI_GCLK_OTHER, 9);
+-static MESON_GATE(dac_clk, HHI_GCLK_OTHER, 10);
+-static MESON_GATE(aoclk_gate, HHI_GCLK_OTHER, 14);
+-static MESON_GATE(iec958_gate, HHI_GCLK_OTHER, 16);
+-static MESON_GATE(enc480p, HHI_GCLK_OTHER, 20);
+-static MESON_GATE(rng1, HHI_GCLK_OTHER, 21);
+-static MESON_GATE(gclk_venci_int1, HHI_GCLK_OTHER, 22);
+-static MESON_GATE(vclk2_venclmcc, HHI_GCLK_OTHER, 24);
+-static MESON_GATE(vclk2_vencl, HHI_GCLK_OTHER, 25);
+-static MESON_GATE(vclk_other, HHI_GCLK_OTHER, 26);
+-static MESON_GATE(edp, HHI_GCLK_OTHER, 31);
++static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
++static MESON_GATE(gxbb_dos, HHI_GCLK_MPEG0, 1);
++static MESON_GATE(gxbb_isa, HHI_GCLK_MPEG0, 5);
++static MESON_GATE(gxbb_pl301, HHI_GCLK_MPEG0, 6);
++static MESON_GATE(gxbb_periphs, HHI_GCLK_MPEG0, 7);
++static MESON_GATE(gxbb_spicc, HHI_GCLK_MPEG0, 8);
++static MESON_GATE(gxbb_i2c, HHI_GCLK_MPEG0, 9);
++static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 10);
++static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
++static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
++static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
++static MESON_GATE(gxbb_sdhc, HHI_GCLK_MPEG0, 14);
++static MESON_GATE(gxbb_stream, HHI_GCLK_MPEG0, 15);
++static MESON_GATE(gxbb_async_fifo, HHI_GCLK_MPEG0, 16);
++static MESON_GATE(gxbb_sdio, HHI_GCLK_MPEG0, 17);
++static MESON_GATE(gxbb_abuf, HHI_GCLK_MPEG0, 18);
++static MESON_GATE(gxbb_hiu_iface, HHI_GCLK_MPEG0, 19);
++static MESON_GATE(gxbb_assist_misc, HHI_GCLK_MPEG0, 23);
++static MESON_GATE(gxbb_spi, HHI_GCLK_MPEG0, 30);
++
++static MESON_GATE(gxbb_i2s_spdif, HHI_GCLK_MPEG1, 2);
++static MESON_GATE(gxbb_eth, HHI_GCLK_MPEG1, 3);
++static MESON_GATE(gxbb_demux, HHI_GCLK_MPEG1, 4);
++static MESON_GATE(gxbb_aiu_glue, HHI_GCLK_MPEG1, 6);
++static MESON_GATE(gxbb_iec958, HHI_GCLK_MPEG1, 7);
++static MESON_GATE(gxbb_i2s_out, HHI_GCLK_MPEG1, 8);
++static MESON_GATE(gxbb_amclk, HHI_GCLK_MPEG1, 9);
++static MESON_GATE(gxbb_aififo2, HHI_GCLK_MPEG1, 10);
++static MESON_GATE(gxbb_mixer, HHI_GCLK_MPEG1, 11);
++static MESON_GATE(gxbb_mixer_iface, HHI_GCLK_MPEG1, 12);
++static MESON_GATE(gxbb_adc, HHI_GCLK_MPEG1, 13);
++static MESON_GATE(gxbb_blkmv, HHI_GCLK_MPEG1, 14);
++static MESON_GATE(gxbb_aiu, HHI_GCLK_MPEG1, 15);
++static MESON_GATE(gxbb_uart1, HHI_GCLK_MPEG1, 16);
++static MESON_GATE(gxbb_g2d, HHI_GCLK_MPEG1, 20);
++static MESON_GATE(gxbb_usb0, HHI_GCLK_MPEG1, 21);
++static MESON_GATE(gxbb_usb1, HHI_GCLK_MPEG1, 22);
++static MESON_GATE(gxbb_reset, HHI_GCLK_MPEG1, 23);
++static MESON_GATE(gxbb_nand, HHI_GCLK_MPEG1, 24);
++static MESON_GATE(gxbb_dos_parser, HHI_GCLK_MPEG1, 25);
++static MESON_GATE(gxbb_usb, HHI_GCLK_MPEG1, 26);
++static MESON_GATE(gxbb_vdin1, HHI_GCLK_MPEG1, 28);
++static MESON_GATE(gxbb_ahb_arb0, HHI_GCLK_MPEG1, 29);
++static MESON_GATE(gxbb_efuse, HHI_GCLK_MPEG1, 30);
++static MESON_GATE(gxbb_boot_rom, HHI_GCLK_MPEG1, 31);
++
++static MESON_GATE(gxbb_ahb_data_bus, HHI_GCLK_MPEG2, 1);
++static MESON_GATE(gxbb_ahb_ctrl_bus, HHI_GCLK_MPEG2, 2);
++static MESON_GATE(gxbb_hdmi_intr_sync, HHI_GCLK_MPEG2, 3);
++static MESON_GATE(gxbb_hdmi_pclk, HHI_GCLK_MPEG2, 4);
++static MESON_GATE(gxbb_usb1_ddr_bridge, HHI_GCLK_MPEG2, 8);
++static MESON_GATE(gxbb_usb0_ddr_bridge, HHI_GCLK_MPEG2, 9);
++static MESON_GATE(gxbb_mmc_pclk, HHI_GCLK_MPEG2, 11);
++static MESON_GATE(gxbb_dvin, HHI_GCLK_MPEG2, 12);
++static MESON_GATE(gxbb_uart2, HHI_GCLK_MPEG2, 15);
++static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG2, 22);
++static MESON_GATE(gxbb_vpu_intr, HHI_GCLK_MPEG2, 25);
++static MESON_GATE(gxbb_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
++static MESON_GATE(gxbb_clk81_a53, HHI_GCLK_MPEG2, 29);
++
++static MESON_GATE(gxbb_vclk2_venci0, HHI_GCLK_OTHER, 1);
++static MESON_GATE(gxbb_vclk2_venci1, HHI_GCLK_OTHER, 2);
++static MESON_GATE(gxbb_vclk2_vencp0, HHI_GCLK_OTHER, 3);
++static MESON_GATE(gxbb_vclk2_vencp1, HHI_GCLK_OTHER, 4);
++static MESON_GATE(gxbb_gclk_venci_int0, HHI_GCLK_OTHER, 8);
++static MESON_GATE(gxbb_gclk_vencp_int, HHI_GCLK_OTHER, 9);
++static MESON_GATE(gxbb_dac_clk, HHI_GCLK_OTHER, 10);
++static MESON_GATE(gxbb_aoclk_gate, HHI_GCLK_OTHER, 14);
++static MESON_GATE(gxbb_iec958_gate, HHI_GCLK_OTHER, 16);
++static MESON_GATE(gxbb_enc480p, HHI_GCLK_OTHER, 20);
++static MESON_GATE(gxbb_rng1, HHI_GCLK_OTHER, 21);
++static MESON_GATE(gxbb_gclk_venci_int1, HHI_GCLK_OTHER, 22);
++static MESON_GATE(gxbb_vclk2_venclmcc, HHI_GCLK_OTHER, 24);
++static MESON_GATE(gxbb_vclk2_vencl, HHI_GCLK_OTHER, 25);
++static MESON_GATE(gxbb_vclk_other, HHI_GCLK_OTHER, 26);
++static MESON_GATE(gxbb_edp, HHI_GCLK_OTHER, 31);
+ 
+ /* Always On (AO) domain gates */
+ 
+-static MESON_GATE(ao_media_cpu, HHI_GCLK_AO, 0);
+-static MESON_GATE(ao_ahb_sram, HHI_GCLK_AO, 1);
+-static MESON_GATE(ao_ahb_bus, HHI_GCLK_AO, 2);
+-static MESON_GATE(ao_iface, HHI_GCLK_AO, 3);
+-static MESON_GATE(ao_i2c, HHI_GCLK_AO, 4);
++static MESON_GATE(gxbb_ao_media_cpu, HHI_GCLK_AO, 0);
++static MESON_GATE(gxbb_ao_ahb_sram, HHI_GCLK_AO, 1);
++static MESON_GATE(gxbb_ao_ahb_bus, HHI_GCLK_AO, 2);
++static MESON_GATE(gxbb_ao_iface, HHI_GCLK_AO, 3);
++static MESON_GATE(gxbb_ao_i2c, HHI_GCLK_AO, 4);
+ 
+ /* Array of all clocks provided by this provider */
+ 
 -- 
 2.5.0
