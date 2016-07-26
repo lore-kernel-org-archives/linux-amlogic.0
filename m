@@ -1,44 +1,38 @@
-From: mark.rutland@arm.com (Mark Rutland)
-Date: Tue, 26 Jul 2016 11:20:18 +0100
-Subject: [PATCH v2 1/6] firmware: Amlogic: Add secure monitor driver
-In-Reply-To: <1467203656-14381-2-git-send-email-carlo@caione.org>
-References: <1467203656-14381-1-git-send-email-carlo@caione.org>
- <1467203656-14381-2-git-send-email-carlo@caione.org>
-Message-ID: <20160726102017.GA12241@leverpostej>
+From: weiyj.lk@gmail.com (Wei Yongjun)
+Date: Tue, 26 Jul 2016 14:51:58 +0000
+Subject: [PATCH] pinctrl: meson: Drop pinctrl_unregister for devm_ registered
+ device
+Message-ID: <1469544718-32001-1-git-send-email-weiyj.lk@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+It's not necessary to unregister pin controller device registered
+with devm_pinctrl_register() and using pinctrl_unregister() leads
+to a double free.
 
-Sorry for the delay.
+This is detected by Coccinelle semantic patch.
 
-I don't have any major comments, there are jsut a couple of minor
-details.
+Signed-off-by: Wei Yongjun <weiyj.lk@gmail.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-> +config MESON_SM
-> +	bool
-> +	default ARCH_MESON
-> +	depends on ARM64_4K_PAGES
-
-It would be good to have a commentin the code as to why we depend on
-ARM64_4K_PAGES.
-
-That way it's possible for others to figure out without having to go
-digging through mail archives and/or git logs.
-
-[...]
-
-> +struct meson_sm_chip gxbb_chip = {
-> +	.shmem_size		= 0x1000,
-
-If you include <linux/sizes.h>, you can use SZ_4K here.
-
-Immediately above this is probably the best place for the comment
-regarding the 4K page restriction imposed by the FW interface.
-
-Other than that this looks fine, so FWIW:
-
-Acked-by: Mark Rutland <mark.rutland@arm.com>
-
-Thanks,
-Mark.
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index 11623c6..44e69c9 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -727,13 +727,7 @@ static int meson_pinctrl_probe(struct platform_device *pdev)
+ 		return PTR_ERR(pc->pcdev);
+ 	}
+ 
+-	ret = meson_gpiolib_register(pc);
+-	if (ret) {
+-		pinctrl_unregister(pc->pcdev);
+-		return ret;
+-	}
+-
+-	return 0;
++	return meson_gpiolib_register(pc);
+ }
+ 
+ static struct platform_driver meson_pinctrl_driver = {
