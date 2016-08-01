@@ -1,22 +1,89 @@
-From: caldwell_joshua@yahoo.ca (Joshua Caldwell)
-Date: Wed, 27 Jul 2016 21:34:34 +0000 (UTC)
-Subject: Fun with the M8S+ S812 box, and boy is this listserv picky about
- headers.
-References: <1491292432.6724636.1469655274480.JavaMail.yahoo.ref@mail.yahoo.com>
-Message-ID: <1491292432.6724636.1469655274480.JavaMail.yahoo@mail.yahoo.com>
+From: marc.zyngier@arm.com (Marc Zyngier)
+Date: Mon,  1 Aug 2016 10:54:15 +0100
+Subject: [PATCH v2 1/2] clocksource/arm_arch_timer: Force per-CPU interrupt to
+ be level-triggered
+In-Reply-To: <1470045256-9032-1-git-send-email-marc.zyngier@arm.com>
+References: <1470045256-9032-1-git-send-email-marc.zyngier@arm.com>
+Message-ID: <1470045256-9032-2-git-send-email-marc.zyngier@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi guys. I just bought an M8S+ box for a few bucks to see whether the S812 SoC is any good for a project I'm working on. I soldered on a serial header and have been playing with the recovery.img that comes with the OpenELEC build for it. I extracted the .dtb for the device, and tried a build of 4.6.4 for the thing. Serial console wasn't happy, so no joy there.
+The ARM architected timer produces level-triggered interrupts (this
+is mandated by the architecture). Unfortunately, a number of
+device-trees get this wrong, and expose an edge-triggered interrupt.
 
-The eventual goal is to turn the thing into an x terminal and run tests at 2160p.
+Until now, this wasn't too much an issue, as the programming of the
+trigger would fail (the corresponding PPI cannot be reconfigured),
+and the kernel would be happy with this. But we're about to change
+this, and trust DT a lot if the driver doesn't provide its own
+trigger information. In that context, the timer breaks badly.
 
-Any tips on building for the S812? I've never built for ARM before. I've been able to get init started off of an SD card on the thing, but systemd is a pain.... It wants modules the prebuilt image doesn't have. I won't go into the whole thing.
+While we do need to fix the DTs, there is also some userspace out
+there (kvmtool) that generates the same kind of broken DT on the
+fly, and that will completely break with newer kernels.
 
-If there is a better Amlogic chip for UHD/4k applications, I'd like to know about it :) If anybody wants an account to play around with this thing on one of my servers with serial console, I'm up for it.
+As a safety measure, and to keep buggy software alive as well as
+buying us some time to fix DTs all over the place, let's check
+what trigger configuration has been given us by the firmware.
+If this is not a level configuration, then we know that the
+DT/ACPI configuration is bust, and we pick some defaults which
+won't be worse than the existing setup.
 
-TL;DR How do I build a regular linux-style kernel+ramfs with the amlogic supplied or stock source for this board?
+Signed-off-by: Marc Zyngier <marc.zyngier@arm.com>
+---
+ drivers/clocksource/arm_arch_timer.c | 26 +++++++++++++++++++++++---
+ 1 file changed, 23 insertions(+), 3 deletions(-)
 
-TIA,
-
-Joshua
+diff --git a/drivers/clocksource/arm_arch_timer.c b/drivers/clocksource/arm_arch_timer.c
+index 28bce3f..5770054 100644
+--- a/drivers/clocksource/arm_arch_timer.c
++++ b/drivers/clocksource/arm_arch_timer.c
+@@ -8,6 +8,9 @@
+  * it under the terms of the GNU General Public License version 2 as
+  * published by the Free Software Foundation.
+  */
++
++#define pr_fmt(fmt)	"arm_arch_timer: " fmt
++
+ #include <linux/init.h>
+ #include <linux/kernel.h>
+ #include <linux/device.h>
+@@ -370,16 +373,33 @@ static bool arch_timer_has_nonsecure_ppi(void)
+ 		arch_timer_ppi[PHYS_NONSECURE_PPI]);
+ }
+ 
++static u32 check_ppi_trigger(int irq)
++{
++	u32 flags = irq_get_trigger_type(irq);
++
++	if (flags != IRQF_TRIGGER_HIGH && flags != IRQF_TRIGGER_LOW) {
++		pr_warn("WARNING: Invalid trigger for IRQ%d, assuming level low\n", irq);
++		pr_warn("WARNING: Please fix your firmware\n");
++		flags = IRQF_TRIGGER_LOW;
++	}
++
++	return flags;
++}
++
+ static int arch_timer_starting_cpu(unsigned int cpu)
+ {
+ 	struct clock_event_device *clk = this_cpu_ptr(arch_timer_evt);
++	u32 flags;
+ 
+ 	__arch_timer_setup(ARCH_CP15_TIMER, clk);
+ 
+-	enable_percpu_irq(arch_timer_ppi[arch_timer_uses_ppi], 0);
++	flags = check_ppi_trigger(arch_timer_ppi[arch_timer_uses_ppi]);
++	enable_percpu_irq(arch_timer_ppi[arch_timer_uses_ppi], flags);
+ 
+-	if (arch_timer_has_nonsecure_ppi())
+-		enable_percpu_irq(arch_timer_ppi[PHYS_NONSECURE_PPI], 0);
++	if (arch_timer_has_nonsecure_ppi()) {
++		flags = check_ppi_trigger(arch_timer_ppi[PHYS_NONSECURE_PPI]);
++		enable_percpu_irq(arch_timer_ppi[PHYS_NONSECURE_PPI], flags);
++	}
+ 
+ 	arch_counter_set_user_access();
+ 	if (evtstrm_enable)
+-- 
+2.1.4
