@@ -1,60 +1,99 @@
-From: yamada.masahiro@socionext.com (Masahiro Yamada)
-Date: Mon, 1 Aug 2016 19:00:50 +0900
-Subject: [PATCH v2 2/2] arm64: dts: Fix broken architected timer interrupt
- trigger
-In-Reply-To: <1470045256-9032-3-git-send-email-marc.zyngier@arm.com>
-References: <1470045256-9032-1-git-send-email-marc.zyngier@arm.com>
- <1470045256-9032-3-git-send-email-marc.zyngier@arm.com>
-Message-ID: <CAK7LNARVw+mDhHT2+WjDtHpBvsxauUQpRCJeNLrQxrj0Oo=hrQ@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue,  2 Aug 2016 14:40:11 -0700
+Subject: [PATCH] clk: gxbb: add MMC gate clocks, and expose for DT
+Message-ID: <20160802214011.19077-1-khilman@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-2016-08-01 18:54 GMT+09:00 Marc Zyngier <marc.zyngier@arm.com>:
-> The ARM architected timer specification mandates that the interrupt
-> associated with each timer is level triggered (which corresponds to
-> the "counter >= comparator" condition).
->
-> A number of DTs are being remarkably creative, declaring the interrupt
-> to be edge triggered. A quick look at the TRM for the corresponding ARM
-> CPUs clearly shows that this is wrong, and I've corrected those.
-> For non-ARM designs (and in the absence of a publicly available TRM),
-> I've made them active low as well, which can't be completely wrong
-> as the GIC cannot disinguish between level low and level high.
->
-> The respective maintainers are of course welcome to prove me wrong.
->
-> While I was at it, I took the liberty to fix a couple of related issue,
-> such as some spurious affinity bits on ThunderX, and their complete
-> absence on ls1043a (both of which seem to be related to copy-pasting
-> from other DTs).
->
-> Acked-by: Duc Dang <dhdang@apm.com>
-> Acked-by: Carlo Caione <carlo@endlessm.com>
-> Acked-by: Michal Simek <michal.simek@xilinx.com>
-> Acked-by: Krzysztof Kozlowski <k.kozlowski@samsung.com>
-> Acked-by: Dinh Nguyen <dinguyen@opensource.altera.com>
-> Signed-off-by: Marc Zyngier <marc.zyngier@arm.com>
-> ---
->  arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi    | 8 ++++----
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi          | 8 ++++----
->  arch/arm64/boot/dts/apm/apm-storm.dtsi               | 8 ++++----
->  arch/arm64/boot/dts/broadcom/ns2.dtsi                | 8 ++++----
->  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi         | 8 ++++----
->  arch/arm64/boot/dts/exynos/exynos7.dtsi              | 8 ++++----
->  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi       | 8 ++++----
->  arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi       | 8 ++++----
->  arch/arm64/boot/dts/marvell/armada-ap806.dtsi        | 8 ++++----
->  arch/arm64/boot/dts/socionext/uniphier-ph1-ld20.dtsi | 8 ++++----
+Add the SD/eMMC gate clocks and expose them for use by DT.
 
+While at it, also explose FCLK_DIV2 since this is one of the input
+clocks to the mux internal to each of the SD/eMMC blocks.
 
-For uniphier-ph1-ld20.dtsi,
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+---
+Applies on top of current clk-s905 branch.
 
-Acked-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+ drivers/clk/meson/gxbb.c              | 9 +++++++++
+ drivers/clk/meson/gxbb.h              | 7 +++++--
+ include/dt-bindings/clock/gxbb-clkc.h | 4 ++++
+ 3 files changed, 18 insertions(+), 2 deletions(-)
 
-
-Thank you!!
-
-
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 007b7157cf4b..4fc8e58feef9 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -581,6 +581,9 @@ static MESON_GATE(sdio, HHI_GCLK_MPEG0, 17);
+ static MESON_GATE(abuf, HHI_GCLK_MPEG0, 18);
+ static MESON_GATE(hiu_iface, HHI_GCLK_MPEG0, 19);
+ static MESON_GATE(assist_misc, HHI_GCLK_MPEG0, 23);
++static MESON_GATE(emmc_a, HHI_GCLK_MPEG0, 24);
++static MESON_GATE(emmc_b, HHI_GCLK_MPEG0, 25);
++static MESON_GATE(emmc_c, HHI_GCLK_MPEG0, 26);
+ static MESON_GATE(spi, HHI_GCLK_MPEG0, 30);
+ 
+ static MESON_GATE(i2s_spdif, HHI_GCLK_MPEG1, 2);
+@@ -746,6 +749,9 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
+ 		[CLKID_AO_AHB_BUS]	    = &gxbb_ao_ahb_bus.hw,
+ 		[CLKID_AO_IFACE]	    = &gxbb_ao_iface.hw,
+ 		[CLKID_AO_I2C]		    = &gxbb_ao_i2c.hw,
++		[CLKID_SD_EMMC_A]	    = &gxbb_emmc_a.hw,
++		[CLKID_SD_EMMC_B]	    = &gxbb_emmc_b.hw,
++		[CLKID_SD_EMMC_C]	    = &gxbb_emmc_c.hw,
+ 	},
+ 	.num = NR_CLKS,
+ };
+@@ -845,6 +851,9 @@ static struct clk_gate *gxbb_clk_gates[] = {
+ 	&gxbb_ao_ahb_bus,
+ 	&gxbb_ao_iface,
+ 	&gxbb_ao_i2c,
++	&gxbb_emmc_a,
++	&gxbb_emmc_b,
++	&gxbb_emmc_c,
+ };
+ 
+ static int gxbb_clkc_probe(struct platform_device *pdev)
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index a2adf3448b59..217df516de44 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -172,7 +172,7 @@
+ /* CLKID_CPUCLK */
+ #define CLKID_HDMI_PLL		  2
+ #define CLKID_FIXED_PLL		  3
+-#define CLKID_FCLK_DIV2		  4
++/* CLKID_FCLK_DIV2 */
+ #define CLKID_FCLK_DIV3		  5
+ #define CLKID_FCLK_DIV4		  6
+ #define CLKID_FCLK_DIV5		  7
+@@ -262,8 +262,11 @@
+ #define CLKID_AO_AHB_BUS	  91
+ #define CLKID_AO_IFACE		  92
+ #define CLKID_AO_I2C		  93
++/* CLKID_SD_EMMC_A */
++/* CLKID_SD_EMMC_B */
++/* CLKID_SD_EMMC_C */
+ 
+-#define NR_CLKS			  94
++#define NR_CLKS			  97
+ 
+ /* include the CLKIDs that have been made part of the stable DT binding */
+ #include <dt-bindings/clock/gxbb-clkc.h>
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index f889d80246cb..7d418643cdcc 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -6,7 +6,11 @@
+ #define __GXBB_CLKC_H
+ 
+ #define CLKID_CPUCLK		1
++#define CLKID_FCLK_DIV2		4
+ #define CLKID_CLK81		12
+ #define CLKID_ETH		36
++#define CLKID_SD_EMMC_A		94
++#define CLKID_SD_EMMC_B		95
++#define CLKID_SD_EMMC_C		96
+ 
+ #endif /* __GXBB_CLKC_H */
 -- 
-Best Regards
-Masahiro Yamada
+2.9.0
