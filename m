@@ -1,52 +1,19 @@
-From: ray.jui@broadcom.com (Ray Jui)
-Date: Wed, 3 Aug 2016 09:38:11 -0700
-Subject: [PATCH v0 2/4] i2c: bcm-kona: Use complete() instead of
- complete_all()
-In-Reply-To: <1470225791-16613-3-git-send-email-wagi@monom.org>
-References: <1470225791-16613-1-git-send-email-wagi@monom.org>
- <1470225791-16613-3-git-send-email-wagi@monom.org>
-Message-ID: <f47779be-5e1e-cbf2-b590-fdd9a0e80917@broadcom.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 3 Aug 2016 15:13:41 -0700
+Subject: [PATCH 1/2] ARM64: dts: meson-gxbb: add MMC support
+In-Reply-To: <20160803003045.24980-1-khilman@baylibre.com>
+References: <20160803003045.24980-1-khilman@baylibre.com>
+Message-ID: <CAOi56cUABXzQ=iXF0xxc4ZSVWyCdTes0_9raGtzJC-_1yMnVsQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Daniel,
+On Tue, Aug 2, 2016 at 5:30 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Add binding and basic support for the SD/eMMC controller on Amlogic
+> S905/GXBB devices.
+>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 
-On 8/3/2016 5:03 AM, Daniel Wagner wrote:
-> From: Daniel Wagner <daniel.wagner@bmw-carit.de>
->
-> There is only one waiter for the completion, therefore there
-> is no need to use complete_all(). Let's make that clear by
-> using complete() instead of complete_all().
->
-> The usage pattern of the completion is:
->
-> bcm_kona_send_i2c_cmd()
->   reinit_completion()
->   ...
->   bcm_kona_i2c_send_cmd_to_ctrl()
->   ...
->   wait_for_completion_timeout()
->
-> Signed-off-by: Daniel Wagner <daniel.wagner@bmw-carit.de>
-> ---
->  drivers/i2c/busses/i2c-bcm-kona.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/i2c/busses/i2c-bcm-kona.c b/drivers/i2c/busses/i2c-bcm-kona.c
-> index ac9f476..f987432 100644
-> --- a/drivers/i2c/busses/i2c-bcm-kona.c
-> +++ b/drivers/i2c/busses/i2c-bcm-kona.c
-> @@ -229,7 +229,7 @@ static irqreturn_t bcm_kona_i2c_isr(int irq, void *devid)
->  		       dev->base + TXFCR_OFFSET);
->
->  	writel(status & ~ISR_RESERVED_MASK, dev->base + ISR_OFFSET);
-> -	complete_all(&dev->done);
-> +	complete(&dev->done);
->
->  	return IRQ_HANDLED;
->  }
->
+Oops, please disregard.  Sent due to a missing "--dry-run" with
+git-send-email. :(
 
-This change looks good me! Thanks.
-
-Acked-by: Ray Jui <ray.jui@broadcom.com>
+Kevin
