@@ -1,99 +1,279 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue,  2 Aug 2016 14:40:11 -0700
-Subject: [PATCH] clk: gxbb: add MMC gate clocks, and expose for DT
-Message-ID: <20160802214011.19077-1-khilman@baylibre.com>
+Date: Tue,  2 Aug 2016 17:30:44 -0700
+Subject: [PATCH 1/2] ARM64: dts: meson-gxbb: add MMC support
+Message-ID: <20160803003045.24980-1-khilman@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the SD/eMMC gate clocks and expose them for use by DT.
-
-While at it, also explose FCLK_DIV2 since this is one of the input
-clocks to the mux internal to each of the SD/eMMC blocks.
+Add binding and basic support for the SD/eMMC controller on Amlogic
+S905/GXBB devices.
 
 Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 ---
-Applies on top of current clk-s905 branch.
+ .../devicetree/bindings/mmc/amlogic,meson-gxbb.txt | 29 +++++++++
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 74 ++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   | 71 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 30 ++++++++-
+ 4 files changed, 203 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-gxbb.txt
 
- drivers/clk/meson/gxbb.c              | 9 +++++++++
- drivers/clk/meson/gxbb.h              | 7 +++++--
- include/dt-bindings/clock/gxbb-clkc.h | 4 ++++
- 3 files changed, 18 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 007b7157cf4b..4fc8e58feef9 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -581,6 +581,9 @@ static MESON_GATE(sdio, HHI_GCLK_MPEG0, 17);
- static MESON_GATE(abuf, HHI_GCLK_MPEG0, 18);
- static MESON_GATE(hiu_iface, HHI_GCLK_MPEG0, 19);
- static MESON_GATE(assist_misc, HHI_GCLK_MPEG0, 23);
-+static MESON_GATE(emmc_a, HHI_GCLK_MPEG0, 24);
-+static MESON_GATE(emmc_b, HHI_GCLK_MPEG0, 25);
-+static MESON_GATE(emmc_c, HHI_GCLK_MPEG0, 26);
- static MESON_GATE(spi, HHI_GCLK_MPEG0, 30);
- 
- static MESON_GATE(i2s_spdif, HHI_GCLK_MPEG1, 2);
-@@ -746,6 +749,9 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
- 		[CLKID_AO_AHB_BUS]	    = &gxbb_ao_ahb_bus.hw,
- 		[CLKID_AO_IFACE]	    = &gxbb_ao_iface.hw,
- 		[CLKID_AO_I2C]		    = &gxbb_ao_i2c.hw,
-+		[CLKID_SD_EMMC_A]	    = &gxbb_emmc_a.hw,
-+		[CLKID_SD_EMMC_B]	    = &gxbb_emmc_b.hw,
-+		[CLKID_SD_EMMC_C]	    = &gxbb_emmc_c.hw,
- 	},
- 	.num = NR_CLKS,
+diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gxbb.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gxbb.txt
+new file mode 100644
+index 000000000000..2bfdf47018c5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gxbb.txt
+@@ -0,0 +1,29 @@
++Amlogic SD / eMMC controller for S905/GXBB family SoCs
++
++The MMC 5.1 compliant host controller on Amlogic provides the
++interface for SD, eMMC and SDIO devices.
++
++This file documents the properties in addition to those available in
++the MMC core bindings, documented by mmc.txt.
++
++Required properties:
++- compatible : contains "amlogic,meson-gxbb"
++- clocks     : A list of phandle + clock-specifier pairs for the clocks listed in clock-names.
++- clock-names: Should contain the following:
++	"core" - Main peripheral bus clock
++	"clkin0" - Parent clock of internal mux
++	"clkin1" - Other parent clock of internal mux
++  The driver has an interal mux clock which switches between clkin0 and clkin1 depending on the
++  clock rate requested by the MMC core.
++
++Example:
++
++	sd_emmc_a: mmc at 70000 {
++        	compatible = "amlogic,meson-gxbb-mmc";
++		reg = <0x0 0x70000 0x0 0x2000>;
++                interrupts = < GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
++		clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
++		clock-names = "core", "clkin0", "clkin1";
++		pinctrl-0 = <&emmc_pins>;
++	};
++
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 90a84c514d3d..a49f7f77eb34 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -73,6 +73,45 @@
+ 			default-state = "off";
+ 		};
+ 	};
++
++	mmc_iv: gpio-regulator {
++		compatible = "regulator-gpio";
++
++		regulator-name = "mmc-gpio-supply";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
++		gpio-states = <0 1>;
++	
++		/*
++		 * Based on ODROID-C2 schematics:
++		 * signal name: IO_TF_3V3N_1V8, GPIOAO bit 3
++		 */
++		states = <3300000 0
++		          1800000 1>;
++	};
++
++	vcc1v8: regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++
++	vcc3v3: regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
  };
-@@ -845,6 +851,9 @@ static struct clk_gate *gxbb_clk_gates[] = {
- 	&gxbb_ao_ahb_bus,
- 	&gxbb_ao_iface,
- 	&gxbb_ao_i2c,
-+	&gxbb_emmc_a,
-+	&gxbb_emmc_b,
-+	&gxbb_emmc_c,
+ 
+ &uart_AO {
+@@ -87,3 +126,38 @@
+ 	pinctrl-names = "default";
  };
  
- static int gxbb_clkc_probe(struct platform_device *pdev)
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index a2adf3448b59..217df516de44 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -172,7 +172,7 @@
- /* CLKID_CPUCLK */
- #define CLKID_HDMI_PLL		  2
- #define CLKID_FIXED_PLL		  3
--#define CLKID_FCLK_DIV2		  4
-+/* CLKID_FCLK_DIV2 */
- #define CLKID_FCLK_DIV3		  5
- #define CLKID_FCLK_DIV4		  6
- #define CLKID_FCLK_DIV5		  7
-@@ -262,8 +262,11 @@
- #define CLKID_AO_AHB_BUS	  91
- #define CLKID_AO_IFACE		  92
- #define CLKID_AO_I2C		  93
-+/* CLKID_SD_EMMC_A */
-+/* CLKID_SD_EMMC_B */
-+/* CLKID_SD_EMMC_C */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <100000000>;
++
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
++	cd-inverted;
++
++	vmmc-supply = <&mmc_iv>;
++	voltage-ranges = <1800 3300>;
++};
++
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <8>;
++	cap-sd-highspeed;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	voltage-ranges = <1800 3300>;
++	vmmc-supply = <&vcc3v3>;
++	vmmcq-sumpply = <&vcc1v8>;
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index f4f30f674b4c..63d95d136aec 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -57,6 +57,42 @@
+ 		device_type = "memory";
+ 		reg = <0x0 0x0 0x0 0x40000000>;
+ 	};
++
++	mmc_iv: gpio-regulator {
++		compatible = "regulator-gpio";
++
++		regulator-name = "mmc-gpio-supply";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
++		gpio-states = <0 1>;
++
++		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
++		states = <1800000 0
++		          3300000 1>;
++	};
++
++	vddio_boot: regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_BOOT";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++
++	vcc_3v3: regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
+ };
  
--#define NR_CLKS			  94
-+#define NR_CLKS			  97
+ /* This UART is brought out to the DB9 connector */
+@@ -72,3 +108,38 @@
+ 	pinctrl-names = "default";
+ };
  
- /* include the CLKIDs that have been made part of the stable DT binding */
- #include <dt-bindings/clock/gxbb-clkc.h>
-diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-index f889d80246cb..7d418643cdcc 100644
---- a/include/dt-bindings/clock/gxbb-clkc.h
-+++ b/include/dt-bindings/clock/gxbb-clkc.h
-@@ -6,7 +6,11 @@
- #define __GXBB_CLKC_H
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <100000000>;
++
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
++	cd-inverted;
++
++	voltage-ranges = <1800 3300>;
++	vmmc-supply = <&mmc_iv>;
++};
++
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <8>;
++	cap-sd-highspeed;
++	cap-mmc-highspeed;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	voltage-ranges = <1800 3300>;
++	vmmc-supply = <&vcc_3v3>;
++	vmmcq-sumpply = <&vddio_boot>;
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 35c8b2beb05c..2e48fa1e0364 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -247,7 +247,8 @@
+ 					mux {
+ 						groups = "emmc_nand_d07",
+ 						       "emmc_cmd",
+-						       "emmc_clk";
++						       "emmc_clk",
++						       "emmc_ds";
+ 						function = "emmc";
+ 					};
+ 				};
+@@ -330,6 +331,33 @@
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xd0000000 0x0 0x200000>;
++
++			sd_emmc_a: mmc at 70000 {
++		        	compatible = "amlogic,meson-gxbb-mmc";
++				reg = <0x0 0x70000 0x0 0x2000>;
++		                interrupts = < GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				status = "disabled";
++			};
++
++			sd_emmc_b: mmc at 72000 {
++		        	compatible = "amlogic,meson-gxbb-mmc";
++				reg = <0x0 0x72000 0x0 0x2000>;
++				interrupts = < GIC_SPI 217 IRQ_TYPE_EDGE_RISING >;
++				clocks = <&clkc CLKID_SD_EMMC_B>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				status = "disabled";
++			};
++
++			sd_emmc_c: mmc at 74000 {
++		        	compatible = "amlogic,meson-gxbb-mmc";
++				reg = <0x0 0x74000 0x0 0x2000>;
++		                interrupts = < GIC_SPI 218 IRQ_TYPE_EDGE_RISING >;
++				clocks = <&clkc CLKID_SD_EMMC_C>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				status = "disabled";
++			};
+ 		};
  
- #define CLKID_CPUCLK		1
-+#define CLKID_FCLK_DIV2		4
- #define CLKID_CLK81		12
- #define CLKID_ETH		36
-+#define CLKID_SD_EMMC_A		94
-+#define CLKID_SD_EMMC_B		95
-+#define CLKID_SD_EMMC_C		96
- 
- #endif /* __GXBB_CLKC_H */
+ 		ethmac: ethernet at c9410000 {
 -- 
 2.9.0
