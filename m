@@ -1,89 +1,55 @@
-From: robh@kernel.org (Rob Herring)
-Date: Thu, 4 Aug 2016 21:45:05 -0500
-Subject: [PATCH v2 1/2] ARM64: dts: meson-gxbb: add MMC support
-In-Reply-To: <m2oa58nntc.fsf@baylibre.com>
-References: <20160803231843.23012-1-khilman@baylibre.com>
- <20160804181556.GA13000@rob-hp-laptop>
- <m2oa58nntc.fsf@baylibre.com>
-Message-ID: <CAL_JsqK18UPAUFCqfN7TJqz4AoLBbNA7fOgeQXqPES06fuhgFQ@mail.gmail.com>
+From: tim.kryger@gmail.com (Tim Kryger)
+Date: Thu, 4 Aug 2016 21:16:24 -0700
+Subject: [PATCH v0 2/4] i2c: bcm-kona: Use complete() instead of
+ complete_all()
+In-Reply-To: <1470225791-16613-3-git-send-email-wagi@monom.org>
+References: <1470225791-16613-1-git-send-email-wagi@monom.org>
+ <1470225791-16613-3-git-send-email-wagi@monom.org>
+Message-ID: <CAD7vxxLCtN1+vTj5_XL5N-w4YXcj=1jUj5PxQvFUzVT_E0m7ug@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-+dtc list
+On Wed, Aug 3, 2016 at 5:03 AM, Daniel Wagner <wagi@monom.org> wrote:
+> From: Daniel Wagner <daniel.wagner@bmw-carit.de>
+>
+> There is only one waiter for the completion, therefore there
+> is no need to use complete_all(). Let's make that clear by
+> using complete() instead of complete_all().
+>
+> The usage pattern of the completion is:
+>
+> bcm_kona_send_i2c_cmd()
+>   reinit_completion()
+>   ...
+>   bcm_kona_i2c_send_cmd_to_ctrl()
+>   ...
+>   wait_for_completion_timeout()
+>
+> Signed-off-by: Daniel Wagner <daniel.wagner@bmw-carit.de>
 
-On Thu, Aug 4, 2016 at 5:58 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Hi Rob,
->
-> Rob Herring <robh@kernel.org> writes:
->
->> On Wed, Aug 03, 2016 at 04:18:42PM -0700, Kevin Hilman wrote:
->>> Add binding and basic support for the SD/eMMC controller on Amlogic
->>> S905/GXBB devices.
->>>
->>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
->
-> [...]
->
->>> +    mmc_iv: gpio-regulator {
->>> +            compatible = "regulator-gpio";
->>> +
->>> +            regulator-name = "mmc-gpio-supply";
->>> +            regulator-min-microvolt = <1800000>;
->>> +            regulator-max-microvolt = <3300000>;
->>> +
->>> +            gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
->>> +            gpio-states = <0 1>;
->>> +
->>> +            /*
->>> +             * Based on ODROID-C2 schematics:
->>> +             * signal name: IO_TF_3V3N_1V8, GPIOAO bit 3
->>> +             */
->>> +            states = <3300000 0
->>> +                      1800000 1>;
->>
->> There are multiple things wrong in this node based on the regulator-gpio
->> documentation.
->
-> I see I got the property name wrong, and the number of elements wrong,
-> and this fixes those issues:
->
-> -               gpio-states = <0 1>;
-> +               gpios-states = <0>;
->
-> By "multiple", did you mean more than those 2?  If so, I'm not seeing
-> what else is wrong.
+Reviewed-by: Tim Kryger <tim.kryger@gmail.com>
 
-I was thinking it needed an enable-gpio property, but now I see that
-is separate from "gpios".
-
-> [...]
+> ---
+>  drivers/i2c/busses/i2c-bcm-kona.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
->>> +    mmc_iv: gpio-regulator {
->>> +            compatible = "regulator-gpio";
->>> +
->>> +            regulator-name = "mmc-gpio-supply";
->>> +            regulator-min-microvolt = <1800000>;
->>> +            regulator-max-microvolt = <3300000>;
->>> +
->>> +            gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
->>> +            gpio-states = <0 1>;
->>> +
->>> +            /* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
->>> +            states = <1800000 0
->>> +                      3300000 1>;
->>> +    };
->>> +
->>> +    vddio_boot: regulator {
->> [...]
->>> +    vcc_3v3: regulator {
->>
->> This won't even compile as you have the same node name twice.
+> diff --git a/drivers/i2c/busses/i2c-bcm-kona.c b/drivers/i2c/busses/i2c-bcm-kona.c
+> index ac9f476..f987432 100644
+> --- a/drivers/i2c/busses/i2c-bcm-kona.c
+> +++ b/drivers/i2c/busses/i2c-bcm-kona.c
+> @@ -229,7 +229,7 @@ static irqreturn_t bcm_kona_i2c_isr(int irq, void *devid)
+>                        dev->base + TXFCR_OFFSET);
 >
-> Oops, it's wrong indeed, but in fact, it does compile, otherwise I
-> would've caught that..  Even if I remove the labels, it still compiles.
-> Interesting.
-
-Humm, news to me. I will have to do some testing unless the dtc folks
-have any insight.
-
-Rob
+>         writel(status & ~ISR_RESERVED_MASK, dev->base + ISR_OFFSET);
+> -       complete_all(&dev->done);
+> +       complete(&dev->done);
+>
+>         return IRQ_HANDLED;
+>  }
+> --
+> 2.7.4
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
