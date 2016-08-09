@@ -1,35 +1,31 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  9 Aug 2016 10:52:17 +0200
-Subject: [PATCH 3/3] ARM64: dts: meson-gxbb: Add Meson MHU Node
-In-Reply-To: <1470732737-18391-1-git-send-email-narmstrong@baylibre.com>
-References: <1470732737-18391-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1470732737-18391-4-git-send-email-narmstrong@baylibre.com>
+Date: Tue,  9 Aug 2016 11:13:25 +0200
+Subject: [PATCH 0/3] clk: Add Meson GXBB Always-On Reset + Clocks
+Message-ID: <1470734008-18849-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+The Amlogic Meson GXBB SoC has an Always-On part that contains pairs on
+clocks and reset controls in a single memory mapped control register.
+Add a separate clocks and reset node with the corresponding driver
+exporting clock nodes and a reset controller.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index e502c24..dfd2ff7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -321,6 +321,14 @@
- 				#clock-cells = <1>;
- 				reg = <0x0 0x0 0x0 0x3db>;
- 			};
-+
-+			mailbox: mailbox at 400 {
-+				compatible = "amlogic,meson-gxbb-mhu";
-+				reg = <0 0x400 0 0x4c>;
-+				interrupts = <0 209 IRQ_TYPE_EDGE_RISING>,
-+					     <0 210 IRQ_TYPE_EDGE_RISING>;
-+				#mbox-cells = <1>;
-+			};
- 		};
- 
- 		apb: apb at d0000000 {
+Neil Armstrong (3):
+  clk: meson: Add GXBB AO Clock and Reset controller driver
+  dt-bindings: clock: reset: Add GXBB AO Clock and Reset Bindings
+  ARM64: dts: meson-gxbb: Add GXBB AO Clock and Reset node
+
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  45 +++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   9 +
+ drivers/clk/meson/Makefile                         |   2 +-
+ drivers/clk/meson/gxbb-aoclk.c                     | 203 +++++++++++++++++++++
+ include/dt-bindings/clock/gxbb-aoclkc.h            |  66 +++++++
+ include/dt-bindings/reset/gxbb-aoclkc.h            |  66 +++++++
+ 6 files changed, 390 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+ create mode 100644 drivers/clk/meson/gxbb-aoclk.c
+ create mode 100644 include/dt-bindings/clock/gxbb-aoclkc.h
+ create mode 100644 include/dt-bindings/reset/gxbb-aoclkc.h
+
 -- 
 2.7.0
