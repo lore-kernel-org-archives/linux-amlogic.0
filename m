@@ -1,24 +1,26 @@
-From: peter@korsgaard.com (Peter Korsgaard)
-Date: Tue, 09 Aug 2016 13:48:03 +0200
+From: grygorii.strashko@ti.com (Grygorii Strashko)
+Date: Tue, 9 Aug 2016 14:47:03 +0300
 Subject: [PATCH] i2c: don't print error when adding adapter fails
 In-Reply-To: <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
- (Wolfram Sang's message of "Tue, 9 Aug 2016 13:36:17 +0200")
 References: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
  <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
-Message-ID: <87vaza2mfg.fsf@dell.be.48ers.dk>
+Message-ID: <e4e906fe-1362-1199-de42-a16b58800de6@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
->>>>> "Wolfram" == Wolfram Sang <wsa-dev@sang-engineering.com> writes:
+On 08/09/2016 02:36 PM, Wolfram Sang wrote:
+> The core will do this for us now.
+>
+> Signed-off-by: Wolfram Sang <wsa-dev@sang-engineering.com>
+> ---
 
- > The core will do this for us now.
- > Signed-off-by: Wolfram Sang <wsa-dev@sang-engineering.com>
- > ---
- >  drivers/i2c/busses/i2c-ocores.c         | 4 +---
+For:
+>  drivers/i2c/busses/i2c-davinci.c        | 4 +---
+>  drivers/i2c/busses/i2c-omap.c           | 4 +---
 
-For i2c-ocores.c:
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
-Acked-by: Peter Korsgaard <peter@korsgaard.com>
 
 -- 
-Bye, Peter Korsgaard
+regards,
+-grygorii
