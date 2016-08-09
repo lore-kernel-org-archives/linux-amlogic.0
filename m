@@ -1,44 +1,30 @@
-From: vz@mleia.com (Vladimir Zapolskiy)
-Date: Tue, 9 Aug 2016 19:36:55 +0300
+From: manabian@gmail.com (Joachim Eastwood)
+Date: Tue, 9 Aug 2016 18:45:54 +0200
 Subject: [PATCH] i2c: don't print error when adding adapter fails
-In-Reply-To: <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
+In-Reply-To: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
 References: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
- <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
-Message-ID: <a8dd593f-a38e-9661-22f3-ca5e5dfe53c4@mleia.com>
+Message-ID: <CAGhQ9VwJk1WZ2cB6Ag3HXfWEwe1GC-G9L2TWem+Lf5moLDx9uQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09.08.2016 14:36, Wolfram Sang wrote:
-> The core will do this for us now.
-> 
-> Signed-off-by: Wolfram Sang <wsa-dev@sang-engineering.com>
-> ---
+On 9 August 2016 at 13:36, Wolfram Sang <wsa-dev@sang-engineering.com> wrote:
+> Since v4.8-rc1, the I2C core will print detailed information when adding an I2C
+> adapter fails. So, drivers can skip this now.
+>
+> I am still undecided if I apply this as a single patch or break it out. But for
+> reviewing, avoiding the patch bomb is probably a good thing.
+>
+> Should go via subsystem tree, I'd think.
+>
+> Wolfram Sang (1):
+>   i2c: don't print error when adding adapter fails
 
-For 
 
->  drivers/i2c/busses/i2c-pnx.c            | 4 +---
+For
+>  drivers/i2c/busses/i2c-lpc2k.c          | 4 +---
 
-[snip]
+Acked-by: Joachim Eastwood <manabian@gmail.com>
 
-> diff --git a/drivers/i2c/busses/i2c-pnx.c b/drivers/i2c/busses/i2c-pnx.c
-> index 7ea67aa46fb730..fd5f9d2bf6d94e 100644
-> --- a/drivers/i2c/busses/i2c-pnx.c
-> +++ b/drivers/i2c/busses/i2c-pnx.c
-> @@ -714,10 +714,8 @@ static int i2c_pnx_probe(struct platform_device *pdev)
->  
->  	/* Register this adapter with the I2C subsystem */
->  	ret = i2c_add_numbered_adapter(&alg_data->adapter);
-> -	if (ret < 0) {
-> -		dev_err(&pdev->dev, "I2C: Failed to add bus\n");
-> +	if (ret < 0)
->  		goto out_clock;
-> -	}
->  
->  	dev_dbg(&pdev->dev, "%s: Master at %#8x, irq %d.\n",
->  		alg_data->adapter.name, res->start, alg_data->irq);
 
-Acked-by: Vladimir Zapolskiy <vz@mleia.com>
-
---
-With best wishes,
-Vladimir
+regards,
+Joachim Eastwood
