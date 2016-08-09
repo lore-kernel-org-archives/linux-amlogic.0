@@ -1,36 +1,37 @@
-From: heiko@sntech.de (Heiko =?ISO-8859-1?Q?St=FCbner?=)
-Date: Tue, 09 Aug 2016 14:13:11 +0200
+From: thierry.reding@gmail.com (Thierry Reding)
+Date: Tue, 9 Aug 2016 14:58:46 +0200
 Subject: [PATCH] i2c: don't print error when adding adapter fails
 In-Reply-To: <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
 References: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
  <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
-Message-ID: <5423570.keugkegXM3@diego>
+Message-ID: <20160809125846.GA17535@ulmo.ba.sec>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am Dienstag, 9. August 2016, 13:36:17 schrieb Wolfram Sang:
-> The core will do this for us now.
-> 
-> Signed-off-by: Wolfram Sang <wsa-dev@sang-engineering.com>
-> ---
-
+On Tue, Aug 09, 2016 at 01:36:17PM +0200, Wolfram Sang wrote:
 [...]
-
-> diff --git a/drivers/i2c/busses/i2c-rk3x.c b/drivers/i2c/busses/i2c-rk3x.c
-> index 2bc8b01153d619..3b87afe82f6394 100644
-> --- a/drivers/i2c/busses/i2c-rk3x.c
-> +++ b/drivers/i2c/busses/i2c-rk3x.c
-> @@ -1303,10 +1303,8 @@ static int rk3x_i2c_probe(struct platform_device
-> *pdev) rk3x_i2c_adapt_div(i2c, clk_rate);
-> 
->  	ret = i2c_add_adapter(&i2c->adap);
-> -	if (ret < 0) {
-> -		dev_err(&pdev->dev, "Could not register adapter\n");
-> +	if (ret < 0)
->  		goto err_clk_notifier;
+> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
+> index b126dbaa47e370..d9979da11485ae 100644
+> --- a/drivers/i2c/busses/i2c-tegra.c
+> +++ b/drivers/i2c/busses/i2c-tegra.c
+> @@ -932,10 +932,8 @@ static int tegra_i2c_probe(struct platform_device *pdev)
+>  	i2c_dev->adapter.dev.of_node = pdev->dev.of_node;
+>  
+>  	ret = i2c_add_numbered_adapter(&i2c_dev->adapter);
+> -	if (ret) {
+> -		dev_err(&pdev->dev, "Failed to add I2C adapter\n");
+> +	if (ret)
+>  		goto disable_div_clk;
 > -	}
-> 
->  	dev_info(&pdev->dev, "Initialized RK3xxx I2C bus at %p\n", i2c->regs);
+>  
+>  	return 0;
+>  
 
-for Rockchip
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Acked-by: Thierry Reding <treding@nvidia.com>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160809/e1459211/attachment.sig>
