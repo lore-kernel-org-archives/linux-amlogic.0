@@ -1,29 +1,35 @@
-From: weiyj.lk@gmail.com (Wei Yongjun)
-Date: Mon,  8 Aug 2016 13:55:20 +0000
-Subject: [PATCH -next] clk: gxbb: use builtin_platform_driver to simplify the
- code
-Message-ID: <1470664520-9604-1-git-send-email-weiyj.lk@gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  9 Aug 2016 10:52:14 +0200
+Subject: [PATCH 0/3] Add Platform MHU mailbox driver for Amlogic GXBB
+Message-ID: <1470732737-18391-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Use the builtin_platform_driver() macro to make the code simpler.
+In order to support Mailbox links for the Amlogic GXBB SoC, add a generic
+platform MHU driver based on arm_mhu.c.
 
-Signed-off-by: Wei Yongjun <weiyj.lk@gmail.com>
----
- drivers/clk/meson/gxbb.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+This patchset follows a RFC thread along the GXBB SCPI support at :
+http://lkml.kernel.org/r/1466503374-28841-1-git-send-email-narmstrong at baylibre.com
+And specific MHU discussions at :
+http://lkml.kernel.org/r/CABb+yY3HqJG2+GMWCWF9PomxobrwWGZ=TZe5NvXPcHMDdLhkcQ at mail.gmail.com
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 8e36d22..b736277 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -946,8 +946,4 @@ static struct platform_driver gxbb_driver = {
- 	},
- };
- 
--static int __init gxbb_clkc_init(void)
--{
--	return platform_driver_register(&gxbb_driver);
--}
--device_initcall(gxbb_clkc_init);
-+builtin_platform_driver(gxbb_driver);
+Changes since RFC v2 :
+ - Rename to platform_mhu
+ - Sync all link functions with arm_mhu
+
+Neil Armstrong (3):
+  mailbox: Add Platform Message-Handling-Unit variant driver
+  dt-bindings: mailbox: Add Amlogic Meson MHU Bindings
+  ARM64: dts: meson-gxbb: Add Meson MHU Node
+
+ .../devicetree/bindings/mailbox/meson-mhu.txt      |  33 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   8 +
+ drivers/mailbox/Kconfig                            |  10 +
+ drivers/mailbox/Makefile                           |   2 +
+ drivers/mailbox/platform_mhu.c                     | 203 +++++++++++++++++++++
+ 5 files changed, 256 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+ create mode 100644 drivers/mailbox/platform_mhu.c
+
+-- 
+2.7.0
