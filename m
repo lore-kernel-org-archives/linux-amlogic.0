@@ -1,18 +1,26 @@
 From: robh@kernel.org (Rob Herring)
-Date: Wed, 10 Aug 2016 15:44:37 -0500
-Subject: [PATCH 2/3] dt-bindings: mailbox: Add Amlogic Meson MHU Bindings
-In-Reply-To: <1470732737-18391-3-git-send-email-narmstrong@baylibre.com>
-References: <1470732737-18391-1-git-send-email-narmstrong@baylibre.com>
- <1470732737-18391-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20160810204437.GA13003@rob-hp-laptop>
+Date: Wed, 10 Aug 2016 16:40:54 -0500
+Subject: [PATCH 2/3] dt-bindings: clock: reset: Add GXBB AO Clock and
+ Reset Bindings
+In-Reply-To: <1470734008-18849-3-git-send-email-narmstrong@baylibre.com>
+References: <1470734008-18849-1-git-send-email-narmstrong@baylibre.com>
+ <1470734008-18849-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20160810214054.GA14766@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 09, 2016 at 10:52:16AM +0200, Neil Armstrong wrote:
+On Tue, Aug 09, 2016 at 11:13:27AM +0200, Neil Armstrong wrote:
+> Add documentations and dt-bindings headers for the AO clock and reset
+> controller.
+> 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  .../devicetree/bindings/mailbox/meson-mhu.txt      | 33 ++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+>  .../bindings/clock/amlogic,gxbb-aoclkc.txt         | 45 +++++++++++++++
+>  include/dt-bindings/clock/gxbb-aoclkc.h            | 66 ++++++++++++++++++++++
+>  include/dt-bindings/reset/gxbb-aoclkc.h            | 66 ++++++++++++++++++++++
+>  3 files changed, 177 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+>  create mode 100644 include/dt-bindings/clock/gxbb-aoclkc.h
+>  create mode 100644 include/dt-bindings/reset/gxbb-aoclkc.h
 
 Acked-by: Rob Herring <robh@kernel.org>
