@@ -1,37 +1,30 @@
-From: ludovic.desroches@atmel.com (Ludovic Desroches)
-Date: Wed, 10 Aug 2016 08:17:15 +0200
-Subject: [PATCH] i2c: don't print error when adding adapter fails
-In-Reply-To: <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
+From: patrice.chotard@st.com (Patrice Chotard)
+Date: Wed, 10 Aug 2016 08:50:31 +0200
+Subject: [STLinux Kernel] [PATCH] i2c: don't print error when adding
+ adapter fails
+In-Reply-To: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
 References: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
- <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
-Message-ID: <20160810061715.GH12809@odux.rfo.atmel.com>
+Message-ID: <dda2b522-0257-17c7-1332-cbc026b74603@st.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 09, 2016 at 01:36:17PM +0200, Wolfram Sang wrote:
-> The core will do this for us now.
-> 
-> Signed-off-by: Wolfram Sang <wsa-dev@sang-engineering.com>
-> ---
+On 08/09/2016 01:36 PM, Wolfram Sang wrote:
+> Since v4.8-rc1, the I2C core will print detailed information when adding an I2C
+> adapter fails. So, drivers can skip this now.
+>
+> I am still undecided if I apply this as a single patch or break it out. But for
+> reviewing, avoiding the patch bomb is probably a good thing.
+>
+> Should go via subsystem tree, I'd think.
+>
+> Wolfram Sang (1):
+>   i2c: don't print error when adding adapter fails
+>
+>  drivers/i2c/busses/i2c-st.c             | 4 +---
+>
 
-[...]
+For i2c-st.c
 
->  drivers/i2c/busses/i2c-at91.c           | 2 --
+Acked-by: Patrice Chotard <patrice.chotard@st.com>
 
-Acked-by: Ludovic Desroches <ludovic.desroches@atmel.com>
-
-[...]
-
-> diff --git a/drivers/i2c/busses/i2c-at91.c b/drivers/i2c/busses/i2c-at91.c
-> index f23372669f770f..03a519d29616d7 100644
-> --- a/drivers/i2c/busses/i2c-at91.c
-> +++ b/drivers/i2c/busses/i2c-at91.c
-> @@ -1118,8 +1118,6 @@ static int at91_twi_probe(struct platform_device *pdev)
->  
->  	rc = i2c_add_numbered_adapter(&dev->adapter);
->  	if (rc) {
-> -		dev_err(dev->dev, "Adapter %s registration failed\n",
-> -			dev->adapter.name);
->  		clk_disable_unprepare(dev->clk);
->  
->  		pm_runtime_disable(dev->dev);
+Thanks
