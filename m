@@ -1,39 +1,31 @@
-From: lkp@intel.com (kbuild test robot)
-Date: Sun, 14 Aug 2016 13:25:40 +0800
-Subject: [PATCH v2 1/2] ARM64: dts: meson-gxbb: add MMC support
-In-Reply-To: <20160803231843.23012-1-khilman@baylibre.com>
-Message-ID: <201608141319.AeQlvjsy%fengguang.wu@intel.com>
+From: wsa@the-dreams.de (Wolfram Sang)
+Date: Mon, 15 Aug 2016 00:17:20 +0200
+Subject: [PATCH] i2c: don't print error when adding adapter fails
+In-Reply-To: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
+References: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
+Message-ID: <20160814221719.GA10501@katana>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
+On Tue, Aug 09, 2016 at 01:36:16PM +0200, Wolfram Sang wrote:
+> Since v4.8-rc1, the I2C core will print detailed information when adding an I2C
+> adapter fails. So, drivers can skip this now.
+> 
+> I am still undecided if I apply this as a single patch or break it out. But for
+> reviewing, avoiding the patch bomb is probably a good thing.
+> 
+> Should go via subsystem tree, I'd think.
+> 
+> Wolfram Sang (1):
+>   i2c: don't print error when adding adapter fails
+> 
 
-[auto build test ERROR on linus/master]
-[also build test ERROR on v4.8-rc1 next-20160812]
-[cannot apply to ulf.hansson-mmc/next robh/for-next]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+Applied to for-next, thanks!
 
-url:    https://github.com/0day-ci/linux/commits/Kevin-Hilman/ARM64-dts-meson-gxbb-add-MMC-support/20160804-072056
-config: arm64-defconfig (attached as .config)
-compiler: aarch64-linux-gnu-gcc (Debian 5.4.0-6) 5.4.0 20160609
-reproduce:
-        wget https://git.kernel.org/cgit/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # save the attached .config to linux build tree
-        make.cross ARCH=arm64 
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi:338.21-22 syntax error
->> FATAL ERROR: Unable to parse input tree
-
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
 -------------- next part --------------
 A non-text attachment was scrubbed...
-Name: .config.gz
-Type: application/octet-stream
-Size: 29377 bytes
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
 Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160814/37296eba/attachment.obj>
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160815/1ec8f886/attachment.sig>
