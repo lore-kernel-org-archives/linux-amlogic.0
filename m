@@ -1,63 +1,72 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 15 Aug 2016 15:38:09 +0200
-Subject: [PATCH 1/3] ARM64: dts: amlogic: SD card support for all Tronsmart
- Vega S95 devices
+Date: Mon, 15 Aug 2016 15:38:10 +0200
+Subject: [PATCH 2/3] ARM64: dts: amlogic: eMMC support for all Tronsmart Vega
+ S95 devices
 In-Reply-To: <20160815133811.19646-1-martin.blumenstingl@googlemail.com>
 References: <20160625163446.7245-1-martin.blumenstingl@googlemail.com>
  <20160815133811.19646-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160815133811.19646-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20160815133811.19646-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-sd_emmc_b is routed to the SD-card. Unlike p20x there is no GPIO
-regulator, meaning it only supports 3.3V (which seems to be hard-wired).
+This adds eMMC support for all Tronsmart Vega S95 devices using
+sd_emmc_c. This is implemented similar to the p20x boards (meaning it
+uses fixed regulators).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Andreas F?rber <afaerber@suse.de>
 ---
- .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 35 ++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index 54bb7c7..4572ce2 100644
+index 4572ce2..af2e38e 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -52,6 +52,16 @@
- 	chosen {
- 		stdout-path = "serial0:115200n8";
+@@ -62,6 +62,21 @@
+ 
+ 		regulator-always-on;
  	};
 +
-+	vcc_3v3: regulator at 0 {
++	vcc_1v8: regulator at 1 {
 +		compatible = "regulator-fixed";
 +
-+		regulator-name = "VCC3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
++		regulator-name = "VCC1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
 +
 +		regulator-always-on;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
 +	};
  };
  
  &uart_AO {
-@@ -60,3 +70,19 @@
- 	pinctrl-names = "default";
- 
+@@ -86,3 +101,23 @@
+ 	vmmc-supply = <&vcc_3v3>;
+ 	voltage-ranges = <3300 3300>;
  };
 +
-+&sd_emmc_b {
++&sd_emmc_c {
 +	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-0 = <&emmc_pins>;
 +	pinctrl-names = "default";
 +
-+	bus-width = <4>;
++	bus-width = <8>;
 +	cap-sd-highspeed;
-+	max-frequency = <100000000>;
++	cap-mmc-highspeed;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
 +
-+	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-+	cd-inverted;
-+
++	mmc-pwrseq = <&emmc_pwrseq>;
++	voltage-ranges = <1800 3300>;
 +	vmmc-supply = <&vcc_3v3>;
-+	voltage-ranges = <3300 3300>;
++	vmmcq-sumpply = <&vcc_1v8>;
 +};
 -- 
 2.9.3
