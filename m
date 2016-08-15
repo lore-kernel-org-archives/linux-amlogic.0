@@ -1,31 +1,48 @@
-From: wsa@the-dreams.de (Wolfram Sang)
-Date: Mon, 15 Aug 2016 00:17:20 +0200
-Subject: [PATCH] i2c: don't print error when adding adapter fails
-In-Reply-To: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
-References: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
-Message-ID: <20160814221719.GA10501@katana>
+From: paul.gortmaker@windriver.com (Paul Gortmaker)
+Date: Sun, 14 Aug 2016 20:08:57 -0400
+Subject: [PATCH 1/3] clk: meson: Add GXBB AO Clock and Reset controller
+ driver
+In-Reply-To: <1470734008-18849-2-git-send-email-narmstrong@baylibre.com>
+References: <1470734008-18849-1-git-send-email-narmstrong@baylibre.com>
+ <1470734008-18849-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAP=VYLphcuq16vDueOOJ6anrW-ifYAK+1ijSjkGbxw48+m4xrw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 09, 2016 at 01:36:16PM +0200, Wolfram Sang wrote:
-> Since v4.8-rc1, the I2C core will print detailed information when adding an I2C
-> adapter fails. So, drivers can skip this now.
-> 
-> I am still undecided if I apply this as a single patch or break it out. But for
-> reviewing, avoiding the patch bomb is probably a good thing.
-> 
-> Should go via subsystem tree, I'd think.
-> 
-> Wolfram Sang (1):
->   i2c: don't print error when adding adapter fails
-> 
+On Tue, Aug 9, 2016 at 5:13 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> Adds a Clock and Reset controller driver for the Always-On part
+> of the Amlogic Meson GXBB SoC.
+>
+> It exports paired Clocks and Resets lines that will be used by
+> peripherals in the Always-On subsystem.
 
-Applied to for-next, thanks!
+[...]
 
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160815/1ec8f886/attachment.sig>
+> +static const struct of_device_id gxbb_aoclkc_match_table[] = {
+> +       { .compatible = "amlogic,gxbb-aoclkc" },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, gxbb_aoclkc_match_table);
+> +
+> +static struct platform_driver gxbb_aoclkc_driver = {
+> +       .probe          = gxbb_aoclkc_probe,
+> +       .driver         = {
+> +               .name   = "gxbb-aoclkc",
+> +               .of_match_table = gxbb_aoclkc_match_table,
+> +       },
+> +};
+> +
+> +module_platform_driver(gxbb_aoclkc_driver);
+> +
+> +MODULE_DESCRIPTION("AmLogic Meson GXBB AO Clock Controller Driver");
+> +MODULE_LICENSE("Dual BSD/GPL");
+> +MODULE_ALIAS("platform:gxbb-aoclkc");
+> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
+
+Since this driver is controlled by a bool Kconfig, you can dump the module.h
+include and all the MODULE_<xyz> tags above.
+
+Or, if there is a genuine use case for it to be modular, then make it tristate?
+
+Thanks,
+Paul.
