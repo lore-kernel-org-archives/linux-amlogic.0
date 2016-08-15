@@ -1,39 +1,23 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 15 Aug 2016 16:33:02 -0500
-Subject: [PATCH v2 1/2] ARM64: dts: meson-gxbb: add MMC support
-In-Reply-To: <201608141319.AeQlvjsy%fengguang.wu@intel.com> (kbuild test
- robot's message of "Sun, 14 Aug 2016 13:25:40 +0800")
-References: <201608141319.AeQlvjsy%fengguang.wu@intel.com>
-Message-ID: <m2fuq5afap.fsf@baylibre.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Mon, 15 Aug 2016 15:48:36 -0700
+Subject: [PATCH] clk: gxbb: add MMC gate clocks, and expose for DT
+In-Reply-To: <20160802214011.19077-1-khilman@baylibre.com>
+References: <20160802214011.19077-1-khilman@baylibre.com>
+Message-ID: <20160815224836.GS361@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-kbuild test robot <lkp@intel.com> writes:
+On 08/02, Kevin Hilman wrote:
+> Add the SD/eMMC gate clocks and expose them for use by DT.
+> 
+> While at it, also explose FCLK_DIV2 since this is one of the input
+> clocks to the mux internal to each of the SD/eMMC blocks.
+> 
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> ---
 
-> Hi Kevin,
->
-> [auto build test ERROR on linus/master]
-> [also build test ERROR on v4.8-rc1 next-20160812]
-> [cannot apply to ulf.hansson-mmc/next robh/for-next]
-> [if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
->
-> url:    https://github.com/0day-ci/linux/commits/Kevin-Hilman/ARM64-dts-meson-gxbb-add-MMC-support/20160804-072056
-> config: arm64-defconfig (attached as .config)
-> compiler: aarch64-linux-gnu-gcc (Debian 5.4.0-6) 5.4.0 20160609
-> reproduce:
->         wget https://git.kernel.org/cgit/linux/kernel/git/wfg/lkp-tests.git/plain/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # save the attached .config to linux build tree
->         make.cross ARCH=arm64 
->
-> All errors (new ones prefixed by >>):
->
->>> Error: arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi:338.21-22 syntax error
->>> FATAL ERROR: Unable to parse input tree
+Applied to clk-meson-gxbb and merged into clk-next.
 
-This is due to a clock dependency[1] which is in the process of being
-queued in the clock tree.
-
-Kevin
-
-[1] http://lists.infradead.org/pipermail/linux-arm-kernel/2016-August/446650.html
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
