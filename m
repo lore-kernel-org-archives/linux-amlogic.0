@@ -1,31 +1,38 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 15 Aug 2016 15:38:08 +0200
-Subject: [PATCH 0/3] eMMC, SD-card and ethernet support for Vega S95 boards
-In-Reply-To: <20160625163446.7245-1-martin.blumenstingl@googlemail.com>
+Date: Mon, 15 Aug 2016 15:38:11 +0200
+Subject: [PATCH 3/3] ARM64: dts: amlogic: enable ethernet on all Tronsmart
+ Vega S95 devices
+In-Reply-To: <20160815133811.19646-1-martin.blumenstingl@googlemail.com>
 References: <20160625163446.7245-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160815133811.19646-1-martin.blumenstingl@googlemail.com>
+ <20160815133811.19646-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20160815133811.19646-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds support for the internal eMMC, the SD-card slot and ethernet on
-all Tronsmart S95 Vega boards.
-There are some S95 Vega Meta clones out there where the bootloader does
-not configure the ethernet registers correctly, leading to non-working
-ethernet. This will be fixed in a separate series. Boards which are not
-suffering from broken bootloaders have fully working ethernet.
+All of these have a Realtek Gbit RGMII PHY.
 
-Changes since the RFC:
-- added eMMC support
-- renamed fixed 3V3 regulator so it can be re-used for eMMC
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Tested-by: Andreas F?rber <afaerber@suse.de>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Martin Blumenstingl (3):
-  ARM64: dts: amlogic: SD card support for all Tronsmart Vega S95
-    devices
-  ARM64: dts: amlogic: eMMC support for all Tronsmart Vega S95 devices
-  ARM64: dts: amlogic: enable ethernet on all Tronsmart Vega S95 devices
-
- .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 67 ++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+index af2e38e..5f50109 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+@@ -86,6 +86,12 @@
+ 
+ };
+ 
++&ethmac {
++	status = "okay";
++	pinctrl-0 = <&eth_pins>;
++	pinctrl-names = "default";
++};
++
+ &sd_emmc_b {
+ 	status = "okay";
+ 	pinctrl-0 = <&sdcard_pins>;
 -- 
 2.9.3
