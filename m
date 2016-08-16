@@ -1,32 +1,27 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 16 Aug 2016 08:12:45 -0500
-Subject: [PATCH v0 4/4] i2c: meson: Use complete() instead of
- complete_all()
-In-Reply-To: <1470225791-16613-5-git-send-email-wagi@monom.org> (Daniel
- Wagner's message of "Wed, 3 Aug 2016 14:03:11 +0200")
-References: <1470225791-16613-1-git-send-email-wagi@monom.org>
- <1470225791-16613-5-git-send-email-wagi@monom.org>
-Message-ID: <m2shu497si.fsf@baylibre.com>
+Date: Tue, 16 Aug 2016 08:20:00 -0500
+Subject: [PATCH v2 0/4] pwm: Add Amlogic Meson SoC PWM Controller
+In-Reply-To: <CAOi56cVGRpSeAVwaATkx8Q2wz9hxocq6095opJQZucfDML2wSg@mail.gmail.com>
+References: <1468142645-4360-1-git-send-email-narmstrong@baylibre.com>
+ <CAOi56cVGRpSeAVwaATkx8Q2wz9hxocq6095opJQZucfDML2wSg@mail.gmail.com>
+Message-ID: <CAOi56cWRwc28RcRopLpRiFLX-rft-KfgMZHwDGFG3f6tJ_8kYw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Daniel Wagner <wagi@monom.org> writes:
+On Wed, Aug 3, 2016 at 7:25 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Hi Thierry,
+>
+> On Sun, Jul 10, 2016 at 2:27 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> Add support for the PWM controller found in Amlogic Meson SoCs.
+>> This controller provides a dual PWM output with 4 selectable clock source
+>> and a two level divider to achieve a better PWM range.
+>>
+>> Currently Meson8b and GXBB SoCs are supported.
+>>
+>> Changes since v1 at http://lkml.kernel.org/r/1466173784-15625-1-git-send-email-narmstrong at baylibre.com :
+>> - fix meson8b dtsi
+>
+> Gentle reminder ping on this series.
+>
 
-> From: Daniel Wagner <daniel.wagner@bmw-carit.de>
->
-> There is only one waiter for the completion, therefore there
-> is no need to use complete_all(). Let's make that clear by
-> using complete() instead of complete_all().
->
-> The usage pattern of the completion is:
->
-> meson_i2c_xfer_msg()
->   reinit_completion()
->   ...
->   /* Start the transfer */
->   ...
->   wait_for_completion_timeout()
->
-> Signed-off-by: Daniel Wagner <daniel.wagner@bmw-carit.de>
-
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+One more... :)
