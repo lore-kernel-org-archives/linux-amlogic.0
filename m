@@ -1,30 +1,24 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Wed, 17 Aug 2016 21:44:39 -0600
-Subject: [PATCH 3/4] pinctrl: add driver for meson-gxbb pin controller
-In-Reply-To: <1471340990-16247-4-git-send-email-b.galvani@gmail.com>
+Date: Wed, 17 Aug 2016 21:44:42 -0600
+Subject: [PATCH 4/4] meson: odroid-c2: enable Ethernet support through the
+ device tree
+In-Reply-To: <1471340990-16247-5-git-send-email-b.galvani@gmail.com>
 References: <1471340990-16247-1-git-send-email-b.galvani@gmail.com>
- <1471340990-16247-4-git-send-email-b.galvani@gmail.com>
-Message-ID: <CAPnjgZ1xodtCYyaR7O5KgKqzTbRkMg+76S3jnmRoTQGp26Zm=A@mail.gmail.com>
+ <1471340990-16247-5-git-send-email-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ2tiuvJKd2dE6nuitSNFosX36x2KD4ZN4V7+S=StwgnBw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 16 August 2016 at 03:49, Beniamino Galvani <b.galvani@gmail.com> wrote:
-> Add a pin controller driver for Meson GXBB adapted from Linux kernel.
+> Remove the device definition from board file, update the driver with
+> the new compatible property and update config with necessary options.
 >
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->  drivers/pinctrl/Kconfig                    |   1 +
->  drivers/pinctrl/Makefile                   |   1 +
->  drivers/pinctrl/meson/Kconfig              |  11 +
->  drivers/pinctrl/meson/Makefile             |   6 +
->  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 432 +++++++++++++++++++++++++++++
->  drivers/pinctrl/meson/pinctrl-meson.c      | 179 ++++++++++++
->  drivers/pinctrl/meson/pinctrl-meson.h      |  74 +++++
->  7 files changed, 704 insertions(+)
->  create mode 100644 drivers/pinctrl/meson/Kconfig
->  create mode 100644 drivers/pinctrl/meson/Makefile
->  create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gxbb.c
->  create mode 100644 drivers/pinctrl/meson/pinctrl-meson.c
->  create mode 100644 drivers/pinctrl/meson/pinctrl-meson.h
+>  arch/arm/include/asm/arch-meson/gxbb.h |  3 ---
+>  board/amlogic/odroid-c2/odroid-c2.c    | 13 -------------
+>  configs/odroid-c2_defconfig            |  3 +++
+>  drivers/net/designware.c               |  1 +
+>  4 files changed, 4 insertions(+), 16 deletions(-)
 
 Reviewed-by: Simon Glass <sjg@chromium.org>
