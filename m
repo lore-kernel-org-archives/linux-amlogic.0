@@ -1,25 +1,60 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Wed, 17 Aug 2016 21:44:32 -0600
-Subject: [PATCH 2/4] arm: dts: update DTS files for meson-gxbb and
- odroid-c2
-In-Reply-To: <1471340990-16247-3-git-send-email-b.galvani@gmail.com>
+Date: Wed, 17 Aug 2016 21:44:35 -0600
+Subject: [PATCH 1/4] pinctrl: generic: scan for "pins" and "groups"
+ properties in sub-nodes
+In-Reply-To: <1471340990-16247-2-git-send-email-b.galvani@gmail.com>
 References: <1471340990-16247-1-git-send-email-b.galvani@gmail.com>
- <1471340990-16247-3-git-send-email-b.galvani@gmail.com>
-Message-ID: <CAPnjgZ0E6i+rCaq-_aGJCFn1KTHfwwpK=kQaD=nAj3-O_o+4Ug@mail.gmail.com>
+ <1471340990-16247-2-git-send-email-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ3jRtWwxdQaDFsQY-d_K6wYNgHOp9mjectcDp==e5F0Yg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 16 August 2016 at 03:49, Beniamino Galvani <b.galvani@gmail.com> wrote:
-> Import DTS files and dt-bindings includes from Linux 4.8-rc1.
+> In cases where the pins and groups definitions are in a sub-node, as:
+>
+>         uart_a {
+>                 mux {
+>                         groups = "uart_tx_a", "uart_rx_a";
+>                         function = "uart_a";
+>                 };
+>         };
+>
+> pinctrl_generic_set_state_subnode() returns an error for the top-level
+> node and pinctrl_generic_set_state() fails. Instead, return success so
+> that the child nodes are tried.
 >
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->  arch/arm/dts/meson-gxbb-odroidc2.dts               |  19 ++
->  arch/arm/dts/meson-gxbb.dtsi                       | 170 ++++++++++++++++-
->  include/dt-bindings/gpio/meson-gxbb-gpio.h         | 154 +++++++++++++++
->  .../dt-bindings/reset/amlogic,meson-gxbb-reset.h   | 210 +++++++++++++++++++++
->  4 files changed, 552 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/gpio/meson-gxbb-gpio.h
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
+>  drivers/pinctrl/pinctrl-generic.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 
 Reviewed-by: Simon Glass <sjg@chromium.org>
+
+Masahiro, are you happy with this change?
+
+We really need some pinctrl tests.
+
+>
+> diff --git a/drivers/pinctrl/pinctrl-generic.c b/drivers/pinctrl/pinctrl-generic.c
+> index e86b72a..baff40f 100644
+> --- a/drivers/pinctrl/pinctrl-generic.c
+> +++ b/drivers/pinctrl/pinctrl-generic.c
+> @@ -312,8 +312,10 @@ static int pinctrl_generic_set_state_subnode(struct udevice *dev,
+>                 is_group = true;
+>                 strings_count = fdt_count_strings(fdt, node,
+>                                                   subnode_target_type);
+> -               if (strings_count < 0)
+> -                       return -EINVAL;
+> +               if (strings_count < 0) {
+> +                       /* skip this node; may contain config child nodes */
+> +                       return 0;
+> +               }
+>         }
+>
+>         for (i = 0; i < strings_count; i++) {
+> --
+> 2.7.4
+>
+
+Regards,
+Simon
