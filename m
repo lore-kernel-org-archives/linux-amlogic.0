@@ -1,36 +1,32 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 18 Aug 2016 12:10:27 +0200
-Subject: [PATCH v2 3/3] ARM64: dts: meson-gxbb: Add Meson MHU Node
-In-Reply-To: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
-References: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1471515027-3543-4-git-send-email-narmstrong@baylibre.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Thu, 18 Aug 2016 16:53:20 +0100
+Subject: [PATCH 01/13] scpi: Add vendor_send_message to enable access to
+ vendor commands
+In-Reply-To: <1471515066-3626-2-git-send-email-narmstrong@baylibre.com>
+References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
+ <1471515066-3626-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <c5b2d698-de4c-012a-7e7b-63685b7e898c@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index e502c24..bdbf6e7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -321,6 +321,15 @@
- 				#clock-cells = <1>;
- 				reg = <0x0 0x0 0x0 0x3db>;
- 			};
-+
-+			mailbox: mailbox at 404 {
-+				compatible = "amlogic,meson-gxbb-mhu";
-+				reg = <0 0x404 0 0x4c>;
-+				interrupts = <0 208 IRQ_TYPE_EDGE_RISING>,
-+					     <0 209 IRQ_TYPE_EDGE_RISING>,
-+					     <0 210 IRQ_TYPE_EDGE_RISING>;
-+				#mbox-cells = <1>;
-+			};
- 		};
- 
- 		apb: apb at d0000000 {
+
+On 18/08/16 11:10, Neil Armstrong wrote:
+> Adds an optional vendor_send_message to the scpi to enable sending
+> vendor platform specific commands to the SCP firmware.
+>
+
+I don't see any users of vendor_send_message in this series, so I prefer
+it to be dropped and introduced when required.
+
+Also I had a different view on how to introduce this[1]. I would rather
+wait until the requirement comes that enables us to make use of it.
+Looks like you took parts of it and introduces vendor_send_message
+allowing users to send any data which I don't like especially without
+knowing how will it be (ab)used.
+
 -- 
-1.9.1
+Regards,
+Sudeep
+
+[1] http://www.spinics.net/lists/kernel/msg2263649.html
