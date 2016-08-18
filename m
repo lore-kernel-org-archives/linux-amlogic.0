@@ -1,60 +1,58 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 18 Aug 2016 12:11:00 +0200
-Subject: [PATCH 07/13] scpi: ignore init_versions failure if reported not
- supported
-In-Reply-To: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
-References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1471515066-3626-8-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 18 Aug 2016 12:10:26 +0200
+Subject: [PATCH v2 2/3] dt-bindings: mailbox: Add Amlogic Meson MHU Bindings
+In-Reply-To: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
+References: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1471515027-3543-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In Amlogic GXBB Legacy SCPI, the LEGACY_SCPI_CMD_SCPI_CAPABILITIES report
-as SCPI_ERR_SUPPORT, so do not fail if this command is not supported.
-
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/firmware/arm_scpi.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ .../devicetree/bindings/mailbox/meson-mhu.txt      | 34 ++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
 
-diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
-index 3fe39fe..d3be4c5 100644
---- a/drivers/firmware/arm_scpi.c
-+++ b/drivers/firmware/arm_scpi.c
-@@ -1111,12 +1111,13 @@ err:
- 		ret = scpi_info->ops->init_versions(scpi_info);
- 	else
- 	ret = scpi_init_versions(scpi_info);
--	if (ret) {
-+	if (ret && ret != -EOPNOTSUPP) {
- 		dev_err(dev, "incorrect or no SCP firmware found\n");
- 		scpi_remove(pdev);
- 		return ret;
- 	}
- 
-+	if (ret != -EOPNOTSUPP) {
- 	_dev_info(dev, "SCP Protocol %d.%d Firmware %d.%d.%d version\n",
- 		  PROTOCOL_REV_MAJOR(scpi_info->protocol_version),
- 		  PROTOCOL_REV_MINOR(scpi_info->protocol_version),
-@@ -1124,15 +1125,16 @@ err:
- 		  FW_REV_MINOR(scpi_info->firmware_version),
- 		  FW_REV_PATCH(scpi_info->firmware_version));
- 
-+		ret = sysfs_create_groups(&dev->kobj, versions_groups);
-+		if (ret)
-+			dev_err(dev, "unable to create sysfs version group\n");
-+	}
+diff --git a/Documentation/devicetree/bindings/mailbox/meson-mhu.txt b/Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+new file mode 100644
+index 0000000..a530310
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+@@ -0,0 +1,34 @@
++Amlogic Meson MHU Mailbox Driver
++================================
 +
- 	if (scpi_info->ops && scpi_info->ops->scpi_ops)
- 		scpi_info->scpi_ops = scpi_info->ops->scpi_ops;
- 	else
- 		scpi_info->scpi_ops = &scpi_ops;
- 
--	ret = sysfs_create_groups(&dev->kobj, versions_groups);
--	if (ret)
--		dev_err(dev, "unable to create sysfs version group\n");
--
- 	return of_platform_populate(dev->of_node, NULL, NULL, dev);
- }
- 
++The Amlogic's Meson SoCs Message-Handling-Unit (MHU) is a mailbox controller
++that has 3 independent channels/links to communicate with remote processor(s).
++MHU links are hardwired on a platform. A link raises interrupt for any
++received data. However, there is no specified way of knowing if the sent
++data has been read by the remote. This driver assumes the sender polls
++STAT register and the remote clears it after having read the data.
++
++Mailbox Device Node:
++====================
++
++Required properties:
++--------------------
++- compatible:		Shall be "amlogic,meson-gxbb-mhu"
++- reg:			Contains the mailbox register address range (base
++			address and length)
++- #mbox-cells		Shall be 1 - the index of the channel needed.
++- interrupts:		Contains the interrupt information corresponding to
++			each of the 2 links of MHU.
++
++Example:
++--------
++
++	mailbox: mailbox at c883c404 {
++		#mbox-cells = <1>;
++		compatible = "amlogic,meson-gxbb-mhu";
++		reg = <0 0xc883c404 0 0x4c>;
++		interrupts = <0 208 IRQ_TYPE_EDGE_RISING>,
++			     <0 209 IRQ_TYPE_EDGE_RISING>,
++			     <0 210 IRQ_TYPE_EDGE_RISING>;
++		#mbox-cells = <1>;
++	};
 -- 
 1.9.1
