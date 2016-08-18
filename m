@@ -1,53 +1,115 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 18 Aug 2016 12:10:53 +0200
-Subject: [PATCH 00/13] scpi: Add support for legacy SCPI protocol
-Message-ID: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 18 Aug 2016 12:10:54 +0200
+Subject: [PATCH 01/13] scpi: Add vendor_send_message to enable access to
+ vendor commands
+In-Reply-To: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
+References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1471515066-3626-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset aims to support the legacy SCPI firmware implementation that was
-delivered as early technology preview for the JUNO platform.
+Adds an optional vendor_send_message to the scpi to enable sending
+vendor platform specific commands to the SCP firmware.
 
-Finally a stable, maintained and public implementation for the SCPI protocol
-has been upstreamed part of the JUNO support and it is the recommended way
-of implementing SCP communication on ARMv8 platforms.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/firmware/arm_scpi.c   | 26 +++++++++++++++++++++++---
+ include/linux/scpi_protocol.h |  4 ++++
+ 2 files changed, 27 insertions(+), 3 deletions(-)
 
-The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
-platforms.
-
-This patchset add support for the legacy protocol in the arm_scpi.c file,
-avoiding code duplication.
-
-Last RFC discution tread can be found at : https://lkml.org/lkml/2016/8/9/210
-
-The first patch is here to provide vendor commands on the official SCPI protocol,
-it can be delayed to another patchset.
-
-Patches 8 & 9 are only here to demo how Rockchip support could be implemented, these
-patches should be delayed to a rockchip specific patchset.
-
-The last patch depends on the "Platform MHU" dtsi patch.
-
-Neil Armstrong (13):
-  scpi: Add vendor_send_message to enable access to vendor commands
-  scpi: Add alternative legacy structures and macros
-  scpi: Add legacy send, prepare and handle remote functions
-  scpi: Add legacy SCP functions calling legacy_scpi_send_message
-  scpi: move of_match table before probe functions
-  scpi: add priv_scpi_ops and fill legacy structure
-  scpi: ignore init_versions failure if reported not supported
-  scpi: add a vendor_msg mechanism in case the mailbox message differs
-  scpi: implement rockchip support via the vendor_msg mechanism
-  scpi: grow MAX_DVFS_OPPS to 16 entries
-  dt-bindings: Add support for Amlogic GXBB SCPI Interface
-  ARM64: dts: meson-gxbb: Add SRAM node
-  ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
-
- Documentation/devicetree/bindings/arm/arm,scpi.txt |   8 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  45 ++
- drivers/firmware/arm_scpi.c                        | 455 ++++++++++++++++++++-
- include/linux/scpi_protocol.h                      |   4 +
- 4 files changed, 490 insertions(+), 22 deletions(-)
-
+diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+index 4388937..403783a 100644
+--- a/drivers/firmware/arm_scpi.c
++++ b/drivers/firmware/arm_scpi.c
+@@ -46,6 +46,8 @@
+ 
+ #define CMD_ID_SHIFT		0
+ #define CMD_ID_MASK		0x7f
++#define CMD_SET_SHIFT		7
++#define CMD_SET_MASK		0x1
+ #define CMD_TOKEN_ID_SHIFT	8
+ #define CMD_TOKEN_ID_MASK	0xff
+ #define CMD_DATA_SIZE_SHIFT	16
+@@ -53,6 +55,10 @@
+ #define PACK_SCPI_CMD(cmd_id, tx_sz)			\
+ 	((((cmd_id) & CMD_ID_MASK) << CMD_ID_SHIFT) |	\
+ 	(((tx_sz) & CMD_DATA_SIZE_MASK) << CMD_DATA_SIZE_SHIFT))
++#define PACK_EXT_SCPI_CMD(cmd_id, tx_sz)		\
++	((((cmd_id) & CMD_ID_MASK) << CMD_ID_SHIFT) |	\
++	(CMD_SET_MASK << CMD_SET_SHIFT) |		\
++	(((tx_sz) & CMD_DATA_SIZE_MASK) << CMD_DATA_SIZE_SHIFT))
+ #define ADD_SCPI_TOKEN(cmd, token)			\
+ 	((cmd) |= (((token) & CMD_TOKEN_ID_MASK) << CMD_TOKEN_ID_SHIFT))
+ 
+@@ -344,8 +350,8 @@ static void put_scpi_xfer(struct scpi_xfer *t, struct scpi_chan *ch)
+ 	mutex_unlock(&ch->xfers_lock);
+ }
+ 
+-static int scpi_send_message(u8 cmd, void *tx_buf, unsigned int tx_len,
+-			     void *rx_buf, unsigned int rx_len)
++static int __scpi_send_message(u8 cmd, void *tx_buf, unsigned int tx_len,
++			       void *rx_buf, unsigned int rx_len, bool extn)
+ {
+ 	int ret;
+ 	u8 chan;
+@@ -360,7 +366,8 @@ static int scpi_send_message(u8 cmd, void *tx_buf, unsigned int tx_len,
+ 		return -ENOMEM;
+ 
+ 	msg->slot = BIT(SCPI_SLOT);
+-	msg->cmd = PACK_SCPI_CMD(cmd, tx_len);
++	msg->cmd = extn ? PACK_EXT_SCPI_CMD(cmd, tx_len) :
++			  PACK_SCPI_CMD(cmd, tx_len);
+ 	msg->tx_buf = tx_buf;
+ 	msg->tx_len = tx_len;
+ 	msg->rx_buf = rx_buf;
+@@ -385,6 +392,18 @@ out:
+ 	return ret > 0 ? scpi_to_linux_errno(ret) : ret;
+ }
+ 
++static int scpi_send_message(u8 cmd, void *tx_buf, unsigned int tx_len,
++			     void *rx_buf, unsigned int rx_len)
++{
++	return __scpi_send_message(cmd, tx_buf, tx_len, rx_buf, rx_len, false);
++}
++
++static int scpi_ext_send_message(u8 cmd, void *tx_buf, unsigned int tx_len,
++				 void *rx_buf, unsigned int rx_len)
++{
++	return __scpi_send_message(cmd, tx_buf, tx_len, rx_buf, rx_len, true);
++}
++
+ static u32 scpi_get_version(void)
+ {
+ 	return scpi_info->protocol_version;
+@@ -578,6 +597,7 @@ static struct scpi_ops scpi_ops = {
+ 	.sensor_get_value = scpi_sensor_get_value,
+ 	.device_get_power_state = scpi_device_get_power_state,
+ 	.device_set_power_state = scpi_device_set_power_state,
++	.vendor_send_message = scpi_ext_send_message,
+ };
+ 
+ struct scpi_ops *get_scpi_ops(void)
+diff --git a/include/linux/scpi_protocol.h b/include/linux/scpi_protocol.h
+index dc5f989..2b68581 100644
+--- a/include/linux/scpi_protocol.h
++++ b/include/linux/scpi_protocol.h
+@@ -58,6 +58,8 @@ struct scpi_sensor_info {
+  *	OPP is an index to the list return by @dvfs_get_info
+  * @dvfs_get_info: returns the DVFS capabilities of the given power
+  *	domain. It includes the OPP list and the latency information
++ * @vendor_send_message: vendor specific message sending, arg can specify
++ *	a scpi implementation specific argument
+  */
+ struct scpi_ops {
+ 	u32 (*get_version)(void);
+@@ -72,6 +74,8 @@ struct scpi_ops {
+ 	int (*sensor_get_value)(u16, u64 *);
+ 	int (*device_get_power_state)(u16);
+ 	int (*device_set_power_state)(u16, u8);
++	int (*vendor_send_message)(u8 cmd, void *tx_buf, unsigned int tx_len,
++				   void *rx_buf, unsigned int rx_len);
+ };
+ 
+ #if IS_REACHABLE(CONFIG_ARM_SCPI_PROTOCOL)
 -- 
 1.9.1
