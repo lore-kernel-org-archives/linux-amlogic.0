@@ -1,53 +1,55 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Tue, 16 Aug 2016 10:29:45 -0700
-Subject: [PATCH 1/3] clk: meson: Add GXBB AO Clock and Reset controller
- driver
-In-Reply-To: <16163435-1310-043d-804f-3bb1fd33cff4@baylibre.com>
-References: <1470734008-18849-1-git-send-email-narmstrong@baylibre.com>
- <1470734008-18849-2-git-send-email-narmstrong@baylibre.com>
- <20160813012910.GT361@codeaurora.org>
- <16163435-1310-043d-804f-3bb1fd33cff4@baylibre.com>
-Message-ID: <20160816172945.GZ361@codeaurora.org>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 17 Aug 2016 21:15:03 -0500
+Subject: [PATCH v3 0/4] Amlogic: Meson: Add reset controller
+In-Reply-To: <1464853333.3307.1.camel@pengutronix.de>
+References: <1464614838-28107-1-git-send-email-narmstrong@baylibre.com>
+ <1464853333.3307.1.camel@pengutronix.de>
+Message-ID: <CAOi56cV4uUkx+H4fKjFESOs_Kc0p0x5XfAQjtTNQJRjCQmAtGg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/16, Neil Armstrong wrote:
-> On 08/13/2016 03:29 AM, Stephen Boyd wrote:
-> > On 08/09, Neil Armstrong wrote:
-> 
-> >> +
-> >> +static struct clk_hw_onecell_data gxbb_aoclk_onecell_data = {
-> > 
-> > can this be const?
-> 
-> It would be awesome, but it will be discarded by of_clk_add_hw_provider :
+Hi Philipp,
 
-Ok, right.
+On Thu, Jun 2, 2016 at 2:42 AM, Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> Hi Neil,
+>
+> Am Montag, den 30.05.2016, 15:27 +0200 schrieb Neil Armstrong:
+>> Patchset to add and enable the reset controller driver on Meson SoCs platforms.
+>>
+>> This reset controller has up to 256 reset lines with reset pulse generation only,
+>> so the assert and deassert calls are not available.
+>>
+>> Depends on the patch :
+>>  - "reset: add devm_reset_controller_register API" [1]
+>>
+>> Changes since v2 at http://lkml.kernel.org/r/1464169758-26975-1-git-send-email-narmstrong at baylibre.com :
+>> - Get back __iomem in _reset() callback
+>> - Get rid of MODULE_ALIAS
+>>
+>> Changes since v1 at http://lkml.kernel.org/r/1463732875-23141-1-git-send-email-narmstrong at baylibre.com :
+>> - Remove _gxbb_ in names
+>> - Depends build on ARCH_MESON only
+>> - Add meson8b compatible and bindings
+>> - Re-indent dt-bindings headers
+>> - Switch to devm_ reset controller register
+>> - Remove platform "remove" callback
+>> - Update Dual BSD/GPL file headers
+>>
+>> Changes since the RFC at http://lkml.kernel.org/r/1463148012-25988-1-git-send-email-narmstrong at baylibre.com :
+>> - Fix register mapping and bit defines in bindings header
+>> - Remove assert and unassert calls
+>> - Fix missing __iomem
+>>
+>> [1] https://patchwork.kernel.org/patch/8988471/
+>>
+>> Neil Armstrong (4):
+>>   reset: Add support for the Amlogic Meson SoC Reset Controller
+>>   dt-bindings: reset: Add bindings for the Meson SoC Reset Controller
+>
+> I've applied these two patches to the reset/next branch.
+>
 
-> >> +iounmap:
-> >> +	iounmap(base);
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static const struct of_device_id gxbb_aoclkc_match_table[] = {
-> >> +	{ .compatible = "amlogic,gxbb-aoclkc" },
-> >> +	{ }
-> >> +};
-> >> +MODULE_DEVICE_TABLE(of, gxbb_aoclkc_match_table);
-> >> +
-> >> +static struct platform_driver gxbb_aoclkc_driver = {
-> >> +	.probe		= gxbb_aoclkc_probe,
-> > 
-> > No remove means leak of iomem mapping.
+I'm just noticing now that these didn't make it into v4.8-rc1.  Was
+there reason for that?
 
-And OF provider registration.
-
-> > 
-> 
-> It will be non-modular, so no need of remove. The MODULE_* macros and module.h include will be removed like other clk drivers (gxbb and oxnas for instance).
-
-Ok make sure to remove sysfs unbinding then.
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Kevin
