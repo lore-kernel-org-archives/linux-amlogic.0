@@ -1,49 +1,51 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 18 Aug 2016 12:11:04 +0200
-Subject: [PATCH 11/13] dt-bindings: Add support for Amlogic GXBB SCPI Interface
+Date: Thu, 18 Aug 2016 12:10:58 +0200
+Subject: [PATCH 05/13] scpi: move of_match table before probe functions
 In-Reply-To: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
 References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1471515066-3626-12-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1471515066-3626-6-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Move the of_match table to prapre adding new compatible strings, with
+match data in order to be used by the probe function.
+
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/arm/arm,scpi.txt | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/firmware/arm_scpi.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-index faa4b44..04bc171 100644
---- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
-+++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-@@ -7,7 +7,7 @@ by Linux to initiate various system control and power operations.
+diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+index bb9965f..b0d911b 100644
+--- a/drivers/firmware/arm_scpi.c
++++ b/drivers/firmware/arm_scpi.c
+@@ -972,6 +972,13 @@ static int scpi_alloc_xfer_list(struct device *dev, struct scpi_chan *ch)
+ 	return 0;
+ }
  
- Required properties:
++static const struct of_device_id scpi_of_match[] = {
++	{.compatible = "arm,scpi"},
++	{},
++};
++
++MODULE_DEVICE_TABLE(of, scpi_of_match);
++
+ static int scpi_probe(struct platform_device *pdev)
+ {
+ 	int count, idx, ret;
+@@ -1069,13 +1076,6 @@ err:
+ 	return of_platform_populate(dev->of_node, NULL, NULL, dev);
+ }
  
--- compatible : should be "arm,scpi"
-+- compatible : should be "arm,scpi" or "amlogic,meson-gxbb-scpi"
- - mboxes: List of phandle and mailbox channel specifiers
- 	  All the channels reserved by remote SCP firmware for use by
- 	  SCPI message protocol should be specified in any order
-@@ -60,7 +60,8 @@ A small area of SRAM is reserved for SCPI communication between application
- processors and SCP.
- 
- Required properties:
--- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno
-+- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno,
-+		or "amlogic,meson-gxbb-sram" for Amlogic GXBB SoC.
- 
- The rest of the properties should follow the generic mmio-sram description
- found in ../../sram/sram.txt
-@@ -70,7 +71,8 @@ Each sub-node represents the reserved area for SCPI.
- Required sub-node properties:
- - reg : The base offset and size of the reserved area with the SRAM
- - compatible : should be "arm,juno-scp-shmem" for Non-secure SRAM based
--	       shared memory on Juno platforms
-+	       shared memory on Juno platforms or
-+	       "amlogic,meson-gxbb-scp-shmem" for Amlogic GXBB SoC.
- 
- Sensor bindings for the sensors based on SCPI Message Protocol
- --------------------------------------------------------------
+-static const struct of_device_id scpi_of_match[] = {
+-	{.compatible = "arm,scpi"},
+-	{},
+-};
+-
+-MODULE_DEVICE_TABLE(of, scpi_of_match);
+-
+ static struct platform_driver scpi_driver = {
+ 	.driver = {
+ 		.name = "scpi_protocol",
 -- 
 1.9.1
