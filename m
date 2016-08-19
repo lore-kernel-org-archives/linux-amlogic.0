@@ -1,24 +1,27 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Fri, 19 Aug 2016 17:47:48 +0100
-Subject: [PATCH 08/13] scpi: add a vendor_msg mechanism in case the
- mailbox message differs
-In-Reply-To: <1471515066-3626-9-git-send-email-narmstrong@baylibre.com>
-References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
- <1471515066-3626-9-git-send-email-narmstrong@baylibre.com>
-Message-ID: <bd59fdb1-5f6d-ffba-0c6a-b5eb28397521@arm.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Fri, 19 Aug 2016 12:51:48 -0700
+Subject: [PATCH v2 1/3] clk: meson: Add GXBB AO Clock and Reset
+ controller driver
+In-Reply-To: <1471514928-3341-2-git-send-email-narmstrong@baylibre.com>
+References: <1471514928-3341-1-git-send-email-narmstrong@baylibre.com>
+ <1471514928-3341-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20160819195148.GF6502@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On 08/18, Neil Armstrong wrote:
+> Adds a Clock and Reset controller driver for the Always-On part
+> of the Amlogic Meson GXBB SoC.
+> 
+> It exports paired Clocks and Resets lines that will be used by
+> peripherals in the Always-On subsystem.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
 
-
-On 18/08/16 11:11, Neil Armstrong wrote:
-> In case the mailbox message pointer must contain a specific structure.
-> add a mechanism to override the pointer sent to the mailbox by a
-> vendor specific data initialized by a vendor speficic function.
->
-
-As discussed, I won't look at this and next patch. You can drop from now.
+Applied to clk-meson-gxbb-ao and merged into clk-next. I applied
+this after the dt binding headers to keep things compiling.
 
 -- 
-Regards,
-Sudeep
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
