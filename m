@@ -1,59 +1,35 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 19 Aug 2016 23:55:42 +0200
-Subject: [PATCH v4 1/6] pinctrl: amlogic: gxbb: add the IR remote pin
+Date: Fri, 19 Aug 2016 23:55:43 +0200
+Subject: [PATCH v4 2/6] ARM64: dts: amlogic: add the pin for the IR remote
 In-Reply-To: <20160819215547.20063-1-martin.blumenstingl@googlemail.com>
 References: <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
  <20160819215547.20063-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160819215547.20063-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20160819215547.20063-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds the IR remote receiver to the AO domain devices.
-
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index cb4d6ad..8fffb31 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -225,6 +225,8 @@ static const unsigned int i2c_sda_ao_pins[] = {PIN(GPIOAO_5, 0) };
- static const unsigned int i2c_slave_sck_ao_pins[] = {PIN(GPIOAO_4, 0) };
- static const unsigned int i2c_slave_sda_ao_pins[] = {PIN(GPIOAO_5, 0) };
- 
-+static const unsigned int ir_in_ao_pins[] = {PIN(GPIOAO_7, 0) };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 4f42316..72df302 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -210,6 +210,13 @@
+ 						function = "uart_ao";
+ 					};
+ 				};
 +
- static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
- 	GPIO_GROUP(GPIOZ_0, EE_OFF),
- 	GPIO_GROUP(GPIOZ_1, EE_OFF),
-@@ -432,6 +434,7 @@ static struct meson_pmx_group meson_gxbb_aobus_groups[] = {
- 	GROUP(i2c_sda_ao,	0,	5),
- 	GROUP(i2c_slave_sck_ao, 0,	2),
- 	GROUP(i2c_slave_sda_ao, 0,	1),
-+	GROUP(ir_in_ao,		0,	0),
- };
++				ir_in_ao_pins: ir_in_ao {
++					mux {
++						groups = "ir_in_ao";
++						function = "ir_in_ao";
++					};
++				};
+ 			};
  
- static const char * const gpio_periphs_groups[] = {
-@@ -521,6 +524,10 @@ static const char * const i2c_slave_ao_groups[] = {
- 	"i2c_slave_sdk_ao", "i2c_slave_sda_ao",
- };
- 
-+static const char * const ir_in_ao_groups[] = {
-+	"ir_in_ao",
-+};
-+
- static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
- 	FUNCTION(gpio_periphs),
- 	FUNCTION(emmc),
-@@ -537,6 +544,7 @@ static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
- 	FUNCTION(uart_ao_b),
- 	FUNCTION(i2c_ao),
- 	FUNCTION(i2c_slave_ao),
-+	FUNCTION(ir_in_ao),
- };
- 
- static struct meson_bank meson_gxbb_periphs_banks[] = {
+ 			uart_AO: serial at 4c0 {
 -- 
 2.9.3
