@@ -1,37 +1,59 @@
-From: yamada.masahiro@socionext.com (Masahiro Yamada)
-Date: Fri, 19 Aug 2016 18:19:54 +0900
-Subject: [U-Boot] [PATCH 1/4] pinctrl: generic: scan for "pins" and
- "groups" properties in sub-nodes
-In-Reply-To: <1471340990-16247-2-git-send-email-b.galvani@gmail.com>
-References: <1471340990-16247-1-git-send-email-b.galvani@gmail.com>
- <1471340990-16247-2-git-send-email-b.galvani@gmail.com>
-Message-ID: <CAK7LNASNDMQUzp+Mri-o4VXjYFg4DLsXFz+m+JdnVCpcsa78AQ@mail.gmail.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Fri, 19 Aug 2016 11:39:15 +0100
+Subject: [PATCH 01/13] scpi: Add vendor_send_message to enable access to
+ vendor commands
+In-Reply-To: <9bf4a979-5325-fd70-1887-04c605d593d8@baylibre.com>
+References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
+ <1471515066-3626-2-git-send-email-narmstrong@baylibre.com>
+ <c5b2d698-de4c-012a-7e7b-63685b7e898c@arm.com>
+ <9bf4a979-5325-fd70-1887-04c605d593d8@baylibre.com>
+Message-ID: <26c18a0c-ee62-3159-e10b-6b0e5c28fb56@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-2016-08-16 18:49 GMT+09:00 Beniamino Galvani <b.galvani@gmail.com>:
-> In cases where the pins and groups definitions are in a sub-node, as:
+
+
+On 19/08/16 09:00, Neil Armstrong wrote:
+> On 08/18/2016 05:53 PM, Sudeep Holla wrote:
+>>
+>>
+>> On 18/08/16 11:10, Neil Armstrong wrote:
+>>> Adds an optional vendor_send_message to the scpi to enable sending
+>>> vendor platform specific commands to the SCP firmware.
+>>>
+>>
+>> I don't see any users of vendor_send_message in this series, so I prefer
+>> it to be dropped and introduced when required.
+>>
+>> Also I had a different view on how to introduce this[1]. I would rather
+>> wait until the requirement comes that enables us to make use of it.
+>> Looks like you took parts of it and introduces vendor_send_message
+>> allowing users to send any data which I don't like especially without
+>> knowing how will it be (ab)used.
+>>
 >
->         uart_a {
->                 mux {
->                         groups = "uart_tx_a", "uart_rx_a";
->                         function = "uart_a";
->                 };
->         };
+> Hi Sudeep,
 >
-> pinctrl_generic_set_state_subnode() returns an error for the top-level
-> node and pinctrl_generic_set_state() fails. Instead, return success so
-> that the child nodes are tried.
+> Indeed, I won't ask you to merge patches 1, 8 and 9, they need refactoring and
+> a separate patchset.
 >
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> ---
 
+Ah OK,then better if you put then at the end. Otherwise it makes it
+difficult to review.
 
-Looks good to me.  Thanks!
+> Vendor commands are not necessary for Amlogic, this is a nice to have
+> since they have a "user" command that can be extended by a firmware
+> loaded by u-boot.
+>
 
-Reviewed-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+Good :)
 
+> Could you review the following patches and I'll post a reduced v2
+> ASAP.
+>
+
+Yes I was doing that yesterday, sorry got distracted. I will continue today.
 
 -- 
-Best Regards
-Masahiro Yamada
+Regards,
+Sudeep
