@@ -1,34 +1,40 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 19 Aug 2016 15:28:22 -0700
-Subject: [PATCH v4 4/6] media: rc: meson-ir: Add support for newer
- versions of the IR decoder
-In-Reply-To: <20160819215547.20063-5-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Fri, 19 Aug 2016 23:55:45 +0200")
-References: <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
- <20160819215547.20063-1-martin.blumenstingl@googlemail.com>
- <20160819215547.20063-5-martin.blumenstingl@googlemail.com>
-Message-ID: <7hy43s5r7d.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 20 Aug 2016 11:35:34 +0200
+Subject: [PATCH v2 0/4] meson: Meson8b and GXBB DWMAC glue driver
+In-Reply-To: <20160815164100.27766-1-martin.blumenstingl@googlemail.com>
+References: <20160815164100.27766-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20160820093538.9707-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+This adds a DWMAC glue driver for the PRG_ETHERNET registers found in
+Meson8b and GXBB SoCs. Based on the "old" meson6b-dwmac glue driver
+the register layout is completely different.
+Thus I introduced a separate driver.
 
-> From: Neil Armstrong <narmstrong@baylibre.com>
->
-> Newer SoCs (Meson 8b and GXBB) are using REG2 (offset 0x20) instead of
-> REG1 to configure the decoder mode. This makes it necessary to
-> introduce new bindings so the driver knows which register has to be
-> used.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Changes since v1:
+- make clkin1 mandatory because the internal mux expects two clocks
+  (in other words: this makes the driver consistent with how the
+  hardware actually works)
+- expose the MPLL2 clock for use by DT so we can pass it to the ethmac
+- added a .remove function to the glue driver which disables and
+  unprepares the clocks on driver removal
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
 
-Mauro, are you the one to pick up new media/rc drivers?  Or if you
-prefer, with your ack, I'll take this along with the DT and submit via
-arm-soc.
+Martin Blumenstingl (4):
+  net: dt-bindings: Document the new Meson8b and GXBB DWMAC bindings
+  clk: gxbb: expose MPLL2 clock for use by DT
+  net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC
+  ARM64: dts: meson-gxbb: use the new GXBB DWMAC glue driver
 
-Thanks,
+ .../devicetree/bindings/net/meson-dwmac.txt        |  45 ++-
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   8 +-
+ drivers/clk/meson/gxbb.h                           |   2 +-
+ drivers/net/ethernet/stmicro/stmmac/Makefile       |   2 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 329 +++++++++++++++++++++
+ include/dt-bindings/clock/gxbb-clkc.h              |   1 +
+ 6 files changed, 374 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
 
-Kevin
+-- 
+2.9.3
