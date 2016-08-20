@@ -1,34 +1,47 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Sat, 20 Aug 2016 20:34:39 +0200
-Subject: [RESEND PATCH v2 0/4] pwm: Add Amlogic Meson SoC PWM Controller
-Message-ID: <1471718083-11516-1-git-send-email-narmstrong@baylibre.com>
+Date: Sat, 20 Aug 2016 20:34:41 +0200
+Subject: [RESEND PATCH v2 2/4] dt-bindings: pwm: Add bindings for Meson PWM
+ Controller
+In-Reply-To: <1471718083-11516-1-git-send-email-narmstrong@baylibre.com>
+References: <1471718083-11516-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1471718083-11516-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add support for the PWM controller found in Amlogic Meson SoCs.
-This controller provides a dual PWM output with 4 selectable clock source
-and a two level divider to achieve a better PWM range.
+Add bindings for the Amlogic PWM Controller in Meson8b and GXBB SoCs.
 
-Currently Meson8b and GXBB SoCs are supported.
-
-Changes since v1 at http://lkml.kernel.org/r/1466173784-15625-1-git-send-email-narmstrong at baylibre.com :
-- fix meson8b dtsi
-
-Neil Armstrong (4):
-  pwm: Add support for Meson PWM Controller
-  dt-bindings: pwm: Add bindings for Meson PWM Controller
-  ARM64: dts: meson-gxbb: Add Meson GXBB PWM Controller nodes
-  ARM: dts: meson8b: Add Meson8b PWM Controller nodes
-
- .../devicetree/bindings/pwm/pwm-meson.txt          |  21 +
- arch/arm/boot/dts/meson8b.dtsi                     |  21 +
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  28 ++
- drivers/pwm/Kconfig                                |   9 +
- drivers/pwm/Makefile                               |   1 +
- drivers/pwm/pwm-meson.c                            | 491 +++++++++++++++++++++
- 6 files changed, 571 insertions(+)
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/pwm/pwm-meson.txt | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
- create mode 100644 drivers/pwm/pwm-meson.c
 
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+new file mode 100644
+index 0000000..e06aed0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+@@ -0,0 +1,21 @@
++Amlogic Meson PWM Controller
++=================================
++
++Required properties:
++- compatible: Shall contain "amlogic,meson8b-pwm" or "amlogic,meson-gxbb-pwm".
++- #pwm-cells: Should be 3. See pwm.txt in this directory for a description of
++  the cells format.
++
++Optional properties:
++- clocks: Could contain one or two parents clocks phandle for each of the two pwm channels.
++- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
++
++Example:
++pwm_ab: pwm at 8550 {
++	compatible = "amlogic,meson-gxbb-pwm";
++	reg = <0x0 0x08550 0x0 0x10>;
++	#pwm-cells = <3>;
++	status = "disabled";
++	clocks = <&xtal>, <&xtal>;
++	clock-names = "clkin0", "clkin1";
++}
 -- 
 1.9.1
