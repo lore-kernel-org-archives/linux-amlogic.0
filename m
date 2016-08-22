@@ -1,44 +1,38 @@
 From: ben-linux@fluff.org (Ben Dooks)
-Date: Mon, 22 Aug 2016 23:15:01 +0100
-Subject: [PATCH 5/5] rtc: warn if rtc_tm_to_time64 overflows in rtc_tm_to_time
+Date: Mon, 22 Aug 2016 23:14:58 +0100
+Subject: [PATCH 2/5] ARM: dts: amlogic: add rtc node for meson8b
 In-Reply-To: <20160822221501.21945-1-ben-linux@fluff.org>
 References: <20160822221501.21945-1-ben-linux@fluff.org>
-Message-ID: <20160822221501.21945-6-ben-linux@fluff.org>
+Message-ID: <20160822221501.21945-3-ben-linux@fluff.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The addition of the compatibility layer for rtc_tm_to_time()
-to bridge the move to rtc_tm_to_time64() does not check if
-the value will overflow the old call's use of unsigned long
-to restore the result.
+From: Ben Dooks <ben.dooks@codethink.co.uk>
 
-This means that if the result is bigger than the arch's
-use of unsigned long then the result will be silently
-truncated to whatever the maximum value of the unsigned
-long. Since the call does not have an option of returning
-an error, at least have an WARN_ON() to show if the value
-is out of range.
+Add the DT node for the RTC support.
 
-Signed-off-by: Ben Dooks <ben-linux@fluff.org>
+Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
 ---
- include/linux/rtc.h | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/meson8b.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/include/linux/rtc.h b/include/linux/rtc.h
-index b693ada..ef7bb2c 100644
---- a/include/linux/rtc.h
-+++ b/include/linux/rtc.h
-@@ -45,7 +45,10 @@ static inline void rtc_time_to_tm(unsigned long time, struct rtc_time *tm)
-  */
- static inline int rtc_tm_to_time(struct rtc_time *tm, unsigned long *time)
- {
--	*time = rtc_tm_to_time64(tm);
-+	time64_t tt = rtc_tm_to_time64(tm);
-+
-+	WARN_ON(tt > ~(0UL));
-+	*time = tt;
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index fc4080d..15a9d8d 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -156,6 +156,13 @@
+ 			status = "disabled";
+ 		};
  
- 	return 0;
- }
++		rtc: rtc at c8100740 {
++			compatible = "amlogic,meson8b-rtc";
++			reg = <0xc8100740 0x14>;
++			resets = <&reset RESET_RTC>;
++			status = "disabled";
++		};
++
+ 		clkc: clock-controller at c1104000 {
+ 			#clock-cells = <1>;
+ 			compatible = "amlogic,meson8b-clkc";
 -- 
 2.9.3
