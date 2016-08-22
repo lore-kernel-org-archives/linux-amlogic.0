@@ -1,45 +1,78 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 22 Aug 2016 14:04:49 +0200
-Subject: [PATCH v2 1/4] net: dt-bindings: Document the new Meson8b and
- GXBB DWMAC bindings
-In-Reply-To: <7308700.atIMKyMFZU@wuerfel>
-References: <20160815164100.27766-1-martin.blumenstingl@googlemail.com>
- <20160820093538.9707-1-martin.blumenstingl@googlemail.com>
- <20160820093538.9707-2-martin.blumenstingl@googlemail.com>
- <7308700.atIMKyMFZU@wuerfel>
-Message-ID: <CAFBinCA0HWHR3UbVX-_wU14W0-KOr-BAf5Nyn1ocZdnYxojn2Q@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 22 Aug 2016 14:16:52 +0200
+Subject: [RESEND PATCH v2 1/4] pwm: Add support for Meson PWM Controller
+In-Reply-To: <1471718083-11516-2-git-send-email-narmstrong@baylibre.com>
+References: <1471718083-11516-1-git-send-email-narmstrong@baylibre.com>
+ <1471718083-11516-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <ad2f719e-9236-96fd-3bea-ce20c487c67f@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Aug 22, 2016 at 1:55 PM, Arnd Bergmann <arnd@arndb.de> wrote:
-> On Saturday, August 20, 2016 11:35:35 AM CEST Martin Blumenstingl wrote:
->> +- reg: The first register range should be the one of the DWMAC
->> +       controller. The second range is is for the Amlogic specific
->> +       configuration (for example the PRG_ETHERNET register range
->> +       on Meson8b and newer)
->>
-> ...
->
->> +Example for GXBB:
->> +       ethmac: ethernet at c9410000 {
->> +               compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
->> +               reg = <0x0 0xc9410000 0x0 0x10000>,
->> +                       <0x0 0xc8834540 0x0 0x8>;
->>
->
-> The address "0xc8834540" suggests that this is part of a larger register
-> range that is used for various things, i.e. a "syscon" type of device.
-You are right, these are part of the cbus range (which is already
-defined in meson-gxbb.dtsi)
+Hi Thierry,
 
-> How about making this a syscon reference rather than a "reg" address?
-The first version of my patch ([0]) used
-syscon_regmap_lookup_by_phandle. Maybe I did it wrong (and I should
-have passed the cbus syscon-node instead of defining a new one just
-for the 2x32bit PRG_ETHERNET registers).
-I am perfectly fine with either way - however it seems that some other
-dwmac glue implementations are also using a second set of resources
-(that doesn't automatically make it "correct" though).
+On 08/20/2016 08:34 PM, Neil Armstrong wrote:
+> Add support for the PWM controller found in the Amlogic SoCs.
+> This driver supports the Meson8b and GXBB SoCs.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/pwm/Kconfig     |   9 +
+>  drivers/pwm/Makefile    |   1 +
+>  drivers/pwm/pwm-meson.c | 491 ++++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 501 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-meson.c
+> 
 
+[...]
 
-Martin
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> new file mode 100644
+> index 0000000..9e7ecf5
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-meson.c
+
+[...]
+
+> +
+> +static const char * const pwm_parents[] = {
+> +	"xtal", "vid_pll", "fclk_div4", "fclk_div3", NULL
+> +};
+
+Aww, crap, it's "vid_pll" on meson8b and "hdmi_pll" for gxbb.
+I'll add it to DT mach data.
+
+> +static int meson_pwm_enable(struct pwm_chip *chip,
+> +				 struct pwm_device *pwm)
+> +{
+> +	struct meson_pwm_chip *pwm_data = to_meson_pwm_chip(chip);
+> +	unsigned int id = pwm->hwpwm;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&pwm_data->lock, flags);
+> +	switch (id) {
+> +	case PWM_A:
+> +		writel(readl(pwm_data->base + REG_MISC_AB) | MISC_A_EN,
+> +			pwm_data->base + REG_MISC_AB);
+
+Found an issue here, the HW requires to re-write the clock counts register even if the value is correct.
+Let's got for a v3 !
+
+> +		break;
+> +
+> +	case PWM_B:
+> +		writel(readl(pwm_data->base + REG_MISC_AB) | MISC_B_EN,
+> +			pwm_data->base + REG_MISC_AB);
+> +		break;
+> +
+> +	default:
+> +		break;
+> +	}
+> +	spin_unlock_irqrestore(&pwm_data->lock, flags);
+> +
+> +	return 0;
+> +}
+
+Is it worth rewriting the driver using the apply callback ?
+I'll wish to have it for 4.9 if possible, do you think it's possible ?
+
+Neil
