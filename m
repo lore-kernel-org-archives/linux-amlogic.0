@@ -1,46 +1,63 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 22 Aug 2016 17:36:31 +0200
-Subject: [PATCH v3 2/4] dt-bindings: pwm: Add bindings for Meson PWM Controller
+Date: Mon, 22 Aug 2016 17:36:32 +0200
+Subject: [PATCH v3 3/4] ARM64: dts: meson-gxbb: Add Meson GXBB PWM Controller
+ nodes
 In-Reply-To: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
 References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1471880193-21879-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1471880193-21879-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add bindings for the Amlogic PWM Controller in Meson8b and GXBB SoCs.
-
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/pwm/pwm-meson.txt | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-meson.txt
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-new file mode 100644
-index 0000000..e06aed0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-@@ -0,0 +1,21 @@
-+Amlogic Meson PWM Controller
-+=================================
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index e502c24..e3f4d36 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -153,6 +153,27 @@
+ 				status = "disabled";
+ 			};
+ 
++			pwm_ab: pwm at 8550 {
++				compatible = "amlogic,meson-gxbb-pwm";
++				reg = <0x0 0x08550 0x0 0x10>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
 +
-+Required properties:
-+- compatible: Shall contain "amlogic,meson8b-pwm" or "amlogic,meson-gxbb-pwm".
-+- #pwm-cells: Should be 3. See pwm.txt in this directory for a description of
-+  the cells format.
++			pwm_cd: pwm at 8650 {
++				compatible = "amlogic,meson-gxbb-pwm";
++				reg = <0x0 0x08650 0x0 0x10>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
 +
-+Optional properties:
-+- clocks: Could contain one or two parents clocks phandle for each of the two pwm channels.
-+- clock-names: Could contain at least the "clkin0" and/or "clkin1" names.
++			pwm_ef: pwm at 86c0 {
++				compatible = "amlogic,meson-gxbb-pwm";
++				reg = <0x0 0x086c0 0x0 0x10>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
 +
-+Example:
-+pwm_ab: pwm at 8550 {
-+	compatible = "amlogic,meson-gxbb-pwm";
-+	reg = <0x0 0x08550 0x0 0x10>;
-+	#pwm-cells = <3>;
-+	status = "disabled";
-+	clocks = <&xtal>, <&xtal>;
-+	clock-names = "clkin0", "clkin1";
-+}
+ 			uart_C: serial at 8700 {
+ 				compatible = "amlogic,meson-uart";
+ 				reg = <0x0 0x8700 0x0 0x14>;
+@@ -212,6 +233,13 @@
+ 				clocks = <&xtal>;
+ 				status = "disabled";
+ 			};
++
++			pwm_ab_AO: pwm at 550 {
++				compatible = "amlogic,meson-gxbb-pwm";
++				reg = <0x0 0x0550 0x0 0x10>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		periphs: periphs at c8834000 {
 -- 
 1.9.1
