@@ -1,23 +1,25 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Mon, 22 Aug 2016 15:52:33 +0200
-Subject: [PATCH v5 2/6] ARM64: dts: amlogic: add the input pin for the IR
- remote
-In-Reply-To: <20160820095424.636-3-martin.blumenstingl@googlemail.com>
-References: <20160819215547.20063-1-martin.blumenstingl@googlemail.com>
- <20160820095424.636-1-martin.blumenstingl@googlemail.com>
- <20160820095424.636-3-martin.blumenstingl@googlemail.com>
-Message-ID: <CACRpkdauTrvWmv5iDa_QwkAS8M6ff_yyjBm0y_iV_sLoPPDdTg@mail.gmail.com>
+Date: Mon, 22 Aug 2016 16:02:35 +0200
+Subject: [PATCH 1/2] ARM64: dts: amlogic: gxbb: pinctrl: add pins for PWM
+In-Reply-To: <1471870450-11109-2-git-send-email-narmstrong@baylibre.com>
+References: <1471870450-11109-1-git-send-email-narmstrong@baylibre.com>
+ <1471870450-11109-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CACRpkdZuRwvS_p9D3Sx0avr+1mtCjfGFUX3fXjRRmYS19TYvxg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Aug 20, 2016 at 11:54 AM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+On Mon, Aug 22, 2016 at 2:54 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Add support for PWM pins, for EE and AO domains.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+The $SUBJECT of this patch is titallyt wrong, it should be
+just pinctrl: (something).
 
-Merge this through the ARM SoC tree.
+Should I fix it up or would you like to resend?
+
+It looks nice otherwise.
 
 Yours,
 Linus Walleij
