@@ -1,48 +1,31 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 22 Aug 2016 17:36:33 +0200
-Subject: [PATCH v3 4/4] ARM: dts: meson8b: Add Meson8b PWM Controller nodes
-In-Reply-To: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
-References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1471880193-21879-5-git-send-email-narmstrong@baylibre.com>
+From: weiyj.lk@gmail.com (Wei Yongjun)
+Date: Mon, 22 Aug 2016 16:08:21 +0000
+Subject: [PATCH -next] clk: meson: Fix invalid use of sizeof in
+ gxbb_aoclkc_probe()
+Message-ID: <1471882101-22347-1-git-send-email-weiyj.lk@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+From: Wei Yongjun <weiyongjun1@huawei.com>
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index fc4080d..41fd536 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -162,6 +162,27 @@
- 			reg = <0xc1108000 0x4>, <0xc1104000 0x460>;
- 		};
+sizeof() when applied to a pointer typed expression gives the
+size of the pointer, not that of the pointed data.
+
+Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+---
+ drivers/clk/meson/gxbb-aoclk.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
+index 61ef28a..b45c5fb 100644
+--- a/drivers/clk/meson/gxbb-aoclk.c
++++ b/drivers/clk/meson/gxbb-aoclk.c
+@@ -142,7 +142,7 @@ static int gxbb_aoclkc_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct gxbb_aoclk_reset_controller *rstc;
  
-+		pwm_ab: pwm at 8550 {
-+			compatible = "amlogic,meson8b-pwm";
-+			reg = <0xc1108550 0x10>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm_cd: pwm at 8650 {
-+			compatible = "amlogic,meson8b-pwm";
-+			reg = <0xc1108650 0x10>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
-+		pwm_ef: pwm at 86c0 {
-+			compatible = "amlogic,meson8b-pwm";
-+			reg = <0xc11086c0 0x10>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+
- 		pinctrl_cbus: pinctrl at c1109880 {
- 			compatible = "amlogic,meson8b-cbus-pinctrl";
- 			reg = <0xc1109880 0x10>;
--- 
-1.9.1
+-	rstc = devm_kzalloc(dev, sizeof(rstc), GFP_KERNEL);
++	rstc = devm_kzalloc(dev, sizeof(*rstc), GFP_KERNEL);
+ 	if (!rstc)
+ 		return -ENOMEM;
+ 
