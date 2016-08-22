@@ -1,78 +1,51 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 22 Aug 2016 14:16:52 +0200
-Subject: [RESEND PATCH v2 1/4] pwm: Add support for Meson PWM Controller
-In-Reply-To: <1471718083-11516-2-git-send-email-narmstrong@baylibre.com>
-References: <1471718083-11516-1-git-send-email-narmstrong@baylibre.com>
- <1471718083-11516-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <ad2f719e-9236-96fd-3bea-ce20c487c67f@baylibre.com>
+Date: Mon, 22 Aug 2016 14:49:37 +0200
+Subject: [PATCH] clk: meson-gxbb: Export PWM related clocks for DT
+Message-ID: <1471870177-10609-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Thierry,
+Add the PWM related clocks in order to be referenced as PWM source
+clocks.
 
-On 08/20/2016 08:34 PM, Neil Armstrong wrote:
-> Add support for the PWM controller found in the Amlogic SoCs.
-> This driver supports the Meson8b and GXBB SoCs.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/pwm/Kconfig     |   9 +
->  drivers/pwm/Makefile    |   1 +
->  drivers/pwm/pwm-meson.c | 491 ++++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 501 insertions(+)
->  create mode 100644 drivers/pwm/pwm-meson.c
-> 
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/clk/meson/gxbb.h              | 6 +++---
+ include/dt-bindings/clock/gxbb-clkc.h | 3 +++
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-[...]
-
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> new file mode 100644
-> index 0000000..9e7ecf5
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-meson.c
-
-[...]
-
-> +
-> +static const char * const pwm_parents[] = {
-> +	"xtal", "vid_pll", "fclk_div4", "fclk_div3", NULL
-> +};
-
-Aww, crap, it's "vid_pll" on meson8b and "hdmi_pll" for gxbb.
-I'll add it to DT mach data.
-
-> +static int meson_pwm_enable(struct pwm_chip *chip,
-> +				 struct pwm_device *pwm)
-> +{
-> +	struct meson_pwm_chip *pwm_data = to_meson_pwm_chip(chip);
-> +	unsigned int id = pwm->hwpwm;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&pwm_data->lock, flags);
-> +	switch (id) {
-> +	case PWM_A:
-> +		writel(readl(pwm_data->base + REG_MISC_AB) | MISC_A_EN,
-> +			pwm_data->base + REG_MISC_AB);
-
-Found an issue here, the HW requires to re-write the clock counts register even if the value is correct.
-Let's got for a v3 !
-
-> +		break;
-> +
-> +	case PWM_B:
-> +		writel(readl(pwm_data->base + REG_MISC_AB) | MISC_B_EN,
-> +			pwm_data->base + REG_MISC_AB);
-> +		break;
-> +
-> +	default:
-> +		break;
-> +	}
-> +	spin_unlock_irqrestore(&pwm_data->lock, flags);
-> +
-> +	return 0;
-> +}
-
-Is it worth rewriting the driver using the apply callback ?
-I'll wish to have it for 4.9 if possible, do you think it's possible ?
-
-Neil
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index a2adf34..523b494 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -170,11 +170,11 @@
+  */
+ #define CLKID_SYS_PLL		  0
+ /* CLKID_CPUCLK */
+-#define CLKID_HDMI_PLL		  2
++/* CLKID_HDMI_PLL */
+ #define CLKID_FIXED_PLL		  3
+ #define CLKID_FCLK_DIV2		  4
+-#define CLKID_FCLK_DIV3		  5
+-#define CLKID_FCLK_DIV4		  6
++/* CLKID_FCLK_DIV3 */
++/* CLKID_FCLK_DIV4 */
+ #define CLKID_FCLK_DIV5		  7
+ #define CLKID_FCLK_DIV7		  8
+ #define CLKID_GP0_PLL		  9
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index f889d80..a5897f3 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -6,6 +6,9 @@
+ #define __GXBB_CLKC_H
+ 
+ #define CLKID_CPUCLK		1
++#define CLKID_HDMI_PLL		2
++#define CLKID_FCLK_DIV3		5
++#define CLKID_FCLK_DIV4		6
+ #define CLKID_CLK81		12
+ #define CLKID_ETH		36
+ 
+-- 
+1.9.1
