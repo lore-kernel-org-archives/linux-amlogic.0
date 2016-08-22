@@ -1,29 +1,47 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Mon, 22 Aug 2016 11:23:07 +0200
-Subject: [PATCH] pinctrl: meson: get rid of unneeded domain structures
-In-Reply-To: <1471110078-5946-1-git-send-email-b.galvani@gmail.com>
-References: <1471110078-5946-1-git-send-email-b.galvani@gmail.com>
-Message-ID: <CACRpkdbnXjOBP7KtFa+0_u9fVrqNRtBvskOwPggGbA5yW7RgDg@mail.gmail.com>
+From: marc.zyngier@arm.com (Marc Zyngier)
+Date: Mon, 22 Aug 2016 11:26:33 +0100
+Subject: [PATCH v2 2/2] arm64: dts: Fix broken architected timer interrupt
+ trigger
+In-Reply-To: <1470045256-9032-3-git-send-email-marc.zyngier@arm.com>
+References: <1470045256-9032-1-git-send-email-marc.zyngier@arm.com>
+ <1470045256-9032-3-git-send-email-marc.zyngier@arm.com>
+Message-ID: <57BAD359.30707@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Aug 13, 2016 at 7:41 PM, Beniamino Galvani <b.galvani@gmail.com> wrote:
+Arnd, Olof,
 
-> The driver originally supported more domains (register ranges) per
-> pinctrl device, but since commit 9dab1868ec0d ("pinctrl: amlogic: Make
-> driver independent from two-domain configuration") each device gets
-> assigned a single domain and we instantiate multiple pinctrl devices
-> in the DT.
->
-> Therefore, now the 'meson_domain' and 'meson_domain_data' structures
-> don't have any reason to exist and can be removed to make the model
-> simpler to understand. This commit doesn't change behavior.
->
-> Tested on a Odroid-C2.
->
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+On 01/08/16 10:54, Marc Zyngier wrote:
+> The ARM architected timer specification mandates that the interrupt
+> associated with each timer is level triggered (which corresponds to
+> the "counter >= comparator" condition).
+> 
+> A number of DTs are being remarkably creative, declaring the interrupt
+> to be edge triggered. A quick look at the TRM for the corresponding ARM
+> CPUs clearly shows that this is wrong, and I've corrected those.
+> For non-ARM designs (and in the absence of a publicly available TRM),
+> I've made them active low as well, which can't be completely wrong
+> as the GIC cannot disinguish between level low and level high.
+> 
+> The respective maintainers are of course welcome to prove me wrong.
+> 
+> While I was at it, I took the liberty to fix a couple of related issue,
+> such as some spurious affinity bits on ThunderX, and their complete
+> absence on ls1043a (both of which seem to be related to copy-pasting
+> from other DTs).
+> 
+> Acked-by: Duc Dang <dhdang@apm.com>
+> Acked-by: Carlo Caione <carlo@endlessm.com>
+> Acked-by: Michal Simek <michal.simek@xilinx.com>
+> Acked-by: Krzysztof Kozlowski <k.kozlowski@samsung.com>
+> Acked-by: Dinh Nguyen <dinguyen@opensource.altera.com>
+> Signed-off-by: Marc Zyngier <marc.zyngier@arm.com>
 
-Patch applied with Kevin's ACK/Test tags.
+Any update on this patch? We have a workaround merged already, but it'd
+be good to have the DTS fixed as well.
 
-Yours,
-Linus Walleij
+Thanks,
+
+	M.
+-- 
+Jazz is not dead. It just smells funny...
