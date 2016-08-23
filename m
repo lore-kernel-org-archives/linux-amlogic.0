@@ -1,46 +1,55 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 23 Aug 2016 13:46:49 +0200
-Subject: [PATCH v2 0/7] scpi: Add support for legacy SCPI protocol
-Message-ID: <1471952816-30877-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 23 Aug 2016 13:46:52 +0200
+Subject: [PATCH v2 3/7] scpi: Add support for Legacy match table for Amlogic
+ GXBB SoC
+In-Reply-To: <1471952816-30877-1-git-send-email-narmstrong@baylibre.com>
+References: <1471952816-30877-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1471952816-30877-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset aims to support the legacy SCPI firmware implementation that was
-delivered as early technology preview for the JUNO platform.
+Add new DT match table to setup the is_legacy boolean value across
+the scpi functions.
+Add the Amlogic GXBB SoC compatible for platform and as legacy match entry.
 
-Finally a stable, maintained and public implementation for the SCPI protocol
-has been upstreamed part of the JUNO support and it is the recommended way
-of implementing SCP communication on ARMv8 platforms.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/firmware/arm_scpi.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
-platforms. This patchset will only add support for Amlogic GXBB SoC.
-
-This patchset add support for the legacy protocol in the arm_scpi.c file,
-avoiding code duplication.
-
-Last RFC discution tread can be found at : https://lkml.org/lkml/2016/8/9/210
-
-The last patch depends on the "Platform MHU" dtsi patch.
-
-Changes since v1 at : http://lkml.kernel.org/r/1471515066-3626-1-git-send-email-narmstrong at baylibre.com
- - Dropped vendor_send_message and rockchip vendor mechanism patches
- - Merged alternate functions into main functions using is_legacy boolean
- - Added DT match table to set is_legacy to true
- - Kept alternate scpi_ops structure for legacy
-
-Neil Armstrong (7):
-  scpi: Add alternative legacy structures, functions and macros
-  scpi: Use legacy variants command index calling scpi_send_message
-  scpi: Add support for Legacy match table for Amlogic GXBB SoC
-  scpi: grow MAX_DVFS_OPPS to 16 entries
-  dt-bindings: Add support for Amlogic GXBB SCPI Interface
-  ARM64: dts: meson-gxbb: Add SRAM node
-  ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
-
- Documentation/devicetree/bindings/arm/arm,scpi.txt |   8 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  45 ++++
- drivers/firmware/arm_scpi.c                        | 279 +++++++++++++++++++--
- 3 files changed, 302 insertions(+), 30 deletions(-)
-
+diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+index d24d1de..badef70 100644
+--- a/drivers/firmware/arm_scpi.c
++++ b/drivers/firmware/arm_scpi.c
+@@ -888,6 +888,11 @@ static int scpi_alloc_xfer_list(struct device *dev, struct scpi_chan *ch)
+ 	return 0;
+ }
+ 
++static const struct of_device_id legacy_scpi_of_match[] = {
++	{.compatible = "amlogic,meson-gxbb-scpi"},
++	{},
++};
++
+ static int scpi_probe(struct platform_device *pdev)
+ {
+ 	int count, idx, ret;
+@@ -900,6 +905,9 @@ static int scpi_probe(struct platform_device *pdev)
+ 	if (!scpi_info)
+ 		return -ENOMEM;
+ 
++	if (of_match_device(legacy_scpi_of_match, &pdev->dev))
++		scpi_info->is_legacy = true;
++
+ 	count = of_count_phandle_with_args(np, "mboxes", "#mbox-cells");
+ 	if (count < 0) {
+ 		dev_err(dev, "no mboxes property in '%s'\n", np->full_name);
+@@ -996,6 +1004,7 @@ err:
+ 
+ static const struct of_device_id scpi_of_match[] = {
+ 	{.compatible = "arm,scpi"},
++	{.compatible = "amlogic,meson-gxbb-scpi"},
+ 	{},
+ };
+ 
 -- 
 1.9.1
