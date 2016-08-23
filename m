@@ -1,67 +1,113 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 23 Aug 2016 10:23:39 +0200
-Subject: [PATCH 07/13] scpi: ignore init_versions failure if reported not
- supported
-In-Reply-To: <74d35f80-8499-cadf-798c-9b296218305c@arm.com>
-References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
- <1471515066-3626-8-git-send-email-narmstrong@baylibre.com>
- <74d35f80-8499-cadf-798c-9b296218305c@arm.com>
-Message-ID: <86c4042a-a892-b5c4-cc75-c2139e80e226@baylibre.com>
+Date: Tue, 23 Aug 2016 13:22:50 +0200
+Subject: [PATCH] ARM: dts: meson-gxbb: Add support for the Nexbox A95X Board
+Message-ID: <1471951370-29269-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/19/2016 06:46 PM, Sudeep Holla wrote:
-> 
-> 
-> On 18/08/16 11:11, Neil Armstrong wrote:
->> In Amlogic GXBB Legacy SCPI, the LEGACY_SCPI_CMD_SCPI_CAPABILITIES report
->> as SCPI_ERR_SUPPORT, so do not fail if this command is not supported.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/firmware/arm_scpi.c | 12 +++++++-----
->>  1 file changed, 7 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
->> index 3fe39fe..d3be4c5 100644
->> --- a/drivers/firmware/arm_scpi.c
->> +++ b/drivers/firmware/arm_scpi.c
->> @@ -1111,12 +1111,13 @@ err:
->>          ret = scpi_info->ops->init_versions(scpi_info);
->>      else
->>      ret = scpi_init_versions(scpi_info);
->> -    if (ret) {
->> +    if (ret && ret != -EOPNOTSUPP) {
->>          dev_err(dev, "incorrect or no SCP firmware found\n");
->>          scpi_remove(pdev);
->>          return ret;
->>      }
->>
-> 
-> Why not deal it in init_versions itself.
-> 
->> +    if (ret != -EOPNOTSUPP) {
->>      _dev_info(dev, "SCP Protocol %d.%d Firmware %d.%d.%d version\n",
->>            PROTOCOL_REV_MAJOR(scpi_info->protocol_version),
->>            PROTOCOL_REV_MINOR(scpi_info->protocol_version),
-> 
-> Why not have default value like 0.0 ? Just add a comment. Since get
-> version is exported out, IMO having default value makes more sense. What
-> do you think ?
-> 
->> @@ -1124,15 +1125,16 @@ err:
->>            FW_REV_MINOR(scpi_info->firmware_version),
->>            FW_REV_PATCH(scpi_info->firmware_version));
->>
->> +        ret = sysfs_create_groups(&dev->kobj, versions_groups);
->> +        if (ret)
->> +            dev_err(dev, "unable to create sysfs version group\n");
->> +    }
->> +
-> 
-> Again this can stay as is if we have default.
-> 
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 79 ++++++++++++++++++++++
+ 2 files changed, 80 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
 
-Printing version 0.0 firmware 0.0.0 is a nonsense for me...
-
-Neil
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 47ec703..2c50439 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-p201.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-meta.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-telos.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
+ 
+ always		:= $(dtb-y)
+ subdir-y	:= $(dts-dirs)
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+new file mode 100644
+index 0000000..c418bd7
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -0,0 +1,79 @@
++/*
++ * Copyright (c) 2016 Andreas F?rber
++ * Copyright (c) 2016 BayLibre, Inc.
++ * Author: Neil Armstrong <narmstrong@kernel.org>
++ *
++ * This file is dual-licensed: you can use it either under the terms
++ * of the GPL or the X11 license, at your option. Note that this dual
++ * licensing only applies to this file, and not this project as a
++ * whole.
++ *
++ *  a) This library is free software; you can redistribute it and/or
++ *     modify it under the terms of the GNU General Public License as
++ *     published by the Free Software Foundation; either version 2 of the
++ *     License, or (at your option) any later version.
++ *
++ *     This library is distributed in the hope that it will be useful,
++ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *     GNU General Public License for more details.
++ *
++ * Or, alternatively,
++ *
++ *  b) Permission is hereby granted, free of charge, to any person
++ *     obtaining a copy of this software and associated documentation
++ *     files (the "Software"), to deal in the Software without
++ *     restriction, including without limitation the rights to use,
++ *     copy, modify, merge, publish, distribute, sublicense, and/or
++ *     sell copies of the Software, and to permit persons to whom the
++ *     Software is furnished to do so, subject to the following
++ *     conditions:
++ *
++ *     The above copyright notice and this permission notice shall be
++ *     included in all copies or substantial portions of the Software.
++ *
++ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
++ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
++ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ *     OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++/dts-v1/;
++
++#include "meson-gxbb.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	compatible = "nexbox,a95x", "amlogic,meson-gxbb";
++	model = "NEXBOX A95X";
++	
++	aliases {
++		serial0 = &uart_AO;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory at 0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++};
++
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
++};
++
++&ethmac {
++	status = "okay";
++	pinctrl-0 = <&eth_pins>;
++	pinctrl-names = "default";
++};
++
+-- 
+1.9.1
