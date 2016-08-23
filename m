@@ -1,90 +1,111 @@
 From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Tue, 23 Aug 2016 15:47:02 +0100
-Subject: [PATCH 04/13] scpi: Add legacy SCP functions calling
- legacy_scpi_send_message
-In-Reply-To: <53093fb5-22e2-3c17-3345-50c7e9df7089@baylibre.com>
+Date: Tue, 23 Aug 2016 15:50:01 +0100
+Subject: [PATCH 06/13] scpi: add priv_scpi_ops and fill legacy structure
+In-Reply-To: <a0c9c4bc-cd83-c2e7-bfab-b8d24c886349@baylibre.com>
 References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
- <1471515066-3626-5-git-send-email-narmstrong@baylibre.com>
- <fe6919a2-a1dc-f056-9480-3248dc9315dc@arm.com>
- <53093fb5-22e2-3c17-3345-50c7e9df7089@baylibre.com>
-Message-ID: <e31c0b43-a32f-bef9-c341-25783871f74f@arm.com>
+ <1471515066-3626-7-git-send-email-narmstrong@baylibre.com>
+ <5c89a4e9-0100-0c67-1d6c-07651649172a@arm.com>
+ <a0c9c4bc-cd83-c2e7-bfab-b8d24c886349@baylibre.com>
+Message-ID: <cfbb96a6-4a90-01f2-591e-8f0853d7c06e@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
 
-On 23/08/16 09:19, Neil Armstrong wrote:
-> On 08/19/2016 06:22 PM, Sudeep Holla wrote:
+On 23/08/16 09:22, Neil Armstrong wrote:
+> On 08/19/2016 06:39 PM, Sudeep Holla wrote:
 >>
 >>
 >> On 18/08/16 11:10, Neil Armstrong wrote:
->>> In order to support legacy SCP functions from kernel-wide driver, add legacy
->>> functions using the legacy command enums and calling legacy_scpi_send_message.
+>>> In order to use the legacy functions variants, add a new priv_scpi_ops
+>>> structure that will contain the internal alterne functions and then use these
+>>> alternate call in the probe function.
 >>>
 >>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >>> ---
->>>  drivers/firmware/arm_scpi.c | 118 ++++++++++++++++++++++++++++++++++++++++++++
->>>  1 file changed, 118 insertions(+)
+>>>  drivers/firmware/arm_scpi.c | 68 ++++++++++++++++++++++++++++++++++++++++++---
+>>>  1 file changed, 64 insertions(+), 4 deletions(-)
 >>>
 >>> diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
->>> index 50b1297..bb9965f 100644
+>>> index b0d911b..3fe39fe 100644
 >>> --- a/drivers/firmware/arm_scpi.c
 >>> +++ b/drivers/firmware/arm_scpi.c
->>> @@ -578,6 +578,8 @@ scpi_clk_get_range(u16 clk_id, unsigned long *min, unsigned long *max)
->>>      return ret;
->>>  }
+>>> @@ -213,6 +213,7 @@ struct scpi_drvinfo {
+>>>      struct scpi_ops *scpi_ops;
+>>>      struct scpi_chan *channels;
+>>>      struct scpi_dvfs_info *dvfs[MAX_DVFS_DOMAINS];
+>>> +    const struct priv_scpi_ops *ops;
+>>>  };
 >>>
->>> +/* scpi_clk_get_range not available for legacy */
->>> +
->>>  static unsigned long scpi_clk_get_val(u16 clk_id)
->>>  {
->>>      int ret;
->>> @@ -589,6 +591,18 @@ static unsigned long scpi_clk_get_val(u16 clk_id)
->>>      return ret ? ret : le32_to_cpu(clk.rate);
->>>  }
+>>>  /*
+>>> @@ -299,6 +300,17 @@ struct dev_pstate_set {
+>>>      u8 pstate;
+>>>  } __packed;
 >>>
->>> +static unsigned long legacy_scpi_clk_get_val(u16 clk_id)
->>> +{
->>> +    int ret;
->>> +    struct clk_get_value clk;
->>> +    __le16 le_clk_id = cpu_to_le16(clk_id);
+>>> +struct priv_scpi_ops {
+>>> +    /* Internal Specific Ops */
+>>> +    void (*handle_remote_msg)(struct mbox_client *c, void *msg);
+>>> +    void (*tx_prepare)(struct mbox_client *c, void *msg);
+>>> +    /* Message Specific Ops */
+>>> +    int (*init_versions)(struct scpi_drvinfo *info);
+>>> +    int (*dvfs_get_info)(u8 domain, struct dvfs_info *buf);
+>>> +    /* System wide Ops */
+>>> +    struct scpi_ops *scpi_ops;
+>>> +};
 >>> +
->>> +    ret = legacy_scpi_send_message(LEGACY_SCPI_CMD_GET_CLOCK_VALUE,
->>> +                       &le_clk_id, sizeof(le_clk_id),
->>> +                       &clk, sizeof(clk));
->>> +    return ret ? ret : le32_to_cpu(clk.rate);
->>> +}
->>> +
->>>  static int scpi_clk_set_val(u16 clk_id, unsigned long rate)
->>>  {
->>>      int stat;
->>> @@ -601,6 +615,19 @@ static int scpi_clk_set_val(u16 clk_id, unsigned long rate)
->>>                   &stat, sizeof(stat));
->>>  }
->>>
->>> +static int legacy_scpi_clk_set_val(u16 clk_id, unsigned long rate)
->>> +{
->>> +    int stat;
->>> +    struct legacy_clk_set_value clk = {
->>> +        .id = cpu_to_le16(clk_id),
->>> +        .rate = cpu_to_le32(rate)
->>> +    };
->>> +
->>> +    return legacy_scpi_send_message(LEGACY_SCPI_CMD_SET_CLOCK_VALUE,
->>> +                    &clk, sizeof(clk),
->>> +                    &stat, sizeof(stat));
 >>
->> Except this one which has a different structure format, why do we need
->> to define legacy versions of other functions ? Can't we play with
->> function pointer or have a boolean in drvinfo structure and use then in
->> the existing functions as I had shown in one of the earlier emails.
 >>
+>> I fail to understand the need for this. Can you please explain the issue
+>> you would face without this ?
+>>
+>>>  static struct scpi_drvinfo *scpi_info;
+>>>
+>>>  static int scpi_linux_errmap[SCPI_ERR_MAX] = {
+>>> @@ -695,9 +707,12 @@ static struct scpi_dvfs_info *scpi_dvfs_get_info(u8 domain)
+>>>      if (scpi_info->dvfs[domain])    /* data already populated */
+>>>          return scpi_info->dvfs[domain];
+>>>
+>>> -    ret = scpi_send_message(SCPI_CMD_GET_DVFS_INFO, &domain, sizeof(domain),
+>>> +    if (scpi_info->ops && scpi_info->ops->dvfs_get_info)
+>>> +        ret = scpi_info->ops->dvfs_get_info(domain, &buf);
+>>> +    else
+>>> +        ret = scpi_send_message(SCPI_CMD_GET_DVFS_INFO,
+>>> +                    &domain, sizeof(domain),
+>>>                  &buf, sizeof(buf));
+>>> -
+>>>      if (ret)
+>>>          return ERR_PTR(ret);
+>>>
+>>> @@ -855,6 +870,22 @@ static struct scpi_ops scpi_ops = {
+>>>      .vendor_send_message = scpi_ext_send_message,
+>>>  };
+>>>
+>>> +static struct scpi_ops legacy_scpi_ops = {
+>>> +    .get_version = scpi_get_version,
+>>> +    .clk_get_range = NULL,
+>>> +    .clk_get_val = legacy_scpi_clk_get_val,
+>>> +    .clk_set_val = legacy_scpi_clk_set_val,
+>>> +    .dvfs_get_idx = legacy_scpi_dvfs_get_idx,
+>>> +    .dvfs_set_idx = legacy_scpi_dvfs_set_idx,
+>>> +    .dvfs_get_info = scpi_dvfs_get_info,
+>>> +    .sensor_get_capability = legacy_scpi_sensor_get_capability,
+>>> +    .sensor_get_info = legacy_scpi_sensor_get_info,
+>>> +    .sensor_get_value = legacy_scpi_sensor_get_value,
+>>> +    .device_get_power_state = NULL,
+>>> +    .device_set_power_state = NULL,
+>>> +    .vendor_send_message = legacy_scpi_send_message,
+>>
+>> I think we need not have this at all if you follow the suggestion I had
+>> in the previous patch. Try and let's see how it would look.
 >
-> The main problem is that the command indexes deviates starting at
-> SCPI_CMD_SET_CSS_PWR_STATE, I'll be pleased to know how to implement it.
+> If you confirm you want the if/else as said in patch 4.
+>
+> But clk_get_range, device_get/set_power_state are not available in legacy,
+> I think we should still have this alternate structure.
 >
 
-Yes, I was thinking of some kind of mapping to new index using an array.
+I was thinking of overriding the pointers accordingly at the probe time
+as the common list is bigger than the one that differs.
 
 -- 
 Regards,
