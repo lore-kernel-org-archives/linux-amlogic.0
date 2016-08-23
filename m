@@ -1,83 +1,75 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 23 Aug 2016 10:00:57 +0200
-Subject: [RESEND PATCH 1/2] pinctrl: meson-gxbb: add pins for PWM
-In-Reply-To: <1471876860-5620-2-git-send-email-narmstrong@baylibre.com>
-References: <1471876860-5620-1-git-send-email-narmstrong@baylibre.com>
- <1471876860-5620-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <45c22d0c-9cfd-b0a0-4499-6b306dfdcdd5@baylibre.com>
+Date: Tue, 23 Aug 2016 10:09:26 +0200
+Subject: [PATCH 02/13] scpi: Add alternative legacy structures and macros
+In-Reply-To: <2b345fec-4dbd-2144-cd34-d8451bb314c0@arm.com>
+References: <1471515066-3626-1-git-send-email-narmstrong@baylibre.com>
+ <1471515066-3626-3-git-send-email-narmstrong@baylibre.com>
+ <2b345fec-4dbd-2144-cd34-d8451bb314c0@arm.com>
+Message-ID: <d6b03881-8afc-051d-6cab-01f95640526e@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/22/2016 04:40 PM, Neil Armstrong wrote:
-> Add support for PWM pins, for EE and AO domains.
+On 08/18/2016 07:16 PM, Sudeep Holla wrote:
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 78 ++++++++++++++++++++++++++++++
->  1 file changed, 78 insertions(+)
 > 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> index 7eeb053..1c6ffb3 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> On 18/08/16 11:10, Neil Armstrong wrote:
+>> In order to support the legacy SCPI protocol variant, add back the structures
+>> and macros that varies against the final specification.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>> I checked against Amlogic implementation documentation and on-device, the channel selection
+>> via legacy_scpi_get_chan() is needed and fails without it.
+>> The sender_id is not needed so it was dropped.
+>>
+>>  drivers/firmware/arm_scpi.c | 84 +++++++++++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 84 insertions(+)
+>>
+>> diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+>> index 403783a..0bb6134 100644
+>> --- a/drivers/firmware/arm_scpi.c
+>> +++ b/drivers/firmware/arm_scpi.c
+> 
+> [...]
+> 
+>> @@ -183,6 +224,11 @@ struct scpi_shared_mem {
+>>      u8 payload[0];
+>>  } __packed;
+>>
+>> +struct legacy_scpi_shared_mem {
+>> +    __le32 status;
+>> +    u8 payload[0];
+>> +} __packed;
+>> +
+>>  struct scp_capabilities {
+>>      __le32 protocol_version;
+>>      __le32 event_version;
+>> @@ -208,6 +254,12 @@ struct clk_set_value {
+>>      __le32 rate;
+>>  } __packed;
+>>
+>> +struct legacy_clk_set_value {
+>> +    __le32 rate;
+>> +    __le16 id;
+>> +    __le16 reserved;
+>> +} __packed;
+>> +
+>>  struct dvfs_info {
+>>      __le32 header;
+>>      struct {
+>> @@ -237,6 +289,10 @@ struct sensor_value {
+>>      __le32 hi_val;
+>>  } __packed;
+>>
+>> +struct legacy_sensor_value {
+>> +    __le32 val;
+>> +} __packed;
+>> +
+> 
+> Not required, new one is backward compatible. Otherwise this patch looks
+> fine.
 
-[...]
+Indeed, will use the non-legacy structure.
 
->  static const char * const gpio_aobus_groups[] = {
->  	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
->  	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
-> @@ -526,6 +578,21 @@ static const char * const i2c_slave_ao_groups[] = {
->  
->  static const char * const remote_input_ao_groups[] = {
->  	"remote_input_ao",
-> +
-
-Linus,
-
-Well, I missed my rebase, I'll post a v2 to fix that.
-
+Thanks,
 Neil
-
-> +static const char * const pwm_ao_a_3_groups[] = {
-> +	"pwm_ao_a_3",
-> +};
-> +
-> +static const char * const pwm_ao_a_6_groups[] = {
-> +	"pwm_ao_a_6",
-> +};
-> +
-> +static const char * const pwm_ao_a_12_groups[] = {
-> +	"pwm_ao_a_12",
-> +};
-> +
-> +static const char * const pwm_ao_b_groups[] = {
-> +	"pwm_ao_b",
->  };
->  
->  static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
-> @@ -536,6 +603,13 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
->  	FUNCTION(uart_b),
->  	FUNCTION(uart_c),
->  	FUNCTION(eth),
-> +	FUNCTION(pwm_a_x),
-> +	FUNCTION(pwm_a_y),
-> +	FUNCTION(pwm_b),
-> +	FUNCTION(pwm_d),
-> +	FUNCTION(pwm_e),
-> +	FUNCTION(pwm_f_x),
-> +	FUNCTION(pwm_f_y),
->  };
->  
->  static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
-> @@ -545,6 +619,10 @@ static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
->  	FUNCTION(i2c_ao),
->  	FUNCTION(i2c_slave_ao),
->  	FUNCTION(remote_input_ao),
-> +	FUNCTION(pwm_ao_a_3),
-> +	FUNCTION(pwm_ao_a_6),
-> +	FUNCTION(pwm_ao_a_12),
-> +	FUNCTION(pwm_ao_b),
->  };
->  
->  static struct meson_bank meson_gxbb_periphs_banks[] = {
-> 
