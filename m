@@ -1,20 +1,24 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 24 Aug 2016 14:23:15 +0200
-Subject: [PATCH v2 1/2] pinctrl: meson-gxbb: add pins for PWM
-In-Reply-To: <1471951508-29620-2-git-send-email-narmstrong@baylibre.com>
-References: <1471951508-29620-1-git-send-email-narmstrong@baylibre.com>
- <1471951508-29620-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CACRpkdaz+6=QFB-0pp-3hes=Do17eNDWxgHyFacEKsskSd+7UQ@mail.gmail.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Wed, 24 Aug 2016 10:29:44 -0700
+Subject: [PATCH -next] clk: meson: Fix invalid use of sizeof in
+ gxbb_aoclkc_probe()
+In-Reply-To: <1471882101-22347-1-git-send-email-weiyj.lk@gmail.com>
+References: <1471882101-22347-1-git-send-email-weiyj.lk@gmail.com>
+Message-ID: <20160824172944.GA19826@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 23, 2016 at 1:25 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+On 08/22, Wei Yongjun wrote:
+> From: Wei Yongjun <weiyongjun1@huawei.com>
+> 
+> sizeof() when applied to a pointer typed expression gives the
+> size of the pointer, not that of the pointed data.
+> 
+> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+> ---
 
-> Add support for PWM pins, for EE and AO domains.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Applied to clk-next
 
-Patch applied!
-
-Yours,
-Linus Walleij
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
