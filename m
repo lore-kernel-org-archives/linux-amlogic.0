@@ -1,55 +1,59 @@
-From: mchehab@s-opensource.com (Mauro Carvalho Chehab)
-Date: Thu, 25 Aug 2016 09:41:14 -0300
-Subject: [PATCH v4 4/6] media: rc: meson-ir: Add support for newer
- versions of the IR decoder
-In-Reply-To: <7hy43s5r7d.fsf@baylibre.com>
-References: <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
- <20160819215547.20063-1-martin.blumenstingl@googlemail.com>
- <20160819215547.20063-5-martin.blumenstingl@googlemail.com>
- <7hy43s5r7d.fsf@baylibre.com>
-Message-ID: <20160825094114.2ca0a9e9@vento.lan>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 25 Aug 2016 15:18:31 +0200
+Subject: [PATCH v2 0/7] scpi: Add support for legacy SCPI protocol
+In-Reply-To: <1471952816-30877-1-git-send-email-narmstrong@baylibre.com>
+References: <1471952816-30877-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <f6c7249f-f103-fd91-2c89-a30c191427aa@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Em Fri, 19 Aug 2016 15:28:22 -0700
-Kevin Hilman <khilman@baylibre.com> escreveu:
-
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+On 08/23/2016 01:46 PM, Neil Armstrong wrote:
+> This patchset aims to support the legacy SCPI firmware implementation that was
+> delivered as early technology preview for the JUNO platform.
 > 
-> > From: Neil Armstrong <narmstrong@baylibre.com>
-> >
-> > Newer SoCs (Meson 8b and GXBB) are using REG2 (offset 0x20) instead of
-> > REG1 to configure the decoder mode. This makes it necessary to
-> > introduce new bindings so the driver knows which register has to be
-> > used.
-> >
-> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>  
+> Finally a stable, maintained and public implementation for the SCPI protocol
+> has been upstreamed part of the JUNO support and it is the recommended way
+> of implementing SCP communication on ARMv8 platforms.
 > 
-> Acked-by: Kevin Hilman <khilman@baylibre.com>
+> The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
+> platforms. This patchset will only add support for Amlogic GXBB SoC.
 > 
-> Mauro, are you the one to pick up new media/rc drivers?  Or if you
-> prefer, with your ack, I'll take this along with the DT and submit via
-> arm-soc.
-
-I generally pick new media rc drivers, but in the specific case of this
-patchset, it is just adding a few extra lines to existing drivers, and
-most of the work are actually at the ARM tree.
-
-So, feel free to merge via arm-soc with my ack:
-
-Acked-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
-
+> This patchset add support for the legacy protocol in the arm_scpi.c file,
+> avoiding code duplication.
 > 
-> Thanks,
+> Last RFC discution tread can be found at : https://lkml.org/lkml/2016/8/9/210
 > 
-> Kevin
-> --
-> To unsubscribe from this list: send the line "unsubscribe linux-media" in
-> the body of a message to majordomo at vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+> The last patch depends on the "Platform MHU" dtsi patch.
+> 
+> Changes since v1 at : http://lkml.kernel.org/r/1471515066-3626-1-git-send-email-narmstrong at baylibre.com
+>  - Dropped vendor_send_message and rockchip vendor mechanism patches
+>  - Merged alternate functions into main functions using is_legacy boolean
+>  - Added DT match table to set is_legacy to true
+>  - Kept alternate scpi_ops structure for legacy
+> 
+> Neil Armstrong (7):
+>   scpi: Add alternative legacy structures, functions and macros
+>   scpi: Use legacy variants command index calling scpi_send_message
+>   scpi: Add support for Legacy match table for Amlogic GXBB SoC
+>   scpi: grow MAX_DVFS_OPPS to 16 entries
+>   dt-bindings: Add support for Amlogic GXBB SCPI Interface
+>   ARM64: dts: meson-gxbb: Add SRAM node
+>   ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
+> 
+>  Documentation/devicetree/bindings/arm/arm,scpi.txt |   8 +-
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  45 ++++
+>  drivers/firmware/arm_scpi.c                        | 279 +++++++++++++++++++--
+>  3 files changed, 302 insertions(+), 30 deletions(-)
+> 
 
+Hi Sudeep,
 
+Sorry but I posted this V2 before you had time to look at my previous v1 replies...
+
+In this serie, I merged the scpi_send_message, but I must still evaluate how it's possible
+to use the list to queue commands.
+
+Here I used if(is_legacy) to stop duplicating functions, is this ok for you ?
 
 Thanks,
-Mauro
+Neil
