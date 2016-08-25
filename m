@@ -1,67 +1,55 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 24 Aug 2016 17:24:39 -0700
-Subject: [PATCH v4 0/6] Add Amlogic meson8b clock gates
-In-Reply-To: <1469800864-43440-1-git-send-email-serveralex@gmail.com>
-References: <1469800864-43440-1-git-send-email-serveralex@gmail.com>
-Message-ID: <147208467939.32728.10815386393422927131@resonance>
+From: mchehab@s-opensource.com (Mauro Carvalho Chehab)
+Date: Thu, 25 Aug 2016 09:41:14 -0300
+Subject: [PATCH v4 4/6] media: rc: meson-ir: Add support for newer
+ versions of the IR decoder
+In-Reply-To: <7hy43s5r7d.fsf@baylibre.com>
+References: <20160628191802.21227-1-martin.blumenstingl@googlemail.com>
+ <20160819215547.20063-1-martin.blumenstingl@googlemail.com>
+ <20160819215547.20063-5-martin.blumenstingl@googlemail.com>
+ <7hy43s5r7d.fsf@baylibre.com>
+Message-ID: <20160825094114.2ca0a9e9@vento.lan>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Alexander M?ller (2016-07-29 07:00:58)
-> This patch series adds support for the Amlogic meson8b clock gates. The Amlogic
-> U-Boot disables most of them at boot. In order to enable ethernet, USB and other
-> components it's mandatory to enable the clock gates when loading the corresponding
-> drivers.
-> 
-> The meson8b clock gate support is based on the previous work done for Amlogic gxbb
-> currently available in clk-next.
+Em Fri, 19 Aug 2016 15:28:22 -0700
+Kevin Hilman <khilman@baylibre.com> escreveu:
 
-Hi Alexander,
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> 
+> > From: Neil Armstrong <narmstrong@baylibre.com>
+> >
+> > Newer SoCs (Meson 8b and GXBB) are using REG2 (offset 0x20) instead of
+> > REG1 to configure the decoder mode. This makes it necessary to
+> > introduce new bindings so the driver knows which register has to be
+> > used.
+> >
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>  
+> 
+> Acked-by: Kevin Hilman <khilman@baylibre.com>
+> 
+> Mauro, are you the one to pick up new media/rc drivers?  Or if you
+> prefer, with your ack, I'll take this along with the DT and submit via
+> arm-soc.
 
-This series looks good to me. Can you rebase it against the
-clk-meson-gxbb-ao branch?
+I generally pick new media rc drivers, but in the specific case of this
+patchset, it is just adding a few extra lines to existing drivers, and
+most of the work are actually at the ARM tree.
 
-git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-meson-gxbb-ao
+So, feel free to merge via arm-soc with my ack:
 
-I'll merge it on top of that and Kevin and Carlo can pull it into the
-linux-amlogic tree if they feel like it.
-
-Regards,
-Mike
+Acked-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
 
 > 
-> Changes since v3:
->   - Include include/dt-bindings/clock/meson8b-clkc.h to prevent code duplicates
+> Thanks,
 > 
-> Changes since v2:
->   - Added commit description for patch 2
->   - Changed CLK_NR_CLOCKS macro to constant int
->   - Moved back MESON_GATE macro to share it between gxbb and meson8b
-> 
-> Changes since v1:
->   - Fixed GXBB spelling
->   - Moved newly introduced CLKID defines to private header
->   - Moved CLK_NR_CLKS define from DT binding to private header
->   - Rebased to linux-amlogic/v4.7/integ making Kconfig select obsolete
-> 
-> Alexander M?ller (6):
->   clk: meson: Rename meson8b-clkc.c to reflect gxbb naming convention
->   meson: clk: Move register definitions to meson8b.h
->   meson: clk: Rename register names according to Amlogic datasheet
->   clk: meson: Copy meson8b CLKID defines to private header file
->   gxbb: clk: Adjust MESON_GATE macro to be shared with meson8b
->   meson: clk: Add support for clock gates
-> 
->  drivers/clk/meson/Makefile                      |   2 +-
->  drivers/clk/meson/clkc.h                        |   2 +-
->  drivers/clk/meson/gxbb.c                        | 162 ++++++-------
->  drivers/clk/meson/{meson8b-clkc.c => meson8b.c} | 293 +++++++++++++++++++++---
->  drivers/clk/meson/meson8b.h                     | 151 ++++++++++++
->  include/dt-bindings/clock/meson8b-clkc.h        |   2 -
->  6 files changed, 497 insertions(+), 115 deletions(-)
->  rename drivers/clk/meson/{meson8b-clkc.c => meson8b.c} (52%)
->  create mode 100644 drivers/clk/meson/meson8b.h
-> 
-> -- 
-> 2.5.0
-> 
+> Kevin
+> --
+> To unsubscribe from this list: send the line "unsubscribe linux-media" in
+> the body of a message to majordomo at vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+
+
+
+Thanks,
+Mauro
