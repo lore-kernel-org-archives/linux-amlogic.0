@@ -1,25 +1,34 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Sat, 27 Aug 2016 15:47:57 +0200
-Subject: [PATCH v3 0/6] Add Amlogic secure monitor and NVMEM drivers
-In-Reply-To: <1472305428-16874-1-git-send-email-carlo@caione.org>
-References: <1472305428-16874-1-git-send-email-carlo@caione.org>
-Message-ID: <20160827134757.GA4957@localhost>
+From: serveralex@gmail.com (=?UTF-8?q?Alexander=20M=C3=BCller?=)
+Date: Sat, 27 Aug 2016 19:40:49 +0200
+Subject: [PATCH v5 1/6] clk: meson: Rename meson8b-clkc.c to reflect gxbb
+ naming convention
+In-Reply-To: <1472319654-59048-1-git-send-email-serveralex@gmail.com>
+References: <1472319654-59048-1-git-send-email-serveralex@gmail.com>
+Message-ID: <1472319654-59048-2-git-send-email-serveralex@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 27/08/16 15:43, Carlo Caione wrote:
-> From: Carlo Caione <carlo@endlessm.com>
-> 
-> I decided to respin again the secure monitor driver this time with the NVMEM
-> driver in the same patchset to have a clear view on how a generic driver can
-> use the monitor.
+Signed-off-by: Alexander M?ller <serveralex@gmail.com>
+---
+ drivers/clk/meson/Makefile                      | 2 +-
+ drivers/clk/meson/{meson8b-clkc.c => meson8b.c} | 0
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+ rename drivers/clk/meson/{meson8b-clkc.c => meson8b.c} (100%)
 
-Kevin,
-finally I found the time to respin this patchset for the last time.
-Since we have now all the ACKs we need, could you please take all the 6
-patches in your tree?
-
-Thanks,
-
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index d4cd4a3..3495834 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -3,5 +3,5 @@
+ #
+ 
+ obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o
+-obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b-clkc.o
++obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+ obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o
+diff --git a/drivers/clk/meson/meson8b-clkc.c b/drivers/clk/meson/meson8b.c
+similarity index 100%
+rename from drivers/clk/meson/meson8b-clkc.c
+rename to drivers/clk/meson/meson8b.c
 -- 
-Carlo Caione
+2.5.0
