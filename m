@@ -1,52 +1,95 @@
 From: serveralex@gmail.com (=?UTF-8?q?Alexander=20M=C3=BCller?=)
-Date: Sat, 27 Aug 2016 19:40:48 +0200
-Subject: [PATCH v5 0/6] Add Amlogic meson8b clock gates
-Message-ID: <1472319654-59048-1-git-send-email-serveralex@gmail.com>
+Date: Sat, 27 Aug 2016 19:40:50 +0200
+Subject: [PATCH v5 2/6] meson: clk: Move register definitions to meson8b.h
+In-Reply-To: <1472319654-59048-1-git-send-email-serveralex@gmail.com>
+References: <1472319654-59048-1-git-send-email-serveralex@gmail.com>
+Message-ID: <1472319654-59048-3-git-send-email-serveralex@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch series adds support for the Amlogic meson8b clock gates. The Amlogic
-U-Boot disables most of them at boot. In order to enable ethernet, USB and other
-components it's mandatory to enable the clock gates when loading the corresponding
-drivers.
+Move the register definitions into a separate header file
+to reflect the gxbb implementation.
 
-The meson8b clock gate support is based on the previous work done for Amlogic gxbb
-currently available in clk-next.
-
-Changes since v4:
-  - Rebased to linux-clk/clk-meson-gxbb-ao branch
-
-Changes since v3:
-  - Include include/dt-bindings/clock/meson8b-clkc.h to prevent code duplicates
-
-Changes since v2:
-  - Added commit description for patch 2
-  - Changed CLK_NR_CLOCKS macro to constant int
-  - Moved back MESON_GATE macro to share it between gxbb and meson8b
-
-Changes since v1:
-  - Fixed GXBB spelling
-  - Moved newly introduced CLKID defines to private header
-  - Moved CLK_NR_CLKS define from DT binding to private header
-  - Rebased to linux-amlogic/v4.7/integ making Kconfig select obsolete
-
-Alexander M?ller (6):
-  clk: meson: Rename meson8b-clkc.c to reflect gxbb naming convention
-  meson: clk: Move register definitions to meson8b.h
-  meson: clk: Rename register names according to Amlogic datasheet
-  clk: meson: Copy meson8b CLKID defines to private header file
-  gxbb: clk: Adjust MESON_GATE macro to be shared with meson8b
-  meson: clk: Add support for clock gates
-
- drivers/clk/meson/Makefile                      |   2 +-
- drivers/clk/meson/clkc.h                        |   2 +-
- drivers/clk/meson/gxbb.c                        | 162 ++++++-------
- drivers/clk/meson/{meson8b-clkc.c => meson8b.c} | 293 +++++++++++++++++++++---
- drivers/clk/meson/meson8b.h                     | 151 ++++++++++++
- include/dt-bindings/clock/meson8b-clkc.h        |   2 -
- 6 files changed, 497 insertions(+), 115 deletions(-)
- rename drivers/clk/meson/{meson8b-clkc.c => meson8b.c} (51%)
+Signed-off-by: Alexander M?ller <serveralex@gmail.com>
+---
+ drivers/clk/meson/meson8b.c | 17 +----------------
+ drivers/clk/meson/meson8b.h | 40 ++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 41 insertions(+), 16 deletions(-)
  create mode 100644 drivers/clk/meson/meson8b.h
 
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 4c9413c..d52ae53 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -28,22 +28,7 @@
+ #include <linux/init.h>
+ 
+ #include "clkc.h"
+-
+-/*
+- * Clock controller register offsets
+- *
+- * Register offsets from the HardKernel[0] data sheet are listed in comment
+- * blocks below. Those offsets must be multiplied by 4 before adding them to
+- * the base address to get the right value
+- *
+- * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
+- */
+-#define MESON8B_REG_SYS_CPU_CNTL1	0x015c /* 0x57 offset in data sheet */
+-#define MESON8B_REG_HHI_MPEG		0x0174 /* 0x5d offset in data sheet */
+-#define MESON8B_REG_MALI		0x01b0 /* 0x6c offset in data sheet */
+-#define MESON8B_REG_PLL_FIXED		0x0280
+-#define MESON8B_REG_PLL_SYS		0x0300
+-#define MESON8B_REG_PLL_VID		0x0320
++#include "meson8b.h"
+ 
+ static DEFINE_SPINLOCK(clk_lock);
+ 
+diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+new file mode 100644
+index 0000000..5b9cb9f
+--- /dev/null
++++ b/drivers/clk/meson/meson8b.h
+@@ -0,0 +1,40 @@
++/*
++ * Copyright (c) 2015 Endless Mobile, Inc.
++ * Author: Carlo Caione <carlo@endlessm.com>
++ *
++ * Copyright (c) 2016 BayLibre, Inc.
++ * Michael Turquette <mturquette@baylibre.com>
++ *
++ * This program is free software; you can redistribute it and/or modify it
++ * under the terms and conditions of the GNU General Public License,
++ * version 2, as published by the Free Software Foundation.
++ *
++ * This program is distributed in the hope it will be useful, but WITHOUT
++ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
++ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
++ * more details.
++ *
++ * You should have received a copy of the GNU General Public License along with
++ * this program.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef __MESON8B_H
++#define __MESON8B_H
++
++/*
++ * Clock controller register offsets
++ *
++ * Register offsets from the HardKernel[0] data sheet are listed in comment
++ * blocks below. Those offsets must be multiplied by 4 before adding them to
++ * the base address to get the right value
++ *
++ * [0] http://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
++ */
++#define MESON8B_REG_SYS_CPU_CNTL1	0x015c /* 0x57 offset in data sheet */
++#define MESON8B_REG_HHI_MPEG		0x0174 /* 0x5d offset in data sheet */
++#define MESON8B_REG_MALI		0x01b0 /* 0x6c offset in data sheet */
++#define MESON8B_REG_PLL_FIXED		0x0280
++#define MESON8B_REG_PLL_SYS		0x0300
++#define MESON8B_REG_PLL_VID		0x0320
++
++#endif /* __MESON8B_H */
 -- 
 2.5.0
