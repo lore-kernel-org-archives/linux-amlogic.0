@@ -1,40 +1,52 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 29 Aug 2016 12:37:37 -0500
-Subject: [PATCH v2 3/3] ARM64: dts: meson-gxbb: Add GXBB AO Clock and
- Reset node
-In-Reply-To: <147208015014.66208.14165603610884470316@resonance> (Michael
- Turquette's message of "Wed, 24 Aug 2016 16:09:10 -0700")
-References: <1471514928-3341-1-git-send-email-narmstrong@baylibre.com>
- <1471514928-3341-4-git-send-email-narmstrong@baylibre.com>
- <7hk2fc76xx.fsf@baylibre.com>
- <147208015014.66208.14165603610884470316@resonance>
-Message-ID: <m260qjjx26.fsf@baylibre.com>
+Date: Mon, 29 Aug 2016 12:46:55 -0500
+Subject: [PATCH v2] ARM64: dts: amlogic: Add basic support for Amlogic
+ S905X
+In-Reply-To: <1472382113-10754-1-git-send-email-carlo@caione.org> (Carlo
+ Caione's message of "Sun, 28 Aug 2016 13:01:53 +0200")
+References: <1472382113-10754-1-git-send-email-carlo@caione.org>
+Message-ID: <m2y43fii28.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Michael Turquette <mturquette@baylibre.com> writes:
+Carlo Caione <carlo@caione.org> writes:
 
-> Quoting Kevin Hilman (2016-08-19 15:03:06)
->> Neil Armstrong <narmstrong@baylibre.com> writes:
->> 
->> > Add the AO clock controller node for the AmLogic GXBB SoC.
->> >
->> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> > ---
->> 
->> Applying this to the amlogic tree, but will need to wait a cycle due to
->> include dependencies on the bindings, which are going through the clock
->> tree.
+> From: Carlo Caione <carlo@endlessm.com>
 >
-> FYI, for picked patches, Stephen and I create a stable branch for each
-> platform. You can pull this into your tree if you want, just let us know
-> so we'll be sure not to rebase:
+> This patch introduces the basic support for the Amlogic S905X (Meson
+> GXL) and for the Amlogic evaluation board P212.
+> No documentation has been released yet for this SoC, so for now only the
+> bare minimum has been added in the DT.
 >
-> git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-meson-gxbb-ao
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Andreas F?rber <afaerber@suse.de>
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+> ---
 >
+> Hey Kevin,
+> Can you take this one?
+>
+> Changelog:
+> v2:
+>   - Added acked-by and reviewed-by
+>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.txt |   5 +
+>  arch/arm64/boot/dts/amlogic/Makefile              |   1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxl-p212.dts    |  70 +++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 179 ++++++++++++++++++++++
 
-OK, I'll be using clk-meson-gxb and clk-meson-gxbb-ao.
+It seems to me that meson-gxl.dtsi is almost identicial to
+meson-gxbb.dtsi.  I think we should create another .dtsi for all the
+common parts.  Something like meson-gx-common.dtsi, which is included
+by meson-gxbb.dtsi and meson-gxl.dtsi
 
-Thanks,
+Also, the GXL family has both the S905x and S905D SoCs, so we may need
+meson-gxl-s905x.dtsi and meson-gxl-s905d.dtsi but I'm not sure of the
+full set of differences between those, so we can save that for later.
+
+But, I do think the board files should probably have the SoC name.  So
+they would look something like: meson-gxl-s905x-p212.dts (which you
+have) and meson-gxl-s905d-p230.dts (which I have.)
 
 Kevin
