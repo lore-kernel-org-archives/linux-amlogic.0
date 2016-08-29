@@ -1,25 +1,31 @@
-From: davem@davemloft.net (David Miller)
-Date: Sun, 28 Aug 2016 23:40:08 -0400 (EDT)
-Subject: [PATCH v3 0/5] meson: Meson8b and GXBB DWMAC glue driver
-In-Reply-To: <20160828161637.9941-1-martin.blumenstingl@googlemail.com>
-References: <20160820093538.9707-1-martin.blumenstingl@googlemail.com>
- <20160828161637.9941-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160828.234008.445367966910278179.davem@davemloft.net>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 29 Aug 2016 09:56:08 +0200
+Subject: [RFC PATCH 0/3] ARm64: amlogic: Introduce common GX family dtsi
+Message-ID: <1472457371-1305-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 28 Aug 2016 18:16:32 +0200
+The new Amlogic GLX SoCs (S905X and S905D) are part of the Meson GX family so
+they share some basic characteritics that can be described in a common GX
+dtsi file used by the Meson GXBB and Meson GXL dtsi.
 
-> This adds a DWMAC glue driver for the PRG_ETHERNET registers found in
-> Meson8b and GXBB SoCs. Based on the "old" meson6b-dwmac glue driver
-> the register layout is completely different.
-> Thus I introduced a separate driver.
-> 
-> Changes since v2:
-> - fixed unloading the glue driver when built as module. This pulls in a
->   patch from Joachim Eastwood (thanks) to get our private data structure
->   (bsp_priv).
+This patchset introduces the common dtsi and switches the GLX and GXBB to use
+the common dtsi, the GXBB dtsi is reformated to handle this situation.
 
-This doesn't apply cleanly at all to the net-next tree, so I have
-no idea where you expect these changes to be applied.
+This patchset depends on Carlo Caione "ARM64: dts: amlogic: Add basic support for Amlogic S905X" [1]
+
+[1] http://lkml.kernel.org/r/1472382113-10754-1-git-send-email-carlo at caione.org
+
+Neil Armstrong (3):
+  ARM64: dts: amlogic: Add Meson GX Family common dtsi
+  ARM64: dts: amlogic: Switch Meson GXL dtsi to use common GX dtsi
+  ARM64: dts: amlogic: Switch Meson GXBB dtsi to use common GX dtsi
+
+ arch/arm64/boot/dts/amlogic/meson-gx-common.dtsi | 181 +++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi      | 320 +++++++----------------
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi       | 133 +---------
+ 3 files changed, 281 insertions(+), 353 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx-common.dtsi
+
+-- 
+1.9.1
