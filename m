@@ -1,56 +1,58 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 29 Aug 2016 12:50:18 -0500
-Subject: [PATCH v2] ARM64: dts: amlogic: Add basic support for Amlogic
- S905X
-In-Reply-To: <m2y43fii28.fsf@baylibre.com>
-References: <1472382113-10754-1-git-send-email-carlo@caione.org>
- <m2y43fii28.fsf@baylibre.com>
-Message-ID: <CAOi56cW3rRVbLM9L=aCMQSsYvuXQBOKdEY4LqN0NBpbm3Lzz+g@mail.gmail.com>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Mon, 29 Aug 2016 20:38:31 +0200
+Subject: [RFC PATCH 0/3] ARm64: amlogic: Introduce common GX family dtsi
+In-Reply-To: <CAOQ7t2YGbASh7v25wgDspKNWgFOcRsikJs_WZptn+LkVXmaHig@mail.gmail.com>
+References: <1472457371-1305-1-git-send-email-narmstrong@baylibre.com>
+ <CAOQ7t2YGbASh7v25wgDspKNWgFOcRsikJs_WZptn+LkVXmaHig@mail.gmail.com>
+Message-ID: <2983d731-82fd-63fc-7541-8c1d6a929416@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Aug 29, 2016 at 12:46 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Carlo Caione <carlo@caione.org> writes:
->
->> From: Carlo Caione <carlo@endlessm.com>
+Am 29.08.2016 um 10:01 schrieb Carlo Caione:
+> On Mon, Aug 29, 2016 at 9:56 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> The new Amlogic GLX SoCs (S905X and S905D) are part of the Meson GX family so
+>> they share some basic characteritics that can be described in a common GX
+>> dtsi file used by the Meson GXBB and Meson GXL dtsi.
 >>
->> This patch introduces the basic support for the Amlogic S905X (Meson
->> GXL) and for the Amlogic evaluation board P212.
->> No documentation has been released yet for this SoC, so for now only the
->> bare minimum has been added in the DT.
+>> This patchset introduces the common dtsi and switches the GLX and GXBB to use
+>> the common dtsi, the GXBB dtsi is reformated to handle this situation.
 >>
->> Acked-by: Rob Herring <robh@kernel.org>
->> Reviewed-by: Andreas F?rber <afaerber@suse.de>
->> Signed-off-by: Carlo Caione <carlo@endlessm.com>
->> ---
+>> This patchset depends on Carlo Caione "ARM64: dts: amlogic: Add basic support for Amlogic S905X" [1]
 >>
->> Hey Kevin,
->> Can you take this one?
+>> [1] http://lkml.kernel.org/r/1472382113-10754-1-git-send-email-carlo at caione.org
 >>
->> Changelog:
->> v2:
->>   - Added acked-by and reviewed-by
->>
->> ---
->>  Documentation/devicetree/bindings/arm/amlogic.txt |   5 +
->>  arch/arm64/boot/dts/amlogic/Makefile              |   1 +
->>  arch/arm64/boot/dts/amlogic/meson-gxl-p212.dts    |  70 +++++++++
->>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        | 179 ++++++++++++++++++++++
->
-> It seems to me that meson-gxl.dtsi is almost identicial to
-> meson-gxbb.dtsi.  I think we should create another .dtsi for all the
-> common parts.  Something like meson-gx-common.dtsi, which is included
-> by meson-gxbb.dtsi and meson-gxl.dtsi
->
-> Also, the GXL family has both the S905x and S905D SoCs, so we may need
-> meson-gxl-s905x.dtsi and meson-gxl-s905d.dtsi but I'm not sure of the
-> full set of differences between those, so we can save that for later.
->
-> But, I do think the board files should probably have the SoC name.  So
-> they would look something like: meson-gxl-s905x-p212.dts (which you
-> have) and meson-gxl-s905d-p230.dts (which I have.)
+>> Neil Armstrong (3):
+>>   ARM64: dts: amlogic: Add Meson GX Family common dtsi
+>>   ARM64: dts: amlogic: Switch Meson GXL dtsi to use common GX dtsi
+>>   ARM64: dts: amlogic: Switch Meson GXBB dtsi to use common GX dtsi
+> 
+> FWIW
+> Acked-by: Carlo Caione <carlo@endlessm.com>
 
-Oops, I should've read a bit more of my backlog before responding
-here.  I see Neil has already done this building on your patch.
+Adding an unused .dtsi duplicating GXBB makes me uneasy.
 
-Kevin (still catching up on post-holiday mails)
+Any chance we can simplify this to at most two steps?
+1) Move code from gxbb to gx (1/3 + 3/3)
+2) Add gxl using gx ("Add basic support for Amlogic S905X" + 2/3)
+
+Alternatively:
+1) "Add basic support for Amlogic S905X"
+2) Factor out common bits (1/3 + 2/3 + 3/3)
+
+As for bike-shedding, is there a GX family as well or could we drop
+-common? .dtsi is always something common - compare Exynos or i.MX.
+Since there are meson8b and meson8 I was anticipating that after gxbb
+would come gx, not gxl.
+
+Do you know what the L in GXL is for? Should we consider renaming gxbb
+to gxb, and then also insert -s905 as suggested by Kevin, for symmetry?
+U-Boot is still in an early stage with $fdtfile issues remaining that I
+need to iterate over; DT compatible strings would need to remain though.
+
+Regards,
+Andreas
+
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
