@@ -1,21 +1,25 @@
-From: ccc94453@vip.cybercity.dk (Rask Ingemann Lambertsen)
-Date: Sun, 28 Aug 2016 21:13:53 +0200
-Subject: [PATCH 2/2] ARM64: dts: meson-gxbb: add the SDIO pins
-In-Reply-To: <20160828164725.19429-3-martin.blumenstingl@googlemail.com>
-References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
- <20160828164725.19429-3-martin.blumenstingl@googlemail.com>
-Message-ID: <20160828191353.wpwbqsxdg5pdmese@vip.cybercity.dk>
+From: davem@davemloft.net (David Miller)
+Date: Sun, 28 Aug 2016 23:40:08 -0400 (EDT)
+Subject: [PATCH v3 0/5] meson: Meson8b and GXBB DWMAC glue driver
+In-Reply-To: <20160828161637.9941-1-martin.blumenstingl@googlemail.com>
+References: <20160820093538.9707-1-martin.blumenstingl@googlemail.com>
+ <20160828161637.9941-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20160828.234008.445367966910278179.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Aug 28, 2016 at 06:47:25PM +0200, Martin Blumenstingl wrote:
->  				uart_a_pins: uart_a {
->  					mux {
->  						groups = "uart_tx_a",
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 28 Aug 2016 18:16:32 +0200
 
-You shouldn't use underscores in node names. Use hyphens instead, perhaps.
-https://www.mail-archive.com/linux-kernel%40vger.kernel.org/msg1122967.html
-https://www.mail-archive.com/linux-kernel%40vger.kernel.org/msg1145633.html
+> This adds a DWMAC glue driver for the PRG_ETHERNET registers found in
+> Meson8b and GXBB SoCs. Based on the "old" meson6b-dwmac glue driver
+> the register layout is completely different.
+> Thus I introduced a separate driver.
+> 
+> Changes since v2:
+> - fixed unloading the glue driver when built as module. This pulls in a
+>   patch from Joachim Eastwood (thanks) to get our private data structure
+>   (bsp_priv).
 
--- 
-Rask Ingemann Lambertsen
+This doesn't apply cleanly at all to the net-next tree, so I have
+no idea where you expect these changes to be applied.
