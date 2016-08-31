@@ -1,159 +1,45 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Tue, 30 Aug 2016 12:19:06 -0700
-Subject: [PATCH v3 4/5] net: stmmac: add a glue driver for the Amlogic
- Meson 8b / GXBB DWMAC
-In-Reply-To: <20160828161637.9941-5-martin.blumenstingl@googlemail.com>
-References: <20160820093538.9707-1-martin.blumenstingl@googlemail.com>
- <20160828161637.9941-1-martin.blumenstingl@googlemail.com>
- <20160828161637.9941-5-martin.blumenstingl@googlemail.com>
-Message-ID: <20160830191906.GD12510@codeaurora.org>
+From: davem@davemloft.net (David Miller)
+Date: Tue, 30 Aug 2016 21:57:32 -0700 (PDT)
+Subject: [PATCH v3 0/5] meson: Meson8b and GXBB DWMAC glue driver
+In-Reply-To: <CAFBinCCmg-+8mjd0Xc5c7bEWL9_S_4kizs_UMiiW9ATBH_G8iw@mail.gmail.com>
+References: <20160828161637.9941-1-martin.blumenstingl@googlemail.com>
+ <20160828.234008.445367966910278179.davem@davemloft.net>
+ <CAFBinCCmg-+8mjd0Xc5c7bEWL9_S_4kizs_UMiiW9ATBH_G8iw@mail.gmail.com>
+Message-ID: <20160830.215732.429612225008644820.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/28, Martin Blumenstingl wrote:
-> +static int meson8b_init_clk(struct meson8b_dwmac *dwmac)
-> +{
-> +	struct clk_init_data init;
-> +	int i, ret;
-> +	struct device *dev = &dwmac->pdev->dev;
-> +	char clk_name[32];
-> +	const char *clk_div_parents[1];
-> +	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
-> +	static struct clk_div_table clk_25m_div_table[] = {
-> +		{ .val = 0, .div = 5 },
-> +		{ .val = 1, .div = 10 },
-> +		{ /* sentinel */ },
-> +	};
-> +
-> +	/* get the mux parents from DT */
-> +	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
-> +		char name[16];
-> +
-> +		snprintf(name, sizeof(name), "clkin%d", i);
-> +		dwmac->m250_mux_parent[i] = devm_clk_get(dev, name);
-> +		if (IS_ERR(dwmac->m250_mux_parent[i])) {
-> +			ret = PTR_ERR(dwmac->m250_mux_parent[i]);
-> +			if (ret != -EPROBE_DEFER)
-> +				dev_err(dev, "Missing clock %s\n", name);
-> +			return ret;
-> +		}
-> +
-> +		mux_parent_names[i] =
-> +			__clk_get_name(dwmac->m250_mux_parent[i]);
-> +	}
-> +
-> +	/* create the m250_mux */
-> +	snprintf(clk_name, sizeof(clk_name), "%s#m250_sel", dev_name(dev));
-> +	init.name = clk_name;
-> +	init.ops = &clk_mux_ops;
-> +	init.flags = CLK_IS_BASIC;
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 30 Aug 2016 20:49:28 +0200
 
-Please don't use this flag unless you need it.
+> On Mon, Aug 29, 2016 at 5:40 AM, David Miller <davem@davemloft.net> wrote:
+>> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Date: Sun, 28 Aug 2016 18:16:32 +0200
+>>
+>>> This adds a DWMAC glue driver for the PRG_ETHERNET registers found in
+>>> Meson8b and GXBB SoCs. Based on the "old" meson6b-dwmac glue driver
+>>> the register layout is completely different.
+>>> Thus I introduced a separate driver.
+>>>
+>>> Changes since v2:
+>>> - fixed unloading the glue driver when built as module. This pulls in a
+>>>   patch from Joachim Eastwood (thanks) to get our private data structure
+>>>   (bsp_priv).
+>>
+>> This doesn't apply cleanly at all to the net-next tree, so I have
+>> no idea where you expect these changes to be applied.
+> OK, maybe Kevin can me help out here as I think the patches should go
+> to various trees.
+> 
+> I think patches 1, 3 and 4 should go through the net-next tree (as
+> these touch drivers/net/ethernet/stmicro/stmmac/ and the corresponding
+> documentation).
+> Patch 2 should probably go through clk-meson-gxbb / clk-next (just
+> like the other clk changes we had).
+> The last patch (patch 5) should probably go through the ARM SoC tree
+> (just like the other dts changes we had).
+> 
+> @David, Kevin: would this be fine for you?
 
-> +	init.parent_names = mux_parent_names;
-> +	init.num_parents = MUX_CLK_NUM_PARENTS;
-> +
-> +	dwmac->m250_mux.reg = dwmac->regs + PRG_ETH0;
-> +	dwmac->m250_mux.shift = PRG_ETH0_CLK_M250_SEL_SHIFT;
-> +	dwmac->m250_mux.mask = PRG_ETH0_CLK_M250_SEL_MASK;
-> +	dwmac->m250_mux.flags = 0;
-> +	dwmac->m250_mux.table = NULL;
-> +	dwmac->m250_mux.hw.init = &init;
-> +
-> +	dwmac->m250_mux_clk = devm_clk_register(dev, &dwmac->m250_mux.hw);
-> +	if (WARN_ON(PTR_ERR_OR_ZERO(dwmac->m250_mux_clk)))
-
-Why not if(WARN_ON(IS_ERR())? The OR_ZERO part seems confusing.
-
-> +		return PTR_ERR(dwmac->m250_mux_clk);
-> +
-> +	/* create the m250_div */
-> +	snprintf(clk_name, sizeof(clk_name), "%s#m250_div", dev_name(dev));
-> +	init.name = devm_kstrdup(dev, clk_name, GFP_KERNEL);
-> +	init.ops = &clk_divider_ops;
-> +	init.flags = CLK_IS_BASIC | CLK_SET_RATE_PARENT;
-> +	clk_div_parents[0] = __clk_get_name(dwmac->m250_mux_clk);
-> +	init.parent_names = clk_div_parents;
-> +	init.num_parents = ARRAY_SIZE(clk_div_parents);
-> +
-> +	dwmac->m250_div.reg = dwmac->regs + PRG_ETH0;
-> +	dwmac->m250_div.shift = PRG_ETH0_CLK_M250_DIV_SHIFT;
-> +	dwmac->m250_div.width = PRG_ETH0_CLK_M250_DIV_WIDTH;
-> +	dwmac->m250_div.hw.init = &init;
-> +	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO;
-> +
-> +	dwmac->m250_div_clk = devm_clk_register(dev, &dwmac->m250_div.hw);
-
-We've been trying to move away from devm_clk_register() to
-devm_clk_hw_register() so that clk providers aren't also clk
-consumers. Obviously in this case this driver is a provider and a
-consumer, so this isn't as important. Kevin did something similar
-in the mmc driver, so I'll reiterate what I said on that patch.
-Perhaps we should make __clk_create_clk() into a real clk
-provider API so that we can use devm_clk_hw_register() here and
-then generate a clk for this device. That would allow us to have
-proper consumer tracking without relying on the clk that is
-returned from clk_register() (the intent is to make that clk
-instance internal to the framework).
-
-> +	if (WARN_ON(PTR_ERR_OR_ZERO(dwmac->m250_div_clk)))
-> +		return PTR_ERR(dwmac->m250_div_clk);
-> +
-> +	/* create the m25_div */
-> +	snprintf(clk_name, sizeof(clk_name), "%s#m25_div", dev_name(dev));
-> +	init.name = devm_kstrdup(dev, clk_name, GFP_KERNEL);
-> +	init.ops = &clk_divider_ops;
-> +	init.flags = CLK_IS_BASIC | CLK_SET_RATE_PARENT;
-> +	clk_div_parents[0] = __clk_get_name(dwmac->m250_div_clk);
-> +	init.parent_names = clk_div_parents;
-> +	init.num_parents = ARRAY_SIZE(clk_div_parents);
-> +
-> +	dwmac->m25_div.reg = dwmac->regs + PRG_ETH0;
-> +	dwmac->m25_div.shift = PRG_ETH0_CLK_M25_DIV_SHIFT;
-> +	dwmac->m25_div.width = PRG_ETH0_CLK_M25_DIV_WIDTH;
-> +	dwmac->m25_div.table = clk_25m_div_table;
-> +	dwmac->m25_div.hw.init = &init;
-> +	dwmac->m25_div.flags = CLK_DIVIDER_ALLOW_ZERO;
-> +
-> +	dwmac->m25_div_clk = devm_clk_register(dev, &dwmac->m25_div.hw);
-> +	if (WARN_ON(PTR_ERR_OR_ZERO(dwmac->m25_div_clk)))
-> +		return PTR_ERR(dwmac->m25_div_clk);
-> +
-> +	return 0;
-
-This could be return WARN_ON(PTR_ERR_OR_ZERO(...))
-
-> +
-> +static int meson8b_dwmac_probe(struct platform_device *pdev)
-> +{
-> +	struct plat_stmmacenet_data *plat_dat;
-> +	struct stmmac_resources stmmac_res;
-> +	struct resource *res;
-> +	struct meson8b_dwmac *dwmac;
-> +	int ret;
-> +
-> +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> +	if (ret)
-> +		return ret;
-> +
-> +	plat_dat = stmmac_probe_config_dt(pdev, &stmmac_res.mac);
-> +	if (IS_ERR(plat_dat))
-> +		return PTR_ERR(plat_dat);
-> +
-> +	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-> +	if (!dwmac)
-> +		return -ENOMEM;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +	if (!res)
-> +		return -ENODEV;
-> +
-
-You can drop the above two lines and just call
-devm_ioremap_resource().
-
-> +	dwmac->regs = devm_ioremap_resource(&pdev->dev, res);
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+I would prefer if all of the patches went through one tree, that way
+all the dependencies are satisfied in one place.
