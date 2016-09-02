@@ -1,53 +1,41 @@
 From: arnd@arndb.de (Arnd Bergmann)
-Date: Fri, 02 Sep 2016 10:50:38 +0200
-Subject: [PATCH v3 0/5] meson: Meson8b and GXBB DWMAC glue driver
-In-Reply-To: <20160901.223731.1152520865580611814.davem@davemloft.net>
-References: <CAFBinCCmg-+8mjd0Xc5c7bEWL9_S_4kizs_UMiiW9ATBH_G8iw@mail.gmail.com>
- <m2poonexpj.fsf@baylibre.com>
- <20160901.223731.1152520865580611814.davem@davemloft.net>
-Message-ID: <5097106.VWHdyQfjWO@wuerfel>
+Date: Fri, 02 Sep 2016 18:20:00 +0200
+Subject: [PATCH v2 2/2] arm64: dts: Fix broken architected timer interrupt
+ trigger
+In-Reply-To: <CAK7LNARVw+mDhHT2+WjDtHpBvsxauUQpRCJeNLrQxrj0Oo=hrQ@mail.gmail.com>
+References: <1470045256-9032-1-git-send-email-marc.zyngier@arm.com>
+ <1470045256-9032-3-git-send-email-marc.zyngier@arm.com>
+ <CAK7LNARVw+mDhHT2+WjDtHpBvsxauUQpRCJeNLrQxrj0Oo=hrQ@mail.gmail.com>
+Message-ID: <19742803.nMPmp3hcfz@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thursday, September 1, 2016 10:37:31 PM CEST David Miller wrote:
-> From: Kevin Hilman <khilman@baylibre.com>
-> Date: Thu, 01 Sep 2016 21:23:52 -0700
-> > David Miller <davem@davemloft.net> writes:
-> >> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >> Date: Tue, 30 Aug 2016 20:49:28 +0200
-> >>> On Mon, Aug 29, 2016 at 5:40 AM, David Miller <davem@davemloft.net> wrote:
-> >>>> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >>> I think patches 1, 3 and 4 should go through the net-next tree (as
-> >>> these touch drivers/net/ethernet/stmicro/stmmac/ and the corresponding
-> >>> documentation).
-> >>> Patch 2 should probably go through clk-meson-gxbb / clk-next (just
-> >>> like the other clk changes we had).
-> >>> The last patch (patch 5) should probably go through the ARM SoC tree
-> >>> (just like the other dts changes we had).
-> >>> 
-> >>> @David, Kevin: would this be fine for you?
-> >>
-> >> I would prefer if all of the patches went through one tree, that way
-> >> all the dependencies are satisfied in one place.
-> > 
-> > David, with your ack on the drivers/net changes, I can take them through
-> > my tree for Amlogic SoCs (which then goes via the arm-soc tree.)
+On Monday, August 1, 2016 7:00:50 PM CEST Masahiro Yamada wrote:
+> > Acked-by: Duc Dang <dhdang@apm.com>
+> > Acked-by: Carlo Caione <carlo@endlessm.com>
+> > Acked-by: Michal Simek <michal.simek@xilinx.com>
+> > Acked-by: Krzysztof Kozlowski <k.kozlowski@samsung.com>
+> > Acked-by: Dinh Nguyen <dinguyen@opensource.altera.com>
+> > Signed-off-by: Marc Zyngier <marc.zyngier@arm.com>
+> > ---
+> >  arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi    | 8 ++++----
+> >  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi          | 8 ++++----
+> >  arch/arm64/boot/dts/apm/apm-storm.dtsi               | 8 ++++----
+> >  arch/arm64/boot/dts/broadcom/ns2.dtsi                | 8 ++++----
+> >  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi         | 8 ++++----
+> >  arch/arm64/boot/dts/exynos/exynos7.dtsi              | 8 ++++----
+> >  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi       | 8 ++++----
+> >  arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi       | 8 ++++----
+> >  arch/arm64/boot/dts/marvell/armada-ap806.dtsi        | 8 ++++----
+> >  arch/arm64/boot/dts/socionext/uniphier-ph1-ld20.dtsi | 8 ++++----
 > 
-> Acked-by: David S. Miller <davem@davemloft.net>
+> 
+> For uniphier-ph1-ld20.dtsi,
+> 
+> Acked-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> 
+> 
 
-Thanks!
-
-Note that we (in arm-soc) normally put drivers and DT changes into
-separate branches and send a pull request for each branch separately
-(though usually on the same day).
-
-We expect there to be no runtime dependency between the DT changes
-and the driver changes other than requiring both to make use of
-the added features.
-
-Kevin/Martin: in case this one does have a runtime dependency,
-please we can put both halves into the next/drivers branch in
-the correct order to ensure that they are applied together, and
-describe the dependency in the cover letter for the pull request.
+Applied to the fixes branch for 4.8, thanks
 
 	Arnd
