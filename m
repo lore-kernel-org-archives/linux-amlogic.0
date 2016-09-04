@@ -1,48 +1,33 @@
-From: jassisinghbrar@gmail.com (Jassi Brar)
-Date: Sun, 4 Sep 2016 11:05:44 +0530
-Subject: [PATCH v2 0/3] Add Platform MHU mailbox driver for Amlogic GXBB
-In-Reply-To: <CAOi56cVVY=XL1HFSNGS8H3Zq0KiNbAzvNxbOkW7NYsSOQ2n6_g@mail.gmail.com>
-References: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
- <m24m5xc1v0.fsf@baylibre.com>
- <CABb+yY2Cq5KaCCvoJ5afsLfqc5NEoPMkaaYk9GjFO8=N80eVBA@mail.gmail.com>
- <CAOi56cVVY=XL1HFSNGS8H3Zq0KiNbAzvNxbOkW7NYsSOQ2n6_g@mail.gmail.com>
-Message-ID: <CABb+yY10d1+73wjAZCM6PqSXiVC05ZWehK+ugb7rMh8yOh9wNg@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 4 Sep 2016 19:55:55 +0200
+Subject: [PATCH 2/2] ARM64: dts: meson-gxbb: add the SDIO pins
+In-Reply-To: <20160828191353.wpwbqsxdg5pdmese@vip.cybercity.dk>
+References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
+ <20160828164725.19429-3-martin.blumenstingl@googlemail.com>
+ <20160828191353.wpwbqsxdg5pdmese@vip.cybercity.dk>
+Message-ID: <CAFBinCBxY8HW26xb1PMdtPfVOAWk3FAQfcU7Qi-ithi==b=y0A@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Sep 4, 2016 at 2:15 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> On Fri, Sep 2, 2016 at 10:33 PM, Jassi Brar <jassisinghbrar@gmail.com> wrote:
->> On Sat, Sep 3, 2016 at 5:04 AM, Kevin Hilman <khilman@baylibre.com> wrote:
->>> Hi Jassi,
->>>
->>> Neil Armstrong <narmstrong@baylibre.com> writes:
->>>
->>>> In order to support Mailbox links for the Amlogic GXBB SoC, add a generic
->>>> platform MHU driver based on arm_mhu.c.
->>>>
->>>> This patchset follows a RFC thread along the GXBB SCPI support at :
->>>> http://lkml.kernel.org/r/1466503374-28841-1-git-send-email-narmstrong at baylibre.com
->>>> And specific MHU discussions at :
->>>> http://lkml.kernel.org/r/CABb+yY3HqJG2+GMWCWF9PomxobrwWGZ=TZe5NvXPcHMDdLhkcQ at mail.gmail.com
->>>>
->>>> Changes since v1 at http://lkml.kernel.org/r/1470732737-18391-1-git-send-email-narmstrong at baylibre.com :
->>>>  - Fix irq to signed to detect platform_get_irq() failures
->>>>  - Introduced back the secure channel
->>>>  - Fixed indexes
->>>
->>> How is this version looking to you?
->>>
->>> With your review/ack on the driver, I'd be happy to take it via the
->>> amlogic tree as there shouldn't be any conflicts with your tree.
->>>
->> I am ok with the driver, but I don't understand how it helps going via
->> amlogic tree. I would like to send a pull request every release ;)
+On Sun, Aug 28, 2016 at 9:13 PM, Rask Ingemann Lambertsen
+<ccc94453@vip.cybercity.dk> wrote:
+> On Sun, Aug 28, 2016 at 06:47:25PM +0200, Martin Blumenstingl wrote:
+>>                               uart_a_pins: uart_a {
+>>                                       mux {
+>>                                               groups = "uart_tx_a",
 >
-> That's fine with me too.  I offered tot take int just in case you had
-> already sent pull requests for this cycle, and also since I'll take
-> the DT changes through arm-soc.
->
-This revision came after rc2, so it wasn't included. I will queue
-patch-1 & 2 for next release, and you the patch-3.
+> You shouldn't use underscores in node names. Use hyphens instead, perhaps.
+> https://www.mail-archive.com/linux-kernel%40vger.kernel.org/msg1122967.html
+> https://www.mail-archive.com/linux-kernel%40vger.kernel.org/msg1145633.html
+The part which you found there is just the context of my patch, not an
+actual change.
+However, basically all of the GXBB .dts files are using underscores in
+the node names.
+Do "we" have to change this globally?
 
-Thanks.
+Regarding my patch: I got a NACK from Neil Armstrong off-list:
+The SDIO IRQ pin is missing in my series.
+
+
+Regards,
+Martin
