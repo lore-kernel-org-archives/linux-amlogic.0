@@ -1,51 +1,43 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Mon, 05 Sep 2016 11:27:28 +0200
-Subject: [PATCH v3 4/5] net: stmmac: add a glue driver for the Amlogic
- Meson 8b / GXBB DWMAC
-In-Reply-To: <CAFBinCCVUhUVyceGc2capcCPOK8MTsn+RcC9gnrtMVvZUENXtQ@mail.gmail.com>
-References: <20160820093538.9707-1-martin.blumenstingl@googlemail.com>
- <20160830191906.GD12510@codeaurora.org>
- <CAFBinCCVUhUVyceGc2capcCPOK8MTsn+RcC9gnrtMVvZUENXtQ@mail.gmail.com>
-Message-ID: <8189845.3pyN0uTLGL@wuerfel>
+From: thierry.reding@gmail.com (Thierry Reding)
+Date: Mon, 5 Sep 2016 11:53:21 +0200
+Subject: [PATCH v3 1/4] pwm: Add support for Meson PWM Controller
+In-Reply-To: <CAFBinCA3PoR_=+f8aU-Trg8uKWWXkkBOtrQUaXbdsb8E-fdM0g@mail.gmail.com>
+References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
+ <1471880193-21879-2-git-send-email-narmstrong@baylibre.com>
+ <CAFBinCA3PoR_=+f8aU-Trg8uKWWXkkBOtrQUaXbdsb8E-fdM0g@mail.gmail.com>
+Message-ID: <20160905095321.GB31424@ulmo.ba.sec>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sunday, September 4, 2016 8:20:15 PM CEST Martin Blumenstingl wrote:
-> 
-> >> +     dwmac->m25_div_clk = devm_clk_register(dev, &dwmac->m25_div.hw);
-> >> +     if (WARN_ON(PTR_ERR_OR_ZERO(dwmac->m25_div_clk)))
-> >> +             return PTR_ERR(dwmac->m25_div_clk);
-> >> +
-> >> +     return 0;
+On Sun, Aug 28, 2016 at 06:33:03PM +0200, Martin Blumenstingl wrote:
+> On Mon, Aug 22, 2016 at 5:36 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> > Add support for the PWM controller found in the Amlogic SoCs.
+> > This driver supports the Meson8b and GXBB SoCs.
 > >
-> > This could be return WARN_ON(PTR_ERR_OR_ZERO(...))
-> This would work as well but I prefer the way it is right now (as one
-> could easily extend the code without having to touch any existing code
-> apart from the last return).
-> However, as it's always the case with personal preference: if
-> coding-style requires me to change it then I'll do so, just let me
-> know.
-> 
-> I have addressed all other issues you found (thanks for that!) in v4
-> (which I am about to send in the next few minutes).
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> I could enable the AP6330 SDIO wifi module with this on my
+> meson-gxbb-vega-s95-meta clone, which uses pwm_e to generate the LPO
+> clock for the wifi module (see [0] for the corresponding patches).
+> So thank you Neil, and:
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
+Hi Martin,
 
-Both of these are fairly unusual. The most common way to write it is
+As mentioned in another reply in this thread I ended up restructuring
+the driver a little before applying it to the PWM tree. I don't /think/
+there are any functional changes, so I left your Tested-by in place, but
+it would be great if you could retest and confirm, just to make sure.
 
-	if (WARN_ON(IS_ERR(dwmac->m25_div_clk)))
-		return PTR_ERR(dwmac->m25_div_clk);
-   return 0;
+The driver is in the for-4.9/drivers branch of the PWM tree:
 
-However, I now tend to prefer
+	https://git.kernel.org/cgit/linux/kernel/git/thierry.reding/linux-pwm.git/log/?h=for-4.9/drivers
 
-	ret = PTR_ERR_OR_ZERO(dwmac->m25_div_clk);
-	WARN_ON(ret);
-	return ret;
-
-which is less likely to cause false-positive warnings when building
-with -Wmaybe-uninitialized than any of the other ones.
-
-Please don't use PTR_ERR_OR_ZERO() as a condition, that is what
-IS_ERR() is meant for.
-
-	Arnd
+Thanks,
+Thierry
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 801 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160905/6455a12d/attachment.sig>
