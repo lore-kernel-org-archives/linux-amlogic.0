@@ -1,43 +1,153 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 5 Sep 2016 21:07:03 +0200
-Subject: [PATCH v4 4/5] net: stmmac: add a glue driver for the Amlogic
- Meson 8b / GXBB DWMAC
-In-Reply-To: <14789887.lyko4Om94p@wuerfel>
-References: <201609050953.67GKeUAU%fengguang.wu@intel.com>
- <14789887.lyko4Om94p@wuerfel>
-Message-ID: <CAFBinCAC3c=o1=8DGfiPhw6w6V42jvYLUfHXHpHLe03pw8P=LQ@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 6 Sep 2016 10:36:49 +0200
+Subject: [PATCH v3 1/4] pwm: Add support for Meson PWM Controller
+In-Reply-To: <20160905090052.GG3532@ulmo.ba.sec>
+References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
+ <1471880193-21879-2-git-send-email-narmstrong@baylibre.com>
+ <20160905090052.GG3532@ulmo.ba.sec>
+Message-ID: <bd7ea1db-d8f9-f075-14ef-732d9bb65e77@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Sep 5, 2016 at 12:53 PM, Arnd Bergmann <arnd@arndb.de> wrote:
-> On Monday, September 5, 2016 9:37:29 AM CEST kbuild test robot wrote:
->> All error/warnings (new ones prefixed by >>):
+Hi Thierry,
+
+On 09/05/2016 11:00 AM, Thierry Reding wrote:
+> On Mon, Aug 22, 2016 at 05:36:30PM +0200, Neil Armstrong wrote:
+>> Add support for the PWM controller found in the Amlogic SoCs.
+>> This driver supports the Meson8b and GXBB SoCs.
 >>
->> >> drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c:63:18: error: field 'm250_mux' has incomplete type
->>      struct clk_mux  m250_mux;
->>                      ^
->> >> drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c:67:21: error: field 'm250_div' has incomplete type
->>      struct clk_divider m250_div;
->>                         ^
->>
->
-> I think this needs a compile-time dependency on COMMON_CLK
-indeed, since we are also a clock provider we have to depend on
-CONFIG_COMMON_CLK.
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/pwm/Kconfig     |   9 +
+>>  drivers/pwm/Makefile    |   1 +
+>>  drivers/pwm/pwm-meson.c | 528 ++++++++++++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 538 insertions(+)
+>>  create mode 100644 drivers/pwm/pwm-meson.c
+> 
+> Hi Neil,
+> 
+> sorry for taking so long to review this. I had actually started to write
+> a review email since I had noticed a couple of slight oddities about the
+> driver structure (primarily this was about how channel-specific data was
+> split between struct meson_pwm_channel and struct meson_pwm_chip), but I
+> ended up making some changes to the driver in order to see what my
+> suggestions would look like, and if they would indeed improve things.
+> But once I had done that, I thought it a bit pointless to make that into
+> review comments and decided to just push what I had done and ask you to
+> take a look, and if you had no objections to the changes take the driver
+> for a spin to see if it still worked as expected.
 
-That brings up a question though:
-so far the new driver uses the same Kconfig symbol as the "old" driver
-(CONFIG_DWMAC_MESON).
-The "old" driver does not need CONFIG_COMMON_CLK while the new one does.
-I see a few options here:
-1. simply adding the dependency (as most configurations will have
-CONFIG_COMMON_CLK enabled anyways)
-2. add some depends on COMMON_CLK || MACH_MESON6 || MACH_MESON8 foo
-3. use a new Kconfig symbol for new new driver (CONFIG_DWMAC_MESON8B?)
+We re-run our tests and I found 2 bugs, the first one is in meson_pwm_enable(),
+only the channel A was setup, the fix is :
 
-And finally regarding your other mail: I have already changed
-WARN_ON(PTR_ERR_OR_ZERO(...)) to WARN_ON(IS_ERR(...)) in v4
+static void meson_pwm_enable(...)
+-	u32 value, clk_shift, clk_enable, enable;
++	u32 reg, value, clk_shift, clk_enable, enable;
 
+ 	switch (id) {
+ 	case 0:
+[...]
++		reg = REG_PWM_A;
+ 		break;
+ 	case 1:
+[...]
++		reg = REG_PWM_B;
+ 		break;
+ 	}
+[...]
+-	writel(value, meson->base + REG_PWM_A);
++	writel(value, meson->base + reg);
 
-Regards,
-Martin
+The second bug is in probe(), I understand the point to allocate dynamically the channels
+and attach them to each pwm chip, but when calling meson_pwm_init_channels() we get an OOPS
+because meson->chip.pwms[i] are allocated in pwmchip_add().
+Moving meson_pwm_init_channels() would fix this, but in case of a clk PROBE_DEFER, we would need
+to remove back the pwmchip, which is a quite a bad design decision....
+
+The smartest fix I found was to allocate channels in probe, init them them attach them after pwmchip_add():
+
+static int meson_pwm_init_channels(..., struct meson_pwm_channel *channels)
+{
++	struct meson_pwm_channel *channels;
+[...]
+-	for (i = 0; i < meson->chip.npwm; i++) {
+-		struct pwm_device *pwm = &meson->chip.pwms[i];
+-		struct meson_pwm_channel *channel;
+-
+-		channel = devm_kzalloc(dev, sizeof(*channel), GFP_KERNEL);
+-		if (!channel)
+-			return -ENOMEM;
++	if (!channels)
++		return -EINVAL;
+
++	for (i = 0; i < meson->chip.npwm; i++) {
+[...]
++		memset(&channels[i], 0, sizeof(struct meson_pwm_channel));
+[...]
+//Rename "channel->" into "channels[i]."//
+[...]
+-		pwm_set_chip_data(pwm, channel);
+ 	}
+
+ 	return 0;
+}
+
++static void meson_pwm_add_channels_data(struct meson_pwm *meson,
++					struct meson_pwm_channel *channels)
++{
++	unsigned int i;
++
++	for (i = 0; i < meson->chip.npwm; i++)
++		pwm_set_chip_data(&meson->chip.pwms[i], &channels[i]);
++}
+
+static int meson_pwm_probe(struct platform_device *pdev)
+{
++	struct meson_pwm_channel *channels;
+[...]
+-	err = meson_pwm_init_channels(meson);
+-	if (err < 0)
+-		return err;
+-
+ 	meson->chip.dev = &pdev->dev;
+[...]
+ 	meson->chip.of_pwm_n_cells = 3;
+
++	channels = devm_kmalloc_array(&pdev->dev, 2, sizeof(*meson),
++				      GFP_KERNEL);
++	if (!channels)
++		return -ENOMEM;
++
++	err = meson_pwm_init_channels(meson, channels);
++	if (err < 0)
++		return err;
++
+ 	err = pwmchip_add(&meson->chip);
+[...]
++	meson_pwm_add_channels_data(meson, channels);
++
+ 	platform_set_drvdata(pdev, meson);
+
+ 	return 0;
+}
+
+The fix driver is in a separate branch, rebased on your for-next :
+https://github.com/superna9999/linux/tree/amlogic/v4.8/pwm-for-next
+
+and in a signed tag I can transform in a pull request if needed :
+https://github.com/superna9999/linux/releases/tag/amlogic/v4.8/pwm-for-next-for-v4
+
+[...]
+> 
+> I've pushed my modifications to the driver to the linux-pwm repository:
+> 
+> 	https://git.kernel.org/cgit/linux/kernel/git/thierry.reding/linux-pwm.git/log/?h=for-next
+> 
+> Alternatively you can also take a look at the for-4.9/drivers branch,
+> but they're currently the same thing.
+> 
+> Thierry
+> 
+
+Thanks,
+Neil
