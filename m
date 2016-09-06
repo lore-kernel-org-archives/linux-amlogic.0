@@ -1,39 +1,54 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Tue,  6 Sep 2016 15:01:10 +0200
-Subject: [PATCH] clk: meson: fix CLKID_GCLK_VENCI_INT typo
-Message-ID: <20160906130130.1645496-1-arnd@arndb.de>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 06 Sep 2016 10:56:18 -0700
+Subject: [PATCH v2 0/3] Add Platform MHU mailbox driver for Amlogic GXBB
+In-Reply-To: <CABb+yY10d1+73wjAZCM6PqSXiVC05ZWehK+ugb7rMh8yOh9wNg@mail.gmail.com>
+ (Jassi Brar's message of "Sun, 4 Sep 2016 11:05:44 +0530")
+References: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
+ <m24m5xc1v0.fsf@baylibre.com>
+ <CABb+yY2Cq5KaCCvoJ5afsLfqc5NEoPMkaaYk9GjFO8=N80eVBA@mail.gmail.com>
+ <CAOi56cVVY=XL1HFSNGS8H3Zq0KiNbAzvNxbOkW7NYsSOQ2n6_g@mail.gmail.com>
+ <CABb+yY10d1+73wjAZCM6PqSXiVC05ZWehK+ugb7rMh8yOh9wNg@mail.gmail.com>
+Message-ID: <7hpoogzzct.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The addition of many gate clocks added two entries in an array for
-the same value:
+Jassi Brar <jassisinghbrar@gmail.com> writes:
 
-drivers/clk/meson/meson8b.c:479:10: error: initialized field overwritten [-Werror=override-init]
-   [CLKID_GCLK_VENCI_INT]     = &meson8b_gclk_venci_int.hw,
-   [CLKID_GCLK_VENCI_INT]     = &meson8b_gclk_vencp_int.hw,
+> On Sun, Sep 4, 2016 at 2:15 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> On Fri, Sep 2, 2016 at 10:33 PM, Jassi Brar <jassisinghbrar@gmail.com> wrote:
+>>> On Sat, Sep 3, 2016 at 5:04 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+>>>> Hi Jassi,
+>>>>
+>>>> Neil Armstrong <narmstrong@baylibre.com> writes:
+>>>>
+>>>>> In order to support Mailbox links for the Amlogic GXBB SoC, add a generic
+>>>>> platform MHU driver based on arm_mhu.c.
+>>>>>
+>>>>> This patchset follows a RFC thread along the GXBB SCPI support at :
+>>>>> http://lkml.kernel.org/r/1466503374-28841-1-git-send-email-narmstrong at baylibre.com
+>>>>> And specific MHU discussions at :
+>>>>> http://lkml.kernel.org/r/CABb+yY3HqJG2+GMWCWF9PomxobrwWGZ=TZe5NvXPcHMDdLhkcQ at mail.gmail.com
+>>>>>
+>>>>> Changes since v1 at http://lkml.kernel.org/r/1470732737-18391-1-git-send-email-narmstrong at baylibre.com :
+>>>>>  - Fix irq to signed to detect platform_get_irq() failures
+>>>>>  - Introduced back the secure channel
+>>>>>  - Fixed indexes
+>>>>
+>>>> How is this version looking to you?
+>>>>
+>>>> With your review/ack on the driver, I'd be happy to take it via the
+>>>> amlogic tree as there shouldn't be any conflicts with your tree.
+>>>>
+>>> I am ok with the driver, but I don't understand how it helps going via
+>>> amlogic tree. I would like to send a pull request every release ;)
+>>
+>> That's fine with me too.  I offered tot take int just in case you had
+>> already sent pull requests for this cycle, and also since I'll take
+>> the DT changes through arm-soc.
+>>
+> This revision came after rc2, so it wasn't included. I will queue
+> patch-1 & 2 for next release, and you the patch-3.
 
-This was clearly an accident, and since all other identifiers are
-listed in the order in which they are defined, I'm changing the
-first one to CLKID_GCLK_VENCI_INT0, making it all consistent again.
+OK, sounds good.  Thanks,
 
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-Fixes: e31a1900c1ff ("meson: clk: Add support for clock gates")
----
- drivers/clk/meson/meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index e1d4aa145a03..0d45ec20c737 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -476,7 +476,7 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_VCLK2_VENCP0]	    = &meson8b_vclk2_vencp0.hw,
- 		[CLKID_VCLK2_VENCP1]	    = &meson8b_vclk2_vencp1.hw,
- 		[CLKID_GCLK_VENCI_INT]	    = &meson8b_gclk_venci_int.hw,
--		[CLKID_GCLK_VENCI_INT]	    = &meson8b_gclk_vencp_int.hw,
-+		[CLKID_GCLK_VENCP_INT]	    = &meson8b_gclk_vencp_int.hw,
- 		[CLKID_DAC_CLK]		    = &meson8b_dac_clk.hw,
- 		[CLKID_AOCLK_GATE]	    = &meson8b_aoclk_gate.hw,
- 		[CLKID_IEC958_GATE]	    = &meson8b_iec958_gate.hw,
--- 
-2.9.0
+Kevin
