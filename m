@@ -1,75 +1,39 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 6 Sep 2016 14:55:48 +0200
-Subject: [PATCH] pwm: meson: handle unknown ID values
-In-Reply-To: <20160906125106.1511562-1-arnd@arndb.de>
-References: <20160906125106.1511562-1-arnd@arndb.de>
-Message-ID: <ecab427a-7d1e-c42c-e562-06b63bf9fef4@baylibre.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Tue,  6 Sep 2016 15:01:10 +0200
+Subject: [PATCH] clk: meson: fix CLKID_GCLK_VENCI_INT typo
+Message-ID: <20160906130130.1645496-1-arnd@arndb.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/06/2016 02:50 PM, Arnd Bergmann wrote:
-> When building with -Wmaybe-uninitialized, we get a couple of harmless
-> warnings about three functions in this new driver that don't look
-> safe to the compiler:
-> 
-> drivers/pwm/pwm-meson.c: In function 'meson_pwm_get_state':
-> drivers/pwm/pwm-meson.c:355:26: error: 'mask' may be used uninitialized in this function [-Werror=maybe-uninitialized]
-> drivers/pwm/pwm-meson.c: In function 'meson_pwm_disable':
-> drivers/pwm/pwm-meson.c:263:13: error: 'enable' may be used uninitialized in this function [-Werror=maybe-uninitialized]
-> drivers/pwm/pwm-meson.c: In function 'meson_pwm_apply':
-> drivers/pwm/pwm-meson.c:231:13: error: 'clk_shift' may be used uninitialized in this function [-Werror=maybe-uninitialized]
-> drivers/pwm/pwm-meson.c:231:36: error: 'enable' may be used uninitialized in this function [-Werror=maybe-uninitialized]
-> drivers/pwm/pwm-meson.c:231:24: error: 'clk_enable' may be used uninitialized in this function [-Werror=maybe-uninitialized]
-> 
-> Specifically, if we have a device with an id other than 0 or 1,
-> this would result in undefined behavior. This is currently not
-> possible, but the compiler cannot be expected to know this.
-> 
-> This patch adds a 'default' clause to let the compiler know
-> what to do instead, which shuts up the warning and makes the
-> code slightly more resiliant in case it gets extended to other
-> identifiers.
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->  drivers/pwm/pwm-meson.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 566f5cb81021..25abd95dcc7b 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -242,6 +242,9 @@ static void meson_pwm_enable(struct meson_pwm *meson,
->  		clk_enable = MISC_B_CLK_EN;
->  		enable = MISC_B_EN;
->  		break;
-> +
-> +	default:
-> +		return;
->  	}
->  
->  	value = readl(meson->base + REG_MISC_AB);
-> @@ -270,6 +273,9 @@ static void meson_pwm_disable(struct meson_pwm *meson, unsigned int id)
->  	case 1:
->  		enable = MISC_B_EN;
->  		break;
-> +
-> +	default:
-> +		return;
->  	}
->  
->  	value = readl(meson->base + REG_MISC_AB);
-> @@ -349,6 +355,10 @@ static void meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->  	case 1:
->  		mask = MISC_B_EN;
->  		break;
-> +
-> +	default:
-> +		state->enabled = 0;
-> +		return;
->  	}
->  
->  	value = readl(meson->base + REG_MISC_AB);
-> 
+The addition of many gate clocks added two entries in an array for
+the same value:
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+drivers/clk/meson/meson8b.c:479:10: error: initialized field overwritten [-Werror=override-init]
+   [CLKID_GCLK_VENCI_INT]     = &meson8b_gclk_venci_int.hw,
+   [CLKID_GCLK_VENCI_INT]     = &meson8b_gclk_vencp_int.hw,
+
+This was clearly an accident, and since all other identifiers are
+listed in the order in which they are defined, I'm changing the
+first one to CLKID_GCLK_VENCI_INT0, making it all consistent again.
+
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Fixes: e31a1900c1ff ("meson: clk: Add support for clock gates")
+---
+ drivers/clk/meson/meson8b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index e1d4aa145a03..0d45ec20c737 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -476,7 +476,7 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+ 		[CLKID_VCLK2_VENCP0]	    = &meson8b_vclk2_vencp0.hw,
+ 		[CLKID_VCLK2_VENCP1]	    = &meson8b_vclk2_vencp1.hw,
+ 		[CLKID_GCLK_VENCI_INT]	    = &meson8b_gclk_venci_int.hw,
+-		[CLKID_GCLK_VENCI_INT]	    = &meson8b_gclk_vencp_int.hw,
++		[CLKID_GCLK_VENCP_INT]	    = &meson8b_gclk_vencp_int.hw,
+ 		[CLKID_DAC_CLK]		    = &meson8b_dac_clk.hw,
+ 		[CLKID_AOCLK_GATE]	    = &meson8b_aoclk_gate.hw,
+ 		[CLKID_IEC958_GATE]	    = &meson8b_iec958_gate.hw,
+-- 
+2.9.0
