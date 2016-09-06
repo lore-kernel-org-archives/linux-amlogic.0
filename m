@@ -1,56 +1,75 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Tue, 06 Sep 2016 11:37:58 +0200
-Subject: [PATCH v4 4/5] net: stmmac: add a glue driver for the Amlogic
- Meson 8b / GXBB DWMAC
-In-Reply-To: <CAFBinCAC3c=o1=8DGfiPhw6w6V42jvYLUfHXHpHLe03pw8P=LQ@mail.gmail.com>
-References: <201609050953.67GKeUAU%fengguang.wu@intel.com>
- <14789887.lyko4Om94p@wuerfel>
- <CAFBinCAC3c=o1=8DGfiPhw6w6V42jvYLUfHXHpHLe03pw8P=LQ@mail.gmail.com>
-Message-ID: <16206001.1636ZmhtjK@wuerfel>
+From: thierry.reding@gmail.com (Thierry Reding)
+Date: Tue, 6 Sep 2016 12:04:38 +0200
+Subject: [PATCH v3 1/4] pwm: Add support for Meson PWM Controller
+In-Reply-To: <a43f6e6e-05f6-cefe-451d-528588b85a8c@baylibre.com>
+References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
+ <1471880193-21879-2-git-send-email-narmstrong@baylibre.com>
+ <20160905090052.GG3532@ulmo.ba.sec>
+ <bd7ea1db-d8f9-f075-14ef-732d9bb65e77@baylibre.com>
+ <20160906090749.GA15644@ulmo.ba.sec>
+ <a43f6e6e-05f6-cefe-451d-528588b85a8c@baylibre.com>
+Message-ID: <20160906100438.GE15644@ulmo.ba.sec>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Monday, September 5, 2016 9:07:03 PM CEST Martin Blumenstingl wrote:
-> On Mon, Sep 5, 2016 at 12:53 PM, Arnd Bergmann <arnd@arndb.de> wrote:
-> > On Monday, September 5, 2016 9:37:29 AM CEST kbuild test robot wrote:
-> >> All error/warnings (new ones prefixed by >>):
+On Tue, Sep 06, 2016 at 11:14:45AM +0200, Neil Armstrong wrote:
+> On 09/06/2016 11:07 AM, Thierry Reding wrote:
+> > On Tue, Sep 06, 2016 at 10:36:49AM +0200, Neil Armstrong wrote:
+> >> Hi Thierry,
 > >>
-> >> >> drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c:63:18: error: field 'm250_mux' has incomplete type
-> >>      struct clk_mux  m250_mux;
-> >>                      ^
-> >> >> drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c:67:21: error: field 'm250_div' has incomplete type
-> >>      struct clk_divider m250_div;
-> >>                         ^
+> [...]
+> > 
 > >>
-> >
-> > I think this needs a compile-time dependency on COMMON_CLK
-> indeed, since we are also a clock provider we have to depend on
-> CONFIG_COMMON_CLK.
+> >> The second bug is in probe(), I understand the point to allocate
+> >> dynamically the channels and attach them to each pwm chip, but when
+> >> calling meson_pwm_init_channels() we get an OOPS because
+> >> meson->chip.pwms[i] are allocated in pwmchip_add(). Moving
+> >> meson_pwm_init_channels() would fix this, but in case of a clk
+> >> PROBE_DEFER, we would need to remove back the pwmchip, which is a
+> >> quite a bad design decision....
+> > 
+> > Ah yes... that one again. I remember running into that a while ago with
+> > some other driver. To be honest, I think that's a short-coming of the
+> > PWM subsystem and the fix would be for PWM chip registration to be split
+> > into two parts: pwm_chip_init() and pwm_chip_add(). That way, a chip
+> > would be initialized using pwm_chip_init() where the pwms array would be
+> > allocated, and pwm_chip_add() would register the chip with the system.
+> > 
+> > Currently a few drivers might be vulnerable to a race condition between
+> > registration and implementation (i.e. PWM channels aren't fully set up
+> > when they are exposed to users and sysfs).
+> > 
+> >> The smartest fix I found was to allocate channels in probe, init them
+> >> them attach them after pwmchip_add():
+> >>
+> [...]
 > 
-> That brings up a question though:
-> so far the new driver uses the same Kconfig symbol as the "old" driver
-> (CONFIG_DWMAC_MESON).
-> The "old" driver does not need CONFIG_COMMON_CLK while the new one does.
-> I see a few options here:
-> 1. simply adding the dependency (as most configurations will have
-> CONFIG_COMMON_CLK enabled anyways)
+> > 
+> > That's the race I was talking about above. I suppose it's not too big an
+> > issue since other drivers seem to manage, so I'm going to merge your
+> > fixed driver.
+> 
+> ok thanks !
 
-I think that's fine. At least on both ARM multiplatform and ARM64 it is
-always defined by definition, and when build testing, it should be possible
-to enable it on other architectures as well.
+I've made a few tiny changes (reg -> offset, temporary variable to track
+&channels[i], ...) and pushed it all out. Hopefully that now fixes any
+of the remaining issues.
 
-> 2. add some depends on COMMON_CLK || MACH_MESON6 || MACH_MESON8 foo
+> > Unless you feel like taking a stab at the pwm_chip_init()/pwm_chip_add()
+> > split, in which case your driver would be the first to be race-free. =)
+> 
+> Having he driver upstream is a priority, but having it completely
+> race-free would be great! I'll be happy to collaborate to a race-free
+> pwmchip probe somehow !
 
-That doesn't work unless you also put the calls into the clk interface
-inside of ugly #ifdef
+Fair enough. I'll do some prototyping and keep you in the loop if I come
+up with something that I think will do.
 
-> 3. use a new Kconfig symbol for new new driver (CONFIG_DWMAC_MESON8B?)
-
-That would be ok as well, probably not necessary.
-
-> And finally regarding your other mail: I have already changed
-> WARN_ON(PTR_ERR_OR_ZERO(...)) to WARN_ON(IS_ERR(...)) in v4
-
-Ok, thanks.
-
-	Arnd
+Thierry
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 801 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160906/089d2a89/attachment.sig>
