@@ -1,54 +1,40 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 06 Sep 2016 10:56:18 -0700
-Subject: [PATCH v2 0/3] Add Platform MHU mailbox driver for Amlogic GXBB
-In-Reply-To: <CABb+yY10d1+73wjAZCM6PqSXiVC05ZWehK+ugb7rMh8yOh9wNg@mail.gmail.com>
- (Jassi Brar's message of "Sun, 4 Sep 2016 11:05:44 +0530")
-References: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
- <m24m5xc1v0.fsf@baylibre.com>
- <CABb+yY2Cq5KaCCvoJ5afsLfqc5NEoPMkaaYk9GjFO8=N80eVBA@mail.gmail.com>
- <CAOi56cVVY=XL1HFSNGS8H3Zq0KiNbAzvNxbOkW7NYsSOQ2n6_g@mail.gmail.com>
- <CABb+yY10d1+73wjAZCM6PqSXiVC05ZWehK+ugb7rMh8yOh9wNg@mail.gmail.com>
-Message-ID: <7hpoogzzct.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 6 Sep 2016 23:24:16 +0200
+Subject: [PATCH v3 1/4] pwm: Add support for Meson PWM Controller
+In-Reply-To: <20160905095321.GB31424@ulmo.ba.sec>
+References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
+ <1471880193-21879-2-git-send-email-narmstrong@baylibre.com>
+ <CAFBinCA3PoR_=+f8aU-Trg8uKWWXkkBOtrQUaXbdsb8E-fdM0g@mail.gmail.com>
+ <20160905095321.GB31424@ulmo.ba.sec>
+Message-ID: <CAFBinCBW_-NrQaKOML8_Y_th9P1Ozsj4UXxwSWM_LCtt8NWCDA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jassi Brar <jassisinghbrar@gmail.com> writes:
+Hi Thierry,
 
-> On Sun, Sep 4, 2016 at 2:15 AM, Kevin Hilman <khilman@baylibre.com> wrote:
->> On Fri, Sep 2, 2016 at 10:33 PM, Jassi Brar <jassisinghbrar@gmail.com> wrote:
->>> On Sat, Sep 3, 2016 at 5:04 AM, Kevin Hilman <khilman@baylibre.com> wrote:
->>>> Hi Jassi,
->>>>
->>>> Neil Armstrong <narmstrong@baylibre.com> writes:
->>>>
->>>>> In order to support Mailbox links for the Amlogic GXBB SoC, add a generic
->>>>> platform MHU driver based on arm_mhu.c.
->>>>>
->>>>> This patchset follows a RFC thread along the GXBB SCPI support at :
->>>>> http://lkml.kernel.org/r/1466503374-28841-1-git-send-email-narmstrong at baylibre.com
->>>>> And specific MHU discussions at :
->>>>> http://lkml.kernel.org/r/CABb+yY3HqJG2+GMWCWF9PomxobrwWGZ=TZe5NvXPcHMDdLhkcQ at mail.gmail.com
->>>>>
->>>>> Changes since v1 at http://lkml.kernel.org/r/1470732737-18391-1-git-send-email-narmstrong at baylibre.com :
->>>>>  - Fix irq to signed to detect platform_get_irq() failures
->>>>>  - Introduced back the secure channel
->>>>>  - Fixed indexes
->>>>
->>>> How is this version looking to you?
->>>>
->>>> With your review/ack on the driver, I'd be happy to take it via the
->>>> amlogic tree as there shouldn't be any conflicts with your tree.
->>>>
->>> I am ok with the driver, but I don't understand how it helps going via
->>> amlogic tree. I would like to send a pull request every release ;)
->>
->> That's fine with me too.  I offered tot take int just in case you had
->> already sent pull requests for this cycle, and also since I'll take
->> the DT changes through arm-soc.
->>
-> This revision came after rc2, so it wasn't included. I will queue
-> patch-1 & 2 for next release, and you the patch-3.
+On Mon, Sep 5, 2016 at 11:53 AM, Thierry Reding
+<thierry.reding@gmail.com> wrote:
+> As mentioned in another reply in this thread I ended up restructuring
+> the driver a little before applying it to the PWM tree. I don't /think/
+> there are any functional changes, so I left your Tested-by in place, but
+> it would be great if you could retest and confirm, just to make sure.
+>
+> The driver is in the for-4.9/drivers branch of the PWM tree:
+>
+>         https://git.kernel.org/cgit/linux/kernel/git/thierry.reding/linux-pwm.git/log/?h=for-4.9/drivers
+I have tested it with the updated Neil sent today: [0]
+This is still working fine for me (driving the LPO clock of an AP6330
+SDIO wifi chip).
 
-OK, sounds good.  Thanks,
+Please note that I don't have a scope to measure the actual signal,
+but I guess it's fine since my AP6330 is happy.
 
-Kevin
+So feel free to keep my:
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+
+Regards,
+Martin
+
+
+[0] https://github.com/superna9999/linux/releases/tag/amlogic/v4.8/pwm-for-next-for-v4
