@@ -1,29 +1,37 @@
-From: trini@konsulko.com (Tom Rini)
-Date: Wed, 7 Sep 2016 13:57:46 -0400
-Subject: [U-Boot, 4/4] meson: odroid-c2: enable Ethernet support through
- the device tree
-In-Reply-To: <1471340990-16247-5-git-send-email-b.galvani@gmail.com>
-References: <1471340990-16247-5-git-send-email-b.galvani@gmail.com>
-Message-ID: <20160907175746.GR4990@bill-the-cat>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 7 Sep 2016 20:55:30 +0200
+Subject: [PATCH 1/2] pinctrl: meson-gxbb: add the pins for the
+ SDIO/sd_emmc_a controller
+In-Reply-To: <CACRpkdbPVeUA+BSPgQ1XmFJw_J6-V_2BM9h3kO2yq-vUfySsGQ@mail.gmail.com>
+References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
+ <20160828164725.19429-2-martin.blumenstingl@googlemail.com>
+ <CACRpkdbPVeUA+BSPgQ1XmFJw_J6-V_2BM9h3kO2yq-vUfySsGQ@mail.gmail.com>
+Message-ID: <CAFBinCDm5quZyyC2t_1SQqT+p=eJQ0H_LoNZM6wfUZugvCi_7g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 16, 2016 at 11:49:50AM +0200, Beniamino Galvani wrote:
+On Wed, Sep 7, 2016 at 4:24 PM, Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Sun, Aug 28, 2016 at 6:47 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>
+>> sd_emmc_a is used a controller for the SDIO modules. This adds the pin
+>> configuration for the SDIO controller.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> No reply from maintainers, but you obviously know what you're doing so
+> patch applied.
+I forgot to reply to this one as well (sorry about that):
+I received a NACK off-list for both patches because the SDIO IRQ pin is missing.
 
-> Remove the device definition from board file, update the driver with
-> the new compatible property and update config with necessary options.
-> 
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> Reviewed-by: Simon Glass <sjg@chromium.org>
+Nothing is broken with this patch applied, just one pin is missing.
+Depending on how you'd like to proceed you can:
+- either drop the patch from your tree and wait for v2
+- leave it in your tree and I'll send a patch on top of this one to
+add the missing pin
 
-Applied to u-boot/master, thanks!
+Please let me know how you'd like to handle this and sorry again.
 
--- 
-Tom
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: Digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160907/def3687d/attachment.sig>
+
+Regards,
+Martin
