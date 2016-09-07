@@ -1,24 +1,33 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 7 Sep 2016 16:24:29 +0200
-Subject: [PATCH 1/2] pinctrl: meson-gxbb: add the pins for the
- SDIO/sd_emmc_a controller
-In-Reply-To: <20160828164725.19429-2-martin.blumenstingl@googlemail.com>
-References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
- <20160828164725.19429-2-martin.blumenstingl@googlemail.com>
-Message-ID: <CACRpkdbPVeUA+BSPgQ1XmFJw_J6-V_2BM9h3kO2yq-vUfySsGQ@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed,  7 Sep 2016 17:13:36 +0200
+Subject: [PATCH 0/7] ARM: amlogic: Add spifc support to Amlogic's GXBB family
+Message-ID: <1473261223-15412-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Aug 28, 2016 at 6:47 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+This patch series adds the necessary pins, clocks and device tree nodes to
+enable the spifc controller on the GXBB family. I had to add the nand pins
+in pintctrl as the pinmux setting left by u-boot was conflicting with the
+spifc pinmux during my test on the P200.
 
-> sd_emmc_a is used a controller for the SDIO modules. This adds the pin
-> configuration for the SDIO controller.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Jerome Brunet (4):
+  pinctrl: amlogic: gxbb: add spifc pins
+  pinctrl: amlogic: gxbb: add nand pins
+  clk: gxbb: expose spifc clock
+  ARM64: dts: amlogic: add pins for spifc
 
-No reply from maintainers, but you obviously know what you're doing so
-patch applied.
+Neil Armstrong (3):
+  spi: meson: Add GXBB compatible
+  dt-bindings: spi-meson: Add GXBB Compatible string
+  ARM64: dts: meson-gxbb: Add SPIFC node
 
-Yours,
-Linus Walleij
+ .../devicetree/bindings/spi/spi-meson.txt          |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 19 +++++++++++
+ drivers/clk/meson/gxbb.h                           |  2 +-
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c         | 37 ++++++++++++++++++++++
+ drivers/spi/spi-meson-spifc.c                      |  1 +
+ include/dt-bindings/clock/gxbb-clkc.h              |  1 +
+ 6 files changed, 60 insertions(+), 2 deletions(-)
+
+-- 
+2.7.4
