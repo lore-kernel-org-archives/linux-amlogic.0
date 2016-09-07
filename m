@@ -1,39 +1,47 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 07 Sep 2016 13:19:21 -0700
-Subject: [PATCH v3 0/4] pwm: Add Amlogic Meson SoC PWM Controller
-In-Reply-To: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Mon, 22 Aug 2016 17:36:29 +0200")
-References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <7hshtbsbsm.fsf@baylibre.com>
+Date: Wed, 7 Sep 2016 13:50:13 -0700
+Subject: [PATCH v2 0/3] eMMC,
+ SD-card and ethernet support for Vega S95 boards
+In-Reply-To: <7h37lbtqyk.fsf@baylibre.com>
+References: <20160815133811.19646-1-martin.blumenstingl@googlemail.com>
+ <20160904182903.1841-1-martin.blumenstingl@googlemail.com>
+ <7h37lbtqyk.fsf@baylibre.com>
+Message-ID: <CAOi56cUD5xMbEf3+qsWDJUQYhnWUMN4opfG1HQ+UUcrR6pX8eA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> Add support for the PWM controller found in Amlogic Meson SoCs.
-> This controller provides a dual PWM output with 4 selectable clock source
-> and a two level divider to achieve a better PWM range.
+On Wed, Sep 7, 2016 at 1:06 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Hi Marrtin,
 >
-> Currently Meson8b and GXBB SoCs are supported.
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 >
-> Changes since v2 at http://lkml.kernel.org/r/1471718083-11516-1-git-send-email-narmstrong at baylibre.com :
-> - Switch to apply() callback only, this fixes the setup sequence
-> - Implement get_state
-> - Make clock parent names as DT match data
+>> This adds support for the internal eMMC, the SD-card slot and ethernet on
+>> all Tronsmart S95 Vega boards.
+>> There are some S95 Vega Meta clones out there where the bootloader does
+>> not configure the ethernet registers correctly, leading to non-working
+>> ethernet. This will be fixed in a separate series. Boards which are not
+>> suffering from broken bootloaders have fully working ethernet.
+>>
+>> Changes since v1:
+>> - rebased after latest updates which added the IR decoder to
+>>   meson-gxbb-vega-s95.dtsi
+>>
+>> Changes since the RFC:
+>> - added eMMC support
+>> - renamed fixed 3V3 regulator so it can be re-used for eMMC
+>>
+>>
+>> Martin Blumenstingl (3):
+>>   ARM64: dts: amlogic: SD card support for all Tronsmart Vega S95
+>>     devices
+>>   ARM64: dts: amlogic: eMMC support for all Tronsmart Vega S95 devices
+>>   ARM64: dts: amlogic: enable ethernet on all Tronsmart Vega S95 devices
 >
-> Changes since v1 at http://lkml.kernel.org/r/1466173784-15625-1-git-send-email-narmstrong at baylibre.com :
-> - fix meson8b dtsi
->
-> Neil Armstrong (4):
->   pwm: Add support for Meson PWM Controller
->   dt-bindings: pwm: Add bindings for Meson PWM Controller
+> I've applied the ethernet one, but I'm going to wait on the SD/eMMC
+> patches until the driver is finalized for the other one.
 
-Looks like Thierry has picked up these two into his for-4.9/drivers
-branch...
-
->   ARM64: dts: meson-gxbb: Add Meson GXBB PWM Controller nodes
->   ARM: dts: meson8b: Add Meson8b PWM Controller nodes
-
-... so I've picked up these into the amlogic tree.
+Oops, I replied on the wrong thread, but just to be clear, I applied
+v2 of the ethernet patch, though it doesn't make too much difference
+in this case.
 
 Kevin
