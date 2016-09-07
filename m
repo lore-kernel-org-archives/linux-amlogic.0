@@ -1,30 +1,37 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed,  7 Sep 2016 17:13:40 +0200
-Subject: [PATCH 4/7] spi: meson: Add GXBB compatible
+Date: Wed,  7 Sep 2016 17:13:42 +0200
+Subject: [PATCH 6/7] ARM64: dts: amlogic: add pins for spifc
 In-Reply-To: <1473261223-15412-1-git-send-email-jbrunet@baylibre.com>
 References: <1473261223-15412-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1473261223-15412-5-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1473261223-15412-7-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/spi/spi-meson-spifc.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
-index 2465259..616566e 100644
---- a/drivers/spi/spi-meson-spifc.c
-+++ b/drivers/spi/spi-meson-spifc.c
-@@ -442,6 +442,7 @@ static const struct dev_pm_ops meson_spifc_pm_ops = {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 762f368..b35fc94 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -333,6 +333,16 @@
+ 					};
+ 				};
  
- static const struct of_device_id meson_spifc_dt_match[] = {
- 	{ .compatible = "amlogic,meson6-spifc", },
-+	{ .compatible = "amlogic,meson-gxbb-spifc", },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, meson_spifc_dt_match);
++				spifc_pins: spifc {
++					mux {
++						groups = "spifc_d",
++						       "spifc_q",
++						       "spifc_c",
++						       "spifc_cs";
++						function = "spifc";
++					};
++				};
++
+ 				sdcard_pins: sdcard {
+ 					mux {
+ 						groups = "sdcard_d0",
 -- 
 2.7.4
