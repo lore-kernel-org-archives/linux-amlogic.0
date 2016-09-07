@@ -1,51 +1,40 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  7 Sep 2016 17:34:35 +0200
-Subject: [PATCH v3 6/8] dt-bindings: Add support for Amlogic GXBB SCPI
- Interface
-In-Reply-To: <1473262477-18045-1-git-send-email-narmstrong@baylibre.com>
-References: <1473262477-18045-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1473262477-18045-7-git-send-email-narmstrong@baylibre.com>
+From: trini@konsulko.com (Tom Rini)
+Date: Wed, 7 Sep 2016 13:57:26 -0400
+Subject: [U-Boot, 1/4] pinctrl: generic: scan for "pins" and "groups"
+ properties in sub-nodes
+In-Reply-To: <1471340990-16247-2-git-send-email-b.galvani@gmail.com>
+References: <1471340990-16247-2-git-send-email-b.galvani@gmail.com>
+Message-ID: <20160907175726.GN4990@bill-the-cat>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- Documentation/devicetree/bindings/arm/arm,scpi.txt | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+On Tue, Aug 16, 2016 at 11:49:47AM +0200, Beniamino Galvani wrote:
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-index faa4b44..04bc171 100644
---- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
-+++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-@@ -7,7 +7,7 @@ by Linux to initiate various system control and power operations.
- 
- Required properties:
- 
--- compatible : should be "arm,scpi"
-+- compatible : should be "arm,scpi" or "amlogic,meson-gxbb-scpi"
- - mboxes: List of phandle and mailbox channel specifiers
- 	  All the channels reserved by remote SCP firmware for use by
- 	  SCPI message protocol should be specified in any order
-@@ -60,7 +60,8 @@ A small area of SRAM is reserved for SCPI communication between application
- processors and SCP.
- 
- Required properties:
--- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno
-+- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno,
-+		or "amlogic,meson-gxbb-sram" for Amlogic GXBB SoC.
- 
- The rest of the properties should follow the generic mmio-sram description
- found in ../../sram/sram.txt
-@@ -70,7 +71,8 @@ Each sub-node represents the reserved area for SCPI.
- Required sub-node properties:
- - reg : The base offset and size of the reserved area with the SRAM
- - compatible : should be "arm,juno-scp-shmem" for Non-secure SRAM based
--	       shared memory on Juno platforms
-+	       shared memory on Juno platforms or
-+	       "amlogic,meson-gxbb-scp-shmem" for Amlogic GXBB SoC.
- 
- Sensor bindings for the sensors based on SCPI Message Protocol
- --------------------------------------------------------------
+> In cases where the pins and groups definitions are in a sub-node, as:
+> 
+> 	uart_a {
+> 		mux {
+> 			groups = "uart_tx_a", "uart_rx_a";
+> 			function = "uart_a";
+> 		};
+> 	};
+> 
+> pinctrl_generic_set_state_subnode() returns an error for the top-level
+> node and pinctrl_generic_set_state() fails. Instead, return success so
+> that the child nodes are tried.
+> 
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> Reviewed-by: Simon Glass <sjg@chromium.org>
+> Reviewed-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+
+Applied to u-boot/master, thanks!
+
 -- 
-1.9.1
+Tom
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: Digital signature
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160907/07d357f4/attachment.sig>
