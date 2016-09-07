@@ -1,42 +1,39 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 07 Sep 2016 13:08:23 -0700
-Subject: [PATCH v2 3/3] ARM64: dts: meson-gxbb: Add Meson MHU Node
-In-Reply-To: <1471515027-3543-4-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Thu, 18 Aug 2016 12:10:27 +0200")
-References: <1471515027-3543-1-git-send-email-narmstrong@baylibre.com>
- <1471515027-3543-4-git-send-email-narmstrong@baylibre.com>
-Message-ID: <7hwpinscaw.fsf@baylibre.com>
+Date: Wed, 07 Sep 2016 13:19:21 -0700
+Subject: [PATCH v3 0/4] pwm: Add Amlogic Meson SoC PWM Controller
+In-Reply-To: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Mon, 22 Aug 2016 17:36:29 +0200")
+References: <1471880193-21879-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7hshtbsbsm.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> Add support for the PWM controller found in Amlogic Meson SoCs.
+> This controller provides a dual PWM output with 4 selectable clock source
+> and a two level divider to achieve a better PWM range.
+>
+> Currently Meson8b and GXBB SoCs are supported.
+>
+> Changes since v2 at http://lkml.kernel.org/r/1471718083-11516-1-git-send-email-narmstrong at baylibre.com :
+> - Switch to apply() callback only, this fixes the setup sequence
+> - Implement get_state
+> - Make clock parent names as DT match data
+>
+> Changes since v1 at http://lkml.kernel.org/r/1466173784-15625-1-git-send-email-narmstrong at baylibre.com :
+> - fix meson8b dtsi
+>
+> Neil Armstrong (4):
+>   pwm: Add support for Meson PWM Controller
+>   dt-bindings: pwm: Add bindings for Meson PWM Controller
 
-Applied,
+Looks like Thierry has picked up these two into his for-4.9/drivers
+branch...
+
+>   ARM64: dts: meson-gxbb: Add Meson GXBB PWM Controller nodes
+>   ARM: dts: meson8b: Add Meson8b PWM Controller nodes
+
+... so I've picked up these into the amlogic tree.
 
 Kevin
-
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index e502c24..bdbf6e7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> @@ -321,6 +321,15 @@
->  				#clock-cells = <1>;
->  				reg = <0x0 0x0 0x0 0x3db>;
->  			};
-> +
-> +			mailbox: mailbox at 404 {
-> +				compatible = "amlogic,meson-gxbb-mhu";
-> +				reg = <0 0x404 0 0x4c>;
-> +				interrupts = <0 208 IRQ_TYPE_EDGE_RISING>,
-> +					     <0 209 IRQ_TYPE_EDGE_RISING>,
-> +					     <0 210 IRQ_TYPE_EDGE_RISING>;
-> +				#mbox-cells = <1>;
-> +			};
->  		};
->  
->  		apb: apb at d0000000 {
