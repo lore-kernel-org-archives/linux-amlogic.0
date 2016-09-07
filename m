@@ -1,47 +1,34 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 7 Sep 2016 13:50:13 -0700
-Subject: [PATCH v2 0/3] eMMC,
- SD-card and ethernet support for Vega S95 boards
-In-Reply-To: <7h37lbtqyk.fsf@baylibre.com>
-References: <20160815133811.19646-1-martin.blumenstingl@googlemail.com>
- <20160904182903.1841-1-martin.blumenstingl@googlemail.com>
- <7h37lbtqyk.fsf@baylibre.com>
-Message-ID: <CAOi56cUD5xMbEf3+qsWDJUQYhnWUMN4opfG1HQ+UUcrR6pX8eA@mail.gmail.com>
+Date: Wed, 07 Sep 2016 14:06:35 -0700
+Subject: RFC: RTC v5
+In-Reply-To: <20160822221501.21945-1-ben-linux@fluff.org> (Ben Dooks's message
+ of "Mon, 22 Aug 2016 23:14:56 +0100")
+References: <20160822221501.21945-1-ben-linux@fluff.org>
+Message-ID: <7hoa3zs9lw.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Sep 7, 2016 at 1:06 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Hi Marrtin,
->
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->
->> This adds support for the internal eMMC, the SD-card slot and ethernet on
->> all Tronsmart S95 Vega boards.
->> There are some S95 Vega Meta clones out there where the bootloader does
->> not configure the ethernet registers correctly, leading to non-working
->> ethernet. This will be fixed in a separate series. Boards which are not
->> suffering from broken bootloaders have fully working ethernet.
->>
->> Changes since v1:
->> - rebased after latest updates which added the IR decoder to
->>   meson-gxbb-vega-s95.dtsi
->>
->> Changes since the RFC:
->> - added eMMC support
->> - renamed fixed 3V3 regulator so it can be re-used for eMMC
->>
->>
->> Martin Blumenstingl (3):
->>   ARM64: dts: amlogic: SD card support for all Tronsmart Vega S95
->>     devices
->>   ARM64: dts: amlogic: eMMC support for all Tronsmart Vega S95 devices
->>   ARM64: dts: amlogic: enable ethernet on all Tronsmart Vega S95 devices
->
-> I've applied the ethernet one, but I'm going to wait on the SD/eMMC
-> patches until the driver is finalized for the other one.
+Ben Dooks <ben-linux@fluff.org> writes:
 
-Oops, I replied on the wrong thread, but just to be clear, I applied
-v2 of the ethernet patch, though it doesn't make too much difference
-in this case.
+> I've reworked the rtc patches, but have no way of testing them
+> until I get back from "holiday". Is anyone able to test so that
+> they can be submitted?
+>
+> git at github.com:bendooks/amlogic-kenel.git bjdooks/v48-rc3/rtc-v5 
+
+Just gave it a quick test on meson8b-odroidc1. Something's not right,
+but didn't debug further:
+
+/ # ./rtctest
+
+                        RTC Driver Test Example.
+
+
+...Update IRQs not supported.
+
+
+Current RTC date/time is 7-9-2016, 21:05:06.
+RTC_ALM_READ ioctl: Invalid argument
+
 
 Kevin
