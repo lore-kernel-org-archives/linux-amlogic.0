@@ -1,37 +1,29 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 7 Sep 2016 20:55:30 +0200
-Subject: [PATCH 1/2] pinctrl: meson-gxbb: add the pins for the
- SDIO/sd_emmc_a controller
-In-Reply-To: <CACRpkdbPVeUA+BSPgQ1XmFJw_J6-V_2BM9h3kO2yq-vUfySsGQ@mail.gmail.com>
-References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
- <20160828164725.19429-2-martin.blumenstingl@googlemail.com>
- <CACRpkdbPVeUA+BSPgQ1XmFJw_J6-V_2BM9h3kO2yq-vUfySsGQ@mail.gmail.com>
-Message-ID: <CAFBinCDm5quZyyC2t_1SQqT+p=eJQ0H_LoNZM6wfUZugvCi_7g@mail.gmail.com>
+From: broonie@kernel.org (Mark Brown)
+Date: Wed, 7 Sep 2016 19:58:46 +0100
+Subject: [PATCH 4/7] spi: meson: Add GXBB compatible
+In-Reply-To: <1473261223-15412-5-git-send-email-jbrunet@baylibre.com>
+References: <1473261223-15412-1-git-send-email-jbrunet@baylibre.com>
+ <1473261223-15412-5-git-send-email-jbrunet@baylibre.com>
+Message-ID: <20160907185846.GE3950@sirena.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Sep 7, 2016 at 4:24 PM, Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Sun, Aug 28, 2016 at 6:47 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->
->> sd_emmc_a is used a controller for the SDIO modules. This adds the pin
->> configuration for the SDIO controller.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> No reply from maintainers, but you obviously know what you're doing so
-> patch applied.
-I forgot to reply to this one as well (sorry about that):
-I received a NACK off-list for both patches because the SDIO IRQ pin is missing.
+On Wed, Sep 07, 2016 at 05:13:40PM +0200, Jerome Brunet wrote:
+> From: Neil Armstrong <narmstrong@baylibre.com>
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
 
-Nothing is broken with this patch applied, just one pin is missing.
-Depending on how you'd like to proceed you can:
-- either drop the patch from your tree and wait for v2
-- leave it in your tree and I'll send a patch on top of this one to
-add the missing pin
+I can't do anything with this, you've not provided a signoff.  Please
+resend with a signoff - see SubmittingPatches for details on what this
+means and why it's important.
 
-Please let me know how you'd like to handle this and sorry again.
-
-
-Regards,
-Martin
+I also only have patches 4 and 5 of this series and no cover letter,
+what is going on there?
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 455 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160907/51af4fec/attachment.sig>
