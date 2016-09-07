@@ -1,34 +1,32 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 07 Sep 2016 12:07:39 -0700
-Subject: [PATCH 1/2] pinctrl: meson-gxbb: add the pins for the
- SDIO/sd_emmc_a controller
-In-Reply-To: <CACRpkdbPVeUA+BSPgQ1XmFJw_J6-V_2BM9h3kO2yq-vUfySsGQ@mail.gmail.com>
- (Linus Walleij's message of "Wed, 7 Sep 2016 16:24:29 +0200")
-References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
- <20160828164725.19429-2-martin.blumenstingl@googlemail.com>
- <CACRpkdbPVeUA+BSPgQ1XmFJw_J6-V_2BM9h3kO2yq-vUfySsGQ@mail.gmail.com>
-Message-ID: <7hk2enttok.fsf@baylibre.com>
+Date: Wed, 07 Sep 2016 12:51:31 -0700
+Subject: [PATCH] clk: meson-gxbb: Export PWM related clocks for DT
+In-Reply-To: <20160907005208.GS12510@codeaurora.org> (Stephen Boyd's message
+ of "Tue, 6 Sep 2016 17:52:08 -0700")
+References: <1471870177-10609-1-git-send-email-narmstrong@baylibre.com>
+ <20160907005208.GS12510@codeaurora.org>
+Message-ID: <7ha8fjtrng.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Linus Walleij <linus.walleij@linaro.org> writes:
+Stephen Boyd <sboyd@codeaurora.org> writes:
 
-> On Sun, Aug 28, 2016 at 6:47 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
+> On 08/22, Neil Armstrong wrote:
+>> Add the PWM related clocks in order to be referenced as PWM source
+>> clocks.
+>> 
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
 >
->> sd_emmc_a is used a controller for the SDIO modules. This adds the pin
->> configuration for the SDIO controller.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Acked-by: Stephen Boyd <sboyd@codeaurora.org>
 >
-> No reply from maintainers, but you obviously know what you're doing so
-> patch applied.
+> With some more thought, it should go through whatever tree takes
+> the dts changes. Conflicts in these header files should be
+> managed by the same person and that person is the platform
+> maintainer.
 
-Oh, I thought Neil already responded, but I'm not seeing it now.  This
-patch is missing the SDIO IRQ line.
+OK, I'll pick this up and take it through the amlogic -> arm-soc path.
 
-Martin can you respin?
-
-Sorry for the lag, I'm still catching up after some vacation,
+Thanks,
 
 Kevin
