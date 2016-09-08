@@ -1,28 +1,35 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Thu, 8 Sep 2016 11:21:04 +0100
-Subject: RFC: RTC v5
-In-Reply-To: <7hoa3zs9lw.fsf@baylibre.com>
-References: <20160822221501.21945-1-ben-linux@fluff.org>
- <7hoa3zs9lw.fsf@baylibre.com>
-Message-ID: <fa65d921-1d19-9273-2aed-fe6e423a999c@codethink.co.uk>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Thu, 8 Sep 2016 14:04:40 +0200
+Subject: [PATCH 0/2] spi: meson: Add Amlogic GXBB compatible
+In-Reply-To: <1473321206-32284-1-git-send-email-narmstrong@baylibre.com>
+References: <1473321206-32284-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <293061a8-e867-4d91-20cb-6e5df8e9b543@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 07/09/16 22:06, Kevin Hilman wrote:
-> Ben Dooks <ben-linux@fluff.org> writes:
->
->> I've reworked the rtc patches, but have no way of testing them
->> until I get back from "holiday". Is anyone able to test so that
->> they can be submitted?
->>
->> git at github.com:bendooks/amlogic-kenel.git bjdooks/v48-rc3/rtc-v5
->
-> Just gave it a quick test on meson8b-odroidc1. Something's not right,
-> but didn't debug further:
+Am 08.09.2016 um 09:53 schrieb Neil Armstrong:
+> This patchset adds a specific compatible string in the Meson SPIFC driver for
+> the Amlogic Meson GXBB SoC.
 
-Thanks, I'll try and get some time this week to see if this can be
-fixed.
+Any particular reason? We could just reuse the meson6 one since there
+appear to be no code changes so far.
+
+Regards,
+Andreas
+
+> This patchset is SPI-only respin from Jerome Brunet patchset at [1].
+> 
+> [1] http://lkml.kernel.org/r/1473261223-15412-1-git-send-email-jbrunet at baylibre.com
+> 
+> Neil Armstrong (2):
+>   dt-bindings: spi-meson: Add GXBB Compatible string
+>   spi: meson: Add GXBB compatible
+> 
+>  Documentation/devicetree/bindings/spi/spi-meson.txt | 2 +-
+>  drivers/spi/spi-meson-spifc.c                       | 1 +
+>  2 files changed, 2 insertions(+), 1 deletion(-)
 
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
