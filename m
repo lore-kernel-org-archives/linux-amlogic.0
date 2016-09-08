@@ -1,36 +1,40 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Thu, 8 Sep 2016 14:21:04 +0100
-Subject: [PATCH 0/2] spi: meson: Add Amlogic GXBB compatible
-In-Reply-To: <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de>
-References: <1473321206-32284-1-git-send-email-narmstrong@baylibre.com>
- <293061a8-e867-4d91-20cb-6e5df8e9b543@suse.de>
- <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de>
-Message-ID: <5f05c488-1889-057b-7068-8e070ff95611@codethink.co.uk>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 08 Sep 2016 11:08:07 -0700
+Subject: [PATCH 1/7] pinctrl: amlogic: gxbb: add spifc pins
+In-Reply-To: <1473261223-15412-2-git-send-email-jbrunet@baylibre.com> (Jerome
+ Brunet's message of "Wed, 7 Sep 2016 17:13:37 +0200")
+References: <1473261223-15412-1-git-send-email-jbrunet@baylibre.com>
+ <1473261223-15412-2-git-send-email-jbrunet@baylibre.com>
+Message-ID: <m2d1kenu2g.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/09/16 13:50, Andreas F?rber wrote:
-> Am 08.09.2016 um 14:04 schrieb Andreas F?rber:
->> Am 08.09.2016 um 09:53 schrieb Neil Armstrong:
->>> This patchset adds a specific compatible string in the Meson SPIFC driver for
->>> the Amlogic Meson GXBB SoC.
->>
->> Any particular reason? We could just reuse the meson6 one since there
->> appear to be no code changes so far.
+Jerome Brunet <jbrunet@baylibre.com> writes:
+
+> Add EE domains pins for the SPI flash controller
 >
-> So Neil is essentially telling me they don't know whether there are any
-> differences in the IP block, so a separate compatible string was chosen.
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 >
-> No objection from my side, but a general clarification from device tree
-> maintainers when and when not to would be appreciated. (+ devicetree)
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> index cb4d6ad..802ad83 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> @@ -156,6 +156,11 @@ static const unsigned int emmc_clk_pins[] = { PIN(BOOT_8, EE_OFF) };
+>  static const unsigned int emmc_cmd_pins[] = { PIN(BOOT_10, EE_OFF) };
+>  static const unsigned int emmc_ds_pins[] = { PIN(BOOT_15, EE_OFF) };
+>  
+> +static const unsigned int spifc_d_pins[]	= { PIN(BOOT_11, EE_OFF) };
+> +static const unsigned int spifc_q_pins[]	= { PIN(BOOT_12, EE_OFF) };
+> +static const unsigned int spifc_c_pins[]	= { PIN(BOOT_13, EE_OFF) };
+> +static const unsigned int spifc_cs_pins[]	= { PIN(BOOT_15, EE_OFF) };
 
-I prefer to add both the device-tree itself, so if there are differences
-found later then it can be dealt with without rebuilding both the DT
-and kernel.
+In the datasheet, these are called nor_* instead of spifc_*.  I'm trying
+to keep the names here aligned with the names in the datasheet.  Please
+rename to nor_*.
 
-It is nice to have the new ones added to the driver so that you know the
-hardware choices in play.
+Thanks,
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+Kevin
