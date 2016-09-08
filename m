@@ -1,40 +1,36 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 8 Sep 2016 15:00:58 +0200
-Subject: [PATCH 2/7] usb: dwc2: add support for Meson8b and GXBB SoCs
-In-Reply-To: <0b42cbc0-1d69-bcfd-1a82-9bbb6242cd08@synopsys.com>
-References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
- <20160904213152.25837-3-martin.blumenstingl@googlemail.com>
- <0b42cbc0-1d69-bcfd-1a82-9bbb6242cd08@synopsys.com>
-Message-ID: <af1b2b39-f3b6-470d-af9d-ca3cde6e1e51@baylibre.com>
+From: ben.dooks@codethink.co.uk (Ben Dooks)
+Date: Thu, 8 Sep 2016 14:21:04 +0100
+Subject: [PATCH 0/2] spi: meson: Add Amlogic GXBB compatible
+In-Reply-To: <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de>
+References: <1473321206-32284-1-git-send-email-narmstrong@baylibre.com>
+ <293061a8-e867-4d91-20cb-6e5df8e9b543@suse.de>
+ <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de>
+Message-ID: <5f05c488-1889-057b-7068-8e070ff95611@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/07/2016 11:04 PM, John Youn wrote:
-> On 9/4/2016 2:32 PM, Martin Blumenstingl wrote:
->> From: Jerome Brunet <jbrunet@baylibre.com>
+On 08/09/16 13:50, Andreas F?rber wrote:
+> Am 08.09.2016 um 14:04 schrieb Andreas F?rber:
+>> Am 08.09.2016 um 09:53 schrieb Neil Armstrong:
+>>> This patchset adds a specific compatible string in the Meson SPIFC driver for
+>>> the Amlogic Meson GXBB SoC.
 >>
->> Add compatible strings for amlogic Meson8b and GXBB SoCs with the
->> corresponding configuration parameters.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  Documentation/devicetree/bindings/usb/dwc2.txt |  2 ++
->>  drivers/usb/dwc2/platform.c                    | 34 ++++++++++++++++++++++++++
->>  2 files changed, 36 insertions(+)
->>
-[...]
+>> Any particular reason? We could just reuse the meson6 one since there
+>> appear to be no code changes so far.
+>
+> So Neil is essentially telling me they don't know whether there are any
+> differences in the IP block, so a separate compatible string was chosen.
+>
+> No objection from my side, but a general clarification from device tree
+> maintainers when and when not to would be appreciated. (+ devicetree)
 
-Hi John,
+I prefer to add both the device-tree itself, so if there are differences
+found later then it can be dealt with without rebuilding both the DT
+and kernel.
 
-> Hi,
-> 
-> I have a patch series in the works that deprecates the usage of these
-> static parameters in favor of devicetree properties. I'll try to push
-> it out soon. I would rather not see any more static params structures
-> in the driver so hopefully we can make it work for your platform.
+It is nice to have the new ones added to the driver so that you know the
+hardware choices in play.
 
-When do you plan of pushing this series ?
-
-Regards,
-Neil
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
