@@ -1,22 +1,26 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 08 Sep 2016 11:09:03 -0700
-Subject: [PATCH 2/7] pinctrl: amlogic: gxbb: add nand pins
-In-Reply-To: <1473261223-15412-3-git-send-email-jbrunet@baylibre.com> (Jerome
- Brunet's message of "Wed, 7 Sep 2016 17:13:38 +0200")
+Date: Thu, 08 Sep 2016 11:12:19 -0700
+Subject: [PATCH 3/7] clk: gxbb: expose spifc clock
+In-Reply-To: <20160907212754.GB12510@codeaurora.org> (Stephen Boyd's message
+ of "Wed, 7 Sep 2016 14:27:54 -0700")
 References: <1473261223-15412-1-git-send-email-jbrunet@baylibre.com>
- <1473261223-15412-3-git-send-email-jbrunet@baylibre.com>
-Message-ID: <m28tv2nu0w.fsf@baylibre.com>
+ <1473261223-15412-4-git-send-email-jbrunet@baylibre.com>
+ <20160907212754.GB12510@codeaurora.org>
+Message-ID: <m24m5qntvg.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Stephen Boyd <sboyd@codeaurora.org> writes:
 
-> Add EE domains pins for the NAND flash controller.
-> Even tough we have no driver for the NAND flash controller yet, we need
-> to have these pins in pinctrl as the actual pin are shared with the spifc
-> controller. The bootloader on the S905-P200 setup pinmux for the NAND
-> controller so we need the kernel to properly deactivate this if necessary.
+> On 09/07, Jerome Brunet wrote:
+>> SPI clock is needed for the spifc driver, expose to DT
+>> (and comment out in the clk driver)
+>> 
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
 >
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Acked-by: Stephen Boyd <sboyd@codeaurora.org>
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Applied,
+
+Kevin
