@@ -1,32 +1,31 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 08 Sep 2016 11:17:08 -0700
-Subject: [PATCH 0/2] spi: meson: Add Amlogic GXBB compatible
-In-Reply-To: <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de> ("Andreas
- =?utf-8?Q?F=C3=A4rber=22's?= message of "Thu, 8 Sep 2016 14:50:37 +0200")
-References: <1473321206-32284-1-git-send-email-narmstrong@baylibre.com>
- <293061a8-e867-4d91-20cb-6e5df8e9b543@suse.de>
- <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de>
-Message-ID: <m2r38umf2z.fsf@baylibre.com>
+Date: Thu, 08 Sep 2016 12:24:44 -0700
+Subject: [PATCH 1/7] clk: gxbb: expose USB clocks
+In-Reply-To: <20160907212836.GC12510@codeaurora.org> (Stephen Boyd's message
+ of "Wed, 7 Sep 2016 14:28:36 -0700")
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20160904213152.25837-2-martin.blumenstingl@googlemail.com>
+ <20160907212836.GC12510@codeaurora.org>
+Message-ID: <m2eg4ujitf.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Andreas F?rber <afaerber@suse.de> writes:
+Stephen Boyd <sboyd@codeaurora.org> writes:
 
-> Am 08.09.2016 um 14:04 schrieb Andreas F?rber:
->> Am 08.09.2016 um 09:53 schrieb Neil Armstrong:
->>> This patchset adds a specific compatible string in the Meson SPIFC driver for
->>> the Amlogic Meson GXBB SoC.
+> On 09/04, Martin Blumenstingl wrote:
+>> USB0_DDR_BRIDGE and USB1_DDR_BRIDGE1 are needed for the related
+>> dwc2 usb controller. USB, USB0 and USB1 are needed for the PHYs.
+>> Expose these clocks to DT and comment out in clk driver.
 >> 
->> Any particular reason? We could just reuse the meson6 one since there
->> appear to be no code changes so far.
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> ---
 >
-> So Neil is essentially telling me they don't know whether there are any
-> differences in the IP block, so a separate compatible string was chosen.
+> Assuming authorship is resolved:
 >
-> No objection from my side, but a general clarification from device tree
-> maintainers when and when not to would be appreciated. (+ devicetree)
+> Acked-by: Stephen Boyd <sboyd@codeaurora.org>
 
-I'm not sure what the "right" way is (Rob?) but I think the usual way is
-to add new compatibles when needed.
+After some clarification from Jerome (Martin is the primary author),
+I've applied this, with the SoB order swapped.
 
 Kevin
