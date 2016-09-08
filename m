@@ -1,42 +1,35 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 7 Sep 2016 19:24:50 -0700
-Subject: [PATCH 1/7] clk: gxbb: expose USB clocks
-In-Reply-To: <20160907221403.GA13062@codeaurora.org>
-References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
- <20160904213152.25837-2-martin.blumenstingl@googlemail.com>
- <20160907003355.GQ12510@codeaurora.org>
- <CAFBinCBwcVkXi9wVt1FGaEFdK+fsxz-r12ao89HwqozqLGtd7A@mail.gmail.com>
- <20160907221403.GA13062@codeaurora.org>
-Message-ID: <CAOi56cVD-ijetJ0rn=D2DNCVYaGVV7EfdfsSdQQB-Z1p5QSXUQ@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 8 Sep 2016 09:44:57 +0200
+Subject: [PATCH 4/7] spi: meson: Add GXBB compatible
+In-Reply-To: <20160907185846.GE3950@sirena.org.uk>
+References: <1473261223-15412-1-git-send-email-jbrunet@baylibre.com>
+ <1473261223-15412-5-git-send-email-jbrunet@baylibre.com>
+ <20160907185846.GE3950@sirena.org.uk>
+Message-ID: <639f64f7-1268-12e3-1f22-44a45baa9559@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Sep 7, 2016 at 3:14 PM, Stephen Boyd <sboyd@codeaurora.org> wrote:
-> On 09/07, Martin Blumenstingl wrote:
->> On Wed, Sep 7, 2016 at 2:33 AM, Stephen Boyd <sboyd@codeaurora.org> wrote:
->> > On 09/04, Martin Blumenstingl wrote:
->> >> USB0_DDR_BRIDGE and USB1_DDR_BRIDGE1 are needed for the related
->> >> dwc2 usb controller. USB, USB0 and USB1 are needed for the PHYs.
->> >> Expose these clocks to DT and comment out in clk driver.
->> >>
->> >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> >
->> > Is authorship correct on this patch? Did Jerome author it
->> > instead?
->> We (Jerome and I) have both worked on this patch, that's why you have
->> two signed-off-by's.
->> Or is this simply about the order (author = from address should be
->> listed first)?
->
-> Yes. Typically author is listed first in the signed-off-by chain.
->
+On 09/07/2016 08:58 PM, Mark Brown wrote:
+> On Wed, Sep 07, 2016 at 05:13:40PM +0200, Jerome Brunet wrote:
+>> From: Neil Armstrong <narmstrong@baylibre.com>
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+> 
+> I can't do anything with this, you've not provided a signoff.  Please
+> resend with a signoff - see SubmittingPatches for details on what this
+> means and why it's important.
+> 
+> I also only have patches 4 and 5 of this series and no cover letter,
+> what is going on there?
+> 
 
-And if you use git-format-patch + git-send-email, there would also be a
+Hi Mark,
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+Submitting patchsets for multiple subsystems is not straightforward, the cover-letter should also have been sent to linux-spi ML, lesson learned !
 
-at the beginning so that when it gets applied by the maintainer,
-authorship is correct.
+Jerome left my signoff because the patches were left untouched from my branch.
+Nevertheless, I will submit these patches 4 & 5 in a separate SPI serie, please ignore them in this patchset.
 
-Kevin
+Thanks,
+Neil
