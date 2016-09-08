@@ -1,29 +1,32 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 08 Sep 2016 11:13:48 -0700
+Date: Thu, 08 Sep 2016 11:17:08 -0700
 Subject: [PATCH 0/2] spi: meson: Add Amlogic GXBB compatible
-In-Reply-To: <1473321206-32284-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Thu, 8 Sep 2016 09:53:24 +0200")
+In-Reply-To: <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de> ("Andreas
+ =?utf-8?Q?F=C3=A4rber=22's?= message of "Thu, 8 Sep 2016 14:50:37 +0200")
 References: <1473321206-32284-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2wpimmf8j.fsf@baylibre.com>
+ <293061a8-e867-4d91-20cb-6e5df8e9b543@suse.de>
+ <4a199a95-3ee6-a3a0-bc8a-63bd0912e7d2@suse.de>
+Message-ID: <m2r38umf2z.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Andreas F?rber <afaerber@suse.de> writes:
 
-> This patchset adds a specific compatible string in the Meson SPIFC driver for
-> the Amlogic Meson GXBB SoC.
+> Am 08.09.2016 um 14:04 schrieb Andreas F?rber:
+>> Am 08.09.2016 um 09:53 schrieb Neil Armstrong:
+>>> This patchset adds a specific compatible string in the Meson SPIFC driver for
+>>> the Amlogic Meson GXBB SoC.
+>> 
+>> Any particular reason? We could just reuse the meson6 one since there
+>> appear to be no code changes so far.
 >
-> This patchset is SPI-only respin from Jerome Brunet patchset at [1].
+> So Neil is essentially telling me they don't know whether there are any
+> differences in the IP block, so a separate compatible string was chosen.
 >
-> [1] http://lkml.kernel.org/r/1473261223-15412-1-git-send-email-jbrunet at baylibre.com
->
-> Neil Armstrong (2):
->   dt-bindings: spi-meson: Add GXBB Compatible string
->   spi: meson: Add GXBB compatible
+> No objection from my side, but a general clarification from device tree
+> maintainers when and when not to would be appreciated. (+ devicetree)
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
-
-Mark, with your ack, I could take these through the amlogic tree also.
-Let me know.
+I'm not sure what the "right" way is (Rob?) but I think the usual way is
+to add new compatibles when needed.
 
 Kevin
