@@ -1,81 +1,38 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 8 Sep 2016 23:48:53 +0200
-Subject: [PATCH 4/7] phy: meson: add USB2 PHY support for Meson8b and GXBB
-In-Reply-To: <ffdd0188-72bc-4575-f997-e8547f4c31d2@codethink.co.uk>
-References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
- <20160904213152.25837-5-martin.blumenstingl@googlemail.com>
- <m260q6jibf.fsf@baylibre.com>
- <CAFBinCA4Yvw5pbOFmJ8SqyOASADavyEPmHywSdOiUazcqe_Zmg@mail.gmail.com>
- <e3b1f611-d6f6-c98b-a53b-98e94ef5bd96@codethink.co.uk>
- <m2eg4ui0nl.fsf@baylibre.com>
- <ffdd0188-72bc-4575-f997-e8547f4c31d2@codethink.co.uk>
-Message-ID: <CAFBinCC4gkMrJtertYevg_hXDLJEZ0PqfKKLL5UKXo8B=SXsPw@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri,  9 Sep 2016 10:28:54 +0200
+Subject: [PATCH v2 0/4] ARM: amlogic: Add spifc support to Amlogic's GXBB
+ family
+Message-ID: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Sep 8, 2016 at 10:53 PM, Ben Dooks <ben.dooks@codethink.co.uk> wrote:
-> On 08/09/16 21:42, Kevin Hilman wrote:
->>
->> Ben Dooks <ben.dooks@codethink.co.uk> writes:
->>
->>> On 08/09/16 20:52, Martin Blumenstingl wrote:
->>>>
->>>> On Thu, Sep 8, 2016 at 9:35 PM, Kevin Hilman <khilman@baylibre.com>
->>>> wrote:
->>>>>>
->>>>>> +     phy = devm_phy_create(&pdev->dev, NULL, &phy_meson_usb2_ops);
->>>>>> +     if (IS_ERR(phy)) {
->>>>>> +             dev_err(&pdev->dev, "failed to create PHY\n");
->>>>>> +             return PTR_ERR(phy);
->>>>>> +     }
->>>>>> +
->>>>>> +     if (usb_reset_refcnt++ == 0) {
->>>>>> +             ret = device_reset(&pdev->dev);
->>>>>> +             if (ret) {
->>>>>> +                     dev_err(&phy->dev, "Failed to reset USB PHY\n");
->>>>>> +                     return ret;
->>>>>> +             }
->>>>>> +     }
->>>>>
->>>>>
->>>>> The ref count + reset here looks like something that could/should be
->>>>> handled in a runtime PM callback.
->>>>
->>>> Unfortunately that doesn't work (as Jerome found out) because both
->>>> PHYs are sharing the same reset line.
->>>> So if the second PHY would call device_reset then it would also reset
->>>> the first PHY!
->>>>
->>>> There's a comment above the declaration of usb_reset_refcnt which
->>>> tries to explain this:
->>>> "The PHYs are sharing a common reset line -> we are only allowed to
->>>> reset once for all PHYs."
->>>> Maybe I should move this comment to the "if (usb_reset_refcnt++ == 0)
->>>> {" line to make it easier to see?
->>>>
->>>
->>> pm-runtime has refcounting in it. When one of the nodes turns on,
->>> the pm-runtime will call your driver to say there is a user when
->>> this first use turns up.
->>>
->>> If all the sub-phys turn off and drop their refcount then the driver
->>> is called to say there are no more users and you can go to sleep.
->>
->>
->> After a chat w/Martin on IRC, It turns out runtime PM wont help here.
->>
->> The reason is because there are physically two PHY devices[1].  Those 2
->> devices will be treated independely by runtime PM, and have separate
->> use-counting, which means doing what I proposed would cause a reset to
->> happen when either device was probed.
->>
->> So, I think it's OK as it is.
->
->
-> Surely you can do pm_runtime_get/put on the phy's parent platform
-> device and do it that way?
-could you please be more specific with that (do you mean pdev->dev.parent)?
-so we would use pm_runtime_{get_sync,put} with the parent, while we
-would still define the runtime_resume in our driver.
+This patch series adds the necessary pins, clocks and device tree nodes to
+enable the spifc controller on the GXBB family. I had to add the nand pins
+in pintctrl as the pinmux setting left by u-boot was conflicting with the
+spifc pinmux during my test on the P200.
 
-I'd be happy if that works and we can remove that refcounting hack
+Changes since v1 at : http://lkml.kernel.org/r/1473261223-15412-1-git-send-email-jbrunet at baylibre.com
+ * Omit patches :
+  - dt-bindings: spi-meson: Add GXBB Compatible string
+  - spi: meson: Add GXBB compatible
+  Sent as dedicated series
+ * Omit patch:
+  - clk: gxbb: expose spifc clock
+  Already applied
+ * Rename SPI flash controller pins from spifc_* to nor_* to keep the
+   name aligned with the datasheet
+
+Jerome Brunet (3):
+  pinctrl: amlogic: gxbb: add spi nor pins
+  pinctrl: amlogic: gxbb: add nand pins
+  ARM64: dts: amlogic: add spi nor pins
+
+Neil Armstrong (1):
+  ARM64: dts: meson-gxbb: Add SPIFC node
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 19 +++++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c  | 37 +++++++++++++++++++++++++++++
+ 2 files changed, 56 insertions(+)
+
+-- 
+2.7.4
