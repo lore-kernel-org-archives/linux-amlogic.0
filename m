@@ -1,78 +1,37 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  9 Sep 2016 10:28:56 +0200
-Subject: [PATCH v2 2/4] pinctrl: amlogic: gxbb: add nand pins
+Date: Fri,  9 Sep 2016 10:28:57 +0200
+Subject: [PATCH v2 3/4] ARM64: dts: amlogic: add spi nor pins
 In-Reply-To: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
 References: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1473409738-27175-3-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1473409738-27175-4-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add EE domains pins for the NAND flash controller.
-Even tough we have no driver for the NAND flash controller yet, we need
-to have these pins in pinctrl as the actual pin are shared with the spifc
-controller. The bootloader on the S905-P200 setup pinmux for the NAND
-controller so we need the kernel to properly deactivate this if necessary.
-
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index f74dbd5d350b..699f93c51040 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -168,6 +168,15 @@ static const unsigned int sdcard_d3_pins[] = { PIN(CARD_4, EE_OFF) };
- static const unsigned int sdcard_cmd_pins[] = { PIN(CARD_3, EE_OFF) };
- static const unsigned int sdcard_clk_pins[] = { PIN(CARD_2, EE_OFF) };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 762f3681a49c..49e803e42e10 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -333,6 +333,16 @@
+ 					};
+ 				};
  
-+static const unsigned int nand_ce0_pins[]	= { PIN(BOOT_8, EE_OFF) };
-+static const unsigned int nand_ce1_pins[]	= { PIN(BOOT_9, EE_OFF) };
-+static const unsigned int nand_rb0_pins[]	= { PIN(BOOT_10, EE_OFF) };
-+static const unsigned int nand_ale_pins[]	= { PIN(BOOT_11, EE_OFF) };
-+static const unsigned int nand_cle_pins[]	= { PIN(BOOT_12, EE_OFF) };
-+static const unsigned int nand_wen_clk_pins[]	= { PIN(BOOT_13, EE_OFF) };
-+static const unsigned int nand_ren_wr_pins[]	= { PIN(BOOT_14, EE_OFF) };
-+static const unsigned int nand_dqs_pins[]	= { PIN(BOOT_15, EE_OFF) };
++				nor_pins: nor {
++					mux {
++						groups = "nor_d",
++						       "nor_q",
++						       "nor_c",
++						       "nor_cs";
++						function = "nor";
++					};
++				};
 +
- static const unsigned int uart_tx_a_pins[]	= { PIN(GPIOX_12, EE_OFF) };
- static const unsigned int uart_rx_a_pins[]	= { PIN(GPIOX_13, EE_OFF) };
- static const unsigned int uart_cts_a_pins[]	= { PIN(GPIOX_14, EE_OFF) };
-@@ -402,6 +411,14 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
- 	GROUP(nor_q,		5,	3),
- 	GROUP(nor_c,		5,	2),
- 	GROUP(nor_cs,		5,	0),
-+	GROUP(nand_ce0,		4,	26),
-+	GROUP(nand_ce1,		4,	27),
-+	GROUP(nand_rb0,		4,	25),
-+	GROUP(nand_ale,		4,	24),
-+	GROUP(nand_cle,		4,	23),
-+	GROUP(nand_wen_clk,	4,	22),
-+	GROUP(nand_ren_wr,	4,	21),
-+	GROUP(nand_dqs,		4,	20),
- 
- 	/* Bank CARD */
- 	GROUP(sdcard_d1,	2,	14),
-@@ -493,6 +510,11 @@ static const char * const sdcard_groups[] = {
- 	"sdcard_cmd", "sdcard_clk",
- };
- 
-+static const char * const nand_groups[] = {
-+	"nand_ce0", "nand_ce1", "nand_rb0", "nand_ale", "nand_cle",
-+	"nand_wen_clk", "nand_ren_wr", "nand_dqs",
-+};
-+
- static const char * const uart_a_groups[] = {
- 	"uart_tx_a", "uart_rx_a", "uart_cts_a", "uart_rts_a",
- };
-@@ -539,6 +561,7 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
- 	FUNCTION(emmc),
- 	FUNCTION(nor),
- 	FUNCTION(sdcard),
-+	FUNCTION(nand),
- 	FUNCTION(uart_a),
- 	FUNCTION(uart_b),
- 	FUNCTION(uart_c),
+ 				sdcard_pins: sdcard {
+ 					mux {
+ 						groups = "sdcard_d0",
 -- 
 2.7.4
