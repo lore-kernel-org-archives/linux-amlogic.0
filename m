@@ -1,31 +1,44 @@
-From: weiyj.lk@gmail.com (Wei Yongjun)
-Date: Sat, 10 Sep 2016 12:02:49 +0000
-Subject: [PATCH -next] meson: clk: Use builtin_platform_driver to simplify the
- code
-Message-ID: <1473508969-2776-1-git-send-email-weiyj.lk@gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Sat, 10 Sep 2016 15:54:11 +0200
+Subject: [PATCH -next] pwm: meson: Fix missing spin_lock_init()
+In-Reply-To: <1473489518-17981-1-git-send-email-weiyj.lk@gmail.com>
+References: <1473489518-17981-1-git-send-email-weiyj.lk@gmail.com>
+Message-ID: <57D41083.3060109@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Wei Yongjun <weiyongjun1@huawei.com>
+Le 10/09/2016 08:38, Wei Yongjun a ?crit :
+> From: Wei Yongjun <weiyongjun1@huawei.com>
+> 
+> The driver allocates the spinlock but not initialize it.
+> Use spin_lock_init() on it to initialize it correctly.
+> 
+> This is detected by Coccinelle semantic patch.
+> 
+> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
+> ---
+>  drivers/pwm/pwm-meson.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index bfbbe7f..778d088 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -465,6 +465,7 @@ static int meson_pwm_probe(struct platform_device *pdev)
+>  	if (IS_ERR(meson->base))
+>  		return PTR_ERR(meson->base);
+>  
+> +	spin_lock_init(&meson->lock);
+>  	meson->chip.dev = &pdev->dev;
+>  	meson->chip.ops = &meson_pwm_ops;
+>  	meson->chip.base = -1;
+> 
 
-Use the builtin_platform_driver() macro to make the code simpler.
+Thanks for the fix, but it was already posted earlier by Axel Lin <axel.lin@ingics.com>
 
-Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
----
- drivers/clk/meson/meson8b.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+Thierry will decide which one to merge.
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index e1d4aa1..aaa3e39 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -673,8 +673,4 @@ static struct platform_driver meson8b_driver = {
- 	},
- };
- 
--static int __init meson8b_clkc_init(void)
--{
--	return platform_driver_register(&meson8b_driver);
--}
--device_initcall(meson8b_clkc_init);
-+builtin_platform_driver(meson8b_driver);
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Thanks,
+Neil
