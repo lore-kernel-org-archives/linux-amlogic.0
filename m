@@ -1,52 +1,74 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Sep 2016 14:39:02 +0200
-Subject: [PATCH v2 1/2] pinctrl: meson-gxbb: add the missing SDIO interrupt pin
-In-Reply-To: <20160911123903.20027-1-martin.blumenstingl@googlemail.com>
-References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
- <20160911123903.20027-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
+Date: Sun, 11 Sep 2016 15:41:05 +0200
+Subject: [PATCH v2 0/6] usb/phy: Add Amlogic Meson8b and GXBB USB support
+In-Reply-To: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20160911134111.31141-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds the SDIO interrupt pin which can be used by sd_emmc_a.
+This series adds initial support for the DWC2 USB controllers and Meson
+specific USB PHYs found in Meson8b and GXBB SoCs, which means:
+- new DWC2 bindings and platform specific core configuration
+- a PHY driver supporting the USB2 PHY on Meson8b and GXBB SoCs
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+The first DWC2 controller is usually configured in OTG mode, whereas
+the second DWC2 controller is usually configured in host(-only) mode.
 
-Fixes: 29885a656511 ("pinctrl: meson-gxbb: add the pins for the
-SDIO/sd_emmc_a controller")
----
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Unfortunately no (public) datasheet is available and the reference PHY
+driver does not contain comments or speaking register name definitions.
+The nice people from BayLibre have already requested the datasheets
+(currently we can for example only guess that there is a mux clock
+inside the PHY, but we don't know it's parents).
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index fb479b8..4a27ae0 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -169,6 +169,7 @@ static const unsigned int sdio_d2_pins[] = { PIN(GPIOX_2, EE_OFF) };
- static const unsigned int sdio_d3_pins[] = { PIN(GPIOX_3, EE_OFF) };
- static const unsigned int sdio_cmd_pins[] = { PIN(GPIOX_4, EE_OFF) };
- static const unsigned int sdio_clk_pins[] = { PIN(GPIOX_5, EE_OFF) };
-+static const unsigned int sdio_irq_pins[] = { PIN(GPIOX_7, EE_OFF) };
- 
- static const unsigned int uart_tx_a_pins[]	= { PIN(GPIOX_12, EE_OFF) };
- static const unsigned int uart_rx_a_pins[]	= { PIN(GPIOX_13, EE_OFF) };
-@@ -383,6 +384,7 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
- 	GROUP(sdio_d3,		8,	2),
- 	GROUP(sdio_cmd,		8,	1),
- 	GROUP(sdio_clk,		8,	0),
-+	GROUP(sdio_irq,		8,	11),
- 	GROUP(uart_tx_a,	4,	13),
- 	GROUP(uart_rx_a,	4,	12),
- 	GROUP(uart_cts_a,	4,	11),
-@@ -522,7 +524,7 @@ static const char * const sdcard_groups[] = {
- 
- static const char * const sdio_groups[] = {
- 	"sdio_d0", "sdio_d1", "sdio_d2", "sdio_d3",
--	"sdio_cmd", "sdio_clk",
-+	"sdio_cmd", "sdio_clk", "sdio_irq",
- };
- 
- static const char * const uart_a_groups[] = {
+With this series both DWC2 controllers are configure in host mode,
+because the reference driver polls some of the PHY registers in OTG
+mode and then re-configures the dwc2 driver instance accordingly (if
+anyone is interested, this is the relevant piece of code: [0]). This
+seems good enough for the beginning though.
+
+
+Changes since v1:
+- the patch "clk: gxbb: expose USB clocks" was not sent again as it was
+  already applied by Kevin Hilman (thanks!)
+- dropped (unnecessary) USB PHY bus from .dts
+- remove underscores from PHY node names in .dts
+- rename the dwc2 nodes in the .dts to usb (as per convention)
+- remove unused struct reset_control from phy_meson_usb2_priv
+- removed refcounting "reset" workaround and only specify the reset for
+  the first PHY in the .dts (Jerome has reported that his boards don't
+  need the explicit reset, while my board needs it). In addition (to
+  make this work) the driver now treats the reset as optional
+- use the RESET_USB_OTG definition (from
+  <dt-bindings/reset/amlogic,meson-gxbb-reset.h>) instead of a magic
+  number in the .dts
+
+
+[0] https://github.com/150balbes/Amlogic_s905-kernel/blob/master/drivers/amlogic/usb/dwc_otg/310/dwc_otg_driver.c#L642
+
+
+Jerome Brunet (2):
+  usb: dwc2: add support for Meson8b and GXBB SoCs
+  ARM64: meson-gxbb-p20x: Enable USB Nodes
+
+Martin Blumenstingl (4):
+  Documentation: dt-bindings: Add documentation for the Meson USB2 PHYs
+  phy: meson: add USB2 PHY support for Meson8b and GXBB
+  ARM64: meson-gxbb: add USB Nodes
+  ARM64: meson-gxbb-vega-s95: Enable USB Nodes
+
+ .../devicetree/bindings/phy/meson-usb2-phy.txt     |  27 ++
+ Documentation/devicetree/bindings/usb/dwc2.txt     |   2 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |  29 +++
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  30 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  43 ++++
+ drivers/phy/Kconfig                                |  11 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-meson-usb2.c                       | 280 +++++++++++++++++++++
+ drivers/usb/dwc2/platform.c                        |  34 +++
+ 9 files changed, 457 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-usb2-phy.txt
+ create mode 100644 drivers/phy/phy-meson-usb2.c
+
 -- 
 2.9.3
