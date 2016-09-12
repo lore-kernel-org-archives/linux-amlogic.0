@@ -1,21 +1,24 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 12 Sep 2016 10:51:38 -0700
-Subject: [PATCH v2 4/4] ARM64: dts: meson-gxbb: Add SPIFC node
-In-Reply-To: <1473409738-27175-5-git-send-email-jbrunet@baylibre.com> (Jerome
- Brunet's message of "Fri, 9 Sep 2016 10:28:58 +0200")
-References: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
- <1473409738-27175-5-git-send-email-jbrunet@baylibre.com>
-Message-ID: <7h7fahqa51.fsf@baylibre.com>
+Date: Mon, 12 Sep 2016 11:07:46 -0700
+Subject: [PATCH v2 1/2] pinctrl: meson-gxbb: add the missing SDIO
+ interrupt pin
+In-Reply-To: <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 11 Sep 2016 14:39:02 +0200")
+References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
+ <20160911123903.20027-1-martin.blumenstingl@googlemail.com>
+ <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
+Message-ID: <7hr38poutp.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> From: Neil Armstrong <narmstrong@baylibre.com>
+> This adds the SDIO interrupt pin which can be used by sd_emmc_a.
 >
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+>
+> Fixes: 29885a656511 ("pinctrl: meson-gxbb: add the pins for the
+> SDIO/sd_emmc_a controller")
 
-Applied,
-
-Kevin
+Acked-by: Kevin Hilman <khilman@baylibre.com>
