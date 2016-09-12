@@ -1,72 +1,123 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Mon, 12 Sep 2016 19:18:10 +0200
-Subject: [PATCH 2/3] ARM64: dts: amlogic: Add basic support for Amlogic
- S905X
-In-Reply-To: <7e27e8c0-bb18-40d8-10d6-3928e66815c7@suse.de>
-References: <20160903082227.30559-1-narmstrong@baylibre.com>
- <20160903082227.30559-3-narmstrong@baylibre.com>
- <7e27e8c0-bb18-40d8-10d6-3928e66815c7@suse.de>
-Message-ID: <CAOQ7t2bWLq2XP2rKx3msf=1tUfXkQuBWagun46TaKk73qXr=FQ@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 12 Sep 2016 10:32:44 -0700
+Subject: [PATCH 4/7] phy: meson: add USB2 PHY support for Meson8b and GXBB
+In-Reply-To: <CAFBinCDnMd0rtrvTMX-D_WNXHpVD8F=8Xn35jcK5jTUCre9ebA@mail.gmail.com>
+ (Martin Blumenstingl's message of "Sun, 11 Sep 2016 15:44:03 +0200")
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20160904213152.25837-5-martin.blumenstingl@googlemail.com>
+ <m260q6jibf.fsf@baylibre.com>
+ <CAFBinCA4Yvw5pbOFmJ8SqyOASADavyEPmHywSdOiUazcqe_Zmg@mail.gmail.com>
+ <e3b1f611-d6f6-c98b-a53b-98e94ef5bd96@codethink.co.uk>
+ <m2eg4ui0nl.fsf@baylibre.com>
+ <ffdd0188-72bc-4575-f997-e8547f4c31d2@codethink.co.uk>
+ <CAFBinCC4gkMrJtertYevg_hXDLJEZ0PqfKKLL5UKXo8B=SXsPw@mail.gmail.com>
+ <m2sht9gkau.fsf@baylibre.com>
+ <CAFBinCDohOoFP_3GC+=tt6S7sPS308ao-yf+oGhdfwo-N-JnAA@mail.gmail.com>
+ <CAFBinCDnMd0rtrvTMX-D_WNXHpVD8F=8Xn35jcK5jTUCre9ebA@mail.gmail.com>
+Message-ID: <7hpoo9qb0j.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Sep 12, 2016 at 6:28 PM, Andreas F?rber <afaerber@suse.de> wrote:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
->> +Boards with the Amlogic Meson GXL SoC shall have the following properties:
->> +  Required root node property:
->> +    compatible: "amlogic,meson-gxl-s905x", "amlogic,meson-gxl";
->
-> Can we please use "amlogic,s905x", "amlogic,meson-gxl"? No need to
-> complicate the name. Also affects .dtsi and .dts below.
+> On Fri, Sep 9, 2016 at 10:36 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> On Fri, Sep 9, 2016 at 5:33 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+>>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>>>
+>>>> On Thu, Sep 8, 2016 at 10:53 PM, Ben Dooks <ben.dooks@codethink.co.uk> wrote:
+>>>>> On 08/09/16 21:42, Kevin Hilman wrote:
+>>>>>>
+>>>>>> Ben Dooks <ben.dooks@codethink.co.uk> writes:
+>>>>>>
+>>>>>>> On 08/09/16 20:52, Martin Blumenstingl wrote:
+>>>>>>>>
+>>>>>>>> On Thu, Sep 8, 2016 at 9:35 PM, Kevin Hilman <khilman@baylibre.com>
+>>>>>>>> wrote:
+>>>>>>>>>>
+>>>>>>>>>> +     phy = devm_phy_create(&pdev->dev, NULL, &phy_meson_usb2_ops);
+>>>>>>>>>> +     if (IS_ERR(phy)) {
+>>>>>>>>>> +             dev_err(&pdev->dev, "failed to create PHY\n");
+>>>>>>>>>> +             return PTR_ERR(phy);
+>>>>>>>>>> +     }
+>>>>>>>>>> +
+>>>>>>>>>> +     if (usb_reset_refcnt++ == 0) {
+>>>>>>>>>> +             ret = device_reset(&pdev->dev);
+>>>>>>>>>> +             if (ret) {
+>>>>>>>>>> +                     dev_err(&phy->dev, "Failed to reset USB PHY\n");
+>>>>>>>>>> +                     return ret;
+>>>>>>>>>> +             }
+>>>>>>>>>> +     }
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> The ref count + reset here looks like something that could/should be
+>>>>>>>>> handled in a runtime PM callback.
+>>>>>>>>
+>>>>>>>> Unfortunately that doesn't work (as Jerome found out) because both
+>>>>>>>> PHYs are sharing the same reset line.
+>>>>>>>> So if the second PHY would call device_reset then it would also reset
+>>>>>>>> the first PHY!
+>>>>>>>>
+>>>>>>>> There's a comment above the declaration of usb_reset_refcnt which
+>>>>>>>> tries to explain this:
+>>>>>>>> "The PHYs are sharing a common reset line -> we are only allowed to
+>>>>>>>> reset once for all PHYs."
+>>>>>>>> Maybe I should move this comment to the "if (usb_reset_refcnt++ == 0)
+>>>>>>>> {" line to make it easier to see?
+>>>>>>>>
+>>>>>>>
+>>>>>>> pm-runtime has refcounting in it. When one of the nodes turns on,
+>>>>>>> the pm-runtime will call your driver to say there is a user when
+>>>>>>> this first use turns up.
+>>>>>>>
+>>>>>>> If all the sub-phys turn off and drop their refcount then the driver
+>>>>>>> is called to say there are no more users and you can go to sleep.
+>>>>>>
+>>>>>>
+>>>>>> After a chat w/Martin on IRC, It turns out runtime PM wont help here.
+>>>>>>
+>>>>>> The reason is because there are physically two PHY devices[1].  Those 2
+>>>>>> devices will be treated independely by runtime PM, and have separate
+>>>>>> use-counting, which means doing what I proposed would cause a reset to
+>>>>>> happen when either device was probed.
+>>>>>>
+>>>>>> So, I think it's OK as it is.
+>>>>>
+>>>>>
+>>>>> Surely you can do pm_runtime_get/put on the phy's parent platform
+>>>>> device and do it that way?
+>>>> could you please be more specific with that (do you mean pdev->dev.parent)?
+>>>> so we would use pm_runtime_{get_sync,put} with the parent, while we
+>>>> would still define the runtime_resume in our driver.
+>>>
+>>> You'd also need to do get/put on the children, but yes, that's what Ben
+>>> is suggesting.
+>>>
+>>> However, the problem with all of the solutions proposed (runtime PM ones
+>>> included) is that we're forcing a board-specific design issue (2 devices
+>>> sharing a reset line) into a driver that should not have any
+>>> board-specific assumptions in it.
+>>>
+>>> For example, if this driver is used on another platform where different
+>>> PHYs have different reset lines, then one of them (the unlucky one who
+>>> is not probed first) will never get reset.  So any form of per-device
+>>> ref-counting is not a portable solution.
+>> indeed, so in simple words we would need something like
+>> reset_control_do_once(rstc, RESET/ASSERT/DEASSERT) which would
+>> remember internally if any action has already been executed: if not it
+>> does a _reset, _assert or _deassert and otherwise it does nothing.
+> for now I've implemented something less hacky: I made the reset
+> optional and only specified it for phy0.
 
-gxl != s905x.
+That's slightly better, but could misbehave if devices are probed/loaded
+in different order?  But, that shouldn't be a blocker for the driver.
 
-AFAWK to the GXL family belong several different SoCs, like S905X,
-S905D, etc... (see patch 3/3)
-This is why we use meson-gxl-s905x, meson-gxl-s905d, etc...
+> During Jerome's tests the reset was not needed, while on my board it's
+> required to bring both PHYs up.
+> Additionally the USB PHY reference driver does not have any reset
+> logic for newer SoCs (GXL), so making the reset optional doesn't sound
+> that bad to me.
 
-We could s/meson-gxl-s905x/meson-s905x/ and
-s/meson-gxl-s905d/meson-s905d/ but I honestly prefer this way because
-we can clearly see which family the SoC belongs to (the Amlogic naming
-convention is already messy enough).
-I mean, yes it's longer, but it's for the sake of documentation IMO.
+Agreed.
 
-
-[cut]
->> +     compatible = "amlogic,p212", "amlogic,meson-gxl-s905x", "amlogic,meson-gxl";
->> +     model = "Amlogic Meson GXL (S905X) P212 Development Board";
->
-> Is that its official name? No objection, just wondering whether we need
-> both GXL and S905X in the name, and then again the SoC name at all if
-> the P212 is unique. Haven't compared the previous Pxxx ones.
-
-P212 is the official name for the S905X Amlogic dev board. It follows
-the name we used for the other P20x boards.
-
-
-[cut]
->> +
->> +/* This UART is brought out to the DB9 connector */
->> +&uart_AO {
->> +     status = "okay";
->> +};
->> +
->
-> Trailing white line - please watch out for that, git-am will complain.
-
-Right.
-
-[cut]
->> +#include "meson-gxl.dtsi"
->> +
->> +/ {
->> +     compatible = "amlogic,meson-gxl", "amlogic,meson-gxl-s905x";
->
-> This needs to be reversed.
-
-Agree.
-
-Cheers,
-
--- 
-Carlo Caione
+Kevin
