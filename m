@@ -1,26 +1,45 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 12 Sep 2016 12:43:26 -0700
-Subject: [PATCH] arm64: defconfig: enable meson SPI as module
-Message-ID: <20160912194326.26654-1-khilman@baylibre.com>
+Date: Mon, 12 Sep 2016 13:38:35 -0700
+Subject: [PATCH v2 0/4] ARM: amlogic: Add spifc support to Amlogic's GXBB
+ family
+In-Reply-To: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com> (Jerome
+ Brunet's message of "Fri, 9 Sep 2016 10:28:54 +0200")
+References: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <7heg4oq2es.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 2d6576fe6057..17d26e958a3a 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -188,6 +188,7 @@ CONFIG_I2C_UNIPHIER_F=y
- CONFIG_I2C_RCAR=y
- CONFIG_I2C_CROS_EC_TUNNEL=y
- CONFIG_SPI=y
-+CONFIG_SPI_MESON_SPIFC=m
- CONFIG_SPI_ORION=y
- CONFIG_SPI_PL022=y
- CONFIG_SPI_QUP=y
--- 
-2.9.3
+> This patch series adds the necessary pins, clocks and device tree nodes to
+> enable the spifc controller on the GXBB family. I had to add the nand pins
+> in pintctrl as the pinmux setting left by u-boot was conflicting with the
+> spifc pinmux during my test on the P200.
+
+This series seems to be missing a patch which enables the SPIfc on the
+P200 board for use with the on-board NOR flash.
+
+Kevin
+
+> Changes since v1 at : http://lkml.kernel.org/r/1473261223-15412-1-git-send-email-jbrunet at baylibre.com
+>  * Omit patches :
+>   - dt-bindings: spi-meson: Add GXBB Compatible string
+>   - spi: meson: Add GXBB compatible
+>   Sent as dedicated series
+>  * Omit patch:
+>   - clk: gxbb: expose spifc clock
+>   Already applied
+>  * Rename SPI flash controller pins from spifc_* to nor_* to keep the
+>    name aligned with the datasheet
+>
+> Jerome Brunet (3):
+>   pinctrl: amlogic: gxbb: add spi nor pins
+>   pinctrl: amlogic: gxbb: add nand pins
+>   ARM64: dts: amlogic: add spi nor pins
+>
+> Neil Armstrong (1):
+>   ARM64: dts: meson-gxbb: Add SPIFC node
+>
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 19 +++++++++++++++
+>  drivers/pinctrl/meson/pinctrl-meson-gxbb.c  | 37 +++++++++++++++++++++++++++++
+>  2 files changed, 56 insertions(+)
