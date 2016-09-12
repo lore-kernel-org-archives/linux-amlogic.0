@@ -1,42 +1,74 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 12 Sep 2016 13:43:39 -0700
-Subject: [PATCH 2/3] ARM64: dts: amlogic: Add basic support for Amlogic
- S905X
-In-Reply-To: <CAOQ7t2bWLq2XP2rKx3msf=1tUfXkQuBWagun46TaKk73qXr=FQ@mail.gmail.com>
- (Carlo Caione's message of "Mon, 12 Sep 2016 19:18:10 +0200")
-References: <20160903082227.30559-1-narmstrong@baylibre.com>
- <20160903082227.30559-3-narmstrong@baylibre.com>
- <7e27e8c0-bb18-40d8-10d6-3928e66815c7@suse.de>
- <CAOQ7t2bWLq2XP2rKx3msf=1tUfXkQuBWagun46TaKk73qXr=FQ@mail.gmail.com>
-Message-ID: <7ha8fcq26c.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 12 Sep 2016 23:26:38 +0200
+Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
+In-Reply-To: <ff6f3501-fbd5-3e79-dcc1-549406a5144b@st.com>
+References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
+ <ff6f3501-fbd5-3e79-dcc1-549406a5144b@st.com>
+Message-ID: <CAFBinCD42A_SqQz8GM-H+A32dMELknAytHuJ5T2YgZ3BrMKA3A@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Carlo Caione <carlo@caione.org> writes:
+Hi Alexandre,
 
-> On Mon, Sep 12, 2016 at 6:28 PM, Andreas F?rber <afaerber@suse.de> wrote:
->
->>> +Boards with the Amlogic Meson GXL SoC shall have the following properties:
->>> +  Required root node property:
->>> +    compatible: "amlogic,meson-gxl-s905x", "amlogic,meson-gxl";
+On Mon, Sep 12, 2016 at 6:37 PM, Alexandre Torgue
+<alexandre.torgue@st.com> wrote:
+> Which Synopsys IP version do you use ?
+found this in a dmesg log:
+[    1.504784] stmmac - user ID: 0x11, Synopsys ID: 0x37
+[    1.509785]  Ring mode enabled
+[    1.512796]  DMA HW capability register supported
+[    1.517286]  Normal descriptors
+[    1.520565]  RX Checksum Offload Engine supported
+[    1.525219]  COE Type 2
+[    1.527638]  TX Checksum insertion supported
+[    1.531862]  Wake-Up On Lan supported
+[    1.535483]  Enable RX Mitigation via HW Watchdog Timer
+[    1.543851] libphy: stmmac: probed
+[    1.544025] eth0: PHY ID 001cc916 at 0 IRQ POLL (stmmac-0:00) active
+[    1.550321] eth0: PHY ID 001cc916 at 7 IRQ POLL (stmmac-0:07)
+
+>> Gbit ethernet on my device is provided by a Realtek RTL8211F RGMII PHY.
+>> Similar issues were reported in #linux-amlogic by a user with an
+>> Odroid C2 board (= similar hardware).
 >>
->> Can we please use "amlogic,s905x", "amlogic,meson-gxl"? No need to
->> complicate the name. Also affects .dtsi and .dts below.
+>> The symptoms are:
+>> Receiving data is plenty fast (I can max out my internet connection
+>> easily, and with iperf3 I get ~900Mbit/s).
+>> Transmitting data from the device is unfortunately very slow, traffic
+>> sometimes even stalls completely.
+>>
+>> I have attached the iperf results and the output of
+>> /sys/kernel/debug/stmmaceth/eth0/descriptors_status.
+>> Below you can find the ifconfig, netstat and stmmac dma_cap info
+>> (*after* I ran all tests).
+>>
+>> The "involved parties" are:
+>> - Meson GXBB specific network configuration registers (I have have
+>> double-checked them with the reference drivers: everything seems fine
+>> here)
+>> - stmmac: it seems that nobody else has reported these kind of issues
+>> so far, however I'd still like to hear where I should enable some
+>> debugging bits to rule out any stmmac bug
 >
-> gxl != s905x.
 >
-> AFAWK to the GXL family belong several different SoCs, like S905X,
-> S905D, etc... (see patch 3/3)
-> This is why we use meson-gxl-s905x, meson-gxl-s905d, etc...
+> On my side, I just tested on the same "kind" of system:
+> -SYNOPSYS GMAC 3.7
+> -RTL8211EG as PHY
+>
+> With I perf, I reach:
+>         -RX: 932 Mbps
+>         -TX: 820Mbps
+>
+> Can you check ethtool -S eth0 (most precisely "MMC"counter and errors) ?
+> Which kernel version do you use ?
+I am using a 4.8.0-rc4 kernel, based on Kevin's "integration" branch: [0]
+Unfortunately I don't have access to my device in the next few days,
+but I'll keep you updated once I have the ethtool output.
 
-Correct.
 
-> We could s/meson-gxl-s905x/meson-s905x/ and
-> s/meson-gxl-s905d/meson-s905d/ but I honestly prefer this way because
-> we can clearly see which family the SoC belongs to (the Amlogic naming
-> convention is already messy enough).
-> I mean, yes it's longer, but it's for the sake of documentation IMO.
+Thanks for your time
+Regards,
+Martin
 
-+1
 
-Kevin
+[0] https://git.kernel.org/cgit/linux/kernel/git/khilman/linux-amlogic.git/log/?h=v4.8/integ
