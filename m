@@ -1,24 +1,25 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 12 Sep 2016 11:07:46 -0700
-Subject: [PATCH v2 1/2] pinctrl: meson-gxbb: add the missing SDIO
- interrupt pin
-In-Reply-To: <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Sun, 11 Sep 2016 14:39:02 +0200")
+Date: Mon, 12 Sep 2016 11:13:48 -0700
+Subject: [PATCH v2 2/2] ARM64: dts: meson-gxbb: add the SDIO pins
+In-Reply-To: <20160911123903.20027-3-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 11 Sep 2016 14:39:03 +0200")
 References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
  <20160911123903.20027-1-martin.blumenstingl@googlemail.com>
- <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
-Message-ID: <7hr38poutp.fsf@baylibre.com>
+ <20160911123903.20027-3-martin.blumenstingl@googlemail.com>
+Message-ID: <7hmvjdoujn.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> This adds the SDIO interrupt pin which can be used by sd_emmc_a.
+> From: Neil Armstrong <narmstrong@baylibre.com>
 >
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+> This is used to configure the pins of the sd_emmc_a controller to
+> which an SDIO module is connected (when available).
 >
-> Fixes: 29885a656511 ("pinctrl: meson-gxbb: add the pins for the
-> SDIO/sd_emmc_a controller")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Applied,
+
+Kevin
