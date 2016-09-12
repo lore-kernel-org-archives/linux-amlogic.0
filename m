@@ -1,41 +1,54 @@
 From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Mon, 12 Sep 2016 17:46:56 +0200
-Subject: [PATCH 1/3] ARM64: dts: amlogic: Add Meson GX dtsi from GXBB
-In-Reply-To: <20160903082227.30559-2-narmstrong@baylibre.com>
-References: <20160903082227.30559-1-narmstrong@baylibre.com>
- <20160903082227.30559-2-narmstrong@baylibre.com>
-Message-ID: <4da162ac-5912-c8e1-49ba-4ce70ae48999@suse.de>
+Date: Mon, 12 Sep 2016 17:56:37 +0200
+Subject: [PATCH] ARM: dts: meson-gxbb: Add support for the Nexbox A95X
+ Board
+In-Reply-To: <1471951370-29269-1-git-send-email-narmstrong@baylibre.com>
+References: <1471951370-29269-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <894d8bda-cada-00b0-581b-58cbbabe4c67@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 03.09.2016 um 10:22 schrieb Neil Armstrong:
-> Move all non-gxbb specific nodes to a common GX dtsi.
-> 
+Hi,
+
+ARM64 for consistency? amlogic vs. meson-gxbb?
+
+Am 23.08.2016 um 13:22 schrieb Neil Armstrong:
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 181 ++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 320 +++++++++-------------------
->  2 files changed, 280 insertions(+), 221 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>  arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+>  .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 79 ++++++++++++++++++++++
+>  2 files changed, 80 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 47ec703..2c50439 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-p201.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-pro.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-meta.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-telos.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
+>  
+>  always		:= $(dtb-y)
+>  subdir-y	:= $(dts-dirs)
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
 > new file mode 100644
-> index 0000000..fb393e9
+> index 0000000..c418bd7
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -0,0 +1,181 @@
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+> @@ -0,0 +1,79 @@
 > +/*
-> + * Copyright (c) 2016 BayLibre, SAS.
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + *
-> + * Copyright (c) 2016 Endless Computers, Inc.
-> + * Author: Carlo Caione <carlo@endlessm.com>
+> + * Copyright (c) 2016 Andreas F?rber
 
-This seems to be lacking my copyright as initial contributor of gxbb.
+Here I have not really contributed (don't have access to a Nexbox) so
+you are free to drop my copyright line (I assume you adopted it from
+Vega S95 - nodes are still trivial though).
 
-Regards,
-Andreas
+Looks fine otherwise, except for ...
 
+> + * Copyright (c) 2016 BayLibre, Inc.
+> + * Author: Neil Armstrong <narmstrong@kernel.org>
 > + *
 > + * This file is dual-licensed: you can use it either under the terms
 > + * of the GPL or the X11 license, at your option. Note that this dual
@@ -75,18 +88,46 @@ Andreas
 > + *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 > + *     OTHER DEALINGS IN THE SOFTWARE.
 > + */
-[...]
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index 2ea7bbd..ff20932 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-gxbb.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	compatible = "nexbox,a95x", "amlogic,meson-gxbb";
+> +	model = "NEXBOX A95X";
+> +	
+> +	aliases {
+> +		serial0 = &uart_AO;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory at 0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x40000000>;
+> +	};
+> +};
+> +
+> +&uart_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&ethmac {
+> +	status = "okay";
+> +	pinctrl-0 = <&eth_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
 
-/*
- * Copyright (c) 2016 Andreas F?rber
- *
- * This file is dual-licensed: you can use it either under the terms
+Trailing white line.
 
-Regards,
+Cheers,
 Andreas
 
 -- 
