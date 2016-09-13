@@ -1,26 +1,27 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Tue, 13 Sep 2016 13:36:50 +0200
-Subject: [PATCH v2 1/4] pinctrl: amlogic: gxbb: add spi nor pins
-In-Reply-To: <1473409738-27175-2-git-send-email-jbrunet@baylibre.com>
-References: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
- <1473409738-27175-2-git-send-email-jbrunet@baylibre.com>
-Message-ID: <CACRpkdZDhhqHF+NwC4yGoX4iLmw0O+thOd3+Syd+H7vJRa2bVg@mail.gmail.com>
+Date: Tue, 13 Sep 2016 13:38:34 +0200
+Subject: [PATCH v2 1/2] pinctrl: meson-gxbb: add the missing SDIO
+ interrupt pin
+In-Reply-To: <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
+References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
+ <20160911123903.20027-1-martin.blumenstingl@googlemail.com>
+ <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CACRpkdaRzbVuK2SPGLf9UwFJXq28iU3pRzo9ozaxAB-Nop9GKQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Sep 9, 2016 at 10:28 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Sun, Sep 11, 2016 at 2:39 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 
-> Add EE domains pins for the SPI flash controller
+> This adds the SDIO interrupt pin which can be used by sd_emmc_a.
 >
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+>
+> Fixes: 29885a656511 ("pinctrl: meson-gxbb: add the pins for the
+> SDIO/sd_emmc_a controller")
 
-This patch does not apply on the latest pinctrl devel
-branch:
-https://git.kernel.org/cgit/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
-
-Please rebase, include Kevin's ACK and resend.
-
-Goes for all pinctrl portions of the patch series.
+Patch applied with Kevin's ACK.
 
 Yours,
 Linus Walleij
