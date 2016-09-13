@@ -1,52 +1,64 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 13 Sep 2016 07:19:53 -0700
-Subject: [PATCH v2 0/4] ARM: amlogic: Add spifc support to Amlogic's GXBB
- family
-In-Reply-To: <1473753807.2662.12.camel@baylibre.com> (jbrunet@baylibre.com's
- message of "Tue, 13 Sep 2016 10:03:27 +0200")
-References: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
- <7heg4oq2es.fsf@baylibre.com> <1473753807.2662.12.camel@baylibre.com>
-Message-ID: <7h4m5jq3ue.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 13 Sep 2016 17:12:21 +0200
+Subject: [RESEND PATCH v2 1/4] pinctrl: amlogic: gxbb: add spi nor pins
+In-Reply-To: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1473779542-2635-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-jbrunet <jbrunet@baylibre.com> writes:
+Add EE domains pins for the SPI flash controller
 
-> On Mon, 2016-09-12 at 13:38 -0700, Kevin Hilman wrote:
->> Jerome Brunet <jbrunet@baylibre.com> writes:
->> 
->> > 
->> > This patch series adds the necessary pins, clocks and device tree
->> > nodes to
->> > enable the spifc controller on the GXBB family. I had to add the
->> > nand pins
->> > in pintctrl as the pinmux setting left by u-boot was conflicting
->> > with the
->> > spifc pinmux during my test on the P200.
->> 
->> This series seems to be missing a patch which enables the SPIfc on
->> the
->> P200 board for use with the on-board NOR flash.
->> 
->
-> Indeed, I did not provide this patch, on purpose.
-> The SPI-NOR at 4U2 on the P200 schematics was not present on the board
-> I have. I assumed this was the case for all other P200 as well.
->
-> In addition, to enable the SPI-NOR, you would also need to solder
-> something at 4R3 (SPI_CS signal disconnected by default)
+Acked-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-OK, that makes seense.  I thought the NOR was on the board by default.
-
-> Finally, all the SPIfc lines are shared with the NAND controller which,
-> like the SPI-NOR, appears on the schematics (4CCN1) but is not soldered
-> on the actual hardware.
->
-> Of course, I can share such patch for testing purposes if you would
-> like me to.
-
-Yeah, having a testing patch in the list archives would be useful.
-
-Thanks,
-
-Kevin
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index f115638e8699..573901887cee 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -156,6 +156,11 @@ static const unsigned int emmc_clk_pins[] = { PIN(BOOT_8, EE_OFF) };
+ static const unsigned int emmc_cmd_pins[] = { PIN(BOOT_10, EE_OFF) };
+ static const unsigned int emmc_ds_pins[] = { PIN(BOOT_15, EE_OFF) };
+ 
++static const unsigned int nor_d_pins[]		= { PIN(BOOT_11, EE_OFF) };
++static const unsigned int nor_q_pins[]		= { PIN(BOOT_12, EE_OFF) };
++static const unsigned int nor_c_pins[]		= { PIN(BOOT_13, EE_OFF) };
++static const unsigned int nor_cs_pins[]		= { PIN(BOOT_15, EE_OFF) };
++
+ static const unsigned int sdcard_d0_pins[] = { PIN(CARD_1, EE_OFF) };
+ static const unsigned int sdcard_d1_pins[] = { PIN(CARD_0, EE_OFF) };
+ static const unsigned int sdcard_d2_pins[] = { PIN(CARD_5, EE_OFF) };
+@@ -430,6 +435,10 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
+ 	GROUP(emmc_clk,		4,	18),
+ 	GROUP(emmc_cmd,		4,	19),
+ 	GROUP(emmc_ds,		4,	31),
++	GROUP(nor_d,		5,	1),
++	GROUP(nor_q,		5,	3),
++	GROUP(nor_c,		5,	2),
++	GROUP(nor_cs,		5,	0),
+ 
+ 	/* Bank CARD */
+ 	GROUP(sdcard_d1,	2,	14),
+@@ -517,6 +526,10 @@ static const char * const emmc_groups[] = {
+ 	"emmc_nand_d07", "emmc_clk", "emmc_cmd", "emmc_ds",
+ };
+ 
++static const char * const nor_groups[] = {
++	"nor_d", "nor_q", "nor_c", "nor_cs",
++};
++
+ static const char * const sdcard_groups[] = {
+ 	"sdcard_d0", "sdcard_d1", "sdcard_d2", "sdcard_d3",
+ 	"sdcard_cmd", "sdcard_clk",
+@@ -619,6 +632,7 @@ static const char * const pwm_ao_b_groups[] = {
+ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
++	FUNCTION(nor),
+ 	FUNCTION(sdcard),
+ 	FUNCTION(sdio),
+ 	FUNCTION(uart_a),
+-- 
+2.7.4
