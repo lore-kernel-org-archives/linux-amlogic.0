@@ -1,27 +1,52 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Tue, 13 Sep 2016 13:38:34 +0200
-Subject: [PATCH v2 1/2] pinctrl: meson-gxbb: add the missing SDIO
- interrupt pin
-In-Reply-To: <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
-References: <20160828164725.19429-1-martin.blumenstingl@googlemail.com>
- <20160911123903.20027-1-martin.blumenstingl@googlemail.com>
- <20160911123903.20027-2-martin.blumenstingl@googlemail.com>
-Message-ID: <CACRpkdaRzbVuK2SPGLf9UwFJXq28iU3pRzo9ozaxAB-Nop9GKQ@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 13 Sep 2016 07:19:53 -0700
+Subject: [PATCH v2 0/4] ARM: amlogic: Add spifc support to Amlogic's GXBB
+ family
+In-Reply-To: <1473753807.2662.12.camel@baylibre.com> (jbrunet@baylibre.com's
+ message of "Tue, 13 Sep 2016 10:03:27 +0200")
+References: <1473409738-27175-1-git-send-email-jbrunet@baylibre.com>
+ <7heg4oq2es.fsf@baylibre.com> <1473753807.2662.12.camel@baylibre.com>
+Message-ID: <7h4m5jq3ue.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Sep 11, 2016 at 2:39 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+jbrunet <jbrunet@baylibre.com> writes:
 
-> This adds the SDIO interrupt pin which can be used by sd_emmc_a.
+> On Mon, 2016-09-12 at 13:38 -0700, Kevin Hilman wrote:
+>> Jerome Brunet <jbrunet@baylibre.com> writes:
+>> 
+>> > 
+>> > This patch series adds the necessary pins, clocks and device tree
+>> > nodes to
+>> > enable the spifc controller on the GXBB family. I had to add the
+>> > nand pins
+>> > in pintctrl as the pinmux setting left by u-boot was conflicting
+>> > with the
+>> > spifc pinmux during my test on the P200.
+>> 
+>> This series seems to be missing a patch which enables the SPIfc on
+>> the
+>> P200 board for use with the on-board NOR flash.
+>> 
 >
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+> Indeed, I did not provide this patch, on purpose.
+> The SPI-NOR at 4U2 on the P200 schematics was not present on the board
+> I have. I assumed this was the case for all other P200 as well.
 >
-> Fixes: 29885a656511 ("pinctrl: meson-gxbb: add the pins for the
-> SDIO/sd_emmc_a controller")
+> In addition, to enable the SPI-NOR, you would also need to solder
+> something at 4R3 (SPI_CS signal disconnected by default)
 
-Patch applied with Kevin's ACK.
+OK, that makes seense.  I thought the NOR was on the board by default.
 
-Yours,
-Linus Walleij
+> Finally, all the SPIfc lines are shared with the NAND controller which,
+> like the SPI-NOR, appears on the schematics (4CCN1) but is not soldered
+> on the actual hardware.
+>
+> Of course, I can share such patch for testing purposes if you would
+> like me to.
+
+Yeah, having a testing patch in the list archives would be useful.
+
+Thanks,
+
+Kevin
