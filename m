@@ -1,78 +1,138 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 13 Sep 2016 17:12:22 +0200
-Subject: [RESEND PATCH v2 2/4] pinctrl: amlogic: gxbb: add nand pins
-In-Reply-To: <1473779542-2635-1-git-send-email-jbrunet@baylibre.com>
-References: <1473779542-2635-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1473779542-2635-2-git-send-email-jbrunet@baylibre.com>
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Tue, 13 Sep 2016 17:28:28 +0200
+Subject: [PATCH 4/7] phy: meson: add USB2 PHY support for Meson8b and GXBB
+In-Reply-To: <CAFBinCDohOoFP_3GC+=tt6S7sPS308ao-yf+oGhdfwo-N-JnAA@mail.gmail.com>
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20160904213152.25837-5-martin.blumenstingl@googlemail.com>
+ <m260q6jibf.fsf@baylibre.com>
+ <CAFBinCA4Yvw5pbOFmJ8SqyOASADavyEPmHywSdOiUazcqe_Zmg@mail.gmail.com>
+ <e3b1f611-d6f6-c98b-a53b-98e94ef5bd96@codethink.co.uk>
+ <m2eg4ui0nl.fsf@baylibre.com>
+ <ffdd0188-72bc-4575-f997-e8547f4c31d2@codethink.co.uk>
+ <CAFBinCC4gkMrJtertYevg_hXDLJEZ0PqfKKLL5UKXo8B=SXsPw@mail.gmail.com>
+ <m2sht9gkau.fsf@baylibre.com>
+ <CAFBinCDohOoFP_3GC+=tt6S7sPS308ao-yf+oGhdfwo-N-JnAA@mail.gmail.com>
+Message-ID: <1473780508.10237.22.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add EE domains pins for the NAND flash controller.
-Even tough we have no driver for the NAND flash controller yet, we need
-to have these pins in pinctrl as the actual pin are shared with the spifc
-controller. The bootloader on the S905-P200 setup pinmux for the NAND
-controller so we need the kernel to properly deactivate this if necessary.
+Hi Martin,
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Am Freitag, den 09.09.2016, 22:36 +0200 schrieb Martin Blumenstingl:
+> On Fri, Sep 9, 2016 at 5:33 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> >
+> >> On Thu, Sep 8, 2016 at 10:53 PM, Ben Dooks <ben.dooks@codethink.co.uk> wrote:
+> >>> On 08/09/16 21:42, Kevin Hilman wrote:
+> >>>>
+> >>>> Ben Dooks <ben.dooks@codethink.co.uk> writes:
+> >>>>
+> >>>>> On 08/09/16 20:52, Martin Blumenstingl wrote:
+> >>>>>>
+> >>>>>> On Thu, Sep 8, 2016 at 9:35 PM, Kevin Hilman <khilman@baylibre.com>
+> >>>>>> wrote:
+> >>>>>>>>
+> >>>>>>>> +     phy = devm_phy_create(&pdev->dev, NULL, &phy_meson_usb2_ops);
+> >>>>>>>> +     if (IS_ERR(phy)) {
+> >>>>>>>> +             dev_err(&pdev->dev, "failed to create PHY\n");
+> >>>>>>>> +             return PTR_ERR(phy);
+> >>>>>>>> +     }
+> >>>>>>>> +
+> >>>>>>>> +     if (usb_reset_refcnt++ == 0) {
+> >>>>>>>> +             ret = device_reset(&pdev->dev);
+> >>>>>>>> +             if (ret) {
+> >>>>>>>> +                     dev_err(&phy->dev, "Failed to reset USB PHY\n");
+> >>>>>>>> +                     return ret;
+> >>>>>>>> +             }
+> >>>>>>>> +     }
+> >>>>>>>
+> >>>>>>>
+> >>>>>>> The ref count + reset here looks like something that could/should be
+> >>>>>>> handled in a runtime PM callback.
+> >>>>>>
+> >>>>>> Unfortunately that doesn't work (as Jerome found out) because both
+> >>>>>> PHYs are sharing the same reset line.
+> >>>>>> So if the second PHY would call device_reset then it would also reset
+> >>>>>> the first PHY!
+> >>>>>>
+> >>>>>> There's a comment above the declaration of usb_reset_refcnt which
+> >>>>>> tries to explain this:
+> >>>>>> "The PHYs are sharing a common reset line -> we are only allowed to
+> >>>>>> reset once for all PHYs."
+> >>>>>> Maybe I should move this comment to the "if (usb_reset_refcnt++ == 0)
+> >>>>>> {" line to make it easier to see?
+> >>>>>>
+> >>>>>
+> >>>>> pm-runtime has refcounting in it. When one of the nodes turns on,
+> >>>>> the pm-runtime will call your driver to say there is a user when
+> >>>>> this first use turns up.
+> >>>>>
+> >>>>> If all the sub-phys turn off and drop their refcount then the driver
+> >>>>> is called to say there are no more users and you can go to sleep.
+> >>>>
+> >>>>
+> >>>> After a chat w/Martin on IRC, It turns out runtime PM wont help here.
+> >>>>
+> >>>> The reason is because there are physically two PHY devices[1].  Those 2
+> >>>> devices will be treated independely by runtime PM, and have separate
+> >>>> use-counting, which means doing what I proposed would cause a reset to
+> >>>> happen when either device was probed.
+> >>>>
+> >>>> So, I think it's OK as it is.
+> >>>
+> >>>
+> >>> Surely you can do pm_runtime_get/put on the phy's parent platform
+> >>> device and do it that way?
+> >> could you please be more specific with that (do you mean pdev->dev.parent)?
+> >> so we would use pm_runtime_{get_sync,put} with the parent, while we
+> >> would still define the runtime_resume in our driver.
+> >
+> > You'd also need to do get/put on the children, but yes, that's what Ben
+> > is suggesting.
+> >
+> > However, the problem with all of the solutions proposed (runtime PM ones
+> > included) is that we're forcing a board-specific design issue (2 devices
+> > sharing a reset line) into a driver that should not have any
+> > board-specific assumptions in it.
+> >
+> > For example, if this driver is used on another platform where different
+> > PHYs have different reset lines, then one of them (the unlucky one who
+> > is not probed first) will never get reset.  So any form of per-device
+> > ref-counting is not a portable solution.
+> indeed, so in simple words we would need something like
+> reset_control_do_once(rstc, RESET/ASSERT/DEASSERT) which would
+> remember internally if any action has already been executed: if not it
+> does a _reset, _assert or _deassert and otherwise it does nothing.
+> 
+> > I'm not sure yet how the reset framework is supposed to handle shared
+> > reset lines, but that needs some investigation.  I quick glance and it
+> > seems that reset controllers can have shared lines, so that should be
+> > investigated.
+> I added Philipp and Hans to this thread - maybe they can comment on this.
+> To sum it up, our problem is:
+> - there are two separate USB PHYs on Meson GXBB
+> - both are sharing the same reset line (provided by the reset-meson driver)
+> - during initialization of the PHYs we must only call
+> reset_control_reset(rstc) once (if we do it for the first *and* second
+> PHY then the first PHY gets confused once the second PHY uses the
+> reset because the first PHY's state is reset as well)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index 573901887cee..b06cc12f2500 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -176,6 +176,15 @@ static const unsigned int sdio_cmd_pins[] = { PIN(GPIOX_4, EE_OFF) };
- static const unsigned int sdio_clk_pins[] = { PIN(GPIOX_5, EE_OFF) };
- static const unsigned int sdio_irq_pins[] = { PIN(GPIOX_7, EE_OFF) };
- 
-+static const unsigned int nand_ce0_pins[]	= { PIN(BOOT_8, EE_OFF) };
-+static const unsigned int nand_ce1_pins[]	= { PIN(BOOT_9, EE_OFF) };
-+static const unsigned int nand_rb0_pins[]	= { PIN(BOOT_10, EE_OFF) };
-+static const unsigned int nand_ale_pins[]	= { PIN(BOOT_11, EE_OFF) };
-+static const unsigned int nand_cle_pins[]	= { PIN(BOOT_12, EE_OFF) };
-+static const unsigned int nand_wen_clk_pins[]	= { PIN(BOOT_13, EE_OFF) };
-+static const unsigned int nand_ren_wr_pins[]	= { PIN(BOOT_14, EE_OFF) };
-+static const unsigned int nand_dqs_pins[]	= { PIN(BOOT_15, EE_OFF) };
-+
- static const unsigned int uart_tx_a_pins[]	= { PIN(GPIOX_12, EE_OFF) };
- static const unsigned int uart_rx_a_pins[]	= { PIN(GPIOX_13, EE_OFF) };
- static const unsigned int uart_cts_a_pins[]	= { PIN(GPIOX_14, EE_OFF) };
-@@ -439,6 +448,14 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
- 	GROUP(nor_q,		5,	3),
- 	GROUP(nor_c,		5,	2),
- 	GROUP(nor_cs,		5,	0),
-+	GROUP(nand_ce0,		4,	26),
-+	GROUP(nand_ce1,		4,	27),
-+	GROUP(nand_rb0,		4,	25),
-+	GROUP(nand_ale,		4,	24),
-+	GROUP(nand_cle,		4,	23),
-+	GROUP(nand_wen_clk,	4,	22),
-+	GROUP(nand_ren_wr,	4,	21),
-+	GROUP(nand_dqs,		4,	20),
- 
- 	/* Bank CARD */
- 	GROUP(sdcard_d1,	2,	14),
-@@ -540,6 +557,11 @@ static const char * const sdio_groups[] = {
- 	"sdio_cmd", "sdio_clk", "sdio_irq",
- };
- 
-+static const char * const nand_groups[] = {
-+	"nand_ce0", "nand_ce1", "nand_rb0", "nand_ale", "nand_cle",
-+	"nand_wen_clk", "nand_ren_wr", "nand_dqs",
-+};
-+
- static const char * const uart_a_groups[] = {
- 	"uart_tx_a", "uart_rx_a", "uart_cts_a", "uart_rts_a",
- };
-@@ -635,6 +657,7 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
- 	FUNCTION(nor),
- 	FUNCTION(sdcard),
- 	FUNCTION(sdio),
-+	FUNCTION(nand),
- 	FUNCTION(uart_a),
- 	FUNCTION(uart_b),
- 	FUNCTION(uart_c),
--- 
-2.7.4
+If you have an initially asserted reset line and you can enable the
+first module by deasserting the reset via reset_control_deassert (and
+reset_control_assert to signal when the module may be disabled again
+after use), shared resets are for you.
+
+If you need a reset pulse or have no direct control over the reset line,
+(device_reset), the reset framework currently has no solution for this.
+The ugly thing about reset_control_once would be that it can't re-reset
+modules when unloading and reloading driver modules.
+
+A real solution for shared reset lines with reset pulses would have to
+be some kind of reset request framework where if one module requests a
+reset, the other module sharing the reset could be notified, and then
+either veto the reset or, if possible, cease operations, store its
+state, and prepare to be reset, too, and afterwards restore state. I'd
+prefer not to think about this too much unless absolutely necessary.
+
+regards
+Philipp
