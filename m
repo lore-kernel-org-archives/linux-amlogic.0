@@ -1,32 +1,35 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 14 Sep 2016 11:49:17 +0200
-Subject: [PATCH 2/2] dt-bindings: i2c-meson: add gxbb compatible string
-In-Reply-To: <1473846557-18123-1-git-send-email-jbrunet@baylibre.com>
-References: <1473846557-18123-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1473846557-18123-3-git-send-email-jbrunet@baylibre.com>
+Date: Wed, 14 Sep 2016 12:06:04 +0200
+Subject: [PATCH 0/4] ARM: amlogic: add i2c support to Amlogic's gxbb family
+Message-ID: <1473847568-20163-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+Add support for the meson i2c controller found on the gxbb SoC family
+This patchset adds 1 i2c in the AO domain and 3 in the EE domain (A,B,C).
+There is 1 last i2c in the EE domain (D) but it is actually not connected
+to the pad of the SoC, so there is no point in adding it here.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- Documentation/devicetree/bindings/i2c/i2c-meson.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Patches for the i2c [0] driver and pinctrl [1] have been sent in
+dedicated series
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-meson.txt b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
-index 682f9a6f766e..386357d1aab0 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-meson.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
-@@ -1,7 +1,7 @@
- Amlogic Meson I2C controller
- 
- Required properties:
-- - compatible: must be "amlogic,meson6-i2c"
-+ - compatible: must be "amlogic,meson6-i2c" or "amlogic,meson-gxbb-i2c"
-  - reg: physical address and length of the device registers
-  - interrupts: a single interrupt specifier
-  - clocks: clock for the device
+[0]: http://lkml.kernel.org/r/1473846557-18123-1-git-send-email-jbrunet at baylibre.com
+[1]: http://lkml.kernel.org/r/1473846328-17339-1-git-send-email-jbrunet at baylibre.com
+
+Jerome Brunet (3):
+  clk: gxbb: expose i2c clocks
+  ARM64: dts: meson-gxbb: add pins for I2C
+  ARM64: dts: gxbb: add i2c bus
+
+Neil Armstrong (1):
+  ARM64: dts: meson-gxbb: add I2C nodes
+
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  6 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts    |  6 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 72 ++++++++++++++++++++++
+ drivers/clk/meson/gxbb.h                           |  4 +-
+ include/dt-bindings/clock/gxbb-clkc.h              |  2 +
+ 5 files changed, 88 insertions(+), 2 deletions(-)
+
 -- 
 2.7.4
