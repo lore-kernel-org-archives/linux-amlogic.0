@@ -1,151 +1,215 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 13 Sep 2016 20:38:06 +0200
-Subject: [PATCH 4/7] phy: meson: add USB2 PHY support for Meson8b and GXBB
-In-Reply-To: <1473780508.10237.22.camel@pengutronix.de>
-References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
- <20160904213152.25837-5-martin.blumenstingl@googlemail.com>
- <m260q6jibf.fsf@baylibre.com>
- <CAFBinCA4Yvw5pbOFmJ8SqyOASADavyEPmHywSdOiUazcqe_Zmg@mail.gmail.com>
- <e3b1f611-d6f6-c98b-a53b-98e94ef5bd96@codethink.co.uk>
- <m2eg4ui0nl.fsf@baylibre.com>
- <ffdd0188-72bc-4575-f997-e8547f4c31d2@codethink.co.uk>
- <CAFBinCC4gkMrJtertYevg_hXDLJEZ0PqfKKLL5UKXo8B=SXsPw@mail.gmail.com>
- <m2sht9gkau.fsf@baylibre.com>
- <CAFBinCDohOoFP_3GC+=tt6S7sPS308ao-yf+oGhdfwo-N-JnAA@mail.gmail.com>
- <1473780508.10237.22.camel@pengutronix.de>
-Message-ID: <CAFBinCC+izGS72TZuiiBu=DjtSmoZXRZ6r76M6rC8W7UTpSD6g@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 13 Sep 2016 17:16:10 -0700
+Subject: [RFC / POC] mmc: meson-gxbb: experimental SDIO support
+In-Reply-To: <20160828165829.21882-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 28 Aug 2016 18:58:29 +0200")
+References: <20160828165829.21882-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7ha8fbnxo5.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Philipp,
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-On Tue, Sep 13, 2016 at 5:28 PM, Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> Hi Martin,
+> This adds experimental SDIO support to the meson mmc controller.
+> The patch consists of four main changes:
+> - remove meson_mmc_check_cmd to allow the SDIO commands
+
+FYI, I've dropped this part from v3 of my MMC driver which will be
+posted shortly..  That was leftover from some debugging and not needed
+(as you noticed.)
+
+Kevin
+
+> - implement meson_mcc_enable_sdio_irq - this requires adding the
+>   irq_mask field to our priv struct so we always configure the
+>   correct IRQs.
+> - get rid of the magic value IRQ_EN_MASK and replace it with an OR
+>   of the corresponding bit/masks (when initializing host->irq_mask)
+> - it adds a small bugfix in meson_mmc_probe when probing failed (in
+>   my case: probing had to be deferred because the mmc-initseq was not
+>   ready yet) which disabled and unprepared a clock which was not
+>   enabled
 >
-> Am Freitag, den 09.09.2016, 22:36 +0200 schrieb Martin Blumenstingl:
->> On Fri, Sep 9, 2016 at 5:33 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->> >
->> >> On Thu, Sep 8, 2016 at 10:53 PM, Ben Dooks <ben.dooks@codethink.co.uk> wrote:
->> >>> On 08/09/16 21:42, Kevin Hilman wrote:
->> >>>>
->> >>>> Ben Dooks <ben.dooks@codethink.co.uk> writes:
->> >>>>
->> >>>>> On 08/09/16 20:52, Martin Blumenstingl wrote:
->> >>>>>>
->> >>>>>> On Thu, Sep 8, 2016 at 9:35 PM, Kevin Hilman <khilman@baylibre.com>
->> >>>>>> wrote:
->> >>>>>>>>
->> >>>>>>>> +     phy = devm_phy_create(&pdev->dev, NULL, &phy_meson_usb2_ops);
->> >>>>>>>> +     if (IS_ERR(phy)) {
->> >>>>>>>> +             dev_err(&pdev->dev, "failed to create PHY\n");
->> >>>>>>>> +             return PTR_ERR(phy);
->> >>>>>>>> +     }
->> >>>>>>>> +
->> >>>>>>>> +     if (usb_reset_refcnt++ == 0) {
->> >>>>>>>> +             ret = device_reset(&pdev->dev);
->> >>>>>>>> +             if (ret) {
->> >>>>>>>> +                     dev_err(&phy->dev, "Failed to reset USB PHY\n");
->> >>>>>>>> +                     return ret;
->> >>>>>>>> +             }
->> >>>>>>>> +     }
->> >>>>>>>
->> >>>>>>>
->> >>>>>>> The ref count + reset here looks like something that could/should be
->> >>>>>>> handled in a runtime PM callback.
->> >>>>>>
->> >>>>>> Unfortunately that doesn't work (as Jerome found out) because both
->> >>>>>> PHYs are sharing the same reset line.
->> >>>>>> So if the second PHY would call device_reset then it would also reset
->> >>>>>> the first PHY!
->> >>>>>>
->> >>>>>> There's a comment above the declaration of usb_reset_refcnt which
->> >>>>>> tries to explain this:
->> >>>>>> "The PHYs are sharing a common reset line -> we are only allowed to
->> >>>>>> reset once for all PHYs."
->> >>>>>> Maybe I should move this comment to the "if (usb_reset_refcnt++ == 0)
->> >>>>>> {" line to make it easier to see?
->> >>>>>>
->> >>>>>
->> >>>>> pm-runtime has refcounting in it. When one of the nodes turns on,
->> >>>>> the pm-runtime will call your driver to say there is a user when
->> >>>>> this first use turns up.
->> >>>>>
->> >>>>> If all the sub-phys turn off and drop their refcount then the driver
->> >>>>> is called to say there are no more users and you can go to sleep.
->> >>>>
->> >>>>
->> >>>> After a chat w/Martin on IRC, It turns out runtime PM wont help here.
->> >>>>
->> >>>> The reason is because there are physically two PHY devices[1].  Those 2
->> >>>> devices will be treated independely by runtime PM, and have separate
->> >>>> use-counting, which means doing what I proposed would cause a reset to
->> >>>> happen when either device was probed.
->> >>>>
->> >>>> So, I think it's OK as it is.
->> >>>
->> >>>
->> >>> Surely you can do pm_runtime_get/put on the phy's parent platform
->> >>> device and do it that way?
->> >> could you please be more specific with that (do you mean pdev->dev.parent)?
->> >> so we would use pm_runtime_{get_sync,put} with the parent, while we
->> >> would still define the runtime_resume in our driver.
->> >
->> > You'd also need to do get/put on the children, but yes, that's what Ben
->> > is suggesting.
->> >
->> > However, the problem with all of the solutions proposed (runtime PM ones
->> > included) is that we're forcing a board-specific design issue (2 devices
->> > sharing a reset line) into a driver that should not have any
->> > board-specific assumptions in it.
->> >
->> > For example, if this driver is used on another platform where different
->> > PHYs have different reset lines, then one of them (the unlucky one who
->> > is not probed first) will never get reset.  So any form of per-device
->> > ref-counting is not a portable solution.
->> indeed, so in simple words we would need something like
->> reset_control_do_once(rstc, RESET/ASSERT/DEASSERT) which would
->> remember internally if any action has already been executed: if not it
->> does a _reset, _assert or _deassert and otherwise it does nothing.
->>
->> > I'm not sure yet how the reset framework is supposed to handle shared
->> > reset lines, but that needs some investigation.  I quick glance and it
->> > seems that reset controllers can have shared lines, so that should be
->> > investigated.
->> I added Philipp and Hans to this thread - maybe they can comment on this.
->> To sum it up, our problem is:
->> - there are two separate USB PHYs on Meson GXBB
->> - both are sharing the same reset line (provided by the reset-meson driver)
->> - during initialization of the PHYs we must only call
->> reset_control_reset(rstc) once (if we do it for the first *and* second
->> PHY then the first PHY gets confused once the second PHY uses the
->> reset because the first PHY's state is reset as well)
+> I am sending this patch because I only have limited access to my board
+> in the next 2 weeks. Please see this as "proof of concept" and not a
+> finished patch. If someone wants to work in this: feel free - otherwise
+> I'll do it when I have full access to my board again.
 >
-> If you have an initially asserted reset line and you can enable the
-> first module by deasserting the reset via reset_control_deassert (and
-> reset_control_assert to signal when the module may be disabled again
-> after use), shared resets are for you.
+> An additional patch which enables wifi on the Tronsmart S95 Vega Meta
+> can be found here:
+> https://github.com/xdarklight/linux/tree/meson-gxbb-integration-4.8-20160828
 >
-> If you need a reset pulse or have no direct control over the reset line,
-> (device_reset), the reset framework currently has no solution for this.
-> The ugly thing about reset_control_once would be that it can't re-reset
-> modules when unloading and reloading driver modules.
-The corresponding reset driver in question is reset-meson, which only
-implements reset (assert/deassert are not implemented). However, I
-don't know if this is due to hardware design.
-I think the hardware implements the latter, but maybe Neil can give
-more information here (I currently don't have access to my board so I
-cannot test how the hardware actually behaves).
-
-> A real solution for shared reset lines with reset pulses would have to
-> be some kind of reset request framework where if one module requests a
-> reset, the other module sharing the reset could be notified, and then
-> either veto the reset or, if possible, cease operations, store its
-> state, and prepare to be reset, too, and afterwards restore state. I'd
-> prefer not to think about this too much unless absolutely necessary.
-I'm not sure if this would work in our case: one PHY instance would
-have to know if the other has already triggered the reset or not.
-
-
-Regards,
-Martin
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/mmc/host/meson-gxbb.c | 81 ++++++++++++++++++++++++-------------------
+>  1 file changed, 45 insertions(+), 36 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gxbb.c b/drivers/mmc/host/meson-gxbb.c
+> index 10eac41..77a7a1f 100644
+> --- a/drivers/mmc/host/meson-gxbb.c
+> +++ b/drivers/mmc/host/meson-gxbb.c
+> @@ -123,7 +123,6 @@
+>  #define   STATUS_BUSY BIT(31)
+>  
+>  #define SD_EMMC_IRQ_EN 0x4c
+> -#define   IRQ_EN_MASK 0x3fff
+>  #define   IRQ_RXD_ERR_SHIFT 0
+>  #define   IRQ_RXD_ERR_MASK 0xff
+>  #define   IRQ_TXD_ERR BIT(8)
+> @@ -181,6 +180,8 @@ struct meson_host {
+>  	unsigned long clk_rate;
+>  	unsigned long clk_src_rate;
+>  	unsigned short clk_src_div;
+> +
+> +	u32 irq_mask;
+>  };
+>  
+>  #define reg_read(host, offset) readl(host->regs + offset)
+> @@ -457,28 +458,6 @@ static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
+>  	return 0;
+>  }
+>  
+> -static int meson_mmc_cmd_invalid(struct mmc_host *mmc, struct mmc_command *cmd)
+> -{
+> -	cmd->error = -EINVAL;
+> -	meson_mmc_request_done(mmc, cmd->mrq);
+> -
+> -	return -EINVAL;
+> -}
+> -
+> -static int meson_mmc_check_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+> -{
+> -	int ret = 0;
+> -
+> -	/* FIXME: needs update for SDIO support */
+> -	if (cmd->opcode == SD_IO_SEND_OP_COND
+> -	    || cmd->opcode == SD_IO_RW_DIRECT
+> -	    || cmd->opcode == SD_IO_RW_EXTENDED) {
+> -		ret = meson_mmc_cmd_invalid(mmc, cmd);
+> -	}
+> -
+> -	return ret;
+> -}
+> -
+>  static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>  {
+>  	struct meson_host *host = mmc_priv(mmc);
+> @@ -588,14 +567,11 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  
+>  	/* clear, ack, enable all interrupts */
+>  	reg_write(host, SD_EMMC_IRQ_EN, 0);
+> -	reg_write(host, SD_EMMC_STATUS, IRQ_EN_MASK);
+> -	reg_write(host, SD_EMMC_IRQ_EN, IRQ_EN_MASK);
+> +	reg_write(host, SD_EMMC_STATUS, host->irq_mask);
+> +	reg_write(host, SD_EMMC_IRQ_EN, host->irq_mask);
+>  
+>  	host->mrq = mrq;
+>  
+> -	if (meson_mmc_check_cmd(mmc, mrq->cmd))
+> -		return;
+> -
+>  	if (mrq->sbc)
+>  		meson_mmc_start_cmd(mmc, mrq->sbc);
+>  	else
+> @@ -629,6 +605,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>  	struct mmc_request *mrq = host->mrq;
+>  	struct mmc_command *cmd = host->cmd;
+>  	u32 irq_en, status, raw_status;
+> +	bool sdio_irq = false;
+>  	irqreturn_t ret = IRQ_HANDLED;
+>  
+>  	if (WARN_ON(!host))
+> @@ -675,8 +652,9 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>  		dev_dbg(host->dev, "Unhandled IRQ: Descriptor timeout\n");
+>  		cmd->error = -ETIMEDOUT;
+>  	}
+> +
+>  	if (status & IRQ_SDIO)
+> -		dev_dbg(host->dev, "Unhandled IRQ: SDIO.\n");
+> +		sdio_irq = true;
+>  
+>  	if (status & (IRQ_END_OF_CHAIN | IRQ_RESP_STATUS))
+>  		ret = IRQ_WAKE_THREAD;
+> @@ -698,6 +676,9 @@ out:
+>  	/* ack all (enabled) interrupts */
+>  	reg_write(host, SD_EMMC_STATUS, status);
+>  
+> +	if (sdio_irq)
+> +		mmc_signal_sdio_irq(host->mmc);
+> +
+>  	if (ret == IRQ_HANDLED) {
+>  		meson_mmc_read_resp(host->mmc, cmd);
+>  		meson_mmc_request_done(host->mmc, cmd->mrq);
+> @@ -757,10 +738,34 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
+>  	return status;
+>  }
+>  
+> +static void meson_mcc_enable_sdio_irq(struct mmc_host *mmc, int enable)
+> +{
+> +	struct meson_host *host = mmc_priv(mmc);
+> +	unsigned long flags;
+> +	u32 irqen;
+> +
+> +	spin_lock_irqsave(&host->lock, flags);
+> +
+> +	irqen = reg_read(host, SD_EMMC_IRQ_EN);
+> +
+> +	if (enable) {
+> +		irqen |= IRQ_SDIO;
+> +		host->irq_mask |= IRQ_SDIO;
+> +	} else {
+> +		irqen &= ~IRQ_SDIO;
+> +		host->irq_mask &= ~IRQ_SDIO;
+> +	}
+> +
+> +	reg_write(host, SD_EMMC_IRQ_EN, irqen);
+> +
+> +	spin_unlock_irqrestore(&host->lock, flags);
+> +}
+> +
+>  static struct mmc_host_ops meson_mmc_ops = {
+> -	.request	= meson_mmc_request,
+> -	.set_ios	= meson_mmc_set_ios,
+> -	.get_cd         = meson_mmc_get_cd,
+> +	.request		= meson_mmc_request,
+> +	.set_ios		= meson_mmc_set_ios,
+> +	.get_cd         	= meson_mmc_get_cd,
+> +	.enable_sdio_irq	= meson_mcc_enable_sdio_irq,
+>  };
+>  
+>  static int meson_mmc_probe(struct platform_device *pdev)
+> @@ -847,26 +852,30 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>  
+>  	clk_prepare_enable(host->core_clk);
+>  
+> +	host->irq_mask = IRQ_RXD_ERR_MASK | IRQ_TXD_ERR | IRQ_DESC_ERR |
+> +			 IRQ_RESP_ERR | IRQ_RESP_TIMEOUT | IRQ_DESC_TIMEOUT |
+> +			 IRQ_END_OF_CHAIN;
+> +
+>  	ret = meson_mmc_clk_init(host);
+>  	if (ret)
+> -		goto free_host;
+> +		goto free_host_clk_prepared;
+>  
+>  	/* Stop execution */
+>  	reg_write(host, SD_EMMC_START, 0);
+>  
+>  	/* clear, ack, enable all interrupts */
+>  	reg_write(host, SD_EMMC_IRQ_EN, 0);
+> -	reg_write(host, SD_EMMC_STATUS, IRQ_EN_MASK);
+> +	reg_write(host, SD_EMMC_STATUS, host->irq_mask);
+>  
+>  	mmc->ops = &meson_mmc_ops;
+>  	mmc_add_host(mmc);
+>  
+>  	return 0;
+>  
+> +free_host_clk_prepared:
+> +	clk_disable_unprepare(host->core_clk);
+>  free_host:
+>  	dev_dbg(host->dev, "Failed to probe: ret=%d\n", ret);
+> -	if (host->core_clk)
+> -		clk_disable_unprepare(host->core_clk);
+>  	mmc_free_host(mmc);
+>  	return ret;
+>  }
