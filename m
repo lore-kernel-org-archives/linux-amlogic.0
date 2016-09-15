@@ -1,42 +1,29 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 15 Sep 2016 09:37:26 -0700
-Subject: [PATCH] MMC: meson: remove unused variable
-In-Reply-To: <20160915154349.3005248-1-arnd@arndb.de> (Arnd Bergmann's message
- of "Thu, 15 Sep 2016 17:43:35 +0200")
-References: <20160915154349.3005248-1-arnd@arndb.de>
-Message-ID: <7hh99hktkp.fsf@baylibre.com>
+From: wsa@the-dreams.de (Wolfram Sang)
+Date: Thu, 15 Sep 2016 21:41:47 +0200
+Subject: [PATCH 0/2] i2c: meson: add gxbb compatible string
+In-Reply-To: <1473846557-18123-1-git-send-email-jbrunet@baylibre.com>
+References: <1473846557-18123-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <20160915194146.GB7863@katana>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arnd Bergmann <arnd@arndb.de> writes:
+On Wed, Sep 14, 2016 at 11:49:15AM +0200, Jerome Brunet wrote:
+> This patchset adds a specific compatible string in the Meson I2C driver
+> for the Amlogic Meson gxbb SoC.
+> 
+> Other patch series (pinctrl and device tree) are being sent to complete
+> the i2c support on meson gxbb
+> 
+> Neil Armstrong (2):
+>   i2c: meson: add gxbb compatible string
+>   dt-bindings: i2c-meson: add gxbb compatible string
 
-> The newly added meson mmc driver causes a build warning from an unused
-> variable:
->
-> drivers/mmc/host/meson-gxbb.c: In function 'meson_mmc_request_done':
-> drivers/mmc/host/meson-gxbb.c:411:22: error: unused variable 'cmd' [-Werror=unused-variable]
->
-> This removes the variable.
->
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> Fixes: 4b331229dda9 ("MMC: meson: initial support for GXBB platforms")
+Squashed both patches and applied to for-next, thanks!
 
-kbuild test robot reported this also, so I already fixed it for linux-next.
-
-Kevin
-
-> ---
->  drivers/mmc/host/meson-gxbb.c | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/mmc/host/meson-gxbb.c b/drivers/mmc/host/meson-gxbb.c
-> index c73c62178764..193d343d0afe 100644
-> --- a/drivers/mmc/host/meson-gxbb.c
-> +++ b/drivers/mmc/host/meson-gxbb.c
-> @@ -408,7 +408,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
->  static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
->  {
->  	struct meson_host *host = mmc_priv(mmc);
-> -	struct mmc_command *cmd = host->cmd;
->  
->  	WARN_ON(host->mrq != mrq);
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160915/7caf8a41/attachment.sig>
