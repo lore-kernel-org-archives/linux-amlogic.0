@@ -1,25 +1,35 @@
-From: rdunlap@infradead.org (Randy Dunlap)
-Date: Thu, 15 Sep 2016 08:01:54 -0700
-Subject: linux-next: Tree for Sep 15 (phy/phy-meson-usb2.c)
-In-Reply-To: <20160915165008.40acdecf@canb.auug.org.au>
-References: <20160915165008.40acdecf@canb.auug.org.au>
-Message-ID: <d8adb2cf-ac81-7bf7-8dae-aca9475fe736@infradead.org>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Thu, 15 Sep 2016 17:43:35 +0200
+Subject: [PATCH] MMC: meson: remove unused variable
+Message-ID: <20160915154349.3005248-1-arnd@arndb.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/14/16 23:50, Stephen Rothwell wrote:
-> Hi all,
-> 
-> Changes since 20160914:
-> 
+The newly added meson mmc driver causes a build warning from an unused
+variable:
 
-on x86_64:
+drivers/mmc/host/meson-gxbb.c: In function 'meson_mmc_request_done':
+drivers/mmc/host/meson-gxbb.c:411:22: error: unused variable 'cmd' [-Werror=unused-variable]
 
-drivers/built-in.o: In function `phy_meson_usb2_probe':
-phy-meson-usb2.c:(.text+0x350c): undefined reference to `of_usb_get_dr_mode_by_phy'
+This removes the variable.
 
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Fixes: 4b331229dda9 ("MMC: meson: initial support for GXBB platforms")
+---
+ drivers/mmc/host/meson-gxbb.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-when CONFIG_USB_SUPPORT is not enabled.
-
+diff --git a/drivers/mmc/host/meson-gxbb.c b/drivers/mmc/host/meson-gxbb.c
+index c73c62178764..193d343d0afe 100644
+--- a/drivers/mmc/host/meson-gxbb.c
++++ b/drivers/mmc/host/meson-gxbb.c
+@@ -408,7 +408,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
+ {
+ 	struct meson_host *host = mmc_priv(mmc);
+-	struct mmc_command *cmd = host->cmd;
+ 
+ 	WARN_ON(host->mrq != mrq);
+ 
 -- 
-~Randy
+2.9.0
