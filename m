@@ -1,19 +1,25 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 15 Sep 2016 14:21:18 +0200
-Subject: [PATCH] pintctrl: amlogic: gxbb: add i2c pins
-In-Reply-To: <1473846328-17339-1-git-send-email-jbrunet@baylibre.com>
-References: <1473846328-17339-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <CACRpkdbCRhD_VUXWBZZ2XrXE+nDQqZ+ThrT54+CexQUz2kr0Zw@mail.gmail.com>
+From: rdunlap@infradead.org (Randy Dunlap)
+Date: Thu, 15 Sep 2016 08:01:54 -0700
+Subject: linux-next: Tree for Sep 15 (phy/phy-meson-usb2.c)
+In-Reply-To: <20160915165008.40acdecf@canb.auug.org.au>
+References: <20160915165008.40acdecf@canb.auug.org.au>
+Message-ID: <d8adb2cf-ac81-7bf7-8dae-aca9475fe736@infradead.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Sep 14, 2016 at 11:45 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+On 09/14/16 23:50, Stephen Rothwell wrote:
+> Hi all,
+> 
+> Changes since 20160914:
+> 
 
-> Add EE domains pins for the i2c devices A,B,C
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+on x86_64:
 
-Patch applied with Kevin's ACK.
+drivers/built-in.o: In function `phy_meson_usb2_probe':
+phy-meson-usb2.c:(.text+0x350c): undefined reference to `of_usb_get_dr_mode_by_phy'
 
-Yours,
-Linus Walleij
+
+when CONFIG_USB_SUPPORT is not enabled.
+
+-- 
+~Randy
