@@ -1,29 +1,63 @@
-From: wsa@the-dreams.de (Wolfram Sang)
-Date: Thu, 15 Sep 2016 21:41:47 +0200
-Subject: [PATCH 0/2] i2c: meson: add gxbb compatible string
-In-Reply-To: <1473846557-18123-1-git-send-email-jbrunet@baylibre.com>
-References: <1473846557-18123-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <20160915194146.GB7863@katana>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 15 Sep 2016 15:09:46 -0700
+Subject: [PATCH v2 5/6] ARM64: meson-gxbb-p20x: Enable USB Nodes
+In-Reply-To: <7h37l2mk6a.fsf@baylibre.com> (Kevin Hilman's message of "Wed, 14
+ Sep 2016 11:05:17 -0700")
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20160911134111.31141-1-martin.blumenstingl@googlemail.com>
+ <20160911134111.31141-6-martin.blumenstingl@googlemail.com>
+ <7h37l2mk6a.fsf@baylibre.com>
+Message-ID: <7hmvj8ke6t.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Sep 14, 2016 at 11:49:15AM +0200, Jerome Brunet wrote:
-> This patchset adds a specific compatible string in the Meson I2C driver
-> for the Amlogic Meson gxbb SoC.
-> 
-> Other patch series (pinctrl and device tree) are being sent to complete
-> the i2c support on meson gxbb
-> 
-> Neil Armstrong (2):
->   i2c: meson: add gxbb compatible string
->   dt-bindings: i2c-meson: add gxbb compatible string
+Kevin Hilman <khilman@baylibre.com> writes:
 
-Squashed both patches and applied to for-next, thanks!
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+>> From: Jerome Brunet <jbrunet@baylibre.com>
+>>
+>> Enable both gxbb USB controller and add a 5V regulator for the OTG port
+>> VBUS
+>>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>
+> nit: subject should have "ARM64: dts:" prefix.
+>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi | 29 ++++++++++++++++++++++++
+>>  1 file changed, 29 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+>> index ce105fe..4493bce 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+>> @@ -93,6 +93,18 @@
+>>  		compatible = "mmc-pwrseq-emmc";
+>>  		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+>>  	};
+>> +
+>> +	usb_vbus: regulator-usb0-vbus {
+>
+> nit: I like to use the signal name from the schematics for the node name
+> (and for regulator-name below).  In the schematics, that signal is named
+> USB_PWR.
+>
+>
+>> +		compatible = "regulator-fixed";
+>> +
+>> +		regulator-name = "USB0_VBUS";
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+>> +
+>> +		gpio = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
+>
+> Please add a comment above this line with the schematic signal name: USB_PWR_EN.
+>
 
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160915/7caf8a41/attachment.sig>
+For the record... after a chat with Martin on IRC, I just fixed these up
+myself locally, so...
+
+Applied,
+
+Kevin
