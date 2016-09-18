@@ -1,37 +1,51 @@
-From: neolynx@gmail.com (=?UTF-8?B?QW5kcsOp?= Roth)
-Date: Sun, 18 Sep 2016 22:42:40 +0200
-Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
-In-Reply-To: <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
-References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
- <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
-Message-ID: <20160918224240.0bf5a9ed@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 18 Sep 2016 23:41:43 +0200
+Subject: [PATCH] phy: meson-usb2: Fix build dependency
+In-Reply-To: <1473991635-27973-1-git-send-email-axel.lin@ingics.com>
+References: <1473991635-27973-1-git-send-email-axel.lin@ingics.com>
+Message-ID: <CAFBinCBJPHMkYneKKU+KYVve3u3Svvcbu0Ux-L8VC21DvxWZng@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Axel,
 
-Hello,
+On Fri, Sep 16, 2016 at 4:07 AM, Axel Lin <axel.lin@ingics.com> wrote:
+> of_usb_get_dr_mode_by_phy will not be compiled if !USB_COMMON, fix below
+> build error:
+>
+> drivers/built-in.o: In function `phy_meson_usb2_probe':
+> debugfs.c:(.text+0x76b4): undefined reference to `of_usb_get_dr_mode_by_phy'
+> Makefile:961: recipe for target 'vmlinux' failed
+> make: *** [vmlinux] Error 1
+>
+> Signed-off-by: Axel Lin <axel.lin@ingics.com>
+> ---
+>  drivers/phy/Kconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+> index 6ad87ec..cc27c12 100644
+> --- a/drivers/phy/Kconfig
+> +++ b/drivers/phy/Kconfig
+> @@ -458,6 +458,8 @@ config PHY_MESON_USB2
+>         tristate "Meson USB2 PHY driver"
+>         default ARCH_MESON
+>         depends on OF && (ARCH_MESON || COMPILE_TEST)
+> +       depends on USB_SUPPORT
+> +       select USB_COMMON
+>         select GENERIC_PHY
+>         help
+>           Enable this to support the Meson USB2 PHYs found in Meson8b
+> --
+> 2.7.4
+>
+thanks for this patch!
 
-> For example, you could try disabling the scatter-gather or tx-cum
-> via ethtool and seeing if there is some benefit; so we could image
-> some problem on your HW or SYNP MAC integration for checksumming
-> on tx side.
+How do we handle patches for drivers which will (unfortunately) not
+land in the linux 4.8 - should I integrate that into v3 of the patch
+(which I'll have to send anyways) or do we keep them separate?
+Maybe Kishon and/or Kevin can share their opinion on this.
 
-disabling the following: 
-  ethtool -K eth0 sg off    
-or:
-  ethtool -K eth0 tx off    
-does not prevent the network communication going down..
 
-> Also you could check the AXI tuning and PBL value. To be honest
-> (thinking about your problem) I can actually suspect some related
-> problem on bus setup. So I suggest you to play with these value
-> (better if you ask for having values from HW validation on your side).
-> Otherwise the stmmac uses a default that cannot be good for your
-> platform. For example, sometime I have seen that PBL is better if
-> reduced to 8 instead of 32 and w/o 4xPBL...
-
-how can I set those values ?
-
-thanks for your time,
-
- andre
+Regards,
+Martin
