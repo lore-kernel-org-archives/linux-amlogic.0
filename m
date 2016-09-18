@@ -1,118 +1,89 @@
-From: neolynx@gmail.com (=?UTF-8?B?QW5kcsOp?= Roth)
-Date: Sat, 17 Sep 2016 23:23:12 +0200
-Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
-In-Reply-To: <CAFBinCD42A_SqQz8GM-H+A32dMELknAytHuJ5T2YgZ3BrMKA3A@mail.gmail.com>
-References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
- <ff6f3501-fbd5-3e79-dcc1-549406a5144b@st.com>
- <CAFBinCD42A_SqQz8GM-H+A32dMELknAytHuJ5T2YgZ3BrMKA3A@mail.gmail.com>
-Message-ID: <20160917232312.1e30d425@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 18 Sep 2016 21:56:57 +0200
+Subject: [PATCH 4/7] phy: meson: add USB2 PHY support for Meson8b and GXBB
+In-Reply-To: <57DBAB2F.3040905@ti.com>
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20160904213152.25837-5-martin.blumenstingl@googlemail.com>
+ <m260q6jibf.fsf@baylibre.com>
+ <CAFBinCA4Yvw5pbOFmJ8SqyOASADavyEPmHywSdOiUazcqe_Zmg@mail.gmail.com>
+ <e3b1f611-d6f6-c98b-a53b-98e94ef5bd96@codethink.co.uk>
+ <m2eg4ui0nl.fsf@baylibre.com>
+ <ffdd0188-72bc-4575-f997-e8547f4c31d2@codethink.co.uk>
+ <CAFBinCC4gkMrJtertYevg_hXDLJEZ0PqfKKLL5UKXo8B=SXsPw@mail.gmail.com>
+ <m2sht9gkau.fsf@baylibre.com>
+ <CAFBinCCDDwydB+RP0CZKoAW5Suxotn224ZFVWvt2OGW3gNJR1g@mail.gmail.com>
+ <57DBAB2F.3040905@ti.com>
+Message-ID: <CAFBinCC5fhbtkNdc6MJs7veD+xVGC6Qb-jgX_pwvraP1x2JrhQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Kishon,
 
-Hi all,
+On Fri, Sep 16, 2016 at 10:19 AM, Kishon Vijay Abraham I <kishon@ti.com> wrote:
+> Hi,
+>
+> On Friday 09 September 2016 09:44 PM, Martin Blumenstingl wrote:
+>> On Fri, Sep 9, 2016 at 5:33 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+>>> However, the problem with all of the solutions proposed (runtime PM ones
+>>> included) is that we're forcing a board-specific design issue (2 devices
+>>> sharing a reset line) into a driver that should not have any
+>>> board-specific assumptions in it.
+>>>
+>>> For example, if this driver is used on another platform where different
+>>> PHYs have different reset lines, then one of them (the unlucky one who
+>>> is not probed first) will never get reset.  So any form of per-device
+>>> ref-counting is not a portable solution.
+>> maybe we should also consider Ben's solution: he played with the USB
+>> PHY on his Meson8b board. His approach was to have only one USB PHY
+>> driver instance which exposes two PHYs.
+>> The downside of this: the driver would have to know the offset of the
+>> PHYs (0x0 for the first PHY, 0x20 for the second), but we could handle
+>> the reset using runtime PM without any hacks.
+>
+> I think the offset information can come from the devicetree too. The phy can be
+> modeled something like below.
+>
+>                 usb-phys at c0000000 {
+>                         compatible = "amlogic,meson-gxbb-usb2-phy";
+>                         reg = <0x0 0xc0000000 0x0 0x40>;
+>                         #address-cells = <2>;
+>                         #size-cells = <2>;
+>                         ranges = <0x0 0x0 0x0 0xc0000000 0x0 0x40>;
+>                         resets = <&reset 34>;
+>
+>                         usb0_phy: usb_phy at 0 {
+>                                 #phy-cells = <0>;
+>                                 reg = <0x0 0x0 0x0 0x20>;
+>                                 clocks = <&clkc CLKID_USB &clkc CLKID_USB0>;
+>                                 clock-names = "usb_general", "usb";
+>                                 status = "disabled";
+>                         };
+>
+>                         usb1_phy: usb_phy at 20 {
+>                                 #phy-cells = <0>;
+>                                 reg = <0x0 0x20 0x0 0x20>;
+>                                 clocks = <&clkc CLKID_USB &clkc CLKID_USB1>;
+>                                 clock-names = "usb_general", "usb";
+>                                 status = "disabled";
+>                         };
+>                 };
+>
+> This way the driver will be probed only once (the reset can be done during
+> probe). The phy driver should scan the dt node and for every sub-node it
+> invokes phy_create?
+I'll recap what we have discussed so far (so you don't have to re-read
+the whole thread):
+The reference driver treats both USB PHYs as separate devices (the
+datasheet has no information about the PHYs though). The only
+"special" thing is the shared reset line -> together with Philipp
+Zabel (the reset framework maintainer) we decided to make
+reset_control_reset work for shared reset lines.
 
-I have an odroid c2 board which shows this issue. No data is
-transmitted or received after a moment of intense tx traffic. Copying a
-1GB file per scp from the board triggers it repeatedly. 
-
-The board has a stmmac - user ID: 0x11, Synopsys ID: 0x37.
-
-When switching the network to 100Mb/s the copying does
-not seam to trigger the issue.
-
-I've attached the ethtool statistics before and after the problem.
-
-Thanks for your help, 
-
- Andr?
+That means we can keep the two PHYs as separate devices inside the
+.dts, while keeping everything else separate (just like the reference
+driver)
+Is this fine for you and Arnd?
 
 
-
-> Hi Alexandre,
-> 
-> On Mon, Sep 12, 2016 at 6:37 PM, Alexandre Torgue
-> <alexandre.torgue@st.com> wrote:
-> > Which Synopsys IP version do you use ?  
-> found this in a dmesg log:
-> [    1.504784] stmmac - user ID: 0x11, Synopsys ID: 0x37
-> [    1.509785]  Ring mode enabled
-> [    1.512796]  DMA HW capability register supported
-> [    1.517286]  Normal descriptors
-> [    1.520565]  RX Checksum Offload Engine supported
-> [    1.525219]  COE Type 2
-> [    1.527638]  TX Checksum insertion supported
-> [    1.531862]  Wake-Up On Lan supported
-> [    1.535483]  Enable RX Mitigation via HW Watchdog Timer
-> [    1.543851] libphy: stmmac: probed
-> [    1.544025] eth0: PHY ID 001cc916 at 0 IRQ POLL (stmmac-0:00)
-> active [    1.550321] eth0: PHY ID 001cc916 at 7 IRQ POLL
-> (stmmac-0:07)
-> 
-> >> Gbit ethernet on my device is provided by a Realtek RTL8211F RGMII
-> >> PHY. Similar issues were reported in #linux-amlogic by a user with
-> >> an Odroid C2 board (= similar hardware).
-> >>
-> >> The symptoms are:
-> >> Receiving data is plenty fast (I can max out my internet connection
-> >> easily, and with iperf3 I get ~900Mbit/s).
-> >> Transmitting data from the device is unfortunately very slow,
-> >> traffic sometimes even stalls completely.
-> >>
-> >> I have attached the iperf results and the output of
-> >> /sys/kernel/debug/stmmaceth/eth0/descriptors_status.
-> >> Below you can find the ifconfig, netstat and stmmac dma_cap info
-> >> (*after* I ran all tests).
-> >>
-> >> The "involved parties" are:
-> >> - Meson GXBB specific network configuration registers (I have have
-> >> double-checked them with the reference drivers: everything seems
-> >> fine here)
-> >> - stmmac: it seems that nobody else has reported these kind of
-> >> issues so far, however I'd still like to hear where I should
-> >> enable some debugging bits to rule out any stmmac bug  
-> >
-> >
-> > On my side, I just tested on the same "kind" of system:
-> > -SYNOPSYS GMAC 3.7
-> > -RTL8211EG as PHY
-> >
-> > With I perf, I reach:
-> >         -RX: 932 Mbps
-> >         -TX: 820Mbps
-> >
-> > Can you check ethtool -S eth0 (most precisely "MMC"counter and
-> > errors) ? Which kernel version do you use ?  
-> I am using a 4.8.0-rc4 kernel, based on Kevin's "integration" branch:
-> [0] Unfortunately I don't have access to my device in the next few
-> days, but I'll keep you updated once I have the ethtool output.
-> 
-> 
-> Thanks for your time
-> Regards,
-> Martin
-> 
-> 
-> [0]
-> https://git.kernel.org/cgit/linux/kernel/git/khilman/linux-amlogic.git/log/?h=v4.8/integ
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
-
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: ethstats.after
-Type: application/octet-stream
-Size: 5155 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160917/710c5535/attachment.obj>
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: ethstats.before
-Type: application/octet-stream
-Size: 5093 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160917/710c5535/attachment-0001.obj>
+Regards,
+Martin
