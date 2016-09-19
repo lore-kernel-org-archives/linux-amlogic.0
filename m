@@ -1,36 +1,22 @@
 From: arnd@arndb.de (Arnd Bergmann)
-Date: Mon, 19 Sep 2016 17:52:58 +0200
-Subject: [GIT PULL] Amlogic driver updates for v4.9, 2nd round
-In-Reply-To: <7hoa3ql2y7.fsf@baylibre.com>
-References: <7hoa3ql2y7.fsf@baylibre.com>
-Message-ID: <3231263.PDDhXyghVb@wuerfel>
+Date: Mon, 19 Sep 2016 17:56:46 +0200
+Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.9,
+ round 2 (for next/late)
+In-Reply-To: <7h37l0kbv9.fsf@baylibre.com>
+References: <7h37l0kbv9.fsf@baylibre.com>
+Message-ID: <2483878.92ArJpqxYg@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wednesday, September 14, 2016 12:02:40 PM CEST Kevin Hilman wrote:
-> Amlogic driver updates for v4.9, 2nd round
-> - media: update IR support for newer SoCs
-> - firmware: add secure monitor driver
-> - net: new stmmac glue driver
-> - usb: udd DWC2 support for meson-gxbb
-> - clocks: expose more clock IDs for use by DT
-> - DT binding updates
+On Thursday, September 15, 2016 3:59:54 PM CEST Kevin Hilman wrote:
+> Here is round 2 of the 64-bit DT changes for v4.9.
+> 
+> Based on my drivers pull (round 2), this is targetted at next/late also
+> since the DT patches here are using clock IDs that come from my 2nd
+> drivers pull (which itself has merged an immtable branch from the clock
+> tree.)
 > 
 
-Pulled into next/late. I think in a  case like this, separate
-branches would have been a bit nicer, as this branch mixes some things
-that are not really related.
-
-> ----------------------------------------------------------------
-> Alexander M?ller (6):
->       clk: meson: Rename meson8b-clkc.c to reflect gxbb naming convention
->       meson: clk: Move register definitions to meson8b.h
->       meson: clk: Rename register names according to Amlogic datasheet
->       clk: meson: Copy meson8b CLKID defines to private header file
->       gxbb: clk: Adjust MESON_GATE macro to be shared with meson8b
->       meson: clk: Add support for clock gates
-
-I also note that some of the subject lines are inconsistent regarding
-the "clk: meson:" vs "gxbb: clk:" part.
+Pulled into next/late, thanks!
 
 	Arnd
