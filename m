@@ -1,50 +1,38 @@
-From: peppe.cavallaro@st.com (Giuseppe CAVALLARO)
-Date: Mon, 19 Sep 2016 07:38:18 +0200
-Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
-In-Reply-To: <20160918224240.0bf5a9ed@gmail.com>
-References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
- <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
- <20160918224240.0bf5a9ed@gmail.com>
-Message-ID: <22bfe293-02b0-e7f6-b11f-9d7a51d23a79@st.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Mon, 19 Sep 2016 09:37:06 +0200
+Subject: [PATCH 4/7] phy: meson: add USB2 PHY support for Meson8b and GXBB
+In-Reply-To: <57DF70AF.4050002@ti.com>
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCC5fhbtkNdc6MJs7veD+xVGC6Qb-jgX_pwvraP1x2JrhQ@mail.gmail.com>
+ <57DF70AF.4050002@ti.com>
+Message-ID: <19026966.I9xoTaRrZa@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello Andr?
+On Monday, September 19, 2016 10:29:27 AM CEST Kishon Vijay Abraham I wrote:
+> On Monday 19 September 2016 01:26 AM, Martin Blumenstingl wrote:
+> > On Fri, Sep 16, 2016 at 10:19 AM, Kishon Vijay Abraham I <kishon@ti.com> wrote:
 
-On 9/18/2016 10:42 PM, Andr? Roth wrote:
->
-> Hello,
->
->> For example, you could try disabling the scatter-gather or tx-cum
->> via ethtool and seeing if there is some benefit; so we could image
->> some problem on your HW or SYNP MAC integration for checksumming
->> on tx side.
->
-> disabling the following:
->   ethtool -K eth0 sg off
-> or:
->   ethtool -K eth0 tx off
-> does not prevent the network communication going down..
->
->> Also you could check the AXI tuning and PBL value. To be honest
->> (thinking about your problem) I can actually suspect some related
->> problem on bus setup. So I suggest you to play with these value
->> (better if you ask for having values from HW validation on your side).
->> Otherwise the stmmac uses a default that cannot be good for your
->> platform. For example, sometime I have seen that PBL is better if
->> reduced to 8 instead of 32 and w/o 4xPBL...
->
-> how can I set those values ?
->
-> thanks for your time,
+> >> This way the driver will be probed only once (the reset can be done during
+> >> probe). The phy driver should scan the dt node and for every sub-node it
+> >> invokes phy_create?
+> > I'll recap what we have discussed so far (so you don't have to re-read
+> > the whole thread):
+> > The reference driver treats both USB PHYs as separate devices (the
+> > datasheet has no information about the PHYs though). The only
+> > "special" thing is the shared reset line -> together with Philipp
+> > Zabel (the reset framework maintainer) we decided to make
+> > reset_control_reset work for shared reset lines.
+> > 
+> > That means we can keep the two PHYs as separate devices inside the
+> > .dts, while keeping everything else separate (just like the reference
+> > driver)
+> > Is this fine for you and Arnd?
+> 
+> yeah.. I'm fine with that.
+> 
 
-welcome
+Agreed, if we don't need to have a device modeled around both
+instance, that's ideal.
 
-take a look at Documentation/devicetree/bindings/net/stmmac.txt
-
-peppe
-
->
->  andre
->
->
+	Arnd
