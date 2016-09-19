@@ -1,99 +1,50 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Mon, 19 Sep 2016 10:29:27 +0530
-Subject: [PATCH 4/7] phy: meson: add USB2 PHY support for Meson8b and GXBB
-In-Reply-To: <CAFBinCC5fhbtkNdc6MJs7veD+xVGC6Qb-jgX_pwvraP1x2JrhQ@mail.gmail.com>
-References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
- <20160904213152.25837-5-martin.blumenstingl@googlemail.com>
- <m260q6jibf.fsf@baylibre.com>
- <CAFBinCA4Yvw5pbOFmJ8SqyOASADavyEPmHywSdOiUazcqe_Zmg@mail.gmail.com>
- <e3b1f611-d6f6-c98b-a53b-98e94ef5bd96@codethink.co.uk>
- <m2eg4ui0nl.fsf@baylibre.com>
- <ffdd0188-72bc-4575-f997-e8547f4c31d2@codethink.co.uk>
- <CAFBinCC4gkMrJtertYevg_hXDLJEZ0PqfKKLL5UKXo8B=SXsPw@mail.gmail.com>
- <m2sht9gkau.fsf@baylibre.com>
- <CAFBinCCDDwydB+RP0CZKoAW5Suxotn224ZFVWvt2OGW3gNJR1g@mail.gmail.com>
- <57DBAB2F.3040905@ti.com>
- <CAFBinCC5fhbtkNdc6MJs7veD+xVGC6Qb-jgX_pwvraP1x2JrhQ@mail.gmail.com>
-Message-ID: <57DF70AF.4050002@ti.com>
+From: peppe.cavallaro@st.com (Giuseppe CAVALLARO)
+Date: Mon, 19 Sep 2016 07:38:18 +0200
+Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
+In-Reply-To: <20160918224240.0bf5a9ed@gmail.com>
+References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
+ <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
+ <20160918224240.0bf5a9ed@gmail.com>
+Message-ID: <22bfe293-02b0-e7f6-b11f-9d7a51d23a79@st.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+Hello Andr?
 
-On Monday 19 September 2016 01:26 AM, Martin Blumenstingl wrote:
-> Hi Kishon,
-> 
-> On Fri, Sep 16, 2016 at 10:19 AM, Kishon Vijay Abraham I <kishon@ti.com> wrote:
->> Hi,
->>
->> On Friday 09 September 2016 09:44 PM, Martin Blumenstingl wrote:
->>> On Fri, Sep 9, 2016 at 5:33 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->>>> However, the problem with all of the solutions proposed (runtime PM ones
->>>> included) is that we're forcing a board-specific design issue (2 devices
->>>> sharing a reset line) into a driver that should not have any
->>>> board-specific assumptions in it.
->>>>
->>>> For example, if this driver is used on another platform where different
->>>> PHYs have different reset lines, then one of them (the unlucky one who
->>>> is not probed first) will never get reset.  So any form of per-device
->>>> ref-counting is not a portable solution.
->>> maybe we should also consider Ben's solution: he played with the USB
->>> PHY on his Meson8b board. His approach was to have only one USB PHY
->>> driver instance which exposes two PHYs.
->>> The downside of this: the driver would have to know the offset of the
->>> PHYs (0x0 for the first PHY, 0x20 for the second), but we could handle
->>> the reset using runtime PM without any hacks.
->>
->> I think the offset information can come from the devicetree too. The phy can be
->> modeled something like below.
->>
->>                 usb-phys at c0000000 {
->>                         compatible = "amlogic,meson-gxbb-usb2-phy";
->>                         reg = <0x0 0xc0000000 0x0 0x40>;
->>                         #address-cells = <2>;
->>                         #size-cells = <2>;
->>                         ranges = <0x0 0x0 0x0 0xc0000000 0x0 0x40>;
->>                         resets = <&reset 34>;
->>
->>                         usb0_phy: usb_phy at 0 {
->>                                 #phy-cells = <0>;
->>                                 reg = <0x0 0x0 0x0 0x20>;
->>                                 clocks = <&clkc CLKID_USB &clkc CLKID_USB0>;
->>                                 clock-names = "usb_general", "usb";
->>                                 status = "disabled";
->>                         };
->>
->>                         usb1_phy: usb_phy at 20 {
->>                                 #phy-cells = <0>;
->>                                 reg = <0x0 0x20 0x0 0x20>;
->>                                 clocks = <&clkc CLKID_USB &clkc CLKID_USB1>;
->>                                 clock-names = "usb_general", "usb";
->>                                 status = "disabled";
->>                         };
->>                 };
->>
->> This way the driver will be probed only once (the reset can be done during
->> probe). The phy driver should scan the dt node and for every sub-node it
->> invokes phy_create?
-> I'll recap what we have discussed so far (so you don't have to re-read
-> the whole thread):
-> The reference driver treats both USB PHYs as separate devices (the
-> datasheet has no information about the PHYs though). The only
-> "special" thing is the shared reset line -> together with Philipp
-> Zabel (the reset framework maintainer) we decided to make
-> reset_control_reset work for shared reset lines.
-> 
-> That means we can keep the two PHYs as separate devices inside the
-> .dts, while keeping everything else separate (just like the reference
-> driver)
-> Is this fine for you and Arnd?
+On 9/18/2016 10:42 PM, Andr? Roth wrote:
+>
+> Hello,
+>
+>> For example, you could try disabling the scatter-gather or tx-cum
+>> via ethtool and seeing if there is some benefit; so we could image
+>> some problem on your HW or SYNP MAC integration for checksumming
+>> on tx side.
+>
+> disabling the following:
+>   ethtool -K eth0 sg off
+> or:
+>   ethtool -K eth0 tx off
+> does not prevent the network communication going down..
+>
+>> Also you could check the AXI tuning and PBL value. To be honest
+>> (thinking about your problem) I can actually suspect some related
+>> problem on bus setup. So I suggest you to play with these value
+>> (better if you ask for having values from HW validation on your side).
+>> Otherwise the stmmac uses a default that cannot be good for your
+>> platform. For example, sometime I have seen that PBL is better if
+>> reduced to 8 instead of 32 and w/o 4xPBL...
+>
+> how can I set those values ?
+>
+> thanks for your time,
 
-yeah.. I'm fine with that.
+welcome
 
-Thanks
-Kishon
-> 
-> 
-> Regards,
-> Martin
-> 
+take a look at Documentation/devicetree/bindings/net/stmmac.txt
+
+peppe
+
+>
+>  andre
+>
+>
