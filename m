@@ -1,50 +1,36 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Mon, 19 Sep 2016 16:51:55 +0100
-Subject: [PATCH v3 4/8] scpi: Add support for Legacy match table for
- Amlogic GXBB SoC
-In-Reply-To: <6698b7b9-6ffc-d120-be9c-851ea0be2bf2@arm.com>
-References: <1473262477-18045-1-git-send-email-narmstrong@baylibre.com>
- <1473262477-18045-5-git-send-email-narmstrong@baylibre.com>
- <6698b7b9-6ffc-d120-be9c-851ea0be2bf2@arm.com>
-Message-ID: <e183632f-66e0-d3dc-03f4-10df61374194@arm.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Mon, 19 Sep 2016 17:52:58 +0200
+Subject: [GIT PULL] Amlogic driver updates for v4.9, 2nd round
+In-Reply-To: <7hoa3ql2y7.fsf@baylibre.com>
+References: <7hoa3ql2y7.fsf@baylibre.com>
+Message-ID: <3231263.PDDhXyghVb@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On Wednesday, September 14, 2016 12:02:40 PM CEST Kevin Hilman wrote:
+> Amlogic driver updates for v4.9, 2nd round
+> - media: update IR support for newer SoCs
+> - firmware: add secure monitor driver
+> - net: new stmmac glue driver
+> - usb: udd DWC2 support for meson-gxbb
+> - clocks: expose more clock IDs for use by DT
+> - DT binding updates
+> 
 
+Pulled into next/late. I think in a  case like this, separate
+branches would have been a bit nicer, as this branch mixes some things
+that are not really related.
 
-On 19/09/16 16:50, Sudeep Holla wrote:
->
->
-> On 07/09/16 16:34, Neil Armstrong wrote:
->> Add new DT match table to setup the is_legacy boolean value across
->> the scpi functions.
->> Add the Amlogic GXBB SoC compatible for platform and as legacy match
->> entry.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/firmware/arm_scpi.c | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->>
->> diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
->> index 6a16100..60a76e63 100644
->> --- a/drivers/firmware/arm_scpi.c
->> +++ b/drivers/firmware/arm_scpi.c
->> @@ -979,6 +979,11 @@ static int scpi_alloc_xfer_list(struct device
->> *dev, struct scpi_chan *ch)
->>      return 0;
->>  }
->>
->> +static const struct of_device_id legacy_scpi_of_match[] = {
->> +    {.compatible = "amlogic,meson-gxbb-scpi"},
->> +    {},
->> +};
->
-> This needs to be documented.
->
+> ----------------------------------------------------------------
+> Alexander M?ller (6):
+>       clk: meson: Rename meson8b-clkc.c to reflect gxbb naming convention
+>       meson: clk: Move register definitions to meson8b.h
+>       meson: clk: Rename register names according to Amlogic datasheet
+>       clk: meson: Copy meson8b CLKID defines to private header file
+>       gxbb: clk: Adjust MESON_GATE macro to be shared with meson8b
+>       meson: clk: Add support for clock gates
 
-Ignore that I see you have done that in the later patch.
+I also note that some of the subject lines are inconsistent regarding
+the "clk: meson:" vs "gxbb: clk:" part.
 
--- 
-Regards,
-Sudeep
+	Arnd
