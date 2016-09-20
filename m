@@ -1,56 +1,46 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 19 Sep 2016 09:44:08 -0700
-Subject: [PATCH] phy: meson-usb2: Fix build dependency
-In-Reply-To: <CAFBinCBJPHMkYneKKU+KYVve3u3Svvcbu0Ux-L8VC21DvxWZng@mail.gmail.com>
- (Martin Blumenstingl's message of "Sun, 18 Sep 2016 23:41:43 +0200")
-References: <1473991635-27973-1-git-send-email-axel.lin@ingics.com>
- <CAFBinCBJPHMkYneKKU+KYVve3u3Svvcbu0Ux-L8VC21DvxWZng@mail.gmail.com>
-Message-ID: <m2r38fhmav.fsf@baylibre.com>
+From: kishon@ti.com (Kishon Vijay Abraham I)
+Date: Tue, 20 Sep 2016 10:31:08 +0530
+Subject: [PATCH v2 3/6] phy: meson: add USB2 PHY support for Meson8b and
+ GXBB
+In-Reply-To: <m2wpi7hmdt.fsf@baylibre.com>
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20160911134111.31141-1-martin.blumenstingl@googlemail.com>
+ <20160911134111.31141-4-martin.blumenstingl@googlemail.com>
+ <m2a8faxy72.fsf@baylibre.com> <57DCC3CF.9090409@ti.com>
+ <m2wpi7hmdt.fsf@baylibre.com>
+Message-ID: <57E0C294.50502@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Hi Axel,
->
-> On Fri, Sep 16, 2016 at 4:07 AM, Axel Lin <axel.lin@ingics.com> wrote:
->> of_usb_get_dr_mode_by_phy will not be compiled if !USB_COMMON, fix below
->> build error:
->>
->> drivers/built-in.o: In function `phy_meson_usb2_probe':
->> debugfs.c:(.text+0x76b4): undefined reference to `of_usb_get_dr_mode_by_phy'
->> Makefile:961: recipe for target 'vmlinux' failed
->> make: *** [vmlinux] Error 1
->>
->> Signed-off-by: Axel Lin <axel.lin@ingics.com>
->> ---
->>  drivers/phy/Kconfig | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
->> index 6ad87ec..cc27c12 100644
->> --- a/drivers/phy/Kconfig
->> +++ b/drivers/phy/Kconfig
->> @@ -458,6 +458,8 @@ config PHY_MESON_USB2
->>         tristate "Meson USB2 PHY driver"
->>         default ARCH_MESON
->>         depends on OF && (ARCH_MESON || COMPILE_TEST)
->> +       depends on USB_SUPPORT
->> +       select USB_COMMON
->>         select GENERIC_PHY
->>         help
->>           Enable this to support the Meson USB2 PHYs found in Meson8b
->> --
->> 2.7.4
->>
-> thanks for this patch!
->
-> How do we handle patches for drivers which will (unfortunately) not
-> land in the linux 4.8 - should I integrate that into v3 of the patch
-> (which I'll have to send anyways) or do we keep them separate?
-> Maybe Kishon and/or Kevin can share their opinion on this.
 
-It's up to Kishon if he wants a v3, or if he can fold in the fix
-himself.
+On Monday 19 September 2016 10:12 PM, Kevin Hilman wrote:
+> Kishon Vijay Abraham I <kishon@ti.com> writes:
+> 
+>> Hi Kevin,
+>>
+>> On Wednesday 14 September 2016 09:36 PM, Kevin Hilman wrote:
+>>> Kishon,
+>>>
+>>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>>>
+>>>> This is a new driver for the USB PHY found in Meson8b and GXBB SoCs.
+>>>>
+>>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>>>> Tested-by: Kevin Hilman <khilman@baylibre.com>
+>>>
+>>> Will you be picking this up for v4.9?
+>>
+>> It's already late for 4.9. Generally send pull request to Greg around -rc6.
+>> This can go only in 4.10.
+> 
+> That's fine.
+> 
+> Does that mean you have it queued someplace?  I don't see it in any of
+> your branches.
 
-Kevin
+I haven't queued so far. I'll create a testing branch to queue pending patches.
+
+Thanks
+Kishon
