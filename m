@@ -1,65 +1,62 @@
-From: robh@kernel.org (Rob Herring)
-Date: Tue, 20 Sep 2016 09:29:45 -0500
-Subject: [PATCH v2 2/6] Documentation: dt-bindings: Add documentation for
- the Meson USB2 PHYs
-In-Reply-To: <20160911134111.31141-3-martin.blumenstingl@googlemail.com>
-References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
- <20160911134111.31141-1-martin.blumenstingl@googlemail.com>
- <20160911134111.31141-3-martin.blumenstingl@googlemail.com>
-Message-ID: <20160920142944.GA16016@rob-hp-laptop>
+From: kishon@ti.com (Kishon Vijay Abraham I)
+Date: Wed, 21 Sep 2016 09:36:27 +0530
+Subject: [PATCH] phy: meson-usb2: Fix build dependency
+In-Reply-To: <m2r38fhmav.fsf@baylibre.com>
+References: <1473991635-27973-1-git-send-email-axel.lin@ingics.com>
+ <CAFBinCBJPHMkYneKKU+KYVve3u3Svvcbu0Ux-L8VC21DvxWZng@mail.gmail.com>
+ <m2r38fhmav.fsf@baylibre.com>
+Message-ID: <57E20743.3030408@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Sep 11, 2016 at 03:41:07PM +0200, Martin Blumenstingl wrote:
-> Add the documentation for the bindings for the Meson8b and GXBB USB2
-> PHYs.
+
+
+On Monday 19 September 2016 10:14 PM, Kevin Hilman wrote:
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../devicetree/bindings/phy/meson-usb2-phy.txt     | 27 ++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/meson-usb2-phy.txt
+>> Hi Axel,
+>>
+>> On Fri, Sep 16, 2016 at 4:07 AM, Axel Lin <axel.lin@ingics.com> wrote:
+>>> of_usb_get_dr_mode_by_phy will not be compiled if !USB_COMMON, fix below
+>>> build error:
+>>>
+>>> drivers/built-in.o: In function `phy_meson_usb2_probe':
+>>> debugfs.c:(.text+0x76b4): undefined reference to `of_usb_get_dr_mode_by_phy'
+>>> Makefile:961: recipe for target 'vmlinux' failed
+>>> make: *** [vmlinux] Error 1
+>>>
+>>> Signed-off-by: Axel Lin <axel.lin@ingics.com>
+>>> ---
+>>>  drivers/phy/Kconfig | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+>>> index 6ad87ec..cc27c12 100644
+>>> --- a/drivers/phy/Kconfig
+>>> +++ b/drivers/phy/Kconfig
+>>> @@ -458,6 +458,8 @@ config PHY_MESON_USB2
+>>>         tristate "Meson USB2 PHY driver"
+>>>         default ARCH_MESON
+>>>         depends on OF && (ARCH_MESON || COMPILE_TEST)
+>>> +       depends on USB_SUPPORT
+>>> +       select USB_COMMON
+>>>         select GENERIC_PHY
+>>>         help
+>>>           Enable this to support the Meson USB2 PHYs found in Meson8b
+>>> --
+>>> 2.7.4
+>>>
+>> thanks for this patch!
+>>
+>> How do we handle patches for drivers which will (unfortunately) not
+>> land in the linux 4.8 - should I integrate that into v3 of the patch
+>> (which I'll have to send anyways) or do we keep them separate?
+>> Maybe Kishon and/or Kevin can share their opinion on this.
+
+Since you are anyways planning to send v3, merge this patch too.
+
+Thanks
+Kishon
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/meson-usb2-phy.txt b/Documentation/devicetree/bindings/phy/meson-usb2-phy.txt
-> new file mode 100644
-> index 0000000..9da5ea2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/meson-usb2-phy.txt
-> @@ -0,0 +1,27 @@
-> +* Amlogic USB2 PHY
-> +
-> +Required properties:
-> +- compatible:	Depending on the platform this should be one of:
-> +	"amlogic,meson8b-usb2-phy"
-> +	"amlogic,meson-gxbb-usb2-phy"
-> +- reg:		The base address and length of the registers
-> +- #phys-cells:	should be 0 (see phy-bindings.txt in this directory)
-> +- clocks:	phandle and clock identifier for the phy clocks
-> +- clock-names:	"usb_general" and "usb"
-> +
-> +Optional properties:
-> +- resets:	reference to the reset controller
-> +- phy-supply:	see phy-bindings.txt in this directory
-> +
-> +
-> +Example:
-> +
-> +usb0_phy: usb_phy at 0 {
-
-usb-phy at 0
-
-With that,
-
-Acked-by: Rob Herring <robh@kernel.org>
-
-> +	compatible = "amlogic,meson-gxbb-usb2-phy";
-> +	#phy-cells = <0>;
-> +	reg = <0x0 0x0 0x0 0x20>;
-> +	resets = <&reset RESET_USB_OTG>;
-> +	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB0>;
-> +	clock-names = "usb_general", "usb";
-> +	phy-supply = <&usb_vbus>;
-> +};
-> -- 
-> 2.9.3
-> 
+> It's up to Kishon if he wants a v3, or if he can fold in the fix
+> himself.
