@@ -1,41 +1,71 @@
-From: wsa@the-dreams.de (Wolfram Sang)
-Date: Sat, 24 Sep 2016 10:41:54 +0200
-Subject: [PATCH 0/2] i2c: meson: add gxbb compatible string
-In-Reply-To: <CAL_JsqJGQ2az=eO0PbfcTrAPxUsym=UaDOOy1Rsw0-AbzMjnXg@mail.gmail.com>
-References: <1473846557-18123-1-git-send-email-jbrunet@baylibre.com>
- <20160915194146.GB7863@katana>
- <CAL_JsqKNFzo6RWJO5WOvsyO3e4UTo5Zn48aaDac=+uL_CQWerQ@mail.gmail.com>
- <20160923221312.GA5683@katana>
- <CAL_JsqKi9Dk5-nF9xFD-89TTUinaGjMv5s1=N2b-Xyu98b+S3w@mail.gmail.com>
- <20160923232641.GB5683@katana>
- <CAL_JsqJGQ2az=eO0PbfcTrAPxUsym=UaDOOy1Rsw0-AbzMjnXg@mail.gmail.com>
-Message-ID: <20160924084154.GA1434@katana>
+From: kishon@ti.com (Kishon Vijay Abraham I)
+Date: Mon, 26 Sep 2016 10:33:53 +0530
+Subject: [PATCH] phy: meson-usb2: Fix build dependency
+In-Reply-To: <CAFRkauC6ZawmyUyCw7Z3WMMDzk3=6DFGu5KBG4KnpCDZqp500g@mail.gmail.com>
+References: <1473991635-27973-1-git-send-email-axel.lin@ingics.com>
+ <CAFBinCBJPHMkYneKKU+KYVve3u3Svvcbu0Ux-L8VC21DvxWZng@mail.gmail.com>
+ <m2r38fhmav.fsf@baylibre.com> <57E20743.3030408@ti.com>
+ <CAFRkauC6ZawmyUyCw7Z3WMMDzk3=6DFGu5KBG4KnpCDZqp500g@mail.gmail.com>
+Message-ID: <57E8AC39.4010105@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
-> I did state some reasons previously. Consistent rules for submitters
-> of DT bindings and being able to trace history beyond git. Now, I
-> guess you aren't changing the rules, but you probably aren't
-> requesting people to split DT bindings either? You might not be aware,
-> but we also generate a DT only tree with git-filter-branch[1] for
-> non-kernel projects to use bindings and dts files. For that, sure they
-> will only get the DT binding part of it, but what commit text do they
-> get? Finally, DT maintainer acks (which from me is a review really)
-> apply to the bindings only. Sometimes I review the drivers, but not
-> often. So I would like the git history of my reviews to be accurate in
-> terms of what I actually reviewed.
 
-Points taken. Will keep them seperate from now on.
+On Wednesday 21 September 2016 09:43 AM, Axel Lin wrote:
+> 2016-09-21 12:06 GMT+08:00 Kishon Vijay Abraham I <kishon@ti.com>:
+>>
+>>
+>> On Monday 19 September 2016 10:14 PM, Kevin Hilman wrote:
+>>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>>>
+>>>> Hi Axel,
+>>>>
+>>>> On Fri, Sep 16, 2016 at 4:07 AM, Axel Lin <axel.lin@ingics.com> wrote:
+>>>>> of_usb_get_dr_mode_by_phy will not be compiled if !USB_COMMON, fix below
+>>>>> build error:
+>>>>>
+>>>>> drivers/built-in.o: In function `phy_meson_usb2_probe':
+>>>>> debugfs.c:(.text+0x76b4): undefined reference to `of_usb_get_dr_mode_by_phy'
+>>>>> Makefile:961: recipe for target 'vmlinux' failed
+>>>>> make: *** [vmlinux] Error 1
+>>>>>
+>>>>> Signed-off-by: Axel Lin <axel.lin@ingics.com>
+>>>>> ---
+>>>>>  drivers/phy/Kconfig | 2 ++
+>>>>>  1 file changed, 2 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
+>>>>> index 6ad87ec..cc27c12 100644
+>>>>> --- a/drivers/phy/Kconfig
+>>>>> +++ b/drivers/phy/Kconfig
+>>>>> @@ -458,6 +458,8 @@ config PHY_MESON_USB2
+>>>>>         tristate "Meson USB2 PHY driver"
+>>>>>         default ARCH_MESON
+>>>>>         depends on OF && (ARCH_MESON || COMPILE_TEST)
+>>>>> +       depends on USB_SUPPORT
+>>>>> +       select USB_COMMON
+>>>>>         select GENERIC_PHY
+>>>>>         help
+>>>>>           Enable this to support the Meson USB2 PHYs found in Meson8b
+>>>>> --
+>>>>> 2.7.4
+>>>>>
+>>>> thanks for this patch!
+>>>>
+>>>> How do we handle patches for drivers which will (unfortunately) not
+>>>> land in the linux 4.8 - should I integrate that into v3 of the patch
+>>>> (which I'll have to send anyways) or do we keep them separate?
+>>>> Maybe Kishon and/or Kevin can share their opinion on this.
+>>
+>> Since you are anyways planning to send v3, merge this patch too.
+> 
+> I got confused why this driver appears in linux-next but it's not from phy
+> tree? I thought it's because other dependency so it needs to go via other tree,
+> but looks like not the case. And the driver does not get Kishon's Ack?
+> 
+> BTW, Kishon, do you consider to add phy tree to linux-next?
 
-Thanks,
+yes.. that's been pending for a long time.
 
-   Wolfram
-
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20160924/b82a4946/attachment.sig>
+-Kishon
