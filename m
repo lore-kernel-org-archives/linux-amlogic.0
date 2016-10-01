@@ -1,59 +1,41 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 30 Sep 2016 08:49:27 -0700
-Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes
-In-Reply-To: <1475227059-17462-1-git-send-email-brian.kim@hardkernel.com>
- (Brian Kim's message of "Fri, 30 Sep 2016 18:17:39 +0900")
-References: <1475227059-17462-1-git-send-email-brian.kim@hardkernel.com>
-Message-ID: <7h7f9tgzg8.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat,  1 Oct 2016 14:18:58 +0200
+Subject: [PATCH v3 1/3] Documentation: dt-bindings: update the meson-usb2-phy
+ example
+In-Reply-To: <20161001121900.1168-1-martin.blumenstingl@googlemail.com>
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20161001121900.1168-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20161001121900.1168-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Brian Kim <brian.kim@hardkernel.com> writes:
+Update the example so the node name uses a dash (instead of an
+underscore) as per convention.
+Additionally it updates the example register offset to a real example
+(the old value was taken from a draft where there was an additional PHY
+bus).
 
-> Enable both gxbb USB controller and add a 5V regulator for the OTG port
-> VBUS
->
-> Signed-off-by: Brian Kim <brian.kim@hardkernel.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ Documentation/devicetree/bindings/phy/meson-usb2-phy.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thanks for the patch.
-
-In the future, please state what branch the patch should apply to when
-not using mainline.  Because of the sd_emmc nodes in your patch, I could
-tell that it was based on my integ branch so was able to figure it out,
-but it's very helpful to maintainers if you state the branch and/or any
-dependencies explicity.
-
-> ---
->  .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 29 ++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 8d89edc..997c671 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -64,6 +64,18 @@
->  		reg = <0x0 0x0 0x0 0x80000000>;
->  	};
->  
-> +	usb_pwr: regulator-usb-pwrs {
-
-minor nit: since this is specific to the OTG part, can you call this
-usb_otg_pwr? ...
-
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "USB_PWR";
-
-... and rename this also?
-
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +
-> +		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-
-Thanks
-
-Kevin
+diff --git a/Documentation/devicetree/bindings/phy/meson-usb2-phy.txt b/Documentation/devicetree/bindings/phy/meson-usb2-phy.txt
+index 9da5ea2..bc616c1 100644
+--- a/Documentation/devicetree/bindings/phy/meson-usb2-phy.txt
++++ b/Documentation/devicetree/bindings/phy/meson-usb2-phy.txt
+@@ -16,10 +16,10 @@ Optional properties:
+ 
+ Example:
+ 
+-usb0_phy: usb_phy at 0 {
++usb0_phy: usb-phy at c0000000 {
+ 	compatible = "amlogic,meson-gxbb-usb2-phy";
+ 	#phy-cells = <0>;
+-	reg = <0x0 0x0 0x0 0x20>;
++	reg = <0x0 0xc0000000 0x0 0x20>;
+ 	resets = <&reset RESET_USB_OTG>;
+ 	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB0>;
+ 	clock-names = "usb_general", "usb";
+-- 
+2.10.0
