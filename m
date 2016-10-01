@@ -1,38 +1,50 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  1 Oct 2016 17:21:33 +0200
-Subject: [PATCH 2/3] phy: meson8b-usb2: request a shared reset line
-In-Reply-To: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
-References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161001152134.8168-3-martin.blumenstingl@googlemail.com>
+Date: Sat,  1 Oct 2016 17:21:31 +0200
+Subject: [PATCH 0/3] enable reset_control_reset for shared reset lines
+Message-ID: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Both PHYs are sharing one reset line. With recent improvements to the
-reset framework we can now also use reset_control_reset with shared
-resets.
-This allows us to drop some workarounds where the reset was only
-specified for one PHY but not the other, to make sure that the reset it
-only executed once (as the reset framework was not able to use
-reset_control_reset with shared reset lines).
+This patch allows using reset_control_reset on a shared reset line.
+There are some restrictions though (all of these only apply to shared
+resets):
+- reset_control_reset cannot be used after reset_control_assert
+- reset_control_assert cannot be used after reset_control_reset
+- only the first call to reset_control_reset will be passed to the
+  hardware. The only exception is when all consumers of the
+  reset_control are gone (reset_control_put)
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/phy-meson8b-usb2.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+The idea came up when discussing the reset logic in the
+phy-meson8b-usb2 PHY driver, see [0] and [1]
 
-diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
-index 73bf632..f1ee96a 100644
---- a/drivers/phy/phy-meson8b-usb2.c
-+++ b/drivers/phy/phy-meson8b-usb2.c
-@@ -237,8 +237,7 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->clk_usb))
- 		return PTR_ERR(priv->clk_usb);
- 
--	priv->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
--								NULL);
-+	priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
- 	if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
- 		return PTR_ERR(priv->reset);
- 
+An example where this is needed is the Amlogic Meson8b and GXBB SoCs
+where two USB PHYs share one reset line. The reset controller only
+supports reset pulses (and thus only implements .reset).
+The only workaround so far is to make the reset optional in the
+driver and only add the reset to one of the two PHYs, to mimic the
+behavior implemented by patch 1.
+
+I also added the Meson USB2 PHY patch to this series to show that this
+new functionality can be used with only minimal changes. These patches
+can simply be dropped as they depend on the phy-meson8b-usb2 driver
+patch, and the dts patch has a runtime-dependency on patch 1 and 2
+(otherwise the phy-meson8b-usb2 driver would try to request the reset
+line exclusively, preventing the other PHY from initializing).
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-September/001233.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2016-September/001197.html
+
+
+Martin Blumenstingl (3):
+  reset: allow using reset_control_reset with shared reset
+  phy: meson8b-usb2: request a shared reset line
+  ARM64: dts: meson-gxbb: add the USB reset also to the second USB PHY
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  1 +
+ drivers/phy/phy-meson8b-usb2.c              |  3 +--
+ drivers/reset/core.c                        | 31 +++++++++++++++++++++++------
+ 3 files changed, 27 insertions(+), 8 deletions(-)
+
 -- 
 2.10.0
