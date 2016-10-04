@@ -1,154 +1,206 @@
-From: p.zabel@pengutronix.de (Philipp Zabel)
-Date: Tue, 04 Oct 2016 10:36:31 +0200
-Subject: [PATCH 1/3] reset: allow using reset_control_reset with shared
- reset
-In-Reply-To: <20161001152134.8168-2-martin.blumenstingl@googlemail.com>
-References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
- <20161001152134.8168-2-martin.blumenstingl@googlemail.com>
-Message-ID: <1475570191.3034.18.camel@pengutronix.de>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 4 Oct 2016 14:04:39 +0200
+Subject: [PATCH v3 2/8] scpi: Add alternative legacy structures, functions
+ and macros
+In-Reply-To: <da2f9471-4b54-c4cd-c3c2-de09fca52ab6@arm.com>
+References: <1473262477-18045-1-git-send-email-narmstrong@baylibre.com>
+ <1473262477-18045-3-git-send-email-narmstrong@baylibre.com>
+ <da2f9471-4b54-c4cd-c3c2-de09fca52ab6@arm.com>
+Message-ID: <ab7962ba-f943-092c-e288-463827fb0d75@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
-
-thank you for the patch. I have a few comments below.
-
-Am Samstag, den 01.10.2016, 17:21 +0200 schrieb Martin Blumenstingl:
-> Some SoCs (for example Amlogic GXBB) implement a reset controller which
-> only supports a reset pulse (triggered via reset_control_reset). At the
-> same time multiple devices (in case of the Amlogic GXBB SoC both USB
-> PHYs) are sharing the same reset line.
+On 09/19/2016 05:24 PM, Sudeep Holla wrote:
 > 
-> This patch allows using reset_control_reset also for shared resets.
-> There are limitations though:
-> reset_control_reset can only be used if reset_control_assert was not
-> used yet.
-> reset_control_assert can only be used if reset_control_reset was not
-> used yet.
-> For shared resets the reset is only triggered once for the lifetime of
-> the reset_control instance (the reset can be triggered again if all
-> consumers of that specific reset_control are gone, as the reset
-> framework will free the reset_control instance in that case).
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/reset/core.c | 31 +++++++++++++++++++++++++------
->  1 file changed, 25 insertions(+), 6 deletions(-)
+> On 07/09/16 16:34, Neil Armstrong wrote:
+>> In order to support the legacy SCPI protocol variant, add back the structures
+>> and macros that varies against the final specification.
+>> Add indirection table for legacy commands.
+>> Add bitmap field for channel selection
+>> Add support for legacy in scpi_send_message.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/firmware/arm_scpi.c | 218 ++++++++++++++++++++++++++++++++++++++++++--
+>>  1 file changed, 211 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+>> index 9a87687..9ba1020 100644
+>> --- a/drivers/firmware/arm_scpi.c
+>> +++ b/drivers/firmware/arm_scpi.c
 > 
-> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
-> index 395dc9c..1565348 100644
-> --- a/drivers/reset/core.c
-> +++ b/drivers/reset/core.c
-> @@ -32,6 +32,7 @@ static LIST_HEAD(reset_controller_list);
->   * @refcnt: Number of gets of this reset_control
->   * @shared: Is this a shared (1), or an exclusive (0) reset_control?
->   * @deassert_cnt: Number of times this reset line has been deasserted
-> + * triggered_count: Number of times this reset line has been reset
+> [..]
+> 
+>> @@ -336,6 +424,39 @@ static void scpi_handle_remote_msg(struct mbox_client *c, void *msg)
+>>      scpi_process_cmd(ch, cmd);
+>>  }
+>>
+>> +static void legacy_scpi_process_cmd(struct scpi_chan *ch)
+>> +{
+>> +    unsigned long flags;
+>> +    struct scpi_xfer *t;
+>> +
+>> +    spin_lock_irqsave(&ch->rx_lock, flags);
+>> +    if (list_empty(&ch->rx_pending)) {
+>> +        spin_unlock_irqrestore(&ch->rx_lock, flags);
+>> +        return;
+>> +    }
+>> +
+>> +    t = list_first_entry(&ch->rx_pending, struct scpi_xfer, node);
+>> +    list_del(&t->node);
+>> +
+> 
+> This is a bad assumption that it will be always first. The legacy SCPI
+> did support multiple commands at a time and they can be reordered when
+> SCP responds to them. Except this it's almost same scpi_process_cmd. You
+> should be able to use it as is if you pass the command.
 
-Missing @
+I would be happy this was the case...
 
-To avoid confusion, should we mention here that triggered_count will
-always be <= 1?
+> 
+>> +    /* check if wait_for_completion is in progress or timed-out */
+>> +    if (t && !completion_done(&t->done)) {
+>> +        struct legacy_scpi_shared_mem *mem = ch->rx_payload;
+>> +        unsigned int len = t->rx_len;
+>> +
+>> +        t->status = le32_to_cpu(mem->status);
+>> +        memcpy_fromio(t->rx_buf, mem->payload, len);
+>> +        complete(&t->done);
+>> +    }
+>> +    spin_unlock_irqrestore(&ch->rx_lock, flags);
+>> +}
+>> +
+>> +static void legacy_scpi_handle_remote_msg(struct mbox_client *c, void *_msg)
+>> +{
+>> +    struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
+>> +
+>> +    legacy_scpi_process_cmd(ch);
+> 
+> You will get the command in *_msg IIRC. So you can just pass that to
+> scpi_process_cmd. You can even reuse scpi_handle_remote_msg
 
->   */
->  struct reset_control {
->  	struct reset_controller_dev *rcdev;
-> @@ -40,6 +41,7 @@ struct reset_control {
->  	unsigned int refcnt;
->  	int shared;
->  	atomic_t deassert_count;
-> +	atomic_t triggered_count;
->  };
->  
->  /**
-> @@ -134,17 +136,28 @@ EXPORT_SYMBOL_GPL(devm_reset_controller_register);
->   * reset_control_reset - reset the controlled device
->   * @rstc: reset controller
->   *
-> - * Calling this on a shared reset controller is an error.
-> + * On a shared reset line the actual reset pulse is only triggered once.
+But Amlogic SCP firmware does not answer the command but only the first bit...
+so we cannot queue commands because we cannot find back the queued command
+from the replied MHU STAT value.
 
-... for the lifetime of the reset_control instance, for all but the
-first caller this is a no-op.
-
-Add a note that it is invalid for different consumers to mix this and
-reset_control_(de)assert on the same shared reset line, also to the
-reset_control_(de)assert kerneldoc comments.
-
->   */
->  int reset_control_reset(struct reset_control *rstc)
+> 
+> diff --git i/drivers/firmware/arm_scpi.c w/drivers/firmware/arm_scpi.c
+> index edf1a3327041..165f2fc3b627 100644
+> --- i/drivers/firmware/arm_scpi.c
+> +++ w/drivers/firmware/arm_scpi.c
+> @@ -419,7 +419,12 @@ static void scpi_handle_remote_msg(struct mbox_client *c, void *msg)
 >  {
-> -	if (WARN_ON(rstc->shared))
-> -		return -EINVAL;
-> +	int ret;
->  
-> -	if (rstc->rcdev->ops->reset)
-> -		return rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
-> +	if (!rstc->rcdev->ops->reset)
-> +		return -ENOTSUPP;
->  
-> -	return -ENOTSUPP;
-> +	if (rstc->shared) {
-> +		if (WARN_ON(atomic_read(&rstc->deassert_count) != 0))
-> +			return -EINVAL;
-
-I'm not worried about races between reset and (de)assert for
-deassert_count because that's invalid use, but
-
-> +		if (atomic_read(&rstc->triggered_count) != 0)
-> +			return 0;
-
-two simultaneously called _resets probably shouldn't race for
-triggered_count, so I think this should be
-
-		if (atomic_inc_return(&rstc->triggered_count) != 0)
-			return 0;
-
-instead.
-
-> +	}
+>         struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
+>         struct scpi_shared_mem *mem = ch->rx_payload;
+> -       u32 cmd = le32_to_cpu(mem->command);
+> +       u32 cmd;
 > +
-> +	ret = rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
-> +	if (rstc->shared && !ret)
-> +		atomic_inc(&rstc->triggered_count);
-
-With this dropped, that would mean instead of only incrementing
-triggered_count if the reset callback returned without error, we'd also
-increment in the error case.
-I'm not sure if this could be a problem as I wouldn't expect the reset
-callback to fail once and then work later, but maybe this could be
-handled by instead replacing it with
-
-	if (rstc->shared && ret)
-		atomic_dec(&rstc->triggered_count)
-
-which would again introduce a race, but only in the error case.
-
-> +
-> +	return ret;
+> +       if (ch->is_legacy)
+> +               cmd = *(u32 *)msg;
+> +       else
+> +               cmd = le32_to_cpu(mem->command);
+> 
+>         scpi_process_cmd(ch, cmd);
 >  }
->  EXPORT_SYMBOL_GPL(reset_control_reset);
->  
-> @@ -165,6 +178,9 @@ int reset_control_assert(struct reset_control *rstc)
->  		return -ENOTSUPP;
->  
->  	if (rstc->shared) {
-> +		if (WARN_ON(atomic_read(&rstc->triggered_count) != 0))
-> +			return -EINVAL;
-> +
->  		if (WARN_ON(atomic_read(&rstc->deassert_count) == 0))
->  			return -EINVAL;
->  
-> @@ -188,6 +204,9 @@ int reset_control_deassert(struct reset_control *rstc)
->  		return -ENOTSUPP;
->  
->  	if (rstc->shared) {
-> +		if (WARN_ON(atomic_read(&rstc->triggered_count) != 0))
-> +			return -EINVAL;
-> +
->  		if (atomic_inc_return(&rstc->deassert_count) != 1)
->  			return 0;
->  	}
+> 
+>> +}
+>> +
+>>  static void scpi_tx_prepare(struct mbox_client *c, void *msg)
+>>  {
+>>      unsigned long flags;
+>> @@ -356,6 +477,21 @@ static void scpi_tx_prepare(struct mbox_client *c, void *msg)
+>>      mem->command = cpu_to_le32(t->cmd);
+>>  }
+>>
+>> +static void legacy_scpi_tx_prepare(struct mbox_client *c, void *msg)
+>> +{
+>> +    unsigned long flags;
+>> +    struct scpi_xfer *t = msg;
+>> +    struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
+>> +
+>> +    if (t->tx_buf)
+>> +        memcpy_toio(ch->tx_payload, t->tx_buf, t->tx_len);
+>> +    if (t->rx_buf) {
+>> +        spin_lock_irqsave(&ch->rx_lock, flags);
+>> +        list_add_tail(&t->node, &ch->rx_pending);
+>> +        spin_unlock_irqrestore(&ch->rx_lock, flags);
+>> +    }
+>> +}
+> 
+> Again here the only difference is token addition. I think we should
+> retain that as it's helpful in debugging and I don't think it will have
+> any issues. Worst case we can make it conditional but let's check if we
+> can retain it first.
 
-regards
-Philipp
+Yes token addition works.
+
+> 
+>> @@ -386,15 +522,25 @@ static int scpi_send_message(u8 cmd, void *tx_buf, unsigned int tx_len,
+>>      struct scpi_xfer *msg;
+>>      struct scpi_chan *scpi_chan;
+>>
+>> -    chan = atomic_inc_return(&scpi_info->next_chan) % scpi_info->num_chans;
+>> +    if (scpi_info->is_legacy)
+>> +        chan = test_bit(cmd, scpi_info->cmd_priority) ? 1 : 0;
+>> +    else
+>> +        chan = atomic_inc_return(&scpi_info->next_chan) %
+>> +            scpi_info->num_chans;
+>>      scpi_chan = scpi_info->channels + chan;
+>>
+>>      msg = get_scpi_xfer(scpi_chan);
+>>      if (!msg)
+>>          return -ENOMEM;
+>>
+>> -    msg->slot = BIT(SCPI_SLOT);
+>> -    msg->cmd = PACK_SCPI_CMD(cmd, tx_len);
+>> +    if (scpi_info->is_legacy) {
+>> +        mutex_lock(&scpi_chan->xfers_lock);
+> 
+> Why does legacy need a different locking scheme ?
+
+Since we cannot queue, locking seems a really good idea...
+
+> 
+> [...]
+> 
+>> @@ -635,6 +804,24 @@ static int scpi_sensor_get_value(u16 sensor, u64 *val)
+>>      return ret;
+>>  }
+>>
+>> +static int legacy_scpi_sensor_get_value(u16 sensor, u64 *val)
+>> +{
+>> +    __le16 id = cpu_to_le16(sensor);
+>> +    struct sensor_value buf;
+>> +    int ret;
+>> +
+>> +    ret = check_cmd(CMD_SENSOR_VALUE);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    ret = scpi_send_message(scpi_info->scpi_cmds[CMD_SENSOR_VALUE],
+>> +                &id, sizeof(id), &buf, sizeof(buf));
+>> +    if (!ret)
+>> +        *val = (u64)le32_to_cpu(buf.lo_val);
+>> +
+> 
+> This is not needed as it's backward compatible as discussed before.
+> Any particular reason you retained it here ?
+> 
+
+Sudeep,
+
+I merged the commands as asked but Amlogic's SCP firmware only replies the value 1 in the MHU STAT registers.
+
+This implies that :
+ - We cannot distinguish what command ended in scpi_handle_remote_msg
+ - We cannot find the last rx command in rx_pending list
+ - We cannot read rx data length from the replied command
+ - We cannot push multiple commands
+ - We also need to wait for TX commands completion
+ - We need locking in scpi_send_message around mbox_send_message and completion
+
+I have an highly tweaked version with simplified path for legacy but with merged handle_remote_msg, tx_prepare and send_message functions
+I will post shortly.
+
+Neil
