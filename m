@@ -1,206 +1,73 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 4 Oct 2016 14:04:39 +0200
-Subject: [PATCH v3 2/8] scpi: Add alternative legacy structures, functions
- and macros
-In-Reply-To: <da2f9471-4b54-c4cd-c3c2-de09fca52ab6@arm.com>
-References: <1473262477-18045-1-git-send-email-narmstrong@baylibre.com>
- <1473262477-18045-3-git-send-email-narmstrong@baylibre.com>
- <da2f9471-4b54-c4cd-c3c2-de09fca52ab6@arm.com>
-Message-ID: <ab7962ba-f943-092c-e288-463827fb0d75@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue,  4 Oct 2016 17:08:18 +0200
+Subject: [RFC 00/10] irqchip: meson: add support for the gpio interrupt
+ controller
+Message-ID: <1475593708-10526-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/19/2016 05:24 PM, Sudeep Holla wrote:
-> 
-> 
-> On 07/09/16 16:34, Neil Armstrong wrote:
->> In order to support the legacy SCPI protocol variant, add back the structures
->> and macros that varies against the final specification.
->> Add indirection table for legacy commands.
->> Add bitmap field for channel selection
->> Add support for legacy in scpi_send_message.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/firmware/arm_scpi.c | 218 ++++++++++++++++++++++++++++++++++++++++++--
->>  1 file changed, 211 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
->> index 9a87687..9ba1020 100644
->> --- a/drivers/firmware/arm_scpi.c
->> +++ b/drivers/firmware/arm_scpi.c
-> 
-> [..]
-> 
->> @@ -336,6 +424,39 @@ static void scpi_handle_remote_msg(struct mbox_client *c, void *msg)
->>      scpi_process_cmd(ch, cmd);
->>  }
->>
->> +static void legacy_scpi_process_cmd(struct scpi_chan *ch)
->> +{
->> +    unsigned long flags;
->> +    struct scpi_xfer *t;
->> +
->> +    spin_lock_irqsave(&ch->rx_lock, flags);
->> +    if (list_empty(&ch->rx_pending)) {
->> +        spin_unlock_irqrestore(&ch->rx_lock, flags);
->> +        return;
->> +    }
->> +
->> +    t = list_first_entry(&ch->rx_pending, struct scpi_xfer, node);
->> +    list_del(&t->node);
->> +
-> 
-> This is a bad assumption that it will be always first. The legacy SCPI
-> did support multiple commands at a time and they can be reordered when
-> SCP responds to them. Except this it's almost same scpi_process_cmd. You
-> should be able to use it as is if you pass the command.
+This patch series adds support for the GPIO interrupt controller found
+on Amlogic's meson SoC families.
 
-I would be happy this was the case...
+Unlike what the name suggests, this controller is not part of the SoC GPIO
+subsystem. It's an indepedent controller which can watch almost all pad of
+the SoC and generate and interrupt from it. Some pins, which are not part
+of the public datasheet, don't seem to have this capability though.
 
-> 
->> +    /* check if wait_for_completion is in progress or timed-out */
->> +    if (t && !completion_done(&t->done)) {
->> +        struct legacy_scpi_shared_mem *mem = ch->rx_payload;
->> +        unsigned int len = t->rx_len;
->> +
->> +        t->status = le32_to_cpu(mem->status);
->> +        memcpy_fromio(t->rx_buf, mem->payload, len);
->> +        complete(&t->done);
->> +    }
->> +    spin_unlock_irqrestore(&ch->rx_lock, flags);
->> +}
->> +
->> +static void legacy_scpi_handle_remote_msg(struct mbox_client *c, void *_msg)
->> +{
->> +    struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
->> +
->> +    legacy_scpi_process_cmd(ch);
-> 
-> You will get the command in *_msg IIRC. So you can just pass that to
-> scpi_process_cmd. You can even reuse scpi_handle_remote_msg
+Hardware wise, the controller is a 256 to 8 multiplexer. It can take up
+to 256 input pads and route them to any of 8 GIC's interrupts. There is also
+a filter block in the middle to select the appropriate edge or level.
 
-But Amlogic SCP firmware does not answer the command but only the first bit...
-so we cannot queue commands because we cannot find back the queued command
-from the replied MHU STAT value.
+The number of interrupt declared by the irqchip is lowered from 256 to the
+actual number of signal routed to the controller on each SoC family. As we
+have access to only 8 GIC?s interrupts, these are allocated when an
+interrupt is requested from the controller, on a first come, first served
+basis.
 
-> 
-> diff --git i/drivers/firmware/arm_scpi.c w/drivers/firmware/arm_scpi.c
-> index edf1a3327041..165f2fc3b627 100644
-> --- i/drivers/firmware/arm_scpi.c
-> +++ w/drivers/firmware/arm_scpi.c
-> @@ -419,7 +419,12 @@ static void scpi_handle_remote_msg(struct mbox_client *c, void *msg)
->  {
->         struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
->         struct scpi_shared_mem *mem = ch->rx_payload;
-> -       u32 cmd = le32_to_cpu(mem->command);
-> +       u32 cmd;
-> +
-> +       if (ch->is_legacy)
-> +               cmd = *(u32 *)msg;
-> +       else
-> +               cmd = le32_to_cpu(mem->command);
-> 
->         scpi_process_cmd(ch, cmd);
->  }
-> 
->> +}
->> +
->>  static void scpi_tx_prepare(struct mbox_client *c, void *msg)
->>  {
->>      unsigned long flags;
->> @@ -356,6 +477,21 @@ static void scpi_tx_prepare(struct mbox_client *c, void *msg)
->>      mem->command = cpu_to_le32(t->cmd);
->>  }
->>
->> +static void legacy_scpi_tx_prepare(struct mbox_client *c, void *msg)
->> +{
->> +    unsigned long flags;
->> +    struct scpi_xfer *t = msg;
->> +    struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
->> +
->> +    if (t->tx_buf)
->> +        memcpy_toio(ch->tx_payload, t->tx_buf, t->tx_len);
->> +    if (t->rx_buf) {
->> +        spin_lock_irqsave(&ch->rx_lock, flags);
->> +        list_add_tail(&t->node, &ch->rx_pending);
->> +        spin_unlock_irqrestore(&ch->rx_lock, flags);
->> +    }
->> +}
-> 
-> Again here the only difference is token addition. I think we should
-> retain that as it's helpful in debugging and I don't think it will have
-> any issues. Worst case we can make it conditional but let's check if we
-> can retain it first.
+This series has been tested on Amlogic S905-P200 board with the front
+panel power button. Directly passing an IRQ or using gpio_to_irq both work
+with this driver.
 
-Yes token addition works.
+This work is derived from the previous work of Carlo Caione [1].
 
-> 
->> @@ -386,15 +522,25 @@ static int scpi_send_message(u8 cmd, void *tx_buf, unsigned int tx_len,
->>      struct scpi_xfer *msg;
->>      struct scpi_chan *scpi_chan;
->>
->> -    chan = atomic_inc_return(&scpi_info->next_chan) % scpi_info->num_chans;
->> +    if (scpi_info->is_legacy)
->> +        chan = test_bit(cmd, scpi_info->cmd_priority) ? 1 : 0;
->> +    else
->> +        chan = atomic_inc_return(&scpi_info->next_chan) %
->> +            scpi_info->num_chans;
->>      scpi_chan = scpi_info->channels + chan;
->>
->>      msg = get_scpi_xfer(scpi_chan);
->>      if (!msg)
->>          return -ENOMEM;
->>
->> -    msg->slot = BIT(SCPI_SLOT);
->> -    msg->cmd = PACK_SCPI_CMD(cmd, tx_len);
->> +    if (scpi_info->is_legacy) {
->> +        mutex_lock(&scpi_chan->xfers_lock);
-> 
-> Why does legacy need a different locking scheme ?
+http://lkml.kernel.org/r/1448987062-31225-1-git-send-email-carlo at caione.org
 
-Since we cannot queue, locking seems a really good idea...
+Note:
+As the comment will explain, patch 10 is not strictly required but would
+be an appreciated bonus.
 
-> 
-> [...]
-> 
->> @@ -635,6 +804,24 @@ static int scpi_sensor_get_value(u16 sensor, u64 *val)
->>      return ret;
->>  }
->>
->> +static int legacy_scpi_sensor_get_value(u16 sensor, u64 *val)
->> +{
->> +    __le16 id = cpu_to_le16(sensor);
->> +    struct sensor_value buf;
->> +    int ret;
->> +
->> +    ret = check_cmd(CMD_SENSOR_VALUE);
->> +    if (ret)
->> +        return ret;
->> +
->> +    ret = scpi_send_message(scpi_info->scpi_cmds[CMD_SENSOR_VALUE],
->> +                &id, sizeof(id), &buf, sizeof(buf));
->> +    if (!ret)
->> +        *val = (u64)le32_to_cpu(buf.lo_val);
->> +
-> 
-> This is not needed as it's backward compatible as discussed before.
-> Any particular reason you retained it here ?
-> 
+Jerome Brunet (10):
+  irqchip: meson: add support for gpio interrupt controller
+  dt-bindings: interrupt-controller: add DT binding for meson GPIO
+    interrupt controller
+  pinctrl: meson: update pinctrl data with gpio irq base number
+  pinctrl: meson: allow gpio to request irq
+  dt-bindings: pinctrl: meson: update gpio dt-bindings
+  ARM64: meson: enable MESON_IRQ_GPIO in Kconfig
+  ARM: meson: enable MESON_IRQ_GPIO in Kconfig for meson8
+  ARM64: dts: amlogic: enable gpio interrupt controller on gxbb
+  ARM: dts: amlogic: enable gpio interrupt controller on meson8
+  irqchip: meson: Add support for IRQ_TYPE_EDGE_BOTH
 
-Sudeep,
+ .../amlogic,meson-gpio-intc.txt                    |  39 ++
+ .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   4 +
+ arch/arm/boot/dts/meson8.dtsi                      |  19 +
+ arch/arm/boot/dts/meson8b.dtsi                     |  19 +
+ arch/arm/mach-meson/Kconfig                        |   2 +
+ arch/arm64/Kconfig.platforms                       |   1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  17 +
+ drivers/irqchip/Kconfig                            |   9 +
+ drivers/irqchip/Makefile                           |   1 +
+ drivers/irqchip/irq-meson-gpio.c                   | 437 +++++++++++++++++++++
+ drivers/pinctrl/Kconfig                            |   2 +
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c         |  22 +-
+ drivers/pinctrl/meson/pinctrl-meson.c              |  83 +++-
+ drivers/pinctrl/meson/pinctrl-meson.h              |  16 +-
+ drivers/pinctrl/meson/pinctrl-meson8.c             |  20 +-
+ drivers/pinctrl/meson/pinctrl-meson8b.c            |  32 +-
+ 16 files changed, 686 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+ create mode 100644 drivers/irqchip/irq-meson-gpio.c
 
-I merged the commands as asked but Amlogic's SCP firmware only replies the value 1 in the MHU STAT registers.
-
-This implies that :
- - We cannot distinguish what command ended in scpi_handle_remote_msg
- - We cannot find the last rx command in rx_pending list
- - We cannot read rx data length from the replied command
- - We cannot push multiple commands
- - We also need to wait for TX commands completion
- - We need locking in scpi_send_message around mbox_send_message and completion
-
-I have an highly tweaked version with simplified path for legacy but with merged handle_remote_msg, tx_prepare and send_message functions
-I will post shortly.
-
-Neil
+-- 
+2.7.4
