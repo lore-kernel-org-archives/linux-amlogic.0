@@ -1,59 +1,96 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  5 Oct 2016 15:53:50 +0200
-Subject: [PATCH] ARM64: dts: meson-gx: Add missing L2 cache node
-Message-ID: <1475675630-31514-1-git-send-email-narmstrong@baylibre.com>
+Date: Wed,  5 Oct 2016 16:44:33 +0200
+Subject: [PATCH] ARM64: dts: meson-gxbb: Add rmii pinctrl node and rename
+ rgmii node
+Message-ID: <1475678673-15277-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In order to remove the boot warning :
-[    2.290933] Unable to detect cache hierarchy from DT for CPU 0
-And add missing L2 cache hierarchy information, add a simple l2 cache node
-and reference it from the A53 cpu nodes.
+For boards only supporting 10/100 ethernet over a RMII PHY link, add
+a separate pinctrl node. By the way, rename the existing node to rgmii
+specific naming in all boards dts.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts  |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi     |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi          | 17 ++++++++++++++++-
+ 4 files changed, 19 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 0737056..a6cd953 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -64,6 +64,7 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index e6e3491..325b9c5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -83,7 +83,7 @@
+ 
+ &ethmac {
+ 	status = "okay";
+-	pinctrl-0 = <&eth_pins>;
++	pinctrl-0 = <&eth_rgmii_pins>;
+ 	pinctrl-names = "default";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index 06a34dc..031d69b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -81,7 +81,7 @@
+ 
+ &ethmac {
+ 	status = "okay";
+-	pinctrl-0 = <&eth_pins>;
++	pinctrl-0 = <&eth_rgmii_pins>;
+ 	pinctrl-names = "default";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+index 73f1593..e93221a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+@@ -82,7 +82,7 @@
+ 
+ &ethmac {
+ 	status = "okay";
+-	pinctrl-0 = <&eth_pins>;
++	pinctrl-0 = <&eth_rgmii_pins>;
+ 	pinctrl-names = "default";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 443811b..aad639a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -443,7 +443,7 @@
+ 			};
  		};
  
- 		cpu1: cpu at 1 {
-@@ -71,6 +72,7 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
+-		eth_pins: eth_c {
++		eth_rgmii_pins: eth-rgmii {
+ 			mux {
+ 				groups = "eth_mdio",
+ 				       "eth_mdc",
+@@ -463,6 +463,21 @@
+ 			};
  		};
  
- 		cpu2: cpu at 2 {
-@@ -78,6 +80,7 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x2>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu3: cpu at 3 {
-@@ -85,6 +88,11 @@
- 			compatible = "arm,cortex-a53", "arm,armv8";
- 			reg = <0x0 0x3>;
- 			enable-method = "psci";
-+			next-level-cache = <&l2>;
++		eth_rmii_pins: eth-rmii {
++			mux {
++				groups = "eth_mdio",
++				       "eth_mdc",
++				       "eth_clk_rx_clk",
++				       "eth_rx_dv",
++				       "eth_rxd0",
++				       "eth_rxd1",
++				       "eth_tx_en",
++				       "eth_txd0",
++				       "eth_txd1";
++				function = "eth";
++			};
 +		};
 +
-+		l2: l2-cache0 {
-+			compatible = "cache";
- 		};
- 	};
- 
+ 		pwm_a_x_pins: pwm_a_x {
+ 			mux {
+ 				groups = "pwm_a_x";
 -- 
 1.9.1
