@@ -1,36 +1,35 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  5 Oct 2016 09:33:33 +0200
-Subject: [PATCH v4 7/8] ARM64: dts: meson-gxbb: Add SRAM node
+Date: Wed,  5 Oct 2016 09:33:29 +0200
+Subject: [PATCH v4 3/8] scpi: Do not fail if get_capabilities is not
+ implemented
 In-Reply-To: <1475652814-30619-1-git-send-email-narmstrong@baylibre.com>
 References: <1475652814-30619-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1475652814-30619-8-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1475652814-30619-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On Amlogic SCPI legacy implementation, the GET_CAPABILITIES is not
+supported, failover by using 0.0.0 version.
+
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/firmware/arm_scpi.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 443811b..88f98f5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -94,6 +94,15 @@
- 			status = "disabled";
- 		};
+diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+index 6244eb1..1fb3bbf 100644
+--- a/drivers/firmware/arm_scpi.c
++++ b/drivers/firmware/arm_scpi.c
+@@ -807,6 +807,10 @@ static int scpi_init_versions(struct scpi_drvinfo *info)
+ 		info->protocol_version = le32_to_cpu(caps.protocol_version);
+ 		info->firmware_version = le32_to_cpu(caps.platform_version);
+ 	}
++	/* Ignore error if not implemented */
++	if (scpi_info->is_legacy && ret == -EOPNOTSUPP)
++		return 0;
++
+ 	return ret;
+ }
  
-+		sram: sram at c8000000 {
-+			compatible = "amlogic,meson-gxbb-sram", "mmio-sram";
-+			reg = <0x0 0xc8000000 0x0 0x14000>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x0 0xc8000000 0x14000>;
-+		};
-+
- 		usb0: usb at c9000000 {
- 			compatible = "amlogic,meson-gxbb-usb", "snps,dwc2";
- 			reg = <0x0 0xc9000000 0x0 0x40000>;
 -- 
 1.9.1
