@@ -1,31 +1,59 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  5 Oct 2016 10:09:39 +0200
-Subject: [PATCH v2 1/2] devicetree: Add vendor prefix for Nexbox
-In-Reply-To: <1475654980-16414-1-git-send-email-narmstrong@baylibre.com>
-References: <1475654980-16414-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1475654980-16414-2-git-send-email-narmstrong@baylibre.com>
+Date: Wed,  5 Oct 2016 15:53:50 +0200
+Subject: [PATCH] ARM64: dts: meson-gx: Add missing L2 cache node
+Message-ID: <1475675630-31514-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Nexbox is an IPTV set-top-box distributor, mainly with Amlogic SoCs:
-        https://www.inexbox.com
+In order to remove the boot warning :
+[    2.290933] Unable to detect cache hierarchy from DT for CPU 0
+And add missing L2 cache hierarchy information, add a simple l2 cache node
+and reference it from the A53 cpu nodes.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
-index a9999a3..ecb360f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.txt
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
-@@ -182,6 +182,7 @@ neonode		Neonode Inc.
- netgear	NETGEAR
- netlogic	Broadcom Corporation (formerly NetLogic Microsystems)
- netxeon		Shenzhen Netxeon Technology CO., LTD
-+nexbox	Nexbox
- newhaven	Newhaven Display International
- nintendo	Nintendo
- nokia	Nokia
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 0737056..a6cd953 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -64,6 +64,7 @@
+ 			compatible = "arm,cortex-a53", "arm,armv8";
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
++			next-level-cache = <&l2>;
+ 		};
+ 
+ 		cpu1: cpu at 1 {
+@@ -71,6 +72,7 @@
+ 			compatible = "arm,cortex-a53", "arm,armv8";
+ 			reg = <0x0 0x1>;
+ 			enable-method = "psci";
++			next-level-cache = <&l2>;
+ 		};
+ 
+ 		cpu2: cpu at 2 {
+@@ -78,6 +80,7 @@
+ 			compatible = "arm,cortex-a53", "arm,armv8";
+ 			reg = <0x0 0x2>;
+ 			enable-method = "psci";
++			next-level-cache = <&l2>;
+ 		};
+ 
+ 		cpu3: cpu at 3 {
+@@ -85,6 +88,11 @@
+ 			compatible = "arm,cortex-a53", "arm,armv8";
+ 			reg = <0x0 0x3>;
+ 			enable-method = "psci";
++			next-level-cache = <&l2>;
++		};
++
++		l2: l2-cache0 {
++			compatible = "cache";
+ 		};
+ 	};
+ 
 -- 
 1.9.1
