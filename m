@@ -1,96 +1,83 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  5 Oct 2016 16:44:33 +0200
-Subject: [PATCH] ARM64: dts: meson-gxbb: Add rmii pinctrl node and rename
- rgmii node
-Message-ID: <1475678673-15277-1-git-send-email-narmstrong@baylibre.com>
+From: jdelvare@suse.de (Jean Delvare)
+Date: Wed, 5 Oct 2016 17:17:04 +0200
+Subject: [PATCH] i2c: don't print error when adding adapter fails
+In-Reply-To: <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
+References: <1470742581-12971-1-git-send-email-wsa-dev@sang-engineering.com>
+ <1470742581-12971-2-git-send-email-wsa-dev@sang-engineering.com>
+Message-ID: <20161005171704.18fe1b9f@endymion>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-For boards only supporting 10/100 ethernet over a RMII PHY link, add
-a separate pinctrl node. By the way, rename the existing node to rgmii
-specific naming in all boards dts.
+On Tue,  9 Aug 2016 13:36:17 +0200, Wolfram Sang wrote:
+> The core will do this for us now.
+> 
+> Signed-off-by: Wolfram Sang <wsa-dev@sang-engineering.com>
+> ---
+>  drivers/i2c/busses/i2c-amd756.c         | 5 +----
+>  drivers/i2c/busses/i2c-at91.c           | 2 --
+>  drivers/i2c/busses/i2c-axxia.c          | 8 +-------
+>  drivers/i2c/busses/i2c-bcm-iproc.c      | 8 +-------
+>  drivers/i2c/busses/i2c-bcm-kona.c       | 4 +---
+>  drivers/i2c/busses/i2c-bfin-twi.c       | 4 +---
+>  drivers/i2c/busses/i2c-brcmstb.c        | 4 +---
+>  drivers/i2c/busses/i2c-cadence.c        | 4 +---
+>  drivers/i2c/busses/i2c-cpm.c            | 4 +---
+>  drivers/i2c/busses/i2c-cros-ec-tunnel.c | 4 +---
+>  drivers/i2c/busses/i2c-davinci.c        | 4 +---
+>  drivers/i2c/busses/i2c-diolan-u2c.c     | 4 +---
+>  drivers/i2c/busses/i2c-dln2.c           | 4 +---
+>  drivers/i2c/busses/i2c-efm32.c          | 1 -
+>  drivers/i2c/busses/i2c-exynos5.c        | 4 +---
+>  drivers/i2c/busses/i2c-hix5hd2.c        | 4 +---
+>  drivers/i2c/busses/i2c-i801.c           | 1 -
+>  drivers/i2c/busses/i2c-ibm_iic.c        | 4 +---
+>  drivers/i2c/busses/i2c-img-scb.c        | 4 +---
+>  drivers/i2c/busses/i2c-imx.c            | 4 +---
+>  drivers/i2c/busses/i2c-isch.c           | 4 +---
+>  drivers/i2c/busses/i2c-ismt.c           | 4 +---
+>  drivers/i2c/busses/i2c-jz4780.c         | 4 +---
+>  drivers/i2c/busses/i2c-lpc2k.c          | 4 +---
+>  drivers/i2c/busses/i2c-meson.c          | 1 -
+>  drivers/i2c/busses/i2c-mpc.c            | 4 +---
+>  drivers/i2c/busses/i2c-mt65xx.c         | 4 +---
+>  drivers/i2c/busses/i2c-mxs.c            | 1 -
+>  drivers/i2c/busses/i2c-nforce2.c        | 1 -
+>  drivers/i2c/busses/i2c-nomadik.c        | 4 +---
+>  drivers/i2c/busses/i2c-ocores.c         | 4 +---
+>  drivers/i2c/busses/i2c-octeon.c         | 4 +---
+>  drivers/i2c/busses/i2c-omap.c           | 4 +---
+>  drivers/i2c/busses/i2c-piix4.c          | 1 -
+>  drivers/i2c/busses/i2c-pmcmsp.c         | 4 +---
+>  drivers/i2c/busses/i2c-pnx.c            | 4 +---
+>  drivers/i2c/busses/i2c-puv3.c           | 5 +----
+>  drivers/i2c/busses/i2c-pxa.c            | 4 +---
+>  drivers/i2c/busses/i2c-rcar.c           | 4 +---
+>  drivers/i2c/busses/i2c-riic.c           | 4 +---
+>  drivers/i2c/busses/i2c-rk3x.c           | 4 +---
+>  drivers/i2c/busses/i2c-s3c2410.c        | 1 -
+>  drivers/i2c/busses/i2c-sh7760.c         | 4 +---
+>  drivers/i2c/busses/i2c-sh_mobile.c      | 1 -
+>  drivers/i2c/busses/i2c-sirf.c           | 4 +---
+>  drivers/i2c/busses/i2c-st.c             | 4 +---
+>  drivers/i2c/busses/i2c-stu300.c         | 5 +----
+>  drivers/i2c/busses/i2c-tegra.c          | 4 +---
+>  drivers/i2c/busses/i2c-uniphier-f.c     | 7 +------
+>  drivers/i2c/busses/i2c-uniphier.c       | 7 +------
+>  drivers/i2c/busses/i2c-wmt.c            | 4 +---
+>  drivers/i2c/busses/i2c-xgene-slimpro.c  | 1 -
+>  drivers/i2c/busses/i2c-xiic.c           | 1 -
+>  drivers/i2c/busses/i2c-xlp9xx.c         | 4 +---
+>  drivers/i2c/busses/i2c-xlr.c            | 4 +---
+>  55 files changed, 44 insertions(+), 161 deletions(-)
+> (...)
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts  |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi     |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi          | 17 ++++++++++++++++-
- 4 files changed, 19 insertions(+), 4 deletions(-)
+I like the idea.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index e6e3491..325b9c5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -83,7 +83,7 @@
- 
- &ethmac {
- 	status = "okay";
--	pinctrl-0 = <&eth_pins>;
-+	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 06a34dc..031d69b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -81,7 +81,7 @@
- 
- &ethmac {
- 	status = "okay";
--	pinctrl-0 = <&eth_pins>;
-+	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index 73f1593..e93221a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -82,7 +82,7 @@
- 
- &ethmac {
- 	status = "okay";
--	pinctrl-0 = <&eth_pins>;
-+	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 443811b..aad639a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -443,7 +443,7 @@
- 			};
- 		};
- 
--		eth_pins: eth_c {
-+		eth_rgmii_pins: eth-rgmii {
- 			mux {
- 				groups = "eth_mdio",
- 				       "eth_mdc",
-@@ -463,6 +463,21 @@
- 			};
- 		};
- 
-+		eth_rmii_pins: eth-rmii {
-+			mux {
-+				groups = "eth_mdio",
-+				       "eth_mdc",
-+				       "eth_clk_rx_clk",
-+				       "eth_rx_dv",
-+				       "eth_rxd0",
-+				       "eth_rxd1",
-+				       "eth_tx_en",
-+				       "eth_txd0",
-+				       "eth_txd1";
-+				function = "eth";
-+			};
-+		};
-+
- 		pwm_a_x_pins: pwm_a_x {
- 			mux {
- 				groups = "pwm_a_x";
+For i2c-amd756, i2c-diolan-u2c, i2c-i801, i2c-isch, i2c-ismt,
+i2c-nforce and i2c-piix4:
+
+Reviewed-by: Jean Delvare <jdelvare@suse.de>
+
 -- 
-1.9.1
+Jean Delvare
+SUSE L3 Support
