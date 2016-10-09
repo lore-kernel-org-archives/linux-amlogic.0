@@ -1,25 +1,25 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Sat, 08 Oct 2016 09:12:49 -0700
-Subject: [PATCH v2] ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes
-In-Reply-To: <1475564803-9616-1-git-send-email-brian.kim@hardkernel.com>
- (Brian Kim's message of "Tue, 4 Oct 2016 16:06:43 +0900")
-References: <1475564803-9616-1-git-send-email-brian.kim@hardkernel.com>
-Message-ID: <7hbmyues5a.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Sat, 8 Oct 2016 20:28:25 -0500
+Subject: [PATCH v3 1/3] Documentation: dt-bindings: update the
+ meson-usb2-phy example
+In-Reply-To: <20161001121900.1168-2-martin.blumenstingl@googlemail.com>
+References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
+ <20161001121900.1168-1-martin.blumenstingl@googlemail.com>
+ <20161001121900.1168-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20161009012825.GC18158@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Brian Kim <brian.kim@hardkernel.com> writes:
-
-> Enable both gxbb USB controller and add a 5V regulator for the OTG port
-> VBUS
->
-> Signed-off-by: Brian Kim <brian.kim@hardkernel.com>
+On Sat, Oct 01, 2016 at 02:18:58PM +0200, Martin Blumenstingl wrote:
+> Update the example so the node name uses a dash (instead of an
+> underscore) as per convention.
+> Additionally it updates the example register offset to a real example
+> (the old value was taken from a draft where there was an additional PHY
+> bus).
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
-> This patch was written on Kevin Hilman's repository[1] and branch[2]:
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git
-> [2] v4.8/integ
+>  Documentation/devicetree/bindings/phy/meson-usb2-phy.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-Applied to the v4.10/dt64 branch, and will be included shortly in the
-integration branch.
-
-Kevin
+Acked-by: Rob Herring <robh@kernel.org>
