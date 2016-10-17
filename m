@@ -1,36 +1,59 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 17 Oct 2016 09:40:30 -0700
-Subject: [PATCH 3/5] [media] rc: meson-ir: Fix module autoload
-In-Reply-To: <1476719053-17600-4-git-send-email-javier@osg.samsung.com>
-References: <1476719053-17600-1-git-send-email-javier@osg.samsung.com>
- <1476719053-17600-4-git-send-email-javier@osg.samsung.com>
-Message-ID: <CAOi56cWAaQ51mQG2LrQEg5B4aRcLFzOZAn9hPtGK06xXj0sHmg@mail.gmail.com>
+From: javier@osg.samsung.com (Javier Martinez Canillas)
+Date: Mon, 17 Oct 2016 16:40:14 -0300
+Subject: [PATCH] hwrng: meson: Fix module autoload for OF registration
+Message-ID: <1476733214-19044-1-git-send-email-javier@osg.samsung.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 17, 2016 at 8:44 AM, Javier Martinez Canillas
-<javier@osg.samsung.com> wrote:
-> If the driver is built as a module, autoload won't work because the module
-> alias information is not filled. So user-space can't match the registered
-> device with the corresponding module.
->
-> Export the module alias information using the MODULE_DEVICE_TABLE() macro.
->
-> Before this patch:
->
-> $ modinfo drivers/media/rc/meson-ir.ko | grep alias
-> $
->
-> After this patch:
->
-> $ modinfo drivers/media/rc/meson-ir.ko | grep alias
-> alias:          of:N*T*Camlogic,meson-gxbb-irC*
-> alias:          of:N*T*Camlogic,meson-gxbb-ir
-> alias:          of:N*T*Camlogic,meson8b-irC*
-> alias:          of:N*T*Camlogic,meson8b-ir
-> alias:          of:N*T*Camlogic,meson6-irC*
-> alias:          of:N*T*Camlogic,meson6-ir
->
-> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
+If the driver is built as a module, autoload won't work because the module
+alias information is not filled. So user-space can't match the registered
+device with the corresponding module.
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Export the module alias information using the MODULE_DEVICE_TABLE() macro.
+
+Before this patch:
+
+$ modinfo drivers/char/hw_random/meson-rng.ko | grep alias
+alias:          platform:meson-rng
+
+After this patch:
+
+$ modinfo drivers/char/hw_random/meson-rng.ko | grep alias
+alias:          platform:meson-rng
+alias:          of:N*T*Camlogic,meson-rngC*
+alias:          of:N*T*Camlogic,meson-rng
+
+Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
+---
+
+ drivers/char/hw_random/meson-rng.c | 1 +
+ drivers/char/tpm/Kconfig           | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
+index 58bef39f7286..51864a509be7 100644
+--- a/drivers/char/hw_random/meson-rng.c
++++ b/drivers/char/hw_random/meson-rng.c
+@@ -110,6 +110,7 @@ static const struct of_device_id meson_rng_of_match[] = {
+ 	{ .compatible = "amlogic,meson-rng", },
+ 	{},
+ };
++MODULE_DEVICE_TABLE(of, meson_rng_of_match);
+ 
+ static struct platform_driver meson_rng_driver = {
+ 	.probe	= meson_rng_probe,
+diff --git a/drivers/char/tpm/Kconfig b/drivers/char/tpm/Kconfig
+index 9faa0b1e7766..982ed2fe927c 100644
+--- a/drivers/char/tpm/Kconfig
++++ b/drivers/char/tpm/Kconfig
+@@ -32,7 +32,7 @@ config TCG_TIS_CORE
+ 
+ config TCG_TIS
+ 	tristate "TPM Interface Specification 1.2 Interface / TPM 2.0 FIFO Interface"
+-	depends on X86
++	depends on X86 || COMPILE_TEST
+ 	select TCG_TIS_CORE
+ 	---help---
+ 	  If you have a TPM security chip that is compliant with the
+-- 
+2.7.4
