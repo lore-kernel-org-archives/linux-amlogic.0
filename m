@@ -1,22 +1,36 @@
-From: festevam@gmail.com (Fabio Estevam)
-Date: Mon, 17 Oct 2016 17:45:33 -0200
+From: javier@osg.samsung.com (Javier Martinez Canillas)
+Date: Mon, 17 Oct 2016 16:47:44 -0300
 Subject: [PATCH] hwrng: meson: Fix module autoload for OF registration
-In-Reply-To: <1476733214-19044-1-git-send-email-javier@osg.samsung.com>
+In-Reply-To: <20161017194501.GD8122@obsidianresearch.com>
 References: <1476733214-19044-1-git-send-email-javier@osg.samsung.com>
-Message-ID: <CAOMZO5B+iDyNJ-heFU2Th-HQHocLS3Lz5zV7hFhiLs7ESJt2gw@mail.gmail.com>
+ <20161017194501.GD8122@obsidianresearch.com>
+Message-ID: <72b45d57-eabc-6fd8-35cf-5c5262d4f61d@osg.samsung.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 17, 2016 at 5:40 PM, Javier Martinez Canillas
-<javier@osg.samsung.com> wrote:
+Hello Jason,
 
-> --- a/drivers/char/tpm/Kconfig
-> +++ b/drivers/char/tpm/Kconfig
-> @@ -32,7 +32,7 @@ config TCG_TIS_CORE
+On 10/17/2016 04:45 PM, Jason Gunthorpe wrote:
+> On Mon, Oct 17, 2016 at 04:40:14PM -0300, Javier Martinez Canillas wrote:
+> 
+>> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
+>>
+>>  drivers/char/hw_random/meson-rng.c | 1 +
+>>  drivers/char/tpm/Kconfig           | 2 +-
+> 
+> Looks like this patch should not have tpm in it.
 >
->  config TCG_TIS
->         tristate "TPM Interface Specification 1.2 Interface / TPM 2.0 FIFO Interface"
-> -       depends on X86
-> +       depends on X86 || COMPILE_TEST
 
-This is a separate change.
+Argh, yes. I had some unrelated changes in my staging area and did a
+commit by mistake. Thanks a lot for pointing out and sorry for that.
+
+I'll post a v2 without this.
+
+> Jason
+> 
+
+Best regards,
+-- 
+Javier Martinez Canillas
+Open Source Group
+Samsung Research America
