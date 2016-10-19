@@ -1,39 +1,38 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 19 Oct 2016 09:43:51 -0700
-Subject: [PATCH v5 0/5] Add support for legacy SCPI protocol
-In-Reply-To: <4aa21ebe-446e-6343-238c-515718cbb162@arm.com> (Sudeep Holla's
- message of "Wed, 19 Oct 2016 17:10:10 +0100")
-References: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
- <ff62da76-a7b9-6891-c198-f9049dfa7bb5@arm.com>
- <7h1szc9vnp.fsf@baylibre.com>
- <4aa21ebe-446e-6343-238c-515718cbb162@arm.com>
-Message-ID: <7hpomw8f20.fsf@baylibre.com>
+Date: Wed, 19 Oct 2016 11:01:53 -0700
+Subject: [PATCH v4] MMC: meson: initial support for GX platforms
+In-Reply-To: <CABxcv=kQBAdXtks-tX1t-CkPnvFx0SWa3JzLRYK4KWk+EGZedw@mail.gmail.com>
+ (Javier Martinez Canillas's message of "Wed, 19 Oct 2016 13:20:54
+ -0300")
+References: <20161018195605.21145-1-khilman@baylibre.com>
+ <CABxcv=kQBAdXtks-tX1t-CkPnvFx0SWa3JzLRYK4KWk+EGZedw@mail.gmail.com>
+Message-ID: <7hinso8bfy.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Sudeep Holla <sudeep.holla@arm.com> writes:
+Javier Martinez Canillas <javier@dowhile0.org> writes:
 
-> On 19/10/16 16:59, Kevin Hilman wrote:
-
-[...]
-
->>
->> Sudeep, will this be an immutable branch? (or could you put a tag at an
->> immutable place on this branch?)  I'd like to include this in my amlogic
->> integration branch for broader testing.
->>
+> Hello Kevin,
 >
-> If you plan to test SCPI(which is enabled in defconfig), then you need
-> all the patches in the branch[1]. I will tag once I get a build success
-> from kbuild robot and I do some testing. In short, immutable tag = PR
-> tag IMO. The only thing I can drop from the list is DT bindings patch.
+> On Tue, Oct 18, 2016 at 4:56 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> Initial support for the SD/eMMC controller in the Amlogic S905/GX*
+>> family of SoCs.
+>>
+>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 >
-> Let me know if you are fine using the same tag ? Or you can propose any
-> other alternative, I am fine by that too.
+> [snip]
+>
+>> +
+>> +MODULE_ALIAS("platform:" DRIVER_NAME);
+>
+> Why is this module alias needed? I thought that the Amlogic was a
+> DT-only platform and so devices will always be registered from OF (and
+> the OF modalias used).
 
-I'm currently using your scpi-updates/for-next branch, so a tag at (or
-near) there should be fine after you've validated it.
+You're right, I probably copy/pasted it from another driver.
 
-Thanks,
+Testing without it also made me realize that the module filename (meson_gx)
+isn't really useful when listed in lsmod, so I 'll respin to have mmc in
+the filename so the module name also shows mmc.
 
 Kevin
