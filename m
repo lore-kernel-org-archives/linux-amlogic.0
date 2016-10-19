@@ -1,11 +1,11 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 19 Oct 2016 08:56:04 -0700
+Date: Wed, 19 Oct 2016 08:59:54 -0700
 Subject: [PATCH v5 0/5] Add support for legacy SCPI protocol
 In-Reply-To: <ff62da76-a7b9-6891-c198-f9049dfa7bb5@arm.com> (Sudeep Holla's
  message of "Wed, 19 Oct 2016 15:44:23 +0100")
 References: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
  <ff62da76-a7b9-6891-c198-f9049dfa7bb5@arm.com>
-Message-ID: <7h7f949vu3.fsf@baylibre.com>
+Message-ID: <7h1szc9vnp.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -75,12 +75,10 @@ Sudeep Holla <sudeep.holla@arm.com> writes:
 > Nice to see this diff stat from a whole new file legacy_scpi.c and 1000+
 > delta. Thanks for working on this. I have applied the first 3 patches in
 > this series with some subject/commit message changes to [1].
->
-> I assume the DT changes needs to go via the corresponding platform
-> maintainer.
 
-Yes, I'll queue the DT changes through the amlogic tree (which then goes
-through the arm-soc tree.)
+Sudeep, will this be an immutable branch? (or could you put a tag at an
+immutable place on this branch?)  I'd like to include this in my amlogic
+integration branch for broader testing.
 
 Thanks,
 
