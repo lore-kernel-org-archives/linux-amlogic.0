@@ -1,53 +1,81 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 19 Oct 2016 11:19:39 +0200
-Subject: [PATCH v2] hwrng: meson: Fix module autoload for OF registration
-In-Reply-To: <1476733877-20275-1-git-send-email-javier@osg.samsung.com>
-References: <1476733877-20275-1-git-send-email-javier@osg.samsung.com>
-Message-ID: <e8df64b3-79c3-2d69-97b6-ee99d052d22b@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 19 Oct 2016 12:08:20 +0200
+Subject: [PATCH 0/9] irqchip: meson: add support for the gpio interrupt
+ controller
+Message-ID: <1476871709-8359-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/17/2016 09:51 PM, Javier Martinez Canillas wrote:
-> If the driver is built as a module, autoload won't work because the module
-> alias information is not filled. So user-space can't match the registered
-> device with the corresponding module.
-> 
-> Export the module alias information using the MODULE_DEVICE_TABLE() macro.
-> 
-> Before this patch:
-> 
-> $ modinfo drivers/char/hw_random/meson-rng.ko | grep alias
-> alias:          platform:meson-rng
-> 
-> After this patch:
-> 
-> $ modinfo drivers/char/hw_random/meson-rng.ko | grep alias
-> alias:          platform:meson-rng
-> alias:          of:N*T*Camlogic,meson-rngC*
-> alias:          of:N*T*Camlogic,meson-rng
-> 
-> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
-> 
-> ---
-> 
-> Changes in v2:
-> - Remove unrelated changes added by mistake. Suggested by Jason Gunthorpe.
-> 
->  drivers/char/hw_random/meson-rng.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
-> index 58bef39f7286..51864a509be7 100644
-> --- a/drivers/char/hw_random/meson-rng.c
-> +++ b/drivers/char/hw_random/meson-rng.c
-> @@ -110,6 +110,7 @@ static const struct of_device_id meson_rng_of_match[] = {
->  	{ .compatible = "amlogic,meson-rng", },
->  	{},
->  };
-> +MODULE_DEVICE_TABLE(of, meson_rng_of_match);
->  
->  static struct platform_driver meson_rng_driver = {
->  	.probe	= meson_rng_probe,
-> 
+This patch series adds support for the GPIO interrupt controller found
+on Amlogic's meson SoC families.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Unlike what the name suggests, this controller is not part of the SoC GPIO
+subsystem. It's an indepedent controller which can watch almost all pad of
+the SoC and generate and interrupt from it. Some pins, which are not part
+of the public datasheet, don't seem to have this capability though.
+
+Hardware wise, the controller is a 256 to 8 multiplexer. It can take up
+to 256 input pads and route them to any of 8 GIC's interrupts. There is
+also a filter block in the middle to select the appropriate edge or level.
+
+The number of interrupt declared by the irqchip is lowered from 256 to the
+actual number of signal routed to the controller on each SoC family. As we
+have access to only 8 GIC?s interrupts, these are allocated when an
+interrupt is requested from the controller, on a first come, first served
+basis.
+
+This series has been tested on Amlogic S905-P200 board with the front
+panel power button. Directly passing an IRQ or using gpio_to_irq both work
+with this driver.
+
+This work is derived from the previous work of Carlo Caione [1].
+
+Changes since RFC : [2]
+ * Remove interrupt property in device tree: the controller cannot generate
+   interrupts on its own and is merely routing the interrupt to the GIC,
+   therefore it should not use the interrupt property. This data is now
+   stored directly in the driver, same as the pinctrl data.
+
+ * Improve compatibility checking of meson pinctrl on its interrupt parent
+   to activate gpio_to_irq callback
+
+ * Drop IRQ_BOTH hack. Need more work to have an acceptable solution for
+   this
+
+[1] : http://lkml.kernel.org/r/1448987062-31225-1-git-send-email-carlo at caione.org
+[2] : http://lkml.kernel.org/r/1475593708-10526-1-git-send-email-jbrunet at baylibre.com
+
+Jerome Brunet (9):
+  irqchip: meson: add support for gpio interrupt controller
+  dt-bindings: interrupt-controller: add DT binding for meson GPIO
+    interrupt controller
+  pinctrl: meson: update pinctrl data with gpio irq data
+  pinctrl: meson: allow gpio to request irq
+  dt-bindings: pinctrl: meson: update gpio dt-bindings
+  ARM64: meson: enable MESON_IRQ_GPIO in Kconfig
+  ARM: meson: enable MESON_IRQ_GPIO in Kconfig for meson8
+  ARM64: dts: amlogic: enable gpio interrupt controller on gxbb
+  ARM: dts: amlogic: enable gpio interrupt controller on meson8
+
+ .../amlogic,meson-gpio-intc.txt                    |  31 ++
+ .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   4 +
+ arch/arm/boot/dts/meson8.dtsi                      |  11 +
+ arch/arm/boot/dts/meson8b.dtsi                     |  11 +
+ arch/arm/mach-meson/Kconfig                        |   2 +
+ arch/arm64/Kconfig.platforms                       |   1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   9 +
+ drivers/irqchip/Kconfig                            |   9 +
+ drivers/irqchip/Makefile                           |   1 +
+ drivers/irqchip/irq-meson-gpio.c                   | 423 +++++++++++++++++++++
+ drivers/pinctrl/Kconfig                            |   2 +
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c         |  24 +-
+ drivers/pinctrl/meson/pinctrl-meson.c              |  77 +++-
+ drivers/pinctrl/meson/pinctrl-meson.h              |  17 +-
+ drivers/pinctrl/meson/pinctrl-meson8.c             |  22 +-
+ drivers/pinctrl/meson/pinctrl-meson8b.c            |  34 +-
+ 16 files changed, 641 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+ create mode 100644 drivers/irqchip/irq-meson-gpio.c
+
+-- 
+2.7.4
