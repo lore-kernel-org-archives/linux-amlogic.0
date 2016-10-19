@@ -1,84 +1,86 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Wed, 19 Oct 2016 15:44:23 +0100
-Subject: [PATCH v5 0/5] Add support for legacy SCPI protocol
-In-Reply-To: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
-References: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <ff62da76-a7b9-6891-c198-f9049dfa7bb5@arm.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 19 Oct 2016 17:21:11 +0200
+Subject: [PATCH v2 0/9] irqchip: meson: add support for the gpio interrupt
+ controller
+Message-ID: <1476890480-8884-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+This patch series adds support for the GPIO interrupt controller found
+on Amlogic's meson SoC families.
 
+Unlike what the name suggests, this controller is not part of the SoC GPIO
+subsystem. It's an indepedent controller which can watch almost all pad of
+the SoC and generate and interrupt from it. Some pins, which are not part
+of the public datasheet, don't seem to have this capability though.
 
-On 19/10/16 13:51, Neil Armstrong wrote:
-> This patchset aims to support the legacy SCPI firmware implementation that was
-> delivered as early technology preview for the JUNO platform.
->
-> Finally a stable, maintained and public implementation for the SCPI protocol
-> has been upstreamed part of the JUNO support and it is the recommended way
-> of implementing SCP communication on ARMv8 platforms.
->
-> The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
-> platforms. This patchset will only add support for Amlogic GXBB SoC.
->
-> This patchset add support for the legacy protocol in the arm_scpi.c file,
-> avoiding code duplication.
->
-> This patchset is rebased against scpi-updates/for-next from [2] and with
-> already merged patches [3], [4] and [5] and ommited in this patchset.
->
-> Last RFC discution thread can be found at : https://lkml.org/lkml/2016/8/9/210
->
-> Changes since v4 at : http://lkml.kernel.org/r/1475652814-30619-1-git-send-email-narmstrong at baylibre.com
->  - Removed legacy locking scheme
->  - Removed cmd copy back after token insert
->  - Various cleanups
->
-> Changes since v3 at : http://lkml.kernel.org/r/1473262477-18045-1-git-send-email-narmstrong at baylibre.com
->  - Changed back author to Sudeep Holla for first patch
->  - Merged legacy functions to scpi_send_message, tx_prepare and handle_remote_message
->  - Added legacy locking scheme
->  - Merged back legacy_scpi_sensor_get_value into scpi_sensor_get_value
->  - Rebased on linux-next-20161004 with patchset [1]
->
-> Changes since v2 at : http://lkml.kernel.org/r/1471952816-30877-1-git-send-email-narmstrong at baylibre.com
->  - Added command indirection table and use it in each commands
->  - Added bitmap for high priority commands
->  - Cleaned up legacy tx_prepare/handle_message to align to standard functions
->  - Dropped legacy_scpi_ops
->
-> Changes since v1 at : http://lkml.kernel.org/r/1471515066-3626-1-git-send-email-narmstrong at baylibre.com
->  - Dropped vendor_send_message and rockchip vendor mechanism patches
->  - Merged alternate functions into main functions using is_legacy boolean
->  - Added DT match table to set is_legacy to true
->  - Kept alternate scpi_ops structure for legacy
->
-> [1] http://lkml.kernel.org/r/1475595430-30075-1-git-send-email-narmstrong at baylibre.com
-> [2] git.kernel.org/sudeep.holla/linux
-> [3] scpi: Add cmd indirection table to prepare for legacy commands
-> [4] scpi: grow MAX_DVFS_OPPS to 16 entries
-> [5] dt-bindings: Add support for Amlogic GXBB SCPI Interface
->
-> Neil Armstrong (5):
->   scpi: Add alternative legacy structures, functions and macros
->   scpi: Do not fail if get_capabilities is not implemented
->   scpi: Add support for Legacy match table for Amlogic GXBB SoC
->   ARM64: dts: meson-gxbb: Add SRAM node
->   ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
->
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  57 ++++++++
->  drivers/firmware/arm_scpi.c                 | 206 +++++++++++++++++++++++++---
->  2 files changed, 245 insertions(+), 18 deletions(-)
->
+Hardware wise, the controller is a 256 to 8 multiplexer. It can take up
+to 256 input pads and route them to any of 8 GIC's interrupts. There is
+also a filter block in the middle to select the appropriate edge or level.
 
-Nice to see this diff stat from a whole new file legacy_scpi.c and 1000+
-delta. Thanks for working on this. I have applied the first 3 patches in
-this series with some subject/commit message changes to [1].
+The number of interrupt declared by the irqchip is lowered from 256 to the
+actual number of signal routed to the controller on each SoC family. As we
+have access to only 8 GIC?s interrupts, these are allocated when an
+interrupt is requested from the controller, on a first come, first served
+basis.
 
-I assume the DT changes needs to go via the corresponding platform
-maintainer.
+This series has been tested on Amlogic S905-P200 board with the front
+panel power button. Directly passing an IRQ or using gpio_to_irq both work
+with this driver.
+
+This work is derived from the previous work of Carlo Caione [1].
+
+Changes since RFC : [2]
+ * Remove interrupt property in device tree: the controller cannot generate
+   interrupts on its own and is merely routing the interrupt to the GIC,
+   therefore it should not use the interrupt property. This data is now
+   stored directly in the driver, same as the pinctrl data.
+
+ * Improve compatibility checking of meson pinctrl on its interrupt parent
+   to activate gpio_to_irq callback
+
+ * Drop IRQ_BOTH hack. Need more work to have an acceptable solution for
+   this
+
+Changes since v1 : [3]
+ * Correct mistake in patch 4 when no compatible controller is found. Sorry
+   for the inconvenience.
+
+[1] : http://lkml.kernel.org/r/1448987062-31225-1-git-send-email-carlo at caione.org
+[2] : http://lkml.kernel.org/r/1475593708-10526-1-git-send-email-jbrunet at baylibre.com
+[3] : http://lkml.kernel.org/r/1476871709-8359-1-git-send-email-jbrunet at baylibre.com
+
+Jerome Brunet (9):
+  irqchip: meson: add support for gpio interrupt controller
+  dt-bindings: interrupt-controller: add DT binding for meson GPIO
+    interrupt controller
+  pinctrl: meson: update pinctrl data with gpio irq data
+  pinctrl: meson: allow gpio to request irq
+  dt-bindings: pinctrl: meson: update gpio dt-bindings
+  ARM64: meson: enable MESON_IRQ_GPIO in Kconfig
+  ARM: meson: enable MESON_IRQ_GPIO in Kconfig for meson8
+  ARM64: dts: amlogic: enable gpio interrupt controller on gxbb
+  ARM: dts: amlogic: enable gpio interrupt controller on meson8
+
+ .../amlogic,meson-gpio-intc.txt                    |  31 ++
+ .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   4 +
+ arch/arm/boot/dts/meson8.dtsi                      |  11 +
+ arch/arm/boot/dts/meson8b.dtsi                     |  11 +
+ arch/arm/mach-meson/Kconfig                        |   2 +
+ arch/arm64/Kconfig.platforms                       |   1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   9 +
+ drivers/irqchip/Kconfig                            |   9 +
+ drivers/irqchip/Makefile                           |   1 +
+ drivers/irqchip/irq-meson-gpio.c                   | 423 +++++++++++++++++++++
+ drivers/pinctrl/Kconfig                            |   2 +
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c         |  24 +-
+ drivers/pinctrl/meson/pinctrl-meson.c              |  77 +++-
+ drivers/pinctrl/meson/pinctrl-meson.h              |  17 +-
+ drivers/pinctrl/meson/pinctrl-meson8.c             |  22 +-
+ drivers/pinctrl/meson/pinctrl-meson8b.c            |  34 +-
+ 16 files changed, 641 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+ create mode 100644 drivers/irqchip/irq-meson-gpio.c
 
 -- 
-Regards,
-Sudeep
-
-[1] git.kernel.org/sudeep.holla/linux/h/scpi-updates/for-next
+2.7.4
