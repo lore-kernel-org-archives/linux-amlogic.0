@@ -1,36 +1,68 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Wed, 19 Oct 2016 16:22:54 +0530
-Subject: [PATCH v3 0/3] usb/phy: Add Amlogic Meson8b and GXBB USB support
-In-Reply-To: <CAFBinCCoVOxyVYdNxeNyUhAK+T1+gBW0d1oDUgVpOZZHBjN9Wg@mail.gmail.com>
-References: <20160904213152.25837-1-martin.blumenstingl@googlemail.com>
- <20161001121900.1168-1-martin.blumenstingl@googlemail.com>
- <CAFBinCCoVOxyVYdNxeNyUhAK+T1+gBW0d1oDUgVpOZZHBjN9Wg@mail.gmail.com>
-Message-ID: <58075086.3040105@ti.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 19 Oct 2016 14:51:07 +0200
+Subject: [PATCH v5 0/5] Add support for legacy SCPI protocol
+Message-ID: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+This patchset aims to support the legacy SCPI firmware implementation that was
+delivered as early technology preview for the JUNO platform.
 
-On Friday 14 October 2016 01:57 AM, Martin Blumenstingl wrote:
-> Hi Kishon,
-> 
-> On Sat, Oct 1, 2016 at 2:18 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> Martin Blumenstingl (3):
->>   Documentation: dt-bindings: update the meson-usb2-phy example
->>   Documentation: dt-bindings: rename meson-usb2-phy to meson8b-usb2-phy
-> these two already got an ACK by the devicetree maintainers
-> 
->>   phy: meson: add USB2 PHY support for Meson8b and GXBB
-> did you already have time to review the USB2 PHY driver from patch 3/3?
-> please let me know if there's something we have to change, then I'll
-> take care of it
-> 
-> would you like to get all patches through the PHY tree or should Kevin
-> take some of these?
+Finally a stable, maintained and public implementation for the SCPI protocol
+has been upstreamed part of the JUNO support and it is the recommended way
+of implementing SCP communication on ARMv8 platforms.
 
-while I have merged the patches to linux-phy -next, please update the
-MAINTAINER for meson phy driver.
+The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
+platforms. This patchset will only add support for Amlogic GXBB SoC.
 
-Thanks
-Kishon
+This patchset add support for the legacy protocol in the arm_scpi.c file,
+avoiding code duplication.
+
+This patchset is rebased against scpi-updates/for-next from [2] and with
+already merged patches [3], [4] and [5] and ommited in this patchset.
+
+Last RFC discution thread can be found at : https://lkml.org/lkml/2016/8/9/210
+
+Changes since v4 at : http://lkml.kernel.org/r/1475652814-30619-1-git-send-email-narmstrong at baylibre.com
+ - Removed legacy locking scheme
+ - Removed cmd copy back after token insert
+ - Various cleanups
+
+Changes since v3 at : http://lkml.kernel.org/r/1473262477-18045-1-git-send-email-narmstrong at baylibre.com
+ - Changed back author to Sudeep Holla for first patch
+ - Merged legacy functions to scpi_send_message, tx_prepare and handle_remote_message
+ - Added legacy locking scheme
+ - Merged back legacy_scpi_sensor_get_value into scpi_sensor_get_value
+ - Rebased on linux-next-20161004 with patchset [1]
+
+Changes since v2 at : http://lkml.kernel.org/r/1471952816-30877-1-git-send-email-narmstrong at baylibre.com
+ - Added command indirection table and use it in each commands
+ - Added bitmap for high priority commands
+ - Cleaned up legacy tx_prepare/handle_message to align to standard functions
+ - Dropped legacy_scpi_ops
+
+Changes since v1 at : http://lkml.kernel.org/r/1471515066-3626-1-git-send-email-narmstrong at baylibre.com
+ - Dropped vendor_send_message and rockchip vendor mechanism patches
+ - Merged alternate functions into main functions using is_legacy boolean
+ - Added DT match table to set is_legacy to true
+ - Kept alternate scpi_ops structure for legacy
+
+[1] http://lkml.kernel.org/r/1475595430-30075-1-git-send-email-narmstrong at baylibre.com
+[2] git.kernel.org/sudeep.holla/linux
+[3] scpi: Add cmd indirection table to prepare for legacy commands
+[4] scpi: grow MAX_DVFS_OPPS to 16 entries
+[5] dt-bindings: Add support for Amlogic GXBB SCPI Interface
+
+Neil Armstrong (5):
+  scpi: Add alternative legacy structures, functions and macros
+  scpi: Do not fail if get_capabilities is not implemented
+  scpi: Add support for Legacy match table for Amlogic GXBB SoC
+  ARM64: dts: meson-gxbb: Add SRAM node
+  ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  57 ++++++++
+ drivers/firmware/arm_scpi.c                 | 206 +++++++++++++++++++++++++---
+ 2 files changed, 245 insertions(+), 18 deletions(-)
+
+-- 
+1.9.1
