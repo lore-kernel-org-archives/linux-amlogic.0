@@ -1,483 +1,233 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 19 Oct 2016 17:21:12 +0200
-Subject: [PATCH v2 1/9] irqchip: meson: add support for gpio interrupt
- controller
+Date: Wed, 19 Oct 2016 17:21:14 +0200
+Subject: [PATCH v2 3/9] pinctrl: meson: update pinctrl data with gpio irq data
 In-Reply-To: <1476890480-8884-1-git-send-email-jbrunet@baylibre.com>
 References: <1476890480-8884-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1476890480-8884-2-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1476890480-8884-4-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add support for the interrupt gpio controller found on Amlogic's meson
-SoC family.
-
-Unlike what the IP name suggest, it is not directly linked to the gpio
-subsystem. It is actually an independent IP that is able to spy on the
-SoC pad. For that purpose, it can mux and filter (edge or level and
-polarity) any single SoC pad to one of the 8 GIC's interrupts it owns.
+This patch extends meson's pinctrl SoC specific data by adding the gpio
+irq base number and the compatible controller for each SoC. This will
+allow gpios to request an interrupt on the gpio interrupt controller
+using this base irq number the pin offset inbank
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/irqchip/Kconfig          |   9 +
- drivers/irqchip/Makefile         |   1 +
- drivers/irqchip/irq-meson-gpio.c | 423 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 433 insertions(+)
- create mode 100644 drivers/irqchip/irq-meson-gpio.c
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 24 +++++++++++----------
+ drivers/pinctrl/meson/pinctrl-meson.h      | 16 +++++++++-----
+ drivers/pinctrl/meson/pinctrl-meson8.c     | 22 ++++++++++---------
+ drivers/pinctrl/meson/pinctrl-meson8b.c    | 34 +++++++++++++++++++++---------
+ 4 files changed, 60 insertions(+), 36 deletions(-)
 
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index 82b0b5daf3f5..168837263e80 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -279,3 +279,12 @@ config EZNPS_GIC
- config STM32_EXTI
- 	bool
- 	select IRQ_DOMAIN
-+
-+config MESON_GPIO_IRQ
-+       bool "Meson GPIO Interrupt Multiplexer"
-+       depends on ARCH_MESON || COMPILE_TEST
-+       select IRQ_DOMAIN
-+       select IRQ_DOMAIN_HIERARCHY
-+       help
-+         Support Meson SoC Family GPIO Interrupt Multiplexer
-+
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index e4dbfc85abdb..33f913d037d0 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -74,3 +74,4 @@ obj-$(CONFIG_LS_SCFG_MSI)		+= irq-ls-scfg-msi.o
- obj-$(CONFIG_EZNPS_GIC)			+= irq-eznps.o
- obj-$(CONFIG_ARCH_ASPEED)		+= irq-aspeed-vic.o
- obj-$(CONFIG_STM32_EXTI) 		+= irq-stm32-exti.o
-+obj-$(CONFIG_MESON_GPIO_IRQ)		+= irq-meson-gpio.o
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-new file mode 100644
-index 000000000000..869b4df8c483
---- /dev/null
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -0,0 +1,423 @@
-+/*
-+ * Copyright (c) 2015 Endless Mobile, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ * Copyright (c) 2016 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of version 2 of the GNU General Public License as
-+ * published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful, but
-+ * WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+ * General Public License for more details.
-+ *
-+ * You should have received a copy of the GNU General Public License
-+ * along with this program; if not, see <http://www.gnu.org/licenses/>.
-+ * The full GNU General Public License is included in this distribution
-+ * in the file called COPYING.
-+ */
-+
-+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
-+
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/irq.h>
-+#include <linux/irqdomain.h>
-+#include <linux/irqchip.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+
-+#define IRQ_FREE (-1)
-+
-+#define REG_EDGE_POL	0x00
-+#define REG_PIN_03_SEL	0x04
-+#define REG_PIN_47_SEL	0x08
-+#define REG_FILTER_SEL	0x0c
-+
-+#define REG_EDGE_POL_MASK(x)	(BIT(x) | BIT(16 + (x)))
-+#define REG_EDGE_POL_EDGE(x)	BIT(x)
-+#define REG_EDGE_POL_LOW(x)	BIT(16 + (x))
-+#define REG_PIN_SEL_SHIFT(x)	(((x) % 4) * 8)
-+#define REG_FILTER_SEL_SHIFT(x)	((x) * 4)
-+
-+struct meson_gpio_irq_params {
-+	unsigned int nhwirq;
-+	irq_hw_number_t *source;
-+	int nsource;
-+};
-+
-+struct meson_gpio_irq_domain {
-+	void __iomem *base;
-+	int *map;
-+	const struct meson_gpio_irq_params *params;
-+};
-+
-+struct meson_gpio_irq_chip_data {
-+	void __iomem *base;
-+	int index;
-+};
-+
-+static irq_hw_number_t meson_parent_hwirqs[] = {
-+	64, 65, 66, 67, 68, 69, 70, 71,
-+};
-+
-+static const struct meson_gpio_irq_params meson8_params = {
-+	.nhwirq  = 134,
-+	.source  = meson_parent_hwirqs,
-+	.nsource = ARRAY_SIZE(meson_parent_hwirqs),
-+};
-+
-+static const struct meson_gpio_irq_params meson8b_params = {
-+	.nhwirq  = 119,
-+	.source  = meson_parent_hwirqs,
-+	.nsource = ARRAY_SIZE(meson_parent_hwirqs),
-+};
-+
-+static const struct meson_gpio_irq_params meson_gxbb_params = {
-+	.nhwirq  = 133,
-+	.source  = meson_parent_hwirqs,
-+	.nsource = ARRAY_SIZE(meson_parent_hwirqs),
-+};
-+
-+static const struct of_device_id meson_irq_gpio_matches[] = {
-+	{
-+		.compatible = "amlogic,meson8-gpio-intc",
-+		.data = &meson8_params
-+	},
-+	{
-+		.compatible = "amlogic,meson8b-gpio-intc",
-+		.data = &meson8b_params
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-gpio-intc",
-+		.data = &meson_gxbb_params
-+	},
-+	{}
-+};
-+
-+static void meson_gpio_irq_update_bits(void __iomem *base, unsigned int reg,
-+				       u32 mask, u32 val)
-+{
-+	u32 tmp;
-+
-+	tmp = readl(base + reg);
-+	tmp &= ~mask;
-+	tmp |= val;
-+
-+	writel(tmp, base + reg);
-+}
-+
-+static int meson_gpio_irq_get_index(struct meson_gpio_irq_domain *domain_data,
-+				    int hwirq)
-+{
-+	int i;
-+
-+	for (i = 0; i < domain_data->params->nsource; i++) {
-+		if (domain_data->map[i] == hwirq)
-+			return i;
-+	}
-+
-+	return -1;
-+}
-+
-+static int mesion_gpio_irq_map_source(struct meson_gpio_irq_domain *domain_data,
-+				      irq_hw_number_t hwirq,
-+				      irq_hw_number_t *source)
-+{
-+	int index;
-+	unsigned int reg;
-+
-+	index = meson_gpio_irq_get_index(domain_data, IRQ_FREE);
-+	if (index < 0) {
-+		pr_err("No irq available\n");
-+		return -ENOSPC;
-+	}
-+
-+	domain_data->map[index] = hwirq;
-+
-+	reg = (index < 4) ? REG_PIN_03_SEL : REG_PIN_47_SEL;
-+	meson_gpio_irq_update_bits(domain_data->base, reg,
-+				   0xff << REG_PIN_SEL_SHIFT(index),
-+				   hwirq << REG_PIN_SEL_SHIFT(index));
-+
-+	*source = domain_data->params->source[index];
-+
-+	pr_debug("hwirq %lu assigned to channel %d - source %lu\n",
-+		 hwirq, index, *source);
-+
-+	return index;
-+}
-+
-+static int meson_gpio_irq_type_setup(unsigned int type, void __iomem *base,
-+				     int index)
-+{
-+	u32 val = 0;
-+
-+	type &= IRQ_TYPE_SENSE_MASK;
-+
-+	if (type == IRQ_TYPE_EDGE_BOTH)
-+		return -EINVAL;
-+
-+	if (type & (IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING))
-+		val |= REG_EDGE_POL_EDGE(index);
-+
-+	if (type & (IRQ_TYPE_LEVEL_LOW | IRQ_TYPE_EDGE_FALLING))
-+		val |= REG_EDGE_POL_LOW(index);
-+
-+	meson_gpio_irq_update_bits(base, REG_EDGE_POL,
-+				   REG_EDGE_POL_MASK(index), val);
-+
-+	return 0;
-+}
-+
-+static unsigned int meson_gpio_irq_type_output(unsigned int type)
-+{
-+	unsigned int sense = type & IRQ_TYPE_SENSE_MASK;
-+
-+	type &= ~IRQ_TYPE_SENSE_MASK;
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index c3928aa3fefa..ed8a1222de3b 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -715,24 +715,25 @@ static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
+ };
+ 
+ static struct meson_bank meson_gxbb_periphs_banks[] = {
+-	/*   name    first                      last                    pullen  pull    dir     out     in  */
+-	BANK("X",    PIN(GPIOX_0, EE_OFF),	PIN(GPIOX_22, EE_OFF),  4,  0,  4,  0,  12, 0,  13, 0,  14, 0),
+-	BANK("Y",    PIN(GPIOY_0, EE_OFF),	PIN(GPIOY_16, EE_OFF),  1,  0,  1,  0,  3,  0,  4,  0,  5,  0),
+-	BANK("DV",   PIN(GPIODV_0, EE_OFF),	PIN(GPIODV_29, EE_OFF), 0,  0,  0,  0,  0,  0,  1,  0,  2,  0),
+-	BANK("H",    PIN(GPIOH_0, EE_OFF),	PIN(GPIOH_3, EE_OFF),   1, 20,  1, 20,  3, 20,  4, 20,  5, 20),
+-	BANK("Z",    PIN(GPIOZ_0, EE_OFF),	PIN(GPIOZ_15, EE_OFF),  3,  0,  3,  0,  9,  0,  10, 0, 11,  0),
+-	BANK("CARD", PIN(CARD_0, EE_OFF),	PIN(CARD_6, EE_OFF),    2, 20,  2, 20,  6, 20,  7, 20,  8, 20),
+-	BANK("BOOT", PIN(BOOT_0, EE_OFF),	PIN(BOOT_17, EE_OFF),   2,  0,  2,  0,  6,  0,  7,  0,  8,  0),
+-	BANK("CLK",  PIN(GPIOCLK_0, EE_OFF),	PIN(GPIOCLK_3, EE_OFF), 3, 28,  3, 28,  9, 28, 10, 28, 11, 28),
++	/*   name    first                      last                    irq       pullen  pull    dir     out     in  */
++	BANK("X",    PIN(GPIOX_0, EE_OFF),	PIN(GPIOX_22, EE_OFF),  106, 128, 4,  0,  4,  0,  12, 0,  13, 0,  14, 0),
++	BANK("Y",    PIN(GPIOY_0, EE_OFF),	PIN(GPIOY_16, EE_OFF),   89, 105, 1,  0,  1,  0,  3,  0,  4,  0,  5,  0),
++	BANK("DV",   PIN(GPIODV_0, EE_OFF),	PIN(GPIODV_29, EE_OFF),  59,  88, 0,  0,  0,  0,  0,  0,  1,  0,  2,  0),
++	BANK("H",    PIN(GPIOH_0, EE_OFF),	PIN(GPIOH_3, EE_OFF),    30,  33, 1, 20,  1, 20,  3, 20,  4, 20,  5, 20),
++	BANK("Z",    PIN(GPIOZ_0, EE_OFF),	PIN(GPIOZ_15, EE_OFF),   14,  29, 3,  0,  3,  0,  9,  0,  10, 0, 11,  0),
++	BANK("CARD", PIN(CARD_0, EE_OFF),	PIN(CARD_6, EE_OFF),     52,  58, 2, 20,  2, 20,  6, 20,  7, 20,  8, 20),
++	BANK("BOOT", PIN(BOOT_0, EE_OFF),	PIN(BOOT_17, EE_OFF),    34,  51, 2,  0,  2,  0,  6,  0,  7,  0,  8,  0),
++	BANK("CLK",  PIN(GPIOCLK_0, EE_OFF),	PIN(GPIOCLK_3, EE_OFF), 129, 132, 3, 28,  3, 28,  9, 28, 10, 28, 11, 28),
+ };
+ 
+ static struct meson_bank meson_gxbb_aobus_banks[] = {
+-	/*   name    first              last               pullen  pull    dir     out     in  */
+-	BANK("AO",   PIN(GPIOAO_0, 0),  PIN(GPIOAO_13, 0), 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
++	/*   name    first              last               irq    pullen  pull    dir     out     in  */
++	BANK("AO",   PIN(GPIOAO_0, 0),  PIN(GPIOAO_13, 0), 0, 13, 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
+ };
+ 
+ struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
+ 	.name		= "periphs-banks",
++	.irq_compat	= "amlogic,meson-gxbb-gpio-intc",
+ 	.pin_base	= 14,
+ 	.pins		= meson_gxbb_periphs_pins,
+ 	.groups		= meson_gxbb_periphs_groups,
+@@ -746,6 +747,7 @@ struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
+ 
+ struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
+ 	.name		= "aobus-banks",
++	.irq_compat	= "amlogic,meson-gxbb-gpio-intc",
+ 	.pin_base	= 0,
+ 	.pins		= meson_gxbb_aobus_pins,
+ 	.groups		= meson_gxbb_aobus_groups,
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
+index 98b5080650c1..b90d69e366df 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.h
++++ b/drivers/pinctrl/meson/pinctrl-meson.h
+@@ -81,6 +81,7 @@ enum meson_reg_type {
+  * @name:	bank name
+  * @first:	first pin of the bank
+  * @last:	last pin of the bank
++ * @irq:	hwirq base number of the bank
+  * @regs:	array of register descriptors
+  *
+  * A bank represents a set of pins controlled by a contiguous set of
+@@ -92,11 +93,14 @@ struct meson_bank {
+ 	const char *name;
+ 	unsigned int first;
+ 	unsigned int last;
++	int irq_first;
++	int irq_last;
+ 	struct meson_reg_desc regs[NUM_REG];
+ };
+ 
+ struct meson_pinctrl_data {
+ 	const char *name;
++	const char *irq_compat;
+ 	const struct pinctrl_pin_desc *pins;
+ 	struct meson_pmx_group *groups;
+ 	struct meson_pmx_func *funcs;
+@@ -147,12 +151,14 @@ struct meson_pinctrl {
+ 		.num_groups = ARRAY_SIZE(fn ## _groups),		\
+ 	}
+ 
+-#define BANK(n, f, l, per, peb, pr, pb, dr, db, or, ob, ir, ib)		\
++#define BANK(n, f, l, fi, li, per, peb, pr, pb, dr, db, or, ob, ir, ib)	\
+ 	{								\
+-		.name	= n,						\
+-		.first	= f,						\
+-		.last	= l,						\
+-		.regs	= {						\
++		.name		= n,					\
++		.first		= f,					\
++		.last		= l,					\
++		.irq_first	= fi,					\
++		.irq_last	= li,					\
++		.regs = {						\
+ 			[REG_PULLEN]	= { per, peb },			\
+ 			[REG_PULL]	= { pr, pb },			\
+ 			[REG_DIR]	= { dr, db },			\
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
+index 07f1cb21c1b8..eddab1091408 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8.c
+@@ -916,23 +916,24 @@ static struct meson_pmx_func meson8_aobus_functions[] = {
+ };
+ 
+ static struct meson_bank meson8_cbus_banks[] = {
+-	/*   name    first             last                 pullen  pull    dir     out     in  */
+-	BANK("X",    PIN(GPIOX_0, 0),  PIN(GPIOX_21, 0),    4,  0,  4,  0,  0,  0,  1,  0,  2,  0),
+-	BANK("Y",    PIN(GPIOY_0, 0),  PIN(GPIOY_16, 0),    3,  0,  3,  0,  3,  0,  4,  0,  5,  0),
+-	BANK("DV",   PIN(GPIODV_0, 0), PIN(GPIODV_29, 0),   0,  0,  0,  0,  7,  0,  8,  0,  9,  0),
+-	BANK("H",    PIN(GPIOH_0, 0),  PIN(GPIOH_9, 0),     1, 16,  1, 16,  9, 19, 10, 19, 11, 19),
+-	BANK("Z",    PIN(GPIOZ_0, 0),  PIN(GPIOZ_14, 0),    1,  0,  1,  0,  3, 17,  4, 17,  5, 17),
+-	BANK("CARD", PIN(CARD_0, 0),   PIN(CARD_6, 0),      2, 20,  2, 20,  0, 22,  1, 22,  2, 22),
+-	BANK("BOOT", PIN(BOOT_0, 0),   PIN(BOOT_18, 0),     2,  0,  2,  0,  9,  0, 10,  0, 11,  0),
++	/*   name    first             last                 irq       pullen  pull    dir     out     in  */
++	BANK("X",    PIN(GPIOX_0, 0),  PIN(GPIOX_21, 0),    112, 133, 4,  0,  4,  0,  0,  0,  1,  0,  2,  0),
++	BANK("Y",    PIN(GPIOY_0, 0),  PIN(GPIOY_16, 0),    95,  111, 3,  0,  3,  0,  3,  0,  4,  0,  5,  0),
++	BANK("DV",   PIN(GPIODV_0, 0), PIN(GPIODV_29, 0),   65,   94, 0,  0,  0,  0,  7,  0,  8,  0,  9,  0),
++	BANK("H",    PIN(GPIOH_0, 0),  PIN(GPIOH_9, 0),     29,   38, 1, 16,  1, 16,  9, 19, 10, 19, 11, 19),
++	BANK("Z",    PIN(GPIOZ_0, 0),  PIN(GPIOZ_14, 0),    14,   28, 1,  0,  1,  0,  3, 17,  4, 17,  5, 17),
++	BANK("CARD", PIN(CARD_0, 0),   PIN(CARD_6, 0),      58,   64, 2, 20,  2, 20,  0, 22,  1, 22,  2, 22),
++	BANK("BOOT", PIN(BOOT_0, 0),   PIN(BOOT_18, 0),     39,   57, 2,  0,  2,  0,  9,  0, 10,  0, 11,  0),
+ };
+ 
+ static struct meson_bank meson8_aobus_banks[] = {
+-	/*   name    first                  last                      pullen  pull    dir     out     in  */
+-	BANK("AO",   PIN(GPIOAO_0, AO_OFF), PIN(GPIO_TEST_N, AO_OFF), 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
++	/*   name    first                  last                      irq    pullen  pull    dir     out     in  */
++	BANK("AO",   PIN(GPIOAO_0, AO_OFF), PIN(GPIO_TEST_N, AO_OFF), 0, 13, 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
+ };
+ 
+ struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
+ 	.name		= "cbus-banks",
++	.irq_compat	= "amlogic,meson8-gpio-intc",
+ 	.pin_base	= 0,
+ 	.pins		= meson8_cbus_pins,
+ 	.groups		= meson8_cbus_groups,
+@@ -946,6 +947,7 @@ struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
+ 
+ struct meson_pinctrl_data meson8_aobus_pinctrl_data = {
+ 	.name		= "ao-bank",
++	.irq_compat	= "amlogic,meson8-gpio-intc",
+ 	.pin_base	= 120,
+ 	.pins		= meson8_aobus_pins,
+ 	.groups		= meson8_aobus_groups,
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
+index 76f077f18193..d7505f492639 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8b.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
+@@ -124,6 +124,12 @@ static const struct pinctrl_pin_desc meson8b_aobus_pins[] = {
+ 	MESON_PIN(GPIOAO_11, AO_OFF),
+ 	MESON_PIN(GPIOAO_12, AO_OFF),
+ 	MESON_PIN(GPIOAO_13, AO_OFF),
 +
 +	/*
-+	 * If the polarity of interrupt is low, the controller will
-+	 * invert the signal for gic
++	 * The following 2 pins are not mentionned in the public datasheet
++	 * According to this datasheet, they can't be used with the gpio
++	 * interrupt controller
 +	 */
-+	if (sense & (IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_LEVEL_LOW))
-+		type |= IRQ_TYPE_LEVEL_HIGH;
-+	else if (sense & (IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING))
-+		type |= IRQ_TYPE_EDGE_RISING;
+ 	MESON_PIN(GPIO_BSD_EN, AO_OFF),
+ 	MESON_PIN(GPIO_TEST_N, AO_OFF),
+ };
+@@ -881,23 +887,30 @@ static struct meson_pmx_func meson8b_aobus_functions[] = {
+ };
+ 
+ static struct meson_bank meson8b_cbus_banks[] = {
+-	/*   name    first                      last                   pullen  pull    dir     out     in  */
+-	BANK("X",    PIN(GPIOX_0, 0),		PIN(GPIOX_21, 0),      4,  0,  4,  0,  0,  0,  1,  0,  2,  0),
+-	BANK("Y",    PIN(GPIOY_0, 0),		PIN(GPIOY_14, 0),      3,  0,  3,  0,  3,  0,  4,  0,  5,  0),
+-	BANK("DV",   PIN(GPIODV_9, 0),		PIN(GPIODV_29, 0),     0,  0,  0,  0,  7,  0,  8,  0,  9,  0),
+-	BANK("H",    PIN(GPIOH_0, 0),		PIN(GPIOH_9, 0),       1, 16,  1, 16,  9, 19, 10, 19, 11, 19),
+-	BANK("CARD", PIN(CARD_0, 0),		PIN(CARD_6, 0),        2, 20,  2, 20,  0, 22,  1, 22,  2, 22),
+-	BANK("BOOT", PIN(BOOT_0, 0),		PIN(BOOT_18, 0),       2,  0,  2,  0,  9,  0, 10,  0, 11,  0),
+-	BANK("DIF",  PIN(DIF_0_P, 0),		PIN(DIF_4_N, 0),       5,  8,  5,  8, 12, 12, 13, 12, 14, 12),
++	/*   name    first                      last                irq      pullen  pull    dir     out     in  */
++	BANK("X",    PIN(GPIOX_0, 0),		PIN(GPIOX_21, 0),   97, 118, 4,  0,  4,  0,  0,  0,  1,  0,  2,  0),
++	BANK("Y",    PIN(GPIOY_0, 0),		PIN(GPIOY_14, 0),   80,  96, 3,  0,  3,  0,  3,  0,  4,  0,  5,  0),
++	BANK("DV",   PIN(GPIODV_9, 0),		PIN(GPIODV_29, 0),  59,  79, 0,  0,  0,  0,  7,  0,  8,  0,  9,  0),
++	BANK("H",    PIN(GPIOH_0, 0),		PIN(GPIOH_9, 0),    14,  23, 1, 16,  1, 16,  9, 19, 10, 19, 11, 19),
++	BANK("CARD", PIN(CARD_0, 0),		PIN(CARD_6, 0),     43,  49, 2, 20,  2, 20,  0, 22,  1, 22,  2, 22),
++	BANK("BOOT", PIN(BOOT_0, 0),		PIN(BOOT_18, 0),    24,  42, 2,  0,  2,  0,  9,  0, 10,  0, 11,  0),
 +
-+	return type;
-+}
-+
-+static int meson_gpio_irq_set_type(struct irq_data *data, unsigned int type)
-+{
-+	struct meson_gpio_irq_chip_data *cd = irq_data_get_irq_chip_data(data);
-+	int ret;
-+
-+	pr_debug("set type of hwirq %lu to %u\n", data->hwirq, type);
-+
-+	ret = meson_gpio_irq_type_setup(type, cd->base, cd->index);
-+	if (ret)
-+		return ret;
-+
-+	return irq_chip_set_type_parent(data,
-+					meson_gpio_irq_type_output(type));
-+}
-+
-+static struct irq_chip meson_gpio_irq_chip = {
-+	.name			= "meson-gpio-irqchip",
-+	.irq_mask		= irq_chip_mask_parent,
-+	.irq_unmask		= irq_chip_unmask_parent,
-+	.irq_eoi		= irq_chip_eoi_parent,
-+	.irq_set_type		= meson_gpio_irq_set_type,
-+	.irq_retrigger		= irq_chip_retrigger_hierarchy,
-+#ifdef CONFIG_SMP
-+	.irq_set_affinity	= irq_chip_set_affinity_parent,
-+#endif
-+};
-+
-+static int meson_gpio_irq_domain_translate(struct irq_domain *domain,
-+					   struct irq_fwspec *fwspec,
-+					   unsigned long *hwirq,
-+					   unsigned int *type)
-+{
-+	if (is_of_node(fwspec->fwnode)) {
-+		if (fwspec->param_count != 2)
-+			return -EINVAL;
-+
-+		*hwirq	= fwspec->param[0];
-+		*type	= fwspec->param[1];
-+
-+		return 0;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int meson_gpio_irq_allocate_gic_irq(struct irq_domain *domain,
-+					   unsigned int virq,
-+					   irq_hw_number_t source,
-+					   unsigned int type)
-+{
-+	struct irq_fwspec fwspec;
-+
-+	if (!irq_domain_get_of_node(domain->parent))
-+		return -EINVAL;
-+
-+	fwspec.fwnode = domain->parent->fwnode;
-+	fwspec.param_count = 3;
-+	fwspec.param[0] = 0;	/* SPI */
-+	fwspec.param[1] = source;
-+	fwspec.param[2] = meson_gpio_irq_type_output(type);
-+
-+	return irq_domain_alloc_irqs_parent(domain, virq, 1, &fwspec);
-+}
-+
-+static int meson_gpio_irq_domain_alloc(struct irq_domain *domain,
-+				       unsigned int virq,
-+				       unsigned int nr_irqs,
-+				       void *data)
-+{
-+	struct irq_fwspec *fwspec = data;
-+	struct meson_gpio_irq_domain *domain_data = domain->host_data;
-+	struct meson_gpio_irq_chip_data *cd;
-+	unsigned long hwirq, source;
-+	unsigned int type;
-+	int i, index, ret;
-+
-+	ret = meson_gpio_irq_domain_translate(domain, fwspec, &hwirq, &type);
-+	if (ret)
-+		return ret;
-+
-+	pr_debug("irq %d, nr_irqs %d, hwirqs %lu\n", virq, nr_irqs, hwirq);
-+
-+	for (i = 0; i < nr_irqs; i++) {
-+		index = mesion_gpio_irq_map_source(domain_data, hwirq + i,
-+						   &source);
-+		if (index < 0)
-+			return index;
-+
-+		ret = meson_gpio_irq_type_setup(type, domain_data->base,
-+						index);
-+		if (ret)
-+			return ret;
-+
-+		cd = kzalloc(sizeof(*cd), GFP_KERNEL);
-+		if (!cd)
-+			return -ENOMEM;
-+
-+		cd->base = domain_data->base;
-+		cd->index = index;
-+
-+		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
-+					      &meson_gpio_irq_chip, cd);
-+
-+		ret = meson_gpio_irq_allocate_gic_irq(domain, virq + i,
-+						      source, type);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void meson_gpio_irq_domain_free(struct irq_domain *domain,
-+				       unsigned int virq,
-+				       unsigned int nr_irqs)
-+{
-+	struct meson_gpio_irq_domain *domain_data = domain->host_data;
-+	struct meson_gpio_irq_chip_data *cd;
-+	struct irq_data *irq_data;
-+	int i;
-+
-+	for (i = 0; i < nr_irqs; i++) {
-+		irq_data = irq_domain_get_irq_data(domain, virq + i);
-+		cd = irq_data_get_irq_chip_data(irq_data);
-+
-+		domain_data->map[cd->index] = IRQ_FREE;
-+		kfree(cd);
-+	}
-+
-+	irq_domain_free_irqs_parent(domain, virq, nr_irqs);
-+
-+}
-+
-+static const struct irq_domain_ops meson_gpio_irq_domain_ops = {
-+	.alloc		= meson_gpio_irq_domain_alloc,
-+	.free		= meson_gpio_irq_domain_free,
-+	.translate	= meson_gpio_irq_domain_translate,
-+};
-+
-+static int __init
-+meson_gpio_irq_init_domain(struct device_node *node,
-+			   struct meson_gpio_irq_domain *domain_data,
-+			   const struct meson_gpio_irq_params *params)
-+{
-+	int i;
-+	int nsource = params->nsource;
-+	int *map;
-+
-+	map = kcalloc(nsource, sizeof(*map), GFP_KERNEL);
-+	if (!map)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < nsource; i++)
-+		map[i] = IRQ_FREE;
-+
-+	domain_data->map = map;
-+	domain_data->params = params;
-+
-+	return 0;
-+}
-+
-+static int __init meson_gpio_irq_of_init(struct device_node *node,
-+					 struct device_node *parent)
-+{
-+	struct irq_domain *domain, *parent_domain;
-+	const struct of_device_id *match;
-+	const struct meson_gpio_irq_params *params;
-+	struct meson_gpio_irq_domain *domain_data;
-+	int ret;
-+
-+	match = of_match_node(meson_irq_gpio_matches, node);
-+	if (!match)
-+		return -ENODEV;
-+	params = match->data;
-+
-+	if (!parent) {
-+		pr_err("missing parent interrupt node\n");
-+		return -ENODEV;
-+	}
-+
-+	parent_domain = irq_find_host(parent);
-+	if (!parent_domain) {
-+		pr_err("unable to obtain parent domain\n");
-+		return -ENXIO;
-+	}
-+
-+	domain_data = kzalloc(sizeof(*domain_data), GFP_KERNEL);
-+	if (!domain_data)
-+		return -ENOMEM;
-+
-+	domain_data->base = of_iomap(node, 0);
-+	if (!domain_data->base) {
-+		ret = -ENOMEM;
-+		goto out_free_dev;
-+	}
-+
-+	ret = meson_gpio_irq_init_domain(node, domain_data, params);
-+	if (ret < 0)
-+		goto out_free_dev_content;
-+
-+	domain = irq_domain_add_hierarchy(parent_domain, 0, params->nhwirq,
-+					  node, &meson_gpio_irq_domain_ops,
-+					  domain_data);
-+
-+	if (!domain) {
-+		pr_err("failed to allocated domain\n");
-+		ret = -ENOMEM;
-+		goto out_free_dev_content;
-+	}
-+
-+	pr_info("%d to %d gpio interrupt mux initialized\n",
-+		params->nhwirq, params->nsource);
-+
-+	return 0;
-+
-+out_free_dev_content:
-+	kfree(domain_data->map);
-+	iounmap(domain_data->base);
-+
-+out_free_dev:
-+	kfree(domain_data);
-+
-+	return ret;
-+}
-+
-+IRQCHIP_DECLARE(meson8_gpio_intc, "amlogic,meson8-gpio-intc",
-+		meson_gpio_irq_of_init);
-+IRQCHIP_DECLARE(meson8b_gpio_intc, "amlogic,meson8b-gpio-intc",
-+		meson_gpio_irq_of_init);
-+IRQCHIP_DECLARE(gxbb_gpio_intc, "amlogic,meson-gxbb-gpio-intc",
-+		meson_gpio_irq_of_init);
++	/*
++	 * The following bank is not mentionned in the public datasheet
++	 * There is no information whether it can be used with the gpio
++	 * interrupt controller
++	 */
++	BANK("DIF",  PIN(DIF_0_P, 0),		PIN(DIF_4_N, 0),    -1,  -1, 5,  8,  5,  8, 12, 12, 13, 12, 14, 12),
+ };
+ 
+ static struct meson_bank meson8b_aobus_banks[] = {
+-	/*   name    first                  last                      pullen  pull    dir     out     in  */
+-	BANK("AO",   PIN(GPIOAO_0, AO_OFF), PIN(GPIO_TEST_N, AO_OFF), 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
++	/*   name    first                  last                      irq    pullen  pull    dir     out     in  */
++	BANK("AO",   PIN(GPIOAO_0, AO_OFF), PIN(GPIO_TEST_N, AO_OFF), 0, 13, 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
+ };
+ 
+ struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
+ 	.name		= "cbus-banks",
++	.irq_compat	= "amlogic,meson8b-gpio-intc",
+ 	.pin_base	= 0,
+ 	.pins		= meson8b_cbus_pins,
+ 	.groups		= meson8b_cbus_groups,
+@@ -911,6 +924,7 @@ struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
+ 
+ struct meson_pinctrl_data meson8b_aobus_pinctrl_data = {
+ 	.name		= "aobus-banks",
++	.irq_compat	= "amlogic,meson8b-gpio-intc",
+ 	.pin_base	= 130,
+ 	.pins		= meson8b_aobus_pins,
+ 	.groups		= meson8b_aobus_groups,
 -- 
 2.7.4
