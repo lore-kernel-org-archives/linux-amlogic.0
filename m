@@ -1,55 +1,90 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 19 Oct 2016 14:51:10 +0200
-Subject: [PATCH v5 3/5] scpi: Add support for Legacy match table for Amlogic
- GXBB SoC
+Date: Wed, 19 Oct 2016 14:51:12 +0200
+Subject: [PATCH v5 5/5] ARM64: dts: meson-gxbb: Add SCPI with cpufreq &
+ sensors Nodes
 In-Reply-To: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
 References: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1476881472-13055-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1476881472-13055-6-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add new DT match table to setup the is_legacy boolean value across
-the scpi functions.
-Add the Amlogic GXBB SoC compatible for platform and as legacy match entry.
-
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/firmware/arm_scpi.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 48 +++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
-diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
-index 9022336..75b60c4 100644
---- a/drivers/firmware/arm_scpi.c
-+++ b/drivers/firmware/arm_scpi.c
-@@ -871,6 +871,11 @@ static int scpi_alloc_xfer_list(struct device *dev, struct scpi_chan *ch)
- 	return 0;
- }
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 28e218d..ff1975e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -74,6 +74,28 @@
+ 		};
+ 	};
  
-+static const struct of_device_id legacy_scpi_of_match[] = {
-+	{.compatible = "amlogic,meson-gxbb-scpi"},
-+	{},
-+};
++	scpi {
++		compatible = "amlogic,meson-gxbb-scpi";
++		mboxes = <&mailbox 1 &mailbox 2>;
++		shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
 +
- static int scpi_probe(struct platform_device *pdev)
- {
- 	int count, idx, ret;
-@@ -883,6 +888,9 @@ static int scpi_probe(struct platform_device *pdev)
- 	if (!scpi_info)
- 		return -ENOMEM;
- 
-+	if (of_match_device(legacy_scpi_of_match, &pdev->dev))
-+		scpi_info->is_legacy = true;
++		clocks {
++			compatible = "arm,scpi-clocks";
 +
- 	count = of_count_phandle_with_args(np, "mboxes", "#mbox-cells");
- 	if (count < 0) {
- 		dev_err(dev, "no mboxes property in '%s'\n", np->full_name);
-@@ -984,6 +992,7 @@ static int scpi_probe(struct platform_device *pdev)
++			scpi_dvfs: scpi_clocks at 0 {
++				compatible = "arm,scpi-dvfs-clocks";
++				#clock-cells = <1>;
++				clock-indices = <0>;
++				clock-output-names = "vcpu";
++			};
++		};
++
++		scpi_sensors: sensors {
++			compatible = "arm,scpi-sensors";
++			#thermal-sensor-cells = <1>;
++		};
++	};
++
+ 	soc {
+ 		usb0_phy: phy at c0000000 {
+ 			compatible = "amlogic,meson-gxbb-usb2-phy";
+@@ -101,6 +123,16 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0 0x0 0xc8000000 0x14000>;
++
++			cpu_scp_lpri: scp-shmem at 0 {
++				compatible = "amlogic,meson-gxbb-scp-shmem";
++				reg = <0x13000 0x400>;
++			};
++
++			cpu_scp_hpri: scp-shmem at 200 {
++				compatible = "amlogic,meson-gxbb-scp-shmem";
++				reg = <0x13400 0x400>;
++			};
+ 		};
  
- static const struct of_device_id scpi_of_match[] = {
- 	{.compatible = "arm,scpi"},
-+	{.compatible = "amlogic,meson-gxbb-scpi"},
- 	{},
+ 		usb0: usb at c9000000 {
+@@ -143,6 +175,22 @@
+ 	};
  };
  
++&cpu0 {
++	clocks = <&scpi_dvfs 0>;
++};
++
++&cpu1 {
++	clocks = <&scpi_dvfs 0>;
++};
++
++&cpu2 {
++	clocks = <&scpi_dvfs 0>;
++};
++
++&cpu3 {
++	clocks = <&scpi_dvfs 0>;
++};
++
+ &cbus {
+ 	reset: reset-controller at 4404 {
+ 		compatible = "amlogic,meson-gxbb-reset";
 -- 
 1.9.1
