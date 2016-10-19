@@ -1,161 +1,87 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 19 Oct 2016 17:37:44 +0200
-Subject: [RESEND PATCH v2 4/9] pinctrl: meson: allow gpio to request irq
-In-Reply-To: <1476890480-8884-5-git-send-email-jbrunet@baylibre.com>
-References: <1476890480-8884-5-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1476891464-11564-1-git-send-email-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 19 Oct 2016 08:56:04 -0700
+Subject: [PATCH v5 0/5] Add support for legacy SCPI protocol
+In-Reply-To: <ff62da76-a7b9-6891-c198-f9049dfa7bb5@arm.com> (Sudeep Holla's
+ message of "Wed, 19 Oct 2016 15:44:23 +0100")
+References: <1476881472-13055-1-git-send-email-narmstrong@baylibre.com>
+ <ff62da76-a7b9-6891-c198-f9049dfa7bb5@arm.com>
+Message-ID: <7h7f949vu3.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the ability for gpio to request irq from the gpio interrupt controller
-if present. We have to specificaly that the parent interrupt controller is
-the gpio interrupt controller because gpio on meson SoCs can't generate
-interrupt directly on the GIC.
+Sudeep Holla <sudeep.holla@arm.com> writes:
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
+> On 19/10/16 13:51, Neil Armstrong wrote:
+>> This patchset aims to support the legacy SCPI firmware implementation that was
+>> delivered as early technology preview for the JUNO platform.
+>>
+>> Finally a stable, maintained and public implementation for the SCPI protocol
+>> has been upstreamed part of the JUNO support and it is the recommended way
+>> of implementing SCP communication on ARMv8 platforms.
+>>
+>> The Amlogic GXBB platform is using this legacy protocol, as the RK3368 & RK3399
+>> platforms. This patchset will only add support for Amlogic GXBB SoC.
+>>
+>> This patchset add support for the legacy protocol in the arm_scpi.c file,
+>> avoiding code duplication.
+>>
+>> This patchset is rebased against scpi-updates/for-next from [2] and with
+>> already merged patches [3], [4] and [5] and ommited in this patchset.
+>>
+>> Last RFC discution thread can be found at : https://lkml.org/lkml/2016/8/9/210
+>>
+>> Changes since v4 at : http://lkml.kernel.org/r/1475652814-30619-1-git-send-email-narmstrong at baylibre.com
+>>  - Removed legacy locking scheme
+>>  - Removed cmd copy back after token insert
+>>  - Various cleanups
+>>
+>> Changes since v3 at : http://lkml.kernel.org/r/1473262477-18045-1-git-send-email-narmstrong at baylibre.com
+>>  - Changed back author to Sudeep Holla for first patch
+>>  - Merged legacy functions to scpi_send_message, tx_prepare and handle_remote_message
+>>  - Added legacy locking scheme
+>>  - Merged back legacy_scpi_sensor_get_value into scpi_sensor_get_value
+>>  - Rebased on linux-next-20161004 with patchset [1]
+>>
+>> Changes since v2 at : http://lkml.kernel.org/r/1471952816-30877-1-git-send-email-narmstrong at baylibre.com
+>>  - Added command indirection table and use it in each commands
+>>  - Added bitmap for high priority commands
+>>  - Cleaned up legacy tx_prepare/handle_message to align to standard functions
+>>  - Dropped legacy_scpi_ops
+>>
+>> Changes since v1 at : http://lkml.kernel.org/r/1471515066-3626-1-git-send-email-narmstrong at baylibre.com
+>>  - Dropped vendor_send_message and rockchip vendor mechanism patches
+>>  - Merged alternate functions into main functions using is_legacy boolean
+>>  - Added DT match table to set is_legacy to true
+>>  - Kept alternate scpi_ops structure for legacy
+>>
+>> [1] http://lkml.kernel.org/r/1475595430-30075-1-git-send-email-narmstrong at baylibre.com
+>> [2] git.kernel.org/sudeep.holla/linux
+>> [3] scpi: Add cmd indirection table to prepare for legacy commands
+>> [4] scpi: grow MAX_DVFS_OPPS to 16 entries
+>> [5] dt-bindings: Add support for Amlogic GXBB SCPI Interface
+>>
+>> Neil Armstrong (5):
+>>   scpi: Add alternative legacy structures, functions and macros
+>>   scpi: Do not fail if get_capabilities is not implemented
+>>   scpi: Add support for Legacy match table for Amlogic GXBB SoC
+>>   ARM64: dts: meson-gxbb: Add SRAM node
+>>   ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes
+>>
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  57 ++++++++
+>>  drivers/firmware/arm_scpi.c                 | 206 +++++++++++++++++++++++++---
+>>  2 files changed, 245 insertions(+), 18 deletions(-)
+>>
+>
+> Nice to see this diff stat from a whole new file legacy_scpi.c and 1000+
+> delta. Thanks for working on this. I have applied the first 3 patches in
+> this series with some subject/commit message changes to [1].
+>
+> I assume the DT changes needs to go via the corresponding platform
+> maintainer.
 
-I messed up in v2 and actually sent the v1 again. Here is the actual v2
-with the fix. Again, sorry for the inconvenience.
+Yes, I'll queue the DT changes through the amlogic tree (which then goes
+through the arm-soc tree.)
 
- drivers/pinctrl/Kconfig               |  2 +
- drivers/pinctrl/meson/pinctrl-meson.c | 69 +++++++++++++++++++++++++++++++++++
- drivers/pinctrl/meson/pinctrl-meson.h |  1 +
- 3 files changed, 72 insertions(+)
+Thanks,
 
-diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index 0e75d94972ba..d5bfbfcddab0 100644
---- a/drivers/pinctrl/Kconfig
-+++ b/drivers/pinctrl/Kconfig
-@@ -126,7 +126,9 @@ config PINCTRL_MESON
- 	select PINCONF
- 	select GENERIC_PINCONF
- 	select GPIOLIB
-+	select IRQ_DOMAIN
- 	select OF_GPIO
-+	select OF_IRQ
- 	select REGMAP_MMIO
- 
- config PINCTRL_OXNAS
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 57122eda155a..e3f5241f337f 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -50,6 +50,7 @@
- #include <linux/io.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
-+#include <linux/of_irq.h>
- #include <linux/pinctrl/pinconf-generic.h>
- #include <linux/pinctrl/pinconf.h>
- #include <linux/pinctrl/pinctrl.h>
-@@ -481,6 +482,58 @@ static void meson_gpio_set(struct gpio_chip *chip, unsigned gpio, int value)
- 			   value ? BIT(bit) : 0);
- }
- 
-+static int meson_gpio_to_hwirq(struct meson_bank *bank, unsigned int offset)
-+{
-+	unsigned int hwirq;
-+
-+	if (bank->irq_first < 0)
-+		/* this bank cannot generate irqs */
-+		return -1;
-+
-+	hwirq = offset - bank->first + bank->irq_first;
-+
-+	if (hwirq > bank->irq_last)
-+		/* this pin cannot generate irqs */
-+		return -1;
-+
-+	return hwirq;
-+}
-+
-+static int meson_gpio_to_irq(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct meson_pinctrl *pc = gpiochip_get_data(chip);
-+	struct meson_bank *bank;
-+	struct irq_fwspec fwspec;
-+	unsigned int hwirq;
-+	int ret;
-+
-+	ret = meson_get_bank(pc, offset, &bank);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The interrupt controller might be missing, in such case we can't
-+	 * provide an interrupt for a pin
-+	 */
-+	if (is_fwnode_irqchip(pc->fwnode)) {
-+		dev_info(pc->dev, "interrupt controller not found\n");
-+		return 0;
-+	}
-+
-+	hwirq = meson_gpio_to_hwirq(bank, offset);
-+	if (hwirq < 0) {
-+		dev_dbg(pc->dev, "no interrupt for pin %u\n", offset);
-+		return 0;
-+	}
-+
-+	fwspec.fwnode = pc->fwnode;
-+	fwspec.param_count = 2;
-+	fwspec.param[0] = hwirq;
-+	fwspec.param[1] = IRQ_TYPE_NONE;
-+
-+	return irq_create_fwspec_mapping(&fwspec);
-+}
-+
- static int meson_gpio_get(struct gpio_chip *chip, unsigned gpio)
- {
- 	struct meson_pinctrl *pc = gpiochip_get_data(chip);
-@@ -539,6 +592,7 @@ static int meson_gpiolib_register(struct meson_pinctrl *pc)
- 	pc->chip.direction_output = meson_gpio_direction_output;
- 	pc->chip.get = meson_gpio_get;
- 	pc->chip.set = meson_gpio_set;
-+	pc->chip.to_irq = meson_gpio_to_irq;
- 	pc->chip.base = pc->data->pin_base;
- 	pc->chip.ngpio = pc->data->num_pins;
- 	pc->chip.can_sleep = false;
-@@ -598,6 +652,19 @@ static struct regmap *meson_map_resource(struct meson_pinctrl *pc,
- 	return devm_regmap_init_mmio(pc->dev, base, &meson_regmap_config);
- }
- 
-+static void meson_pinctrl_get_irq_gpio_intc(struct meson_pinctrl *pc,
-+					    struct device_node *node)
-+{
-+	struct device_node *np = of_irq_find_parent(node);
-+
-+	if (!np || !of_device_is_compatible(np, pc->data->irq_compat)) {
-+		dev_info(pc->dev, "gpio interrupt disabled\n");
-+		pc->fwnode = NULL;
-+	} else {
-+		pc->fwnode = of_node_to_fwnode(np);
-+	}
-+}
-+
- static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
- 				  struct device_node *node)
- {
-@@ -643,6 +710,8 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
- 		return PTR_ERR(pc->reg_gpio);
- 	}
- 
-+	meson_pinctrl_get_irq_gpio_intc(pc, gpio_np);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-index b90d69e366df..2e6c83adbd1f 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.h
-+++ b/drivers/pinctrl/meson/pinctrl-meson.h
-@@ -123,6 +123,7 @@ struct meson_pinctrl {
- 	struct regmap *reg_gpio;
- 	struct gpio_chip chip;
- 	struct device_node *of_node;
-+	struct fwnode_handle *fwnode;
- };
- 
- #define PIN(x, b)	(b + x)
--- 
-2.7.4
+Kevin
