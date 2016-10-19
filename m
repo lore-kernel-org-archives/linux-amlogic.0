@@ -1,56 +1,33 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 19 Oct 2016 11:18:25 -0700
-Subject: [PATCH v6 2/2] Documentation: DT: MMC: meson-gx: new bindings doc
-In-Reply-To: <20161019181825.2186-1-khilman@baylibre.com>
-References: <20161019181825.2186-1-khilman@baylibre.com>
-Message-ID: <20161019181825.2186-2-khilman@baylibre.com>
+From: javier@osg.samsung.com (Javier Martinez Canillas)
+Date: Wed, 19 Oct 2016 16:49:42 -0300
+Subject: [PATCH] watchdog: meson: Remove unneeded platform MODULE_ALIAS
+Message-ID: <1476906582-14241-1-git-send-email-javier@osg.samsung.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- .../devicetree/bindings/mmc/amlogic,meson-gx.txt   | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+The Amlogic Meson is a DT-only platform, which means the devices are
+registered via OF and not using the legacy platform devices support.
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-new file mode 100644
-index 000000000000..a2fa9a1c26ae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-@@ -0,0 +1,33 @@
-+Amlogic SD / eMMC controller for S905/GXBB family SoCs
-+
-+The MMC 5.1 compliant host controller on Amlogic provides the
-+interface for SD, eMMC and SDIO devices.
-+
-+This file documents the properties in addition to those available in
-+the MMC core bindings, documented by mmc.txt.
-+
-+Required properties:
-+- compatible : contains one of:
-+  - "amlogic,meson-gx-mmc"
-+  - "amlogic,meson-gxbb-mmc"
-+  - "amlogic,meson-gxl-mmc"
-+  - "amlogic,meson-gxm-mmc"
-+- clocks     : A list of phandle + clock-specifier pairs for the clocks listed in clock-names.
-+- clock-names: Should contain the following:
-+	"core" - Main peripheral bus clock
-+	"clkin0" - Parent clock of internal mux
-+	"clkin1" - Other parent clock of internal mux
-+  The driver has an interal mux clock which switches between clkin0 and clkin1 depending on the
-+  clock rate requested by the MMC core.
-+
-+Example:
-+
-+	sd_emmc_a: mmc at 70000 {
-+        	compatible = "amlogic,meson-gxbb-mmc";
-+		reg = <0x0 0x70000 0x0 0x2000>;
-+                interrupts = < GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-+		clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
-+		clock-names = "core", "clkin0", "clkin1";
-+		pinctrl-0 = <&emmc_pins>;
-+	};
-+
+So there's no need to have a MODULE_ALIAS("platform:meson-gxbb-wdt")
+since the reported uevent MODALIAS to user-space will be the OF one.
+
+Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
+---
+
+ drivers/watchdog/meson_gxbb_wdt.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
+index 44d180a2c5e5..45d47664a00a 100644
+--- a/drivers/watchdog/meson_gxbb_wdt.c
++++ b/drivers/watchdog/meson_gxbb_wdt.c
+@@ -264,7 +264,6 @@ static struct platform_driver meson_gxbb_wdt_driver = {
+ 
+ module_platform_driver(meson_gxbb_wdt_driver);
+ 
+-MODULE_ALIAS("platform:meson-gxbb-wdt");
+ MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
+ MODULE_DESCRIPTION("Amlogic Meson GXBB Watchdog timer driver");
+ MODULE_LICENSE("Dual BSD/GPL");
 -- 
-2.9.3
+2.7.4
