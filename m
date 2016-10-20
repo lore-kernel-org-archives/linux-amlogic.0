@@ -1,32 +1,58 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 20 Oct 2016 10:40:53 -0700
-Subject: [PATCH 1/4] ARM64: dts: meson-gxbb: add MMC support
-In-Reply-To: <1476963777-1804-2-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Thu, 20 Oct 2016 13:42:54 +0200")
-References: <1476963777-1804-1-git-send-email-narmstrong@baylibre.com>
- <1476963777-1804-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <7h4m467wbe.fsf@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Thu, 20 Oct 2016 21:21:04 +0200
+Subject: [PATCH 4/9] pinctrl: meson: allow gpio to request irq
+In-Reply-To: <1476871709-8359-5-git-send-email-jbrunet@baylibre.com>
+References: <1476871709-8359-1-git-send-email-jbrunet@baylibre.com>
+ <1476871709-8359-5-git-send-email-jbrunet@baylibre.com>
+Message-ID: <CACRpkdaCZPS45t3eTcjJExOu=YT_YkjNkdpg09jQqvLQOJH=Qw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+On Wed, Oct 19, 2016 at 12:08 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-> From: Kevin Hilman <khilman@baylibre.com>
+> Add the ability for gpio to request irq from the gpio interrupt controller
+> if present. We have to specificaly that the parent interrupt controller is
+> the gpio interrupt controller because gpio on meson SoCs can't generate
+> interrupt directly on the GIC.
 >
-> Add binding and basic support for the SD/eMMC controller on Amlogic
-> S905/GXBB devices.
->
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+(...)
+> +       select IRQ_DOMAIN
+>         select OF_GPIO
+> +       select OF_IRQ
+(...)
+> +static int meson_gpio_to_hwirq(struct meson_bank *bank, unsigned int offset)
+> +{
+> +       unsigned int hwirq;
+> +
+> +       if (bank->irq_first < 0)
+> +               /* this bank cannot generate irqs */
+> +               return -1;
+> +
+> +       hwirq = offset - bank->first + bank->irq_first;
+> +
+> +       if (hwirq > bank->irq_last)
+> +               /* this pin cannot generate irqs */
+> +               return -1;
+> +
+> +       return hwirq;
+> +}
 
-nit: you added a couple things from my original patch, and it's
-customary to make a summary note of changes in the changelog, so before
-applying, I added a line here:
+This is reimplementing irqdomain.
 
-[narmstrong: added nodes for GX, enabled SDIO on P20x]
+> +static int meson_gpio_to_irq(struct gpio_chip *chip, unsigned int offset)
+> +{
+(...)
+> +       hwirq = meson_gpio_to_hwirq(bank, offset);
+> +       if (hwirq < 0) {
+> +               dev_dbg(pc->dev, "no interrupt for pin %u\n", offset);
+> +               return 0;
+> +       }
 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Isn't this usecase (also as described in the cover letter) a textbook
+example of when you should be using hierarchical irqdomain?
 
-Applied to v4.10/dt64
+Please check with Marc et al on hierarchical irqdomains.
 
-Kevin
+Yours,
+Linus Walleij
