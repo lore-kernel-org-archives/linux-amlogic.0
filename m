@@ -1,54 +1,44 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 20 Oct 2016 13:42:56 +0200
-Subject: [PATCH 3/4] ARM64: dts: meson-gxbb: Add P20x Wifi SDIO support
-In-Reply-To: <1476963777-1804-1-git-send-email-narmstrong@baylibre.com>
-References: <1476963777-1804-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1476963777-1804-4-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 20 Oct 2016 13:49:54 +0200
+Subject: [PATCH] ARM64: defconfig: Enable MMC related configs
+Message-ID: <1476964194-2194-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add Wifi module support on the Amlogic P20x boards on the SDIO port.
-The Wifi module also needs a 32768Hz clock provided by the PWM E port
-through a pwm-clock node in it's power sequence.
+Enable MMC related defaults configs for MMC, PWM and PWM clock.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/configs/defconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 6861b0a..203be28 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -118,6 +118,13 @@
- 		clock-frequency = <32768>;
- 		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
- 	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
- };
- 
- /* This UART is brought out to the DB9 connector */
-@@ -171,8 +178,15 @@
- 	non-removable;
- 	disable-wp;
- 
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
- 	vmmc-supply = <&vddao_3v3>;
- 	vqmmc-supply = <&vddio_boot>;
-+
-+	brcmf: bcrmf at 1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
- };
- 
- /* SD card */
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index dab2cb0..920f1e8 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -341,6 +341,7 @@ CONFIG_USB_RENESAS_USBHS_UDC=m
+ CONFIG_MMC=y
+ CONFIG_MMC_BLOCK_MINORS=32
+ CONFIG_MMC_ARMMMCI=y
++CONFIG_MMC_MESON_GX=y
+ CONFIG_MMC_SDHCI=y
+ CONFIG_MMC_SDHCI_ACPI=y
+ CONFIG_MMC_SDHCI_PLTFM=y
+@@ -387,6 +388,7 @@ CONFIG_XEN_GRANT_DEV_ALLOC=y
+ CONFIG_COMMON_CLK_SCPI=y
+ CONFIG_COMMON_CLK_CS2000_CP=y
+ CONFIG_COMMON_CLK_S2MPS11=y
++CONFIG_COMMON_CLK_PWM=y
+ CONFIG_CLK_QORIQ=y
+ CONFIG_COMMON_CLK_QCOM=y
+ CONFIG_MSM_GCC_8916=y
+@@ -404,6 +406,7 @@ CONFIG_ARCH_TEGRA_210_SOC=y
+ CONFIG_EXTCON_USB_GPIO=y
+ CONFIG_PWM=y
+ CONFIG_PWM_TEGRA=m
++CONFIG_PWM_MESON=m
+ CONFIG_COMMON_RESET_HI6220=y
+ CONFIG_PHY_RCAR_GEN3_USB2=y
+ CONFIG_PHY_HI6220_USB=y
 -- 
 1.9.1
