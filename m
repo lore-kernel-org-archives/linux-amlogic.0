@@ -1,58 +1,19 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 20 Oct 2016 21:21:04 +0200
-Subject: [PATCH 4/9] pinctrl: meson: allow gpio to request irq
-In-Reply-To: <1476871709-8359-5-git-send-email-jbrunet@baylibre.com>
-References: <1476871709-8359-1-git-send-email-jbrunet@baylibre.com>
- <1476871709-8359-5-git-send-email-jbrunet@baylibre.com>
-Message-ID: <CACRpkdaCZPS45t3eTcjJExOu=YT_YkjNkdpg09jQqvLQOJH=Qw@mail.gmail.com>
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Thu, 20 Oct 2016 15:28:33 -0700
+Subject: [PATCH] watchdog: meson: Remove unneeded platform MODULE_ALIAS
+In-Reply-To: <1476906582-14241-1-git-send-email-javier@osg.samsung.com>
+References: <1476906582-14241-1-git-send-email-javier@osg.samsung.com>
+Message-ID: <20161020222833.GA27421@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Oct 19, 2016 at 12:08 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Wed, Oct 19, 2016 at 04:49:42PM -0300, Javier Martinez Canillas wrote:
+> The Amlogic Meson is a DT-only platform, which means the devices are
+> registered via OF and not using the legacy platform devices support.
+> 
+> So there's no need to have a MODULE_ALIAS("platform:meson-gxbb-wdt")
+> since the reported uevent MODALIAS to user-space will be the OF one.
+> 
+> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
 
-> Add the ability for gpio to request irq from the gpio interrupt controller
-> if present. We have to specificaly that the parent interrupt controller is
-> the gpio interrupt controller because gpio on meson SoCs can't generate
-> interrupt directly on the GIC.
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-(...)
-> +       select IRQ_DOMAIN
->         select OF_GPIO
-> +       select OF_IRQ
-(...)
-> +static int meson_gpio_to_hwirq(struct meson_bank *bank, unsigned int offset)
-> +{
-> +       unsigned int hwirq;
-> +
-> +       if (bank->irq_first < 0)
-> +               /* this bank cannot generate irqs */
-> +               return -1;
-> +
-> +       hwirq = offset - bank->first + bank->irq_first;
-> +
-> +       if (hwirq > bank->irq_last)
-> +               /* this pin cannot generate irqs */
-> +               return -1;
-> +
-> +       return hwirq;
-> +}
-
-This is reimplementing irqdomain.
-
-> +static int meson_gpio_to_irq(struct gpio_chip *chip, unsigned int offset)
-> +{
-(...)
-> +       hwirq = meson_gpio_to_hwirq(bank, offset);
-> +       if (hwirq < 0) {
-> +               dev_dbg(pc->dev, "no interrupt for pin %u\n", offset);
-> +               return 0;
-> +       }
-
-Isn't this usecase (also as described in the cover letter) a textbook
-example of when you should be using hierarchical irqdomain?
-
-Please check with Marc et al on hierarchical irqdomains.
-
-Yours,
-Linus Walleij
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
