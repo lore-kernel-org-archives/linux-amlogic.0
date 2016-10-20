@@ -1,44 +1,40 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 20 Oct 2016 13:49:54 +0200
-Subject: [PATCH] ARM64: defconfig: Enable MMC related configs
-Message-ID: <1476964194-2194-1-git-send-email-narmstrong@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 20 Oct 2016 09:23:03 -0700
+Subject: [PATCH] watchdog: meson: Remove unneeded platform MODULE_ALIAS
+In-Reply-To: <1476906582-14241-1-git-send-email-javier@osg.samsung.com>
+ (Javier Martinez Canillas's message of "Wed, 19 Oct 2016 16:49:42
+ -0300")
+References: <1476906582-14241-1-git-send-email-javier@osg.samsung.com>
+Message-ID: <7hd1iv7zx4.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable MMC related defaults configs for MMC, PWM and PWM clock.
+Javier Martinez Canillas <javier@osg.samsung.com> writes:
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+> The Amlogic Meson is a DT-only platform, which means the devices are
+> registered via OF and not using the legacy platform devices support.
+>
+> So there's no need to have a MODULE_ALIAS("platform:meson-gxbb-wdt")
+> since the reported uevent MODALIAS to user-space will be the OF one.
+>
+> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index dab2cb0..920f1e8 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -341,6 +341,7 @@ CONFIG_USB_RENESAS_USBHS_UDC=m
- CONFIG_MMC=y
- CONFIG_MMC_BLOCK_MINORS=32
- CONFIG_MMC_ARMMMCI=y
-+CONFIG_MMC_MESON_GX=y
- CONFIG_MMC_SDHCI=y
- CONFIG_MMC_SDHCI_ACPI=y
- CONFIG_MMC_SDHCI_PLTFM=y
-@@ -387,6 +388,7 @@ CONFIG_XEN_GRANT_DEV_ALLOC=y
- CONFIG_COMMON_CLK_SCPI=y
- CONFIG_COMMON_CLK_CS2000_CP=y
- CONFIG_COMMON_CLK_S2MPS11=y
-+CONFIG_COMMON_CLK_PWM=y
- CONFIG_CLK_QORIQ=y
- CONFIG_COMMON_CLK_QCOM=y
- CONFIG_MSM_GCC_8916=y
-@@ -404,6 +406,7 @@ CONFIG_ARCH_TEGRA_210_SOC=y
- CONFIG_EXTCON_USB_GPIO=y
- CONFIG_PWM=y
- CONFIG_PWM_TEGRA=m
-+CONFIG_PWM_MESON=m
- CONFIG_COMMON_RESET_HI6220=y
- CONFIG_PHY_RCAR_GEN3_USB2=y
- CONFIG_PHY_HI6220_USB=y
--- 
-1.9.1
+Acked-by: Kevin Hilman <khilman@baylibre.com>
+
+> ---
+>
+>  drivers/watchdog/meson_gxbb_wdt.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
+> index 44d180a2c5e5..45d47664a00a 100644
+> --- a/drivers/watchdog/meson_gxbb_wdt.c
+> +++ b/drivers/watchdog/meson_gxbb_wdt.c
+> @@ -264,7 +264,6 @@ static struct platform_driver meson_gxbb_wdt_driver = {
+>  
+>  module_platform_driver(meson_gxbb_wdt_driver);
+>  
+> -MODULE_ALIAS("platform:meson-gxbb-wdt");
+>  MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
+>  MODULE_DESCRIPTION("Amlogic Meson GXBB Watchdog timer driver");
+>  MODULE_LICENSE("Dual BSD/GPL");
