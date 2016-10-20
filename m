@@ -1,38 +1,32 @@
-From: marc.zyngier@arm.com (Marc Zyngier)
-Date: Thu, 20 Oct 2016 17:34:21 +0100
-Subject: [PATCH v2 6/9] ARM64: meson: enable MESON_IRQ_GPIO in Kconfig
-In-Reply-To: <1476890480-8884-7-git-send-email-jbrunet@baylibre.com>
-References: <1476890480-8884-1-git-send-email-jbrunet@baylibre.com>
- <1476890480-8884-7-git-send-email-jbrunet@baylibre.com>
-Message-ID: <c480f84f-ffc8-69fd-1dad-30cd2eb3360b@arm.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 20 Oct 2016 10:40:53 -0700
+Subject: [PATCH 1/4] ARM64: dts: meson-gxbb: add MMC support
+In-Reply-To: <1476963777-1804-2-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Thu, 20 Oct 2016 13:42:54 +0200")
+References: <1476963777-1804-1-git-send-email-narmstrong@baylibre.com>
+ <1476963777-1804-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7h4m467wbe.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 19/10/16 16:21, Jerome Brunet wrote:
-> Add select MESON_IRQ_GPIO in Kconfig for Amlogic's meson SoC family
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  arch/arm64/Kconfig.platforms | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index cfbdf02ef566..846479d4492d 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -95,6 +95,7 @@ config ARCH_MESON
->  	select PINCTRL_MESON
->  	select COMMON_CLK_AMLOGIC
->  	select COMMON_CLK_GXBB
-> +	select MESON_GPIO_IRQ
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-MESON_IRQ_GPIO?
+> From: Kevin Hilman <khilman@baylibre.com>
+>
+> Add binding and basic support for the SD/eMMC controller on Amlogic
+> S905/GXBB devices.
+>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 
->  	help
->  	  This enables support for the Amlogic S905 SoCs.
->  
-> 
+nit: you added a couple things from my original patch, and it's
+customary to make a summary note of changes in the changelog, so before
+applying, I added a line here:
 
+[narmstrong: added nodes for GX, enabled SDIO on P20x]
 
--- 
-Jazz is not dead. It just smells funny...
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Applied to v4.10/dt64
+
+Kevin
