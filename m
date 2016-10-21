@@ -1,37 +1,56 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 21 Oct 2016 16:11:28 +0200
-Subject: [PATCH] hwrng: meson: Remove unneeded platform MODULE_ALIAS
-In-Reply-To: <1476906618-14455-1-git-send-email-javier@osg.samsung.com>
-References: <1476906618-14455-1-git-send-email-javier@osg.samsung.com>
-Message-ID: <29086305-c8a7-ba17-5e99-3a779b9dd410@baylibre.com>
+Date: Fri, 21 Oct 2016 16:40:25 +0200
+Subject: [RFC PATCH 00/13] ARM64: meson-gxl: Add extended support
+Message-ID: <1477060838-14164-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/19/2016 09:50 PM, Javier Martinez Canillas wrote:
-> The Amlogic Meson is a DT-only platform, which means the devices are
-> registered via OF and not using the legacy platform devices support.
-> 
-> So there's no need to have a MODULE_ALIAS("platform:meson-rng") since
-> the reported uevent MODALIAS to user-space will always be the OF one.
-> 
-> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
-> ---
-> 
->  drivers/char/hw_random/meson-rng.c | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
-> index 51864a509be7..119d698439ae 100644
-> --- a/drivers/char/hw_random/meson-rng.c
-> +++ b/drivers/char/hw_random/meson-rng.c
-> @@ -122,7 +122,6 @@ static struct platform_driver meson_rng_driver = {
->  
->  module_platform_driver(meson_rng_driver);
->  
-> -MODULE_ALIAS("platform:meson-rng");
->  MODULE_DESCRIPTION("Meson H/W Random Number Generator driver");
->  MODULE_AUTHOR("Lawrence Mok <lawrence.mok@amlogic.com>");
->  MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-> 
+This RFC patchset provides extended peripheral support for the Amlogix GXL SoCs.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+The final patchs will be split among the correct subsystems.
+
+In order to support more functionalities, this patchset :
+ - Moves peripheral nodes to the common Meson arm64 dtsi
+ - Add i2c, mmc, sd, sdio, pinctrl and clock nodes for GXL
+ - Adds correct GXL P23X boards uart pinctrl
+ - Adds the GXL Internal PHY driver
+ - Add a temporary workaround to select the internal PHY
+ - Add Ethernet nodes for GXL and the P23X boards
+ - Add SD/MMC and SDIO WiFi support support for P23X boards
+
+Neil Armstrong (13):
+  pinctrl: meson: Add GXL pinctrl definitions
+  ARM64: dts: meson-gxbb: Move common nodes to meson-gx
+  ARM64: dts: meson-gxl: Add pinctrl nodes
+  ARM64: dts: meson-gxl: Add clock nodes
+  ARM64: dts: meson-gxl: Add i2c nodes
+  ARM64: dts: meson-gxl: Add MMC/SD/SDIO nodes
+  ARM64: dts: meson-gxl-p23x: Add uart pinctrl
+  dwmac-meson8b: add support for phy selection
+  net: phy: Add Meson GXL Internal PHY driver
+  ARM64: dts: meson-gxl: Add ethernet nodes with internal PHY
+  ARM64: dts: meson-gxl-p23x: Enable ethernet
+  ARM64: dts: meson-gxl-p23x: Add SD/SDIO/MMC and PWM nodes
+  ARM64: dts: meson-gxl-p23x: Enable IR receiver
+
+ .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   2 +
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi          | 131 +++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 155 +-----
+ .../boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi     | 125 +++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 238 +++++++++
+ .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    |  25 +
+ drivers/net/phy/Kconfig                            |   5 +
+ drivers/net/phy/Makefile                           |   1 +
+ drivers/net/phy/meson-gxl.c                        | 175 ++++++
+ drivers/pinctrl/meson/Makefile                     |   3 +-
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c          | 589 +++++++++++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson.c              |   8 +
+ drivers/pinctrl/meson/pinctrl-meson.h              |   2 +
+ include/dt-bindings/gpio/meson-gxl-gpio.h          | 131 +++++
+ 14 files changed, 1452 insertions(+), 138 deletions(-)
+ create mode 100644 drivers/net/phy/meson-gxl.c
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gxl.c
+ create mode 100644 include/dt-bindings/gpio/meson-gxl-gpio.h
+
+-- 
+1.9.1
