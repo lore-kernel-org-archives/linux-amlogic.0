@@ -1,39 +1,24 @@
-From: weiyj.lk@gmail.com (Wei Yongjun)
-Date: Sat, 22 Oct 2016 14:33:42 +0000
-Subject: [PATCH -next] phy: meson8b-usb2: fix missing clk_disable_unprepare()
- on error
-Message-ID: <1477146822-31327-1-git-send-email-weiyj.lk@gmail.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Mon, 24 Oct 2016 03:03:27 +0200
+Subject: [RFC PATCH 01/13] pinctrl: meson: Add GXL pinctrl definitions
+In-Reply-To: <1477060838-14164-2-git-send-email-narmstrong@baylibre.com>
+References: <1477060838-14164-1-git-send-email-narmstrong@baylibre.com>
+ <1477060838-14164-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CACRpkdZ5VG2NGRh5CmYcYzwCp0LYSsgxHogCFa+6W7BDDBXOYg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Wei Yongjun <weiyongjun1@huawei.com>
+On Fri, Oct 21, 2016 at 4:40 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-Fix the missing clk_disable_unprepare() before return from
-phy_meson8b_usb2_power_on() in the error handling case.
+> Add support for the Amlogic Meson GXL SoC, this is a partially complete
+> definition only based on the Amlogic Vendor tree.
+>
+> This definition differs a lot from the GXBB and needs a separate entry.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
----
- drivers/phy/phy-meson8b-usb2.c | 3 +++
- 1 file changed, 3 insertions(+)
+Looks good to me. Tell me when I may apply it, it looks orthogonal
+to the rest of the patches.
 
-diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
-index 73bf632..dca3947 100644
---- a/drivers/phy/phy-meson8b-usb2.c
-+++ b/drivers/phy/phy-meson8b-usb2.c
-@@ -158,6 +158,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 	ret = clk_prepare_enable(priv->clk_usb);
- 	if (ret) {
- 		dev_err(&phy->dev, "Failed to enable USB DDR clock\n");
-+		clk_disable_unprepare(priv->clk_usb_general);
- 		return ret;
- 	}
- 
-@@ -190,6 +191,8 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 		if (phy_meson8b_usb2_read(priv, REG_ADP_BC) &
- 			REG_ADP_BC_ACA_PIN_FLOAT) {
- 			dev_warn(&phy->dev, "USB ID detect failed!\n");
-+			clk_disable_unprepare(priv->clk_usb);
-+			clk_disable_unprepare(priv->clk_usb_general);
- 			return -EINVAL;
- 		}
- 	}
+Yours,
+Linus Walleij
