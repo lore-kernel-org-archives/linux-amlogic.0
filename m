@@ -1,7 +1,7 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Tue, 25 Oct 2016 20:20:52 +0200
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 26 Oct 2016 16:22:46 +0200
 Subject: [PATCH 4/9] pinctrl: meson: allow gpio to request irq
-In-Reply-To: <1477409478.2482.113.camel@baylibre.com>
+In-Reply-To: <CACRpkdbGo4BJOdzkgBrE9jT-rKodd4zssCnOtOuGS+OqV-Uc6Q@mail.gmail.com>
 References: <1476871709-8359-1-git-send-email-jbrunet@baylibre.com>
  <1476871709-8359-5-git-send-email-jbrunet@baylibre.com>
  <CACRpkdaCZPS45t3eTcjJExOu=YT_YkjNkdpg09jQqvLQOJH=Qw@mail.gmail.com>
@@ -13,38 +13,64 @@ References: <1476871709-8359-1-git-send-email-jbrunet@baylibre.com>
  <1477405332.2482.87.camel@baylibre.com>
  <bbc268c8-35c3-206a-46b1-62cebef174b2@arm.com>
  <1477409478.2482.113.camel@baylibre.com>
-Message-ID: <CACRpkdbGo4BJOdzkgBrE9jT-rKodd4zssCnOtOuGS+OqV-Uc6Q@mail.gmail.com>
+ <CACRpkdbGo4BJOdzkgBrE9jT-rKodd4zssCnOtOuGS+OqV-Uc6Q@mail.gmail.com>
+Message-ID: <1477491766.2482.159.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Oct 25, 2016 at 5:31 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Tue, 2016-10-25 at 15:47 +0100, Marc Zyngier wrote:
+On Tue, 2016-10-25 at 20:20 +0200, Linus Walleij wrote:
+> On Tue, Oct 25, 2016 at 5:31 PM, Jerome Brunet <jbrunet@baylibre.com>
+> wrote:
+> > 
+> > On Tue, 2016-10-25 at 15:47 +0100, Marc Zyngier wrote:
+> 
+> > 
+> > > 
+> > > Is gpio_to_irq() supposed to allocate an interrupt? Or merely to
+> > > report the existence of a mapping?
+> 
+> It should provide an IRQ corresponding to the gpio line, if possible.
+> 
+> However the semantic is such, that it is not necessary to call
+> to_irq()
+> before using an IRQ: the irqchip and gpiochip abstractions should be
+> orthogonal.
 
->> Is gpio_to_irq() supposed to allocate an interrupt? Or merely to
->> report the existence of a mapping?
+Linus,
 
-It should provide an IRQ corresponding to the gpio line, if possible.
+They are?orthogonal. You can request an irq from the irqchip controller
+without the gpiochip, like any other irq controller.
 
-However the semantic is such, that it is not necessary to call to_irq()
-before using an IRQ: the irqchip and gpiochip abstractions should be
-orthogonal.
+> 
+> This goes especially when using device tree or ACPI, where you
+> may reference an IRQ from something modeled as irqchip, which
+> is simultaneously a gpiochip.
+> 
+> > 
+> > Linus, please correct me if I'm wrong,
+> > .to_irq gets the linux gpio number and returns the linux virtual
+> > irq
+> > numbers, 0 if there is no interrupt.
+> 
+> Yes. But it may *or may not* be called before using the IRQ.
+> 
+> So it should look up or try to create a mapping on request, but not
+> assume to have been called before using some line as IRQ.
+> 
+> The only thing you should assume to be called before an interrupt
+> is put to use is the stuff in irqchip. So you have to do your
+> dynamic irqdomain mapping elsewhere than .to_irq().
 
-This goes especially when using device tree or ACPI, where you
-may reference an IRQ from something modeled as irqchip, which
-is simultaneously a gpiochip.
+irq_create_mapping (and irq_create_fwspec_mapping) internally calls
+irq_find_mapping. So if the mapping already exist (the irq is already
+used before calling to_irq), the existing mapping will be returned. The
+mapping will be actually created only if needed. It seems to be in line
+with your explanation, no ?
 
-> Linus, please correct me if I'm wrong,
-> .to_irq gets the linux gpio number and returns the linux virtual irq
-> numbers, 0 if there is no interrupt.
+There is really a *lot* of gpio drivers which use irq_create_mapping in
+the to_irq callback, are these all wrong ?
+If this should not be used, what should we all do instead ??
 
-Yes. But it may *or may not* be called before using the IRQ.
-
-So it should look up or try to create a mapping on request, but not
-assume to have been called before using some line as IRQ.
-
-The only thing you should assume to be called before an interrupt
-is put to use is the stuff in irqchip. So you have to do your
-dynamic irqdomain mapping elsewhere than .to_irq().
-
-Yours,
-Linus Walleij
+> 
+> Yours,
+> Linus Walleij
