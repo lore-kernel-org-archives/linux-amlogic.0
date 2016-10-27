@@ -1,65 +1,33 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Thu, 27 Oct 2016 09:47:12 +0200
-Subject: [PATCH v6 2/2] Documentation: DT: MMC: meson-gx: new bindings doc
-In-Reply-To: <20161019181825.2186-2-khilman@baylibre.com>
-References: <20161019181825.2186-1-khilman@baylibre.com>
- <20161019181825.2186-2-khilman@baylibre.com>
-Message-ID: <CAPDyKFqTeTQb0V6zTaP2VN7Wx1_kHZjEndXb8LCRHOZ6fd951A@mail.gmail.com>
+From: mark.rutland@arm.com (Mark Rutland)
+Date: Thu, 27 Oct 2016 10:32:05 +0100
+Subject: [PATCH v2 2/9] dt-bindings: interrupt-controller: add DT binding
+ for meson GPIO interrupt controller
+In-Reply-To: <20161026214234.4q6wmecehqh6q32o@rob-hp-laptop>
+References: <1476890480-8884-1-git-send-email-jbrunet@baylibre.com>
+ <1476890480-8884-3-git-send-email-jbrunet@baylibre.com>
+ <20161026214234.4q6wmecehqh6q32o@rob-hp-laptop>
+Message-ID: <20161027093205.GA27135@leverpostej>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 19 October 2016 at 20:18, Kevin Hilman <khilman@baylibre.com> wrote:
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+On Wed, Oct 26, 2016 at 04:42:35PM -0500, Rob Herring wrote:
+> On Wed, Oct 19, 2016 at 05:21:13PM +0200, Jerome Brunet wrote:
+> > 
+> > This commit adds the device tree bindings description for Amlogic's GPIO
+> > interrupt controller available on the meson8, meson8b and gxbb SoC families
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > ---
+> > Rob, I did not include the Ack you gave for the RFC as bindings have slightly
+> > changed. Only the interrupt property has be removed following a discussion I
+> > had with Marc
+> 
+> As Mark R already said, you should keep the interrupts property.
 
-Thanks, applied for next!
+To be clear, the interrupt routing should be described *somehow*, though
+I don't think the generic interrupts property is correct, as this is an
+interrupt *router*, i.e. this device doesn't own the interrupt, it just
+joins two parts of the line together (and so flags are meaningless).
 
-Kind regards
-Uffe
-
-> ---
->  .../devicetree/bindings/mmc/amlogic,meson-gx.txt   | 33 ++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
->
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-> new file mode 100644
-> index 000000000000..a2fa9a1c26ae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-> @@ -0,0 +1,33 @@
-> +Amlogic SD / eMMC controller for S905/GXBB family SoCs
-> +
-> +The MMC 5.1 compliant host controller on Amlogic provides the
-> +interface for SD, eMMC and SDIO devices.
-> +
-> +This file documents the properties in addition to those available in
-> +the MMC core bindings, documented by mmc.txt.
-> +
-> +Required properties:
-> +- compatible : contains one of:
-> +  - "amlogic,meson-gx-mmc"
-> +  - "amlogic,meson-gxbb-mmc"
-> +  - "amlogic,meson-gxl-mmc"
-> +  - "amlogic,meson-gxm-mmc"
-> +- clocks     : A list of phandle + clock-specifier pairs for the clocks listed in clock-names.
-> +- clock-names: Should contain the following:
-> +       "core" - Main peripheral bus clock
-> +       "clkin0" - Parent clock of internal mux
-> +       "clkin1" - Other parent clock of internal mux
-> +  The driver has an interal mux clock which switches between clkin0 and clkin1 depending on the
-> +  clock rate requested by the MMC core.
-> +
-> +Example:
-> +
-> +       sd_emmc_a: mmc at 70000 {
-> +               compatible = "amlogic,meson-gxbb-mmc";
-> +               reg = <0x0 0x70000 0x0 0x2000>;
-> +                interrupts = < GIC_SPI 216 IRQ_TYPE_EDGE_RISING>;
-> +               clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
-> +               clock-names = "core", "clkin0", "clkin1";
-> +               pinctrl-0 = <&emmc_pins>;
-> +       };
-> +
-> --
-> 2.9.3
->
+Thanks,
+Mark.
