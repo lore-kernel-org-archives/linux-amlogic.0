@@ -1,62 +1,49 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 27 Oct 2016 11:40:44 +0200
-Subject: [PATCH v2 2/9] dt-bindings: interrupt-controller: add DT
- binding for meson GPIO interrupt controller
-In-Reply-To: <20161027093205.GA27135@leverpostej>
-References: <1476890480-8884-1-git-send-email-jbrunet@baylibre.com>
- <1476890480-8884-3-git-send-email-jbrunet@baylibre.com>
- <20161026214234.4q6wmecehqh6q32o@rob-hp-laptop>
- <20161027093205.GA27135@leverpostej>
-Message-ID: <1477561244.2482.198.camel@baylibre.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Fri, 28 Oct 2016 12:29:20 +0100
+Subject: [GIT PULL] firmware: SCPI updates for v4.10
+Message-ID: <20161028112920.GB12241@e107155-lin>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2016-10-27 at 10:32 +0100, Mark Rutland wrote:
-> On Wed, Oct 26, 2016 at 04:42:35PM -0500, Rob Herring wrote:
-> > 
-> > On Wed, Oct 19, 2016 at 05:21:13PM +0200, Jerome Brunet wrote:
-> > > 
-> > > 
-> > > This commit adds the device tree bindings description for
-> > > Amlogic's GPIO
-> > > interrupt controller available on the meson8, meson8b and gxbb
-> > > SoC families
-> > > 
-> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > > ---
-> > > Rob, I did not include the Ack you gave for the RFC as bindings
-> > > have slightly
-> > > changed. Only the interrupt property has be removed following a
-> > > discussion I
-> > > had with Marc
-> > 
-> > As Mark R already said, you should keep the interrupts property.
-> 
-> To be clear, the interrupt routing should be described *somehow*,
-> though
-> I don't think the generic interrupts property is correct, as this is
-> an
-> interrupt *router*, i.e. this device doesn't own the interrupt, it
-> just
-> joins two parts of the line together (and so flags are meaningless).
-> 
-> Thanks,
-> Mark.
+Hi ARM-SoC Team,
 
-Indeed Mark,
+Please pull !
 
-I already rewritten the driver taking Marc's comment into account.
-There will be 2 properties added to the DT:
-?-?meson,upstream-interrupts : an array with the 8 gic interrupt used
-as output of the controller
-- ?meson,num-input-mux : the number of inputs (pads) available to the
-muxes
+--
+Regards,
+Sudeep
 
-I'm looking for solution to the "create mapping" issue we have in
-pinctrl (patch 4) before posting a v3.
+The following changes since commit 1001354ca34179f3db924eb66672442a173147dc:
 
-If you think these properties should be different, feel free to tell me
-now.
+  Linux 4.9-rc1 (2016-10-15 12:17:50 -0700)
 
-Thx
-Jerome
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git tags/scpi-updates-4.10
+
+for you to fetch changes up to a9e0192d8b35c6ab115a154ed1499ff39a0e5b06:
+
+  firmware: arm_scpi: add support for legacy match table on Amlogic GXBB SoC (2016-10-19 15:17:28 +0100)
+
+----------------------------------------------------------------
+SCPI updates for v4.10
+
+1. Adds support for Legacy SCPI(pre- SCPI v1.0) protocol
+
+2. Adds support for SCPI used on Amlogic GXBB SoC using the legacy
+   SCPI protocol
+
+----------------------------------------------------------------
+Neil Armstrong (5):
+      dt-bindings: Add support for Amlogic GXBB SCPI Interface
+      firmware: arm_scpi: increase MAX_DVFS_OPPS to 16 entries
+      firmware: arm_scpi: add alternative legacy structures, functions and macros
+      firmware: arm_scpi: allow firmware with get_capabilities not implemented
+      firmware: arm_scpi: add support for legacy match table on Amlogic GXBB SoC
+
+Sudeep Holla (1):
+      firmware: arm_scpi: add command indirection to support legacy commands
+
+ Documentation/devicetree/bindings/arm/arm,scpi.txt |   8 +-
+ drivers/firmware/arm_scpi.c                        | 276 ++++++++++++++++++---
+ 2 files changed, 249 insertions(+), 35 deletions(-)
