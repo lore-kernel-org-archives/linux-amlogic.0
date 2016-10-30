@@ -1,53 +1,30 @@
-From: olof@lixom.net (Olof Johansson)
-Date: Sat, 29 Oct 2016 11:39:51 -0700
-Subject: [GIT PULL] firmware: SCPI updates for v4.10
-In-Reply-To: <20161028112920.GB12241@e107155-lin>
-References: <20161028112920.GB12241@e107155-lin>
-Message-ID: <20161029183951.GE4195@localhost>
+From: robh@kernel.org (Rob Herring)
+Date: Sun, 30 Oct 2016 15:41:26 -0500
+Subject: [RFC PATCH 01/13] pinctrl: meson: Add GXL pinctrl definitions
+In-Reply-To: <1477060838-14164-2-git-send-email-narmstrong@baylibre.com>
+References: <1477060838-14164-1-git-send-email-narmstrong@baylibre.com>
+ <1477060838-14164-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20161030204126.adj4bo7arpxxqtpf@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Sudeep,
+On Fri, Oct 21, 2016 at 04:40:26PM +0200, Neil Armstrong wrote:
+> Add support for the Amlogic Meson GXL SoC, this is a partially complete
+> definition only based on the Amlogic Vendor tree.
+> 
+> This definition differs a lot from the GXBB and needs a separate entry.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   2 +
 
-On Fri, Oct 28, 2016 at 12:29:20PM +0100, Sudeep Holla wrote:
-> Hi ARM-SoC Team,
-> 
-> Please pull !
-> 
-> --
-> Regards,
-> Sudeep
-> 
-> The following changes since commit 1001354ca34179f3db924eb66672442a173147dc:
-> 
->   Linux 4.9-rc1 (2016-10-15 12:17:50 -0700)
-> 
-> are available in the git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git tags/scpi-updates-4.10
-> 
-> for you to fetch changes up to a9e0192d8b35c6ab115a154ed1499ff39a0e5b06:
-> 
->   firmware: arm_scpi: add support for legacy match table on Amlogic GXBB SoC (2016-10-19 15:17:28 +0100)
-> 
-> ----------------------------------------------------------------
-> SCPI updates for v4.10
-> 
-> 1. Adds support for Legacy SCPI(pre- SCPI v1.0) protocol
-> 
-> 2. Adds support for SCPI used on Amlogic GXBB SoC using the legacy
->    SCPI protocol
-> 
-> ----------------------------------------------------------------
-> Neil Armstrong (5):
->       dt-bindings: Add support for Amlogic GXBB SCPI Interface
+Acked-by: Rob Herring <robh@kernel.org>
 
-I had comments on this patch, just emailed as follow-up to it.
-
-Also, you didn't sign off on it when applying it, seems like a mistake.
-
-Please respin, ideally with the other changes also done (i.e. splitting off
-Juno stuff from arm,scpi.txt).
-
-
--Olof
+>  drivers/pinctrl/meson/Makefile                     |   3 +-
+>  drivers/pinctrl/meson/pinctrl-meson-gxl.c          | 589 +++++++++++++++++++++
+>  drivers/pinctrl/meson/pinctrl-meson.c              |   8 +
+>  drivers/pinctrl/meson/pinctrl-meson.h              |   2 +
+>  include/dt-bindings/gpio/meson-gxl-gpio.h          | 131 +++++
+>  6 files changed, 734 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>  create mode 100644 include/dt-bindings/gpio/meson-gxl-gpio.h
