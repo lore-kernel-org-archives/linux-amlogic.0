@@ -1,30 +1,34 @@
-From: robh@kernel.org (Rob Herring)
-Date: Sun, 30 Oct 2016 15:41:26 -0500
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 31 Oct 2016 10:40:24 +0100
 Subject: [RFC PATCH 01/13] pinctrl: meson: Add GXL pinctrl definitions
-In-Reply-To: <1477060838-14164-2-git-send-email-narmstrong@baylibre.com>
+In-Reply-To: <CACRpkdZ5VG2NGRh5CmYcYzwCp0LYSsgxHogCFa+6W7BDDBXOYg@mail.gmail.com>
 References: <1477060838-14164-1-git-send-email-narmstrong@baylibre.com>
  <1477060838-14164-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20161030204126.adj4bo7arpxxqtpf@rob-hp-laptop>
+ <CACRpkdZ5VG2NGRh5CmYcYzwCp0LYSsgxHogCFa+6W7BDDBXOYg@mail.gmail.com>
+Message-ID: <b80010f7-196a-abeb-e4a2-5009f3b7f13b@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Oct 21, 2016 at 04:40:26PM +0200, Neil Armstrong wrote:
-> Add support for the Amlogic Meson GXL SoC, this is a partially complete
-> definition only based on the Amlogic Vendor tree.
+On 10/24/2016 03:03 AM, Linus Walleij wrote:
+> On Fri, Oct 21, 2016 at 4:40 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
 > 
-> This definition differs a lot from the GXBB and needs a separate entry.
+>> Add support for the Amlogic Meson GXL SoC, this is a partially complete
+>> definition only based on the Amlogic Vendor tree.
+>>
+>> This definition differs a lot from the GXBB and needs a separate entry.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   2 +
+> Looks good to me. Tell me when I may apply it, it looks orthogonal
+> to the rest of the patches.
+> 
+> Yours,
+> Linus Walleij
+> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Hi Linus,
 
->  drivers/pinctrl/meson/Makefile                     |   3 +-
->  drivers/pinctrl/meson/pinctrl-meson-gxl.c          | 589 +++++++++++++++++++++
->  drivers/pinctrl/meson/pinctrl-meson.c              |   8 +
->  drivers/pinctrl/meson/pinctrl-meson.h              |   2 +
->  include/dt-bindings/gpio/meson-gxl-gpio.h          | 131 +++++
->  6 files changed, 734 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gxl.c
->  create mode 100644 include/dt-bindings/gpio/meson-gxl-gpio.h
+I'm ok to have it applied as soon as possible, but I can send a clean non-rfc patch if needed.
+
+Thanks,
+Neil
