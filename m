@@ -1,71 +1,44 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 31 Oct 2016 17:56:26 +0100
-Subject: [RFC PATCH v2 4/5] ARM64: dts: meson-gxl-p23x: Enable ethernet
-In-Reply-To: <1477932987-27871-1-git-send-email-narmstrong@baylibre.com>
-References: <1477932987-27871-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1477932987-27871-5-git-send-email-narmstrong@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 31 Oct 2016 12:23:54 -0600
+Subject: [RFC PATCH 01/13] pinctrl: meson: Add GXL pinctrl definitions
+In-Reply-To: <b80010f7-196a-abeb-e4a2-5009f3b7f13b@baylibre.com> (Neil
+ Armstrong's message of "Mon, 31 Oct 2016 10:40:24 +0100")
+References: <1477060838-14164-1-git-send-email-narmstrong@baylibre.com>
+ <1477060838-14164-2-git-send-email-narmstrong@baylibre.com>
+ <CACRpkdZ5VG2NGRh5CmYcYzwCp0LYSsgxHogCFa+6W7BDDBXOYg@mail.gmail.com>
+ <b80010f7-196a-abeb-e4a2-5009f3b7f13b@baylibre.com>
+Message-ID: <m27f8o2x8l.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable Ethernet on the p23x board, pinctrl attribute is only added for
-the p230 board since the p231 only uses the Internal PHY.
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts  | 16 ++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts  |  6 ++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi |  4 ++++
- 3 files changed, 26 insertions(+)
+> On 10/24/2016 03:03 AM, Linus Walleij wrote:
+>> On Fri, Oct 21, 2016 at 4:40 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> 
+>>> Add support for the Amlogic Meson GXL SoC, this is a partially complete
+>>> definition only based on the Amlogic Vendor tree.
+>>>
+>>> This definition differs a lot from the GXBB and needs a separate entry.
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> 
+>> Looks good to me. Tell me when I may apply it, it looks orthogonal
+>> to the rest of the patches.
+>> 
+>> Yours,
+>> Linus Walleij
+>> 
+>
+> Hi Linus,
+>
+> I'm ok to have it applied as soon as possible, but I can send a clean non-rfc patch if needed.
+>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-index 3dfaa37..a569286 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-@@ -49,3 +49,19 @@
- 	compatible = "amlogic,p230", "amlogic,s905d", "amlogic,meson-gxl";
- 	model = "Amlogic Meson GXL (S905D) P230 Development Board";
- };
-+
-+/* P230 has exclusive choice between internal or external PHY */
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>;
-+	pinctrl-names = "default";
-+
-+	phy-handle = <&external_phy>;
-+};
-+
-+&external_mdio {
-+	external_phy: ethernet-phy at 0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+		max-speed = <1000>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-index ade8d29..1cc8d49 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-@@ -49,3 +49,9 @@
- 	compatible = "amlogic,p231", "amlogic,s905d", "amlogic,meson-gxl";
- 	model = "Amlogic Meson GXL (S905D) P231 Development Board";
- };
-+
-+/* P231 has only internal PHY port */
-+&ethmac {
-+	phy-mode = "rmii";
-+	phy-handle = <&internal_phy>;
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
-index bbe46a2..622ffbe 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
-@@ -182,3 +182,7 @@
- 	clocks = <&clkc CLKID_FCLK_DIV4>;
- 	clock-names = "clkin0";
- };
-+
-+&ethmac {
-+	status = "okay";
-+};
--- 
-1.9.1
+Acked-by: Kevin Hilman <khilman@baylibre.com>
+
+I was hoping to have a bit clearer info from the vendor, but based on
+vendor BSP, I think we have most of the info, and can do the minor
+fixups if/when we get detailed documentation.
+
+Kevin
