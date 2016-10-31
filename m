@@ -1,47 +1,32 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 31 Oct 2016 17:44:43 +0100
-Subject: [PATCH 5/8] ARM64: dts: meson-gxl: Add MMC/SD/SDIO nodes
+Date: Mon, 31 Oct 2016 17:44:44 +0100
+Subject: [PATCH 6/8] ARM64: dts: meson-gxl-p23x: Add uart pinctrl
 In-Reply-To: <1477932286-27482-1-git-send-email-narmstrong@baylibre.com>
 References: <1477932286-27482-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1477932286-27482-6-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1477932286-27482-7-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add MMC/SD/SDIO nodes clock attributes for Amlogic Meson GXL.
+Add pinctrl attribute to p23x uart node.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index b45df2a..d1bf381 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -235,3 +235,24 @@
- &i2c_C {
- 	clocks = <&clkc CLKID_I2C>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
+index bf08e87..666fe2b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
+@@ -58,6 +58,9 @@
+ 	};
  };
-+
-+&sd_emmc_a {
-+	clocks = <&clkc CLKID_SD_EMMC_A>,
-+		 <&xtal>,
-+		 <&clkc CLKID_FCLK_DIV2>;
-+	clock-names = "core", "clkin0", "clkin1";
-+};
-+
-+&sd_emmc_b {
-+	clocks = <&clkc CLKID_SD_EMMC_B>,
-+		 <&xtal>,
-+		 <&clkc CLKID_FCLK_DIV2>;
-+       clock-names = "core", "clkin0", "clkin1";
-+};
-+
-+&sd_emmc_c {
-+	clocks = <&clkc CLKID_SD_EMMC_C>,
-+		 <&xtal>,
-+		 <&clkc CLKID_FCLK_DIV2>;
-+	clock-names = "core", "clkin0", "clkin1";
-+};
+ 
++/* This UART is brought out to the DB9 connector */
+ &uart_AO {
+ 	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
+ };
 -- 
 1.9.1
