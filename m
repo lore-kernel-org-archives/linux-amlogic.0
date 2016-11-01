@@ -1,65 +1,79 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Tue, 1 Nov 2016 11:32:07 -0600
-Subject: [GIT PULL] firmware: SCPI updates for v4.10
-In-Reply-To: <20161029183951.GE4195@localhost>
-References: <20161028112920.GB12241@e107155-lin>
- <20161029183951.GE4195@localhost>
-Message-ID: <20161101173207.GA772@e106835-lin.cambridge.arm.com>
+From: afaerber@suse.de (=?UTF-8?q?Andreas=20F=C3=A4rber?=)
+Date: Tue,  1 Nov 2016 22:11:54 +0100
+Subject: [PATCH] odroid-c2: Enable distro boot
+Message-ID: <1478034714-8743-1-git-send-email-afaerber@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Oct 29, 2016 at 11:39:51AM -0700, Olof Johansson wrote:
-> Hi Sudeep,
-> 
-> On Fri, Oct 28, 2016 at 12:29:20PM +0100, Sudeep Holla wrote:
-> > Hi ARM-SoC Team,
-> > 
-> > Please pull !
-> > 
-> > --
-> > Regards,
-> > Sudeep
-> > 
-> > The following changes since commit 1001354ca34179f3db924eb66672442a173147dc:
-> > 
-> >   Linux 4.9-rc1 (2016-10-15 12:17:50 -0700)
-> > 
-> > are available in the git repository at:
-> > 
-> >   git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git tags/scpi-updates-4.10
-> > 
-> > for you to fetch changes up to a9e0192d8b35c6ab115a154ed1499ff39a0e5b06:
-> > 
-> >   firmware: arm_scpi: add support for legacy match table on Amlogic GXBB SoC (2016-10-19 15:17:28 +0100)
-> > 
-> > ----------------------------------------------------------------
-> > SCPI updates for v4.10
-> > 
-> > 1. Adds support for Legacy SCPI(pre- SCPI v1.0) protocol
-> > 
-> > 2. Adds support for SCPI used on Amlogic GXBB SoC using the legacy
-> >    SCPI protocol
-> > 
-> > ----------------------------------------------------------------
-> > Neil Armstrong (5):
-> >       dt-bindings: Add support for Amlogic GXBB SCPI Interface
-> 
-> I had comments on this patch, just emailed as follow-up to it.
->
+Use the generic "distro" boot framework to enable automatic DHCP boot.
 
-Thanks for having a look, will address it.
+Signed-off-by: Andreas F?rber <afaerber@suse.de>
+---
+ Kconfig                             |  2 +-
+ configs/odroid-c2_defconfig         |  1 -
+ include/configs/meson-gxbb-common.h | 13 +++++++++++++
+ include/configs/odroid-c2.h         |  2 ++
+ 4 files changed, 16 insertions(+), 2 deletions(-)
 
-> Also, you didn't sign off on it when applying it, seems like a mistake.
->
-
-Ah, yes that was stupid mistake as I pulled that last minute.
-
-> Please respin, ideally with the other changes also done (i.e. splitting off
-> Juno stuff from arm,scpi.txt).
->
-
-OK.
-
---
-Regards,
-Sudeep
+diff --git a/Kconfig b/Kconfig
+index 1263d0b..3c085cf 100644
+--- a/Kconfig
++++ b/Kconfig
+@@ -55,7 +55,7 @@ config CC_OPTIMIZE_FOR_SIZE
+ 
+ config DISTRO_DEFAULTS
+ 	bool "Select defaults suitable for booting general purpose Linux distributions"
+-	default y if ARCH_SUNXI
++	default y if ARCH_MESON || ARCH_SUNXI
+ 	default n
+ 	select CMD_BOOTZ if ARM && !ARM64
+ 	select CMD_BOOTI if ARM64
+diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
+index 9db718c..dfc19d9 100644
+--- a/configs/odroid-c2_defconfig
++++ b/configs/odroid-c2_defconfig
+@@ -12,7 +12,6 @@ CONFIG_HUSH_PARSER=y
+ # CONFIG_CMD_IMLS is not set
+ # CONFIG_CMD_LOADS is not set
+ # CONFIG_CMD_FPGA is not set
+-# CONFIG_CMD_SOURCE is not set
+ # CONFIG_CMD_SETEXPR is not set
+ CONFIG_OF_CONTROL=y
+ CONFIG_NET_RANDOM_ETHADDR=y
+diff --git a/include/configs/meson-gxbb-common.h b/include/configs/meson-gxbb-common.h
+index 3bba2e6..0c467fe 100644
+--- a/include/configs/meson-gxbb-common.h
++++ b/include/configs/meson-gxbb-common.h
+@@ -40,4 +40,17 @@
+ 
+ #include <config_distro_defaults.h>
+ 
++#define BOOT_TARGET_DEVICES(func) \
++	func(DHCP, dhcp, na)
++#include <config_distro_bootcmd.h>
++
++#define CONFIG_EXTRA_ENV_SETTINGS \
++	"fdt_addr_r=0x01000000\0" \
++	"scriptaddr=0x1f000000\0" \
++	"kernel_addr_r=0x20000000\0" \
++	"pxefile_addr_r=0x20000000\0" \
++	"ramdisk_addr_r=0x28000000\0" \
++	MESON_FDTFILE_SETTING \
++	BOOTENV
++
+ #endif /* __MESON_GXBB_COMMON_CONFIG_H */
+diff --git a/include/configs/odroid-c2.h b/include/configs/odroid-c2.h
+index 1d5b3d5..bf7e1af 100644
+--- a/include/configs/odroid-c2.h
++++ b/include/configs/odroid-c2.h
+@@ -12,6 +12,8 @@
+ #define CONFIG_CONS_INDEX		0
+ #define CONFIG_BAUDRATE			115200
+ 
++#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxbb-odroidc2.dtb\0"
++
+ #include <configs/meson-gxbb-common.h>
+ 
+ #endif /* __CONFIG_H */
+-- 
+2.6.6
