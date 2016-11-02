@@ -1,70 +1,100 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 2 Nov 2016 11:33:18 +0100
-Subject: [RFC PATCH v2 2/5] net: phy: Add Meson GXL Internal PHY driver
-In-Reply-To: <20161031190558.GK9441@lunn.ch>
-References: <1477932987-27871-1-git-send-email-narmstrong@baylibre.com>
- <1477932987-27871-3-git-send-email-narmstrong@baylibre.com>
- <20161031190558.GK9441@lunn.ch>
-Message-ID: <32b06712-fc7c-ff00-9af7-aba3405c9d98@baylibre.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Wed, 2 Nov 2016 16:20:50 -0600
+Subject: [PATCH v4 6/8] dt-bindings: Add support for Amlogic GXBB SCPI
+ Interface
+In-Reply-To: <CAOesGMjY5_ibP7E9+DBf30nuV+2z2kecLv_ddnHjp3txuq+Kdg@mail.gmail.com>
+References: <1475652814-30619-1-git-send-email-narmstrong@baylibre.com>
+ <1475652814-30619-7-git-send-email-narmstrong@baylibre.com>
+ <CAOesGMjY5_ibP7E9+DBf30nuV+2z2kecLv_ddnHjp3txuq+Kdg@mail.gmail.com>
+Message-ID: <20161102222050.GA32189@e106835-lin.cambridge.arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/31/2016 08:05 PM, Andrew Lunn wrote:
-> On Mon, Oct 31, 2016 at 05:56:24PM +0100, Neil Armstrong wrote:
->> Add driver for the Internal RMII PHY found in the Amlogic Meson GXL SoCs.
->>
->> This PHY seems to only implement some standard registers and need some
->> workarounds to provide autoneg values from vendor registers.
->>
->> Some magic values are currently used to configure the PHY, and this a
->> temporary setup until clarification about these registers names and
->> registers fields are provided by Amlogic.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/net/phy/Kconfig     |  5 +++
->>  drivers/net/phy/Makefile    |  1 +
->>  drivers/net/phy/meson-gxl.c | 81 +++++++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 87 insertions(+)
->>  create mode 100644 drivers/net/phy/meson-gxl.c
->>
->> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
->> index 2651c8d..09342b6 100644
->> --- a/drivers/net/phy/Kconfig
->> +++ b/drivers/net/phy/Kconfig
->> @@ -226,6 +226,11 @@ config DP83867_PHY
->>  	---help---
->>  	  Currently supports the DP83867 PHY.
->>  
->> +config MESON_GXL_PHY
->> +	tristate "Amlogic Meson GXL Internal PHY"
->> +	---help---
->> +	  Currently has a driver for the Amlogic Meson GXL Internal PHY
->> +
+On Sat, Oct 29, 2016 at 11:39:05AM -0700, Olof Johansson wrote:
+> Hi,
 > 
-> Hi Neil
 > 
-> Please keep them in alphabetic order. This goes after Marvell.
+> On Wed, Oct 5, 2016 at 12:33 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/arm,scpi.txt | 8 +++++---
+> >  1 file changed, 5 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+> > index faa4b44..04bc171 100644
+> > --- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
+> > +++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+> > @@ -7,7 +7,7 @@ by Linux to initiate various system control and power operations.
+> >
+> >  Required properties:
+> >
+> > -- compatible : should be "arm,scpi"
+> > +- compatible : should be "arm,scpi" or "amlogic,meson-gxbb-scpi"
 > 
->>  config FIXED_PHY
->>  	tristate "MDIO Bus/PHY emulation with fixed speed/link PHYs"
->>  	depends on PHYLIB
->> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
->> index e58667d..1511b3e 100644
->> --- a/drivers/net/phy/Makefile
->> +++ b/drivers/net/phy/Makefile
->> @@ -44,6 +44,7 @@ obj-$(CONFIG_MARVELL_PHY)	+= marvell.o
->>  obj-$(CONFIG_MICREL_KS8995MA)	+= spi_ks8995.o
->>  obj-$(CONFIG_MICREL_PHY)	+= micrel.o
->>  obj-$(CONFIG_MICROCHIP_PHY)	+= microchip.o
->> +obj-$(CONFIG_MESON_GXL_PHY)	+= meson-gxl.o
->>  obj-$(CONFIG_MICROSEMI_PHY)	+= mscc.o
-> 
-> Again, alphabetic order.
-> 
->        Andrew
+> This doesn't seem right to document here. If anything you might want
+> to have a table of more-specific-compatibles for specific
+> implementations, but "arm,scpi" should still be the compatible of the
+> node (just not the most specific one).
 > 
 
-Sorry, rebase issue.
+I completely agree with you and I was pushing for a generic "arm,legacy-scpi"
+compatible until this binding was acked by Rob.
 
-Neil
+Anyways, I will add the generic compatible and post the changes.
+
+> Also, documenting it here indiciates that non-amlogic implementations
+> can/should use that compatible, which is misleading.
+>
+
+Agreed, it's better to keep them out of this generic binding document.
+
+> >  - mboxes: List of phandle and mailbox channel specifiers
+> >           All the channels reserved by remote SCP firmware for use by
+> >           SCPI message protocol should be specified in any order
+> > @@ -60,7 +60,8 @@ A small area of SRAM is reserved for SCPI communication between application
+> >  processors and SCP.
+> >
+> >  Required properties:
+> > -- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno
+> > +- compatible : should be "arm,juno-sram-ns" for Non-secure SRAM on Juno,
+> > +               or "amlogic,meson-gxbb-sram" for Amlogic GXBB SoC.
+> 
+> Maybe you'd be better of with a meson-specific document that refers to
+> these but with different compatible values.
+> 
+> Come to think of it, the Juno-specific one maybe shouldn't be in
+> arm,scpi at all, since that adds confusion here.
+> 
+> It's somewhat confusing that ARM is both a platform, architecture and
+> in some cases implementer of specific systems. :)
+> 
+
+Sorry for that, I will move all juno specific references in the binding
+out of this document(except the examples, which I assume should be fine)
+
+> >  The rest of the properties should follow the generic mmio-sram description
+> >  found in ../../sram/sram.txt
+> > @@ -70,7 +71,8 @@ Each sub-node represents the reserved area for SCPI.
+> >  Required sub-node properties:
+> >  - reg : The base offset and size of the reserved area with the SRAM
+> >  - compatible : should be "arm,juno-scp-shmem" for Non-secure SRAM based
+> > -              shared memory on Juno platforms
+> > +              shared memory on Juno platforms or
+> > +              "amlogic,meson-gxbb-scp-shmem" for Amlogic GXBB SoC.
+> 
+> Same here. It won't scale if all vendors are expected to add an entry here.
+> 
+
+I will rework the patches to address the concerns as I too did share same
+concern.
+
+
+Hi Neil,
+
+You may need to rework the DTS files based on that, please be aware of
+that and make the necessary changes.
+
+--
+Regards,
+Sudeep
