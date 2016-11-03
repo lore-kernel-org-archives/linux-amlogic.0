@@ -1,28 +1,29 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu,  3 Nov 2016 10:11:24 +0100
-Subject: [PATCH 2/2] ARM64: configs: Add Platform MHU in defconfig
+Date: Thu,  3 Nov 2016 10:11:23 +0100
+Subject: [PATCH 1/2] ARM64: dts: meson-gxbb: Add generic legacy scpi compatible
 In-Reply-To: <1478164284-24958-1-git-send-email-narmstrong@baylibre.com>
 References: <1478164284-24958-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1478164284-24958-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1478164284-24958-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index dab2cb0..6631bda 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -394,6 +394,7 @@ CONFIG_MSM_MMCC_8996=y
- CONFIG_HWSPINLOCK_QCOM=y
- CONFIG_MAILBOX=y
- CONFIG_ARM_MHU=y
-+CONFIG_PLATFORM_MHU=y
- CONFIG_HI6220_MBOX=y
- CONFIG_ARM_SMMU=y
- CONFIG_QCOM_SMEM=y
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 2d69a3b..5394657 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -75,7 +75,7 @@
+ 	};
+ 
+ 	scpi {
+-		compatible = "amlogic,meson-gxbb-scpi";
++		compatible = "amlogic,meson-gxbb-scpi", "arm,legacy-scpi";
+ 		mboxes = <&mailbox 1 &mailbox 2>;
+ 		shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
+ 
 -- 
 1.9.1
