@@ -1,49 +1,38 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Wed,  2 Nov 2016 22:52:10 -0600
-Subject: [PATCH v5 7/8] Documentation: bindings: Add support for Amlogic GXBB
- SCPI protocol
-In-Reply-To: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
-References: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
-Message-ID: <1478148731-11712-8-git-send-email-sudeep.holla@arm.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 3 Nov 2016 09:48:26 +0100
+Subject: [PATCH v4 6/8] dt-bindings: Add support for Amlogic GXBB SCPI
+ Interface
+In-Reply-To: <20161102222050.GA32189@e106835-lin.cambridge.arm.com>
+References: <1475652814-30619-1-git-send-email-narmstrong@baylibre.com>
+ <1475652814-30619-7-git-send-email-narmstrong@baylibre.com>
+ <CAOesGMjY5_ibP7E9+DBf30nuV+2z2kecLv_ddnHjp3txuq+Kdg@mail.gmail.com>
+ <20161102222050.GA32189@e106835-lin.cambridge.arm.com>
+Message-ID: <f9db6bdd-a494-0b5d-2081-e26f02b8ba78@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+On 11/02/2016 11:20 PM, Sudeep Holla wrote:
+> On Sat, Oct 29, 2016 at 11:39:05AM -0700, Olof Johansson wrote:
+> 
+> I will rework the patches to address the concerns as I too did share same
+> concern.
+> 
+> 
+> Hi Neil,
+> 
+> You may need to rework the DTS files based on that, please be aware of
+> that and make the necessary changes.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-(decoupled from the generic scpi binding)
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- .../devicetree/bindings/arm/amlogic,scpi.txt         | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/amlogic,scpi.txt
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic,scpi.txt b/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
-new file mode 100644
-index 000000000000..7b9a861e9306
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
-@@ -0,0 +1,20 @@
-+System Control and Power Interface (SCPI) Message Protocol
-+(in addition to the standard binding in [0])
-+----------------------------------------------------------
-+Required properties
-+
-+- compatible : should be "amlogic,meson-gxbb-scpi"
-+
-+AMLOGIC SRAM and Shared Memory for SCPI
-+------------------------------------
-+
-+Required properties:
-+- compatible : should be "amlogic,meson-gxbb-sram"
-+
-+Each sub-node represents the reserved area for SCPI.
-+
-+Required sub-node properties:
-+- compatible : should be "amlogic,meson-gxbb-scp-shmem" for SRAM based shared
-+		memory on Amlogic GXBB SoC.
-+
-+[0] Documentation/devicetree/bindings/arm/arm,scpi.txt
--- 
-1.9.1
+Hi,
+
+I will post the necessary changes since kevin already applied the previous patches.
+
+Thanks,
+Neil
+
+> 
+> --
+> Regards,
+> Sudeep
+> 
