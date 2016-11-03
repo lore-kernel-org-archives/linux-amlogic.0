@@ -1,53 +1,41 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 3 Nov 2016 10:12:29 +0100
-Subject: [PATCH 0/8] firmware: arm_scpi: add support for legacy SCPI
- protocol
-In-Reply-To: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
-References: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
-Message-ID: <3a1824cc-83b4-a7ae-4a72-03f83bc2348f@baylibre.com>
+Date: Thu,  3 Nov 2016 15:29:22 +0100
+Subject: [RFC PATCH 0/3] ARM64: meson-gxbb: Add support for system suspend
+Message-ID: <1478183365-23708-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/03/2016 05:52 AM, Sudeep Holla wrote:
-> Hi,
-> 
-> This is minor rework of the series[1] from Neil Armstrong's to support
-> legacy SCPI protocol to make DT bindings more generic and move out all
-> the platform specific bindings out of the generic binding document.
-> 
-> --
-> Regards,
-> Sudeep
-> 
-> [1] http://www.spinics.net/lists/arm-kernel/msg534999.html
-> 
-> Neil Armstrong (4):
->   firmware: arm_scpi: increase MAX_DVFS_OPPS to 16 entries
->   firmware: arm_scpi: add alternative legacy structures, functions and
->     macros
->   firmware: arm_scpi: allow firmware with get_capabilities not
->     implemented
->   Documentation: bindings: Add support for Amlogic GXBB SCPI protocol
-> 
-> Sudeep Holla (4):
->   firmware: arm_scpi: add command indirection to support legacy commands
->   Documentation: bindings: decouple juno specific details from generic
->     binding
->   Documentation: bindings: add compatible specific to legacy SCPI
->     protocol
->   firmware: arm_scpi: add support for legacy SCPI compatible
-> 
->  .../devicetree/bindings/arm/amlogic,scpi.txt       |  20 ++
->  Documentation/devicetree/bindings/arm/arm,scpi.txt |  24 +-
->  .../devicetree/bindings/arm/juno,scpi.txt          |  26 ++
->  drivers/firmware/arm_scpi.c                        | 276 ++++++++++++++++++---
->  4 files changed, 300 insertions(+), 46 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic,scpi.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/juno,scpi.txt
-> 
+Thie patchset is a very experiment patchset to support the System Suspend
+feature of the Amlogic Meson GX SoCs.
 
-Hi Sudeep,
+These SoCs implements system suspend using a non-standard PSCI CPU_SUSPEND
+parameter to enter system suspend.
+A small driver is added to properly fill the platform_suspend_ops and make
+to correct SMC call.
 
-Ok for me, I submitted the fix for the GXBB dtsi.
+In order to wake up from an alarm, these SoCs have a special memory mapped
+register where an alarm time delay in seconds is stored.
+In order to reuse the RTC wakealarm feature, implement a fake RTC device
+that uses the system time to calculate a delay to write to the register.
 
-Neil
+Note that this RFC is here to seek a better way to handle these platform
+specific features.
+
+Neil Armstrong (3):
+  ARM64: meson: Add Amlogic Meson GX PM Suspend
+  rtc: Add Amlogic Virtual Wake RTC
+  ARM64: dts: meson-gxbb: Add support for PM and Virtual RTC
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |   9 ++
+ drivers/firmware/meson/Kconfig              |   6 +
+ drivers/firmware/meson/Makefile             |   1 +
+ drivers/firmware/meson/meson_gx_pm.c        |  86 +++++++++++++++
+ drivers/rtc/Kconfig                         |  10 ++
+ drivers/rtc/Makefile                        |   1 +
+ drivers/rtc/rtc-meson-vrtc.c                | 164 ++++++++++++++++++++++++++++
+ 7 files changed, 277 insertions(+)
+ create mode 100644 drivers/firmware/meson/meson_gx_pm.c
+ create mode 100644 drivers/rtc/rtc-meson-vrtc.c
+
+-- 
+1.9.1
