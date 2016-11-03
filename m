@@ -1,75 +1,35 @@
 From: mark.rutland@arm.com (Mark Rutland)
-Date: Thu, 3 Nov 2016 15:36:48 +0000
-Subject: [RFC PATCH 2/3] rtc: Add Amlogic Virtual Wake RTC
-In-Reply-To: <1478183365-23708-3-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 3 Nov 2016 15:43:37 +0000
+Subject: [RFC PATCH 0/3] ARM64: meson-gxbb: Add support for system suspend
+In-Reply-To: <20161103152545.GB25852@remoulade>
 References: <1478183365-23708-1-git-send-email-narmstrong@baylibre.com>
- <1478183365-23708-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20161103153647.GD25852@remoulade>
+ <20161103152545.GB25852@remoulade>
+Message-ID: <20161103154336.GE25852@remoulade>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Nov 03, 2016 at 03:29:24PM +0100, Neil Armstrong wrote:
-> The Amlogic Meson GX SoCs uses a special register to store the
-> time in seconds to wakeup after a system suspend.
+Urrgh, I accidentally sent this when trying to save this to my drafts folder;
+sorry for the half-finished reply.
 
-Where does this register live, exactly? What IP block is it part of?
+On Thu, Nov 03, 2016 at 03:25:46PM +0000, Mark Rutland wrote:
+> On Thu, Nov 03, 2016 at 03:29:22PM +0100, Neil Armstrong wrote:
+> > Thie patchset is a very experiment patchset to support the System Suspend
+> > feature of the Amlogic Meson GX SoCs.
+> > 
+> > These SoCs implements system suspend using a non-standard PSCI CPU_SUSPEND
+> > parameter to enter system suspend.
 
-> In order to be able to reuse the RTC wakealarm feature, this
-> driver implements a fake RTC device which uses the system time
-> to deduce a suspend delay.
+> > Note that this RFC is here to seek a better way to handle these platform
+> > specific features.
 
-This sounds like an always-on oneshot timer device, not an RTC.
+One of the reasons that we want PSCI is that it is a standard interface across
+platforms. Generally, we do not want platform-specific interfaces.
 
-> +static int meson_vrtc_read_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	unsigned long local_time;
-> +	struct timeval time;
-> +
-> +	do_gettimeofday(&time);
-> +	local_time = time.tv_sec - (sys_tz.tz_minuteswest * 60);
-> +	rtc_time_to_tm(local_time, tm);
-> +
-> +	return 0;
-> +}
+In this case, PSCI 1.0+ has SYSTEM_SUSPEND for this purpose.
 
-... if this were a timer, you wouldn't need this hack.
-
-> +static int meson_vrtc_probe(struct platform_device *pdev)
-> +{
-> +	struct meson_vrtc_data *vrtc;
-> +	struct resource *res;
-> +
-> +	vrtc = devm_kzalloc(&pdev->dev, sizeof(*vrtc), GFP_KERNEL);
-> +	if (!vrtc)
-> +		return -ENOMEM;
-> +
-> +	vrtc->pdev = pdev;
-> +
-> +	/* Alarm registers */
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	vrtc->io_alarm = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(vrtc->io_alarm))
-> +		return PTR_ERR(vrtc->io_alarm);
-> +
-> +	device_init_wakeup(&pdev->dev, 1);
-> +
-> +	platform_set_drvdata(pdev, vrtc);
-> +
-> +	vrtc->rtc = devm_rtc_device_register(&pdev->dev, "meson-vrtc",
-> +			&meson_vrtc_ops, THIS_MODULE);
-> +	if (IS_ERR(vrtc->rtc))
-> +		return PTR_ERR(vrtc->rtc);
-> +
-> +	return 0;
-> +}
-
-I see that no interrupt is described. How exactly does this wake the system
-from suspend? Is there some interrupt managed by FW for this, for example?
-
-> +static const struct of_device_id meson_vrtc_dt_match[] = {
-> +	{ .compatible = "amlogic,meson-vrtc"},
-
-There was no binding documentation in this patch series.
+If PSCI is lacking functionality that vendors want, they should speak to ARM
+w.r.t. the PSCI specification -- it can be extended with new functionality as
+has already happened with PSCI 0.2 and PSCI 1.0.
 
 Thanks,
 Mark.
