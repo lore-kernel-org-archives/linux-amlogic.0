@@ -1,38 +1,25 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 3 Nov 2016 09:48:26 +0100
-Subject: [PATCH v4 6/8] dt-bindings: Add support for Amlogic GXBB SCPI
- Interface
-In-Reply-To: <20161102222050.GA32189@e106835-lin.cambridge.arm.com>
-References: <1475652814-30619-1-git-send-email-narmstrong@baylibre.com>
- <1475652814-30619-7-git-send-email-narmstrong@baylibre.com>
- <CAOesGMjY5_ibP7E9+DBf30nuV+2z2kecLv_ddnHjp3txuq+Kdg@mail.gmail.com>
- <20161102222050.GA32189@e106835-lin.cambridge.arm.com>
-Message-ID: <f9db6bdd-a494-0b5d-2081-e26f02b8ba78@baylibre.com>
+Date: Thu,  3 Nov 2016 10:11:22 +0100
+Subject: [PATCH 0/2] ARM64: meson-gxbb: SCPI Fixup
+Message-ID: <1478164284-24958-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/02/2016 11:20 PM, Sudeep Holla wrote:
-> On Sat, Oct 29, 2016 at 11:39:05AM -0700, Olof Johansson wrote:
-> 
-> I will rework the patches to address the concerns as I too did share same
-> concern.
-> 
-> 
-> Hi Neil,
-> 
-> You may need to rework the DTS files based on that, please be aware of
-> that and make the necessary changes.
+This patchset updates the GXBB dtsi and the ARM64 defconfig in order
+to make SCPI work following the Legacy SCPI rework from Sudeep Hola at [1].
 
+The rework introduced a generic "arm,legacy-scpi" compatible string.
+The second patch enables the necessary Platform MHU in defconfig.
 
-Hi,
+[1] http://lkml.kernel.org/r/1478148731-11712-1-git-send-email-sudeep.holla at arm.com
 
-I will post the necessary changes since kevin already applied the previous patches.
+Neil Armstrong (2):
+  ARM64: dts: meson-gxbb: Add generic legacy scpi compatible
+  ARM64: configs: Add Platform MHU in defconfig
 
-Thanks,
-Neil
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
+ arch/arm64/configs/defconfig                | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-> 
-> --
-> Regards,
-> Sudeep
-> 
+-- 
+1.9.1
