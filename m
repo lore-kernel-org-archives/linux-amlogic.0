@@ -1,72 +1,112 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 03 Nov 2016 17:57:56 +0100
-Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
-In-Reply-To: <20161031112524.4c4ee8f8@gmail.com>
-References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
- <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
- <CAFBinCC0HiEXx5mELztH6jYfUq2f1u0Tb+pSzAvwQSu9vYydGQ@mail.gmail.com>
- <20161031112524.4c4ee8f8@gmail.com>
-Message-ID: <1478192276.6632.34.camel@baylibre.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Thu, 3 Nov 2016 15:53:47 -0600
+Subject: [RFC PATCH 1/3] ARM64: meson: Add Amlogic Meson GX PM Suspend
+In-Reply-To: <1478183365-23708-2-git-send-email-narmstrong@baylibre.com>
+References: <1478183365-23708-1-git-send-email-narmstrong@baylibre.com>
+ <1478183365-23708-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20161103215347.GA23902@e106835-lin.cambridge.arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2016-10-31 at 11:25 +0100, Andr? Roth wrote:
-> Hi all,
-> ?
-> > 
-> > on my device this results in:
-> > [0xc9410018] = 0x2000000
-> > [0xc9410030] = 0x0
-> > [0xc941003c] = 0x0
-> > [0xc9411000] = 0x1100802
-> > [0xc9411018] = 0x2202006
-> > [0xc9411028] = 0x0
-> > 
-> > maybe someone else could try the command from above on his device
-> > (running the original Amlogic kernel).
+On Thu, Nov 03, 2016 at 03:29:23PM +0100, Neil Armstrong wrote:
+> The Amlogic Meson GX SoCs uses a non-standard argument to the
+> PSCI CPU_SUSPEND call to enter system suspend.
 > 
-> those registers have the same value on an original image from
-> hardkernel:?
+> Implement such call within platform_suspend_ops.
 > 
-> Linux odroid64 3.14.65-65 #1 SMP PREEMPT Sat May 28
-> 02:50:51 BRT 2016 aarch64 aarch64 aarch64 GNU/Linux
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/firmware/meson/Kconfig       |  6 +++
+>  drivers/firmware/meson/Makefile      |  1 +
+>  drivers/firmware/meson/meson_gx_pm.c | 86 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 93 insertions(+)
+>  create mode 100644 drivers/firmware/meson/meson_gx_pm.c
 > 
-> > 
-> > please also state if ethernet is working properly on the original
-> > kernel (and preferably which device/board this is).
-> 
-> yes, the ethernet works flawless in 100 and 1000 Mbit/s on the 3.14
-> kernel.
+> diff --git a/drivers/firmware/meson/Kconfig b/drivers/firmware/meson/Kconfig
+> index 170d7e8..5b3fea3 100644
+> --- a/drivers/firmware/meson/Kconfig
+> +++ b/drivers/firmware/meson/Kconfig
+> @@ -7,3 +7,9 @@ config MESON_SM
+>  	depends on ARM64_4K_PAGES
+>  	help
+>  	  Say y here to enable the Amlogic secure monitor driver
+> +
+> +config MESON_GX_PM
+> +	bool
+> +	default ARCH_MESON if ARM64
+> +	help
+> +	  Say y here to enable the Amlogic GX SoC Power Management
+> diff --git a/drivers/firmware/meson/Makefile b/drivers/firmware/meson/Makefile
+> index 9ab3884..b6e285d 100644
+> --- a/drivers/firmware/meson/Makefile
+> +++ b/drivers/firmware/meson/Makefile
+> @@ -1 +1,2 @@
+>  obj-$(CONFIG_MESON_SM) +=	meson_sm.o
+> +obj-$(CONFIG_MESON_GX_PM) +=	meson_gx_pm.o
+> diff --git a/drivers/firmware/meson/meson_gx_pm.c b/drivers/firmware/meson/meson_gx_pm.c
+> new file mode 100644
+> index 0000000..c104c2e
+> --- /dev/null
+> +++ b/drivers/firmware/meson/meson_gx_pm.c
+> @@ -0,0 +1,86 @@
+> +/*
+> + * Amlogic Meson GX Power Management
+> + *
+> + * Copyright (c) 2016 Baylibre, SAS.
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + *
+> + * This program is free software; you can redistribute it and/or modify it
+> + * under the terms of version 2 of the GNU General Public License as
+> + * published by the Free Software Foundation.
+> + *
+> + * This program is distributed in the hope that it will be useful, but WITHOUT
+> + * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+> + * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+> + * more details.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/suspend.h>
+> +#include <linux/arm-smccc.h>
+> +
+> +#include <uapi/linux/psci.h>
+> +
+> +#include <asm/suspend.h>
+> +
+> +/*
+> + * The Amlogic GX SoCs uses a special argument value to the
+> + * PSCI CPU_SUSPEND method to enter SUSPEND_MEM.
+> + */
+> +
+> +#define MESON_SUSPEND_PARAM	0x0010000
+> +#define PSCI_FN_NATIVE(version, name)	PSCI_##version##_FN64_##name
+> +
+> +static int meson_gx_suspend_finish(unsigned long arg)
+> +{
+> +	struct arm_smccc_res res;
+> +
+> +	arm_smccc_smc(PSCI_FN_NATIVE(0_2, CPU_SUSPEND), arg,
+> +		      virt_to_phys(cpu_resume), 0, 0, 0, 0, 0, &res);
+> +
+> +	return res.a0;
+> +}
+> +
+> +static int meson_gx_suspend_enter(suspend_state_t state)
+> +{
+> +	switch (state) {
+> +	case PM_SUSPEND_MEM:
+> +		return cpu_suspend(MESON_SUSPEND_PARAM,
+> +				   meson_gx_suspend_finish);
 
-Andre, the 3.14 kernel you are talking, is it this one ? :?
-https://github.com/hardkernel/linux/tree/odroidc2-3.14.y
+Short response to this patch: NAK
 
-Because in drivers/net/phy/realtek.c, they disable EEE, but
-also?1000Base-T Full Duplex advertisement ?
+To be constructive, since this system lacks PSCI system suspend, it just
+can't support. Alternatively, this can be normal cpuidle state and you
+can use suspend to idle to achieve the same and you need not hack/work
+around using platform specific driver.
 
-+	/* disable 1000m adv*/
-+	val = phy_read(phydev, 0x9);
-+	phy_write(phydev, 0x9, val&(~(1<<9)));
-
-If this is the kernel you are running, you should not be able to have
-ethernet@1000MB/s ? Or is it in half duplex mode ?
-
-> 
-> I can now confirm that both 100 and 1000 Mbit/s do not work properly
-> on the 4.8/integ branch. the network connection is interrupted after
-> some outbound traffic. it can be recovered by running a ifdown/ifup
-> which restarts dhclient, which I think is able to somehow reset the
-> interface.?
-> 
-> Anything I can help to debug the issue further ?
-> 
-> Regards,
-> 
-> ?Andr?
-> ?
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+--
+Regards,
+Sudeep
