@@ -1,23 +1,23 @@
-From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Fri, 4 Nov 2016 09:20:35 -0700
-Subject: [PATCH net-next 1/2] net: mdio-mux-mmioreg: Add support for 16bit
- and 32bit register sizes
-In-Reply-To: <1478274683-1503-2-git-send-email-narmstrong@baylibre.com>
-References: <1478274683-1503-1-git-send-email-narmstrong@baylibre.com>
- <1478274683-1503-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <027827e7-4abc-ec2a-8af7-a54dc8ee4986@gmail.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Fri, 4 Nov 2016 23:07:06 +0100
+Subject: [PATCH] pinctrl: meson: Add GXL pinctrl definitions
+In-Reply-To: <1477931531-27120-1-git-send-email-narmstrong@baylibre.com>
+References: <1477931531-27120-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CACRpkday59O7BoEyPOF2ZmUkK=DX=rCMzG7kHZDWH=VOVcy8qg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On Mon, Oct 31, 2016 at 5:32 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-
-On 11/04/2016 08:51 AM, Neil Armstrong wrote:
-> In order to support PHY switching on Amlogic GXL SoCs, add support for
-> 16bit and 32bit registers sizes.
-> 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Add support for the Amlogic Meson GXL SoC, this is a partially complete
+> definition only based on the Amlogic Vendor tree.
+>
+> This definition differs a lot from the GXBB and needs a separate entry.
+>
+> Acked-by: Rob Herring <robh@kernel.org>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+Patch applied with Kevin's ACK.
+
+Yours,
+Linus Walleij
