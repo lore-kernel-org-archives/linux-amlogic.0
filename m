@@ -1,59 +1,52 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 4 Nov 2016 11:55:01 +0100
-Subject: [RFC PATCH v2 0/5] ARM64: Add Internal PHY support for Meson GXL
-In-Reply-To: <1477932987-27871-1-git-send-email-narmstrong@baylibre.com>
-References: <1477932987-27871-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <19618350-9a4b-2b4e-6853-720101e39932@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Fri, 4 Nov 2016 15:40:53 +0100
+Subject: [PATCH 4/9] pinctrl: meson: allow gpio to request irq
+In-Reply-To: <7hk2cvrtxt.fsf@baylibre.com>
+References: <1476871709-8359-1-git-send-email-jbrunet@baylibre.com>
+ <1476871709-8359-5-git-send-email-jbrunet@baylibre.com>
+ <CACRpkdaCZPS45t3eTcjJExOu=YT_YkjNkdpg09jQqvLQOJH=Qw@mail.gmail.com>
+ <1477040798.15560.96.camel@baylibre.com>
+ <CACRpkdYUVXny57AC9rKX3VRAyooEk_2XLvqe9jOuT3rOaE75rg@mail.gmail.com>
+ <ec7c6cc5-cf9a-9c75-4b07-e337064c7d6e@arm.com>
+ <1477400900.2482.51.camel@baylibre.com>
+ <dee26f0b-e175-f8a0-2b73-08e8e324841c@arm.com>
+ <1477405332.2482.87.camel@baylibre.com>
+ <bbc268c8-35c3-206a-46b1-62cebef174b2@arm.com>
+ <1477409478.2482.113.camel@baylibre.com>
+ <CACRpkdbGo4BJOdzkgBrE9jT-rKodd4zssCnOtOuGS+OqV-Uc6Q@mail.gmail.com>
+ <1477491766.2482.159.camel@baylibre.com>
+ <CACRpkdYqoU0foW1izcZapbgUm+NO4quz9AZZBmts4841BRcigA@mail.gmail.com>
+ <7hk2cvrtxt.fsf@baylibre.com>
+Message-ID: <CACRpkdbXFv8pnwbajTruUU66JhgfYy=3iG6dex=XpNNOEt7Pqw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/31/2016 05:56 PM, Neil Armstrong wrote:
-> The Amlogic Meson GXL SoCs have an internal RMII PHY that is muxed with the
-> external RGMII pins.
-> 
-> In order to support switching between the two PHYs links, extended registers
-> size for mdio-mux-mmioreg must be added.
-> 
-> Finally, the internal PHY is added in the GXL dtsi and support for each
-> board is added in intermediate board family dtsi or final dts.
-> 
-> This patchset depends on ARM64 dts patch at [1]
-> 
-> Changes since original RFC patchset at : [2]
->  - Remove meson8b experimental phy switching
->  - Switch to mdio-mux-mmioreg with extennded size support
->  - Add internal phy support for S905x and p231
->  - Add external PHY support for p230
-> 
-> [1] http://lkml.kernel.org/r/1477932286-27482-1-git-send-email-narmstrong at baylibre.com
-> [2] http://lkml.kernel.org/r/1477060838-14164-1-git-send-email-narmstrong at baylibre.com
-> 
-> Neil Armstrong (5):
->   net: mdio-mux-mmioreg: Add support for 16bit and 32bit register sizes
->   net: phy: Add Meson GXL Internal PHY driver
->   ARM64: dts: meson-gxl: Add ethernet nodes with internal PHY
->   ARM64: dts: meson-gxl-p23x: Enable ethernet
->   ARM64: dts: meson-gxl-s905x: Enable internal ethernet PHY
-> 
->  .../devicetree/bindings/net/mdio-mux-mmioreg.txt   |  4 +-
->  .../boot/dts/amlogic/meson-gxl-s905d-p230.dts      | 16 +++++
->  .../boot/dts/amlogic/meson-gxl-s905d-p231.dts      |  6 ++
->  .../boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi     |  4 ++
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi   |  6 ++
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 45 ++++++++++++
->  drivers/net/phy/Kconfig                            |  5 ++
->  drivers/net/phy/Makefile                           |  1 +
->  drivers/net/phy/mdio-mux-mmioreg.c                 | 60 ++++++++++++----
->  drivers/net/phy/meson-gxl.c                        | 81 ++++++++++++++++++++++
->  10 files changed, 213 insertions(+), 15 deletions(-)
->  create mode 100644 drivers/net/phy/meson-gxl.c
-> 
+On Wed, Oct 26, 2016 at 5:50 PM, Kevin Hilman <khilman@baylibre.com> wrote:
 
-Hi Florian, Andrew, Sergei,
+>> Yes they are all wrong. They should all be using irq_find_mapping().
+>
+> So, dumb question from someone trying (but having a hard time) to follow
+> and understand the rationale...
+>
+> If it's wrong enough to completely reject, why are changes still being
+> merged that are doing it so wrong?  (e.g. like this one[1], just merged
+> for v4.9)
 
-Thanks for reviews,
+It's a bug.
 
-Since the meson-gxl dtsi has a lot of changes pending, the patches 3, 4 & 5 will be sent in a separate patchset,
-and patches 1 & 2 will be send to netdev -next.
+It's that problem that Wolfram brought up in a recent lecture
+about maintainer scaling: if noone but the subsystem maintainer
+reviews the code, things like this will happen.
 
-Neil
+I need more review...
+
+> [1] 0eb9f683336d pinctrl: Add IRQ support to STM32 gpios
+> https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/drivers/pinctrl/stm32/pinctrl-stm32.c?id=0eb9f683336d7eb99a3b75987620417c574ffb57
+
+Alexandre, Maxime: can you please make a patch for the STM32
+driver that remove the semantic dependence for .to_irq() to be called
+before an interrupt can be used? It should be possible to use
+the irqs directly from the irqchip.
+
+Yours,
+Linus Walleij
