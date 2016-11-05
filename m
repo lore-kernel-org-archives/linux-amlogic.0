@@ -1,23 +1,25 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Fri, 4 Nov 2016 23:07:06 +0100
-Subject: [PATCH] pinctrl: meson: Add GXL pinctrl definitions
-In-Reply-To: <1477931531-27120-1-git-send-email-narmstrong@baylibre.com>
-References: <1477931531-27120-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CACRpkday59O7BoEyPOF2ZmUkK=DX=rCMzG7kHZDWH=VOVcy8qg@mail.gmail.com>
+From: andrew@lunn.ch (Andrew Lunn)
+Date: Sat, 5 Nov 2016 11:39:13 +0100
+Subject: [PATCH net-next 2/2] net: phy: Add Meson GXL Internal PHY driver
+In-Reply-To: <1478274683-1503-3-git-send-email-narmstrong@baylibre.com>
+References: <1478274683-1503-1-git-send-email-narmstrong@baylibre.com>
+ <1478274683-1503-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20161105103913.GB24961@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 31, 2016 at 5:32 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-
-> Add support for the Amlogic Meson GXL SoC, this is a partially complete
-> definition only based on the Amlogic Vendor tree.
->
-> This definition differs a lot from the GXBB and needs a separate entry.
->
-> Acked-by: Rob Herring <robh@kernel.org>
+On Fri, Nov 04, 2016 at 04:51:23PM +0100, Neil Armstrong wrote:
+> Add driver for the Internal RMII PHY found in the Amlogic Meson GXL SoCs.
+> 
+> This PHY seems to only implement some standard registers and need some
+> workarounds to provide autoneg values from vendor registers.
+> 
+> Some magic values are currently used to configure the PHY, and this a
+> temporary setup until clarification about these registers names and
+> registers fields are provided by Amlogic.
+> 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Patch applied with Kevin's ACK.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Yours,
-Linus Walleij
+    Andrew
