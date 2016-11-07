@@ -1,80 +1,94 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon,  7 Nov 2016 11:43:55 +0100
-Subject: [PATCH 1/3] ARM64: dts: meson-gxl: Add ethernet nodes with internal
- PHY
-In-Reply-To: <20161107104357.24428-1-narmstrong@baylibre.com>
-References: <20161107104357.24428-1-narmstrong@baylibre.com>
-Message-ID: <20161107104357.24428-2-narmstrong@baylibre.com>
+From: peppe.cavallaro@st.com (Giuseppe CAVALLARO)
+Date: Mon, 7 Nov 2016 11:59:17 +0100
+Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
+In-Reply-To: <1478192276.6632.34.camel@baylibre.com>
+References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
+ <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
+ <CAFBinCC0HiEXx5mELztH6jYfUq2f1u0Tb+pSzAvwQSu9vYydGQ@mail.gmail.com>
+ <20161031112524.4c4ee8f8@gmail.com> <1478192276.6632.34.camel@baylibre.com>
+Message-ID: <3c21b0a4-43c9-0257-f8f2-c8e02cf94fbf@st.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add Ethernet node with Internal PHY selection for the Amlogic GXL SoCs
+Hi Jerome
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 43 ++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+We met, on some platform, problems that, in a glance,
+look similar to yours and those were related to EEE and
+LPI interrupts.
+We had a subset of patches to disable EEE but, indeed,
+if you disable from PHY, the STMMAC will never act
+the protocol. We can provide you these patches... I will
+ask Alex to decide how to proceed.
+There is a issue on lpi timer and I have another patch to
+share but I am not sure this can help.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index d1bf381..3af54dc 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -49,6 +49,22 @@
- 	compatible = "amlogic,meson-gxl";
- };
- 
-+&ethmac {
-+	reg = <0x0 0xc9410000 0x0 0x10000
-+	       0x0 0xc8834540 0x0 0x4>;
-+
-+	clocks = <&clkc CLKID_ETH>,
-+		 <&clkc CLKID_FCLK_DIV2>,
-+		 <&clkc CLKID_MPLL2>;
-+	clock-names = "stmmaceth", "clkin0", "clkin1";
-+
-+	mdio0: mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+	};
-+};
-+
- &aobus {
- 	pinctrl_aobus: pinctrl at 14 {
- 		compatible = "amlogic,meson-gxl-aobus-pinctrl";
-@@ -214,6 +230,33 @@
- 			};
- 		};
- 	};
-+
-+	eth-phy-mux {
-+		compatible = "mdio-mux-mmioreg", "mdio-mux";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x0 0x55c 0x0 0x4>;
-+		mux-mask = <0xffffffff>;
-+		mdio-parent-bus = <&mdio0>;
-+
-+		internal_mdio: mdio at e40908ff {
-+			reg = <0xe40908ff>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			internal_phy: ethernet-phy at 8 {
-+				compatible = "ethernet-phy-id0181.4400", "ethernet-phy-ieee802.3-c22";
-+				reg = <8>;
-+				max-speed = <100>;
-+			};
-+		};
-+
-+		external_mdio: mdio at 2009087f {
-+			reg = <0x2009087f>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
- };
- 
- &hiubus {
--- 
-2.7.0
+In sum, if EEE is a suspected problem we can share and review
+some patches.
+In the meantime, I will read again the thread just to see if
+there is something I am missing.
+
+Regards
+Peppe
+
+On 11/3/2016 5:57 PM, Jerome Brunet wrote:
+> On Mon, 2016-10-31 at 11:25 +0100, Andr? Roth wrote:
+>> Hi all,
+>>
+>>>
+>>> on my device this results in:
+>>> [0xc9410018] = 0x2000000
+>>> [0xc9410030] = 0x0
+>>> [0xc941003c] = 0x0
+>>> [0xc9411000] = 0x1100802
+>>> [0xc9411018] = 0x2202006
+>>> [0xc9411028] = 0x0
+>>>
+>>> maybe someone else could try the command from above on his device
+>>> (running the original Amlogic kernel).
+>>
+>> those registers have the same value on an original image from
+>> hardkernel:
+>>
+>> Linux odroid64 3.14.65-65 #1 SMP PREEMPT Sat May 28
+>> 02:50:51 BRT 2016 aarch64 aarch64 aarch64 GNU/Linux
+>>
+>>>
+>>> please also state if ethernet is working properly on the original
+>>> kernel (and preferably which device/board this is).
+>>
+>> yes, the ethernet works flawless in 100 and 1000 Mbit/s on the 3.14
+>> kernel.
+>
+> Andre, the 3.14 kernel you are talking, is it this one ? :
+> https://github.com/hardkernel/linux/tree/odroidc2-3.14.y
+>
+> Because in drivers/net/phy/realtek.c, they disable EEE, but
+> also 1000Base-T Full Duplex advertisement ?
+>
+> +	/* disable 1000m adv*/
+> +	val = phy_read(phydev, 0x9);
+> +	phy_write(phydev, 0x9, val&(~(1<<9)));
+>
+> If this is the kernel you are running, you should not be able to have
+> ethernet at 1000MB/s ? Or is it in half duplex mode ?
+>
+>>
+>> I can now confirm that both 100 and 1000 Mbit/s do not work properly
+>> on the 4.8/integ branch. the network connection is interrupted after
+>> some outbound traffic. it can be recovered by running a ifdown/ifup
+>> which restarts dhclient, which I think is able to somehow reset the
+>> interface.
+>>
+>> Anything I can help to debug the issue further ?
+>>
+>> Regards,
+>>
+>>  Andr?
+>>
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic at lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>
