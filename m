@@ -1,94 +1,42 @@
-From: peppe.cavallaro@st.com (Giuseppe CAVALLARO)
-Date: Mon, 7 Nov 2016 11:59:17 +0100
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 7 Nov 2016 18:37:52 +0100
 Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
-In-Reply-To: <1478192276.6632.34.camel@baylibre.com>
+In-Reply-To: <3c21b0a4-43c9-0257-f8f2-c8e02cf94fbf@st.com>
 References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
  <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
  <CAFBinCC0HiEXx5mELztH6jYfUq2f1u0Tb+pSzAvwQSu9vYydGQ@mail.gmail.com>
  <20161031112524.4c4ee8f8@gmail.com> <1478192276.6632.34.camel@baylibre.com>
-Message-ID: <3c21b0a4-43c9-0257-f8f2-c8e02cf94fbf@st.com>
+ <3c21b0a4-43c9-0257-f8f2-c8e02cf94fbf@st.com>
+Message-ID: <CAFBinCDq0neyidQBO13F4Yz-GZPorGyRQ2t5Vb-PL0Ls582+4Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome
+Hi Peppe,
 
-We met, on some platform, problems that, in a glance,
-look similar to yours and those were related to EEE and
-LPI interrupts.
-We had a subset of patches to disable EEE but, indeed,
-if you disable from PHY, the STMMAC will never act
-the protocol. We can provide you these patches... I will
-ask Alex to decide how to proceed.
-There is a issue on lpi timer and I have another patch to
-share but I am not sure this can help.
+On Mon, Nov 7, 2016 at 11:59 AM, Giuseppe CAVALLARO
+<peppe.cavallaro@st.com> wrote:
+> In the meantime, I will read again the thread just to see if
+> there is something I am missing.
+if you are re-reading this thread: please note that there are two
+devices in discussion here!
+Both are using the Amlogic S905 (GXBB) SoC and both are experiencing
+the same issue (Gbit TX issues, RX with Gbit speeds and RX/TX with
+100Mbit speed are NOT affected):
+- Odroid-C2 (used by Jerome and Andr? Roth)
+- Tronsmart Vega S95 Meta (my device)
 
-In sum, if EEE is a suspected problem we can share and review
-some patches.
-In the meantime, I will read again the thread just to see if
-there is something I am missing.
+The (Gbit TX) problem seems to be gone on the Odroid-C2 with Jerome's
+patch which disables EEE in drivers/net/phy/realtek.c (at least in his
+tests, I don't have that device so I can't verify).
+The same problem still appears on my Tronsmart Vega S95 Meta even with
+the patched PHY driver.
 
-Regards
-Peppe
+Unfortunately I don't have a second device to rule out that my
+Tronsmart Vega S95 Meta could be broken (not unlikely, I get DDR
+errors from time to time in u-boot). Maybe Andreas Faerber can test
+ethernet with and without Jerome's patch on one of his Tronsmart
+devices.
 
-On 11/3/2016 5:57 PM, Jerome Brunet wrote:
-> On Mon, 2016-10-31 at 11:25 +0100, Andr? Roth wrote:
->> Hi all,
->>
->>>
->>> on my device this results in:
->>> [0xc9410018] = 0x2000000
->>> [0xc9410030] = 0x0
->>> [0xc941003c] = 0x0
->>> [0xc9411000] = 0x1100802
->>> [0xc9411018] = 0x2202006
->>> [0xc9411028] = 0x0
->>>
->>> maybe someone else could try the command from above on his device
->>> (running the original Amlogic kernel).
->>
->> those registers have the same value on an original image from
->> hardkernel:
->>
->> Linux odroid64 3.14.65-65 #1 SMP PREEMPT Sat May 28
->> 02:50:51 BRT 2016 aarch64 aarch64 aarch64 GNU/Linux
->>
->>>
->>> please also state if ethernet is working properly on the original
->>> kernel (and preferably which device/board this is).
->>
->> yes, the ethernet works flawless in 100 and 1000 Mbit/s on the 3.14
->> kernel.
->
-> Andre, the 3.14 kernel you are talking, is it this one ? :
-> https://github.com/hardkernel/linux/tree/odroidc2-3.14.y
->
-> Because in drivers/net/phy/realtek.c, they disable EEE, but
-> also 1000Base-T Full Duplex advertisement ?
->
-> +	/* disable 1000m adv*/
-> +	val = phy_read(phydev, 0x9);
-> +	phy_write(phydev, 0x9, val&(~(1<<9)));
->
-> If this is the kernel you are running, you should not be able to have
-> ethernet at 1000MB/s ? Or is it in half duplex mode ?
->
->>
->> I can now confirm that both 100 and 1000 Mbit/s do not work properly
->> on the 4.8/integ branch. the network connection is interrupted after
->> some outbound traffic. it can be recovered by running a ifdown/ifup
->> which restarts dhclient, which I think is able to somehow reset the
->> interface.
->>
->> Anything I can help to debug the issue further ?
->>
->> Regards,
->>
->>  Andr?
->>
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic at lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->
+
+Regards,
+Martin
