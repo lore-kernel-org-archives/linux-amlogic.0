@@ -1,50 +1,24 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Tue, 8 Nov 2016 14:32:11 +0000
-Subject: [PATCH v5 6/8] Documentation: bindings: add compatible specific
- to legacy SCPI protocol
-In-Reply-To: <1478148731-11712-7-git-send-email-sudeep.holla@arm.com>
+From: linux@armlinux.org.uk (Russell King - ARM Linux)
+Date: Tue, 8 Nov 2016 14:51:18 +0000
+Subject: [PATCH 0/8] firmware: arm_scpi: add support for legacy SCPI
+ protocol
+In-Reply-To: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
 References: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
- <1478148731-11712-7-git-send-email-sudeep.holla@arm.com>
-Message-ID: <7870a99c-c0a7-a39e-62c9-de1139d03846@arm.com>
+Message-ID: <20161108145118.GR1041@n2100.armlinux.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Rob,
+On Wed, Nov 02, 2016 at 10:52:03PM -0600, Sudeep Holla wrote:
+> This is minor rework of the series[1] from Neil Armstrong's to support
+> legacy SCPI protocol to make DT bindings more generic and move out all
+> the platform specific bindings out of the generic binding document.
 
-On 03/11/16 04:52, Sudeep Holla wrote:
-> This patch adds specific compatible to support legacy SCPI protocol.
->
+Is this what would be in my HBI0282B Juno?
 
-Sorry for messing it up before, I think this version is much better.
-
-Only this patch introduces new compatible, while 5,7,8/8 are just
-reorganization to move the platform specific stuff out of the generic
-SCPI bindings. It would be good if you can have a quick look and
-provide ack if you are happy with these patches.
+(Note: I only have the original firmware on the board, as the Linaro
+firmware drops are completely broken for it.)
 
 -- 
-Regards,
-Sudeep
-
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  Documentation/devicetree/bindings/arm/arm,scpi.txt | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-> index d1882c4540d0..ebd03fc93135 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
-> +++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
-> @@ -7,7 +7,9 @@ by Linux to initiate various system control and power operations.
->
->  Required properties:
->
-> -- compatible : should be "arm,scpi"
-> +- compatible : should be
-> +	* "arm,scpi" : For implementations complying to SCPI v1.0 or above
-> +	* "arm,legacy-scpi" : For implementations complying pre SCPI v1.0
->  - mboxes: List of phandle and mailbox channel specifiers
->  	  All the channels reserved by remote SCP firmware for use by
->  	  SCPI message protocol should be specified in any order
->
+RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line: currently at 9.6Mbps down 400kbps up
+according to speedtest.net.
