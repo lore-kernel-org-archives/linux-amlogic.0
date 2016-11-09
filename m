@@ -1,36 +1,49 @@
-From: davem@davemloft.net (David Miller)
-Date: Wed, 09 Nov 2016 12:51:24 -0500 (EST)
-Subject: [PATCH net-next 0/2] ARM64: Add Internal PHY support for Meson GXL
-In-Reply-To: <1478274683-1503-1-git-send-email-narmstrong@baylibre.com>
-References: <1478274683-1503-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20161109.125124.589689108919427759.davem@davemloft.net>
+From: robh@kernel.org (Rob Herring)
+Date: Wed, 9 Nov 2016 12:26:10 -0600
+Subject: [RFC PATCH v2 1/5] net: mdio-mux-mmioreg: Add support for 16bit
+ and 32bit register sizes
+In-Reply-To: <1477932987-27871-2-git-send-email-narmstrong@baylibre.com>
+References: <1477932987-27871-1-git-send-email-narmstrong@baylibre.com>
+ <1477932987-27871-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20161109182610.thzm5bxfwusi4kjk@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
-Date: Fri,  4 Nov 2016 16:51:21 +0100
+On Mon, Oct 31, 2016 at 05:56:23PM +0100, Neil Armstrong wrote:
+> In order to support PHY switching on Amlogic GXL SoCs, add support for
+> 16bit and 32bit registers sizes.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../devicetree/bindings/net/mdio-mux-mmioreg.txt   |  4 +-
+>  drivers/net/phy/mdio-mux-mmioreg.c                 | 60 +++++++++++++++++-----
+>  2 files changed, 49 insertions(+), 15 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt b/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
+> index 8516929..065e8bd 100644
+> --- a/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
+> +++ b/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
+> @@ -3,7 +3,7 @@ Properties for an MDIO bus multiplexer controlled by a memory-mapped device
+>  This is a special case of a MDIO bus multiplexer.  A memory-mapped device,
+>  like an FPGA, is used to control which child bus is connected.  The mdio-mux
+>  node must be a child of the memory-mapped device.  The driver currently only
 
-> The Amlogic Meson GXL SoCs have an internal RMII PHY that is muxed with the
-> external RGMII pins.
-> 
-> In order to support switching between the two PHYs links, extended registers
-> size for mdio-mux-mmioreg must be added.
-> 
-> The DT related patches submitted as RFC in [3] will be sent in a separate
-> patchset due to multiple patchsets and DTSI migrations.
-> 
-> Changes since v2 RFC patchset at : [3]
->  - Change phy Kconfig/Makefile alphabetic order
->  - GXL dtsi cleanup
-> 
-> Changes since original RFC patchset at : [2]
->  - Remove meson8b experimental phy switching
->  - Switch to mdio-mux-mmioreg with extennded size support
->  - Add internal phy support for S905x and p231
->  - Add external PHY support for p230
-> 
-> [1] http://lkml.kernel.org/r/1477932286-27482-1-git-send-email-narmstrong at baylibre.com
-> [2] http://lkml.kernel.org/r/1477060838-14164-1-git-send-email-narmstrong at baylibre.com
-> [3] http://lkml.kernel.org/r/1477932987-27871-1-git-send-email-narmstrong at baylibre.com
+As you're touching this sentence, this describes the binding, not a 
+driver. With that,
 
-Series applied, thanks.
+Acked-by: Rob Herring <robh@kernel.org>
+
+> -supports devices with eight-bit registers.
+> +supports devices with 8, 16 or 32-bit registers.
+>  
+>  Required properties in addition to the generic multiplexer properties:
+>  
+> @@ -11,7 +11,7 @@ Required properties in addition to the generic multiplexer properties:
+>  
+>  - reg : integer, contains the offset of the register that controls the bus
+>  	multiplexer.  The size field in the 'reg' property is the size of
+> -	register, and must therefore be 1.
+> +	register, and must therefore be 1, 2, or 4.
+>  
+>  - mux-mask : integer, contains an eight-bit mask that specifies which
+>  	bits in the register control the actual bus multiplexer.  The
