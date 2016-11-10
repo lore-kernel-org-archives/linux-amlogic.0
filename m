@@ -1,24 +1,54 @@
-From: robh@kernel.org (Rob Herring)
-Date: Wed, 9 Nov 2016 19:23:44 -0600
-Subject: [PATCH v5 7/8] Documentation: bindings: Add support for Amlogic
- GXBB SCPI protocol
-In-Reply-To: <1478148731-11712-8-git-send-email-sudeep.holla@arm.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Thu, 10 Nov 2016 10:26:50 +0000
+Subject: [PATCH v5 6/8] Documentation: bindings: add compatible specific
+ to legacy SCPI protocol
+In-Reply-To: <20161110012249.ed56ik6kdffoikym@rob-hp-laptop>
 References: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
- <1478148731-11712-8-git-send-email-sudeep.holla@arm.com>
-Message-ID: <20161110012344.weonyaiz3tlt4e2b@rob-hp-laptop>
+ <1478148731-11712-7-git-send-email-sudeep.holla@arm.com>
+ <20161110012249.ed56ik6kdffoikym@rob-hp-laptop>
+Message-ID: <14e563ae-36c5-4bf9-0d51-3b07830de3db@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Nov 02, 2016 at 10:52:10PM -0600, Sudeep Holla wrote:
-> From: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> (decoupled from the generic scpi binding)
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> ---
->  .../devicetree/bindings/arm/amlogic,scpi.txt         | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic,scpi.txt
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+On 10/11/16 01:22, Rob Herring wrote:
+> On Wed, Nov 02, 2016 at 10:52:09PM -0600, Sudeep Holla wrote:
+>> This patch adds specific compatible to support legacy SCPI protocol.
+>>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/arm,scpi.txt | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+>> index d1882c4540d0..ebd03fc93135 100644
+>> --- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
+>> +++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+>> @@ -7,7 +7,9 @@ by Linux to initiate various system control and power operations.
+>>
+>>  Required properties:
+>>
+>> -- compatible : should be "arm,scpi"
+>> +- compatible : should be
+>> +	* "arm,scpi" : For implementations complying to SCPI v1.0 or above
+>> +	* "arm,legacy-scpi" : For implementations complying pre SCPI v1.0
+>
+> I'd prefer that we explicitly enumerate the old versions. Are there
+> many?
+>
+
+I understand your concern, but this legacy SCPI protocol was not
+officially released. It was just WIP which vendors picked up from very
+early releases. Since they are not numbered, it's hard to have specific
+compatibles with different versions until v1.0. That's one of the reason
+to retain platform specific compatible so that we can add any quirks
+based on them if needed.
+
+I will probably add these information in the commit log so that it's
+clear why we can't do version based compatible.
+
+-- 
+Regards,
+Sudeep
