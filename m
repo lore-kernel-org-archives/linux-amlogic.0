@@ -1,49 +1,28 @@
 From: robh@kernel.org (Rob Herring)
-Date: Wed, 9 Nov 2016 12:26:10 -0600
-Subject: [RFC PATCH v2 1/5] net: mdio-mux-mmioreg: Add support for 16bit
- and 32bit register sizes
-In-Reply-To: <1477932987-27871-2-git-send-email-narmstrong@baylibre.com>
-References: <1477932987-27871-1-git-send-email-narmstrong@baylibre.com>
- <1477932987-27871-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20161109182610.thzm5bxfwusi4kjk@rob-hp-laptop>
+Date: Wed, 9 Nov 2016 19:18:27 -0600
+Subject: [PATCH v5 5/8] Documentation: bindings: decouple juno specific
+ details from generic binding
+In-Reply-To: <1478148731-11712-6-git-send-email-sudeep.holla@arm.com>
+References: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
+ <1478148731-11712-6-git-send-email-sudeep.holla@arm.com>
+Message-ID: <20161110011827.pzbiiv47osty4pzf@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 31, 2016 at 05:56:23PM +0100, Neil Armstrong wrote:
-> In order to support PHY switching on Amlogic GXL SoCs, add support for
-> 16bit and 32bit registers sizes.
+On Wed, Nov 02, 2016 at 10:52:08PM -0600, Sudeep Holla wrote:
+> Since SCPI is a generic protocol and the bindings are intended to be
+> generic, we need to decouple all the platform specific binding details
+> out of the generic bindings.
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> This patch moves are the Juno platform specific details into a separate
+> binding document.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > ---
->  .../devicetree/bindings/net/mdio-mux-mmioreg.txt   |  4 +-
->  drivers/net/phy/mdio-mux-mmioreg.c                 | 60 +++++++++++++++++-----
->  2 files changed, 49 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt b/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
-> index 8516929..065e8bd 100644
-> --- a/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
-> +++ b/Documentation/devicetree/bindings/net/mdio-mux-mmioreg.txt
-> @@ -3,7 +3,7 @@ Properties for an MDIO bus multiplexer controlled by a memory-mapped device
->  This is a special case of a MDIO bus multiplexer.  A memory-mapped device,
->  like an FPGA, is used to control which child bus is connected.  The mdio-mux
->  node must be a child of the memory-mapped device.  The driver currently only
-
-As you're touching this sentence, this describes the binding, not a 
-driver. With that,
+>  Documentation/devicetree/bindings/arm/arm,scpi.txt | 20 ++++++-----------
+>  .../devicetree/bindings/arm/juno,scpi.txt          | 26 ++++++++++++++++++++++
+>  2 files changed, 33 insertions(+), 13 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/juno,scpi.txt
 
 Acked-by: Rob Herring <robh@kernel.org>
-
-> -supports devices with eight-bit registers.
-> +supports devices with 8, 16 or 32-bit registers.
->  
->  Required properties in addition to the generic multiplexer properties:
->  
-> @@ -11,7 +11,7 @@ Required properties in addition to the generic multiplexer properties:
->  
->  - reg : integer, contains the offset of the register that controls the bus
->  	multiplexer.  The size field in the 'reg' property is the size of
-> -	register, and must therefore be 1.
-> +	register, and must therefore be 1, 2, or 4.
->  
->  - mux-mask : integer, contains an eight-bit mask that specifies which
->  	bits in the register control the actual bus multiplexer.  The
