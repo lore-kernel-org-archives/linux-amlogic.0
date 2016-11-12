@@ -1,39 +1,37 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 12 Nov 2016 14:13:04 +0100
-Subject: [PATCH 2/3] phy: meson8b-usb2: request a shared reset line
+Date: Sat, 12 Nov 2016 14:13:05 +0100
+Subject: [PATCH 3/3] ARM64: dts: meson-gxbb: add the USB reset also to the
+ second USB PHY
 In-Reply-To: <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
 References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
  <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161112131305.26088-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20161112131305.26088-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Both PHYs are sharing one reset line. With recent improvements to the
-reset framework we can now also use reset_control_reset with shared
-resets.
-This allows us to drop some workarounds where the reset was only
-specified for one PHY but not the other, to make sure that the reset it
-only executed once (as the reset framework was not able to use
-reset_control_reset with shared reset lines).
+When the USB PHY driver was introduced the reset framework did not
+have support for triggering a reset pulse for shared resets. On GXBB
+however there is only one reset line for both PHYs (meaning we have a
+shared reset line). With the latest changes to the reset framework and
+the corresponding updates to the phy-meson8b-usb2 driver we can now pass
+the reset to the second PHY as well.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/phy/phy-meson8b-usb2.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
-index 73bf632..f1ee96a 100644
---- a/drivers/phy/phy-meson8b-usb2.c
-+++ b/drivers/phy/phy-meson8b-usb2.c
-@@ -237,8 +237,7 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->clk_usb))
- 		return PTR_ERR(priv->clk_usb);
- 
--	priv->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
--								NULL);
-+	priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
- 	if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
- 		return PTR_ERR(priv->reset);
- 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 719bf50..a548663 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -87,6 +87,7 @@
+ 			compatible = "amlogic,meson-gxbb-usb2-phy";
+ 			#phy-cells = <0>;
+ 			reg = <0x0 0xc0000020 0x0 0x20>;
++			resets = <&reset RESET_USB_OTG>;
+ 			clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1>;
+ 			clock-names = "usb_general", "usb";
+ 			status = "disabled";
 -- 
 2.10.2
