@@ -1,64 +1,135 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 12 Nov 2016 14:13:02 +0100
-Subject: [PATCH 0/3] enable reset_control_reset for shared reset lines
-In-Reply-To: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
+Date: Sat, 12 Nov 2016 14:13:03 +0100
+Subject: [PATCH 1/3] reset: allow using reset_control_reset with shared reset
+In-Reply-To: <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
 References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
+ <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20161112131305.26088-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch allows using reset_control_reset on a shared reset line.
-There are some restrictions though (all of these only apply to shared
-resets):
-- reset_control_reset cannot be used after reset_control_assert
-- reset_control_assert cannot be used after reset_control_reset
-- only the first call to reset_control_reset will be passed to the
-  hardware. The only exception is when all consumers of the
-  reset_control are gone (reset_control_put)
+Some SoCs (for example Amlogic GXBB) implement a reset controller which
+only supports a reset pulse (triggered via reset_control_reset). At the
+same time multiple devices (in case of the Amlogic GXBB SoC both USB
+PHYs) are sharing the same reset line.
 
-The idea came up when discussing the reset logic in the
-phy-meson8b-usb2 PHY driver, see [0] and [1]
+This patch allows using reset_control_reset also for shared resets.
+There are limitations though:
+reset_control_reset can only be used if reset_control_assert was not
+used yet.
+reset_control_assert can only be used if reset_control_reset was not
+used yet.
+For shared resets the reset is only triggered once for the lifetime of
+the reset_control instance (the reset can be triggered again if all
+consumers of that specific reset_control are gone, as the reset
+framework will free the reset_control instance in that case).
 
-An example where this is needed is the Amlogic Meson8b and GXBB SoCs
-where two USB PHYs share one reset line. The reset controller only
-supports reset pulses (and thus only implements .reset).
-The only workaround so far is to make the reset optional in the
-driver and only add the reset to one of the two PHYs, to mimic the
-behavior implemented by patch 1.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/reset/core.c | 43 +++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 37 insertions(+), 6 deletions(-)
 
-I also added the Meson USB2 PHY patch to this series to show that this
-new functionality can be used with only minimal changes. These patches
-can simply be dropped as they depend on the phy-meson8b-usb2 driver
-patch, and the dts patch has a runtime-dependency on patch 1 and 2
-(otherwise the phy-meson8b-usb2 driver would try to request the reset
-line exclusively, preventing the other PHY from initializing).
-
-
-Changes since RFC (thanks to Philipp Zabel for reviewing the RFC):
-- refined kernel documentation of triggered_count and fixed missing
-  struct member "@" prefix
-- refined reset_control_reset kernel documentation
-- added note that reset_control_(de)assert and reset_control_reset
-  can not be used together for shared resets) in the kernel documentation
-- fixed a potential race condition in reset_control_reset (the new
-  logic still has a potential race condition, but only in the error case,
-  which is pretty unlikely to happen in my opinion)
-- rebased to apply after reset/core.c changes ("reset: warn on invalid
-  input to reset_control_reset/assert/deassert/status")
-
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-September/001233.html
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2016-September/001197.html
-
-Martin Blumenstingl (3):
-  reset: allow using reset_control_reset with shared reset
-  phy: meson8b-usb2: request a shared reset line
-  ARM64: dts: meson-gxbb: add the USB reset also to the second USB PHY
-
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  1 +
- drivers/phy/phy-meson8b-usb2.c              |  3 +-
- drivers/reset/core.c                        | 43 +++++++++++++++++++++++++----
- 3 files changed, 39 insertions(+), 8 deletions(-)
-
+diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+index b8ae1db..10368ed 100644
+--- a/drivers/reset/core.c
++++ b/drivers/reset/core.c
+@@ -32,6 +32,9 @@ static LIST_HEAD(reset_controller_list);
+  * @refcnt: Number of gets of this reset_control
+  * @shared: Is this a shared (1), or an exclusive (0) reset_control?
+  * @deassert_cnt: Number of times this reset line has been deasserted
++ * @triggered_count: Number of times this reset line has been reset. Currently
++ *                   only used for shared resets, which means that the value
++ *                   will be either 0 or 1.
+  */
+ struct reset_control {
+ 	struct reset_controller_dev *rcdev;
+@@ -40,6 +43,7 @@ struct reset_control {
+ 	unsigned int refcnt;
+ 	int shared;
+ 	atomic_t deassert_count;
++	atomic_t triggered_count;
+ };
+ 
+ /**
+@@ -134,18 +138,35 @@ EXPORT_SYMBOL_GPL(devm_reset_controller_register);
+  * reset_control_reset - reset the controlled device
+  * @rstc: reset controller
+  *
+- * Calling this on a shared reset controller is an error.
++ * On a shared reset line the actual reset pulse is only triggered once for the
++ * lifetime of the reset_control instance: for all but the first caller this is
++ * a no-op.
++ * Consumers must not use reset_control_(de)assert on shared reset lines when
++ * reset_control_reset has been used.
+  */
+ int reset_control_reset(struct reset_control *rstc)
+ {
+-	if (WARN_ON(IS_ERR_OR_NULL(rstc)) ||
+-	    WARN_ON(rstc->shared))
++	int ret;
++
++	if (WARN_ON(IS_ERR_OR_NULL(rstc)))
+ 		return -EINVAL;
+ 
+-	if (rstc->rcdev->ops->reset)
+-		return rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
++	if (!rstc->rcdev->ops->reset)
++		return -ENOTSUPP;
+ 
+-	return -ENOTSUPP;
++	if (rstc->shared) {
++		if (WARN_ON(atomic_read(&rstc->deassert_count) != 0))
++			return -EINVAL;
++
++		if (atomic_inc_return(&rstc->triggered_count) != 1)
++			return 0;
++	}
++
++	ret = rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
++	if (rstc->shared && !ret)
++		atomic_dec(&rstc->triggered_count);
++
++	return ret;
+ }
+ EXPORT_SYMBOL_GPL(reset_control_reset);
+ 
+@@ -159,6 +180,8 @@ EXPORT_SYMBOL_GPL(reset_control_reset);
+  *
+  * For shared reset controls a driver cannot expect the hw's registers and
+  * internal state to be reset, but must be prepared for this to happen.
++ * Consumers must not use reset_control_reset on shared reset lines when
++ * reset_control_(de)assert has been used.
+  */
+ int reset_control_assert(struct reset_control *rstc)
+ {
+@@ -169,6 +192,9 @@ int reset_control_assert(struct reset_control *rstc)
+ 		return -ENOTSUPP;
+ 
+ 	if (rstc->shared) {
++		if (WARN_ON(atomic_read(&rstc->triggered_count) != 0))
++			return -EINVAL;
++
+ 		if (WARN_ON(atomic_read(&rstc->deassert_count) == 0))
+ 			return -EINVAL;
+ 
+@@ -185,6 +211,8 @@ EXPORT_SYMBOL_GPL(reset_control_assert);
+  * @rstc: reset controller
+  *
+  * After calling this function, the reset is guaranteed to be deasserted.
++ * Consumers must not use reset_control_reset on shared reset lines when
++ * reset_control_(de)assert has been used.
+  */
+ int reset_control_deassert(struct reset_control *rstc)
+ {
+@@ -195,6 +223,9 @@ int reset_control_deassert(struct reset_control *rstc)
+ 		return -ENOTSUPP;
+ 
+ 	if (rstc->shared) {
++		if (WARN_ON(atomic_read(&rstc->triggered_count) != 0))
++			return -EINVAL;
++
+ 		if (atomic_inc_return(&rstc->deassert_count) != 1)
+ 			return 0;
+ 	}
 -- 
 2.10.2
