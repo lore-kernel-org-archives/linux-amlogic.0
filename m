@@ -1,31 +1,30 @@
 From: neolynx@gmail.com (=?UTF-8?B?QW5kcsOp?= Roth)
-Date: Sun, 13 Nov 2016 20:13:39 +0100
+Date: Sun, 13 Nov 2016 20:20:20 +0100
 Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
-In-Reply-To: <1478192276.6632.34.camel@baylibre.com>
+In-Reply-To: <1478190980.6632.26.camel@baylibre.com>
 References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
- <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
- <CAFBinCC0HiEXx5mELztH6jYfUq2f1u0Tb+pSzAvwQSu9vYydGQ@mail.gmail.com>
- <20161031112524.4c4ee8f8@gmail.com>
- <1478192276.6632.34.camel@baylibre.com>
-Message-ID: <20161113201339.667ac1f7@gmail.com>
+ <ff6f3501-fbd5-3e79-dcc1-549406a5144b@st.com>
+ <CAFBinCD42A_SqQz8GM-H+A32dMELknAytHuJ5T2YgZ3BrMKA3A@mail.gmail.com>
+ <20160917232312.1e30d425@gmail.com>
+ <d59f6e2c-15ff-779d-da2f-8eb5f5a535a6@st.com>
+ <CAFBinCD_-KjVa70iOhBSGaXZc9uKy2m4d2yVr-AfLiV7F=3EqQ@mail.gmail.com>
+ <1478190980.6632.26.camel@baylibre.com>
+Message-ID: <20161113202020.1acf2e1e@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
-> Andre, the 3.14 kernel you are talking, is it this one ? :?
-> https://github.com/hardkernel/linux/tree/odroidc2-3.14.y
+Hi all,
 
-yes
- 
-> Because in drivers/net/phy/realtek.c, they disable EEE, but
-> also?1000Base-T Full Duplex advertisement ?
-> 
-> +	/* disable 1000m adv*/
-> +	val = phy_read(phydev, 0x9);
-> +	phy_write(phydev, 0x9, val&(~(1<<9)));
-> 
-> If this is the kernel you are running, you should not be able to have
-> ethernet at 1000MB/s ? Or is it in half duplex mode ?
+> To everybody having similar issue with their OdroidC2, could you try
+> the attached patch and let us know if it changes anything for you ?
 
-ethtool shows 1000Mb/s Full-Duplex and the bandwith is around 300Mb/s
-(as measured by scp). kernel version: 3.14.65-73
+I can confirm that this patch removes the problem, I have now constant
+~300Mb/s in both directions without any issue ! :)
+
+I used the v4.10/integ branch, which shows the problem without applying
+this patch. 
+
+Thanks for your work,
+
+ Andr? 
