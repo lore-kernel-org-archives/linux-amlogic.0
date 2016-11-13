@@ -1,37 +1,31 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 12 Nov 2016 14:13:05 +0100
-Subject: [PATCH 3/3] ARM64: dts: meson-gxbb: add the USB reset also to the
- second USB PHY
-In-Reply-To: <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
-References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
- <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161112131305.26088-4-martin.blumenstingl@googlemail.com>
+From: neolynx@gmail.com (=?UTF-8?B?QW5kcsOp?= Roth)
+Date: Sun, 13 Nov 2016 20:13:39 +0100
+Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
+In-Reply-To: <1478192276.6632.34.camel@baylibre.com>
+References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
+ <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
+ <CAFBinCC0HiEXx5mELztH6jYfUq2f1u0Tb+pSzAvwQSu9vYydGQ@mail.gmail.com>
+ <20161031112524.4c4ee8f8@gmail.com>
+ <1478192276.6632.34.camel@baylibre.com>
+Message-ID: <20161113201339.667ac1f7@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-When the USB PHY driver was introduced the reset framework did not
-have support for triggering a reset pulse for shared resets. On GXBB
-however there is only one reset line for both PHYs (meaning we have a
-shared reset line). With the latest changes to the reset framework and
-the corresponding updates to the phy-meson8b-usb2 driver we can now pass
-the reset to the second PHY as well.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+> Andre, the 3.14 kernel you are talking, is it this one ? :?
+> https://github.com/hardkernel/linux/tree/odroidc2-3.14.y
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 719bf50..a548663 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -87,6 +87,7 @@
- 			compatible = "amlogic,meson-gxbb-usb2-phy";
- 			#phy-cells = <0>;
- 			reg = <0x0 0xc0000020 0x0 0x20>;
-+			resets = <&reset RESET_USB_OTG>;
- 			clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1>;
- 			clock-names = "usb_general", "usb";
- 			status = "disabled";
--- 
-2.10.2
+yes
+ 
+> Because in drivers/net/phy/realtek.c, they disable EEE, but
+> also?1000Base-T Full Duplex advertisement ?
+> 
+> +	/* disable 1000m adv*/
+> +	val = phy_read(phydev, 0x9);
+> +	phy_write(phydev, 0x9, val&(~(1<<9)));
+> 
+> If this is the kernel you are running, you should not be able to have
+> ethernet at 1000MB/s ? Or is it in half duplex mode ?
+
+ethtool shows 1000Mb/s Full-Duplex and the bandwith is around 300Mb/s
+(as measured by scp). kernel version: 3.14.65-73
