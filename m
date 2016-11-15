@@ -1,27 +1,56 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 14 Nov 2016 11:17:19 -0800
-Subject: [RFC PATCH] ARM64: dts: Add support for Meson GXM
-In-Reply-To: <20161114094411.30199-1-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Mon, 14 Nov 2016 10:44:11 +0100")
-References: <20161114094411.30199-1-narmstrong@baylibre.com>
-Message-ID: <7hlgwl6fcw.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 15 Nov 2016 12:27:56 +0100
+Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
+In-Reply-To: <24b4d9b3-0a9d-5f6c-7dc2-5fcbb1012481@suse.de>
+References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
+ <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
+ <CAFBinCC0HiEXx5mELztH6jYfUq2f1u0Tb+pSzAvwQSu9vYydGQ@mail.gmail.com>
+ <20161031112524.4c4ee8f8@gmail.com> <1478192276.6632.34.camel@baylibre.com>
+ <3c21b0a4-43c9-0257-f8f2-c8e02cf94fbf@st.com>
+ <CAFBinCDq0neyidQBO13F4Yz-GZPorGyRQ2t5Vb-PL0Ls582+4Q@mail.gmail.com>
+ <24b4d9b3-0a9d-5f6c-7dc2-5fcbb1012481@suse.de>
+Message-ID: <1479209276.2619.10.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+On Mon, 2016-11-14 at 16:00 +0100, Andreas F?rber wrote:
+> Hi,
+> 
+> Am 07.11.2016 um 18:37 schrieb Martin Blumenstingl:
+> > 
+> > The same problem still appears on my Tronsmart Vega S95 Meta even
+> > with
+> > the patched PHY driver.
+> > 
+> > Unfortunately I don't have a second device to rule out that my
+> > Tronsmart Vega S95 Meta could be broken (not unlikely, I get DDR
+> > errors from time to time in u-boot). Maybe Andreas Faerber can test
+> > ethernet with and without Jerome's patch on one of his Tronsmart
+> > devices.
+> 
+> So far I only ran into the stall issue on my Odroid-C2, not on my
+> Vega
+> S95 Telos, both on v4.10/integ branch with a rebased MMC patch of
+> yours
+> on top.
 
-> Following the Amlogic Linux kernel, it seem the only differences
-> between the GXL and GXM SoCs are the CPU Clusters.
->
-> Simply add a meson-gxm dtsi and reproduce the P23x to Q20x boards
-> dts files since the S905D and S912 SoCs shares the same pinout
-> and the P23x and Q20x boards are identical.
+The status of vega/mxq boards seems a bit confused.
+This is the status I have so far:
+These designs are not affected by the EEE issue. The patch mentioned
+has no effect on these boards.
+Some boards run fine at GBit speed (like yours) , some have terrible Tx
+throughput (like mine and Martin's one). However, unlike on the
+odroidc2, the link is not broken after the test, it is not necessary to
+ifdown/ifup the interface to do another test.
 
-Since the P23x and Q20x boards are identical, should we just come up
-with a singel dtsi for them all? e.g  move the -p23x.dtsi to -pq2xx.dtsi
-or something?
+I'm wondering if the vega/mxq designs all use the rtl8211f phy ?
 
-I don't think it's a big deal, but it does seem like we should avoid the
-copy/paste wherever possible.
+> 
+> I'm assuming you mean realtek8211f-disable-eee-1000.patch from Nov 3.
+> 
 
-Kevin
+Indeed. I won't submit anything for the vega since it has no effect.
+
+> Regards,
+> Andreas
+> 
