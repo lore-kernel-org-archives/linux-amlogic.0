@@ -1,56 +1,144 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 15 Nov 2016 12:27:56 +0100
-Subject: stmmac/RTL8211F/Meson GXBB: TX throughput problems
-In-Reply-To: <24b4d9b3-0a9d-5f6c-7dc2-5fcbb1012481@suse.de>
-References: <CAFBinCALSL_-izJ2tEsAjevAw90kGNTrQ3na3D1YV8f1dS1=Xg@mail.gmail.com>
- <ce15ad26-2d07-655d-b813-947ad86696ac@st.com>
- <CAFBinCC0HiEXx5mELztH6jYfUq2f1u0Tb+pSzAvwQSu9vYydGQ@mail.gmail.com>
- <20161031112524.4c4ee8f8@gmail.com> <1478192276.6632.34.camel@baylibre.com>
- <3c21b0a4-43c9-0257-f8f2-c8e02cf94fbf@st.com>
- <CAFBinCDq0neyidQBO13F4Yz-GZPorGyRQ2t5Vb-PL0Ls582+4Q@mail.gmail.com>
- <24b4d9b3-0a9d-5f6c-7dc2-5fcbb1012481@suse.de>
-Message-ID: <1479209276.2619.10.camel@baylibre.com>
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Tue, 15 Nov 2016 13:48:05 +0100
+Subject: [PATCH 1/3] reset: allow using reset_control_reset with shared
+ reset
+In-Reply-To: <20161112131305.26088-2-martin.blumenstingl@googlemail.com>
+References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
+ <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
+ <20161112131305.26088-2-martin.blumenstingl@googlemail.com>
+Message-ID: <1479214085.2456.26.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2016-11-14 at 16:00 +0100, Andreas F?rber wrote:
-> Hi,
-> 
-> Am 07.11.2016 um 18:37 schrieb Martin Blumenstingl:
-> > 
-> > The same problem still appears on my Tronsmart Vega S95 Meta even
-> > with
-> > the patched PHY driver.
-> > 
-> > Unfortunately I don't have a second device to rule out that my
-> > Tronsmart Vega S95 Meta could be broken (not unlikely, I get DDR
-> > errors from time to time in u-boot). Maybe Andreas Faerber can test
-> > ethernet with and without Jerome's patch on one of his Tronsmart
-> > devices.
-> 
-> So far I only ran into the stall issue on my Odroid-C2, not on my
-> Vega
-> S95 Telos, both on v4.10/integ branch with a rebased MMC patch of
-> yours
-> on top.
+Hi Martin,
 
-The status of vega/mxq boards seems a bit confused.
-This is the status I have so far:
-These designs are not affected by the EEE issue. The patch mentioned
-has no effect on these boards.
-Some boards run fine at GBit speed (like yours) , some have terrible Tx
-throughput (like mine and Martin's one). However, unlike on the
-odroidc2, the link is not broken after the test, it is not necessary to
-ifdown/ifup the interface to do another test.
-
-I'm wondering if the vega/mxq designs all use the rtl8211f phy ?
-
+Am Samstag, den 12.11.2016, 14:13 +0100 schrieb Martin Blumenstingl:
+> Some SoCs (for example Amlogic GXBB) implement a reset controller which
+> only supports a reset pulse (triggered via reset_control_reset). At the
+> same time multiple devices (in case of the Amlogic GXBB SoC both USB
+> PHYs) are sharing the same reset line.
 > 
-> I'm assuming you mean realtek8211f-disable-eee-1000.patch from Nov 3.
+> This patch allows using reset_control_reset also for shared resets.
+> There are limitations though:
+> reset_control_reset can only be used if reset_control_assert was not
+> used yet.
+> reset_control_assert can only be used if reset_control_reset was not
+> used yet.
+> For shared resets the reset is only triggered once for the lifetime of
+> the reset_control instance (the reset can be triggered again if all
+> consumers of that specific reset_control are gone, as the reset
+> framework will free the reset_control instance in that case).
 > 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Indeed. I won't submit anything for the vega since it has no effect.
+Looks good to me, I've applied it to the reset/next branch.
 
-> Regards,
-> Andreas
+thanks
+Philipp
+
+> ---
+>  drivers/reset/core.c | 43 +++++++++++++++++++++++++++++++++++++------
+>  1 file changed, 37 insertions(+), 6 deletions(-)
 > 
+> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+> index b8ae1db..10368ed 100644
+> --- a/drivers/reset/core.c
+> +++ b/drivers/reset/core.c
+> @@ -32,6 +32,9 @@ static LIST_HEAD(reset_controller_list);
+>   * @refcnt: Number of gets of this reset_control
+>   * @shared: Is this a shared (1), or an exclusive (0) reset_control?
+>   * @deassert_cnt: Number of times this reset line has been deasserted
+> + * @triggered_count: Number of times this reset line has been reset. Currently
+> + *                   only used for shared resets, which means that the value
+> + *                   will be either 0 or 1.
+>   */
+>  struct reset_control {
+>  	struct reset_controller_dev *rcdev;
+> @@ -40,6 +43,7 @@ struct reset_control {
+>  	unsigned int refcnt;
+>  	int shared;
+>  	atomic_t deassert_count;
+> +	atomic_t triggered_count;
+>  };
+>  
+>  /**
+> @@ -134,18 +138,35 @@ EXPORT_SYMBOL_GPL(devm_reset_controller_register);
+>   * reset_control_reset - reset the controlled device
+>   * @rstc: reset controller
+>   *
+> - * Calling this on a shared reset controller is an error.
+> + * On a shared reset line the actual reset pulse is only triggered once for the
+> + * lifetime of the reset_control instance: for all but the first caller this is
+> + * a no-op.
+> + * Consumers must not use reset_control_(de)assert on shared reset lines when
+> + * reset_control_reset has been used.
+>   */
+>  int reset_control_reset(struct reset_control *rstc)
+>  {
+> -	if (WARN_ON(IS_ERR_OR_NULL(rstc)) ||
+> -	    WARN_ON(rstc->shared))
+> +	int ret;
+> +
+> +	if (WARN_ON(IS_ERR_OR_NULL(rstc)))
+>  		return -EINVAL;
+>  
+> -	if (rstc->rcdev->ops->reset)
+> -		return rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
+> +	if (!rstc->rcdev->ops->reset)
+> +		return -ENOTSUPP;
+>  
+> -	return -ENOTSUPP;
+> +	if (rstc->shared) {
+> +		if (WARN_ON(atomic_read(&rstc->deassert_count) != 0))
+> +			return -EINVAL;
+> +
+> +		if (atomic_inc_return(&rstc->triggered_count) != 1)
+> +			return 0;
+> +	}
+> +
+> +	ret = rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
+> +	if (rstc->shared && !ret)
+> +		atomic_dec(&rstc->triggered_count);
+> +
+> +	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(reset_control_reset);
+>  
+> @@ -159,6 +180,8 @@ EXPORT_SYMBOL_GPL(reset_control_reset);
+>   *
+>   * For shared reset controls a driver cannot expect the hw's registers and
+>   * internal state to be reset, but must be prepared for this to happen.
+> + * Consumers must not use reset_control_reset on shared reset lines when
+> + * reset_control_(de)assert has been used.
+>   */
+>  int reset_control_assert(struct reset_control *rstc)
+>  {
+> @@ -169,6 +192,9 @@ int reset_control_assert(struct reset_control *rstc)
+>  		return -ENOTSUPP;
+>  
+>  	if (rstc->shared) {
+> +		if (WARN_ON(atomic_read(&rstc->triggered_count) != 0))
+> +			return -EINVAL;
+> +
+>  		if (WARN_ON(atomic_read(&rstc->deassert_count) == 0))
+>  			return -EINVAL;
+>  
+> @@ -185,6 +211,8 @@ EXPORT_SYMBOL_GPL(reset_control_assert);
+>   * @rstc: reset controller
+>   *
+>   * After calling this function, the reset is guaranteed to be deasserted.
+> + * Consumers must not use reset_control_reset on shared reset lines when
+> + * reset_control_(de)assert has been used.
+>   */
+>  int reset_control_deassert(struct reset_control *rstc)
+>  {
+> @@ -195,6 +223,9 @@ int reset_control_deassert(struct reset_control *rstc)
+>  		return -ENOTSUPP;
+>  
+>  	if (rstc->shared) {
+> +		if (WARN_ON(atomic_read(&rstc->triggered_count) != 0))
+> +			return -EINVAL;
+> +
+>  		if (atomic_inc_return(&rstc->deassert_count) != 1)
+>  			return 0;
+>  	}
