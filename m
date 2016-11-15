@@ -1,47 +1,49 @@
 From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Tue, 15 Nov 2016 18:24:46 +0530
-Subject: [PATCH 2/3] phy: meson8b-usb2: request a shared reset line
-In-Reply-To: <20161112131305.26088-3-martin.blumenstingl@googlemail.com>
-References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
- <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
- <20161112131305.26088-3-martin.blumenstingl@googlemail.com>
-Message-ID: <582B0596.4060903@ti.com>
+Date: Tue, 15 Nov 2016 19:12:46 +0530
+Subject: [PATCH -next] phy: meson8b-usb2: fix missing
+ clk_disable_unprepare() on error
+In-Reply-To: <1477146822-31327-1-git-send-email-weiyj.lk@gmail.com>
+References: <1477146822-31327-1-git-send-email-weiyj.lk@gmail.com>
+Message-ID: <582B10D6.9040003@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
 
-On Saturday 12 November 2016 06:43 PM, Martin Blumenstingl wrote:
-> Both PHYs are sharing one reset line. With recent improvements to the
-> reset framework we can now also use reset_control_reset with shared
-> resets.
-> This allows us to drop some workarounds where the reset was only
-> specified for one PHY but not the other, to make sure that the reset it
-> only executed once (as the reset framework was not able to use
-> reset_control_reset with shared reset lines).
+On Saturday 22 October 2016 08:03 PM, Wei Yongjun wrote:
+> From: Wei Yongjun <weiyongjun1@huawei.com>
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Fix the missing clk_disable_unprepare() before return from
+> phy_meson8b_usb2_power_on() in the error handling case.
+> 
+> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
 
-merged $patch to -next.
+merged, thanks.
 
-Thanks
-Kishon
+-Kishon
 > ---
->  drivers/phy/phy-meson8b-usb2.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+>  drivers/phy/phy-meson8b-usb2.c | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 > diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
-> index 73bf632..f1ee96a 100644
+> index 73bf632..dca3947 100644
 > --- a/drivers/phy/phy-meson8b-usb2.c
 > +++ b/drivers/phy/phy-meson8b-usb2.c
-> @@ -237,8 +237,7 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
->  	if (IS_ERR(priv->clk_usb))
->  		return PTR_ERR(priv->clk_usb);
+> @@ -158,6 +158,7 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
+>  	ret = clk_prepare_enable(priv->clk_usb);
+>  	if (ret) {
+>  		dev_err(&phy->dev, "Failed to enable USB DDR clock\n");
+> +		clk_disable_unprepare(priv->clk_usb_general);
+>  		return ret;
+>  	}
 >  
-> -	priv->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
-> -								NULL);
-> +	priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
->  	if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
->  		return PTR_ERR(priv->reset);
->  
+> @@ -190,6 +191,8 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
+>  		if (phy_meson8b_usb2_read(priv, REG_ADP_BC) &
+>  			REG_ADP_BC_ACA_PIN_FLOAT) {
+>  			dev_warn(&phy->dev, "USB ID detect failed!\n");
+> +			clk_disable_unprepare(priv->clk_usb);
+> +			clk_disable_unprepare(priv->clk_usb_general);
+>  			return -EINVAL;
+>  		}
+>  	}
 > 
