@@ -1,41 +1,32 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 15 Nov 2016 15:29:09 -0800
-Subject: [GIT PULL] Amlogic defconfig changes for v4.10
-Message-ID: <7hk2c42ugq.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Tue, 15 Nov 2016 18:13:40 -0600
+Subject: [RFC PATCH] ARM64: dts: Add support for Meson GXM
+In-Reply-To: <20161114094411.30199-1-narmstrong@baylibre.com>
+References: <20161114094411.30199-1-narmstrong@baylibre.com>
+Message-ID: <20161116001340.wkqyh5wnygsnb5rk@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arnd, Olof,
+On Mon, Nov 14, 2016 at 10:44:11AM +0100, Neil Armstrong wrote:
+> Following the Amlogic Linux kernel, it seem the only differences
+> between the GXL and GXM SoCs are the CPU Clusters.
+> 
+> Simply add a meson-gxm dtsi and reproduce the P23x to Q20x boards
+> dts files since the S905D and S912 SoCs shares the same pinout
+> and the P23x and Q20x boards are identical.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.txt  |   6 +
+>  arch/arm64/boot/dts/amlogic/Makefile               |   2 +
+>  .../arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts |  76 +++++++++
+>  .../arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts |  57 +++++++
+>  .../boot/dts/amlogic/meson-gxm-s912-q20x.dtsi      | 188 +++++++++++++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         | 114 +++++++++++++
+>  6 files changed, 443 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q20x.dtsi
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
 
-Here are some defconfig change for Amlogic family SoCs for 4.10.  Please
-pull.
-
-Thanks,
-
-Kevin
-
-The following changes since commit 1001354ca34179f3db924eb66672442a173147dc:
-
-  Linux 4.9-rc1 (2016-10-15 12:17:50 -0700)
-
-are available in the git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-defconfig
-
-for you to fetch changes up to 88c9cb7c109e8867fd6ac3a11e5cead37a6a6f1d:
-
-  ARM64: configs: Activate Internal PHY for Meson GXL (2016-11-14 08:40:47 -0800)
-
-----------------------------------------------------------------
-Amlogic defconfig updates for v4.10
-- enable I2C driver
-- enable SPI, watchdog and HW random as modules
-
-----------------------------------------------------------------
-Neil Armstrong (3):
-      ARM64: defconfig: Enable MMC related configs
-      ARM64: configs: Add Platform MHU in defconfig
-      ARM64: configs: Activate Internal PHY for Meson GXL
-
- arch/arm64/configs/defconfig | 7 +++++++
- 1 file changed, 7 insertions(+)
+Acked-by: Rob Herring <robh@kernel.org>
