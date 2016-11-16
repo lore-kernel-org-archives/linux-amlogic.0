@@ -1,85 +1,168 @@
-From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Wed, 16 Nov 2016 09:01:13 -0800
+From: linux.amoon@gmail.com (Anand Moon)
+Date: Wed, 16 Nov 2016 22:36:09 +0530
 Subject: [PATCH net 1/3] net: phy: realtek: add eee advertisement disable
  options
-In-Reply-To: <1479310731.17538.53.camel@baylibre.com>
+In-Reply-To: <1479220154-25851-2-git-send-email-jbrunet@baylibre.com>
 References: <1479220154-25851-1-git-send-email-jbrunet@baylibre.com>
  <1479220154-25851-2-git-send-email-jbrunet@baylibre.com>
- <20161115163036.GB23231@lunn.ch>
- <476b72f3-5efe-3551-6c24-0e378d655a0f@gmail.com>
- <1479290189.17538.25.camel@baylibre.com> <20161116132337.GD19962@lunn.ch>
- <1479307890.17538.40.camel@baylibre.com> <20161116150628.GI23231@lunn.ch>
- <1479310731.17538.53.camel@baylibre.com>
-Message-ID: <d4e04f8a-77c5-f43e-5c24-d1238925543a@gmail.com>
+Message-ID: <CANAwSgTjG8G0U+A1p7hOKND9rjY4BzZfPgyWWHAEryYkHj_UOw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/16/2016 07:38 AM, Jerome Brunet wrote:
-> On Wed, 2016-11-16 at 16:06 +0100, Andrew Lunn wrote:
->> On Wed, Nov 16, 2016 at 03:51:30PM +0100, Jerome Brunet wrote:
->>>
->>> On Wed, 2016-11-16 at 14:23 +0100, Andrew Lunn wrote:
->>>>
->>>>>
->>>>>
->>>>> There two kind of PHYs supporting eee, the one advertising eee
->>>>> by
->>>>> default (like realtek) and the one not advertising it (like
->>>>> micrel).
->>>
->>> This is just the default register value.
->>>
->>>>
->>>>
->>>> I don't know too much about EEE. So maybe a dumb question. Does
->>>> the
->>>> MAC need to be involved? Or is it just the PHY?
->>>>
->>>> If the MAC needs to be involved, the PHY should not be
->>>> advertising
->>>> EEE
->>>> unless the MAC asks for it by calling phy_init_eee(). If this is
->>>> true,
->>>> maybe we need to change the realtek driver, and others in that
->>>> class.
->>>
->>> As far I understand, the advertised capabilities are exchanged
->>> during
->>> the auto-negotiation.
->>>
->>> At this stage, if the advertisement is disabled (regarless of the
->>> actual support) on either side of the link, there will be no low
->>> power
->>> idle state on the Tx nor the Rx path.
->>>
->>> If the advertisement is enabled on both side but we don't call
->>> phy_init_eee, I suppose Tx won't enter LPI, but Rx could.
->>
->> What i was trying to find out is, if the MAC needs to support EEE as
->> well as the PHY, what happens when the MAC does not support EEE, but
->> the PHYs do negotiate EEE? Does it break?
-> 
-> Interesting question. In a regular case, I suppose it should be fine.
-> As you would have LPI only on the Rx path this should be transparent to
-> the MAC. That's my understanding. Maybe people knowing EEE better than
-> me could confirm (or not) ? Peppe? Alexandre?
+ Hi Jerome.
 
-EEE is a MAC and PHY feature, and both need to agree on what is enabled,
-especially in the transmit path because the way packets may be
-transmitted with or without EEE can be done differently at the HW level
-(faster/slower return to idle, different clock source).
+On 15 November 2016 at 19:59, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> On some platforms, energy efficient ethernet with rtl8211 devices is
+> causing issue, like throughput drop or broken link.
+>
+> This was reported on the OdroidC2 (DWMAC + RTL8211F). While the issue root
+> cause is not fully understood yet, disabling EEE advertisement prevent auto
+> negotiation from enabling EEE.
+>
+> This patch provides options to disable 1000T and 100TX EEE advertisement
+> individually for the realtek phys supporting this feature.
+>
+> Reported-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+> Cc: Alexandre TORGUE <alexandre.torgue@st.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Tested-by: Andre Roth <neolynx@gmail.com>
+> ---
+>  drivers/net/phy/realtek.c | 65 ++++++++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 64 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+> index aadd6e9f54ad..77235fd5faaf 100644
+> --- a/drivers/net/phy/realtek.c
+> +++ b/drivers/net/phy/realtek.c
+> @@ -15,6 +15,12 @@
+>   */
+>  #include <linux/phy.h>
+>  #include <linux/module.h>
+> +#include <linux/of.h>
+> +
+> +struct rtl8211x_phy_priv {
+> +       bool eee_1000t_disable;
+> +       bool eee_100tx_disable;
+> +};
+>
+>  #define RTL821x_PHYSR          0x11
+>  #define RTL821x_PHYSR_DUPLEX   0x2000
+> @@ -93,12 +99,44 @@ static int rtl8211f_config_intr(struct phy_device *phydev)
+>         return err;
+>  }
+>
+> +static void rtl8211x_clear_eee_adv(struct phy_device *phydev)
+> +{
+> +       struct rtl8211x_phy_priv *priv = phydev->priv;
+> +       u16 val;
+> +
+> +       if (priv->eee_1000t_disable || priv->eee_100tx_disable) {
+> +               val = phy_read_mmd_indirect(phydev, MDIO_AN_EEE_ADV,
+> +                                           MDIO_MMD_AN);
+> +
+> +               if (priv->eee_1000t_disable)
+> +                       val &= ~MDIO_AN_EEE_ADV_1000T;
+> +               if (priv->eee_100tx_disable)
+> +                       val &= ~MDIO_AN_EEE_ADV_100TX;
+> +
+> +               phy_write_mmd_indirect(phydev, MDIO_AN_EEE_ADV,
+> +                                      MDIO_MMD_AN, val);
+> +       }
+> +}
+> +
+> +static int rtl8211x_config_init(struct phy_device *phydev)
+> +{
+> +       int ret;
+> +
+> +       ret = genphy_config_init(phydev);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       rtl8211x_clear_eee_adv(phydev);
+> +
+> +       return 0;
+> +}
+> +
+>  static int rtl8211f_config_init(struct phy_device *phydev)
+>  {
+>         int ret;
+>         u16 reg;
+>
+> -       ret = genphy_config_init(phydev);
+> +       ret = rtl8211x_config_init(phydev);
+>         if (ret < 0)
+>                 return ret;
+>
+> @@ -115,6 +153,26 @@ static int rtl8211f_config_init(struct phy_device *phydev)
+>         return 0;
+>  }
+>
+> +static int rtl8211x_phy_probe(struct phy_device *phydev)
+> +{
+> +       struct device *dev = &phydev->mdio.dev;
+> +       struct device_node *of_node = dev->of_node;
+> +       struct rtl8211x_phy_priv *priv;
+> +
+> +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       priv->eee_1000t_disable =
+> +               of_property_read_bool(of_node, "realtek,disable-eee-1000t");
+> +       priv->eee_100tx_disable =
+> +               of_property_read_bool(of_node, "realtek,disable-eee-100tx");
+> +
+> +       phydev->priv = priv;
+> +
+> +       return 0;
+> +}
+> +
+>  static struct phy_driver realtek_drvs[] = {
+>         {
+>                 .phy_id         = 0x00008201,
+> @@ -140,7 +198,9 @@ static struct phy_driver realtek_drvs[] = {
+>                 .phy_id_mask    = 0x001fffff,
+>                 .features       = PHY_GBIT_FEATURES,
+>                 .flags          = PHY_HAS_INTERRUPT,
+> +               .probe          = &rtl8211x_phy_probe,
+>                 .config_aneg    = genphy_config_aneg,
+> +               .config_init    = &rtl8211x_config_init,
+>                 .read_status    = genphy_read_status,
+>                 .ack_interrupt  = rtl821x_ack_interrupt,
+>                 .config_intr    = rtl8211e_config_intr,
+> @@ -152,7 +212,9 @@ static struct phy_driver realtek_drvs[] = {
+>                 .phy_id_mask    = 0x001fffff,
+>                 .features       = PHY_GBIT_FEATURES,
+>                 .flags          = PHY_HAS_INTERRUPT,
+> +               .probe          = &rtl8211x_phy_probe,
+>                 .config_aneg    = &genphy_config_aneg,
+> +               .config_init    = &rtl8211x_config_init,
+>                 .read_status    = &genphy_read_status,
+>                 .ack_interrupt  = &rtl821x_ack_interrupt,
+>                 .config_intr    = &rtl8211e_config_intr,
+> @@ -164,6 +226,7 @@ static struct phy_driver realtek_drvs[] = {
+>                 .phy_id_mask    = 0x001fffff,
+>                 .features       = PHY_GBIT_FEATURES,
+>                 .flags          = PHY_HAS_INTERRUPT,
+> +               .probe          = &rtl8211x_phy_probe,
+>                 .config_aneg    = &genphy_config_aneg,
+>                 .config_init    = &rtl8211f_config_init,
+>                 .read_status    = &genphy_read_status,
+> --
+> 2.7.4
+>
 
-> 
-> I just checked with the OdroidC2, I disabled eee support by forcing
-> "dma_cap.eee = 0" in stmmac_get_hw_features. As expected, no tx_LPI
-> interrupts but plenty of rx_LPI interrupts.
-> 
-> What was not expected is test failing like before.
-> So in our case, having LPI on the Rx path is fine for receiving data,
-> but not for sending.
+How about adding callback functionality for .soft_reset to handle BMCR
+where we update the Auto-Negotiation for the phy,
+as per the datasheet of the rtl8211f.
 
-OK, which really sounds like a potential interoperability problem, or
-just the Realtek PHY with EEE enabled acting funky (irrespective of
-being attached to stmmac).
--- 
-Florian
+-Best Regard
+Anand Moon
+
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
