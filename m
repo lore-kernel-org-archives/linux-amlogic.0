@@ -1,62 +1,35 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Fri, 18 Nov 2016 11:56:15 +0000
-Subject: [GIT PULL v2] firmware: SCPI updates for v4.10
-In-Reply-To: <20161028112920.GB12241@e107155-lin>
-References: <20161028112920.GB12241@e107155-lin>
-Message-ID: <20161118115615.GB14913@e107155-lin>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 18 Nov 2016 23:35:19 +0100
+Subject: [PATCH 3/3] ARM64: dts: meson-gxbb: add the USB reset also to the
+ second USB PHY
+In-Reply-To: <m2twb7w1j6.fsf@baylibre.com>
+References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
+ <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
+ <20161112131305.26088-4-martin.blumenstingl@googlemail.com>
+ <m2twb7w1j6.fsf@baylibre.com>
+Message-ID: <CAFBinCBVaQ7SLwQ0M2eJj0iyQuErF1Ev5dtGzKr7itiesy11MQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi ARM-SoC Team,
+Hi Kevin,
 
-I have decoupled the platform specific binding from generic SCPI. Also
-I have renamed "arm,legacy-scpi" to "arm,scpi-pre-1.0". Since I haven't
-heard back any objections from Olof/Rob for my response, I am sending
-the pull request now.
+On Wed, Nov 16, 2016 at 10:35 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+>> When the USB PHY driver was introduced the reset framework did not
+>> have support for triggering a reset pulse for shared resets. On GXBB
+>> however there is only one reset line for both PHYs (meaning we have a
+>> shared reset line). With the latest changes to the reset framework and
+>> the corresponding updates to the phy-meson8b-usb2 driver we can now pass
+>> the reset to the second PHY as well.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> Applied.
+Unfortunately I think I put crucial information only in the
+cover-letter's description:
+"the dts patch has a runtime-dependency on patch 1 and 2"
 
---
-Regards,
-Sudeep
-
-The following changes since commit 1001354ca34179f3db924eb66672442a173147dc:
-
-  Linux 4.9-rc1 (2016-10-15 12:17:50 -0700)
-
-are available in the git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git tags/scpi-updates-4.10
-
-for you to fetch changes up to 8358c6b5fc8c160d0af8654f313b8a7745f8e304:
-
-  firmware: arm_scpi: add support for pre-v1.0 SCPI compatible (2016-11-17 16:31:20 +0000)
-
-----------------------------------------------------------------
-SCPI updates for v4.10
-
-1. Adds support for pre-v1.0 SCPI protocol versions
-
-2. Adds support for SCPI used on Amlogic GXBB SoC platforms using the
-   newly added pre-v1.0 SCPI protocol
-
-3. Decouples some platform specific details from generic SCPI binding
-
-----------------------------------------------------------------
-Neil Armstrong (4):
-      firmware: arm_scpi: increase MAX_DVFS_OPPS to 16 entries
-      firmware: arm_scpi: add alternative legacy structures, functions and macros
-      firmware: arm_scpi: allow firmware with get_capabilities not implemented
-      Documentation: bindings: Add support for Amlogic GXBB SCPI protocol
-
-Sudeep Holla (4):
-      firmware: arm_scpi: add command indirection to support legacy commands
-      Documentation: bindings: decouple juno specific details from generic binding
-      Documentation: bindings: add compatible specific to pre v1.0 SCPI protocols
-      firmware: arm_scpi: add support for pre-v1.0 SCPI compatible
-
- .../devicetree/bindings/arm/amlogic,scpi.txt       |  20 ++
- Documentation/devicetree/bindings/arm/arm,scpi.txt |  25 +-
- .../devicetree/bindings/arm/juno,scpi.txt          |  26 ++
- drivers/firmware/arm_scpi.c                        | 276 ++++++++++++++++++---
- 4 files changed, 301 insertions(+), 46 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/amlogic,scpi.txt
- create mode 100644 Documentation/devicetree/bindings/arm/juno,scpi.txt
+So please feel free to keep or drop the patch as it is. In case you
+decide drop it I will re-send it for 4.11 (after all the 4.10 stuff is
+done).
