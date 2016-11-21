@@ -1,83 +1,46 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 21 Nov 2016 17:16:33 +0100
-Subject: [RFC PATCH net v2 2/3] dt: bindings: add ethernet phy
- eee-disable-advert option documentation
-In-Reply-To: <20161121160149.GF1922@lunn.ch>
-References: <1479742524-30222-1-git-send-email-jbrunet@baylibre.com>
- <1479742524-30222-3-git-send-email-jbrunet@baylibre.com>
- <20161121160149.GF1922@lunn.ch>
-Message-ID: <1479744993.17538.85.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 21 Nov 2016 17:29:03 +0100
+Subject: [PATCH 0/2] ARM64: dts: Add support for Meson GXM
+Message-ID: <20161121162905.14285-1-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2016-11-21 at 17:01 +0100, Andrew Lunn wrote:
-> On Mon, Nov 21, 2016 at 04:35:23PM +0100, Jerome Brunet wrote:
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> > ?Documentation/devicetree/bindings/net/phy.txt | 5 +++++
-> > ?1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/phy.txt
-> > b/Documentation/devicetree/bindings/net/phy.txt
-> > index bc1c3c8bf8fa..7f066b7c1e2c 100644
-> > --- a/Documentation/devicetree/bindings/net/phy.txt
-> > +++ b/Documentation/devicetree/bindings/net/phy.txt
-> > @@ -35,6 +35,11 @@ Optional Properties:
-> > ?- broken-turn-around: If set, indicates the PHY device does not
-> > correctly
-> > ???release the turn around line low at the end of a MDIO
-> > transaction.
-> > ?
-> > +- eee-advert-disable: Bits to clear in the MDIO_AN_EEE_ADV
-> > register to
-> > +??disable EEE modes. Example
-> > +????* 0x4: disable EEE for 1000T,
-> > +????* 0x6: disable EEE for 100TX and 1000T
-> > +
-> 
-> Hi Jerome
-> 
-> I like the direction this patchset is taking. But hex values are
-> pretty unfriendly. 
+The new Amlogic GXM SoC (S912) is part of the Meson GX family and is nearly
+identical to GXM but with a second Quad-A53 core cluster.
 
-Agreed
+The GXM dtsi includes the GXL dtsi and the p20x dtsi is refactored in a
+common p20x/q20x to support the GXM Q200 and Q201 board that uses the exact
+same board layout since the S905D and S912 are pinout compatible.
 
-> Please add a set of boolean properties, and do the
-> mapping to hex in the C code.
-> 
-> That would also make extending this API easier. e.g. say you have a
-> 10Gbps PHY with EEE, and you need to disable it. This hex value
-> quickly gets ugly, eee-advert-disable-10000 is nice and simple.
+The last patch adds support for the Nexbox A1 Set-Top-Box based on the S912.
 
-What I did not realize when doing this patch for the realtek driver is
-that there is already 6 valid modes defined in the kernel
+Changes since RFC :
+ - Refactor the p20x/q20x dtsi into a single common file
+ - Add support for Nexbox A1
 
-#define MDIO_EEE_100TX		MDIO_AN_EEE_ADV_100TX	/*
-100TX EEE cap */
-#define MDIO_EEE_1000T		MDIO_AN_EEE_ADV_1000T	/*
-1000T EEE cap */
-#define MDIO_EEE_10GT		0x0008	/* 10GT EEE cap */
-#define MDIO_EEE_1000KX		0x0010	/* 1000KX EEE cap
-*/
-#define MDIO_EEE_10GKX4		0x0020	/* 10G KX4 EEE cap
-*/
-#define MDIO_EEE_10GKR		0x0040	/* 10G KR EEE cap
-*/
+Neil Armstrong (2):
+  ARM64: dts: Add support for Meson GXM
+  Add support for the Nexbox A1 board based on the Amlogic S912 SoC.
 
-I took care of only 2 in the case of realtek.c since it only support
-MDIO_EEE_100TX and MDIO_EEE_1000T.
+ Documentation/devicetree/bindings/arm/amlogic.txt  |   7 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   3 +
+ .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi | 190 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts    |  19 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts    |   7 +
+ .../boot/dts/amlogic/meson-gxl-s905d-p230.dts      |   3 +-
+ .../boot/dts/amlogic/meson-gxl-s905d-p231.dts      |   3 +-
+ .../boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi     | 188 --------------------
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts | 169 ++++++++++++++++++
+ .../arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts |  77 +++++++++
+ .../arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts |  58 +++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         | 114 +++++++++++++
+ 12 files changed, 648 insertions(+), 190 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+ delete mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
 
-Defining a property for each is certainly doable but it does not look
-very nice either. If it extends in the future, it will get even more
-messier, especially if you want to disable everything.
-
-What do you think about keeping a single mask value but use the define
-above in the DT ? It would be more readable than hex and easy to
-extend, don't you think ?
-
-These defines are already part of the uapi so I guess we can use those
-in the DT bindings ?
-
-> 
-> 	Andrew
+-- 
+2.7.0
