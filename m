@@ -1,33 +1,47 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Mon, 21 Nov 2016 15:12:38 +0000
-Subject: [PATCH 0/8] firmware: arm_scpi: add support for legacy SCPI
- protocol
-In-Reply-To: <CAD0U-hK982V+kUArjVSG7pTs5CLpNsgJaC5t8aPg8XuoiMRU0A@mail.gmail.com>
-References: <1478148731-11712-1-git-send-email-sudeep.holla@arm.com>
- <20161108145118.GR1041@n2100.armlinux.org.uk>
- <28decdc3-6b86-924f-d3c1-9873a8cfce77@arm.com>
- <20161108154038.GS1041@n2100.armlinux.org.uk>
- <20161108160625.GU1041@n2100.armlinux.org.uk>
- <fb4348a8-197c-2219-ff01-8716e2a0b955@arm.com>
- <20161108174622.GW1041@n2100.armlinux.org.uk>
- <CAD0U-hK982V+kUArjVSG7pTs5CLpNsgJaC5t8aPg8XuoiMRU0A@mail.gmail.com>
-Message-ID: <0af5ded0-8ea9-2b11-e70e-dc33b9111905@arm.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 21 Nov 2016 16:35:21 +0100
+Subject: [RFC PATCH net v2 0/3] Fix OdroidC2 Gigabit Tx link issue
+Message-ID: <1479742524-30222-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+This patchset fixes an issue with the OdroidC2 board (DWMAC + RTL8211F).
+Initially reported as a low Tx throughput issue at gigabit speed, the
+platform enters LPI too often. This eventually break the link (both Tx
+and Rx), and require to bring the interface down and up again to get the
+Rx path working again.
 
+The root cause of this issue is not fully understood yet but disabling EEE
+advertisement on the PHY prevent this feature to be negotiated.
+With this change, the link is stable and reliable, with the expected
+throughput performance.
 
-On 21/11/16 15:04, Ryan Harkin wrote:
+The patchset adds options in the generic phy driver to disable EEE
+advertisement, through device tree. The way it is done is very similar
+to the handling of the max-speed property.
 
-[...]
+This V2 is posted is posted as an RFC. Since it changes the generic PHY
+it propably requires to be a bit more careful.
+If you are not confortable taking for the coming rc, I can rebase on
+net-next instead.
 
-> Switching to u-boot won't solve any thermal sensor calibration problems.
->
+Chnages since V1: [1]
+ - Disable the advertisement of EEE in the generic code instead of the
+   realtek driver.
 
-Indeed. The board Russell had was one of those early ones which was not
-calibrated properly. He is now able to use the 16.10 release after
-calibration.
+[1] : http://lkml.kernel.org/r/1479220154-25851-1-git-send-email-jbrunet at baylibre.com
+
+Jerome Brunet (3):
+  net: phy: add an option to disable EEE advertisement
+  dt: bindings: add ethernet phy eee-disable-advert option documentation
+  ARM64: dts: meson: odroidc2: disable advertisement EEE for GbE.
+
+ Documentation/devicetree/bindings/net/phy.txt      |  5 ++
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 15 ++++
+ drivers/net/phy/phy.c                              |  3 +
+ drivers/net/phy/phy_device.c                       | 80 +++++++++++++++++++---
+ include/linux/phy.h                                |  3 +
+ 5 files changed, 97 insertions(+), 9 deletions(-)
 
 -- 
-Regards,
-Sudeep
+2.7.4
