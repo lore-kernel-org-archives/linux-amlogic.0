@@ -1,384 +1,106 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 22 Nov 2016 11:00:45 +0100
-Subject: [PATCH v2 1/2] ARM64: dts: Add support for Meson GXM
-In-Reply-To: <20161122100046.25899-1-narmstrong@baylibre.com>
-References: <20161122100046.25899-1-narmstrong@baylibre.com>
-Message-ID: <20161122100046.25899-2-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 22 Nov 2016 11:13:57 +0100
+Subject: [RFC PATCH net v2 2/3] dt: bindings: add ethernet phy
+ eee-disable-advert option documentation
+In-Reply-To: <e792c889-8725-3952-ca28-a08537d9f87a@gmail.com>
+References: <1479742524-30222-1-git-send-email-jbrunet@baylibre.com>
+ <1479742524-30222-3-git-send-email-jbrunet@baylibre.com>
+ <20161121160149.GF1922@lunn.ch> <1479744993.17538.85.camel@baylibre.com>
+ <20161121164733.GG1922@lunn.ch>
+ <e792c889-8725-3952-ca28-a08537d9f87a@gmail.com>
+Message-ID: <1479809637.17538.113.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Following the Amlogic Linux kernel, it seem the only differences
-between the GXL and GXM SoCs are the CPU Clusters.
+On Mon, 2016-11-21 at 21:35 -0800, Florian Fainelli wrote:
+> Le 21/11/2016 ? 08:47, Andrew Lunn a ?crit :
+> > 
+> > > 
+> > > What I did not realize when doing this patch for the realtek
+> > > driver is
+> > > that there is already 6 valid modes defined in the kernel
+> > > 
+> > > #define MDIO_EEE_100TX		MDIO_AN_EEE_ADV_100TX	
+> > > /*
+> > > 100TX EEE cap */
+> > > #define MDIO_EEE_1000T		MDIO_AN_EEE_ADV_1000T	
+> > > /*
+> > > 1000T EEE cap */
+> > > #define MDIO_EEE_10GT		0x0008	/* 10GT EEE
+> > > cap */
+> > > #define MDIO_EEE_1000KX		0x0010	/* 1000KX
+> > > EEE cap
+> > > */
+> > > #define MDIO_EEE_10GKX4		0x0020	/* 10G KX4
+> > > EEE cap
+> > > */
+> > > #define MDIO_EEE_10GKR		0x0040	/* 10G KR EEE
+> > > cap
+> > > */
+> > > 
+> > > I took care of only 2 in the case of realtek.c since it only
+> > > support
+> > > MDIO_EEE_100TX and MDIO_EEE_1000T.
+> > > 
+> > > Defining a property for each is certainly doable but it does not
+> > > look
+> > > very nice either. If it extends in the future, it will get even
+> > > more
+> > > messier, especially if you want to disable everything.
+> > 
+> > Yes, agreed.
+> 
+> One risk with the definition a group of advertisement capabilities
+> (under the form of a bitmask for instance) to enable/disable is that
+> we
+> end up with Device Tree contain some kind of configuration policy as
+> opposed to just flagging particular hardware features as broken.
 
-This commit renames the gxl-s905d-p23x DTSI in a common file for
-S905D p23x and S912 q20x boards.
+The code proposed only allows to disable EEE advertisement (not
+enable), so we should not see it used as a configuration policy in DT.
+To make this more explicit, I could replace the property "eee-advert-
+disable" by "eee-broken" ?
 
-Then adds a meson-gxm dtsi and reproduce the P23x to Q20x boards
-dts files since the S905D and S912 SoCs shares the same pinout
-and the P23x and Q20x boards are identical.
+> 
+> Fortunately, there does not seem to be a ton of PHYs out there which
+> require EEE
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- Documentation/devicetree/bindings/arm/amlogic.txt  |   6 ++
- arch/arm64/boot/dts/amlogic/Makefile               |   2 +
- ...gxl-s905d-p23x.dtsi => meson-gx-p23x-q20x.dtsi} |   4 +-
- .../boot/dts/amlogic/meson-gxl-s905d-p230.dts      |   3 +-
- .../boot/dts/amlogic/meson-gxl-s905d-p231.dts      |   3 +-
- .../arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts |  77 ++++++++++++++
- .../arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts |  58 +++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         | 114 +++++++++++++++++++++
- 8 files changed, 264 insertions(+), 3 deletions(-)
- rename arch/arm64/boot/dts/amlogic/{meson-gxl-s905d-p23x.dtsi => meson-gx-p23x-q20x.dtsi} (97%)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+It is quite difficult to have the real picture here because some PHYs
+have EEE disabled by default and you have to explicitly enable it.
+I have no idea of the ratio between the 2 phy policies.
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index fffc179..1144214 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -25,6 +25,10 @@ Boards with the Amlogic Meson GXL S905D SoC shall have the following properties:
-   Required root node property:
-     compatible: "amlogic,s905d", "amlogic,meson-gxl";
- 
-+Boards with the Amlogic Meson GXM S912 SoC shall have the following properties:
-+  Required root node property:
-+    compatible: "amlogic,s912", "amlogic,meson-gxm";
-+
- Board compatible values:
-   - "geniatech,atv1200" (Meson6)
-   - "minix,neo-x8" (Meson8)
-@@ -39,3 +43,5 @@ Board compatible values:
-   - "amlogic,p212" (Meson gxl s905x)
-   - "amlogic,p230" (Meson gxl s905d)
-   - "amlogic,p231" (Meson gxl s905d)
-+  - "amlogic,q200" (Meson gxm s912)
-+  - "amlogic,q201" (Meson gxm s912)
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 5a64050..7752a16 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -8,6 +8,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-telos.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q200.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q201.dtb
- 
- always		:= $(dtb-y)
- subdir-y	:= $(dts-dirs)
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-similarity index 97%
-rename from arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
-rename to arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-index 622ffbe..7a078be 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p23x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-@@ -41,7 +41,9 @@
-  *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
--#include "meson-gxl-s905d.dtsi"
-+/* Common DTSI for same Amlogic Q200/Q201 and P230/P231 boards using either
-+ * the pin-compatible S912 (GXM) or S905D (GXL) SoCs.
-+ */
- 
- / {
- 	aliases {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-index 4d082a7..f66939c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-@@ -43,7 +43,8 @@
- 
- /dts-v1/;
- 
--#include "meson-gxl-s905d-p23x.dtsi"
-+#include "meson-gxl-s905d.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
- 
- / {
- 	compatible = "amlogic,p230", "amlogic,s905d", "amlogic,meson-gxl";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-index 1cc8d49..95992cf 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-@@ -43,7 +43,8 @@
- 
- /dts-v1/;
- 
--#include "meson-gxl-s905d-p23x.dtsi"
-+#include "meson-gxl-s905d.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
- 
- / {
- 	compatible = "amlogic,p231", "amlogic,s905d", "amlogic,meson-gxl";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
-new file mode 100644
-index 0000000..5dbc660
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
-@@ -0,0 +1,77 @@
-+/*
-+ * Copyright (c) 2016 Endless Computers, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This library is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License as
-+ *     published by the Free Software Foundation; either version 2 of the
-+ *     License, or (at your option) any later version.
-+ *
-+ *     This library is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxm.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
-+
-+/ {
-+	compatible = "amlogic,q200", "amlogic,s912", "amlogic,meson-gxm";
-+	model = "Amlogic Meson GXM (S912) Q200 Development Board";
-+};
-+
-+/* Q200 has exclusive choice between internal or external PHY */
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>;
-+	pinctrl-names = "default";
-+
-+	/* Select external PHY by default */
-+	phy-handle = <&external_phy>;
-+
-+	/* External PHY reset is shared with internal PHY Led signals */
-+	snps,reset-gpio = <&gpio GPIOZ_14 0>;
-+	snps,reset-delays-us = <0 10000 1000000>;
-+	snps,reset-active-low;
-+
-+	/* External PHY is in RGMII */
-+	phy-mode = "rgmii";
-+};
-+
-+&external_mdio {
-+	external_phy: ethernet-phy at 0 {
-+		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+		max-speed = <1000>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts
-new file mode 100644
-index 0000000..95e11d7
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts
-@@ -0,0 +1,58 @@
-+/*
-+ * Copyright (c) 2016 Endless Computers, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This library is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License as
-+ *     published by the Free Software Foundation; either version 2 of the
-+ *     License, or (at your option) any later version.
-+ *
-+ *     This library is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxm.dtsi"
-+#include "meson-gx-p23x-q20x.dtsi"
-+
-+/ {
-+	compatible = "amlogic,q201", "amlogic,s912", "amlogic,meson-gxm";
-+	model = "Amlogic Meson GXM (S912) Q201 Development Board";
-+};
-+
-+/* Q201 has only internal PHY port */
-+&ethmac {
-+	phy-mode = "rmii";
-+	phy-handle = <&internal_phy>;
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
-new file mode 100644
-index 0000000..c1974bb
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
-@@ -0,0 +1,114 @@
-+/*
-+ * Copyright (c) 2016 Endless Computers, Inc.
-+ * Author: Carlo Caione <carlo@endlessm.com>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This library is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License as
-+ *     published by the Free Software Foundation; either version 2 of the
-+ *     License, or (at your option) any later version.
-+ *
-+ *     This library is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+#include "meson-gxl.dtsi"
-+
-+/ {
-+	compatible = "amlogic,meson-gxm";
-+
-+	cpus {
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu4>;
-+				};
-+				core1 {
-+					cpu = <&cpu5>;
-+				};
-+				core2 {
-+					cpu = <&cpu6>;
-+				};
-+				core3 {
-+					cpu = <&cpu7>;
-+				};
-+			};
-+		};
-+
-+		cpu4: cpu at 100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53", "arm,armv8";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu5: cpu at 101 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53", "arm,armv8";
-+			reg = <0x0 0x101>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu6: cpu at 102 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53", "arm,armv8";
-+			reg = <0x0 0x102>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu7: cpu at 103 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53", "arm,armv8";
-+			reg = <0x0 0x103>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+	};
-+};
--- 
-2.7.0
+> to be disabled to function properly so having individual
+> properties vs. bitmasks/groups is kind of speculative here.
+
+In the particular instance of the OdroidC2, disabling EEE for GbE only
+enough. However, If you have a PHY broken with, I think it is likely
+that you might want to disable all (supported) EEE modes. That's reason
+why I prefer bitmask. I agree both are functionally similar, this is
+kind of a cosmetic debate.
+
+> 
+> Another approach to solving this problem could be to register a PHY
+> fixup which disables EEE at the PHY level, and which is only called
+> for
+> specific boards affected by this problem
+> (of_machine_is_compatible()).
+> This code can leave in arch/*/* when that is possible, 
+
+That something I was looking at, but we don't have these files anymore
+on ARM64 (looking at your comment, you already know this)
+
+> or it can just be
+> somewhere where it is relevant, e.g; in the PHY driver for instance
+> (similarly to how PCI fixups are done).
+
+Do you prefer having board specific code inside generic driver than
+having the setting living in DT? Peppe told me they also had a few
+platform with similar issues. The point is that this could be useful to
+other people, so it could spread a grow a bit.
+
+I would prefer having this in the DT, but I can definitely do it the
+PHY with?of_machine_is_compatible() and register_fixup is this what you
+prefer/want.?
+
+Cheers
+Jerome
