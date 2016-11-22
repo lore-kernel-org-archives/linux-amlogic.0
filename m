@@ -1,55 +1,99 @@
-From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Mon, 21 Nov 2016 21:35:34 -0800
-Subject: [RFC PATCH net v2 2/3] dt: bindings: add ethernet phy
- eee-disable-advert option documentation
-In-Reply-To: <20161121164733.GG1922@lunn.ch>
-References: <1479742524-30222-1-git-send-email-jbrunet@baylibre.com>
- <1479742524-30222-3-git-send-email-jbrunet@baylibre.com>
- <20161121160149.GF1922@lunn.ch> <1479744993.17538.85.camel@baylibre.com>
- <20161121164733.GG1922@lunn.ch>
-Message-ID: <e792c889-8725-3952-ca28-a08537d9f87a@gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 22 Nov 2016 10:41:24 +0100
+Subject: [PATCH 1/2] ARM64: dts: Add support for Meson GXM
+In-Reply-To: <m2oa181jtd.fsf@baylibre.com>
+References: <20161121162905.14285-1-narmstrong@baylibre.com>
+ <20161121162905.14285-2-narmstrong@baylibre.com>
+ <m2oa181jtd.fsf@baylibre.com>
+Message-ID: <65b791bb-243e-ded9-e651-4021f0b23f1a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Le 21/11/2016 ? 08:47, Andrew Lunn a ?crit :
->> What I did not realize when doing this patch for the realtek driver is
->> that there is already 6 valid modes defined in the kernel
->>
->> #define MDIO_EEE_100TX		MDIO_AN_EEE_ADV_100TX	/*
->> 100TX EEE cap */
->> #define MDIO_EEE_1000T		MDIO_AN_EEE_ADV_1000T	/*
->> 1000T EEE cap */
->> #define MDIO_EEE_10GT		0x0008	/* 10GT EEE cap */
->> #define MDIO_EEE_1000KX		0x0010	/* 1000KX EEE cap
->> */
->> #define MDIO_EEE_10GKX4		0x0020	/* 10G KX4 EEE cap
->> */
->> #define MDIO_EEE_10GKR		0x0040	/* 10G KR EEE cap
->> */
->>
->> I took care of only 2 in the case of realtek.c since it only support
->> MDIO_EEE_100TX and MDIO_EEE_1000T.
->>
->> Defining a property for each is certainly doable but it does not look
->> very nice either. If it extends in the future, it will get even more
->> messier, especially if you want to disable everything.
+On 11/22/2016 12:42 AM, Kevin Hilman wrote:
+> Neil,
 > 
-> Yes, agreed.
+> Neil Armstrong <narmstrong@baylibre.com> writes:
+> 
+>> Following the Amlogic Linux kernel, it seem the only differences
+>> between the GXL and GXM SoCs are the CPU Clusters.
+>>
+>> This commit renames the gxl-s905d-p23x DTSI in a common file for
+>> S905D p20x and S912 q20x boards.
+> 
+> s/p20x/p23x/ ??
+> 
+>> Then adds a meson-gxm dtsi and reproduce the P23x to Q20x boards
+>> dts files since the S905D and S912 SoCs shares the same pinout
+>> and the P23x and Q20x boards are identical.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> 
+> I had to drop this as it breaks the network on (at least) gxbb-p200, but...
+> 
+> [...]
+> 
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+>> index 03e3d76..17bb77c 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+>> @@ -56,3 +56,22 @@
+>>  	pinctrl-0 = <&i2c_b_pins>;
+>>  	pinctrl-names = "default";
+>>  };
+>> +
+>> +&ethmac {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&eth_rgmii_pins>;
+>> +	pinctrl-names = "default";
+>> +
+>> +	phy-handle = <&eth_phy0>;
+>> +
+>> +	mdio {
+>> +		compatible = "snps,dwmac-mdio";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		eth_phy0: ethernet-phy at 0 {
+>> +			reg = <0>;
+>> +			realtek,disable-eee-1000t;
+>> +		};
+>> +	};
+>> +};
+> 
+> ... backing out this change makes it work again.
+> 
+> This change also looks suspicious as it's using the proposed disable-eee
+> properties, which I don't think have been merged yet.
+> 
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
+>> index 39bb037..5608c51 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
+>> @@ -50,3 +50,10 @@
+>>  	compatible = "amlogic,p201", "amlogic,meson-gxbb";
+>>  	model = "Amlogic Meson GXBB P201 Development Board";
+>>  };
+>> +
+>> +&ethmac {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&eth_rmii_pins>;
+>> +	pinctrl-names = "default";
+>> +	phy-mode = "rmii";
+>> +};
+> 
+> This also doesn't look releveant to the GXL/GXM changes being introduced
+> in this patch.
+> 
+> Could you separate out any GXBB-related changes into a separate patch
+> (if they are in fact needed) and re-spin this?
+> 
+> Thanks,
+> 
+> Kevin
+> 
 
-One risk with the definition a group of advertisement capabilities
-(under the form of a bitmask for instance) to enable/disable is that we
-end up with Device Tree contain some kind of configuration policy as
-opposed to just flagging particular hardware features as broken.
+Sorry leftover for another work...
 
-Fortunately, there does not seem to be a ton of PHYs out there which
-require EEE to be disabled to function properly so having individual
-properties vs. bitmasks/groups is kind of speculative here.
+Will cleanup for v2.
 
-Another approach to solving this problem could be to register a PHY
-fixup which disables EEE at the PHY level, and which is only called for
-specific boards affected by this problem (of_machine_is_compatible()).
-This code can leave in arch/*/* when that is possible, or it can just be
-somewhere where it is relevant, e.g; in the PHY driver for instance
-(similarly to how PCI fixups are done).
--- 
-Florian
+Neil
