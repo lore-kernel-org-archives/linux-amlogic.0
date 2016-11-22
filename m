@@ -1,106 +1,251 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 22 Nov 2016 11:13:57 +0100
-Subject: [RFC PATCH net v2 2/3] dt: bindings: add ethernet phy
- eee-disable-advert option documentation
-In-Reply-To: <e792c889-8725-3952-ca28-a08537d9f87a@gmail.com>
-References: <1479742524-30222-1-git-send-email-jbrunet@baylibre.com>
- <1479742524-30222-3-git-send-email-jbrunet@baylibre.com>
- <20161121160149.GF1922@lunn.ch> <1479744993.17538.85.camel@baylibre.com>
- <20161121164733.GG1922@lunn.ch>
- <e792c889-8725-3952-ca28-a08537d9f87a@gmail.com>
-Message-ID: <1479809637.17538.113.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 22 Nov 2016 12:41:54 +0100
+Subject: [PATCH] ARM64: dts: meson-gxl: Add support for Nexbox A95X
+Message-ID: <20161122114154.17566-1-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2016-11-21 at 21:35 -0800, Florian Fainelli wrote:
-> Le 21/11/2016 ? 08:47, Andrew Lunn a ?crit :
-> > 
-> > > 
-> > > What I did not realize when doing this patch for the realtek
-> > > driver is
-> > > that there is already 6 valid modes defined in the kernel
-> > > 
-> > > #define MDIO_EEE_100TX		MDIO_AN_EEE_ADV_100TX	
-> > > /*
-> > > 100TX EEE cap */
-> > > #define MDIO_EEE_1000T		MDIO_AN_EEE_ADV_1000T	
-> > > /*
-> > > 1000T EEE cap */
-> > > #define MDIO_EEE_10GT		0x0008	/* 10GT EEE
-> > > cap */
-> > > #define MDIO_EEE_1000KX		0x0010	/* 1000KX
-> > > EEE cap
-> > > */
-> > > #define MDIO_EEE_10GKX4		0x0020	/* 10G KX4
-> > > EEE cap
-> > > */
-> > > #define MDIO_EEE_10GKR		0x0040	/* 10G KR EEE
-> > > cap
-> > > */
-> > > 
-> > > I took care of only 2 in the case of realtek.c since it only
-> > > support
-> > > MDIO_EEE_100TX and MDIO_EEE_1000T.
-> > > 
-> > > Defining a property for each is certainly doable but it does not
-> > > look
-> > > very nice either. If it extends in the future, it will get even
-> > > more
-> > > messier, especially if you want to disable everything.
-> > 
-> > Yes, agreed.
-> 
-> One risk with the definition a group of advertisement capabilities
-> (under the form of a bitmask for instance) to enable/disable is that
-> we
-> end up with Device Tree contain some kind of configuration policy as
-> opposed to just flagging particular hardware features as broken.
+The Nexbox A95X exists with a Meson GXBB (S905) Soc or a Meson GXL SoC (S905X).
+Add the S905X variant which uses the internal PHY instead of an external PHY.
+---
+ Documentation/devicetree/bindings/arm/amlogic.txt  |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../boot/dts/amlogic/meson-gxl-nexbox-a95x.dts     | 205 +++++++++++++++++++++
+ 3 files changed, 207 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
 
-The code proposed only allows to disable EEE advertisement (not
-enable), so we should not see it used as a configuration policy in DT.
-To make this more explicit, I could replace the property "eee-advert-
-disable" by "eee-broken" ?
-
-> 
-> Fortunately, there does not seem to be a ton of PHYs out there which
-> require EEE
-
-It is quite difficult to have the real picture here because some PHYs
-have EEE disabled by default and you have to explicitly enable it.
-I have no idea of the ratio between the 2 phy policies.
-
-> to be disabled to function properly so having individual
-> properties vs. bitmasks/groups is kind of speculative here.
-
-In the particular instance of the OdroidC2, disabling EEE for GbE only
-enough. However, If you have a PHY broken with, I think it is likely
-that you might want to disable all (supported) EEE modes. That's reason
-why I prefer bitmask. I agree both are functionally similar, this is
-kind of a cosmetic debate.
-
-> 
-> Another approach to solving this problem could be to register a PHY
-> fixup which disables EEE at the PHY level, and which is only called
-> for
-> specific boards affected by this problem
-> (of_machine_is_compatible()).
-> This code can leave in arch/*/* when that is possible, 
-
-That something I was looking at, but we don't have these files anymore
-on ARM64 (looking at your comment, you already know this)
-
-> or it can just be
-> somewhere where it is relevant, e.g; in the PHY driver for instance
-> (similarly to how PCI fixups are done).
-
-Do you prefer having board specific code inside generic driver than
-having the setting living in DT? Peppe told me they also had a few
-platform with similar issues. The point is that this could be useful to
-other people, so it could spread a grow a bit.
-
-I would prefer having this in the DT, but I can definitely do it the
-PHY with?of_machine_is_compatible() and register_fixup is this what you
-prefer/want.?
-
-Cheers
-Jerome
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+index 6ef7c52..9b2b41a 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.txt
++++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+@@ -45,4 +45,5 @@ Board compatible values:
+   - "amlogic,p231" (Meson gxl s905d)
+   - "amlogic,q200" (Meson gxm s912)
+   - "amlogic,q201" (Meson gxm s912)
++  - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
+   - "nexbox,a1" (Meson gxm s912)
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 2fbb8e3..0d7bfbf 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-vega-s95-telos.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxl-nexbox-a95x.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q200.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q201.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
+new file mode 100644
+index 0000000..e99101a
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
+@@ -0,0 +1,205 @@
++/*
++ * Copyright (c) 2016 Andreas F?rber
++ * Copyright (c) 2016 BayLibre, Inc.
++ * Author: Neil Armstrong <narmstrong@kernel.org>
++ *
++ * This file is dual-licensed: you can use it either under the terms
++ * of the GPL or the X11 license, at your option. Note that this dual
++ * licensing only applies to this file, and not this project as a
++ * whole.
++ *
++ *  a) This library is free software; you can redistribute it and/or
++ *     modify it under the terms of the GNU General Public License as
++ *     published by the Free Software Foundation; either version 2 of the
++ *     License, or (at your option) any later version.
++ *
++ *     This library is distributed in the hope that it will be useful,
++ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *     GNU General Public License for more details.
++ *
++ * Or, alternatively,
++ *
++ *  b) Permission is hereby granted, free of charge, to any person
++ *     obtaining a copy of this software and associated documentation
++ *     files (the "Software"), to deal in the Software without
++ *     restriction, including without limitation the rights to use,
++ *     copy, modify, merge, publish, distribute, sublicense, and/or
++ *     sell copies of the Software, and to permit persons to whom the
++ *     Software is furnished to do so, subject to the following
++ *     conditions:
++ *
++ *     The above copyright notice and this permission notice shall be
++ *     included in all copies or substantial portions of the Software.
++ *
++ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
++ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
++ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ *     OTHER DEALINGS IN THE SOFTWARE.
++ */
++
++/dts-v1/;
++
++#include "meson-gxl-s905x.dtsi"
++
++/ {
++	compatible = "nexbox,a95x", "amlogic,s905x", "amlogic,meson-gxl";
++	model = "NEXBOX A95X (S905X)";
++
++	aliases {
++		serial0 = &uart_AO;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory at 0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++
++	vddio_card: gpio-regulator {
++		compatible = "regulator-gpio";
++
++		regulator-name = "VDDIO_CARD";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
++		gpios-states = <1>;
++
++		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
++		states = <1800000 0
++			  3300000 1>;
++	};
++
++	vddio_boot: regulator-vddio_boot {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_BOOT";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	vddao_3v3: regulator-vddao_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	vcc_3v3: regulator-vcc_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
++
++	wifi32k: wifi32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&wifi32k>;
++		clock-names = "ext_clock";
++	};
++};
++
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
++};
++
++&ethmac {
++	status = "okay";
++	phy-mode = "rmii";
++	phy-handle = <&internal_phy>;
++};
++
++&ir {
++	status = "okay";
++	pinctrl-0 = <&remote_input_ao_pins>;
++	pinctrl-names = "default";
++};
++
++/* Wireless SDIO Module */
++&sd_emmc_a {
++	status = "okay";
++	pinctrl-0 = <&sdio_pins>;
++	pinctrl-names = "default";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <100000000>;
++
++	non-removable;
++	disable-wp;
++
++	mmc-pwrseq = <&sdio_pwrseq>;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_boot>;
++};
++
++/* SD card */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <100000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
++	cd-inverted;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_card>;
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <8>;
++	cap-sd-highspeed;
++	cap-mmc-highspeed;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&vddio_boot>;
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&clkc CLKID_FCLK_DIV4>;
++	clock-names = "clkin0";
++};
+-- 
+2.7.0
