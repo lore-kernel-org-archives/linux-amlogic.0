@@ -1,56 +1,27 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 22 Nov 2016 23:05:17 +0100
-Subject: [PATCH 3/3] ARM64: dts: meson-gxbb: add the USB reset also to the
- second USB PHY
-In-Reply-To: <m2eg2437za.fsf@baylibre.com>
-References: <20161001152134.8168-1-martin.blumenstingl@googlemail.com>
- <20161112131305.26088-1-martin.blumenstingl@googlemail.com>
- <20161112131305.26088-4-martin.blumenstingl@googlemail.com>
- <m2twb7w1j6.fsf@baylibre.com>
- <CAFBinCBVaQ7SLwQ0M2eJj0iyQuErF1Ev5dtGzKr7itiesy11MQ@mail.gmail.com>
- <m2eg2437za.fsf@baylibre.com>
-Message-ID: <CAFBinCCU-4vpttr14aHYjnO+yeQ=CM4dSe98ZSn_OCdatPagyg@mail.gmail.com>
+Date: Wed, 23 Nov 2016 13:23:24 +0100
+Subject: [PATCH v2 1/2] ARM64: dts: Add support for Meson GXM
+In-Reply-To: <20161122100046.25899-2-narmstrong@baylibre.com>
+References: <20161122100046.25899-1-narmstrong@baylibre.com>
+ <20161122100046.25899-2-narmstrong@baylibre.com>
+Message-ID: <CAFBinCAbUK-6uLc_ceJ5d-oD4N_HGz9rbtCvivTp1N8OOVBNBg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Nov 21, 2016 at 9:15 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+On Tue, Nov 22, 2016 at 11:00 AM, Neil Armstrong
+<narmstrong@baylibre.com> wrote:
+> Following the Amlogic Linux kernel, it seem the only differences
+> between the GXL and GXM SoCs are the CPU Clusters.
 >
->> Hi Kevin,
->>
->> On Wed, Nov 16, 2016 at 10:35 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->>>
->>>> When the USB PHY driver was introduced the reset framework did not
->>>> have support for triggering a reset pulse for shared resets. On GXBB
->>>> however there is only one reset line for both PHYs (meaning we have a
->>>> shared reset line). With the latest changes to the reset framework and
->>>> the corresponding updates to the phy-meson8b-usb2 driver we can now pass
->>>> the reset to the second PHY as well.
->>>>
->>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>>
->>> Applied.
->> Unfortunately I think I put crucial information only in the
->> cover-letter's description:
->> "the dts patch has a runtime-dependency on patch 1 and 2"
+> This commit renames the gxl-s905d-p23x DTSI in a common file for
+> S905D p23x and S912 q20x boards.
 >
-> I saw that, but also see that both of those have been queued, so should
-> land in v4.10 also.
+> Then adds a meson-gxm dtsi and reproduce the P23x to Q20x boards
+> dts files since the S905D and S912 SoCs shares the same pinout
+> and the P23x and Q20x boards are identical.
 >
->> So please feel free to keep or drop the patch as it is. In case you
->> decide drop it I will re-send it for 4.11 (after all the 4.10 stuff is
->> done).
->
-> IMO, it's fine to keep it.  That means there may be some versions of
-> linux-next that have the problem where the reset will get asserted
-> twice, but since that is affecting very few people (probably only you),
-> I think it's OK, since it will be fine once v4.10-rc1 is released.
-fine with me, just wanted to let you know (so you're aware of it in
-case someone runs into an issue with this)
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-> If you don't want that, let me know and I'll drop it for now.
-let's keep it - this will mean that more users will test it :)
-
-
-Martin
+I have tested this successfully on a Mecool BB2 (similar to the Q200
+reference board).
