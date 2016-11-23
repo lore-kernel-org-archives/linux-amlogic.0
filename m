@@ -1,35 +1,27 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 23 Nov 2016 07:58:23 -0800
-Subject: [PATCH v2 1/2] ARM64: dts: Add support for Meson GXM
-In-Reply-To: <CAFBinCAbUK-6uLc_ceJ5d-oD4N_HGz9rbtCvivTp1N8OOVBNBg@mail.gmail.com>
- (Martin Blumenstingl's message of "Wed, 23 Nov 2016 13:23:24 +0100")
-References: <20161122100046.25899-1-narmstrong@baylibre.com>
- <20161122100046.25899-2-narmstrong@baylibre.com>
- <CAFBinCAbUK-6uLc_ceJ5d-oD4N_HGz9rbtCvivTp1N8OOVBNBg@mail.gmail.com>
-Message-ID: <m2r362w5ls.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 23 Nov 2016 17:20:38 +0100
+Subject: [PATCH 0/2] minor GXL and GXM improvements
+Message-ID: <20161123162040.24843-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+This series adds SCPI support to GXL and GXM SoCs by moving the nodes
+to meson-gx.dtsi. Additionally this updates the compatible string to
+match the recent changes, see [0]
 
-> On Tue, Nov 22, 2016 at 11:00 AM, Neil Armstrong
-> <narmstrong@baylibre.com> wrote:
->> Following the Amlogic Linux kernel, it seem the only differences
->> between the GXL and GXM SoCs are the CPU Clusters.
->>
->> This commit renames the gxl-s905d-p23x DTSI in a common file for
->> S905D p23x and S912 q20x boards.
->>
->> Then adds a meson-gxm dtsi and reproduce the P23x to Q20x boards
->> dts files since the S905D and S912 SoCs shares the same pinout
->> and the P23x and Q20x boards are identical.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> I have tested this successfully on a Mecool BB2 (similar to the Q200
-> reference board).
+Now that we have SCPI support for GXM we can also use it to configure
+the CPU cores using the SCPI DVFS clocks.
 
-Thanks for testing (and reporting),
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001632.html
 
-Kevin
+Martin Blumenstingl (2):
+  ARM64: dts: meson-gx: move the SCPI and SRAM nodes to meson-gx
+  ARM64: dts: meson-gxm: add SCPI configuration for GXM
+
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 45 +++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 57 -----------------------------
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi  |  9 +++++
+ 3 files changed, 54 insertions(+), 57 deletions(-)
+
+-- 
+2.10.2
