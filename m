@@ -1,197 +1,62 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 23 Nov 2016 17:20:39 +0100
-Subject: [PATCH 1/2] ARM64: dts: meson-gx: move the SCPI and SRAM nodes to
- meson-gx
-In-Reply-To: <20161123162040.24843-1-martin.blumenstingl@googlemail.com>
-References: <20161123162040.24843-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161123162040.24843-2-martin.blumenstingl@googlemail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 23 Nov 2016 14:23:34 -0800
+Subject: [GIT PULL] Amlogic 64-bit DT changes for v4.10, round 2
+Message-ID: <m2k2btx2c9.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-SCPI and SRAM are identical on GXBB and GXL. Moving the corresponding
-nodes to meson-gx adds support for the thermal sensor on GXL based
-devices.
-While here, also rename the second compatible string because
-"arm,legacy-scpi" was replaced by "arm,scpi-pre-1.0".
+Arnd, Olof,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 45 +++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 57 -----------------------------
- 2 files changed, 45 insertions(+), 57 deletions(-)
+Here's a final round of arm64 DT changes for Amlogic family SoCs.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index fc033c0..47ab306 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -65,6 +65,7 @@
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 
- 		cpu1: cpu at 1 {
-@@ -73,6 +74,7 @@
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 
- 		cpu2: cpu at 2 {
-@@ -81,6 +83,7 @@
- 			reg = <0x0 0x2>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 
- 		cpu3: cpu at 3 {
-@@ -89,6 +92,7 @@
- 			reg = <0x0 0x3>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2>;
-+			clocks = <&scpi_dvfs 0>;
- 		};
- 
- 		l2: l2-cache0 {
-@@ -153,6 +157,28 @@
- 		};
- 	};
- 
-+	scpi {
-+		compatible = "amlogic,meson-gxbb-scpi", "arm,scpi-pre-1.0";
-+		mboxes = <&mailbox 1 &mailbox 2>;
-+		shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
-+
-+		clocks {
-+			compatible = "arm,scpi-clocks";
-+
-+			scpi_dvfs: scpi_clocks at 0 {
-+				compatible = "arm,scpi-dvfs-clocks";
-+				#clock-cells = <1>;
-+				clock-indices = <0>;
-+				clock-output-names = "vcpu";
-+			};
-+		};
-+
-+		scpi_sensors: sensors {
-+			compatible = "arm,scpi-sensors";
-+			#thermal-sensor-cells = <1>;
-+		};
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
-@@ -264,6 +290,25 @@
- 			#address-cells = <0>;
- 		};
- 
-+		sram: sram at c8000000 {
-+			compatible = "amlogic,meson-gxbb-sram", "mmio-sram";
-+			reg = <0x0 0xc8000000 0x0 0x14000>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x0 0xc8000000 0x14000>;
-+
-+			cpu_scp_lpri: scp-shmem at 0 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
-+				reg = <0x13000 0x400>;
-+			};
-+
-+			cpu_scp_hpri: scp-shmem at 200 {
-+				compatible = "amlogic,meson-gxbb-scp-shmem";
-+				reg = <0x13400 0x400>;
-+			};
-+		};
-+
- 		aobus: aobus at c8100000 {
- 			compatible = "simple-bus";
- 			reg = <0x0 0xc8100000 0x0 0x100000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index ac5ad3b..76465e7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -50,28 +50,6 @@
- / {
- 	compatible = "amlogic,meson-gxbb";
- 
--	scpi {
--		compatible = "amlogic,meson-gxbb-scpi";
--		mboxes = <&mailbox 1 &mailbox 2>;
--		shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
--
--		clocks {
--			compatible = "arm,scpi-clocks";
--
--			scpi_dvfs: scpi_clocks at 0 {
--				compatible = "arm,scpi-dvfs-clocks";
--				#clock-cells = <1>;
--				clock-indices = <0>;
--				clock-output-names = "vcpu";
--			};
--		};
--
--		scpi_sensors: sensors {
--			compatible = "arm,scpi-sensors";
--			#thermal-sensor-cells = <1>;
--		};
--	};
--
- 	soc {
- 		usb0_phy: phy at c0000000 {
- 			compatible = "amlogic,meson-gxbb-usb2-phy";
-@@ -93,25 +71,6 @@
- 			status = "disabled";
- 		};
- 
--		sram: sram at c8000000 {
--			compatible = "amlogic,meson-gxbb-sram", "mmio-sram";
--			reg = <0x0 0xc8000000 0x0 0x14000>;
--
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0 0x0 0xc8000000 0x14000>;
--
--			cpu_scp_lpri: scp-shmem at 0 {
--				compatible = "amlogic,meson-gxbb-scp-shmem";
--				reg = <0x13000 0x400>;
--			};
--
--			cpu_scp_hpri: scp-shmem at 200 {
--				compatible = "amlogic,meson-gxbb-scp-shmem";
--				reg = <0x13400 0x400>;
--			};
--		};
--
- 		usb0: usb at c9000000 {
- 			compatible = "amlogic,meson-gxbb-usb", "snps,dwc2";
- 			reg = <0x0 0xc9000000 0x0 0x40000>;
-@@ -138,22 +97,6 @@
- 	};
- };
- 
--&cpu0 {
--	clocks = <&scpi_dvfs 0>;
--};
--
--&cpu1 {
--	clocks = <&scpi_dvfs 0>;
--};
--
--&cpu2 {
--	clocks = <&scpi_dvfs 0>;
--};
--
--&cpu3 {
--	clocks = <&scpi_dvfs 0>;
--};
--
- &cbus {
- 	spifc: spi at 8c80 {
- 		compatible = "amlogic,meson-gxbb-spifc";
--- 
-2.10.2
+Please pull.
+
+Thanks,
+
+Kevin
+
+The following changes since commit ab5b24fdd2d551ea729e8e19e47811a646260331:
+
+  ARM64: dts: meson-gxbb-vega-s95: Add SD/SDIO/MMC and PWM nodes (2016-11-15 12:05:54 -0800)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
+
+for you to fetch changes up to 3db317765fcd55808c782f38c0d3f1862a922c2a:
+
+  ARM64: dts: meson-gxl: Add support for Nexbox A95X (2016-11-23 07:57:35 -0800)
+
+----------------------------------------------------------------
+Amlogic 64-bit DT updates for v4.10, round 2
+- new SoC support: S912/GXM series (8x A53)
+- new boards: Nexbox A1 (S912), Nexbox A95X (S905X)
+- resets for 2nd USB PHY
+
+----------------------------------------------------------------
+Martin Blumenstingl (1):
+      ARM64: dts: meson-gxbb: add the USB reset also to the second USB PHY
+
+Neil Armstrong (3):
+      ARM64: dts: Add support for Meson GXM
+      ARM64: dts: meson-gxm: Add support for the Nexbox A1
+      ARM64: dts: meson-gxl: Add support for Nexbox A95X
+
+ Documentation/devicetree/bindings/arm/amlogic.txt                                  |   8 +++
+ arch/arm64/boot/dts/amlogic/Makefile                                               |   4 ++
+ arch/arm64/boot/dts/amlogic/{meson-gxl-s905d-p23x.dtsi => meson-gx-p23x-q20x.dtsi} |   4 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                                        |   1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts                              | 205 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts                               |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts                               |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts                                | 169 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts                                |  77 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts                                |  58 ++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi                                         | 114 +++++++++++++++++++++++++++++++++++++++
+ 11 files changed, 643 insertions(+), 3 deletions(-)
+ rename arch/arm64/boot/dts/amlogic/{meson-gxl-s905d-p23x.dtsi => meson-gx-p23x-q20x.dtsi} (97%)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
