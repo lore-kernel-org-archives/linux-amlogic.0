@@ -1,9 +1,9 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 25 Nov 2016 19:49:40 +0100
+Date: Sat, 26 Nov 2016 00:44:50 +0100
 Subject: Amlogic Meson GXL/GXM USB support (dwc2 and dwc3)
 In-Reply-To: <CAFBinCDRErG+9kD=ObTzDGHTKS6JGmSVCna-0nDs7ZEX3p_JkA@mail.gmail.com>
 References: <CAFBinCDRErG+9kD=ObTzDGHTKS6JGmSVCna-0nDs7ZEX3p_JkA@mail.gmail.com>
-Message-ID: <CAFBinCB3EsUnhMUeDP-_s96n7fcivp8OeYOwJGJp7JXSWeTzkQ@mail.gmail.com>
+Message-ID: <CAFBinCBGEhSw8D9GXLq_qLaDsZEPUOrRvV=xbd-EseziguLRFw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -58,13 +58,7 @@ On Thu, Nov 24, 2016 at 6:42 PM, Martin Blumenstingl
 > The LED on my thumb drive flashes when I plug it into the dwc3 port,
 > but I don't get any interrupts and the kernel does not recognize any
 > new USB device.
-it turns out that this was a PHY problem.
-due to whatever reason it seems that we have to enable all 3 USB2 PHYs
-in the SoC to make *any* of these work!
-After lots of headache and refactoring I have my USB2 PHY driver now
-in a working state (in case someone is interested in this early code:
-[0]).
-
+>
 > For the dwc2 controller I am probably missing a clock somewhere,
 > because it's reporting:
 > dwc2 c9100000.usb: Configuration mismatch. dr_mode forced to device
@@ -73,8 +67,17 @@ in a working state (in case someone is interested in this early code:
 > dwc2 c9100000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
 > I must admit that I have been focusing on the dwc3 controller so far,
 > so I don't have any more information here.
-I do not have any (new) findings here as I was busy with the dwc3 PHY
-driver again.
+I found out that the dwc2 block is not used on my GXM SoC. the
+configuration register forces it to "device" mode only, so it wouldn't
+be of much use anyways.
+
+with my latest PHY fixes I can now use both USB ports (both provided
+by the dwc3 controller's internal hub). the work-in-progress code can
+be found here: [0]
 
 
-[0] https://github.com/xdarklight/linux/commits/meson-gx-integration-4.10-20161125
+Regards,
+Martin
+
+
+[0] https://github.com/xdarklight/linux/tree/meson-gx-integration-4.10-20161126
