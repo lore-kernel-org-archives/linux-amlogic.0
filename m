@@ -1,70 +1,28 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 25 Nov 2016 14:12:01 +0100
-Subject: [PATCH 2/2] net: phy: realtek: fix enabling of the TX-delay for
- RTL8211F
-In-Reply-To: <20161125131201.19994-1-martin.blumenstingl@googlemail.com>
-References: <20161125131201.19994-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161125131201.19994-3-martin.blumenstingl@googlemail.com>
+From: David.Laight@ACULAB.COM (David Laight)
+Date: Fri, 25 Nov 2016 13:41:02 +0000
+Subject: [PATCH v2 0/7] stmmac: dwmac-meson8b: configurable RGMII TX delay
+In-Reply-To: <20161125130156.17879-1-martin.blumenstingl@googlemail.com>
+References: <20161124143417.10178-1-martin.blumenstingl@googlemail.com>
+ <20161125130156.17879-1-martin.blumenstingl@googlemail.com>
+Message-ID: <063D6719AE5E284EB5DD2968C1650D6DB0228643@AcuExch.aculab.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The old logic always enabled the TX-delay when the phy-mode was set to
-PHY_INTERFACE_MODE_RGMII. There are dedicated phy-modes which tell the
-PHY driver to enable the RX and/or TX delays:
-- PHY_INTERFACE_MODE_RGMII should disable the RX and TX delay in the
-  PHY (if required, the MAC should add the delays in this case)
-- PHY_INTERFACE_MODE_RGMII_ID should enable RX and TX delay in the PHY
-- PHY_INTERFACE_MODE_RGMII_TXID should enable the TX delay in the PHY
-- PHY_INTERFACE_MODE_RGMII_RXID should enable the RX delay in the PHY
-  (currently not supported by RTL8211F)
+From: Martin Blumenstingl
+> Sent: 25 November 2016 13:02
+> Currently the dwmac-meson8b stmmac glue driver uses a hardcoded 1/4
+> cycle TX clock delay. This seems to work fine for many boards (for
+> example Odroid-C2 or Amlogic's reference boards) but there are some
+> others where TX traffic is simply broken.
+> There are probably multiple reasons why it's working on some boards
+> while it's broken on others:
+> - some of Amlogic's reference boards are using a Micrel PHY
+> - hardware circuit design
+> - maybe more...
+...
 
-With this patch we enable the TX delay for PHY_INTERFACE_MODE_RGMII_ID
-and PHY_INTERFACE_MODE_RGMII_TXID.
-Additionally we now explicity disable the TX-delay, which seems to be
-enabled automatically after a hard-reset of the PHY (by triggering it's
-reset pin) to get a consistent state (as defined by the phy-mode).
+Interesting thought.
+Can you test phy loopback with different delays?
+It might be then possible to default to 'auto'.
 
-This fixes a compatibility problem with some SoCs where the TX-delay was
-also added by the MAC. With the TX-delay being applied twice the TX
-clock was off and TX traffic was broken or very slow (<10Mbit/s) on
-1000Mbit/s links.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/net/phy/realtek.c | 20 ++++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-index aadd6e9..9cbe645 100644
---- a/drivers/net/phy/realtek.c
-+++ b/drivers/net/phy/realtek.c
-@@ -102,15 +102,19 @@ static int rtl8211f_config_init(struct phy_device *phydev)
- 	if (ret < 0)
- 		return ret;
- 
--	if (phydev->interface == PHY_INTERFACE_MODE_RGMII) {
--		/* enable TXDLY */
--		phy_write(phydev, RTL8211F_PAGE_SELECT, 0xd08);
--		reg = phy_read(phydev, 0x11);
-+	phy_write(phydev, RTL8211F_PAGE_SELECT, 0xd08);
-+	reg = phy_read(phydev, 0x11);
-+
-+	/* enable TX-delay for rgmii-id and rgmii-txid, otherwise disable it */
-+	if (phydev->interface == PHY_INTERFACE_MODE_RGMII_ID ||
-+	    phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID)
- 		reg |= RTL8211F_TX_DELAY;
--		phy_write(phydev, 0x11, reg);
--		/* restore to default page 0 */
--		phy_write(phydev, RTL8211F_PAGE_SELECT, 0x0);
--	}
-+	else
-+		reg &= ~RTL8211F_TX_DELAY;
-+
-+	phy_write(phydev, 0x11, reg);
-+	/* restore to default page 0 */
-+	phy_write(phydev, RTL8211F_PAGE_SELECT, 0x0);
- 
- 	return 0;
- }
--- 
-2.10.2
+	David
