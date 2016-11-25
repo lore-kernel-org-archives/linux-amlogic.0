@@ -1,104 +1,34 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 25 Nov 2016 14:01:56 +0100
-Subject: [PATCH v2 7/7] ARM64: dts: amlogic: add the ethernet TX delay
- configuration
-In-Reply-To: <20161125130156.17879-1-martin.blumenstingl@googlemail.com>
-References: <20161124143417.10178-1-martin.blumenstingl@googlemail.com>
- <20161125130156.17879-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161125130156.17879-8-martin.blumenstingl@googlemail.com>
+Date: Fri, 25 Nov 2016 14:11:59 +0100
+Subject: [PATCH 0/2] net: phy: realtek: fix RTL8211F TX-delay handling
+Message-ID: <20161125131201.19994-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds the amlogic,tx-delay-ns with the old (hardcoded) default value
-of 2ns to all boards which are using an RGMII ethernet PHY.
+The RTL8211F PHY driver currently enables the TX-delay only when the
+phy-mode is PHY_INTERFACE_MODE_RGMII. This is incorrect, because there
+are three RGMII variations of the phy-mode which explicitly request the
+PHY to enable the RX and/or TX delay, while PHY_INTERFACE_MODE_RGMII
+specifies that the PHY should disable the RX and/or TX delays.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi     | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts  | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts  | 2 ++
- 6 files changed, 12 insertions(+)
+Additionally to the RTL8211F PHY driver change this contains a small
+update to the phy-mode documentation to clarify the purpose of the
+RGMII phy-modes.
+While this may not be perfect yet it's at least a start. Please feel
+free to drop this patch from this series and send an improved version
+yourself.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index cbaf024..fdade07 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -161,6 +161,8 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	snps,reset-active-low;
- 
-+	amlogic,tx-delay-ns = <2>;
-+
- 	phy-mode = "rgmii";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 2abc553..8172e12 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -152,6 +152,8 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	snps,reset-active-low;
- 
-+	amlogic,tx-delay-ns = <2>;
-+
- 	phy-mode = "rgmii";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index a0e92e3..ab49712 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -131,6 +131,8 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	snps,reset-active-low;
- 
-+	amlogic,tx-delay-ns = <2>;
-+
- 	phy-mode = "rgmii";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-index f66939c..7fd11c6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-@@ -64,6 +64,8 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	snps,reset-active-low;
- 
-+	amlogic,tx-delay-ns = <2>;
-+
- 	/* External PHY is in RGMII */
- 	phy-mode = "rgmii";
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-index d320727..f83d6dc 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-@@ -156,6 +156,8 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	snps,reset-active-low;
- 
-+	amlogic,tx-delay-ns = <2>;
-+
- 	/* External PHY is in RGMII */
- 	phy-mode = "rgmii";
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
-index 5dbc660..e428e29 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts
-@@ -64,6 +64,8 @@
- 	snps,reset-delays-us = <0 10000 1000000>;
- 	snps,reset-active-low;
- 
-+	amlogic,tx-delay-ns = <2>;
-+
- 	/* External PHY is in RGMII */
- 	phy-mode = "rgmii";
- };
+These patches are the results of recent discussions, see [0]
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001688.html
+
+Martin Blumenstingl (2):
+  Documentation: devicetree: clarify usage of the RGMII phy-modes
+  net: phy: realtek: fix enabling of the TX-delay for RTL8211F
+
+ Documentation/devicetree/bindings/net/ethernet.txt | 24 ++++++++++++++++++----
+ drivers/net/phy/realtek.c                          | 20 ++++++++++--------
+ 2 files changed, 32 insertions(+), 12 deletions(-)
+
 -- 
 2.10.2
