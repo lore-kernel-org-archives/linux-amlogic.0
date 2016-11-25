@@ -1,106 +1,190 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 25 Nov 2016 17:03:08 +0100
-Subject: [RFC PATCH 0/3] drm: Add support for the Amlogic Video Processing Unit
-Message-ID: <1480089791-12517-1-git-send-email-narmstrong@baylibre.com>
+Date: Fri, 25 Nov 2016 17:03:10 +0100
+Subject: [RFC PATCH 2/3] ARM64: dts: meson-gx: Add Graphic Controller nodes
+In-Reply-To: <1480089791-12517-1-git-send-email-narmstrong@baylibre.com>
+References: <1480089791-12517-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1480089791-12517-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson SoCs embeds a Video Processing Unit able to output at least
-a Composite/CVBS Video with embedded VDAC and an HDMI Link with Embedded HDMI
-Transceiver.
+Add Video Processing Unit and CVBS Output nodes, and enable CVBS on selected
+boards.
 
-Thus, the current driver does not support HDMI yet.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi          | 46 ++++++++++++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  4 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |  4 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 12 ++++++
+ .../boot/dts/amlogic/meson-gxl-nexbox-a95x.dts     |  4 ++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  8 ++++
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  4 ++
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |  9 +++++
+ 8 files changed, 91 insertions(+)
 
-The Video Processig Unit is composed of multiple modules like the Video
-Input Unit and the Video Post Processing that can be associated to a
-CRTC with Planes management.
-The last Unit is the Venc that embeds at least 3 Encoders, ENCI for Interlace
-Video used by CVBS or HDMI, ENCP for Progressive Video used by the HDMI
-Transceiver and ENCL for LCD Display.
-
-The LCD Display is not planned to be supported on the Meson GX Family.
-
-This driver is a DRM/KMS driver using the following DRM components :
- - GEM-CMA
- - PRIME-CMA
- - Atomic Modesetting
- - FBDev-CMA
-
-For the following SoCs :
- - GXBB Family (S905)
- - GXL Family (S905X, S905D)
- - GXM Family (S912)
-
-The current driver only supports the CVBS PAL/NTSC output modes, but the
-CRTC/Planes management should support bigger modes.
-But Advanced Colorspace Conversion, Scaling and HDMI Modes will be added in
-a second time.
-
-The Device Tree bindings makes use of the endpoints video interface definitions
-to connect to the optional CVBS and in the future the HDMI Connector nodes.
-
-The driver has been tested with Xorg modesetting driver and Weston DRM backend.
-
-Neil Armstrong (3):
-  drm: Add support for Amlogic Meson Graphic Controller
-  ARM64: dts: meson-gx: Add Graphic Controller nodes
-  dt-bindings: display: add Amlogic Meson DRM Bindings
-
- .../bindings/display/meson/meson-drm.txt           |  134 ++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |   46 +
- .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |    4 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |    4 +
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   12 +
- .../boot/dts/amlogic/meson-gxl-nexbox-a95x.dts     |    4 +
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |    8 +
- .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |    4 +
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |    9 +
- drivers/gpu/drm/Kconfig                            |    2 +
- drivers/gpu/drm/Makefile                           |    1 +
- drivers/gpu/drm/meson/Kconfig                      |    8 +
- drivers/gpu/drm/meson/Makefile                     |    5 +
- drivers/gpu/drm/meson/meson_canvas.c               |   96 ++
- drivers/gpu/drm/meson/meson_canvas.h               |   31 +
- drivers/gpu/drm/meson/meson_crtc.c                 |  176 +++
- drivers/gpu/drm/meson/meson_crtc.h                 |   34 +
- drivers/gpu/drm/meson/meson_cvbs.c                 |  293 ++++
- drivers/gpu/drm/meson/meson_cvbs.h                 |   32 +
- drivers/gpu/drm/meson/meson_drv.c                  |  383 ++++++
- drivers/gpu/drm/meson/meson_drv.h                  |   68 +
- drivers/gpu/drm/meson/meson_plane.c                |  150 +++
- drivers/gpu/drm/meson/meson_plane.h                |   32 +
- drivers/gpu/drm/meson/meson_registers.h            | 1395 ++++++++++++++++++++
- drivers/gpu/drm/meson/meson_vclk.c                 |  169 +++
- drivers/gpu/drm/meson/meson_vclk.h                 |   36 +
- drivers/gpu/drm/meson/meson_venc.c                 |  286 ++++
- drivers/gpu/drm/meson/meson_venc.h                 |   77 ++
- drivers/gpu/drm/meson/meson_viu.c                  |  497 +++++++
- drivers/gpu/drm/meson/meson_viu.h                  |   37 +
- drivers/gpu/drm/meson/meson_vpp.c                  |  189 +++
- drivers/gpu/drm/meson/meson_vpp.h                  |   43 +
- 32 files changed, 4265 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/meson/meson-drm.txt
- create mode 100644 drivers/gpu/drm/meson/Kconfig
- create mode 100644 drivers/gpu/drm/meson/Makefile
- create mode 100644 drivers/gpu/drm/meson/meson_canvas.c
- create mode 100644 drivers/gpu/drm/meson/meson_canvas.h
- create mode 100644 drivers/gpu/drm/meson/meson_crtc.c
- create mode 100644 drivers/gpu/drm/meson/meson_crtc.h
- create mode 100644 drivers/gpu/drm/meson/meson_cvbs.c
- create mode 100644 drivers/gpu/drm/meson/meson_cvbs.h
- create mode 100644 drivers/gpu/drm/meson/meson_drv.c
- create mode 100644 drivers/gpu/drm/meson/meson_drv.h
- create mode 100644 drivers/gpu/drm/meson/meson_plane.c
- create mode 100644 drivers/gpu/drm/meson/meson_plane.h
- create mode 100644 drivers/gpu/drm/meson/meson_registers.h
- create mode 100644 drivers/gpu/drm/meson/meson_vclk.c
- create mode 100644 drivers/gpu/drm/meson/meson_vclk.h
- create mode 100644 drivers/gpu/drm/meson/meson_venc.c
- create mode 100644 drivers/gpu/drm/meson/meson_venc.h
- create mode 100644 drivers/gpu/drm/meson/meson_viu.c
- create mode 100644 drivers/gpu/drm/meson/meson_viu.h
- create mode 100644 drivers/gpu/drm/meson/meson_vpp.c
- create mode 100644 drivers/gpu/drm/meson/meson_vpp.h
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index fc033c0..bcc1d1f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -153,6 +153,27 @@
+ 		};
+ 	};
+ 
++	venc_cvbs: venc-cvbs {
++		compatible = "amlogic,meson-gx-venc-cvbs";
++		status = "disabled";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			enc_cvbs_in: port at 0 {
++				 #address-cells = <1>;
++				 #size-cells = <0>;
++				 reg = <0>;
++
++				 venc_cvbs_in_vpu: endpoint at 0 {
++					 reg = <0>;
++					 remote-endpoint = <&vpu_out_venc_cvbs>;
++				};
++			};
++		};
++	};
++
+ 	soc {
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
+@@ -356,5 +377,30 @@
+ 				status = "disabled";
+ 			};
+ 		};
++
++		vpu: vpu at d0100000 {
++			compatible = "amlogic,meson-gx-vpu";
++			reg = <0x0 0xd0100000 0x0 0x100000>,
++			      <0x0 0xc883c000 0x0 0x1000>,
++			      <0x0 0xc8838000 0x0 0x1000>;
++			reg-names = "base", "hhi", "dmc";
++			interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>;
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				vpu_out: port at 1 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <1>;
++
++					vpu_out_venc_cvbs: endpoint at 0 {
++						reg = <0>;
++						remote-endpoint = <&venc_cvbs_in_vpu>;
++					};
++				};
++			};
++		};
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+index 9696820..a55d1cf 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -229,3 +229,7 @@
+ 	clocks = <&clkc CLKID_FCLK_DIV4>;
+ 	clock-names = "clkin0";
+ };
++
++&venc_cvbs {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index 5e5e2de..3c09bd1 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -266,3 +266,7 @@
+ 	clocks = <&clkc CLKID_FCLK_DIV4>;
+ 	clock-names = "clkin0";
+ };
++
++&venc_cvbs {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index ac5ad3b..99ff37c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -506,3 +506,15 @@
+ 		 <&clkc CLKID_FCLK_DIV2>;
+ 	clock-names = "core", "clkin0", "clkin1";
+ };
++
++&venc_cvbs {
++	status = "okay";
++};
++
++&venc_cvbs {
++	compatible = "amlogic,meson-gxbb-venc-cvbs", "amlogic,meson-gx-venc-cvbs";
++};
++
++&vpu {
++	compatible = "amlogic,meson-gxbb-vpu", "amlogic,meson-gx-vpu";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
+index e99101a..2a9b46f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
+@@ -203,3 +203,7 @@
+ 	clocks = <&clkc CLKID_FCLK_DIV4>;
+ 	clock-names = "clkin0";
+ };
++
++&venc_cvbs {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 3af54dc..98b8118 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -299,3 +299,11 @@
+ 		 <&clkc CLKID_FCLK_DIV2>;
+ 	clock-names = "core", "clkin0", "clkin1";
+ };
++
++&venc_cvbs {
++	compatible = "amlogic,meson-gxl-venc-cvbs", "amlogic,meson-gx-venc-cvbs";
++};
++
++&vpu {
++	compatible = "amlogic,meson-gxl-vpu", "amlogic,meson-gx-vpu";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index d320727..1ae2451 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -167,3 +167,7 @@
+ 		max-speed = <1000>;
+ 	};
+ };
++
++&venc_cvbs {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+index c1974bb..7bf2d6e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+@@ -112,3 +112,12 @@
+ 		};
+ 	};
+ };
++
++
++&venc_cvbs {
++	compatible = "amlogic,meson-gxm-venc-cvbs", "amlogic,meson-gx-venc-cvbs";
++};
++
++&vpu {
++	compatible = "amlogic,meson-gxm-vpu", "amlogic,meson-gx-vpu";
++};
 -- 
 1.9.1
