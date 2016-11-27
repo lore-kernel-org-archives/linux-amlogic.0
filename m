@@ -1,40 +1,64 @@
-From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Sat, 26 Nov 2016 21:55:37 -0800
-Subject: [PATCH 2/2] net: phy: realtek: fix enabling of the TX-delay for
- RTL8211F
-In-Reply-To: <20161125131201.19994-3-martin.blumenstingl@googlemail.com>
-References: <20161125131201.19994-1-martin.blumenstingl@googlemail.com>
- <20161125131201.19994-3-martin.blumenstingl@googlemail.com>
-Message-ID: <bcc66892-4f2a-dab5-e820-29e2fc73683e@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 27 Nov 2016 14:02:31 +0100
+Subject: dwc3: add support for hardware with multiple ports on USB2 hub enabled
+Message-ID: <CAFBinCBFVp1qdymz9rqKB2Lq8-iBihJ_Xo5JN7zCTLg223wWSw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hello,
+
+while adding USB support on the Amlogic Meson GXL / GXM SoCs I have
+come across something I did not know yet:
+dwc3 has an internal USB2 hub (from what I can read in the code there
+seem to be multiple USB3 ports supported as well).
+When searching the web I did not come across any SoC that uses a
+configuration with more than one port enabled.
+
+On my Amlogic Meson GXM device (consumer device, no development board)
+I see the following USB2 PHY register configuration (full register
+dump from the kernel that was shipped with the device is attached):
+GUSB2PHYCFG(0) = 0x40102500
+GUSB2PHYCFG(1) = 0x40102540
+GUSB2PHYCFG(2) = 0x40102540
+
+Then vendor kernel sources (a 3.14 kernel) are adding the resets for
+GUSB2PHYCFG([1-3]) in dwc3_core_soft_reset().
+A mainline 4.9+(Meson GXL USB PHY patches + dwc3/xhci-plat DMA patches
+from linux-usb) kernel works fine even with just applying the reset to
+GUSB2PHYCFG(0).
+
+That brings up two questions:
+1. I guess it makes sense to adjust the upstream dwc3 to add the
+resets for all available USB2 PHYs - is there a specific reason why
+the current dwc3 driver does not do that (or is it simply because why
+we find on Meson GXL/GXM is very exotic)?
+2. would we also implement this for the USB3 "pipes" as well (without
+being able to test this)?
+3. from what I can see in the code we have to adjust dwc3_phy_setup()
+and ulpi.c to add support for multiple ports, but how do we detect the
+number of USB2 and USB3 ports (is this somewhere encoded in the
+DWC3_GHWPARAMS registers)?
+
+lsusb output is also attached, based on the PHY drivers for which the
+patches can be found here: [0]
 
 
-On 11/25/2016 05:12 AM, Martin Blumenstingl wrote:
-> The old logic always enabled the TX-delay when the phy-mode was set to
-> PHY_INTERFACE_MODE_RGMII. There are dedicated phy-modes which tell the
-> PHY driver to enable the RX and/or TX delays:
-> - PHY_INTERFACE_MODE_RGMII should disable the RX and TX delay in the
->   PHY (if required, the MAC should add the delays in this case)
-> - PHY_INTERFACE_MODE_RGMII_ID should enable RX and TX delay in the PHY
-> - PHY_INTERFACE_MODE_RGMII_TXID should enable the TX delay in the PHY
-> - PHY_INTERFACE_MODE_RGMII_RXID should enable the RX delay in the PHY
->   (currently not supported by RTL8211F)
-> 
-> With this patch we enable the TX delay for PHY_INTERFACE_MODE_RGMII_ID
-> and PHY_INTERFACE_MODE_RGMII_TXID.
-> Additionally we now explicity disable the TX-delay, which seems to be
-> enabled automatically after a hard-reset of the PHY (by triggering it's
-> reset pin) to get a consistent state (as defined by the phy-mode).
-> 
-> This fixes a compatibility problem with some SoCs where the TX-delay was
-> also added by the MAC. With the TX-delay being applied twice the TX
-> clock was off and TX traffic was broken or very slow (<10Mbit/s) on
-> 1000Mbit/s links.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Best Regards,
+Martin
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001721.html
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: sys_kernel_debug_dwc3_regdump_vendor_kernel
+Type: application/octet-stream
+Size: 8054 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20161127/9a64343e/attachment.obj>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: lsusb-mainline-kernel
+Type: application/octet-stream
+Size: 4991 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20161127/9a64343e/attachment-0001.obj>
