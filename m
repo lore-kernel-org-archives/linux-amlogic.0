@@ -1,41 +1,37 @@
 From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Sat, 26 Nov 2016 21:53:47 -0800
-Subject: [PATCH 1/2] Documentation: devicetree: clarify usage of the RGMII
- phy-modes
-In-Reply-To: <20161125131201.19994-2-martin.blumenstingl@googlemail.com>
+Date: Sat, 26 Nov 2016 21:55:37 -0800
+Subject: [PATCH 2/2] net: phy: realtek: fix enabling of the TX-delay for
+ RTL8211F
+In-Reply-To: <20161125131201.19994-3-martin.blumenstingl@googlemail.com>
 References: <20161125131201.19994-1-martin.blumenstingl@googlemail.com>
- <20161125131201.19994-2-martin.blumenstingl@googlemail.com>
-Message-ID: <61b8fa1b-e947-16ca-fb97-02a1125042aa@gmail.com>
+ <20161125131201.19994-3-martin.blumenstingl@googlemail.com>
+Message-ID: <bcc66892-4f2a-dab5-e820-29e2fc73683e@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
 
 On 11/25/2016 05:12 AM, Martin Blumenstingl wrote:
-> RGMII requires special RX and/or TX delays depending on the actual
-> hardware circuit/wiring. These delays can be added by the MAC, the PHY
-> or the designer of the circuit (the latter means that no delay has to
-> be added by PHY or MAC).
-> There are 4 RGMII phy-modes used describe where a delay should be
-> applied:
-> - rgmii: the RX and TX delays are either added by the MAC (where the
->   exact delay is typically configurable, and can be turned off when no
->   extra delay is needed) or not needed at all (because the hardware
->   wiring adds the delay already). The PHY should neither add the RX nor
->   TX delay in this case.
-> - rgmii-rxid: configures the PHY to enable the RX delay. The MAC should
->   not add the RX delay in this case.
-> - rgmii-txid: configures the PHY to enable the TX delay. The MAC should
->   not add the TX delay in this case.
-> - rgmii-id: combines rgmii-rxid and rgmii-txid and thus configures the
->   PHY to enable the RX and TX delays. The MAC should neither add the RX
->   nor TX delay in this case.
+> The old logic always enabled the TX-delay when the phy-mode was set to
+> PHY_INTERFACE_MODE_RGMII. There are dedicated phy-modes which tell the
+> PHY driver to enable the RX and/or TX delays:
+> - PHY_INTERFACE_MODE_RGMII should disable the RX and TX delay in the
+>   PHY (if required, the MAC should add the delays in this case)
+> - PHY_INTERFACE_MODE_RGMII_ID should enable RX and TX delay in the PHY
+> - PHY_INTERFACE_MODE_RGMII_TXID should enable the TX delay in the PHY
+> - PHY_INTERFACE_MODE_RGMII_RXID should enable the RX delay in the PHY
+>   (currently not supported by RTL8211F)
 > 
-> Document these cases in the ethernet.txt documentation to make it clear
-> when to use each mode.
-> If applied incorrectly one might end up with MAC and PHY both enabling
-> for example the TX delay, which breaks ethernet TX traffic on 1000Mbit/s
-> links.
+> With this patch we enable the TX delay for PHY_INTERFACE_MODE_RGMII_ID
+> and PHY_INTERFACE_MODE_RGMII_TXID.
+> Additionally we now explicity disable the TX-delay, which seems to be
+> enabled automatically after a hard-reset of the PHY (by triggering it's
+> reset pin) to get a consistent state (as defined by the phy-mode).
+> 
+> This fixes a compatibility problem with some SoCs where the TX-delay was
+> also added by the MAC. With the TX-delay being applied twice the TX
+> clock was off and TX traffic was broken or very slow (<10Mbit/s) on
+> 1000Mbit/s links.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
