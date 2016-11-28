@@ -1,40 +1,24 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 28 Nov 2016 10:27:10 -0800
-Subject: [GIT PULL] Amlogic 64-bit DT changes for v4.10, round 2
-In-Reply-To: <CAFBinCAvziwM4U6qJnTV+nEMKaZH4G9xdTM0pY6O83+Edk=Ovw@mail.gmail.com>
- (Martin Blumenstingl's message of "Sat, 26 Nov 2016 16:07:21 +0100")
-References: <m2k2btx2c9.fsf@baylibre.com>
- <CAFBinCAvziwM4U6qJnTV+nEMKaZH4G9xdTM0pY6O83+Edk=Ovw@mail.gmail.com>
-Message-ID: <m2fumbtq81.fsf@baylibre.com>
+Date: Mon, 28 Nov 2016 11:08:48 -0800
+Subject: [PATCH 0/2] minor GXL and GXM improvements
+In-Reply-To: <20161123162040.24843-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Wed, 23 Nov 2016 17:20:38 +0100")
+References: <20161123162040.24843-1-martin.blumenstingl@googlemail.com>
+Message-ID: <m28ts3toan.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Martin,
+
 Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Hi Kevin,
->
-> On Wed, Nov 23, 2016 at 11:23 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->> Arnd, Olof,
->>
->> Here's a final round of arm64 DT changes for Amlogic family SoCs.
-> please note that SCPI is not working due to a change in Sudeep's
-> repository which has not made it into the Amlogic tree yet:
-> Sudeep's latest pull request indicates that we should use
-> "arm,scpi-pre-1.0", while currently we are only using
-> "amlogic,meson-gxbb-scpi": [0]
+> This series adds SCPI support to GXL and GXM SoCs by moving the nodes
+> to meson-gx.dtsi. Additionally this updates the compatible string to
+> match the recent changes, see [0]
 
-Yes, I had to drop that legacy compatible as it was still under
-discsussion.  Now that it's agreed upon, I've just sent a patch to fix
-that.
+Can you rebase onto my current v4.10/dt64 branch please?  I have updated
+the compatible string there.
 
-> I fixed that in the Amlogic .dts files in [1] but this patch has not
-> been applied yet.
->
-> No pressure on this one - I just want to save your time (so you don't
-> have to search why SCPI is not working anymore)
-
-Thanks!
+Thanks,
 
 Kevin
-
-[1] http://lists.infradead.org/pipermail/linux-arm-kernel/2016-November/470842.html
