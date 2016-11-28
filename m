@@ -1,221 +1,54 @@
-From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
-Date: Mon, 28 Nov 2016 11:37:12 +0200
-Subject: [RFC PATCH 3/3] dt-bindings: display: add Amlogic Meson DRM
- Bindings
-In-Reply-To: <9f32e3bd-531b-0be7-8579-3af52469c421@baylibre.com>
-References: <1480089791-12517-1-git-send-email-narmstrong@baylibre.com>
- <3721857.XEGXu9B51N@avalon>
- <9f32e3bd-531b-0be7-8579-3af52469c421@baylibre.com>
-Message-ID: <2350540.yAeGFdYPK2@avalon>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 28 Nov 2016 10:46:45 +0100
+Subject: [PATCH net-next v3 0/4] Fix OdroidC2 Gigabit Tx link issue
+Message-ID: <1480326409-25419-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+This patchset fixes an issue with the OdroidC2 board (DWMAC + RTL8211F).
+The platform seems to enter LPI on the Rx path too often while performing
+relatively high TX transfer. This eventually break the link (both Tx and
+Rx), and require to bring the interface down and up again to get the Rx
+path working again.
 
-On Monday 28 Nov 2016 10:23:43 Neil Armstrong wrote:
-> On 11/28/2016 09:33 AM, Laurent Pinchart wrote:
-> > On Friday 25 Nov 2016 17:03:11 Neil Armstrong wrote:
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >> 
-> >>  .../bindings/display/meson/meson-drm.txt           | 134 +++++++++++++++
-> >>  1 file changed, 134 insertions(+)
-> >>  create mode 100644
-> >> 
-> >> Documentation/devicetree/bindings/display/meson/meson-drm.txt
-> >> 
-> >> diff --git
-> >> a/Documentation/devicetree/bindings/display/meson/meson-drm.txt
-> >> b/Documentation/devicetree/bindings/display/meson/meson-drm.txt new file
-> >> mode 100644
-> >> index 0000000..89c1b5f
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/display/meson/meson-drm.txt
-> >> @@ -0,0 +1,134 @@
-> >> +Amlogic Meson Display Controller
-> >> +================================
-> >> +
-> >> +The Amlogic Meson Display controller is composed of several components
-> >> +that are going to be documented below:
-> >> +
-> >> +DMC|---------------VPU (Video Processing Unit)------------|------
-> >> HHI------|
-> >> +   | vd1   _______     _____________    _____________     |              
-> >> |
-> >> +D  |-------|      |----|            |   |            |    |   HDMI PLL   
-> >> |
-> >> +D  | vd2   | VIU  |    | Video Post |   | Video Encs |<---|-----VCLK     
-> >> |
-> >> +R  |-------|      |----| Processing |   |            |    |              
-> >> |
-> >> +   | osd2  |      |    |            |---| Enci ------|----|-----
-> >> VDAC------|
-> >> +R  |-------| CSC  |----| Scalers    |   | Encp ------|----|----HDMI-
-> >> TX----|
-> >> +A  | osd1  |      |    | Blenders   |   |
-> >> Encl-------|----|---------------|
-> >> +M  |-------|______|----|____________|   |____________|    |              
-> >> |
-> >> +___|______________________________________________________|____________
-> >> ___|
-> >> +
-> >> +
-> >> +VIU: Video Input Unit
-> >> +---------------------
-> >> +
-> >> +The Video Input Unit is in charge of the pixel scanout from the DDR
-> >> memory.
-> >> +It fetches the frames addresses, stride and parameters from the "Canvas"
-> >> memory.
-> >> +This part is also in charge of the CSC (Colorspace Conversion).
-> >> +It can handle 2 OSD Planes and 2 Video Planes.
-> >> +
-> >> +VPP: Video Processing Unit
-> > 
-> > Do you mean "Video Post Processing" ? In your diagram above Video
-> > Processing Unit is abbreviated VPU and covers the VIU, VPP and encoders.
-> 
-> Exact, I meant VPP here.
-> 
-> >> +--------------------------
-> >> +
-> >> +The Video Processing Unit is in charge if the scaling and blending of
-> >> the
-> >> +various planes into a single pixel stream.
-> >> +There is a special "pre-blending" used by the video planes with a
-> >> dedicated 
-> >> +scaler and a "post-blending" to merge with the OSD Planes.
-> >> +The OSD planes also have a dedicated scaler for one of the OSD.
-> >> +
-> >> +VENC: Video Encoders
-> >> +--------------------
-> >> +
-> >> +The VENC is composed of the multiple pixel encoders :
-> >> + - ENCI : Interlace Video encoder for CVBS and Interlace HDMI
-> >> + - ENCP : Progressive Video Encoder for HDMI
-> >> + - ENCL : LCD LVDS Encoder
-> >> +The VENC Unit gets a Pixel Clocks (VCLK) from a dedicated HDMI PLL and
-> >> clock
-> >> +tree and provides the scanout clock to the VPP and VIU.
-> >> +The ENCI is connected to a single VDAC for Composite Output.
-> >> +The ENCI and ENCP are connected to an on-chip HDMI Transceiver.
-> >> +
-> >> +Device Tree Bindings:
-> >> +---------------------
-> >> +
-> >> +VPU: Video Processing Unit
-> >> +--------------------------
-> >> +
-> >> +Required properties:
-> >> + - compatible: value should be different for each SoC family as :
-> >> + 	- GXBB (S905) : "amlogic,meson-gxbb-vpu"
-> >> + 	- GXL (S905X, S905D) : "amlogic,meson-gxl-vpu"
-> >> + 	- GXM (S912) : "amlogic,meson-gxm-vpu"
-> >> +	followed by the common "amlogic,meson-gx-vpu"
-> >> + - reg: base address and size of he following memory-mapped regions :
-> >> +	- vpu
-> >> +	- hhi
-> >> +	- dmc
-> >> + - reg-names: should contain the names of the previous memory regions
-> >> + - interrupts: should contain the VENC Vsync interrupt number
-> >> +
-> >> +- ports: A ports node with endpoint definitions as defined in
-> >> +  Documentation/devicetree/bindings/media/video-interfaces.txt. The
-> >> +  second port should be the output endpoints for VENC connectors.
-> >> +
-> >> +VENC CBVS Output
-> >> +----------------------
-> >> +
-> >> +The VENC can output Composite/CVBS output via a decicated VDAC.
-> >> +
-> >> +Required properties:
-> >> +  - compatible: value must be one of:
-> >> + - compatible: value should be different for each SoC family as :
-> > One of those two lines is redundant.
-> 
-> Will fix.
-> 
-> >> + 	- GXBB (S905) : "amlogic,meson-gxbb-venc-cvbs"
-> >> + 	- GXL (S905X, S905D) : "amlogic,meson-gxl-venc-cvbs"
-> >> + 	- GXM (S912) : "amlogic,meson-gxm-venc-cvbs"
-> >> +	followed by the common "amlogic,meson-gx-venc-cvbs"
-> >> +
-> > 
-> > No registers ? Are the encoders registers part of the VPU register space,
-> > intertwined in a way that they can't be specified separately here ?
-> 
-> Exact, all the video registers on the Amlogic SoC are part of a long history
-> of fixup/enhance from very old SoCs, it's quite hard to distinguish a Venc
-> registers array since they are mixed with the multiple encoders
-> registers...
+The root cause of this issue is not fully understood yet but disabling EEE
+advertisement on the PHY prevent this feature to be negotiated.
+With this change, the link is stable and reliable, with the expected
+throughput performance.
 
-In that case is there really a reason to model the encoders as separate nodes 
-in DT ?
+The patchset adds options in the generic phy driver to disable EEE
+advertisement, through device tree. The way it is done is very similar
+to the handling of the max-speed property.
 
-> The only separate registers are the VDAC and HDMI PHY, I may move them to
-> these separate nodes since they are part of the HHI register space.
-> 
-> It is a problem if I move them in the next release ? Next release will
-> certainly have HDMI support, and will have these refactorings.
+Changes since V2: [2]
+ - Rename "eee-advert-disable" to "eee-broken-modes" to make the intended
+   purpose of this option clear (flag broken configuration, not a
+   configuration option)
+ - Add DT bindings constants so the DT configuration is more user friendly
+ - Submit to net-next instead of net.
 
-Given that DT bindings are considered as a stable ABI, I'm afraid it's an 
-issue.
+Changes since V1: [1]
+ - Disable the advertisement of EEE in the generic code instead of the
+   realtek driver.
 
-> >> +- ports: A ports node with endpoint definitions as defined in
-> >> +  Documentation/devicetree/bindings/media/video-interfaces.txt. The
-> >> +  first port should be the input endpoints, connected ot the VPU node.
-> >> +
-> >> +Example:
-> >> +
-> >> +venc_cvbs: venc-cvbs {
-> >> +	compatible = "amlogic,meson-gxbb-venc-cvbs";
-> >> +	status = "okay";
-> >> +
-> >> +	ports {
-> >> +		#address-cells = <1>;
-> >> +		#size-cells = <0>;
-> >> +
-> >> +		enc_cvbs_in: port at 0 {
-> >> +			 #address-cells = <1>;
-> >> +			 #size-cells = <0>;
-> >> +			 reg = <0>;
-> >> +
-> >> +			 venc_cvbs_in_vpu: endpoint at 0 {
-> >> +				 reg = <0>;
-> >> +				 remote-endpoint = <&vpu_out_venc_cvbs>;
-> >> +			};
-> >> +		};
-> >> +	};
-> >> +};
-> >> +
-> >> +vpu: vpu at d0100000 {
-> >> +	compatible = "amlogic,meson-gxbb-vpu";
-> >> +	reg = <0x0 0xd0100000 0x0 0x100000>,
-> >> +	      <0x0 0xc883c000 0x0 0x1000>,
-> >> +	      <0x0 0xc8838000 0x0 0x1000>;
-> >> +	reg-names = "base", "hhi", "dmc";
-> >> +	interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>;
-> >> +
-> >> +	ports {
-> >> +		#address-cells = <1>;
-> >> +		#size-cells = <0>;
-> >> +
-> >> +		vpu_out: port at 1 {
-> >> +			 #address-cells = <1>;
-> >> +			 #size-cells = <0>;
-> >> +			 reg = <1>;
-> >> +
-> >> +			 vpu_out_venc_cvbs: endpoint at 0 {
-> >> +				 reg = <0>;
-> >> +				 remote-endpoint = <&venc_cvbs_in_vpu>;
-> >> +			 };
-> >> +		 };
-> >> +	};
-> >> +};
-> 
-> Thanks for the review !
+[1] : http://lkml.kernel.org/r/1479220154-25851-1-git-send-email-jbrunet at baylibre.com
+[2] : http://lkml.kernel.org/r/1479742524-30222-1-git-send-email-jbrunet at baylibre.com
+
+
+Jerome Brunet (4):
+  net: phy: add an option to disable EEE advertisement
+  dt-bindings: net: add EEE capability constants
+  dt: bindings: add ethernet phy eee-broken-modes option documentation
+  ARM64: dts: meson: odroidc2: disable advertisement EEE for GbE.
+
+ Documentation/devicetree/bindings/net/phy.txt      |  2 +
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 16 +++++
+ drivers/net/phy/phy.c                              |  3 +
+ drivers/net/phy/phy_device.c                       | 80 +++++++++++++++++++---
+ include/dt-bindings/net/mdio.h                     | 19 +++++
+ include/linux/phy.h                                |  3 +
+ 6 files changed, 114 insertions(+), 9 deletions(-)
+ create mode 100644 include/dt-bindings/net/mdio.h
 
 -- 
-Regards,
-
-Laurent Pinchart
+2.7.4
