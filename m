@@ -1,128 +1,60 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 28 Nov 2016 15:30:03 +0100
-Subject: [PATCH 0/5] Meson GXL and GXM USB support
-In-Reply-To: <20161126145635.24488-1-martin.blumenstingl@googlemail.com>
-References: <20161126145635.24488-1-martin.blumenstingl@googlemail.com>
-Message-ID: <2b23b2f4-d7f7-50f4-25b5-51d26167e7a6@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 28 Nov 2016 16:50:24 +0100
+Subject: [PATCH net-next v4 0/4] Fix OdroidC2 Gigabit Tx link issue
+Message-ID: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/26/2016 03:56 PM, Martin Blumenstingl wrote:
-> USB support on GXL and GXM differs a lot from Meson8b and GXBB:
-> The most obvious change is that GXL and GXM now have one dwc3
-> controller and one dwc2 controller (instead of two dwc2 controllers).
-> With that there are also new USB PHYs.
-> 
-> Due to lack of hardware I was only able to test this on a board with
-> GXM, but as far as I understand the hardware my preparations should be
-> correct (so it should also work on GXL).
-> 
-> dwc2 will probably stay unused on most GXM devices since it's limited
-> to device mode via some dwc2 hardware configuration register.
-> 
-> dwc3 is probably used on all devices, even if there is more than just
-> one USB port. dwc3 has a built-in USB2 hub - on GXL this hub has two
-> ports enabled, while on GXM there are three ports enabled (see below
-> for lsusb output). There are no USB3 ports enabled in the dwc3 hardware
-> configuration, meaning that the SoC is limited to high-speed mode.
-> On my GXM device the dwc3 hardware configuration forces it into "host
-> only" mode.
-> 
-> The SoCs contain two PHY blocks: one USB3 PHY and up to four USB2 PHYs
-> (on GXM there are only three enabled, but the registers should support
-> up to four).
-> The USB3 PHY also handles the OTG interrupts, but since dwc3's hardware
-> configuration enforces "host only" mode I was not able to test this. It
-> simply takes care of an interrupt and then notifies all related PHYs
-> about the new mode.
-> The USB2 PHY block is a bit different: I created one PHY driver which
-> spans all "PHY ports" because the handling is a bit tricky. It turns
-> out that for each available USB port in dwc3's hub the corresponding
-> PHY must be enabled (even if there is no physical port - in my case
-> port 3 is not connected to anything, but disabling the PHY breaks
-> ports 1 and 2 as well).
-> I decided not not pass the USB2 PHYs directly to dwc3 due to three
-> reasons: 1. the USB3 PHY (which holds a reference to all relevant
-> USB2 PHY ports) controls the mode of the USB2 PHY ports (since both
-> are used with the same controller and thus it makes sense to keep the
-> mode consistent across all ports) 2. the dwc3 driver does not support
-> passing multiple USB2 PHYs (only one USB2 and one USB3 PHY can be
-> passed to it) 3. it is similar to how the vendor reference driver
-> manages the PHYs. Please note that this coupling is not a fixed, this
-> is all configurable via devicetree (so if the third USB2 PHY has to
-> be passed two the dwc2 controller then this is still possible by
-> just moving on PHY reference in the .dts).
-> 
-> The coupling of the USB2 and USB3 PHYs is the reason why I sent the
-> two drivers in one patch, even though they are handling different IP
-> blocks (different registers, etc.).
-> 
-> Unfortunately there are no datasheets available for any of these PHYs.
-> Both drivers were written by reading the reference drivers provided by
-> Amlogic and analyzing the registers on the kernel that was shipped with
-> my board.
-> 
-> As a last note: the dwc3 driver currently only explicitly enables the
-> first USB port "DWC3_GUSB2PHYCFG(0)" in the internal hub. The hardware
-> seems to enable the other two (DWC3_GUSB2PHYCFG(1) and
-> DWC3_GUSB2PHYCFG(2)) automatically. I will ask the dwc3 maintainers if
-> changes to dwc3 are desired any how these should look like, but for now
-> it's working fine even without changes there.
-> 
-> lsusb output on GXM for the dwc3 hub:
-> Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-> ...
->  Hub Port Status:
->    Port 1: 0000.0100 power
->    Port 2: 0000.0100 power
->    Port 3: 0000.0100 power
-> 
-> NOTE: The devicetree changes depend on my previous series:
-> "[PATCH 0/2] minor GXL and GXM improvements" - see [0]
-> 
-> NOTE2: This series depends on an upstream dwc3/xhci-plat DMA fix
-> (special thanks to Arnd Bergmann and Sriram Dash for fixing that):
-> "[PATCH v5 0/6] inherit dma configuration from parent dev" - see [1]
-> 
-> I have a tree with all dependencies applied available at [2] if
-> someone wants a quick way to test this (I don't take any responsibility
-> if anything explodes though).
-> 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001665.html
-> [1] http://marc.info/?l=linux-usb&m=147938307209685&w=2
-> [2] https://github.com/xdarklight/linux/commits/meson-gx-integration-4.10-20161126
-> 
-> Martin Blumenstingl (5):
->   Documentation: dt-bindings: Add documentation for Meson GXL USB2/3
->     PHYs
->   phy: meson: add USB2 and USB3 PHY support for Meson GXL
->   arm64: dts: meson-gxl: add USB support
->   ARM64: dts: meson-gxm: add GXM specific USB configuration
->   ARM64: dts: meson-gx-p23x-q20x: enable USB on P23x and Q20x boards
-> 
->  .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  25 ++
->  .../devicetree/bindings/phy/meson-gxl-usb3-phy.txt |  27 ++
->  .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  12 +
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  49 +++
->  .../arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts |  17 +
->  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |  10 +
->  drivers/phy/Kconfig                                |  13 +
->  drivers/phy/Makefile                               |   2 +
->  drivers/phy/phy-meson-gxl-usb2.c                   | 374 ++++++++++++++++++++
->  drivers/phy/phy-meson-gxl-usb3.c                   | 377 +++++++++++++++++++++
->  10 files changed, 906 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
->  create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
->  create mode 100644 drivers/phy/phy-meson-gxl-usb2.c
->  create mode 100644 drivers/phy/phy-meson-gxl-usb3.c
-> 
+This patchset fixes an issue with the OdroidC2 board (DWMAC + RTL8211F).
+The platform seems to enter LPI on the Rx path too often while performing
+relatively high TX transfer. This eventually break the link (both Tx and
+Rx), and require to bring the interface down and up again to get the Rx
+path working again.
 
-With the patchset in [1], tested successfully on a Nexbox A1.
+The root cause of this issue is not fully understood yet but disabling EEE
+advertisement on the PHY prevent this feature to be negotiated.
+With this change, the link is stable and reliable, with the expected
+throughput performance.
 
-On my Amlogic P230, the two USB-A ports works, the USB-OTG port work in Host mode, but does nothing connected as peripheral.
-When trying to enable the DWC2 in peripheral mode, it fails by :
-[   11.609586] dwc2 c9100000.usb: dwc2_core_reset() HANG! Soft Reset GRSTCTL=80000001
-[   11.616962] dwc2 c9100000.usb: Specified GNPTXFDEP=1024 > 768
-[   11.622643] dwc2 c9100000.usb: EPs: 7, dedicated fifos, 712 entries in SPRAM
+The patchset adds options in the generic phy driver to disable EEE
+advertisement, through device tree. The way it is done is very similar
+to the handling of the max-speed property.
 
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+Patch 4 is provided here for testing purpose only. Please don't merge
+patch 4, this change will go through the amlogic's tree.
+
+Chnages since V3: [3]
+ - Fix signess error reported by kbuild test robot (Thx Julia)
+
+Changes since V2: [2]
+ - Rename "eee-advert-disable" to "eee-broken-modes" to make the intended
+   purpose of this option clear (flag broken configuration, not a
+   configuration option)
+ - Add DT bindings constants so the DT configuration is more user friendly
+ - Submit to net-next instead of net.
+
+Changes since V1: [1]
+ - Disable the advertisement of EEE in the generic code instead of the
+   realtek driver.
+
+[1] : http://lkml.kernel.org/r/1479220154-25851-1-git-send-email-jbrunet at baylibre.com
+[2] : http://lkml.kernel.org/r/1479742524-30222-1-git-send-email-jbrunet at baylibre.com
+[3] : http://lkml.kernel.org/r/1480326409-25419-1-git-send-email-jbrunet at baylibre.com
+
+Jerome Brunet (4):
+  net: phy: add an option to disable EEE advertisement
+  dt-bindings: net: add EEE capability constants
+  dt: bindings: add ethernet phy eee-broken-modes option documentation
+  ARM64: dts: meson: odroidc2: disable advertisement EEE for GbE.
+
+ Documentation/devicetree/bindings/net/phy.txt      |  2 +
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 14 ++++
+ drivers/net/phy/phy.c                              |  3 +
+ drivers/net/phy/phy_device.c                       | 80 +++++++++++++++++++---
+ include/dt-bindings/net/mdio.h                     | 19 +++++
+ include/linux/phy.h                                |  3 +
+ 6 files changed, 112 insertions(+), 9 deletions(-)
+ create mode 100644 include/dt-bindings/net/mdio.h
+
+-- 
+2.7.4
