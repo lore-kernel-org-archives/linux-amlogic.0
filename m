@@ -1,50 +1,30 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 28 Nov 2016 16:50:28 +0100
-Subject: [PATCH net-next v4 4/4] ARM64: dts: meson: odroidc2: disable
- advertisement EEE for GbE.
-In-Reply-To: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
-References: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1480348229-25672-5-git-send-email-jbrunet@baylibre.com>
+From: davem@davemloft.net (David Miller)
+Date: Mon, 28 Nov 2016 12:07:13 -0500 (EST)
+Subject: [PATCH 0/2] net: phy: realtek: fix RTL8211F TX-delay handling
+In-Reply-To: <20161125131201.19994-1-martin.blumenstingl@googlemail.com>
+References: <20161125131201.19994-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20161128.120713.220612302416318577.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 25 Nov 2016 14:11:59 +0100
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index e6e3491d48a5..2036582ca0d6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -46,6 +46,7 @@
- 
- #include "meson-gxbb.dtsi"
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/mdio.h>
- 
- / {
- 	compatible = "hardkernel,odroid-c2", "amlogic,meson-gxbb";
-@@ -85,6 +86,19 @@
- 	status = "okay";
- 	pinctrl-0 = <&eth_pins>;
- 	pinctrl-names = "default";
-+
-+	phy-handle = <&eth_phy0>;
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		eth_phy0: ethernet-phy at 0 {
-+			reg = <0>;
-+			eee-broken-modes = <MDIO_EEE_1000T>;
-+		};
-+	};
- };
- 
- &ir {
--- 
-2.7.4
+> The RTL8211F PHY driver currently enables the TX-delay only when the
+> phy-mode is PHY_INTERFACE_MODE_RGMII. This is incorrect, because there
+> are three RGMII variations of the phy-mode which explicitly request the
+> PHY to enable the RX and/or TX delay, while PHY_INTERFACE_MODE_RGMII
+> specifies that the PHY should disable the RX and/or TX delays.
+> 
+> Additionally to the RTL8211F PHY driver change this contains a small
+> update to the phy-mode documentation to clarify the purpose of the
+> RGMII phy-modes.
+> While this may not be perfect yet it's at least a start. Please feel
+> free to drop this patch from this series and send an improved version
+> yourself.
+> 
+> These patches are the results of recent discussions, see [0]
+> 
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001688.html
+
+Series applied, thanks Martin.
