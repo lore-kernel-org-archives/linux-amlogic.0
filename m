@@ -1,32 +1,50 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 28 Nov 2016 16:50:27 +0100
-Subject: [PATCH net-next v4 3/4] dt: bindings: add ethernet phy
- eee-broken-modes option documentation
+Date: Mon, 28 Nov 2016 16:50:28 +0100
+Subject: [PATCH net-next v4 4/4] ARM64: dts: meson: odroidc2: disable
+ advertisement EEE for GbE.
 In-Reply-To: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
 References: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1480348229-25672-4-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1480348229-25672-5-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Andreas F?rber <afaerber@suse.de>
 Tested-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/net/phy.txt | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/phy.txt b/Documentation/devicetree/bindings/net/phy.txt
-index 4627da3d52c4..54749b60a466 100644
---- a/Documentation/devicetree/bindings/net/phy.txt
-+++ b/Documentation/devicetree/bindings/net/phy.txt
-@@ -38,6 +38,8 @@ Optional Properties:
- - enet-phy-lane-swap: If set, indicates the PHY will swap the TX/RX lanes to
-   compensate for the board being designed with the lanes swapped.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index e6e3491d48a5..2036582ca0d6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -46,6 +46,7 @@
  
-+- eee-broken-modes: Bits to clear in the MDIO_AN_EEE_ADV register to
-+  disable EEE broken modes.
+ #include "meson-gxbb.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/net/mdio.h>
  
- Example:
+ / {
+ 	compatible = "hardkernel,odroid-c2", "amlogic,meson-gxbb";
+@@ -85,6 +86,19 @@
+ 	status = "okay";
+ 	pinctrl-0 = <&eth_pins>;
+ 	pinctrl-names = "default";
++
++	phy-handle = <&eth_phy0>;
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		eth_phy0: ethernet-phy at 0 {
++			reg = <0>;
++			eee-broken-modes = <MDIO_EEE_1000T>;
++		};
++	};
+ };
  
+ &ir {
 -- 
 2.7.4
