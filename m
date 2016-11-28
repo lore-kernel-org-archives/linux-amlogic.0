@@ -1,24 +1,20 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 28 Nov 2016 11:08:48 -0800
-Subject: [PATCH 0/2] minor GXL and GXM improvements
-In-Reply-To: <20161123162040.24843-1-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Wed, 23 Nov 2016 17:20:38 +0100")
-References: <20161123162040.24843-1-martin.blumenstingl@googlemail.com>
-Message-ID: <m28ts3toan.fsf@baylibre.com>
+Date: Mon, 28 Nov 2016 12:00:00 -0800
+Subject: [GIT PULL] Amlogic 64-bit DT changes for v4.10, round 2
+In-Reply-To: <m2k2btx2c9.fsf@baylibre.com>
+References: <m2k2btx2c9.fsf@baylibre.com>
+Message-ID: <CAOi56cXh2OU2kWWMod+HOW6g64UJyNTYHCUrKaJq+q8au2ah8Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+Arnd, Olof,
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+On Wed, Nov 23, 2016 at 2:23 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Here's a final round of arm64 DT changes for Amlogic family SoCs.
+>
 
-> This series adds SCPI support to GXL and GXM SoCs by moving the nodes
-> to meson-gx.dtsi. Additionally this updates the compatible string to
-> match the recent changes, see [0]
-
-Can you rebase onto my current v4.10/dt64 branch please?  I have updated
-the compatible string there.
-
-Thanks,
+I guess it's not the final.  Please ignore this one.  I need to respin
+based on some DT comments from Rob H about node names.
 
 Kevin
