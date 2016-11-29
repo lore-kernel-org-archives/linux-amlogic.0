@@ -1,78 +1,125 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 29 Nov 2016 10:05:33 +0100
-Subject: [RFC PATCH 1/3] drm: Add support for Amlogic Meson Graphic
- Controller
-In-Reply-To: <20161129085024.tqf5takulvv7f34x@phenom.ffwll.local>
-References: <1480089791-12517-1-git-send-email-narmstrong@baylibre.com>
- <1480089791-12517-2-git-send-email-narmstrong@baylibre.com>
- <20161128081601.wapare3pyzmzghvp@phenom.ffwll.local>
- <99e71b1b-b0cc-ec54-6ca9-417d20195aca@baylibre.com>
- <20161129085024.tqf5takulvv7f34x@phenom.ffwll.local>
-Message-ID: <be1e6df5-6c00-c10f-e686-c10251325912@baylibre.com>
+Date: Tue, 29 Nov 2016 11:47:45 +0100
+Subject: [PATCH 0/4] drm: Add support for the Amlogic Video Processing Unit
+Message-ID: <1480416469-9655-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Daniel,
-On 11/29/2016 09:50 AM, Daniel Vetter wrote:
-> Hi Neil,
-> 
-> On Mon, Nov 28, 2016 at 10:34:58AM +0100, Neil Armstrong wrote:
->> On 11/28/2016 09:16 AM, Daniel Vetter wrote:
->>> On Fri, Nov 25, 2016 at 05:03:09PM +0100, Neil Armstrong wrote:
->>>> +static void meson_cvbs_encoder_disable(struct drm_encoder *encoder)
->>>> +{
->>>> +	struct meson_cvbs *meson_cvbs = encoder_to_meson_cvbs(encoder);
->>>> +
->>>> +	meson_venci_cvbs_disable(meson_cvbs->priv);
->>>> +}
->>>> +
->>>> +static void meson_cvbs_encoder_enable(struct drm_encoder *encoder)
->>>> +{
->>>> +	struct meson_cvbs *meson_cvbs = encoder_to_meson_cvbs(encoder);
->>>> +
->>>> +	meson_venci_cvbs_enable(meson_cvbs->priv);
->>>> +}
->>>
->>> Personally I'd remove the indirection above, more direct code is easier to
->>> read.
->>
->> I understand, I'll maybe change the meson_venci_cvbs_XXable to be
->> directly added to the ops.
->>
->> I want to keep the registers setup in separate files and keep a clean
->> DRM/HW separation.
-> 
-> I figured this is worth clarifying, and I'm somewhat guessing at your
-> motivation here for a clean drm/hw split. There's of course various levels
-> of how much you can split the drm side from your hw backend, but in
-> general that design approach is really unpopular with upstream. It goes by
-> the name of "midlayer", and the trouble with it is that it makes
-> subsystem refactoring more complicated.
+This a repost of the previous RFC at [1] with fixes, the following patches will
+be sent via a PULL Request once the Amlogic maintainer acks and takes the DT
+patches to avoid merges conflicts.
 
-I totally understand, and I personally would prefer to have an unified drm source,
-but the state of the hardware architecture makes it very hard to map cleanly over DRM.
-I moved all the CRTC and Plane code into the corresponding file ans only kept
-the init and common functions in the backend files.
+The Amlogic Meson SoCs embeds a Video Processing Unit able to output at least
+a Composite/CVBS Video with embedded VDAC and an HDMI Link with Embedded HDMI
+Transceiver.
 
-> 
-> For the driver itself it's nice, because it isolates you a bit from drm
-> core. But that exact isolation is the problem when someone wants (or more
-> often, needs to) refactor something across the entire subsystem. Then all
-> these driver-private little (or sometimes much bigger) abstractions get in
-> the way. That's way I suggested to remove it (both here and in the plane
-> code), because for upstream the overall subsystem matters more than each
-> individual driver. GPUs change fast, we need to be able to adapt fast,
-> too.
+Thus, the current driver does not support HDMI yet.
 
-It totally makes sense and I'm totally ready to refactor when necessary and match
-the DRM/KMS architecture.
+The Video Processig Unit is composed of multiple modules like the Video
+Input Unit and the Video Post Processing that can be associated to a
+CRTC with Planes management.
+The last Unit is the Venc that embeds at least 3 Encoders, ENCI for Interlace
+Video used by CVBS or HDMI, ENCP for Progressive Video used by the HDMI
+Transceiver and ENCL for LCD Display.
 
-> 
-> Anyway you're driver's pretty small, so personally I don't mind much. I'd
-> still think removing the indirection would be better though.
-> 
-> Thanks, Daniel
-> 
+The LCD Display is not planned to be supported on the Meson GX Family.
 
-Thanks,
-Neil
+This driver is a DRM/KMS driver using the following DRM components :
+ - GEM-CMA
+ - PRIME-CMA
+ - Atomic Modesetting
+ - FBDev-CMA
+
+For the following SoCs :
+ - GXBB Family (S905)
+ - GXL Family (S905X, S905D)
+ - GXM Family (S912)
+
+The current driver only supports the CVBS PAL/NTSC output modes, but the
+CRTC/Planes management should support bigger modes.
+But Advanced Colorspace Conversion, Scaling and HDMI Modes will be added in
+a second time.
+
+The Device Tree bindings makes use of the endpoints video interface definitions
+to connect to the optional CVBS and in the future the HDMI Connector nodes.
+
+The driver has been tested with Xorg modesetting driver and Weston DRM backend.
+
+Changes since RFC at [1] :
+ - Add maintainers entry
+ - Move all Plane and CRTC code from backend to corresponding DRM code
+ - Keep only init and common code in backend source files
+ - Move the CVBS encoder out of the CVBS DT node, only keep the connector
+ - Various cleanups using DRM helpers
+ - Cleanup of copyright headers
+ - Fixup of bindings documentation
+
+[1] http://lkml.kernel.org/r/1480089791-12517-1-git-send-email-narmstrong at baylibre.com
+
+Neil Armstrong (4):
+  drm: Add support for Amlogic Meson Graphic Controller
+  ARM64: dts: meson-gx: Add Graphic Controller nodes
+  dt-bindings: display: add Amlogic Meson DRM Bindings
+  MAINTAINERS: add entry for Amlogic DRM drivers
+
+ .../bindings/display/meson/meson-drm.txt           |  134 ++
+ MAINTAINERS                                        |    9 +
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |   46 +
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |    4 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |    4 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |    8 +
+ .../boot/dts/amlogic/meson-gxl-nexbox-a95x.dts     |    4 +
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |    8 +
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |    4 +
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |    8 +
+ drivers/gpu/drm/Kconfig                            |    2 +
+ drivers/gpu/drm/Makefile                           |    1 +
+ drivers/gpu/drm/meson/Kconfig                      |    9 +
+ drivers/gpu/drm/meson/Makefile                     |    5 +
+ drivers/gpu/drm/meson/meson_canvas.c               |   68 +
+ drivers/gpu/drm/meson/meson_canvas.h               |   42 +
+ drivers/gpu/drm/meson/meson_crtc.c                 |  208 +++
+ drivers/gpu/drm/meson/meson_crtc.h                 |   32 +
+ drivers/gpu/drm/meson/meson_cvbs.c                 |  177 +++
+ drivers/gpu/drm/meson/meson_drv.c                  |  385 ++++++
+ drivers/gpu/drm/meson/meson_drv.h                  |   61 +
+ drivers/gpu/drm/meson/meson_plane.c                |  230 ++++
+ drivers/gpu/drm/meson/meson_plane.h                |   30 +
+ drivers/gpu/drm/meson/meson_registers.h            | 1395 ++++++++++++++++++++
+ drivers/gpu/drm/meson/meson_vclk.c                 |  167 +++
+ drivers/gpu/drm/meson/meson_vclk.h                 |   34 +
+ drivers/gpu/drm/meson/meson_venc.c                 |  254 ++++
+ drivers/gpu/drm/meson/meson_venc.h                 |   72 +
+ drivers/gpu/drm/meson/meson_venc_cvbs.c            |  187 +++
+ drivers/gpu/drm/meson/meson_venc_cvbs.h            |   41 +
+ drivers/gpu/drm/meson/meson_viu.c                  |  331 +++++
+ drivers/gpu/drm/meson/meson_viu.h                  |   64 +
+ drivers/gpu/drm/meson/meson_vpp.c                  |  162 +++
+ drivers/gpu/drm/meson/meson_vpp.h                  |   35 +
+ 34 files changed, 4221 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/meson/meson-drm.txt
+ create mode 100644 drivers/gpu/drm/meson/Kconfig
+ create mode 100644 drivers/gpu/drm/meson/Makefile
+ create mode 100644 drivers/gpu/drm/meson/meson_canvas.c
+ create mode 100644 drivers/gpu/drm/meson/meson_canvas.h
+ create mode 100644 drivers/gpu/drm/meson/meson_crtc.c
+ create mode 100644 drivers/gpu/drm/meson/meson_crtc.h
+ create mode 100644 drivers/gpu/drm/meson/meson_cvbs.c
+ create mode 100644 drivers/gpu/drm/meson/meson_drv.c
+ create mode 100644 drivers/gpu/drm/meson/meson_drv.h
+ create mode 100644 drivers/gpu/drm/meson/meson_plane.c
+ create mode 100644 drivers/gpu/drm/meson/meson_plane.h
+ create mode 100644 drivers/gpu/drm/meson/meson_registers.h
+ create mode 100644 drivers/gpu/drm/meson/meson_vclk.c
+ create mode 100644 drivers/gpu/drm/meson/meson_vclk.h
+ create mode 100644 drivers/gpu/drm/meson/meson_venc.c
+ create mode 100644 drivers/gpu/drm/meson/meson_venc.h
+ create mode 100644 drivers/gpu/drm/meson/meson_venc_cvbs.c
+ create mode 100644 drivers/gpu/drm/meson/meson_venc_cvbs.h
+ create mode 100644 drivers/gpu/drm/meson/meson_viu.c
+ create mode 100644 drivers/gpu/drm/meson/meson_viu.h
+ create mode 100644 drivers/gpu/drm/meson/meson_vpp.c
+ create mode 100644 drivers/gpu/drm/meson/meson_vpp.h
+
+-- 
+1.9.1
