@@ -1,32 +1,46 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 28 Nov 2016 12:16:37 -0800
-Subject: [PATCH 2/2] Add support for the Nexbox A1 board based on the
- Amlogic S912 SoC.
-In-Reply-To: <20161123225205.re77xff5vcccaltl@rob-hp-laptop> (Rob Herring's
- message of "Wed, 23 Nov 2016 16:52:05 -0600")
-References: <20161121162905.14285-1-narmstrong@baylibre.com>
- <20161121162905.14285-3-narmstrong@baylibre.com>
- <20161123225205.re77xff5vcccaltl@rob-hp-laptop>
-Message-ID: <m24m2rtl5m.fsf@baylibre.com>
+From: andy.gross@linaro.org (Andy Gross)
+Date: Tue, 29 Nov 2016 01:44:21 -0600
+Subject: [PATCH 0/2] Support ARM SMCC SoC vendor quirks
+Message-ID: <1480405463-23165-1-git-send-email-andy.gross@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Rob Herring <robh@kernel.org> writes:
+At least one SoC vendor (Qualcomm) requires additional processing done
+during ARM SMCCC calls.  As such, an additional parameter to the
+arm_smccc_smc is required to be able to handle SoC specific quirks.
 
-> On Mon, Nov 21, 2016 at 05:29:05PM +0100, Neil Armstrong wrote:
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  Documentation/devicetree/bindings/arm/amlogic.txt  |   1 +
->>  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
->>  .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts | 169 +++++++++++++++++++++
->>  3 files changed, 171 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
->
-> A few nits below, otherwise:
->
-> Acked-by: Rob Herring <robh@kernel.org>
->
+The Qualcomm quirk is necessary due to the fact that the scm call can
+be interrupted on Qualcomm ARM64 platforms.  When this occurs, the
+call must be restarted using information that was passed back during
+the original smc call.
 
-Fixed up the changes locally, and applied for v4.10.
+The first patch in this series adds a quirk structure and also adds a
+quirk paramter to arm_smccc_smc calls.  All of the current users of
+the call are modified to accomodate the new API parameter.
 
-Kevin
+The second patch adds the Qualcomm quirk and also implements the
+Qualcomm firmware changes required to handle the restarting of the
+interrupted SMC call.
+
+The original patch set for the SMCCC session ID is located at:
+https://lkml.org/lkml/2016/8/20/7
+
+Andy Gross (2):
+  arm: kernel: Add SMC structure parameter
+  firmware: qcom: scm: Fix interrupted SCM calls
+
+ arch/arm/kernel/smccc-call.S         |  3 ++-
+ arch/arm/mach-artpec/board-artpec6.c |  2 +-
+ arch/arm64/kernel/asm-offsets.c      |  7 +++++--
+ arch/arm64/kernel/smccc-call.S       | 12 ++++++++++--
+ drivers/clk/rockchip/clk-ddr.c       |  6 +++---
+ drivers/devfreq/rk3399_dmc.c         |  6 +++---
+ drivers/firmware/meson/meson_sm.c    |  2 +-
+ drivers/firmware/psci.c              |  2 +-
+ drivers/firmware/qcom_scm-64.c       | 13 ++++++++++---
+ drivers/gpu/drm/mediatek/mtk_hdmi.c  |  2 +-
+ include/linux/arm-smccc.h            | 29 ++++++++++++++++++++++++-----
+ 11 files changed, 61 insertions(+), 23 deletions(-)
+
+-- 
+1.9.1
