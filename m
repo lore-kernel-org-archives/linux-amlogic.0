@@ -1,57 +1,98 @@
-From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Tue, 29 Nov 2016 17:15:07 -0800
-Subject: [PATCH net-next v3 0/4] Fix OdroidC2 Gigabit Tx link issue
-In-Reply-To: <20161129.201331.2207317476589573523.davem@davemloft.net>
-References: <1480326409-25419-1-git-send-email-jbrunet@baylibre.com>
- <20161129.193853.827524417068912706.davem@davemloft.net>
- <e14a3b0c-dc34-be14-48b3-518a0ad0c080@gmail.com>
- <20161129.201331.2207317476589573523.davem@davemloft.net>
-Message-ID: <162595c2-d403-0070-3399-de03c1653065@gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 30 Nov 2016 10:47:26 +0100
+Subject: [PATCH net-next v4 0/4] Fix OdroidC2 Gigabit Tx link issue
+In-Reply-To: <049b1efc-3bad-92e0-45ef-0563dc5d81de@gmail.com>
+References: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
+ <049b1efc-3bad-92e0-45ef-0563dc5d81de@gmail.com>
+Message-ID: <1480499246.17538.208.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/29/2016 05:13 PM, David Miller wrote:
-> From: Florian Fainelli <f.fainelli@gmail.com>
-> Date: Tue, 29 Nov 2016 16:43:20 -0800
+On Mon, 2016-11-28 at 09:54 -0800, Florian Fainelli wrote:
+> On 11/28/2016 07:50 AM, Jerome Brunet wrote:
+> > 
+> > This patchset fixes an issue with the OdroidC2 board (DWMAC +
+> > RTL8211F).
+> > The platform seems to enter LPI on the Rx path too often while
+> > performing
+> > relatively high TX transfer. This eventually break the link (both
+> > Tx and
+> > Rx), and require to bring the interface down and up again to get
+> > the Rx
+> > path working again.
+> > 
+> > The root cause of this issue is not fully understood yet but
+> > disabling EEE
+> > advertisement on the PHY prevent this feature to be negotiated.
+> > With this change, the link is stable and reliable, with the
+> > expected
+> > throughput performance.
+> > 
+> > The patchset adds options in the generic phy driver to disable EEE
+> > advertisement, through device tree. The way it is done is very
+> > similar
+> > to the handling of the max-speed property.
+> > 
+> > Patch 4 is provided here for testing purpose only. Please don't
+> > merge
+> > patch 4, this change will go through the amlogic's tree.
 > 
->> On 11/29/2016 04:38 PM, David Miller wrote:
->>> From: Jerome Brunet <jbrunet@baylibre.com>
->>> Date: Mon, 28 Nov 2016 10:46:45 +0100
->>>
->>>> This patchset fixes an issue with the OdroidC2 board (DWMAC + RTL8211F).
->>>> The platform seems to enter LPI on the Rx path too often while performing
->>>> relatively high TX transfer. This eventually break the link (both Tx and
->>>> Rx), and require to bring the interface down and up again to get the Rx
->>>> path working again.
->>>>
->>>> The root cause of this issue is not fully understood yet but disabling EEE
->>>> advertisement on the PHY prevent this feature to be negotiated.
->>>> With this change, the link is stable and reliable, with the expected
->>>> throughput performance.
->>>>
->>>> The patchset adds options in the generic phy driver to disable EEE
->>>> advertisement, through device tree. The way it is done is very similar
->>>> to the handling of the max-speed property.
->>>
->>> Patches 1-3 applied to net-next, thanks.
->>
->> Meh, there was a v4 submitted shortly after, and I objected to the whole
->> idea of using that kind of Device Tree properties to disable EEE, we can
->> send reverts though..
+> Sorry, but I really don't like the route this is going, and I should
+> have made myself clearer before on that, I really think utilizing a
+> PHY
+> fixup is more appropriate here than an extremely generic DT property.
+> The fixup code can be in the affected PHY driver, or it can be
+> somewhere
+> else, your call. There is no shortage of option on how to implement
+> it,
+> and this would be something easy to enable/disable for known good
+> configurations (ala PCI/USB fixups).
 > 
-> Sorry, I lost this in all the discussion, I can revert.
+> If we start supporting generic "enable", "disable" type of properties
+> with values that map directly to register definitions of the HW, we
+> leave too much room for these properties to be utilized to implement
+> a
+> specific policy, and this is not acceptable.
 
-Yeah, I can understand why, these freaking PHYs tend to generate a lot
-of noise and discussion...
+Florian,?
 
-> 
-> Just send me a revert of the entire merge commit
-> a152c91889556df17ca6d8ea134fb2cb4ac9f893 with a short
-> description of why and I'll apply it.
+I agree that DT should not be used to setup a policy, but to describe
+what the HW is.
 
-OK, I will talk with Jerome first to make sure that we are in agreement
-with the solution to deploy to fix the OdroidC2 problem first.
+I tried to implement it the way you suggested, using phy fixup, too see
+what it looks like.
+There is 2 places in the code that seems (remotely) linked to the
+issue:?
+- meson8b_dwmac driver : if the mac, regardless of the board/platform,
+?could not tolerate to have EEE activated, it would make sense to have
+the fixup here. It can provide a C callback for such case.
+- realtek phy driver: philosophy is kind of the same
 
-Thanks!
--- 
-Florian
+To be clear, it is doable and it works that way, but I don't think
+embedding this directly in the code is the right way to do it. It seems
+we are hiding an information specific about the board inside a generic
+driver.
+
+We have several amlogic's design with the same MAC, sometimes with the
+same PHY, which have no problem with EEE at all. The issue is really
+about the board design.
+
+What I propose is not an enable/disable configuration switch, but to
+clearly state that a particular mode of operation is broken. Like the
+"max-speed" property, it setup a restriction. IMO, this is a
+description of what the HW is and is capable of, and as such it should
+be part of the DT.
+
+Yes the property directly map to a register, but it does let you
+directly manipulate it (you can't pass the value you want to write in
+the register). Having it this way just makes the code simple on both
+ends (user and driver).
+
+Yes people could start abusing this to setup policy. In the end, it is
+our responsibility, as community, to make sure APIs are used in a
+proper way, and not let it be used that way.
+
+I'm open to suggestion on how improve the solution, maybe something
+which could bring more confidence that property won't be misused.
+
+Jerome
