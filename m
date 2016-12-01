@@ -1,201 +1,139 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 30 Nov 2016 23:49:03 +0100
-Subject: [PATCH 0/5] Meson GXL and GXM USB support
-In-Reply-To: <20161130222228.zu6ampaajg3gkdz4@rob-hp-laptop>
-References: <20161126145635.24488-1-martin.blumenstingl@googlemail.com>
- <CAFBinCAA_JEtr_0Ze0thoRaEKMnWQMKcPxJ8y88zkWAAhuxsMw@mail.gmail.com>
- <20161130222228.zu6ampaajg3gkdz4@rob-hp-laptop>
-Message-ID: <CAFBinCC8c2sXgo80LMMg=jqZ2hr8eLM_2g03H1J99m4xxFGYFA@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu,  1 Dec 2016 10:05:56 +0100
+Subject: [PATCH v3 0/4] drm: Add support for the Amlogic Video Processing Unit
+Message-ID: <1480583160-31806-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Nov 30, 2016 at 11:22 PM, Rob Herring <robh@kernel.org> wrote:
-> On Sun, Nov 27, 2016 at 11:42:02PM +0100, Martin Blumenstingl wrote:
->> Hello Kishon,
->>
->> On Sat, Nov 26, 2016 at 3:56 PM, Martin Blumenstingl
->> <martin.blumenstingl@googlemail.com> wrote:
->> > USB support on GXL and GXM differs a lot from Meson8b and GXBB:
->> > The most obvious change is that GXL and GXM now have one dwc3
->> > controller and one dwc2 controller (instead of two dwc2 controllers).
->> > With that there are also new USB PHYs.
->> >
->> > Due to lack of hardware I was only able to test this on a board with
->> > GXM, but as far as I understand the hardware my preparations should be
->> > correct (so it should also work on GXL).
->> >
->> > dwc2 will probably stay unused on most GXM devices since it's limited
->> > to device mode via some dwc2 hardware configuration register.
->> >
->> > dwc3 is probably used on all devices, even if there is more than just
->> > one USB port. dwc3 has a built-in USB2 hub - on GXL this hub has two
->> > ports enabled, while on GXM there are three ports enabled (see below
->
-> This hub is an actual USB hub? If so, then you should probably model the
-> USB bus topology (which we have a binding definition for).
-(the following explanation is based on a) what I found is going on in
-the hardware registers b) reading the vendor drivers - unfortunately
-there are no datasheets available which could give more details).
-lsusb on my GXM gives:
-...
- Hub Port Status:
-   Port 1: 0000.0100 power
-   Port 2: 0000.0100 power
-   Port 3: 0000.0100 power
+This a repost of the previous version at [3] with fixes, the following patches will
+be sent via a PULL Request once the DT maintainers acks the DT bindings.
+The Amlogic maintainer will take the arm64 DT patches to avoid merges conflicts.
 
-The layout looks like this:
-dwc3 provides a USB hub with 2 (on GXL) or 3 (on GXM) USB ports.
-Each of the port is driven by a PHY (port 1 = abp at 0x78000, port2 =
-abp at 0x78020, etc...).
+The Amlogic Meson SoCs embeds a Video Processing Unit able to output at least
+a Composite/CVBS Video with embedded VDAC and an HDMI Link with Embedded HDMI
+Transceiver.
 
-On GXM USB2 PHY port 3 = abp at 0x78040 is connected to the third dwc3 hub port.
-On GXL PHY port 3 = abp at 0x78040 is connected to the dwc2 (I could not
-prove this yet as I don't have access to any GXL hardware).
+Thus, the current driver does not support HDMI yet.
 
-So the answer is: we don't have an actual USB hub here (as this hub is
-provided by dwc3), but rather a set of PHYs which is assigned to
-dwc3's hub (if we don't configure *all* PHYs then none of the USB
-ports provided by the dwc3 hub works).
+The Video Processig Unit is composed of multiple modules like the Video
+Input Unit and the Video Post Processing that can be associated to a
+CRTC with Planes management.
+The last Unit is the Venc that embeds at least 3 Encoders, ENCI for Interlace
+Video used by CVBS or HDMI, ENCP for Progressive Video used by the HDMI
+Transceiver and ENCL for LCD Display.
 
-Could you please point me to the USB bus topology binding (is it the
-one described in usb-device.txt)?
+The LCD Display is not planned to be supported on the Meson GX Family.
 
->> > for lsusb output). There are no USB3 ports enabled in the dwc3 hardware
->> > configuration, meaning that the SoC is limited to high-speed mode.
->> > On my GXM device the dwc3 hardware configuration forces it into "host
->> > only" mode.
->> >
->> > The SoCs contain two PHY blocks: one USB3 PHY and up to four USB2 PHYs
->> > (on GXM there are only three enabled, but the registers should support
->> > up to four).
->> > The USB3 PHY also handles the OTG interrupts, but since dwc3's hardware
->> > configuration enforces "host only" mode I was not able to test this. It
->> > simply takes care of an interrupt and then notifies all related PHYs
->> > about the new mode.
->> > The USB2 PHY block is a bit different: I created one PHY driver which
->> > spans all "PHY ports" because the handling is a bit tricky. It turns
->> > out that for each available USB port in dwc3's hub the corresponding
->> > PHY must be enabled (even if there is no physical port - in my case
->> > port 3 is not connected to anything, but disabling the PHY breaks
->> > ports 1 and 2 as well).
->> > I decided not not pass the USB2 PHYs directly to dwc3 due to three
->> > reasons: 1. the USB3 PHY (which holds a reference to all relevant
->> > USB2 PHY ports) controls the mode of the USB2 PHY ports (since both
->> > are used with the same controller and thus it makes sense to keep the
->> > mode consistent across all ports) 2. the dwc3 driver does not support
->> > passing multiple USB2 PHYs (only one USB2 and one USB3 PHY can be
->> > passed to it) 3. it is similar to how the vendor reference driver
->> > manages the PHYs. Please note that this coupling is not a fixed, this
->> > is all configurable via devicetree (so if the third USB2 PHY has to
->> > be passed two the dwc2 controller then this is still possible by
->> > just moving on PHY reference in the .dts).
->> after not staring at my own code for 24 hours I realized this:
->> (I went through quite a few iterations before getting these drivers to work)
->> I'm basically re-modelling an "USB PHY hub" with my USB3 PHY driver
->> (there's one "upstream" PHY interface which is passed to dwc3 and
->> multiple downstream PHYs, each for one port on dwc3's internal hub).
->> With this approach I could split each of the the USB2s into separate
->> nodes again (instead of one devicetree node with #phy-cells = <1>) as
->> the USB3 PHY is taking care of that special "we have to enable all
->> ports or no port will be usable".
->>
->> We could go even one step further: why implement this in the Meson GXL
->> specific PHY driver - why not implement a generic "phy-hub" driver
->> (which would be valid whenever the PHY controller has to manage
->> multiple PHYs at once, but wants to keep them all in a consistent
->> state).
->> The devicetree could look like this:
->>     usb2_phy_hub: phy at 0 {
->>         compatible = "phy-hub";
->>         phys = <&other_phy1>, <&other_phy 2>;
->>     };
->>
->> &dwc3 {
->>      phys = <&usb2_phy_hub>, <&usb3_phy0>;
->>      phy-names = "usb2-phy", "usb3-phy";
->> };
->
-> I'm okay with a hub if it is modeled as a USB hub. Here though, it
-> looks like you are just trying to group things which doesn't need to be
-> in DT.
-I hope my answer above makes things more clear
+This driver is a DRM/KMS driver using the following DRM components :
+ - GEM-CMA
+ - PRIME-CMA
+ - Atomic Modesetting
+ - FBDev-CMA
 
->> The generic phy-hub driver would then implement all phy_ops callbacks
->> and pass then to each of it's downstream PHYs.
->
-> You can have generic drivers without a generic binding.
-So you'd rather implement a generic driver which would provide
-functions like of_create_grouped_phy(struct device_node *np) which
-would implement the grouping logic as described (but has no binding
-itself, but rather relies on the actual platform driver taking care of
-creating that binding and re-using generic code)?
+For the following SoCs :
+ - GXBB Family (S905)
+ - GXL Family (S905X, S905D)
+ - GXM Family (S912)
 
->> That's just what came into my head - please let me know what you think
->> of this or share your ideas on how to approach this!
->>
->> > The coupling of the USB2 and USB3 PHYs is the reason why I sent the
->> > two drivers in one patch, even though they are handling different IP
->> > blocks (different registers, etc.).
->> >
->> > Unfortunately there are no datasheets available for any of these PHYs.
->> > Both drivers were written by reading the reference drivers provided by
->> > Amlogic and analyzing the registers on the kernel that was shipped with
->> > my board.
->> >
->> > As a last note: the dwc3 driver currently only explicitly enables the
->> > first USB port "DWC3_GUSB2PHYCFG(0)" in the internal hub. The hardware
->> > seems to enable the other two (DWC3_GUSB2PHYCFG(1) and
->> > DWC3_GUSB2PHYCFG(2)) automatically. I will ask the dwc3 maintainers if
->> > changes to dwc3 are desired any how these should look like, but for now
->> > it's working fine even without changes there.
->> >
->> > lsusb output on GXM for the dwc3 hub:
->> > Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
->> > ...
->> >  Hub Port Status:
->> >    Port 1: 0000.0100 power
->> >    Port 2: 0000.0100 power
->> >    Port 3: 0000.0100 power
->> >
->> > NOTE: The devicetree changes depend on my previous series:
->> > "[PATCH 0/2] minor GXL and GXM improvements" - see [0]
->> >
->> > NOTE2: This series depends on an upstream dwc3/xhci-plat DMA fix
->> > (special thanks to Arnd Bergmann and Sriram Dash for fixing that):
->> > "[PATCH v5 0/6] inherit dma configuration from parent dev" - see [1]
->> >
->> > I have a tree with all dependencies applied available at [2] if
->> > someone wants a quick way to test this (I don't take any responsibility
->> > if anything explodes though).
->> >
->> > [0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001665.html
->> > [1] http://marc.info/?l=linux-usb&m=147938307209685&w=2
->> > [2] https://github.com/xdarklight/linux/commits/meson-gx-integration-4.10-20161126
->> >
->> > Martin Blumenstingl (5):
->> >   Documentation: dt-bindings: Add documentation for Meson GXL USB2/3
->> >     PHYs
->> >   phy: meson: add USB2 and USB3 PHY support for Meson GXL
->> >   arm64: dts: meson-gxl: add USB support
->> >   ARM64: dts: meson-gxm: add GXM specific USB configuration
->> >   ARM64: dts: meson-gx-p23x-q20x: enable USB on P23x and Q20x boards
->> >
->> >  .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  25 ++
->> >  .../devicetree/bindings/phy/meson-gxl-usb3-phy.txt |  27 ++
->> >  .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  12 +
->> >  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  49 +++
->> >  .../arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts |  17 +
->> >  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |  10 +
->> >  drivers/phy/Kconfig                                |  13 +
->> >  drivers/phy/Makefile                               |   2 +
->> >  drivers/phy/phy-meson-gxl-usb2.c                   | 374 ++++++++++++++++++++
->> >  drivers/phy/phy-meson-gxl-usb3.c                   | 377 +++++++++++++++++++++
->> >  10 files changed, 906 insertions(+)
->> >  create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
->> >  create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
->> >  create mode 100644 drivers/phy/phy-meson-gxl-usb2.c
->> >  create mode 100644 drivers/phy/phy-meson-gxl-usb3.c
->> >
->> > --
->> > 2.10.2
->> >
+The current driver only supports the CVBS PAL/NTSC output modes, but the
+CRTC/Planes management should support bigger modes.
+But Advanced Colorspace Conversion, Scaling and HDMI Modes will be added in
+a second time.
+
+The Device Tree bindings makes use of the endpoints video interface definitions
+to connect to the optional CVBS and in the future the HDMI Connector nodes.
+
+The driver has been tested with Xorg modesetting driver and Weston DRM backend.
+
+Changes since v1 at [3] :
+ - Rename and move dt-bindings file
+ - Clarified VPU node graph outputs
+ - Removed all of_machine_is_compatible
+ - Cleaned DTS endpoint and board connectors nodes
+ - Added Laurent Pinchard's ack and reviewed-bys
+
+Changes since v1 at [2] :
+ - Simplify bindings to have a "composite-video-connector" to represent the on-board composite connector
+ - Remove the component_match binding since it's unused for now
+ - Moved all DRM connector code back in the venc_cvbs file
+ - Check for port endpoints validity to detech connector existence
+ - Added Daniel Vetter's ack on non-dt patches commit messages
+
+Changes since RFC at [1] :
+ - Add maintainers entry
+ - Move all Plane and CRTC code from backend to corresponding DRM code
+ - Keep only init and common code in backend source files
+ - Move the CVBS encoder out of the CVBS DT node, only keep the connector
+ - Various cleanups using DRM helpers
+ - Cleanup of copyright headers
+ - Fixup of bindings documentation
+
+[1] http://lkml.kernel.org/r/1480089791-12517-1-git-send-email-narmstrong at baylibre.com
+[2] http://lkml.kernel.org/r/1480416469-9655-1-git-send-email-narmstrong at baylibre.com
+[3] http://lkml.kernel.org/r/1480520625-13269-1-git-send-email-narmstrong at baylibre.com
+
+Neil Armstrong (4):
+  drm: Add support for Amlogic Meson Graphic Controller
+  ARM64: dts: meson-gx: Add Graphic Controller nodes
+  dt-bindings: display: add Amlogic Meson DRM Bindings
+  MAINTAINERS: add entry for Amlogic DRM drivers
+
+ .../bindings/display/amlogic,meson-vpu.txt         |  112 ++
+ MAINTAINERS                                        |    9 +
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |   16 +
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |   16 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |   16 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |    4 +
+ .../boot/dts/amlogic/meson-gxl-nexbox-a95x.dts     |   16 +
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |    4 +
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |   16 +
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |    4 +
+ drivers/gpu/drm/Kconfig                            |    2 +
+ drivers/gpu/drm/Makefile                           |    1 +
+ drivers/gpu/drm/meson/Kconfig                      |    9 +
+ drivers/gpu/drm/meson/Makefile                     |    4 +
+ drivers/gpu/drm/meson/meson_canvas.c               |   68 +
+ drivers/gpu/drm/meson/meson_canvas.h               |   42 +
+ drivers/gpu/drm/meson/meson_crtc.c                 |  208 +++
+ drivers/gpu/drm/meson/meson_crtc.h                 |   32 +
+ drivers/gpu/drm/meson/meson_drv.c                  |  343 +++++
+ drivers/gpu/drm/meson/meson_drv.h                  |   59 +
+ drivers/gpu/drm/meson/meson_plane.c                |  230 ++++
+ drivers/gpu/drm/meson/meson_plane.h                |   30 +
+ drivers/gpu/drm/meson/meson_registers.h            | 1395 ++++++++++++++++++++
+ drivers/gpu/drm/meson/meson_vclk.c                 |  167 +++
+ drivers/gpu/drm/meson/meson_vclk.h                 |   34 +
+ drivers/gpu/drm/meson/meson_venc.c                 |  254 ++++
+ drivers/gpu/drm/meson/meson_venc.h                 |   72 +
+ drivers/gpu/drm/meson/meson_venc_cvbs.c            |  293 ++++
+ drivers/gpu/drm/meson/meson_venc_cvbs.h            |   41 +
+ drivers/gpu/drm/meson/meson_viu.c                  |  331 +++++
+ drivers/gpu/drm/meson/meson_viu.h                  |   64 +
+ drivers/gpu/drm/meson/meson_vpp.c                  |  162 +++
+ drivers/gpu/drm/meson/meson_vpp.h                  |   35 +
+ 33 files changed, 4089 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+ create mode 100644 drivers/gpu/drm/meson/Kconfig
+ create mode 100644 drivers/gpu/drm/meson/Makefile
+ create mode 100644 drivers/gpu/drm/meson/meson_canvas.c
+ create mode 100644 drivers/gpu/drm/meson/meson_canvas.h
+ create mode 100644 drivers/gpu/drm/meson/meson_crtc.c
+ create mode 100644 drivers/gpu/drm/meson/meson_crtc.h
+ create mode 100644 drivers/gpu/drm/meson/meson_drv.c
+ create mode 100644 drivers/gpu/drm/meson/meson_drv.h
+ create mode 100644 drivers/gpu/drm/meson/meson_plane.c
+ create mode 100644 drivers/gpu/drm/meson/meson_plane.h
+ create mode 100644 drivers/gpu/drm/meson/meson_registers.h
+ create mode 100644 drivers/gpu/drm/meson/meson_vclk.c
+ create mode 100644 drivers/gpu/drm/meson/meson_vclk.h
+ create mode 100644 drivers/gpu/drm/meson/meson_venc.c
+ create mode 100644 drivers/gpu/drm/meson/meson_venc.h
+ create mode 100644 drivers/gpu/drm/meson/meson_venc_cvbs.c
+ create mode 100644 drivers/gpu/drm/meson/meson_venc_cvbs.h
+ create mode 100644 drivers/gpu/drm/meson/meson_viu.c
+ create mode 100644 drivers/gpu/drm/meson/meson_viu.h
+ create mode 100644 drivers/gpu/drm/meson/meson_vpp.c
+ create mode 100644 drivers/gpu/drm/meson/meson_vpp.h
+
+-- 
+1.9.1
