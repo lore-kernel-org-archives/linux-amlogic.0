@@ -1,52 +1,37 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  3 Dec 2016 00:47:38 +0100
-Subject: [PATCH 4/5] ARM64: dts: meson-gxbb-vega-s95: add reset for the
- ethernet PHY
-In-Reply-To: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
-References: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20161202234739.22929-5-martin.blumenstingl@googlemail.com>
+Date: Sat, 3 Dec 2016 00:52:14 +0100
+Subject: [PATCH v2 0/7] stmmac: dwmac-meson8b: configurable RGMII TX delay
+In-Reply-To: <20161127.203324.1634866862730391239.davem@davemloft.net>
+References: <20161124143417.10178-1-martin.blumenstingl@googlemail.com>
+ <20161125130156.17879-1-martin.blumenstingl@googlemail.com>
+ <20161127.203324.1634866862730391239.davem@davemloft.net>
+Message-ID: <CAFBinCDHHT-eWoYmsVQyihcbrvoW=qP9MnG8hRfMfk4VRekS2w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This resets the ethernet PHY during boot to get the PHY into a "clean"
-state. While here also specify the phy-handle of the ethmac node to
-make the PHY configuration similar to the one we have on GXL devices.
+On Mon, Nov 28, 2016 at 2:33 AM, David Miller <davem@davemloft.net> wrote:
+> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Date: Fri, 25 Nov 2016 14:01:49 +0100
+>
+>> Currently the dwmac-meson8b stmmac glue driver uses a hardcoded 1/4
+>> cycle TX clock delay. This seems to work fine for many boards (for
+>> example Odroid-C2 or Amlogic's reference boards) but there are some
+>> others where TX traffic is simply broken.
+>> There are probably multiple reasons why it's working on some boards
+>> while it's broken on others:
+>> - some of Amlogic's reference boards are using a Micrel PHY
+>> - hardware circuit design
+>> - maybe more...
+>
+> The ARM arch file changes do not apply cleanly to net-next, you probably
+> want to merge them via the ARM tree instead of mine, and respin this series
+> to be without the .dts file changes.
+done, v3 contains only the net-next changes while the dts changes can
+be found here: [0]
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index e59ad30..a0e92e3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -113,10 +113,25 @@
- 	pinctrl-names = "default";
- };
- 
-+&mdio0 {
-+	ethernet_phy0: ethernet-phy at 0 {
-+		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+	};
-+};
-+
- &ethmac {
- 	status = "okay";
- 	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
-+
-+	phy-handle = <&ethernet_phy0>;
-+
-+	snps,reset-gpio = <&gpio GPIOZ_14 0>;
-+	snps,reset-delays-us = <0 10000 1000000>;
-+	snps,reset-active-low;
-+
-+	phy-mode = "rgmii";
- };
- 
- &usb0_phy {
--- 
-2.10.2
+Regards,
+Martin
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-December/001836.html
