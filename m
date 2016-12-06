@@ -1,84 +1,79 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 6 Dec 2016 09:58:36 +0100
-Subject: [GIT PULL] drm: Add support for the Amlogic Video Processing Unit
-Message-ID: <4a52245b-9867-d3bd-c9a3-94dda7654380@baylibre.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Tue, 6 Dec 2016 11:38:31 +0000
+Subject: [PATCH] SCPI (pre-v1.0): fix reading sensor value
+In-Reply-To: <CAFBinCD4RexWZPTm2hKjk6hqcmuCHiGoBDhwzgtx+0ns6sE70A@mail.gmail.com>
+References: <20161124001845.20830-1-martin.blumenstingl@googlemail.com>
+ <f3d6f39e-ec45-7c62-22d4-fd7b0952b499@arm.com>
+ <CAFBinCDP4PwXnUux=Wd9XJkNJef7qN3EOZm0Q8sg-B4gXqsjcA@mail.gmail.com>
+ <CAFBinCD3EE0z+Omboo-pUugs1He7ce9bT5Lo4wgvZUJKbctSKA@mail.gmail.com>
+ <CAFBinCD4RexWZPTm2hKjk6hqcmuCHiGoBDhwzgtx+0ns6sE70A@mail.gmail.com>
+Message-ID: <cd91fa4e-4ae2-3c06-24c5-7a863721a00c@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear DRM/DRI Maintainer,
 
-The following changes since commit bc33b0ca11e3df467777a4fa7639ba488c9d4911:
 
-  Linux 4.9-rc4 (2016-11-05 16:23:36 -0700)
+On 02/12/16 22:54, Martin Blumenstingl wrote:
+> Hello Sudeep,
+> 
+> On Fri, Nov 25, 2016 at 1:56 AM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> On Thu, Nov 24, 2016 at 12:15 PM, Martin Blumenstingl
+>> <martin.blumenstingl@googlemail.com> wrote:
+>>> On Thu, Nov 24, 2016 at 11:47 AM, Sudeep Holla <sudeep.holla@arm.com> wrote:
+>>>>
+>>>>
+>>>> On 24/11/16 00:18, Martin Blumenstingl wrote:
+>>>>>
+>>>>> I observed the following "strange" value when trying to read the SCPI
+>>>>> temperature sensor on my Amlogic GXM S912 device:
+>>>>> $ cat /sys/class/hwmon/hwmon0/temp1_input
+>>>>> 6875990994467160116
+>>>>>
+>>>>> The value reported by the original kernel (Amlogic vendor kernel, after
+>>>>> a reboot obviously) was 53C.
+>>>>> The Amlogic SCPI driver only uses a single 32bit value to read the
+>>>>> sensor value, instead of two. After stripping the upper 32bits from
+>>>>> above value gives "52" as result, which is basically identical to
+>>>>> what the vendor kernel reports.
+>>>>
+>>>>
+>>>> Can you check why the upper 32-bit is not set to 0 ?
+>>>>
+>>>> In scpi_process_cmd, we memset extra rx_buf length by 0 and that should
+>>>> take care. Neil had mentioned that works but now I doubt if firmware
+>>>> returns 8 instead of 4 in the size which is wrong as it supports only
+>>>> 32-bit.
+>>> according to the code "RX Length is not replied by the legacy
+>>> Firmware", so for legacy firmwares the "if (match->rx_len > len)"
+>>> condition will never be true (because both values are always equal).
+>>> in the sensor case we then go and copy 8 byte from mem->payload to
+>>> match->rx_buf, but SCPI firmware only wrote 4 bytes to mem->payload.
+>>> This means we are simply reading 4 byte (hi_val) of uninitialized
+>>> memory - which may be all zeroes if we're lucky - but in my case I got
+>>> "garbage" (I guess it's the second byte from the *previous* command
+>>> which are leaking here).
+>>>
+>>> while writing this I see a second (more generic) approach which might
+>>> work as well:
+>>> scpi_chan does not hold any information about rx_payload/tx_payload
+>>> sizes (these are calculated in scpi_probe but not stored anywhere).
+>>> (for now, let's assume we had the rx_payload_size available)
+>>> we could then go ahead and memset(rx_payload, 0, rx_payload_size) in
+>>> scpi_tx_prepare or scpi_send_message.
+>>> However, I am not sure if that would have any side-effects (for
+>>> example on newer SCPI implementations).
+>> I simply tried implementing this solution and I find it better than
+>> the old one. However, I am still not sure if there are any
+>> side-effects. maybe you can simply review v2 of this series which
+>> implements the described approach (the result is the same as with v1:
+>> temp1_input contains the correct value).
+>
+> did you have time to review this yet?
+> 
 
-are available in the git repository at:
+I was away, I will look into this today or tomorrow.
 
-  git at github.com:superna9999/linux.git tags/meson-drm-for-4.10
-
-for you to fetch changes up to 1de7ac686bbc5db809ab97eb715ce926a3c41a9c:
-
-  MAINTAINERS: add entry for Amlogic DRM drivers (2016-12-06 09:54:15 +0100)
-
-----------------------------------------------------------------
-Add support for the Amlogic Meson Video Processing Unit
-- Only CVBS/Composite output for Amlogic Meson GXBB/GXL/GXM SoCs
-- Add MAINTAINERS entry
-- Add DT bindings documentation
-
-----------------------------------------------------------------
-Neil Armstrong (3):
-      drm: Add support for Amlogic Meson Graphic Controller
-      dt-bindings: display: add Amlogic Meson DRM Bindings
-      MAINTAINERS: add entry for Amlogic DRM drivers
-
- .../bindings/display/amlogic,meson-vpu.txt         |  112 ++
- MAINTAINERS                                        |    9 +
- drivers/gpu/drm/Kconfig                            |    2 +
- drivers/gpu/drm/Makefile                           |    1 +
- drivers/gpu/drm/meson/Kconfig                      |    9 +
- drivers/gpu/drm/meson/Makefile                     |    4 +
- drivers/gpu/drm/meson/meson_canvas.c               |   68 +
- drivers/gpu/drm/meson/meson_canvas.h               |   42 +
- drivers/gpu/drm/meson/meson_crtc.c                 |  208 +++
- drivers/gpu/drm/meson/meson_crtc.h                 |   32 +
- drivers/gpu/drm/meson/meson_drv.c                  |  343 +++++
- drivers/gpu/drm/meson/meson_drv.h                  |   59 +
- drivers/gpu/drm/meson/meson_plane.c                |  230 ++++
- drivers/gpu/drm/meson/meson_plane.h                |   30 +
- drivers/gpu/drm/meson/meson_registers.h            | 1395 ++++++++++++++++++++
- drivers/gpu/drm/meson/meson_vclk.c                 |  167 +++
- drivers/gpu/drm/meson/meson_vclk.h                 |   34 +
- drivers/gpu/drm/meson/meson_venc.c                 |  254 ++++
- drivers/gpu/drm/meson/meson_venc.h                 |   72 +
- drivers/gpu/drm/meson/meson_venc_cvbs.c            |  293 ++++
- drivers/gpu/drm/meson/meson_venc_cvbs.h            |   41 +
- drivers/gpu/drm/meson/meson_viu.c                  |  331 +++++
- drivers/gpu/drm/meson/meson_viu.h                  |   64 +
- drivers/gpu/drm/meson/meson_vpp.c                  |  162 +++
- drivers/gpu/drm/meson/meson_vpp.h                  |   35 +
- 25 files changed, 3997 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
- create mode 100644 drivers/gpu/drm/meson/Kconfig
- create mode 100644 drivers/gpu/drm/meson/Makefile
- create mode 100644 drivers/gpu/drm/meson/meson_canvas.c
- create mode 100644 drivers/gpu/drm/meson/meson_canvas.h
- create mode 100644 drivers/gpu/drm/meson/meson_crtc.c
- create mode 100644 drivers/gpu/drm/meson/meson_crtc.h
- create mode 100644 drivers/gpu/drm/meson/meson_drv.c
- create mode 100644 drivers/gpu/drm/meson/meson_drv.h
- create mode 100644 drivers/gpu/drm/meson/meson_plane.c
- create mode 100644 drivers/gpu/drm/meson/meson_plane.h
- create mode 100644 drivers/gpu/drm/meson/meson_registers.h
- create mode 100644 drivers/gpu/drm/meson/meson_vclk.c
- create mode 100644 drivers/gpu/drm/meson/meson_vclk.h
- create mode 100644 drivers/gpu/drm/meson/meson_venc.c
- create mode 100644 drivers/gpu/drm/meson/meson_venc.h
- create mode 100644 drivers/gpu/drm/meson/meson_venc_cvbs.c
- create mode 100644 drivers/gpu/drm/meson/meson_venc_cvbs.h
- create mode 100644 drivers/gpu/drm/meson/meson_viu.c
- create mode 100644 drivers/gpu/drm/meson/meson_viu.h
- create mode 100644 drivers/gpu/drm/meson/meson_vpp.c
- create mode 100644 drivers/gpu/drm/meson/meson_vpp.h
-
-Thanks,
-Neil
+-- 
+Regards,
+Sudeep
