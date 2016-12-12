@@ -1,92 +1,188 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Dec 2016 10:34:19 +0100
-Subject: Odroid C2 crashes with Bad mode in Error handler detected on CPUx
-In-Reply-To: <8587bd84-0135-708b-5cde-67c8a537b111@gmx.de>
-References: <8587bd84-0135-708b-5cde-67c8a537b111@gmx.de>
-Message-ID: <0d0812c0-ac31-f9a6-e940-ce0e21a26dbd@baylibre.com>
+Date: Mon, 12 Dec 2016 11:18:01 +0100
+Subject: [RFT PATCH] ARM64: dts: meson-gxbb: Add reserved memory zone and
+ usable memory range
+Message-ID: <20161212101801.28491-1-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 12/08/2016 10:20 PM, Heinrich Schuchardt wrote:
-> On Linux-Next 20160812 Hardkernel Ordroid C2 crashes reproducably with
-> errors like those listed below.
-> 
-> Same happened with 4.9.0-rc6-next-20161124
-> (cf. https://lkml.org/lkml/2016/11/26/63)
-> and v4.9-rc8.
-> 
-> The errors occur only under heavy CPU load like
-> git checkout linux-next
-> or building the kernel.
-> 
-> Could someone, please, give me a hint how to analyze the problem.
-> 
-> Best regards
-> 
-> Heinrich Schuchardt
-> 
-> [  978.592628] CPU: 1 PID: 2240 Comm: git Not tainted
-> 4.9.0-rc8-next-20161208-r002-arm64 #1
-> [  978.600644] Hardware name: Hardkernel ODROID-C2 (DT)
-> [  978.605561] task: ffff800070da7080 task.stack: ffff80007332c000
-> [  978.611427] PC is at 0xffff8b9ed958
-> [  978.614875] LR is at 0xaaaad12538d0
-> [  978.618325] pc : [<0000ffff8b9ed958>] lr : [<0000aaaad12538d0>]
-> pstate: 80000000
-> [  978.625655] sp : 0000ffffd0ea7c20
-> [  978.628934] x29: 0000ffffd0ea7c20 x28: 0000000000000004
-> [  978.634194] x27: 0000000000000000 x26: 0000aaaaead52414
-> [  978.639455] x25: 0000ffffd0ea7c70 x24: 0000000000000004
-> [  978.644717] x23: 0000ffffd0ea7d18 x22: 0000aaaad12b7000
-> [  978.649978] x21: 0000000000000004 x20: 0000000000002722
-> [  978.655239] x19: 0000000000002722 x18: 00000000000700d9
-> [  978.660500] x17: 0000ffff8b9ed980 x16: 0000000000000000
-> [  978.665762] x15: 0000000000052332 x14: 0000000000000008
-> [  978.671023] x13: 5241574d5249465f x12: 454c55444f4d0a3b
-> [  978.676284] x11: 0a3b29445f564552 x10: 5f455241574d5249
-> [  978.681545] x9 : 465f353631324953 x8 : 0000000000000040
-> [  978.686807] x7 : 465f454c55444f4d x6 : 0a3b29224c504722
-> [  978.692068] x5 : 0000aaaad11af1c8 x4 : 0000ffffd0ea7ca0
-> [  978.697329] x3 : 0000aaaaeb1189d8 x2 : 0000000000002722
-> [  978.702590] x1 : 0000ffffd0ea7d18 x0 : 0000000000002722
-> [  978.707851]
-> [  978.709329] Internal error: Attempting to execute userspace memory:
-> 8600000f [#1] PREEMPT SMP
-> [  978.717771] Modules linked in: meson_rng rng_core iscsi_tcp
-> libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables ipv6 realtek
-> [  978.729762] CPU: 1 PID: 2240 Comm: git Not tainted
-[...]
-> [ 1072.564370] Exception stack(0xffff80007158fcf0 to 0xffff80007158fe20)
-> [ 1072.570752] fce0:                                   0000000000000000
-> 0001000000000000
-> [ 1072.578515] fd00: ffff80007158fec0 0000000000000000 ffff800070fe8aa0
-> 0000000000000000
-> [ 1072.586278] fd20: 0000000000000004 ffff000008aa9818 ffff800070e31900
-> 000000000808540c
-> [ 1072.594040] fd40: ffff80007158fd90 ffff0000080c87f8 ffff80007158fe40
-> ffff800070e31900
-> [ 1072.601803] fd60: 0000000000000004 00000000000003c0 ffff80007158fe40
-> 0000000000000000
-> [ 1072.609565] fd80: 0000000000000000 0000000000000000 0000000000000000
-> ffff800070e31900
-> [ 1072.617328] fda0: 000000000000047b 0000000000000003 0000000000000000
-> 00000000047b047a
-> [ 1072.625090] fdc0: 000000000000047a 0000000000000000 000000000004db59
-> ffff80007158fb40
-> [ 1072.632853] fde0: 00000000000002e4 0000000000000002 00000000000002e3
-> ffff000008b1eacd
-> [ 1072.640615] fe00: ffff000088b1eabf 0000000000000006 0000000000000000
-> 0000000000000000
-> [ 1072.648376] [<          (null)>]           (null)
-> [ 1072.653036] Code: bad PC value
-> [ 1072.656128] ---[ end trace e838c4fb00307731 ]---
+The Amlogic Meson GXBB secure monitor uses part of the memory space, this
+patch adds these reserved zones and redefines the usable memory range for
+each boards.
 
-Hi Heinrich,
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 21 +++++++++++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts     |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi    |  2 +-
+ .../boot/dts/amlogic/meson-gxbb-vega-s95-meta.dts   |  2 +-
+ .../boot/dts/amlogic/meson-gxbb-vega-s95-pro.dts    |  2 +-
+ .../boot/dts/amlogic/meson-gxbb-vega-s95-telos.dts  |  2 +-
+ .../boot/dts/amlogic/meson-gxl-nexbox-a95x.dts      |  2 +-
+ .../arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  2 +-
+ 11 files changed, 31 insertions(+), 10 deletions(-)
 
-This is known issue, and I already posted an hack to disable some reserved memory zones at [1]
-
-A patch will be posted for all boards in the next days.
-
-Neil
-
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001729.html
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+index 7a078be..ac40b2d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+@@ -56,7 +56,7 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x80000000>;
++		reg = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	vddio_boot: regulator-vddio_boot {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index fc033c0..e085588 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -55,6 +55,27 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		secos: secos {
++			reg = <0x0 0x05300000 0x0 0x2000000>;
++			no-map;
++		};
++
++		pstore: pstore {
++			reg = <0x0 0x07300000 0x0 0x100000>;
++			no-map;
++		};
++
++		secmon: secmon {
++			reg = <0x0 0x10000000 0x0 0x200000>;
++			no-map;
++		};
++	};
++
+ 	cpus {
+ 		#address-cells = <0x2>;
+ 		#size-cells = <0x0>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+index 9696820..25b8832 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -62,7 +62,7 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x40000000>;
++		reg = <0x0 0x1000000 0x0 0x3f000000>;
+ 	};
+ 
+ 	leds {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 238fbea..839c66a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -61,7 +61,7 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x80000000>;
++		reg = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	usb_otg_pwr: regulator-usb-pwrs {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index 203be28..9a39518 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -55,7 +55,7 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x40000000>;
++		reg = <0x0 0x1000000 0x0 0x3f000000>;
+ 	};
+ 
+ 	usb_pwr: regulator-usb-pwrs {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dts
+index 62fb496..287a4c7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dts
+@@ -50,6 +50,6 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x80000000>;
++		reg = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dts
+index 9a9663a..8bdbbe2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dts
+@@ -50,6 +50,6 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x40000000>;
++		reg = <0x0 0x1000000 0x0 0x3f000000>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dts
+index 2fe167b..2d85295 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dts
+@@ -50,6 +50,6 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x80000000>;
++		reg = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
+index e99101a..4ec2bbb 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
+@@ -60,7 +60,7 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x80000000>;
++		reg = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	vddio_card: gpio-regulator {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+index 9639f01..b8b5b74 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+@@ -59,7 +59,7 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x80000000>;
++		reg = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index f859d75..1544747 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -62,7 +62,7 @@
+ 
+ 	memory at 0 {
+ 		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x80000000>;
++		reg = <0x0 0x1000000 0x0 0x7f000000>;
+ 	};
+ 
+ 	vddio_boot: regulator-vddio-boot {
+-- 
+2.7.0
