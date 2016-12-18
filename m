@@ -1,41 +1,63 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 17 Dec 2016 21:36:55 +0100
-Subject: [PATCH 0/5] meson-gx: reset RGMII PHYs and configure TX delay
-In-Reply-To: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
-References: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCDpBew7wreNPn6=J3jKsw_Ok=Ed9_+Gxsefb661RvUdrA@mail.gmail.com>
+Date: Sun, 18 Dec 2016 14:37:46 +0100
+Subject: [PATCH net-next v3 0/4] Fix OdroidC2 Gigabit Tx link issue
+In-Reply-To: <162595c2-d403-0070-3399-de03c1653065@gmail.com>
+References: <1480326409-25419-1-git-send-email-jbrunet@baylibre.com>
+ <20161129.193853.827524417068912706.davem@davemloft.net>
+ <e14a3b0c-dc34-be14-48b3-518a0ad0c080@gmail.com>
+ <20161129.201331.2207317476589573523.davem@davemloft.net>
+ <162595c2-d403-0070-3399-de03c1653065@gmail.com>
+Message-ID: <CAFBinCBxM2Kt1Q2Fo8wBx-Oxc8nRAuhPyt06mvXc4c8pUxt_4g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
+Hi Florian, Hi Jerome,
 
-On Sat, Dec 3, 2016 at 12:47 AM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> This partially fixes the 1000Mbit/s ethernet TX throughput issues (on
-> networks which are not affected by the EEE problem, as reported here:
-> [1]).
-> The actual problem for the TX throughput issues was that the TX delay
-> was applied twice:
-> - once "accidentally" by the PHY (this was fixed with [2])
-> - once by the MAC because there was a hardcoded TX delay (of 2ns),
->   this will be configurable with the changes from [0]
+On Wed, Nov 30, 2016 at 2:15 AM, Florian Fainelli <f.fainelli@gmail.com> wrote:
+> On 11/29/2016 05:13 PM, David Miller wrote:
+>> From: Florian Fainelli <f.fainelli@gmail.com>
+>> Date: Tue, 29 Nov 2016 16:43:20 -0800
+>>
+>>> On 11/29/2016 04:38 PM, David Miller wrote:
+>>>> From: Jerome Brunet <jbrunet@baylibre.com>
+>>>> Date: Mon, 28 Nov 2016 10:46:45 +0100
+>>>>
+>>>>> This patchset fixes an issue with the OdroidC2 board (DWMAC + RTL8211F).
+>>>>> The platform seems to enter LPI on the Rx path too often while performing
+>>>>> relatively high TX transfer. This eventually break the link (both Tx and
+>>>>> Rx), and require to bring the interface down and up again to get the Rx
+>>>>> path working again.
+>>>>>
+>>>>> The root cause of this issue is not fully understood yet but disabling EEE
+>>>>> advertisement on the PHY prevent this feature to be negotiated.
+>>>>> With this change, the link is stable and reliable, with the expected
+>>>>> throughput performance.
+>>>>>
+>>>>> The patchset adds options in the generic phy driver to disable EEE
+>>>>> advertisement, through device tree. The way it is done is very similar
+>>>>> to the handling of the max-speed property.
+>>>>
+>>>> Patches 1-3 applied to net-next, thanks.
+>>>
+>>> Meh, there was a v4 submitted shortly after, and I objected to the whole
+>>> idea of using that kind of Device Tree properties to disable EEE, we can
+>>> send reverts though..
+>>
+>> Sorry, I lost this in all the discussion, I can revert.
 >
-> These are the dts changes which belong to my other series (in v2
-> these patches were part of the other series, upon request of the
-> net maintainers I have split the .dts changes into their own series so
-> we are able to take both through different trees):
-> "[PATCH net-next v3 0/2] stmmac: dwmac-meson8b: configurable
-> RGMII TX delay": [0].
-> Thus this series depends on the ACK for the binding changes in the
-> other series!
+> Yeah, I can understand why, these freaking PHYs tend to generate a lot
+> of noise and discussion...
 >
-> I based these changes on my other series "[PATCH v2 0/2] GXL and GXM
-> SCPI improvements": [3]
-the DT binding changes for the meson8b-dwmac driver were ACK'ed by Rob
-Herring, so you can proceed with this series once you applied the SCPI
-patches.
+>>
+>> Just send me a revert of the entire merge commit
+>> a152c91889556df17ca6d8ea134fb2cb4ac9f893 with a short
+>> description of why and I'll apply it.
+>
+> OK, I will talk with Jerome first to make sure that we are in agreement
+> with the solution to deploy to fix the OdroidC2 problem first.
+simply because I'm curious: what was the outcome of your discussion?
+can we stay with the current solution or are any changes required?
 
 
-Thank you!
 Regards,
 Martin
