@@ -1,39 +1,65 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Dec 2016 16:05:36 +0100
-Subject: [PATCH net 1/3] net: phy: fix sign type error in
- genphy_config_eee_advert
+Date: Mon, 19 Dec 2016 16:05:37 +0100
+Subject: [PATCH net 2/3] net: phy: use boolean dt properties for eee broken
+ modes
 In-Reply-To: <1482159938-13239-1-git-send-email-jbrunet@baylibre.com>
 References: <1482159938-13239-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1482159938-13239-2-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1482159938-13239-3-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In genphy_config_eee_advert, the return value of phy_read_mmd_indirect is
-checked to know if the register could be accessed but the result is
-assigned to a 'u32'.
-Changing to 'int' to correctly get errors from phy_read_mmd_indirect.
+The patches regarding eee-broken-modes was merged before all people
+involved could find an agreement on the best way to move forward.
 
-Fixes: d853d145ea3e ("net: phy: add an option to disable EEE advertisement")
-Reported-by: Julia Lawall <julia.lawall@lip6.fr>
+While we agreed on having a DT property to mark particular modes as broken,
+the value used for eee-broken-modes mapped the phy register in very direct
+way. Because of this, the concern is that it could be used to implement
+configuration policies instead of describing a broken HW.
+
+In the end, having a boolean property for each mode seems to be preferred
+over one bit field value mapping the register (too) directly.
+
+Cc: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/net/phy/phy_device.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/net/phy/phy_device.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
-index 9c06f8028f0c..ee5ebadb1463 100644
+index ee5ebadb1463..92b08383cafa 100644
 --- a/drivers/net/phy/phy_device.c
 +++ b/drivers/net/phy/phy_device.c
-@@ -1187,8 +1187,8 @@ static int genphy_config_advert(struct phy_device *phydev)
-  */
- static int genphy_config_eee_advert(struct phy_device *phydev)
+@@ -1665,7 +1665,7 @@ static void of_set_phy_supported(struct phy_device *phydev)
+ static void of_set_phy_eee_broken(struct phy_device *phydev)
  {
--	u32 broken = phydev->eee_broken_modes;
--	u32 old_adv, adv;
-+	int broken = phydev->eee_broken_modes;
-+	int old_adv, adv;
+ 	struct device_node *node = phydev->mdio.dev.of_node;
+-	u32 broken;
++	u32 broken = 0;
  
- 	/* Nothing to disable */
- 	if (!broken)
+ 	if (!IS_ENABLED(CONFIG_OF_MDIO))
+ 		return;
+@@ -1673,8 +1673,20 @@ static void of_set_phy_eee_broken(struct phy_device *phydev)
+ 	if (!node)
+ 		return;
+ 
+-	if (!of_property_read_u32(node, "eee-broken-modes", &broken))
+-		phydev->eee_broken_modes = broken;
++	if (of_property_read_bool(node, "eee-broken-100tx"))
++		broken |= MDIO_EEE_100TX;
++	if (of_property_read_bool(node, "eee-broken-1000t"))
++		broken |= MDIO_EEE_1000T;
++	if (of_property_read_bool(node, "eee-broken-10gt"))
++		broken |= MDIO_EEE_10GT;
++	if (of_property_read_bool(node, "eee-broken-1000kx"))
++		broken |= MDIO_EEE_1000KX;
++	if (of_property_read_bool(node, "eee-broken-10gkx4"))
++		broken |= MDIO_EEE_10GKX4;
++	if (of_property_read_bool(node, "eee-broken-10gkr"))
++		broken |= MDIO_EEE_10GKR;
++
++	phydev->eee_broken_modes = broken;
+ }
+ 
+ /**
 -- 
 2.7.4
