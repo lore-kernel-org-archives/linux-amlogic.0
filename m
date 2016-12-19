@@ -1,77 +1,47 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Dec 2016 16:05:38 +0100
-Subject: [PATCH net 3/3] dt: bindings: net: use boolean dt properties for eee
- broken modes
-In-Reply-To: <1482159938-13239-1-git-send-email-jbrunet@baylibre.com>
-References: <1482159938-13239-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <1482159938-13239-4-git-send-email-jbrunet@baylibre.com>
+Date: Mon, 19 Dec 2016 16:16:47 +0100
+Subject: [PATCH net-next v4 2/4] dt-bindings: net: add EEE capability
+ constants
+In-Reply-To: <20161205143942.f3w6nmp3jvmrk5es@rob-hp-laptop>
+References: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
+ <1480348229-25672-3-git-send-email-jbrunet@baylibre.com>
+ <20161205143942.f3w6nmp3jvmrk5es@rob-hp-laptop>
+Message-ID: <1482160607.5163.16.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patches regarding eee-broken-modes was merged before all people
-involved could find an agreement on the best way to move forward.
+Hi Rob,
 
-While we agreed on having a DT property to mark particular modes as broken,
-the value used for eee-broken-modes mapped the phy register in very direct
-way. Because of this, the concern is that it could be used to implement
-configuration policies instead of describing a broken HW.
+First, Thx for this information and sorry for this late reply
+As you may have seen yourself, there was little bit of confusion while
+discussing this patch series.
 
-In the end, having a boolean property for each mode seems to be preferred
-over one bit field value mapping the register (too) directly.
+The point is the v3 was applied before your reply (patches 2 and 3 not
+combined unfortunately).
+Because of this confusion, the series needed a few fixes witch removes
+the previously added bindings [0].
+This time, I made sure to modify (remove) the bindings along with the
+documentation.
 
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- Documentation/devicetree/bindings/net/phy.txt | 10 ++++++++--
- include/dt-bindings/net/mdio.h                | 19 -------------------
- 2 files changed, 8 insertions(+), 21 deletions(-)
- delete mode 100644 include/dt-bindings/net/mdio.h
+[0]:?http://lkml.kernel.org/r/1482159938-13239-1-git-send-email-jbrunet
+@baylibre.com
 
-diff --git a/Documentation/devicetree/bindings/net/phy.txt b/Documentation/devicetree/bindings/net/phy.txt
-index 54749b60a466..ff1bc4b1bb3b 100644
---- a/Documentation/devicetree/bindings/net/phy.txt
-+++ b/Documentation/devicetree/bindings/net/phy.txt
-@@ -38,8 +38,14 @@ Optional Properties:
- - enet-phy-lane-swap: If set, indicates the PHY will swap the TX/RX lanes to
-   compensate for the board being designed with the lanes swapped.
- 
--- eee-broken-modes: Bits to clear in the MDIO_AN_EEE_ADV register to
--  disable EEE broken modes.
-+- eee-broken-100tx:
-+- eee-broken-1000t:
-+- eee-broken-10gt:
-+- eee-broken-1000kx:
-+- eee-broken-10gkx4:
-+- eee-broken-10gkr:
-+  Mark the corresponding energy efficient ethernet mode as broken and
-+  request the ethernet to stop advertising it.
- 
- Example:
- 
-diff --git a/include/dt-bindings/net/mdio.h b/include/dt-bindings/net/mdio.h
-deleted file mode 100644
-index 99c6d903d439..000000000000
---- a/include/dt-bindings/net/mdio.h
-+++ /dev/null
-@@ -1,19 +0,0 @@
--/*
-- * This header provides generic constants for ethernet MDIO bindings
-- */
--
--#ifndef _DT_BINDINGS_NET_MDIO_H
--#define _DT_BINDINGS_NET_MDIO_H
--
--/*
-- * EEE capability Advertisement
-- */
--
--#define MDIO_EEE_100TX		0x0002	/* 100TX EEE cap */
--#define MDIO_EEE_1000T		0x0004	/* 1000T EEE cap */
--#define MDIO_EEE_10GT		0x0008	/* 10GT EEE cap */
--#define MDIO_EEE_1000KX		0x0010	/* 1000KX EEE cap */
--#define MDIO_EEE_10GKX4		0x0020	/* 10G KX4 EEE cap */
--#define MDIO_EEE_10GKR		0x0040	/* 10G KR EEE cap */
--
--#endif
--- 
-2.7.4
+Cheers
+Jerome
+
+On Mon, 2016-12-05 at 08:39 -0600, Rob Herring wrote:
+> On Mon, Nov 28, 2016 at 04:50:26PM +0100, Jerome Brunet wrote:
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > Tested-by: Yegor Yefremov <yegorslists@googlemail.com>
+> > Tested-by: Andreas F?rber <afaerber@suse.de>
+> > Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+> > ---
+> > ?include/dt-bindings/net/mdio.h | 19 +++++++++++++++++++
+> > ?1 file changed, 19 insertions(+)
+> > ?create mode 100644 include/dt-bindings/net/mdio.h
+> 
+> Seems changes are wanted on this, but patches 2 and 3 should be?
+> combined. The header is part of the binding doc.
+> 
+> Rob
