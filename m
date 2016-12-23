@@ -1,44 +1,61 @@
 From: xypron.glpk@gmx.de (Heinrich Schuchardt)
-Date: Fri, 23 Dec 2016 13:52:13 +0100
-Subject: [PATCH 1/1] ARM64: dts: meson-gxbb-odroidc2: linux,usable-memory
-Message-ID: <20161223125213.5461-1-xypron.glpk@gmx.de>
+Date: Fri, 23 Dec 2016 16:01:08 +0100
+Subject: [PATCH 1/1] MMC: meson: avoid possible NULL dereference
+Message-ID: <20161223150108.9229-1-xypron.glpk@gmx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-After reading the fdt u-boot overwrites the reg property of the
-memory node with <0x0 0x0 0x0 0x78000000>.
+No actual segmentation faults were observed but the coding is
+at least inconsistent.
 
-To override this setting we have to use the property
-linux,usable-memory.
+irqreturn_t meson_mmc_irq():
 
-If the first 16MB of the 2GB physical memory are used by
-the Linux kernel oops occur on the Odroid C2.
+We should not dereference host before checking it.
 
-For the Odroid C2 this patch replaces
-[RFT PATCH] ARM64: dts: meson-gxbb: Add reserved memory zone and
-usable memory range
-https://lkml.org/lkml/2016/12/12/127
+meson_mmc_irq_thread():
 
-Fixes: 855960342d1e7 ARM64: dts: amlogic: add Hardkernel ODROID-C2
-CC: Neil Armstrong <narmstrong@baylibre.com>
-CC: Kevin Hilman <khilman@baylibre.com>
+If cmd or mrq are NULL we should not dereference them after
+writing a warning.
+
+Fixes: 51c5d8447bd7 MMC: meson: initial support for GX platforms
 Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mmc/host/meson-gx-mmc.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 238fbeacd330..82ab94417940 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -61,7 +61,7 @@
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index b352760c041e..09739352834c 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -578,13 +578,15 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ {
+ 	struct meson_host *host = dev_id;
+ 	struct mmc_request *mrq;
+-	struct mmc_command *cmd = host->cmd;
++	struct mmc_command *cmd;
+ 	u32 irq_en, status, raw_status;
+ 	irqreturn_t ret = IRQ_HANDLED;
  
- 	memory at 0 {
- 		device_type = "memory";
--		reg = <0x0 0x0 0x0 0x80000000>;
-+		linux,usable-memory = <0x0 0x01000000 0x0 0x7f000000>;
- 	};
+ 	if (WARN_ON(!host))
+ 		return IRQ_NONE;
  
- 	usb_otg_pwr: regulator-usb-pwrs {
++	cmd = host->cmd;
++
+ 	mrq = host->mrq;
+ 
+ 	if (WARN_ON(!mrq))
+@@ -670,10 +672,10 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+ 	int ret = IRQ_HANDLED;
+ 
+ 	if (WARN_ON(!mrq))
+-		ret = IRQ_NONE;
++		return IRQ_NONE;
+ 
+ 	if (WARN_ON(!cmd))
+-		ret = IRQ_NONE;
++		return IRQ_NONE;
+ 
+ 	data = cmd->data;
+ 	if (data) {
 -- 
 2.11.0
