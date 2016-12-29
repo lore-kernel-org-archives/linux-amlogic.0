@@ -1,263 +1,155 @@
 From: webczat_200@poczta.onet.pl (=?UTF-8?Q?Micha=c5=82_Zegan?=)
-Date: Thu, 29 Dec 2016 16:39:47 +0100
-Subject: emmc problems with linux 4.10-rc1
-In-Reply-To: <c36847da-2f19-f18b-1569-e44e0873d15c@baylibre.com>
-References: <1c70f4ea-f310-ec70-4a42-ca59da42cc54@poczta.onet.pl>
- <c36847da-2f19-f18b-1569-e44e0873d15c@baylibre.com>
-Message-ID: <6e7ee67e-66fc-1ad7-b647-fe007f654a8e@poczta.onet.pl>
+Date: Thu, 29 Dec 2016 19:35:09 +0100
+Subject: possible bugs on odroid, or maybe that is not meson related?
+Message-ID: <edfe1845-3c8a-053a-34c6-4c4930af5c2b@poczta.onet.pl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-As I said, the problem with race conditions when loading or something
-cannot be reproduced for now, as for the first problem with module
-unloading it is always reproducible.
-The kernel is current master from torwalds repo. I do not think it's
-configuration matters much in this case. Here are the logs:
- 12 znak?w my?lnik[ cut here ] 12 znak?w my?lnik
-WARNING: CPU: 0 PID: 104 at drivers/clk/clk.c:594 clk_core_disable+0x78/0x80
-Modules linked in: zbud vfat fat meson_gx_mmc(-) pwrseq_emmc fixed
-gpio_regulator mmc_
-core raid6_pq xor [last unloaded: mmc_block]
-CPU: 0 PID: 104 Comm: modprobe Not tainted 4.10.0-rc1 #7
-Hardware name: Hardkernel ODROID-C2 (DT)
-task: ffffffc0734f9a00 task.stack: ffffffc0739e8000
-PC is at clk_core_disable+0x78/0x80
-LR is at clk_core_disable_lock+0x20/0x38
-pc : [<ffffff80083d22b8>] lr : [<ffffff80083d2388>] pstate: 800001c5
-sp : ffffffc0739ebce0
-x29: ffffffc0739ebce0 x28: ffffffc0734f9a00
-x27: ffffff8008552000 x26: 000000000000006a
-x25: 0000000000000123 x24: 0000000000080000
-x23: ffffff8008ad23f8 x22: 0000000077100000
-x21: ffffff800942f000 x20: ffffffc0739ba300
-x19: 0000000000000140 x18: 00000000004ee000
-x17: 0000000000000000 x16: ffffffc0734f9a00
-x15: 0000007fcd7aeb28 x14: ffffffbf01cad820
-x13: ffffffbf0006ac60 x12: 0000000000000030
-x11: 00000000ffffffff x10: ffffffbf00000000
-x9 : 0000000000000001 x8 : 0000000000000001
-x7 : 0000000000000001 x6 : 0000000000000040
-x5 : 0000000000000000 x4 : ffffffffffffffff
-x3 : ffffff8008bdaf38 x2 : 0000000000760075
-x1 : 0000000000000000 x0 : ffffffc0739ba300
----[ end trace bbb00de93a87cf88 ]---
-Call trace:
-Exception stack(0xffffffc0739ebb10 to 0xffffffc0739ebc40)
-bb00:                                   0000000000000140 0000008000000000
-bb20: ffffffc0739ebce0 ffffff80083d22b8 ffffffc0739ebb40 ffffff80081848e8
-bb40: ffffffc0739ebbd0 ffffff8008185e3c ffffff80088a4770 0000000000000140
-bb60: 000000000000001f 0000000000000000 ffffffc076fddd80 000000406e6f3000
-bb80: 0000000000000123 000000000000006a ffffff8008552000 ffffffc0734f9a00
-bba0: 0000000077100000 0000000000072aed ffffffc0739ba300 0000000000000000
-bbc0: 0000000000760075 ffffff8008bdaf38 ffffffffffffffff 0000000000000000
-bbe0: 0000000000000040 0000000000000001 0000000000000001 0000000000000001
-bc00: ffffffbf00000000 00000000ffffffff 0000000000000030 ffffffbf0006ac60
-bc00: ffffffbf00000000 00000000ffffffff 0000000000000030 ffffffbf0006ac60
-bc20: ffffffbf01cad820 0000007fcd7aeb28 ffffffc0734f9a00 0000000000000000
-[<ffffff80083d22b8>] clk_core_disable+0x78/0x80
-[<ffffff80083d23bc>] clk_disable+0x1c/0x30
-[<ffffff8000817090>] meson_mmc_remove+0x90/0x180 [meson_gx_mmc]
-[<ffffff800848533c>] platform_drv_remove+0x24/0x68
-[<ffffff80084837ac>] device_release_driver_internal+0x154/0x1d8
-[<ffffff800848389c>] driver_detach+0x4c/0x90
-[<ffffff8008482544>] bus_remove_driver+0x5c/0xe0
-[<ffffff8008483f6c>] driver_unregister+0x2c/0x50
-[<ffffff8008485450>] platform_driver_unregister+0x10/0x18
-[<ffffff8000818398>] meson_mmc_driver_exit+0x10/0x2a8 [meson_gx_mmc]
-[<ffffff8008133ee4>] SyS_delete_module+0x194/0x228
-[<ffffff8008082ef0>] el0_svc_naked+0x24/0x28
- 12 znak?w my?lnik[ cut here ] 12 znak?w my?lnik
-WARNING: CPU: 0 PID: 104 at drivers/clk/clk.c:476
-clk_core_unprepare+0x80/0x90
-Modules linked in: zbud vfat fat meson_gx_mmc(-) pwrseq_emmc fixed
-gpio_regulator mmc_
-core raid6_pq xor [last unloaded: mmc_block]
-CPU: 0 PID: 104 Comm: modprobe Tainted: G        W       4.10.0-rc1 #7
-Hardware name: Hardkernel ODROID-C2 (DT)
-task: ffffffc0734f9a00 task.stack: ffffffc0739e8000
-PC is at clk_core_unprepare+0x80/0x90
-LR is at clk_unprepare+0x28/0x40
-pc : [<ffffff80083d2090>] lr : [<ffffff80083d4130>] pstate: 60000145
-sp : ffffffc0739ebcf0
-x29: ffffffc0739ebcf0 x28: ffffffc0734f9a00
-x27: ffffff8008552000 x26: 000000000000006a
-x25: 0000000000000123 x24: 0000000000080000
-x23: ffffff8008ad23f8 x22: 0000000077100000
-x21: ffffff800942f000 x20: ffffffc073a34400
-x19: ffffffc0739ba300 x18: 00000000004ee000
-x17: 0000000000000000 x16: 0000000000000000
-x15: 0000007fcd7aeb28 x14: ffffffbf01cad820
-x13: ffffffbf0006ac60 x12: 0000000000000030
-x11: 00000000ffffffff x10: ffffffbf00000000
-x9 : 0000000000000001 x8 : 0000000000000001
-x7 : 0000000000000001 x6 : 0000000000000040
-x5 : ffffffc0734f9a00 x4 : ffffff8008b2a2d8
-x3 : 0000000000000000 x2 : ffffffc0734f9a00
-x1 : 0000000000000000 x0 : ffffffc0739ba300
----[ end trace bbb00de93a87cf89 ]---
-Call trace:
-Exception stack(0xffffffc0739ebb20 to 0xffffffc0739ebc50)
-bb20: ffffffc0739ba300 0000008000000000 ffffffc0739ebcf0 ffffff80083d2090
-bb40: ffffffc0739ebbd0 ffffff8008185e3c ffffff80088a4770 0000000000000140
-bb60: 000000000000001f 0000000000000000 ffffffc076fddd80 000000406e6f3000
-bb80: 0000000000000123 000000000000006a ffffff8008552000 ffffffc0734f9a00
-bba0: ffffff8008bfb7f0 0000000000000140 0000000000000076 ffffff8008bfb7e8
-bbc0: ffffffc0739ba300 0000000000000000 ffffffc0734f9a00 0000000000000000
-bbe0: ffffff8008b2a2d8 ffffffc0734f9a00 0000000000000040 0000000000000001
-bc00: 0000000000000001 0000000000000001 ffffffbf00000000 00000000ffffffff
-bc20: 0000000000000030 ffffffbf0006ac60 ffffffbf01cad820 0000007fcd7aeb28
-bc40: 0000000000000000 0000000000000000
-[<ffffff80083d2090>] clk_core_unprepare+0x80/0x90
-[<ffffff8000817098>] meson_mmc_remove+0x98/0x180 [meson_gx_mmc]
-[<ffffff800848533c>] platform_drv_remove+0x24/0x68
-[<ffffff80084837ac>] device_release_driver_internal+0x154/0x1d8
-[<ffffff800848389c>] driver_detach+0x4c/0x90
-[<ffffff8008482544>] bus_remove_driver+0x5c/0xe0
-[<ffffff8008483f6c>] driver_unregister+0x2c/0x50
-[<ffffff8008485450>] platform_driver_unregister+0x10/0x18
-[<ffffff8000818398>] meson_mmc_driver_exit+0x10/0x2a8 [meson_gx_mmc]
-[<ffffff8008133ee4>] SyS_delete_module+0x194/0x228
-[<ffffff8008082ef0>] el0_svc_naked+0x24/0x28
- 12 znak?w my?lnik[ cut here ] 12 znak?w my?lnik
-WARNING: CPU: 0 PID: 104 at drivers/clk/clk.c:594 clk_core_disable+0x78/0x80
-Modules linked in: zbud vfat fat meson_gx_mmc(-) pwrseq_emmc fixed
-gpio_regulator mmc_
-core raid6_pq xor [last unloaded: mmc_block]
-CPU: 0 PID: 104 Comm: modprobe Tainted: G        W       4.10.0-rc1 #7
-Hardware name: Hardkernel ODROID-C2 (DT)
-task: ffffffc0734f9a00 task.stack: ffffffc0739e8000
-PC is at clk_core_disable+0x78/0x80
-LR is at clk_core_disable_lock+0x20/0x38
-pc : [<ffffff80083d22b8>] lr : [<ffffff80083d2388>] pstate: 800001c5
-sp : ffffffc0739ebce0
-x29: ffffffc0739ebce0 x28: ffffffc0734f9a00
-x27: ffffff8008552000 x26: 000000000000006a
-x25: 0000000000000123 x24: 0000000000080000
-x23: ffffff8008ad23f8 x22: 0000000077080000
-x21: ffffff80093ab000 x20: ffffffc073a01700
-x19: 0000000000000140 x18: 00000000004ee000
-x17: 0000000000000000 x16: ffffffc0734f9a00
-x15: 0000007fcd7aeb28 x14: ffffffc076fde060
-x13: ffffffc076fde060 x12: 0000000000000030
-x11: 00000000ffffffff x10: ffffffbf00000000
-x9 : 0000000000000001 x8 : 0000000000000006
-x7 : 0000000000000001 x6 : 0000000000000040
-x5 : 0000000000000000 x4 : ffffffffffffffff
-x3 : ffffff8008bdaf38 x2 : 00000000007a0079
-x1 : 0000000000000000 x0 : ffffffc073a01700
----[ end trace bbb00de93a87cf8a ]---
-Call trace:
-Exception stack(0xffffffc0739ebb10 to 0xffffffc0739ebc40)
-bb00:                                   0000000000000140 0000008000000000
-bb20: ffffffc0739ebce0 ffffff80083d22b8 ffffffc0739ebb40 ffffff8008184b18
-bb40: ffffffc0739ebbd0 ffffff8008185e3c ffffff80088a4770 0000000000000140
-bb60: 000000000000001f 0000000000000000 ffffffc076fddd80 000000406e6f3000
-bb80: 0000000000000123 000000000000006a ffffff8008552000 ffffffc0734f9a00
-bba0: 0000000077080000 000000000007715f ffffffc073a01700 0000000000000000
-bbc0: 00000000007a0079 ffffff8008bdaf38 ffffffffffffffff 0000000000000000
-bbe0: 0000000000000040 0000000000000001 0000000000000006 0000000000000001
-bc00: ffffffbf00000000 00000000ffffffff 0000000000000030 ffffffc076fde060
-bc20: ffffffc076fde060 0000007fcd7aeb28 ffffffc0734f9a00 0000000000000000
-[<ffffff80083d22b8>] clk_core_disable+0x78/0x80
-[<ffffff80083d23bc>] clk_disable+0x1c/0x30
-[<ffffff8000817090>] meson_mmc_remove+0x90/0x180 [meson_gx_mmc]
-[<ffffff800848533c>] platform_drv_remove+0x24/0x68
-[<ffffff80084837ac>] device_release_driver_internal+0x154/0x1d8
-[<ffffff800848389c>] driver_detach+0x4c/0x90
-[<ffffff8008482544>] bus_remove_driver+0x5c/0xe0
-[<ffffff8008483f6c>] driver_unregister+0x2c/0x50
-[<ffffff8008485450>] platform_driver_unregister+0x10/0x18
-[<ffffff8000818398>] meson_mmc_driver_exit+0x10/0x2a8 [meson_gx_mmc]
-[<ffffff8008133ee4>] SyS_delete_module+0x194/0x228
-[<ffffff8008082ef0>] el0_svc_naked+0x24/0x28
- 12 znak?w my?lnik[ cut here ] 12 znak?w my?lnik
-WARNING: CPU: 0 PID: 104 at drivers/clk/clk.c:476
-clk_core_unprepare+0x80/0x90
-Modules linked in: zbud vfat fat meson_gx_mmc(-) pwrseq_emmc fixed
-gpio_regulator mmc_
-core raid6_pq xor [last unloaded: mmc_block]
-CPU: 0 PID: 104 Comm: modprobe Tainted: G        W       4.10.0-rc1 #7
-Hardware name: Hardkernel ODROID-C2 (DT)
-task: ffffffc0734f9a00 task.stack: ffffffc0739e8000
-PC is at clk_core_unprepare+0x80/0x90
-LR is at clk_unprepare+0x28/0x40
-pc : [<ffffff80083d2090>] lr : [<ffffff80083d4130>] pstate: 60000145
-sp : ffffffc0739ebcf0
-x29: ffffffc0739ebcf0 x28: ffffffc0734f9a00
-x27: ffffff8008552000 x26: 000000000000006a
-x25: 0000000000000123 x24: 0000000000080000
-x23: ffffff8008ad23f8 x22: 0000000077080000
-x21: ffffff80093ab000 x20: ffffffc073442100
-x19: ffffffc073a01700 x18: 00000000004ee000
-x17: 0000000000000000 x16: 0000000000000000
-x15: 0000007fcd7aeb28 x14: ffffffc076fde060
-x13: ffffffc076fde060 x12: 0000000000000030
-x11: 00000000ffffffff x10: ffffffbf00000000
-x9 : 0000000000000001 x8 : 0000000000000006
-x7 : 0000000000000001 x6 : 0000000000000040
-x5 : ffffffc0734f9a00 x4 : ffffff8008b2a2d8
-x3 : 0000000000000000 x2 : ffffffc0734f9a00
-x1 : 0000000000000000 x0 : ffffffc073a01700
----[ end trace bbb00de93a87cf8b ]---
-Call trace:
-Exception stack(0xffffffc0739ebb20 to 0xffffffc0739ebc50)
-bb20: ffffffc073a01700 0000008000000000 ffffffc0739ebcf0 ffffff80083d2090
-bb40: ffffffc0739ebbd0 ffffff8008185e3c ffffff80088a4770 0000000000000140
-bb60: 000000000000001f 0000000000000000 ffffffc076fddd80 000000406e6f3000
-bb80: 0000000000000123 000000000000006a ffffff8008552000 ffffffc0734f9a00
-bba0: ffffff8008bfb7f0 0000000000000140 000000000000007a ffffff8008bfb7e8
-bbc0: ffffffc073a01700 0000000000000000 ffffffc0734f9a00 0000000000000000
-bbe0: ffffff8008b2a2d8 ffffffc0734f9a00 0000000000000040 0000000000000001
-bc00: 0000000000000006 0000000000000001 ffffffbf00000000 00000000ffffffff
-bc20: 0000000000000030 ffffffc076fde060 ffffffc076fde060 0000007fcd7aeb28
-bc40: 0000000000000000 0000000000000000
-[<ffffff80083d2090>] clk_core_unprepare+0x80/0x90
-[<ffffff8000817098>] meson_mmc_remove+0x98/0x180 [meson_gx_mmc]
-[<ffffff800848533c>] platform_drv_remove+0x24/0x68
-[<ffffff80084837ac>] device_release_driver_internal+0x154/0x1d8
-[<ffffff800848389c>] driver_detach+0x4c/0x90
-[<ffffff8008482544>] bus_remove_driver+0x5c/0xe0
-[<ffffff8008483f6c>] driver_unregister+0x2c/0x50
-[<ffffff8008485450>] platform_driver_unregister+0x10/0x18
-[<ffffff8000818398>] meson_mmc_driver_exit+0x10/0x2a8 [meson_gx_mmc]
-[<ffffff8008133ee4>] SyS_delete_module+0x194/0x228
-[<ffffff8008082ef0>] el0_svc_naked+0x24/0x28
+Hello.
 
+On the odroid c2/meson gxbb/kernel from torwalds master, sometimes I
+have random problems.
+Those problems are task stalls. Once it happened when loading the usb
+module, once it happened after running the find command.
+A minute ago I have actually tried to switch_root manually from initrd
+to real root, and there was a stall and something else.
+Here it is:
 
-W dniu 29.12.2016 o 10:04, Neil Armstrong pisze:
-> On 12/28/2016 04:19 PM, Micha? Zegan wrote:
->> Hello, it seems there are the following problems with mmc on linux
->> 4.10.0-rc1 or actually the latest master near rc1:
->> First, attempt to unload the module causes a kernel warning, so the
->> module is not properly unloadable
->> Second, I once loaded mmc module first then mmc_block and the kernel
->> panicked because of a fatal exception in interrupt. I was currently
->> unable to reproduce the second problem.
->>
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic at lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>
-> 
-> Hi,
-> 
-> could you provide some console logs ?
-> Those statements won't help us until we have some proper kernel messages,
-> current kernel config, kernel exact version and way for use to reproduce the issue.
-> 
-> Thanks,
-> Meil
-> 
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+swapper/2[0]: undefined instruction: pc=ffffff800853f4d4
+Code: aa1a03f5 14000004 d503201f f94002b5 (b4001555)
+Internal error: undefined instruction: 0 [#1] SMP
+Modules linked in: squashfs loop mmc_block meson_gx_mmc pwrseq_emmc
+mmc_core dwc2 udc_
+core usbcore phy_meson8b_usb2 rtc_pcf8563 i2c_meson i2c_core
+scpi_cpufreq arm_big_litt
+le scpi_hwmon thermal_sys hwmon clk_scpi arm_scpi platform_mhu
+gpio_regulator fixed nl
+s_iso8859_1 nls_cp437 vfat fat btrfs raid6_pq xor crc32c_generic
+crc32_generic
+CPU: 2 PID: 0 Comm: swapper/2 Not tainted 4.10.0-rc1 #7
+Hardware name: Hardkernel ODROID-C2 (DT)
+task: ffffffc074bace00 task.stack: ffffffc074bb8000
+PC is at __schedule+0x2d4/0x590
+LR is at __schedule+0x2e8/0x590
+pc : [<ffffff800853f4d4>] lr : [<ffffff800853f4e8>] pstate: 800001c5
+sp : ffffffc074bbbef0
+x29: ffffffc074bbbef0 x28: 0000000000000000
+x27: 0000000000000000 x26: ffffff8008565428
+x25: ffffffc074bad320 x24: ffffff800853f7b4
+x23: ffffff8008897000 x22: ffffffc074bace00
+x21: ffffff8008565368 x20: 0000000000000000
+x19: ffffffc076fbba00 x18: 0000000000000000
+x17: 00000000000045a5 x16: 0000000000000000
+x15: 0000000000000000 x14: 0000000000000000
+x13: 0000000000000000 x12: 0000000000000000
+x11: ffffff8008565298 x10: ffffffc076fbba38
+x9 : ffffffc074bbbed0 x8 : 0000000000000002
+x7 : 7fffffffffffffff x6 : 0000000489f55a18
+x5 : 0000000000000020 x4 : 0000000000000000
+x3 : 0000000000000000 x2 : ffffff80080f73d8
+x1 : ffffffc074bace00 x0 : 0000000000000000
+Process swapper/2 (pid: 0, stack limit = 0xffffffc074bb8000)
+Stack: (0xffffffc074bbbef0 to 0xffffffc074bbc000)
+bee0:                                   ffffffc074bbbf50 ffffff800853f7b4
+bf00: ffffff8008897000 ffffff8008ac9cf8 ffffff8008ac9000 ffffff800889fa48
+bf20: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+bf40: ffffff8008897000 ffffff8008ac9cf8 ffffffc074bbbf60 ffffff800853fadc
+bf60: ffffffc074bbbf70 ffffff80080f8428 ffffffc074bbbfb0 ffffff80080f8738
+bf80: 0000000000000075 0000000000000002 0000000000000000 0000000000000000
+bfa0: 0000000000000000 0000000000000000 ffffffc074bbbfd0 ffffff800808d694
+bfc0: 0000000000000002 0000000000000000 0000000000000000 000000000154b1a4
+bfe0: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+Call trace:
+Exception stack(0xffffffc074bbbda0 to 0xffffffc074bbbed0)
+bda0: ffffffc076fbba00 0000008000000000 ffffffc074bbbef0 ffffff800853f4d4
+bdc0: 0000000000000000 ffffffc074bace00 ffffff80080f73d8 0000000000000000
+bde0: 0000000000000000 0000000000000020 0000000489f55a18 7fffffffffffffff
+be00: 0000000000000002 ffffffc074bbbed0 ffffffc076fbba38 ffffff8008565298
+be20: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+be40: 0000000000000000 00000000000045a5 0000000000000000 ffffffc076fbba00
+be60: 0000000000000000 ffffff8008565368 ffffffc074bace00 ffffff8008897000
+be80: ffffff800853f7b4 ffffffc074bad320 ffffff8008565428 0000000000000000
+bea0: 0000000000000000 ffffffc074bbbef0 ffffff800853f4e8 ffffffc074bbbef0
+bec0: ffffff800853f4d4 00000000800001c5
+[<ffffff800853f4d4>] __schedule+0x2d4/0x590
+[<ffffff800853f7b4>] schedule+0x24/0x80
+[<ffffff800853fadc>] schedule_preempt_disabled+0xc/0x18
+[<ffffff80080f8428>] do_idle+0xa8/0x1e8
+[<ffffff80080f8738>] cpu_startup_entry+0x20/0x28
+[<ffffff800808d694>] secondary_start_kernel+0x154/0x1b0
+[<000000000154b1a4>] 0x154b1a4
+Code: aa1a03f5 14000004 d503201f f94002b5 (b4001555)
+INFO: rcu_sched detected stalls on CPUs/tasks:
+        2-...: (1 GPs behind) idle=5a5/140000000000001/0 softirq=595/596
+fqs=2100
+        (detected by 1, t=6303 jiffies, g=356, c=355, q=1)
+Task dump for CPU 2:
+swapper/2       R  running task        0     0      1 0x00000002
+Call trace:
+[<ffffff80080854a4>] __switch_to+0x8c/0xb0
+[<ffffff800853f4e8>] __schedule+0x2e8/0x590
+[<ffffff800853f7b4>] schedule+0x24/0x80
+[<ffffff800853fadc>] schedule_preempt_disabled+0xc/0x18
+[<ffffff80080f8428>] do_idle+0xa8/0x1e8
+[<ffffff80080f8738>] cpu_startup_entry+0x20/0x28
+[<ffffff800808d694>] secondary_start_kernel+0x154/0x1b0
+[<000000000154b1a4>] 0x154b1a4
+INFO: rcu_sched detected stalls on CPUs/tasks:
+        2-...: (1 GPs behind) idle=5a5/140000000000001/0 softirq=595/596
+fqs=8398
+        (detected by 1, t=25208 jiffies, g=356, c=355, q=1)
+Task dump for CPU 2:
+swapper/2       R  running task        0     0      1 0x00000002
+Call trace:
+[<ffffff80080854a4>] __switch_to+0x8c/0xb0
+[<ffffff800853f4e8>] __schedule+0x2e8/0x590
+[<ffffff800853f7b4>] schedule+0x24/0x80
+[<ffffff800853fadc>] schedule_preempt_disabled+0xc/0x18
+[<ffffff80080f8428>] do_idle+0xa8/0x1e8
+[<ffffff80080f8738>] cpu_startup_entry+0x20/0x28
+[<ffffff800808d694>] secondary_start_kernel+0x154/0x1b0
+[<000000000154b1a4>] 0x154b1a4
+INFO: rcu_sched detected stalls on CPUs/tasks:
+        2-...: (1 GPs behind) idle=5a5/140000000000001/0 softirq=595/596
+fqs=14696
+        (detected by 1, t=44113 jiffies, g=356, c=355, q=1)
+Task dump for CPU 2:
+swapper/2       R  running task        0     0      1 0x00000002
+Call trace:
+[<ffffff80080854a4>] __switch_to+0x8c/0xb0
+[<ffffff800853f4e8>] __schedule+0x2e8/0x590
+[<ffffff800853f7b4>] schedule+0x24/0x80
+[<ffffff800853fadc>] schedule_preempt_disabled+0xc/0x18
+[<ffffff80080f8428>] do_idle+0xa8/0x1e8
+[<ffffff80080f8738>] cpu_startup_entry+0x20/0x28
+[<ffffff800808d694>] secondary_start_kernel+0x154/0x1b0
+[<000000000154b1a4>] 0x154b1a4
+INFO: rcu_sched detected stalls on CPUs/tasks:
+        2-...: (1 GPs behind) idle=5a5/140000000000001/0 softirq=595/596
+fqs=20994
+        2-...: (1 GPs behind) idle=5a5/140000000000001/0 softirq=595/596
+fqs=20994
+        (detected by 1, t=63018 jiffies, g=356, c=355, q=3)
+Task dump for CPU 2:
+swapper/2       R  running task        0     0      1 0x00000002
+Call trace:
+[<ffffff80080854a4>] __switch_to+0x8c/0xb0
+[<ffffff800853f4e8>] __schedule+0x2e8/0x590
+[<ffffff800853f7b4>] schedule+0x24/0x80
+[<ffffff800853fadc>] schedule_preempt_disabled+0xc/0x18
+[<ffffff80080f8428>] do_idle+0xa8/0x1e8
+[<ffffff80080f8738>] cpu_startup_entry+0x20/0x28
+[<ffffff800808d694>] secondary_start_kernel+0x154/0x1b0
+[<000000000154b1a4>] 0x154b1a4
+INFO: rcu_sched detected stalls on CPUs/tasks:
+
+.....
+I do not know if it is related to normal stalls I get, I get them rarely
+and the one before this had no stacktrace, and there was no such error
+as "undefined instruction" in kernel space. But it sometimes randomly
+happens.
+Not sure if that is odroid problem or something in the core kernel
+code/regression not related to the meson code.
 
 -------------- next part --------------
 A non-text attachment was scrubbed...
@@ -265,4 +157,4 @@ Name: signature.asc
 Type: application/pgp-signature
 Size: 525 bytes
 Desc: OpenPGP digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20161229/cfb55da7/attachment.sig>
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20161229/be9007e0/attachment.sig>
