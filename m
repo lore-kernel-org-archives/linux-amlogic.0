@@ -1,37 +1,49 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 29 Dec 2016 10:04:30 +0100
-Subject: emmc problems with linux 4.10-rc1
-In-Reply-To: <1c70f4ea-f310-ec70-4a42-ca59da42cc54@poczta.onet.pl>
-References: <1c70f4ea-f310-ec70-4a42-ca59da42cc54@poczta.onet.pl>
-Message-ID: <c36847da-2f19-f18b-1569-e44e0873d15c@baylibre.com>
+Date: Thu, 29 Dec 2016 10:05:28 +0100
+Subject: problems with odroid c2 support with kernel 4.10 from master
+In-Reply-To: <b31fdc89-2d36-d115-5f46-ca78bd49260a@poczta.onet.pl>
+References: <b31fdc89-2d36-d115-5f46-ca78bd49260a@poczta.onet.pl>
+Message-ID: <dc580d9e-97dd-73af-7346-ad9748297523@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 12/28/2016 04:19 PM, Micha? Zegan wrote:
-> Hello, it seems there are the following problems with mmc on linux
-> 4.10.0-rc1 or actually the latest master near rc1:
-> First, attempt to unload the module causes a kernel warning, so the
-> module is not properly unloadable
-> Second, I once loaded mmc module first then mmc_block and the kernel
-> panicked because of a fatal exception in interrupt. I was currently
-> unable to reproduce the second problem.
+On 12/28/2016 04:06 AM, Micha? Zegan wrote:
+> Hello.
 > 
+> I have kernel 4.10 from master, with most thing compiled as modules
+> (personal preference), running on odroid c2.
+> I am now in a basic/test initramfs with a shell and modules at hand,
+> trying to load them.
+> There seem to be few problems there with usb.
+> Fixed regulator is now loaded. I load the phy-meson8b-usb2 first, then dwc2.
+> I get so: note the errors at the beginning. usb0 does not start, usb1
+> does start.
+> c9000000.usb supply vusb_d not found, using dummy regulator
+> c9000000.usb supply vusb_a not found, using dummy regulator
+> phy phy-c0000000.phy.0: USB ID detect failed!
+> phy phy-c0000000.phy.0: phy poweron failed --> -22
+> dwc2: probe of c9000000.usb failed with error -22
+> c9100000.usb supply vusb_d not found, using dummy regulator
+> c9100000.usb supply vusb_a not found, using dummy regulator
+> dwc2 c9100000.usb: DWC OTG Controller
+> dwc2 c9100000.usb: new USB bus registered, assigned bus number 1
+> dwc2 c9100000.usb: irq 20, io mem 0x00000000
+> usb usb1: New USB device found, idVendor=1d6b, idProduct=0002
+> usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+> usb usb1: Product: DWC OTG Controller
+> usb usb1: Manufacturer: Linux 4.10.0-rc1 dwc2_hsotg
+> usb usb1: SerialNumber: c9100000.usb
+> hub 1-0:1.0: USB hub found
+> hub 1-0:1.0: 1 port detected
 > 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+> Also another thing: trying to load arm-scpi and things like cpufreq or
+> hwmon modules for scpi, it seems scpi is not detected, not sure what is
+> missing?
 
-Hi,
+Is all this working using the default arm64 defconfig ?
 
-could you provide some console logs ?
-Those statements won't help us until we have some proper kernel messages,
-current kernel config, kernel exact version and way for use to reproduce the issue.
+Neil
 
-Thanks,
-Meil
 
 -------------- next part --------------
 A non-text attachment was scrubbed...
@@ -39,4 +51,4 @@ Name: signature.asc
 Type: application/pgp-signature
 Size: 836 bytes
 Desc: OpenPGP digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20161229/89f8b5e9/attachment.sig>
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20161229/0939b7b3/attachment.sig>
