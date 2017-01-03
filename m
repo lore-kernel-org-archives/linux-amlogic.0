@@ -1,46 +1,32 @@
-From: alexandre.belloni@free-electrons.com (Alexandre Belloni)
-Date: Thu, 1 Dec 2016 01:51:59 +0100
-Subject: [rtc-linux] Re: [RFC PATCH 2/3] rtc: Add Amlogic Virtual Wake RTC
-In-Reply-To: <20161103153647.GD25852@remoulade>
-References: <1478183365-23708-1-git-send-email-narmstrong@baylibre.com>
- <1478183365-23708-3-git-send-email-narmstrong@baylibre.com>
- <20161103153647.GD25852@remoulade>
-Message-ID: <20161201005159.l54yo4kspgrb75ev@piout.net>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  3 Jan 2017 10:20:54 +0100
+Subject: [PATCH] drm/meson: Fix plane atomic check when no crtc for the plane
+Message-ID: <1483435254-27955-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/11/2016 at 15:36:48 +0000, Mark Rutland wrote :
-> > In order to be able to reuse the RTC wakealarm feature, this
-> > driver implements a fake RTC device which uses the system time
-> > to deduce a suspend delay.
-> 
-> This sounds like an always-on oneshot timer device, not an RTC.
-> 
-> > +static int meson_vrtc_read_time(struct device *dev, struct rtc_time *tm)
-> > +{
-> > +	unsigned long local_time;
-> > +	struct timeval time;
-> > +
-> > +	do_gettimeofday(&time);
-> > +	local_time = time.tv_sec - (sys_tz.tz_minuteswest * 60);
-> > +	rtc_time_to_tm(local_time, tm);
-> > +
-> > +	return 0;
-> > +}
-> 
-> ... if this were a timer, you wouldn't need this hack.
-> 
+When no CRTC is associated with the plane, the meson_plane_atomic_check()
+call breaks the kernel with an Oops.
 
-The main issue I think is that the clockevents are not able to wakeup a
-platform so it doesn't really fit as a timer inside the kernel.
+Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/meson/meson_plane.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I think it may be fine to handle that in the RTC subsystem for now.
-
-The same issue can be seen with the flextimer on LS1021A:
-
-http://lists.infradead.org/pipermail/linux-arm-kernel/2015-August/365597.html
-
+diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+index 4942ca0..7890e30 100644
+--- a/drivers/gpu/drm/meson/meson_plane.c
++++ b/drivers/gpu/drm/meson/meson_plane.c
+@@ -51,6 +51,9 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
+ 	struct drm_crtc_state *crtc_state;
+ 	struct drm_rect clip = { 0, };
+ 
++	if (!state->crtc)
++		return 0;
++
+ 	crtc_state = drm_atomic_get_crtc_state(state->state, state->crtc);
+ 	if (IS_ERR(crtc_state))
+ 		return PTR_ERR(crtc_state);
 -- 
-Alexandre Belloni, Free Electrons
-Embedded Linux and Kernel engineering
-http://free-electrons.com
+1.9.1
