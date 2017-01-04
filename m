@@ -1,41 +1,19 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 4 Jan 2017 12:14:22 +0100
-Subject: [GIT PULL] drm/meson fixes for 4.10
-Message-ID: <8157f476-f2ac-18b9-ddd6-01fd06e3dbd7@baylibre.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Wed, 04 Jan 2017 16:42:41 +0100
+Subject: [GIT PULL] Amlogic fixes for v4.10-rc
+In-Reply-To: <7hk2abgzgb.fsf@baylibre.com>
+References: <7hk2abgzgb.fsf@baylibre.com>
+Message-ID: <4692313.0fqZ1GyJPb@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear DRM/DRI Maintainer,
+On Tuesday, January 3, 2017 9:35:00 PM CET Kevin Hilman wrote:
+> This pull has one real fix, as a couple non-critical ones.  The DRM
+> DT/defconfig patches are coming now because I didn't expect the new
+> driver to make it for the v4.10 merge window, but since it did[1], the
+> DT and defconfig should go into the same release.
+> 
 
-Please pull this meson DRM fixes for v4.10.
+Pulled into fixes, thanks!
 
-The following changes since commit 0c744ea4f77d72b3dcebb7a8f2684633ec79be88:
-
-  Linux 4.10-rc2 (2017-01-01 14:31:53 -0800)
-
-are available in the git repository at:
-
-  git://people.freedesktop.org/~narmstrong/linux tags/meson-drm-fixes-for-4.10
-
-for you to fetch changes up to 5db60ea93d4fbf146c8f7ca286b8b2a091761460:
-
-  drm/meson: Fix CVBS VDAC disable (2017-01-04 12:09:30 +0100)
-
-----------------------------------------------------------------
-- plan atomic check oops fix
-- fix CVBS init when HDMI is configured by bootloader
-- fix CVBS VDAC disable
-
-----------------------------------------------------------------
-Neil Armstrong (3):
-      drm/meson: Fix plane atomic check when no crtc for the plane
-      drm/meson: Fix CVBS initialization when HDMI is configured by bootloader
-      drm/meson: Fix CVBS VDAC disable
-
- drivers/gpu/drm/meson/meson_plane.c     |  3 +++
- drivers/gpu/drm/meson/meson_venc.c      | 19 +++++++++++++++++++
- drivers/gpu/drm/meson/meson_venc_cvbs.c |  2 +-
- 3 files changed, 23 insertions(+), 1 deletion(-)
-
-Thanks,
-Neil
+	Arnd
