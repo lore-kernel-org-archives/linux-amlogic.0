@@ -1,44 +1,67 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu,  5 Jan 2017 16:02:29 +0100
+From: webczat_200@poczta.onet.pl (=?UTF-8?Q?Micha=c5=82_Zegan?=)
+Date: Thu, 5 Jan 2017 20:04:03 +0100
 Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: Disable SCPI DVFS
-Message-ID: <1483628549-29486-1-git-send-email-narmstrong@baylibre.com>
+In-Reply-To: <1483628549-29486-1-git-send-email-narmstrong@baylibre.com>
+References: <1483628549-29486-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <9f508097-f605-ebd8-20af-c3e798c6fdcc@poczta.onet.pl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The current hardware is not able to run with all cores enabled at a
-cluster frequency superior at 1536MHz.
-But the currently shipped u-boot for the platform still reports an OPP
-table with possible DVFS frequency up to 2GHz, and will not change since
-the off-tree linux tree supports limiting the OPPs with a kernel parameter.
-A recent u-boot change reports the boot-time DVFS around 100MHz and
-the default performance cpufreq governor sets the maximum frequency.
-Previous version of u-boot reported to be already at the max OPP and
-left the OPP as is.
-Nevertheless, other governors like ondemand could setup the max frequency
-and make the system crash.
+Hello.
 
-This patch disables the DVFS clock and disables cpufreq.
+The patch causes cpufreq module (scpi-cpufreq) not to detect cpufreq, so
+it actually works, but...
+Loading the module causes few errors because of not found frequencies or
+something, then it is all okay. However after loading scpi-cpufreq you
+cannot actually power the cpu off and on. You will power it off
+successfully, but when trying to power it on, the cpufreq driver will
+error out, and then after it happens, the cpu that was trying to go
+online will be offline again, and that is a little... unfortunate. The
+question is, and I cannot really test that: will the module actually
+autoload after this change?
 
-Fixes: 70db166a2baa ("ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+W dniu 05.01.2017 o 16:02, Neil Armstrong pisze:
+> The current hardware is not able to run with all cores enabled at a
+> cluster frequency superior at 1536MHz.
+> But the currently shipped u-boot for the platform still reports an OPP
+> table with possible DVFS frequency up to 2GHz, and will not change since
+> the off-tree linux tree supports limiting the OPPs with a kernel parameter.
+> A recent u-boot change reports the boot-time DVFS around 100MHz and
+> the default performance cpufreq governor sets the maximum frequency.
+> Previous version of u-boot reported to be already at the max OPP and
+> left the OPP as is.
+> Nevertheless, other governors like ondemand could setup the max frequency
+> and make the system crash.
+> 
+> This patch disables the DVFS clock and disables cpufreq.
+> 
+> Fixes: 70db166a2baa ("ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> index 238fbea..5e63e3b 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> @@ -137,6 +137,10 @@
+>  	};
+>  };
+>  
+> +&scpi_dvfs {
+> +	status = "disabled";
+> +};
+> +
+>  &uart_AO {
+>  	status = "okay";
+>  	pinctrl-0 = <&uart_ao_a_pins>;
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 238fbea..5e63e3b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -137,6 +137,10 @@
- 	};
- };
- 
-+&scpi_dvfs {
-+	status = "disabled";
-+};
-+
- &uart_AO {
- 	status = "okay";
- 	pinctrl-0 = <&uart_ao_a_pins>;
--- 
-1.9.1
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 525 bytes
+Desc: OpenPGP digital signature
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170105/9c0439b7/attachment.sig>
