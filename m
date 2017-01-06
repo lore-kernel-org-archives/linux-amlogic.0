@@ -1,63 +1,100 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  6 Jan 2017 09:04:32 +0100
-Subject: [PATCH v2] ARM64: dts: meson-gxbb-odroidc2: Disable SCPI DVFS
-Message-ID: <1483689872-30389-1-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 06 Jan 2017 11:11:36 +0100
+Subject: [PATCH net-next v4 0/4] Fix OdroidC2 Gigabit Tx link issue
+In-Reply-To: <20170105232508.GU14217@n2100.armlinux.org.uk>
+References: <1480348229-25672-1-git-send-email-jbrunet@baylibre.com>
+ <049b1efc-3bad-92e0-45ef-0563dc5d81de@gmail.com>
+ <20170105232508.GU14217@n2100.armlinux.org.uk>
+Message-ID: <1483697496.28003.40.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The current hardware is not able to run with all cores enabled at a
-cluster frequency superior at 1536MHz.
-But the currently shipped u-boot for the platform still reports an OPP
-table with possible DVFS frequency up to 2GHz, and will not change since
-the off-tree linux tree supports limiting the OPPs with a kernel parameter.
-A recent u-boot change reports the boot-time DVFS around 100MHz and
-the default performance cpufreq governor sets the maximum frequency.
-Previous version of u-boot reported to be already at the max OPP and
-left the OPP as is.
-Nevertheless, other governors like ondemand could setup the max frequency
-and make the system crash.
+On Thu, 2017-01-05 at 23:25 +0000, Russell King - ARM Linux wrote:
+> On Mon, Nov 28, 2016 at 09:54:28AM -0800, Florian Fainelli wrote:
+> > 
+> > If we start supporting generic "enable", "disable" type of
+> > properties
+> > with values that map directly to register definitions of the HW, we
+> > leave too much room for these properties to be utilized to
+> > implement a
+> > specific policy, and this is not acceptable.
+> 
+> Another concern with this patch is that the existing phylib "set_eee"
+> code is horribly buggy - it just translates the modes from userspace
+> into the register value and writes them directly to the register with
+> no validation.??So it's possible to set modes in the register that
+> the
+> hardware doesn't support, and have them advertised to the link
+> partner.
 
-This patch disables the DVFS clock and disables cpufreq.
+Hi Russell,
 
-Fixes: 70db166a2baa ("ARM64: dts: meson-gxbb: Add SCPI with cpufreq & sensors Nodes")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi         | 2 +-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+The purpose of this patch is to provide a way to mark as broken a
+particular eee mode. At first, it had nothing to do with "set_eee" but,
+as Florian rightly pointed out, users shouldn't be able to re-enable a
+broken mode.
 
-Changes since v1 at [1] :
- - Disable scpi_clocks instead of scpi_dvfs_clock
+At first, I was thinking about returning -ENOSUP if a broken mode was
+requested. Then I noticed the behavior you just described: A user can
+request anything of "set_eee", he won't necessarily get what he asked
+but won't get an error either.
 
-[1] http://lkml.kernel.org/r/1483628549-29486-1-git-send-email-narmstrong at baylibre.com
+To avoid mixing different topic in a single patch, I kept the same
+behavior, not returning an error, just silently discarding broken modes
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 238fbea..5d28e1c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -137,6 +137,10 @@
- 	};
- };
- 
-+&scpi_clocks {
-+	status = "disabled";
-+};
-+
- &uart_AO {
- 	status = "okay";
- 	pinctrl-0 = <&uart_ao_a_pins>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 51edd5b5..77caedd8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -55,7 +55,7 @@
- 		mboxes = <&mailbox 1 &mailbox 2>;
- 		shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
- 
--		clocks {
-+		scpi_clocks: clocks {
- 			compatible = "arm,scpi-clocks";
- 
- 			scpi_dvfs: scpi_clocks at 0 {
--- 
-1.9.1
+I agree with you, we should probably validate a bit more what we asked
+of the hardware in set_eee.
+
+I wonder if we should return an error though. With the current
+implementation, user space application could simply ask to activate
+everything, excepting the kernel to sort it out and return an error
+only if something horribly wrong happened. If we start returning an
+error for unsupported modes, we could break things. I guess we should
+just silently filter the requested modes.
+
+> 
+> I have a patch which fixes that, restricting (as we do elsewhere) the
+> advert according to the EEE supported capabilities retrieved from the
+> PCS
+
+Could be interesting :)
+
+>  - maybe the problem here is that the PCS doesn't support support
+> EEE in 1000baseT mode?
+
+
+It does, and that's kind of the problem. EEE in ON for 100Tx and 1000T
+by default with this PHY. I have several platform with the same MAC-PHY 
+combination. Only the OdroidC2 shows this particular issue with 1000T-
+EEE
+
+As explained in other mails in this thread. The problem does not come
+from the MAC entering LPI. It actually comes from the link partner
+entering LPI on the Rx path under significant Tx transfer. For some
+reason, this completely mess up our PHY.
+
+> 
+> Out of interest, which PHY is used on this platform?
+
+The PHY is the Realtek RTL8211F
+
+> 
+> On the SolidRun boards, they're using AR8035, and have suffered this
+> occasional link drop problem.??What has been found is that it seems
+> to
+> be to do with the timing parameters, and it seemed to only be 1000bT
+> that was affected.??I don't remember off hand exactly which or what
+> the change was they made to stabilise it though, but I can probabily
+> find out tomorrow.
+> 
+
+Since the same combination of MAC-PHY works well on other designs, it
+is also my feeling that is has something to do with some timing
+parameter, maybe related to this particular PCB.
+
+While debugging this issue, we tried to play with all the parameters we
+could think of but never found anything worth mentioning.
+
+If you have any ideas, I'd be happy to try.
+
+Jerome
