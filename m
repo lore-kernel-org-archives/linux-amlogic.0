@@ -1,70 +1,44 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 9 Jan 2017 18:37:31 +0100
-Subject: [PATCH net-next v4 2/2] net: stmmac: dwmac-meson8b: make the
- RGMII TX delay configurable
-In-Reply-To: <CAFBinCDZ_mqt8q2rG6zDy8ke5sX6L+4sVYOOhWUdO3apwFiRYw@mail.gmail.com>
-References: <20161202233238.17561-1-martin.blumenstingl@googlemail.com>
- <20161217182119.4037-1-martin.blumenstingl@googlemail.com>
- <20161217182119.4037-3-martin.blumenstingl@googlemail.com>
- <20161218.104950.1013829528388480468.davem@davemloft.net>
- <CAFBinCDZ_mqt8q2rG6zDy8ke5sX6L+4sVYOOhWUdO3apwFiRYw@mail.gmail.com>
-Message-ID: <CAFBinCBDyBLtDZyawGGSNT2u71k9ALoSKcTAUm+PRKC+2yawzg@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 09 Jan 2017 14:52:50 -0800
+Subject: [PATCH 0/5] meson-gx: reset RGMII PHYs and configure TX delay
+In-Reply-To: <CAFBinCDpBew7wreNPn6=J3jKsw_Ok=Ed9_+Gxsefb661RvUdrA@mail.gmail.com>
+ (Martin Blumenstingl's message of "Sat, 17 Dec 2016 21:36:55 +0100")
+References: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCDpBew7wreNPn6=J3jKsw_Ok=Ed9_+Gxsefb661RvUdrA@mail.gmail.com>
+Message-ID: <m2wpe37sn1.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi David,
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-On Sun, Dec 18, 2016 at 5:13 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> On Sun, Dec 18, 2016 at 4:49 PM, David Miller <davem@davemloft.net> wrote:
->> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Date: Sat, 17 Dec 2016 19:21:19 +0100
+> On Sat, Dec 3, 2016 at 12:47 AM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> This partially fixes the 1000Mbit/s ethernet TX throughput issues (on
+>> networks which are not affected by the EEE problem, as reported here:
+>> [1]).
+>> The actual problem for the TX throughput issues was that the TX delay
+>> was applied twice:
+>> - once "accidentally" by the PHY (this was fixed with [2])
+>> - once by the MAC because there was a hardcoded TX delay (of 2ns),
+>>   this will be configurable with the changes from [0]
 >>
->>> Prior to this patch we were using a hardcoded RGMII TX clock delay of
->>> 2ns (= 1/4 cycle of the 125MHz RGMII TX clock). This value works for
->>> many boards, but unfortunately not for all (due to the way the actual
->>> circuit is designed, sometimes because the TX delay is enabled in the
->>> PHY, etc.). Making the TX delay on the MAC side configurable allows us
->>> to support all possible hardware combinations.
->>>
->>> This allows fixing a compatibility issue on some boards, where the
->>> RTL8211F PHY is configured to generate the TX delay. We can now turn
->>> off the TX delay in the MAC, because otherwise we would be applying the
->>> delay twice (which results in non-working TX traffic).
->>>
->>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+>> These are the dts changes which belong to my other series (in v2
+>> these patches were part of the other series, upon request of the
+>> net maintainers I have split the .dts changes into their own series so
+>> we are able to take both through different trees):
+>> "[PATCH net-next v3 0/2] stmmac: dwmac-meson8b: configurable
+>> RGMII TX delay": [0].
+>> Thus this series depends on the ACK for the binding changes in the
+>> other series!
 >>
->> Is this really the safest thing to do?
->>
->> If you say the existing hard-coded setting of 1/4 cycle works on most
->> boards, and what you're trying to do is override it with an OF
->> property value for boards where the existing setting does not work,
->> then you _must_ use a default value that corresponds to what the
->> existing code does not when you don't see this new OF property.
-> it's a bit more complicated in reality: 1/4 cycle works when the TX
-> delay of the RTL8211F PHY is turned off (until recently it was always
-> enabled for phy-mode RGMII).
->
->> So please retain the current behavior of the 1/4 cycle TX delay
->> setting when you don't see the amlogic,tx-delay-ns property.
->>
->> I really think you risk breaking existing boards by not doing so,
->> unless you can have this patch tested on every such board that exists
->> and I don't think you really can feasibly and rigorously do that.
-> there's a patch in my follow-up series which adds the 2ns to the .dts
-> for all RGMII based boards: [0] (and I would keep these even if we had
-> a default value, just to make it explicit and thus easier to
-> understand for other people).
-> however, we can add the 2ns default back (I can do this if you want -
-> Rob Herring was unhappy with the missing documentation of this default
-> value [1] - so note to myself: take care of that as well). but then we
-> have to decide when to apply this default value: only when we're in
-> RGMII mode or also in any of the RGMII_*ID modes?
->
-> please let me know how we should proceed
-gentle ping - what is your opinion on this?
+>> I based these changes on my other series "[PATCH v2 0/2] GXL and GXM
+>> SCPI improvements": [3]
+> the DT binding changes for the meson8b-dwmac driver were ACK'ed by Rob
+> Herring, so you can proceed with this series once you applied the SCPI
+> patches.
 
+Series queued for v4.11,
 
-Regards,
-Martin
+Thanks,
+
+Kevin
