@@ -1,130 +1,70 @@
-From: felipe.balbi@linux.intel.com (Felipe Balbi)
-Date: Mon, 09 Jan 2017 15:05:52 +0200
-Subject: dwc3: add support for hardware with multiple ports on USB2 hub
- enabled
-In-Reply-To: <CAFBinCBnoJ-FRgRudiKN9FaN-mNZibBbacEZNA8wrZAi=vhoAA@mail.gmail.com>
-References: <CAFBinCBFVp1qdymz9rqKB2Lq8-iBihJ_Xo5JN7zCTLg223wWSw@mail.gmail.com>
- <878tqkv7sf.fsf@linux.intel.com>
- <CAFBinCBxHN5_STQ+fed2+8sLFgJYDKjShqWL+5u7qsihr-3GCw@mail.gmail.com>
- <87zij0trau.fsf@linux.intel.com>
- <CAFBinCCntJWgn2mNGaV2U64WhEcndJBUmYOjj2OjqHG7VQFZmA@mail.gmail.com>
- <87tw98tple.fsf@linux.intel.com>
- <CAFBinCAgO5MmhGuk8yssGsxCHeXRcJxirDNcOjeNg5RaV_ZRwA@mail.gmail.com>
- <87o9zgtoms.fsf@linux.intel.com>
- <CAFBinCBVbQHxgDfkx5GH+qsDZULtyGLNLry8aatfFv6vqGs+Ag@mail.gmail.com>
- <87lguktnj8.fsf@linux.intel.com>
- <CAFBinCBnoJ-FRgRudiKN9FaN-mNZibBbacEZNA8wrZAi=vhoAA@mail.gmail.com>
-Message-ID: <87inpotmbz.fsf@linux.intel.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 9 Jan 2017 18:37:31 +0100
+Subject: [PATCH net-next v4 2/2] net: stmmac: dwmac-meson8b: make the
+ RGMII TX delay configurable
+In-Reply-To: <CAFBinCDZ_mqt8q2rG6zDy8ke5sX6L+4sVYOOhWUdO3apwFiRYw@mail.gmail.com>
+References: <20161202233238.17561-1-martin.blumenstingl@googlemail.com>
+ <20161217182119.4037-1-martin.blumenstingl@googlemail.com>
+ <20161217182119.4037-3-martin.blumenstingl@googlemail.com>
+ <20161218.104950.1013829528388480468.davem@davemloft.net>
+ <CAFBinCDZ_mqt8q2rG6zDy8ke5sX6L+4sVYOOhWUdO3apwFiRYw@mail.gmail.com>
+Message-ID: <CAFBinCBDyBLtDZyawGGSNT2u71k9ALoSKcTAUm+PRKC+2yawzg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi David,
 
-Hi,
-
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
-> On Mon, Jan 9, 2017 at 1:39 PM, Felipe Balbi
-> <felipe.balbi@linux.intel.com> wrote:
+On Sun, Dec 18, 2016 at 5:13 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> On Sun, Dec 18, 2016 at 4:49 PM, David Miller <davem@davemloft.net> wrote:
+>> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Date: Sat, 17 Dec 2016 19:21:19 +0100
 >>
->> Hi,
->>
->> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->>
->> [snip]
->>
->>>>>> true. But even so, that PHY handle is only needed for devices which
->>>>>> weren't properly configured at coreConsultant time.
->>>>> I don't understand that - there are two separate modules involved
->>>>> here: 1. the dwc3 IP block 2. Amlogic's own USB2 PHYs (they did not
->>>>> choose Synopsys DesignWare PHYs)
->>>>> (some background info: the USB2 PHYs are in "reset mode" by default)
->>>>> So even if the dwc3 IP block is configured correctly at coreConsultant
->>>>> time we still need to configure the PHYs. From "USB controller driver"
->>>>> (could be dwc3, or some generic hcd.c code, etc.) this means that
->>>>> phy_init() and phy_power_on() needs to be called for each of the three
->>>>> "Amlogic USB2 PHYs". the current code however only calls these for the
->>>>> first PHY (leaving the others in reset mode = disabled).
->>>>
->>>> argh, good point. In that case, we need to figure out the best way to
->>>> pass all these handles to xHCI-plat
->>> OK, I assume that we want to let xHCI-plat manage the PHYs in the
->>> future instead of doing this in dwc3 (dwc3 may have to pass these to
->>> xHCI-plat, but it should not do the logic on it's own)?
->>
->> perhaps. Maybe that mode check for dwc3 to bail out if mode == Host
->> should be done earlier.
-> I guess your idea is to let xHCI-plat handle all phy_* logic when in host-mode?
-
-right. I guess at the end of the day host-only dwc3 instances shouldn't
-need dwc3.ko at all. Only peripheral-only and dual-role implementations
-should rely on dwc3.ko.
-
->>> Maybe it would make sense to remove duplicated code from these drivers
->>> and create some generic functions from it.
->>
->> makes sense to me. The difficulty is really just making sure no
->> regressions are caused along the way. Also, DWC3 creates xHCI
->> platform-device manually, so we need to figure out a clean way of
->> passing along PHY phandles to xHCI. Another thing to consider is
->> dual-role implementations of dwc3. In such cases, peripheral side also
->> needs to control PHY[0].
-> indeed, regression-testing is probably the hardest part here!
->
-> I think we already have the correct device_node (sysdev->of_node)
-> available in xHCI-plat, see the comment above the sysdev variable
-> assignment in xhci_plat_probe.
-
-cool
-
-> The Amlogic GXL and GXM SoCs also support dual-role mode, but I think
-> that is a bit more exotic:
-
-okay, in that case this is less important for you. We should really make
-sure we don't cause problems for a future dual-role support.
-
-> like you mentioned PHY[0] is used for dual-role mode. There is an
-> additional USB3 PHY which also does mode-detection (in otg mode).
-> when that USB3 PHY/mode-detection block detects that it has to switch
-> to device mode it re-configures USB2 PHY[0] accordingly.
-
-okay
-
-> however it doesn't stop here: after that it goes ahead and turns on an
-> additional dwc2 (yes, dwc2, not dwc3!) IP block which is limited to
-> "device" (peripheral) mode only.
-
-hehe, that's interesting :-)
-
-> So on Amlogic GXL and GXM SoCs host-mode is handled by dwc3 while
-> device-mode is handled by dwc2
-
-so you have host-only dwc3 (for all practical reasons, a standard xHCI)
-and a peripheral only dwc2. Good to know. I wonder why it was done this
-way. Maybe Amlogic didn't pay for dual-role dwc3 license?
-
->>> that would result in a few functions (function names are just to
->>> illustrate my idea):
->>> - devm_get_all_phys_from_of_node()
->>> - all_phys_init_and_power_on() (phy_init and phy_power_on always seem
->>> to be used together)
->>> - all_phys_power_off_and_exit() (phy_power_off and phy_exit always
->>> seem to be used together)
+>>> Prior to this patch we were using a hardcoded RGMII TX clock delay of
+>>> 2ns (= 1/4 cycle of the 125MHz RGMII TX clock). This value works for
+>>> many boards, but unfortunately not for all (due to the way the actual
+>>> circuit is designed, sometimes because the TX delay is enabled in the
+>>> PHY, etc.). Making the TX delay on the MAC side configurable allows us
+>>> to support all possible hardware combinations.
 >>>
->>> let me know what you think
+>>> This allows fixing a compatibility issue on some boards, where the
+>>> RTL8211F PHY is configured to generate the TX delay. We can now turn
+>>> off the TX delay in the MAC, because otherwise we would be applying the
+>>> delay twice (which results in non-working TX traffic).
+>>>
+>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
 >>
->> I like that, specially so if it's done generically and all HCD drivers
->> just use the same piece of code.
-> great!
-> how should we proceed: should I come up with a first RFC so we can
-> then discuss issues/improvements based on that RFC patch?
+>> Is this really the safest thing to do?
+>>
+>> If you say the existing hard-coded setting of 1/4 cycle works on most
+>> boards, and what you're trying to do is override it with an OF
+>> property value for boards where the existing setting does not work,
+>> then you _must_ use a default value that corresponds to what the
+>> existing code does not when you don't see this new OF property.
+> it's a bit more complicated in reality: 1/4 cycle works when the TX
+> delay of the RTL8211F PHY is turned off (until recently it was always
+> enabled for phy-mode RGMII).
+>
+>> So please retain the current behavior of the 1/4 cycle TX delay
+>> setting when you don't see the amlogic,tx-delay-ns property.
+>>
+>> I really think you risk breaking existing boards by not doing so,
+>> unless you can have this patch tested on every such board that exists
+>> and I don't think you really can feasibly and rigorously do that.
+> there's a patch in my follow-up series which adds the 2ns to the .dts
+> for all RGMII based boards: [0] (and I would keep these even if we had
+> a default value, just to make it explicit and thus easier to
+> understand for other people).
+> however, we can add the 2ns default back (I can do this if you want -
+> Rob Herring was unhappy with the missing documentation of this default
+> value [1] - so note to myself: take care of that as well). but then we
+> have to decide when to apply this default value: only when we're in
+> RGMII mode or also in any of the RGMII_*ID modes?
+>
+> please let me know how we should proceed
+gentle ping - what is your opinion on this?
 
-yeah, that's usually the way :-)
 
--- 
-balbi
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 832 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170109/0b476e39/attachment.sig>
+Regards,
+Martin
