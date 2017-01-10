@@ -1,44 +1,81 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 09 Jan 2017 14:52:50 -0800
-Subject: [PATCH 0/5] meson-gx: reset RGMII PHYs and configure TX delay
-In-Reply-To: <CAFBinCDpBew7wreNPn6=J3jKsw_Ok=Ed9_+Gxsefb661RvUdrA@mail.gmail.com>
- (Martin Blumenstingl's message of "Sat, 17 Dec 2016 21:36:55 +0100")
-References: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
- <CAFBinCDpBew7wreNPn6=J3jKsw_Ok=Ed9_+Gxsefb661RvUdrA@mail.gmail.com>
-Message-ID: <m2wpe37sn1.fsf@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Tue, 10 Jan 2017 16:38:30 +0100
+Subject: [PATCH 1/1] MMC: meson: avoid possible NULL dereference
+In-Reply-To: <m237gwcec4.fsf@baylibre.com>
+References: <20161223150108.9229-1-xypron.glpk@gmx.de>
+ <m237gwcec4.fsf@baylibre.com>
+Message-ID: <CAPDyKFoxtnkoLo71xDdv3_e1jEjSqOHbBdAzQFPMvFxqHnzgsQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
-
-> On Sat, Dec 3, 2016 at 12:47 AM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> This partially fixes the 1000Mbit/s ethernet TX throughput issues (on
->> networks which are not affected by the EEE problem, as reported here:
->> [1]).
->> The actual problem for the TX throughput issues was that the TX delay
->> was applied twice:
->> - once "accidentally" by the PHY (this was fixed with [2])
->> - once by the MAC because there was a hardcoded TX delay (of 2ns),
->>   this will be configurable with the changes from [0]
+On 6 January 2017 at 18:01, Kevin Hilman <khilman@baylibre.com> wrote:
+> Heinrich Schuchardt <xypron.glpk@gmx.de> writes:
+>
+>> No actual segmentation faults were observed but the coding is
+>> at least inconsistent.
 >>
->> These are the dts changes which belong to my other series (in v2
->> these patches were part of the other series, upon request of the
->> net maintainers I have split the .dts changes into their own series so
->> we are able to take both through different trees):
->> "[PATCH net-next v3 0/2] stmmac: dwmac-meson8b: configurable
->> RGMII TX delay": [0].
->> Thus this series depends on the ACK for the binding changes in the
->> other series!
+>> irqreturn_t meson_mmc_irq():
 >>
->> I based these changes on my other series "[PATCH v2 0/2] GXL and GXM
->> SCPI improvements": [3]
-> the DT binding changes for the meson8b-dwmac driver were ACK'ed by Rob
-> Herring, so you can proceed with this series once you applied the SCPI
-> patches.
+>> We should not dereference host before checking it.
+>>
+>> meson_mmc_irq_thread():
+>>
+>> If cmd or mrq are NULL we should not dereference them after
+>> writing a warning.
+>>
+>> Fixes: 51c5d8447bd7 MMC: meson: initial support for GX platforms
+>> Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
+>
+> Acked-by: Kevin Hilman <khilman@baylibre.com>
+>
+> Ulf, I assume you can pick this up directly for v4.10-rc?
 
-Series queued for v4.11,
+Thanks, applied for fixes!
 
-Thanks,
+Kind regards
+Uffe
 
-Kevin
+
+>
+> Thanks,
+>
+> Kevin
+>
+>> ---
+>>  drivers/mmc/host/meson-gx-mmc.c | 8 +++++---
+>>  1 file changed, 5 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+>> index b352760c041e..09739352834c 100644
+>> --- a/drivers/mmc/host/meson-gx-mmc.c
+>> +++ b/drivers/mmc/host/meson-gx-mmc.c
+>> @@ -578,13 +578,15 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>>  {
+>>       struct meson_host *host = dev_id;
+>>       struct mmc_request *mrq;
+>> -     struct mmc_command *cmd = host->cmd;
+>> +     struct mmc_command *cmd;
+>>       u32 irq_en, status, raw_status;
+>>       irqreturn_t ret = IRQ_HANDLED;
+>>
+>>       if (WARN_ON(!host))
+>>               return IRQ_NONE;
+>>
+>> +     cmd = host->cmd;
+>> +
+>>       mrq = host->mrq;
+>>
+>>       if (WARN_ON(!mrq))
+>> @@ -670,10 +672,10 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+>>       int ret = IRQ_HANDLED;
+>>
+>>       if (WARN_ON(!mrq))
+>> -             ret = IRQ_NONE;
+>> +             return IRQ_NONE;
+>>
+>>       if (WARN_ON(!cmd))
+>> -             ret = IRQ_NONE;
+>> +             return IRQ_NONE;
+>>
+>>       data = cmd->data;
+>>       if (data) {
