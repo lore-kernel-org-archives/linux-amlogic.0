@@ -1,8 +1,8 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 11 Jan 2017 10:48:48 +0100
-Subject: [PATCH v3] ARM64: dts: meson-gx: Add reserved memory zone and usable
- memory range
-Message-ID: <1484128128-22454-1-git-send-email-narmstrong@baylibre.com>
+Date: Wed, 11 Jan 2017 10:55:40 +0100
+Subject: [RESEND PATCH v3] ARM64: dts: meson-gx: Add reserved memory zone and
+ usable memory range
+Message-ID: <1484128540-22662-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -13,10 +13,10 @@ The memory node is also moved from the dtsi files into the proper dts files
 to handle variants memory sizes.
 
 This patch also fixes the memory sizes for the following platforms :
-- gxl-s905x-p212 : 2GiB instead of 4GiB, a proper 4GiB dts should be pushed
-- gxm-s912-q201 : 2GiB instead of 4GiB, a proper 4GiB dts should be pushed
-- gxl-s905d-p231 : 2GiB instead of 4GiB, a proper 4GiB dts should be pushed
-- gxl-nexbox-a95x : 2GiB instead of 4GiB, a proper 4GiB dts should be pushed
+- gxl-s905x-p212 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+- gxm-s912-q201 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+- gxl-s905d-p231 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+- gxl-nexbox-a95x : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
@@ -39,6 +39,9 @@ Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
  arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts       |  9 +++++++++
  17 files changed, 106 insertions(+), 18 deletions(-)
 
+Changes since original v2 at [3]:
+- Typo in commit 2GiB -> 1GiB, 4GiB -> 2GiB
+
 Changes since v2 at [2]:
 - Moved all memory node out of dtsi
 - Added comment about useable memory
@@ -50,6 +53,7 @@ Changes since v1 at [1] :
 
 [1] http://lkml.kernel.org/r/20161212101801.28491-1-narmstrong at baylibre.com
 [2] http://lkml.kernel.org/r/1483105232-6242-1-git-send-email-narmstrong at baylibre.com
+[3] http://lkml.kernel.org/r/1484128128-22454-1-git-send-email-narmstrong at baylibre.com
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
 index 7a078be..360ec0d 100644
