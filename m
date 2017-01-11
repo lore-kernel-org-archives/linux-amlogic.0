@@ -1,116 +1,61 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 11 Jan 2017 16:35:51 +0100
-Subject: dwc3: add support for hardware with multiple ports on USB2 hub
- enabled
-In-Reply-To: <87inpotmbz.fsf@linux.intel.com>
-References: <CAFBinCBFVp1qdymz9rqKB2Lq8-iBihJ_Xo5JN7zCTLg223wWSw@mail.gmail.com>
- <878tqkv7sf.fsf@linux.intel.com>
- <CAFBinCBxHN5_STQ+fed2+8sLFgJYDKjShqWL+5u7qsihr-3GCw@mail.gmail.com>
- <87zij0trau.fsf@linux.intel.com>
- <CAFBinCCntJWgn2mNGaV2U64WhEcndJBUmYOjj2OjqHG7VQFZmA@mail.gmail.com>
- <87tw98tple.fsf@linux.intel.com>
- <CAFBinCAgO5MmhGuk8yssGsxCHeXRcJxirDNcOjeNg5RaV_ZRwA@mail.gmail.com>
- <87o9zgtoms.fsf@linux.intel.com>
- <CAFBinCBVbQHxgDfkx5GH+qsDZULtyGLNLry8aatfFv6vqGs+Ag@mail.gmail.com>
- <87lguktnj8.fsf@linux.intel.com>
- <CAFBinCBnoJ-FRgRudiKN9FaN-mNZibBbacEZNA8wrZAi=vhoAA@mail.gmail.com>
- <87inpotmbz.fsf@linux.intel.com>
-Message-ID: <CAFBinCAyt72ikyA79Lm9NMjOMoc-N+GaNmf-tNyhutayyHaadw@mail.gmail.com>
+Date: Wed, 11 Jan 2017 18:43:30 +0100
+Subject: [PATCH 0/4] Amlogic Meson SAR ADC support
+Message-ID: <20170111174334.24343-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jan 9, 2017 at 2:05 PM, Felipe Balbi
-<felipe.balbi@linux.intel.com> wrote:
->
-> Hi,
->
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->> On Mon, Jan 9, 2017 at 1:39 PM, Felipe Balbi
->> <felipe.balbi@linux.intel.com> wrote:
->>>
->>> Hi,
->>>
->>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->>>
->>> [snip]
->>>
->>>>>>> true. But even so, that PHY handle is only needed for devices which
->>>>>>> weren't properly configured at coreConsultant time.
->>>>>> I don't understand that - there are two separate modules involved
->>>>>> here: 1. the dwc3 IP block 2. Amlogic's own USB2 PHYs (they did not
->>>>>> choose Synopsys DesignWare PHYs)
->>>>>> (some background info: the USB2 PHYs are in "reset mode" by default)
->>>>>> So even if the dwc3 IP block is configured correctly at coreConsultant
->>>>>> time we still need to configure the PHYs. From "USB controller driver"
->>>>>> (could be dwc3, or some generic hcd.c code, etc.) this means that
->>>>>> phy_init() and phy_power_on() needs to be called for each of the three
->>>>>> "Amlogic USB2 PHYs". the current code however only calls these for the
->>>>>> first PHY (leaving the others in reset mode = disabled).
->>>>>
->>>>> argh, good point. In that case, we need to figure out the best way to
->>>>> pass all these handles to xHCI-plat
->>>> OK, I assume that we want to let xHCI-plat manage the PHYs in the
->>>> future instead of doing this in dwc3 (dwc3 may have to pass these to
->>>> xHCI-plat, but it should not do the logic on it's own)?
->>>
->>> perhaps. Maybe that mode check for dwc3 to bail out if mode == Host
->>> should be done earlier.
->> I guess your idea is to let xHCI-plat handle all phy_* logic when in host-mode?
->
-> right. I guess at the end of the day host-only dwc3 instances shouldn't
-> need dwc3.ko at all. Only peripheral-only and dual-role implementations
-> should rely on dwc3.ko.
-interesting thought, I guess that makes sense!
+This series add support for the SAR ADC on Amlogic Meson GXBB, GXL and
+GXM SoCs.
+The hardware on GXBB provides 10-bit ADC results, while GXL and GXM are
+providing 12-bit results. Support for older SoCs (Meson8b and Meson8)
+can be added with little effort, most of which is testing I guess (I
+don't have any pre-GXBB hardware so I can't say).
 
-> okay, in that case this is less important for you. We should really make
-> sure we don't cause problems for a future dual-role support.
->
->> like you mentioned PHY[0] is used for dual-role mode. There is an
->> additional USB3 PHY which also does mode-detection (in otg mode).
->> when that USB3 PHY/mode-detection block detects that it has to switch
->> to device mode it re-configures USB2 PHY[0] accordingly.
->
-> okay
->
->> however it doesn't stop here: after that it goes ahead and turns on an
->> additional dwc2 (yes, dwc2, not dwc3!) IP block which is limited to
->> "device" (peripheral) mode only.
->
-> hehe, that's interesting :-)
->
->> So on Amlogic GXL and GXM SoCs host-mode is handled by dwc3 while
->> device-mode is handled by dwc2
->
-> so you have host-only dwc3 (for all practical reasons, a standard xHCI)
-> and a peripheral only dwc2. Good to know. I wonder why it was done this
-> way. Maybe Amlogic didn't pay for dual-role dwc3 license?
-I don't know any details how this decision was made but licensing
-costs may have been the reason (it may also be the same reason why
-they chose to enable multiple USB ports on just one dwc3 instance).
-Please note that this is just pure speculation and no official
-information (as I don't have that)!
+A new set of clocks had to be added to the GXBB clock controller (used
+by the GXBB/GXL/GXM SoCs) which are required to get the ADC working.
 
->>>> that would result in a few functions (function names are just to
->>>> illustrate my idea):
->>>> - devm_get_all_phys_from_of_node()
->>>> - all_phys_init_and_power_on() (phy_init and phy_power_on always seem
->>>> to be used together)
->>>> - all_phys_power_off_and_exit() (phy_power_off and phy_exit always
->>>> seem to be used together)
->>>>
->>>> let me know what you think
->>>
->>> I like that, specially so if it's done generically and all HCD drivers
->>> just use the same piece of code.
->> great!
->> how should we proceed: should I come up with a first RFC so we can
->> then discuss issues/improvements based on that RFC patch?
->
-> yeah, that's usually the way :-)
-I sent a first draft to the linux-usb list with the subject "[RFC
-PATCH 0/2] initialize (multiple) PHYs in xhci-plat" (which does not
-show up in the usual web-archives yet)
+The ADC itself can sample multiple channels at the same time and allows
+capturing multiple samples (which can be used for filtering/averaging).
+The ADC results are stored inside a FIFO register. More details on what
+the driver supports (or doesn't) can be found in the description of
+patch #3.
+
+The code is based on the public S805 (Meson8b) and S905 (GXBB)
+datasheets, as well as by reading (various versions of) the vendor
+driver and by inspecting the registers on the vendor kernels of my
+testing-hardware.
+
+Typical use-cases for the ADC on the Meson GX SoCs are:
+- adc-keys ("ADC attached resistor ladder buttons")
+- SoC temperature measurement (not supported by this driver yet as
+  the system firmware does this already and provides the values via the
+  SCPI protocol)
+- "version-strapping" (different resistor values are used to indicate
+  the board-revision)
+- and of course typical ADC measurements
 
 
-Regards,
-Martin
+Martin Blumenstingl (4):
+  Documentation: dt-bindings: add the Amlogic Meson SAR ADC
+    documentation
+  clk: gxbb: add the SAR ADC clocks and expose them
+  iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs
+  ARM64: dts: meson: meson-gx: add the SAR ADC
+
+ .../bindings/iio/adc/amlogic,meson-saradc.txt      |  31 +
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |   8 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |  10 +
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |  10 +
+ drivers/clk/meson/gxbb.c                           |  48 ++
+ drivers/clk/meson/gxbb.h                           |   9 +-
+ drivers/iio/adc/Kconfig                            |  12 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/meson_saradc.c                     | 860 +++++++++++++++++++++
+ include/dt-bindings/clock/gxbb-clkc.h              |   4 +
+ 10 files changed, 990 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+ create mode 100644 drivers/iio/adc/meson_saradc.c
+
+-- 
+2.11.0
