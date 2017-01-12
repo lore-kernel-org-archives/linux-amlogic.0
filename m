@@ -1,35 +1,45 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 11 Jan 2017 10:45:13 -0800
-Subject: [PATCH 33/62] watchdog: meson_wdt: Convert to use device managed
- functions and other improvements
-In-Reply-To: <1484095516-12720-3-git-send-email-linux@roeck-us.net> (Guenter
- Roeck's message of "Tue, 10 Jan 2017 16:44:42 -0800")
-References: <1484091325-9199-1-git-send-email-linux@roeck-us.net>
- <1484095516-12720-1-git-send-email-linux@roeck-us.net>
- <1484095516-12720-3-git-send-email-linux@roeck-us.net>
-Message-ID: <m2k2a177wm.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 12 Jan 2017 18:40:51 +0100
+Subject: [PATCH v2] ARM64: dts: meson-gxbb-odroidc2: Disable SCPI DVFS
+In-Reply-To: <1483689872-30389-1-git-send-email-narmstrong@baylibre.com>
+References: <1483689872-30389-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAFBinCDmF2-W4SFMSNrYwUpejYkV=rw-f3yhG3=mTmWxy4J8uA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Guenter Roeck <linux@roeck-us.net> writes:
+Hi Neil,
 
-> Use device managed functions to simplify error handling, reduce
-> source code size, improve readability, and reduce the likelyhood of bugs.
-> Other improvements as listed below.
->
-> The conversion was done automatically with coccinelle using the
-> following semantic patches. The semantic patches and the scripts used
-> to generate this commit log are available at
-> https://github.com/groeck/coccinelle-patches
->
-> - Drop assignments to otherwise unused variables
-> - Drop remove function
-> - Drop platform_set_drvdata()
-> - Use devm_watchdog_register_driver() to register watchdog device
-> - Replace shutdown function with call to watchdog_stop_on_reboot()
->
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+(adding Brian Kim, one of the Hardkernel developers to this conversation)
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+On Fri, Jan 6, 2017 at 9:04 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> The current hardware is not able to run with all cores enabled at a
+> cluster frequency superior at 1536MHz.
+> But the currently shipped u-boot for the platform still reports an OPP
+> table with possible DVFS frequency up to 2GHz, and will not change since
+> the off-tree linux tree supports limiting the OPPs with a kernel parameter.
+> A recent u-boot change reports the boot-time DVFS around 100MHz and
+> the default performance cpufreq governor sets the maximum frequency.
+> Previous version of u-boot reported to be already at the max OPP and
+> left the OPP as is.
+> Nevertheless, other governors like ondemand could setup the max frequency
+> and make the system crash.
+>
+> This patch disables the DVFS clock and disables cpufreq.
+I don't have any Odroid-C2 board, but having to live without cpufreq
+sounds bad for the Odroid-C2 users.
+What would we expect from a kernel perspective (maybe the Hardkernel
+guys would adjust their u-boot instead of us adjusting to the behavior
+of one specific device? one solution that I could think of involves
+the "maxcpus" kernel parameter (see [0]), if this is not set u-boot
+should report a max CPU frequency of 1536MHz (= max frequency for 4
+active cores). Based on the "maxcpus" value additional frequencies can
+be unlocked (this could be step-by-step if there are different
+frequencies for one core/two cores/etc.). However, I'd like to hear
+other opinions as well.
+
+
+Regards,
+Martin
+
+
+[0] http://lxr.free-electrons.com/source/Documentation/kernel-parameters.txt?v=4.8#L2163
