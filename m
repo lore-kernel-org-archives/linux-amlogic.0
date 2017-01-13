@@ -1,58 +1,43 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 13 Jan 2017 10:17:10 -0800
-Subject: [GIT PULL] Amlogic fixes for v4.10-rc4
-Message-ID: <m2inpi6d09.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 13 Jan 2017 19:53:58 +0100
+Subject: [PATCH] phy: meson8b-usb2: fix offsets for some of the registers
+Message-ID: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arnd, Olof,
+The register offsets for REG_DBG_UART (and all following) were off by
+0x4. This was not a problem yet because these registers are currently
+not used by the driver.
 
-Please pull a couple fixes for v4.10-rc.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/phy/phy-meson8b-usb2.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-The branch is based on v4.10-rc3 to not conflict with another DT fix
-that when in for -rc2.
-
-Kevin
-
-
-The following changes since commit a121103c922847ba5010819a3f250f1f7fc84ab8:
-
-  Linux 4.10-rc3 (2017-01-08 14:18:17 -0800)
-
-are available in the git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-2
-
-for you to fetch changes up to 64a8225e9f9dec0e5cd2f5640743699056da4e4e:
-
-  ARM64: dts: meson-gx: Add reserved memory zone and usable memory range (2017-01-12 17:00:50 -0800)
-
-----------------------------------------------------------------
-Amlogic fixes for v4.10-rc4
-- odroid-c2: disable DVFS to avoid crashes due to broken SCPI
-- fix misc. crashes by adding known reserved memory regions
-
-----------------------------------------------------------------
-Neil Armstrong (2):
-      ARM64: dts: meson-gxbb-odroidc2: Disable SCPI DVFS
-      ARM64: dts: meson-gx: Add reserved memory zone and usable memory range
-
- arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi       |  5 -----
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                 | 12 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts       | 10 +++++++++-
- arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts           |  9 +++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts           |  9 +++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi          |  5 -----
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dts  |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dts   |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dts |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi               |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts     |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts      |  9 +++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts      |  9 +++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts       |  6 +++++-
- arch/arm64/boot/dts/amlogic/meson-gxm-s912-q200.dts       |  9 +++++++++
- arch/arm64/boot/dts/amlogic/meson-gxm-s912-q201.dts       |  9 +++++++++
- 18 files changed, 111 insertions(+), 19 deletions(-)
+diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
+index 33c9f4ba157d..30f56a6a411f 100644
+--- a/drivers/phy/phy-meson8b-usb2.c
++++ b/drivers/phy/phy-meson8b-usb2.c
+@@ -81,9 +81,9 @@
+ 	#define REG_ADP_BC_ACA_PIN_GND			BIT(25)
+ 	#define REG_ADP_BC_ACA_PIN_FLOAT		BIT(26)
+ 
+-#define REG_DBG_UART					0x14
++#define REG_DBG_UART					0x10
+ 
+-#define REG_TEST					0x18
++#define REG_TEST					0x14
+ 	#define REG_TEST_DATA_IN_MASK			GENMASK(3, 0)
+ 	#define REG_TEST_EN_MASK			GENMASK(7, 4)
+ 	#define REG_TEST_ADDR_MASK			GENMASK(11, 8)
+@@ -93,7 +93,7 @@
+ 	#define REG_TEST_DATA_OUT_MASK			GENMASK(19, 16)
+ 	#define REG_TEST_DISABLE_ID_PULLUP		BIT(20)
+ 
+-#define REG_TUNE					0x1c
++#define REG_TUNE					0x18
+ 	#define REG_TUNE_TX_RES_TUNE_MASK		GENMASK(1, 0)
+ 	#define REG_TUNE_TX_HSXV_TUNE_MASK		GENMASK(3, 2)
+ 	#define REG_TUNE_TX_VREF_TUNE_MASK		GENMASK(7, 4)
+-- 
+2.11.0
