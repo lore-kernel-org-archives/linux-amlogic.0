@@ -1,45 +1,67 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 12 Jan 2017 18:40:51 +0100
-Subject: [PATCH v2] ARM64: dts: meson-gxbb-odroidc2: Disable SCPI DVFS
-In-Reply-To: <1483689872-30389-1-git-send-email-narmstrong@baylibre.com>
-References: <1483689872-30389-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAFBinCDmF2-W4SFMSNrYwUpejYkV=rw-f3yhG3=mTmWxy4J8uA@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 12 Jan 2017 16:52:06 -0800
+Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: fix GbE tx link breakage
+In-Reply-To: <1482319894-656-1-git-send-email-jbrunet@baylibre.com> (Jerome
+ Brunet's message of "Wed, 21 Dec 2016 12:31:34 +0100")
+References: <1482319894-656-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <m2r3476atl.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-(adding Brian Kim, one of the Hardkernel developers to this conversation)
-
-On Fri, Jan 6, 2017 at 9:04 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> The current hardware is not able to run with all cores enabled at a
-> cluster frequency superior at 1536MHz.
-> But the currently shipped u-boot for the platform still reports an OPP
-> table with possible DVFS frequency up to 2GHz, and will not change since
-> the off-tree linux tree supports limiting the OPPs with a kernel parameter.
-> A recent u-boot change reports the boot-time DVFS around 100MHz and
-> the default performance cpufreq governor sets the maximum frequency.
-> Previous version of u-boot reported to be already at the max OPP and
-> left the OPP as is.
-> Nevertheless, other governors like ondemand could setup the max frequency
-> and make the system crash.
+> OdroidC2 GbE link breaks under heavy tx transfer. This happens even if the
+> MAC does not enable Energy Efficient Ethernet (No Low Power state Idle on
+> the Tx path). The problem seems to come from the phy Rx path, entering the
+> LPI state.
 >
-> This patch disables the DVFS clock and disables cpufreq.
-I don't have any Odroid-C2 board, but having to live without cpufreq
-sounds bad for the Odroid-C2 users.
-What would we expect from a kernel perspective (maybe the Hardkernel
-guys would adjust their u-boot instead of us adjusting to the behavior
-of one specific device? one solution that I could think of involves
-the "maxcpus" kernel parameter (see [0]), if this is not set u-boot
-should report a max CPU frequency of 1536MHz (= max frequency for 4
-active cores). Based on the "maxcpus" value additional frequencies can
-be unlocked (this could be step-by-step if there are different
-frequencies for one core/two cores/etc.). However, I'd like to hear
-other opinions as well.
+> Disabling EEE advertisement on the phy prevent this feature to be
+> negociated with the link partner and solve the issue.
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>
+> This patch is based on Linus recent master branch [0]
+> This patch depends on the series [1] which has been merged in this branch.
+>
+> 0: ba6d973f78eb ("Merge git://git.kernel.org/pub/scm/linux/kernel/git/davem/net")
+> 1: http://lkml.kernel.org/r/1480326409-25419-1-git-send-email-jbrunet at baylibre.com
+>    Fix integration of eee-broken-modes
+>    
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> index 238fbeacd330..d8933e9e9a5a 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> @@ -147,6 +147,18 @@
+>  	status = "okay";
+>  	pinctrl-0 = <&eth_rgmii_pins>;
+>  	pinctrl-names = "default";
+> +	phy-handle = <&eth_phy0>;
+> +
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		eth_phy0: ethernet-phy at 0 {
+> +			reg = <0>;
+> +			eee-broken-1000t;
+> +		};
+> +	};
 
+There's already an MDIO node in the meson-gx.dtsi (using the same
+compatible), shouldn't you just override that and add the new
+properties?
 
-Regards,
-Martin
+What would make things easier is if the names were like Martin used in
+his reset patch, so that when I merge them together it's not a major
+conflict.
 
+Thanks,
 
-[0] http://lxr.free-electrons.com/source/Documentation/kernel-parameters.txt?v=4.8#L2163
+Kevin
+
+[1] https://patchwork.kernel.org/patch/9459409/
