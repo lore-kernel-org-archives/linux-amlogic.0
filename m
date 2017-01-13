@@ -1,43 +1,30 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 13 Jan 2017 19:53:58 +0100
-Subject: [PATCH] phy: meson8b-usb2: fix offsets for some of the registers
-Message-ID: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 13 Jan 2017 12:03:59 -0800
+Subject: [PATCH v4] ARM64: dts: meson-gx: Add reserved memory zone and
+ usable memory range
+In-Reply-To: <1484129414-23325-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Wed, 11 Jan 2017 11:10:14 +0100")
+References: <1484129414-23325-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m21sw66828.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The register offsets for REG_DBG_UART (and all following) were off by
-0x4. This was not a problem yet because these registers are currently
-not used by the driver.
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/phy-meson8b-usb2.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+> The Amlogic Meson GXBB/GXL/GXM secure monitor uses part of the memory space,
+> this patch adds this reserved zone and redefines the usable memory range.
+>
+> The memory node is also moved from the dtsi files into the proper dts files
+> to handle variants memory sizes.
+>
+> This patch also fixes the memory sizes for the following platforms :
+> - gxl-s905x-p212 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+> - gxm-s912-q201 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+> - gxl-s905d-p231 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+> - gxl-nexbox-a95x : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
-index 33c9f4ba157d..30f56a6a411f 100644
---- a/drivers/phy/phy-meson8b-usb2.c
-+++ b/drivers/phy/phy-meson8b-usb2.c
-@@ -81,9 +81,9 @@
- 	#define REG_ADP_BC_ACA_PIN_GND			BIT(25)
- 	#define REG_ADP_BC_ACA_PIN_FLOAT		BIT(26)
- 
--#define REG_DBG_UART					0x14
-+#define REG_DBG_UART					0x10
- 
--#define REG_TEST					0x18
-+#define REG_TEST					0x14
- 	#define REG_TEST_DATA_IN_MASK			GENMASK(3, 0)
- 	#define REG_TEST_EN_MASK			GENMASK(7, 4)
- 	#define REG_TEST_ADDR_MASK			GENMASK(11, 8)
-@@ -93,7 +93,7 @@
- 	#define REG_TEST_DATA_OUT_MASK			GENMASK(19, 16)
- 	#define REG_TEST_DISABLE_ID_PULLUP		BIT(20)
- 
--#define REG_TUNE					0x1c
-+#define REG_TUNE					0x18
- 	#define REG_TUNE_TX_RES_TUNE_MASK		GENMASK(1, 0)
- 	#define REG_TUNE_TX_HSXV_TUNE_MASK		GENMASK(3, 2)
- 	#define REG_TUNE_TX_VREF_TUNE_MASK		GENMASK(7, 4)
--- 
-2.11.0
+Queued for v4.10-rc.
+
+Kevin
