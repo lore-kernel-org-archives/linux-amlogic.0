@@ -1,62 +1,50 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 16 Jan 2017 11:26:58 +0100
-Subject: [RFT PATCH] ARM64: dts: meson-gxbb: Add reserved memory zone and
+Date: Mon, 16 Jan 2017 11:39:53 +0100
+Subject: [PATCH v4] ARM64: dts: meson-gx: Add reserved memory zone and
  usable memory range
-In-Reply-To: <612bc7bc-4ee4-51c0-d7ac-06151854ac03@suse.de>
-References: <20161212101801.28491-1-narmstrong@baylibre.com>
- <09bb78ed-c8ec-d21f-d464-16e55c481d4e@gmx.de>
- <56869b90-6bee-f6ae-a7b1-884b4c0d72c0@baylibre.com>
- <2ac01237-a7f8-5b3b-0f97-dd49ce6623fb@gmx.de>
- <90d5b5a3-6dd8-aab2-8701-112a10e3364c@gmx.de>
- <612bc7bc-4ee4-51c0-d7ac-06151854ac03@suse.de>
-Message-ID: <9a1dbb0b-ad3d-7898-3b43-fd8f85892985@baylibre.com>
+In-Reply-To: <d3a00788-c3c1-4b10-90bf-2a8bc6a138f8@suse.de>
+References: <1484129414-23325-1-git-send-email-narmstrong@baylibre.com>
+ <m21sw66828.fsf@baylibre.com> <d3a00788-c3c1-4b10-90bf-2a8bc6a138f8@suse.de>
+Message-ID: <7fcb8d94-840a-de2c-f43b-9123ccc65514@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/15/2017 04:44 PM, Andreas F?rber wrote:
-> Am 23.12.2016 um 10:42 schrieb Heinrich Schuchardt:
->> it really makes a difference if we write
+On 01/15/2017 03:43 PM, Andreas F?rber wrote:
+> Am 13.01.2017 um 21:03 schrieb Kevin Hilman:
+>> Neil Armstrong <narmstrong@baylibre.com> writes:
 >>
->>  	memory at 0 {
->>  		device_type = "memory";
->>  		linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
->>  	};
+>>> The Amlogic Meson GXBB/GXL/GXM secure monitor uses part of the memory space,
+>>> this patch adds this reserved zone and redefines the usable memory range.
+>>>
+>>> The memory node is also moved from the dtsi files into the proper dts files
+>>> to handle variants memory sizes.
+>>>
+>>> This patch also fixes the memory sizes for the following platforms :
+>>> - gxl-s905x-p212 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+>>> - gxm-s912-q201 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+>>> - gxl-s905d-p231 : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+>>> - gxl-nexbox-a95x : 1GiB instead of 2GiB, a proper 2GiB dts should be pushed
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >>
->> or
->>
->>  	memory at 0 {
->>  		device_type = "memory";
->>  		reg = <0x0 0x1000000 0x0 0x7f000000>;
->>  	};
->>
->> The second version leads to failure of the Odroid C2.
->>
->> When I looked at /sys/firmware/fdt I saw this difference:
->>
->> --- fails
->> +++ works
->>
->>         memory at 0 {
->> -               device_type = "memory";
->>                 reg = <0x0 0x0 0x0 0x78000000>;
->> +               device_type = "memory";
->> +               linux,usable-memory = <0x0 0x1000000 0x0 0x7f000000>;
->>         };
->>
->> I found the following sentence in the NXP forum:
->> In case you want to overwrite the memory usage passed from u-boot, you
->> can use "linux,usable-memory".
->> https://community.nxp.com/thread/382284
+>> Queued for v4.10-rc.
 > 
-> The Odroid-C2 is in mainline U-Boot. Please submit a patch to U-Boot
-> instead of forcing the creation of unnecessary new .dts files onto
-> everyone due to hardcoded linux,usable-memory properties. In fact, it
-> already reserves 0x1000000, so it seems you are merely using an older
-> U-Boot.
+> What is the motivation for this change? I have a local U-Boot patch to
+> detect the amount of memory available as done downstream, but U-Boot
+> only updates the reg property that you seem to be abandoning here...
 > 
-> http://git.denx.de/?p=u-boot.git;a=blob;f=arch/arm/mach-meson/board.c;h=f159cbf849f75ab046e6f3a025bbc97c0bcfd59d;hb=HEAD#l39
+> So for devices that come in multiple RAM configurations - like R-Box Pro
+> - this would require separate .dts files now! This looks very wrong to
+> me, especially since I am not aware of other platforms doing the same.
+> Instead, there's memory reservations for top and bottom done in U-Boot
+> for reg, plus reserved-memory nodes for anything in the middle.
 > 
-> I would bet that the upper limit is unrelated here.
+> Another thing to consider is that uEFI boot (bootefi) handles memory
+> reservation differently yet again, on the bootloader level. I have had
+> that working fine on Odroid-C2 and Vega S95.
+> 
+> So if there's no bug this is fixing (none mentioned in commit message) I
+> strongly object to this patch.
 > 
 > Regards,
 > Andreas
@@ -64,10 +52,30 @@ On 01/15/2017 04:44 PM, Andreas F?rber wrote:
 
 Hi Andreas,
 
+Like I replied of my RFT patch :
 I really disagree about relying on any work or properties added by any bootloader here, Amlogic SoCs has
-a lot of u-boot version in the field, and the Odroid-C2 is part of this.
+a lot of u-boot versions in the field, and the Odroid-C2 is part of this.
 
 Even if Odroid-c2 is in mainline U-Boot or not, the mainline Linux kernel should work using
 any U-boot version even with the one provided by Amlogic on their openlinux distribution channel.
+
+Handling multiple RAM configuration is another story, and the Arm-Soc and DT maintainers should give us
+their advices.
+
+Actually there is a severe bug fixed here that cause a huge crash if such memory is not reserved while
+running stock u-boot version on various shipped products and Amlogic's own development boards.
+
+The bug is easily triggered by running :
+# stress --vm 4 --vm-bytes 128M --timeout 10s &
+[   46.937975] Bad mode in Error handler detected on CPU1, code 0xbf000000 -- SError
+...
+[   47.058536] Internal error: Attempting to execute userspace memory: 8600000f [#3] PREEMPT SMP
+...
+
+Note this is a fix targeted for 4.10 to make the system stable and various users reported some severe
+crash now the system has more drivers and read-world use-cases are running on Amlogic SoCs.
+
+Please feel free to push whatever changes that makes this memory reservation more coherent for 4.11,
+and respect the behavior of already shipped u-boot version and mainline U-Boot, UEFI, whatever...
 
 Neil
