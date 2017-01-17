@@ -1,54 +1,51 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 17 Jan 2017 13:08:48 +0100
-Subject: [PATCH] clk: meson-gxbb: Export HDMI clocks
-Message-ID: <1484654928-5640-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 17 Jan 2017 13:31:30 +0100
+Subject: [RFC/RFT PATCH 0/4] drm/bridge: dw-hdmi: Add support for Custom PHYs
+Message-ID: <1484656294-6140-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Export HDMI clock from internal to dt-bindings.
+The Amlogic GX SoCs implements a Synopsys DesignWare HDMI TX Controller
+in combination with a very custom PHY.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/clk/meson/gxbb.h              | 4 ++--
- include/dt-bindings/clock/gxbb-clkc.h | 2 ++
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Thanks to Laurent Pinchart's changes, the HW report the following :
+ Detected HDMI TX controller v2.01a with HDCP (Vendor PHY)
 
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index 0252939..2139e97 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -231,7 +231,7 @@
- #define CLKID_AHB_DATA_BUS	  60
- #define CLKID_AHB_CTRL_BUS	  61
- #define CLKID_HDMI_INTR_SYNC	  62
--#define CLKID_HDMI_PCLK		  63
-+/* CLKID_HDMI_PCLK */
- /* CLKID_USB1_DDR_BRIDGE */
- /* CLKID_USB0_DDR_BRIDGE */
- #define CLKID_MMC_PCLK		  66
-@@ -245,7 +245,7 @@
- #define CLKID_VCLK2_VENCI1	  74
- #define CLKID_VCLK2_VENCP0	  75
- #define CLKID_VCLK2_VENCP1	  76
--#define CLKID_GCLK_VENCI_INT0	  77
-+/* CLKID_GCLK_VENCI_INT0 */
- #define CLKID_GCLK_VENCI_INT	  78
- #define CLKID_DAC_CLK		  79
- #define CLKID_AOCLK_GATE	  80
-diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-index baade6f..da1d473 100644
---- a/include/dt-bindings/clock/gxbb-clkc.h
-+++ b/include/dt-bindings/clock/gxbb-clkc.h
-@@ -18,8 +18,10 @@
- #define CLKID_USB0		50
- #define CLKID_USB1		51
- #define CLKID_USB		55
-+#define CLKID_HDMI_PCLK		63
- #define CLKID_USB1_DDR_BRIDGE	64
- #define CLKID_USB0_DDR_BRIDGE	65
-+#define CLKID_GCLK_VENCI_INT0	77
- #define CLKID_AO_I2C		93
- #define CLKID_SD_EMMC_A		94
- #define CLKID_SD_EMMC_B		95
+The following differs from common PHY integration as managed in the current
+driver :
+ - Amlogic PHY is not configured through the internal I2C link
+ - Amlogic PHY do not use the ENTMDS, SVSRET, PDDQ, ... signals from the controller
+ - Amlogic PHY do not export HPD ands RxSense signals to the controller
+
+And finally, concerning the controller integration :
+ - the Controller registers are not flat memory-mapped, and uses an
+    addr+read/write register pair to write all registers.
+ - Inputs only YUV444 pixel data
+
+This is why the following patchset implements :
+ - Conversion to regmap for register access
+ - Add more callbacks ops to handle Custom PHYs
+ - Configure the Input format from the plat_data
+ - Fixes a bug that considers the input to be always RBG and sends bad pixel
+   format to a DVI sink by disabling CSC
+
+This patchset makes the Amlogix GX SoCs HDMI output successfully work, but I
+do not have access to Renesas, i.MX or RockChip SoCs to test against
+potentiel regressions, like the regmap conversion.
+
+This patchset is based on the latest Laurent Pinchart dw-hdmi serie at [1].
+
+[1] http://lkml.kernel.org/r/20170117082910.27023-1-laurent.pinchart+renesas at ideasonboard.com
+
+Neil Armstrong (4):
+  drm/bridge: dw-hdmi: Switch to regmap for register access
+  drm/bridge: dw-hdmi: Add support for custom PHY handling
+  drm/bridge: dw-hdmi: Enable CSC even for DVI
+  drm/bridge: dw-hdmi: Take input format from plat_data
+
+ drivers/gpu/drm/bridge/dw-hdmi.c | 194 +++++++++++++++++++++++++--------------
+ include/drm/bridge/dw_hdmi.h     |  18 ++++
+ 2 files changed, 143 insertions(+), 69 deletions(-)
+
 -- 
 1.9.1
