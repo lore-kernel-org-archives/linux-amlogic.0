@@ -1,43 +1,60 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 17 Jan 2017 08:07:50 -0800
-Subject: [GIT PULL] Amlogic fixes for v4.10-rc4
-In-Reply-To: <20170117060414.GD16607@localhost> (Olof Johansson's message of
- "Mon, 16 Jan 2017 22:04:14 -0800")
-References: <m2inpi6d09.fsf@baylibre.com>
- <c781a080-455f-bba2-1bfb-cdd39343842b@suse.de>
- <20170117060414.GD16607@localhost>
-Message-ID: <m2wpdt4qll.fsf@baylibre.com>
+Date: Tue, 17 Jan 2017 08:54:06 -0800
+Subject: [PATCH] clk: meson-gxbb: Export HDMI clocks
+In-Reply-To: <1484654928-5640-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Tue, 17 Jan 2017 13:08:48 +0100")
+References: <1484654928-5640-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2d1fl4ogh.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Olof,
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Olof Johansson <olof@lixom.net> writes:
-
-> On Mon, Jan 16, 2017 at 03:24:59PM +0100, Andreas F??rber wrote:
->> Am 13.01.2017 um 19:17 schrieb Kevin Hilman:
->> > ----------------------------------------------------------------
->> > Amlogic fixes for v4.10-rc4
->> > - odroid-c2: disable DVFS to avoid crashes due to broken SCPI
->> > - fix misc. crashes by adding known reserved memory regions
->> > 
->> > ----------------------------------------------------------------
->> > Neil Armstrong (2):
->> >       ARM64: dts: meson-gxbb-odroidc2: Disable SCPI DVFS
->> 
->> >       ARM64: dts: meson-gx: Add reserved memory zone and usable memory range
->> 
->> Objection against the latter patch introducing widespread usage of
->> hardcoded linux,usable-memory properties - please review closely before
->> considering to merge.
+> Export HDMI clock from internal to dt-bindings.
 >
-> Holding off until that discussion has concluded. Following up on that thread as
-> well.
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-While we rework the reserved memory fix, could you cherry-pick the SCPI
-fix from this branch into fixes?  That one is independent from this, and
-is also a nasty crash.
+Acked-by: Kevin Hilman <khilman@baylibre.com>
 
-Thanks,
-
-Kevin
+> ---
+>  drivers/clk/meson/gxbb.h              | 4 ++--
+>  include/dt-bindings/clock/gxbb-clkc.h | 2 ++
+>  2 files changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+> index 0252939..2139e97 100644
+> --- a/drivers/clk/meson/gxbb.h
+> +++ b/drivers/clk/meson/gxbb.h
+> @@ -231,7 +231,7 @@
+>  #define CLKID_AHB_DATA_BUS	  60
+>  #define CLKID_AHB_CTRL_BUS	  61
+>  #define CLKID_HDMI_INTR_SYNC	  62
+> -#define CLKID_HDMI_PCLK		  63
+> +/* CLKID_HDMI_PCLK */
+>  /* CLKID_USB1_DDR_BRIDGE */
+>  /* CLKID_USB0_DDR_BRIDGE */
+>  #define CLKID_MMC_PCLK		  66
+> @@ -245,7 +245,7 @@
+>  #define CLKID_VCLK2_VENCI1	  74
+>  #define CLKID_VCLK2_VENCP0	  75
+>  #define CLKID_VCLK2_VENCP1	  76
+> -#define CLKID_GCLK_VENCI_INT0	  77
+> +/* CLKID_GCLK_VENCI_INT0 */
+>  #define CLKID_GCLK_VENCI_INT	  78
+>  #define CLKID_DAC_CLK		  79
+>  #define CLKID_AOCLK_GATE	  80
+> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+> index baade6f..da1d473 100644
+> --- a/include/dt-bindings/clock/gxbb-clkc.h
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h
+> @@ -18,8 +18,10 @@
+>  #define CLKID_USB0		50
+>  #define CLKID_USB1		51
+>  #define CLKID_USB		55
+> +#define CLKID_HDMI_PCLK		63
+>  #define CLKID_USB1_DDR_BRIDGE	64
+>  #define CLKID_USB0_DDR_BRIDGE	65
+> +#define CLKID_GCLK_VENCI_INT0	77
+>  #define CLKID_AO_I2C		93
+>  #define CLKID_SD_EMMC_A		94
+>  #define CLKID_SD_EMMC_B		95
