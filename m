@@ -1,22 +1,122 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 17 Jan 2017 13:05:36 +0100
-Subject: [PATCH 0/2] pinctrl: meson-gx: Add HDMI HDP/DDC pins functions
-Message-ID: <1484654738-5496-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 17 Jan 2017 13:05:37 +0100
+Subject: [PATCH 1/2] pinctrl: meson: Add HDMI HPD/DDC pins functions
+In-Reply-To: <1484654738-5496-1-git-send-email-narmstrong@baylibre.com>
+References: <1484654738-5496-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1484654738-5496-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In order to support HDMI HPD and DDC, add missing functions in pinctrl
-driver and add corresponding nodes in dts for GXBB and GXL.
+Add pinctrl functions for HDMI HPD pin and DDC pins on Amlogic Meson
+GXL and GXBB SoCs.
 
-Neil Armstrong (2):
-  pinctrl: meson: Add HDMI HPD/DDC pins functions
-  ARM64: dts: meson-gx: Add HDMI HPD/DDC pinctrl nodes
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 19 +++++++++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 19 +++++++++++++++++++
+ 2 files changed, 38 insertions(+)
 
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 14 ++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 14 ++++++++++++++
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c  | 19 +++++++++++++++++++
- drivers/pinctrl/meson/pinctrl-meson-gxl.c   | 19 +++++++++++++++++++
- 4 files changed, 66 insertions(+)
-
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index c3928aa..0d9ad36 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -232,6 +232,10 @@
+ static const unsigned int pwm_f_x_pins[]	= { PIN(GPIOX_7, EE_OFF) };
+ static const unsigned int pwm_f_y_pins[]	= { PIN(GPIOY_15, EE_OFF) };
+ 
++static const unsigned int hdmi_hpd_pins[]	= { PIN(GPIOH_0, EE_OFF) };
++static const unsigned int hdmi_sda_pins[]	= { PIN(GPIOH_1, EE_OFF) };
++static const unsigned int hdmi_scl_pins[]	= { PIN(GPIOH_2, EE_OFF) };
++
+ static const struct pinctrl_pin_desc meson_gxbb_aobus_pins[] = {
+ 	MESON_PIN(GPIOAO_0, 0),
+ 	MESON_PIN(GPIOAO_1, 0),
+@@ -440,6 +444,11 @@
+ 	GROUP(eth_txd2,		6,	3),
+ 	GROUP(eth_txd3,		6,	2),
+ 
++	/* Bank H */
++	GROUP(hdmi_hpd,		1,	26),
++	GROUP(hdmi_sda,		1,	25),
++	GROUP(hdmi_scl,		1,	24),
++
+ 	/* Bank DV */
+ 	GROUP(uart_tx_b,	2,	29),
+ 	GROUP(uart_rx_b,	2,	28),
+@@ -636,6 +645,14 @@
+ 	"pwm_f_y",
+ };
+ 
++static const char * const hdmi_hpd_groups[] = {
++	"hdmi_hpd",
++};
++
++static const char * const hdmi_i2c_groups[] = {
++	"hdmi_sda", "hdmi_scl",
++};
++
+ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+@@ -699,6 +716,8 @@
+ 	FUNCTION(pwm_e),
+ 	FUNCTION(pwm_f_x),
+ 	FUNCTION(pwm_f_y),
++	FUNCTION(hdmi_hpd),
++	FUNCTION(hdmi_i2c),
+ };
+ 
+ static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+index 25694f7..7703a46 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+@@ -197,6 +197,10 @@
+ 
+ static const unsigned int pwm_e_pins[]		= { PIN(GPIOX_16, EE_OFF) };
+ 
++static const unsigned int hdmi_hpd_pins[]	= { PIN(GPIOH_0, EE_OFF) };
++static const unsigned int hdmi_sda_pins[]	= { PIN(GPIOH_1, EE_OFF) };
++static const unsigned int hdmi_scl_pins[]	= { PIN(GPIOH_2, EE_OFF) };
++
+ static const struct pinctrl_pin_desc meson_gxl_aobus_pins[] = {
+ 	MESON_PIN(GPIOAO_0, 0),
+ 	MESON_PIN(GPIOAO_1, 0),
+@@ -363,6 +367,11 @@
+ 	GROUP(eth_txd2,		4,	11),
+ 	GROUP(eth_txd3,		4,	10),
+ 
++	/* Bank H */
++	GROUP(hdmi_hpd,		6,	31),
++	GROUP(hdmi_sda,		6,	30),
++	GROUP(hdmi_scl,		6,	29),
++
+ 	/* Bank DV */
+ 	GROUP(uart_tx_b,	2,	16),
+ 	GROUP(uart_rx_b,	2,	15),
+@@ -506,6 +515,14 @@
+ 	"pwm_e",
+ };
+ 
++static const char * const hdmi_hpd_groups[] = {
++	"hdmi_hpd",
++};
++
++static const char * const hdmi_i2c_groups[] = {
++	"hdmi_sda", "hdmi_scl",
++};
++
+ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+@@ -537,6 +554,8 @@
+ 	FUNCTION(i2c_c),
+ 	FUNCTION(eth),
+ 	FUNCTION(pwm_e),
++	FUNCTION(hdmi_hpd),
++	FUNCTION(hdmi_i2c),
+ };
+ 
+ static struct meson_pmx_func meson_gxl_aobus_functions[] = {
 -- 
 1.9.1
