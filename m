@@ -1,56 +1,45 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 18 Jan 2017 14:18:39 -0800
+Date: Wed, 18 Jan 2017 14:27:19 -0800
 Subject: [PATCH 1/2] ARM64: dts: meson-gxm: Add R-Box Pro
-In-Reply-To: <63fbfc68-917f-68b2-9e7d-e1834e2841d3@suse.de> ("Andreas
- =?utf-8?Q?F=C3=A4rber=22's?= message of "Tue, 17 Jan 2017 04:35:10 +0100")
+In-Reply-To: <3005a457-b7cf-393b-42ff-4149e080321c@suse.de> ("Andreas
+ =?utf-8?Q?F=C3=A4rber=22's?= message of "Wed, 18 Jan 2017 00:06:07 +0100")
 References: <20170117030611.23827-1-afaerber@suse.de>
  <20170117030611.23827-2-afaerber@suse.de>
- <63fbfc68-917f-68b2-9e7d-e1834e2841d3@suse.de>
-Message-ID: <m27f5sypts.fsf@baylibre.com>
+ <3005a457-b7cf-393b-42ff-4149e080321c@suse.de>
+Message-ID: <m237ggypfc.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Andreas F?rber <afaerber@suse.de> writes:
 
 > Am 17.01.2017 um 04:06 schrieb Andreas F?rber:
->> +	leds {
->> +		compatible = "gpio-leds";
->> +
->> +		blue {
->> +			label = "rbox-pro:blue:on";
->> +			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
->> +			default-state = "on";
->> +		};
->> +
->> +		red {
->> +			label = "rbox-pro:red:standby";
->> +			gpios = <&gpio GPIODV_28 GPIO_ACTIVE_HIGH>;
->> +			default-state = "off";
->> +			retain-state-suspended;
->> +			panic-indicator;
->> +		};
->> +	};
+>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>> index 0d7bfbf7d922..66bc809a5eae 100644
+>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-nexbox-a95x.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q200.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q201.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
 >
-> The original property names for these two were led and red. If anyone
-> has better label names than the above, please speak up. Ditto for
-> vega-s95. On the odroidc2 it's called alive but uses heartbeat there.
->
-> The vendor device tree had a third "mcu" GPIO in the sysled node,
-> GPIOAO_6, which leads to immediate power-off. I tried using
-> "gpio-poweroff" to configure this pin, but that driver fails to
-> initialize because some pm callback is already registered - I assume
-> from psci, which apparently succeeds to power-off the system, too. For
-> comparison, the S905 based Vega S95 Telos has no such mcu property. Any
-> thoughts?
->
-> Also, any ideas how best to switch from blue to red for suspend? Add
-> pinctrl properties above? systemd service doing echo from userspace? I
-> assume in Android the Amlogic sysled driver handles all that logic -
-> didn't find any suspend equivalent to gpio-poweroff.
+> What is the logic behind meson-gxm-s912-q201 vs. meson-gxm-nexbox-a1?
+> Should it be renamed to include -s912 for consistency?
 
-in leds-gpio, when retain-state-suspended is not set, the LED is
-automatically set to value 0.  I wonder if leds-gpio should grow support
-to make the suspend value configurable?  Or a property like
-"toggle-state-suspended" ?
+Oops, I think it should be renamed for consistency.
+
+I believe there's only one chip in the GXM family (S912) so it might be
+that we could either drop the -s912 from the q20x boards or, add it to
+the nexbox.
+
+I lean towards dropping the -s912 since there's a single chip in GXM.
+(FWIW, GXL has more than one chip in the family so we added the chip
+there.)
+
+>> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
+>
+> Should this new board use meson-gxm-s912-?
+
+No.  Unless Neil or you thing otherwise, I think we should send a patch
+to drop the -s912 from the q20x boards instead.  (where "we" == Neil) ;)
 
 Kevin
