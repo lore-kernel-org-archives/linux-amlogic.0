@@ -1,101 +1,72 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 18 Jan 2017 12:24:22 +0100
-Subject: [RFC/RFT PATCH 4/4] drm/bridge: dw-hdmi: Take input format from
- plat_data
-In-Reply-To: <e19f5c56-08d9-1e9a-a093-25c57fcc7138@synopsys.com>
-References: <1484656294-6140-1-git-send-email-narmstrong@baylibre.com>
- <1484656294-6140-5-git-send-email-narmstrong@baylibre.com>
- <e19f5c56-08d9-1e9a-a093-25c57fcc7138@synopsys.com>
-Message-ID: <66fc9acc-5db9-d124-fbe5-31893a5bd5df@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 18 Jan 2017 12:25:43 +0100
+Subject: [PATCH 0/4] Bluetooth support for GXBB/GXL/GXM based devices
+In-Reply-To: <20170115223255.10350-1-martin.blumenstingl@googlemail.com>
+References: <20170115223255.10350-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCC0RADEKnkYEF6_DkBTftdjmPMku+N3bdvZMCoqs96xGA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jose,
+Kevin,
 
-On 01/18/2017 11:28 AM, Jose Abreu wrote:
-> Hi Neil,
-> 
-> 
-> On 17-01-2017 12:31, Neil Armstrong wrote:
->> Some display pipelines can only provide non-RBG input pixels to the HDMI TX
->> Controller, this patch takes the pixel format from the plat_data if provided.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/gpu/drm/bridge/dw-hdmi.c | 7 +++++--
->>  include/drm/bridge/dw_hdmi.h     | 9 +++++++++
->>  2 files changed, 14 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/bridge/dw-hdmi.c b/drivers/gpu/drm/bridge/dw-hdmi.c
->> index 8a6a183..fa4147c 100644
->> --- a/drivers/gpu/drm/bridge/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/dw-hdmi.c
->> @@ -1420,8 +1420,11 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
->>  	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
->>  	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
->>  
->> -	/* TODO: Get input format from IPU (via FB driver interface) */
->> -	hdmi->hdmi_data.enc_in_format = RGB;
->> +	/* Get input format from plat data or fallback to RGB */
->> +	if (hdmi->plat_data->input_fmt >= 0)
->> +		hdmi->hdmi_data.enc_in_format = hdmi->plat_data->input_fmt;
-> 
-> Also not a big fan of this approach, but its better than it was.
-> BTW see relevant discussion about colorspace (this is more in the
-> output path) here [1].
-> 
-> [1] https://patchwork.kernel.org/patch/9495153/
-> 
->> +	else
->> +		hdmi->hdmi_data.enc_in_format = RGB;
->>  
->>  	hdmi->hdmi_data.enc_out_format = RGB;
->>  
->> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
->> index d6a0ab3..4f426c3 100644
->> --- a/include/drm/bridge/dw_hdmi.h
->> +++ b/include/drm/bridge/dw_hdmi.h
->> @@ -21,6 +21,14 @@ enum {
->>  	DW_HDMI_RES_MAX,
->>  };
->>  
->> +enum {
->> +	DW_HDMI_INPUT_FMT_RGB = 0,
->> +	DW_HDMI_INPUT_FMT_YCBCR444,
->> +	DW_HDMI_INPUT_FMT_YCBCR422_16BITS,
->> +	DW_HDMI_INPUT_FMT_YCBCR422_8BITS,
-> 
-> Hmm, did you test these two? I'm not sure if deep color can be
-> converted using CSC.
+On Sun, Jan 15, 2017 at 11:32 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> This adds the missing kernel bits for Bluetooth support on the
+> Tronsmart Vega S95 (GXBB based) boards as well as for the GXL
+> P230/P231 and GXM Q200/Q201 reference boards.
+>
+> The Bluetooth functionality on these boards is provided by the
+> SDIO wifi/Bluetooth combo-chip (Broadcom bcm43xx based). The
+> Bluetooth module on that combo-chip has to be taken out of reset,
+> which is taken care of the GPIO in the sdio_pwrseq.
+>
+> Once the module is taken out of reset it can be set up from userspace
+> using the "hciattach" tool from bluez, which talks to the Bluetooth
+> module which is connected to one of the serial ports (in our case
+> uart_A). To get the Bluetooth module initialized within the timeout
+> defined by "hciattach" (and to achieve usable speeds for Bluetooth
+> transfers) the communication uses a speed of 2000000 baud, which was
+> not supported by meson_uart before.
+>
+> NOTE: The .dts-changes from this series depends on my previous series
+> "add support for uart_AO_B" - see [0]
+>
+>
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001982.html
+>
+>
+> Martin Blumenstingl (4):
+>   tty: serial: meson: allow baud-rates higher than 115200
+>   ARM64: dts: meson-gx: add the serial CTS and RTS pin groups
 
-I simply copied the dw-hdmi internal values.
-Proper handling of input formats capabilities and
-output format pixel clock handling should be added sometime.
-In the meantime, it's worth adding which input is supported.
+Neil just informed me that Rob Herring is working on defining the UART
+Bluetooth device properly using devicetree (preparation for this is
+named "[PATCH v2 0/9] Serial slave device bus", see [0] for the
+mailing-list conversation and [1] for a WiP git repo).
+This means that there will be a better solution than the one proposed
+in the meson-gx-p23x-q20x and meson-gxbb-vega-s95 patches (patches #1
+and #2 are not affected by this), namely:
+- I'm currently (ab)using sdio-pwrseq node to power on the UART
+Bluetooth module, this can solved by specifying a bluetooth {  } node
+inside the &uart_A node in the future and providing the corresponding
+GPIOs there
+- all the userspace commands will not be necessary once
+drivers/bluetooth/hci_bcm.c is changed to the serio framework and gets
+devicetree support
+>   ARM64: dts: meson-gx-p23x-q20x: enable the Bluetooth module
+>   ARM64: dts: meson-gxbb-vega-s95: enable the Bluetooth module
+>
+>  .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi | 12 ++++++-
+>  .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  9 +++++
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 40 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 40 ++++++++++++++++++++++
+>  drivers/tty/serial/meson_uart.c                    |  2 +-
+>  5 files changed, 101 insertions(+), 2 deletions(-)
+>
+> --
+> 2.11.0
+>
 
-This approach is very limited, should I add a bitmask with all
-support input formats and select between RGB, YUV444 or YUV422
-in dw_hdmi_setup ?
 
-> 
-> Best regards,
-> Jose Miguel Abreu
-> 
->> +	DW_HDMI_INPUT_FMT_XVYCC444,
->> +};
->> +
->>  enum dw_hdmi_phy_type {
->>  	DW_HDMI_PHY_DWC_HDMI_TX_PHY = 0x00,
->>  	DW_HDMI_PHY_DWC_MHL_PHY_HEAC = 0xb2,
->> @@ -68,6 +76,7 @@ struct dw_hdmi_plat_data {
->>  				 const struct dw_hdmi_plat_data *data);
->>  	bool (*hdmi_read_hpd)(struct dw_hdmi *hdmi,
->>  			      const struct dw_hdmi_plat_data *data);
->> +	int input_fmt;
->>  };
->>  
->>  int dw_hdmi_probe(struct platform_device *pdev,
-> 
-
-Thanks,
-Neil
+[0] http://marc.info/?l=linux-serial&m=148460728417109&w=2
+[1] https://git.kernel.org/cgit/linux/kernel/git/robh/linux.git/log/?h=serial-bus-v3
