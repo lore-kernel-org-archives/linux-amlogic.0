@@ -1,60 +1,82 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 18 Jan 2017 12:15:55 +0100
-Subject: [RFC/RFT PATCH 3/4] drm/bridge: dw-hdmi: Enable CSC even for DVI
-In-Reply-To: <888e2dfb-db21-04b5-90d3-9f917052f70a@synopsys.com>
+Date: Wed, 18 Jan 2017 12:20:43 +0100
+Subject: [RFC/RFT PATCH 2/4] drm/bridge: dw-hdmi: Add support for custom
+ PHY handling
+In-Reply-To: <88d1f45a-bfd2-2e6b-6c23-2d0686faa2ce@synopsys.com>
 References: <1484656294-6140-1-git-send-email-narmstrong@baylibre.com>
- <1484656294-6140-4-git-send-email-narmstrong@baylibre.com>
- <888e2dfb-db21-04b5-90d3-9f917052f70a@synopsys.com>
-Message-ID: <62d628ce-265d-39b2-75e8-c1abff973724@baylibre.com>
+ <1484656294-6140-3-git-send-email-narmstrong@baylibre.com>
+ <88d1f45a-bfd2-2e6b-6c23-2d0686faa2ce@synopsys.com>
+Message-ID: <5efc1cc1-05e4-b763-9b1a-db0859988e7b@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi jose,
+Hi Jose,
 
-On 01/18/2017 11:22 AM, Jose Abreu wrote:
+On 01/18/2017 11:40 AM, Jose Abreu wrote:
 > Hi Neil,
 > 
 > 
 > On 17-01-2017 12:31, Neil Armstrong wrote:
->> If the input pixel format is not RGB, the CSC must be enabled in order to
->> provide valid pixel to DVI sinks.
->> This patch removes the hdmi only dependency on the CSC enabling.
+>> @@ -1434,9 +1434,18 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+>>  	hdmi_av_composer(hdmi, mode);
+>>  
+>>  	/* HDMI Initializateion Step B.2 */
+>> -	ret = dw_hdmi_phy_init(hdmi);
+>> -	if (ret)
+>> -		return ret;
+>> +	if (hdmi->plat_data->hdmi_phy_init) {
+>> +		ret = hdmi->plat_data->hdmi_phy_init(hdmi, hdmi->plat_data,
+>> @@ -1551,7 +1560,11 @@ static void dw_hdmi_poweron(struct dw_hdmi *hdmi)
+>>  
+>>  static void dw_hdmi_poweroff(struct dw_hdmi *hdmi)
+>>  {
+>> -	dw_hdmi_phy_disable(hdmi);
+>> +	if (hdmi->phy_enabled && hdmi->plat_data->hdmi_phy_disable) {
+>> +		hdmi->plat_data->hdmi_phy_disable(hdmi, hdmi->plat_data);
+>> +		hdmi->phy_enabled = false;
+>> +	} else
+>> +		dw_hdmi_phy_disable(hdmi);
+>>  	hdmi->bridge_is_on = false;
+>>  }
+>>  
+>> @@ -1921,7 +1962,9 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
+>>  		return -ENODEV;
+>>  	}
+>>  
+>> -	if (!hdmi->phy->configure && !hdmi->plat_data->configure_phy) {
+>> +	if (!hdmi->phy->configure &&
+>> +	    !hdmi->plat_data->configure_phy &&
+>> +	    !hdmi->plat_data->hdmi_phy_init) {
+>>  		dev_err(hdmi->dev, "%s requires platform support\n",
+>>  			hdmi->phy->name);
+>>  		return -ENODEV;
+>> @@ -2119,9 +2164,10 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
+>> +	if (!hdmi->plat_data || !hdmi->plat_data->hdmi_read_hpd)
+>> +		/* Unmute interrupts */
+>> +		hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
+>> +			    HDMI_IH_MUTE_PHY_STAT0);
+>>  
 >>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> I was going to say that you should make sure the output
-> colorspace is RGB or else DVI will fail to work, but I just
-> noticed the output colorspace is fixed in the code to RGB.
-> Though, that may change in the future.
+> [sniped some parts of the patch]
+> 
+> I personally don't like this kind of 'if plat_data ... else ...'
+> Can't we just abstract all of the phy configuration (for a
+> Synopsys Phy) to a new file and then pass it always in pdata as
+> default? Then overwrite it with custom one if needed. Much like
+> what you did with the regmap. Or even leave it in dw-hdmi.c but
+> have a generic pdata structure with generic phy init/disable
+> functions.
 
-Thanks for the review,
-It would certainly need to enforce RGB output colorspace when in DVI mode.
+It's the idea we discussed with Laurent.
+Keeping the Synopsys PHY code inside the dw-hdmi driver would be simpler.
+
+But don't you think adding a proper "ops" structure apart from the plat_data
+should be necessary ?
 
 Neil
 
 > 
-> Reviewed-by: Jose Abreu <joabreu@synopsys.com>
-> 
 > Best regards,
 > Jose Miguel Abreu
-> 
->> ---
->>  drivers/gpu/drm/bridge/dw-hdmi.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/bridge/dw-hdmi.c b/drivers/gpu/drm/bridge/dw-hdmi.c
->> index 923e250..8a6a183 100644
->> --- a/drivers/gpu/drm/bridge/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/dw-hdmi.c
->> @@ -1331,8 +1331,8 @@ static void dw_hdmi_enable_video_path(struct dw_hdmi *hdmi)
->>  		hdmi_writeb(hdmi, clkdis, HDMI_MC_CLKDIS);
->>  	}
->>  
->> -	/* Enable color space conversion if needed (for HDMI sinks only). */
->> -	if (hdmi->sink_is_hdmi && is_color_space_conversion(hdmi))
->> +	/* Enable color space conversion if needed */
->> +	if (is_color_space_conversion(hdmi))
->>  		hdmi_writeb(hdmi, HDMI_MC_FLOWCTRL_FEED_THROUGH_OFF_CSC_IN_PATH,
->>  			    HDMI_MC_FLOWCTRL);
->>  	else
 > 
