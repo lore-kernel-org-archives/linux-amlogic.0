@@ -1,55 +1,44 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Wed, 18 Jan 2017 01:27:16 +0100
-Subject: [PATCH v4] ARM64: dts: meson-gx: Add reserved memory zone and
- usable memory range
-In-Reply-To: <04113569-e342-77ff-f79a-2c9c4dc4c602@suse.de>
-References: <1484129414-23325-1-git-send-email-narmstrong@baylibre.com>
- <m21sw66828.fsf@baylibre.com> <d3a00788-c3c1-4b10-90bf-2a8bc6a138f8@suse.de>
- <7fcb8d94-840a-de2c-f43b-9123ccc65514@baylibre.com>
- <CAOesGMhYfhrd-hy=N-FYDEPmumR0=QNzn5xTLxFuKG7apo5qiw@mail.gmail.com>
- <ecb5ff50-f5d5-ffe6-0732-faf5e51906f8@baylibre.com>
- <04113569-e342-77ff-f79a-2c9c4dc4c602@suse.de>
-Message-ID: <6bba535f-42bc-3e4b-129b-adc39152cfeb@suse.de>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 18 Jan 2017 10:35:34 +0100
+Subject: [PATCH 2/3] Documentation: devicetree: amlogic: Add R-Box Pro
+In-Reply-To: <20170117225459.4438-2-afaerber@suse.de>
+References: <20170117030611.23827-2-afaerber@suse.de>
+ <20170117225459.4438-1-afaerber@suse.de>
+ <20170117225459.4438-2-afaerber@suse.de>
+Message-ID: <819ac0c0-92b7-bac7-dcfc-a56c34a6bf62@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 18.01.2017 um 01:00 schrieb Andreas F?rber:
-> Am 17.01.2017 um 09:21 schrieb Neil Armstrong:
->> The stress-ng package provides this "stress" command and is used to force the kernel to map more memory
->> zones, but I also got the issue while running a fully fledged Desktop Environment thanks to the
->> recently merged DRM driver.
->> You may not be able to trigger the issue since it seems Amlogic reduces this reserved size on GXL/GXM :
->> https://github.com/khadas/linux/commit/698df2c6cfbb0d1a9359743208e83517b31da6ce
->> But it should be confirmed.
+On 01/17/2017 11:54 PM, Andreas F?rber wrote:
+> Cc: ada at kingnoval.com
+> Signed-off-by: Andreas F?rber <afaerber@suse.de>
+> ---
+>  Originally I thought we would group by SoC (6, 8, 8b, gxbb, gxl, gmx, etc.)
+>  but this got out of order with nexbox,a95x - so inserting kingnovel between
+>  amlogic and nexbox here. If that's what we want going forward, we should move
+>  the old entries to make the scheme clearer. The alternative would be to
+>  reorder alphabetically within each SoC group, but nexbox,a95x with two SoCs
+>  makes it difficult to categorize, we could choose gxbb as the earlier one.
+
+Andreas,
+
+Feel free to provide a fixup.
+
+Neil
+
+>  
+>  Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Confirming no issues on three runs on meson-gxm-rbox-pro:
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+> index 9b2b41ab6817..fb0ee7d9a921 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+> @@ -45,5 +45,6 @@ Board compatible values:
+>    - "amlogic,p231" (Meson gxl s905d)
+>    - "amlogic,q200" (Meson gxm s912)
+>    - "amlogic,q201" (Meson gxm s912)
+> +  - "kingnovel,r-box-pro" (Meson gxm S912)
+>    - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
+>    - "nexbox,a1" (Meson gxm s912)
 > 
-> boxer:~ # stress-ng --vm 4 --vm-bytes 128M --timeout 10s &
-> [1] 2528
-> boxer:~ # stress-ng: info:  [2528] dispatching hogs: 4 vm
-> stress-ng: info:  [2528] cache allocate: default cache size: 256K
-> stress-ng: info:  [2528] successful run completed in 10.07s
-> 
-> [1]+  Done                    stress-ng --vm 4 --vm-bytes 128M --timeout 10s
-> boxer:~ # stress-ng --vm 4 --vm-bytes 128M --timeout 10s
-> stress-ng: info:  [2537] dispatching hogs: 4 vm
-> stress-ng: info:  [2537] cache allocate: default cache size: 256K
-> stress-ng: info:  [2537] successful run completed in 10.07s
-> boxer:~ # stress-ng --vm 4 --vm-bytes 128M --timeout 10s
-> stress-ng: info:  [2546] dispatching hogs: 4 vm
-> stress-ng: info:  [2546] cache allocate: default cache size: 256K
-> stress-ng: info:  [2546] successful run completed in 10.07s
-> boxer:~ #
-
-Similar results on meson-gxbb-vega-s95-telos (except 512K cache size),
-with both mainline EFI and vendor U-Boot.
-
-I notice that I don't have CONFIG_DRM enabled - maybe related?
-
-Regards,
-Andreas
-
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
