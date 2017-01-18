@@ -1,82 +1,101 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 18 Jan 2017 12:20:43 +0100
-Subject: [RFC/RFT PATCH 2/4] drm/bridge: dw-hdmi: Add support for custom
- PHY handling
-In-Reply-To: <88d1f45a-bfd2-2e6b-6c23-2d0686faa2ce@synopsys.com>
+Date: Wed, 18 Jan 2017 12:24:22 +0100
+Subject: [RFC/RFT PATCH 4/4] drm/bridge: dw-hdmi: Take input format from
+ plat_data
+In-Reply-To: <e19f5c56-08d9-1e9a-a093-25c57fcc7138@synopsys.com>
 References: <1484656294-6140-1-git-send-email-narmstrong@baylibre.com>
- <1484656294-6140-3-git-send-email-narmstrong@baylibre.com>
- <88d1f45a-bfd2-2e6b-6c23-2d0686faa2ce@synopsys.com>
-Message-ID: <5efc1cc1-05e4-b763-9b1a-db0859988e7b@baylibre.com>
+ <1484656294-6140-5-git-send-email-narmstrong@baylibre.com>
+ <e19f5c56-08d9-1e9a-a093-25c57fcc7138@synopsys.com>
+Message-ID: <66fc9acc-5db9-d124-fbe5-31893a5bd5df@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Jose,
 
-On 01/18/2017 11:40 AM, Jose Abreu wrote:
+On 01/18/2017 11:28 AM, Jose Abreu wrote:
 > Hi Neil,
 > 
 > 
 > On 17-01-2017 12:31, Neil Armstrong wrote:
->> @@ -1434,9 +1434,18 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
->>  	hdmi_av_composer(hdmi, mode);
->>  
->>  	/* HDMI Initializateion Step B.2 */
->> -	ret = dw_hdmi_phy_init(hdmi);
->> -	if (ret)
->> -		return ret;
->> +	if (hdmi->plat_data->hdmi_phy_init) {
->> +		ret = hdmi->plat_data->hdmi_phy_init(hdmi, hdmi->plat_data,
->> @@ -1551,7 +1560,11 @@ static void dw_hdmi_poweron(struct dw_hdmi *hdmi)
->>  
->>  static void dw_hdmi_poweroff(struct dw_hdmi *hdmi)
->>  {
->> -	dw_hdmi_phy_disable(hdmi);
->> +	if (hdmi->phy_enabled && hdmi->plat_data->hdmi_phy_disable) {
->> +		hdmi->plat_data->hdmi_phy_disable(hdmi, hdmi->plat_data);
->> +		hdmi->phy_enabled = false;
->> +	} else
->> +		dw_hdmi_phy_disable(hdmi);
->>  	hdmi->bridge_is_on = false;
->>  }
->>  
->> @@ -1921,7 +1962,9 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
->>  		return -ENODEV;
->>  	}
->>  
->> -	if (!hdmi->phy->configure && !hdmi->plat_data->configure_phy) {
->> +	if (!hdmi->phy->configure &&
->> +	    !hdmi->plat_data->configure_phy &&
->> +	    !hdmi->plat_data->hdmi_phy_init) {
->>  		dev_err(hdmi->dev, "%s requires platform support\n",
->>  			hdmi->phy->name);
->>  		return -ENODEV;
->> @@ -2119,9 +2164,10 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
->> +	if (!hdmi->plat_data || !hdmi->plat_data->hdmi_read_hpd)
->> +		/* Unmute interrupts */
->> +		hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
->> +			    HDMI_IH_MUTE_PHY_STAT0);
->>  
+>> Some display pipelines can only provide non-RBG input pixels to the HDMI TX
+>> Controller, this patch takes the pixel format from the plat_data if provided.
 >>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/gpu/drm/bridge/dw-hdmi.c | 7 +++++--
+>>  include/drm/bridge/dw_hdmi.h     | 9 +++++++++
+>>  2 files changed, 14 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/bridge/dw-hdmi.c b/drivers/gpu/drm/bridge/dw-hdmi.c
+>> index 8a6a183..fa4147c 100644
+>> --- a/drivers/gpu/drm/bridge/dw-hdmi.c
+>> +++ b/drivers/gpu/drm/bridge/dw-hdmi.c
+>> @@ -1420,8 +1420,11 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+>>  	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
+>>  	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
+>>  
+>> -	/* TODO: Get input format from IPU (via FB driver interface) */
+>> -	hdmi->hdmi_data.enc_in_format = RGB;
+>> +	/* Get input format from plat data or fallback to RGB */
+>> +	if (hdmi->plat_data->input_fmt >= 0)
+>> +		hdmi->hdmi_data.enc_in_format = hdmi->plat_data->input_fmt;
 > 
-> [sniped some parts of the patch]
+> Also not a big fan of this approach, but its better than it was.
+> BTW see relevant discussion about colorspace (this is more in the
+> output path) here [1].
 > 
-> I personally don't like this kind of 'if plat_data ... else ...'
-> Can't we just abstract all of the phy configuration (for a
-> Synopsys Phy) to a new file and then pass it always in pdata as
-> default? Then overwrite it with custom one if needed. Much like
-> what you did with the regmap. Or even leave it in dw-hdmi.c but
-> have a generic pdata structure with generic phy init/disable
-> functions.
+> [1] https://patchwork.kernel.org/patch/9495153/
+> 
+>> +	else
+>> +		hdmi->hdmi_data.enc_in_format = RGB;
+>>  
+>>  	hdmi->hdmi_data.enc_out_format = RGB;
+>>  
+>> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+>> index d6a0ab3..4f426c3 100644
+>> --- a/include/drm/bridge/dw_hdmi.h
+>> +++ b/include/drm/bridge/dw_hdmi.h
+>> @@ -21,6 +21,14 @@ enum {
+>>  	DW_HDMI_RES_MAX,
+>>  };
+>>  
+>> +enum {
+>> +	DW_HDMI_INPUT_FMT_RGB = 0,
+>> +	DW_HDMI_INPUT_FMT_YCBCR444,
+>> +	DW_HDMI_INPUT_FMT_YCBCR422_16BITS,
+>> +	DW_HDMI_INPUT_FMT_YCBCR422_8BITS,
+> 
+> Hmm, did you test these two? I'm not sure if deep color can be
+> converted using CSC.
 
-It's the idea we discussed with Laurent.
-Keeping the Synopsys PHY code inside the dw-hdmi driver would be simpler.
+I simply copied the dw-hdmi internal values.
+Proper handling of input formats capabilities and
+output format pixel clock handling should be added sometime.
+In the meantime, it's worth adding which input is supported.
 
-But don't you think adding a proper "ops" structure apart from the plat_data
-should be necessary ?
-
-Neil
+This approach is very limited, should I add a bitmask with all
+support input formats and select between RGB, YUV444 or YUV422
+in dw_hdmi_setup ?
 
 > 
 > Best regards,
 > Jose Miguel Abreu
 > 
+>> +	DW_HDMI_INPUT_FMT_XVYCC444,
+>> +};
+>> +
+>>  enum dw_hdmi_phy_type {
+>>  	DW_HDMI_PHY_DWC_HDMI_TX_PHY = 0x00,
+>>  	DW_HDMI_PHY_DWC_MHL_PHY_HEAC = 0xb2,
+>> @@ -68,6 +76,7 @@ struct dw_hdmi_plat_data {
+>>  				 const struct dw_hdmi_plat_data *data);
+>>  	bool (*hdmi_read_hpd)(struct dw_hdmi *hdmi,
+>>  			      const struct dw_hdmi_plat_data *data);
+>> +	int input_fmt;
+>>  };
+>>  
+>>  int dw_hdmi_probe(struct platform_device *pdev,
+> 
+
+Thanks,
+Neil
