@@ -1,44 +1,38 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 18 Jan 2017 10:35:34 +0100
-Subject: [PATCH 2/3] Documentation: devicetree: amlogic: Add R-Box Pro
-In-Reply-To: <20170117225459.4438-2-afaerber@suse.de>
-References: <20170117030611.23827-2-afaerber@suse.de>
- <20170117225459.4438-1-afaerber@suse.de>
- <20170117225459.4438-2-afaerber@suse.de>
-Message-ID: <819ac0c0-92b7-bac7-dcfc-a56c34a6bf62@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Wed, 18 Jan 2017 11:21:47 +0100
+Subject: [PATCH 1/2] pinctrl: meson: fix uart_ao_b for GXBB and GXL/GXM
+In-Reply-To: <20170115222029.8271-2-martin.blumenstingl@googlemail.com>
+References: <20170115222029.8271-1-martin.blumenstingl@googlemail.com>
+ <20170115222029.8271-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CACRpkdaDB5LoNSdUFUdypHbUseo0KqKiK1hteeD5RK1KkF60XA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/17/2017 11:54 PM, Andreas F?rber wrote:
-> Cc: ada at kingnoval.com
-> Signed-off-by: Andreas F?rber <afaerber@suse.de>
-> ---
->  Originally I thought we would group by SoC (6, 8, 8b, gxbb, gxl, gmx, etc.)
->  but this got out of order with nexbox,a95x - so inserting kingnovel between
->  amlogic and nexbox here. If that's what we want going forward, we should move
->  the old entries to make the scheme clearer. The alternative would be to
->  reorder alphabetically within each SoC group, but nexbox,a95x with two SoCs
->  makes it difficult to categorize, we could choose gxbb as the earlier one.
+On Sun, Jan 15, 2017 at 11:20 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 
-Andreas,
+> The GXBB and GXL/GXM pinctrl drivers had a configuration which conflicts
+> with uart_ao_a. According to the GXBB ("S905") datasheet the AO UART
+> functions are:
+> - GPIOAO_0: Func1 = UART_TX_AO_A (bit 12), Func2 = UART_TX_AO_B (bit 26)
+> - GPIOAO_1: Func1 = UART_RX_AO_A (bit 11), Func2 = UART_RX_AO_B (bit 25)
+> - GPIOAO_4: Func2 = UART_TX_AO_B (bit 24)
+> - GPIOAO_5: Func2 = UART_RX_AO_B (bit 25)
+>
+> The existing definition for uart_AO_A already uses GPIOAO_0 and GPIOAO_1.
+> The old definition of uart_AO_B however was broken, as it used GPIOAO_0
+> for TX (which would be fine) and two pins (GPIOAO_1 and GPIOAO_5) for RX
+> (which does not make any sense).
+>
+> This fixes the uart_AO_B configuration by moving it to GPIOAO_4 and
+> GPIOAO_5 (it would be possible to use GPIOAO_0 and GPIOAO_1 in theory,
+> but all existing hardware uses uart_AO_A there).
+> The fix for GXBB and GXL/GXM is identical since it seems that these
+> specific pins are identical on both SoC variants.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Feel free to provide a fixup.
+Patch applied for fixes.
 
-Neil
-
->  
->  Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-> index 9b2b41ab6817..fb0ee7d9a921 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-> @@ -45,5 +45,6 @@ Board compatible values:
->    - "amlogic,p231" (Meson gxl s905d)
->    - "amlogic,q200" (Meson gxm s912)
->    - "amlogic,q201" (Meson gxm s912)
-> +  - "kingnovel,r-box-pro" (Meson gxm S912)
->    - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
->    - "nexbox,a1" (Meson gxm s912)
-> 
+Yours,
+Linus Walleij
