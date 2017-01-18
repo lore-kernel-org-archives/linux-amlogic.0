@@ -1,31 +1,28 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 18 Jan 2017 13:44:42 -0800
-Subject: [PATCH 1/4] tty: serial: meson: allow baud-rates higher than
- 115200
-In-Reply-To: <20170115223255.10350-2-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Sun, 15 Jan 2017 23:32:52 +0100")
+Date: Wed, 18 Jan 2017 13:52:26 -0800
+Subject: [PATCH 2/4] ARM64: dts: meson-gx: add the serial CTS and RTS pin
+ groups
+In-Reply-To: <b74ed3d7-ea69-5a5b-a313-baab3a9e2396@suse.de> ("Andreas
+ =?utf-8?Q?F=C3=A4rber=22's?= message of "Sun, 15 Jan 2017 23:50:17 +0100")
 References: <20170115223255.10350-1-martin.blumenstingl@googlemail.com>
- <20170115223255.10350-2-martin.blumenstingl@googlemail.com>
-Message-ID: <m2o9z4yred.fsf@baylibre.com>
+ <20170115223255.10350-3-martin.blumenstingl@googlemail.com>
+ <b74ed3d7-ea69-5a5b-a313-baab3a9e2396@suse.de>
+Message-ID: <m2k29syr1h.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Andreas F?rber <afaerber@suse.de> writes:
 
-> The vendor driver allows setting baud-rates higher than 115200 baud.
-> There is a check in the vendor driver which prevents using more than
-> 115200 baud during startup, however it does not have such a check in
-> .set_termios.
-> Higher baud-rates are often used by the bluetooth modules embedded into
-> the SDIO wifi chips (Amlogic devices use brcmfmac based wifi chips quite
-> often, 2000000 baud seems to be a common value for the UART baud-rate in
-> Amlogic's "libbt").
+> Am 15.01.2017 um 23:32 schrieb Martin Blumenstingl:
+>> This adds pinctrl group nodes for the CTS and RTS pins of each serial
+>> controller. This makes it possible to enable the CTS and RTS pins which
+>> are controlled by the serial controller hardware (through the meson_uart
+>> driver).
+>> 
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 >
-> I have tested this on a Meson GXL device with uart_A (to which the
-> bluetooth module is connected, where initialization times out with
-> 115200 baud) and uart_AO (which I manually set to 2000000 baud  and then
-> connected with my USB UART adapter to that).
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Andreas F?rber <afaerber@suse.de>
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Applied to v4.11/dt64 with Andreas' ack.
+
+Kevin
