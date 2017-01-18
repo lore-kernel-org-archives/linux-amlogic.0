@@ -1,127 +1,91 @@
-From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
-Date: Wed, 18 Jan 2017 22:49:41 +0200
-Subject: [RFC/RFT PATCH 4/4] drm/bridge: dw-hdmi: Take input format from
- plat_data
-In-Reply-To: <66fc9acc-5db9-d124-fbe5-31893a5bd5df@baylibre.com>
-References: <1484656294-6140-1-git-send-email-narmstrong@baylibre.com>
- <e19f5c56-08d9-1e9a-a093-25c57fcc7138@synopsys.com>
- <66fc9acc-5db9-d124-fbe5-31893a5bd5df@baylibre.com>
-Message-ID: <3138084.ubGyLVHoXm@avalon>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 18 Jan 2017 13:40:48 -0800
+Subject: [PATCH 1/2] pinctrl: meson: fix uart_ao_b for GXBB and GXL/GXM
+In-Reply-To: <20170115222029.8271-2-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 15 Jan 2017 23:20:28 +0100")
+References: <20170115222029.8271-1-martin.blumenstingl@googlemail.com>
+ <20170115222029.8271-2-martin.blumenstingl@googlemail.com>
+Message-ID: <m2wpdsyrkv.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-(CC'ing Hans Verkuil)
+> The GXBB and GXL/GXM pinctrl drivers had a configuration which conflicts
+> with uart_ao_a. According to the GXBB ("S905") datasheet the AO UART
+> functions are:
+> - GPIOAO_0: Func1 = UART_TX_AO_A (bit 12), Func2 = UART_TX_AO_B (bit 26)
+> - GPIOAO_1: Func1 = UART_RX_AO_A (bit 11), Func2 = UART_RX_AO_B (bit 25)
+> - GPIOAO_4: Func2 = UART_TX_AO_B (bit 24)
+> - GPIOAO_5: Func2 = UART_RX_AO_B (bit 25)
+>
+> The existing definition for uart_AO_A already uses GPIOAO_0 and GPIOAO_1.
+> The old definition of uart_AO_B however was broken, as it used GPIOAO_0
+> for TX (which would be fine) and two pins (GPIOAO_1 and GPIOAO_5) for RX
+> (which does not make any sense).
+>
+> This fixes the uart_AO_B configuration by moving it to GPIOAO_4 and
+> GPIOAO_5 (it would be possible to use GPIOAO_0 and GPIOAO_1 in theory,
+> but all existing hardware uses uart_AO_A there).
+> The fix for GXBB and GXL/GXM is identical since it seems that these
+> specific pins are identical on both SoC variants.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-On Wednesday 18 Jan 2017 12:24:22 Neil Armstrong wrote:
-> On 01/18/2017 11:28 AM, Jose Abreu wrote:
-> > On 17-01-2017 12:31, Neil Armstrong wrote:
-> >> Some display pipelines can only provide non-RBG input pixels to the HDMI
-> >> TX Controller, this patch takes the pixel format from the plat_data if
-> >> provided.
-> >> 
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >> 
-> >>  drivers/gpu/drm/bridge/dw-hdmi.c | 7 +++++--
-> >>  include/drm/bridge/dw_hdmi.h     | 9 +++++++++
-> >>  2 files changed, 14 insertions(+), 2 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/bridge/dw-hdmi.c
-> >> b/drivers/gpu/drm/bridge/dw-hdmi.c index 8a6a183..fa4147c 100644
-> >> --- a/drivers/gpu/drm/bridge/dw-hdmi.c
-> >> +++ b/drivers/gpu/drm/bridge/dw-hdmi.c
-> >> @@ -1420,8 +1420,11 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
-> >> struct drm_display_mode *mode)
-> >>  	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
-> >>  	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
-> >> 
-> >> -	/* TODO: Get input format from IPU (via FB driver interface) */
-> >> -	hdmi->hdmi_data.enc_in_format = RGB;
-> >> +	/* Get input format from plat data or fallback to RGB */
-> >> +	if (hdmi->plat_data->input_fmt >= 0)
-> >> +		hdmi->hdmi_data.enc_in_format = hdmi->plat_data->input_fmt;
-> > 
-> > Also not a big fan of this approach, but its better than it was.
-> > BTW see relevant discussion about colorspace (this is more in the
-> > output path) here [1].
-> > 
-> > [1] https://patchwork.kernel.org/patch/9495153/
-> > 
-> >> +	else
-> >> +		hdmi->hdmi_data.enc_in_format = RGB;
-> >> 
-> >>  	hdmi->hdmi_data.enc_out_format = RGB;
-> >> 
-> >> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-> >> index d6a0ab3..4f426c3 100644
-> >> --- a/include/drm/bridge/dw_hdmi.h
-> >> +++ b/include/drm/bridge/dw_hdmi.h
-> >> @@ -21,6 +21,14 @@ enum {
-> >> 
-> >>  	DW_HDMI_RES_MAX,
-> >>  
-> >>  };
-> >> 
-> >> +enum {
-> >> +	DW_HDMI_INPUT_FMT_RGB = 0,
-> >> +	DW_HDMI_INPUT_FMT_YCBCR444,
-> >> +	DW_HDMI_INPUT_FMT_YCBCR422_16BITS,
-> >> +	DW_HDMI_INPUT_FMT_YCBCR422_8BITS,
-> > 
-> > Hmm, did you test these two? I'm not sure if deep color can be
-> > converted using CSC.
-> 
-> I simply copied the dw-hdmi internal values.
-> Proper handling of input formats capabilities and
-> output format pixel clock handling should be added sometime.
-> In the meantime, it's worth adding which input is supported.
-> 
-> This approach is very limited, should I add a bitmask with all
-> support input formats and select between RGB, YUV444 or YUV422
-> in dw_hdmi_setup ?
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 
-Ideally the bridge mode set operation should be extended to take format and 
-colorspace information (or another bridge operation should be created for that 
-purpose, I'm still undecided). As that's quite a big change, I'm fine if you 
-start by passing a fixed format and colorspace through platform data. I would 
-however like the format to use the media bus format codes defined in 
-include/uapi/linux/media-bus-format.h.
-
-As far as I'm aware we have no colorspace definitions in DRM, so we would need 
-to fix that. V4L2 handles colorspaces, and the API went through several 
-iterations before we got it working, with stupid mistakes that we don't want 
-to repeat here.
-
-Jose pointed to https://patchwork.kernel.org/patch/9495153/ as a starting 
-point, and I would like to point out the format and colorspace are two 
-different things. A colorspace is a combination of an encoding and  
-quantization and transfer functions. Hans Verkuil has researched this topic 
-for V4L2 (see https://gstreamer.freedesktop.org/data/events/gstreamer-conference/2015/Hans Verkuil - Colorspaces and HDMI.pdf and 
-https://linuxtv.org/downloads/v4l-dvb-apis/uapi/v4l/colorspaces.html), we 
-*really* want to involve him in this discussion.
-
-I believe colorspace information should be shared between V4L2 and DRM the 
-same way we share the media bus formats (We should have done so for 4CCs as 
-well but it's unfortunately too late for that).
-
-> >> +	DW_HDMI_INPUT_FMT_XVYCC444,
-> >> +};
-> >> +
-> >>  enum dw_hdmi_phy_type {
-> >>  	DW_HDMI_PHY_DWC_HDMI_TX_PHY = 0x00,
-> >>  	DW_HDMI_PHY_DWC_MHL_PHY_HEAC = 0xb2,
-> >> @@ -68,6 +76,7 @@ struct dw_hdmi_plat_data {
-> >>  				 const struct dw_hdmi_plat_data *data);
-> >>  	bool (*hdmi_read_hpd)(struct dw_hdmi *hdmi,
-> >>  			      const struct dw_hdmi_plat_data *data);
-> >> +	int input_fmt;
-> >>  };
-> >>  
-> >>  int dw_hdmi_probe(struct platform_device *pdev,
-
--- 
-Regards,
-
-Laurent Pinchart
+> ---
+>  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 7 +++----
+>  drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 7 +++----
+>  2 files changed, 6 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> index c3928aa3fefa..e0bca4df2a2f 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> @@ -253,9 +253,8 @@ static const unsigned int uart_tx_ao_a_pins[]	= { PIN(GPIOAO_0, 0) };
+>  static const unsigned int uart_rx_ao_a_pins[]	= { PIN(GPIOAO_1, 0) };
+>  static const unsigned int uart_cts_ao_a_pins[]	= { PIN(GPIOAO_2, 0) };
+>  static const unsigned int uart_rts_ao_a_pins[]	= { PIN(GPIOAO_3, 0) };
+> -static const unsigned int uart_tx_ao_b_pins[]	= { PIN(GPIOAO_0, 0) };
+> -static const unsigned int uart_rx_ao_b_pins[]	= { PIN(GPIOAO_1, 0),
+> -						    PIN(GPIOAO_5, 0) };
+> +static const unsigned int uart_tx_ao_b_pins[]	= { PIN(GPIOAO_4, 0) };
+> +static const unsigned int uart_rx_ao_b_pins[]	= { PIN(GPIOAO_5, 0) };
+>  static const unsigned int uart_cts_ao_b_pins[]	= { PIN(GPIOAO_2, 0) };
+>  static const unsigned int uart_rts_ao_b_pins[]	= { PIN(GPIOAO_3, 0) };
+>  
+> @@ -498,7 +497,7 @@ static struct meson_pmx_group meson_gxbb_aobus_groups[] = {
+>  	GPIO_GROUP(GPIOAO_13, 0),
+>  
+>  	/* bank AO */
+> -	GROUP(uart_tx_ao_b,	0,	26),
+> +	GROUP(uart_tx_ao_b,	0,	24),
+>  	GROUP(uart_rx_ao_b,	0,	25),
+>  	GROUP(uart_tx_ao_a,	0,	12),
+>  	GROUP(uart_rx_ao_a,	0,	11),
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> index 25694f7094c7..b69743b07a1d 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> @@ -214,9 +214,8 @@ static const unsigned int uart_tx_ao_a_pins[]	= { PIN(GPIOAO_0, 0) };
+>  static const unsigned int uart_rx_ao_a_pins[]	= { PIN(GPIOAO_1, 0) };
+>  static const unsigned int uart_cts_ao_a_pins[]	= { PIN(GPIOAO_2, 0) };
+>  static const unsigned int uart_rts_ao_a_pins[]	= { PIN(GPIOAO_3, 0) };
+> -static const unsigned int uart_tx_ao_b_pins[]	= { PIN(GPIOAO_0, 0) };
+> -static const unsigned int uart_rx_ao_b_pins[]	= { PIN(GPIOAO_1, 0),
+> -						    PIN(GPIOAO_5, 0) };
+> +static const unsigned int uart_tx_ao_b_pins[]	= { PIN(GPIOAO_4, 0) };
+> +static const unsigned int uart_rx_ao_b_pins[]	= { PIN(GPIOAO_5, 0) };
+>  static const unsigned int uart_cts_ao_b_pins[]	= { PIN(GPIOAO_2, 0) };
+>  static const unsigned int uart_rts_ao_b_pins[]	= { PIN(GPIOAO_3, 0) };
+>  
+> @@ -409,7 +408,7 @@ static struct meson_pmx_group meson_gxl_aobus_groups[] = {
+>  	GPIO_GROUP(GPIOAO_9, 0),
+>  
+>  	/* bank AO */
+> -	GROUP(uart_tx_ao_b,	0,	26),
+> +	GROUP(uart_tx_ao_b,	0,	24),
+>  	GROUP(uart_rx_ao_b,	0,	25),
+>  	GROUP(uart_tx_ao_a,	0,	12),
+>  	GROUP(uart_rx_ao_a,	0,	11),
