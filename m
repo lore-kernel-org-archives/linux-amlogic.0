@@ -1,37 +1,46 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 19 Jan 2017 09:12:20 +0100
-Subject: [PATCH 2/3] ARM64: dts: meson-gxbb: Add support for WeTek Hub and
- Play
-In-Reply-To: <m2mveox9mm.fsf@baylibre.com>
-References: <1484736642-5451-1-git-send-email-narmstrong@baylibre.com>
- <1484736642-5451-3-git-send-email-narmstrong@baylibre.com>
- <m2mveox9mm.fsf@baylibre.com>
-Message-ID: <61c3c24d-57cd-b81d-0225-5aae14352397@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 19 Jan 2017 10:47:47 +0100
+Subject: [PATCH 0/5] meson-gx: reset RGMII PHYs and configure TX delay
+In-Reply-To: <CAFBinCACbeZPRXQO4OA5mJdGRvMkQoUmQEAKCi8KU2ZvrspF6A@mail.gmail.com>
+References: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
+ <m2a8ao1833.fsf@baylibre.com>
+ <CAFBinCACbeZPRXQO4OA5mJdGRvMkQoUmQEAKCi8KU2ZvrspF6A@mail.gmail.com>
+Message-ID: <1484819267.26620.75.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/18/2017 11:53 PM, Kevin Hilman wrote:
-> Neil Armstrong <narmstrong@baylibre.com> writes:
+On Wed, 2017-01-18 at 20:40 +0100, Martin Blumenstingl wrote:
+> Kevin,
 > 
->> Adds support for the WeTek Hub and Play2 boards.
->> The Hub is an extremely small IPTv Set-Top-Box and the Play2 is a more
->> traditionnal Satellite or Terrestrial and IPTv Set-Top-Box.
->>
->> Both are based on the p200 Reference Design and out-of-tree support is
->> based on OpenELEC kernel at [1].
->>
->> [1] https://github.com/wetek-enigma/linux-amlogic
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> On Wed, Jan 18, 2017 at 8:28 PM, Kevin Hilman <khilman@baylibre.com>
+> wrote:
+> > 
+> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> > 
+> > > 
+> > > This partially fixes the 1000Mbit/s ethernet TX throughput issues
+> > > (on
+> > > networks which are not affected by the EEE problem, as reported
+> > > here:
+> > 
+> > Based on the discussions with Jerome, I'm dropping this series from
+> > the
+> > v4.11/dt64 branch for now.
+> what is you opinion on having the MDIO node in meson-gx (and keeping
+> GXBB and GXL/GXM consistent) vs not having PHY autodetection for GXBB
+> (= not having the MDIO in meson-gx)?
+> I cannot send a v2 until we have a decision for this
 > 
-> Did you get the GPIO/button info from the LibreELEC tree or did you find
-> some schematics someplace?  If you found any schematics, it would be
-> nice to have links in the DTS files.
-> 
-> Kevin
-> 
+> > 
+> > This series also had a small conflict with Jerome's fix[1] for the
+> > odroid-c2, so please rebase any updates here on my v4.10/fixes
+> > branch.
+> will keep that in mind, noted.
+Most this patch can go away with your patch.
+Just make sure to keep "eee-broken-1000t;" in the odroidc2 dtsi and
+it'll be OK.
 
-It was in the dts of the LibreELEC tree, I found no schematics so far.
-I can respin a v2 with a link to the LibreELEC dts files.
-
-Neil
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
