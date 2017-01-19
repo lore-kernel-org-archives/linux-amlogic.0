@@ -1,24 +1,35 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 19 Jan 2017 10:05:45 -0800
-Subject: [PATCH] ARM64: dts: meson-gxm: Rename q200 and q201 DT files for
- consistency
-In-Reply-To: <1484814117-7593-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Thu, 19 Jan 2017 09:21:57 +0100")
-References: <1484814117-7593-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2r33zvsau.fsf@baylibre.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Thu, 19 Jan 2017 11:13:32 -0800
+Subject: [PATCH v3 2/4] clk: gxbb: add the SAR ADC clocks and expose them
+In-Reply-To: <20170119145822.26239-3-martin.blumenstingl@googlemail.com>
+References: <20170115224221.15510-1-martin.blumenstingl@googlemail.com>
+ <20170119145822.26239-1-martin.blumenstingl@googlemail.com>
+ <20170119145822.26239-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20170119191332.GA7829@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+On 01/19, Martin Blumenstingl wrote:
+> The HHI_SAR_CLK_CNTL contains three SAR ADC specific clocks:
+> - a mux clock to choose between different ADC reference clocks (this is
+>   2-bit wide, but the datasheet only lists the parents for the first
+>   bit)
+> - a divider for the input/reference clock
+> - a gate which enables the ADC clock
+> 
+> Additionally this exposes the ADC core clock (CLKID_SAR_ADC) and
+> CLKID_SANA (which seems to enable the analog inputs, but unfortunately
+> there is no documentation for this - we just mimic what the vendor
+> driver does).
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
 
-> In order to keep consistency naming with the Nexbox A1 DTS file, remove the
-> S912 SoC name in the GXM DT files.
->
-> Suggested-by: Andreas F?rber <afaerber@suse.de>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Stephen Boyd <sboyd@codeaurora.org>
 
-Thanks for the cleanup.
+This should go through arm-soc along with the other patch to dts.
 
-Applied to v4.11/dt64
-
-Kevin
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
