@@ -1,38 +1,60 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 20 Jan 2017 07:50:07 -0800
-Subject: [PATCH 0/3] ARM64: meson-gxbb: Add WeTek Boards
-In-Reply-To: <1484736642-5451-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Wed, 18 Jan 2017 11:50:39 +0100")
-References: <1484736642-5451-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m237gd4tow.fsf@baylibre.com>
+From: andrew@lunn.ch (Andrew Lunn)
+Date: Fri, 20 Jan 2017 17:18:42 +0100
+Subject: [PATCH v3 2/9] ARM64: dts: meson-gxbb-p200: add the ethernet
+ PHY's reset GPIO
+In-Reply-To: <20170120152232.13943-3-martin.blumenstingl@googlemail.com>
+References: <20170120132650.9784-1-martin.blumenstingl@googlemail.com>
+ <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
+ <20170120152232.13943-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20170120161842.GD25907@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+On Fri, Jan 20, 2017 at 04:22:25PM +0100, Martin Blumenstingl wrote:
+> This resets the ethernet PHY during boot to get the PHY into a "clean"
+> state.
+> While here also specify the phy-handle of the ethmac node to make the
+> PHY configuration similar to the one we have on GXL devices. This will
+> allow us to specify OF-properties for the PHY itself.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+> index 03e3d76626dd..fa0f84cfeaa9 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+> @@ -51,6 +51,30 @@
+>  	model = "Amlogic Meson GXBB P200 Development Board";
+>  };
+>  
+> +&ethmac {
+> +	status = "okay";
+> +	pinctrl-0 = <&eth_rgmii_pins>;
+> +	pinctrl-names = "default";
+> +	phy-handle = <&eth_phy0>;
+> +	phy-mode = "rgmii";
+> +
+> +	snps,reset-gpio = <&gpio GPIOZ_14 0>;
+> +	snps,reset-delays-us = <0 10000 1000000>;
+> +	snps,reset-active-low;
+> +
+> +	mdio {
+> +		compatible = "snps,dwmac-mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		eth_phy0: ethernet-phy at 0 {
 
-> This serie adds support for the WeTek Hub and Play2 boards.
-> The Hub is an extremely small IPTv Set-Top-Box and the Play2 is a more
-> traditionnal Satellite or Terrestrial and IPTv Set-Top-Box.
->
-> Both are based on the p200 Reference Design and out-of-tree support is
-> based on OpenELEC kernel at [1].
+Hi Martin
 
-Applied to v4.11/dt64 after s/OpenELEC/LibreELEC/
+ethernet-phy at 3, because of the reg property.
 
-Kevin
 
-> [1] https://github.com/wetek-enigma/linux-amlogic
->
-> Neil Armstrong (3):
->   dt-bindings: vendor-prefix: Add wetek vendor prefix
->   ARM64: dts: meson-gxbb: Add support for WeTek Hub and Play
->   dt-bindings: amlogic: Add WeTek boards
->
->  Documentation/devicetree/bindings/arm/amlogic.txt  |  2 +
->  .../devicetree/bindings/vendor-prefixes.txt        |  1 +
->  arch/arm64/boot/dts/amlogic/Makefile               |  2 +
->  .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts      | 66 +++++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    | 94 ++++++++++++++++++++++
->  5 files changed, 165 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+> +			compatible = "ethernet-phy-id0022.1620",
+> +				     "ethernet-phy-ieee802.3-c22";
+> +			reg = <3>;
+
+  Andrew
