@@ -1,11 +1,11 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 20 Jan 2017 16:22:26 +0100
-Subject: [PATCH v3 3/9] ARM64: dts: meson-gxbb-vega-s95: add the ethernet
+Date: Fri, 20 Jan 2017 16:22:29 +0100
+Subject: [PATCH v3 6/9] ARM64: dts: meson-gxbb-wetek-play2: add the ethernet
  PHY's reset GPIO
 In-Reply-To: <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
 References: <20170120132650.9784-1-martin.blumenstingl@googlemail.com>
  <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170120152232.13943-4-martin.blumenstingl@googlemail.com>
+Message-ID: <20170120152232.13943-7-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -17,17 +17,21 @@ allow us to specify OF-properties for the PHY itself.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    | 24 ++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index 86709929fd20..358ab5159bd5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -128,6 +128,24 @@
- 	status = "okay";
- 	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+index ea79fdd2c248..9a8e2f492b97 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+@@ -87,6 +87,30 @@
+ 	};
+ };
+ 
++&ethmac {
++	status = "okay";
++	pinctrl-0 = <&eth_rgmii_pins>;
++	pinctrl-names = "default";
 +	phy-handle = <&eth_phy0>;
 +	phy-mode = "rgmii";
 +
@@ -46,8 +50,10 @@ index 86709929fd20..358ab5159bd5 100644
 +			reg = <0>;
 +		};
 +	};
- };
- 
- &usb0_phy {
++};
++
+ &i2c_A {
+ 	status = "okay";
+ 	pinctrl-0 = <&i2c_a_pins>;
 -- 
 2.11.0
