@@ -1,65 +1,72 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 20 Jan 2017 14:33:53 +0100
-Subject: [PATCH v2 2/9] ARM64: dts: meson-gxbb-p201: add the ethernet
- PHY's reset GPIO
-In-Reply-To: <8a0b6c29-38f0-8474-34a2-8e3df4a5a239@baylibre.com>
-References: <20161202234739.22929-1-martin.blumenstingl@googlemail.com>
- <20170120132650.9784-1-martin.blumenstingl@googlemail.com>
- <20170120132650.9784-3-martin.blumenstingl@googlemail.com>
- <8a0b6c29-38f0-8474-34a2-8e3df4a5a239@baylibre.com>
-Message-ID: <CAFBinCA1YABPzBUnprh_HprjQ8DqpEeF9OQeXKNtQ8Kp8Ou0bw@mail.gmail.com>
+Date: Fri, 20 Jan 2017 14:47:58 +0100
+Subject: [PATCH net-next v4 2/2] net: stmmac: dwmac-meson8b: make the
+ RGMII TX delay configurable
+In-Reply-To: <CAFBinCDZ_mqt8q2rG6zDy8ke5sX6L+4sVYOOhWUdO3apwFiRYw@mail.gmail.com>
+References: <20161202233238.17561-1-martin.blumenstingl@googlemail.com>
+ <20161217182119.4037-1-martin.blumenstingl@googlemail.com>
+ <20161217182119.4037-3-martin.blumenstingl@googlemail.com>
+ <20161218.104950.1013829528388480468.davem@davemloft.net>
+ <CAFBinCDZ_mqt8q2rG6zDy8ke5sX6L+4sVYOOhWUdO3apwFiRYw@mail.gmail.com>
+Message-ID: <CAFBinCBvDddU0DDcDfBRPkS+mWi61C0ON5_fneog-jnjOdevXA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Jan 20, 2017 at 2:31 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> On 01/20/2017 02:26 PM, Martin Blumenstingl wrote:
->> This resets the ethernet PHY during boot to get the PHY into a "clean"
->> state.
->> While here also specify the phy-handle of the ethmac node to make the
->> PHY configuration similar to the one we have on GXL devices. This will
->> allow us to specify OF-properties for the PHY itself.
+Hi David,
+
+On Sun, Dec 18, 2016 at 5:13 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> On Sun, Dec 18, 2016 at 4:49 PM, David Miller <davem@davemloft.net> wrote:
+>> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Date: Sat, 17 Dec 2016 19:21:19 +0100
 >>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts | 24 ++++++++++++++++++++++++
->>  1 file changed, 24 insertions(+)
+>>> Prior to this patch we were using a hardcoded RGMII TX clock delay of
+>>> 2ns (= 1/4 cycle of the 125MHz RGMII TX clock). This value works for
+>>> many boards, but unfortunately not for all (due to the way the actual
+>>> circuit is designed, sometimes because the TX delay is enabled in the
+>>> PHY, etc.). Making the TX delay on the MAC side configurable allows us
+>>> to support all possible hardware combinations.
+>>>
+>>> This allows fixing a compatibility issue on some boards, where the
+>>> RTL8211F PHY is configured to generate the TX delay. We can now turn
+>>> off the TX delay in the MAC, because otherwise we would be applying the
+>>> delay twice (which results in non-working TX traffic).
+>>>
+>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
 >>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
->> index 39bb037a3e47..5d2cd2ecfdc4 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts
->> @@ -50,3 +50,27 @@
->>       compatible = "amlogic,p201", "amlogic,meson-gxbb";
->>       model = "Amlogic Meson GXBB P201 Development Board";
->>  };
->> +
->> +&ethmac {
->> +     status = "okay";
->> +     pinctrl-0 = <&eth_rgmii_pins>;
->> +     pinctrl-names = "default";
->> +     phy-handle = <&eth_phy0>;
->> +     phy-mode = "rgmii";
->> +
->> +     snps,reset-gpio = <&gpio GPIOZ_14 0>;
->> +     snps,reset-delays-us = <0 10000 1000000>;
->> +     snps,reset-active-low;
->> +
->> +     mdio {
->> +             compatible = "snps,dwmac-mdio";
->> +             #address-cells = <1>;
->> +             #size-cells = <0>;
->> +
->> +             eth_phy0: ethernet-phy at 0 {
->> +                     compatible = "ethernet-phy-id0022.1620",
->> +                                  "ethernet-phy-ieee802.3-c22";
->> +                     reg = <3>;
->> +             };
->> +     };
->> +};
+>> Is this really the safest thing to do?
 >>
+>> If you say the existing hard-coded setting of 1/4 cycle works on most
+>> boards, and what you're trying to do is override it with an OF
+>> property value for boards where the existing setting does not work,
+>> then you _must_ use a default value that corresponds to what the
+>> existing code does not when you don't see this new OF property.
+> it's a bit more complicated in reality: 1/4 cycle works when the TX
+> delay of the RTL8211F PHY is turned off (until recently it was always
+> enabled for phy-mode RGMII).
 >
-> Hi Martin,
->
-> It seems you mismatched the p200 and the p201, it's the p201 nobody has and uses a rmii link.
-ouch, good catch.
-I'll send a fix for that later - thanks for spotting!
+>> So please retain the current behavior of the 1/4 cycle TX delay
+>> setting when you don't see the amlogic,tx-delay-ns property.
+>>
+>> I really think you risk breaking existing boards by not doing so,
+>> unless you can have this patch tested on every such board that exists
+>> and I don't think you really can feasibly and rigorously do that.
+> there's a patch in my follow-up series which adds the 2ns to the .dts
+> for all RGMII based boards: [0] (and I would keep these even if we had
+> a default value, just to make it explicit and thus easier to
+> understand for other people).
+> however, we can add the 2ns default back (I can do this if you want -
+> Rob Herring was unhappy with the missing documentation of this default
+> value [1] - so note to myself: take care of that as well). but then we
+> have to decide when to apply this default value: only when we're in
+> RGMII mode or also in any of the RGMII_*ID modes?
+could you please let me know if I should add a a fallback (2ns which
+was the old hardcoded value) to the driver or if I should simply leave
+it out (that's the way it is right now).
+I'm fine with either way, I would just like to avoid duplicate work.
+So please let me know how you prefer it.
+
+
+Regards,
+Martin
