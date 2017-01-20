@@ -1,84 +1,39 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 20 Jan 2017 16:32:18 +0100
-Subject: [PATCH v3 0/9] meson-gx: reset RGMII PHYs and configure TX delay
-In-Reply-To: <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
-References: <20170120132650.9784-1-martin.blumenstingl@googlemail.com>
- <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCBQ8S7-tCnkY+Vabs3etSv-gJCsK=tE+RNJZS8+uFfB=Q@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 20 Jan 2017 07:46:00 -0800
+Subject: [PATCH v3 2/4] clk: gxbb: add the SAR ADC clocks and expose them
+In-Reply-To: <20170119191332.GA7829@codeaurora.org> (Stephen Boyd's message of
+ "Thu, 19 Jan 2017 11:13:32 -0800")
+References: <20170115224221.15510-1-martin.blumenstingl@googlemail.com>
+ <20170119145822.26239-1-martin.blumenstingl@googlemail.com>
+ <20170119145822.26239-3-martin.blumenstingl@googlemail.com>
+ <20170119191332.GA7829@codeaurora.org>
+Message-ID: <m27f5p4tvr.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Jan 20, 2017 at 4:22 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> This series adds the reset GPIOs for the (external) ethernet PHYs on all
-> GXBB boards.
-> Additionally it provides a ethernet PHY node which can be used to specify
-> PHY-specific properties (this may be required if more boards require the
-> "eee-broken-1000t" for the RTL8211F ethernet PHY). To make all board .dts
-> consistent I chose to add the PHY node also for boards which don't have a
-> RTL8211F PHY.
->
-> Patch #7 from this series also removes ethernet support for the P200
-> board because it was broken anyways and nobody seems to have a board
-> available for testing. This was the outcome of the discussion from [0]
->
-> Patch #8 was taken from (older versions of) my other series (see [1]):
-> "[PATCH net-next v3 0/2] stmmac: dwmac-meson8b: configurable
-> RGMII TX delay".
-> The binding changes for amlogic,tx-delay-ns were ACK'ed already.
->
-> Changes since v2:
-> - fixed patch #2 to really update the P200 board (as it's the P200 which
->   actually uses a Micrel KSZ9031 RGMII PHY). Thanks to Neil Armstrong for
->   spotting this huge mistake!
-> - instead of dropping ethernet support for P201 we simply re-configure it
->   to RMII mode (replaces patch #7) without a MDIO node (which keeps PHY
->   auto-scanning enabled). This got Neil Armstrong's ACK off-list already
->
-> Changes since v1:
-> - do not move the MDIO bus to meson-gx as this disables PHY auto-scanning
->   in the stmmac driver (this drops patch #1 from v1)
-> - add the ethernet PHY reset GPIO for nexbox a95x which was forgotten in
->   v1
-> - add the ethernet PHY reset GPIO for boards which were added since v1
->   (wetek hub and wetek play2)
-> - rebased to apply against the current v4.11/dt64 branch
-> - new in v2 (patch #7): disabled ethernet support for the P200 board (see
->   the commit description for more information). this patch is optional
-> - new in v2 (patch #9): removed the phy-mode property from meson-gx (see
->   the commit description for more information). this patch is optional
->
->
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/002053.html
-> [1] http://lists.infradead.org/pipermail/linux-amlogic/2016-December/001834.html
->
-> Martin Blumenstingl (9):
->   ARM64: dts: meson-gxbb-odroidc2: add the ethernet PHY's reset GPIO
->   ARM64: dts: meson-gxbb-p200: add the ethernet PHY's reset GPIO
->   ARM64: dts: meson-gxbb-vega-s95: add the ethernet PHY's reset GPIO
->   ARM64: dts: meson-gxbb-nexbox-a95x: add the ethernet PHY's reset GPIO
->   ARM64: dts: meson-gxbb-wetek-hub: add the ethernet PHY's reset GPIO
->   ARM64: dts: meson-gxbb-wetek-play2: add the ethernet PHY's reset GPIO
->   ARM64: dts: meson-gxbb-p201: fix ethernet support
->   ARM64: dts: amlogic: add the ethernet TX delay configuration
->   ARM64: dts: meson-gx: remove the phy-mode property from meson-gx
->
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |  1 -
->  .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 17 ++++++++++++++
->  .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  7 ++++++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts    | 26 ++++++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts    | 11 +++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |  6 -----
->  .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 20 +++++++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts      | 26 ++++++++++++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    | 26 ++++++++++++++++++++++
->  .../boot/dts/amlogic/meson-gxl-s905d-p230.dts      |  2 ++
->  .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts     |  2 ++
->  12 files changed, 139 insertions(+), 7 deletions(-)
-I totally forgot to mention:
-this applies to Kevin's v4.11/dt64 branch with Jerome's Odroid-C2
-ethernet fix [0] applied on top of it
+Stephen Boyd <sboyd@codeaurora.org> writes:
 
+> On 01/19, Martin Blumenstingl wrote:
+>> The HHI_SAR_CLK_CNTL contains three SAR ADC specific clocks:
+>> - a mux clock to choose between different ADC reference clocks (this is
+>>   2-bit wide, but the datasheet only lists the parents for the first
+>>   bit)
+>> - a divider for the input/reference clock
+>> - a gate which enables the ADC clock
+>> 
+>> Additionally this exposes the ADC core clock (CLKID_SAR_ADC) and
+>> CLKID_SANA (which seems to enable the analog inputs, but unfortunately
+>> there is no documentation for this - we just mimic what the vendor
+>> driver does).
+>> 
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>
+> Acked-by: Stephen Boyd <sboyd@codeaurora.org>
+>
+> This should go through arm-soc along with the other patch to dts.
 
-[0] https://git.kernel.org/cgit/linux/kernel/git/khilman/linux-amlogic.git/commit/?h=v4.11/integ&id=5a2288a68582ad3f1b42ed63ae5a3ca54e000965
+Applied to v4.11/dt64 of the amlogic tree.
+
+Kevin
