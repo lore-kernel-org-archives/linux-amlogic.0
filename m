@@ -1,9 +1,9 @@
 From: afaerber@suse.de (=?UTF-8?q?Andreas=20F=C3=A4rber?=)
-Date: Fri, 20 Jan 2017 23:21:14 +0100
-Subject: [PATCH 14/18] ARM64: dts: meson-gxbb-p20x: Reorder nodes
+Date: Fri, 20 Jan 2017 23:21:11 +0100
+Subject: [PATCH 11/18] ARM64: dts: meson-gxbb-odroidc2: Reorder nodes
 In-Reply-To: <20170120222118.21476-1-afaerber@suse.de>
 References: <20170120222118.21476-1-afaerber@suse.de>
-Message-ID: <20170120222118.21476-15-afaerber@suse.de>
+Message-ID: <20170120222118.21476-12-afaerber@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -11,36 +11,44 @@ Sort nodes referenced by label alphabetically.
 
 Signed-off-by: Andreas F?rber <afaerber@suse.de>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi | 54 ++++++++++++------------
- 1 file changed, 27 insertions(+), 27 deletions(-)
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 52 +++++++++++-----------
+ 1 file changed, 26 insertions(+), 26 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 0d134a85e3a0..b6f9d051439c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -137,11 +137,10 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 238fbeacd330..a1ccfe702c27 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -137,45 +137,22 @@
  	};
  };
  
--/* This UART is brought out to the DB9 connector */
 -&uart_AO {
 -	status = "okay";
 -	pinctrl-0 = <&uart_ao_a_pins>;
 -	pinctrl-names = "default";
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
+-};
+-
+ &ethmac {
+ 	status = "okay";
+ 	pinctrl-0 = <&eth_rgmii_pins>;
+ 	pinctrl-names = "default";
  };
  
- &ethmac {
-@@ -156,21 +155,12 @@
+-&ir {
+-	status = "okay";
+-	pinctrl-0 = <&remote_input_ao_pins>;
+-	pinctrl-names = "default";
+-};
+-
+ &i2c_A {
+ 	status = "okay";
+ 	pinctrl-0 = <&i2c_a_pins>;
  	pinctrl-names = "default";
  };
  
 -&usb0_phy {
 -	status = "okay";
--	phy-supply = <&usb_pwr>;
+-	phy-supply = <&usb_otg_pwr>;
 -};
 -
 -&usb1_phy {
@@ -52,37 +60,27 @@ index 0d134a85e3a0..b6f9d051439c 100644
 -};
 -
 -&usb1 {
-+&pwm_ef {
++&ir {
  	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
++	pinctrl-0 = <&remote_input_ao_pins>;
 +	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
  };
  
- /* Wireless SDIO Module */
-@@ -237,16 +227,26 @@
- 	vqmmc-supply = <&vddio_boot>;
+ /* SD */
+@@ -215,3 +192,26 @@
+ 	vmmc-supply = <&vcc3v3>;
+ 	vqmmc-supply = <&vcc1v8>;
  };
- 
--&pwm_ef {
-+/* This UART is brought out to the DB9 connector */
++
 +&uart_AO {
- 	status = "okay";
--	pinctrl-0 = <&pwm_e_pins>;
++	status = "okay";
 +	pinctrl-0 = <&uart_ao_a_pins>;
- 	pinctrl-names = "default";
--	clocks = <&clkc CLKID_FCLK_DIV4>;
--	clock-names = "clkin0";
- };
- 
--&cvbs_vdac_port {
--	cvbs_vdac_out: endpoint {
--		remote-endpoint = <&cvbs_connector_in>;
--	};
++	pinctrl-names = "default";
++};
++
 +&usb0_phy {
 +	status = "okay";
-+	phy-supply = <&usb_pwr>;
++	phy-supply = <&usb_otg_pwr>;
 +};
 +
 +&usb1_phy {
@@ -95,6 +93,6 @@ index 0d134a85e3a0..b6f9d051439c 100644
 +
 +&usb1 {
 +	status = "okay";
- };
++};
 -- 
 2.10.2
