@@ -1,38 +1,28 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 20 Jan 2017 09:38:43 -0800
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Fri, 20 Jan 2017 18:45:57 +0100
 Subject: [PATCH] ARM64: dts: meson-gxl: rename Nexbox A95x for consistency
-Message-ID: <20170120173843.6522-1-khilman@baylibre.com>
+In-Reply-To: <20170120173843.6522-1-khilman@baylibre.com>
+References: <20170120173843.6522-1-khilman@baylibre.com>
+Message-ID: <cc16a3ea-7491-a631-4587-abb25a2a235d@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Since the GXL family has S905X and S905D SoCs, we're keeping the SoC
-name in the DTS filename for clarity.  Rename this file accordingly to
-be consistent with the rest of the GXL DTS files.
+Am 20.01.2017 um 18:38 schrieb Kevin Hilman:
+> Since the GXL family has S905X and S905D SoCs, we're keeping the SoC
+> name in the DTS filename for clarity.  Rename this file accordingly to
+> be consistent with the rest of the GXL DTS files.
+> 
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/Makefile                                    | 2 +-
- .../{meson-gxl-nexbox-a95x.dts => meson-gxl-s905x-nexbox-a95x.dts}      | 0
- 2 files changed, 1 insertion(+), 1 deletion(-)
- rename arch/arm64/boot/dts/amlogic/{meson-gxl-nexbox-a95x.dts => meson-gxl-s905x-nexbox-a95x.dts} (100%)
+Reviewed-by: Andreas F?rber <afaerber@suse.de>
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 293e985e3dfa..3f94bce33b7f 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -10,7 +10,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-wetek-play2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
--dtb-$(CONFIG_ARCH_MESON) += meson-gxl-nexbox-a95x.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-similarity index 100%
-rename from arch/arm64/boot/dts/amlogic/meson-gxl-nexbox-a95x.dts
-rename to arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+I'll reorder in my follow-up then.
+
+Thanks,
+Andreas
+
 -- 
-2.9.3
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
