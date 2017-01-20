@@ -1,60 +1,57 @@
 From: afaerber@suse.de (=?UTF-8?q?Andreas=20F=C3=A4rber?=)
-Date: Fri, 20 Jan 2017 23:21:01 +0100
-Subject: [PATCH 01/18] Documentation: devicetree: amlogic: Reorder boards
-In-Reply-To: <20170120222118.21476-1-afaerber@suse.de>
-References: <20170120222118.21476-1-afaerber@suse.de>
-Message-ID: <20170120222118.21476-2-afaerber@suse.de>
+Date: Fri, 20 Jan 2017 23:21:00 +0100
+Subject: [PATCH 00/18] ARM64: meson: DT cleanups
+Message-ID: <20170120222118.21476-1-afaerber@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enforce groupment by SoCs and order alphabetically within the group
-(with some exceptions). This should facilitate adding new boards.
+Hello,
 
-Signed-off-by: Andreas F?rber <afaerber@suse.de>
----
- Documentation/devicetree/bindings/arm/amlogic.txt | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+This series fixes several cosmetic issues, on top of v4.11/dt64 branch.
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index c246cd2730d9..b03d23c9ea78 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -29,23 +29,30 @@ Boards with the Amlogic Meson GXM S912 SoC shall have the following properties:
-   Required root node property:
-     compatible: "amlogic,s912", "amlogic,meson-gxm";
- 
--Board compatible values:
-+Board compatible values (grouped by SoC):
-+
-   - "geniatech,atv1200" (Meson6)
-+
-   - "minix,neo-x8" (Meson8)
--  - "tronfy,mxq" (Meson8b)
-+
-   - "hardkernel,odroid-c1" (Meson8b)
-+  - "tronfy,mxq" (Meson8b)
-+
-+  - "amlogic,p200" (Meson gxbb)
-+  - "amlogic,p201" (Meson gxbb)
-+  - "hardkernel,odroid-c2" (Meson gxbb)
-+  - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
-   - "tronsmart,vega-s95-pro", "tronsmart,vega-s95" (Meson gxbb)
-   - "tronsmart,vega-s95-meta", "tronsmart,vega-s95" (Meson gxbb)
-   - "tronsmart,vega-s95-telos", "tronsmart,vega-s95" (Meson gxbb)
--  - "hardkernel,odroid-c2" (Meson gxbb)
--  - "amlogic,p200" (Meson gxbb)
--  - "amlogic,p201" (Meson gxbb)
-   - "wetek,hub" (Meson gxbb)
-   - "wetek,play2" (Meson gxbb)
-+
-   - "amlogic,p212" (Meson gxl s905x)
-+
-   - "amlogic,p230" (Meson gxl s905d)
-   - "amlogic,p231" (Meson gxl s905d)
-+
-   - "amlogic,q200" (Meson gxm s912)
-   - "amlogic,q201" (Meson gxm s912)
--  - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
-   - "nexbox,a1" (Meson gxm s912)
+Patches 3-5 rename a node, the rest should all be non-functional changes.
+Patches 10-18 could be squashed if desired.
+
+Regards,
+Andreas
+
+Cc: devicetree at vger.kernel.org
+
+Andreas F?rber (18):
+  Documentation: devicetree: amlogic: Reorder boards
+  ARM64: dts: amlogic: Sort Makefile
+  ARM64: dts: meson-gxbb-vega-s95: Fix Wifi node name
+  ARM64: dts: meson-gxbb-p20x: Fix Wifi node name
+  ARM64: dts: meson-gx-p23x-q20x: Fix Wifi node name
+  ARM64: dts: meson-gxm-nexbox-a1: Drop UART comment
+  ARM64: dts: meson-gxl-s905x: Comment typo fix
+  ARM64: dts: meson-gxm: Drop trailing white line
+  ARM64: dts: meson-gxbb-wetek-hub: Reference CVBS node by label
+  ARM64: dts: meson-gxbb: Reorder nodes
+  ARM64: dts: meson-gxbb-odroidc2: Reorder nodes
+  ARM64: dts: meson-gxbb-vega-s95: Reorder nodes
+  ARM64: dts: meson-gxbb-nexbox-a95x: Reorder nodes
+  ARM64: dts: meson-gxbb-p20x: Reorder nodes
+  ARM64: dts: meson-gxl: Reorder nodes
+  ARM64: dts: meson-gxl-s905x-nexbox-a95x: Reorder nodes
+  ARM64: dts: meson-gxm-nexbox-a1: Reorder nodes
+  ARM64: dts: meson-gx-p23x-q20x: Reorder nodes
+
+ Documentation/devicetree/bindings/arm/amlogic.txt  | 19 ++++--
+ arch/arm64/boot/dts/amlogic/Makefile               |  4 +-
+ .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi | 26 ++++----
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 28 ++++----
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 52 +++++++--------
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   | 58 ++++++++---------
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 53 ++++++++-------
+ .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts      |  6 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 76 +++++++++++-----------
+ .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 28 ++++----
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi   |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 40 ++++++------
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts | 59 +++++++++--------
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |  1 -
+ 14 files changed, 228 insertions(+), 224 deletions(-)
+
 -- 
 2.10.2
