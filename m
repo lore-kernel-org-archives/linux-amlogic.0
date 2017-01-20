@@ -1,142 +1,76 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 20 Jan 2017 17:34:44 +0100
-Subject: [PATCH v3 8/9] ARM64: dts: amlogic: add the ethernet TX delay
- configuration
-In-Reply-To: <20170120152232.13943-9-martin.blumenstingl@googlemail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 20 Jan 2017 18:07:20 +0100
+Subject: [PATCH v3 2/9] ARM64: dts: meson-gxbb-p200: add the ethernet
+ PHY's reset GPIO
+In-Reply-To: <20170120162138.GE25907@lunn.ch>
 References: <20170120132650.9784-1-martin.blumenstingl@googlemail.com>
  <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
- <20170120152232.13943-9-martin.blumenstingl@googlemail.com>
-Message-ID: <1845313e-d90d-4426-e41c-ac72673f7339@baylibre.com>
+ <20170120152232.13943-3-martin.blumenstingl@googlemail.com>
+ <20170120162138.GE25907@lunn.ch>
+Message-ID: <CAFBinCA47Nng_jjxKrWrV_YBHr0bg+7xPaJrVswt_WnZ6wtyjA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/20/2017 04:22 PM, Martin Blumenstingl wrote:
-> This adds the amlogic,tx-delay-ns property with the old (hardcoded)
-> default value of 2ns to all boards which are using an RGMII ethernet
-> PHY.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts    | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts        | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi   | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts   | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts   | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts    | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts         | 2 ++
->  8 files changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 6b5579522587..e63ed98d6c25 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -154,6 +154,8 @@
->  	phy-handle = <&eth_phy0>;
->  	phy-mode = "rgmii";
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
->  	snps,reset-active-low;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-> index fa0f84cfeaa9..6c7e914e9bd9 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
-> @@ -58,6 +58,8 @@
->  	phy-handle = <&eth_phy0>;
->  	phy-mode = "rgmii";
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
->  	snps,reset-active-low;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> index 358ab5159bd5..4301ad860a76 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> @@ -131,6 +131,8 @@
->  	phy-handle = <&eth_phy0>;
->  	phy-mode = "rgmii";
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
->  	snps,reset-active-low;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
-> index 47fe4e444f33..f6d8c70a26a2 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
-> @@ -72,6 +72,8 @@
->  	phy-handle = <&eth_phy0>;
->  	phy-mode = "rgmii";
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
->  	snps,reset-active-low;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> index 9a8e2f492b97..1a222ce60a30 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-> @@ -94,6 +94,8 @@
->  	phy-handle = <&eth_phy0>;
->  	phy-mode = "rgmii";
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
->  	snps,reset-active-low;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-> index f66939cacd37..7663d6775823 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-> @@ -59,6 +59,8 @@
->  	/* Select external PHY by default */
->  	phy-handle = <&external_phy>;
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	/* External PHY reset is shared with internal PHY Led signals */
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> index 5a337d339df1..a0bc746adb42 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-> @@ -162,6 +162,8 @@
->  	/* Select external PHY by default */
->  	phy-handle = <&external_phy>;
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
->  	snps,reset-active-low;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-> index 5dbc66088355..e6ac39b712b7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-> @@ -59,6 +59,8 @@
->  	/* Select external PHY by default */
->  	phy-handle = <&external_phy>;
->  
-> +	amlogic,tx-delay-ns = <2>;
-> +
->  	/* External PHY reset is shared with internal PHY Led signals */
->  	snps,reset-gpio = <&gpio GPIOZ_14 0>;
->  	snps,reset-delays-us = <0 10000 1000000>;
-> 
+Hi Andrew,
 
-On :
-- Odroid-C2 rev 0.2
-- P200
-- Wetek Play 2
-- Amlogic P230
-- Nexbox A1
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+On Fri, Jan 20, 2017 at 5:21 PM, Andrew Lunn <andrew@lunn.ch> wrote:
+> On Fri, Jan 20, 2017 at 04:22:25PM +0100, Martin Blumenstingl wrote:
+>> This resets the ethernet PHY during boot to get the PHY into a "clean"
+>> state.
+>> While here also specify the phy-handle of the ethmac node to make the
+>> PHY configuration similar to the one we have on GXL devices. This will
+>> allow us to specify OF-properties for the PHY itself.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts | 24 ++++++++++++++++++++++++
+>>  1 file changed, 24 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+>> index 03e3d76626dd..fa0f84cfeaa9 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+>> @@ -51,6 +51,30 @@
+>>       model = "Amlogic Meson GXBB P200 Development Board";
+>>  };
+>>
+>> +&ethmac {
+>> +     status = "okay";
+>> +     pinctrl-0 = <&eth_rgmii_pins>;
+>> +     pinctrl-names = "default";
+>> +     phy-handle = <&eth_phy0>;
+>> +     phy-mode = "rgmii";
+>> +
+>> +     snps,reset-gpio = <&gpio GPIOZ_14 0>;
+>> +     snps,reset-delays-us = <0 10000 1000000>;
+>> +     snps,reset-active-low;
+>> +
+>> +     mdio {
+>> +             compatible = "snps,dwmac-mdio";
+>> +             #address-cells = <1>;
+>> +             #size-cells = <0>;
+>> +
+>> +             eth_phy0: ethernet-phy at 0 {
+>> +                     compatible = "ethernet-phy-id0022.1620",
+>
+> Hi Martin
+>
+> You don't need to specify the PHY ID. You really only need this when
+> the PHY is reporting no ID, or a wrong ID. In fact, if a new revision
+> of the board is made, with a different PHY, you might have a problem,
+> the wrong PHY driver is loaded.
+>
+>    Andrew
+I though that this is good practice - the documentation doesn't say
+that it should only be added in specific cases: [0]
+my intention behind adding the PHY ID was to make it easier to see
+which devices uses which PHY. this is especially useful for devices
+with RTL8211F PHY (basically all devices with RGMII PHY except the
+P200) as these may need similar fixes than [1]
+
+regarding your other mail: you're absolutely right that ethernet-phy at 0
+should be ethernet-phy at 3.
+
+
+[0] http://lxr.free-electrons.com/source/Documentation/devicetree/bindings/net/phy.txt
+[1] https://patchwork.kernel.org/patch/9528915/
