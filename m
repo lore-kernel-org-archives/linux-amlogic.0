@@ -1,103 +1,20 @@
 From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Sat, 21 Jan 2017 14:28:48 +0100
-Subject: [PATCH v3 4/4] ARM64: dts: meson: meson-gx: add the SAR ADC
-In-Reply-To: <20170119145822.26239-5-martin.blumenstingl@googlemail.com>
-References: <20170115224221.15510-1-martin.blumenstingl@googlemail.com>
- <20170119145822.26239-1-martin.blumenstingl@googlemail.com>
- <20170119145822.26239-5-martin.blumenstingl@googlemail.com>
-Message-ID: <a1c759fb-691c-50a7-f1c4-fd51ad27fa52@suse.de>
+Date: Sat, 21 Jan 2017 20:21:38 +0100
+Subject: [PATCH 0/2] Amlogic fixes for v4.10-rc
+In-Reply-To: <20170120162025.31806-1-khilman@baylibre.com>
+References: <20170120162025.31806-1-khilman@baylibre.com>
+Message-ID: <70fdfbaa-f2d9-5524-97dc-ca61273980af@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 19.01.2017 um 15:58 schrieb Martin Blumenstingl:
-> Add the SAR ADC to meson-gxbb.dtsi and meson-gxl.dtsi. GXBB provides a
-> 10-bit ADC while GXL (and GXM, which uses the same ADC as GXL) provides
-> a 12-bit ADC.
-> Some boards use resistor ladder buttons connected through one of the ADC
-> channels. On newer devices (GXL and GXM) some boards use pull-ups/downs
-> to change the resistance (and thus the ADC value) on of the ADC channels
+Kevin,
 
-"on one of"?
+Am 20.01.2017 um 17:20 schrieb Kevin Hilman:
+> A couple more Amlogic fixes for the -rc cycle.  The reserved memory is
+> updated after some debate/discussion of the first version.  This one
+> has and ack/review from Andreas who objected to the first version.
 
-> to indicate the board revision.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi   |  8 ++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 10 ++++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 10 ++++++++++
->  3 files changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 99e6a8d5cb9e..55abfb74aab2 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -255,6 +255,14 @@
->  				status = "disabled";
->  			};
->  
-> +			saradc: adc at 8680 {
-> +				compatible = "amlogic,meson-saradc";
-> +				#io-channel-cells = <1>;
-
-Personally I think it makes more sense to keep reg after compatible for
-consistency (same in example) and any #... "output" properties last.
-
-> +				status = "disabled";
-> +				reg = <0x0 0x8680 0x0 0x34>;
-> +				interrupts = <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>;
-> +			};
-> +
->  			pwm_ef: pwm at 86c0 {
->  				compatible = "amlogic,meson-gx-pwm", "amlogic,meson-gxbb-pwm";
->  				reg = <0x0 0x086c0 0x0 0x10>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index 39a774ad83ce..04b3324bc132 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> @@ -490,6 +490,16 @@
->  	clocks = <&clkc CLKID_I2C>;
->  };
->  
-> +&saradc {
-> +	compatible = "amlogic,meson-gxbb-saradc", "amlogic,meson-saradc";
-> +	clocks = <&xtal>,
-> +		 <&clkc CLKID_SAR_ADC>,
-> +		 <&clkc CLKID_SANA>,
-> +		 <&clkc CLKID_SAR_ADC_CLK>,
-> +		 <&clkc CLKID_SAR_ADC_SEL>;
-> +	clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
-> +};
-> +
->  &sd_emmc_a {
->  	clocks = <&clkc CLKID_SD_EMMC_A>,
->  		 <&xtal>,
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> index bdf2305a2e25..7c72dbcef1ba 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> @@ -340,6 +340,16 @@
->  	clocks = <&clkc CLKID_I2C>;
->  };
->  
-> +&saradc {
-> +	compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
-> +	clocks = <&xtal>,
-> +		 <&clkc CLKID_SAR_ADC>,
-> +		 <&clkc CLKID_SANA>,
-> +		 <&clkc CLKID_SAR_ADC_CLK>,
-> +		 <&clkc CLKID_SAR_ADC_SEL>;
-> +	clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
-> +};
-> +
->  &sd_emmc_a {
->  	clocks = <&clkc CLKID_SD_EMMC_A>,
->  		 <&xtal>,
-
-Anyway, saradc before sd_emmc_a looks fine,
-
-Reviewed-by: Andreas F?rber <afaerber@suse.de>
+Is it intentional that this is not a PULL?
 
 Regards,
 Andreas
