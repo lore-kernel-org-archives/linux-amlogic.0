@@ -1,25 +1,20 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Sat, 21 Jan 2017 20:21:38 +0100
-Subject: [PATCH 0/2] Amlogic fixes for v4.10-rc
-In-Reply-To: <20170120162025.31806-1-khilman@baylibre.com>
-References: <20170120162025.31806-1-khilman@baylibre.com>
-Message-ID: <70fdfbaa-f2d9-5524-97dc-ca61273980af@suse.de>
+From: robh@kernel.org (Rob Herring)
+Date: Sat, 21 Jan 2017 14:01:32 -0600
+Subject: [PATCH 1/3] Documentation: devicetree: Add Kingnovel vendor prefix
+In-Reply-To: <20170117225459.4438-1-afaerber@suse.de>
+References: <20170117030611.23827-2-afaerber@suse.de>
+ <20170117225459.4438-1-afaerber@suse.de>
+Message-ID: <20170121200132.hwdu6mcggowvar72@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Kevin,
+On Tue, Jan 17, 2017 at 11:54:57PM +0100, Andreas F?rber wrote:
+> Their domain name is spelled kingnoval, but textually Kingnovel.
+> 
+> Cc: ada at kingnoval.com
+> Signed-off-by: Andreas F?rber <afaerber@suse.de>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
-Am 20.01.2017 um 17:20 schrieb Kevin Hilman:
-> A couple more Amlogic fixes for the -rc cycle.  The reserved memory is
-> updated after some debate/discussion of the first version.  This one
-> has and ack/review from Andreas who objected to the first version.
-
-Is it intentional that this is not a PULL?
-
-Regards,
-Andreas
-
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+Acked-by: Rob Herring <robh@kernel.org>
