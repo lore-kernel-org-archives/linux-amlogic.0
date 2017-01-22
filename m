@@ -1,84 +1,40 @@
-From: jic23@kernel.org (Jonathan Cameron)
-Date: Sun, 22 Jan 2017 12:30:26 +0000
-Subject: [PATCH v3 1/4] Documentation: dt-bindings: add the Amlogic Meson
- SAR ADC documentation
-In-Reply-To: <CAFBinCDghzRXnzdBd0qh=LYDTpkQg7r2zdj1QE7cRKAU0fAFPQ@mail.gmail.com>
-References: <20170115224221.15510-1-martin.blumenstingl@googlemail.com>
- <20170119145822.26239-1-martin.blumenstingl@googlemail.com>
- <20170119145822.26239-2-martin.blumenstingl@googlemail.com>
- <20170121205635.4qeiqyeyjrweryrh@rob-hp-laptop>
- <CAFBinCDghzRXnzdBd0qh=LYDTpkQg7r2zdj1QE7cRKAU0fAFPQ@mail.gmail.com>
-Message-ID: <4d5361a2-1343-14b9-d269-2c1b86eabb19@kernel.org>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 22 Jan 2017 17:48:25 +0100
+Subject: [PATCH v3 2/9] ARM64: dts: meson-gxbb-p200: add the ethernet
+ PHY's reset GPIO
+In-Reply-To: <20170120174658.GG25907@lunn.ch>
+References: <20170120132650.9784-1-martin.blumenstingl@googlemail.com>
+ <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
+ <20170120152232.13943-3-martin.blumenstingl@googlemail.com>
+ <20170120162138.GE25907@lunn.ch>
+ <CAFBinCA47Nng_jjxKrWrV_YBHr0bg+7xPaJrVswt_WnZ6wtyjA@mail.gmail.com>
+ <20170120174658.GG25907@lunn.ch>
+Message-ID: <CAFBinCD+7R2cVQ-Dcr=CxRuBBFajCb-QG68ZGpza5VwprCkztQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 21/01/17 23:10, Martin Blumenstingl wrote:
-> Hi Rob,
-> 
-> thanks for reviewing this!
-> 
-> On Sat, Jan 21, 2017 at 9:56 PM, Rob Herring <robh@kernel.org> wrote:
->> On Thu, Jan 19, 2017 at 03:58:19PM +0100, Martin Blumenstingl wrote:
->>> This adds the devicetree binding documentation for the SAR ADC found in
->>> Amlogic Meson SoCs.
->>> Currently only the GXBB, GXL and GXM SoCs are supported.
->>>
->>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
->>> ---
->>>  .../bindings/iio/adc/amlogic,meson-saradc.txt      | 31 ++++++++++++++++++++++
->>>  1 file changed, 31 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
->>> new file mode 100644
->>> index 000000000000..9a0bec7afc63
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
->>> @@ -0,0 +1,31 @@
->>> +* Amlogic Meson SAR (Successive Approximation Register) A/D converter
->>> +
->>> +Required properties:
->>> +- compatible:        depending on the SoC this should be one of:
->>> +                     - "amlogic,meson-gxbb-saradc" for GXBB
->>> +                     - "amlogic,meson-gxl-saradc" for GXL and GXM
->>
->> GXL and GXM should probably be 2 compatibles.
-> Amlogic's ADC driver does not differentiate between GXL and GXM
-> (because both SoCs are identical except the CPU and GPU cores).
-> I can still introduce a separate binding for GXM if you want (better
-> safe than sorry and takes less than 5 minutes) - just let me know
-Probably best to do so as it's just conceivable there will be a hardware
-bug in the the silicon or similar.  Also makes things a little more
-'obviously correct'.
+On Fri, Jan 20, 2017 at 6:46 PM, Andrew Lunn <andrew@lunn.ch> wrote:
+> On Fri, Jan 20, 2017 at 06:07:20PM +0100, Martin Blumenstingl wrote:
+>> I though that this is good practice - the documentation doesn't say
+>> that it should only be added in specific cases: [0]
+>
+> Agreed, the text should be better, listing when it is appropriate to
+> use.
+>
+>> my intention behind adding the PHY ID was to make it easier to see
+>> which devices uses which PHY. this is especially useful for devices
+>> with RTL8211F PHY (basically all devices with RGMII PHY except the
+>> P200) as these may need similar fixes than [1]
+>
+> I would not say it is wrong to list the PHY ID, it just has
+> consequences if the PHY ever changes.
+thanks for pointing this out again, I'll re-spin this series and
+remove the PHY's "compatible" property from all patches.
+I also sent a patch which hopefully makes the documentation a bit more
+clear: [0]
 
-Jonathan
-> 
->>> +             along with the generic "amlogic,meson-saradc"
->>> +- reg:               the physical base address and length of the registers
->>> +- clocks:    phandle and clock identifier (see clock-names)
->>> +- clock-names:       mandatory clocks:
->>> +                     - "clkin" for the reference clock (typically XTAL)
->>> +                     - "core" for the SAR ADC core clock
->>> +             optional clocks:
->>> +                     - "sana" for the analog clock
->>> +                     - "adc_clk" for the ADC (sampling) clock
->>> +                     - "adc_sel" for the ADC (sampling) clock mux
->>> +- vref-supply:       the regulator supply for the ADC reference voltage
->>> +- #io-channel-cells: must be 1, see ../iio-bindings.txt
->>> +
->>> +Example:
->>> +     saradc: adc at 8680 {
->>> +             compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
->>> +             #io-channel-cells = <1>;
->>> +             reg = <0x0 0x8680 0x0 0x34>;
->>> +             clocks = <&xtal>,
->>> +                      <&clkc CLKID_SAR_ADC>,
->>> +                      <&clkc CLKID_SANA>,
->>> +                      <&clkc CLKID_SAR_ADC_CLK>,
->>> +                      <&clkc CLKID_SAR_ADC_SEL>;
->>> +             clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
->>> +     };
->>> --
->>> 2.11.0
->>>
+Regards,
+Martin
+
+
+[0] http://marc.info/?l=linux-netdev&m=148510331812986&w=2
