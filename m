@@ -1,29 +1,26 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 23 Jan 2017 10:46:46 -0800
-Subject: [PATCH 00/18] ARM64: meson: DT cleanups
-In-Reply-To: <20170120222118.21476-1-afaerber@suse.de> ("Andreas
- =?utf-8?Q?F=C3=A4rber=22's?=
- message of "Fri, 20 Jan 2017 23:21:00 +0100")
-References: <20170120222118.21476-1-afaerber@suse.de>
-Message-ID: <m2bmux397t.fsf@baylibre.com>
+Date: Mon, 23 Jan 2017 10:55:55 -0800
+Subject: [PATCH v4 0/9] meson-gx: reset RGMII PHYs and configure TX delay
+In-Reply-To: <20170122181028.5014-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 22 Jan 2017 19:10:19 +0100")
+References: <20170120152232.13943-1-martin.blumenstingl@googlemail.com>
+ <20170122181028.5014-1-martin.blumenstingl@googlemail.com>
+Message-ID: <m24m0p38sk.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Andreas F?rber <afaerber@suse.de> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Hello,
+> This series adds the reset GPIOs for the (external) ethernet PHYs on all
+> GXBB boards.
+> Additionally it provides a ethernet PHY node which can be used to specify
+> PHY-specific properties (this may be required if more boards require the
+> "eee-broken-1000t" for the RTL8211F ethernet PHY). To make all board .dts
+> consistent I chose to add the PHY node also for boards which don't have a
+> RTL8211F PHY.
 >
-> This series fixes several cosmetic issues, on top of v4.11/dt64 branch.
->
-> Patches 3-5 rename a node, the rest should all be non-functional changes.
+> Patch #7 from this series also removes ethernet support for the P200
 
-Can you respin patches 1-9 with minor comments addressed and
-acks/reviews collected and I'll apply those.
-
-> Patches 10-18 could be squashed if desired.
-
-I'm less sure about these as I tend to agree with Rob that this is just
-needless churn.  If you want to resend those separately, making your
-arguments, I'll merge it if you convice the DT maintainers. :)
+I think you mean P201 here, right?
 
 Kevin
