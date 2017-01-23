@@ -1,44 +1,28 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Mon, 23 Jan 2017 17:57:22 +0100
-Subject: [PATCH 04/18] ARM64: dts: meson-gxbb-p20x: Fix Wifi node name
-In-Reply-To: <20170123165018.w4jkyckyrltfyhz3@rob-hp-laptop>
-References: <20170120222118.21476-1-afaerber@suse.de>
- <20170120222118.21476-5-afaerber@suse.de>
- <20170123165018.w4jkyckyrltfyhz3@rob-hp-laptop>
-Message-ID: <0f610d70-1fa1-56fe-cf11-4aea5ea1df7b@suse.de>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 23 Jan 2017 10:06:08 -0800
+Subject: [PATCH 0/2] Amlogic fixes for v4.10-rc
+In-Reply-To: <70fdfbaa-f2d9-5524-97dc-ca61273980af@suse.de> ("Andreas
+ =?utf-8?Q?F=C3=A4rber=22's?= message of "Sat, 21 Jan 2017 20:21:38 +0100")
+References: <20170120162025.31806-1-khilman@baylibre.com>
+ <70fdfbaa-f2d9-5524-97dc-ca61273980af@suse.de>
+Message-ID: <m2lgu13b3j.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 23.01.2017 um 17:50 schrieb Rob Herring:
-> On Fri, Jan 20, 2017 at 11:21:04PM +0100, Andreas F?rber wrote:
->> bcrmf -> brcmf
->>
->> Fixes: ab3943fe57a2 ("ARM64: dts: meson-gxbb: Add P20x Wifi SDIO support")
->> Cc: Neil Armstrong <narmstrong@baylibre.com>
->> Signed-off-by: Andreas F?rber <afaerber@suse.de>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
->> index 4a96e0f6f926..5183c5ce90c6 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
->> @@ -193,7 +193,7 @@
->>  	vmmc-supply = <&vddao_3v3>;
->>  	vqmmc-supply = <&vddio_boot>;
->>  
->> -	brcmf: bcrmf at 1 {
->> +	brcmf: brcmf at 1 {
-> 
-> wifi at 1
+Andreas F?rber <afaerber@suse.de> writes:
 
-Good point.
+> Kevin,
+>
+> Am 20.01.2017 um 17:20 schrieb Kevin Hilman:
+>> A couple more Amlogic fixes for the -rc cycle.  The reserved memory is
+>> updated after some debate/discussion of the first version.  This one
+>> has and ack/review from Andreas who objected to the first version.
+>
+> Is it intentional that this is not a PULL?
 
-Regards,
-Andreas
+Yes.  For one or two patches, arm-soc maintainers are happy to take
+patches.  And in this case, it was especially intentional because these
+have a dependency on stuff already in arm-soc fixes, so I wanted them to
+be applied directly.
 
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+Kevin
