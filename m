@@ -1,28 +1,25 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 23 Jan 2017 10:06:08 -0800
-Subject: [PATCH 0/2] Amlogic fixes for v4.10-rc
-In-Reply-To: <70fdfbaa-f2d9-5524-97dc-ca61273980af@suse.de> ("Andreas
- =?utf-8?Q?F=C3=A4rber=22's?= message of "Sat, 21 Jan 2017 20:21:38 +0100")
-References: <20170120162025.31806-1-khilman@baylibre.com>
- <70fdfbaa-f2d9-5524-97dc-ca61273980af@suse.de>
-Message-ID: <m2lgu13b3j.fsf@baylibre.com>
+Date: Mon, 23 Jan 2017 10:21:13 -0800
+Subject: [PATCH 3/3] ARM64: dts: meson-gxm-rbox-pro: Add board compatible
+ string
+In-Reply-To: <20170117225459.4438-3-afaerber@suse.de> ("Andreas
+ =?utf-8?Q?F=C3=A4rber=22's?=
+ message of "Tue, 17 Jan 2017 23:54:59 +0100")
+References: <20170117030611.23827-2-afaerber@suse.de>
+ <20170117225459.4438-1-afaerber@suse.de>
+ <20170117225459.4438-3-afaerber@suse.de>
+Message-ID: <m2h94p3aee.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Andreas F?rber <afaerber@suse.de> writes:
 
-> Kevin,
->
-> Am 20.01.2017 um 17:20 schrieb Kevin Hilman:
->> A couple more Amlogic fixes for the -rc cycle.  The reserved memory is
->> updated after some debate/discussion of the first version.  This one
->> has and ack/review from Andreas who objected to the first version.
->
-> Is it intentional that this is not a PULL?
+> Cc: ada at kingnoval.com
+> Signed-off-by: Andreas F?rber <afaerber@suse.de>
+> ---
+>  To be squashed in v2.
 
-Yes.  For one or two patches, arm-soc maintainers are happy to take
-patches.  And in this case, it was especially intentional because these
-have a dependency on stuff already in arm-soc fixes, so I wanted them to
-be applied directly.
+FYI, since you mention v2 here, i'll wait on this series and assume
+you'll update it on top of your cleanup series.
 
 Kevin
