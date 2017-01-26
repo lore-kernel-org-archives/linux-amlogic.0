@@ -1,21 +1,33 @@
 From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Thu, 26 Jan 2017 15:44:21 -0800
-Subject: [PATCH] clk: gxbb: fix CLKID_ETH defined twice
-In-Reply-To: <1485446749-12679-1-git-send-email-jbrunet@baylibre.com>
-References: <1485446749-12679-1-git-send-email-jbrunet@baylibre.com>
-Message-ID: <20170126234421.GG8801@codeaurora.org>
+Date: Thu, 26 Jan 2017 15:57:45 -0800
+Subject: [PATCH] clk: meson8b: fix clk81 register address
+In-Reply-To: <1485341586-2929-1-git-send-email-jbrunet@baylibre.com>
+References: <1485341586-2929-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <20170126235745.GI8801@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/26, Jerome Brunet wrote:
-> CLKID_ETH is define in the dt-bindings but has not be commented out in the
-> clock driver. Just do it now.
+On 01/25, Jerome Brunet wrote:
+> During meson8b clock probe, clk81 register address is fixed twice.
+> First using the meson8b_clk_gates array, then by directly changing
+> meson8b_clk81 register.
 > 
-> Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver")
+> As a result meson8b_clk81.reg = HHI_MPEG_CLK_CNTL + clk_base + clk_base.
+> 
+> Fixed by just removing the second fixup.
+> 
+> Fixes: e31a1900c1ff ("meson: clk: Add support for clock gates")
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
+>  Patch based on khilman/linux-amlogic.git master branch.
 
-Acked-by: Stephen Boyd <sboyd@codeaurora.org>
+The problem isn't introduced there though?
+
+> 
+>  I don't have a meson8b HW so this patch so this patch has not been
+>  tested on real HW.
+
+Applied to clk-next.
 
 -- 
 Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
