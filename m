@@ -1,35 +1,31 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 26 Jan 2017 17:05:49 +0100
-Subject: [PATCH] clk: gxbb: fix CLKID_ETH defined twice
-Message-ID: <1485446749-12679-1-git-send-email-jbrunet@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Thu, 26 Jan 2017 22:41:15 +0100
+Subject: [PATCH 1/3] mmc: meson-gx: fix setting f_min
+Message-ID: <e26a74f8-9819-6940-4c90-225377cc0a3e@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-CLKID_ETH is define in the dt-bindings but has not be commented out in the
-clock driver. Just do it now.
+Currently f_min is set to 4 MHz whilst the comment states 400 MHz.
+I think the itention is to set f_min to 400 kHz.
+Change value and comment accordingly.
 
-Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
-
- Patch based on khilman/linux-amlogic.git master branch
- Tested on the gxxb p200.
-
- drivers/clk/meson/gxbb.h | 2 +-
+ drivers/mmc/host/meson-gx-mmc.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index 0252939ba58f..2ede250921f1 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -204,7 +204,7 @@
- #define CLKID_ASSIST_MISC	  33
- /* CLKID_SPI */
- #define CLKID_I2S_SPDIF		  35
--#define CLKID_ETH		  36
-+/* CLKID_ETH */
- #define CLKID_DEMUX		  37
- #define CLKID_AIU_GLUE		  38
- #define CLKID_IEC958		  39
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index bf19d03c..cf071756 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -268,7 +268,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	if (f_min != UINT_MAX)
+ 		f_min = DIV_ROUND_UP(CLK_SRC_XTAL_RATE, CLK_DIV_MAX);
+ 	else
+-		f_min = 4000000;  /* default min: 400 MHz */
++		f_min = 400000;  /* default min: 400 kHz */
+ 	host->mmc->f_min = f_min;
+ 
+ 	/* create the mux */
 -- 
-2.7.4
+2.11.0
