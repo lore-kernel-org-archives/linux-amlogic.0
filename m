@@ -1,43 +1,60 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 25 Jan 2017 16:01:39 -0800
-Subject: [PATCH] MMC: meson: cleanup stray debug messages
-Message-ID: <20170126000139.5567-1-khilman@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 26 Jan 2017 15:27:01 +0100
+Subject: [PATCH] clk: meson8b: fix clk81 register address
+In-Reply-To: <1485341586-2929-1-git-send-email-jbrunet@baylibre.com>
+References: <1485341586-2929-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1485440821.2442.8.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Cleanup some debug prints that cause needless noise
-during normal usage.
+On Wed, 2017-01-25 at 11:53 +0100, Jerome Brunet wrote:
+> During meson8b clock probe, clk81 register address is fixed twice.
+> First using the meson8b_clk_gates array, then by directly changing
+> meson8b_clk81 register.
+> 
+> As a result meson8b_clk81.reg = HHI_MPEG_CLK_CNTL + clk_base +
+> clk_base.
+> 
+> Fixed by just removing the second fixup.
+> 
+> Fixes: e31a1900c1ff ("meson: clk: Add support for clock gates")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+> ?Patch based on khilman/linux-amlogic.git master branch.
+> 
+> ?I don't have a meson8b HW so this patch so this patch has not been
+> ?tested on real HW.
 
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+I got my hands on an odroidc1 and I have been to test this.
+With clk_base @ 0xf0965000:
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index b352760c041e..e848ff125fd7 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -480,9 +480,9 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 			blk_len = cfg & (CFG_BLK_LEN_MASK << CFG_BLK_LEN_SHIFT);
- 			blk_len >>= CFG_BLK_LEN_SHIFT;
- 			if (blk_len != ilog2(cmd->data->blksz)) {
--				dev_warn(host->dev, "%s: update blk_len %d -> %d\n",
-+				dev_dbg(host->dev, "%s: update blk_len %d -> %d\n",
- 					__func__, blk_len,
--					 ilog2(cmd->data->blksz));
-+					ilog2(cmd->data->blksz));
- 				blk_len = ilog2(cmd->data->blksz);
- 				cfg &= ~(CFG_BLK_LEN_MASK << CFG_BLK_LEN_SHIFT);
- 				cfg |= blk_len << CFG_BLK_LEN_SHIFT;
-@@ -740,7 +740,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 
- 	ret = mmc_of_parse(mmc);
- 	if (ret) {
--		dev_warn(&pdev->dev, "error parsing DT: %d\n", ret);
-+		if (ret != -EPROBE_DEFER)
-+			dev_warn(&pdev->dev, "error parsing DT: %d\n", ret);
- 		goto free_host;
- 	}
- 
--- 
-2.9.3
+* without the patch:
+clk81.reg =?0xe12ca174
+
+* with the patch:
+clk81.reg = 0xf0965174 (expected result)
+
+In the past, we probably did not see this because clk81 is the mother
+of all the other clock gate around the SoC so it is very likely that u-
+boot opened this gate for us.
+
+> 
+> ?drivers/clk/meson/meson8b.c | 1 -
+> ?1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/clk/meson/meson8b.c
+> b/drivers/clk/meson/meson8b.c
+> index 3f1be46cbb33..888494d4fb8a 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -607,7 +607,6 @@ static int meson8b_clkc_probe(struct
+> platform_device *pdev)
+> ?	/* Populate the base address for the MPEG clks */
+> ?	meson8b_mpeg_clk_sel.reg = clk_base +
+> (u32)meson8b_mpeg_clk_sel.reg;
+> ?	meson8b_mpeg_clk_div.reg = clk_base +
+> (u32)meson8b_mpeg_clk_div.reg;
+> -	meson8b_clk81.reg = clk_base + (u32)meson8b_clk81.reg;
+> ?
+> ?	/* Populate base address for gates */
+> ?	for (i = 0; i < ARRAY_SIZE(meson8b_clk_gates); i++)
