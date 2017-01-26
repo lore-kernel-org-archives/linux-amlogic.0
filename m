@@ -1,24 +1,35 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 26 Jan 2017 15:41:33 +0100
-Subject: [PATCH 2/3] pinctrl: meson: meson-gxl: add the pwm_ao_b pin
-In-Reply-To: <20170122210528.892-3-martin.blumenstingl@googlemail.com>
-References: <20170122210528.892-1-martin.blumenstingl@googlemail.com>
- <20170122210528.892-3-martin.blumenstingl@googlemail.com>
-Message-ID: <CACRpkdbt5anOFUgw9C_H6Q0rvMxuyH2q1p+EeX+sf1Ei8HR==w@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 26 Jan 2017 17:05:49 +0100
+Subject: [PATCH] clk: gxbb: fix CLKID_ETH defined twice
+Message-ID: <1485446749-12679-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Jan 22, 2017 at 10:05 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+CLKID_ETH is define in the dt-bindings but has not be commented out in the
+clock driver. Just do it now.
 
-> This adds support for the pwm_ao_b pin. Unfortunately the registers for
-> the pwm_ao pins are not documented at all. The source for the pwm_ao_b
-> pin from this patch is the Khadas VIM GPL kernel source, which sets bit
-> 3 and unsets bits 4 and 31 to enable the PWM LEDs.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
 
-This patch applied to the pin control tree with Kevin's ACK.
+ Patch based on khilman/linux-amlogic.git master branch
+ Tested on the gxxb p200.
 
-Yours,
-Linus Walleij
+ drivers/clk/meson/gxbb.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index 0252939ba58f..2ede250921f1 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -204,7 +204,7 @@
+ #define CLKID_ASSIST_MISC	  33
+ /* CLKID_SPI */
+ #define CLKID_I2S_SPDIF		  35
+-#define CLKID_ETH		  36
++/* CLKID_ETH */
+ #define CLKID_DEMUX		  37
+ #define CLKID_AIU_GLUE		  38
+ #define CLKID_IEC958		  39
+-- 
+2.7.4
