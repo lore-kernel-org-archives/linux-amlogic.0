@@ -1,26 +1,67 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 27 Jan 2017 10:58:06 -0800
-Subject: [PATCH] clk: gxbb: fix CLKID_ETH defined twice
-In-Reply-To: <20170126234421.GG8801@codeaurora.org> (Stephen Boyd's message of
- "Thu, 26 Jan 2017 15:44:21 -0800")
-References: <1485446749-12679-1-git-send-email-jbrunet@baylibre.com>
- <20170126234421.GG8801@codeaurora.org>
-Message-ID: <m2bmusuy81.fsf@baylibre.com>
+Date: Fri, 27 Jan 2017 11:02:15 -0800
+Subject: [PATCH 0/3] meson-gx: add pwm_AO_ab
+In-Reply-To: <20170122210528.892-1-martin.blumenstingl@googlemail.com> (Martin
+ Blumenstingl's message of "Sun, 22 Jan 2017 22:05:25 +0100")
+References: <20170122210528.892-1-martin.blumenstingl@googlemail.com>
+Message-ID: <m27f5guy14.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Stephen Boyd <sboyd@codeaurora.org> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> On 01/26, Jerome Brunet wrote:
->> CLKID_ETH is define in the dt-bindings but has not be commented out in the
->> clock driver. Just do it now.
->> 
->> Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver")
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->
-> Acked-by: Stephen Boyd <sboyd@codeaurora.org>
+> This adds support for the PWM controller in the AO domain.
 
-Applied to amlogic v4.11/dt64 branch with Stephen's ack.
+Patches 1,3 applied to Amlogic v4.11/dt64 branch.
 
 Kevin
+
+> pinctrl support for GXBB already exists (in both, pinctrl-meson-gxbb.c
+> and meson-gxbb.dtsi). This patch adds at least the pwm_ao_b pin for
+> GXL and GXM - these are not documented in Amlogic's kernel, so I had
+> to borrow the magic numbers from the Khadas VIM kernel (released under
+> the GPL): [0]
+>
+> The bits for pwm_AO_a_pins are unknown at the time of writing, but these
+> can still be added later.
+>
+> I have successfully tested this on my GXL S905X based Khadas VIM board
+> with the following .dts snippets (the PWM LED can simply be dimmed
+> through sysfs):
+> 	&pwm_AO_ab {
+> 		status = "okay";
+> 		pinctrl-0 = <&pwm_ao_b_pins>;
+> 		pinctrl-names = "default";
+> 		clocks = <&clkc CLKID_FCLK_DIV4>;
+> 		clock-names = "clkin0";
+> 	};
+>
+> 	pwmleds {
+> 		compatible = "pwm-leds";
+>
+> 		power {
+> 			label = "vim:red:power";
+> 			pwms = <&pwm_AO_ab 1 7812500 0>;
+> 			max-brightness = <255>;
+> 		};
+> 	};
+>
+> (if anyone is interested in more of my Khadas VIM patches - these are
+> still work-in-progress, which is why I have not sent them yet - can
+> take a look at this: [1])
+>
+> NOTE: The .dts changes from this series are based on top of my SAR ADC
+> patches.
+>
+> [0] https://github.com/khadas/linux/blob/94602ef5562978a8d8b5c7770c113074a714dbdb/drivers/amlogic/led/led_trigger_breathe.c#L75
+> [1] https://github.com/xdarklight/linux/commits/meson-gx-integration-4.11-20170122
+>
+> Martin Blumenstingl (3):
+>   ARM64: dts: meson-gx: add the missing pwm_AO_ab node
+>   pinctrl: meson: meson-gxl: add the pwm_ao_b pin
+>   ARM64: dts: meson-gxl: add the pwm_ao_b pin
+>
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 7 +++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 7 +++++++
+>  drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 8 ++++++++
+>  3 files changed, 22 insertions(+)
