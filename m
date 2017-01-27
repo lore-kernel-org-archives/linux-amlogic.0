@@ -1,38 +1,20 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 27 Jan 2017 09:43:53 +0100
-Subject: [PATCH] clk: meson8b: fix clk81 register address
-In-Reply-To: <20170126235745.GI8801@codeaurora.org>
-References: <1485341586-2929-1-git-send-email-jbrunet@baylibre.com>
- <20170126235745.GI8801@codeaurora.org>
-Message-ID: <1485506633.2442.9.camel@baylibre.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Fri, 27 Jan 2017 16:40:30 +0100
+Subject: [PATCH 0/2] Amlogic fixes for v4.10-rc
+In-Reply-To: <20170120162025.31806-1-khilman@baylibre.com>
+References: <20170120162025.31806-1-khilman@baylibre.com>
+Message-ID: <25439052.BHGY5qeXYU@wuerfel>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-01-26 at 15:57 -0800, Stephen Boyd wrote:
-> On 01/25, Jerome Brunet wrote:
-> > 
-> > During meson8b clock probe, clk81 register address is fixed twice.
-> > First using the meson8b_clk_gates array, then by directly changing
-> > meson8b_clk81 register.
-> > 
-> > As a result meson8b_clk81.reg = HHI_MPEG_CLK_CNTL + clk_base +
-> > clk_base.
-> > 
-> > Fixed by just removing the second fixup.
-> > 
-> > Fixes: e31a1900c1ff ("meson: clk: Add support for clock gates")
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> > ?Patch based on khilman/linux-amlogic.git master branch.
+On Friday, January 20, 2017 8:20:23 AM CET Kevin Hilman wrote:
+> Arnd, Olof,
 > 
-> The problem isn't introduced there though?
-Indeed, I should have based my patch on clk-next. Will do next time.
+> A couple more Amlogic fixes for the -rc cycle.  The reserved memory is
+> updated after some debate/discussion of the first version.  This one
+> has and ack/review from Andreas who objected to the first version.
+> 
 
-> 
-> > 
-> > 
-> > ?I don't have a meson8b HW so this patch so this patch has not been
-> > ?tested on real HW.
-> 
-> Applied to clk-next.
-> 
+Applied both to fixes, thanks!
+
+	Arnd
