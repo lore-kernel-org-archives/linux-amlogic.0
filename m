@@ -1,28 +1,37 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 27 Jan 2017 09:43:45 -0800
-Subject: [PATCH 2/3] mmc: meson-gx: minor improvements in meson_mmc_set_ios
-In-Reply-To: <4ec4f0af-c5c9-955c-6158-8c38aa61b358@gmail.com> (Heiner
- Kallweit's message of "Thu, 26 Jan 2017 22:50:25 +0100")
-References: <4ec4f0af-c5c9-955c-6158-8c38aa61b358@gmail.com>
-Message-ID: <m24m0kwg8e.fsf@baylibre.com>
+Date: Fri, 27 Jan 2017 10:03:45 -0800
+Subject: [PATCH 3/3] mmc: meson-gx: improve meson_mmc_clk_set
+In-Reply-To: <49d47535-6008-e1df-3baa-4f0590344a89@gmail.com> (Heiner
+ Kallweit's message of "Thu, 26 Jan 2017 23:03:13 +0100")
+References: <49d47535-6008-e1df-3baa-4f0590344a89@gmail.com>
+Message-ID: <m2ziicv0qm.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Heiner Kallweit <hkallweit1@gmail.com> writes:
 
-> val isn't used in the switch clause and afterwards there's an
-> identical statement. So remove it.
+> The following changes are quite small, therefore I combined them in
+> one patch. If you'd prefer to separate the changes just let me know.
 >
-> In case of an unexpected bus width the error message indicates
-> the intention to set the bus width to 4 and to go on.
-> So remove the return statement. This return statement also
-> conflicts with "setting to 4" because nothing would be set
-> actually before returning.
+> - ret doesn't need to be initialized with 0
+> - use standard !clk_rate notation to check for a zero value
+> - If clk_rate is zero we return here. Therefore all further checks
+>   in this function for clk_rate != 0 are not needed.
+> - switch from dev_warn to dev_err if the clock can't be set
+> - If due to clock source and available divider values the requested
+>   frequency isn't matched exactly (always the case if requested
+>   frequency is 52 MHz), then just print the differing values as
+>   debug message and not as warning.
+> - Also remove ret from the message as it is always 0.
+> - In the case of actual frequency not exactly matching the requested
+>   one set mmc->actual_clock to the requested frequency.
+>   So far mmc->actual_clock wasn't set at all in this case.
 >
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+All nice cleanup, thanks!
 
-Thanks for the fix,
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
 
 Kevin
