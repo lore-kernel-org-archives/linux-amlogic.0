@@ -1,67 +1,64 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 27 Jan 2017 11:02:15 -0800
-Subject: [PATCH 0/3] meson-gx: add pwm_AO_ab
-In-Reply-To: <20170122210528.892-1-martin.blumenstingl@googlemail.com> (Martin
- Blumenstingl's message of "Sun, 22 Jan 2017 22:05:25 +0100")
-References: <20170122210528.892-1-martin.blumenstingl@googlemail.com>
-Message-ID: <m27f5guy14.fsf@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sat, 28 Jan 2017 09:18:50 +0100
+Subject: [PATCH] mmc: meson-gx: set max block count to 256
+In-Reply-To: <m2lgtwuzll.fsf@baylibre.com>
+References: <82cf7861-5cf8-302d-5354-435282d95619@gmail.com>
+ <m2lgtwuzll.fsf@baylibre.com>
+Message-ID: <c8f456f5-1722-55d6-58d8-c438d344cbc1@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Am 27.01.2017 um 19:28 schrieb Kevin Hilman:
+> Heiner Kallweit <hkallweit1@gmail.com> writes:
+> 
+>> So far max_blk_count isn't set what results in a default of value 8
+>> to be used (PAGE_SIZE / block size).
+>>
+>> Set max_blk_count to 256 as used in the uboot driver.
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> 
+> Thanks for the patch. A minor comment below:
+> 
+>> ---
+>>  drivers/mmc/host/meson-gx-mmc.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+>> index 3308b5b6..030425be 100644
+>> --- a/drivers/mmc/host/meson-gx-mmc.c
+>> +++ b/drivers/mmc/host/meson-gx-mmc.c
+>> @@ -799,6 +799,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>>  		goto free_host;
+>>  	}
+>>  
+>> +	mmc->max_blk_count = 256;
+> 
+> A step in the right direction, but the # blocks is actually a 9-bit
+> field (c.f. length field of cmd_cfg part of descriptor (bits 8:0).
+> 
+> So this should be more like:
+> 
+> 	/* blk count is 'length' field of cmd_cfg part of descriptor */
+> 	mmc->max_blk_count = CMD_CFG_LENGTH_MASK + 1;
+> 
+> I tested that change locally, so after changing that, please resend and
+> feel free to add:
+> 
+max_blk_count = 0 means unlimited number of blocks. Therefore I think
+we have to go with: mmc->max_blk_count = CMD_CFG_LENGTH_MASK
+And I figured out later that we also have to set mmc->max_req_size.
 
-> This adds support for the PWM controller in the AO domain.
+In my tests the system never read / wrote more than 8 blocks in a row,
+most likely because the upper block layers use 4k blocks.
 
-Patches 1,3 applied to Amlogic v4.11/dt64 branch.
+Therefore setting max_blk_count doesn't really provide a benefit but
+I think it's cleaner to expose the actual chip limit.
 
-Kevin
+Rgds, Heiner
 
-> pinctrl support for GXBB already exists (in both, pinctrl-meson-gxbb.c
-> and meson-gxbb.dtsi). This patch adds at least the pwm_ao_b pin for
-> GXL and GXM - these are not documented in Amlogic's kernel, so I had
-> to borrow the magic numbers from the Khadas VIM kernel (released under
-> the GPL): [0]
->
-> The bits for pwm_AO_a_pins are unknown at the time of writing, but these
-> can still be added later.
->
-> I have successfully tested this on my GXL S905X based Khadas VIM board
-> with the following .dts snippets (the PWM LED can simply be dimmed
-> through sysfs):
-> 	&pwm_AO_ab {
-> 		status = "okay";
-> 		pinctrl-0 = <&pwm_ao_b_pins>;
-> 		pinctrl-names = "default";
-> 		clocks = <&clkc CLKID_FCLK_DIV4>;
-> 		clock-names = "clkin0";
-> 	};
->
-> 	pwmleds {
-> 		compatible = "pwm-leds";
->
-> 		power {
-> 			label = "vim:red:power";
-> 			pwms = <&pwm_AO_ab 1 7812500 0>;
-> 			max-brightness = <255>;
-> 		};
-> 	};
->
-> (if anyone is interested in more of my Khadas VIM patches - these are
-> still work-in-progress, which is why I have not sent them yet - can
-> take a look at this: [1])
->
-> NOTE: The .dts changes from this series are based on top of my SAR ADC
-> patches.
->
-> [0] https://github.com/khadas/linux/blob/94602ef5562978a8d8b5c7770c113074a714dbdb/drivers/amlogic/led/led_trigger_breathe.c#L75
-> [1] https://github.com/xdarklight/linux/commits/meson-gx-integration-4.11-20170122
->
-> Martin Blumenstingl (3):
->   ARM64: dts: meson-gx: add the missing pwm_AO_ab node
->   pinctrl: meson: meson-gxl: add the pwm_ao_b pin
->   ARM64: dts: meson-gxl: add the pwm_ao_b pin
->
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 7 +++++++
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 7 +++++++
->  drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 8 ++++++++
->  3 files changed, 22 insertions(+)
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> 
+> Kevin
+> 
