@@ -1,33 +1,40 @@
-From: jic23@kernel.org (Jonathan Cameron)
-Date: Sat, 28 Jan 2017 12:30:11 +0000
-Subject: [PATCH v4 1/3] Documentation: dt-bindings: add the Amlogic Meson
- SAR ADC documentation
-In-Reply-To: <20170123204432.2lkh3zlgzmwye3hj@rob-hp-laptop>
-References: <20170122181714.6259-1-martin.blumenstingl@googlemail.com>
- <20170122181714.6259-2-martin.blumenstingl@googlemail.com>
- <20170123204432.2lkh3zlgzmwye3hj@rob-hp-laptop>
-Message-ID: <4611e3bf-8e25-9f7c-7c34-6eca85ffc3d6@kernel.org>
+From: sst@poczta.fm (Slawomir Stepien)
+Date: Sun, 29 Jan 2017 11:33:26 +0100
+Subject: [RFC] spi-gpio on Odroid-C2 board
+Message-ID: <20170129103326.GA26547@x220.localdomain>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 23/01/17 20:44, Rob Herring wrote:
-> On Sun, Jan 22, 2017 at 07:17:12PM +0100, Martin Blumenstingl wrote:
->> This adds the devicetree binding documentation for the SAR ADC found in
->> Amlogic Meson SoCs.
->> Currently only the GXBB, GXL and GXM SoCs are supported.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
->> Reviewed-by: Andreas F?rber <afaerber@suse.de>
->> ---
->>  .../bindings/iio/adc/amlogic,meson-saradc.txt      | 32 ++++++++++++++++++++++
->>  1 file changed, 32 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
-Applied to the togreg branch of iio.git - initially pushed out as testing.
+Hi
 
-Thanks,
+Are there any issues regarding using spi-gpio on Odroid-C2 board dts file?
+I would like to use it but from what I can see dts still doesn't have it?
 
-Jonathan
+I tested something like this and is seems to works:
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 5d28e1cdc998..62104dcd48a6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -135,6 +135,18 @@
+                compatible = "mmc-pwrseq-emmc";
+                reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+        };
++
++       spi-gpio {
++               compatible = "spi-gpio";
++               #address-cells = <1>;
++               #size-cells = <0>;
++               gpio-sck  = <&gpio GPIOX_2 GPIO_ACTIVE_HIGH>;
++               gpio-miso = <&gpio GPIOX_4 GPIO_ACTIVE_HIGH>;
++               gpio-mosi = <&gpio GPIOX_7 GPIO_ACTIVE_HIGH>;
++               cs-gpios  = <&gpio GPIOX_1 GPIO_ACTIVE_HIGH
++                            &gpio GPIOY_14 GPIO_ACTIVE_HIGH>;
++               num-chipselects = <2>;
++       };
+ };
+ 
+ &scpi_clocks {
+
+-- 
+Slawomir Stepien
