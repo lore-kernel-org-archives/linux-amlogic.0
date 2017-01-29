@@ -1,40 +1,29 @@
-From: sst@poczta.fm (Slawomir Stepien)
-Date: Sun, 29 Jan 2017 11:33:26 +0100
-Subject: [RFC] spi-gpio on Odroid-C2 board
-Message-ID: <20170129103326.GA26547@x220.localdomain>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sun, 29 Jan 2017 15:07:33 +0100
+Subject: [PATCH] ARM64: dts: meson-gxbb: set reset for ethernet
+Message-ID: <ec31eddc-d286-d0bc-0bdb-ae9d5014d82e@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi
+Add reset control for ethernet.
 
-Are there any issues regarding using spi-gpio on Odroid-C2 board dts file?
-I would like to use it but from what I can see dts still doesn't have it?
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-I tested something like this and is seems to works:
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 5d28e1cdc998..62104dcd48a6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -135,6 +135,18 @@
-                compatible = "mmc-pwrseq-emmc";
-                reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-        };
-+
-+       spi-gpio {
-+               compatible = "spi-gpio";
-+               #address-cells = <1>;
-+               #size-cells = <0>;
-+               gpio-sck  = <&gpio GPIOX_2 GPIO_ACTIVE_HIGH>;
-+               gpio-miso = <&gpio GPIOX_4 GPIO_ACTIVE_HIGH>;
-+               gpio-mosi = <&gpio GPIOX_7 GPIO_ACTIVE_HIGH>;
-+               cs-gpios  = <&gpio GPIOX_1 GPIO_ACTIVE_HIGH
-+                            &gpio GPIOY_14 GPIO_ACTIVE_HIGH>;
-+               num-chipselects = <2>;
-+       };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 39a774ad..753fddf6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -113,6 +113,8 @@
+ 		 <&clkc CLKID_FCLK_DIV2>,
+ 		 <&clkc CLKID_MPLL2>;
+ 	clock-names = "stmmaceth", "clkin0", "clkin1";
++	resets = <&reset RESET_ETHERNET>;
++	reset-names = "stmmaceth";
  };
  
- &scpi_clocks {
-
+ &aobus {
 -- 
-Slawomir Stepien
+2.11.0
