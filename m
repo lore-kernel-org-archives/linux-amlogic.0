@@ -1,24 +1,42 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 30 Jan 2017 10:50:46 -0800
-Subject: [PATCH] ARM64: meson-gxbb-p200: add ADC laddered keys
-In-Reply-To: <1484562165-29449-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Mon, 16 Jan 2017 11:22:45 +0100")
-References: <1484562165-29449-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2a8a8tm9l.fsf@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Mon, 30 Jan 2017 20:33:47 +0100
+Subject: [PATCH v3] mmc: meson-gx: set max block count
+Message-ID: <b199dad5-e171-9c4a-2a44-83e0fe2365a9@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+So far max_blk_count isn't set what results in a default of value 8
+to be used (PAGE_SIZE / block size).
 
-> Add the 5 buttons connected to a resistor laddered matrix and sampled
-> by the SAR ADC channel 0.
->
-> Only the p200 board has these buttons, the P201 doesn't.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Block length field has 9 bits, so set max_blk_count to 2^9-1 = 511.
+In addition set max_req_size because max_blk_count is also limited
+by max_req_size / block_size.
 
-Applied to v4.11/dt64.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Acked-by: Kevin Hilman <khilman@baylibre.com>
+---
+v2:
+- block length field has 9 bits, so set max_blk_count to 2^9-1 = 511
+- in addition set max_req_size because max_blk_count is also limited
+  by max_req_size / block_size
+v3:
+- extend commit message
+---
+ drivers/mmc/host/meson-gx-mmc.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Note that I fixed up the subject prefix to be ARM64: dts:
-
-Kevin
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 83361f1f..d4d174ed 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -810,6 +810,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 		goto free_host;
+ 	}
+ 
++	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
++	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
+ 	mmc->ops = &meson_mmc_ops;
+ 	mmc_add_host(mmc);
+ 
+-- 
+2.11.0
