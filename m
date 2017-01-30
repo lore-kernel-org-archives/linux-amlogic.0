@@ -1,44 +1,72 @@
-From: linux@armlinux.org.uk (Russell King - ARM Linux)
-Date: Mon, 30 Jan 2017 14:59:24 +0000
-Subject: [PATCH 10/18] ARM64: dts: meson-gxbb: Reorder nodes
-In-Reply-To: <20170123165208.4ujwm6rjz2b3dom5@rob-hp-laptop>
-References: <20170120222118.21476-1-afaerber@suse.de>
- <20170120222118.21476-11-afaerber@suse.de>
- <20170123165208.4ujwm6rjz2b3dom5@rob-hp-laptop>
-Message-ID: <20170130145924.GX27312@n2100.armlinux.org.uk>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 30 Jan 2017 08:53:56 -0800
+Subject: [PATCH] mmc: meson-gx: set max block count to 256
+In-Reply-To: <c8f456f5-1722-55d6-58d8-c438d344cbc1@gmail.com> (Heiner
+ Kallweit's message of "Sat, 28 Jan 2017 09:18:50 +0100")
+References: <82cf7861-5cf8-302d-5354-435282d95619@gmail.com>
+ <m2lgtwuzll.fsf@baylibre.com>
+ <c8f456f5-1722-55d6-58d8-c438d344cbc1@gmail.com>
+Message-ID: <m2o9yotrob.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jan 23, 2017 at 10:52:08AM -0600, Rob Herring wrote:
-> On Fri, Jan 20, 2017 at 11:21:10PM +0100, Andreas F?rber wrote:
-> > Sort nodes referenced by label alphabetically.
-> 
-> Seems to be pointless churn.
+Heiner Kallweit <hkallweit1@gmail.com> writes:
 
-Depends - if, as the author of a dts file, I order the nodes
-alphabetically, and then someone comes along and adds a new node
-non-alphabetically, meanwhile someone else also adds a node
-elsewhere in the file which conflicts, git will silently merge the
-changes without complaint.
+> Am 27.01.2017 um 19:28 schrieb Kevin Hilman:
+>> Heiner Kallweit <hkallweit1@gmail.com> writes:
+>> 
+>>> So far max_blk_count isn't set what results in a default of value 8
+>>> to be used (PAGE_SIZE / block size).
+>>>
+>>> Set max_blk_count to 256 as used in the uboot driver.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> 
+>> Thanks for the patch. A minor comment below:
+>> 
+>>> ---
+>>>  drivers/mmc/host/meson-gx-mmc.c | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+>>> index 3308b5b6..030425be 100644
+>>> --- a/drivers/mmc/host/meson-gx-mmc.c
+>>> +++ b/drivers/mmc/host/meson-gx-mmc.c
+>>> @@ -799,6 +799,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>>>  		goto free_host;
+>>>  	}
+>>>  
+>>> +	mmc->max_blk_count = 256;
+>> 
+>> A step in the right direction, but the # blocks is actually a 9-bit
+>> field (c.f. length field of cmd_cfg part of descriptor (bits 8:0).
+>> 
+>> So this should be more like:
+>> 
+>> 	/* blk count is 'length' field of cmd_cfg part of descriptor */
+>> 	mmc->max_blk_count = CMD_CFG_LENGTH_MASK + 1;
+>> 
+>> I tested that change locally, so after changing that, please resend and
+>> feel free to add:
+>> 
+> max_blk_count = 0 means unlimited number of blocks. Therefore I think
+> we have to go with: mmc->max_blk_count = CMD_CFG_LENGTH_MASK
 
-Having an alphabetical sorting order means that (a) conflicting
-changes are more likely to be highlighted, and (b) non-conflicting
-changes are less likely to cause merge issues.
+Ah, yes.  Good catch.
 
-I've noticed exactly this with clearfog when merging my tree with
-arm-soc.  I have a version of the DSA patch, meanwhile the mvebu
-people merged the DSA patch.  Somehow, the order of nodes in my
-file are alphabetical, the order in their file has the pinctrl and
-mdio nodes swapped, which results in totally unnecessary merge
-conflicts when I try merging the two trees.
+Kevin
 
-It's more, unnecessary work.
-
-So, I'm going to be submitting a patch to fix the mis-ordered nodes
-in the clearfog dts file today to avoid having to resolve this each
-time I rebuild my nightly build tree.
-
--- 
-RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line: currently at 9.6Mbps down 400kbps up
-according to speedtest.net.
+> And I figured out later that we also have to set mmc->max_req_size.
+>
+> In my tests the system never read / wrote more than 8 blocks in a row,
+> most likely because the upper block layers use 4k blocks.
+>
+> Therefore setting max_blk_count doesn't really provide a benefit but
+> I think it's cleaner to expose the actual chip limit.
+>
+>
+>> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+>> Tested-by: Kevin Hilman <khilman@baylibre.com>
+>> 
+>> Kevin
+>> 
