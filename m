@@ -1,50 +1,59 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 30 Jan 2017 09:44:59 +0100
-Subject: [RFC] spi-gpio on Odroid-C2 board
-In-Reply-To: <20170129103326.GA26547@x220.localdomain>
-References: <20170129103326.GA26547@x220.localdomain>
-Message-ID: <867f36c0-7ee1-4580-516a-28b56a5db498@baylibre.com>
+Date: Mon, 30 Jan 2017 12:05:14 +0100
+Subject: [PATCH 0/4] drm: bridge: dw-hdmi: Add support for Custom PHYs
+Message-ID: <1485774318-21916-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/29/2017 11:33 AM, Slawomir Stepien wrote:
-> Hi
-> 
-> Are there any issues regarding using spi-gpio on Odroid-C2 board dts file?
-> I would like to use it but from what I can see dts still doesn't have it?
-> 
-> I tested something like this and is seems to works:
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 5d28e1cdc998..62104dcd48a6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -135,6 +135,18 @@
->                 compatible = "mmc-pwrseq-emmc";
->                 reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
->         };
-> +
-> +       spi-gpio {
-> +               compatible = "spi-gpio";
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +               gpio-sck  = <&gpio GPIOX_2 GPIO_ACTIVE_HIGH>;
-> +               gpio-miso = <&gpio GPIOX_4 GPIO_ACTIVE_HIGH>;
-> +               gpio-mosi = <&gpio GPIOX_7 GPIO_ACTIVE_HIGH>;
-> +               cs-gpios  = <&gpio GPIOX_1 GPIO_ACTIVE_HIGH
-> +                            &gpio GPIOY_14 GPIO_ACTIVE_HIGH>;
-> +               num-chipselects = <2>;
-> +       };
->  };
->  
->  &scpi_clocks {
-> 
+The Amlogic GX SoCs implements a Synopsys DesignWare HDMI TX Controller
+in combination with a very custom PHY.
 
-Hi Slawomir,
+Thanks to Laurent Pinchart's changes, the HW report the following :
+ Detected HDMI TX controller v2.01a with HDCP (Vendor PHY)
 
-Thanks for testing the spi-gpio interface, but since these pins are not explicitely used
-as SPI, there is no real need to have them in the upstream Odroid-C2 dts file.
+The following differs from common PHY integration as managed in the current
+driver :
+ - Amlogic PHY is not configured through the internal I2C link
+ - Amlogic PHY do not use the ENTMDS, SVSRET, PDDQ, ... signals from the controller
+ - Amlogic PHY do not export HPD ands RxSense signals to the controller
 
-Such entries should added locally for each local projects.
+And finally, concerning the controller integration :
+ - the Controller registers are not flat memory-mapped, and uses an
+    addr+read/write register pair to write all registers.
+ - Inputs only YUV444 pixel data
 
-Neil
+This is why the following patchset implements :
+ - Conversion to regmap for register access
+ - Add more callbacks ops to handle Custom PHYs
+ - Configure the Input format from the plat_data
+ - Fixes a bug that considers the input to be always RBG and sends bad pixel
+   format to a DVI sink by disabling CSC
+
+This patchset makes the Amlogix GX SoCs HDMI output successfully work, but I
+do not have access to Renesas, i.MX or RockChip SoCs to test against
+potentiel regressions, like the regmap conversion.
+
+This patchset is based on the latest Laurent Pinchart dw-hdmi serie at [1] that was recently
+merged into drm-misc.
+
+Changes since RFC at [2] :
+ - Regmap fixup for 4bytes register access, tested on RK3288 SoC
+ - Move phy callbacks to phy_ops and move Synopsys PHY calls into default ops
+ - Move HDMI link data into shared header
+ - Move Pixel Encoding enum to shared header
+
+[1] http://lkml.kernel.org/r/20170117082910.27023-1-laurent.pinchart+renesas at ideasonboard.com
+[2] http://lkml.kernel.org/r/1484656294-6140-1-git-send-email-narmstrong at baylibre.com
+
+Neil Armstrong (4):
+  drm: bridge: dw-hdmi: Switch to regmap for register access
+  drm: bridge: dw-hdmi: Add support for custom PHY handling
+  drm: bridge: dw-hdmi: Enable CSC even for DVI
+  drm: bridge: dw-hdmi: Take input format from plat_data
+
+ drivers/gpu/drm/bridge/dw-hdmi.c | 313 ++++++++++++++++++++++-----------------
+ include/drm/bridge/dw_hdmi.h     |  46 ++++++
+ 2 files changed, 226 insertions(+), 133 deletions(-)
+
+-- 
+1.9.1
