@@ -1,33 +1,32 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 31 Jan 2017 22:21:12 +0100
-Subject: [PATCH] Documentation: devicetree: meson-ir: "linux,
- rc-map-name" is supported
-Message-ID: <20170131212112.5582-1-martin.blumenstingl@googlemail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 31 Jan 2017 14:44:24 -0800
+Subject: [PATCH 1/3] mmc: meson-gx: fix setting f_min
+In-Reply-To: <d974bc57-1959-e16e-eb89-0e1dc37d8f15@gmail.com>
+References: <e26a74f8-9819-6940-4c90-225377cc0a3e@gmail.com>
+ <CAPDyKFrhTm7A_tq_W3yWoPv95exZ-LTtEhiQhw134AfGZuRY+Q@mail.gmail.com>
+ <d974bc57-1959-e16e-eb89-0e1dc37d8f15@gmail.com>
+Message-ID: <CAOi56cWgZ7y3m9YSA82dzw=KHTntk-i1bxeT8Hf=_+Jb=5_P1w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The driver already parses the "linux,rc-map-name" property. Add this
-information to the documentation so .dts maintainers don't have to look
-it up in the source-code.
+On Tue, Jan 31, 2017 at 12:32 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> Am 31.01.2017 um 12:55 schrieb Ulf Hansson:
+>> On 26 January 2017 at 22:41, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>> Currently f_min is set to 4 MHz whilst the comment states 400 MHz.
+>>> I think the itention is to set f_min to 400 kHz.
+>>> Change value and comment accordingly.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>
+>> Heiner, could you please collect the mmc meson changes that you
+>> recently have submitted in one series and re-post to linux-mmc. I can
+>> pick them up from there.
+>>
+> Sure. Apart from the ones you've reviewed already I have few more.
+> I'll add them to the patch set.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- Documentation/devicetree/bindings/media/meson-ir.txt | 3 +++
- 1 file changed, 3 insertions(+)
+When you re-post, it's customary to collect and add the various tags
+(acked-by, tested-by, reviewed-by) to the changelog so it's easy to
+tell what's already been reviewed/acked etc.
 
-diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
-index e7e3f3c4fc8f..efd9d29a8f10 100644
---- a/Documentation/devicetree/bindings/media/meson-ir.txt
-+++ b/Documentation/devicetree/bindings/media/meson-ir.txt
-@@ -8,6 +8,9 @@ Required properties:
-  - reg		: physical base address and length of the device registers
-  - interrupts	: a single specifier for the interrupt from the device
- 
-+Optional properties:
-+ - linux,rc-map-name:	see rc.txt file in the same directory.
-+
- Example:
- 
- 	ir-receiver at c8100480 {
--- 
-2.11.0
+Kevin
