@@ -1,59 +1,43 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 1 Feb 2017 07:48:58 +0100
-Subject: [PATCH v2 5/9] mmc: meson-gx: improve interrupt handling
+Date: Wed, 1 Feb 2017 07:49:07 +0100
+Subject: [PATCH v2 6/9] mmc: meson-gx: set max block count and request size
 In-Reply-To: <584e5061-d359-1436-05ee-3767a5a4b10f@gmail.com>
 References: <584e5061-d359-1436-05ee-3767a5a4b10f@gmail.com>
-Message-ID: <23e1aac3-5761-944a-f3ca-cb88a9e44ad8@gmail.com>
+Message-ID: <aa425902-457d-2cd8-bc2a-4bac6938f076@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Disabling and immediately re-enabling interrupts in meson_mmc_request
-doesn't provide a benefit. Instead enable interrupts in probe already.
-And disable interrupts in remove, this was missing so far.
+So far max_blk_count isn't set what results in a default of value 8
+to be used (PAGE_SIZE / block size).
+
+Block length field has 9 bits, so set max_blk_count to 2^9-1 = 511.
+In addition set max_req_size because max_blk_count is also limited
+by max_req_size / block_size.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- no changes
+- added reviewed-by, tested-by, acked-by
 ---
- drivers/mmc/host/meson-gx-mmc.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 4ce4c640..0fba23d2 100644
+index 0fba23d2..883263c5 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -546,11 +546,6 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 	/* Stop execution */
- 	writel(0, host->regs + SD_EMMC_START);
+@@ -781,6 +781,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto free_host;
  
--	/* clear, ack, enable all interrupts */
--	writel(0, host->regs + SD_EMMC_IRQ_EN);
--	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
--	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
--
- 	host->mrq = mrq;
- 
- 	if (mrq->sbc)
-@@ -777,8 +772,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	writel(0, host->regs + SD_EMMC_START);
- 
- 	/* clear, ack, enable all interrupts */
--	writel(0, host->regs + SD_EMMC_IRQ_EN);
- 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
-+	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
- 
- 	ret = devm_request_threaded_irq(&pdev->dev, host->irq,
- 					meson_mmc_irq, meson_mmc_irq_thread,
-@@ -816,6 +811,9 @@ static int meson_mmc_remove(struct platform_device *pdev)
- 	if (WARN_ON(!host))
- 		return 0;
- 
-+	/* disable interrupts */
-+	writel(0, host->regs + SD_EMMC_IRQ_EN);
++	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
++	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
 +
- 	if (host->bounce_buf)
- 		dma_free_coherent(host->dev, host->bounce_buf_size,
- 				  host->bounce_buf, host->bounce_dma_addr);
+ 	/* data bounce buffer */
+ 	host->bounce_buf_size = SZ_512K;
+ 	host->bounce_buf =
 -- 
 2.11.0
