@@ -1,34 +1,56 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Wed, 1 Feb 2017 19:22:21 +0100
-Subject: [PATCH] Documentation: devicetree: meson-ir: "linux, rc-map-name"
- is supported
-In-Reply-To: <20170201174726.2vyvxpnie7qclrvk@rob-hp-laptop>
-References: <20170131212112.5582-1-martin.blumenstingl@googlemail.com>
- <20170201174726.2vyvxpnie7qclrvk@rob-hp-laptop>
-Message-ID: <29c4bd35-8723-55fe-2467-2c17d2f75b15@suse.de>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Wed, 1 Feb 2017 20:19:25 +0100
+Subject: [PATCH] net: stmmac: don't set tx delay in RGMII_ID and RGMII_TXID
+ mode
+Message-ID: <ed022e67-2494-209e-9e51-b7a57c219d02@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 01.02.2017 um 18:47 schrieb Rob Herring:
-> On Tue, Jan 31, 2017 at 10:21:12PM +0100, Martin Blumenstingl wrote:
->> The driver already parses the "linux,rc-map-name" property. Add this
->> information to the documentation so .dts maintainers don't have to look
->> it up in the source-code.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  Documentation/devicetree/bindings/media/meson-ir.txt | 3 +++
->>  1 file changed, 3 insertions(+)
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
+As documented in Documentation/devicetree/bindings/net/ethernet.txt,
+in RGMII_ID and RGMII_TXID mode the MAC should not add a tx delay.
 
-Note that the subject has a space in the property name that should be
-dropped before applying.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
-Regards,
-Andreas
-
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+index 8840a360..96855559 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+@@ -177,12 +177,19 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ {
+ 	int ret;
+ 	unsigned long clk_rate;
+-	u8 tx_dly_val;
++	u8 tx_dly_val = 0;
+ 
+ 	switch (dwmac->phy_mode) {
+ 	case PHY_INTERFACE_MODE_RGMII:
+-	case PHY_INTERFACE_MODE_RGMII_ID:
+ 	case PHY_INTERFACE_MODE_RGMII_RXID:
++		/* TX clock delay in ns = "8ns / 4 * tx_dly_val" (where
++		 * 8ns are exactly one cycle of the 125MHz RGMII TX clock):
++		 * 0ns = 0x0, 2ns = 0x1, 4ns = 0x2, 6ns = 0x3
++		 */
++		tx_dly_val = dwmac->tx_delay_ns >> 1;
++		/* fall through */
++
++	case PHY_INTERFACE_MODE_RGMII_ID:
+ 	case PHY_INTERFACE_MODE_RGMII_TXID:
+ 		/* Generate a 25MHz clock for the PHY */
+ 		clk_rate = 25 * 1000 * 1000;
+@@ -195,11 +202,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+ 					PRG_ETH0_INVERTED_RMII_CLK, 0);
+ 
+-		/* TX clock delay in ns = "8ns / 4 * tx_dly_val" (where
+-		 * 8ns are exactly one cycle of the 125MHz RGMII TX clock):
+-		 * 0ns = 0x0, 2ns = 0x1, 4ns = 0x2, 6ns = 0x3
+-		 */
+-		tx_dly_val = dwmac->tx_delay_ns >> 1;
+ 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
+ 					tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
+ 		break;
 -- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+2.11.0
