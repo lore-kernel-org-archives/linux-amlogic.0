@@ -1,36 +1,40 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 1 Feb 2017 22:02:02 +0100
-Subject: [PATCH] net: stmmac: add separate warning for PTP not being supported
- by HW
-Message-ID: <0983485b-418d-5c9b-e94b-8f4edc9f13cf@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed,  1 Feb 2017 23:14:15 +0100
+Subject: [PATCH v2] Documentation: devicetree: meson-ir: "linux,
+ rc-map-name" is supported
+In-Reply-To: <20170131212112.5582-1-martin.blumenstingl@googlemail.com>
+References: <20170131212112.5582-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170201221415.22794-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Chips like Amlogic S905GXBB are supported by this driver but don't
-have support for PTP. Add a separate warning for missing HW support
-to differentiate it from other actual failures.
+The driver already parses the "linux,rc-map-name" property. Add this
+information to the documentation so .dts maintainers don't have to look
+it up in the source-code.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Changes since v1:
+- removed character which shows up as whitespace from subject
+- added Rob Herring's ACK
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index 26a2185f..bd83bf9e 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -1726,8 +1726,10 @@ static int stmmac_hw_setup(struct net_device *dev, bool init_ptp)
+ Documentation/devicetree/bindings/media/meson-ir.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/media/meson-ir.txt b/Documentation/devicetree/bindings/media/meson-ir.txt
+index e7e3f3c4fc8f..efd9d29a8f10 100644
+--- a/Documentation/devicetree/bindings/media/meson-ir.txt
++++ b/Documentation/devicetree/bindings/media/meson-ir.txt
+@@ -8,6 +8,9 @@ Required properties:
+  - reg		: physical base address and length of the device registers
+  - interrupts	: a single specifier for the interrupt from the device
  
- 	if (init_ptp) {
- 		ret = stmmac_init_ptp(priv);
--		if (ret)
--			netdev_warn(priv->dev, "fail to init PTP.\n");
-+		if (ret == -EOPNOTSUPP)
-+			netdev_warn(priv->dev, "PTP not supported by HW\n");
-+		else if (ret)
-+			netdev_warn(priv->dev, "PTP init failed\n");
- 	}
++Optional properties:
++ - linux,rc-map-name:	see rc.txt file in the same directory.
++
+ Example:
  
- #ifdef CONFIG_DEBUG_FS
+ 	ir-receiver at c8100480 {
 -- 
 2.11.0
