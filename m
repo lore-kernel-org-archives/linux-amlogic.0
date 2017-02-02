@@ -1,64 +1,42 @@
-From: daniel@ffwll.ch (Daniel Vetter)
-Date: Thu, 2 Feb 2017 13:06:19 +0100
-Subject: [PATCH 2/2] drm: meson: rename driver name to meson-drm
-In-Reply-To: <a6655fb5-5267-6536-d9b6-5ce0ff9f25ec@baylibre.com>
-References: <1486028864-19622-1-git-send-email-narmstrong@baylibre.com>
- <1486028864-19622-3-git-send-email-narmstrong@baylibre.com>
- <20170202104514.nogjnsuimeulml53@phenom.ffwll.local>
- <a6655fb5-5267-6536-d9b6-5ce0ff9f25ec@baylibre.com>
-Message-ID: <20170202120618.fvypcbvo7pbgoeom@phenom.ffwll.local>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Thu, 2 Feb 2017 14:04:15 +0100
+Subject: [PATCH v2] Documentation: devicetree: meson-ir:
+ "linux,rc-map-name" is supported
+In-Reply-To: <CAFBinCDF2d36E2hp7w_ehqdErdZPK9maQLpBmqMoGMPZmTTqqQ@mail.gmail.com>
+References: <20170131212112.5582-1-martin.blumenstingl@googlemail.com>
+ <20170201221415.22794-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCDF2d36E2hp7w_ehqdErdZPK9maQLpBmqMoGMPZmTTqqQ@mail.gmail.com>
+Message-ID: <cccd0fef-fa2c-bdfd-b7dd-b26ef288dfa0@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Feb 02, 2017 at 11:50:59AM +0100, Neil Armstrong wrote:
-> On 02/02/2017 11:45 AM, Daniel Vetter wrote:
-> > On Thu, Feb 02, 2017 at 10:47:44AM +0100, Neil Armstrong wrote:
-> >> The platform driver name is currently "meson" which can lead to some
-> >> confusion, this patch renames it to "meson-drm" and removes the owner
-> >> attribute.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/gpu/drm/meson/meson_drv.c | 3 +--
-> >>  1 file changed, 1 insertion(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> >> index ff1f601..380bde7 100644
-> >> --- a/drivers/gpu/drm/meson/meson_drv.c
-> >> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> >> @@ -329,8 +329,7 @@ static int meson_drv_remove(struct platform_device *pdev)
-> >>  	.probe      = meson_drv_probe,
-> >>  	.remove     = meson_drv_remove,
-> >>  	.driver     = {
-> >> -		.owner  = THIS_MODULE,
-> 
-> Hi Daniel,
-> 
-> > I don't get why you remove this, generally that will lead to trouble of
-> > being able to unload code that's still in use ...
-> 
-> Indeed, but since a (long ?) time, the owner field is now populated by the
->  platform_driver_register() core code.
-> 
-> > 
-> > Otherwise ack.
-> > 
-> > Now, do you want to get this landed as part of the small drivers in
-> > drm-mis experiment?
-> 
-> I have a PR ready, but it can go through this experiment, yes.
+Am 01.02.2017 um 23:26 schrieb Martin Blumenstingl:
+> On Wed, Feb 1, 2017 at 11:14 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> The driver already parses the "linux,rc-map-name" property. Add this
+>> information to the documentation so .dts maintainers don't have to look
+>> it up in the source-code.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>> ---
+>> Changes since v1:
+>> - removed character which shows up as whitespace from subject
+> I have verified that I really sent this without a whitespace (I'm
+> using git send-email, so the patch is not mangled by some webmailer) -
+> unfortunately it seems to appear again (maybe one of the receiving
+> mail-servers or the mailing-list software does something weird here).
 
-If you want to give it a spin, you need:
-- fdo account https://www.freedesktop.org/wiki/AccountRequests/
-- drm-misc group access
-- dim set up for drm-misc, see
-  https://01.org/linuxgraphics/gfx-docs/maintainer-tools/dim.html and
-  https://01.org/linuxgraphics/gfx-docs/maintainer-tools/drm-misc.html
+Shows up fine here now,
 
-For questions it's best to pipe up #dri-devel.
+Reviewed-by: Andreas F?rber <afaerber@suse.de>
 
-Cheers, Daniel
+Didn't expect a resend for that btw.
+
+Thanks,
+Andreas
+
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
