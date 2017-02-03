@@ -1,42 +1,67 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Fri, 3 Feb 2017 09:29:15 +0100
-Subject: [PATCH v2 1/9] mmc: meson-gx: fix setting f_min
-In-Reply-To: <e8f1b59a-927b-b50e-4137-0b4b9e3cbc6e@gmail.com>
-References: <e8f1b59a-927b-b50e-4137-0b4b9e3cbc6e@gmail.com>
-Message-ID: <CAPDyKFq9mScEuqcmP0E3Lz0APhYbHYtyUvc6WXkGGXR1OZavgg@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 03 Feb 2017 10:03:28 -0800
+Subject: [PATCH v2 4/9] mmc: meson-gx: improve meson_mmc_irq_thread
+In-Reply-To: <460d2337-7865-6c9c-21b6-98c2ea070926@gmail.com> (Heiner
+ Kallweit's message of "Wed, 1 Feb 2017 07:48:49 +0100")
+References: <584e5061-d359-1436-05ee-3767a5a4b10f@gmail.com>
+ <460d2337-7865-6c9c-21b6-98c2ea070926@gmail.com>
+Message-ID: <7h4m0bw3rj.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 1 February 2017 at 07:48, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> Currently f_min is set to 4 MHz whilst the comment states 400 MHz.
-> I think the itention is to set f_min to 400 kHz.
-> Change value and comment accordingly.
+Heiner Kallweit <hkallweit1@gmail.com> writes:
+
+> Remove unneeded variable ret and simplify the if block.
 >
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> Acked-by: Kevin Hilman <khilman@baylibre.com>
 > ---
 > v2:
-> - added acked-by
+> - no changes
+
+Acked-by: Kevin Hilman <khilman@baylibre.com>
+
 > ---
->  drivers/mmc/host/meson-gx-mmc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/mmc/host/meson-gx-mmc.c | 15 ++++++---------
+>  1 file changed, 6 insertions(+), 9 deletions(-)
 >
 > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 5eca88bc..da3cce31 100644
+> index 529a4f22..4ce4c640 100644
 > --- a/drivers/mmc/host/meson-gx-mmc.c
 > +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -268,7 +268,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
->         if (f_min != UINT_MAX)
->                 f_min = DIV_ROUND_UP(CLK_SRC_XTAL_RATE, CLK_DIV_MAX);
->         else
-> -               f_min = 4000000;  /* default min: 400 MHz */
-> +               f_min = 400000;  /* default min: 400 kHz */
->         host->mmc->f_min = f_min;
-
-This hole thing looks really weird to me. Although instead of
-discussing it here, I decided to post a patch to show how I think this
-should be done. Could you please have look!?
-https://patchwork.kernel.org/patch/9553599/
-
-Kind regards
-Uffe
+> @@ -670,7 +670,6 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+>  	struct mmc_command *cmd = host->cmd;
+>  	struct mmc_data *data;
+>  	unsigned int xfer_bytes;
+> -	int ret = IRQ_HANDLED;
+>  
+>  	if (WARN_ON(!mrq))
+>  		return IRQ_NONE;
+> @@ -679,14 +678,12 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+>  		return IRQ_NONE;
+>  
+>  	data = cmd->data;
+> -	if (data) {
+> +	if (data && data->flags & MMC_DATA_READ) {
+>  		xfer_bytes = data->blksz * data->blocks;
+> -		if (data->flags & MMC_DATA_READ) {
+> -			WARN_ON(xfer_bytes > host->bounce_buf_size);
+> -			sg_copy_from_buffer(data->sg, data->sg_len,
+> -					    host->bounce_buf, xfer_bytes);
+> -			data->bytes_xfered = xfer_bytes;
+> -		}
+> +		WARN_ON(xfer_bytes > host->bounce_buf_size);
+> +		sg_copy_from_buffer(data->sg, data->sg_len,
+> +				    host->bounce_buf, xfer_bytes);
+> +		data->bytes_xfered = xfer_bytes;
+>  	}
+>  
+>  	meson_mmc_read_resp(host->mmc, cmd);
+> @@ -695,7 +692,7 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+>  	else
+>  		meson_mmc_start_cmd(host->mmc, data->stop);
+>  
+> -	return ret;
+> +	return IRQ_HANDLED;
+>  }
+>  
+>  /*
