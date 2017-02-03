@@ -1,63 +1,67 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 3 Feb 2017 20:47:49 +0100
-Subject: [PATCH] net: stmmac: don't set tx delay in RGMII_ID and
- RGMII_TXID mode
-In-Reply-To: <ed022e67-2494-209e-9e51-b7a57c219d02@gmail.com>
-References: <ed022e67-2494-209e-9e51-b7a57c219d02@gmail.com>
-Message-ID: <CAFBinCBpdkHTnbPHF534qpRzfyXuDAujXJdHSWxSSVnrut9cqg@mail.gmail.com>
+Date: Fri, 3 Feb 2017 21:05:28 +0100
+Subject: [PATCH] phy: meson8b-usb2: fix offsets for some of the registers
+In-Reply-To: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
+References: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCAWsXqPHdKwgFLceqpMKGmUpTxGtksfZd46EYAxvWdDpw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Feb 1, 2017 at 8:19 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> As documented in Documentation/devicetree/bindings/net/ethernet.txt,
-> in RGMII_ID and RGMII_TXID mode the MAC should not add a tx delay.
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com"
+Hi Kishon, Hi Kevin,
 
+did you have time to look into this yet?
+
+On Fri, Jan 13, 2017 at 7:53 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> The register offsets for REG_DBG_UART (and all following) were off by
+> 0x4. This was not a problem yet because these registers are currently
+> not used by the driver.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
+>  drivers/phy/phy-meson8b-usb2.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> index 8840a360..96855559 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> @@ -177,12 +177,19 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->  {
->         int ret;
->         unsigned long clk_rate;
-> -       u8 tx_dly_val;
-> +       u8 tx_dly_val = 0;
+> diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
+> index 33c9f4ba157d..30f56a6a411f 100644
+> --- a/drivers/phy/phy-meson8b-usb2.c
+> +++ b/drivers/phy/phy-meson8b-usb2.c
+> @@ -81,9 +81,9 @@
+>         #define REG_ADP_BC_ACA_PIN_GND                  BIT(25)
+>         #define REG_ADP_BC_ACA_PIN_FLOAT                BIT(26)
 >
->         switch (dwmac->phy_mode) {
->         case PHY_INTERFACE_MODE_RGMII:
-> -       case PHY_INTERFACE_MODE_RGMII_ID:
->         case PHY_INTERFACE_MODE_RGMII_RXID:
-> +               /* TX clock delay in ns = "8ns / 4 * tx_dly_val" (where
-> +                * 8ns are exactly one cycle of the 125MHz RGMII TX clock):
-> +                * 0ns = 0x0, 2ns = 0x1, 4ns = 0x2, 6ns = 0x3
-> +                */
-> +               tx_dly_val = dwmac->tx_delay_ns >> 1;
-> +               /* fall through */
-> +
-> +       case PHY_INTERFACE_MODE_RGMII_ID:
->         case PHY_INTERFACE_MODE_RGMII_TXID:
->                 /* Generate a 25MHz clock for the PHY */
->                 clk_rate = 25 * 1000 * 1000;
-> @@ -195,11 +202,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->                 meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->                                         PRG_ETH0_INVERTED_RMII_CLK, 0);
+> -#define REG_DBG_UART                                   0x14
+> +#define REG_DBG_UART                                   0x10
 >
-> -               /* TX clock delay in ns = "8ns / 4 * tx_dly_val" (where
-> -                * 8ns are exactly one cycle of the 125MHz RGMII TX clock):
-> -                * 0ns = 0x0, 2ns = 0x1, 4ns = 0x2, 6ns = 0x3
-> -                */
-> -               tx_dly_val = dwmac->tx_delay_ns >> 1;
->                 meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
->                                         tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
->                 break;
+> -#define REG_TEST                                       0x18
+> +#define REG_TEST                                       0x14
+>         #define REG_TEST_DATA_IN_MASK                   GENMASK(3, 0)
+>         #define REG_TEST_EN_MASK                        GENMASK(7, 4)
+>         #define REG_TEST_ADDR_MASK                      GENMASK(11, 8)
+> @@ -93,7 +93,7 @@
+>         #define REG_TEST_DATA_OUT_MASK                  GENMASK(19, 16)
+>         #define REG_TEST_DISABLE_ID_PULLUP              BIT(20)
+>
+> -#define REG_TUNE                                       0x1c
+> +#define REG_TUNE                                       0x18
+>         #define REG_TUNE_TX_RES_TUNE_MASK               GENMASK(1, 0)
+>         #define REG_TUNE_TX_HSXV_TUNE_MASK              GENMASK(3, 2)
+>         #define REG_TUNE_TX_VREF_TUNE_MASK              GENMASK(7, 4)
 > --
 > 2.11.0
 >
-Heiner, many thanks for this and your other patches!
+this is the struct (which represents the register mapping) from
+Amlogic's kernel sources [0]:
+typedef struct usb_peri_reg {
+    volatile uint32_t config;
+    volatile uint32_t ctrl;
+    volatile uint32_t endp_intr;
+    volatile uint32_t adp_bc;
+    volatile uint32_t dbg_uart;
+    volatile uint32_t test;
+    volatile uint32_t tune;
+    volatile uint32_t reserved;
+} usb_peri_reg_t;
+
+
+[0] https://github.com/khadas/linux/blob/b328e86796b96f3d421edba89cb015e30b0711dd/include/linux/amlogic/usb-meson8.h#L24
