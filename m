@@ -1,46 +1,63 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 03 Feb 2017 11:00:22 -0800
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.11, round 2
-Message-ID: <7hmve3umk9.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 3 Feb 2017 20:47:49 +0100
+Subject: [PATCH] net: stmmac: don't set tx delay in RGMII_ID and
+ RGMII_TXID mode
+In-Reply-To: <ed022e67-2494-209e-9e51-b7a57c219d02@gmail.com>
+References: <ed022e67-2494-209e-9e51-b7a57c219d02@gmail.com>
+Message-ID: <CAFBinCBpdkHTnbPHF534qpRzfyXuDAujXJdHSWxSSVnrut9cqg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arnd, Olof,
+On Wed, Feb 1, 2017 at 8:19 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> As documented in Documentation/devicetree/bindings/net/ethernet.txt,
+> in RGMII_ID and RGMII_TXID mode the MAC should not add a tx delay.
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com"
 
-A couple more DT updates for v4.11 on top of the previous pull request.
-
-Please pull,  Thanks.
-
-Kevin
-
-
-The following changes since commit 249a2243e97edcd2cb0bef01a934d4ba21fb167f:
-
-  ARM64: dts: meson-gxl: add the pwm_ao_b pin (2017-01-27 11:00:41 -0800)
-
-are available in the git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
-
-for you to fetch changes up to 6b6a1867667a90f399762dc1ee6add5b4aa646c9:
-
-  ARM64: dts: meson-gxbb-p200: add ADC laddered keys (2017-01-30 10:47:59 -0800)
-
-----------------------------------------------------------------
-Amlogic DT updates for v4.11, round 2
-- add SAR ADC driver
-- add ADC laddered keys to meson-gxbb-p200 board
-
-----------------------------------------------------------------
-Martin Blumenstingl (1):
-      ARM64: dts: meson: meson-gx: add the SAR ADC
-
-Neil Armstrong (1):
-      ARM64: dts: meson-gxbb-p200: add ADC laddered keys
-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi       |  8 ++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts | 50 ++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi     | 10 ++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi      | 10 ++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi      |  4 ++++
- 5 files changed, 82 insertions(+)
+> ---
+>  drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 16 +++++++++-------
+>  1 file changed, 9 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> index 8840a360..96855559 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+> @@ -177,12 +177,19 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+>  {
+>         int ret;
+>         unsigned long clk_rate;
+> -       u8 tx_dly_val;
+> +       u8 tx_dly_val = 0;
+>
+>         switch (dwmac->phy_mode) {
+>         case PHY_INTERFACE_MODE_RGMII:
+> -       case PHY_INTERFACE_MODE_RGMII_ID:
+>         case PHY_INTERFACE_MODE_RGMII_RXID:
+> +               /* TX clock delay in ns = "8ns / 4 * tx_dly_val" (where
+> +                * 8ns are exactly one cycle of the 125MHz RGMII TX clock):
+> +                * 0ns = 0x0, 2ns = 0x1, 4ns = 0x2, 6ns = 0x3
+> +                */
+> +               tx_dly_val = dwmac->tx_delay_ns >> 1;
+> +               /* fall through */
+> +
+> +       case PHY_INTERFACE_MODE_RGMII_ID:
+>         case PHY_INTERFACE_MODE_RGMII_TXID:
+>                 /* Generate a 25MHz clock for the PHY */
+>                 clk_rate = 25 * 1000 * 1000;
+> @@ -195,11 +202,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+>                 meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+>                                         PRG_ETH0_INVERTED_RMII_CLK, 0);
+>
+> -               /* TX clock delay in ns = "8ns / 4 * tx_dly_val" (where
+> -                * 8ns are exactly one cycle of the 125MHz RGMII TX clock):
+> -                * 0ns = 0x0, 2ns = 0x1, 4ns = 0x2, 6ns = 0x3
+> -                */
+> -               tx_dly_val = dwmac->tx_delay_ns >> 1;
+>                 meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
+>                                         tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
+>                 break;
+> --
+> 2.11.0
+>
+Heiner, many thanks for this and your other patches!
