@@ -1,20 +1,77 @@
-From: davem@davemloft.net (David Miller)
-Date: Thu, 02 Feb 2017 22:01:38 -0500 (EST)
-Subject: [PATCH] net: stmmac: add separate warning for PTP not being
- supported by HW
-In-Reply-To: <0983485b-418d-5c9b-e94b-8f4edc9f13cf@gmail.com>
-References: <0983485b-418d-5c9b-e94b-8f4edc9f13cf@gmail.com>
-Message-ID: <20170202.220138.452126742272467066.davem@davemloft.net>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Fri,  3 Feb 2017 09:28:11 +0100
+Subject: [PATCH] mmc: meson: Assign the minimum clk rate as close to 100KHz as
+ possible
+Message-ID: <1486110491-8921-1-git-send-email-ulf.hansson@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Date: Wed, 1 Feb 2017 22:02:02 +0100
+The current code dealing with calculating mmc->f_min is a bit complicated.
+Additionally, the attempt to set an initial clock rate should explicitly
+use a rate between 100KHz to 400 KHz, according the (e)MMC/SD specs, which
+it doesn't.
 
-> Chips like Amlogic S905GXBB are supported by this driver but don't
-> have support for PTP. Add a separate warning for missing HW support
-> to differentiate it from other actual failures.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Fix the problem and clean up the code by using clk_round_rate() to pick the
+nearest minimum rate to 100KHz.
 
-Applied to net-netxt.
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+
+Note, this is compile tested only so I hope someone with the HW can give it a
+go.
+
+---
+ drivers/mmc/host/meson-gx-mmc.c | 19 ++++++-------------
+ 1 file changed, 6 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 5eca88b..c672e01 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -240,7 +240,6 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
+ 	unsigned int mux_parent_count = 0;
+ 	const char *clk_div_parents[1];
+-	unsigned int f_min = UINT_MAX;
+ 	u32 clk_reg, cfg;
+ 
+ 	/* get the mux parents */
+@@ -257,20 +256,10 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 			return ret;
+ 		}
+ 
+-		host->mux_parent_rate[i] = clk_get_rate(host->mux_parent[i]);
+ 		mux_parent_names[i] = __clk_get_name(host->mux_parent[i]);
+ 		mux_parent_count++;
+-		if (host->mux_parent_rate[i] < f_min)
+-			f_min = host->mux_parent_rate[i];
+ 	}
+ 
+-	/* cacluate f_min based on input clocks, and max divider value */
+-	if (f_min != UINT_MAX)
+-		f_min = DIV_ROUND_UP(CLK_SRC_XTAL_RATE, CLK_DIV_MAX);
+-	else
+-		f_min = 4000000;  /* default min: 400 MHz */
+-	host->mmc->f_min = f_min;
+-
+ 	/* create the mux */
+ 	snprintf(clk_name, sizeof(clk_name), "%s#mux", dev_name(host->dev));
+ 	init.name = clk_name;
+@@ -325,9 +314,13 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	writel(cfg, host->regs + SD_EMMC_CFG);
+ 
+ 	ret = clk_prepare_enable(host->cfg_div_clk);
+-	if (!ret)
+-		ret = meson_mmc_clk_set(host, f_min);
++	if (ret)
++		return ret;
++
++	/* Get the nearest minimum clock to 100KHz */
++	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 100000);
+ 
++	ret = meson_mmc_clk_set(host, host->mmc->f_min);
+ 	if (!ret)
+ 		clk_disable_unprepare(host->cfg_div_clk);
+ 
+-- 
+1.9.1
