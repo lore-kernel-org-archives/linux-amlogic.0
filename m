@@ -1,63 +1,50 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 7 Feb 2017 22:34:41 +0100
-Subject: [PATCH v3 4/9] mmc: meson-gx: improve meson_mmc_irq_thread
+Date: Tue, 7 Feb 2017 22:34:06 +0100
+Subject: [PATCH v3 2/9] mmc: meson-gx: minor improvements in meson_mmc_set_ios
 In-Reply-To: <0991d40b-e05b-2fcb-9ee4-7b529448de69@gmail.com>
 References: <0991d40b-e05b-2fcb-9ee4-7b529448de69@gmail.com>
-Message-ID: <21f34e8d-471d-375b-cb9d-6b551d6b03fe@gmail.com>
+Message-ID: <07e0b346-1ae8-6745-0e9b-de15a6525823@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove unneeded variable ret and simplify the if block.
+val isn't used in the switch clause and afterwards there's an
+identical statement. So remove it.
+
+In case of an unexpected bus width the error message indicates
+the intention to set the bus width to 4 and to go on.
+So remove the return statement. This return statement also
+conflicts with "setting to 4" because nothing would be set
+actually before returning. 4bit bus width are chosen as
+default as the vendor driver does it too.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v3:
-- no changes
+- extended commit message
 ---
- drivers/mmc/host/meson-gx-mmc.c | 15 ++++++---------
- 1 file changed, 6 insertions(+), 9 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index d6a4dfae..dd7f936c 100644
+index ef2ce725..9d79df7c 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -666,7 +666,6 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 	struct mmc_command *cmd = host->cmd;
- 	struct mmc_data *data;
- 	unsigned int xfer_bytes;
--	int ret = IRQ_HANDLED;
+@@ -371,7 +371,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 	meson_mmc_clk_set(host, ios->clock);
  
- 	if (WARN_ON(!mrq))
- 		return IRQ_NONE;
-@@ -675,14 +674,12 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 		return IRQ_NONE;
- 
- 	data = cmd->data;
--	if (data) {
-+	if (data && data->flags & MMC_DATA_READ) {
- 		xfer_bytes = data->blksz * data->blocks;
--		if (data->flags & MMC_DATA_READ) {
--			WARN_ON(xfer_bytes > host->bounce_buf_size);
--			sg_copy_from_buffer(data->sg, data->sg_len,
--					    host->bounce_buf, xfer_bytes);
--			data->bytes_xfered = xfer_bytes;
--		}
-+		WARN_ON(xfer_bytes > host->bounce_buf_size);
-+		sg_copy_from_buffer(data->sg, data->sg_len,
-+				    host->bounce_buf, xfer_bytes);
-+		data->bytes_xfered = xfer_bytes;
+ 	/* Bus width */
+-	val = readl(host->regs + SD_EMMC_CFG);
+ 	switch (ios->bus_width) {
+ 	case MMC_BUS_WIDTH_1:
+ 		bus_width = CFG_BUS_WIDTH_1;
+@@ -386,7 +385,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 		dev_err(host->dev, "Invalid ios->bus_width: %u.  Setting to 4.\n",
+ 			ios->bus_width);
+ 		bus_width = CFG_BUS_WIDTH_4;
+-		return;
  	}
  
- 	meson_mmc_read_resp(host->mmc, cmd);
-@@ -691,7 +688,7 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 	else
- 		meson_mmc_start_cmd(host->mmc, data->stop);
- 
--	return ret;
-+	return IRQ_HANDLED;
- }
- 
- /*
+ 	val = readl(host->regs + SD_EMMC_CFG);
 -- 
 2.11.0
