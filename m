@@ -1,48 +1,86 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 7 Feb 2017 21:43:11 +0100
-Subject: [PATCH] ARM64: dts: meson-gxbb: set reset for ethernet
-In-Reply-To: <259f7102-591b-f251-5844-a864fa39e137@baylibre.com>
-References: <ec31eddc-d286-d0bc-0bdb-ae9d5014d82e@gmail.com>
- <259f7102-591b-f251-5844-a864fa39e137@baylibre.com>
-Message-ID: <f2759982-28c6-db7b-2e0a-48f3ed90adf5@gmail.com>
+Date: Tue, 7 Feb 2017 22:33:56 +0100
+Subject: [PATCH v3 1/9] mmc: meson: Assign the minimum clk rate as close to
+ 400KHz as possible
+Message-ID: <d24ae9fb-a4e3-50ab-0144-0ae39bf3ca1c@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 06.02.2017 um 10:29 schrieb Neil Armstrong:
-> On 01/29/2017 03:07 PM, Heiner Kallweit wrote:
->> Add reset control for ethernet.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->> index 39a774ad..753fddf6 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->> @@ -113,6 +113,8 @@
->>  		 <&clkc CLKID_FCLK_DIV2>,
->>  		 <&clkc CLKID_MPLL2>;
->>  	clock-names = "stmmaceth", "clkin0", "clkin1";
->> +	resets = <&reset RESET_ETHERNET>;
->> +	reset-names = "stmmaceth";
->>  };
->>  
->>  &aobus {
->>
-> 
-> Hi,
-> 
-> Actually this is a no-op since the Amlogic reset controller only supports "pulse" resets and the
-> STMMAC driver only supports "level" resets. If you want to use this reset, you must add the
-> corresponding support code in the meson8b glue code to call device_reset().
-> 
-Thanks for the hint! I did some further tests to check the "nature" of the reset register bits.
-Setting a reset bit and immediately reading it back always returns 0.
-And the chip spec doesn't mention whether writing a reset bit triggers a reset pulse or
-whether it asserts the reset line.
-Therefore I'm a little clueless whether it's possible to have "level" resets.
+The current code dealing with calculating mmc->f_min is a bit complicated.
+Additionally, the attempt to set an initial clock rate should explicitly
+use a rate between 100KHz to 400 KHz, according the (e)MMC/SD specs, which
+it doesn't.
 
-> Neil
-> 
+Fix the problem and clean up the code by using clk_round_rate() to pick the
+nearest minimum rate to 400KHz (rounded down from 400kHz).
+
+Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v3:
+- remove now unused member mux_parent_rate from struct meson_host
+- change target min rate from 100kHz to 400kHz because actual min rate
+  on meson is 380kHz. Therefore 100kHz would be rounded down to 0.
+---
+ drivers/mmc/host/meson-gx-mmc.c | 20 ++++++--------------
+ 1 file changed, 6 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 5eca88bc..ef2ce725 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -132,7 +132,6 @@ struct meson_host {
+ 	struct clk_mux mux;
+ 	struct clk *mux_clk;
+ 	struct clk *mux_parent[MUX_CLK_NUM_PARENTS];
+-	unsigned long mux_parent_rate[MUX_CLK_NUM_PARENTS];
+ 
+ 	struct clk_divider cfg_div;
+ 	struct clk *cfg_div_clk;
+@@ -240,7 +239,6 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
+ 	unsigned int mux_parent_count = 0;
+ 	const char *clk_div_parents[1];
+-	unsigned int f_min = UINT_MAX;
+ 	u32 clk_reg, cfg;
+ 
+ 	/* get the mux parents */
+@@ -257,20 +255,10 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 			return ret;
+ 		}
+ 
+-		host->mux_parent_rate[i] = clk_get_rate(host->mux_parent[i]);
+ 		mux_parent_names[i] = __clk_get_name(host->mux_parent[i]);
+ 		mux_parent_count++;
+-		if (host->mux_parent_rate[i] < f_min)
+-			f_min = host->mux_parent_rate[i];
+ 	}
+ 
+-	/* cacluate f_min based on input clocks, and max divider value */
+-	if (f_min != UINT_MAX)
+-		f_min = DIV_ROUND_UP(CLK_SRC_XTAL_RATE, CLK_DIV_MAX);
+-	else
+-		f_min = 4000000;  /* default min: 400 MHz */
+-	host->mmc->f_min = f_min;
+-
+ 	/* create the mux */
+ 	snprintf(clk_name, sizeof(clk_name), "%s#mux", dev_name(host->dev));
+ 	init.name = clk_name;
+@@ -325,9 +313,13 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	writel(cfg, host->regs + SD_EMMC_CFG);
+ 
+ 	ret = clk_prepare_enable(host->cfg_div_clk);
+-	if (!ret)
+-		ret = meson_mmc_clk_set(host, f_min);
++	if (ret)
++		return ret;
++
++	/* Get the nearest minimum clock to 400KHz */
++	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
+ 
++	ret = meson_mmc_clk_set(host, host->mmc->f_min);
+ 	if (!ret)
+ 		clk_disable_unprepare(host->cfg_div_clk);
+ 
+-- 
+2.11.0
