@@ -1,50 +1,117 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 7 Feb 2017 22:34:06 +0100
-Subject: [PATCH v3 2/9] mmc: meson-gx: minor improvements in meson_mmc_set_ios
+Date: Tue, 7 Feb 2017 22:34:32 +0100
+Subject: [PATCH v3 3/9] mmc: meson-gx: improve meson_mmc_clk_set
 In-Reply-To: <0991d40b-e05b-2fcb-9ee4-7b529448de69@gmail.com>
 References: <0991d40b-e05b-2fcb-9ee4-7b529448de69@gmail.com>
-Message-ID: <07e0b346-1ae8-6745-0e9b-de15a6525823@gmail.com>
+Message-ID: <34ea9c0b-a39c-93ac-a626-d07e45fe4ab2@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-val isn't used in the switch clause and afterwards there's an
-identical statement. So remove it.
+The following changes are quite small, therefore I combined them in
+one patch.
 
-In case of an unexpected bus width the error message indicates
-the intention to set the bus width to 4 and to go on.
-So remove the return statement. This return statement also
-conflicts with "setting to 4" because nothing would be set
-actually before returning. 4bit bus width are chosen as
-default as the vendor driver does it too.
+- ret doesn't need to be initialized with 0
+- use standard !clk_rate notation to check for a zero value
+- If clk_rate is zero we return here. Therefore all further checks
+  in this function for clk_rate != 0 are not needed.
+- switch from dev_warn to dev_err if the clock can't be set
+- If due to clock source and available divider values the requested
+  frequency isn't matched exactly (always the case if requested
+  frequency is 52 MHz), then just print the differing values as
+  debug message and not as warning.
+- Also remove ret from the message as it is always 0.
+- Set member current_clock to the current requested rate and
+  mmc->actual_clock to the current actual rate
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v3:
-- extended commit message
+- Introduce member current_clock to store the current requested rate
+- Use mmc->actual_clock to store the actual rate
 ---
- drivers/mmc/host/meson-gx-mmc.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 42 +++++++++++++++++++++++------------------
+ 1 file changed, 24 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index ef2ce725..9d79df7c 100644
+index 9d79df7c..d6a4dfae 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -371,7 +371,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	meson_mmc_clk_set(host, ios->clock);
+@@ -132,6 +132,7 @@ struct meson_host {
+ 	struct clk_mux mux;
+ 	struct clk *mux_clk;
+ 	struct clk *mux_parent[MUX_CLK_NUM_PARENTS];
++	unsigned long current_clock;
  
- 	/* Bus width */
--	val = readl(host->regs + SD_EMMC_CFG);
- 	switch (ios->bus_width) {
- 	case MMC_BUS_WIDTH_1:
- 		bus_width = CFG_BUS_WIDTH_1;
-@@ -386,7 +385,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 		dev_err(host->dev, "Invalid ios->bus_width: %u.  Setting to 4.\n",
- 			ios->bus_width);
- 		bus_width = CFG_BUS_WIDTH_4;
--		return;
+ 	struct clk_divider cfg_div;
+ 	struct clk *cfg_div_clk;
+@@ -178,7 +179,7 @@ struct sd_emmc_desc {
+ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
+ {
+ 	struct mmc_host *mmc = host->mmc;
+-	int ret = 0;
++	int ret;
+ 	u32 cfg;
+ 
+ 	if (clk_rate) {
+@@ -188,7 +189,7 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
+ 			clk_rate = mmc->f_min;
  	}
  
- 	val = readl(host->regs + SD_EMMC_CFG);
+-	if (clk_rate == mmc->actual_clock)
++	if (clk_rate == host->current_clock)
+ 		return 0;
+ 
+ 	/* stop clock */
+@@ -201,29 +202,34 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
+ 	dev_dbg(host->dev, "change clock rate %u -> %lu\n",
+ 		mmc->actual_clock, clk_rate);
+ 
+-	if (clk_rate == 0) {
++	if (!clk_rate) {
+ 		mmc->actual_clock = 0;
++		host->current_clock = 0;
++		/* return with clock being stopped */
+ 		return 0;
+ 	}
+ 
+ 	ret = clk_set_rate(host->cfg_div_clk, clk_rate);
+-	if (ret)
+-		dev_warn(host->dev, "Unable to set cfg_div_clk to %lu. ret=%d\n",
+-			 clk_rate, ret);
+-	else if (clk_rate && clk_rate != clk_get_rate(host->cfg_div_clk))
+-		dev_warn(host->dev, "divider requested rate %lu != actual rate %lu: ret=%d\n",
+-			 clk_rate, clk_get_rate(host->cfg_div_clk), ret);
+-	else
+-		mmc->actual_clock = clk_rate;
+-
+-	/* (re)start clock, if non-zero */
+-	if (!ret && clk_rate) {
+-		cfg = readl(host->regs + SD_EMMC_CFG);
+-		cfg &= ~CFG_STOP_CLOCK;
+-		writel(cfg, host->regs + SD_EMMC_CFG);
++	if (ret) {
++		dev_err(host->dev, "Unable to set cfg_div_clk to %lu. ret=%d\n",
++			clk_rate, ret);
++		return ret;
+ 	}
+ 
+-	return ret;
++	mmc->actual_clock = clk_get_rate(host->cfg_div_clk);
++	host->current_clock = clk_rate;
++
++	if (clk_rate != mmc->actual_clock)
++		dev_dbg(host->dev,
++			"divider requested rate %lu != actual rate %u\n",
++			clk_rate, mmc->actual_clock);
++
++	/* (re)start clock */
++	cfg = readl(host->regs + SD_EMMC_CFG);
++	cfg &= ~CFG_STOP_CLOCK;
++	writel(cfg, host->regs + SD_EMMC_CFG);
++
++	return 0;
+ }
+ 
+ /*
 -- 
 2.11.0
