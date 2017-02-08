@@ -1,58 +1,42 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 7 Feb 2017 22:35:59 +0100
-Subject: [PATCH v3 9/9] mmc: meson-gx: add support for HS400 mode
-In-Reply-To: <0991d40b-e05b-2fcb-9ee4-7b529448de69@gmail.com>
-References: <0991d40b-e05b-2fcb-9ee4-7b529448de69@gmail.com>
-Message-ID: <282ded48-616d-b0c3-b1e1-34f0987a9255@gmail.com>
+From: paul.gortmaker@windriver.com (Paul Gortmaker)
+Date: Tue, 7 Feb 2017 19:18:43 -0500
+Subject: [PATCH 0/4] reset: de-modularize the remaining reset drivers
+Message-ID: <20170208001847.9887-1-paul.gortmaker@windriver.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add support for HS400 mode.
+Recently, a new reset driver was added that used module stuff in a
+driver that was clearly non-modular[1].  With that in mind, it is
+probably wise to get the remaining patches I have locally for the
+existing reset drivers out the door, so we don't get any more
+future instances of a new driver copying the old error once again.
 
-The driver still misses support for tuning, therefore
-highspeed modes like HS400 might not work under all
-circumstances yet.
+Paul.
 
-Successfully tested on a Odroid C2 (S905 GXBB).
-
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
 ---
-v3:
-- extended commit message
----
- drivers/mmc/host/meson-gx-mmc.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 3cc6334a..5a959783 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -83,6 +83,7 @@
- #define   CFG_RC_CC_MASK 0xf
- #define   CFG_STOP_CLOCK BIT(22)
- #define   CFG_CLK_ALWAYS_ON BIT(18)
-+#define   CFG_CHK_DS BIT(20)
- #define   CFG_AUTO_CLK BIT(23)
- 
- #define SD_EMMC_STATUS 0x48
-@@ -408,6 +409,16 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	val &= ~(CFG_RC_CC_MASK << CFG_RC_CC_SHIFT);
- 	val |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
- 
-+	val &= ~CFG_DDR;
-+	if (ios->timing == MMC_TIMING_UHS_DDR50 ||
-+	    ios->timing == MMC_TIMING_MMC_DDR52 ||
-+	    ios->timing == MMC_TIMING_MMC_HS400)
-+		val |= CFG_DDR;
-+
-+	val &= ~CFG_CHK_DS;
-+	if (ios->timing == MMC_TIMING_MMC_HS400)
-+		val |= CFG_CHK_DS;
-+
- 	writel(val, host->regs + SD_EMMC_CFG);
- 
- 	if (val != orig)
+[1] https://lkml.kernel.org/r/CAP=VYLqhAEKAdnO7skBU7V+NxbQqXs_UbOO0J1hYHmCq3aKQow at mail.gmail.com
+
+Cc: Alban Bedel <albeu@free.fr>
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Damien Horsley <Damien.Horsley@imgtec.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic at lists.infradead.org
+Cc: linux-oxnas at lists.tuxfamily.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+
+Paul Gortmaker (4):
+  reset: ath79: make it explicitly non-modular
+  reset: pistachio: make it explicitly non-modular
+  reset: meson: make it explicitly non-modular
+  reset: oxnas: make it explicitly non-modular
+
+ drivers/reset/reset-ath79.c     | 27 ++++++++-------------------
+ drivers/reset/reset-meson.c     | 12 ++++--------
+ drivers/reset/reset-oxnas.c     |  6 ++----
+ drivers/reset/reset-pistachio.c |  9 ++-------
+ 4 files changed, 16 insertions(+), 38 deletions(-)
+
 -- 
 2.11.0
