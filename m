@@ -1,100 +1,52 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Wed, 8 Feb 2017 12:51:42 +0100
-Subject: [PATCH v3 1/9] mmc: meson: Assign the minimum clk rate as close
- to 400KHz as possible
-In-Reply-To: <d24ae9fb-a4e3-50ab-0144-0ae39bf3ca1c@gmail.com>
-References: <d24ae9fb-a4e3-50ab-0144-0ae39bf3ca1c@gmail.com>
-Message-ID: <CAPDyKFr4_tNjuK=Aqsqm0A2bP2-=KtZ-66BtbP_E9QR0pxVRiQ@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 08 Feb 2017 11:45:39 -0800
+Subject: [PATCH 1/2] clk: scpi: RfC - Allow to ignore invalid SCPI DVFS
+ clock rates
+In-Reply-To: <209248b8-2a1c-e00f-d8a8-b82759772b5d@arm.com> (Sudeep Holla's
+ message of "Wed, 8 Feb 2017 11:23:47 +0000")
+References: <3b60654a-88b6-6262-396e-a058ade1c586@gmail.com>
+ <d7b8f9db-7512-646c-bb96-ef74e7266661@gmail.com>
+ <209248b8-2a1c-e00f-d8a8-b82759772b5d@arm.com>
+Message-ID: <m28tpgihzw.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 7 February 2017 at 22:33, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> The current code dealing with calculating mmc->f_min is a bit complicated.
-> Additionally, the attempt to set an initial clock rate should explicitly
-> use a rate between 100KHz to 400 KHz, according the (e)MMC/SD specs, which
-> it doesn't.
->
-> Fix the problem and clean up the code by using clk_round_rate() to pick the
-> nearest minimum rate to 400KHz (rounded down from 400kHz).
->
-> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Sudeep Holla <sudeep.holla@arm.com> writes:
 
-I have applied the series for next.
+> On 04/02/17 21:03, Heiner Kallweit wrote:
+>> Introduce an optional property "clock-max-frequency" for SCPI DVFS
+>> clocks. All frequencies for the respective clock exceeding this
+>> threshold will be ignored.
+>> 
+>> This is useful on systems where the firmware offers too optimistic
+>> clock rates causing instabilities and crashes.
+>> 
+>
+> It clearly means the firmware/hardware(IOW platform) was not tested
+> correctly before firmware advertised the OPPs. It needs to fixed in the
+> firmware. The approach should be advertise the known minimal set working
+> rather than the set for which hardware was designed.
+>
+> That's the whole reason while these are kept in firmware so the OS need
+> not worry about such details.
+>
+> So NACK, go fix the firmware 
 
-However, I think I deserve to keep the authorship of $subject patch,
-so I re-claimed it. Instead I added a line in the change log of what
-you changed.
+Sorry, but "go fix the firmware" is not an option for most users of
+these boards.
 
-Thanks and kind regards
-Uffe
+Even if the source were provided for the firwmare (it's not), it usually
+needs signing by the vendor, and we know how likely that will be
+provided by the vendors.
 
-> ---
-> v3:
-> - remove now unused member mux_parent_rate from struct meson_host
-> - change target min rate from 100kHz to 400kHz because actual min rate
->   on meson is 380kHz. Therefore 100kHz would be rounded down to 0.
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 20 ++++++--------------
->  1 file changed, 6 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 5eca88bc..ef2ce725 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -132,7 +132,6 @@ struct meson_host {
->         struct clk_mux mux;
->         struct clk *mux_clk;
->         struct clk *mux_parent[MUX_CLK_NUM_PARENTS];
-> -       unsigned long mux_parent_rate[MUX_CLK_NUM_PARENTS];
->
->         struct clk_divider cfg_div;
->         struct clk *cfg_div_clk;
-> @@ -240,7 +239,6 @@ static int meson_mmc_clk_init(struct meson_host *host)
->         const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
->         unsigned int mux_parent_count = 0;
->         const char *clk_div_parents[1];
-> -       unsigned int f_min = UINT_MAX;
->         u32 clk_reg, cfg;
->
->         /* get the mux parents */
-> @@ -257,20 +255,10 @@ static int meson_mmc_clk_init(struct meson_host *host)
->                         return ret;
->                 }
->
-> -               host->mux_parent_rate[i] = clk_get_rate(host->mux_parent[i]);
->                 mux_parent_names[i] = __clk_get_name(host->mux_parent[i]);
->                 mux_parent_count++;
-> -               if (host->mux_parent_rate[i] < f_min)
-> -                       f_min = host->mux_parent_rate[i];
->         }
->
-> -       /* cacluate f_min based on input clocks, and max divider value */
-> -       if (f_min != UINT_MAX)
-> -               f_min = DIV_ROUND_UP(CLK_SRC_XTAL_RATE, CLK_DIV_MAX);
-> -       else
-> -               f_min = 4000000;  /* default min: 400 MHz */
-> -       host->mmc->f_min = f_min;
-> -
->         /* create the mux */
->         snprintf(clk_name, sizeof(clk_name), "%s#mux", dev_name(host->dev));
->         init.name = clk_name;
-> @@ -325,9 +313,13 @@ static int meson_mmc_clk_init(struct meson_host *host)
->         writel(cfg, host->regs + SD_EMMC_CFG);
->
->         ret = clk_prepare_enable(host->cfg_div_clk);
-> -       if (!ret)
-> -               ret = meson_mmc_clk_set(host, f_min);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* Get the nearest minimum clock to 400KHz */
-> +       host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
->
-> +       ret = meson_mmc_clk_set(host, host->mmc->f_min);
->         if (!ret)
->                 clk_disable_unprepare(host->cfg_div_clk);
->
-> --
-> 2.11.0
->
+Firmware will will always be buggy and/or broken and we will be stuck
+with it.  IMO, not allowing the kernel to work around broken
+firmwaretakes a very idealistic view of firmware, and is not based on
+historical reality with ARM SoC vendors.
+
+> or disable it completely and be happy with the boot frequency.
+
+That's an awful solution also, when we know that most of the frequencies
+work just fine.
+
+Kevin
