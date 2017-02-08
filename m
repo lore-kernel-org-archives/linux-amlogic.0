@@ -1,58 +1,50 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 8 Feb 2017 09:45:37 +0100
-Subject: [PATCH] ARM64: dts: meson-gxbb: set reset for ethernet
-In-Reply-To: <f2759982-28c6-db7b-2e0a-48f3ed90adf5@gmail.com>
-References: <ec31eddc-d286-d0bc-0bdb-ae9d5014d82e@gmail.com>
- <259f7102-591b-f251-5844-a864fa39e137@baylibre.com>
- <f2759982-28c6-db7b-2e0a-48f3ed90adf5@gmail.com>
-Message-ID: <49d828c6-a3a7-4695-8aca-e9bb34a9a805@baylibre.com>
+Date: Wed, 8 Feb 2017 11:17:54 +0100
+Subject: [PATCH v3 9/9] mmc: meson-gx: add support for HS400 mode
+In-Reply-To: <282ded48-616d-b0c3-b1e1-34f0987a9255@gmail.com>
+References: <0991d40b-e05b-2fcb-9ee4-7b529448de69@gmail.com>
+ <282ded48-616d-b0c3-b1e1-34f0987a9255@gmail.com>
+Message-ID: <b424cb1a-46b9-a62a-1e78-da3afc561bb7@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/07/2017 09:43 PM, Heiner Kallweit wrote:
-> Am 06.02.2017 um 10:29 schrieb Neil Armstrong:
->> On 01/29/2017 03:07 PM, Heiner Kallweit wrote:
->>> Add reset control for ethernet.
->>>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> ---
->>>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->>> index 39a774ad..753fddf6 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->>> @@ -113,6 +113,8 @@
->>>  		 <&clkc CLKID_FCLK_DIV2>,
->>>  		 <&clkc CLKID_MPLL2>;
->>>  	clock-names = "stmmaceth", "clkin0", "clkin1";
->>> +	resets = <&reset RESET_ETHERNET>;
->>> +	reset-names = "stmmaceth";
->>>  };
->>>  
->>>  &aobus {
->>>
->>
->> Hi,
->>
->> Actually this is a no-op since the Amlogic reset controller only supports "pulse" resets and the
->> STMMAC driver only supports "level" resets. If you want to use this reset, you must add the
->> corresponding support code in the meson8b glue code to call device_reset().
->>
-> Thanks for the hint! I did some further tests to check the "nature" of the reset register bits.
-> Setting a reset bit and immediately reading it back always returns 0.
-> And the chip spec doesn't mention whether writing a reset bit triggers a reset pulse or
-> whether it asserts the reset line.
-> Therefore I'm a little clueless whether it's possible to have "level" resets.
+On 02/07/2017 10:35 PM, Heiner Kallweit wrote:
+> Add support for HS400 mode.
+> 
+> The driver still misses support for tuning, therefore
+> highspeed modes like HS400 might not work under all
+> circumstances yet.
+> 
+> Successfully tested on a Odroid C2 (S905 GXBB).
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+> v3:
+> - extended commit message
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 3cc6334a..5a959783 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -83,6 +83,7 @@
+>  #define   CFG_RC_CC_MASK 0xf
+>  #define   CFG_STOP_CLOCK BIT(22)
+>  #define   CFG_CLK_ALWAYS_ON BIT(18)
+> +#define   CFG_CHK_DS BIT(20)
+>  #define   CFG_AUTO_CLK BIT(23)
+[...]
+> +	val &= ~CFG_DDR;
+[...]
+> +	val &= ~CFG_CHK_DS;
 
-It seems that there is some "level" register in the next addresses used by the VPU reset in u-boot,
-but I did not get the same behaviour as the pulse reset registers.
-It seems the resets are not mapped the same way.
+I think these two values masking explains why it solves the issue we can have on some boards,
+if u-boot does not remove these bits the HW will still behave in a bad mode.
+
+It would be better to have a clean HS400/DDR mode later on and keep this to fix the eMMC init for now.
 
 Neil
-
-> 
->> Neil
->>
-> 
