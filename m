@@ -1,85 +1,58 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 8 Feb 2017 09:43:43 +0100
-Subject: [PATCH 3/4] reset: meson: make it explicitly non-modular
-In-Reply-To: <20170208001847.9887-4-paul.gortmaker@windriver.com>
-References: <20170208001847.9887-1-paul.gortmaker@windriver.com>
- <20170208001847.9887-4-paul.gortmaker@windriver.com>
-Message-ID: <6070b3ca-95f3-6be8-d0e0-afa6a34c6def@baylibre.com>
+Date: Wed, 8 Feb 2017 09:45:37 +0100
+Subject: [PATCH] ARM64: dts: meson-gxbb: set reset for ethernet
+In-Reply-To: <f2759982-28c6-db7b-2e0a-48f3ed90adf5@gmail.com>
+References: <ec31eddc-d286-d0bc-0bdb-ae9d5014d82e@gmail.com>
+ <259f7102-591b-f251-5844-a864fa39e137@baylibre.com>
+ <f2759982-28c6-db7b-2e0a-48f3ed90adf5@gmail.com>
+Message-ID: <49d828c6-a3a7-4695-8aca-e9bb34a9a805@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/08/2017 01:18 AM, Paul Gortmaker wrote:
-> The Kconfig currently controlling compilation of this code is:
-> 
-> arch/arm/mach-meson/Kconfig:menuconfig ARCH_MESON
-> arch/arm/mach-meson/Kconfig:    bool "Amlogic Meson SoCs"
-> 
-> arch/arm64/Kconfig.platforms:config ARCH_MESON
-> arch/arm64/Kconfig.platforms:   bool "Amlogic Platforms"
-> 
-> ...meaning that it currently is not being built as a module by anyone.
-> 
-> Lets remove the modular code that is essentially orphaned, so that
-> when reading the driver there is no doubt it is builtin-only.
-> 
-> Since module_platform_driver() uses the same init level priority as
-> builtin_platform_driver() the init ordering remains unchanged with
-> this commit.
-> 
-> Also note that MODULE_DEVICE_TABLE is a no-op for non-modular code.
-> 
-> We also delete the MODULE_LICENSE tag etc. since all that information
-> was (or is now) contained at the top of the file in the comments.
-> 
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: linux-amlogic at lists.infradead.org
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Paul Gortmaker <paul.gortmaker@windriver.com>
-> ---
->  drivers/reset/reset-meson.c | 12 ++++--------
->  1 file changed, 4 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> index c32f11a30c5f..a8b915eb8b58 100644
-> --- a/drivers/reset/reset-meson.c
-> +++ b/drivers/reset/reset-meson.c
-> @@ -1,4 +1,6 @@
->  /*
-> + * Amlogic Meson Reset Controller driver
-> + *
->   * This file is provided under a dual BSD/GPLv2 license.  When using or
->   * redistributing this file, you may do so under either license.
->   *
-> @@ -53,7 +55,7 @@
->   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
->   */
->  #include <linux/err.h>
-> -#include <linux/module.h>
-> +#include <linux/init.h>
->  #include <linux/io.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> @@ -95,7 +97,6 @@ static const struct of_device_id meson_reset_dt_ids[] = {
->  	 { .compatible = "amlogic,meson-gxbb-reset", },
->  	 { /* sentinel */ },
->  };
-> -MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
->  
->  static int meson_reset_probe(struct platform_device *pdev)
->  {
-> @@ -128,9 +129,4 @@ static struct platform_driver meson_reset_driver = {
->  		.of_match_table	= meson_reset_dt_ids,
->  	},
->  };
-> -
-> -module_platform_driver(meson_reset_driver);
-> -
-> -MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-> -MODULE_DESCRIPTION("Amlogic Meson Reset Controller driver");
-> -MODULE_LICENSE("Dual BSD/GPL");
-> +builtin_platform_driver(meson_reset_driver);
-> 
+On 02/07/2017 09:43 PM, Heiner Kallweit wrote:
+> Am 06.02.2017 um 10:29 schrieb Neil Armstrong:
+>> On 01/29/2017 03:07 PM, Heiner Kallweit wrote:
+>>> Add reset control for ethernet.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> ---
+>>>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>>> index 39a774ad..753fddf6 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>>> @@ -113,6 +113,8 @@
+>>>  		 <&clkc CLKID_FCLK_DIV2>,
+>>>  		 <&clkc CLKID_MPLL2>;
+>>>  	clock-names = "stmmaceth", "clkin0", "clkin1";
+>>> +	resets = <&reset RESET_ETHERNET>;
+>>> +	reset-names = "stmmaceth";
+>>>  };
+>>>  
+>>>  &aobus {
+>>>
+>>
+>> Hi,
+>>
+>> Actually this is a no-op since the Amlogic reset controller only supports "pulse" resets and the
+>> STMMAC driver only supports "level" resets. If you want to use this reset, you must add the
+>> corresponding support code in the meson8b glue code to call device_reset().
+>>
+> Thanks for the hint! I did some further tests to check the "nature" of the reset register bits.
+> Setting a reset bit and immediately reading it back always returns 0.
+> And the chip spec doesn't mention whether writing a reset bit triggers a reset pulse or
+> whether it asserts the reset line.
+> Therefore I'm a little clueless whether it's possible to have "level" resets.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+It seems that there is some "level" register in the next addresses used by the VPU reset in u-boot,
+but I did not get the same behaviour as the pulse reset registers.
+It seems the resets are not mapped the same way.
+
+Neil
+
+> 
+>> Neil
+>>
+> 
