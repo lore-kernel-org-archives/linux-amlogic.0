@@ -1,30 +1,31 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 8 Feb 2017 22:49:25 +0100
-Subject: [PATCH 3/4] mmc: meson-gx: add pwrseq-based hw_reset
+Date: Wed, 8 Feb 2017 22:49:29 +0100
+Subject: [PATCH 4/4] ARM64: dts: meson-gxbb-odroidc2: add hw-reset capability
+ flag for emmc port
 In-Reply-To: <75ad5eac-412b-fe73-ff53-3d8b975937e4@gmail.com>
 References: <75ad5eac-412b-fe73-ff53-3d8b975937e4@gmail.com>
-Message-ID: <bf895a14-c4c9-d70b-fea6-843d8412b7b4@gmail.com>
+Message-ID: <2b339eac-d139-563f-5c6d-a990429ff558@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Use new function mmc_hw_reset_pwrseq as hw_reset operation.
+Add hw-reset capability flag for emmc port.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 5eca88bc..260a8ea8 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -716,6 +716,7 @@ static const struct mmc_host_ops meson_mmc_ops = {
- 	.request	= meson_mmc_request,
- 	.set_ios	= meson_mmc_set_ios,
- 	.get_cd         = meson_mmc_get_cd,
-+	.hw_reset	= mmc_hw_reset_pwrseq,
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index c59403ad..2b68994a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -219,6 +219,7 @@
+ 	pinctrl-names = "default";
  
- static int meson_mmc_probe(struct platform_device *pdev)
+ 	bus-width = <8>;
++	cap-mmc-hw-reset;
+ 	cap-sd-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
 -- 
 2.11.0
