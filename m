@@ -1,33 +1,59 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 10 Feb 2017 00:09:47 +0100
-Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: switch ethernet phy mode to
- rgmii-txid
-Message-ID: <5baa94a2-f45c-2ab3-0085-422436e12a84@gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 10 Feb 2017 10:27:54 +0100
+Subject: [PATCH] phy: meson8b-usb2: fix offsets for some of the registers
+In-Reply-To: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
+References: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1486718874.4693.31.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Documentation/networking/phy.txt states:
-Whenever possible,use the PHY side RGMII delay.
+On Fri, 2017-01-13 at 19:53 +0100, Martin Blumenstingl wrote:
+> The register offsets for REG_DBG_UART (and all following) were off by
+> 0x4. This was not a problem yet because these registers are currently
+> not used by the driver.
+> 
+> Signed-off-by: Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com>
 
-The board uses a RTl8211F phy which supports creating the needed
-tx delay internally. Therefore switch to rgmii-txid mode.
+Good catch ! Thx.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 3877dda6..94896139 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -152,6 +152,7 @@
- 	pinctrl-0 = <&eth_rgmii_pins>;
- 	pinctrl-names = "default";
- 	phy-handle = <&eth_phy0>;
-+	phy-mode = "rgmii-txid";
- 
- 	mdio {
- 		compatible = "snps,dwmac-mdio";
--- 
-2.11.0
+> ---
+> ?drivers/phy/phy-meson8b-usb2.c | 6 +++---
+> ?1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-
+> meson8b-usb2.c
+> index 33c9f4ba157d..30f56a6a411f 100644
+> --- a/drivers/phy/phy-meson8b-usb2.c
+> +++ b/drivers/phy/phy-meson8b-usb2.c
+> @@ -81,9 +81,9 @@
+> ?	#define REG_ADP_BC_ACA_PIN_GND			BIT(25
+> )
+> ?	#define REG_ADP_BC_ACA_PIN_FLOAT		BIT(26)
+> ?
+> -#define REG_DBG_UART					0x14
+> +#define REG_DBG_UART					0x10
+> ?
+> -#define REG_TEST					0x18
+> +#define REG_TEST					0x14
+> ?	#define REG_TEST_DATA_IN_MASK			GENMASK
+> (3, 0)
+> ?	#define REG_TEST_EN_MASK			GENMASK(7,
+> 4)
+> ?	#define REG_TEST_ADDR_MASK			GENMASK(11
+> , 8)
+> @@ -93,7 +93,7 @@
+> ?	#define REG_TEST_DATA_OUT_MASK			GENMAS
+> K(19, 16)
+> ?	#define REG_TEST_DISABLE_ID_PULLUP		BIT(20)
+> ?
+> -#define REG_TUNE					0x1c
+> +#define REG_TUNE					0x18
+> ?	#define REG_TUNE_TX_RES_TUNE_MASK		GENMASK(1,
+> 0)
+> ?	#define REG_TUNE_TX_HSXV_TUNE_MASK		GENMASK(3,
+> 2)
+> ?	#define REG_TUNE_TX_VREF_TUNE_MASK		GENMASK(7,
+> 4)
