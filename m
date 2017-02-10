@@ -1,59 +1,30 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 10 Feb 2017 10:27:54 +0100
-Subject: [PATCH] phy: meson8b-usb2: fix offsets for some of the registers
-In-Reply-To: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
-References: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1486718874.4693.31.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 10 Feb 2017 11:04:42 +0100
+Subject: [PATCH 0/2] meson-gxbb: Add mali-450 support
+Message-ID: <1486721084-1383-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2017-01-13 at 19:53 +0100, Martin Blumenstingl wrote:
-> The register offsets for REG_DBG_UART (and all following) were off by
-> 0x4. This was not a problem yet because these registers are currently
-> not used by the driver.
-> 
-> Signed-off-by: Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com>
+Since the merge of the Mali dt bindings at [1], add support for Mali clocks
+and DT node.
 
-Good catch ! Thx.
+The Mali is clocked by two identical clock paths behind a glitch free mux
+to safely change frequency while running.
+So these clocks must be added to the meson-gxbb clock controller.
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+[1] http://lkml.kernel.org/r/b098c4fa9fce88361cca20417978734d0e1b5cca.1485939041.git-series.maxime.ripard at free-electrons.com
 
-> ---
-> ?drivers/phy/phy-meson8b-usb2.c | 6 +++---
-> ?1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-
-> meson8b-usb2.c
-> index 33c9f4ba157d..30f56a6a411f 100644
-> --- a/drivers/phy/phy-meson8b-usb2.c
-> +++ b/drivers/phy/phy-meson8b-usb2.c
-> @@ -81,9 +81,9 @@
-> ?	#define REG_ADP_BC_ACA_PIN_GND			BIT(25
-> )
-> ?	#define REG_ADP_BC_ACA_PIN_FLOAT		BIT(26)
-> ?
-> -#define REG_DBG_UART					0x14
-> +#define REG_DBG_UART					0x10
-> ?
-> -#define REG_TEST					0x18
-> +#define REG_TEST					0x14
-> ?	#define REG_TEST_DATA_IN_MASK			GENMASK
-> (3, 0)
-> ?	#define REG_TEST_EN_MASK			GENMASK(7,
-> 4)
-> ?	#define REG_TEST_ADDR_MASK			GENMASK(11
-> , 8)
-> @@ -93,7 +93,7 @@
-> ?	#define REG_TEST_DATA_OUT_MASK			GENMAS
-> K(19, 16)
-> ?	#define REG_TEST_DISABLE_ID_PULLUP		BIT(20)
-> ?
-> -#define REG_TUNE					0x1c
-> +#define REG_TUNE					0x18
-> ?	#define REG_TUNE_TX_RES_TUNE_MASK		GENMASK(1,
-> 0)
-> ?	#define REG_TUNE_TX_HSXV_TUNE_MASK		GENMASK(3,
-> 2)
-> ?	#define REG_TUNE_TX_VREF_TUNE_MASK		GENMASK(7,
-> 4)
+Neil Armstrong (2):
+  clk: meson-gxbb: Add MALI clocks and fix GP0 pll support
+  ARM64: dts: meson-gxbb: Add Mali node
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  37 +++++
+ drivers/clk/meson/clk-pll.c                 |  34 ++++-
+ drivers/clk/meson/clkc.h                    |   3 +
+ drivers/clk/meson/gxbb.c                    | 211 +++++++++++++++++++++++++++-
+ drivers/clk/meson/gxbb.h                    |   7 +-
+ include/dt-bindings/clock/gxbb-clkc.h       |   4 +
+ 6 files changed, 282 insertions(+), 14 deletions(-)
+
+-- 
+1.9.1
