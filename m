@@ -1,45 +1,43 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 14 Feb 2017 21:05:59 +0100
-Subject: [PATCH 02/18] mmc: meson-gx: remove code for unsupported CMD23
+Date: Tue, 14 Feb 2017 21:05:47 +0100
+Subject: [PATCH 01/18] mmc: meson-gx: set segment host parameters
 In-Reply-To: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
 References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
-Message-ID: <642a46aa-416c-32a3-f9ef-3feafca72636@gmail.com>
+Message-ID: <e336daec-55fc-e524-9949-b8de7d68b9ef@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-CMD23 isn't supported on meson-gx and therefore the "set block count"
-command isn't used. So remove this dead code.
+Setting the segment parameters boosted the read performance from
+13 MB/s to 32 MB/s in my case.
+Default for segment size is only 4k (PAGE_SIZE).
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 1ad66f84..e89bdf5f 100644
+index 5a959783..1ad66f84 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -555,11 +555,7 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 	writel(0, host->regs + SD_EMMC_START);
+@@ -118,6 +118,7 @@
+ #define SD_EMMC_CFG_RESP_TIMEOUT 256 /* in clock cycles */
+ #define SD_EMMC_CFG_CMD_GAP 16 /* in clock cycles */
+ #define MUX_CLK_NUM_PARENTS 2
++#define MESON_MMC_MAX_SEGS 512
  
- 	host->mrq = mrq;
--
--	if (mrq->sbc)
--		meson_mmc_start_cmd(mmc, mrq->sbc);
--	else
--		meson_mmc_start_cmd(mmc, mrq->cmd);
-+	meson_mmc_start_cmd(mmc, mrq->cmd);
- }
+ struct meson_host {
+ 	struct	device		*dev;
+@@ -789,8 +790,10 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto free_host;
  
- static int meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
-@@ -690,7 +686,7 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 	}
++	mmc->max_segs = MESON_MMC_MAX_SEGS;
+ 	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
+ 	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
++	mmc->max_seg_size = mmc->max_req_size;
  
- 	meson_mmc_read_resp(host->mmc, cmd);
--	if (!data || !data->stop || mrq->sbc)
-+	if (!data || !data->stop)
- 		meson_mmc_request_done(host->mmc, mrq);
- 	else
- 		meson_mmc_start_cmd(host->mmc, data->stop);
+ 	/* data bounce buffer */
+ 	host->bounce_buf_size = mmc->max_req_size;
 -- 
 2.11.1
