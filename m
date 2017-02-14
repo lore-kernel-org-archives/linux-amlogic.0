@@ -1,52 +1,60 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 14 Feb 2017 21:06:17 +0100
-Subject: [PATCH 04/18] mmc: meson-gx: improve meson_mmc_start_cmd
+Date: Tue, 14 Feb 2017 21:06:35 +0100
+Subject: [PATCH 08/18] mmc: meson-gx: make two functions return void
 In-Reply-To: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
 References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
-Message-ID: <df8da322-6a42-642c-2c80-55fca0dab3ef@gmail.com>
+Message-ID: <65a6f6a8-b650-81e9-2b3c-85d3dc89b9ba@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove use of unneeded members cmd_arg and cmd_resp.
-Setting SD_EMMC_CMD_RSP is only needed if CMD_CFG_RESP_NUM is set,
-so don't write this register in all other cases.
+The return value of meson_mmc_request_done and meson_mmc_read_resp
+isn't used, so make both functions return void.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index ece38b44..630e0590 100644
+index f3963538..a67c811e 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -456,7 +456,6 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 	desc->cmd_cfg |= (cmd->opcode & CMD_CFG_CMD_INDEX_MASK)	<<
- 		CMD_CFG_CMD_INDEX_SHIFT;
- 	desc->cmd_cfg |= CMD_CFG_OWNER;  /* owned by CPU */
--	desc->cmd_arg = cmd->arg;
- 
- 	/* Response */
- 	if (cmd->flags & MMC_RSP_PRESENT) {
-@@ -464,7 +463,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 		if (cmd->flags & MMC_RSP_136)
- 			desc->cmd_cfg |= CMD_CFG_RESP_128;
- 		desc->cmd_cfg |= CMD_CFG_RESP_NUM;
--		desc->cmd_resp = 0;
-+		writel(0, host->regs + SD_EMMC_CMD_RSP);
- 
- 		if (!(cmd->flags & MMC_RSP_CRC))
- 			desc->cmd_cfg |= CMD_CFG_RESP_NOCRC;
-@@ -540,9 +539,8 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 	desc->cmd_cfg |= CMD_CFG_END_OF_CHAIN;
- 	writel(desc->cmd_cfg, host->regs + SD_EMMC_CMD_CFG);
- 	writel(desc->cmd_data, host->regs + SD_EMMC_CMD_DAT);
--	writel(desc->cmd_resp, host->regs + SD_EMMC_CMD_RSP);
- 	wmb(); /* ensure descriptor is written before kicked */
--	writel(desc->cmd_arg, host->regs + SD_EMMC_CMD_ARG);
-+	writel(cmd->arg, host->regs + SD_EMMC_CMD_ARG);
+@@ -421,7 +421,8 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 			__func__, orig, val);
  }
  
- static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+-static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
++static void meson_mmc_request_done(struct mmc_host *mmc,
++				   struct mmc_request *mrq)
+ {
+ 	struct meson_host *host = mmc_priv(mmc);
+ 
+@@ -430,8 +431,6 @@ static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
+ 	host->mrq = NULL;
+ 	host->cmd = NULL;
+ 	mmc_request_done(host->mmc, mrq);
+-
+-	return 0;
+ }
+ 
+ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+@@ -537,7 +536,7 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+ 	meson_mmc_start_cmd(mmc, mrq->cmd);
+ }
+ 
+-static int meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
++static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
+ {
+ 	struct meson_host *host = mmc_priv(mmc);
+ 
+@@ -549,8 +548,6 @@ static int meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
+ 	} else if (cmd->flags & MMC_RSP_PRESENT) {
+ 		cmd->resp[0] = readl(host->regs + SD_EMMC_CMD_RSP);
+ 	}
+-
+-	return 0;
+ }
+ 
+ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
 -- 
 2.11.1
