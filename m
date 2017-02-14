@@ -1,86 +1,52 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 14 Feb 2017 21:07:09 +0100
-Subject: [PATCH 16/18] mmc: meson-gx: improve response reading and sending
- stop command
+Date: Tue, 14 Feb 2017 21:07:17 +0100
+Subject: [PATCH 18/18] mmc: meson-gx: move handling of one case from threaded
+ handler to main irq
 In-Reply-To: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
 References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
-Message-ID: <bac15e8c-6f17-e96c-0f43-01db0df74a1b@gmail.com>
+Message-ID: <625bbd38-6815-9d81-a480-e7ce0f4bc7eb@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Stopping execution at the beginning of command processing (again) is
-not needed as reading SD_EMMC_CMD_RSP implicitely stops execution.
-We just have to take care of the case that a command doesn't return a
-response. Therefore read SD_EMMC_CMD_RSP always.
-
-In addition we can read the response in the main irq handler already,
-we don't have to do this in the threaded handler.
+If cmd->data is NULL there's nothing to do in the threaded handler.
+So we can handle this case in the main irq handler already.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 25b46d36..6721aee2 100644
+index 08ff29be..58b0add2 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -510,9 +510,6 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+@@ -578,9 +578,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (status & IRQ_SDIO)
+ 		dev_dbg(host->dev, "Unhandled IRQ: SDIO.\n");
  
- 	WARN_ON(host->mrq != NULL);
- 
--	/* Stop execution */
--	writel(0, host->regs + SD_EMMC_START);
--
- 	host->mrq = mrq;
- 	meson_mmc_start_cmd(mmc, mrq->cmd);
- }
-@@ -521,12 +518,16 @@ static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
- {
- 	struct meson_host *host = mmc_priv(mmc);
- 
-+	/*
-+	 * reading SD_EMMC_CMD_RSP stops processing, therefore read
-+	 * this register even if command has no response
-+	 */
- 	if (cmd->flags & MMC_RSP_136) {
- 		cmd->resp[0] = readl(host->regs + SD_EMMC_CMD_RSP3);
- 		cmd->resp[1] = readl(host->regs + SD_EMMC_CMD_RSP2);
- 		cmd->resp[2] = readl(host->regs + SD_EMMC_CMD_RSP1);
- 		cmd->resp[3] = readl(host->regs + SD_EMMC_CMD_RSP);
--	} else if (cmd->flags & MMC_RSP_PRESENT) {
+-	if (status & (IRQ_END_OF_CHAIN | IRQ_RESP_STATUS))
+-		ret = IRQ_WAKE_THREAD;
+-	else  {
++	if (status & (IRQ_END_OF_CHAIN | IRQ_RESP_STATUS)) {
++		if (cmd->data)
++			ret = IRQ_WAKE_THREAD;
 +	} else {
- 		cmd->resp[0] = readl(host->regs + SD_EMMC_CMD_RSP);
- 	}
- }
-@@ -564,6 +565,8 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- 		goto out;
- 	}
+ 		dev_warn(host->dev, "Unknown IRQ! status=0x%04x: MMC CMD%u arg=0x%08x flags=0x%08x stop=%d\n",
+ 			 status, cmd->opcode, cmd->arg,
+ 			 cmd->flags, cmd->mrq->stop ? 1 : 0);
+@@ -612,11 +613,11 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+ 	struct mmc_data *data;
+ 	unsigned int xfer_bytes;
  
-+	meson_mmc_read_resp(host->mmc, cmd);
-+
- 	cmd->error = 0;
- 	if (status & IRQ_RXD_ERR_MASK) {
- 		dev_dbg(host->dev, "Unhandled IRQ: RXD error\n");
-@@ -610,10 +613,8 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- 	/* ack all (enabled) interrupts */
- 	writel(status, host->regs + SD_EMMC_STATUS);
+-	if (WARN_ON(!cmd))
++	if (WARN_ON(!cmd || !cmd->data))
+ 		return IRQ_NONE;
  
--	if (ret == IRQ_HANDLED) {
--		meson_mmc_read_resp(host->mmc, cmd);
-+	if (ret == IRQ_HANDLED)
- 		meson_mmc_request_done(host->mmc, cmd->mrq);
--	}
- 
- 	spin_unlock(&host->lock);
- 	return ret;
-@@ -643,7 +644,6 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 		data->bytes_xfered = xfer_bytes;
- 	}
- 
--	meson_mmc_read_resp(host->mmc, cmd);
- 	if (mmc_op_multi(cmd->opcode))
- 		meson_mmc_start_cmd(host->mmc, data->stop);
- 	else
+ 	data = cmd->data;
+-	if (data && data->flags & MMC_DATA_READ) {
++	if (data->flags & MMC_DATA_READ) {
+ 		size_t len = sg_copy_from_buffer(data->sg, data->sg_len,
+ 						 host->bounce_buf,
+ 						 host->bounce_buf_size);
 -- 
 2.11.1
