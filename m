@@ -1,69 +1,65 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 15 Feb 2017 11:49:57 -0800
-Subject: [PATCH 00/18] mmc: meson-gx: code and performance improvements
-In-Reply-To: <74c3a06c-d972-1e70-fb22-744df8ef31d9@gmail.com> (Heiner
- Kallweit's message of "Tue, 14 Feb 2017 21:05:16 +0100")
-References: <74c3a06c-d972-1e70-fb22-744df8ef31d9@gmail.com>
-Message-ID: <m2efyz6xp6.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 15 Feb 2017 21:09:12 +0100
+Subject: [PATCH] reset: fix shared reset triggered_count decrement on error
+In-Reply-To: <1487182551-31517-1-git-send-email-jbrunet@baylibre.com>
+References: <1487182551-31517-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <CAFBinCCyhW+7=NEMh3knoNhXZMx6mLOtx9inZu6EmOURi6DDng@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heiner,
+Hi Jerome,
 
-Heiner Kallweit <hkallweit1@gmail.com> writes:
+ouch, thanks for spotting and fixing this!
 
-> This patch series includes several improvements and boosted the
-> read performance from 13 MB/s to 32 MB/s (at 60MHz clock rate)
-> on a Odroid C2 with a 128GB eMMC module.
+On Wed, Feb 15, 2017 at 7:15 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> For a shared reset, when the reset is successful, the triggered_count is
+> incremented when trying to call the reset callback, so that another device
+> sharing the same reset line won't trigger it again. If the reset has not
+> been triggered successfully, the trigger_count should be decremented.
 >
-> Higher frequencies needed tuning in my case. With some hacked
-> test tuning I reached 52 MB/s at 200MHz.
-> With a 8GB card 200MHz were stable out of the box, but with
-> less performacne.
-
-Thanks for the series and improvements.  I'm not very familiar with MMC,
-so I've been hoping someone would come along and improve this driver.  I
-really appreciate it.
-
-There are a few comments I've made on individual patches in the series.
-
-It will probably be helpful to the MMC maintainers if you separate the
-series into:
-
-- cleanups (non-functional changes)
-- fixes: things that fix actual bugs (not sure there are any in this
-  series)
-
-followed by a series that does the functional changes.
-
-Also, can I recommend that you use git-format-patch and git-send-email
-to export and email your patches?  If you use git-send-email, all of the
-individual patches will be sent as a reply to the cover-letter, making
-the threading work better and generally make readers/reviewers happier.
-
-Thanks again for the great work,
-
-Kevin
-
-> Heiner Kallweit (18):
->   mmc: meson-gx: set segment host parameters
->   mmc: meson-gx: remove code for unsupported CMD23
->   mmc: meson-gx: explicitely call stop command for multi-block commands only
->   mmc: meson-gx: improve meson_mmc_start_cmd
->   mmc: meson-gx: eliminate struct sd_emmc_data
->   mmc: meson-gx: simplify bounce buffer setting in meson_mmc_start_cmd
->   mmc: meson-gx: check return value of sg_copy_[from,to]_buffer
->   mmc: meson-gx: make two functions return void
->   mmc: meson-gx: change interrupt name
->   mmc: meson-gx: remove unused members irq, ocr_mask from struct meson_host
->   mmc: meson-gx: remove unneeded variable in meson_mmc_clk_init
->   mmc: meson-gx: remove member parent_mux from struct meson_host
->   mmc: meson-gx: remove unneeded meson_mmc_clk_set in meson_mmc_clk_init
->   mmc: meson-gx: remove unneeded devm_kstrdup in meson_mmc_clk_init
->   mmc: meson-gx: improve initial configuration
->   mmc: meson-gx: improve response reading and sending stop command
->   mmc: meson-gx: remove member mrq from struct meson_host
->   mmc: meson-gx: move handling of one case from threaded handler to main irq
+> The code does the opposite, and decrements the trigger_count on success.
+> As a consequence, another device sharing the reset will be able to trigger
+> it again.
 >
->  drivers/mmc/host/meson-gx-mmc.c | 241 ++++++++++++++++------------------------
->  1 file changed, 97 insertions(+), 144 deletions(-)
+> Fixed be removing negation in from of the error code of the reset function.
+>
+> Fixes: 7da33a37b48f ("reset: allow using reset_control_reset with shared reset")
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+should this still go into 4.10?
+I guess the meson8b-usb2 PHY driver is the only user of the shared
+reset pulse, but if there are other users out there then these may
+face strange issues as well!
+
+> ---
+>  Hi Philipp,
+>
+>  I found this issue while testing your patch [0]
+>  It fixes a regression we have been having with usb. On meson-gxbb
+>  platforms, usb0 and usb1 share the same reset line. Martin had
+>  reports that usb0 recently got broken. In fact usb1 was able to
+>  trigger the reset again because the issue mentioned above.
+>
+> [0]: http://lkml.kernel.org/r/20170130114116.22089-10-p.zabel at pengutronix.de
+>
+>  drivers/reset/core.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+> index 71ccf281dce3..f1e5e65388bb 100644
+> --- a/drivers/reset/core.c
+> +++ b/drivers/reset/core.c
+> @@ -169,7 +169,7 @@ int reset_control_reset(struct reset_control *rstc)
+>         }
+>
+>         ret = rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
+> -       if (rstc->shared && !ret)
+> +       if (rstc->shared && ret)
+>                 atomic_dec(&rstc->triggered_count);
+>
+>         return ret;
+> --
+> 2.7.4
+>
