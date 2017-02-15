@@ -1,67 +1,50 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 15 Feb 2017 09:19:26 -0800
-Subject: [PATCH 10/18] mmc: meson-gx: remove unused members irq,
- ocr_mask from struct meson_host
-In-Reply-To: <29e26eba-ef27-1ee2-97f1-aeca3cfc76a5@gmail.com> (Heiner
- Kallweit's message of "Tue, 14 Feb 2017 21:06:44 +0100")
-References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <29e26eba-ef27-1ee2-97f1-aeca3cfc76a5@gmail.com>
-Message-ID: <m2efyz9xsx.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 15 Feb 2017 19:15:51 +0100
+Subject: [PATCH] reset: fix shared reset triggered_count decrement on error
+Message-ID: <1487182551-31517-1-git-send-email-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Heiner Kallweit <hkallweit1@gmail.com> writes:
+For a shared reset, when the reset is successful, the triggered_count is
+incremented when trying to call the reset callback, so that another device
+sharing the same reset line won't trigger it again. If the reset has not
+been triggered successfully, the trigger_count should be decremented.
 
-> Member ocr_mask is never used and member irq we can replace with a
-> local variable in meson_mmc_probe. So let's remove both members.
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+The code does the opposite, and decrements the trigger_count on success.
+As a consequence, another device sharing the reset will be able to trigger
+it again.
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Fixed be removing negation in from of the error code of the reset function.
 
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 1a76c925..159ee7b4 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -128,8 +128,6 @@ struct meson_host {
->  
->  	spinlock_t lock;
->  	void __iomem *regs;
-> -	int irq;
-> -	u32 ocr_mask;
->  	struct clk *core_clk;
->  	struct clk_mux mux;
->  	struct clk *mux_clk;
-> @@ -696,7 +694,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
->  	struct resource *res;
->  	struct meson_host *host;
->  	struct mmc_host *mmc;
-> -	int ret;
-> +	int ret, irq;
->  
->  	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
->  	if (!mmc)
-> @@ -728,8 +726,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
->  		goto free_host;
->  	}
->  
-> -	host->irq = platform_get_irq(pdev, 0);
-> -	if (host->irq == 0) {
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (!irq) {
->  		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
->  		ret = -EINVAL;
->  		goto free_host;
-> @@ -757,7 +755,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
->  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
->  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
->  
-> -	ret = devm_request_threaded_irq(&pdev->dev, host->irq, meson_mmc_irq,
-> +	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
->  					meson_mmc_irq_thread, IRQF_SHARED,
->  					dev_name(&pdev->dev), host);
->  	if (ret)
+Fixes: 7da33a37b48f ("reset: allow using reset_control_reset with shared reset")
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ Hi Philipp,
+
+ I found this issue while testing your patch [0]
+ It fixes a regression we have been having with usb. On meson-gxbb
+ platforms, usb0 and usb1 share the same reset line. Martin had
+ reports that usb0 recently got broken. In fact usb1 was able to
+ trigger the reset again because the issue mentioned above.
+
+[0]: http://lkml.kernel.org/r/20170130114116.22089-10-p.zabel at pengutronix.de
+
+ drivers/reset/core.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+index 71ccf281dce3..f1e5e65388bb 100644
+--- a/drivers/reset/core.c
++++ b/drivers/reset/core.c
+@@ -169,7 +169,7 @@ int reset_control_reset(struct reset_control *rstc)
+ 	}
+ 
+ 	ret = rstc->rcdev->ops->reset(rstc->rcdev, rstc->id);
+-	if (rstc->shared && !ret)
++	if (rstc->shared && ret)
+ 		atomic_dec(&rstc->triggered_count);
+ 
+ 	return ret;
+-- 
+2.7.4
