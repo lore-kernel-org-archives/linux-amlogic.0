@@ -1,52 +1,72 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 15 Feb 2017 20:38:20 +0100
-Subject: [PATCH 13/18] mmc: meson-gx: remove unneeded meson_mmc_clk_set in
- meson_mmc_clk_init
-In-Reply-To: <m2bmu38dag.fsf@baylibre.com>
+Date: Wed, 15 Feb 2017 20:43:07 +0100
+Subject: [PATCH 04/18] mmc: meson-gx: improve meson_mmc_start_cmd
+In-Reply-To: <m2h93vbd2b.fsf@baylibre.com>
 References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <f891a0bd-62f3-8104-5658-5e8fb2d9e070@gmail.com>
- <m2bmu38dag.fsf@baylibre.com>
-Message-ID: <fc32a3da-35d3-1eb6-d88c-75c412508136@gmail.com>
+ <df8da322-6a42-642c-2c80-55fca0dab3ef@gmail.com>
+ <m2h93vbd2b.fsf@baylibre.com>
+Message-ID: <2e7e1407-fcee-b760-8cd6-183d68cabc26@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 15.02.2017 um 20:27 schrieb Kevin Hilman:
+Am 15.02.2017 um 18:04 schrieb Kevin Hilman:
 > Heiner Kallweit <hkallweit1@gmail.com> writes:
 > 
->> I don't think this clk_disable_unprepare is right here. We do this
->> in meson_mmc_remove what should be sufficient.
+>> Remove use of unneeded members cmd_arg and cmd_resp.
+>> Setting SD_EMMC_CMD_RSP is only needed if CMD_CFG_RESP_NUM is set,
+>> so don't write this register in all other cases.
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > 
-> I don't think so, because if _clk_init() fails, then _probe will fail,
-> and the driver's ->remove() will not be called.
+> I'm not sure I like this change.  This works now because there is only
+> one descriptor used, but one of the next things to work on in this
+> driver is taking advantage of the internal DMA capabilities, which means
+> having a chain of descriptorsall filled out in memory.
 > 
-In general, then the condition should be "if (ret)", not "if (!ret)".
-And if _clk_init() fails, then probe jumps to label free_host,
-where we have exactly this clk_disable_unprepare(host->cfg_div_clk)
+For testing purposes I temporarily changed the driver from passing the
+descriptor in registers to passing the descriptor via DMA and it worked.
 
-Heiner
+I'm not very familiar (yet) with descriptor chains and have to check
+the MMC core code a little bit more ..
+If we can actually benefit from it then I'd agree with you.
+
 
 > Kevin
 > 
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 >> ---
->>  drivers/mmc/host/meson-gx-mmc.c | 6 +-----
->>  1 file changed, 1 insertion(+), 5 deletions(-)
+>>  drivers/mmc/host/meson-gx-mmc.c | 6 ++----
+>>  1 file changed, 2 insertions(+), 4 deletions(-)
 >>
 >> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->> index 74ceda75..39904fb5 100644
+>> index ece38b44..630e0590 100644
 >> --- a/drivers/mmc/host/meson-gx-mmc.c
 >> +++ b/drivers/mmc/host/meson-gx-mmc.c
->> @@ -315,11 +315,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
->>  	/* Get the nearest minimum clock to 400KHz */
->>  	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
+>> @@ -456,7 +456,6 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>>  	desc->cmd_cfg |= (cmd->opcode & CMD_CFG_CMD_INDEX_MASK)	<<
+>>  		CMD_CFG_CMD_INDEX_SHIFT;
+>>  	desc->cmd_cfg |= CMD_CFG_OWNER;  /* owned by CPU */
+>> -	desc->cmd_arg = cmd->arg;
 >>  
->> -	ret = meson_mmc_clk_set(host, host->mmc->f_min);
->> -	if (!ret)
->> -		clk_disable_unprepare(host->cfg_div_clk);
->> -
->> -	return ret;
->> +	return meson_mmc_clk_set(host, host->mmc->f_min);
+>>  	/* Response */
+>>  	if (cmd->flags & MMC_RSP_PRESENT) {
+>> @@ -464,7 +463,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>>  		if (cmd->flags & MMC_RSP_136)
+>>  			desc->cmd_cfg |= CMD_CFG_RESP_128;
+>>  		desc->cmd_cfg |= CMD_CFG_RESP_NUM;
+>> -		desc->cmd_resp = 0;
+>> +		writel(0, host->regs + SD_EMMC_CMD_RSP);
+>>  
+>>  		if (!(cmd->flags & MMC_RSP_CRC))
+>>  			desc->cmd_cfg |= CMD_CFG_RESP_NOCRC;
+>> @@ -540,9 +539,8 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>>  	desc->cmd_cfg |= CMD_CFG_END_OF_CHAIN;
+>>  	writel(desc->cmd_cfg, host->regs + SD_EMMC_CMD_CFG);
+>>  	writel(desc->cmd_data, host->regs + SD_EMMC_CMD_DAT);
+>> -	writel(desc->cmd_resp, host->regs + SD_EMMC_CMD_RSP);
+>>  	wmb(); /* ensure descriptor is written before kicked */
+>> -	writel(desc->cmd_arg, host->regs + SD_EMMC_CMD_ARG);
+>> +	writel(cmd->arg, host->regs + SD_EMMC_CMD_ARG);
 >>  }
 >>  
->>  static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+>>  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
 > 
