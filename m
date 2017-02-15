@@ -1,42 +1,67 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 15 Feb 2017 09:18:49 -0800
-Subject: [PATCH 09/18] mmc: meson-gx: change interrupt name
-In-Reply-To: <cbe84305-803a-5431-9246-0b30d6f135b0@gmail.com> (Heiner
- Kallweit's message of "Tue, 14 Feb 2017 21:06:39 +0100")
+Date: Wed, 15 Feb 2017 09:19:26 -0800
+Subject: [PATCH 10/18] mmc: meson-gx: remove unused members irq,
+ ocr_mask from struct meson_host
+In-Reply-To: <29e26eba-ef27-1ee2-97f1-aeca3cfc76a5@gmail.com> (Heiner
+ Kallweit's message of "Tue, 14 Feb 2017 21:06:44 +0100")
 References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <cbe84305-803a-5431-9246-0b30d6f135b0@gmail.com>
-Message-ID: <m2inob9xty.fsf@baylibre.com>
+ <29e26eba-ef27-1ee2-97f1-aeca3cfc76a5@gmail.com>
+Message-ID: <m2efyz9xsx.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Heiner Kallweit <hkallweit1@gmail.com> writes:
 
-> So far the driver name is used for the interrupt. Therefore in
-> /proc/interrupts we can't tell which interrupt belongs to which
-> SD_EMMC port.
-> So let's use the device name instead (what is the OF node name).
+> Member ocr_mask is never used and member irq we can replace with a
+> local variable in meson_mmc_probe. So let's remove both members.
 >
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 
 > ---
->  drivers/mmc/host/meson-gx-mmc.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  drivers/mmc/host/meson-gx-mmc.c | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
 >
 > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index a67c811e..1a76c925 100644
+> index 1a76c925..159ee7b4 100644
 > --- a/drivers/mmc/host/meson-gx-mmc.c
 > +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -757,9 +757,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+> @@ -128,8 +128,6 @@ struct meson_host {
+>  
+>  	spinlock_t lock;
+>  	void __iomem *regs;
+> -	int irq;
+> -	u32 ocr_mask;
+>  	struct clk *core_clk;
+>  	struct clk_mux mux;
+>  	struct clk *mux_clk;
+> @@ -696,7 +694,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>  	struct resource *res;
+>  	struct meson_host *host;
+>  	struct mmc_host *mmc;
+> -	int ret;
+> +	int ret, irq;
+>  
+>  	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
+>  	if (!mmc)
+> @@ -728,8 +726,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>  		goto free_host;
+>  	}
+>  
+> -	host->irq = platform_get_irq(pdev, 0);
+> -	if (host->irq == 0) {
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (!irq) {
+>  		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
+>  		ret = -EINVAL;
+>  		goto free_host;
+> @@ -757,7 +755,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
 >  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
 >  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
 >  
-> -	ret = devm_request_threaded_irq(&pdev->dev, host->irq,
-> -					meson_mmc_irq, meson_mmc_irq_thread,
-> -					IRQF_SHARED, DRIVER_NAME, host);
-> +	ret = devm_request_threaded_irq(&pdev->dev, host->irq, meson_mmc_irq,
-> +					meson_mmc_irq_thread, IRQF_SHARED,
-> +					dev_name(&pdev->dev), host);
+> -	ret = devm_request_threaded_irq(&pdev->dev, host->irq, meson_mmc_irq,
+> +	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+>  					meson_mmc_irq_thread, IRQF_SHARED,
+>  					dev_name(&pdev->dev), host);
 >  	if (ret)
->  		goto free_host;
