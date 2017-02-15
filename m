@@ -1,43 +1,109 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 15 Feb 2017 11:30:14 -0800
-Subject: [PATCH 14/18] mmc: meson-gx: remove unneeded devm_kstrdup in
- meson_mmc_clk_init
-In-Reply-To: <04781c15-b543-337c-d6d4-8378bd558cf7@gmail.com> (Heiner
- Kallweit's message of "Tue, 14 Feb 2017 21:07:01 +0100")
+Date: Wed, 15 Feb 2017 11:32:23 -0800
+Subject: [PATCH 15/18] mmc: meson-gx: improve initial configuration
+In-Reply-To: <651c407e-bc38-5adc-a388-5a45854808e1@gmail.com> (Heiner
+ Kallweit's message of "Tue, 14 Feb 2017 21:07:05 +0100")
 References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <04781c15-b543-337c-d6d4-8378bd558cf7@gmail.com>
-Message-ID: <m27f4r8d6h.fsf@baylibre.com>
+ <651c407e-bc38-5adc-a388-5a45854808e1@gmail.com>
+Message-ID: <m237ff8d2w.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Heiner Kallweit <hkallweit1@gmail.com> writes:
 
-> MMC core does a deep copy of init.name, therefore it's fully ok to
-
-I assume you mean the clock framework, not the MMC core, right?
-
-> provide a local variable.
+> Config values which are not changed during runtime we can set
+> in the probe function already.
+> The block size setting is overwritten later in
+> meson_mmc_start_cmd anyway if needed, so it doesn't harm if we
+> remove this setting in meson_mmc_set_ios.
+>
+> In addition:
+> - write config register only if configuration changed
+> - Initialize clocks after other config registers have been initialized
 >
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-
-With the changelog fixed,
 
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 
 > ---
->  drivers/mmc/host/meson-gx-mmc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/mmc/host/meson-gx-mmc.c | 37 +++++++++++++++++++++----------------
+>  1 file changed, 21 insertions(+), 16 deletions(-)
 >
 > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 39904fb5..806554b1 100644
+> index 806554b1..25b46d36 100644
 > --- a/drivers/mmc/host/meson-gx-mmc.c
 > +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -276,7 +276,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+> @@ -385,15 +385,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+>  	val &= ~(CFG_BUS_WIDTH_MASK << CFG_BUS_WIDTH_SHIFT);
+>  	val |= bus_width << CFG_BUS_WIDTH_SHIFT;
 >  
->  	/* create the divider */
->  	snprintf(clk_name, sizeof(clk_name), "%s#div", dev_name(host->dev));
-> -	init.name = devm_kstrdup(host->dev, clk_name, GFP_KERNEL);
-> +	init.name = clk_name;
->  	init.ops = &clk_divider_ops;
->  	init.flags = CLK_SET_RATE_PARENT;
->  	clk_div_parents[0] = __clk_get_name(host->mux_clk);
+> -	val &= ~(CFG_BLK_LEN_MASK << CFG_BLK_LEN_SHIFT);
+> -	val |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
+> -
+> -	val &= ~(CFG_RESP_TIMEOUT_MASK << CFG_RESP_TIMEOUT_SHIFT);
+> -	val |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
+> -
+> -	val &= ~(CFG_RC_CC_MASK << CFG_RC_CC_SHIFT);
+> -	val |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
+> -
+>  	val &= ~CFG_DDR;
+>  	if (ios->timing == MMC_TIMING_UHS_DDR50 ||
+>  	    ios->timing == MMC_TIMING_MMC_DDR52 ||
+> @@ -404,11 +395,11 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+>  	if (ios->timing == MMC_TIMING_MMC_HS400)
+>  		val |= CFG_CHK_DS;
+>  
+> -	writel(val, host->regs + SD_EMMC_CFG);
+> -
+> -	if (val != orig)
+> +	if (val != orig) {
+> +		writel(val, host->regs + SD_EMMC_CFG);
+>  		dev_dbg(host->dev, "%s: SD_EMMC_CFG: 0x%08x -> 0x%08x\n",
+>  			__func__, orig, val);
+> +	}
+>  }
+>  
+>  static void meson_mmc_request_done(struct mmc_host *mmc,
+> @@ -675,6 +666,17 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
+>  	return status;
+>  }
+>  
+> +static void meson_mmc_cfg_init(struct meson_host *host)
+> +{
+> +	u32 cfg = 0;
+> +
+> +	cfg |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
+> +	cfg |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
+> +	cfg |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
+> +
+> +	writel(cfg, host->regs + SD_EMMC_CFG);
+> +}
+> +
+>  static const struct mmc_host_ops meson_mmc_ops = {
+>  	.request	= meson_mmc_request,
+>  	.set_ios	= meson_mmc_set_ios,
+> @@ -735,10 +737,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto free_host;
+>  
+> -	ret = meson_mmc_clk_init(host);
+> -	if (ret)
+> -		goto free_host;
+> -
+>  	/* Stop execution */
+>  	writel(0, host->regs + SD_EMMC_START);
+>  
+> @@ -747,6 +745,13 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
+>  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
+>  
+> +	/* set config to sane default */
+> +	meson_mmc_cfg_init(host);
+> +
+> +	ret = meson_mmc_clk_init(host);
+> +	if (ret)
+> +		goto free_host;
+> +
+>  	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+>  					meson_mmc_irq_thread, IRQF_SHARED,
+>  					dev_name(&pdev->dev), host);
