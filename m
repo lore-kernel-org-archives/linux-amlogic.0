@@ -1,34 +1,47 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 14 Feb 2017 22:18:44 +0100
-Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: Enable SARADC node
-Message-ID: <c8ffa8db-2bfd-ee28-a210-4fa752b5ff43@gmail.com>
+From: ben.dooks@codethink.co.uk (Ben Dooks)
+Date: Wed, 15 Feb 2017 12:34:02 +0000
+Subject: [PATCH 09/18] mmc: meson-gx: change interrupt name
+In-Reply-To: <cbe84305-803a-5431-9246-0b30d6f135b0@gmail.com>
+References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
+ <cbe84305-803a-5431-9246-0b30d6f135b0@gmail.com>
+Message-ID: <7ccaed3c-199c-2897-5280-2790ce3676ea@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Now that 3adbf3427330 "iio: adc: add a driver for the SAR ADC found in
-Amlogic Meson SoCs" has added support for the ADC, let's enable it
-on Odroid C2.
+On 14/02/17 20:06, Heiner Kallweit wrote:
+> So far the driver name is used for the interrupt. Therefore in
+> /proc/interrupts we can't tell which interrupt belongs to which
+> SD_EMMC port.
+> So let's use the device name instead (what is the OF node name).
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index a67c811e..1a76c925 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -757,9 +757,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
+>  	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
+>
+> -	ret = devm_request_threaded_irq(&pdev->dev, host->irq,
+> -					meson_mmc_irq, meson_mmc_irq_thread,
+> -					IRQF_SHARED, DRIVER_NAME, host);
+> +	ret = devm_request_threaded_irq(&pdev->dev, host->irq, meson_mmc_irq,
+> +					meson_mmc_irq_thread, IRQF_SHARED,
+> +					dev_name(&pdev->dev), host);
+>  	if (ret)
+>  		goto free_host;
+>
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+I am surpised that the default is not to use dev_name(dev), I wonder if
+that should be something that devm_request_threaded_irq() could be
+updated to do.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 714ec145..3877dda6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -194,6 +194,11 @@
- 	status = "okay";
- };
- 
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vcc1v8>;
-+};
-+
- /* SD */
- &sd_emmc_b {
- 	status = "okay";
+
 -- 
-2.11.1
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
