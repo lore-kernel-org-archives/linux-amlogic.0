@@ -1,49 +1,69 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 15 Feb 2017 20:46:04 +0100
-Subject: [PATCH 09/18] mmc: meson-gx: change interrupt name
-In-Reply-To: <7ccaed3c-199c-2897-5280-2790ce3676ea@codethink.co.uk>
-References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <cbe84305-803a-5431-9246-0b30d6f135b0@gmail.com>
- <7ccaed3c-199c-2897-5280-2790ce3676ea@codethink.co.uk>
-Message-ID: <f2784a55-a319-2aa5-6d9a-a60a1f0cad3d@gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 15 Feb 2017 11:49:57 -0800
+Subject: [PATCH 00/18] mmc: meson-gx: code and performance improvements
+In-Reply-To: <74c3a06c-d972-1e70-fb22-744df8ef31d9@gmail.com> (Heiner
+ Kallweit's message of "Tue, 14 Feb 2017 21:05:16 +0100")
+References: <74c3a06c-d972-1e70-fb22-744df8ef31d9@gmail.com>
+Message-ID: <m2efyz6xp6.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 15.02.2017 um 13:34 schrieb Ben Dooks:
-> On 14/02/17 20:06, Heiner Kallweit wrote:
->> So far the driver name is used for the interrupt. Therefore in
->> /proc/interrupts we can't tell which interrupt belongs to which
->> SD_EMMC port.
->> So let's use the device name instead (what is the OF node name).
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> ---
->>  drivers/mmc/host/meson-gx-mmc.c | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->> index a67c811e..1a76c925 100644
->> --- a/drivers/mmc/host/meson-gx-mmc.c
->> +++ b/drivers/mmc/host/meson-gx-mmc.c
->> @@ -757,9 +757,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
->>      writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
->>      writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
->>
->> -    ret = devm_request_threaded_irq(&pdev->dev, host->irq,
->> -                    meson_mmc_irq, meson_mmc_irq_thread,
->> -                    IRQF_SHARED, DRIVER_NAME, host);
->> +    ret = devm_request_threaded_irq(&pdev->dev, host->irq, meson_mmc_irq,
->> +                    meson_mmc_irq_thread, IRQF_SHARED,
->> +                    dev_name(&pdev->dev), host);
->>      if (ret)
->>          goto free_host;
->>
-> 
-> I am surpised that the default is not to use dev_name(dev), I wonder if
-> that should be something that devm_request_threaded_irq() could be
-> updated to do.
-> 
-I asked myself the same question and submitted a patch:
-https://lkml.org/lkml/2017/2/12/80
+Hi Heiner,
 
-> 
+Heiner Kallweit <hkallweit1@gmail.com> writes:
+
+> This patch series includes several improvements and boosted the
+> read performance from 13 MB/s to 32 MB/s (at 60MHz clock rate)
+> on a Odroid C2 with a 128GB eMMC module.
+>
+> Higher frequencies needed tuning in my case. With some hacked
+> test tuning I reached 52 MB/s at 200MHz.
+> With a 8GB card 200MHz were stable out of the box, but with
+> less performacne.
+
+Thanks for the series and improvements.  I'm not very familiar with MMC,
+so I've been hoping someone would come along and improve this driver.  I
+really appreciate it.
+
+There are a few comments I've made on individual patches in the series.
+
+It will probably be helpful to the MMC maintainers if you separate the
+series into:
+
+- cleanups (non-functional changes)
+- fixes: things that fix actual bugs (not sure there are any in this
+  series)
+
+followed by a series that does the functional changes.
+
+Also, can I recommend that you use git-format-patch and git-send-email
+to export and email your patches?  If you use git-send-email, all of the
+individual patches will be sent as a reply to the cover-letter, making
+the threading work better and generally make readers/reviewers happier.
+
+Thanks again for the great work,
+
+Kevin
+
+> Heiner Kallweit (18):
+>   mmc: meson-gx: set segment host parameters
+>   mmc: meson-gx: remove code for unsupported CMD23
+>   mmc: meson-gx: explicitely call stop command for multi-block commands only
+>   mmc: meson-gx: improve meson_mmc_start_cmd
+>   mmc: meson-gx: eliminate struct sd_emmc_data
+>   mmc: meson-gx: simplify bounce buffer setting in meson_mmc_start_cmd
+>   mmc: meson-gx: check return value of sg_copy_[from,to]_buffer
+>   mmc: meson-gx: make two functions return void
+>   mmc: meson-gx: change interrupt name
+>   mmc: meson-gx: remove unused members irq, ocr_mask from struct meson_host
+>   mmc: meson-gx: remove unneeded variable in meson_mmc_clk_init
+>   mmc: meson-gx: remove member parent_mux from struct meson_host
+>   mmc: meson-gx: remove unneeded meson_mmc_clk_set in meson_mmc_clk_init
+>   mmc: meson-gx: remove unneeded devm_kstrdup in meson_mmc_clk_init
+>   mmc: meson-gx: improve initial configuration
+>   mmc: meson-gx: improve response reading and sending stop command
+>   mmc: meson-gx: remove member mrq from struct meson_host
+>   mmc: meson-gx: move handling of one case from threaded handler to main irq
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 241 ++++++++++++++++------------------------
+>  1 file changed, 97 insertions(+), 144 deletions(-)
