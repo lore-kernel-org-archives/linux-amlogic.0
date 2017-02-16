@@ -1,63 +1,39 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 16 Feb 2017 08:05:00 +0100
-Subject: [PATCH 13/18] mmc: meson-gx: remove unneeded meson_mmc_clk_set in
- meson_mmc_clk_init
-In-Reply-To: <m260kb6max.fsf@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Thu, 16 Feb 2017 09:14:26 +0100
+Subject: [PATCH 02/18] mmc: meson-gx: remove code for unsupported CMD23
+In-Reply-To: <468688a8-8a25-ae07-8027-00779d7ceb07@gmail.com>
 References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <f891a0bd-62f3-8104-5658-5e8fb2d9e070@gmail.com>
- <m2bmu38dag.fsf@baylibre.com>
- <fc32a3da-35d3-1eb6-d88c-75c412508136@gmail.com>
- <m260kb6max.fsf@baylibre.com>
-Message-ID: <fcfcdd8c-14bb-5e17-3e21-eee7e219259a@gmail.com>
+ <642a46aa-416c-32a3-f9ef-3feafca72636@gmail.com> <m2wpcrbdjr.fsf@baylibre.com>
+ <468688a8-8a25-ae07-8027-00779d7ceb07@gmail.com>
+Message-ID: <CAPDyKFrKJpXR7vF=h44FooeDHDofG-+t_CgAHskEW5PeX58e8w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 16.02.2017 um 00:56 schrieb Kevin Hilman:
-> Heiner Kallweit <hkallweit1@gmail.com> writes:
-> 
->> Am 15.02.2017 um 20:27 schrieb Kevin Hilman:
->>> Heiner Kallweit <hkallweit1@gmail.com> writes:
->>>
->>>> I don't think this clk_disable_unprepare is right here. We do this
->>>> in meson_mmc_remove what should be sufficient.
->>>
->>> I don't think so, because if _clk_init() fails, then _probe will fail,
->>> and the driver's ->remove() will not be called.
->>>
->> In general, then the condition should be "if (ret)", not "if (!ret)".
->> And if _clk_init() fails, then probe jumps to label free_host,
->> where we have exactly this clk_disable_unprepare(host->cfg_div_clk)
-> 
-> Then you need to update the changelog, which refers to remove, not the
-> cleanup in probe.
-> 
-Sure ..
+On 16 February 2017 at 08:03, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> Am 15.02.2017 um 17:54 schrieb Kevin Hilman:
+>> Heiner Kallweit <hkallweit1@gmail.com> writes:
+>>
+>>> CMD23 isn't supported on meson-gx and therefore the "set block count"
+>>> command isn't used. So remove this dead code.
+>>
+>> I'm admittedly a bit unfamiliar with the MMC spec and wrote this driver
+>> mostly by looking at the vendor driver, so forgive the silly
+>> questions...
+>>
+>> Why isn't CMD23 supported, and should we support instead of deleting
+>> this support?
+>>
+> As far as I understand this needs to be supported by the host controller.
+> And setting the respective host flag to enable CMD23 mode lead to a
+> non-working driver when testing on my system.
 
-> Kevin
-> 
->>> Kevin
->>>
->>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>>> ---
->>>>  drivers/mmc/host/meson-gx-mmc.c | 6 +-----
->>>>  1 file changed, 1 insertion(+), 5 deletions(-)
->>>>
->>>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->>>> index 74ceda75..39904fb5 100644
->>>> --- a/drivers/mmc/host/meson-gx-mmc.c
->>>> +++ b/drivers/mmc/host/meson-gx-mmc.c
->>>> @@ -315,11 +315,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
->>>>  	/* Get the nearest minimum clock to 400KHz */
->>>>  	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
->>>>  
->>>> -	ret = meson_mmc_clk_set(host, host->mmc->f_min);
->>>> -	if (!ret)
->>>> -		clk_disable_unprepare(host->cfg_div_clk);
->>>> -
->>>> -	return ret;
->>>> +	return meson_mmc_clk_set(host, host->mmc->f_min);
->>>>  }
->>>>  
->>>>  static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
->>>
-> 
+CMD23 can be supported by the host *driver*, you don't need HW-support
+to implement this.
+
+You may for example be inspired by the mmci.c driver to understand how
+to implement this. Looks for "mrq->sbc".
+
+[...]
+
+Kind regards
+Uffe
