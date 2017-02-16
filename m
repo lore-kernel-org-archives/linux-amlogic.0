@@ -1,39 +1,38 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Thu, 16 Feb 2017 09:14:26 +0100
-Subject: [PATCH 02/18] mmc: meson-gx: remove code for unsupported CMD23
-In-Reply-To: <468688a8-8a25-ae07-8027-00779d7ceb07@gmail.com>
-References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <642a46aa-416c-32a3-f9ef-3feafca72636@gmail.com> <m2wpcrbdjr.fsf@baylibre.com>
- <468688a8-8a25-ae07-8027-00779d7ceb07@gmail.com>
-Message-ID: <CAPDyKFrKJpXR7vF=h44FooeDHDofG-+t_CgAHskEW5PeX58e8w@mail.gmail.com>
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Thu, 16 Feb 2017 10:52:17 +0100
+Subject: [PATCH] reset: fix shared reset triggered_count decrement on error
+In-Reply-To: <1487182551-31517-1-git-send-email-jbrunet@baylibre.com>
+References: <1487182551-31517-1-git-send-email-jbrunet@baylibre.com>
+Message-ID: <1487238737.2377.3.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 16 February 2017 at 08:03, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> Am 15.02.2017 um 17:54 schrieb Kevin Hilman:
->> Heiner Kallweit <hkallweit1@gmail.com> writes:
->>
->>> CMD23 isn't supported on meson-gx and therefore the "set block count"
->>> command isn't used. So remove this dead code.
->>
->> I'm admittedly a bit unfamiliar with the MMC spec and wrote this driver
->> mostly by looking at the vendor driver, so forgive the silly
->> questions...
->>
->> Why isn't CMD23 supported, and should we support instead of deleting
->> this support?
->>
-> As far as I understand this needs to be supported by the host controller.
-> And setting the respective host flag to enable CMD23 mode lead to a
-> non-working driver when testing on my system.
+On Wed, 2017-02-15 at 19:15 +0100, Jerome Brunet wrote:
+> For a shared reset, when the reset is successful, the triggered_count is
+> incremented when trying to call the reset callback, so that another device
+> sharing the same reset line won't trigger it again. If the reset has not
+> been triggered successfully, the trigger_count should be decremented.
+> 
+> The code does the opposite, and decrements the trigger_count on success.
+> As a consequence, another device sharing the reset will be able to trigger
+> it again.
+> 
+> Fixed be removing negation in from of the error code of the reset function.
+> 
+> Fixes: 7da33a37b48f ("reset: allow using reset_control_reset with shared reset")
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  Hi Philipp,
+> 
+>  I found this issue while testing your patch [0]
+>  It fixes a regression we have been having with usb. On meson-gxbb
+>  platforms, usb0 and usb1 share the same reset line. Martin had
+>  reports that usb0 recently got broken. In fact usb1 was able to
+>  trigger the reset again because the issue mentioned above.
 
-CMD23 can be supported by the host *driver*, you don't need HW-support
-to implement this.
+Thanks, applied with Martin's Acked-by. I'll send a pull request for
+this later today.
 
-You may for example be inspired by the mmci.c driver to understand how
-to implement this. Looks for "mrq->sbc".
-
-[...]
-
-Kind regards
-Uffe
+regards
+Philipp
