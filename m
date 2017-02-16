@@ -1,116 +1,108 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 16 Feb 2017 20:42:47 +0100
-Subject: [PATCH v2 9/9] mmc: meson-gx: remove member mrq from struct meson_host
+Date: Thu, 16 Feb 2017 20:42:31 +0100
+Subject: [PATCH v2 8/9] mmc: meson-gx: improve initial configuration
 In-Reply-To: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
 References: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
-Message-ID: <c0ab75e0-4b95-2021-30ed-0a071c3f65bd@gmail.com>
+Message-ID: <c60bd6c5-ba22-bb7c-8c8d-d4df5f91b873@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Struct mmc_command includes a reference to the related mmc_request.
-Therefore we don't have to store mrq separately in struct meson_host.
-And we can remove some now unneeded WARN_ON's.
+Config values which are not changed during runtime we can set
+in the probe function already.
+The block size setting is overwritten later in
+meson_mmc_start_cmd anyway if needed, so it doesn't harm if we
+remove this setting in meson_mmc_set_ios.
+
+In addition:
+- write config register only if configuration changed
+- Initialize clocks after other config registers have been initialized
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- extended commit message
 - added acked-by
 ---
- drivers/mmc/host/meson-gx-mmc.c | 24 +++---------------------
- 1 file changed, 3 insertions(+), 21 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 37 +++++++++++++++++++++----------------
+ 1 file changed, 21 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index e7c3ac1c..3c35cf1f 100644
+index a8f43cc6..e7c3ac1c 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -122,7 +122,6 @@
- struct meson_host {
- 	struct	device		*dev;
- 	struct	mmc_host	*mmc;
--	struct	mmc_request	*mrq;
- 	struct	mmc_command	*cmd;
+@@ -390,15 +390,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 	val &= ~(CFG_BUS_WIDTH_MASK << CFG_BUS_WIDTH_SHIFT);
+ 	val |= bus_width << CFG_BUS_WIDTH_SHIFT;
  
- 	spinlock_t lock;
-@@ -412,9 +411,6 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
- {
- 	struct meson_host *host = mmc_priv(mmc);
- 
--	WARN_ON(host->mrq != mrq);
+-	val &= ~(CFG_BLK_LEN_MASK << CFG_BLK_LEN_SHIFT);
+-	val |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
 -
--	host->mrq = NULL;
- 	host->cmd = NULL;
- 	mmc_request_done(host->mmc, mrq);
- }
-@@ -521,13 +517,9 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- {
- 	struct meson_host *host = mmc_priv(mmc);
+-	val &= ~(CFG_RESP_TIMEOUT_MASK << CFG_RESP_TIMEOUT_SHIFT);
+-	val |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
+-
+-	val &= ~(CFG_RC_CC_MASK << CFG_RC_CC_SHIFT);
+-	val |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
+-
+ 	val &= ~CFG_DDR;
+ 	if (ios->timing == MMC_TIMING_UHS_DDR50 ||
+ 	    ios->timing == MMC_TIMING_MMC_DDR52 ||
+@@ -409,11 +400,11 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 	if (ios->timing == MMC_TIMING_MMC_HS400)
+ 		val |= CFG_CHK_DS;
  
--	WARN_ON(host->mrq != NULL);
+-	writel(val, host->regs + SD_EMMC_CFG);
+-
+-	if (val != orig)
++	if (val != orig) {
++		writel(val, host->regs + SD_EMMC_CFG);
+ 		dev_dbg(host->dev, "%s: SD_EMMC_CFG: 0x%08x -> 0x%08x\n",
+ 			__func__, orig, val);
++	}
+ }
+ 
+ static void meson_mmc_request_done(struct mmc_host *mmc,
+@@ -691,6 +682,17 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
+ 	return status;
+ }
+ 
++static void meson_mmc_cfg_init(struct meson_host *host)
++{
++	u32 cfg = 0;
++
++	cfg |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
++	cfg |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
++	cfg |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
++
++	writel(cfg, host->regs + SD_EMMC_CFG);
++}
++
+ static const struct mmc_host_ops meson_mmc_ops = {
+ 	.request	= meson_mmc_request,
+ 	.set_ios	= meson_mmc_set_ios,
+@@ -751,10 +753,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto free_host;
+ 
+-	ret = meson_mmc_clk_init(host);
+-	if (ret)
+-		goto free_host;
 -
  	/* Stop execution */
  	writel(0, host->regs + SD_EMMC_START);
  
--	host->mrq = mrq;
--
- 	if (mrq->sbc)
- 		meson_mmc_start_cmd(mmc, mrq->sbc);
- 	else
-@@ -551,7 +543,6 @@ static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
- static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- {
- 	struct meson_host *host = dev_id;
--	struct mmc_request *mrq;
- 	struct mmc_command *cmd;
- 	u32 irq_en, status, raw_status;
- 	irqreturn_t ret = IRQ_HANDLED;
-@@ -561,11 +552,6 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+@@ -763,6 +761,13 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
+ 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
  
- 	cmd = host->cmd;
- 
--	mrq = host->mrq;
--
--	if (WARN_ON(!mrq))
--		return IRQ_NONE;
--
- 	if (WARN_ON(!cmd))
- 		return IRQ_NONE;
- 
-@@ -612,7 +598,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- 	else  {
- 		dev_warn(host->dev, "Unknown IRQ! status=0x%04x: MMC CMD%u arg=0x%08x flags=0x%08x stop=%d\n",
- 			 status, cmd->opcode, cmd->arg,
--			 cmd->flags, mrq->stop ? 1 : 0);
-+			 cmd->flags, cmd->mrq->stop ? 1 : 0);
- 		if (cmd->data) {
- 			struct mmc_data *data = cmd->data;
- 
-@@ -639,14 +625,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- {
- 	struct meson_host *host = dev_id;
--	struct mmc_request *mrq = host->mrq;
- 	struct mmc_command *cmd = host->cmd;
- 	struct mmc_data *data;
- 	unsigned int xfer_bytes;
- 
--	if (WARN_ON(!mrq))
--		return IRQ_NONE;
--
- 	if (WARN_ON(!cmd))
- 		return IRQ_NONE;
- 
-@@ -660,8 +642,8 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 	}
- 
- 	meson_mmc_read_resp(host->mmc, cmd);
--	if (!data || !data->stop || mrq->sbc)
--		meson_mmc_request_done(host->mmc, mrq);
-+	if (!data || !data->stop || cmd->mrq->sbc)
-+		meson_mmc_request_done(host->mmc, cmd->mrq);
- 	else
- 		meson_mmc_start_cmd(host->mmc, data->stop);
- 
++	/* set config to sane default */
++	meson_mmc_cfg_init(host);
++
++	ret = meson_mmc_clk_init(host);
++	if (ret)
++		goto free_host;
++
+ 	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+ 					meson_mmc_irq_thread, IRQF_SHARED,
+ 					DRIVER_NAME, host);
 -- 
 2.11.1
