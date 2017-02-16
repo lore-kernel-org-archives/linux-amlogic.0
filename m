@@ -1,44 +1,62 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 16 Feb 2017 20:42:06 +0100
-Subject: [PATCH v2 6/9] mmc: meson-gx: remove unneeded meson_mmc_clk_set in
- meson_mmc_clk_init
+Date: Thu, 16 Feb 2017 20:41:38 +0100
+Subject: [PATCH v2 5/9] mmc: meson-gx: remove member parent_mux from struct
+ meson_host
 In-Reply-To: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
 References: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
-Message-ID: <fc824f91-f686-64ab-83e4-86b04fd512f0@gmail.com>
+Message-ID: <4c36e7b3-002d-df69-f32e-e3ba5c100ff0@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This clk_disable_unprepare isn't right here. At first the condition
-should be "if (ret)" as the disable/unprepare is supposed to be
-executed if the previous command fails.
-And if the previous command fails and meson_mmc_clk_init returns
-an error, then probe jumps to label free_host where we have this
-disable/unprepare already.
+Member mux_parent isn't used outside meson_mmc_clk_init. So remove it
+and replace it with a local variable in meson_mmc_clk_init.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- extended commit message
+- added acked-by
 ---
- drivers/mmc/host/meson-gx-mmc.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 68e76fa8..850b0152 100644
+index ea2db3ce..68e76fa8 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -320,11 +320,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 	/* Get the nearest minimum clock to 400KHz */
- 	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
+@@ -130,7 +130,6 @@ struct meson_host {
+ 	struct clk *core_clk;
+ 	struct clk_mux mux;
+ 	struct clk *mux_clk;
+-	struct clk *mux_parent[MUX_CLK_NUM_PARENTS];
+ 	unsigned long current_clock;
  
--	ret = meson_mmc_clk_set(host, host->mmc->f_min);
--	if (!ret)
--		clk_disable_unprepare(host->cfg_div_clk);
--
--	return ret;
-+	return meson_mmc_clk_set(host, host->mmc->f_min);
- }
+ 	struct clk_divider cfg_div;
+@@ -247,19 +246,18 @@ static int meson_mmc_clk_init(struct meson_host *host)
  
- static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 	/* get the mux parents */
+ 	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
++		struct clk *clk;
+ 		char name[16];
+ 
+ 		snprintf(name, sizeof(name), "clkin%d", i);
+-		host->mux_parent[i] = devm_clk_get(host->dev, name);
+-		if (IS_ERR(host->mux_parent[i])) {
+-			ret = PTR_ERR(host->mux_parent[i]);
+-			if (PTR_ERR(host->mux_parent[i]) != -EPROBE_DEFER)
++		clk = devm_clk_get(host->dev, name);
++		if (IS_ERR(clk)) {
++			if (clk != ERR_PTR(-EPROBE_DEFER))
+ 				dev_err(host->dev, "Missing clock %s\n", name);
+-			host->mux_parent[i] = NULL;
+-			return ret;
++			return PTR_ERR(clk);
+ 		}
+ 
+-		mux_parent_names[i] = __clk_get_name(host->mux_parent[i]);
++		mux_parent_names[i] = __clk_get_name(clk);
+ 	}
+ 
+ 	/* create the mux */
 -- 
 2.11.1
