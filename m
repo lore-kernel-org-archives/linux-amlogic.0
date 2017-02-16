@@ -1,70 +1,44 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 16 Feb 2017 20:41:18 +0100
-Subject: [PATCH v2 3/9] mmc: meson-gx: remove unused members irq, ocr_mask
- from struct meson_host
+Date: Thu, 16 Feb 2017 20:42:06 +0100
+Subject: [PATCH v2 6/9] mmc: meson-gx: remove unneeded meson_mmc_clk_set in
+ meson_mmc_clk_init
 In-Reply-To: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
 References: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
-Message-ID: <3115a01c-ea2e-9d75-7a8e-cb0c575130f6@gmail.com>
+Message-ID: <fc824f91-f686-64ab-83e4-86b04fd512f0@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Member ocr_mask is never used and member irq we can replace with a
-local variable in meson_mmc_probe. So let's remove both members.
+This clk_disable_unprepare isn't right here. At first the condition
+should be "if (ret)" as the disable/unprepare is supposed to be
+executed if the previous command fails.
+And if the previous command fails and meson_mmc_clk_init returns
+an error, then probe jumps to label free_host where we have this
+disable/unprepare already.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- added acked-by
+- extended commit message
 ---
- drivers/mmc/host/meson-gx-mmc.c | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index b99461ff..b9de3d47 100644
+index 68e76fa8..850b0152 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -127,8 +127,6 @@ struct meson_host {
+@@ -320,11 +320,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	/* Get the nearest minimum clock to 400KHz */
+ 	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
  
- 	spinlock_t lock;
- 	void __iomem *regs;
--	int irq;
--	u32 ocr_mask;
- 	struct clk *core_clk;
- 	struct clk_mux mux;
- 	struct clk *mux_clk;
-@@ -712,7 +710,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct meson_host *host;
- 	struct mmc_host *mmc;
--	int ret;
-+	int ret, irq;
+-	ret = meson_mmc_clk_set(host, host->mmc->f_min);
+-	if (!ret)
+-		clk_disable_unprepare(host->cfg_div_clk);
+-
+-	return ret;
++	return meson_mmc_clk_set(host, host->mmc->f_min);
+ }
  
- 	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
- 	if (!mmc)
-@@ -744,8 +742,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 		goto free_host;
- 	}
- 
--	host->irq = platform_get_irq(pdev, 0);
--	if (host->irq == 0) {
-+	irq = platform_get_irq(pdev, 0);
-+	if (!irq) {
- 		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
- 		ret = -EINVAL;
- 		goto free_host;
-@@ -773,9 +771,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
- 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
- 
--	ret = devm_request_threaded_irq(&pdev->dev, host->irq,
--					meson_mmc_irq, meson_mmc_irq_thread,
--					IRQF_SHARED, DRIVER_NAME, host);
-+	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
-+					meson_mmc_irq_thread, IRQF_SHARED,
-+					DRIVER_NAME, host);
- 	if (ret)
- 		goto free_host;
- 
+ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
 -- 
 2.11.1
