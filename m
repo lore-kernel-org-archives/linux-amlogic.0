@@ -1,108 +1,25 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 16 Feb 2017 20:42:31 +0100
-Subject: [PATCH v2 8/9] mmc: meson-gx: improve initial configuration
-In-Reply-To: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
-References: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
-Message-ID: <c60bd6c5-ba22-bb7c-8c8d-d4df5f91b873@gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 17 Feb 2017 11:44:52 -0800
+Subject: [PATCH 1/2] mmc: meson-gx: prevent cfg_div_clk from being
+ disabled on init
+In-Reply-To: <20170216145222.1577-2-webczat@webczatnet.pl> (=?utf-8?Q?=22M?=
+ =?utf-8?Q?icha=C5=82?= Zegan"'s
+ message of "Thu, 16 Feb 2017 15:52:21 +0100")
+References: <20170216145222.1577-1-webczat@webczatnet.pl>
+ <20170216145222.1577-2-webczat@webczatnet.pl>
+Message-ID: <m2k28o61qj.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Config values which are not changed during runtime we can set
-in the probe function already.
-The block size setting is overwritten later in
-meson_mmc_start_cmd anyway if needed, so it doesn't harm if we
-remove this setting in meson_mmc_set_ios.
+Micha? Zegan <webczat@webczatnet.pl> writes:
 
-In addition:
-- write config register only if configuration changed
-- Initialize clocks after other config registers have been initialized
+> At the end of function meson_mmc_clk_init, the cfg_div clock was
+> prepared, enabled and configured, but then immediately disabled due to bogus if statements.
+> That made later calls to clk_disable_unprepare executed during module removal to fail with a kernel warning.
+> Fix that by changing the code to disable clock only when it failed to be configured.
+>
+> Signed-off-by: Micha? Zegan <webczat@webczatnet.pl>
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Acked-by: Kevin Hilman <khilman@baylibre.com>
----
-v2:
-- added acked-by
----
- drivers/mmc/host/meson-gx-mmc.c | 37 +++++++++++++++++++++----------------
- 1 file changed, 21 insertions(+), 16 deletions(-)
+I believe this one is not needed any more after Heiner's cleanups?
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index a8f43cc6..e7c3ac1c 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -390,15 +390,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	val &= ~(CFG_BUS_WIDTH_MASK << CFG_BUS_WIDTH_SHIFT);
- 	val |= bus_width << CFG_BUS_WIDTH_SHIFT;
- 
--	val &= ~(CFG_BLK_LEN_MASK << CFG_BLK_LEN_SHIFT);
--	val |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
--
--	val &= ~(CFG_RESP_TIMEOUT_MASK << CFG_RESP_TIMEOUT_SHIFT);
--	val |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
--
--	val &= ~(CFG_RC_CC_MASK << CFG_RC_CC_SHIFT);
--	val |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
--
- 	val &= ~CFG_DDR;
- 	if (ios->timing == MMC_TIMING_UHS_DDR50 ||
- 	    ios->timing == MMC_TIMING_MMC_DDR52 ||
-@@ -409,11 +400,11 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	if (ios->timing == MMC_TIMING_MMC_HS400)
- 		val |= CFG_CHK_DS;
- 
--	writel(val, host->regs + SD_EMMC_CFG);
--
--	if (val != orig)
-+	if (val != orig) {
-+		writel(val, host->regs + SD_EMMC_CFG);
- 		dev_dbg(host->dev, "%s: SD_EMMC_CFG: 0x%08x -> 0x%08x\n",
- 			__func__, orig, val);
-+	}
- }
- 
- static void meson_mmc_request_done(struct mmc_host *mmc,
-@@ -691,6 +682,17 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
- 	return status;
- }
- 
-+static void meson_mmc_cfg_init(struct meson_host *host)
-+{
-+	u32 cfg = 0;
-+
-+	cfg |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
-+	cfg |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
-+	cfg |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
-+
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+}
-+
- static const struct mmc_host_ops meson_mmc_ops = {
- 	.request	= meson_mmc_request,
- 	.set_ios	= meson_mmc_set_ios,
-@@ -751,10 +753,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_host;
- 
--	ret = meson_mmc_clk_init(host);
--	if (ret)
--		goto free_host;
--
- 	/* Stop execution */
- 	writel(0, host->regs + SD_EMMC_START);
- 
-@@ -763,6 +761,13 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
- 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
- 
-+	/* set config to sane default */
-+	meson_mmc_cfg_init(host);
-+
-+	ret = meson_mmc_clk_init(host);
-+	if (ret)
-+		goto free_host;
-+
- 	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
- 					meson_mmc_irq_thread, IRQF_SHARED,
- 					DRIVER_NAME, host);
--- 
-2.11.1
+Kevin
