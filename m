@@ -1,25 +1,38 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 17 Feb 2017 11:44:52 -0800
-Subject: [PATCH 1/2] mmc: meson-gx: prevent cfg_div_clk from being
- disabled on init
-In-Reply-To: <20170216145222.1577-2-webczat@webczatnet.pl> (=?utf-8?Q?=22M?=
+Date: Fri, 17 Feb 2017 11:47:05 -0800
+Subject: [PATCH 2/2] mmc: meson-gx: remove mmc host on device removal
+In-Reply-To: <20170216145222.1577-3-webczat@webczatnet.pl> (=?utf-8?Q?=22M?=
  =?utf-8?Q?icha=C5=82?= Zegan"'s
- message of "Thu, 16 Feb 2017 15:52:21 +0100")
+ message of "Thu, 16 Feb 2017 15:52:22 +0100")
 References: <20170216145222.1577-1-webczat@webczatnet.pl>
- <20170216145222.1577-2-webczat@webczatnet.pl>
-Message-ID: <m2k28o61qj.fsf@baylibre.com>
+ <20170216145222.1577-3-webczat@webczatnet.pl>
+Message-ID: <m2fujc61mu.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Micha? Zegan <webczat@webczatnet.pl> writes:
 
-> At the end of function meson_mmc_clk_init, the cfg_div clock was
-> prepared, enabled and configured, but then immediately disabled due to bogus if statements.
-> That made later calls to clk_disable_unprepare executed during module removal to fail with a kernel warning.
-> Fix that by changing the code to disable clock only when it failed to be configured.
+> The mmc host was added in meson_mmc_probe, but never removed in meson_mmc_remove.
+> Fix that by removing the host before deallocating other resources.
 >
 > Signed-off-by: Micha? Zegan <webczat@webczatnet.pl>
 
-I believe this one is not needed any more after Heiner's cleanups?
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 
-Kevin
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index d444b6bfa02b..bb83446118a3 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -818,6 +818,8 @@ static int meson_mmc_remove(struct platform_device *pdev)
+>  	if (WARN_ON(!host))
+>  		return 0;
+>  
+> +	mmc_remove_host(host->mmc);
+> +
+>  	if (host->bounce_buf)
+>  		dma_free_coherent(host->dev, host->bounce_buf_size,
+>  				  host->bounce_buf, host->bounce_dma_addr);
