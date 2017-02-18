@@ -1,66 +1,72 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sat, 18 Feb 2017 14:06:29 +0100
-Subject: [PATCH v3 2/10] mmc: meson-gx: make two functions return void
+Date: Sat, 18 Feb 2017 14:19:32 +0100
+Subject: [PATCH v3 6/10] mmc: meson-gx: fix error path in meson_mmc_clk_init /
+ meson_mmc_probe
 In-Reply-To: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
 References: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
-Message-ID: <df156d6f-3ea5-da37-e413-56862223460a@gmail.com>
+Message-ID: <8419d592-1338-d7eb-3a75-342b64897922@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The return value of meson_mmc_request_done and meson_mmc_read_resp
-isn't used, so make both functions return void.
+The condition should be "if (ret)" as the disable/unprepare is
+supposed to be executed if the previous command fails.
+In addition adjust the error path in probe to properly deal
+with the case that cfg_div_clk can be registered successfully
+but enable/prepare fails.
+In this case we shouldn't call clk_disable_unprepare.
 
+Reported-by: Micha? Zegan <webczat_200@poczta.onet.pl>
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- added acked-by
+- extended commit message
 v3:
-- no changes
+- adjust error path in probe
 ---
- drivers/mmc/host/meson-gx-mmc.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 07a7399c..b99461ff 100644
+index 68e76fa8..002e4aac 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -426,7 +426,8 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 			__func__, orig, val);
- }
+@@ -321,7 +321,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
  
--static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
-+static void meson_mmc_request_done(struct mmc_host *mmc,
-+				   struct mmc_request *mrq)
- {
- 	struct meson_host *host = mmc_priv(mmc);
+ 	ret = meson_mmc_clk_set(host, host->mmc->f_min);
+-	if (!ret)
++	if (ret)
+ 		clk_disable_unprepare(host->cfg_div_clk);
  
-@@ -435,8 +436,6 @@ static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
- 	host->mrq = NULL;
- 	host->cmd = NULL;
- 	mmc_request_done(host->mmc, mrq);
--
--	return 0;
- }
+ 	return ret;
+@@ -771,7 +771,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 					meson_mmc_irq_thread, IRQF_SHARED,
+ 					DRIVER_NAME, host);
+ 	if (ret)
+-		goto free_host;
++		goto err_div_clk;
  
- static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
-@@ -554,7 +553,7 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 		meson_mmc_start_cmd(mmc, mrq->cmd);
- }
- 
--static int meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
-+static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
- {
- 	struct meson_host *host = mmc_priv(mmc);
- 
-@@ -566,8 +565,6 @@ static int meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
- 	} else if (cmd->flags & MMC_RSP_PRESENT) {
- 		cmd->resp[0] = readl(host->regs + SD_EMMC_CMD_RSP);
+ 	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
+ 	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
+@@ -784,7 +784,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (host->bounce_buf == NULL) {
+ 		dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
+ 		ret = -ENOMEM;
+-		goto free_host;
++		goto err_div_clk;
  	}
--
--	return 0;
- }
  
- static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	mmc->ops = &meson_mmc_ops;
+@@ -792,8 +792,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 
+ 	return 0;
+ 
+-free_host:
++err_div_clk:
+ 	clk_disable_unprepare(host->cfg_div_clk);
++free_host:
+ 	clk_disable_unprepare(host->core_clk);
+ 	mmc_free_host(mmc);
+ 	return ret;
 -- 
 2.11.1
