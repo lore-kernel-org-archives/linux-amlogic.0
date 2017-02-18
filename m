@@ -1,5 +1,5 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sat, 18 Feb 2017 11:49:22 +0100
+From: webczat_200@poczta.onet.pl (=?UTF-8?Q?Micha=c5=82_Zegan?=)
+Date: Sat, 18 Feb 2017 12:26:49 +0100
 Subject: [PATCH v2 6/9] mmc: meson-gx: remove unneeded meson_mmc_clk_set
  in meson_mmc_clk_init
 In-Reply-To: <c8cdaef4-3de2-139d-5339-c5ad5c81fd4b@gmail.com>
@@ -7,11 +7,13 @@ References: <7d5263e2-9325-dedb-a5f6-954c4a09e977@gmail.com>
  <fc824f91-f686-64ab-83e4-86b04fd512f0@gmail.com>
  <ef2944b5-e04c-780b-6256-31af7ceb87dc@poczta.onet.pl>
  <c8cdaef4-3de2-139d-5339-c5ad5c81fd4b@gmail.com>
-Message-ID: <b238ee08-66d5-59a1-4e1d-33078103291e@gmail.com>
+Message-ID: <98176614-e3e8-731e-7a34-788655b2be8a@poczta.onet.pl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 18.02.2017 um 11:37 schrieb Heiner Kallweit:
+
+
+W dniu 18.02.2017 o 11:37, Heiner Kallweit pisze:
 > Am 18.02.2017 um 04:44 schrieb Micha? Zegan:
 >> Hello Heiner,
 >>
@@ -69,5 +71,26 @@ Am 18.02.2017 um 11:37 schrieb Heiner Kallweit:
 > the disable/unprepare to "if (ret)" and in probe we remove this
 > disable/unprepare from the error path.
 > 
-This was a little too fast, it's not that easy. But I'll come up with
-a changed version.
+If you do that, then if something fails *after* the meson_mmc_clk_init
+returns success, but something else fails later, then you will end up
+not disabling those clocks. What I thought about is: change the
+condition as you said. but in meson_mmc_probe, either check if clock is
+enabled in free_host before disabling it, or have two additional error
+passes: one used after the core_clk is enabled (currently if it fails
+then it will also be a kernel warning), and one used after the
+meson_mmc_clk_init returns success that would also disable the div
+clock. Not sure if that second one is appropriate or not.
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 525 bytes
+Desc: OpenPGP digital signature
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170218/aa2e76bb/attachment.sig>
