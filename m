@@ -1,70 +1,22 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sun, 19 Feb 2017 20:41:28 +0100
-Subject: [PATCH 04/18] mmc: meson-gx: improve meson_mmc_start_cmd
-In-Reply-To: <m2h93vbd2b.fsf@baylibre.com>
-References: <420b75a9-b8c2-b3d7-ae60-3ed8a5a18ead@gmail.com>
- <df8da322-6a42-642c-2c80-55fca0dab3ef@gmail.com>
- <m2h93vbd2b.fsf@baylibre.com>
-Message-ID: <aad14a82-135d-556c-866b-3879960e859f@gmail.com>
+Date: Sun, 19 Feb 2017 21:30:58 +0100
+Subject: [PATCH 0/2] hwrng: meson: add clock handling
+Message-ID: <00b2a4cc-686e-0cc0-43e8-552b70a1e868@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 15.02.2017 um 18:04 schrieb Kevin Hilman:
-> Heiner Kallweit <hkallweit1@gmail.com> writes:
-> 
->> Remove use of unneeded members cmd_arg and cmd_resp.
->> Setting SD_EMMC_CMD_RSP is only needed if CMD_CFG_RESP_NUM is set,
->> so don't write this register in all other cases.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> 
-> I'm not sure I like this change.  This works now because there is only
-> one descriptor used, but one of the next things to work on in this
-> driver is taking advantage of the internal DMA capabilities, which means
-> having a chain of descriptorsall filled out in memory.
-> 
-I implemented the descriptor chain mode and tests (together with CMD23
-mode) resulted in 140 MB/s read performance (from a 128GB eMMC card).
-So I will submit this extension together with the CMD23 mode extension.
+The HW randon number generator requires a clock and we shouldn't rely
+on the boot loader to enable it.
 
-Heiner
+Heiner Kallweit (2):
+  hwrng: meson: expose RNG0 clock via DT
+  hwrng: meson: add clock handling to driver
 
-> Kevin
-> 
->> ---
->>  drivers/mmc/host/meson-gx-mmc.c | 6 ++----
->>  1 file changed, 2 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->> index ece38b44..630e0590 100644
->> --- a/drivers/mmc/host/meson-gx-mmc.c
->> +++ b/drivers/mmc/host/meson-gx-mmc.c
->> @@ -456,7 +456,6 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->>  	desc->cmd_cfg |= (cmd->opcode & CMD_CFG_CMD_INDEX_MASK)	<<
->>  		CMD_CFG_CMD_INDEX_SHIFT;
->>  	desc->cmd_cfg |= CMD_CFG_OWNER;  /* owned by CPU */
->> -	desc->cmd_arg = cmd->arg;
->>  
->>  	/* Response */
->>  	if (cmd->flags & MMC_RSP_PRESENT) {
->> @@ -464,7 +463,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->>  		if (cmd->flags & MMC_RSP_136)
->>  			desc->cmd_cfg |= CMD_CFG_RESP_128;
->>  		desc->cmd_cfg |= CMD_CFG_RESP_NUM;
->> -		desc->cmd_resp = 0;
->> +		writel(0, host->regs + SD_EMMC_CMD_RSP);
->>  
->>  		if (!(cmd->flags & MMC_RSP_CRC))
->>  			desc->cmd_cfg |= CMD_CFG_RESP_NOCRC;
->> @@ -540,9 +539,8 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->>  	desc->cmd_cfg |= CMD_CFG_END_OF_CHAIN;
->>  	writel(desc->cmd_cfg, host->regs + SD_EMMC_CMD_CFG);
->>  	writel(desc->cmd_data, host->regs + SD_EMMC_CMD_DAT);
->> -	writel(desc->cmd_resp, host->regs + SD_EMMC_CMD_RSP);
->>  	wmb(); /* ensure descriptor is written before kicked */
->> -	writel(desc->cmd_arg, host->regs + SD_EMMC_CMD_ARG);
->> +	writel(cmd->arg, host->regs + SD_EMMC_CMD_ARG);
->>  }
->>  
->>  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
-> 
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  5 +++++
+ drivers/char/hw_random/meson-rng.c          | 27 ++++++++++++++++++++++++++-
+ include/dt-bindings/clock/gxbb-clkc.h       |  1 +
+ 4 files changed, 33 insertions(+), 2 deletions(-)
+
+-- 
+2.11.1
