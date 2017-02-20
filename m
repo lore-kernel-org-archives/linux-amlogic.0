@@ -1,61 +1,90 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 20 Feb 2017 10:08:39 +0100
-Subject: [PATCH v5 0/9] meson-gx: reset RGMII PHYs and configure TX delay
-In-Reply-To: <20170219214149.30418-1-martin.blumenstingl@googlemail.com>
-References: <20170122181028.5014-1-martin.blumenstingl@googlemail.com>
- <20170219214149.30418-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1487581719.3734.1.camel@baylibre.com>
+Date: Mon, 20 Feb 2017 11:07:23 +0100
+Subject: [PATCH 1/2] hwrng: meson: expose RNG0 clock via DT
+In-Reply-To: <a02b078d-9171-cf66-d5d8-84259f9f9a88@gmail.com>
+References: <00b2a4cc-686e-0cc0-43e8-552b70a1e868@gmail.com>
+ <a02b078d-9171-cf66-d5d8-84259f9f9a88@gmail.com>
+Message-ID: <1487585243.3734.3.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 2017-02-19 at 22:41 +0100, Martin Blumenstingl wrote:
-> This series adds the reset GPIOs for the (external) ethernet PHYs on
-> all
-> GXBB boards.
-> Additionally it provides a ethernet PHY node which can be used to
-> specify
-> PHY-specific properties (this may be required if more boards require
-> the
-> "eee-broken-1000t" for the RTL8211F ethernet PHY). To make all board
-> .dts
-> consistent I chose to add the PHY node also for boards which don't
-> have a
-> RTL8211F PHY.
+On Sun, 2017-02-19 at 21:33 +0100, Heiner Kallweit wrote:
+> Expose the RNG0 clock via DT.
 > 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> ?arch/arm64/boot/dts/amlogic/meson-gx.dtsi???| 2 +-
+> ?arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 5 +++++
+> ?include/dt-bindings/clock/gxbb-clkc.h???????| 1 +
+> ?3 files changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 5d995f77..620495a4 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -380,7 +380,7 @@
+> ?			#size-cells = <2>;
+> ?			ranges = <0x0 0x0 0x0 0xc8834000 0x0
+> 0x2000>;
+> ?
+> -			rng {
+> +			hwrng: rng {
+> ?				compatible = "amlogic,meson-rng";
+> ?				reg = <0x0 0x0 0x0 0x4>;
+> ?			};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> index 04b3324b..a375cb21 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> @@ -524,3 +524,8 @@
+> ?&vpu {
+> ?	compatible = "amlogic,meson-gxbb-vpu", "amlogic,meson-gx-
+> vpu";
+> ?};
+> +
+> +&hwrng {
+> +	clocks = <&clkc CLKID_RNG0>;
+> +	clock-names = "core";
+> +};
+> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-
+> bindings/clock/gxbb-clkc.h
+> index 692846c7..473676b1 100644
+> --- a/include/dt-bindings/clock/gxbb-clkc.h
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h
+> @@ -15,6 +15,7 @@
+> ?#define CLKID_SPI		34
+> ?#define CLKID_I2C		22
+> ?#define CLKID_SAR_ADC		23
+> +#define CLKID_RNG0		25
 
-Looks good to me. For the patchset:
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+Shouldn't you comment out the corresponding "define" in
+drivers/clk/meson/gxbb.h ?
 
-> 
-> Martin Blumenstingl (9):
-> ? ARM64: dts: meson-gxbb-odroidc2: add the ethernet PHY's reset GPIO
-> ? ARM64: dts: meson-gxbb-p200: add the ethernet PHY's reset GPIO
-> ? ARM64: dts: meson-gxbb-vega-s95: add the ethernet PHY's reset GPIO
-> ? ARM64: dts: meson-gxbb-nexbox-a95x: add the ethernet PHY's reset
-> GPIO
-> ? ARM64: dts: meson-gxbb-wetek-hub: add the ethernet PHY's reset GPIO
-> ? ARM64: dts: meson-gxbb-wetek-play2: add the ethernet PHY's reset
-> GPIO
-> ? ARM64: dts: meson-gxbb-p201: fix ethernet support
-> ? ARM64: dts: amlogic: add the ethernet TX delay configuration
-> ? ARM64: dts: meson-gx: remove the phy-mode property from meson-gx
-> 
-> ?arch/arm64/boot/dts/amlogic/meson-gx.dtsi??????????|??1 -
-> ?.../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts????| 17
-> ++++++++++++++
-> ?.../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |??7 ++++++
-> ?arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts????| 25
-> +++++++++++++++++++++
-> ?arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts????| 11 +++++++++
-> ?arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi???|??6 -----
-> ?.../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi??????| 21
-> ++++++++++++++++-
-> ?.../boot/dts/amlogic/meson-gxbb-wetek-hub.dts??????| 26
-> ++++++++++++++++++++++
-> ?.../boot/dts/amlogic/meson-gxbb-wetek-play2.dts????| 26
-> ++++++++++++++++++++++
-> ?.../boot/dts/amlogic/meson-gxl-s905d-p230.dts??????|??2 ++
-> ?.../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |??2 ++
-> ?arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts?????|??2 ++
-> ?12 files changed, 138 insertions(+), 8 deletions(-)
-> 
+I don't know if it is rule, but we usually "expose" the clock (moving
+the define from drivers/clk/meson/gxbb.h to include/dt-
+bindings/clock/gxbb-clkc.h) in a dedicated patch, with the subject
+starting with "clk: gxbb: expose foobar clock". It helps the
+maintainers of the subsystem to give their ack.
+
+For this to happen, please remember the patch should be sent to them as
+well. Here you are missing the clock and dt guys:
+* Stephen Boyd <sboyd@codeaurora.org>
+* Michael Turquette <mturquette@baylibre.com>
+* linux-clk at vger.kernel.org
+* devicetree at vger.kernel.org
+
+scripts/get_maintainer.pl can help you finding all people your patch
+should be sent to.
+
+The remaining part of this patch involves DT, so the subject should
+start with "ARM64: dts: meson-gx:"
+You also need to add devicetree at vger.kernel.org in CC.
+
+Apart from these minor remarks, the patchset looks good to me.
+Thx !
+
+> ?#define CLKID_ETH		36
+> ?#define CLKID_USB0		50
+> ?#define CLKID_USB1		51
