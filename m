@@ -1,302 +1,61 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 19 Feb 2017 23:41:14 +0100
-Subject: [PATCH 1/1] ARM64: dts: meson-gxl: improve support for the P212
- reference design
-In-Reply-To: <20170219224114.17201-1-martin.blumenstingl@googlemail.com>
-References: <20170219224114.17201-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170219224114.17201-2-martin.blumenstingl@googlemail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 20 Feb 2017 10:08:39 +0100
+Subject: [PATCH v5 0/9] meson-gx: reset RGMII PHYs and configure TX delay
+In-Reply-To: <20170219214149.30418-1-martin.blumenstingl@googlemail.com>
+References: <20170122181028.5014-1-martin.blumenstingl@googlemail.com>
+ <20170219214149.30418-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1487581719.3734.1.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic P212 reference design is used by other devices as well, such
-as (for example) the Khadas VIM boards. Thus this patch adds and moves
-all common entries from meson-gxl-s905x-p212.dts to a new, separate
-meson-gxl-s905x-p212.dtsi (which can be re-used on boards such as the
-Khadas VIM).
-Support for all boards based on the P212 reference design includes:
-- enabling IR support
-- enabling the SAR ADC (SARADC_CH1 is connected to a resistor which
-  indicates the hardware revision, a similar design is found on the
-  Khadas VIM boards)
-- all MMC controllers (which means that SDIO wifi, the SD card and the
-  eMMC are now supported)
-- pwm_ef as dependency for the SDIO wifi module
-- uart_A which is connected to the bluetooth module (the bluetooth
-  module itself is not enabled yet due to missing devicetree bindings
-  for the Broadcom serial bluetooth devices)
-- uart_AO is moved to the .dtsi (as all known devices use it as their
-  boot-console)
+On Sun, 2017-02-19 at 22:41 +0100, Martin Blumenstingl wrote:
+> This series adds the reset GPIOs for the (external) ethernet PHYs on
+> all
+> GXBB boards.
+> Additionally it provides a ethernet PHY node which can be used to
+> specify
+> PHY-specific properties (this may be required if more boards require
+> the
+> "eee-broken-1000t" for the RTL8211F ethernet PHY). To make all board
+> .dts
+> consistent I chose to add the PHY node also for boards which don't
+> have a
+> RTL8211F PHY.
+> 
 
-Specific to the P212 board:
-- this also enables the CVBS connector (which is not available on the
-  Khadas VIM boards for example)
+Looks good to me. For the patchset:
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  21 +-
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     | 214 +++++++++++++++++++++
- 2 files changed, 226 insertions(+), 9 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-index 9639f012b02b..db31e093f40e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-@@ -43,23 +43,26 @@
- 
- /dts-v1/;
- 
--#include "meson-gxl-s905x.dtsi"
-+#include "meson-gxl-s905x-p212.dtsi"
- 
- / {
- 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
- 	model = "Amlogic Meson GXL (S905X) P212 Development Board";
- 
--	aliases {
--		serial0 = &uart_AO;
--	};
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
- 
--	chosen {
--		stdout-path = "serial0:115200n8";
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
- 	};
-+};
- 
--	memory at 0 {
--		device_type = "memory";
--		reg = <0x0 0x0 0x0 0x80000000>;
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-new file mode 100644
-index 000000000000..fb0e7c999cb6
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-@@ -0,0 +1,214 @@
-+/*
-+ * Copyright (c) 2016 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
-+ * Based on meson-gx-p23x-q20x.dtsi:
-+ * - Copyright (c) 2016 Endless Computers, Inc.
-+ *   Author: Carlo Caione <carlo@endlessm.com>
-+ * - Copyright (c) 2016 BayLibre, SAS.
-+ *   Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This library is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License as
-+ *     published by the Free Software Foundation; either version 2 of the
-+ *     License, or (at your option) any later version.
-+ *
-+ *     This library is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+/* Common DTSI for devices which are based on the P212 reference board. */
-+
-+#include "meson-gxl-s905x.dtsi"
-+
-+/ {
-+	aliases {
-+		serial0 = &uart_AO;
-+		serial1 = &uart_A;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory at 0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao18>;
-+};
-+
-+/* Wireless SDIO Module */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+
-+	brcmf: bcrmf at 1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-names = "default";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-+	cd-inverted;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>;
-+	pinctrl-names = "default";
-+
-+	bus-width = <8>;
-+	cap-sd-highspeed;
-+	cap-mmc-highspeed;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
-+};
-+
-+/* This is connected to the Bluetooth module: */
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
--- 
-2.11.1
+> 
+> Martin Blumenstingl (9):
+> ? ARM64: dts: meson-gxbb-odroidc2: add the ethernet PHY's reset GPIO
+> ? ARM64: dts: meson-gxbb-p200: add the ethernet PHY's reset GPIO
+> ? ARM64: dts: meson-gxbb-vega-s95: add the ethernet PHY's reset GPIO
+> ? ARM64: dts: meson-gxbb-nexbox-a95x: add the ethernet PHY's reset
+> GPIO
+> ? ARM64: dts: meson-gxbb-wetek-hub: add the ethernet PHY's reset GPIO
+> ? ARM64: dts: meson-gxbb-wetek-play2: add the ethernet PHY's reset
+> GPIO
+> ? ARM64: dts: meson-gxbb-p201: fix ethernet support
+> ? ARM64: dts: amlogic: add the ethernet TX delay configuration
+> ? ARM64: dts: meson-gx: remove the phy-mode property from meson-gx
+> 
+> ?arch/arm64/boot/dts/amlogic/meson-gx.dtsi??????????|??1 -
+> ?.../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts????| 17
+> ++++++++++++++
+> ?.../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |??7 ++++++
+> ?arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts????| 25
+> +++++++++++++++++++++
+> ?arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts????| 11 +++++++++
+> ?arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi???|??6 -----
+> ?.../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi??????| 21
+> ++++++++++++++++-
+> ?.../boot/dts/amlogic/meson-gxbb-wetek-hub.dts??????| 26
+> ++++++++++++++++++++++
+> ?.../boot/dts/amlogic/meson-gxbb-wetek-play2.dts????| 26
+> ++++++++++++++++++++++
+> ?.../boot/dts/amlogic/meson-gxl-s905d-p230.dts??????|??2 ++
+> ?.../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |??2 ++
+> ?arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts?????|??2 ++
+> ?12 files changed, 138 insertions(+), 8 deletions(-)
+> 
