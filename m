@@ -1,90 +1,100 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 20 Feb 2017 11:07:23 +0100
-Subject: [PATCH 1/2] hwrng: meson: expose RNG0 clock via DT
-In-Reply-To: <a02b078d-9171-cf66-d5d8-84259f9f9a88@gmail.com>
+From: prasannatsmkumar@gmail.com (PrasannaKumar Muralidharan)
+Date: Mon, 20 Feb 2017 17:07:23 +0530
+Subject: [PATCH 2/2] hwrng: meson: add clock handling to driver
+In-Reply-To: <eff6bfbe-3257-5d74-35c7-226a29c61fcb@gmail.com>
 References: <00b2a4cc-686e-0cc0-43e8-552b70a1e868@gmail.com>
- <a02b078d-9171-cf66-d5d8-84259f9f9a88@gmail.com>
-Message-ID: <1487585243.3734.3.camel@baylibre.com>
+ <eff6bfbe-3257-5d74-35c7-226a29c61fcb@gmail.com>
+Message-ID: <CANc+2y6hYB_raW0TigeMbBm8C3JXEUUnSOTjNLcSs9FESQNTXg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 2017-02-19 at 21:33 +0100, Heiner Kallweit wrote:
-> Expose the RNG0 clock via DT.
-> 
+On 20 February 2017 at 02:05, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> Add handling of RNG0 clock to the driver.
+>
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
-> ?arch/arm64/boot/dts/amlogic/meson-gx.dtsi???| 2 +-
-> ?arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 5 +++++
-> ?include/dt-bindings/clock/gxbb-clkc.h???????| 1 +
-> ?3 files changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 5d995f77..620495a4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -380,7 +380,7 @@
-> ?			#size-cells = <2>;
-> ?			ranges = <0x0 0x0 0x0 0xc8834000 0x0
-> 0x2000>;
-> ?
-> -			rng {
-> +			hwrng: rng {
-> ?				compatible = "amlogic,meson-rng";
-> ?				reg = <0x0 0x0 0x0 0x4>;
-> ?			};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index 04b3324b..a375cb21 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> @@ -524,3 +524,8 @@
-> ?&vpu {
-> ?	compatible = "amlogic,meson-gxbb-vpu", "amlogic,meson-gx-
-> vpu";
-> ?};
+>  drivers/char/hw_random/meson-rng.c | 27 ++++++++++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/char/hw_random/meson-rng.c b/drivers/char/hw_random/meson-rng.c
+> index 119d6984..1f586e48 100644
+> --- a/drivers/char/hw_random/meson-rng.c
+> +++ b/drivers/char/hw_random/meson-rng.c
+> @@ -62,6 +62,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/types.h>
+>  #include <linux/of.h>
+> +#include <linux/clk.h>
+>
+>  #define RNG_DATA 0x00
+>
+> @@ -69,6 +70,7 @@ struct meson_rng_data {
+>         void __iomem *base;
+>         struct platform_device *pdev;
+>         struct hwrng rng;
+> +       struct clk *core_clk;
+>  };
+>
+>  static int meson_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
+> @@ -86,6 +88,7 @@ static int meson_rng_probe(struct platform_device *pdev)
+>         struct device *dev = &pdev->dev;
+>         struct meson_rng_data *data;
+>         struct resource *res;
+> +       int ret;
+
+Variable ret is not used. It can be removed.
+
+>         data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>         if (!data)
+> @@ -98,12 +101,33 @@ static int meson_rng_probe(struct platform_device *pdev)
+>         if (IS_ERR(data->base))
+>                 return PTR_ERR(data->base);
+>
+> +       data->core_clk = devm_clk_get(dev, "core");
+> +       if (IS_ERR(data->core_clk))
+> +               return PTR_ERR(data->core_clk);
 > +
-> +&hwrng {
-> +	clocks = <&clkc CLKID_RNG0>;
-> +	clock-names = "core";
-> +};
-> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-
-> bindings/clock/gxbb-clkc.h
-> index 692846c7..473676b1 100644
-> --- a/include/dt-bindings/clock/gxbb-clkc.h
-> +++ b/include/dt-bindings/clock/gxbb-clkc.h
-> @@ -15,6 +15,7 @@
-> ?#define CLKID_SPI		34
-> ?#define CLKID_I2C		22
-> ?#define CLKID_SAR_ADC		23
-> +#define CLKID_RNG0		25
+> +       ret = clk_prepare_enable(data->core_clk);
+> +       if (ret)
+> +               return ret;
+> +
+>         data->rng.name = pdev->name;
+>         data->rng.read = meson_rng_read;
+>
+>         platform_set_drvdata(pdev, data);
+>
+> -       return devm_hwrng_register(dev, &data->rng);
+> +       ret = devm_hwrng_register(dev, &data->rng);
+> +       if (ret)
+> +               clk_disable_unprepare(data->core_clk);
+> +
+> +       return ret;
+> +}
+> +
+> +static int meson_rng_remove(struct platform_device *pdev)
+> +{
+> +       struct meson_rng_data *data = platform_get_drvdata(pdev);
+> +
+> +       clk_disable_unprepare(data->core_clk);
+> +
+> +       return 0;
+>  }
 
-Shouldn't you comment out the corresponding "define" in
-drivers/clk/meson/gxbb.h ?
+In .remove clock gets disabled before the hwrng_unregister is called.
+The device node '/dev/hwrng' could be accessed while meson_rng_remove
+is called which could lead to problems. Instead of devm_hwrng_register
+use hwrng_register in .probe and call hwrng_unregister in .remove.
 
-I don't know if it is rule, but we usually "expose" the clock (moving
-the define from drivers/clk/meson/gxbb.h to include/dt-
-bindings/clock/gxbb-clkc.h) in a dedicated patch, with the subject
-starting with "clk: gxbb: expose foobar clock". It helps the
-maintainers of the subsystem to give their ack.
-
-For this to happen, please remember the patch should be sent to them as
-well. Here you are missing the clock and dt guys:
-* Stephen Boyd <sboyd@codeaurora.org>
-* Michael Turquette <mturquette@baylibre.com>
-* linux-clk at vger.kernel.org
-* devicetree at vger.kernel.org
-
-scripts/get_maintainer.pl can help you finding all people your patch
-should be sent to.
-
-The remaining part of this patch involves DT, so the subject should
-start with "ARM64: dts: meson-gx:"
-You also need to add devicetree at vger.kernel.org in CC.
-
-Apart from these minor remarks, the patchset looks good to me.
-Thx !
-
-> ?#define CLKID_ETH		36
-> ?#define CLKID_USB0		50
-> ?#define CLKID_USB1		51
+>  static const struct of_device_id meson_rng_of_match[] = {
+> @@ -114,6 +138,7 @@ MODULE_DEVICE_TABLE(of, meson_rng_of_match);
+>
+>  static struct platform_driver meson_rng_driver = {
+>         .probe  = meson_rng_probe,
+> +       .remove = meson_rng_remove,
+>         .driver = {
+>                 .name = "meson-rng",
+>                 .of_match_table = meson_rng_of_match,
+> --
+> 2.11.1
+>
+>
