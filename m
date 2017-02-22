@@ -1,14 +1,14 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 22 Feb 2017 07:59:08 +0100
-Subject: [PATCH v3 2/4] ARM64: dts: meson-gx: add clock to DT binding
- documentation for hwrng
+Date: Wed, 22 Feb 2017 08:00:55 +0100
+Subject: [PATCH v3 3/4] ARM64: dts: meson-gx: add clock CLKID_RNG0 to hwrng
+ node
 In-Reply-To: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
 References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
-Message-ID: <86db7397-8355-0d07-5180-c78d6cd06c84@gmail.com>
+Message-ID: <2135c29a-41c2-f649-ea6d-bd635cbe0714@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add clock to DT binding documentation.
+Add clock CLKID_RNG0 to HW randon number generator node.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
@@ -20,31 +20,35 @@ v2:
 v3:
 - splitted DT extension and binding documentation update into two patches
 ---
- Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 5 +++++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
-index 202f2d09..4d403645 100644
---- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
-+++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
-@@ -6,9 +6,16 @@ Required properties:
- - compatible : should be "amlogic,meson-rng"
- - reg : Specifies base physical address and size of the registers.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 5d995f77..620495a4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -380,7 +380,7 @@
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xc8834000 0x0 0x2000>;
  
-+Optional properties:
+-			rng {
++			hwrng: rng {
+ 				compatible = "amlogic,meson-rng";
+ 				reg = <0x0 0x0 0x0 0x4>;
+ 			};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 04b3324b..a375cb21 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -524,3 +524,8 @@
+ &vpu {
+ 	compatible = "amlogic,meson-gxbb-vpu", "amlogic,meson-gx-vpu";
+ };
 +
-+- clocks : phandle to the following named clocks
-+- clock-names: Name of core clock, must be "core"
-+
- Example:
- 
- rng {
--        compatible = "amlogic,meson-rng";
--        reg = <0x0 0xc8834000 0x0 0x4>;
-+	compatible = "amlogic,meson-rng";
-+	reg = <0x0 0xc8834000 0x0 0x4>;
++&hwrng {
 +	clocks = <&clkc CLKID_RNG0>;
 +	clock-names = "core";
- };
++};
 -- 
 2.11.1
