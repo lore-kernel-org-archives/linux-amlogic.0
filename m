@@ -1,73 +1,116 @@
-From: mingo@kernel.org (Ingo Molnar)
-Date: Sat, 25 Feb 2017 10:07:41 +0100
+From: sean@mess.org (Sean Young)
+Date: Sat, 25 Feb 2017 11:14:25 +0000
 Subject: [WARNING: A/V UNSCANNABLE][Merge tag 'media/v4.11-1' of git]
  ff58d005cd: BUG: unable to handle kernel NULL pointer dereference at
  0000039c
 In-Reply-To: <CA+55aFytXj+TZ_TanbxcY0KgRTrV7Vvr=fWON8tioUGmYHYiNA@mail.gmail.com>
 References: <58b07b30.9XFLj9Hhl7F6HMc2%fengguang.wu@intel.com>
  <CA+55aFytXj+TZ_TanbxcY0KgRTrV7Vvr=fWON8tioUGmYHYiNA@mail.gmail.com>
-Message-ID: <20170225090741.GA20463@gmail.com>
+Message-ID: <20170225111424.GA7659@gofer.mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-
-* Linus Torvalds <torvalds@linux-foundation.org> wrote:
-
-> I'm pretty sure that the thing that triggered this is once more commit
-> a9b4f08770b4 ("x86/ioapic: Restore IO-APIC irq_chip retrigger
-> callback") which seems to retrigger stale irqs that simply should not
-> be retriggered.
+On Fri, Feb 24, 2017 at 11:15:51AM -0800, Linus Torvalds wrote:
+> Added more relevant people. I've debugged the immediate problem below,
+> but I think there's another problem that actually triggered this.
 > 
-> They aren't actually active any more, if they ever were.
+> On Fri, Feb 24, 2017 at 10:28 AM, kernel test robot
+> <fengguang.wu@intel.com> wrote:
+> >
+> > 0day kernel testing robot got the below dmesg and the first bad commit is
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+> >
+> > commit ff58d005cd10fcd372787cceac547e11cf706ff6
+> > Merge: 5ab3566 9eeb0ed
+> >
+> >     Merge tag 'media/v4.11-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+> [...]
+> > [    4.664940] rc rc0: lirc_dev: driver ir-lirc-codec (rc-loopback) registered at minor = 0
+> > [    4.666322] BUG: unable to handle kernel NULL pointer dereference at 0000039c
+> > [    4.666675] IP: serial_ir_irq_handler+0x189/0x410
 > 
-> So that commit seems to act like a random CONFIG_DEBUG_SHIRQ. It's
-> good for testing, but not good for actual users.
+> This merge being fingered ends up being a subtle interaction with other changes.
+> 
+> Those "other changes" are (again) the interrupt retrigger code that
+> was reverted for 4.10, and then we tried to merge them again this
+> merge window.
+> 
+> Because the immediate cause is:
+> 
+> > [    4.666675] EIP: serial_ir_irq_handler+0x189/0x410
+> > [    4.666675] Call Trace:
+> > [    4.666675]  <IRQ>
+> > [    4.666675]  __handle_irq_event_percpu+0x57/0x100
+> > [    4.666675]  handle_irq_event_percpu+0x1d/0x50
+> > [    4.666675]  handle_irq_event+0x32/0x60
+> > [    4.666675]  handle_edge_irq+0xa5/0x120
+> > [    4.666675]  handle_irq+0x9d/0xd0
+> > [    4.666675]  </IRQ>
+> > [    4.666675]  do_IRQ+0x5f/0x130
+> > [    4.666675]  common_interrupt+0x33/0x38
+> > [    4.666675] EIP: hardware_init_port+0x3f/0x190
+> > [    4.666675] EFLAGS: 00200246 CPU: 0
+> > [    4.666675] EAX: c718990f EBX: 00000000 ECX: 00000000 EDX: 000003f9
+> > [    4.666675] ESI: 000003f9 EDI: 000003f8 EBP: c0065d98 ESP: c0065d84
+> > [    4.666675]  DS: 007b ES: 007b FS: 00d8 GS: 0000 SS: 0068
+> > [    4.666675]  serial_ir_probe+0xbb/0x300
+> > [    4.666675]  platform_drv_probe+0x48/0xb0
+> ...
+> 
+> ie an interrupt came in immediately after the request_irq(), before
+> all the data was properly set up, which then causes the interrupt
+> handler to take a fault because it tries to access some field that
+> hasn't even been set up yet.
 
-Yeah, so some distros like Fedora already have CONFIG_DEBUG_SHIRQ=y enabled, but 
-part of the problem is that CONFIG_DEBUG_SHIRQ=y has this:
+Oh dear. I've pointed out others making the same mistake when doing code
+reviews, clearly I need review my own code better.
 
-#ifdef CONFIG_DEBUG_SHIRQ_FIXME
-        if (!retval && (irqflags & IRQF_SHARED)) {
-                /*
-                 * It's a shared IRQ -- the driver ought to be prepared for it
-                 * to happen immediately, so let's make sure....
-                 * We disable the irq to make sure that a 'real' IRQ doesn't
-                 * run in parallel with our fake.
-                 */
-                unsigned long flags;
+> 
+> The code line is helpful, the faulting instruction is
+> 
+>       mov    0x39c(%rax),%eax   <--- fault
+>       call ..
+>       mov    someglobalvar,%edx
+> 
+> which together with the supplied config file makes me able to match it
+> up with the assembly generation around it:
+> 
+>         inb %dx, %al    # tmp254, value
+>         andb    $1, %al #, tmp255
+>         testb   %al, %al        # tmp255
+>         je      .L233   #,
+>   .L215:
+>         movl    serial_ir+8, %eax       # serial_ir.rcdev, serial_ir.rcdev
+>         xorl    %edx, %edx      # _66->timeout
+>         movl    924(%eax), %eax # _66->timeout, _66->timeout
+>         call    nsecs_to_jiffies        #
+>         movl    jiffies, %edx   # jiffies, jiffies.33_70
+>         addl    %eax, %edx      # _69, tmp259
+>         movl    $serial_ir+16, %eax     #,
+>         call    mod_timer       #
+>         movl    serial_ir+8, %eax       # serial_ir.rcdev,
+>         call    ir_raw_event_handle     #
+>         movl    $1, %eax        #, <retval>
+> 
+> so it's that "serial_ir.rcdev->timeout" access that faults. So this is
+> the faulting source code:
+> 
+> drivers/media/rc/serial_ir.c: 402
+> 
+>         mod_timer(&serial_ir.timeout_timer,
+>                   jiffies + nsecs_to_jiffies(serial_ir.rcdev->timeout));
+> 
+>         ir_raw_event_handle(serial_ir.rcdev);
+> 
+>         return IRQ_HANDLED;
+> 
+> and serial_ir.rcdev is NULL when ti tries to look up the timeout.
 
-                disable_irq(irq);
-                local_irq_save(flags);
+ir_raw_event_handle() call will also go bang if passed a null pointer, so
+this problem existed before (since v4.10).
 
-                handler(irq, dev_id);
+Thanks for debugging this, I'll send a patch as a reply to this email.
 
-                local_irq_restore(flags);
-                enable_irq(irq);
-        }
-#endif
 
-Note that the '_FIXME' postfix effectively turns off this particular debug check 
-...
-
-Thomas and me realized this risk a week ago ago, and tried to resurrect full 
-CONFIG_DEBUG_SHIRQ=y functionality to more reliably trigger these problems:
-
-  https://lkml.org/lkml/2017/2/15/341
-
-... but were forced to revert that fix because it's not working on x86 yet (it's 
-crashing). We also thought we fixed the problems exposed in drivers, as the 
-retrigger changes have been in -tip and -next for some time, but were clearly too 
-optimistic about that.
-
-So, should we revert the hw-retrigger change:
-
-  a9b4f08770b4 x86/ioapic: Restore IO-APIC irq_chip retrigger callback
-
-... until we managed to fix CONFIG_DEBUG_SHIRQ=y? If you'd like to revert it 
-upstream straight away:
-
-Acked-by: Ingo Molnar <mingo@kernel.org>
-
-Thanks,
-
-	Ingo
+Sean
