@@ -1,44 +1,34 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 27 Feb 2017 05:28:49 -0800
-Subject: [PATCH v3 1/3] clk: meson-gxbb: expose clock CLKID_RNG0
-In-Reply-To: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
-References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
-Message-ID: <80bc00c9-dc3b-5aeb-89a0-8b427dca9b34@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 27 Feb 2017 07:29:14 -0600
+Subject: [PATCH 1/2] devicetree: Add vendor prefix for Hwacom Systems Inc.
+In-Reply-To: <m2mvd839t7.fsf@baylibre.com>
+References: <20170212193247.22705-1-carlo@caione.org>
+ <20170212193247.22705-2-carlo@caione.org>
+ <20170222142558.wbedfw6l4maatkdy@rob-hp-laptop> <m2mvd839t7.fsf@baylibre.com>
+Message-ID: <CAL_Jsq+O4gpf7Hbfx_+ppe0uVpbzxJdk49jsytsYmyP4GZyUfQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/21/2017 10:55 PM, Heiner Kallweit wrote:
-> Expose clock CLKID_RNG0 which is needed for the HW random number generator.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v2:
-> - added clk and DT maintainers
-> - split exposing the clock and using it in DT into two patches
-> - comment out clock definition in drivers/clk/meson/gxbb.h
-> - silently move CLKID_SPI to the right place
-> v3:
-> - no changes
-> ---
->  drivers/clk/meson/gxbb.h              | 2 +-
->  include/dt-bindings/clock/gxbb-clkc.h | 3 ++-
->  2 files changed, 3 insertions(+), 2 deletions(-)
-> 
+On Sun, Feb 26, 2017 at 3:45 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Rob Herring <robh@kernel.org> writes:
+>
+>> On Sun, Feb 12, 2017 at 08:32:46PM +0100, Carlo Caione wrote:
+>>> From: Carlo Caione <carlo@endlessm.com>
+>>>
+>>> Hwacom Systems Inc. is a broadband system integrator and supplier of
+>>> mobile, fixed and IP networks related services as well as
+>>> multimedia application. Website: http://www.hwacom.com/
+>>>
+>>> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>
+> Rob, I assume I should take this patch along with the patch that's using
+> this prefix?  Or does this go through some other DT path?
 
+Yes, it should be applied with the rest of the series.
 
-Hi Heiner,
-
-This looks all good to me, but you should always send a cover letter for each revisions
-of the patchset.
-
-Using "git send-email" along the "--cover-letter" of "get format-patch" feature would
-also help send them in a row with a up-to-date cover letter.
-
-For the third patch, it may be good to also add the same to the GXL dtsi, no ?
-
-Anyway :
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Thanks,
-Neil
+Rob
