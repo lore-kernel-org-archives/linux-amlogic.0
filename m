@@ -1,131 +1,44 @@
-From: tglx@linutronix.de (Thomas Gleixner)
-Date: Mon, 27 Feb 2017 13:32:59 +0100 (CET)
-Subject: [WARNING: A/V UNSCANNABLE][Merge tag 'media/v4.11-1' of git]
- ff58d005cd: BUG: unable to handle kernel NULL pointer dereference at
- 0000039c
-In-Reply-To: <alpine.DEB.2.20.1702271105090.4732@nanos>
-References: <58b07b30.9XFLj9Hhl7F6HMc2%fengguang.wu@intel.com>
- <CA+55aFytXj+TZ_TanbxcY0KgRTrV7Vvr=fWON8tioUGmYHYiNA@mail.gmail.com>
- <20170225090741.GA20463@gmail.com>
- <CA+55aFy+ER8cYV02eZsKAOLnZBWY96zNWqUFWSWT1+3sZD4XnQ@mail.gmail.com>
- <alpine.DEB.2.20.1702271105090.4732@nanos>
-Message-ID: <alpine.DEB.2.20.1702271231410.4732@nanos>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 27 Feb 2017 05:28:49 -0800
+Subject: [PATCH v3 1/3] clk: meson-gxbb: expose clock CLKID_RNG0
+In-Reply-To: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
+References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
+Message-ID: <80bc00c9-dc3b-5aeb-89a0-8b427dca9b34@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 27 Feb 2017, Thomas Gleixner wrote:
-> On Sat, 25 Feb 2017, Linus Torvalds wrote:
-> > There are several things that set IRQS_PENDING, ranging from "try to
-> > test mis-routed interrupts while irqd was working", to "prepare for
-> > suspend losing the irq for us", to "irq auto-probing uses it on
-> > unassigned probable irqs".
-> > 
-> > The *actual* reason to re-send, namely getting a nested irq that we
-> > had to drop because we got a second one while still handling the first
-> > (or because it was disabled), is just one case.
-> > 
-> > Personally, I'd suspect some left-over state from auto-probing earlier
-> > in the boot, but I don't know. Could we fix that underlying issue?
+On 02/21/2017 10:55 PM, Heiner Kallweit wrote:
+> Expose clock CLKID_RNG0 which is needed for the HW random number generator.
 > 
-> I'm on it.
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v2:
+> - added clk and DT maintainers
+> - split exposing the clock and using it in DT into two patches
+> - comment out clock definition in drivers/clk/meson/gxbb.h
+> - silently move CLKID_SPI to the right place
+> v3:
+> - no changes
+> ---
+>  drivers/clk/meson/gxbb.h              | 2 +-
+>  include/dt-bindings/clock/gxbb-clkc.h | 3 ++-
+>  2 files changed, 3 insertions(+), 2 deletions(-)
+> 
 
-Adding a few trace points to the irq code gives me a pretty consistent
-picture across a bunch of different machines.
 
-The pending interrupt issue happens, at least on my test boxen, mostly on
-the 'legacy' interrupts (0 - 15). But even the IOAPIC interrupts >=16
-happen occasionally.
+Hi Heiner,
 
- - Spurious interrupts on IRQ7, which are triggered by IRQ 0 (PIT/HPET). On
-   one of the affected machines this stops when the interrupt system is
-   switched to interrupt remapping !?!?!?
+This looks all good to me, but you should always send a cover letter for each revisions
+of the patchset.
 
- - Spurious interrupts on various interrupt lines, which are triggered by
-   IOAPIC interrupts >= IRQ16. That's a known issue on quite some chipsets
-   that the legacy PCI interrupt (which is used when IOAPIC is disabled) is
-   triggered when the IOAPIC >=16 interrupt fires.
+Using "git send-email" along the "--cover-letter" of "get format-patch" feature would
+also help send them in a row with a up-to-date cover letter.
 
- - Spurious interrupt caused by driver probing itself. I.e. the driver
-   probing code causes an interrupt issued from the device
-   inadvertently. That happens even on IRQ >= 16.
+For the third patch, it may be good to also add the same to the GXL dtsi, no ?
 
-   This problem might be handled by the device driver code itself, but
-   that's going to be ugly. See below.
+Anyway :
 
-None of that was caused by misrouted irq or autoprobing. Autoprobing is not
-used on any modern maschine at all and the misrouted mechanism cannot
-set the pending flag on a interrupt which has no action installed.
-
-Sure, we might not set the pending flag on spurious interrupts, when an
-interrupt has no action assigned. We had it that way quite some years
-ago. But that caused issues on a couple of (non x86) systems because the
-peripheral which sent the spurious interrupt was waiting for
-acknowledgement forever and therefor not sending new interrupts. There was
-no way to handle that other than resending the interrupt after the action
-was installed. The reason for this is the following race:
-
-Device driver init()
-
-  ack_bogus_pending_irq_in_device();
-                          <---- Device sends spurious interrupt
-  request_irq();
-
-We cannot call ack_bogus_pending_irq_in_device() after the handler has been
-installed because it might clear a real interrupt before the handler is
-invoked. In fact we can, but that requires pretty ugly code. See below.
-
-Yes, it's broken hardware, but in that area there is more broken than sane
-hardware.
-
-The other point here is, that the "IOAPIC triggers spurious interrupt on
-legacy lines" issue can actually cause the same problem as the immediate
-resend/retrigger:
-
-  request_irq();
-  			 <---- Other device sends IOAPIC interrupt which
-			       triggers the legacy line.
-
-If the handler is not prepared@that point, then it explodes as
-well. Same for this odd IRQ0 -> IRQ7 trigger, which I can observe on two
-machines.
-
-The whole resend/retrigger business is only relevant for edge type
-interrupts to deal with the following problem:
-
-  disable_irq();
-			<---- Device sends interrupt
-  enable_irq();
-
-  ===> Previously sent interrupt has not been acked in the device so no
-       further interrupts happen. We lost an edge and are toast.
-
-We never do the resend/retrigger for level type interrupts, because they
-are resent by hardware if the interrupt is still pending, which is the case
-when you don't acknowlegde it at the device level.
-
-So now you might argue that a driver could handle this by doing:
-
-  disable_irq();
-			<---- Device sends interrupt
-  enable_irq();
-
-  lock_device();
-   do_some_magic_checks_and_handle_pending_irq();
-  unlock_device();
-
-Requiring this would add tons of even more broken code to the device
-drivers and I really doubt that we want to go there. Same for the
-request_irq() case.
-
-I rather prefer that drivers are able to deal with spurious interrupts even
-on non shared interrupt lines and let the resend/retrigger mechanism expose
-them early when they do not.
-
-We can try to sample more data from the machines of affected users, but I
-doubt that it will give us more information than confirming that we really
-have to deal with all that hardware wreckage out there in some way or the
-other.
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 Thanks,
-
-	tglx
+Neil
