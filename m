@@ -1,53 +1,59 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 27 Feb 2017 19:07:41 -0800
-Subject: [PATCH v3 10/10] mmc: meson-gx: replace magic timeout numbers
- with constants
-In-Reply-To: <8dadc1fd-2612-48d4-f265-95501c83a124@gmail.com> (Heiner
- Kallweit's message of "Sat, 18 Feb 2017 14:26:04 +0100")
-References: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
- <8dadc1fd-2612-48d4-f265-95501c83a124@gmail.com>
-Message-ID: <m2poi3108y.fsf@baylibre.com>
+Date: Mon, 27 Feb 2017 19:08:29 -0800
+Subject: [PATCH] mmc: meson-gx: fix error path when driver initialization
+ fails before enabling clocks
+In-Reply-To: <20170218170647.5860-1-webczat@webczatnet.pl> (=?utf-8?Q?=22M?=
+ =?utf-8?Q?icha=C5=82?= Zegan"'s
+ message of "Sat, 18 Feb 2017 18:06:46 +0100")
+References: <20170218170647.5860-1-webczat@webczatnet.pl>
+Message-ID: <m2lgsr107m.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Heiner Kallweit <hkallweit1@gmail.com> writes:
+Micha? Zegan <webczat@webczatnet.pl> writes:
 
-> Replace timeout magic numbers with proper constants.
+> This patch fixes the case where meson_mmc_probe function fails before
+> core_clk is enabled.
+> Originally, that would result in a try to disable the core clock, and if
+> it was not already enabled, it would result in a kernel warning.
+> This issue is similar to the one with div_clk.
+> Fix it by introducing another error path used only between successfully
+> enabling the core clock, and successfully enabling the div clock.
+> That would ensure that core clock is disabled only if it was enabled before.
 >
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Micha? Zegan <webczat@webczatnet.pl>
 
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 
 > ---
-> v3:
-> - added to patch series
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+> applies on top of Heiner's patchset v3
+> https://patchwork.kernel.org/patch/9581057/
+> That in turn applies on top of https://patchwork.kernel.org/patch/9561215/
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 5281014e..f244fcf9 100644
+> index 336b6a2e94c6..7917a3fe51ad 100644
 > --- a/drivers/mmc/host/meson-gx-mmc.c
 > +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -116,6 +116,8 @@
+> @@ -752,7 +752,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
 >  
->  #define SD_EMMC_CFG_BLK_SIZE 512 /* internal buffer max: 512 bytes */
->  #define SD_EMMC_CFG_RESP_TIMEOUT 256 /* in clock cycles */
-> +#define SD_EMMC_CMD_TIMEOUT 1024 /* in ms */
-> +#define SD_EMMC_CMD_TIMEOUT_DATA 4096 /* in ms */
->  #define SD_EMMC_CFG_CMD_GAP 16 /* in clock cycles */
->  #define MUX_CLK_NUM_PARENTS 2
+>  	ret = meson_mmc_clk_init(host);
+>  	if (ret)
+> -		goto free_host;
+> +		goto err_core_clk;
 >  
-> @@ -498,10 +500,10 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>  	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+>  					meson_mmc_irq_thread, IRQF_SHARED,
+> @@ -781,8 +781,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
 >  
->  		desc->cmd_data = host->bounce_dma_addr & CMD_DATA_MASK;
->  
-> -		cmd_cfg_timeout = 12;
-> +		cmd_cfg_timeout = ilog2(SD_EMMC_CMD_TIMEOUT_DATA);
->  	} else {
->  		desc->cmd_cfg &= ~CMD_CFG_DATA_IO;
-> -		cmd_cfg_timeout = 10;
-> +		cmd_cfg_timeout = ilog2(SD_EMMC_CMD_TIMEOUT);
->  	}
->  	desc->cmd_cfg |= (cmd_cfg_timeout & CMD_CFG_TIMEOUT_MASK) <<
->  		CMD_CFG_TIMEOUT_SHIFT;
+>  err_div_clk:
+>  	clk_disable_unprepare(host->cfg_div_clk);
+> -free_host:
+> +err_core_clk:
+>  	clk_disable_unprepare(host->core_clk);
+> +free_host:
+>  	mmc_free_host(mmc);
+>  	return ret;
+>  }
