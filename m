@@ -1,48 +1,72 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 28 Feb 2017 14:29:55 +0100
-Subject: [PATCH 0/7] clk: meson: update clock controller for audio support
-Message-ID: <20170228133002.17894-1-jbrunet@baylibre.com>
+Date: Tue, 28 Feb 2017 14:29:57 +0100
+Subject: [PATCH 2/7] clk: gxbb: put dividers and muxes in tables
+In-Reply-To: <20170228133002.17894-1-jbrunet@baylibre.com>
+References: <20170228133002.17894-1-jbrunet@baylibre.com>
+Message-ID: <20170228133002.17894-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset is a first round of update to the meson clock controllers
-to bring audio support. The patchset is based on clk-next with two
-additional patches from arm-soc next (to avoid conflict later on).
-commit d356a86b1b30 ("clk: meson-gxbb: Export HDMI clocks")
-commit 7d753a742127 ("clk: gxbb: add the SAR ADC clocks and expose them")
+Until now, there was only 2 dividers and 2 muxes declared for the gxbb
+platform. With the ongoing work on various subsystem, including audio,
+this is about to change. Use the same approach as gates for dividers and
+muxes, putting them in tables to fix the register address at runtime.
 
-The 2 first patches of the series put the generic muxes and divisors
-declaration in tables so the register address fixup works in the same way
-as the clock gates. We are going to add more of these clock types for
-audio or gpu support, so we can't continue to fix addresses individually
-like it is currently done.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/gxbb.c | 28 ++++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 8 deletions(-)
 
-Patches 3 to 6 improve the support of the mpll clocks, now allowing the
-rate to be set. Among other things, the mplls are the parent clocks of the
-i2s and spdif clocks.
-
-Patch 7 expose the clock gates required to power on the i2s output.
-
-These patches have been tested on the meson gxbb p200 board, as part of the
-ongoing work to bring audio support for meson SoC family.
-
-Jerome Brunet (7):
-  clk: meson8b: put dividers and muxes in tables
-  clk: gxbb: put dividers and muxes in tables
-  clk: meson: mpll: add rw operation
-  clk: meson: gxbb: mpll: use rw operation
-  clk: meson8b: add the mplls clocks 0, 1 and 2
-  clk: meson: mpll: correct N2 maximum value
-  dt-bindings: clk: gxbb: expose i2s output clock gates
-
- drivers/clk/meson/clk-mpll.c          | 152 ++++++++++++++++++++++++++++++++--
- drivers/clk/meson/clkc.h              |   4 +-
- drivers/clk/meson/gxbb.c              |  64 +++++++++++---
- drivers/clk/meson/gxbb.h              |  10 +--
- drivers/clk/meson/meson8b.c           | 126 +++++++++++++++++++++++++++-
- drivers/clk/meson/meson8b.h           |  20 ++++-
- include/dt-bindings/clock/gxbb-clkc.h |   5 ++
- 7 files changed, 354 insertions(+), 27 deletions(-)
-
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 1c1ec137a3cc..388b0c8838af 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -902,6 +902,16 @@ static struct clk_gate *gxbb_clk_gates[] = {
+ 	&gxbb_sar_adc_clk,
+ };
+ 
++static struct clk_mux *gxbb_clk_muxes[] = {
++	&gxbb_mpeg_clk_sel,
++	&gxbb_sar_adc_clk_sel,
++};
++
++static struct clk_divider *gxbb_clk_dividers[] = {
++	&gxbb_mpeg_clk_div,
++	&gxbb_sar_adc_clk_div,
++};
++
+ static int gxbb_clkc_probe(struct platform_device *pdev)
+ {
+ 	void __iomem *clk_base;
+@@ -928,19 +938,21 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+ 	/* Populate the base address for CPU clk */
+ 	gxbb_cpu_clk.base = clk_base;
+ 
+-	/* Populate the base address for the MPEG clks */
+-	gxbb_mpeg_clk_sel.reg = clk_base + (u64)gxbb_mpeg_clk_sel.reg;
+-	gxbb_mpeg_clk_div.reg = clk_base + (u64)gxbb_mpeg_clk_div.reg;
+-
+-	/* Populate the base address for the SAR ADC clks */
+-	gxbb_sar_adc_clk_sel.reg = clk_base + (u64)gxbb_sar_adc_clk_sel.reg;
+-	gxbb_sar_adc_clk_div.reg = clk_base + (u64)gxbb_sar_adc_clk_div.reg;
+-
+ 	/* Populate base address for gates */
+ 	for (i = 0; i < ARRAY_SIZE(gxbb_clk_gates); i++)
+ 		gxbb_clk_gates[i]->reg = clk_base +
+ 			(u64)gxbb_clk_gates[i]->reg;
+ 
++	/* Populate base address for muxes */
++	for (i = 0; i < ARRAY_SIZE(gxbb_clk_muxes); i++)
++		gxbb_clk_muxes[i]->reg = clk_base +
++			(u64)gxbb_clk_muxes[i]->reg;
++
++	/* Populate base address for dividers */
++	for (i = 0; i < ARRAY_SIZE(gxbb_clk_dividers); i++)
++		gxbb_clk_dividers[i]->reg = clk_base +
++			(u64)gxbb_clk_dividers[i]->reg;
++
+ 	/*
+ 	 * register all clks
+ 	 */
 -- 
 2.9.3
