@@ -1,76 +1,48 @@
-From: tglx@linutronix.de (Thomas Gleixner)
-Date: Tue, 28 Feb 2017 11:51:25 +0100 (CET)
-Subject: [WARNING: A/V UNSCANNABLE][Merge tag 'media/v4.11-1' of git]
- ff58d005cd: BUG: unable to handle kernel NULL pointer dereference at
- 0000039c
-In-Reply-To: <CA+55aFxwtkOs95R-v7z8yjguvp91oDTxRKs-x3uN_=sM_33Gvg@mail.gmail.com>
-References: <58b07b30.9XFLj9Hhl7F6HMc2%fengguang.wu@intel.com>
- <CA+55aFytXj+TZ_TanbxcY0KgRTrV7Vvr=fWON8tioUGmYHYiNA@mail.gmail.com>
- <20170225090741.GA20463@gmail.com>
- <CA+55aFy+ER8cYV02eZsKAOLnZBWY96zNWqUFWSWT1+3sZD4XnQ@mail.gmail.com>
- <alpine.DEB.2.20.1702271105090.4732@nanos>
- <alpine.DEB.2.20.1702271231410.4732@nanos> <20170227154124.GA20569@gmail.com>
- <CA+55aFxwtkOs95R-v7z8yjguvp91oDTxRKs-x3uN_=sM_33Gvg@mail.gmail.com>
-Message-ID: <alpine.DEB.2.20.1702281103590.4732@nanos>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 28 Feb 2017 14:29:55 +0100
+Subject: [PATCH 0/7] clk: meson: update clock controller for audio support
+Message-ID: <20170228133002.17894-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 27 Feb 2017, Linus Torvalds wrote:
-> So I don't disagree that in a perfect world all drivers should just
-> handle it. It's just that it's not realistic.
-> 
-> The fact that we have now *twice* gotten an oops report or a "this
-> machine doesn't boot" report etc within a week or so of merging the
-> problematic patch does *not* indicate that it's easy to fix or rare.
-> 
-> Quite the reverse.
-> 
-> It indicates that it's just rare enough that core developers don't see
-> it, but it's common enough to have triggered issues in random places.
-> 
-> And it will just get *much* worse when you then get the random
-> end-users that usually have older machines than the developers who
-> actually test daily development -git trees.
+This patchset is a first round of update to the meson clock controllers
+to bring audio support. The patchset is based on clk-next with two
+additional patches from arm-soc next (to avoid conflict later on).
+commit d356a86b1b30 ("clk: meson-gxbb: Export HDMI clocks")
+commit 7d753a742127 ("clk: gxbb: add the SAR ADC clocks and expose them")
 
-I tend to disagree.
+The 2 first patches of the series put the generic muxes and divisors
+declaration in tables so the register address fixup works in the same way
+as the clock gates. We are going to add more of these clock types for
+audio or gpu support, so we can't continue to fix addresses individually
+like it is currently done.
 
-The retrigger mechanism has been there forever, at least the history git
-tree which goes back to 2.5.0 has it and as it was in the initial commit is
-it was there in 2.4 already.
+Patches 3 to 6 improve the support of the mpll clocks, now allowing the
+rate to be set. Among other things, the mplls are the parent clocks of the
+i2s and spdif clocks.
 
-We broke that in 4.2 when the x86 interrupt mechanism was reworked
-completely. That went pretty much unnoticed until somebody moved from 4.1
-to 4.9 and discovered that edge interrupts got lost. It's not surprising
-that it went unnoticed because lots of stuff moved towards MSI (which has
-the retrigger still enabled) and the devices which are prone to the 'lost
-edge' issue are limited.
+Patch 7 expose the clock gates required to power on the i2s output.
 
-So we had that retrigger exposing crappy older drivers to the spurious
-interrupt until 2 years ago. The two drivers which have been exposed by
-bringing the retrigger back are post 4.2 or have been wreckaged post 4.2.
+These patches have been tested on the meson gxbb p200 board, as part of the
+ongoing work to bring audio support for meson SoC family.
 
-Due to the fact that the old drivers have been exposed over many years to
-the spurious retrigger (that "feature" exists on old hardware as well) I
-don't think it's much of a problem.
+Jerome Brunet (7):
+  clk: meson8b: put dividers and muxes in tables
+  clk: gxbb: put dividers and muxes in tables
+  clk: meson: mpll: add rw operation
+  clk: meson: gxbb: mpll: use rw operation
+  clk: meson8b: add the mplls clocks 0, 1 and 2
+  clk: meson: mpll: correct N2 maximum value
+  dt-bindings: clk: gxbb: expose i2s output clock gates
 
-We also had the DEBUG_SHIRQ active until we had to disable it in
-6d83f94db95cf (2.6.38) but not because it exposed crappy interrupt
-handlers. We had to disable due to a functional problem described in the
-commit message. I know for sure that distros had enabled DEBUG_SHIRQ (and
-some still have the reduced functionality of it enabled).
+ drivers/clk/meson/clk-mpll.c          | 152 ++++++++++++++++++++++++++++++++--
+ drivers/clk/meson/clkc.h              |   4 +-
+ drivers/clk/meson/gxbb.c              |  64 +++++++++++---
+ drivers/clk/meson/gxbb.h              |  10 +--
+ drivers/clk/meson/meson8b.c           | 126 +++++++++++++++++++++++++++-
+ drivers/clk/meson/meson8b.h           |  20 ++++-
+ include/dt-bindings/clock/gxbb-clkc.h |   5 ++
+ 7 files changed, 354 insertions(+), 27 deletions(-)
 
-What I find more problematic is:
-
- - to keep this 'lost edge' regression around, which really can render
-   hardware useless.
-
- - to ignore the fact that these buggy interrupt handlers can be exposed by
-   spurious interrupt events (as I showed in the other mail) "naturaly",
-   but with a way smaller probability. If a user runs into such a spurious
-   problem he has absolutely NO chance to debug it at all. Exposing it by
-   the retrigger mechanism makes the detection more "reliable" and allows
-   debugging it. The backtraces are pretty telling and clear.
-
-Thanks,
-
-	tglx
+-- 
+2.9.3
