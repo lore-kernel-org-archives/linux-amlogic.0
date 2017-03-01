@@ -1,37 +1,40 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Wed, 1 Mar 2017 19:45:50 +0100
-Subject: [PATCH] hwmon: (scpi) Add slope and offset to SCP sensor readings
-In-Reply-To: <20170301175618.GB15246@roeck-us.net>
-References: <20170301132028.25309-1-carlo@caione.org>
- <41f19cd3-5086-1da9-915a-8987cfc119f9@roeck-us.net>
- <CAL9uMOG5qEgyGTue=n7abbFROKGBpUrWDOPi5_bEDUWuiHEUKg@mail.gmail.com>
- <87inntorz7.fsf@e105922-lin.cambridge.arm.com>
- <20170301175618.GB15246@roeck-us.net>
-Message-ID: <CAOQ7t2Y1=fL9a4A_gPtvrrWR_uOOP_gGT-61Q+1B39t2gRJBmw@mail.gmail.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Wed, 1 Mar 2017 11:03:50 -0800
+Subject: [PATCH] clk: meson: fix SET_PARM macro
+In-Reply-To: <1488318090.21996.2.camel@baylibre.com>
+References: <20170228093016.5624-1-jbrunet@baylibre.com>
+ <20170228212654.GM25384@codeaurora.org>
+ <1488318090.21996.2.camel@baylibre.com>
+Message-ID: <20170301190350.GP25384@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Mar 1, 2017 at 6:56 PM, Guenter Roeck <linux@roeck-us.net> wrote:
-> On Wed, Mar 01, 2017 at 04:57:00PM +0000, Punit Agrawal wrote:
+On 02/28, Jerome Brunet wrote:
+> On Tue, 2017-02-28 at 13:26 -0800, Stephen Boyd wrote:
+> > On 02/28, Jerome Brunet wrote:
+> > > parameter val is not enclosed in parenthesis which is buggy when
+> > > given an
+> > > expression instead of a simple value
+> > > 
+> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > 
+> > Fixes tag? Is there a place in the code that is using a complex
+> > expression for val right now?
+> > 
+> 
+> Not if with what's already in, afaik. However "clk: meson: mpll: add rw
+> operation" I sent earlier today uses a ternary operator for val.
+> That's??how I found this issue. Instead of running the test, it would
+> always use the "else" clause.
+> 
+> I realize I should sent these patches in the same series.
+> Would you prefer me to do so ?
 
->> Another way to fix this would be to add optional properties to the scpi
->> sensors binding and use them instead. This could then be used to fixup
->> values reported to both thermal and hwmon.
->>
->
-> Yes, this would be much more appropriate.
-
-What about something like:
-
-sensor-coefficients = <x1 y1 z1>,
-                                  <x2 y2 z2>,
-                                  ...;
-
-Where in general `x` is the sensor-id, `y` the slope and `z` the
-offset for the sensor reading.
-So the reported reading to hwmon (and thermal for temperature) for
-sensor with id `x1` is `y1 * val + z1`, the same for sensor with id x2
-and so on for all the sensors in the array.
+Sure, but wait a little while for any review comments on the
+series first please. For now I'll drop this from my queue because
+it isn't an urgent fix and wait for it to come back as part of
+the larger series.
 
 -- 
-Carlo Caione
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
