@@ -1,31 +1,37 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 01 Mar 2017 10:09:42 -0800
-Subject: [PATCH v3 1/10] mmc: meson-gx: simplify bounce buffer setting in
- meson_mmc_start_cmd
-In-Reply-To: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com> (Heiner
- Kallweit's message of "Sat, 18 Feb 2017 12:50:31 +0100")
-References: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
-Message-ID: <m2d1e0zx5l.fsf@baylibre.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Wed, 1 Mar 2017 19:45:50 +0100
+Subject: [PATCH] hwmon: (scpi) Add slope and offset to SCP sensor readings
+In-Reply-To: <20170301175618.GB15246@roeck-us.net>
+References: <20170301132028.25309-1-carlo@caione.org>
+ <41f19cd3-5086-1da9-915a-8987cfc119f9@roeck-us.net>
+ <CAL9uMOG5qEgyGTue=n7abbFROKGBpUrWDOPi5_bEDUWuiHEUKg@mail.gmail.com>
+ <87inntorz7.fsf@e105922-lin.cambridge.arm.com>
+ <20170301175618.GB15246@roeck-us.net>
+Message-ID: <CAOQ7t2Y1=fL9a4A_gPtvrrWR_uOOP_gGT-61Q+1B39t2gRJBmw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heinar,
+On Wed, Mar 1, 2017 at 6:56 PM, Guenter Roeck <linux@roeck-us.net> wrote:
+> On Wed, Mar 01, 2017 at 04:57:00PM +0000, Punit Agrawal wrote:
 
-Heiner Kallweit <hkallweit1@gmail.com> writes:
-
-> Core ensures that there are no commands with cmd->data being set and
-> nothing to transfer. And we don't have to reset bit CMD_CFG_DATA_NUM
-> because cmd_cfg was zero-initialized and this bit isn't set.
+>> Another way to fix this would be to add optional properties to the scpi
+>> sensors binding and use them instead. This could then be used to fixup
+>> values reported to both thermal and hwmon.
+>>
 >
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> Acked-by: Kevin Hilman <khilman@baylibre.com>
+> Yes, this would be much more appropriate.
 
-Could you send this series one more time, collecting the remaining tags
-and including the patches from Micha? Zegan?
+What about something like:
 
-I think the MMC maintainers would appreciate one final batch with
-everything collected together, and including a cover letter.
+sensor-coefficients = <x1 y1 z1>,
+                                  <x2 y2 z2>,
+                                  ...;
 
-Thanks for all your great work on improving this driver,
+Where in general `x` is the sensor-id, `y` the slope and `z` the
+offset for the sensor reading.
+So the reported reading to hwmon (and thermal for temperature) for
+sensor with id `x1` is `y1 * val + z1`, the same for sensor with id x2
+and so on for all the sensors in the array.
 
-Kevin
+-- 
+Carlo Caione
