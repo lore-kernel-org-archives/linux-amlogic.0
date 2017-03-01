@@ -1,56 +1,40 @@
-From: linux@roeck-us.net (Guenter Roeck)
-Date: Wed, 1 Mar 2017 12:04:44 -0800
-Subject: [PATCH] hwmon: (scpi) Add slope and offset to SCP sensor readings
-In-Reply-To: <CAOQ7t2Y1=fL9a4A_gPtvrrWR_uOOP_gGT-61Q+1B39t2gRJBmw@mail.gmail.com>
-References: <20170301132028.25309-1-carlo@caione.org>
- <41f19cd3-5086-1da9-915a-8987cfc119f9@roeck-us.net>
- <CAL9uMOG5qEgyGTue=n7abbFROKGBpUrWDOPi5_bEDUWuiHEUKg@mail.gmail.com>
- <87inntorz7.fsf@e105922-lin.cambridge.arm.com>
- <20170301175618.GB15246@roeck-us.net>
- <CAOQ7t2Y1=fL9a4A_gPtvrrWR_uOOP_gGT-61Q+1B39t2gRJBmw@mail.gmail.com>
-Message-ID: <20170301200444.GB20160@roeck-us.net>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Wed, 1 Mar 2017 21:20:19 +0100
+Subject: [PATCH v3 1/10] mmc: meson-gx: simplify bounce buffer setting in
+ meson_mmc_start_cmd
+In-Reply-To: <m2d1e0zx5l.fsf@baylibre.com>
+References: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
+ <m2d1e0zx5l.fsf@baylibre.com>
+Message-ID: <9259ab6f-fc7e-bcb3-ddd0-5ff3da3b391a@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Mar 01, 2017 at 07:45:50PM +0100, Carlo Caione wrote:
-> On Wed, Mar 1, 2017 at 6:56 PM, Guenter Roeck <linux@roeck-us.net> wrote:
-> > On Wed, Mar 01, 2017 at 04:57:00PM +0000, Punit Agrawal wrote:
+Am 01.03.2017 um 19:09 schrieb Kevin Hilman:
+> Hi Heinar,
 > 
-> >> Another way to fix this would be to add optional properties to the scpi
-> >> sensors binding and use them instead. This could then be used to fixup
-> >> values reported to both thermal and hwmon.
-> >>
-> >
-> > Yes, this would be much more appropriate.
+> Heiner Kallweit <hkallweit1@gmail.com> writes:
 > 
-> What about something like:
+>> Core ensures that there are no commands with cmd->data being set and
+>> nothing to transfer. And we don't have to reset bit CMD_CFG_DATA_NUM
+>> because cmd_cfg was zero-initialized and this bit isn't set.
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> Acked-by: Kevin Hilman <khilman@baylibre.com>
 > 
-> sensor-coefficients = <x1 y1 z1>,
->                                   <x2 y2 z2>,
->                                   ...;
+> Could you send this series one more time, collecting the remaining tags
+> and including the patches from Micha? Zegan?
+> 
+Patchwork tracks all the tags coming in for a patch, there it's visible
+that you acked my 10 patches + the two from Michal.
+So I would leave it up to Ulf whether he prefers to have the series
+re-sent (with just the few remaining acks as changes).
 
-As mentioned before, I don't think 'slope' and 'offset' are well enough
-defined, so I would rather not use that approach.
+Heiner
 
-I don't know if there are DT examples on how to specify a translation
-from an arbitrary value to well-defined units; we could use that
-if it exists. Otherwise, we might just go with a combination of
-sensor class and the unit scale used for that sensor class.
-A simple approach might be something like
-    scpi,sensor-scale =	// pick preferred property name 
-	<0 1000>,
-	<1 1000>,
-	<2 1000>,
-	<3 1000000>,
-	<4 1000000>;
-or even simpler
-	scpi,sensor-scale = <1000, 1000, 1000, 1000000, 1000000>;
-since the class index is really redundant.
-
-This would describe the units for the Juno ARM development platform.
-
-In your case, that would be something like
-	scpi,sensor-scale = <1, 1000, 1000, 1000000, 1000000>;
-assuming that the other units are as expected (which may not be the case). 
-
-Guenter
+> I think the MMC maintainers would appreciate one final batch with
+> everything collected together, and including a cover letter.
+> 
+> Thanks for all your great work on improving this driver,
+> 
+> Kevin
+> 
