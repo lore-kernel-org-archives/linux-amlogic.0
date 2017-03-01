@@ -1,31 +1,42 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  1 Mar 2017 10:20:18 +0100
-Subject: [PATCH] MAINTAINERS: drm-meson: Update git entries
-Message-ID: <1488360018-16835-1-git-send-email-narmstrong@baylibre.com>
+Date: Wed,  1 Mar 2017 11:46:01 +0100
+Subject: [PATCH v2 0/3] meson-gx: Add mali-450 support
+Message-ID: <1488365164-22861-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the main git entry and the drm-misc experiment git for small
-patches.
+Since the merge of the Mali dt bindings at [1], add support for Mali clocks
+and DT node.
 
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+The Mali is clocked by two identical clock paths behind a glitch free mux
+to safely change frequency while running.
+So these clocks must be added to the meson-gxbb clock controller.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 527d137..98e8d6d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4182,6 +4182,8 @@ W:	http://linux-meson.com/
- S:	Supported
- F:	drivers/gpu/drm/meson/
- F:	Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-+T:	git git://anongit.freedesktop.org/drm/drm-meson
-+T:	git git://anongit.freedesktop.org/drm/drm-misc
- 
- DRM DRIVERS FOR EXYNOS
- M:	Inki Dae <inki.dae@samsung.com>
+Changes since v1 at [2] :
+ - Remove GP0 fixes, this will pushed later, for base frequency it can depend on fclk_div3
+ - Add GXL support
+ - rebase on clk-next and jbrunet's patchset at [3] and [4]
+ - get rid of composite clocks, this adds more clocks IDs and exposes 2 more clocks
+
+[4] http://lkml.kernel.org/r/20170228093016.5624-1-jbrunet at baylibre.com
+[3] http://lkml.kernel.org/r/20170228133002.17894-1-jbrunet at baylibre.com
+[2] http://lkml.kernel.org/r/1486721084-1383-1-git-send-email-narmstrong at baylibre.com
+[1] http://lkml.kernel.org/r/b098c4fa9fce88361cca20417978734d0e1b5cca.1485939041.git-series.maxime.ripard at free-electrons.com
+
+Neil Armstrong (3):
+  clk: meson-gxbb: Add MALI clock IDS
+  clk: meson-gxbb: Add MALI clocks
+  ARM64: dts: meson-gx: Add MALI nodes for GXBB and GXL
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi      |  37 ++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi  |  43 +++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi |   1 +
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi |   1 +
+ drivers/clk/meson/gxbb.c                         | 139 +++++++++++++++++++++++
+ drivers/clk/meson/gxbb.h                         |   9 +-
+ include/dt-bindings/clock/gxbb-clkc.h            |   5 +
+ 7 files changed, 234 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+
 -- 
 1.9.1
