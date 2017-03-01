@@ -1,75 +1,56 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Wed, 1 Mar 2017 11:11:19 -0800
-Subject: [PATCH v2 2/3] clk: meson-gxbb: Add MALI clocks
-In-Reply-To: <1488365164-22861-3-git-send-email-narmstrong@baylibre.com>
-References: <1488365164-22861-1-git-send-email-narmstrong@baylibre.com>
- <1488365164-22861-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20170301191119.GR25384@codeaurora.org>
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Wed, 1 Mar 2017 12:04:44 -0800
+Subject: [PATCH] hwmon: (scpi) Add slope and offset to SCP sensor readings
+In-Reply-To: <CAOQ7t2Y1=fL9a4A_gPtvrrWR_uOOP_gGT-61Q+1B39t2gRJBmw@mail.gmail.com>
+References: <20170301132028.25309-1-carlo@caione.org>
+ <41f19cd3-5086-1da9-915a-8987cfc119f9@roeck-us.net>
+ <CAL9uMOG5qEgyGTue=n7abbFROKGBpUrWDOPi5_bEDUWuiHEUKg@mail.gmail.com>
+ <87inntorz7.fsf@e105922-lin.cambridge.arm.com>
+ <20170301175618.GB15246@roeck-us.net>
+ <CAOQ7t2Y1=fL9a4A_gPtvrrWR_uOOP_gGT-61Q+1B39t2gRJBmw@mail.gmail.com>
+Message-ID: <20170301200444.GB20160@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/01, Neil Armstrong wrote:
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index a52063f..31f6090 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -634,6 +634,131 @@
->  	},
->  };
->  
-> +/*
-> + * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
-> + * muxed by a glitch-free switch.
-> + */
-> +
-> +static u32 mux_table_mali_0_1[] = {0, 1, 2, 3, 4, 5, 6, 7};
-> +const char *gxbb_mali_0_1_parent_names[] = {
+On Wed, Mar 01, 2017 at 07:45:50PM +0100, Carlo Caione wrote:
+> On Wed, Mar 1, 2017 at 6:56 PM, Guenter Roeck <linux@roeck-us.net> wrote:
+> > On Wed, Mar 01, 2017 at 04:57:00PM +0000, Punit Agrawal wrote:
+> 
+> >> Another way to fix this would be to add optional properties to the scpi
+> >> sensors binding and use them instead. This could then be used to fixup
+> >> values reported to both thermal and hwmon.
+> >>
+> >
+> > Yes, this would be much more appropriate.
+> 
+> What about something like:
+> 
+> sensor-coefficients = <x1 y1 z1>,
+>                                   <x2 y2 z2>,
+>                                   ...;
 
-static?
+As mentioned before, I don't think 'slope' and 'offset' are well enough
+defined, so I would rather not use that approach.
 
-> +	"xtal", "gp0_pll", "mpll2", "mpll1", "fclk_div7",
-> +	"fclk_div4", "fclk_div3", "fclk_div5"
-> +};
-> +
-[..]
-> +	.reg = (void *)HHI_MALI_CLK_CNTL,
-> +	.bit_idx = 24,
-> +	.lock = &clk_lock,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "mali_1",
-> +		.ops = &clk_gate_ops,
-> +		.parent_names = (const char *[]){ "mali_1_div" },
-> +		.num_parents = 1,
-> +		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
-> +	},
-> +};
-> +
-> +static u32 mux_table_mali[] = {0, 1};
-> +const char *gxbb_mali_parent_names[] = {
+I don't know if there are DT examples on how to specify a translation
+from an arbitrary value to well-defined units; we could use that
+if it exists. Otherwise, we might just go with a combination of
+sensor class and the unit scale used for that sensor class.
+A simple approach might be something like
+    scpi,sensor-scale =	// pick preferred property name 
+	<0 1000>,
+	<1 1000>,
+	<2 1000>,
+	<3 1000000>,
+	<4 1000000>;
+or even simpler
+	scpi,sensor-scale = <1000, 1000, 1000, 1000000, 1000000>;
+since the class index is really redundant.
 
-static?
+This would describe the units for the Juno ARM development platform.
 
-> +	"mali_0", "mali_1"
-> +};
-[...]
->  static struct clk_mux *gxbb_clk_muxes[] = {
->  	&gxbb_mpeg_clk_sel,
->  	&gxbb_sar_adc_clk_sel,
-> +	&gxbb_mali_0_sel,
-> +	&gxbb_mali_1_sel,
-> +	&gxbb_mali,
->  };
->  
->  static struct clk_divider *gxbb_clk_dividers[] = {
+In your case, that would be something like
+	scpi,sensor-scale = <1, 1000, 1000, 1000000, 1000000>;
+assuming that the other units are as expected (which may not be the case). 
 
-Can these arrays be const? If so, please do that in a separate
-patch.
-
->  	&gxbb_mpeg_clk_div,
->  	&gxbb_sar_adc_clk_div,
-> +	&gxbb_mali_0_div,
-> +	&gxbb_mali_1_div,
->  };
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Guenter
