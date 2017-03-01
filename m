@@ -1,149 +1,89 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  1 Mar 2017 11:46:04 +0100
-Subject: [PATCH v2 3/3] ARM64: dts: meson-gx: Add MALI nodes for GXBB and GXL
-In-Reply-To: <1488365164-22861-1-git-send-email-narmstrong@baylibre.com>
-References: <1488365164-22861-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1488365164-22861-4-git-send-email-narmstrong@baylibre.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Wed,  1 Mar 2017 14:20:28 +0100
+Subject: [PATCH] hwmon: (scpi) Add slope and offset to SCP sensor readings
+Message-ID: <20170301132028.25309-1-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The same MALI-450 MP3 GPU is present in the GXBB and GXL SoCs.
+From: Carlo Caione <carlo@endlessm.com>
 
-The node is simply added in the meson-gxbb.dtsi file.
+The temperature provided by the SCP sensors not always is expressed in
+millicelsius, whereas this is required by the thermal framework. This is
+for example the case for the Amlogic devices, where the SCP sensor
+readings are expressed in degree (and not milli degree) Celsius.
 
-For GXL, since a lot is shared with the GXM that has a MALI-T820 IP, this
-patch adds a new meson-gxl-mali.dtsi and is included in the SoC specific
-dtsi files.
+To convert the sensor readings, the thermal framework provides the
+"coefficients" property, used by the thermal sensor device to adjust
+their reading. This adjustment in currently not considered by the SCPI
+hwmon driver. Fix this introducing slope and offset for the SCP sensor
+readings.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Carlo Caione <carlo@endlessm.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi      | 37 ++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi  | 43 ++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi |  1 +
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi |  1 +
- 4 files changed, 82 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+ drivers/hwmon/scpi-hwmon.c | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index b353073..4f7ae6a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -474,6 +474,43 @@
- 	};
+diff --git a/drivers/hwmon/scpi-hwmon.c b/drivers/hwmon/scpi-hwmon.c
+index 094f948f99ff..cdc05c60ba67 100644
+--- a/drivers/hwmon/scpi-hwmon.c
++++ b/drivers/hwmon/scpi-hwmon.c
+@@ -33,6 +33,7 @@ struct sensor_data {
+ struct scpi_thermal_zone {
+ 	int sensor_id;
+ 	struct scpi_sensors *scpi_sensors;
++	struct thermal_zone_device *z;
  };
  
-+&apb {
-+	mali: gpu at c0000 {
-+		compatible = "amlogic,meson-gxbb-mali", "arm,mali-450";
-+		reg = <0x0 0xc0000 0x0 0x40000>;
-+		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "gp", "gpmmu", "pp", "pmu",
-+			"pp0", "ppmmu0", "pp1", "ppmmu1",
-+			"pp2", "ppmmu2";
-+		clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_MALI>;
-+		clock-names = "bus", "core";
-+
-+		/*
-+		 * Mali clocking is provided by two identical clock paths
-+		 * MALI_0 and MALI_1 muxed to a single clock by a glitch
-+		 * free mux to safely change frequency while running.
-+		 */
-+		assigned-clocks = <&clkc CLKID_MALI_0_SEL>,
-+				  <&clkc CLKID_MALI_0>,
-+				  <&clkc CLKID_MALI>; /* Glitch free mux */
-+		assigned-clock-parents = <&clkc CLKID_FCLK_DIV3>,
-+					 <0>, /* Do Nothing */
-+					 <&clkc CLKID_MALI_0>;
-+		assigned-clock-rates = <0>, /* Do Nothing */
-+				       <666666666>,
-+				       <0>; /* Do Nothing */
-+	};
-+};
-+
- &i2c_A {
- 	clocks = <&clkc CLKID_I2C>;
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-new file mode 100644
-index 0000000..f06cc234
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-@@ -0,0 +1,43 @@
-+/*
-+ * Copyright (c) 2017 BayLibre SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+ */
-+
-+&apb {
-+	mali: gpu at c0000 {
-+		compatible = "amlogic,meson-gxbb-mali", "arm,mali-450";
-+		reg = <0x0 0xc0000 0x0 0x40000>;
-+		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "gp", "gpmmu", "pp", "pmu",
-+			"pp0", "ppmmu0", "pp1", "ppmmu1",
-+			"pp2", "ppmmu2";
-+		clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_MALI>;
-+		clock-names = "bus", "core";
-+
-+		/*
-+		 * Mali clocking is provided by two identical clock paths
-+		 * MALI_0 and MALI_1 muxed to a single clock by a glitch
-+		 * free mux to safely change frequency while running.
-+		 */
-+		assigned-clocks = <&clkc CLKID_MALI_0_SEL>,
-+				  <&clkc CLKID_MALI_0>,
-+				  <&clkc CLKID_MALI>; /* Glitch free mux */
-+		assigned-clock-parents = <&clkc CLKID_FCLK_DIV3>,
-+					 <0>, /* Do Nothing */
-+					 <&clkc CLKID_MALI_0>;
-+		assigned-clock-rates = <0>, /* Do Nothing */
-+				       <666666666>,
-+				       <0>; /* Do Nothing */
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi
-index 615308e..5a90e30 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi
-@@ -42,6 +42,7 @@
-  */
+ struct scpi_sensors {
+@@ -51,13 +52,17 @@ static int scpi_read_temp(void *dev, int *temp)
+ 	struct scpi_ops *scpi_ops = scpi_sensors->scpi_ops;
+ 	struct sensor_data *sensor = &scpi_sensors->data[zone->sensor_id];
+ 	u64 value;
++	int slope, offset;
+ 	int ret;
  
- #include "meson-gxl.dtsi"
-+#include "meson-gxl-mali.dtsi"
+ 	ret = scpi_ops->sensor_get_value(sensor->info.sensor_id, &value);
+ 	if (ret)
+ 		return ret;
  
- / {
- 	compatible = "amlogic,s905d", "amlogic,meson-gxl";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi
-index 08237ee..0f78d83 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi
-@@ -42,6 +42,7 @@
-  */
+-	*temp = value;
++	slope = thermal_zone_get_slope(zone->z);
++	offset = thermal_zone_get_offset(zone->z);
++
++	*temp = value * slope + offset;
+ 	return 0;
+ }
  
- #include "meson-gxl.dtsi"
-+#include "meson-gxl-mali.dtsi"
+@@ -216,7 +221,6 @@ static int scpi_hwmon_probe(struct platform_device *pdev)
+ 	INIT_LIST_HEAD(&scpi_sensors->thermal_zones);
+ 	for (i = 0; i < nr_sensors; i++) {
+ 		struct sensor_data *sensor = &scpi_sensors->data[i];
+-		struct thermal_zone_device *z;
+ 		struct scpi_thermal_zone *zone;
  
- / {
- 	compatible = "amlogic,s905x", "amlogic,meson-gxl";
+ 		if (sensor->info.class != TEMPERATURE)
+@@ -228,17 +232,17 @@ static int scpi_hwmon_probe(struct platform_device *pdev)
+ 
+ 		zone->sensor_id = i;
+ 		zone->scpi_sensors = scpi_sensors;
+-		z = devm_thermal_zone_of_sensor_register(dev,
+-							 sensor->info.sensor_id,
+-							 zone,
+-							 &scpi_sensor_ops);
++		zone->z = devm_thermal_zone_of_sensor_register(dev,
++							       sensor->info.sensor_id,
++							       zone,
++							       &scpi_sensor_ops);
+ 		/*
+ 		 * The call to thermal_zone_of_sensor_register returns
+ 		 * an error for sensors that are not associated with
+ 		 * any thermal zones or if the thermal subsystem is
+ 		 * not configured.
+ 		 */
+-		if (IS_ERR(z)) {
++		if (IS_ERR(zone->z)) {
+ 			devm_kfree(dev, zone);
+ 			continue;
+ 		}
 -- 
-1.9.1
+2.12.0
