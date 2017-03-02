@@ -1,234 +1,131 @@
-From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
-Date: Thu, 02 Mar 2017 17:45:09 +0200
-Subject: [PATCH v2 1/2] drm: bridge: dw-hdmi: Take input format from
- plat_data
-In-Reply-To: <1488468572-31971-2-git-send-email-narmstrong@baylibre.com>
-References: <1488468572-31971-1-git-send-email-narmstrong@baylibre.com>
- <1488468572-31971-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <2768953.c6tz7qsbuQ@avalon>
+From: daniel@ffwll.ch (Daniel Vetter)
+Date: Thu, 2 Mar 2017 16:58:45 +0100
+Subject: [PATCH 00/11] drm/meson: Initial support for HDMI Output
+In-Reply-To: <1488469207-523-1-git-send-email-narmstrong@baylibre.com>
+References: <1488469207-523-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20170302155845.pybae7xtuzjpawx6@phenom.ffwll.local>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+On Thu, Mar 02, 2017 at 04:39:56PM +0100, Neil Armstrong wrote:
+> The Amlogic GX SoCs implements a Synopsys DesignWare HDMI TX Controller
+> in combination with a very custom PHY.
+> 
+> This patchset depends on Laurent Pinchart v4 patchset at [1] and my v2
+> patchset at [2] to permit PHY control from outside the dw-hdmi driver.
+> 
+> The Synopsys DesignWare HDMI TX Controller is integrated like :
+>          ___________________________________
+>         |            HDMI TOP               |<= HPD
+>         |___________________________________|
+>         |                  |                |
+> HDMI-TX-|  Synopsys HDMI   |   HDMI PHY     |=> TMDS
+>         |    Controller    |________________|
+>         |___________________________________|<=> DDC
+> 
+> And uses the following paths for Pixels Encoding :
+>        _____   _____   ____________________
+> vd1---|     |-|     | | VENC     /---------|----VDAC
+> vd2---| VIU |-| VPP |-|-----ENCI/-ENCI_DVI-|\
+> osd1--|     |-|     | | \                  | X--HDMI-TX
+> osd2--|_____|-|_____| |  |\-ENCP--ENCP_DVI-|/
+>                       |  |                 |
+>                       |  \--ENCL-----------|----LVDS
+>                       |____________________|
+> 
+> The ENCI and ENCP encoders pre-formats the data for the ENCI-DVI and
+> ENCP-DVI encoders. Those DVI encoders will format the pixels for the
+> Synopsys DesignWare HDMI TX Controller.
+> 
+> In order to support display modes, the ENCI and ENCP encoders needs very
+> specific parameters for *each* display modes, so usage of the CEA VIC
+> identifier is necessary. But the DVI timings are generated from the
+> drm_mode structure in a generic way.
+> 
+> To simplify the first push, only the main CEA modes are supported up to
+> 1920x1080p60. Supporting the 480i and 576i needs tweaking in the dw-hdmi
+> in order to support the Clock Doubling necessary for these modes.
+> 
+> Support for more traditional modes like the EDID fallback modes is planned
+> but will need tome additionnal handling along the CEA modes.
+> Support for 4k2k modes needs to be able to get the EDID HDMI modes, but
+> for now only the HDMI 1.4 modes are currently available in the drm_edid
+> implementation.
 
-Thank you for the patch.
-
-On Thursday 02 Mar 2017 16:29:31 Neil Armstrong wrote:
-> Some display pipelines can only provide non-RBG input pixels to the HDMI TX
-> Controller, this patch takes the pixel format from the plat_data if
-> provided.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/gpu/drm/bridge/dw-hdmi.c | 59 ++++++++++++++++++-------------------
->  include/drm/bridge/dw_hdmi.h     |  9 ++++++
->  2 files changed, 39 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/dw-hdmi.c
-> b/drivers/gpu/drm/bridge/dw-hdmi.c index 026a0dc..653ecd7 100644
-> --- a/drivers/gpu/drm/bridge/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/dw-hdmi.c
-> @@ -35,12 +35,6 @@
-> 
->  #define HDMI_EDID_LEN		512
-> 
-> -#define RGB			0
-> -#define YCBCR444		1
-> -#define YCBCR422_16BITS		2
-> -#define YCBCR422_8BITS		3
-> -#define XVYCC444		4
-> -
->  enum hdmi_datamap {
->  	RGB444_8B = 0x01,
->  	RGB444_10B = 0x03,
-> @@ -94,8 +88,8 @@ struct hdmi_vmode {
->  };
-> 
->  struct hdmi_data_info {
-> -	unsigned int enc_in_format;
-> -	unsigned int enc_out_format;
-> +	enum dw_hdmi_color_enc_format enc_in_format;
-> +	enum dw_hdmi_color_enc_format enc_out_format;
->  	unsigned int enc_color_depth;
->  	unsigned int colorimetry;
->  	unsigned int pix_repet_factor;
-> @@ -569,7 +563,7 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
->  	int color_format = 0;
->  	u8 val;
-> 
-> -	if (hdmi->hdmi_data.enc_in_format == RGB) {
-> +	if (hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_RGB) {
->  		if (hdmi->hdmi_data.enc_color_depth == 8)
->  			color_format = 0x01;
->  		else if (hdmi->hdmi_data.enc_color_depth == 10)
-> @@ -580,7 +574,7 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
->  			color_format = 0x07;
->  		else
->  			return;
-> -	} else if (hdmi->hdmi_data.enc_in_format == YCBCR444) {
-> +	} else if (hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_YCBCR444) 
-{
->  		if (hdmi->hdmi_data.enc_color_depth == 8)
->  			color_format = 0x09;
->  		else if (hdmi->hdmi_data.enc_color_depth == 10)
-> @@ -591,7 +585,8 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
->  			color_format = 0x0F;
->  		else
->  			return;
-> -	} else if (hdmi->hdmi_data.enc_in_format == YCBCR422_8BITS) {
-> +	} else if (hdmi->hdmi_data.enc_in_format ==
-> +					DW_HDMI_ENC_FMT_YCBCR422_8BITS) {
->  		if (hdmi->hdmi_data.enc_color_depth == 8)
->  			color_format = 0x16;
->  		else if (hdmi->hdmi_data.enc_color_depth == 10)
-> @@ -627,20 +622,20 @@ static int is_color_space_conversion(struct dw_hdmi
-> *hdmi)
-> 
->  static int is_color_space_decimation(struct dw_hdmi *hdmi)
->  {
-> -	if (hdmi->hdmi_data.enc_out_format != YCBCR422_8BITS)
-> +	if (hdmi->hdmi_data.enc_out_format != DW_HDMI_ENC_FMT_YCBCR422_8BITS)
->  		return 0;
-> -	if (hdmi->hdmi_data.enc_in_format == RGB ||
-> -	    hdmi->hdmi_data.enc_in_format == YCBCR444)
-> +	if (hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_RGB ||
-> +	    hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_YCBCR444)
->  		return 1;
->  	return 0;
->  }
-> 
->  static int is_color_space_interpolation(struct dw_hdmi *hdmi)
->  {
-> -	if (hdmi->hdmi_data.enc_in_format != YCBCR422_8BITS)
-> +	if (hdmi->hdmi_data.enc_in_format != DW_HDMI_ENC_FMT_YCBCR422_8BITS)
->  		return 0;
-> -	if (hdmi->hdmi_data.enc_out_format == RGB ||
-> -	    hdmi->hdmi_data.enc_out_format == YCBCR444)
-> +	if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_RGB ||
-> +	    hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_YCBCR444)
->  		return 1;
->  	return 0;
->  }
-> @@ -652,13 +647,14 @@ static void dw_hdmi_update_csc_coeffs(struct dw_hdmi
-> *hdmi) u32 csc_scale = 1;
-> 
->  	if (is_color_space_conversion(hdmi)) {
-> -		if (hdmi->hdmi_data.enc_out_format == RGB) {
-> +		if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_RGB) {
->  			if (hdmi->hdmi_data.colorimetry ==
->  					HDMI_COLORIMETRY_ITU_601)
->  				csc_coeff = &csc_coeff_rgb_out_eitu601;
->  			else
->  				csc_coeff = &csc_coeff_rgb_out_eitu709;
-> -		} else if (hdmi->hdmi_data.enc_in_format == RGB) {
-> +		} else if (hdmi->hdmi_data.enc_in_format ==
-> +					DW_HDMI_ENC_FMT_RGB) {
->  			if (hdmi->hdmi_data.colorimetry ==
->  					HDMI_COLORIMETRY_ITU_601)
->  				csc_coeff = &csc_coeff_rgb_in_eitu601;
-> @@ -730,8 +726,8 @@ static void hdmi_video_packetize(struct dw_hdmi *hdmi)
->  	struct hdmi_data_info *hdmi_data = &hdmi->hdmi_data;
->  	u8 val, vp_conf;
-> 
-> -	if (hdmi_data->enc_out_format == RGB ||
-> -	    hdmi_data->enc_out_format == YCBCR444) {
-> +	if (hdmi_data->enc_out_format == DW_HDMI_ENC_FMT_RGB ||
-> +	    hdmi_data->enc_out_format == DW_HDMI_ENC_FMT_YCBCR444) {
->  		if (!hdmi_data->enc_color_depth) {
->  			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
->  		} else if (hdmi_data->enc_color_depth == 8) {
-> @@ -746,7 +742,8 @@ static void hdmi_video_packetize(struct dw_hdmi *hdmi)
->  		} else {
->  			return;
->  		}
-> -	} else if (hdmi_data->enc_out_format == YCBCR422_8BITS) {
-> +	} else if (hdmi_data->enc_out_format ==
-> +					DW_HDMI_ENC_FMT_YCBCR422_8BITS) {
->  		if (!hdmi_data->enc_color_depth ||
->  		    hdmi_data->enc_color_depth == 8)
->  			remap_size = HDMI_VP_REMAP_YCC422_16bit;
-> @@ -1138,15 +1135,16 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi,
-> struct drm_display_mode *mode) /* Initialise info frame from DRM mode */
->  	drm_hdmi_avi_infoframe_from_display_mode(&frame, mode);
-> 
-> -	if (hdmi->hdmi_data.enc_out_format == YCBCR444)
-> +	if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_YCBCR444)
->  		frame.colorspace = HDMI_COLORSPACE_YUV444;
-> -	else if (hdmi->hdmi_data.enc_out_format == YCBCR422_8BITS)
-> +	else if (hdmi->hdmi_data.enc_out_format ==
-> +					DW_HDMI_ENC_FMT_YCBCR422_8BITS)
->  		frame.colorspace = HDMI_COLORSPACE_YUV422;
->  	else
->  		frame.colorspace = HDMI_COLORSPACE_RGB;
-> 
->  	/* Set up colorimetry */
-> -	if (hdmi->hdmi_data.enc_out_format == XVYCC444) {
-> +	if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_XVYCC444) {
->  		frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
->  		if (hdmi->hdmi_data.colorimetry == HDMI_COLORIMETRY_ITU_601)
->  			frame.extended_colorimetry =
-> @@ -1154,7 +1152,7 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi,
-> struct drm_display_mode *mode) else /*hdmi->hdmi_data.colorimetry ==
-> HDMI_COLORIMETRY_ITU_709*/ frame.extended_colorimetry =
->  				HDMI_EXTENDED_COLORIMETRY_XV_YCC_709;
-> -	} else if (hdmi->hdmi_data.enc_out_format != RGB) {
-> +	} else if (hdmi->hdmi_data.enc_out_format != DW_HDMI_ENC_FMT_RGB) {
->  		frame.colorimetry = hdmi->hdmi_data.colorimetry;
->  		frame.extended_colorimetry = 
-HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
->  	} else { /* Carries no data */
-> @@ -1443,10 +1441,13 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
-> struct drm_display_mode *mode)
-> hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
->  	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
-> 
-> -	/* TODO: Get input format from IPU (via FB driver interface) */
-> -	hdmi->hdmi_data.enc_in_format = RGB;
-> +	/* Get input format from plat data or fallback to RGB */
-> +	if (hdmi->plat_data->input_fmt >= 0)
-> +		hdmi->hdmi_data.enc_in_format = hdmi->plat_data->input_fmt;
-> +	else
-> +		hdmi->hdmi_data.enc_in_format = DW_HDMI_ENC_FMT_RGB;
-> 
-> -	hdmi->hdmi_data.enc_out_format = RGB;
-> +	hdmi->hdmi_data.enc_out_format = DW_HDMI_ENC_FMT_RGB;
-> 
->  	hdmi->hdmi_data.enc_color_depth = 8;
->  	hdmi->hdmi_data.pix_repet_factor = 0;
-> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-> index bcceee8..8c0cc13 100644
-> --- a/include/drm/bridge/dw_hdmi.h
-> +++ b/include/drm/bridge/dw_hdmi.h
-> @@ -21,6 +21,14 @@ enum {
->  	DW_HDMI_RES_MAX,
->  };
-> 
-> +enum dw_hdmi_color_enc_format {
-> +	DW_HDMI_ENC_FMT_RGB = 0,
-> +	DW_HDMI_ENC_FMT_YCBCR444,
-> +	DW_HDMI_ENC_FMT_YCBCR422_16BITS,
-> +	DW_HDMI_ENC_FMT_YCBCR422_8BITS,
-> +	DW_HDMI_ENC_FMT_XVYCC444,
-> +};
-> +
->  enum dw_hdmi_phy_type {
->  	DW_HDMI_PHY_DWC_HDMI_TX_PHY = 0x00,
->  	DW_HDMI_PHY_DWC_MHL_PHY_HEAC = 0xb2,
-> @@ -62,6 +70,7 @@ struct dw_hdmi_plat_data {
->  	struct regmap *regm;
->  	enum drm_mode_status (*mode_valid)(struct drm_connector *connector,
->  					   struct drm_display_mode *mode);
-> +	enum dw_hdmi_color_enc_format input_fmt;
-
-As reported before, I think we should use a combination of media bus format 
-and color space information instead of a custom enum. Ideally this should also 
-be queried at runtime, but that could be done in a second step.
+Btw, with the neat ascii-art stuff here and in comments in your code, did
+you look into assembling all that into a meson driver documentation
+chapter like the one for vc4 that was just merged?
+-Daniel
 
 > 
->  	/* Vendor PHY support */
->  	const struct dw_hdmi_phy_ops *phy_ops;
+> This patchset does :
+>  - Fixes the CRTC handling
+>  - Fixes the registers definitions
+>  - Adds support for device components registration along of-graph
+>  - Adds support for HDMI clocks
+>  - Adds support for HDMI VENC video modes
+>  - Adds support for the Custom HDMI PHY using callbacks added in [1] and [2]
+>  - Adds CMA node to reserve enougth memory for 1080p display
+>  - Adds the HDMI controller et connector modes on selected boards
+>  - Adds a proper dt-bindings for the HDMI controller et connector
+>  - Updates the MAINTAINERS file to track the new files
+> 
+> [1] http://lkml.kernel.org/r/20170301223915.29888-1-laurent.pinchart+renesas at ideasonboard.com
+> [2] http://lkml.kernel.org/r/1488468572-31971-1-git-send-email-narmstrong at baylibre.com
+> 
+> Neil Armstrong (11):
+>   drm/meson: Use crtc_state for hdisplay and fix atomic flush/enable
+>     sync for vsync commit
+>   drm/meson: Add missing HDMI register
+>   drm/meson: Add support for components
+>   drm/meson: venc_cvbs: no more return -ENODEV if CVBS is not available
+>   drm/meson: add support for HDMI clock support
+>   drm/meson: Add support for HDMI venc modes and settings
+>   drm/meson: Add support for HDMI encoder and DW-HDMI bridge + PHY
+>   ARM64: dts: meson-gx: Add shared CMA dma memory pool
+>   ARM64: dts: meson-gx: Add support for HDMI output
+>   dt-bindings: Add bindings for the Amlogic Meson dw-hdmi extension
+>   MAINTAINERS: update files for Amlogic DRM Driver
+> 
+>  .../bindings/display/amlogic,meson-dw-hdmi.txt     |  111 ++
+>  MAINTAINERS                                        |    1 +
+>  .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |   39 +
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |   40 +
+>  .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    |   23 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |   23 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   12 +
+>  .../boot/dts/amlogic/meson-gxl-nexbox-a95x.dts     |   23 +
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |   13 +
+>  .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |   23 +
+>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         |    4 +
+>  drivers/gpu/drm/meson/Kconfig                      |    6 +
+>  drivers/gpu/drm/meson/Makefile                     |    1 +
+>  drivers/gpu/drm/meson/meson_crtc.c                 |   15 +-
+>  drivers/gpu/drm/meson/meson_drv.c                  |  113 +-
+>  drivers/gpu/drm/meson/meson_drv.h                  |    3 +
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c              |  918 +++++++++++++++
+>  drivers/gpu/drm/meson/meson_dw_hdmi.h              |  146 +++
+>  drivers/gpu/drm/meson/meson_registers.h            |    1 +
+>  drivers/gpu/drm/meson/meson_vclk.c                 |  624 +++++++++-
+>  drivers/gpu/drm/meson/meson_vclk.h                 |    6 +-
+>  drivers/gpu/drm/meson/meson_venc.c                 | 1245 +++++++++++++++++++-
+>  drivers/gpu/drm/meson/meson_venc.h                 |    7 +
+>  drivers/gpu/drm/meson/meson_venc_cvbs.c            |   11 +-
+>  drivers/gpu/drm/meson/meson_vpp.h                  |    2 +
+>  25 files changed, 3370 insertions(+), 40 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+>  create mode 100644 drivers/gpu/drm/meson/meson_dw_hdmi.c
+>  create mode 100644 drivers/gpu/drm/meson/meson_dw_hdmi.h
+> 
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel at lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
 -- 
-Regards,
-
-Laurent Pinchart
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
