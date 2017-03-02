@@ -1,63 +1,85 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 02 Mar 2017 11:22:27 +0100
-Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: switch ethernet phy
- mode to rgmii-txid
-In-Reply-To: <5baa94a2-f45c-2ab3-0085-422436e12a84@gmail.com>
-References: <5baa94a2-f45c-2ab3-0085-422436e12a84@gmail.com>
-Message-ID: <1488450147.2420.2.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 2 Mar 2017 12:07:25 +0100
+Subject: [PATCH v2 2/3] clk: meson-gxbb: Add MALI clocks
+In-Reply-To: <20170301191119.GR25384@codeaurora.org>
+References: <1488365164-22861-1-git-send-email-narmstrong@baylibre.com>
+ <1488365164-22861-3-git-send-email-narmstrong@baylibre.com>
+ <20170301191119.GR25384@codeaurora.org>
+Message-ID: <6cd2e42d-6169-a2f0-db33-e13ca1619a41@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2017-02-10 at 00:09 +0100, Heiner Kallweit wrote:
-> Documentation/networking/phy.txt states:
-> Whenever possible,use the PHY side RGMII delay.
+Hi Stephen,
+
+On 03/01/2017 08:11 PM, Stephen Boyd wrote:
+> On 03/01, Neil Armstrong wrote:
+>> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+>> index a52063f..31f6090 100644
+>> --- a/drivers/clk/meson/gxbb.c
+>> +++ b/drivers/clk/meson/gxbb.c
+>> @@ -634,6 +634,131 @@
+>>  	},
+>>  };
+>>  
+>> +/*
+>> + * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
+>> + * muxed by a glitch-free switch.
+>> + */
+>> +
+>> +static u32 mux_table_mali_0_1[] = {0, 1, 2, 3, 4, 5, 6, 7};
+>> +const char *gxbb_mali_0_1_parent_names[] = {
 > 
-> The board uses a RTl8211F phy which supports creating the needed
-> tx delay internally. Therefore switch to rgmii-txid mode.
+> static?
+
+Will do !
+
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> ?arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 +
-> ?1 file changed, 1 insertion(+)
+>> +	"xtal", "gp0_pll", "mpll2", "mpll1", "fclk_div7",
+>> +	"fclk_div4", "fclk_div3", "fclk_div5"
+>> +};
+>> +
+> [..]
+>> +	.reg = (void *)HHI_MALI_CLK_CNTL,
+>> +	.bit_idx = 24,
+>> +	.lock = &clk_lock,
+>> +	.hw.init = &(struct clk_init_data){
+>> +		.name = "mali_1",
+>> +		.ops = &clk_gate_ops,
+>> +		.parent_names = (const char *[]){ "mali_1_div" },
+>> +		.num_parents = 1,
+>> +		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
+>> +	},
+>> +};
+>> +
+>> +static u32 mux_table_mali[] = {0, 1};
+>> +const char *gxbb_mali_parent_names[] = {
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 3877dda6..94896139 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -152,6 +152,7 @@
-> ?	pinctrl-0 = <&eth_rgmii_pins>;
-> ?	pinctrl-names = "default";
-> ?	phy-handle = <&eth_phy0>;
-> +	phy-mode = "rgmii-txid";
-> ?
-> ?	mdio {
-> ?		compatible = "snps,dwmac-mdio";
+> static?
+> 
+>> +	"mali_0", "mali_1"
+>> +};
+> [...]
+>>  static struct clk_mux *gxbb_clk_muxes[] = {
+>>  	&gxbb_mpeg_clk_sel,
+>>  	&gxbb_sar_adc_clk_sel,
+>> +	&gxbb_mali_0_sel,
+>> +	&gxbb_mali_1_sel,
+>> +	&gxbb_mali,
+>>  };
+>>  
+>>  static struct clk_divider *gxbb_clk_dividers[] = {
+> 
+> Can these arrays be const? If so, please do that in a separate
+> patch.
 
-Heiner,
+Hmm, these were introduced by jerome, he should update them accordingly.
 
-In principle, I agree with this patch but:
+>>  	&gxbb_mpeg_clk_div,
+>>  	&gxbb_sar_adc_clk_div,
+>> +	&gxbb_mali_0_div,
+>> +	&gxbb_mali_1_div,
+>>  };
 
-* We need the patches [0] [1] from net-next to merged first (or pulled
-in kevin's tree). Without this, the proposed change would result in a
-4ns Tx delay instead of 2ns. If Martin send another version of patch
-[2], then "amlogic,tx-delay-ns = <2>;" should be removed for the
-odroidc2 as the delay would be introduced by the PHY (the value would
-ignored anyway, but it would be misleading)
 
-* We would be changing a configuration tested by many people for a
-barely tested one, without any benefits expected. These 2
-configurations are supposed to be equivalent, and I'm willing to test
-it again once the prerequisites are merged but I'd prefer if more
-people could test this and confirm there is no regression before
-merging it.
-
-Cheers
-
-Jerome
-
-[0]: commit b765234e72fc ("net: stmmac: dwmac-meson8b: make the RGMII
-TX delay configurable")
-[1]: commit d6db61a40ee0 ("net: stmmac: don't set tx delay in RGMII_ID
-and RGMII_TXID mode")
-[2]: https://marc.info/?l=linux-arm-kernel&m=148754182813497&w=2
+Thanks,
+Neil
