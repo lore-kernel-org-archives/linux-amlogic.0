@@ -1,40 +1,63 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 1 Mar 2017 21:20:19 +0100
-Subject: [PATCH v3 1/10] mmc: meson-gx: simplify bounce buffer setting in
- meson_mmc_start_cmd
-In-Reply-To: <m2d1e0zx5l.fsf@baylibre.com>
-References: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
- <m2d1e0zx5l.fsf@baylibre.com>
-Message-ID: <9259ab6f-fc7e-bcb3-ddd0-5ff3da3b391a@gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 02 Mar 2017 11:22:27 +0100
+Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: switch ethernet phy
+ mode to rgmii-txid
+In-Reply-To: <5baa94a2-f45c-2ab3-0085-422436e12a84@gmail.com>
+References: <5baa94a2-f45c-2ab3-0085-422436e12a84@gmail.com>
+Message-ID: <1488450147.2420.2.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 01.03.2017 um 19:09 schrieb Kevin Hilman:
-> Hi Heinar,
+On Fri, 2017-02-10 at 00:09 +0100, Heiner Kallweit wrote:
+> Documentation/networking/phy.txt states:
+> Whenever possible,use the PHY side RGMII delay.
 > 
-> Heiner Kallweit <hkallweit1@gmail.com> writes:
+> The board uses a RTl8211F phy which supports creating the needed
+> tx delay internally. Therefore switch to rgmii-txid mode.
 > 
->> Core ensures that there are no commands with cmd->data being set and
->> nothing to transfer. And we don't have to reset bit CMD_CFG_DATA_NUM
->> because cmd_cfg was zero-initialized and this bit isn't set.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> Acked-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> ?arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 +
+> ?1 file changed, 1 insertion(+)
 > 
-> Could you send this series one more time, collecting the remaining tags
-> and including the patches from Micha? Zegan?
-> 
-Patchwork tracks all the tags coming in for a patch, there it's visible
-that you acked my 10 patches + the two from Michal.
-So I would leave it up to Ulf whether he prefers to have the series
-re-sent (with just the few remaining acks as changes).
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> index 3877dda6..94896139 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> @@ -152,6 +152,7 @@
+> ?	pinctrl-0 = <&eth_rgmii_pins>;
+> ?	pinctrl-names = "default";
+> ?	phy-handle = <&eth_phy0>;
+> +	phy-mode = "rgmii-txid";
+> ?
+> ?	mdio {
+> ?		compatible = "snps,dwmac-mdio";
 
-Heiner
+Heiner,
 
-> I think the MMC maintainers would appreciate one final batch with
-> everything collected together, and including a cover letter.
-> 
-> Thanks for all your great work on improving this driver,
-> 
-> Kevin
-> 
+In principle, I agree with this patch but:
+
+* We need the patches [0] [1] from net-next to merged first (or pulled
+in kevin's tree). Without this, the proposed change would result in a
+4ns Tx delay instead of 2ns. If Martin send another version of patch
+[2], then "amlogic,tx-delay-ns = <2>;" should be removed for the
+odroidc2 as the delay would be introduced by the PHY (the value would
+ignored anyway, but it would be misleading)
+
+* We would be changing a configuration tested by many people for a
+barely tested one, without any benefits expected. These 2
+configurations are supposed to be equivalent, and I'm willing to test
+it again once the prerequisites are merged but I'd prefer if more
+people could test this and confirm there is no regression before
+merging it.
+
+Cheers
+
+Jerome
+
+[0]: commit b765234e72fc ("net: stmmac: dwmac-meson8b: make the RGMII
+TX delay configurable")
+[1]: commit d6db61a40ee0 ("net: stmmac: don't set tx delay in RGMII_ID
+and RGMII_TXID mode")
+[2]: https://marc.info/?l=linux-arm-kernel&m=148754182813497&w=2
