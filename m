@@ -1,144 +1,77 @@
-From: punit.agrawal@arm.com (Punit Agrawal)
-Date: Thu, 02 Mar 2017 19:17:04 +0000
-Subject: [PATCH 2/2] hwmon: (scpi) Fix the scale of SCP sensor readings
-In-Reply-To: <20170302121500.8121-3-carlo@caione.org> (Carlo Caione's message
- of "Thu, 2 Mar 2017 13:15:00 +0100")
-References: <20170302121500.8121-1-carlo@caione.org>
- <20170302121500.8121-3-carlo@caione.org>
-Message-ID: <87lgsno5e7.fsf@e105922-lin.cambridge.arm.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Thu, 2 Mar 2017 20:37:29 +0100
+Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: switch ethernet phy mode
+ to rgmii-txid
+In-Reply-To: <1488450147.2420.2.camel@baylibre.com>
+References: <5baa94a2-f45c-2ab3-0085-422436e12a84@gmail.com>
+ <1488450147.2420.2.camel@baylibre.com>
+Message-ID: <e3e2ff90-e4cb-b209-3824-fb45e595397d@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Carlo,
+Am 02.03.2017 um 11:22 schrieb Jerome Brunet:
+> On Fri, 2017-02-10 at 00:09 +0100, Heiner Kallweit wrote:
+>> Documentation/networking/phy.txt states:
+>> Whenever possible,use the PHY side RGMII delay.
+>>
+>> The board uses a RTl8211F phy which supports creating the needed
+>> tx delay internally. Therefore switch to rgmii-txid mode.
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> index 3877dda6..94896139 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> @@ -152,6 +152,7 @@
+>>  	pinctrl-0 = <&eth_rgmii_pins>;
+>>  	pinctrl-names = "default";
+>>  	phy-handle = <&eth_phy0>;
+>> +	phy-mode = "rgmii-txid";
+>>  
+>>  	mdio {
+>>  		compatible = "snps,dwmac-mdio";
+> 
+> Heiner,
+> 
+> In principle, I agree with this patch but:
+> 
+> * We need the patches [0] [1] from net-next to merged first (or pulled
+> in kevin's tree). Without this, the proposed change would result in a
+> 4ns Tx delay instead of 2ns. If Martin send another version of patch
+> [2], then "amlogic,tx-delay-ns = <2>;" should be removed for the
+> odroidc2 as the delay would be introduced by the PHY (the value would
+> ignored anyway, but it would be misleading)
+> 
+Right ..
 
-Carlo Caione <carlo@caione.org> writes:
+> * We would be changing a configuration tested by many people for a
+> barely tested one, without any benefits expected. These 2
+> configurations are supposed to be equivalent, and I'm willing to test
+> it again once the prerequisites are merged but I'd prefer if more
+> people could test this and confirm there is no regression before
+> merging it.
+> 
+Also right. There is no urgent need for this patch and I'm totally
+fine with waiting for more feedback.
+It's just a minor improvement to make the configuration more
+in line with the documented best practices.
 
-> From: Carlo Caione <carlo@endlessm.com>
->
-> The implementation details for SCPI seems to suggest that the sensor
-> readings must be reported by SCP using a well defined scale
-> (millidegree Celsius for temperature, millivolts for voltage,
-> milliamperes for current, microwatts for power and microjoules for
-> energy).
->
-> This is also important for the interaction with other subsystems: for
-> example both the thermal sub-system and the hwmon sysfs interface expect
-> the temperature expressed in millidegree Celsius.
->
-> Unfortunately since this behaviour is dependent on the firmware
-> implementation there are cases where the sensor readings are reported
-> using a different scale. For example in the Amlogic SoCs the
-> temperature is reported in degree and not millidegree Celsius.
->
-> To take into account this discrepancy and fixup the values reported by
-> SCP a new DT property `scpi,sensors-scale' is introduced and used in
-> this patch by the scpi-hwmon driver to convert the sensor readings to
-> the expected scale.
->
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
-> ---
->  drivers/hwmon/scpi-hwmon.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/drivers/hwmon/scpi-hwmon.c b/drivers/hwmon/scpi-hwmon.c
-> index 094f948f99ff..64a51e06c8df 100644
-> --- a/drivers/hwmon/scpi-hwmon.c
-> +++ b/drivers/hwmon/scpi-hwmon.c
-> @@ -23,6 +23,7 @@
->  #include <linux/thermal.h>
->  
->  struct sensor_data {
-> +	unsigned int scale;
->  	struct scpi_sensor_info info;
->  	struct device_attribute dev_attr_input;
->  	struct device_attribute dev_attr_label;
-> @@ -44,6 +45,14 @@ struct scpi_sensors {
->  	const struct attribute_group *groups[2];
->  };
->  
-> +static const unsigned int scpi_scale[] = {
+Heiner
 
-Following the device tree property, please change the array to u32 as
-well.
-
-> +	1000,		/* Temperature (millidegrees Celsius)	*/
-> +	1000,		/* Voltage     (millivolts)		*/
-> +	1000,		/* Current     (milliamperes)		*/
-> +	1000000,	/* Power       (microwatts)		*/
-> +	1000000,	/* Energy      (microjoules)		*/
-> +};
-> +
-
-Using the array initialiser notation, part of the comment could be moved
-to the element index. This'll also make the scale to sensor class
-association more explicit.
-
-static const u32 scpi_scale[] = {
-	[TEMPERATURE] 	= 1000,		/* (millidegrees Celsius) */
-	[VOLTAGE] 	= 1000,		/* (millivolts)		  */
-	[CURRENT]	= 1000,		/* (milliamperes)	  */
-	[POWER]		= 1000000,	/* (microwatts)		  */
-	[ENERGY]	= 1000000,	/* (microjoules)	  */
-};
-
->  static int scpi_read_temp(void *dev, int *temp)
->  {
->  	struct scpi_thermal_zone *zone = dev;
-> @@ -57,6 +66,11 @@ static int scpi_read_temp(void *dev, int *temp)
->  	if (ret)
->  		return ret;
->  
-> +	if (scpi_scale[sensor->info.class] != sensor->scale) {
-> +		value *= scpi_scale[sensor->info.class];
-> +		do_div(value, sensor->scale);
-> +	}
-> +
->  	*temp = value;
->  	return 0;
->  }
-> @@ -77,6 +91,11 @@ scpi_show_sensor(struct device *dev, struct device_attribute *attr, char *buf)
->  	if (ret)
->  		return ret;
->  
-> +	if (scpi_scale[sensor->info.class] != sensor->scale) {
-> +		value *= scpi_scale[sensor->info.class];
-> +		do_div(value, sensor->scale);
-> +	}
-> +
->  	return sprintf(buf, "%llu\n", value);
->  }
->  
-
-You add the exact same code twice - a helper to avoid the duplication
-would be nice.
-
-Thanks,
-Punit
-
-> @@ -97,6 +116,7 @@ static struct thermal_zone_of_device_ops scpi_sensor_ops = {
->  static int scpi_hwmon_probe(struct platform_device *pdev)
->  {
->  	u16 nr_sensors, i;
-> +	u32 scale[] = { 1000, 1000, 1000, 1000000, 1000000 };
->  	int num_temp = 0, num_volt = 0, num_current = 0, num_power = 0;
->  	int num_energy = 0;
->  	struct scpi_ops *scpi_ops;
-> @@ -131,6 +151,9 @@ static int scpi_hwmon_probe(struct platform_device *pdev)
->  
->  	scpi_sensors->scpi_ops = scpi_ops;
->  
-> +	of_property_read_u32_array(dev->of_node, "scpi,sensors-scale",
-> +				   scale, ARRAY_SIZE(scale));
-> +
->  	for (i = 0, idx = 0; i < nr_sensors; i++) {
->  		struct sensor_data *sensor = &scpi_sensors->data[idx];
->  
-> @@ -178,6 +201,8 @@ static int scpi_hwmon_probe(struct platform_device *pdev)
->  			continue;
->  		}
->  
-> +		sensor->scale = scale[sensor->info.class];
-> +
->  		sensor->dev_attr_input.attr.mode = S_IRUGO;
->  		sensor->dev_attr_input.show = scpi_show_sensor;
->  		sensor->dev_attr_input.attr.name = sensor->input;
+> Cheers
+> 
+> Jerome
+> 
+> [0]: commit b765234e72fc ("net: stmmac: dwmac-meson8b: make the RGMII
+> TX delay configurable")
+> [1]: commit d6db61a40ee0 ("net: stmmac: don't set tx delay in RGMII_ID
+> and RGMII_TXID mode")
+> [2]: https://marc.info/?l=linux-arm-kernel&m=148754182813497&w=2
+> 
+> 
+> 
