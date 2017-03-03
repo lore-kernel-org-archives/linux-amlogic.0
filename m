@@ -1,45 +1,42 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 03 Mar 2017 10:43:14 -0800
-Subject: [PATCH 1/1] ARM64: defconfig: enable the leds-pwm driver and
- default-on trigger
-In-Reply-To: <20170219222325.7085-2-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Sun, 19 Feb 2017 23:23:25 +0100")
-References: <20170219222325.7085-1-martin.blumenstingl@googlemail.com>
- <20170219222325.7085-2-martin.blumenstingl@googlemail.com>
-Message-ID: <m2efye2ocd.fsf@baylibre.com>
+Date: Fri, 03 Mar 2017 10:57:25 -0800
+Subject: [PATCH 1/2] devicetree: Add vendor prefix for Hwacom Systems Inc.
+In-Reply-To: <20170222163131.14136-2-carlo@caione.org> (Carlo Caione's message
+ of "Wed, 22 Feb 2017 17:31:30 +0100")
+References: <20170222163131.14136-1-carlo@caione.org>
+ <20170222163131.14136-2-carlo@caione.org>
+Message-ID: <m2a8922noq.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Carlo Caione <carlo@caione.org> writes:
 
-> This enables the leds-pwm driver to support LEDs which are PWM-powered
-> (and thus dimmable). Additionally we have to enable the "default-on"
-> trigger - this was not required before because the gpio-leds driver has
-> a separate "default-state" property which can be used to enable the LED
-> by default.
+> From: Carlo Caione <carlo@endlessm.com>
 >
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Hwacom Systems Inc. is a broadband system integrator and supplier of
+> mobile, fixed and IP networks related services as well as
+> multimedia application. Website: http://www.hwacom.com/
+>
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Applied to v4.12/defconfig of amlogic tree.
+Applied to v4.12/dt64 after changing subject prefix to "dt-bindings:"
 
 Kevin
 
 > ---
->  arch/arm64/configs/defconfig | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 33b744d54739..b36d02ce6154 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -394,8 +394,10 @@ CONFIG_MMC_SUNXI=y
->  CONFIG_NEW_LEDS=y
->  CONFIG_LEDS_CLASS=y
->  CONFIG_LEDS_GPIO=y
-> +CONFIG_LEDS_PWM=y
->  CONFIG_LEDS_SYSCON=y
->  CONFIG_LEDS_TRIGGERS=y
-> +CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
->  CONFIG_LEDS_TRIGGER_HEARTBEAT=y
->  CONFIG_LEDS_TRIGGER_CPU=y
->  CONFIG_RTC_CLASS=y
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> index 16d3b5e..a1704a6 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> @@ -131,6 +131,7 @@ holt	Holt Integrated Circuits, Inc.
+>  honeywell	Honeywell
+>  hp	Hewlett Packard
+>  holtek	Holtek Semiconductor, Inc.
+> +hwacom	HwaCom Systems Inc.
+>  i2se	I2SE GmbH
+>  ibm	International Business Machines (IBM)
+>  idt	Integrated Device Technologies, Inc.
