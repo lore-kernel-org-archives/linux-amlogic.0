@@ -1,14 +1,15 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 3 Mar 2017 20:52:43 +0100
-Subject: [PATCH v4 2/10] mmc: meson-gx: make two functions return void
+Date: Fri, 3 Mar 2017 20:53:38 +0100
+Subject: [PATCH v4 3/10] mmc: meson-gx: remove unused members irq, ocr_mask
+ from struct meson_host
 In-Reply-To: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
 References: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
-Message-ID: <ae52310d-9b00-c073-175f-4b3fd5d9d213@gmail.com>
+Message-ID: <f089a3a0-5f01-7cea-e794-2fdd3707632d@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The return value of meson_mmc_request_done and meson_mmc_read_resp
-isn't used, so make both functions return void.
+Member ocr_mask is never used and member irq we can replace with a
+local variable in meson_mmc_probe. So let's remove both members.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Acked-by: Kevin Hilman <khilman@baylibre.com>
@@ -20,49 +21,54 @@ v3:
 v4:
 - no changes
 ---
- drivers/mmc/host/meson-gx-mmc.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 07a7399c..b99461ff 100644
+index b99461ff..b9de3d47 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -426,7 +426,8 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 			__func__, orig, val);
- }
+@@ -127,8 +127,6 @@ struct meson_host {
  
--static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
-+static void meson_mmc_request_done(struct mmc_host *mmc,
-+				   struct mmc_request *mrq)
- {
- 	struct meson_host *host = mmc_priv(mmc);
+ 	spinlock_t lock;
+ 	void __iomem *regs;
+-	int irq;
+-	u32 ocr_mask;
+ 	struct clk *core_clk;
+ 	struct clk_mux mux;
+ 	struct clk *mux_clk;
+@@ -712,7 +710,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	struct resource *res;
+ 	struct meson_host *host;
+ 	struct mmc_host *mmc;
+-	int ret;
++	int ret, irq;
  
-@@ -435,8 +436,6 @@ static int meson_mmc_request_done(struct mmc_host *mmc, struct mmc_request *mrq)
- 	host->mrq = NULL;
- 	host->cmd = NULL;
- 	mmc_request_done(host->mmc, mrq);
--
--	return 0;
- }
- 
- static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
-@@ -554,7 +553,7 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- 		meson_mmc_start_cmd(mmc, mrq->cmd);
- }
- 
--static int meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
-+static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
- {
- 	struct meson_host *host = mmc_priv(mmc);
- 
-@@ -566,8 +565,6 @@ static int meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
- 	} else if (cmd->flags & MMC_RSP_PRESENT) {
- 		cmd->resp[0] = readl(host->regs + SD_EMMC_CMD_RSP);
+ 	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
+ 	if (!mmc)
+@@ -744,8 +742,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 		goto free_host;
  	}
--
--	return 0;
- }
  
- static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+-	host->irq = platform_get_irq(pdev, 0);
+-	if (host->irq == 0) {
++	irq = platform_get_irq(pdev, 0);
++	if (!irq) {
+ 		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
+ 		ret = -EINVAL;
+ 		goto free_host;
+@@ -773,9 +771,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
+ 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
+ 
+-	ret = devm_request_threaded_irq(&pdev->dev, host->irq,
+-					meson_mmc_irq, meson_mmc_irq_thread,
+-					IRQF_SHARED, DRIVER_NAME, host);
++	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
++					meson_mmc_irq_thread, IRQF_SHARED,
++					DRIVER_NAME, host);
+ 	if (ret)
+ 		goto free_host;
+ 
 -- 
 2.11.1
