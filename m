@@ -1,42 +1,36 @@
-From: Jose.Abreu@synopsys.com (Jose Abreu)
-Date: Fri, 3 Mar 2017 10:05:36 +0000
-Subject: [PATCH v2 2/2] drm: bridge: Move HPD handling to PHY operations
-In-Reply-To: <952185cf-16b8-b987-4737-96c2db4a0f6c@baylibre.com>
-References: <1488468572-31971-1-git-send-email-narmstrong@baylibre.com>
- <1488468572-31971-3-git-send-email-narmstrong@baylibre.com>
- <6652377.Pu8amSWD8H@avalon>
- <952185cf-16b8-b987-4737-96c2db4a0f6c@baylibre.com>
-Message-ID: <67b8ac3e-3227-8f32-7f20-0cd4b6d4510f@synopsys.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri,  3 Mar 2017 11:14:26 +0100
+Subject: [RFC PATCH 0/2] drm/meson: RST Documentation
+Message-ID: <1488536068-9407-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+To be aligned with the other DRM drivers, this patchset converts the
+actual drivers documentation to RST format, adds a top RTS meson file
+and adds an entry in the gpu/index.rst file.
 
+This patchser depends on the HDMI patchset at [1]
 
-On 03-03-2017 09:07, Neil Armstrong wrote:
->
-> The problem is that the HPD/RxSense is tied to this phy_mask and glued into the
-> dw-hdmi driver.
->
-> The *real* solution would be to completely separate the HPD/RxSense irq handling to
-> a separate driver as a shared irq...
->
-> If Jose is willing to give me some documentation and Freescale some boards, I'll be
-> happy to do it !
->
->
+Sample output can be found at [2]
 
-Hmm, why don't get rid of phy_mask totally and just return the
-new mask in update_hpd() function? Or add a get_hpd_status()
-callback. (I also think there are too many callbacks. For example
-we could have: setup, set_status, clear and then just use
-parameters when needed:
-    void setup(bool force, bool disabled, bool rxsense)
-    void set_status(bool enable, bool enable_ints)
-    void clear()
+[2] http://people.freedesktop.org/~narmstrong/meson_drm_doc/gpu/meson.html
+[1] http://lkml.kernel.org/r/1488469207-523-1-git-send-email-narmstrong at baylibre.com
 
-What do you think? I only checked quickly the code, don't know if
-this is enough.
+Neil Armstrong (2):
+  drm/meson: Convert existing documentation to actual kerneldoc
+  drm/meson: Add RST to bring together kerneldoc
 
-Best regards,
-Jose Miguel Abreu
+ Documentation/gpu/index.rst           |  1 +
+ Documentation/gpu/meson.rst           | 61 +++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/meson/meson_canvas.c  |  4 ++-
+ drivers/gpu/drm/meson/meson_drv.c     |  5 +--
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 25 +++++++++-----
+ drivers/gpu/drm/meson/meson_vclk.c    | 22 +++++++++----
+ drivers/gpu/drm/meson/meson_venc.c    | 25 ++++++++------
+ drivers/gpu/drm/meson/meson_viu.c     |  6 +++-
+ drivers/gpu/drm/meson/meson_vpp.c     |  8 +++--
+ 9 files changed, 127 insertions(+), 30 deletions(-)
+ create mode 100644 Documentation/gpu/meson.rst
+
+-- 
+1.9.1
