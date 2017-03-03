@@ -1,66 +1,75 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 3 Mar 2017 20:55:21 +0100
-Subject: [PATCH v4 5/10] mmc: meson-gx: remove member parent_mux from struct
- meson_host
+Date: Fri, 3 Mar 2017 20:56:33 +0100
+Subject: [PATCH v4 6/10] mmc: meson-gx: fix error path in meson_mmc_clk_init /
+ meson_mmc_probe
 In-Reply-To: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
 References: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
-Message-ID: <baa37254-e2eb-056c-73bc-feb15f96883f@gmail.com>
+Message-ID: <52120418-6365-51af-252e-8ad969969acd@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Member mux_parent isn't used outside meson_mmc_clk_init. So remove it
-and replace it with a local variable in meson_mmc_clk_init.
+The condition should be "if (ret)" as the disable/unprepare is
+supposed to be executed if the previous command fails.
+In addition adjust the error path in probe to properly deal
+with the case that cfg_div_clk can be registered successfully
+but enable/prepare fails.
+In this case we shouldn't call clk_disable_unprepare.
 
+Reported-by: Micha? Zegan <webczat_200@poczta.onet.pl>
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- added acked-by
+- extended commit message
 v3:
-- no changes
+- adjust error path in probe
 v4:
-- no changes
+- added acked-by
 ---
- drivers/mmc/host/meson-gx-mmc.c | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index ea2db3ce..68e76fa8 100644
+index 68e76fa8..002e4aac 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -130,7 +130,6 @@ struct meson_host {
- 	struct clk *core_clk;
- 	struct clk_mux mux;
- 	struct clk *mux_clk;
--	struct clk *mux_parent[MUX_CLK_NUM_PARENTS];
- 	unsigned long current_clock;
+@@ -321,7 +321,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
  
- 	struct clk_divider cfg_div;
-@@ -247,19 +246,18 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	ret = meson_mmc_clk_set(host, host->mmc->f_min);
+-	if (!ret)
++	if (ret)
+ 		clk_disable_unprepare(host->cfg_div_clk);
  
- 	/* get the mux parents */
- 	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
-+		struct clk *clk;
- 		char name[16];
+ 	return ret;
+@@ -771,7 +771,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 					meson_mmc_irq_thread, IRQF_SHARED,
+ 					DRIVER_NAME, host);
+ 	if (ret)
+-		goto free_host;
++		goto err_div_clk;
  
- 		snprintf(name, sizeof(name), "clkin%d", i);
--		host->mux_parent[i] = devm_clk_get(host->dev, name);
--		if (IS_ERR(host->mux_parent[i])) {
--			ret = PTR_ERR(host->mux_parent[i]);
--			if (PTR_ERR(host->mux_parent[i]) != -EPROBE_DEFER)
-+		clk = devm_clk_get(host->dev, name);
-+		if (IS_ERR(clk)) {
-+			if (clk != ERR_PTR(-EPROBE_DEFER))
- 				dev_err(host->dev, "Missing clock %s\n", name);
--			host->mux_parent[i] = NULL;
--			return ret;
-+			return PTR_ERR(clk);
- 		}
- 
--		mux_parent_names[i] = __clk_get_name(host->mux_parent[i]);
-+		mux_parent_names[i] = __clk_get_name(clk);
+ 	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
+ 	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
+@@ -784,7 +784,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (host->bounce_buf == NULL) {
+ 		dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
+ 		ret = -ENOMEM;
+-		goto free_host;
++		goto err_div_clk;
  	}
  
- 	/* create the mux */
+ 	mmc->ops = &meson_mmc_ops;
+@@ -792,8 +792,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 
+ 	return 0;
+ 
+-free_host:
++err_div_clk:
+ 	clk_disable_unprepare(host->cfg_div_clk);
++free_host:
+ 	clk_disable_unprepare(host->core_clk);
+ 	mmc_free_host(mmc);
+ 	return ret;
 -- 
 2.11.1
