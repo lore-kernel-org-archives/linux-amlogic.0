@@ -1,228 +1,86 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 03 Mar 2017 11:00:08 -0800
-Subject: [PATCH 2/2] ARM64: dts: meson-gxl: Add support for HwaCom AmazeTV
-In-Reply-To: <20170222163131.14136-3-carlo@caione.org> (Carlo Caione's message
- of "Wed, 22 Feb 2017 17:31:31 +0100")
-References: <20170222163131.14136-1-carlo@caione.org>
- <20170222163131.14136-3-carlo@caione.org>
-Message-ID: <m260jq2nk7.fsf@baylibre.com>
+Date: Fri, 03 Mar 2017 11:29:12 -0800
+Subject: [PATCH v2 3/3] ARM64: dts: meson-gx: Add MALI nodes for GXBB and
+ GXL
+In-Reply-To: <e80d9fb0-1d71-7cab-5e32-72316474fdfc@baylibre.com> (Neil
+ Armstrong's message of "Thu, 2 Mar 2017 13:47:26 +0100")
+References: <1488365164-22861-1-git-send-email-narmstrong@baylibre.com>
+ <1488365164-22861-4-git-send-email-narmstrong@baylibre.com>
+ <e26cf584-dab2-2702-f7e6-b28f750fa00c@suse.de>
+ <e80d9fb0-1d71-7cab-5e32-72316474fdfc@baylibre.com>
+Message-ID: <m2tw7a17nb.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Carlo Caione <carlo@caione.org> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> From: Carlo Caione <carlo@endlessm.com>
+> Hi Andreas,
+> On 03/02/2017 01:31 PM, Andreas F?rber wrote:
+>> Hi Neil,
+>> 
+>> Am 01.03.2017 um 11:46 schrieb Neil Armstrong:
+>>> The same MALI-450 MP3 GPU is present in the GXBB and GXL SoCs.
+>> 
+>> First of all, any reason you're upper-casing Mali in the commit message?
+>> ARM doesn't.
 >
-> This patch adds support for the HwaCom AmazeTV set-top-box. The
-> hardware configuration is really similar to the other GXL boards but
-> for this hardware we need to limit the max-frequency of the eMMC to
-> have it working.
+> No reason, only a type, indeed it was lower-casing on the v1.
+> Will fix in v2.
 >
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.txt  |   1 +
->  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
->  .../boot/dts/amlogic/meson-gxl-hwacom-amazetv.dts  | 164 +++++++++++++++++++++
+>> 
+>>>
+>>> The node is simply added in the meson-gxbb.dtsi file.
+>> 
+>> The GXBB part looks fine on a quick look.
+>> 
+>>>
+>>> For GXL, since a lot is shared with the GXM that has a MALI-T820 IP, this
+>>> patch adds a new meson-gxl-mali.dtsi and is included in the SoC specific
+>>> dtsi files.
+>> 
+>> This part is slightly confusing though.
+>> 
+>> What exactly is the GXL vs. GXM difference that this can't be handled by
+>> overriding node properties compatible/interrupts/clocks? I am missing a
+>> GXM patch in this series as rationale for doing it this way.
+>> 
+>> In particular I am wondering whether the whole GXM-inherits-from-GXL
+>> concept is flawed and should be adjusted if this leads to secondary
+>> .dtsi files like this: My proposal would be to instead create a
+>> meson-gxl-gxm.dtsi, that meson-gxl.dtsi and meson-gxm.dtsi can inherit
+>> the current common parts from, then the Mali bits can simply go into
+>> meson-gxl.dtsi without extra #includes needed in S905X and S905D. While
+>> it's slightly more work to split once again, I think it would be cleaner.
+>
+> The GXL and GXM differences are very small :
+>  - They share the same clock tree
+>  - They share the same pinctrl and even the same pinout (S905D and S912 are pin-to-pin compatible)
+>  - They share all the peripherals
+>
+> The only changes are :
+>  - Enhanced video encoding and decoding support, this will need a family-specific compatible when pushed
+>  - Slightly differences in the Video Processing Unit, this is why I introduced family-specific compatibles
+>  - A secondary Cortex-A53 cluster
+>  - A secondary SCPI cpufreq clock entry
+>  - A different Mali core, but with the same interrupts (less but they share the same lower interrupts), clocks and memory space
+>
+> This is why it was decided to have a sub-dtsi, having a secondary dtsi will simply copy 99% of the GXL dtsi,
+> but surely we could also have an intermediate dtsi but for boards I'm ok with it, but less for a SoC dtsi,
+> since it could lead to some confusion.
+>
+> Finally, yes I could have added the mali node to the GXL dtsi, but the midgard Mali dt-bindings are not upstream
+> and the family is too big and recent enough to consider having stable bindings for now.
+>
+> Nevertheless, nothing is final, this gxl-mali.dtsi could be merged into the GXL dtsi in the future when we
+> have proper dt-bindings and a real support of the T820 Mali on the S912.
+>
+> Kevin, what's your thought about this ?
 
-nit: this should be meson-gxl-s905x-*
+I don't have a strong preference.  I'm OK with a separate Mali .dtsi due
+to the signficant overlap between GXL/GXM in terms of clocks, interrupts
+etc.
 
-Looks like you followed the pattern of the GXL nexbox, but that's
-now fixed in linux-next too.
+However, if the plan is to #include this from GXM .dts files, whould a
+better name be meson-gx-mali.dtsi?
 
 Kevin
-
-
->  3 files changed, 166 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-hwacom-amazetv.dts
->
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-> index 9b2b41a..c369a55 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-> @@ -47,3 +47,4 @@ Board compatible values:
->    - "amlogic,q201" (Meson gxm s912)
->    - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
->    - "nexbox,a1" (Meson gxm s912)
-> +  - "hwacom,amazetv" (Meson gxl s905x)
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 0d7bfbf..2932755 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-nexbox-a95x.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-hwacom-amazetv.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q200.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-q201.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-hwacom-amazetv.dts
-> new file mode 100644
-> index 0000000..9a2c60d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-hwacom-amazetv.dts
-> @@ -0,0 +1,164 @@
-> +/*
-> + * Copyright (c) 2017 Carlo Caione
-> + * Copyright (c) 2016 BayLibre, Inc.
-> + * Author: Neil Armstrong <narmstrong@kernel.org>
-> + *
-> + * SPDX-License-Identifier: GPL-2.0+ OR MIT
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-gxl-s905x.dtsi"
-> +
-> +/ {
-> +	compatible = "hwacom,amazetv", "amlogic,s905x", "amlogic,meson-gxl";
-> +	model = "Hwacom AmazeTV (S905X)";
-> +
-> +	aliases {
-> +		serial0 = &uart_AO;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory at 0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x80000000>;
-> +	};
-> +
-> +	vddio_card: gpio-regulator {
-> +		compatible = "regulator-gpio";
-> +
-> +		regulator-name = "VDDIO_CARD";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
-> +		gpios-states = <1>;
-> +
-> +		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
-> +		states = <1800000 0
-> +			  3300000 1>;
-> +	};
-> +
-> +	vddio_boot: regulator-vddio_boot {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDIO_BOOT";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +	};
-> +
-> +	vddao_3v3: regulator-vddao_3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDDAO_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	vcc_3v3: regulator-vcc_3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	emmc_pwrseq: emmc-pwrseq {
-> +		compatible = "mmc-pwrseq-emmc";
-> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	wifi32k: wifi32k {
-> +		compatible = "pwm-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-> +	};
-> +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "ext_clock";
-> +	};
-> +
-> +	cvbs-connector {
-> +		compatible = "composite-video-connector";
-> +
-> +		port {
-> +			cvbs_connector_in: endpoint {
-> +				remote-endpoint = <&cvbs_vdac_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&uart_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_a_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&ethmac {
-> +	status = "okay";
-> +	phy-mode = "rmii";
-> +	phy-handle = <&internal_phy>;
-> +};
-> +
-> +&ir {
-> +	status = "okay";
-> +	pinctrl-0 = <&remote_input_ao_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +/* SD card */
-> +&sd_emmc_b {
-> +	status = "okay";
-> +	pinctrl-0 = <&sdcard_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	bus-width = <4>;
-> +	cap-sd-highspeed;
-> +	max-frequency = <100000000>;
-> +	disable-wp;
-> +
-> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-> +	cd-inverted;
-> +
-> +	vmmc-supply = <&vddao_3v3>;
-> +	vqmmc-supply = <&vddio_card>;
-> +};
-> +
-> +/* eMMC */
-> +&sd_emmc_c {
-> +	status = "okay";
-> +	pinctrl-0 = <&emmc_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	bus-width = <8>;
-> +	cap-sd-highspeed;
-> +	cap-mmc-highspeed;
-> +	max-frequency = <100000000>;
-> +	non-removable;
-> +	disable-wp;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs200-1_8v;
-> +
-> +	mmc-pwrseq = <&emmc_pwrseq>;
-> +	vmmc-supply = <&vcc_3v3>;
-> +	vqmmc-supply = <&vddio_boot>;
-> +};
-> +
-> +&pwm_ef {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&clkc CLKID_FCLK_DIV4>;
-> +	clock-names = "clkin0";
-> +};
-> +
-> +&cvbs_vdac_port {
-> +	cvbs_vdac_out: endpoint {
-> +		remote-endpoint = <&cvbs_connector_in>;
-> +	};
-> +};
