@@ -1,75 +1,42 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 3 Mar 2017 20:56:33 +0100
-Subject: [PATCH v4 6/10] mmc: meson-gx: fix error path in meson_mmc_clk_init /
- meson_mmc_probe
+Date: Fri, 3 Mar 2017 20:57:22 +0100
+Subject: [PATCH v4 7/10] mmc: meson-gx: remove unneeded devm_kstrdup in
+ meson_mmc_clk_init
 In-Reply-To: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
 References: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
-Message-ID: <52120418-6365-51af-252e-8ad969969acd@gmail.com>
+Message-ID: <cee5ed99-5a53-d96a-6cca-9e21f1443d55@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The condition should be "if (ret)" as the disable/unprepare is
-supposed to be executed if the previous command fails.
-In addition adjust the error path in probe to properly deal
-with the case that cfg_div_clk can be registered successfully
-but enable/prepare fails.
-In this case we shouldn't call clk_disable_unprepare.
+CLK core does a deep copy of init.name, therefore it's fully ok to
+provide a local variable.
 
-Reported-by: Micha? Zegan <webczat_200@poczta.onet.pl>
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- extended commit message
-v3:
-- adjust error path in probe
-v4:
+- fixed commit message
 - added acked-by
+v3:
+- no changes
+v4:
+- no changes
 ---
- drivers/mmc/host/meson-gx-mmc.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 68e76fa8..002e4aac 100644
+index 002e4aac..684cc088 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -321,7 +321,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 	host->mmc->f_min = clk_round_rate(host->cfg_div_clk, 400000);
+@@ -281,7 +281,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
  
- 	ret = meson_mmc_clk_set(host, host->mmc->f_min);
--	if (!ret)
-+	if (ret)
- 		clk_disable_unprepare(host->cfg_div_clk);
- 
- 	return ret;
-@@ -771,7 +771,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 					meson_mmc_irq_thread, IRQF_SHARED,
- 					DRIVER_NAME, host);
- 	if (ret)
--		goto free_host;
-+		goto err_div_clk;
- 
- 	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
- 	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
-@@ -784,7 +784,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (host->bounce_buf == NULL) {
- 		dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
- 		ret = -ENOMEM;
--		goto free_host;
-+		goto err_div_clk;
- 	}
- 
- 	mmc->ops = &meson_mmc_ops;
-@@ -792,8 +792,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 
- 	return 0;
- 
--free_host:
-+err_div_clk:
- 	clk_disable_unprepare(host->cfg_div_clk);
-+free_host:
- 	clk_disable_unprepare(host->core_clk);
- 	mmc_free_host(mmc);
- 	return ret;
+ 	/* create the divider */
+ 	snprintf(clk_name, sizeof(clk_name), "%s#div", dev_name(host->dev));
+-	init.name = devm_kstrdup(host->dev, clk_name, GFP_KERNEL);
++	init.name = clk_name;
+ 	init.ops = &clk_divider_ops;
+ 	init.flags = CLK_SET_RATE_PARENT;
+ 	clk_div_parents[0] = __clk_get_name(host->mux_clk);
 -- 
 2.11.1
