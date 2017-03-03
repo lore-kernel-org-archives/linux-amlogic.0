@@ -1,43 +1,45 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 03 Mar 2017 10:17:07 -0800
-Subject: [PATCH v3 1/10] mmc: meson-gx: simplify bounce buffer setting in
- meson_mmc_start_cmd
-In-Reply-To: <9259ab6f-fc7e-bcb3-ddd0-5ff3da3b391a@gmail.com> (Heiner
- Kallweit's message of "Wed, 1 Mar 2017 21:20:19 +0100")
-References: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
- <m2d1e0zx5l.fsf@baylibre.com>
- <9259ab6f-fc7e-bcb3-ddd0-5ff3da3b391a@gmail.com>
-Message-ID: <m2y3wm2pjw.fsf@baylibre.com>
+Date: Fri, 03 Mar 2017 10:43:14 -0800
+Subject: [PATCH 1/1] ARM64: defconfig: enable the leds-pwm driver and
+ default-on trigger
+In-Reply-To: <20170219222325.7085-2-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 19 Feb 2017 23:23:25 +0100")
+References: <20170219222325.7085-1-martin.blumenstingl@googlemail.com>
+ <20170219222325.7085-2-martin.blumenstingl@googlemail.com>
+Message-ID: <m2efye2ocd.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Heiner Kallweit <hkallweit1@gmail.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Am 01.03.2017 um 19:09 schrieb Kevin Hilman:
->> Hi Heinar,
->> 
->> Heiner Kallweit <hkallweit1@gmail.com> writes:
->> 
->>> Core ensures that there are no commands with cmd->data being set and
->>> nothing to transfer. And we don't have to reset bit CMD_CFG_DATA_NUM
->>> because cmd_cfg was zero-initialized and this bit isn't set.
->>>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> Acked-by: Kevin Hilman <khilman@baylibre.com>
->> 
->> Could you send this series one more time, collecting the remaining tags
->> and including the patches from Micha? Zegan?
->> 
-> Patchwork tracks all the tags coming in for a patch, there it's visible
-> that you acked my 10 patches + the two from Michal.
+> This enables the leds-pwm driver to support LEDs which are PWM-powered
+> (and thus dimmable). Additionally we have to enable the "default-on"
+> trigger - this was not required before because the gpio-leds driver has
+> a separate "default-state" property which can be used to enable the LED
+> by default.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Yes, I'm well aware of how patchwork works, yet my request still stands.
-
-> So I would leave it up to Ulf whether he prefers to have the series
-> re-sent (with just the few remaining acks as changes).
-
-That's your choice, but some friendly advice from a kernel maintainer:
-making things as easy as possible for maintainers/reviewers greatly
-improves speed your code will get merged.
+Applied to v4.12/defconfig of amlogic tree.
 
 Kevin
+
+> ---
+>  arch/arm64/configs/defconfig | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 33b744d54739..b36d02ce6154 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -394,8 +394,10 @@ CONFIG_MMC_SUNXI=y
+>  CONFIG_NEW_LEDS=y
+>  CONFIG_LEDS_CLASS=y
+>  CONFIG_LEDS_GPIO=y
+> +CONFIG_LEDS_PWM=y
+>  CONFIG_LEDS_SYSCON=y
+>  CONFIG_LEDS_TRIGGERS=y
+> +CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
+>  CONFIG_LEDS_TRIGGER_HEARTBEAT=y
+>  CONFIG_LEDS_TRIGGER_CPU=y
+>  CONFIG_RTC_CLASS=y
