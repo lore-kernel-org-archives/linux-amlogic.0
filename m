@@ -1,59 +1,66 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 3 Mar 2017 20:54:35 +0100
-Subject: [PATCH v4 4/10] mmc: meson-gx: remove unneeded variable in
- meson_mmc_clk_init
+Date: Fri, 3 Mar 2017 20:55:21 +0100
+Subject: [PATCH v4 5/10] mmc: meson-gx: remove member parent_mux from struct
+ meson_host
 In-Reply-To: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
 References: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
-Message-ID: <2eb59c3b-5444-f399-4597-e0fb872b6251@gmail.com>
+Message-ID: <baa37254-e2eb-056c-73bc-feb15f96883f@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Because the DT requires a fixed number of mux parent clocks,
-variable mux_parent_count can be replaced with constant
-MUX_CLK_NUM_PARENTS, so remove it.
+Member mux_parent isn't used outside meson_mmc_clk_init. So remove it
+and replace it with a local variable in meson_mmc_clk_init.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
 v2:
-- adjusted commit message
 - added acked-by
 v3:
 - no changes
 v4:
 - no changes
 ---
- drivers/mmc/host/meson-gx-mmc.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index b9de3d47..ea2db3ce 100644
+index ea2db3ce..68e76fa8 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -242,7 +242,6 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 	char clk_name[32];
- 	int i, ret = 0;
- 	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
--	unsigned int mux_parent_count = 0;
- 	const char *clk_div_parents[1];
- 	u32 clk_reg, cfg;
+@@ -130,7 +130,6 @@ struct meson_host {
+ 	struct clk *core_clk;
+ 	struct clk_mux mux;
+ 	struct clk *mux_clk;
+-	struct clk *mux_parent[MUX_CLK_NUM_PARENTS];
+ 	unsigned long current_clock;
  
-@@ -261,7 +260,6 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	struct clk_divider cfg_div;
+@@ -247,19 +246,18 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 
+ 	/* get the mux parents */
+ 	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
++		struct clk *clk;
+ 		char name[16];
+ 
+ 		snprintf(name, sizeof(name), "clkin%d", i);
+-		host->mux_parent[i] = devm_clk_get(host->dev, name);
+-		if (IS_ERR(host->mux_parent[i])) {
+-			ret = PTR_ERR(host->mux_parent[i]);
+-			if (PTR_ERR(host->mux_parent[i]) != -EPROBE_DEFER)
++		clk = devm_clk_get(host->dev, name);
++		if (IS_ERR(clk)) {
++			if (clk != ERR_PTR(-EPROBE_DEFER))
+ 				dev_err(host->dev, "Missing clock %s\n", name);
+-			host->mux_parent[i] = NULL;
+-			return ret;
++			return PTR_ERR(clk);
  		}
  
- 		mux_parent_names[i] = __clk_get_name(host->mux_parent[i]);
--		mux_parent_count++;
+-		mux_parent_names[i] = __clk_get_name(host->mux_parent[i]);
++		mux_parent_names[i] = __clk_get_name(clk);
  	}
  
  	/* create the mux */
-@@ -270,7 +268,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 	init.ops = &clk_mux_ops;
- 	init.flags = 0;
- 	init.parent_names = mux_parent_names;
--	init.num_parents = mux_parent_count;
-+	init.num_parents = MUX_CLK_NUM_PARENTS;
- 
- 	host->mux.reg = host->regs + SD_EMMC_CLOCK;
- 	host->mux.shift = CLK_SRC_SHIFT;
 -- 
 2.11.1
