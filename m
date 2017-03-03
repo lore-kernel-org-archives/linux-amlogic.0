@@ -1,274 +1,145 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 3 Mar 2017 12:31:27 +0100
-Subject: [PATCH v2 1/2] drm: bridge: dw-hdmi: Take input format from
- plat_data
-In-Reply-To: <2768953.c6tz7qsbuQ@avalon>
+From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
+Date: Fri, 03 Mar 2017 14:16:58 +0200
+Subject: [PATCH v2 2/2] drm: bridge: Move HPD handling to PHY operations
+In-Reply-To: <67b8ac3e-3227-8f32-7f20-0cd4b6d4510f@synopsys.com>
 References: <1488468572-31971-1-git-send-email-narmstrong@baylibre.com>
- <1488468572-31971-2-git-send-email-narmstrong@baylibre.com>
- <2768953.c6tz7qsbuQ@avalon>
-Message-ID: <0ae7ae64-13ad-6691-ada7-7c8f2851b517@baylibre.com>
+ <952185cf-16b8-b987-4737-96c2db4a0f6c@baylibre.com>
+ <67b8ac3e-3227-8f32-7f20-0cd4b6d4510f@synopsys.com>
+Message-ID: <19854660.KZ12oiydRY@avalon>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/02/2017 04:45 PM, Laurent Pinchart wrote:
-> Hi Neil,
+Hi Jose,
+
+On Friday 03 Mar 2017 10:05:36 Jose Abreu wrote:
+> On 03-03-2017 09:07, Neil Armstrong wrote:
+> > The problem is that the HPD/RxSense is tied to this phy_mask and glued
+> > into the dw-hdmi driver.
+> > 
+> > The *real* solution would be to completely separate the HPD/RxSense irq
+> > handling to a separate driver as a shared irq...
+> > 
+> > If Jose is willing to give me some documentation and Freescale some
+> > boards, I'll be happy to do it !
 > 
-> Thank you for the patch.
+> Hmm, why don't get rid of phy_mask totally and just return the
+> new mask in update_hpd() function? Or add a get_hpd_status()
+> callback. (I also think there are too many callbacks. For example
+> we could have: setup, set_status, clear and then just use
+> parameters when needed:
+>     void setup(bool force, bool disabled, bool rxsense)
+>     void set_status(bool enable, bool enable_ints)
+>     void clear()
 > 
-> On Thursday 02 Mar 2017 16:29:31 Neil Armstrong wrote:
->> Some display pipelines can only provide non-RBG input pixels to the HDMI TX
->> Controller, this patch takes the pixel format from the plat_data if
->> provided.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/gpu/drm/bridge/dw-hdmi.c | 59 ++++++++++++++++++-------------------
->>  include/drm/bridge/dw_hdmi.h     |  9 ++++++
->>  2 files changed, 39 insertions(+), 29 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/bridge/dw-hdmi.c
->> b/drivers/gpu/drm/bridge/dw-hdmi.c index 026a0dc..653ecd7 100644
->> --- a/drivers/gpu/drm/bridge/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/dw-hdmi.c
->> @@ -35,12 +35,6 @@
->>
->>  #define HDMI_EDID_LEN		512
->>
->> -#define RGB			0
->> -#define YCBCR444		1
->> -#define YCBCR422_16BITS		2
->> -#define YCBCR422_8BITS		3
->> -#define XVYCC444		4
->> -
->>  enum hdmi_datamap {
->>  	RGB444_8B = 0x01,
->>  	RGB444_10B = 0x03,
->> @@ -94,8 +88,8 @@ struct hdmi_vmode {
->>  };
->>
->>  struct hdmi_data_info {
->> -	unsigned int enc_in_format;
->> -	unsigned int enc_out_format;
->> +	enum dw_hdmi_color_enc_format enc_in_format;
->> +	enum dw_hdmi_color_enc_format enc_out_format;
->>  	unsigned int enc_color_depth;
->>  	unsigned int colorimetry;
->>  	unsigned int pix_repet_factor;
->> @@ -569,7 +563,7 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
->>  	int color_format = 0;
->>  	u8 val;
->>
->> -	if (hdmi->hdmi_data.enc_in_format == RGB) {
->> +	if (hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_RGB) {
->>  		if (hdmi->hdmi_data.enc_color_depth == 8)
->>  			color_format = 0x01;
->>  		else if (hdmi->hdmi_data.enc_color_depth == 10)
->> @@ -580,7 +574,7 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
->>  			color_format = 0x07;
->>  		else
->>  			return;
->> -	} else if (hdmi->hdmi_data.enc_in_format == YCBCR444) {
->> +	} else if (hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_YCBCR444) 
-> {
->>  		if (hdmi->hdmi_data.enc_color_depth == 8)
->>  			color_format = 0x09;
->>  		else if (hdmi->hdmi_data.enc_color_depth == 10)
->> @@ -591,7 +585,8 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
->>  			color_format = 0x0F;
->>  		else
->>  			return;
->> -	} else if (hdmi->hdmi_data.enc_in_format == YCBCR422_8BITS) {
->> +	} else if (hdmi->hdmi_data.enc_in_format ==
->> +					DW_HDMI_ENC_FMT_YCBCR422_8BITS) {
->>  		if (hdmi->hdmi_data.enc_color_depth == 8)
->>  			color_format = 0x16;
->>  		else if (hdmi->hdmi_data.enc_color_depth == 10)
->> @@ -627,20 +622,20 @@ static int is_color_space_conversion(struct dw_hdmi
->> *hdmi)
->>
->>  static int is_color_space_decimation(struct dw_hdmi *hdmi)
->>  {
->> -	if (hdmi->hdmi_data.enc_out_format != YCBCR422_8BITS)
->> +	if (hdmi->hdmi_data.enc_out_format != DW_HDMI_ENC_FMT_YCBCR422_8BITS)
->>  		return 0;
->> -	if (hdmi->hdmi_data.enc_in_format == RGB ||
->> -	    hdmi->hdmi_data.enc_in_format == YCBCR444)
->> +	if (hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_RGB ||
->> +	    hdmi->hdmi_data.enc_in_format == DW_HDMI_ENC_FMT_YCBCR444)
->>  		return 1;
->>  	return 0;
->>  }
->>
->>  static int is_color_space_interpolation(struct dw_hdmi *hdmi)
->>  {
->> -	if (hdmi->hdmi_data.enc_in_format != YCBCR422_8BITS)
->> +	if (hdmi->hdmi_data.enc_in_format != DW_HDMI_ENC_FMT_YCBCR422_8BITS)
->>  		return 0;
->> -	if (hdmi->hdmi_data.enc_out_format == RGB ||
->> -	    hdmi->hdmi_data.enc_out_format == YCBCR444)
->> +	if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_RGB ||
->> +	    hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_YCBCR444)
->>  		return 1;
->>  	return 0;
->>  }
->> @@ -652,13 +647,14 @@ static void dw_hdmi_update_csc_coeffs(struct dw_hdmi
->> *hdmi) u32 csc_scale = 1;
->>
->>  	if (is_color_space_conversion(hdmi)) {
->> -		if (hdmi->hdmi_data.enc_out_format == RGB) {
->> +		if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_RGB) {
->>  			if (hdmi->hdmi_data.colorimetry ==
->>  					HDMI_COLORIMETRY_ITU_601)
->>  				csc_coeff = &csc_coeff_rgb_out_eitu601;
->>  			else
->>  				csc_coeff = &csc_coeff_rgb_out_eitu709;
->> -		} else if (hdmi->hdmi_data.enc_in_format == RGB) {
->> +		} else if (hdmi->hdmi_data.enc_in_format ==
->> +					DW_HDMI_ENC_FMT_RGB) {
->>  			if (hdmi->hdmi_data.colorimetry ==
->>  					HDMI_COLORIMETRY_ITU_601)
->>  				csc_coeff = &csc_coeff_rgb_in_eitu601;
->> @@ -730,8 +726,8 @@ static void hdmi_video_packetize(struct dw_hdmi *hdmi)
->>  	struct hdmi_data_info *hdmi_data = &hdmi->hdmi_data;
->>  	u8 val, vp_conf;
->>
->> -	if (hdmi_data->enc_out_format == RGB ||
->> -	    hdmi_data->enc_out_format == YCBCR444) {
->> +	if (hdmi_data->enc_out_format == DW_HDMI_ENC_FMT_RGB ||
->> +	    hdmi_data->enc_out_format == DW_HDMI_ENC_FMT_YCBCR444) {
->>  		if (!hdmi_data->enc_color_depth) {
->>  			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
->>  		} else if (hdmi_data->enc_color_depth == 8) {
->> @@ -746,7 +742,8 @@ static void hdmi_video_packetize(struct dw_hdmi *hdmi)
->>  		} else {
->>  			return;
->>  		}
->> -	} else if (hdmi_data->enc_out_format == YCBCR422_8BITS) {
->> +	} else if (hdmi_data->enc_out_format ==
->> +					DW_HDMI_ENC_FMT_YCBCR422_8BITS) {
->>  		if (!hdmi_data->enc_color_depth ||
->>  		    hdmi_data->enc_color_depth == 8)
->>  			remap_size = HDMI_VP_REMAP_YCC422_16bit;
->> @@ -1138,15 +1135,16 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi,
->> struct drm_display_mode *mode) /* Initialise info frame from DRM mode */
->>  	drm_hdmi_avi_infoframe_from_display_mode(&frame, mode);
->>
->> -	if (hdmi->hdmi_data.enc_out_format == YCBCR444)
->> +	if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_YCBCR444)
->>  		frame.colorspace = HDMI_COLORSPACE_YUV444;
->> -	else if (hdmi->hdmi_data.enc_out_format == YCBCR422_8BITS)
->> +	else if (hdmi->hdmi_data.enc_out_format ==
->> +					DW_HDMI_ENC_FMT_YCBCR422_8BITS)
->>  		frame.colorspace = HDMI_COLORSPACE_YUV422;
->>  	else
->>  		frame.colorspace = HDMI_COLORSPACE_RGB;
->>
->>  	/* Set up colorimetry */
->> -	if (hdmi->hdmi_data.enc_out_format == XVYCC444) {
->> +	if (hdmi->hdmi_data.enc_out_format == DW_HDMI_ENC_FMT_XVYCC444) {
->>  		frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
->>  		if (hdmi->hdmi_data.colorimetry == HDMI_COLORIMETRY_ITU_601)
->>  			frame.extended_colorimetry =
->> @@ -1154,7 +1152,7 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi,
->> struct drm_display_mode *mode) else /*hdmi->hdmi_data.colorimetry ==
->> HDMI_COLORIMETRY_ITU_709*/ frame.extended_colorimetry =
->>  				HDMI_EXTENDED_COLORIMETRY_XV_YCC_709;
->> -	} else if (hdmi->hdmi_data.enc_out_format != RGB) {
->> +	} else if (hdmi->hdmi_data.enc_out_format != DW_HDMI_ENC_FMT_RGB) {
->>  		frame.colorimetry = hdmi->hdmi_data.colorimetry;
->>  		frame.extended_colorimetry = 
-> HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
->>  	} else { /* Carries no data */
->> @@ -1443,10 +1441,13 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
->> struct drm_display_mode *mode)
->> hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
->>  	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
->>
->> -	/* TODO: Get input format from IPU (via FB driver interface) */
->> -	hdmi->hdmi_data.enc_in_format = RGB;
->> +	/* Get input format from plat data or fallback to RGB */
->> +	if (hdmi->plat_data->input_fmt >= 0)
->> +		hdmi->hdmi_data.enc_in_format = hdmi->plat_data->input_fmt;
->> +	else
->> +		hdmi->hdmi_data.enc_in_format = DW_HDMI_ENC_FMT_RGB;
->>
->> -	hdmi->hdmi_data.enc_out_format = RGB;
->> +	hdmi->hdmi_data.enc_out_format = DW_HDMI_ENC_FMT_RGB;
->>
->>  	hdmi->hdmi_data.enc_color_depth = 8;
->>  	hdmi->hdmi_data.pix_repet_factor = 0;
->> diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
->> index bcceee8..8c0cc13 100644
->> --- a/include/drm/bridge/dw_hdmi.h
->> +++ b/include/drm/bridge/dw_hdmi.h
->> @@ -21,6 +21,14 @@ enum {
->>  	DW_HDMI_RES_MAX,
->>  };
->>
->> +enum dw_hdmi_color_enc_format {
->> +	DW_HDMI_ENC_FMT_RGB = 0,
->> +	DW_HDMI_ENC_FMT_YCBCR444,
->> +	DW_HDMI_ENC_FMT_YCBCR422_16BITS,
->> +	DW_HDMI_ENC_FMT_YCBCR422_8BITS,
->> +	DW_HDMI_ENC_FMT_XVYCC444,
->> +};
->> +
->>  enum dw_hdmi_phy_type {
->>  	DW_HDMI_PHY_DWC_HDMI_TX_PHY = 0x00,
->>  	DW_HDMI_PHY_DWC_MHL_PHY_HEAC = 0xb2,
->> @@ -62,6 +70,7 @@ struct dw_hdmi_plat_data {
->>  	struct regmap *regm;
->>  	enum drm_mode_status (*mode_valid)(struct drm_connector *connector,
->>  					   struct drm_display_mode *mode);
->> +	enum dw_hdmi_color_enc_format input_fmt;
-> 
-> As reported before, I think we should use a combination of media bus format 
-> and color space information instead of a custom enum. Ideally this should also 
-> be queried at runtime, but that could be done in a second step.
-> 
+> What do you think? I only checked quickly the code, don't know if
+> this is enough.
 
-Sure, but I was struggling about finding an equivalence.
+For the record, that's more or less what I had in mind. The following
+preparatory patch could be useful.
 
-How should I replace these ?
+commit 5ceb6a93d78e21e5be195efe52c4c7e5578ac787
+Author: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Date:   Fri Mar 3 14:14:56 2017 +0200
 
-DW_HDMI_ENC_FMT_RGB
-DW_HDMI_ENC_FMT_YCBCR444
-DW_HDMI_ENC_FMT_YCBCR422_16BITS
-DW_HDMI_ENC_FMT_YCBCR422_8BITS
-DW_HDMI_ENC_FMT_XVYCC444
+    drm: bridge: dw-hdmi: Extract PHY interrupt setup to a function
+    
+    In preparation for adding PHY operations to handle RX SENSE and HPD,
+    group all the PHY interrupt setup code in a single location and extract
+    it to a separate function.
+    
+    Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-I do not have the strict information about the bus format, what is RGB in 8bit per pixel ?
-Are the 3 samples transmitted separately ?
-What should be the RGB colorspace ?
-Should we use the "Packed" formats, LVDS or a new buf format ?
+diff --git a/drivers/gpu/drm/bridge/dw-hdmi.c b/drivers/gpu/drm/bridge/dw-hdmi.c
+index 026a0dce7661..1ed8bc12eed7 100644
+--- a/drivers/gpu/drm/bridge/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/dw-hdmi.c
+@@ -1496,7 +1496,7 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ }
+ 
+ /* Wait until we are registered to enable interrupts */
+-static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
++static void dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+ {
+ 	hdmi_writeb(hdmi, HDMI_PHY_I2CM_INT_ADDR_DONE_POL,
+ 		    HDMI_PHY_I2CM_INT_ADDR);
+@@ -1504,15 +1504,6 @@ static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+ 	hdmi_writeb(hdmi, HDMI_PHY_I2CM_CTLINT_ADDR_NAC_POL |
+ 		    HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL,
+ 		    HDMI_PHY_I2CM_CTLINT_ADDR);
+-
+-	/* enable cable hot plug irq */
+-	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+-
+-	/* Clear Hotplug interrupts */
+-	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+-		    HDMI_IH_PHY_STAT0);
+-
+-	return 0;
+ }
+ 
+ static void initialize_hdmi_ih_mutes(struct dw_hdmi *hdmi)
+@@ -1630,6 +1621,26 @@ static void dw_hdmi_update_phy_mask(struct dw_hdmi *hdmi)
+ 		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+ }
+ 
++static void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi)
++{
++	/*
++	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
++	 * any pending interrupt.
++	 */
++	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
++	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
++		    HDMI_IH_PHY_STAT0);
++
++	/* Enable cable hot plug irq. */
++	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
++
++	/* Clear and unmute interrupts. */
++	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
++		    HDMI_IH_PHY_STAT0);
++	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
++		    HDMI_IH_MUTE_PHY_STAT0);
++}
++
+ static enum drm_connector_status
+ dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ {
+@@ -2141,29 +2152,14 @@ __dw_hdmi_probe(struct platform_device *pdev,
+ 			hdmi->ddc = NULL;
+ 	}
+ 
+-	/*
+-	 * Configure registers related to HDMI interrupt
+-	 * generation before registering IRQ.
+-	 */
+-	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
+-
+-	/* Clear Hotplug interrupts */
+-	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+-		    HDMI_IH_PHY_STAT0);
+-
+ 	hdmi->bridge.driver_private = hdmi;
+ 	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
+ #ifdef CONFIG_OF
+ 	hdmi->bridge.of_node = pdev->dev.of_node;
+ #endif
+ 
+-	ret = dw_hdmi_fb_registered(hdmi);
+-	if (ret)
+-		goto err_iahb;
+-
+-	/* Unmute interrupts */
+-	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
+-		    HDMI_IH_MUTE_PHY_STAT0);
++	dw_hdmi_fb_registered(hdmi);
++	dw_hdmi_phy_setup_hpd(hdmi);
+ 
+ 	memset(&pdevinfo, 0, sizeof(pdevinfo));
+ 	pdevinfo.parent = dev;
 
-Jose, what are the *exact* bus formats supported ?
 
-Same for DW_HDMI_ENC_FMT_YCBCR* stuff, are they packed ?
+-- 
+Regards,
 
-I understand the YCBCR444/XVYCC444 needs a color space information instead.
-
-Could we use the following list ?
-
-Bus Format			| Colorspace 		| Encoding
--------------------------------------------------------------------------------
-MEDIA_BUS_FMT_RGB888_1X24	| V4L2_COLORSPACE_SRGB	| V4L2_XFER_FUNC_SRGB
-MEDIA_BUS_FMT_RGB101010_1X30	| V4L2_COLORSPACE_SRGB	| V4L2_XFER_FUNC_SRGB
-MEDIA_BUS_FMT_RGB121212_1X36	| V4L2_COLORSPACE_SRGB	| V4L2_XFER_FUNC_SRGB
-MEDIA_BUS_FMT_VUY8_1X24		| V4L2_XFER_FUNC_709	| V4L2_YCBCR_ENC_709
-MEDIA_BUS_FMT_YUV10_1X30	| V4L2_XFER_FUNC_709	| V4L2_YCBCR_ENC_709
-MEDIA_BUS_FMT_YUV10_1X32	| V4L2_XFER_FUNC_709	| V4L2_YCBCR_ENC_709
-MEDIA_BUS_FMT_YUV10_1X32	| V4L2_XFER_FUNC_709	| V4L2_YCBCR_ENC_709
-MEDIA_BUS_FMT_YUV10_1X32	| V4L2_XFER_FUNC_709	| V4L2_YCBCR_ENC_XV709
-
-But all of these is complex, and I'm not sure how we should handle SDTV modes here,
-and without knowing the exact inputs types supported by the IP, this needs to be
-confirmed.
-
-Meanwhile, all this can be fixed later, at least this patch moves the
-definition out of the C file and uses better names for these custom enums.
-
->>
->>  	/* Vendor PHY support */
->>  	const struct dw_hdmi_phy_ops *phy_ops;
-> 
+Laurent Pinchart
