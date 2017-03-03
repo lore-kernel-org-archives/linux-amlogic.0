@@ -1,42 +1,43 @@
-From: Jose.Abreu@synopsys.com (Jose Abreu)
-Date: Fri, 3 Mar 2017 17:22:19 +0000
-Subject: [PATCH v2 1/2] drm: bridge: dw-hdmi: Take input format from
- plat_data
-In-Reply-To: <7ec0d5dc-a09d-2790-34db-669e87c89fa3@baylibre.com>
-References: <1488468572-31971-1-git-send-email-narmstrong@baylibre.com>
- <1488468572-31971-2-git-send-email-narmstrong@baylibre.com>
- <2768953.c6tz7qsbuQ@avalon>
- <0ae7ae64-13ad-6691-ada7-7c8f2851b517@baylibre.com>
- <3898e9a2-a751-abe4-fc31-7de18682c5da@synopsys.com>
- <7ec0d5dc-a09d-2790-34db-669e87c89fa3@baylibre.com>
-Message-ID: <3cadc66c-9ca8-5658-0023-45ad68ca5939@synopsys.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 03 Mar 2017 10:17:07 -0800
+Subject: [PATCH v3 1/10] mmc: meson-gx: simplify bounce buffer setting in
+ meson_mmc_start_cmd
+In-Reply-To: <9259ab6f-fc7e-bcb3-ddd0-5ff3da3b391a@gmail.com> (Heiner
+ Kallweit's message of "Wed, 1 Mar 2017 21:20:19 +0100")
+References: <583f6496-68a9-b8e1-6b25-1f073f819a3c@gmail.com>
+ <m2d1e0zx5l.fsf@baylibre.com>
+ <9259ab6f-fc7e-bcb3-ddd0-5ff3da3b391a@gmail.com>
+Message-ID: <m2y3wm2pjw.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Heiner Kallweit <hkallweit1@gmail.com> writes:
 
+> Am 01.03.2017 um 19:09 schrieb Kevin Hilman:
+>> Hi Heinar,
+>> 
+>> Heiner Kallweit <hkallweit1@gmail.com> writes:
+>> 
+>>> Core ensures that there are no commands with cmd->data being set and
+>>> nothing to transfer. And we don't have to reset bit CMD_CFG_DATA_NUM
+>>> because cmd_cfg was zero-initialized and this bit isn't set.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> Acked-by: Kevin Hilman <khilman@baylibre.com>
+>> 
+>> Could you send this series one more time, collecting the remaining tags
+>> and including the patches from Micha? Zegan?
+>> 
+> Patchwork tracks all the tags coming in for a patch, there it's visible
+> that you acked my 10 patches + the two from Michal.
 
-On 03-03-2017 16:42, Neil Armstrong wrote:
->
-> Sure, I was meaning the *input* format the controller receives from the
-> pixel encoder, I'm quite sure the format is strict.
->
+Yes, I'm well aware of how patchwork works, yet my request still stands.
 
-Hmm, not quite following you here. As far as the controller goes
-it supports the formats I mentioned:
-    -    8/10/12/16 bits RGB 4:4:4
-    -    8/10/12/16 bits YCbCr 4:4:4
-    -    8/10/12 bits YCbCr 4:2:2
-    -    8/10/12/16 bits YCbCr 4:2:0
+> So I would leave it up to Ulf whether he prefers to have the series
+> re-sent (with just the few remaining acks as changes).
 
-As for the CSC it supports RGB 4:4:4 to/from YCbCr 4:4:4 or 4:2:2
-in every defined color depth.
+That's your choice, but some friendly advice from a kernel maintainer:
+making things as easy as possible for maintainers/reviewers greatly
+improves speed your code will get merged.
 
-So, everything except 4:2:0 (I had to check documentation, I
-though that CSC supported less formats).
-
-Of course this is all limited by the implementation that HW team
-decides to choose.
-
-Best regards,
-Jose Miguel Abreu
+Kevin
