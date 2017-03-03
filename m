@@ -1,121 +1,51 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 3 Mar 2017 20:59:16 +0100
-Subject: [PATCH v4 9/10] mmc: meson-gx: remove member mrq from struct
- meson_host
+Date: Fri, 3 Mar 2017 21:00:22 +0100
+Subject: [PATCH v4 10/10] mmc: meson-gx: replace magic timeout numbers with
+ constants
 In-Reply-To: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
 References: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
-Message-ID: <a9cacbd0-22d6-2b0f-707c-cd78b1ed7f57@gmail.com>
+Message-ID: <db125858-a82b-fb0b-d009-1eb474273fb3@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Struct mmc_command includes a reference to the related mmc_request.
-Therefore we don't have to store mrq separately in struct meson_host.
-And we can remove some now unneeded WARN_ON's.
+Replace timeout magic numbers with proper constants.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Acked-by: Kevin Hilman <khilman@baylibre.com>
 ---
-v2:
-- extended commit message
-- added acked-by
 v3:
-- rebased
+- added to patch series
 v4:
-- no changes
+- added acked-by
 ---
- drivers/mmc/host/meson-gx-mmc.c | 24 +++---------------------
- 1 file changed, 3 insertions(+), 21 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index e904b0a5..5281014e 100644
+index 5281014e..f244fcf9 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -122,7 +122,6 @@
- struct meson_host {
- 	struct	device		*dev;
- 	struct	mmc_host	*mmc;
--	struct	mmc_request	*mrq;
- 	struct	mmc_command	*cmd;
+@@ -116,6 +116,8 @@
  
- 	spinlock_t lock;
-@@ -416,9 +415,6 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
- {
- 	struct meson_host *host = mmc_priv(mmc);
+ #define SD_EMMC_CFG_BLK_SIZE 512 /* internal buffer max: 512 bytes */
+ #define SD_EMMC_CFG_RESP_TIMEOUT 256 /* in clock cycles */
++#define SD_EMMC_CMD_TIMEOUT 1024 /* in ms */
++#define SD_EMMC_CMD_TIMEOUT_DATA 4096 /* in ms */
+ #define SD_EMMC_CFG_CMD_GAP 16 /* in clock cycles */
+ #define MUX_CLK_NUM_PARENTS 2
  
--	WARN_ON(host->mrq != mrq);
--
--	host->mrq = NULL;
- 	host->cmd = NULL;
- 	mmc_request_done(host->mmc, mrq);
- }
-@@ -525,13 +521,9 @@ static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
- {
- 	struct meson_host *host = mmc_priv(mmc);
+@@ -498,10 +500,10 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
  
--	WARN_ON(host->mrq != NULL);
--
- 	/* Stop execution */
- 	writel(0, host->regs + SD_EMMC_START);
+ 		desc->cmd_data = host->bounce_dma_addr & CMD_DATA_MASK;
  
--	host->mrq = mrq;
--
- 	if (mrq->sbc)
- 		meson_mmc_start_cmd(mmc, mrq->sbc);
- 	else
-@@ -555,7 +547,6 @@ static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
- static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- {
- 	struct meson_host *host = dev_id;
--	struct mmc_request *mrq;
- 	struct mmc_command *cmd;
- 	u32 irq_en, status, raw_status;
- 	irqreturn_t ret = IRQ_HANDLED;
-@@ -565,11 +556,6 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- 
- 	cmd = host->cmd;
- 
--	mrq = host->mrq;
--
--	if (WARN_ON(!mrq))
--		return IRQ_NONE;
--
- 	if (WARN_ON(!cmd))
- 		return IRQ_NONE;
- 
-@@ -616,7 +602,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- 	else  {
- 		dev_warn(host->dev, "Unknown IRQ! status=0x%04x: MMC CMD%u arg=0x%08x flags=0x%08x stop=%d\n",
- 			 status, cmd->opcode, cmd->arg,
--			 cmd->flags, mrq->stop ? 1 : 0);
-+			 cmd->flags, cmd->mrq->stop ? 1 : 0);
- 		if (cmd->data) {
- 			struct mmc_data *data = cmd->data;
- 
-@@ -643,14 +629,10 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- {
- 	struct meson_host *host = dev_id;
--	struct mmc_request *mrq = host->mrq;
- 	struct mmc_command *cmd = host->cmd;
- 	struct mmc_data *data;
- 	unsigned int xfer_bytes;
- 
--	if (WARN_ON(!mrq))
--		return IRQ_NONE;
--
- 	if (WARN_ON(!cmd))
- 		return IRQ_NONE;
- 
-@@ -664,8 +646,8 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+-		cmd_cfg_timeout = 12;
++		cmd_cfg_timeout = ilog2(SD_EMMC_CMD_TIMEOUT_DATA);
+ 	} else {
+ 		desc->cmd_cfg &= ~CMD_CFG_DATA_IO;
+-		cmd_cfg_timeout = 10;
++		cmd_cfg_timeout = ilog2(SD_EMMC_CMD_TIMEOUT);
  	}
- 
- 	meson_mmc_read_resp(host->mmc, cmd);
--	if (!data || !data->stop || mrq->sbc)
--		meson_mmc_request_done(host->mmc, mrq);
-+	if (!data || !data->stop || cmd->mrq->sbc)
-+		meson_mmc_request_done(host->mmc, cmd->mrq);
- 	else
- 		meson_mmc_start_cmd(host->mmc, data->stop);
- 
+ 	desc->cmd_cfg |= (cmd_cfg_timeout & CMD_CFG_TIMEOUT_MASK) <<
+ 		CMD_CFG_TIMEOUT_SHIFT;
 -- 
 2.11.1
