@@ -1,22 +1,44 @@
-From: robh@kernel.org (Rob Herring)
-Date: Fri, 3 Mar 2017 01:01:31 -0600
-Subject: [PATCH 10/11] dt-bindings: Add bindings for the Amlogic Meson
- dw-hdmi extension
-In-Reply-To: <1488469207-523-11-git-send-email-narmstrong@baylibre.com>
-References: <1488469207-523-1-git-send-email-narmstrong@baylibre.com>
- <1488469207-523-11-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20170303070131.fdu3rdicbwepibc6@rob-hp-laptop>
+From: carlo@caione.org (Carlo Caione)
+Date: Fri,  3 Mar 2017 10:14:47 +0100
+Subject: [PATCH v2 0/2] scpi-sensors: Fix SCP sensor readings scale
+Message-ID: <20170303091449.3512-1-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Mar 02, 2017 at 04:40:06PM +0100, Neil Armstrong wrote:
-> This binding describes the Amlogic Meson specific extension to the
-> Synopsys Designware HDMI Controller.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../bindings/display/amlogic,meson-dw-hdmi.txt     | 111 +++++++++++++++++++++
->  1 file changed, 111 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+From: Carlo Caione <carlo@endlessm.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+The implementation details for SCPI seems to suggest that the sensor
+readings must be reported by SCP using a well defined scale
+(millidegree Celsius for temperature, millivolts for voltage,
+milliamperes for current, microwatts for power and microjoules for
+energy).
+
+This is also important for the interaction with other subsystems: for
+example both the thermal sub-system and the hwmon sysfs interface expect
+the temperature expressed in millidegree Celsius.
+
+Unfortunately since this behaviour is dependent on the firmware
+implementation there are cases where the sensor readings are reported
+using a different scale. For example in the Amlogic SoCs the
+temperature is reported in degree and not millidegree Celsius.
+
+In this patchset we introduce a new DT property `scpi,sensors-scale` that is
+used by the scpi-hwmon driver to convert the sensor readings to the expected
+scale.
+
+v2:
+ - Added data validation (scale != 0)
+ - s/unsigned int/u32/ for the array
+ - Switched to array initialiser notation
+ - Introduced scpi_scale_reading()
+
+Carlo Caione (2):
+  Documentation: bindings: Introduce scpi,sensors-scale
+  hwmon: (scpi) Fix the scale of SCP sensor readings
+
+ Documentation/devicetree/bindings/arm/arm,scpi.txt | 18 ++++++++++++
+ drivers/hwmon/scpi-hwmon.c                         | 34 ++++++++++++++++++++++
+ 2 files changed, 52 insertions(+)
+
+-- 
+2.12.0
