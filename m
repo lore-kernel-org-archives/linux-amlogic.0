@@ -1,112 +1,44 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 3 Mar 2017 20:58:18 +0100
-Subject: [PATCH v4 8/10] mmc: meson-gx: improve initial configuration
-In-Reply-To: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 03 Mar 2017 13:19:47 -0800
+Subject: [PATCH v4 0/10] mmc: meson-gx: series with smaller improvements
+In-Reply-To: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com> (Heiner
+ Kallweit's message of "Fri, 3 Mar 2017 20:49:33 +0100")
 References: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
-Message-ID: <58eac416-40da-8a20-e54a-0e6be3b7ba33@gmail.com>
+Message-ID: <m2innq12j0.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Config values which are not changed during runtime we can set
-in the probe function already.
-The block size setting is overwritten later in
-meson_mmc_start_cmd anyway if needed, so it doesn't harm if we
-remove this setting in meson_mmc_set_ios.
+Heiner Kallweit <hkallweit1@gmail.com> writes:
 
-In addition:
-- write config register only if configuration changed
-- Initialize clocks after other config registers have been initialized
+> New series is limited to smaller refactorings w/o functional changes.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Acked-by: Kevin Hilman <khilman@baylibre.com>
----
-v2:
-- added acked-by
-v3:
-- rebased
-v4:
-- no changes
----
- drivers/mmc/host/meson-gx-mmc.c | 37 +++++++++++++++++++++----------------
- 1 file changed, 21 insertions(+), 16 deletions(-)
+I'd reviewed this series before, but hadn't actually tested it until
+today.  I applied this series onto today's linux-next, and tested on
+meson-gxbb-odroidc2 and the kernel hangs up right after:
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 684cc088..e904b0a5 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -394,15 +394,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	val &= ~(CFG_BUS_WIDTH_MASK << CFG_BUS_WIDTH_SHIFT);
- 	val |= bus_width << CFG_BUS_WIDTH_SHIFT;
- 
--	val &= ~(CFG_BLK_LEN_MASK << CFG_BLK_LEN_SHIFT);
--	val |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
--
--	val &= ~(CFG_RESP_TIMEOUT_MASK << CFG_RESP_TIMEOUT_SHIFT);
--	val |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
--
--	val &= ~(CFG_RC_CC_MASK << CFG_RC_CC_SHIFT);
--	val |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
--
- 	val &= ~CFG_DDR;
- 	if (ios->timing == MMC_TIMING_UHS_DDR50 ||
- 	    ios->timing == MMC_TIMING_MMC_DDR52 ||
-@@ -413,11 +404,11 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	if (ios->timing == MMC_TIMING_MMC_HS400)
- 		val |= CFG_CHK_DS;
- 
--	writel(val, host->regs + SD_EMMC_CFG);
--
--	if (val != orig)
-+	if (val != orig) {
-+		writel(val, host->regs + SD_EMMC_CFG);
- 		dev_dbg(host->dev, "%s: SD_EMMC_CFG: 0x%08x -> 0x%08x\n",
- 			__func__, orig, val);
-+	}
- }
- 
- static void meson_mmc_request_done(struct mmc_host *mmc,
-@@ -695,6 +686,17 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
- 	return status;
- }
- 
-+static void meson_mmc_cfg_init(struct meson_host *host)
-+{
-+	u32 cfg = 0;
-+
-+	cfg |= ilog2(SD_EMMC_CFG_RESP_TIMEOUT) << CFG_RESP_TIMEOUT_SHIFT;
-+	cfg |= ilog2(SD_EMMC_CFG_CMD_GAP) << CFG_RC_CC_SHIFT;
-+	cfg |= ilog2(SD_EMMC_CFG_BLK_SIZE) << CFG_BLK_LEN_SHIFT;
-+
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+}
-+
- static const struct mmc_host_ops meson_mmc_ops = {
- 	.request	= meson_mmc_request,
- 	.set_ios	= meson_mmc_set_ios,
-@@ -755,10 +757,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_host;
- 
--	ret = meson_mmc_clk_init(host);
--	if (ret)
--		goto free_host;
--
- 	/* Stop execution */
- 	writel(0, host->regs + SD_EMMC_START);
- 
-@@ -767,6 +765,13 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
- 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
- 
-+	/* set config to sane default */
-+	meson_mmc_cfg_init(host);
-+
-+	ret = meson_mmc_clk_init(host);
-+	if (ret)
-+		goto free_host;
-+
- 	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
- 					meson_mmc_irq_thread, IRQF_SHARED,
- 					DRIVER_NAME, host);
--- 
-2.11.1
+       meson-gx-mmc d0072000.mmc: Got CD GPIO
+
+with no error message or oops/backtrace etc.
+
+Could you clarify how you are testing this, on what tree/branch, on what
+hardware etc.?
+
+Also, in the cover letter, it's customary to include a summary of what
+changed since the previous version(s)
+
+Kevin
+
+> Heiner Kallweit (10):
+>   mmc: meson-gx: simplify bounce buffer setting in meson_mmc_start_cmd
+>   mmc: meson-gx: make two functions return void
+>   mmc: meson-gx: remove unused members irq, ocr_mask from struct meson_host
+>   mmc: meson-gx: remove unneeded variable in meson_mmc_clk_init
+>   mmc: meson-gx: remove member parent_mux from struct meson_host
+>   mmc: meson-gx: remove unneeded meson_mmc_clk_set in meson_mmc_clk_init
+>   mmc: meson-gx: remove unneeded devm_kstrdup in meson_mmc_clk_init
+>   mmc: meson-gx: improve initial configuration
+>   mmc: meson-gx: remove member mrq from struct meson_host
+>   mmc: meson-gx: replace magic timeout numbers with constants
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 126 ++++++++++++++++------------------------
+>  1 file changed, 50 insertions(+), 76 deletions(-)
