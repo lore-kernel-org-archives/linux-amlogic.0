@@ -1,62 +1,216 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 3 Mar 2017 21:36:03 -0800
-Subject: [PATCH v4 0/10] mmc: meson-gx: series with smaller improvements
-In-Reply-To: <7hfuitvc5n.fsf@baylibre.com>
-References: <62912f3d-2307-cfff-3c69-c8b8ffaeb474@gmail.com>
- <m2innq12j0.fsf@baylibre.com> <d458c13f-f870-6dc4-95f7-e5c867bf6298@gmail.com>
- <7hfuitvc5n.fsf@baylibre.com>
-Message-ID: <CAOi56cVN_ZAJ8L7tdk1VeTpADukUmZO6rffRnXS8-64PxxtvYQ@mail.gmail.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Sat,  4 Mar 2017 10:26:51 +0100
+Subject: [PATCH v2] ARM64: dts: meson-gxl: Add support for HwaCom AmazeTV
+Message-ID: <20170304092651.6979-1-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Mar 3, 2017 at 9:33 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Heiner Kallweit <hkallweit1@gmail.com> writes:
->
->> Am 03.03.2017 um 22:19 schrieb Kevin Hilman:
->>> Heiner Kallweit <hkallweit1@gmail.com> writes:
->>>
->>>> New series is limited to smaller refactorings w/o functional changes.
->>>
->>> I'd reviewed this series before, but hadn't actually tested it until
->>> today.  I applied this series onto today's linux-next, and tested on
->>> meson-gxbb-odroidc2 and the kernel hangs up right after:
->>>
->>>        meson-gx-mmc d0072000.mmc: Got CD GPIO
->>>
->>> with no error message or oops/backtrace etc.
->>>
->>> Could you clarify how you are testing this, on what tree/branch, on what
->>> hardware etc.?
->>>
->> I'm testing on Odroid C2 with a self-built uboot based on the latest
->> mainline uboot incl. an own eMMC driver which was submitted but is
->> not yet applied to mainline uboot.
->> The system is running headless with a serial console attached.
->> Storage is a 128 GB Hardkernel eMMC card.
->>
->> I use latest next kernel + the patches to test.
->>
->> Does your system work w/o the current patch set?
->
-> Yes.
->
->> And do you use HS200 or HS400 mode?
->
-> I don't remember what kind of card is plugged in, and I'm away from the
-> board currently.
+From: Carlo Caione <carlo@endlessm.com>
 
->From a boot of linux-next without this series, look like it's detecting HS200:
+This patch adds support for the HwaCom AmazeTV set-top-box. The
+hardware configuration is really similar to the other GXL boards but
+for this hardware we need to limit the max-frequency of the eMMC to
+have it working.
 
-root at buildroot:/# dmesg |grep -i mmc
-[    1.359545] meson-gx-mmc d0074000.mmc: allocated mmc-pwrseq
-[    1.632159] meson-gx-mmc d0072000.mmc: Got CD GPIO
-[    1.778734] mmc1: new high speed SDHC card at address 1234
-[    1.779007] mmcblk1: mmc1:1234 SA08G 7.21 GiB
-[    1.784197]  mmcblk1: p1
-[    1.925634] mmc0: new HS200 MMC card at address 0001
-[    1.925875] mmcblk0: mmc0:0001 SDW16G 14.7 GiB
-[    1.929550] mmcblk0boot0: mmc0:0001 SDW16G partition 1 4.00 MiB
-[    1.935404] mmcblk0boot1: mmc0:0001 SDW16G partition 2 4.00 MiB
-[    1.942428]  mmcblk0: p1 p2
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Carlo Caione <carlo@endlessm.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.txt  |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 164 +++++++++++++++++++++
+ 3 files changed, 166 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
 
-Kevin
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+index c246cd2730d9..9c39c766cfdb 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.txt
++++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+@@ -49,3 +49,4 @@ Board compatible values:
+   - "amlogic,q201" (Meson gxm s912)
+   - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
+   - "nexbox,a1" (Meson gxm s912)
++  - "hwacom,amazetv" (Meson gxl s905x)
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 3f94bce33b7f..1f4102833e59 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-hwacom-amazetv.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+new file mode 100644
+index 000000000000..1f087e8805c7
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+@@ -0,0 +1,164 @@
++/*
++ * Copyright (c) 2017 Carlo Caione
++ * Copyright (c) 2016 BayLibre, Inc.
++ * Author: Neil Armstrong <narmstrong@kernel.org>
++ *
++ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++ */
++
++/dts-v1/;
++
++#include "meson-gxl-s905x.dtsi"
++
++/ {
++	compatible = "hwacom,amazetv", "amlogic,s905x", "amlogic,meson-gxl";
++	model = "Hwacom AmazeTV (S905X)";
++
++	aliases {
++		serial0 = &uart_AO;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory at 0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
++
++	vddio_card: gpio-regulator {
++		compatible = "regulator-gpio";
++
++		regulator-name = "VDDIO_CARD";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
++		gpios-states = <1>;
++
++		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
++		states = <1800000 0
++			  3300000 1>;
++	};
++
++	vddio_boot: regulator-vddio_boot {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_BOOT";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	vddao_3v3: regulator-vddao_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	vcc_3v3: regulator-vcc_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
++
++	wifi32k: wifi32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&wifi32k>;
++		clock-names = "ext_clock";
++	};
++
++	cvbs-connector {
++		compatible = "composite-video-connector";
++
++		port {
++			cvbs_connector_in: endpoint {
++				remote-endpoint = <&cvbs_vdac_out>;
++			};
++		};
++	};
++};
++
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
++};
++
++&ethmac {
++	status = "okay";
++	phy-mode = "rmii";
++	phy-handle = <&internal_phy>;
++};
++
++&ir {
++	status = "okay";
++	pinctrl-0 = <&remote_input_ao_pins>;
++	pinctrl-names = "default";
++};
++
++/* SD card */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <100000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
++	cd-inverted;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_card>;
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_pins>;
++	pinctrl-names = "default";
++
++	bus-width = <8>;
++	cap-sd-highspeed;
++	cap-mmc-highspeed;
++	max-frequency = <100000000>;
++	non-removable;
++	disable-wp;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&vddio_boot>;
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&clkc CLKID_FCLK_DIV4>;
++	clock-names = "clkin0";
++};
++
++&cvbs_vdac_port {
++	cvbs_vdac_out: endpoint {
++		remote-endpoint = <&cvbs_connector_in>;
++	};
++};
+-- 
+2.12.0
