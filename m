@@ -1,77 +1,52 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Sat, 4 Mar 2017 13:38:04 +0100
-Subject: [PATCH v2 3/3] ARM64: dts: meson-gx: Add MALI nodes for GXBB and
- GXL
-In-Reply-To: <m2tw7a17nb.fsf@baylibre.com>
-References: <1488365164-22861-1-git-send-email-narmstrong@baylibre.com>
- <1488365164-22861-4-git-send-email-narmstrong@baylibre.com>
- <e26cf584-dab2-2702-f7e6-b28f750fa00c@suse.de>
- <e80d9fb0-1d71-7cab-5e32-72316474fdfc@baylibre.com>
- <m2tw7a17nb.fsf@baylibre.com>
-Message-ID: <9f3a17e8-63fa-6c14-4d17-0539ef7cd5a2@suse.de>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sat, 4 Mar 2017 13:19:23 +0100
+Subject: [PATCH v5 1/10] mmc: meson-gx: simplify bounce buffer setting in
+ meson_mmc_start_cmd
+In-Reply-To: <a76c3483-2c86-85c1-446e-f2522bd28aa8@gmail.com>
+References: <a76c3483-2c86-85c1-446e-f2522bd28aa8@gmail.com>
+Message-ID: <1337c0e2-cbe5-60d5-a25f-8af531ee7808@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 03.03.2017 um 20:29 schrieb Kevin Hilman:
-> Neil Armstrong <narmstrong@baylibre.com> writes:
->> On 03/02/2017 01:31 PM, Andreas F?rber wrote:
->>> Am 01.03.2017 um 11:46 schrieb Neil Armstrong:
->>>> The same MALI-450 MP3 GPU is present in the GXBB and GXL SoCs.
-[...]
->>>> The node is simply added in the meson-gxbb.dtsi file.
-[...]
->>>> For GXL, since a lot is shared with the GXM that has a MALI-T820 IP, this
->>>> patch adds a new meson-gxl-mali.dtsi and is included in the SoC specific
->>>> dtsi files.
->>>
->>> This part is slightly confusing though.
->>>
->>> What exactly is the GXL vs. GXM difference that this can't be handled by
->>> overriding node properties compatible/interrupts/clocks? I am missing a
->>> GXM patch in this series as rationale for doing it this way.
->>>
->>> In particular I am wondering whether the whole GXM-inherits-from-GXL
->>> concept is flawed and should be adjusted if this leads to secondary
->>> .dtsi files like this: My proposal would be to instead create a
->>> meson-gxl-gxm.dtsi, that meson-gxl.dtsi and meson-gxm.dtsi can inherit
->>> the current common parts from, then the Mali bits can simply go into
->>> meson-gxl.dtsi without extra #includes needed in S905X and S905D. While
->>> it's slightly more work to split once again, I think it would be cleaner.
-[...]
->> The only changes are :
-[...]
->>  - A different Mali core, but with the same interrupts (less but they share the same lower interrupts), clocks and memory space
->>
->> This is why it was decided to have a sub-dtsi, having a secondary dtsi will simply copy 99% of the GXL dtsi,
->> but surely we could also have an intermediate dtsi but for boards I'm ok with it, but less for a SoC dtsi,
->> since it could lead to some confusion.
->>
->> Finally, yes I could have added the mali node to the GXL dtsi, but the midgard Mali dt-bindings are not upstream
->> and the family is too big and recent enough to consider having stable bindings for now.
->>
->> Nevertheless, nothing is final, this gxl-mali.dtsi could be merged into the GXL dtsi in the future when we
->> have proper dt-bindings and a real support of the T820 Mali on the S912.
->>
->> Kevin, what's your thought about this ?
-> 
-> I don't have a strong preference.  I'm OK with a separate Mali .dtsi due
-> to the signficant overlap between GXL/GXM in terms of clocks, interrupts
-> etc.
-> 
-> However, if the plan is to #include this from GXM .dts files, whould a
-> better name be meson-gx-mali.dtsi?
+Core ensures that there are no commands with cmd->data being set and
+nothing to transfer. And we don't have to reset bit CMD_CFG_DATA_NUM
+because cmd_cfg was zero-initialized and this bit isn't set.
 
-I thought the purpose was specifically to not have GXM include it
-because it uses a Midgard IP.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Acked-by: Kevin Hilman <khilman@baylibre.com>
+---
+v2:
+- adjusted commit message because branch xfer_bytes == 0 is never reached
+- added acked-by
+v3:
+- no changes
+v4:
+- no changes
+v5:
+- no changes
+---
+ drivers/mmc/host/meson-gx-mmc.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
-If you want to share the fragment with GXBB too (gx), we should rather
-use meson-gx-mali-utgard.dtsi, which would differentiate from GXM's
-Midgard while still allowing for variation on the 4xx side (e.g., 470).
-
-Regards,
-Andreas
-
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 5a959783..07a7399c 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -516,14 +516,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+ 			desc->cmd_cfg &= ~CMD_CFG_DATA_WR;
+ 		}
+ 
+-		if (xfer_bytes > 0) {
+-			desc->cmd_cfg &= ~CMD_CFG_DATA_NUM;
+-			desc->cmd_data = host->bounce_dma_addr & CMD_DATA_MASK;
+-		} else {
+-			/* write data to data_addr */
+-			desc->cmd_cfg |= CMD_CFG_DATA_NUM;
+-			desc->cmd_data = 0;
+-		}
++		desc->cmd_data = host->bounce_dma_addr & CMD_DATA_MASK;
+ 
+ 		cmd_cfg_timeout = 12;
+ 	} else {
 -- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+2.12.0
