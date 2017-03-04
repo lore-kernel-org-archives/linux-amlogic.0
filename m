@@ -1,100 +1,46 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  4 Mar 2017 22:23:18 +0100
-Subject: [PATCH 2/2] ARM64: dts: amlogic: meson-gxl: add the missing PWM pins
-In-Reply-To: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
-References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170304212318.27076-3-martin.blumenstingl@googlemail.com>
+Date: Sat,  4 Mar 2017 22:51:23 +0100
+Subject: [PATCH 0/3] Khadas VIM support (Amlogic Meson GXL S905X)
+Message-ID: <20170304215126.7020-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds the new DT nodes for the missing PWM pins in the EE and AO
-domain.
+This series adds support for the Khadas VIM and Khadas VIM Pro boards
+(both are provided through a single .dts as the only two differences are
+the eMMC size and different SDIO WIFI chips - both are Broadcom brcmfmac
+based though).
+More details can be found on the official website: [0]
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 56 ++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+I have tested this on a Khadas VIM Pro board. It would be nice if someone
+with a non-Pro board could give it a try as well.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index fe11b5fc61f7..583c7b88ba7c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -118,6 +118,20 @@
- 			};
- 		};
- 
-+		pwm_ao_a_3_pins: pwm_ao_a_3 {
-+			mux {
-+				groups = "pwm_ao_a_3";
-+				function = "pwm_ao_a_3";
-+			};
-+		};
-+
-+		pwm_ao_a_8_pins: pwm_ao_a_8 {
-+			mux {
-+				groups = "pwm_ao_a_8";
-+				function = "pwm_ao_a_8";
-+			};
-+		};
-+
- 		pwm_ao_b_pins: pwm_ao_b {
- 			mux {
- 				groups = "pwm_ao_b";
-@@ -277,6 +291,34 @@
- 			};
- 		};
- 
-+		pwm_a_pins: pwm_a {
-+			mux {
-+				groups = "pwm_a";
-+				function = "pwm_a";
-+			};
-+		};
-+
-+		pwm_b_pins: pwm_b {
-+			mux {
-+				groups = "pwm_b";
-+				function = "pwm_b";
-+			};
-+		};
-+
-+		pwm_c_pins: pwm_c {
-+			mux {
-+				groups = "pwm_c";
-+				function = "pwm_c";
-+			};
-+		};
-+
-+		pwm_d_pins: pwm_d {
-+			mux {
-+				groups = "pwm_d";
-+				function = "pwm_d";
-+			};
-+		};
-+
- 		pwm_e_pins: pwm_e {
- 			mux {
- 				groups = "pwm_e";
-@@ -284,6 +326,20 @@
- 			};
- 		};
- 
-+		pwm_f_clk_pins: pwm_f_clk {
-+			mux {
-+				groups = "pwm_f_clk";
-+				function = "pwm_f_clk";
-+			};
-+		};
-+
-+		pwm_f_x_pins: pwm_f_x {
-+			mux {
-+				groups = "pwm_f_x";
-+				function = "pwm_f_x";
-+			};
-+		};
-+
- 		hdmi_hpd_pins: hdmi_hpd {
- 			mux {
- 				groups = "hdmi_hpd";
+
+This patchset depends on:
+- "ARM64: defconfig: enable the leds-pwm driver and default-on trigger"
+  see [1] - already merged in v4.12/defconfig of Kevin's Amlogic tree
+- "meson-gxl pinctrl - add the missing PWM pins" see [2]
+- "brcmfmac: add support for BCM43455 with modalias sdio:c00v02D0dA9BF"
+  see [3], this is NOT a direct dependency (it's only required to get
+  WIFI working on the Khadas VIM Pro) and it's already merged for v4.11
+  (commit a62a77881b1b6708ffeddd9bf0529494f7b199e3)
+
+  
+[0] http://khadas.com/vim/
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2017-February/002474.html
+[2] http://lists.infradead.org/pipermail/linux-amlogic/2017-March/002658.html
+[3] https://www.spinics.net/lists/linux-mmc/msg41627.html
+
+Martin Blumenstingl (3):
+  devicetree: add vendor prefix for Khadas
+  dt-bindings: amlogic: add the Khadas VIM
+  ARM64: dts: meson-gxl: add support for the Khadas VIM board
+
+ Documentation/devicetree/bindings/arm/amlogic.txt  |   2 +
+ .../devicetree/bindings/vendor-prefixes.txt        |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     | 114 +++++++++++++++++++++
+ 4 files changed, 118 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+
 -- 
 2.12.0
