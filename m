@@ -1,265 +1,56 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  4 Mar 2017 10:52:13 +0100
-Subject: [PATCH v2 1/1] ARM64: dts: meson-gxl: improve support for the P212
- reference design
-In-Reply-To: <20170304095213.8221-1-martin.blumenstingl@googlemail.com>
-References: <20170219224114.17201-1-martin.blumenstingl@googlemail.com>
- <20170304095213.8221-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170304095213.8221-2-martin.blumenstingl@googlemail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sat, 4 Mar 2017 10:56:34 +0100
+Subject: [PATCH v4 0/10] mmc: meson-gx: series with smaller improvements
+In-Reply-To: <c1a6c969-2426-4069-6836-fcbe4f4bdebd@gmail.com>
+References: <c1a6c969-2426-4069-6836-fcbe4f4bdebd@gmail.com>
+Message-ID: <22be7ab8-2e98-160b-cb5d-8ff9a247e266@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic P212 reference design is used by other devices as well, such
-as (for example) the Khadas VIM boards. Thus this patch adds and moves
-all common entries from meson-gxl-s905x-p212.dts to a new, separate
-meson-gxl-s905x-p212.dtsi (which can be re-used on boards such as the
-Khadas VIM).
-Support for all boards based on the P212 reference design includes:
-- enabling IR support
-- enabling the SAR ADC (SARADC_CH1 is connected to a resistor which
-  indicates the hardware revision, a similar design is found on the
-  Khadas VIM boards)
-- all MMC controllers (which means that SDIO wifi, the SD card and the
-  eMMC are now supported)
-- pwm_ef as dependency for the SDIO wifi modules
-- uart_A which is connected to the bluetooth module (the bluetooth
-  module itself is not enabled yet due to missing devicetree bindings
-  for the Broadcom serial bluetooth devices)
-- uart_AO is moved to the .dtsi (as all known devices use it as their
-  boot-console)
+Am 04.03.2017 um 10:30 schrieb Helmut Klein:
+> Hallo Heiner,
+> 
+> i had the same problem as mentioned from Kevin.
+> 
+> The solution for my box (netxeon MiniMX) was to partly revert your patch 8
+> 
+> --- meson-gx-mmc.c.heiner    2017-02-20 13:25:47.000000000 +0100
+> +++ meson-gx-mmc.c.helmut    2017-02-21 11:30:30.360445366 +0100
+> @@ -741,6 +742,10 @@ static int meson_mmc_probe(struct platfo
+>      if (ret)
+>          goto free_host;
+> 
+> +    ret = meson_mmc_clk_init(host);
+> +    if (ret)
+> +        goto err_core_clk;
+> +
+>      /* Stop execution */
+>      writel(0, host->regs + SD_EMMC_START);
+> 
+> @@ -751,11 +756,7 @@ static int meson_mmc_probe(struct platfo
+> 
+>      /* set config to sane default */
+>      meson_mmc_cfg_init(host);
+> -
+> -    ret = meson_mmc_clk_init(host);
+> -    if (ret)
+> -        goto free_host;
+> -
+> +
+>      ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+>                      meson_mmc_irq_thread, IRQF_SHARED,
+>                      DRIVER_NAME, host);
+> 
+> The rest of your patches are ok. Thank you for them.
+> 
+> Before applying the patches, i couldn't read the mmc (hs200 type) at all (got crc errors only). Now this is fixed.
+> 
+> regards
+> Helmut
+> 
+> ps: i hope, it is ok, to send this mail directly to you??
+> 
+Sure. I just think other people would consider your findings interesting too, so I cc Kevin and the lists.
+Let me check on my system, I'll come up with a corrected version of the patch set.
 
-Specific to the P212 board:
-- this also enables the CVBS connector (which is not available on the
-  Khadas VIM boards for example)
-- Realtek based SDIO wifi (instead of Broadcom which most other devices
-  use)
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  21 +--
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     | 173 +++++++++++++++++++++
- 2 files changed, 185 insertions(+), 9 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-index 9639f012b02b..db31e093f40e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-@@ -43,23 +43,26 @@
- 
- /dts-v1/;
- 
--#include "meson-gxl-s905x.dtsi"
-+#include "meson-gxl-s905x-p212.dtsi"
- 
- / {
- 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
- 	model = "Amlogic Meson GXL (S905X) P212 Development Board";
- 
--	aliases {
--		serial0 = &uart_AO;
--	};
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
- 
--	chosen {
--		stdout-path = "serial0:115200n8";
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
- 	};
-+};
- 
--	memory at 0 {
--		device_type = "memory";
--		reg = <0x0 0x0 0x0 0x80000000>;
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-new file mode 100644
-index 000000000000..f3eea8e89d12
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-@@ -0,0 +1,173 @@
-+/*
-+ * Copyright (c) 2016 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
-+ * Based on meson-gx-p23x-q20x.dtsi:
-+ * - Copyright (c) 2016 Endless Computers, Inc.
-+ *   Author: Carlo Caione <carlo@endlessm.com>
-+ * - Copyright (c) 2016 BayLibre, SAS.
-+ *   Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+ */
-+
-+/* Common DTSI for devices which are based on the P212 reference board. */
-+
-+#include "meson-gxl-s905x.dtsi"
-+
-+/ {
-+	aliases {
-+		serial0 = &uart_AO;
-+		serial1 = &uart_A;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory at 0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao18>;
-+};
-+
-+/* Wireless SDIO Module */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-names = "default";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-+	cd-inverted;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>;
-+	pinctrl-names = "default";
-+
-+	bus-width = <8>;
-+	cap-sd-highspeed;
-+	cap-mmc-highspeed;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
-+};
-+
-+/* This is connected to the Bluetooth module: */
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
--- 
-2.12.0
+Rgds, Heiner
