@@ -1,132 +1,232 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 6 Mar 2017 13:39:56 +0100
-Subject: [PATCH v2 1/2] drm: bridge: dw-hdmi: Take input format from
- plat_data
-In-Reply-To: <7ccfc45b-445b-45cb-c407-2a38822d0249@synopsys.com>
-References: <1488468572-31971-1-git-send-email-narmstrong@baylibre.com>
- <1488468572-31971-2-git-send-email-narmstrong@baylibre.com>
- <2768953.c6tz7qsbuQ@avalon>
- <0ae7ae64-13ad-6691-ada7-7c8f2851b517@baylibre.com>
- <3898e9a2-a751-abe4-fc31-7de18682c5da@synopsys.com>
- <7ec0d5dc-a09d-2790-34db-669e87c89fa3@baylibre.com>
- <3cadc66c-9ca8-5658-0023-45ad68ca5939@synopsys.com>
- <a69a053b-a026-37ca-ff3c-13bd88e3c3f6@baylibre.com>
- <7ccfc45b-445b-45cb-c407-2a38822d0249@synopsys.com>
-Message-ID: <c57666a2-084d-869d-1ed8-2407b48936e0@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 06 Mar 2017 15:42:37 +0100
+Subject: [PATCH 1/2] pinctrl: meson: gxl: add the missing PWM pin
+ definitions
+In-Reply-To: <20170304212318.27076-2-martin.blumenstingl@googlemail.com>
+References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
+ <20170304212318.27076-2-martin.blumenstingl@googlemail.com>
+Message-ID: <1488811357.2420.18.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/06/2017 01:17 PM, Jose Abreu wrote:
-> Hi Neil,
+On Sat, 2017-03-04 at 22:23 +0100, Martin Blumenstingl wrote:
+> This adds support for the missing PWM pins on Meson GXL SoCs, namely:
+> - PWM_A
+> - PWM_B
+> - PWM_C
+> - PWM_F (GPIOX_7 and GPIOCLK_1 can be selected as output)
+> - PWM_AO_A (GPIOAO_3 and GPIOAO_8 can be selected as output)
 > 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.co
+> m>
+> ---
+> ?drivers/pinctrl/meson/pinctrl-meson-gxl.c | 64
+> +++++++++++++++++++++++++++++++
+> ?1 file changed, 64 insertions(+)
 > 
-> On 06-03-2017 10:41, Neil Armstrong wrote:
->> On 03/03/2017 06:22 PM, Jose Abreu wrote:
->>> Hi Neil,
->>>
->>>
->>> On 03-03-2017 16:42, Neil Armstrong wrote:
->>>> Sure, I was meaning the *input* format the controller receives from the
->>>> pixel encoder, I'm quite sure the format is strict.
->>>>
->>> Hmm, not quite following you here. As far as the controller goes
->>> it supports the formats I mentioned:
->>>     -    8/10/12/16 bits RGB 4:4:4
->>>     -    8/10/12/16 bits YCbCr 4:4:4
->>>     -    8/10/12 bits YCbCr 4:2:2
->>>     -    8/10/12/16 bits YCbCr 4:2:0
->>>
->>> As for the CSC it supports RGB 4:4:4 to/from YCbCr 4:4:4 or 4:2:2
->>> in every defined color depth.
->>>
->>> So, everything except 4:2:0 (I had to check documentation, I
->>> though that CSC supported less formats).
->>>
->>> Of course this is all limited by the implementation that HW team
->>> decides to choose.
->>>
->>> Best regards,
->>> Jose Miguel Abreu
->>>
->> Hi Jose,
->>
->> Thanks for the clarifications.
->>
->> I will try to add missing V4L formats
->>
->>  - 8/10/12/16 bits RGB 4:4:4
->>
->> MEDIA_BUS_FMT_RGB888_1X24
->> MEDIA_BUS_FMT_RGB101010_1X30 (to be added)
->> MEDIA_BUS_FMT_RGB121212_1X36 (to be added)
->> MEDIA_BUS_FMT_RGB161616_1X48 (to be added)
->>
->>  - 8/10/12/16 bits YCbCr 4:4:4
->>
->> MEDIA_BUS_FMT_YUV8_1X24
->> MEDIA_BUS_FMT_YUV10_1X30
->> MEDIA_BUS_FMT_YUV12_1X36 (to be added)
->> MEDIA_BUS_FMT_YUV16_1X48 (to be added)
->>
->>  - 8/10/12 bits YCbCr 4:2:2
->>
->> MEDIA_BUS_FMT_UYVY8_1X16
->> MEDIA_BUS_FMT_UYVY10_1X20
->> MEDIA_BUS_FMT_UYVY12_1X24
->>
->>  - 8/10/12/16 bits YCbCr 4:2:0
->>
->> Jose, how is supposed to be transmitted 4:2:0 over the controller ?
->>
->> Amlogic uses clock doubling to transmit 4:2:0 in CrYCb format.
->>
->> I assume, the transmission is in YYUYYV format in 2x clock.
-> 
-> Double rate or half rate? 4:2:0 requires half the bandwidth and
-> the horizontal parameters are cut off by half also. I'm not very
-> familiar with 4:2:0 but according to spec it shall be Cb[l][n]
-> Y[l][n] Y[l][n+1] in one line and then Cr[l][n] Y[l+1][n]
-> Y[l+1][n+1] in another line (where "l" is pixel line number and
-> "n" is pixel number).
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> index 4ab94a85e306..91dfc498780b 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> @@ -195,8 +195,19 @@ static const unsigned int eth_txd1_pins[]	
+> = { PIN(GPIOZ_11, EE_OFF) };
+> ?static const unsigned int eth_txd2_pins[]	= { PIN(GPIOZ_12,
+> EE_OFF) };
+> ?static const unsigned int eth_txd3_pins[]	= { PIN(GPIOZ_13,
+> EE_OFF) };
+> ?
+> +static const unsigned int pwm_a_pins[]		= {
+> PIN(GPIOX_6, EE_OFF) };
+> +
+> +static const unsigned int pwm_b_pins[]		= {
+> PIN(GPIODV_29, EE_OFF) };
+> +
+> +static const unsigned int pwm_c_pins[]		= {
+> PIN(GPIOZ_15, EE_OFF) };
+> +
+> +static const unsigned int pwm_d_pins[]		= {
+> PIN(GPIODV_28, EE_OFF) };
+> +
+> ?static const unsigned int pwm_e_pins[]		= {
+> PIN(GPIOX_16, EE_OFF) };
+> ?
+> +static const unsigned int pwm_f_clk_pins[]	= { PIN(GPIOCLK_1,
+> EE_OFF) };
+> +static const unsigned int pwm_f_x_pins[]	= { PIN(GPIOX_7,
+> EE_OFF) };
+> +
+> ?static const unsigned int hdmi_hpd_pins[]	= { PIN(GPIOH_0,
+> EE_OFF) };
+> ?static const unsigned int hdmi_sda_pins[]	= { PIN(GPIOH_1,
+> EE_OFF) };
+> ?static const unsigned int hdmi_scl_pins[]	= { PIN(GPIOH_2,
+> EE_OFF) };
+> @@ -225,6 +236,9 @@ static const unsigned int uart_rts_ao_b_pins[]	
+> = { PIN(GPIOAO_3, 0) };
+> ?
+> ?static const unsigned int remote_input_ao_pins[] = {PIN(GPIOAO_7, 0)
+> };
+> ?
+> +static const unsigned int pwm_ao_a_3_pins[]	= { PIN(GPIOAO_3,
+> 0) };
+> +static const unsigned int pwm_ao_a_8_pins[]	= { PIN(GPIOAO_8,
+> 0) };
+> +
+> ?static const unsigned int pwm_ao_b_pins[]	= { PIN(GPIOAO_9,
+> 0) };
+> ?
+> ?static struct meson_pmx_group meson_gxl_periphs_groups[] = {
+> @@ -350,7 +364,9 @@ static struct meson_pmx_group
+> meson_gxl_periphs_groups[] = {
+> ?	GROUP(uart_rts_a,	5,	16),
+> ?	GROUP(uart_tx_c,	5,	13),
+> ?	GROUP(uart_rx_c,	5,	12),
+> +	GROUP(pwm_a,		5,	25),
+> ?	GROUP(pwm_e,		5,	15),
+> +	GROUP(pwm_f_x,		5,	14),
+> ?
+> ?	/* Bank Z */
+> ?	GROUP(eth_mdio,		4,	22),
+> @@ -367,6 +383,7 @@ static struct meson_pmx_group
+> meson_gxl_periphs_groups[] = {
+> ?	GROUP(eth_txd1,		4,	12),
+> ?	GROUP(eth_txd2,		4,	11),
+> ?	GROUP(eth_txd3,		4,	10),
+> +	GROUP(pwm_c,		3,	20),
+> ?
+> ?	/* Bank H */
+> ?	GROUP(hdmi_hpd,		6,	31),
+> @@ -382,6 +399,8 @@ static struct meson_pmx_group
+> meson_gxl_periphs_groups[] = {
+> ?	GROUP(i2c_sda_b,	1,	12),
+> ?	GROUP(i2c_sck_c,	1,	11),
+> ?	GROUP(i2c_sda_c,	1,	10),
+> +	GROUP(pwm_b,		2,	11),
+> +	GROUP(pwm_d,		2,	12),
+> ?
+> ?	/* Bank BOOT */
+> ?	GROUP(emmc_nand_d07,	7,	31),
+> @@ -404,6 +423,9 @@ static struct meson_pmx_group
+> meson_gxl_periphs_groups[] = {
+> ?	GROUP(sdcard_d2,	6,	0),
+> ?	GROUP(sdcard_cmd,	6,	2),
+> ?	GROUP(sdcard_clk,	6,	3),
+> +
+> +	/* Bank CLK */
+> +	GROUP(pwm_f_clk,	8,	30),
+> ?};
+> ?
+> ?static struct meson_pmx_group meson_gxl_aobus_groups[] = {
+> @@ -428,6 +450,8 @@ static struct meson_pmx_group
+> meson_gxl_aobus_groups[] = {
+> ?	GROUP(uart_cts_ao_b,	0,	8),
+> ?	GROUP(uart_rts_ao_b,	0,	7),
+> ?	GROUP(remote_input_ao,	0,	0),
+> +	GROUP(pwm_ao_a_3,	0,	22),
+> +	GROUP(pwm_ao_a_8,	0,	17),
+> ?	GROUP(pwm_ao_b,		0,	3),
+> ?};
+> ?
+> @@ -513,10 +537,34 @@ static const char * const eth_groups[] = {
+> ?	"eth_txd0", "eth_txd1", "eth_txd2", "eth_txd3",
+> ?};
+> ?
+> +static const char * const pwm_a_groups[] = {
+> +	"pwm_a",
+> +};
+> +
+> +static const char * const pwm_b_groups[] = {
+> +	"pwm_b",
+> +};
+> +
+> +static const char * const pwm_c_groups[] = {
+> +	"pwm_c",
+> +};
+> +
+> +static const char * const pwm_d_groups[] = {
+> +	"pwm_d",
+> +};
+> +
+> ?static const char * const pwm_e_groups[] = {
+> ?	"pwm_e",
+> ?};
+> ?
+> +static const char * const pwm_f_clk_groups[] = {
+> +	"pwm_f_clk",
+> +};
+> +
+> +static const char * const pwm_f_x_groups[] = {
+> +	"pwm_f_x",
+> +};
+> +
+> ?static const char * const hdmi_hpd_groups[] = {
+> ?	"hdmi_hpd",
+> ?};
+> @@ -542,6 +590,14 @@ static const char * const
+> remote_input_ao_groups[] = {
+> ?	"remote_input_ao",
+> ?};
+> ?
+> +static const char * const pwm_ao_a_3_groups[] = {
+> +	"pwm_ao_a_3",
+> +};
+> +
+> +static const char * const pwm_ao_a_8_groups[] = {
+> +	"pwm_ao_a_8",
+> +};
+> +
+> ?static const char * const pwm_ao_b_groups[] = {
+> ?	"pwm_ao_b",
+> ?};
+> @@ -559,7 +615,13 @@ static struct meson_pmx_func
+> meson_gxl_periphs_functions[] = {
+> ?	FUNCTION(i2c_b),
+> ?	FUNCTION(i2c_c),
+> ?	FUNCTION(eth),
+> +	FUNCTION(pwm_a),
+> +	FUNCTION(pwm_b),
+> +	FUNCTION(pwm_c),
+> +	FUNCTION(pwm_d),
+> ?	FUNCTION(pwm_e),
+> +	FUNCTION(pwm_f_clk),
+> +	FUNCTION(pwm_f_x),
 
-Exact, sorry I mismatch, Amlogic doubles the clock in the encoder and
-divides the height by 2 to achieve half bandwidth.
+I wonder if having function named "pwm_f_clk" really makes sense ?
+Shouldn't it be just "pwm_f" ? This is real function, isn't it ?
+The actual pin used will be provided in the dt. Here, I suppose we
+could have this:
 
-> 
-> I've worked with 4:2:0 previously but it was just for a prof of
-> concept (I never got to a point where I could submit anything
-> standard), maybe someone who has worked with this can expand a
-> little bit. Anyone?
-> 
->>
->> So the formats should be (aligned on the MEDIA_BUS_FMT_YUYV8_1_5X8) :
->>
->> MEDIA_BUS_FMT_YUYV8_1_1X24 (to be added)
->> MEDIA_BUS_FMT_YUYV10_1_1X30 (to be added)
->> MEDIA_BUS_FMT_YUYV12_1_1X36 (to be added)
->> MEDIA_BUS_FMT_YUYV16_1_1X48 (to be added)
->>
->> to have the following transmissions scheme :
->>
->> uuuuuuuu/yyyyyyyy/yyyyyyyy
->> vvvvvvvv/yyyyyyyy/yyyyyyyy
->>
->> Can you confirm this ?
-> 
-> Seems fine, chroma in consecutive lines and luma in every line.
->
++static const char * const pwm_f_groups[] = {
++	"pwm_f_x", "pwm_f_clk",
++};
 
-OK then, thanks, but I mismatched, it should be like the 4:2:2 entries :
+Has far as I can see, on meson arch, the function does not carry much
+information anyway, except for prints.
 
-MEDIA_BUS_FMT_UYVY8_1_1X24 (to be added)
-MEDIA_BUS_FMT_UYVY10_1_1X30 (to be added)
-MEDIA_BUS_FMT_UYVY12_1_1X36 (to be added)
-MEDIA_BUS_FMT_UYVY16_1_1X48 (to be added)
+To be clear, I'm not questioning this change in particular. It looks
+good, and follows what has been done in the past on meson. I know we
+have been this a lot already, but I'm questioning whether we should
+continue to do so ?
 
+I asking because I also have a lot case like this coming up on audio
+for gxl and gxbb, where the same function can use different pins.
 
-> Best regards,
-> Jose Miguel Abreu
-> 
->>
->> Neil
-> 
+Of course, I'd be happy to provide such change on top of martin patch.
+
+> ?	FUNCTION(hdmi_hpd),
+> ?	FUNCTION(hdmi_i2c),
+> ?};
+> @@ -569,6 +631,8 @@ static struct meson_pmx_func
+> meson_gxl_aobus_functions[] = {
+> ?	FUNCTION(uart_ao),
+> ?	FUNCTION(uart_ao_b),
+> ?	FUNCTION(remote_input_ao),
+> +	FUNCTION(pwm_ao_a_3),
+> +	FUNCTION(pwm_ao_a_8),
+
+Same here
+
+> ?	FUNCTION(pwm_ao_b),
+> ?};
+> ?
