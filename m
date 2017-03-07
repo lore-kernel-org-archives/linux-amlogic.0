@@ -1,61 +1,112 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Tue, 7 Mar 2017 06:11:57 -0800
-Subject: [PATCH 1/15] clk: divider: Make divider_round_rate take the
- parent clock
-In-Reply-To: <7ebd073b4941e4b7c619f15ff0a375ff7919d403.1488876832.git-series.maxime.ripard@free-electrons.com>
-References: <cover.bc06ffa88f847ddd9ddd7c259415d5f61b55307b.1488876832.git-series.maxime.ripard@free-electrons.com>
- <7ebd073b4941e4b7c619f15ff0a375ff7919d403.1488876832.git-series.maxime.ripard@free-electrons.com>
-Message-ID: <20170307141157.GC10239@codeaurora.org>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  7 Mar 2017 17:42:19 +0100
+Subject: [PATCH v3 1/6] drm: bridge: dw-hdmi: Extract PHY interrupt setup to a
+ function
+In-Reply-To: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
+References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1488904944-14285-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/07, Maxime Ripard wrote:
-> So far, divider_round_rate only considers the parent clock returned by
-> clk_hw_get_parent.
-> 
-> This works fine on clocks that have a single parents, this doesn't work on
-> muxes, since we will only consider the first parent, while other parents
-> may totally be able to provide a better combination.
-> 
-> Clocks in that case cannot use divider_round_rate, so would have to come up
-> with a very similar logic to work around it. Instead of having to do
-> something like this, and duplicate that logic everywhere, give an
-> additional parameter for the parent clock to consider.
-> 
-> Current users have been converted using the following coccinelle script
-> 
-> @@
-> identifier hw, rate, prate, table, width, flags;
-> @@
-> 
-> -long divider_round_rate(struct clk_hw *hw,
-> +long divider_round_rate(struct clk_hw *hw, struct clk_hw *parent,
->                         unsigned long rate,
->                         unsigned long *prate,
->                         const struct clk_div_table *table,
->                         u8 width,
->                         unsigned long flags) { ... }
-> 
-> @@
-> identifier fn, hw;
-> expression E2, E3, E4, E5, E6;
-> @@
->  fn (struct clk_hw *hw, ...) {
->  <...
-> -divider_round_rate(hw, E2, E3, E4, E5, E6)
-> +divider_round_rate(hw, clk_hw_get_parent(hw), E2, E3, E4, E5, E6)
->  ...>
-> }
+From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-Why not introduce another function like 
+In preparation for adding PHY operations to handle RX SENSE and HPD,
+group all the PHY interrupt setup code in a single location and extract
+it to a separate function.
 
-	divider_round_rate_parent()
-	divider_round_rate_mux()
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 50 ++++++++++++++-----------------
+ 1 file changed, 23 insertions(+), 27 deletions(-)
 
-that takes the extra parent argument? Technically, a divider is
-considered to only have one parent, and if it has more than one
-parent, then it is a mux and a divider.
-
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index 026a0dc..1ed8bc1 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -1496,7 +1496,7 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ }
+ 
+ /* Wait until we are registered to enable interrupts */
+-static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
++static void dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+ {
+ 	hdmi_writeb(hdmi, HDMI_PHY_I2CM_INT_ADDR_DONE_POL,
+ 		    HDMI_PHY_I2CM_INT_ADDR);
+@@ -1504,15 +1504,6 @@ static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+ 	hdmi_writeb(hdmi, HDMI_PHY_I2CM_CTLINT_ADDR_NAC_POL |
+ 		    HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL,
+ 		    HDMI_PHY_I2CM_CTLINT_ADDR);
+-
+-	/* enable cable hot plug irq */
+-	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+-
+-	/* Clear Hotplug interrupts */
+-	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+-		    HDMI_IH_PHY_STAT0);
+-
+-	return 0;
+ }
+ 
+ static void initialize_hdmi_ih_mutes(struct dw_hdmi *hdmi)
+@@ -1630,6 +1621,26 @@ static void dw_hdmi_update_phy_mask(struct dw_hdmi *hdmi)
+ 		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+ }
+ 
++static void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi)
++{
++	/*
++	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
++	 * any pending interrupt.
++	 */
++	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
++	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
++		    HDMI_IH_PHY_STAT0);
++
++	/* Enable cable hot plug irq. */
++	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
++
++	/* Clear and unmute interrupts. */
++	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
++		    HDMI_IH_PHY_STAT0);
++	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
++		    HDMI_IH_MUTE_PHY_STAT0);
++}
++
+ static enum drm_connector_status
+ dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ {
+@@ -2141,29 +2152,14 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
+ 			hdmi->ddc = NULL;
+ 	}
+ 
+-	/*
+-	 * Configure registers related to HDMI interrupt
+-	 * generation before registering IRQ.
+-	 */
+-	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
+-
+-	/* Clear Hotplug interrupts */
+-	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+-		    HDMI_IH_PHY_STAT0);
+-
+ 	hdmi->bridge.driver_private = hdmi;
+ 	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
+ #ifdef CONFIG_OF
+ 	hdmi->bridge.of_node = pdev->dev.of_node;
+ #endif
+ 
+-	ret = dw_hdmi_fb_registered(hdmi);
+-	if (ret)
+-		goto err_iahb;
+-
+-	/* Unmute interrupts */
+-	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
+-		    HDMI_IH_MUTE_PHY_STAT0);
++	dw_hdmi_fb_registered(hdmi);
++	dw_hdmi_phy_setup_hpd(hdmi);
+ 
+ 	memset(&pdevinfo, 0, sizeof(pdevinfo));
+ 	pdevinfo.parent = dev;
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+1.9.1
