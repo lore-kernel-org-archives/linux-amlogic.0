@@ -1,68 +1,55 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  7 Mar 2017 17:42:20 +0100
-Subject: [PATCH v3 2/6] media: uapi: Add RGB and YUV bus formats for Synopsys
- HDMI TX Controller
+Date: Tue,  7 Mar 2017 17:42:23 +0100
+Subject: [PATCH v3 5/6] drm: bridge: dw-hdmi: Add Documentation on supported
+ input formats
 In-Reply-To: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
 References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1488904944-14285-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1488904944-14285-6-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In order to describe the RGB and YUB bus formats used to feed the
-Synopsys DesignWare HDMI TX Controller, add missing formats to the
-list of Bus Formats.
-
-Documentation for these formats is added in a separate patch.
+This patch adds a new DRM documentation entry and links to the input
+format table added in the dw_hdmi header.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/uapi/linux/media-bus-format.h | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ Documentation/gpu/dw-hdmi.rst | 15 +++++++++++++++
+ Documentation/gpu/index.rst   |  1 +
+ 2 files changed, 16 insertions(+)
+ create mode 100644 Documentation/gpu/dw-hdmi.rst
 
-diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
-index 2168759..7cc820b 100644
---- a/include/uapi/linux/media-bus-format.h
-+++ b/include/uapi/linux/media-bus-format.h
-@@ -33,7 +33,7 @@
- 
- #define MEDIA_BUS_FMT_FIXED			0x0001
- 
--/* RGB - next is	0x1018 */
-+/* RGB - next is	0x101b */
- #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
- #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
- #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
-@@ -57,8 +57,11 @@
- #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
- #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
- #define MEDIA_BUS_FMT_RGB888_1X32_PADHI		0x100f
-+#define MEDIA_BUS_FMT_RGB101010_1X30		0x1018
-+#define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
-+#define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
- 
--/* YUV (including grey) - next is	0x2026 */
-+/* YUV (including grey) - next is	0x202c */
- #define MEDIA_BUS_FMT_Y8_1X8			0x2001
- #define MEDIA_BUS_FMT_UV8_1X8			0x2015
- #define MEDIA_BUS_FMT_UYVY8_1_5X8		0x2002
-@@ -90,12 +93,18 @@
- #define MEDIA_BUS_FMT_YVYU10_1X20		0x200e
- #define MEDIA_BUS_FMT_VUY8_1X24			0x2024
- #define MEDIA_BUS_FMT_YUV8_1X24			0x2025
-+#define MEDIA_BUS_FMT_UYVY8_1_1X24		0x2026
- #define MEDIA_BUS_FMT_UYVY12_1X24		0x2020
- #define MEDIA_BUS_FMT_VYUY12_1X24		0x2021
- #define MEDIA_BUS_FMT_YUYV12_1X24		0x2022
- #define MEDIA_BUS_FMT_YVYU12_1X24		0x2023
- #define MEDIA_BUS_FMT_YUV10_1X30		0x2016
-+#define MEDIA_BUS_FMT_UYVY10_1_1X30		0x2027
- #define MEDIA_BUS_FMT_AYUV8_1X32		0x2017
-+#define MEDIA_BUS_FMT_UYVY12_1_1X36		0x2028
-+#define MEDIA_BUS_FMT_YUV12_1X36		0x2029
-+#define MEDIA_BUS_FMT_YUV16_1X48		0x202a
-+#define MEDIA_BUS_FMT_UYVY16_1_1X48		0x202b
- 
- /* Bayer - next is	0x3021 */
- #define MEDIA_BUS_FMT_SBGGR8_1X8		0x3001
+diff --git a/Documentation/gpu/dw-hdmi.rst b/Documentation/gpu/dw-hdmi.rst
+new file mode 100644
+index 0000000..486faad
+--- /dev/null
++++ b/Documentation/gpu/dw-hdmi.rst
+@@ -0,0 +1,15 @@
++=======================================================
++ drm/bridge/dw-hdmi Synopsys DesignWare HDMI Controller
++=======================================================
++
++Synopsys DesignWare HDMI Controller
++===================================
++
++This section covers everything related to the Synopsys DesignWare HDMI
++Controller implemented as a DRM bridge.
++
++Supported Input Formats and Encodings
++-------------------------------------
++
++.. kernel-doc:: include/drm/bridge/dw_hdmi.h
++   :doc: Supported input formats and encodings
+diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+index e998ee0..0725449 100644
+--- a/Documentation/gpu/index.rst
++++ b/Documentation/gpu/index.rst
+@@ -10,6 +10,7 @@ Linux GPU Driver Developer's Guide
+    drm-kms
+    drm-kms-helpers
+    drm-uapi
++   dw-hdmi
+    i915
+    tinydrm
+    vc4
 -- 
 1.9.1
