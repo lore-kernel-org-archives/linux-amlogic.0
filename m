@@ -1,43 +1,66 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Wed, 8 Mar 2017 09:24:38 +0100
-Subject: [PATCH v2 0/2] scpi-sensors: Fix SCP sensor readings scale
-In-Reply-To: <20170303091449.3512-1-carlo@caione.org>
-References: <20170303091449.3512-1-carlo@caione.org>
-Message-ID: <CAOQ7t2bj29EG3z6uRQ=nBUeLXF4ODB4yayw3+Eohstg3aaA1_g@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 08 Mar 2017 10:07:35 +0100
+Subject: [PATCH 02/12] i2c: meson: remove member irq from struct meson_i2c
+In-Reply-To: <814868c2-af8c-23d0-db19-84d597fe713d@gmail.com>
+References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
+ <814868c2-af8c-23d0-db19-84d597fe713d@gmail.com>
+Message-ID: <1488964055.2514.3.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Mar 3, 2017 at 10:14 AM, Carlo Caione <carlo@caione.org> wrote:
-> From: Carlo Caione <carlo@endlessm.com>
->
-> The implementation details for SCPI seems to suggest that the sensor
-> readings must be reported by SCP using a well defined scale
-> (millidegree Celsius for temperature, millivolts for voltage,
-> milliamperes for current, microwatts for power and microjoules for
-> energy).
->
-> This is also important for the interaction with other subsystems: for
-> example both the thermal sub-system and the hwmon sysfs interface expect
-> the temperature expressed in millidegree Celsius.
->
-> Unfortunately since this behaviour is dependent on the firmware
-> implementation there are cases where the sensor readings are reported
-> using a different scale. For example in the Amlogic SoCs the
-> temperature is reported in degree and not millidegree Celsius.
->
-> In this patchset we introduce a new DT property `scpi,sensors-scale` that is
-> used by the scpi-hwmon driver to convert the sensor readings to the expected
-> scale.
->
-> v2:
->  - Added data validation (scale != 0)
->  - s/unsigned int/u32/ for the array
->  - Switched to array initialiser notation
->  - Introduced scpi_scale_reading()
+On Wed, 2017-03-08 at 07:43 +0100, Heiner Kallweit wrote:
+> Member irq can be replaced with a local variable in probe
+> because it's nowhere else accessed.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> ?drivers/i2c/busses/i2c-meson.c | 13 ++++++-------
+> ?1 file changed, 6 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-
+> meson.c
+> index 40e5da9a..50059d09 100644
+> --- a/drivers/i2c/busses/i2c-meson.c
+> +++ b/drivers/i2c/busses/i2c-meson.c
+> @@ -82,7 +82,6 @@ struct meson_i2c {
+> ?	struct device		*dev;
+> ?	void __iomem		*regs;
+> ?	struct clk		*clk;
+> -	int			irq;
+> ?
+> ?	struct i2c_msg		*msg;
+> ?	int			state;
+> @@ -391,7 +390,7 @@ static int meson_i2c_probe(struct platform_device
+> *pdev)
+> ?	struct device_node *np = pdev->dev.of_node;
+> ?	struct meson_i2c *i2c;
+> ?	struct resource *mem;
+> -	int ret = 0;
+> +	int irq, ret = 0;
+> ?
+> ?	i2c = devm_kzalloc(&pdev->dev, sizeof(struct meson_i2c),
+> GFP_KERNEL);
+> ?	if (!i2c)
+> @@ -418,14 +417,14 @@ static int meson_i2c_probe(struct
+> platform_device *pdev)
+> ?	if (IS_ERR(i2c->regs))
+> ?		return PTR_ERR(i2c->regs);
+> ?
+> -	i2c->irq = platform_get_irq(pdev, 0);
+> -	if (i2c->irq < 0) {
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> ?		dev_err(&pdev->dev, "can't find IRQ\n");
+> -		return i2c->irq;
+> +		return irq;
+> ?	}
+> ?
+> -	ret = devm_request_irq(&pdev->dev, i2c->irq, meson_i2c_irq,
+> -			???????0, dev_name(&pdev->dev), i2c);
+> +	ret = devm_request_irq(&pdev->dev, irq, meson_i2c_irq, 0,
+> +			???????dev_name(&pdev->dev), i2c);
+> ?	if (ret < 0) {
+> ?		dev_err(&pdev->dev, "can't request IRQ\n");
+> ?		return ret;
 
-gentle ping
-
-
-
--- 
-Carlo Caione
+Reviewed-by:?Jerome Brunet <jbrunet@baylibre.com>
