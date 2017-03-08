@@ -1,80 +1,143 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 08 Mar 2017 10:50:36 +0100
-Subject: [PATCH 07/12] i2c: meson: improve interrupt handler and detect
- spurious interrupts
-In-Reply-To: <c772d1d8-eaae-43c2-c206-7c349c134db8@gmail.com>
-References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
- <c772d1d8-eaae-43c2-c206-7c349c134db8@gmail.com>
-Message-ID: <1488966636.2514.16.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 8 Mar 2017 11:25:10 +0100
+Subject: [PATCH v3 1/6] drm: bridge: dw-hdmi: Extract PHY interrupt setup
+ to a function
+In-Reply-To: <0df08831-ecac-e868-0f46-bb38ad0dfe3f@synopsys.com>
+References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
+ <1488904944-14285-2-git-send-email-narmstrong@baylibre.com>
+ <0df08831-ecac-e868-0f46-bb38ad0dfe3f@synopsys.com>
+Message-ID: <295a8933-3baf-f0e6-636c-fb50be56c1d6@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2017-03-08 at 07:47 +0100, Heiner Kallweit wrote:
-> If state is STATE_IDLE no interrupt should occur. Detect this case and
-> warn.
-> In addition move resetting REG_CTRL_START bit to the start of the
-> interrupt handler and remove a unneeded REG_CTRL_START bit reset
-> in meson_i2c_xfer_msg.
+Hi Jose,
+
+On 03/07/2017 06:12 PM, Jose Abreu wrote:
+> Hi Neil,
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> ?drivers/i2c/busses/i2c-meson.c | 16 +++++++++-------
-> ?1 file changed, 9 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-> index 81304840..b3b881f9 100644
-> --- a/drivers/i2c/busses/i2c-meson.c
-> +++ b/drivers/i2c/busses/i2c-meson.c
-> @@ -233,7 +233,15 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
-> ?	dev_dbg(i2c->dev, "irq: state %d, pos %d, count %d, ctrl %08x\n",
-> ?		i2c->state, i2c->pos, i2c->count, ctrl);
-> ?
-> -	if (ctrl & REG_CTRL_ERROR && i2c->state != STATE_IDLE) {
-> +	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
-> +
-> +	if (i2c->state == STATE_IDLE) {
-> +		dev_notice(i2c->dev, "spurious interrupt detected\n");
-> +		spin_unlock(&i2c->lock);
-> +		return IRQ_NONE;
-> +	}
+> On 07-03-2017 16:42, Neil Armstrong wrote:
+>> From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>>
+>> In preparation for adding PHY operations to handle RX SENSE and HPD,
+>> group all the PHY interrupt setup code in a single location and extract
+>> it to a separate function.
+>>
+>> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 50 ++++++++++++++-----------------
+>>  1 file changed, 23 insertions(+), 27 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>> index 026a0dc..1ed8bc1 100644
+>> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+>> @@ -1496,7 +1496,7 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+>>  }
+>>  
+>>  /* Wait until we are registered to enable interrupts */
+>> -static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+>> +static void dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+>>  {
+>>  	hdmi_writeb(hdmi, HDMI_PHY_I2CM_INT_ADDR_DONE_POL,
+>>  		    HDMI_PHY_I2CM_INT_ADDR);
+>> @@ -1504,15 +1504,6 @@ static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+>>  	hdmi_writeb(hdmi, HDMI_PHY_I2CM_CTLINT_ADDR_NAC_POL |
+>>  		    HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL,
+>>  		    HDMI_PHY_I2CM_CTLINT_ADDR);
+>> -
+>> -	/* enable cable hot plug irq */
+>> -	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+>> -
+>> -	/* Clear Hotplug interrupts */
+>> -	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+>> -		    HDMI_IH_PHY_STAT0);
+>> -
+>> -	return 0;
+>>  }
+>>  
+>>  static void initialize_hdmi_ih_mutes(struct dw_hdmi *hdmi)
+>> @@ -1630,6 +1621,26 @@ static void dw_hdmi_update_phy_mask(struct dw_hdmi *hdmi)
+>>  		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+>>  }
+>>  
+>> +static void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi)
+>> +{
+>> +	/*
+>> +	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
+>> +	 * any pending interrupt.
+>> +	 */
+>> +	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
+>> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+>> +		    HDMI_IH_PHY_STAT0);
+>> +
+>> +	/* Enable cable hot plug irq. */
+>> +	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+>> +
+>> +	/* Clear and unmute interrupts. */
+>> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+>> +		    HDMI_IH_PHY_STAT0);
+>> +	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
+>> +		    HDMI_IH_MUTE_PHY_STAT0);
+>> +}
+>> +
+>>  static enum drm_connector_status
+>>  dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+>>  {
+>> @@ -2141,29 +2152,14 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
+>>  			hdmi->ddc = NULL;
+>>  	}
+>>  
+>> -	/*
+>> -	 * Configure registers related to HDMI interrupt
+>> -	 * generation before registering IRQ.
+>> -	 */
+> 
+> 
+> I've seen the databook and HPD interrupts are enabled per default
+> (actually I think most of the interrupts are). I'm thinking
+> whether we could get spurious interrupts because of not
+> configuring HPD before registering IRQ (probably thats why the
+> comment was there). How did you test this? I think that if you
+> insert the cable before loading modules then you can try to
+> emulate this condition. What do you think?
 
-Does it really happen ? Did you see any specific issue you'd like to share ?
-If not, I'm not a big fan of this change.
+In fact the comment was wrong because it happened after the IRQ register,
+and right before the IRQ register the initialize_hdmi_ih_mutes() is already
+called to mute all the IRQ sources.
+The previous rework moved the IRQ code, so this cleanup is welcome.
 
-In any case, if it can be handled gracefully, I'd drop the trace in the
-interrupt handler.
+But indeed, I did not check this condition, I can try this.
 
+Thanks,
+Neil
 
-> +
-> +	if (ctrl & REG_CTRL_ERROR) {
-> ?		/*
-> ?		?* The bit is set when the IGNORE_NAK bit is cleared
-> ?		?* and the device didn't respond. In this case, the
-> @@ -276,15 +284,12 @@ static irqreturn_t meson_i2c_irq(int irqno, void
-> *dev_id)
-> ?		i2c->state = STATE_IDLE;
-> ?		complete(&i2c->done);
-> ?		break;
-> -	case STATE_IDLE:
-> -		break;
-> ?	}
-> ?
-> ?out:
-> ?	if (i2c->state != STATE_IDLE) {
-> ?		/* Restart the processing */
-> ?		meson_i2c_write_tokens(i2c);
-> -		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
-> ?		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
-> ?				???REG_CTRL_START);
-> ?	}
-> @@ -344,9 +349,6 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c,
-> struct i2c_msg *msg,
-> ?	?*/
-> ?	spin_lock_irqsave(&i2c->lock, flags);
-> ?
-> -	/* Abort any active operation */
-> -	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
-> -
-> ?	if (!time_left) {
-> ?		i2c->state = STATE_IDLE;
-> ?		ret = -ETIMEDOUT;
+> 
+> Best regards,
+> Jose Miguel Abreu
+> 
+>> -	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
+>> -
+>> -	/* Clear Hotplug interrupts */
+>> -	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+>> -		    HDMI_IH_PHY_STAT0);
+>> -
+>>  	hdmi->bridge.driver_private = hdmi;
+>>  	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
+>>  #ifdef CONFIG_OF
+>>  	hdmi->bridge.of_node = pdev->dev.of_node;
+>>  #endif
+>>  
+>> -	ret = dw_hdmi_fb_registered(hdmi);
+>> -	if (ret)
+>> -		goto err_iahb;
+>> -
+>> -	/* Unmute interrupts */
+>> -	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
+>> -		    HDMI_IH_MUTE_PHY_STAT0);
+>> +	dw_hdmi_fb_registered(hdmi);
+>> +	dw_hdmi_phy_setup_hpd(hdmi);
+>>  
+>>  	memset(&pdevinfo, 0, sizeof(pdevinfo));
+>>  	pdevinfo.parent = dev;
