@@ -1,71 +1,70 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 8 Mar 2017 07:49:41 +0100
-Subject: [PATCH 11/12] i2c: meson: improve and simplify interrupt handler
+Date: Wed, 8 Mar 2017 07:49:00 +0100
+Subject: [PATCH 10/12] i2c: meson: remove meson_i2c_write_tokens
 In-Reply-To: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
 References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
-Message-ID: <7038cb69-4c51-d101-88d6-9e60f8241cce@gmail.com>
+Message-ID: <1c649a35-d90d-f9ef-e63d-f8502877fd9d@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The preceding changes in this patch series now allow to simplify
-the interrupt handler significantly.
+meson_i2c_write_tokens is always called directly after
+meson_i2c_prepare_xfer (and only then). So we can simplify the code by
+removing meson_i2c_write_tokens and moving the two statements of
+meson_i2c_write_tokens to the end of meson_i2c_prepare_xfer. 
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/i2c/busses/i2c-meson.c | 35 +++++++++--------------------------
- 1 file changed, 9 insertions(+), 26 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index c73bb57a..7b29f077 100644
+index b11ecfdd..c73bb57a 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -239,38 +239,21 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 		goto out;
+@@ -123,12 +123,6 @@ static void meson_i2c_add_token(struct meson_i2c *i2c, int token)
+ 	i2c->num_tokens++;
+ }
+ 
+-static void meson_i2c_write_tokens(struct meson_i2c *i2c)
+-{
+-	writel(i2c->tokens[0], i2c->regs + REG_TOK_LIST0);
+-	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
+-}
+-
+ static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
+ {
+ 	unsigned long clk_rate = clk_get_rate(i2c->clk);
+@@ -205,6 +199,9 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
+ 
+ 	if (write)
+ 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
++
++	writel(i2c->tokens[0], i2c->regs + REG_TOK_LIST0);
++	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
+ }
+ 
+ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+@@ -269,12 +266,10 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
  	}
  
--	switch (i2c->state) {
--	case STATE_READ:
-+	if (i2c->state == STATE_READ)
- 		meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
--		i2c->pos += i2c->count;
- 
--		if (i2c->pos >= i2c->msg->len) {
--			i2c->state = STATE_IDLE;
--			complete(&i2c->done);
--			break;
--		}
--
--		meson_i2c_prepare_xfer(i2c);
--		break;
--	case STATE_WRITE:
--		i2c->pos += i2c->count;
-+	i2c->pos += i2c->count;
- 
--		if (i2c->pos >= i2c->msg->len) {
--			i2c->state = STATE_IDLE;
--			complete(&i2c->done);
--			break;
--		}
--
--		meson_i2c_prepare_xfer(i2c);
--		break;
-+	if (i2c->pos >= i2c->msg->len) {
-+		i2c->state = STATE_IDLE;
-+		complete(&i2c->done);
-+		goto out;
- 	}
- 
-+	/* Restart the processing */
-+	meson_i2c_prepare_xfer(i2c);
-+	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, REG_CTRL_START);
  out:
--	if (i2c->state != STATE_IDLE)
--		/* Restart the processing */
--		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
--				   REG_CTRL_START);
--
+-	if (i2c->state != STATE_IDLE) {
++	if (i2c->state != STATE_IDLE)
+ 		/* Restart the processing */
+-		meson_i2c_write_tokens(i2c);
+ 		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
+ 				   REG_CTRL_START);
+-	}
+ 
  	spin_unlock(&i2c->lock);
  
- 	return IRQ_HANDLED;
+@@ -315,7 +310,6 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+ 
+ 	i2c->state = (msg->flags & I2C_M_RD) ? STATE_READ : STATE_WRITE;
+ 	meson_i2c_prepare_xfer(i2c);
+-	meson_i2c_write_tokens(i2c);
+ 	reinit_completion(&i2c->done);
+ 
+ 	/* Start the transfer */
 -- 
 2.12.0
