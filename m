@@ -1,37 +1,56 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 08 Mar 2017 10:17:03 +0100
-Subject: [PATCH] i2c: meson: fix wrong variable usage in meson_i2c_put_data
-In-Reply-To: <7ecc4542-a6ca-f266-5c34-057b3f5a33bf@gmail.com>
-References: <7ecc4542-a6ca-f266-5c34-057b3f5a33bf@gmail.com>
-Message-ID: <1488964623.2514.7.camel@baylibre.com>
+Date: Wed, 08 Mar 2017 10:19:38 +0100
+Subject: [PATCH 04/12] i2c: meson: use full 12 bits for clock divider
+In-Reply-To: <0ea5a778-8769-50c2-35de-7136b6b407b6@gmail.com>
+References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
+ <0ea5a778-8769-50c2-35de-7136b6b407b6@gmail.com>
+Message-ID: <1488964778.2514.9.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-03-07 at 21:06 +0100, Heiner Kallweit wrote:
-> Most likely a copy & paste error.
+On Wed, 2017-03-08 at 07:44 +0100, Heiner Kallweit wrote:
+> The clock divider has 12 bits, splitted into a 10 bit field and a
+> 2 bit field. The extra 2 bits aren't used currently.
+> 
+> Change this to use the full 12 bits and warn if the requested
+> frequency is too low.
 > 
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
-> ?drivers/i2c/busses/i2c-meson.c | 2 +-
-> ?1 file changed, 1 insertion(+), 1 deletion(-)
+> ?drivers/i2c/busses/i2c-meson.c | 13 +++++++++++--
+> ?1 file changed, 11 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-> index 2aa61bbb..73b97c71 100644
+> index 5e243efa..a5764be5 100644
 > --- a/drivers/i2c/busses/i2c-meson.c
 > +++ b/drivers/i2c/busses/i2c-meson.c
-> @@ -175,7 +175,7 @@ static void meson_i2c_put_data(struct meson_i2c *i2c, char *buf, int len)
-> ?		wdata1 |= *buf++ << ((i - 4) * 8);
+> @@ -35,7 +35,9 @@
+> ?#define REG_CTRL_STATUS		BIT(2)
+> ?#define REG_CTRL_ERROR		BIT(3)
+> ?#define REG_CTRL_CLKDIV_SHIFT	12
+> -#define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) << REG_CTRL_CLKDIV_SHIFT)
+> +#define REG_CTRL_CLKDIV_MASK	GENMASK(21, 12)
+> +#define REG_CTRL_CLKDIVEXT_SHIFT 28
+> +#define REG_CTRL_CLKDIVEXT_MASK	GENMASK(29, 28)
 > ?
-> ?	writel(wdata0, i2c->regs + REG_TOK_WDATA0);
-> -	writel(wdata0, i2c->regs + REG_TOK_WDATA1);
-> +	writel(wdata1, i2c->regs + REG_TOK_WDATA1);
+> ?#define I2C_TIMEOUT_MS		500
 > ?
-> ?	dev_dbg(i2c->dev, "%s: data %08x %08x len %d\n", __func__,
-> ?		wdata0, wdata1, len);
-
-Good catch, Strange it did not show up before.
-
-You are just missing the Fixes tag.
-Fixes: 30021e3707a7 ("i2c: add support for Amlogic Meson I2C controller")
+> @@ -136,8 +138,15 @@ static void meson_i2c_set_clk_div(struct meson_i2c *i2c)
+> ?	unsigned int div;
+> ?
+> ?	div = DIV_ROUND_UP(clk_rate, i2c->timings.bus_freq_hz * 4);
+> +
+> +	/* clock divider has 12 bits */
+> +	WARN_ON(div >= (1 << 12));
+> +
+> ?	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
+> -			???div << REG_CTRL_CLKDIV_SHIFT);
+> +			???(div & GENMASK(9, 0)) << REG_CTRL_CLKDIV_SHIFT);
+> +
+> +	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIVEXT_MASK,
+> +			???(div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
+> ?
+> ?	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n", __func__,
+> ?		clk_rate, i2c->timings.bus_freq_hz, div);
 
 Acked-by: Jerome Brunet <jbrunet@baylibre.com>
