@@ -1,48 +1,70 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 8 Mar 2017 07:46:28 +0100
-Subject: [PATCH 06/12] i2c: meson: remove variable count from meson_i2c_xfer
+Date: Wed, 8 Mar 2017 07:47:16 +0100
+Subject: [PATCH 07/12] i2c: meson: improve interrupt handler and detect
+ spurious interrupts
 In-Reply-To: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
 References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
-Message-ID: <95687966-387c-f9ba-ae0a-9b0258f7ad43@gmail.com>
+Message-ID: <c772d1d8-eaae-43c2-c206-7c349c134db8@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Variable count has always the same value as i, so we don't need it.
-In addition use &msgs[i] instead of msgs + i to improve readability
-of code a little.
+If state is STATE_IDLE no interrupt should occur. Detect this case and
+warn.
+In addition move resetting REG_CTRL_START bit to the start of the
+interrupt handler and remove a unneeded REG_CTRL_START bit reset
+in meson_i2c_xfer_msg.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/i2c/busses/i2c-meson.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 594fec22..81304840 100644
+index 81304840..b3b881f9 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -364,20 +364,19 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
- 			  int num)
- {
- 	struct meson_i2c *i2c = adap->algo_data;
--	int i, ret = 0, count = 0;
-+	int i, ret = 0;
+@@ -233,7 +233,15 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 	dev_dbg(i2c->dev, "irq: state %d, pos %d, count %d, ctrl %08x\n",
+ 		i2c->state, i2c->pos, i2c->count, ctrl);
  
- 	clk_enable(i2c->clk);
- 
- 	for (i = 0; i < num; i++) {
--		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1);
-+		ret = meson_i2c_xfer_msg(i2c, &msgs[i], i == num - 1);
- 		if (ret)
- 			break;
--		count++;
+-	if (ctrl & REG_CTRL_ERROR && i2c->state != STATE_IDLE) {
++	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
++
++	if (i2c->state == STATE_IDLE) {
++		dev_notice(i2c->dev, "spurious interrupt detected\n");
++		spin_unlock(&i2c->lock);
++		return IRQ_NONE;
++	}
++
++	if (ctrl & REG_CTRL_ERROR) {
+ 		/*
+ 		 * The bit is set when the IGNORE_NAK bit is cleared
+ 		 * and the device didn't respond. In this case, the
+@@ -276,15 +284,12 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		i2c->state = STATE_IDLE;
+ 		complete(&i2c->done);
+ 		break;
+-	case STATE_IDLE:
+-		break;
  	}
  
- 	clk_disable(i2c->clk);
+ out:
+ 	if (i2c->state != STATE_IDLE) {
+ 		/* Restart the processing */
+ 		meson_i2c_write_tokens(i2c);
+-		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
+ 		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
+ 				   REG_CTRL_START);
+ 	}
+@@ -344,9 +349,6 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+ 	 */
+ 	spin_lock_irqsave(&i2c->lock, flags);
  
--	return ret ? ret : count;
-+	return ret ?: i;
- }
- 
- static u32 meson_i2c_func(struct i2c_adapter *adap)
+-	/* Abort any active operation */
+-	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
+-
+ 	if (!time_left) {
+ 		i2c->state = STATE_IDLE;
+ 		ret = -ETIMEDOUT;
 -- 
 2.12.0
