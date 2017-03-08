@@ -1,66 +1,87 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 08 Mar 2017 10:07:35 +0100
-Subject: [PATCH 02/12] i2c: meson: remove member irq from struct meson_i2c
-In-Reply-To: <814868c2-af8c-23d0-db19-84d597fe713d@gmail.com>
+Date: Wed, 08 Mar 2017 10:10:29 +0100
+Subject: [PATCH 03/12] i2c: meson: use i2c core for DT clock-frequency
+ parsing
+In-Reply-To: <a8a8f3e8-4568-67a9-25bc-874c6f426243@gmail.com>
 References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
- <814868c2-af8c-23d0-db19-84d597fe713d@gmail.com>
-Message-ID: <1488964055.2514.3.camel@baylibre.com>
+ <a8a8f3e8-4568-67a9-25bc-874c6f426243@gmail.com>
+Message-ID: <1488964229.2514.4.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2017-03-08 at 07:43 +0100, Heiner Kallweit wrote:
-> Member irq can be replaced with a local variable in probe
-> because it's nowhere else accessed.
+On Wed, 2017-03-08 at 07:44 +0100, Heiner Kallweit wrote:
+> We don't have to parse the DT manually to retrieve the bus frequency
+> and we don't have to maintain an own default for the bus frequency.
+> Let the i2c core do this for us.
 > 
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
-> ?drivers/i2c/busses/i2c-meson.c | 13 ++++++-------
-> ?1 file changed, 6 insertions(+), 7 deletions(-)
+> ?drivers/i2c/busses/i2c-meson.c | 13 +++++--------
+> ?1 file changed, 5 insertions(+), 8 deletions(-)
 > 
 > diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-
 > meson.c
-> index 40e5da9a..50059d09 100644
+> index 50059d09..5e243efa 100644
 > --- a/drivers/i2c/busses/i2c-meson.c
 > +++ b/drivers/i2c/busses/i2c-meson.c
-> @@ -82,7 +82,6 @@ struct meson_i2c {
-> ?	struct device		*dev;
-> ?	void __iomem		*regs;
-> ?	struct clk		*clk;
-> -	int			irq;
+> @@ -38,7 +38,6 @@
+> ?#define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) <<
+> REG_CTRL_CLKDIV_SHIFT)
 > ?
-> ?	struct i2c_msg		*msg;
-> ?	int			state;
-> @@ -391,7 +390,7 @@ static int meson_i2c_probe(struct platform_device
+> ?#define I2C_TIMEOUT_MS		500
+> -#define DEFAULT_FREQ		100000
+> ?
+> ?enum {
+> ?	TOKEN_END = 0,
+> @@ -73,7 +72,7 @@ enum {
+> ? * @error:	Flag set when an error is received
+> ? * @lock:	To avoid race conditions between irq handler and
+> xfer code
+> ? * @done:	Completion used to wait for transfer termination
+> - * @frequency:	Operating frequency of I2C bus clock
+> + * @timings:	Struct including the bus frequency
+> ? * @tokens:	Sequence of tokens to be written to the device
+> ? * @num_tokens:	Number of tokens
+> ? */
+> @@ -92,7 +91,7 @@ struct meson_i2c {
+> ?
+> ?	spinlock_t		lock;
+> ?	struct completion	done;
+> -	unsigned int		frequency;
+> +	struct i2c_timings	timings;
+> ?	u32			tokens[2];
+> ?	int			num_tokens;
+> ?};
+> @@ -136,12 +135,12 @@ static void meson_i2c_set_clk_div(struct
+> meson_i2c *i2c)
+> ?	unsigned long clk_rate = clk_get_rate(i2c->clk);
+> ?	unsigned int div;
+> ?
+> -	div = DIV_ROUND_UP(clk_rate, i2c->frequency * 4);
+> +	div = DIV_ROUND_UP(clk_rate, i2c->timings.bus_freq_hz * 4);
+> ?	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
+> ?			???div << REG_CTRL_CLKDIV_SHIFT);
+> ?
+> ?	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n",
+> __func__,
+> -		clk_rate, i2c->frequency, div);
+> +		clk_rate, i2c->timings.bus_freq_hz, div);
+> ?}
+> ?
+> ?static void meson_i2c_get_data(struct meson_i2c *i2c, char *buf, int
+> len)
+> @@ -396,9 +395,7 @@ static int meson_i2c_probe(struct platform_device
 > *pdev)
-> ?	struct device_node *np = pdev->dev.of_node;
-> ?	struct meson_i2c *i2c;
-> ?	struct resource *mem;
-> -	int ret = 0;
-> +	int irq, ret = 0;
-> ?
-> ?	i2c = devm_kzalloc(&pdev->dev, sizeof(struct meson_i2c),
-> GFP_KERNEL);
 > ?	if (!i2c)
-> @@ -418,14 +417,14 @@ static int meson_i2c_probe(struct
-> platform_device *pdev)
-> ?	if (IS_ERR(i2c->regs))
-> ?		return PTR_ERR(i2c->regs);
+> ?		return -ENOMEM;
 > ?
-> -	i2c->irq = platform_get_irq(pdev, 0);
-> -	if (i2c->irq < 0) {
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> ?		dev_err(&pdev->dev, "can't find IRQ\n");
-> -		return i2c->irq;
-> +		return irq;
-> ?	}
+> -	if (of_property_read_u32(pdev->dev.of_node, "clock-
+> frequency",
+> -				?&i2c->frequency))
+> -		i2c->frequency = DEFAULT_FREQ;
+> +	i2c_parse_fw_timings(&pdev->dev, &i2c->timings, true);
 > ?
-> -	ret = devm_request_irq(&pdev->dev, i2c->irq, meson_i2c_irq,
-> -			???????0, dev_name(&pdev->dev), i2c);
-> +	ret = devm_request_irq(&pdev->dev, irq, meson_i2c_irq, 0,
-> +			???????dev_name(&pdev->dev), i2c);
-> ?	if (ret < 0) {
-> ?		dev_err(&pdev->dev, "can't request IRQ\n");
-> ?		return ret;
+> ?	i2c->dev = &pdev->dev;
+> ?	platform_set_drvdata(pdev, i2c);
 
-Reviewed-by:?Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
