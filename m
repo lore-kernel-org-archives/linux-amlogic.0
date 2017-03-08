@@ -1,70 +1,90 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 8 Mar 2017 07:47:16 +0100
-Subject: [PATCH 07/12] i2c: meson: improve interrupt handler and detect
- spurious interrupts
+Date: Wed, 8 Mar 2017 07:48:21 +0100
+Subject: [PATCH 09/12] i2c: meson: don't create separate token chain just for
+ the stop command
 In-Reply-To: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
 References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
-Message-ID: <c772d1d8-eaae-43c2-c206-7c349c134db8@gmail.com>
+Message-ID: <0185ad19-b925-142e-6b2b-779bdae33d4b@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-If state is STATE_IDLE no interrupt should occur. Detect this case and
-warn.
-In addition move resetting REG_CTRL_START bit to the start of the
-interrupt handler and remove a unneeded REG_CTRL_START bit reset
-in meson_i2c_xfer_msg.
+We can directly add the stop token to the token chain including the
+last transfer chunk. This is more efficient than creating a separate
+token chain just for the stop command.
+And it allows us to get rid of state STATE_STOP completely.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/i2c/busses/i2c-meson.c | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 27 +++++++--------------------
+ 1 file changed, 7 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 81304840..b3b881f9 100644
+index 58414699..b11ecfdd 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -233,7 +233,15 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 	dev_dbg(i2c->dev, "irq: state %d, pos %d, count %d, ctrl %08x\n",
- 		i2c->state, i2c->pos, i2c->count, ctrl);
+@@ -55,7 +55,6 @@ enum {
+ 	STATE_IDLE,
+ 	STATE_READ,
+ 	STATE_WRITE,
+-	STATE_STOP,
+ };
  
--	if (ctrl & REG_CTRL_ERROR && i2c->state != STATE_IDLE) {
-+	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
+ /**
+@@ -201,23 +200,13 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
+ 	else
+ 		meson_i2c_add_token(i2c, TOKEN_DATA_LAST);
+ 
++	if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
++		meson_i2c_add_token(i2c, TOKEN_STOP);
 +
-+	if (i2c->state == STATE_IDLE) {
-+		dev_notice(i2c->dev, "spurious interrupt detected\n");
-+		spin_unlock(&i2c->lock);
-+		return IRQ_NONE;
-+	}
-+
-+	if (ctrl & REG_CTRL_ERROR) {
- 		/*
- 		 * The bit is set when the IGNORE_NAK bit is cleared
- 		 * and the device didn't respond. In this case, the
-@@ -276,15 +284,12 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 		i2c->state = STATE_IDLE;
- 		complete(&i2c->done);
+ 	if (write)
+ 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+ }
+ 
+-static void meson_i2c_stop(struct meson_i2c *i2c)
+-{
+-	dev_dbg(i2c->dev, "%s: last %d\n", __func__, i2c->last);
+-
+-	if (i2c->last) {
+-		i2c->state = STATE_STOP;
+-		meson_i2c_add_token(i2c, TOKEN_STOP);
+-	} else {
+-		i2c->state = STATE_IDLE;
+-		complete(&i2c->done);
+-	}
+-}
+-
+ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ {
+ 	struct meson_i2c *i2c = dev_id;
+@@ -259,7 +248,8 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		i2c->pos += i2c->count;
+ 
+ 		if (i2c->pos >= i2c->msg->len) {
+-			meson_i2c_stop(i2c);
++			i2c->state = STATE_IDLE;
++			complete(&i2c->done);
+ 			break;
+ 		}
+ 
+@@ -269,16 +259,13 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		i2c->pos += i2c->count;
+ 
+ 		if (i2c->pos >= i2c->msg->len) {
+-			meson_i2c_stop(i2c);
++			i2c->state = STATE_IDLE;
++			complete(&i2c->done);
+ 			break;
+ 		}
+ 
+ 		meson_i2c_prepare_xfer(i2c);
  		break;
--	case STATE_IDLE:
+-	case STATE_STOP:
+-		i2c->state = STATE_IDLE;
+-		complete(&i2c->done);
 -		break;
  	}
  
  out:
- 	if (i2c->state != STATE_IDLE) {
- 		/* Restart the processing */
- 		meson_i2c_write_tokens(i2c);
--		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
- 		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
- 				   REG_CTRL_START);
- 	}
-@@ -344,9 +349,6 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
- 	 */
- 	spin_lock_irqsave(&i2c->lock, flags);
- 
--	/* Abort any active operation */
--	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
--
- 	if (!time_left) {
- 		i2c->state = STATE_IDLE;
- 		ret = -ETIMEDOUT;
 -- 
 2.12.0
