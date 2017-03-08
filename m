@@ -1,58 +1,29 @@
-From: linux.amoon@gmail.com (Anand Moon)
-Date: Wed,  8 Mar 2017 02:06:01 +0530
-Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: enable USB Host Nodes
-Message-ID: <1488918961-4666-1-git-send-email-linux.amoon@gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Wed, 8 Mar 2017 07:41:21 +0100
+Subject: [PATCH 00/12] i2c: meson: series with improvements
+Message-ID: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Anand Moon <linux.amoon@gmail.com>
+This patch series includes several improvements for the i2c-meson
+driver.
 
-update the regulator supply nodes for usb host to
-enable usb host on odroid-c2
+Heiner Kallweit (12):
+  i2c: meson: use min instead of min_t where min_t isn't needed
+  i2c: meson: remove member irq from struct meson_i2c
+  i2c: meson: use i2c core for DT clock-frequency parsing
+  i2c: meson: use full 12 bits for clock divider
+  i2c: meson: set clock divider in probe instead of setting it for each transfer
+  i2c: meson: remove variable count from meson_i2c_xfer
+  i2c: meson: improve interrupt handler and detect spurious interrupts
+  i2c: meson: explicitly ignore messages with length zero
+  i2c: meson: don't create separate token chain just for the stop command
+  i2c: meson: remove meson_i2c_write_tokens
+  i2c: meson: improve and simplify interrupt handler
+  i2c: meson: use state in meson_i2c_prepare_xfer
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-root at odroid64:/usr/src/odroidxu3-4.y-devel# lsusb -t
-/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-        |__ Port 1: Dev 3, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M
-        |__ Port 1: Dev 3, If 1, Class=Human Interface Device, Driver=usbhid, 1.5M
-        |__ Port 2: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
-        |__ Port 4: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage, 480M
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/i2c/busses/i2c-meson.c | 157 ++++++++++++++++-------------------------
+ 1 file changed, 62 insertions(+), 95 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index c59403a..304b676 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -64,6 +64,18 @@
- 		reg = <0x0 0x0 0x0 0x80000000>;
- 	};
- 
-+	usb_host_pwr: regulator-usb-pwrs {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "USB_HOST_PWR";
-+
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	usb_otg_pwr: regulator-usb-pwrs {
- 		compatible = "regulator-fixed";
- 
-@@ -184,6 +196,7 @@
- 
- &usb1_phy {
- 	status = "okay";
-+	phy-supply = <&usb_host_pwr>;
- };
- 
- &usb0 {
 -- 
-2.7.4
+2.12.0
