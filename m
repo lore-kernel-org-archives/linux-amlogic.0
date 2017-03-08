@@ -1,70 +1,43 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 8 Mar 2017 07:49:00 +0100
-Subject: [PATCH 10/12] i2c: meson: remove meson_i2c_write_tokens
-In-Reply-To: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
-References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
-Message-ID: <1c649a35-d90d-f9ef-e63d-f8502877fd9d@gmail.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Wed, 8 Mar 2017 09:24:38 +0100
+Subject: [PATCH v2 0/2] scpi-sensors: Fix SCP sensor readings scale
+In-Reply-To: <20170303091449.3512-1-carlo@caione.org>
+References: <20170303091449.3512-1-carlo@caione.org>
+Message-ID: <CAOQ7t2bj29EG3z6uRQ=nBUeLXF4ODB4yayw3+Eohstg3aaA1_g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-meson_i2c_write_tokens is always called directly after
-meson_i2c_prepare_xfer (and only then). So we can simplify the code by
-removing meson_i2c_write_tokens and moving the two statements of
-meson_i2c_write_tokens to the end of meson_i2c_prepare_xfer. 
+On Fri, Mar 3, 2017 at 10:14 AM, Carlo Caione <carlo@caione.org> wrote:
+> From: Carlo Caione <carlo@endlessm.com>
+>
+> The implementation details for SCPI seems to suggest that the sensor
+> readings must be reported by SCP using a well defined scale
+> (millidegree Celsius for temperature, millivolts for voltage,
+> milliamperes for current, microwatts for power and microjoules for
+> energy).
+>
+> This is also important for the interaction with other subsystems: for
+> example both the thermal sub-system and the hwmon sysfs interface expect
+> the temperature expressed in millidegree Celsius.
+>
+> Unfortunately since this behaviour is dependent on the firmware
+> implementation there are cases where the sensor readings are reported
+> using a different scale. For example in the Amlogic SoCs the
+> temperature is reported in degree and not millidegree Celsius.
+>
+> In this patchset we introduce a new DT property `scpi,sensors-scale` that is
+> used by the scpi-hwmon driver to convert the sensor readings to the expected
+> scale.
+>
+> v2:
+>  - Added data validation (scale != 0)
+>  - s/unsigned int/u32/ for the array
+>  - Switched to array initialiser notation
+>  - Introduced scpi_scale_reading()
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/i2c/busses/i2c-meson.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+gentle ping
 
-diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index b11ecfdd..c73bb57a 100644
---- a/drivers/i2c/busses/i2c-meson.c
-+++ b/drivers/i2c/busses/i2c-meson.c
-@@ -123,12 +123,6 @@ static void meson_i2c_add_token(struct meson_i2c *i2c, int token)
- 	i2c->num_tokens++;
- }
- 
--static void meson_i2c_write_tokens(struct meson_i2c *i2c)
--{
--	writel(i2c->tokens[0], i2c->regs + REG_TOK_LIST0);
--	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
--}
--
- static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
- {
- 	unsigned long clk_rate = clk_get_rate(i2c->clk);
-@@ -205,6 +199,9 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
- 
- 	if (write)
- 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
-+
-+	writel(i2c->tokens[0], i2c->regs + REG_TOK_LIST0);
-+	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
- }
- 
- static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
-@@ -269,12 +266,10 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 	}
- 
- out:
--	if (i2c->state != STATE_IDLE) {
-+	if (i2c->state != STATE_IDLE)
- 		/* Restart the processing */
--		meson_i2c_write_tokens(i2c);
- 		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
- 				   REG_CTRL_START);
--	}
- 
- 	spin_unlock(&i2c->lock);
- 
-@@ -315,7 +310,6 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
- 
- 	i2c->state = (msg->flags & I2C_M_RD) ? STATE_READ : STATE_WRITE;
- 	meson_i2c_prepare_xfer(i2c);
--	meson_i2c_write_tokens(i2c);
- 	reinit_completion(&i2c->done);
- 
- 	/* Start the transfer */
+
+
 -- 
-2.12.0
+Carlo Caione
