@@ -1,49 +1,71 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 8 Mar 2017 07:50:23 +0100
-Subject: [PATCH 12/12] i2c: meson: use state in meson_i2c_prepare_xfer
+Date: Wed, 8 Mar 2017 07:49:41 +0100
+Subject: [PATCH 11/12] i2c: meson: improve and simplify interrupt handler
 In-Reply-To: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
 References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
-Message-ID: <c9ee2ea8-28d6-17ff-2bf4-2354d3e404a5@gmail.com>
+Message-ID: <7038cb69-4c51-d101-88d6-9e60f8241cce@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Let's use the state here to make meson_i2c_prepare_xfer more in line
-with other parts of the driver.
+The preceding changes in this patch series now allow to simplify
+the interrupt handler significantly.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/i2c/busses/i2c-meson.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 35 +++++++++--------------------------
+ 1 file changed, 9 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 7b29f077..eacb6f3d 100644
+index c73bb57a..7b29f077 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -181,7 +181,6 @@ static void meson_i2c_put_data(struct meson_i2c *i2c, char *buf, int len)
+@@ -239,38 +239,21 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		goto out;
+ 	}
  
- static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
- {
--	bool write = !(i2c->msg->flags & I2C_M_RD);
- 	int i;
+-	switch (i2c->state) {
+-	case STATE_READ:
++	if (i2c->state == STATE_READ)
+ 		meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+-		i2c->pos += i2c->count;
  
- 	i2c->count = min(i2c->msg->len - i2c->pos, 8);
-@@ -189,7 +188,7 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
- 	for (i = 0; i < i2c->count - 1; i++)
- 		meson_i2c_add_token(i2c, TOKEN_DATA);
+-		if (i2c->pos >= i2c->msg->len) {
+-			i2c->state = STATE_IDLE;
+-			complete(&i2c->done);
+-			break;
+-		}
+-
+-		meson_i2c_prepare_xfer(i2c);
+-		break;
+-	case STATE_WRITE:
+-		i2c->pos += i2c->count;
++	i2c->pos += i2c->count;
  
--	if (write || i2c->pos + i2c->count < i2c->msg->len)
-+	if (i2c->state == STATE_WRITE || i2c->pos + i2c->count < i2c->msg->len)
- 		meson_i2c_add_token(i2c, TOKEN_DATA);
- 	else
- 		meson_i2c_add_token(i2c, TOKEN_DATA_LAST);
-@@ -197,7 +196,7 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
- 	if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
- 		meson_i2c_add_token(i2c, TOKEN_STOP);
+-		if (i2c->pos >= i2c->msg->len) {
+-			i2c->state = STATE_IDLE;
+-			complete(&i2c->done);
+-			break;
+-		}
+-
+-		meson_i2c_prepare_xfer(i2c);
+-		break;
++	if (i2c->pos >= i2c->msg->len) {
++		i2c->state = STATE_IDLE;
++		complete(&i2c->done);
++		goto out;
+ 	}
  
--	if (write)
-+	if (i2c->state == STATE_WRITE)
- 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
++	/* Restart the processing */
++	meson_i2c_prepare_xfer(i2c);
++	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, REG_CTRL_START);
+ out:
+-	if (i2c->state != STATE_IDLE)
+-		/* Restart the processing */
+-		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
+-				   REG_CTRL_START);
+-
+ 	spin_unlock(&i2c->lock);
  
- 	writel(i2c->tokens[0], i2c->regs + REG_TOK_LIST0);
+ 	return IRQ_HANDLED;
 -- 
 2.12.0
