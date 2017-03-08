@@ -1,76 +1,64 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 8 Mar 2017 07:44:15 +0100
-Subject: [PATCH 03/12] i2c: meson: use i2c core for DT clock-frequency parsing
+Date: Wed, 8 Mar 2017 07:47:47 +0100
+Subject: [PATCH 08/12] i2c: meson: explicitly ignore messages with length zero
 In-Reply-To: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
 References: <d5f0545a-fb4c-b436-20f5-7df9d10605b1@gmail.com>
-Message-ID: <a8a8f3e8-4568-67a9-25bc-874c6f426243@gmail.com>
+Message-ID: <11e16ab1-e3dd-56d0-55c5-1420576a9bb3@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-We don't have to parse the DT manually to retrieve the bus frequency
-and we don't have to maintain an own default for the bus frequency.
-Let the i2c core do this for us.
+Explicitely ignore messages with length zero. This also allows to
+remove some now unneeded checks during message processing.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/i2c/busses/i2c-meson.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 50059d09..5e243efa 100644
+index b3b881f9..58414699 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -38,7 +38,6 @@
- #define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) << REG_CTRL_CLKDIV_SHIFT)
+@@ -196,12 +196,10 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
+ 	for (i = 0; i < i2c->count - 1; i++)
+ 		meson_i2c_add_token(i2c, TOKEN_DATA);
  
- #define I2C_TIMEOUT_MS		500
--#define DEFAULT_FREQ		100000
+-	if (i2c->count) {
+-		if (write || i2c->pos + i2c->count < i2c->msg->len)
+-			meson_i2c_add_token(i2c, TOKEN_DATA);
+-		else
+-			meson_i2c_add_token(i2c, TOKEN_DATA_LAST);
+-	}
++	if (write || i2c->pos + i2c->count < i2c->msg->len)
++		meson_i2c_add_token(i2c, TOKEN_DATA);
++	else
++		meson_i2c_add_token(i2c, TOKEN_DATA_LAST);
  
- enum {
- 	TOKEN_END = 0,
-@@ -73,7 +72,7 @@ enum {
-  * @error:	Flag set when an error is received
-  * @lock:	To avoid race conditions between irq handler and xfer code
-  * @done:	Completion used to wait for transfer termination
-- * @frequency:	Operating frequency of I2C bus clock
-+ * @timings:	Struct including the bus frequency
-  * @tokens:	Sequence of tokens to be written to the device
-  * @num_tokens:	Number of tokens
-  */
-@@ -92,7 +91,7 @@ struct meson_i2c {
+ 	if (write)
+ 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+@@ -257,11 +255,8 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
  
- 	spinlock_t		lock;
- 	struct completion	done;
--	unsigned int		frequency;
-+	struct i2c_timings	timings;
- 	u32			tokens[2];
- 	int			num_tokens;
- };
-@@ -136,12 +135,12 @@ static void meson_i2c_set_clk_div(struct meson_i2c *i2c)
- 	unsigned long clk_rate = clk_get_rate(i2c->clk);
- 	unsigned int div;
+ 	switch (i2c->state) {
+ 	case STATE_READ:
+-		if (i2c->count > 0) {
+-			meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos,
+-					   i2c->count);
+-			i2c->pos += i2c->count;
+-		}
++		meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
++		i2c->pos += i2c->count;
  
--	div = DIV_ROUND_UP(clk_rate, i2c->frequency * 4);
-+	div = DIV_ROUND_UP(clk_rate, i2c->timings.bus_freq_hz * 4);
- 	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
- 			   div << REG_CTRL_CLKDIV_SHIFT);
+ 		if (i2c->pos >= i2c->msg->len) {
+ 			meson_i2c_stop(i2c);
+@@ -371,6 +366,9 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
+ 	clk_enable(i2c->clk);
  
- 	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n", __func__,
--		clk_rate, i2c->frequency, div);
-+		clk_rate, i2c->timings.bus_freq_hz, div);
- }
- 
- static void meson_i2c_get_data(struct meson_i2c *i2c, char *buf, int len)
-@@ -396,9 +395,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
- 	if (!i2c)
- 		return -ENOMEM;
- 
--	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency",
--				 &i2c->frequency))
--		i2c->frequency = DEFAULT_FREQ;
-+	i2c_parse_fw_timings(&pdev->dev, &i2c->timings, true);
- 
- 	i2c->dev = &pdev->dev;
- 	platform_set_drvdata(pdev, i2c);
+ 	for (i = 0; i < num; i++) {
++		/* ignore messages with length 0 */
++		if (!msgs[i].len)
++			continue;
+ 		ret = meson_i2c_xfer_msg(i2c, &msgs[i], i == num - 1);
+ 		if (ret)
+ 			break;
 -- 
 2.12.0
