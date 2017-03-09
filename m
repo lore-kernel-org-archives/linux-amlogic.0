@@ -1,73 +1,23 @@
-From: Jose.Abreu@synopsys.com (Jose Abreu)
-Date: Thu, 9 Mar 2017 14:27:45 +0000
-Subject: [PATCH v3 4/6] drm: bridge: dw-hdmi: Switch to V4L bus format and
- encodings
-In-Reply-To: <28fe7ecf-cf4a-568a-b853-0506c088884d@baylibre.com>
-References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
- <1488904944-14285-5-git-send-email-narmstrong@baylibre.com>
- <977cfb29-af7a-2e28-7a7f-396d9ccf3eb8@synopsys.com>
- <28fe7ecf-cf4a-568a-b853-0506c088884d@baylibre.com>
-Message-ID: <f73a3cee-3336-2562-696d-dd4e0e7ac680@synopsys.com>
+From: wsa@the-dreams.de (Wolfram Sang)
+Date: Thu, 9 Mar 2017 15:41:35 +0100
+Subject: [PATCH] i2c: meson: fix wrong variable usage in meson_i2c_put_data
+In-Reply-To: <7ecc4542-a6ca-f266-5c34-057b3f5a33bf@gmail.com>
+References: <7ecc4542-a6ca-f266-5c34-057b3f5a33bf@gmail.com>
+Message-ID: <20170309144135.axiy6e4bvoffnyrn@ninjato>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+On Tue, Mar 07, 2017 at 09:06:38PM +0100, Heiner Kallweit wrote:
+> Most likely a copy & paste error.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
+Applied to for-current, thanks!
 
-On 08-03-2017 12:12, Neil Armstrong wrote:
->
-> Hi Jose,
->
-> It seems here that we only have the RGB444<->YUV444 8bit tables, from the Amlogic
-> source I have the following for 10bit, 12bit and 16bit for itu601 :
->
-> static const u16 csc_coeff_rgb_out_eitu601_10b[3][4] = {
-> 	{ 0x2000, 0x6926, 0x74fd, 0x043b },
-> 	{ 0x2000, 0x2cdd, 0x0000, 0x7a65 },
-> 	{ 0x2000, 0x0000, 0x38b4, 0x78ea }
-> };
->
-> static const u16 csc_coeff_rgb_out_eitu601_12b_16b[3][4] = {
-> 	{ 0x2000, 0x6926, 0x74fd, 0x10ee },
-> 	{ 0x2000, 0x2cdd, 0x0000, 0x6992 },
-> 	{ 0x2000, 0x0000, 0x38b4, 0x63a6 }
-> };
-
-These two do not match anything I have here.
-
->
-> static const u16 csc_coeff_rgb_in_eitu601_10b[3][4] = {
-> 	{ 0x2591, 0x1322, 0x074b, 0x0000 },
-> 	{ 0x6535, 0x2000, 0x7acc, 0x0800 },
-> 	{ 0x6acd, 0x7534, 0x2000, 0x0800 }
-> };
-
-This is more or less correct, I have small offsets. Note that I
-even have offsets with the values that are in dw-hdmi driver,
-which can be caused because I'm seeing the latest document that
-contain these values. I guess they were updated.
-
->
-> static const u16 csc_coeff_rgb_in_eitu601_12b_16b[3][4] = {
-> 	{ 0x2591, 0x1322, 0x074b, 0x0000 },
-> 	{ 0x6535, 0x2000, 0x7acc, 0x2000 },
-> 	{ 0x6acd, 0x7534, 0x2000, 0x2000 }
-> };
-
-The same for this.
-
->
-> But I miss the itu709 values.
->
-> Could you confirm these values and maybe provide the itu709 values ?
-
-I will have to check if I can provide you the values. I will get
-back to you.
-
-Best regards,
-Jose Miguel Abreu
-
->
-> Thanks !
-> Neil
->
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 833 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170309/27a52d1e/attachment.sig>
