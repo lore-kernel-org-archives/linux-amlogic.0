@@ -1,225 +1,108 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 9 Mar 2017 20:47:03 +0100
-Subject: [PATCH 1/2] pinctrl: meson: gxl: add the missing PWM pin
- definitions
-In-Reply-To: <1488811357.2420.18.camel@baylibre.com>
-References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
- <20170304212318.27076-2-martin.blumenstingl@googlemail.com>
- <1488811357.2420.18.camel@baylibre.com>
-Message-ID: <CAFBinCDty8v80tLxHJPR+SHv32LX834dPJUruRNqr6angx3OOQ@mail.gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Thu, 9 Mar 2017 21:13:56 +0100
+Subject: [PATCH v2 03/10] i2c: meson: use i2c core for DT clock-frequency
+ parsing
+In-Reply-To: <03a32142-8787-b4e2-c895-02709cc5298f@baylibre.com>
+References: <f39c9314-4314-3d98-aef2-3bc3c815e63b@gmail.com>
+ <1b175225-9cb1-6c7c-3175-dcba8189fefe@gmail.com>
+ <03a32142-8787-b4e2-c895-02709cc5298f@baylibre.com>
+Message-ID: <0fdb72c8-1689-aad7-ff53-66a73a954dce@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Linus,
-
-On Mon, Mar 6, 2017 at 3:42 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Sat, 2017-03-04 at 22:23 +0100, Martin Blumenstingl wrote:
->> This adds support for the missing PWM pins on Meson GXL SoCs, namely:
->> - PWM_A
->> - PWM_B
->> - PWM_C
->> - PWM_F (GPIOX_7 and GPIOCLK_1 can be selected as output)
->> - PWM_AO_A (GPIOAO_3 and GPIOAO_8 can be selected as output)
+Am 09.03.2017 um 09:26 schrieb Neil Armstrong:
+> On 03/09/2017 07:39 AM, Heiner Kallweit wrote:
+>> We don't have to parse the DT manually to retrieve the bus frequency
+>> and we don't have to maintain an own default for the bus frequency.
+>> Let the i2c core do this for us.
 >>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.co
->> m>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 >> ---
->>  drivers/pinctrl/meson/pinctrl-meson-gxl.c | 64
->> +++++++++++++++++++++++++++++++
->>  1 file changed, 64 insertions(+)
+>> v2:
+>> - added Reviewed-by
+>> ---
+>>  drivers/i2c/busses/i2c-meson.c | 13 +++++--------
+>>  1 file changed, 5 insertions(+), 8 deletions(-)
 >>
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
->> b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
->> index 4ab94a85e306..91dfc498780b 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
->> @@ -195,8 +195,19 @@ static const unsigned int eth_txd1_pins[]
->> = { PIN(GPIOZ_11, EE_OFF) };
->>  static const unsigned int eth_txd2_pins[]    = { PIN(GPIOZ_12,
->> EE_OFF) };
->>  static const unsigned int eth_txd3_pins[]    = { PIN(GPIOZ_13,
->> EE_OFF) };
->>
->> +static const unsigned int pwm_a_pins[]               = {
->> PIN(GPIOX_6, EE_OFF) };
->> +
->> +static const unsigned int pwm_b_pins[]               = {
->> PIN(GPIODV_29, EE_OFF) };
->> +
->> +static const unsigned int pwm_c_pins[]               = {
->> PIN(GPIOZ_15, EE_OFF) };
->> +
->> +static const unsigned int pwm_d_pins[]               = {
->> PIN(GPIODV_28, EE_OFF) };
->> +
->>  static const unsigned int pwm_e_pins[]               = {
->> PIN(GPIOX_16, EE_OFF) };
->>
->> +static const unsigned int pwm_f_clk_pins[]   = { PIN(GPIOCLK_1,
->> EE_OFF) };
->> +static const unsigned int pwm_f_x_pins[]     = { PIN(GPIOX_7,
->> EE_OFF) };
->> +
->>  static const unsigned int hdmi_hpd_pins[]    = { PIN(GPIOH_0,
->> EE_OFF) };
->>  static const unsigned int hdmi_sda_pins[]    = { PIN(GPIOH_1,
->> EE_OFF) };
->>  static const unsigned int hdmi_scl_pins[]    = { PIN(GPIOH_2,
->> EE_OFF) };
->> @@ -225,6 +236,9 @@ static const unsigned int uart_rts_ao_b_pins[]
->> = { PIN(GPIOAO_3, 0) };
->>
->>  static const unsigned int remote_input_ao_pins[] = {PIN(GPIOAO_7, 0)
->> };
->>
->> +static const unsigned int pwm_ao_a_3_pins[]  = { PIN(GPIOAO_3,
->> 0) };
->> +static const unsigned int pwm_ao_a_8_pins[]  = { PIN(GPIOAO_8,
->> 0) };
->> +
->>  static const unsigned int pwm_ao_b_pins[]    = { PIN(GPIOAO_9,
->> 0) };
->>
->>  static struct meson_pmx_group meson_gxl_periphs_groups[] = {
->> @@ -350,7 +364,9 @@ static struct meson_pmx_group
->> meson_gxl_periphs_groups[] = {
->>       GROUP(uart_rts_a,       5,      16),
->>       GROUP(uart_tx_c,        5,      13),
->>       GROUP(uart_rx_c,        5,      12),
->> +     GROUP(pwm_a,            5,      25),
->>       GROUP(pwm_e,            5,      15),
->> +     GROUP(pwm_f_x,          5,      14),
->>
->>       /* Bank Z */
->>       GROUP(eth_mdio,         4,      22),
->> @@ -367,6 +383,7 @@ static struct meson_pmx_group
->> meson_gxl_periphs_groups[] = {
->>       GROUP(eth_txd1,         4,      12),
->>       GROUP(eth_txd2,         4,      11),
->>       GROUP(eth_txd3,         4,      10),
->> +     GROUP(pwm_c,            3,      20),
->>
->>       /* Bank H */
->>       GROUP(hdmi_hpd,         6,      31),
->> @@ -382,6 +399,8 @@ static struct meson_pmx_group
->> meson_gxl_periphs_groups[] = {
->>       GROUP(i2c_sda_b,        1,      12),
->>       GROUP(i2c_sck_c,        1,      11),
->>       GROUP(i2c_sda_c,        1,      10),
->> +     GROUP(pwm_b,            2,      11),
->> +     GROUP(pwm_d,            2,      12),
->>
->>       /* Bank BOOT */
->>       GROUP(emmc_nand_d07,    7,      31),
->> @@ -404,6 +423,9 @@ static struct meson_pmx_group
->> meson_gxl_periphs_groups[] = {
->>       GROUP(sdcard_d2,        6,      0),
->>       GROUP(sdcard_cmd,       6,      2),
->>       GROUP(sdcard_clk,       6,      3),
->> +
->> +     /* Bank CLK */
->> +     GROUP(pwm_f_clk,        8,      30),
+>> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
+>> index 50059d09..5e243efa 100644
+>> --- a/drivers/i2c/busses/i2c-meson.c
+>> +++ b/drivers/i2c/busses/i2c-meson.c
+>> @@ -38,7 +38,6 @@
+>>  #define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) << REG_CTRL_CLKDIV_SHIFT)
+>>  
+>>  #define I2C_TIMEOUT_MS		500
+>> -#define DEFAULT_FREQ		100000
+>>  
+>>  enum {
+>>  	TOKEN_END = 0,
+>> @@ -73,7 +72,7 @@ enum {
+>>   * @error:	Flag set when an error is received
+>>   * @lock:	To avoid race conditions between irq handler and xfer code
+>>   * @done:	Completion used to wait for transfer termination
+>> - * @frequency:	Operating frequency of I2C bus clock
+>> + * @timings:	Struct including the bus frequency
+>>   * @tokens:	Sequence of tokens to be written to the device
+>>   * @num_tokens:	Number of tokens
+>>   */
+>> @@ -92,7 +91,7 @@ struct meson_i2c {
+>>  
+>>  	spinlock_t		lock;
+>>  	struct completion	done;
+>> -	unsigned int		frequency;
+>> +	struct i2c_timings	timings;
+>>  	u32			tokens[2];
+>>  	int			num_tokens;
 >>  };
+>> @@ -136,12 +135,12 @@ static void meson_i2c_set_clk_div(struct meson_i2c *i2c)
+>>  	unsigned long clk_rate = clk_get_rate(i2c->clk);
+>>  	unsigned int div;
+>>  
+>> -	div = DIV_ROUND_UP(clk_rate, i2c->frequency * 4);
+>> +	div = DIV_ROUND_UP(clk_rate, i2c->timings.bus_freq_hz * 4);
+>>  	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
+>>  			   div << REG_CTRL_CLKDIV_SHIFT);
+>>  
+>>  	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n", __func__,
+>> -		clk_rate, i2c->frequency, div);
+>> +		clk_rate, i2c->timings.bus_freq_hz, div);
+>>  }
+>>  
+>>  static void meson_i2c_get_data(struct meson_i2c *i2c, char *buf, int len)
+>> @@ -396,9 +395,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
+>>  	if (!i2c)
+>>  		return -ENOMEM;
+>>  
+>> -	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency",
+>> -				 &i2c->frequency))
+>> -		i2c->frequency = DEFAULT_FREQ;
+>> +	i2c_parse_fw_timings(&pdev->dev, &i2c->timings, true);
+>>  
+>>  	i2c->dev = &pdev->dev;
+>>  	platform_set_drvdata(pdev, i2c);
 >>
->>  static struct meson_pmx_group meson_gxl_aobus_groups[] = {
->> @@ -428,6 +450,8 @@ static struct meson_pmx_group
->> meson_gxl_aobus_groups[] = {
->>       GROUP(uart_cts_ao_b,    0,      8),
->>       GROUP(uart_rts_ao_b,    0,      7),
->>       GROUP(remote_input_ao,  0,      0),
->> +     GROUP(pwm_ao_a_3,       0,      22),
->> +     GROUP(pwm_ao_a_8,       0,      17),
->>       GROUP(pwm_ao_b,         0,      3),
->>  };
->>
->> @@ -513,10 +537,34 @@ static const char * const eth_groups[] = {
->>       "eth_txd0", "eth_txd1", "eth_txd2", "eth_txd3",
->>  };
->>
->> +static const char * const pwm_a_groups[] = {
->> +     "pwm_a",
->> +};
->> +
->> +static const char * const pwm_b_groups[] = {
->> +     "pwm_b",
->> +};
->> +
->> +static const char * const pwm_c_groups[] = {
->> +     "pwm_c",
->> +};
->> +
->> +static const char * const pwm_d_groups[] = {
->> +     "pwm_d",
->> +};
->> +
->>  static const char * const pwm_e_groups[] = {
->>       "pwm_e",
->>  };
->>
->> +static const char * const pwm_f_clk_groups[] = {
->> +     "pwm_f_clk",
->> +};
->> +
->> +static const char * const pwm_f_x_groups[] = {
->> +     "pwm_f_x",
->> +};
->> +
->>  static const char * const hdmi_hpd_groups[] = {
->>       "hdmi_hpd",
->>  };
->> @@ -542,6 +590,14 @@ static const char * const
->> remote_input_ao_groups[] = {
->>       "remote_input_ao",
->>  };
->>
->> +static const char * const pwm_ao_a_3_groups[] = {
->> +     "pwm_ao_a_3",
->> +};
->> +
->> +static const char * const pwm_ao_a_8_groups[] = {
->> +     "pwm_ao_a_8",
->> +};
->> +
->>  static const char * const pwm_ao_b_groups[] = {
->>       "pwm_ao_b",
->>  };
->> @@ -559,7 +615,13 @@ static struct meson_pmx_func
->> meson_gxl_periphs_functions[] = {
->>       FUNCTION(i2c_b),
->>       FUNCTION(i2c_c),
->>       FUNCTION(eth),
->> +     FUNCTION(pwm_a),
->> +     FUNCTION(pwm_b),
->> +     FUNCTION(pwm_c),
->> +     FUNCTION(pwm_d),
->>       FUNCTION(pwm_e),
->> +     FUNCTION(pwm_f_clk),
->> +     FUNCTION(pwm_f_x),
->
-> I wonder if having function named "pwm_f_clk" really makes sense ?
-> Shouldn't it be just "pwm_f" ? This is real function, isn't it ?
-> The actual pin used will be provided in the dt. Here, I suppose we
-> could have this:
->
-> +static const char * const pwm_f_groups[] = {
-> +       "pwm_f_x", "pwm_f_clk",
-> +};
->
-> Has far as I can see, on meson arch, the function does not carry much
-> information anyway, except for prints.
->
-> To be clear, I'm not questioning this change in particular. It looks
-> good, and follows what has been done in the past on meson. I know we
-> have been this a lot already, but I'm questioning whether we should
-> continue to do so ?
->
-> I asking because I also have a lot case like this coming up on audio
-> for gxl and gxbb, where the same function can use different pins.
-could you please look into Jerome's question?
-personally I'm fine with either way, and changing my patch would be
-quite trivial. but I'd like to know what's "the way to go" before
-changing anything (and reverting that afterwards again).
+> 
+> Hi Heiner,
+> 
+> Please update the bindings in Documentation/devicetree/bindings/i2c/i2c-meson.txt
+> for these new optional attributes by adding :
+> 
+Hi Neil,
 
+not sure which new attributes you mean. i2c_parse_fw_timings parses additional
+attributes (apart from bus frequency), that right. But they are not used by
+the driver and therefore effectively aren't supported.
 
-Regards,
-Martin
+Heiner
+
+> ---><-----
+> Please also refer to i2c.txt in this directory for common i2c
+> controller binding usage.
+> ---><-----
+> 
+> With this additional patch :
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> 
+> Neil
+> 
