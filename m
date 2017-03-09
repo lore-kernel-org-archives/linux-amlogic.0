@@ -1,197 +1,101 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu,  9 Mar 2017 13:53:46 +0100
-Subject: [PATCH v3 2/3] clk: meson-gxbb: Add MALI clocks
-In-Reply-To: <1489064027-18004-1-git-send-email-narmstrong@baylibre.com>
-References: <1489064027-18004-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1489064027-18004-3-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 9 Mar 2017 14:13:42 +0100
+Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: enable USB Host Nodes
+In-Reply-To: <CANAwSgTUPpYvFWcZOf+j6K+1rDZJNUeu9K1fGAB8TC6TgzRXCg@mail.gmail.com>
+References: <1488918961-4666-1-git-send-email-linux.amoon@gmail.com>
+ <CANAwSgTUPpYvFWcZOf+j6K+1rDZJNUeu9K1fGAB8TC6TgzRXCg@mail.gmail.com>
+Message-ID: <0204bbde-c437-e11b-cb3b-d9f4b55a5810@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Mali is clocked by two identical clock paths behind a glitch free mux
-to safely change frequency while running.
+On 03/08/2017 06:22 PM, Anand Moon wrote:
+> Hi All,
+> 
+> On 8 March 2017 at 02:06, Anand Moon <linux.amoon@gmail.com> wrote:
+>> From: Anand Moon <linux.amoon@gmail.com>
+>>
+>> update the regulator supply nodes for usb host to
+>> enable usb host on odroid-c2
+>>
+>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>> ---
+>> root at odroid64:/usr/src/odroidxu3-4.y-devel# lsusb -t
+>> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+>>     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+>>         |__ Port 1: Dev 3, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M
+>>         |__ Port 1: Dev 3, If 1, Class=Human Interface Device, Driver=usbhid, 1.5M
+>>         |__ Port 2: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+>>         |__ Port 4: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 13 +++++++++++++
+>>  1 file changed, 13 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> index c59403a..304b676 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> @@ -64,6 +64,18 @@
+>>                 reg = <0x0 0x0 0x0 0x80000000>;
+>>         };
+>>
+>> +       usb_host_pwr: regulator-usb-pwrs {
+>> +               compatible = "regulator-fixed";
+>> +
+>> +               regulator-name = "USB_HOST_PWR";
+>> +
+>> +               regulator-min-microvolt = <5000000>;
+>> +               regulator-max-microvolt = <5000000>;
+>> +
+>> +               gpio = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+>> +               enable-active-high;
+>> +       };
+>> +
+>>         usb_otg_pwr: regulator-usb-pwrs {
+>>                 compatible = "regulator-fixed";
+>>
+>> @@ -184,6 +196,7 @@
+>>
+>>  &usb1_phy {
+>>         status = "okay";
+>> +       phy-supply = <&usb_host_pwr>;
+>>  };
+>>
+>>  &usb0 {
+>> --
+>> 2.7.4
+>>
+> 
+> Please ignore this patch, It not working.
+> I will try to submit a new patch.
+> 
+> Best Regards
+> -Anand Moon
+> 
 
-The two "mali_0" and "mali_1" clocks are composed of a mux, divider and gate.
-Expose these two clocks trees using generic clocks.
-Finally the glitch free mux is added as "mali" clock.
+Hi Anand,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/clk/meson/gxbb.c | 139 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 139 insertions(+)
+For this specific use case, the only way to manage this is to use the Work-In-Progress
+Power Sequence Library proposer by Peter Chen at :
+https://lkml.org/lkml/2016/11/13/315
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 5059c7b..d9f7fef 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -634,6 +634,131 @@
- 	},
- };
- 
-+/*
-+ * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
-+ * muxed by a glitch-free switch.
-+ */
-+
-+static u32 mux_table_mali_0_1[] = {0, 1, 2, 3, 4, 5, 6, 7};
-+static const char *gxbb_mali_0_1_parent_names[] = {
-+	"xtal", "gp0_pll", "mpll2", "mpll1", "fclk_div7",
-+	"fclk_div4", "fclk_div3", "fclk_div5"
-+};
-+
-+static struct clk_mux gxbb_mali_0_sel = {
-+	.reg = (void *)HHI_MALI_CLK_CNTL,
-+	.mask = 0x7,
-+	.shift = 9,
-+	.table = mux_table_mali_0_1,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mali_0_sel",
-+		.ops = &clk_mux_ops,
-+		/*
-+		 * bits 10:9 selects from 8 possible parents:
-+		 * xtal, gp0_pll, mpll2, mpll1, fclk_div7,
-+		 * fclk_div4, fclk_div3, fclk_div5
-+		 */
-+		.parent_names = gxbb_mali_0_1_parent_names,
-+		.num_parents = 8,
-+		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
-+	},
-+};
-+
-+static struct clk_divider gxbb_mali_0_div = {
-+	.reg = (void *)HHI_MALI_CLK_CNTL,
-+	.shift = 0,
-+	.width = 7,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mali_0_div",
-+		.ops = &clk_divider_ops,
-+		.parent_names = (const char *[]){ "mali_0_sel" },
-+		.num_parents = 1,
-+		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
-+	},
-+};
-+
-+static struct clk_gate gxbb_mali_0 = {
-+	.reg = (void *)HHI_MALI_CLK_CNTL,
-+	.bit_idx = 8,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mali_0",
-+		.ops = &clk_gate_ops,
-+		.parent_names = (const char *[]){ "mali_0_div" },
-+		.num_parents = 1,
-+		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
-+	},
-+};
-+
-+static struct clk_mux gxbb_mali_1_sel = {
-+	.reg = (void *)HHI_MALI_CLK_CNTL,
-+	.mask = 0x7,
-+	.shift = 25,
-+	.table = mux_table_mali_0_1,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mali_1_sel",
-+		.ops = &clk_mux_ops,
-+		/*
-+		 * bits 10:9 selects from 8 possible parents:
-+		 * xtal, gp0_pll, mpll2, mpll1, fclk_div7,
-+		 * fclk_div4, fclk_div3, fclk_div5
-+		 */
-+		.parent_names = gxbb_mali_0_1_parent_names,
-+		.num_parents = 8,
-+		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
-+	},
-+};
-+
-+static struct clk_divider gxbb_mali_1_div = {
-+	.reg = (void *)HHI_MALI_CLK_CNTL,
-+	.shift = 16,
-+	.width = 7,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mali_1_div",
-+		.ops = &clk_divider_ops,
-+		.parent_names = (const char *[]){ "mali_1_sel" },
-+		.num_parents = 1,
-+		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
-+	},
-+};
-+
-+static struct clk_gate gxbb_mali_1 = {
-+	.reg = (void *)HHI_MALI_CLK_CNTL,
-+	.bit_idx = 24,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mali_1",
-+		.ops = &clk_gate_ops,
-+		.parent_names = (const char *[]){ "mali_1_div" },
-+		.num_parents = 1,
-+		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
-+	},
-+};
-+
-+static u32 mux_table_mali[] = {0, 1};
-+static const char *gxbb_mali_parent_names[] = {
-+	"mali_0", "mali_1"
-+};
-+
-+static struct clk_mux gxbb_mali = {
-+	.reg = (void *)HHI_MALI_CLK_CNTL,
-+	.mask = 1,
-+	.shift = 31,
-+	.table = mux_table_mali,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mali",
-+		.ops = &clk_mux_ops,
-+		.parent_names = gxbb_mali_parent_names,
-+		.num_parents = 2,
-+		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
-+	},
-+};
-+
- /* Everything Else (EE) domain gates */
- static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
- static MESON_GATE(gxbb_dos, HHI_GCLK_MPEG0, 1);
-@@ -827,6 +952,13 @@
- 		[CLKID_SAR_ADC_CLK]	    = &gxbb_sar_adc_clk.hw,
- 		[CLKID_SAR_ADC_SEL]	    = &gxbb_sar_adc_clk_sel.hw,
- 		[CLKID_SAR_ADC_DIV]	    = &gxbb_sar_adc_clk_div.hw,
-+		[CLKID_MALI_0_SEL]	    = &gxbb_mali_0_sel.hw,
-+		[CLKID_MALI_0_DIV]	    = &gxbb_mali_0_div.hw,
-+		[CLKID_MALI_0]		    = &gxbb_mali_0.hw,
-+		[CLKID_MALI_1_SEL]	    = &gxbb_mali_1_sel.hw,
-+		[CLKID_MALI_1_DIV]	    = &gxbb_mali_1_div.hw,
-+		[CLKID_MALI_1]		    = &gxbb_mali_1.hw,
-+		[CLKID_MALI]		    = &gxbb_mali.hw,
- 	},
- 	.num = NR_CLKS,
- };
-@@ -930,16 +1062,23 @@
- 	&gxbb_emmc_b,
- 	&gxbb_emmc_c,
- 	&gxbb_sar_adc_clk,
-+	&gxbb_mali_0,
-+	&gxbb_mali_1,
- };
- 
- static struct clk_mux *const gxbb_clk_muxes[] = {
- 	&gxbb_mpeg_clk_sel,
- 	&gxbb_sar_adc_clk_sel,
-+	&gxbb_mali_0_sel,
-+	&gxbb_mali_1_sel,
-+	&gxbb_mali,
- };
- 
- static struct clk_divider *const gxbb_clk_dividers[] = {
- 	&gxbb_mpeg_clk_div,
- 	&gxbb_sar_adc_clk_div,
-+	&gxbb_mali_0_div,
-+	&gxbb_mali_1_div,
- };
- 
- static int gxbb_clkc_probe(struct platform_device *pdev)
--- 
-1.9.1
+Since this is the USB Hub reset link and has no direct link with either the USB controller
+or the USB PHY, and the USB Hus cannot be modeled (yet ?) in the DT.
+
+One intermediate, but crappy, solution would be to add a GPIO hog until the power
+sequence code has been merged, with a proper big fat warning in the dts file.
+
+You can find doc about the gpio-hog in :
+Documentation/devicetree/bindings/gpio/gpio.txt
+
+It should look like :
+
+usb-hub {
+	gpio-hog;
+	gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
+	output-high;
+	line-name = "usb-hub-reset";
+};
+
+in the gpio_ao controller node.
+
+Neil
