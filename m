@@ -1,216 +1,696 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Thu, 9 Mar 2017 13:57:48 +0530
-Subject: [PATCH 2/2] phy: meson: add USB2 PHY support for Meson GXL and GXM
-In-Reply-To: <20170304222231.14496-3-martin.blumenstingl@googlemail.com>
-References: <20170304222231.14496-1-martin.blumenstingl@googlemail.com>
- <20170304222231.14496-3-martin.blumenstingl@googlemail.com>
-Message-ID: <58C11204.902@ti.com>
+From: zajec5@gmail.com (=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?=)
+Date: Thu,  9 Mar 2017 10:47:10 +0100
+Subject: [PATCH] clocksource: add missing line break to error messages
+Message-ID: <20170309094710.31003-1-zajec5@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+From: Rafa? Mi?ecki <rafal@milecki.pl>
+
+Printing with pr_* functions requires adding line break manually.
+
+Signed-off-by: Rafa? Mi?ecki <rafal@milecki.pl>
+---
 Hi,
 
-On Sunday 05 March 2017 03:52 AM, Martin Blumenstingl wrote:
-> This adds a new driver for the USB2 PHYs found on Meson GXL and GXM SoCs
-> (both SoCs are using the same USB PHY register layout).
-> 
-> The USB2 PHY is a simple PHY which only has a few registers to configure
-> the mode (host/device) and a reset register (to enable/disable the PHY).
-> 
-> Unfortunately there are no datasheets available for any of these PHYs.
-> Both drivers were written by reading the reference drivers provided by
-> Amlogic and analyzing the registers on the kernel that was shipped on
-> the boards I have.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/phy/Kconfig              |  13 ++
->  drivers/phy/Makefile             |   1 +
->  drivers/phy/phy-meson-gxl-usb2.c | 263 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 277 insertions(+)
->  create mode 100644 drivers/phy/phy-meson-gxl-usb2.c
-> 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index e8eb7f225a88..7d64711a837f 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -486,4 +486,17 @@ config PHY_MESON8B_USB2
->  	  and GXBB SoCs.
->  	  If unsure, say N.
->  
-> +config PHY_MESON_GXL_USB
-> +	tristate "Meson GXL and GXM USB2 PHY drivers"
-> +	default ARCH_MESON
-> +	depends on OF && (ARCH_MESON || COMPILE_TEST)
-> +	depends on USB_SUPPORT
-> +	select USB_COMMON
-> +	select GENERIC_PHY
-> +	select REGMAP_MMIO
-> +	help
-> +	  Enable this to support the Meson USB2 PHYs found in Meson
-> +	  GXL and GXM SoCs.
-> +	  If unsure, say N.
-> +
->  endmenu
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index 65eb2f436a41..a3a2c7dd5c06 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -59,3 +59,4 @@ obj-$(CONFIG_PHY_CYGNUS_PCIE)		+= phy-bcm-cygnus-pcie.o
->  obj-$(CONFIG_ARCH_TEGRA) += tegra/
->  obj-$(CONFIG_PHY_NS2_PCIE)		+= phy-bcm-ns2-pcie.o
->  obj-$(CONFIG_PHY_MESON8B_USB2)		+= phy-meson8b-usb2.o
-> +obj-$(CONFIG_PHY_MESON_GXL_USB)		+= phy-meson-gxl-usb2.o
-> diff --git a/drivers/phy/phy-meson-gxl-usb2.c b/drivers/phy/phy-meson-gxl-usb2.c
-> new file mode 100644
-> index 000000000000..841a6d9722d4
-> --- /dev/null
-> +++ b/drivers/phy/phy-meson-gxl-usb2.c
-> @@ -0,0 +1,263 @@
-> +/*
-> + * Meson GXL and GXM USB2 PHY driver
-> + *
-> + * Copyright (C) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> + *
-> + * This program is free software; you can redistribute it and/or modify
-> + * it under the terms of the GNU General Public License version 2 as
-> + * published by the Free Software Foundation.
-> + *
-> + * You should have received a copy of the GNU General Public License
-> + * along with this program. If not, see <http://www.gnu.org/licenses/>.
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/usb/of.h>
-> +
-> +/* bits [31:27] are read-only */
-> +#define U2P_R0							0x0
-> +	#define U2P_R0_BYPASS_SEL				BIT(0)
-> +	#define U2P_R0_BYPASS_DM_EN				BIT(1)
-> +	#define U2P_R0_BYPASS_DP_EN				BIT(2)
-> +	#define U2P_R0_TXBITSTUFF_ENH				BIT(3)
-> +	#define U2P_R0_TXBITSTUFF_EN				BIT(4)
-> +	#define U2P_R0_DM_PULLDOWN				BIT(5)
-> +	#define U2P_R0_DP_PULLDOWN				BIT(6)
-> +	#define U2P_R0_DP_VBUS_VLD_EXT_SEL			BIT(7)
-> +	#define U2P_R0_DP_VBUS_VLD_EXT				BIT(8)
-> +	#define U2P_R0_ADP_PRB_EN				BIT(9)
-> +	#define U2P_R0_ADP_DISCHARGE				BIT(10)
-> +	#define U2P_R0_ADP_CHARGE				BIT(11)
-> +	#define U2P_R0_DRV_VBUS					BIT(12)
-> +	#define U2P_R0_ID_PULLUP				BIT(13)
-> +	#define U2P_R0_LOOPBACK_EN_B				BIT(14)
-> +	#define U2P_R0_OTG_DISABLE				BIT(15)
-> +	#define U2P_R0_COMMON_ONN				BIT(16)
-> +	#define U2P_R0_FSEL_MASK				GENMASK(19, 17)
-> +	#define U2P_R0_REF_CLK_SEL_MASK				GENMASK(21, 20)
-> +	#define U2P_R0_POWER_ON_RESET				BIT(22)
-> +	#define U2P_R0_V_ATE_TEST_EN_B_MASK			GENMASK(24, 23)
-> +	#define U2P_R0_ID_SET_ID_DQ				BIT(25)
-> +	#define U2P_R0_ATE_RESET				BIT(26)
-> +	#define U2P_R0_FSV_MINUS				BIT(27)
-> +	#define U2P_R0_FSV_PLUS					BIT(28)
-> +	#define U2P_R0_BYPASS_DM_DATA				BIT(29)
-> +	#define U2P_R0_BYPASS_DP_DATA				BIT(30)
-> +
-> +#define U2P_R1							0x4
-> +	#define U2P_R1_BURN_IN_TEST				BIT(0)
-> +	#define U2P_R1_ACA_ENABLE				BIT(1)
-> +	#define U2P_R1_DCD_ENABLE				BIT(2)
-> +	#define U2P_R1_VDAT_SRC_EN_B				BIT(3)
-> +	#define U2P_R1_VDAT_DET_EN_B				BIT(4)
-> +	#define U2P_R1_CHARGES_SEL				BIT(5)
-> +	#define U2P_R1_TX_PREEMP_PULSE_TUNE			BIT(6)
-> +	#define U2P_R1_TX_PREEMP_AMP_TUNE_MASK			GENMASK(8, 7)
-> +	#define U2P_R1_TX_RES_TUNE_MASK				GENMASK(10, 9)
-> +	#define U2P_R1_TX_RISE_TUNE_MASK			GENMASK(12, 11)
-> +	#define U2P_R1_TX_VREF_TUNE_MASK			GENMASK(16, 13)
-> +	#define U2P_R1_TX_FSLS_TUNE_MASK			GENMASK(20, 17)
-> +	#define U2P_R1_TX_HSXV_TUNE_MASK			GENMASK(22, 21)
-> +	#define U2P_R1_OTG_TUNE_MASK				GENMASK(25, 23)
-> +	#define U2P_R1_SQRX_TUNE_MASK				GENMASK(28, 26)
-> +	#define U2P_R1_COMP_DIS_TUNE_MASK			GENMASK(31, 29)
-> +
-> +/* bits [31:14] are read-only */
-> +#define U2P_R2							0x8
-> +	#define U2P_R2_DATA_IN_MASK				GENMASK(3, 0)
-> +	#define U2P_R2_DATA_IN_EN_MASK				GENMASK(7, 4)
-> +	#define U2P_R2_ADDR_MASK				GENMASK(11, 8)
-> +	#define U2P_R2_DATA_OUT_SEL				BIT(12)
-> +	#define U2P_R2_CLK					BIT(13)
-> +	#define U2P_R2_DATA_OUT_MASK				GENMASK(17, 14)
-> +	#define U2P_R2_ACA_PIN_RANGE_C				BIT(18)
-> +	#define U2P_R2_ACA_PIN_RANGE_B				BIT(19)
-> +	#define U2P_R2_ACA_PIN_RANGE_A				BIT(20)
-> +	#define U2P_R2_ACA_PIN_GND				BIT(21)
-> +	#define U2P_R2_ACA_PIN_FLOAT				BIT(22)
-> +	#define U2P_R2_CHARGE_DETECT				BIT(23)
-> +	#define U2P_R2_DEVICE_SESSION_VALID			BIT(24)
-> +	#define U2P_R2_ADP_PROBE				BIT(25)
-> +	#define U2P_R2_ADP_SENSE				BIT(26)
-> +	#define U2P_R2_SESSION_END				BIT(27)
-> +	#define U2P_R2_VBUS_VALID				BIT(28)
-> +	#define U2P_R2_B_VALID					BIT(29)
-> +	#define U2P_R2_A_VALID					BIT(30)
-> +	#define U2P_R2_ID_DIG					BIT(31)
-> +
-> +#define U2P_R3							0xc
-> +
-> +#define RESET_COMPLETE_TIME				500
-> +
-> +struct phy_meson_gxl_usb2_priv {
-> +	struct regmap		*regmap;
-> +	enum phy_mode		mode;
-> +	int			is_enabled;
-> +};
-> +
-> +static const struct regmap_config phy_meson_gxl_usb2_regmap_conf = {
-> +	.reg_bits = 8,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = U2P_R3,
-> +};
-> +
-> +static int phy_meson_gxl_usb2_set_mode(struct phy *phy, enum phy_mode mode)
-> +{
-> +	struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
-> +
-> +	switch (mode) {
-> +	case PHY_MODE_USB_HOST:
-> +	case PHY_MODE_USB_OTG:
-> +		regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DM_PULLDOWN,
-> +				   U2P_R0_DM_PULLDOWN);
-> +		regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DP_PULLDOWN,
-> +				   U2P_R0_DP_PULLDOWN);
-> +		regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_ID_PULLUP, 0);
-> +		break;
-> +
-> +	case PHY_MODE_USB_DEVICE:
-> +		regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DM_PULLDOWN,
-> +				   0);
-> +		regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DP_PULLDOWN,
-> +				   0);
-> +		regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_ID_PULLUP,
-> +				   U2P_R0_ID_PULLUP);
-> +		break;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (priv->is_enabled) {
+I think this change is so trivial it's not worth splitting per single
+driver. Are you OK with that?
+---
+ drivers/clocksource/arc_timer.c           | 14 +++++++-------
+ drivers/clocksource/arm_arch_timer.c      |  2 +-
+ drivers/clocksource/asm9260_timer.c       |  2 +-
+ drivers/clocksource/bcm2835_timer.c       |  6 +++---
+ drivers/clocksource/bcm_kona_timer.c      |  2 +-
+ drivers/clocksource/clksrc-probe.c        |  2 +-
+ drivers/clocksource/dw_apb_timer.c        |  2 +-
+ drivers/clocksource/meson6_timer.c        |  4 ++--
+ drivers/clocksource/mips-gic-timer.c      |  2 +-
+ drivers/clocksource/nomadik-mtu.c         |  8 ++++----
+ drivers/clocksource/pxa_timer.c           |  6 +++---
+ drivers/clocksource/samsung_pwm_timer.c   |  6 +++---
+ drivers/clocksource/sun4i_timer.c         | 10 +++++-----
+ drivers/clocksource/tegra20_timer.c       |  2 +-
+ drivers/clocksource/time-armada-370-xp.c  | 16 ++++++++--------
+ drivers/clocksource/time-efm32.c          |  2 +-
+ drivers/clocksource/time-orion.c          |  4 ++--
+ drivers/clocksource/timer-atmel-pit.c     |  2 +-
+ drivers/clocksource/timer-digicolor.c     |  6 +++---
+ drivers/clocksource/timer-integrator-ap.c |  4 ++--
+ drivers/clocksource/timer-nps.c           |  6 +++---
+ drivers/clocksource/timer-prima2.c        | 10 +++++-----
+ drivers/clocksource/timer-sp804.c         |  4 ++--
+ drivers/clocksource/timer-sun5i.c         |  6 +++---
+ drivers/clocksource/vf_pit_timer.c        |  2 +-
+ 25 files changed, 65 insertions(+), 65 deletions(-)
 
-Should set_mode be always called after power_on? or reset of phy should be done
-if set_mode is called after power_on?
-
-Either case I think it's better to move this reset in phy reset ops and invoke
-it from this phys users.
-
-Thanks
-Kishon
+diff --git a/drivers/clocksource/arc_timer.c b/drivers/clocksource/arc_timer.c
+index 7517f959cba7..21649733827d 100644
+--- a/drivers/clocksource/arc_timer.c
++++ b/drivers/clocksource/arc_timer.c
+@@ -37,7 +37,7 @@ static int noinline arc_get_timer_clk(struct device_node *node)
+ 
+ 	clk = of_clk_get(node, 0);
+ 	if (IS_ERR(clk)) {
+-		pr_err("timer missing clk");
++		pr_err("timer missing clk\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+@@ -89,7 +89,7 @@ static int __init arc_cs_setup_gfrc(struct device_node *node)
+ 
+ 	READ_BCR(ARC_REG_MCIP_BCR, mp);
+ 	if (!mp.gfrc) {
+-		pr_warn("Global-64-bit-Ctr clocksource not detected");
++		pr_warn("Global-64-bit-Ctr clocksource not detected\n");
+ 		return -ENXIO;
+ 	}
+ 
+@@ -140,13 +140,13 @@ static int __init arc_cs_setup_rtc(struct device_node *node)
+ 
+ 	READ_BCR(ARC_REG_TIMERS_BCR, timer);
+ 	if (!timer.rtc) {
+-		pr_warn("Local-64-bit-Ctr clocksource not detected");
++		pr_warn("Local-64-bit-Ctr clocksource not detected\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	/* Local to CPU hence not usable in SMP */
+ 	if (IS_ENABLED(CONFIG_SMP)) {
+-		pr_warn("Local-64-bit-Ctr not usable in SMP");
++		pr_warn("Local-64-bit-Ctr not usable in SMP\n");
+ 		return -EINVAL;
+ 	}
+ 
+@@ -290,13 +290,13 @@ static int __init arc_clockevent_setup(struct device_node *node)
+ 
+ 	arc_timer_irq = irq_of_parse_and_map(node, 0);
+ 	if (arc_timer_irq <= 0) {
+-		pr_err("clockevent: missing irq");
++		pr_err("clockevent: missing irq\n");
+ 		return -EINVAL;
+ 	}
+ 
+ 	ret = arc_get_timer_clk(node);
+ 	if (ret) {
+-		pr_err("clockevent: missing clk");
++		pr_err("clockevent: missing clk\n");
+ 		return ret;
+ 	}
+ 
+@@ -313,7 +313,7 @@ static int __init arc_clockevent_setup(struct device_node *node)
+ 				arc_timer_starting_cpu,
+ 				arc_timer_dying_cpu);
+ 	if (ret) {
+-		pr_err("Failed to setup hotplug state");
++		pr_err("Failed to setup hotplug state\n");
+ 		return ret;
+ 	}
+ 	return 0;
+diff --git a/drivers/clocksource/arm_arch_timer.c b/drivers/clocksource/arm_arch_timer.c
+index 7a8a4117f123..56c3e25f4e1a 100644
+--- a/drivers/clocksource/arm_arch_timer.c
++++ b/drivers/clocksource/arm_arch_timer.c
+@@ -1055,7 +1055,7 @@ static int __init arch_timer_mem_init(struct device_node *np)
+ 
+ 	ret = -EINVAL;
+ 	if (!irq) {
+-		pr_err("arch_timer: Frame missing %s irq",
++		pr_err("arch_timer: Frame missing %s irq\n",
+ 		       arch_timer_mem_use_virtual ? "virt" : "phys");
+ 		goto out;
+ 	}
+diff --git a/drivers/clocksource/asm9260_timer.c b/drivers/clocksource/asm9260_timer.c
+index 1ba871b7fe11..c6780830b8ac 100644
+--- a/drivers/clocksource/asm9260_timer.c
++++ b/drivers/clocksource/asm9260_timer.c
+@@ -193,7 +193,7 @@ static int __init asm9260_timer_init(struct device_node *np)
+ 
+ 	priv.base = of_io_request_and_map(np, 0, np->name);
+ 	if (IS_ERR(priv.base)) {
+-		pr_err("%s: unable to map resource", np->name);
++		pr_err("%s: unable to map resource\n", np->name);
+ 		return PTR_ERR(priv.base);
+ 	}
+ 
+diff --git a/drivers/clocksource/bcm2835_timer.c b/drivers/clocksource/bcm2835_timer.c
+index f2f29d2be1cf..dce44307469e 100644
+--- a/drivers/clocksource/bcm2835_timer.c
++++ b/drivers/clocksource/bcm2835_timer.c
+@@ -89,13 +89,13 @@ static int __init bcm2835_timer_init(struct device_node *node)
+ 
+ 	base = of_iomap(node, 0);
+ 	if (!base) {
+-		pr_err("Can't remap registers");
++		pr_err("Can't remap registers\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	ret = of_property_read_u32(node, "clock-frequency", &freq);
+ 	if (ret) {
+-		pr_err("Can't read clock-frequency");
++		pr_err("Can't read clock-frequency\n");
+ 		goto err_iounmap;
+ 	}
+ 
+@@ -107,7 +107,7 @@ static int __init bcm2835_timer_init(struct device_node *node)
+ 
+ 	irq = irq_of_parse_and_map(node, DEFAULT_TIMER);
+ 	if (irq <= 0) {
+-		pr_err("Can't parse IRQ");
++		pr_err("Can't parse IRQ\n");
+ 		ret = -EINVAL;
+ 		goto err_iounmap;
+ 	}
+diff --git a/drivers/clocksource/bcm_kona_timer.c b/drivers/clocksource/bcm_kona_timer.c
+index 92f6e4deee74..fda5e1476638 100644
+--- a/drivers/clocksource/bcm_kona_timer.c
++++ b/drivers/clocksource/bcm_kona_timer.c
+@@ -179,7 +179,7 @@ static int __init kona_timer_init(struct device_node *node)
+ 	} else if (!of_property_read_u32(node, "clock-frequency", &freq)) {
+ 		arch_timer_rate = freq;
+ 	} else {
+-		pr_err("Kona Timer v1 unable to determine clock-frequency");
++		pr_err("Kona Timer v1 unable to determine clock-frequency\n");
+ 		return -EINVAL;
+ 	}
+ 
+diff --git a/drivers/clocksource/clksrc-probe.c b/drivers/clocksource/clksrc-probe.c
+index bc62be97f0a8..ac701ffb8d59 100644
+--- a/drivers/clocksource/clksrc-probe.c
++++ b/drivers/clocksource/clksrc-probe.c
+@@ -40,7 +40,7 @@ void __init clocksource_probe(void)
+ 
+ 		ret = init_func_ret(np);
+ 		if (ret) {
+-			pr_err("Failed to initialize '%s': %d",
++			pr_err("Failed to initialize '%s': %d\n",
+ 			       of_node_full_name(np), ret);
+ 			continue;
+ 		}
+diff --git a/drivers/clocksource/dw_apb_timer.c b/drivers/clocksource/dw_apb_timer.c
+index 63e4f5519577..9e937e23b63e 100644
+--- a/drivers/clocksource/dw_apb_timer.c
++++ b/drivers/clocksource/dw_apb_timer.c
+@@ -101,7 +101,7 @@ static irqreturn_t dw_apb_clockevent_irq(int irq, void *data)
+ 	struct dw_apb_clock_event_device *dw_ced = ced_to_dw_apb_ced(evt);
+ 
+ 	if (!evt->event_handler) {
+-		pr_info("Spurious APBT timer interrupt %d", irq);
++		pr_info("Spurious APBT timer interrupt %d\n", irq);
+ 		return IRQ_NONE;
+ 	}
+ 
+diff --git a/drivers/clocksource/meson6_timer.c b/drivers/clocksource/meson6_timer.c
+index 52af591a9fc7..39d21f693a33 100644
+--- a/drivers/clocksource/meson6_timer.c
++++ b/drivers/clocksource/meson6_timer.c
+@@ -133,13 +133,13 @@ static int __init meson6_timer_init(struct device_node *node)
+ 
+ 	timer_base = of_io_request_and_map(node, 0, "meson6-timer");
+ 	if (IS_ERR(timer_base)) {
+-		pr_err("Can't map registers");
++		pr_err("Can't map registers\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	irq = irq_of_parse_and_map(node, 0);
+ 	if (irq <= 0) {
+-		pr_err("Can't parse IRQ");
++		pr_err("Can't parse IRQ\n");
+ 		return -EINVAL;
+ 	}
+ 
+diff --git a/drivers/clocksource/mips-gic-timer.c b/drivers/clocksource/mips-gic-timer.c
+index d9ef7a61e093..b6ad9c0a7c55 100644
+--- a/drivers/clocksource/mips-gic-timer.c
++++ b/drivers/clocksource/mips-gic-timer.c
+@@ -174,7 +174,7 @@ static int __init gic_clocksource_of_init(struct device_node *node)
+ 
+ 	if (!gic_present || !node->parent ||
+ 	    !of_device_is_compatible(node->parent, "mti,gic")) {
+-		pr_warn("No DT definition for the mips gic driver");
++		pr_warn("No DT definition for the mips gic driver\n");
+ 		return -ENXIO;
+ 	}
+ 
+diff --git a/drivers/clocksource/nomadik-mtu.c b/drivers/clocksource/nomadik-mtu.c
+index 3c124d1ca600..7d44de304f37 100644
+--- a/drivers/clocksource/nomadik-mtu.c
++++ b/drivers/clocksource/nomadik-mtu.c
+@@ -260,25 +260,25 @@ static int __init nmdk_timer_of_init(struct device_node *node)
+ 
+ 	base = of_iomap(node, 0);
+ 	if (!base) {
+-		pr_err("Can't remap registers");
++		pr_err("Can't remap registers\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	pclk = of_clk_get_by_name(node, "apb_pclk");
+ 	if (IS_ERR(pclk)) {
+-		pr_err("could not get apb_pclk");
++		pr_err("could not get apb_pclk\n");
+ 		return PTR_ERR(pclk);
+ 	}
+ 
+ 	clk = of_clk_get_by_name(node, "timclk");
+ 	if (IS_ERR(clk)) {
+-		pr_err("could not get timclk");
++		pr_err("could not get timclk\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+ 	irq = irq_of_parse_and_map(node, 0);
+ 	if (irq <= 0) {
+-		pr_err("Can't parse IRQ");
++		pr_err("Can't parse IRQ\n");
+ 		return -EINVAL;
+ 	}
+ 
+diff --git a/drivers/clocksource/pxa_timer.c b/drivers/clocksource/pxa_timer.c
+index 1c24de215c14..a10fa667325f 100644
+--- a/drivers/clocksource/pxa_timer.c
++++ b/drivers/clocksource/pxa_timer.c
+@@ -166,14 +166,14 @@ static int __init pxa_timer_common_init(int irq, unsigned long clock_tick_rate)
+ 
+ 	ret = setup_irq(irq, &pxa_ost0_irq);
+ 	if (ret) {
+-		pr_err("Failed to setup irq");
++		pr_err("Failed to setup irq\n");
+ 		return ret;
+ 	}
+ 
+ 	ret = clocksource_mmio_init(timer_base + OSCR, "oscr0", clock_tick_rate, 200,
+ 				    32, clocksource_mmio_readl_up);
+ 	if (ret) {
+-		pr_err("Failed to init clocksource");
++		pr_err("Failed to init clocksource\n");
+ 		return ret;
+ 	}
+ 
+@@ -203,7 +203,7 @@ static int __init pxa_timer_dt_init(struct device_node *np)
+ 
+ 	ret = clk_prepare_enable(clk);
+ 	if (ret) {
+-		pr_crit("Failed to prepare clock");
++		pr_crit("Failed to prepare clock\n");
+ 		return ret;
+ 	}
+ 
+diff --git a/drivers/clocksource/samsung_pwm_timer.c b/drivers/clocksource/samsung_pwm_timer.c
+index 0093ece661fe..a68e6538c809 100644
+--- a/drivers/clocksource/samsung_pwm_timer.c
++++ b/drivers/clocksource/samsung_pwm_timer.c
+@@ -385,7 +385,7 @@ static int __init _samsung_pwm_clocksource_init(void)
+ 	mask = ~pwm.variant.output_mask & ((1 << SAMSUNG_PWM_NUM) - 1);
+ 	channel = fls(mask) - 1;
+ 	if (channel < 0) {
+-		pr_crit("failed to find PWM channel for clocksource");
++		pr_crit("failed to find PWM channel for clocksource\n");
+ 		return -EINVAL;
+ 	}
+ 	pwm.source_id = channel;
+@@ -393,7 +393,7 @@ static int __init _samsung_pwm_clocksource_init(void)
+ 	mask &= ~(1 << channel);
+ 	channel = fls(mask) - 1;
+ 	if (channel < 0) {
+-		pr_crit("failed to find PWM channel for clock event");
++		pr_crit("failed to find PWM channel for clock event\n");
+ 		return -EINVAL;
+ 	}
+ 	pwm.event_id = channel;
+@@ -448,7 +448,7 @@ static int __init samsung_pwm_alloc(struct device_node *np,
+ 
+ 	pwm.timerclk = of_clk_get_by_name(np, "timers");
+ 	if (IS_ERR(pwm.timerclk)) {
+-		pr_crit("failed to get timers clock for timer");
++		pr_crit("failed to get timers clock for timer\n");
+ 		return PTR_ERR(pwm.timerclk);
+ 	}
+ 
+diff --git a/drivers/clocksource/sun4i_timer.c b/drivers/clocksource/sun4i_timer.c
+index c83452cacb41..4452d5c8f304 100644
+--- a/drivers/clocksource/sun4i_timer.c
++++ b/drivers/clocksource/sun4i_timer.c
+@@ -159,25 +159,25 @@ static int __init sun4i_timer_init(struct device_node *node)
+ 
+ 	timer_base = of_iomap(node, 0);
+ 	if (!timer_base) {
+-		pr_crit("Can't map registers");
++		pr_crit("Can't map registers\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	irq = irq_of_parse_and_map(node, 0);
+ 	if (irq <= 0) {
+-		pr_crit("Can't parse IRQ");
++		pr_crit("Can't parse IRQ\n");
+ 		return -EINVAL;
+ 	}
+ 
+ 	clk = of_clk_get(node, 0);
+ 	if (IS_ERR(clk)) {
+-		pr_crit("Can't get timer clock");
++		pr_crit("Can't get timer clock\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+ 	ret = clk_prepare_enable(clk);
+ 	if (ret) {
+-		pr_err("Failed to prepare clock");
++		pr_err("Failed to prepare clock\n");
+ 		return ret;
+ 	}
+ 
+@@ -200,7 +200,7 @@ static int __init sun4i_timer_init(struct device_node *node)
+ 	ret = clocksource_mmio_init(timer_base + TIMER_CNTVAL_REG(1), node->name,
+ 				    rate, 350, 32, clocksource_mmio_readl_down);
+ 	if (ret) {
+-		pr_err("Failed to register clocksource");
++		pr_err("Failed to register clocksource\n");
+ 		return ret;
+ 	}
+ 
+diff --git a/drivers/clocksource/tegra20_timer.c b/drivers/clocksource/tegra20_timer.c
+index f960891aa04e..b9990b9c98c5 100644
+--- a/drivers/clocksource/tegra20_timer.c
++++ b/drivers/clocksource/tegra20_timer.c
+@@ -245,7 +245,7 @@ static int __init tegra20_init_rtc(struct device_node *np)
+ 
+ 	rtc_base = of_iomap(np, 0);
+ 	if (!rtc_base) {
+-		pr_err("Can't map RTC registers");
++		pr_err("Can't map RTC registers\n");
+ 		return -ENXIO;
+ 	}
+ 
+diff --git a/drivers/clocksource/time-armada-370-xp.c b/drivers/clocksource/time-armada-370-xp.c
+index 4440aefc59cd..aea4380129ea 100644
+--- a/drivers/clocksource/time-armada-370-xp.c
++++ b/drivers/clocksource/time-armada-370-xp.c
+@@ -247,13 +247,13 @@ static int __init armada_370_xp_timer_common_init(struct device_node *np)
+ 
+ 	timer_base = of_iomap(np, 0);
+ 	if (!timer_base) {
+-		pr_err("Failed to iomap");
++		pr_err("Failed to iomap\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	local_base = of_iomap(np, 1);
+ 	if (!local_base) {
+-		pr_err("Failed to iomap");
++		pr_err("Failed to iomap\n");
+ 		return -ENXIO;
+ 	}
+ 
+@@ -298,7 +298,7 @@ static int __init armada_370_xp_timer_common_init(struct device_node *np)
+ 				    "armada_370_xp_clocksource",
+ 				    timer_clk, 300, 32, clocksource_mmio_readl_down);
+ 	if (res) {
+-		pr_err("Failed to initialize clocksource mmio");
++		pr_err("Failed to initialize clocksource mmio\n");
+ 		return res;
+ 	}
+ 
+@@ -315,7 +315,7 @@ static int __init armada_370_xp_timer_common_init(struct device_node *np)
+ 				armada_370_xp_evt);
+ 	/* Immediately configure the timer on the boot CPU */
+ 	if (res) {
+-		pr_err("Failed to request percpu irq");
++		pr_err("Failed to request percpu irq\n");
+ 		return res;
+ 	}
+ 
+@@ -324,7 +324,7 @@ static int __init armada_370_xp_timer_common_init(struct device_node *np)
+ 				armada_370_xp_timer_starting_cpu,
+ 				armada_370_xp_timer_dying_cpu);
+ 	if (res) {
+-		pr_err("Failed to setup hotplug state and timer");
++		pr_err("Failed to setup hotplug state and timer\n");
+ 		return res;
+ 	}
+ 
+@@ -339,7 +339,7 @@ static int __init armada_xp_timer_init(struct device_node *np)
+ 	int ret;
+ 
+ 	if (IS_ERR(clk)) {
+-		pr_err("Failed to get clock");
++		pr_err("Failed to get clock\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+@@ -375,7 +375,7 @@ static int __init armada_375_timer_init(struct device_node *np)
+ 
+ 		/* Must have at least a clock */
+ 		if (IS_ERR(clk)) {
+-			pr_err("Failed to get clock");
++			pr_err("Failed to get clock\n");
+ 			return PTR_ERR(clk);
+ 		}
+ 
+@@ -399,7 +399,7 @@ static int __init armada_370_timer_init(struct device_node *np)
+ 
+ 	clk = of_clk_get(np, 0);
+ 	if (IS_ERR(clk)) {
+-		pr_err("Failed to get clock");
++		pr_err("Failed to get clock\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+diff --git a/drivers/clocksource/time-efm32.c b/drivers/clocksource/time-efm32.c
+index 5ac344b383e1..ce0f97b4e5db 100644
+--- a/drivers/clocksource/time-efm32.c
++++ b/drivers/clocksource/time-efm32.c
+@@ -235,7 +235,7 @@ static int __init efm32_clockevent_init(struct device_node *np)
+ 
+ 	ret = setup_irq(irq, &efm32_clock_event_irq);
+ 	if (ret) {
+-		pr_err("Failed setup irq");
++		pr_err("Failed setup irq\n");
+ 		goto err_setup_irq;
+ 	}
+ 
+diff --git a/drivers/clocksource/time-orion.c b/drivers/clocksource/time-orion.c
+index a28f496e97cf..b23b34239eb4 100644
+--- a/drivers/clocksource/time-orion.c
++++ b/drivers/clocksource/time-orion.c
+@@ -124,7 +124,7 @@ static int __init orion_timer_init(struct device_node *np)
+ 
+ 	ret = clk_prepare_enable(clk);
+ 	if (ret) {
+-		pr_err("Failed to prepare clock");
++		pr_err("Failed to prepare clock\n");
+ 		return ret;
+ 	}
+ 
+@@ -146,7 +146,7 @@ static int __init orion_timer_init(struct device_node *np)
+ 				    clk_get_rate(clk), 300, 32,
+ 				    clocksource_mmio_readl_down);
+ 	if (ret) {
+-		pr_err("Failed to initialize mmio timer");
++		pr_err("Failed to initialize mmio timer\n");
+ 		return ret;
+ 	}
+ 
+diff --git a/drivers/clocksource/timer-atmel-pit.c b/drivers/clocksource/timer-atmel-pit.c
+index c0b5df3167a0..cc112351dc70 100644
+--- a/drivers/clocksource/timer-atmel-pit.c
++++ b/drivers/clocksource/timer-atmel-pit.c
+@@ -226,7 +226,7 @@ static int __init at91sam926x_pit_dt_init(struct device_node *node)
+ 	
+ 	ret = clocksource_register_hz(&data->clksrc, pit_rate);
+ 	if (ret) {
+-		pr_err("Failed to register clocksource");
++		pr_err("Failed to register clocksource\n");
+ 		return ret;
+ 	}
+ 
+diff --git a/drivers/clocksource/timer-digicolor.c b/drivers/clocksource/timer-digicolor.c
+index e9f50d289362..94a161eb9cce 100644
+--- a/drivers/clocksource/timer-digicolor.c
++++ b/drivers/clocksource/timer-digicolor.c
+@@ -161,19 +161,19 @@ static int __init digicolor_timer_init(struct device_node *node)
+ 	 */
+ 	dc_timer_dev.base = of_iomap(node, 0);
+ 	if (!dc_timer_dev.base) {
+-		pr_err("Can't map registers");
++		pr_err("Can't map registers\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	irq = irq_of_parse_and_map(node, dc_timer_dev.timer_id);
+ 	if (irq <= 0) {
+-		pr_err("Can't parse IRQ");
++		pr_err("Can't parse IRQ\n");
+ 		return -EINVAL;
+ 	}
+ 
+ 	clk = of_clk_get(node, 0);
+ 	if (IS_ERR(clk)) {
+-		pr_err("Can't get timer clock");
++		pr_err("Can't get timer clock\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 	clk_prepare_enable(clk);
+diff --git a/drivers/clocksource/timer-integrator-ap.c b/drivers/clocksource/timer-integrator-ap.c
+index df6e672afc04..04ad3066e190 100644
+--- a/drivers/clocksource/timer-integrator-ap.c
++++ b/drivers/clocksource/timer-integrator-ap.c
+@@ -200,7 +200,7 @@ static int __init integrator_ap_timer_init_of(struct device_node *node)
+ 	err = of_property_read_string(of_aliases,
+ 				"arm,timer-primary", &path);
+ 	if (err) {
+-		pr_warn("Failed to read property");
++		pr_warn("Failed to read property\n");
+ 		return err;
+ 	}
+ 
+@@ -209,7 +209,7 @@ static int __init integrator_ap_timer_init_of(struct device_node *node)
+ 	err = of_property_read_string(of_aliases,
+ 				"arm,timer-secondary", &path);
+ 	if (err) {
+-		pr_warn("Failed to read property");		
++		pr_warn("Failed to read property\n");
+ 		return err;
+ 	}
+ 
+diff --git a/drivers/clocksource/timer-nps.c b/drivers/clocksource/timer-nps.c
+index da1f7986e477..e74ea1722ad3 100644
+--- a/drivers/clocksource/timer-nps.c
++++ b/drivers/clocksource/timer-nps.c
+@@ -55,7 +55,7 @@ static int __init nps_get_timer_clk(struct device_node *node,
+ 	*clk = of_clk_get(node, 0);
+ 	ret = PTR_ERR_OR_ZERO(*clk);
+ 	if (ret) {
+-		pr_err("timer missing clk");
++		pr_err("timer missing clk\n");
+ 		return ret;
+ 	}
+ 
+@@ -247,7 +247,7 @@ static int __init nps_setup_clockevent(struct device_node *node)
+ 
+ 	nps_timer0_irq = irq_of_parse_and_map(node, 0);
+ 	if (nps_timer0_irq <= 0) {
+-		pr_err("clockevent: missing irq");
++		pr_err("clockevent: missing irq\n");
+ 		return -EINVAL;
+ 	}
+ 
+@@ -270,7 +270,7 @@ static int __init nps_setup_clockevent(struct device_node *node)
+ 				nps_timer_starting_cpu,
+ 				nps_timer_dying_cpu);
+ 	if (ret) {
+-		pr_err("Failed to setup hotplug state");
++		pr_err("Failed to setup hotplug state\n");
+ 		clk_disable_unprepare(clk);
+ 		free_percpu_irq(nps_timer0_irq, &nps_clockevent_device);
+ 		return ret;
+diff --git a/drivers/clocksource/timer-prima2.c b/drivers/clocksource/timer-prima2.c
+index bfa981ac1eaf..b4122ed1accb 100644
+--- a/drivers/clocksource/timer-prima2.c
++++ b/drivers/clocksource/timer-prima2.c
+@@ -196,20 +196,20 @@ static int __init sirfsoc_prima2_timer_init(struct device_node *np)
+ 
+ 	clk = of_clk_get(np, 0);
+ 	if (IS_ERR(clk)) {
+-		pr_err("Failed to get clock");
++		pr_err("Failed to get clock\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+ 	ret = clk_prepare_enable(clk);
+ 	if (ret) {
+-		pr_err("Failed to enable clock");
++		pr_err("Failed to enable clock\n");
+ 		return ret;
+ 	}
+ 
+ 	rate = clk_get_rate(clk);
+ 
+ 	if (rate < PRIMA2_CLOCK_FREQ || rate % PRIMA2_CLOCK_FREQ) {
+-		pr_err("Invalid clock rate");
++		pr_err("Invalid clock rate\n");
+ 		return -EINVAL;
+ 	}
+ 
+@@ -229,7 +229,7 @@ static int __init sirfsoc_prima2_timer_init(struct device_node *np)
+ 
+ 	ret = clocksource_register_hz(&sirfsoc_clocksource, PRIMA2_CLOCK_FREQ);
+ 	if (ret) {
+-		pr_err("Failed to register clocksource");
++		pr_err("Failed to register clocksource\n");
+ 		return ret;
+ 	}
+ 
+@@ -237,7 +237,7 @@ static int __init sirfsoc_prima2_timer_init(struct device_node *np)
+ 
+ 	ret = setup_irq(sirfsoc_timer_irq.irq, &sirfsoc_timer_irq);
+ 	if (ret) {
+-		pr_err("Failed to setup irq");
++		pr_err("Failed to setup irq\n");
+ 		return ret;
+ 	}
+ 
+diff --git a/drivers/clocksource/timer-sp804.c b/drivers/clocksource/timer-sp804.c
+index d07863388e05..2d575a8c0939 100644
+--- a/drivers/clocksource/timer-sp804.c
++++ b/drivers/clocksource/timer-sp804.c
+@@ -299,13 +299,13 @@ static int __init integrator_cp_of_init(struct device_node *np)
+ 
+ 	base = of_iomap(np, 0);
+ 	if (!base) {
+-		pr_err("Failed to iomap");
++		pr_err("Failed to iomap\n");
+ 		return -ENXIO;
+ 	}
+ 
+ 	clk = of_clk_get(np, 0);
+ 	if (IS_ERR(clk)) {
+-		pr_err("Failed to get clock");
++		pr_err("Failed to get clock\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+diff --git a/drivers/clocksource/timer-sun5i.c b/drivers/clocksource/timer-sun5i.c
+index a3e662b15964..2e9c830ae1cd 100644
+--- a/drivers/clocksource/timer-sun5i.c
++++ b/drivers/clocksource/timer-sun5i.c
+@@ -332,19 +332,19 @@ static int __init sun5i_timer_init(struct device_node *node)
+ 
+ 	timer_base = of_io_request_and_map(node, 0, of_node_full_name(node));
+ 	if (IS_ERR(timer_base)) {
+-		pr_err("Can't map registers");
++		pr_err("Can't map registers\n");
+ 		return PTR_ERR(timer_base);;
+ 	}
+ 
+ 	irq = irq_of_parse_and_map(node, 0);
+ 	if (irq <= 0) {
+-		pr_err("Can't parse IRQ");
++		pr_err("Can't parse IRQ\n");
+ 		return -EINVAL;
+ 	}
+ 
+ 	clk = of_clk_get(node, 0);
+ 	if (IS_ERR(clk)) {
+-		pr_err("Can't get timer clock");
++		pr_err("Can't get timer clock\n");
+ 		return PTR_ERR(clk);
+ 	}
+ 
+diff --git a/drivers/clocksource/vf_pit_timer.c b/drivers/clocksource/vf_pit_timer.c
+index 55d8d8402d90..e0849e20a307 100644
+--- a/drivers/clocksource/vf_pit_timer.c
++++ b/drivers/clocksource/vf_pit_timer.c
+@@ -165,7 +165,7 @@ static int __init pit_timer_init(struct device_node *np)
+ 
+ 	timer_base = of_iomap(np, 0);
+ 	if (!timer_base) {
+-		pr_err("Failed to iomap");
++		pr_err("Failed to iomap\n");
+ 		return -ENXIO;
+ 	}
+ 
+-- 
+2.11.0
