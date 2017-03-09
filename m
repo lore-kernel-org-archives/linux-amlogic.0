@@ -1,61 +1,33 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  9 Mar 2017 11:41:45 +0100
-Subject: [PATCH v2 0/9] clk: meson: update clock controller for audio support
-Message-ID: <20170309104154.28295-1-jbrunet@baylibre.com>
+Date: Thu,  9 Mar 2017 11:41:46 +0100
+Subject: [PATCH v2 1/9] clk: meson: fix SET_PARM macro
+In-Reply-To: <20170309104154.28295-1-jbrunet@baylibre.com>
+References: <20170309104154.28295-1-jbrunet@baylibre.com>
+Message-ID: <20170309104154.28295-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset is a first round of update to the meson clock controllers
-to bring audio support. The patchset is based on clk-next. It could be
-rebased on amlogic tree later on, if you prefer the patches to go through
-Kevin's tree.
+parameter val is not enclosed in parenthesis which is buggy when given an
+expression instead of a simple value
 
-First patch fix an issue found while writing patch 5 (Giving ternary
-operator to SET_PARM)
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+---
+ drivers/clk/meson/clkc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Following Stephen comment on the v1, patch 2 adds the const qualifiers
-missing upstream.
-
-Patches 3 and 4 put the generic muxes and divisors declaration in tables so
-the register address fixup works in the same way as the clock gates. We are
-going to add more of these clock types for audio or gpu support, so we
-can't continue to fix addresses individually like it is currently done.
-
-Patches 5 to 8 improve the support of the mpll clocks, now allowing the
-rate to be set. Among other things, the mplls are the parent clocks of the
-i2s and spdif clocks.
-
-Patch 9 expose the clock gates required to power on the i2s output.
-
-These patches have been tested on the meson gxbb p200 board, as part of the
-ongoing work to bring audio support to meson SoC family.
-
-Changes since v1 [0]:
- * Add SET_PARM fix to the series
- * Add missing const qualifiers to the clock arrays
- * No more additional patches required as SAR clocks have been merged
-
-[0]: http://lkml.kernel.org/r/20170228133002.17894-1-jbrunet at baylibre.com
-
-Jerome Brunet (9):
-  clk: meson: fix SET_PARM macro
-  clk: meson: add missing const qualifiers on gate arrays
-  clk: meson8b: put dividers and muxes in tables
-  clk: gxbb: put dividers and muxes in tables
-  clk: meson: mpll: add rw operation
-  clk: meson: gxbb: mpll: use rw operation
-  clk: meson8b: add the mplls clocks 0, 1 and 2
-  clk: meson: mpll: correct N2 maximum value
-  dt-bindings: clk: gxbb: expose i2s output clock gates
-
- drivers/clk/meson/clk-mpll.c          | 152 ++++++++++++++++++++++++++++++++--
- drivers/clk/meson/clkc.h              |   6 +-
- drivers/clk/meson/gxbb.c              |  66 ++++++++++++---
- drivers/clk/meson/gxbb.h              |  10 +--
- drivers/clk/meson/meson8b.c           | 127 ++++++++++++++++++++++++++--
- drivers/clk/meson/meson8b.h           |  20 ++++-
- include/dt-bindings/clock/gxbb-clkc.h |   5 ++
- 7 files changed, 356 insertions(+), 30 deletions(-)
-
+diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+index 9bb70e7a7d6a..c6be77dd8694 100644
+--- a/drivers/clk/meson/clkc.h
++++ b/drivers/clk/meson/clkc.h
+@@ -25,7 +25,7 @@
+ #define PARM_GET(width, shift, reg)					\
+ 	(((reg) & SETPMASK(width, shift)) >> (shift))
+ #define PARM_SET(width, shift, reg, val)				\
+-	(((reg) & CLRPMASK(width, shift)) | (val << (shift)))
++	(((reg) & CLRPMASK(width, shift)) | ((val) << (shift)))
+ 
+ #define MESON_PARM_APPLICABLE(p)		(!!((p)->width))
+ 
 -- 
 2.9.3
