@@ -1,66 +1,44 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  9 Mar 2017 11:41:48 +0100
-Subject: [PATCH v2 3/9] clk: meson8b: put dividers and muxes in tables
+Date: Thu,  9 Mar 2017 11:41:47 +0100
+Subject: [PATCH v2 2/9] clk: meson: add missing const qualifiers on gate arrays
 In-Reply-To: <20170309104154.28295-1-jbrunet@baylibre.com>
 References: <20170309104154.28295-1-jbrunet@baylibre.com>
-Message-ID: <20170309104154.28295-4-jbrunet@baylibre.com>
+Message-ID: <20170309104154.28295-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Until now, there was only 1 divider and 1 mux declared for the meson8b
-platform. With the ongoing work on various system, including audio, this
-is about to change. Use the same approach as gates for dividers and muxes,
-putting them in tables to fix the register address at runtime.
-
+Reported-by: Stephen Boyd <sboyd@codeaurora.org>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/meson8b.c | 22 ++++++++++++++++++----
- 1 file changed, 18 insertions(+), 4 deletions(-)
+ drivers/clk/meson/gxbb.c    | 2 +-
+ drivers/clk/meson/meson8b.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index d1cc4d7cc8ff..2937443d4505 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -582,6 +582,14 @@ static struct clk_gate *const meson8b_clk_gates[] = {
- 	&meson8b_ao_iface,
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 1c1ec137a3cc..c063287bb0ed 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -816,7 +816,7 @@ static struct meson_clk_mpll *const gxbb_clk_mplls[] = {
+ 	&gxbb_mpll2,
  };
  
-+static struct clk_mux *const meson8b_clk_muxes[] = {
-+	&meson8b_mpeg_clk_sel,
-+};
-+
-+static struct clk_divider *const meson8b_clk_dividers[] = {
-+	&meson8b_mpeg_clk_div,
-+};
-+
- static int meson8b_clkc_probe(struct platform_device *pdev)
- {
- 	void __iomem *clk_base;
-@@ -604,15 +612,21 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
- 	/* Populate the base address for CPU clk */
- 	meson8b_cpu_clk.base = clk_base;
+-static struct clk_gate *gxbb_clk_gates[] = {
++static struct clk_gate *const gxbb_clk_gates[] = {
+ 	&gxbb_clk81,
+ 	&gxbb_ddr,
+ 	&gxbb_dos,
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 888494d4fb8a..d1cc4d7cc8ff 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -501,7 +501,7 @@ static struct meson_clk_pll *const meson8b_clk_plls[] = {
+ 	&meson8b_sys_pll,
+ };
  
--	/* Populate the base address for the MPEG clks */
--	meson8b_mpeg_clk_sel.reg = clk_base + (u32)meson8b_mpeg_clk_sel.reg;
--	meson8b_mpeg_clk_div.reg = clk_base + (u32)meson8b_mpeg_clk_div.reg;
--
- 	/* Populate base address for gates */
- 	for (i = 0; i < ARRAY_SIZE(meson8b_clk_gates); i++)
- 		meson8b_clk_gates[i]->reg = clk_base +
- 			(u32)meson8b_clk_gates[i]->reg;
- 
-+	/* Populate base address for muxes */
-+	for (i = 0; i < ARRAY_SIZE(meson8b_clk_muxes); i++)
-+		meson8b_clk_muxes[i]->reg = clk_base +
-+			(u32)meson8b_clk_muxes[i]->reg;
-+
-+	/* Populate base address for dividers */
-+	for (i = 0; i < ARRAY_SIZE(meson8b_clk_dividers); i++)
-+		meson8b_clk_dividers[i]->reg = clk_base +
-+			(u32)meson8b_clk_dividers[i]->reg;
-+
- 	/*
- 	 * register all clks
- 	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
+-static struct clk_gate *meson8b_clk_gates[] = {
++static struct clk_gate *const meson8b_clk_gates[] = {
+ 	&meson8b_clk81,
+ 	&meson8b_ddr,
+ 	&meson8b_dos,
 -- 
 2.9.3
