@@ -1,113 +1,241 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sat, 11 Mar 2017 00:36:41 +0100
-Subject: [PATCH v2 05/10] i2c: meson: set clock divider in probe instead
- of setting it for each transfer
-In-Reply-To: <m2shmkd8m4.fsf@baylibre.com>
-References: <f39c9314-4314-3d98-aef2-3bc3c815e63b@gmail.com>
- <5fcfa996-5986-1856-d6f7-a979b7c5d5c9@gmail.com>
- <m2shmkd8m4.fsf@baylibre.com>
-Message-ID: <605496f5-0f38-afa1-ac1e-bf65650ed7ac@gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 10 Mar 2017 16:16:17 -0800
+Subject: [PATCH 1/2] pinctrl: meson: gxl: add the missing PWM pin
+ definitions
+In-Reply-To: <CAFBinCDty8v80tLxHJPR+SHv32LX834dPJUruRNqr6angx3OOQ@mail.gmail.com>
+ (Martin Blumenstingl's message of "Thu, 9 Mar 2017 20:47:03 +0100")
+References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
+ <20170304212318.27076-2-martin.blumenstingl@googlemail.com>
+ <1488811357.2420.18.camel@baylibre.com>
+ <CAFBinCDty8v80tLxHJPR+SHv32LX834dPJUruRNqr6angx3OOQ@mail.gmail.com>
+Message-ID: <m2d1dod5wu.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 11.03.2017 um 00:17 schrieb Kevin Hilman:
-> Heiner Kallweit <hkallweit1@gmail.com> writes:
-> 
->> The bus frequency won't change, therefore we can set the clock divider
->> in probe already and we don't have to set it for each transfer.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> ---
->> v2:
->> - no changes
->> ---
->>  drivers/i2c/busses/i2c-meson.c | 14 +++++++-------
->>  1 file changed, 7 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
->> index a5764be5..594fec22 100644
->> --- a/drivers/i2c/busses/i2c-meson.c
->> +++ b/drivers/i2c/busses/i2c-meson.c
->> @@ -74,7 +74,6 @@ enum {
->>   * @error:	Flag set when an error is received
->>   * @lock:	To avoid race conditions between irq handler and xfer code
->>   * @done:	Completion used to wait for transfer termination
->> - * @timings:	Struct including the bus frequency
-> 
-> You just added this field in PATCH 03/10.  Why not do this patch
-> first, which will simplify the other.
-> 
-Yes, most likely this would be better. Will keep this in mind for the
-upcoming v3.
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Kevin
-> 
->>   * @tokens:	Sequence of tokens to be written to the device
->>   * @num_tokens:	Number of tokens
->>   */
->> @@ -93,7 +92,6 @@ struct meson_i2c {
->>  
->>  	spinlock_t		lock;
->>  	struct completion	done;
->> -	struct i2c_timings	timings;
->>  	u32			tokens[2];
->>  	int			num_tokens;
->>  };
->> @@ -132,12 +130,12 @@ static void meson_i2c_write_tokens(struct meson_i2c *i2c)
->>  	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
->>  }
->>  
->> -static void meson_i2c_set_clk_div(struct meson_i2c *i2c)
->> +static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
->>  {
->>  	unsigned long clk_rate = clk_get_rate(i2c->clk);
->>  	unsigned int div;
->>  
->> -	div = DIV_ROUND_UP(clk_rate, i2c->timings.bus_freq_hz * 4);
->> +	div = DIV_ROUND_UP(clk_rate, freq * 4);
->>  
->>  	/* clock divider has 12 bits */
->>  	WARN_ON(div >= (1 << 12));
->> @@ -149,7 +147,7 @@ static void meson_i2c_set_clk_div(struct meson_i2c *i2c)
->>  			   (div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
->>  
->>  	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n", __func__,
->> -		clk_rate, i2c->timings.bus_freq_hz, div);
->> +		clk_rate, freq, div);
->>  }
->>  
->>  static void meson_i2c_get_data(struct meson_i2c *i2c, char *buf, int len)
->> @@ -369,7 +367,6 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
->>  	int i, ret = 0, count = 0;
->>  
->>  	clk_enable(i2c->clk);
->> -	meson_i2c_set_clk_div(i2c);
->>  
->>  	for (i = 0; i < num; i++) {
->>  		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1);
->> @@ -396,6 +393,7 @@ static const struct i2c_algorithm meson_i2c_algorithm = {
->>  static int meson_i2c_probe(struct platform_device *pdev)
->>  {
->>  	struct device_node *np = pdev->dev.of_node;
->> +	struct i2c_timings timings;
->>  	struct meson_i2c *i2c;
->>  	struct resource *mem;
->>  	int irq, ret = 0;
->> @@ -404,7 +402,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
->>  	if (!i2c)
->>  		return -ENOMEM;
->>  
->> -	i2c_parse_fw_timings(&pdev->dev, &i2c->timings, true);
->> +	i2c_parse_fw_timings(&pdev->dev, &timings, true);
->>  
->>  	i2c->dev = &pdev->dev;
->>  	platform_set_drvdata(pdev, i2c);
->> @@ -462,6 +460,8 @@ static int meson_i2c_probe(struct platform_device *pdev)
->>  		return ret;
->>  	}
->>  
->> +	meson_i2c_set_clk_div(i2c, timings.bus_freq_hz);
->> +
->>  	return 0;
->>  }
-> 
+> Hi Linus,
+>
+> On Mon, Mar 6, 2017 at 3:42 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+>> On Sat, 2017-03-04 at 22:23 +0100, Martin Blumenstingl wrote:
+>>> This adds support for the missing PWM pins on Meson GXL SoCs, namely:
+>>> - PWM_A
+>>> - PWM_B
+>>> - PWM_C
+>>> - PWM_F (GPIOX_7 and GPIOCLK_1 can be selected as output)
+>>> - PWM_AO_A (GPIOAO_3 and GPIOAO_8 can be selected as output)
+>>>
+>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.co
+>>> m>
+>>> ---
+>>>  drivers/pinctrl/meson/pinctrl-meson-gxl.c | 64
+>>> +++++++++++++++++++++++++++++++
+>>>  1 file changed, 64 insertions(+)
+>>>
+>>> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>>> b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>>> index 4ab94a85e306..91dfc498780b 100644
+>>> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>>> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>>> @@ -195,8 +195,19 @@ static const unsigned int eth_txd1_pins[]
+>>> = { PIN(GPIOZ_11, EE_OFF) };
+>>>  static const unsigned int eth_txd2_pins[]    = { PIN(GPIOZ_12,
+>>> EE_OFF) };
+>>>  static const unsigned int eth_txd3_pins[]    = { PIN(GPIOZ_13,
+>>> EE_OFF) };
+>>>
+>>> +static const unsigned int pwm_a_pins[]               = {
+>>> PIN(GPIOX_6, EE_OFF) };
+>>> +
+>>> +static const unsigned int pwm_b_pins[]               = {
+>>> PIN(GPIODV_29, EE_OFF) };
+>>> +
+>>> +static const unsigned int pwm_c_pins[]               = {
+>>> PIN(GPIOZ_15, EE_OFF) };
+>>> +
+>>> +static const unsigned int pwm_d_pins[]               = {
+>>> PIN(GPIODV_28, EE_OFF) };
+>>> +
+>>>  static const unsigned int pwm_e_pins[]               = {
+>>> PIN(GPIOX_16, EE_OFF) };
+>>>
+>>> +static const unsigned int pwm_f_clk_pins[]   = { PIN(GPIOCLK_1,
+>>> EE_OFF) };
+>>> +static const unsigned int pwm_f_x_pins[]     = { PIN(GPIOX_7,
+>>> EE_OFF) };
+>>> +
+>>>  static const unsigned int hdmi_hpd_pins[]    = { PIN(GPIOH_0,
+>>> EE_OFF) };
+>>>  static const unsigned int hdmi_sda_pins[]    = { PIN(GPIOH_1,
+>>> EE_OFF) };
+>>>  static const unsigned int hdmi_scl_pins[]    = { PIN(GPIOH_2,
+>>> EE_OFF) };
+>>> @@ -225,6 +236,9 @@ static const unsigned int uart_rts_ao_b_pins[]
+>>> = { PIN(GPIOAO_3, 0) };
+>>>
+>>>  static const unsigned int remote_input_ao_pins[] = {PIN(GPIOAO_7, 0)
+>>> };
+>>>
+>>> +static const unsigned int pwm_ao_a_3_pins[]  = { PIN(GPIOAO_3,
+>>> 0) };
+>>> +static const unsigned int pwm_ao_a_8_pins[]  = { PIN(GPIOAO_8,
+>>> 0) };
+>>> +
+>>>  static const unsigned int pwm_ao_b_pins[]    = { PIN(GPIOAO_9,
+>>> 0) };
+>>>
+>>>  static struct meson_pmx_group meson_gxl_periphs_groups[] = {
+>>> @@ -350,7 +364,9 @@ static struct meson_pmx_group
+>>> meson_gxl_periphs_groups[] = {
+>>>       GROUP(uart_rts_a,       5,      16),
+>>>       GROUP(uart_tx_c,        5,      13),
+>>>       GROUP(uart_rx_c,        5,      12),
+>>> +     GROUP(pwm_a,            5,      25),
+>>>       GROUP(pwm_e,            5,      15),
+>>> +     GROUP(pwm_f_x,          5,      14),
+>>>
+>>>       /* Bank Z */
+>>>       GROUP(eth_mdio,         4,      22),
+>>> @@ -367,6 +383,7 @@ static struct meson_pmx_group
+>>> meson_gxl_periphs_groups[] = {
+>>>       GROUP(eth_txd1,         4,      12),
+>>>       GROUP(eth_txd2,         4,      11),
+>>>       GROUP(eth_txd3,         4,      10),
+>>> +     GROUP(pwm_c,            3,      20),
+>>>
+>>>       /* Bank H */
+>>>       GROUP(hdmi_hpd,         6,      31),
+>>> @@ -382,6 +399,8 @@ static struct meson_pmx_group
+>>> meson_gxl_periphs_groups[] = {
+>>>       GROUP(i2c_sda_b,        1,      12),
+>>>       GROUP(i2c_sck_c,        1,      11),
+>>>       GROUP(i2c_sda_c,        1,      10),
+>>> +     GROUP(pwm_b,            2,      11),
+>>> +     GROUP(pwm_d,            2,      12),
+>>>
+>>>       /* Bank BOOT */
+>>>       GROUP(emmc_nand_d07,    7,      31),
+>>> @@ -404,6 +423,9 @@ static struct meson_pmx_group
+>>> meson_gxl_periphs_groups[] = {
+>>>       GROUP(sdcard_d2,        6,      0),
+>>>       GROUP(sdcard_cmd,       6,      2),
+>>>       GROUP(sdcard_clk,       6,      3),
+>>> +
+>>> +     /* Bank CLK */
+>>> +     GROUP(pwm_f_clk,        8,      30),
+>>>  };
+>>>
+>>>  static struct meson_pmx_group meson_gxl_aobus_groups[] = {
+>>> @@ -428,6 +450,8 @@ static struct meson_pmx_group
+>>> meson_gxl_aobus_groups[] = {
+>>>       GROUP(uart_cts_ao_b,    0,      8),
+>>>       GROUP(uart_rts_ao_b,    0,      7),
+>>>       GROUP(remote_input_ao,  0,      0),
+>>> +     GROUP(pwm_ao_a_3,       0,      22),
+>>> +     GROUP(pwm_ao_a_8,       0,      17),
+>>>       GROUP(pwm_ao_b,         0,      3),
+>>>  };
+>>>
+>>> @@ -513,10 +537,34 @@ static const char * const eth_groups[] = {
+>>>       "eth_txd0", "eth_txd1", "eth_txd2", "eth_txd3",
+>>>  };
+>>>
+>>> +static const char * const pwm_a_groups[] = {
+>>> +     "pwm_a",
+>>> +};
+>>> +
+>>> +static const char * const pwm_b_groups[] = {
+>>> +     "pwm_b",
+>>> +};
+>>> +
+>>> +static const char * const pwm_c_groups[] = {
+>>> +     "pwm_c",
+>>> +};
+>>> +
+>>> +static const char * const pwm_d_groups[] = {
+>>> +     "pwm_d",
+>>> +};
+>>> +
+>>>  static const char * const pwm_e_groups[] = {
+>>>       "pwm_e",
+>>>  };
+>>>
+>>> +static const char * const pwm_f_clk_groups[] = {
+>>> +     "pwm_f_clk",
+>>> +};
+>>> +
+>>> +static const char * const pwm_f_x_groups[] = {
+>>> +     "pwm_f_x",
+>>> +};
+>>> +
+>>>  static const char * const hdmi_hpd_groups[] = {
+>>>       "hdmi_hpd",
+>>>  };
+>>> @@ -542,6 +590,14 @@ static const char * const
+>>> remote_input_ao_groups[] = {
+>>>       "remote_input_ao",
+>>>  };
+>>>
+>>> +static const char * const pwm_ao_a_3_groups[] = {
+>>> +     "pwm_ao_a_3",
+>>> +};
+>>> +
+>>> +static const char * const pwm_ao_a_8_groups[] = {
+>>> +     "pwm_ao_a_8",
+>>> +};
+>>> +
+>>>  static const char * const pwm_ao_b_groups[] = {
+>>>       "pwm_ao_b",
+>>>  };
+>>> @@ -559,7 +615,13 @@ static struct meson_pmx_func
+>>> meson_gxl_periphs_functions[] = {
+>>>       FUNCTION(i2c_b),
+>>>       FUNCTION(i2c_c),
+>>>       FUNCTION(eth),
+>>> +     FUNCTION(pwm_a),
+>>> +     FUNCTION(pwm_b),
+>>> +     FUNCTION(pwm_c),
+>>> +     FUNCTION(pwm_d),
+>>>       FUNCTION(pwm_e),
+>>> +     FUNCTION(pwm_f_clk),
+>>> +     FUNCTION(pwm_f_x),
+>>
+>> I wonder if having function named "pwm_f_clk" really makes sense ?
+>> Shouldn't it be just "pwm_f" ? This is real function, isn't it ?
+>> The actual pin used will be provided in the dt. Here, I suppose we
+>> could have this:
+>>
+>> +static const char * const pwm_f_groups[] = {
+>> +       "pwm_f_x", "pwm_f_clk",
+>> +};
+>>
+>> Has far as I can see, on meson arch, the function does not carry much
+>> information anyway, except for prints.
+>>
+>> To be clear, I'm not questioning this change in particular. It looks
+>> good, and follows what has been done in the past on meson. I know we
+>> have been this a lot already, but I'm questioning whether we should
+>> continue to do so ?
+>>
+>> I asking because I also have a lot case like this coming up on audio
+>> for gxl and gxbb, where the same function can use different pins.
+>
+> could you please look into Jerome's question?
+> personally I'm fine with either way, and changing my patch would be
+> quite trivial. but I'd like to know what's "the way to go" before
+> changing anything (and reverting that afterwards again).
+
+I think Jerome is right.
+
+Taking the PWM_F example, my (admittedely limited) understanding of
+pinctrl/pinux is that there should be a single function (namely PWM_F)
+but it could have multiple "groups" (namely GPIO_X and GPIOCLK).  It's
+up to the board specific DT to select the right group.
+
+If that's the case, we've already let in some cases of doing this the
+wrong way.
+
+If I'm understanding things correctly, and after some clarification from
+Linus, we should fix up the existing cases first.
+
+Kevin
