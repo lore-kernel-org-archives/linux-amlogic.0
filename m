@@ -1,92 +1,36 @@
-From: linux.amoon@gmail.com (Anand Moon)
-Date: Sat, 11 Mar 2017 12:18:47 +0530
-Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: enable USB Host Nodes
-In-Reply-To: <CAFBinCCGpA-RrJRgK5NJc6cm1qWhBVYF+hUvY1YrD3oFvmVYoA@mail.gmail.com>
-References: <1488918961-4666-1-git-send-email-linux.amoon@gmail.com>
- <CANAwSgTUPpYvFWcZOf+j6K+1rDZJNUeu9K1fGAB8TC6TgzRXCg@mail.gmail.com>
- <0204bbde-c437-e11b-cb3b-d9f4b55a5810@baylibre.com>
- <CANAwSgTuP_OGp+0sdR9sVuq-SOkBfQxYKONZPB7Vo=+GFdrHfw@mail.gmail.com>
- <CAFBinCCGpA-RrJRgK5NJc6cm1qWhBVYF+hUvY1YrD3oFvmVYoA@mail.gmail.com>
-Message-ID: <CANAwSgSt5hwOzm7A-1Fteat8-o6HfOsjnuSGnRi+Sakhh825_g@mail.gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sat, 11 Mar 2017 18:48:02 +0100
+Subject: [PATCH v3 00/10] i2c: meson: series with improvements
+Message-ID: <a0ebd65b-712d-2b15-dcc6-3b8a9a619770@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+This patch series includes several improvements for the i2c-meson
+driver.
 
-On 10 March 2017 at 01:06, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Anand,
->
-> On Thu, Mar 9, 2017 at 6:58 PM, Anand Moon <linux.amoon@gmail.com> wrote:
->>> Hi Anand,
->>>
->>> For this specific use case, the only way to manage this is to use the Work-In-Progress
->>> Power Sequence Library proposer by Peter Chen at :
->>> https://lkml.org/lkml/2016/11/13/315
->>>
->>> Since this is the USB Hub reset link and has no direct link with either the USB controller
->>> or the USB PHY, and the USB Hus cannot be modeled (yet ?) in the DT.
->>>
->>> One intermediate, but crappy, solution would be to add a GPIO hog until the power
->>> sequence code has been merged, with a proper big fat warning in the dts file.
->>>
->>> You can find doc about the gpio-hog in :
->>> Documentation/devicetree/bindings/gpio/gpio.txt
->>>
->>> It should look like :
->>>
->>> usb-hub {
->>>         gpio-hog;
->>>         gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
->>>         output-high;
->>>         line-name = "usb-hub-reset";
->>> };
->>>
->>> in the gpio_ao controller node.
->>>
->>> Neil
->>
->> Thanks for this input.
->>
->> I will check this series of patches, and work on this new approach.
-> you might want to look at the following two patches as well: [0] and [1]
-> I didn't test them as I don't have an Odroid-C2 but they should work
-> with the series that Neil has mentioned. feel free to take my patches
-> and fix them where needed
->
->
-> Regards,
-> Martin
->
-> [0] https://github.com/xdarklight/linux/commit/f0bc8f826b465fbf24279ce78654b65282790dc6
-> [1] https://github.com/xdarklight/linux/commit/7b5a69bf5bad992249aa39a96360fe90ccde9cd5
+Changes in v2:
+- removed patches 8 and 12
+- removed one small change in patch 6
+- don't print error message in patch 7
 
-As pointed by Neil
+Changes in v3:
+- changed order of patches 3, 4, 5 what makes the patches more simple
+- remove one change from patch 7 to still properly deal with timeouts
 
-For this specific use case, the only way to manage this is to use the
-Work-In-Progress
-Power Sequence Library proposer by Peter Chen at :
-https://lkml.org/lkml/2017/1/5/33 (updated v11)
+Heiner Kallweit (12):
+  i2c: meson: use min instead of min_t where min_t isn't needed
+  i2c: meson: remove member irq from struct meson_i2c
+  i2c: meson: set clock divider in probe instead of setting it for each transfer
+  i2c: meson: use i2c core for DT clock-frequency parsing
+  i2c: meson: use full 12 bits for clock divider
+  i2c: meson: remove variable count from meson_i2c_xfer
+  i2c: meson: improve interrupt handler and detect spurious interrupts
+  i2c: meson: don't create separate token chain just for the stop command
+  i2c: meson: remove meson_i2c_write_tokens
+  i2c: meson: improve and simplify interrupt handler
 
-Using above series I was able to get the usb nodes to work correctly
-on Odroid C2.
-Although the series of patches did not clean apply completely.
+ drivers/i2c/busses/i2c-meson.c | 132 ++++++++++++++++-------------------------
+ 1 file changed, 50 insertions(+), 82 deletions(-)
 
-I manage to get this working with your above patches. I will submit
-the patches soon.
-
-root at odroid64:~# lsusb -t
-/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-        |__ Port 1: Dev 3, If 0, Class=Human Interface Device,
-Driver=usbhid, 1.5M
-        |__ Port 1: Dev 3, If 1, Class=Human Interface Device,
-Driver=usbhid, 1.5M
-        |__ Port 2: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
-        |__ Port 4: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage, 480M
-/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-root at odroid64:~#
-
-
-Best Regards
--Anand Moon
+-- 
+2.12.0
