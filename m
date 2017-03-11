@@ -1,59 +1,92 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 10 Mar 2017 16:42:18 -0800
-Subject: [PATCH v3 0/3] meson-gx: Add mali-450 support
-In-Reply-To: <1489064027-18004-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Thu, 9 Mar 2017 13:53:44 +0100")
-References: <1489064027-18004-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2inngbq51.fsf@baylibre.com>
+From: linux.amoon@gmail.com (Anand Moon)
+Date: Sat, 11 Mar 2017 12:18:47 +0530
+Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: enable USB Host Nodes
+In-Reply-To: <CAFBinCCGpA-RrJRgK5NJc6cm1qWhBVYF+hUvY1YrD3oFvmVYoA@mail.gmail.com>
+References: <1488918961-4666-1-git-send-email-linux.amoon@gmail.com>
+ <CANAwSgTUPpYvFWcZOf+j6K+1rDZJNUeu9K1fGAB8TC6TgzRXCg@mail.gmail.com>
+ <0204bbde-c437-e11b-cb3b-d9f4b55a5810@baylibre.com>
+ <CANAwSgTuP_OGp+0sdR9sVuq-SOkBfQxYKONZPB7Vo=+GFdrHfw@mail.gmail.com>
+ <CAFBinCCGpA-RrJRgK5NJc6cm1qWhBVYF+hUvY1YrD3oFvmVYoA@mail.gmail.com>
+Message-ID: <CANAwSgSt5hwOzm7A-1Fteat8-o6HfOsjnuSGnRi+Sakhh825_g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Hi Martin,
 
-> Since the merge of the Mali dt bindings at [1], add support for Mali clocks
-> and DT node.
+On 10 March 2017 at 01:06, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Hi Anand,
 >
-> The Mali is clocked by two identical clock paths behind a glitch free mux
-> to safely change frequency while running.
-> So these clocks must be added to the meson-gxbb clock controller.
+> On Thu, Mar 9, 2017 at 6:58 PM, Anand Moon <linux.amoon@gmail.com> wrote:
+>>> Hi Anand,
+>>>
+>>> For this specific use case, the only way to manage this is to use the Work-In-Progress
+>>> Power Sequence Library proposer by Peter Chen at :
+>>> https://lkml.org/lkml/2016/11/13/315
+>>>
+>>> Since this is the USB Hub reset link and has no direct link with either the USB controller
+>>> or the USB PHY, and the USB Hus cannot be modeled (yet ?) in the DT.
+>>>
+>>> One intermediate, but crappy, solution would be to add a GPIO hog until the power
+>>> sequence code has been merged, with a proper big fat warning in the dts file.
+>>>
+>>> You can find doc about the gpio-hog in :
+>>> Documentation/devicetree/bindings/gpio/gpio.txt
+>>>
+>>> It should look like :
+>>>
+>>> usb-hub {
+>>>         gpio-hog;
+>>>         gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
+>>>         output-high;
+>>>         line-name = "usb-hub-reset";
+>>> };
+>>>
+>>> in the gpio_ao controller node.
+>>>
+>>> Neil
+>>
+>> Thanks for this input.
+>>
+>> I will check this series of patches, and work on this new approach.
+> you might want to look at the following two patches as well: [0] and [1]
+> I didn't test them as I don't have an Odroid-C2 but they should work
+> with the series that Neil has mentioned. feel free to take my patches
+> and fix them where needed
 >
 >
-> Changes since v2 at [5] :
->  - Rebased on v2 Audio Clocks patchset from Jerome Brunet at [6]
+> Regards,
+> Martin
+>
+> [0] https://github.com/xdarklight/linux/commit/f0bc8f826b465fbf24279ce78654b65282790dc6
+> [1] https://github.com/xdarklight/linux/commit/7b5a69bf5bad992249aa39a96360fe90ccde9cd5
 
-Due to this dependency, I'd prefer patches 1-2 go through the clk tree
-(into an immutable branch along with the audio changes) and then I'll
-pick up the DT change through the amlogic tree.
+As pointed by Neil
 
-Kevin
+For this specific use case, the only way to manage this is to use the
+Work-In-Progress
+Power Sequence Library proposer by Peter Chen at :
+https://lkml.org/lkml/2017/1/5/33 (updated v11)
 
->  - Marked parents names list as static
->  - Reworded patch 3 commit message
->
-> Changes since v1 at [2] :
->  - Remove GP0 fixes, this will pushed later, for base frequency it can depend on fclk_div3
->  - Add GXL support
->  - rebase on clk-next and jbrunet's patchset at [3] and [4]
->  - get rid of composite clocks, this adds more clocks IDs and exposes 2 more clocks
->
-> [6] http://lkml.kernel.org/r/20170309104154.28295-1-jbrunet at baylibre.com
-> [5] http://lkml.kernel.org/r/1488365164-22861-1-git-send-email-narmstrong at baylibre.com
-> [4] http://lkml.kernel.org/r/20170228093016.5624-1-jbrunet at baylibre.com
-> [3] http://lkml.kernel.org/r/20170228133002.17894-1-jbrunet at baylibre.com
-> [2] http://lkml.kernel.org/r/1486721084-1383-1-git-send-email-narmstrong at baylibre.com
-> [1] http://lkml.kernel.org/r/b098c4fa9fce88361cca20417978734d0e1b5cca.1485939041.git-series.maxime.ripard at free-electrons.com
->
-> Neil Armstrong (3):
->   clk: meson-gxbb: Add MALI clock IDS
->   clk: meson-gxbb: Add MALI clocks
->   ARM64: dts: meson-gx: Add MALI nodes for GXBB and GXL
->
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi      |  37 ++++++
->  arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi  |  43 +++++++
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi |   1 +
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi |   1 +
->  drivers/clk/meson/gxbb.c                         | 139 +++++++++++++++++++++++
->  drivers/clk/meson/gxbb.h                         |   9 +-
->  include/dt-bindings/clock/gxbb-clkc.h            |   5 +
->  7 files changed, 234 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+Using above series I was able to get the usb nodes to work correctly
+on Odroid C2.
+Although the series of patches did not clean apply completely.
+
+I manage to get this working with your above patches. I will submit
+the patches soon.
+
+root at odroid64:~# lsusb -t
+/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+        |__ Port 1: Dev 3, If 0, Class=Human Interface Device,
+Driver=usbhid, 1.5M
+        |__ Port 1: Dev 3, If 1, Class=Human Interface Device,
+Driver=usbhid, 1.5M
+        |__ Port 2: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+        |__ Port 4: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+root at odroid64:~#
+
+
+Best Regards
+-Anand Moon
