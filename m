@@ -1,69 +1,59 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 10 Mar 2017 16:39:27 -0800
-Subject: [PATCH v2 0/9] clk: meson: update clock controller for audio
- support
-In-Reply-To: <20170309104154.28295-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Thu, 9 Mar 2017 11:41:45 +0100")
-References: <20170309104154.28295-1-jbrunet@baylibre.com>
-Message-ID: <m2r324bq9s.fsf@baylibre.com>
+Date: Fri, 10 Mar 2017 16:42:18 -0800
+Subject: [PATCH v3 0/3] meson-gx: Add mali-450 support
+In-Reply-To: <1489064027-18004-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Thu, 9 Mar 2017 13:53:44 +0100")
+References: <1489064027-18004-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2inngbq51.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> This patchset is a first round of update to the meson clock controllers
-> to bring audio support. The patchset is based on clk-next. It could be
-> rebased on amlogic tree later on, if you prefer the patches to go through
-> Kevin's tree.
+> Since the merge of the Mali dt bindings at [1], add support for Mali clocks
+> and DT node.
+>
+> The Mali is clocked by two identical clock paths behind a glitch free mux
+> to safely change frequency while running.
+> So these clocks must be added to the meson-gxbb clock controller.
+>
+>
+> Changes since v2 at [5] :
+>  - Rebased on v2 Audio Clocks patchset from Jerome Brunet at [6]
 
-I'd prefer these go through the clk tree, and get an immutable branch
-that I can use for my stuff that goes through the arm-soc tree.
+Due to this dependency, I'd prefer patches 1-2 go through the clk tree
+(into an immutable branch along with the audio changes) and then I'll
+pick up the DT change through the amlogic tree.
 
 Kevin
 
-> First patch fix an issue found while writing patch 5 (Giving ternary
-> operator to SET_PARM)
+>  - Marked parents names list as static
+>  - Reworded patch 3 commit message
 >
-> Following Stephen comment on the v1, patch 2 adds the const qualifiers
-> missing upstream.
+> Changes since v1 at [2] :
+>  - Remove GP0 fixes, this will pushed later, for base frequency it can depend on fclk_div3
+>  - Add GXL support
+>  - rebase on clk-next and jbrunet's patchset at [3] and [4]
+>  - get rid of composite clocks, this adds more clocks IDs and exposes 2 more clocks
 >
-> Patches 3 and 4 put the generic muxes and divisors declaration in tables so
-> the register address fixup works in the same way as the clock gates. We are
-> going to add more of these clock types for audio or gpu support, so we
-> can't continue to fix addresses individually like it is currently done.
+> [6] http://lkml.kernel.org/r/20170309104154.28295-1-jbrunet at baylibre.com
+> [5] http://lkml.kernel.org/r/1488365164-22861-1-git-send-email-narmstrong at baylibre.com
+> [4] http://lkml.kernel.org/r/20170228093016.5624-1-jbrunet at baylibre.com
+> [3] http://lkml.kernel.org/r/20170228133002.17894-1-jbrunet at baylibre.com
+> [2] http://lkml.kernel.org/r/1486721084-1383-1-git-send-email-narmstrong at baylibre.com
+> [1] http://lkml.kernel.org/r/b098c4fa9fce88361cca20417978734d0e1b5cca.1485939041.git-series.maxime.ripard at free-electrons.com
 >
-> Patches 5 to 8 improve the support of the mpll clocks, now allowing the
-> rate to be set. Among other things, the mplls are the parent clocks of the
-> i2s and spdif clocks.
+> Neil Armstrong (3):
+>   clk: meson-gxbb: Add MALI clock IDS
+>   clk: meson-gxbb: Add MALI clocks
+>   ARM64: dts: meson-gx: Add MALI nodes for GXBB and GXL
 >
-> Patch 9 expose the clock gates required to power on the i2s output.
->
-> These patches have been tested on the meson gxbb p200 board, as part of the
-> ongoing work to bring audio support to meson SoC family.
->
-> Changes since v1 [0]:
->  * Add SET_PARM fix to the series
->  * Add missing const qualifiers to the clock arrays
->  * No more additional patches required as SAR clocks have been merged
->
-> [0]: http://lkml.kernel.org/r/20170228133002.17894-1-jbrunet at baylibre.com
->
-> Jerome Brunet (9):
->   clk: meson: fix SET_PARM macro
->   clk: meson: add missing const qualifiers on gate arrays
->   clk: meson8b: put dividers and muxes in tables
->   clk: gxbb: put dividers and muxes in tables
->   clk: meson: mpll: add rw operation
->   clk: meson: gxbb: mpll: use rw operation
->   clk: meson8b: add the mplls clocks 0, 1 and 2
->   clk: meson: mpll: correct N2 maximum value
->   dt-bindings: clk: gxbb: expose i2s output clock gates
->
->  drivers/clk/meson/clk-mpll.c          | 152 ++++++++++++++++++++++++++++++++--
->  drivers/clk/meson/clkc.h              |   6 +-
->  drivers/clk/meson/gxbb.c              |  66 ++++++++++++---
->  drivers/clk/meson/gxbb.h              |  10 +--
->  drivers/clk/meson/meson8b.c           | 127 ++++++++++++++++++++++++++--
->  drivers/clk/meson/meson8b.h           |  20 ++++-
->  include/dt-bindings/clock/gxbb-clkc.h |   5 ++
->  7 files changed, 356 insertions(+), 30 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi      |  37 ++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi  |  43 +++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905d.dtsi |   1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905x.dtsi |   1 +
+>  drivers/clk/meson/gxbb.c                         | 139 +++++++++++++++++++++++
+>  drivers/clk/meson/gxbb.h                         |   9 +-
+>  include/dt-bindings/clock/gxbb-clkc.h            |   5 +
+>  7 files changed, 234 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
