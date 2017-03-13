@@ -1,83 +1,187 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 13 Mar 2017 10:01:39 +0100
-Subject: [PATCH v3 04/10] i2c: meson: use i2c core for DT clock-frequency
- parsing
-In-Reply-To: <27b52215-3cbe-b407-c439-216fdace3745@gmail.com>
-References: <a0ebd65b-712d-2b15-dcc6-3b8a9a619770@gmail.com>
- <27b52215-3cbe-b407-c439-216fdace3745@gmail.com>
-Message-ID: <cd619caf-66b6-5b06-844f-4c8962fe860a@baylibre.com>
+Date: Mon, 13 Mar 2017 10:03:27 +0100
+Subject: [PATCH 1/3] ARM64: dts: meson-gx: Finally move common nodes to GX
+ dtsi
+In-Reply-To: <m24lz0d5l5.fsf@baylibre.com>
+References: <1489055948-10656-1-git-send-email-narmstrong@baylibre.com>
+ <1489055948-10656-2-git-send-email-narmstrong@baylibre.com>
+ <m24lz0d5l5.fsf@baylibre.com>
+Message-ID: <5c0d7b17-f3f2-5cc6-ec71-41335dd0c86c@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/11/2017 07:23 PM, Heiner Kallweit wrote:
-> We don't have to parse the DT manually to retrieve the bus frequency
-> and we don't have to maintain an own default for the bus frequency.
-> Let the i2c core do this for us.
+On 03/11/2017 01:23 AM, Kevin Hilman wrote:
+> Neil Armstrong <narmstrong@baylibre.com> writes:
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
-> v2:
-> - added Reviewed-by
-> v3:
-> - changed order of patches
-> ---
->  drivers/i2c/busses/i2c-meson.c | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-> index e597764e..ac0ac82d 100644
-> --- a/drivers/i2c/busses/i2c-meson.c
-> +++ b/drivers/i2c/busses/i2c-meson.c
-> @@ -38,7 +38,6 @@
->  #define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) << REG_CTRL_CLKDIV_SHIFT)
->  
->  #define I2C_TIMEOUT_MS		500
-> -#define DEFAULT_FREQ		100000
->  
->  enum {
->  	TOKEN_END = 0,
-> @@ -387,15 +386,14 @@ static int meson_i2c_probe(struct platform_device *pdev)
->  	struct device_node *np = pdev->dev.of_node;
->  	struct meson_i2c *i2c;
->  	struct resource *mem;
-> -	u32 freq;
-> +	struct i2c_timings timings;
->  	int irq, ret = 0;
->  
->  	i2c = devm_kzalloc(&pdev->dev, sizeof(struct meson_i2c), GFP_KERNEL);
->  	if (!i2c)
->  		return -ENOMEM;
->  
-> -	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency", &freq))
-> -		freq = DEFAULT_FREQ;
-> +	i2c_parse_fw_timings(&pdev->dev, &timings, true);
->  
->  	i2c->dev = &pdev->dev;
->  	platform_set_drvdata(pdev, i2c);
-> @@ -453,7 +451,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> -	meson_i2c_set_clk_div(i2c, freq);
-> +	meson_i2c_set_clk_div(i2c, timings.bus_freq_hz);
->  
->  	return 0;
->  }
-> 
+> Could use a bit more changelog here (probably what you have in the cover
+> letter.)
 
-Hi Heiner,
+Oops, sent the wrong files...
 
-I'm sorry, but you should *really* update the dt-bindings.
-
-The dt bindings are now strictly related to how the driver is implemented, or which
-attributes are used, but how the device tree node should conform to.
-
-In this particular case, in the recent addition of "standard" i2c attributes for
-speed and timings, you should refer to this "i2c.txt" file to specify how the node
-should conform.
-
-And finally, this patch would be correct since the node will be supposed to conform
-to the correct bindings.
+Will resend the patchset with changelog for patches 1 and 3.
 
 Neil
+
+> 
+> Otherwise, looks good.  Thanks for the cleanup.
+> 
+> Kevin
+> 
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 24 ++++++++++++++++
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 43 ++++++-----------------------
+>>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  |  8 ++++++
+>>  3 files changed, 40 insertions(+), 35 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> index 5d995f7..2d8dc6f 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> @@ -296,6 +296,14 @@
+>>  				status = "disabled";
+>>  			};
+>>  
+>> +			spifc: spi at 8c80 {
+>> +				compatible = "amlogic,meson-gxbb-spifc";
+>> +				reg = <0x0 0x08c80 0x0 0x80>;
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +				status = "disabled";
+>> +			};
+>> +
+>>  			watchdog at 98d0 {
+>>  				compatible = "amlogic,meson-gx-wdt", "amlogic,meson-gxbb-wdt";
+>>  				reg = <0x0 0x098d0 0x0 0x10>;
+>> @@ -342,6 +350,13 @@
+>>  			#size-cells = <2>;
+>>  			ranges = <0x0 0x0 0x0 0xc8100000 0x0 0x100000>;
+>>  
+>> +			clkc_AO: clock-controller at 040 {
+>> +				compatible = "amlogic,gx-aoclkc", "amlogic,gxbb-aoclkc";
+>> +				reg = <0x0 0x00040 0x0 0x4>;
+>> +				#clock-cells = <1>;
+>> +				#reset-cells = <1>;
+>> +			};
+>> +
+>>  			uart_AO: serial at 4c0 {
+>>  				compatible = "amlogic,meson-uart";
+>>  				reg = <0x0 0x004c0 0x0 0x14>;
+>> @@ -358,6 +373,15 @@
+>>  				status = "disabled";
+>>  			};
+>>  
+>> +			i2c_AO: i2c at 500 {
+>> +				compatible = "amlogic,meson-gx-i2c", "amlogic,meson-gxbb-i2c";
+>> +				reg = <0x0 0x500 0x0 0x20>;
+>> +				interrupts = <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>;
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +				status = "disabled";
+>> +			};
+>> +
+>>  			pwm_AO_ab: pwm at 550 {
+>>  				compatible = "amlogic,meson-gx-pwm", "amlogic,meson-gxbb-pwm";
+>>  				reg = <0x0 0x00550 0x0 0x10>;
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> index 04b3324..c2c41aa 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> @@ -97,17 +97,6 @@
+>>  	};
+>>  };
+>>  
+>> -&cbus {
+>> -	spifc: spi at 8c80 {
+>> -		compatible = "amlogic,meson-gxbb-spifc";
+>> -		reg = <0x0 0x08c80 0x0 0x80>;
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -		clocks = <&clkc CLKID_SPI>;
+>> -		status = "disabled";
+>> -	};
+>> -};
+>> -
+>>  &ethmac {
+>>  	clocks = <&clkc CLKID_ETH>,
+>>  		 <&clkc CLKID_FCLK_DIV2>,
+>> @@ -204,30 +193,6 @@
+>>  			};
+>>  		};
+>>  	};
+>> -
+>> -	clkc_AO: clock-controller at 040 {
+>> -		compatible = "amlogic,gxbb-aoclkc";
+>> -		reg = <0x0 0x00040 0x0 0x4>;
+>> -		#clock-cells = <1>;
+>> -		#reset-cells = <1>;
+>> -	};
+>> -
+>> -	pwm_ab_AO: pwm at 550 {
+>> -		compatible = "amlogic,meson-gxbb-pwm";
+>> -		reg = <0x0 0x0550 0x0 0x10>;
+>> -		#pwm-cells = <3>;
+>> -		status = "disabled";
+>> -	};
+>> -
+>> -	i2c_AO: i2c at 500 {
+>> -		compatible = "amlogic,meson-gxbb-i2c";
+>> -		reg = <0x0 0x500 0x0 0x20>;
+>> -		interrupts = <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>;
+>> -		clocks = <&clkc CLKID_AO_I2C>;
+>> -		#address-cells = <1>;
+>> -		#size-cells = <0>;
+>> -		status = "disabled";
+>> -	};
+>>  };
+>>  
+>>  &periphs {
+>> @@ -482,6 +447,10 @@
+>>  	clocks = <&clkc CLKID_I2C>;
+>>  };
+>>  
+>> +&i2c_AO {
+>> +	clocks = <&clkc CLKID_AO_I2C>;
+>> +};
+>> +
+>>  &i2c_B {
+>>  	clocks = <&clkc CLKID_I2C>;
+>>  };
+>> @@ -521,6 +490,10 @@
+>>  	clock-names = "core", "clkin0", "clkin1";
+>>  };
+>>  
+>> +&spifc {
+>> +	clocks = <&clkc CLKID_SPI>;
+>> +};
+>> +
+>>  &vpu {
+>>  	compatible = "amlogic,meson-gxbb-vpu", "amlogic,meson-gx-vpu";
+>>  };
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> index 17cd546..37ed7a0 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> @@ -427,6 +427,10 @@
+>>  	clocks = <&clkc CLKID_I2C>;
+>>  };
+>>  
+>> +&i2c_AO {
+>> +	clocks = <&clkc CLKID_AO_I2C>;
+>> +};
+>> +
+>>  &i2c_B {
+>>  	clocks = <&clkc CLKID_I2C>;
+>>  };
+>> @@ -466,6 +470,10 @@
+>>  	clock-names = "core", "clkin0", "clkin1";
+>>  };
+>>  
+>> +&spifc {
+>> +	clocks = <&clkc CLKID_SPI>;
+>> +};
+>> +
+>>  &vpu {
+>>  	compatible = "amlogic,meson-gxl-vpu", "amlogic,meson-gx-vpu";
+>>  };
