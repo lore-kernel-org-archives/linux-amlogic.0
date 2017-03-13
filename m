@@ -1,80 +1,83 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sat, 11 Mar 2017 19:24:26 +0100
-Subject: [PATCH v3 10/10] i2c: meson: improve and simplify interrupt handler
-In-Reply-To: <a0ebd65b-712d-2b15-dcc6-3b8a9a619770@gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 13 Mar 2017 10:01:39 +0100
+Subject: [PATCH v3 04/10] i2c: meson: use i2c core for DT clock-frequency
+ parsing
+In-Reply-To: <27b52215-3cbe-b407-c439-216fdace3745@gmail.com>
 References: <a0ebd65b-712d-2b15-dcc6-3b8a9a619770@gmail.com>
-Message-ID: <d2828280-d170-636e-3e46-e6afe6121f6d@gmail.com>
+ <27b52215-3cbe-b407-c439-216fdace3745@gmail.com>
+Message-ID: <cd619caf-66b6-5b06-844f-4c8962fe860a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The preceding changes in this patch series now allow to simplify
-the interrupt handler significantly.
+On 03/11/2017 07:23 PM, Heiner Kallweit wrote:
+> We don't have to parse the DT manually to retrieve the bus frequency
+> and we don't have to maintain an own default for the bus frequency.
+> Let the i2c core do this for us.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+> v2:
+> - added Reviewed-by
+> v3:
+> - changed order of patches
+> ---
+>  drivers/i2c/busses/i2c-meson.c | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
+> index e597764e..ac0ac82d 100644
+> --- a/drivers/i2c/busses/i2c-meson.c
+> +++ b/drivers/i2c/busses/i2c-meson.c
+> @@ -38,7 +38,6 @@
+>  #define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) << REG_CTRL_CLKDIV_SHIFT)
+>  
+>  #define I2C_TIMEOUT_MS		500
+> -#define DEFAULT_FREQ		100000
+>  
+>  enum {
+>  	TOKEN_END = 0,
+> @@ -387,15 +386,14 @@ static int meson_i2c_probe(struct platform_device *pdev)
+>  	struct device_node *np = pdev->dev.of_node;
+>  	struct meson_i2c *i2c;
+>  	struct resource *mem;
+> -	u32 freq;
+> +	struct i2c_timings timings;
+>  	int irq, ret = 0;
+>  
+>  	i2c = devm_kzalloc(&pdev->dev, sizeof(struct meson_i2c), GFP_KERNEL);
+>  	if (!i2c)
+>  		return -ENOMEM;
+>  
+> -	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency", &freq))
+> -		freq = DEFAULT_FREQ;
+> +	i2c_parse_fw_timings(&pdev->dev, &timings, true);
+>  
+>  	i2c->dev = &pdev->dev;
+>  	platform_set_drvdata(pdev, i2c);
+> @@ -453,7 +451,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> -	meson_i2c_set_clk_div(i2c, freq);
+> +	meson_i2c_set_clk_div(i2c, timings.bus_freq_hz);
+>  
+>  	return 0;
+>  }
+> 
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- rebased
-v3:
-- no changes
----
- drivers/i2c/busses/i2c-meson.c | 40 ++++++++++------------------------------
- 1 file changed, 10 insertions(+), 30 deletions(-)
+Hi Heiner,
 
-diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 23f25efa..590715ae 100644
---- a/drivers/i2c/busses/i2c-meson.c
-+++ b/drivers/i2c/busses/i2c-meson.c
-@@ -239,41 +239,21 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 		goto out;
- 	}
- 
--	switch (i2c->state) {
--	case STATE_READ:
--		if (i2c->count > 0) {
--			meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos,
--					   i2c->count);
--			i2c->pos += i2c->count;
--		}
--
--		if (i2c->pos >= i2c->msg->len) {
--			i2c->state = STATE_IDLE;
--			complete(&i2c->done);
--			break;
--		}
--
--		meson_i2c_prepare_xfer(i2c);
--		break;
--	case STATE_WRITE:
--		i2c->pos += i2c->count;
-+	if (i2c->state == STATE_READ && i2c->count)
-+		meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
- 
--		if (i2c->pos >= i2c->msg->len) {
--			i2c->state = STATE_IDLE;
--			complete(&i2c->done);
--			break;
--		}
-+	i2c->pos += i2c->count;
- 
--		meson_i2c_prepare_xfer(i2c);
--		break;
-+	if (i2c->pos >= i2c->msg->len) {
-+		i2c->state = STATE_IDLE;
-+		complete(&i2c->done);
-+		goto out;
- 	}
- 
-+	/* Restart the processing */
-+	meson_i2c_prepare_xfer(i2c);
-+	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, REG_CTRL_START);
- out:
--	if (i2c->state != STATE_IDLE)
--		/* Restart the processing */
--		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
--				   REG_CTRL_START);
--
- 	spin_unlock(&i2c->lock);
- 
- 	return IRQ_HANDLED;
--- 
-2.12.0
+I'm sorry, but you should *really* update the dt-bindings.
+
+The dt bindings are now strictly related to how the driver is implemented, or which
+attributes are used, but how the device tree node should conform to.
+
+In this particular case, in the recent addition of "standard" i2c attributes for
+speed and timings, you should refer to this "i2c.txt" file to specify how the node
+should conform.
+
+And finally, this patch would be correct since the node will be supposed to conform
+to the correct bindings.
+
+Neil
