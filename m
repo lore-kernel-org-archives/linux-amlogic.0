@@ -1,107 +1,85 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Mon, 13 Mar 2017 20:03:21 +0100
-Subject: [PATCH v3 04/10] i2c: meson: use i2c core for DT clock-frequency
- parsing
-In-Reply-To: <cd619caf-66b6-5b06-844f-4c8962fe860a@baylibre.com>
-References: <a0ebd65b-712d-2b15-dcc6-3b8a9a619770@gmail.com>
- <27b52215-3cbe-b407-c439-216fdace3745@gmail.com>
- <cd619caf-66b6-5b06-844f-4c8962fe860a@baylibre.com>
-Message-ID: <05593a02-9b4d-b937-deea-eef1161a0a10@gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 14 Mar 2017 09:14:29 +0100
+Subject: [PATCH v3 4/6] drm: bridge: dw-hdmi: Switch to V4L bus format and
+ encodings
+In-Reply-To: <dfc1e19f-8b83-fc1a-3653-7e95bcc3c7f0@synopsys.com>
+References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
+ <1488904944-14285-5-git-send-email-narmstrong@baylibre.com>
+ <977cfb29-af7a-2e28-7a7f-396d9ccf3eb8@synopsys.com>
+ <28fe7ecf-cf4a-568a-b853-0506c088884d@baylibre.com>
+ <f73a3cee-3336-2562-696d-dd4e0e7ac680@synopsys.com>
+ <dfc1e19f-8b83-fc1a-3653-7e95bcc3c7f0@synopsys.com>
+Message-ID: <0ff77b66-c477-b8a7-ffae-c7d81a52b069@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 13.03.2017 um 10:01 schrieb Neil Armstrong:
-> On 03/11/2017 07:23 PM, Heiner Kallweit wrote:
->> We don't have to parse the DT manually to retrieve the bus frequency
->> and we don't have to maintain an own default for the bus frequency.
->> Let the i2c core do this for us.
+On 03/13/2017 12:43 PM, Jose Abreu wrote:
+> Hi Neil,
+> 
+> 
+> On 09-03-2017 14:27, Jose Abreu wrote:
+>> Hi Neil,
 >>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->> v2:
->> - added Reviewed-by
->> v3:
->> - changed order of patches
->> ---
->>  drivers/i2c/busses/i2c-meson.c | 8 +++-----
->>  1 file changed, 3 insertions(+), 5 deletions(-)
 >>
->> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
->> index e597764e..ac0ac82d 100644
->> --- a/drivers/i2c/busses/i2c-meson.c
->> +++ b/drivers/i2c/busses/i2c-meson.c
->> @@ -38,7 +38,6 @@
->>  #define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) << REG_CTRL_CLKDIV_SHIFT)
->>  
->>  #define I2C_TIMEOUT_MS		500
->> -#define DEFAULT_FREQ		100000
->>  
->>  enum {
->>  	TOKEN_END = 0,
->> @@ -387,15 +386,14 @@ static int meson_i2c_probe(struct platform_device *pdev)
->>  	struct device_node *np = pdev->dev.of_node;
->>  	struct meson_i2c *i2c;
->>  	struct resource *mem;
->> -	u32 freq;
->> +	struct i2c_timings timings;
->>  	int irq, ret = 0;
->>  
->>  	i2c = devm_kzalloc(&pdev->dev, sizeof(struct meson_i2c), GFP_KERNEL);
->>  	if (!i2c)
->>  		return -ENOMEM;
->>  
->> -	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency", &freq))
->> -		freq = DEFAULT_FREQ;
->> +	i2c_parse_fw_timings(&pdev->dev, &timings, true);
->>  
->>  	i2c->dev = &pdev->dev;
->>  	platform_set_drvdata(pdev, i2c);
->> @@ -453,7 +451,7 @@ static int meson_i2c_probe(struct platform_device *pdev)
->>  		return ret;
->>  	}
->>  
->> -	meson_i2c_set_clk_div(i2c, freq);
->> +	meson_i2c_set_clk_div(i2c, timings.bus_freq_hz);
->>  
->>  	return 0;
->>  }
+>> On 08-03-2017 12:12, Neil Armstrong wrote:
+>>> Hi Jose,
+>>>
+>>> It seems here that we only have the RGB444<->YUV444 8bit tables, from the Amlogic
+>>> source I have the following for 10bit, 12bit and 16bit for itu601 :
+>>>
+>>> static const u16 csc_coeff_rgb_out_eitu601_10b[3][4] = {
+>>> 	{ 0x2000, 0x6926, 0x74fd, 0x043b },
+>>> 	{ 0x2000, 0x2cdd, 0x0000, 0x7a65 },
+>>> 	{ 0x2000, 0x0000, 0x38b4, 0x78ea }
+>>> };
+>>>
+>>> static const u16 csc_coeff_rgb_out_eitu601_12b_16b[3][4] = {
+>>> 	{ 0x2000, 0x6926, 0x74fd, 0x10ee },
+>>> 	{ 0x2000, 0x2cdd, 0x0000, 0x6992 },
+>>> 	{ 0x2000, 0x0000, 0x38b4, 0x63a6 }
+>>> };
+>> These two do not match anything I have here.
 >>
+>>> static const u16 csc_coeff_rgb_in_eitu601_10b[3][4] = {
+>>> 	{ 0x2591, 0x1322, 0x074b, 0x0000 },
+>>> 	{ 0x6535, 0x2000, 0x7acc, 0x0800 },
+>>> 	{ 0x6acd, 0x7534, 0x2000, 0x0800 }
+>>> };
+>> This is more or less correct, I have small offsets. Note that I
+>> even have offsets with the values that are in dw-hdmi driver,
+>> which can be caused because I'm seeing the latest document that
+>> contain these values. I guess they were updated.
+>>
+>>> static const u16 csc_coeff_rgb_in_eitu601_12b_16b[3][4] = {
+>>> 	{ 0x2591, 0x1322, 0x074b, 0x0000 },
+>>> 	{ 0x6535, 0x2000, 0x7acc, 0x2000 },
+>>> 	{ 0x6acd, 0x7534, 0x2000, 0x2000 }
+>>> };
+>> The same for this.
+>>
+>>> But I miss the itu709 values.
+>>>
+>>> Could you confirm these values and maybe provide the itu709 values ?
+>> I will have to check if I can provide you the values. I will get
+>> back to you.
 > 
-> Hi Heiner,
+> Sorry but looks like I won't be able to provide you the correct
+> values :/ If you are working for a Synopsys customer you can
+> contact our CAE (If so I can guide you to the correct CAE).
 > 
-> I'm sorry, but you should *really* update the dt-bindings.
+> Anyway, unless you can test the values you have I suggest you
+> don't use them, they do not match what I have here and I can't
+> test them because right now I don't have a setup (I'm assuming
+> that your CSC block within the controller was not modified).
 > 
-> The dt bindings are now strictly related to how the driver is implemented, or which
-> attributes are used, but how the device tree node should conform to.
+> Best regards,
+> Jose Miguel Abreu
 > 
-> In this particular case, in the recent addition of "standard" i2c attributes for
-> speed and timings, you should refer to this "i2c.txt" file to specify how the node
-> should conform.
-> 
-> And finally, this patch would be correct since the node will be supposed to conform
-> to the correct bindings.
-> 
-I checked the DT documentation of all i2c drivers. Just two include something similar
-to what you request:
 
-i2c-rcar.txt
-no remark for property clock-frequency
-i2c-scl-falling-time-ns: see i2c.txt
+Hi Jose,
 
-nvidia,tegra186-bpmp-i2c.txt
-See ../i2c/i2c.txt for details of the core I2C binding.
+Thanks for your effort, I will postpone this fix and only add the tables
+needed by the Amlogic platform when needed.
 
-So you request a comment like the one in the tegra driver documentation?
-
-The supported properties as such don't change in the meson driver, only
-clock-freqeuncy is supported as optional parameter.
-The timing properties are parsed by the core call but they are not used by the
-driver, so I don't think we are allowed to mention them in the documentation.
-Else a reader of the documentation may expect that setting such a timing
-parameter actually changes the behavior of the driver.
-
-Heiner
-
-> Neil
-> 
+Thanks,
+Neil
