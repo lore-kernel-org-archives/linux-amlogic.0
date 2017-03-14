@@ -1,62 +1,52 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 14 Mar 2017 22:51:30 +0100
-Subject: [PATCH v4 05/10] i2c: meson: use full 12 bits for clock divider
+Date: Tue, 14 Mar 2017 22:51:35 +0100
+Subject: [PATCH v4 06/10] i2c: meson: remove variable count from meson_i2c_xfer
 In-Reply-To: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
 References: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
-Message-ID: <fbc241ed-ec1e-b433-50af-5d0ebca09711@gmail.com>
+Message-ID: <126e80e5-f93f-8c18-f283-65eee94b3a82@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock divider has 12 bits, splitted into a 10 bit field and a
-2 bit field. The extra 2 bits aren't used currently.
-
-Change this to use the full 12 bits and warn if the requested
-frequency is too low.
+Variable count has always the same value as i, so we don't need it.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
 v2:
-- added Acked-by
+- remove one small change from v1
 v3:
-- changed order of patches
+- no changes
 v4:
 - no changes
 ---
- drivers/i2c/busses/i2c-meson.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index ac0ac82d..03f70282 100644
+index 03f70282..3fc1a715 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -35,7 +35,9 @@
- #define REG_CTRL_STATUS		BIT(2)
- #define REG_CTRL_ERROR		BIT(3)
- #define REG_CTRL_CLKDIV_SHIFT	12
--#define REG_CTRL_CLKDIV_MASK	((BIT(10) - 1) << REG_CTRL_CLKDIV_SHIFT)
-+#define REG_CTRL_CLKDIV_MASK	GENMASK(21, 12)
-+#define REG_CTRL_CLKDIVEXT_SHIFT 28
-+#define REG_CTRL_CLKDIVEXT_MASK	GENMASK(29, 28)
+@@ -364,7 +364,7 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
+ 			  int num)
+ {
+ 	struct meson_i2c *i2c = adap->algo_data;
+-	int i, ret = 0, count = 0;
++	int i, ret = 0;
  
- #define I2C_TIMEOUT_MS		500
+ 	clk_enable(i2c->clk);
  
-@@ -134,8 +136,15 @@ static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
- 	unsigned int div;
+@@ -372,12 +372,11 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
+ 		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1);
+ 		if (ret)
+ 			break;
+-		count++;
+ 	}
  
- 	div = DIV_ROUND_UP(clk_rate, freq * 4);
-+
-+	/* clock divider has 12 bits */
-+	WARN_ON(div >= (1 << 12));
-+
- 	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
--			   div << REG_CTRL_CLKDIV_SHIFT);
-+			   (div & GENMASK(9, 0)) << REG_CTRL_CLKDIV_SHIFT);
-+
-+	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIVEXT_MASK,
-+			   (div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
+ 	clk_disable(i2c->clk);
  
- 	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n", __func__,
- 		clk_rate, freq, div);
+-	return ret ? ret : count;
++	return ret ?: i;
+ }
+ 
+ static u32 meson_i2c_func(struct i2c_adapter *adap)
 -- 
 2.12.0
