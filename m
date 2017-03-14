@@ -1,104 +1,274 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 14 Mar 2017 22:53:29 +0100
-Subject: [PATCH v4 03/10] i2c: meson: set clock divider in probe instead of
- setting it for each transfer
-In-Reply-To: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
-References: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
-Message-ID: <c85a5f83-0013-001e-6c2d-3fe66c5267aa@gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 14 Mar 2017 15:34:26 -0700
+Subject: [PATCH v2 1/1] ARM64: dts: meson-gxl: improve support for the
+ P212 reference design
+In-Reply-To: <20170304095213.8221-2-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sat, 4 Mar 2017 10:52:13 +0100")
+References: <20170219224114.17201-1-martin.blumenstingl@googlemail.com>
+ <20170304095213.8221-1-martin.blumenstingl@googlemail.com>
+ <20170304095213.8221-2-martin.blumenstingl@googlemail.com>
+Message-ID: <m21stza3nx.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The bus frequency won't change, therefore we can set the clock divider
-in probe already and we don't have to set it for each transfer.
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- no changes
-v3:
-- change order of patches
-v4:
-- no changes
----
- drivers/i2c/busses/i2c-meson.c | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+> The Amlogic P212 reference design is used by other devices as well, such
+> as (for example) the Khadas VIM boards. Thus this patch adds and moves
+> all common entries from meson-gxl-s905x-p212.dts to a new, separate
+> meson-gxl-s905x-p212.dtsi (which can be re-used on boards such as the
+> Khadas VIM).
+> Support for all boards based on the P212 reference design includes:
+> - enabling IR support
+> - enabling the SAR ADC (SARADC_CH1 is connected to a resistor which
+>   indicates the hardware revision, a similar design is found on the
+>   Khadas VIM boards)
+> - all MMC controllers (which means that SDIO wifi, the SD card and the
+>   eMMC are now supported)
+> - pwm_ef as dependency for the SDIO wifi modules
+> - uart_A which is connected to the bluetooth module (the bluetooth
+>   module itself is not enabled yet due to missing devicetree bindings
+>   for the Broadcom serial bluetooth devices)
+> - uart_AO is moved to the .dtsi (as all known devices use it as their
+>   boot-console)
+>
+> Specific to the P212 board:
+> - this also enables the CVBS connector (which is not available on the
+>   Khadas VIM boards for example)
+> - Realtek based SDIO wifi (instead of Broadcom which most other devices
+>   use)
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
 
-diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 50059d09..e597764e 100644
---- a/drivers/i2c/busses/i2c-meson.c
-+++ b/drivers/i2c/busses/i2c-meson.c
-@@ -73,7 +73,6 @@ enum {
-  * @error:	Flag set when an error is received
-  * @lock:	To avoid race conditions between irq handler and xfer code
-  * @done:	Completion used to wait for transfer termination
-- * @frequency:	Operating frequency of I2C bus clock
-  * @tokens:	Sequence of tokens to be written to the device
-  * @num_tokens:	Number of tokens
-  */
-@@ -92,7 +91,6 @@ struct meson_i2c {
- 
- 	spinlock_t		lock;
- 	struct completion	done;
--	unsigned int		frequency;
- 	u32			tokens[2];
- 	int			num_tokens;
- };
-@@ -131,17 +129,17 @@ static void meson_i2c_write_tokens(struct meson_i2c *i2c)
- 	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
- }
- 
--static void meson_i2c_set_clk_div(struct meson_i2c *i2c)
-+static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
- {
- 	unsigned long clk_rate = clk_get_rate(i2c->clk);
- 	unsigned int div;
- 
--	div = DIV_ROUND_UP(clk_rate, i2c->frequency * 4);
-+	div = DIV_ROUND_UP(clk_rate, freq * 4);
- 	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_CLKDIV_MASK,
- 			   div << REG_CTRL_CLKDIV_SHIFT);
- 
- 	dev_dbg(i2c->dev, "%s: clk %lu, freq %u, div %u\n", __func__,
--		clk_rate, i2c->frequency, div);
-+		clk_rate, freq, div);
- }
- 
- static void meson_i2c_get_data(struct meson_i2c *i2c, char *buf, int len)
-@@ -361,7 +359,6 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
- 	int i, ret = 0, count = 0;
- 
- 	clk_enable(i2c->clk);
--	meson_i2c_set_clk_div(i2c);
- 
- 	for (i = 0; i < num; i++) {
- 		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1);
-@@ -390,15 +387,15 @@ static int meson_i2c_probe(struct platform_device *pdev)
- 	struct device_node *np = pdev->dev.of_node;
- 	struct meson_i2c *i2c;
- 	struct resource *mem;
-+	u32 freq;
- 	int irq, ret = 0;
- 
- 	i2c = devm_kzalloc(&pdev->dev, sizeof(struct meson_i2c), GFP_KERNEL);
- 	if (!i2c)
- 		return -ENOMEM;
- 
--	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency",
--				 &i2c->frequency))
--		i2c->frequency = DEFAULT_FREQ;
-+	if (of_property_read_u32(pdev->dev.of_node, "clock-frequency", &freq))
-+		freq = DEFAULT_FREQ;
- 
- 	i2c->dev = &pdev->dev;
- 	platform_set_drvdata(pdev, i2c);
-@@ -456,6 +453,8 @@ static int meson_i2c_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	meson_i2c_set_clk_div(i2c, freq);
-+
- 	return 0;
- }
- 
--- 
-2.12.0
+I also gave this a spin on P212 board and it's working well.
+
+Applied to v4.12/dt64
+
+Kevin
+
+> ---
+>  .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      |  21 +--
+>  .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     | 173 +++++++++++++++++++++
+>  2 files changed, 185 insertions(+), 9 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+> index 9639f012b02b..db31e093f40e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+> @@ -43,23 +43,26 @@
+>  
+>  /dts-v1/;
+>  
+> -#include "meson-gxl-s905x.dtsi"
+> +#include "meson-gxl-s905x-p212.dtsi"
+>  
+>  / {
+>  	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
+>  	model = "Amlogic Meson GXL (S905X) P212 Development Board";
+>  
+> -	aliases {
+> -		serial0 = &uart_AO;
+> -	};
+> +	cvbs-connector {
+> +		compatible = "composite-video-connector";
+>  
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> +		port {
+> +			cvbs_connector_in: endpoint {
+> +				remote-endpoint = <&cvbs_vdac_out>;
+> +			};
+> +		};
+>  	};
+> +};
+>  
+> -	memory at 0 {
+> -		device_type = "memory";
+> -		reg = <0x0 0x0 0x0 0x80000000>;
+> +&cvbs_vdac_port {
+> +	cvbs_vdac_out: endpoint {
+> +		remote-endpoint = <&cvbs_connector_in>;
+>  	};
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> new file mode 100644
+> index 000000000000..f3eea8e89d12
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> @@ -0,0 +1,173 @@
+> +/*
+> + * Copyright (c) 2016 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
+> + * Based on meson-gx-p23x-q20x.dtsi:
+> + * - Copyright (c) 2016 Endless Computers, Inc.
+> + *   Author: Carlo Caione <carlo@endlessm.com>
+> + * - Copyright (c) 2016 BayLibre, SAS.
+> + *   Author: Neil Armstrong <narmstrong@baylibre.com>
+> + *
+> + * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> + */
+> +
+> +/* Common DTSI for devices which are based on the P212 reference board. */
+> +
+> +#include "meson-gxl-s905x.dtsi"
+> +
+> +/ {
+> +	aliases {
+> +		serial0 = &uart_AO;
+> +		serial1 = &uart_A;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory at 0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +
+> +	vddio_boot: regulator-vddio_boot {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_BOOT";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +	};
+> +
+> +	vddao_3v3: regulator-vddao_3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +
+> +	vddio_ao18: regulator-vddio_ao18 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_AO18";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +	};
+> +
+> +	vcc_3v3: regulator-vcc_3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +
+> +	emmc_pwrseq: emmc-pwrseq {
+> +		compatible = "mmc-pwrseq-emmc";
+> +		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	wifi32k: wifi32k {
+> +		compatible = "pwm-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "ext_clock";
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	status = "okay";
+> +};
+> +
+> +&ir {
+> +	status = "okay";
+> +	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&saradc {
+> +	status = "okay";
+> +	vref-supply = <&vddio_ao18>;
+> +};
+> +
+> +/* Wireless SDIO Module */
+> +&sd_emmc_a {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdio_pins>;
+> +	pinctrl-names = "default";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	max-frequency = <100000000>;
+> +
+> +	non-removable;
+> +	disable-wp;
+> +
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +/* SD card */
+> +&sd_emmc_b {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdcard_pins>;
+> +	pinctrl-names = "default";
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	max-frequency = <100000000>;
+> +	disable-wp;
+> +
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> +	cd-inverted;
+> +
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +/* eMMC */
+> +&sd_emmc_c {
+> +	status = "okay";
+> +	pinctrl-0 = <&emmc_pins>;
+> +	pinctrl-names = "default";
+> +
+> +	bus-width = <8>;
+> +	cap-sd-highspeed;
+> +	cap-mmc-highspeed;
+> +	max-frequency = <200000000>;
+> +	non-removable;
+> +	disable-wp;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +
+> +	mmc-pwrseq = <&emmc_pwrseq>;
+> +	vmmc-supply = <&vcc_3v3>;
+> +	vqmmc-supply = <&vddio_boot>;
+> +};
+> +
+> +&pwm_ef {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_e_pins>;
+> +	pinctrl-names = "default";
+> +	clocks = <&clkc CLKID_FCLK_DIV4>;
+> +	clock-names = "clkin0";
+> +};
+> +
+> +/* This is connected to the Bluetooth module: */
+> +&uart_A {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+> +	pinctrl-names = "default";
+> +	uart-has-rtscts;
+> +};
+> +
+> +&uart_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +};
