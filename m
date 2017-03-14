@@ -1,65 +1,39 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Tue, 14 Mar 2017 16:42:37 +0100
-Subject: [PATCH 1/2] pinctrl: meson: gxl: add the missing PWM pin
- definitions
-In-Reply-To: <CAFBinCDty8v80tLxHJPR+SHv32LX834dPJUruRNqr6angx3OOQ@mail.gmail.com>
-References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
- <20170304212318.27076-2-martin.blumenstingl@googlemail.com>
- <1488811357.2420.18.camel@baylibre.com>
- <CAFBinCDty8v80tLxHJPR+SHv32LX834dPJUruRNqr6angx3OOQ@mail.gmail.com>
-Message-ID: <CACRpkdbGfGUhnAQz=9xeFnD2hF6m_xXacu8mZiwte-OCSDMo9w@mail.gmail.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Tue, 14 Mar 2017 17:21:02 +0100
+Subject: [PATCH v5 0/10] mmc: meson-gx: series with smaller improvements
+In-Reply-To: <a76c3483-2c86-85c1-446e-f2522bd28aa8@gmail.com>
+References: <a76c3483-2c86-85c1-446e-f2522bd28aa8@gmail.com>
+Message-ID: <CAPDyKFpZw7oK-WeSqPyYqTLU5GE+ZrrA7rL-FNn1+Um7h+E+4Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Mar 9, 2017 at 8:47 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> On Mon, Mar 6, 2017 at 3:42 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
->> On Sat, 2017-03-04 at 22:23 +0100, Martin Blumenstingl wrote:
-
->>> +     FUNCTION(pwm_f_clk),
->>> +     FUNCTION(pwm_f_x),
->>
->> I wonder if having function named "pwm_f_clk" really makes sense ?
->> Shouldn't it be just "pwm_f" ? This is real function, isn't it ?
->> The actual pin used will be provided in the dt. Here, I suppose we
->> could have this:
->>
->> +static const char * const pwm_f_groups[] = {
->> +       "pwm_f_x", "pwm_f_clk",
->> +};
->>
->> Has far as I can see, on meson arch, the function does not carry much
->> information anyway, except for prints.
->>
->> To be clear, I'm not questioning this change in particular. It looks
->> good, and follows what has been done in the past on meson. I know we
->> have been this a lot already, but I'm questioning whether we should
->> continue to do so ?
->>
->> I asking because I also have a lot case like this coming up on audio
->> for gxl and gxbb, where the same function can use different pins.
+On 4 March 2017 at 13:17, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> New series is limited to smaller refactorings w/o functional changes.
 >
-> could you please look into Jerome's question?
-> personally I'm fine with either way, and changing my patch would be
-> quite trivial. but I'd like to know what's "the way to go" before
-> changing anything (and reverting that afterwards again).
+> v5:
+> - fix a hang caused by patch "improve initial configuration"
+>
+> Heiner Kallweit (10):
+>   mmc: meson-gx: simplify bounce buffer setting in meson_mmc_start_cmd
+>   mmc: meson-gx: make two functions return void
+>   mmc: meson-gx: remove unused members irq, ocr_mask from struct meson_host
+>   mmc: meson-gx: remove unneeded variable in meson_mmc_clk_init
+>   mmc: meson-gx: remove member parent_mux from struct meson_host
+>   mmc: meson-gx: remove unneeded meson_mmc_clk_set in meson_mmc_clk_init
+>   mmc: meson-gx: remove unneeded devm_kstrdup in meson_mmc_clk_init
+>   mmc: meson-gx: improve initial configuration
+>   mmc: meson-gx: remove member mrq from struct meson_host
+>   mmc: meson-gx: replace magic timeout numbers with constants
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 120 ++++++++++++++++------------------------
+>  1 file changed, 47 insertions(+), 73 deletions(-)
+>
+> --
+> 2.12.0
+>
+>
 
-I don't understand the question really.
+Thanks, applied for next!
 
-I am not an expert on this system, if the people working with it
-cannot tell a function from a group I don't know who can... certainly
-not me.
-
-What I can say is that pincontrol combines functions and groups to
-states using a mapping. The functions should be something you poke
-into a register, the groups are looser defined but may also be a
-character of the hardware, but more usual a character of the
-intended electronic usecase. Groups contain 1..n pins and can
-be combined with some applicable functions.
-
-Please re-read Documentation/pinctrl.txt very closely if anything is
-unclear, I really put a lot of hours into getting that right. Especially
-reexamine "Pinmux conventions".
-
-Yours,
-Linus Walleij
+Kind regards
+Uffe
