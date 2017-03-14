@@ -1,85 +1,34 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 14 Mar 2017 09:14:29 +0100
-Subject: [PATCH v3 4/6] drm: bridge: dw-hdmi: Switch to V4L bus format and
- encodings
-In-Reply-To: <dfc1e19f-8b83-fc1a-3653-7e95bcc3c7f0@synopsys.com>
-References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
- <1488904944-14285-5-git-send-email-narmstrong@baylibre.com>
- <977cfb29-af7a-2e28-7a7f-396d9ccf3eb8@synopsys.com>
- <28fe7ecf-cf4a-568a-b853-0506c088884d@baylibre.com>
- <f73a3cee-3336-2562-696d-dd4e0e7ac680@synopsys.com>
- <dfc1e19f-8b83-fc1a-3653-7e95bcc3c7f0@synopsys.com>
-Message-ID: <0ff77b66-c477-b8a7-ffae-c7d81a52b069@baylibre.com>
+From: ben.dooks@codethink.co.uk (Ben Dooks)
+Date: Tue, 14 Mar 2017 09:40:07 +0000
+Subject: [PATCH] clocksource: add missing line break to error messages
+In-Reply-To: <20170309094710.31003-1-zajec5@gmail.com>
+References: <20170309094710.31003-1-zajec5@gmail.com>
+Message-ID: <959bfbfb-177f-3e92-0a2c-1e283966b961@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/13/2017 12:43 PM, Jose Abreu wrote:
-> Hi Neil,
-> 
-> 
-> On 09-03-2017 14:27, Jose Abreu wrote:
->> Hi Neil,
->>
->>
->> On 08-03-2017 12:12, Neil Armstrong wrote:
->>> Hi Jose,
->>>
->>> It seems here that we only have the RGB444<->YUV444 8bit tables, from the Amlogic
->>> source I have the following for 10bit, 12bit and 16bit for itu601 :
->>>
->>> static const u16 csc_coeff_rgb_out_eitu601_10b[3][4] = {
->>> 	{ 0x2000, 0x6926, 0x74fd, 0x043b },
->>> 	{ 0x2000, 0x2cdd, 0x0000, 0x7a65 },
->>> 	{ 0x2000, 0x0000, 0x38b4, 0x78ea }
->>> };
->>>
->>> static const u16 csc_coeff_rgb_out_eitu601_12b_16b[3][4] = {
->>> 	{ 0x2000, 0x6926, 0x74fd, 0x10ee },
->>> 	{ 0x2000, 0x2cdd, 0x0000, 0x6992 },
->>> 	{ 0x2000, 0x0000, 0x38b4, 0x63a6 }
->>> };
->> These two do not match anything I have here.
->>
->>> static const u16 csc_coeff_rgb_in_eitu601_10b[3][4] = {
->>> 	{ 0x2591, 0x1322, 0x074b, 0x0000 },
->>> 	{ 0x6535, 0x2000, 0x7acc, 0x0800 },
->>> 	{ 0x6acd, 0x7534, 0x2000, 0x0800 }
->>> };
->> This is more or less correct, I have small offsets. Note that I
->> even have offsets with the values that are in dw-hdmi driver,
->> which can be caused because I'm seeing the latest document that
->> contain these values. I guess they were updated.
->>
->>> static const u16 csc_coeff_rgb_in_eitu601_12b_16b[3][4] = {
->>> 	{ 0x2591, 0x1322, 0x074b, 0x0000 },
->>> 	{ 0x6535, 0x2000, 0x7acc, 0x2000 },
->>> 	{ 0x6acd, 0x7534, 0x2000, 0x2000 }
->>> };
->> The same for this.
->>
->>> But I miss the itu709 values.
->>>
->>> Could you confirm these values and maybe provide the itu709 values ?
->> I will have to check if I can provide you the values. I will get
->> back to you.
-> 
-> Sorry but looks like I won't be able to provide you the correct
-> values :/ If you are working for a Synopsys customer you can
-> contact our CAE (If so I can guide you to the correct CAE).
-> 
-> Anyway, unless you can test the values you have I suggest you
-> don't use them, they do not match what I have here and I can't
-> test them because right now I don't have a setup (I'm assuming
-> that your CSC block within the controller was not modified).
-> 
-> Best regards,
-> Jose Miguel Abreu
-> 
+On 09/03/17 09:47, Rafa? Mi?ecki wrote:
+> From: Rafa? Mi?ecki <rafal@milecki.pl>
+>
+> Printing with pr_* functions requires adding line break manually.
+>
+> Signed-off-by: Rafa? Mi?ecki <rafal@milecki.pl>
 
-Hi Jose,
+I've had a quick look over and there are no obvious errors.
 
-Thanks for your effort, I will postpone this fix and only add the tables
-needed by the Amlogic platform when needed.
+I wonder if the of_iomap() and related calls should print an
+error if they fail as all the examples here are of the form
+of:
 
-Thanks,
-Neil
+	ptr = of_iomap(reource)
+	if (!ptr) {
+		pr_err("cannot remap resource\n");
+		...
+		return ERR;
+	}
+
+Maybe we should look into this post this patch series.
+
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
