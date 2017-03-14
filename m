@@ -1,52 +1,91 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 14 Mar 2017 22:51:35 +0100
-Subject: [PATCH v4 06/10] i2c: meson: remove variable count from meson_i2c_xfer
+Date: Tue, 14 Mar 2017 22:51:43 +0100
+Subject: [PATCH v4 08/10] i2c: meson: don't create separate token chain just
+ for the stop command
 In-Reply-To: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
 References: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
-Message-ID: <126e80e5-f93f-8c18-f283-65eee94b3a82@gmail.com>
+Message-ID: <563c96b2-4abd-a1df-7a57-544400ed475d@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Variable count has always the same value as i, so we don't need it.
+We can directly add the stop token to the token chain including the
+last transfer chunk. This is more efficient than creating a separate
+token chain just for the stop command.
+And it allows us to get rid of state STATE_STOP completely.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
 v2:
-- remove one small change from v1
+- rebased
 v3:
 - no changes
 v4:
 - no changes
 ---
- drivers/i2c/busses/i2c-meson.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 23 +++++------------------
+ 1 file changed, 5 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 03f70282..3fc1a715 100644
+index 0b09e059..6c873ed8 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -364,7 +364,7 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
- 			  int num)
- {
- 	struct meson_i2c *i2c = adap->algo_data;
--	int i, ret = 0, count = 0;
-+	int i, ret = 0;
+@@ -55,7 +55,6 @@ enum {
+ 	STATE_IDLE,
+ 	STATE_READ,
+ 	STATE_WRITE,
+-	STATE_STOP,
+ };
  
- 	clk_enable(i2c->clk);
+ /**
+@@ -205,19 +204,9 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
  
-@@ -372,12 +372,11 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
- 		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1);
- 		if (ret)
- 			break;
--		count++;
- 	}
+ 	if (write)
+ 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+-}
+-
+-static void meson_i2c_stop(struct meson_i2c *i2c)
+-{
+-	dev_dbg(i2c->dev, "%s: last %d\n", __func__, i2c->last);
  
- 	clk_disable(i2c->clk);
- 
--	return ret ? ret : count;
-+	return ret ?: i;
+-	if (i2c->last) {
+-		i2c->state = STATE_STOP;
++	if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
+ 		meson_i2c_add_token(i2c, TOKEN_STOP);
+-	} else {
+-		i2c->state = STATE_IDLE;
+-		complete(&i2c->done);
+-	}
  }
  
- static u32 meson_i2c_func(struct i2c_adapter *adap)
+ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+@@ -262,7 +251,8 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		}
+ 
+ 		if (i2c->pos >= i2c->msg->len) {
+-			meson_i2c_stop(i2c);
++			i2c->state = STATE_IDLE;
++			complete(&i2c->done);
+ 			break;
+ 		}
+ 
+@@ -272,16 +262,13 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		i2c->pos += i2c->count;
+ 
+ 		if (i2c->pos >= i2c->msg->len) {
+-			meson_i2c_stop(i2c);
++			i2c->state = STATE_IDLE;
++			complete(&i2c->done);
+ 			break;
+ 		}
+ 
+ 		meson_i2c_prepare_xfer(i2c);
+ 		break;
+-	case STATE_STOP:
+-		i2c->state = STATE_IDLE;
+-		complete(&i2c->done);
+-		break;
+ 	}
+ 
+ out:
 -- 
 2.12.0
