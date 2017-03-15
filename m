@@ -1,28 +1,42 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 15 Mar 2017 20:16:16 +0100
-Subject: [PATCH 0/5] mmc: meson-gx: add cmd23 and descriptor chain mode
-Message-ID: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Wed, 15 Mar 2017 12:30:23 -0700
+Subject: [PATCH v3 1/2] Documentation: bindings: Introduce
+ scpi,sensors-scale
+In-Reply-To: <57ff035a-b462-6f5d-0100-051e99e9a2b6@arm.com>
+References: <20170309101759.18081-1-carlo@caione.org>
+ <20170309101759.18081-2-carlo@caione.org>
+ <57ff035a-b462-6f5d-0100-051e99e9a2b6@arm.com>
+Message-ID: <20170315193023.GA7096@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Apart from three minor improvements this patch series adds support
-for CMD23 mode and switches the driver to descriptor chain mode.
+On Wed, Mar 15, 2017 at 06:20:33PM +0000, Sudeep Holla wrote:
+> 
+> 
+> On 09/03/17 10:17, Carlo Caione wrote:
+> > From: Carlo Caione <carlo@endlessm.com>
+> > 
+> > Document the new property `scpi,sensors-scale` used by the hwmon-scpi
+> > driver to convert the sensor readings to the correct / expected scale.
+> > 
+> 
+> I am fine with DT bindings if DT maintainers agree with having one but I
+> would like to add couple of points to get their feedback:
+> 
+> 1. ARM recognized the drawbacks of SCPI which started informally with
+>    ARM Ltd platforms and got adopted by few vendors. It's now being
+>    worked on and a much better and scalable replacement protocol is
+>    being discussed with vendors now. So future enhancement to this SCPI
+>    protocol is unlikely.
+> 
+> 2. AmLogic has diverted from base protocol in many ways and most of them
+>    are handled with just compatible so far without any need for
+>    additional bindings. Can we avoid it ?
+> 
+> So based on these, I prefer not to add more bindings to handle such
+> deviations but make it just AmLogic specific.
+> 
 
-On my system with a 128GB eMMC card this increased the read
-performance from 10 - 15 MB/s to 140 MB/s.
+I like the idea.
 
-Successfully tested on a Odroid C2 with custom uboot based on recent
-mainline uboot. Behavior might be different with vendor uboot.
-
-Heiner Kallweit (5):
-  mmc: meson-gx: switch irq name to DT node name
-  mmc: meson-gx: improve response reading
-  mmc: meson-gx: use block mode also for just one block
-  mmc: meson-gx: add support for CMD23 mode
-  mmc: meson-gx: switch to descriptor chain mode
-
- drivers/mmc/host/meson-gx-mmc.c | 258 ++++++++++++++++++++++------------------
- 1 file changed, 142 insertions(+), 116 deletions(-)
-
--- 
-2.12.0
+Guenter
