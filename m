@@ -1,125 +1,52 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 15 Mar 2017 22:42:22 +0100
-Subject: [PATCH 1/4] mmc: pwrseq: add op reset to struct mmc_pwrseq_ops
-In-Reply-To: <CAPDyKFr6_Y3cSv5Q1WRSQBo7_bsyeVVQTYBQ01gykdMpVWNtXw@mail.gmail.com>
-References: <75ad5eac-412b-fe73-ff53-3d8b975937e4@gmail.com>
- <c75c3e5c-c4e1-3f2f-267b-1c781052c55e@gmail.com>
- <CAPDyKFr6_Y3cSv5Q1WRSQBo7_bsyeVVQTYBQ01gykdMpVWNtXw@mail.gmail.com>
-Message-ID: <ac5f62eb-64c6-b66f-24cc-b6ae74a01697@gmail.com>
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Wed, 15 Mar 2017 15:40:07 -0700
+Subject: [PATCH v3 1/2] Documentation: bindings: Introduce
+ scpi,sensors-scale
+In-Reply-To: <CAFBinCAde0qWpJsYF8bm-5ex1q+TDZtL73bf5DNoUuFEDhPXpw@mail.gmail.com>
+References: <20170309101759.18081-1-carlo@caione.org>
+ <20170309101759.18081-2-carlo@caione.org>
+ <57ff035a-b462-6f5d-0100-051e99e9a2b6@arm.com>
+ <CAFBinCAde0qWpJsYF8bm-5ex1q+TDZtL73bf5DNoUuFEDhPXpw@mail.gmail.com>
+Message-ID: <20170315224007.GA14084@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 15.03.2017 um 11:50 schrieb Ulf Hansson:
-> On 8 February 2017 at 22:48, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->> Add an operation reset to struct mmc_pwrseq_ops and related wrappers.
->>
->> Don't expose the pwrseq-internal reset function directly to kernel
->> users but just to the mmc core.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> ---
->>  drivers/mmc/core/core.c   | 6 ++++++
->>  drivers/mmc/core/pwrseq.c | 8 ++++++++
->>  drivers/mmc/core/pwrseq.h | 3 +++
->>  include/linux/mmc/core.h  | 1 +
->>  4 files changed, 18 insertions(+)
->>
->> diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
->> index 926e0fde..5d5fe591 100644
->> --- a/drivers/mmc/core/core.c
->> +++ b/drivers/mmc/core/core.c
->> @@ -1869,6 +1869,12 @@ void mmc_power_cycle(struct mmc_host *host, u32 ocr)
->>         mmc_power_up(host, ocr);
->>  }
->>
->> +void mmc_hw_reset_pwrseq(struct mmc_host *host)
->> +{
->> +       mmc_pwrseq_reset(host);
->> +}
->> +EXPORT_SYMBOL(mmc_hw_reset_pwrseq);
->> +
->>  /*
->>   * Cleanup when the last reference to the bus operator is dropped.
->>   */
->> diff --git a/drivers/mmc/core/pwrseq.c b/drivers/mmc/core/pwrseq.c
->> index 9386c477..e3ad30fa 100644
->> --- a/drivers/mmc/core/pwrseq.c
->> +++ b/drivers/mmc/core/pwrseq.c
->> @@ -76,6 +76,14 @@ void mmc_pwrseq_power_off(struct mmc_host *host)
->>                 pwrseq->ops->power_off(host);
->>  }
->>
->> +void mmc_pwrseq_reset(struct mmc_host *host)
->> +{
->> +       struct mmc_pwrseq *pwrseq = host->pwrseq;
->> +
->> +       if (pwrseq && pwrseq->ops->reset)
->> +               pwrseq->ops->reset(host);
->> +}
->> +
->>  void mmc_pwrseq_free(struct mmc_host *host)
->>  {
->>         struct mmc_pwrseq *pwrseq = host->pwrseq;
->> diff --git a/drivers/mmc/core/pwrseq.h b/drivers/mmc/core/pwrseq.h
->> index 39c911aa..819386f4 100644
->> --- a/drivers/mmc/core/pwrseq.h
->> +++ b/drivers/mmc/core/pwrseq.h
->> @@ -18,6 +18,7 @@ struct mmc_pwrseq_ops {
->>         void (*pre_power_on)(struct mmc_host *host);
->>         void (*post_power_on)(struct mmc_host *host);
->>         void (*power_off)(struct mmc_host *host);
->> +       void (*reset)(struct mmc_host *host);
->>  };
->>
->>  struct mmc_pwrseq {
->> @@ -36,6 +37,7 @@ int mmc_pwrseq_alloc(struct mmc_host *host);
->>  void mmc_pwrseq_pre_power_on(struct mmc_host *host);
->>  void mmc_pwrseq_post_power_on(struct mmc_host *host);
->>  void mmc_pwrseq_power_off(struct mmc_host *host);
->> +void mmc_pwrseq_reset(struct mmc_host *host);
->>  void mmc_pwrseq_free(struct mmc_host *host);
->>
->>  #else
->> @@ -49,6 +51,7 @@ static inline int mmc_pwrseq_alloc(struct mmc_host *host) { return 0; }
->>  static inline void mmc_pwrseq_pre_power_on(struct mmc_host *host) {}
->>  static inline void mmc_pwrseq_post_power_on(struct mmc_host *host) {}
->>  static inline void mmc_pwrseq_power_off(struct mmc_host *host) {}
->> +static inline void mmc_pwrseq_reset(struct mmc_host *host) {}
->>  static inline void mmc_pwrseq_free(struct mmc_host *host) {}
->>
->>  #endif
->> diff --git a/include/linux/mmc/core.h b/include/linux/mmc/core.h
->> index a0c63ea2..8dbbd7a1 100644
->> --- a/include/linux/mmc/core.h
->> +++ b/include/linux/mmc/core.h
->> @@ -166,6 +166,7 @@ int mmc_wait_for_cmd(struct mmc_host *host, struct mmc_command *cmd,
->>                 int retries);
->>
->>  int mmc_hw_reset(struct mmc_host *host);
->> +void mmc_hw_reset_pwrseq(struct mmc_host *host);
+On Wed, Mar 15, 2017 at 09:56:09PM +0100, Martin Blumenstingl wrote:
+> On Wed, Mar 15, 2017 at 7:20 PM, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> >
+> > On 09/03/17 10:17, Carlo Caione wrote:
+> >> From: Carlo Caione <carlo@endlessm.com>
+> >>
+> >> Document the new property `scpi,sensors-scale` used by the hwmon-scpi
+> >> driver to convert the sensor readings to the correct / expected scale.
+> >>
+> >
+> > I am fine with DT bindings if DT maintainers agree with having one but I
+> > would like to add couple of points to get their feedback:
+> >
+> > 1. ARM recognized the drawbacks of SCPI which started informally with
+> >    ARM Ltd platforms and got adopted by few vendors. It's now being
+> >    worked on and a much better and scalable replacement protocol is
+> >    being discussed with vendors now. So future enhancement to this SCPI
+> >    protocol is unlikely.
+> >
+> > 2. AmLogic has diverted from base protocol in many ways and most of them
+> >    are handled with just compatible so far without any need for
+> >    additional bindings. Can we avoid it ?
+> >
+> > So based on these, I prefer not to add more bindings to handle such
+> > deviations but make it just AmLogic specific.
+> could you please share your idea where this "Amlogic specific
+> implementation" fits best?
+> - in firmware/arm_scpi to keep a contract (for example: millicelsius)
+> to everyone who reads a temperature sensor for example
+> - or in hwmon/scpi-hwmon
 > 
-> Don't you think we can make this transparent to mmc host drivers,
-> instead of them having to assign their host_ops->hw_reset() callback
-> to this new API? Because I guess that's the though!?
-> 
-> In principle the mmc core already have all the information it needs,
-> as to understand when the eMMC pwrseq should be invoked. Or perhaps
-> the code may become a bit too messy for that?
-> 
-The easiest way I could think of:
-If host->ops->hw_reset is NULL overwrite it with pwrseq->ops->reset
-in mmc_add_host. But host->ops is defined es being const, so the compiler
-won't allow us to do this. Of course we could do some casting but usually
-I try to avoid hacks like casting away const qualifiers.
 
->>  void mmc_set_data_timeout(struct mmc_data *data, const struct mmc_card *card);
->>
->>  #endif /* LINUX_MMC_CORE_H */
->> --
->> 2.11.0
->>
->>
-> 
-> Kind regards
-> Uffe
-> 
+So far the assumption was that it would be in hwmon. I don't mind for it
+to be elsewhere, but I would think that the presence or non-presence
+of a devicetree property should not affect or change the implementation.
+
+Thanks,
+Guenter
