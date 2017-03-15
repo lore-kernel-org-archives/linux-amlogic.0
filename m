@@ -1,42 +1,34 @@
-From: linux@roeck-us.net (Guenter Roeck)
-Date: Wed, 15 Mar 2017 12:30:23 -0700
-Subject: [PATCH v3 1/2] Documentation: bindings: Introduce
- scpi,sensors-scale
-In-Reply-To: <57ff035a-b462-6f5d-0100-051e99e9a2b6@arm.com>
-References: <20170309101759.18081-1-carlo@caione.org>
- <20170309101759.18081-2-carlo@caione.org>
- <57ff035a-b462-6f5d-0100-051e99e9a2b6@arm.com>
-Message-ID: <20170315193023.GA7096@roeck-us.net>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Wed, 15 Mar 2017 20:33:43 +0100
+Subject: [PATCH 1/5] mmc: meson-gx: switch irq name to DT node name
+In-Reply-To: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
+References: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
+Message-ID: <d83833e9-8900-a108-faa9-8b6d58349651@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Mar 15, 2017 at 06:20:33PM +0000, Sudeep Holla wrote:
-> 
-> 
-> On 09/03/17 10:17, Carlo Caione wrote:
-> > From: Carlo Caione <carlo@endlessm.com>
-> > 
-> > Document the new property `scpi,sensors-scale` used by the hwmon-scpi
-> > driver to convert the sensor readings to the correct / expected scale.
-> > 
-> 
-> I am fine with DT bindings if DT maintainers agree with having one but I
-> would like to add couple of points to get their feedback:
-> 
-> 1. ARM recognized the drawbacks of SCPI which started informally with
->    ARM Ltd platforms and got adopted by few vendors. It's now being
->    worked on and a much better and scalable replacement protocol is
->    being discussed with vendors now. So future enhancement to this SCPI
->    protocol is unlikely.
-> 
-> 2. AmLogic has diverted from base protocol in many ways and most of them
->    are handled with just compatible so far without any need for
->    additional bindings. Can we avoid it ?
-> 
-> So based on these, I prefer not to add more bindings to handle such
-> deviations but make it just AmLogic specific.
-> 
+So far it wasn't easy to check which interrupt belongs to which SD/eMMC
+port (e.g. in /proc/interrupts) because the driver name was used as
+description for all ports. Change this to the default which is the
+device name (DT node name).
 
-I like the idea.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Guenter
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 62597638..f2d4486a 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -758,7 +758,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 
+ 	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+ 					meson_mmc_irq_thread, IRQF_SHARED,
+-					DRIVER_NAME, host);
++					NULL, host);
+ 	if (ret)
+ 		goto err_div_clk;
+ 
+-- 
+2.12.0
