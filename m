@@ -1,85 +1,116 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 15 Mar 2017 10:59:06 +0100
-Subject: [PATCH 1/2] pinctrl: meson: gxl: add the missing PWM pin
- definitions
-In-Reply-To: <CACRpkdbGfGUhnAQz=9xeFnD2hF6m_xXacu8mZiwte-OCSDMo9w@mail.gmail.com>
-References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
- <20170304212318.27076-2-martin.blumenstingl@googlemail.com>
- <1488811357.2420.18.camel@baylibre.com>
- <CAFBinCDty8v80tLxHJPR+SHv32LX834dPJUruRNqr6angx3OOQ@mail.gmail.com>
- <CACRpkdbGfGUhnAQz=9xeFnD2hF6m_xXacu8mZiwte-OCSDMo9w@mail.gmail.com>
-Message-ID: <b7430d5f-96a7-2445-1c2a-ccc299bfdda2@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Wed, 15 Mar 2017 11:50:42 +0100
+Subject: [PATCH 1/4] mmc: pwrseq: add op reset to struct mmc_pwrseq_ops
+In-Reply-To: <c75c3e5c-c4e1-3f2f-267b-1c781052c55e@gmail.com>
+References: <75ad5eac-412b-fe73-ff53-3d8b975937e4@gmail.com>
+ <c75c3e5c-c4e1-3f2f-267b-1c781052c55e@gmail.com>
+Message-ID: <CAPDyKFr6_Y3cSv5Q1WRSQBo7_bsyeVVQTYBQ01gykdMpVWNtXw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/14/2017 04:42 PM, Linus Walleij wrote:
-> On Thu, Mar 9, 2017 at 8:47 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> On Mon, Mar 6, 2017 at 3:42 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
->>> On Sat, 2017-03-04 at 22:23 +0100, Martin Blumenstingl wrote:
-> 
->>>> +     FUNCTION(pwm_f_clk),
->>>> +     FUNCTION(pwm_f_x),
->>>
->>> I wonder if having function named "pwm_f_clk" really makes sense ?
->>> Shouldn't it be just "pwm_f" ? This is real function, isn't it ?
->>> The actual pin used will be provided in the dt. Here, I suppose we
->>> could have this:
->>>
->>> +static const char * const pwm_f_groups[] = {
->>> +       "pwm_f_x", "pwm_f_clk",
->>> +};
->>>
->>> Has far as I can see, on meson arch, the function does not carry much
->>> information anyway, except for prints.
->>>
->>> To be clear, I'm not questioning this change in particular. It looks
->>> good, and follows what has been done in the past on meson. I know we
->>> have been this a lot already, but I'm questioning whether we should
->>> continue to do so ?
->>>
->>> I asking because I also have a lot case like this coming up on audio
->>> for gxl and gxbb, where the same function can use different pins.
->>
->> could you please look into Jerome's question?
->> personally I'm fine with either way, and changing my patch would be
->> quite trivial. but I'd like to know what's "the way to go" before
->> changing anything (and reverting that afterwards again).
-> 
-> I don't understand the question really.
-> 
-> I am not an expert on this system, if the people working with it
-> cannot tell a function from a group I don't know who can... certainly
-> not me.
-> 
-> What I can say is that pincontrol combines functions and groups to
-> states using a mapping. The functions should be something you poke
-> into a register, the groups are looser defined but may also be a
-> character of the hardware, but more usual a character of the
-> intended electronic usecase. Groups contain 1..n pins and can
-> be combined with some applicable functions.
-> 
-> Please re-read Documentation/pinctrl.txt very closely if anything is
-> unclear, I really put a lot of hours into getting that right. Especially
-> reexamine "Pinmux conventions".
+On 8 February 2017 at 22:48, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> Add an operation reset to struct mmc_pwrseq_ops and related wrappers.
+>
+> Don't expose the pwrseq-internal reset function directly to kernel
+> users but just to the mmc core.
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/mmc/core/core.c   | 6 ++++++
+>  drivers/mmc/core/pwrseq.c | 8 ++++++++
+>  drivers/mmc/core/pwrseq.h | 3 +++
+>  include/linux/mmc/core.h  | 1 +
+>  4 files changed, 18 insertions(+)
+>
+> diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
+> index 926e0fde..5d5fe591 100644
+> --- a/drivers/mmc/core/core.c
+> +++ b/drivers/mmc/core/core.c
+> @@ -1869,6 +1869,12 @@ void mmc_power_cycle(struct mmc_host *host, u32 ocr)
+>         mmc_power_up(host, ocr);
+>  }
+>
+> +void mmc_hw_reset_pwrseq(struct mmc_host *host)
+> +{
+> +       mmc_pwrseq_reset(host);
+> +}
+> +EXPORT_SYMBOL(mmc_hw_reset_pwrseq);
+> +
+>  /*
+>   * Cleanup when the last reference to the bus operator is dropped.
+>   */
+> diff --git a/drivers/mmc/core/pwrseq.c b/drivers/mmc/core/pwrseq.c
+> index 9386c477..e3ad30fa 100644
+> --- a/drivers/mmc/core/pwrseq.c
+> +++ b/drivers/mmc/core/pwrseq.c
+> @@ -76,6 +76,14 @@ void mmc_pwrseq_power_off(struct mmc_host *host)
+>                 pwrseq->ops->power_off(host);
+>  }
+>
+> +void mmc_pwrseq_reset(struct mmc_host *host)
+> +{
+> +       struct mmc_pwrseq *pwrseq = host->pwrseq;
+> +
+> +       if (pwrseq && pwrseq->ops->reset)
+> +               pwrseq->ops->reset(host);
+> +}
+> +
+>  void mmc_pwrseq_free(struct mmc_host *host)
+>  {
+>         struct mmc_pwrseq *pwrseq = host->pwrseq;
+> diff --git a/drivers/mmc/core/pwrseq.h b/drivers/mmc/core/pwrseq.h
+> index 39c911aa..819386f4 100644
+> --- a/drivers/mmc/core/pwrseq.h
+> +++ b/drivers/mmc/core/pwrseq.h
+> @@ -18,6 +18,7 @@ struct mmc_pwrseq_ops {
+>         void (*pre_power_on)(struct mmc_host *host);
+>         void (*post_power_on)(struct mmc_host *host);
+>         void (*power_off)(struct mmc_host *host);
+> +       void (*reset)(struct mmc_host *host);
+>  };
+>
+>  struct mmc_pwrseq {
+> @@ -36,6 +37,7 @@ int mmc_pwrseq_alloc(struct mmc_host *host);
+>  void mmc_pwrseq_pre_power_on(struct mmc_host *host);
+>  void mmc_pwrseq_post_power_on(struct mmc_host *host);
+>  void mmc_pwrseq_power_off(struct mmc_host *host);
+> +void mmc_pwrseq_reset(struct mmc_host *host);
+>  void mmc_pwrseq_free(struct mmc_host *host);
+>
+>  #else
+> @@ -49,6 +51,7 @@ static inline int mmc_pwrseq_alloc(struct mmc_host *host) { return 0; }
+>  static inline void mmc_pwrseq_pre_power_on(struct mmc_host *host) {}
+>  static inline void mmc_pwrseq_post_power_on(struct mmc_host *host) {}
+>  static inline void mmc_pwrseq_power_off(struct mmc_host *host) {}
+> +static inline void mmc_pwrseq_reset(struct mmc_host *host) {}
+>  static inline void mmc_pwrseq_free(struct mmc_host *host) {}
+>
+>  #endif
+> diff --git a/include/linux/mmc/core.h b/include/linux/mmc/core.h
+> index a0c63ea2..8dbbd7a1 100644
+> --- a/include/linux/mmc/core.h
+> +++ b/include/linux/mmc/core.h
+> @@ -166,6 +166,7 @@ int mmc_wait_for_cmd(struct mmc_host *host, struct mmc_command *cmd,
+>                 int retries);
+>
+>  int mmc_hw_reset(struct mmc_host *host);
+> +void mmc_hw_reset_pwrseq(struct mmc_host *host);
 
-The point pushed by Jerome was purely cosmetic since the groups in the meson
-pinctrl driver are purely cosmetic, since only the GPIO group is handled,
-other groups are all handled the same.
+Don't you think we can make this transparent to mmc host drivers,
+instead of them having to assign their host_ops->hw_reset() callback
+to this new API? Because I guess that's the though!?
 
-This is because I pushed all the PWM pins in a separate group, but functionnaly
-the internal signal (i.e. PWM F) is the same for multiple pins and should be
-a single "PWM F" group instead of multiple ones.
+In principle the mmc core already have all the information it needs,
+as to understand when the eMMC pwrseq should be invoked. Or perhaps
+the code may become a bit too messy for that?
 
-My advice is to leave the PWM groups as is, and push new pins/functions/groups
-grouped with the internal signal name if split on multiple pins.
+>  void mmc_set_data_timeout(struct mmc_data *data, const struct mmc_card *card);
+>
+>  #endif /* LINUX_MMC_CORE_H */
+> --
+> 2.11.0
+>
+>
 
-This will be the case for audio, since the I2S pins can be configures on multiple
-different pins.
-
-Thanks,
-Neil
-
-> 
-> Yours,
-> Linus Walleij
+Kind regards
+Uffe
