@@ -1,40 +1,18 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 15 Mar 2017 08:50:35 +0100
-Subject: Status of Meson GPIO IRQ support
-In-Reply-To: <ff88c0a2-1c2f-e421-e2f8-473d4a801b63@gmail.com>
-References: <ff88c0a2-1c2f-e421-e2f8-473d4a801b63@gmail.com>
-Message-ID: <1489564235.25254.5.camel@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Wed, 15 Mar 2017 10:41:47 +0100
+Subject: [PATCH 1/3] pinctrl: meson-gxbb: Fix typo in i2c ao groups
+In-Reply-To: <1488893462-7016-2-git-send-email-narmstrong@baylibre.com>
+References: <1488893462-7016-1-git-send-email-narmstrong@baylibre.com>
+ <1488893462-7016-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CACRpkdbwMZeChg08RXqyBqztL4w6jM9tQAy4pCmhvce+vtt0Rg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-03-14 at 21:41 +0100, Heiner Kallweit wrote:
-> Jerome,
-> 
-> when working on Meson I2C driver I was testing with a device where I wanted
-> to use a GPIO as interrupt source.
-> This isn't supported yet and when checking I found that end of last year
-> you submitted related patches. After some intense discussions I found no
-> further update.
-> Was this topic put on-hold due to bigger technical issues?
-> 
+On Tue, Mar 7, 2017 at 2:31 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-Well, the proposed code does work but, as you have probaly seen for yourself,
-the maintainers of irqchip and gpio raised valid concerns, mainly about the way
-the mapping is created in the gpio driver. Ideally, the mapping should be
-created at probe time but, with a hierarchic interrupt domain, that means
-allocating the parent irq. We only have 8 of those for 100+ gpios.?
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-I'm still not sure how to address the problem to be honest: Is there a way to
-create mapping in hierarchy domain and allocate the parent only when the irq is
-actually requested ? Or should we simply not use a hierarchy domain for this
-controller (which seems to make sense) ?
+Patch applied for fixes.
 
-I still hope to be able to do something on this topic but probably not tomorrow
-:( Of course, If you have some spare time and want to contribute on this topic,
-you are welcome to do so.
-
-> Rgds, Heiner
-
-Cheers
-
-Jerome
+Yours,
+Linus Walleij
