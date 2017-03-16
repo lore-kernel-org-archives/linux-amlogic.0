@@ -1,40 +1,149 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Thu, 16 Mar 2017 07:00:55 +0100
-Subject: [PATCH 1/3] devicetree: add vendor prefix for Khadas
-In-Reply-To: <20170315195737.vckgpw6qad4d4zjm@rob-hp-laptop>
-References: <20170304215126.7020-1-martin.blumenstingl@googlemail.com>
- <20170304215126.7020-2-martin.blumenstingl@googlemail.com>
- <20170315195737.vckgpw6qad4d4zjm@rob-hp-laptop>
-Message-ID: <61778a7a-3d96-8de3-fd4f-f18aa0938a68@suse.de>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Thu, 16 Mar 2017 07:49:17 +0100
+Subject: [PATCH 1/4] mmc: pwrseq: add op reset to struct mmc_pwrseq_ops
+In-Reply-To: <ac5f62eb-64c6-b66f-24cc-b6ae74a01697@gmail.com>
+References: <75ad5eac-412b-fe73-ff53-3d8b975937e4@gmail.com>
+ <c75c3e5c-c4e1-3f2f-267b-1c781052c55e@gmail.com>
+ <CAPDyKFr6_Y3cSv5Q1WRSQBo7_bsyeVVQTYBQ01gykdMpVWNtXw@mail.gmail.com>
+ <ac5f62eb-64c6-b66f-24cc-b6ae74a01697@gmail.com>
+Message-ID: <d029f887-4fd3-1319-fd01-a99ea9ede5c1@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 15.03.2017 um 20:57 schrieb Rob Herring:
-> On Sat, Mar 04, 2017 at 10:51:24PM +0100, Martin Blumenstingl wrote:
->> Khadas is a new sub-brand of Shenzhen Wesion Technology CO.,LTD. They
->> are developing Amlogic and Rockchip based "DIY boxes" (single board
->> computers): http://khadas.com/
->> They are best know for their latest product: the Khadas VIM (an Amlogic
->> GXL S905X based SBC).
+Am 15.03.2017 um 22:42 schrieb Heiner Kallweit:
+> Am 15.03.2017 um 11:50 schrieb Ulf Hansson:
+>> On 8 February 2017 at 22:48, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>> Add an operation reset to struct mmc_pwrseq_ops and related wrappers.
+>>>
+>>> Don't expose the pwrseq-internal reset function directly to kernel
+>>> users but just to the mmc core.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> ---
+>>>  drivers/mmc/core/core.c   | 6 ++++++
+>>>  drivers/mmc/core/pwrseq.c | 8 ++++++++
+>>>  drivers/mmc/core/pwrseq.h | 3 +++
+>>>  include/linux/mmc/core.h  | 1 +
+>>>  4 files changed, 18 insertions(+)
+>>>
+>>> diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
+>>> index 926e0fde..5d5fe591 100644
+>>> --- a/drivers/mmc/core/core.c
+>>> +++ b/drivers/mmc/core/core.c
+>>> @@ -1869,6 +1869,12 @@ void mmc_power_cycle(struct mmc_host *host, u32 ocr)
+>>>         mmc_power_up(host, ocr);
+>>>  }
+>>>
+>>> +void mmc_hw_reset_pwrseq(struct mmc_host *host)
+>>> +{
+>>> +       mmc_pwrseq_reset(host);
+>>> +}
+>>> +EXPORT_SYMBOL(mmc_hw_reset_pwrseq);
+>>> +
+>>>  /*
+>>>   * Cleanup when the last reference to the bus operator is dropped.
+>>>   */
+>>> diff --git a/drivers/mmc/core/pwrseq.c b/drivers/mmc/core/pwrseq.c
+>>> index 9386c477..e3ad30fa 100644
+>>> --- a/drivers/mmc/core/pwrseq.c
+>>> +++ b/drivers/mmc/core/pwrseq.c
+>>> @@ -76,6 +76,14 @@ void mmc_pwrseq_power_off(struct mmc_host *host)
+>>>                 pwrseq->ops->power_off(host);
+>>>  }
+>>>
+>>> +void mmc_pwrseq_reset(struct mmc_host *host)
+>>> +{
+>>> +       struct mmc_pwrseq *pwrseq = host->pwrseq;
+>>> +
+>>> +       if (pwrseq && pwrseq->ops->reset)
+>>> +               pwrseq->ops->reset(host);
+>>> +}
+>>> +
+>>>  void mmc_pwrseq_free(struct mmc_host *host)
+>>>  {
+>>>         struct mmc_pwrseq *pwrseq = host->pwrseq;
+>>> diff --git a/drivers/mmc/core/pwrseq.h b/drivers/mmc/core/pwrseq.h
+>>> index 39c911aa..819386f4 100644
+>>> --- a/drivers/mmc/core/pwrseq.h
+>>> +++ b/drivers/mmc/core/pwrseq.h
+>>> @@ -18,6 +18,7 @@ struct mmc_pwrseq_ops {
+>>>         void (*pre_power_on)(struct mmc_host *host);
+>>>         void (*post_power_on)(struct mmc_host *host);
+>>>         void (*power_off)(struct mmc_host *host);
+>>> +       void (*reset)(struct mmc_host *host);
+>>>  };
+>>>
+>>>  struct mmc_pwrseq {
+>>> @@ -36,6 +37,7 @@ int mmc_pwrseq_alloc(struct mmc_host *host);
+>>>  void mmc_pwrseq_pre_power_on(struct mmc_host *host);
+>>>  void mmc_pwrseq_post_power_on(struct mmc_host *host);
+>>>  void mmc_pwrseq_power_off(struct mmc_host *host);
+>>> +void mmc_pwrseq_reset(struct mmc_host *host);
+>>>  void mmc_pwrseq_free(struct mmc_host *host);
+>>>
+>>>  #else
+>>> @@ -49,6 +51,7 @@ static inline int mmc_pwrseq_alloc(struct mmc_host *host) { return 0; }
+>>>  static inline void mmc_pwrseq_pre_power_on(struct mmc_host *host) {}
+>>>  static inline void mmc_pwrseq_post_power_on(struct mmc_host *host) {}
+>>>  static inline void mmc_pwrseq_power_off(struct mmc_host *host) {}
+>>> +static inline void mmc_pwrseq_reset(struct mmc_host *host) {}
+>>>  static inline void mmc_pwrseq_free(struct mmc_host *host) {}
+>>>
+>>>  #endif
+>>> diff --git a/include/linux/mmc/core.h b/include/linux/mmc/core.h
+>>> index a0c63ea2..8dbbd7a1 100644
+>>> --- a/include/linux/mmc/core.h
+>>> +++ b/include/linux/mmc/core.h
+>>> @@ -166,6 +166,7 @@ int mmc_wait_for_cmd(struct mmc_host *host, struct mmc_command *cmd,
+>>>                 int retries);
+>>>
+>>>  int mmc_hw_reset(struct mmc_host *host);
+>>> +void mmc_hw_reset_pwrseq(struct mmc_host *host);
 >>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->>  1 file changed, 1 insertion(+)
+>> Don't you think we can make this transparent to mmc host drivers,
+>> instead of them having to assign their host_ops->hw_reset() callback
+>> to this new API? Because I guess that's the though!?
+>>
+>> In principle the mmc core already have all the information it needs,
+>> as to understand when the eMMC pwrseq should be invoked. Or perhaps
+>> the code may become a bit too messy for that?
+>>
+> The easiest way I could think of:
+> If host->ops->hw_reset is NULL overwrite it with pwrseq->ops->reset
+> in mmc_add_host. But host->ops is defined es being const, so the compiler
+> won't allow us to do this. Of course we could do some casting but usually
+> I try to avoid hacks like casting away const qualifiers.
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+Other alternative:
 
-Shouldn't the entry reflect what is in the commit message rather than
-just repeat the prefix? I.e., something like "Khadas by Shenzhen Wesion
-Technology Co., Ltd." (which I believe is the official spelling and
-spacing of these abbreviations also for the commit message).
+typedef void (*hw_reset_t)(struct mmc_host *host);
 
-An Acked-by from the CC'ed vendor would also be desirable. :)
+hw_reset_t mmc_get_hw_reset(struct mmc_host *host)
+{
+       struct mmc_pwrseq *p = host->pwrseq;
 
-Regards,
-Andreas
+       if (host->ops->hw_reset)
+               return host->ops->hw_reset;
+       else if (p && p->ops->reset)
+               return p->ops->reset;
+       else
+               return NULL;
+}
 
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+And then use what mmc_get_hw_reset returns instead of using
+host->ops->hw_reset directly.
+
+How do you like this one?
+
+>>>  void mmc_set_data_timeout(struct mmc_data *data, const struct mmc_card *card);
+>>>
+>>>  #endif /* LINUX_MMC_CORE_H */
+>>> --
+>>> 2.11.0
+>>>
+>>>
+>>
+>> Kind regards
+>> Uffe
+>>
+> 
