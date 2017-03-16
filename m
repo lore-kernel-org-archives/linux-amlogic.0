@@ -1,69 +1,38 @@
 From: architt@codeaurora.org (Archit Taneja)
-Date: Thu, 16 Mar 2017 22:13:04 +0530
-Subject: [PATCH v3 5/6] drm: bridge: dw-hdmi: Add Documentation on
- supported input formats
-In-Reply-To: <1488904944-14285-6-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 16 Mar 2017 22:31:42 +0530
+Subject: [PATCH v3 3/6] documentation: media: Add documentation for new
+ RGB and YUV bus formats
+In-Reply-To: <1488904944-14285-4-git-send-email-narmstrong@baylibre.com>
 References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
- <1488904944-14285-6-git-send-email-narmstrong@baylibre.com>
-Message-ID: <b17af5d6-bf7b-f5f5-e96b-11a6c569b117@codeaurora.org>
+ <1488904944-14285-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <8963c4cc-daf2-1d4f-0c3e-3b963e118379@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
 
 On 3/7/2017 10:12 PM, Neil Armstrong wrote:
-> This patch adds a new DRM documentation entry and links to the input
-> format table added in the dw_hdmi header.
+> Add documentation for added Bus Formats to describe RGB and YUS formats used
+
+s/YUS/YUV
+
+> as input to the Synopsys DesignWare HDMI TX Controller.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  Documentation/gpu/dw-hdmi.rst | 15 +++++++++++++++
->  Documentation/gpu/index.rst   |  1 +
+>  Documentation/media/uapi/v4l/subdev-formats.rst | 4992 ++++++++++++++++++-----
+>  1 file changed, 3963 insertions(+), 1029 deletions(-)
 
-Maybe we create a sub-directory for bridges here? Maybe
-a hierarchy similar to tinydrm's?
+Do we know if there is a better way to add more columns without
+adding so many lines?
 
-Looks good otherwise.
+If not, one option could be to create a separate tables for
+48 bit RGB formats, 48 bit YUV formats etc.
 
+<snip>
+
+Thanks,
 Archit
-
->  2 files changed, 16 insertions(+)
->  create mode 100644 Documentation/gpu/dw-hdmi.rst
->
-> diff --git a/Documentation/gpu/dw-hdmi.rst b/Documentation/gpu/dw-hdmi.rst
-> new file mode 100644
-> index 0000000..486faad
-> --- /dev/null
-> +++ b/Documentation/gpu/dw-hdmi.rst
-> @@ -0,0 +1,15 @@
-> +=======================================================
-> + drm/bridge/dw-hdmi Synopsys DesignWare HDMI Controller
-> +=======================================================
-> +
-> +Synopsys DesignWare HDMI Controller
-> +===================================
-> +
-> +This section covers everything related to the Synopsys DesignWare HDMI
-> +Controller implemented as a DRM bridge.
-> +
-> +Supported Input Formats and Encodings
-> +-------------------------------------
-> +
-> +.. kernel-doc:: include/drm/bridge/dw_hdmi.h
-> +   :doc: Supported input formats and encodings
-> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
-> index e998ee0..0725449 100644
-> --- a/Documentation/gpu/index.rst
-> +++ b/Documentation/gpu/index.rst
-> @@ -10,6 +10,7 @@ Linux GPU Driver Developer's Guide
->     drm-kms
->     drm-kms-helpers
->     drm-uapi
-> +   dw-hdmi
->     i915
->     tinydrm
->     vc4
->
 
 -- 
 The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
