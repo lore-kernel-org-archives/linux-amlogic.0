@@ -1,60 +1,70 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Thu, 16 Mar 2017 15:46:42 +0100
-Subject: [PATCH v2] mmc: meson-gx: fix error path when driver
- initialization fails before enabling clocks
-In-Reply-To: <20170314200520.6276-1-webczat@webczatnet.pl>
-References: <20170314200520.6276-1-webczat@webczatnet.pl>
-Message-ID: <CAPDyKFpML0_0Q36j7GqZJvY4r1ZnGaVcs8HgEAqUeC_tki0G_A@mail.gmail.com>
+From: architt@codeaurora.org (Archit Taneja)
+Date: Thu, 16 Mar 2017 22:13:04 +0530
+Subject: [PATCH v3 5/6] drm: bridge: dw-hdmi: Add Documentation on
+ supported input formats
+In-Reply-To: <1488904944-14285-6-git-send-email-narmstrong@baylibre.com>
+References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
+ <1488904944-14285-6-git-send-email-narmstrong@baylibre.com>
+Message-ID: <b17af5d6-bf7b-f5f5-e96b-11a6c569b117@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 14 March 2017 at 21:05, Micha? Zegan <webczat@webczatnet.pl> wrote:
-> This patch fixes the case where meson_mmc_probe function fails before
-> core_clk is enabled.
-> Originally, that would result in a try to disable the core clock, and if
-> it was not already enabled, it would result in a kernel warning.
-> This issue is similar to the one with div_clk.
-> Fix it by introducing another error path used only between successfully
-> enabling the core clock, and successfully enabling the div clock.
-> That would ensure that core clock is disabled only if it was enabled before.
+
+
+On 3/7/2017 10:12 PM, Neil Armstrong wrote:
+> This patch adds a new DRM documentation entry and links to the input
+> format table added in the dw_hdmi header.
 >
-> Signed-off-by: Micha? Zegan <webczat@webczatnet.pl>
-
-Thanks, applied for next!
-
-Kind regards
-Uffe
-
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
-> changes since v1:
-> cherry picked on top of mmc next branch
->  drivers/mmc/host/meson-gx-mmc.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+>  Documentation/gpu/dw-hdmi.rst | 15 +++++++++++++++
+>  Documentation/gpu/index.rst   |  1 +
+
+Maybe we create a sub-directory for bridges here? Maybe
+a hierarchy similar to tinydrm's?
+
+Looks good otherwise.
+
+Archit
+
+>  2 files changed, 16 insertions(+)
+>  create mode 100644 Documentation/gpu/dw-hdmi.rst
 >
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index c574e1519623..bd075fef08d4 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -743,7 +743,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+> diff --git a/Documentation/gpu/dw-hdmi.rst b/Documentation/gpu/dw-hdmi.rst
+> new file mode 100644
+> index 0000000..486faad
+> --- /dev/null
+> +++ b/Documentation/gpu/dw-hdmi.rst
+> @@ -0,0 +1,15 @@
+> +=======================================================
+> + drm/bridge/dw-hdmi Synopsys DesignWare HDMI Controller
+> +=======================================================
+> +
+> +Synopsys DesignWare HDMI Controller
+> +===================================
+> +
+> +This section covers everything related to the Synopsys DesignWare HDMI
+> +Controller implemented as a DRM bridge.
+> +
+> +Supported Input Formats and Encodings
+> +-------------------------------------
+> +
+> +.. kernel-doc:: include/drm/bridge/dw_hdmi.h
+> +   :doc: Supported input formats and encodings
+> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+> index e998ee0..0725449 100644
+> --- a/Documentation/gpu/index.rst
+> +++ b/Documentation/gpu/index.rst
+> @@ -10,6 +10,7 @@ Linux GPU Driver Developer's Guide
+>     drm-kms
+>     drm-kms-helpers
+>     drm-uapi
+> +   dw-hdmi
+>     i915
+>     tinydrm
+>     vc4
 >
->         ret = meson_mmc_clk_init(host);
->         if (ret)
-> -               goto free_host;
-> +               goto err_core_clk;
->
->         /* Stop execution */
->         writel(0, host->regs + SD_EMMC_START);
-> @@ -783,8 +783,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
->
->  err_div_clk:
->         clk_disable_unprepare(host->cfg_div_clk);
-> -free_host:
-> +err_core_clk:
->         clk_disable_unprepare(host->core_clk);
-> +free_host:
->         mmc_free_host(mmc);
->         return ret;
->  }
-> --
-> 2.12.0
->
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+hosted by The Linux Foundation
