@@ -1,52 +1,40 @@
-From: linux@roeck-us.net (Guenter Roeck)
-Date: Wed, 15 Mar 2017 15:40:07 -0700
-Subject: [PATCH v3 1/2] Documentation: bindings: Introduce
- scpi,sensors-scale
-In-Reply-To: <CAFBinCAde0qWpJsYF8bm-5ex1q+TDZtL73bf5DNoUuFEDhPXpw@mail.gmail.com>
-References: <20170309101759.18081-1-carlo@caione.org>
- <20170309101759.18081-2-carlo@caione.org>
- <57ff035a-b462-6f5d-0100-051e99e9a2b6@arm.com>
- <CAFBinCAde0qWpJsYF8bm-5ex1q+TDZtL73bf5DNoUuFEDhPXpw@mail.gmail.com>
-Message-ID: <20170315224007.GA14084@roeck-us.net>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Thu, 16 Mar 2017 07:00:55 +0100
+Subject: [PATCH 1/3] devicetree: add vendor prefix for Khadas
+In-Reply-To: <20170315195737.vckgpw6qad4d4zjm@rob-hp-laptop>
+References: <20170304215126.7020-1-martin.blumenstingl@googlemail.com>
+ <20170304215126.7020-2-martin.blumenstingl@googlemail.com>
+ <20170315195737.vckgpw6qad4d4zjm@rob-hp-laptop>
+Message-ID: <61778a7a-3d96-8de3-fd4f-f18aa0938a68@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Mar 15, 2017 at 09:56:09PM +0100, Martin Blumenstingl wrote:
-> On Wed, Mar 15, 2017 at 7:20 PM, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> >
-> > On 09/03/17 10:17, Carlo Caione wrote:
-> >> From: Carlo Caione <carlo@endlessm.com>
-> >>
-> >> Document the new property `scpi,sensors-scale` used by the hwmon-scpi
-> >> driver to convert the sensor readings to the correct / expected scale.
-> >>
-> >
-> > I am fine with DT bindings if DT maintainers agree with having one but I
-> > would like to add couple of points to get their feedback:
-> >
-> > 1. ARM recognized the drawbacks of SCPI which started informally with
-> >    ARM Ltd platforms and got adopted by few vendors. It's now being
-> >    worked on and a much better and scalable replacement protocol is
-> >    being discussed with vendors now. So future enhancement to this SCPI
-> >    protocol is unlikely.
-> >
-> > 2. AmLogic has diverted from base protocol in many ways and most of them
-> >    are handled with just compatible so far without any need for
-> >    additional bindings. Can we avoid it ?
-> >
-> > So based on these, I prefer not to add more bindings to handle such
-> > deviations but make it just AmLogic specific.
-> could you please share your idea where this "Amlogic specific
-> implementation" fits best?
-> - in firmware/arm_scpi to keep a contract (for example: millicelsius)
-> to everyone who reads a temperature sensor for example
-> - or in hwmon/scpi-hwmon
+Am 15.03.2017 um 20:57 schrieb Rob Herring:
+> On Sat, Mar 04, 2017 at 10:51:24PM +0100, Martin Blumenstingl wrote:
+>> Khadas is a new sub-brand of Shenzhen Wesion Technology CO.,LTD. They
+>> are developing Amlogic and Rockchip based "DIY boxes" (single board
+>> computers): http://khadas.com/
+>> They are best know for their latest product: the Khadas VIM (an Amlogic
+>> GXL S905X based SBC).
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> ---
+>>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+>>  1 file changed, 1 insertion(+)
 > 
+> Acked-by: Rob Herring <robh@kernel.org>
 
-So far the assumption was that it would be in hwmon. I don't mind for it
-to be elsewhere, but I would think that the presence or non-presence
-of a devicetree property should not affect or change the implementation.
+Shouldn't the entry reflect what is in the commit message rather than
+just repeat the prefix? I.e., something like "Khadas by Shenzhen Wesion
+Technology Co., Ltd." (which I believe is the official spelling and
+spacing of these abbreviations also for the commit message).
 
-Thanks,
-Guenter
+An Acked-by from the CC'ed vendor would also be desirable. :)
+
+Regards,
+Andreas
+
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
