@@ -1,54 +1,41 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 16 Mar 2017 22:14:46 +0100
-Subject: [PATCH 1/3] devicetree: add vendor prefix for Khadas
-In-Reply-To: <61778a7a-3d96-8de3-fd4f-f18aa0938a68@suse.de>
-References: <20170304215126.7020-1-martin.blumenstingl@googlemail.com>
- <20170304215126.7020-2-martin.blumenstingl@googlemail.com>
- <20170315195737.vckgpw6qad4d4zjm@rob-hp-laptop>
- <61778a7a-3d96-8de3-fd4f-f18aa0938a68@suse.de>
-Message-ID: <CAFBinCAp4G4-Ch7Vunn4mEi-6iWi7UfhA3Uryy9FAhFvwBuyPg@mail.gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Fri, 17 Mar 2017 07:44:53 +0100
+Subject: meson-gx-mmc: 2nd patch set
+In-Reply-To: <d1f4c34c-799c-c76c-4ad8-5c0060f9c71f@gmail.com>
+References: <d1f4c34c-799c-c76c-4ad8-5c0060f9c71f@gmail.com>
+Message-ID: <b5e36943-ba83-e73e-7df7-d6967aff5886@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Mar 16, 2017 at 7:00 AM, Andreas F?rber <afaerber@suse.de> wrote:
-> Am 15.03.2017 um 20:57 schrieb Rob Herring:
->> On Sat, Mar 04, 2017 at 10:51:24PM +0100, Martin Blumenstingl wrote:
->>> Khadas is a new sub-brand of Shenzhen Wesion Technology CO.,LTD. They
->>> are developing Amlogic and Rockchip based "DIY boxes" (single board
->>> computers): http://khadas.com/
->>> They are best know for their latest product: the Khadas VIM (an Amlogic
->>> GXL S905X based SBC).
->>>
->>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>> ---
->>>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->>>  1 file changed, 1 insertion(+)
->>
->> Acked-by: Rob Herring <robh@kernel.org>
->
-> Shouldn't the entry reflect what is in the commit message rather than
-> just repeat the prefix? I.e., something like "Khadas by Shenzhen Wesion
-> Technology Co., Ltd." (which I believe is the official spelling and
-> spacing of these abbreviations also for the commit message).
-I took the spelling for "Shenzhen Wesion Technology CO.,LTD." from
-their website: [0]
+Am 16.03.2017 um 22:12 schrieb Helmut Klein:
+> Hallo Heiner,
+> 
+> i applied your 2nd patch sets to linux-amlogic. (and of course the older set v5 1...10).
+> 
+> The performance of the sd-card and the mmc-chip of my minimx is much better now.
+> 
+> sd-card: from 6.5 to 22.5 MBytes/s
+> mmc: from 14.5 to 28.5 MBytes/s (hs200 compatible device)
+> 
+> But:
+> the wifi-adapter is no longer operational. The problem starts with patch 3 and gets worse with patch 5.
+> 
+> the adapter (ap6330) is attached to the sdio port of the the s905. (=mmc1)
+> 
+Thanks for testing and sharing the feedback. Much appreciated.
+The board I test on supports block devices only.
 
-> An Acked-by from the CC'ed vendor would also be desirable. :)
-I asked Gouwa, one of the people behind the Khadas VIM boards for
-clarification some time ago:
-"Khadas is a new brand power by Shenzhen Wesion Technology, 'Khadas'
-is brand, 'VIM' is product serial name, like 'Apple + iPhone'"
-I think I used the vendor-prefixes "pine64" and "radxa" as reference
-(see [1]) when I wrote the patch - and none of the existing entries
-seems to follow the "brand by parent company" schema.
+Could you please share few more details:
+- Drivers involved
+- All syslog messages related to the device / driver
 
-@Gouwa, Rob: could you please share your opinion on what the official
-"vendor" name for the "khadas" prefix should be?
+And please set the relevant mailing lists on cc when providing test feedback.
+Others might find your feedback helpful too.
 
+Thanks, Heiner
 
-Regards,
-Martin
-
-
-[0] http://szwesion.com/contact/
-[1] http://lxr.free-electrons.com/source/Documentation/devicetree/bindings/vendor-prefixes.txt
+> so i think it is important to test your patch set asap on an officially supported board with a wifi adapter).
+> 
+> regards
+> Helmut
+> 
