@@ -1,41 +1,37 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 17 Mar 2017 07:44:53 +0100
-Subject: meson-gx-mmc: 2nd patch set
-In-Reply-To: <d1f4c34c-799c-c76c-4ad8-5c0060f9c71f@gmail.com>
-References: <d1f4c34c-799c-c76c-4ad8-5c0060f9c71f@gmail.com>
-Message-ID: <b5e36943-ba83-e73e-7df7-d6967aff5886@gmail.com>
+From: herbert@gondor.apana.org.au (Herbert Xu)
+Date: Fri, 17 Mar 2017 16:30:32 +0800
+Subject: [PATCH v3 1/3] clk: meson-gxbb: expose clock CLKID_RNG0
+In-Reply-To: <m2mvcl6pwg.fsf@baylibre.com>
+References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
+ <20170316100743.GA12137@gondor.apana.org.au>
+ <m2mvcl6pwg.fsf@baylibre.com>
+Message-ID: <20170317083032.GA18512@gondor.apana.org.au>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 16.03.2017 um 22:12 schrieb Helmut Klein:
-> Hallo Heiner,
+On Thu, Mar 16, 2017 at 11:24:31AM -0700, Kevin Hilman wrote:
+> Hi Herbert,
 > 
-> i applied your 2nd patch sets to linux-amlogic. (and of course the older set v5 1...10).
+> Herbert Xu <herbert@gondor.apana.org.au> writes:
 > 
-> The performance of the sd-card and the mmc-chip of my minimx is much better now.
+> > On Wed, Feb 22, 2017 at 07:55:24AM +0100, Heiner Kallweit wrote:
+> >> Expose clock CLKID_RNG0 which is needed for the HW random number generator.
+> >> 
+> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> >
+> > All patches applied.  Thanks.
 > 
-> sd-card: from 6.5 to 22.5 MBytes/s
-> mmc: from 14.5 to 28.5 MBytes/s (hs200 compatible device)
+> Actually, can you just apply [PATCH 4/4] to your tree?
 > 
-> But:
-> the wifi-adapter is no longer operational. The problem starts with patch 3 and gets worse with patch 5.
-> 
-> the adapter (ap6330) is attached to the sdio port of the the s905. (=mmc1)
-> 
-Thanks for testing and sharing the feedback. Much appreciated.
-The board I test on supports block devices only.
+> The clock and DT patches need to go through their respective trees or
+> will otherwise have conflicts with other things going in via those
+> trees.
 
-Could you please share few more details:
-- Drivers involved
-- All syslog messages related to the device / driver
+It's too late now.  Please speak up sooner next time.  These
+patches were posted a month ago.
 
-And please set the relevant mailing lists on cc when providing test feedback.
-Others might find your feedback helpful too.
-
-Thanks, Heiner
-
-> so i think it is important to test your patch set asap on an officially supported board with a wifi adapter).
-> 
-> regards
-> Helmut
-> 
+Thanks,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
