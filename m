@@ -1,280 +1,54 @@
 From: hverkuil@xs4all.nl (Hans Verkuil)
-Date: Mon, 20 Mar 2017 15:33:11 +0100
+Date: Mon, 20 Mar 2017 16:04:18 +0100
 Subject: [PATCH v3 3/6] documentation: media: Add documentation for new
  RGB and YUV bus formats
-In-Reply-To: <1488904944-14285-4-git-send-email-narmstrong@baylibre.com>
+In-Reply-To: <97b0c618-a3f4-11d7-d117-c83e8949633a@baylibre.com>
 References: <1488904944-14285-1-git-send-email-narmstrong@baylibre.com>
  <1488904944-14285-4-git-send-email-narmstrong@baylibre.com>
-Message-ID: <5b40bc25-da65-108f-9a7b-0a856cb89330@xs4all.nl>
+ <8963c4cc-daf2-1d4f-0c3e-3b963e118379@codeaurora.org>
+ <97b0c618-a3f4-11d7-d117-c83e8949633a@baylibre.com>
+Message-ID: <4aa7c066-342b-c4a5-fd95-deda9f216e26@xs4all.nl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/07/2017 05:42 PM, Neil Armstrong wrote:
-> Add documentation for added Bus Formats to describe RGB and YUS formats used
-> as input to the Synopsys DesignWare HDMI TX Controller.
+On 03/17/2017 05:11 PM, Neil Armstrong wrote:
+> On 03/16/2017 06:01 PM, Archit Taneja wrote:
+>>
+>>
+>> On 3/7/2017 10:12 PM, Neil Armstrong wrote:
+>>> Add documentation for added Bus Formats to describe RGB and YUS formats used
+>>
+>> s/YUS/YUV
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/media/uapi/v4l/subdev-formats.rst | 4992 ++++++++++++++++++-----
->  1 file changed, 3963 insertions(+), 1029 deletions(-)
+> Thanks again....
 > 
-> diff --git a/Documentation/media/uapi/v4l/subdev-formats.rst b/Documentation/media/uapi/v4l/subdev-formats.rst
-> index d6152c9..feb55b5 100644
-> --- a/Documentation/media/uapi/v4l/subdev-formats.rst
-> +++ b/Documentation/media/uapi/v4l/subdev-formats.rst
-> @@ -114,7 +114,7 @@ The following tables list existing packed RGB formats.
->  .. it switches to long table, and there's no way to override it.
->  
->  
-> -.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
-> +.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
->  
->  .. _v4l2-mbus-pixelcode-rgb:
->  
-
-<snip>
-
-> +    * .. _MEDIA-BUS-FMT-RGB161616-1X48:
-> +
-> +      - MEDIA_BUS_FMT_RGB161616_1X48
-> +      - 0x10
-
-0x10 -> 0x101a
-
-> +      -
-> +      - r\ :sub:`15`
-
-<snip>
-
-> +    * .. _MEDIA-BUS-FMT-YUV16-1X48:
-> +
-> +      - MEDIA_BUS_FMT_YUV16_1X48
-> +      - 0x202a
-
-Needs an extra line:
-
-         -
-
-The first cell is the 'Bit' column, which should be an empty cell.
-
-If you look at the output, then you'll see that without this the bit 0 cell is empty.
-
-Same for the other three 48 bit YUV formats.
-
-> +      - y\ :sub:`15`
-> +      - y\ :sub:`14`
-> +      - y\ :sub:`13`
-> +      - y\ :sub:`12`
->        - y\ :sub:`11`
->        - y\ :sub:`10`
-> -      - y\ :sub:`9`
-> +      - y\ :sub:`8`
-
-Typo: should remain 9.
-
->        - y\ :sub:`8`
->        - y\ :sub:`7`
->        - y\ :sub:`6`
-> @@ -6203,6 +9124,26 @@ the following codes.
->        - y\ :sub:`2`
->        - y\ :sub:`1`
->        - y\ :sub:`0`
-> +      - u\ :sub:`15`
-> +      - u\ :sub:`14`
-> +      - u\ :sub:`13`
-> +      - u\ :sub:`12`
-> +      - u\ :sub:`11`
-> +      - u\ :sub:`10`
-> +      - u\ :sub:`9`
-> +      - u\ :sub:`8`
-> +      - u\ :sub:`7`
-> +      - u\ :sub:`6`
-> +      - u\ :sub:`5`
-> +      - u\ :sub:`4`
-> +      - u\ :sub:`3`
-> +      - u\ :sub:`2`
-> +      - u\ :sub:`1`
-> +      - u\ :sub:`0`
-> +      - v\ :sub:`15`
-> +      - v\ :sub:`14`
-> +      - v\ :sub:`13`
-> +      - v\ :sub:`12`
->        - v\ :sub:`11`
->        - v\ :sub:`10`
->        - v\ :sub:`9`
-> @@ -6215,29 +9156,14 @@ the following codes.
->        - v\ :sub:`2`
->        - v\ :sub:`1`
->        - v\ :sub:`0`
-> -    * -
-> -      -
-> -      -
-> -      -
-> -      -
-> -      -
-> -      -
-> -      -
-> -      -
-> -      -
-> -      -
-> -      - y\ :sub:`11`
-> -      - y\ :sub:`10`
-> -      - y\ :sub:`9`
-> -      - y\ :sub:`8`
-> -      - y\ :sub:`7`
-> -      - y\ :sub:`6`
-> -      - y\ :sub:`5`
-> -      - y\ :sub:`4`
-> -      - y\ :sub:`3`
-> -      - y\ :sub:`2`
-> -      - y\ :sub:`1`
-> -      - y\ :sub:`0`
-> +    * .. _MEDIA-BUS-FMT-UYVY16-1-1X48:
-> +
-> +      - MEDIA_BUS_FMT_UYVY16_1_1X48
-> +      - 0x202b
-> +      - u\ :sub:`15`
-> +      - u\ :sub:`14`
-> +      - u\ :sub:`13`
-> +      - u\ :sub:`12`
->        - u\ :sub:`11`
->        - u\ :sub:`10`
->        - u\ :sub:`9`
-> @@ -6250,13 +9176,12 @@ the following codes.
->        - u\ :sub:`2`
->        - u\ :sub:`1`
->        - u\ :sub:`0`
-> -    * .. _MEDIA-BUS-FMT-YUV10-1X30:
-> -
-> -      - MEDIA_BUS_FMT_YUV10_1X30
-> -      - 0x2016
-> -      -
-> -      -
-> -      -
-> +      - y\ :sub:`15`
-> +      - y\ :sub:`14`
-> +      - y\ :sub:`13`
-> +      - y\ :sub:`12`
-> +      - y\ :sub:`11`
-> +      - y\ :sub:`10`
->        - y\ :sub:`9`
->        - y\ :sub:`8`
->        - y\ :sub:`7`
-> @@ -6267,16 +9192,30 @@ the following codes.
->        - y\ :sub:`2`
->        - y\ :sub:`1`
->        - y\ :sub:`0`
-> -      - u\ :sub:`9`
-> -      - u\ :sub:`8`
-> -      - u\ :sub:`7`
-> -      - u\ :sub:`6`
-> -      - u\ :sub:`5`
-> -      - u\ :sub:`4`
-> -      - u\ :sub:`3`
-> -      - u\ :sub:`2`
-> -      - u\ :sub:`1`
-> -      - u\ :sub:`0`
-> +      - y\ :sub:`15`
-> +      - y\ :sub:`14`
-> +      - y\ :sub:`13`
-> +      - y\ :sub:`12`
-> +      - y\ :sub:`11`
-> +      - y\ :sub:`10`
-> +      - y\ :sub:`8`
-
-8 -> 9
-
-> +      - y\ :sub:`8`
-> +      - y\ :sub:`7`
-> +      - y\ :sub:`6`
-> +      - y\ :sub:`5`
-> +      - y\ :sub:`4`
-> +      - y\ :sub:`3`
-> +      - y\ :sub:`2`
-> +      - y\ :sub:`1`
-> +      - y\ :sub:`0`
-> +    * -
-> +      -
-> +      - v\ :sub:`15`
-> +      - v\ :sub:`14`
-> +      - v\ :sub:`13`
-> +      - v\ :sub:`12`
-> +      - v\ :sub:`11`
-> +      - v\ :sub:`10`
->        - v\ :sub:`9`
->        - v\ :sub:`8`
->        - v\ :sub:`7`
-> @@ -6287,19 +9226,30 @@ the following codes.
->        - v\ :sub:`2`
->        - v\ :sub:`1`
->        - v\ :sub:`0`
-> -    * .. _MEDIA-BUS-FMT-AYUV8-1X32:
-> -
-> -      - MEDIA_BUS_FMT_AYUV8_1X32
-> -      - 0x2017
-> -      -
-> -      - a\ :sub:`7`
-> -      - a\ :sub:`6`
-> -      - a\ :sub:`5`
-> -      - a\ :sub:`4`
-> -      - a\ :sub:`3`
-> -      - a\ :sub:`2`
-> -      - a\ :sub:`1`
-> -      - a\ :sub:`0`
-> +      - y\ :sub:`15`
-> +      - y\ :sub:`14`
-> +      - y\ :sub:`13`
-> +      - y\ :sub:`12`
-> +      - y\ :sub:`11`
-> +      - y\ :sub:`10`
-> +      - y\ :sub:`9`
-> +      - y\ :sub:`8`
-> +      - y\ :sub:`7`
-> +      - y\ :sub:`6`
-> +      - y\ :sub:`5`
-> +      - y\ :sub:`4`
-> +      - y\ :sub:`3`
-> +      - y\ :sub:`2`
-> +      - y\ :sub:`1`
-> +      - y\ :sub:`0`
-> +      - y\ :sub:`15`
-> +      - y\ :sub:`14`
-> +      - y\ :sub:`13`
-> +      - y\ :sub:`12`
-> +      - y\ :sub:`11`
-> +      - y\ :sub:`10`
-> +      - y\ :sub:`8`
-
-8 -> 9
-
-> +      - y\ :sub:`8`
->        - y\ :sub:`7`
->        - y\ :sub:`6`
->        - y\ :sub:`5`
-> @@ -6308,22 +9258,6 @@ the following codes.
->        - y\ :sub:`2`
->        - y\ :sub:`1`
->        - y\ :sub:`0`
-> -      - u\ :sub:`7`
-> -      - u\ :sub:`6`
-> -      - u\ :sub:`5`
-> -      - u\ :sub:`4`
-> -      - u\ :sub:`3`
-> -      - u\ :sub:`2`
-> -      - u\ :sub:`1`
-> -      - u\ :sub:`0`
-> -      - v\ :sub:`7`
-> -      - v\ :sub:`6`
-> -      - v\ :sub:`5`
-> -      - v\ :sub:`4`
-> -      - v\ :sub:`3`
-> -      - v\ :sub:`2`
-> -      - v\ :sub:`1`
-> -      - v\ :sub:`0`
->  
->  
->  .. raw:: latex
+>>
+>>> as input to the Synopsys DesignWare HDMI TX Controller.
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>> ---
+>>>  Documentation/media/uapi/v4l/subdev-formats.rst | 4992 ++++++++++++++++++-----
+>>>  1 file changed, 3963 insertions(+), 1029 deletions(-)
+>>
+>> Do we know if there is a better way to add more columns without
+>> adding so many lines?
 > 
+> It seems not, the reason is written in the commands.
+> 
+>> If not, one option could be to create a separate tables for
+>> 48 bit RGB formats, 48 bit YUV formats etc.
+> 
+> It would be simple indeed, any V4L guys for an advice here ?
+
+I would split up these large tables into separate tables, depending on the
+number of bits each pixel uses: so an RGB table for 8 bits, 9-16 bits,
+17-24, 25-32, 33-48.
+
+This also avoids a major problem where the horizontal scrollbar is at the bottom
+of the table, but the column numbering is at the top and out of sight if the
+table is long.
+
+It also prevents these large horizontal widths when they are not needed.
 
 Regards,
 
