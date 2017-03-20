@@ -1,40 +1,65 @@
 From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Mon, 20 Mar 2017 18:56:03 +0100
+Date: Mon, 20 Mar 2017 19:02:26 +0100
 Subject: [PATCH 1/4] mmc: pwrseq: add op reset to struct mmc_pwrseq_ops
-In-Reply-To: <ac5f62eb-64c6-b66f-24cc-b6ae74a01697@gmail.com>
+In-Reply-To: <d029f887-4fd3-1319-fd01-a99ea9ede5c1@gmail.com>
 References: <75ad5eac-412b-fe73-ff53-3d8b975937e4@gmail.com>
  <c75c3e5c-c4e1-3f2f-267b-1c781052c55e@gmail.com>
  <CAPDyKFr6_Y3cSv5Q1WRSQBo7_bsyeVVQTYBQ01gykdMpVWNtXw@mail.gmail.com>
  <ac5f62eb-64c6-b66f-24cc-b6ae74a01697@gmail.com>
-Message-ID: <CAPDyKFrhfteb8Nx2Tzi__VgmQrsWbvjAVnFmAPTOBtHohLXiUA@mail.gmail.com>
+ <d029f887-4fd3-1319-fd01-a99ea9ede5c1@gmail.com>
+Message-ID: <CAPDyKFpuAgFnoAFymZeiPiCQcXATkz6KCEm8Wr_j4hD+nrtGuQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 [...]
 
->>> @@ -166,6 +166,7 @@ int mmc_wait_for_cmd(struct mmc_host *host, struct mmc_command *cmd,
->>>                 int retries);
->>>
->>>  int mmc_hw_reset(struct mmc_host *host);
->>> +void mmc_hw_reset_pwrseq(struct mmc_host *host);
 >>
->> Don't you think we can make this transparent to mmc host drivers,
->> instead of them having to assign their host_ops->hw_reset() callback
->> to this new API? Because I guess that's the though!?
->>
->> In principle the mmc core already have all the information it needs,
->> as to understand when the eMMC pwrseq should be invoked. Or perhaps
->> the code may become a bit too messy for that?
->>
-> The easiest way I could think of:
-> If host->ops->hw_reset is NULL overwrite it with pwrseq->ops->reset
-> in mmc_add_host. But host->ops is defined es being const, so the compiler
-> won't allow us to do this. Of course we could do some casting but usually
-> I try to avoid hacks like casting away const qualifiers.
+> Other alternative:
+>
+> typedef void (*hw_reset_t)(struct mmc_host *host);
+>
+> hw_reset_t mmc_get_hw_reset(struct mmc_host *host)
+> {
+>        struct mmc_pwrseq *p = host->pwrseq;
+>
+>        if (host->ops->hw_reset)
+>                return host->ops->hw_reset;
+>        else if (p && p->ops->reset)
+>                return p->ops->reset;
+>        else
+>                return NULL;
+> }
+>
+> And then use what mmc_get_hw_reset returns instead of using
+> host->ops->hw_reset directly.
+>
+> How do you like this one?
 
-No thanks. :-)
+Well, I would just rather do these checks and call the correct
+callback in mmc_reset(). There is no need to invent a function
+returning a function pointer when we call it directly instead.
 
-[...]
+Additionally, I wonder whether it could make sense to allow both
+callbacks to co-exist and then call both. This would give the mmc host
+some options for doing some internal reset as well, while the pwrseq
+could handle the actual GPIO pin.
+
+What do you think?
 
 Kind regards
 Uffe
+
+>
+>>>>  void mmc_set_data_timeout(struct mmc_data *data, const struct mmc_card *card);
+>>>>
+>>>>  #endif /* LINUX_MMC_CORE_H */
+>>>> --
+>>>> 2.11.0
+>>>>
+>>>>
+>>>
+>>> Kind regards
+>>> Uffe
+>>>
+>>
+>
