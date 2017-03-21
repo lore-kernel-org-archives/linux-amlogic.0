@@ -1,97 +1,111 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Mar 2017 16:25:49 +0100
-Subject: [PATCH v2 12/13] drm/meson: Add RST to bring together kerneldoc
-In-Reply-To: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
-References: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490109950-21421-13-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 21 Mar 2017 19:33:24 +0100
+Subject: [RFC 1/7] clk: take the prepare lock out of clk_core_set_parent
+In-Reply-To: <20170321183330.26722-1-jbrunet@baylibre.com>
+References: <20170321183330.26722-1-jbrunet@baylibre.com>
+Message-ID: <20170321183330.26722-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- Documentation/gpu/index.rst |  1 +
- Documentation/gpu/meson.rst | 61 +++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 62 insertions(+)
- create mode 100644 Documentation/gpu/meson.rst
+Rework set_parent core function so it can be called when the prepare lock
+is already held by the caller.
 
-diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
-index e998ee0..7eceb97 100644
---- a/Documentation/gpu/index.rst
-+++ b/Documentation/gpu/index.rst
-@@ -11,6 +11,7 @@ Linux GPU Driver Developer's Guide
-    drm-kms-helpers
-    drm-uapi
-    i915
-+   meson
-    tinydrm
-    vc4
-    vga-switcheroo
-diff --git a/Documentation/gpu/meson.rst b/Documentation/gpu/meson.rst
-new file mode 100644
-index 0000000..479f6f5
---- /dev/null
-+++ b/Documentation/gpu/meson.rst
-@@ -0,0 +1,61 @@
-+=============================================
-+drm/meson AmLogic Meson Video Processing Unit
-+=============================================
+This rework is done to ease the integration of the "protected" clock
+functionality.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/clk.c | 38 ++++++++++++++++++++------------------
+ 1 file changed, 20 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index 67201f67a14a..e77f03a47da6 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -1794,23 +1794,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 	if (!core)
+ 		return 0;
+ 
+-	/* prevent racing with updates to the clock topology */
+-	clk_prepare_lock();
+-
+ 	if (core->parent == parent)
+-		goto out;
++		return 0;
+ 
+ 	/* verify ops for for multi-parent clks */
+-	if ((core->num_parents > 1) && (!core->ops->set_parent)) {
+-		ret = -ENOSYS;
+-		goto out;
+-	}
++	if ((core->num_parents > 1) && (!core->ops->set_parent))
++		return -ENOSYS;
+ 
+ 	/* check that we are allowed to re-parent if the clock is in use */
+-	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count) {
+-		ret = -EBUSY;
+-		goto out;
+-	}
++	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
++		return -EBUSY;
+ 
+ 	/* try finding the new parent index */
+ 	if (parent) {
+@@ -1818,8 +1811,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 		if (p_index < 0) {
+ 			pr_debug("%s: clk %s can not be parent of clk %s\n",
+ 					__func__, parent->name, core->name);
+-			ret = p_index;
+-			goto out;
++			return p_index;
+ 		}
+ 		p_rate = parent->rate;
+ 	}
+@@ -1829,7 +1821,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 
+ 	/* abort if a driver objects */
+ 	if (ret & NOTIFY_STOP_MASK)
+-		goto out;
++		return ret;
+ 
+ 	/* do the re-parent */
+ 	ret = __clk_set_parent(core, parent, p_index);
+@@ -1842,7 +1834,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 		__clk_recalc_accuracies(core);
+ 	}
+ 
+-out:
++	return ret;
++}
 +
-+.. kernel-doc:: drivers/gpu/drm/meson/meson_drv.c
-+   :doc: Video Processing Unit
++static int clk_core_set_parent_lock(struct clk_core *core,
++				    struct clk_core *parent)
++{
++	int ret;
 +
-+Video Processing Unit
-+=====================
-+
-+The Amlogic Meson Display controller is composed of several components
-+that are going to be documented below:
-+
-+.. code::
-+
-+  DMC|---------------VPU (Video Processing Unit)----------------|------HHI------|
-+     | vd1   _______     _____________    _________________     |               |
-+  D  |-------|      |----|            |   |                |    |   HDMI PLL    |
-+  D  | vd2   | VIU  |    | Video Post |   | Video Encoders |<---|-----VCLK      |
-+  R  |-------|      |----| Processing |   |                |    |               |
-+     | osd2  |      |    |            |---| Enci ----------|----|-----VDAC------|
-+  R  |-------| CSC  |----| Scalers    |   | Encp ----------|----|----HDMI-TX----|
-+  A  | osd1  |      |    | Blenders   |   | Encl ----------|----|---------------|
-+  M  |-------|______|----|____________|   |________________|    |               |
-+  ___|__________________________________________________________|_______________|
-+
-+Video Input Unit
-+================
-+
-+.. kernel-doc:: drivers/gpu/drm/meson/meson_viu.c
-+   :doc: Video Input Unit
-+
-+Video Post Processing
-+=====================
-+
-+.. kernel-doc:: drivers/gpu/drm/meson/meson_vpp.c
-+   :doc: Video Post Processing
-+
-+Video Encoder
-+=============
-+
-+.. kernel-doc:: drivers/gpu/drm/meson/meson_venc.c
-+   :doc: Video Encoder
-+
-+Video Canvas Management
-+=======================
-+
-+.. kernel-doc:: drivers/gpu/drm/meson/meson_canvas.c
-+   :doc: Canvas
-+
-+Video Clocks
-+============
-+
-+.. kernel-doc:: drivers/gpu/drm/meson/meson_vclk.c
-+   :doc: Video Clocks
-+
-+HDMI Video Output
-+=================
-+
-+.. kernel-doc:: drivers/gpu/drm/meson/meson_dw_hdmi.c
-+   :doc: HDMI Output
++	clk_prepare_lock();
++	ret = clk_core_set_parent(core, parent);
+ 	clk_prepare_unlock();
+ 
+ 	return ret;
+@@ -1870,7 +1871,8 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
+ 	if (!clk)
+ 		return 0;
+ 
+-	return clk_core_set_parent(clk->core, parent ? parent->core : NULL);
++	return clk_core_set_parent_lock(clk->core,
++					parent ? parent->core : NULL);
+ }
+ EXPORT_SYMBOL_GPL(clk_set_parent);
+ 
+@@ -2720,7 +2722,7 @@ void clk_unregister(struct clk *clk)
+ 		/* Reparent all children to the orphan list. */
+ 		hlist_for_each_entry_safe(child, t, &clk->core->children,
+ 					  child_node)
+-			clk_core_set_parent(child, NULL);
++			clk_core_set_parent_lock(child, NULL);
+ 	}
+ 
+ 	hlist_del_init(&clk->core->child_node);
 -- 
-1.9.1
+2.9.3
