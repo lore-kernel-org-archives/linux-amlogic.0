@@ -1,86 +1,69 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Mar 2017 16:12:35 +0100
-Subject: [PATCH v4 0/6] drm: bridge: dw-hdmi: Add support for Custom PHYs
-Message-ID: <1490109161-20529-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 21 Mar 2017 16:12:37 +0100
+Subject: [PATCH v4 2/6] media: uapi: Add RGB and YUV bus formats for Synopsys
+ HDMI TX Controller
+In-Reply-To: <1490109161-20529-1-git-send-email-narmstrong@baylibre.com>
+References: <1490109161-20529-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1490109161-20529-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic GX SoCs implements a Synopsys DesignWare HDMI TX Controller
-in combination with a very custom PHY.
+In order to describe the RGB and YUV bus formats used to feed the
+Synopsys DesignWare HDMI TX Controller, add missing formats to the
+list of Bus Formats.
 
-Thanks to Laurent Pinchart's changes, the HW report the following :
- Detected HDMI TX controller v2.01a with HDCP (meson_dw_hdmi_phy)
+Documentation for these formats is added in a separate patch.
 
-The following differs from common PHY integration as managed in the current
-driver :
- - Amlogic PHY is not configured through the internal I2C link
- - Amlogic PHY do not use the ENTMDS, SVSRET, PDDQ, ... signals from the controller
- - Amlogic PHY do not export HPD ands RxSense signals to the controller
+Reviewed-by: Archit Taneja <architt@codeaurora.org>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ include/uapi/linux/media-bus-format.h | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-And finally, concerning the controller integration :
- - the Controller registers are not flat memory-mapped, and uses an
-    addr+read/write register pair to write all registers.
- - Inputs only YUV444 pixel data
-
-Most of these uses case are implemented in Laurent Pinchart v5.1 patchset merged
-in drm-misc-next branch.
-
-This is why the following patchset implements :
- - Configure the Input format from the plat_data
- - Add PHY callback to handle HPD and RxSense out of the dw-hdmi driver
-
-To implement the input format handling, the Synopsys HDMIT TX Controller input
-V4L bus formats are used and missing formats + documentation are added.
-
-This patchset makes the Amlogic GX SoCs HDMI output successfully work, and is
-also tested on the RK3288 ACT8846 EVB Board.
-
-Changes since v3 at [4] :
- - Fix 4:2:0 bus formats naming
- - Add separate 36bit and 48bit tables for bus formats documentation
- - Added 4:2:0 bus config in hdmi_video_sample
- - Moved dw_hdmi documentation in a "bridge" subdir
- - Rebase on drm-misc-next at 62c58af32c93
-
-Changes since v2 at [3] :
- - Rebase on laurent patch "Extract PHY interrupt setup to a function"
- - Reduce phy operations
- - Switch the V4L bus formats and encodings instead of custom enum
-
-Changes since v1 at [2] :
- - Drop patches submitted by laurent
-
-Changes since RFC at [1] :
- - Regmap fixup for 4bytes register access, tested on RK3288 SoC
- - Move phy callbacks to phy_ops and move Synopsys PHY calls into default ops
- - Move HDMI link data into shared header
- - Move Pixel Encoding enum to shared header
-
-[1] http://lkml.kernel.org/r/1484656294-6140-1-git-send-email-narmstrong at baylibre.com
-[2] http://lkml.kernel.org/r/1485774318-21916-1-git-send-email-narmstrong at baylibre.com
-[3] http://lkml.kernel.org/r/1488468572-31971-1-git-send-email-narmstrong at baylibre.com
-[4] http://lkml.kernel.org/r/1488904944-14285-1-git-send-email-narmstrong at baylibre.com
-
-Laurent Pinchart (1):
-  drm: bridge: dw-hdmi: Extract PHY interrupt setup to a function
-
-Neil Armstrong (5):
-  media: uapi: Add RGB and YUV bus formats for Synopsys HDMI TX
-    Controller
-  documentation: media: Add documentation for new RGB and YUV bus
-    formats
-  drm: bridge: dw-hdmi: Switch to V4L bus format and encodings
-  drm: bridge: dw-hdmi: Add Documentation on supported input formats
-  drm: bridge: dw-hdmi: Move HPD handling to PHY operations
-
- Documentation/gpu/bridge/dw-hdmi.rst            |  15 +
- Documentation/gpu/index.rst                     |   1 +
- Documentation/media/uapi/v4l/subdev-formats.rst | 871 +++++++++++++++++++++++-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c       | 469 ++++++++-----
- include/drm/bridge/dw_hdmi.h                    |  68 ++
- include/uapi/linux/media-bus-format.h           |  13 +-
- 6 files changed, 1266 insertions(+), 171 deletions(-)
- create mode 100644 Documentation/gpu/bridge/dw-hdmi.rst
-
+diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
+index 2168759..6c8f31c 100644
+--- a/include/uapi/linux/media-bus-format.h
++++ b/include/uapi/linux/media-bus-format.h
+@@ -33,7 +33,7 @@
+ 
+ #define MEDIA_BUS_FMT_FIXED			0x0001
+ 
+-/* RGB - next is	0x1018 */
++/* RGB - next is	0x101b */
+ #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
+ #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
+ #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
+@@ -57,8 +57,11 @@
+ #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
+ #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
+ #define MEDIA_BUS_FMT_RGB888_1X32_PADHI		0x100f
++#define MEDIA_BUS_FMT_RGB101010_1X30		0x1018
++#define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
++#define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
+ 
+-/* YUV (including grey) - next is	0x2026 */
++/* YUV (including grey) - next is	0x202c */
+ #define MEDIA_BUS_FMT_Y8_1X8			0x2001
+ #define MEDIA_BUS_FMT_UV8_1X8			0x2015
+ #define MEDIA_BUS_FMT_UYVY8_1_5X8		0x2002
+@@ -90,12 +93,18 @@
+ #define MEDIA_BUS_FMT_YVYU10_1X20		0x200e
+ #define MEDIA_BUS_FMT_VUY8_1X24			0x2024
+ #define MEDIA_BUS_FMT_YUV8_1X24			0x2025
++#define MEDIA_BUS_FMT_UYYVYY8_1X24		0x2026
+ #define MEDIA_BUS_FMT_UYVY12_1X24		0x2020
+ #define MEDIA_BUS_FMT_VYUY12_1X24		0x2021
+ #define MEDIA_BUS_FMT_YUYV12_1X24		0x2022
+ #define MEDIA_BUS_FMT_YVYU12_1X24		0x2023
+ #define MEDIA_BUS_FMT_YUV10_1X30		0x2016
++#define MEDIA_BUS_FMT_UYYVYY10_1X30		0x2027
+ #define MEDIA_BUS_FMT_AYUV8_1X32		0x2017
++#define MEDIA_BUS_FMT_UYYVYY12_1X36		0x2028
++#define MEDIA_BUS_FMT_YUV12_1X36		0x2029
++#define MEDIA_BUS_FMT_YUV16_1X48		0x202a
++#define MEDIA_BUS_FMT_UYYVYY16_1X48		0x202b
+ 
+ /* Bayer - next is	0x3021 */
+ #define MEDIA_BUS_FMT_SBGGR8_1X8		0x3001
 -- 
 1.9.1
