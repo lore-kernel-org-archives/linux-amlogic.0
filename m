@@ -1,78 +1,45 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 21 Mar 2017 19:33:25 +0100
-Subject: [RFC 2/7] clk: add set_phase core function
+Date: Tue, 21 Mar 2017 19:33:29 +0100
+Subject: [RFC 6/7] clk: cosmetic changes to clk_summary debugfs entry
 In-Reply-To: <20170321183330.26722-1-jbrunet@baylibre.com>
 References: <20170321183330.26722-1-jbrunet@baylibre.com>
-Message-ID: <20170321183330.26722-3-jbrunet@baylibre.com>
+Message-ID: <20170321183330.26722-7-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Create a core function for set_phase, as it is done for set_rate and
-set_parent.
-
-This rework is done to ease the integration of "protected" clock
-functionality.
+clk_summary debugfs entry was already well over the traditional 80
+characters per line limit but it grew even larger with the addition of
+clock protection.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c | 31 +++++++++++++++++++------------
- 1 file changed, 19 insertions(+), 12 deletions(-)
+ drivers/clk/clk.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index e77f03a47da6..57982a06dbce 100644
+index 50798ef618d1..ec6d57e97bac 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -1876,6 +1876,23 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
- }
- EXPORT_SYMBOL_GPL(clk_set_parent);
+@@ -2167,7 +2167,7 @@ static void clk_summary_show_one(struct seq_file *s, struct clk_core *c,
+ 	if (!c)
+ 		return;
  
-+static int clk_core_set_phase(struct clk_core *core, int degrees)
-+{
-+	int ret = -EINVAL;
-+
-+	if (!core)
-+		return 0;
-+
-+	trace_clk_set_phase(clk->core, degrees);
-+
-+	if (core->ops->set_phase)
-+		ret = core->ops->set_phase(core->hw, degrees);
-+
-+	trace_clk_set_phase_complete(core, degrees);
-+
-+	return ret;
-+}
-+
- /**
-  * clk_set_phase - adjust the phase shift of a clock signal
-  * @clk: clock signal source
-@@ -1898,7 +1915,7 @@ EXPORT_SYMBOL_GPL(clk_set_parent);
-  */
- int clk_set_phase(struct clk *clk, int degrees)
- {
--	int ret = -EINVAL;
-+	int ret;
+-	seq_printf(s, "%*s%-*s %11d %12d %12d %11lu %10lu %-3d\n",
++	seq_printf(s, "%*s%-*s %7d %8d %8d %11lu %10lu %-3d\n",
+ 		   level * 3 + 1, "",
+ 		   30 - level * 3, c->name,
+ 		   c->enable_count, c->prepare_count, c->protect_count,
+@@ -2194,8 +2194,9 @@ static int clk_summary_show(struct seq_file *s, void *data)
+ 	struct clk_core *c;
+ 	struct hlist_head **lists = (struct hlist_head **)s->private;
  
- 	if (!clk)
- 		return 0;
-@@ -1909,17 +1926,7 @@ int clk_set_phase(struct clk *clk, int degrees)
- 		degrees += 360;
+-	seq_puts(s, "   clock                         enable_cnt  prepare_cnt  protect_cnt        rate   accuracy   phase\n");
+-	seq_puts(s, "----------------------------------------------------------------------------------------------------\n");
++	seq_puts(s, "                                 enable  prepare  protect                               \n");
++	seq_puts(s, "   clock                          count    count    count        rate   accuracy   phase\n");
++	seq_puts(s, "----------------------------------------------------------------------------------------\n");
  
  	clk_prepare_lock();
--
--	trace_clk_set_phase(clk->core, degrees);
--
--	if (clk->core->ops->set_phase)
--		ret = clk->core->ops->set_phase(clk->core->hw, degrees);
--
--	trace_clk_set_phase_complete(clk->core, degrees);
--
--	if (!ret)
--		clk->core->phase = degrees;
--
-+	ret = clk_core_set_phase(clk->core, degrees);
- 	clk_prepare_unlock();
  
- 	return ret;
 -- 
 2.9.3
