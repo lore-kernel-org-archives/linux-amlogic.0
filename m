@@ -1,196 +1,37 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 21 Mar 2017 16:25:40 +0100
-Subject: [PATCH v2 03/13] drm/meson: Add support for components
+Date: Tue, 21 Mar 2017 16:25:45 +0100
+Subject: [PATCH v2 08/13] ARM64: dts: meson-gx: Add shared CMA dma memory pool
 In-Reply-To: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
 References: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490109950-21421-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1490109950-21421-9-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch adds support for optional components connected through the
-Device Tree endpoints scheme.
+The HDMI modes needs more CMA memory to be reserved at boot-time.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_drv.c | 113 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 99 insertions(+), 14 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index bc562a0..a2e9f56 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -24,6 +24,7 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/platform_device.h>
-+#include <linux/component.h>
- #include <linux/of_graph.h>
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 5d995f7..94c6f95 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -71,6 +71,14 @@
+ 			reg = <0x0 0x10000000 0x0 0x200000>;
+ 			no-map;
+ 		};
++
++		linux,cma {
++			compatible = "shared-dma-pool";
++			reusable;
++			size = <0x0 0xbc00000>;
++			alignment = <0x0 0x400000>;
++			linux,cma-default;
++		};
+ 	};
  
- #include <drm/drmP.h>
-@@ -150,9 +151,9 @@ static bool meson_vpu_has_available_connectors(struct device *dev)
- 	.max_register   = 0x1000,
- };
- 
--static int meson_drv_probe(struct platform_device *pdev)
-+static int meson_drv_bind(struct device *dev)
- {
--	struct device *dev = &pdev->dev;
-+	struct platform_device *pdev = to_platform_device(dev);
- 	struct meson_drm *priv;
- 	struct drm_device *drm;
- 	struct resource *res;
-@@ -215,6 +216,15 @@ static int meson_drv_probe(struct platform_device *pdev)
- 
- 	drm_vblank_init(drm, 1);
- 	drm_mode_config_init(drm);
-+	drm->mode_config.max_width = 3840;
-+	drm->mode_config.max_height = 2160;
-+	drm->mode_config.funcs = &meson_mode_config_funcs;
-+
-+	/* Hardware Initialization */
-+
-+	meson_venc_init(priv);
-+	meson_vpp_init(priv);
-+	meson_viu_init(priv);
- 
- 	/* Encoder Initialization */
- 
-@@ -222,11 +232,11 @@ static int meson_drv_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_drm;
- 
--	/* Hardware Initialization */
--
--	meson_venc_init(priv);
--	meson_vpp_init(priv);
--	meson_viu_init(priv);
-+	ret = component_bind_all(drm->dev, drm);
-+	if (ret) {
-+		dev_err(drm->dev, "Couldn't bind all components\n");
-+		goto free_drm;
-+	}
- 
- 	ret = meson_plane_create(priv);
- 	if (ret)
-@@ -241,9 +251,6 @@ static int meson_drv_probe(struct platform_device *pdev)
- 		goto free_drm;
- 
- 	drm_mode_config_reset(drm);
--	drm->mode_config.max_width = 8192;
--	drm->mode_config.max_height = 8192;
--	drm->mode_config.funcs = &meson_mode_config_funcs;
- 
- 	priv->fbdev = drm_fbdev_cma_init(drm, 32,
- 					 drm->mode_config.num_connector);
-@@ -268,9 +275,9 @@ static int meson_drv_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
--static int meson_drv_remove(struct platform_device *pdev)
-+static void meson_drv_unbind(struct device *dev)
- {
--	struct drm_device *drm = dev_get_drvdata(&pdev->dev);
-+	struct drm_device *drm = dev_get_drvdata(dev);
- 	struct meson_drm *priv = drm->dev_private;
- 
- 	drm_dev_unregister(drm);
-@@ -280,9 +287,88 @@ static int meson_drv_remove(struct platform_device *pdev)
- 	drm_vblank_cleanup(drm);
- 	drm_dev_unref(drm);
- 
--	return 0;
- }
- 
-+static const struct component_master_ops meson_drv_master_ops = {
-+	.bind	= meson_drv_bind,
-+	.unbind	= meson_drv_unbind,
-+};
-+
-+static int compare_of(struct device *dev, void *data)
-+{
-+	DRM_DEBUG_DRIVER("Comparing of node %s with %s\n",
-+			 of_node_full_name(dev->of_node),
-+			 of_node_full_name(data));
-+
-+	return dev->of_node == data;
-+}
-+
-+/* Possible connectors nodes to ignore */
-+static const struct of_device_id connectors_match[] = {
-+	{ .compatible = "composite-video-connector" },
-+	{ .compatible = "svideo-connector" },
-+	{ .compatible = "hdmi-connector" },
-+	{ .compatible = "dvi-connector" },
-+	{}
-+};
-+
-+static int meson_probe_remote(struct platform_device *pdev,
-+			      struct component_match **match,
-+			      struct device_node *parent,
-+			      struct device_node *remote)
-+{
-+	struct device_node *ep, *remote_node;
-+	int count = 1;
-+
-+	/* If node is a connector, return and do not add to match table */
-+	if (of_match_node(connectors_match, remote))
-+		return 1;
-+
-+	component_match_add(&pdev->dev, match, compare_of, remote);
-+
-+	for_each_endpoint_of_node(remote, ep) {
-+		remote_node = of_graph_get_remote_port_parent(ep);
-+		if (!remote_node ||
-+		    remote_node == parent || /* Ignore parent endpoint */
-+		    !of_device_is_available(remote_node))
-+			continue;
-+
-+		count += meson_probe_remote(pdev, match, remote, remote_node);
-+
-+		of_node_put(remote_node);
-+	}
-+
-+	return count;
-+}
-+
-+static int meson_drv_probe(struct platform_device *pdev)
-+{
-+	struct component_match *match = NULL;
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device_node *ep, *remote;
-+	int count = 0;
-+
-+	for_each_endpoint_of_node(np, ep) {
-+		remote = of_graph_get_remote_port_parent(ep);
-+		if (!remote || !of_device_is_available(remote))
-+			continue;
-+
-+		count += meson_probe_remote(pdev, &match, np, remote);
-+	}
-+
-+	/* If some endpoints were found, initialize the nodes */
-+	if (count) {
-+		dev_info(&pdev->dev, "Queued %d outputs on vpu\n", count);
-+
-+		return component_master_add_with_match(&pdev->dev,
-+						       &meson_drv_master_ops,
-+						       match);
-+	}
-+
-+	/* If no output endpoints were available, simply bail out */
-+	return 0;
-+};
-+
- static const struct of_device_id dt_match[] = {
- 	{ .compatible = "amlogic,meson-gxbb-vpu" },
- 	{ .compatible = "amlogic,meson-gxl-vpu" },
-@@ -293,7 +379,6 @@ static int meson_drv_remove(struct platform_device *pdev)
- 
- static struct platform_driver meson_drm_platform_driver = {
- 	.probe      = meson_drv_probe,
--	.remove     = meson_drv_remove,
- 	.driver     = {
- 		.name	= "meson-drm",
- 		.of_match_table = dt_match,
+ 	cpus {
 -- 
 1.9.1
