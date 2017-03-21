@@ -1,34 +1,75 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 21 Mar 2017 19:33:30 +0100
-Subject: [RFC 7/7] clk: fix incorrect usage of ENOSYS
-In-Reply-To: <20170321183330.26722-1-jbrunet@baylibre.com>
-References: <20170321183330.26722-1-jbrunet@baylibre.com>
-Message-ID: <20170321183330.26722-8-jbrunet@baylibre.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Tue, 21 Mar 2017 16:10:11 -0700
+Subject: [PATCH v2 3/9] clk: meson8b: put dividers and muxes in tables
+In-Reply-To: <20170309104154.28295-4-jbrunet@baylibre.com>
+References: <20170309104154.28295-1-jbrunet@baylibre.com>
+ <20170309104154.28295-4-jbrunet@baylibre.com>
+Message-ID: <149013781178.54062.3390528282967464997@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-ENOSYS is special and should only be used for incorrect syscall number.
-It does not seem to be the case here.
+Quoting Jerome Brunet (2017-03-09 02:41:48)
+> Until now, there was only 1 divider and 1 mux declared for the meson8b
+> platform. With the ongoing work on various system, including audio, this
+> is about to change. Use the same approach as gates for dividers and muxes,
+> putting them in tables to fix the register address at runtime.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Reported by checkpatch.pl while working on clock protection.
+Looks good to me.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/clk.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Regards,
+Mike
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index ec6d57e97bac..377d5301348b 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -1926,7 +1926,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
- 
- 	/* verify ops for for multi-parent clks */
- 	if ((core->num_parents > 1) && (!core->ops->set_parent))
--		return -ENOSYS;
-+		return -EPERM;
- 
- 	/* check that we are allowed to re-parent if the clock is in use */
- 	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
--- 
-2.9.3
+> ---
+>  drivers/clk/meson/meson8b.c | 22 ++++++++++++++++++----
+>  1 file changed, 18 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index d1cc4d7cc8ff..2937443d4505 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -582,6 +582,14 @@ static struct clk_gate *const meson8b_clk_gates[] = {
+>         &meson8b_ao_iface,
+>  };
+>  
+> +static struct clk_mux *const meson8b_clk_muxes[] = {
+> +       &meson8b_mpeg_clk_sel,
+> +};
+> +
+> +static struct clk_divider *const meson8b_clk_dividers[] = {
+> +       &meson8b_mpeg_clk_div,
+> +};
+> +
+>  static int meson8b_clkc_probe(struct platform_device *pdev)
+>  {
+>         void __iomem *clk_base;
+> @@ -604,15 +612,21 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
+>         /* Populate the base address for CPU clk */
+>         meson8b_cpu_clk.base = clk_base;
+>  
+> -       /* Populate the base address for the MPEG clks */
+> -       meson8b_mpeg_clk_sel.reg = clk_base + (u32)meson8b_mpeg_clk_sel.reg;
+> -       meson8b_mpeg_clk_div.reg = clk_base + (u32)meson8b_mpeg_clk_div.reg;
+> -
+>         /* Populate base address for gates */
+>         for (i = 0; i < ARRAY_SIZE(meson8b_clk_gates); i++)
+>                 meson8b_clk_gates[i]->reg = clk_base +
+>                         (u32)meson8b_clk_gates[i]->reg;
+>  
+> +       /* Populate base address for muxes */
+> +       for (i = 0; i < ARRAY_SIZE(meson8b_clk_muxes); i++)
+> +               meson8b_clk_muxes[i]->reg = clk_base +
+> +                       (u32)meson8b_clk_muxes[i]->reg;
+> +
+> +       /* Populate base address for dividers */
+> +       for (i = 0; i < ARRAY_SIZE(meson8b_clk_dividers); i++)
+> +               meson8b_clk_dividers[i]->reg = clk_base +
+> +                       (u32)meson8b_clk_dividers[i]->reg;
+> +
+>         /*
+>          * register all clks
+>          * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
+> -- 
+> 2.9.3
+> 
