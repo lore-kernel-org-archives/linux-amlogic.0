@@ -1,81 +1,305 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Tue, 21 Mar 2017 16:10:31 -0700
-Subject: [PATCH v2 4/9] clk: gxbb: put dividers and muxes in tables
-In-Reply-To: <20170309104154.28295-5-jbrunet@baylibre.com>
+Date: Tue, 21 Mar 2017 16:19:40 -0700
+Subject: [PATCH v2 5/9] clk: meson: mpll: add rw operation
+In-Reply-To: <20170309104154.28295-6-jbrunet@baylibre.com>
 References: <20170309104154.28295-1-jbrunet@baylibre.com>
- <20170309104154.28295-5-jbrunet@baylibre.com>
-Message-ID: <149013783116.54062.8867118335254325862@resonance>
+ <20170309104154.28295-6-jbrunet@baylibre.com>
+Message-ID: <149013838063.54062.4258647016605052547@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2017-03-09 02:41:49)
-> Until now, there was only 2 dividers and 2 muxes declared for the gxbb
-> platform. With the ongoing work on various subsystem, including audio,
-> this is about to change. Use the same approach as gates for dividers and
-> muxes, putting them in tables to fix the register address at runtime.
+Quoting Jerome Brunet (2017-03-09 02:41:50)
+> This patch adds new callbacks to the meson-mpll driver to control
+> and set the pll rate. For this, we also need to add the enable bit and
+> sdm enable bit. The corresponding parameters are added to mpll data
+> structure.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Looks good to me.
+Patch looks good to me. I'm really happy to see the mpll's get sorted
+out finally!
 
 Regards,
 Mike
 
 > ---
->  drivers/clk/meson/gxbb.c | 28 ++++++++++++++++++++--------
->  1 file changed, 20 insertions(+), 8 deletions(-)
+>  drivers/clk/meson/clk-mpll.c | 152 +++++++++++++++++++++++++++++++++++++++++--
+>  drivers/clk/meson/clkc.h     |   4 +-
+>  drivers/clk/meson/gxbb.c     |  30 +++++++++
+>  3 files changed, 180 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index c063287bb0ed..79e9313e6703 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -902,6 +902,16 @@ static struct clk_gate *const gxbb_clk_gates[] = {
->         &gxbb_sar_adc_clk,
+> diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
+> index 03af79005ddb..342b85d4e22a 100644
+> --- a/drivers/clk/meson/clk-mpll.c
+> +++ b/drivers/clk/meson/clk-mpll.c
+> @@ -64,16 +64,50 @@
+>  #include <linux/clk-provider.h>
+>  #include "clkc.h"
+>  
+> -#define SDM_MAX 16384
+> +#define SDM_DEN 16384
+> +#define SDM_MIN 1
+> +#define SDM_MAX 16383
+> +#define N2_MIN 4
+> +#define N2_MAX 127
+>  
+>  #define to_meson_clk_mpll(_hw) container_of(_hw, struct meson_clk_mpll, hw)
+>  
+> +static unsigned long rate_from_params(unsigned long parent_rate,
+> +                                     unsigned long sdm,
+> +                                     unsigned long n2)
+> +{
+> +       return (parent_rate * SDM_DEN) / ((SDM_DEN * n2) + sdm);
+> +}
+> +
+> +static void params_from_rate(unsigned long requested_rate,
+> +                            unsigned long parent_rate,
+> +                            unsigned long *sdm,
+> +                            unsigned long *n2)
+> +{
+> +       uint64_t div = parent_rate;
+> +       unsigned long rem = do_div(div, requested_rate);
+> +
+> +       if (div < N2_MIN) {
+> +               *n2 = N2_MIN;
+> +               *sdm = SDM_MIN;
+> +       } else if (div > N2_MAX) {
+> +               *n2 = N2_MAX;
+> +               *sdm = SDM_MAX;
+> +       } else {
+> +               *n2 = div;
+> +               *sdm = DIV_ROUND_UP(rem * SDM_DEN, requested_rate);
+> +               if (*sdm < SDM_MIN)
+> +                       *sdm = SDM_MIN;
+> +               else if (*sdm > SDM_MAX)
+> +                       *sdm = SDM_MAX;
+> +       }
+> +}
+> +
+>  static unsigned long mpll_recalc_rate(struct clk_hw *hw,
+>                 unsigned long parent_rate)
+>  {
+>         struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
+>         struct parm *p;
+> -       unsigned long rate = 0;
+>         unsigned long reg, sdm, n2;
+>  
+>         p = &mpll->sdm;
+> @@ -84,11 +118,119 @@ static unsigned long mpll_recalc_rate(struct clk_hw *hw,
+>         reg = readl(mpll->base + p->reg_off);
+>         n2 = PARM_GET(p->width, p->shift, reg);
+>  
+> -       rate = (parent_rate * SDM_MAX) / ((SDM_MAX * n2) + sdm);
+> +       return rate_from_params(parent_rate, sdm, n2);
+> +}
+> +
+> +static long mpll_round_rate(struct clk_hw *hw,
+> +                           unsigned long rate,
+> +                           unsigned long *parent_rate)
+> +{
+> +       unsigned long sdm, n2;
+> +
+> +       params_from_rate(rate, *parent_rate, &sdm, &n2);
+> +       return rate_from_params(*parent_rate, sdm, n2);
+> +}
+> +
+> +static int mpll_set_rate(struct clk_hw *hw,
+> +                        unsigned long rate,
+> +                        unsigned long parent_rate)
+> +{
+> +       struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
+> +       struct parm *p;
+> +       unsigned long reg, sdm, n2;
+> +       unsigned long flags = 0;
+> +
+> +       params_from_rate(rate, parent_rate, &sdm, &n2);
+> +
+> +       if (mpll->lock)
+> +               spin_lock_irqsave(mpll->lock, flags);
+> +       else
+> +               __acquire(mpll->lock);
+> +
+> +       p = &mpll->sdm;
+> +       reg = readl(mpll->base + p->reg_off);
+> +       reg = PARM_SET(p->width, p->shift, reg, sdm);
+> +       writel(reg, mpll->base + p->reg_off);
+> +
+> +       p = &mpll->sdm_en;
+> +       reg = readl(mpll->base + p->reg_off);
+> +       reg = PARM_SET(p->width, p->shift, reg, 1);
+> +       writel(reg, mpll->base + p->reg_off);
+> +
+> +       p = &mpll->n2;
+> +       reg = readl(mpll->base + p->reg_off);
+> +       reg = PARM_SET(p->width, p->shift, reg, n2);
+> +       writel(reg, mpll->base + p->reg_off);
+> +
+> +       if (mpll->lock)
+> +               spin_unlock_irqrestore(mpll->lock, flags);
+> +       else
+> +               __release(mpll->lock);
+>  
+> -       return rate;
+> +       return 0;
+> +}
+> +
+> +static void mpll_enable_core(struct clk_hw *hw, int enable)
+> +{
+> +       struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
+> +       struct parm *p;
+> +       unsigned long reg;
+> +       unsigned long flags = 0;
+> +
+> +       if (mpll->lock)
+> +               spin_lock_irqsave(mpll->lock, flags);
+> +       else
+> +               __acquire(mpll->lock);
+> +
+> +       p = &mpll->en;
+> +       reg = readl(mpll->base + p->reg_off);
+> +       reg = PARM_SET(p->width, p->shift, reg, enable ? 1 : 0);
+> +       writel(reg, mpll->base + p->reg_off);
+> +
+> +       if (mpll->lock)
+> +               spin_unlock_irqrestore(mpll->lock, flags);
+> +       else
+> +               __release(mpll->lock);
+> +}
+> +
+> +
+> +static int mpll_enable(struct clk_hw *hw)
+> +{
+> +       mpll_enable_core(hw, 1);
+> +
+> +       return 0;
+> +}
+> +
+> +static void mpll_disable(struct clk_hw *hw)
+> +{
+> +       mpll_enable_core(hw, 0);
+> +}
+> +
+> +static int mpll_is_enabled(struct clk_hw *hw)
+> +{
+> +       struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
+> +       struct parm *p;
+> +       unsigned long reg;
+> +       int en;
+> +
+> +       p = &mpll->en;
+> +       reg = readl(mpll->base + p->reg_off);
+> +       en = PARM_GET(p->width, p->shift, reg);
+> +
+> +       return en;
+>  }
+>  
+>  const struct clk_ops meson_clk_mpll_ro_ops = {
+> -       .recalc_rate = mpll_recalc_rate,
+> +       .recalc_rate    = mpll_recalc_rate,
+> +       .round_rate     = mpll_round_rate,
+> +       .is_enabled     = mpll_is_enabled,
+> +};
+> +
+> +const struct clk_ops meson_clk_mpll_ops = {
+> +       .recalc_rate    = mpll_recalc_rate,
+> +       .round_rate     = mpll_round_rate,
+> +       .set_rate       = mpll_set_rate,
+> +       .enable         = mpll_enable,
+> +       .disable        = mpll_disable,
+> +       .is_enabled     = mpll_is_enabled,
+>  };
+> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+> index c6be77dd8694..ad254675edd8 100644
+> --- a/drivers/clk/meson/clkc.h
+> +++ b/drivers/clk/meson/clkc.h
+> @@ -92,8 +92,9 @@ struct meson_clk_mpll {
+>         struct clk_hw hw;
+>         void __iomem *base;
+>         struct parm sdm;
+> +       struct parm sdm_en;
+>         struct parm n2;
+> -       /* FIXME ssen gate control? */
+> +       struct parm en;
+>         spinlock_t *lock;
 >  };
 >  
-> +static struct clk_mux *const gxbb_clk_muxes[] = {
-> +       &gxbb_mpeg_clk_sel,
-> +       &gxbb_sar_adc_clk_sel,
-> +};
-> +
-> +static struct clk_divider *const gxbb_clk_dividers[] = {
-> +       &gxbb_mpeg_clk_div,
-> +       &gxbb_sar_adc_clk_div,
-> +};
-> +
->  static int gxbb_clkc_probe(struct platform_device *pdev)
->  {
->         void __iomem *clk_base;
-> @@ -928,19 +938,21 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
->         /* Populate the base address for CPU clk */
->         gxbb_cpu_clk.base = clk_base;
+> @@ -116,5 +117,6 @@ extern const struct clk_ops meson_clk_pll_ro_ops;
+>  extern const struct clk_ops meson_clk_pll_ops;
+>  extern const struct clk_ops meson_clk_cpu_ops;
+>  extern const struct clk_ops meson_clk_mpll_ro_ops;
+> +extern const struct clk_ops meson_clk_mpll_ops;
 >  
-> -       /* Populate the base address for the MPEG clks */
-> -       gxbb_mpeg_clk_sel.reg = clk_base + (u64)gxbb_mpeg_clk_sel.reg;
-> -       gxbb_mpeg_clk_div.reg = clk_base + (u64)gxbb_mpeg_clk_div.reg;
-> -
-> -       /* Populate the base address for the SAR ADC clks */
-> -       gxbb_sar_adc_clk_sel.reg = clk_base + (u64)gxbb_sar_adc_clk_sel.reg;
-> -       gxbb_sar_adc_clk_div.reg = clk_base + (u64)gxbb_sar_adc_clk_div.reg;
-> -
->         /* Populate base address for gates */
->         for (i = 0; i < ARRAY_SIZE(gxbb_clk_gates); i++)
->                 gxbb_clk_gates[i]->reg = clk_base +
->                         (u64)gxbb_clk_gates[i]->reg;
->  
-> +       /* Populate base address for muxes */
-> +       for (i = 0; i < ARRAY_SIZE(gxbb_clk_muxes); i++)
-> +               gxbb_clk_muxes[i]->reg = clk_base +
-> +                       (u64)gxbb_clk_muxes[i]->reg;
-> +
-> +       /* Populate base address for dividers */
-> +       for (i = 0; i < ARRAY_SIZE(gxbb_clk_dividers); i++)
-> +               gxbb_clk_dividers[i]->reg = clk_base +
-> +                       (u64)gxbb_clk_dividers[i]->reg;
-> +
->         /*
->          * register all clks
->          */
+>  #endif /* __CLKC_H */
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index 79e9313e6703..79fb8989f8dd 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -441,11 +441,21 @@ static struct meson_clk_mpll gxbb_mpll0 = {
+>                 .shift   = 0,
+>                 .width   = 14,
+>         },
+> +       .sdm_en = {
+> +               .reg_off = HHI_MPLL_CNTL7,
+> +               .shift   = 15,
+> +               .width   = 1,
+> +       },
+>         .n2 = {
+>                 .reg_off = HHI_MPLL_CNTL7,
+>                 .shift   = 16,
+>                 .width   = 9,
+>         },
+> +       .en = {
+> +               .reg_off = HHI_MPLL_CNTL7,
+> +               .shift   = 14,
+> +               .width   = 1,
+> +       },
+>         .lock = &clk_lock,
+>         .hw.init = &(struct clk_init_data){
+>                 .name = "mpll0",
+> @@ -461,11 +471,21 @@ static struct meson_clk_mpll gxbb_mpll1 = {
+>                 .shift   = 0,
+>                 .width   = 14,
+>         },
+> +       .sdm_en = {
+> +               .reg_off = HHI_MPLL_CNTL8,
+> +               .shift   = 15,
+> +               .width   = 1,
+> +       },
+>         .n2 = {
+>                 .reg_off = HHI_MPLL_CNTL8,
+>                 .shift   = 16,
+>                 .width   = 9,
+>         },
+> +       .en = {
+> +               .reg_off = HHI_MPLL_CNTL8,
+> +               .shift   = 14,
+> +               .width   = 1,
+> +       },
+>         .lock = &clk_lock,
+>         .hw.init = &(struct clk_init_data){
+>                 .name = "mpll1",
+> @@ -481,11 +501,21 @@ static struct meson_clk_mpll gxbb_mpll2 = {
+>                 .shift   = 0,
+>                 .width   = 14,
+>         },
+> +       .sdm_en = {
+> +               .reg_off = HHI_MPLL_CNTL9,
+> +               .shift   = 15,
+> +               .width   = 1,
+> +       },
+>         .n2 = {
+>                 .reg_off = HHI_MPLL_CNTL9,
+>                 .shift   = 16,
+>                 .width   = 9,
+>         },
+> +       .en = {
+> +               .reg_off = HHI_MPLL_CNTL9,
+> +               .shift   = 14,
+> +               .width   = 1,
+> +       },
+>         .lock = &clk_lock,
+>         .hw.init = &(struct clk_init_data){
+>                 .name = "mpll2",
 > -- 
 > 2.9.3
 > 
