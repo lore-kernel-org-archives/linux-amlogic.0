@@ -1,78 +1,43 @@
-From: Jose.Abreu@synopsys.com (Jose Abreu)
-Date: Wed, 22 Mar 2017 13:54:33 +0000
-Subject: [PATCH v4 2/6] media: uapi: Add RGB and YUV bus formats for
- Synopsys HDMI TX Controller
-In-Reply-To: <1490109161-20529-3-git-send-email-narmstrong@baylibre.com>
-References: <1490109161-20529-1-git-send-email-narmstrong@baylibre.com>
- <1490109161-20529-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <d4928e0c-ee95-53d0-788f-22b948db19fa@synopsys.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 22 Mar 2017 08:24:08 -0700
+Subject: [PATCH v3 1/3] clk: meson-gxbb: expose clock CLKID_RNG0
+In-Reply-To: <20170317083032.GA18512@gondor.apana.org.au> (Herbert Xu's
+ message of "Fri, 17 Mar 2017 16:30:32 +0800")
+References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
+ <20170316100743.GA12137@gondor.apana.org.au>
+ <m2mvcl6pwg.fsf@baylibre.com>
+ <20170317083032.GA18512@gondor.apana.org.au>
+Message-ID: <m2lgrxnxlz.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Herbert Xu <herbert@gondor.apana.org.au> writes:
 
-
-On 21-03-2017 15:12, Neil Armstrong wrote:
-> In order to describe the RGB and YUV bus formats used to feed the
-> Synopsys DesignWare HDMI TX Controller, add missing formats to the
-> list of Bus Formats.
+> On Thu, Mar 16, 2017 at 11:24:31AM -0700, Kevin Hilman wrote:
+>> Hi Herbert,
+>> 
+>> Herbert Xu <herbert@gondor.apana.org.au> writes:
+>> 
+>> > On Wed, Feb 22, 2017 at 07:55:24AM +0100, Heiner Kallweit wrote:
+>> >> Expose clock CLKID_RNG0 which is needed for the HW random number generator.
+>> >> 
+>> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> >
+>> > All patches applied.  Thanks.
+>> 
+>> Actually, can you just apply [PATCH 4/4] to your tree?
+>> 
+>> The clock and DT patches need to go through their respective trees or
+>> will otherwise have conflicts with other things going in via those
+>> trees.
 >
-> Documentation for these formats is added in a separate patch.
->
-> Reviewed-by: Archit Taneja <architt@codeaurora.org>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> It's too late now.  Please speak up sooner next time.  These
+> patches were posted a month ago.
 
-Reviewed-by: Jose Abreu <joabreu@synopsys.com>
+Because this will be causing conflicts with both the platform (amlogic)
+tree and the clk tree, could provide an immutable branch where these are
+applied to help us handle these conflicts?
 
-Best regards,
-Jose Miguel Abreu
+Thanks,
 
-> ---
->  include/uapi/linux/media-bus-format.h | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
->
-> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
-> index 2168759..6c8f31c 100644
-> --- a/include/uapi/linux/media-bus-format.h
-> +++ b/include/uapi/linux/media-bus-format.h
-> @@ -33,7 +33,7 @@
->  
->  #define MEDIA_BUS_FMT_FIXED			0x0001
->  
-> -/* RGB - next is	0x1018 */
-> +/* RGB - next is	0x101b */
->  #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
-> @@ -57,8 +57,11 @@
->  #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
->  #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
->  #define MEDIA_BUS_FMT_RGB888_1X32_PADHI		0x100f
-> +#define MEDIA_BUS_FMT_RGB101010_1X30		0x1018
-> +#define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
-> +#define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
->  
-> -/* YUV (including grey) - next is	0x2026 */
-> +/* YUV (including grey) - next is	0x202c */
->  #define MEDIA_BUS_FMT_Y8_1X8			0x2001
->  #define MEDIA_BUS_FMT_UV8_1X8			0x2015
->  #define MEDIA_BUS_FMT_UYVY8_1_5X8		0x2002
-> @@ -90,12 +93,18 @@
->  #define MEDIA_BUS_FMT_YVYU10_1X20		0x200e
->  #define MEDIA_BUS_FMT_VUY8_1X24			0x2024
->  #define MEDIA_BUS_FMT_YUV8_1X24			0x2025
-> +#define MEDIA_BUS_FMT_UYYVYY8_1X24		0x2026
->  #define MEDIA_BUS_FMT_UYVY12_1X24		0x2020
->  #define MEDIA_BUS_FMT_VYUY12_1X24		0x2021
->  #define MEDIA_BUS_FMT_YUYV12_1X24		0x2022
->  #define MEDIA_BUS_FMT_YVYU12_1X24		0x2023
->  #define MEDIA_BUS_FMT_YUV10_1X30		0x2016
-> +#define MEDIA_BUS_FMT_UYYVYY10_1X30		0x2027
->  #define MEDIA_BUS_FMT_AYUV8_1X32		0x2017
-> +#define MEDIA_BUS_FMT_UYYVYY12_1X36		0x2028
-> +#define MEDIA_BUS_FMT_YUV12_1X36		0x2029
-> +#define MEDIA_BUS_FMT_YUV16_1X48		0x202a
-> +#define MEDIA_BUS_FMT_UYYVYY16_1X48		0x202b
->  
->  /* Bayer - next is	0x3021 */
->  #define MEDIA_BUS_FMT_SBGGR8_1X8		0x3001
+Kevin
