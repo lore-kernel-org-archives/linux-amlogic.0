@@ -1,43 +1,25 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 22 Mar 2017 08:24:08 -0700
-Subject: [PATCH v3 1/3] clk: meson-gxbb: expose clock CLKID_RNG0
-In-Reply-To: <20170317083032.GA18512@gondor.apana.org.au> (Herbert Xu's
- message of "Fri, 17 Mar 2017 16:30:32 +0800")
-References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
- <20170316100743.GA12137@gondor.apana.org.au>
- <m2mvcl6pwg.fsf@baylibre.com>
- <20170317083032.GA18512@gondor.apana.org.au>
-Message-ID: <m2lgrxnxlz.fsf@baylibre.com>
+Date: Wed, 22 Mar 2017 08:55:29 -0700
+Subject: [PATCH 0/2] meson-sm: Fix issues when reading data from sm
+In-Reply-To: <20170303151759.8330-1-carlo@caione.org> (Carlo Caione's message
+ of "Fri, 3 Mar 2017 16:17:57 +0100")
+References: <20170303151759.8330-1-carlo@caione.org>
+Message-ID: <m24lylnw5q.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Herbert Xu <herbert@gondor.apana.org.au> writes:
+Carlo Caione <carlo@caione.org> writes:
 
-> On Thu, Mar 16, 2017 at 11:24:31AM -0700, Kevin Hilman wrote:
->> Hi Herbert,
->> 
->> Herbert Xu <herbert@gondor.apana.org.au> writes:
->> 
->> > On Wed, Feb 22, 2017 at 07:55:24AM +0100, Heiner Kallweit wrote:
->> >> Expose clock CLKID_RNG0 which is needed for the HW random number generator.
->> >> 
->> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> >
->> > All patches applied.  Thanks.
->> 
->> Actually, can you just apply [PATCH 4/4] to your tree?
->> 
->> The clock and DT patches need to go through their respective trees or
->> will otherwise have conflicts with other things going in via those
->> trees.
+> From: Carlo Caione <carlo@endlessm.com>
 >
-> It's too late now.  Please speak up sooner next time.  These
-> patches were posted a month ago.
+> While working on a related driver I noticed a couple of problems in the
+> meson-sm driver. The problems are unrelated but since the fixes touch the same
+> codebase I decided to submit these in the same patchset.
 
-Because this will be causing conflicts with both the platform (amlogic)
-tree and the clk tree, could provide an immutable branch where these are
-applied to help us handle these conflicts?
+Applied to amlogic tree, branch: v4.12/drivers
 
-Thanks,
+I'd prefer to have acks from Mark and Srini, but since this has been on
+the list for awhile, I'm guessing that isn't going to happen, so
+consider this a request.
 
 Kevin
