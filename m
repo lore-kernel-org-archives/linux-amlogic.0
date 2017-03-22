@@ -1,41 +1,29 @@
 From: hgkr.klein@gmail.com (Helmut Klein)
-Date: Wed, 22 Mar 2017 21:46:00 +0100
-Subject: [PATCH 3/3] meson_uart: adds the core clock handling to the driver
-Message-ID: <321e8a6f-0ec1-af24-8e9d-23000bf67806@gmail.com>
+Date: Wed, 22 Mar 2017 21:54:22 +0100
+Subject: [PATCH 0/4] meson_uart: add support for core clock handling
+In-Reply-To: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
+References: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
+Message-ID: <d6a0a218-d077-6a97-3587-fa689d54d5aa@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-the added lines are 1:1 ripped off amlogic's driver. They do what i want 
-them to do.
+Wrong numbering: the patch set consist of 3 patches only. so the 
+numbering of the first to mails is wrong
+should be 0/3 & 1/3 instead of 0/4 & 1/4
 
-I've hot no idea, if they are acceptable in that form.
 
-
-diff -Napur a/drivers/tty/serial/meson_uart.c 
-b/drivers/tty/serial/meson_uart.c
---- a/drivers/tty/serial/meson_uart.c	2017-03-09 21:09:47.000000000 +0100
-+++ b/drivers/tty/serial/meson_uart.c	2017-03-22 19:01:38.581613578 +0100
-@@ -600,6 +600,7 @@ static int meson_uart_probe(struct platf
-  	struct resource *res_mem, *res_irq;
-  	struct uart_port *port;
-  	struct clk *clk;
-+	struct clk *core_clk;
-  	int ret = 0;
-
-  	if (pdev->dev.of_node)
-@@ -625,6 +626,15 @@ static int meson_uart_probe(struct platf
-  	if (!port)
-  		return -ENOMEM;
-
-+	core_clk = devm_clk_get(&pdev->dev, "core");
-+	if (!IS_ERR(core_clk)) {
-+		ret = clk_prepare_enable(core_clk);
-+		if(ret) {
-+			dev_err(&pdev->dev, "couldn't enable clkc\n");
-+			return ret;
-+		}
-+	}
-+
-  	clk = clk_get(&pdev->dev, NULL);
-  	if (IS_ERR(clk))
-  		return PTR_ERR(clk);
+On 22.03.2017 21:45, Helmut Klein wrote:
+> to be able to use the none AO uarts of the s905 SoCs, the core clock has
+> to be enabled.
+> (see chapter 22.3 of the public s905 data sheet)
+> at least the u-boot of my s905 based media player (netxeon minimx)
+> doesn't do this.
+> so the driver has to do this.
+>
+> this patch set does:
+> - exposes the CLKID_UART0 to the dtb
+> - adds documentation for the dt-bindings of meson_uart
+> - adds the core clock handling to the driver
+>
+> none of the available s905 dts use uart_A actively. so there is no patch
+> for any of the existing dts files.
