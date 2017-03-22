@@ -1,20 +1,23 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 22 Mar 2017 10:53:10 -0700
-Subject: [PATCH] ARM64: dts: meson-gx: Add Buttons to Q200 and P230 boards
-In-Reply-To: <1488883222-23320-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Tue, 7 Mar 2017 11:40:22 +0100")
-References: <1488883222-23320-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2r31pmc55.fsf@baylibre.com>
+Date: Wed, 22 Mar 2017 10:50:02 -0700
+Subject: [PATCH v2 0/3] Khadas VIM support (Amlogic Meson GXL S905X)
+In-Reply-To: <20170318123657.13798-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sat, 18 Mar 2017 13:36:54 +0100")
+References: <20170304215126.7020-1-martin.blumenstingl@googlemail.com>
+ <20170318123657.13798-1-martin.blumenstingl@googlemail.com>
+Message-ID: <m2var1mcad.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> This patch adds support for the P230 and Q200 ADC laddered button and
-> GPIO button.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> This series adds support for the Khadas VIM and Khadas VIM Pro boards
+> (both are provided through a single .dts as the only two differences are
+> the eMMC size and different SDIO WIFI chips - both are Broadcom brcmfmac
+> based though).
+> More details can be found on the official website: [0]
 
-Applied to v4.12/dt64
+Oops, I replied to the wrong version.  This version (v2) is the one
+applied to v4.12/dt64 branch.
 
 Kevin
