@@ -1,29 +1,23 @@
-From: hgkr.klein@gmail.com (Helmut Klein)
-Date: Wed, 22 Mar 2017 21:54:22 +0100
-Subject: [PATCH 0/4] meson_uart: add support for core clock handling
-In-Reply-To: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
-References: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
-Message-ID: <d6a0a218-d077-6a97-3587-fa689d54d5aa@gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Wed, 22 Mar 2017 22:16:40 +0100
+Subject: [PATCH 0/6] mmc: meson-gx: further smaller refactorings
+Message-ID: <8bf58a83-d8d7-615c-c89b-87a62a3c9c40@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Wrong numbering: the patch set consist of 3 patches only. so the 
-numbering of the first to mails is wrong
-should be 0/3 & 1/3 instead of 0/4 & 1/4
+Before we come to the functional changes here one more series with
+smaller refactorings.
 
+Heiner Kallweit (6):
+  mmc: meson-gx: remove unneeded configuration bit resets
+  mmc: meson-gx: replace cmd->data in meson_mmc_start_cmd
+  mmc: meson-gx: improve variable usage in meson_mmc_start_cmd
+  mmc: meson-gx: improve response reading
+  mmc: meson-gx: improve setting data->bytes_xfered
+  mmc: meson-gx: simplify setting timeout configuration parameters
 
-On 22.03.2017 21:45, Helmut Klein wrote:
-> to be able to use the none AO uarts of the s905 SoCs, the core clock has
-> to be enabled.
-> (see chapter 22.3 of the public s905 data sheet)
-> at least the u-boot of my s905 based media player (netxeon minimx)
-> doesn't do this.
-> so the driver has to do this.
->
-> this patch set does:
-> - exposes the CLKID_UART0 to the dtb
-> - adds documentation for the dt-bindings of meson_uart
-> - adds the core clock handling to the driver
->
-> none of the available s905 dts use uart_A actively. so there is no patch
-> for any of the existing dts files.
+ drivers/mmc/host/meson-gx-mmc.c | 104 ++++++++++++++++++----------------------
+ 1 file changed, 47 insertions(+), 57 deletions(-)
+
+-- 
+2.12.0
