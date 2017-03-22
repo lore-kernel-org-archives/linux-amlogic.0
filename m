@@ -1,23 +1,26 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 22 Mar 2017 10:50:02 -0700
-Subject: [PATCH v2 0/3] Khadas VIM support (Amlogic Meson GXL S905X)
-In-Reply-To: <20170318123657.13798-1-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Sat, 18 Mar 2017 13:36:54 +0100")
-References: <20170304215126.7020-1-martin.blumenstingl@googlemail.com>
- <20170318123657.13798-1-martin.blumenstingl@googlemail.com>
-Message-ID: <m2var1mcad.fsf@baylibre.com>
+Date: Wed, 22 Mar 2017 11:02:49 -0700
+Subject: [PATCH 3/3] ARM64: dts: meson-gxl: Add missing pinctrl pins groups
+In-Reply-To: <1488893462-7016-4-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Tue, 7 Mar 2017 14:31:02 +0100")
+References: <1488893462-7016-1-git-send-email-narmstrong@baylibre.com>
+ <1488893462-7016-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2inn1mbp2.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Hi Neil
 
-> This series adds support for the Khadas VIM and Khadas VIM Pro boards
-> (both are provided through a single .dts as the only two differences are
-> the eMMC size and different SDIO WIFI chips - both are Broadcom brcmfmac
-> based though).
-> More details can be found on the official website: [0]
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Oops, I replied to the wrong version.  This version (v2) is the one
-applied to v4.12/dt64 branch.
+> Add pinctrl pins nodes following the additions of missing pins in the pinctrl
+> driver.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+
+I'll assume you will re-spin patches 2-3 of this series on Martin's
+updated PWM series.
+
+Thanks,
 
 Kevin
