@@ -1,156 +1,44 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 22 Mar 2017 11:32:23 +0100
-Subject: [PATCH v2 1/5] clk: meson: Add support for parameters for specific
- PLLs
+Date: Wed, 22 Mar 2017 11:32:26 +0100
+Subject: [PATCH v2 4/5] clk: meson-gxbb: Expose GP0 dt-bindings clock id
 In-Reply-To: <1490178747-14837-1-git-send-email-narmstrong@baylibre.com>
 References: <1490178747-14837-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490178747-14837-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1490178747-14837-5-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In recent Amlogic GXBB, GXL and GXM SoCs, the GP0 PLL needs some specific
-parameters in order to initialize and lock correctly.
-
-This patch adds an optional PARAM table used to initialize the PLL to a
-default value with it's parameters in order to achieve to desired frequency.
-
-The GP0 PLL in GXBB, GXL/GXM also needs some tweaks in the initialization
-steps, and these are exposed along the PARAM table.
+This patch exposes the GP0 PLL clock id in the dt bindings.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/meson/clk-pll.c | 53 +++++++++++++++++++++++++++++++++++++++++++--
- drivers/clk/meson/clkc.h    | 23 ++++++++++++++++++++
- 2 files changed, 74 insertions(+), 2 deletions(-)
+ drivers/clk/meson/gxbb.h              | 2 +-
+ include/dt-bindings/clock/gxbb-clkc.h | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index 4adc1e8..0134155 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -116,6 +116,30 @@ static const struct pll_rate_table *meson_clk_get_pll_settings(struct meson_clk_
- 	return NULL;
- }
- 
-+/* Specific wait loop for GXL/GXM GP0 PLL */
-+static int meson_clk_pll_wait_lock_reset(struct meson_clk_pll *pll,
-+					 struct parm *p_n)
-+{
-+	int delay = 100;
-+	u32 reg;
-+
-+	while (delay > 0) {
-+		reg = readl(pll->base + p_n->reg_off);
-+		writel(reg | MESON_PLL_RESET, pll->base + p_n->reg_off);
-+		udelay(10);
-+		writel(reg & ~MESON_PLL_RESET, pll->base + p_n->reg_off);
-+
-+		/* This delay comes from AMLogic tree clk-gp0-gxl driver */
-+		mdelay(1);
-+
-+		reg = readl(pll->base + p_n->reg_off);
-+		if (reg & MESON_PLL_LOCK)
-+			return 0;
-+		delay--;
-+	}
-+	return -ETIMEDOUT;
-+}
-+
- static int meson_clk_pll_wait_lock(struct meson_clk_pll *pll,
- 				   struct parm *p_n)
- {
-@@ -132,6 +156,15 @@ static int meson_clk_pll_wait_lock(struct meson_clk_pll *pll,
- 	return -ETIMEDOUT;
- }
- 
-+static void meson_clk_pll_init_params(struct meson_clk_pll *pll)
-+{
-+	int i;
-+
-+	for (i = 0 ; i < pll->params.params_count ; ++i)
-+		writel(pll->params.params_table[i].value,
-+		       pll->base + pll->params.params_table[i].reg_off);
-+}
-+
- static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- 				  unsigned long parent_rate)
- {
-@@ -151,10 +184,16 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- 	if (!rate_set)
- 		return -EINVAL;
- 
-+	/* Initialize the PLL in a clean state if specified */
-+	if (pll->params.params_count)
-+		meson_clk_pll_init_params(pll);
-+
- 	/* PLL reset */
- 	p = &pll->n;
- 	reg = readl(pll->base + p->reg_off);
--	writel(reg | MESON_PLL_RESET, pll->base + p->reg_off);
-+	/* If no_init_reset is provided, avoid resetting at this point */
-+	if (!pll->params.no_init_reset)
-+		writel(reg | MESON_PLL_RESET, pll->base + p->reg_off);
- 
- 	reg = PARM_SET(p->width, p->shift, reg, rate_set->n);
- 	writel(reg, pll->base + p->reg_off);
-@@ -184,7 +223,17 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
- 	}
- 
- 	p = &pll->n;
--	ret = meson_clk_pll_wait_lock(pll, p);
-+	/* If clear_reset_for_lock is provided, remove the reset bit here */
-+	if (pll->params.clear_reset_for_lock) {
-+		reg = readl(pll->base + p->reg_off);
-+		writel(reg & ~MESON_PLL_RESET, pll->base + p->reg_off);
-+	}
-+
-+	/* If reset_lock_loop, use a special loop including resetting */
-+	if (pll->params.reset_lock_loop)
-+		ret = meson_clk_pll_wait_lock_reset(pll, p);
-+	else
-+		ret = meson_clk_pll_wait_lock(pll, p);
- 	if (ret) {
- 		pr_warn("%s: pll did not lock, trying to restore old rate %lu\n",
- 			__func__, old_rate);
-diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index ad25467..b0c9999 100644
---- a/drivers/clk/meson/clkc.h
-+++ b/drivers/clk/meson/clkc.h
-@@ -62,6 +62,28 @@ struct pll_rate_table {
- 		.frac		= (_frac),				\
- 	}								\
- 
-+struct pll_params_table {
-+	unsigned int reg_off;
-+	unsigned int value;
-+};
-+
-+#define PLL_PARAM(_reg, _val)						\
-+	{								\
-+		.reg_off	= (_reg),				\
-+		.value		= (_val),				\
-+	}
-+
-+struct pll_setup_params {
-+	struct pll_params_table *params_table;
-+	unsigned int params_count;
-+	/* Workaround for GP0, do not reset before configuring */
-+	bool no_init_reset;
-+	/* Workaround for GP0, unreset right before checking for lock */
-+	bool clear_reset_for_lock;
-+	/* Workaround for GXL GP0, reset in the lock checking loop */
-+	bool reset_lock_loop;
-+};
-+
- struct meson_clk_pll {
- 	struct clk_hw hw;
- 	void __iomem *base;
-@@ -70,6 +92,7 @@ struct meson_clk_pll {
- 	struct parm frac;
- 	struct parm od;
- 	struct parm od2;
-+	const struct pll_setup_params params;
- 	const struct pll_rate_table *rate_table;
- 	unsigned int rate_count;
- 	spinlock_t *lock;
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index b710e06..9d94924 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -179,7 +179,7 @@
+ /* CLKID_FCLK_DIV4 */
+ #define CLKID_FCLK_DIV5		  7
+ #define CLKID_FCLK_DIV7		  8
+-#define CLKID_GP0_PLL		  9
++/* CLKID_GP0_PLL */
+ #define CLKID_MPEG_SEL		  10
+ #define CLKID_MPEG_DIV		  11
+ /* CLKID_CLK81 */
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index ef7d6b7..cce6cb5 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -10,6 +10,7 @@
+ #define CLKID_FCLK_DIV2		4
+ #define CLKID_FCLK_DIV3		5
+ #define CLKID_FCLK_DIV4		6
++#define CLKID_GP0_PLL		9
+ #define CLKID_CLK81		12
+ #define CLKID_MPLL2		15
+ #define CLKID_SPI		34
 -- 
 1.9.1
