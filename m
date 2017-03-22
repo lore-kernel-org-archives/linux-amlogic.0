@@ -1,223 +1,181 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 22 Mar 2017 10:14:40 +0100
-Subject: [PATCH v3 2/3] clk: meson-gxbb: Add MALI clocks
-In-Reply-To: <149013907135.54062.15157425339137707641@resonance>
-References: <1489064027-18004-1-git-send-email-narmstrong@baylibre.com>
- <1489064027-18004-3-git-send-email-narmstrong@baylibre.com>
- <149013907135.54062.15157425339137707641@resonance>
-Message-ID: <4eeb2043-68f8-b7d7-e40d-18cd5c7659cb@baylibre.com>
+Date: Wed, 22 Mar 2017 10:17:21 +0100
+Subject: [PATCH 1/5] clk: meson: Add support for parameters for specific
+ PLLs
+In-Reply-To: <149013981400.54062.11268768959465562064@resonance>
+References: <1489411604-18700-1-git-send-email-narmstrong@baylibre.com>
+ <1489411604-18700-2-git-send-email-narmstrong@baylibre.com>
+ <149013981400.54062.11268768959465562064@resonance>
+Message-ID: <ccfe12e8-7108-76e4-7d6b-1addcf6fe95a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/22/2017 12:31 AM, Michael Turquette wrote:
-> Hi Neil,
-> 
-> Quoting Neil Armstrong (2017-03-09 04:53:46)
->> The Mali is clocked by two identical clock paths behind a glitch free mux
->> to safely change frequency while running.
+On 03/22/2017 12:43 AM, Michael Turquette wrote:
+> Quoting Neil Armstrong (2017-03-13 06:26:40)
+>> In recent Amlogic GXBB, GXL and GXM SoCs, the GP0 PLL needs some specific
+>> parameters in order to initialize and lock correctly.
 >>
->> The two "mali_0" and "mali_1" clocks are composed of a mux, divider and gate.
->> Expose these two clocks trees using generic clocks.
->> Finally the glitch free mux is added as "mali" clock.
+>> This patch adds an optional PARAM table used to initialize the PLL to a
+>> default value with it's parameters in order to achieve to desired frequency.
+>>
+>> The GP0 PLL in GXBB, GXL/GXM also needs some tweaks in the initialization
+>> steps, and these are exposed along the PARAM table.
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  drivers/clk/meson/gxbb.c | 139 +++++++++++++++++++++++++++++++++++++++++++++++
->>  1 file changed, 139 insertions(+)
+>>  drivers/clk/meson/clk-pll.c | 52 +++++++++++++++++++++++++++++++++++++++++++--
+>>  drivers/clk/meson/clkc.h    | 23 ++++++++++++++++++++
+>>  2 files changed, 73 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
->> index 5059c7b..d9f7fef 100644
->> --- a/drivers/clk/meson/gxbb.c
->> +++ b/drivers/clk/meson/gxbb.c
->> @@ -634,6 +634,131 @@
->>         },
->>  };
+>> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+>> index 4adc1e8..aff223b 100644
+>> --- a/drivers/clk/meson/clk-pll.c
+>> +++ b/drivers/clk/meson/clk-pll.c
+>> @@ -116,6 +116,29 @@ static const struct pll_rate_table *meson_clk_get_pll_settings(struct meson_clk_
+>>         return NULL;
+>>  }
 >>  
->> +/*
->> + * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
->> + * muxed by a glitch-free switch.
->> + */
+>> +/* Specific wait loop for GXL/GXM GP0 PLL */
+>> +static int meson_clk_pll_wait_lock_reset(struct meson_clk_pll *pll,
+>> +                                        struct parm *p_n)
+>> +{
+>> +       int delay = 100;
+>> +       u32 reg;
 >> +
->> +static u32 mux_table_mali_0_1[] = {0, 1, 2, 3, 4, 5, 6, 7};
->> +static const char *gxbb_mali_0_1_parent_names[] = {
->> +       "xtal", "gp0_pll", "mpll2", "mpll1", "fclk_div7",
->> +       "fclk_div4", "fclk_div3", "fclk_div5"
->> +};
+>> +       while (delay > 0) {
+>> +               reg = readl(pll->base + p_n->reg_off);
+>> +               writel(reg | MESON_PLL_RESET, pll->base + p_n->reg_off);
+>> +               udelay(10);
+>> +               writel(reg & ~MESON_PLL_RESET, pll->base + p_n->reg_off);
 >> +
->> +static struct clk_mux gxbb_mali_0_sel = {
->> +       .reg = (void *)HHI_MALI_CLK_CNTL,
->> +       .mask = 0x7,
->> +       .shift = 9,
->> +       .table = mux_table_mali_0_1,
->> +       .lock = &clk_lock,
->> +       .hw.init = &(struct clk_init_data){
->> +               .name = "mali_0_sel",
->> +               .ops = &clk_mux_ops,
->> +               /*
->> +                * bits 10:9 selects from 8 possible parents:
->> +                * xtal, gp0_pll, mpll2, mpll1, fclk_div7,
->> +                * fclk_div4, fclk_div3, fclk_div5
->> +                */
->> +               .parent_names = gxbb_mali_0_1_parent_names,
->> +               .num_parents = 8,
->> +               .flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
+>> +               mdelay(1);
 > 
-> Are all of these CLK_IGNORE_UNUSED flags necessary? If so, why? I'm just
-> wondering if this is yet another display-related use case where a
-> hand-off mechanism would work better?
+> Can you add a comment explaining where the delay values come from? Can
+> they vary from chip to chip?
 
 Hi,
 
-I'm just precocious about how these clocks will be handled, since the Mali driver
-is out of tree, I'm not sure about how they will be handled at all.
-
-But I can test and remove these if we consider my out-of-tree driver platform
-code as reference.
+Ok, the code comes from the vendor tree, and seems to be generic enough to handle
+other chips.
+But I'm not sure about this particular delay, 1ms seems large enough for a PLL locking...
 
 Neil
 
 > 
-> Thanks,
+>> +
+>> +               reg = readl(pll->base + p_n->reg_off);
+>> +               if (reg & MESON_PLL_LOCK)
+>> +                       return 0;
+>> +               delay--;
+>> +       }
+>> +       return -ETIMEDOUT;
+>> +}
+>> +
+>>  static int meson_clk_pll_wait_lock(struct meson_clk_pll *pll,
+>>                                    struct parm *p_n)
+>>  {
+>> @@ -132,6 +155,15 @@ static int meson_clk_pll_wait_lock(struct meson_clk_pll *pll,
+>>         return -ETIMEDOUT;
+>>  }
+>>  
+>> +static void meson_clk_pll_init_params(struct meson_clk_pll *pll)
+>> +{
+>> +       int i;
+>> +
+>> +       for (i = 0 ; i < pll->params.params_count ; ++i)
+>> +               writel(pll->params.params_table[i].value,
+>> +                      pll->base + pll->params.params_table[i].reg_off);
+>> +}
+>> +
+>>  static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>>                                   unsigned long parent_rate)
+>>  {
+>> @@ -151,10 +183,16 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>>         if (!rate_set)
+>>                 return -EINVAL;
+>>  
+>> +       /* Initialize the PLL in a clean state if specified */
+>> +       if (pll->params.params_count)
+>> +               meson_clk_pll_init_params(pll);
+>> +
+>>         /* PLL reset */
+>>         p = &pll->n;
+>>         reg = readl(pll->base + p->reg_off);
+>> -       writel(reg | MESON_PLL_RESET, pll->base + p->reg_off);
+>> +       /* If no_init_reset is provided, avoid resetting at this point */
+>> +       if (!pll->params.no_init_reset)
+>> +               writel(reg | MESON_PLL_RESET, pll->base + p->reg_off);
+>>  
+>>         reg = PARM_SET(p->width, p->shift, reg, rate_set->n);
+>>         writel(reg, pll->base + p->reg_off);
+>> @@ -184,7 +222,17 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>>         }
+>>  
+>>         p = &pll->n;
+>> -       ret = meson_clk_pll_wait_lock(pll, p);
+>> +       /* If unreset_for_lock is provided, remove the reset bit here */
+>> +       if (pll->params.unreset_for_lock) {
+> 
+> Small nitpick, but I find "unreset" to be confusing. Since 'reset' here
+> is a bit that can be set and unset, maybe use clear_reset_for_lock
+> instead?
+> 
+> Regards,
 > Mike
 > 
->> +       },
->> +};
+>> +               reg = readl(pll->base + p->reg_off);
+>> +               writel(reg & ~MESON_PLL_RESET, pll->base + p->reg_off);
+>> +       }
 >> +
->> +static struct clk_divider gxbb_mali_0_div = {
->> +       .reg = (void *)HHI_MALI_CLK_CNTL,
->> +       .shift = 0,
->> +       .width = 7,
->> +       .lock = &clk_lock,
->> +       .hw.init = &(struct clk_init_data){
->> +               .name = "mali_0_div",
->> +               .ops = &clk_divider_ops,
->> +               .parent_names = (const char *[]){ "mali_0_sel" },
->> +               .num_parents = 1,
->> +               .flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
->> +       },
->> +};
->> +
->> +static struct clk_gate gxbb_mali_0 = {
->> +       .reg = (void *)HHI_MALI_CLK_CNTL,
->> +       .bit_idx = 8,
->> +       .lock = &clk_lock,
->> +       .hw.init = &(struct clk_init_data){
->> +               .name = "mali_0",
->> +               .ops = &clk_gate_ops,
->> +               .parent_names = (const char *[]){ "mali_0_div" },
->> +               .num_parents = 1,
->> +               .flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
->> +       },
->> +};
->> +
->> +static struct clk_mux gxbb_mali_1_sel = {
->> +       .reg = (void *)HHI_MALI_CLK_CNTL,
->> +       .mask = 0x7,
->> +       .shift = 25,
->> +       .table = mux_table_mali_0_1,
->> +       .lock = &clk_lock,
->> +       .hw.init = &(struct clk_init_data){
->> +               .name = "mali_1_sel",
->> +               .ops = &clk_mux_ops,
->> +               /*
->> +                * bits 10:9 selects from 8 possible parents:
->> +                * xtal, gp0_pll, mpll2, mpll1, fclk_div7,
->> +                * fclk_div4, fclk_div3, fclk_div5
->> +                */
->> +               .parent_names = gxbb_mali_0_1_parent_names,
->> +               .num_parents = 8,
->> +               .flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
->> +       },
->> +};
->> +
->> +static struct clk_divider gxbb_mali_1_div = {
->> +       .reg = (void *)HHI_MALI_CLK_CNTL,
->> +       .shift = 16,
->> +       .width = 7,
->> +       .lock = &clk_lock,
->> +       .hw.init = &(struct clk_init_data){
->> +               .name = "mali_1_div",
->> +               .ops = &clk_divider_ops,
->> +               .parent_names = (const char *[]){ "mali_1_sel" },
->> +               .num_parents = 1,
->> +               .flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
->> +       },
->> +};
->> +
->> +static struct clk_gate gxbb_mali_1 = {
->> +       .reg = (void *)HHI_MALI_CLK_CNTL,
->> +       .bit_idx = 24,
->> +       .lock = &clk_lock,
->> +       .hw.init = &(struct clk_init_data){
->> +               .name = "mali_1",
->> +               .ops = &clk_gate_ops,
->> +               .parent_names = (const char *[]){ "mali_1_div" },
->> +               .num_parents = 1,
->> +               .flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
->> +       },
->> +};
->> +
->> +static u32 mux_table_mali[] = {0, 1};
->> +static const char *gxbb_mali_parent_names[] = {
->> +       "mali_0", "mali_1"
->> +};
->> +
->> +static struct clk_mux gxbb_mali = {
->> +       .reg = (void *)HHI_MALI_CLK_CNTL,
->> +       .mask = 1,
->> +       .shift = 31,
->> +       .table = mux_table_mali,
->> +       .lock = &clk_lock,
->> +       .hw.init = &(struct clk_init_data){
->> +               .name = "mali",
->> +               .ops = &clk_mux_ops,
->> +               .parent_names = gxbb_mali_parent_names,
->> +               .num_parents = 2,
->> +               .flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
->> +       },
->> +};
->> +
->>  /* Everything Else (EE) domain gates */
->>  static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
->>  static MESON_GATE(gxbb_dos, HHI_GCLK_MPEG0, 1);
->> @@ -827,6 +952,13 @@
->>                 [CLKID_SAR_ADC_CLK]         = &gxbb_sar_adc_clk.hw,
->>                 [CLKID_SAR_ADC_SEL]         = &gxbb_sar_adc_clk_sel.hw,
->>                 [CLKID_SAR_ADC_DIV]         = &gxbb_sar_adc_clk_div.hw,
->> +               [CLKID_MALI_0_SEL]          = &gxbb_mali_0_sel.hw,
->> +               [CLKID_MALI_0_DIV]          = &gxbb_mali_0_div.hw,
->> +               [CLKID_MALI_0]              = &gxbb_mali_0.hw,
->> +               [CLKID_MALI_1_SEL]          = &gxbb_mali_1_sel.hw,
->> +               [CLKID_MALI_1_DIV]          = &gxbb_mali_1_div.hw,
->> +               [CLKID_MALI_1]              = &gxbb_mali_1.hw,
->> +               [CLKID_MALI]                = &gxbb_mali.hw,
->>         },
->>         .num = NR_CLKS,
->>  };
->> @@ -930,16 +1062,23 @@
->>         &gxbb_emmc_b,
->>         &gxbb_emmc_c,
->>         &gxbb_sar_adc_clk,
->> +       &gxbb_mali_0,
->> +       &gxbb_mali_1,
->>  };
+>> +       /* If reset_lock_loop, use a special loop including resetting */
+>> +       if (pll->params.reset_lock_loop)
+>> +               ret = meson_clk_pll_wait_lock_reset(pll, p);
+>> +       else
+>> +               ret = meson_clk_pll_wait_lock(pll, p);
+>>         if (ret) {
+>>                 pr_warn("%s: pll did not lock, trying to restore old rate %lu\n",
+>>                         __func__, old_rate);
+>> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+>> index 9bb70e7..5f1c12d 100644
+>> --- a/drivers/clk/meson/clkc.h
+>> +++ b/drivers/clk/meson/clkc.h
+>> @@ -62,6 +62,28 @@ struct pll_rate_table {
+>>                 .frac           = (_frac),                              \
+>>         }                                                               \
 >>  
->>  static struct clk_mux *const gxbb_clk_muxes[] = {
->>         &gxbb_mpeg_clk_sel,
->>         &gxbb_sar_adc_clk_sel,
->> +       &gxbb_mali_0_sel,
->> +       &gxbb_mali_1_sel,
->> +       &gxbb_mali,
->>  };
->>  
->>  static struct clk_divider *const gxbb_clk_dividers[] = {
->>         &gxbb_mpeg_clk_div,
->>         &gxbb_sar_adc_clk_div,
->> +       &gxbb_mali_0_div,
->> +       &gxbb_mali_1_div,
->>  };
->>  
->>  static int gxbb_clkc_probe(struct platform_device *pdev)
+>> +struct pll_params_table {
+>> +       unsigned int reg_off;
+>> +       unsigned int value;
+>> +};
+>> +
+>> +#define PLL_PARAM(_reg, _val)                                          \
+>> +       {                                                               \
+>> +               .reg_off        = (_reg),                               \
+>> +               .value          = (_val),                               \
+>> +       }
+>> +
+>> +struct pll_setup_params {
+>> +       struct pll_params_table *params_table;
+>> +       unsigned int params_count;
+>> +       /* Workaround for GP0, do not reset before configuring */
+>> +       bool no_init_reset;
+>> +       /* Workaround for GP0, unreset right before checking for lock */
+>> +       bool unreset_for_lock;
+>> +       /* Workaround for GXL GP0, reset in the lock checking loop */
+>> +       bool reset_lock_loop;
+>> +};
+>> +
+>>  struct meson_clk_pll {
+>>         struct clk_hw hw;
+>>         void __iomem *base;
+>> @@ -70,6 +92,7 @@ struct meson_clk_pll {
+>>         struct parm frac;
+>>         struct parm od;
+>>         struct parm od2;
+>> +       const struct pll_setup_params params;
+>>         const struct pll_rate_table *rate_table;
+>>         unsigned int rate_count;
+>>         spinlock_t *lock;
 >> -- 
 >> 1.9.1
 >>
