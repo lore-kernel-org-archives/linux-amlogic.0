@@ -1,25 +1,20 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 22 Mar 2017 11:02:49 -0700
-Subject: [PATCH 3/3] ARM64: dts: meson-gxl: Add missing pinctrl pins groups
-In-Reply-To: <1488893462-7016-4-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Tue, 7 Mar 2017 14:31:02 +0100")
-References: <1488893462-7016-1-git-send-email-narmstrong@baylibre.com>
- <1488893462-7016-4-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2inn1mbp2.fsf@baylibre.com>
+Date: Wed, 22 Mar 2017 11:08:00 -0700
+Subject: [PATCH 0/2] ARM64: dts: meson-gxbb-odroidc2: Add GPIO lines names
+In-Reply-To: <1489071166-11476-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Thu, 9 Mar 2017 15:52:44 +0100")
+References: <1489071166-11476-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2efxpmbgf.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil
-
 Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> Add pinctrl pins nodes following the additions of missing pins in the pinctrl
-> driver.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> This patchset adds the GPIO lines names to describe the /real/ GPIO usage on
+> the Odroid-C2 board. These names are useful to have a clear and human readable
+> decription of the line usage.
 
-I'll assume you will re-spin patches 2-3 of this series on Martin's
-updated PWM series.
+Applied to v4.12/dt64,
 
 Thanks,
 
