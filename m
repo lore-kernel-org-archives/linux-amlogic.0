@@ -1,96 +1,35 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 23 Mar 2017 17:51:00 +0100
-Subject: [PATCH 7/8] ARM64: dts: meson-gxl: add i2s output pins
-In-Reply-To: <20170323165101.29262-1-jbrunet@baylibre.com>
-References: <20170323165101.29262-1-jbrunet@baylibre.com>
-Message-ID: <20170323165101.29262-8-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 23 Mar 2017 12:09:53 -0700
+Subject: [PATCH v2 2/2] ARM64: dts: amlogic: meson-gxl: add the missing
+ PWM pins
+In-Reply-To: <CACRpkdZSJc8a5jqK0gAuRgogQfiLsSXocR4RKsogqnWgNnVsjQ@mail.gmail.com>
+ (Linus Walleij's message of "Thu, 23 Mar 2017 09:47:23 +0100")
+References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
+ <20170318122736.11592-1-martin.blumenstingl@googlemail.com>
+ <20170318122736.11592-3-martin.blumenstingl@googlemail.com>
+ <CACRpkdZSJc8a5jqK0gAuRgogQfiLsSXocR4RKsogqnWgNnVsjQ@mail.gmail.com>
+Message-ID: <m21stnn726.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 62 ++++++++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+Linus Walleij <linus.walleij@linaro.org> writes:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index fe11b5fc61f7..88ad3490c124 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -124,6 +124,20 @@
- 				function = "pwm_ao_b";
- 			};
- 		};
-+
-+		i2s_out_ch23_ao_pins: i2s_out_ch23_ao {
-+			mux {
-+				groups = "i2s_out_ch23_ao";
-+				function = "i2s_out_ao";
-+			};
-+		};
-+
-+		i2s_out_ch45_ao_pins: i2s_out_ch45_ao {
-+			mux {
-+				groups = "i2s_out_ch45_ao";
-+				function = "i2s_out_ao";
-+			};
-+		};
- 	};
- };
- 
-@@ -297,6 +311,54 @@
- 				function = "hdmi_i2c";
- 			};
- 		};
-+
-+		i2s_am_clk_pins: i2s_am_clk {
-+			mux {
-+				groups = "i2s_am_clk";
-+				function = "i2s_out";
-+			};
-+		};
-+
-+		i2s_out_ao_clk_pins: i2s_out_ao_clk {
-+			mux {
-+				groups = "i2s_out_ao_clk";
-+				function = "i2s_out";
-+			};
-+		};
-+
-+		i2s_out_lr_clk_pins: i2s_out_lr_clk {
-+			mux {
-+				groups = "i2s_out_lr_clk";
-+				function = "i2s_out";
-+			};
-+		};
-+
-+		i2s_out_ch01_pins: i2s_out_ch01 {
-+			mux {
-+				groups = "i2s_out_ch01";
-+				function = "i2s_out";
-+			};
-+		};
-+		i2sout_ch23_z_pins: i2sout_ch23_z {
-+			mux {
-+				groups = "i2sout_ch23_z";
-+				function = "i2s_out";
-+			};
-+		};
-+
-+		i2sout_ch45_z_pins: i2sout_ch45_z {
-+			mux {
-+				groups = "i2sout_ch45_z";
-+				function = "i2s_out";
-+			};
-+		};
-+
-+		i2sout_ch67_z_pins: i2sout_ch67_z {
-+			mux {
-+				groups = "i2sout_ch67_z";
-+				function = "i2s_out";
-+			};
-+		};
- 	};
- 
- 	eth-phy-mux {
--- 
-2.9.3
+> On Sat, Mar 18, 2017 at 1:27 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>
+>> This adds the new DT nodes for the missing PWM pins in the EE and AO
+>> domain.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> Pls take this through ARM SoC.
+
+Applied to amlogic v4.12/dt64 branch, to be sent via arm-soc.
+
+Thanks,
+
+Kevin
