@@ -1,45 +1,41 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 23 Mar 2017 08:43:40 +0100
-Subject: [PATCH 0/4] meson_uart: add support for core clock handling
-In-Reply-To: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
-References: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
-Message-ID: <58D37CAC.7030902@baylibre.com>
+Date: Thu, 23 Mar 2017 08:46:24 +0100
+Subject: [PATCH 1/4] meson_uart: expose CLKID_UART0
+In-Reply-To: <8bfedbda-5429-400f-c77b-a9bdb793fdaf@gmail.com>
+References: <8bfedbda-5429-400f-c77b-a9bdb793fdaf@gmail.com>
+Message-ID: <58D37D50.1080401@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Le 22/03/2017 21:45, Helmut Klein a ?crit :
-> to be able to use the none AO uarts of the s905 SoCs, the core clock has to be enabled.
-> (see chapter 22.3 of the public s905 data sheet)
-> at least the u-boot of my s905 based media player (netxeon minimx) doesn't do this.
-> so the driver has to do this.
+> this patch exposes the CLKID_UART0 to dt-bindings
 > 
-> this patch set does:
-> - exposes the CLKID_UART0 to the dtb
-> - adds documentation for the dt-bindings of meson_uart
-> - adds the core clock handling to the driver
+> diff -Napur a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+> --- a/include/dt-bindings/clock/gxbb-clkc.h    2017-03-09 21:09:50.000000000 +0100
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h    2017-03-22 19:04:32.220233526 +0100
+> @@ -15,6 +15,7 @@
+>  #define CLKID_SPI        34
+>  #define CLKID_I2C        22
+>  #define CLKID_SAR_ADC        23
+> +#define CLKID_UART0        26
+>  #define CLKID_ETH        36
+>  #define CLKID_USB0        50
+>  #define CLKID_USB1        51
+> diff -Napur a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+> --- a/drivers/clk/meson/gxbb.h    2017-03-09 21:09:41.000000000 +0100
+> +++ b/drivers/clk/meson/gxbb.h    2017-03-22 19:05:32.120151735 +0100
+> @@ -194,7 +194,7 @@
+>  /* #define CLKID_SAR_ADC */
+>  #define CLKID_SMART_CARD      24
+>  #define CLKID_RNG0          25
+> -#define CLKID_UART0          26
+> +/* CLKID_UART0 */
+>  #define CLKID_SDHC          27
+>  #define CLKID_STREAM          28
+>  #define CLKID_ASYNC_FIFO      29
 > 
-> none of the available s905 dts use uart_A actively. so there is no patch for any of the existing dts files.
 
-Hi Heiner,
-
-Thanks for these patches, I'm surprise neither the gate clock handling or the dt-bindings were pushed with the serial driver.
-
-Nevertheless, please use the git "format-patch" tool to generate the patchset.
-
-My steps to generate a patchset are :
-
-- Order all the commits in the order and form you want to have them sent
-- Use "git rebase -i" to reword (change commit message), change order or edit each patches
-- When you have a clean set, generate the email files with :
-# git format-patch -3 -s --cover-letter -o my-patchset-directory/
-The "-3" gives the number of patches to extract
-The "-s" will add the Signed-off-by tag
-The "--cover-letter" will generate the 0000-cover-letter to fill up
-- Then fill the cover letter and check all your patches with scripts/checkpatch.pl
-- When it's clean, get the maintainers emails with scripts/get_maintainer.pl
-- Then send them with the "git send-email" tool :
-# git send-email my-patchset-directory/*
-
-If you have more questions, please ask ! It's not easy to understand, but it will save you a lot of time !
+This one looks good, but please Cc the linux-arm-kernel (for all arm related), linux-clk (for clk related), devicetree at vger.kernel.org (for all DT related) and linux-kernel at vger.kernel.org
+in all your communications.
 
 Neil
