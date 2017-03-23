@@ -1,51 +1,107 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 23 Mar 2017 17:27:29 +0100
-Subject: [RFT PATCH 6/6] ARM64: dts: meson-gxbb: Add USB Hub GPIO hog
-In-Reply-To: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
-References: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490286449-19448-7-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 23 Mar 2017 17:50:54 +0100
+Subject: [PATCH 1/8] pinctrl: meson: gxbb: add i2s output pins
+In-Reply-To: <20170323165101.29262-1-jbrunet@baylibre.com>
+References: <20170323165101.29262-1-jbrunet@baylibre.com>
+Message-ID: <20170323165101.29262-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The ODroid-C2 on-board USB Hub needs to to have it's reset signal set to
-high level in order to be enumerated by the USB Host Controller.
-
-But this management must be part of the currently in-development Generic
-Power Sequence patch that will allow a USB Controller driver to start and stop
-a power sequence associated to the USB Bus.
-
-In the meantime, a simple USB Hog will work to enable the USB Hub.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 31 ++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index c59403a..6288538 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -177,6 +177,21 @@
- 	pinctrl-names = "default";
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index 7671424d46cb..8d5dd4772042 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -236,6 +236,10 @@ static const unsigned int hdmi_hpd_pins[]	= { PIN(GPIOH_0, EE_OFF) };
+ static const unsigned int hdmi_sda_pins[]	= { PIN(GPIOH_1, EE_OFF) };
+ static const unsigned int hdmi_scl_pins[]	= { PIN(GPIOH_2, EE_OFF) };
+ 
++static const unsigned int i2s_out_ch23_y_pins[]	= { PIN(GPIOY_8, EE_OFF) };
++static const unsigned int i2s_out_ch45_y_pins[]	= { PIN(GPIOY_9, EE_OFF) };
++static const unsigned int i2s_out_ch67_y_pins[]	= { PIN(GPIOY_10, EE_OFF) };
++
+ static const struct pinctrl_pin_desc meson_gxbb_aobus_pins[] = {
+ 	MESON_PIN(GPIOAO_0, 0),
+ 	MESON_PIN(GPIOAO_1, 0),
+@@ -274,6 +278,13 @@ static const unsigned int pwm_ao_a_6_pins[]	= { PIN(GPIOAO_6, 0) };
+ static const unsigned int pwm_ao_a_12_pins[]	= { PIN(GPIOAO_12, 0) };
+ static const unsigned int pwm_ao_b_pins[]	= { PIN(GPIOAO_13, 0) };
+ 
++static const unsigned int i2s_am_clk_pins[]	 = { PIN(GPIOAO_8, 0) };
++static const unsigned int i2s_out_ao_clk_pins[]	 = { PIN(GPIOAO_9, 0) };
++static const unsigned int i2s_out_lr_clk_pins[]	 = { PIN(GPIOAO_10, 0) };
++static const unsigned int i2s_out_ch01_ao_pins[] = { PIN(GPIOAO_11, 0) };
++static const unsigned int i2s_out_ch23_ao_pins[] = { PIN(GPIOAO_12, 0) };
++static const unsigned int i2s_out_ch45_ao_pins[] = { PIN(GPIOAO_13, 0) };
++
+ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOZ_0, EE_OFF),
+ 	GPIO_GROUP(GPIOZ_1, EE_OFF),
+@@ -426,6 +437,9 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
+ 	GROUP(uart_rx_c,	1,	16),
+ 	GROUP(pwm_a_y,		1,	21),
+ 	GROUP(pwm_f_y,		1,	20),
++	GROUP(i2s_out_ch23_y,	1,	5),
++	GROUP(i2s_out_ch45_y,	1,	6),
++	GROUP(i2s_out_ch67_y,	1,	7),
+ 
+ 	/* Bank Z */
+ 	GROUP(eth_mdio,		6,	1),
+@@ -523,6 +537,12 @@ static struct meson_pmx_group meson_gxbb_aobus_groups[] = {
+ 	GROUP(pwm_ao_a_6,	0,	18),
+ 	GROUP(pwm_ao_a_12,	0,	17),
+ 	GROUP(pwm_ao_b,		0,	3),
++	GROUP(i2s_am_clk,	0,	30),
++	GROUP(i2s_out_ao_clk,	0,	29),
++	GROUP(i2s_out_lr_clk,	0,	28),
++	GROUP(i2s_out_ch01_ao,	0,	27),
++	GROUP(i2s_out_ch23_ao,	1,	0),
++	GROUP(i2s_out_ch45_ao,	1,	1),
  };
  
-+&gpio_ao {
-+	/*
-+	 * WARNING: The USB Hub on the Odroid-C2 needs a reset signal
-+	 * to be turned high in order to be detected by the USB Controller
-+	 * This signal should be handled by a USB specific power sequence
-+	 * in order to reset the Hub when USB bus is powered down.
-+	 */
-+	usb-hub {
-+		gpio-hog;
-+		gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "usb-hub-reset";
-+	};
+ static const char * const gpio_periphs_groups[] = {
+@@ -652,6 +672,10 @@ static const char * const hdmi_i2c_groups[] = {
+ 	"hdmi_sda", "hdmi_scl",
+ };
+ 
++static const char * const i2s_out_groups[] = {
++	"i2s_out_ch23_y", "i2s_out_ch45_y", "i2s_out_ch67_y",
 +};
 +
- &usb0_phy {
- 	status = "okay";
- 	phy-supply = <&usb_otg_pwr>;
+ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+@@ -694,6 +718,11 @@ static const char * const pwm_ao_b_groups[] = {
+ 	"pwm_ao_b",
+ };
+ 
++static const char * const i2s_out_ao_groups[] = {
++	"i2s_am_clk", "i2s_out_ao_clk", "i2s_out_lr_clk",
++	"i2s_out_ch01_ao", "i2s_out_ch23_ao", "i2s_out_ch45_ao",
++};
++
+ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
+@@ -717,6 +746,7 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
+ 	FUNCTION(pwm_f_y),
+ 	FUNCTION(hdmi_hpd),
+ 	FUNCTION(hdmi_i2c),
++	FUNCTION(i2s_out),
+ };
+ 
+ static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
+@@ -730,6 +760,7 @@ static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
+ 	FUNCTION(pwm_ao_a_6),
+ 	FUNCTION(pwm_ao_a_12),
+ 	FUNCTION(pwm_ao_b),
++	FUNCTION(i2s_out_ao),
+ };
+ 
+ static struct meson_bank meson_gxbb_periphs_banks[] = {
 -- 
-1.9.1
+2.9.3
