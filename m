@@ -1,51 +1,51 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 23 Mar 2017 17:27:28 +0100
-Subject: [RFT PATCH 5/6] pinctrl: meson: use gpio-ranges from DT
+Date: Thu, 23 Mar 2017 17:27:29 +0100
+Subject: [RFT PATCH 6/6] ARM64: dts: meson-gxbb: Add USB Hub GPIO hog
 In-Reply-To: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
 References: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490286449-19448-6-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1490286449-19448-7-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-When trying to add a gpio-hog, we enter a weird loop where the gpio-ranges
-is needed when gpiochip_add_data() is called but in the current implementation
-the ranges are added from the driver afterwards.
+The ODroid-C2 on-board USB Hub needs to to have it's reset signal set to
+high level in order to be enumerated by the USB Host Controller.
 
-A simple solution is to rely on the DR gpio-ranges attribute and remove the
-call to gpiochip_add_pin_range().
+But this management must be part of the currently in-development Generic
+Power Sequence patch that will allow a USB Controller driver to start and stop
+a power sequence associated to the USB Bus.
+
+In the meantime, a simple USB Hog will work to enable the USB Hub.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson.c | 14 +-------------
- 1 file changed, 1 insertion(+), 13 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index cf1686e..66ed70c 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -555,22 +555,10 @@ static int meson_gpiolib_register(struct meson_pinctrl *pc)
- 	if (ret) {
- 		dev_err(pc->dev, "can't add gpio chip %s\n",
- 			pc->data->name);
--		goto fail;
--	}
--
--	ret = gpiochip_add_pin_range(&pc->chip, dev_name(pc->dev),
--				     0, pc->data->pin_base,
--				     pc->chip.ngpio);
--	if (ret) {
--		dev_err(pc->dev, "can't add pin range\n");
--		goto fail;
-+		return ret;
- 	}
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index c59403a..6288538 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -177,6 +177,21 @@
+ 	pinctrl-names = "default";
+ };
  
- 	return 0;
--fail:
--	gpiochip_remove(&pc->chip);
--
--	return ret;
- }
- 
- static struct regmap_config meson_regmap_config = {
++&gpio_ao {
++	/*
++	 * WARNING: The USB Hub on the Odroid-C2 needs a reset signal
++	 * to be turned high in order to be detected by the USB Controller
++	 * This signal should be handled by a USB specific power sequence
++	 * in order to reset the Hub when USB bus is powered down.
++	 */
++	usb-hub {
++		gpio-hog;
++		gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "usb-hub-reset";
++	};
++};
++
+ &usb0_phy {
+ 	status = "okay";
+ 	phy-supply = <&usb_otg_pwr>;
 -- 
 1.9.1
