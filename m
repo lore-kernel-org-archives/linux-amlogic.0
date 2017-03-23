@@ -1,27 +1,30 @@
-From: herbert@gondor.apana.org.au (Herbert Xu)
-Date: Thu, 23 Mar 2017 15:56:02 +0800
-Subject: [PATCH v3 1/3] clk: meson-gxbb: expose clock CLKID_RNG0
-In-Reply-To: <m2lgrxnxlz.fsf@baylibre.com>
-References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
- <20170316100743.GA12137@gondor.apana.org.au>
- <m2mvcl6pwg.fsf@baylibre.com>
- <20170317083032.GA18512@gondor.apana.org.au>
- <m2lgrxnxlz.fsf@baylibre.com>
-Message-ID: <20170323075602.GA6054@gondor.apana.org.au>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Thu, 23 Mar 2017 09:46:34 +0100
+Subject: [PATCH v2 1/2] pinctrl: meson: gxl: add the missing PWM pin
+ definitions
+In-Reply-To: <20170318122736.11592-2-martin.blumenstingl@googlemail.com>
+References: <20170304212318.27076-1-martin.blumenstingl@googlemail.com>
+ <20170318122736.11592-1-martin.blumenstingl@googlemail.com>
+ <20170318122736.11592-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CACRpkdYYWut2aJMj1kVxisfcyur5BT9i9zSzYd8FVU9DY6taKQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Mar 22, 2017 at 08:24:08AM -0700, Kevin Hilman wrote:
-> 
-> Because this will be causing conflicts with both the platform (amlogic)
-> tree and the clk tree, could provide an immutable branch where these are
-> applied to help us handle these conflicts?
+On Sat, Mar 18, 2017 at 1:27 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 
-If you apply the same patches to your tree there should be no
-conflicts at all.  git is able to resolve this automatically.
+> This adds support for the missing PWM pins on Meson GXL SoCs, namely:
+> - PWM_A
+> - PWM_B
+> - PWM_C
+> - PWM_F (GPIOX_7 and GPIOCLK_1 can be selected as output)
+> - PWM_AO_A (GPIOAO_3 and GPIOAO_8 can be selected as output)
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Patch applied.
+
+Yours,
+Linus Walleij
