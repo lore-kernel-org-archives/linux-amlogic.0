@@ -1,54 +1,30 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 23 Mar 2017 09:57:30 +0100
-Subject: [PATCH 2/3] pinctrl: meson-gxl: Fix inverted registers and add
- missing pins
-In-Reply-To: <CACRpkdbuYOf1XHsAR0mstRGv+2n2S2Lmn6KAsbKNV=aOseukLA@mail.gmail.com>
-References: <1488893462-7016-1-git-send-email-narmstrong@baylibre.com>
- <1488893462-7016-3-git-send-email-narmstrong@baylibre.com>
- <CACRpkdZ+x6vZQKfCoKD3dn-XzAxBBwMy=HF1Zi7SqXFWv28rZA@mail.gmail.com>
- <5e975901-b5d4-fdc8-9866-ad6bc9e3b599@baylibre.com>
- <CACRpkdbuYOf1XHsAR0mstRGv+2n2S2Lmn6KAsbKNV=aOseukLA@mail.gmail.com>
-Message-ID: <58D38DFA.1040207@baylibre.com>
+From: mark.rutland@arm.com (Mark Rutland)
+Date: Thu, 23 Mar 2017 10:31:54 +0000
+Subject: [PATCH 0/2] meson-sm: Fix issues when reading data from sm
+In-Reply-To: <m24lylnw5q.fsf@baylibre.com>
+References: <20170303151759.8330-1-carlo@caione.org>
+ <m24lylnw5q.fsf@baylibre.com>
+Message-ID: <20170323103153.GA9287@leverpostej>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-
-
-Le 23/03/2017 09:53, Linus Walleij a ?crit :
-> On Wed, Mar 15, 2017 at 10:49 AM, Neil Armstrong
-> <narmstrong@baylibre.com> wrote:
->> On 03/15/2017 10:43 AM, Linus Walleij wrote:
->>> On Tue, Mar 7, 2017 at 2:31 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>
->>>> Fix some inverted bit numbers in some pinctrl groups and add missing pins
->>>> and groups to be in pair with the GXBB pinctrl pins definition.
->>>>
->>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>>
->>> This does not apply on my fixes branch and possibly no other
->>> v4.11-rc1-based branch. Can you please rebase it and resend?
->>>
->>> I guess this also needs queueing for fixes?
->>>
->>> Yours,
->>> Linus Walleij
->>>
->>
->> Hi Linus,
->>
->> Indeed, it depends on Martin's "pinctrl: meson: gxl: add the missing PWM pin definitions" posted earlier.
+On Wed, Mar 22, 2017 at 08:55:29AM -0700, Kevin Hilman wrote:
+> Carlo Caione <carlo@caione.org> writes:
 > 
-> I merged the latest version of Martin's patch and it still does not
-> apply so could you rebase on the pinctrl "devel" branch and
-> resend?
+> > From: Carlo Caione <carlo@endlessm.com>
+> >
+> > While working on a related driver I noticed a couple of problems in the
+> > meson-sm driver. The problems are unrelated but since the fixes touch the same
+> > codebase I decided to submit these in the same patchset.
 > 
-> Yours,
-> Linus Walleij
+> Applied to amlogic tree, branch: v4.12/drivers
 > 
+> I'd prefer to have acks from Mark and Srini, but since this has been on
+> the list for awhile, I'm guessing that isn't going to happen, so
+> consider this a request.
 
-Hi Linux,
+>From a quick scan, this looks fine to me. FWIW:
 
-I will asap.
+Acked-by: Mark Rutland <mark.rutland@arm.com>
 
-Thanks,
-Neil
+Mark.
