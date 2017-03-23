@@ -1,52 +1,45 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 22 Mar 2017 18:43:50 -0700
-Subject: [PATCH v3 1/3] clk: meson-gxbb: expose clock CLKID_RNG0
-In-Reply-To: <m2lgrxnxlz.fsf@baylibre.com>
-References: <4e2d12e5-f75b-3ac6-a3f7-18e8a8b7283b@gmail.com>
- <20170316100743.GA12137@gondor.apana.org.au> <m2mvcl6pwg.fsf@baylibre.com>
- <20170317083032.GA18512@gondor.apana.org.au> <m2lgrxnxlz.fsf@baylibre.com>
-Message-ID: <149023343045.54062.16811894906233729582@resonance>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 23 Mar 2017 08:43:40 +0100
+Subject: [PATCH 0/4] meson_uart: add support for core clock handling
+In-Reply-To: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
+References: <839065e6-8329-068f-8da3-7d0163ac37e0@gmail.com>
+Message-ID: <58D37CAC.7030902@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Kevin Hilman (2017-03-22 08:24:08)
-> Herbert Xu <herbert@gondor.apana.org.au> writes:
+Le 22/03/2017 21:45, Helmut Klein a ?crit :
+> to be able to use the none AO uarts of the s905 SoCs, the core clock has to be enabled.
+> (see chapter 22.3 of the public s905 data sheet)
+> at least the u-boot of my s905 based media player (netxeon minimx) doesn't do this.
+> so the driver has to do this.
 > 
-> > On Thu, Mar 16, 2017 at 11:24:31AM -0700, Kevin Hilman wrote:
-> >> Hi Herbert,
-> >> 
-> >> Herbert Xu <herbert@gondor.apana.org.au> writes:
-> >> 
-> >> > On Wed, Feb 22, 2017 at 07:55:24AM +0100, Heiner Kallweit wrote:
-> >> >> Expose clock CLKID_RNG0 which is needed for the HW random number generator.
-> >> >> 
-> >> >> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> >> >
-> >> > All patches applied.  Thanks.
-> >> 
-> >> Actually, can you just apply [PATCH 4/4] to your tree?
-> >> 
-> >> The clock and DT patches need to go through their respective trees or
-> >> will otherwise have conflicts with other things going in via those
-> >> trees.
-> >
-> > It's too late now.  Please speak up sooner next time.  These
-> > patches were posted a month ago.
+> this patch set does:
+> - exposes the CLKID_UART0 to the dtb
+> - adds documentation for the dt-bindings of meson_uart
+> - adds the core clock handling to the driver
 > 
-> Because this will be causing conflicts with both the platform (amlogic)
-> tree and the clk tree, could provide an immutable branch where these are
-> applied to help us handle these conflicts?
+> none of the available s905 dts use uart_A actively. so there is no patch for any of the existing dts files.
 
-+1
+Hi Heiner,
 
-The DT header changes will cause conflicts in the clk tree. Much better
-to either arrange for the patches to be applied by the correct
-maintainers or to provide a stable, immutable branch.
+Thanks for these patches, I'm surprise neither the gate clock handling or the dt-bindings were pushed with the serial driver.
 
-Best regards,
-Mike
+Nevertheless, please use the git "format-patch" tool to generate the patchset.
 
-> 
-> Thanks,
-> 
-> Kevin
+My steps to generate a patchset are :
+
+- Order all the commits in the order and form you want to have them sent
+- Use "git rebase -i" to reword (change commit message), change order or edit each patches
+- When you have a clean set, generate the email files with :
+# git format-patch -3 -s --cover-letter -o my-patchset-directory/
+The "-3" gives the number of patches to extract
+The "-s" will add the Signed-off-by tag
+The "--cover-letter" will generate the 0000-cover-letter to fill up
+- Then fill the cover letter and check all your patches with scripts/checkpatch.pl
+- When it's clean, get the maintainers emails with scripts/get_maintainer.pl
+- Then send them with the "git send-email" tool :
+# git send-email my-patchset-directory/*
+
+If you have more questions, please ask ! It's not easy to understand, but it will save you a lot of time !
+
+Neil
