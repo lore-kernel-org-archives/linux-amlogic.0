@@ -1,30 +1,32 @@
-From: mark.rutland@arm.com (Mark Rutland)
-Date: Thu, 23 Mar 2017 10:31:54 +0000
-Subject: [PATCH 0/2] meson-sm: Fix issues when reading data from sm
-In-Reply-To: <m24lylnw5q.fsf@baylibre.com>
-References: <20170303151759.8330-1-carlo@caione.org>
- <m24lylnw5q.fsf@baylibre.com>
-Message-ID: <20170323103153.GA9287@leverpostej>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 23 Mar 2017 11:41:09 +0100
+Subject: [PATCH v2 0/2] pinctrl: meson: Fix and add missing pins definitions
+Message-ID: <20170323104112.16558-1-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Mar 22, 2017 at 08:55:29AM -0700, Kevin Hilman wrote:
-> Carlo Caione <carlo@caione.org> writes:
-> 
-> > From: Carlo Caione <carlo@endlessm.com>
-> >
-> > While working on a related driver I noticed a couple of problems in the
-> > meson-sm driver. The problems are unrelated but since the fixes touch the same
-> > codebase I decided to submit these in the same patchset.
-> 
-> Applied to amlogic tree, branch: v4.12/drivers
-> 
-> I'd prefer to have acks from Mark and Srini, but since this has been on
-> the list for awhile, I'm guessing that isn't going to happen, so
-> consider this a request.
+This patchset fixes the GXBB and GXL pins definitions and add missing GXL
+pins to have an 1:1 support for GXBB and GXL.
 
->From a quick scan, this looks fine to me. FWIW:
+The error in the current GXL pins definitions was only some bits inversions
+in same groups, behaviour should be the same.
 
-Acked-by: Mark Rutland <mark.rutland@arm.com>
+Missing pins on GXL was the UART rts/cts, NOR pins, AO i2c and a PWM alias.
 
-Mark.
+Changes since v1 at [1]:
+ - Dropped already applied "pinctrl: meson-gxbb: Fix typo in i2c ao groups"
+ - Moved pwm_ao_b_6 in the pwm_ao_b function, in pinctrl and DT
+ - Rebased on pinctrl/devel branch
+
+[1] http://lkml.kernel.org/r/1488893462-7016-1-git-send-email-narmstrong at baylibre.com
+
+Neil Armstrong (2):
+  pinctrl: meson-gxl: Fix inverted registers and add missing pins
+  ARM64: dts: meson-gxl: Add missing pinctrl pins groups
+
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 32 ++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 83 ++++++++++++++++++++++++------
+ 2 files changed, 100 insertions(+), 15 deletions(-)
+
+-- 
+2.7.0
