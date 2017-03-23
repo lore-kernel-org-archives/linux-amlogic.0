@@ -1,25 +1,24 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 23 Mar 2017 12:28:58 -0700
-Subject: [RESEND PATCH 0/3] ARM64: dts: meson-gx: Cleanup for common nodes
-In-Reply-To: <1489396252-28696-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Mon, 13 Mar 2017 10:10:49 +0100")
-References: <1489396252-28696-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2h92jlrlx.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 23 Mar 2017 21:09:52 +0100
+Subject: [RFT PATCH 5/6] pinctrl: meson: use gpio-ranges from DT
+In-Reply-To: <1490286449-19448-6-git-send-email-narmstrong@baylibre.com>
+References: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
+ <1490286449-19448-6-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAFBinCBa3QuUANF1z3LGk3T9GF-rV5F4WfLGuNCMB2q5juQyOw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Hi Neil,
 
-> Since we know the GXBB and GXL/GXM share more hardware, we can safely move
-> the remaining peripheral nodes present in the GXBB dtsi to the common GX dtsi.
-> The following patches are small cleanups and helps to uniform the GX common
-> dtsi compatible scheme.
+On Thu, Mar 23, 2017 at 5:27 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> When trying to add a gpio-hog, we enter a weird loop where the gpio-ranges
+> is needed when gpiochip_add_data() is called but in the current implementation
+> the ranges are added from the driver afterwards.
 >
-> Changes since original v1 at [1]:
->  - Add back missing changelog on patches 1 and 3
+> A simple solution is to rely on the DR gpio-ranges attribute and remove the
+> call to gpiochip_add_pin_range().
+did you mean devicetree or DT instead of "DR"?
 
-Applied to v4.12/dt64,
 
-Thanks,
-
-Kevin
+Regards,
+Martin
