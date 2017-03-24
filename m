@@ -1,68 +1,63 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 24 Mar 2017 12:04:02 -0700
-Subject: [PATCH 5/5] mmc: meson-gx: switch to descriptor chain mode
-In-Reply-To: <57af6536-edf9-a2aa-40fe-a90338245d0e@gmail.com> (Heiner
- Kallweit's message of "Wed, 15 Mar 2017 20:34:46 +0100")
-References: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
- <57af6536-edf9-a2aa-40fe-a90338245d0e@gmail.com>
-Message-ID: <m2bmsqijj1.fsf@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 24 Mar 2017 20:19:32 +0100
+Subject: [PATCH v2] phy: meson8b-usb2: fix offsets for some of the
+ registers
+In-Reply-To: <20170304102011.14944-1-martin.blumenstingl@googlemail.com>
+References: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
+ <20170304102011.14944-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCB_Om_XJ4ubTQbFcGzqYxGrVYhn1fJpB5Um1b-S7k3ohA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heiner,
+Hi Kishon,
 
-Heiner Kallweit <hkallweit1@gmail.com> writes:
-
-> Switch the driver from using a linearized bounce buffer to descriptor
-> chain mode. This drastically improves performance.
+On Sat, Mar 4, 2017 at 11:20 AM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> The register offsets for REG_DBG_UART (and all following) were off by
+> 0x4. This was not a problem yet because these registers are currently
+> not used by the driver.
 >
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+gentle ping - please let me know if something is missing (for example
+some ACK orreview) before you are going to apply this
 
-I know this series needs a respin on top of your other cleanups, and
-I'll have a closer look at it then, but one comment for the respin...
+> ---
+> changes since v1:
+> - added Jerome's Reviewed-By
+>
+>  drivers/phy/phy-meson8b-usb2.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
+> index 33c9f4ba157d..30f56a6a411f 100644
+> --- a/drivers/phy/phy-meson8b-usb2.c
+> +++ b/drivers/phy/phy-meson8b-usb2.c
+> @@ -81,9 +81,9 @@
+>         #define REG_ADP_BC_ACA_PIN_GND                  BIT(25)
+>         #define REG_ADP_BC_ACA_PIN_FLOAT                BIT(26)
+>
+> -#define REG_DBG_UART                                   0x14
+> +#define REG_DBG_UART                                   0x10
+>
+> -#define REG_TEST                                       0x18
+> +#define REG_TEST                                       0x14
+>         #define REG_TEST_DATA_IN_MASK                   GENMASK(3, 0)
+>         #define REG_TEST_EN_MASK                        GENMASK(7, 4)
+>         #define REG_TEST_ADDR_MASK                      GENMASK(11, 8)
+> @@ -93,7 +93,7 @@
+>         #define REG_TEST_DATA_OUT_MASK                  GENMASK(19, 16)
+>         #define REG_TEST_DISABLE_ID_PULLUP              BIT(20)
+>
+> -#define REG_TUNE                                       0x1c
+> +#define REG_TUNE                                       0x18
+>         #define REG_TUNE_TX_RES_TUNE_MASK               GENMASK(1, 0)
+>         #define REG_TUNE_TX_HSXV_TUNE_MASK              GENMASK(3, 2)
+>         #define REG_TUNE_TX_VREF_TUNE_MASK              GENMASK(7, 4)
+> --
+> 2.12.0
+>
 
-[...]
 
->  static int meson_mmc_probe(struct platform_device *pdev)
-> @@ -764,15 +790,14 @@ static int meson_mmc_probe(struct platform_device *pdev)
->  
->  	mmc->caps |= MMC_CAP_CMD23;
->  	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
-> -	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
-> -
-> -	/* data bounce buffer */
-> -	host->bounce_buf_size = mmc->max_req_size;
-> -	host->bounce_buf =
-> -		dma_alloc_coherent(host->dev, host->bounce_buf_size,
-> -				   &host->bounce_dma_addr, GFP_KERNEL);
-> -	if (host->bounce_buf == NULL) {
-> -		dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
-> +	mmc->max_segs = PAGE_SIZE / sizeof(struct sd_emmc_desc);
-> +	mmc->max_seg_size = mmc->max_blk_count * mmc->max_blk_size;
-> +	mmc->max_req_size = mmc->max_seg_size * mmc->max_segs;
-> +
-> +	host->descs = dma_alloc_coherent(host->dev, PAGE_SIZE,
-> +					 &host->descs_dma_addr, GFP_KERNEL);
-> +	if (!host->descs) {
-> +		dev_err(host->dev, "Allocating descriptor DMA buffer failed\n");
->  		ret = -ENOMEM;
->  		goto err_div_clk;
->  	}
-> @@ -797,8 +822,8 @@ static int meson_mmc_remove(struct platform_device *pdev)
->  	/* disable interrupts */
->  	writel(0, host->regs + SD_EMMC_IRQ_EN);
->  
-> -	dma_free_coherent(host->dev, host->bounce_buf_size,
-> -			  host->bounce_buf, host->bounce_dma_addr);
-> +	dma_free_coherent(host->dev, PAGE_SIZE, host->descs,
-> +			  host->descs_dma_addr);
->  
->  	clk_disable_unprepare(host->cfg_div_clk);
->  	clk_disable_unprepare(host->core_clk);
-
-Please replace the usage of PAGE_SIZE above with a #define at the top of
-the driver for the max number of descriptors/segments.  Right now, if
-you wanted to change that, you'd have to change it in at least three
-places.
-
-Kevin
+Regards,
+Martin
