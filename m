@@ -1,23 +1,26 @@
-From: wsa@the-dreams.de (Wolfram Sang)
-Date: Thu, 23 Mar 2017 21:34:04 +0100
-Subject: [PATCH v4 05/10] i2c: meson: use full 12 bits for clock divider
-In-Reply-To: <fbc241ed-ec1e-b433-50af-5d0ebca09711@gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Fri, 24 Mar 2017 07:45:25 +0100
+Subject: [PATCH v4 03/10] i2c: meson: set clock divider in probe instead
+ of setting it for each transfer
+In-Reply-To: <20170323203156.jjsiu7hydebzh66l@ninjato>
 References: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
- <fbc241ed-ec1e-b433-50af-5d0ebca09711@gmail.com>
-Message-ID: <20170323203404.nuobb4wtgsepnilu@ninjato>
+ <c85a5f83-0013-001e-6c2d-3fe66c5267aa@gmail.com>
+ <20170323203156.jjsiu7hydebzh66l@ninjato>
+Message-ID: <de85eb92-d3b0-fdc4-2de0-f2b5f8e3436f@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Am 23.03.2017 um 21:31 schrieb Wolfram Sang:
+> On Tue, Mar 14, 2017 at 10:53:29PM +0100, Heiner Kallweit wrote:
+>> The bus frequency won't change, therefore we can set the clock divider
+>> in probe already and we don't have to set it for each transfer.
+> 
+> This is true for some SoCs, but not for all. So, some proof we can
+> really do it like this would be nice in the commit message, e.g. "parent
+> clock is fixed anyhow" or something.
+> 
+Here the bus frequency is fixed to what is set in DT. I'll extend
+the commit message.
 
-> +	/* clock divider has 12 bits */
-> +	WARN_ON(div >= (1 << 12));
-
-Do you insist on WARN_ON? I wonder what it gives over dev_err?
-
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 833 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170323/7e79ac35/attachment.sig>
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
