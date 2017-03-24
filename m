@@ -1,46 +1,31 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 24 Mar 2017 11:19:21 +0100
-Subject: [PATCH v4 04/10] i2c: meson: use i2c core for DT clock-frequency
- parsing
-In-Reply-To: <6aa0f7c1-1bd0-73eb-e05f-f733125bec8d@gmail.com>
-References: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
- <96c1b005-063e-ae22-ded4-fbb0b023f02b@gmail.com>
- <20170323203309.op7jepa4be2mwkop@ninjato>
- <6aa0f7c1-1bd0-73eb-e05f-f733125bec8d@gmail.com>
-Message-ID: <4b68440a-553e-05a7-15e7-c690f0bf8b58@baylibre.com>
+Date: Fri, 24 Mar 2017 17:52:10 +0100
+Subject: [RFT PATCH 5/6] pinctrl: meson: use gpio-ranges from DT
+In-Reply-To: <CAFBinCBa3QuUANF1z3LGk3T9GF-rV5F4WfLGuNCMB2q5juQyOw@mail.gmail.com>
+References: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
+ <1490286449-19448-6-git-send-email-narmstrong@baylibre.com>
+ <CAFBinCBa3QuUANF1z3LGk3T9GF-rV5F4WfLGuNCMB2q5juQyOw@mail.gmail.com>
+Message-ID: <45f14809-8303-b58b-1f38-7b76a3b7c00b@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/24/2017 07:47 AM, Heiner Kallweit wrote:
-> Am 23.03.2017 um 21:33 schrieb Wolfram Sang:
+On 03/23/2017 09:09 PM, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Thu, Mar 23, 2017 at 5:27 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> When trying to add a gpio-hog, we enter a weird loop where the gpio-ranges
+>> is needed when gpiochip_add_data() is called but in the current implementation
+>> the ranges are added from the driver afterwards.
 >>
->>> +- i2c-scl-falling-time-ns
->>> +  Number of nanoseconds the SCL signal takes to fall; t(f) in the I2C
->>> +  specification.
->>> +
->>> +- i2c-scl-internal-delay-ns
->>> +  Number of nanoseconds the IP core additionally needs to setup SCL.
->>> +
->>> +- i2c-scl-rising-time-ns
->>> +  Number of nanoseconds the SCL signal takes to rise; t(r) in the I2C
->>> +  specification.
->>> +
->>> +- i2c-sda-falling-time-ns
->>> +  Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
->>> +  specification.
->>
->> Those are not used currently. Can the driver be updated to make use of
->> them? Otherwise, we might just skip this section.
->>
-> Adding these properties was outcome of a discussion with Amlogic
-> maintainers. It's right that they aren't used by the driver and the
-> chip also provides no means to change the related timings.
-> So I will remove this part.
+>> A simple solution is to rely on the DR gpio-ranges attribute and remove the
+>> call to gpiochip_add_pin_range().
+> did you mean devicetree or DT instead of "DR"?
+> 
+> 
+> Regards,
+> Martin
 > 
 
-Hi Heiner,
-
-Indeed, these are not needed for Amlogic platform, you should remove them.
-I missed them in my review.
+Indeed, sorry for the typo.
 
 Neil
