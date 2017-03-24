@@ -1,41 +1,46 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Fri, 24 Mar 2017 08:27:59 +0100
-Subject: [PATCH 0/5] mmc: meson-gx: add cmd23 and descriptor chain mode
-In-Reply-To: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
-References: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
-Message-ID: <CAPDyKFrE97s3LohQDspy+9qDRfxC+ybcY_3FdLqpXupitqN2jw@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 24 Mar 2017 11:19:21 +0100
+Subject: [PATCH v4 04/10] i2c: meson: use i2c core for DT clock-frequency
+ parsing
+In-Reply-To: <6aa0f7c1-1bd0-73eb-e05f-f733125bec8d@gmail.com>
+References: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
+ <96c1b005-063e-ae22-ded4-fbb0b023f02b@gmail.com>
+ <20170323203309.op7jepa4be2mwkop@ninjato>
+ <6aa0f7c1-1bd0-73eb-e05f-f733125bec8d@gmail.com>
+Message-ID: <4b68440a-553e-05a7-15e7-c690f0bf8b58@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 15 March 2017 at 20:16, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> Apart from three minor improvements this patch series adds support
-> for CMD23 mode and switches the driver to descriptor chain mode.
->
-> On my system with a 128GB eMMC card this increased the read
-> performance from 10 - 15 MB/s to 140 MB/s.
->
-> Successfully tested on a Odroid C2 with custom uboot based on recent
-> mainline uboot. Behavior might be different with vendor uboot.
->
-> Heiner Kallweit (5):
->   mmc: meson-gx: switch irq name to DT node name
->   mmc: meson-gx: improve response reading
->   mmc: meson-gx: use block mode also for just one block
->   mmc: meson-gx: add support for CMD23 mode
->   mmc: meson-gx: switch to descriptor chain mode
->
->  drivers/mmc/host/meson-gx-mmc.c | 258 ++++++++++++++++++++++------------------
->  1 file changed, 142 insertions(+), 116 deletions(-)
->
-> --
-> 2.12.0
->
+On 03/24/2017 07:47 AM, Heiner Kallweit wrote:
+> Am 23.03.2017 um 21:33 schrieb Wolfram Sang:
+>>
+>>> +- i2c-scl-falling-time-ns
+>>> +  Number of nanoseconds the SCL signal takes to fall; t(f) in the I2C
+>>> +  specification.
+>>> +
+>>> +- i2c-scl-internal-delay-ns
+>>> +  Number of nanoseconds the IP core additionally needs to setup SCL.
+>>> +
+>>> +- i2c-scl-rising-time-ns
+>>> +  Number of nanoseconds the SCL signal takes to rise; t(r) in the I2C
+>>> +  specification.
+>>> +
+>>> +- i2c-sda-falling-time-ns
+>>> +  Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
+>>> +  specification.
+>>
+>> Those are not used currently. Can the driver be updated to make use of
+>> them? Otherwise, we might just skip this section.
+>>
+> Adding these properties was outcome of a discussion with Amlogic
+> maintainers. It's right that they aren't used by the driver and the
+> chip also provides no means to change the related timings.
+> So I will remove this part.
+> 
 
-Heiner,
+Hi Heiner,
 
-As I just applied the series for the "small refactoring", how do you
-want me to handle this one. Is it safe to apply on top or do you need
-to re-base it?
+Indeed, these are not needed for Amlogic platform, you should remove them.
+I missed them in my review.
 
-Kind regards
-Uffe
+Neil
