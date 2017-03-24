@@ -1,36 +1,20 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 24 Mar 2017 07:47:14 +0100
-Subject: [PATCH v4 04/10] i2c: meson: use i2c core for DT clock-frequency
- parsing
-In-Reply-To: <20170323203309.op7jepa4be2mwkop@ninjato>
+Date: Fri, 24 Mar 2017 07:49:04 +0100
+Subject: [PATCH v4 05/10] i2c: meson: use full 12 bits for clock divider
+In-Reply-To: <20170323203404.nuobb4wtgsepnilu@ninjato>
 References: <1a2ecdc8-a326-a7a7-22ec-658fd147daf4@gmail.com>
- <96c1b005-063e-ae22-ded4-fbb0b023f02b@gmail.com>
- <20170323203309.op7jepa4be2mwkop@ninjato>
-Message-ID: <6aa0f7c1-1bd0-73eb-e05f-f733125bec8d@gmail.com>
+ <fbc241ed-ec1e-b433-50af-5d0ebca09711@gmail.com>
+ <20170323203404.nuobb4wtgsepnilu@ninjato>
+Message-ID: <9858a64d-85de-0798-affc-ab97e36c365b@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 23.03.2017 um 21:33 schrieb Wolfram Sang:
+Am 23.03.2017 um 21:34 schrieb Wolfram Sang:
 > 
->> +- i2c-scl-falling-time-ns
->> +  Number of nanoseconds the SCL signal takes to fall; t(f) in the I2C
->> +  specification.
->> +
->> +- i2c-scl-internal-delay-ns
->> +  Number of nanoseconds the IP core additionally needs to setup SCL.
->> +
->> +- i2c-scl-rising-time-ns
->> +  Number of nanoseconds the SCL signal takes to rise; t(r) in the I2C
->> +  specification.
->> +
->> +- i2c-sda-falling-time-ns
->> +  Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
->> +  specification.
+>> +	/* clock divider has 12 bits */
+>> +	WARN_ON(div >= (1 << 12));
 > 
-> Those are not used currently. Can the driver be updated to make use of
-> them? Otherwise, we might just skip this section.
+> Do you insist on WARN_ON? I wonder what it gives over dev_err?
 > 
-Adding these properties was outcome of a discussion with Amlogic
-maintainers. It's right that they aren't used by the driver and the
-chip also provides no means to change the related timings.
-So I will remove this part.
+Right, as we just read the bus frequency from DT there's not
+really a benefit in seeing the call trace. I'll change it.
