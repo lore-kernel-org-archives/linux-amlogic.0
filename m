@@ -1,31 +1,52 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 24 Mar 2017 17:52:10 +0100
-Subject: [RFT PATCH 5/6] pinctrl: meson: use gpio-ranges from DT
-In-Reply-To: <CAFBinCBa3QuUANF1z3LGk3T9GF-rV5F4WfLGuNCMB2q5juQyOw@mail.gmail.com>
-References: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
- <1490286449-19448-6-git-send-email-narmstrong@baylibre.com>
- <CAFBinCBa3QuUANF1z3LGk3T9GF-rV5F4WfLGuNCMB2q5juQyOw@mail.gmail.com>
-Message-ID: <45f14809-8303-b58b-1f38-7b76a3b7c00b@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Fri, 24 Mar 2017 19:00:25 +0100
+Subject: [PATCH 0/5] mmc: meson-gx: add cmd23 and descriptor chain mode
+In-Reply-To: <CAPDyKFrE97s3LohQDspy+9qDRfxC+ybcY_3FdLqpXupitqN2jw@mail.gmail.com>
+References: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
+ <CAPDyKFrE97s3LohQDspy+9qDRfxC+ybcY_3FdLqpXupitqN2jw@mail.gmail.com>
+Message-ID: <459cf886-d01d-9d8b-ea6f-49bd0bdece07@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/23/2017 09:09 PM, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Thu, Mar 23, 2017 at 5:27 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
->> When trying to add a gpio-hog, we enter a weird loop where the gpio-ranges
->> is needed when gpiochip_add_data() is called but in the current implementation
->> the ranges are added from the driver afterwards.
+Am 24.03.2017 um 08:27 schrieb Ulf Hansson:
+> On 15 March 2017 at 20:16, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>> Apart from three minor improvements this patch series adds support
+>> for CMD23 mode and switches the driver to descriptor chain mode.
 >>
->> A simple solution is to rely on the DR gpio-ranges attribute and remove the
->> call to gpiochip_add_pin_range().
-> did you mean devicetree or DT instead of "DR"?
+>> On my system with a 128GB eMMC card this increased the read
+>> performance from 10 - 15 MB/s to 140 MB/s.
+>>
+>> Successfully tested on a Odroid C2 with custom uboot based on recent
+>> mainline uboot. Behavior might be different with vendor uboot.
+>>
+>> Heiner Kallweit (5):
+>>   mmc: meson-gx: switch irq name to DT node name
+>>   mmc: meson-gx: improve response reading
+>>   mmc: meson-gx: use block mode also for just one block
+>>   mmc: meson-gx: add support for CMD23 mode
+>>   mmc: meson-gx: switch to descriptor chain mode
+>>
+>>  drivers/mmc/host/meson-gx-mmc.c | 258 ++++++++++++++++++++++------------------
+>>  1 file changed, 142 insertions(+), 116 deletions(-)
+>>
+>> --
+>> 2.12.0
+>>
 > 
+> Heiner,
 > 
-> Regards,
-> Martin
+> As I just applied the series for the "small refactoring", how do you
+> want me to handle this one. Is it safe to apply on top or do you need
+> to re-base it?
 > 
+This series is superseded. I have reports that introducing descriptor
+chain mode breaks SDIO. I'm working on a fixed version which will
+need some more testing before I submit it.
 
-Indeed, sorry for the typo.
+Thanks for asking!
 
-Neil
+Rgds, Heiner
+
+> Kind regards
+> Uffe
+> 
