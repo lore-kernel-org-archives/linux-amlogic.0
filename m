@@ -1,30 +1,68 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 24 Mar 2017 11:58:17 -0700
-Subject: [PATCH 0/6] mmc: meson-gx: further smaller refactorings
-In-Reply-To: <8bf58a83-d8d7-615c-c89b-87a62a3c9c40@gmail.com> (Heiner
- Kallweit's message of "Wed, 22 Mar 2017 22:16:40 +0100")
-References: <8bf58a83-d8d7-615c-c89b-87a62a3c9c40@gmail.com>
-Message-ID: <m2lgruijsm.fsf@baylibre.com>
+Date: Fri, 24 Mar 2017 12:04:02 -0700
+Subject: [PATCH 5/5] mmc: meson-gx: switch to descriptor chain mode
+In-Reply-To: <57af6536-edf9-a2aa-40fe-a90338245d0e@gmail.com> (Heiner
+ Kallweit's message of "Wed, 15 Mar 2017 20:34:46 +0100")
+References: <f1f8dae2-e976-4d42-99dc-34d08cb3d628@gmail.com>
+ <57af6536-edf9-a2aa-40fe-a90338245d0e@gmail.com>
+Message-ID: <m2bmsqijj1.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Heiner,
+
 Heiner Kallweit <hkallweit1@gmail.com> writes:
 
-> Before we come to the functional changes here one more series with
-> smaller refactorings.
+> Switch the driver from using a linearized bounce buffer to descriptor
+> chain mode. This drastically improves performance.
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-Indeed, in looking at the DMA support series, my suggestion was going to
-be to separate out the minor cleanups into a separate series.  Thanks
-for anticipating that.
+I know this series needs a respin on top of your other cleanups, and
+I'll have a closer look at it then, but one comment for the respin...
 
-In the future, please also describe in the cover letter what platforms
-this series was tested on.
+[...]
 
-Otherwise, this series looks good to me.  Thanks again for your
-continued work in improving this driver.  It's greatly appreciated!
+>  static int meson_mmc_probe(struct platform_device *pdev)
+> @@ -764,15 +790,14 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>  
+>  	mmc->caps |= MMC_CAP_CMD23;
+>  	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
+> -	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
+> -
+> -	/* data bounce buffer */
+> -	host->bounce_buf_size = mmc->max_req_size;
+> -	host->bounce_buf =
+> -		dma_alloc_coherent(host->dev, host->bounce_buf_size,
+> -				   &host->bounce_dma_addr, GFP_KERNEL);
+> -	if (host->bounce_buf == NULL) {
+> -		dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
+> +	mmc->max_segs = PAGE_SIZE / sizeof(struct sd_emmc_desc);
+> +	mmc->max_seg_size = mmc->max_blk_count * mmc->max_blk_size;
+> +	mmc->max_req_size = mmc->max_seg_size * mmc->max_segs;
+> +
+> +	host->descs = dma_alloc_coherent(host->dev, PAGE_SIZE,
+> +					 &host->descs_dma_addr, GFP_KERNEL);
+> +	if (!host->descs) {
+> +		dev_err(host->dev, "Allocating descriptor DMA buffer failed\n");
+>  		ret = -ENOMEM;
+>  		goto err_div_clk;
+>  	}
+> @@ -797,8 +822,8 @@ static int meson_mmc_remove(struct platform_device *pdev)
+>  	/* disable interrupts */
+>  	writel(0, host->regs + SD_EMMC_IRQ_EN);
+>  
+> -	dma_free_coherent(host->dev, host->bounce_buf_size,
+> -			  host->bounce_buf, host->bounce_dma_addr);
+> +	dma_free_coherent(host->dev, PAGE_SIZE, host->descs,
+> +			  host->descs_dma_addr);
+>  
+>  	clk_disable_unprepare(host->cfg_div_clk);
+>  	clk_disable_unprepare(host->core_clk);
 
-For the series:
-
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Please replace the usage of PAGE_SIZE above with a #define at the top of
+the driver for the max number of descriptors/segments.  Right now, if
+you wanted to change that, you'd have to change it in at least three
+places.
 
 Kevin
