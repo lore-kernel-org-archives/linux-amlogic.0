@@ -1,17 +1,16 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sat, 25 Mar 2017 14:11:08 +0100
-Subject: [PATCH v5 08/10] i2c: meson: don't create separate token chain just
- for the stop command
+Date: Sat, 25 Mar 2017 14:12:04 +0100
+Subject: [PATCH v5 09/10] i2c: meson: remove meson_i2c_write_tokens
 In-Reply-To: <645519b8-93e6-57b1-ae8f-7804c6beb9b1@gmail.com>
 References: <645519b8-93e6-57b1-ae8f-7804c6beb9b1@gmail.com>
-Message-ID: <df09e8d9-71ae-2c7f-5a02-940e39d6de92@gmail.com>
+Message-ID: <c5bd5830-1ae5-ffd6-978e-3aef9cd68146@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-We can directly add the stop token to the token chain including the
-last transfer chunk. This is more efficient than creating a separate
-token chain just for the stop command.
-And it allows us to get rid of state STATE_STOP completely.
+meson_i2c_write_tokens is always called directly after
+meson_i2c_prepare_xfer (and only then). So we can simplify the code by
+removing meson_i2c_write_tokens and moving the two statements of
+meson_i2c_write_tokens to the end of meson_i2c_prepare_xfer. 
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
@@ -24,70 +23,57 @@ v4:
 v5:
 - no changes
 ---
- drivers/i2c/busses/i2c-meson.c | 23 +++++------------------
- 1 file changed, 5 insertions(+), 18 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 081d5b0c..8a088d26 100644
+index 8a088d26..d3c33ee4 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -55,7 +55,6 @@ enum {
- 	STATE_IDLE,
- 	STATE_READ,
- 	STATE_WRITE,
--	STATE_STOP,
- };
+@@ -123,12 +123,6 @@ static void meson_i2c_add_token(struct meson_i2c *i2c, int token)
+ 	i2c->num_tokens++;
+ }
  
- /**
-@@ -208,19 +207,9 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
- 
- 	if (write)
- 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+-static void meson_i2c_write_tokens(struct meson_i2c *i2c)
+-{
+-	writel(i2c->tokens[0], i2c->regs + REG_TOK_LIST0);
+-	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
 -}
 -
--static void meson_i2c_stop(struct meson_i2c *i2c)
--{
--	dev_dbg(i2c->dev, "%s: last %d\n", __func__, i2c->last);
+ static void meson_i2c_set_clk_div(struct meson_i2c *i2c, unsigned int freq)
+ {
+ 	unsigned long clk_rate = clk_get_rate(i2c->clk);
+@@ -210,6 +204,9 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
  
--	if (i2c->last) {
--		i2c->state = STATE_STOP;
-+	if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
+ 	if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
  		meson_i2c_add_token(i2c, TOKEN_STOP);
--	} else {
--		i2c->state = STATE_IDLE;
--		complete(&i2c->done);
--	}
++
++	writel(i2c->tokens[0], i2c->regs + REG_TOK_LIST0);
++	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
  }
  
  static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
-@@ -265,7 +254,8 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 		}
- 
- 		if (i2c->pos >= i2c->msg->len) {
--			meson_i2c_stop(i2c);
-+			i2c->state = STATE_IDLE;
-+			complete(&i2c->done);
- 			break;
- 		}
- 
-@@ -275,16 +265,13 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 		i2c->pos += i2c->count;
- 
- 		if (i2c->pos >= i2c->msg->len) {
--			meson_i2c_stop(i2c);
-+			i2c->state = STATE_IDLE;
-+			complete(&i2c->done);
- 			break;
- 		}
- 
- 		meson_i2c_prepare_xfer(i2c);
- 		break;
--	case STATE_STOP:
--		i2c->state = STATE_IDLE;
--		complete(&i2c->done);
--		break;
+@@ -275,12 +272,10 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
  	}
  
  out:
+-	if (i2c->state != STATE_IDLE) {
++	if (i2c->state != STATE_IDLE)
+ 		/* Restart the processing */
+-		meson_i2c_write_tokens(i2c);
+ 		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
+ 				   REG_CTRL_START);
+-	}
+ 
+ 	spin_unlock(&i2c->lock);
+ 
+@@ -321,7 +316,6 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+ 
+ 	i2c->state = (msg->flags & I2C_M_RD) ? STATE_READ : STATE_WRITE;
+ 	meson_i2c_prepare_xfer(i2c);
+-	meson_i2c_write_tokens(i2c);
+ 	reinit_completion(&i2c->done);
+ 
+ 	/* Start the transfer */
 -- 
 2.12.0
