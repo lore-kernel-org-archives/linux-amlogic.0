@@ -1,17 +1,14 @@
-From: pmeerw@pmeerw.net (Peter Meerwald-Stadler)
-Date: Sat, 25 Mar 2017 17:45:22 +0100 (CET)
+From: jic23@kernel.org (Jonathan Cameron)
+Date: Sat, 25 Mar 2017 18:13:49 +0000
 Subject: [PATCH 2/2] iio: adc: meson-saradc: add Meson8b SoC compatibility
 In-Reply-To: <20170325162938.28659-3-martin.blumenstingl@googlemail.com>
 References: <20170325162938.28659-1-martin.blumenstingl@googlemail.com>
  <20170325162938.28659-3-martin.blumenstingl@googlemail.com>
-Message-ID: <alpine.DEB.2.20.1703251742330.25208@vps.pmeerw.net>
+Message-ID: <231f1fef-e947-3461-2e5b-99d80abfa73a@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 25 Mar 2017, Martin Blumenstingl wrote:
-
-nitpicking below
-
+On 25/03/17 16:29, Martin Blumenstingl wrote:
 > Meson GX SoCs however use some magic bits to prevent simultaneous (=
 > conflicting, because only consumer should use the FIFO buffer with the
 > ADC results) usage by the Linux kernel and the bootloader (the BL30
@@ -30,6 +27,12 @@ nitpicking below
 > wired up in the corresponding DT.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Looks sensible to me. Just fix those bits from Peter and we'll let it sit
+a few days on the list to see if anyone else wants to chip in.
+
+Thanks,
+
+Jonathan
 > ---
 >  drivers/iio/adc/meson_saradc.c | 70 +++++++++++++++++++++++++++---------------
 >  1 file changed, 46 insertions(+), 24 deletions(-)
@@ -43,9 +46,6 @@ nitpicking below
 >  
 >  struct meson_sar_adc_data {
 > +	char					has_bl30_integration;
-
-bool?
-
 >  	unsigned int				resolution;
 >  	const char				*name;
 >  };
@@ -74,9 +74,6 @@ bool?
 > +
 > +		/*
 > +		 * wait until BL30 releases it's lock (so we can use the SAR
-
-its
-
 > +		 * ADC)
 > +		 */
 > +		do {
@@ -135,18 +132,12 @@ its
 >  
 > +struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
 > +	.has_bl30_integration = 0,
-
-= false
-
 > +	.resolution = 10,
 > +	.name = "meson-meson8b-saradc",
 > +};
 > +
 >  struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
 > +	.has_bl30_integration = 1,
-
-= true
-
 >  	.resolution = 10,
 >  	.name = "meson-gxbb-saradc",
 >  };
@@ -173,8 +164,3 @@ its
 >  		.data = &meson_sar_adc_gxbb_data,
 >  	}, {
 > 
-
--- 
-
-Peter Meerwald-Stadler
-Mobile: +43 664 24 44 418
