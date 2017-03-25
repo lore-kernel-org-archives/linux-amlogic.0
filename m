@@ -1,79 +1,45 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sat, 25 Mar 2017 11:28:13 +0100
-Subject: [PATCH v2 4/4] mmc: meson-gx: add CMD23 mode
-In-Reply-To: <aae9e7c7-d8a2-72b1-22f7-f0ad513d4667@gmail.com>
-References: <aae9e7c7-d8a2-72b1-22f7-f0ad513d4667@gmail.com>
-Message-ID: <2802b35f-7f45-223c-11c4-3a51563b3330@gmail.com>
+Date: Sat, 25 Mar 2017 13:57:00 +0100
+Subject: [PATCH v5 00/10] i2c: meson: series with improvements
+Message-ID: <645519b8-93e6-57b1-ae8f-7804c6beb9b1@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-CMD23 mode (use "set block count" command before transferring multiple
-data blocks) typically is more performant as host / card know upfront
-how many data blocks to expect. Therefore add support for this mode to
-the driver.
+This patch series includes several improvements for the i2c-meson
+driver.
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
----
-v2:
-- no changes
----
- drivers/mmc/host/meson-gx-mmc.c | 21 +++++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
+Changes in v2:
+- removed patches 8 and 12
+- removed one small change in patch 6
+- don't print error message in patch 7
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 810b68d5..f5dd5cc7 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -175,6 +175,17 @@ static unsigned int meson_mmc_get_timeout_msecs(struct mmc_data *data)
- 	return min(timeout, 32768U); /* max. 2^15 ms */
- }
- 
-+static struct mmc_command *meson_mmc_get_next_command(struct mmc_command *cmd)
-+{
-+	if (cmd->opcode == MMC_SET_BLOCK_COUNT && !cmd->error)
-+		return cmd->mrq->cmd;
-+	else if (mmc_op_multi(cmd->opcode) &&
-+		 (!cmd->mrq->sbc || cmd->error || cmd->data->error))
-+		return cmd->mrq->stop;
-+	else
-+		return NULL;
-+}
-+
- static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
- {
- 	struct mmc_host *mmc = host->mmc;
-@@ -620,7 +631,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- {
- 	struct meson_host *host = dev_id;
--	struct mmc_command *cmd = host->cmd;
-+	struct mmc_command *next_cmd, *cmd = host->cmd;
- 	struct mmc_data *data;
- 	unsigned int xfer_bytes;
- 
-@@ -635,10 +646,11 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
- 				    host->bounce_buf, xfer_bytes);
- 	}
- 
--	if (!data || !data->stop || cmd->mrq->sbc)
--		meson_mmc_request_done(host->mmc, cmd->mrq);
-+	next_cmd = meson_mmc_get_next_command(cmd);
-+	if (next_cmd)
-+		meson_mmc_start_cmd(host->mmc, next_cmd);
- 	else
--		meson_mmc_start_cmd(host->mmc, data->stop);
-+		meson_mmc_request_done(host->mmc, cmd->mrq);
- 
- 	return IRQ_HANDLED;
- }
-@@ -750,6 +762,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_div_clk;
- 
-+	mmc->caps |= MMC_CAP_CMD23;
- 	mmc->max_blk_count = CMD_CFG_LENGTH_MASK;
- 	mmc->max_req_size = mmc->max_blk_count * mmc->max_blk_size;
- 
+Changes in v3:
+- changed order of patches 3, 4, 5 what makes the patches more simple
+- remove one change from patch 7 to still properly deal with timeouts
+
+Changes in v4:
+- update DT binding documentation as part of patch 4
+
+Changes in v5:
+- extend commit message for patch 3
+- remove unused properties from binding documentation in patch 4
+- replace WARN_ON with dev_err in patch 5
+
+Heiner Kallweit (12):
+  i2c: meson: use min instead of min_t where min_t isn't needed
+  i2c: meson: remove member irq from struct meson_i2c
+  i2c: meson: set clock divider in probe instead of setting it for each transfer
+  i2c: meson: use i2c core for DT clock-frequency parsing
+  i2c: meson: use full 12 bits for clock divider
+  i2c: meson: remove variable count from meson_i2c_xfer
+  i2c: meson: improve interrupt handler and detect spurious interrupts
+  i2c: meson: don't create separate token chain just for the stop command
+  i2c: meson: remove meson_i2c_write_tokens
+  i2c: meson: improve and simplify interrupt handler
+
+ .../devicetree/bindings/i2c/i2c-meson.txt          |   2 +
+ drivers/i2c/busses/i2c-meson.c                     | 135 ++++++++-------------
+ 2 files changed, 55 insertions(+), 82 deletions(-)
+
 -- 
 2.12.0
