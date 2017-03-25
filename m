@@ -1,14 +1,17 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sat, 25 Mar 2017 14:14:08 +0100
-Subject: [PATCH v5 10/10] i2c: meson: improve and simplify interrupt handler
+Date: Sat, 25 Mar 2017 14:11:08 +0100
+Subject: [PATCH v5 08/10] i2c: meson: don't create separate token chain just
+ for the stop command
 In-Reply-To: <645519b8-93e6-57b1-ae8f-7804c6beb9b1@gmail.com>
 References: <645519b8-93e6-57b1-ae8f-7804c6beb9b1@gmail.com>
-Message-ID: <5ffdcebd-1dc7-8263-acf6-38ea02e50b16@gmail.com>
+Message-ID: <df09e8d9-71ae-2c7f-5a02-940e39d6de92@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The preceding changes in this patch series now allow to simplify
-the interrupt handler significantly.
+We can directly add the stop token to the token chain including the
+last transfer chunk. This is more efficient than creating a separate
+token chain just for the stop command.
+And it allows us to get rid of state STATE_STOP completely.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
@@ -21,64 +24,70 @@ v4:
 v5:
 - no changes
 ---
- drivers/i2c/busses/i2c-meson.c | 40 ++++++++++------------------------------
- 1 file changed, 10 insertions(+), 30 deletions(-)
+ drivers/i2c/busses/i2c-meson.c | 23 +++++------------------
+ 1 file changed, 5 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index d3c33ee4..bccebd28 100644
+index 081d5b0c..8a088d26 100644
 --- a/drivers/i2c/busses/i2c-meson.c
 +++ b/drivers/i2c/busses/i2c-meson.c
-@@ -242,41 +242,21 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
- 		goto out;
+@@ -55,7 +55,6 @@ enum {
+ 	STATE_IDLE,
+ 	STATE_READ,
+ 	STATE_WRITE,
+-	STATE_STOP,
+ };
+ 
+ /**
+@@ -208,19 +207,9 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
+ 
+ 	if (write)
+ 		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+-}
+-
+-static void meson_i2c_stop(struct meson_i2c *i2c)
+-{
+-	dev_dbg(i2c->dev, "%s: last %d\n", __func__, i2c->last);
+ 
+-	if (i2c->last) {
+-		i2c->state = STATE_STOP;
++	if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
+ 		meson_i2c_add_token(i2c, TOKEN_STOP);
+-	} else {
+-		i2c->state = STATE_IDLE;
+-		complete(&i2c->done);
+-	}
+ }
+ 
+ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+@@ -265,7 +254,8 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		}
+ 
+ 		if (i2c->pos >= i2c->msg->len) {
+-			meson_i2c_stop(i2c);
++			i2c->state = STATE_IDLE;
++			complete(&i2c->done);
+ 			break;
+ 		}
+ 
+@@ -275,16 +265,13 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		i2c->pos += i2c->count;
+ 
+ 		if (i2c->pos >= i2c->msg->len) {
+-			meson_i2c_stop(i2c);
++			i2c->state = STATE_IDLE;
++			complete(&i2c->done);
+ 			break;
+ 		}
+ 
+ 		meson_i2c_prepare_xfer(i2c);
+ 		break;
+-	case STATE_STOP:
+-		i2c->state = STATE_IDLE;
+-		complete(&i2c->done);
+-		break;
  	}
  
--	switch (i2c->state) {
--	case STATE_READ:
--		if (i2c->count > 0) {
--			meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos,
--					   i2c->count);
--			i2c->pos += i2c->count;
--		}
--
--		if (i2c->pos >= i2c->msg->len) {
--			i2c->state = STATE_IDLE;
--			complete(&i2c->done);
--			break;
--		}
--
--		meson_i2c_prepare_xfer(i2c);
--		break;
--	case STATE_WRITE:
--		i2c->pos += i2c->count;
-+	if (i2c->state == STATE_READ && i2c->count)
-+		meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
- 
--		if (i2c->pos >= i2c->msg->len) {
--			i2c->state = STATE_IDLE;
--			complete(&i2c->done);
--			break;
--		}
-+	i2c->pos += i2c->count;
- 
--		meson_i2c_prepare_xfer(i2c);
--		break;
-+	if (i2c->pos >= i2c->msg->len) {
-+		i2c->state = STATE_IDLE;
-+		complete(&i2c->done);
-+		goto out;
- 	}
- 
-+	/* Restart the processing */
-+	meson_i2c_prepare_xfer(i2c);
-+	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, REG_CTRL_START);
  out:
--	if (i2c->state != STATE_IDLE)
--		/* Restart the processing */
--		meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START,
--				   REG_CTRL_START);
--
- 	spin_unlock(&i2c->lock);
- 
- 	return IRQ_HANDLED;
 -- 
 2.12.0
