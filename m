@@ -1,81 +1,59 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Mon, 27 Mar 2017 21:57:11 +0200
-Subject: [PATCH 1/2] mmc: meson-gx: factor out setting block size
-Message-ID: <b9a9a85b-8975-abca-7901-b557ea7ccc13@gmail.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Mon, 27 Mar 2017 13:02:16 -0700
+Subject: [PATCH v2 0/5] clk: meson: Fix GXBB and GXL/GXM GP0 PLL
+In-Reply-To: <1490178747-14837-1-git-send-email-narmstrong@baylibre.com>
+References: <1490178747-14837-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <149064493648.54062.5595306508519104671@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Factor out setting the block size. This also contributes to reducing
-complexity of function meson_mmc_start_cmd.
+Hi Neil,
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 42 ++++++++++++++++++++++++++---------------
- 1 file changed, 27 insertions(+), 15 deletions(-)
+Quoting Neil Armstrong (2017-03-22 03:32:22)
+> This patchset fixes support for the Amlogic GXBB then GXL/GXM embedded GP0 PLL.
+> 
+> The current support is done via a very generic interface where only the
+> N/M/OD parameters are changed in the control registers.
+> 
+> But unlike the Fixed PLL, this PLL is not initialized by the bootloader or
+> firmware, and needs some parameters to initialize and lock correctly.
+> 
+> This patchset also adds the GXL variant compatible string which is already
+> supported by the GXL and GXM DT nodes.
+> 
+> Changes since v1 at [1]:
+>  - Rebase on the Mali clocks patchset at [2]
+>  - also depends on v2 Audio Clocks patchset from Jerome Brunet at [3]
+>  - Add match table and separate tables for gxl
+>  - Switch to probe function to use match table data only
+>  - Rename unreset_for_lock to clear_reset_for_lock
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index f5dd5cc7..0de32008 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -431,12 +431,36 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
- 	mmc_request_done(host->mmc, mrq);
- }
- 
-+static void meson_mmc_set_blksz(struct mmc_host *mmc, unsigned int blksz)
-+{
-+	struct meson_host *host = mmc_priv(mmc);
-+	u32 cfg, blksz_old;
-+
-+	cfg = readl(host->regs + SD_EMMC_CFG);
-+	blksz_old = FIELD_GET(CFG_BLK_LEN_MASK, cfg);
-+
-+	if (!is_power_of_2(blksz))
-+		dev_err(host->dev, "blksz %u is not a power of 2\n", blksz);
-+
-+	blksz = ilog2(blksz);
-+
-+	/* check if block-size matches, if not update */
-+	if (blksz == blksz_old)
-+		return;
-+
-+	dev_dbg(host->dev, "%s: update blk_len %d -> %d\n", __func__,
-+		blksz_old, blksz);
-+
-+	cfg &= ~CFG_BLK_LEN_MASK;
-+	cfg |= FIELD_PREP(CFG_BLK_LEN_MASK, blksz);
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+}
-+
- static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- {
- 	struct meson_host *host = mmc_priv(mmc);
- 	struct mmc_data *data = cmd->data;
--	u32 cfg, cmd_cfg = 0, cmd_data = 0;
--	u8 blk_len;
-+	u32 cmd_cfg = 0, cmd_data = 0;
- 	unsigned int xfer_bytes = 0;
- 
- 	/* Setup descriptors */
-@@ -470,19 +494,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
- 			cmd_cfg |= CMD_CFG_BLOCK_MODE;
- 			cmd_cfg |= FIELD_PREP(CMD_CFG_LENGTH_MASK,
- 					      data->blocks);
--
--			/* check if block-size matches, if not update */
--			cfg = readl(host->regs + SD_EMMC_CFG);
--			blk_len = FIELD_GET(CFG_BLK_LEN_MASK, cfg);
--			if (blk_len != ilog2(data->blksz)) {
--				dev_dbg(host->dev, "%s: update blk_len %d -> %d\n",
--					__func__, blk_len,
--					ilog2(data->blksz));
--				blk_len = ilog2(data->blksz);
--				cfg &= ~CFG_BLK_LEN_MASK;
--				cfg |= FIELD_PREP(CFG_BLK_LEN_MASK, blk_len);
--				writel(cfg, host->regs + SD_EMMC_CFG);
--			}
-+			meson_mmc_set_blksz(mmc, data->blksz);
- 		} else {
- 			cmd_cfg |= FIELD_PREP(CMD_CFG_LENGTH_MASK, data->blksz);
- 		}
--- 
-2.12.1
+Thanks for the quick changes. Applied to clk-meson, a stable branch,
+which was merged into clk-next.
+
+Best regards,
+Mike
+
+> 
+> [1] http://lkml.kernel.org/r/1489411604-18700-1-git-send-email-narmstrong at baylibre.com
+> [2] http://lkml.kernel.org/r/1490177935-9646-1-git-send-email-narmstrong at baylibre.com
+> [3] http://lkml.kernel.org/r/20170309104154.28295-1-jbrunet at baylibre.com
+> 
+> Neil Armstrong (5):
+>   clk: meson: Add support for parameters for specific PLLs
+>   clk: meson-gxbb: Add GP0 PLL init parameters
+>   clk: meson-gxbb: Add GXL/GXM GP0 Variant
+>   clk: meson-gxbb: Expose GP0 dt-bindings clock id
+>   dt-bindings: clock: gxbb-clkc: Add GXL compatible variant
+> 
+>  .../bindings/clock/amlogic,gxbb-clkc.txt           |   3 +-
+>  drivers/clk/meson/clk-pll.c                        |  53 +++-
+>  drivers/clk/meson/clkc.h                           |  23 ++
+>  drivers/clk/meson/gxbb.c                           | 314 +++++++++++++++++++--
+>  drivers/clk/meson/gxbb.h                           |   4 +-
+>  include/dt-bindings/clock/gxbb-clkc.h              |   1 +
+>  6 files changed, 366 insertions(+), 32 deletions(-)
+> 
+> -- 
+> 1.9.1
+> 
