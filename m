@@ -1,73 +1,60 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Mon, 27 Mar 2017 15:36:47 +0530
-Subject: [PATCH v2] phy: meson8b-usb2: fix offsets for some of the
- registers
-In-Reply-To: <CAFBinCB_Om_XJ4ubTQbFcGzqYxGrVYhn1fJpB5Um1b-S7k3ohA@mail.gmail.com>
-References: <20170113185358.8362-1-martin.blumenstingl@googlemail.com>
- <20170304102011.14944-1-martin.blumenstingl@googlemail.com>
- <CAFBinCB_Om_XJ4ubTQbFcGzqYxGrVYhn1fJpB5Um1b-S7k3ohA@mail.gmail.com>
-Message-ID: <fbac4a02-6aae-c763-b632-7b3d3fb3a413@ti.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 27 Mar 2017 09:59:48 -0700
+Subject: [RFC PATCH] clk: meson: gxbb: remove the "cpu_clk"
+In-Reply-To: <1490550707.29739.21.camel@baylibre.com> (Jerome Brunet's message
+ of "Sun, 26 Mar 2017 19:51:47 +0200")
+References: <20170326110602.23379-1-martin.blumenstingl@googlemail.com>
+ <1490550707.29739.21.camel@baylibre.com>
+Message-ID: <m2mvc6d5a3.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
+> On Sun, 2017-03-26 at 13:06 +0200, Martin Blumenstingl wrote:
+>> It seems that the "cpu_clk" was carried over from the meson8b clock
+>> controller driver. On Meson GX (GXBB/GXL/GXM) the registers which are
+>> used by the cpu_clk have a different purpose (in other words: they don't
+>> control the CPU clock anymore). HHI_SYS_CPU_CLK_CNTL1 bits 31:24 are
+>> reserved according to the public S905 datasheet, while bit 23 is the
+>> "A53_trace_clk_DIS" gate (which according to the datasheet should only
+>> be used in case a silicon bug is discovered) and bits 22:20 are a
+>> divider (A53_trace_clk). The meson clk-cpu code however expects that
+>> bits 28:20 are reserved for a divider (according to the public S805
+>> datasheet this "SCALE_DIV: This value represents an N+1 divider of the
+>> input clock.").
+>> 
+>> The CPU clock on Meson GX SoCs is provided by the SCPI DVFS clock
+>> driver instead. Two examples from a Meson GXL S905X SoC:
+>> - vcpu (SCPI DVFS clock 0) rate: 1000000000 / cpu_clk rate: 708000000
+>> - vcpu (SCPI DVFS clock 0) rate: 1512000000 / cpu_clk rate: 708000000
+>> 
+>
+> Thanks for catching this Martin! Looking at the difference between the S805 and
+> S905 register description, it makes no sense that we used the same clock driver
+> for what's behind HHI_SYS_CPU_CLK_CNTL1. I agree, it should be removed from the
+> gxbb clock controller.
+>
+>> Unfortunately the CLKID_CPUCLK was already exported (but is currently
+>> not used) to DT.
+>> 
+>> This is an RFC because I would like to hear other people's opinion on
+>> how to clean up the CLKID_CPUCLK (as it leaves a "hole" in
+>> gxbb_hw_onecell_data and changes the DT API (by removing a currently
+>> unused #define).
+>> 
+>
+> In general the DT ABI should be stable but since no one is using this ID, and
+> what it refers to is clearly wrong, I don't think we would disrupt anything by
+> removing it.
+>
+> For the "hole" in the ids, Neil and I had similar problem while working other
+> topics. We managed to dodge it but I think it was only a matter of time ...
+>
+> In the end, it is not a big deal if there is holes in the onecell_data, as long
+> as we take care to avoid it when we register the clocks:
 
-On Saturday 25 March 2017 12:49 AM, Martin Blumenstingl wrote:
-> Hi Kishon,
-> 
-> On Sat, Mar 4, 2017 at 11:20 AM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> The register offsets for REG_DBG_UART (and all following) were off by
->> 0x4. This was not a problem yet because these registers are currently
->> not used by the driver.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> gentle ping - please let me know if something is missing (for example
-> some ACK orreview) before you are going to apply this
-> 
-merged it now.
+Agreed.  It's better to have holes in the clkid space than to introduce
+DT incompatibility.
 
-Thanks
-Kishon
-
->> ---
->> changes since v1:
->> - added Jerome's Reviewed-By
->>
->>  drivers/phy/phy-meson8b-usb2.c | 6 +++---
->>  1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
->> index 33c9f4ba157d..30f56a6a411f 100644
->> --- a/drivers/phy/phy-meson8b-usb2.c
->> +++ b/drivers/phy/phy-meson8b-usb2.c
->> @@ -81,9 +81,9 @@
->>         #define REG_ADP_BC_ACA_PIN_GND                  BIT(25)
->>         #define REG_ADP_BC_ACA_PIN_FLOAT                BIT(26)
->>
->> -#define REG_DBG_UART                                   0x14
->> +#define REG_DBG_UART                                   0x10
->>
->> -#define REG_TEST                                       0x18
->> +#define REG_TEST                                       0x14
->>         #define REG_TEST_DATA_IN_MASK                   GENMASK(3, 0)
->>         #define REG_TEST_EN_MASK                        GENMASK(7, 4)
->>         #define REG_TEST_ADDR_MASK                      GENMASK(11, 8)
->> @@ -93,7 +93,7 @@
->>         #define REG_TEST_DATA_OUT_MASK                  GENMASK(19, 16)
->>         #define REG_TEST_DISABLE_ID_PULLUP              BIT(20)
->>
->> -#define REG_TUNE                                       0x1c
->> +#define REG_TUNE                                       0x18
->>         #define REG_TUNE_TX_RES_TUNE_MASK               GENMASK(1, 0)
->>         #define REG_TUNE_TX_HSXV_TUNE_MASK              GENMASK(3, 2)
->>         #define REG_TUNE_TX_VREF_TUNE_MASK              GENMASK(7, 4)
->> --
->> 2.12.0
->>
-> 
-> 
-> Regards,
-> Martin
-> 
+Kevin
