@@ -1,49 +1,49 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 28 Mar 2017 16:46:05 +0200
-Subject: [PATCH v1 8/8] dt-bindings: clock: gxbb: expose spdif master clock
-In-Reply-To: <20170328144605.25278-1-jbrunet@baylibre.com>
-References: <20170328144605.25278-1-jbrunet@baylibre.com>
-Message-ID: <20170328144605.25278-9-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 28 Mar 2017 07:49:54 -0700
+Subject: [PATCH v4 3/3] ARM64: dts: meson-gx: Add MALI nodes for GXBB and
+ GXL
+In-Reply-To: <149064443540.54062.12740186024138662455@resonance> (Michael
+ Turquette's message of "Mon, 27 Mar 2017 12:53:55 -0700")
+References: <1490177935-9646-1-git-send-email-narmstrong@baylibre.com>
+ <1490177935-9646-4-git-send-email-narmstrong@baylibre.com>
+ <m237e2iirk.fsf@baylibre.com>
+ <149064443540.54062.12740186024138662455@resonance>
+Message-ID: <m2d1d1bgml.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Expose the spdif master clock and the mux to select the appropriate spdif
-clock parent depending on the data source.
+Michael Turquette <mturquette@baylibre.com> writes:
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/gxbb.h              | 4 ++--
- include/dt-bindings/clock/gxbb-clkc.h | 2 ++
- 2 files changed, 4 insertions(+), 2 deletions(-)
+> Quoting Kevin Hilman (2017-03-24 12:20:31)
+>> Neil Armstrong <narmstrong@baylibre.com> writes:
+>> 
+>> > The same MALI-450 MP3 GPU is present in the GXBB and GXL SoCs.
+>> >
+>> > The node is simply added in the meson-gxbb.dtsi file.
+>> >
+>> > For GXL, since a lot is shared with the GXM that has a MALI-T820 IP, this
+>> > patch adds a new meson-gxl-mali.dtsi and is included in the SoC specific
+>> > dtsi files.
+>> >
+>> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> 
+>> LGTM, I can apply this when the clk driver changes are merged (feel free
+>> to let me know when that happens, in case I'm not paying attention.)
+>
+> Applied to clk-meson, a stable branch, which has been merged into
+> clk-next.
+>
+> Kevin, the dtsi is all yours.
 
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index 742bc3b42565..17c6aef033ff 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -280,10 +280,10 @@
- /* CLKID_CTS_AMCLK */
- #define CLKID_CTS_AMCLK_SEL	  108
- #define CLKID_CTS_AMCLK_DIV	  109
--#define CLKID_CTS_MCLK_I958	  110
-+/* CLKID_CTS_MCLK_I958 */
- #define CLKID_CTS_MCLK_I958_SEL	  111
- #define CLKID_CTS_MCLK_I958_DIV	  112
--#define CLKID_CTS_I958		  113
-+/* CLKID_CTS_I958 */
- 
- #define NR_CLKS			  114
- 
-diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-index 0d231bef92e0..4516bc4253b5 100644
---- a/include/dt-bindings/clock/gxbb-clkc.h
-+++ b/include/dt-bindings/clock/gxbb-clkc.h
-@@ -44,5 +44,7 @@
- #define CLKID_MALI_1		105
- #define CLKID_MALI		106
- #define CLKID_CTS_AMCLK		107
-+#define CLKID_CTS_MCLK_I958	110
-+#define CLKID_CTS_I958		113
- 
- #endif /* __GXBB_CLKC_H */
--- 
-2.9.3
+Thanks, I applied it...
+
+>> 
+>> <bikeshed>
+>> nit: This series (and previous ones) use MALI, but I believe the correct
+>> way is Mali. Could you standarize on that throughout the series?
+>> </bikeshed>
+>> 
+
+... after s/MALI/Mali/ in the changelog.
+
+Kevin
