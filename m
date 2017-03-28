@@ -1,55 +1,43 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 28 Mar 2017 16:51:55 +0200
-Subject: [PATCH v4 3/3] ARM64: dts: meson-gx: Add MALI nodes for GXBB and
- GXL
-In-Reply-To: <m2d1d1bgml.fsf@baylibre.com>
-References: <1490177935-9646-1-git-send-email-narmstrong@baylibre.com>
- <1490177935-9646-4-git-send-email-narmstrong@baylibre.com>
- <m237e2iirk.fsf@baylibre.com>
- <149064443540.54062.12740186024138662455@resonance>
- <m2d1d1bgml.fsf@baylibre.com>
-Message-ID: <9c4e31be-1008-4ca3-a7d2-a0389f6c57cd@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 28 Mar 2017 07:57:40 -0700
+Subject: [RFT PATCH 5/6] pinctrl: meson: use gpio-ranges from DT
+In-Reply-To: <c575d8e4-05ca-8eb0-8b64-24a65a5711a7@baylibre.com> (Neil
+ Armstrong's message of "Tue, 28 Mar 2017 11:38:20 +0200")
+References: <1490286449-19448-1-git-send-email-narmstrong@baylibre.com>
+ <1490286449-19448-6-git-send-email-narmstrong@baylibre.com>
+ <CACRpkdZqfwKZ=2SQzr_D5-M5em+7JBS7eUaJ_VH33uV5AZ8xRw@mail.gmail.com>
+ <c575d8e4-05ca-8eb0-8b64-24a65a5711a7@baylibre.com>
+Message-ID: <m27f39bg9n.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/28/2017 04:49 PM, Kevin Hilman wrote:
-> Michael Turquette <mturquette@baylibre.com> writes:
-> 
->> Quoting Kevin Hilman (2017-03-24 12:20:31)
->>> Neil Armstrong <narmstrong@baylibre.com> writes:
->>>
->>>> The same MALI-450 MP3 GPU is present in the GXBB and GXL SoCs.
->>>>
->>>> The node is simply added in the meson-gxbb.dtsi file.
->>>>
->>>> For GXL, since a lot is shared with the GXM that has a MALI-T820 IP, this
->>>> patch adds a new meson-gxl-mali.dtsi and is included in the SoC specific
->>>> dtsi files.
->>>>
->>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>>
->>> LGTM, I can apply this when the clk driver changes are merged (feel free
->>> to let me know when that happens, in case I'm not paying attention.)
->>
->> Applied to clk-meson, a stable branch, which has been merged into
->> clk-next.
->>
->> Kevin, the dtsi is all yours.
-> 
-> Thanks, I applied it...
-> 
->>>
->>> <bikeshed>
->>> nit: This series (and previous ones) use MALI, but I believe the correct
->>> way is Mali. Could you standarize on that throughout the series?
->>> </bikeshed>
->>>
-> 
-> ... after s/MALI/Mali/ in the changelog.
-> 
-> Kevin
-> 
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Thanks Kevin,
+> On 03/28/2017 11:30 AM, Linus Walleij wrote:
+>> On Thu, Mar 23, 2017 at 5:27 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> 
+>> '> When trying to add a gpio-hog, we enter a weird loop where the gpio-ranges
+>>> is needed when gpiochip_add_data() is called but in the current implementation
+>>> the ranges are added from the driver afterwards.
+>>>
+>>> A simple solution is to rely on the DR gpio-ranges attribute and remove the
+>>> call to gpiochip_add_pin_range().
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> 
+>> This is fine once the ranges have been applied to the device trees I guess.
+>> 
+>> Tell me when you want me to merge this.
+>> 
+>> Yours,
+>> Linus Walleij
+>> 
+>
+> Hi Linus,
+>
+> Kevin should merge the DT patches since they have now Tested and Reviewed by's, so you can merge it now if you can.
+> Since it will live in you pinctrl tree, it will only impact linux-next until Kevin merges them.
 
-Neil
+I've applied the DT patches now (branch: v4.12/dt64)
+
+Kevin
