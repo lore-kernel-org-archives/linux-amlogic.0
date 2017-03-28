@@ -1,132 +1,42 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 28 Mar 2017 15:34:17 +0200
-Subject: [PATCH v4 1/6] drm: bridge: dw-hdmi: Extract PHY interrupt setup
- to a function
-In-Reply-To: <b8b3caca-d086-b390-a2fc-ef998e61e755@synopsys.com>
-References: <1490109161-20529-1-git-send-email-narmstrong@baylibre.com>
- <1490109161-20529-2-git-send-email-narmstrong@baylibre.com>
- <b8b3caca-d086-b390-a2fc-ef998e61e755@synopsys.com>
-Message-ID: <98e06589-8eb3-e7b8-646a-8099f1de51b0@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 28 Mar 2017 16:10:59 +0200
+Subject: [PATCH 3/8] pinctrl: meson: gxl: add i2s output pins
+In-Reply-To: <CACRpkdY66S_evq78VPOYWvad1fVdmKfc2GBL6svn-4YP+nA2FQ@mail.gmail.com>
+References: <20170323165101.29262-1-jbrunet@baylibre.com>
+ <20170323165101.29262-4-jbrunet@baylibre.com>
+ <CACRpkdaSwA0pV=YPbxcUZ0vnmAzWw_y3Q6iC-4c2qcn11zcJYg@mail.gmail.com>
+ <cae34cdd-2810-108d-7d48-8380e8ef9ea6@baylibre.com>
+ <CACRpkdY66S_evq78VPOYWvad1fVdmKfc2GBL6svn-4YP+nA2FQ@mail.gmail.com>
+Message-ID: <1490710259.20764.0.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/22/2017 02:53 PM, Jose Abreu wrote:
-> Hi Neil,
+On Tue, 2017-03-28 at 15:30 +0200, Linus Walleij wrote:
+> On Tue, Mar 28, 2017 at 3:14 PM, Neil Armstrong <narmstrong@baylibre.com>
+> wrote:
+> > On 03/28/2017 03:13 PM, Linus Walleij wrote:
+> > > On Thu, Mar 23, 2017 at 5:50 PM, Jerome Brunet <jbrunet@baylibre.com>
+> > > wrote:
+> > > 
+> > > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > > 
+> > > Had to fuzz this patch a bit due to another patch from Neil, please check
+> > > the result.
+> > > 
+> > > Patch applied.
+> > > 
+> > > Yours,
+> > > Linus Walleij
+> > > 
+> > 
+> > Hi Linus,
+> > 
+> > Indeed, he sent a v2 rebased on my patchset.
 > 
+> Yeah, sorry I'm drowning in patches. Hope this works.
 > 
-> On 21-03-2017 15:12, Neil Armstrong wrote:
->> From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->>
->> In preparation for adding PHY operations to handle RX SENSE and HPD,
->> group all the PHY interrupt setup code in a single location and extract
->> it to a separate function.
->>
->> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> Reviewed-by: Jose Abreu <joabreu@synopsys.com>
-> 
-> Maybe if you submit a next version we could get rid of
-> "dw_hdmi_fb_registered" totally and move the remaining setup code
-> to a new "dw_hdmi_setup_i2c" function.
 
-Ok I'll do this,
+Result looks good. Thx Linus.
 
-Neil
-> 
-> Best regards,
-> Jose Miguel Abreu
-> 
->> ---
->>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 50 ++++++++++++++-----------------
->>  1 file changed, 23 insertions(+), 27 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> index af93f7a..f82750a 100644
->> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
->> @@ -1559,7 +1559,7 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
->>  }
->>  
->>  /* Wait until we are registered to enable interrupts */
->> -static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
->> +static void dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
->>  {
->>  	hdmi_writeb(hdmi, HDMI_PHY_I2CM_INT_ADDR_DONE_POL,
->>  		    HDMI_PHY_I2CM_INT_ADDR);
->> @@ -1567,15 +1567,6 @@ static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
->>  	hdmi_writeb(hdmi, HDMI_PHY_I2CM_CTLINT_ADDR_NAC_POL |
->>  		    HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL,
->>  		    HDMI_PHY_I2CM_CTLINT_ADDR);
->> -
->> -	/* enable cable hot plug irq */
->> -	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
->> -
->> -	/* Clear Hotplug interrupts */
->> -	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
->> -		    HDMI_IH_PHY_STAT0);
->> -
->> -	return 0;
->>  }
->>  
->>  static void initialize_hdmi_ih_mutes(struct dw_hdmi *hdmi)
->> @@ -1693,6 +1684,26 @@ static void dw_hdmi_update_phy_mask(struct dw_hdmi *hdmi)
->>  		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
->>  }
->>  
->> +static void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi)
->> +{
->> +	/*
->> +	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
->> +	 * any pending interrupt.
->> +	 */
->> +	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
->> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
->> +		    HDMI_IH_PHY_STAT0);
->> +
->> +	/* Enable cable hot plug irq. */
->> +	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
->> +
->> +	/* Clear and unmute interrupts. */
->> +	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
->> +		    HDMI_IH_PHY_STAT0);
->> +	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
->> +		    HDMI_IH_MUTE_PHY_STAT0);
->> +}
->> +
->>  static enum drm_connector_status
->>  dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
->>  {
->> @@ -2204,29 +2215,14 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
->>  			hdmi->ddc = NULL;
->>  	}
->>  
->> -	/*
->> -	 * Configure registers related to HDMI interrupt
->> -	 * generation before registering IRQ.
->> -	 */
->> -	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
->> -
->> -	/* Clear Hotplug interrupts */
->> -	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
->> -		    HDMI_IH_PHY_STAT0);
->> -
->>  	hdmi->bridge.driver_private = hdmi;
->>  	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
->>  #ifdef CONFIG_OF
->>  	hdmi->bridge.of_node = pdev->dev.of_node;
->>  #endif
->>  
->> -	ret = dw_hdmi_fb_registered(hdmi);
->> -	if (ret)
->> -		goto err_iahb;
->> -
->> -	/* Unmute interrupts */
->> -	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
->> -		    HDMI_IH_MUTE_PHY_STAT0);
->> +	dw_hdmi_fb_registered(hdmi);
->> +	dw_hdmi_phy_setup_hpd(hdmi);
->>  
->>  	memset(&pdevinfo, 0, sizeof(pdevinfo));
->>  	pdevinfo.parent = dev;
-> 
+> Yours,
+> Linus Walleij
