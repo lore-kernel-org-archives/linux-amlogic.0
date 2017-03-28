@@ -1,42 +1,37 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 28 Mar 2017 16:45:57 +0200
-Subject: [PATCH v1 0/8] clk: meson: gxbb: more clock controller update for
- audio support
-Message-ID: <20170328144605.25278-1-jbrunet@baylibre.com>
+Date: Tue, 28 Mar 2017 16:45:59 +0200
+Subject: [PATCH v1 2/8] clk: meson: gxbb: protect against holes in the
+ onecell_data array
+In-Reply-To: <20170328144605.25278-1-jbrunet@baylibre.com>
+References: <20170328144605.25278-1-jbrunet@baylibre.com>
+Message-ID: <20170328144605.25278-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patchset is the 2nd round of update to the meson gxbb clock controller
-to add initial audio support. The patchset is based on clk-next.
 
-There is not much out of the ordinary here (adding new clocks and exposing
-them) except maybe for 2 patches:
-Patch #2: Adds a safety check while registering clocks to protect against
-          holes in clk_hw_onecell_data, if it ever happens. Same thing is
-	  done for the meson8b clock controller. 
-Patch #3: Adds a new clock divider driver to implement the necessary
-          policy for the i2s master clock (see patch changelog)
+The clock controller is getting more complex and it might be possible, in
+the future, to have holes in the clk_hw_onecell_data array. Just make sure
+we skip those holes if it ever happens.
 
-This patchset has been test on the gxbb p200 and gxl p230.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/gxbb.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Jerome Brunet (8):
-  dt-bindings: clock: gxbb: expose spdif clock gates
-  clk: meson: gxbb: protect against holes in the onecell_data array
-  clk: meson: add audio clock divider support
-  clk: meson: gxbb: add cts_amclk
-  clk: meson: gxbb: add cts_mclk_i958
-  clk: meson: gxbb: add cts_i958 clock
-  dt-bindings: clock: gxbb: expose i2s master clock
-  dt-bindings: clock: gxbb: expose spdif master clock
-
- drivers/clk/meson/Makefile            |   2 +-
- drivers/clk/meson/clk-audio-divider.c | 149 ++++++++++++++++++++++++++++++++++
- drivers/clk/meson/clkc.h              |  10 +++
- drivers/clk/meson/gxbb.c              | 144 ++++++++++++++++++++++++++++++++
- drivers/clk/meson/gxbb.h              |  13 ++-
- include/dt-bindings/clock/gxbb-clkc.h |   5 ++
- 6 files changed, 319 insertions(+), 4 deletions(-)
- create mode 100644 drivers/clk/meson/clk-audio-divider.c
-
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 75197664a7ee..28812ea41a60 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1388,6 +1388,10 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+ 	 * register all clks
+ 	 */
+ 	for (clkid = 0; clkid < clkc_data->hw_onecell_data->num; clkid++) {
++		/* array might be sparse */
++		if (!clkc_data->hw_onecell_data->hws[clkid])
++			continue;
++
+ 		ret = devm_clk_hw_register(dev,
+ 					clkc_data->hw_onecell_data->hws[clkid]);
+ 		if (ret)
 -- 
 2.9.3
