@@ -1,50 +1,82 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 29 Mar 2017 22:40:02 +0200
-Subject: [PATCH] mmc: sdio: fix alignment issue in struct sdio_func
-In-Reply-To: <m237dv7s83.fsf@baylibre.com>
-References: <b4221ed8-1e85-2b8f-31c6-d57bc86d122e@gmail.com>
- <m237dv7s83.fsf@baylibre.com>
-Message-ID: <eb5bf590-1076-e9e9-9dfd-be1eb8e100f5@gmail.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Wed, 29 Mar 2017 13:42:53 -0700
+Subject: [PATCH v1 0/8] clk: meson: gxbb: more clock controller update for
+ audio support
+In-Reply-To: <20170328144605.25278-1-jbrunet@baylibre.com>
+References: <20170328144605.25278-1-jbrunet@baylibre.com>
+Message-ID: <149082017390.31513.12254031076684821992@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 29.03.2017 um 22:17 schrieb Kevin Hilman:
-> Heiner Kallweit <hkallweit1@gmail.com> writes:
-> 
->> Certain 64-bit systems (e.g. Amlogic Meson GX) require buffers to be
->> used for DMA to be 8-byte-aligned. struct sdio_func has an embedded
->> small DMA buffer not meeting this requirement.
->> When testing switching to descriptor chain mode in meson-gx driver
->> SDIO is broken therefore. Fix this by allocating the small DMA buffer
->> separately as kmalloc ensures that the returned memory area is
->> properly aligned for every basic data type.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> Tested-by: Helmut Klein <hgkr.klein@gmail.com>
-> 
-> This should work too, without the need to do a tiny kmalloc.
-> 
-> diff --git a/include/linux/mmc/sdio_func.h b/include/linux/mmc/sdio_func.h
-> index aab032a6ae61..071addf23931 100644
-> --- a/include/linux/mmc/sdio_func.h
-> +++ b/include/linux/mmc/sdio_func.h
-> @@ -53,7 +53,7 @@ struct sdio_func {
->  	unsigned int		state;		/* function state */
->  #define SDIO_STATE_PRESENT	(1<<0)		/* present in sysfs */
->  
-> -	u8			tmpbuf[4];	/* DMA:able scratch buffer */
-> +	u8			tmpbuf[4] __aligned(8);	/* DMA:able scratch buffer */
->  
-Yes, that's possible too. Actually I wasn't 100% sure whether the alignment
-is applied to each member of the array or the array itself. But after a small
-test it seems to be applied to the array.
+Hi Jerome,
 
-So let's go with this version, thanks for the hint.
+Adding Neil Armstong to Cc.
 
-Heiner
-
->  	unsigned		num_info;	/* number of info strings */
->  	const char		**info;		/* info strings */
+Quoting Jerome Brunet (2017-03-28 07:45:57)
+> The patchset is the 2nd round of update to the meson gxbb clock controller
+> to add initial audio support. The patchset is based on clk-next.
 > 
-> Kevin
+> There is not much out of the ordinary here (adding new clocks and exposing
+> them) except maybe for 2 patches:
+> Patch #2: Adds a safety check while registering clocks to protect against
+>           holes in clk_hw_onecell_data, if it ever happens. Same thing is
+>           done for the meson8b clock controller. 
+> Patch #3: Adds a new clock divider driver to implement the necessary
+>           policy for the i2s master clock (see patch changelog)
+> 
+> This patchset has been test on the gxbb p200 and gxl p230.
+
+First off, this series looks fine to me. Please add,
+
+Acked-by: Michael Turquette <mturquette@baylibre.com>
+
+Secondly, it seems the AmLogic clock drivers have mostly calmed down and
+things are in the "add new clocks when we need them" phase, which is
+nice. Since you and Neil are doing a lot of this work, might I suggest
+that you both start collecting patches for the AmLogic/meson clock
+drivers begin submitting pull requests to Stephen and myself?
+
+As usual the rules are the same as always: all patches in the PR must
+first be posted for review on the list. PRs should correspond to signed
+tags. Stephen and I might ignore PRs sent after -rc4, and will
+definitely ignore PRs sent after -rc6 since we want some stabilization
+time before the merge window. Base your branch on -rc1, not on clk-next.
+
+Also feel free to submit a patch to MAINTAINERS with either one or both
+of you maintaining the meson clk stuff, assuming that you're OK to
+review all of those patches and collect them into a PR.
+
+Thoughts?
+
+If it sounds good to you then I suggest grabbing the clk-meson branch
+from the clk tree and using that as a baseline for your first PR. In the
+future you'll just Linus' -rc1, but I have already created a branch for
+this cycle. You can apply these 8 patches with my Ack and send a PR by
+-rc6 (possibly with other stuff collected from Martin, etc).
+
+Thanks,
+Mike
+
+> 
+> Jerome Brunet (8):
+>   dt-bindings: clock: gxbb: expose spdif clock gates
+>   clk: meson: gxbb: protect against holes in the onecell_data array
+>   clk: meson: add audio clock divider support
+>   clk: meson: gxbb: add cts_amclk
+>   clk: meson: gxbb: add cts_mclk_i958
+>   clk: meson: gxbb: add cts_i958 clock
+>   dt-bindings: clock: gxbb: expose i2s master clock
+>   dt-bindings: clock: gxbb: expose spdif master clock
+> 
+>  drivers/clk/meson/Makefile            |   2 +-
+>  drivers/clk/meson/clk-audio-divider.c | 149 ++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/clkc.h              |  10 +++
+>  drivers/clk/meson/gxbb.c              | 144 ++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/gxbb.h              |  13 ++-
+>  include/dt-bindings/clock/gxbb-clkc.h |   5 ++
+>  6 files changed, 319 insertions(+), 4 deletions(-)
+>  create mode 100644 drivers/clk/meson/clk-audio-divider.c
+> 
+> -- 
+> 2.9.3
 > 
