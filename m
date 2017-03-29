@@ -1,89 +1,75 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 29 Mar 2017 08:21:30 +0200
-Subject: [PATCH v2,1/3] meson_uart: expose CLKID_UARTx
-In-Reply-To: <CAFBinCDF29+kQpedsJPqRy6fztWrj91Qi6tCno_2S6UCkhW7XQ@mail.gmail.com>
+From: hgkr.klein@gmail.com (Helmut Klein)
+Date: Wed, 29 Mar 2017 11:47:27 +0200
+Subject: [PATCH v2, 3/3] tty/serial: meson_uart: add the core clock
+ handling to the driver
+In-Reply-To: <1490728562.20764.9.camel@baylibre.com>
 References: <20170328092545.4644-1-hgkr.klein@gmail.com>
- <20170328092545.4644-2-hgkr.klein@gmail.com>
- <1490716277.20764.6.camel@baylibre.com>
- <71489b62-78c8-7082-587e-8598dc43ca59@gmail.com>
- <1490728490.20764.8.camel@baylibre.com>
- <CAFBinCDF29+kQpedsJPqRy6fztWrj91Qi6tCno_2S6UCkhW7XQ@mail.gmail.com>
-Message-ID: <1490768490.2439.1.camel@baylibre.com>
+ <20170328092545.4644-4-hgkr.klein@gmail.com>
+ <1490728562.20764.9.camel@baylibre.com>
+Message-ID: <a699370f-b1b9-8a0b-c998-5c0432e030a6@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-03-28 at 23:24 +0200, Martin Blumenstingl wrote:
-> Hi Jerome,
-> 
-> On Tue, Mar 28, 2017 at 9:14 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> > On Tue, 2017-03-28 at 20:18 +0200, Helmut Klein wrote:
-> > > i know for sure that the bluetooth chip of my system is connected to
-> > > uart_A. so this clock must be exposed.
-> > > 
-> > > i don't know if the other 2 uarts are used on other hardware. so i will
-> > > remove them from my patch.
-> > 
-> > What I meant is device trees "upstream".
-> > I would expect such patch as part of a series to add support for your board
-> > in
-> > device-tree, with its bluetooth chipset.
-> 
-> are you sure about this? 
+On 28.03.2017 21:16, Jerome Brunet wrote:
+> On Tue, 2017-03-28 at 11:25 +0200, Helmut Klein wrote:
+>> This patch gets the core clock as provided by the DT and enables it.
+>> The code was taken from Amlogic's serial driver, and was tested on my
+>> board.
+>>
+>> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
+>> ---
+>>  drivers/tty/serial/meson_uart.c | 10 ++++++++++
+>>  1 file changed, 10 insertions(+)
+>>
+>> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+>> index 60f16795d16b..cb99112288eb 100644
+>> --- a/drivers/tty/serial/meson_uart.c
+>> +++ b/drivers/tty/serial/meson_uart.c
+>> @@ -600,6 +600,7 @@ static int meson_uart_probe(struct platform_device *pdev)
+>>  	struct resource *res_mem, *res_irq;
+>>  	struct uart_port *port;
+>>  	struct clk *clk;
+>> +	struct clk *core_clk;
+>>  	int ret = 0;
+>>
+>>  	if (pdev->dev.of_node)
+>> @@ -625,6 +626,15 @@ static int meson_uart_probe(struct platform_device *pdev)
+>>  	if (!port)
+>>  		return -ENOMEM;
+>>
+>> +	core_clk = devm_clk_get(&pdev->dev, "core");
+>> +	if (!IS_ERR(core_clk)) {
+>> +		ret = clk_prepare_enable(core_clk);
+>> +		if (ret) {
+>> +			dev_err(&pdev->dev, "couldn't enable clkc\n");
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>>  	clk = clk_get(&pdev->dev, NULL);
+> Now that you have 2 clocks, shouldn't this be named as well ?
+>
+if i change the call to "clk = clk_get(&pdev->dev, "xtal");", then IMHO 
+i must add the
+"clock-names" parameter (clock-names = "xtal") to the sections of the 2 
+AO-UARTs
+(uart_AO & uart_AO_B).
 
-Actually no ;) I started questioning this reply as soon as I sent it.
-the moto so far as been "we expose what's needed" but there is many ways to
-interpret that.
+Is this ok?  (or is my assumption wrong?)
 
-DT bindings is an ABI. Simply because we don't use part of that ABI upstream,
-doesn't mean we shouldn't provide it. My previous statement was clearly wrong
-about this, apologies.
+I'm going to add a patch meson-gx.dtsi anyway, so 2 lines more to add, 
+isn't a big deal.
 
-> Helmut is configuring the core clock of the
-> UART controller(s) here. we have the same thing for many other drivers
-> as well (MMC, SAR ADC, I2C, SPI, ethernet, you name it...) - these
-> clocks are not part of a device specific .dts but rather the SoC
-> specific dts (for example meson-gxbb.dtsi - because these clocks are
-> not board specific).
+Helmut
 
-Agreed
-Since Helmut tested it, this clock should be added to the dtsi.
-
-> I guess most boards are not affected because the bootloader simply
-> enables the UART0 core/gate clock and keeps it enabled when booting
-> the kernel. additionally our clock gates are marked with
-> CLK_IGNORE_UNUSED so if the bootloader keeps the gates enabled then
-> we're not disabling it either.
-> 
-> > I think it would better to drop this patch from the series.
-> > You can either keep it for your personal work, or send it again when
-> > upstreaming
-> > the support for your board and/or add the support for the bluetooth chip.
-> 
-> if we decide to pass the core/gate clock directly in SoC.dtsi then we
-> should think about doing it for all three non-AO UARTs (uart_a, uart_b
-> and uart_c).
-> we can test uart_b on GPIODV_24 and GPIODV_25 on the Khadas VIM board
-> for example (pins 22 and 23 on the header, default mode of these pins
-> is i2c_sck_a and i2c_sda_a, but we can re-configure it).
-> uart_c unfortunately cannot be tested on the Khadas VIM board since
-> it's only routed to GPIOX_8 and GPIOX_9 which are hard-wired to the
-> bluetooth module's PCM pins (BTPCM_DOUT and BTPCM_DIN).
-> 
-> for Helmut this would mean that instead of dropping this patch (or
-> dropping CLKID_UART1 and CLKID_UART2 from this patch) he would rather
-> have to *add* another patch (for meson-gxbb.dtsi and meson-gxl.dtsi)
-> which passes the core clocks to the corresponding UART controllers
-> (similar to the CLKID_SD_EMMC_ clocks).
-
-You are right. This could be part of another series.
-I guess this patch fine as it is.
-
-Acked-by:?Jerome Brunet <jbrunet@baylibre.com>
-
-> 
-> 
-> Regards,
-> Martin
-> 
-> 
-> [0] http://lxr.free-electrons.com/source/drivers/clk/meson/clkc.h?v=4.10#L110
+>>  	if (IS_ERR(clk))
+>>  		return PTR_ERR(clk);
+>> --
+>> 2.11.0
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic at lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>
