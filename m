@@ -1,92 +1,92 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 30 Mar 2017 10:15:06 +0200
-Subject: [PATCH v1 0/8] clk: meson: gxbb: more clock controller update for
- audio support
-In-Reply-To: <149082017390.31513.12254031076684821992@resonance>
-References: <20170328144605.25278-1-jbrunet@baylibre.com>
- <149082017390.31513.12254031076684821992@resonance>
-Message-ID: <6474a845-f325-ccae-24d8-81dba2185c84@baylibre.com>
+Date: Thu, 30 Mar 2017 11:04:29 +0200
+Subject: [PATCH v5 0/6] drm: bridge: dw-hdmi: Add support for Custom PHYs
+Message-ID: <1490864675-17336-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/29/2017 10:42 PM, Michael Turquette wrote:
-> Hi Jerome,
-> 
-> Adding Neil Armstong to Cc.
-> 
-> Quoting Jerome Brunet (2017-03-28 07:45:57)
->> The patchset is the 2nd round of update to the meson gxbb clock controller
->> to add initial audio support. The patchset is based on clk-next.
->>
->> There is not much out of the ordinary here (adding new clocks and exposing
->> them) except maybe for 2 patches:
->> Patch #2: Adds a safety check while registering clocks to protect against
->>           holes in clk_hw_onecell_data, if it ever happens. Same thing is
->>           done for the meson8b clock controller. 
->> Patch #3: Adds a new clock divider driver to implement the necessary
->>           policy for the i2s master clock (see patch changelog)
->>
->> This patchset has been test on the gxbb p200 and gxl p230.
-> 
-> First off, this series looks fine to me. Please add,
-> 
-> Acked-by: Michael Turquette <mturquette@baylibre.com>
-> 
-> Secondly, it seems the AmLogic clock drivers have mostly calmed down and
-> things are in the "add new clocks when we need them" phase, which is
-> nice. Since you and Neil are doing a lot of this work, might I suggest
-> that you both start collecting patches for the AmLogic/meson clock
-> drivers begin submitting pull requests to Stephen and myself?
-> 
-> As usual the rules are the same as always: all patches in the PR must
-> first be posted for review on the list. PRs should correspond to signed
-> tags. Stephen and I might ignore PRs sent after -rc4, and will
-> definitely ignore PRs sent after -rc6 since we want some stabilization
-> time before the merge window. Base your branch on -rc1, not on clk-next.
-> 
-> Also feel free to submit a patch to MAINTAINERS with either one or both
-> of you maintaining the meson clk stuff, assuming that you're OK to
-> review all of those patches and collect them into a PR.
-> 
-> Thoughts?
+The Amlogic GX SoCs implements a Synopsys DesignWare HDMI TX Controller
+in combination with a very custom PHY.
 
-Thanks Mike, I'll be glad to co-maintain this with jerome !
+Thanks to Laurent Pinchart's changes, the HW report the following :
+ Detected HDMI TX controller v2.01a with HDCP (meson_dw_hdmi_phy)
 
-Neil
+The following differs from common PHY integration as managed in the current
+driver :
+ - Amlogic PHY is not configured through the internal I2C link
+ - Amlogic PHY do not use the ENTMDS, SVSRET, PDDQ, ... signals from the controller
+ - Amlogic PHY do not export HPD ands RxSense signals to the controller
 
-> 
-> If it sounds good to you then I suggest grabbing the clk-meson branch
-> from the clk tree and using that as a baseline for your first PR. In the
-> future you'll just Linus' -rc1, but I have already created a branch for
-> this cycle. You can apply these 8 patches with my Ack and send a PR by
-> -rc6 (possibly with other stuff collected from Martin, etc).
+And finally, concerning the controller integration :
+ - the Controller registers are not flat memory-mapped, and uses an
+    addr+read/write register pair to write all registers.
+ - Inputs only YUV444 pixel data
 
-Acked !
+Most of these uses case are implemented in Laurent Pinchart v5.1 patchset merged
+in drm-misc-next branch.
 
-> 
-> Thanks,
-> Mike
-> 
->>
->> Jerome Brunet (8):
->>   dt-bindings: clock: gxbb: expose spdif clock gates
->>   clk: meson: gxbb: protect against holes in the onecell_data array
->>   clk: meson: add audio clock divider support
->>   clk: meson: gxbb: add cts_amclk
->>   clk: meson: gxbb: add cts_mclk_i958
->>   clk: meson: gxbb: add cts_i958 clock
->>   dt-bindings: clock: gxbb: expose i2s master clock
->>   dt-bindings: clock: gxbb: expose spdif master clock
->>
->>  drivers/clk/meson/Makefile            |   2 +-
->>  drivers/clk/meson/clk-audio-divider.c | 149 ++++++++++++++++++++++++++++++++++
->>  drivers/clk/meson/clkc.h              |  10 +++
->>  drivers/clk/meson/gxbb.c              | 144 ++++++++++++++++++++++++++++++++
->>  drivers/clk/meson/gxbb.h              |  13 ++-
->>  include/dt-bindings/clock/gxbb-clkc.h |   5 ++
->>  6 files changed, 319 insertions(+), 4 deletions(-)
->>  create mode 100644 drivers/clk/meson/clk-audio-divider.c
->>
->> -- 
->> 2.9.3
->>
+This is why the following patchset implements :
+ - Configure the Input format from the plat_data
+ - Add PHY callback to handle HPD and RxSense out of the dw-hdmi driver
+
+To implement the input format handling, the Synopsys HDMIT TX Controller input
+V4L bus formats are used and missing formats + documentation are added.
+
+This patchset makes the Amlogic GX SoCs HDMI output successfully work, and is
+also tested on the RK3288 ACT8846 EVB Board.
+
+Changes since v4 at [5] :
+ - Rebased on drm-misc-next at bd283d2f66c2
+ - Fix 4:2:0 bus formats naming
+ - Renamed function fd_registered to i2c_init in dw-hdmi.c
+
+Changes since v3 at [4] :
+ - Fix 4:2:0 bus formats naming
+ - Add separate 36bit and 48bit tables for bus formats documentation
+ - Added 4:2:0 bus config in hdmi_video_sample
+ - Moved dw_hdmi documentation in a "bridge" subdir
+ - Rebase on drm-misc-next at 62c58af32c93
+
+Changes since v2 at [3] :
+ - Rebase on laurent patch "Extract PHY interrupt setup to a function"
+ - Reduce phy operations
+ - Switch the V4L bus formats and encodings instead of custom enum
+
+Changes since v1 at [2] :
+ - Drop patches submitted by laurent
+
+Changes since RFC at [1] :
+ - Regmap fixup for 4bytes register access, tested on RK3288 SoC
+ - Move phy callbacks to phy_ops and move Synopsys PHY calls into default ops
+ - Move HDMI link data into shared header
+ - Move Pixel Encoding enum to shared header
+
+[1] http://lkml.kernel.org/r/1484656294-6140-1-git-send-email-narmstrong at baylibre.com
+[2] http://lkml.kernel.org/r/1485774318-21916-1-git-send-email-narmstrong at baylibre.com
+[3] http://lkml.kernel.org/r/1488468572-31971-1-git-send-email-narmstrong at baylibre.com
+[4] http://lkml.kernel.org/r/1488904944-14285-1-git-send-email-narmstrong at baylibre.com
+[5] http://lkml.kernel.org/r/1490109161-20529-1-git-send-email-narmstrong at baylibre.com
+
+Laurent Pinchart (1):
+  drm: bridge: dw-hdmi: Extract PHY interrupt setup to a function
+
+Neil Armstrong (5):
+  media: uapi: Add RGB and YUV bus formats for Synopsys HDMI TX
+    Controller
+  documentation: media: Add documentation for new RGB and YUV bus
+    formats
+  drm: bridge: dw-hdmi: Switch to V4L bus format and encodings
+  drm: bridge: dw-hdmi: Add Documentation on supported input formats
+  drm: bridge: dw-hdmi: Move HPD handling to PHY operations
+
+ Documentation/gpu/bridge/dw-hdmi.rst            |  15 +
+ Documentation/gpu/index.rst                     |   1 +
+ Documentation/media/uapi/v4l/subdev-formats.rst | 871 +++++++++++++++++++++++-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c       | 470 ++++++++-----
+ include/drm/bridge/dw_hdmi.h                    |  68 ++
+ include/uapi/linux/media-bus-format.h           |  13 +-
+ 6 files changed, 1266 insertions(+), 172 deletions(-)
+ create mode 100644 Documentation/gpu/bridge/dw-hdmi.rst
+
+-- 
+1.9.1
