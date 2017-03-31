@@ -1,44 +1,31 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 31 Mar 2017 12:14:17 +0200
-Subject: [PATCH] MAINTAINERS: Add maintainers for the meson clock driver
-Message-ID: <20170331101417.21312-1-jbrunet@baylibre.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Fri, 31 Mar 2017 12:42:21 +0200
+Subject: [GIT PULL] Amlogic: defconfig changes for v4.12
+In-Reply-To: <m2shlv69we.fsf@baylibre.com>
+References: <m2shlv69we.fsf@baylibre.com>
+Message-ID: <CAK8P3a3vVArJkyynsXuvStnmvoVXELL+K4=mC8BuLLho-qPqMA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Suggested-by: Michael Turquette <mturquette@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>,
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
+On Wed, Mar 29, 2017 at 11:38 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> The following changes since commit c1ae3cfa0e89fa1a7ecc4c99031f5e9ae99d9201:
+>
+>   Linux 4.11-rc1 (2017-03-05 12:59:56 -0800)
+>
+> are available in the git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-defconfig
+>
+> for you to fetch changes up to 95fbe8b08b2d420e4f5a77701f165d6b23827862:
+>
+>   ARM64: defconfig: enable the leds-pwm driver and default-on trigger (2017-03-06 09:54:57 -0800)
+>
+> ----------------------------------------------------------------
+> Amlogic: defconfig changes for v4.12
+> - enable PWM LEDs and LEDs default-on trigger
+>
 
-Hi Mike, Stephen,
+It looks like I forgot to mail about this being merged yesterday. It's now
+in next/arm64, thanks!
 
-If this is OK with you, this will be the first patch of our upcoming pull
-request.
-
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c265a5fe4848..8cb237925b06 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1069,6 +1069,16 @@ F: 	drivers/pinctrl/meson/
- F:	drivers/mmc/host/meson*
- N:	meson
- 
-+ARM/Amlogic Meson SoC CLOCK FRAMEWORK
-+M:	Neil Armstrong <narmstrong@baylibre.com>
-+M:	Jerome Brunet <jbrunet@baylibre.com>
-+L:	linux-amlogic at lists.infradead.org
-+S:	Maintained
-+F:	drivers/clk/meson/
-+F:	include/dt-bindings/clock/meson*
-+F:	include/dt-bindings/clock/gxbb*
-+F:	Documentation/devicetree/bindings/clock/amlogic*
-+
- ARM/Annapurna Labs ALPINE ARCHITECTURE
- M:	Tsahee Zidenberg <tsahee@annapurnalabs.com>
- M:	Antoine Tenart <antoine.tenart@free-electrons.com>
--- 
-2.9.3
+       Arnd
