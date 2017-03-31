@@ -1,31 +1,37 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Fri, 31 Mar 2017 12:42:21 +0200
-Subject: [GIT PULL] Amlogic: defconfig changes for v4.12
-In-Reply-To: <m2shlv69we.fsf@baylibre.com>
-References: <m2shlv69we.fsf@baylibre.com>
-Message-ID: <CAK8P3a3vVArJkyynsXuvStnmvoVXELL+K4=mC8BuLLho-qPqMA@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 31 Mar 2017 15:04:05 +0200
+Subject: [PATCH v2 2/8] clk: meson: gxbb: protect against holes in the
+ onecell_data array
+In-Reply-To: <20170331130411.4781-1-jbrunet@baylibre.com>
+References: <20170331130411.4781-1-jbrunet@baylibre.com>
+Message-ID: <20170331130411.4781-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Mar 29, 2017 at 11:38 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> The following changes since commit c1ae3cfa0e89fa1a7ecc4c99031f5e9ae99d9201:
->
->   Linux 4.11-rc1 (2017-03-05 12:59:56 -0800)
->
-> are available in the git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-defconfig
->
-> for you to fetch changes up to 95fbe8b08b2d420e4f5a77701f165d6b23827862:
->
->   ARM64: defconfig: enable the leds-pwm driver and default-on trigger (2017-03-06 09:54:57 -0800)
->
-> ----------------------------------------------------------------
-> Amlogic: defconfig changes for v4.12
-> - enable PWM LEDs and LEDs default-on trigger
->
+The clock controller is getting more complex and it might be possible, in
+the future, to have holes in the clk_hw_onecell_data array. Just make sure
+we skip those holes if it ever happens.
 
-It looks like I forgot to mail about this being merged yesterday. It's now
-in next/arm64, thanks!
+Acked-by: Michael Turquette <mturquette@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/gxbb.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-       Arnd
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 75197664a7ee..28812ea41a60 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1388,6 +1388,10 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+ 	 * register all clks
+ 	 */
+ 	for (clkid = 0; clkid < clkc_data->hw_onecell_data->num; clkid++) {
++		/* array might be sparse */
++		if (!clkc_data->hw_onecell_data->hws[clkid])
++			continue;
++
+ 		ret = devm_clk_hw_register(dev,
+ 					clkc_data->hw_onecell_data->hws[clkid]);
+ 		if (ret)
+-- 
+2.9.3
