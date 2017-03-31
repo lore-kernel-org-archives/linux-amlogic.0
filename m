@@ -1,71 +1,115 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 31 Mar 2017 16:25:15 +0200
-Subject: [PATCH v5.1 2/6] media: uapi: Add RGB and YUV bus formats for
- Synopsys HDMI TX Controller
+Date: Fri, 31 Mar 2017 16:25:14 +0200
+Subject: [PATCH v5.1 1/6] drm: bridge: dw-hdmi: Extract PHY interrupt setup to
+ a function
 In-Reply-To: <1490970319-24981-1-git-send-email-narmstrong@baylibre.com>
 References: <1490970319-24981-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490970319-24981-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1490970319-24981-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In order to describe the RGB and YUV bus formats used to feed the
-Synopsys DesignWare HDMI TX Controller, add missing formats to the
-list of Bus Formats.
+From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-Documentation for these formats is added in a separate patch.
+In preparation for adding PHY operations to handle RX SENSE and HPD,
+group all the PHY interrupt setup code in a single location and extract
+it to a separate function.
 
-Reviewed-by: Archit Taneja <architt@codeaurora.org>
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 Reviewed-by: Jose Abreu <joabreu@synopsys.com>
-Acked-by: Hans Verkuil <hans.verkuil@cisco.com>
+[narmstrong: renamed dw_hdmi_fb_registered to dw_hdmi_setup_i2c]
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/uapi/linux/media-bus-format.h | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 51 ++++++++++++++-----------------
+ 1 file changed, 23 insertions(+), 28 deletions(-)
 
-diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
-index 2168759..ef6fb30 100644
---- a/include/uapi/linux/media-bus-format.h
-+++ b/include/uapi/linux/media-bus-format.h
-@@ -33,7 +33,7 @@
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index 32f02e9..ff1fae3 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -1558,8 +1558,7 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	return 0;
+ }
  
- #define MEDIA_BUS_FMT_FIXED			0x0001
+-/* Wait until we are registered to enable interrupts */
+-static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
++static void dw_hdmi_setup_i2c(struct dw_hdmi *hdmi)
+ {
+ 	hdmi_writeb(hdmi, HDMI_PHY_I2CM_INT_ADDR_DONE_POL,
+ 		    HDMI_PHY_I2CM_INT_ADDR);
+@@ -1567,15 +1566,6 @@ static int dw_hdmi_fb_registered(struct dw_hdmi *hdmi)
+ 	hdmi_writeb(hdmi, HDMI_PHY_I2CM_CTLINT_ADDR_NAC_POL |
+ 		    HDMI_PHY_I2CM_CTLINT_ADDR_ARBITRATION_POL,
+ 		    HDMI_PHY_I2CM_CTLINT_ADDR);
+-
+-	/* enable cable hot plug irq */
+-	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+-
+-	/* Clear Hotplug interrupts */
+-	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+-		    HDMI_IH_PHY_STAT0);
+-
+-	return 0;
+ }
  
--/* RGB - next is	0x1018 */
-+/* RGB - next is	0x101b */
- #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
- #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
- #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
-@@ -57,8 +57,11 @@
- #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
- #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
- #define MEDIA_BUS_FMT_RGB888_1X32_PADHI		0x100f
-+#define MEDIA_BUS_FMT_RGB101010_1X30		0x1018
-+#define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
-+#define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
+ static void initialize_hdmi_ih_mutes(struct dw_hdmi *hdmi)
+@@ -1693,6 +1683,26 @@ static void dw_hdmi_update_phy_mask(struct dw_hdmi *hdmi)
+ 		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
+ }
  
--/* YUV (including grey) - next is	0x2026 */
-+/* YUV (including grey) - next is	0x202c */
- #define MEDIA_BUS_FMT_Y8_1X8			0x2001
- #define MEDIA_BUS_FMT_UV8_1X8			0x2015
- #define MEDIA_BUS_FMT_UYVY8_1_5X8		0x2002
-@@ -90,12 +93,18 @@
- #define MEDIA_BUS_FMT_YVYU10_1X20		0x200e
- #define MEDIA_BUS_FMT_VUY8_1X24			0x2024
- #define MEDIA_BUS_FMT_YUV8_1X24			0x2025
-+#define MEDIA_BUS_FMT_UYYVYY8_0_5X24		0x2026
- #define MEDIA_BUS_FMT_UYVY12_1X24		0x2020
- #define MEDIA_BUS_FMT_VYUY12_1X24		0x2021
- #define MEDIA_BUS_FMT_YUYV12_1X24		0x2022
- #define MEDIA_BUS_FMT_YVYU12_1X24		0x2023
- #define MEDIA_BUS_FMT_YUV10_1X30		0x2016
-+#define MEDIA_BUS_FMT_UYYVYY10_0_5X30		0x2027
- #define MEDIA_BUS_FMT_AYUV8_1X32		0x2017
-+#define MEDIA_BUS_FMT_UYYVYY12_0_5X36		0x2028
-+#define MEDIA_BUS_FMT_YUV12_1X36		0x2029
-+#define MEDIA_BUS_FMT_YUV16_1X48		0x202a
-+#define MEDIA_BUS_FMT_UYYVYY16_0_5X48		0x202b
++static void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi)
++{
++	/*
++	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
++	 * any pending interrupt.
++	 */
++	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
++	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
++		    HDMI_IH_PHY_STAT0);
++
++	/* Enable cable hot plug irq. */
++	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
++
++	/* Clear and unmute interrupts. */
++	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
++		    HDMI_IH_PHY_STAT0);
++	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
++		    HDMI_IH_MUTE_PHY_STAT0);
++}
++
+ static enum drm_connector_status
+ dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ {
+@@ -2204,29 +2214,14 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
+ 			hdmi->ddc = NULL;
+ 	}
  
- /* Bayer - next is	0x3021 */
- #define MEDIA_BUS_FMT_SBGGR8_1X8		0x3001
+-	/*
+-	 * Configure registers related to HDMI interrupt
+-	 * generation before registering IRQ.
+-	 */
+-	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
+-
+-	/* Clear Hotplug interrupts */
+-	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
+-		    HDMI_IH_PHY_STAT0);
+-
+ 	hdmi->bridge.driver_private = hdmi;
+ 	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
+ #ifdef CONFIG_OF
+ 	hdmi->bridge.of_node = pdev->dev.of_node;
+ #endif
+ 
+-	ret = dw_hdmi_fb_registered(hdmi);
+-	if (ret)
+-		goto err_iahb;
+-
+-	/* Unmute interrupts */
+-	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
+-		    HDMI_IH_MUTE_PHY_STAT0);
++	dw_hdmi_setup_i2c(hdmi);
++	dw_hdmi_phy_setup_hpd(hdmi);
+ 
+ 	memset(&pdevinfo, 0, sizeof(pdevinfo));
+ 	pdevinfo.parent = dev;
 -- 
 1.9.1
