@@ -1,50 +1,78 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 31 Mar 2017 15:04:11 +0200
-Subject: [PATCH v2 8/8] dt-bindings: clock: gxbb: expose spdif master clock
-In-Reply-To: <20170331130411.4781-1-jbrunet@baylibre.com>
-References: <20170331130411.4781-1-jbrunet@baylibre.com>
-Message-ID: <20170331130411.4781-9-jbrunet@baylibre.com>
+From: hverkuil@xs4all.nl (Hans Verkuil)
+Date: Fri, 31 Mar 2017 15:06:24 +0200
+Subject: [PATCH v5 2/6] media: uapi: Add RGB and YUV bus formats for
+ Synopsys HDMI TX Controller
+In-Reply-To: <1490864675-17336-3-git-send-email-narmstrong@baylibre.com>
+References: <1490864675-17336-1-git-send-email-narmstrong@baylibre.com>
+ <1490864675-17336-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <d5645ada-74f9-153c-e920-72f558c5218e@xs4all.nl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Expose the spdif master clock and the mux to select the appropriate spdif
-clock parent depending on the data source.
+On 30/03/17 11:04, Neil Armstrong wrote:
+> In order to describe the RGB and YUV bus formats used to feed the
+> Synopsys DesignWare HDMI TX Controller, add missing formats to the
+> list of Bus Formats.
+> 
+> Documentation for these formats is added in a separate patch.
+> 
+> Reviewed-by: Archit Taneja <architt@codeaurora.org>
+> Reviewed-by: Jose Abreu <joabreu@synopsys.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Acked-by: Michael Turquette <mturquette@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/gxbb.h              | 4 ++--
- include/dt-bindings/clock/gxbb-clkc.h | 2 ++
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Acked-by: Hans Verkuil <hans.verkuil@cisco.com>
 
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index 742bc3b42565..17c6aef033ff 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -280,10 +280,10 @@
- /* CLKID_CTS_AMCLK */
- #define CLKID_CTS_AMCLK_SEL	  108
- #define CLKID_CTS_AMCLK_DIV	  109
--#define CLKID_CTS_MCLK_I958	  110
-+/* CLKID_CTS_MCLK_I958 */
- #define CLKID_CTS_MCLK_I958_SEL	  111
- #define CLKID_CTS_MCLK_I958_DIV	  112
--#define CLKID_CTS_I958		  113
-+/* CLKID_CTS_I958 */
- 
- #define NR_CLKS			  114
- 
-diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-index 0d231bef92e0..4516bc4253b5 100644
---- a/include/dt-bindings/clock/gxbb-clkc.h
-+++ b/include/dt-bindings/clock/gxbb-clkc.h
-@@ -44,5 +44,7 @@
- #define CLKID_MALI_1		105
- #define CLKID_MALI		106
- #define CLKID_CTS_AMCLK		107
-+#define CLKID_CTS_MCLK_I958	110
-+#define CLKID_CTS_I958		113
- 
- #endif /* __GXBB_CLKC_H */
--- 
-2.9.3
+Thanks!
+
+	Hans
+
+> ---
+>  include/uapi/linux/media-bus-format.h | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+> 
+> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
+> index 2168759..ef6fb30 100644
+> --- a/include/uapi/linux/media-bus-format.h
+> +++ b/include/uapi/linux/media-bus-format.h
+> @@ -33,7 +33,7 @@
+>  
+>  #define MEDIA_BUS_FMT_FIXED			0x0001
+>  
+> -/* RGB - next is	0x1018 */
+> +/* RGB - next is	0x101b */
+>  #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
+> @@ -57,8 +57,11 @@
+>  #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
+>  #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
+>  #define MEDIA_BUS_FMT_RGB888_1X32_PADHI		0x100f
+> +#define MEDIA_BUS_FMT_RGB101010_1X30		0x1018
+> +#define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
+> +#define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
+>  
+> -/* YUV (including grey) - next is	0x2026 */
+> +/* YUV (including grey) - next is	0x202c */
+>  #define MEDIA_BUS_FMT_Y8_1X8			0x2001
+>  #define MEDIA_BUS_FMT_UV8_1X8			0x2015
+>  #define MEDIA_BUS_FMT_UYVY8_1_5X8		0x2002
+> @@ -90,12 +93,18 @@
+>  #define MEDIA_BUS_FMT_YVYU10_1X20		0x200e
+>  #define MEDIA_BUS_FMT_VUY8_1X24			0x2024
+>  #define MEDIA_BUS_FMT_YUV8_1X24			0x2025
+> +#define MEDIA_BUS_FMT_UYYVYY8_0_5X24		0x2026
+>  #define MEDIA_BUS_FMT_UYVY12_1X24		0x2020
+>  #define MEDIA_BUS_FMT_VYUY12_1X24		0x2021
+>  #define MEDIA_BUS_FMT_YUYV12_1X24		0x2022
+>  #define MEDIA_BUS_FMT_YVYU12_1X24		0x2023
+>  #define MEDIA_BUS_FMT_YUV10_1X30		0x2016
+> +#define MEDIA_BUS_FMT_UYYVYY10_0_5X30		0x2027
+>  #define MEDIA_BUS_FMT_AYUV8_1X32		0x2017
+> +#define MEDIA_BUS_FMT_UYYVYY12_0_5X36		0x2028
+> +#define MEDIA_BUS_FMT_YUV12_1X36		0x2029
+> +#define MEDIA_BUS_FMT_YUV16_1X48		0x202a
+> +#define MEDIA_BUS_FMT_UYYVYY16_0_5X48		0x202b
+>  
+>  /* Bayer - next is	0x3021 */
+>  #define MEDIA_BUS_FMT_SBGGR8_1X8		0x3001
+> 
