@@ -1,68 +1,71 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Fri, 31 Mar 2017 17:11:17 +0100
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.12
-In-Reply-To: <m2fuht4eqs.fsf@baylibre.com>
-References: <m28tnn69ls.fsf@baylibre.com>
- <CAK8P3a02e3DxjuW9pA66NSCc9vw_h1Xuk6TdEbRnEQ4v4W7NHA@mail.gmail.com>
- <m2fuht4eqs.fsf@baylibre.com>
-Message-ID: <8e708a9f-b32e-a80c-b5d7-8979e59b6662@codethink.co.uk>
+From: hgkr.klein@gmail.com (Helmut Klein)
+Date: Fri, 31 Mar 2017 18:54:34 +0200
+Subject: [PATCH v3 1/4] dt-bindings: clock: gxbb: expose UART clocks
+In-Reply-To: <20170331165437.26227-1-hgkr.klein@gmail.com>
+References: <20170331165437.26227-1-hgkr.klein@gmail.com>
+Message-ID: <20170331165437.26227-2-hgkr.klein@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 31/03/17 17:01, Kevin Hilman wrote:
-> Arnd Bergmann <arnd@arndb.de> writes:
->
->> On Wed, Mar 29, 2017 at 11:45 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->>> Olof, Arnd,
->>>
->>> Below are some 64-bit DT changes for Amlogic platforms for v4.12.  Note
->>> that this branch includes a merge of an immutable branch from the clk
->>> tree (clk-meson) due to dependencies on new clocks added to the meson
->>> clock driver and used in these DT updates.
->>
->> I did not pull this one because of the silly dependency. The device tree
->> files should be completely independent of the driver changes.
->
-> Aaargh, this is getting very frustrating.
+Expose the clock ids of the three none AO uarts to the dt-bindings
 
-I tried to make this point very early on in the development,
-we don't want to be changing both driver and dt if we are
-adding things like IDs for gated clocks.
+Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
+---
+ drivers/clk/meson/gxbb.h              | 6 +++---
+ include/dt-bindings/clock/gxbb-clkc.h | 3 +++
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-For example, having an almost 1:1 mapping from clock-id to
-bit-in-hardware would make life much easier, even if the
-driver had a little bit more code to create clocks at the
-probe time, it would have meant that DT additions for new
-peripherals would have been much easier.
-
-> [...]
->
->> Which add random macros in the middle of the number space.
->>
->> Since the header changes are in an immutable branch, it's probably
->> too late to fix this for 4.12, but maybe we can get the header into a
->> form that allows us to do future DT changes without having to
->> wait an extra release. The clock driver apparently already defines
->> some of the numbers above, so you can fill all of those in already.
->
-> We could, but this is in direct conflict with the recommendations of the
-> clk maintainers to not expose clock IDs to the DT until we know they are
-> used because, well, things change.
->
-> Can we *please* get some clarity on on this between arm-soc and the clk
-> maintainers?  I've been asking for a couple merge windows now.
->
-> Irritated,
->
-> Kevin
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->
-
-
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index 8ee2022ce5d5..1edfaa5fe307 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -194,7 +194,7 @@
+ /* #define CLKID_SAR_ADC */
+ #define CLKID_SMART_CARD	  24
+ #define CLKID_RNG0		  25
+-#define CLKID_UART0		  26
++/* CLKID_UART0 */
+ #define CLKID_SDHC		  27
+ #define CLKID_STREAM		  28
+ #define CLKID_ASYNC_FIFO	  29
+@@ -216,7 +216,7 @@
+ #define CLKID_ADC		  45
+ #define CLKID_BLKMV		  46
+ #define CLKID_AIU		  47
+-#define CLKID_UART1		  48
++/* CLKID_UART1 */
+ #define CLKID_G2D		  49
+ /* CLKID_USB0 */
+ /* CLKID_USB1 */
+@@ -236,7 +236,7 @@
+ /* CLKID_USB0_DDR_BRIDGE */
+ #define CLKID_MMC_PCLK		  66
+ #define CLKID_DVIN		  67
+-#define CLKID_UART2		  68
++/* CLKID_UART2 */
+ /* #define CLKID_SANA */
+ #define CLKID_VPU_INTR		  70
+ #define CLKID_SEC_AHB_AHB3_BRIDGE 71
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index 692846c7941b..7b329df47752 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -15,13 +15,16 @@
+ #define CLKID_SPI		34
+ #define CLKID_I2C		22
+ #define CLKID_SAR_ADC		23
++#define CLKID_UART0		26
+ #define CLKID_ETH		36
++#define CLKID_UART1		48
+ #define CLKID_USB0		50
+ #define CLKID_USB1		51
+ #define CLKID_USB		55
+ #define CLKID_HDMI_PCLK		63
+ #define CLKID_USB1_DDR_BRIDGE	64
+ #define CLKID_USB0_DDR_BRIDGE	65
++#define CLKID_UART2		68
+ #define CLKID_SANA		69
+ #define CLKID_GCLK_VENCI_INT0	77
+ #define CLKID_AO_I2C		93
+--
+2.11.0
