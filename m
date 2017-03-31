@@ -1,49 +1,50 @@
 From: hgkr.klein@gmail.com (Helmut Klein)
-Date: Fri, 31 Mar 2017 18:54:36 +0200
-Subject: [PATCH v3 3/4] tty/serial: meson_uart: add the core clock handling to
- the driver
-In-Reply-To: <20170331165437.26227-1-hgkr.klein@gmail.com>
-References: <20170331165437.26227-1-hgkr.klein@gmail.com>
-Message-ID: <20170331165437.26227-4-hgkr.klein@gmail.com>
+Date: Fri, 31 Mar 2017 19:03:12 +0200
+Subject: [PATCH v2,1/3] meson_uart: expose CLKID_UARTx
+In-Reply-To: <1490974657.12951.5.camel@baylibre.com>
+References: <20170328092545.4644-1-hgkr.klein@gmail.com>
+ <20170328092545.4644-2-hgkr.klein@gmail.com>
+ <1490716277.20764.6.camel@baylibre.com>
+ <71489b62-78c8-7082-587e-8598dc43ca59@gmail.com>
+ <1490728490.20764.8.camel@baylibre.com>
+ <CAFBinCDF29+kQpedsJPqRy6fztWrj91Qi6tCno_2S6UCkhW7XQ@mail.gmail.com>
+ <m2y3vn6dhk.fsf@baylibre.com> <1490974657.12951.5.camel@baylibre.com>
+Message-ID: <26dd484d-f6fd-048d-7467-0fe9a1e6645b@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch gets the core clock as provided by the DT and enables it.
-The code was taken from Amlogic's serial driver, and was tested on my
-board.
+On 31.03.2017 17:37, Jerome Brunet wrote:
+> On Wed, 2017-03-29 at 13:21 -0700, Kevin Hilman wrote:
+>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>>
+>> [...]
+>>
+>>> for Helmut this would mean that instead of dropping this patch (or
+>>> dropping CLKID_UART1 and CLKID_UART2 from this patch) he would rather
+>>> have to *add* another patch (for meson-gxbb.dtsi and meson-gxl.dtsi)
+>>> which passes the core clocks to the corresponding UART controllers
+>>> (similar to the CLKID_SD_EMMC_ clocks).
+>>
+>> Yes, this is what I would like to see.
+>>
+>> If a new CLKID is exposed, I want to see the users of it at the same
+>> time.
+>
+> Helmut,
+>
+> If you send another version of these patches, considering the feedback of Kevin
+> and Martin, could you please change the subject of this patch to:
+>
+> dt-bindings: clock: gxbb: expose UART clocks
+>
+> Thx
+> Jerome
+>
+i've just sent v3 of my patchset.
+(i changed the subjects of most patches in the set)
 
-Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
----
- drivers/tty/serial/meson_uart.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Helmut
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 60f16795d16b..cb99112288eb 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -600,6 +600,7 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	struct resource *res_mem, *res_irq;
- 	struct uart_port *port;
- 	struct clk *clk;
-+	struct clk *core_clk;
- 	int ret = 0;
-
- 	if (pdev->dev.of_node)
-@@ -625,6 +626,15 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	if (!port)
- 		return -ENOMEM;
-
-+	core_clk = devm_clk_get(&pdev->dev, "core");
-+	if (!IS_ERR(core_clk)) {
-+		ret = clk_prepare_enable(core_clk);
-+		if (ret) {
-+			dev_err(&pdev->dev, "couldn't enable clkc\n");
-+			return ret;
-+		}
-+	}
-+
- 	clk = clk_get(&pdev->dev, NULL);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
---
-2.11.0
+>>
+>> Kevin
+>
