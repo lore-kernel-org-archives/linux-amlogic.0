@@ -1,34 +1,44 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 31 Mar 2017 10:47:59 +0200
-Subject: [PATCH 3/3] ARM64: dts: meson-gx: Add SoC info register
-In-Reply-To: <1490950079-10145-1-git-send-email-narmstrong@baylibre.com>
-References: <1490950079-10145-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490950079-10145-4-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 31 Mar 2017 12:14:17 +0200
+Subject: [PATCH] MAINTAINERS: Add maintainers for the meson clock driver
+Message-ID: <20170331101417.21312-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add node for the Amlogic Meson GX SoC information register.
-
+Suggested-by: Michael Turquette <mturquette@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>,
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 886efa5..c8e42d4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -357,6 +357,11 @@
- 				#reset-cells = <1>;
- 			};
+Hi Mike, Stephen,
+
+If this is OK with you, this will be the first patch of our upcoming pull
+request.
+
+ MAINTAINERS | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c265a5fe4848..8cb237925b06 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1069,6 +1069,16 @@ F: 	drivers/pinctrl/meson/
+ F:	drivers/mmc/host/meson*
+ N:	meson
  
-+			chipid at 220 {
-+				compatible = "amlogic,meson-gx-socinfo";
-+				reg = <0x0 0x00220 0x0 0x4>;
-+			};
++ARM/Amlogic Meson SoC CLOCK FRAMEWORK
++M:	Neil Armstrong <narmstrong@baylibre.com>
++M:	Jerome Brunet <jbrunet@baylibre.com>
++L:	linux-amlogic at lists.infradead.org
++S:	Maintained
++F:	drivers/clk/meson/
++F:	include/dt-bindings/clock/meson*
++F:	include/dt-bindings/clock/gxbb*
++F:	Documentation/devicetree/bindings/clock/amlogic*
 +
- 			uart_AO: serial at 4c0 {
- 				compatible = "amlogic,meson-uart";
- 				reg = <0x0 0x004c0 0x0 0x14>;
+ ARM/Annapurna Labs ALPINE ARCHITECTURE
+ M:	Tsahee Zidenberg <tsahee@annapurnalabs.com>
+ M:	Antoine Tenart <antoine.tenart@free-electrons.com>
 -- 
-1.9.1
+2.9.3
