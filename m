@@ -1,956 +1,555 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 31 Mar 2017 16:25:16 +0200
-Subject: [PATCH v5.1 3/6] documentation: media: Add documentation for new RGB
- and YUV bus formats
+Date: Fri, 31 Mar 2017 16:25:17 +0200
+Subject: [PATCH v5.1 4/6] drm: bridge: dw-hdmi: Switch to V4L bus format and
+ encodings
 In-Reply-To: <1490970319-24981-1-git-send-email-narmstrong@baylibre.com>
 References: <1490970319-24981-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1490970319-24981-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1490970319-24981-5-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add documentation for added Bus Formats to describe RGB and YUV formats used
-as input to the Synopsys DesignWare HDMI TX Controller.
+Some display pipelines can only provide non-RBG input pixels to the HDMI TX
+Controller, this patch takes the pixel format from the plat_data if provided.
 
-Acked-by: Hans Verkuil <hans.verkuil@cisco.com>
+Reviewed-by: Jose Abreu <joabreu@synopsys.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/media/uapi/v4l/subdev-formats.rst | 874 +++++++++++++++++++++++-
- 1 file changed, 859 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 326 +++++++++++++++++++++---------
+ include/drm/bridge/dw_hdmi.h              |  63 ++++++
+ 2 files changed, 294 insertions(+), 95 deletions(-)
 
-diff --git a/Documentation/media/uapi/v4l/subdev-formats.rst b/Documentation/media/uapi/v4l/subdev-formats.rst
-index d6152c9..371f6eb 100644
---- a/Documentation/media/uapi/v4l/subdev-formats.rst
-+++ b/Documentation/media/uapi/v4l/subdev-formats.rst
-@@ -1258,6 +1258,281 @@ The following tables list existing packed RGB formats.
-       - b\ :sub:`2`
-       - b\ :sub:`1`
-       - b\ :sub:`0`
-+    * .. _MEDIA-BUS-FMT-RGB101010-1X30:
-+
-+      - MEDIA_BUS_FMT_RGB101010_1X30
-+      - 0x1018
-+      -
-+      - 0
-+      - 0
-+      - r\ :sub:`9`
-+      - r\ :sub:`8`
-+      - r\ :sub:`7`
-+      - r\ :sub:`6`
-+      - r\ :sub:`5`
-+      - r\ :sub:`4`
-+      - r\ :sub:`3`
-+      - r\ :sub:`2`
-+      - r\ :sub:`1`
-+      - r\ :sub:`0`
-+      - g\ :sub:`9`
-+      - g\ :sub:`8`
-+      - g\ :sub:`7`
-+      - g\ :sub:`6`
-+      - g\ :sub:`5`
-+      - g\ :sub:`4`
-+      - g\ :sub:`3`
-+      - g\ :sub:`2`
-+      - g\ :sub:`1`
-+      - g\ :sub:`0`
-+      - b\ :sub:`9`
-+      - b\ :sub:`8`
-+      - b\ :sub:`7`
-+      - b\ :sub:`6`
-+      - b\ :sub:`5`
-+      - b\ :sub:`4`
-+      - b\ :sub:`3`
-+      - b\ :sub:`2`
-+      - b\ :sub:`1`
-+      - b\ :sub:`0`
-+
-+.. raw:: latex
-+
-+    \endgroup
-+
-+
-+The following table list existing packed 36bit wide RGB formats.
-+
-+.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
-+
-+.. _v4l2-mbus-pixelcode-rgb-36:
-+
-+.. raw:: latex
-+
-+    \begingroup
-+    \tiny
-+    \setlength{\tabcolsep}{2pt}
-+
-+.. flat-table:: 36bit RGB formats
-+    :header-rows:  2
-+    :stub-columns: 0
-+    :widths: 36 7 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-+
-+    * - Identifier
-+      - Code
-+      -
-+      - :cspan:`35` Data organization
-+    * -
-+      -
-+      - Bit
-+      - 35
-+      - 34
-+      - 33
-+      - 32
-+      - 31
-+      - 30
-+      - 29
-+      - 28
-+      - 27
-+      - 26
-+      - 25
-+      - 24
-+      - 23
-+      - 22
-+      - 21
-+      - 20
-+      - 19
-+      - 18
-+      - 17
-+      - 16
-+      - 15
-+      - 14
-+      - 13
-+      - 12
-+      - 11
-+      - 10
-+      - 9
-+      - 8
-+      - 7
-+      - 6
-+      - 5
-+      - 4
-+      - 3
-+      - 2
-+      - 1
-+      - 0
-+    * .. _MEDIA-BUS-FMT-RGB121212-1X36:
-+
-+      - MEDIA_BUS_FMT_RGB121212_1X36
-+      - 0x1019
-+      -
-+      - r\ :sub:`11`
-+      - r\ :sub:`10`
-+      - r\ :sub:`9`
-+      - r\ :sub:`8`
-+      - r\ :sub:`7`
-+      - r\ :sub:`6`
-+      - r\ :sub:`5`
-+      - r\ :sub:`4`
-+      - r\ :sub:`3`
-+      - r\ :sub:`2`
-+      - r\ :sub:`1`
-+      - r\ :sub:`0`
-+      - g\ :sub:`11`
-+      - g\ :sub:`10`
-+      - g\ :sub:`9`
-+      - g\ :sub:`8`
-+      - g\ :sub:`7`
-+      - g\ :sub:`6`
-+      - g\ :sub:`5`
-+      - g\ :sub:`4`
-+      - g\ :sub:`3`
-+      - g\ :sub:`2`
-+      - g\ :sub:`1`
-+      - g\ :sub:`0`
-+      - b\ :sub:`11`
-+      - b\ :sub:`10`
-+      - b\ :sub:`9`
-+      - b\ :sub:`8`
-+      - b\ :sub:`7`
-+      - b\ :sub:`6`
-+      - b\ :sub:`5`
-+      - b\ :sub:`4`
-+      - b\ :sub:`3`
-+      - b\ :sub:`2`
-+      - b\ :sub:`1`
-+      - b\ :sub:`0`
-+
-+.. raw:: latex
-+
-+    \endgroup
-+
-+
-+The following table list existing packed 48bit wide RGB formats.
-+
-+.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
-+
-+.. _v4l2-mbus-pixelcode-rgb-48:
-+
-+.. raw:: latex
-+
-+    \begingroup
-+    \tiny
-+    \setlength{\tabcolsep}{2pt}
-+
-+.. flat-table:: 48bit RGB formats
-+    :header-rows:  2
-+    :stub-columns: 0
-+    :widths: 36 7 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-+
-+    * - Identifier
-+      - Code
-+      -
-+      - :cspan:`47` Data organization
-+    * -
-+      -
-+      - Bit
-+      - 47
-+      - 46
-+      - 45
-+      - 44
-+      - 43
-+      - 42
-+      - 41
-+      - 40
-+      - 39
-+      - 38
-+      - 37
-+      - 36
-+      - 35
-+      - 34
-+      - 33
-+      - 32
-+      - 31
-+      - 30
-+      - 29
-+      - 28
-+      - 27
-+      - 26
-+      - 25
-+      - 24
-+      - 23
-+      - 22
-+      - 21
-+      - 20
-+      - 19
-+      - 18
-+      - 17
-+      - 16
-+      - 15
-+      - 14
-+      - 13
-+      - 12
-+      - 11
-+      - 10
-+      - 9
-+      - 8
-+      - 7
-+      - 6
-+      - 5
-+      - 4
-+      - 3
-+      - 2
-+      - 1
-+      - 0
-+    * .. _MEDIA-BUS-FMT-RGB161616-1X48:
-+
-+      - MEDIA_BUS_FMT_RGB161616_1X48
-+      - 0x101a
-+      -
-+      - r\ :sub:`15`
-+      - r\ :sub:`14`
-+      - r\ :sub:`13`
-+      - r\ :sub:`12`
-+      - r\ :sub:`11`
-+      - r\ :sub:`10`
-+      - r\ :sub:`9`
-+      - r\ :sub:`8`
-+      - r\ :sub:`7`
-+      - r\ :sub:`6`
-+      - r\ :sub:`5`
-+      - r\ :sub:`4`
-+      - r\ :sub:`3`
-+      - r\ :sub:`2`
-+      - r\ :sub:`1`
-+      - r\ :sub:`0`
-+      - g\ :sub:`15`
-+      - g\ :sub:`14`
-+      - g\ :sub:`13`
-+      - g\ :sub:`12`
-+      - g\ :sub:`11`
-+      - g\ :sub:`10`
-+      - g\ :sub:`9`
-+      - g\ :sub:`8`
-+      - g\ :sub:`7`
-+      - g\ :sub:`6`
-+      - g\ :sub:`5`
-+      - g\ :sub:`4`
-+      - g\ :sub:`3`
-+      - g\ :sub:`2`
-+      - g\ :sub:`1`
-+      - g\ :sub:`0`
-+      - b\ :sub:`15`
-+      - b\ :sub:`14`
-+      - b\ :sub:`13`
-+      - b\ :sub:`12`
-+      - b\ :sub:`11`
-+      - b\ :sub:`10`
-+      - b\ :sub:`9`
-+      - b\ :sub:`8`
-+      - b\ :sub:`7`
-+      - b\ :sub:`6`
-+      - b\ :sub:`5`
-+      - b\ :sub:`4`
-+      - b\ :sub:`3`
-+      - b\ :sub:`2`
-+      - b\ :sub:`1`
-+      - b\ :sub:`0`
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index ff1fae3..16d5fff3 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -30,18 +30,15 @@
+ #include <drm/drm_encoder_slave.h>
+ #include <drm/bridge/dw_hdmi.h>
  
- .. raw:: latex
++#include <uapi/linux/media-bus-format.h>
++#include <uapi/linux/videodev2.h>
++
+ #include "dw-hdmi.h"
+ #include "dw-hdmi-audio.h"
  
-@@ -2344,7 +2619,8 @@ The format code is made of the following information.
+ #define DDC_SEGMENT_ADDR	0x30
+ #define HDMI_EDID_LEN		512
  
- -  The number of bus samples per pixel. Pixels that are wider than the
-    bus width must be transferred in multiple samples. Common values are
--   1, 1.5 (encoded as 1_5) and 2.
-+   0.5 (encoded as 0_5; in this case two pixels are transferred per bus
-+   sample), 1, 1.5 (encoded as 1_5) and 2.
+-#define RGB			0
+-#define YCBCR444		1
+-#define YCBCR422_16BITS		2
+-#define YCBCR422_8BITS		3
+-#define XVYCC444		4
+-
+ enum hdmi_datamap {
+ 	RGB444_8B = 0x01,
+ 	RGB444_10B = 0x03,
+@@ -95,10 +92,10 @@ struct hdmi_vmode {
+ };
  
- -  The bus width. When the bus width is larger than the number of bits
-    per pixel component, several components are packed in a single bus
-@@ -5962,10 +6238,10 @@ the following codes.
-       - v\ :sub:`2`
-       - v\ :sub:`1`
-       - v\ :sub:`0`
--    * .. _MEDIA-BUS-FMT-UYVY12-1X24:
-+    * .. _MEDIA-BUS-FMT-UYYVYY8-0-5X24:
+ struct hdmi_data_info {
+-	unsigned int enc_in_format;
+-	unsigned int enc_out_format;
+-	unsigned int enc_color_depth;
+-	unsigned int colorimetry;
++	unsigned int enc_in_bus_format;
++	unsigned int enc_out_bus_format;
++	unsigned int enc_in_encoding;
++	unsigned int enc_out_encoding;
+ 	unsigned int pix_repet_factor;
+ 	unsigned int hdcp_enable;
+ 	struct hdmi_vmode video_mode;
+@@ -567,6 +564,92 @@ void dw_hdmi_audio_disable(struct dw_hdmi *hdmi)
+ }
+ EXPORT_SYMBOL_GPL(dw_hdmi_audio_disable);
  
--      - MEDIA_BUS_FMT_UYVY12_1X24
--      - 0x2020
-+      - MEDIA_BUS_FMT_UYYVYY8_0_5X24
-+      - 0x2026
-       -
-       -
-       -
-@@ -5975,10 +6251,6 @@ the following codes.
-       -
-       -
-       -
--      - u\ :sub:`11`
--      - u\ :sub:`10`
--      - u\ :sub:`9`
--      - u\ :sub:`8`
-       - u\ :sub:`7`
-       - u\ :sub:`6`
-       - u\ :sub:`5`
-@@ -5987,10 +6259,14 @@ the following codes.
-       - u\ :sub:`2`
-       - u\ :sub:`1`
-       - u\ :sub:`0`
--      - y\ :sub:`11`
--      - y\ :sub:`10`
--      - y\ :sub:`9`
--      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-       - y\ :sub:`7`
-       - y\ :sub:`6`
-       - y\ :sub:`5`
-@@ -6010,9 +6286,81 @@ the following codes.
-       -
-       -
-       -
--      - v\ :sub:`11`
--      - v\ :sub:`10`
--      - v\ :sub:`9`
-+      - v\ :sub:`7`
-+      - v\ :sub:`6`
-+      - v\ :sub:`5`
-+      - v\ :sub:`4`
-+      - v\ :sub:`3`
-+      - v\ :sub:`2`
-+      - v\ :sub:`1`
-+      - v\ :sub:`0`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+    * .. _MEDIA-BUS-FMT-UYVY12-1X24:
++static bool hdmi_bus_fmt_is_rgb(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_RGB888_1X24:
++	case MEDIA_BUS_FMT_RGB101010_1X30:
++	case MEDIA_BUS_FMT_RGB121212_1X36:
++	case MEDIA_BUS_FMT_RGB161616_1X48:
++		return true;
 +
-+      - MEDIA_BUS_FMT_UYVY12_1X24
-+      - 0x2020
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      - u\ :sub:`11`
-+      - u\ :sub:`10`
-+      - u\ :sub:`9`
-+      - u\ :sub:`8`
-+      - u\ :sub:`7`
-+      - u\ :sub:`6`
-+      - u\ :sub:`5`
-+      - u\ :sub:`4`
-+      - u\ :sub:`3`
-+      - u\ :sub:`2`
-+      - u\ :sub:`1`
-+      - u\ :sub:`0`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+    * -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      -
-+      - v\ :sub:`11`
-+      - v\ :sub:`10`
-+      - v\ :sub:`9`
-       - v\ :sub:`8`
-       - v\ :sub:`7`
-       - v\ :sub:`6`
-@@ -6287,6 +6635,78 @@ the following codes.
-       - v\ :sub:`2`
-       - v\ :sub:`1`
-       - v\ :sub:`0`
-+    * .. _MEDIA-BUS-FMT-UYYVYY10-0-5X30:
++	default:
++		return false;
++	}
++}
 +
-+      - MEDIA_BUS_FMT_UYYVYY10_0_5X30
-+      - 0x2027
-+      -
-+      -
-+      -
-+      - u\ :sub:`9`
-+      - u\ :sub:`8`
-+      - u\ :sub:`7`
-+      - u\ :sub:`6`
-+      - u\ :sub:`5`
-+      - u\ :sub:`4`
-+      - u\ :sub:`3`
-+      - u\ :sub:`2`
-+      - u\ :sub:`1`
-+      - u\ :sub:`0`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+    * -
-+      -
-+      -
-+      -
-+      -
-+      - v\ :sub:`9`
-+      - v\ :sub:`8`
-+      - v\ :sub:`7`
-+      - v\ :sub:`6`
-+      - v\ :sub:`5`
-+      - v\ :sub:`4`
-+      - v\ :sub:`3`
-+      - v\ :sub:`2`
-+      - v\ :sub:`1`
-+      - v\ :sub:`0`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-     * .. _MEDIA-BUS-FMT-AYUV8-1X32:
++static bool hdmi_bus_fmt_is_yuv444(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_YUV8_1X24:
++	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_YUV12_1X36:
++	case MEDIA_BUS_FMT_YUV16_1X48:
++		return true;
++
++	default:
++		return false;
++	}
++}
++
++static bool hdmi_bus_fmt_is_yuv422(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_UYVY8_1X16:
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++	case MEDIA_BUS_FMT_UYVY12_1X24:
++		return true;
++
++	default:
++		return false;
++	}
++}
++
++static bool hdmi_bus_fmt_is_yuv420(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
++	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
++	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
++	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
++		return true;
++
++	default:
++		return false;
++	}
++}
++
++static int hdmi_bus_fmt_color_depth(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_RGB888_1X24:
++	case MEDIA_BUS_FMT_YUV8_1X24:
++	case MEDIA_BUS_FMT_UYVY8_1X16:
++	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
++		return 8;
++
++	case MEDIA_BUS_FMT_RGB101010_1X30:
++	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
++		return 10;
++
++	case MEDIA_BUS_FMT_RGB121212_1X36:
++	case MEDIA_BUS_FMT_YUV12_1X36:
++	case MEDIA_BUS_FMT_UYVY12_1X24:
++	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
++		return 12;
++
++	case MEDIA_BUS_FMT_RGB161616_1X48:
++	case MEDIA_BUS_FMT_YUV16_1X48:
++	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
++		return 16;
++
++	default:
++		return 0;
++	}
++}
++
+ /*
+  * this submodule is responsible for the video data synchronization.
+  * for example, for RGB 4:4:4 input, the data map is defined as
+@@ -579,37 +662,49 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
+ 	int color_format = 0;
+ 	u8 val;
  
-       - MEDIA_BUS_FMT_AYUV8_1X32
-@@ -6330,6 +6750,430 @@ the following codes.
+-	if (hdmi->hdmi_data.enc_in_format == RGB) {
+-		if (hdmi->hdmi_data.enc_color_depth == 8)
+-			color_format = 0x01;
+-		else if (hdmi->hdmi_data.enc_color_depth == 10)
+-			color_format = 0x03;
+-		else if (hdmi->hdmi_data.enc_color_depth == 12)
+-			color_format = 0x05;
+-		else if (hdmi->hdmi_data.enc_color_depth == 16)
+-			color_format = 0x07;
+-		else
+-			return;
+-	} else if (hdmi->hdmi_data.enc_in_format == YCBCR444) {
+-		if (hdmi->hdmi_data.enc_color_depth == 8)
+-			color_format = 0x09;
+-		else if (hdmi->hdmi_data.enc_color_depth == 10)
+-			color_format = 0x0B;
+-		else if (hdmi->hdmi_data.enc_color_depth == 12)
+-			color_format = 0x0D;
+-		else if (hdmi->hdmi_data.enc_color_depth == 16)
+-			color_format = 0x0F;
+-		else
+-			return;
+-	} else if (hdmi->hdmi_data.enc_in_format == YCBCR422_8BITS) {
+-		if (hdmi->hdmi_data.enc_color_depth == 8)
+-			color_format = 0x16;
+-		else if (hdmi->hdmi_data.enc_color_depth == 10)
+-			color_format = 0x14;
+-		else if (hdmi->hdmi_data.enc_color_depth == 12)
+-			color_format = 0x12;
+-		else
+-			return;
++	switch (hdmi->hdmi_data.enc_in_bus_format) {
++	case MEDIA_BUS_FMT_RGB888_1X24:
++		color_format = 0x01;
++		break;
++	case MEDIA_BUS_FMT_RGB101010_1X30:
++		color_format = 0x03;
++		break;
++	case MEDIA_BUS_FMT_RGB121212_1X36:
++		color_format = 0x05;
++		break;
++	case MEDIA_BUS_FMT_RGB161616_1X48:
++		color_format = 0x07;
++		break;
++
++	case MEDIA_BUS_FMT_YUV8_1X24:
++	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
++		color_format = 0x09;
++		break;
++	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
++		color_format = 0x0B;
++		break;
++	case MEDIA_BUS_FMT_YUV12_1X36:
++	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
++		color_format = 0x0D;
++		break;
++	case MEDIA_BUS_FMT_YUV16_1X48:
++	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
++		color_format = 0x0F;
++		break;
++
++	case MEDIA_BUS_FMT_UYVY8_1X16:
++		color_format = 0x16;
++		break;
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++		color_format = 0x14;
++		break;
++	case MEDIA_BUS_FMT_UYVY12_1X24:
++		color_format = 0x12;
++		break;
++
++	default:
++		return;
+ 	}
  
- 	\endgroup
+ 	val = HDMI_TX_INVID0_INTERNAL_DE_GENERATOR_DISABLE |
+@@ -632,26 +727,30 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
  
-+
-+The following table list existing packed 36bit wide YUV formats.
-+
-+.. raw:: latex
-+
-+    \begingroup
-+    \tiny
-+    \setlength{\tabcolsep}{2pt}
-+
-+.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
-+
-+.. _v4l2-mbus-pixelcode-yuv8-36bit:
-+
-+.. flat-table:: 36bit YUV Formats
-+    :header-rows:  2
-+    :stub-columns: 0
-+    :widths: 36 7 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-+
-+    * - Identifier
-+      - Code
-+      -
-+      - :cspan:`35` Data organization
-+    * -
-+      -
-+      - Bit
-+      - 35
-+      - 34
-+      - 33
-+      - 32
-+      - 31
-+      - 30
-+      - 29
-+      - 28
-+      - 27
-+      - 26
-+      - 25
-+      - 24
-+      - 23
-+      - 22
-+      - 21
-+      - 10
-+      - 19
-+      - 18
-+      - 17
-+      - 16
-+      - 15
-+      - 14
-+      - 13
-+      - 12
-+      - 11
-+      - 10
-+      - 9
-+      - 8
-+      - 7
-+      - 6
-+      - 5
-+      - 4
-+      - 3
-+      - 2
-+      - 1
-+      - 0
-+    * .. _MEDIA-BUS-FMT-UYYVYY12-0-5X36:
-+
-+      - MEDIA_BUS_FMT_UYYVYY12_0_5X36
-+      - 0x2028
-+      -
-+      - u\ :sub:`11`
-+      - u\ :sub:`10`
-+      - u\ :sub:`9`
-+      - u\ :sub:`8`
-+      - u\ :sub:`7`
-+      - u\ :sub:`6`
-+      - u\ :sub:`5`
-+      - u\ :sub:`4`
-+      - u\ :sub:`3`
-+      - u\ :sub:`2`
-+      - u\ :sub:`1`
-+      - u\ :sub:`0`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+    * -
-+      -
-+      -
-+      - v\ :sub:`11`
-+      - v\ :sub:`10`
-+      - v\ :sub:`9`
-+      - v\ :sub:`8`
-+      - v\ :sub:`7`
-+      - v\ :sub:`6`
-+      - v\ :sub:`5`
-+      - v\ :sub:`4`
-+      - v\ :sub:`3`
-+      - v\ :sub:`2`
-+      - v\ :sub:`1`
-+      - v\ :sub:`0`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+    * .. _MEDIA-BUS-FMT-YUV12-1X36:
-+
-+      - MEDIA_BUS_FMT_YUV12_1X36
-+      - 0x2029
-+      -
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - u\ :sub:`11`
-+      - u\ :sub:`10`
-+      - u\ :sub:`9`
-+      - u\ :sub:`8`
-+      - u\ :sub:`7`
-+      - u\ :sub:`6`
-+      - u\ :sub:`5`
-+      - u\ :sub:`4`
-+      - u\ :sub:`3`
-+      - u\ :sub:`2`
-+      - u\ :sub:`1`
-+      - u\ :sub:`0`
-+      - v\ :sub:`11`
-+      - v\ :sub:`10`
-+      - v\ :sub:`9`
-+      - v\ :sub:`8`
-+      - v\ :sub:`7`
-+      - v\ :sub:`6`
-+      - v\ :sub:`5`
-+      - v\ :sub:`4`
-+      - v\ :sub:`3`
-+      - v\ :sub:`2`
-+      - v\ :sub:`1`
-+      - v\ :sub:`0`
-+
-+
-+.. raw:: latex
-+
-+	\endgroup
-+
-+
-+The following table list existing packed 48bit wide YUV formats.
-+
-+.. raw:: latex
-+
-+    \begingroup
-+    \tiny
-+    \setlength{\tabcolsep}{2pt}
-+
-+.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
-+
-+.. _v4l2-mbus-pixelcode-yuv8-48bit:
-+
-+.. flat-table:: 48bit YUV Formats
-+    :header-rows:  2
-+    :stub-columns: 0
-+    :widths: 36 7 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-+
-+    * - Identifier
-+      - Code
-+      -
-+      - :cspan:`47` Data organization
-+    * -
-+      -
-+      - Bit
-+      - 47
-+      - 46
-+      - 45
-+      - 44
-+      - 43
-+      - 42
-+      - 41
-+      - 40
-+      - 39
-+      - 38
-+      - 37
-+      - 36
-+      - 35
-+      - 34
-+      - 33
-+      - 32
-+      - 31
-+      - 30
-+      - 29
-+      - 28
-+      - 27
-+      - 26
-+      - 25
-+      - 24
-+      - 23
-+      - 22
-+      - 21
-+      - 10
-+      - 19
-+      - 18
-+      - 17
-+      - 16
-+      - 15
-+      - 14
-+      - 13
-+      - 12
-+      - 11
-+      - 10
-+      - 9
-+      - 8
-+      - 7
-+      - 6
-+      - 5
-+      - 4
-+      - 3
-+      - 2
-+      - 1
-+      - 0
-+    * .. _MEDIA-BUS-FMT-YUV16-1X48:
-+
-+      - MEDIA_BUS_FMT_YUV16_1X48
-+      - 0x202a
-+      -
-+      - y\ :sub:`15`
-+      - y\ :sub:`14`
-+      - y\ :sub:`13`
-+      - y\ :sub:`12`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`8`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - u\ :sub:`15`
-+      - u\ :sub:`14`
-+      - u\ :sub:`13`
-+      - u\ :sub:`12`
-+      - u\ :sub:`11`
-+      - u\ :sub:`10`
-+      - u\ :sub:`9`
-+      - u\ :sub:`8`
-+      - u\ :sub:`7`
-+      - u\ :sub:`6`
-+      - u\ :sub:`5`
-+      - u\ :sub:`4`
-+      - u\ :sub:`3`
-+      - u\ :sub:`2`
-+      - u\ :sub:`1`
-+      - u\ :sub:`0`
-+      - v\ :sub:`15`
-+      - v\ :sub:`14`
-+      - v\ :sub:`13`
-+      - v\ :sub:`12`
-+      - v\ :sub:`11`
-+      - v\ :sub:`10`
-+      - v\ :sub:`9`
-+      - v\ :sub:`8`
-+      - v\ :sub:`7`
-+      - v\ :sub:`6`
-+      - v\ :sub:`5`
-+      - v\ :sub:`4`
-+      - v\ :sub:`3`
-+      - v\ :sub:`2`
-+      - v\ :sub:`1`
-+      - v\ :sub:`0`
-+    * .. _MEDIA-BUS-FMT-UYYVYY16-0-5X48:
-+
-+      - MEDIA_BUS_FMT_UYYVYY16_0_5X48
-+      - 0x202b
-+      -
-+      - u\ :sub:`15`
-+      - u\ :sub:`14`
-+      - u\ :sub:`13`
-+      - u\ :sub:`12`
-+      - u\ :sub:`11`
-+      - u\ :sub:`10`
-+      - u\ :sub:`9`
-+      - u\ :sub:`8`
-+      - u\ :sub:`7`
-+      - u\ :sub:`6`
-+      - u\ :sub:`5`
-+      - u\ :sub:`4`
-+      - u\ :sub:`3`
-+      - u\ :sub:`2`
-+      - u\ :sub:`1`
-+      - u\ :sub:`0`
-+      - y\ :sub:`15`
-+      - y\ :sub:`14`
-+      - y\ :sub:`13`
-+      - y\ :sub:`12`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - y\ :sub:`15`
-+      - y\ :sub:`14`
-+      - y\ :sub:`13`
-+      - y\ :sub:`12`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`8`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+    * -
-+      -
-+      -
-+      - v\ :sub:`15`
-+      - v\ :sub:`14`
-+      - v\ :sub:`13`
-+      - v\ :sub:`12`
-+      - v\ :sub:`11`
-+      - v\ :sub:`10`
-+      - v\ :sub:`9`
-+      - v\ :sub:`8`
-+      - v\ :sub:`7`
-+      - v\ :sub:`6`
-+      - v\ :sub:`5`
-+      - v\ :sub:`4`
-+      - v\ :sub:`3`
-+      - v\ :sub:`2`
-+      - v\ :sub:`1`
-+      - v\ :sub:`0`
-+      - y\ :sub:`15`
-+      - y\ :sub:`14`
-+      - y\ :sub:`13`
-+      - y\ :sub:`12`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`9`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+      - y\ :sub:`15`
-+      - y\ :sub:`14`
-+      - y\ :sub:`13`
-+      - y\ :sub:`12`
-+      - y\ :sub:`11`
-+      - y\ :sub:`10`
-+      - y\ :sub:`8`
-+      - y\ :sub:`8`
-+      - y\ :sub:`7`
-+      - y\ :sub:`6`
-+      - y\ :sub:`5`
-+      - y\ :sub:`4`
-+      - y\ :sub:`3`
-+      - y\ :sub:`2`
-+      - y\ :sub:`1`
-+      - y\ :sub:`0`
-+
-+
-+.. raw:: latex
-+
-+	\endgroup
-+
- HSV/HSL Formats
- ^^^^^^^^^^^^^^^
+ static int is_color_space_conversion(struct dw_hdmi *hdmi)
+ {
+-	return hdmi->hdmi_data.enc_in_format != hdmi->hdmi_data.enc_out_format;
++	return hdmi->hdmi_data.enc_in_bus_format != hdmi->hdmi_data.enc_out_bus_format;
+ }
  
+ static int is_color_space_decimation(struct dw_hdmi *hdmi)
+ {
+-	if (hdmi->hdmi_data.enc_out_format != YCBCR422_8BITS)
++	if (!hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format))
+ 		return 0;
+-	if (hdmi->hdmi_data.enc_in_format == RGB ||
+-	    hdmi->hdmi_data.enc_in_format == YCBCR444)
++
++	if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_in_bus_format) ||
++	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_in_bus_format))
+ 		return 1;
++
+ 	return 0;
+ }
+ 
+ static int is_color_space_interpolation(struct dw_hdmi *hdmi)
+ {
+-	if (hdmi->hdmi_data.enc_in_format != YCBCR422_8BITS)
++	if (!hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_in_bus_format))
+ 		return 0;
+-	if (hdmi->hdmi_data.enc_out_format == RGB ||
+-	    hdmi->hdmi_data.enc_out_format == YCBCR444)
++
++	if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_out_bus_format) ||
++	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format))
+ 		return 1;
++
+ 	return 0;
+ }
+ 
+@@ -662,15 +761,16 @@ static void dw_hdmi_update_csc_coeffs(struct dw_hdmi *hdmi)
+ 	u32 csc_scale = 1;
+ 
+ 	if (is_color_space_conversion(hdmi)) {
+-		if (hdmi->hdmi_data.enc_out_format == RGB) {
+-			if (hdmi->hdmi_data.colorimetry ==
+-					HDMI_COLORIMETRY_ITU_601)
++		if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_out_bus_format)) {
++			if (hdmi->hdmi_data.enc_out_encoding ==
++						V4L2_YCBCR_ENC_601)
+ 				csc_coeff = &csc_coeff_rgb_out_eitu601;
+ 			else
+ 				csc_coeff = &csc_coeff_rgb_out_eitu709;
+-		} else if (hdmi->hdmi_data.enc_in_format == RGB) {
+-			if (hdmi->hdmi_data.colorimetry ==
+-					HDMI_COLORIMETRY_ITU_601)
++		} else if (hdmi_bus_fmt_is_rgb(
++					hdmi->hdmi_data.enc_in_bus_format)) {
++			if (hdmi->hdmi_data.enc_out_encoding ==
++						V4L2_YCBCR_ENC_601)
+ 				csc_coeff = &csc_coeff_rgb_in_eitu601;
+ 			else
+ 				csc_coeff = &csc_coeff_rgb_in_eitu709;
+@@ -708,16 +808,23 @@ static void hdmi_video_csc(struct dw_hdmi *hdmi)
+ 	else if (is_color_space_decimation(hdmi))
+ 		decimation = HDMI_CSC_CFG_DECMODE_CHROMA_INT_FORMULA3;
+ 
+-	if (hdmi->hdmi_data.enc_color_depth == 8)
++	switch (hdmi_bus_fmt_color_depth(hdmi->hdmi_data.enc_out_bus_format)) {
++	case 8:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_24BPP;
+-	else if (hdmi->hdmi_data.enc_color_depth == 10)
++		break;
++	case 10:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_30BPP;
+-	else if (hdmi->hdmi_data.enc_color_depth == 12)
++		break;
++	case 12:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_36BPP;
+-	else if (hdmi->hdmi_data.enc_color_depth == 16)
++		break;
++	case 16:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_48BPP;
+-	else
++		break;
++
++	default:
+ 		return;
++	}
+ 
+ 	/* Configure the CSC registers */
+ 	hdmi_writeb(hdmi, interpolation | decimation, HDMI_CSC_CFG);
+@@ -740,32 +847,43 @@ static void hdmi_video_packetize(struct dw_hdmi *hdmi)
+ 	struct hdmi_data_info *hdmi_data = &hdmi->hdmi_data;
+ 	u8 val, vp_conf;
+ 
+-	if (hdmi_data->enc_out_format == RGB ||
+-	    hdmi_data->enc_out_format == YCBCR444) {
+-		if (!hdmi_data->enc_color_depth) {
+-			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
+-		} else if (hdmi_data->enc_color_depth == 8) {
++	if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_out_bus_format) ||
++	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format)) {
++		switch (hdmi_bus_fmt_color_depth(
++					hdmi->hdmi_data.enc_out_bus_format)) {
++		case 8:
+ 			color_depth = 4;
+ 			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
+-		} else if (hdmi_data->enc_color_depth == 10) {
++			break;
++		case 10:
+ 			color_depth = 5;
+-		} else if (hdmi_data->enc_color_depth == 12) {
++			break;
++		case 12:
+ 			color_depth = 6;
+-		} else if (hdmi_data->enc_color_depth == 16) {
++			break;
++		case 16:
+ 			color_depth = 7;
+-		} else {
+-			return;
++			break;
++		default:
++			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
+ 		}
+-	} else if (hdmi_data->enc_out_format == YCBCR422_8BITS) {
+-		if (!hdmi_data->enc_color_depth ||
+-		    hdmi_data->enc_color_depth == 8)
++	} else if (hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format)) {
++		switch (hdmi_bus_fmt_color_depth(
++					hdmi->hdmi_data.enc_out_bus_format)) {
++		case 0:
++		case 8:
+ 			remap_size = HDMI_VP_REMAP_YCC422_16bit;
+-		else if (hdmi_data->enc_color_depth == 10)
++			break;
++		case 10:
+ 			remap_size = HDMI_VP_REMAP_YCC422_20bit;
+-		else if (hdmi_data->enc_color_depth == 12)
++			break;
++		case 12:
+ 			remap_size = HDMI_VP_REMAP_YCC422_24bit;
+-		else
++			break;
++
++		default:
+ 			return;
++		}
+ 		output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_YCC422;
+ 	} else {
+ 		return;
+@@ -1148,28 +1266,35 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	/* Initialise info frame from DRM mode */
+ 	drm_hdmi_avi_infoframe_from_display_mode(&frame, mode);
+ 
+-	if (hdmi->hdmi_data.enc_out_format == YCBCR444)
++	if (hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format))
+ 		frame.colorspace = HDMI_COLORSPACE_YUV444;
+-	else if (hdmi->hdmi_data.enc_out_format == YCBCR422_8BITS)
++	else if (hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format))
+ 		frame.colorspace = HDMI_COLORSPACE_YUV422;
+ 	else
+ 		frame.colorspace = HDMI_COLORSPACE_RGB;
+ 
+ 	/* Set up colorimetry */
+-	if (hdmi->hdmi_data.enc_out_format == XVYCC444) {
+-		frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
+-		if (hdmi->hdmi_data.colorimetry == HDMI_COLORIMETRY_ITU_601)
+-			frame.extended_colorimetry =
++	switch (hdmi->hdmi_data.enc_out_encoding) {
++	case V4L2_YCBCR_ENC_601:
++		if (hdmi->hdmi_data.enc_in_encoding == V4L2_YCBCR_ENC_XV601)
++			frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
++		else
++			frame.colorimetry = HDMI_COLORIMETRY_ITU_601;
++		frame.extended_colorimetry =
+ 				HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
+-		else /*hdmi->hdmi_data.colorimetry == HDMI_COLORIMETRY_ITU_709*/
+-			frame.extended_colorimetry =
++	case V4L2_YCBCR_ENC_709:
++		if (hdmi->hdmi_data.enc_in_encoding == V4L2_YCBCR_ENC_XV709)
++			frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
++		else
++			frame.colorimetry = HDMI_COLORIMETRY_ITU_709;
++		frame.extended_colorimetry =
+ 				HDMI_EXTENDED_COLORIMETRY_XV_YCC_709;
+-	} else if (hdmi->hdmi_data.enc_out_format != RGB) {
+-		frame.colorimetry = hdmi->hdmi_data.colorimetry;
+-		frame.extended_colorimetry = HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
+-	} else { /* Carries no data */
+-		frame.colorimetry = HDMI_COLORIMETRY_NONE;
+-		frame.extended_colorimetry = HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
++		break;
++	default: /* Carries no data */
++		frame.colorimetry = HDMI_COLORIMETRY_ITU_601;
++		frame.extended_colorimetry =
++				HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
++		break;
+ 	}
+ 
+ 	frame.scan_mode = HDMI_SCAN_MODE_NONE;
+@@ -1498,19 +1623,30 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	    (hdmi->vic == 21) || (hdmi->vic == 22) ||
+ 	    (hdmi->vic == 2) || (hdmi->vic == 3) ||
+ 	    (hdmi->vic == 17) || (hdmi->vic == 18))
+-		hdmi->hdmi_data.colorimetry = HDMI_COLORIMETRY_ITU_601;
++		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_601;
+ 	else
+-		hdmi->hdmi_data.colorimetry = HDMI_COLORIMETRY_ITU_709;
++		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_709;
+ 
+ 	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
+ 	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
+ 
+-	/* TODO: Get input format from IPU (via FB driver interface) */
+-	hdmi->hdmi_data.enc_in_format = RGB;
++	/* TOFIX: Get input format from plat data or fallback to RGB888 */
++	if (hdmi->plat_data->input_bus_format >= 0)
++		hdmi->hdmi_data.enc_in_bus_format =
++			hdmi->plat_data->input_bus_format;
++	else
++		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
++
++	/* TOFIX: Get input encoding from plat data or fallback to none */
++	if (hdmi->plat_data->input_bus_encoding >= 0)
++		hdmi->hdmi_data.enc_in_encoding =
++			hdmi->plat_data->input_bus_encoding;
++	else
++		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
+ 
+-	hdmi->hdmi_data.enc_out_format = RGB;
++	/* TOFIX: Default to RGB888 output format */
++	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+ 
+-	hdmi->hdmi_data.enc_color_depth = 8;
+ 	hdmi->hdmi_data.pix_repet_factor = 0;
+ 	hdmi->hdmi_data.hdcp_enable = 0;
+ 	hdmi->hdmi_data.video_mode.mdataenablepolarity = true;
+diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+index bcceee8..45c2c15 100644
+--- a/include/drm/bridge/dw_hdmi.h
++++ b/include/drm/bridge/dw_hdmi.h
+@@ -14,6 +14,67 @@
+ 
+ struct dw_hdmi;
+ 
++/**
++ * DOC: Supported input formats and encodings
++ *
++ * Depending on the Hardware configuration of the Controller IP, it supports
++ * a subset of the following input formats and encodings on it's internal
++ * 48bit bus.
++ *
++ * +----------------------+----------------------------------+------------------------------+
++ * + Format Name          + Format Code                      + Encodings                    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 8bit       + ``MEDIA_BUS_FMT_RGB888_1X24``    + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 10bits     + ``MEDIA_BUS_FMT_RGB101010_1X30`` + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 12bits     + ``MEDIA_BUS_FMT_RGB121212_1X36`` + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 16bits     + ``MEDIA_BUS_FMT_RGB161616_1X48`` + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 8bit     + ``MEDIA_BUS_FMT_YUV8_1X24``      + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 10bits   + ``MEDIA_BUS_FMT_YUV10_1X30``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 12bits   + ``MEDIA_BUS_FMT_YUV12_1X36``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 16bits   + ``MEDIA_BUS_FMT_YUV16_1X48``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:2 8bit     + ``MEDIA_BUS_FMT_UYVY8_1X16``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:2 10bits   + ``MEDIA_BUS_FMT_UYVY10_1X20``    + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:2 12bits   + ``MEDIA_BUS_FMT_UYVY12_1X24``    + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 8bit     + ``MEDIA_BUS_FMT_UYYVYY8_0_5X24`` + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 10bits   + ``MEDIA_BUS_FMT_UYYVYY10_0_5X30``+ ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 12bits   + ``MEDIA_BUS_FMT_UYYVYY12_0_5X36``+ ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 16bits   + ``MEDIA_BUS_FMT_UYYVYY16_0_5X48``+ ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ */
++
+ enum {
+ 	DW_HDMI_RES_8,
+ 	DW_HDMI_RES_10,
+@@ -62,6 +123,8 @@ struct dw_hdmi_plat_data {
+ 	struct regmap *regm;
+ 	enum drm_mode_status (*mode_valid)(struct drm_connector *connector,
+ 					   struct drm_display_mode *mode);
++	unsigned long input_bus_format;
++	unsigned long input_bus_encoding;
+ 
+ 	/* Vendor PHY support */
+ 	const struct dw_hdmi_phy_ops *phy_ops;
 -- 
 1.9.1
