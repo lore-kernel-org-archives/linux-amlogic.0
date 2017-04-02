@@ -1,206 +1,219 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sun, 02 Apr 2017 17:38:16 +0200
-Subject: [PATCH 1/1] clk: meson: meson8b: add support for the NAND clocks
-In-Reply-To: <20170401131001.9988-2-martin.blumenstingl@googlemail.com>
-References: <20170401131001.9988-1-martin.blumenstingl@googlemail.com>
- <20170401131001.9988-2-martin.blumenstingl@googlemail.com>
-Message-ID: <1491147496.3480.5.camel@baylibre.com>
+Date: Sun, 02 Apr 2017 17:57:45 +0200
+Subject: [PATCH 1/1] clk: meson: gxbb: remove the "cpu_clk" from the
+ GXBB and GXL driver
+In-Reply-To: <20170401125519.7339-2-martin.blumenstingl@googlemail.com>
+References: <20170401125519.7339-1-martin.blumenstingl@googlemail.com>
+ <20170401125519.7339-2-martin.blumenstingl@googlemail.com>
+Message-ID: <1491148665.3480.8.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2017-04-01 at 15:10 +0200, Martin Blumenstingl wrote:
-> This adds the NAND clocks (from the HHI_NAND_CLK_CNTL register) to the
-> Meson8b clock driver. There are three NAND clocks: a gate which enables
-> or disables the NAND clock, a mux and a divider (which divides the mux
-> output).
-> Unfortunately the public S805 datasheet does not document the mux
-> parents. However, the vendor kernel has a few hints for us which allows
-> us to make an educated guess about the clock parents. To do this we need
-> to have a look at set_nand_core_clk() from the vendor's NAND driver (see
-> [0]):
-> - XTAL = (4<<9) | (1<<8) | 0
-> - 160MHz = (0<<9) | (1<<8) | 3)
-> - 182MHz = (3<<9) | (1<<8) | 1)
-> - 212MHz = (1<<9) | (1<<8) | 3)
-> - 255MHz = (2<<9) | (1<<8) | 1)
+On Sat, 2017-04-01 at 14:55 +0200, Martin Blumenstingl wrote:
+> It seems that the "cpu_clk" was carried over from the meson8b clock
+> controller driver. On Meson GX (GXBB/GXL/GXM) the registers which are
+> used by the cpu_clk have a different purpose (in other words: they don't
+> control the CPU clock anymore). HHI_SYS_CPU_CLK_CNTL1 bits 31:24 are
+> reserved according to the public S905 datasheet, while bit 23 is the
+> "A53_trace_clk_DIS" gate (which according to the datasheet should only
+> be used in case a silicon bug is discovered) and bits 22:20 are a
+> divider (A53_trace_clk). The meson clk-cpu code however expects that
+> bits 28:20 are reserved for a divider (according to the public S805
+> datasheet this "SCALE_DIV: This value represents an N+1 divider of the
+> input clock.").
 > 
-> should only be used for debugging) we have to do a bit of math for the
-> other parents: target_freq * divider = rate of parent clock
-> Bit 8 above is the enable bit, so we can ignore it here. Bits 11:9 are
-> the mux index and bits 6:0 are the 0-based divider (so we need to add
-> 1). This gives us:
-> - mux 0 (160MHz * 4) = fclk_div4 (actual rate = 637.5MHz, off by 2.5MHz)
-> - mux 1 (212MHz * 4) = fclk_div3 (actual rate = 850MHz, off by 2MHz)
-> - mux 2 (255MHz * 2) = fclk_div5 (matches exactly 510MHz)
-> - mux 3 (182MHz * 2) = fclk_div7 (actual rate = 346.3MHz, off by 0.3MHz)
+> The CPU clock on Meson GX SoCs is provided by the SCPI DVFS clock
+> driver instead. Two examples from a Meson GXL S905X SoC:
+> - vcpu (SCPI DVFS clock 0) rate: 1000000000 / cpu_clk rate: 708000000
+> - vcpu (SCPI DVFS clock 0) rate: 1512000000 / cpu_clk rate: 708000000
 > 
-
-Good job detective ;)
-What is strange is that amlogic seems to have change the index of these parents
-on the gxbb. I have a documentation (which I'm not at liberty to share
-unfortunately) which gives the following index on the S905:
-0: xtal
-1: fclk_div2
-2: fclk_div3
-3: flck_div5
-4: fclk_div7
-5: mpll2
-6: mpll3
-7: gp0
-
-Did they change the ids, or is the documentation wrong ? I don't know, but we'll
-to pay attention to that if you port your NAND work the gx family.
-
-> [0]
-> https://github.com/khadas/linux/blob/9587681285cb/drivers/amlogic/amlnf/dev/am
-> lnf_ctrl.c#L314
+> Unfortunately the CLKID_CPUCLK was already exported (but is currently
+> not used) to DT. Due to the removal of this clock definition there is
+> now a hole in the clk_hw_onecell_data (which is not a problem because
+> this case is already handled in gxbb_clkc_probe).
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Looks good to me.
+I'll wait for the Ack of one of the DT maintainers to apply it.
+Thx Martin
+
+Cheers
+
 > ---
-> ?drivers/clk/meson/meson8b.c | 53
-> +++++++++++++++++++++++++++++++++++++++++++++
-> ?drivers/clk/meson/meson8b.h |??6 ++++-
-> ?2 files changed, 58 insertions(+), 1 deletion(-)
+> ?drivers/clk/meson/gxbb.c??????????????| 64 ++------------------------------
+> ---
+> ?drivers/clk/meson/gxbb.h??????????????|??2 +-
+> ?include/dt-bindings/clock/gxbb-clkc.h |??1 -
+> ?3 files changed, 4 insertions(+), 63 deletions(-)
 > 
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index e9985503165c..b7f3cf8ed386 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -403,6 +403,53 @@ struct clk_gate meson8b_clk81 = {
-> ?	},
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index ad5f027af1a2..7cf88ca9bdce 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -278,20 +278,6 @@ static const struct pll_rate_table
+> gxl_gp0_pll_rate_table[] = {
+> ?	{ /* sentinel */ },
 > ?};
 > ?
-> +static u32 mux_table_nand[]	= { 0, 1, 2, 3, 4 };
-You can drop this table, you don't need it.
-
-> +
-> +struct clk_mux meson8b_nand_clk_sel = {
-> +	.reg = (void *)HHI_NAND_CLK_CNTL,
-> +	.mask = 0x7,
-> +	.shift = 9,
-> +	.table = mux_table_nand,
-> +	.flags = CLK_MUX_ROUND_CLOSEST,
-
-If you go for CLK_SET_RATE_NO_REPARENT, I think this flag is not really useful.
-
-> +	.lock = &clk_lock,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "nand_clk_sel",
-> +		.ops = &clk_mux_ops,
-> +		/* FIXME all other parents are unknown: */
-> +		.parent_names = (const char *[]){ "fclk_div4", "fclk_div3",
-> +			"fclk_div5", "fclk_div7", "xtal" },
-> +		.num_parents = 5,
-> +		.flags = CLK_SET_RATE_NO_REPARENT,
-
-PSB
-
-> +	},
-> +};
-> +
-> +struct clk_divider meson8b_nand_clk_div = {
-> +	.reg = (void *)HHI_NAND_CLK_CNTL,
-> +	.shift = 0,
-> +	.width = 6,
-> +	.flags = CLK_DIVIDER_ROUND_CLOSEST,
-> +	.lock = &clk_lock,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "nand_clk_div",
-> +		.ops = &clk_divider_ops,
-> +		.parent_names = (const char *[]){ "nand_clk_sel" },
-> +		.num_parents = 1,
-
-I think you are trying to tightly control all those elements in your nand
-driver, aren't you ? To mimic the vendor driver settings, maybe ?
-
-While it would surely work, another way is possible. You could give the flag
-CLK_SET_RATE_PARENT (and drop the CLK_SET_RATE_NO_REPARENT) to all those
-elements and let the CCF do the work for you.
-
-There is a good chance it will come with same settings anyway (if that's the
-best math can provide)
-
-The good thing about it is that it hides those quirks from your driver. So if
-the gxbb has slighly different clock setup for the nand, you won't have to deal
-with it in your driver, just call clk_set_rate on the gate and be done with it.
-
-Could you give it try ?
-
-> +	},
-> +};
-> +
-> +struct clk_gate meson8b_nand_clk_gate = {
-> +	.reg = (void *)HHI_NAND_CLK_CNTL,
-> +	.bit_idx = 8,
-> +	.lock = &clk_lock,
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "nand_clk_gate",
-> +		.ops = &clk_gate_ops,
-> +		.parent_names = (const char *[]){ "nand_clk_div" },
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> ?/* Everything Else (EE) domain gates */
-> ?
-> ?static MESON_GATE(meson8b_ddr, HHI_GCLK_MPEG0, 0);
-> @@ -584,6 +631,9 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data
-> = {
-> ?		[CLKID_MPLL0]		????= &meson8b_mpll0.hw,
-> ?		[CLKID_MPLL1]		????= &meson8b_mpll1.hw,
-> ?		[CLKID_MPLL2]		????= &meson8b_mpll2.hw,
-> +		[CLKID_NAND_SEL]	????= &meson8b_nand_clk_sel.hw,
-> +		[CLKID_NAND_DIV]	????= &meson8b_nand_clk_div.hw,
-> +		[CLKID_NAND_CLK]	????= &meson8b_nand_clk_gate.hw,
-> ?	},
-> ?	.num = CLK_NR_CLKS,
-> ?};
-> @@ -679,14 +729,17 @@ static struct clk_gate *const meson8b_clk_gates[] = {
-> ?	&meson8b_ao_ahb_sram,
-> ?	&meson8b_ao_ahb_bus,
-> ?	&meson8b_ao_iface,
-> +	&meson8b_nand_clk_gate,
+> -static const struct clk_div_table cpu_div_table[] = {
+> -	{ .val = 1, .div = 1 },
+> -	{ .val = 2, .div = 2 },
+> -	{ .val = 3, .div = 3 },
+> -	{ .val = 2, .div = 4 },
+> -	{ .val = 3, .div = 6 },
+> -	{ .val = 4, .div = 8 },
+> -	{ .val = 5, .div = 10 },
+> -	{ .val = 6, .div = 12 },
+> -	{ .val = 7, .div = 14 },
+> -	{ .val = 8, .div = 16 },
+> -	{ /* sentinel */ },
+> -};
+> -
+> ?static struct meson_clk_pll gxbb_fixed_pll = {
+> ?	.m = {
+> ?		.reg_off = HHI_MPLL_CNTL,
+> @@ -612,21 +598,10 @@ static struct meson_clk_mpll gxbb_mpll2 = {
 > ?};
 > ?
-> ?static struct clk_mux *const meson8b_clk_muxes[] = {
-> ?	&meson8b_mpeg_clk_sel,
-> +	&meson8b_nand_clk_sel,
+> ?/*
+> - * FIXME cpu clocks and the legacy composite clocks (e.g. clk81) are both PLL
+> - * post-dividers and should be modeled with their respective PLLs via the
+> - * forthcoming coordinated clock rates feature
+> + * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
+> + * and should be modeled with their respective PLLs via the forthcoming
+> + * coordinated clock rates feature
+> ? */
+> -static struct meson_clk_cpu gxbb_cpu_clk = {
+> -	.reg_off = HHI_SYS_CPU_CLK_CNTL1,
+> -	.div_table = cpu_div_table,
+> -	.clk_nb.notifier_call = meson_clk_cpu_notifier_cb,
+> -	.hw.init = &(struct clk_init_data){
+> -		.name = "cpu_clk",
+> -		.ops = &meson_clk_cpu_ops,
+> -		.parent_names = (const char *[]){ "sys_pll" },
+> -		.num_parents = 1,
+> -	},
+> -};
+> ?
+> ?static u32 mux_table_clk81[]	= { 6, 5, 7 };
+> ?
+> @@ -1045,7 +1020,6 @@ static MESON_GATE(gxbb_ao_i2c, HHI_GCLK_AO, 4);
+> ?static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
+> ?	.hws = {
+> ?		[CLKID_SYS_PLL]		????= &gxbb_sys_pll.hw,
+> -		[CLKID_CPUCLK]		????= &gxbb_cpu_clk.hw,
+> ?		[CLKID_HDMI_PLL]	????= &gxbb_hdmi_pll.hw,
+> ?		[CLKID_FIXED_PLL]	????= &gxbb_fixed_pll.hw,
+> ?		[CLKID_FCLK_DIV2]	????= &gxbb_fclk_div2.hw,
+> @@ -1165,7 +1139,6 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data =
+> {
+> ?static struct clk_hw_onecell_data gxl_hw_onecell_data = {
+> ?	.hws = {
+> ?		[CLKID_SYS_PLL]		????= &gxbb_sys_pll.hw,
+> -		[CLKID_CPUCLK]		????= &gxbb_cpu_clk.hw,
+> ?		[CLKID_HDMI_PLL]	????= &gxbb_hdmi_pll.hw,
+> ?		[CLKID_FIXED_PLL]	????= &gxbb_fixed_pll.hw,
+> ?		[CLKID_FCLK_DIV2]	????= &gxbb_fclk_div2.hw,
+> @@ -1430,7 +1403,6 @@ struct clkc_data {
+> ?	unsigned int clk_dividers_count;
+> ?	struct meson_clk_audio_divider *const *clk_audio_dividers;
+> ?	unsigned int clk_audio_dividers_count;
+> -	struct meson_clk_cpu *cpu_clk;
+> ?	struct clk_hw_onecell_data *hw_onecell_data;
 > ?};
 > ?
-> ?static struct clk_divider *const meson8b_clk_dividers[] = {
-> ?	&meson8b_mpeg_clk_div,
-> +	&meson8b_nand_clk_div,
+> @@ -1447,7 +1419,6 @@ static const struct clkc_data gxbb_clkc_data = {
+> ?	.clk_dividers_count = ARRAY_SIZE(gxbb_clk_dividers),
+> ?	.clk_audio_dividers = gxbb_audio_dividers,
+> ?	.clk_audio_dividers_count = ARRAY_SIZE(gxbb_audio_dividers),
+> -	.cpu_clk = &gxbb_cpu_clk,
+> ?	.hw_onecell_data = &gxbb_hw_onecell_data,
 > ?};
 > ?
-> ?static int meson8b_clkc_probe(struct platform_device *pdev)
-> diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-> index 3881defc8644..cbb8001b5fe8 100644
-> --- a/drivers/clk/meson/meson8b.h
-> +++ b/drivers/clk/meson/meson8b.h
-> @@ -37,6 +37,7 @@
-> ?#define HHI_GCLK_AO			0x154 /* 0x55 offset in data sheet
-> */
-> ?#define HHI_SYS_CPU_CLK_CNTL1		0x15c /* 0x57 offset in data
-> sheet */
-> ?#define HHI_MPEG_CLK_CNTL		0x174 /* 0x5d offset in data sheet
-> */
-> +#define HHI_NAND_CLK_CNTL		0x25c /* 0x97 offset in data sheet
-> */
-> ?#define HHI_MPLL_CNTL			0x280 /* 0xa0 offset in data
-> sheet */
-> ?#define HHI_SYS_PLL_CNTL		0x300 /* 0xc0 offset in data sheet */
-> ?#define HHI_VID_PLL_CNTL		0x320 /* 0xc8 offset in data sheet */
-> @@ -160,8 +161,11 @@
-> ?#define CLKID_MPLL0		93
-> ?#define CLKID_MPLL1		94
-> ?#define CLKID_MPLL2		95
-> +#define CLKID_NAND_SEL		96
-> +#define CLKID_NAND_DIV		97
-> +#define CLKID_NAND_CLK		98
+> @@ -1464,7 +1435,6 @@ static const struct clkc_data gxl_clkc_data = {
+> ?	.clk_dividers_count = ARRAY_SIZE(gxbb_clk_dividers),
+> ?	.clk_audio_dividers = gxbb_audio_dividers,
+> ?	.clk_audio_dividers_count = ARRAY_SIZE(gxbb_audio_dividers),
+> -	.cpu_clk = &gxbb_cpu_clk,
+> ?	.hw_onecell_data = &gxl_hw_onecell_data,
+> ?};
 > ?
-> -#define CLK_NR_CLKS		96
-> +#define CLK_NR_CLKS		99
+> @@ -1479,8 +1449,6 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+> ?	const struct clkc_data *clkc_data;
+> ?	void __iomem *clk_base;
+> ?	int ret, clkid, i;
+> -	struct clk_hw *parent_hw;
+> -	struct clk *parent_clk;
+> ?	struct device *dev = &pdev->dev;
 > ?
-> ?/* include the CLKIDs that have been made part of the stable DT binding */
-> ?#include <dt-bindings/clock/meson8b-clkc.h>
+> ?	clkc_data = of_device_get_match_data(&pdev->dev);
+> @@ -1502,9 +1470,6 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+> ?	for (i = 0; i < clkc_data->clk_mplls_count; i++)
+> ?		clkc_data->clk_mplls[i]->base = clk_base;
+> ?
+> -	/* Populate the base address for CPU clk */
+> -	clkc_data->cpu_clk->base = clk_base;
+> -
+> ?	/* Populate base address for gates */
+> ?	for (i = 0; i < clkc_data->clk_gates_count; i++)
+> ?		clkc_data->clk_gates[i]->reg = clk_base +
+> @@ -1538,29 +1503,6 @@ static int gxbb_clkc_probe(struct platform_device
+> *pdev)
+> ?			goto iounmap;
+> ?	}
+> ?
+> -	/*
+> -	?* Register CPU clk notifier
+> -	?*
+> -	?* FIXME this is wrong for a lot of reasons. First, the muxes should
+> be
+> -	?* struct clk_hw objects. Second, we shouldn't program the muxes in
+> -	?* notifier handlers. The tricky programming sequence will be handled
+> -	?* by the forthcoming coordinated clock rates mechanism once that
+> -	?* feature is released.
+> -	?*
+> -	?* Furthermore, looking up the parent this way is terrible. At some
+> -	?* point we will stop allocating a default struct clk when
+> registering
+> -	?* a new clk_hw, and this hack will no longer work. Releasing the ccr
+> -	?* feature before that time solves the problem :-)
+> -	?*/
+> -	parent_hw = clk_hw_get_parent(&clkc_data->cpu_clk->hw);
+> -	parent_clk = parent_hw->clk;
+> -	ret = clk_notifier_register(parent_clk, &clkc_data->cpu_clk->clk_nb);
+> -	if (ret) {
+> -		pr_err("%s: failed to register clock notifier for cpu_clk\n",
+> -				__func__);
+> -		goto iounmap;
+> -	}
+> -
+> ?	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+> ?			clkc_data->hw_onecell_data);
+> ?
+> diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+> index 17c6aef033ff..36330c2d4433 100644
+> --- a/drivers/clk/meson/gxbb.h
+> +++ b/drivers/clk/meson/gxbb.h
+> @@ -171,7 +171,7 @@
+> ? * to be exposed to client nodes in DT: include/dt-bindings/clock/gxbb-clkc.h
+> ? */
+> ?#define CLKID_SYS_PLL		??0
+> -/* CLKID_CPUCLK */
+> +/* ID 1 is unused (it was used by the non-existing CLKID_CPUCLK before) */
+> ?/* CLKID_HDMI_PLL */
+> ?#define CLKID_FIXED_PLL		??3
+> ?/* CLKID_FCLK_DIV2 */
+> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-
+> bindings/clock/gxbb-clkc.h
+> index 4516bc4253b5..54faf83a4851 100644
+> --- a/include/dt-bindings/clock/gxbb-clkc.h
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h
+> @@ -5,7 +5,6 @@
+> ?#ifndef __GXBB_CLKC_H
+> ?#define __GXBB_CLKC_H
+> ?
+> -#define CLKID_CPUCLK		1
+> ?#define CLKID_HDMI_PLL		2
+> ?#define CLKID_FCLK_DIV2		4
+> ?#define CLKID_FCLK_DIV3		5
