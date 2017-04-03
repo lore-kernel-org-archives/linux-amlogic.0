@@ -1,76 +1,68 @@
 From: robh@kernel.org (Rob Herring)
-Date: Mon, 3 Apr 2017 11:34:48 -0500
-Subject: [PATCH 2/3] dt-bindings: arm: amlogic: Add SoC information
- bindings
-In-Reply-To: <4ab7d4ee-e805-69f1-b76b-b827b46285bd@baylibre.com>
-References: <1490950079-10145-1-git-send-email-narmstrong@baylibre.com>
- <1490950079-10145-3-git-send-email-narmstrong@baylibre.com>
- <CAK8P3a199j=7mb=CMgROvaOCVU8=kYda9wkvG3O4rtqweSyC0g@mail.gmail.com>
- <4ab7d4ee-e805-69f1-b76b-b827b46285bd@baylibre.com>
-Message-ID: <20170403163448.e7uuhhebqlaf33bl@rob-hp-laptop>
+Date: Mon, 3 Apr 2017 11:52:39 -0500
+Subject: [PATCH v3 2/4] dt-binding: meson_uart: add documentation for the
+ UARTs of amlogic
+In-Reply-To: <20170331165437.26227-3-hgkr.klein@gmail.com>
+References: <20170331165437.26227-1-hgkr.klein@gmail.com>
+ <20170331165437.26227-3-hgkr.klein@gmail.com>
+Message-ID: <20170403165239.2k2sajeu2vout7hf@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Mar 31, 2017 at 04:10:30PM +0200, Neil Armstrong wrote:
-> On 03/31/2017 03:44 PM, Arnd Bergmann wrote:
-> > On Fri, Mar 31, 2017 at 10:47 AM, Neil Armstrong
-> > <narmstrong@baylibre.com> wrote:
-> >> Add bindings for the SoC information register of the Amlogic SoCs.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/arm/amlogic.txt | 20 ++++++++++++++++++++
-> >>  1 file changed, 20 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-> >> index bfd5b55..b850985 100644
-> >> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> >> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-> >> @@ -52,3 +52,23 @@ Board compatible values:
-> >>    - "amlogic,q201" (Meson gxm s912)
-> >>    - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
-> >>    - "nexbox,a1" (Meson gxm s912)
-> >> +
-> >> +Amlogic Meson GX SoCs Information
-> >> +----------------------------------
-> >> +
-> >> +The Meson SoCs have a Product Register that allows to retrieve SoC type,
-> >> +package and revision information. If present, a device node for this register
-> >> +should be added.
-> >> +
-> >> +Required properties:
-> >> +  - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-socinfo".
-> >> +  - reg: Base address and length of the register block.
-> >> +
-> >> +Examples
-> >> +--------
-> >> +
-> >> +       chipid at 220 {
-> >> +               compatible = "amlogic,meson-gx-socinfo";
-> >> +               reg = <0x0 0x00220 0x0 0x4>;
-> >> +       };
-> >> +
-> > 
-> > The register location would hint that this is in the middle of some block of
-> > random registers, i.e. a syscon or some unrelated device.
-> > 
-> > Are you sure that "socinfo" is the actual name of the IP block and that
-> > it only has a single 32-bit register?
-> > 
-> >      Arnd
-> > 
+On Fri, Mar 31, 2017 at 06:54:35PM +0200, Helmut Klein wrote:
+> Add the documentation for the device tree binding of meson_uart
 > 
-> Hi Arnd,
+> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
+> ---
+>  .../bindings/serial/amlogic,meson_uart.txt         | 30 ++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson_uart.txt
 > 
-> I'm sorry I did not find any relevant registers in the docs or source code describing
-> it in a specific block of registers, and no close enough register definitions either.
-> They may be used by the secure firmware I imagine.
-> 
-> For the register name, Amlogic refers it to "cpu_version" in their code, but it really
-> gives some details on the whole SoC and package, and socinfo seems better.
+> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson_uart.txt b/Documentation/devicetree/bindings/serial/amlogic,meson_uart.txt
+> new file mode 100644
+> index 000000000000..8250a191c2fc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson_uart.txt
+> @@ -0,0 +1,30 @@
+> +* Amlogic Meson UART, used in multiple SoCs (e.g. S905, s905X, ...)
+> +
+> +Required properties:
+> +- compatible	: "amlogic,meson-uart"
 
-A register at address 0x220 seems a bit strange (unless there's ranges 
-you're not showing), but ROM code at this address would be fairly 
-typical. And putting version information into the ROM is also common.
+Should have SoC specific compatible strings in addition.
 
-Rob
+> +- reg		: offset and length of the register set for the device.
+> +- interrupts	: device interrupt
+> +- clocks	: a list of phandle + clock-specifier pairs, one for each
+> +		    entry in clock names.
+> +- clocks-names	: contains:
+> +   * "xtal" for the baud rate clock
+> +   * "core" for the core clock of none AO UARTs (optional)
+> +
+> +e.g.
+> +uart_A: serial at 84c0 {
+> +	compatible = "amlogic,meson-uart";
+> +	reg = <0x0 0x84c0 0x0 0x14>;
+> +	pinctrl-0 = <&uart_a_pins &uart_a_cts_rts_pins>;
+> +	interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
+> +	clocks = <&xtal>, <&clkc CLKID_UART0>;
+> +	clock-names = "xtal", "core";
+> +	status = "ok";
+
+Drop status from examples.
+
+> +};
+> +
+> +Note: Each port should have an alias correctly numbered in "aliases" node.
+
+True for pretty much any uart, so you can drop this.
+
+> +
+> +e.g.
+> +aliases {
+> +	serial0 = &uart_AO;
+> +	serial1 = &uart_A;
+> +};
+> --
+> 2.11.0
+> 
