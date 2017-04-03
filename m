@@ -1,40 +1,32 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 03 Apr 2017 08:44:16 -0700
-Subject: [PATCH v3 0/4] tty/serial: meson_uart: add support for core clock
- handling
-In-Reply-To: <20170331165437.26227-1-hgkr.klein@gmail.com> (Helmut Klein's
- message of "Fri, 31 Mar 2017 18:54:33 +0200")
-References: <20170331165437.26227-1-hgkr.klein@gmail.com>
-Message-ID: <m2lgrha433.fsf@baylibre.com>
+Date: Mon, 03 Apr 2017 08:56:28 -0700
+Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: Enable SARADC node
+In-Reply-To: <8bde66d0-4613-7001-9c54-b80681055853@gmail.com> (Heiner
+ Kallweit's message of "Sun, 2 Apr 2017 10:13:26 +0200")
+References: <c8ffa8db-2bfd-ee28-a210-4fa752b5ff43@gmail.com>
+ <m2h93czxdk.fsf@baylibre.com>
+ <8bde66d0-4613-7001-9c54-b80681055853@gmail.com>
+Message-ID: <m2h925a3ir.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Helmut Klein <hgkr.klein@gmail.com> writes:
+Heiner Kallweit <hkallweit1@gmail.com> writes:
 
-> To be able to use the three none AO uarts of the meson gx SoCs (uart_A,
+> Am 01.03.2017 um 19:04 schrieb Kevin Hilman:
+>> Heiner Kallweit <hkallweit1@gmail.com> writes:
+>> 
+>>> Now that 3adbf3427330 "iio: adc: add a driver for the SAR ADC found in
+>>> Amlogic Meson SoCs" has added support for the ADC, let's enable it
+>>> on Odroid C2.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> 
+>> Applied to v4.11/dt64
+>> 
+> Kevin, this didn't show up in mainline yet.
+> Has it been lost somewhere?
 
-s/none/non/
-
-> uart_B & uart_C), the core clock has to be enabled (see chapter 22.3 of
-> the public s905 data sheet).
-> At least the u-boot of my s905 based media player (netxeon minimx-g)
-> doesn't do this. so the driver must enable the clock.
-
-FYI: even if a booloader enablesq clocks, it's important that the kernel
-enable clocks that it uses so the kernel can be independent of any
-bootloader.
-
-> This patch set does:
-> - exposes the UART clock ids to the dtb
-> - adds documentation for the dt-bindings of meson_uart
-> - adds the core clock handling to the driver
-> - adds the core clock handling to meson-gxbb.dtsi and meson-gxl.dtsi
->
-> The patchset is based on the branch "master" of the repository in [1]
-
-The master branch in my tree just tracks mainline master branch.
-
-To avoid conflicts with other on-going DT changes, the DT patches should
-probably be based on top of my v4.12/dt64 branch.
+Hmm, indeed it has fallen through the cracks somehow.  I've applied it
+to v4.12/dt64 now.
 
 Kevin
