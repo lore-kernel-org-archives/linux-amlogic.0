@@ -1,81 +1,77 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Mon, 10 Apr 2017 09:42:37 +0200
-Subject: [GIT PULL] Amlogic clock driver updates for v4.12
-In-Reply-To: <m2o9wb7oho.fsf@baylibre.com>
-References: <m2o9wb7oho.fsf@baylibre.com>
-Message-ID: <149181015787.91618.7461737194577750243@resonance>
+Date: Tue, 04 Apr 2017 10:40:20 +0200
+Subject: [PATCH v3 1/4] dt-bindings: clock: gxbb: expose UART clocks
+In-Reply-To: <20170331165437.26227-2-hgkr.klein@gmail.com>
+References: <20170331165437.26227-1-hgkr.klein@gmail.com>
+ <20170331165437.26227-2-hgkr.klein@gmail.com>
+Message-ID: <149129522024.91618.13395564164212234056@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Kevin Hilman (2017-04-05 01:16:19)
-> Steven, Mike,
+Quoting Helmut Klein (2017-03-31 18:54:34)
+> Expose the clock ids of the three none AO uarts to the dt-bindings
 > 
-> Below is a request to pull the full set of Amlogic clock changes for
-> v4.12.  Note that this includes the previous pull for headers, but I
-> wanted to send them separately for completness, and so there's an
-> obvious tag to use as a dependency source for our DT changes.
+> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
 
-Pulled.
+Acked-by: Michael Turquette <mturquette@baylibre.com>
 
-Regards,
-Mike
-
+> ---
+>  drivers/clk/meson/gxbb.h              | 6 +++---
+>  include/dt-bindings/clock/gxbb-clkc.h | 3 +++
+>  2 files changed, 6 insertions(+), 3 deletions(-)
 > 
-> Thanks,
-> 
-> Kevin
-> 
-> 
-> The following changes since commit c1ae3cfa0e89fa1a7ecc4c99031f5e9ae99d9201:
-> 
->   Linux 4.11-rc1 (2017-03-05 12:59:56 -0800)
-> 
-> are available in the git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-clk
-> 
-> for you to fetch changes up to 3a429818a2e48928ae0114df5fb3b0612dd57001:
-> 
->   Merge branch 'v4.12/clk-drivers' into v4.12/clk (2017-04-04 15:58:11 -0700)
-> 
-> ----------------------------------------------------------------
-> Amlogic clock driver updates for v4.12
-> - meson8: add some new PLLs
-> - new clocks for Mali
-> - misc fixes.
-> 
-> ----------------------------------------------------------------
-> Jerome Brunet (9):
->       clk: meson: fix SET_PARM macro
->       clk: meson: add missing const qualifiers on gate arrays
->       clk: meson8b: put dividers and muxes in tables
->       clk: gxbb: put dividers and muxes in tables
->       clk: meson: mpll: add rw operation
->       clk: meson: gxbb: mpll: use rw operation
->       clk: meson8b: add the mplls clocks 0, 1 and 2
->       clk: meson: mpll: correct N2 maximum value
->       dt-bindings: clk: gxbb: expose i2s output clock gates
-> 
-> Kevin Hilman (1):
->       Merge branch 'v4.12/clk-drivers' into v4.12/clk
-> 
-> Neil Armstrong (7):
->       clk: meson-gxbb: Add MALI clock IDS
->       clk: meson-gxbb: Expose GP0 dt-bindings clock id
->       dt-bindings: clock: gxbb-clkc: Add GXL compatible variant
->       clk: meson-gxbb: Add MALI clocks
->       clk: meson: Add support for parameters for specific PLLs
->       clk: meson-gxbb: Add GP0 PLL init parameters
->       clk: meson-gxbb: Add GXL/GXM GP0 Variant
-> 
->  Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt |   3 +-
->  drivers/clk/meson/clk-mpll.c                                  | 152 ++++++++++++++-
->  drivers/clk/meson/clk-pll.c                                   |  53 +++++-
->  drivers/clk/meson/clkc.h                                      |  29 ++-
->  drivers/clk/meson/gxbb.c                                      | 505 ++++++++++++++++++++++++++++++++++++++++++++++----
->  drivers/clk/meson/gxbb.h                                      |  23 ++-
->  drivers/clk/meson/meson8b.c                                   | 127 ++++++++++++-
->  drivers/clk/meson/meson8b.h                                   |  20 +-
->  include/dt-bindings/clock/gxbb-clkc.h                         |  11 ++
->  9 files changed, 867 insertions(+), 56 deletions(-)
+> diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+> index 8ee2022ce5d5..1edfaa5fe307 100644
+> --- a/drivers/clk/meson/gxbb.h
+> +++ b/drivers/clk/meson/gxbb.h
+> @@ -194,7 +194,7 @@
+>  /* #define CLKID_SAR_ADC */
+>  #define CLKID_SMART_CARD         24
+>  #define CLKID_RNG0               25
+> -#define CLKID_UART0              26
+> +/* CLKID_UART0 */
+>  #define CLKID_SDHC               27
+>  #define CLKID_STREAM             28
+>  #define CLKID_ASYNC_FIFO         29
+> @@ -216,7 +216,7 @@
+>  #define CLKID_ADC                45
+>  #define CLKID_BLKMV              46
+>  #define CLKID_AIU                47
+> -#define CLKID_UART1              48
+> +/* CLKID_UART1 */
+>  #define CLKID_G2D                49
+>  /* CLKID_USB0 */
+>  /* CLKID_USB1 */
+> @@ -236,7 +236,7 @@
+>  /* CLKID_USB0_DDR_BRIDGE */
+>  #define CLKID_MMC_PCLK           66
+>  #define CLKID_DVIN               67
+> -#define CLKID_UART2              68
+> +/* CLKID_UART2 */
+>  /* #define CLKID_SANA */
+>  #define CLKID_VPU_INTR           70
+>  #define CLKID_SEC_AHB_AHB3_BRIDGE 71
+> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+> index 692846c7941b..7b329df47752 100644
+> --- a/include/dt-bindings/clock/gxbb-clkc.h
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h
+> @@ -15,13 +15,16 @@
+>  #define CLKID_SPI              34
+>  #define CLKID_I2C              22
+>  #define CLKID_SAR_ADC          23
+> +#define CLKID_UART0            26
+>  #define CLKID_ETH              36
+> +#define CLKID_UART1            48
+>  #define CLKID_USB0             50
+>  #define CLKID_USB1             51
+>  #define CLKID_USB              55
+>  #define CLKID_HDMI_PCLK                63
+>  #define CLKID_USB1_DDR_BRIDGE  64
+>  #define CLKID_USB0_DDR_BRIDGE  65
+> +#define CLKID_UART2            68
+>  #define CLKID_SANA             69
+>  #define CLKID_GCLK_VENCI_INT0  77
+>  #define CLKID_AO_I2C           93
+> --
+> 2.11.0
 > 
