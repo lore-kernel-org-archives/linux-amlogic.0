@@ -1,197 +1,255 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  4 Apr 2017 14:15:23 +0200
-Subject: [PATCH v3 03/11] drm/meson: Add support for components
+Date: Tue,  4 Apr 2017 14:15:29 +0200
+Subject: [PATCH v3 09/11] drm/meson: Convert existing documentation to actual
+ kerneldoc
 In-Reply-To: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
 References: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1491308131-22071-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1491308131-22071-10-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
-
-This patch adds support for optional components connected through the
-Device Tree endpoints scheme.
 
 Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_drv.c | 113 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 99 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/meson/meson_canvas.c  |  4 +++-
+ drivers/gpu/drm/meson/meson_drv.c     |  5 +++--
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 25 +++++++++++++++++--------
+ drivers/gpu/drm/meson/meson_vclk.c    | 22 +++++++++++++++-------
+ drivers/gpu/drm/meson/meson_venc.c    | 25 ++++++++++++++++---------
+ drivers/gpu/drm/meson/meson_viu.c     |  6 +++++-
+ drivers/gpu/drm/meson/meson_vpp.c     |  8 ++++++--
+ 7 files changed, 65 insertions(+), 30 deletions(-)
 
+diff --git a/drivers/gpu/drm/meson/meson_canvas.c b/drivers/gpu/drm/meson/meson_canvas.c
+index 4109e36..08f6073 100644
+--- a/drivers/gpu/drm/meson/meson_canvas.c
++++ b/drivers/gpu/drm/meson/meson_canvas.c
+@@ -24,7 +24,9 @@
+ #include "meson_canvas.h"
+ #include "meson_registers.h"
+ 
+-/*
++/**
++ * DOC: Canvas
++ *
+  * CANVAS is a memory zone where physical memory frames information
+  * are stored for the VIU to scanout.
+  */
 diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index bc562a0..a2e9f56 100644
+index a2e9f56..75382f5 100644
 --- a/drivers/gpu/drm/meson/meson_drv.c
 +++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -24,6 +24,7 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/platform_device.h>
-+#include <linux/component.h>
- #include <linux/of_graph.h>
+@@ -52,13 +52,14 @@
+ #define DRIVER_NAME "meson"
+ #define DRIVER_DESC "Amlogic Meson DRM driver"
  
- #include <drm/drmP.h>
-@@ -150,9 +151,9 @@ static bool meson_vpu_has_available_connectors(struct device *dev)
- 	.max_register   = 0x1000,
- };
+-/*
+- * Video Processing Unit
++/**
++ * DOC: Video Processing Unit
+  *
+  * VPU Handles the Global Video Processing, it includes management of the
+  * clocks gates, blocks reset lines and power domains.
+  *
+  * What is missing :
++ *
+  * - Full reset of entire video processing HW blocks
+  * - Scaling and setup of the VPU clock
+  * - Bus clock gates
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 8851dcb..7b86eb7 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -42,18 +42,25 @@
+ #define DRIVER_NAME "meson-dw-hdmi"
+ #define DRIVER_DESC "Amlogic Meson HDMI-TX DRM driver"
  
--static int meson_drv_probe(struct platform_device *pdev)
-+static int meson_drv_bind(struct device *dev)
- {
--	struct device *dev = &pdev->dev;
-+	struct platform_device *pdev = to_platform_device(dev);
- 	struct meson_drm *priv;
- 	struct drm_device *drm;
- 	struct resource *res;
-@@ -215,6 +216,15 @@ static int meson_drv_probe(struct platform_device *pdev)
+-/*
++/**
++ * DOC: HDMI Output
++ *
+  * HDMI Output is composed of :
++ *
+  * - A Synopsys DesignWare HDMI Controller IP
+  * - A TOP control block controlling the Clocks and PHY
+  * - A custom HDMI PHY in order convert video to TMDS signal
+- *  ___________________________________
+- * |            HDMI TOP               |<= HPD
+- * |___________________________________|
+- * |                  |                |
+- * |  Synopsys HDMI   |   HDMI PHY     |=> TMDS
+- * |    Controller    |________________|
+- * |___________________________________|<=> DDC
++ *
++ * .. code::
++ *
++ *    ___________________________________
++ *   |            HDMI TOP               |<= HPD
++ *   |___________________________________|
++ *   |                  |                |
++ *   |  Synopsys HDMI   |   HDMI PHY     |=> TMDS
++ *   |    Controller    |________________|
++ *   |___________________________________|<=> DDC
++ *
+  *
+  * The HDMI TOP block only supports HPD sensing.
+  * The Synopsys HDMI Controller interrupt is routed
+@@ -78,6 +85,7 @@
+  * audio source interfaces.
+  *
+  * We handle the following features :
++ *
+  * - HPD Rise & Fall interrupt
+  * - HDMI Controller Interrupt
+  * - HDMI PHY Init for 480i to 1080p60
+@@ -85,6 +93,7 @@
+  * - VENC Mode setup for 480i to 1080p60
+  *
+  * What is missing :
++ *
+  * - PHY, Clock and Mode setup for 2k && 4k modes
+  * - SDDC Scrambling mode for HDMI 2.0a
+  * - HDCP Setup
+diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+index 3731479..4767704 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.c
++++ b/drivers/gpu/drm/meson/meson_vclk.c
+@@ -23,21 +23,29 @@
+ #include "meson_drv.h"
+ #include "meson_vclk.h"
  
- 	drm_vblank_init(drm, 1);
- 	drm_mode_config_init(drm);
-+	drm->mode_config.max_width = 3840;
-+	drm->mode_config.max_height = 2160;
-+	drm->mode_config.funcs = &meson_mode_config_funcs;
-+
-+	/* Hardware Initialization */
-+
-+	meson_venc_init(priv);
-+	meson_vpp_init(priv);
-+	meson_viu_init(priv);
+-/*
++/**
++ * DOC: Video Clocks
++ *
+  * VCLK is the "Pixel Clock" frequency generator from a dedicated PLL.
+  * We handle the following encodings :
++ *
+  * - CVBS 27MHz generator via the VCLK2 to the VENCI and VDAC blocks
+  * - HDMI Pixel Clocks generation
++ *
+  * What is missing :
++ *
+  * - Genenate Pixel clocks for 2K/4K 10bit formats
+  *
+  * Clock generator scheme :
+- *  __________   _________            _____
+- * |          | |         |          |     |--ENCI
+- * | HDMI PLL |-| PLL_DIV |--- VCLK--|     |--ENCL
+- * |__________| |_________| \        | MUX |--ENCP
+- *                           --VCLK2-|     |--VDAC
+- *                                   |_____|--HDMI-TX
++ *
++ * .. code::
++ *
++ *    __________   _________            _____
++ *   |          | |         |          |     |--ENCI
++ *   | HDMI PLL |-| PLL_DIV |--- VCLK--|     |--ENCL
++ *   |__________| |_________| \        | MUX |--ENCP
++ *                             --VCLK2-|     |--VDAC
++ *                                     |_____|--HDMI-TX
+  *
+  * Final clocks can take input for either VCLK or VCLK2, but
+  * VCLK is the preferred path for HDMI clocking and VCLK2 is the
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index 31dc275..9509017 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -26,26 +26,33 @@
+ #include "meson_vclk.h"
+ #include "meson_registers.h"
  
- 	/* Encoder Initialization */
+-/*
++/**
++ * DOC: Video Encoder
++ *
+  * VENC Handle the pixels encoding to the output formats.
+  * We handle the following encodings :
++ *
+  * - CVBS Encoding via the ENCI encoder and VDAC digital to analog converter
+  * - TMDS/HDMI Encoding via ENCI_DIV and ENCP
+  * - Setup of more clock rates for HDMI modes
+  *
+  * What is missing :
++ *
+  * - LCD Panel encoding via ENCL
+  * - TV Panel encoding via ENCT
+  *
+  * VENC paths :
+- *        _____   _____   ____________________
+- * vd1---|     |-|     | | VENC     /---------|----VDAC
+- * vd2---| VIU |-| VPP |-|-----ENCI/-ENCI_DVI-|\
+- * osd1--|     |-|     | | \                  | X--HDMI-TX
+- * osd2--|_____|-|_____| |  |\-ENCP--ENCP_DVI-|/
+- *                       |  |                 |
+- *                       |  \--ENCL-----------|----LVDS
+- *                       |____________________|
++ *
++ * .. code::
++ *
++ *          _____   _____   ____________________
++ *   vd1---|     |-|     | | VENC     /---------|----VDAC
++ *   vd2---| VIU |-| VPP |-|-----ENCI/-ENCI_DVI-|-|
++ *   osd1--|     |-|     | | \                  | X--HDMI-TX
++ *   osd2--|_____|-|_____| |  |\-ENCP--ENCP_DVI-|-|
++ *                         |  |                 |
++ *                         |  \--ENCL-----------|----LVDS
++ *                         |____________________|
+  *
+  * The ENCI is designed for PAl or NTSC encoding and can go through the VDAC
+  * directly for CVBS encoding or through the ENCI_DVI encoder for HDMI.
+diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
+index a6de8ba..6bcfa52 100644
+--- a/drivers/gpu/drm/meson/meson_viu.c
++++ b/drivers/gpu/drm/meson/meson_viu.c
+@@ -28,9 +28,12 @@
+ #include "meson_canvas.h"
+ #include "meson_registers.h"
  
-@@ -222,11 +232,11 @@ static int meson_drv_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_drm;
+-/*
++/**
++ * DOC: Video Input Unit
++ *
+  * VIU Handles the Pixel scanout and the basic Colorspace conversions
+  * We handle the following features :
++ *
+  * - OSD1 RGB565/RGB888/xRGB8888 scanout
+  * - RGB conversion to x/cb/cr
+  * - Progressive or Interlace buffer scanout
+@@ -38,6 +41,7 @@
+  * - HDR OSD matrix for GXL/GXM
+  *
+  * What is missing :
++ *
+  * - BGR888/xBGR8888/BGRx8888/BGRx8888 modes
+  * - YUV4:2:2 Y0CbY1Cr scanout
+  * - Conversion to YUV 4:4:4 from 4:2:2 input
+diff --git a/drivers/gpu/drm/meson/meson_vpp.c b/drivers/gpu/drm/meson/meson_vpp.c
+index 671909d..27356f8 100644
+--- a/drivers/gpu/drm/meson/meson_vpp.c
++++ b/drivers/gpu/drm/meson/meson_vpp.c
+@@ -25,16 +25,20 @@
+ #include "meson_vpp.h"
+ #include "meson_registers.h"
  
--	/* Hardware Initialization */
--
--	meson_venc_init(priv);
--	meson_vpp_init(priv);
--	meson_viu_init(priv);
-+	ret = component_bind_all(drm->dev, drm);
-+	if (ret) {
-+		dev_err(drm->dev, "Couldn't bind all components\n");
-+		goto free_drm;
-+	}
- 
- 	ret = meson_plane_create(priv);
- 	if (ret)
-@@ -241,9 +251,6 @@ static int meson_drv_probe(struct platform_device *pdev)
- 		goto free_drm;
- 
- 	drm_mode_config_reset(drm);
--	drm->mode_config.max_width = 8192;
--	drm->mode_config.max_height = 8192;
--	drm->mode_config.funcs = &meson_mode_config_funcs;
- 
- 	priv->fbdev = drm_fbdev_cma_init(drm, 32,
- 					 drm->mode_config.num_connector);
-@@ -268,9 +275,9 @@ static int meson_drv_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
--static int meson_drv_remove(struct platform_device *pdev)
-+static void meson_drv_unbind(struct device *dev)
- {
--	struct drm_device *drm = dev_get_drvdata(&pdev->dev);
-+	struct drm_device *drm = dev_get_drvdata(dev);
- 	struct meson_drm *priv = drm->dev_private;
- 
- 	drm_dev_unregister(drm);
-@@ -280,9 +287,88 @@ static int meson_drv_remove(struct platform_device *pdev)
- 	drm_vblank_cleanup(drm);
- 	drm_dev_unref(drm);
- 
--	return 0;
- }
- 
-+static const struct component_master_ops meson_drv_master_ops = {
-+	.bind	= meson_drv_bind,
-+	.unbind	= meson_drv_unbind,
-+};
-+
-+static int compare_of(struct device *dev, void *data)
-+{
-+	DRM_DEBUG_DRIVER("Comparing of node %s with %s\n",
-+			 of_node_full_name(dev->of_node),
-+			 of_node_full_name(data));
-+
-+	return dev->of_node == data;
-+}
-+
-+/* Possible connectors nodes to ignore */
-+static const struct of_device_id connectors_match[] = {
-+	{ .compatible = "composite-video-connector" },
-+	{ .compatible = "svideo-connector" },
-+	{ .compatible = "hdmi-connector" },
-+	{ .compatible = "dvi-connector" },
-+	{}
-+};
-+
-+static int meson_probe_remote(struct platform_device *pdev,
-+			      struct component_match **match,
-+			      struct device_node *parent,
-+			      struct device_node *remote)
-+{
-+	struct device_node *ep, *remote_node;
-+	int count = 1;
-+
-+	/* If node is a connector, return and do not add to match table */
-+	if (of_match_node(connectors_match, remote))
-+		return 1;
-+
-+	component_match_add(&pdev->dev, match, compare_of, remote);
-+
-+	for_each_endpoint_of_node(remote, ep) {
-+		remote_node = of_graph_get_remote_port_parent(ep);
-+		if (!remote_node ||
-+		    remote_node == parent || /* Ignore parent endpoint */
-+		    !of_device_is_available(remote_node))
-+			continue;
-+
-+		count += meson_probe_remote(pdev, match, remote, remote_node);
-+
-+		of_node_put(remote_node);
-+	}
-+
-+	return count;
-+}
-+
-+static int meson_drv_probe(struct platform_device *pdev)
-+{
-+	struct component_match *match = NULL;
-+	struct device_node *np = pdev->dev.of_node;
-+	struct device_node *ep, *remote;
-+	int count = 0;
-+
-+	for_each_endpoint_of_node(np, ep) {
-+		remote = of_graph_get_remote_port_parent(ep);
-+		if (!remote || !of_device_is_available(remote))
-+			continue;
-+
-+		count += meson_probe_remote(pdev, &match, np, remote);
-+	}
-+
-+	/* If some endpoints were found, initialize the nodes */
-+	if (count) {
-+		dev_info(&pdev->dev, "Queued %d outputs on vpu\n", count);
-+
-+		return component_master_add_with_match(&pdev->dev,
-+						       &meson_drv_master_ops,
-+						       match);
-+	}
-+
-+	/* If no output endpoints were available, simply bail out */
-+	return 0;
-+};
-+
- static const struct of_device_id dt_match[] = {
- 	{ .compatible = "amlogic,meson-gxbb-vpu" },
- 	{ .compatible = "amlogic,meson-gxl-vpu" },
-@@ -293,7 +379,6 @@ static int meson_drv_remove(struct platform_device *pdev)
- 
- static struct platform_driver meson_drm_platform_driver = {
- 	.probe      = meson_drv_probe,
--	.remove     = meson_drv_remove,
- 	.driver     = {
- 		.name	= "meson-drm",
- 		.of_match_table = dt_match,
+-/*
++/**
++ * DOC: Video Post Processing
++ *
+  * VPP Handles all the Post Processing after the Scanout from the VIU
+  * We handle the following post processings :
+- * - Postblend : Blends the OSD1 only
++ *
++ * - Postblend, Blends the OSD1 only
+  *	We exclude OSD2, VS1, VS1 and Preblend output
+  * - Vertical OSD Scaler for OSD1 only, we disable vertical scaler and
+  *	use it only for interlace scanout
+  * - Intermediate FIFO with default Amlogic values
+  *
+  * What is missing :
++ *
+  * - Preblend for video overlay pre-scaling
+  * - OSD2 support for cursor framebuffer
+  * - Video pre-scaling before postblend
 -- 
 1.9.1
