@@ -1,107 +1,127 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 4 Apr 2017 17:55:40 +0200
-Subject: [PATCH v6.1 0/4] drm: bridge: dw-hdmi: Add support for Custom PHYs
-In-Reply-To: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
-References: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <2110eea1-00cd-250a-f13c-55981d3550cc@baylibre.com>
+Date: Tue, 4 Apr 2017 17:55:51 +0200
+Subject: [PATCH v3 00/11] drm/meson: Initial support for HDMI Output
+In-Reply-To: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
+References: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <3a437424-f352-82df-0c80-8d259e43dfdd@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04/04/2017 02:31 PM, Neil Armstrong wrote:
+On 04/04/2017 02:15 PM, Neil Armstrong wrote:
 > The Amlogic GX SoCs implements a Synopsys DesignWare HDMI TX Controller
 > in combination with a very custom PHY.
 > 
-> Thanks to Laurent Pinchart's changes, the HW report the following :
->  Detected HDMI TX controller v2.01a with HDCP (meson_dw_hdmi_phy)
+> This patchset depends on Laurent Pinchart patchset merged in drm-misc-next
+> and my v6 patchset at [1] to permit PHY control from outside the dw-hdmi driver.
 > 
-> The following differs from common PHY integration as managed in the current
-> driver :
->  - Amlogic PHY is not configured through the internal I2C link
->  - Amlogic PHY do not use the ENTMDS, SVSRET, PDDQ, ... signals from the controller
->  - Amlogic PHY do not export HPD ands RxSense signals to the controller
+> The Synopsys DesignWare HDMI TX Controller is integrated like :
+>          ___________________________________
+>         |            HDMI TOP               |<= HPD
+>         |___________________________________|
+>         |                  |                |
+> HDMI-TX-|  Synopsys HDMI   |   HDMI PHY     |=> TMDS
+>         |    Controller    |________________|
+>         |___________________________________|<=> DDC
 > 
-> And finally, concerning the controller integration :
->  - the Controller registers are not flat memory-mapped, and uses an
->     addr+read/write register pair to write all registers.
->  - Inputs only YUV444 pixel data
+> And uses the following paths for Pixels Encoding :
+>        _____   _____   ____________________
+> vd1---|     |-|     | | VENC     /---------|----VDAC
+> vd2---| VIU |-| VPP |-|-----ENCI/-ENCI_DVI-|\
+> osd1--|     |-|     | | \                  | X--HDMI-TX
+> osd2--|_____|-|_____| |  |\-ENCP--ENCP_DVI-|/
+>                       |  |                 |
+>                       |  \--ENCL-----------|----LVDS
+>                       |____________________|
 > 
-> Most of these uses case are implemented in Laurent Pinchart v5.1 patchset merged
-> in drm-misc-next branch.
+> The ENCI and ENCP encoders pre-formats the data for the ENCI-DVI and
+> ENCP-DVI encoders. Those DVI encoders will format the pixels for the
+> Synopsys DesignWare HDMI TX Controller.
 > 
-> This is why the following patchset implements :
->  - Configure the Input format from the plat_data
->  - Add PHY callback to handle HPD and RxSense out of the dw-hdmi driver
+> In order to support display modes, the ENCI and ENCP encoders needs very
+> specific parameters for *each* display modes, so usage of the CEA VIC
+> identifier is necessary. But the DVI timings are generated from the
+> drm_mode structure in a generic way.
 > 
-> To implement the input format handling, the Synopsys HDMIT TX Controller input
-> V4L bus formats are used and missing formats + documentation are added.
+> To simplify the first push, only the main CEA modes are supported up to
+> 1920x1080p60. Supporting the 480i and 576i needs tweaking in the dw-hdmi
+> in order to support the Clock Doubling necessary for these modes.
 > 
-> This patchset makes the Amlogic GX SoCs HDMI output successfully work, and is
-> also tested on the RK3288 ACT8846 EVB Board.
+> Support for more traditional modes like the EDID fallback modes is planned
+> but will need tome additionnal handling along the CEA modes.
+> Support for 4k2k modes needs to be able to get the EDID HDMI modes, but
+> for now only the HDMI 1.4 modes are currently available in the drm_edid
+> implementation.
 > 
-> Changes since v6 at [8] :
->  - Dropped already merged media patches in topic/synopsys-media-formats-2017-04-03 tag
->  - Reword the patch "Switch to V4L bus format and encodings" commit message
->  - Fix typo in patch "Switch to V4L bus format and encodings"
->  - Add Laurent Pinchart reviewed/acked-by's
+> This patchset does :
+>  - Fixes the CRTC handling
+>  - Fixes the registers definitions
+>  - Adds support for device components registration along of-graph
+>  - Adds support for HDMI clocks
+>  - Adds support for HDMI VENC video modes
+>  - Adds support for the Custom HDMI PHY using callbacks added in [1]
+>  - Adds CMA node to reserve enougth memory for 1080p display
+>  - Adds the HDMI controller et connector modes on selected boards
+>  - Adds a proper dt-bindings for the HDMI controller et connector
+>  - Add RST documentation for Meson DRM driver
+>  - Updates the MAINTAINERS file to track the new files
+> 
+> Changes since v2 patchset at [4] :
+>  - Dropped already merged DT patches
+>  - Added Daniel Vetter's acks
 >  - Rebased on drm-misc-next at 9c4ad466d1dd
 > 
-> Changes since v5.1 at [7] :
->  - Rework of the 48bit tables in V4L bus formats documentation
->  - Add Archit reviewed-by's
+> Changes since v1 patchset at [2] :
+>  - Add the meson drm documentation from [3] to this patchset
+>  - Update with new bus formats and HPD callbacks
+>  - Drop all the of_machine_is_compatible
 > 
-> Changes since v5 at [6] :
->  - Small addition in V4L YUV bus formats documentation
+> [1] http://lkml.kernel.org/r/1491230558-10804-1-git-send-email-narmstrong at baylibre.com
+> [2] http://lkml.kernel.org/r/1488469207-523-1-git-send-email-narmstrong at baylibre.com
+> [3] http://lkml.kernel.org/r/1488536068-9407-1-git-send-email-narmstrong at baylibre.com
+> [4] http://lkml.kernel.org/r/1490109950-21421-1-git-send-email-narmstrong at baylibre.com
 > 
-> Changes since v4 at [5] :
->  - Rebased on drm-misc-next at bd283d2f66c2
->  - Fix 4:2:0 bus formats naming
->  - Renamed function fd_registered to i2c_init in dw-hdmi.c
+> Neil Armstrong (11):
+>   drm/meson: Use crtc_state for hdisplay and fix atomic flush/enable
+>     sync for vsync commit
+>   drm/meson: Add missing HDMI register
+>   drm/meson: Add support for components
+>   drm/meson: venc_cvbs: no more return -ENODEV if CVBS is not available
+>   drm/meson: add support for HDMI clock support
+>   drm/meson: Add support for HDMI venc modes and settings
+>   drm/meson: Add support for HDMI encoder and DW-HDMI bridge + PHY
+>   dt-bindings: Add bindings for the Amlogic Meson dw-hdmi extension
+>   drm/meson: Convert existing documentation to actual kerneldoc
+>   drm/meson: Add RST to bring together kerneldoc
+>   MAINTAINERS: update files for Amlogic DRM Driver
 > 
-> Changes since v3 at [4] :
->  - Fix 4:2:0 bus formats naming
->  - Add separate 36bit and 48bit tables for bus formats documentation
->  - Added 4:2:0 bus config in hdmi_video_sample
->  - Moved dw_hdmi documentation in a "bridge" subdir
->  - Rebase on drm-misc-next at 62c58af32c93
+>  .../bindings/display/amlogic,meson-dw-hdmi.txt     |  111 ++
+>  Documentation/gpu/index.rst                        |    1 +
+>  Documentation/gpu/meson.rst                        |   61 +
+>  MAINTAINERS                                        |    2 +
+>  drivers/gpu/drm/meson/Kconfig                      |    6 +
+>  drivers/gpu/drm/meson/Makefile                     |    1 +
+>  drivers/gpu/drm/meson/meson_canvas.c               |    4 +-
+>  drivers/gpu/drm/meson/meson_crtc.c                 |   15 +-
+>  drivers/gpu/drm/meson/meson_drv.c                  |  118 +-
+>  drivers/gpu/drm/meson/meson_drv.h                  |    3 +
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c              |  919 ++++++++++++++
+>  drivers/gpu/drm/meson/meson_dw_hdmi.h              |  146 +++
+>  drivers/gpu/drm/meson/meson_registers.h            |    1 +
+>  drivers/gpu/drm/meson/meson_vclk.c                 |  632 +++++++++-
+>  drivers/gpu/drm/meson/meson_vclk.h                 |    6 +-
+>  drivers/gpu/drm/meson/meson_venc.c                 | 1254 +++++++++++++++++++-
+>  drivers/gpu/drm/meson/meson_venc.h                 |    7 +
+>  drivers/gpu/drm/meson/meson_venc_cvbs.c            |   11 +-
+>  drivers/gpu/drm/meson/meson_viu.c                  |    6 +-
+>  drivers/gpu/drm/meson/meson_vpp.c                  |    8 +-
+>  drivers/gpu/drm/meson/meson_vpp.h                  |    2 +
+>  21 files changed, 3267 insertions(+), 47 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+>  create mode 100644 Documentation/gpu/meson.rst
+>  create mode 100644 drivers/gpu/drm/meson/meson_dw_hdmi.c
+>  create mode 100644 drivers/gpu/drm/meson/meson_dw_hdmi.h
 > 
-> Changes since v2 at [3] :
->  - Rebase on laurent patch "Extract PHY interrupt setup to a function"
->  - Reduce phy operations
->  - Switch the V4L bus formats and encodings instead of custom enum
-> 
-> Changes since v1 at [2] :
->  - Drop patches submitted by laurent
-> 
-> Changes since RFC at [1] :
->  - Regmap fixup for 4bytes register access, tested on RK3288 SoC
->  - Move phy callbacks to phy_ops and move Synopsys PHY calls into default ops
->  - Move HDMI link data into shared header
->  - Move Pixel Encoding enum to shared header
-> 
-> [1] http://lkml.kernel.org/r/1484656294-6140-1-git-send-email-narmstrong at baylibre.com
-> [2] http://lkml.kernel.org/r/1485774318-21916-1-git-send-email-narmstrong at baylibre.com
-> [3] http://lkml.kernel.org/r/1488468572-31971-1-git-send-email-narmstrong at baylibre.com
-> [4] http://lkml.kernel.org/r/1488904944-14285-1-git-send-email-narmstrong at baylibre.com
-> [5] http://lkml.kernel.org/r/1490109161-20529-1-git-send-email-narmstrong at baylibre.com
-> [6] http://lkml.kernel.org/r/1490864675-17336-1-git-send-email-narmstrong at baylibre.com
-> [7] http://lkml.kernel.org/r/1490970319-24981-1-git-send-email-narmstrong at baylibre.com
-> [8] http://lkml.kernel.org/r/1491230558-10804-1-git-send-email-narmstrong at baylibre.com
-> 
-> Laurent Pinchart (1):
->   drm: bridge: dw-hdmi: Extract PHY interrupt setup to a function
-> 
-> Neil Armstrong (3):
->   drm: bridge: dw-hdmi: Switch to V4L bus format and encodings
->   drm: bridge: dw-hdmi: Add Documentation on supported input formats
->   drm: bridge: dw-hdmi: Move HPD handling to PHY operations
-> 
->  Documentation/gpu/bridge/dw-hdmi.rst      |  15 +
->  Documentation/gpu/index.rst               |   1 +
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 470 ++++++++++++++++++++----------
->  include/drm/bridge/dw_hdmi.h              |  68 +++++
->  4 files changed, 398 insertions(+), 156 deletions(-)
->  create mode 100644 Documentation/gpu/bridge/dw-hdmi.rst
-> 
+
 
 Applied to drm-misc-next
 
