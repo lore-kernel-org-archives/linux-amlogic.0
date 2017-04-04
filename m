@@ -1,231 +1,211 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  4 Apr 2017 14:31:59 +0200
-Subject: [PATCH v6.1 4/4] drm: bridge: dw-hdmi: Move HPD handling to PHY
- operations
-In-Reply-To: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
-References: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1491309119-24220-5-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 4 Apr 2017 14:49:44 +0200
+Subject: [PATCH 2/3] dt-bindings: arm: amlogic: Add SoC information
+ bindings
+In-Reply-To: <CAL_JsqKWi=sNgOTTw6+PAxwgFyFQMw6BiUz0uNuG4kWr+ORO_g@mail.gmail.com>
+References: <1490950079-10145-1-git-send-email-narmstrong@baylibre.com>
+ <1490950079-10145-3-git-send-email-narmstrong@baylibre.com>
+ <CAK8P3a199j=7mb=CMgROvaOCVU8=kYda9wkvG3O4rtqweSyC0g@mail.gmail.com>
+ <4ab7d4ee-e805-69f1-b76b-b827b46285bd@baylibre.com>
+ <20170403163448.e7uuhhebqlaf33bl@rob-hp-laptop>
+ <265460a5-9295-f58a-f149-030e5dd750a1@baylibre.com>
+ <CAL_JsqKWi=sNgOTTw6+PAxwgFyFQMw6BiUz0uNuG4kWr+ORO_g@mail.gmail.com>
+Message-ID: <d263ba90-2352-5253-9704-050afcc37761@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The HDMI TX controller support HPD and RXSENSE signaling from the PHY
-via it's STAT0 PHY interface, but some vendor PHYs can manage these
-signals independently from the controller, thus these STAT0 handling
-should be moved to PHY specific operations and become optional.
+On 04/04/2017 02:26 PM, Rob Herring wrote:
+> On Tue, Apr 4, 2017 at 3:51 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> On 04/03/2017 06:34 PM, Rob Herring wrote:
+>>> On Fri, Mar 31, 2017 at 04:10:30PM +0200, Neil Armstrong wrote:
+>>>> On 03/31/2017 03:44 PM, Arnd Bergmann wrote:
+>>>>> On Fri, Mar 31, 2017 at 10:47 AM, Neil Armstrong
+>>>>> <narmstrong@baylibre.com> wrote:
+>>>>>> Add bindings for the SoC information register of the Amlogic SoCs.
+>>>>>>
+>>>>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>>>>> ---
+>>>>>>  Documentation/devicetree/bindings/arm/amlogic.txt | 20 ++++++++++++++++++++
+>>>>>>  1 file changed, 20 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+>>>>>> index bfd5b55..b850985 100644
+>>>>>> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
+>>>>>> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+>>>>>> @@ -52,3 +52,23 @@ Board compatible values:
+>>>>>>    - "amlogic,q201" (Meson gxm s912)
+>>>>>>    - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
+>>>>>>    - "nexbox,a1" (Meson gxm s912)
+>>>>>> +
+>>>>>> +Amlogic Meson GX SoCs Information
+>>>>>> +----------------------------------
+>>>>>> +
+>>>>>> +The Meson SoCs have a Product Register that allows to retrieve SoC type,
+>>>>>> +package and revision information. If present, a device node for this register
+>>>>>> +should be added.
+>>>>>> +
+>>>>>> +Required properties:
+>>>>>> +  - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-socinfo".
+>>>>>> +  - reg: Base address and length of the register block.
+>>>>>> +
+>>>>>> +Examples
+>>>>>> +--------
+>>>>>> +
+>>>>>> +       chipid at 220 {
+>>>>>> +               compatible = "amlogic,meson-gx-socinfo";
+>>>>>> +               reg = <0x0 0x00220 0x0 0x4>;
+>>>>>> +       };
+>>>>>> +
+>>>>>
+>>>>> The register location would hint that this is in the middle of some block of
+>>>>> random registers, i.e. a syscon or some unrelated device.
+>>>>>
+>>>>> Are you sure that "socinfo" is the actual name of the IP block and that
+>>>>> it only has a single 32-bit register?
+>>>>>
+>>>>>      Arnd
+>>>>>
+>>>>
+>>>> Hi Arnd,
+>>>>
+>>>> I'm sorry I did not find any relevant registers in the docs or source code describing
+>>>> it in a specific block of registers, and no close enough register definitions either.
+>>>> They may be used by the secure firmware I imagine.
+>>>>
+>>>> For the register name, Amlogic refers it to "cpu_version" in their code, but it really
+>>>> gives some details on the whole SoC and package, and socinfo seems better.
+>>>
+>>> A register at address 0x220 seems a bit strange (unless there's ranges
+>>> you're not showing), but ROM code at this address would be fairly
+>>> typical. And putting version information into the ROM is also common.
+>>>
+>>> Rob
+>>>
+>>
+>> Hi Rob.
+>>
+>> Indeed it's part of a larger range :
+>>                  aobus: aobus at c8100000 {
+>>                         compatible = "simple-bus";
+>>                         reg = <0x0 0xc8100000 0x0 0x100000>;
+>>                         #address-cells = <2>;
+>>                         #size-cells = <2>;
+>>                         ranges = <0x0 0x0 0x0 0xc8100000 0x0 0x100000>;
+>>
+>>
+>> While scrubbing on the uboot source, I found a sort of block of registers dedicated to communicate with
+>> the secure firmware :
+>> AO_SEC_REG0                                                     0x140
+>> AO_SEC_REG1                                                     0x144
+>> AO_SEC_REG2                                                     0x148
+>> AO_SEC_TMODE_PWD0                                               0x160
+>> AO_SEC_TMODE_PWD1                                               0x164
+>> AO_SEC_TMODE_PWD2                                               0x168
+>> AO_SEC_TMODE_PWD3                                               0x16C
+>> AO_SEC_SCRATCH                                                  0x17C
+>> AO_SEC_JTAG_PWD0                                                0x180
+>> AO_SEC_JTAG_PWD1                                                0x184
+>> AO_SEC_JTAG_PWD2                                                0x188
+>> AO_SEC_JTAG_PWD3                                                0x18C
+>> AO_SEC_JTAG_SEC_CNTL                                            0x190
+>> AO_SEC_JTAG_PWD_ADDR0                                           0x194
+>> AO_SEC_JTAG_PWD_ADDR1                                           0x198
+>> AO_SEC_JTAG_PWD_ADDR2                                           0x19C
+>> AO_SEC_JTAG_PWD_ADDR3                                           0x1A0
+>> AO_SEC_SHARED_AHB_SRAM_REG0_0                                   0x1C0
+>> AO_SEC_SHARED_AHB_SRAM_REG0_1                                   0x1C4
+>> AO_SEC_SHARED_AHB_SRAM_REG0_2                                   0x1C8
+>> AO_SEC_SHARED_AHB_SRAM_REG1_0                                   0x1CC
+>> AO_SEC_SHARED_AHB_SRAM_REG1_1                                   0x1D0
+>> AO_SEC_SHARED_AHB_SRAM_REG1_2                                   0x1D4
+>> AO_SEC_SHARED_AHB_SRAM_REG2_0                                   0x1D8
+>> AO_SEC_SHARED_AHB_SRAM_REG2_1                                   0x1DC
+>> AO_SEC_SHARED_AHB_SRAM_REG2_2                                   0x1E0
+>> AO_SEC_SHARED_AHB_SRAM_REG3_0                                   0x1E4
+>> AO_SEC_SHARED_AHB_SRAM_REG3_1                                   0x1E8
+>> AO_SEC_SHARED_AHB_SRAM_REG3_2                                   0x1EC
+>> AO_SEC_AO_AHB_SRAM_REG0_0                                       0x1F0
+>> AO_SEC_AO_AHB_SRAM_REG0_1                                       0x1F4
+>> AO_SEC_AO_AHB_SRAM_REG1_0                                       0x1F8
+>> AO_SEC_AO_AHB_SRAM_REG1_1                                       0x1FC
+>> AO_SEC_SD_CFG8                                                  0x220
+>> AO_SEC_SD_CFG9                                                  0x224
+>> AO_SEC_SD_CFG10                                                 0x228
+>> AO_SEC_SD_CFG11                                                 0x22C
+>> AO_SEC_SD_CFG12                                                 0x230
+>> AO_SEC_SD_CFG13                                                 0x234
+>> AO_SEC_SD_CFG14                                                 0x238
+>> AO_SEC_SD_CFG15                                                 0x23C
+>> AO_SEC_GP_CFG0                                                  0x240
+>> AO_SEC_GP_CFG1                                                  0x244
+>> AO_SEC_GP_CFG2                                                  0x248
+>> AO_SEC_GP_CFG3                                                  0x24C
+>> AO_SEC_GP_CFG4                                                  0x250
+>> AO_SEC_GP_CFG5                                                  0x254
+>> AO_SEC_GP_CFG6                                                  0x258
+>> AO_SEC_GP_CFG7                                                  0x25C
+>> AO_SEC_GP_CFG8                                                  0x260
+>> AO_SEC_GP_CFG9                                                  0x264
+>> AO_SEC_GP_CFG10                                                 0x268
+>> AO_SEC_GP_CFG11                                                 0x26C
+>> AO_SEC_GP_CFG12                                                 0x270
+>> AO_SEC_GP_CFG13                                                 0x274
+>> AO_SEC_GP_CFG14                                                 0x278
+>> AO_SEC_GP_CFG15                                                 0x27C
+>>
+>>
+>> As you see, the register we use here is AO_SEC_SD_CFG8...
+>>
+>> Should I define all this block as simple-mfd and refer to it as a regmap ?
+>>
+>> aobus: aobus at c8100000 {
+>>         compatible = "simple-bus";
+>>         reg = <0x0 0xc8100000 0x0 0x100000>;
+>>         #address-cells = <2>;
+>>         #size-cells = <2>;
+>>         ranges = <0x0 0x0 0x0 0xc8100000 0x0 0x100000>;
+>>
+>>         ao_secure: ao-secure at 140 {
+>>                 compatible = "amlogic,meson-gx-ao-secure", "simple-mfd";
+>>                 reg = <0x0 0x140 0x0 0x140>;
+>>         };
+>> };
+>>
+>> chipid {
+>>         compatible = "amlogic,meson-gx-socinfo";
+>>         ao-secure = <&ao_secure>;
+>>         chip-info-reg = <0xe0>;
+> 
+> Why even divide it up further in DT? IMO, describing single
+> registers/address in DT is too fine grained.
+> 
+> Rob
+> 
 
-The existing STAT0 HPD and RXSENSE handling code is refactored into
-a supplementaty set of default PHY operations that are used automatically
-when the platform glue doesn't provide its own operations.
+Rob, I don't get it.
 
-Reviewed-by: Jose Abreu <joabreu@synopsys.com>
-Reviewed-by: Archit Taneja <architt@codeaurora.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 135 ++++++++++++++++++------------
- include/drm/bridge/dw_hdmi.h              |   5 ++
- 2 files changed, 86 insertions(+), 54 deletions(-)
+Maybe something like that ?
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 16d5fff3..84cc949 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -1229,10 +1229,46 @@ static enum drm_connector_status dw_hdmi_phy_read_hpd(struct dw_hdmi *hdmi,
- 		connector_status_connected : connector_status_disconnected;
- }
- 
-+static void dw_hdmi_phy_update_hpd(struct dw_hdmi *hdmi, void *data,
-+				   bool force, bool disabled, bool rxsense)
-+{
-+	u8 old_mask = hdmi->phy_mask;
-+
-+	if (force || disabled || !rxsense)
-+		hdmi->phy_mask |= HDMI_PHY_RX_SENSE;
-+	else
-+		hdmi->phy_mask &= ~HDMI_PHY_RX_SENSE;
-+
-+	if (old_mask != hdmi->phy_mask)
-+		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
-+}
-+
-+static void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi, void *data)
-+{
-+	/*
-+	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
-+	 * any pending interrupt.
-+	 */
-+	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
-+	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
-+		    HDMI_IH_PHY_STAT0);
-+
-+	/* Enable cable hot plug irq. */
-+	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
-+
-+	/* Clear and unmute interrupts. */
-+	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
-+		    HDMI_IH_PHY_STAT0);
-+	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
-+		    HDMI_IH_MUTE_PHY_STAT0);
-+}
-+
- static const struct dw_hdmi_phy_ops dw_hdmi_synopsys_phy_ops = {
- 	.init = dw_hdmi_phy_init,
- 	.disable = dw_hdmi_phy_disable,
- 	.read_hpd = dw_hdmi_phy_read_hpd,
-+	.update_hpd = dw_hdmi_phy_update_hpd,
-+	.setup_hpd = dw_hdmi_phy_setup_hpd,
- };
- 
- /* -----------------------------------------------------------------------------
-@@ -1808,35 +1844,10 @@ static void dw_hdmi_update_power(struct dw_hdmi *hdmi)
-  */
- static void dw_hdmi_update_phy_mask(struct dw_hdmi *hdmi)
- {
--	u8 old_mask = hdmi->phy_mask;
--
--	if (hdmi->force || hdmi->disabled || !hdmi->rxsense)
--		hdmi->phy_mask |= HDMI_PHY_RX_SENSE;
--	else
--		hdmi->phy_mask &= ~HDMI_PHY_RX_SENSE;
--
--	if (old_mask != hdmi->phy_mask)
--		hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
--}
--
--static void dw_hdmi_phy_setup_hpd(struct dw_hdmi *hdmi)
--{
--	/*
--	 * Configure the PHY RX SENSE and HPD interrupts polarities and clear
--	 * any pending interrupt.
--	 */
--	hdmi_writeb(hdmi, HDMI_PHY_HPD | HDMI_PHY_RX_SENSE, HDMI_PHY_POL0);
--	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
--		    HDMI_IH_PHY_STAT0);
--
--	/* Enable cable hot plug irq. */
--	hdmi_writeb(hdmi, hdmi->phy_mask, HDMI_PHY_MASK0);
--
--	/* Clear and unmute interrupts. */
--	hdmi_writeb(hdmi, HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE,
--		    HDMI_IH_PHY_STAT0);
--	hdmi_writeb(hdmi, ~(HDMI_IH_PHY_STAT0_HPD | HDMI_IH_PHY_STAT0_RX_SENSE),
--		    HDMI_IH_MUTE_PHY_STAT0);
-+	if (hdmi->phy.ops->update_hpd)
-+		hdmi->phy.ops->update_hpd(hdmi, hdmi->phy.data,
-+					  hdmi->force, hdmi->disabled,
-+					  hdmi->rxsense);
- }
- 
- static enum drm_connector_status
-@@ -2028,6 +2039,41 @@ static irqreturn_t dw_hdmi_hardirq(int irq, void *dev_id)
- 	return ret;
- }
- 
-+void __dw_hdmi_setup_rx_sense(struct dw_hdmi *hdmi, bool hpd, bool rx_sense)
-+{
-+	mutex_lock(&hdmi->mutex);
-+
-+	if (!hdmi->force) {
-+		/*
-+		 * If the RX sense status indicates we're disconnected,
-+		 * clear the software rxsense status.
-+		 */
-+		if (!rx_sense)
-+			hdmi->rxsense = false;
-+
-+		/*
-+		 * Only set the software rxsense status when both
-+		 * rxsense and hpd indicates we're connected.
-+		 * This avoids what seems to be bad behaviour in
-+		 * at least iMX6S versions of the phy.
-+		 */
-+		if (hpd)
-+			hdmi->rxsense = true;
-+
-+		dw_hdmi_update_power(hdmi);
-+		dw_hdmi_update_phy_mask(hdmi);
-+	}
-+	mutex_unlock(&hdmi->mutex);
-+}
-+
-+void dw_hdmi_setup_rx_sense(struct device *dev, bool hpd, bool rx_sense)
-+{
-+	struct dw_hdmi *hdmi = dev_get_drvdata(dev);
-+
-+	__dw_hdmi_setup_rx_sense(hdmi, hpd, rx_sense);
-+}
-+EXPORT_SYMBOL_GPL(dw_hdmi_setup_rx_sense);
-+
- static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
- {
- 	struct dw_hdmi *hdmi = dev_id;
-@@ -2060,30 +2106,10 @@ static irqreturn_t dw_hdmi_irq(int irq, void *dev_id)
- 	 * ask the source to re-read the EDID.
- 	 */
- 	if (intr_stat &
--	    (HDMI_IH_PHY_STAT0_RX_SENSE | HDMI_IH_PHY_STAT0_HPD)) {
--		mutex_lock(&hdmi->mutex);
--		if (!hdmi->force) {
--			/*
--			 * If the RX sense status indicates we're disconnected,
--			 * clear the software rxsense status.
--			 */
--			if (!(phy_stat & HDMI_PHY_RX_SENSE))
--				hdmi->rxsense = false;
--
--			/*
--			 * Only set the software rxsense status when both
--			 * rxsense and hpd indicates we're connected.
--			 * This avoids what seems to be bad behaviour in
--			 * at least iMX6S versions of the phy.
--			 */
--			if (phy_stat & HDMI_PHY_HPD)
--				hdmi->rxsense = true;
--
--			dw_hdmi_update_power(hdmi);
--			dw_hdmi_update_phy_mask(hdmi);
--		}
--		mutex_unlock(&hdmi->mutex);
--	}
-+	    (HDMI_IH_PHY_STAT0_RX_SENSE | HDMI_IH_PHY_STAT0_HPD))
-+		__dw_hdmi_setup_rx_sense(hdmi,
-+					 phy_stat & HDMI_PHY_HPD,
-+					 phy_stat & HDMI_PHY_RX_SENSE);
- 
- 	if (intr_stat & HDMI_IH_PHY_STAT0_HPD) {
- 		dev_dbg(hdmi->dev, "EVENT=%s\n",
-@@ -2357,7 +2383,8 @@ static int dw_hdmi_detect_phy(struct dw_hdmi *hdmi)
- #endif
- 
- 	dw_hdmi_setup_i2c(hdmi);
--	dw_hdmi_phy_setup_hpd(hdmi);
-+	if (hdmi->phy.ops->setup_hpd)
-+		hdmi->phy.ops->setup_hpd(hdmi, hdmi->phy.data);
- 
- 	memset(&pdevinfo, 0, sizeof(pdevinfo));
- 	pdevinfo.parent = dev;
-diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-index 5d6b92c..ed599be 100644
---- a/include/drm/bridge/dw_hdmi.h
-+++ b/include/drm/bridge/dw_hdmi.h
-@@ -117,6 +117,9 @@ struct dw_hdmi_phy_ops {
- 		    struct drm_display_mode *mode);
- 	void (*disable)(struct dw_hdmi *hdmi, void *data);
- 	enum drm_connector_status (*read_hpd)(struct dw_hdmi *hdmi, void *data);
-+	void (*update_hpd)(struct dw_hdmi *hdmi, void *data,
-+			   bool force, bool disabled, bool rxsense);
-+	void (*setup_hpd)(struct dw_hdmi *hdmi, void *data);
- };
- 
- struct dw_hdmi_plat_data {
-@@ -147,6 +150,8 @@ int dw_hdmi_probe(struct platform_device *pdev,
- int dw_hdmi_bind(struct platform_device *pdev, struct drm_encoder *encoder,
- 		 const struct dw_hdmi_plat_data *plat_data);
- 
-+void dw_hdmi_setup_rx_sense(struct device *dev, bool hpd, bool rx_sense);
-+
- void dw_hdmi_set_sample_rate(struct dw_hdmi *hdmi, unsigned int rate);
- void dw_hdmi_audio_enable(struct dw_hdmi *hdmi);
- void dw_hdmi_audio_disable(struct dw_hdmi *hdmi);
--- 
-1.9.1
+aobus: aobus at c8100000 {
+        compatible = "simple-bus";
+        reg = <0x0 0xc8100000 0x0 0x100000>;
+        #address-cells = <2>;
+        #size-cells = <2>;
+        ranges = <0x0 0x0 0x0 0xc8100000 0x0 0x100000>;
+
+        ao_secure: ao-secure at 140 {
+                compatible = "amlogic,meson-gx-ao-secure", "simple-mfd", "simple-bus";
+                reg = <0x0 0x140 0x0 0x140>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		chipid at e0 {
+        		compatible = "amlogic,meson-gx-socinfo";
+			reg = <0xe0 0x4>;
+        	};
+	};
+};
+
+Concerning the fine graining, I'm sorry but the actual information comes from a single register here...
+
+Neil
