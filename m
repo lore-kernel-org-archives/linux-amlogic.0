@@ -1,332 +1,560 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Tue, 4 Apr 2017 18:50:17 +0530
-Subject: [PATCH v2 2/2] phy: meson: add USB2 PHY support for Meson GXL and
- GXM
-In-Reply-To: <CAFBinCAfO9_JfbCgHT3GmsKqoYhW-KqiT2s1f3WXRMO2LN4u_g@mail.gmail.com>
-References: <20170304222231.14496-1-martin.blumenstingl@googlemail.com>
- <20170318130013.20771-1-martin.blumenstingl@googlemail.com>
- <20170318130013.20771-3-martin.blumenstingl@googlemail.com>
- <CAFBinCCBkdADVX_9g54Lz2K3oPux2TnjPuotf1pz0mu6h6phTA@mail.gmail.com>
- <82edc36e-80ae-3aa2-cd45-664b26a21e4a@ti.com>
- <CAFBinCAfO9_JfbCgHT3GmsKqoYhW-KqiT2s1f3WXRMO2LN4u_g@mail.gmail.com>
-Message-ID: <1e0ab675-5d53-a56b-b12a-7f284307201f@ti.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  4 Apr 2017 14:31:57 +0200
+Subject: [PATCH v6.1 2/4] drm: bridge: dw-hdmi: Switch to V4L bus format and
+ encodings
+In-Reply-To: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
+References: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1491309119-24220-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+Switch code to use the newly introduced V4L bus formats IDs instead of custom
+defines. Also use the V4L encoding defines.
 
-On Saturday 01 April 2017 03:07 PM, Martin Blumenstingl wrote:
-> Hi Kishon,
-> 
-> On Wed, Mar 29, 2017 at 12:56 PM, Kishon Vijay Abraham I <kishon@ti.com> wrote:
->> Hi,
->>
->> On Wednesday 29 March 2017 03:03 AM, Martin Blumenstingl wrote:
->>> Hi Kishon,
->>>
->>> On Sat, Mar 18, 2017 at 2:00 PM, Martin Blumenstingl
->>> <martin.blumenstingl@googlemail.com> wrote:
->>>> This adds a new driver for the USB2 PHYs found on Meson GXL and GXM SoCs
->>>> (both SoCs are using the same USB PHY register layout).
->>>>
->>>> The USB2 PHY is a simple PHY which only has a few registers to configure
->>>> the mode (host/device) and a reset register (to enable/disable the PHY).
->>>>
->>>> Unfortunately there are no datasheets available for this PHY. The driver
->>>> was written by reading the code from Amlogic's GPL kernel sources and
->>>> by analyzing the registers on an actual GXL and GXM device running the
->>>> kernel that was shipped on the boards I have.
->>> gentle ping - did you have time to review this patch in v2 yet?
->>
->> Have a few comments, see below..
-> thanks for taking the time to review this!
-> 
->>>
->>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>>> ---
->>>>  drivers/phy/Kconfig              |  14 ++
->>>>  drivers/phy/Makefile             |   1 +
->>>>  drivers/phy/phy-meson-gxl-usb2.c | 273 +++++++++++++++++++++++++++++++++++++++
->>>>  3 files changed, 288 insertions(+)
->>>>  create mode 100644 drivers/phy/phy-meson-gxl-usb2.c
->>>>
->>>> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
->>>> index dc5277ad1b5a..2573e139fd17 100644
->>>> --- a/drivers/phy/Kconfig
->>>> +++ b/drivers/phy/Kconfig
->>>> @@ -510,6 +510,19 @@ config PHY_MESON8B_USB2
->>>>           and GXBB SoCs.
->>>>           If unsure, say N.
->>>>
->>>> +config PHY_MESON_GXL_USB
->>>> +       tristate "Meson GXL and GXM USB2 PHY drivers"
->>>> +       default ARCH_MESON
->>>> +       depends on OF && (ARCH_MESON || COMPILE_TEST)
->>>> +       depends on USB_SUPPORT
->>>> +       select USB_COMMON
->>>> +       select GENERIC_PHY
->>>> +       select REGMAP_MMIO
->>>> +       help
->>>> +         Enable this to support the Meson USB2 PHYs found in Meson
->>>> +         GXL and GXM SoCs.
->>>> +         If unsure, say N.
->>>> +
->>>>  config PHY_NSP_USB3
->>>>         tristate "Broadcom NorthStar plus USB3 PHY driver"
->>>>         depends on OF && (ARCH_BCM_NSP || COMPILE_TEST)
->>>> @@ -518,4 +531,5 @@ config PHY_NSP_USB3
->>>>         help
->>>>           Enable this to support the Broadcom Northstar plus USB3 PHY.
->>>>           If unsure, say N.
->>>> +
->>
->> spurious space..
-> you're right, this shouldn't be here. I'll fix this in the next version
-> 
->>>>  endmenu
->>>> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
->>>> index e7b0feb1e125..e680b856e38e 100644
->>>> --- a/drivers/phy/Makefile
->>>> +++ b/drivers/phy/Makefile
->>>> @@ -62,4 +62,5 @@ obj-$(CONFIG_PHY_CYGNUS_PCIE)         += phy-bcm-cygnus-pcie.o
->>>>  obj-$(CONFIG_ARCH_TEGRA) += tegra/
->>>>  obj-$(CONFIG_PHY_NS2_PCIE)             += phy-bcm-ns2-pcie.o
->>>>  obj-$(CONFIG_PHY_MESON8B_USB2)         += phy-meson8b-usb2.o
->>>> +obj-$(CONFIG_PHY_MESON_GXL_USB)                += phy-meson-gxl-usb2.o
->>>>  obj-$(CONFIG_PHY_NSP_USB3)             += phy-bcm-nsp-usb3.o
->>>> diff --git a/drivers/phy/phy-meson-gxl-usb2.c b/drivers/phy/phy-meson-gxl-usb2.c
->>>> new file mode 100644
->>>> index 000000000000..4bf646a52c45
->>>> --- /dev/null
->>>> +++ b/drivers/phy/phy-meson-gxl-usb2.c
->>>> @@ -0,0 +1,273 @@
->>>> +/*
->>>> + * Meson GXL and GXM USB2 PHY driver
->>>> + *
->>>> + * Copyright (C) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>>> + *
->>>> + * This program is free software; you can redistribute it and/or modify
->>>> + * it under the terms of the GNU General Public License version 2 as
->>>> + * published by the Free Software Foundation.
->>>> + *
->>>> + * You should have received a copy of the GNU General Public License
->>>> + * along with this program. If not, see <http://www.gnu.org/licenses/>.
->>>> + */
->>>> +
->>>> +#include <linux/delay.h>
->>>> +#include <linux/io.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/of_device.h>
->>>> +#include <linux/regmap.h>
->>>> +#include <linux/phy/phy.h>
->>>> +#include <linux/platform_device.h>
->>>> +#include <linux/usb/of.h>
->>>> +
->>>> +/* bits [31:27] are read-only */
->>>> +#define U2P_R0                                                 0x0
->>>> +       #define U2P_R0_BYPASS_SEL                               BIT(0)
->>>> +       #define U2P_R0_BYPASS_DM_EN                             BIT(1)
->>>> +       #define U2P_R0_BYPASS_DP_EN                             BIT(2)
->>>> +       #define U2P_R0_TXBITSTUFF_ENH                           BIT(3)
->>>> +       #define U2P_R0_TXBITSTUFF_EN                            BIT(4)
->>>> +       #define U2P_R0_DM_PULLDOWN                              BIT(5)
->>>> +       #define U2P_R0_DP_PULLDOWN                              BIT(6)
->>>> +       #define U2P_R0_DP_VBUS_VLD_EXT_SEL                      BIT(7)
->>>> +       #define U2P_R0_DP_VBUS_VLD_EXT                          BIT(8)
->>>> +       #define U2P_R0_ADP_PRB_EN                               BIT(9)
->>>> +       #define U2P_R0_ADP_DISCHARGE                            BIT(10)
->>>> +       #define U2P_R0_ADP_CHARGE                               BIT(11)
->>>> +       #define U2P_R0_DRV_VBUS                                 BIT(12)
->>>> +       #define U2P_R0_ID_PULLUP                                BIT(13)
->>>> +       #define U2P_R0_LOOPBACK_EN_B                            BIT(14)
->>>> +       #define U2P_R0_OTG_DISABLE                              BIT(15)
->>>> +       #define U2P_R0_COMMON_ONN                               BIT(16)
->>>> +       #define U2P_R0_FSEL_MASK                                GENMASK(19, 17)
->>>> +       #define U2P_R0_REF_CLK_SEL_MASK                         GENMASK(21, 20)
->>>> +       #define U2P_R0_POWER_ON_RESET                           BIT(22)
->>>> +       #define U2P_R0_V_ATE_TEST_EN_B_MASK                     GENMASK(24, 23)
->>>> +       #define U2P_R0_ID_SET_ID_DQ                             BIT(25)
->>>> +       #define U2P_R0_ATE_RESET                                BIT(26)
->>>> +       #define U2P_R0_FSV_MINUS                                BIT(27)
->>>> +       #define U2P_R0_FSV_PLUS                                 BIT(28)
->>>> +       #define U2P_R0_BYPASS_DM_DATA                           BIT(29)
->>>> +       #define U2P_R0_BYPASS_DP_DATA                           BIT(30)
->>>> +
->>>> +#define U2P_R1                                                 0x4
->>>> +       #define U2P_R1_BURN_IN_TEST                             BIT(0)
->>>> +       #define U2P_R1_ACA_ENABLE                               BIT(1)
->>>> +       #define U2P_R1_DCD_ENABLE                               BIT(2)
->>>> +       #define U2P_R1_VDAT_SRC_EN_B                            BIT(3)
->>>> +       #define U2P_R1_VDAT_DET_EN_B                            BIT(4)
->>>> +       #define U2P_R1_CHARGES_SEL                              BIT(5)
->>>> +       #define U2P_R1_TX_PREEMP_PULSE_TUNE                     BIT(6)
->>>> +       #define U2P_R1_TX_PREEMP_AMP_TUNE_MASK                  GENMASK(8, 7)
->>>> +       #define U2P_R1_TX_RES_TUNE_MASK                         GENMASK(10, 9)
->>>> +       #define U2P_R1_TX_RISE_TUNE_MASK                        GENMASK(12, 11)
->>>> +       #define U2P_R1_TX_VREF_TUNE_MASK                        GENMASK(16, 13)
->>>> +       #define U2P_R1_TX_FSLS_TUNE_MASK                        GENMASK(20, 17)
->>>> +       #define U2P_R1_TX_HSXV_TUNE_MASK                        GENMASK(22, 21)
->>>> +       #define U2P_R1_OTG_TUNE_MASK                            GENMASK(25, 23)
->>>> +       #define U2P_R1_SQRX_TUNE_MASK                           GENMASK(28, 26)
->>>> +       #define U2P_R1_COMP_DIS_TUNE_MASK                       GENMASK(31, 29)
->>>> +
->>>> +/* bits [31:14] are read-only */
->>>> +#define U2P_R2                                                 0x8
->>>> +       #define U2P_R2_DATA_IN_MASK                             GENMASK(3, 0)
->>>> +       #define U2P_R2_DATA_IN_EN_MASK                          GENMASK(7, 4)
->>>> +       #define U2P_R2_ADDR_MASK                                GENMASK(11, 8)
->>>> +       #define U2P_R2_DATA_OUT_SEL                             BIT(12)
->>>> +       #define U2P_R2_CLK                                      BIT(13)
->>>> +       #define U2P_R2_DATA_OUT_MASK                            GENMASK(17, 14)
->>>> +       #define U2P_R2_ACA_PIN_RANGE_C                          BIT(18)
->>>> +       #define U2P_R2_ACA_PIN_RANGE_B                          BIT(19)
->>>> +       #define U2P_R2_ACA_PIN_RANGE_A                          BIT(20)
->>>> +       #define U2P_R2_ACA_PIN_GND                              BIT(21)
->>>> +       #define U2P_R2_ACA_PIN_FLOAT                            BIT(22)
->>>> +       #define U2P_R2_CHARGE_DETECT                            BIT(23)
->>>> +       #define U2P_R2_DEVICE_SESSION_VALID                     BIT(24)
->>>> +       #define U2P_R2_ADP_PROBE                                BIT(25)
->>>> +       #define U2P_R2_ADP_SENSE                                BIT(26)
->>>> +       #define U2P_R2_SESSION_END                              BIT(27)
->>>> +       #define U2P_R2_VBUS_VALID                               BIT(28)
->>>> +       #define U2P_R2_B_VALID                                  BIT(29)
->>>> +       #define U2P_R2_A_VALID                                  BIT(30)
->>>> +       #define U2P_R2_ID_DIG                                   BIT(31)
->>>> +
->>>> +#define U2P_R3                                                 0xc
->>>> +
->>>> +#define RESET_COMPLETE_TIME                            500
->>>> +
->>>> +struct phy_meson_gxl_usb2_priv {
->>>> +       struct regmap           *regmap;
->>>> +       enum phy_mode           mode;
->>>> +       int                     is_enabled;
->>>> +};
->>>> +
->>>> +static const struct regmap_config phy_meson_gxl_usb2_regmap_conf = {
->>>> +       .reg_bits = 8,
->>>> +       .val_bits = 32,
->>>> +       .reg_stride = 4,
->>>> +       .max_register = U2P_R3,
->>>> +};
->>>> +
->>>> +static int phy_meson_gxl_usb2_reset(struct phy *phy)
->>>> +{
->>>> +       struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
->>>> +
->>>> +       if (priv->is_enabled) {
->>>> +               /* reset the PHY and wait until settings are stabilized */
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_POWER_ON_RESET,
->>>> +                               U2P_R0_POWER_ON_RESET);
->>>> +               udelay(RESET_COMPLETE_TIME);
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_POWER_ON_RESET,
->>>> +                                  0);
->>>> +               udelay(RESET_COMPLETE_TIME);
->>>> +       }
->>
->> Instead of having big if condition blocks, it could be
->>         if (!priv->is_enabled)
->>                 return 0
->>
->>         the configuration when priv->is_enabled is true should go here.
-> makes sense (and the code easier to read) in this case - I'll fix it
-> in the next version
-> 
->>>> +
->>>> +       return 0;
->>>> +}
->>>> +
->>>> +static int phy_meson_gxl_usb2_set_mode(struct phy *phy, enum phy_mode mode)
->>>> +{
->>>> +       struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
->>>> +
->>>> +       switch (mode) {
->>>> +       case PHY_MODE_USB_HOST:
->>>> +       case PHY_MODE_USB_OTG:
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DM_PULLDOWN,
->>>> +                                  U2P_R0_DM_PULLDOWN);
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DP_PULLDOWN,
->>>> +                                  U2P_R0_DP_PULLDOWN);
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_ID_PULLUP, 0);
->>>> +               break;
->>>> +
->>>> +       case PHY_MODE_USB_DEVICE:
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DM_PULLDOWN,
->>>> +                                  0);
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_DP_PULLDOWN,
->>>> +                                  0);
->>>> +               regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_ID_PULLUP,
->>>> +                                  U2P_R0_ID_PULLUP);
->>>> +               break;
->>>> +
->>>> +       default:
->>>> +               return -EINVAL;
->>>> +       }
->>>> +
->>>> +       phy_meson_gxl_usb2_reset(phy);
->>>> +
->>>> +       priv->mode = mode;
->>>> +
->>>> +       return 0;
->>>> +}
->>>> +
->>>> +static int phy_meson_gxl_usb2_power_off(struct phy *phy)
->>>> +{
->>>> +       struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
->>>> +
->>>> +       priv->is_enabled = 0;
->>>> +
->>>> +       /* power off the PHY by putting it into reset mode */
->>>> +       regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_POWER_ON_RESET,
->>>> +                          U2P_R0_POWER_ON_RESET);
->>>> +
->>>> +       return 0;
->>>> +}
->>>> +
->>>> +static int phy_meson_gxl_usb2_power_on(struct phy *phy)
->>>> +{
->>>> +       struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
->>>> +       int ret;
->>>> +
->>>> +       priv->is_enabled = 1;
->>>> +
->>>> +       /* power on the PHY by taking it out of reset mode */
->>>> +       regmap_update_bits(priv->regmap, U2P_R0, U2P_R0_POWER_ON_RESET, 0);
->>>> +
->>>> +       ret = phy_meson_gxl_usb2_set_mode(phy, priv->mode);
->>
->> Since this is already part of phy_ops, the consumer of this phy will take care
->> of setting the mode right?
-> many USB PHYs are configured through of_usb_get_dr_mode_by_phy()
-> (which fetches the USB controller DT node and looks up the dr_mode
-> property). this means that the driver will even work for controller
-> which did not call phy_set_mode() (currently dwc2 and dwc3 are an
-> example where phy_set_mode() is not called, and this driver is
-> probably going to be used by both). are you fine with keeping this or
-> should we instead investigate why dwc2 and dwc3 are not calling
-> phy_set_mode yet?
+Some display pipelines can only provide non-RBG input pixels to the HDMI TX
+Controller, this patch takes the pixel format from the plat_data if provided.
 
-If the driver want to set_mode of the phy, then it should be fine. But let's
-remove .set_mode from phy_ops. Either the driver should set the mode by itself
-or allow the consumers to set the mode but not both.
-> 
->>>> +       if (ret) {
->>>> +               phy_meson_gxl_usb2_power_off(phy);
->>
->> This would mess up the reference count in phy_core, since this function is also
->> part of the phy_ops. The consumer should be responsible for powering off the phy.
-> actually it shouldn't. it would cause issues if I used
-> phy_power_off(phy) here, but I'm using the driver-internal callback
-> here.
+Reviewed-by: Jose Abreu <joabreu@synopsys.com>
+Reviewed-by: Archit Taneja <architt@codeaurora.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 326 +++++++++++++++++++++---------
+ include/drm/bridge/dw_hdmi.h              |  63 ++++++
+ 2 files changed, 294 insertions(+), 95 deletions(-)
 
-I didn't mean you should use phy_power_off(). I meant powering on the phy or
-powering off the phy should be controlled by the consumer.
-> if phy_meson_gxl_usb2_power_on() fails then phy_power_on() (from
-> phy-core) prints a warnings and does not increment the internal
-> ref-counter (++phy->power_count).
-> so in my opinion there shouldn't be a problem
-
-That makes sense.
-
-Thanks
-Kishon
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index ff1fae3..16d5fff3 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -30,18 +30,15 @@
+ #include <drm/drm_encoder_slave.h>
+ #include <drm/bridge/dw_hdmi.h>
+ 
++#include <uapi/linux/media-bus-format.h>
++#include <uapi/linux/videodev2.h>
++
+ #include "dw-hdmi.h"
+ #include "dw-hdmi-audio.h"
+ 
+ #define DDC_SEGMENT_ADDR	0x30
+ #define HDMI_EDID_LEN		512
+ 
+-#define RGB			0
+-#define YCBCR444		1
+-#define YCBCR422_16BITS		2
+-#define YCBCR422_8BITS		3
+-#define XVYCC444		4
+-
+ enum hdmi_datamap {
+ 	RGB444_8B = 0x01,
+ 	RGB444_10B = 0x03,
+@@ -95,10 +92,10 @@ struct hdmi_vmode {
+ };
+ 
+ struct hdmi_data_info {
+-	unsigned int enc_in_format;
+-	unsigned int enc_out_format;
+-	unsigned int enc_color_depth;
+-	unsigned int colorimetry;
++	unsigned int enc_in_bus_format;
++	unsigned int enc_out_bus_format;
++	unsigned int enc_in_encoding;
++	unsigned int enc_out_encoding;
+ 	unsigned int pix_repet_factor;
+ 	unsigned int hdcp_enable;
+ 	struct hdmi_vmode video_mode;
+@@ -567,6 +564,92 @@ void dw_hdmi_audio_disable(struct dw_hdmi *hdmi)
+ }
+ EXPORT_SYMBOL_GPL(dw_hdmi_audio_disable);
+ 
++static bool hdmi_bus_fmt_is_rgb(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_RGB888_1X24:
++	case MEDIA_BUS_FMT_RGB101010_1X30:
++	case MEDIA_BUS_FMT_RGB121212_1X36:
++	case MEDIA_BUS_FMT_RGB161616_1X48:
++		return true;
++
++	default:
++		return false;
++	}
++}
++
++static bool hdmi_bus_fmt_is_yuv444(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_YUV8_1X24:
++	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_YUV12_1X36:
++	case MEDIA_BUS_FMT_YUV16_1X48:
++		return true;
++
++	default:
++		return false;
++	}
++}
++
++static bool hdmi_bus_fmt_is_yuv422(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_UYVY8_1X16:
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++	case MEDIA_BUS_FMT_UYVY12_1X24:
++		return true;
++
++	default:
++		return false;
++	}
++}
++
++static bool hdmi_bus_fmt_is_yuv420(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
++	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
++	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
++	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
++		return true;
++
++	default:
++		return false;
++	}
++}
++
++static int hdmi_bus_fmt_color_depth(unsigned int bus_format)
++{
++	switch (bus_format) {
++	case MEDIA_BUS_FMT_RGB888_1X24:
++	case MEDIA_BUS_FMT_YUV8_1X24:
++	case MEDIA_BUS_FMT_UYVY8_1X16:
++	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
++		return 8;
++
++	case MEDIA_BUS_FMT_RGB101010_1X30:
++	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
++		return 10;
++
++	case MEDIA_BUS_FMT_RGB121212_1X36:
++	case MEDIA_BUS_FMT_YUV12_1X36:
++	case MEDIA_BUS_FMT_UYVY12_1X24:
++	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
++		return 12;
++
++	case MEDIA_BUS_FMT_RGB161616_1X48:
++	case MEDIA_BUS_FMT_YUV16_1X48:
++	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
++		return 16;
++
++	default:
++		return 0;
++	}
++}
++
+ /*
+  * this submodule is responsible for the video data synchronization.
+  * for example, for RGB 4:4:4 input, the data map is defined as
+@@ -579,37 +662,49 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
+ 	int color_format = 0;
+ 	u8 val;
+ 
+-	if (hdmi->hdmi_data.enc_in_format == RGB) {
+-		if (hdmi->hdmi_data.enc_color_depth == 8)
+-			color_format = 0x01;
+-		else if (hdmi->hdmi_data.enc_color_depth == 10)
+-			color_format = 0x03;
+-		else if (hdmi->hdmi_data.enc_color_depth == 12)
+-			color_format = 0x05;
+-		else if (hdmi->hdmi_data.enc_color_depth == 16)
+-			color_format = 0x07;
+-		else
+-			return;
+-	} else if (hdmi->hdmi_data.enc_in_format == YCBCR444) {
+-		if (hdmi->hdmi_data.enc_color_depth == 8)
+-			color_format = 0x09;
+-		else if (hdmi->hdmi_data.enc_color_depth == 10)
+-			color_format = 0x0B;
+-		else if (hdmi->hdmi_data.enc_color_depth == 12)
+-			color_format = 0x0D;
+-		else if (hdmi->hdmi_data.enc_color_depth == 16)
+-			color_format = 0x0F;
+-		else
+-			return;
+-	} else if (hdmi->hdmi_data.enc_in_format == YCBCR422_8BITS) {
+-		if (hdmi->hdmi_data.enc_color_depth == 8)
+-			color_format = 0x16;
+-		else if (hdmi->hdmi_data.enc_color_depth == 10)
+-			color_format = 0x14;
+-		else if (hdmi->hdmi_data.enc_color_depth == 12)
+-			color_format = 0x12;
+-		else
+-			return;
++	switch (hdmi->hdmi_data.enc_in_bus_format) {
++	case MEDIA_BUS_FMT_RGB888_1X24:
++		color_format = 0x01;
++		break;
++	case MEDIA_BUS_FMT_RGB101010_1X30:
++		color_format = 0x03;
++		break;
++	case MEDIA_BUS_FMT_RGB121212_1X36:
++		color_format = 0x05;
++		break;
++	case MEDIA_BUS_FMT_RGB161616_1X48:
++		color_format = 0x07;
++		break;
++
++	case MEDIA_BUS_FMT_YUV8_1X24:
++	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
++		color_format = 0x09;
++		break;
++	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
++		color_format = 0x0B;
++		break;
++	case MEDIA_BUS_FMT_YUV12_1X36:
++	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
++		color_format = 0x0D;
++		break;
++	case MEDIA_BUS_FMT_YUV16_1X48:
++	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
++		color_format = 0x0F;
++		break;
++
++	case MEDIA_BUS_FMT_UYVY8_1X16:
++		color_format = 0x16;
++		break;
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++		color_format = 0x14;
++		break;
++	case MEDIA_BUS_FMT_UYVY12_1X24:
++		color_format = 0x12;
++		break;
++
++	default:
++		return;
+ 	}
+ 
+ 	val = HDMI_TX_INVID0_INTERNAL_DE_GENERATOR_DISABLE |
+@@ -632,26 +727,30 @@ static void hdmi_video_sample(struct dw_hdmi *hdmi)
+ 
+ static int is_color_space_conversion(struct dw_hdmi *hdmi)
+ {
+-	return hdmi->hdmi_data.enc_in_format != hdmi->hdmi_data.enc_out_format;
++	return hdmi->hdmi_data.enc_in_bus_format != hdmi->hdmi_data.enc_out_bus_format;
+ }
+ 
+ static int is_color_space_decimation(struct dw_hdmi *hdmi)
+ {
+-	if (hdmi->hdmi_data.enc_out_format != YCBCR422_8BITS)
++	if (!hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format))
+ 		return 0;
+-	if (hdmi->hdmi_data.enc_in_format == RGB ||
+-	    hdmi->hdmi_data.enc_in_format == YCBCR444)
++
++	if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_in_bus_format) ||
++	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_in_bus_format))
+ 		return 1;
++
+ 	return 0;
+ }
+ 
+ static int is_color_space_interpolation(struct dw_hdmi *hdmi)
+ {
+-	if (hdmi->hdmi_data.enc_in_format != YCBCR422_8BITS)
++	if (!hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_in_bus_format))
+ 		return 0;
+-	if (hdmi->hdmi_data.enc_out_format == RGB ||
+-	    hdmi->hdmi_data.enc_out_format == YCBCR444)
++
++	if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_out_bus_format) ||
++	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format))
+ 		return 1;
++
+ 	return 0;
+ }
+ 
+@@ -662,15 +761,16 @@ static void dw_hdmi_update_csc_coeffs(struct dw_hdmi *hdmi)
+ 	u32 csc_scale = 1;
+ 
+ 	if (is_color_space_conversion(hdmi)) {
+-		if (hdmi->hdmi_data.enc_out_format == RGB) {
+-			if (hdmi->hdmi_data.colorimetry ==
+-					HDMI_COLORIMETRY_ITU_601)
++		if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_out_bus_format)) {
++			if (hdmi->hdmi_data.enc_out_encoding ==
++						V4L2_YCBCR_ENC_601)
+ 				csc_coeff = &csc_coeff_rgb_out_eitu601;
+ 			else
+ 				csc_coeff = &csc_coeff_rgb_out_eitu709;
+-		} else if (hdmi->hdmi_data.enc_in_format == RGB) {
+-			if (hdmi->hdmi_data.colorimetry ==
+-					HDMI_COLORIMETRY_ITU_601)
++		} else if (hdmi_bus_fmt_is_rgb(
++					hdmi->hdmi_data.enc_in_bus_format)) {
++			if (hdmi->hdmi_data.enc_out_encoding ==
++						V4L2_YCBCR_ENC_601)
+ 				csc_coeff = &csc_coeff_rgb_in_eitu601;
+ 			else
+ 				csc_coeff = &csc_coeff_rgb_in_eitu709;
+@@ -708,16 +808,23 @@ static void hdmi_video_csc(struct dw_hdmi *hdmi)
+ 	else if (is_color_space_decimation(hdmi))
+ 		decimation = HDMI_CSC_CFG_DECMODE_CHROMA_INT_FORMULA3;
+ 
+-	if (hdmi->hdmi_data.enc_color_depth == 8)
++	switch (hdmi_bus_fmt_color_depth(hdmi->hdmi_data.enc_out_bus_format)) {
++	case 8:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_24BPP;
+-	else if (hdmi->hdmi_data.enc_color_depth == 10)
++		break;
++	case 10:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_30BPP;
+-	else if (hdmi->hdmi_data.enc_color_depth == 12)
++		break;
++	case 12:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_36BPP;
+-	else if (hdmi->hdmi_data.enc_color_depth == 16)
++		break;
++	case 16:
+ 		color_depth = HDMI_CSC_SCALE_CSC_COLORDE_PTH_48BPP;
+-	else
++		break;
++
++	default:
+ 		return;
++	}
+ 
+ 	/* Configure the CSC registers */
+ 	hdmi_writeb(hdmi, interpolation | decimation, HDMI_CSC_CFG);
+@@ -740,32 +847,43 @@ static void hdmi_video_packetize(struct dw_hdmi *hdmi)
+ 	struct hdmi_data_info *hdmi_data = &hdmi->hdmi_data;
+ 	u8 val, vp_conf;
+ 
+-	if (hdmi_data->enc_out_format == RGB ||
+-	    hdmi_data->enc_out_format == YCBCR444) {
+-		if (!hdmi_data->enc_color_depth) {
+-			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
+-		} else if (hdmi_data->enc_color_depth == 8) {
++	if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_out_bus_format) ||
++	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format)) {
++		switch (hdmi_bus_fmt_color_depth(
++					hdmi->hdmi_data.enc_out_bus_format)) {
++		case 8:
+ 			color_depth = 4;
+ 			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
+-		} else if (hdmi_data->enc_color_depth == 10) {
++			break;
++		case 10:
+ 			color_depth = 5;
+-		} else if (hdmi_data->enc_color_depth == 12) {
++			break;
++		case 12:
+ 			color_depth = 6;
+-		} else if (hdmi_data->enc_color_depth == 16) {
++			break;
++		case 16:
+ 			color_depth = 7;
+-		} else {
+-			return;
++			break;
++		default:
++			output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_BYPASS;
+ 		}
+-	} else if (hdmi_data->enc_out_format == YCBCR422_8BITS) {
+-		if (!hdmi_data->enc_color_depth ||
+-		    hdmi_data->enc_color_depth == 8)
++	} else if (hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format)) {
++		switch (hdmi_bus_fmt_color_depth(
++					hdmi->hdmi_data.enc_out_bus_format)) {
++		case 0:
++		case 8:
+ 			remap_size = HDMI_VP_REMAP_YCC422_16bit;
+-		else if (hdmi_data->enc_color_depth == 10)
++			break;
++		case 10:
+ 			remap_size = HDMI_VP_REMAP_YCC422_20bit;
+-		else if (hdmi_data->enc_color_depth == 12)
++			break;
++		case 12:
+ 			remap_size = HDMI_VP_REMAP_YCC422_24bit;
+-		else
++			break;
++
++		default:
+ 			return;
++		}
+ 		output_select = HDMI_VP_CONF_OUTPUT_SELECTOR_YCC422;
+ 	} else {
+ 		return;
+@@ -1148,28 +1266,35 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	/* Initialise info frame from DRM mode */
+ 	drm_hdmi_avi_infoframe_from_display_mode(&frame, mode);
+ 
+-	if (hdmi->hdmi_data.enc_out_format == YCBCR444)
++	if (hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format))
+ 		frame.colorspace = HDMI_COLORSPACE_YUV444;
+-	else if (hdmi->hdmi_data.enc_out_format == YCBCR422_8BITS)
++	else if (hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format))
+ 		frame.colorspace = HDMI_COLORSPACE_YUV422;
+ 	else
+ 		frame.colorspace = HDMI_COLORSPACE_RGB;
+ 
+ 	/* Set up colorimetry */
+-	if (hdmi->hdmi_data.enc_out_format == XVYCC444) {
+-		frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
+-		if (hdmi->hdmi_data.colorimetry == HDMI_COLORIMETRY_ITU_601)
+-			frame.extended_colorimetry =
++	switch (hdmi->hdmi_data.enc_out_encoding) {
++	case V4L2_YCBCR_ENC_601:
++		if (hdmi->hdmi_data.enc_in_encoding == V4L2_YCBCR_ENC_XV601)
++			frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
++		else
++			frame.colorimetry = HDMI_COLORIMETRY_ITU_601;
++		frame.extended_colorimetry =
+ 				HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
+-		else /*hdmi->hdmi_data.colorimetry == HDMI_COLORIMETRY_ITU_709*/
+-			frame.extended_colorimetry =
++	case V4L2_YCBCR_ENC_709:
++		if (hdmi->hdmi_data.enc_in_encoding == V4L2_YCBCR_ENC_XV709)
++			frame.colorimetry = HDMI_COLORIMETRY_EXTENDED;
++		else
++			frame.colorimetry = HDMI_COLORIMETRY_ITU_709;
++		frame.extended_colorimetry =
+ 				HDMI_EXTENDED_COLORIMETRY_XV_YCC_709;
+-	} else if (hdmi->hdmi_data.enc_out_format != RGB) {
+-		frame.colorimetry = hdmi->hdmi_data.colorimetry;
+-		frame.extended_colorimetry = HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
+-	} else { /* Carries no data */
+-		frame.colorimetry = HDMI_COLORIMETRY_NONE;
+-		frame.extended_colorimetry = HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
++		break;
++	default: /* Carries no data */
++		frame.colorimetry = HDMI_COLORIMETRY_ITU_601;
++		frame.extended_colorimetry =
++				HDMI_EXTENDED_COLORIMETRY_XV_YCC_601;
++		break;
+ 	}
+ 
+ 	frame.scan_mode = HDMI_SCAN_MODE_NONE;
+@@ -1498,19 +1623,30 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	    (hdmi->vic == 21) || (hdmi->vic == 22) ||
+ 	    (hdmi->vic == 2) || (hdmi->vic == 3) ||
+ 	    (hdmi->vic == 17) || (hdmi->vic == 18))
+-		hdmi->hdmi_data.colorimetry = HDMI_COLORIMETRY_ITU_601;
++		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_601;
+ 	else
+-		hdmi->hdmi_data.colorimetry = HDMI_COLORIMETRY_ITU_709;
++		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_709;
+ 
+ 	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
+ 	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
+ 
+-	/* TODO: Get input format from IPU (via FB driver interface) */
+-	hdmi->hdmi_data.enc_in_format = RGB;
++	/* TOFIX: Get input format from plat data or fallback to RGB888 */
++	if (hdmi->plat_data->input_bus_format >= 0)
++		hdmi->hdmi_data.enc_in_bus_format =
++			hdmi->plat_data->input_bus_format;
++	else
++		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
++
++	/* TOFIX: Get input encoding from plat data or fallback to none */
++	if (hdmi->plat_data->input_bus_encoding >= 0)
++		hdmi->hdmi_data.enc_in_encoding =
++			hdmi->plat_data->input_bus_encoding;
++	else
++		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
+ 
+-	hdmi->hdmi_data.enc_out_format = RGB;
++	/* TOFIX: Default to RGB888 output format */
++	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+ 
+-	hdmi->hdmi_data.enc_color_depth = 8;
+ 	hdmi->hdmi_data.pix_repet_factor = 0;
+ 	hdmi->hdmi_data.hdcp_enable = 0;
+ 	hdmi->hdmi_data.video_mode.mdataenablepolarity = true;
+diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+index bcceee8..5d6b92c 100644
+--- a/include/drm/bridge/dw_hdmi.h
++++ b/include/drm/bridge/dw_hdmi.h
+@@ -14,6 +14,67 @@
+ 
+ struct dw_hdmi;
+ 
++/**
++ * DOC: Supported input formats and encodings
++ *
++ * Depending on the Hardware configuration of the Controller IP, it supports
++ * a subset of the following input formats and encodings on its internal
++ * 48bit bus.
++ *
++ * +----------------------+----------------------------------+------------------------------+
++ * + Format Name          + Format Code                      + Encodings                    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 8bit       + ``MEDIA_BUS_FMT_RGB888_1X24``    + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 10bits     + ``MEDIA_BUS_FMT_RGB101010_1X30`` + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 12bits     + ``MEDIA_BUS_FMT_RGB121212_1X36`` + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + RGB 4:4:4 16bits     + ``MEDIA_BUS_FMT_RGB161616_1X48`` + ``V4L2_YCBCR_ENC_DEFAULT``   +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 8bit     + ``MEDIA_BUS_FMT_YUV8_1X24``      + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 10bits   + ``MEDIA_BUS_FMT_YUV10_1X30``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 12bits   + ``MEDIA_BUS_FMT_YUV12_1X36``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:4:4 16bits   + ``MEDIA_BUS_FMT_YUV16_1X48``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV601``  +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_XV709``  +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:2 8bit     + ``MEDIA_BUS_FMT_UYVY8_1X16``     + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:2 10bits   + ``MEDIA_BUS_FMT_UYVY10_1X20``    + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:2 12bits   + ``MEDIA_BUS_FMT_UYVY12_1X24``    + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 8bit     + ``MEDIA_BUS_FMT_UYYVYY8_0_5X24`` + ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 10bits   + ``MEDIA_BUS_FMT_UYYVYY10_0_5X30``+ ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 12bits   + ``MEDIA_BUS_FMT_UYYVYY12_0_5X36``+ ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ * + YCbCr 4:2:0 16bits   + ``MEDIA_BUS_FMT_UYYVYY16_0_5X48``+ ``V4L2_YCBCR_ENC_601``       +
++ * +                      +                                  + or ``V4L2_YCBCR_ENC_709``    +
++ * +----------------------+----------------------------------+------------------------------+
++ */
++
+ enum {
+ 	DW_HDMI_RES_8,
+ 	DW_HDMI_RES_10,
+@@ -62,6 +123,8 @@ struct dw_hdmi_plat_data {
+ 	struct regmap *regm;
+ 	enum drm_mode_status (*mode_valid)(struct drm_connector *connector,
+ 					   struct drm_display_mode *mode);
++	unsigned long input_bus_format;
++	unsigned long input_bus_encoding;
+ 
+ 	/* Vendor PHY support */
+ 	const struct dw_hdmi_phy_ops *phy_ops;
+-- 
+1.9.1
