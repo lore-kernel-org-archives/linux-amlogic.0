@@ -1,76 +1,103 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 4 Apr 2017 21:03:22 +0200
-Subject: [PATCH 1/2] mmc: meson-gx: introduce struct meson_tuning_params
+Date: Tue, 4 Apr 2017 21:11:17 +0200
+Subject: [PATCH 2/2] mmc: meson-gx: add basic tuning for rx clock phase
 In-Reply-To: <1d60ec2c-54c9-6b1c-7eaa-40e96fcd5be5@gmail.com>
 References: <1d60ec2c-54c9-6b1c-7eaa-40e96fcd5be5@gmail.com>
-Message-ID: <f48de131-09fd-9656-e71f-de9cfe1e1a5c@gmail.com>
+Message-ID: <7a2da0fd-d529-ae23-9fc5-900ae2b26610@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Introduce struct meson_tuning_params for storing the clock phase
-configurations. There's no functional change because tx and rx
-clock phase were implicitely set to CLK_PHASE_0 before.
+This patch adds basic tuning which changes the rx clock phase only
+until a working setting is found.
+
+On a Odroid C2 with 128GB eMMC card and 200 MHz MMC clock only
+180? rx clock phase make the system boot w/o CRC errors.
+
+With other MMC devices / clock speeds this might be different,
+therefore don't change the driver config in general.
+
+When retuning skip the currently active parameter set. This avoids
+the current problematic config to be chosen again if it causes CRC
+errors just occasionally.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/mmc/host/meson-gx-mmc.c | 49 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 0036680b..3a6e51c8 100644
+index 3a6e51c8..eb5ee68d 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -49,6 +49,8 @@
- #define   CLK_SRC_PLL 1    /* FCLK_DIV2 */
- #define   CLK_SRC_PLL_RATE 1000000000
- #define   CLK_CORE_PHASE_MASK GENMASK(9, 8)
-+#define   CLK_TX_PHASE_MASK GENMASK(11, 10)
-+#define   CLK_RX_PHASE_MASK GENMASK(13, 12)
- #define   CLK_PHASE_0 0
- #define   CLK_PHASE_90 1
- #define   CLK_PHASE_180 2
-@@ -111,6 +113,12 @@
- #define SD_EMMC_CFG_CMD_GAP 16 /* in clock cycles */
- #define MUX_CLK_NUM_PARENTS 2
+@@ -349,6 +349,31 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	return ret;
+ }
  
-+struct meson_tuning_params {
-+	u8 core_phase;
-+	u8 tx_phase;
-+	u8 rx_phase;
-+};
++static void meson_mmc_set_tuning_params(struct mmc_host *mmc)
++{
++	struct meson_host *host = mmc_priv(mmc);
++	u32 regval;
 +
- struct meson_host {
- 	struct	device		*dev;
- 	struct	mmc_host	*mmc;
-@@ -130,6 +138,7 @@ struct meson_host {
- 	void *bounce_buf;
- 	dma_addr_t bounce_dma_addr;
++	/* stop clock */
++	regval = readl(host->regs + SD_EMMC_CFG);
++	regval |= CFG_STOP_CLOCK;
++	writel(regval, host->regs + SD_EMMC_CFG);
++
++	regval = readl(host->regs + SD_EMMC_CLOCK);
++	regval &= ~CLK_CORE_PHASE_MASK;
++	regval |= FIELD_PREP(CLK_CORE_PHASE_MASK, host->tp.core_phase);
++	regval &= ~CLK_TX_PHASE_MASK;
++	regval |= FIELD_PREP(CLK_TX_PHASE_MASK, host->tp.tx_phase);
++	regval &= ~CLK_RX_PHASE_MASK;
++	regval |= FIELD_PREP(CLK_RX_PHASE_MASK, host->tp.rx_phase);
++	writel(regval, host->regs + SD_EMMC_CLOCK);
++
++	/* start clock */
++	regval = readl(host->regs + SD_EMMC_CFG);
++	regval &= ~CFG_STOP_CLOCK;
++	writel(regval, host->regs + SD_EMMC_CFG);
++}
++
+ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ {
+ 	struct meson_host *host = mmc_priv(mmc);
+@@ -682,6 +707,29 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+ 	return IRQ_HANDLED;
+ }
  
-+	struct meson_tuning_params tp;
- 	bool vqmmc_enabled;
++static int meson_mmc_execute_tuning(struct mmc_host *mmc, u32 opcode)
++{
++	struct meson_host *host = mmc_priv(mmc);
++	struct meson_tuning_params tp_old = host->tp;
++	int ret = -EINVAL, i, cmd_error;
++
++	dev_info(mmc_dev(mmc), "(re)tuning...\n");
++
++	for (i = CLK_PHASE_0; i <= CLK_PHASE_270; i++) {
++		host->tp.rx_phase = i;
++		/* exclude the active parameter set if retuning */
++		if (!memcmp(&tp_old, &host->tp, sizeof(tp_old)) &&
++		    mmc->doing_retune)
++			continue;
++		meson_mmc_set_tuning_params(mmc);
++		ret = mmc_send_tuning(mmc, opcode, &cmd_error);
++		if (!ret)
++			break;
++	}
++
++	return ret;
++}
++
+ /*
+  * NOTE: we only need this until the GPIO/pinctrl driver can handle
+  * interrupts.  For now, the MMC core will use this for polling.
+@@ -712,6 +760,7 @@ static const struct mmc_host_ops meson_mmc_ops = {
+ 	.request	= meson_mmc_request,
+ 	.set_ios	= meson_mmc_set_ios,
+ 	.get_cd         = meson_mmc_get_cd,
++	.execute_tuning = meson_mmc_execute_tuning,
  };
  
-@@ -312,7 +321,9 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 
- 	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
- 	clk_reg = 0;
--	clk_reg |= FIELD_PREP(CLK_CORE_PHASE_MASK, CLK_PHASE_180);
-+	clk_reg |= FIELD_PREP(CLK_CORE_PHASE_MASK, host->tp.core_phase);
-+	clk_reg |= FIELD_PREP(CLK_TX_PHASE_MASK, host->tp.tx_phase);
-+	clk_reg |= FIELD_PREP(CLK_RX_PHASE_MASK, host->tp.rx_phase);
- 	clk_reg |= FIELD_PREP(CLK_SRC_MASK, CLK_SRC_XTAL);
- 	clk_reg |= FIELD_PREP(CLK_DIV_MASK, CLK_DIV_MAX);
- 	clk_reg &= ~CLK_ALWAYS_ON;
-@@ -757,6 +768,10 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_host;
- 
-+	host->tp.core_phase = CLK_PHASE_180;
-+	host->tp.tx_phase = CLK_PHASE_0;
-+	host->tp.rx_phase = CLK_PHASE_0;
-+
- 	ret = meson_mmc_clk_init(host);
- 	if (ret)
- 		goto err_core_clk;
+ static int meson_mmc_probe(struct platform_device *pdev)
 -- 
 2.12.1
