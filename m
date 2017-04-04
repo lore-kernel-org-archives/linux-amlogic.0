@@ -1,30 +1,34 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 04 Apr 2017 04:57:36 -0700
-Subject: [PATCH v2 08/13] ARM64: dts: meson-gx: Add shared CMA dma memory
- pool
-In-Reply-To: <43dd4aec-7002-5844-2e34-8507860a8268@baylibre.com> (Neil
- Armstrong's message of "Tue, 4 Apr 2017 10:41:05 +0200")
-References: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
- <1490109950-21421-9-git-send-email-narmstrong@baylibre.com>
- <43dd4aec-7002-5844-2e34-8507860a8268@baylibre.com>
-Message-ID: <m2bmsc8jwv.fsf@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  4 Apr 2017 14:15:24 +0200
+Subject: [PATCH v3 04/11] drm/meson: venc_cvbs: no more return -ENODEV if CVBS
+ is not available
+In-Reply-To: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
+References: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1491308131-22071-5-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Since this is managed now by the components code, if CVBS is not available
+and HDMI neither, the drm driver won't bind anyway.
 
-> On 03/21/2017 04:25 PM, Neil Armstrong wrote:
->> The HDMI modes needs more CMA memory to be reserved at boot-time.
->> 
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/meson/meson_venc_cvbs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[...]
-
-> Hi Kevin,
->
-> Please take this one for the amlogic arm-soc DT tree.
->
-
-Applied to v4.12/dt64,
-
-Kevin
+diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+index a2bcc70..a96fcb4 100644
+--- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+@@ -248,7 +248,7 @@ int meson_venc_cvbs_create(struct meson_drm *priv)
+ 
+ 	if (!meson_venc_cvbs_connector_is_available(priv)) {
+ 		dev_info(drm->dev, "CVBS Output connector not available\n");
+-		return -ENODEV;
++		return 0;
+ 	}
+ 
+ 	meson_venc_cvbs = devm_kzalloc(priv->dev, sizeof(*meson_venc_cvbs),
+-- 
+1.9.1
