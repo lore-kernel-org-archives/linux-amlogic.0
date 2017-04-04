@@ -1,84 +1,113 @@
-From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
-Date: Tue, 04 Apr 2017 12:11:56 +0300
-Subject: [PATCH v6 2/6] media: uapi: Add RGB and YUV bus formats for
- Synopsys HDMI TX Controller
-In-Reply-To: <1491230558-10804-3-git-send-email-narmstrong@baylibre.com>
-References: <1491230558-10804-1-git-send-email-narmstrong@baylibre.com>
- <1491230558-10804-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1605889.jBdfeePLMM@avalon>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 4 Apr 2017 11:16:23 +0200
+Subject: [PATCH v2 07/13] drm/meson: Add support for HDMI encoder and
+ DW-HDMI bridge + PHY
+In-Reply-To: <20170404085752.jg246ilczhgmyyhy@phenom.ffwll.local>
+References: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
+ <1490109950-21421-8-git-send-email-narmstrong@baylibre.com>
+ <20170404085752.jg246ilczhgmyyhy@phenom.ffwll.local>
+Message-ID: <3b6333c4-2fe0-8331-e54b-01d956e97797@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+On 04/04/2017 10:57 AM, Daniel Vetter wrote:
+> On Tue, Mar 21, 2017 at 04:25:44PM +0100, Neil Armstrong wrote:
+>> The Amlogic Meson GXBB/GXL/GXM SoCs embeds a Synopsys DesignWare HDMI TX
+>> Controller with a custom Bridge + PHY around the Controller.
+>>
+>> This driver makes uses of all the custom PHY plat data callbacks and enables
+>> the compatible HDMI modes to be configured as a drm_encoder instance.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> 
+> [snip]
+> 
+>> +static int meson_venc_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
+>> +					struct drm_crtc_state *crtc_state,
+>> +					struct drm_connector_state *conn_state)
+>> +{
+>> +	return 0;
+>> +}
+> 
+> Given the over-the-top complicated mode encoding you seem to have, this
+> feels like it's a bit too simply.
 
-Thank you for the patch.
+Indeed, but the HW is really weird, every supported modes have very specific
+timings/parameters so moving the mode validation code from the dw-hdmi mode_valid
+to here would only make sense if we need to support a different HDMI controller.
 
-On Monday 03 Apr 2017 16:42:34 Neil Armstrong wrote:
-> In order to describe the RGB and YUV bus formats used to feed the
-> Synopsys DesignWare HDMI TX Controller, add missing formats to the
-> list of Bus Formats.
-> 
-> Documentation for these formats is added in a separate patch.
-> 
-> Reviewed-by: Archit Taneja <architt@codeaurora.org>
-> Reviewed-by: Jose Abreu <joabreu@synopsys.com>
-> Acked-by: Hans Verkuil <hans.verkuil@cisco.com>
-> Acked-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+But you are right, but I would have preferred to have a better HW for sure...
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+>> +
+>> +static void meson_venc_hdmi_encoder_disable(struct drm_encoder *encoder)
+>> +{
+>> +	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
+>> +	struct meson_drm *priv = dw_hdmi->priv;
+>> +
+>> +	DRM_DEBUG_DRIVER("\n");
+>> +
+>> +	writel_bits_relaxed(0x3, 0,
+>> +			    priv->io_base + _REG(VPU_HDMI_SETTING));
+>> +
+>> +	writel_relaxed(0, priv->io_base + _REG(ENCI_VIDEO_EN));
+>> +	writel_relaxed(0, priv->io_base + _REG(ENCP_VIDEO_EN));
+>> +}
+>> +
+>> +static void meson_venc_hdmi_encoder_enable(struct drm_encoder *encoder)
+>> +{
+>> +	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
+>> +	struct meson_drm *priv = dw_hdmi->priv;
+>> +
+>> +	DRM_DEBUG_DRIVER("%s\n", priv->venc.hdmi_use_enci ? "VENCI" : "VENCP");
+>> +
+>> +	if (priv->venc.hdmi_use_enci)
+>> +		writel_relaxed(1, priv->io_base + _REG(ENCI_VIDEO_EN));
+>> +	else
+>> +		writel_relaxed(1, priv->io_base + _REG(ENCP_VIDEO_EN));
+>> +}
+>> +
+>> +static void meson_venc_hdmi_encoder_mode_set(struct drm_encoder *encoder,
+>> +				   struct drm_display_mode *mode,
+>> +				   struct drm_display_mode *adjusted_mode)
+>> +{
+>> +	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
+>> +	struct meson_drm *priv = dw_hdmi->priv;
+>> +	int vic = drm_match_cea_mode(mode);
+>> +
+>> +	DRM_DEBUG_DRIVER("%d:\"%s\" vic %d\n",
+>> +			 mode->base.id, mode->name, vic);
+>> +
+>> +	/* Should have been filtered */
+>> +	if (!vic)
+>> +		return;
+>> +
+>> +	/* VENC + VENC-DVI Mode setup */
+>> +	meson_venc_hdmi_mode_set(priv, vic, mode);
+> 
+> So this calls a different module which export_symbol_gpls that thing. I
+> have no idea why arm-soc people love modularized-to-the-function level
+> drivers, but it feels over the top. amd/nouveau/i915 all smash everything
+> into one driver, makes life so much easier.
 
-> ---
->  include/uapi/linux/media-bus-format.h | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/uapi/linux/media-bus-format.h
-> b/include/uapi/linux/media-bus-format.h index 2168759..ef6fb30 100644
-> --- a/include/uapi/linux/media-bus-format.h
-> +++ b/include/uapi/linux/media-bus-format.h
-> @@ -33,7 +33,7 @@
-> 
->  #define MEDIA_BUS_FMT_FIXED			0x0001
-> 
-> -/* RGB - next is	0x1018 */
-> +/* RGB - next is	0x101b */
->  #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
->  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
-> @@ -57,8 +57,11 @@
->  #define MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA	0x1012
->  #define MEDIA_BUS_FMT_ARGB8888_1X32		0x100d
->  #define MEDIA_BUS_FMT_RGB888_1X32_PADHI		0x100f
-> +#define MEDIA_BUS_FMT_RGB101010_1X30		0x1018
-> +#define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
-> +#define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
-> 
-> -/* YUV (including grey) - next is	0x2026 */
-> +/* YUV (including grey) - next is	0x202c */
->  #define MEDIA_BUS_FMT_Y8_1X8			0x2001
->  #define MEDIA_BUS_FMT_UV8_1X8			0x2015
->  #define MEDIA_BUS_FMT_UYVY8_1_5X8		0x2002
-> @@ -90,12 +93,18 @@
->  #define MEDIA_BUS_FMT_YVYU10_1X20		0x200e
->  #define MEDIA_BUS_FMT_VUY8_1X24			0x2024
->  #define MEDIA_BUS_FMT_YUV8_1X24			0x2025
-> +#define MEDIA_BUS_FMT_UYYVYY8_0_5X24		0x2026
->  #define MEDIA_BUS_FMT_UYVY12_1X24		0x2020
->  #define MEDIA_BUS_FMT_VYUY12_1X24		0x2021
->  #define MEDIA_BUS_FMT_YUYV12_1X24		0x2022
->  #define MEDIA_BUS_FMT_YVYU12_1X24		0x2023
->  #define MEDIA_BUS_FMT_YUV10_1X30		0x2016
-> +#define MEDIA_BUS_FMT_UYYVYY10_0_5X30		0x2027
->  #define MEDIA_BUS_FMT_AYUV8_1X32		0x2017
-> +#define MEDIA_BUS_FMT_UYYVYY12_0_5X36		0x2028
-> +#define MEDIA_BUS_FMT_YUV12_1X36		0x2029
-> +#define MEDIA_BUS_FMT_YUV16_1X48		0x202a
-> +#define MEDIA_BUS_FMT_UYYVYY16_0_5X48		0x202b
-> 
->  /* Bayer - next is	0x3021 */
->  #define MEDIA_BUS_FMT_SBGGR8_1X8		0x3001
+I know, we are doomed on that !
+But here, since the wrapping around the dw-hdmi controller is completely custom
+if was necessary to add a separate encoder tied to HDMI and have the physical
+encoding code in the common driver.
+Note that the platform is also able to driver a LCD via LVDS, so this encoder code
+should be reusable here.
 
--- 
-Regards,
+> 
+> Note: bridge drivers as separate .ko makes sense, but separate .ko for
+> every single functional unit in your vendor IP imo totally doesn't.
 
-Laurent Pinchart
+Actually I added a global ko for the "DRM" driver with crtc, planes and CVBS,
+and another ko for the HDMI bridge wrapping.
+
+> 
+> Not going to stop you either :-)
+
+I totally agree on the complexity here !
+
+> -Daniel
+> 
