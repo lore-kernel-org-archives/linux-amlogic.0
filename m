@@ -1,18 +1,21 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 04 Apr 2017 16:14:03 -0700
-Subject: [GIT PULL] Amlogic clock header updates for v4.12
-Message-ID: <m2tw637olg.fsf@baylibre.com>
+Date: Tue, 04 Apr 2017 16:16:19 -0700
+Subject: [GIT PULL] Amlogic clock driver updates for v4.12
+Message-ID: <m2o9wb7oho.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Steven, Mike,
 
-In order to restructure things so we only have clock headers/bindings in
-the dependencies needed by the Amlogic DT patches, I've split up the
-clock branch you've collected for us into a headers part and a drivers
-part.   Here's a pull req for the headers.
+Below is a request to pull the full set of Amlogic clock changes for
+v4.12.  Note that this includes the previous pull for headers, but I
+wanted to send them separately for completness, and so there's an
+obvious tag to use as a dependency source for our DT changes.
+
+Thanks,
 
 Kevin
+
 
 The following changes since commit c1ae3cfa0e89fa1a7ecc4c99031f5e9ae99d9201:
 
@@ -20,26 +23,49 @@ The following changes since commit c1ae3cfa0e89fa1a7ecc4c99031f5e9ae99d9201:
 
 are available in the git repository at:
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-clk-headers
+  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-clk
 
-for you to fetch changes up to 92c2cc5d5566cb84e4f4a683e73c3516882c2ee8:
+for you to fetch changes up to 3a429818a2e48928ae0114df5fb3b0612dd57001:
 
-  dt-bindings: clock: gxbb-clkc: Add GXL compatible variant (2017-04-04 11:00:07 -0700)
-
-----------------------------------------------------------------
-Amlogic clock headers and DT binding updates for v4.12
-- add clocks for I2S and Mali
+  Merge branch 'v4.12/clk-drivers' into v4.12/clk (2017-04-04 15:58:11 -0700)
 
 ----------------------------------------------------------------
-Jerome Brunet (1):
+Amlogic clock driver updates for v4.12
+- meson8: add some new PLLs
+- new clocks for Mali
+- misc fixes.
+
+----------------------------------------------------------------
+Jerome Brunet (9):
+      clk: meson: fix SET_PARM macro
+      clk: meson: add missing const qualifiers on gate arrays
+      clk: meson8b: put dividers and muxes in tables
+      clk: gxbb: put dividers and muxes in tables
+      clk: meson: mpll: add rw operation
+      clk: meson: gxbb: mpll: use rw operation
+      clk: meson8b: add the mplls clocks 0, 1 and 2
+      clk: meson: mpll: correct N2 maximum value
       dt-bindings: clk: gxbb: expose i2s output clock gates
 
-Neil Armstrong (3):
+Kevin Hilman (1):
+      Merge branch 'v4.12/clk-drivers' into v4.12/clk
+
+Neil Armstrong (7):
       clk: meson-gxbb: Add MALI clock IDS
       clk: meson-gxbb: Expose GP0 dt-bindings clock id
       dt-bindings: clock: gxbb-clkc: Add GXL compatible variant
+      clk: meson-gxbb: Add MALI clocks
+      clk: meson: Add support for parameters for specific PLLs
+      clk: meson-gxbb: Add GP0 PLL init parameters
+      clk: meson-gxbb: Add GXL/GXM GP0 Variant
 
- Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt |  3 ++-
- drivers/clk/meson/gxbb.h                                      | 21 ++++++++++++++-------
- include/dt-bindings/clock/gxbb-clkc.h                         | 11 +++++++++++
- 3 files changed, 27 insertions(+), 8 deletions(-)
+ Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt |   3 +-
+ drivers/clk/meson/clk-mpll.c                                  | 152 ++++++++++++++-
+ drivers/clk/meson/clk-pll.c                                   |  53 +++++-
+ drivers/clk/meson/clkc.h                                      |  29 ++-
+ drivers/clk/meson/gxbb.c                                      | 505 ++++++++++++++++++++++++++++++++++++++++++++++----
+ drivers/clk/meson/gxbb.h                                      |  23 ++-
+ drivers/clk/meson/meson8b.c                                   | 127 ++++++++++++-
+ drivers/clk/meson/meson8b.h                                   |  20 +-
+ include/dt-bindings/clock/gxbb-clkc.h                         |  11 ++
+ 9 files changed, 867 insertions(+), 56 deletions(-)
