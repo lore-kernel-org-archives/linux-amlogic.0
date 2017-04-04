@@ -1,57 +1,98 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  4 Apr 2017 14:31:58 +0200
-Subject: [PATCH v6.1 3/4] drm: bridge: dw-hdmi: Add Documentation on supported
- input formats
-In-Reply-To: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
-References: <1491309119-24220-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1491309119-24220-4-git-send-email-narmstrong@baylibre.com>
+Date: Tue,  4 Apr 2017 14:15:30 +0200
+Subject: [PATCH v3 10/11] drm/meson: Add RST to bring together kerneldoc
+In-Reply-To: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
+References: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1491308131-22071-11-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch adds a new DRM documentation entry and links to the input
-format table added in the dw_hdmi header.
-
-Reviewed-by: Archit Taneja <architt@codeaurora.org>
-Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/gpu/bridge/dw-hdmi.rst | 15 +++++++++++++++
- Documentation/gpu/index.rst          |  1 +
- 2 files changed, 16 insertions(+)
- create mode 100644 Documentation/gpu/bridge/dw-hdmi.rst
+ Documentation/gpu/index.rst |  1 +
+ Documentation/gpu/meson.rst | 61 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 62 insertions(+)
+ create mode 100644 Documentation/gpu/meson.rst
 
-diff --git a/Documentation/gpu/bridge/dw-hdmi.rst b/Documentation/gpu/bridge/dw-hdmi.rst
-new file mode 100644
-index 0000000..486faad
---- /dev/null
-+++ b/Documentation/gpu/bridge/dw-hdmi.rst
-@@ -0,0 +1,15 @@
-+=======================================================
-+ drm/bridge/dw-hdmi Synopsys DesignWare HDMI Controller
-+=======================================================
-+
-+Synopsys DesignWare HDMI Controller
-+===================================
-+
-+This section covers everything related to the Synopsys DesignWare HDMI
-+Controller implemented as a DRM bridge.
-+
-+Supported Input Formats and Encodings
-+-------------------------------------
-+
-+.. kernel-doc:: include/drm/bridge/dw_hdmi.h
-+   :doc: Supported input formats and encodings
 diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
-index e998ee0..d81c6ff 100644
+index e998ee0..7eceb97 100644
 --- a/Documentation/gpu/index.rst
 +++ b/Documentation/gpu/index.rst
-@@ -15,6 +15,7 @@ Linux GPU Driver Developer's Guide
+@@ -11,6 +11,7 @@ Linux GPU Driver Developer's Guide
+    drm-kms-helpers
+    drm-uapi
+    i915
++   meson
+    tinydrm
     vc4
     vga-switcheroo
-    vgaarbiter
-+   bridge/dw-hdmi
-    todo
- 
- .. only::  subproject and html
+diff --git a/Documentation/gpu/meson.rst b/Documentation/gpu/meson.rst
+new file mode 100644
+index 0000000..479f6f5
+--- /dev/null
++++ b/Documentation/gpu/meson.rst
+@@ -0,0 +1,61 @@
++=============================================
++drm/meson AmLogic Meson Video Processing Unit
++=============================================
++
++.. kernel-doc:: drivers/gpu/drm/meson/meson_drv.c
++   :doc: Video Processing Unit
++
++Video Processing Unit
++=====================
++
++The Amlogic Meson Display controller is composed of several components
++that are going to be documented below:
++
++.. code::
++
++  DMC|---------------VPU (Video Processing Unit)----------------|------HHI------|
++     | vd1   _______     _____________    _________________     |               |
++  D  |-------|      |----|            |   |                |    |   HDMI PLL    |
++  D  | vd2   | VIU  |    | Video Post |   | Video Encoders |<---|-----VCLK      |
++  R  |-------|      |----| Processing |   |                |    |               |
++     | osd2  |      |    |            |---| Enci ----------|----|-----VDAC------|
++  R  |-------| CSC  |----| Scalers    |   | Encp ----------|----|----HDMI-TX----|
++  A  | osd1  |      |    | Blenders   |   | Encl ----------|----|---------------|
++  M  |-------|______|----|____________|   |________________|    |               |
++  ___|__________________________________________________________|_______________|
++
++Video Input Unit
++================
++
++.. kernel-doc:: drivers/gpu/drm/meson/meson_viu.c
++   :doc: Video Input Unit
++
++Video Post Processing
++=====================
++
++.. kernel-doc:: drivers/gpu/drm/meson/meson_vpp.c
++   :doc: Video Post Processing
++
++Video Encoder
++=============
++
++.. kernel-doc:: drivers/gpu/drm/meson/meson_venc.c
++   :doc: Video Encoder
++
++Video Canvas Management
++=======================
++
++.. kernel-doc:: drivers/gpu/drm/meson/meson_canvas.c
++   :doc: Canvas
++
++Video Clocks
++============
++
++.. kernel-doc:: drivers/gpu/drm/meson/meson_vclk.c
++   :doc: Video Clocks
++
++HDMI Video Output
++=================
++
++.. kernel-doc:: drivers/gpu/drm/meson/meson_dw_hdmi.c
++   :doc: HDMI Output
 -- 
 1.9.1
