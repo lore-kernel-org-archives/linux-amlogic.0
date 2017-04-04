@@ -1,93 +1,50 @@
-From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
-Date: Tue, 04 Apr 2017 12:18:32 +0300
-Subject: [PATCH v6 3/6] documentation: media: Add documentation for new
- RGB and YUV bus formats
-In-Reply-To: <1491230558-10804-4-git-send-email-narmstrong@baylibre.com>
-References: <1491230558-10804-1-git-send-email-narmstrong@baylibre.com>
- <1491230558-10804-4-git-send-email-narmstrong@baylibre.com>
-Message-ID: <3288495.AjVEEfrlY9@avalon>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 4 Apr 2017 11:18:51 +0200
+Subject: [PATCH v2 13/13] MAINTAINERS: update files for Amlogic DRM Driver
+In-Reply-To: <20170404090124.vn5keeanafpwzcap@phenom.ffwll.local>
+References: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
+ <1490109950-21421-14-git-send-email-narmstrong@baylibre.com>
+ <20170404090124.vn5keeanafpwzcap@phenom.ffwll.local>
+Message-ID: <6ea12eab-2f51-787d-74c8-ddd35f2b356f@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
-
-Thank you for the patch.
-
-On Monday 03 Apr 2017 16:42:35 Neil Armstrong wrote:
-> Add documentation for added Bus Formats to describe RGB and YUV formats used
-> as input to the Synopsys DesignWare HDMI TX Controller.
+On 04/04/2017 11:01 AM, Daniel Vetter wrote:
+> On Tue, Mar 21, 2017 at 04:25:50PM +0100, Neil Armstrong wrote:
+>> This patch adds the dw-hdmi bindings and RST kerneldoc to maintained files.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  MAINTAINERS | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index e88154f..3df68c73 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -4256,6 +4256,8 @@ W:	http://linux-meson.com/
+>>  S:	Supported
+>>  F:	drivers/gpu/drm/meson/
+>>  F:	Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+>> +F:	Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+>> +F:	Documentation/gpu/meson.rst
+>>  T:	git git://anongit.freedesktop.org/drm/drm-meson
 > 
-> Acked-by: Hans Verkuil <hans.verkuil@cisco.com>
-> Reviewed-by: Archit Taneja <architt@codeaurora.org>
-> Acked-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/media/uapi/v4l/subdev-formats.rst | 960 ++++++++++++++++++++-
->  1 file changed, 959 insertions(+), 1 deletion(-)
+> As discussed on irc, pls also remove the drm-meson git repo here (and ask
+> fdo admins to can it). To avoid confusion.
+
+Ok, I already removed the line and pushed it to drm-misc-next,
+I'll certainly need to fix a conflict here when pushing this one to drm-misc-next.
+
+> -Daniel
 > 
-> diff --git a/Documentation/media/uapi/v4l/subdev-formats.rst
-> b/Documentation/media/uapi/v4l/subdev-formats.rst index d6152c9..4032d97
-> 100644
-> --- a/Documentation/media/uapi/v4l/subdev-formats.rst
-> +++ b/Documentation/media/uapi/v4l/subdev-formats.rst
-> @@ -1258,6 +1258,319 @@ The following tables list existing packed RGB
-> formats. - b\ :sub:`2`
->        - b\ :sub:`1`
->        - b\ :sub:`0`
-> +    * .. _MEDIA-BUS-FMT-RGB101010-1X30:
-> +
-> +      - MEDIA_BUS_FMT_RGB101010_1X30
-> +      - 0x1018
-> +      -
-> +      - 0
-> +      - 0
-> +      - r\ :sub:`9`
-> +      - r\ :sub:`8`
-> +      - r\ :sub:`7`
-> +      - r\ :sub:`6`
-> +      - r\ :sub:`5`
-> +      - r\ :sub:`4`
-> +      - r\ :sub:`3`
-> +      - r\ :sub:`2`
-> +      - r\ :sub:`1`
-> +      - r\ :sub:`0`
-> +      - g\ :sub:`9`
-> +      - g\ :sub:`8`
-> +      - g\ :sub:`7`
-> +      - g\ :sub:`6`
-> +      - g\ :sub:`5`
-> +      - g\ :sub:`4`
-> +      - g\ :sub:`3`
-> +      - g\ :sub:`2`
-> +      - g\ :sub:`1`
-> +      - g\ :sub:`0`
-> +      - b\ :sub:`9`
-> +      - b\ :sub:`8`
-> +      - b\ :sub:`7`
-> +      - b\ :sub:`6`
-> +      - b\ :sub:`5`
-> +      - b\ :sub:`4`
-> +      - b\ :sub:`3`
-> +      - b\ :sub:`2`
-> +      - b\ :sub:`1`
-> +      - b\ :sub:`0`
-> +
-> +.. raw:: latex
-> +
-> +    \endgroup
-> +
-> +
-> +The following table list existing packed 36bit wide RGB formats.
-
-s/list/lists/
-
-Same comment for the other tables. Apart from that,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-[snip]
-
--- 
-Regards,
-
-Laurent Pinchart
+>>  T:	git git://anongit.freedesktop.org/drm/drm-misc
+>>  
+>> -- 
+>> 1.9.1
+>>
+>> _______________________________________________
+>> dri-devel mailing list
+>> dri-devel at lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
