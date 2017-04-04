@@ -1,746 +1,139 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  4 Apr 2017 14:15:25 +0200
-Subject: [PATCH v3 05/11] drm/meson: add support for HDMI clock support
+Date: Tue,  4 Apr 2017 14:15:28 +0200
+Subject: [PATCH v3 08/11] dt-bindings: Add bindings for the Amlogic Meson
+ dw-hdmi extension
 In-Reply-To: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
 References: <1491308131-22071-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1491308131-22071-6-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1491308131-22071-9-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchs adds support for the supported HDMI modes clocks frequencies.
+This binding describes the Amlogic Meson specific extension to the
+Synopsys Designware HDMI Controller.
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_vclk.c      | 624 +++++++++++++++++++++++++++++++-
- drivers/gpu/drm/meson/meson_vclk.h      |   6 +-
- drivers/gpu/drm/meson/meson_venc_cvbs.c |   9 +-
- 3 files changed, 623 insertions(+), 16 deletions(-)
+ .../bindings/display/amlogic,meson-dw-hdmi.txt     | 111 +++++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
 
-diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
-index 252cfd4..3731479 100644
---- a/drivers/gpu/drm/meson/meson_vclk.c
-+++ b/drivers/gpu/drm/meson/meson_vclk.c
-@@ -27,9 +27,26 @@
-  * VCLK is the "Pixel Clock" frequency generator from a dedicated PLL.
-  * We handle the following encodings :
-  * - CVBS 27MHz generator via the VCLK2 to the VENCI and VDAC blocks
-- *
-- * What is missing :
-  * - HDMI Pixel Clocks generation
-+ * What is missing :
-+ * - Genenate Pixel clocks for 2K/4K 10bit formats
-+ *
-+ * Clock generator scheme :
-+ *  __________   _________            _____
-+ * |          | |         |          |     |--ENCI
-+ * | HDMI PLL |-| PLL_DIV |--- VCLK--|     |--ENCL
-+ * |__________| |_________| \        | MUX |--ENCP
-+ *                           --VCLK2-|     |--VDAC
-+ *                                   |_____|--HDMI-TX
-+ *
-+ * Final clocks can take input for either VCLK or VCLK2, but
-+ * VCLK is the preferred path for HDMI clocking and VCLK2 is the
-+ * preferred path for CVBS VDAC clocking.
-+ *
-+ * VCLK and VCLK2 have fixed divided clocks paths for /1, /2, /4, /6 or /12.
-+ *
-+ * The PLL_DIV can achieve an additional fractional dividing like
-+ * 1.5, 3.5, 3.75... to generate special 2K and 4K 10bit clocks.
-  */
- 
- /* HHI Registers */
-@@ -50,11 +67,34 @@
- #define VCLK2_SOFT_RESET	BIT(15)
- #define VCLK2_DIV1_EN		BIT(0)
- #define HHI_VID_CLK_DIV		0x164 /* 0x59 offset in data sheet */
-+#define VCLK_DIV_MASK		0xff
-+#define VCLK_DIV_EN		BIT(16)
-+#define VCLK_DIV_RESET		BIT(17)
-+#define CTS_ENCP_SEL_MASK	(0xf << 24)
-+#define CTS_ENCP_SEL_SHIFT	24
- #define CTS_ENCI_SEL_MASK	(0xf << 28)
- #define CTS_ENCI_SEL_SHIFT	28
-+#define HHI_VID_CLK_CNTL	0x17c /* 0x5f offset in data sheet */
-+#define VCLK_EN			BIT(19)
-+#define VCLK_SEL_MASK		(0x7 << 16)
-+#define VCLK_SEL_SHIFT		16
-+#define VCLK_SOFT_RESET		BIT(15)
-+#define VCLK_DIV1_EN		BIT(0)
-+#define VCLK_DIV2_EN		BIT(1)
-+#define VCLK_DIV4_EN		BIT(2)
-+#define VCLK_DIV6_EN		BIT(3)
-+#define VCLK_DIV12_EN		BIT(4)
- #define HHI_VID_CLK_CNTL2	0x194 /* 0x65 offset in data sheet */
- #define CTS_ENCI_EN		BIT(0)
-+#define CTS_ENCP_EN		BIT(2)
- #define CTS_VDAC_EN		BIT(4)
-+#define HDMI_TX_PIXEL_EN	BIT(5)
-+#define HHI_HDMI_CLK_CNTL	0x1cc /* 0x73 offset in data sheet */
-+#define HDMI_TX_PIXEL_SEL_MASK	(0xf << 16)
-+#define HDMI_TX_PIXEL_SEL_SHIFT	16
-+#define CTS_HDMI_SYS_SEL_MASK	(0x7 << 9)
-+#define CTS_HDMI_SYS_DIV_MASK	(0x7f)
-+#define CTS_HDMI_SYS_EN		BIT(8)
- 
- #define HHI_VDAC_CNTL0		0x2F4 /* 0xbd offset in data sheet */
- #define HHI_VDAC_CNTL1		0x2F8 /* 0xbe offset in data sheet */
-@@ -69,6 +109,126 @@
- #define HDMI_PLL_RESET		BIT(28)
- #define HDMI_PLL_LOCK		BIT(31)
- 
-+/* VID PLL Dividers */
-+enum {
-+	VID_PLL_DIV_1 = 0,
-+	VID_PLL_DIV_2,
-+	VID_PLL_DIV_2p5,
-+	VID_PLL_DIV_3,
-+	VID_PLL_DIV_3p5,
-+	VID_PLL_DIV_3p75,
-+	VID_PLL_DIV_4,
-+	VID_PLL_DIV_5,
-+	VID_PLL_DIV_6,
-+	VID_PLL_DIV_6p25,
-+	VID_PLL_DIV_7,
-+	VID_PLL_DIV_7p5,
-+	VID_PLL_DIV_12,
-+	VID_PLL_DIV_14,
-+	VID_PLL_DIV_15,
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+new file mode 100644
+index 0000000..7f040ed
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+@@ -0,0 +1,111 @@
++Amlogic specific extensions to the Synopsys Designware HDMI Controller
++======================================================================
++
++The Amlogic Meson Synopsys Designware Integration is composed of :
++- A Synopsys DesignWare HDMI Controller IP
++- A TOP control block controlling the Clocks and PHY
++- A custom HDMI PHY in order to convert video to TMDS signal
++ ___________________________________
++|            HDMI TOP               |<= HPD
++|___________________________________|
++|                  |                |
++|  Synopsys HDMI   |   HDMI PHY     |=> TMDS
++|    Controller    |________________|
++|___________________________________|<=> DDC
++
++The HDMI TOP block only supports HPD sensing.
++The Synopsys HDMI Controller interrupt is routed through the
++TOP Block interrupt.
++Communication to the TOP Block and the Synopsys HDMI Controller is done
++via a pair of dedicated addr+read/write registers.
++The HDMI PHY is configured by registers in the HHI register block.
++
++Pixel data arrives in 4:4:4 format from the VENC block and the VPU HDMI mux
++selects either the ENCI encoder for the 576i or 480i formats or the ENCP
++encoder for all the other formats including interlaced HD formats.
++
++The VENC uses a DVI encoder on top of the ENCI or ENCP encoders to generate
++DVI timings for the HDMI controller.
++
++Amlogic Meson GXBB, GXL and GXM SoCs families embeds the Synopsys DesignWare
++HDMI TX IP version 2.01a with HDCP and I2C & S/PDIF
++audio source interfaces.
++
++Required properties:
++- compatible: value should be different for each SoC family as :
++	- GXBB (S905) : "amlogic,meson-gxbb-dw-hdmi"
++	- GXL (S905X, S905D) : "amlogic,meson-gxl-dw-hdmi"
++	- GXM (S912) : "amlogic,meson-gxm-dw-hdmi"
++	followed by the common "amlogic,meson-gx-dw-hdmi"
++- reg: Physical base address and length of the controller's registers.
++- interrupts: The HDMI interrupt number
++- clocks, clock-names : must have the phandles to the HDMI iahb and isfr clocks,
++  and the Amlogic Meson venci clocks as described in
++  Documentation/devicetree/bindings/clock/clock-bindings.txt,
++  the clocks are soc specific, the clock-names should be "iahb", "isfr", "venci"
++- resets, resets-names: must have the phandles to the HDMI apb, glue and phy
++  resets as described in :
++  Documentation/devicetree/bindings/reset/reset.txt,
++  the reset-names should be "hdmitx_apb", "hdmitx", "hdmitx_phy"
++
++Required nodes:
++
++The connections to the HDMI ports are modeled using the OF graph
++bindings specified in Documentation/devicetree/bindings/graph.txt.
++
++The following table lists for each supported model the port number
++corresponding to each HDMI output and input.
++
++		Port 0		Port 1
++-----------------------------------------
++ S905 (GXBB)	VENC Input	TMDS Output
++ S905X (GXL)	VENC Input	TMDS Output
++ S905D (GXL)	VENC Input	TMDS Output
++ S912 (GXM)	VENC Input	TMDS Output
++
++Example:
++
++hdmi-connector {
++	compatible = "hdmi-connector";
++	type = "a";
++
++	port {
++		hdmi_connector_in: endpoint {
++			remote-endpoint = <&hdmi_tx_tmds_out>;
++		};
++	};
 +};
 +
-+void meson_vid_pll_set(struct meson_drm *priv, unsigned int div)
-+{
-+	unsigned int shift_val = 0;
-+	unsigned int shift_sel = 0;
++hdmi_tx: hdmi-tx at c883a000 {
++	compatible = "amlogic,meson-gxbb-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
++	reg = <0x0 0xc883a000 0x0 0x1c>;
++	interrupts = <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
++	resets = <&reset RESET_HDMITX_CAPB3>,
++		 <&reset RESET_HDMI_SYSTEM_RESET>,
++		 <&reset RESET_HDMI_TX>;
++	reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
++	clocks = <&clkc CLKID_HDMI_PCLK>,
++		 <&clkc CLKID_CLK81>,
++		 <&clkc CLKID_GCLK_VENCI_INT0>;
++	clock-names = "isfr", "iahb", "venci";
++	#address-cells = <1>;
++	#size-cells = <0>;
 +
-+	/* Disable vid_pll output clock */
-+	regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV, VID_PLL_EN, 0);
-+	regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV, VID_PLL_PRESET, 0);
++	/* VPU VENC Input */
++	hdmi_tx_venc_port: port at 0 {
++		reg = <0>;
 +
-+	switch (div) {
-+	case VID_PLL_DIV_2:
-+		shift_val = 0x0aaa;
-+		shift_sel = 0;
-+		break;
-+	case VID_PLL_DIV_2p5:
-+		shift_val = 0x5294;
-+		shift_sel = 2;
-+		break;
-+	case VID_PLL_DIV_3:
-+		shift_val = 0x0db6;
-+		shift_sel = 0;
-+		break;
-+	case VID_PLL_DIV_3p5:
-+		shift_val = 0x36cc;
-+		shift_sel = 1;
-+		break;
-+	case VID_PLL_DIV_3p75:
-+		shift_val = 0x6666;
-+		shift_sel = 2;
-+		break;
-+	case VID_PLL_DIV_4:
-+		shift_val = 0x0ccc;
-+		shift_sel = 0;
-+		break;
-+	case VID_PLL_DIV_5:
-+		shift_val = 0x739c;
-+		shift_sel = 2;
-+		break;
-+	case VID_PLL_DIV_6:
-+		shift_val = 0x0e38;
-+		shift_sel = 0;
-+		break;
-+	case VID_PLL_DIV_6p25:
-+		shift_val = 0x0000;
-+		shift_sel = 3;
-+		break;
-+	case VID_PLL_DIV_7:
-+		shift_val = 0x3c78;
-+		shift_sel = 1;
-+		break;
-+	case VID_PLL_DIV_7p5:
-+		shift_val = 0x78f0;
-+		shift_sel = 2;
-+		break;
-+	case VID_PLL_DIV_12:
-+		shift_val = 0x0fc0;
-+		shift_sel = 0;
-+		break;
-+	case VID_PLL_DIV_14:
-+		shift_val = 0x3f80;
-+		shift_sel = 1;
-+		break;
-+	case VID_PLL_DIV_15:
-+		shift_val = 0x7f80;
-+		shift_sel = 2;
-+		break;
-+	}
-+
-+	if (div == VID_PLL_DIV_1)
-+		/* Enable vid_pll bypass to HDMI pll */
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   VID_PLL_BYPASS, VID_PLL_BYPASS);
-+	else {
-+		/* Disable Bypass */
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   VID_PLL_BYPASS, 0);
-+		/* Clear sel */
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   3 << 16, 0);
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   VID_PLL_PRESET, 0);
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   0x7fff, 0);
-+
-+		/* Setup sel and val */
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   3 << 16, shift_sel << 16);
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   VID_PLL_PRESET, VID_PLL_PRESET);
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   0x7fff, shift_val);
-+
-+		regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				   VID_PLL_PRESET, 0);
-+	}
-+
-+	/* Enable the vid_pll output clock */
-+	regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
-+				VID_PLL_EN, VID_PLL_EN);
-+}
-+
- /*
-  * Setup VCLK2 for 27MHz, and enable clocks for ENCI and VDAC
-  *
-@@ -110,15 +270,8 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
- 	/* Disable VCLK2 */
- 	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_EN, 0);
- 
--	/* Disable vid_pll output clock */
--	regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV, VID_PLL_EN, 0);
--	regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV, VID_PLL_PRESET, 0);
--	/* Enable vid_pll bypass to HDMI pll */
--	regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
--				VID_PLL_BYPASS, VID_PLL_BYPASS);
--	/* Enable the vid_pll output clock */
--	regmap_update_bits(priv->hhi, HHI_VID_PLL_CLK_DIV,
--				VID_PLL_EN, VID_PLL_EN);
-+	/* Setup vid_pll to /1 */
-+	meson_vid_pll_set(priv, VID_PLL_DIV_1);
- 
- 	/* Setup the VCLK2 divider value to achieve 27MHz */
- 	regmap_update_bits(priv->hhi, HHI_VIID_CLK_DIV,
-@@ -159,9 +312,454 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
- 				CTS_VDAC_EN, CTS_VDAC_EN);
- }
- 
-+
-+/* PLL	O1 O2 O3 VP DV     EN TX */
-+/* 4320 /4 /4 /1 /5 /1  => /2 /2 */
-+#define MESON_VCLK_HDMI_ENCI_54000	1
-+/* 4320 /4 /4 /1 /5 /1  => /1 /2 */
-+#define MESON_VCLK_HDMI_DDR_54000	2
-+/* 2970 /4 /1 /1 /5 /1  => /1 /2 */
-+#define MESON_VCLK_HDMI_DDR_148500	3
-+/* 2970 /2 /2 /2 /5 /1  => /1 /1 */
-+#define MESON_VCLK_HDMI_74250		4
-+/* 2970 /1 /2 /2 /5 /1  => /1 /1 */
-+#define MESON_VCLK_HDMI_148500		5
-+/* 2970 /1 /1 /1 /5 /2  => /1 /1 */
-+#define MESON_VCLK_HDMI_297000		6
-+/* 5940 /1 /1 /2 /5 /1  => /1 /1 */
-+#define MESON_VCLK_HDMI_594000		7
-+
-+struct meson_vclk_params {
-+	unsigned int pll_base_freq;
-+	unsigned int pll_od1;
-+	unsigned int pll_od2;
-+	unsigned int pll_od3;
-+	unsigned int vid_pll_div;
-+	unsigned int vclk_div;
-+} params[] = {
-+	[MESON_VCLK_HDMI_ENCI_54000] = {
-+		.pll_base_freq = 4320000,
-+		.pll_od1 = 4,
-+		.pll_od2 = 4,
-+		.pll_od3 = 1,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 1,
-+	},
-+	[MESON_VCLK_HDMI_DDR_54000] = {
-+		.pll_base_freq = 4320000,
-+		.pll_od1 = 4,
-+		.pll_od2 = 4,
-+		.pll_od3 = 1,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 1,
-+	},
-+	[MESON_VCLK_HDMI_DDR_148500] = {
-+		.pll_base_freq = 2970000,
-+		.pll_od1 = 4,
-+		.pll_od2 = 1,
-+		.pll_od3 = 1,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 1,
-+	},
-+	[MESON_VCLK_HDMI_74250] = {
-+		.pll_base_freq = 2970000,
-+		.pll_od1 = 2,
-+		.pll_od2 = 2,
-+		.pll_od3 = 2,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 1,
-+	},
-+	[MESON_VCLK_HDMI_148500] = {
-+		.pll_base_freq = 2970000,
-+		.pll_od1 = 1,
-+		.pll_od2 = 2,
-+		.pll_od3 = 2,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 1,
-+	},
-+	[MESON_VCLK_HDMI_297000] = {
-+		.pll_base_freq = 2970000,
-+		.pll_od1 = 1,
-+		.pll_od2 = 1,
-+		.pll_od3 = 1,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 2,
-+	},
-+	[MESON_VCLK_HDMI_594000] = {
-+		.pll_base_freq = 5940000,
-+		.pll_od1 = 1,
-+		.pll_od2 = 1,
-+		.pll_od3 = 2,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 1,
-+	},
-+};
-+
-+static inline unsigned int pll_od_to_reg(unsigned int od)
-+{
-+	switch (od) {
-+	case 1:
-+		return 0;
-+	case 2:
-+		return 1;
-+	case 4:
-+		return 2;
-+	case 8:
-+		return 3;
-+	}
-+
-+	/* Invalid */
-+	return 0;
-+}
-+
-+void meson_hdmi_pll_set(struct meson_drm *priv,
-+			unsigned int base,
-+			unsigned int od1,
-+			unsigned int od2,
-+			unsigned int od3)
-+{
-+	unsigned int val;
-+
-+	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
-+		switch (base) {
-+		case 2970000:
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800023d);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
-+
-+			/* Enable and unreset */
-+			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-+						0x7 << 28, 0x4 << 28);
-+
-+			/* Poll for lock bit */
-+			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
-+					val, (val & HDMI_PLL_LOCK), 10, 0);
-+
-+			/* div_frac */
-+			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
-+						0xFFFF,  0x4e00);
-+			break;
-+
-+		case 4320000:
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800025a);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
-+
-+			/* unreset */
-+			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-+						BIT(28), 0);
-+
-+			/* Poll for lock bit */
-+			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
-+					val, (val & HDMI_PLL_LOCK), 10, 0);
-+			break;
-+
-+		case 5940000:
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800027b);
-+			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
-+						0xFFFF,  0x4c00);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x135c5091);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
-+
-+			/* unreset */
-+			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-+						BIT(28), 0);
-+
-+			/* Poll for lock bit */
-+			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
-+					val, (val & HDMI_PLL_LOCK), 10, 0);
-+			break;
++		hdmi_tx_in: endpoint {
++			remote-endpoint = <&hdmi_tx_out>;
 +		};
-+	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-+		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
-+		switch (base) {
-+		case 2970000:
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x4000027b);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb300);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
-+			break;
-+
-+		case 4320000:
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x400002b4);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb000);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
-+			break;
-+
-+		case 5940000:
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x400002f7);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb200);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
-+			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
-+			break;
-+
-+		};
-+
-+		/* Reset PLL */
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-+					HDMI_PLL_RESET, HDMI_PLL_RESET);
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-+					HDMI_PLL_RESET, 0);
-+
-+		/* Poll for lock bit */
-+		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
-+				(val & HDMI_PLL_LOCK), 10, 0);
 +	};
 +
-+	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
-+				   3 << 16, pll_od_to_reg(od1) << 16);
-+	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-+		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
-+				   3 << 21, pll_od_to_reg(od1) << 21);
++	/* TMDS Output */
++	hdmi_tx_tmds_port: port at 1 {
++		reg = <1>;
 +
-+	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
-+				   3 << 22, pll_od_to_reg(od2) << 22);
-+	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-+		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
-+				   3 << 23, pll_od_to_reg(od2) << 23);
-+
-+	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
-+				   3 << 18, pll_od_to_reg(od3) << 18);
-+	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-+		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
-+		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
-+				   3 << 19, pll_od_to_reg(od3) << 19);
-+}
-+
- void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
--		      unsigned int freq)
-+		      unsigned int vclk_freq, unsigned int venc_freq,
-+		      unsigned int dac_freq, bool hdmi_use_enci)
- {
--	if (target == MESON_VCLK_TARGET_CVBS && freq == MESON_VCLK_CVBS)
-+	unsigned int freq;
-+	unsigned int hdmi_tx_div;
-+	unsigned int venc_div;
-+
-+	if (target == MESON_VCLK_TARGET_CVBS) {
- 		meson_venci_cvbs_clock_config(priv);
-+		return;
-+	}
-+
-+	hdmi_tx_div = vclk_freq / dac_freq;
-+
-+	if (hdmi_tx_div == 0) {
-+		pr_err("Fatal Error, invalid HDMI-TX freq %d\n",
-+				dac_freq);
-+		return;
-+	}
-+
-+	venc_div = vclk_freq / venc_freq;
-+
-+	if (venc_div == 0) {
-+		pr_err("Fatal Error, invalid HDMI venc freq %d\n",
-+				venc_freq);
-+		return;
-+	}
-+
-+	switch (vclk_freq) {
-+	case 54000:
-+		if (hdmi_use_enci)
-+			freq = MESON_VCLK_HDMI_ENCI_54000;
-+		else
-+			freq = MESON_VCLK_HDMI_DDR_54000;
-+		break;
-+	case 74250:
-+		freq = MESON_VCLK_HDMI_74250;
-+		break;
-+	case 148500:
-+		if (dac_freq != 148500)
-+			freq = MESON_VCLK_HDMI_DDR_148500;
-+		else
-+			freq = MESON_VCLK_HDMI_148500;
-+		break;
-+	case 297000:
-+		freq = MESON_VCLK_HDMI_297000;
-+		break;
-+	case 594000:
-+		freq = MESON_VCLK_HDMI_594000;
-+		break;
-+	default:
-+		pr_err("Fatal Error, invalid HDMI vclk freq %d\n",
-+			vclk_freq);
-+		return;
-+	}
-+
-+	/* Set HDMI-TX sys clock */
-+	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+			   CTS_HDMI_SYS_SEL_MASK, 0);
-+	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+			   CTS_HDMI_SYS_DIV_MASK, 0);
-+	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+			   CTS_HDMI_SYS_EN, CTS_HDMI_SYS_EN);
-+
-+	/* Set HDMI PLL rate */
-+	meson_hdmi_pll_set(priv, params[freq].pll_base_freq,
-+			   params[freq].pll_od1,
-+			   params[freq].pll_od2,
-+			   params[freq].pll_od3);
-+
-+	/* Setup vid_pll divider */
-+	meson_vid_pll_set(priv, params[freq].vid_pll_div);
-+
-+	/* Set VCLK div */
-+	regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+			   VCLK_SEL_MASK, 0);
-+	regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+			   VCLK_DIV_MASK, params[freq].vclk_div - 1);
-+
-+	/* Set HDMI-TX source */
-+	switch (hdmi_tx_div) {
-+	case 1:
-+		/* enable vclk_div1 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV1_EN, VCLK_DIV1_EN);
-+
-+		/* select vclk_div1 for HDMI-TX */
-+		regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+				   HDMI_TX_PIXEL_SEL_MASK, 0);
-+		break;
-+	case 2:
-+		/* enable vclk_div2 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV2_EN, VCLK_DIV2_EN);
-+
-+		/* select vclk_div2 for HDMI-TX */
-+		regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+			HDMI_TX_PIXEL_SEL_MASK, 1 << HDMI_TX_PIXEL_SEL_SHIFT);
-+		break;
-+	case 4:
-+		/* enable vclk_div4 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV4_EN, VCLK_DIV4_EN);
-+
-+		/* select vclk_div4 for HDMI-TX */
-+		regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+			HDMI_TX_PIXEL_SEL_MASK, 2 << HDMI_TX_PIXEL_SEL_SHIFT);
-+		break;
-+	case 6:
-+		/* enable vclk_div6 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV6_EN, VCLK_DIV6_EN);
-+
-+		/* select vclk_div6 for HDMI-TX */
-+		regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+			HDMI_TX_PIXEL_SEL_MASK, 3 << HDMI_TX_PIXEL_SEL_SHIFT);
-+		break;
-+	case 12:
-+		/* enable vclk_div12 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV12_EN, VCLK_DIV12_EN);
-+
-+		/* select vclk_div12 for HDMI-TX */
-+		regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
-+			HDMI_TX_PIXEL_SEL_MASK, 4 << HDMI_TX_PIXEL_SEL_SHIFT);
-+		break;
-+	}
-+	regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL2,
-+				   HDMI_TX_PIXEL_EN, HDMI_TX_PIXEL_EN);
-+
-+	/* Set ENCI/ENCP Source */
-+	switch (venc_div) {
-+	case 1:
-+		/* enable vclk_div1 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV1_EN, VCLK_DIV1_EN);
-+
-+		if (hdmi_use_enci)
-+			/* select vclk_div1 for enci */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+					   CTS_ENCI_SEL_MASK, 0);
-+		else
-+			/* select vclk_div1 for encp */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+					   CTS_ENCP_SEL_MASK, 0);
-+		break;
-+	case 2:
-+		/* enable vclk_div2 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV2_EN, VCLK_DIV2_EN);
-+
-+		if (hdmi_use_enci)
-+			/* select vclk_div2 for enci */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCI_SEL_MASK, 1 << CTS_ENCI_SEL_SHIFT);
-+		else
-+			/* select vclk_div2 for encp */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCP_SEL_MASK, 1 << CTS_ENCP_SEL_SHIFT);
-+		break;
-+	case 4:
-+		/* enable vclk_div4 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV4_EN, VCLK_DIV4_EN);
-+
-+		if (hdmi_use_enci)
-+			/* select vclk_div4 for enci */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCI_SEL_MASK, 2 << CTS_ENCI_SEL_SHIFT);
-+		else
-+			/* select vclk_div4 for encp */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCP_SEL_MASK, 2 << CTS_ENCP_SEL_SHIFT);
-+		break;
-+	case 6:
-+		/* enable vclk_div6 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV6_EN, VCLK_DIV6_EN);
-+
-+		if (hdmi_use_enci)
-+			/* select vclk_div6 for enci */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCI_SEL_MASK, 3 << CTS_ENCI_SEL_SHIFT);
-+		else
-+			/* select vclk_div6 for encp */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCP_SEL_MASK, 3 << CTS_ENCP_SEL_SHIFT);
-+		break;
-+	case 12:
-+		/* enable vclk_div12 gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
-+				   VCLK_DIV12_EN, VCLK_DIV12_EN);
-+
-+		if (hdmi_use_enci)
-+			/* select vclk_div12 for enci */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCI_SEL_MASK, 4 << CTS_ENCI_SEL_SHIFT);
-+		else
-+			/* select vclk_div12 for encp */
-+			regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
-+				CTS_ENCP_SEL_MASK, 4 << CTS_ENCP_SEL_SHIFT);
-+		break;
-+	}
-+
-+	if (hdmi_use_enci)
-+		/* Enable ENCI clock gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL2,
-+				   CTS_ENCI_EN, CTS_ENCI_EN);
-+	else
-+		/* Enable ENCP clock gate */
-+		regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL2,
-+				   CTS_ENCP_EN, CTS_ENCP_EN);
-+
-+	regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL, VCLK_EN, VCLK_EN);
- }
-+EXPORT_SYMBOL_GPL(meson_vclk_setup);
-diff --git a/drivers/gpu/drm/meson/meson_vclk.h b/drivers/gpu/drm/meson/meson_vclk.h
-index ec62735..0401b52 100644
---- a/drivers/gpu/drm/meson/meson_vclk.h
-+++ b/drivers/gpu/drm/meson/meson_vclk.h
-@@ -23,12 +23,14 @@
- 
- enum {
- 	MESON_VCLK_TARGET_CVBS = 0,
-+	MESON_VCLK_TARGET_HDMI = 1,
- };
- 
- /* 27MHz is the CVBS Pixel Clock */
--#define MESON_VCLK_CVBS	27000
-+#define MESON_VCLK_CVBS			27000
- 
- void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
--		      unsigned int freq);
-+		      unsigned int vclk_freq, unsigned int venc_freq,
-+		      unsigned int dac_freq, bool hdmi_use_enci);
- 
- #endif /* __MESON_VCLK_H */
-diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
-index a96fcb4..5d4f19a 100644
---- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
-+++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
-@@ -32,6 +32,7 @@
- 
- #include "meson_venc_cvbs.h"
- #include "meson_venc.h"
-+#include "meson_vclk.h"
- #include "meson_registers.h"
- 
- /* HHI VDAC Registers */
-@@ -194,14 +195,20 @@ static void meson_venc_cvbs_encoder_mode_set(struct drm_encoder *encoder,
- {
- 	struct meson_venc_cvbs *meson_venc_cvbs =
- 					encoder_to_meson_venc_cvbs(encoder);
-+	struct meson_drm *priv = meson_venc_cvbs->priv;
- 	int i;
- 
- 	for (i = 0; i < MESON_CVBS_MODES_COUNT; ++i) {
- 		struct meson_cvbs_mode *meson_mode = &meson_cvbs_modes[i];
- 
- 		if (drm_mode_equal(mode, &meson_mode->mode)) {
--			meson_venci_cvbs_mode_set(meson_venc_cvbs->priv,
-+			meson_venci_cvbs_mode_set(priv,
- 						  meson_mode->enci);
-+
-+			/* Setup 27MHz vclk2 for ENCI and VDAC */
-+			meson_vclk_setup(priv, MESON_VCLK_TARGET_CVBS,
-+					 MESON_VCLK_CVBS, MESON_VCLK_CVBS,
-+					 MESON_VCLK_CVBS, true);
- 			break;
- 		}
- 	}
++		hdmi_tx_tmds_out: endpoint {
++			remote-endpoint = <&hdmi_connector_in>;
++		};
++	};
++};
 -- 
 1.9.1
