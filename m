@@ -1,122 +1,93 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 4 Apr 2017 11:17:24 +0200
-Subject: [PATCH v2 12/13] drm/meson: Add RST to bring together kerneldoc
-In-Reply-To: <20170404090049.auhtxqke3l5px5a7@phenom.ffwll.local>
-References: <1490109950-21421-1-git-send-email-narmstrong@baylibre.com>
- <1490109950-21421-13-git-send-email-narmstrong@baylibre.com>
- <20170404090049.auhtxqke3l5px5a7@phenom.ffwll.local>
-Message-ID: <72fd17d0-173e-4efe-cd16-fae156a9f9f6@baylibre.com>
+From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
+Date: Tue, 04 Apr 2017 12:18:32 +0300
+Subject: [PATCH v6 3/6] documentation: media: Add documentation for new
+ RGB and YUV bus formats
+In-Reply-To: <1491230558-10804-4-git-send-email-narmstrong@baylibre.com>
+References: <1491230558-10804-1-git-send-email-narmstrong@baylibre.com>
+ <1491230558-10804-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <3288495.AjVEEfrlY9@avalon>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04/04/2017 11:00 AM, Daniel Vetter wrote:
-> On Tue, Mar 21, 2017 at 04:25:49PM +0100, Neil Armstrong wrote:
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> \o/ for kerneldoc!
-> 
-> This is awesome, but I guess it's time to extract a drivers.rst sub-file
-> within Doc/gpu and put all the various driver docs in there? Would be
-> great if you could do the follow-up for that.
+Hi Neil,
 
-Ok, I'll follow up on that.
+Thank you for the patch.
 
-Thanks,
-Neil
+On Monday 03 Apr 2017 16:42:35 Neil Armstrong wrote:
+> Add documentation for added Bus Formats to describe RGB and YUV formats used
+> as input to the Synopsys DesignWare HDMI TX Controller.
+> 
+> Acked-by: Hans Verkuil <hans.verkuil@cisco.com>
+> Reviewed-by: Archit Taneja <architt@codeaurora.org>
+> Acked-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  Documentation/media/uapi/v4l/subdev-formats.rst | 960 ++++++++++++++++++++-
+>  1 file changed, 959 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/media/uapi/v4l/subdev-formats.rst
+> b/Documentation/media/uapi/v4l/subdev-formats.rst index d6152c9..4032d97
+> 100644
+> --- a/Documentation/media/uapi/v4l/subdev-formats.rst
+> +++ b/Documentation/media/uapi/v4l/subdev-formats.rst
+> @@ -1258,6 +1258,319 @@ The following tables list existing packed RGB
+> formats. - b\ :sub:`2`
+>        - b\ :sub:`1`
+>        - b\ :sub:`0`
+> +    * .. _MEDIA-BUS-FMT-RGB101010-1X30:
+> +
+> +      - MEDIA_BUS_FMT_RGB101010_1X30
+> +      - 0x1018
+> +      -
+> +      - 0
+> +      - 0
+> +      - r\ :sub:`9`
+> +      - r\ :sub:`8`
+> +      - r\ :sub:`7`
+> +      - r\ :sub:`6`
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +      - g\ :sub:`9`
+> +      - g\ :sub:`8`
+> +      - g\ :sub:`7`
+> +      - g\ :sub:`6`
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +      - b\ :sub:`9`
+> +      - b\ :sub:`8`
+> +      - b\ :sub:`7`
+> +      - b\ :sub:`6`
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +
+> +.. raw:: latex
+> +
+> +    \endgroup
+> +
+> +
+> +The following table list existing packed 36bit wide RGB formats.
 
-> 
-> Thanks, Daniel
-> 
->> ---
->>  Documentation/gpu/index.rst |  1 +
->>  Documentation/gpu/meson.rst | 61 +++++++++++++++++++++++++++++++++++++++++++++
->>  2 files changed, 62 insertions(+)
->>  create mode 100644 Documentation/gpu/meson.rst
->>
->> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
->> index e998ee0..7eceb97 100644
->> --- a/Documentation/gpu/index.rst
->> +++ b/Documentation/gpu/index.rst
->> @@ -11,6 +11,7 @@ Linux GPU Driver Developer's Guide
->>     drm-kms-helpers
->>     drm-uapi
->>     i915
->> +   meson
->>     tinydrm
->>     vc4
->>     vga-switcheroo
->> diff --git a/Documentation/gpu/meson.rst b/Documentation/gpu/meson.rst
->> new file mode 100644
->> index 0000000..479f6f5
->> --- /dev/null
->> +++ b/Documentation/gpu/meson.rst
->> @@ -0,0 +1,61 @@
->> +=============================================
->> +drm/meson AmLogic Meson Video Processing Unit
->> +=============================================
->> +
->> +.. kernel-doc:: drivers/gpu/drm/meson/meson_drv.c
->> +   :doc: Video Processing Unit
->> +
->> +Video Processing Unit
->> +=====================
->> +
->> +The Amlogic Meson Display controller is composed of several components
->> +that are going to be documented below:
->> +
->> +.. code::
->> +
->> +  DMC|---------------VPU (Video Processing Unit)----------------|------HHI------|
->> +     | vd1   _______     _____________    _________________     |               |
->> +  D  |-------|      |----|            |   |                |    |   HDMI PLL    |
->> +  D  | vd2   | VIU  |    | Video Post |   | Video Encoders |<---|-----VCLK      |
->> +  R  |-------|      |----| Processing |   |                |    |               |
->> +     | osd2  |      |    |            |---| Enci ----------|----|-----VDAC------|
->> +  R  |-------| CSC  |----| Scalers    |   | Encp ----------|----|----HDMI-TX----|
->> +  A  | osd1  |      |    | Blenders   |   | Encl ----------|----|---------------|
->> +  M  |-------|______|----|____________|   |________________|    |               |
->> +  ___|__________________________________________________________|_______________|
->> +
->> +Video Input Unit
->> +================
->> +
->> +.. kernel-doc:: drivers/gpu/drm/meson/meson_viu.c
->> +   :doc: Video Input Unit
->> +
->> +Video Post Processing
->> +=====================
->> +
->> +.. kernel-doc:: drivers/gpu/drm/meson/meson_vpp.c
->> +   :doc: Video Post Processing
->> +
->> +Video Encoder
->> +=============
->> +
->> +.. kernel-doc:: drivers/gpu/drm/meson/meson_venc.c
->> +   :doc: Video Encoder
->> +
->> +Video Canvas Management
->> +=======================
->> +
->> +.. kernel-doc:: drivers/gpu/drm/meson/meson_canvas.c
->> +   :doc: Canvas
->> +
->> +Video Clocks
->> +============
->> +
->> +.. kernel-doc:: drivers/gpu/drm/meson/meson_vclk.c
->> +   :doc: Video Clocks
->> +
->> +HDMI Video Output
->> +=================
->> +
->> +.. kernel-doc:: drivers/gpu/drm/meson/meson_dw_hdmi.c
->> +   :doc: HDMI Output
->> -- 
->> 1.9.1
->>
->> _______________________________________________
->> dri-devel mailing list
->> dri-devel at lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> 
+s/list/lists/
+
+Same comment for the other tables. Apart from that,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+[snip]
+
+-- 
+Regards,
+
+Laurent Pinchart
