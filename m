@@ -1,5 +1,5 @@
-From: hgkr.klein@gmail.com (Helmut Klein)
-Date: Wed, 5 Apr 2017 19:17:56 +0200
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Wed, 5 Apr 2017 19:48:43 +0200
 Subject: meson-gx-mmc: 2nd patch set
 In-Reply-To: <0d67236f-79e5-426c-0295-f83a66daf7fe@baylibre.com>
 References: <d1f4c34c-799c-c76c-4ad8-5c0060f9c71f@gmail.com>
@@ -22,11 +22,11 @@ References: <d1f4c34c-799c-c76c-4ad8-5c0060f9c71f@gmail.com>
  <f79c580c-3342-022f-a8f4-6f3e6878ed9c@gmail.com>
  <9a481525-801a-1923-82af-6e5597932c4e@gmail.com>
  <0d67236f-79e5-426c-0295-f83a66daf7fe@baylibre.com>
-Message-ID: <27557b81-4649-3a48-b932-321f6d3e20e5@gmail.com>
+Message-ID: <aa775b92-fe11-40f6-9f36-2aa2074113dd@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05.04.2017 15:37, Neil Armstrong wrote:
+Am 05.04.2017 um 15:37 schrieb Neil Armstrong:
 > On 04/05/2017 02:38 PM, Helmut Klein wrote:
 >> On 05.04.2017 08:02, Heiner Kallweit wrote:
 >>> Am 04.04.2017 um 22:02 schrieb Helmut Klein:
@@ -1761,26 +1761,25 @@ On 05.04.2017 15:37, Neil Armstrong wrote:
 >>
 >>  enum brcmf_sdio_frmtype {
 >>         BRCMF_SDIO_FT_NORMAL,
->
+> 
 > Hi Heiner,
->
+> 
 > Isn't a way to use the old behaviour with a badly aligned buffer ?
->
+> 
+Sure, it's not an either or. The driver can support both behaviors and we can dynamically
+switch, e.g. after checking whether any segment of the scatterlist is unaligned.
+It's just that it creates a certain overhead, in driver code and at runtime as well
+(relatively big bounce buffer of 256k DMA coherent memory + copying all data to and from
+bounce buffer).
+
+On the other hand: There's only a handful of WiFi drivers with SDIO interface support
+and so far vendors of meson-gx-based boards seem to use one of them only. We could go
+and fix drivers only once by chance any vendor uses a WiFi chip with this other driver.
+To me this risk seems acceptable, but of course others (MMC maintainer in particular)
+may see this differently.
+
+Heiner
+
 > Neil
->
->
-
-"a solution" was a bad expression.
-
-with my mail i wanted to show, that
-- Heiners drivers is, when receiving correctly aligned buffers, 
-perfectly operational
-- the performance isn't better than that of the amlogic driver, which 
-uses, as much as i can see, a bounce buffer for sdio
-
-and what was surprising for me:
-- the code for the buffer aligment inside of brcmfmac uses a locally 
-defined value. isn't there a global definition for this??
-- handling for buffer alignment seems IMHO inconsistent in the kernel
-
-Helmut
+> 
+> 
