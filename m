@@ -1,41 +1,60 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Wed, 5 Apr 2017 12:43:13 -0700
-Subject: [PATCH v4 2/3] clk: meson-gxbb: Add MALI clocks
-In-Reply-To: <1490177935-9646-3-git-send-email-narmstrong@baylibre.com>
-References: <1490177935-9646-1-git-send-email-narmstrong@baylibre.com>
- <1490177935-9646-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20170405194313.GM18246@codeaurora.org>
+From: kishon@ti.com (Kishon Vijay Abraham I)
+Date: Thu, 6 Apr 2017 16:00:57 +0530
+Subject: [PATCH v2 10/14] phy: meson8b-usb2: simplify optional reset
+ handling
+In-Reply-To: <20170315113149.30335-1-p.zabel@pengutronix.de>
+References: <20170315113149.30335-1-p.zabel@pengutronix.de>
+Message-ID: <00bb58b4-d2ce-4907-4242-8ec2e34bf9a9@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/22, Neil Armstrong wrote:
-> +/*
-> + * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
-> + * muxed by a glitch-free switch.
-> + */
-> +
-> +static u32 mux_table_mali_0_1[] = {0, 1, 2, 3, 4, 5, 6, 7};
-> +static const char *gxbb_mali_0_1_parent_names[] = {
 
-const char * const?
 
-> +	"xtal", "gp0_pll", "mpll2", "mpll1", "fclk_div7",
-> +	"fclk_div4", "fclk_div3", "fclk_div5"
-> +};
-> +
-[..]
-> +	},
-> +};
-> +
-> +static u32 mux_table_mali[] = {0, 1};
-> +static const char *gxbb_mali_parent_names[] = {
+On Wednesday 15 March 2017 05:01 PM, Philipp Zabel wrote:
+> As of commit bb475230b8e5 ("reset: make optional functions really
+> optional"), the reset framework API calls use NULL pointers to describe
+> optional, non-present reset controls.
+> 
+> This allows to return errors from devm_reset_control_get_optional_shared
+> and to call reset_control_reset unconditionally.
+> 
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Jerome Brunet <jbrunet@baylibre.com>
 
-It's a pattern, so I can only suspect something else is going on.
-
-> +	"mali_0", "mali_1"
-> +};
-> +
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Acked-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  drivers/phy/phy-meson8b-usb2.c | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/phy/phy-meson8b-usb2.c b/drivers/phy/phy-meson8b-usb2.c
+> index 33c9f4ba157d1..c5e856007ba0c 100644
+> --- a/drivers/phy/phy-meson8b-usb2.c
+> +++ b/drivers/phy/phy-meson8b-usb2.c
+> @@ -141,12 +141,10 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
+>  	struct phy_meson8b_usb2_priv *priv = phy_get_drvdata(phy);
+>  	int ret;
+>  
+> -	if (!IS_ERR_OR_NULL(priv->reset)) {
+> -		ret = reset_control_reset(priv->reset);
+> -		if (ret) {
+> -			dev_err(&phy->dev, "Failed to trigger USB reset\n");
+> -			return ret;
+> -		}
+> +	ret = reset_control_reset(priv->reset);
+> +	if (ret) {
+> +		dev_err(&phy->dev, "Failed to trigger USB reset\n");
+> +		return ret;
+>  	}
+>  
+>  	ret = clk_prepare_enable(priv->clk_usb_general);
+> @@ -241,7 +239,7 @@ static int phy_meson8b_usb2_probe(struct platform_device *pdev)
+>  		return PTR_ERR(priv->clk_usb);
+>  
+>  	priv->reset = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
+> -	if (PTR_ERR(priv->reset) == -EPROBE_DEFER)
+> +	if (IS_ERR(priv->reset))
+>  		return PTR_ERR(priv->reset);
+>  
+>  	priv->dr_mode = of_usb_get_dr_mode_by_phy(pdev->dev.of_node, -1);
+> 
