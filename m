@@ -1,48 +1,71 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 11 Apr 2017 09:15:38 +0200
-Subject: [PATCH 4/5] media: rc: meson-ir: use readl_relaxed in the
- interrupt handler
-In-Reply-To: <3add55c4-1e29-f070-6fef-7f92b2595874@gmail.com>
+Date: Tue, 11 Apr 2017 11:50:45 +0200
+Subject: [PATCH 1/5] media: rc: meson-ir: remove irq from struct meson_ir
+In-Reply-To: <b550b154-400e-2aea-b863-c217bcb730ad@gmail.com>
 References: <f65a1465-14ba-8db2-7726-454dcfbee69d@gmail.com>
- <3add55c4-1e29-f070-6fef-7f92b2595874@gmail.com>
-Message-ID: <21c29ede-771c-bf91-6079-5e2f44b84457@baylibre.com>
+ <b550b154-400e-2aea-b863-c217bcb730ad@gmail.com>
+Message-ID: <0ef141e3-0eec-fb2f-c575-e236c5dfc9ae@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04/11/2017 08:05 AM, Heiner Kallweit wrote:
-> We don't need the memory barriers here and an interrupt handler should
-> be as fast as possible. Therefore switch to readl_relaxed.
+On 04/11/2017 07:53 AM, Heiner Kallweit wrote:
+> The irq number is used in the probe function only, therefore just use
+> a local variable.
 > 
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
->  drivers/media/rc/meson-ir.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+>  drivers/media/rc/meson-ir.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
 > 
 > diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-> index d56ef27e..246da2db 100644
+> index 5576dbd6..a4128d7c 100644
 > --- a/drivers/media/rc/meson-ir.c
 > +++ b/drivers/media/rc/meson-ir.c
-> @@ -83,16 +83,17 @@ static void meson_ir_set_mask(struct meson_ir *ir, unsigned int reg,
->  static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
->  {
->  	struct meson_ir *ir = dev_id;
-> -	u32 duration;
-> +	u32 duration, status;
->  	DEFINE_IR_RAW_EVENT(rawir);
+> @@ -68,7 +68,6 @@
+>  struct meson_ir {
+>  	void __iomem	*reg;
+>  	struct rc_dev	*rc;
+> -	int		irq;
+>  	spinlock_t	lock;
+>  };
 >  
->  	spin_lock(&ir->lock);
+> @@ -112,7 +111,7 @@ static int meson_ir_probe(struct platform_device *pdev)
+>  	struct resource *res;
+>  	const char *map_name;
+>  	struct meson_ir *ir;
+> -	int ret;
+> +	int irq, ret;
 >  
-> -	duration = readl(ir->reg + IR_DEC_REG1);
-> +	duration = readl_relaxed(ir->reg + IR_DEC_REG1);
->  	duration = FIELD_GET(REG1_TIME_IV_MASK, duration);
->  	rawir.duration = US_TO_NS(duration * MESON_TRATE);
+>  	ir = devm_kzalloc(dev, sizeof(struct meson_ir), GFP_KERNEL);
+>  	if (!ir)
+> @@ -125,10 +124,10 @@ static int meson_ir_probe(struct platform_device *pdev)
+>  		return PTR_ERR(ir->reg);
+>  	}
 >  
-> -	rawir.pulse = !!(readl(ir->reg + IR_DEC_STATUS) & STATUS_IR_DEC_IN);
-> +	status = readl_relaxed(ir->reg + IR_DEC_STATUS);
-> +	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
+> -	ir->irq = platform_get_irq(pdev, 0);
+> -	if (ir->irq < 0) {
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+>  		dev_err(dev, "no irq resource\n");
+> -		return ir->irq;
+> +		return irq;
+>  	}
 >  
->  	ir_raw_event_store_with_filter(ir->rc, &rawir);
->  	ir_raw_event_handle(ir->rc);
+>  	ir->rc = rc_allocate_device(RC_DRIVER_IR_RAW);
+> @@ -158,7 +157,7 @@ static int meson_ir_probe(struct platform_device *pdev)
+>  		goto out_free;
+>  	}
+>  
+> -	ret = devm_request_irq(dev, ir->irq, meson_ir_irq, 0, "ir-meson", ir);
+> +	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, "ir-meson", ir);
+>  	if (ret) {
+>  		dev_err(dev, "failed to request irq\n");
+>  		goto out_unreg;
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Hi Heiner,
+
+I'm not really convinced this is useful, if somehow for future enhancements we need the IRQ
+number, this will need to be reverted...
+
+Neil
