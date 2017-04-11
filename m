@@ -1,33 +1,117 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 11 Apr 2017 08:07:17 +0200
-Subject: [PATCH 5/5] media: rc: meson-ir: change irq name to to of node name
-In-Reply-To: <f65a1465-14ba-8db2-7726-454dcfbee69d@gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 11 Apr 2017 09:14:41 +0200
+Subject: [PATCH 2/5] media: rc: meson-ir: make use of the bitfield macros
+In-Reply-To: <ae27a582-5822-8cb6-30d6-0badaae6f014@gmail.com>
 References: <f65a1465-14ba-8db2-7726-454dcfbee69d@gmail.com>
-Message-ID: <aff59e48-c030-3e80-fca5-969e41f7d758@gmail.com>
+ <ae27a582-5822-8cb6-30d6-0badaae6f014@gmail.com>
+Message-ID: <38379f44-1a22-f403-5c0b-197f9917b5c0@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Switch the interrupt description to the default which is the of node
-name. This is more in line with the interrupt descriptions in
-other meson drivers.
+Hi Heiner,
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/media/rc/meson-ir.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 04/11/2017 08:00 AM, Heiner Kallweit wrote:
+> Make use of the bitfield macros thus partially hiding the complexity
+> of dealing with bitfields.
+> 
+> The patch also includes a minor fix to REG0_RATE_MASK, so far it was
+> set to bit 0..10, but according to the spec it's bit 0..11.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  drivers/media/rc/meson-ir.c | 28 +++++++++++++---------------
+>  1 file changed, 13 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
+> index a4128d7c..a52036c5 100644
+> --- a/drivers/media/rc/meson-ir.c
+> +++ b/drivers/media/rc/meson-ir.c
+> @@ -19,6 +19,7 @@
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/spinlock.h>
+> +#include <linux/bitfield.h>
+>  
+>  #include <media/rc-core.h>
+>  
+> @@ -36,27 +37,24 @@
+>  /* only available on Meson 8b and newer */
+>  #define IR_DEC_REG2		0x20
+>  
+> -#define REG0_RATE_MASK		(BIT(11) - 1)
+> +#define REG0_RATE_MASK		GENMASK(11, 0)
+>  
+>  #define DECODE_MODE_NEC		0x0
+>  #define DECODE_MODE_RAW		0x2
+>  
+>  /* Meson 6b uses REG1 to configure the mode */
+>  #define REG1_MODE_MASK		GENMASK(8, 7)
+> -#define REG1_MODE_SHIFT		7
+>  
+>  /* Meson 8b / GXBB use REG2 to configure the mode */
+>  #define REG2_MODE_MASK		GENMASK(3, 0)
+> -#define REG2_MODE_SHIFT		0
+>  
+> -#define REG1_TIME_IV_SHIFT	16
+> -#define REG1_TIME_IV_MASK	((BIT(13) - 1) << REG1_TIME_IV_SHIFT)
+> +#define REG1_TIME_IV_MASK	GENMASK(28, 16)
+>  
+> -#define REG1_IRQSEL_MASK	(BIT(2) | BIT(3))
+> -#define REG1_IRQSEL_NEC_MODE	(0 << 2)
+> -#define REG1_IRQSEL_RISE_FALL	(1 << 2)
+> -#define REG1_IRQSEL_FALL	(2 << 2)
+> -#define REG1_IRQSEL_RISE	(3 << 2)
+> +#define REG1_IRQSEL_MASK	GENMASK(3, 2)
+> +#define REG1_IRQSEL_NEC_MODE	0
+> +#define REG1_IRQSEL_RISE_FALL	1
+> +#define REG1_IRQSEL_FALL	2
+> +#define REG1_IRQSEL_RISE	3
+>  
+>  #define REG1_RESET		BIT(0)
+>  #define REG1_ENABLE		BIT(15)
+> @@ -78,7 +76,7 @@ static void meson_ir_set_mask(struct meson_ir *ir, unsigned int reg,
+>  
+>  	data = readl(ir->reg + reg);
+>  	data &= ~mask;
+> -	data |= (value & mask);
+> +	data |= value;
 
-diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index 246da2db..471251b3 100644
---- a/drivers/media/rc/meson-ir.c
-+++ b/drivers/media/rc/meson-ir.c
-@@ -155,7 +155,7 @@ static int meson_ir_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, "ir-meson", ir);
-+	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, NULL, ir);
- 	if (ret) {
- 		dev_err(dev, "failed to request irq\n");
- 		return ret;
--- 
-2.12.2
+Please leave this one.
+
+>  	writel(data, ir->reg + reg);
+>  }
+>  
+> @@ -91,7 +89,7 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
+>  	spin_lock(&ir->lock);
+>  
+>  	duration = readl(ir->reg + IR_DEC_REG1);
+> -	duration = (duration & REG1_TIME_IV_MASK) >> REG1_TIME_IV_SHIFT;
+> +	duration = FIELD_GET(REG1_TIME_IV_MASK, duration);
+>  	rawir.duration = US_TO_NS(duration * MESON_TRATE);
+>  
+>  	rawir.pulse = !!(readl(ir->reg + IR_DEC_STATUS) & STATUS_IR_DEC_IN);
+> @@ -170,16 +168,16 @@ static int meson_ir_probe(struct platform_device *pdev)
+>  	/* Set general operation mode (= raw/software decoding) */
+>  	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
+>  		meson_ir_set_mask(ir, IR_DEC_REG1, REG1_MODE_MASK,
+> -				  DECODE_MODE_RAW << REG1_MODE_SHIFT);
+> +				  FIELD_PREP(REG1_MODE_MASK, DECODE_MODE_RAW));
+>  	else
+>  		meson_ir_set_mask(ir, IR_DEC_REG2, REG2_MODE_MASK,
+> -				  DECODE_MODE_RAW << REG2_MODE_SHIFT);
+> +				  FIELD_PREP(REG2_MODE_MASK, DECODE_MODE_RAW));
+>  
+>  	/* Set rate */
+>  	meson_ir_set_mask(ir, IR_DEC_REG0, REG0_RATE_MASK, MESON_TRATE - 1);
+>  	/* IRQ on rising and falling edges */
+>  	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_IRQSEL_MASK,
+> -			  REG1_IRQSEL_RISE_FALL);
+> +			  FIELD_PREP(REG1_IRQSEL_MASK, REG1_IRQSEL_RISE_FALL));
+>  	/* Enable the decoder */
+>  	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, REG1_ENABLE);
+>  
+> 
+
+Otherwise, looks good.
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
