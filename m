@@ -1,84 +1,45 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 11 Apr 2017 08:02:33 +0200
-Subject: [PATCH 3/5] media: rc: meson-ir: switch to managed rc device
- allocation / registration
+Date: Tue, 11 Apr 2017 08:05:26 +0200
+Subject: [PATCH 4/5] media: rc: meson-ir: use readl_relaxed in the interrupt
+ handler
 In-Reply-To: <f65a1465-14ba-8db2-7726-454dcfbee69d@gmail.com>
 References: <f65a1465-14ba-8db2-7726-454dcfbee69d@gmail.com>
-Message-ID: <eae2729f-ea85-e130-a4aa-ab3397a47309@gmail.com>
+Message-ID: <3add55c4-1e29-f070-6fef-7f92b2595874@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Switch to the managed versions of rc_allocate_device/rc_register_device,
-thus simplifying the code.
+We don't need the memory barriers here and an interrupt handler should
+be as fast as possible. Therefore switch to readl_relaxed.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/media/rc/meson-ir.c | 18 ++++--------------
- 1 file changed, 4 insertions(+), 14 deletions(-)
+ drivers/media/rc/meson-ir.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index a52036c5..d56ef27e 100644
+index d56ef27e..246da2db 100644
 --- a/drivers/media/rc/meson-ir.c
 +++ b/drivers/media/rc/meson-ir.c
-@@ -128,7 +128,7 @@ static int meson_ir_probe(struct platform_device *pdev)
- 		return irq;
- 	}
+@@ -83,16 +83,17 @@ static void meson_ir_set_mask(struct meson_ir *ir, unsigned int reg,
+ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
+ {
+ 	struct meson_ir *ir = dev_id;
+-	u32 duration;
++	u32 duration, status;
+ 	DEFINE_IR_RAW_EVENT(rawir);
  
--	ir->rc = rc_allocate_device(RC_DRIVER_IR_RAW);
-+	ir->rc = devm_rc_allocate_device(dev, RC_DRIVER_IR_RAW);
- 	if (!ir->rc) {
- 		dev_err(dev, "failed to allocate rc device\n");
- 		return -ENOMEM;
-@@ -140,7 +140,6 @@ static int meson_ir_probe(struct platform_device *pdev)
- 	ir->rc->input_id.bustype = BUS_HOST;
- 	map_name = of_get_property(node, "linux,rc-map-name", NULL);
- 	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
--	ir->rc->dev.parent = dev;
- 	ir->rc->allowed_protocols = RC_BIT_ALL_IR_DECODER;
- 	ir->rc->rx_resolution = US_TO_NS(MESON_TRATE);
- 	ir->rc->timeout = MS_TO_NS(200);
-@@ -149,16 +148,16 @@ static int meson_ir_probe(struct platform_device *pdev)
- 	spin_lock_init(&ir->lock);
- 	platform_set_drvdata(pdev, ir);
+ 	spin_lock(&ir->lock);
  
--	ret = rc_register_device(ir->rc);
-+	ret = devm_rc_register_device(dev, ir->rc);
- 	if (ret) {
- 		dev_err(dev, "failed to register rc device\n");
--		goto out_free;
-+		return ret;
- 	}
+-	duration = readl(ir->reg + IR_DEC_REG1);
++	duration = readl_relaxed(ir->reg + IR_DEC_REG1);
+ 	duration = FIELD_GET(REG1_TIME_IV_MASK, duration);
+ 	rawir.duration = US_TO_NS(duration * MESON_TRATE);
  
- 	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, "ir-meson", ir);
- 	if (ret) {
- 		dev_err(dev, "failed to request irq\n");
--		goto out_unreg;
-+		return ret;
- 	}
+-	rawir.pulse = !!(readl(ir->reg + IR_DEC_STATUS) & STATUS_IR_DEC_IN);
++	status = readl_relaxed(ir->reg + IR_DEC_STATUS);
++	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
  
- 	/* Reset the decoder */
-@@ -184,13 +183,6 @@ static int meson_ir_probe(struct platform_device *pdev)
- 	dev_info(dev, "receiver initialized\n");
- 
- 	return 0;
--out_unreg:
--	rc_unregister_device(ir->rc);
--	ir->rc = NULL;
--out_free:
--	rc_free_device(ir->rc);
--
--	return ret;
- }
- 
- static int meson_ir_remove(struct platform_device *pdev)
-@@ -203,8 +195,6 @@ static int meson_ir_remove(struct platform_device *pdev)
- 	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, 0);
- 	spin_unlock_irqrestore(&ir->lock, flags);
- 
--	rc_unregister_device(ir->rc);
--
- 	return 0;
- }
- 
+ 	ir_raw_event_store_with_filter(ir->rc, &rawir);
+ 	ir_raw_event_handle(ir->rc);
 -- 
 2.12.2
