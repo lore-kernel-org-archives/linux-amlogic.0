@@ -1,65 +1,34 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Wed, 12 Apr 2017 14:52:31 +0200
-Subject: [GIT PULL] Amlogic clock driver updates for v4.12 - 2nd batch
-In-Reply-To: <1491810121.3480.36.camel@baylibre.com>
-References: <1491810121.3480.36.camel@baylibre.com>
-Message-ID: <149200155158.88277.17726479755345151565@resonance>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Wed, 12 Apr 2017 16:11:38 +0200
+Subject: [PATCH 0/2] mmc: meson-gx: add basic tuning
+In-Reply-To: <1d60ec2c-54c9-6b1c-7eaa-40e96fcd5be5@gmail.com>
+References: <1d60ec2c-54c9-6b1c-7eaa-40e96fcd5be5@gmail.com>
+Message-ID: <CAPDyKFo17FaKET6_irR7ybQDq3kKT1YProXnS=gouF+9Mk2FLw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2017-04-10 09:42:01)
-> Dear clock maintainers,
-> 
-> Below is a request to pull a 2nd batch of update to the Amlogic clock driver. It
-> is based on the previous PR sent by Kevin.
-> 
-> Cheers
-> 
-> The following changes since commit 3a429818a2e48928ae0114df5fb3b0612dd57001:
-> 
-> ? Merge branch 'v4.12/clk-drivers' into v4.12/clk (2017-04-04 15:58:11 -0700)
-> 
-> are available in the git repository at:
-> 
-> ? git://github.com/BayLibre/clk-meson.git tags/meson-clk-for-4.12
-> 
-> for you to fetch changes up to b609338b26f5653aa211fc7af83477e2df6e3f0b:
-> 
-> ? clk: meson: mpll: use 64bit math in rate_from_params (2017-04-07 17:45:30
-> +0200)
+On 4 April 2017 at 20:58, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> With a 128GB Hardkernel eMMC card my Odroid C2 boots up to 60MHz only
+> (tons of CRC errors otherwise). I made some tests and with changed
+> clock phase configuration it runs rock-solid with 200 MHz.
+> Changing the clock phase configuration in general most likely wouldn't
+> be a good idea as this might break other combinations of MMC device and
+> speed.
+> Therefore add basic tuning. So far it changes the rx clock phase only
+> as default core and tx clock phase work fine.
+>
+> Heiner Kallweit (2):
+>   mmc: meson-gx: introduce struct meson_tuning_params
+>   mmc: meson-gx: add basic tuning for rx clock phase
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 66 ++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 65 insertions(+), 1 deletion(-)
+>
+> --
+> 2.12.1
+>
 
-Pulled.
+Thanks, applied for next!
 
-Regards,
-Mike
-
-> 
-> ----------------------------------------------------------------
-> 2nd Amlogic clock driver update for 4.12:
-> * Protect against holes in onecell_data
-> * Fix divison by zero and overflow in the mpll driver
-> * Add audio clock divider driver for i2s clocks
-> * Add i2s and spdif master clocks
-> 
-> ----------------------------------------------------------------
-> Jerome Brunet (6):
-> ??????MAINTAINERS: Add maintainers for the meson clock driver
-> ??????clk: meson: gxbb: protect against holes in the onecell_data array
-> ??????clk: meson: add audio clock divider support
-> ??????clk: meson: gxbb: add cts_amclk
-> ??????clk: meson: gxbb: add cts_mclk_i958
-> ??????clk: meson: gxbb: add cts_i958 clock
-> 
-> Martin Blumenstingl (2):
-> ??????clk: meson: mpll: fix division by zero in rate_from_params
-> ??????clk: meson: mpll: use 64bit math in rate_from_params
-> 
-> ?MAINTAINERS???????????????????????????|??10 +++
-> ?drivers/clk/meson/Makefile????????????|???2 +-
-> ?drivers/clk/meson/clk-audio-divider.c | 144 ++++++++++++++++++++++++++++++++++
-> ?drivers/clk/meson/clk-mpll.c??????????|??26 +++---
-> ?drivers/clk/meson/clkc.h??????????????|??10 +++
-> ?drivers/clk/meson/gxbb.c??????????????| 144 ++++++++++++++++++++++++++++++++++
-> ?drivers/clk/meson/gxbb.h??????????????|???9 ++-
-> ?7 files changed, 332 insertions(+), 13 deletions(-)
-> ?create mode 100644 drivers/clk/meson/clk-audio-divider.c
+Kind regards
+Uffe
