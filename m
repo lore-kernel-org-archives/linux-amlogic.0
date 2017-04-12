@@ -1,103 +1,88 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 12 Apr 2017 21:30:48 +0200
-Subject: [PATCH v2 2/5] media: rc: meson-ir: make use of the bitfield macros
+Date: Wed, 12 Apr 2017 21:32:35 +0200
+Subject: [PATCH v2 3/5] media: rc: meson-ir: switch to managed rc device
+ allocation / registration
 In-Reply-To: <d5c18dbb-e86a-6b1c-1410-d6cc92dce711@gmail.com>
 References: <d5c18dbb-e86a-6b1c-1410-d6cc92dce711@gmail.com>
-Message-ID: <db9bf493-ae70-e4e0-68c6-d825a7bd939c@gmail.com>
+Message-ID: <6e38bc01-e865-0a26-649e-950021e0eef7@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Make use of the bitfield macros thus partially hiding the complexity
-of dealing with bitfields.
-
-The patch also includes a minor fix to REG0_RATE_MASK, so far it was
-set to bit 0..10, but according to the spec it's bit 0..11.
+Switch to the managed versions of rc_allocate_device/rc_register_device,
+thus simplifying the code.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
 v2:
-- revert change in meson_ir_set_mask
-- add R-b
+- added R-b
 ---
- drivers/media/rc/meson-ir.c | 26 ++++++++++++--------------
- 1 file changed, 12 insertions(+), 14 deletions(-)
+ drivers/media/rc/meson-ir.c | 18 ++++--------------
+ 1 file changed, 4 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index a4128d7c..3864ebe3 100644
+index 3864ebe3..cf8943d2 100644
 --- a/drivers/media/rc/meson-ir.c
 +++ b/drivers/media/rc/meson-ir.c
-@@ -19,6 +19,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/spinlock.h>
-+#include <linux/bitfield.h>
+@@ -128,7 +128,7 @@ static int meson_ir_probe(struct platform_device *pdev)
+ 		return irq;
+ 	}
  
- #include <media/rc-core.h>
+-	ir->rc = rc_allocate_device(RC_DRIVER_IR_RAW);
++	ir->rc = devm_rc_allocate_device(dev, RC_DRIVER_IR_RAW);
+ 	if (!ir->rc) {
+ 		dev_err(dev, "failed to allocate rc device\n");
+ 		return -ENOMEM;
+@@ -140,7 +140,6 @@ static int meson_ir_probe(struct platform_device *pdev)
+ 	ir->rc->input_id.bustype = BUS_HOST;
+ 	map_name = of_get_property(node, "linux,rc-map-name", NULL);
+ 	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
+-	ir->rc->dev.parent = dev;
+ 	ir->rc->allowed_protocols = RC_BIT_ALL_IR_DECODER;
+ 	ir->rc->rx_resolution = US_TO_NS(MESON_TRATE);
+ 	ir->rc->timeout = MS_TO_NS(200);
+@@ -149,16 +148,16 @@ static int meson_ir_probe(struct platform_device *pdev)
+ 	spin_lock_init(&ir->lock);
+ 	platform_set_drvdata(pdev, ir);
  
-@@ -36,27 +37,24 @@
- /* only available on Meson 8b and newer */
- #define IR_DEC_REG2		0x20
+-	ret = rc_register_device(ir->rc);
++	ret = devm_rc_register_device(dev, ir->rc);
+ 	if (ret) {
+ 		dev_err(dev, "failed to register rc device\n");
+-		goto out_free;
++		return ret;
+ 	}
  
--#define REG0_RATE_MASK		(BIT(11) - 1)
-+#define REG0_RATE_MASK		GENMASK(11, 0)
+ 	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, "ir-meson", ir);
+ 	if (ret) {
+ 		dev_err(dev, "failed to request irq\n");
+-		goto out_unreg;
++		return ret;
+ 	}
  
- #define DECODE_MODE_NEC		0x0
- #define DECODE_MODE_RAW		0x2
+ 	/* Reset the decoder */
+@@ -184,13 +183,6 @@ static int meson_ir_probe(struct platform_device *pdev)
+ 	dev_info(dev, "receiver initialized\n");
  
- /* Meson 6b uses REG1 to configure the mode */
- #define REG1_MODE_MASK		GENMASK(8, 7)
--#define REG1_MODE_SHIFT		7
+ 	return 0;
+-out_unreg:
+-	rc_unregister_device(ir->rc);
+-	ir->rc = NULL;
+-out_free:
+-	rc_free_device(ir->rc);
+-
+-	return ret;
+ }
  
- /* Meson 8b / GXBB use REG2 to configure the mode */
- #define REG2_MODE_MASK		GENMASK(3, 0)
--#define REG2_MODE_SHIFT		0
+ static int meson_ir_remove(struct platform_device *pdev)
+@@ -203,8 +195,6 @@ static int meson_ir_remove(struct platform_device *pdev)
+ 	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, 0);
+ 	spin_unlock_irqrestore(&ir->lock, flags);
  
--#define REG1_TIME_IV_SHIFT	16
--#define REG1_TIME_IV_MASK	((BIT(13) - 1) << REG1_TIME_IV_SHIFT)
-+#define REG1_TIME_IV_MASK	GENMASK(28, 16)
- 
--#define REG1_IRQSEL_MASK	(BIT(2) | BIT(3))
--#define REG1_IRQSEL_NEC_MODE	(0 << 2)
--#define REG1_IRQSEL_RISE_FALL	(1 << 2)
--#define REG1_IRQSEL_FALL	(2 << 2)
--#define REG1_IRQSEL_RISE	(3 << 2)
-+#define REG1_IRQSEL_MASK	GENMASK(3, 2)
-+#define REG1_IRQSEL_NEC_MODE	0
-+#define REG1_IRQSEL_RISE_FALL	1
-+#define REG1_IRQSEL_FALL	2
-+#define REG1_IRQSEL_RISE	3
- 
- #define REG1_RESET		BIT(0)
- #define REG1_ENABLE		BIT(15)
-@@ -91,7 +89,7 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
- 	spin_lock(&ir->lock);
- 
- 	duration = readl(ir->reg + IR_DEC_REG1);
--	duration = (duration & REG1_TIME_IV_MASK) >> REG1_TIME_IV_SHIFT;
-+	duration = FIELD_GET(REG1_TIME_IV_MASK, duration);
- 	rawir.duration = US_TO_NS(duration * MESON_TRATE);
- 
- 	rawir.pulse = !!(readl(ir->reg + IR_DEC_STATUS) & STATUS_IR_DEC_IN);
-@@ -170,16 +168,16 @@ static int meson_ir_probe(struct platform_device *pdev)
- 	/* Set general operation mode (= raw/software decoding) */
- 	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
- 		meson_ir_set_mask(ir, IR_DEC_REG1, REG1_MODE_MASK,
--				  DECODE_MODE_RAW << REG1_MODE_SHIFT);
-+				  FIELD_PREP(REG1_MODE_MASK, DECODE_MODE_RAW));
- 	else
- 		meson_ir_set_mask(ir, IR_DEC_REG2, REG2_MODE_MASK,
--				  DECODE_MODE_RAW << REG2_MODE_SHIFT);
-+				  FIELD_PREP(REG2_MODE_MASK, DECODE_MODE_RAW));
- 
- 	/* Set rate */
- 	meson_ir_set_mask(ir, IR_DEC_REG0, REG0_RATE_MASK, MESON_TRATE - 1);
- 	/* IRQ on rising and falling edges */
- 	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_IRQSEL_MASK,
--			  REG1_IRQSEL_RISE_FALL);
-+			  FIELD_PREP(REG1_IRQSEL_MASK, REG1_IRQSEL_RISE_FALL));
- 	/* Enable the decoder */
- 	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, REG1_ENABLE);
+-	rc_unregister_device(ir->rc);
+-
+ 	return 0;
+ }
  
 -- 
 2.12.2
