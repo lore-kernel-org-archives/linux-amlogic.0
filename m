@@ -1,36 +1,50 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 12 Apr 2017 21:34:50 +0200
-Subject: [PATCH v2 5/5] media: rc: meson-ir: change irq name to to of node name
-In-Reply-To: <d5c18dbb-e86a-6b1c-1410-d6cc92dce711@gmail.com>
-References: <d5c18dbb-e86a-6b1c-1410-d6cc92dce711@gmail.com>
-Message-ID: <60430e4d-2489-607b-cf08-8c6406cd5abe@gmail.com>
+Date: Thu, 13 Apr 2017 22:54:48 +0200
+Subject: [PATCH v2] mmc: sdio: fix alignment issue in struct sdio_func
+In-Reply-To: <3a6258f3-35e3-e2f5-aa6b-e509f603fa45@gmail.com>
+References: <3a6258f3-35e3-e2f5-aa6b-e509f603fa45@gmail.com>
+Message-ID: <9c70c0e5-4d3f-a351-98dd-57413740a39b@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Switch the interrupt description to the default which is the of node
-name. This is more in line with the interrupt descriptions in
-other meson drivers.
+Am 29.03.2017 um 22:56 schrieb Heiner Kallweit:
+> Certain 64-bit systems (e.g. Amlogic Meson GX) require buffers to be
+> used for DMA to be 8-byte-aligned. struct sdio_func has an embedded
+> small DMA buffer not meeting this requirement.
+> Testing an extension to meson-gx driver for switching to descriptor
+> chain mode broke SDIO therefore. Aligning tmpbuf to a 8-byte
+> boundary fixed the driver behavior.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Tested-by: Helmut Klein <hgkr.klein@gmail.com>
+> ---
+> v2:
+> - switch to much simpler version as suggested by Kevin Hilman <khilman@baylibre.com>
+> - adjust commit message
+> ---
+>  include/linux/mmc/sdio_func.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/mmc/sdio_func.h b/include/linux/mmc/sdio_func.h
+> index aab032a6..65d90f76 100644
+> --- a/include/linux/mmc/sdio_func.h
+> +++ b/include/linux/mmc/sdio_func.h
+> @@ -53,7 +53,8 @@ struct sdio_func {
+>  	unsigned int		state;		/* function state */
+>  #define SDIO_STATE_PRESENT	(1<<0)		/* present in sysfs */
+>  
+> -	u8			tmpbuf[4];	/* DMA:able scratch buffer */
+> +	/* take care of proper alignment for DMA on certain 64-bit systems */
+> +	u8 __aligned(8)		tmpbuf[4];	/* DMA:able scratch buffer */
+>  
+>  	unsigned		num_info;	/* number of info strings */
+>  	const char		**info;		/* info strings */
+> 
+Ulf, do you have an opinion on this one? A related patch was just applied to
+the brcmfmac WiFi driver -> https://patchwork.kernel.org/patch/9665425/
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
-v2:
-- no changes
----
- drivers/media/rc/meson-ir.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+In sum WiFi over SDIO would be ok an systems requiring 8 byte aligned
+DMA buffers (at least systems using the brcmfmac driver).
+OK here means that no fallback to bounce buffer mode is necessary.
 
-diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index 1c72593d..1ece3c04 100644
---- a/drivers/media/rc/meson-ir.c
-+++ b/drivers/media/rc/meson-ir.c
-@@ -155,7 +155,7 @@ static int meson_ir_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, "ir-meson", ir);
-+	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, NULL, ir);
- 	if (ret) {
- 		dev_err(dev, "failed to request irq\n");
- 		return ret;
--- 
-2.12.2
+Rgds, Heiner
