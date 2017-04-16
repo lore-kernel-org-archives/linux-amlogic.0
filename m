@@ -1,32 +1,33 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sun, 16 Apr 2017 22:10:59 +0200
-Subject: [PATCH 2/6] serial: meson: remove dead code in meson_uart_change_speed
+Date: Sun, 16 Apr 2017 22:13:25 +0200
+Subject: [PATCH 3/6] serial: meson: remove unneeded variable assignment in
+ meson_serial_port_write
 In-Reply-To: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
 References: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
-Message-ID: <32194c6b-0c4f-a7f0-1a61-edfaffbc63c7@gmail.com>
+Message-ID: <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-val is set in both branches of the if clause, therefore the two
-removed lines are dead code.
+AML_UART_TX_EN is set in meson_uart_startup and there's no place in
+the driver where it gets cleared. Therefore we don't have to set it
+here.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/tty/serial/meson_uart.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/tty/serial/meson_uart.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index e2e25da1..22857f1e 100644
+index 22857f1e..714b29ad 100644
 --- a/drivers/tty/serial/meson_uart.c
 +++ b/drivers/tty/serial/meson_uart.c
-@@ -298,8 +298,6 @@ static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
- 	while (!meson_uart_tx_empty(port))
- 		cpu_relax();
+@@ -497,7 +497,6 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
+ 	}
  
--	val = readl(port->membase + AML_UART_REG5);
--	val &= ~AML_UART_BAUD_MASK;
- 	if (port->uartclk == 24000000) {
- 		val = ((port->uartclk / 3) / baud) - 1;
- 		val |= AML_UART_BAUD_XTAL;
+ 	val = readl(port->membase + AML_UART_CONTROL);
+-	val |= AML_UART_TX_EN;
+ 	tmp = val & ~(AML_UART_TX_INT_EN | AML_UART_RX_INT_EN);
+ 	writel(tmp, port->membase + AML_UART_CONTROL);
+ 
 -- 
 2.12.2
