@@ -1,32 +1,32 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sun, 16 Apr 2017 22:06:40 +0200
-Subject: [PATCH 1/6] serial: meson: fix setting number of stop bits
+Date: Sun, 16 Apr 2017 22:10:59 +0200
+Subject: [PATCH 2/6] serial: meson: remove dead code in meson_uart_change_speed
 In-Reply-To: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
 References: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
-Message-ID: <d1091d2e-8f6c-618b-556b-400e4b8db3c3@gmail.com>
+Message-ID: <32194c6b-0c4f-a7f0-1a61-edfaffbc63c7@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The stop bit value as to be or'ed, so far this worked only just by chance
-because AML_UART_STOP_BIN_1SB is 0.
+val is set in both branches of the if clause, therefore the two
+removed lines are dead code.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/tty/serial/meson_uart.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/tty/serial/meson_uart.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 60f16795..e2e25da1 100644
+index e2e25da1..22857f1e 100644
 --- a/drivers/tty/serial/meson_uart.c
 +++ b/drivers/tty/serial/meson_uart.c
-@@ -355,7 +355,7 @@ static void meson_uart_set_termios(struct uart_port *port,
- 	if (cflags & CSTOPB)
- 		val |= AML_UART_STOP_BIN_2SB;
- 	else
--		val &= ~AML_UART_STOP_BIN_1SB;
-+		val |= AML_UART_STOP_BIN_1SB;
+@@ -298,8 +298,6 @@ static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
+ 	while (!meson_uart_tx_empty(port))
+ 		cpu_relax();
  
- 	if (cflags & CRTSCTS)
- 		val &= ~AML_UART_TWO_WIRE_EN;
+-	val = readl(port->membase + AML_UART_REG5);
+-	val &= ~AML_UART_BAUD_MASK;
+ 	if (port->uartclk == 24000000) {
+ 		val = ((port->uartclk / 3) / baud) - 1;
+ 		val |= AML_UART_BAUD_XTAL;
 -- 
 2.12.2
