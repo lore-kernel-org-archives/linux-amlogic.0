@@ -1,47 +1,39 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Mon, 17 Apr 2017 14:58:13 +0100
-Subject: [PATCH 3/6] serial: meson: remove unneeded variable assignment in
- meson_serial_port_write
-In-Reply-To: <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 17 Apr 2017 17:24:47 +0200
+Subject: [PATCH 1/6] serial: meson: fix setting number of stop bits
+In-Reply-To: <d1091d2e-8f6c-618b-556b-400e4b8db3c3@gmail.com>
 References: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
- <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
-Message-ID: <a9179fc6-9ca6-c153-0b60-db1365cfb18c@codethink.co.uk>
+ <d1091d2e-8f6c-618b-556b-400e4b8db3c3@gmail.com>
+Message-ID: <619c093d-0dcc-b771-5cf0-ae31ea723d0d@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 16/04/17 21:13, Heiner Kallweit wrote:
-> AML_UART_TX_EN is set in meson_uart_startup and there's no place in
-> the driver where it gets cleared. Therefore we don't have to set it
-> here.
-
-I think this is a leftover of the patches I did when trying to fix
-the UART driver when using debian/systemd and having strange console
-problems.
-
-The only comment is it might be worth leaving this in as it isn't
-a high cost to the driver and it is possible someone might accidentally
-clear it later.
-
+On 04/16/2017 10:06 PM, Heiner Kallweit wrote:
+> The stop bit value as to be or'ed, so far this worked only just by chance
+> because AML_UART_STOP_BIN_1SB is 0.
+> 
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
->  drivers/tty/serial/meson_uart.c | 1 -
->  1 file changed, 1 deletion(-)
->
+>  drivers/tty/serial/meson_uart.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 22857f1e..714b29ad 100644
+> index 60f16795..e2e25da1 100644
 > --- a/drivers/tty/serial/meson_uart.c
 > +++ b/drivers/tty/serial/meson_uart.c
-> @@ -497,7 +497,6 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
->  	}
->
->  	val = readl(port->membase + AML_UART_CONTROL);
-> -	val |= AML_UART_TX_EN;
->  	tmp = val & ~(AML_UART_TX_INT_EN | AML_UART_RX_INT_EN);
->  	writel(tmp, port->membase + AML_UART_CONTROL);
->
->
+> @@ -355,7 +355,7 @@ static void meson_uart_set_termios(struct uart_port *port,
+>  	if (cflags & CSTOPB)
+>  		val |= AML_UART_STOP_BIN_2SB;
+>  	else
+> -		val &= ~AML_UART_STOP_BIN_1SB;
+> +		val |= AML_UART_STOP_BIN_1SB;
+>  
+>  	if (cflags & CRTSCTS)
+>  		val &= ~AML_UART_TWO_WIRE_EN;
+> 
 
+Hi,
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+in fact you can totally drop the else statement since it's a no-op in both cases.
+
+Neil
