@@ -1,69 +1,36 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Mon, 17 Apr 2017 18:03:48 +0200
-Subject: [PATCH 3/6] serial: meson: remove unneeded variable assignment in
- meson_serial_port_write
-In-Reply-To: <0dca2d13-2ea0-40cd-9087-3159713e399a@suse.de>
-References: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
- <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
- <a9179fc6-9ca6-c153-0b60-db1365cfb18c@codethink.co.uk>
- <369dac4f-7c48-3e64-fef5-72e6aa28b0f0@baylibre.com>
- <0dca2d13-2ea0-40cd-9087-3159713e399a@suse.de>
-Message-ID: <9fb1dc86-6c3c-ba5c-8263-073513a6f2bf@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 17 Apr 2017 20:28:18 +0200
+Subject: [PATCH 1/3] Documentation: dt-bindings: iio: adc: add Meson8 and
+ Meson8b support
+In-Reply-To: <20170417182820.26670-1-martin.blumenstingl@googlemail.com>
+References: <20170417182820.26670-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170417182820.26670-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 17.04.2017 um 17:37 schrieb Andreas F?rber:
-> Am 17.04.2017 um 17:27 schrieb Neil Armstrong:
->> On 04/17/2017 03:58 PM, Ben Dooks wrote:
->>> On 16/04/17 21:13, Heiner Kallweit wrote:
->>>> AML_UART_TX_EN is set in meson_uart_startup and there's no place in
->>>> the driver where it gets cleared. Therefore we don't have to set it
->>>> here.
->>>
->>> I think this is a leftover of the patches I did when trying to fix
->>> the UART driver when using debian/systemd and having strange console
->>> problems.
->>>
->>> The only comment is it might be worth leaving this in as it isn't
->>> a high cost to the driver and it is possible someone might accidentally
->>> clear it later.
->>>
->>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>>> ---
->>>>  drivers/tty/serial/meson_uart.c | 1 -
->>>>  1 file changed, 1 deletion(-)
->>>>
->>>> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
->>>> index 22857f1e..714b29ad 100644
->>>> --- a/drivers/tty/serial/meson_uart.c
->>>> +++ b/drivers/tty/serial/meson_uart.c
->>>> @@ -497,7 +497,6 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
->>>>      }
->>>>
->>>>      val = readl(port->membase + AML_UART_CONTROL);
->>>> -    val |= AML_UART_TX_EN;
->>>>      tmp = val & ~(AML_UART_TX_INT_EN | AML_UART_RX_INT_EN);
->>>>      writel(tmp, port->membase + AML_UART_CONTROL);
->>>>
->>>>
->>>
->>>
->>
->> I'm ok to remove it, having it in uart_startup is enough.
->>
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> Have you checked the earlycon code paths? That does not run through the
-> standard setup function, so it is dependent on what the firmware set
-> last. I believe I am calling into this function through some wrapper.
-> 
-> Since we're writing the register anyway, it shouldn't hurt to leave this in.
-> 
-> Regards,
-> Andreas
-> 
-Provided that everybody is fine with the other patches of this series:
-Can you simply omit patch 3 when applying the series or would you prefer
-sending an updated series w/o patch 3?
+The Amlogic Meson SAR ADC driver can be used on Meson8 and Meson8b
+(probably on earlier SoC generations as well, but I don't have any
+hardware available for testing that).
+Add a separate compatible for Meson8 and Meson8b because it does not
+need any of the BL30 magic (unlike the GX SoCs).
 
-Heiner
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+index f9e3ff2c656e..08cee82e54c3 100644
+--- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
++++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+@@ -2,6 +2,8 @@
+ 
+ Required properties:
+ - compatible:	depending on the SoC this should be one of:
++			- "amlogic,meson8-saradc" for Meson8
++			- "amlogic,meson8b-saradc" for Meson8b
+ 			- "amlogic,meson-gxbb-saradc" for GXBB
+ 			- "amlogic,meson-gxl-saradc" for GXL
+ 			- "amlogic,meson-gxm-saradc" for GXM
+-- 
+2.12.2
