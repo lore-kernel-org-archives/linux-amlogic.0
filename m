@@ -1,88 +1,45 @@
 From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Mon, 17 Apr 2017 14:53:19 +0100
-Subject: [PATCH 4/6] serial: meson: make use of uart_port member mapsize
-In-Reply-To: <71517d44-fa42-df5e-8f90-c43c504c0282@gmail.com>
+Date: Mon, 17 Apr 2017 14:58:13 +0100
+Subject: [PATCH 3/6] serial: meson: remove unneeded variable assignment in
+ meson_serial_port_write
+In-Reply-To: <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
 References: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
- <71517d44-fa42-df5e-8f90-c43c504c0282@gmail.com>
-Message-ID: <4ce974ae-3b2d-7108-af4d-1fd9e1c8c7ce@codethink.co.uk>
+ <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
+Message-ID: <a9179fc6-9ca6-c153-0b60-db1365cfb18c@codethink.co.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 16/04/17 21:15, Heiner Kallweit wrote:
-> Member mapsize of struct uart_port is meant to store the resource size.
-> By using it we can get rid of meson_uart_res_size().
->
+On 16/04/17 21:13, Heiner Kallweit wrote:
+> AML_UART_TX_EN is set in meson_uart_startup and there's no place in
+> the driver where it gets cleared. Therefore we don't have to set it
+> here.
+
+I think this is a leftover of the patches I did when trying to fix
+the UART driver when using debian/systemd and having strange console
+problems.
+
+The only comment is it might be worth leaving this in as it isn't
+a high cost to the driver and it is possible someone might accidentally
+clear it later.
+
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
->  drivers/tty/serial/meson_uart.c | 29 +++++------------------------
->  1 file changed, 5 insertions(+), 24 deletions(-)
+>  drivers/tty/serial/meson_uart.c | 1 -
+>  1 file changed, 1 deletion(-)
 >
 > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 714b29ad..8d2e7203 100644
+> index 22857f1e..714b29ad 100644
 > --- a/drivers/tty/serial/meson_uart.c
 > +++ b/drivers/tty/serial/meson_uart.c
-> @@ -393,26 +393,11 @@ static int meson_uart_verify_port(struct uart_port *port,
->  	return ret;
->  }
->
-> -static int meson_uart_res_size(struct uart_port *port)
-> -{
-> -	struct platform_device *pdev = to_platform_device(port->dev);
-> -	struct resource *res;
-> -
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	if (!res) {
-> -		dev_err(port->dev, "cannot obtain I/O memory region");
-> -		return -ENODEV;
-> -	}
-> -
-> -	return resource_size(res);
-> -}
-> -
->  static void meson_uart_release_port(struct uart_port *port)
->  {
-> -	int size = meson_uart_res_size(port);
-> -
->  	if (port->flags & UPF_IOREMAP) {
-> -		devm_release_mem_region(port->dev, port->mapbase, size);
-> +		devm_release_mem_region(port->dev, port->mapbase,
-> +					port->mapsize);
->  		devm_iounmap(port->dev, port->membase);
->  		port->membase = NULL;
+> @@ -497,7 +497,6 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
 >  	}
-> @@ -420,12 +405,7 @@ static void meson_uart_release_port(struct uart_port *port)
 >
->  static int meson_uart_request_port(struct uart_port *port)
->  {
-> -	int size = meson_uart_res_size(port);
-> -
-> -	if (size < 0)
-> -		return size;
-> -
-> -	if (!devm_request_mem_region(port->dev, port->mapbase, size,
-> +	if (!devm_request_mem_region(port->dev, port->mapbase, port->mapsize,
->  				     dev_name(port->dev))) {
->  		dev_err(port->dev, "Memory region busy\n");
->  		return -EBUSY;
-> @@ -434,7 +414,7 @@ static int meson_uart_request_port(struct uart_port *port)
->  	if (port->flags & UPF_IOREMAP) {
->  		port->membase = devm_ioremap_nocache(port->dev,
->  						     port->mapbase,
-> -						     size);
-> +						     port->mapsize);
->  		if (port->membase == NULL)
->  			return -ENOMEM;
->  	}
-> @@ -629,6 +609,7 @@ static int meson_uart_probe(struct platform_device *pdev)
->  	port->uartclk = clk_get_rate(clk);
->  	port->iotype = UPIO_MEM;
->  	port->mapbase = res_mem->start;
-> +	port->mapsize = resource_size(res_mem);
->  	port->irq = res_irq->start;
->  	port->flags = UPF_BOOT_AUTOCONF | UPF_IOREMAP | UPF_LOW_LATENCY;
->  	port->dev = &pdev->dev;
-
-Looks good.
+>  	val = readl(port->membase + AML_UART_CONTROL);
+> -	val |= AML_UART_TX_EN;
+>  	tmp = val & ~(AML_UART_TX_INT_EN | AML_UART_RX_INT_EN);
+>  	writel(tmp, port->membase + AML_UART_CONTROL);
+>
+>
 
 
 -- 
