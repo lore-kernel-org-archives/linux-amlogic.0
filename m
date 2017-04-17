@@ -1,169 +1,93 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 17 Apr 2017 20:28:19 +0200
-Subject: [PATCH 2/3] iio: adc: meson-saradc: add Meson8b SoC compatibility
-In-Reply-To: <20170417182820.26670-1-martin.blumenstingl@googlemail.com>
-References: <20170417182820.26670-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170417182820.26670-3-martin.blumenstingl@googlemail.com>
+Date: Mon, 17 Apr 2017 21:11:40 +0200
+Subject: [PATCH v3 0/2] Meson GXL USB2 PHY driver
+In-Reply-To: <20170318130013.20771-1-martin.blumenstingl@googlemail.com>
+References: <20170318130013.20771-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170417191142.26099-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Meson GX SoCs however use some magic bits to prevent simultaneous (=
-conflicting, because only consumer should use the FIFO buffer with the
-ADC results) usage by the Linux kernel and the bootloader (the BL30
-bootloader uses the SAR ADC to read the CPU temperature).
-This patch changes guards all BL30 functionality so it is skipped on
-SoCs which don't have it. Since the hardware itself doesn't know whether
-BL30 is available the internal meson_sar_adc_data is extended so this
-information can be provided per of_device_id.data inside the driver.
+This series adds a driver for the USB2 PHYs found in Amlogic Meson GXL
+(and GXM) SoCs.
+Devicetree changes are intentionally missing in this series because of
+various other problems that need to be resolved before we get USB host
+support working.
 
-Additionally the clocks "adc_clk" and "adc_sel" are not provided by the
-clock-controller itself. "adc_sel" is not available at all. "adc_clk"
-is provided by the SAR ADC IP block itself on Meson8b (and earlier).
-This is already supported by the meson_saradc driver.
+As usual we unfortunately don't have any documentation available. The
+register definitions were taken from the vendor's GPL kernel sources
+(see [5] if you are really interested). Translation to human readable
+names is done using the "best effort" algorithm.
 
-Finally a new of_device_id for the Meson8b SoC is added so it can be
-wired up in the corresponding DT.
+The USB situation on GXL and GXM is a bit special:
+the SoCs include both, a dwc3 and a dwc2 controller. The dwc3 controller
+IP only supports host-mode, while the dwc2 controller IP only supports
+device mode.
+The dwc3 controller has all USB3 ports disabled. GXL has two USB2 ports
+enabled on dwc3's internal hub, while GXM has three USB2 ports enabled.
+This makes the initialization a bit special: to enable any of the dwc3
+controller's USB2 ports *ALL* PHYs have to be initialized (probably due
+to the hub's routing logic).
+The first USB2 PHY (hardware-wise) also supports OTG mode. The vendor
+kernel implements this through the USB3 PHY by re-routing the first
+USB2 PHY from the dwc3 controller to the dwc2 controller (which is
+disabled by default, but if the USB3 PHY detects that the port should
+enter device mode it enables the dwc2 controller).
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/iio/adc/meson_saradc.c | 80 +++++++++++++++++++++++++++++-------------
- 1 file changed, 56 insertions(+), 24 deletions(-)
+To get USB host mode working the following steps are needed:
+- xhci-plat must be able to manage more than one PHY for a controller,
+  this is work-in-progress, see [0]
+- there are some DMA handling issues in dwc3 and the rest of the USB
+  stack, this is solved by the "sysdev" patches from [1]
+- adding all USB related bits to meson-gxl.dtsi - this is work in
+  progress but depends on the previous TODOs, see [2] and [3]
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index dd4190b50df6..cf13691009ee 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -220,6 +220,7 @@ enum meson_sar_adc_chan7_mux_sel {
- };
- 
- struct meson_sar_adc_data {
-+	bool					has_bl30_integration;
- 	unsigned int				resolution;
- 	const char				*name;
- };
-@@ -437,19 +438,24 @@ static int meson_sar_adc_lock(struct iio_dev *indio_dev)
- 
- 	mutex_lock(&indio_dev->mlock);
- 
--	/* prevent BL30 from using the SAR ADC while we are using it */
--	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
--			   MESON_SAR_ADC_DELAY_KERNEL_BUSY,
--			   MESON_SAR_ADC_DELAY_KERNEL_BUSY);
--
--	/* wait until BL30 releases it's lock (so we can use the SAR ADC) */
--	do {
--		udelay(1);
--		regmap_read(priv->regmap, MESON_SAR_ADC_DELAY, &val);
--	} while (val & MESON_SAR_ADC_DELAY_BL30_BUSY && timeout--);
--
--	if (timeout < 0)
--		return -ETIMEDOUT;
-+	if (priv->data->has_bl30_integration) {
-+		/* prevent BL30 from using the SAR ADC while we are using it */
-+		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
-+				MESON_SAR_ADC_DELAY_KERNEL_BUSY,
-+				MESON_SAR_ADC_DELAY_KERNEL_BUSY);
-+
-+		/*
-+		 * wait until BL30 releases it's lock (so we can use the SAR
-+		 * ADC)
-+		 */
-+		do {
-+			udelay(1);
-+			regmap_read(priv->regmap, MESON_SAR_ADC_DELAY, &val);
-+		} while (val & MESON_SAR_ADC_DELAY_BL30_BUSY && timeout--);
-+
-+		if (timeout < 0)
-+			return -ETIMEDOUT;
-+	}
- 
- 	return 0;
- }
-@@ -458,9 +464,10 @@ static void meson_sar_adc_unlock(struct iio_dev *indio_dev)
- {
- 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
- 
--	/* allow BL30 to use the SAR ADC again */
--	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
--			   MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
-+	if (priv->data->has_bl30_integration)
-+		/* allow BL30 to use the SAR ADC again */
-+		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
-+				MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
- 
- 	mutex_unlock(&indio_dev->mlock);
- }
-@@ -614,14 +621,16 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
- 	 */
- 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_CH7_INPUT);
- 
--	/*
--	 * leave sampling delay and the input clocks as configured by BL30 to
--	 * make sure BL30 gets the values it expects when reading the
--	 * temperature sensor.
--	 */
--	regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
--	if (regval & MESON_SAR_ADC_REG3_BL30_INITIALIZED)
--		return 0;
-+	if (priv->data->has_bl30_integration) {
-+		/*
-+		 * leave sampling delay and the input clocks as configured by
-+		 * BL30 to make sure BL30 gets the values it expects when
-+		 * reading the temperature sensor.
-+		 */
-+		regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
-+		if (regval & MESON_SAR_ADC_REG3_BL30_INITIALIZED)
-+			return 0;
-+	}
- 
- 	meson_sar_adc_stop_sample_engine(indio_dev);
- 
-@@ -834,23 +843,46 @@ static const struct iio_info meson_sar_adc_iio_info = {
- 	.driver_module = THIS_MODULE,
- };
- 
-+struct meson_sar_adc_data meson_sar_adc_meson8_data = {
-+	.has_bl30_integration = false,
-+	.resolution = 10,
-+	.name = "meson-meson8b-saradc",
-+};
-+
-+struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
-+	.has_bl30_integration = false,
-+	.resolution = 10,
-+	.name = "meson-meson8b-saradc",
-+};
-+
- struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
-+	.has_bl30_integration = true,
- 	.resolution = 10,
- 	.name = "meson-gxbb-saradc",
- };
- 
- struct meson_sar_adc_data meson_sar_adc_gxl_data = {
-+	.has_bl30_integration = true,
- 	.resolution = 12,
- 	.name = "meson-gxl-saradc",
- };
- 
- struct meson_sar_adc_data meson_sar_adc_gxm_data = {
-+	.has_bl30_integration = true,
- 	.resolution = 12,
- 	.name = "meson-gxm-saradc",
- };
- 
- static const struct of_device_id meson_sar_adc_of_match[] = {
- 	{
-+		.compatible = "amlogic,meson8-saradc",
-+		.data = &meson_sar_adc_meson8_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson8b-saradc",
-+		.data = &meson_sar_adc_meson8b_data,
-+	},
-+	{
- 		.compatible = "amlogic,meson-gxbb-saradc",
- 		.data = &meson_sar_adc_gxbb_data,
- 	}, {
+This supersedes my previous series "Meson GXL and GXM USB support" [4].
+
+
+Changes since v2:
+- removed PHY mode parsing from phy_meson_gxl_usb2_probe (based on
+  of_usb_get_dr_mode_by_phy()) because this will not work with the
+  xhci-plat changes anyways. The driver now simply defaults to host
+  mode until a consumer uses phy_set_mode().
+- fixed a stray newline in drivers/phy/Kconfig b/drivers/phy/Kconfig
+  (thanks for spotting this Kishon)
+- simplified phy_meson_gxl_usb2_reset() by returning early (thanks
+  Kishon for suggesting this improvement)
+
+Changes since v1:
+- rebased to the next branch of Kishon's linux-phy tree (currently at
+  fe0134d071 "phy: phy-exynos-pcie: make it explicitly non-modular")
+- added a missing call to phy_meson_gxl_usb2_power_off in the error
+  case in phy_meson_gxl_usb2_power_on - thanks to Hendrik v. Raven for
+  spotting this!
+- moved the reset logic into a separate function and expose it through
+  phy_ops.reset so it can be used by consumers of this PHY.
+  phy_meson_gxl_usb2_set_mode still resets the PHY directly because
+  this PHY will be configured by xhci-plat (from which we cannot call
+  phy_reset() - see the discussion based on v1 of this patch: [6])
+- added Rob Herring's ACK to patch #1 (the dt-binding documentation)
+
+
+[0] https://www.spinics.net/lists/linux-usb/msg151837.html
+[1] http://www.mail-archive.com/linux-usb at vger.kernel.org/msg87077.html
+[2] https://github.com/xdarklight/linux/commit/e2b83785687fe859ae4bba8da8bb2fb2d7e32bfb
+[3] https://github.com/xdarklight/linux/commit/203ab9ea5d1bea0bf066b6738010c8072b821d87
+[4] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001721.html
+[5] https://github.com/khadas/linux/blob/76fd19ac41bb774e396ce8009ff665f29c26c535/include/linux/amlogic/usb-gxl.h
+[6] http://lists.infradead.org/pipermail/linux-amlogic/2017-March/002777.html
+
+Martin Blumenstingl (2):
+  Documentation: dt-bindings: Add documentation for the Meson GXL USB2
+    PHY
+  phy: meson: add USB2 PHY support for Meson GXL and GXM
+
+ .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  17 ++
+ drivers/phy/Kconfig                                |  12 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-meson-gxl-usb2.c                   | 261 +++++++++++++++++++++
+ 4 files changed, 291 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
+ create mode 100644 drivers/phy/phy-meson-gxl-usb2.c
+
 -- 
 2.12.2
