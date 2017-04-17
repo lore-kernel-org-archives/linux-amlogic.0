@@ -1,37 +1,50 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 17 Apr 2017 17:25:51 +0200
-Subject: [PATCH 2/6] serial: meson: remove dead code in
- meson_uart_change_speed
-In-Reply-To: <32194c6b-0c4f-a7f0-1a61-edfaffbc63c7@gmail.com>
+Date: Mon, 17 Apr 2017 17:27:56 +0200
+Subject: [PATCH 3/6] serial: meson: remove unneeded variable assignment in
+ meson_serial_port_write
+In-Reply-To: <a9179fc6-9ca6-c153-0b60-db1365cfb18c@codethink.co.uk>
 References: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
- <32194c6b-0c4f-a7f0-1a61-edfaffbc63c7@gmail.com>
-Message-ID: <09381e1d-1b85-7ff9-ec7b-7eecec0fd3b9@baylibre.com>
+ <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
+ <a9179fc6-9ca6-c153-0b60-db1365cfb18c@codethink.co.uk>
+Message-ID: <369dac4f-7c48-3e64-fef5-72e6aa28b0f0@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04/16/2017 10:10 PM, Heiner Kallweit wrote:
-> val is set in both branches of the if clause, therefore the two
-> removed lines are dead code.
+On 04/17/2017 03:58 PM, Ben Dooks wrote:
+> On 16/04/17 21:13, Heiner Kallweit wrote:
+>> AML_UART_TX_EN is set in meson_uart_startup and there's no place in
+>> the driver where it gets cleared. Therefore we don't have to set it
+>> here.
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  drivers/tty/serial/meson_uart.c | 2 --
->  1 file changed, 2 deletions(-)
+> I think this is a leftover of the patches I did when trying to fix
+> the UART driver when using debian/systemd and having strange console
+> problems.
 > 
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index e2e25da1..22857f1e 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -298,8 +298,6 @@ static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
->  	while (!meson_uart_tx_empty(port))
->  		cpu_relax();
->  
-> -	val = readl(port->membase + AML_UART_REG5);
-> -	val &= ~AML_UART_BAUD_MASK;
->  	if (port->uartclk == 24000000) {
->  		val = ((port->uartclk / 3) / baud) - 1;
->  		val |= AML_UART_BAUD_XTAL;
+> The only comment is it might be worth leaving this in as it isn't
+> a high cost to the driver and it is possible someone might accidentally
+> clear it later.
+> 
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>> ---
+>>  drivers/tty/serial/meson_uart.c | 1 -
+>>  1 file changed, 1 deletion(-)
+>>
+>> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+>> index 22857f1e..714b29ad 100644
+>> --- a/drivers/tty/serial/meson_uart.c
+>> +++ b/drivers/tty/serial/meson_uart.c
+>> @@ -497,7 +497,6 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
+>>      }
+>>
+>>      val = readl(port->membase + AML_UART_CONTROL);
+>> -    val |= AML_UART_TX_EN;
+>>      tmp = val & ~(AML_UART_TX_INT_EN | AML_UART_RX_INT_EN);
+>>      writel(tmp, port->membase + AML_UART_CONTROL);
+>>
+>>
+> 
 > 
 
+I'm ok to remove it, having it in uart_startup is enough.
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
