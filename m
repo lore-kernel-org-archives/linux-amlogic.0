@@ -1,60 +1,82 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 17 Apr 2017 23:42:44 +0200
-Subject: [PATCH 1/1] ARM: dts: meson: Extend L2 cache controller node for
- Meson8 and Meson8b
-In-Reply-To: <20170417214244.23698-1-martin.blumenstingl@googlemail.com>
-References: <20170417214244.23698-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170417214244.23698-2-martin.blumenstingl@googlemail.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Tue, 18 Apr 2017 21:15:17 +0200
+Subject: [PATCH] mmc: sdio: fix alignment issue in struct sdio_func
+In-Reply-To: <b4221ed8-1e85-2b8f-31c6-d57bc86d122e@gmail.com>
+References: <b4221ed8-1e85-2b8f-31c6-d57bc86d122e@gmail.com>
+Message-ID: <CAPDyKFp88YiDNFHU366RmDxd7GUnPXZ+nRo+0vvSoxFJPUOn=g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Carlo Caione <carlo@endlessm.com>
+On 29 March 2017 at 20:54, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> Certain 64-bit systems (e.g. Amlogic Meson GX) require buffers to be
+> used for DMA to be 8-byte-aligned. struct sdio_func has an embedded
+> small DMA buffer not meeting this requirement.
+> When testing switching to descriptor chain mode in meson-gx driver
+> SDIO is broken therefore. Fix this by allocating the small DMA buffer
+> separately as kmalloc ensures that the returned memory area is
+> properly aligned for every basic data type.
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Tested-by: Helmut Klein <hgkr.klein@gmail.com>
 
-This patch extends the L2 cache controller node for the Amlogic Meson8
-and Meson8b SoCs with some missing parameters. These are taken from the
-Amlogic GPL kernel source.
+Heiner, sorry for the delay!
 
-Signed-off-by: Carlo Caione <carlo@endlessm.com>
-[apply the change to Meson8 and Meson8b and updated description]
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8.dtsi  | 6 ++++++
- arch/arm/boot/dts/meson8b.dtsi | 6 ++++++
- 2 files changed, 12 insertions(+)
+I decided to pick this first version as it is more consistent for how
+we deal with DMA friendly buffers in the core.
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 5eaaf067c76a..6993077331c7 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -188,6 +188,12 @@
- 	clocks = <&clk81>;
- };
- 
-+&L2 {
-+	arm,data-latency = <3 3 3>;
-+	arm,tag-latency = <2 2 2>;
-+	arm,filter-ranges = <0x100000 0xc0000000>;
-+};
-+
- &spifc {
- 	clocks = <&clk81>;
- };
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index ef9ac974111c..d9f116a418b2 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -171,6 +171,12 @@
- 	};
- };
- 
-+&L2 {
-+	arm,data-latency = <3 3 3>;
-+	arm,tag-latency = <2 2 2>;
-+	arm,filter-ranges = <0x100000 0xc0000000>;
-+};
-+
- &uart_AO {
- 	clocks = <&clkc CLKID_CLK81>;
- };
--- 
-2.12.2
+Thanks, applied for fixes!
+
+Kind regards
+Uffe
+
+> ---
+>  drivers/mmc/core/sdio_bus.c   | 12 +++++++++++-
+>  include/linux/mmc/sdio_func.h |  2 +-
+>  2 files changed, 12 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/mmc/core/sdio_bus.c b/drivers/mmc/core/sdio_bus.c
+> index e992a7f8..2b32b889 100644
+> --- a/drivers/mmc/core/sdio_bus.c
+> +++ b/drivers/mmc/core/sdio_bus.c
+> @@ -267,7 +267,7 @@ static void sdio_release_func(struct device *dev)
+>         sdio_free_func_cis(func);
+>
+>         kfree(func->info);
+> -
+> +       kfree(func->tmpbuf);
+>         kfree(func);
+>  }
+>
+> @@ -282,6 +282,16 @@ struct sdio_func *sdio_alloc_func(struct mmc_card *card)
+>         if (!func)
+>                 return ERR_PTR(-ENOMEM);
+>
+> +       /*
+> +        * allocate buffer separately to make sure it's properly aligned for
+> +        * DMA usage (incl. 64 bit DMA)
+> +        */
+> +       func->tmpbuf = kmalloc(4, GFP_KERNEL);
+> +       if (!func->tmpbuf) {
+> +               kfree(func);
+> +               return ERR_PTR(-ENOMEM);
+> +       }
+> +
+>         func->card = card;
+>
+>         device_initialize(&func->dev);
+> diff --git a/include/linux/mmc/sdio_func.h b/include/linux/mmc/sdio_func.h
+> index aab032a6..97ca1053 100644
+> --- a/include/linux/mmc/sdio_func.h
+> +++ b/include/linux/mmc/sdio_func.h
+> @@ -53,7 +53,7 @@ struct sdio_func {
+>         unsigned int            state;          /* function state */
+>  #define SDIO_STATE_PRESENT     (1<<0)          /* present in sysfs */
+>
+> -       u8                      tmpbuf[4];      /* DMA:able scratch buffer */
+> +       u8                      *tmpbuf;        /* DMA:able scratch buffer */
+>
+>         unsigned                num_info;       /* number of info strings */
+>         const char              **info;         /* info strings */
+> --
+> 2.12.1
+>
