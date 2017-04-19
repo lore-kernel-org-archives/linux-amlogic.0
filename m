@@ -1,70 +1,48 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 19 Apr 2017 10:39:08 +0200
-Subject: [PATCH 3/6] serial: meson: remove unneeded variable assignment in
- meson_serial_port_write
-In-Reply-To: <0dca2d13-2ea0-40cd-9087-3159713e399a@suse.de>
-References: <d16f695a-42b2-dfc2-0e53-df110f5a8389@gmail.com>
- <c1371fc8-ebc2-0d14-e409-02e2fbf3ba94@gmail.com>
- <a9179fc6-9ca6-c153-0b60-db1365cfb18c@codethink.co.uk>
- <369dac4f-7c48-3e64-fef5-72e6aa28b0f0@baylibre.com>
- <0dca2d13-2ea0-40cd-9087-3159713e399a@suse.de>
-Message-ID: <ce0c8b90-2d64-361c-dc05-2c034857a327@baylibre.com>
+From: olof@lixom.net (Olof Johansson)
+Date: Wed, 19 Apr 2017 05:29:56 -0700
+Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.12 (redo)
+In-Reply-To: <m24ly37kzk.fsf@baylibre.com>
+References: <m24ly37kzk.fsf@baylibre.com>
+Message-ID: <20170419122956.GK17004@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04/17/2017 05:37 PM, Andreas F?rber wrote:
-> Am 17.04.2017 um 17:27 schrieb Neil Armstrong:
->> On 04/17/2017 03:58 PM, Ben Dooks wrote:
->>> On 16/04/17 21:13, Heiner Kallweit wrote:
->>>> AML_UART_TX_EN is set in meson_uart_startup and there's no place in
->>>> the driver where it gets cleared. Therefore we don't have to set it
->>>> here.
->>>
->>> I think this is a leftover of the patches I did when trying to fix
->>> the UART driver when using debian/systemd and having strange console
->>> problems.
->>>
->>> The only comment is it might be worth leaving this in as it isn't
->>> a high cost to the driver and it is possible someone might accidentally
->>> clear it later.
->>>
->>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>>> ---
->>>>  drivers/tty/serial/meson_uart.c | 1 -
->>>>  1 file changed, 1 deletion(-)
->>>>
->>>> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
->>>> index 22857f1e..714b29ad 100644
->>>> --- a/drivers/tty/serial/meson_uart.c
->>>> +++ b/drivers/tty/serial/meson_uart.c
->>>> @@ -497,7 +497,6 @@ static void meson_serial_port_write(struct uart_port *port, const char *s,
->>>>      }
->>>>
->>>>      val = readl(port->membase + AML_UART_CONTROL);
->>>> -    val |= AML_UART_TX_EN;
->>>>      tmp = val & ~(AML_UART_TX_INT_EN | AML_UART_RX_INT_EN);
->>>>      writel(tmp, port->membase + AML_UART_CONTROL);
->>>>
->>>>
->>>
->>>
->>
->> I'm ok to remove it, having it in uart_startup is enough.
->>
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+On Tue, Apr 04, 2017 at 05:31:59PM -0700, Kevin Hilman wrote:
+> Hi Arnd, Olof,
 > 
-> Have you checked the earlycon code paths? That does not run through the
-> standard setup function, so it is dependent on what the firmware set
-> last. I believe I am calling into this function through some wrapper.
+> Here's a redo of the Amlogic 64-bit DT updates for v4.12.
 > 
-> Since we're writing the register anyway, it shouldn't hurt to leave this in.
+> This DT branch includes all our DT updates, plus merges in a clock
+> branch that includes only clock header and binding updates which are
+> dependencies.  This shared branch/tag is immutable and shared with the
+> clock tree.
 > 
-> Regards,
-> Andreas
+> I hope this iteration passes muster,
 > 
+> Kevin
+> 
+> 
+> The following changes since commit c1ae3cfa0e89fa1a7ecc4c99031f5e9ae99d9201:
+> 
+>   Linux 4.11-rc1 (2017-03-05 12:59:56 -0800)
+> 
+> are available in the git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-redo
+> 
+> for you to fetch changes up to b2121170143bf4708c657461740c922ce24bc94e:
+> 
+>   Merge tag 'amlogic-clk-headers' into v4.12/dt64 (2017-04-04 16:16:52 -0700)
+> 
+> ----------------------------------------------------------------
+> Amlogic 64-bit DT updates for v4.12
+> - pinctrl: new pins for audio
+> - clocks: more clocks exposed for GFX, audio
+> - new board: Khadas Vim (S905X)
+> - new board: HwaCom AmazeTV (S905X)
+> - ethernet phy: add GPIO resets
 
-Indeed, it's on the earlycon path, but it's a hack and should be moved inside meson_serial_early_console_setup() and meson_serial_console_setup() instead.
+Merged, thanks.
 
-Writing TX_EN at each meson_serial_port_write() is really unnecessary...
 
-Neil
+-Olof
