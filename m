@@ -1,28 +1,35 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 19 Apr 2017 21:59:35 +0200
-Subject: [PATCH v2 0/6] serial: meson: series with smaller fixes and
- improvements
-Message-ID: <4abafe6e-3c7c-049f-d450-ab27e2c7acfd@gmail.com>
+Date: Wed, 19 Apr 2017 22:17:24 +0200
+Subject: [PATCH v2 1/6] serial: meson: fix setting number of stop bits
+In-Reply-To: <4abafe6e-3c7c-049f-d450-ab27e2c7acfd@gmail.com>
+References: <4abafe6e-3c7c-049f-d450-ab27e2c7acfd@gmail.com>
+Message-ID: <1f1dbe00-d5f2-b473-a264-4d2789349ca6@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series includes a few smaller fixes and improvements for the
-meson uart driver.
+The stop bit value as to be or'ed, so far this worked only just by chance
+because AML_UART_STOP_BIN_1SB is 0.
 
-Changes in v2:
-- change patch 3 based on review discussion
-- change patch 6 to use port->name instead
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v2:
+- no changes
+---
+ drivers/tty/serial/meson_uart.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Heiner Kallweit (6):
-  serial: meson: fix setting number of stop bits
-  serial: meson: remove dead code in meson_uart_change_speed
-  serial: meson: remove unneeded variable assignment in meson_serial_port_write
-  serial: meson: make use of uart_port member mapsize
-  serial: meson: remove use of flag UPF_IOREMAP
-  serial: meson: change interrupt description to of node name
-
- drivers/tty/serial/meson_uart.c | 68 ++++++++++++++++-------------------------
- 1 file changed, 26 insertions(+), 42 deletions(-)
-
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 60f16795..e2e25da1 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -355,7 +355,7 @@ static void meson_uart_set_termios(struct uart_port *port,
+ 	if (cflags & CSTOPB)
+ 		val |= AML_UART_STOP_BIN_2SB;
+ 	else
+-		val &= ~AML_UART_STOP_BIN_1SB;
++		val |= AML_UART_STOP_BIN_1SB;
+ 
+ 	if (cflags & CRTSCTS)
+ 		val &= ~AML_UART_TWO_WIRE_EN;
 -- 
 2.12.2
