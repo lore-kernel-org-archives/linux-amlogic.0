@@ -1,32 +1,34 @@
-From: u.kleine-koenig@pengutronix.de (Uwe =?iso-8859-1?Q?Kleine-K=F6nig?=)
-Date: Mon, 24 Apr 2017 09:45:24 +0200
-Subject: [PATCH 21/29] clocksource: Add missing line break to error
- messages
-In-Reply-To: <1492374441-23336-21-git-send-email-daniel.lezcano@linaro.org>
-References: <20170416202542.GV2078@mai>
- <1492374441-23336-1-git-send-email-daniel.lezcano@linaro.org>
- <1492374441-23336-21-git-send-email-daniel.lezcano@linaro.org>
-Message-ID: <20170424074524.2rdxtbi6n6czq6sf@pengutronix.de>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 25 Apr 2017 09:39:40 +0200
+Subject: [PATCH] ARM64: defconfig: enable IR core, decoders and Meson IR device
+Message-ID: <1493105980-19724-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello,
+This patch enables the MEDIA Infrared RC Decoders and Meson Infrared
+decoder for ARM64 defconfig.
+These drivers are selected as modules by default.
 
-On Sun, Apr 16, 2017 at 10:27:11PM +0200, Daniel Lezcano wrote:
->  drivers/clocksource/time-efm32.c          |  2 +-
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/configs/defconfig | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-For efm32:
-
-	Acked-by: Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>
-
-(if it's not too late yet).
-
-For efm32 (and I guess for others, too) this was introduced by the
-"Convert init function to return error" series.
-
-Best regards
-Uwe
-
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index c021aefa..59c400f 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -321,6 +321,11 @@ CONFIG_MEDIA_CAMERA_SUPPORT=y
+ CONFIG_MEDIA_ANALOG_TV_SUPPORT=y
+ CONFIG_MEDIA_DIGITAL_TV_SUPPORT=y
+ CONFIG_MEDIA_CONTROLLER=y
++CONFIG_MEDIA_RC_SUPPORT=y
++CONFIG_RC_CORE=y
++CONFIG_RC_DEVICES=y
++CONFIG_RC_DECODERS=y
++CONFIG_IR_MESON=m
+ CONFIG_VIDEO_V4L2_SUBDEV_API=y
+ # CONFIG_DVB_NET is not set
+ CONFIG_V4L_MEM2MEM_DRIVERS=y
 -- 
-Pengutronix e.K.                           | Uwe Kleine-K?nig            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+1.9.1
