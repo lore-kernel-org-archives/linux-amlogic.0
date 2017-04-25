@@ -1,75 +1,55 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 25 Apr 2017 09:41:09 +0200
-Subject: [PATCH] media: rc: meson-ir: switch config to NEC decoding on shutdown
-Message-ID: <1493106069-19922-1-git-send-email-narmstrong@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Tue, 25 Apr 2017 23:28:30 +0200
+Subject: Status of Meson GPIO IRQ support
+In-Reply-To: <1489564235.25254.5.camel@baylibre.com>
+References: <ff88c0a2-1c2f-e421-e2f8-473d4a801b63@gmail.com>
+ <1489564235.25254.5.camel@baylibre.com>
+Message-ID: <dbe0c7d8-ddd2-f006-c3b2-1144eee66850@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Alex Deryskyba <alex@codesnake.com>
+Am 15.03.2017 um 08:50 schrieb Jerome Brunet:
+> On Tue, 2017-03-14 at 21:41 +0100, Heiner Kallweit wrote:
+>> Jerome,
+>>
+>> when working on Meson I2C driver I was testing with a device where I wanted
+>> to use a GPIO as interrupt source.
+>> This isn't supported yet and when checking I found that end of last year
+>> you submitted related patches. After some intense discussions I found no
+>> further update.
+>> Was this topic put on-hold due to bigger technical issues?
+>>
+> 
+> Well, the proposed code does work but, as you have probaly seen for yourself,
+> the maintainers of irqchip and gpio raised valid concerns, mainly about the way
+> the mapping is created in the gpio driver. Ideally, the mapping should be
+> created at probe time but, with a hierarchic interrupt domain, that means
+> allocating the parent irq. We only have 8 of those for 100+ gpios. 
+> 
+> I'm still not sure how to address the problem to be honest: Is there a way to
+> create mapping in hierarchy domain and allocate the parent only when the irq is
+> actually requested ? Or should we simply not use a hierarchy domain for this
+> controller (which seems to make sense) ?
+> 
+Meanwhile I became somewhat familiar with the irq subsystem and do some tests
+with a GPIO IRQ driver based on GPIOLIB_IRQCHIP (in generic chained mode).
 
-On the Amlogic SoCs, the bootloader firmware can handle the IR hardware in
-order to Wake up or Power back the system when in suspend on shutdown mode.
+This basically works, however I have a problem with edge detection.
+Level changes are not reliably detected. If I connect an input pin (configured
+for edge irq generation) to a output pin and change the value of the output pin
+no edge is detected. However if I use a cable to connect the input pin to
+VCC/GND manually then most of the time edges are detected (not always).
+Did you ever come across a similar problem during your tests?
 
-This patch switches the hardware configuration in a state usable by the
-firmware to permit powering the system back.
+Regards, Heiner
 
-Some vendor bootloader firmware were modified to switch to this configuration
-but it may not be the case for all available products.
-
-This patch was originally posted at [1].
-
-[1] https://github.com/LibreELEC/linux-amlogic/pull/27
-
-Signed-off-by: Alex Deryskyba <alex@codesnake.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/media/rc/meson-ir.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
-
-diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index 42ae2ec..0632f6a 100644
---- a/drivers/media/rc/meson-ir.c
-+++ b/drivers/media/rc/meson-ir.c
-@@ -211,6 +211,32 @@ static int meson_ir_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static void meson_ir_shutdown(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
-+	struct meson_ir *ir = platform_get_drvdata(pdev);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ir->lock, flags);
-+
-+	/*
-+	 * Set operation mode to NEC/hardware decoding to give
-+	 * bootloader a chance to power the system back on
-+	 */
-+	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
-+		meson_ir_set_mask(ir, IR_DEC_REG1, REG1_MODE_MASK,
-+				DECODE_MODE_NEC << REG1_MODE_SHIFT);
-+	else
-+		meson_ir_set_mask(ir, IR_DEC_REG2, REG2_MODE_MASK,
-+				DECODE_MODE_NEC << REG2_MODE_SHIFT);
-+
-+	/* Set rate to default value */
-+	meson_ir_set_mask(ir, IR_DEC_REG0, REG0_RATE_MASK, 0x13);
-+
-+	spin_unlock_irqrestore(&ir->lock, flags);
-+}
-+
- static const struct of_device_id meson_ir_match[] = {
- 	{ .compatible = "amlogic,meson6-ir" },
- 	{ .compatible = "amlogic,meson8b-ir" },
-@@ -222,6 +248,7 @@ static int meson_ir_remove(struct platform_device *pdev)
- static struct platform_driver meson_ir_driver = {
- 	.probe		= meson_ir_probe,
- 	.remove		= meson_ir_remove,
-+	.shutdown	= meson_ir_shutdown,
- 	.driver = {
- 		.name		= DRIVER_NAME,
- 		.of_match_table	= meson_ir_match,
--- 
-1.9.1
+> I still hope to be able to do something on this topic but probably not tomorrow
+> :( Of course, If you have some spare time and want to contribute on this topic,
+> you are welcome to do so.
+> 
+>> Rgds, Heiner
+> 
+> Cheers
+> 
+> Jerome
+> 
