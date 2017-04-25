@@ -1,38 +1,75 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 25 Apr 2017 09:40:48 +0200
-Subject: [PATCH] media: rc: meson-ir: store raw event without processing
-Message-ID: <1493106048-19860-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 25 Apr 2017 09:41:09 +0200
+Subject: [PATCH] media: rc: meson-ir: switch config to NEC decoding on shutdown
+Message-ID: <1493106069-19922-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jonas Karlman <jonas@kwiboo.se>
+From: Alex Deryskyba <alex@codesnake.com>
 
-This patch fixes meson-it driver by storing event without processing
-to avoid losing key pressed events when system is loaded and events
-are occurring too fast.
+On the Amlogic SoCs, the bootloader firmware can handle the IR hardware in
+order to Wake up or Power back the system when in suspend on shutdown mode.
 
-This issue was reported at [1]
+This patch switches the hardware configuration in a state usable by the
+firmware to permit powering the system back.
 
-[1] https://github.com/LibreELEC/linux-amlogic/pull/42
+Some vendor bootloader firmware were modified to switch to this configuration
+but it may not be the case for all available products.
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+This patch was originally posted at [1].
+
+[1] https://github.com/LibreELEC/linux-amlogic/pull/27
+
+Signed-off-by: Alex Deryskyba <alex@codesnake.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/media/rc/meson-ir.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/media/rc/meson-ir.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
 diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index 5576dbd..42ae2ec 100644
+index 42ae2ec..0632f6a 100644
 --- a/drivers/media/rc/meson-ir.c
 +++ b/drivers/media/rc/meson-ir.c
-@@ -97,7 +97,7 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
+@@ -211,6 +211,32 @@ static int meson_ir_remove(struct platform_device *pdev)
+ 	return 0;
+ }
  
- 	rawir.pulse = !!(readl(ir->reg + IR_DEC_STATUS) & STATUS_IR_DEC_IN);
- 
--	ir_raw_event_store_with_filter(ir->rc, &rawir);
-+	ir_raw_event_store(ir->rc, &rawir);
- 	ir_raw_event_handle(ir->rc);
- 
- 	spin_unlock(&ir->lock);
++static void meson_ir_shutdown(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct device_node *node = dev->of_node;
++	struct meson_ir *ir = platform_get_drvdata(pdev);
++	unsigned long flags;
++
++	spin_lock_irqsave(&ir->lock, flags);
++
++	/*
++	 * Set operation mode to NEC/hardware decoding to give
++	 * bootloader a chance to power the system back on
++	 */
++	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
++		meson_ir_set_mask(ir, IR_DEC_REG1, REG1_MODE_MASK,
++				DECODE_MODE_NEC << REG1_MODE_SHIFT);
++	else
++		meson_ir_set_mask(ir, IR_DEC_REG2, REG2_MODE_MASK,
++				DECODE_MODE_NEC << REG2_MODE_SHIFT);
++
++	/* Set rate to default value */
++	meson_ir_set_mask(ir, IR_DEC_REG0, REG0_RATE_MASK, 0x13);
++
++	spin_unlock_irqrestore(&ir->lock, flags);
++}
++
+ static const struct of_device_id meson_ir_match[] = {
+ 	{ .compatible = "amlogic,meson6-ir" },
+ 	{ .compatible = "amlogic,meson8b-ir" },
+@@ -222,6 +248,7 @@ static int meson_ir_remove(struct platform_device *pdev)
+ static struct platform_driver meson_ir_driver = {
+ 	.probe		= meson_ir_probe,
+ 	.remove		= meson_ir_remove,
++	.shutdown	= meson_ir_shutdown,
+ 	.driver = {
+ 		.name		= DRIVER_NAME,
+ 		.of_match_table	= meson_ir_match,
 -- 
 1.9.1
