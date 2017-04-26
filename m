@@ -1,55 +1,174 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 25 Apr 2017 23:28:30 +0200
-Subject: Status of Meson GPIO IRQ support
-In-Reply-To: <1489564235.25254.5.camel@baylibre.com>
-References: <ff88c0a2-1c2f-e421-e2f8-473d4a801b63@gmail.com>
- <1489564235.25254.5.camel@baylibre.com>
-Message-ID: <dbe0c7d8-ddd2-f006-c3b2-1144eee66850@gmail.com>
+From: jic23@kernel.org (Jonathan Cameron)
+Date: Wed, 26 Apr 2017 07:29:46 +0100
+Subject: [PATCH 2/3] iio: adc: meson-saradc: add Meson8b SoC compatibility
+In-Reply-To: <20170417182820.26670-3-martin.blumenstingl@googlemail.com>
+References: <20170417182820.26670-1-martin.blumenstingl@googlemail.com>
+ <20170417182820.26670-3-martin.blumenstingl@googlemail.com>
+Message-ID: <bcaf354e-9e6b-a45a-6822-3efeb99058cf@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 15.03.2017 um 08:50 schrieb Jerome Brunet:
-> On Tue, 2017-03-14 at 21:41 +0100, Heiner Kallweit wrote:
->> Jerome,
->>
->> when working on Meson I2C driver I was testing with a device where I wanted
->> to use a GPIO as interrupt source.
->> This isn't supported yet and when checking I found that end of last year
->> you submitted related patches. After some intense discussions I found no
->> further update.
->> Was this topic put on-hold due to bigger technical issues?
->>
+On 17/04/17 19:28, Martin Blumenstingl wrote:
+> Meson GX SoCs however use some magic bits to prevent simultaneous (=
+> conflicting, because only consumer should use the FIFO buffer with the
+> ADC results) usage by the Linux kernel and the bootloader (the BL30
+> bootloader uses the SAR ADC to read the CPU temperature).
+> This patch changes guards all BL30 functionality so it is skipped on
+> SoCs which don't have it. Since the hardware itself doesn't know whether
+> BL30 is available the internal meson_sar_adc_data is extended so this
+> information can be provided per of_device_id.data inside the driver.
 > 
-> Well, the proposed code does work but, as you have probaly seen for yourself,
-> the maintainers of irqchip and gpio raised valid concerns, mainly about the way
-> the mapping is created in the gpio driver. Ideally, the mapping should be
-> created at probe time but, with a hierarchic interrupt domain, that means
-> allocating the parent irq. We only have 8 of those for 100+ gpios. 
+> Additionally the clocks "adc_clk" and "adc_sel" are not provided by the
+> clock-controller itself. "adc_sel" is not available at all. "adc_clk"
+> is provided by the SAR ADC IP block itself on Meson8b (and earlier).
+> This is already supported by the meson_saradc driver.
 > 
-> I'm still not sure how to address the problem to be honest: Is there a way to
-> create mapping in hierarchy domain and allocate the parent only when the irq is
-> actually requested ? Or should we simply not use a hierarchy domain for this
-> controller (which seems to make sense) ?
+> Finally a new of_device_id for the Meson8b SoC is added so it can be
+> wired up in the corresponding DT.
 > 
-Meanwhile I became somewhat familiar with the irq subsystem and do some tests
-with a GPIO IRQ driver based on GPIOLIB_IRQCHIP (in generic chained mode).
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Fine apart from what superficially looks like a cut and paste error inline...
 
-This basically works, however I have a problem with edge detection.
-Level changes are not reliably detected. If I connect an input pin (configured
-for edge irq generation) to a output pin and change the value of the output pin
-no edge is detected. However if I use a cable to connect the input pin to
-VCC/GND manually then most of the time edges are detected (not always).
-Did you ever come across a similar problem during your tests?
-
-Regards, Heiner
-
-> I still hope to be able to do something on this topic but probably not tomorrow
-> :( Of course, If you have some spare time and want to contribute on this topic,
-> you are welcome to do so.
+Jonathan
+> ---
+>  drivers/iio/adc/meson_saradc.c | 80 +++++++++++++++++++++++++++++-------------
+>  1 file changed, 56 insertions(+), 24 deletions(-)
 > 
->> Rgds, Heiner
-> 
-> Cheers
-> 
-> Jerome
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index dd4190b50df6..cf13691009ee 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -220,6 +220,7 @@ enum meson_sar_adc_chan7_mux_sel {
+>  };
+>  
+>  struct meson_sar_adc_data {
+> +	bool					has_bl30_integration;
+>  	unsigned int				resolution;
+>  	const char				*name;
+>  };
+> @@ -437,19 +438,24 @@ static int meson_sar_adc_lock(struct iio_dev *indio_dev)
+>  
+>  	mutex_lock(&indio_dev->mlock);
+>  
+> -	/* prevent BL30 from using the SAR ADC while we are using it */
+> -	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
+> -			   MESON_SAR_ADC_DELAY_KERNEL_BUSY,
+> -			   MESON_SAR_ADC_DELAY_KERNEL_BUSY);
+> -
+> -	/* wait until BL30 releases it's lock (so we can use the SAR ADC) */
+> -	do {
+> -		udelay(1);
+> -		regmap_read(priv->regmap, MESON_SAR_ADC_DELAY, &val);
+> -	} while (val & MESON_SAR_ADC_DELAY_BL30_BUSY && timeout--);
+> -
+> -	if (timeout < 0)
+> -		return -ETIMEDOUT;
+> +	if (priv->data->has_bl30_integration) {
+> +		/* prevent BL30 from using the SAR ADC while we are using it */
+> +		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
+> +				MESON_SAR_ADC_DELAY_KERNEL_BUSY,
+> +				MESON_SAR_ADC_DELAY_KERNEL_BUSY);
+> +
+> +		/*
+> +		 * wait until BL30 releases it's lock (so we can use the SAR
+> +		 * ADC)
+> +		 */
+> +		do {
+> +			udelay(1);
+> +			regmap_read(priv->regmap, MESON_SAR_ADC_DELAY, &val);
+> +		} while (val & MESON_SAR_ADC_DELAY_BL30_BUSY && timeout--);
+> +
+> +		if (timeout < 0)
+> +			return -ETIMEDOUT;
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -458,9 +464,10 @@ static void meson_sar_adc_unlock(struct iio_dev *indio_dev)
+>  {
+>  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+>  
+> -	/* allow BL30 to use the SAR ADC again */
+> -	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
+> -			   MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
+> +	if (priv->data->has_bl30_integration)
+> +		/* allow BL30 to use the SAR ADC again */
+> +		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
+> +				MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
+>  
+>  	mutex_unlock(&indio_dev->mlock);
+>  }
+> @@ -614,14 +621,16 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
+>  	 */
+>  	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_CH7_INPUT);
+>  
+> -	/*
+> -	 * leave sampling delay and the input clocks as configured by BL30 to
+> -	 * make sure BL30 gets the values it expects when reading the
+> -	 * temperature sensor.
+> -	 */
+> -	regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
+> -	if (regval & MESON_SAR_ADC_REG3_BL30_INITIALIZED)
+> -		return 0;
+> +	if (priv->data->has_bl30_integration) {
+> +		/*
+> +		 * leave sampling delay and the input clocks as configured by
+> +		 * BL30 to make sure BL30 gets the values it expects when
+> +		 * reading the temperature sensor.
+> +		 */
+> +		regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
+> +		if (regval & MESON_SAR_ADC_REG3_BL30_INITIALIZED)
+> +			return 0;
+> +	}
+>  
+>  	meson_sar_adc_stop_sample_engine(indio_dev);
+>  
+> @@ -834,23 +843,46 @@ static const struct iio_info meson_sar_adc_iio_info = {
+>  	.driver_module = THIS_MODULE,
+>  };
+>  
+> +struct meson_sar_adc_data meson_sar_adc_meson8_data = {
+> +	.has_bl30_integration = false,
+> +	.resolution = 10,
+> +	.name = "meson-meson8b-saradc",
+Not meson-meson8-saradc?
+> +};
+> +
+> +struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
+> +	.has_bl30_integration = false,
+> +	.resolution = 10,
+> +	.name = "meson-meson8b-saradc",
+> +};
+> +
+>  struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+> +	.has_bl30_integration = true,
+>  	.resolution = 10,
+>  	.name = "meson-gxbb-saradc",
+>  };
+>  
+>  struct meson_sar_adc_data meson_sar_adc_gxl_data = {
+> +	.has_bl30_integration = true,
+>  	.resolution = 12,
+>  	.name = "meson-gxl-saradc",
+>  };
+>  
+>  struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+> +	.has_bl30_integration = true,
+>  	.resolution = 12,
+>  	.name = "meson-gxm-saradc",
+>  };
+>  
+>  static const struct of_device_id meson_sar_adc_of_match[] = {
+>  	{
+> +		.compatible = "amlogic,meson8-saradc",
+> +		.data = &meson_sar_adc_meson8_data,
+> +	},
+> +	{
+> +		.compatible = "amlogic,meson8b-saradc",
+> +		.data = &meson_sar_adc_meson8b_data,
+> +	},
+> +	{
+>  		.compatible = "amlogic,meson-gxbb-saradc",
+>  		.data = &meson_sar_adc_gxbb_data,
+>  	}, {
 > 
