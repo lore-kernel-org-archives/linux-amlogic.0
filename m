@@ -1,16 +1,59 @@
-From: uticdmarceau2007@gmail.com (David Marceau)
-Date: Wed, 3 May 2017 21:51:00 -0400
-Subject: ZoomTak UPlus flashing
-In-Reply-To: <b2d10a10-f1e2-30cd-f9cb-340b2602d99d@suse.de>
-References: <851f5607-17c3-a811-6f52-80e1eac111b1@gmail.com>
- <7ce87c03-17eb-7ad0-9c0f-2541dca2b5f9@suse.de>
- <b10a39fd-5fc9-0179-3869-f61b9c8c2349@gmail.com>
- <b2d10a10-f1e2-30cd-f9cb-340b2602d99d@suse.de>
-Message-ID: <29437f10-cd19-9e53-9c75-2a0acfceda2c@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu,  4 May 2017 20:01:33 +0200
+Subject: [PATCH v3 0/3] Meson8 / Meson8b support for the meson_saradc driver
+Message-ID: <20170504180136.27025-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/03/2017 07:02 AM, Andreas F?rber wrote:
-> SUSE is clearly the wrong addressee for complaints about Arch Linux!!!
+The SAR ADC register layout seems to be mostly the same on older SoCs.
+Thus basically all functionality is already supported by the existing
+driver.
 
-Thank you for clarifying and I apologize for the noise.
+There are two small differences though:
+- the adc_clk and adc_div clock are not provided by the clock-controller
+  on Meson8b. instead the SAR ADC provides an internal "adc_clk" (this
+  behavior is already supported by the driver and requires no changes)
+- the newer SoCs are using some register bits only the kernel or the
+  BL30 (bootloader) are using the SAR ADC. This is the main change of
+  this series: guarding all BL30 specific code with a corresponding
+  "if"-block.
+
+This also adds a new DT binding for the SAR ADC in Meson8 and Meson8b
+because the driver has to specify (for this older version) that there's
+no BL30 integration available (and these register bits should not be
+touched).
+
+
+Changes since v2 at [1]:
+- re-ordered patches so patch #1 now adds the "static" modifier to the
+  existing meson_sar_adc_data instances (was patch #3, now patch #1)
+- dropped the "Documentation: " prefix from the devicetree
+  documentation patch (patch #2)
+- added Rob's ACK to the devicetree Documentation patch (patch #2)
+- fixed a copy-and-paste error in the actual driver change (both,
+  in the commit message where I claimed that a of_device_id was only
+  added for Meson8b as well as in the driver code itself where the Meson8
+  meson_sar_adc_data.name was "meson-meson8b-saradc")
+
+Changes since v1 at [0]:
+- switched to bool data-type for has_bl30_integration
+- also added a "compatible" for Meson8 SoCs (the ADC driver from
+  Amlogic's GPL kernel sources handles Meson8 and Meson8b identical)
+- added patch #3 to constify some structs (there were supposed to be
+  const from the very beginning)
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-March/003081.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2017-April/003394.html
+
+Martin Blumenstingl (3):
+  iio: adc: meson-saradc: mark all meson_sar_adc_data static and const
+  dt-bindings: iio: adc: add Meson8 and Meson8b support
+  iio: adc: meson-saradc: add Meson8b SoC compatibility
+
+ .../bindings/iio/adc/amlogic,meson-saradc.txt      |  2 +
+ drivers/iio/adc/meson_saradc.c                     | 86 +++++++++++++++-------
+ 2 files changed, 61 insertions(+), 27 deletions(-)
+
+-- 
+2.12.2
