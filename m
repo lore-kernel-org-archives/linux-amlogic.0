@@ -1,60 +1,56 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu,  4 May 2017 20:49:32 +0200
-Subject: [PATCH 4/4] pinctrl: meson: meson8: add the AO HDMI CEC pin
-In-Reply-To: <20170504184932.5372-1-martin.blumenstingl@googlemail.com>
-References: <20170504184932.5372-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170504184932.5372-5-martin.blumenstingl@googlemail.com>
+From: thomas.langer@intel.com (Langer, Thomas)
+Date: Thu, 4 May 2017 19:07:24 +0000
+Subject: [PATCH v3 1/3] iio: adc: meson-saradc: mark all
+ meson_sar_adc_data static and const
+In-Reply-To: <20170504180136.27025-2-martin.blumenstingl@googlemail.com>
+References: <20170504180136.27025-1-martin.blumenstingl@googlemail.com>
+ <20170504180136.27025-2-martin.blumenstingl@googlemail.com>
+Message-ID: <0DAF21CFE1B20740AE23D6AF6E54843F1E8BCDB2@IRSMSX101.ger.corp.intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds another missing pin found in the Meson8 SoCs. Currently
-there's no driver which would use this pin yet.
+Hello Martin,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/pinctrl/meson/pinctrl-meson8.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> 
+> These are only passed as of_device_id.data and never modified. Thus we
+> can mark them as static const, just like the of_device_id instances
+> where they are used.
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
-index 55fbd1a17dbe..f022965866b0 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8.c
-@@ -416,6 +416,8 @@ static const unsigned int i2s_ao_clk_out_ao_pins[] = { PIN(GPIOAO_9, AO_OFF) };
- static const unsigned int i2s_lr_clk_out_ao_pins[] = { PIN(GPIOAO_10, AO_OFF) };
- static const unsigned int i2s_out_ch01_ao_pins[] = { PIN(GPIOAO_11, AO_OFF) };
- 
-+static const unsigned int hdmi_cec_ao_pins[] = { PIN(GPIOAO_12, AO_OFF) };
-+
- static struct meson_pmx_group meson8_cbus_groups[] = {
- 	GPIO_GROUP(GPIOX_0, 0),
- 	GPIO_GROUP(GPIOX_1, 0),
-@@ -769,6 +771,8 @@ static struct meson_pmx_group meson8_aobus_groups[] = {
- 	GROUP(i2s_ao_clk_out_ao,	0,	29),
- 	GROUP(i2s_lr_clk_out_ao,	0,	28),
- 	GROUP(i2s_out_ch01_ao,		0,	27),
-+
-+	GROUP(hdmi_cec_ao,		0,	17),
- };
- 
- static const char * const gpio_groups[] = {
-@@ -985,6 +989,10 @@ static const char * const i2s_ao_groups[] = {
- 	"i2s_out_ch01_ao"
- };
- 
-+static const char * const hdmi_cec_ao_groups[] = {
-+	"hdmi_cec_ao"
-+};
-+
- static struct meson_pmx_func meson8_cbus_functions[] = {
- 	FUNCTION(gpio),
- 	FUNCTION(sd_a),
-@@ -1029,6 +1037,7 @@ static struct meson_pmx_func meson8_aobus_functions[] = {
- 	FUNCTION(i2c_mst_ao),
- 	FUNCTION(pwm_f_ao),
- 	FUNCTION(i2s_ao),
-+	FUNCTION(hdmi_cec_ao),
- };
- 
- static struct meson_bank meson8_cbus_banks[] = {
--- 
-2.12.2
+Here you talk about static const, but in the code below the const is missing.
+
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/iio/adc/meson_saradc.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/meson_saradc.c
+> b/drivers/iio/adc/meson_saradc.c
+> index dd4190b50df6..1cb5df306001 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -834,17 +834,17 @@ static const struct iio_info meson_sar_adc_iio_info
+> = {
+>  	.driver_module = THIS_MODULE,
+>  };
+> 
+> -struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+> +static struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+>  	.resolution = 10,
+>  	.name = "meson-gxbb-saradc",
+>  };
+> 
+> -struct meson_sar_adc_data meson_sar_adc_gxl_data = {
+> +static struct meson_sar_adc_data meson_sar_adc_gxl_data = {
+>  	.resolution = 12,
+>  	.name = "meson-gxl-saradc",
+>  };
+> 
+> -struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+> +static struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+>  	.resolution = 12,
+>  	.name = "meson-gxm-saradc",
+>  };
+> --
+> 2.12.2
+> 
