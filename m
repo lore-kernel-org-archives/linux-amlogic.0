@@ -1,169 +1,54 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  6 May 2017 15:49:29 +0200
-Subject: [PATCH v4 3/3] iio: adc: meson-saradc: add Meson8b SoC compatibility
-In-Reply-To: <20170506134929.31190-1-martin.blumenstingl@googlemail.com>
-References: <20170506134929.31190-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170506134929.31190-4-martin.blumenstingl@googlemail.com>
+Date: Sat,  6 May 2017 18:57:47 +0200
+Subject: [PATCH v2 0/4] Meson8 pinctrl updates (PWM, I2S, SPDIF, AO pins)
+In-Reply-To: <20170504184932.5372-1-martin.blumenstingl@googlemail.com>
+References: <20170504184932.5372-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170506165751.12442-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Meson GX SoCs however use some magic bits to prevent simultaneous (=
-conflicting, because only consumer should use the FIFO buffer with the
-ADC results) usage by the Linux kernel and the bootloader (the BL30
-bootloader uses the SAR ADC to read the CPU temperature).
-This patch changes guards all BL30 functionality so it is skipped on
-SoCs which don't have it. Since the hardware itself doesn't know whether
-BL30 is available the internal meson_sar_adc_data is extended so this
-information can be provided per of_device_id.data inside the driver.
+This adds a bunch of missing pins to the Meson8 pinctrl driver.
+The full pinctrl register documentation can be found in a file called
+"m8_gpio.csv" which is part of older Amlogic GPL kernel releases (one
+example is the GPL kernel source of the Odroid-C1, see [0]).
 
-Additionally the clocks "adc_clk" and "adc_sel" are not provided by the
-clock-controller itself. "adc_sel" is not available at all. "adc_clk"
-is provided by the SAR ADC IP block itself on Meson8b (and earlier).
-This is already supported by the meson_saradc driver.
+To sum it up, this series adds:
+- all pins with PWM function (PWM_A, PWM_B, PWM_C, PWM_D, PWM_E and PWM_F)
+- I2S input and output
+- SPDIF input and output
+- IR remote output ("IR blaster")
+- HDMI CEC in the AO domain
 
-Finally this introduces new of_device_ids for the Meson8 and Meson8b
-SoCs so the driver can be wired up in the corresponding DT.
+This series does NOT add:
+- PWM_VS (exposed on a lot of pins, as these cannot be driven by the PWM
+  controllers/pwm-meson driver - these seem to be used for the backlight?)
+- UART_TX_AO_A and UART_RX_AO_A on CARD_4 and CARD_5 (I'm not sure why
+  there is AO functionality on non-AO pins)
+- I2C_SDA_A and I2C_SCK_A on GPIOZ_9/GPIOZ_10 and GPIOZ_11/GPIOZ_12
+- CLK_24M_OUT on GPIOZ_6 and CLK_32K_INCLK_32K_OUT on GPIOAO_6 as we don't
+  have a driver (or documentation) how to configure the clock rate for
+  these pins
+- all pins for which I don't know the actual purpose (isp_led_en1 and
+  isp_led_en2, all TSout pins, all TSin pins, all DVP pins, all TCON pins)
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/iio/adc/meson_saradc.c | 80 +++++++++++++++++++++++++++++-------------
- 1 file changed, 56 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 2f6fec995264..81cd39a57fe3 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -220,6 +220,7 @@ enum meson_sar_adc_chan7_mux_sel {
- };
- 
- struct meson_sar_adc_data {
-+	bool					has_bl30_integration;
- 	unsigned int				resolution;
- 	const char				*name;
- };
-@@ -437,19 +438,24 @@ static int meson_sar_adc_lock(struct iio_dev *indio_dev)
- 
- 	mutex_lock(&indio_dev->mlock);
- 
--	/* prevent BL30 from using the SAR ADC while we are using it */
--	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
--			   MESON_SAR_ADC_DELAY_KERNEL_BUSY,
--			   MESON_SAR_ADC_DELAY_KERNEL_BUSY);
--
--	/* wait until BL30 releases it's lock (so we can use the SAR ADC) */
--	do {
--		udelay(1);
--		regmap_read(priv->regmap, MESON_SAR_ADC_DELAY, &val);
--	} while (val & MESON_SAR_ADC_DELAY_BL30_BUSY && timeout--);
--
--	if (timeout < 0)
--		return -ETIMEDOUT;
-+	if (priv->data->has_bl30_integration) {
-+		/* prevent BL30 from using the SAR ADC while we are using it */
-+		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
-+				MESON_SAR_ADC_DELAY_KERNEL_BUSY,
-+				MESON_SAR_ADC_DELAY_KERNEL_BUSY);
-+
-+		/*
-+		 * wait until BL30 releases it's lock (so we can use the SAR
-+		 * ADC)
-+		 */
-+		do {
-+			udelay(1);
-+			regmap_read(priv->regmap, MESON_SAR_ADC_DELAY, &val);
-+		} while (val & MESON_SAR_ADC_DELAY_BL30_BUSY && timeout--);
-+
-+		if (timeout < 0)
-+			return -ETIMEDOUT;
-+	}
- 
- 	return 0;
- }
-@@ -458,9 +464,10 @@ static void meson_sar_adc_unlock(struct iio_dev *indio_dev)
- {
- 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
- 
--	/* allow BL30 to use the SAR ADC again */
--	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
--			   MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
-+	if (priv->data->has_bl30_integration)
-+		/* allow BL30 to use the SAR ADC again */
-+		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELAY,
-+				MESON_SAR_ADC_DELAY_KERNEL_BUSY, 0);
- 
- 	mutex_unlock(&indio_dev->mlock);
- }
-@@ -614,14 +621,16 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
- 	 */
- 	meson_sar_adc_set_chan7_mux(indio_dev, CHAN7_MUX_CH7_INPUT);
- 
--	/*
--	 * leave sampling delay and the input clocks as configured by BL30 to
--	 * make sure BL30 gets the values it expects when reading the
--	 * temperature sensor.
--	 */
--	regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
--	if (regval & MESON_SAR_ADC_REG3_BL30_INITIALIZED)
--		return 0;
-+	if (priv->data->has_bl30_integration) {
-+		/*
-+		 * leave sampling delay and the input clocks as configured by
-+		 * BL30 to make sure BL30 gets the values it expects when
-+		 * reading the temperature sensor.
-+		 */
-+		regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
-+		if (regval & MESON_SAR_ADC_REG3_BL30_INITIALIZED)
-+			return 0;
-+	}
- 
- 	meson_sar_adc_stop_sample_engine(indio_dev);
- 
-@@ -834,23 +843,46 @@ static const struct iio_info meson_sar_adc_iio_info = {
- 	.driver_module = THIS_MODULE,
- };
- 
-+static const struct meson_sar_adc_data meson_sar_adc_meson8_data = {
-+	.has_bl30_integration = false,
-+	.resolution = 10,
-+	.name = "meson-meson8-saradc",
-+};
-+
-+static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
-+	.has_bl30_integration = false,
-+	.resolution = 10,
-+	.name = "meson-meson8b-saradc",
-+};
-+
- static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
-+	.has_bl30_integration = true,
- 	.resolution = 10,
- 	.name = "meson-gxbb-saradc",
- };
- 
- static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
-+	.has_bl30_integration = true,
- 	.resolution = 12,
- 	.name = "meson-gxl-saradc",
- };
- 
- static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
-+	.has_bl30_integration = true,
- 	.resolution = 12,
- 	.name = "meson-gxm-saradc",
- };
- 
- static const struct of_device_id meson_sar_adc_of_match[] = {
- 	{
-+		.compatible = "amlogic,meson8-saradc",
-+		.data = &meson_sar_adc_meson8_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson8b-saradc",
-+		.data = &meson_sar_adc_meson8b_data,
-+	},
-+	{
- 		.compatible = "amlogic,meson-gxbb-saradc",
- 		.data = &meson_sar_adc_gxbb_data,
- 	}, {
+Changes since v1:
+- fixed a typo in the subject of patch #1 (which said meson8b instead of
+  meson8)
+- fixed a typo in the pwm_f_ao_groups definition, it referenced a pin
+  with the name "pwm_f", however that pin is actually called "pwm_f_ao"
+
+
+[0] https://github.com/hardkernel/linux/blob/d1342c45452ebafb4903557f0c909f4517c90934/arch/arm/mach-meson8/tool/m8_gpio.csv
+
+Martin Blumenstingl (4):
+  pinctrl: meson: meson8: add the PWM pins
+  pinctrl: meson: meson8: add support for the I2S and SPDIF pins
+  pinctrl: meson: meson8: add support for the AO remote output pin
+  pinctrl: meson: meson8: add the AO HDMI CEC pin
+
+ drivers/pinctrl/meson/pinctrl-meson8.c | 127 ++++++++++++++++++++++++++++++++-
+ 1 file changed, 126 insertions(+), 1 deletion(-)
+
 -- 
 2.12.2
