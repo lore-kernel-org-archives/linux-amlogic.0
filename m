@@ -1,67 +1,31 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sun, 7 May 2017 18:34:20 +0200
-Subject: [PATCH 4/5] pintrl: meson: add DT node for GPIO IRQ on Meson 8 / 8b
-In-Reply-To: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
-References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
-Message-ID: <da407841-43cc-8797-2289-2bda7474576f@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 7 May 2017 18:38:51 +0200
+Subject: Testing.
+In-Reply-To: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
+References: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
+Message-ID: <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the DT node for GPIO IRQ support on AMlogic Meson 8 and 8b.
+Hi Oleg,
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- arch/arm/boot/dts/meson8.dtsi  | 13 +++++++++++++
- arch/arm/boot/dts/meson8b.dtsi | 13 +++++++++++++
- 2 files changed, 26 insertions(+)
+On Tue, May 2, 2017 at 8:37 AM, Oleg <balbes-150@yandex.ru> wrote:
+> Hi
+> I want to help the platform support Amlogic (S8xx\S9xxx) on the new kernel.
+> I have a few different model boards with the Amlogic S8xx\S9xxx with a
+> connected console UART \ SSH.
+> I can help with testing variants of the kernel on these boards.
+> In what form can I help the project ?
+I am currently trying to improve support for the older (32-bit) Meson SoCs.
+Unfortunately I only have a device with S812 (Meson8m2) - do you have
+any boards with Meson8 (S802) or Meson8b (S805) SoC? we could team up
+and add mainline support for your boards
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index ebc763ea..bf76a120 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -91,6 +91,19 @@
- 		clock-frequency = <141666666>;
- 	};
- 
-+	gpio_irq at c1109880 {
-+		compatible = "amlogic,meson-gpio-interrupt", "syscon";
-+		reg = <0xc1109880 0x10>;
-+		interrupts = <GIC_SPI 64 IRQ_TYPE_NONE>,
-+			     <GIC_SPI 65 IRQ_TYPE_NONE>,
-+			     <GIC_SPI 66 IRQ_TYPE_NONE>,
-+			     <GIC_SPI 67 IRQ_TYPE_NONE>,
-+			     <GIC_SPI 68 IRQ_TYPE_NONE>,
-+			     <GIC_SPI 69 IRQ_TYPE_NONE>,
-+			     <GIC_SPI 70 IRQ_TYPE_NONE>,
-+			     <GIC_SPI 71 IRQ_TYPE_NONE>;
-+	};
-+
- 	pinctrl_cbus: pinctrl at c1109880 {
- 		compatible = "amlogic,meson8-cbus-pinctrl";
- 		reg = <0xc1109880 0x10>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 828aa49c..b5a92461 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -183,6 +183,19 @@
- 			status = "disabled";
- 		};
- 
-+		gpio_irq at c1109880 {
-+			compatible = "amlogic,meson-gpio-interrupt", "syscon";
-+			reg = <0xc1109880 0x10>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_NONE>,
-+				     <GIC_SPI 65 IRQ_TYPE_NONE>,
-+				     <GIC_SPI 66 IRQ_TYPE_NONE>,
-+				     <GIC_SPI 67 IRQ_TYPE_NONE>,
-+				     <GIC_SPI 68 IRQ_TYPE_NONE>,
-+				     <GIC_SPI 69 IRQ_TYPE_NONE>,
-+				     <GIC_SPI 70 IRQ_TYPE_NONE>,
-+				     <GIC_SPI 71 IRQ_TYPE_NONE>;
-+		};
-+
- 		pinctrl_cbus: pinctrl at c1109880 {
- 			compatible = "amlogic,meson8b-cbus-pinctrl";
- 			reg = <0xc1109880 0x10>;
--- 
-2.12.2
+current status on my Meson8m2 device is:
+- USB works (I only tested host mode)
+- SD card can be read and written
+- ethernet (my device has 10/100Mbit/s only) works
+
+
+Regards,
+Martin
