@@ -1,61 +1,56 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 7 May 2017 20:21:31 +0200
-Subject: ARM Power Firmware / "APPF"
-Message-ID: <CAFBinCCDC=ZDBrqMo37jV32c2vE0mMvSEsEXC7SJDotHFdV0nQ@mail.gmail.com>
+From: balbes-150@yandex.ru (Oleg)
+Date: Sun, 7 May 2017 21:55:42 +0300
+Subject: Testing.
+In-Reply-To: <CAFBinCDC9XwDa1NNiKQKp49GJ-WazS_iZFKkV4TAYo9ZnhPBcg@mail.gmail.com>
+References: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
+ <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
+ <aed4bf63-cba2-cc63-d834-d0acf3da35d3@yandex.ru>
+ <CAFBinCDC9XwDa1NNiKQKp49GJ-WazS_iZFKkV4TAYo9ZnhPBcg@mail.gmail.com>
+Message-ID: <9558d2a8-9f9f-0c65-0bab-aeb06a22a17f@yandex.ru>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello,
 
-recently I've been looking into the older-gen Amlogic Meson SoCs.
-while looking at the suspend code from the vendor GPL kernel sources I
-found something interesting:
-these SoCs (Meson6, Meson8, Meson8b and Meson8m2) seem to use the ARM
-Power Firmware, also called "APPF"
-
-there's not much information about this on the internet.
-however, the Amlogic u-boot GPL sources come with documentation for this: [0]
-
-Amlogic seems to use APPF in case "Trustzone" is disabled (see [1]).
-the actual invocation to APPF during suspend can be found here [2] for
-non-Trustzone kernels, and here [3] for kernels with Trustzone enabled
-(in the latter case a SMC is used)
-
-from what I understood so far it works like this:
-1. APPF - which is compiled as position independent ELF - is loaded
-into main memory by u-boot, see [4]
-2. u-boot initializes APPF (also part of [4])
-3. kernel boots and should not modify this memory-region (reading and
-executing is fine)
-4. kernel initializes APPF by calling appf_runtime_call with function
-APPF_INITIALIZE (this is done by simply jumping to the memory from the
-APPF ELF -> this lands us here: [5])
-5. appf_runtime_call is invoked with function APPF_POWER_DOWN_CPU ->
-this blocks until the system is woken up
-
-so far this sounds pretty generic and does not contain (much) Amlogic
-specific code.
-there is a second (Amlogic specific) part which is involved in system
-suspend: arc_power firmware - this seems to be executed on an ARC core
-embedded in the Amlogic SoCs using the SRAM instead of DRAM (as the
-latter is powered down / in self-refresh mode). sources for the
-arc_power firmware can be found here: [6]
-
-onto the actual question(s):
-- are there any other SoC vendors which use APPF other than Amlogic?
-- is there anything else I should know about this "feature"?
-- is there a good reason why I should not try to implement mainline
-support for this?
+> is the .dtb (or .dts) of your device available in your github repo [0]?
+> also please note that you need to change the bootargs in u-boot before
+> you can boot a mainline kernel (see also [1]): setenv bootargs
+> "console=ttyAML0,115200" (without this your serial console won't work)
+>
+>
+> Regards,
+> Martin
+>
+> [0] https://github.com/150balbes/Amlogic_s905
+> [1] http://linux-meson.com/doku.php?id=start#bit_socs_meson8b_s805_or_older
+I use the kernel 3.14.29 these dts .
+For my model s812
 
 
-Regards,
-Martin
+-------------- next part --------------
 
 
-[0] https://github.com/endlessm/u-boot-meson/blob/3286dd744d2b33a228f7f7f82109fd5fd9c8471e/arch/arm/cpu/aml_meson/m8/firmware/appf/ARM%20Firmware%20Specification.doc?raw=true
-[1] https://github.com/endlessm/linux-meson/blob/9bddb0a81b9f7de9ee099bd578aaef3408b66d94/arch/arm/mach-meson8/pm.c#L269
-[2] https://github.com/endlessm/linux-meson/blob/c173f4653186870f08dc9131b5d82ef4ab4151e1/arch/arm/mach-meson8/power_suspend.c#L99
-[3] https://github.com/endlessm/linux-meson/blob/c173f4653186870f08dc9131b5d82ef4ab4151e1/arch/arm/mach-meson8/meson-smc.S#L125
-[4] https://github.com/endlessm/u-boot-meson/blob/3286dd744d2b33a228f7f7f82109fd5fd9c8471e/arch/arm/cpu/aml_meson/m8/firmwareld.c
-[5] https://github.com/endlessm/u-boot-meson/blob/3286dd744d2b33a228f7f7f82109fd5fd9c8471e/arch/arm/cpu/aml_meson/m8/firmware/appf/os_api.c#L40
-[6] https://github.com/endlessm/u-boot-meson/tree/3286dd744d2b33a228f7f7f82109fd5fd9c8471e/arch/arm/cpu/aml_meson/m8/firmware/arc_power
+meson8m2_n200_2G_1000.dts
+
+https://github.com/150balbes/Amlogic_s8xx-kernel/tree/S812/arch/arm/boot/dts
+
+
+and s805   2 models.
+
+meson8b_i5.dts
+meson8b_hd180.dts
+
+https://github.com/150balbes/Amlogic_s8xx-kernel/tree/S805/arch/arm/boot/dts
+
+This is the source test file, which is obtained when compiling the executable script s805_autoscript (used in multi-boot mode), 
+which sets the required variables and performs the automatic startup of the system from removable media when testing. 
+Internal firmware remains unchanged, this allows any non-trained user with no risk to test any system.
+
+boot-vegas812_AM.cmd
+
+https://github.com/150balbes/lib/tree/master/config/bootscripts
+
+Perhaps You will be more clear what is happening on the logs from the console UART while trying to start at s812 and s805.
+
+https://yadi.sk/i/rhJQe_qi3HpNQr
+
+https://yadi.sk/i/czHlGCyt3HpNQD
