@@ -1,68 +1,29 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 7 May 2017 22:25:07 +0200
-Subject: [RFC 2/2] mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8
- and Meson8b SoCs
-In-Reply-To: <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
-References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
- <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCDw2xhfgE69jhxAqExaOsKv+Q1VGXAJaiSgvQMFQQJwFw@mail.gmail.com>
+From: balbes-150@yandex.ru (Oleg)
+Date: Sun, 7 May 2017 23:44:24 +0300
+Subject: Testing.
+In-Reply-To: <CAFBinCA1A5K372F7_BuwNnZFvK+RwbQyWp4yYVomhW7Edu7HJA@mail.gmail.com>
+References: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
+ <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
+ <aed4bf63-cba2-cc63-d834-d0acf3da35d3@yandex.ru>
+ <CAFBinCDC9XwDa1NNiKQKp49GJ-WazS_iZFKkV4TAYo9ZnhPBcg@mail.gmail.com>
+ <e7eb7d12-8fa8-5507-5d7b-53ef9ce3e300@yandex.ru>
+ <CAFBinCDk+fFhTd=wx2k7mzr4Xh8NPQ15TTh+edbSdgtfLRwOEw@mail.gmail.com>
+ <dd2f16b1-a9a1-4bc5-a694-1f64907d4669@yandex.ru>
+ <CAFBinCA1A5K372F7_BuwNnZFvK+RwbQyWp4yYVomhW7Edu7HJA@mail.gmail.com>
+Message-ID: <dd90255e-0073-9988-de70-7e2d2bb0c00c@yandex.ru>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, May 6, 2017 at 7:18 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> From: Carlo Caione <carlo@endlessm.com>
->
-> Add a driver for the SDIO/MMC host found on the Amlogic Meson SoCs. This
-> is an MMC controller which provides an interface between the application
-> processor and various memory cards. It supports the SD specification
-> v2.0 and the eMMC specification v4.41.
->
-> The controller provides an internal "mux" which allows connecting up to
-> three MMC devices to it. Only one device can be used at a time though
-> since the registers are shared across all devices. The driver takes care
-> of synchronizing access (similar to the dw_mmc driver).
-> The maximum supported bus-width is 4-bits.
->
-> Amlogic's GPL kernel sources call the corresponding driver "aml_sdio" to
-> differentiate it from the other MMC controller in (at least the Meson8
-> and Meson8b) the SoCs (they call the other drivers aml_sdhc and
-> aml_sdhc_m8, which seem to support a bus-width of up to 8-bits).
->
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/mmc/host/Kconfig         |  12 +
->  drivers/mmc/host/Makefile        |   1 +
->  drivers/mmc/host/meson-mx-sdio.c | 978 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 991 insertions(+)
->  create mode 100644 drivers/mmc/host/meson-mx-sdio.c
->
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index a638cd0d80be..c557482ae327 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -343,6 +343,18 @@ config MMC_MESON_GX
->
->           If you have a controller with this interface, say Y here.
->
-> +config MMC_MESON_MX_SDIO
-> +       tristate "Amlogic Meson6/Meson8/Meson8b SD/MMC Host Controller support"
-> +       depends on ARCH_MESON || COMPILE_TEST
-> +       depends on HAS_DMA
-> +       depends on OF
-just got an email from the kbuild test robot reminding me that I
-missed a COMMON_CLK dependency here. not a big deal - I'll fix this in
-the next version
 
-> +       help
-> +         This selects support for the SD/MMC Host Controller on
-> +         Amlogic Meson6, Meson8 and Meson8b SoCs.
-> +
-> +         If you have a controller with this interface, say Y or M here.
-> +         If unsure, say N.
-> +
->  config MMC_MOXART
->         tristate "MOXART SD/MMC Host Controller support"
->         depends on ARCH_MOXART && MMC
-[snip]
+> perfect, thank you already for testing this!
+> please note that (typically) I have limited time during the week - so
+> I may not reply before next weekend
+>
+> good luck with testing!
+Assembled a new test image with the meson 
+branch-mx-integration-4.12-20170507 ,
+included in the config file the option CONFIG_MMC_MESON_MX_SDIO=y and 
+CONFIG_PHY_MESON8B_USB2=y .
+Tried to run from SD card new version, yet the result is the same as 
+before. I do not consider ?
+What compiler is better to use 4.9.4 or 6.3.1 ?
