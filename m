@@ -1,33 +1,68 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 7 May 2017 22:22:11 +0200
-Subject: Testing.
-In-Reply-To: <dd2f16b1-a9a1-4bc5-a694-1f64907d4669@yandex.ru>
-References: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
- <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
- <aed4bf63-cba2-cc63-d834-d0acf3da35d3@yandex.ru>
- <CAFBinCDC9XwDa1NNiKQKp49GJ-WazS_iZFKkV4TAYo9ZnhPBcg@mail.gmail.com>
- <e7eb7d12-8fa8-5507-5d7b-53ef9ce3e300@yandex.ru>
- <CAFBinCDk+fFhTd=wx2k7mzr4Xh8NPQ15TTh+edbSdgtfLRwOEw@mail.gmail.com>
- <dd2f16b1-a9a1-4bc5-a694-1f64907d4669@yandex.ru>
-Message-ID: <CAFBinCA1A5K372F7_BuwNnZFvK+RwbQyWp4yYVomhW7Edu7HJA@mail.gmail.com>
+Date: Sun, 7 May 2017 22:25:07 +0200
+Subject: [RFC 2/2] mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8
+ and Meson8b SoCs
+In-Reply-To: <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+ <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCDw2xhfgE69jhxAqExaOsKv+Q1VGXAJaiSgvQMFQQJwFw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, May 7, 2017 at 9:09 PM, Oleg <balbes-150@yandex.ru> wrote:
+On Sat, May 6, 2017 at 7:18 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> From: Carlo Caione <carlo@endlessm.com>
 >
+> Add a driver for the SDIO/MMC host found on the Amlogic Meson SoCs. This
+> is an MMC controller which provides an interface between the application
+> processor and various memory cards. It supports the SD specification
+> v2.0 and the eMMC specification v4.41.
 >
->> I forgot a patch which enables CONFIG_MMC_MESON_MX_SDIO on the
->> multi_v7_defconfig. I just pushed an update: [0] (but you can simply
->> enable that symbol in your .config - just make sure you set it to =y).
->> same with the USB2 PHY driver (CONFIG_PHY_MESON8B_USB2)
+> The controller provides an internal "mux" which allows connecting up to
+> three MMC devices to it. Only one device can be used at a time though
+> since the registers are shared across all devices. The driver takes care
+> of synchronizing access (similar to the dw_mmc driver).
+> The maximum supported bus-width is 4-bits.
 >
-> Thanks for the explanation, tomorrow I'll check it out on their models.
-perfect, thank you already for testing this!
-please note that (typically) I have limited time during the week - so
-I may not reply before next weekend
+> Amlogic's GPL kernel sources call the corresponding driver "aml_sdio" to
+> differentiate it from the other MMC controller in (at least the Meson8
+> and Meson8b) the SoCs (they call the other drivers aml_sdhc and
+> aml_sdhc_m8, which seem to support a bus-width of up to 8-bits).
+>
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/mmc/host/Kconfig         |  12 +
+>  drivers/mmc/host/Makefile        |   1 +
+>  drivers/mmc/host/meson-mx-sdio.c | 978 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 991 insertions(+)
+>  create mode 100644 drivers/mmc/host/meson-mx-sdio.c
+>
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index a638cd0d80be..c557482ae327 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -343,6 +343,18 @@ config MMC_MESON_GX
+>
+>           If you have a controller with this interface, say Y here.
+>
+> +config MMC_MESON_MX_SDIO
+> +       tristate "Amlogic Meson6/Meson8/Meson8b SD/MMC Host Controller support"
+> +       depends on ARCH_MESON || COMPILE_TEST
+> +       depends on HAS_DMA
+> +       depends on OF
+just got an email from the kbuild test robot reminding me that I
+missed a COMMON_CLK dependency here. not a big deal - I'll fix this in
+the next version
 
-good luck with testing!
-
-
-Regards,
-Martin
+> +       help
+> +         This selects support for the SD/MMC Host Controller on
+> +         Amlogic Meson6, Meson8 and Meson8b SoCs.
+> +
+> +         If you have a controller with this interface, say Y or M here.
+> +         If unsure, say N.
+> +
+>  config MMC_MOXART
+>         tristate "MOXART SD/MMC Host Controller support"
+>         depends on ARCH_MOXART && MMC
+[snip]
