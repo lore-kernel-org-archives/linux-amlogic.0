@@ -1,27 +1,49 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Mon, 8 May 2017 16:15:20 +0300
-Subject: [ANN] meson-tools v0.1 released
-In-Reply-To: <e520f7e9-5d8a-3c50-5430-45a38f98ea5e@suse.de>
-References: <e520f7e9-5d8a-3c50-5430-45a38f98ea5e@suse.de>
-Message-ID: <06c1fd56-9bfa-ea93-6c64-94a374567b93@yandex.ru>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 8 May 2017 22:02:11 +0200
+Subject: [PATCH] phy: meson8b-usb2: add support for the USB PHY on Meson8
+ SoCs
+In-Reply-To: <950abc53-df2d-93dd-68d1-e9868445bb93@ti.com>
+References: <20170506173625.19501-1-martin.blumenstingl@googlemail.com>
+ <950abc53-df2d-93dd-68d1-e9868445bb93@ti.com>
+Message-ID: <CAFBinCDed096pnD-mm+Y1iRXfZgBkZPgVjH537cUsZ+qd6g-2g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On Mon, May 8, 2017 at 2:10 PM, Kishon Vijay Abraham I <kishon@ti.com> wrote:
+> Hi,
+>
+> On Saturday 06 May 2017 11:06 PM, Martin Blumenstingl wrote:
+>> Meson8 uses the same USB PHY as found on the Meson8b and GXBB SoCs. Add
+>> a new of_device_id to indicate this. Also update the documentation
+>> (devicetree binding, Kconfig and MODULE_DESCRIPTION) accordingly.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> ---
+>>  Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt | 3 ++-
+>>  drivers/phy/Kconfig                                        | 4 ++--
+>>  drivers/phy/phy-meson8b-usb2.c                             | 5 +++--
+>>  3 files changed, 7 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt b/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+>> index 5fa73b9d20f5..d81d73aea608 100644
+>> --- a/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+>> +++ b/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+>> @@ -1,7 +1,8 @@
+>> -* Amlogic Meson8b and GXBB USB2 PHY
+>> +* Amlogic Meson8, Meson8b and GXBB USB2 PHY
+>>
+>>  Required properties:
+>>  - compatible:        Depending on the platform this should be one of:
+>> +     "amlogic,meson8-usb2-phy"
+>>       "amlogic,meson8b-usb2-phy"
+>>       "amlogic,meson-gxbb-usb2-phy"
+>
+> Please split the dt binding documentation into a separate patch.
+OK, however I guess I'll wait for a few days until that restructuring
+patch is merged
 
-> Hello,
->
-> I have just made an initial v0.1 release of my meson-tools project:
->
-> https://github.com/afaerber/meson-tools
->
-> In particular the amlbootsig tool has successfully been used in the
-> openSUSE Open Build Service instance to create bootable images for the
-> Amlogic S905 based Hardkernel Odroid-C2, using mainline U-Boot as bl33.
->
-> Usage and known limitations are described in its README.md.
->
-> Regards,
-> Andreas
->
-Your tool is only to create a version of u-boot for Odroid C2
-or can try to use for all devices of the platform s905 ?
+thanks for reviewing this so quick!
+
+
+Regards,
+Martin
