@@ -1,7 +1,7 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Mon, 8 May 2017 12:42:02 +0300
-Subject: Testing.
-In-Reply-To: <CAFBinCBUhU8N7bRpF6EsMSe8YARzYEEMgsET+CAc9-7y3RntRw@mail.gmail.com>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Mon, 8 May 2017 13:47:19 +0200
+Subject: S805/S812 Device Tree upstreaming (was: Testing.)
+In-Reply-To: <cdb8ce4a-a3a9-f999-67b1-ddb712df250c@yandex.ru>
 References: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
  <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
  <aed4bf63-cba2-cc63-d834-d0acf3da35d3@yandex.ru>
@@ -16,35 +16,39 @@ References: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
  <CAFBinCAktR94_3diH1NqAL4uXbLkL_cThaj7WtXgODe0LMQ88A@mail.gmail.com>
  <c5c0a942-af07-9298-ac39-f5cecc8f8ff0@yandex.ru>
  <CAFBinCBUhU8N7bRpF6EsMSe8YARzYEEMgsET+CAc9-7y3RntRw@mail.gmail.com>
-Message-ID: <cdb8ce4a-a3a9-f999-67b1-ddb712df250c@yandex.ru>
+ <cdb8ce4a-a3a9-f999-67b1-ddb712df250c@yandex.ru>
+Message-ID: <26a939cb-ae9c-36ec-fbc7-8735c3826862@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi,
 
-> adding the configuration should be enough - Neil did a good job with
-> the actual driver code (it's working fine for me :))
-I added to config this variable. This kernel changed the behavior.
-Now there is a reaction to change :)
+Am 08.05.2017 um 11:42 schrieb Oleg:
+>> I had a quick look at the .dts files - on my Akaso M8S GPIOZ_1 is not
+>> connected anywhere (at least toggling the GPIO doesn't change anything
+>> in terms of USB VBUS signal).
+>> however, your board has: gpio-vbus-power = "GPIOZ_1";
+>> it's very likely that the GL852 hub is powered off by default and is
+>> powered on by enabling GPIOZ_1
+>> but since my .dts is not enabling GPIOZ_1 the hub stays powered off
+>> and USB is not working for you
+>> (in other words: this will require additional changes in the .dts to
+>> make it work)
+> I found dtb to kernel 3.14 the string
+> 
+> gpio-vbus-power = "GPIOZ_1";
+> 
+> You can simply copy it to the unit or it needs to change according to
+> certain rules ?
 
-https://yadi.sk/i/rzF14Hx03HqeRh
+You need to read the latest bindings documentation, for example:
 
-> I had a quick look at the .dts files - on my Akaso M8S GPIOZ_1 is not
-> connected anywhere (at least toggling the GPIO doesn't change anything
-> in terms of USB VBUS signal).
-> however, your board has: gpio-vbus-power = "GPIOZ_1";
-> it's very likely that the GL852 hub is powered off by default and is
-> powered on by enabling GPIOZ_1
-> but since my .dts is not enabling GPIOZ_1 the hub stays powered off
-> and USB is not working for you
-> (in other words: this will require additional changes in the .dts to
-> make it work)
-I found dtb to kernel 3.14 the string
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings
 
-gpio-vbus-power = "GPIOZ_1";
+Regards,
+Andreas
 
-You can simply copy it to the unit or it needs to change according to 
-certain rules ?
-
-&usb0 {
-     status = "okay";
-};
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
