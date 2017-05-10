@@ -1,30 +1,100 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Tue, 9 May 2017 16:14:34 +0300
-Subject: S805/S812 Device Tree upstreaming (was: Testing.)
-In-Reply-To: <CAFBinCA1ga1NAhU+niQFT9xuDCFkyF7XTWmXokmFkwB_bq3OjQ@mail.gmail.com>
-References: <CAFBinCA1ga1NAhU+niQFT9xuDCFkyF7XTWmXokmFkwB_bq3OjQ@mail.gmail.com>
-Message-ID: <7b8efe3d-864e-f160-7dbf-81c2b6fa9607@yandex.ru>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Wed, 10 May 2017 10:44:34 +0200
+Subject: [RFC 0/2] Add support for Meson MX "SDIO" MMC driver
+In-Reply-To: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAPDyKFoYPjB1bjRfFCFT3vuzKgzm6-7L2qgNjxGL392cLDe7uA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On 6 May 2017 at 19:18, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> This is the successor to Carlo Caione's "Add support for Amlogic Meson
+> MMC driver" series (v5) from [0].
+>
+> I would like you to specifically review:
+> - whether I've (ab)used the MMC framework properly (as this is my first
+>   "larger" contribution to an MMC driver)
 
-> strange, I've not seen this crash before.
-> I can try building a kernel myself with your config next weekend - if
-> it works for me then I suspect that it's a GCC issue (you're using the
-> Linaro GCC 4.9.4 - while I'm using standard GCC 6.3.1
-> (arm-none-eabi-gcc from Arch Linux' community repo)
-1. Collected the version of the kernel with gcc linaro 6.3.1 . The 
-result is the same crash.
-2. Gathered option without the option CONFIG_PWM_MESON no longer drop core.
+I take a look soonish.
 
-> you can have a look at the Vega S95 devicetree [0] which enables
-> GPIODV_24 (instead of GPIOZ_1, but that's easy to replace) for USB
-> VBUS. it then passes the regulator to the phy
+> - I think I have improved the locking compared to Carlo's version,
+>   however I'd still like feedback on whether this looks sane now or if I
+>   can improve that even further
+>
+> (notable) changes since Carlo's latest version are:
+> - renamed the driver to meson-mx-sdio (Amlogic's reference kernel calls
+>   the driver "aml_sdio" as there is a second MMC controller in these SoCs
+>   which they call the "SDHC controller"). do the same with our driver to
+
+I don't like to renaming drivers, just because there are a reference
+kernel using a different name.
+
+What's is really the difference between controllers? Why do they have
+two variants?
+
+Can they be managed by the same driver?
+
+>   avoid confusion once we add support for the second controller (which uses
+>   a completely different register layout)
+
+Besides that, do they behave differently in some other way?
+
+> - add support for the internal "mux" in this MMC controller (which allows
+>   connecting up to three devices to the the controller - at the cost of
+>   performance though since the controller can only process one request at
+>   a time). The driver registers a new device for each sub-node, which is
+>   then fed into the MMC framework to allow per-slot configuration using
+>   devicetree (see the example in the documentation)
+
+Unless there really is deployment for more than one slot on some
+boards/SoCs, I would strongly suggest to *not* implement this.
+
+Simply because of overhead and introduced complexity to the driver.
+
+> - use the common clock framework internally for managing the MMC clock
+>   (there is a fixed-factor clock in the controller which takes clk81 as
+>    input and divides it's clock by two and a divider clock which takes
+>    the result from the fixed-factor clock as input)
+> - support the regulators provided by the MMC framework
+> - support for GPIO-based card-detection and read-only-detection through
+>   the MMC framework
+> - use of the <linux/bitfield.h> FIELD_PREP and FIELD_GET macros where it
+>   make sense (and thus the code easier to read)
+> - re-worked locking (based on the locking in dw_mmc as that also provides
+>   multiple "MMC slots")
+
+Lots of changes!
+
+Before even start to review (or someone else), you really need to make
+this review-able.
+
+So, please, one change per patch - and make sure to write good
+changelogs. Then I can start to review.
+
+>
+> tests done so far:
+> - reading an OLD 256MiB SD card (which uses only a 1-bit bus) works fine
+>   (sha1sum of the whole device matches with what I get on my PC's
+>   card-reader)
+> - reading a somewhat more modern class 10 SD card and putting Arch Linux
+>   ARM on it (and using that as root file system)
+> - it successfully detects the RTL8723BS SDIO wifi chip in my device (even
+>   if the SD card is also enabled)
+> - reading a 128MiB file from the SD card while scanning wifi networks on
+>   the RTL8723BS card does not seem to result in any corruption (sha1sum
+>   of the read file seems to match)
+> - read speed of my class 10 SD card: ~15MiB/s
+> - (unfortunately I could NOT test downloading a file over wifi to the SD
+>   card because the RTL8723BS driver refuses to see any wifi networks, but
+>   that might be a problem on the RTL8723BS driver side since I don't get
+>   any error and the driver has just landed a few weeks ago in staging)
 >
 >
-> Regards,
-> Martin
+> [0] http://lists.infradead.org/pipermail/linux-arm-kernel/2016-February/412136.html
 >
->
-> [0] https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi#L67
-Thanks for the info, soon I will check this option.
+
+[...]
+
+Kind regards
+Uffe
