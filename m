@@ -1,422 +1,111 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu, 11 May 2017 12:07:26 -0700
-Subject: [RFC 4/7] clk: add support for clock protection
-In-Reply-To: <20170321183330.26722-5-jbrunet@baylibre.com>
-References: <20170321183330.26722-1-jbrunet@baylibre.com>
- <20170321183330.26722-5-jbrunet@baylibre.com>
-Message-ID: <149452964639.81039.8878077034627473760@resonance>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Thu, 11 May 2017 21:33:49 +0200
+Subject: [PATCH 1/5] pintrl: meson: add interrupts to pinctrl data
+In-Reply-To: <1494518886.2375.15.camel@baylibre.com>
+References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
+ <3b4990ef-bfb4-c62c-f823-431adedc17f1@gmail.com>
+ <CACRpkdYx0j4Sjv8MhXRSuiF1TyW2Ht47r0+G1ga8mXW5LC7c=g@mail.gmail.com>
+ <1494518886.2375.15.camel@baylibre.com>
+Message-ID: <7ed5a88a-43dd-f7ab-2794-48ceb5a62a93@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
-
-Quoting Jerome Brunet (2017-03-21 11:33:27)
-> The patch adds clk_protect and clk_unprotect to the CCF API. These
-> functions allow a consumer to inform the system that the rate of clock is
-> critical to for its operations and it can't tolerate other consumers
-> changing the rate or introducing glitches while the clock is protected.
+Am 11.05.2017 um 18:08 schrieb Jerome Brunet:
+> On Thu, 2017-05-11 at 16:50 +0200, Linus Walleij wrote:
+>> On Sun, May 7, 2017 at 6:34 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>>
+>>> From: Jerome Brunet <jbrunet@baylibre.com>
+>>> Add GPIO interrupt information to pinctrl data. Added to the original
+>>> version from Jerome was data for Meson GXL.
+>>>
+>>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>
+>> So what this does is:
+>>
+>>> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h
+>>> b/drivers/pinctrl/meson/pinctrl-meson.h
+>>> index 1aa871d5..890f296f 100644
+>>> --- a/drivers/pinctrl/meson/pinctrl-meson.h
+>>> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
+>>> @@ -81,6 +81,7 @@ enum meson_reg_type {
+>>>   * @name:      bank name
+>>>   * @first:     first pin of the bank
+>>>   * @last:      last pin of the bank
+>>> + * @irq:       hwirq base number of the bank
+>>>   * @regs:      array of register descriptors
+>>>   *
+>>>   * A bank represents a set of pins controlled by a contiguous set of
+>>> @@ -92,6 +93,8 @@ struct meson_bank {
+>>>         const char *name;
+>>>         unsigned int first;
+>>>         unsigned int last;
+>>> +       int irq_first;
+>>> +       int irq_last;
+>>>         struct meson_reg_desc regs[NUM_REG];
+>>>  };
+>>
+>> ... adds a per-bank parent IRQ.
 > 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-
-I haven't reviewed this yet, but changes to clk.h should also keep
-Russell King in Cc.
-
-Best regards,
-Mike
-
-> ---
->  drivers/clk/clk.c            | 177 ++++++++++++++++++++++++++++++++++++++++---
->  include/linux/clk-provider.h |   1 +
->  include/linux/clk.h          |  29 +++++++
->  3 files changed, 197 insertions(+), 10 deletions(-)
+> Hi Linus,
 > 
-> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> index fa77a1841e0f..69db8cc15063 100644
-> --- a/drivers/clk/clk.c
-> +++ b/drivers/clk/clk.c
-> @@ -60,6 +60,7 @@ struct clk_core {
->         bool                    orphan;
->         unsigned int            enable_count;
->         unsigned int            prepare_count;
-> +       unsigned int            protect_count;
->         unsigned long           min_rate;
->         unsigned long           max_rate;
->         unsigned long           accuracy;
-> @@ -84,6 +85,7 @@ struct clk {
->         const char *con_id;
->         unsigned long min_rate;
->         unsigned long max_rate;
-> +       unsigned long protect_ucount;
->         struct hlist_node clks_node;
->  };
->  
-> @@ -160,6 +162,11 @@ static bool clk_core_is_prepared(struct clk_core *core)
->         return core->ops->is_prepared(core->hw);
->  }
->  
-> +static bool clk_core_is_protected(struct clk_core *core)
-> +{
-> +       return core->protect_count;
-> +}
-> +
->  static bool clk_core_is_enabled(struct clk_core *core)
->  {
->         /*
-> @@ -328,6 +335,11 @@ bool clk_hw_is_prepared(const struct clk_hw *hw)
->         return clk_core_is_prepared(hw->core);
->  }
->  
-> +bool clk_hw_is_protected(const struct clk_hw *hw)
-> +{
-> +       return clk_core_is_protected(hw->core);
-> +}
-> +
->  bool clk_hw_is_enabled(const struct clk_hw *hw)
->  {
->         return clk_core_is_enabled(hw->core);
-> @@ -584,6 +596,89 @@ int clk_prepare(struct clk *clk)
->  }
->  EXPORT_SYMBOL_GPL(clk_prepare);
->  
-> +static void clk_core_unprotect(struct clk_core *core)
-> +{
-> +       lockdep_assert_held(&prepare_lock);
-> +
-> +       if (!core)
-> +               return;
-> +
-> +       if (WARN_ON(core->protect_count == 0))
-> +               return;
-> +
-> +       if (--core->protect_count > 0)
-> +               return;
-> +
-> +       clk_core_unprotect(core->parent);
-> +}
-> +
-> +/**
-> + * clk_unprotect - unprotect a clock source
-> + * @clk: the clk being unprotected
-> + *
-> + * clk_unprotect shall be used when a consumer no longer depends on the clock
-> + * rate and can tolerate glitches. As with clk_unprepare and clk_enable, calls
-> + * to clk_unprotect must be balanced with clk_protect.
-> + * clk_protect may sleep
-> + */
-> +void clk_unprotect(struct clk *clk)
-> +{
-> +       if (!clk)
-> +               return;
-> +
-> +       clk_prepare_lock();
-> +
-> +       if (WARN_ON(clk->protect_ucount <= 0)) {
-> +               /*
-> +                * There is something wrong with this consumer protect count.
-> +                * Stop here before messing with the provider
-> +                */
-> +               clk_prepare_unlock();
-> +               return;
-> +       }
-> +
-> +       clk_core_unprotect(clk->core);
-> +       clk->protect_ucount--;
-> +       clk_prepare_unlock();
-> +}
-> +EXPORT_SYMBOL_GPL(clk_unprotect);
-> +
-> +static void clk_core_protect(struct clk_core *core)
-> +{
-> +       lockdep_assert_held(&prepare_lock);
-> +
-> +       if (!core)
-> +               return;
-> +
-> +       if (core->protect_count == 0)
-> +               clk_core_protect(core->parent);
-> +
-> +       core->protect_count++;
-> +}
-> +
-> +/**
-> + * clk_protect - protect a clock source
-> + * @clk: the clk being protected
-> + *
-> + * clk_protect can be used when a consumer depends on the clock rate and can't
-> + * tolerate any glitches. The consumer protecting the clock can still make
-> + * adjustment to clock, if it is the only one protecting the clock. Other
-> + * consumers can still use the clock but won't be able to adjust the rate or
-> + * reparent the clock while it is protected.
-> + * clk_protect may sleep.
-> + */
-> +void clk_protect(struct clk *clk)
-> +{
-> +       if (!clk)
-> +               return;
-> +
-> +       clk_prepare_lock();
-> +       clk_core_protect(clk->core);
-> +       clk->protect_ucount++;
-> +       clk_prepare_unlock();
-> +}
-> +EXPORT_SYMBOL_GPL(clk_protect);
-> +
->  static void clk_core_disable(struct clk_core *core)
->  {
->         lockdep_assert_held(&enable_lock);
-> @@ -838,7 +933,9 @@ static int clk_core_determine_round(struct clk_core *core,
->  {
->         long rate;
->  
-> -       if (core->ops->determine_rate) {
-> +       if (clk_core_is_protected(core)) {
-> +               req->rate = core->rate;
-> +       } else if (core->ops->determine_rate) {
->                 return core->ops->determine_rate(core->hw, req);
->         } else if (core->ops->round_rate) {
->                 rate = core->ops->round_rate(core->hw, req->rate,
-> @@ -1381,7 +1478,7 @@ static struct clk_core *clk_calc_new_rates(struct clk_core *core,
->                 req.min_rate = min_rate;
->                 req.max_rate = max_rate;
->  
-> -               clk_core_init_rate_req(core, req);
-> +               clk_core_init_rate_req(core, &req);
->  
->                 ret = clk_core_determine_round(core, &req);
->                 if (ret < 0)
-> @@ -1637,8 +1734,14 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
->         /* prevent racing with updates to the clock topology */
->         clk_prepare_lock();
->  
-> +       if (clk->protect_ucount)
-> +               clk_core_unprotect(clk->core);
-> +
->         ret = clk_core_set_rate_nolock(clk->core, rate);
->  
-> +       if (clk->protect_ucount)
-> +               clk_core_protect(clk->core);
-> +
->         clk_prepare_unlock();
->  
->         return ret;
-> @@ -1669,12 +1772,18 @@ int clk_set_rate_range(struct clk *clk, unsigned long min, unsigned long max)
->  
->         clk_prepare_lock();
->  
-> +       if (clk->protect_ucount)
-> +               clk_core_unprotect(clk->core);
-> +
->         if (min != clk->min_rate || max != clk->max_rate) {
->                 clk->min_rate = min;
->                 clk->max_rate = max;
->                 ret = clk_core_set_rate_nolock(clk->core, clk->core->req_rate);
->         }
->  
-> +       if (clk->protect_ucount)
-> +               clk_core_protect(clk->core);
-> +
->         clk_prepare_unlock();
->  
->         return ret;
-> @@ -1815,6 +1924,9 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
->         if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
->                 return -EBUSY;
->  
-> +       if (clk_core_is_protected(core))
-> +               return -EBUSY;
-> +
->         /* try finding the new parent index */
->         if (parent) {
->                 p_index = clk_fetch_parent_index(core, parent);
-> @@ -1878,11 +1990,24 @@ static int clk_core_set_parent_lock(struct clk_core *core,
->   */
->  int clk_set_parent(struct clk *clk, struct clk *parent)
->  {
-> +       int ret;
-> +
->         if (!clk)
->                 return 0;
->  
-> -       return clk_core_set_parent_lock(clk->core,
-> -                                       parent ? parent->core : NULL);
-> +       clk_prepare_lock();
-> +
-> +       if (clk->protect_ucount)
-> +               clk_core_unprotect(clk->core);
-> +
-> +       ret = clk_core_set_parent(clk->core, parent ? parent->core : NULL);
-> +
-> +       if (clk->protect_ucount)
-> +               clk_core_protect(clk->core);
-> +
-> +       clk_prepare_unlock();
-> +
-> +       return ret;
->  }
->  EXPORT_SYMBOL_GPL(clk_set_parent);
->  
-> @@ -1893,7 +2018,10 @@ static int clk_core_set_phase(struct clk_core *core, int degrees)
->         if (!core)
->                 return 0;
->  
-> -       trace_clk_set_phase(clk->core, degrees);
-> +       if (clk_core_is_protected(core))
-> +               return -EBUSY;
-> +
-> +       trace_clk_set_phase(core, degrees);
->  
->         if (core->ops->set_phase)
->                 ret = core->ops->set_phase(core->hw, degrees);
-> @@ -1936,7 +2064,15 @@ int clk_set_phase(struct clk *clk, int degrees)
->                 degrees += 360;
->  
->         clk_prepare_lock();
-> +
-> +       if (clk->protect_ucount)
-> +               clk_core_unprotect(clk->core);
-> +
->         ret = clk_core_set_phase(clk->core, degrees);
-> +
-> +       if (clk->protect_ucount)
-> +               clk_core_protect(clk->core);
-> +
->         clk_prepare_unlock();
->  
->         return ret;
-> @@ -2023,11 +2159,12 @@ static void clk_summary_show_one(struct seq_file *s, struct clk_core *c,
->         if (!c)
->                 return;
->  
-> -       seq_printf(s, "%*s%-*s %11d %12d %11lu %10lu %-3d\n",
-> +       seq_printf(s, "%*s%-*s %11d %12d %12d %11lu %10lu %-3d\n",
->                    level * 3 + 1, "",
->                    30 - level * 3, c->name,
-> -                  c->enable_count, c->prepare_count, clk_core_get_rate(c),
-> -                  clk_core_get_accuracy(c), clk_core_get_phase(c));
-> +                  c->enable_count, c->prepare_count, c->protect_count,
-> +                  clk_core_get_rate(c), clk_core_get_accuracy(c),
-> +                  clk_core_get_phase(c));
->  }
->  
->  static void clk_summary_show_subtree(struct seq_file *s, struct clk_core *c,
-> @@ -2049,8 +2186,8 @@ static int clk_summary_show(struct seq_file *s, void *data)
->         struct clk_core *c;
->         struct hlist_head **lists = (struct hlist_head **)s->private;
->  
-> -       seq_puts(s, "   clock                         enable_cnt  prepare_cnt        rate   accuracy   phase\n");
-> -       seq_puts(s, "----------------------------------------------------------------------------------------\n");
-> +       seq_puts(s, "   clock                         enable_cnt  prepare_cnt  protect_cnt        rate   accuracy   phase\n");
-> +       seq_puts(s, "----------------------------------------------------------------------------------------------------\n");
->  
->         clk_prepare_lock();
->  
-> @@ -2085,6 +2222,7 @@ static void clk_dump_one(struct seq_file *s, struct clk_core *c, int level)
->         seq_printf(s, "\"%s\": { ", c->name);
->         seq_printf(s, "\"enable_count\": %d,", c->enable_count);
->         seq_printf(s, "\"prepare_count\": %d,", c->prepare_count);
-> +       seq_printf(s, "\"protect_count\": %d,", c->protect_count);
->         seq_printf(s, "\"rate\": %lu,", clk_core_get_rate(c));
->         seq_printf(s, "\"accuracy\": %lu,", clk_core_get_accuracy(c));
->         seq_printf(s, "\"phase\": %d", clk_core_get_phase(c));
-> @@ -2191,6 +2329,11 @@ static int clk_debug_create_one(struct clk_core *core, struct dentry *pdentry)
->         if (!d)
->                 goto err_out;
->  
-> +       d = debugfs_create_u32("clk_protect_count", S_IRUGO, core->dentry,
-> +                       (u32 *)&core->protect_count);
-> +       if (!d)
-> +               goto err_out;
-> +
->         d = debugfs_create_u32("clk_notifier_count", S_IRUGO, core->dentry,
->                         (u32 *)&core->notifier_count);
->         if (!d)
-> @@ -2747,6 +2890,11 @@ void clk_unregister(struct clk *clk)
->         if (clk->core->prepare_count)
->                 pr_warn("%s: unregistering prepared clock: %s\n",
->                                         __func__, clk->core->name);
-> +
-> +       if (clk->core->protect_count)
-> +               pr_warn("%s: unregistering protected clock: %s\n",
-> +                                       __func__, clk->core->name);
-> +
->         kref_put(&clk->core->ref, __clk_release);
->  unlock:
->         clk_prepare_unlock();
-> @@ -2905,6 +3053,15 @@ void __clk_put(struct clk *clk)
->  
->         clk_prepare_lock();
->  
-> +       /* Protect count not balanced: warn and sanitize */
-> +       if (clk->protect_ucount) {
-> +               pr_warn("%s: releasing protected clock: %s\n",
-> +                                       __func__, clk->core->name);
-> +
-> +               for (; clk->protect_ucount; clk->protect_ucount--)
-> +                       clk_core_unprotect(clk->core);
-> +       }
-> +
->         hlist_del(&clk->clks_node);
->         if (clk->min_rate > clk->core->req_rate ||
->             clk->max_rate < clk->core->req_rate)
-> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-> index a428aec36ace..705a158d9b8f 100644
-> --- a/include/linux/clk-provider.h
-> +++ b/include/linux/clk-provider.h
-> @@ -739,6 +739,7 @@ unsigned long clk_hw_get_rate(const struct clk_hw *hw);
->  unsigned long __clk_get_flags(struct clk *clk);
->  unsigned long clk_hw_get_flags(const struct clk_hw *hw);
->  bool clk_hw_is_prepared(const struct clk_hw *hw);
-> +bool clk_hw_is_protected(const struct clk_hw *hw);
->  bool clk_hw_is_enabled(const struct clk_hw *hw);
->  bool __clk_is_enabled(struct clk *clk);
->  struct clk *__clk_lookup(const char *name);
-> diff --git a/include/linux/clk.h b/include/linux/clk.h
-> index e9d36b3e49de..90b72ead4411 100644
-> --- a/include/linux/clk.h
-> +++ b/include/linux/clk.h
-> @@ -265,6 +265,30 @@ struct clk *devm_clk_get(struct device *dev, const char *id);
->   */
->  struct clk *devm_get_clk_from_child(struct device *dev,
->                                     struct device_node *np, const char *con_id);
-> +/**
-> + * clk_protect - inform the system when the clock source should be protected.
-> + * @clk: clock source
-> + *
-> + * This function informs the system that the consumer protecting the clock
-> + * depends on the rate of the clock source and can't tolerate any glitches
-> + * introduced by further clock rate change or re-parenting of the clock source.
-> + *
-> + * Must not be called from within atomic context.
-> + */
-> +void clk_protect(struct clk *clk);
-> +
-> +/**
-> + * clk_unprotect - release the protection of the clock source.
-> + * @clk: clock source
-> + *
-> + * This function informs the system that the consumer previously protecting the
-> + * clock source can now deal with other consumer altering the clock source.
-> + *
-> + * The caller must balance the number of protect and unprotect calls.
-> + *
-> + * Must not be called from within atomic context.
-> + */
-> +void clk_unprotect(struct clk *clk);
->  
->  /**
->   * clk_enable - inform the system when the clock source should be running.
-> @@ -460,6 +484,11 @@ static inline void clk_put(struct clk *clk) {}
->  
->  static inline void devm_clk_put(struct device *dev, struct clk *clk) {}
->  
-> +
-> +static inline void clk_protect(struct clk *clk) {}
-> +
-> +static inline void clk_unprotect(struct clk *clk) {}
-> +
->  static inline int clk_enable(struct clk *clk)
->  {
->         return 0;
-> -- 
-> 2.9.3
+> It does not add a per-bank parent IRQ. The meson gpio irq is an IP independent
+> of the gpio/pinctrl subsystem. In a nutshell, we have 8 interrupts on the GIC
+> and we can route the signal of almost any pin of any bank to these parent irqs.
+> The fact that there 1 gpio-irq controller and several gpio controller make the
+> design a bit tricky
+> 
+> We already talked about this IP, here is the discussion :https://patchwork.ozlab
+> s.org/patch/684208/
+> 
+> At the time, the problem was that I was creating the mapping within the
+> gpio_to_irq callback, which is wrong.
+> 
+> irq_first, irq_last were introduced because there is no way to have direct
+> mapping between the gpio number and the hw interrupt number. (details are in our
+> previous discussion). If a more generic solution can be used for this, it would
+> be nice :)
+> 
+> While I think having a irqdomain in the gpio driver and using the
+> request_resources callback to create the mapping in the underlying domain might
+> be a solution to ressouce allocation problem we had, I think the meson-gpio-irq
+> should be implemented has an independent driver because  it is an independent
+> device.
+
+This kind of GPIO IRQ multiplexer doesn't really seem to match any use case
+covered by the GPIO / IRQ subsystems. Especially the needed dynamic mapping
+from the GPIOs to one of the eight GPIO GIC IRQs is tricky.
+
+After Jerome's attempt from last year (using hierarchical IRQ domains) didn't
+make it due to concerns of the maintainers, I decided to go another way.
+I'm not stating at all that this is the right one ..
+
+To re-use existing stuff as far as possible I go with GPIOLIB_IRQCHIP.
+So far I use one irqchip per gpiochip (we have two of them).
+I'll check whether I can use just one irqchip for both gpiochips.
+
+> Eventually, this device should be the parent irq controller of the gpio
+> controller.
+
+I think this is one of the central questions here, whether this device
+can be considered an irq controller.
+It just manages routing of IRQs, so I'd tend to say that the gpio controller
+is the irq controller with the GIC as parent.
+
+> 
+> I not sure that there is a reason for using syscon here, or if it is a good idea
+> to have the data of this controller as globals for the gpio driver ... 
+> 
+> 
+>>
+>> I am just discussing with Thierry that I would like to see some code
+>> in the gpiolib core to deal with this mapping so we don't have to do a
+>> whole lot of custom back mapping between parent IRQs and cascaded
+>> IRQ in every driver that has a multiple-bank concept.
+>>
+>> Please contribute to the discission, see thread subject:
+>> "[PATCH v2] gpio: Add Tegra186 support"
+>>
+>> Yours,
+>> Linus Walleij
 > 
