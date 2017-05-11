@@ -1,23 +1,42 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 11 May 2017 16:07:44 +0200
-Subject: [PATCH v2 4/4] pinctrl: meson: meson8: add the AO HDMI CEC pin
-In-Reply-To: <20170506165751.12442-5-martin.blumenstingl@googlemail.com>
-References: <20170504184932.5372-1-martin.blumenstingl@googlemail.com>
- <20170506165751.12442-1-martin.blumenstingl@googlemail.com>
- <20170506165751.12442-5-martin.blumenstingl@googlemail.com>
-Message-ID: <CACRpkdaO9RMfEeQV2WN=3jRxJhNo1wgN9eu54Ca+1yc9t3DJgg@mail.gmail.com>
+Date: Thu, 11 May 2017 16:34:49 +0200
+Subject: [PATCH 0/5 RfC] pintrl: meson: add support for GPIO IRQs
+In-Reply-To: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
+References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
+Message-ID: <CACRpkdbeA9pwnOFjdryKjeyZewLWA7Q6ZRbxc=MreT0zJMbgQA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, May 6, 2017 at 6:57 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+On Sun, May 7, 2017 at 6:19 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-> This adds another missing pin found in the Meson8 SoCs. Currently
-> there's no driver which would use this pin yet.
+> This patch series is partially based on a series Jerome Brunet
+> submitted about half a year ago. Due to open questions this series never
+> made it to mainline, see https://patchwork.kernel.org/patch/9384431/
 >
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> This new attempt uses GPIOLIB_IRQCHIP resulting in less needed code.
+> Included is also support for using two parent IRQs in case
+> of IRQ_TYPE_EDGE_BOTH, like in the vendor driver.
+>
+> Worth to be mentioned is also that I had to work around a strange
+> issue with spurious interrupts resulting in a deadlock.
+> The affected critical section in __setup_irq is executed with interrupts
+> disabled, nevertheless spurious GPIO IRQs result in a deadlock what
+> seems to indicate that they are handled on the same CPU.
+> I didn't find a better explanation than a possible HW flaw so far.
+>
+> The series was successfully tested on a Odroid-C2, e.g. with removing
+> polling for SD card insertion/removal from the mmc driver.
+>
+> Heiner Kallweit (5):
+>   pinctrl: meson: add interrupts to pinctrl data
+>   pinctrl: meson: document GPIO IRQ DT binding
+>   pinctrl: meson: add DT node for GPIO IRQ on Meson GX
+>   pinctrl: meson: add DT node for GPIO IRQ on Meson 8 / 8b
+>   pinctrl: meson: add support for GPIO interrupts
 
-Patch applied.
+I just merged a bunch of patches from Martin Blumenstigl for this driver.
+
+Martin can you help out reviewing these patches?
 
 Yours,
 Linus Walleij
