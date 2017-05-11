@@ -1,10 +1,10 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu, 11 May 2017 12:05:11 -0700
+Date: Thu, 11 May 2017 12:07:26 -0700
 Subject: [RFC 4/7] clk: add support for clock protection
 In-Reply-To: <20170321183330.26722-5-jbrunet@baylibre.com>
 References: <20170321183330.26722-1-jbrunet@baylibre.com>
  <20170321183330.26722-5-jbrunet@baylibre.com>
-Message-ID: <149452951146.81039.10685895856154834071@resonance>
+Message-ID: <149452964639.81039.8878077034627473760@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -17,6 +17,13 @@ Quoting Jerome Brunet (2017-03-21 11:33:27)
 > changing the rate or introducing glitches while the clock is protected.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+
+I haven't reviewed this yet, but changes to clk.h should also keep
+Russell King in Cc.
+
+Best regards,
+Mike
+
 > ---
 >  drivers/clk/clk.c            | 177 ++++++++++++++++++++++++++++++++++++++++---
 >  include/linux/clk-provider.h |   1 +
@@ -95,25 +102,6 @@ Quoting Jerome Brunet (2017-03-21 11:33:27)
 > + * rate and can tolerate glitches. As with clk_unprepare and clk_enable, calls
 > + * to clk_unprotect must be balanced with clk_protect.
 > + * clk_protect may sleep
-
-Maybe:
-
-"""
-clk_unprotect completes a critical section during which the clock
-consumer cannot tolerate any change to the clock rate. If no other clock
-consumers have protected clocks in the parent chain, then calls to this
-function will allow the clocks in the parent chain to change rates
-freely.
-
-Unlike the clk_set_rate_range method, which allows the rate to change
-within a given range, protected clocks cannot have their rate changed,
-either directly or indirectly due to changes further up the parent chain
-of clocks.
-
-Calls to clk_unprotect must be balanced with calls to clk_protect. Calls
-to this function may sleep, and do not return error status.
-"""
-
 > + */
 > +void clk_unprotect(struct clk *clk)
 > +{
@@ -161,23 +149,6 @@ to this function may sleep, and do not return error status.
 > + * reparent the clock while it is protected.
 > + * clk_protect may sleep.
 > + */
-
-Maybe:
-
-"""
-clk_protect begins a critical section during which the clock consumer
-cannot tolerate any change to the clock rate. This results in all clocks
-up the parent chain to also be rate-protected.
-
-Unlike the clk_set_rate_range method, which allows the rate to change
-within a given range, protected clocks cannot have their rate changed,
-either directly or indirectly due to changes further up the parent chain
-of clocks.
-
-Calls to clk_protect should be balanced with calls to clk_unprotect.
-Calls to this function may sleep, and do not return error status.
-"""
-
 > +void clk_protect(struct clk *clk)
 > +{
 > +       if (!clk)
@@ -200,32 +171,6 @@ Calls to this function may sleep, and do not return error status.
 > -       if (core->ops->determine_rate) {
 > +       if (clk_core_is_protected(core)) {
 > +               req->rate = core->rate;
-
-Hmm, in CCF we basically re-use round_rate/determine_rate from within
-calls to clk_set_rate. The point is that clk_set_rate should set the
-same rate that is returned from either of the other two functions.
-
-The change above breaks that subtle assumption, as a clk consumer can
-now call:
-
-	clk_protect(clk);
-
-	rate = clk_get_rate(clk);		// rate is 1234;
-
-	rate = clk_round_rate(clk, 5678);	// rate is STILL 1234
-
-	ret = clk_set_rate(clk, 5678);
-
-	rate = clk_get_rate(clk);		// rate is 5678
-
-Is my understanding correct? If so then we might consider adding some
-more complex knowledge to clk_round_rate. Something like:
-
-	if clk_is_protected(clk) AND it is only protect by THIS clk:
-		round the rate
-	else:
-		return core->rate
-
 > +       } else if (core->ops->determine_rate) {
 >                 return core->ops->determine_rate(core->hw, req);
 >         } else if (core->ops->round_rate) {
@@ -236,34 +181,15 @@ more complex knowledge to clk_round_rate. Something like:
 >  
 > -               clk_core_init_rate_req(core, req);
 > +               clk_core_init_rate_req(core, &req);
-
-Why isn't this change in patch #3? Seems like a bug introduced in patch
-#3 and fixed here in patch #4.
-
 >  
 >                 ret = clk_core_determine_round(core, &req);
 >                 if (ret < 0)
 > @@ -1637,8 +1734,14 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
 >         /* prevent racing with updates to the clock topology */
 >         clk_prepare_lock();
-
-The fact that a user can protect a clk AND change its rate is very
-subtle. Please update the kerneldoc for clk_set_rate, clk_set_parent and
-any other affected apis.
-
 >  
 > +       if (clk->protect_ucount)
 > +               clk_core_unprotect(clk->core);
-
-What happens here if two different users have both protected this same
-clk? Looks like we ignore the second user?
-
-In other words, what happens if clk->protect_ucount == 2?
-
-
-Best regards,
-Mike
-
 > +
 >         ret = clk_core_set_rate_nolock(clk->core, rate);
 >  
