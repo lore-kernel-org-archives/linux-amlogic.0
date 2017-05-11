@@ -1,14 +1,15 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 11 May 2017 15:46:25 +0200
-Subject: [PATCH 1/4] pinctrl: meson: meson8b: add the PWM pins
-In-Reply-To: <20170504184932.5372-2-martin.blumenstingl@googlemail.com>
+Date: Thu, 11 May 2017 16:03:38 +0200
+Subject: [PATCH v2 1/4] pinctrl: meson: meson8: add the PWM pins
+In-Reply-To: <20170506165751.12442-2-martin.blumenstingl@googlemail.com>
 References: <20170504184932.5372-1-martin.blumenstingl@googlemail.com>
- <20170504184932.5372-2-martin.blumenstingl@googlemail.com>
-Message-ID: <CACRpkdY1xoC3_o66vJwFQF=djLbBDU8LMoU569h0y-rcokOdwA@mail.gmail.com>
+ <20170506165751.12442-1-martin.blumenstingl@googlemail.com>
+ <20170506165751.12442-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CACRpkdYQ0wkG0_e1htvNc=8vrs3sa9AQC7b7jtAXbmSPAhSU-Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, May 4, 2017 at 8:49 PM, Martin Blumenstingl
+On Sat, May 6, 2017 at 6:57 PM, Martin Blumenstingl
 <martin.blumenstingl@googlemail.com> wrote:
 
 > This adds the missing pins for the PWM controllers found in Amlogic
@@ -21,7 +22,7 @@ On Thu, May 4, 2017 at 8:49 PM, Martin Blumenstingl
 >
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Patch applied.
+Took out the older patch and applied this instead.
 
 Yours,
 Linus Walleij
