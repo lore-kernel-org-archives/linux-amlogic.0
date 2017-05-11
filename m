@@ -1,88 +1,139 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 11 May 2017 18:08:06 +0200
-Subject: [PATCH 1/5] pintrl: meson: add interrupts to pinctrl data
-In-Reply-To: <CACRpkdYx0j4Sjv8MhXRSuiF1TyW2Ht47r0+G1ga8mXW5LC7c=g@mail.gmail.com>
-References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
- <3b4990ef-bfb4-c62c-f823-431adedc17f1@gmail.com>
- <CACRpkdYx0j4Sjv8MhXRSuiF1TyW2Ht47r0+G1ga8mXW5LC7c=g@mail.gmail.com>
-Message-ID: <1494518886.2375.15.camel@baylibre.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Thu, 11 May 2017 18:23:55 -0000
+Subject: [RFC 1/7] clk: take the prepare lock out of clk_core_set_parent
+In-Reply-To: <20170321183330.26722-2-jbrunet@baylibre.com>
+References: <20170321183330.26722-1-jbrunet@baylibre.com>
+ <20170321183330.26722-2-jbrunet@baylibre.com>
+Message-ID: <149228696755.88277.11390638024881688991@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-05-11 at 16:50 +0200, Linus Walleij wrote:
-> On Sun, May 7, 2017 at 6:34 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+Hi Jerome,
+
+Quoting Jerome Brunet (2017-03-21 19:33:24)
+> Rework set_parent core function so it can be called when the prepare lock
+> is already held by the caller.
 > 
-> > From: Jerome Brunet <jbrunet@baylibre.com>
-> > Add GPIO interrupt information to pinctrl data. Added to the original
-> > version from Jerome was data for Meson GXL.
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> This rework is done to ease the integration of the "protected" clock
+> functionality.
 > 
-> So what this does is:
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/clk/clk.c | 38 ++++++++++++++++++++------------------
+>  1 file changed, 20 insertions(+), 18 deletions(-)
 > 
-> > diff --git a/drivers/pinctrl/meson/pinctrl-meson.h
-> > b/drivers/pinctrl/meson/pinctrl-meson.h
-> > index 1aa871d5..890f296f 100644
-> > --- a/drivers/pinctrl/meson/pinctrl-meson.h
-> > +++ b/drivers/pinctrl/meson/pinctrl-meson.h
-> > @@ -81,6 +81,7 @@ enum meson_reg_type {
-> > ? * @name:??????bank name
-> > ? * @first:?????first pin of the bank
-> > ? * @last:??????last pin of the bank
-> > + * @irq:???????hwirq base number of the bank
-> > ? * @regs:??????array of register descriptors
-> > ? *
-> > ? * A bank represents a set of pins controlled by a contiguous set of
-> > @@ -92,6 +93,8 @@ struct meson_bank {
-> > ????????const char *name;
-> > ????????unsigned int first;
-> > ????????unsigned int last;
-> > +???????int irq_first;
-> > +???????int irq_last;
-> > ????????struct meson_reg_desc regs[NUM_REG];
-> > ?};
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index 67201f67a14a..e77f03a47da6 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -1794,23 +1794,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+
+Nitpick: rename clk_core_set_parent to clk_core_st_parent_nolock. Drop
+the clk_core_set_parent_lock name below and just call it
+clk_core_set_parent.
+
+This matches all the other nolock patterns in clk.c.
+
+>         if (!core)
+>                 return 0;
+>  
+> -       /* prevent racing with updates to the clock topology */
+> -       clk_prepare_lock();
+> -
+>         if (core->parent == parent)
+> -               goto out;
+> +               return 0;
+>  
+>         /* verify ops for for multi-parent clks */
+> -       if ((core->num_parents > 1) && (!core->ops->set_parent)) {
+> -               ret = -ENOSYS;
+> -               goto out;
+> -       }
+> +       if ((core->num_parents > 1) && (!core->ops->set_parent))
+> +               return -ENOSYS;
+>  
+>         /* check that we are allowed to re-parent if the clock is in use */
+> -       if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count) {
+> -               ret = -EBUSY;
+> -               goto out;
+> -       }
+> +       if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
+> +               return -EBUSY;
+>  
+>         /* try finding the new parent index */
+>         if (parent) {
+> @@ -1818,8 +1811,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>                 if (p_index < 0) {
+>                         pr_debug("%s: clk %s can not be parent of clk %s\n",
+>                                         __func__, parent->name, core->name);
+> -                       ret = p_index;
+> -                       goto out;
+> +                       return p_index;
+>                 }
+>                 p_rate = parent->rate;
+>         }
+> @@ -1829,7 +1821,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>  
+>         /* abort if a driver objects */
+>         if (ret & NOTIFY_STOP_MASK)
+> -               goto out;
+> +               return ret;
+>  
+>         /* do the re-parent */
+>         ret = __clk_set_parent(core, parent, p_index);
+> @@ -1842,7 +1834,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>                 __clk_recalc_accuracies(core);
+>         }
+>  
+> -out:
+> +       return ret;
+
+I do not understand the benefit of the code churn above where gotos are
+replaced with returns. This should be a few line patch but it is much
+more than that due to this churn.
+
+> +}
+> +
+> +static int clk_core_set_parent_lock(struct clk_core *core,
+> +                                   struct clk_core *parent)
+> +{
+> +       int ret;
+> +
+> +       clk_prepare_lock();
+> +       ret = clk_core_set_parent(core, parent);
+
+Above line should be nolock.
+
+>         clk_prepare_unlock();
+>  
+>         return ret;
+> @@ -1870,7 +1871,8 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
+>         if (!clk)
+>                 return 0;
+>  
+> -       return clk_core_set_parent(clk->core, parent ? parent->core : NULL);
+> +       return clk_core_set_parent_lock(clk->core,
+> +                                       parent ? parent->core : NULL);
+
+We can avoid this line by using the nolock pattern.
+
+Basic premise of the patch is OK though.
+
+Regards,
+Mike
+
+>  }
+>  EXPORT_SYMBOL_GPL(clk_set_parent);
+>  
+> @@ -2720,7 +2722,7 @@ void clk_unregister(struct clk *clk)
+>                 /* Reparent all children to the orphan list. */
+>                 hlist_for_each_entry_safe(child, t, &clk->core->children,
+>                                           child_node)
+> -                       clk_core_set_parent(child, NULL);
+> +                       clk_core_set_parent_lock(child, NULL);
+>         }
+>  
+>         hlist_del_init(&clk->core->child_node);
+> -- 
+> 2.9.3
 > 
-> ... adds a per-bank parent IRQ.
-
-Hi Linus,
-
-It does not add a per-bank parent IRQ. The meson gpio irq is an IP independent
-of the gpio/pinctrl subsystem. In a nutshell, we have 8 interrupts on the GIC
-and we can route the signal of almost any pin of any bank to these parent irqs.
-The fact that there 1 gpio-irq controller and several gpio controller make the
-design a bit tricky
-
-We already talked about this IP, here is the discussion :https://patchwork.ozlab
-s.org/patch/684208/
-
-At the time, the problem was that I was creating the mapping within the
-gpio_to_irq callback, which is wrong.
-
-irq_first, irq_last were introduced because there is no way to have direct
-mapping between the gpio number and the hw interrupt number. (details are in our
-previous discussion). If a more generic solution can be used for this, it would
-be nice :)
-
-While I think having a irqdomain in the gpio driver and using the
-request_resources callback to create the mapping in the underlying domain might
-be a solution to ressouce allocation problem we had, I think the meson-gpio-irq
-should be implemented has an independent driver because  it is an independent
-device. Eventually, this device should be the parent irq controller of the gpio
-controller.
-
-I not sure that there is a reason for using syscon here, or if it is a good idea
-to have the data of this controller as globals for the gpio driver ... 
-
-
-> 
-> I am just discussing with Thierry that I would like to see some code
-> in the gpiolib core to deal with this mapping so we don't have to do a
-> whole lot of custom back mapping between parent IRQs and cascaded
-> IRQ in every driver that has a multiple-bank concept.
-> 
-> Please contribute to the discission, see thread subject:
-> "[PATCH v2] gpio: Add Tegra186 support"
-> 
-> Yours,
-> Linus Walleij
