@@ -1,42 +1,54 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 11 May 2017 16:34:49 +0200
-Subject: [PATCH 0/5 RfC] pintrl: meson: add support for GPIO IRQs
-In-Reply-To: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
+Date: Thu, 11 May 2017 16:50:17 +0200
+Subject: [PATCH 1/5] pintrl: meson: add interrupts to pinctrl data
+In-Reply-To: <3b4990ef-bfb4-c62c-f823-431adedc17f1@gmail.com>
 References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
-Message-ID: <CACRpkdbeA9pwnOFjdryKjeyZewLWA7Q6ZRbxc=MreT0zJMbgQA@mail.gmail.com>
+ <3b4990ef-bfb4-c62c-f823-431adedc17f1@gmail.com>
+Message-ID: <CACRpkdYx0j4Sjv8MhXRSuiF1TyW2Ht47r0+G1ga8mXW5LC7c=g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, May 7, 2017 at 6:19 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Sun, May 7, 2017 at 6:34 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-> This patch series is partially based on a series Jerome Brunet
-> submitted about half a year ago. Due to open questions this series never
-> made it to mainline, see https://patchwork.kernel.org/patch/9384431/
+> From: Jerome Brunet <jbrunet@baylibre.com>
+> Add GPIO interrupt information to pinctrl data. Added to the original
+> version from Jerome was data for Meson GXL.
 >
-> This new attempt uses GPIOLIB_IRQCHIP resulting in less needed code.
-> Included is also support for using two parent IRQs in case
-> of IRQ_TYPE_EDGE_BOTH, like in the vendor driver.
->
-> Worth to be mentioned is also that I had to work around a strange
-> issue with spurious interrupts resulting in a deadlock.
-> The affected critical section in __setup_irq is executed with interrupts
-> disabled, nevertheless spurious GPIO IRQs result in a deadlock what
-> seems to indicate that they are handled on the same CPU.
-> I didn't find a better explanation than a possible HW flaw so far.
->
-> The series was successfully tested on a Odroid-C2, e.g. with removing
-> polling for SD card insertion/removal from the mmc driver.
->
-> Heiner Kallweit (5):
->   pinctrl: meson: add interrupts to pinctrl data
->   pinctrl: meson: document GPIO IRQ DT binding
->   pinctrl: meson: add DT node for GPIO IRQ on Meson GX
->   pinctrl: meson: add DT node for GPIO IRQ on Meson 8 / 8b
->   pinctrl: meson: add support for GPIO interrupts
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-I just merged a bunch of patches from Martin Blumenstigl for this driver.
+So what this does is:
 
-Martin can you help out reviewing these patches?
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
+> index 1aa871d5..890f296f 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson.h
+> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
+> @@ -81,6 +81,7 @@ enum meson_reg_type {
+>   * @name:      bank name
+>   * @first:     first pin of the bank
+>   * @last:      last pin of the bank
+> + * @irq:       hwirq base number of the bank
+>   * @regs:      array of register descriptors
+>   *
+>   * A bank represents a set of pins controlled by a contiguous set of
+> @@ -92,6 +93,8 @@ struct meson_bank {
+>         const char *name;
+>         unsigned int first;
+>         unsigned int last;
+> +       int irq_first;
+> +       int irq_last;
+>         struct meson_reg_desc regs[NUM_REG];
+>  };
+
+... adds a per-bank parent IRQ.
+
+I am just discussing with Thierry that I would like to see some code
+in the gpiolib core to deal with this mapping so we don't have to do a
+whole lot of custom back mapping between parent IRQs and cascaded
+IRQ in every driver that has a multiple-bank concept.
+
+Please contribute to the discission, see thread subject:
+"[PATCH v2] gpio: Add Tegra186 support"
 
 Yours,
 Linus Walleij
