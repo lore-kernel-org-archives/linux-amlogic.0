@@ -1,34 +1,27 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Thu, 11 May 2017 12:54:25 +0300
-Subject: S805/S812 Device Tree upstreaming (was: Testing.)
-In-Reply-To: <CAFBinCA1ga1NAhU+niQFT9xuDCFkyF7XTWmXokmFkwB_bq3OjQ@mail.gmail.com>
-References: <CAFBinCA1ga1NAhU+niQFT9xuDCFkyF7XTWmXokmFkwB_bq3OjQ@mail.gmail.com>
-Message-ID: <e2da979a-2797-1cb7-92aa-2e914c6a8923@yandex.ru>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Thu, 11 May 2017 15:46:25 +0200
+Subject: [PATCH 1/4] pinctrl: meson: meson8b: add the PWM pins
+In-Reply-To: <20170504184932.5372-2-martin.blumenstingl@googlemail.com>
+References: <20170504184932.5372-1-martin.blumenstingl@googlemail.com>
+ <20170504184932.5372-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CACRpkdY1xoC3_o66vJwFQF=djLbBDU8LMoU569h0y-rcokOdwA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On Thu, May 4, 2017 at 8:49 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 
->> I found dtb to kernel 3.14 the string
->>
->> gpio-vbus-power = "GPIOZ_1";
->>
->> You can simply copy it to the unit or it needs to change according to
->> certain rules ?
->>
->> &usb0 {
->>      status = "okay";
->> };
-> you can have a look at the Vega S95 devicetree [0] which enables
-> GPIODV_24 (instead of GPIOZ_1, but that's easy to replace) for USB
-> VBUS. it then passes the regulator to the phy
+> This adds the missing pins for the PWM controllers found in Amlogic
+> Meson8 SoCs. This includes the pins for PWM_A, PWM_B, PWM_C, PWM_D,
+> PWM_E and PWM_F controllers.
+> There is an additional PWM function with the name PWM_VS in the vendor
+> kernel sources which seems to be used for external video input. Thus
+> it's not part of this change as the IP block behind the pwm-meson driver
+> is not responsible for these pins.
 >
->
-> Regards,
-> Martin
->
->
-> [0] https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi#L67
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Is that about right ?
+Patch applied.
 
-https://github.com/150balbes/Amlogic_s8xx-kernel/blob/test/arch/arm/boot/dts/meson8m2-mxiii-plus.dts#L80
+Yours,
+Linus Walleij
