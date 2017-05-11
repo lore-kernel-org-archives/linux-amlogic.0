@@ -1,111 +1,170 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 11 May 2017 21:33:49 +0200
-Subject: [PATCH 1/5] pintrl: meson: add interrupts to pinctrl data
-In-Reply-To: <1494518886.2375.15.camel@baylibre.com>
-References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
- <3b4990ef-bfb4-c62c-f823-431adedc17f1@gmail.com>
- <CACRpkdYx0j4Sjv8MhXRSuiF1TyW2Ht47r0+G1ga8mXW5LC7c=g@mail.gmail.com>
- <1494518886.2375.15.camel@baylibre.com>
-Message-ID: <7ed5a88a-43dd-f7ab-2794-48ceb5a62a93@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 11 May 2017 22:44:05 +0200
+Subject: [RFC 0/2] Add support for Meson MX "SDIO" MMC driver
+In-Reply-To: <CAPDyKFoC-cCEY+n2383W+JgDANbBMFbsU5cyB51-kG4kbLNNcw@mail.gmail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+ <CAPDyKFoYPjB1bjRfFCFT3vuzKgzm6-7L2qgNjxGL392cLDe7uA@mail.gmail.com>
+ <CAFBinCDGBZAAx_61eyu1_XM57fX62Mk03TEiO3uTL+i8dfPyZA@mail.gmail.com>
+ <CAPDyKFoC-cCEY+n2383W+JgDANbBMFbsU5cyB51-kG4kbLNNcw@mail.gmail.com>
+Message-ID: <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 11.05.2017 um 18:08 schrieb Jerome Brunet:
-> On Thu, 2017-05-11 at 16:50 +0200, Linus Walleij wrote:
->> On Sun, May 7, 2017 at 6:34 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+Hi Ulf,
+
+On Thu, May 11, 2017 at 11:39 AM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> On 10 May 2017 at 21:22, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> Hi Ulf,
 >>
->>> From: Jerome Brunet <jbrunet@baylibre.com>
->>> Add GPIO interrupt information to pinctrl data. Added to the original
->>> version from Jerome was data for Meson GXL.
+>> On Wed, May 10, 2017 at 10:44 AM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>>> On 6 May 2017 at 19:18, Martin Blumenstingl
+>>> <martin.blumenstingl@googlemail.com> wrote:
+>>>> This is the successor to Carlo Caione's "Add support for Amlogic Meson
+>>>> MMC driver" series (v5) from [0].
+>>>>
+>>>> I would like you to specifically review:
+>>>> - whether I've (ab)used the MMC framework properly (as this is my first
+>>>>   "larger" contribution to an MMC driver)
 >>>
->>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> I take a look soonish.
+>> thank you!
 >>
->> So what this does is:
+>>>> - I think I have improved the locking compared to Carlo's version,
+>>>>   however I'd still like feedback on whether this looks sane now or if I
+>>>>   can improve that even further
+>>>>
+>>>> (notable) changes since Carlo's latest version are:
+>>>> - renamed the driver to meson-mx-sdio (Amlogic's reference kernel calls
+>>>>   the driver "aml_sdio" as there is a second MMC controller in these SoCs
+>>>>   which they call the "SDHC controller"). do the same with our driver to
+>>>
+>>> I don't like to renaming drivers, just because there are a reference
+>>> kernel using a different name.
+>>>
+>>> What's is really the difference between controllers? Why do they have
+>>> two variants?
+>> the driver from this thread is for the "SDSC/SDHC/SDXC card and SDIO
+>> interface with 1-bit and 4-bit data bus width supporting spec version
+>> 2.x/3.x/4.x DS/HS modes up to UHS-I SDR50" (quote taken from the S805
+>> datasheet: [0])
+>> the "other" controller is an "eMMC and MMC card interface with
+>> 1/4/8-bit data bus width supporting spec version 4.4x/4.5x HS200 (up
+>> to 100MHz clock), compatible with standard iNAND interface" (again,
+>> quote taken from the S805 datasheet: [0])
 >>
->>> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h
->>> b/drivers/pinctrl/meson/pinctrl-meson.h
->>> index 1aa871d5..890f296f 100644
->>> --- a/drivers/pinctrl/meson/pinctrl-meson.h
->>> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
->>> @@ -81,6 +81,7 @@ enum meson_reg_type {
->>>   * @name:      bank name
->>>   * @first:     first pin of the bank
->>>   * @last:      last pin of the bank
->>> + * @irq:       hwirq base number of the bank
->>>   * @regs:      array of register descriptors
->>>   *
->>>   * A bank represents a set of pins controlled by a contiguous set of
->>> @@ -92,6 +93,8 @@ struct meson_bank {
->>>         const char *name;
->>>         unsigned int first;
->>>         unsigned int last;
->>> +       int irq_first;
->>> +       int irq_last;
->>>         struct meson_reg_desc regs[NUM_REG];
->>>  };
+>>>
+>>> Can they be managed by the same driver?
+>>>
+>>>>   avoid confusion once we add support for the second controller (which uses
+>>>>   a completely different register layout)
+>>>
+>>> Besides that, do they behave differently in some other way?
+>> both drivers/controllers have a totally different register layout - I
+>> don't see any way how they both could be handled by one driver (the
+>> registers for the controllers from this series are not part of the
+>> documentation, but the registers from the 8-bit capable controller
+>> are, see page 76 and following from the S805 datasheet: [0])
+>
+> Okay, I am starting to understand. :-)
+good to hear that my explanation made (at least some) sense!
+
+> The spec in section 13 describes a controller supporting "MMC/SD/SDIO"
+> cards. However, there is yet another controller which @subject series
+> implement support for.
+> You don't happen to have a public datasheet for this controller as
+> well? If not, never mind.
+unfortunately the controller from @subject does not show up in any of
+the public datasheets, but we have a header file from Amlogic which
+documents it just as well as the datasheet (probably) would: [0]
+
+> Then, meson actually have three different MMC/SD/SDIO controllers, the
+> one in the S805 spec, the one supported by the recently up-streamed
+> meson-gx-mmc.c driver - and the one being supported in this series.
+> Right? And all of them are completely separate and non-compatible?
+yes, unfortunately it seems that there are three different MMC
+controller IP blocks from Amlogic
+
+let me explain this a bit more in detail:
+the code-names of the newer (64-bit) SoCs all start with GX (GXBB,
+GXL, GXM), so we call these "Meson GX".
+the code-names of the older (32-bit) SoCs (at least the ones which are
+not too old) all start with Meson X (where X is a number: Meson6,
+Meson8, Meson8b and Meson8m2), Amlogic's vendor code sometimes calls
+these "MX" (or Meson MX)
+
+the MMC IP blocks in Meson GX SoCs are easy: the same IP block is
+embedded three times -> the driver for this is meson-gx-mmc.c (already
+upstream)
+the MMC IP blocks in Meson MX SoCs are more complicated: 1x 1/4-bit
+which will be handled by the driver from @subject (meson-mx-sdio.c)
+and 1x 1/4/8-bit for which there is only the vendor driver (plus the
+description in the S805 datasheet) available.
+
+so it looks like the older Meson MX SoCs may end up with two different
+drivers, while there's a third driver (for a totally different IP
+block) for the newer Meson GX SoCs.
+
+[snip]
+>>>> - use the common clock framework internally for managing the MMC clock
+>>>>   (there is a fixed-factor clock in the controller which takes clk81 as
+>>>>    input and divides it's clock by two and a divider clock which takes
+>>>>    the result from the fixed-factor clock as input)
+>>>> - support the regulators provided by the MMC framework
+>>>> - support for GPIO-based card-detection and read-only-detection through
+>>>>   the MMC framework
+>>>> - use of the <linux/bitfield.h> FIELD_PREP and FIELD_GET macros where it
+>>>>   make sense (and thus the code easier to read)
+>>>> - re-worked locking (based on the locking in dw_mmc as that also provides
+>>>>   multiple "MMC slots")
+>>>
+>>> Lots of changes!
+>>>
+>>> Before even start to review (or someone else), you really need to make
+>>> this review-able.
+>>>
+>>> So, please, one change per patch - and make sure to write good
+>>> changelogs. Then I can start to review.
+>> from the mainline tree's perspective this is a new driver:
+>
+> Yes, I get it now.
+>
+> I first thought this series was related to the recently up-streamed
+> meson-gx-mmc.c driver. Apologize for my ignorance.
+should I put some more context/details in the description (maybe
+something like: "this is a new driver/binding because the Meson MX
+SoCs use a different IP block than the Meson GX SoCs (the IP block
+from the latter is already supported by the meson-gx-mmc driver)"?
+
+>> Carlo (the original author) initially sent this driver for review more
+>> than 14 months ago. unfortunately it was never merged since you
+>> spotted some issues while reviewing that code, see [1].
+>
+> Yes, I recall that now.
+the 14 month delay was one of the reasons why I decided to re-post it
+only after all features were implemented
+
+>> I would have sent smaller patches for a driver which is already in mainline.
+>
+> Right.
+>
 >>
->> ... adds a per-bank parent IRQ.
-> 
-> Hi Linus,
-> 
-> It does not add a per-bank parent IRQ. The meson gpio irq is an IP independent
-> of the gpio/pinctrl subsystem. In a nutshell, we have 8 interrupts on the GIC
-> and we can route the signal of almost any pin of any bank to these parent irqs.
-> The fact that there 1 gpio-irq controller and several gpio controller make the
-> design a bit tricky
-> 
-> We already talked about this IP, here is the discussion :https://patchwork.ozlab
-> s.org/patch/684208/
-> 
-> At the time, the problem was that I was creating the mapping within the
-> gpio_to_irq callback, which is wrong.
-> 
-> irq_first, irq_last were introduced because there is no way to have direct
-> mapping between the gpio number and the hw interrupt number. (details are in our
-> previous discussion). If a more generic solution can be used for this, it would
-> be nice :)
-> 
-> While I think having a irqdomain in the gpio driver and using the
-> request_resources callback to create the mapping in the underlying domain might
-> be a solution to ressouce allocation problem we had, I think the meson-gpio-irq
-> should be implemented has an independent driver because  it is an independent
-> device.
-
-This kind of GPIO IRQ multiplexer doesn't really seem to match any use case
-covered by the GPIO / IRQ subsystems. Especially the needed dynamic mapping
-from the GPIOs to one of the eight GPIO GIC IRQs is tricky.
-
-After Jerome's attempt from last year (using hierarchical IRQ domains) didn't
-make it due to concerns of the maintainers, I decided to go another way.
-I'm not stating at all that this is the right one ..
-
-To re-use existing stuff as far as possible I go with GPIOLIB_IRQCHIP.
-So far I use one irqchip per gpiochip (we have two of them).
-I'll check whether I can use just one irqchip for both gpiochips.
-
-> Eventually, this device should be the parent irq controller of the gpio
-> controller.
-
-I think this is one of the central questions here, whether this device
-can be considered an irq controller.
-It just manages routing of IRQs, so I'd tend to say that the gpio controller
-is the irq controller with the GIC as parent.
-
-> 
-> I not sure that there is a reason for using syscon here, or if it is a good idea
-> to have the data of this controller as globals for the gpio driver ... 
-> 
-> 
+>> I also wanted to avoid extra complexity for the internal mux if it was
+>> added later on (if we want to avoid breaking devicetree backwards
+>> compatibility then the driver would have to support both: parsing from
+>> the mmc node directly and parsing child "slot" nodes). we won't have
+>> to change the DT bindings when the first version that will be
+>> mainlined already has support for the mux
 >>
->> I am just discussing with Thierry that I would like to see some code
->> in the gpiolib core to deal with this mapping so we don't have to do a
->> whole lot of custom back mapping between parent IRQs and cascaded
->> IRQ in every driver that has a multiple-bank concept.
->>
->> Please contribute to the discission, see thread subject:
->> "[PATCH v2] gpio: Add Tegra186 support"
->>
->> Yours,
->> Linus Walleij
-> 
+>> please let me know if there's anything I can do to make the code
+>> easier to review.
+>
+> No worries, let me have a look as is!
+okay, perfect! just take your time and let me know what needs to be changed.
+
+
+Regards,
+Martin
+
+
+[0] https://github.com/endlessm/linux-meson/blob/master/arch/arm/mach-meson8/include/mach/sd.h#L231
