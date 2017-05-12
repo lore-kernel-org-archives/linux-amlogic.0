@@ -1,187 +1,60 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 12 May 2017 16:04:59 +0200
-Subject: [RFC 0/7] clk: implement clock locking mechanism
-In-Reply-To: <149228583018.88277.3542713369128557565@resonance>
-References: <20170321183330.26722-1-jbrunet@baylibre.com>
- <149228583018.88277.3542713369128557565@resonance>
-Message-ID: <1494597899.2135.3.camel@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Fri, 12 May 2017 19:23:52 +0200
+Subject: [PATCH 1/5] pintrl: meson: add interrupts to pinctrl data
+In-Reply-To: <CACRpkdajRQNTEYntY+NuG+3vNenzN9ZOw3ukWtS-=5zgDh5wCA@mail.gmail.com>
+References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
+ <3b4990ef-bfb4-c62c-f823-431adedc17f1@gmail.com>
+ <CACRpkdYx0j4Sjv8MhXRSuiF1TyW2Ht47r0+G1ga8mXW5LC7c=g@mail.gmail.com>
+ <1494518886.2375.15.camel@baylibre.com>
+ <7ed5a88a-43dd-f7ab-2794-48ceb5a62a93@gmail.com>
+ <18ad8094-4e17-3487-7ef2-497d5c7ab9dc@gmail.com>
+ <CACRpkdajRQNTEYntY+NuG+3vNenzN9ZOw3ukWtS-=5zgDh5wCA@mail.gmail.com>
+Message-ID: <b2db3015-2816-1489-547d-e3f9c6f3ed3a@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2017-04-15 at 21:50 +0200, Michael Turquette wrote:
-> Hi Jerome,
+Am 12.05.2017 um 11:51 schrieb Linus Walleij:
+> On Fri, May 12, 2017 at 8:08 AM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 > 
-> Thanks for sending this series. The concept is one we've been talking
-> about for years, and your approach makes sense. Some comments below.
+>> Following Jerome's suggestion I prepared a version making the irq multiplexer
+>> an own device. Nice here is that with this approach basically only one line of
+>> code needs to be changed in the existing pinctrl driver.
+>>
+>> As discussion basis I add it here w/o submitting a v2 of patch 5.
 > 
-> Quoting Jerome Brunet (2017-03-21 19:33:23)
-> > This RFC patchset is related to the discussion around CLK_SET_RATE_GATE and
-> > clk_lock which available here [0]
+> I think this is the right way to go, but would ideally like some feedback from
+> the irqchip maintainers.
 > 
-> If we merge this solution then we may want to convert some of those
-> CLK_SET_RATE_GATE users and 
-
-It would be nice, but this would be on a case by case basis and would require
-the help of the platform maintainers. I think there two kind of users of
-CLK_SET_RATE_GATE at this moment:
-
-1) The clock must be gated - disabled - to change the rate safely:
-clk_protect_rate won't help here, it does not enforce such thing. We should
-provide another fix for this because CLK_SET_RATE_GATE does really enforce this
-constraint along the clock tree either
-
-2) The one (like me) trying to abuse the enable_count to get some protection:
-This never worked, and these drivers had no protection until now. If they really
-need protection they can start using clk_protect_rate.
-
-What I mean with this two point is: even if the intent is the same, there is
-real functional difference between CLK_SET_RATE_GATE and clk_protect_rate. We
-will have to be careful ...
-
-> potentially some of the rate-range users
-> that set min/max to the same value over to this new api.
+> Have you looked at drivers/irqchip/irq-crossbar.c for inspiration?
+> Also read
+> Documentation/devicetree/bindings/arm/omap/crossbar.txt
 > 
-
-This case is easier, if they use min=max, yes for sure.
-
-> > 
-> > The goal of this patchset is to provide a way for consumers to inform the
-> > system that they depend on the rate of the clock source and can't tolerate
-> > other consumers changing the rate or causing glitches.
-> > 
-> > Patches 1 to 3 are just rework to ease the integration of the locking
-> > mechanism. They should not introduce any functional differences.
-> > 
-> > Patch 4 is the important bit. It introduce 2 new functions to the CCF API:
-> > clk_protect and clk_unprotect (The "lock" word is already used lot in
-> > clk.c. Using clk_lock and clk_unlock would have been very messy. If you
-> > found "protect" to be a poor choice, I'm happy to sed the whole thing in
-> > future version)
-> > 
-> > These calls can happen at anytime during the life of the clk. As for
-> > prepare and enable, the calls must be balanced.
-> > 
-> > Inside the clock framework, 2 new count values are introduced to keep track
-> > of the protection:
-> > * core "protect_count": this reference count value works in the same way as
-> > ? prepare and enable count, and track whether the clock is protected or
-> > ? not. This is the value that will checked to allow operation which may
-> > ? cause glitches or change the rate of clock source.
-> > * clk consumer "protect_ucount": this allows to track if the consumer is
-> > ? protecting the clock.
-> > 
-> > Requiring the consumer to unprotect its clock before changing it would have
-> > been very annoying for the consumer. It would also be unsafe, as it would
-> > still be possible for another consumer to change the rate between the call
-> > to set_rate and protect. This needs to happen in a critical section.??A
-> > solution would be to add "set_rate_protect", but we would need to do the
-> > same for the set_parent and set_phase (and the possible future
-> > functions). It does not scale well.??The solution proposed in this patch is
-> > to use the consumer protect count.
-> > 
-> > In function altering the clock, if the consumer is protecting the clock,
-> > the protection is temporarily release under the prepare_lock. This ensure
-> > that:
-> > * the clock is still protect from another consumer because of the
-> > ? prepare_lock
-> > * the rate set on a protected clock cannot change between set_rate and
-> > ? later enable
-> > * only a consumer protecting a clock can do this temporary protection
-> > ? removal (less chance of people messing with the refcount)
-> > * if more than one consumer protect the clock, it remains protected.
-> > ? Because the protection is removed for the calling consumer, it gives
-> > ? it a chance to jump to another provider, if available.
-> > 
-> > This protection mechanism assume that "protecting" consumer knows what it
-> > is doing when it comes to setting the rate, and does not expect to be
-> > protected against itself.
-> > 
-> > This was tested with the audio use case mentioned in [0]
-> > 
-> > One caveat is the following case:
-> > N+1 consumers protect their clocks. These clocks come from N possible
-> > providers. We should able to satisfy at least N consumers before exhausting
-> > the resources.??In the particular case where all the consumers call
-> > "protect" before having a chance to call "set_rate", the last 2 consumers
-> > will remains stuck on the last provider w/o being able to set the rate on
-> > it. This means that in situation where there is 2 consumers on 1
-> > providers, they will compete for the clock, and may end up in situation
-> > where both protect the clock and none can set the rate they need.??This can
-> > be solved if, when the rate fails to be set, the consumer release the
-> > protection. Then the second consumer will be able to satisfy its request.
+> It uses an hierarchical domain for a similar cross-connection
+> usecase.
 > 
-> This situation can be handled a bit more gracefully if clk_set_rate_lock
-> both returns an error code if setting the rate failes AND it releases
-> the rate lock in that case. At least that helps for the case of
-> initializing rates during .probe(). Automatically dropping the lock
-> might complicate things in other cases though...
+When looking at the crassbar driver it seems to be quite similar to Jerome's
+Meson GPIO IRQ driver version. Therefore I think we'd face the same challenges.
+What is special about the Meson GPIO IRQ hw:
+- We have only 8 parent IRQs for 100+ GPIO's.
+- If a GPIO requests IRQ_TYPE_EDGE_BOTH (concrete example: mmc sd detection)
+  then we have to use two parent IRQs, one for each edge.
+- We must be able to dynamically map a GPIO to a parent IRQ, e.g. if a driver
+  uses gpiod_to_irq().
 
-set_rate_lock would solve the problem for?
-> > "the last 2 consumers
-> > will remains stuck on the last provider w/o being able to set the rate"
+These specifics are the reason why I do the mapping magic in the irq_set_type
+callback of the irq_chip. Only in this callback I have all the info needed to
+do the mapping.
 
-With set_rate_lock, only the last one won't be satisfied, which is fine I
-suppose.
-
-> ?if setting the rate failes
-
-Setting aside this RFC, when can we consider a that setting the rate failed ?
-CCF always give the best it can, according to a set of constraints (possible
-parents, range of the parents, ...) but does not return an error.
-
-Clock protect is just one more constraint added to the equation, right ?
-
-set_rate having failed depends on the accuracy you need.
-For exemple You ask for 100Mhz out of :
-* a PLL: you get 98 MHz
-* a very slow clock: you get 10Hz
-
-Which one has failed ?
-
-Thanks for taking time to review this RFC Mike !
-Cheers
-Jerome
-
+> Under any circumstances I think decoupling the IRQ multiplexer
+> and dealing with it in separate is easier for maintainance and
+> also for the irq maintainers to review.
 > 
-> Best regards,
-> Mike
+Then I'll submit the latest version with the separated device as v2 and we'll
+see which further review comments and suggestions for alternative approaches
+come in.
+
+Rgds, Heiner
+
+> Yours,
+> Linus Walleij
 > 
-> > 
-> > Patch 5 is a small change on set_rate_range to restore the old range on
-> > failure. It don't use set_rate_range in any driver so I could not test this
-> > change.
-> > 
-> > Patch 6 is just a cosmetic change to clk_summary debugfs entry to make it
-> > less wide after adding protect count in it.
-> > 
-> > Patch 7 fix a warning reported by checkpatch.pl. Apparently, ENOSYS is used
-> > incorrectly.
-> > 
-> > Bonus:
-> > 
-> > With this patchset, we should probably change the use the flags
-> > "CLK_SET_RATE_GATE" and "CLK_SET_PARENT_GATE" We discussed removing
-> > them. Another solution would be to have them automatically gate the clock
-> > before performing the related operation.??What is your view on this ?
-> > 
-> > [0]: http://lkml.kernel.org/r/148942423440.82235.17188153691656009029 at resona
-> > nce
-> > 
-> > Jerome Brunet (7):
-> > ? clk: take the prepare lock out of clk_core_set_parent
-> > ? clk: add set_phase core function
-> > ? clk: rework calls to round and determine rate callbacks
-> > ? clk: add support for clock protection
-> > ? clk: rollback set_rate_range changes on failure
-> > ? clk: cosmetic changes to clk_summary debugfs entry
-> > ? clk: fix incorrect usage of ENOSYS
-> > 
-> > ?drivers/clk/clk.c????????????| 313 ++++++++++++++++++++++++++++++++++----
-> > -----
-> > ?include/linux/clk-provider.h |???1 +
-> > ?include/linux/clk.h??????????|??29 ++++
-> > ?3 files changed, 279 insertions(+), 64 deletions(-)
-> > 
-> > --?
-> > 2.9.3
-> > 
