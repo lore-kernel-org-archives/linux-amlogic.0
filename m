@@ -1,29 +1,38 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Fri, 12 May 2017 10:03:51 +0300
-Subject: Testing.
-In-Reply-To: <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
-References: <ae3d52d1-1eab-61e3-5943-21761d28d214@yandex.ru>
- <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
-Message-ID: <f03fa56b-0dba-d37f-3a51-eaaefc340da8@yandex.ru>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Fri, 12 May 2017 11:51:41 +0200
+Subject: [PATCH 1/5] pintrl: meson: add interrupts to pinctrl data
+In-Reply-To: <18ad8094-4e17-3487-7ef2-497d5c7ab9dc@gmail.com>
+References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
+ <3b4990ef-bfb4-c62c-f823-431adedc17f1@gmail.com>
+ <CACRpkdYx0j4Sjv8MhXRSuiF1TyW2Ht47r0+G1ga8mXW5LC7c=g@mail.gmail.com>
+ <1494518886.2375.15.camel@baylibre.com>
+ <7ed5a88a-43dd-f7ab-2794-48ceb5a62a93@gmail.com>
+ <18ad8094-4e17-3487-7ef2-497d5c7ab9dc@gmail.com>
+Message-ID: <CACRpkdajRQNTEYntY+NuG+3vNenzN9ZOw3ukWtS-=5zgDh5wCA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On Fri, May 12, 2017 at 8:08 AM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-> I am currently trying to improve support for the older (32-bit) Meson SoCs.
-> Unfortunately I only have a device with S812 (Meson8m2) - do you have
-> any boards with Meson8 (S802) or Meson8b (S805) SoC? we could team up
-> and add mainline support for your boards
+> Following Jerome's suggestion I prepared a version making the irq multiplexer
+> an own device. Nice here is that with this approach basically only one line of
+> code needs to be changed in the existing pinctrl driver.
 >
-> current status on my Meson8m2 device is:
-> - USB works (I only tested host mode)
-> - SD card can be read and written
-> - ethernet (my device has 10/100Mbit/s only) works
->
->
-> Regards,
-> Martin
-Another user connected to the test.
-Perhaps You may have some additional instructions for its tests.
-This is a topic with the discussion.
+> As discussion basis I add it here w/o submitting a v2 of patch 5.
 
-https://forum.armbian.com/index.php?/topic/3023-armbian-for-amlogic-s802s812/&do=findComment&comment=31591
+I think this is the right way to go, but would ideally like some feedback from
+the irqchip maintainers.
+
+Have you looked at drivers/irqchip/irq-crossbar.c for inspiration?
+Also read
+Documentation/devicetree/bindings/arm/omap/crossbar.txt
+
+It uses an hierarchical domain for a similar cross-connection
+usecase.
+
+Under any circumstances I think decoupling the IRQ multiplexer
+and dealing with it in separate is easier for maintainance and
+also for the irq maintainers to review.
+
+Yours,
+Linus Walleij
