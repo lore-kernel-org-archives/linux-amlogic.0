@@ -1,96 +1,51 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 12 May 2017 23:41:18 +0200
-Subject: [PATCH 2/5] pintrl: meson: document GPIO IRQ DT binding
-In-Reply-To: <20170512193806.trt7jbvfyygkqard@rob-hp-laptop>
-References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
- <0d835130-7c6c-751c-af15-c2ab69edcb42@gmail.com>
- <20170512193806.trt7jbvfyygkqard@rob-hp-laptop>
-Message-ID: <b39f1742-0558-beaa-1e06-eed80d644424@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 13 May 2017 11:03:41 +0200
+Subject: S805/S812 Device Tree upstreaming (was: Testing.)
+In-Reply-To: <e2da979a-2797-1cb7-92aa-2e914c6a8923@yandex.ru>
+References: <CAFBinCA1ga1NAhU+niQFT9xuDCFkyF7XTWmXokmFkwB_bq3OjQ@mail.gmail.com>
+ <e2da979a-2797-1cb7-92aa-2e914c6a8923@yandex.ru>
+Message-ID: <CAFBinCDWUEhGF9nxS=NXFK1+tOM3EoBZK-844NR1TuJxv1LpOg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 12.05.2017 um 21:38 schrieb Rob Herring:
-> On Sun, May 07, 2017 at 06:34:09PM +0200, Heiner Kallweit wrote:
->> Document the DT binding for GPIO IRQ support on Amlogic Meson SoC's.
->>
->> This documentation is intentionally not placed under
->> interrupt-controllers as GPIO IRQ support on these SoC's acts more
->> like an interrupt multiplexer.
->>
->> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> ---
->>  .../bindings/gpio/amlogic,meson-gpio-interrupt.txt | 30 ++++++++++++++++++++++
-> 
-> Seems more like an irqchip?
-> 
-It is an irq_chip. Would you therefore prefer a different name or another location
-for this binding documentation?
+Hi Oleg,
 
->>  1 file changed, 30 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
+On Thu, May 11, 2017 at 11:54 AM, Oleg <balbes-150@yandex.ru> wrote:
+>
+>>> I found dtb to kernel 3.14 the string
+>>>
+>>> gpio-vbus-power = "GPIOZ_1";
+>>>
+>>> You can simply copy it to the unit or it needs to change according to
+>>> certain rules ?
+>>>
+>>> &usb0 {
+>>>      status = "okay";
+>>> };
 >>
->> diff --git a/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
->> new file mode 100644
->> index 00000000..35a052b8
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
->> @@ -0,0 +1,30 @@
->> +Amlogic meson GPIO interrupt controller
->> +
->> +Meson SoCs contains an interrupt controller which is able watch the SoC pads
->> +and generate an interrupt on edges or level. The controller is essentially a
->> +256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
->> +or level and polarity. We don't expose all 256 mux inputs because the
->> +documentation shows that upper part is not mapped to any pad. The actual number
->> +of interrupt exposed depends on the SoC.
->> +
->> +Required properties:
->> +
->> +- compatible : should be "amlogic,meson-gpio-interrupt", "syscon".
-> 
-> Why syscon?
-> 
-Has been removed already in v2 of the patch.
-
->> +- reg : Specifies base physical address and size of the registers.
->> +- interrupts : list of GIC interrupts which can be used with the
->> +	       GPIO IRQ multiplexer
-> 
-> What about interrupt-controller property?
-> 
-This HW is somewhat special, it's more or less a multiplexer between
-100+ GPIO's and 8 GIC IRQ's. And we have two GPIO domains, both having
-a "gpio-controller".
-It doesn't seem that the "interrupt-controller" property is right here.
-I'd tend to say it should be added to the "gpio-controller" nodes.
-
->> +
->> +Example:
->> +
->> +gpio_irq at 9880 {
-> 
-> interrupt-controller at ...
-> 
-This relates to previous comment, as it isn't really an interrupt
-controller I'm not sure we should use this name.
-
->> +	compatible = "amlogic,meson-gpio-interrupt", "syscon";
->> +	reg = <0x0 0x09880 0x0 0x10>;
->> +	interrupts = <GIC_SPI 64 IRQ_TYPE_NONE>,
->> +		     <GIC_SPI 65 IRQ_TYPE_NONE>,
->> +		     <GIC_SPI 66 IRQ_TYPE_NONE>,
->> +		     <GIC_SPI 67 IRQ_TYPE_NONE>,
->> +		     <GIC_SPI 68 IRQ_TYPE_NONE>,
->> +		     <GIC_SPI 69 IRQ_TYPE_NONE>,
->> +		     <GIC_SPI 70 IRQ_TYPE_NONE>,
->> +		     <GIC_SPI 71 IRQ_TYPE_NONE>;
->> +	};
->> -- 
->> 2.12.2
+>> you can have a look at the Vega S95 devicetree [0] which enables
+>> GPIODV_24 (instead of GPIOZ_1, but that's easy to replace) for USB
+>> VBUS. it then passes the regulator to the phy
 >>
 >>
->> --
->> To unsubscribe from this list: send the line "unsubscribe devicetree" in
->> the body of a message to majordomo at vger.kernel.org
->> More majordomo info at  http://vger.kernel.org/majordomo-info.html
-> 
+>> Regards,
+>> Martin
+>>
+>>
+>> [0]
+>> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi#L67
+>
+>
+> Is that about right ?
+>
+> https://github.com/150balbes/Amlogic_s8xx-kernel/blob/test/arch/arm/boot/dts/meson8m2-mxiii-plus.dts#L80
+you have to play around and see whether you need "enable-active-high;"
+or not (depends on the original .dts / Amlogic kernel implementation)
+
+Additionally you need to add "phy-supply = <&usb_vbus>;" to the
+usb0_phy node - otherwise the PHY does not know that it has to enable
+the usb_vbus regulator.
+
+
+Regards,
+Martin
