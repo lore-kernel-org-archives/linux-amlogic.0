@@ -1,94 +1,379 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Mon, 15 May 2017 21:10:58 +0200
-Subject: [PATCH v2 00/18] ARM64: meson: DT cleanups
-In-Reply-To: <36c02d8a-d3e2-4330-f600-e49a1ba680e8@baylibre.com>
-References: <20170513143337.14278-1-afaerber@suse.de>
- <36c02d8a-d3e2-4330-f600-e49a1ba680e8@baylibre.com>
-Message-ID: <5fb0130c-473e-dc15-b60c-e5b6144031ad@suse.de>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Mon, 15 May 2017 13:03:38 -0700
+Subject: [RFC 4/7] clk: add support for clock protection
+In-Reply-To: <1494594482.2135.1.camel@baylibre.com>
+References: <20170321183330.26722-1-jbrunet@baylibre.com>
+ <20170321183330.26722-5-jbrunet@baylibre.com>
+ <149452951146.81039.10685895856154834071@resonance>
+ <1494594482.2135.1.camel@baylibre.com>
+Message-ID: <149487861856.2534.2634206373859977048@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Hi Jerome,
 
-Am 15.05.2017 um 10:16 schrieb Neil Armstrong:
-> Hi Andreas,
+Quoting Jerome Brunet (2017-05-12 06:08:02)
+> On Thu, 2017-05-11 at 12:05 -0700, Michael Turquette wrote:
+> > Quoting Jerome Brunet (2017-03-21 11:33:27)
+<snip>
+> > > @@ -838,7 +933,9 @@ static int clk_core_determine_round(struct clk_core
+> > > *core,
+> > > ?{
+> > > ????????long rate;
+> > > ?
+> > > -???????if (core->ops->determine_rate) {
+> > > +???????if (clk_core_is_protected(core)) {
+> > > +???????????????req->rate = core->rate;
+> > 
+> > Hmm, in CCF we basically re-use round_rate/determine_rate from within
+> > calls to clk_set_rate. The point is that clk_set_rate should set the
+> > same rate that is returned from either of the other two functions.
+> > 
+> > The change above breaks that subtle assumption, as a clk consumer can
+> > now call:
+> > 
+> >       clk_protect(clk);
+> > 
+> >       rate = clk_get_rate(clk);               // rate is 1234;
+> > 
+> >       rate = clk_round_rate(clk, 5678);       // rate is STILL 1234
+> > 
+> >       ret = clk_set_rate(clk, 5678);
+> > 
+> >       rate = clk_get_rate(clk);               // rate is 5678
+> > 
+> > Is my understanding correct? If so then we might consider adding some
+> > more complex knowledge to clk_round_rate. Something like:
+> > 
+> >       if clk_is_protected(clk) AND it is only protect by THIS clk:
+> >               round the rate
+> >       else:
+> >               return core->rate
 > 
-> On 05/13/2017 04:33 PM, Andreas F?rber wrote:
->> Hello Kevin,
->>
->> This series fixes several cosmetic issues, on top of your for-next branch.
->>
->> Patches 3-6 rename a node, the rest should all be non-functional changes.
+> I may be wrong but I think it is already the way you want it. Please see below
+> [0]
+<snip>
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_unprotect(clk->core);
+> > 
+> > What happens here if two different users have both protected this same
+> > clk? Looks like we ignore the second user?
+> > 
+> > In other words, what happens if clk->protect_ucount == 2?
 > 
-> These are OK.
+> We don't really care what is the value of the consumer count, what is important
+> is whether it is null or not. This is linked to the point [0] above. Maybe it is
+> not clear but here is how it (should) goes :
 > 
->> PLEASE STOP merging random new nodes at the bottom of DT files!
->> Just like it's a convention to sort new nodes by unit address, it has been
->> a convention to sort by-label nodes by their label. As discussed here and
->> elsewhere, this helps avoid merge conflicts and makes nodes easy to find.
->> I don't care whether we order A0 before A or after, but adding new HDMI
->> or CVBS nodes at the very bottom is totally out of alphabetical order.
->> Since my v1 you really should've known that...
+> Every time clock_rate_protect is called the consumer *and* core count is
+> incremented. (consumer_count =< core_count)
 > 
-> It's not perfect, but now it's done, live with it, this has already been discussed.
-
-No.
-
-Copy&pasting your comment N times does not make it any more valid. My
-files, my rules - I insist on vega-s95, gxbb and gx, which you guys
-refactored out from my gxbb, to be tidy.
-
-> Please try to refactor boards DTS with their parent reference design instead
-> like it was done with the P212 and what I did with the Wetek Hub and Play2.
-
-Negative, that means any additions and changes for the reference boards
-will slip through into boards that you do not test.
-
-We've already seen how "well" that works with R-Box Pro having inherited
-a broken U-Boot network configuration due to internal vs. external PHY.
-
->> Similarly, Khadas Vim shouldn't have been merged with the "bcrmf" typo.
+> When an altering action is tried (set_rate, set_parent, ...), if the consumer
+> count is not null, we call clk_core_unprotect which mean that the core_count is
+> temporarily decremented by 1. It is safe to do so because we are holding the
+> prepare_lock.
 > 
-> Well, this is why we have 7 rc releases after the merge window...
-
-If Kevin is the maintainer, then he needs to carefully review patches.
-It is not my job to review all patches when BayLibre gets paid for it!
-
->> Which proves my point that we need to fix these issues now so that they
->> don't keep spreading (Broken Window Theory). New boards have not been
->> checked for sort order, only boards already touched in v1.
->>
->> Board and Makefile order affect my pending R-Box Pro patches.
->> Node order affects Martin's pending Bluetooth patches among others.
+> When we get to 
+> +???????if (clk_core_is_protected(core)) {
+> +???????????????req->rate = core->rate;
 > 
-> Please order S905x after S905d, and we'll be OK.
-
-Isn't the historical SoC order S905X before S905D?
-
-Otherwise your strict interpretation leads to meson-gxbb before meson8,
-which seems unlogical to me.
-
->> Patches 7-9 (had and) have no dependency, please start applying.
+> Either the clock was only protected by the calling consumer, *and only once*,
+> then the protection has been temporarily removed, test is false and the usual
+> code will be executed, calling round/determine rate.
 > 
-> I'll wait for Kevin's advice, but I'm against these since they are
-> only purely cosmetic and will break bisect and add unnecessary complexity
-> to handle further patches on these board.
+> If the test is true, it means the clock is still protected. This happens if 
+> * the clock is protected and we come from an unprotected consumer
+> * the clock is protected by more than one consumer
+> * the clock is protected more than one time by the same consumer - when there is
+> multiple code path protecting the rate in a device driver, as previously
+> discussed. That's why clk_core_unprotect decrements by 1 and not by the
+> consumer_count.
+> 
+> In such case, the clock is still protected, I think it make sense to return what
+> is already set and not round/determine again. The clock was already
+> rounded/determined when it wasn't protected.
+> 
+> It this what you meant by :
+> > if clk_is_protected(clk) AND it is only protect by THIS clk:
+> ?
 
-See the gxbb patch for why that statement is wrong.
+Yes, you've answered my question and I'm happy with that. When reviewing
+the code before I missed the subtle point that we test for
+clk->protect_ucount but then only modify core->protect_count. I think a
+one-line comment above those conditional statements would be nice.
 
-Also note that not cleaning up an existing mess and making it worse are
-two things.
+I do have a doubt about how clk_round_rate works now. Is it correct that
+we do not ever decrement the protect count when a protecting consumer
+calls clk_round_rate?
 
-I will also remind that I was forced to clean up the node order in ALL
-exynos5250 .dts files before I could get my new exynos5250-spring.dts
-merged, so I have zero understanding about these "churn" and "live with
-it" comments here. The same rules need to apply to all (that's ?galit?
-for you!), BayLibre is not above everyone else.
+It seems to me that a clk consumer should be able to call clk_protect()
+and then clk_round_rate() and get a real rounded rate instead req->rate
+= core->rate, assuming that the core protect count is decremented to
+zero.
+
+In other words, can you make clk_round_rate work like clk_set_rate and
+clk_set_parent?
 
 Regards,
-Andreas
+Mike
 
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+> 
+> Cheers
+> Jerome
+> 
+> > 
+> > 
+> > Best regards,
+> > Mike
+> > 
+> > > +
+> > > ????????ret = clk_core_set_rate_nolock(clk->core, rate);
+> > > ?
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_protect(clk->core);
+> > > +
+> > > ????????clk_prepare_unlock();
+> > > ?
+> > > ????????return ret;
+> > > @@ -1669,12 +1772,18 @@ int clk_set_rate_range(struct clk *clk, unsigned
+> > > long min, unsigned long max)
+> > > ?
+> > > ????????clk_prepare_lock();
+> > > ?
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_unprotect(clk->core);
+> > > +
+> > > ????????if (min != clk->min_rate || max != clk->max_rate) {
+> > > ????????????????clk->min_rate = min;
+> > > ????????????????clk->max_rate = max;
+> > > ????????????????ret = clk_core_set_rate_nolock(clk->core, clk->core-
+> > > >req_rate);
+> > > ????????}
+> > > ?
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_protect(clk->core);
+> > > +
+> > > ????????clk_prepare_unlock();
+> > > ?
+> > > ????????return ret;
+> > > @@ -1815,6 +1924,9 @@ static int clk_core_set_parent(struct clk_core *core,
+> > > struct clk_core *parent)
+> > > ????????if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
+> > > ????????????????return -EBUSY;
+> > > ?
+> > > +???????if (clk_core_is_protected(core))
+> > > +???????????????return -EBUSY;
+> > > +
+> > > ????????/* try finding the new parent index */
+> > > ????????if (parent) {
+> > > ????????????????p_index = clk_fetch_parent_index(core, parent);
+> > > @@ -1878,11 +1990,24 @@ static int clk_core_set_parent_lock(struct clk_core
+> > > *core,
+> > > ? */
+> > > ?int clk_set_parent(struct clk *clk, struct clk *parent)
+> > > ?{
+> > > +???????int ret;
+> > > +
+> > > ????????if (!clk)
+> > > ????????????????return 0;
+> > > ?
+> > > -???????return clk_core_set_parent_lock(clk->core,
+> > > -???????????????????????????????????????parent ? parent->core : NULL);
+> > > +???????clk_prepare_lock();
+> > > +
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_unprotect(clk->core);
+> > > +
+> > > +???????ret = clk_core_set_parent(clk->core, parent ? parent->core : NULL);
+> > > +
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_protect(clk->core);
+> > > +
+> > > +???????clk_prepare_unlock();
+> > > +
+> > > +???????return ret;
+> > > ?}
+> > > ?EXPORT_SYMBOL_GPL(clk_set_parent);
+> > > ?
+> > > @@ -1893,7 +2018,10 @@ static int clk_core_set_phase(struct clk_core *core,
+> > > int degrees)
+> > > ????????if (!core)
+> > > ????????????????return 0;
+> > > ?
+> > > -???????trace_clk_set_phase(clk->core, degrees);
+> > > +???????if (clk_core_is_protected(core))
+> > > +???????????????return -EBUSY;
+> > > +
+> > > +???????trace_clk_set_phase(core, degrees);
+> > > ?
+> > > ????????if (core->ops->set_phase)
+> > > ????????????????ret = core->ops->set_phase(core->hw, degrees);
+> > > @@ -1936,7 +2064,15 @@ int clk_set_phase(struct clk *clk, int degrees)
+> > > ????????????????degrees += 360;
+> > > ?
+> > > ????????clk_prepare_lock();
+> > > +
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_unprotect(clk->core);
+> > > +
+> > > ????????ret = clk_core_set_phase(clk->core, degrees);
+> > > +
+> > > +???????if (clk->protect_ucount)
+> > > +???????????????clk_core_protect(clk->core);
+> > > +
+> > > ????????clk_prepare_unlock();
+> > > ?
+> > > ????????return ret;
+> > > @@ -2023,11 +2159,12 @@ static void clk_summary_show_one(struct seq_file *s,
+> > > struct clk_core *c,
+> > > ????????if (!c)
+> > > ????????????????return;
+> > > ?
+> > > -???????seq_printf(s, "%*s%-*s %11d %12d %11lu %10lu %-3d\n",
+> > > +???????seq_printf(s, "%*s%-*s %11d %12d %12d %11lu %10lu %-3d\n",
+> > > ???????????????????level * 3 + 1, "",
+> > > ???????????????????30 - level * 3, c->name,
+> > > -??????????????????c->enable_count, c->prepare_count, clk_core_get_rate(c),
+> > > -??????????????????clk_core_get_accuracy(c), clk_core_get_phase(c));
+> > > +??????????????????c->enable_count, c->prepare_count, c->protect_count,
+> > > +??????????????????clk_core_get_rate(c), clk_core_get_accuracy(c),
+> > > +??????????????????clk_core_get_phase(c));
+> > > ?}
+> > > ?
+> > > ?static void clk_summary_show_subtree(struct seq_file *s, struct clk_core
+> > > *c,
+> > > @@ -2049,8 +2186,8 @@ static int clk_summary_show(struct seq_file *s, void
+> > > *data)
+> > > ????????struct clk_core *c;
+> > > ????????struct hlist_head **lists = (struct hlist_head **)s->private;
+> > > ?
+> > > -???????seq_puts(s,
+> > > "???clock?????????????????????????enable_cnt??prepare_cnt????????rate???accu
+> > > racy???phase\n");
+> > > -???????seq_puts(s, "-------------------------------------------------------
+> > > ---------------------------------\n");
+> > > +???????seq_puts(s,
+> > > "???clock?????????????????????????enable_cnt??prepare_cnt??protect_cnt??????
+> > > ??rate???accuracy???phase\n");
+> > > +???????seq_puts(s, "-------------------------------------------------------
+> > > ---------------------------------------------\n");
+> > > ?
+> > > ????????clk_prepare_lock();
+> > > ?
+> > > @@ -2085,6 +2222,7 @@ static void clk_dump_one(struct seq_file *s, struct
+> > > clk_core *c, int level)
+> > > ????????seq_printf(s, "\"%s\": { ", c->name);
+> > > ????????seq_printf(s, "\"enable_count\": %d,", c->enable_count);
+> > > ????????seq_printf(s, "\"prepare_count\": %d,", c->prepare_count);
+> > > +???????seq_printf(s, "\"protect_count\": %d,", c->protect_count);
+> > > ????????seq_printf(s, "\"rate\": %lu,", clk_core_get_rate(c));
+> > > ????????seq_printf(s, "\"accuracy\": %lu,", clk_core_get_accuracy(c));
+> > > ????????seq_printf(s, "\"phase\": %d", clk_core_get_phase(c));
+> > > @@ -2191,6 +2329,11 @@ static int clk_debug_create_one(struct clk_core
+> > > *core, struct dentry *pdentry)
+> > > ????????if (!d)
+> > > ????????????????goto err_out;
+> > > ?
+> > > +???????d = debugfs_create_u32("clk_protect_count", S_IRUGO, core->dentry,
+> > > +???????????????????????(u32 *)&core->protect_count);
+> > > +???????if (!d)
+> > > +???????????????goto err_out;
+> > > +
+> > > ????????d = debugfs_create_u32("clk_notifier_count", S_IRUGO, core->dentry,
+> > > ????????????????????????(u32 *)&core->notifier_count);
+> > > ????????if (!d)
+> > > @@ -2747,6 +2890,11 @@ void clk_unregister(struct clk *clk)
+> > > ????????if (clk->core->prepare_count)
+> > > ????????????????pr_warn("%s: unregistering prepared clock: %s\n",
+> > > ????????????????????????????????????????__func__, clk->core->name);
+> > > +
+> > > +???????if (clk->core->protect_count)
+> > > +???????????????pr_warn("%s: unregistering protected clock: %s\n",
+> > > +???????????????????????????????????????__func__, clk->core->name);
+> > > +
+> > > ????????kref_put(&clk->core->ref, __clk_release);
+> > > ?unlock:
+> > > ????????clk_prepare_unlock();
+> > > @@ -2905,6 +3053,15 @@ void __clk_put(struct clk *clk)
+> > > ?
+> > > ????????clk_prepare_lock();
+> > > ?
+> > > +???????/* Protect count not balanced: warn and sanitize */
+> > > +???????if (clk->protect_ucount) {
+> > > +???????????????pr_warn("%s: releasing protected clock: %s\n",
+> > > +???????????????????????????????????????__func__, clk->core->name);
+> > > +
+> > > +???????????????for (; clk->protect_ucount; clk->protect_ucount--)
+> > > +???????????????????????clk_core_unprotect(clk->core);
+> > > +???????}
+> > > +
+> > > ????????hlist_del(&clk->clks_node);
+> > > ????????if (clk->min_rate > clk->core->req_rate ||
+> > > ????????????clk->max_rate < clk->core->req_rate)
+> > > diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+> > > index a428aec36ace..705a158d9b8f 100644
+> > > --- a/include/linux/clk-provider.h
+> > > +++ b/include/linux/clk-provider.h
+> > > @@ -739,6 +739,7 @@ unsigned long clk_hw_get_rate(const struct clk_hw *hw);
+> > > ?unsigned long __clk_get_flags(struct clk *clk);
+> > > ?unsigned long clk_hw_get_flags(const struct clk_hw *hw);
+> > > ?bool clk_hw_is_prepared(const struct clk_hw *hw);
+> > > +bool clk_hw_is_protected(const struct clk_hw *hw);
+> > > ?bool clk_hw_is_enabled(const struct clk_hw *hw);
+> > > ?bool __clk_is_enabled(struct clk *clk);
+> > > ?struct clk *__clk_lookup(const char *name);
+> > > diff --git a/include/linux/clk.h b/include/linux/clk.h
+> > > index e9d36b3e49de..90b72ead4411 100644
+> > > --- a/include/linux/clk.h
+> > > +++ b/include/linux/clk.h
+> > > @@ -265,6 +265,30 @@ struct clk *devm_clk_get(struct device *dev, const char
+> > > *id);
+> > > ? */
+> > > ?struct clk *devm_get_clk_from_child(struct device *dev,
+> > > ????????????????????????????????????struct device_node *np, const char
+> > > *con_id);
+> > > +/**
+> > > + * clk_protect - inform the system when the clock source should be
+> > > protected.
+> > > + * @clk: clock source
+> > > + *
+> > > + * This function informs the system that the consumer protecting the clock
+> > > + * depends on the rate of the clock source and can't tolerate any glitches
+> > > + * introduced by further clock rate change or re-parenting of the clock
+> > > source.
+> > > + *
+> > > + * Must not be called from within atomic context.
+> > > + */
+> > > +void clk_protect(struct clk *clk);
+> > > +
+> > > +/**
+> > > + * clk_unprotect - release the protection of the clock source.
+> > > + * @clk: clock source
+> > > + *
+> > > + * This function informs the system that the consumer previously protecting
+> > > the
+> > > + * clock source can now deal with other consumer altering the clock source.
+> > > + *
+> > > + * The caller must balance the number of protect and unprotect calls.
+> > > + *
+> > > + * Must not be called from within atomic context.
+> > > + */
+> > > +void clk_unprotect(struct clk *clk);
+> > > ?
+> > > ?/**
+> > > ? * clk_enable - inform the system when the clock source should be running.
+> > > @@ -460,6 +484,11 @@ static inline void clk_put(struct clk *clk) {}
+> > > ?
+> > > ?static inline void devm_clk_put(struct device *dev, struct clk *clk) {}
+> > > ?
+> > > +
+> > > +static inline void clk_protect(struct clk *clk) {}
+> > > +
+> > > +static inline void clk_unprotect(struct clk *clk) {}
+> > > +
+> > > ?static inline int clk_enable(struct clk *clk)
+> > > ?{
+> > > ????????return 0;
+> > > --?
+> > > 2.9.3
+> > > 
