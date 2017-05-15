@@ -1,51 +1,47 @@
-From: moore@free.fr (Chris Moore)
-Date: Mon, 15 May 2017 11:28:35 +0200
-Subject: DT: newbie questions
-Message-ID: <cda48375-3c3e-8871-2598-8405b387aaa4@free.fr>
+From: balbes-150@yandex.ru (Oleg)
+Date: Mon, 15 May 2017 15:12:57 +0300
+Subject: S805/S812 Device Tree upstreaming (was: Testing.)
+In-Reply-To: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
+References: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
+Message-ID: <939ef72d-a4e5-7535-2252-d607158bd0fe@yandex.ru>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
 
-Sorry for these newbie questions :(
+> get a copy of:
+> - dmesg output
+> - /sys/kernel/debug/gpio
+> - /proc/interrupts
+> - /proc/iomem
 
-I would like to add support for the cheap Chinese KI PLUS S905 boxes 
-which seem very popular.
-They are re-branded (or cloned) by several different vendors.
-In particular the most serious seem to be:-
-VideoStrong (http://www.videostrong.com/product.asp?sid=257)
-Acemax 
-(http://www.acemax.net.cn/droid-world/droid-box/hybrid-android-dvb-t2-dvb-s2/kii-pro-ki-plus-s2-t2-combo-149.html#.WRls_GjyiUk)
+I received the necessary data from LebreELEC (this system now I have eMMC).
+Let me know if you need to receive this data always from Android.
 
-I actually have an Xtreamer mxV (http://www.xtreamer.net/mxv) which 
-seems to be an exact clone.
+https://yadi.sk/d/deis2Z023JAiyE
 
-My first question is what to put in the compatible line.
-I could put:
-a) compatible = "videostrong,kiplus", "acemax,kiplus", "xtreamer,mxv", 
-"amlogic,meson-gxbb";
-but there are many other KI PLUS vendors so I could maybe omit the vendor:
-b) compatible = "kiplus", "xtreamer,mxv", "amlogic,meson-gxbb";
-but this poses the problem of what to put in amlogic.txt which seems to 
-require a vendor.
+>
+> I'm using an initrd from Arch Linux ARM (from their ARMv7 multi-platform image).
+> however, I found another missing kernel config option yesterday: you
+> also need to enable CONFIG_COMMON_CLK_PWM
+> once you enable that you should be able to see /dev/mmcblk1p[0-9] with
+> all the partitions from your SD card
+>
+> I was also able to reproduce the kernel crash you reported last week.
+> it seems to go away when enabling CONFIG_DEBUG_SPINLOCK in the kernel
+> config - but I will create a separate thread about this (as I suspect
+> that there may be some memory corruption along with a race condition
+> somewhere)
+>
+>
+> Regards,
+> Martin
+Hi Martin
 
-My second question is what to base my patch on:
-Should it be v4.12/dt64 in Kevin's linux-amlogic.git?
-
-My third question concerns the SDIO WiFi.
-The WiFi chip seems to vary between boards.
-My board has a Realtek RTL8189ETV.
-I note that its (unfortunately out of tree) driver is loaded even if the 
-DT specifies a Broadcom chip.
-Is it really necessary to specify the chip in the DT?
-(It seems that the SDIO, like the PCI and USB buses, recognizes 
-connected devices by their IDs.)
-
-My final question is how to submit my patch.
-Should I send an RFC to this list for approval before possibly spamming 
-others?
-
-I thank you in advance for your replies and your tolerance.
-
-Cheers,
-Chris Moore
+Good news. Using the sources Your latest kernel (20170513) and amendments
+in the config of the kernel I was able to run on Tronsmart MXIII Plus 
+(s812).
+By the way, in the source for Your kernel I had to make one small change 
+to comment
+out the in /arch/arm/mach-meson/Makefile a build of platsmp.
+Thanks for the support. Now I have the ability
+to run basic system on the device and test will be easier.
