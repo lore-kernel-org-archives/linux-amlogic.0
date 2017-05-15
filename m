@@ -1,113 +1,58 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 15 May 2017 10:17:10 +0200
-Subject: [PATCH v2 12/18] arm64: dts: meson-gxbb-vega-s95: Fix node order
-In-Reply-To: <20170513143337.14278-13-afaerber@suse.de>
+Date: Mon, 15 May 2017 10:17:17 +0200
+Subject: [PATCH v2 09/18] arm64: dts: meson-gxbb-wetek-hub: Reference CVBS
+ node by label
+In-Reply-To: <20170513143337.14278-10-afaerber@suse.de>
 References: <20170513143337.14278-1-afaerber@suse.de>
- <20170513143337.14278-13-afaerber@suse.de>
-Message-ID: <d5ab7b11-1964-6d45-3323-98af7d726776@baylibre.com>
+ <20170513143337.14278-10-afaerber@suse.de>
+Message-ID: <a335d752-3390-f3ba-c62c-f66f64da06a3@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 05/13/2017 04:33 PM, Andreas F?rber wrote:
-> Sort nodes referenced by label alphabetically.
+> Makes the override safer.
 > 
+> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 > Signed-off-by: Andreas F?rber <afaerber@suse.de>
 > ---
 >  v1 -> v2:
->  * Rebased (new nodes added)
+>  * Extended commit message
 >  
->  .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 54 +++++++++++-----------
->  1 file changed, 27 insertions(+), 27 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi     | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts | 6 +++---
+>  2 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> index f4bfee8e2e08..346753fb6324 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> @@ -111,18 +111,6 @@
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> index a5be438a5c03..0ec1d19522dd 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> @@ -126,7 +126,7 @@
+>  		clock-names = "ext_clock";
 >  	};
+>  
+> -	cvbs-connector {
+> +	cvbs_connector: cvbs-connector {
+>  		compatible = "composite-video-connector";
+>  
+>  		port {
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
+> index f057fb48fee5..1878ac2b2b83 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts
+> @@ -59,10 +59,10 @@
+>  			panic-indicator;
+>  		};
+>  	};
+> +};
+>  
+> -	cvbs-connector {
+> -		status = "disabled";
+> -	};
+> +&cvbs_connector {
+> +	status = "disabled";
 >  };
 >  
-> -&uart_AO {
-> -	status = "okay";
-> -	pinctrl-0 = <&uart_ao_a_pins>;
-> -	pinctrl-names = "default";
-> -};
-> -
-> -&ir {
-> -	status = "okay";
-> -	pinctrl-0 = <&remote_input_ao_pins>;
-> -	pinctrl-names = "default";
-> -};
-> -
 >  &ethmac {
->  	status = "okay";
->  	pinctrl-0 = <&eth_rgmii_pins>;
-> @@ -149,21 +137,18 @@
->  	};
->  };
->  
-> -&usb0_phy {
-> -	status = "okay";
-> -	phy-supply = <&usb_vbus>;
-> -};
-> -
-> -&usb1_phy {
-> -	status = "okay";
-> -};
-> -
-> -&usb0 {
-> +&ir {
->  	status = "okay";
-> +	pinctrl-0 = <&remote_input_ao_pins>;
-> +	pinctrl-names = "default";
->  };
->  
-> -&usb1 {
-> +&pwm_ef {
->  	status = "okay";
-> +	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&clkc CLKID_FCLK_DIV4>;
-> +	clock-names = "clkin0";
->  };
->  
->  /* Wireless SDIO Module */
-> @@ -229,10 +214,25 @@
->  	vmmcq-sumpply = <&vcc_1v8>;
->  };
->  
-> -&pwm_ef {
-> +&uart_AO {
->  	status = "okay";
-> -	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-0 = <&uart_ao_a_pins>;
->  	pinctrl-names = "default";
-> -	clocks = <&clkc CLKID_FCLK_DIV4>;
-> -	clock-names = "clkin0";
-> +};
-> +
-> +&usb0_phy {
-> +	status = "okay";
-> +	phy-supply = <&usb_vbus>;
-> +};
-> +
-> +&usb1_phy {
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	status = "okay";
->  };
 > 
 
-Hi Andreas,
-
-Like a previous attempt, I'm not OK with such rework since it will break bisect and add complexity for new patches handling.
-
-The order is not alphabetically ordered, live with it.
-
-Neil
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
