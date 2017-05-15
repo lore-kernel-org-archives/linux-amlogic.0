@@ -1,10 +1,10 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 15 May 2017 10:17:06 +0200
-Subject: [PATCH v2 15/18] arm64: dts: meson-gxl: Fix node order
-In-Reply-To: <20170513143337.14278-16-afaerber@suse.de>
+Date: Mon, 15 May 2017 10:17:10 +0200
+Subject: [PATCH v2 12/18] arm64: dts: meson-gxbb-vega-s95: Fix node order
+In-Reply-To: <20170513143337.14278-13-afaerber@suse.de>
 References: <20170513143337.14278-1-afaerber@suse.de>
- <20170513143337.14278-16-afaerber@suse.de>
-Message-ID: <21f47a71-a3a2-c0ae-46b1-87902f82e93e@baylibre.com>
+ <20170513143337.14278-13-afaerber@suse.de>
+Message-ID: <d5ab7b11-1964-6d45-3323-98af7d726776@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -16,103 +16,92 @@ On 05/13/2017 04:33 PM, Andreas F?rber wrote:
 >  v1 -> v2:
 >  * Rebased (new nodes added)
 >  
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 72 +++++++++++++++---------------
->  1 file changed, 36 insertions(+), 36 deletions(-)
+>  .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 54 +++++++++++-----------
+>  1 file changed, 27 insertions(+), 27 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> index d8e096dff10a..3efad5f0bca4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> @@ -193,6 +193,42 @@
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> index f4bfee8e2e08..346753fb6324 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> @@ -111,18 +111,6 @@
 >  	};
 >  };
 >  
-> +&hdmi_tx {
-> +	compatible = "amlogic,meson-gxl-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
-> +	resets = <&reset RESET_HDMITX_CAPB3>,
-> +		 <&reset RESET_HDMI_SYSTEM_RESET>,
-> +		 <&reset RESET_HDMI_TX>;
-> +	reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
-> +	clocks = <&clkc CLKID_HDMI_PCLK>,
-> +		 <&clkc CLKID_CLK81>,
-> +		 <&clkc CLKID_GCLK_VENCI_INT0>;
-> +	clock-names = "isfr", "iahb", "venci";
-> +};
-> +
-> +&hiubus {
-> +	clkc: clock-controller at 0 {
-> +		compatible = "amlogic,gxl-clkc", "amlogic,gxbb-clkc";
-> +		#clock-cells = <1>;
-> +		reg = <0x0 0x0 0x0 0x3db>;
-> +	};
-> +};
-> +
-> +&i2c_A {
-> +	clocks = <&clkc CLKID_I2C>;
-> +};
-> +
-> +&i2c_AO {
-> +	clocks = <&clkc CLKID_AO_I2C>;
-> +};
-> +
-> +&i2c_B {
-> +	clocks = <&clkc CLKID_I2C>;
-> +};
-> +
-> +&i2c_C {
-> +	clocks = <&clkc CLKID_I2C>;
-> +};
-> +
->  &periphs {
->  	pinctrl_periphs: pinctrl at 4b0 {
->  		compatible = "amlogic,meson-gxl-periphs-pinctrl";
-> @@ -501,30 +537,6 @@
+> -&uart_AO {
+> -	status = "okay";
+> -	pinctrl-0 = <&uart_ao_a_pins>;
+> -	pinctrl-names = "default";
+> -};
+> -
+> -&ir {
+> -	status = "okay";
+> -	pinctrl-0 = <&remote_input_ao_pins>;
+> -	pinctrl-names = "default";
+> -};
+> -
+>  &ethmac {
+>  	status = "okay";
+>  	pinctrl-0 = <&eth_rgmii_pins>;
+> @@ -149,21 +137,18 @@
 >  	};
 >  };
 >  
-> -&hiubus {
-> -	clkc: clock-controller at 0 {
-> -		compatible = "amlogic,gxl-clkc", "amlogic,gxbb-clkc";
-> -		#clock-cells = <1>;
-> -		reg = <0x0 0x0 0x0 0x3db>;
-> -	};
+> -&usb0_phy {
+> -	status = "okay";
+> -	phy-supply = <&usb_vbus>;
 > -};
 > -
-> -&i2c_A {
-> -	clocks = <&clkc CLKID_I2C>;
+> -&usb1_phy {
+> -	status = "okay";
 > -};
 > -
-> -&i2c_AO {
-> -	clocks = <&clkc CLKID_AO_I2C>;
-> -};
-> -
-> -&i2c_B {
-> -	clocks = <&clkc CLKID_I2C>;
-> -};
-> -
-> -&i2c_C {
-> -	clocks = <&clkc CLKID_I2C>;
-> -};
-> -
->  &saradc {
->  	compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
->  	clocks = <&xtal>,
-> @@ -563,15 +575,3 @@
->  &vpu {
->  	compatible = "amlogic,meson-gxl-vpu", "amlogic,meson-gx-vpu";
+> -&usb0 {
+> +&ir {
+>  	status = "okay";
+> +	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-names = "default";
 >  };
-> -
-> -&hdmi_tx {
-> -	compatible = "amlogic,meson-gxl-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
-> -	resets = <&reset RESET_HDMITX_CAPB3>,
-> -		 <&reset RESET_HDMI_SYSTEM_RESET>,
-> -		 <&reset RESET_HDMI_TX>;
-> -	reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
-> -	clocks = <&clkc CLKID_HDMI_PCLK>,
-> -		 <&clkc CLKID_CLK81>,
-> -		 <&clkc CLKID_GCLK_VENCI_INT0>;
-> -	clock-names = "isfr", "iahb", "venci";
-> -};
+>  
+> -&usb1 {
+> +&pwm_ef {
+>  	status = "okay";
+> +	pinctrl-0 = <&pwm_e_pins>;
+> +	pinctrl-names = "default";
+> +	clocks = <&clkc CLKID_FCLK_DIV4>;
+> +	clock-names = "clkin0";
+>  };
+>  
+>  /* Wireless SDIO Module */
+> @@ -229,10 +214,25 @@
+>  	vmmcq-sumpply = <&vcc_1v8>;
+>  };
+>  
+> -&pwm_ef {
+> +&uart_AO {
+>  	status = "okay";
+> -	pinctrl-0 = <&pwm_e_pins>;
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+>  	pinctrl-names = "default";
+> -	clocks = <&clkc CLKID_FCLK_DIV4>;
+> -	clock-names = "clkin0";
+> +};
+> +
+> +&usb0_phy {
+> +	status = "okay";
+> +	phy-supply = <&usb_vbus>;
+> +};
+> +
+> +&usb1_phy {
+> +	status = "okay";
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb1 {
+> +	status = "okay";
+>  };
 > 
 
 Hi Andreas,
