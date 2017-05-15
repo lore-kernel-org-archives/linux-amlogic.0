@@ -1,40 +1,51 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 15 May 2017 10:17:41 +0200
-Subject: [PATCH v2 03/18] arm64: dts: meson-gxbb-vega-s95: Fix Wifi node
- name
-In-Reply-To: <20170513143337.14278-4-afaerber@suse.de>
-References: <20170513143337.14278-1-afaerber@suse.de>
- <20170513143337.14278-4-afaerber@suse.de>
-Message-ID: <4eeeb154-7349-9e34-8cd8-282b7ea25a05@baylibre.com>
+From: moore@free.fr (Chris Moore)
+Date: Mon, 15 May 2017 11:28:35 +0200
+Subject: DT: newbie questions
+Message-ID: <cda48375-3c3e-8871-2598-8405b387aaa4@free.fr>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/13/2017 04:33 PM, Andreas F?rber wrote:
-> bcrmf -> brcmf -> wifi
-> 
-> Fixes: ab5b24fdd2d5 ("ARM64: dts: meson-gxbb-vega-s95: Add SD/SDIO/MMC and PWM nodes")
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Andreas F?rber <afaerber@suse.de>
-> ---
->  v1 -> v2:
->  * Renamed node brmcf -> wifi (Rob)
->  
->  arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> index aefa66dff72d..f4bfee8e2e08 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-> @@ -186,7 +186,7 @@
->  	vmmc-supply = <&vcc_3v3>;
->  	vqmmc-supply = <&vcc_1v8>;
->  
-> -	brcmf: bcrmf at 1 {
-> +	brcmf: wifi at 1 {
->  		reg = <1>;
->  		compatible = "brcm,bcm4329-fmac";
->  	};
-> 
+Hi,
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Sorry for these newbie questions :(
+
+I would like to add support for the cheap Chinese KI PLUS S905 boxes 
+which seem very popular.
+They are re-branded (or cloned) by several different vendors.
+In particular the most serious seem to be:-
+VideoStrong (http://www.videostrong.com/product.asp?sid=257)
+Acemax 
+(http://www.acemax.net.cn/droid-world/droid-box/hybrid-android-dvb-t2-dvb-s2/kii-pro-ki-plus-s2-t2-combo-149.html#.WRls_GjyiUk)
+
+I actually have an Xtreamer mxV (http://www.xtreamer.net/mxv) which 
+seems to be an exact clone.
+
+My first question is what to put in the compatible line.
+I could put:
+a) compatible = "videostrong,kiplus", "acemax,kiplus", "xtreamer,mxv", 
+"amlogic,meson-gxbb";
+but there are many other KI PLUS vendors so I could maybe omit the vendor:
+b) compatible = "kiplus", "xtreamer,mxv", "amlogic,meson-gxbb";
+but this poses the problem of what to put in amlogic.txt which seems to 
+require a vendor.
+
+My second question is what to base my patch on:
+Should it be v4.12/dt64 in Kevin's linux-amlogic.git?
+
+My third question concerns the SDIO WiFi.
+The WiFi chip seems to vary between boards.
+My board has a Realtek RTL8189ETV.
+I note that its (unfortunately out of tree) driver is loaded even if the 
+DT specifies a Broadcom chip.
+Is it really necessary to specify the chip in the DT?
+(It seems that the SDIO, like the PCI and USB buses, recognizes 
+connected devices by their IDs.)
+
+My final question is how to submit my patch.
+Should I send an RFC to this list for approval before possibly spamming 
+others?
+
+I thank you in advance for your replies and your tolerance.
+
+Cheers,
+Chris Moore
