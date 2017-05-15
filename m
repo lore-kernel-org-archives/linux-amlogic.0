@@ -1,11 +1,10 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 15 May 2017 10:17:01 +0200
-Subject: [PATCH v2 16/18] arm64: dts: meson-gxl-s905x-nexbox-a95x: Fix
- node order
-In-Reply-To: <20170513143337.14278-17-afaerber@suse.de>
+Date: Mon, 15 May 2017 10:17:03 +0200
+Subject: [PATCH v2 14/18] arm64: dts: meson-gxbb-p20x: Fix node order
+In-Reply-To: <20170513143337.14278-15-afaerber@suse.de>
 References: <20170513143337.14278-1-afaerber@suse.de>
- <20170513143337.14278-17-afaerber@suse.de>
-Message-ID: <e50b3a0f-dab0-d2bc-26f2-a6edcc8af761@baylibre.com>
+ <20170513143337.14278-15-afaerber@suse.de>
+Message-ID: <db56e3f5-ed19-4c0f-9271-ecbf64c64f43@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -17,17 +16,18 @@ On 05/13/2017 04:33 PM, Andreas F?rber wrote:
 >  v1 -> v2:
 >  * Rebased (new nodes added)
 >  
->  .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 52 +++++++++++-----------
->  1 file changed, 26 insertions(+), 26 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi | 62 ++++++++++++------------
+>  1 file changed, 31 insertions(+), 31 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-> index 8873c058fad2..6633a5d8fdd3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-> @@ -140,10 +140,10 @@
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> index 0ec1d19522dd..d904deb1018c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> @@ -148,34 +148,36 @@
 >  	};
 >  };
 >  
+> -/* This UART is brought out to the DB9 connector */
 > -&uart_AO {
 > -	status = "okay";
 > -	pinctrl-0 = <&uart_ao_a_pins>;
@@ -38,71 +38,86 @@ On 05/13/2017 04:33 PM, Andreas F?rber wrote:
 > +	};
 >  };
 >  
->  &ethmac {
-> @@ -152,12 +152,32 @@
->  	phy-handle = <&internal_phy>;
+> -&ir {
+> +&hdmi_tx {
+>  	status = "okay";
+> -	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
+>  	pinctrl-names = "default";
 >  };
 >  
-> +&hdmi_tx {
-> +	status = "okay";
-> +	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
+> -&usb0_phy {
+> -	status = "okay";
+> -	phy-supply = <&usb_pwr>;
+> -};
+> -
+> -&usb1_phy {
+> -	status = "okay";
 > +&hdmi_tx_tmds_port {
 > +	hdmi_tx_tmds_out: endpoint {
 > +		remote-endpoint = <&hdmi_connector_in>;
 > +	};
-> +};
-> +
->  &ir {
->  	status = "okay";
->  	pinctrl-0 = <&remote_input_ao_pins>;
->  	pinctrl-names = "default";
 >  };
 >  
+> -&usb0 {
+> +&ir {
+>  	status = "okay";
+> +	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-names = "default";
+>  };
+>  
+> -&usb1 {
 > +&pwm_ef {
-> +	status = "okay";
+>  	status = "okay";
 > +	pinctrl-0 = <&pwm_e_pins>;
 > +	pinctrl-names = "default";
 > +	clocks = <&clkc CLKID_FCLK_DIV4>;
 > +	clock-names = "clkin0";
-> +};
-> +
+>  };
+>  
 >  /* Wireless SDIO Module */
->  &sd_emmc_a {
->  	status = "okay";
-> @@ -217,28 +237,8 @@
+> @@ -242,28 +244,26 @@
 >  	vqmmc-supply = <&vddio_boot>;
 >  };
 >  
 > -&pwm_ef {
-> -	status = "okay";
+> +/* This UART is brought out to the DB9 connector */
+> +&uart_AO {
+>  	status = "okay";
 > -	pinctrl-0 = <&pwm_e_pins>;
-> -	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+>  	pinctrl-names = "default";
 > -	clocks = <&clkc CLKID_FCLK_DIV4>;
 > -	clock-names = "clkin0";
-> -};
-> -
+>  };
+>  
 > -&cvbs_vdac_port {
 > -	cvbs_vdac_out: endpoint {
 > -		remote-endpoint = <&cvbs_connector_in>;
 > -	};
-> -};
-> -
+> +&usb0_phy {
+> +	status = "okay";
+> +	phy-supply = <&usb_pwr>;
+>  };
+>  
 > -&hdmi_tx {
-> +&uart_AO {
+> +&usb1_phy {
 >  	status = "okay";
 > -	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-> +	pinctrl-0 = <&uart_ao_a_pins>;
->  	pinctrl-names = "default";
+> -	pinctrl-names = "default";
 >  };
-> -
+>  
 > -&hdmi_tx_tmds_port {
 > -	hdmi_tx_tmds_out: endpoint {
 > -		remote-endpoint = <&hdmi_connector_in>;
 > -	};
-> -};
+> +&usb0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb1 {
+> +	status = "okay";
+>  };
 > 
 
 Hi Andreas,
