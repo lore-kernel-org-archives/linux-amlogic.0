@@ -1,26 +1,79 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 15 May 2017 22:29:47 +0200
-Subject: S805/S812 Device Tree upstreaming (was: Testing.)
-In-Reply-To: <a9179db4-1db6-3c8d-de34-cee4454f07de@yandex.ru>
-References: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
- <939ef72d-a4e5-7535-2252-d607158bd0fe@yandex.ru>
- <a9179db4-1db6-3c8d-de34-cee4454f07de@yandex.ru>
-Message-ID: <CAFBinCCAxjtreC0EtpWKxrx9=zqJmv6w4fEhg_aZZNT_G3qARg@mail.gmail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 15 May 2017 19:31:26 -0500
+Subject: [PATCH 2/5] pintrl: meson: document GPIO IRQ DT binding
+In-Reply-To: <b39f1742-0558-beaa-1e06-eed80d644424@gmail.com>
+References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
+ <0d835130-7c6c-751c-af15-c2ab69edcb42@gmail.com>
+ <20170512193806.trt7jbvfyygkqard@rob-hp-laptop>
+ <b39f1742-0558-beaa-1e06-eed80d644424@gmail.com>
+Message-ID: <CAL_JsqL_6NpCBLtnRgsyuikGCGdGf9ZEFEUyrreGiyrtHszCxQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Oleg,
+On Fri, May 12, 2017 at 4:41 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> Am 12.05.2017 um 21:38 schrieb Rob Herring:
+>> On Sun, May 07, 2017 at 06:34:09PM +0200, Heiner Kallweit wrote:
+>>> Document the DT binding for GPIO IRQ support on Amlogic Meson SoC's.
+>>>
+>>> This documentation is intentionally not placed under
+>>> interrupt-controllers as GPIO IRQ support on these SoC's acts more
+>>> like an interrupt multiplexer.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> ---
+>>>  .../bindings/gpio/amlogic,meson-gpio-interrupt.txt | 30 ++++++++++++++++++++++
+>>
+>> Seems more like an irqchip?
+>>
+> It is an irq_chip. Would you therefore prefer a different name or another location
+> for this binding documentation?
 
-On Mon, May 15, 2017 at 4:45 PM, Oleg <balbes-150@yandex.ru> wrote:
-> Log system start-up.
+bindings/interrupt-controller
+
 >
-> https://yadi.sk/i/0kvkEnct3JB7QZ
-this looks pretty good - the SD card is found!
+>>>  1 file changed, 30 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
+>>> new file mode 100644
+>>> index 00000000..35a052b8
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
+>>> @@ -0,0 +1,30 @@
+>>> +Amlogic meson GPIO interrupt controller
+>>> +
+>>> +Meson SoCs contains an interrupt controller which is able watch the SoC pads
+>>> +and generate an interrupt on edges or level. The controller is essentially a
+>>> +256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
+>>> +or level and polarity. We don't expose all 256 mux inputs because the
+>>> +documentation shows that upper part is not mapped to any pad. The actual number
+>>> +of interrupt exposed depends on the SoC.
+>>> +
+>>> +Required properties:
+>>> +
+>>> +- compatible : should be "amlogic,meson-gpio-interrupt", "syscon".
+>>
+>> Why syscon?
+>>
+> Has been removed already in v2 of the patch.
+>
+>>> +- reg : Specifies base physical address and size of the registers.
+>>> +- interrupts : list of GIC interrupts which can be used with the
+>>> +           GPIO IRQ multiplexer
+>>
+>> What about interrupt-controller property?
+>>
+> This HW is somewhat special, it's more or less a multiplexer between
+> 100+ GPIO's and 8 GIC IRQ's. And we have two GPIO domains, both having
+> a "gpio-controller".
+> It doesn't seem that the "interrupt-controller" property is right here.
+> I'd tend to say it should be added to the "gpio-controller" nodes.
 
-have you tried enabling the brcmfmac driver (CONFIG_BRCMFMAC and
-CONFIG_BRCMFMAC_SDIO) to see whether your wireless chip is detected as
-well?
-testing if wifi works would help me a lot, since my board comes with a
-RTL8723BS wifi chip and I couldn't get it working on first try (but I
-don't trust the driver there, while I know that the brcmfmac driver
-works fine based on my experience with other boards)
+I would say an interrupt controller is anything that controls
+routing/delivery of interrupts from source to cpu. This certainly
+meets that criteria.
+
+You could even use interrupt-map property to statically assign the
+sources to parent interrupts.
+
+Rob
