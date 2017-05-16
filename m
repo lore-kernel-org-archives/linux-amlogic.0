@@ -1,29 +1,36 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Tue, 16 May 2017 12:05:58 +0300
-Subject: S805/S812 Device Tree upstreaming (was: Testing.)
-In-Reply-To: <CAFBinCCAxjtreC0EtpWKxrx9=zqJmv6w4fEhg_aZZNT_G3qARg@mail.gmail.com>
-References: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
- <939ef72d-a4e5-7535-2252-d607158bd0fe@yandex.ru>
- <a9179db4-1db6-3c8d-de34-cee4454f07de@yandex.ru>
- <CAFBinCCAxjtreC0EtpWKxrx9=zqJmv6w4fEhg_aZZNT_G3qARg@mail.gmail.com>
-Message-ID: <9b803bac-4ce8-689c-44a8-40532e294dae@yandex.ru>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 16 May 2017 11:14:55 +0200
+Subject: [GIT PULL] Meson Kconfig fixes for 4.12-rc1
+Message-ID: <3059c91b-034c-3da3-9ca4-06ad11bcec42@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Mike, Stephen,
 
-> this looks pretty good - the SD card is found!
->
-> have you tried enabling the brcmfmac driver (CONFIG_BRCMFMAC and
-> CONFIG_BRCMFMAC_SDIO) to see whether your wireless chip is detected as
-> well?
-> testing if wifi works would help me a lot, since my board comes with a
-> RTL8723BS wifi chip and I couldn't get it working on first try (but I
-> don't trust the driver there, while I know that the brcmfmac driver
-> works fine based on my experience with other boards)
-Hi Martin
+Here is a single fix for the Meson Kconfig, that could go for 4.12-rc2.
 
-I added modules to the kernel. Put together a new way s812_wifi.txt.
-The result of loading the modules in the application.
-I guess I need to add settings in the DTB file ?
+Thanks,
+Neil
 
-https://mega.nz/#F!yw5kVCrR!zNvlE8f6bcpOR2XZbJdCog
+The following changes since commit 2ea659a9ef488125eb46da6eb571de5eae5c43f6:
+
+  Linux 4.12-rc1 (2017-05-13 13:19:49 -0700)
+
+are available in the git repository at:
+
+  git://github.com/baylibre/clk-meson.git tags/meson-clk-fixes-for-4.12-rc2
+
+for you to fetch changes up to dbed87a9d3a857a86f602775b5845f5f6d9652b5:
+
+  clk: meson: gxbb: fix build error without RESET_CONTROLLER (2017-05-16 11:05:01 +0200)
+
+----------------------------------------------------------------
+KConfig fix:
+- clk: meson: gxbb: fix build error without RESET_CONTROLLER
+
+----------------------------------------------------------------
+Tobias Regnery (1):
+      clk: meson: gxbb: fix build error without RESET_CONTROLLER
+
+ drivers/clk/meson/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
