@@ -1,79 +1,67 @@
-From: robh@kernel.org (Rob Herring)
-Date: Mon, 15 May 2017 19:31:26 -0500
-Subject: [PATCH 2/5] pintrl: meson: document GPIO IRQ DT binding
-In-Reply-To: <b39f1742-0558-beaa-1e06-eed80d644424@gmail.com>
-References: <a4ca587b-d3e8-a22d-4d25-289871d2d095@gmail.com>
- <0d835130-7c6c-751c-af15-c2ab69edcb42@gmail.com>
- <20170512193806.trt7jbvfyygkqard@rob-hp-laptop>
- <b39f1742-0558-beaa-1e06-eed80d644424@gmail.com>
-Message-ID: <CAL_JsqL_6NpCBLtnRgsyuikGCGdGf9ZEFEUyrreGiyrtHszCxQ@mail.gmail.com>
+From: moore@free.fr (Chris Moore)
+Date: Tue, 16 May 2017 06:18:39 +0200
+Subject: DT: newbie questions
+In-Reply-To: <cda48375-3c3e-8871-2598-8405b387aaa4@free.fr>
+References: <cda48375-3c3e-8871-2598-8405b387aaa4@free.fr>
+Message-ID: <00d73329-ff75-5041-7400-1f52f18ca46e@free.fr>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, May 12, 2017 at 4:41 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> Am 12.05.2017 um 21:38 schrieb Rob Herring:
->> On Sun, May 07, 2017 at 06:34:09PM +0200, Heiner Kallweit wrote:
->>> Document the DT binding for GPIO IRQ support on Amlogic Meson SoC's.
->>>
->>> This documentation is intentionally not placed under
->>> interrupt-controllers as GPIO IRQ support on these SoC's acts more
->>> like an interrupt multiplexer.
->>>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> ---
->>>  .../bindings/gpio/amlogic,meson-gpio-interrupt.txt | 30 ++++++++++++++++++++++
->>
->> Seems more like an irqchip?
->>
-> It is an irq_chip. Would you therefore prefer a different name or another location
-> for this binding documentation?
+Le 15/05/2017 ? 11:28, Chris Moore a ?crit :
+> Hi,
+>
+> Sorry for these newbie questions :(
+>
+> I would like to add support for the cheap Chinese KI PLUS S905 boxes 
+> which seem very popular.
+> They are re-branded (or cloned) by several different vendors.
+> In particular the most serious seem to be:-
+> VideoStrong (http://www.videostrong.com/product.asp?sid=257)
+> Acemax 
+> (http://www.acemax.net.cn/droid-world/droid-box/hybrid-android-dvb-t2-dvb-s2/kii-pro-ki-plus-s2-t2-combo-149.html#.WRls_GjyiUk)
+>
+> I actually have an Xtreamer mxV (http://www.xtreamer.net/mxv) which 
+> seems to be an exact clone.
+>
+> My first question is what to put in the compatible line.
+> I could put:
+> a) compatible = "videostrong,kiplus", "acemax,kiplus", "xtreamer,mxv", 
+> "amlogic,meson-gxbb";
+> but there are many other KI PLUS vendors so I could maybe omit the 
+> vendor:
+> b) compatible = "kiplus", "xtreamer,mxv", "amlogic,meson-gxbb";
+> but this poses the problem of what to put in amlogic.txt which seems 
+> to require a vendor.
 
-bindings/interrupt-controller
+Another solution to the multi-vendor problem could be to create a 
+pseudo-vendor "generic" (or similar) and then have:
+c) compatible = "generic,kiplus", "xtreamer,mxv", "amlogic,meson-gxbb";
+Would this be acceptable?
 
 >
->>>  1 file changed, 30 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
->>> new file mode 100644
->>> index 00000000..35a052b8
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
->>> @@ -0,0 +1,30 @@
->>> +Amlogic meson GPIO interrupt controller
->>> +
->>> +Meson SoCs contains an interrupt controller which is able watch the SoC pads
->>> +and generate an interrupt on edges or level. The controller is essentially a
->>> +256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
->>> +or level and polarity. We don't expose all 256 mux inputs because the
->>> +documentation shows that upper part is not mapped to any pad. The actual number
->>> +of interrupt exposed depends on the SoC.
->>> +
->>> +Required properties:
->>> +
->>> +- compatible : should be "amlogic,meson-gpio-interrupt", "syscon".
->>
->> Why syscon?
->>
-> Has been removed already in v2 of the patch.
+> My second question is what to base my patch on:
+> Should it be v4.12/dt64 in Kevin's linux-amlogic.git?
 >
->>> +- reg : Specifies base physical address and size of the registers.
->>> +- interrupts : list of GIC interrupts which can be used with the
->>> +           GPIO IRQ multiplexer
->>
->> What about interrupt-controller property?
->>
-> This HW is somewhat special, it's more or less a multiplexer between
-> 100+ GPIO's and 8 GIC IRQ's. And we have two GPIO domains, both having
-> a "gpio-controller".
-> It doesn't seem that the "interrupt-controller" property is right here.
-> I'd tend to say it should be added to the "gpio-controller" nodes.
-
-I would say an interrupt controller is anything that controls
-routing/delivery of interrupts from source to cpu. This certainly
-meets that criteria.
-
-You could even use interrupt-map property to statically assign the
-sources to parent interrupts.
-
-Rob
+> My third question concerns the SDIO WiFi.
+> The WiFi chip seems to vary between boards.
+> My board has a Realtek RTL8189ETV.
+> I note that its (unfortunately out of tree) driver is loaded even if 
+> the DT specifies a Broadcom chip.
+> Is it really necessary to specify the chip in the DT?
+> (It seems that the SDIO, like the PCI and USB buses, recognizes 
+> connected devices by their IDs.)
+>
+> My final question is how to submit my patch.
+> Should I send an RFC to this list for approval before possibly 
+> spamming others?
+>
+> I thank you in advance for your replies and your tolerance.
+>
+> Cheers,
+> Chris Moore
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>
