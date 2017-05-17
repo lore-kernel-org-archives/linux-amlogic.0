@@ -1,64 +1,64 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 17 May 2017 22:02:42 +0200
-Subject: [PATCH RfC v3 0/7] pintrl: meson: add support for GPIO IRQs
-Message-ID: <16950080-b19d-e25c-fb48-bc79cfe4acc0@gmail.com>
+Date: Wed, 17 May 2017 22:16:35 +0200
+Subject: [PATCH RfC v3 2/7] pinctrl: meson: document GPIO IRQ driver DT binding
+In-Reply-To: <16950080-b19d-e25c-fb48-bc79cfe4acc0@gmail.com>
+References: <16950080-b19d-e25c-fb48-bc79cfe4acc0@gmail.com>
+Message-ID: <7c09969b-ac04-cfa4-7459-7ad25b7c5cbf@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch series is partially based on a series Jerome Brunet
-submitted about half a year ago. Due to open questions this series never
-made it to mainline, see https://patchwork.kernel.org/patch/9384431/
+Document the DT binding for GPIO IRQ support on Amlogic Meson SoC's.
 
-This new attempt uses GPIOLIB_IRQCHIP resulting in less needed code.
-Included is also support for using two parent IRQs in case
-of IRQ_TYPE_EDGE_BOTH, like in the vendor driver.
+This documentation is intentionally not placed under
+interrupt-controllers as GPIO IRQ support on these SoC's acts more
+like an interrupt multiplexer.
 
-The series was successfully tested on a Odroid-C2, e.g. with removing
-polling for SD card insertion/removal from the mmc driver.
-
-Known open issues:
-- location of the irqchip driver and its DT binding documentation
-
-Changes in v2:
-- separate the GPIO IRQ controller from the pinctrl driver
-- minor improvements to the GPIO IRQ controller
-
-Changes in v3:
-- replace the request_irq based allocation of parent irq's with
-  chained irq handling, this also fixes the spurious interrupts issue
-  and allows to remove the workaround code.
-  Last but not least the parent irq's are no longer visible in
-  /proc/interrupts.
-- minor improvements to the GPIO IRQ controller
-
-Heiner Kallweit (7):
-  pinctrl: meson: add interrupts to pinctrl data
-  pinctrl: meson: document GPIO IRQ DT binding
-  pinctrl: meson: add DT node for GPIO IRQ on Meson GX
-  pinctrl: meson: add DT node for GPIO IRQ on Meson 8 / 8b
-  pinctrl: meson: improve meson_get_bank and export it
-  pinctrl: meson: add support for GPIO interrupts
-  pinctrl: meson: add interrupt controller to GPIO DT nodes
-
- .../bindings/gpio/amlogic,meson-gpio-interrupt.txt |  30 ++
- .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   4 +
- arch/arm/boot/dts/meson8.dtsi                      |  15 +
- arch/arm/boot/dts/meson8b.dtsi                     |  15 +
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi          |  13 +
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        |   4 +
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         |   4 +
- drivers/pinctrl/Kconfig                            |   1 +
- drivers/pinctrl/meson/Makefile                     |   2 +-
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c         |  22 +-
- drivers/pinctrl/meson/pinctrl-meson-gxl.c          |  20 +-
- drivers/pinctrl/meson/pinctrl-meson-irq.c          | 320 +++++++++++++++++++++
- drivers/pinctrl/meson/pinctrl-meson.c              |  62 ++--
- drivers/pinctrl/meson/pinctrl-meson.h              |  19 +-
- drivers/pinctrl/meson/pinctrl-meson8.c             |  20 +-
- drivers/pinctrl/meson/pinctrl-meson8b.c            |  32 ++-
- 16 files changed, 502 insertions(+), 81 deletions(-)
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+v2:
+- remove syscon
+v3:
+- no changes
+---
+ .../bindings/gpio/amlogic,meson-gpio-interrupt.txt | 30 ++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-irq.c
 
+diff --git a/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
+new file mode 100644
+index 00000000..ba7d3015
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/amlogic,meson-gpio-interrupt.txt
+@@ -0,0 +1,30 @@
++Amlogic meson GPIO interrupt controller
++
++Meson SoCs contains an interrupt controller which is able watch the SoC pads
++and generate an interrupt on edges or level. The controller is essentially a
++256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
++or level and polarity. We don't expose all 256 mux inputs because the
++documentation shows that upper part is not mapped to any pad. The actual number
++of interrupt exposed depends on the SoC.
++
++Required properties:
++
++- compatible : should be "amlogic,meson-gpio-interrupt".
++- reg : Specifies base physical address and size of the registers.
++- interrupts : list of GIC interrupts which can be used with the
++	       GPIO IRQ multiplexer
++
++Example:
++
++gpio_irq at 9880 {
++	compatible = "amlogic,meson-gpio-interrupt";
++	reg = <0x0 0x09880 0x0 0x10>;
++	interrupts = <GIC_SPI 64 IRQ_TYPE_NONE>,
++		     <GIC_SPI 65 IRQ_TYPE_NONE>,
++		     <GIC_SPI 66 IRQ_TYPE_NONE>,
++		     <GIC_SPI 67 IRQ_TYPE_NONE>,
++		     <GIC_SPI 68 IRQ_TYPE_NONE>,
++		     <GIC_SPI 69 IRQ_TYPE_NONE>,
++		     <GIC_SPI 70 IRQ_TYPE_NONE>,
++		     <GIC_SPI 71 IRQ_TYPE_NONE>;
++	};
 -- 
 2.13.0
