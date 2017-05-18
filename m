@@ -1,58 +1,69 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 May 2017 18:38:03 +0200
-Subject: [PATCH 09/10] clk: fix CLK_SET_RATE_GATE with clock rate protection
-In-Reply-To: <20170518163804.14123-1-jbrunet@baylibre.com>
-References: <20170518163804.14123-1-jbrunet@baylibre.com>
-Message-ID: <20170518163804.14123-10-jbrunet@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 18 May 2017 20:36:55 +0200
+Subject: corrupt clk_core instance in clk_disable_unused_subtree (ARM
+ Meson MX platform)
+In-Reply-To: <CAFBinCDjysBNJLQYsvzBU7U2p7gv0Lxa+qe8f5YMn0BgUw6P0g@mail.gmail.com>
+References: <CAFBinCDjysBNJLQYsvzBU7U2p7gv0Lxa+qe8f5YMn0BgUw6P0g@mail.gmail.com>
+Message-ID: <CAFBinCDr2ocZ3J4JEvXF-W=tT8Zw-t02J09Ciiud6RTrkcEidA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Using clock rate protection, we can now enforce CLK_SET_RATE_GATE along the
-clock tree
+On Sun, May 14, 2017 at 11:20 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Hello,
+>
+> it seems that I am seeing some strange memory corruption on one of my
+> Amlogic Meson MX (32-bit) devices.
+> disclaimer: I have some patches in my tree which are not mainlined yet
+> (see [0]), but cannot see that any of these patches would cause memory
+> corruption of a clk_core instance.
+>
+> Oleg (who is CC'ed) has first reported this when testing my kernel tree: [1]
+> in the meantime I have rebased all of my patches to Linus' mainline
+> tree, commit 0fcc3ab23d7395f58e8ab0834e7913e2e4314a83 [3]
+>
+> what I am seeing is a NULL deref in clk_disable_unused_subtree, full
+> log attached and can be found here: [3]
+> an explanation of what seems to be going on in my own words is:
+> - in line #5 of the log the internal PWM mux clock for the first PWM
+> channel is being registered (everything looks good with
+> clk_core=0xeddfbf80 and clk_hw=0xeddfbf30)
+> - the default parent of this mux is "xtal"
+> - in line #31 of the log the "disable unused clocks" cleanup starts
+> and checks the first child of the "xtal" clock and seems to find
+> clk_core=0xeddfbf80 *BUT* clk_hw=0x00000003
+> - this doesn't seem right and a crash is pretty obvious
+>
+> I also attached the patch which introduces this additional logspam -
+> just in case anyone wants to know what these values mean exactly.
+>
+> now the interesting part:
+> I can reproduce this with multi_v7_defconfig and
+> arch/arm/boot/dts/meson8m2-m8s.dts from my tree.
+> if I leave everything as it is and *only* enable CONFIG_DEBUG_SPINLOCK
+> then this crash goes away. so this *might* be a race-condition
+> somewhere...
+a user named "wilson2000" (since I missed you on IRC: thank you!)
+pointed out on IRC that there's a memory corruption bug in v4.11 and
+early v4.12 kernels which is fixed by [0] "perf/core: Avoid removing
+shared pmu_context on unregister"
+I have not tested this yet but this looks suspicious (so the common
+clock framework may be innocent). I will report back once I had time
+to test this.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/clk.c | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+> has anybody seen this crash before? I can help debugging/testing
+> potential fixes/trying out various things to solve this - just let me
+> know!
+>
+>
+> Regards,
+> Martin
+>
+>
+> [0] https://github.com/xdarklight/linux/tree/meson-mx-integration-4.12-20170513
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-May/003497.html
+> [2] https://github.com/torvalds/linux/commit/0fcc3ab23d7395f58e8ab0834e7913e2e4314a83
+> [3] https://paste.kde.org/pbefvmqgr
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 5980080a86c0..1db3ad28dd85 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -491,6 +491,9 @@ static void clk_core_unprepare(struct clk_core *core)
- 	if (WARN_ON(core->prepare_count == 1 && core->flags & CLK_IS_CRITICAL))
- 		return;
- 
-+	if (core->flags & CLK_SET_RATE_GATE)
-+		clk_core_rate_unprotect(core);
-+
- 	if (--core->prepare_count > 0)
- 		return;
- 
-@@ -561,6 +564,14 @@ static int clk_core_prepare(struct clk_core *core)
- 
- 	core->prepare_count++;
- 
-+	/*
-+	 * CLK_SET_RATE_GATE is a special case of clock protection
-+	 * Instead of a consumer protection, the provider is protecting
-+	 * itself when prepared
-+	 */
-+	if (core->flags & CLK_SET_RATE_GATE)
-+		clk_core_rate_protect(core);
-+
- 	return 0;
- }
- 
-@@ -1710,9 +1721,6 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
- 	if (clk_core_rate_is_protected(core))
- 		return -EBUSY;
- 
--	if ((core->flags & CLK_SET_RATE_GATE) && core->prepare_count)
--		return -EBUSY;
--
- 	/* calculate new rates and get the topmost changed clock */
- 	top = clk_calc_new_rates(core, rate);
- 	if (!top)
--- 
-2.9.4
+
+[0] https://cgit.freedesktop.org/drm/drm-intel/commit/?h=drm-intel-nightly&id=73ac44749e71333bce7d2f8c0bbdc1bbc57dae1b
