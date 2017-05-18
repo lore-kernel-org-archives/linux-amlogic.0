@@ -1,87 +1,122 @@
-From: moore@free.fr (Chris Moore)
-Date: Thu, 18 May 2017 10:01:17 +0200
-Subject: GXBB: 4.12-rc1 boot failure (was DT: newbie questions)
-In-Reply-To: <00b92c46-9f9f-8920-ce19-08c25add1691@baylibre.com>
-References: <cda48375-3c3e-8871-2598-8405b387aaa4@free.fr>
- <00d73329-ff75-5041-7400-1f52f18ca46e@free.fr>
- <33e616ca-fb13-343b-f464-4a934c5ed4fe@baylibre.com>
- <4d4ccb81-b6cd-9cd9-c525-033ffe75d79b@free.fr>
- <4f9096d3-997b-4cab-7a68-0fd0d778d9cc@free.fr>
- <00b92c46-9f9f-8920-ce19-08c25add1691@baylibre.com>
-Message-ID: <1938c273-86a1-f030-be03-2415bd947510@free.fr>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 18 May 2017 18:37:55 +0200
+Subject: [PATCH 01/10] clk: take the prepare lock out of clk_core_set_paren
+In-Reply-To: <20170518163804.14123-1-jbrunet@baylibre.com>
+References: <20170518163804.14123-1-jbrunet@baylibre.com>
+Message-ID: <20170518163804.14123-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+Rework set_parent core function so it can be called when the prepare lock
+is already held by the caller.
 
-  Le 17/05/2017 ? 17:44, Neil Armstrong a ?crit :
-> On 05/17/2017 05:41 PM, Chris Moore wrote:
->> Le 16/05/2017 ? 12:51, Chris Moore a ?crit :
->>> Le 16/05/2017 ? 10:08, Neil Armstrong a ?crit :
->>>> On 05/16/2017 06:18 AM, Chris Moore wrote:
->>>>> Le 15/05/2017 ? 11:28, Chris Moore a ?crit :
->>>>>> I would like to add support for the cheap Chinese KI PLUS S905 boxes which seem very popular.
->>>>>> They are re-branded (or cloned) by several different vendors.
->>>>>> In particular the most serious seem to be:-
->>>>>> VideoStrong (http://www.videostrong.com/product.asp?sid=257)
->>>>>> Acemax (http://www.acemax.net.cn/droid-world/droid-box/hybrid-android-dvb-t2-dvb-s2/kii-pro-ki-plus-s2-t2-combo-149.html#.WRls_GjyiUk)
->>>>>>
->>>>>> I actually have an Xtreamer mxV (http://www.xtreamer.net/mxv) which seems to be an exact clone.
->>>>>>
->>>>>> My first question is what to put in the compatible line.
->>>>>> I could put:
->>>>>> a) compatible = "videostrong,kiplus", "acemax,kiplus", "xtreamer,mxv", "amlogic,meson-gxbb";
->>>>>> but there are many other KI PLUS vendors so I could maybe omit the vendor:
->>>>>> b) compatible = "kiplus", "xtreamer,mxv", "amlogic,meson-gxbb";
->>>>>> but this poses the problem of what to put in amlogic.txt which seems to require a vendor.
->>>>> Another solution to the multi-vendor problem could be to create a pseudo-vendor "generic" (or similar) and then have:
->>>>> c) compatible = "generic,kiplus", "xtreamer,mxv", "amlogic,meson-gxbb";
->>>>> Would this be acceptable?
->>>> Sorry, the generic is not really acceptable here since there is always a vendor, and adding a new
->>>> vendor is easy and well accepted.
->>>>
->>>> The point with Amlogic based Set-Top-Boxes is that they are 99% based on a reference design given
->>>> from Amlogic, and only the SBCs (Odroid-C*, Khadas, NanoPi K2) differs.
->>>>
->>>> Here is the list of Amlogic Reference Designs I am aware of :
->>>> - S905 : P200 and P201
->>>> - S905X : P212
->>>> - S905D : P230 and P231
->>>> - S912 : Q200 and Q201
->>>>
->>>> When pushing S905 based boxes, we were not really aware of that, but starting with S905X we started
->>>> to base the board DTS on the Reference Design DTSI like the Khadas Vim and the Wetek Hub/Play2.
->>>>
->>>> I'm aware there is a lot of work to clean up all the other S905/S905X and S912 based boxes... but
->>>> the majority of boxes should run unchanged with the reference design DTS.
->>> The KI PLUS has GXBB (S905), Fast (100Mbs) Ethernet, 1 GiB RAM, four USB ports and often Realtek RTL8189ETV WiFi.
->>>
->>> The P20x boards are probably the closest but they have Gigabit Ethernet and the KI PLUS only has Fast Ethernet.
->>> (Indeed the stock uBoot prompt and some Linux boot messages contain the string "p20x".)
->>> So, although obviously derived from these reference designs as you say, Ethernet doesn't work with the P200 and P201 DTS.
->>> Obviously working Ethernet is essential.
->> In fact the P201 probably does have Fast Ethernet.
-> Yes, P201 should be the closest, it's basically P200 with 10/100 ethernet, and way simpler.
->
->> I remember that my board used to work well with the P201 DTB.
->> But this was with the Amlogic 3.14.y kernels.
->> In the mainline 4.x kernels it was incorrectly described with Gigabit Ethernet.
->> But I see that this has just been corrected in 4.12-rc1.
->> However unfortunately I cannot get 4.12-rc1 to boot: I get no kernel output at all on the serial console :(
->> I have never had any problems with the 4.10 and 4.11 series.
->>
->> Have you tried 4.12-rc1 on a GXBB board?
->> What bootargs do you recommend?
-> Not yet, but this version should already boot some GXBB boards on kernelci.org
+This rework is done to ease the integration of the "protected" clock
+functionality.
 
-The problem was that my initrd was too big and something was obviously 
-getting silently clobbered :(
-(Both uBoot and the kernel move stuff around and decompress things.)
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/clk.c | 39 ++++++++++++++++++---------------------
+ 1 file changed, 18 insertions(+), 21 deletions(-)
 
-I had put all the kernel modules generated by the mainline arm64 
-defconfig into my initrd and it had become very big.
-Would it be possible to mainline an Amlogic specific version of the 
-defconfig which would only include modules relevant to Amlogic boards?
-
-Cheers,
-Chris
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index fc58c52a26b4..f5c371532509 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -1787,7 +1787,8 @@ bool clk_has_parent(struct clk *clk, struct clk *parent)
+ }
+ EXPORT_SYMBOL_GPL(clk_has_parent);
+ 
+-static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
++static int clk_core_set_parent_nolock(struct clk_core *core,
++				      struct clk_core *parent)
+ {
+ 	int ret = 0;
+ 	int p_index = 0;
+@@ -1796,23 +1797,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 	if (!core)
+ 		return 0;
+ 
+-	/* prevent racing with updates to the clock topology */
+-	clk_prepare_lock();
+-
+ 	if (core->parent == parent)
+-		goto out;
++		return 0;
+ 
+ 	/* verify ops for for multi-parent clks */
+-	if ((core->num_parents > 1) && (!core->ops->set_parent)) {
+-		ret = -ENOSYS;
+-		goto out;
+-	}
++	if ((core->num_parents > 1) && (!core->ops->set_parent))
++		return -ENOSYS;
+ 
+ 	/* check that we are allowed to re-parent if the clock is in use */
+-	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count) {
+-		ret = -EBUSY;
+-		goto out;
+-	}
++	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
++		return -EBUSY;
+ 
+ 	/* try finding the new parent index */
+ 	if (parent) {
+@@ -1820,8 +1814,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 		if (p_index < 0) {
+ 			pr_debug("%s: clk %s can not be parent of clk %s\n",
+ 					__func__, parent->name, core->name);
+-			ret = p_index;
+-			goto out;
++			return p_index;
+ 		}
+ 		p_rate = parent->rate;
+ 	}
+@@ -1831,7 +1824,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 
+ 	/* abort if a driver objects */
+ 	if (ret & NOTIFY_STOP_MASK)
+-		goto out;
++		return ret;
+ 
+ 	/* do the re-parent */
+ 	ret = __clk_set_parent(core, parent, p_index);
+@@ -1844,9 +1837,6 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+ 		__clk_recalc_accuracies(core);
+ 	}
+ 
+-out:
+-	clk_prepare_unlock();
+-
+ 	return ret;
+ }
+ 
+@@ -1869,10 +1859,17 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+  */
+ int clk_set_parent(struct clk *clk, struct clk *parent)
+ {
++	int ret;
++
+ 	if (!clk)
+ 		return 0;
+ 
+-	return clk_core_set_parent(clk->core, parent ? parent->core : NULL);
++	clk_prepare_lock();
++	ret = clk_core_set_parent_nolock(clk->core,
++					 parent ? parent->core : NULL);
++	clk_prepare_unlock();
++
++	return ret;
+ }
+ EXPORT_SYMBOL_GPL(clk_set_parent);
+ 
+@@ -2753,7 +2750,7 @@ void clk_unregister(struct clk *clk)
+ 		/* Reparent all children to the orphan list. */
+ 		hlist_for_each_entry_safe(child, t, &clk->core->children,
+ 					  child_node)
+-			clk_core_set_parent(child, NULL);
++			clk_core_set_parent_nolock(child, NULL);
+ 	}
+ 
+ 	hlist_del_init(&clk->core->child_node);
+-- 
+2.9.4
