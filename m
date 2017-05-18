@@ -1,122 +1,57 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 May 2017 18:37:55 +0200
-Subject: [PATCH 01/10] clk: take the prepare lock out of clk_core_set_paren
-In-Reply-To: <20170518163804.14123-1-jbrunet@baylibre.com>
-References: <20170518163804.14123-1-jbrunet@baylibre.com>
-Message-ID: <20170518163804.14123-2-jbrunet@baylibre.com>
+Date: Thu, 18 May 2017 18:37:54 +0200
+Subject: [PATCH 00/10] clk: implement clock rate protection mechanism
+Message-ID: <20170518163804.14123-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Rework set_parent core function so it can be called when the prepare lock
-is already held by the caller.
+This Patchset is related the RFC [0] and the discussion around
+CLK_SET_RATE_GATE available here [1]
 
-This rework is done to ease the integration of the "protected" clock
-functionality.
+The goal of this patchset is to provide a way for consumers to inform the
+system that they depend on the rate of the clock source and can't tolerate
+other consumers changing the rate or causing glitches.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/clk.c | 39 ++++++++++++++++++---------------------
- 1 file changed, 18 insertions(+), 21 deletions(-)
+With this series there is 3 use-case:
+ - the provider is not protected: nothing changes
+ - the provider is protected by only 1 consumer (and only once), then only
+   this consumer will be able to alter the rate of the clock, as it is the only
+   one depending on it.
+ - If the provider is protected more than once, or by the provider itself, the rate
+   is basically locked.
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index fc58c52a26b4..f5c371532509 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -1787,7 +1787,8 @@ bool clk_has_parent(struct clk *clk, struct clk *parent)
- }
- EXPORT_SYMBOL_GPL(clk_has_parent);
- 
--static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
-+static int clk_core_set_parent_nolock(struct clk_core *core,
-+				      struct clk_core *parent)
- {
- 	int ret = 0;
- 	int p_index = 0;
-@@ -1796,23 +1797,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
- 	if (!core)
- 		return 0;
- 
--	/* prevent racing with updates to the clock topology */
--	clk_prepare_lock();
--
- 	if (core->parent == parent)
--		goto out;
-+		return 0;
- 
- 	/* verify ops for for multi-parent clks */
--	if ((core->num_parents > 1) && (!core->ops->set_parent)) {
--		ret = -ENOSYS;
--		goto out;
--	}
-+	if ((core->num_parents > 1) && (!core->ops->set_parent))
-+		return -ENOSYS;
- 
- 	/* check that we are allowed to re-parent if the clock is in use */
--	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count) {
--		ret = -EBUSY;
--		goto out;
--	}
-+	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
-+		return -EBUSY;
- 
- 	/* try finding the new parent index */
- 	if (parent) {
-@@ -1820,8 +1814,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
- 		if (p_index < 0) {
- 			pr_debug("%s: clk %s can not be parent of clk %s\n",
- 					__func__, parent->name, core->name);
--			ret = p_index;
--			goto out;
-+			return p_index;
- 		}
- 		p_rate = parent->rate;
- 	}
-@@ -1831,7 +1824,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
- 
- 	/* abort if a driver objects */
- 	if (ret & NOTIFY_STOP_MASK)
--		goto out;
-+		return ret;
- 
- 	/* do the re-parent */
- 	ret = __clk_set_parent(core, parent, p_index);
-@@ -1844,9 +1837,6 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
- 		__clk_recalc_accuracies(core);
- 	}
- 
--out:
--	clk_prepare_unlock();
--
- 	return ret;
- }
- 
-@@ -1869,10 +1859,17 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
-  */
- int clk_set_parent(struct clk *clk, struct clk *parent)
- {
-+	int ret;
-+
- 	if (!clk)
- 		return 0;
- 
--	return clk_core_set_parent(clk->core, parent ? parent->core : NULL);
-+	clk_prepare_lock();
-+	ret = clk_core_set_parent_nolock(clk->core,
-+					 parent ? parent->core : NULL);
-+	clk_prepare_unlock();
-+
-+	return ret;
- }
- EXPORT_SYMBOL_GPL(clk_set_parent);
- 
-@@ -2753,7 +2750,7 @@ void clk_unregister(struct clk *clk)
- 		/* Reparent all children to the orphan list. */
- 		hlist_for_each_entry_safe(child, t, &clk->core->children,
- 					  child_node)
--			clk_core_set_parent(child, NULL);
-+			clk_core_set_parent_nolock(child, NULL);
- 	}
- 
- 	hlist_del_init(&clk->core->child_node);
+Changes since RFC:
+ - s/clk_protect/clk_rate_protect
+ - Request rework around core_nolock function
+ - Add clk_set_rate_protect
+ - Reword clk_rate_protect and clk_unprotect documentation
+ - Add few comments to explain the code
+ - Add 2 last patches to fix users of CLK_SET_RATE_GATE
+
+The last 2 patches provide the same functionnality for providers themself by
+fixing the issue with CLK_SET_RATE_GATE.
+
+This was tested with the audio use case mentioned in [1]
+
+[0]: http://lkml.kernel.org/r/20170321183330.26722-1-jbrunet at baylibre.com
+[1]: http://lkml.kernel.org/r/148942423440.82235.17188153691656009029 at resonance
+
+Jerome Brunet (10):
+  clk: take the prepare lock out of clk_core_set_parent
+  clk: add clk_core_set_phase_nolock function
+  clk: rework calls to round and determine rate callbacks
+  clk: add support for clock protection
+  clk: add clk_set_rate_protect
+  clk: rollback set_rate_range changes on failure
+  clk: cosmetic changes to clk_summary debugfs entry
+  clk: fix incorrect usage of ENOSYS
+  clk: fix CLK_SET_RATE_GATE with clock rate protection
+  clk: move CLK_SET_RATE_GATE protection from prepare to enable
+
+ drivers/clk/clk.c            | 397 +++++++++++++++++++++++++++++++++++--------
+ include/linux/clk-provider.h |   1 +
+ include/linux/clk.h          |  43 +++++
+ 3 files changed, 373 insertions(+), 68 deletions(-)
+
 -- 
 2.9.4
