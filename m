@@ -1,148 +1,78 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 May 2017 18:37:57 +0200
-Subject: [PATCH 03/10] clk: rework calls to round and determine rate callbacks
+Date: Thu, 18 May 2017 18:37:56 +0200
+Subject: [PATCH 02/10] clk: add clk_core_set_phase_nolock function
 In-Reply-To: <20170518163804.14123-1-jbrunet@baylibre.com>
 References: <20170518163804.14123-1-jbrunet@baylibre.com>
-Message-ID: <20170518163804.14123-4-jbrunet@baylibre.com>
+Message-ID: <20170518163804.14123-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Rework the way the callbacks round_rate and determine_rate are called. The
-goal is to do this at a single point and make it easier to add conditions
-before calling them.
+Create a core function for set_phase, as it is done for set_rate and
+set_parent.
 
 This rework is done to ease the integration of "protected" clock
 functionality.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c | 78 +++++++++++++++++++++++++++++++------------------------
- 1 file changed, 44 insertions(+), 34 deletions(-)
+ drivers/clk/clk.c | 31 +++++++++++++++++++------------
+ 1 file changed, 19 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 6031fada37f9..100f72472e10 100644
+index f5c371532509..6031fada37f9 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -833,16 +833,34 @@ static int clk_disable_unused(void)
+@@ -1873,6 +1873,23 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
  }
- late_initcall_sync(clk_disable_unused);
+ EXPORT_SYMBOL_GPL(clk_set_parent);
  
--static int clk_core_round_rate_nolock(struct clk_core *core,
--				      struct clk_rate_request *req)
-+static int clk_core_determine_round(struct clk_core *core,
-+				    struct clk_rate_request *req)
- {
--	struct clk_core *parent;
- 	long rate;
- 
--	lockdep_assert_held(&prepare_lock);
-+	if (core->ops->determine_rate) {
-+		return core->ops->determine_rate(core->hw, req);
-+	} else if (core->ops->round_rate) {
-+		rate = core->ops->round_rate(core->hw, req->rate,
-+					     &req->best_parent_rate);
-+		if (rate < 0)
-+			return rate;
- 
--	if (!core)
--		return 0;
-+		req->rate = rate;
-+	} else {
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static void clk_core_init_rate_req(struct clk_core *core,
-+				   struct clk_rate_request *req)
++static int clk_core_set_phase_nolock(struct clk_core *core, int degrees)
 +{
-+	struct clk_core *parent;
++	int ret = -EINVAL;
 +
-+	if (WARN_ON(!core || !req))
-+		return;
- 
- 	parent = core->parent;
- 	if (parent) {
-@@ -852,22 +870,24 @@ static int clk_core_round_rate_nolock(struct clk_core *core,
- 		req->best_parent_hw = NULL;
- 		req->best_parent_rate = 0;
- 	}
-+}
- 
--	if (core->ops->determine_rate) {
--		return core->ops->determine_rate(core->hw, req);
--	} else if (core->ops->round_rate) {
--		rate = core->ops->round_rate(core->hw, req->rate,
--					     &req->best_parent_rate);
--		if (rate < 0)
--			return rate;
-+static int clk_core_round_rate_nolock(struct clk_core *core,
-+				      struct clk_rate_request *req)
-+{
-+	lockdep_assert_held(&prepare_lock);
- 
--		req->rate = rate;
--	} else if (core->flags & CLK_SET_RATE_PARENT) {
--		return clk_core_round_rate_nolock(parent, req);
--	} else {
--		req->rate = core->rate;
--	}
 +	if (!core)
 +		return 0;
 +
-+	clk_core_init_rate_req(core, req);
++	trace_clk_set_phase(clk->core, degrees);
 +
-+	if (core->ops->determine_rate || core->ops->round_rate)
-+		return clk_core_determine_round(core, req);
-+	else if (core->flags & CLK_SET_RATE_PARENT)
-+		return clk_core_round_rate_nolock(core->parent, req);
- 
-+	req->rate = core->rate;
- 	return 0;
- }
- 
-@@ -1356,36 +1376,26 @@ static struct clk_core *clk_calc_new_rates(struct clk_core *core,
- 	clk_core_get_boundaries(core, &min_rate, &max_rate);
- 
- 	/* find the closest rate and parent clk/rate */
--	if (core->ops->determine_rate) {
-+	if (core->ops->determine_rate || core->ops->round_rate) {
- 		struct clk_rate_request req;
- 
- 		req.rate = rate;
- 		req.min_rate = min_rate;
- 		req.max_rate = max_rate;
--		if (parent) {
--			req.best_parent_hw = parent->hw;
--			req.best_parent_rate = parent->rate;
--		} else {
--			req.best_parent_hw = NULL;
--			req.best_parent_rate = 0;
--		}
- 
--		ret = core->ops->determine_rate(core->hw, &req);
-+		clk_core_init_rate_req(core, &req);
++	if (core->ops->set_phase)
++		ret = core->ops->set_phase(core->hw, degrees);
 +
-+		ret = clk_core_determine_round(core, &req);
- 		if (ret < 0)
- 			return NULL;
- 
- 		best_parent_rate = req.best_parent_rate;
- 		new_rate = req.rate;
- 		parent = req.best_parent_hw ? req.best_parent_hw->core : NULL;
--	} else if (core->ops->round_rate) {
--		ret = core->ops->round_rate(core->hw, rate,
--					    &best_parent_rate);
--		if (ret < 0)
--			return NULL;
- 
--		new_rate = ret;
- 		if (new_rate < min_rate || new_rate > max_rate)
- 			return NULL;
++	trace_clk_set_phase_complete(core, degrees);
 +
- 	} else if (!parent || !(core->flags & CLK_SET_RATE_PARENT)) {
- 		/* pass-through clock without adjustable parent */
- 		core->new_rate = core->rate;
++	return ret;
++}
++
+ /**
+  * clk_set_phase - adjust the phase shift of a clock signal
+  * @clk: clock signal source
+@@ -1895,7 +1912,7 @@ EXPORT_SYMBOL_GPL(clk_set_parent);
+  */
+ int clk_set_phase(struct clk *clk, int degrees)
+ {
+-	int ret = -EINVAL;
++	int ret;
+ 
+ 	if (!clk)
+ 		return 0;
+@@ -1906,17 +1923,7 @@ int clk_set_phase(struct clk *clk, int degrees)
+ 		degrees += 360;
+ 
+ 	clk_prepare_lock();
+-
+-	trace_clk_set_phase(clk->core, degrees);
+-
+-	if (clk->core->ops->set_phase)
+-		ret = clk->core->ops->set_phase(clk->core->hw, degrees);
+-
+-	trace_clk_set_phase_complete(clk->core, degrees);
+-
+-	if (!ret)
+-		clk->core->phase = degrees;
+-
++	ret = clk_core_set_phase_nolock(clk->core, degrees);
+ 	clk_prepare_unlock();
+ 
+ 	return ret;
 -- 
 2.9.4
