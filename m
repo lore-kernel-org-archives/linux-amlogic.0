@@ -1,78 +1,114 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 May 2017 18:37:56 +0200
-Subject: [PATCH 02/10] clk: add clk_core_set_phase_nolock function
+Date: Thu, 18 May 2017 18:37:59 +0200
+Subject: [PATCH 05/10] clk: add clk_set_rate_protect
 In-Reply-To: <20170518163804.14123-1-jbrunet@baylibre.com>
 References: <20170518163804.14123-1-jbrunet@baylibre.com>
-Message-ID: <20170518163804.14123-3-jbrunet@baylibre.com>
+Message-ID: <20170518163804.14123-6-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Create a core function for set_phase, as it is done for set_rate and
-set_parent.
+clk_set_rate_protect is a combination of clk_set_rate and clk_rate_protect
+within a critical section. In case where several protecting consumers
+compete to set the rate of the same provider, it provides a way to make
+sure that at least one of them will be satisfied before the resource is
+locked.
 
-This rework is done to ease the integration of "protected" clock
-functionality.
+This is to avoid the unlikely situation where several consumers protect a
+clock provider and none actually get a rate it can work with.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c | 31 +++++++++++++++++++------------
- 1 file changed, 19 insertions(+), 12 deletions(-)
+ drivers/clk/clk.c   | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/clk.h | 14 ++++++++++++++
+ 2 files changed, 59 insertions(+)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index f5c371532509..6031fada37f9 100644
+index 9c15319bc454..132eb1a2938f 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -1873,6 +1873,23 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
- }
- EXPORT_SYMBOL_GPL(clk_set_parent);
+@@ -1781,6 +1781,51 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
+ EXPORT_SYMBOL_GPL(clk_set_rate);
  
-+static int clk_core_set_phase_nolock(struct clk_core *core, int degrees)
+ /**
++ * clk_set_rate_protect - specify a new rate and protect it
++ * @clk: the clk whose rate is being changed
++ * @rate: the new rate for clk
++ *
++ * This is a combination of clk_set_rate and clk_rate_protect within
++ * a critical section
++ *
++ * This can be used initially to ensure that at least 1 consumers is
++ * statisfied when several protecting consummers are competing for the
++ * same clock provider.
++ *
++ * The protection is not applied if setting the rate failed.
++ *
++ * Returns 0 on success, -EERROR otherwise.
++ */
++int clk_set_rate_protect(struct clk *clk, unsigned long rate)
 +{
-+	int ret = -EINVAL;
++	int ret;
 +
-+	if (!core)
++	if (!clk)
 +		return 0;
 +
-+	trace_clk_set_phase(clk->core, degrees);
++	/* prevent racing with updates to the clock topology */
++	clk_prepare_lock();
 +
-+	if (core->ops->set_phase)
-+		ret = core->ops->set_phase(core->hw, degrees);
++	/*
++	 * The temporary protection removal is not here, on purpose
++	 * This function is meant to be used in instead of clk_rate_protect,
++	 * so before the consumer code path protect the clock provider
++	 */
 +
-+	trace_clk_set_phase_complete(core, degrees);
++	ret = clk_core_set_rate_nolock(clk->core, rate);
++
++	if (!ret) {
++		clk_core_rate_protect(clk->core);
++		clk->protect_count++;
++	}
++
++	clk_prepare_unlock();
 +
 +	return ret;
 +}
++EXPORT_SYMBOL_GPL(clk_set_rate_protect);
 +
++/**
+  * clk_set_rate_range - set a rate range for a clock source
+  * @clk: clock source
+  * @min: desired minimum clock rate in Hz, inclusive
+diff --git a/include/linux/clk.h b/include/linux/clk.h
+index 85d73e02df40..d3c299d23ae7 100644
+--- a/include/linux/clk.h
++++ b/include/linux/clk.h
+@@ -388,6 +388,15 @@ long clk_round_rate(struct clk *clk, unsigned long rate);
+ int clk_set_rate(struct clk *clk, unsigned long rate);
+ 
  /**
-  * clk_set_phase - adjust the phase shift of a clock signal
-  * @clk: clock signal source
-@@ -1895,7 +1912,7 @@ EXPORT_SYMBOL_GPL(clk_set_parent);
-  */
- int clk_set_phase(struct clk *clk, int degrees)
++ * clk_set_rate_protect - set and protect the clock rate for a clock source
++ * @clk: clock source
++ * @rate: desired clock rate in Hz
++ *
++ * Returns success (0) or negative errno.
++ */
++int clk_set_rate_protect(struct clk *clk, unsigned long rate);
++
++/**
+  * clk_has_parent - check if a clock is a possible parent for another
+  * @clk: clock source
+  * @parent: parent clock source
+@@ -506,6 +515,11 @@ static inline int clk_set_rate(struct clk *clk, unsigned long rate)
+ 	return 0;
+ }
+ 
++static inline int clk_set_rate_protect(struct clk *clk, unsigned long rate)
++{
++	return 0;
++}
++
+ static inline long clk_round_rate(struct clk *clk, unsigned long rate)
  {
--	int ret = -EINVAL;
-+	int ret;
- 
- 	if (!clk)
- 		return 0;
-@@ -1906,17 +1923,7 @@ int clk_set_phase(struct clk *clk, int degrees)
- 		degrees += 360;
- 
- 	clk_prepare_lock();
--
--	trace_clk_set_phase(clk->core, degrees);
--
--	if (clk->core->ops->set_phase)
--		ret = clk->core->ops->set_phase(clk->core->hw, degrees);
--
--	trace_clk_set_phase_complete(clk->core, degrees);
--
--	if (!ret)
--		clk->core->phase = degrees;
--
-+	ret = clk_core_set_phase_nolock(clk->core, degrees);
- 	clk_prepare_unlock();
- 
- 	return ret;
+ 	return 0;
 -- 
 2.9.4
