@@ -1,34 +1,79 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 May 2017 18:38:02 +0200
-Subject: [PATCH 08/10] clk: fix incorrect usage of ENOSYS
+Date: Thu, 18 May 2017 18:38:04 +0200
+Subject: [PATCH 10/10] clk: move CLK_SET_RATE_GATE protection from prepare to
+ enable
 In-Reply-To: <20170518163804.14123-1-jbrunet@baylibre.com>
 References: <20170518163804.14123-1-jbrunet@baylibre.com>
-Message-ID: <20170518163804.14123-9-jbrunet@baylibre.com>
+Message-ID: <20170518163804.14123-11-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-ENOSYS is special and should only be used for incorrect syscall number.
-It does not seem to be the case here.
-
-Reported by checkpatch.pl while working on clock protection.
+CLK_SET_RATE_GATE name suggest that the rate can be set when the provider
+is gated (disabled). With the current implementation, the rate can only be
+set when the provider is unprepared, while it should be allowed to set a
+prepared and disable provider.
+Fix this by moving the rate protection mechanism in the enable/disable
+core functions
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/clk.c | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index e60d86d7c082..5980080a86c0 100644
+index 1db3ad28dd85..3e2eb21ca8cd 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -2004,7 +2004,7 @@ static int clk_core_set_parent_nolock(struct clk_core *core,
+@@ -491,9 +491,6 @@ static void clk_core_unprepare(struct clk_core *core)
+ 	if (WARN_ON(core->prepare_count == 1 && core->flags & CLK_IS_CRITICAL))
+ 		return;
  
- 	/* verify ops for for multi-parent clks */
- 	if ((core->num_parents > 1) && (!core->ops->set_parent))
--		return -ENOSYS;
-+		return -EPERM;
+-	if (core->flags & CLK_SET_RATE_GATE)
+-		clk_core_rate_unprotect(core);
+-
+ 	if (--core->prepare_count > 0)
+ 		return;
  
- 	/* check that we are allowed to re-parent if the clock is in use */
- 	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
+@@ -564,14 +561,6 @@ static int clk_core_prepare(struct clk_core *core)
+ 
+ 	core->prepare_count++;
+ 
+-	/*
+-	 * CLK_SET_RATE_GATE is a special case of clock protection
+-	 * Instead of a consumer protection, the provider is protecting
+-	 * itself when prepared
+-	 */
+-	if (core->flags & CLK_SET_RATE_GATE)
+-		clk_core_rate_protect(core);
+-
+ 	return 0;
+ }
+ 
+@@ -716,6 +705,9 @@ static void clk_core_disable(struct clk_core *core)
+ 	if (WARN_ON(core->enable_count == 1 && core->flags & CLK_IS_CRITICAL))
+ 		return;
+ 
++	if (core->flags & CLK_SET_RATE_GATE)
++		clk_core_rate_unprotect(core);
++
+ 	if (--core->enable_count > 0)
+ 		return;
+ 
+@@ -791,6 +783,15 @@ static int clk_core_enable(struct clk_core *core)
+ 	}
+ 
+ 	core->enable_count++;
++
++	/*
++	 * CLK_SET_RATE_GATE is a special case of clock protection
++	 * Instead of a consumer protection, the provider is protecting
++	 * itself when enabled
++	 */
++	if (core->flags & CLK_SET_RATE_GATE)
++		clk_core_rate_protect(core);
++
+ 	return 0;
+ }
+ 
 -- 
 2.9.4
