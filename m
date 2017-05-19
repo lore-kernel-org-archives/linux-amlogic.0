@@ -1,29 +1,45 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 19 May 2017 15:50:45 -0700
-Subject: [PATCH 1/1] ARM: dts: meson: Extend L2 cache controller node for
- Meson8 and Meson8b
-In-Reply-To: <20170417214244.23698-2-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Mon, 17 Apr 2017 23:42:44 +0200")
-References: <20170417214244.23698-1-martin.blumenstingl@googlemail.com>
- <20170417214244.23698-2-martin.blumenstingl@googlemail.com>
-Message-ID: <m2d1b44g1m.fsf@baylibre.com>
+Date: Fri, 19 May 2017 16:42:03 -0700
+Subject: [PATCH] ARM64: defconfig: enable IR core,
+ decoders and Meson IR device
+In-Reply-To: <1493105980-19724-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Tue, 25 Apr 2017 09:39:40 +0200")
+References: <1493105980-19724-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m28tls4do4.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> From: Carlo Caione <carlo@endlessm.com>
+> This patch enables the MEDIA Infrared RC Decoders and Meson Infrared
+> decoder for ARM64 defconfig.
+> These drivers are selected as modules by default.
 >
-> This patch extends the L2 cache controller node for the Amlogic Meson8
-> and Meson8b SoCs with some missing parameters. These are taken from the
-> Amlogic GPL kernel source.
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  arch/arm64/configs/defconfig | 5 +++++
+>  1 file changed, 5 insertions(+)
 >
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
-> [apply the change to Meson8 and Meson8b and updated description]
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index c021aefa..59c400f 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -321,6 +321,11 @@ CONFIG_MEDIA_CAMERA_SUPPORT=y
+>  CONFIG_MEDIA_ANALOG_TV_SUPPORT=y
+>  CONFIG_MEDIA_DIGITAL_TV_SUPPORT=y
+>  CONFIG_MEDIA_CONTROLLER=y
+> +CONFIG_MEDIA_RC_SUPPORT=y
+> +CONFIG_RC_CORE=y
 
-Applied to v4.13/dt64,
+This one should be a module too.
 
-Thanks,
+With that fixed, applied to v4.13/defconfig
 
 Kevin
+
+> +CONFIG_RC_DEVICES=y
+> +CONFIG_RC_DECODERS=y
+> +CONFIG_IR_MESON=m
+>  CONFIG_VIDEO_V4L2_SUBDEV_API=y
+>  # CONFIG_DVB_NET is not set
+>  CONFIG_V4L_MEM2MEM_DRIVERS=y
