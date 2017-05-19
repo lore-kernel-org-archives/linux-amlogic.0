@@ -1,29 +1,48 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 19 May 2017 12:05:01 +0200
-Subject: [PATCH 00/10] clk: implement clock rate protection mechanism
-In-Reply-To: <20170518163804.14123-1-jbrunet@baylibre.com>
-References: <20170518163804.14123-1-jbrunet@baylibre.com>
-Message-ID: <1495188301.2426.3.camel@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 19 May 2017 15:49:12 -0700
+Subject: [PATCH 1/2] ARM: dts: meson: organize devices in their
+ corresponding busses
+In-Reply-To: <20170417213938.22626-2-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Mon, 17 Apr 2017 23:39:37 +0200")
+References: <20170417213938.22626-1-martin.blumenstingl@googlemail.com>
+ <20170417213938.22626-2-martin.blumenstingl@googlemail.com>
+Message-ID: <m2inkw4g47.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-05-18 at 18:37 +0200, Jerome Brunet wrote:
-> This Patchset is related the RFC [0] and the discussion around
-> CLK_SET_RATE_GATE available here [1]
-> 
-> The goal of this patchset is to provide a way for consumers to inform the
-> system that they depend on the rate of the clock source and can't tolerate
-> other consumers changing the rate or causing glitches.
-> 
-> 
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-Stephen, Mike,
+> The Amlogic Meson SoCs have most of the internal peripherals organized
+> in busses. Use them to make the dts easier to read and to avoid
+> duplicated register (bus) offset definitions.
+>
+> The bus information is taken from the vendor kernel:
+> 	#define IO_CBUS_PHY_BASE        0xc1100000  ///2M
+> 	#define IO_AOBUS_PHY_BASE       0xc8100000  ///1M
+>
+> There are more internal busses (such as the abp bus which seems to
+> contain audio, HDMI and Mali registers), but since we don't have
+> drivers for them yet these are not added (yet).
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-I've realized that a few more changes would improve set_rate changes handling.
-Please ignore this series.
+I tested this series on my meson8b-odroidc1 and it boots fine.
 
-I'll send another one soon.
+Series looks fine to me, except...
 
-Cheers
+[...]
 
-Jerome
+>  
+>  		ethmac: ethernet at c9410000 {
+>  			compatible = "amlogic,meson6-dwmac", "snps,dwmac";
+>  			reg = <0xc9410000 0x10000
+> -			       0xc1108108 0x4>;
+> +			0xc1108108 0x4>;
+
+stray tab removal?
+
+I fixed that up locally and applied to v4.13/dt64 branch.
+
+Thanks for the patches!
+
+Kevin
