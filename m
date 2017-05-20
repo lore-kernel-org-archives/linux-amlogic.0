@@ -1,71 +1,76 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Sat, 20 May 2017 17:48:42 +0200
-Subject: [PATCH v2 00/18] ARM64: meson: DT cleanups
-In-Reply-To: <m2mvab88dh.fsf@baylibre.com>
-References: <20170513143337.14278-1-afaerber@suse.de>
- <m2mvab88dh.fsf@baylibre.com>
-Message-ID: <ee80352b-e5f2-8049-5f88-e6fe1b433a5e@suse.de>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 20 May 2017 17:49:44 +0200
+Subject: corrupt clk_core instance in clk_disable_unused_subtree (ARM
+ Meson MX platform)
+In-Reply-To: <CAFBinCDr2ocZ3J4JEvXF-W=tT8Zw-t02J09Ciiud6RTrkcEidA@mail.gmail.com>
+References: <CAFBinCDjysBNJLQYsvzBU7U2p7gv0Lxa+qe8f5YMn0BgUw6P0g@mail.gmail.com>
+ <CAFBinCDr2ocZ3J4JEvXF-W=tT8Zw-t02J09Ciiud6RTrkcEidA@mail.gmail.com>
+Message-ID: <CAFBinCDCosUs=EKJqr3XzsSNTN-ZVSb-wWjrrMnQtbDA6OqsqA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
-
-Am 17.05.2017 um 23:46 schrieb Kevin Hilman:
-> Andreas F?rber <afaerber@suse.de> writes:
->> This series fixes several cosmetic issues, on top of your for-next branch.
+On Thu, May 18, 2017 at 8:36 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> On Sun, May 14, 2017 at 11:20 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> Hello,
 >>
->> Patches 3-6 rename a node, the rest should all be non-functional changes.
+>> it seems that I am seeing some strange memory corruption on one of my
+>> Amlogic Meson MX (32-bit) devices.
+>> disclaimer: I have some patches in my tree which are not mainlined yet
+>> (see [0]), but cannot see that any of these patches would cause memory
+>> corruption of a clk_core instance.
 >>
->> PLEASE STOP merging random new nodes at the bottom of DT files!
->> Just like it's a convention to sort new nodes by unit address, it has been
->> a convention to sort by-label nodes by their label. As discussed here and
->> elsewhere, this helps avoid merge conflicts and makes nodes easy to find.
->> I don't care whether we order A0 before A or after, but adding new HDMI
->> or CVBS nodes at the very bottom is totally out of alphabetical order.
->> Since my v1 you really should've known that...
-> 
-> Your tone is a bit tiresome and frankly makes me hesitate before
-> reviewing the patches.  If you expect cordial dialogue and producitve
-> collaboration, please dial the accusations back a notch.
+>> Oleg (who is CC'ed) has first reported this when testing my kernel tree: [1]
+>> in the meantime I have rebased all of my patches to Linus' mainline
+>> tree, commit 0fcc3ab23d7395f58e8ab0834e7913e2e4314a83 [3]
+>>
+>> what I am seeing is a NULL deref in clk_disable_unused_subtree, full
+>> log attached and can be found here: [3]
+>> an explanation of what seems to be going on in my own words is:
+>> - in line #5 of the log the internal PWM mux clock for the first PWM
+>> channel is being registered (everything looks good with
+>> clk_core=0xeddfbf80 and clk_hw=0xeddfbf30)
+>> - the default parent of this mux is "xtal"
+>> - in line #31 of the log the "disable unused clocks" cleanup starts
+>> and checks the first child of the "xtal" clock and seems to find
+>> clk_core=0xeddfbf80 *BUT* clk_hw=0x00000003
+>> - this doesn't seem right and a crash is pretty obvious
+>>
+>> I also attached the patch which introduces this additional logspam -
+>> just in case anyone wants to know what these values mean exactly.
+>>
+>> now the interesting part:
+>> I can reproduce this with multi_v7_defconfig and
+>> arch/arm/boot/dts/meson8m2-m8s.dts from my tree.
+>> if I leave everything as it is and *only* enable CONFIG_DEBUG_SPINLOCK
+>> then this crash goes away. so this *might* be a race-condition
+>> somewhere...
+> a user named "wilson2000" (since I missed you on IRC: thank you!)
+> pointed out on IRC that there's a memory corruption bug in v4.11 and
+> early v4.12 kernels which is fixed by [0] "perf/core: Avoid removing
+> shared pmu_context on unregister"
+> I have not tested this yet but this looks suspicious (so the common
+> clock framework may be innocent). I will report back once I had time
+> to test this.
+I applied that patch and re-tested this: unfortunately it still
+crashes with the same symptoms
 
-I have sketched the history in another reply, maybe you understand the
-sentiments better now.
+so I am still interested in any kind of hint
 
-I was annoyed to see that contributions by several people made the
-problem worse than it was originally. I.e., my v1 fix and now v2 grew
-more invasive because the issue did not get contained, not just not
-fixed. Rebasing this branch was no fun.
-
-[snip]
-
-I will continue to point things out in review or hindsight where I can,
-but as explained to Martin, this is not something I can continuously do
-in the pace that BayLibre's nice driver contributions have led to.
-
-As for the question of ownership, there should be no doubt that I not
-only factually contributed meson-gxbb DT files but also figured out how
-to get any kernel to boot on S905 with the old vendor U-Boot and fixed
-serial output and added earlycon. That was before BayLibre stepped in.
-So from my perspective all your contributions are based on my pioneering
-S905 work (and my work in turn reused Carlo's S805 meson_uart etc.), and
-I will not react well when some BayLibre employee not initially involved
-with those efforts (Neil) now tells me to shut up and pretends as if he
-makes the rules now just because his colleague stepped up as maintainer.
-The ordering rules I applied here are not my invention but things I
-picked on from previous reviews. You yourself had stated that I could
-resend the patches and explain why - Russell and I already gave some
-reasons, and there were no responses, which I took as no opposition and
-was frankly surprised about the renewed level of opposition.
-
-More generally, if a fix makes sense on its own and has no dependencies,
-then I personally prefer it getting applied after reviews. If there's a
-rule/reason for requiring full-series resends in Linux, it hasn't been
-explained to me yet.
-
-Regards,
-Andreas
-
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+>> has anybody seen this crash before? I can help debugging/testing
+>> potential fixes/trying out various things to solve this - just let me
+>> know!
+>>
+>>
+>> Regards,
+>> Martin
+>>
+>>
+>> [0] https://github.com/xdarklight/linux/tree/meson-mx-integration-4.12-20170513
+>> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-May/003497.html
+>> [2] https://github.com/torvalds/linux/commit/0fcc3ab23d7395f58e8ab0834e7913e2e4314a83
+>> [3] https://paste.kde.org/pbefvmqgr
+>
+>
+> [0] https://cgit.freedesktop.org/drm/drm-intel/commit/?h=drm-intel-nightly&id=73ac44749e71333bce7d2f8c0bbdc1bbc57dae1b
