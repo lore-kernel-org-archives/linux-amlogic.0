@@ -1,78 +1,66 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sun, 21 May 2017 23:59:49 +0200
-Subject: [PATCH v2 02/11] clk: add clk_core_set_phase_nolock function
-In-Reply-To: <20170521215958.19743-1-jbrunet@baylibre.com>
-References: <20170521215958.19743-1-jbrunet@baylibre.com>
-Message-ID: <20170521215958.19743-3-jbrunet@baylibre.com>
+Date: Sun, 21 May 2017 23:59:47 +0200
+Subject: [PATCH v2 00/11] clk: implement clock rate protection mechanism
+Message-ID: <20170521215958.19743-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Create a core function for set_phase, as it is done for set_rate and
-set_parent.
+This Patchset is related the RFC [0] and the discussion around
+CLK_SET_RATE_GATE available here [1]
 
-This rework is done to ease the integration of "protected" clock
-functionality.
+The goal of this patchset is to provide a way for consumers to inform the
+system that they depend on the rate of the clock source and can't tolerate
+other consumers changing the rate or causing glitches.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/clk.c | 31 +++++++++++++++++++------------
- 1 file changed, 19 insertions(+), 12 deletions(-)
+With this series there is 3 use-case:
+ - the provider is not protected: nothing changes
+ - the provider is protected by only 1 consumer (and only once), then only
+   this consumer will be able to alter the rate of the clock, as it is the
+   only one depending on it.
+ - If the provider is protected more than once, or by the provider itself,
+   the rate is basically locked.
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index f5c371532509..6031fada37f9 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -1873,6 +1873,23 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
- }
- EXPORT_SYMBOL_GPL(clk_set_parent);
- 
-+static int clk_core_set_phase_nolock(struct clk_core *core, int degrees)
-+{
-+	int ret = -EINVAL;
-+
-+	if (!core)
-+		return 0;
-+
-+	trace_clk_set_phase(clk->core, degrees);
-+
-+	if (core->ops->set_phase)
-+		ret = core->ops->set_phase(core->hw, degrees);
-+
-+	trace_clk_set_phase_complete(core, degrees);
-+
-+	return ret;
-+}
-+
- /**
-  * clk_set_phase - adjust the phase shift of a clock signal
-  * @clk: clock signal source
-@@ -1895,7 +1912,7 @@ EXPORT_SYMBOL_GPL(clk_set_parent);
-  */
- int clk_set_phase(struct clk *clk, int degrees)
- {
--	int ret = -EINVAL;
-+	int ret;
- 
- 	if (!clk)
- 		return 0;
-@@ -1906,17 +1923,7 @@ int clk_set_phase(struct clk *clk, int degrees)
- 		degrees += 360;
- 
- 	clk_prepare_lock();
--
--	trace_clk_set_phase(clk->core, degrees);
--
--	if (clk->core->ops->set_phase)
--		ret = clk->core->ops->set_phase(clk->core->hw, degrees);
--
--	trace_clk_set_phase_complete(clk->core, degrees);
--
--	if (!ret)
--		clk->core->phase = degrees;
--
-+	ret = clk_core_set_phase_nolock(clk->core, degrees);
- 	clk_prepare_unlock();
- 
- 	return ret;
+The last 2 patches provide the same functionnality for providers themself
+by fixing CLK_SET_RATE_GATE (enforce clock gating along the tree)
+
+qcom, at91 and ux500 are the heaviest users of this flag. If anybody having
+one these platform could try this series, I would help build confidence
+that they are relying on CLK_SET_RATE_GATE being broken.
+
+Changes since RFC:
+ - s/clk_protect/clk_rate_protect
+ - Request rework around core_nolock function
+ - Add clk_set_rate_protect
+ - Reword clk_rate_protect and clk_unprotect documentation
+ - Add few comments to explain the code
+ - Add 2 last patches to fix users of CLK_SET_RATE_GATE
+
+Changes since v1:
+ - Add patch 4: Check if the rate would actually change before continuing, a
+   possibly in clk_set_rate.
+
+This was tested with the audio use case mentioned in [1]
+
+[0]: http://lkml.kernel.org/r/20170321183330.26722-1-jbrunet at baylibre.com
+[1]: http://lkml.kernel.org/r/148942423440.82235.17188153691656009029 at resonance
+
+Jerome Brunet (11):
+  clk: take the prepare lock out of clk_core_set_parent
+  clk: add clk_core_set_phase_nolock function
+  clk: rework calls to round and determine rate callbacks
+  clk: use round rate to bail out early in set_rate
+  clk: add support for clock protection
+  clk: add clk_set_rate_protect
+  clk: rollback set_rate_range changes on failure
+  clk: cosmetic changes to clk_summary debugfs entry
+  clk: fix incorrect usage of ENOSYS
+  clk: fix CLK_SET_RATE_GATE with clock rate protection
+  clk: move CLK_SET_RATE_GATE protection from prepare to enable
+
+ drivers/clk/clk.c            | 429 ++++++++++++++++++++++++++++++++++++-------
+ include/linux/clk-provider.h |   1 +
+ include/linux/clk.h          |  43 +++++
+ 3 files changed, 403 insertions(+), 70 deletions(-)
+
 -- 
 2.9.4
