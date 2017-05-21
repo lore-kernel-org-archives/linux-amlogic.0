@@ -1,69 +1,49 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Sun, 21 May 2017 18:20:25 +0200
-Subject: brcmfmac firmware issue on NanoPi K2
-Message-ID: <ab713116-ab12-5f87-1ecf-cae2e0d68b93@suse.de>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 21 May 2017 20:17:32 +0200
+Subject: S805/S812 Device Tree upstreaming
+In-Reply-To: <fdc29cda-b67d-add9-9c8a-f0a61db537da@yandex.ru>
+References: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
+ <939ef72d-a4e5-7535-2252-d607158bd0fe@yandex.ru>
+ <a9179db4-1db6-3c8d-de34-cee4454f07de@yandex.ru>
+ <CAFBinCCAxjtreC0EtpWKxrx9=zqJmv6w4fEhg_aZZNT_G3qARg@mail.gmail.com>
+ <9b803bac-4ce8-689c-44a8-40532e294dae@yandex.ru>
+ <CAFBinCDXx5j_W5WtLSd8q0RDp7TXezCdDNHtXp5mYNnY=jR5wA@mail.gmail.com>
+ <fdc29cda-b67d-add9-9c8a-f0a61db537da@yandex.ru>
+Message-ID: <CAFBinCBhVGabCo-2j-sd=5JSPa2xsQ4a1Tn=iMC6QuzxrnSfQQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello,
+Hi Oleg,
 
-The NanoPi K2 has an Ampak AP6212 SDIO module. brcmfmac driver loads
-brcmfmac43430-sdio.bin.
+On Sun, May 21, 2017 at 10:57 AM, Oleg <balbes-150@yandex.ru> wrote:
+> Hi Martin
+> In Lebreelec I did not find the specified directories.
+> in the file ls_debug_lebreelec.txt the contents of the
+> directory from Lebreelec.
+> Output content Linux in appropriate files.
+> https://yadi.sk/d/X-26JMEn3JNFbD
+ah, in Amlogic's kernel the directories are probably
+/sys/kernel/debug/{emmc,sd,sdio}
 
-When using the firmware file from linux-firmware.git that openSUSE ships
-I get the following errors on 4.11.0 and next-20170519:
+> I use this dtb file.
+> https://github.com/150balbes/Amlogic_s8xx-kernel/blob/test/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
+this looks good to me. so you have tried:
+gpio = <&gpio GPIOZ_1 GPIO_ACTIVE_HIGH>;
+enable-active-high;
 
-[ 2103.618716] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000):
-clkctl 0x50
-[ 2104.668746] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000):
-clkctl 0x50
-[ 2105.678677] brcmfmac: brcmf_sdio_htclk: HT Avail timeout (1000000):
-clkctl 0x50
+as well as:
+gpio = <&gpio GPIOZ_1 GPIO_ACTIVE_LOW>;
+// enable-active-high; not set
 
-If I overwrite /lib/firmware/brcm/bcm43430-sdio.bin with
-fw_bcm43438a0.bin from FriendlyARM's Android repository it suddenly works:
+> Question, wath that me need to add or change data in the dtb, what would I
+> have to run a wired network ?
+you already have phy-mode = "rgmii"; in your .dts so this looks fine.
+maybe the pinctrl driver is missing some bits for rgmii mode, can you
+please run "md 0xc11080b0 0x28" in u-boot and paste the output (this
+dumps the pinctrl mux mode registers from u-boot, where I assume that
+ethernet is working)?
+do you see any dwmac/stmmac related errors in your kernel log?
 
-[  +0.157738] brcmfmac: brcmf_c_preinit_dcmds: Firmware version = wl0:
-Jun  6 2014 14:50:39 version 7.10.226.49 (r) FWID 01-8962686a
-[  +0.160108] brcmfmac: brcmf_cfg80211_reg_notifier: not a ISO3166 code
-(0x30 0x30)
 
-I recall using the linux-firmware.git brcmfmac43430-sdio.bin file
-successfully on the Raspberry Pi 3 with a downstream (Leap 42.2) kernel.
-
-I've tested both nvram_ap6212.txt and nvram_ap6212a.txt, the latter has
-the following diff to nvram.txt:
-
---- nvram_ap6212.txt    2017-05-21 04:24:40.372113426 +0200
-+++ nvram_ap6212a.txt   2017-05-21 04:24:49.852116599 +0200
-@@ -1,4 +1,4 @@
--#AP6212_NVRAM_V1.0_20140603
-+#AP6212_NVRAM_V1.0.1_20160606
- # 2.4 GHz, 20 MHz BW mode
-
- # The following parameter values are just placeholders, need to be updated.
-@@ -51,4 +51,4 @@
- muxenab=0x10
- # CLDO PWM voltage settings - 0x4 - 1.1 volt
- #cldo_pwm=0x4
--
-+glitch_based_crsmin=1
-
-https://github.com/friendlyarm/android_hardware_amlogic_wifi/tree/l-amlogic-gx-sync/bcm_ampak/config/6212
-
-* Does the linux-firmware.git brcmfmac43430-sdio.bin need a fix for AP6212?
-https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/brcm
-
-* Does the brcmfmac driver need to distinguish revisions in sdio.c as
-done for 43241, plus a separate firmware file?
-	BRCMF_FW_NVRAM_ENTRY(BRCM_CC_43430_CHIP_ID, 0xFFFFFFFF, 43430),
-
-* Any other ideas?
-
-Thanks,
-Andreas
-
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+Regards,
+Martin
