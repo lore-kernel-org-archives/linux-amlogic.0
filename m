@@ -1,34 +1,45 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sun, 21 May 2017 23:59:56 +0200
-Subject: [PATCH v2 09/11] clk: fix incorrect usage of ENOSYS
+Date: Sun, 21 May 2017 23:59:55 +0200
+Subject: [PATCH v2 08/11] clk: cosmetic changes to clk_summary debugfs entry
 In-Reply-To: <20170521215958.19743-1-jbrunet@baylibre.com>
 References: <20170521215958.19743-1-jbrunet@baylibre.com>
-Message-ID: <20170521215958.19743-10-jbrunet@baylibre.com>
+Message-ID: <20170521215958.19743-9-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-ENOSYS is special and should only be used for incorrect syscall number.
-It does not seem to be the case here.
-
-Reported by checkpatch.pl while working on clock protection.
+clk_summary debugfs entry was already well over the traditional 80
+characters per line limit but it grew even larger with the addition of
+clock protection.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/clk.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 955dae044f11..01306191133c 100644
+index 71b0480a152b..955dae044f11 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -2032,7 +2032,7 @@ static int clk_core_set_parent_nolock(struct clk_core *core,
+@@ -2262,7 +2262,7 @@ static void clk_summary_show_one(struct seq_file *s, struct clk_core *c,
+ 	if (!c)
+ 		return;
  
- 	/* verify ops for for multi-parent clks */
- 	if ((core->num_parents > 1) && (!core->ops->set_parent))
--		return -ENOSYS;
-+		return -EPERM;
+-	seq_printf(s, "%*s%-*s %11d %12d %12d %11lu %10lu %-3d\n",
++	seq_printf(s, "%*s%-*s %7d %8d %8d %11lu %10lu %-3d\n",
+ 		   level * 3 + 1, "",
+ 		   30 - level * 3, c->name,
+ 		   c->enable_count, c->prepare_count, c->protect_count,
+@@ -2289,8 +2289,9 @@ static int clk_summary_show(struct seq_file *s, void *data)
+ 	struct clk_core *c;
+ 	struct hlist_head **lists = (struct hlist_head **)s->private;
  
- 	/* check that we are allowed to re-parent if the clock is in use */
- 	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
+-	seq_puts(s, "   clock                         enable_cnt  prepare_cnt  protect_cnt        rate   accuracy   phase\n");
+-	seq_puts(s, "----------------------------------------------------------------------------------------------------\n");
++	seq_puts(s, "                                 enable  prepare  protect                               \n");
++	seq_puts(s, "   clock                          count    count    count        rate   accuracy   phase\n");
++	seq_puts(s, "----------------------------------------------------------------------------------------\n");
+ 
+ 	clk_prepare_lock();
+ 
 -- 
 2.9.4
