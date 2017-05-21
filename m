@@ -1,45 +1,79 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sun, 21 May 2017 23:59:55 +0200
-Subject: [PATCH v2 08/11] clk: cosmetic changes to clk_summary debugfs entry
+Date: Sun, 21 May 2017 23:59:51 +0200
+Subject: [PATCH v2 04/11] clk: use round rate to bail out early in set_rate
 In-Reply-To: <20170521215958.19743-1-jbrunet@baylibre.com>
 References: <20170521215958.19743-1-jbrunet@baylibre.com>
-Message-ID: <20170521215958.19743-9-jbrunet@baylibre.com>
+Message-ID: <20170521215958.19743-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-clk_summary debugfs entry was already well over the traditional 80
-characters per line limit but it grew even larger with the addition of
-clock protection.
+The current implementation of clk_core_set_rate_nolock bails out early if
+the requested rate is exactly the same as the one set. It should bail out
+if the request would not result in rate a change.  This important when rate
+is not exactly what is requested, which is fairly common with PLLs.
+
+Ex: provider able to give any rate with steps of 100Hz
+ - 1st consumer request 48000Hz and gets it.
+ - 2nd consumer request 48010Hz as well. If we were to perform the usual
+   mechanism, we would get 48000Hz as well. The clock would not change so
+   there is no point performing any checks to make sure the clock can
+   change, we know it won't.
+
+This is important to prepare the addition of the clock protection mechanism
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/clk/clk.c | 23 +++++++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 71b0480a152b..955dae044f11 100644
+index 100f72472e10..1a8c0d013238 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -2262,7 +2262,7 @@ static void clk_summary_show_one(struct seq_file *s, struct clk_core *c,
- 	if (!c)
- 		return;
+@@ -1570,15 +1570,34 @@ static void clk_change_rate(struct clk_core *core)
+ 		clk_change_rate(core->new_child);
+ }
  
--	seq_printf(s, "%*s%-*s %11d %12d %12d %11lu %10lu %-3d\n",
-+	seq_printf(s, "%*s%-*s %7d %8d %8d %11lu %10lu %-3d\n",
- 		   level * 3 + 1, "",
- 		   30 - level * 3, c->name,
- 		   c->enable_count, c->prepare_count, c->protect_count,
-@@ -2289,8 +2289,9 @@ static int clk_summary_show(struct seq_file *s, void *data)
- 	struct clk_core *c;
- 	struct hlist_head **lists = (struct hlist_head **)s->private;
++static unsigned long clk_core_req_round_rate_nolock(struct clk_core *core,
++						     unsigned long req_rate)
++{
++	int ret;
++	struct clk_rate_request req;
++
++	if (!core)
++		return 0;
++
++	clk_core_get_boundaries(core, &req.min_rate, &req.max_rate);
++	req.rate = req_rate;
++
++	ret = clk_core_round_rate_nolock(core, &req);
++
++	return ret ? 0 : req.rate;
++}
++
+ static int clk_core_set_rate_nolock(struct clk_core *core,
+ 				    unsigned long req_rate)
+ {
+ 	struct clk_core *top, *fail_clk;
+-	unsigned long rate = req_rate;
++	unsigned long rate;
  
--	seq_puts(s, "   clock                         enable_cnt  prepare_cnt  protect_cnt        rate   accuracy   phase\n");
--	seq_puts(s, "----------------------------------------------------------------------------------------------------\n");
-+	seq_puts(s, "                                 enable  prepare  protect                               \n");
-+	seq_puts(s, "   clock                          count    count    count        rate   accuracy   phase\n");
-+	seq_puts(s, "----------------------------------------------------------------------------------------\n");
+ 	if (!core)
+ 		return 0;
  
- 	clk_prepare_lock();
++	rate = clk_core_req_round_rate_nolock(core, req_rate);
++
+ 	/* bail early if nothing to do */
+ 	if (rate == clk_core_get_rate_nolock(core))
+ 		return 0;
+@@ -1587,7 +1606,7 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
+ 		return -EBUSY;
+ 
+ 	/* calculate new rates and get the topmost changed clock */
+-	top = clk_calc_new_rates(core, rate);
++	top = clk_calc_new_rates(core, req_rate);
+ 	if (!top)
+ 		return -EINVAL;
  
 -- 
 2.9.4
