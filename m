@@ -1,114 +1,79 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sun, 21 May 2017 23:59:53 +0200
-Subject: [PATCH v2 06/11] clk: add clk_set_rate_protect
+Date: Sun, 21 May 2017 23:59:58 +0200
+Subject: [PATCH v2 11/11] clk: move CLK_SET_RATE_GATE protection from prepare
+ to enable
 In-Reply-To: <20170521215958.19743-1-jbrunet@baylibre.com>
 References: <20170521215958.19743-1-jbrunet@baylibre.com>
-Message-ID: <20170521215958.19743-7-jbrunet@baylibre.com>
+Message-ID: <20170521215958.19743-12-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-clk_set_rate_protect is a combination of clk_set_rate and clk_rate_protect
-within a critical section. In case where several protecting consumers
-compete to set the rate of the same provider, it provides a way to make
-sure that at least one of them will be satisfied before the resource is
-locked.
-
-This is to avoid the unlikely situation where several consumers protect a
-clock provider and none actually get a rate it can work with.
+CLK_SET_RATE_GATE name suggest that the rate can be set when the provider
+is gated (disabled). With the current implementation, the rate can only be
+set when the provider is unprepared, while it should be allowed to set a
+prepared and disable provider.
+Fix this by moving the rate protection mechanism in the enable/disable
+core functions
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c   | 45 +++++++++++++++++++++++++++++++++++++++++++++
- include/linux/clk.h | 14 ++++++++++++++
- 2 files changed, 59 insertions(+)
+ drivers/clk/clk.c | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index a0524e3bfaca..33ec990b2e97 100644
+index 6ee5fc59cf1f..e6e5048ce186 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -1809,6 +1809,51 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
- EXPORT_SYMBOL_GPL(clk_set_rate);
+@@ -491,9 +491,6 @@ static void clk_core_unprepare(struct clk_core *core)
+ 	if (WARN_ON(core->prepare_count == 1 && core->flags & CLK_IS_CRITICAL))
+ 		return;
  
- /**
-+ * clk_set_rate_protect - specify a new rate and protect it
-+ * @clk: the clk whose rate is being changed
-+ * @rate: the new rate for clk
-+ *
-+ * This is a combination of clk_set_rate and clk_rate_protect within
-+ * a critical section
-+ *
-+ * This can be used initially to ensure that at least 1 consumers is
-+ * statisfied when several protecting consummers are competing for the
-+ * same clock provider.
-+ *
-+ * The protection is not applied if setting the rate failed.
-+ *
-+ * Returns 0 on success, -EERROR otherwise.
-+ */
-+int clk_set_rate_protect(struct clk *clk, unsigned long rate)
-+{
-+	int ret;
-+
-+	if (!clk)
-+		return 0;
-+
-+	/* prevent racing with updates to the clock topology */
-+	clk_prepare_lock();
-+
-+	/*
-+	 * The temporary protection removal is not here, on purpose
-+	 * This function is meant to be used in instead of clk_rate_protect,
-+	 * so before the consumer code path protect the clock provider
-+	 */
-+
-+	ret = clk_core_set_rate_nolock(clk->core, rate);
-+
-+	if (!ret) {
-+		clk_core_rate_protect(clk->core);
-+		clk->protect_count++;
-+	}
-+
-+	clk_prepare_unlock();
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(clk_set_rate_protect);
-+
-+/**
-  * clk_set_rate_range - set a rate range for a clock source
-  * @clk: clock source
-  * @min: desired minimum clock rate in Hz, inclusive
-diff --git a/include/linux/clk.h b/include/linux/clk.h
-index 85d73e02df40..d3c299d23ae7 100644
---- a/include/linux/clk.h
-+++ b/include/linux/clk.h
-@@ -388,6 +388,15 @@ long clk_round_rate(struct clk *clk, unsigned long rate);
- int clk_set_rate(struct clk *clk, unsigned long rate);
+-	if (core->flags & CLK_SET_RATE_GATE)
+-		clk_core_rate_unprotect(core);
+-
+ 	if (--core->prepare_count > 0)
+ 		return;
  
- /**
-+ * clk_set_rate_protect - set and protect the clock rate for a clock source
-+ * @clk: clock source
-+ * @rate: desired clock rate in Hz
-+ *
-+ * Returns success (0) or negative errno.
-+ */
-+int clk_set_rate_protect(struct clk *clk, unsigned long rate);
-+
-+/**
-  * clk_has_parent - check if a clock is a possible parent for another
-  * @clk: clock source
-  * @parent: parent clock source
-@@ -506,6 +515,11 @@ static inline int clk_set_rate(struct clk *clk, unsigned long rate)
+@@ -564,14 +561,6 @@ static int clk_core_prepare(struct clk_core *core)
+ 
+ 	core->prepare_count++;
+ 
+-	/*
+-	 * CLK_SET_RATE_GATE is a special case of clock protection
+-	 * Instead of a consumer protection, the provider is protecting
+-	 * itself when prepared
+-	 */
+-	if (core->flags & CLK_SET_RATE_GATE)
+-		clk_core_rate_protect(core);
+-
  	return 0;
  }
  
-+static inline int clk_set_rate_protect(struct clk *clk, unsigned long rate)
-+{
-+	return 0;
-+}
+@@ -716,6 +705,9 @@ static void clk_core_disable(struct clk_core *core)
+ 	if (WARN_ON(core->enable_count == 1 && core->flags & CLK_IS_CRITICAL))
+ 		return;
+ 
++	if (core->flags & CLK_SET_RATE_GATE)
++		clk_core_rate_unprotect(core);
 +
- static inline long clk_round_rate(struct clk *clk, unsigned long rate)
- {
+ 	if (--core->enable_count > 0)
+ 		return;
+ 
+@@ -791,6 +783,15 @@ static int clk_core_enable(struct clk_core *core)
+ 	}
+ 
+ 	core->enable_count++;
++
++	/*
++	 * CLK_SET_RATE_GATE is a special case of clock protection
++	 * Instead of a consumer protection, the provider is protecting
++	 * itself when enabled
++	 */
++	if (core->flags & CLK_SET_RATE_GATE)
++		clk_core_rate_protect(core);
++
  	return 0;
+ }
+ 
 -- 
 2.9.4
