@@ -1,59 +1,59 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 22 May 2017 15:27:16 +0200
-Subject: [PATCH] clk: meson-gxbb: Expose SPICC gate
-In-Reply-To: <1495459426.2344.1.camel@baylibre.com>
-References: <1495457326-32659-1-git-send-email-narmstrong@baylibre.com>
- <1495459426.2344.1.camel@baylibre.com>
-Message-ID: <578eb358-60f2-e65d-1aaa-fece2d77987a@baylibre.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Mon, 22 May 2017 15:37:03 +0200
+Subject: [PATCH] serial: meson: hide an unused function
+Message-ID: <20170522133746.880230-1-arnd@arndb.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/22/2017 03:23 PM, Jerome Brunet wrote:
-> On Mon, 2017-05-22 at 14:48 +0200, Neil Armstrong wrote:
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> I would prefer to have a short commit message here. With it included:
+The newly added meson_uart_enable_tx_engine function is only called
+from the console setup, not the runtime uart, which has an open-coded
+version of the same register access. This produces a harmless warning
+when the console code is disabled:
 
-Indeed, sorry.
+drivers/tty/serial/meson_uart.c:127:13: error: 'meson_uart_enable_tx_engine' defined but not used [-Werror=unused-function]
 
-I'll push it with a short commit message and your Ack.
+Let's move the function inside of the #ifdef to avoid the warning.
 
-Thanks,
-Neil
+Fixes: ba50f1df13c8 ("serial: meson: remove unneeded variable assignment in meson_serial_port_write")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/tty/serial/meson_uart.c | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-> 
-> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
-> 
->> ---
->>  drivers/clk/meson/gxbb.h              | 2 +-
->>  include/dt-bindings/clock/gxbb-clkc.h | 1 +
->>  2 files changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
->> index 93b8f07..cc7b35c 100644
->> --- a/drivers/clk/meson/gxbb.h
->> +++ b/drivers/clk/meson/gxbb.h
->> @@ -191,7 +191,7 @@
->>  #define CLKID_ISA		  18
->>  #define CLKID_PL301		  19
->>  #define CLKID_PERIPHS		  20
->> -#define CLKID_SPICC		  21
->> +/* CLKID_SPICC */
->>  /* CLKID_I2C */
->>  /* #define CLKID_SAR_ADC */
->>  #define CLKID_SMART_CARD	  24
->> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-
->> bindings/clock/gxbb-clkc.h
->> index 3190e30..88da194 100644
->> --- a/include/dt-bindings/clock/gxbb-clkc.h
->> +++ b/include/dt-bindings/clock/gxbb-clkc.h
->> @@ -13,6 +13,7 @@
->>  #define CLKID_GP0_PLL		9
->>  #define CLKID_CLK81		12
->>  #define CLKID_MPLL2		15
->> +#define CLKID_SPICC		21
->>  #define CLKID_I2C		22
->>  #define CLKID_SAR_ADC		23
->>  #define CLKID_RNG0		25
-> 
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 082e038e67f8..c0e34dabadd8 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -124,15 +124,6 @@ static void meson_uart_stop_rx(struct uart_port *port)
+ 	writel(val, port->membase + AML_UART_CONTROL);
+ }
+ 
+-static void meson_uart_enable_tx_engine(struct uart_port *port)
+-{
+-	u32 val;
+-
+-	val = readl(port->membase + AML_UART_CONTROL);
+-	val |= AML_UART_TX_EN;
+-	writel(val, port->membase + AML_UART_CONTROL);
+-}
+-
+ static void meson_uart_shutdown(struct uart_port *port)
+ {
+ 	unsigned long flags;
+@@ -451,6 +442,14 @@ static struct uart_ops meson_uart_ops = {
+ };
+ 
+ #ifdef CONFIG_SERIAL_MESON_CONSOLE
++static void meson_uart_enable_tx_engine(struct uart_port *port)
++{
++	u32 val;
++
++	val = readl(port->membase + AML_UART_CONTROL);
++	val |= AML_UART_TX_EN;
++	writel(val, port->membase + AML_UART_CONTROL);
++}
+ 
+ static void meson_console_putchar(struct uart_port *port, int ch)
+ {
+-- 
+2.9.0
