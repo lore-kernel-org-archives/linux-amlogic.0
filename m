@@ -1,57 +1,77 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 23 May 2017 15:39:32 +0200
-Subject: [PATCH 1/2] dt-bindings: spi-meson: Add SPICC bindings
-In-Reply-To: <1495546773-20479-1-git-send-email-narmstrong@baylibre.com>
-References: <1495546773-20479-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495546773-20479-2-git-send-email-narmstrong@baylibre.com>
+From: adi.reus@gmail.com (Adriana Reus)
+Date: Tue, 23 May 2017 16:42:22 +0300
+Subject: [PATCH v2 10/11] clk: fix CLK_SET_RATE_GATE with clock rate
+ protection
+In-Reply-To: <20170521215958.19743-11-jbrunet@baylibre.com>
+References: <20170521215958.19743-1-jbrunet@baylibre.com>
+ <20170521215958.19743-11-jbrunet@baylibre.com>
+Message-ID: <CABjU8GuZQ_2ynUTJpwNoG19zPq-P8Ld=4mwk0EvpHrPROF=bXg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the SPICC (SPI Communications Controller) bindings variant.
+On Mon, May 22, 2017 at 12:59 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> Using clock rate protection, we can now enforce CLK_SET_RATE_GATE along the
+> clock tree
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/clk/clk.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index 01306191133c..6ee5fc59cf1f 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -491,6 +491,9 @@ static void clk_core_unprepare(struct clk_core *core)
+>         if (WARN_ON(core->prepare_count == 1 && core->flags & CLK_IS_CRITICAL))
+>                 return;
+>
+> +       if (core->flags & CLK_SET_RATE_GATE)
+> +               clk_core_rate_unprotect(core);
+^ function call before declaration (unless i missed something when applying),
+  gets fixed in following patch, but makes this one not compile standalone.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../devicetree/bindings/spi/spi-meson.txt          | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+drivers/clk/clk.c: In function 'clk_core_unprepare':
+drivers/clk/clk.c:495:3: error: implicit declaration of function
+'clk_core_rate_unprotect' [-Werror=implicit-function-declaration]
+   clk_core_rate_unprotect(core);
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-meson.txt b/Documentation/devicetree/bindings/spi/spi-meson.txt
-index dc6d031..825c39c 100644
---- a/Documentation/devicetree/bindings/spi/spi-meson.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-meson.txt
-@@ -20,3 +20,34 @@ Required properties:
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 	};
-+
-+* SPICC (SPI Communication Controller)
-+
-+The Meson SPICC is generic SPI controller for general purpose Full-Duplex
-+communications with dedicated 16 words RX/TX PIO FIFOs.
-+
-+Required properties:
-+ - compatible: should be "amlogic,meson-gx-spicc" on Amlogic GX SoCs.
-+ - reg: physical base address and length of the controller registers
-+ - interrupts: The interrupt specifier
-+ - clock-names: Must contain "core"
-+ - clocks: phandle of the input clock for the baud rate generator
-+ - #address-cells: should be 1
-+ - #size-cells: should be 0
-+
-+Optional properties:
-+ - resets: phandle of the internal reset line
-+
-+See ../spi/spi-bus.txt for more details on SPI bus master and slave devices
-+required and optional properties.
-+
-+Example :
-+	spi at c1108d80 {
-+		compatible = "amlogic,meson-gx-spicc";
-+		reg = <0xc1108d80 0x80>;
-+		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-names = "core";
-+		clocks = <&clk81>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
--- 
-1.9.1
+> +
+>         if (--core->prepare_count > 0)
+>                 return;
+>
+> @@ -561,6 +564,14 @@ static int clk_core_prepare(struct clk_core *core)
+>
+>         core->prepare_count++;
+>
+> +       /*
+> +        * CLK_SET_RATE_GATE is a special case of clock protection
+> +        * Instead of a consumer protection, the provider is protecting
+> +        * itself when prepared
+> +        */
+> +       if (core->flags & CLK_SET_RATE_GATE)
+> +               clk_core_rate_protect(core);
+^ same here;
+Note: maybe have a quick check that each patch compiles individually
+(if you haven't already), I did not check them all.
+> +
+>         return 0;
+>  }
+>
+> @@ -1738,9 +1749,6 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
+>         if (clk_core_rate_is_protected(core))
+>                 return -EBUSY;
+>
+> -       if ((core->flags & CLK_SET_RATE_GATE) && core->prepare_count)
+> -               return -EBUSY;
+> -
+>         /* calculate new rates and get the topmost changed clock */
+>         top = clk_calc_new_rates(core, req_rate);
+>         if (!top)
+> --
+> 2.9.4
+>
+> --
+> To unsubscribe from this list: send the line "unsubscribe linux-clk" in
+> the body of a message to majordomo at vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
