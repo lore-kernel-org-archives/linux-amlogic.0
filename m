@@ -1,80 +1,86 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 23 May 2017 11:17:22 +0200
-Subject: [PATCH v3 1/4] dt-bindings: clock: gxbb: expose UART clocks
-In-Reply-To: <20170331165437.26227-2-hgkr.klein@gmail.com>
-References: <20170331165437.26227-1-hgkr.klein@gmail.com>
- <20170331165437.26227-2-hgkr.klein@gmail.com>
-Message-ID: <95a5e461-a145-b301-564f-150aed2eea91@baylibre.com>
+From: adi.reus@gmail.com (Adriana Reus)
+Date: Tue, 23 May 2017 12:35:43 +0300
+Subject: [PATCH v2 02/11] clk: add clk_core_set_phase_nolock function
+In-Reply-To: <20170521215958.19743-3-jbrunet@baylibre.com>
+References: <20170521215958.19743-1-jbrunet@baylibre.com>
+ <20170521215958.19743-3-jbrunet@baylibre.com>
+Message-ID: <CABjU8Gu_0xgto6UfaOofW1RjZkEQtbreqqBS2Ukd+Q0DLSZG8w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Helmut,
-
-On 03/31/2017 06:54 PM, Helmut Klein wrote:
-> Expose the clock ids of the three none AO uarts to the dt-bindings
-> 
-> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
+On Mon, May 22, 2017 at 12:59 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> Create a core function for set_phase, as it is done for set_rate and
+> set_parent.
+>
+> This rework is done to ease the integration of "protected" clock
+> functionality.
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  drivers/clk/meson/gxbb.h              | 6 +++---
->  include/dt-bindings/clock/gxbb-clkc.h | 3 +++
->  2 files changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-> index 8ee2022ce5d5..1edfaa5fe307 100644
-> --- a/drivers/clk/meson/gxbb.h
-> +++ b/drivers/clk/meson/gxbb.h
-> @@ -194,7 +194,7 @@
->  /* #define CLKID_SAR_ADC */
->  #define CLKID_SMART_CARD	  24
->  #define CLKID_RNG0		  25
-> -#define CLKID_UART0		  26
-> +/* CLKID_UART0 */
->  #define CLKID_SDHC		  27
->  #define CLKID_STREAM		  28
->  #define CLKID_ASYNC_FIFO	  29
-> @@ -216,7 +216,7 @@
->  #define CLKID_ADC		  45
->  #define CLKID_BLKMV		  46
->  #define CLKID_AIU		  47
-> -#define CLKID_UART1		  48
-> +/* CLKID_UART1 */
->  #define CLKID_G2D		  49
->  /* CLKID_USB0 */
->  /* CLKID_USB1 */
-> @@ -236,7 +236,7 @@
->  /* CLKID_USB0_DDR_BRIDGE */
->  #define CLKID_MMC_PCLK		  66
->  #define CLKID_DVIN		  67
-> -#define CLKID_UART2		  68
-> +/* CLKID_UART2 */
->  /* #define CLKID_SANA */
->  #define CLKID_VPU_INTR		  70
->  #define CLKID_SEC_AHB_AHB3_BRIDGE 71
-> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-> index 692846c7941b..7b329df47752 100644
-> --- a/include/dt-bindings/clock/gxbb-clkc.h
-> +++ b/include/dt-bindings/clock/gxbb-clkc.h
-> @@ -15,13 +15,16 @@
->  #define CLKID_SPI		34
->  #define CLKID_I2C		22
->  #define CLKID_SAR_ADC		23
-> +#define CLKID_UART0		26
->  #define CLKID_ETH		36
-> +#define CLKID_UART1		48
->  #define CLKID_USB0		50
->  #define CLKID_USB1		51
->  #define CLKID_USB		55
->  #define CLKID_HDMI_PCLK		63
->  #define CLKID_USB1_DDR_BRIDGE	64
->  #define CLKID_USB0_DDR_BRIDGE	65
-> +#define CLKID_UART2		68
->  #define CLKID_SANA		69
->  #define CLKID_GCLK_VENCI_INT0	77
->  #define CLKID_AO_I2C		93
-
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-I rebased on 4.12-rc1 and applied on next/headers.
-
-Thanks,
-Neil
+>  drivers/clk/clk.c | 31 +++++++++++++++++++------------
+>  1 file changed, 19 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index f5c371532509..6031fada37f9 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -1873,6 +1873,23 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
+>  }
+>  EXPORT_SYMBOL_GPL(clk_set_parent);
+>
+> +static int clk_core_set_phase_nolock(struct clk_core *core, int degrees)
+> +{
+> +       int ret = -EINVAL;
+> +
+> +       if (!core)
+> +               return 0;
+> +
+> +       trace_clk_set_phase(clk->core, degrees);
+ ^ trace_clk_set_phase(core, degrees)
+> +
+> +       if (core->ops->set_phase)
+> +               ret = core->ops->set_phase(core->hw, degrees);
+> +
+> +       trace_clk_set_phase_complete(core, degrees);
+> +
+> +       return ret;
+> +}
+> +
+>  /**
+>   * clk_set_phase - adjust the phase shift of a clock signal
+>   * @clk: clock signal source
+> @@ -1895,7 +1912,7 @@ EXPORT_SYMBOL_GPL(clk_set_parent);
+>   */
+>  int clk_set_phase(struct clk *clk, int degrees)
+>  {
+> -       int ret = -EINVAL;
+> +       int ret;
+>
+>         if (!clk)
+>                 return 0;
+> @@ -1906,17 +1923,7 @@ int clk_set_phase(struct clk *clk, int degrees)
+>                 degrees += 360;
+>
+>         clk_prepare_lock();
+> -
+> -       trace_clk_set_phase(clk->core, degrees);
+> -
+> -       if (clk->core->ops->set_phase)
+> -               ret = clk->core->ops->set_phase(clk->core->hw, degrees);
+> -
+> -       trace_clk_set_phase_complete(clk->core, degrees);
+> -
+> -       if (!ret)
+> -               clk->core->phase = degrees;
+> -
+> +       ret = clk_core_set_phase_nolock(clk->core, degrees);
+>         clk_prepare_unlock();
+>
+>         return ret;
+> --
+> 2.9.4
+>
+> --
+> To unsubscribe from this list: send the line "unsubscribe linux-clk" in
+> the body of a message to majordomo at vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
