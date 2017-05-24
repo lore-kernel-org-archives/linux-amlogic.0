@@ -1,26 +1,29 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Tue, 23 May 2017 19:37:34 +0200
-Subject: [PATCH] pwm: silently error on EPROBE_DEFER
-In-Reply-To: <20170523160503.16920-1-jbrunet@baylibre.com>
-References: <20170523160503.16920-1-jbrunet@baylibre.com>
-Message-ID: <022f830b-2c43-c31c-9b03-eb36919045ca@suse.de>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 24 May 2017 10:20:37 +0200
+Subject: [PATCH 0/5] pinctrl: meson: new pins and fixes round 2
+Message-ID: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 23.05.2017 um 18:05 schrieb Jerome Brunet:
-> In of_pwm_chip, if we fail to get the pwm chip due to probe defer, we
-> shouldn't print an error message. Just be silent in this case.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+This patchset follow [1] ("pinctrl: meson: Add SPICC pins") and [2]
+("pinctrl: meson: Add missing GPIODV_18 pin for GXBB and GXL") to :
+ - Add the CEC pins for GXL and GXBB
+ - Add the GXL PHY link/activity leds pins
+ - Fix typo for the GXL I2S/SPDIF pins
 
-Reviewed-by: Andreas F?rber <afaerber@suse.de>
+[1] http://lkml.kernel.org/r/1495457966-2359-1-git-send-email-narmstrong at baylibre.com
+[2] http://lkml.kernel.org/r/1495548559-22261-1-git-send-email-narmstrong at baylibre.com
 
-Those messages are indeed irritating.
+Neil Armstrong (5):
+  pinctrl: meson-gxl: Fix typo in AO I2S pins
+  pinctrl: meson-gxl: Fix typo in AO SPDIF pins
+  pinctrl: meson-gxbb: Add CEC pins
+  pinctrl: meson-gxl: Add CEC pins
+  pinctrl: meson-gxl: Add Ethernet PHY LEDS pins
 
-Thanks,
-Andreas
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 10 ++++++++++
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 28 ++++++++++++++++++++++++----
+ 2 files changed, 34 insertions(+), 4 deletions(-)
 
 -- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+1.9.1
