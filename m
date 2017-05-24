@@ -1,44 +1,39 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 24 May 2017 10:42:14 +0200
-Subject: [PATCH 2/5] pinctrl: meson-gxl: Fix typo in AO SPDIF pins
-In-Reply-To: <1495614042-2676-3-git-send-email-narmstrong@baylibre.com>
-References: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
- <1495614042-2676-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495615334.14589.7.camel@baylibre.com>
+Date: Wed, 24 May 2017 10:40:05 +0200
+Subject: [PATCH 3/3] ARM64: dts: Fix GXBB periphs pinctrl pull-enable
+ register base
+In-Reply-To: <1495549311-23660-4-git-send-email-narmstrong@baylibre.com>
+References: <1495549311-23660-1-git-send-email-narmstrong@baylibre.com>
+ <1495549311-23660-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1495615205.14589.4.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2017-05-24 at 10:20 +0200, Neil Armstrong wrote:
-> The AO SPDIF pins were incorrectly defined with the EE pin offset.
-> 
+On Tue, 2017-05-23 at 16:21 +0200, Neil Armstrong wrote:
+> The pull-enable register base was wrongly copied from the meson8b pinctrl
+> node,
+> but was not used yet.
 
-Thx for catching this !
 Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Fixes: b840d649f9ec ("pinctrl: meson: gxl: add spdif output pins")
+> 
+> Fixes: c328666d58aa ("ARM64: dts: amlogic: Add Meson GX dtsi from GXBB")
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
-> ?drivers/pinctrl/meson/pinctrl-meson-gxl.c | 4 ++--
-> ?1 file changed, 2 insertions(+), 2 deletions(-)
+> ?arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
+> ?1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> index 9af8e6a..454d73f 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> @@ -279,8 +279,8 @@
-> ?static const unsigned int i2s_out_ch23_ao_pins[] = { PIN(GPIOAO_8, 0) };
-> ?static const unsigned int i2s_out_ch45_ao_pins[] = { PIN(GPIOAO_9, 0) };
-> ?
-> -static const unsigned int spdif_out_ao_6_pins[]	= { PIN(GPIOAO_6,
-> EE_OFF) };
-> -static const unsigned int spdif_out_ao_9_pins[]	= { PIN(GPIOAO_9,
-> EE_OFF) };
-> +static const unsigned int spdif_out_ao_6_pins[]	= { PIN(GPIOAO_6, 0)
-> };
-> +static const unsigned int spdif_out_ao_9_pins[]	= { PIN(GPIOAO_9, 0)
-> };
-> ?
-> ?static struct meson_pmx_group meson_gxl_periphs_groups[] = {
-> ?	GPIO_GROUP(GPIOZ_0, EE_OFF),
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> index 6f8b301..47ca44d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> @@ -351,7 +351,7 @@
+> ?		gpio: bank at 4b0 {
+> ?			reg = <0x0 0x004b0 0x0 0x28>,
+> ?			??????<0x0 0x004e8 0x0 0x14>,
+> -			??????<0x0 0x00120 0x0 0x14>,
+> +			??????<0x0 0x00520 0x0 0x14>,
+> ?			??????<0x0 0x00430 0x0 0x40>;
+> ?			reg-names = "mux", "pull", "pull-enable", "gpio";
+> ?			gpio-controller;
