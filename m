@@ -1,37 +1,32 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 24 May 2017 11:39:31 +0200
-Subject: [PATCH v2 1/2] clk: meson: meson8b: mark clk81 as critical
-In-Reply-To: <20170524093932.5262-1-jbrunet@baylibre.com>
-References: <20170524093932.5262-1-jbrunet@baylibre.com>
-Message-ID: <20170524093932.5262-2-jbrunet@baylibre.com>
+Date: Wed, 24 May 2017 11:39:30 +0200
+Subject: [PATCH v2 0/2] clk: meson: mark clk81 as critical
+Message-ID: <20170524093932.5262-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+The GX (gxbb.c) clock controller driver already marks the clk81 clock
+as criticial. However, the Meson8b clock controller driver does not do
+this yet.
+This can lead to a freeze of the whole system when clk81 is disabled
+by the common clock framework (for example after the last child clock
+is disabled by a driver which used that child clock).
 
-Disabling clk81 results in an immediate freeze of the whole system. This
-can happen "accidentally" when the last child-clock of clk81 is disabled
-(in this case the common clock framework also disables clk81, even if it
-was only enabled indirectly before).
+Changes since v1: [0]
+With the clock flagged as CRITICAL, CLK_IGNORE_UNUSED is no longer
+useful. Remove this flag from meson8b and gxbb's clk81.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
+[0]: https://lkml.kernel.org/r/20170504183201.13175-1-martin.blumenstingl at googlemail.com
+
+Jerome Brunet (1):
+  clk: gxbb: remove CLK_IGNORE_UNUSED from clk81
+
+Martin Blumenstingl (1):
+  clk: meson: meson8b: mark clk81 as critical
+
+ drivers/clk/meson/gxbb.c    | 2 +-
  drivers/clk/meson/meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index e9985503165c..9d1aaf6e9ac6 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -399,7 +399,7 @@ struct clk_gate meson8b_clk81 = {
- 		.ops = &clk_gate_ops,
- 		.parent_names = (const char *[]){ "mpeg_clk_div" },
- 		.num_parents = 1,
--		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
-+		.flags = (CLK_SET_RATE_PARENT | CLK_IS_CRITICAL),
- 	},
- };
- 
 -- 
 2.9.4
