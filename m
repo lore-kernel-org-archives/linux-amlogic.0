@@ -1,712 +1,175 @@
-From: broonie@kernel.org (Mark Brown)
-Date: Wed, 24 May 2017 18:42:34 +0100
-Subject: Applied "spi: Add Meson SPICC driver" to the spi tree
-In-Reply-To: <1495546773-20479-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <E1dDaIs-000323-15@debutante>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 24 May 2017 22:37:40 +0200
+Subject: [RFC 0/2] Add support for Meson MX "SDIO" MMC driver
+In-Reply-To: <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+ <CAPDyKFoYPjB1bjRfFCFT3vuzKgzm6-7L2qgNjxGL392cLDe7uA@mail.gmail.com>
+ <CAFBinCDGBZAAx_61eyu1_XM57fX62Mk03TEiO3uTL+i8dfPyZA@mail.gmail.com>
+ <CAPDyKFoC-cCEY+n2383W+JgDANbBMFbsU5cyB51-kG4kbLNNcw@mail.gmail.com>
+ <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
+Message-ID: <CAFBinCCiTXKoZKRfAW_ZZpTv5Fthxia_q6heVgG-uM2-6=rXjg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patch
+Hi Ulf,
 
-   spi: Add Meson SPICC driver
+On Thu, May 11, 2017 at 10:44 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Hi Ulf,
+>
+> On Thu, May 11, 2017 at 11:39 AM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>> On 10 May 2017 at 21:22, Martin Blumenstingl
+>> <martin.blumenstingl@googlemail.com> wrote:
+>>> Hi Ulf,
+>>>
+>>> On Wed, May 10, 2017 at 10:44 AM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>>>> On 6 May 2017 at 19:18, Martin Blumenstingl
+>>>> <martin.blumenstingl@googlemail.com> wrote:
+>>>>> This is the successor to Carlo Caione's "Add support for Amlogic Meson
+>>>>> MMC driver" series (v5) from [0].
+>>>>>
+>>>>> I would like you to specifically review:
+>>>>> - whether I've (ab)used the MMC framework properly (as this is my first
+>>>>>   "larger" contribution to an MMC driver)
+>>>>
+>>>> I take a look soonish.
+>>> thank you!
+>>>
+>>>>> - I think I have improved the locking compared to Carlo's version,
+>>>>>   however I'd still like feedback on whether this looks sane now or if I
+>>>>>   can improve that even further
+>>>>>
+>>>>> (notable) changes since Carlo's latest version are:
+>>>>> - renamed the driver to meson-mx-sdio (Amlogic's reference kernel calls
+>>>>>   the driver "aml_sdio" as there is a second MMC controller in these SoCs
+>>>>>   which they call the "SDHC controller"). do the same with our driver to
+>>>>
+>>>> I don't like to renaming drivers, just because there are a reference
+>>>> kernel using a different name.
+>>>>
+>>>> What's is really the difference between controllers? Why do they have
+>>>> two variants?
+>>> the driver from this thread is for the "SDSC/SDHC/SDXC card and SDIO
+>>> interface with 1-bit and 4-bit data bus width supporting spec version
+>>> 2.x/3.x/4.x DS/HS modes up to UHS-I SDR50" (quote taken from the S805
+>>> datasheet: [0])
+>>> the "other" controller is an "eMMC and MMC card interface with
+>>> 1/4/8-bit data bus width supporting spec version 4.4x/4.5x HS200 (up
+>>> to 100MHz clock), compatible with standard iNAND interface" (again,
+>>> quote taken from the S805 datasheet: [0])
+>>>
+>>>>
+>>>> Can they be managed by the same driver?
+>>>>
+>>>>>   avoid confusion once we add support for the second controller (which uses
+>>>>>   a completely different register layout)
+>>>>
+>>>> Besides that, do they behave differently in some other way?
+>>> both drivers/controllers have a totally different register layout - I
+>>> don't see any way how they both could be handled by one driver (the
+>>> registers for the controllers from this series are not part of the
+>>> documentation, but the registers from the 8-bit capable controller
+>>> are, see page 76 and following from the S805 datasheet: [0])
+>>
+>> Okay, I am starting to understand. :-)
+> good to hear that my explanation made (at least some) sense!
+>
+>> The spec in section 13 describes a controller supporting "MMC/SD/SDIO"
+>> cards. However, there is yet another controller which @subject series
+>> implement support for.
+>> You don't happen to have a public datasheet for this controller as
+>> well? If not, never mind.
+> unfortunately the controller from @subject does not show up in any of
+> the public datasheets, but we have a header file from Amlogic which
+> documents it just as well as the datasheet (probably) would: [0]
+>
+>> Then, meson actually have three different MMC/SD/SDIO controllers, the
+>> one in the S805 spec, the one supported by the recently up-streamed
+>> meson-gx-mmc.c driver - and the one being supported in this series.
+>> Right? And all of them are completely separate and non-compatible?
+> yes, unfortunately it seems that there are three different MMC
+> controller IP blocks from Amlogic
+>
+> let me explain this a bit more in detail:
+> the code-names of the newer (64-bit) SoCs all start with GX (GXBB,
+> GXL, GXM), so we call these "Meson GX".
+> the code-names of the older (32-bit) SoCs (at least the ones which are
+> not too old) all start with Meson X (where X is a number: Meson6,
+> Meson8, Meson8b and Meson8m2), Amlogic's vendor code sometimes calls
+> these "MX" (or Meson MX)
+>
+> the MMC IP blocks in Meson GX SoCs are easy: the same IP block is
+> embedded three times -> the driver for this is meson-gx-mmc.c (already
+> upstream)
+> the MMC IP blocks in Meson MX SoCs are more complicated: 1x 1/4-bit
+> which will be handled by the driver from @subject (meson-mx-sdio.c)
+> and 1x 1/4/8-bit for which there is only the vendor driver (plus the
+> description in the S805 datasheet) available.
+>
+> so it looks like the older Meson MX SoCs may end up with two different
+> drivers, while there's a third driver (for a totally different IP
+> block) for the newer Meson GX SoCs.
+>
+> [snip]
+>>>>> - use the common clock framework internally for managing the MMC clock
+>>>>>   (there is a fixed-factor clock in the controller which takes clk81 as
+>>>>>    input and divides it's clock by two and a divider clock which takes
+>>>>>    the result from the fixed-factor clock as input)
+>>>>> - support the regulators provided by the MMC framework
+>>>>> - support for GPIO-based card-detection and read-only-detection through
+>>>>>   the MMC framework
+>>>>> - use of the <linux/bitfield.h> FIELD_PREP and FIELD_GET macros where it
+>>>>>   make sense (and thus the code easier to read)
+>>>>> - re-worked locking (based on the locking in dw_mmc as that also provides
+>>>>>   multiple "MMC slots")
+>>>>
+>>>> Lots of changes!
+>>>>
+>>>> Before even start to review (or someone else), you really need to make
+>>>> this review-able.
+>>>>
+>>>> So, please, one change per patch - and make sure to write good
+>>>> changelogs. Then I can start to review.
+>>> from the mainline tree's perspective this is a new driver:
+>>
+>> Yes, I get it now.
+>>
+>> I first thought this series was related to the recently up-streamed
+>> meson-gx-mmc.c driver. Apologize for my ignorance.
+> should I put some more context/details in the description (maybe
+> something like: "this is a new driver/binding because the Meson MX
+> SoCs use a different IP block than the Meson GX SoCs (the IP block
+> from the latter is already supported by the meson-gx-mmc driver)"?
+>
+>>> Carlo (the original author) initially sent this driver for review more
+>>> than 14 months ago. unfortunately it was never merged since you
+>>> spotted some issues while reviewing that code, see [1].
+>>
+>> Yes, I recall that now.
+> the 14 month delay was one of the reasons why I decided to re-post it
+> only after all features were implemented
+>
+>>> I would have sent smaller patches for a driver which is already in mainline.
+>>
+>> Right.
+>>
+>>>
+>>> I also wanted to avoid extra complexity for the internal mux if it was
+>>> added later on (if we want to avoid breaking devicetree backwards
+>>> compatibility then the driver would have to support both: parsing from
+>>> the mmc node directly and parsing child "slot" nodes). we won't have
+>>> to change the DT bindings when the first version that will be
+>>> mainlined already has support for the mux
+>>>
+>>> please let me know if there's anything I can do to make the code
+>>> easier to review.
+>>
+>> No worries, let me have a look as is!
+> okay, perfect! just take your time and let me know what needs to be changed.
+I know that you're probably very busy, but I will still ask: did you
+have time to look into this series yet (or do you have any ETA)?
 
-has been applied to the spi tree at
 
-   git://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git 
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
->From 454fa271bc4e71090ef55087027c3f8701fadc5b Mon Sep 17 00:00:00 2001
-From: Neil Armstrong <narmstrong@baylibre.com>
-Date: Tue, 23 May 2017 15:39:33 +0200
-Subject: [PATCH] spi: Add Meson SPICC driver
-
-The SPICC hardware block on the Amlogic SoCs is Communication oriented and
-can do Full-Duplex 8- to 32-bit width SPI transfers up to 30MHz.
-
-The current driver only supportd the PIO transfer mode since the DMA seems
-broken on available hardware.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- drivers/spi/Kconfig           |   7 +
- drivers/spi/Makefile          |   1 +
- drivers/spi/spi-meson-spicc.c | 619 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 627 insertions(+)
- create mode 100644 drivers/spi/spi-meson-spicc.c
-
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 1761c9004fc1..1dcb14ce6f38 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -393,6 +393,13 @@ config SPI_FSL_ESPI
- 	  From MPC8536, 85xx platform uses the controller, and all P10xx,
- 	  P20xx, P30xx,P40xx, P50xx uses this controller.
- 
-+config SPI_MESON_SPICC
-+	tristate "Amlogic Meson SPICC controller"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	help
-+	  This enables master mode support for the SPICC (SPI communication
-+	  controller) available in Amlogic Meson SoCs.
-+
- config SPI_MESON_SPIFC
- 	tristate "Amlogic Meson SPIFC controller"
- 	depends on ARCH_MESON || COMPILE_TEST
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index b375a7a89216..0d8c95e66a9b 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -53,6 +53,7 @@ obj-$(CONFIG_SPI_LANTIQ_SSC)		+= spi-lantiq-ssc.o
- obj-$(CONFIG_SPI_JCORE)			+= spi-jcore.o
- obj-$(CONFIG_SPI_LM70_LLP)		+= spi-lm70llp.o
- obj-$(CONFIG_SPI_LP8841_RTC)		+= spi-lp8841-rtc.o
-+obj-$(CONFIG_SPI_MESON_SPICC)		+= spi-meson-spicc.o
- obj-$(CONFIG_SPI_MESON_SPIFC)		+= spi-meson-spifc.o
- obj-$(CONFIG_SPI_MPC512x_PSC)		+= spi-mpc512x-psc.o
- obj-$(CONFIG_SPI_MPC52xx_PSC)		+= spi-mpc52xx-psc.o
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-new file mode 100644
-index 000000000000..7f8429635502
---- /dev/null
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -0,0 +1,619 @@
-+/*
-+ * Driver for Amlogic Meson SPI communication controller (SPICC)
-+ *
-+ * Copyright (C) BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * SPDX-License-Identifier: GPL-2.0+
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/spi/spi.h>
-+#include <linux/types.h>
-+#include <linux/interrupt.h>
-+#include <linux/reset.h>
-+#include <linux/gpio.h>
-+
-+/*
-+ * The Meson SPICC controller could support DMA based transfers, but is not
-+ * implemented by the vendor code, and while having the registers documentation
-+ * it has never worked on the GXL Hardware.
-+ * The PIO mode is the only mode implemented, and due to badly designed HW :
-+ * - all transfers are cutted in 16 words burst because the FIFO hangs on
-+ *   TX underflow, and there is no TX "Half-Empty" interrupt, so we go by
-+ *   FIFO max size chunk only
-+ * - CS management is dumb, and goes UP between every burst, so is really a
-+ *   "Data Valid" signal than a Chip Select, GPIO link should be used instead
-+ *   to have a CS go down over the full transfer
-+ */
-+
-+#define SPICC_MAX_FREQ	30000000
-+#define SPICC_MAX_BURST	128
-+
-+/* Register Map */
-+#define SPICC_RXDATA	0x00
-+
-+#define SPICC_TXDATA	0x04
-+
-+#define SPICC_CONREG	0x08
-+#define SPICC_ENABLE		BIT(0)
-+#define SPICC_MODE_MASTER	BIT(1)
-+#define SPICC_XCH		BIT(2)
-+#define SPICC_SMC		BIT(3)
-+#define SPICC_POL		BIT(4)
-+#define SPICC_PHA		BIT(5)
-+#define SPICC_SSCTL		BIT(6)
-+#define SPICC_SSPOL		BIT(7)
-+#define SPICC_DRCTL_MASK	GENMASK(9, 8)
-+#define SPICC_DRCTL_IGNORE	0
-+#define SPICC_DRCTL_FALLING	1
-+#define SPICC_DRCTL_LOWLEVEL	2
-+#define SPICC_CS_MASK		GENMASK(13, 12)
-+#define SPICC_DATARATE_MASK	GENMASK(18, 16)
-+#define SPICC_DATARATE_DIV4	0
-+#define SPICC_DATARATE_DIV8	1
-+#define SPICC_DATARATE_DIV16	2
-+#define SPICC_DATARATE_DIV32	3
-+#define SPICC_BITLENGTH_MASK	GENMASK(24, 19)
-+#define SPICC_BURSTLENGTH_MASK	GENMASK(31, 25)
-+
-+#define SPICC_INTREG	0x0c
-+#define SPICC_TE_EN	BIT(0) /* TX FIFO Empty Interrupt */
-+#define SPICC_TH_EN	BIT(1) /* TX FIFO Half-Full Interrupt */
-+#define SPICC_TF_EN	BIT(2) /* TX FIFO Full Interrupt */
-+#define SPICC_RR_EN	BIT(3) /* RX FIFO Ready Interrupt */
-+#define SPICC_RH_EN	BIT(4) /* RX FIFO Half-Full Interrupt */
-+#define SPICC_RF_EN	BIT(5) /* RX FIFO Full Interrupt */
-+#define SPICC_RO_EN	BIT(6) /* RX FIFO Overflow Interrupt */
-+#define SPICC_TC_EN	BIT(7) /* Transfert Complete Interrupt */
-+
-+#define SPICC_DMAREG	0x10
-+#define SPICC_DMA_ENABLE		BIT(0)
-+#define SPICC_TXFIFO_THRESHOLD_MASK	GENMASK(5, 1)
-+#define SPICC_RXFIFO_THRESHOLD_MASK	GENMASK(10, 6)
-+#define SPICC_READ_BURST_MASK		GENMASK(14, 11)
-+#define SPICC_WRITE_BURST_MASK		GENMASK(18, 15)
-+#define SPICC_DMA_URGENT		BIT(19)
-+#define SPICC_DMA_THREADID_MASK		GENMASK(25, 20)
-+#define SPICC_DMA_BURSTNUM_MASK		GENMASK(31, 26)
-+
-+#define SPICC_STATREG	0x14
-+#define SPICC_TE	BIT(0) /* TX FIFO Empty Interrupt */
-+#define SPICC_TH	BIT(1) /* TX FIFO Half-Full Interrupt */
-+#define SPICC_TF	BIT(2) /* TX FIFO Full Interrupt */
-+#define SPICC_RR	BIT(3) /* RX FIFO Ready Interrupt */
-+#define SPICC_RH	BIT(4) /* RX FIFO Half-Full Interrupt */
-+#define SPICC_RF	BIT(5) /* RX FIFO Full Interrupt */
-+#define SPICC_RO	BIT(6) /* RX FIFO Overflow Interrupt */
-+#define SPICC_TC	BIT(7) /* Transfert Complete Interrupt */
-+
-+#define SPICC_PERIODREG	0x18
-+#define SPICC_PERIOD	GENMASK(14, 0)	/* Wait cycles */
-+
-+#define SPICC_TESTREG	0x1c
-+#define SPICC_TXCNT_MASK	GENMASK(4, 0)	/* TX FIFO Counter */
-+#define SPICC_RXCNT_MASK	GENMASK(9, 5)	/* RX FIFO Counter */
-+#define SPICC_SMSTATUS_MASK	GENMASK(12, 10)	/* State Machine Status */
-+#define SPICC_LBC_RO		BIT(13)	/* Loop Back Control Read-Only */
-+#define SPICC_LBC_W1		BIT(14) /* Loop Back Control Write-Only */
-+#define SPICC_SWAP_RO		BIT(14) /* RX FIFO Data Swap Read-Only */
-+#define SPICC_SWAP_W1		BIT(15) /* RX FIFO Data Swap Write-Only */
-+#define SPICC_DLYCTL_RO_MASK	GENMASK(20, 15) /* Delay Control Read-Only */
-+#define SPICC_DLYCTL_W1_MASK	GENMASK(21, 16) /* Delay Control Write-Only */
-+#define SPICC_FIFORST_RO_MASK	GENMASK(22, 21) /* FIFO Softreset Read-Only */
-+#define SPICC_FIFORST_W1_MASK	GENMASK(23, 22) /* FIFO Softreset Write-Only */
-+
-+#define SPICC_DRADDR	0x20	/* Read Address of DMA */
-+
-+#define SPICC_DWADDR	0x24	/* Write Address of DMA */
-+
-+#define writel_bits_relaxed(mask, val, addr) \
-+	writel_relaxed((readl_relaxed(addr) & ~(mask)) | (val), addr)
-+
-+#define SPICC_BURST_MAX	16
-+#define SPICC_FIFO_HALF 10
-+
-+struct meson_spicc_device {
-+	struct spi_master		*master;
-+	struct platform_device		*pdev;
-+	void __iomem			*base;
-+	struct clk			*core;
-+	struct spi_message		*message;
-+	struct spi_transfer		*xfer;
-+	u8				*tx_buf;
-+	u8				*rx_buf;
-+	unsigned int			bytes_per_word;
-+	unsigned long			tx_remain;
-+	unsigned long			txb_remain;
-+	unsigned long			rx_remain;
-+	unsigned long			rxb_remain;
-+	unsigned long			xfer_remain;
-+	bool				is_burst_end;
-+	bool				is_last_burst;
-+};
-+
-+static inline bool meson_spicc_txfull(struct meson_spicc_device *spicc)
-+{
-+	return !!FIELD_GET(SPICC_TF,
-+			   readl_relaxed(spicc->base + SPICC_STATREG));
-+}
-+
-+static inline bool meson_spicc_rxready(struct meson_spicc_device *spicc)
-+{
-+	return FIELD_GET(SPICC_RH | SPICC_RR | SPICC_RF_EN,
-+			 readl_relaxed(spicc->base + SPICC_STATREG));
-+}
-+
-+static inline u32 meson_spicc_pull_data(struct meson_spicc_device *spicc)
-+{
-+	unsigned int bytes = spicc->bytes_per_word;
-+	unsigned int byte_shift = 0;
-+	u32 data = 0;
-+	u8 byte;
-+
-+	while (bytes--) {
-+		byte = *spicc->tx_buf++;
-+		data |= (byte & 0xff) << byte_shift;
-+		byte_shift += 8;
-+	}
-+
-+	spicc->tx_remain--;
-+	return data;
-+}
-+
-+static inline void meson_spicc_push_data(struct meson_spicc_device *spicc,
-+					 u32 data)
-+{
-+	unsigned int bytes = spicc->bytes_per_word;
-+	unsigned int byte_shift = 0;
-+	u8 byte;
-+
-+	while (bytes--) {
-+		byte = (data >> byte_shift) & 0xff;
-+		*spicc->rx_buf++ = byte;
-+		byte_shift += 8;
-+	}
-+
-+	spicc->rx_remain--;
-+}
-+
-+static inline void meson_spicc_rx(struct meson_spicc_device *spicc)
-+{
-+	/* Empty RX FIFO */
-+	while (spicc->rx_remain &&
-+	       meson_spicc_rxready(spicc))
-+		meson_spicc_push_data(spicc,
-+				readl_relaxed(spicc->base + SPICC_RXDATA));
-+}
-+
-+static inline void meson_spicc_tx(struct meson_spicc_device *spicc)
-+{
-+	/* Fill Up TX FIFO */
-+	while (spicc->tx_remain &&
-+	       !meson_spicc_txfull(spicc))
-+		writel_relaxed(meson_spicc_pull_data(spicc),
-+			       spicc->base + SPICC_TXDATA);
-+}
-+
-+static inline u32 meson_spicc_setup_rx_irq(struct meson_spicc_device *spicc,
-+					   u32 irq_ctrl)
-+{
-+	if (spicc->rx_remain > SPICC_FIFO_HALF)
-+		irq_ctrl |= SPICC_RH_EN;
-+	else
-+		irq_ctrl |= SPICC_RR_EN;
-+
-+	return irq_ctrl;
-+}
-+
-+static inline void meson_spicc_setup_burst(struct meson_spicc_device *spicc,
-+					   unsigned int burst_len)
-+{
-+	/* Setup Xfer variables */
-+	spicc->tx_remain = burst_len;
-+	spicc->rx_remain = burst_len;
-+	spicc->xfer_remain -= burst_len * spicc->bytes_per_word;
-+	spicc->is_burst_end = false;
-+	if (burst_len < SPICC_BURST_MAX || !spicc->xfer_remain)
-+		spicc->is_last_burst = true;
-+	else
-+		spicc->is_last_burst = false;
-+
-+	/* Setup burst length */
-+	writel_bits_relaxed(SPICC_BURSTLENGTH_MASK,
-+			FIELD_PREP(SPICC_BURSTLENGTH_MASK,
-+				burst_len),
-+			spicc->base + SPICC_CONREG);
-+
-+	/* Fill TX FIFO */
-+	meson_spicc_tx(spicc);
-+}
-+
-+static irqreturn_t meson_spicc_irq(int irq, void *data)
-+{
-+	struct meson_spicc_device *spicc = (void *) data;
-+	u32 ctrl = readl_relaxed(spicc->base + SPICC_INTREG);
-+	u32 stat = readl_relaxed(spicc->base + SPICC_STATREG) & ctrl;
-+
-+	ctrl &= ~(SPICC_RH_EN | SPICC_RR_EN);
-+
-+	/* Empty RX FIFO */
-+	meson_spicc_rx(spicc);
-+
-+	/* Enable TC interrupt since we transferred everything */
-+	if (!spicc->tx_remain && !spicc->rx_remain) {
-+		spicc->is_burst_end = true;
-+
-+		/* Enable TC interrupt */
-+		ctrl |= SPICC_TC_EN;
-+
-+		/* Reload IRQ status */
-+		stat = readl_relaxed(spicc->base + SPICC_STATREG) & ctrl;
-+	}
-+
-+	/* Check transfer complete */
-+	if ((stat & SPICC_TC) && spicc->is_burst_end) {
-+		unsigned int burst_len;
-+
-+		/* Clear TC bit */
-+		writel_relaxed(SPICC_TC, spicc->base + SPICC_STATREG);
-+
-+		/* Disable TC interrupt */
-+		ctrl &= ~SPICC_TC_EN;
-+
-+		if (spicc->is_last_burst) {
-+			/* Disable all IRQs */
-+			writel(0, spicc->base + SPICC_INTREG);
-+
-+			spi_finalize_current_transfer(spicc->master);
-+
-+			return IRQ_HANDLED;
-+		}
-+
-+		burst_len = min_t(unsigned int,
-+				  spicc->xfer_remain / spicc->bytes_per_word,
-+				  SPICC_BURST_MAX);
-+
-+		/* Setup burst */
-+		meson_spicc_setup_burst(spicc, burst_len);
-+
-+		/* Restart burst */
-+		writel_bits_relaxed(SPICC_XCH, SPICC_XCH,
-+				    spicc->base + SPICC_CONREG);
-+	}
-+
-+	/* Setup RX interrupt trigger */
-+	ctrl = meson_spicc_setup_rx_irq(spicc, ctrl);
-+
-+	/* Reconfigure interrupts */
-+	writel(ctrl, spicc->base + SPICC_INTREG);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static u32 meson_spicc_setup_speed(struct meson_spicc_device *spicc, u32 conf,
-+				   u32 speed)
-+{
-+	unsigned long parent, value;
-+	unsigned int i, div;
-+
-+	parent = clk_get_rate(spicc->core);
-+
-+	/* Find closest inferior/equal possible speed */
-+	for (i = 0 ; i < 7 ; ++i) {
-+		/* 2^(data_rate+2) */
-+		value = parent >> (i + 2);
-+
-+		if (value <= speed)
-+			break;
-+	}
-+
-+	/* If provided speed it lower than max divider, use max divider */
-+	if (i > 7) {
-+		div = 7;
-+		dev_warn_once(&spicc->pdev->dev, "unable to get close to speed %u\n",
-+			      speed);
-+	} else
-+		div = i;
-+
-+	dev_dbg(&spicc->pdev->dev, "parent %lu, speed %u -> %lu (%u)\n",
-+		parent, speed, value, div);
-+
-+	conf &= ~SPICC_DATARATE_MASK;
-+	conf |= FIELD_PREP(SPICC_DATARATE_MASK, div);
-+
-+	return conf;
-+}
-+
-+static void meson_spicc_setup_xfer(struct meson_spicc_device *spicc,
-+				   struct spi_transfer *xfer)
-+{
-+	u32 conf, conf_orig;
-+
-+	/* Read original configuration */
-+	conf = conf_orig = readl_relaxed(spicc->base + SPICC_CONREG);
-+
-+	/* Select closest divider */
-+	conf = meson_spicc_setup_speed(spicc, conf, xfer->speed_hz);
-+
-+	/* Setup word width */
-+	conf &= ~SPICC_BITLENGTH_MASK;
-+	conf |= FIELD_PREP(SPICC_BITLENGTH_MASK,
-+			   (spicc->bytes_per_word << 3) - 1);
-+
-+	/* Ignore if unchanged */
-+	if (conf != conf_orig)
-+		writel_relaxed(conf, spicc->base + SPICC_CONREG);
-+}
-+
-+static int meson_spicc_transfer_one(struct spi_master *master,
-+				    struct spi_device *spi,
-+				    struct spi_transfer *xfer)
-+{
-+	struct meson_spicc_device *spicc = spi_master_get_devdata(master);
-+	unsigned int burst_len;
-+	u32 irq = 0;
-+
-+	/* Store current transfer */
-+	spicc->xfer = xfer;
-+
-+	/* Setup transfer parameters */
-+	spicc->tx_buf = (u8 *)xfer->tx_buf;
-+	spicc->rx_buf = (u8 *)xfer->rx_buf;
-+	spicc->xfer_remain = xfer->len;
-+
-+	/* Pre-calculate word size */
-+	spicc->bytes_per_word =
-+	   DIV_ROUND_UP(spicc->xfer->bits_per_word, 8);
-+
-+	/* Setup transfer parameters */
-+	meson_spicc_setup_xfer(spicc, xfer);
-+
-+	burst_len = min_t(unsigned int,
-+			  spicc->xfer_remain / spicc->bytes_per_word,
-+			  SPICC_BURST_MAX);
-+
-+	meson_spicc_setup_burst(spicc, burst_len);
-+
-+	irq = meson_spicc_setup_rx_irq(spicc, irq);
-+
-+	/* Start burst */
-+	writel_bits_relaxed(SPICC_XCH, SPICC_XCH, spicc->base + SPICC_CONREG);
-+
-+	/* Enable interrupts */
-+	writel_relaxed(irq, spicc->base + SPICC_INTREG);
-+
-+	return 1;
-+}
-+
-+static int meson_spicc_prepare_message(struct spi_master *master,
-+				       struct spi_message *message)
-+{
-+	struct meson_spicc_device *spicc = spi_master_get_devdata(master);
-+	struct spi_device *spi = message->spi;
-+	u32 conf = 0;
-+
-+	/* Store current message */
-+	spicc->message = message;
-+
-+	/* Enable Master */
-+	conf |= SPICC_ENABLE;
-+	conf |= SPICC_MODE_MASTER;
-+
-+	/* SMC = 0 */
-+
-+	/* Setup transfer mode */
-+	if (spi->mode & SPI_CPOL)
-+		conf |= SPICC_POL;
-+	else
-+		conf &= ~SPICC_POL;
-+
-+	if (spi->mode & SPI_CPHA)
-+		conf |= SPICC_PHA;
-+	else
-+		conf &= ~SPICC_PHA;
-+
-+	/* SSCTL = 0 */
-+
-+	if (spi->mode & SPI_CS_HIGH)
-+		conf |= SPICC_SSPOL;
-+	else
-+		conf &= ~SPICC_SSPOL;
-+
-+	if (spi->mode & SPI_READY)
-+		conf |= FIELD_PREP(SPICC_DRCTL_MASK, SPICC_DRCTL_LOWLEVEL);
-+	else
-+		conf |= FIELD_PREP(SPICC_DRCTL_MASK, SPICC_DRCTL_IGNORE);
-+
-+	/* Select CS */
-+	conf |= FIELD_PREP(SPICC_CS_MASK, spi->chip_select);
-+
-+	/* Default Clock rate core/4 */
-+
-+	/* Default 8bit word */
-+	conf |= FIELD_PREP(SPICC_BITLENGTH_MASK, 8 - 1);
-+
-+	writel_relaxed(conf, spicc->base + SPICC_CONREG);
-+
-+	/* Setup no wait cycles by default */
-+	writel_relaxed(0, spicc->base + SPICC_PERIODREG);
-+
-+	writel_bits_relaxed(BIT(24), BIT(24), spicc->base + SPICC_TESTREG);
-+
-+	return 0;
-+}
-+
-+static int meson_spicc_unprepare_transfer(struct spi_master *master)
-+{
-+	struct meson_spicc_device *spicc = spi_master_get_devdata(master);
-+
-+	/* Disable all IRQs */
-+	writel(0, spicc->base + SPICC_INTREG);
-+
-+	/* Disable controller */
-+	writel_bits_relaxed(SPICC_ENABLE, 0, spicc->base + SPICC_CONREG);
-+
-+	device_reset_optional(&spicc->pdev->dev);
-+
-+	return 0;
-+}
-+
-+static int meson_spicc_setup(struct spi_device *spi)
-+{
-+	int ret = 0;
-+
-+	if (!spi->controller_state)
-+		spi->controller_state = spi_master_get_devdata(spi->master);
-+	else if (gpio_is_valid(spi->cs_gpio))
-+		goto out_gpio;
-+	else if (spi->cs_gpio == -ENOENT)
-+		return 0;
-+
-+	if (gpio_is_valid(spi->cs_gpio)) {
-+		ret = gpio_request(spi->cs_gpio, dev_name(&spi->dev));
-+		if (ret) {
-+			dev_err(&spi->dev, "failed to request cs gpio\n");
-+			return ret;
-+		}
-+	}
-+
-+out_gpio:
-+	ret = gpio_direction_output(spi->cs_gpio,
-+			!(spi->mode & SPI_CS_HIGH));
-+
-+	return ret;
-+}
-+
-+static void meson_spicc_cleanup(struct spi_device *spi)
-+{
-+	if (gpio_is_valid(spi->cs_gpio))
-+		gpio_free(spi->cs_gpio);
-+
-+	spi->controller_state = NULL;
-+}
-+
-+static int meson_spicc_probe(struct platform_device *pdev)
-+{
-+	struct spi_master *master;
-+	struct meson_spicc_device *spicc;
-+	struct resource *res;
-+	int ret, irq, rate;
-+
-+	master = spi_alloc_master(&pdev->dev, sizeof(*spicc));
-+	if (!master) {
-+		dev_err(&pdev->dev, "master allocation failed\n");
-+		return -ENOMEM;
-+	}
-+	spicc = spi_master_get_devdata(master);
-+	spicc->master = master;
-+
-+	spicc->pdev = pdev;
-+	platform_set_drvdata(pdev, spicc);
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	spicc->base = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(spicc->base)) {
-+		dev_err(&pdev->dev, "io resource mapping failed\n");
-+		ret = PTR_ERR(spicc->base);
-+		goto out_master;
-+	}
-+
-+	/* Disable all IRQs */
-+	writel_relaxed(0, spicc->base + SPICC_INTREG);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	ret = devm_request_irq(&pdev->dev, irq, meson_spicc_irq,
-+			       0, NULL, spicc);
-+	if (ret) {
-+		dev_err(&pdev->dev, "irq request failed\n");
-+		goto out_master;
-+	}
-+
-+	spicc->core = devm_clk_get(&pdev->dev, "core");
-+	if (IS_ERR(spicc->core)) {
-+		dev_err(&pdev->dev, "core clock request failed\n");
-+		ret = PTR_ERR(spicc->core);
-+		goto out_master;
-+	}
-+
-+	ret = clk_prepare_enable(spicc->core);
-+	if (ret) {
-+		dev_err(&pdev->dev, "core clock enable failed\n");
-+		goto out_master;
-+	}
-+	rate = clk_get_rate(spicc->core);
-+
-+	device_reset_optional(&pdev->dev);
-+
-+	master->num_chipselect = 4;
-+	master->dev.of_node = pdev->dev.of_node;
-+	master->mode_bits = SPI_CPHA | SPI_CPOL | SPI_CS_HIGH;
-+	master->bits_per_word_mask = SPI_BPW_MASK(32) |
-+				     SPI_BPW_MASK(24) |
-+				     SPI_BPW_MASK(16) |
-+				     SPI_BPW_MASK(8);
-+	master->flags = (SPI_MASTER_MUST_RX | SPI_MASTER_MUST_TX);
-+	master->min_speed_hz = rate >> 9;
-+	master->setup = meson_spicc_setup;
-+	master->cleanup = meson_spicc_cleanup;
-+	master->prepare_message = meson_spicc_prepare_message;
-+	master->unprepare_transfer_hardware = meson_spicc_unprepare_transfer;
-+	master->transfer_one = meson_spicc_transfer_one;
-+
-+	/* Setup max rate according to the Meson GX datasheet */
-+	if ((rate >> 2) > SPICC_MAX_FREQ)
-+		master->max_speed_hz = SPICC_MAX_FREQ;
-+	else
-+		master->max_speed_hz = rate >> 2;
-+
-+	ret = devm_spi_register_master(&pdev->dev, master);
-+	if (!ret)
-+		return 0;
-+
-+	dev_err(&pdev->dev, "spi master registration failed\n");
-+
-+out_master:
-+	spi_master_put(master);
-+
-+	return ret;
-+}
-+
-+static int meson_spicc_remove(struct platform_device *pdev)
-+{
-+	struct meson_spicc_device *spicc = platform_get_drvdata(pdev);
-+
-+	/* Disable SPI */
-+	writel(0, spicc->base + SPICC_CONREG);
-+
-+	clk_disable_unprepare(spicc->core);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id meson_spicc_of_match[] = {
-+	{ .compatible = "amlogic,meson-gx-spicc", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, meson_spicc_of_match);
-+
-+static struct platform_driver meson_spicc_driver = {
-+	.probe   = meson_spicc_probe,
-+	.remove  = meson_spicc_remove,
-+	.driver  = {
-+		.name = "meson-spicc",
-+		.of_match_table = of_match_ptr(meson_spicc_of_match),
-+	},
-+};
-+
-+module_platform_driver(meson_spicc_driver);
-+
-+MODULE_DESCRIPTION("Meson SPI Communication Controller driver");
-+MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.11.0
+Thank you!
+Regards,
+Martin
