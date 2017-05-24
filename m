@@ -1,60 +1,35 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 24 May 2017 10:20:40 +0200
-Subject: [PATCH 3/5] pinctrl: meson-gxbb: Add CEC pins
+Date: Wed, 24 May 2017 10:20:38 +0200
+Subject: [PATCH 1/5] pinctrl: meson-gxl: Fix typo in AO I2S pins
 In-Reply-To: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
 References: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495614042-2676-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1495614042-2676-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the AO and EE domain CEC pins for the Amlogic Meson GXBB SoCs.
+The AO I2S pins were incorrectly defined with the EE pin offset.
 
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Fixes: 2899adf0422 ("pinctrl: meson: gxl: add i2s output pins")
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index 3ccb0f4f..b44314a 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -295,6 +295,9 @@
- static const unsigned int spdif_out_ao_6_pins[]	= { PIN(GPIOAO_6, 0) };
- static const unsigned int spdif_out_ao_13_pins[] = { PIN(GPIOAO_13, 0) };
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+index 719ff1b..9af8e6a 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+@@ -276,8 +276,8 @@
+ static const unsigned int pwm_ao_b_pins[]	= { PIN(GPIOAO_9, 0) };
+ static const unsigned int pwm_ao_b_6_pins[]	= { PIN(GPIOAO_6, 0) };
  
-+static const unsigned int ao_cec_pins[]          = { PIN(GPIOAO_12, 0) };
-+static const unsigned int ee_cec_pins[]          = { PIN(GPIOAO_12, 0) };
-+
- static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
- 	GPIO_GROUP(GPIOZ_0, EE_OFF),
- 	GPIO_GROUP(GPIOZ_1, EE_OFF),
-@@ -560,6 +563,8 @@
- 	GROUP(i2s_out_ch45_ao,	1,	1),
- 	GROUP(spdif_out_ao_6,	0,	16),
- 	GROUP(spdif_out_ao_13,	0,	4),
-+	GROUP(ao_cec,           0,      15),
-+	GROUP(ee_cec,           0,      14),
- };
+-static const unsigned int i2s_out_ch23_ao_pins[] = { PIN(GPIOAO_8, EE_OFF) };
+-static const unsigned int i2s_out_ch45_ao_pins[] = { PIN(GPIOAO_9, EE_OFF) };
++static const unsigned int i2s_out_ch23_ao_pins[] = { PIN(GPIOAO_8, 0) };
++static const unsigned int i2s_out_ch45_ao_pins[] = { PIN(GPIOAO_9, 0) };
  
- static const char * const gpio_periphs_groups[] = {
-@@ -752,6 +757,10 @@
- 	"spdif_out_ao_6", "spdif_out_ao_13",
- };
- 
-+static const char * const cec_ao_groups[] = {
-+	"ao_cec", "ee_cec",
-+};
-+
- static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
- 	FUNCTION(gpio_periphs),
- 	FUNCTION(emmc),
-@@ -793,6 +802,7 @@
- 	FUNCTION(pwm_ao_b),
- 	FUNCTION(i2s_out_ao),
- 	FUNCTION(spdif_out_ao),
-+	FUNCTION(cec_ao),
- };
- 
- static struct meson_bank meson_gxbb_periphs_banks[] = {
+ static const unsigned int spdif_out_ao_6_pins[]	= { PIN(GPIOAO_6, EE_OFF) };
+ static const unsigned int spdif_out_ao_9_pins[]	= { PIN(GPIOAO_9, EE_OFF) };
 -- 
 1.9.1
