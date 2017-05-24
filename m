@@ -1,24 +1,24 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 24 May 2017 10:28:24 +0200
-Subject: [PATCH 4/5] ARM64: dts: meson-gxbb: Add SPI pinctrl nodes
+Date: Wed, 24 May 2017 10:28:25 +0200
+Subject: [PATCH 5/5] ARM64: dts: meson-gxl: Add SPI pinctrl nodes
 In-Reply-To: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com>
 References: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495614505-4437-5-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1495614505-4437-6-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch adds the SPICC Controller pins nodes for Amlogic GXBB SoCs.
+This patch adds the SPICC Controller pins nodes for Amlogic GXL SoCs.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 16 ++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 16 ++++++++++++++++
  1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index f0cfb02..16a9d45 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -393,6 +393,22 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 300dfad..30d4dea 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -281,6 +281,22 @@
  			};
  		};
  
