@@ -1,17 +1,16 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 24 May 2017 10:54:39 +0200
-Subject: [PATCH 4/5] pinctrl: meson-gxl: Add CEC pins
-In-Reply-To: <1495614042-2676-5-git-send-email-narmstrong@baylibre.com>
+Date: Wed, 24 May 2017 10:57:01 +0200
+Subject: [PATCH 5/5] pinctrl: meson-gxl: Add Ethernet PHY LEDS pins
+In-Reply-To: <1495614042-2676-6-git-send-email-narmstrong@baylibre.com>
 References: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
- <1495614042-2676-5-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495616079.14589.11.camel@baylibre.com>
+ <1495614042-2676-6-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1495616221.14589.12.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On Wed, 2017-05-24 at 10:20 +0200, Neil Armstrong wrote:
-> Add the AO and EE domain CEC pins for the Amlogic Meson GXL SoCs.
-
-Same comment as patch 3 in the same series
+> The Amlogic Meson GXL SoCs embeds an 10/100 Ethernet PHY, this patchs enables
+> the Link and Activity LEDs signals.
 
 Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
@@ -23,48 +22,47 @@ Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 > 
 > diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
 > b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> index 454d73f..7d81287 100644
+> index 7d81287..78a9af5 100644
 > --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
 > +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> @@ -282,6 +282,9 @@
-> ?static const unsigned int spdif_out_ao_6_pins[]	= { PIN(GPIOAO_6, 0)
-> };
-> ?static const unsigned int spdif_out_ao_9_pins[]	= { PIN(GPIOAO_9, 0)
+> @@ -239,6 +239,9 @@
+> ?
+> ?static const unsigned int spdif_out_h_pins[]	= { PIN(GPIOH_4, EE_OFF)
 > };
 > ?
-> +static const unsigned int ao_cec_pins[]		= { PIN(GPIOAO_8, 0)
-> };
-> +static const unsigned int ee_cec_pins[]		= { PIN(GPIOAO_8, 0)
+> +static const unsigned int eth_link_led_pins[]	= { PIN(GPIOZ_14,
+> EE_OFF) };
+> +static const unsigned int eth_act_led_pins[]	= { PIN(GPIOZ_15, EE_OFF)
 > };
 > +
-> ?static struct meson_pmx_group meson_gxl_periphs_groups[] = {
-> ?	GPIO_GROUP(GPIOZ_0, EE_OFF),
-> ?	GPIO_GROUP(GPIOZ_1, EE_OFF),
-> @@ -527,6 +530,8 @@
-> ?	GROUP(i2s_out_ch45_ao,	1,	1),
-> ?	GROUP(spdif_out_ao_6,	0,	16),
-> ?	GROUP(spdif_out_ao_9,	0,	4),
-> +	GROUP(ao_cec,		0,	15),
-> +	GROUP(ee_cec,		0,	14),
+> ?static const struct pinctrl_pin_desc meson_gxl_aobus_pins[] = {
+> ?	MESON_PIN(GPIOAO_0, 0),
+> ?	MESON_PIN(GPIOAO_1, 0),
+> @@ -437,6 +440,8 @@
+> ?	GROUP(i2s_out_ch23_z,	3,	26),
+> ?	GROUP(i2s_out_ch45_z,	3,	25),
+> ?	GROUP(i2s_out_ch67_z,	3,	24),
+> +	GROUP(eth_link_led,	4,	25),
+> +	GROUP(eth_act_led,	4,	24),
+> ?
+> ?	/* Bank H */
+> ?	GROUP(hdmi_hpd,		6,	31),
+> @@ -665,6 +670,10 @@
+> ?	"spdif_out_h",
 > ?};
 > ?
-> ?static const char * const gpio_periphs_groups[] = {
-> @@ -702,6 +707,10 @@
-> ?	"spdif_out_ao_6", "spdif_out_ao_9",
-> ?};
-> ?
-> +static const char * const cec_ao_groups[] = {
-> +	"ao_cec", "ee_cec",
+> +static const char * const eth_led_groups[] = {
+> +	"eth_link_led", "eth_act_led",
 > +};
 > +
-> ?static struct meson_pmx_func meson_gxl_periphs_functions[] = {
-> ?	FUNCTION(gpio_periphs),
-> ?	FUNCTION(emmc),
-> @@ -740,6 +749,7 @@
-> ?	FUNCTION(pwm_ao_b),
-> ?	FUNCTION(i2s_out_ao),
-> ?	FUNCTION(spdif_out_ao),
-> +	FUNCTION(cec_ao),
+> ?static const char * const gpio_aobus_groups[] = {
+> ?	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+> ?	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+> @@ -736,6 +745,7 @@
+> ?	FUNCTION(hdmi_i2c),
+> ?	FUNCTION(i2s_out),
+> ?	FUNCTION(spdif_out),
+> +	FUNCTION(eth_led),
 > ?};
 > ?
-> ?static struct meson_bank meson_gxl_periphs_banks[] = {
+> ?static struct meson_pmx_func meson_gxl_aobus_functions[] = {
