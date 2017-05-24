@@ -1,35 +1,45 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 24 May 2017 10:20:39 +0200
-Subject: [PATCH 2/5] pinctrl: meson-gxl: Fix typo in AO SPDIF pins
-In-Reply-To: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
-References: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495614042-2676-3-git-send-email-narmstrong@baylibre.com>
+Date: Wed, 24 May 2017 10:28:24 +0200
+Subject: [PATCH 4/5] ARM64: dts: meson-gxbb: Add SPI pinctrl nodes
+In-Reply-To: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com>
+References: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1495614505-4437-5-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The AO SPDIF pins were incorrectly defined with the EE pin offset.
+This patch adds the SPICC Controller pins nodes for Amlogic GXBB SoCs.
 
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Fixes: b840d649f9ec ("pinctrl: meson: gxl: add spdif output pins")
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson-gxl.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-index 9af8e6a..454d73f 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-@@ -279,8 +279,8 @@
- static const unsigned int i2s_out_ch23_ao_pins[] = { PIN(GPIOAO_8, 0) };
- static const unsigned int i2s_out_ch45_ao_pins[] = { PIN(GPIOAO_9, 0) };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index f0cfb02..16a9d45 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -393,6 +393,22 @@
+ 			};
+ 		};
  
--static const unsigned int spdif_out_ao_6_pins[]	= { PIN(GPIOAO_6, EE_OFF) };
--static const unsigned int spdif_out_ao_9_pins[]	= { PIN(GPIOAO_9, EE_OFF) };
-+static const unsigned int spdif_out_ao_6_pins[]	= { PIN(GPIOAO_6, 0) };
-+static const unsigned int spdif_out_ao_9_pins[]	= { PIN(GPIOAO_9, 0) };
- 
- static struct meson_pmx_group meson_gxl_periphs_groups[] = {
- 	GPIO_GROUP(GPIOZ_0, EE_OFF),
++		spi_pins: spi {
++			mux {
++				groups = "spi_miso",
++					"spi_mosi",
++					"spi_sclk";
++				function = "spi";
++			};
++		};
++
++		spi_ss0_pins: spi-ss0 {
++			mux {
++				groups = "spi_ss0";
++				function = "spi";
++			};
++		};
++
+ 		sdcard_pins: sdcard {
+ 			mux {
+ 				groups = "sdcard_d0",
 -- 
 1.9.1
