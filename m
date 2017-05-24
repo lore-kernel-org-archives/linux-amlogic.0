@@ -1,61 +1,35 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 24 May 2017 10:20:42 +0200
-Subject: [PATCH 5/5] pinctrl: meson-gxl: Add Ethernet PHY LEDS pins
-In-Reply-To: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
-References: <1495614042-2676-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495614042-2676-6-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 24 May 2017 10:38:09 +0200
+Subject: [PATCH 1/2] pinctrl: meson-gxl: Add missing GPIODV_18 pin entry
+In-Reply-To: <1495548559-22261-2-git-send-email-narmstrong@baylibre.com>
+References: <1495548559-22261-1-git-send-email-narmstrong@baylibre.com>
+ <1495548559-22261-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1495615089.14589.0.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson GXL SoCs embeds an 10/100 Ethernet PHY, this patchs enables
-the Link and Activity LEDs signals.
+On Tue, 2017-05-23 at 16:09 +0200, Neil Armstrong wrote:
+> GPIODV_18 entry was missing in the original driver push.
+> 
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/pinctrl/meson/pinctrl-meson-gxl.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-index 7d81287..78a9af5 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-@@ -239,6 +239,9 @@
- 
- static const unsigned int spdif_out_h_pins[]	= { PIN(GPIOH_4, EE_OFF) };
- 
-+static const unsigned int eth_link_led_pins[]	= { PIN(GPIOZ_14, EE_OFF) };
-+static const unsigned int eth_act_led_pins[]	= { PIN(GPIOZ_15, EE_OFF) };
-+
- static const struct pinctrl_pin_desc meson_gxl_aobus_pins[] = {
- 	MESON_PIN(GPIOAO_0, 0),
- 	MESON_PIN(GPIOAO_1, 0),
-@@ -437,6 +440,8 @@
- 	GROUP(i2s_out_ch23_z,	3,	26),
- 	GROUP(i2s_out_ch45_z,	3,	25),
- 	GROUP(i2s_out_ch67_z,	3,	24),
-+	GROUP(eth_link_led,	4,	25),
-+	GROUP(eth_act_led,	4,	24),
- 
- 	/* Bank H */
- 	GROUP(hdmi_hpd,		6,	31),
-@@ -665,6 +670,10 @@
- 	"spdif_out_h",
- };
- 
-+static const char * const eth_led_groups[] = {
-+	"eth_link_led", "eth_act_led",
-+};
-+
- static const char * const gpio_aobus_groups[] = {
- 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
- 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
-@@ -736,6 +745,7 @@
- 	FUNCTION(hdmi_i2c),
- 	FUNCTION(i2s_out),
- 	FUNCTION(spdif_out),
-+	FUNCTION(eth_led),
- };
- 
- static struct meson_pmx_func meson_gxl_aobus_functions[] = {
--- 
-1.9.1
+> Fixes: 0f15f500ff2c ("pinctrl: meson: Add GXL pinctrl definitions")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+> ?drivers/pinctrl/meson/pinctrl-meson-gxl.c | 1 +
+> ?1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> index 719ff1b..2bc1e3d 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> @@ -89,6 +89,7 @@
+> ?	MESON_PIN(GPIODV_15, EE_OFF),
+> ?	MESON_PIN(GPIODV_16, EE_OFF),
+> ?	MESON_PIN(GPIODV_17, EE_OFF),
+> +	MESON_PIN(GPIODV_18, EE_OFF),
+> ?	MESON_PIN(GPIODV_19, EE_OFF),
+> ?	MESON_PIN(GPIODV_20, EE_OFF),
+> ?	MESON_PIN(GPIODV_21, EE_OFF),
