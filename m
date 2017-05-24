@@ -1,40 +1,25 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 24 May 2017 11:45:30 +0200
-Subject: [PATCH v2 1/2] clk: meson: meson8b: mark clk81 as critical
-In-Reply-To: <20170524093932.5262-2-jbrunet@baylibre.com>
-References: <20170524093932.5262-1-jbrunet@baylibre.com>
- <20170524093932.5262-2-jbrunet@baylibre.com>
-Message-ID: <18cf4eec-0bd0-aefe-9736-1aadd3e40942@baylibre.com>
+From: broonie@kernel.org (Mark Brown)
+Date: Wed, 24 May 2017 18:18:52 +0100
+Subject: [PATCH 1/2] dt-bindings: spi-meson: Add SPICC bindings
+In-Reply-To: <1495546773-20479-2-git-send-email-narmstrong@baylibre.com>
+References: <1495546773-20479-1-git-send-email-narmstrong@baylibre.com>
+ <1495546773-20479-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20170524171852.gktg6sek67vrt7gs@sirena.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/24/2017 11:39 AM, Jerome Brunet wrote:
-> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> Disabling clk81 results in an immediate freeze of the whole system. This
-> can happen "accidentally" when the last child-clock of clk81 is disabled
-> (in this case the common clock framework also disables clk81, even if it
-> was only enabled indirectly before).
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/meson/meson8b.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index e9985503165c..9d1aaf6e9ac6 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -399,7 +399,7 @@ struct clk_gate meson8b_clk81 = {
->  		.ops = &clk_gate_ops,
->  		.parent_names = (const char *[]){ "mpeg_clk_div" },
->  		.num_parents = 1,
-> -		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
-> +		.flags = (CLK_SET_RATE_PARENT | CLK_IS_CRITICAL),
->  	},
->  };
->  
-> 
+On Tue, May 23, 2017 at 03:39:32PM +0200, Neil Armstrong wrote:
+> Add the SPICC (SPI Communications Controller) bindings variant.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Please submit patches using subject lines reflecting the style for the
+subsystem.  This makes it easier for people to identify relevant
+patches.  Look at what existing commits in the area you're changing are
+doing and make sure your subject lines visually resemble what they're
+doing.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 488 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170524/0de63dc7/attachment.sig>
