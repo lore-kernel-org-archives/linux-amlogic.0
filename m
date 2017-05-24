@@ -1,14 +1,13 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 24 May 2017 10:28:23 +0200
-Subject: [PATCH 3/5] ARM64: dts: meson-gxl: Add Ethernet PHY LEDS pins nodes
+Date: Wed, 24 May 2017 10:28:22 +0200
+Subject: [PATCH 2/5] ARM64: dts: meson-gxl: Add CEC pins nodes
 In-Reply-To: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com>
 References: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1495614505-4437-4-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1495614505-4437-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson GXL SoCs embeds an 10/100 Ethernet PHY, this patchs adds
-the Link and Activity LEDs signals pins nodes.
+Add the AO and EE domain CEC pins nodes for the Amlogic Meson GXL SoCs.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
@@ -16,29 +15,29 @@ Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
  1 file changed, 14 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 478d3b4..300dfad 100644
+index 3efad5f..478d3b4 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -404,6 +404,20 @@
+@@ -190,6 +190,20 @@
+ 				function = "spdif_out_ao";
  			};
  		};
- 
-+		eth_link_led_pins: eth_link_led {
++
++		ao_cec_pins: ao_cec {
 +			mux {
-+				groups = "eth_link_led";
-+				function = "eth_led";
++				groups = "ao_cec";
++				function = "cec_ao";
 +			};
 +		};
 +
-+		eth_act_led_pins: eth_act_led {
++		ee_cec_pins: ee_cec {
 +			mux {
-+				groups = "eth_act_led";
-+				function = "eth_led";
++				groups = "ee_cec";
++				function = "cec_ao";
 +			};
 +		};
-+		
- 		pwm_a_pins: pwm_a {
- 			mux {
- 				groups = "pwm_a";
+ 	};
+ };
+ 
 -- 
 1.9.1
