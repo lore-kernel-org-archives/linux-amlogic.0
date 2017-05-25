@@ -1,42 +1,38 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Thu, 25 May 2017 11:24:07 -0700
-Subject: [PATCH v2 0/2] clk: meson: mark clk81 as critical
-In-Reply-To: <20170524093932.5262-1-jbrunet@baylibre.com>
-References: <20170524093932.5262-1-jbrunet@baylibre.com>
-Message-ID: <149573664766.52617.13819592607084950756@resonance>
+From: 017623705678@o2online.de (Tobias Baumann)
+Date: Thu, 25 May 2017 20:35:44 +0200
+Subject: Testing.
+In-Reply-To: <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
+References: <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
+Message-ID: <743c82c3-52af-bcdb-b45a-d392cda08fb6@o2online.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2017-05-24 02:39:30)
-> The GX (gxbb.c) clock controller driver already marks the clk81 clock
-> as criticial. However, the Meson8b clock controller driver does not do
-> this yet.
-> This can lead to a freeze of the whole system when clk81 is disabled
-> by the common clock framework (for example after the last child clock
-> is disabled by a driver which used that child clock).
-> 
-> Changes since v1: [0]
-> With the clock flagged as CRITICAL, CLK_IGNORE_UNUSED is no longer
-> useful. Remove this flag from meson8b and gxbb's clk81.
+hi martin
 
-Both patches look good to me.
+oleg (balbes150)  from armbian forum told me you could need some help
 
-Regards,
-Mike
+iam new to linux but i can test images and files for you
 
-> 
-> [0]: https://lkml.kernel.org/r/20170504183201.13175-1-martin.blumenstingl at googlemail.com
-> 
-> Jerome Brunet (1):
->   clk: gxbb: remove CLK_IGNORE_UNUSED from clk81
-> 
-> Martin Blumenstingl (1):
->   clk: meson: meson8b: mark clk81 as critical
-> 
->  drivers/clk/meson/gxbb.c    | 2 +-
->  drivers/clk/meson/meson8b.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> -- 
-> 2.9.4
-> 
+my system OTT M8S Clone TVBox with S812 8GBRom 2GB RAM RTL8723BS WIFI BT 
+Combo HDMI 2xUSB
+
+( run as server for USB Printer and Sane server for canon scanner)
+
+at the moment i use the armbian unbuntu rom from oleg with 3.10.99 
+kernel (14 04 2017 ) with working wifi usb and internet also i could run 
+a successful test the 4.11 kernel
+
+my project now is to control the front LED
+
+but there is a problem  oleg send my the dts for led but without gpio .
+
+maybe you can assist
+
+thanks Tobias
+
+PS: i am from Germany so i am more comfortable and faster in german
+
+
+---
+Diese E-Mail wurde von Avast Antivirus-Software auf Viren gepr?ft.
+https://www.avast.com/antivirus
