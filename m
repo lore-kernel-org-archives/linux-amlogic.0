@@ -1,175 +1,69 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 24 May 2017 22:37:40 +0200
-Subject: [RFC 0/2] Add support for Meson MX "SDIO" MMC driver
-In-Reply-To: <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
-References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
- <CAPDyKFoYPjB1bjRfFCFT3vuzKgzm6-7L2qgNjxGL392cLDe7uA@mail.gmail.com>
- <CAFBinCDGBZAAx_61eyu1_XM57fX62Mk03TEiO3uTL+i8dfPyZA@mail.gmail.com>
- <CAPDyKFoC-cCEY+n2383W+JgDANbBMFbsU5cyB51-kG4kbLNNcw@mail.gmail.com>
- <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
-Message-ID: <CAFBinCCiTXKoZKRfAW_ZZpTv5Fthxia_q6heVgG-uM2-6=rXjg@mail.gmail.com>
+Date: Thu, 25 May 2017 17:56:07 +0200
+Subject: S805/S812 Device Tree upstreaming
+In-Reply-To: <60f432cf-ea24-9158-a5ab-f967f19393ed@yandex.ru>
+References: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
+ <939ef72d-a4e5-7535-2252-d607158bd0fe@yandex.ru>
+ <a9179db4-1db6-3c8d-de34-cee4454f07de@yandex.ru>
+ <CAFBinCCAxjtreC0EtpWKxrx9=zqJmv6w4fEhg_aZZNT_G3qARg@mail.gmail.com>
+ <9b803bac-4ce8-689c-44a8-40532e294dae@yandex.ru>
+ <CAFBinCDXx5j_W5WtLSd8q0RDp7TXezCdDNHtXp5mYNnY=jR5wA@mail.gmail.com>
+ <fdc29cda-b67d-add9-9c8a-f0a61db537da@yandex.ru>
+ <CAFBinCBhVGabCo-2j-sd=5JSPa2xsQ4a1Tn=iMC6QuzxrnSfQQ@mail.gmail.com>
+ <60f432cf-ea24-9158-a5ab-f967f19393ed@yandex.ru>
+Message-ID: <CAFBinCD0YZchEYxr8Ts1u3PoqY6+0C1kgKsF2Qj2oBZObmQuNg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Ulf,
+Hi Oleg,
 
-On Thu, May 11, 2017 at 10:44 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Ulf,
+On Mon, May 22, 2017 at 2:12 PM, Oleg <balbes-150@yandex.ru> wrote:
+> Hi Martin
+> 1. Updated the source code to the latest version of meson-mx
+> integration-4.12-20170520
+> 2. Collected test image with the new kernel. 2. Checked both settings in dtb
+> (HIGH and LOW).
+> While the result is the same.
+> 3. The output from the console log and with the command "md".
+> 4 Contents of directories emmc sd sdio (from the working image Armbian with
+> kernel 3.14 ,
+> which features Wi-Fi and wired network with USB and HDMI)
 >
-> On Thu, May 11, 2017 at 11:39 AM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->> On 10 May 2017 at 21:22, Martin Blumenstingl
->> <martin.blumenstingl@googlemail.com> wrote:
->>> Hi Ulf,
->>>
->>> On Wed, May 10, 2017 at 10:44 AM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->>>> On 6 May 2017 at 19:18, Martin Blumenstingl
->>>> <martin.blumenstingl@googlemail.com> wrote:
->>>>> This is the successor to Carlo Caione's "Add support for Amlogic Meson
->>>>> MMC driver" series (v5) from [0].
->>>>>
->>>>> I would like you to specifically review:
->>>>> - whether I've (ab)used the MMC framework properly (as this is my first
->>>>>   "larger" contribution to an MMC driver)
->>>>
->>>> I take a look soonish.
->>> thank you!
->>>
->>>>> - I think I have improved the locking compared to Carlo's version,
->>>>>   however I'd still like feedback on whether this looks sane now or if I
->>>>>   can improve that even further
->>>>>
->>>>> (notable) changes since Carlo's latest version are:
->>>>> - renamed the driver to meson-mx-sdio (Amlogic's reference kernel calls
->>>>>   the driver "aml_sdio" as there is a second MMC controller in these SoCs
->>>>>   which they call the "SDHC controller"). do the same with our driver to
->>>>
->>>> I don't like to renaming drivers, just because there are a reference
->>>> kernel using a different name.
->>>>
->>>> What's is really the difference between controllers? Why do they have
->>>> two variants?
->>> the driver from this thread is for the "SDSC/SDHC/SDXC card and SDIO
->>> interface with 1-bit and 4-bit data bus width supporting spec version
->>> 2.x/3.x/4.x DS/HS modes up to UHS-I SDR50" (quote taken from the S805
->>> datasheet: [0])
->>> the "other" controller is an "eMMC and MMC card interface with
->>> 1/4/8-bit data bus width supporting spec version 4.4x/4.5x HS200 (up
->>> to 100MHz clock), compatible with standard iNAND interface" (again,
->>> quote taken from the S805 datasheet: [0])
->>>
->>>>
->>>> Can they be managed by the same driver?
->>>>
->>>>>   avoid confusion once we add support for the second controller (which uses
->>>>>   a completely different register layout)
->>>>
->>>> Besides that, do they behave differently in some other way?
->>> both drivers/controllers have a totally different register layout - I
->>> don't see any way how they both could be handled by one driver (the
->>> registers for the controllers from this series are not part of the
->>> documentation, but the registers from the 8-bit capable controller
->>> are, see page 76 and following from the S805 datasheet: [0])
->>
->> Okay, I am starting to understand. :-)
-> good to hear that my explanation made (at least some) sense!
->
->> The spec in section 13 describes a controller supporting "MMC/SD/SDIO"
->> cards. However, there is yet another controller which @subject series
->> implement support for.
->> You don't happen to have a public datasheet for this controller as
->> well? If not, never mind.
-> unfortunately the controller from @subject does not show up in any of
-> the public datasheets, but we have a header file from Amlogic which
-> documents it just as well as the datasheet (probably) would: [0]
->
->> Then, meson actually have three different MMC/SD/SDIO controllers, the
->> one in the S805 spec, the one supported by the recently up-streamed
->> meson-gx-mmc.c driver - and the one being supported in this series.
->> Right? And all of them are completely separate and non-compatible?
-> yes, unfortunately it seems that there are three different MMC
-> controller IP blocks from Amlogic
->
-> let me explain this a bit more in detail:
-> the code-names of the newer (64-bit) SoCs all start with GX (GXBB,
-> GXL, GXM), so we call these "Meson GX".
-> the code-names of the older (32-bit) SoCs (at least the ones which are
-> not too old) all start with Meson X (where X is a number: Meson6,
-> Meson8, Meson8b and Meson8m2), Amlogic's vendor code sometimes calls
-> these "MX" (or Meson MX)
->
-> the MMC IP blocks in Meson GX SoCs are easy: the same IP block is
-> embedded three times -> the driver for this is meson-gx-mmc.c (already
-> upstream)
-> the MMC IP blocks in Meson MX SoCs are more complicated: 1x 1/4-bit
-> which will be handled by the driver from @subject (meson-mx-sdio.c)
-> and 1x 1/4/8-bit for which there is only the vendor driver (plus the
-> description in the S805 datasheet) available.
->
-> so it looks like the older Meson MX SoCs may end up with two different
-> drivers, while there's a third driver (for a totally different IP
-> block) for the newer Meson GX SoCs.
->
-> [snip]
->>>>> - use the common clock framework internally for managing the MMC clock
->>>>>   (there is a fixed-factor clock in the controller which takes clk81 as
->>>>>    input and divides it's clock by two and a divider clock which takes
->>>>>    the result from the fixed-factor clock as input)
->>>>> - support the regulators provided by the MMC framework
->>>>> - support for GPIO-based card-detection and read-only-detection through
->>>>>   the MMC framework
->>>>> - use of the <linux/bitfield.h> FIELD_PREP and FIELD_GET macros where it
->>>>>   make sense (and thus the code easier to read)
->>>>> - re-worked locking (based on the locking in dw_mmc as that also provides
->>>>>   multiple "MMC slots")
->>>>
->>>> Lots of changes!
->>>>
->>>> Before even start to review (or someone else), you really need to make
->>>> this review-able.
->>>>
->>>> So, please, one change per patch - and make sure to write good
->>>> changelogs. Then I can start to review.
->>> from the mainline tree's perspective this is a new driver:
->>
->> Yes, I get it now.
->>
->> I first thought this series was related to the recently up-streamed
->> meson-gx-mmc.c driver. Apologize for my ignorance.
-> should I put some more context/details in the description (maybe
-> something like: "this is a new driver/binding because the Meson MX
-> SoCs use a different IP block than the Meson GX SoCs (the IP block
-> from the latter is already supported by the meson-gx-mmc driver)"?
->
->>> Carlo (the original author) initially sent this driver for review more
->>> than 14 months ago. unfortunately it was never merged since you
->>> spotted some issues while reviewing that code, see [1].
->>
->> Yes, I recall that now.
-> the 14 month delay was one of the reasons why I decided to re-post it
-> only after all features were implemented
->
->>> I would have sent smaller patches for a driver which is already in mainline.
->>
->> Right.
->>
->>>
->>> I also wanted to avoid extra complexity for the internal mux if it was
->>> added later on (if we want to avoid breaking devicetree backwards
->>> compatibility then the driver would have to support both: parsing from
->>> the mmc node directly and parsing child "slot" nodes). we won't have
->>> to change the DT bindings when the first version that will be
->>> mainlined already has support for the mux
->>>
->>> please let me know if there's anything I can do to make the code
->>> easier to review.
->>
->> No worries, let me have a look as is!
-> okay, perfect! just take your time and let me know what needs to be changed.
-I know that you're probably very busy, but I will still ask: did you
-have time to look into this series yet (or do you have any ETA)?
+> https://yadi.sk/d/KvSjVEK-3JQF7c .
+regarding USB: I don't see a reason why it's reporting this error :(
+Kevin's Odroid-C2 board (used by kernelci) reports the same error [0]
+- I cannot reproduce this with any of my devices unfortunately (so I'm
+a bit lost here)
+
+regarding wifi:
+I would like to see this fixed because it would be great to have
+someone with Broadcom wifi (to confirm that the MMC driver works
+fine).
+I'm a bit puzzled though why it doesn't seem to find your SDIO wifi,
+even though it's at slot 0 (confirmed by looking at your sdio.tar.gz).
+maybe you can enable the debug logs in drivers/mmc/core.c (just add
+#define DEBUG at the beginning of the file and prepare for a HUGE
+log-spam!)
+
+I also compared your pinmux register dump to see if there's anything
+interesting regarding ethernet.
+all eth_* related bits are set just like the kernel would do (REG6
+bits 5-8 and bits 10-14)
+a similar error was reported for another platform [1]
+however, I must also say that I am sure that I need to switch from the
+"meson6-dwmac" driver to "meson8b-dwmac" - but that will require
+additional work in the "meson8b-dwmac" driver.
+
+> Is it possible to transfer the wired network settings of dtb data from s905
+> (p200)
+>  in the dtb settings for MXIII-Plus or are they not compatible ?
+with my current .dts they are not compatible - the goal is to make
+them compatible (more work is required for that though)
 
 
-Thank you!
 Regards,
 Martin
+
+
+[0] https://storage.kernelci.org/mainline/master/v4.12-rc1-268-g6fe1de43c5f6/arm64/defconfig+CONFIG_LKDTM=y/lab-baylibre-seattle/boot-meson-gxbb-odroidc2.html
+[1] http://lists.infradead.org/pipermail/linux-arm-kernel/2017-March/492508.html
