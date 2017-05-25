@@ -1,38 +1,133 @@
-From: 017623705678@o2online.de (Tobias Baumann)
-Date: Thu, 25 May 2017 20:35:44 +0200
-Subject: Testing.
-In-Reply-To: <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
-References: <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
-Message-ID: <743c82c3-52af-bcdb-b45a-d392cda08fb6@o2online.de>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Thu, 25 May 2017 11:54:59 -0700
+Subject: [PATCH v2 01/11] clk: take the prepare lock out of
+ clk_core_set_parent
+In-Reply-To: <20170521215958.19743-2-jbrunet@baylibre.com>
+References: <20170521215958.19743-1-jbrunet@baylibre.com>
+ <20170521215958.19743-2-jbrunet@baylibre.com>
+Message-ID: <149573849978.52617.292626696549937056@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-hi martin
+Quoting Jerome Brunet (2017-05-21 14:59:48)
+> 
+> Rework set_parent core function so it can be called when the prepare lock
+> is already held by the caller.
+> 
+> This rework is done to ease the integration of the "protected" clock
+> functionality.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-oleg (balbes150)  from armbian forum told me you could need some help
+Applied to clk-next-protect for testing.
 
-iam new to linux but i can test images and files for you
+Regards,
+Mike
 
-my system OTT M8S Clone TVBox with S812 8GBRom 2GB RAM RTL8723BS WIFI BT 
-Combo HDMI 2xUSB
-
-( run as server for USB Printer and Sane server for canon scanner)
-
-at the moment i use the armbian unbuntu rom from oleg with 3.10.99 
-kernel (14 04 2017 ) with working wifi usb and internet also i could run 
-a successful test the 4.11 kernel
-
-my project now is to control the front LED
-
-but there is a problem  oleg send my the dts for led but without gpio .
-
-maybe you can assist
-
-thanks Tobias
-
-PS: i am from Germany so i am more comfortable and faster in german
-
-
----
-Diese E-Mail wurde von Avast Antivirus-Software auf Viren gepr?ft.
-https://www.avast.com/antivirus
+> ---
+>  drivers/clk/clk.c | 39 ++++++++++++++++++---------------------
+>  1 file changed, 18 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index fc58c52a26b4..f5c371532509 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -1787,7 +1787,8 @@ bool clk_has_parent(struct clk *clk, struct clk *parent)
+>  }
+>  EXPORT_SYMBOL_GPL(clk_has_parent);
+>  
+> -static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+> +static int clk_core_set_parent_nolock(struct clk_core *core,
+> +                                     struct clk_core *parent)
+>  {
+>         int ret = 0;
+>         int p_index = 0;
+> @@ -1796,23 +1797,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>         if (!core)
+>                 return 0;
+>  
+> -       /* prevent racing with updates to the clock topology */
+> -       clk_prepare_lock();
+> -
+>         if (core->parent == parent)
+> -               goto out;
+> +               return 0;
+>  
+>         /* verify ops for for multi-parent clks */
+> -       if ((core->num_parents > 1) && (!core->ops->set_parent)) {
+> -               ret = -ENOSYS;
+> -               goto out;
+> -       }
+> +       if ((core->num_parents > 1) && (!core->ops->set_parent))
+> +               return -ENOSYS;
+>  
+>         /* check that we are allowed to re-parent if the clock is in use */
+> -       if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count) {
+> -               ret = -EBUSY;
+> -               goto out;
+> -       }
+> +       if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
+> +               return -EBUSY;
+>  
+>         /* try finding the new parent index */
+>         if (parent) {
+> @@ -1820,8 +1814,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>                 if (p_index < 0) {
+>                         pr_debug("%s: clk %s can not be parent of clk %s\n",
+>                                         __func__, parent->name, core->name);
+> -                       ret = p_index;
+> -                       goto out;
+> +                       return p_index;
+>                 }
+>                 p_rate = parent->rate;
+>         }
+> @@ -1831,7 +1824,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>  
+>         /* abort if a driver objects */
+>         if (ret & NOTIFY_STOP_MASK)
+> -               goto out;
+> +               return ret;
+>  
+>         /* do the re-parent */
+>         ret = __clk_set_parent(core, parent, p_index);
+> @@ -1844,9 +1837,6 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>                 __clk_recalc_accuracies(core);
+>         }
+>  
+> -out:
+> -       clk_prepare_unlock();
+> -
+>         return ret;
+>  }
+>  
+> @@ -1869,10 +1859,17 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>   */
+>  int clk_set_parent(struct clk *clk, struct clk *parent)
+>  {
+> +       int ret;
+> +
+>         if (!clk)
+>                 return 0;
+>  
+> -       return clk_core_set_parent(clk->core, parent ? parent->core : NULL);
+> +       clk_prepare_lock();
+> +       ret = clk_core_set_parent_nolock(clk->core,
+> +                                        parent ? parent->core : NULL);
+> +       clk_prepare_unlock();
+> +
+> +       return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(clk_set_parent);
+>  
+> @@ -2753,7 +2750,7 @@ void clk_unregister(struct clk *clk)
+>                 /* Reparent all children to the orphan list. */
+>                 hlist_for_each_entry_safe(child, t, &clk->core->children,
+>                                           child_node)
+> -                       clk_core_set_parent(child, NULL);
+> +                       clk_core_set_parent_nolock(child, NULL);
+>         }
+>  
+>         hlist_del_init(&clk->core->child_node);
+> -- 
+> 2.9.4
+> 
