@@ -1,42 +1,61 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Fri, 26 May 2017 10:29:21 +0300
-Subject: S805/S812 Device Tree upstreaming
-In-Reply-To: <CAFBinCD0YZchEYxr8Ts1u3PoqY6+0C1kgKsF2Qj2oBZObmQuNg@mail.gmail.com>
-References: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
- <939ef72d-a4e5-7535-2252-d607158bd0fe@yandex.ru>
- <a9179db4-1db6-3c8d-de34-cee4454f07de@yandex.ru>
- <CAFBinCCAxjtreC0EtpWKxrx9=zqJmv6w4fEhg_aZZNT_G3qARg@mail.gmail.com>
- <9b803bac-4ce8-689c-44a8-40532e294dae@yandex.ru>
- <CAFBinCDXx5j_W5WtLSd8q0RDp7TXezCdDNHtXp5mYNnY=jR5wA@mail.gmail.com>
- <fdc29cda-b67d-add9-9c8a-f0a61db537da@yandex.ru>
- <CAFBinCBhVGabCo-2j-sd=5JSPa2xsQ4a1Tn=iMC6QuzxrnSfQQ@mail.gmail.com>
- <60f432cf-ea24-9158-a5ab-f967f19393ed@yandex.ru>
- <CAFBinCD0YZchEYxr8Ts1u3PoqY6+0C1kgKsF2Qj2oBZObmQuNg@mail.gmail.com>
-Message-ID: <e4b11e51-3a6e-0f73-5e84-6ee613aa534f@yandex.ru>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 26 May 2017 11:20:55 -0700
+Subject: [PATCH 1/2] ARM: dts: meson: organize devices in their
+ corresponding busses
+In-Reply-To: <CAFBinCBcWgS_qSMNEUH+QrPXxLyQo87paH3+wBkHf5LWarnmEQ@mail.gmail.com>
+ (Martin Blumenstingl's message of "Sat, 20 May 2017 10:45:02 +0200")
+References: <20170417213938.22626-1-martin.blumenstingl@googlemail.com>
+ <20170417213938.22626-2-martin.blumenstingl@googlemail.com>
+ <m2inkw4g47.fsf@baylibre.com>
+ <CAFBinCBcWgS_qSMNEUH+QrPXxLyQo87paH3+wBkHf5LWarnmEQ@mail.gmail.com>
+Message-ID: <m2vaon1nug.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin
-> regarding USB: I don't see a reason why it's reporting this error:(
-> Kevin's Odroid-C2 board (used by kernelci) reports the same error [0]
-> - I cannot reproduce this with any of my devices unfortunately (so I'm
-> a bit lost here)
-I will try to perform a number of tests and changes in the dtb.
-When I have results, I'll let You know. Thanks for the support.
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> regarding wifi:
-> I would like to see this fixed because it would be great to have
-> someone with Broadcom wifi (to confirm that the MMC driver works
-> fine).
-> I'm a bit puzzled though why it doesn't seem to find your SDIO wifi,
-> even though it's at slot 0 (confirmed by looking at your sdio.tar.gz).
-> maybe you can enable the debug logs in drivers/mmc/core.c (just add
-> #define DEBUG at the beginning of the file and prepare for a HUGE
-> log-spam!)
-I will try to obtain this data in the coming days.
+> On Sat, May 20, 2017 at 12:49 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>>
+>>> The Amlogic Meson SoCs have most of the internal peripherals organized
+>>> in busses. Use them to make the dts easier to read and to avoid
+>>> duplicated register (bus) offset definitions.
+>>>
+>>> The bus information is taken from the vendor kernel:
+>>>       #define IO_CBUS_PHY_BASE        0xc1100000  ///2M
+>>>       #define IO_AOBUS_PHY_BASE       0xc8100000  ///1M
+>>>
+>>> There are more internal busses (such as the abp bus which seems to
+>>> contain audio, HDMI and Mali registers), but since we don't have
+>>> drivers for them yet these are not added (yet).
+>>>
+>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>
+>> I tested this series on my meson8b-odroidc1 and it boots fine.
+>>
+>> Series looks fine to me, except...
+>>
+>> [...]
+>>
+>>>
+>>>               ethmac: ethernet at c9410000 {
+>>>                       compatible = "amlogic,meson6-dwmac", "snps,dwmac";
+>>>                       reg = <0xc9410000 0x10000
+>>> -                            0xc1108108 0x4>;
+>>> +                     0xc1108108 0x4>;
+>>
+>> stray tab removal?
+> oh, excellent catch - thank you!
+>
+>> I fixed that up locally and applied to v4.13/dt64 branch.
+> nice, thank you!
+>
+> do the ARM maintainers still want separate pull-requests for 32-bit
+> and 64-bit .dts/defconfig/etc. changes?
+> you might want to move the three latest commits from v4.13/dt64 to
+> v4.13/dt32 in that case, but this should be trivial (since these
+> patches don't depend on anything else)
 
-> a similar error was reported for another platform [1]
-> however, I must also say that I am sure that I need to switch from the
-> "meson6-dwmac" driver to "meson8b-dwmac" - but that will require
-> additional work in the "meson8b-dwmac" driver.
-I'll wait for Your results. I'm not in a hurry  :) .
+yes, you're right.  I'll move them.
+
+Kevin
