@@ -1,58 +1,48 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 27 May 2017 16:15:25 +0200
-Subject: Testing.
-In-Reply-To: <743c82c3-52af-bcdb-b45a-d392cda08fb6@o2online.de>
-References: <CAFBinCBHWSt36ApkFPYKyF=oOBebWwkK8D3Pa27Ab-KsM+B0_Q@mail.gmail.com>
- <743c82c3-52af-bcdb-b45a-d392cda08fb6@o2online.de>
-Message-ID: <CAFBinCANQYUs21WyGmtigZF1tqTZK6yWdwiPXWr+QbjxJ9o6qg@mail.gmail.com>
+Date: Sat, 27 May 2017 16:25:51 +0200
+Subject: [RFC 0/2] Add support for Meson MX "SDIO" MMC driver
+In-Reply-To: <CAD8Lp46oR0ODa4ybVW-rMPki9126My+ymxigZmjGwxPm2y1L3g@mail.gmail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+ <CAPDyKFoYPjB1bjRfFCFT3vuzKgzm6-7L2qgNjxGL392cLDe7uA@mail.gmail.com>
+ <CAFBinCDGBZAAx_61eyu1_XM57fX62Mk03TEiO3uTL+i8dfPyZA@mail.gmail.com>
+ <CAPDyKFoC-cCEY+n2383W+JgDANbBMFbsU5cyB51-kG4kbLNNcw@mail.gmail.com>
+ <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
+ <CAD8Lp46oR0ODa4ybVW-rMPki9126My+ymxigZmjGwxPm2y1L3g@mail.gmail.com>
+Message-ID: <CAFBinCAUEgXZ7PUinrOahpRsg8=m5Um7ju518PiFpqnmPxvQqw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Tobias,
+Hi Daniel,
 
-On Thu, May 25, 2017 at 8:35 PM, Tobias Baumann
-<017623705678@o2online.de> wrote:
-> hi martin
+On Sat, May 27, 2017 at 4:48 AM, Daniel Drake <drake@endlessm.com> wrote:
+> On Thu, May 11, 2017 at 2:44 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> the code-names of the older (32-bit) SoCs (at least the ones which are
+>> not too old) all start with Meson X (where X is a number: Meson6,
+>> Meson8, Meson8b and Meson8m2), Amlogic's vendor code sometimes calls
+>> these "MX" (or Meson MX)
 >
-> oleg (balbes150)  from armbian forum told me you could need some help
->
-> iam new to linux but i can test images and files for you
->
-> my system OTT M8S Clone TVBox with S812 8GBRom 2GB RAM RTL8723BS WIFI BT
-> Combo HDMI 2xUSB
->
-> ( run as server for USB Printer and Sane server for canon scanner)
->
-> at the moment i use the armbian unbuntu rom from oleg with 3.10.99 kernel
-> (14 04 2017 ) with working wifi usb and internet also i could run a
-> successful test the 4.11 kernel
-disclaimer: I cannot really help with Amlogic's 3.10/3.14 kernel
+> Just in case it helps you on any future adventures in the Amlogic
+> vendor code: I think this is not quite right. I believe that MX
+> specifically refers to Meson6 and no other SoC generation.
+thanks for that hint - I guess that's due to the marketing name of the
+Meson6 SoCs then (AML8726-MX). do you know if there's any codename
+that includes the Meson6 and Meson8 (including Meson8b and Meson8m2)
+families?
 
-> my project now is to control the front LED
-what are you trying to control exactly?
 
-> but there is a problem  oleg send my the dts for led but without gpio .
-my m8s.dts doesn't use a GPIO because the LED is connected to
-GPIO_TEST_N which can also be controlled by one of the PWM controllers
-(this allows dimming the LED to a certain level, but in my case the
-LED is a dual-color LED with blue and red: the further you reduce the
-brightness of the (blue) LED the more you see of the red one -> if you
-turn off the blue LED it turns red)
+> That said, if both MesonX (==Meson6) and Meson8/Meson8b all share the
+> same driver code, having this driver named "mx" makes sense to me,
+> especially because it helps distinguish from the GX* chips which
+> indeed have something rather different.
+from what I could read in Amlogic's GPL kernel sources the MMC
+controller IP is also used in Meson6 SoCs (and possibly even older
+generations). that said, I don't have any Meson6 hardware, which is
+why I didn't add the "amlogic,meson6-sdio" binding.
+so I guess using the "mx" name here should be OK (nevertheless, I'll
+make sure that I don't use "MX" for anything that's
+Meson8/Meson8b/Meson8m2 specific)
 
-> maybe you can assist
->
-> thanks Tobias
->
-> PS: i am from Germany so i am more comfortable and faster in german
->
->
-> ---
-> Diese E-Mail wurde von Avast Antivirus-Software auf Viren gepr?ft.
-> https://www.avast.com/antivirus
->
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+Regards,
+Martin
