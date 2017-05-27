@@ -1,61 +1,30 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 26 May 2017 11:20:55 -0700
-Subject: [PATCH 1/2] ARM: dts: meson: organize devices in their
- corresponding busses
-In-Reply-To: <CAFBinCBcWgS_qSMNEUH+QrPXxLyQo87paH3+wBkHf5LWarnmEQ@mail.gmail.com>
- (Martin Blumenstingl's message of "Sat, 20 May 2017 10:45:02 +0200")
-References: <20170417213938.22626-1-martin.blumenstingl@googlemail.com>
- <20170417213938.22626-2-martin.blumenstingl@googlemail.com>
- <m2inkw4g47.fsf@baylibre.com>
- <CAFBinCBcWgS_qSMNEUH+QrPXxLyQo87paH3+wBkHf5LWarnmEQ@mail.gmail.com>
-Message-ID: <m2vaon1nug.fsf@baylibre.com>
+From: drake@endlessm.com (Daniel Drake)
+Date: Fri, 26 May 2017 20:48:57 -0600
+Subject: [RFC 0/2] Add support for Meson MX "SDIO" MMC driver
+In-Reply-To: <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+ <CAPDyKFoYPjB1bjRfFCFT3vuzKgzm6-7L2qgNjxGL392cLDe7uA@mail.gmail.com>
+ <CAFBinCDGBZAAx_61eyu1_XM57fX62Mk03TEiO3uTL+i8dfPyZA@mail.gmail.com>
+ <CAPDyKFoC-cCEY+n2383W+JgDANbBMFbsU5cyB51-kG4kbLNNcw@mail.gmail.com>
+ <CAFBinCDocqqo2GNLb2y1XE0ATTEG6TuqO+EZ_-h8=vuTjngr_Q@mail.gmail.com>
+Message-ID: <CAD8Lp46oR0ODa4ybVW-rMPki9126My+ymxigZmjGwxPm2y1L3g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+On Thu, May 11, 2017 at 2:44 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> the code-names of the older (32-bit) SoCs (at least the ones which are
+> not too old) all start with Meson X (where X is a number: Meson6,
+> Meson8, Meson8b and Meson8m2), Amlogic's vendor code sometimes calls
+> these "MX" (or Meson MX)
 
-> On Sat, May 20, 2017 at 12:49 AM, Kevin Hilman <khilman@baylibre.com> wrote:
->> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->>
->>> The Amlogic Meson SoCs have most of the internal peripherals organized
->>> in busses. Use them to make the dts easier to read and to avoid
->>> duplicated register (bus) offset definitions.
->>>
->>> The bus information is taken from the vendor kernel:
->>>       #define IO_CBUS_PHY_BASE        0xc1100000  ///2M
->>>       #define IO_AOBUS_PHY_BASE       0xc8100000  ///1M
->>>
->>> There are more internal busses (such as the abp bus which seems to
->>> contain audio, HDMI and Mali registers), but since we don't have
->>> drivers for them yet these are not added (yet).
->>>
->>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>
->> I tested this series on my meson8b-odroidc1 and it boots fine.
->>
->> Series looks fine to me, except...
->>
->> [...]
->>
->>>
->>>               ethmac: ethernet at c9410000 {
->>>                       compatible = "amlogic,meson6-dwmac", "snps,dwmac";
->>>                       reg = <0xc9410000 0x10000
->>> -                            0xc1108108 0x4>;
->>> +                     0xc1108108 0x4>;
->>
->> stray tab removal?
-> oh, excellent catch - thank you!
->
->> I fixed that up locally and applied to v4.13/dt64 branch.
-> nice, thank you!
->
-> do the ARM maintainers still want separate pull-requests for 32-bit
-> and 64-bit .dts/defconfig/etc. changes?
-> you might want to move the three latest commits from v4.13/dt64 to
-> v4.13/dt32 in that case, but this should be trivial (since these
-> patches don't depend on anything else)
+Just in case it helps you on any future adventures in the Amlogic
+vendor code: I think this is not quite right. I believe that MX
+specifically refers to Meson6 and no other SoC generation.
 
-yes, you're right.  I'll move them.
+That said, if both MesonX (==Meson6) and Meson8/Meson8b all share the
+same driver code, having this driver named "mx" makes sense to me,
+especially because it helps distinguish from the GX* chips which
+indeed have something rather different.
 
-Kevin
+Daniel
