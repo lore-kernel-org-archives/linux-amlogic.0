@@ -1,79 +1,52 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sun, 28 May 2017 21:11:34 +0200
-Subject: [PATCH RfC v4 4/6] ARM(64): dts: meson: add GPIO interrupt-controller
- support
+Date: Sun, 28 May 2017 21:11:20 +0200
+Subject: [PATCH RfC v4 3/6] dt-bindings: add Amlogic Meson GPIO
+ interrupt-controller DT binding documentation
 In-Reply-To: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
 References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
-Message-ID: <5294644a-967e-dba8-d287-d932b38244d1@gmail.com>
+Message-ID: <4f082b42-40dd-6e7d-61f5-d3aad1fc19de@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add support for the GPIO interupt controller of certain Amlogic Meson
-Soc's.
+Add dt binding documentation for Amlogic meson GPIO interrupt controller.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- arch/arm/boot/dts/meson8.dtsi             | 8 ++++++++
- arch/arm/boot/dts/meson8b.dtsi            | 8 ++++++++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++++++
- 3 files changed, 24 insertions(+)
+ .../amlogic,meson-gpio-intc.txt                    | 26 ++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 69930773..b4c4175d 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -126,6 +126,14 @@
- };
- 
- &cbus {
-+	gpio_intc: interrupt-controller at 9880 {
-+		compatible = "amlogic,meson-gpio-intc";
-+		reg = <0x9880 0x10>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		parent-interrupts = <64 65 66 67 68 79 70 71>;
-+	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+new file mode 100644
+index 00000000..2f20d212
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+@@ -0,0 +1,26 @@
++Amlogic meson GPIO interrupt controller
 +
- 	pinctrl_cbus: pinctrl at 9880 {
- 		compatible = "amlogic,meson8-cbus-pinctrl";
- 		reg = <0x9880 0x10>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index d9f116a4..1bce64a6 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -151,6 +151,14 @@
- 		interrupts = <0 0 1>;
- 	};
- 
-+	gpio_intc: interrupt-controller at 9880 {
-+		compatible = "amlogic,meson-gpio-intc";
-+		reg = <0x9880 0x10>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		parent-interrupts = <64 65 66 67 68 79 70 71>;
-+	};
++Meson SoCs contains an interrupt controller which is able watch the SoC pads
++and generate an interrupt on edges or level. The controller is essentially a
++256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
++or level and polarity. The actual number of interrupt exposed depends on the
++SoC.
 +
- 	pinctrl_cbus: pinctrl at 9880 {
- 		compatible = "amlogic,meson8b-cbus-pinctrl";
- 		reg = <0x9880 0x10>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 436b8750..66dde761 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -312,6 +312,14 @@
- 				status = "disabled";
- 			};
- 
-+			gpio_intc: interrupt-controller at 9880 {
-+				compatible = "amlogic,meson-gpio-intc";
-+				reg = <0x0 0x09880 0x0 0x10>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				parent-interrupts = <64 65 66 67 68 79 70 71>;
-+			};
++Required properties:
 +
- 			watchdog at 98d0 {
- 				compatible = "amlogic,meson-gx-wdt", "amlogic,meson-gxbb-wdt";
- 				reg = <0x0 0x098d0 0x0 0x10>;
++- compatible : should be "amlogic,meson-gpio-intc".
++- reg : Specifies base physical address and size of the registers.
++- interrupt-controller : Identifies the node as an interrupt controller.
++- #interrupt-cells : should be 2.
++- parent-interrupts : list of GIC interrupts which can be used with the
++		      GPIO IRQ multiplexer
++
++Example:
++
++gpio_intc: interrupt-controller at 9880 {
++	compatible = "amlogic,meson-gpio-intc";
++	reg = <0x0 0x09880 0x0 0x10>;
++	interrupt-controller;
++	#interrupt-cells = <2>;
++	parent-interrupts = <64 65 66 67 68 69 70 71>;
++};
 -- 
 2.13.0
