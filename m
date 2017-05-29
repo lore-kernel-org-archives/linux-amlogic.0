@@ -1,231 +1,51 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sun, 28 May 2017 21:12:06 +0200
-Subject: [PATCH RfC v4 5/6] pinctrl: meson: add support for GPIO interrupts
-In-Reply-To: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
-References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
-Message-ID: <3265fbc9-467d-67fa-8752-f750f234dedd@gmail.com>
+From: heiko@sntech.de (Heiko =?ISO-8859-1?Q?St=FCbner?=)
+Date: Mon, 29 May 2017 09:39:09 +0200
+Subject: [PATCH 2/7] clocksource: Rename CLOCKSOURCE_OF_DECLARE
+In-Reply-To: <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
+References: <1495879129-28109-1-git-send-email-daniel.lezcano@linaro.org>
+ <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
+Message-ID: <1710049.UcE0hxO5ny@diego>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add support for GPIO interrupts and make use of the just introduced
-irqchip driver handling the GPIO interrupt-controller.
+Am Samstag, 27. Mai 2017, 11:58:43 CEST schrieb Daniel Lezcano:
+> The CLOCKSOUCE_OF_DECLARE macro is used widely for the timers to declare the
+> clocksource at early stage. However, this macro is also used to initialize
+> the clockevent if any, or the clockevent only.
+> 
+> It was originally suggested to declare another macro to initialize a
+> clockevent, so in order to separate the two entities even they belong to the
+> same IP. This was not accepted because of the impact on the DT where
+> splitting a clocksource/clockevent definition does not make sense as it is
+> a Linux concept not a hardware description.
+> 
+> On the other side, the clocksource has not interrupt declared while the
+> clockevent has, so it is easy from the driver to know if the description is
+> for a clockevent or a clocksource, IOW it could be implemented at the driver
+> level.
+> 
+> So instead of dealing with a named clocksource macro, let's use a more
+> generic one: TIMER_OF_DECLARE.
+> 
+> The patch has not functional changes.
+> 
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+[...]
+> diff --git a/drivers/clocksource/rockchip_timer.c
+> b/drivers/clocksource/rockchip_timer.c index 49c02be..c27f4c8 100644
+> --- a/drivers/clocksource/rockchip_timer.c
+> +++ b/drivers/clocksource/rockchip_timer.c
+> @@ -303,5 +303,5 @@ static int __init rk_timer_init(struct device_node *np)
+>  	return -EINVAL;
+>  }
+> 
+> -CLOCKSOURCE_OF_DECLARE(rk3288_timer, "rockchip,rk3288-timer",
+> rk_timer_init); -CLOCKSOURCE_OF_DECLARE(rk3399_timer,
+> "rockchip,rk3399-timer", rk_timer_init); +TIMER_OF_DECLARE(rk3288_timer,
+> "rockchip,rk3288-timer", rk_timer_init); +TIMER_OF_DECLARE(rk3399_timer,
+> "rockchip,rk3399-timer", rk_timer_init); diff --git
+> a/drivers/clocksource/samsung_pwm_timer.c
+> b/drivers/clocksource/samsung_pwm_timer.c index a68e653..21cd72c 100644
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/pinctrl/Kconfig               |   2 +
- drivers/pinctrl/meson/pinctrl-meson.c | 164 +++++++++++++++++++++++++++++++++-
- 2 files changed, 165 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index abc1cef7..d8c92809 100644
---- a/drivers/pinctrl/Kconfig
-+++ b/drivers/pinctrl/Kconfig
-@@ -166,8 +166,10 @@ config PINCTRL_MESON
- 	select PINCONF
- 	select GENERIC_PINCONF
- 	select GPIOLIB
-+	select GPIOLIB_IRQCHIP
- 	select OF_GPIO
- 	select REGMAP_MMIO
-+	select MESON_GPIO_INTC
- 
- config PINCTRL_OXNAS
- 	bool
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 66ed70c1..7fb98c71 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -62,6 +62,8 @@
- #include "../pinctrl-utils.h"
- #include "pinctrl-meson.h"
- 
-+static struct irq_domain *meson_pinctrl_irq_domain;
-+
- /**
-  * meson_get_bank() - find the bank containing a given pin
-  *
-@@ -497,6 +499,150 @@ static int meson_gpio_get(struct gpio_chip *chip, unsigned gpio)
- 	return !!(val & BIT(bit));
- }
- 
-+static struct meson_pinctrl *meson_gpio_data_to_pc(struct irq_data *data)
-+{
-+        struct gpio_chip *chip = irq_data_get_irq_chip_data(data);
-+
-+        return gpiochip_get_data(chip);
-+}
-+
-+static int meson_gpio_bank_hwirq(struct meson_bank *bank, unsigned int offset)
-+{
-+        int hwirq;
-+
-+        if (bank->irq_first < 0)
-+                /* this bank cannot generate irqs */
-+                return 0;
-+
-+        hwirq = offset - bank->first + bank->irq_first;
-+
-+        if (hwirq > bank->irq_last)
-+                /* this pin cannot generate irqs */
-+                return 0;
-+
-+        return hwirq;
-+}
-+
-+static int meson_gpio_to_hwirq(struct irq_data *data)
-+{
-+	struct meson_pinctrl *pc = meson_gpio_data_to_pc(data);
-+	unsigned int offset = data->hwirq;
-+        struct meson_bank *bank;
-+        int hwirq, ret;
-+
-+        offset += pc->data->pin_base;
-+
-+        ret = meson_get_bank(pc, offset, &bank);
-+        if (ret)
-+                return ret;
-+
-+        hwirq = meson_gpio_bank_hwirq(bank, offset);
-+        if (!hwirq)
-+                dev_dbg(pc->dev, "no interrupt for pin %u\n", offset);
-+
-+        return hwirq;
-+}
-+
-+static void meson_gpio_irq_handler(struct irq_desc *desc)
-+{
-+        struct irq_chip *chip = irq_desc_get_chip(desc);
-+        struct irq_data *gpio_irq_data = irq_desc_get_handler_data(desc);
-+
-+        chained_irq_enter(chip, desc);
-+
-+        if (gpio_irq_data)
-+                generic_handle_irq(gpio_irq_data->irq);
-+
-+        chained_irq_exit(chip, desc);
-+}
-+
-+static void meson_gpio_irq_unmask(struct irq_data *data) {}
-+static void meson_gpio_irq_mask(struct irq_data *data) {}
-+
-+static void meson_gpio_irq_shutdown(struct irq_data *data)
-+{
-+	int hwirq = meson_gpio_to_hwirq(data);
-+	int irq;
-+
-+	if (hwirq <= 0)
-+		return;
-+
-+	irq = irq_find_mapping(meson_pinctrl_irq_domain, hwirq * 2);
-+	if (irq) {
-+		irq_set_chained_handler_and_data(irq, handle_bad_irq, NULL);
-+		irq_domain_free_irqs(irq, 1);
-+	}
-+	irq = irq_find_mapping(meson_pinctrl_irq_domain, hwirq * 2 + 1);
-+	if (irq) {
-+		irq_set_chained_handler_and_data(irq, handle_bad_irq, NULL);
-+		irq_domain_free_irqs(irq, 1);
-+	}
-+}
-+
-+static int meson_gpio_irq_set_type(struct irq_data *data, unsigned int type)
-+{
-+	int hwirq = meson_gpio_to_hwirq(data);
-+	struct irq_fwspec fwspec;
-+        int irq, irq2, num_slots;
-+
-+	if (irqd_is_activated(data))
-+		return -EBUSY;
-+
-+	if (hwirq < 0)
-+		return hwirq;
-+
-+	if (!hwirq)
-+		return -ENXIO;
-+
-+	fwspec.fwnode = meson_pinctrl_irq_domain->fwnode;
-+	fwspec.param_count = 2;
-+
-+        /*
-+         * The chip can create an interrupt for either rising or falling edge
-+         * only. Therefore use two interrupts in case of IRQ_TYPE_EDGE_BOTH,
-+         * first for falling edge and second one for rising edge.
-+         */
-+        num_slots = (type == IRQ_TYPE_EDGE_BOTH) ? 2 : 1;
-+
-+        /*
-+	 * Add one bit to hwirq to allow for
-+	 * - using the same gpio hwirq twice
-+	 * - decoding the gpio hwirq in the interrupt controller driver
-+         */
-+	fwspec.param[0] = hwirq << 1;
-+	if (num_slots == 1)
-+		fwspec.param[1] = type;
-+	else
-+		fwspec.param[1] = IRQ_TYPE_EDGE_FALLING;
-+
-+	irq = irq_create_fwspec_mapping(&fwspec);
-+	if (!irq)
-+		return -EINVAL;
-+
-+	irq_set_chained_handler_and_data(irq, meson_gpio_irq_handler, data);
-+
-+	if (num_slots > 1) {
-+		fwspec.param[0]++;
-+		fwspec.param[1] = IRQ_TYPE_EDGE_RISING;
-+		irq2 = irq_create_fwspec_mapping(&fwspec);
-+		if (!irq2) {
-+			irq_domain_free_irqs(irq, 1);
-+			return -EINVAL;
-+		}
-+		irq_set_chained_handler_and_data(irq2, meson_gpio_irq_handler, data);
-+	}
-+
-+        return 0;
-+}
-+
-+static struct irq_chip meson_gpio_irq_chip = {
-+        .name = "GPIO",
-+        .irq_set_type = meson_gpio_irq_set_type,
-+        .irq_mask = meson_gpio_irq_mask,
-+        .irq_unmask = meson_gpio_irq_unmask,
-+        .irq_shutdown = meson_gpio_irq_shutdown,
-+};
-+
- static const struct of_device_id meson_pinctrl_dt_match[] = {
- 	{
- 		.compatible = "amlogic,meson8-cbus-pinctrl",
-@@ -558,7 +704,8 @@ static int meson_gpiolib_register(struct meson_pinctrl *pc)
- 		return ret;
- 	}
- 
--	return 0;
-+	return gpiochip_irqchip_add(&pc->chip, &meson_gpio_irq_chip, 0,
-+				    handle_simple_irq, IRQ_TYPE_NONE);
- }
- 
- static struct regmap_config meson_regmap_config = {
-@@ -637,6 +784,21 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
- 		return PTR_ERR(pc->reg_gpio);
- 	}
- 
-+	if (!meson_pinctrl_irq_domain) {
-+		np = of_find_compatible_node(NULL, NULL, "amlogic,meson-gpio-intc");
-+		if (!np) {
-+			dev_err(pc->dev, "interrupt controller DT node not found\n");
-+			return -EINVAL;
-+		}
-+		meson_pinctrl_irq_domain = irq_find_host(np);
-+		if (!meson_pinctrl_irq_domain) {
-+			dev_err(pc->dev, "interrupt controller not found\n");
-+			of_node_put(np);
-+			return -EINVAL;
-+		}
-+		of_node_put(np);
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.13.0
+Acked-by: Heiko Stuebner <heiko@sntech.de>
