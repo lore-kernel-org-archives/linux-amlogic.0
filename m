@@ -1,144 +1,21 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 29 May 2017 10:50:21 +0200
-Subject: [PATCH RfC v4 6/6] ARM(64): dts: meson: mark gpio controllers as
- interrupt controllers and update binding documentation
-In-Reply-To: <ff109063-e412-ed2d-0ccc-d17012d07f45@gmail.com>
-References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
- <ff109063-e412-ed2d-0ccc-d17012d07f45@gmail.com>
-Message-ID: <e93b9bfc-6a4f-3de1-825f-f3b02857164f@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Mon, 29 May 2017 10:54:45 +0200
+Subject: [PATCH 1/2] pinctrl: meson-gxl: Add missing GPIODV_18 pin entry
+In-Reply-To: <1495548559-22261-2-git-send-email-narmstrong@baylibre.com>
+References: <1495548559-22261-1-git-send-email-narmstrong@baylibre.com>
+ <1495548559-22261-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CACRpkdaURi0q9MHTY+_03AU48NuhgCwha1VYtUykKkuaOtMozw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heiner,
+On Tue, May 23, 2017 at 4:09 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-Same here, correct the subject.
+> GPIODV_18 entry was missing in the original driver push.
+>
+> Fixes: 0f15f500ff2c ("pinctrl: meson: Add GXL pinctrl definitions")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-On 05/28/2017 09:13 PM, Heiner Kallweit wrote:
-> Make the GPIO controllers act as interrupt controllers and
-> update the related DT binding documentation.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt | 4 ++++
->  arch/arm/boot/dts/meson8.dtsi                               | 4 ++++
->  arch/arm/boot/dts/meson8b.dtsi                              | 4 ++++
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                 | 4 ++++
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                  | 4 ++++
->  5 files changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-> index 2392557e..49a8118a 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-> @@ -24,6 +24,8 @@ Required properties for sub-nodes are:
->     when it is missing the "pull" registers are used instead
->   - gpio-controller: identifies the node as a gpio controller
->   - #gpio-cells: must be 2
-> + - interrupt-controller: identifies the node as interrupt controller
-> + - #interrupt-cells: must be 2
->  
->  === Other sub-nodes ===
->  
-> @@ -62,6 +64,8 @@ pinctrl-bindings.txt
->  			reg-names = "mux", "pull", "pull-enable", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->                 };
->  
->  		nand {
-> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-> index b4c4175d..a645257b 100644
-> --- a/arch/arm/boot/dts/meson8.dtsi
-> +++ b/arch/arm/boot/dts/meson8.dtsi
-> @@ -106,6 +106,8 @@
->  			reg-names = "mux", "pull", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_aobus 0 120 16>;
->  		};
->  
-> @@ -149,6 +151,8 @@
->  			reg-names = "mux", "pull", "pull-enable", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_cbus 0 0 120>;
->  		};
->  
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index 1bce64a6..49233917 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -99,6 +99,8 @@
->  			reg-names = "mux", "pull", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_aobus 0 130 16>;
->  		};
->  
-> @@ -174,6 +176,8 @@
->  			reg-names = "mux", "pull", "pull-enable", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_cbus 0 0 130>;
->  		};
->  	};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index 6f8b3011..a771dae8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> @@ -111,6 +111,8 @@
->  			reg-names = "mux", "pull", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_aobus 0 0 14>;
->  		};
->  
-> @@ -356,6 +358,8 @@
->  			reg-names = "mux", "pull", "pull-enable", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_periphs 0 14 120>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> index 3efad5f0..16b584f5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> @@ -80,6 +80,8 @@
->  			reg-names = "mux", "pull", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_aobus 0 0 14>;
->  		};
->  
-> @@ -244,6 +246,8 @@
->  			reg-names = "mux", "pull", "pull-enable", "gpio";
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
->  			gpio-ranges = <&pinctrl_periphs 0 14 101>;
->  		};
->  
-> 
+Patch applied with Jerome's review tag.
 
-
-Seems good,
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Yours,
+Linus Walleij
