@@ -1,145 +1,75 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 29 May 2017 11:35:33 +0200
-Subject: [PATCH v2 01/11] clk: take the prepare lock out of
- clk_core_set_parent
-In-Reply-To: <149573849978.52617.292626696549937056@resonance>
-References: <20170521215958.19743-1-jbrunet@baylibre.com>
- <20170521215958.19743-2-jbrunet@baylibre.com>
- <149573849978.52617.292626696549937056@resonance>
-Message-ID: <1496050533.7514.9.camel@baylibre.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Mon, 29 May 2017 11:57:25 +0200
+Subject: [PATCH 2/7] clocksource: Rename CLOCKSOURCE_OF_DECLARE
+In-Reply-To: <20170529084809.GA2192@mai>
+References: <1495879129-28109-1-git-send-email-daniel.lezcano@linaro.org>
+ <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
+ <CAK8P3a3QACHYqtCO1z_FpW0nXEtx356wCDha_=SNXU872=q1UQ@mail.gmail.com>
+ <20170529084809.GA2192@mai>
+Message-ID: <CAK8P3a1Kv_RhKL43ie6co_N5pDXvRHd7Uq8g70qt80WkxuhzLw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-05-25 at 11:54 -0700, Michael Turquette wrote:
-> Quoting Jerome Brunet (2017-05-21 14:59:48)
-> > 
-> > Rework set_parent core function so it can be called when the prepare lock
-> > is already held by the caller.
-> > 
-> > This rework is done to ease the integration of the "protected" clock
-> > functionality.
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
-> Applied to clk-next-protect for testing.
-> 
+On Mon, May 29, 2017 at 10:48 AM, Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+> On Mon, May 29, 2017 at 10:41:52AM +0200, Arnd Bergmann wrote:
+>> On Sat, May 27, 2017 at 11:58 AM, Daniel Lezcano
+>> <daniel.lezcano@linaro.org> wrote:
+>> > The CLOCKSOUCE_OF_DECLARE macro is used widely for the timers to declare the
+>> > clocksource at early stage. However, this macro is also used to initialize
+>> > the clockevent if any, or the clockevent only.
+>> >
+>> > It was originally suggested to declare another macro to initialize a
+>> > clockevent, so in order to separate the two entities even they belong to the
+>> > same IP. This was not accepted because of the impact on the DT where splitting
+>> > a clocksource/clockevent definition does not make sense as it is a Linux
+>> > concept not a hardware description.
+>> >
+>> > On the other side, the clocksource has not interrupt declared while the
+>> > clockevent has, so it is easy from the driver to know if the description is
+>> > for a clockevent or a clocksource, IOW it could be implemented at the driver
+>> > level.
+>> >
+>> > So instead of dealing with a named clocksource macro, let's use a more generic
+>> > one: TIMER_OF_DECLARE.
+>> >
+>> > The patch has not functional changes.
+>> >
+>> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>>
+>> Could you either leave the old name as an alias for one release, or introduce
+>> the new name as an alias now for 4.13?
+>>
+>> I think that that would make it easier to merge new drivers. Otherwise this
+>> looks good to me,
+>
+>
+> New drivers should go through my tree, so I can catch them with the old macro
+> name and do the change.
 
-Noted, I'll base the v3 on top of this branch
+Sure, they should, and it's quite likely that you won't even need the fallback,
+I've just seen too many cases where a similar assumption turned out wrong,
+that I'd just pick the safer option just in case whenever I do an API change.
 
-> Regards,
-> Mike
-> 
-> > ---
-> > ?drivers/clk/clk.c | 39 ++++++++++++++++++---------------------
-> > ?1 file changed, 18 insertions(+), 21 deletions(-)
-> > 
-> > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> > index fc58c52a26b4..f5c371532509 100644
-> > --- a/drivers/clk/clk.c
-> > +++ b/drivers/clk/clk.c
-> > @@ -1787,7 +1787,8 @@ bool clk_has_parent(struct clk *clk, struct clk
-> > *parent)
-> > ?}
-> > ?EXPORT_SYMBOL_GPL(clk_has_parent);
-> > ?
-> > -static int clk_core_set_parent(struct clk_core *core, struct clk_core
-> > *parent)
-> > +static int clk_core_set_parent_nolock(struct clk_core *core,
-> > +?????????????????????????????????????struct clk_core *parent)
-> > ?{
-> > ????????int ret = 0;
-> > ????????int p_index = 0;
-> > @@ -1796,23 +1797,16 @@ static int clk_core_set_parent(struct clk_core
-> > *core, struct clk_core *parent)
-> > ????????if (!core)
-> > ????????????????return 0;
-> > ?
-> > -???????/* prevent racing with updates to the clock topology */
-> > -???????clk_prepare_lock();
-> > -
-> > ????????if (core->parent == parent)
-> > -???????????????goto out;
-> > +???????????????return 0;
-> > ?
-> > ????????/* verify ops for for multi-parent clks */
-> > -???????if ((core->num_parents > 1) && (!core->ops->set_parent)) {
-> > -???????????????ret = -ENOSYS;
-> > -???????????????goto out;
-> > -???????}
-> > +???????if ((core->num_parents > 1) && (!core->ops->set_parent))
-> > +???????????????return -ENOSYS;
-> > ?
-> > ????????/* check that we are allowed to re-parent if the clock is in use */
-> > -???????if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count) {
-> > -???????????????ret = -EBUSY;
-> > -???????????????goto out;
-> > -???????}
-> > +???????if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
-> > +???????????????return -EBUSY;
-> > ?
-> > ????????/* try finding the new parent index */
-> > ????????if (parent) {
-> > @@ -1820,8 +1814,7 @@ static int clk_core_set_parent(struct clk_core *core,
-> > struct clk_core *parent)
-> > ????????????????if (p_index < 0) {
-> > ????????????????????????pr_debug("%s: clk %s can not be parent of clk %s\n",
-> > ????????????????????????????????????????__func__, parent->name, core->name);
-> > -???????????????????????ret = p_index;
-> > -???????????????????????goto out;
-> > +???????????????????????return p_index;
-> > ????????????????}
-> > ????????????????p_rate = parent->rate;
-> > ????????}
-> > @@ -1831,7 +1824,7 @@ static int clk_core_set_parent(struct clk_core *core,
-> > struct clk_core *parent)
-> > ?
-> > ????????/* abort if a driver objects */
-> > ????????if (ret & NOTIFY_STOP_MASK)
-> > -???????????????goto out;
-> > +???????????????return ret;
-> > ?
-> > ????????/* do the re-parent */
-> > ????????ret = __clk_set_parent(core, parent, p_index);
-> > @@ -1844,9 +1837,6 @@ static int clk_core_set_parent(struct clk_core *core,
-> > struct clk_core *parent)
-> > ????????????????__clk_recalc_accuracies(core);
-> > ????????}
-> > ?
-> > -out:
-> > -???????clk_prepare_unlock();
-> > -
-> > ????????return ret;
-> > ?}
-> > ?
-> > @@ -1869,10 +1859,17 @@ static int clk_core_set_parent(struct clk_core
-> > *core, struct clk_core *parent)
-> > ? */
-> > ?int clk_set_parent(struct clk *clk, struct clk *parent)
-> > ?{
-> > +???????int ret;
-> > +
-> > ????????if (!clk)
-> > ????????????????return 0;
-> > ?
-> > -???????return clk_core_set_parent(clk->core, parent ? parent->core : NULL);
-> > +???????clk_prepare_lock();
-> > +???????ret = clk_core_set_parent_nolock(clk->core,
-> > +????????????????????????????????????????parent ? parent->core : NULL);
-> > +???????clk_prepare_unlock();
-> > +
-> > +???????return ret;
-> > ?}
-> > ?EXPORT_SYMBOL_GPL(clk_set_parent);
-> > ?
-> > @@ -2753,7 +2750,7 @@ void clk_unregister(struct clk *clk)
-> > ????????????????/* Reparent all children to the orphan list. */
-> > ????????????????hlist_for_each_entry_safe(child, t, &clk->core->children,
-> > ??????????????????????????????????????????child_node)
-> > -???????????????????????clk_core_set_parent(child, NULL);
-> > +???????????????????????clk_core_set_parent_nolock(child, NULL);
-> > ????????}
-> > ?
-> > ????????hlist_del_init(&clk->core->child_node);
-> > --?
-> > 2.9.4
-> > 
+Things that could go wrong include:
+
+- A platform maintainer wants to add a new platform and has a for-next
+  branch that gets merged into linux-next, with parts of it going through
+  different maintainers, and now they have to choose between a branch
+  that doesn't build without the timer branch, or one that break for-next
+  unless Stephen applies a fixup
+
+- Some architecture maintainer didn't get the memo and adds an instance of
+  CLOCKSOUCE_OF_DECLARE in architecture specific code without asking
+  having the patch reviewed first
+
+- A platform has a branch with complex cross-tree dependencies and
+  it need to get merged in an unconventional way.
+
+- You make a mistake and accidentally merge one driver for an unusual
+  architecture that escapes your test matrix.
+
+While those all are unlikely to happen in a particular merge window, they do
+happen occasionally and tend to cause a lot of pain.
+
+       Arnd
