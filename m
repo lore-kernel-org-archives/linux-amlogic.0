@@ -1,51 +1,38 @@
-From: heiko@sntech.de (Heiko =?ISO-8859-1?Q?St=FCbner?=)
-Date: Mon, 29 May 2017 09:39:09 +0200
-Subject: [PATCH 2/7] clocksource: Rename CLOCKSOURCE_OF_DECLARE
-In-Reply-To: <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
-References: <1495879129-28109-1-git-send-email-daniel.lezcano@linaro.org>
- <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
-Message-ID: <1710049.UcE0hxO5ny@diego>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 29 May 2017 09:54:36 +0200
+Subject: [PATCH v2 0/2] clk: meson: mark clk81 as critical
+In-Reply-To: <20170524093932.5262-1-jbrunet@baylibre.com>
+References: <20170524093932.5262-1-jbrunet@baylibre.com>
+Message-ID: <a550aa57-c1b5-8849-095d-01586aaf5b50@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am Samstag, 27. Mai 2017, 11:58:43 CEST schrieb Daniel Lezcano:
-> The CLOCKSOUCE_OF_DECLARE macro is used widely for the timers to declare the
-> clocksource at early stage. However, this macro is also used to initialize
-> the clockevent if any, or the clockevent only.
+On 05/24/2017 11:39 AM, Jerome Brunet wrote:
+> The GX (gxbb.c) clock controller driver already marks the clk81 clock
+> as criticial. However, the Meson8b clock controller driver does not do
+> this yet.
+> This can lead to a freeze of the whole system when clk81 is disabled
+> by the common clock framework (for example after the last child clock
+> is disabled by a driver which used that child clock).
 > 
-> It was originally suggested to declare another macro to initialize a
-> clockevent, so in order to separate the two entities even they belong to the
-> same IP. This was not accepted because of the impact on the DT where
-> splitting a clocksource/clockevent definition does not make sense as it is
-> a Linux concept not a hardware description.
+> Changes since v1: [0]
+> With the clock flagged as CRITICAL, CLK_IGNORE_UNUSED is no longer
+> useful. Remove this flag from meson8b and gxbb's clk81.
 > 
-> On the other side, the clocksource has not interrupt declared while the
-> clockevent has, so it is easy from the driver to know if the description is
-> for a clockevent or a clocksource, IOW it could be implemented at the driver
-> level.
+> [0]: https://lkml.kernel.org/r/20170504183201.13175-1-martin.blumenstingl at googlemail.com
 > 
-> So instead of dealing with a named clocksource macro, let's use a more
-> generic one: TIMER_OF_DECLARE.
+> Jerome Brunet (1):
+>   clk: gxbb: remove CLK_IGNORE_UNUSED from clk81
 > 
-> The patch has not functional changes.
+> Martin Blumenstingl (1):
+>   clk: meson: meson8b: mark clk81 as critical
 > 
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> ---
-[...]
-> diff --git a/drivers/clocksource/rockchip_timer.c
-> b/drivers/clocksource/rockchip_timer.c index 49c02be..c27f4c8 100644
-> --- a/drivers/clocksource/rockchip_timer.c
-> +++ b/drivers/clocksource/rockchip_timer.c
-> @@ -303,5 +303,5 @@ static int __init rk_timer_init(struct device_node *np)
->  	return -EINVAL;
->  }
+>  drivers/clk/meson/gxbb.c    | 2 +-
+>  drivers/clk/meson/meson8b.c | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> -CLOCKSOURCE_OF_DECLARE(rk3288_timer, "rockchip,rk3288-timer",
-> rk_timer_init); -CLOCKSOURCE_OF_DECLARE(rk3399_timer,
-> "rockchip,rk3399-timer", rk_timer_init); +TIMER_OF_DECLARE(rk3288_timer,
-> "rockchip,rk3288-timer", rk_timer_init); +TIMER_OF_DECLARE(rk3399_timer,
-> "rockchip,rk3399-timer", rk_timer_init); diff --git
-> a/drivers/clocksource/samsung_pwm_timer.c
-> b/drivers/clocksource/samsung_pwm_timer.c index a68e653..21cd72c 100644
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Applied,
+
+Thanks,
+Neil
