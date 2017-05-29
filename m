@@ -1,103 +1,93 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Mon, 29 May 2017 12:04:48 +0200
-Subject: [RFC 1/2] dt-bindings: mmc: Document the Amlogic Meson8 and
- Meson8b SDIO bindings
-In-Reply-To: <20170506171857.16492-2-martin.blumenstingl@googlemail.com>
-References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
- <20170506171857.16492-2-martin.blumenstingl@googlemail.com>
-Message-ID: <CAPDyKFp9Dhf+sebqvxwr=i1dskh_JfhWaG4FMPO-CHk_sj7pVg@mail.gmail.com>
+From: daniel.lezcano@linaro.org (Daniel Lezcano)
+Date: Mon, 29 May 2017 12:55:09 +0200
+Subject: [PATCH 2/7] clocksource: Rename CLOCKSOURCE_OF_DECLARE
+In-Reply-To: <CAK8P3a1Kv_RhKL43ie6co_N5pDXvRHd7Uq8g70qt80WkxuhzLw@mail.gmail.com>
+References: <1495879129-28109-1-git-send-email-daniel.lezcano@linaro.org>
+ <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
+ <CAK8P3a3QACHYqtCO1z_FpW0nXEtx356wCDha_=SNXU872=q1UQ@mail.gmail.com>
+ <20170529084809.GA2192@mai>
+ <CAK8P3a1Kv_RhKL43ie6co_N5pDXvRHd7Uq8g70qt80WkxuhzLw@mail.gmail.com>
+Message-ID: <20170529105509.GC2192@mai>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 6 May 2017 at 19:18, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> From: Carlo Caione <carlo@endlessm.com>
->
-> This documents the devicetree bindings for the SDIO/MMC host found in
-> Amlogic Meson8 and Meson8b SoCs. It supports the SD specification v2.0
-> and the eMMC specification v4.41.
-> It has an internal "mux" which allows connecting up to three MMC devices
-> to it. The maximum supported bus-width is 4-bits.
->
-> Amlogic's GPL kernel sources call it "SDIO" to differentiate it from the
-> other MMC controller in (at least the Meson8 and Meson8b) the SoCs (they
-> call the other one "SDHC", which supports a bus-width of up to 8-bits).
->
-> Signed-off-by: Carlo Caione <carlo@endlessm.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
->
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
-> new file mode 100644
-> index 000000000000..991c43a602bd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
-> @@ -0,0 +1,50 @@
-> +* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
-> +
-> +The highspeed MMC host controller on Amlogic SoCs provides an interface
-> +for MMC, SD, SDIO and SDHC types of memory cards.
-> +
-> +Supported maximum speeds are the ones of the eMMC standard 4.41 as well
-> +as the speed of SD standard 2.0.
-> +
-> +The hardware provides an internal "mux" which allows up to three slots
-> +to be controlled. Only one device can be accessed at a time.
-> +
-> +Required properties:
-> + - compatible : must be one of
-> +       - "amlogic,meson8-sdio"
-> +       - "amlogic,meson8b-sdio"
-> +       along with the generic "amlogic,meson-mx-sdio"
-> + - reg : mmc controller base registers
-> + - interrupts : mmc controller interrupt
-> + - #address-cells : must be 1
-> + - size-cells : must be 0
-> + - clocks : phandle to clock providers
-> + - clock-names : must contain "core" and "clkin"
-> +
-> +Required child nodes:
-> +A node for each slot provided by the MMC controller is required.
-> +
-> +Required properties on each child node (= slot):
-> + - reg : the slot (or "port") ID
+On Mon, May 29, 2017 at 11:57:25AM +0200, Arnd Bergmann wrote:
+> On Mon, May 29, 2017 at 10:48 AM, Daniel Lezcano
+> <daniel.lezcano@linaro.org> wrote:
+> > On Mon, May 29, 2017 at 10:41:52AM +0200, Arnd Bergmann wrote:
+> >> On Sat, May 27, 2017 at 11:58 AM, Daniel Lezcano
+> >> <daniel.lezcano@linaro.org> wrote:
+> >> > The CLOCKSOUCE_OF_DECLARE macro is used widely for the timers to declare the
+> >> > clocksource at early stage. However, this macro is also used to initialize
+> >> > the clockevent if any, or the clockevent only.
+> >> >
+> >> > It was originally suggested to declare another macro to initialize a
+> >> > clockevent, so in order to separate the two entities even they belong to the
+> >> > same IP. This was not accepted because of the impact on the DT where splitting
+> >> > a clocksource/clockevent definition does not make sense as it is a Linux
+> >> > concept not a hardware description.
+> >> >
+> >> > On the other side, the clocksource has not interrupt declared while the
+> >> > clockevent has, so it is easy from the driver to know if the description is
+> >> > for a clockevent or a clocksource, IOW it could be implemented at the driver
+> >> > level.
+> >> >
+> >> > So instead of dealing with a named clocksource macro, let's use a more generic
+> >> > one: TIMER_OF_DECLARE.
+> >> >
+> >> > The patch has not functional changes.
+> >> >
+> >> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> >>
+> >> Could you either leave the old name as an alias for one release, or introduce
+> >> the new name as an alias now for 4.13?
+> >>
+> >> I think that that would make it easier to merge new drivers. Otherwise this
+> >> looks good to me,
+> >
+> >
+> > New drivers should go through my tree, so I can catch them with the old macro
+> > name and do the change.
+> 
+> Sure, they should, and it's quite likely that you won't even need the fallback,
+> I've just seen too many cases where a similar assumption turned out wrong,
+> that I'd just pick the safer option just in case whenever I do an API change.
+> 
+> Things that could go wrong include:
+> 
+> - A platform maintainer wants to add a new platform and has a for-next
+>   branch that gets merged into linux-next, with parts of it going through
+>   different maintainers, and now they have to choose between a branch
+>   that doesn't build without the timer branch, or one that break for-next
+>   unless Stephen applies a fixup
+> 
+> - Some architecture maintainer didn't get the memo and adds an instance of
+>   CLOCKSOUCE_OF_DECLARE in architecture specific code without asking
+>   having the patch reviewed first
+> 
+> - A platform has a branch with complex cross-tree dependencies and
+>   it need to get merged in an unconventional way.
+> 
+> - You make a mistake and accidentally merge one driver for an unusual
+>   architecture that escapes your test matrix.
+> 
+> While those all are unlikely to happen in a particular merge window, they do
+> happen occasionally and tend to cause a lot of pain.
 
-Please add also that we need a compatible = "mmc-slot", as we are
-using req for childnodes to describe SDIO func nodes and embedded
-cards.
+Hmm, that sounds scary :)
 
-While doing this, could you perhaps also update the generic mmc DT
-doc, as currently the compatible is described only in
-Documentation/devicetree/bindings/mmc/cavium-mmc.txt.
+There is no guarantee, when removing the alias, none of the above happens,
+right?
 
-> +
-> +Optional properties on each child node (= slot):
-> + - bus-width : must be 1 or 4 (8-bit bus is not supported)
-> + - for cd and all other additional generic mmc parameters
-> +   please refer to mmc.txt within this directory
-> +
-> +Examples:
-> +       mmc at c1108c20 {
-> +               compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
-> +               reg = <0xc1108c20 0x20>;
-> +               interrupts = <0 28 1>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +               clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
-> +               clock-names = "core", "clkin";
-> +
-> +               slot at 1 {
-> +                       reg = <1>;
-> +
-> +                       bus-width = <4>;
-> +               };
-> +       };
-> --
-> 2.12.2
->
+If the timer branch is in linux-next, that could be caugth before any of the
+above happens, no?
 
-Kind regards
-Uffe
+I'm not against adding an alias, just checking out if it is worth to.
+
+-- 
+
+ <http://www.linaro.org/> Linaro.org ? Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
