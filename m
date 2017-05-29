@@ -1,38 +1,24 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 29 May 2017 09:54:36 +0200
-Subject: [PATCH v2 0/2] clk: meson: mark clk81 as critical
-In-Reply-To: <20170524093932.5262-1-jbrunet@baylibre.com>
-References: <20170524093932.5262-1-jbrunet@baylibre.com>
-Message-ID: <a550aa57-c1b5-8849-095d-01586aaf5b50@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Mon, 29 May 2017 09:57:46 +0200
+Subject: [PATCH RfC v4 2/6] irqchip: add Amlogic Meson GPIO irqchip driver
+In-Reply-To: <b23d0417-a43b-a28c-3d9f-2be9bf6623f1@gmail.com>
+References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
+ <b23d0417-a43b-a28c-3d9f-2be9bf6623f1@gmail.com>
+Message-ID: <CACRpkda+i8VN6a+5RiW3z9uNQ4UrvpzmTPe28S_Nk7ZdDgPfbA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/24/2017 11:39 AM, Jerome Brunet wrote:
-> The GX (gxbb.c) clock controller driver already marks the clk81 clock
-> as criticial. However, the Meson8b clock controller driver does not do
-> this yet.
-> This can lead to a freeze of the whole system when clk81 is disabled
-> by the common clock framework (for example after the last child clock
-> is disabled by a driver which used that child clock).
-> 
-> Changes since v1: [0]
-> With the clock flagged as CRITICAL, CLK_IGNORE_UNUSED is no longer
-> useful. Remove this flag from meson8b and gxbb's clk81.
-> 
-> [0]: https://lkml.kernel.org/r/20170504183201.13175-1-martin.blumenstingl at googlemail.com
-> 
-> Jerome Brunet (1):
->   clk: gxbb: remove CLK_IGNORE_UNUSED from clk81
-> 
-> Martin Blumenstingl (1):
->   clk: meson: meson8b: mark clk81 as critical
-> 
->  drivers/clk/meson/gxbb.c    | 2 +-
->  drivers/clk/meson/meson8b.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
+On Sun, May 28, 2017 at 9:11 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-Applied,
+> Add a driver supporting the GPIO interrupt controller on certain
+> Amlogic meson SoC's.
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-Thanks,
-Neil
+This is a really nice approach.
+
+If I get an ACK from one of the irqchip maintainers I can merge this
+through the pin control tree along with the other stuff.
+
+Yours,
+Linus Walleij
