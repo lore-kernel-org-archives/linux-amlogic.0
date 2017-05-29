@@ -1,24 +1,42 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Mon, 29 May 2017 09:57:46 +0200
-Subject: [PATCH RfC v4 2/6] irqchip: add Amlogic Meson GPIO irqchip driver
-In-Reply-To: <b23d0417-a43b-a28c-3d9f-2be9bf6623f1@gmail.com>
-References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
- <b23d0417-a43b-a28c-3d9f-2be9bf6623f1@gmail.com>
-Message-ID: <CACRpkda+i8VN6a+5RiW3z9uNQ4UrvpzmTPe28S_Nk7ZdDgPfbA@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 29 May 2017 09:57:49 +0200
+Subject: [PATCH 1/1] clk: meson: meson8b: mark clk81 as critical
+In-Reply-To: <20170504183201.13175-2-martin.blumenstingl@googlemail.com>
+References: <20170504183201.13175-1-martin.blumenstingl@googlemail.com>
+ <20170504183201.13175-2-martin.blumenstingl@googlemail.com>
+Message-ID: <0efb9498-2806-8042-b73e-201de6a458cb@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, May 28, 2017 at 9:11 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On 05/04/2017 08:32 PM, Martin Blumenstingl wrote:
+> Disabling clk81 results in an immediate freeze of the whole system. This
+> can happen "accidentally" when the last child-clock of clk81 is disabled
+> (in this case the common clock framework also disables clk81, even if it
+> was only enabled indirectly before).
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/clk/meson/meson8b.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index e9985503165c..bfd1690724de 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -399,7 +399,7 @@ struct clk_gate meson8b_clk81 = {
+>  		.ops = &clk_gate_ops,
+>  		.parent_names = (const char *[]){ "mpeg_clk_div" },
+>  		.num_parents = 1,
+> -		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),
+> +		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED | CLK_IS_CRITICAL),
+>  	},
+>  };
+>  
+> 
 
-> Add a driver supporting the GPIO interrupt controller on certain
-> Amlogic meson SoC's.
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Hi Martin,
 
-This is a really nice approach.
+I applied the patch resent by Jerome,
 
-If I get an ACK from one of the irqchip maintainers I can merge this
-through the pin control tree along with the other stuff.
-
-Yours,
-Linus Walleij
+Thanks,
+Neil
