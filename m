@@ -1,57 +1,89 @@
-From: daniel.lezcano@linaro.org (Daniel Lezcano)
-Date: Mon, 29 May 2017 10:48:09 +0200
-Subject: [PATCH 2/7] clocksource: Rename CLOCKSOURCE_OF_DECLARE
-In-Reply-To: <CAK8P3a3QACHYqtCO1z_FpW0nXEtx356wCDha_=SNXU872=q1UQ@mail.gmail.com>
-References: <1495879129-28109-1-git-send-email-daniel.lezcano@linaro.org>
- <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
- <CAK8P3a3QACHYqtCO1z_FpW0nXEtx356wCDha_=SNXU872=q1UQ@mail.gmail.com>
-Message-ID: <20170529084809.GA2192@mai>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 29 May 2017 10:49:28 +0200
+Subject: [PATCH RfC v4 4/6] ARM(64): dts: meson: add GPIO
+ interrupt-controller support
+In-Reply-To: <5294644a-967e-dba8-d287-d932b38244d1@gmail.com>
+References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
+ <5294644a-967e-dba8-d287-d932b38244d1@gmail.com>
+Message-ID: <860a50b5-3e7c-29d0-54fa-89bf2840e04e@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, May 29, 2017 at 10:41:52AM +0200, Arnd Bergmann wrote:
-> On Sat, May 27, 2017 at 11:58 AM, Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
-> > The CLOCKSOUCE_OF_DECLARE macro is used widely for the timers to declare the
-> > clocksource at early stage. However, this macro is also used to initialize
-> > the clockevent if any, or the clockevent only.
-> >
-> > It was originally suggested to declare another macro to initialize a
-> > clockevent, so in order to separate the two entities even they belong to the
-> > same IP. This was not accepted because of the impact on the DT where splitting
-> > a clocksource/clockevent definition does not make sense as it is a Linux
-> > concept not a hardware description.
-> >
-> > On the other side, the clocksource has not interrupt declared while the
-> > clockevent has, so it is easy from the driver to know if the description is
-> > for a clockevent or a clocksource, IOW it could be implemented at the driver
-> > level.
-> >
-> > So instead of dealing with a named clocksource macro, let's use a more generic
-> > one: TIMER_OF_DECLARE.
-> >
-> > The patch has not functional changes.
-> >
-> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+
+
+Please correct the subject to :
+ARM64: dts: meson: add GPIO interrupt-controller support
+
+On 05/28/2017 09:11 PM, Heiner Kallweit wrote:
+> Add support for the GPIO interupt controller of certain Amlogic Meson
+> Soc's.
 > 
-> Could you either leave the old name as an alias for one release, or introduce
-> the new name as an alias now for 4.13?
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+>  arch/arm/boot/dts/meson8.dtsi             | 8 ++++++++
+>  arch/arm/boot/dts/meson8b.dtsi            | 8 ++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++++++
+>  3 files changed, 24 insertions(+)
 > 
-> I think that that would make it easier to merge new drivers. Otherwise this
-> looks good to me,
+> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+> index 69930773..b4c4175d 100644
+> --- a/arch/arm/boot/dts/meson8.dtsi
+> +++ b/arch/arm/boot/dts/meson8.dtsi
+> @@ -126,6 +126,14 @@
+>  };
+>  
+>  &cbus {
+> +	gpio_intc: interrupt-controller at 9880 {
+> +		compatible = "amlogic,meson-gpio-intc";
+> +		reg = <0x9880 0x10>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		parent-interrupts = <64 65 66 67 68 79 70 71>;
+> +	};
+> +
+>  	pinctrl_cbus: pinctrl at 9880 {
+>  		compatible = "amlogic,meson8-cbus-pinctrl";
+>  		reg = <0x9880 0x10>;
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index d9f116a4..1bce64a6 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -151,6 +151,14 @@
+>  		interrupts = <0 0 1>;
+>  	};
+>  
+> +	gpio_intc: interrupt-controller at 9880 {
+> +		compatible = "amlogic,meson-gpio-intc";
+> +		reg = <0x9880 0x10>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		parent-interrupts = <64 65 66 67 68 79 70 71>;
+> +	};
+> +
+>  	pinctrl_cbus: pinctrl at 9880 {
+>  		compatible = "amlogic,meson8b-cbus-pinctrl";
+>  		reg = <0x9880 0x10>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 436b8750..66dde761 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -312,6 +312,14 @@
+>  				status = "disabled";
+>  			};
+>  
+> +			gpio_intc: interrupt-controller at 9880 {
+> +				compatible = "amlogic,meson-gpio-intc";
+> +				reg = <0x0 0x09880 0x0 0x10>;
+> +				interrupt-controller;
+> +				#interrupt-cells = <2>;
+> +				parent-interrupts = <64 65 66 67 68 79 70 71>;
+> +			};
+> +
+>  			watchdog at 98d0 {
+>  				compatible = "amlogic,meson-gx-wdt", "amlogic,meson-gxbb-wdt";
+>  				reg = <0x0 0x098d0 0x0 0x10>;
+> 
 
+Seems correct with the dt-bindings,
 
-New drivers should go through my tree, so I can catch them with the old macro
-name and do the change.
-
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
-
-Thanks for the review.
-
--- 
-
- <http://www.linaro.org/> Linaro.org ? Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
