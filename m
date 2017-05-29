@@ -1,57 +1,57 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 29 May 2017 10:44:49 +0200
-Subject: [PATCH RfC v4 3/6] dt-bindings: add Amlogic Meson GPIO
- interrupt-controller DT binding documentation
-In-Reply-To: <4f082b42-40dd-6e7d-61f5-d3aad1fc19de@gmail.com>
-References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
- <4f082b42-40dd-6e7d-61f5-d3aad1fc19de@gmail.com>
-Message-ID: <e6d54450-a781-8089-bab4-567337248ab7@baylibre.com>
+From: daniel.lezcano@linaro.org (Daniel Lezcano)
+Date: Mon, 29 May 2017 10:48:09 +0200
+Subject: [PATCH 2/7] clocksource: Rename CLOCKSOURCE_OF_DECLARE
+In-Reply-To: <CAK8P3a3QACHYqtCO1z_FpW0nXEtx356wCDha_=SNXU872=q1UQ@mail.gmail.com>
+References: <1495879129-28109-1-git-send-email-daniel.lezcano@linaro.org>
+ <1495879129-28109-2-git-send-email-daniel.lezcano@linaro.org>
+ <CAK8P3a3QACHYqtCO1z_FpW0nXEtx356wCDha_=SNXU872=q1UQ@mail.gmail.com>
+Message-ID: <20170529084809.GA2192@mai>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/28/2017 09:11 PM, Heiner Kallweit wrote:
-> Add dt binding documentation for Amlogic meson GPIO interrupt controller.
+On Mon, May 29, 2017 at 10:41:52AM +0200, Arnd Bergmann wrote:
+> On Sat, May 27, 2017 at 11:58 AM, Daniel Lezcano
+> <daniel.lezcano@linaro.org> wrote:
+> > The CLOCKSOUCE_OF_DECLARE macro is used widely for the timers to declare the
+> > clocksource at early stage. However, this macro is also used to initialize
+> > the clockevent if any, or the clockevent only.
+> >
+> > It was originally suggested to declare another macro to initialize a
+> > clockevent, so in order to separate the two entities even they belong to the
+> > same IP. This was not accepted because of the impact on the DT where splitting
+> > a clocksource/clockevent definition does not make sense as it is a Linux
+> > concept not a hardware description.
+> >
+> > On the other side, the clocksource has not interrupt declared while the
+> > clockevent has, so it is easy from the driver to know if the description is
+> > for a clockevent or a clocksource, IOW it could be implemented at the driver
+> > level.
+> >
+> > So instead of dealing with a named clocksource macro, let's use a more generic
+> > one: TIMER_OF_DECLARE.
+> >
+> > The patch has not functional changes.
+> >
+> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 > 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  .../amlogic,meson-gpio-intc.txt                    | 26 ++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+> Could you either leave the old name as an alias for one release, or introduce
+> the new name as an alias now for 4.13?
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-> new file mode 100644
-> index 00000000..2f20d212
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-> @@ -0,0 +1,26 @@
-> +Amlogic meson GPIO interrupt controller
-> +
-> +Meson SoCs contains an interrupt controller which is able watch the SoC pads
-> +and generate an interrupt on edges or level. The controller is essentially a
-> +256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
-> +or level and polarity. The actual number of interrupt exposed depends on the
-> +SoC.
-> +
-> +Required properties:
-> +
-> +- compatible : should be "amlogic,meson-gpio-intc".
-> +- reg : Specifies base physical address and size of the registers.
-> +- interrupt-controller : Identifies the node as an interrupt controller.
-> +- #interrupt-cells : should be 2.
-> +- parent-interrupts : list of GIC interrupts which can be used with the
-> +		      GPIO IRQ multiplexer
-> +
-> +Example:
-> +
-> +gpio_intc: interrupt-controller at 9880 {
-> +	compatible = "amlogic,meson-gpio-intc";
-> +	reg = <0x0 0x09880 0x0 0x10>;
-> +	interrupt-controller;
-> +	#interrupt-cells = <2>;
-> +	parent-interrupts = <64 65 66 67 68 69 70 71>;
-> +};
-> 
+> I think that that would make it easier to merge new drivers. Otherwise this
+> looks good to me,
 
-Looks good.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+New drivers should go through my tree, so I can catch them with the old macro
+name and do the change.
+
+> Acked-by: Arnd Bergmann <arnd@arndb.de>
+
+Thanks for the review.
+
+-- 
+
+ <http://www.linaro.org/> Linaro.org ? Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
