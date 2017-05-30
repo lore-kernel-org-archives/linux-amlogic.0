@@ -1,27 +1,26 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 30 May 2017 14:53:57 -0700
-Subject: [PATCH v2 0/2] arm64: meson-gxbb: NanoPi K2 enablement
-In-Reply-To: <20170521185105.23448-1-afaerber@suse.de> ("Andreas
- =?utf-8?Q?F=C3=A4rber=22's?=
- message of "Sun, 21 May 2017 20:51:03 +0200")
-References: <20170521185105.23448-1-afaerber@suse.de>
-Message-ID: <m2k24yt3ii.fsf@baylibre.com>
+Date: Tue, 30 May 2017 16:27:50 -0700
+Subject: [PATCH] ARM64: dts: meson-gx: Add SPICC nodes
+In-Reply-To: <m27f0yt2cv.fsf@baylibre.com> (Kevin Hilman's message of "Tue, 30
+ May 2017 15:18:56 -0700")
+References: <1496045395-5702-1-git-send-email-narmstrong@baylibre.com>
+ <m27f0yt2cv.fsf@baylibre.com>
+Message-ID: <m237bmsz61.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Andreas F?rber <afaerber@suse.de> writes:
+Kevin Hilman <khilman@baylibre.com> writes:
 
-> Hello,
+> Neil Armstrong <narmstrong@baylibre.com> writes:
 >
-> This mini-series adds initial support for the Amlogic S905 based
-> FriendlyARM NanoPi K2 SBC.
+>> Add nodes for the SPICC controller on GX common dtsi, GXBB and
+>> GXL dtsi files.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >
-> Tested with mainline U-Boot.
->
-> v2 adds USB and Wifi among others.
+> Applied to v4.13/dt64,
 
-Applied.  (branch: v4.13/dt64)
-
-Thanks,
+Oops, this one will have to wait until we have an immutable branch in
+the clk tree.
 
 Kevin
