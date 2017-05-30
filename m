@@ -1,69 +1,46 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 30 May 2017 22:27:09 +0200
-Subject: [PATCH v5 8/9] ARM: dts: meson: mark gpio controllers as interrupt
- controllers
+Date: Tue, 30 May 2017 22:26:53 +0200
+Subject: [PATCH v5 7/9] pinctrl: meson: update DT binding documentation
 In-Reply-To: <66c57893-0a9e-4f8c-a017-ab346abbdfd0@gmail.com>
 References: <66c57893-0a9e-4f8c-a017-ab346abbdfd0@gmail.com>
-Message-ID: <eeb7f081-f52b-0f93-dea7-3c1a0f097e1b@gmail.com>
+Message-ID: <7bcb2099-c7e6-e06a-d451-44108f958ef0@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Make the GPIO controllers act as interrupt controllers.
+The GPIO controllers act as interrupt controllers now,
+therefore update the related DT binding documentation.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
 v5:
-- separate ARM / ARM64 DT changes
+- separate documentation update from actual DT update
 - add Reviewed-by
 ---
- arch/arm/boot/dts/meson8.dtsi  | 4 ++++
- arch/arm/boot/dts/meson8b.dtsi | 4 ++++
- 2 files changed, 8 insertions(+)
+ Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index b4c4175d..c64ddd58 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -106,6 +106,8 @@
- 			reg-names = "mux", "pull", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_aobus 0 120 16>;
- 		};
+diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+index 2392557e..49a8118a 100644
+--- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
++++ b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+@@ -24,6 +24,8 @@ Required properties for sub-nodes are:
+    when it is missing the "pull" registers are used instead
+  - gpio-controller: identifies the node as a gpio controller
+  - #gpio-cells: must be 2
++ - interrupt-controller: identifies the node as interrupt controller
++ - #interrupt-cells: must be 2
  
-@@ -149,6 +151,8 @@
+ === Other sub-nodes ===
+ 
+@@ -62,6 +64,8 @@ pinctrl-bindings.txt
  			reg-names = "mux", "pull", "pull-enable", "gpio";
  			gpio-controller;
  			#gpio-cells = <2>;
 +			interrupt-controller;
 +			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_cbus 0 0 120>;
- 		};
+                };
  
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index fedfef24..dd7ed539 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -99,6 +99,8 @@
- 			reg-names = "mux", "pull", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_aobus 0 130 16>;
- 		};
- 
-@@ -174,6 +176,8 @@
- 			reg-names = "mux", "pull", "pull-enable", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_cbus 0 0 130>;
- 		};
- 	};
+ 		nand {
 -- 
 2.13.0
