@@ -1,19 +1,23 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 30 May 2017 15:07:56 -0700
-Subject: [PATCH 0/3] ARM64: dts: meson: GXBB and GXL pinctrl fixes
-In-Reply-To: <1495549311-23660-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Tue, 23 May 2017 16:21:48 +0200")
-References: <1495549311-23660-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2fufmt2v7.fsf@baylibre.com>
+Date: Tue, 30 May 2017 15:14:24 -0700
+Subject: [PATCH 0/5] ARM64: dts: meson: Add CEC,
+ Ethernet Link and SPI pins nodes
+In-Reply-To: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Wed, 24 May 2017 10:28:20 +0200")
+References: <1495614505-4437-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2bmqat2kf.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> This patchset fixes the following :
->  - bad gpio-ranges for GXL
->  - bad pull-enable register base for GXBB & GXL
+> This patchset adds the following DT Pins nodes :
+>  - CEC Pins for GXBB and GXL
+>  - SPICC Pins for GXBB and GXL
+>  - Internal Ethernet PHY LEDS pins for GXL
 
-Applied with Jerome's reviewed-by tag added.
+Appplied to v4.13/dt64,
+
+Thanks,
 
 Kevin
