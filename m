@@ -1,69 +1,30 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 30 May 2017 22:27:12 +0200
-Subject: [PATCH v5 9/9] ARM64: dts: meson: mark gpio controllers as interrupt
- controllers
-In-Reply-To: <66c57893-0a9e-4f8c-a017-ab346abbdfd0@gmail.com>
-References: <66c57893-0a9e-4f8c-a017-ab346abbdfd0@gmail.com>
-Message-ID: <d24b179c-f263-b953-1152-0429f64c7f1f@gmail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Tue, 30 May 2017 16:44:29 -0500
+Subject: [PATCH RfC v3 7/7] pinctrl: meson: add interrupt controller to
+ GPIO DT nodes
+In-Reply-To: <1c8aa228-c1da-ed48-52a5-184332eecf26@gmail.com>
+References: <16950080-b19d-e25c-fb48-bc79cfe4acc0@gmail.com>
+ <1c8aa228-c1da-ed48-52a5-184332eecf26@gmail.com>
+Message-ID: <20170530214429.pulyr4hnhss4cmcr@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Make the GPIO controllers act as interrupt controllers.
+On Wed, May 17, 2017 at 10:17:10PM +0200, Heiner Kallweit wrote:
+> Add interrupt controller properties to the gpio controller nodes and
+> extend the gpio controller DT binding documentation.
+> 
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> ---
+> v3:
+> - added to the patch series
+> ---
+>  Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt | 4 ++++
+>  arch/arm/boot/dts/meson8.dtsi                               | 2 ++
+>  arch/arm/boot/dts/meson8b.dtsi                              | 2 ++
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                 | 4 ++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                  | 4 ++++
+>  5 files changed, 16 insertions(+)
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
-v5:
-- separate ARM / ARM64 DT changes
-- add Reviewed-by
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++++
- 2 files changed, 8 insertions(+)
+Bindings and dts changes should be separate patches. With that,
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 6f8b3011..a771dae8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -111,6 +111,8 @@
- 			reg-names = "mux", "pull", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_aobus 0 0 14>;
- 		};
- 
-@@ -356,6 +358,8 @@
- 			reg-names = "mux", "pull", "pull-enable", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_periphs 0 14 120>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 3efad5f0..16b584f5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -80,6 +80,8 @@
- 			reg-names = "mux", "pull", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_aobus 0 0 14>;
- 		};
- 
-@@ -244,6 +246,8 @@
- 			reg-names = "mux", "pull", "pull-enable", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_periphs 0 14 101>;
- 		};
- 
--- 
-2.13.0
+Acked-by: Rob Herring <robh@kernel.org>
