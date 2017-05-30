@@ -1,112 +1,59 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 30 May 2017 10:41:44 +0200
-Subject: [PATCH RfC v4 4/6] ARM(64): dts: meson: add GPIO
- interrupt-controller support
-In-Reply-To: <a7db5fa9-02b9-a26a-26ad-fdfcef0b9938@gmail.com>
-References: <49ab677f-3165-d6f5-75f5-a963879e8ecf@gmail.com>
- <5294644a-967e-dba8-d287-d932b38244d1@gmail.com>
- <860a50b5-3e7c-29d0-54fa-89bf2840e04e@baylibre.com>
- <a7db5fa9-02b9-a26a-26ad-fdfcef0b9938@gmail.com>
-Message-ID: <17856f9b-5ea4-474b-30db-9608cb97f03c@baylibre.com>
+From: carlo@caione.org (Carlo Caione)
+Date: Tue, 30 May 2017 11:05:05 +0200
+Subject: [PATCH v4 0/2] scpi-sensors: Fix SCP sensor readings scale
+Message-ID: <20170530090507.16611-1-carlo@caione.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heiner,
+From: Carlo Caione <carlo@endlessm.com>
 
-On 05/29/2017 10:01 PM, Heiner Kallweit wrote:
-> Am 29.05.2017 um 10:49 schrieb Neil Armstrong:
->>
->>
->> Please correct the subject to :
->> ARM64: dts: meson: add GPIO interrupt-controller support
->>
-> At first thanks for the review comments.
+Sorry for the delay. This is the follow-up on the patches about scpi-sensors
+with the fix suggested in [0].
 
-You're welcome, I'm glad you followed some of our comments.
+The previous version is at [1].
 
-> 
-> I chose ARM(64) because Meson8 resides under arch/arm whilst Meson GX
-> is under arch/arm64, and I didn't want to split it into two patches.
-> If we change it to ARM64 then it may not fit for Meson8.
+The implementation details for SCPI seems to suggest that the sensor
+readings must be reported by SCP using a well defined scale
+(millidegree Celsius for temperature, millivolts for voltage,
+milliamperes for current, microwatts for power and microjoules for
+energy).
 
-Yes, please split the patches in two for ARM and ARM64.
-This is a requirement from the arm-soc maintainers.
+This is also important for the interaction with other subsystems: for
+example both the thermal sub-system and the hwmon sysfs interface expect
+the temperature expressed in millidegree Celsius.
 
-Neil
+Unfortunately since this behaviour is dependent on the firmware
+implementation there are cases where the sensor readings are reported
+using a different scale. For example in the Amlogic SoCs the
+temperature is reported in degree and not millidegree Celsius.
 
-> 
->> On 05/28/2017 09:11 PM, Heiner Kallweit wrote:
->>> Add support for the GPIO interupt controller of certain Amlogic Meson
->>> Soc's.
->>>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> ---
->>>  arch/arm/boot/dts/meson8.dtsi             | 8 ++++++++
->>>  arch/arm/boot/dts/meson8b.dtsi            | 8 ++++++++
->>>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++++++
->>>  3 files changed, 24 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
->>> index 69930773..b4c4175d 100644
->>> --- a/arch/arm/boot/dts/meson8.dtsi
->>> +++ b/arch/arm/boot/dts/meson8.dtsi
->>> @@ -126,6 +126,14 @@
->>>  };
->>>  
->>>  &cbus {
->>> +	gpio_intc: interrupt-controller at 9880 {
->>> +		compatible = "amlogic,meson-gpio-intc";
->>> +		reg = <0x9880 0x10>;
->>> +		interrupt-controller;
->>> +		#interrupt-cells = <2>;
->>> +		parent-interrupts = <64 65 66 67 68 79 70 71>;
->>> +	};
->>> +
->>>  	pinctrl_cbus: pinctrl at 9880 {
->>>  		compatible = "amlogic,meson8-cbus-pinctrl";
->>>  		reg = <0x9880 0x10>;
->>> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
->>> index d9f116a4..1bce64a6 100644
->>> --- a/arch/arm/boot/dts/meson8b.dtsi
->>> +++ b/arch/arm/boot/dts/meson8b.dtsi
->>> @@ -151,6 +151,14 @@
->>>  		interrupts = <0 0 1>;
->>>  	};
->>>  
->>> +	gpio_intc: interrupt-controller at 9880 {
->>> +		compatible = "amlogic,meson-gpio-intc";
->>> +		reg = <0x9880 0x10>;
->>> +		interrupt-controller;
->>> +		#interrupt-cells = <2>;
->>> +		parent-interrupts = <64 65 66 67 68 79 70 71>;
->>> +	};
->>> +
->>>  	pinctrl_cbus: pinctrl at 9880 {
->>>  		compatible = "amlogic,meson8b-cbus-pinctrl";
->>>  		reg = <0x9880 0x10>;
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->>> index 436b8750..66dde761 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->>> @@ -312,6 +312,14 @@
->>>  				status = "disabled";
->>>  			};
->>>  
->>> +			gpio_intc: interrupt-controller at 9880 {
->>> +				compatible = "amlogic,meson-gpio-intc";
->>> +				reg = <0x0 0x09880 0x0 0x10>;
->>> +				interrupt-controller;
->>> +				#interrupt-cells = <2>;
->>> +				parent-interrupts = <64 65 66 67 68 79 70 71>;
->>> +			};
->>> +
->>>  			watchdog at 98d0 {
->>>  				compatible = "amlogic,meson-gx-wdt", "amlogic,meson-gxbb-wdt";
->>>  				reg = <0x0 0x098d0 0x0 0x10>;
->>>
->>
->> Seems correct with the dt-bindings,
->>
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->>
-> 
+In this patchset we introduce a new DT compatible
+'amlogic,meson-gxbb-scpi-sensors' that is used by the scpi-hwmon driver to
+convert the sensor readings to the expected scale.
+
+v2:
+ - Added data validation (scale != 0)
+ - s/unsigned int/u32/ for the array
+ - Switched to array initialiser notation
+ - Introduced scpi_scale_reading()
+
+v3:
+ - scpi_scale_reading marked as static
+
+v4:
+ - Removed new binding and added a new compatible instead
+
+[0] https://patchwork.kernel.org/patch/9612959/
+[1] http://lists.infradead.org/pipermail/linux-arm-kernel/2017-March/492553.html
+
+Carlo Caione (2):
+  Documentation: bindings: add amlogic,meson-gxbb-scpi-sensors
+    compatible
+  hwmon: (scpi) Fix the scale of SCP sensor readings
+
+ Documentation/devicetree/bindings/arm/arm,scpi.txt |  2 +-
+ drivers/hwmon/scpi-hwmon.c                         | 54 +++++++++++++++++++---
+ 2 files changed, 49 insertions(+), 7 deletions(-)
+
+-- 
+2.9.3
