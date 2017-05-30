@@ -1,27 +1,19 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 30 May 2017 14:52:18 -0700
-Subject: [PATCH v2 0/3] arm64: meson-gxm: R-Box Pro enablement
-In-Reply-To: <20170513152312.19912-1-afaerber@suse.de> ("Andreas
- =?utf-8?Q?F=C3=A4rber=22's?=
- message of "Sat, 13 May 2017 17:23:09 +0200")
-References: <20170513152312.19912-1-afaerber@suse.de>
-Message-ID: <m2o9uat3l9.fsf@baylibre.com>
+Date: Tue, 30 May 2017 15:07:56 -0700
+Subject: [PATCH 0/3] ARM64: dts: meson: GXBB and GXL pinctrl fixes
+In-Reply-To: <1495549311-23660-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Tue, 23 May 2017 16:21:48 +0200")
+References: <1495549311-23660-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <m2fufmt2v7.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Andreas F?rber <afaerber@suse.de> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> Hello,
->
-> This mini-series adds initial support for the Amlogic S912 based
-> R-Box Pro TV boxes.
->
-> v2 depends on my Meson cleanup series (amlogic.txt, Makefile) and
-> squashes the addition of a board compatible string.
->
-> @Kingnovel: Your Acked-by would be appreciated.
+> This patchset fixes the following :
+>  - bad gpio-ranges for GXL
+>  - bad pull-enable register base for GXBB & GXL
 
-Oops, I thought I had already applied these, but hadn't.  Applied now to
-v4.13/dt64.
+Applied with Jerome's reviewed-by tag added.
 
 Kevin
