@@ -1,30 +1,27 @@
-From: robh@kernel.org (Rob Herring)
-Date: Tue, 30 May 2017 16:44:29 -0500
-Subject: [PATCH RfC v3 7/7] pinctrl: meson: add interrupt controller to
- GPIO DT nodes
-In-Reply-To: <1c8aa228-c1da-ed48-52a5-184332eecf26@gmail.com>
-References: <16950080-b19d-e25c-fb48-bc79cfe4acc0@gmail.com>
- <1c8aa228-c1da-ed48-52a5-184332eecf26@gmail.com>
-Message-ID: <20170530214429.pulyr4hnhss4cmcr@rob-hp-laptop>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 30 May 2017 14:52:18 -0700
+Subject: [PATCH v2 0/3] arm64: meson-gxm: R-Box Pro enablement
+In-Reply-To: <20170513152312.19912-1-afaerber@suse.de> ("Andreas
+ =?utf-8?Q?F=C3=A4rber=22's?=
+ message of "Sat, 13 May 2017 17:23:09 +0200")
+References: <20170513152312.19912-1-afaerber@suse.de>
+Message-ID: <m2o9uat3l9.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, May 17, 2017 at 10:17:10PM +0200, Heiner Kallweit wrote:
-> Add interrupt controller properties to the gpio controller nodes and
-> extend the gpio controller DT binding documentation.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v3:
-> - added to the patch series
-> ---
->  Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt | 4 ++++
->  arch/arm/boot/dts/meson8.dtsi                               | 2 ++
->  arch/arm/boot/dts/meson8b.dtsi                              | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                 | 4 ++++
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                  | 4 ++++
->  5 files changed, 16 insertions(+)
+Andreas F?rber <afaerber@suse.de> writes:
 
-Bindings and dts changes should be separate patches. With that,
+> Hello,
+>
+> This mini-series adds initial support for the Amlogic S912 based
+> R-Box Pro TV boxes.
+>
+> v2 depends on my Meson cleanup series (amlogic.txt, Makefile) and
+> squashes the addition of a board compatible string.
+>
+> @Kingnovel: Your Acked-by would be appreciated.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Oops, I thought I had already applied these, but hadn't.  Applied now to
+v4.13/dt64.
+
+Kevin
