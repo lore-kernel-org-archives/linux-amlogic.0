@@ -1,29 +1,37 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu,  1 Jun 2017 17:16:20 +0200
-Subject: [PATCH] ARM64: defconfig: enable meson SPICC as module
-Message-ID: <1496330180-6339-1-git-send-email-narmstrong@baylibre.com>
+From: geert+renesas@glider.be (Geert Uytterhoeven)
+Date: Fri,  2 Jun 2017 14:38:45 +0200
+Subject: [PATCH v3 2/6] arm64: dts: lg1313: DT fix
+ s/#interrupts-cells/#interrupt-cells/
+In-Reply-To: <1496407129-13527-1-git-send-email-geert+renesas@glider.be>
+References: <1496407129-13527-1-git-send-email-geert+renesas@glider.be>
+Message-ID: <1496407129-13527-3-git-send-email-geert+renesas@glider.be>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch enable the SPI Communications Controller driver as module for the
-Amlogic platform.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Chanho Min <chanho.min@lge.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+v3:
+  - Add Acked-by,
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 65cdd87..606e489 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -259,6 +259,7 @@ CONFIG_I2C_CROS_EC_TUNNEL=y
- CONFIG_SPI=y
- CONFIG_SPI_BCM2835=m
- CONFIG_SPI_BCM2835AUX=m
-+CONFIG_SPI_MESON_SPICC=m
- CONFIG_SPI_MESON_SPIFC=m
- CONFIG_SPI_ORION=y
- CONFIG_SPI_PL022=y
+v2:
+  - New.
+---
+ arch/arm64/boot/dts/lg/lg1313.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/lg1313.dtsi
+index e703e1149c757082..abb2162228e82d39 100644
+--- a/arch/arm64/boot/dts/lg/lg1313.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
+@@ -123,7 +123,7 @@
+ 	amba {
+ 		#address-cells = <2>;
+ 		#size-cells = <1>;
+-		#interrupts-cells = <3>;
++		#interrupt-cells = <3>;
+ 
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&gic>;
 -- 
-1.9.1
+2.7.4
