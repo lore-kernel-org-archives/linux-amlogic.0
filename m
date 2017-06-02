@@ -1,37 +1,48 @@
-From: geert+renesas@glider.be (Geert Uytterhoeven)
-Date: Fri,  2 Jun 2017 14:38:47 +0200
-Subject: [PATCH v3 4/6] powerpc: dts: acadia: DT fix
- s/#interrupts-parent/#interrupt-parent/
-In-Reply-To: <1496407129-13527-1-git-send-email-geert+renesas@glider.be>
-References: <1496407129-13527-1-git-send-email-geert+renesas@glider.be>
-Message-ID: <1496407129-13527-5-git-send-email-geert+renesas@glider.be>
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Fri, 2 Jun 2017 06:14:17 -0700
+Subject: [PATCH v4 1/2] Documentation: bindings: add
+ amlogic,meson-gxbb-scpi-sensors compatible
+In-Reply-To: <20170530090507.16611-2-carlo@caione.org>
+References: <20170530090507.16611-1-carlo@caione.org>
+ <20170530090507.16611-2-carlo@caione.org>
+Message-ID: <8d0c867e-2b78-63fa-f422-709e515012ca@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Rob Herring <robh@kernel.org>
----
-v3:
-  - No changes,
+On 05/30/2017 02:05 AM, Carlo Caione wrote:
+> From: Carlo Caione <carlo@endlessm.com>
+> 
+> Introduce a new Amlogic specific compatible to handle how Amlogic reports
+> the sensor readings from SCPI using a different scale.
+> 
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
 
-v2:
-  - Add Acked-by.
----
- arch/powerpc/boot/dts/acadia.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Formally waiting for DT approval. However, I don't see any problems with it,
+so
 
-diff --git a/arch/powerpc/boot/dts/acadia.dts b/arch/powerpc/boot/dts/acadia.dts
-index 57291f61ffe7021a..86266159521edac2 100644
---- a/arch/powerpc/boot/dts/acadia.dts
-+++ b/arch/powerpc/boot/dts/acadia.dts
-@@ -183,7 +183,7 @@
- 			usb at ef603000 {
- 				compatible = "ohci-be";
- 				reg = <0xef603000 0x80>;
--				interrupts-parent = <&UIC0>;
-+				interrupt-parent = <&UIC0>;
- 				interrupts = <0xd 0x4 0xe 0x4>;
- 			};
- 
--- 
-2.7.4
+Acked-by: Guenter Roeck <linux@roeck-us.net>
+
+Not sure what branch this is supposed to go through. For now I assume it
+will be arm/arm64.
+
+Thanks,
+Guenter
+
+> ---
+>   Documentation/devicetree/bindings/arm/arm,scpi.txt | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+> index 4018319..40f50c1 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
+> +++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+> @@ -76,7 +76,7 @@ Sensor bindings for the sensors based on SCPI Message Protocol
+>   SCPI provides an API to access the various sensors on the SoC.
+>   
+>   Required properties:
+> -- compatible : should be "arm,scpi-sensors".
+> +- compatible : should be "arm,scpi-sensors" or "amlogic,meson-gxbb-scpi-sensors"
+>   - #thermal-sensor-cells: should be set to 1. This property follows the
+>   			 thermal device tree bindings[2].
+>   
+> 
