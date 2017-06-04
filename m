@@ -1,111 +1,37 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun,  4 Jun 2017 20:33:41 +0200
-Subject: [PATCH 3/3] ARM: dts: meson8: add and use the real clock controller
-In-Reply-To: <20170604183341.21417-1-martin.blumenstingl@googlemail.com>
-References: <20170604183341.21417-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170604183341.21417-4-martin.blumenstingl@googlemail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sun, 4 Jun 2017 21:11:04 +0200
+Subject: call trace on Khadas VIM Pro with AP6255 WiFi
+In-Reply-To: <CAG_g8w439G_exFOPtO3sNTdW5KBYJqA5-swL6NsLiGW1qAo2DQ@mail.gmail.com>
+References: <CAG_g8w439G_exFOPtO3sNTdW5KBYJqA5-swL6NsLiGW1qAo2DQ@mail.gmail.com>
+Message-ID: <cfde91da-9697-ac6c-7614-d56c6c49d459@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This removes the dummy clk81 gate and replaces it with the actual clock
-controller's CLKID_CLK81. This will also allow us to pass the real clock
-IDs to all devices where the clock is controlled by clkc in the future.
+Am 04.06.2017 um 17:59 schrieb crow:
+> Hi,
+> Posting to list as requested. I get call trace when using WiFi on Khadas VIM Pro, which comes with an AP6255. Firstly i wrote about this directly to Martin Blumenstingl, and he pointed me for this to post here.
+> This looks like a bug in the meson-gx-mmc.c (SD/SDIO/eMMC) driver [1]. Martin last successful test was with kernel 2.11.
+> 
+> How to reproduce this:
+> mainline kernel 4.12.0-rc3 (using ArchLinuxARM arm8v generic rootfs)
+> Khadas VIM Pro nvram file [2]
+I have been in contact with others using AP6255-based SDIO WiFi with this driver. After the recent version of the driver
+was released I didn't hear back from them so I assume WiFi is working fine for them.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8.dtsi | 32 ++++++++++++++++----------------
- 1 file changed, 16 insertions(+), 16 deletions(-)
+The firmware image you use seems to be for Android. Not sure which firmware the others are using.
+This might be a potential reason for the issue.
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 6993077331c7..9b0b3ddbb17e 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -43,6 +43,7 @@
-  *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
-+#include <dt-bindings/clock/meson8b-clkc.h>
- #include <dt-bindings/gpio/meson8-gpio.h>
- /include/ "meson.dtsi"
- 
-@@ -82,13 +83,6 @@
- 			reg = <0x203>;
- 		};
- 	};
--
--	clk81: clk at 0 {
--		#clock-cells = <0>;
--		compatible = "fixed-clock";
--		clock-frequency = <141666666>;
--	};
--
- }; /* end of / */
- 
- &aobus {
-@@ -126,6 +120,12 @@
- };
- 
- &cbus {
-+	clkc: clock-controller at 4000 {
-+		#clock-cells = <1>;
-+		compatible = "amlogic,meson8-clkc";
-+		reg = <0x8000 0x4>, <0x4000 0x460>;
-+	};
-+
- 	pinctrl_cbus: pinctrl at 9880 {
- 		compatible = "amlogic,meson8-cbus-pinctrl";
- 		reg = <0x9880 0x10>;
-@@ -172,20 +172,20 @@
- };
- 
- &ethmac {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- 	clock-names = "stmmaceth";
- };
- 
- &i2c_AO {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
- 
- &i2c_A {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
- 
- &i2c_B {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
- 
- &L2 {
-@@ -195,21 +195,21 @@
- };
- 
- &spifc {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
- 
- &uart_AO {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
- 
- &uart_A {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
- 
- &uart_B {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
- 
- &uart_C {
--	clocks = <&clk81>;
-+	clocks = <&clkc CLKID_CLK81>;
- };
--- 
-2.13.0
+> Enable WiFI (connected to 5GHZ AP)
+> just do an SSH to Khadas VIM Pro device and you will get these call trace [3] , eventually you get login prompt but it is very slow login. 
+The log shows that first HW reports a failed write transfer (status 0x0100) and then an unexpected interrupt occurs (host->cmd being NULL).
+Apart from the firmware the failed transfer might also be caused by e.g. a too high frequency.
+
+Would be interesting to hear what's the latest kernel version (or even better: a bisect) working for you.
+
+I'm using a Odroid-C2 where SDIO isn't available, so I'm not able to test.
+
+> 
+> [1] https://github.com/torvalds/linux/commits/master/drivers/mmc/host/meson-gx-mmc.c
+> [2] https://github.com/khadas/android_hardware_amlogic_wifi/tree/Vim/bcm_ampak/config/6255
+> [3] https://defuse.ca/b/7htlAdOO
+> 
