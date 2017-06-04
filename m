@@ -1,24 +1,46 @@
-From: crow@linux.org.ba (crow)
-Date: Sun, 4 Jun 2017 18:07:49 +0200
-Subject: call trace on Khadas VIM Pro with AP6255 WiFi
-Message-ID: <CAG_g8w5jOx7y12WBy2Yx6eesEa=8ktpPDOAOSZAHwdud+cetkg@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun,  4 Jun 2017 20:33:38 +0200
+Subject: [PATCH 0/3] use the Meson8b clock controller driver on Meson8 SoCs
+Message-ID: <20170604183341.21417-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
-Posting to list as requested. I get call trace when using WiFi on
-Khadas VIM Pro, which comes with an AP6255. Firstly i wrote about this
-directly to Martin Blumenstingl, and he pointed me to post here.
-This looks like a bug in the meson-gx-mmc.c (SD/SDIO/eMMC) driver [1].
-Martin last successful test was with kernel 2.11.
+Based on the code from Amlogic's GPL kernel sources the clock controller
+in the Meson8 (S802), Meson8b (S805) and Meson8m2 (S812) SoCs is very
+similar.
 
-How to reproduce this:
-mainline kernel 4.12.0-rc3 (using ArchLinuxARM arm8v generic rootfs)
-Khadas VIM Pro nvram file [2]
-Enable WiFI (connected to 5GHZ AP)
-just do an SSH to Khadas VIM Pro device and you will get these call
-trace [3] , eventually you get login prompt but it is very slow login.
+a more detailed list of differences between the clock controller on each SoC
+can be found in the description of the first patch.
 
-[1] https://github.com/torvalds/linux/commits/master/drivers/mmc/host/meson-gx-mmc.c
-[2] https://github.com/khadas/android_hardware_amlogic_wifi/tree/Vim/bcm_ampak/config/6255
-[3] https://defuse.ca/b/7htlAdOO
+This series adds new of_device_ids / compatibles for the Meson8 and Meson8m2
+SoCs to the existing Meson8b clock controller driver (and updates the
+documentation, Kconfig help and comments accordingly).
+It also enables CONFIG_COMMON_CLK_MESON8B for MACH_MESON8.
+Finally it adds the clock controller to meson8.dtsi and replaces the
+static clk81 instance with the clk81 provided by the clock controller.
+
+This is also the first preparation step for Meson8m2 SoC support by making
+the clock controller available.
+I am planning to post several follow-up series which will:
+- add lots of missing devices to meson8.dtsi and meson8b.dtsi such as (but
+  not limited to) PWM, USB controllers and PHYs, SAR ADC, HW random number
+  generator and the SCU (Snoop Control Unit)
+- add Meson8m2 SoC support
+- once it's ready: the SDIO driver (allows connecting the SD card, SDIO wifi
+  and eMMC flash)
+
+
+Martin Blumenstingl (3):
+  clk: meson: meson8b: add compatibles for Meson8 and Meson8m2
+  arm: meson: select the clock controller for Meson8
+  ARM: dts: meson8: add and use the real clock controller
+
+ .../bindings/clock/amlogic,meson8b-clkc.txt        |  5 +++-
+ arch/arm/boot/dts/meson8.dtsi                      | 32 +++++++++++-----------
+ arch/arm/mach-meson/Kconfig                        |  1 +
+ drivers/clk/meson/Kconfig                          |  6 ++--
+ drivers/clk/meson/meson8b.c                        |  5 +++-
+ 5 files changed, 28 insertions(+), 21 deletions(-)
+
+-- 
+2.13.0
