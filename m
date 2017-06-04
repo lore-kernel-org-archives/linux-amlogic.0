@@ -1,47 +1,24 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun,  4 Jun 2017 15:28:23 +0200
-Subject: [PATCH] iio: adc: meson-saradc: fix potential crash in
- meson_sar_adc_clear_fifo
-Message-ID: <20170604132823.21928-1-martin.blumenstingl@googlemail.com>
+From: crow@linux.org.ba (crow)
+Date: Sun, 4 Jun 2017 18:07:49 +0200
+Subject: call trace on Khadas VIM Pro with AP6255 WiFi
+Message-ID: <CAG_g8w5jOx7y12WBy2Yx6eesEa=8ktpPDOAOSZAHwdud+cetkg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-meson_sar_adc_clear_fifo passes a 0 as value-pointer to regmap_read().
-In case of the meson-saradc driver this ends up in regmap_mmio_read(),
-where the value-pointer is de-referenced unconditionally to assign the
-value which was read.
-Fix this by passing an actual pointer, even though all we want to do is
-to discard the value.
+Hi,
+Posting to list as requested. I get call trace when using WiFi on
+Khadas VIM Pro, which comes with an AP6255. Firstly i wrote about this
+directly to Martin Blumenstingl, and he pointed me to post here.
+This looks like a bug in the meson-gx-mmc.c (SD/SDIO/eMMC) driver [1].
+Martin last successful test was with kernel 2.11.
 
-As a side-effect this fixes a sparse warning ("Using plain integer as
-NULL pointer") as reported by Paolo Cretaro.
+How to reproduce this:
+mainline kernel 4.12.0-rc3 (using ArchLinuxARM arm8v generic rootfs)
+Khadas VIM Pro nvram file [2]
+Enable WiFI (connected to 5GHZ AP)
+just do an SSH to Khadas VIM Pro device and you will get these call
+trace [3] , eventually you get login prompt but it is very slow login.
 
-Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
-Reported-by: Paolo Cretaro <paolocretaro@gmail.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/iio/adc/meson_saradc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 81cd39a57fe3..83da50ed73ab 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -475,13 +475,13 @@ static void meson_sar_adc_unlock(struct iio_dev *indio_dev)
- static void meson_sar_adc_clear_fifo(struct iio_dev *indio_dev)
- {
- 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
--	int count;
-+	unsigned int count, tmp;
- 
- 	for (count = 0; count < MESON_SAR_ADC_MAX_FIFO_SIZE; count++) {
- 		if (!meson_sar_adc_get_fifo_count(indio_dev))
- 			break;
- 
--		regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, 0);
-+		regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, &tmp);
- 	}
- }
- 
--- 
-2.13.0
+[1] https://github.com/torvalds/linux/commits/master/drivers/mmc/host/meson-gx-mmc.c
+[2] https://github.com/khadas/android_hardware_amlogic_wifi/tree/Vim/bcm_ampak/config/6255
+[3] https://defuse.ca/b/7htlAdOO
