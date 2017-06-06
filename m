@@ -1,44 +1,85 @@
-From: carlo@caione.org (Carlo Caione)
-Date: Tue, 6 Jun 2017 08:20:32 +0200
-Subject: [PATCH] ARM64: dts: meson-gx: Fix sensors reporting from SCP
-In-Reply-To: <m2mv9mdrt3.fsf@baylibre.com>
-References: <20170605200350.1113-1-carlo@caione.org>
- <m2mv9mdrt3.fsf@baylibre.com>
-Message-ID: <CAOQ7t2Z1rh-K4dgmGKC7YPSQcfQ+RDrS0Asek0L9cUPT9Nmc1A@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 6 Jun 2017 10:17:38 +0200
+Subject: [PATCH] drm/meson: Fix driver bind when only CVBS is available
+In-Reply-To: <1496067352-8733-1-git-send-email-narmstrong@baylibre.com>
+References: <1496067352-8733-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <5018eca6-b745-60cf-483d-e5056de06973@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 5, 2017 at 11:54 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Carlo Caione <carlo@caione.org> writes:
->
->> From: Carlo Caione <carlo@endlessm.com>
->>
->> Switch to use the new compatible for the SCPI sensors so that the
->> sensor readings are reported using the correct scale.
->>
->> Signed-off-by: Carlo Caione <carlo@endlessm.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> index 436b875..3128fa5 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> @@ -200,7 +200,7 @@
->>               };
->>
->>               scpi_sensors: sensors {
->> -                     compatible = "arm,scpi-sensors";
->> +                     compatible = "amlogic,meson-gxbb-scpi-sensors";
->
-> Shouldn't this be:
->
->                         compatible = "amlogic,meson-gxbb-scpi-sensors", "arm,scpi-sensors";
->
-> For a safe fallback on kernels without the new compatible?
+On 05/29/2017 04:15 PM, Neil Armstrong wrote:
+> While introducing HDMI support, component matching on connectors node
+> were bypassed since no driver would actually bind on the DT node.
+> But when only a CVBS connector is present, only a single node is found
+> in the graph, but ignored and a NULL match table is given to the
+> component code.
+> 
+> This code permits bypassing the components framework by binding directly
+> the DRM driver when no components needs to be loaded.
+> 
+> Fixes: a41e82e6c457 ("drm/meson: Add support for components")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/meson/meson_drv.c | 20 +++++++++++++++-----
+>  1 file changed, 15 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 75382f5..10b227d 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -152,7 +152,7 @@ static bool meson_vpu_has_available_connectors(struct device *dev)
+>  	.max_register   = 0x1000,
+>  };
+>  
+> -static int meson_drv_bind(struct device *dev)
+> +static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  {
+>  	struct platform_device *pdev = to_platform_device(dev);
+>  	struct meson_drm *priv;
+> @@ -233,10 +233,12 @@ static int meson_drv_bind(struct device *dev)
+>  	if (ret)
+>  		goto free_drm;
+>  
+> -	ret = component_bind_all(drm->dev, drm);
+> -	if (ret) {
+> -		dev_err(drm->dev, "Couldn't bind all components\n");
+> -		goto free_drm;
+> +	if (has_components) {
+> +		ret = component_bind_all(drm->dev, drm);
+> +		if (ret) {
+> +			dev_err(drm->dev, "Couldn't bind all components\n");
+> +			goto free_drm;
+> +		}
+>  	}
+>  
+>  	ret = meson_plane_create(priv);
+> @@ -276,6 +278,11 @@ static int meson_drv_bind(struct device *dev)
+>  	return ret;
+>  }
+>  
+> +static int meson_drv_bind(struct device *dev)
+> +{
+> +	return meson_drv_bind_master(dev, true);
+> +}
+> +
+>  static void meson_drv_unbind(struct device *dev)
+>  {
+>  	struct drm_device *drm = dev_get_drvdata(dev);
+> @@ -357,6 +364,9 @@ static int meson_drv_probe(struct platform_device *pdev)
+>  		count += meson_probe_remote(pdev, &match, np, remote);
+>  	}
+>  
+> +	if (count && !match)
+> +		return meson_drv_bind_master(&pdev->dev, false);
+> +
+>  	/* If some endpoints were found, initialize the nodes */
+>  	if (count) {
+>  		dev_info(&pdev->dev, "Queued %d outputs on vpu\n", count);
+> 
 
-Yeah, it should.
+Hi,
 
--- 
-Carlo Caione
+Could this patch go through the next drm-misc-fixes PR ?
+
+Thanks,
+Neil
