@@ -1,28 +1,35 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Tue, 6 Jun 2017 14:24:14 +0530
-Subject: [PATCH v4 1/2] Documentation: dt-bindings: Add documentation for
- the Meson GXL USB2 PHY
-In-Reply-To: <20170520135041.25679-2-martin.blumenstingl@googlemail.com>
-References: <20170417191142.26099-1-martin.blumenstingl@googlemail.com>
- <20170520135041.25679-1-martin.blumenstingl@googlemail.com>
- <20170520135041.25679-2-martin.blumenstingl@googlemail.com>
-Message-ID: <00dbbfb5-72ce-c056-8d36-7cdebf8b6712@ti.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  6 Jun 2017 11:45:37 +0200
+Subject: [PATCH v2 0/3] soc: amlogic: Add Amlogic SoC Information driver
+Message-ID: <1496742340-10307-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+Amlogic SoCs have a SoC information register for SoC type, package type and
+revision information.
+This patchset adds support for this register decoding and exposing with the
+SoC bus infrastructure, with dt-bindings and DT node.
 
-On Saturday 20 May 2017 07:20 PM, Martin Blumenstingl wrote:
-> This adds the DT binding documentation for the USB2 PHY(s) found in the
-> Meson GXL and GXM SoCs.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+Changes since v1 at [1] :
+ - Switch DT representation to use regmap ans sub-node of a simple-mfd node
+ - Updated DT, bindings and driver accordingly
 
-changed $subject to
-dt-bindings: phy: meson-gxl-usb2-phy: Add documentation for the Meson GXL USB2 PHY
+Neil Armstrong (3):
+  dt-bindings: arm: amlogic: Add SoC information bindings
+  ARM64: dts: meson-gx: Add SoC info register
+  soc: Add Amlogic SoC Information driver
 
-and merged.
+ Documentation/devicetree/bindings/arm/amlogic.txt |  32 ++++
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi         |   9 ++
+ drivers/soc/Kconfig                               |   1 +
+ drivers/soc/Makefile                              |   1 +
+ drivers/soc/amlogic/Kconfig                       |  12 ++
+ drivers/soc/amlogic/Makefile                      |   1 +
+ drivers/soc/amlogic/meson-gx-socinfo.c            | 169 ++++++++++++++++++++++
+ 7 files changed, 225 insertions(+)
+ create mode 100644 drivers/soc/amlogic/Kconfig
+ create mode 100644 drivers/soc/amlogic/Makefile
+ create mode 100644 drivers/soc/amlogic/meson-gx-socinfo.c
 
-Thanks
-Kishon
+-- 
+1.9.1
