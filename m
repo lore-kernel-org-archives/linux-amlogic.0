@@ -1,35 +1,24 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 6 Jun 2017 20:17:15 +0200
-Subject: [PATCH v4 1/2] Documentation: dt-bindings: Add documentation for
- the Meson GXL USB2 PHY
-In-Reply-To: <00dbbfb5-72ce-c056-8d36-7cdebf8b6712@ti.com>
-References: <20170417191142.26099-1-martin.blumenstingl@googlemail.com>
- <20170520135041.25679-1-martin.blumenstingl@googlemail.com>
- <20170520135041.25679-2-martin.blumenstingl@googlemail.com>
- <00dbbfb5-72ce-c056-8d36-7cdebf8b6712@ti.com>
-Message-ID: <CAFBinCB813htUD9C+MyVc3rpzWizFB2tiKkws8ekvdS=Xkd5hA@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 06 Jun 2017 16:43:54 -0700
+Subject: [PATCH v2] ARM64: dts: meson-gx: Fix sensors reporting from SCP
+In-Reply-To: <20170606102342.32166-1-carlo@caione.org> (Carlo Caione's message
+ of "Tue, 6 Jun 2017 12:23:42 +0200")
+References: <20170606102342.32166-1-carlo@caione.org>
+Message-ID: <m2ink8el6t.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kishon,
+Carlo Caione <carlo@caione.org> writes:
 
-On Tue, Jun 6, 2017 at 10:54 AM, Kishon Vijay Abraham I <kishon@ti.com> wrote:
-> Hi,
+> From: Carlo Caione <carlo@endlessm.com>
 >
-> On Saturday 20 May 2017 07:20 PM, Martin Blumenstingl wrote:
->> This adds the DT binding documentation for the USB2 PHY(s) found in the
->> Meson GXL and GXM SoCs.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Acked-by: Rob Herring <robh@kernel.org>
+> Switch to use the new compatible for the SCPI sensors so that the
+> sensor readings are reported using the correct scale.
 >
-> changed $subject to
-> dt-bindings: phy: meson-gxl-usb2-phy: Add documentation for the Meson GXL USB2 PHY
->
-> and merged.
-oh, excellent catch - many thanks for fixing this up (and thus saving
-me another round)!
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
 
+Thanks for the quick respin.
 
-Regards,
-Martin
+Applied to v4.13/dt64,
+
+Kevin
