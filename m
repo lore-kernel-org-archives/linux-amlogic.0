@@ -1,58 +1,38 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  6 Jun 2017 11:45:38 +0200
-Subject: [PATCH v2 1/3] dt-bindings: arm: amlogic: Add SoC information bindings
+Date: Tue,  6 Jun 2017 11:45:39 +0200
+Subject: [PATCH v2 2/3] ARM64: dts: meson-gx: Add SoC info register
 In-Reply-To: <1496742340-10307-1-git-send-email-narmstrong@baylibre.com>
 References: <1496742340-10307-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1496742340-10307-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1496742340-10307-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add bindings for the SoC information register of the Amlogic SoCs.
+Add node for the Amlogic Meson GX SoC information register.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.txt | 32 +++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index 5c01e65..ae3e8ed 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -60,3 +60,35 @@ Board compatible values (alphabetically, grouped by SoC):
-   - "amlogic,q201" (Meson gxm s912)
-   - "kingnovel,r-box-pro" (Meson gxm S912)
-   - "nexbox,a1" (Meson gxm s912)
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 436b875..50d001a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -365,6 +365,15 @@
+ 				#reset-cells = <1>;
+ 			};
+ 
++			sec_AO: ao-secure at 140 {
++				compatible = "amlogic,meson-gx-ao-secure", "syscon", "simple-mfd";
++				reg = <0x0 0x140 0x0 0x140>;
 +
-+Amlogic Meson Firmware registers Interface
-+------------------------------------------
++				chipid {
++					compatible = "amlogic,meson-gx-chipid";
++				};
++			};
 +
-+The Meson SoCs have a register bank with status and data shared with the
-+secure firmware.
-+
-+Required properties:
-+ - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon", "simple-mfd"
-+
-+Sub-nodes should indentify components of this register interface :
-+
-+Meson GX SoC Information
-+------------------------
-+A firmware register encodes the SoC type, package and revision information on
-+the Meson GX SoCs.
-+If present, a device node for this register should be added.
-+
-+Required properties:
-+  - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-chipid".
-+
-+Example
-+-------
-+
-+ao-secure at 140 {
-+	compatible = "amlogic,meson-gx-ao-secure", "syscon", "simple-mfd";
-+	reg = <0x0 0x140 0x0 0x140>;
-+
-+	chipid {
-+		compatible = "amlogic,meson-gx-chipid";
-+	};
-+};
+ 			uart_AO: serial at 4c0 {
+ 				compatible = "amlogic,meson-uart";
+ 				reg = <0x0 0x004c0 0x0 0x14>;
 -- 
 1.9.1
