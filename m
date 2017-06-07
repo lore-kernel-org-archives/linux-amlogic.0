@@ -1,23 +1,34 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed,  7 Jun 2017 15:30:11 +0200
-Subject: [PATCH 0/2] pwm: add pwm AO on meson gx
-Message-ID: <20170607133013.4766-1-jbrunet@baylibre.com>
+Date: Wed,  7 Jun 2017 15:30:12 +0200
+Subject: [PATCH 1/2] dt-bindings: pwm: meson: add comptabible for gxbb ao pwms
+In-Reply-To: <20170607133013.4766-1-jbrunet@baylibre.com>
+References: <20170607133013.4766-1-jbrunet@baylibre.com>
+Message-ID: <20170607133013.4766-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The pwms found in the AO domain of the meson gx family have different
-clock sources than the one found in the EE domain. The AO pwms have only
-2 connected clock input which are clk81 and the crytal.
+Add compatible string to properly handle the PWMs found in the AO domain
+of the gxbb (and gxl) family
 
-This patchset adds the necessary compatible and the clock data for it.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ Documentation/devicetree/bindings/pwm/pwm-meson.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Jerome Brunet (2):
-  dt-bindings: pwm: meson: add comptabible for gxbb ao pwms
-  pwm: meson: add compatible for the gxbb ao pwms
-
- .../devicetree/bindings/pwm/pwm-meson.txt          |  4 ++-
- drivers/pwm/pwm-meson.c                            | 32 ++++++++++++++++++++--
- 2 files changed, 32 insertions(+), 4 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+index 5376a4468cb6..5b07bebbf6f7 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
++++ b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+@@ -2,7 +2,9 @@ Amlogic Meson PWM Controller
+ ============================
+ 
+ Required properties:
+-- compatible: Shall contain "amlogic,meson8b-pwm" or "amlogic,meson-gxbb-pwm".
++- compatible: Shall contain "amlogic,meson8b-pwm"
++                         or "amlogic,meson-gxbb-pwm"
++                         or "amlogic,meson-gxbb-ao-pwm"
+ - #pwm-cells: Should be 3. See pwm.txt in this directory for a description of
+   the cells format.
+ 
 -- 
 2.9.4
