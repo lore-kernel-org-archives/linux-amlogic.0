@@ -1,85 +1,94 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 7 Jun 2017 15:52:28 +0200
-Subject: [PATCH] ARM64: dts: meson-gx: use specific compatible for the AO
- pwms
-In-Reply-To: <20170607134841.6822-1-jbrunet@baylibre.com>
-References: <20170607134841.6822-1-jbrunet@baylibre.com>
-Message-ID: <b3812e40-cb59-a30f-9558-2926ca49a29a@baylibre.com>
+From: seanpaul@chromium.org (Sean Paul)
+Date: Wed, 7 Jun 2017 10:50:14 -0400
+Subject: [PATCH] drm/meson: Fix driver bind when only CVBS is available
+In-Reply-To: <1496067352-8733-1-git-send-email-narmstrong@baylibre.com>
+References: <1496067352-8733-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20170607145014.k3xjc3pwi43qvi5m@art_vandelay>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/07/2017 03:48 PM, Jerome Brunet wrote:
-> Use the specific compatiable for AO pwms so the pwms input can
------------------------/\
-s/compatiable/compatible/
+On Mon, May 29, 2017 at 04:15:52PM +0200, Neil Armstrong wrote:
+> While introducing HDMI support, component matching on connectors node
+> were bypassed since no driver would actually bind on the DT node.
+> But when only a CVBS connector is present, only a single node is found
+> in the graph, but ignored and a NULL match table is given to the
+> component code.
+> 
+> This code permits bypassing the components framework by binding directly
+> the DRM driver when no components needs to be loaded.
+> 
+> Fixes: a41e82e6c457 ("drm/meson: Add support for components")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-> be correctly set
-> 
-> FDIV4 is not present on the pwm A0, so change kadhas vim input
-> clocks to xtal.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Hi Neil,
+Thanks for your patch, I've applied to drm-misc-fixes and will include it in
+this week's pull request.
+
+Sean
+
 > ---
-> This patch depends on the pwm patchset available here [0]
+>  drivers/gpu/drm/meson/meson_drv.c | 20 +++++++++++++++-----
+>  1 file changed, 15 insertions(+), 5 deletions(-)
 > 
-> On the Khadas Vim I chose to replace FDIV4 with the crytal.
-> Only PWM_AO_B is actually used and It is used for led dimming.
-> The frequency, as long as it is high enough, does not matter.
-> Only the duty cycle does. After testing, xtal seems to be fast
-> enough.
-> 
-> PWM_AO_A is outputed on the general purpose header, but no usage is
-> defined for it.
-
-Seems we will need to define what to enable by default on these SBC
-headers somehow, and leave future out-of-tree DT overlays do the work.
-
-> 
-> It might be bit late for that but I wonder why it defined and enabled ?
-> Same goes for the other peripherals activated on this general purpose
-> header.
-> 
-> I know that's what shows the schematics but one could choose to do
-> anything else possible with it ? like use in GPIO mode, or another
-> function. In addition, we never which setting will be required ? (eg
-> which clock source ?).
-> 
-> Should we keep those ? or remove them ?
-> 
-> [0]: https://lkml.kernel.org/r/20170607133013.4766-1-jbrunet at baylibre.com
-> 
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi                  | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 4 ++--
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 436b875060e7..fbaa6b598fca 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -391,7 +391,7 @@
->  			};
->  
->  			pwm_AO_ab: pwm at 550 {
-> -				compatible = "amlogic,meson-gx-pwm", "amlogic,meson-gxbb-pwm";
-> +				compatible = "amlogic,meson-gx-ao-pwm", "amlogic,meson-gxbb-ao-pwm";
->  				reg = <0x0 0x00550 0x0 0x10>;
->  				#pwm-cells = <3>;
->  				status = "disabled";
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> index 6a81f0168da5..371f43cdd3ab 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-> @@ -86,8 +86,8 @@
->  	status = "okay";
->  	pinctrl-0 = <&pwm_ao_a_3_pins>, <&pwm_ao_b_pins>;
->  	pinctrl-names = "default";
-> -	clocks = <&clkc CLKID_FCLK_DIV4>;
-> -	clock-names = "clkin0";
-> +	clocks = <&xtal> , <&xtal>;
-> +	clock-names = "clkin0", "clkin1" ;
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 75382f5..10b227d 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -152,7 +152,7 @@ static bool meson_vpu_has_available_connectors(struct device *dev)
+>  	.max_register   = 0x1000,
 >  };
 >  
->  &pwm_ef {
+> -static int meson_drv_bind(struct device *dev)
+> +static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  {
+>  	struct platform_device *pdev = to_platform_device(dev);
+>  	struct meson_drm *priv;
+> @@ -233,10 +233,12 @@ static int meson_drv_bind(struct device *dev)
+>  	if (ret)
+>  		goto free_drm;
+>  
+> -	ret = component_bind_all(drm->dev, drm);
+> -	if (ret) {
+> -		dev_err(drm->dev, "Couldn't bind all components\n");
+> -		goto free_drm;
+> +	if (has_components) {
+> +		ret = component_bind_all(drm->dev, drm);
+> +		if (ret) {
+> +			dev_err(drm->dev, "Couldn't bind all components\n");
+> +			goto free_drm;
+> +		}
+>  	}
+>  
+>  	ret = meson_plane_create(priv);
+> @@ -276,6 +278,11 @@ static int meson_drv_bind(struct device *dev)
+>  	return ret;
+>  }
+>  
+> +static int meson_drv_bind(struct device *dev)
+> +{
+> +	return meson_drv_bind_master(dev, true);
+> +}
+> +
+>  static void meson_drv_unbind(struct device *dev)
+>  {
+>  	struct drm_device *drm = dev_get_drvdata(dev);
+> @@ -357,6 +364,9 @@ static int meson_drv_probe(struct platform_device *pdev)
+>  		count += meson_probe_remote(pdev, &match, np, remote);
+>  	}
+>  
+> +	if (count && !match)
+> +		return meson_drv_bind_master(&pdev->dev, false);
+> +
+>  	/* If some endpoints were found, initialize the nodes */
+>  	if (count) {
+>  		dev_info(&pdev->dev, "Queued %d outputs on vpu\n", count);
+> -- 
+> 1.9.1
 > 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel at lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
