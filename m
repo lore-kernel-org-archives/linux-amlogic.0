@@ -1,37 +1,31 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 7 Jun 2017 07:44:20 +0200
-Subject: [PATCH] pinctrl: meson-gxbb: remove non-existing pin GPIOX_22
-Message-ID: <77ac1caf-f2b1-efe8-70ea-5a358908cc87@gmail.com>
+From: arvind.yadav.cs@gmail.com (Arvind Yadav)
+Date: Wed,  7 Jun 2017 15:04:15 +0530
+Subject: [PATCH] watchdog: meson: Handle return value of clk_prepare_enable
+Message-ID: <ee0b1a0d0340608b10c47847a8472bc9e5e8b8e1.1496744678.git.arvind.yadav.cs@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-After commit 34e61801a3b9 "pinctrl: meson-gxbb: Add missing GPIODV_18
-pin entry" I started to get the following warning:
+clk_prepare_enable() can fail here and we must check its return value.
 
-"meson-pinctrl c8834000.periphs:pinctrl at 4b0: names 119 do not match
-number of GPIOs 120"
-
-It turned out that not the mentioned commit has a problem, it just
-revealed another problem which had existed before.
-
-There is no PIN GPIOX_22 on Meson GXBB.
-
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/watchdog/meson_gxbb_wdt.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index 8b716b93..a879cf07 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -138,7 +138,6 @@ static const struct pinctrl_pin_desc meson_gxbb_periphs_pins[] = {
- 	MESON_PIN(GPIOX_19, EE_OFF),
- 	MESON_PIN(GPIOX_20, EE_OFF),
- 	MESON_PIN(GPIOX_21, EE_OFF),
--	MESON_PIN(GPIOX_22, EE_OFF),
+diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
+index 45d4766..69a5a57 100644
+--- a/drivers/watchdog/meson_gxbb_wdt.c
++++ b/drivers/watchdog/meson_gxbb_wdt.c
+@@ -203,7 +203,9 @@ static int meson_gxbb_wdt_probe(struct platform_device *pdev)
+ 	if (IS_ERR(data->clk))
+ 		return PTR_ERR(data->clk);
  
- 	MESON_PIN(GPIOCLK_0, EE_OFF),
- 	MESON_PIN(GPIOCLK_1, EE_OFF),
+-	clk_prepare_enable(data->clk);
++	ret = clk_prepare_enable(data->clk);
++	if (ret)
++		return ret;
+ 
+ 	platform_set_drvdata(pdev, data);
+ 
 -- 
-2.13.0
+1.9.1
