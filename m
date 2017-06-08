@@ -1,53 +1,36 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Thu, 8 Jun 2017 08:56:11 +0200
-Subject: [PATCH] mmc: meson-gx: work around broken SDIO with certain WiFi
- chips
-In-Reply-To: <6369801d-b991-6949-9bc1-d43fa6819505@gmail.com>
-References: <6369801d-b991-6949-9bc1-d43fa6819505@gmail.com>
-Message-ID: <CAPDyKFpoev_izy=C6=ZO_Bq=ABZG9LD=V_uvn1vKkQD4xd3hhA@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu,  8 Jun 2017 14:24:14 +0200
+Subject: [PATCH v2 1/3] dt-bindings: pwm: meson: add comptabible for gxbb ao
+ pwms
+In-Reply-To: <20170608122416.1993-1-jbrunet@baylibre.com>
+References: <20170608122416.1993-1-jbrunet@baylibre.com>
+Message-ID: <20170608122416.1993-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 8 June 2017 at 07:56, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> There have been reports about SDIO failing with certain WiFi chips in
-> descriptor chain mode. SD / eMMC are working fine.
->
-> So let's fall back to bounce buffer mode for command SD_IO_RW_EXTENDED.
-> This was reported to fix this error.
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Add compatible string to properly handle the PWMs found in the AO domain
+of the gxbb (and gxl) family
 
-Is this material for stable? What commit does it fix?
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ Documentation/devicetree/bindings/pwm/pwm-meson.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Please resend to linux-mmc.
-
-Kind regards
-Uffe
-
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 1842ed34..4cdbe3c0 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -210,6 +210,15 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
->         int i;
->         bool use_desc_chain_mode = true;
->
-> +       /*
-> +        * Broken SDIO with AP6335-based WiFi on Khadas VIM Pro has been
-> +        * reported. For some strange reason this occurs in descriptor
-> +        * chain mode only. So let's fall back to bounce buffer mode
-> +        * for command SD_IO_RW_EXTENDED.
-> +        */
-> +       if (mrq->cmd->opcode == SD_IO_RW_EXTENDED)
-> +               return;
-> +
->         for_each_sg(data->sg, sg, data->sg_len, i)
->                 /* check for 8 byte alignment */
->                 if (sg->offset & 7) {
-> --
-> 2.13.0
->
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+index 5376a4468cb6..5b07bebbf6f7 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
++++ b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+@@ -2,7 +2,9 @@ Amlogic Meson PWM Controller
+ ============================
+ 
+ Required properties:
+-- compatible: Shall contain "amlogic,meson8b-pwm" or "amlogic,meson-gxbb-pwm".
++- compatible: Shall contain "amlogic,meson8b-pwm"
++                         or "amlogic,meson-gxbb-pwm"
++                         or "amlogic,meson-gxbb-ao-pwm"
+ - #pwm-cells: Should be 3. See pwm.txt in this directory for a description of
+   the cells format.
+ 
+-- 
+2.9.4
