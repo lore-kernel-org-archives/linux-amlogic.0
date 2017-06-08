@@ -1,77 +1,79 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 8 Jun 2017 14:35:59 +0200
-Subject: [PATCH v2 3/3] pwm: meson: improve pwm calculation precision.
-In-Reply-To: <20170608122416.1993-4-jbrunet@baylibre.com>
-References: <20170608122416.1993-1-jbrunet@baylibre.com>
- <20170608122416.1993-4-jbrunet@baylibre.com>
-Message-ID: <935f2e9a-9872-d1c5-8300-2d0697593e75@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu,  8 Jun 2017 14:39:55 +0200
+Subject: [PATCH RESEND] ARM64: dts: meson-gx: use specific compatible for the
+ AO pwms
+In-Reply-To: <b3812e40-cb59-a30f-9558-2926ca49a29a@baylibre.com>
+References: <b3812e40-cb59-a30f-9558-2926ca49a29a@baylibre.com>
+Message-ID: <20170608123955.3571-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/08/2017 02:24 PM, Jerome Brunet wrote:
-> When using input clocks with high rates, such as clk81 (166MHz), the
-> fin_ns = NSEC_PER_SEC / fin_freq can introduce a significant error.
-> 
-> Ex: fin_freq = 166666667, NSEC_PER_SEC = 1000000000
->     fin_ns = 5,9999999
-> 
-> which is, of course, rounded down to 5. This introduce an error of ~20%
-> on the period requested from the pwm.
-> 
-> This patch use ps instead of ns (and 64bits integer) to perform the
-> calculation. This should give a good enough precision.
-> 
-> Fixes: 211ed630753d ("pwm: Add support for Meson PWM Controller")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/pwm/pwm-meson.c | 15 +++++++++------
->  1 file changed, 9 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index b911a944744a..4cdc66f7f718 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -163,7 +163,8 @@ static int meson_pwm_calc(struct meson_pwm *meson,
->  			  unsigned int duty, unsigned int period)
->  {
->  	unsigned int pre_div, cnt, duty_cnt;
-> -	unsigned long fin_freq = -1, fin_ns;
-> +	unsigned long fin_freq = -1;
-> +	u64 fin_ps;
->  
->  	if (~(meson->inverter_mask >> id) & 0x1)
->  		duty = period - duty;
-> @@ -179,13 +180,14 @@ static int meson_pwm_calc(struct meson_pwm *meson,
->  	}
->  
->  	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
-> -	fin_ns = NSEC_PER_SEC / fin_freq;
-> +	fin_ps = ((u64)NSEC_PER_SEC * 1000) / fin_freq;
->  
->  	/* Calc pre_div with the period */
->  	for (pre_div = 0; pre_div < MISC_CLK_DIV_MASK; pre_div++) {
-> -		cnt = DIV_ROUND_CLOSEST(period, fin_ns * (pre_div + 1));
-> -		dev_dbg(meson->chip.dev, "fin_ns=%lu pre_div=%u cnt=%u\n",
-> -			fin_ns, pre_div, cnt);
-> +		cnt = DIV_ROUND_CLOSEST_ULL((u64)period * 1000,
-> +					    fin_ps * (pre_div + 1));
-> +		dev_dbg(meson->chip.dev, "fin_ps=%llu pre_div=%u cnt=%u\n",
-> +			fin_ps, pre_div, cnt);
->  		if (cnt <= 0xffff)
->  			break;
->  	}
-> @@ -208,7 +210,8 @@ static int meson_pwm_calc(struct meson_pwm *meson,
->  		channel->lo = cnt;
->  	} else {
->  		/* Then check is we can have the duty with the same pre_div */
-> -		duty_cnt = DIV_ROUND_CLOSEST(duty, fin_ns * (pre_div + 1));
-> +		duty_cnt = DIV_ROUND_CLOSEST_ULL((u64)duty * 1000,
-> +						 fin_ps * (pre_div + 1));
->  		if (duty_cnt > 0xffff) {
->  			dev_err(meson->chip.dev, "unable to get duty cycle\n");
->  			return -EINVAL;
-> 
+Use the specific compatible for AO pwms so the pwms input can
+be correctly set
 
-Great, I missed this !!
+FDIV4 is not present on the pwm A0, so change kadhas vim input
+clocks to xtal.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+This patch depends on the pwm patchset available here [0]
+
+On the Khadas Vim I chose to replace FDIV4 with the crytal.
+Only PWM_AO_B is actually used and It is used for led dimming.
+The frequency, as long as it is high enough, does not matter.
+Only the duty cycle does. After testing, xtal seems to be fast
+enough.
+
+PWM_AO_A is outputed on the general purpose header, but no usage is
+defined for it.
+
+It might be bit late for that but I wonder why it defined and enabled ?
+Same goes for the other peripherals activated on this general purpose
+header.
+
+I know that's what shows the schematics but one could choose to do
+anything else possible with it ? like use in GPIO mode, or another
+function. In addition, we never which setting will be required ? (eg
+which clock source ?).
+
+Should we keep those ? or remove them ?
+
+Resend to correct the typo reported by Neil and update the dependency to
+the v2 of the pwm series.
+
+[0]: https://lkml.kernel.org/r/20170608122416.1993-1-jbrunet at baylibre.com
+
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi                  | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 436b875060e7..fbaa6b598fca 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -391,7 +391,7 @@
+ 			};
+ 
+ 			pwm_AO_ab: pwm at 550 {
+-				compatible = "amlogic,meson-gx-pwm", "amlogic,meson-gxbb-pwm";
++				compatible = "amlogic,meson-gx-ao-pwm", "amlogic,meson-gxbb-ao-pwm";
+ 				reg = <0x0 0x00550 0x0 0x10>;
+ 				#pwm-cells = <3>;
+ 				status = "disabled";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+index 6a81f0168da5..371f43cdd3ab 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+@@ -86,8 +86,8 @@
+ 	status = "okay";
+ 	pinctrl-0 = <&pwm_ao_a_3_pins>, <&pwm_ao_b_pins>;
+ 	pinctrl-names = "default";
+-	clocks = <&clkc CLKID_FCLK_DIV4>;
+-	clock-names = "clkin0";
++	clocks = <&xtal> , <&xtal>;
++	clock-names = "clkin0", "clkin1" ;
+ };
+ 
+ &pwm_ef {
+-- 
+2.9.4
