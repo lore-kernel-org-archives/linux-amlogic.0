@@ -1,32 +1,91 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Jun 2017 14:24:13 +0200
-Subject: [PATCH v2 0/3] pwm: add pwm AO on meson gx
-Message-ID: <20170608122416.1993-1-jbrunet@baylibre.com>
+Date: Thu,  8 Jun 2017 14:24:15 +0200
+Subject: [PATCH v2 2/3] pwm: meson: add compatible for the gxbb ao pwms
+In-Reply-To: <20170608122416.1993-1-jbrunet@baylibre.com>
+References: <20170608122416.1993-1-jbrunet@baylibre.com>
+Message-ID: <20170608122416.1993-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The pwms found in the AO domain of the meson gx family have different
-clock sources than the ones found in the EE domain. The AO pwms only
-have 2 connected clock input which are clk81 and the crytal.
+On the gxbb (and gxl) family, the PWMs of the AO domain require a
+specific compatible because the possible input clocks are different
+from the EE PWMs input clocks.
 
-This patchset adds the necessary compatible and the clock data for it.
+Since the number of possible input clocks is also different, the
+'num_parents' field is added to all the meson pwm data.
 
-Changes since v1: [0]
-* Correct clock source order for gxbb pwm ao. Documenation shows xtal as
-  source #1 while it is actually source #0
-* Add patch 3 to fix pwm calculation. Issue while testing pwm with clk81
-  as clock source.
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/pwm/pwm-meson.c | 32 +++++++++++++++++++++++++++++---
+ 1 file changed, 29 insertions(+), 3 deletions(-)
 
-[0]:  https://lkml.kernel.org/r/20170607133013.4766-1-jbrunet at baylibre.com
-
-Jerome Brunet (3):
-  dt-bindings: pwm: meson: add comptabible for gxbb ao pwms
-  pwm: meson: add compatible for the gxbb ao pwms
-  pwm: meson: improve pwm calculation precision.
-
- .../devicetree/bindings/pwm/pwm-meson.txt          |  4 +-
- drivers/pwm/pwm-meson.c                            | 47 +++++++++++++++++-----
- 2 files changed, 41 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 045ef9fa6fe3..b911a944744a 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -103,6 +103,7 @@ struct meson_pwm_channel {
+ 
+ struct meson_pwm_data {
+ 	const char * const *parent_names;
++	int num_parents;
+ };
+ 
+ struct meson_pwm {
+@@ -381,6 +382,7 @@ static const char * const pwm_meson8b_parent_names[] = {
+ 
+ static const struct meson_pwm_data pwm_meson8b_data = {
+ 	.parent_names = pwm_meson8b_parent_names,
++	.num_parents = ARRAY_SIZE(pwm_meson8b_parent_names),
+ };
+ 
+ static const char * const pwm_gxbb_parent_names[] = {
+@@ -389,11 +391,35 @@ static const char * const pwm_gxbb_parent_names[] = {
+ 
+ static const struct meson_pwm_data pwm_gxbb_data = {
+ 	.parent_names = pwm_gxbb_parent_names,
++	.num_parents = ARRAY_SIZE(pwm_gxbb_parent_names),
++};
++
++/*
++ * Only the 2 first inputs of the GXBB AO PWMs are valid
++ * The last 2 are grounded
++ */
++static const char * const pwm_gxbb_ao_parent_names[] = {
++	"xtal", "clk81"
++};
++
++static const struct meson_pwm_data pwm_gxbb_ao_data = {
++	.parent_names = pwm_gxbb_ao_parent_names,
++	.num_parents = ARRAY_SIZE(pwm_gxbb_ao_parent_names),
+ };
+ 
+ static const struct of_device_id meson_pwm_matches[] = {
+-	{ .compatible = "amlogic,meson8b-pwm", .data = &pwm_meson8b_data },
+-	{ .compatible = "amlogic,meson-gxbb-pwm", .data = &pwm_gxbb_data },
++	{
++		.compatible = "amlogic,meson8b-pwm",
++		.data = &pwm_meson8b_data
++	},
++	{
++		.compatible = "amlogic,meson-gxbb-pwm",
++		.data = &pwm_gxbb_data
++	},
++	{
++		.compatible = "amlogic,meson-gxbb-ao-pwm",
++		.data = &pwm_gxbb_ao_data
++	},
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+@@ -417,7 +443,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
+ 		init.ops = &clk_mux_ops;
+ 		init.flags = CLK_IS_BASIC;
+ 		init.parent_names = meson->data->parent_names;
+-		init.num_parents = 1 << MISC_CLK_SEL_WIDTH;
++		init.num_parents = meson->data->num_parents;
+ 
+ 		channel->mux.reg = meson->base + REG_MISC_AB;
+ 		channel->mux.shift = mux_reg_shifts[i];
 -- 
 2.9.4
