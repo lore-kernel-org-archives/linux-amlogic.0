@@ -1,27 +1,38 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu,  8 Jun 2017 17:31:23 +0200
-Subject: [PATCH 4/4] ARM64: dts: meson-gxl-s905x-p212: Add HDMI and CVBS nodes
+Date: Thu,  8 Jun 2017 17:31:20 +0200
+Subject: [PATCH 1/4] ARM64: dts: meson-gxbb-wetek-play2: Add HDMI and CVBS
+ Nodes
 In-Reply-To: <1496935883-4966-1-git-send-email-narmstrong@baylibre.com>
 References: <1496935883-4966-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1496935883-4966-5-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1496935883-4966-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add HDMI and CVBS nodes for the Amlogic P212 reference board.
+Add HDMI and CVBS nodes for the Wetek Play2 board.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dts      | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ .../boot/dts/amlogic/meson-gxbb-wetek-play2.dts    | 40 ++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-index db31e09..6ab17c1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
-@@ -58,6 +58,17 @@
- 			};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+index 743acb5..e76ac31 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
+@@ -85,6 +85,34 @@
+ 			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
  		};
  	};
++
++	cvbs-connector {
++		compatible = "composite-video-connector";
++
++		port {
++			cvbs_connector_in: endpoint {
++				remote-endpoint = <&cvbs_vdac_out>;
++			};
++		};
++	};
 +
 +	hdmi-connector {
 +		compatible = "hdmi-connector";
@@ -33,10 +44,17 @@ index db31e09..6ab17c1 100644
 +			};
 +		};
 +	};
++};
++
++
++&cvbs_vdac_port {
++	cvbs_vdac_out: endpoint {
++		remote-endpoint = <&cvbs_connector_in>;
++	};
  };
  
- &cvbs_vdac_port {
-@@ -66,6 +77,18 @@
+ &ethmac {
+@@ -113,6 +141,18 @@
  	};
  };
  
@@ -52,8 +70,8 @@ index db31e09..6ab17c1 100644
 +	};
 +};
 +
- /* This UART is brought out to the DB9 connector */
- &uart_AO {
+ &i2c_A {
  	status = "okay";
+ 	pinctrl-0 = <&i2c_a_pins>;
 -- 
 1.9.1
