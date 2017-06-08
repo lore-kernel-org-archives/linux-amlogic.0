@@ -1,71 +1,36 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 8 Jun 2017 21:39:34 +0200
-Subject: [PATCH v6 9/9] ARM64: dts: meson: mark gpio controllers as interrupt
- controllers
-In-Reply-To: <04378047-4194-bb0f-3da3-e1d62345a86b@gmail.com>
-References: <04378047-4194-bb0f-3da3-e1d62345a86b@gmail.com>
-Message-ID: <7d610fbe-243a-9bc4-4c78-a461e9cb49e1@gmail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 8 Jun 2017 17:44:13 -0500
+Subject: [PATCH 1/3] clk: meson: meson8b: add compatibles for Meson8 and
+ Meson8m2
+In-Reply-To: <1496651008.3552.24.camel@baylibre.com>
+References: <20170604183341.21417-1-martin.blumenstingl@googlemail.com>
+ <20170604183341.21417-2-martin.blumenstingl@googlemail.com>
+ <1496606325.3552.16.camel@baylibre.com>
+ <CAFBinCCLL5ZqiZzWi-RsfZ-5_h20O5LRRY3+K7dt=U4qrveQ_w@mail.gmail.com>
+ <1496651008.3552.24.camel@baylibre.com>
+Message-ID: <20170608224413.fdv4xlvnjld4bgtz@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Make the GPIO controllers act as interrupt controllers.
+On Mon, Jun 05, 2017 at 10:23:28AM +0200, Jerome Brunet wrote:
+> On Mon, 2017-06-05 at 00:27 +0200, Martin Blumenstingl wrote:
+> > > I think you should split the binding documentation and clk changes into
+> > > separate
+> > > patches.
+> > 
+> > OK, from what I know is that for "trivial" changes the driver and
+> > dt-binding changes can go through one patch.
+> > this patch started as a four-line patch which added two lines of
+> > documentation and two lines of driver code.
+> 
+> I'm not aware of such tolerance but if you've have seen that the DT maintainers
+> are OK with it, feel free to point me to it.
+> 
+> Last time I heard about it, DT guys were using filter-branch on the kernel tree
+> to create a separate tree, so I was thinking that this "documentation as a
+> separate patch" was a hard rule ... but I may be wrong
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
-v5:
-- separate ARM / ARM64 DT changes
-- add Reviewed-by
-v6:
-- no changes
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++++
- 2 files changed, 8 insertions(+)
+That is one of the reasons, but there is no hard rule. It's not worth a 
+respin just for that either.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 6f8b3011..a771dae8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -111,6 +111,8 @@
- 			reg-names = "mux", "pull", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_aobus 0 0 14>;
- 		};
- 
-@@ -356,6 +358,8 @@
- 			reg-names = "mux", "pull", "pull-enable", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_periphs 0 14 120>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 3efad5f0..16b584f5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -80,6 +80,8 @@
- 			reg-names = "mux", "pull", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_aobus 0 0 14>;
- 		};
- 
-@@ -244,6 +246,8 @@
- 			reg-names = "mux", "pull", "pull-enable", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 			gpio-ranges = <&pinctrl_periphs 0 14 101>;
- 		};
- 
--- 
-2.13.0
+Acked-by: Rob Herring <robh@kernel.org>
