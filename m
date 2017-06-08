@@ -1,79 +1,97 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Jun 2017 14:39:55 +0200
-Subject: [PATCH RESEND] ARM64: dts: meson-gx: use specific compatible for the
- AO pwms
-In-Reply-To: <b3812e40-cb59-a30f-9558-2926ca49a29a@baylibre.com>
-References: <b3812e40-cb59-a30f-9558-2926ca49a29a@baylibre.com>
-Message-ID: <20170608123955.3571-1-jbrunet@baylibre.com>
+Date: Thu,  8 Jun 2017 15:09:48 +0200
+Subject: [PATCH] pinctrl: meson-gxl: add tsin_a pins
+Message-ID: <20170608130948.16426-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Use the specific compatible for AO pwms so the pwms input can
-be correctly set
+Add Tsin A pins to bank DV and X.
+We don't have a driver for the tsin yet but since the tsin A pinmux is
+enabled by default at boot time, declaring this pinmux is required to
+properly operate on GPIOX.
 
-FDIV4 is not present on the pwm A0, so change kadhas vim input
-clocks to xtal.
+Without this change, GPIOX 8, 9, 10 and 11 can't be driven as GPIO output
+as the tsin A seems to have priority.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
-This patch depends on the pwm patchset available here [0]
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c | 36 +++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-On the Khadas Vim I chose to replace FDIV4 with the crytal.
-Only PWM_AO_B is actually used and It is used for led dimming.
-The frequency, as long as it is high enough, does not matter.
-Only the duty cycle does. After testing, xtal seems to be fast
-enough.
-
-PWM_AO_A is outputed on the general purpose header, but no usage is
-defined for it.
-
-It might be bit late for that but I wonder why it defined and enabled ?
-Same goes for the other peripherals activated on this general purpose
-header.
-
-I know that's what shows the schematics but one could choose to do
-anything else possible with it ? like use in GPIO mode, or another
-function. In addition, we never which setting will be required ? (eg
-which clock source ?).
-
-Should we keep those ? or remove them ?
-
-Resend to correct the typo reported by Neil and update the dependency to
-the v2 of the pwm series.
-
-[0]: https://lkml.kernel.org/r/20170608122416.1993-1-jbrunet at baylibre.com
-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                  | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 436b875060e7..fbaa6b598fca 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -391,7 +391,7 @@
- 			};
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+index 190f50c6a9ba..2624b0d4d3c4 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+@@ -243,6 +243,25 @@ static const unsigned int spdif_out_h_pins[]	= { PIN(GPIOH_4, EE_OFF) };
+ static const unsigned int eth_link_led_pins[]	= { PIN(GPIOZ_14, EE_OFF) };
+ static const unsigned int eth_act_led_pins[]	= { PIN(GPIOZ_15, EE_OFF) };
  
- 			pwm_AO_ab: pwm at 550 {
--				compatible = "amlogic,meson-gx-pwm", "amlogic,meson-gxbb-pwm";
-+				compatible = "amlogic,meson-gx-ao-pwm", "amlogic,meson-gxbb-ao-pwm";
- 				reg = <0x0 0x00550 0x0 0x10>;
- 				#pwm-cells = <3>;
- 				status = "disabled";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index 6a81f0168da5..371f43cdd3ab 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -86,8 +86,8 @@
- 	status = "okay";
- 	pinctrl-0 = <&pwm_ao_a_3_pins>, <&pwm_ao_b_pins>;
- 	pinctrl-names = "default";
--	clocks = <&clkc CLKID_FCLK_DIV4>;
--	clock-names = "clkin0";
-+	clocks = <&xtal> , <&xtal>;
-+	clock-names = "clkin0", "clkin1" ;
++static const unsigned int tsin_a_d0_pins[]	= { PIN(GPIODV_0, EE_OFF) };
++static const unsigned int tsin_a_d0_x_pins[]	= { PIN(GPIOX_10, EE_OFF) };
++static const unsigned int tsin_a_clk_pins[]	= { PIN(GPIODV_8, EE_OFF) };
++static const unsigned int tsin_a_clk_x_pins[]	= { PIN(GPIOX_11, EE_OFF) };
++static const unsigned int tsin_a_sop_pins[]	= { PIN(GPIODV_9, EE_OFF) };
++static const unsigned int tsin_a_sop_x_pins[]	= { PIN(GPIOX_8, EE_OFF) };
++static const unsigned int tsin_a_d_valid_pins[]	= { PIN(GPIODV_10, EE_OFF) };
++static const unsigned int tsin_a_d_valid_x_pins[] = { PIN(GPIOX_9, EE_OFF) };
++static const unsigned int tsin_a_fail_pins[]	= { PIN(GPIODV_11, EE_OFF) };
++static const unsigned int tsin_a_dp_pins[] = {
++	PIN(GPIODV_1, EE_OFF),
++	PIN(GPIODV_2, EE_OFF),
++	PIN(GPIODV_3, EE_OFF),
++	PIN(GPIODV_4, EE_OFF),
++	PIN(GPIODV_5, EE_OFF),
++	PIN(GPIODV_6, EE_OFF),
++	PIN(GPIODV_7, EE_OFF),
++};
++
+ static const struct pinctrl_pin_desc meson_gxl_aobus_pins[] = {
+ 	MESON_PIN(GPIOAO_0, 0),
+ 	MESON_PIN(GPIOAO_1, 0),
+@@ -421,6 +440,10 @@ static struct meson_pmx_group meson_gxl_periphs_groups[] = {
+ 	GROUP(spi_miso,		5,	2),
+ 	GROUP(spi_ss0,		5,	1),
+ 	GROUP(spi_sclk,		5,	0),
++	GROUP(tsin_a_sop_x,	6,	3),
++	GROUP(tsin_a_d_valid_x,	6,	2),
++	GROUP(tsin_a_d0_x,	6,	1),
++	GROUP(tsin_a_clk_x,	6,	0),
+ 
+ 	/* Bank Z */
+ 	GROUP(eth_mdio,		4,	23),
+@@ -469,6 +492,12 @@ static struct meson_pmx_group meson_gxl_periphs_groups[] = {
+ 	GROUP(i2c_sck_c,	1,	10),
+ 	GROUP(pwm_b,		2,	11),
+ 	GROUP(pwm_d,		2,	12),
++	GROUP(tsin_a_d0,	2,	4),
++	GROUP(tsin_a_dp,	2,	3),
++	GROUP(tsin_a_clk,	2,	2),
++	GROUP(tsin_a_sop,	2,	1),
++	GROUP(tsin_a_d_valid,	2,	0),
++	GROUP(tsin_a_fail,	1,	31),
+ 
+ 	/* Bank BOOT */
+ 	GROUP(emmc_nand_d07,	7,	31),
+@@ -675,6 +704,12 @@ static const char * const eth_led_groups[] = {
+ 	"eth_link_led", "eth_act_led",
  };
  
- &pwm_ef {
++static const char * const tsin_a_groups[] = {
++	"tsin_a_clk", "tsin_a_clk_x", "tsin_a_sop", "tsin_a_sop_x",
++	"tsin_a_d_valid", "tsin_a_d_valid_x", "tsin_a_d0", "tsin_a_d0_x",
++	"tsin_a_dp", "tsin_a_fail",
++};
++
+ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+@@ -747,6 +782,7 @@ static struct meson_pmx_func meson_gxl_periphs_functions[] = {
+ 	FUNCTION(i2s_out),
+ 	FUNCTION(spdif_out),
+ 	FUNCTION(eth_led),
++	FUNCTION(tsin_a),
+ };
+ 
+ static struct meson_pmx_func meson_gxl_aobus_functions[] = {
 -- 
 2.9.4
