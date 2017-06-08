@@ -1,50 +1,41 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Jun 2017 15:55:45 +0200
-Subject: [PATCH] clk: meson: gxbb: add all clk81 parents
-Message-ID: <20170608135545.31499-1-jbrunet@baylibre.com>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Thu, 8 Jun 2017 15:58:05 +0200
+Subject: [PATCH] pinctrl: meson-gxl: add tsin_a pins
+In-Reply-To: <1496930016.3552.45.camel@baylibre.com>
+References: <20170608130948.16426-1-jbrunet@baylibre.com>
+ <ed2befab-728b-6165-a86b-deb92f220996@suse.de>
+ <1496930016.3552.45.camel@baylibre.com>
+Message-ID: <07b2ff66-6ac1-5e20-b70f-4dec2e050337@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove the FIXME on clk81 mux and add all the documented parents
+Am 08.06.2017 um 15:53 schrieb Jerome Brunet:
+> On Thu, 2017-06-08 at 15:49 +0200, Andreas F?rber wrote:
+>> Am 08.06.2017 um 15:09 schrieb Jerome Brunet:
+>>> Add Tsin A pins to bank DV and X.
+>>> We don't have a driver for the tsin yet but since the tsin A pinmux is
+>>> enabled by default at boot time, declaring this pinmux is required to
+>>> properly operate on GPIOX.
+>>>
+>>> Without this change, GPIOX 8, 9, 10 and 11 can't be driven as GPIO output
+>>> as the tsin A seems to have priority.
+>>
+>> Should this get a Fixes header then for stable backports?
+> 
+> Nothing is wrong with what is already in. This is merely an addition.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/gxbb.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+Your above description of not being able to use GPIOs on e.g. the GXL
+based Khadas Vim devboard sounded like a bug to me.
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 36c0e455437e..a897ea45327c 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -603,7 +603,11 @@ static struct meson_clk_mpll gxbb_mpll2 = {
-  * coordinated clock rates feature
-  */
- 
--static u32 mux_table_clk81[]	= { 6, 5, 7 };
-+static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
-+static const char * const clk81_parent_names[] = {
-+	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
-+	"fclk_div3", "fclk_div5"
-+};
- 
- static struct clk_mux gxbb_mpeg_clk_sel = {
- 	.reg = (void *)HHI_MPEG_CLK_CNTL,
-@@ -616,13 +620,12 @@ static struct clk_mux gxbb_mpeg_clk_sel = {
- 		.name = "mpeg_clk_sel",
- 		.ops = &clk_mux_ro_ops,
- 		/*
--		 * FIXME bits 14:12 selects from 8 possible parents:
-+		 * bits 14:12 selects from 8 possible parents:
- 		 * xtal, 1'b0 (wtf), fclk_div7, mpll_clkout1, mpll_clkout2,
- 		 * fclk_div4, fclk_div3, fclk_div5
- 		 */
--		.parent_names = (const char *[]){ "fclk_div3", "fclk_div4",
--			"fclk_div5" },
--		.num_parents = 3,
-+		.parent_names = clk81_parent_names,
-+		.num_parents = ARRAY_SIZE(clk81_parent_names),
- 		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
- 	},
- };
+> If we go that way, all commit to this file should have a Fixes to the
+> initial commit. This seems a bit extreme to me ...
+
+Thought it might have been just an oversight.
+
+Cheers,
+Andreas
+
 -- 
-2.9.4
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
