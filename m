@@ -1,89 +1,61 @@
-From: crow@linux.org.ba (crow)
-Date: Thu, 8 Jun 2017 19:30:12 +0200
-Subject: ARM GLX Khadas VIM Pro - Ethernet detected as only 10Mbps and stalled
- after some traffic
-Message-ID: <CAG_g8w7PND+6r17cLoTG0rG0CqVDA-Z9kr8Zi+TOq5Qbpd9Gtw@mail.gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Thu, 8 Jun 2017 20:36:49 +0200
+Subject: [PATCH] mmc: meson-gx: work around broken SDIO with certain WiFi
+ chips
+In-Reply-To: <CAPDyKFpoev_izy=C6=ZO_Bq=ABZG9LD=V_uvn1vKkQD4xd3hhA@mail.gmail.com>
+References: <6369801d-b991-6949-9bc1-d43fa6819505@gmail.com>
+ <CAPDyKFpoev_izy=C6=ZO_Bq=ABZG9LD=V_uvn1vKkQD4xd3hhA@mail.gmail.com>
+Message-ID: <b1419988-65c9-270f-3b4f-21b56165adf0@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
-I have here two problems with Khadas VIM Pro device and Ethernet.
+Am 08.06.2017 um 08:56 schrieb Ulf Hansson:
+> On 8 June 2017 at 07:56, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>> There have been reports about SDIO failing with certain WiFi chips in
+>> descriptor chain mode. SD / eMMC are working fine.
+>>
+>> So let's fall back to bounce buffer mode for command SD_IO_RW_EXTENDED.
+>> This was reported to fix this error.
+>>
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> 
+> Is this material for stable? What commit does it fix?
+> 
+> Please resend to linux-mmc.
+> 
+Sorry, will re-send with the missing information.
 
-1) sometimes with the Kernel Linux 4.12-rc4 the Ethernet link is Up
-but only 10Mbps.
-Don't work (either SSH to device nor over serial console to ping out)
-meson8b-dwmac c9410000.ethernet eth0: Link is Up - 10Mbps/Half - flow
-control off
-
-Works (if I do ifconfig eth0 down / up):
-meson8b-dwmac c9410000.ethernet eth0: Link is Down
-meson8b-dwmac c9410000.ethernet eth0: Link is Up - 100Mbps/Full - flow
-control off
-
-Whole log could be found in [0].
-
-2) if downloading an amount of data while connected to device over
-SSH, connection will stall and after some minutes SSH session would be
-disconnected. Nothing is written in dmesg and ethtool shows me same
-values before when Ethernet was working, and after when connection
-stall. Whole log can be found in [1]
-
-SSH to device (OK)
-  -> Cloning linux git repo...
-Cloning into bare repository '/opt/mmcblk1/linux-aarch64-git/linux'...
-remote: Counting objects: 5399033, done.
-remote: Compressing objects: 100% (1495/1495), done.
-Receiving objects:   3% (161971/5399033), 73.20 MiB | 6.19 MiB/s
-
-here the download stalled and SSH connection also stalled but not disconnected
-
-# ethtool eth0
-Settings for eth0:
-        Supported ports: [ TP MII ]
-        Supported link modes:   10baseT/Half 10baseT/Full
-                                100baseT/Half 100baseT/Full
-        Supported pause frame use: Symmetric Receive-only
-        Supports auto-negotiation: Yes
-        Advertised link modes:  10baseT/Half 10baseT/Full
-                                100baseT/Half 100baseT/Full
-        Advertised pause frame use: No
-        Advertised auto-negotiation: Yes
-        Link partner advertised link modes:  10baseT/Half 10baseT/Full
-                                             100baseT/Half 100baseT/Full
-        Link partner advertised pause frame use: No
-        Link partner advertised auto-negotiation: Yes
-        Speed: 100Mb/s
-        Duplex: Full
-        Port: MII
-        PHYAD: 8
-        Transceiver: internal
-        Auto-negotiation: on
-        Supports Wake-on: ug
-        Wake-on: d
-        Current message level: 0x0000003f (63)
-                               drv probe link timer ifdown ifup
-        Link detected: yes
-#
-
-after 2 min SSH connection disconnected
-
-over serial console:
-# ping -c3 8.8.8.8
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
->From 10.8.8.6 icmp_seq=1 Destination Host Unreachable
-
---- 8.8.8.8 ping statistics ---
-3 packets transmitted, 0 received, +1 errors, 100% packet loss, time 2060ms
-pipe 3
-#
-
-nothing in dmesg or in journalctl
-
-also here is helps only to take port down and again up. restarting
-networking services fails "timed out".
-
-Regards,
+Rgds, Heiner
 
 
-[0] https://defuse.ca/b/jqXqW9Ip
-[1] https://defuse.ca/b/bJLOAuX6
+> Kind regards
+> Uffe
+> 
+>> ---
+>>  drivers/mmc/host/meson-gx-mmc.c | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>>
+>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+>> index 1842ed34..4cdbe3c0 100644
+>> --- a/drivers/mmc/host/meson-gx-mmc.c
+>> +++ b/drivers/mmc/host/meson-gx-mmc.c
+>> @@ -210,6 +210,15 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
+>>         int i;
+>>         bool use_desc_chain_mode = true;
+>>
+>> +       /*
+>> +        * Broken SDIO with AP6335-based WiFi on Khadas VIM Pro has been
+>> +        * reported. For some strange reason this occurs in descriptor
+>> +        * chain mode only. So let's fall back to bounce buffer mode
+>> +        * for command SD_IO_RW_EXTENDED.
+>> +        */
+>> +       if (mrq->cmd->opcode == SD_IO_RW_EXTENDED)
+>> +               return;
+>> +
+>>         for_each_sg(data->sg, sg, data->sg_len, i)
+>>                 /* check for 8 byte alignment */
+>>                 if (sg->offset & 7) {
+>> --
+>> 2.13.0
+>>
+> 
