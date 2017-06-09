@@ -1,42 +1,21 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Fri, 9 Jun 2017 09:30:19 +0200
-Subject: [PATCH v6 1/9] pinctrl: meson: add interrupts to pinctrl data
-In-Reply-To: <897a1982-2bfb-d250-94bc-262a745109a3@gmail.com>
+Date: Fri, 9 Jun 2017 09:31:50 +0200
+Subject: [PATCH v6 2/9] irqchip: add Amlogic Meson GPIO irqchip driver
+In-Reply-To: <89d02a38-7386-fcdc-4dce-ea7e531c90b4@gmail.com>
 References: <04378047-4194-bb0f-3da3-e1d62345a86b@gmail.com>
- <897a1982-2bfb-d250-94bc-262a745109a3@gmail.com>
-Message-ID: <CACRpkdZJQSmepQx2g28RxhYeF_A699e4M3Nq0V_mKevz9YDmiw@mail.gmail.com>
+ <89d02a38-7386-fcdc-4dce-ea7e531c90b4@gmail.com>
+Message-ID: <CACRpkdbmmiM25=jt0UbB0U12ExbOSLZoj4OP25ovhHwkZsnoKQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Jun 8, 2017 at 9:37 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Thu, Jun 8, 2017 at 9:38 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-> From: Jerome Brunet <jbrunet@baylibre.com>
-> Add GPIO interrupt information to pinctrl data. Added to the original
-> version from Jerome was data for Meson GXL.
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
-> v2:
-> - no changes
-> v3:
-> - no changes
-> v4:
-> - no changes
-> v5:
-> - added Acked-by
-> v6:
-> - no changes
+> Add a driver supporting the GPIO interrupt controller on certain
+> Amlogic meson SoC's.
 >
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
-I've applied this patch to the pin control tree, as there is nothing
-controversial at all about it, just encoding hardware information into
-the tables as is custom.
-
-I don't know about how to handle the rest of the series, at least
-you have one less patch in your patch stack.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
