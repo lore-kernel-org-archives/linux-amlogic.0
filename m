@@ -1,36 +1,28 @@
-From: robh@kernel.org (Rob Herring)
-Date: Thu, 8 Jun 2017 17:44:13 -0500
-Subject: [PATCH 1/3] clk: meson: meson8b: add compatibles for Meson8 and
- Meson8m2
-In-Reply-To: <1496651008.3552.24.camel@baylibre.com>
-References: <20170604183341.21417-1-martin.blumenstingl@googlemail.com>
- <20170604183341.21417-2-martin.blumenstingl@googlemail.com>
- <1496606325.3552.16.camel@baylibre.com>
- <CAFBinCCLL5ZqiZzWi-RsfZ-5_h20O5LRRY3+K7dt=U4qrveQ_w@mail.gmail.com>
- <1496651008.3552.24.camel@baylibre.com>
-Message-ID: <20170608224413.fdv4xlvnjld4bgtz@rob-hp-laptop>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Fri, 9 Jun 2017 09:25:54 +0200
+Subject: [PATCH] pinctrl: meson-gxbb: remove non-existing pin GPIOX_22
+In-Reply-To: <77ac1caf-f2b1-efe8-70ea-5a358908cc87@gmail.com>
+References: <77ac1caf-f2b1-efe8-70ea-5a358908cc87@gmail.com>
+Message-ID: <CACRpkdY4beiDkj+EEe5qzSHeNEU03cRqXkEXwKOHf-EKxdh2ug@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 05, 2017 at 10:23:28AM +0200, Jerome Brunet wrote:
-> On Mon, 2017-06-05 at 00:27 +0200, Martin Blumenstingl wrote:
-> > > I think you should split the binding documentation and clk changes into
-> > > separate
-> > > patches.
-> > 
-> > OK, from what I know is that for "trivial" changes the driver and
-> > dt-binding changes can go through one patch.
-> > this patch started as a four-line patch which added two lines of
-> > documentation and two lines of driver code.
-> 
-> I'm not aware of such tolerance but if you've have seen that the DT maintainers
-> are OK with it, feel free to point me to it.
-> 
-> Last time I heard about it, DT guys were using filter-branch on the kernel tree
-> to create a separate tree, so I was thinking that this "documentation as a
-> separate patch" was a hard rule ... but I may be wrong
+On Wed, Jun 7, 2017 at 7:44 AM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
 
-That is one of the reasons, but there is no hard rule. It's not worth a 
-respin just for that either.
+> After commit 34e61801a3b9 "pinctrl: meson-gxbb: Add missing GPIODV_18
+> pin entry" I started to get the following warning:
+>
+> "meson-pinctrl c8834000.periphs:pinctrl at 4b0: names 119 do not match
+> number of GPIOs 120"
+>
+> It turned out that not the mentioned commit has a problem, it just
+> revealed another problem which had existed before.
+>
+> There is no PIN GPIOX_22 on Meson GXBB.
+>
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Patch applied with Neil's tags.
+
+Yours,
+Linus Walleij
