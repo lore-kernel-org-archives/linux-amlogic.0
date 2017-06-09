@@ -1,24 +1,70 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 09 Jun 2017 11:39:08 -0700
-Subject: [PATCH 0/4] ARM64: dts: meson-gx: Add HDMI and CVBS nodes for
- selected boards
-In-Reply-To: <1496935883-4966-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Thu, 8 Jun 2017 17:31:19 +0200")
-References: <1496935883-4966-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <m2lgp16m5v.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Fri, 9 Jun 2017 15:58:20 -0500
+Subject: [PATCH v5 3/9] dt-bindings: add Amlogic Meson GPIO
+ interrupt-controller DT binding documentation
+In-Reply-To: <5bfb15b0-8625-85cc-53d6-90171c9e098d@baylibre.com>
+References: <66c57893-0a9e-4f8c-a017-ab346abbdfd0@gmail.com>
+ <c190f764-b3af-8982-00e3-87e28eabecca@gmail.com>
+ <20170607211312.av5osk5xxa5k5pr2@rob-hp-laptop>
+ <5bfb15b0-8625-85cc-53d6-90171c9e098d@baylibre.com>
+Message-ID: <CAL_JsqLnBqVDPq6DGaFvxv1emXBZy4o+hWH0+8146EoeJ2BRKA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+On Fri, Jun 9, 2017 at 2:50 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> On 06/07/2017 11:13 PM, Rob Herring wrote:
+>> On Tue, May 30, 2017 at 10:26:33PM +0200, Heiner Kallweit wrote:
+>>> Add dt binding documentation for Amlogic meson GPIO interrupt controller.
+>>>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>>> ---
+>>> v5:
+>>> - added Reviewed-by
+>>> ---
+>>>  .../amlogic,meson-gpio-intc.txt                    | 26 ++++++++++++++++++++++
+>>>  1 file changed, 26 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+>>> new file mode 100644
+>>> index 00000000..2f20d212
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+>>> @@ -0,0 +1,26 @@
+>>> +Amlogic meson GPIO interrupt controller
+>>> +
+>>> +Meson SoCs contains an interrupt controller which is able watch the SoC pads
+>>> +and generate an interrupt on edges or level. The controller is essentially a
+>>> +256 pads to 8 GIC interrupt multiplexer, with a filter block to select edge
+>>> +or level and polarity. The actual number of interrupt exposed depends on the
+>>> +SoC.
+>>> +
+>>> +Required properties:
+>>> +
+>>> +- compatible : should be "amlogic,meson-gpio-intc".
+>>> +- reg : Specifies base physical address and size of the registers.
+>>> +- interrupt-controller : Identifies the node as an interrupt controller.
+>>> +- #interrupt-cells : should be 2.
+>>> +- parent-interrupts : list of GIC interrupts which can be used with the
+>>> +                  GPIO IRQ multiplexer
+>>
+>> Just use "interrupts" here.
+>
+> Hi Rob,
+>
+> If the "interrupts" property is used here like this, it breaks the interrupts binding !
 
-> Add the CVBS and HDMI nodes for the following boards :
->  - Wetek Play2
->  - Khadas VIM
->  - Amlogic P230 Reference board
->  - Amlogic P212 Reference board
+Really!? Looking closer at the series, in fact the dts files are
+already correct:
 
-Applied to v4.13/dt64.
++       gpio_intc: interrupt-controller at 9880 {
++               compatible = "amlogic,meson-gpio-intc";
++               reg = <0x9880 0x10>;
++               interrupt-controller;
++               #interrupt-cells = <2>;
++               interrupts = <64 65 66 67 68 79 70 71>;
++       };
++
 
-Thanks,
-
-Kevin
+Rob
