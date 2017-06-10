@@ -1,229 +1,107 @@
-From: crow@linux.org.ba (crow)
-Date: Sat, 10 Jun 2017 09:29:45 +0200
-Subject: ARM GLX Khadas VIM Pro - Ethernet detected as only 10Mbps and
- stalled after some traffic
-In-Reply-To: <CAG_g8w7PND+6r17cLoTG0rG0CqVDA-Z9kr8Zi+TOq5Qbpd9Gtw@mail.gmail.com>
-References: <CAG_g8w7PND+6r17cLoTG0rG0CqVDA-Z9kr8Zi+TOq5Qbpd9Gtw@mail.gmail.com>
-Message-ID: <CAG_g8w40V_u7JnX+EuNvCLmB2dAzuk_TgMkkKT9pn-SLBRi1pA@mail.gmail.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sat, 10 Jun 2017 13:34:05 +0200
+Subject: [PATCH] mmc: meson-gx: work around broken SDIO with certain WiFi
+ chips
+In-Reply-To: <CAFBinCDUNCgwm9YS9w8uQ6i1MX4SR1ZHf-mn8UnObnejjZiQOw@mail.gmail.com>
+References: <dd12ffc8-e2a4-53bd-caa5-83bb7cbcd5e5@gmail.com>
+ <CAFBinCDUNCgwm9YS9w8uQ6i1MX4SR1ZHf-mn8UnObnejjZiQOw@mail.gmail.com>
+Message-ID: <e0844236-ba11-3256-c388-ce2405c3b7b8@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+Am 10.06.2017 um 00:06 schrieb Martin Blumenstingl:
+> Hi Heiner,
+> 
+> thanks for finding a solution (it didn't even take you long)!
+> 
+> On Thu, Jun 8, 2017 at 8:43 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+>> There have been reports about SDIO failing with certain WiFi chips in
+>> descriptor chain mode. SD / eMMC are working fine.
+>>
+>> So let's fall back to bounce buffer mode for command SD_IO_RW_EXTENDED.
+>> This was reported to fix this error.
+>>
+>> Fixes: 79ed05e329c3 "mmc: meson-gx: add support for descriptor chain mode"
+>> Cc: <stable@vger.kernel.org> # 4.12.x
+>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+>> ---
+>>  drivers/mmc/host/meson-gx-mmc.c | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>>
+>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+>> index 1842ed34..4cdbe3c0 100644
+>> --- a/drivers/mmc/host/meson-gx-mmc.c
+>> +++ b/drivers/mmc/host/meson-gx-mmc.c
+>> @@ -210,6 +210,15 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
+>>         int i;
+>>         bool use_desc_chain_mode = true;
+>>
+>> +       /*
+>> +        * Broken SDIO with AP6335-based WiFi on Khadas VIM Pro has been
+> nit-pick: Khadas VIM Pro uses an Ampak AP6255 (not AP6335)
+> 
+Uups, I obviously mixed up the device with one of the S905-based tv boxes.
+Will fix it.
 
-On Thu, Jun 8, 2017 at 7:30 PM, crow <crow@linux.org.ba> wrote:
-> Hi,
-> I have here two problems with Khadas VIM Pro device and Ethernet.
->
-> 1) sometimes with the Kernel Linux 4.12-rc4 the Ethernet link is Up
-> but only 10Mbps.
-> Don't work (either SSH to device nor over serial console to ping out)
-> meson8b-dwmac c9410000.ethernet eth0: Link is Up - 10Mbps/Half - flow
-> control off
->
-> Works (if I do ifconfig eth0 down / up):
-> meson8b-dwmac c9410000.ethernet eth0: Link is Down
-> meson8b-dwmac c9410000.ethernet eth0: Link is Up - 100Mbps/Full - flow
-> control off
->
-> Whole log could be found in [0].
->
-> 2) if downloading an amount of data while connected to device over
-> SSH, connection will stall and after some minutes SSH session would be
-> disconnected. Nothing is written in dmesg and ethtool shows me same
-> values before when Ethernet was working, and after when connection
-> stall. Whole log can be found in [1]
->
-> SSH to device (OK)
->   -> Cloning linux git repo...
-> Cloning into bare repository '/opt/mmcblk1/linux-aarch64-git/linux'...
-> remote: Counting objects: 5399033, done.
-> remote: Compressing objects: 100% (1495/1495), done.
-> Receiving objects:   3% (161971/5399033), 73.20 MiB | 6.19 MiB/s
->
-> here the download stalled and SSH connection also stalled but not disconnected
->
-> # ethtool eth0
-> Settings for eth0:
->         Supported ports: [ TP MII ]
->         Supported link modes:   10baseT/Half 10baseT/Full
->                                 100baseT/Half 100baseT/Full
->         Supported pause frame use: Symmetric Receive-only
->         Supports auto-negotiation: Yes
->         Advertised link modes:  10baseT/Half 10baseT/Full
->                                 100baseT/Half 100baseT/Full
->         Advertised pause frame use: No
->         Advertised auto-negotiation: Yes
->         Link partner advertised link modes:  10baseT/Half 10baseT/Full
->                                              100baseT/Half 100baseT/Full
->         Link partner advertised pause frame use: No
->         Link partner advertised auto-negotiation: Yes
->         Speed: 100Mb/s
->         Duplex: Full
->         Port: MII
->         PHYAD: 8
->         Transceiver: internal
->         Auto-negotiation: on
->         Supports Wake-on: ug
->         Wake-on: d
->         Current message level: 0x0000003f (63)
->                                drv probe link timer ifdown ifup
->         Link detected: yes
-> #
->
-> after 2 min SSH connection disconnected
->
-> over serial console:
-> # ping -c3 8.8.8.8
-> PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-> From 10.8.8.6 icmp_seq=1 Destination Host Unreachable
->
-> --- 8.8.8.8 ping statistics ---
-> 3 packets transmitted, 0 received, +1 errors, 100% packet loss, time 2060ms
-> pipe 3
-> #
->
-> nothing in dmesg or in journalctl
->
-> also here is helps only to take port down and again up. restarting
-> networking services fails "timed out".
->
-> Regards,
->
->
-> [0] https://defuse.ca/b/jqXqW9Ip
-> [1] https://defuse.ca/b/bJLOAuX6
+>> +        * reported. For some strange reason this occurs in descriptor
+>> +        * chain mode only. So let's fall back to bounce buffer mode
+>> +        * for command SD_IO_RW_EXTENDED.
+>> +        */
+>> +       if (mrq->cmd->opcode == SD_IO_RW_EXTENDED)
+>> +               return;
+>> +
+>>         for_each_sg(data->sg, sg, data->sg_len, i)
+>>                 /* check for 8 byte alignment */
+>>                 if (sg->offset & 7) {
+>> --
+>> 2.13.0
+>>
+> for the record: wireless performance with this patch applied is excellent
+> 
+Just curious:
+Do you also experience the lagging mentioned by crow?
 
-
-I am posting this only as Information if needed to others who may be
-able to check this, as I am not able to do it:
-
-I was told from Neil Armstrong to post PHY register dump information
-from eth0, but to use official Khadas VIM Ubuntu image (Amlogic
-kernel) and then mainline kernel 4.12-rc4 (which I am running on
-ArchLinuxArm).
-
-With custom Amlogic 4.9.26 kernel I was able to git clone linux repository:
-
-Linux Khadas 4.9.26 #1 SMP PREEMPT Sun Jun 4 11:34:23 CST 2017 aarch64
-aarch64 aarch64 GNU/Linux
-
-# mii-tool -vvv eth0
-Using SIOCGMIIPHY=0x8947
-eth0: negotiated 1000baseT-HD flow-control, link ok
-  registers for MII PHY 8:
-    1000 782d 0181 4400 01e1 c1e1 000f 2001
-    ffff ffff ffff ffff ffff ffff ffff ffff
-    0040 0082 40e8 5400 0d80 1000 0000 a900
-    fff0 ffff 0000 140a 1407 00ca 0000 105a
-  product info: vendor 00:60:51, model 0 rev 0
-  basic mode:   autonegotiation enabled
-  basic status: autonegotiation complete, link ok
-  capabilities: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  advertising:  1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  link partner: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-#
-
-With custom Amlogic 3.1.14 kernel cloning linux repository was also working
-
-Linux Khadas 3.14.29 #21 SMP PREEMPT Sat May 13 22:10:31 CST 2017
-aarch64 aarch64 aarch64 GNU/Linux
-
-# mii-tool -vvv eth0
-Using SIOCGMIIPHY=0x8947
-eth0: negotiated 1000baseT-HD flow-control, link ok
-  registers for MII PHY 8:
-    1000 782d 0181 4400 01e1 c1e1 000f 2001
-    ffff ffff ffff ffff ffff ffff ffff ffff
-    0040 00c2 40e8 5400 0803 0000 0000 0009
-    fff0 ffff 0000 020a 1407 00ca 0e00 105a
-  product info: vendor 00:60:51, model 0 rev 0
-  basic mode:   autonegotiation enabled
-  basic status: autonegotiation complete, link ok
-  capabilities: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  advertising:  1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  link partner: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-#
-
-This now is register dump when SSH was working and before trying to
-clone linux repository on mainline kernel. There is some differences
-between mainline kernel and custom amlogic!
-
-Linux khadasvimpro 4.12.0-rc4-3-ARCH #1 SMP Thu Jun 8 00:17:20 CEST
-2017 aarch64 GNU/Linux
-
-# mii-tool -vvv eth0
-Using SIOCGMIIPHY=0x8947
-eth0: negotiated 1000baseT-HD flow-control, link ok
-  registers for MII PHY 8:
-    1000 782d 0181 4400 01e1 c1e1 000d 2001
-    ffff ffff ffff ffff ffff ffff ffff ffff
-    0040 0002 40e8 5400 1c1c 0000 0000 aaaa
-    fff0 ffff 0000 020a 1407 004a 0000 105a
-  product info: vendor 00:60:51, model 0 rev 0
-  basic mode:   autonegotiation enabled
-  basic status: autonegotiation complete, link ok
-  capabilities: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  advertising:  1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  link partner: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-#
-
-This is register dump once when cloning stops and SSH session
-disconnects, there is again some differences even between these two
-mainline kernel register dumps (working and when it stops working)
-
-Linux khadasvimpro 4.12.0-rc4-3-ARCH #1 SMP Thu Jun 8 00:17:20 CEST
-2017 aarch64 GNU/Linux
-
-# mii-tool -vvv eth0
-Using SIOCGMIIPHY=0x8947
-eth0: negotiated 1000baseT-HD flow-control, link ok
-  registers for MII PHY 8:
-    1000 782d 0181 4400 01e1 c1e1 000f 2001
-    ffff ffff ffff ffff ffff ffff ffff ffff
-    0040 0002 40e8 5400 1c1c 0000 0000 aaaa
-    fff0 ffff 0000 040a 1407 004a 0000 105a
-  product info: vendor 00:60:51, model 0 rev 0
-  basic mode:   autonegotiation enabled
-  basic status: autonegotiation complete, link ok
-  capabilities: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  advertising:  1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-  link partner: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
-10baseT-FD 10baseT-HD
-#
-
-I was told to have a look at the Amlogic PHY driver and check if they
-check or set these registers that differs. But as I really don't know
-anything about development I am unable to understand this code or to
-provide an fix.
-
-These information which I found crucial I got from Martin Blumenstingl
-regarding driver "debug" option:
-There's no "debug" parameter for meson8b-dwmac because this is only a
-few lines of code: [0]
-What I should check is probably the PHY register dump (see above) or
-debug output from stmmac  [1]. The meson8b-dwmac is just a "SoC
-specific configuration + loader" for stmmac.
-
-Also what Martin Blumenstingl wrote is following which is also crucial
-for fixing the issue:
-Amlogic has given their ethernet PHY driver some updates [2], it now
-includes wake-on-lan, and they now have an internal_phy_read_status
-which uses reset_internal_phy if there's a link and some error counter
-exceeds some magic value.
-
-Regards,
-
-[0] https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-[1] http://elixir.free-electrons.com/linux/v4.8/source/Documentation/networking/stmmac.txt
-[2] https://github.com/khadas/linux/blob/ubuntu-4.9/drivers/amlogic/ethernet/phy/amlogic.c#L129
+> # iperf3 --client <server ip>
+> Connecting to host <server ip>, port 5201
+> [  4] local <khadas vim ip> port 38352 connected to <server ip> port 5201
+> [ ID] Interval           Transfer     Bandwidth       Retr  Cwnd
+> [  4]   0.00-1.00   sec  8.19 MBytes  68.7 Mbits/sec    0    349 KBytes
+> [  4]   1.00-2.00   sec  8.56 MBytes  71.8 Mbits/sec    1    287 KBytes
+> [  4]   2.00-3.00   sec  8.89 MBytes  74.6 Mbits/sec    0    315 KBytes
+> [  4]   3.00-4.00   sec  8.59 MBytes  72.1 Mbits/sec    0    344 KBytes
+> [  4]   4.00-5.00   sec  9.11 MBytes  76.5 Mbits/sec    0    355 KBytes
+> [  4]   5.00-6.00   sec  8.92 MBytes  74.8 Mbits/sec    0    356 KBytes
+> [  4]   6.00-7.00   sec  8.75 MBytes  73.4 Mbits/sec    0    356 KBytes
+> [  4]   7.00-8.00   sec  8.79 MBytes  73.7 Mbits/sec    0    356 KBytes
+> [  4]   8.00-9.00   sec  8.64 MBytes  72.5 Mbits/sec    0    359 KBytes
+> [  4]   9.00-10.00  sec  8.98 MBytes  75.3 Mbits/sec    0    366 KBytes
+> - - - - - - - - - - - - - - - - - - - - - - - - -
+> [ ID] Interval           Transfer     Bandwidth       Retr
+> [  4]   0.00-10.00  sec  87.4 MBytes  73.3 Mbits/sec    1             sender
+> [  4]   0.00-10.00  sec  87.0 MBytes  73.0 Mbits/sec                  receiver
+> 
+> iperf Done.
+> # iperf3 --client <server ip> -R
+> Connecting to host <server ip>, port 5201
+> Reverse mode, remote host <server ip> is sending
+> [  4] local <khadas vim ip> port 38356 connected to <server ip> port 5201
+> [ ID] Interval           Transfer     Bandwidth
+> [  4]   0.00-1.00   sec  2.04 MBytes  17.1 Mbits/sec
+> [  4]   1.00-2.00   sec  2.17 MBytes  18.2 Mbits/sec
+> [  4]   2.00-3.00   sec  3.85 MBytes  32.3 Mbits/sec
+> [  4]   3.00-4.00   sec  7.60 MBytes  63.8 Mbits/sec
+> [  4]   4.00-5.00   sec  6.90 MBytes  57.9 Mbits/sec
+> [  4]   5.00-6.00   sec  6.46 MBytes  54.2 Mbits/sec
+> [  4]   6.00-7.00   sec  7.49 MBytes  62.9 Mbits/sec
+> [  4]   7.00-8.00   sec  7.11 MBytes  59.7 Mbits/sec
+> [  4]   8.00-9.00   sec  6.58 MBytes  55.2 Mbits/sec
+> [  4]   9.00-10.00  sec  6.83 MBytes  57.3 Mbits/sec
+> - - - - - - - - - - - - - - - - - - - - - - - - -
+> [ ID] Interval           Transfer     Bandwidth       Retr
+> [  4]   0.00-10.00  sec  58.8 MBytes  49.3 Mbits/sec   30             sender
+> [  4]   0.00-10.00  sec  57.4 MBytes  48.2 Mbits/sec                  receiver
+> 
+> iperf Done.
+> 
