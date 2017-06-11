@@ -1,61 +1,53 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Jun 2017 12:16:31 +0200
-Subject: [PATCH 00/13] add support for more devices on Meson8 and Meson8b
-Message-ID: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+Date: Sun, 11 Jun 2017 12:16:37 +0200
+Subject: [PATCH 06/13] ARM: dts: meson8: add the PWM_E and PWM_F pins
+In-Reply-To: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170611101644.28581-7-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series adds:
-- USB support on Meson8 and Meson8b (it seems that some boards show an
-  error when trying to initialize one of the USB2 PHYs, but we have the
-  same problem on some GXBB boards. it is working fine for me - on a board
-  which is not supported upstream yet)
-- hardware random number generator support (Meson8 and Meson8b seem to
-  have two 32-bit hardware random number generator registers, while the
-  GX SoCs only have one. This is not handled by the meson-rng driver yet,
-  but that can still be improved later on)
-- SAR ADC support
-- add reserved memory zones to fix random hangs when filling the memory
-  (currently only on Meson8 until I have a Meson8b device to test if the
-  same problem appears there as well)
-- use the real ethernet clock on Meson8 and Meson8b to fix ethernet when
-  the bootloader does not enable the gate clock
-- add the SCU (Snoop Control Unit) which is needed for SMP support
-- minor preparations for further .dts updates as this already exports the
-  SDIO clocks (a driver for this MMC controller is work-in-progress) as
-  well as the corresponding pin definitions in meson8.dtsi
-- this adds the pwm_e (typically used for the 32.768 kHz LPO clock for the
-  SDIO wifi chip) and pwm_f (used on some boards for the dimmable power
-  LED) pins to meson8.dtsi
+This adds the definition of the PWM_E (CBUS) and PWM_F (AOBUS) to
+meson8.dtsi, allowing devices to use them. PWM_E can be used on some
+devices to generate the 32.768kHz clock for the SDIO wifi module, while
+PWM_F can be used to control the power LED.
 
-NOTE: the .dts changes from this series depend on my previous patch from
-[0]: "ARM: dts: meson8: fix the IR receiver pins"
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson8.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-June/003983.html
-
-
-Martin Blumenstingl (13):
-  clk: meson8b: export the SAR ADC clocks
-  clk: meson8b: export the SDIO clock
-  clk: meson8b: export the gate clock for the HW random number generator
-  clk: meson8b: export the USB clocks
-  clk: meson8b: export the ethernet gate clock
-  ARM: dts: meson8: add the PWM_E and PWM_F pins
-  ARM: dts: meson8: add the pins for the SDIO controller
-  ARM: dts: meson: add the SAR ADC
-  ARM: dts: meson8: add reserved memory zones
-  ARM: dts: meson: add the hardware random number generator
-  ARM: dts: meson: add USB support on Meson8 and Meson8b
-  ARM: dts: meson8b: add the SCU device node
-  ARM: dts: meson: use the real ethernet clock on Meson8 and Meson8b
-
- arch/arm/boot/dts/meson.dtsi             |  51 +++++++++++++++
- arch/arm/boot/dts/meson8.dtsi            | 109 ++++++++++++++++++++++++++++++-
- arch/arm/boot/dts/meson8b.dtsi           |  49 ++++++++++++++
- drivers/clk/meson/meson8b.h              |  20 +++---
- include/dt-bindings/clock/meson8b-clkc.h |  10 +++
- 5 files changed, 228 insertions(+), 11 deletions(-)
-
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index e4f7357b4b31..93e437c91c61 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -123,6 +123,13 @@
+ 				function = "remote";
+ 			};
+ 		};
++
++		pwm_f_ao_pins: pwm-f-ao {
++			mux {
++				groups = "pwm_f_ao";
++				function = "pwm_f_ao";
++			};
++		};
+ 	};
+ };
+ 
+@@ -168,6 +175,13 @@
+ 				function = "ethernet";
+ 			};
+ 		};
++
++		pwm_e_pins: pwm-e {
++			mux {
++				groups = "pwm_e";
++				function = "pwm_e";
++			};
++		};
+ 	};
+ };
+ 
 -- 
 2.13.1
