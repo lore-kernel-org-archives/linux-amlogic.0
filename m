@@ -1,14 +1,13 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Jun 2017 12:16:34 +0200
-Subject: [PATCH 03/13] clk: meson8b: export the gate clock for the HW random
- number generator
+Date: Sun, 11 Jun 2017 12:16:33 +0200
+Subject: [PATCH 02/13] clk: meson8b: export the SDIO clock
 In-Reply-To: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
 References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170611101644.28581-4-martin.blumenstingl@googlemail.com>
+Message-ID: <20170611101644.28581-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This exports the clock so it can be used in the dt-bindings.
+Export the SDIO clock so it can be used in the dt-bindings.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
@@ -17,29 +16,29 @@ Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
  2 files changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index e0fb386ccc23..51c3f6717180 100644
+index 5447d4a5c9ba..e0fb386ccc23 100644
 --- a/drivers/clk/meson/meson8b.h
 +++ b/drivers/clk/meson/meson8b.h
-@@ -89,7 +89,7 @@
- #define CLKID_I2C		22
- /* #define CLKID_SAR_ADC */
- #define CLKID_SMART_CARD	24
--#define CLKID_RNG0		25
-+/* #define CLKID_RNG0 */
- #define CLKID_UART0		26
+@@ -94,7 +94,7 @@
  #define CLKID_SDHC		27
  #define CLKID_STREAM		28
+ #define CLKID_ASYNC_FIFO	29
+-#define CLKID_SDIO		30
++/* #define CLKID_SDIO */
+ #define CLKID_ABUF		31
+ #define CLKID_HIU_IFACE		32
+ #define CLKID_ASSIST_MISC	33
 diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
-index 821b08574900..f004e6760b5d 100644
+index 1c7f090da440..821b08574900 100644
 --- a/include/dt-bindings/clock/meson8b-clkc.h
 +++ b/include/dt-bindings/clock/meson8b-clkc.h
 @@ -22,6 +22,7 @@
  #define CLKID_MPEG_SEL		14
  #define CLKID_MPEG_DIV		15
  #define CLKID_SAR_ADC		23
-+#define CLKID_RNG0		25
- #define CLKID_SDIO		30
++#define CLKID_SDIO		30
  #define CLKID_SANA		69
  
+ #endif /* __MESON8B_CLKC_H */
 -- 
 2.13.1
