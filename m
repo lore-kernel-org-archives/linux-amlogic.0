@@ -1,74 +1,53 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Jun 2017 12:16:41 +0200
-Subject: [PATCH 10/13] ARM: dts: meson: add the hardware random number
- generator
+Date: Sun, 11 Jun 2017 12:16:43 +0200
+Subject: [PATCH 12/13] ARM: dts: meson8b: add the SCU device node
 In-Reply-To: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
 References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170611101644.28581-11-martin.blumenstingl@googlemail.com>
+Message-ID: <20170611101644.28581-13-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-All supported Meson SoCs have a random number generator in CBUS.
-Newer SoCs (GXBB, GXL and GXM) provide only one 32-bit random number
-register, whereas the older SoCs (Meson6, Meson8 and Meson8b) have two
-32-bit random number registers. The existing meson-rng driver only
-supports the lower 32-bit - but it still works fine on the older SoCs
-apart from this small limitation.
+Amlogic's Meson8b SoC has a Snoop Control Unit (SCU), just like many
+other Cortex-A5 SoCs. Add the corresponding devicetree node so it can be
+used during SMP boot.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson.dtsi   | 5 +++++
  arch/arm/boot/dts/meson8.dtsi  | 5 +++++
  arch/arm/boot/dts/meson8b.dtsi | 5 +++++
- 3 files changed, 15 insertions(+)
+ 2 files changed, 10 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index b05796bee088..a210084398dc 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -78,6 +78,11 @@
- 			#size-cells = <1>;
- 			ranges = <0x0 0xc1100000 0x200000>;
- 
-+			hwrng: rng at 8100 {
-+				compatible = "amlogic,meson-rng";
-+				reg = <0x8100 0x8>;
-+			};
-+
- 			uart_A: serial at 84c0 {
- 				compatible = "amlogic,meson-uart";
- 				reg = <0x84c0 0x18>;
 diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index cf011dfe050e..a80181ddd416 100644
+index 7bfce6d8d0af..f6816ea09aeb 100644
 --- a/arch/arm/boot/dts/meson8.dtsi
 +++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -241,6 +241,11 @@
- 	clock-names = "stmmaceth";
- };
- 
-+&hwrng {
-+	clocks = <&clkc CLKID_RNG0>;
-+	clock-names = "core";
-+};
+@@ -110,6 +110,11 @@
+ 			no-map;
+ 		};
+ 	};
 +
- &i2c_AO {
- 	clocks = <&clkc CLKID_CLK81>;
- };
++	scu at c4300000 {
++		compatible = "arm,cortex-a9-scu";
++		reg = <0xc4300000 0x100>;
++	};
+ }; /* end of / */
+ 
+ &aobus {
 diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 1c09090ff4a5..52aa3f68a6bd 100644
+index aa4664713b66..2b13570b0e60 100644
 --- a/arch/arm/boot/dts/meson8b.dtsi
 +++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -171,6 +171,11 @@
+@@ -82,6 +82,11 @@
+ 			reg = <0x203>;
+ 		};
  	};
- };
- 
-+&hwrng {
-+	clocks = <&clkc CLKID_RNG0>;
-+	clock-names = "core";
-+};
 +
- &L2 {
- 	arm,data-latency = <3 3 3>;
- 	arm,tag-latency = <2 2 2>;
++	scu at c4300000 {
++		compatible = "arm,cortex-a5-scu";
++		reg = <0xc4300000 0x100>;
++	};
+ }; /* end of / */
+ 
+ &aobus {
 -- 
 2.13.1
