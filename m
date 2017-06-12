@@ -1,11 +1,11 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Jun 2017 11:42:57 +0200
-Subject: [PATCH v4 5/7] ARM: dts: meson6: switch to new bindings for
+Date: Mon, 12 Jun 2017 11:47:59 +0200
+Subject: [PATCH v4 7/7] ARM: dts: meson8b: switch to new bindings for
  UART nodes
-In-Reply-To: <1497001756-942-6-git-send-email-narmstrong@baylibre.com>
+In-Reply-To: <1497001756-942-8-git-send-email-narmstrong@baylibre.com>
 References: <1497001756-942-1-git-send-email-narmstrong@baylibre.com>
- <1497001756-942-6-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1497260577.3086.11.camel@baylibre.com>
+ <1497001756-942-8-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1497260879.3086.13.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -14,53 +14,63 @@ On Fri, 2017-06-09 at 11:49 +0200, Neil Armstrong wrote:
 > proper compatible strings.
 > 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Shouldn't this patch be squashed with patch 4 ?
-
-
 > ---
-> ?arch/arm/boot/dts/meson6.dtsi | 28 ++++++++++++++++++++++++++++
-> ?1 file changed, 28 insertions(+)
+> ?arch/arm/boot/dts/meson8b.dtsi | 23 +++++++++++++++++++----
+> ?1 file changed, 19 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/meson6.dtsi b/arch/arm/boot/dts/meson6.dtsi
-> index b0fc91f..a334fbe 100644
-> --- a/arch/arm/boot/dts/meson6.dtsi
-> +++ b/arch/arm/boot/dts/meson6.dtsi
-> @@ -70,9 +70,37 @@
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index d9f116a..651ad4a 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -82,6 +82,13 @@
+> ?			reg = <0x203>;
 > ?		};
 > ?	};
-> ?
+> +
 > +	xtal: xtal-clk {
 > +		compatible = "fixed-clock";
 > +		clock-frequency = <24000000>;
 > +		clock-output-names = "xtal";
 > +		#clock-cells = <0>;
 > +	};
-> +
-> ?	clk81: clk at 0 {
-> ?		#clock-cells = <0>;
-> ?		compatible = "fixed-clock";
-> ?		clock-frequency = <200000000>;
-> ?	};
+
+On meson8b, I think xtal is already provided by <&clkc CLKID_XTAL>.
+We have to choose which one we want.
+
+With this handled:
+
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+
 > ?}; /* end of / */
-> +
-> +
-> +&uart_AO {
-> +	clocks = <&xtal>, <&clk81>, <&clk81>;
+> ?
+> ?&aobus {
+> @@ -178,17 +185,25 @@
+> ?};
+> ?
+> ?&uart_AO {
+> -	clocks = <&clkc CLKID_CLK81>;
+> +	compatible = "amlogic,meson8b-uart", "amlogic,meson-ao-uart";
+> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
 > +	clock-names = "xtal", "pclk", "baud";
-> +};
-> +
-> +&uart_A {
-> +	clocks = <&xtal>, <&clk81>, <&clk81>;
+> ?};
+> ?
+> ?&uart_A {
+> -	clocks = <&clkc CLKID_CLK81>;
+> +	compatible = "amlogic,meson8b-uart";
+> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
 > +	clock-names = "xtal", "pclk", "baud";
-> +};
-> +
-> +&uart_B {
-> +	clocks = <&xtal>, <&clk81>, <&clk81>;
+> ?};
+> ?
+> ?&uart_B {
+> -	clocks = <&clkc CLKID_CLK81>;
+> +	compatible = "amlogic,meson8b-uart";
+> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
 > +	clock-names = "xtal", "pclk", "baud";
-> +};
-> +
-> +&uart_C {
-> +	clocks = <&xtal>, <&clk81>, <&clk81>;
+> ?};
+> ?
+> ?&uart_C {
+> -	clocks = <&clkc CLKID_CLK81>;
+> +	compatible = "amlogic,meson8b-uart";
+> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
 > +	clock-names = "xtal", "pclk", "baud";
-> +};
+> ?};
