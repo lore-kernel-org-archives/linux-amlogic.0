@@ -1,83 +1,149 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Jun 2017 14:49:45 +0200
-Subject: [PATCH v4 6/7] ARM: dts: meson8: switch to new bindings for UART
- nodes
-In-Reply-To: <1497258823.3086.6.camel@baylibre.com>
-References: <1497001756-942-1-git-send-email-narmstrong@baylibre.com>
- <1497001756-942-7-git-send-email-narmstrong@baylibre.com>
- <1497258823.3086.6.camel@baylibre.com>
-Message-ID: <bec2573f-ff71-8c69-9581-e74cdd80a551@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 12 Jun 2017 21:44:31 +0200
+Subject: [PATCH v3 03/10] clk: rework calls to round and determine rate
+ callbacks
+In-Reply-To: <20170612194438.12298-1-jbrunet@baylibre.com>
+References: <20170612194438.12298-1-jbrunet@baylibre.com>
+Message-ID: <20170612194438.12298-4-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/12/2017 11:13 AM, Jerome Brunet wrote:
-> On Fri, 2017-06-09 at 11:49 +0200, Neil Armstrong wrote:
->> Switch to the stable UART bindings by adding a XTAL node and using the
->> proper compatible strings.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  arch/arm/boot/dts/meson8.dtsi | 23 +++++++++++++++++++----
->>  1 file changed, 19 insertions(+), 4 deletions(-)
-> 
-> I think this is clashing with the recent change from Martin on meson8 clock
-> driver. Kevin just applied it : 
-> 
-> https://lkml.kernel.org/r/m2d1ad9g38.fsf at baylibre.com
-> 
-> <&clk81> no longer exists ...
-> 
->>
->> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
->> index 6993077..a2ea112 100644
->> --- a/arch/arm/boot/dts/meson8.dtsi
->> +++ b/arch/arm/boot/dts/meson8.dtsi
->> @@ -83,6 +83,13 @@
->>  		};
->>  	};
->>  
->> +	xtal: xtal-clk {
->> +		compatible = "fixed-clock";
->> +		clock-frequency = <24000000>;
->> +		clock-output-names = "xtal";
->> +		#clock-cells = <0>;
->> +	};
->> +
->>  	clk81: clk at 0 {
->>  		#clock-cells = <0>;
->>  		compatible = "fixed-clock";
->> @@ -199,17 +206,25 @@
->>  };
->>  
->>  &uart_AO {
->> -	clocks = <&clk81>;
->> +	compatible = "amlogic,meson8-uart", "amlogic,meson-ao-uart";
->> +	clocks = <&xtal>, <&clk81>, <&clk81>;
->> +	clock-names = "xtal", "pclk", "baud";
->>  };
->>  
->>  &uart_A {
->> -	clocks = <&clk81>;
->> +	compatible = "amlogic,meson8-uart";
->> +	clocks = <&xtal>, <&clk81>, <&clk81>;
->> +	clock-names = "xtal", "pclk", "baud";
->>  };
->>  
->>  &uart_B {
->> -	clocks = <&clk81>;
->> +	compatible = "amlogic,meson8-uart";
->> +	clocks = <&xtal>, <&clk81>, <&clk81>;
->> +	clock-names = "xtal", "pclk", "baud";
->>  };
->>  
->>  &uart_C {
->> -	clocks = <&clk81>;
->> +	compatible = "amlogic,meson8-uart";
->> +	clocks = <&xtal>, <&clk81>, <&clk81>;
->> +	clock-names = "xtal", "pclk", "baud";
->>  };
-> 
+Rework the way the callbacks round_rate and determine_rate are called. The
+goal is to do this at a single point and make it easier to add conditions
+before calling them.
 
-I will drop this until martin has a better version, and tested !
+This rework is done to ease the integration of "protected" clock
+functionality.
 
-Neil
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/clk.c | 78 +++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 44 insertions(+), 34 deletions(-)
+
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index dceaf0ff23db..8cc4672414be 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -833,16 +833,34 @@ static int clk_disable_unused(void)
+ }
+ late_initcall_sync(clk_disable_unused);
+ 
+-static int clk_core_round_rate_nolock(struct clk_core *core,
+-				      struct clk_rate_request *req)
++static int clk_core_determine_round(struct clk_core *core,
++				    struct clk_rate_request *req)
+ {
+-	struct clk_core *parent;
+ 	long rate;
+ 
+-	lockdep_assert_held(&prepare_lock);
++	if (core->ops->determine_rate) {
++		return core->ops->determine_rate(core->hw, req);
++	} else if (core->ops->round_rate) {
++		rate = core->ops->round_rate(core->hw, req->rate,
++					     &req->best_parent_rate);
++		if (rate < 0)
++			return rate;
+ 
+-	if (!core)
+-		return 0;
++		req->rate = rate;
++	} else {
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static void clk_core_init_rate_req(struct clk_core *core,
++				   struct clk_rate_request *req)
++{
++	struct clk_core *parent;
++
++	if (WARN_ON(!core || !req))
++		return;
+ 
+ 	parent = core->parent;
+ 	if (parent) {
+@@ -852,22 +870,24 @@ static int clk_core_round_rate_nolock(struct clk_core *core,
+ 		req->best_parent_hw = NULL;
+ 		req->best_parent_rate = 0;
+ 	}
++}
+ 
+-	if (core->ops->determine_rate) {
+-		return core->ops->determine_rate(core->hw, req);
+-	} else if (core->ops->round_rate) {
+-		rate = core->ops->round_rate(core->hw, req->rate,
+-					     &req->best_parent_rate);
+-		if (rate < 0)
+-			return rate;
++static int clk_core_round_rate_nolock(struct clk_core *core,
++				      struct clk_rate_request *req)
++{
++	lockdep_assert_held(&prepare_lock);
+ 
+-		req->rate = rate;
+-	} else if (core->flags & CLK_SET_RATE_PARENT) {
+-		return clk_core_round_rate_nolock(parent, req);
+-	} else {
+-		req->rate = core->rate;
+-	}
++	if (!core)
++		return 0;
++
++	clk_core_init_rate_req(core, req);
++
++	if (core->ops->determine_rate || core->ops->round_rate)
++		return clk_core_determine_round(core, req);
++	else if (core->flags & CLK_SET_RATE_PARENT)
++		return clk_core_round_rate_nolock(core->parent, req);
+ 
++	req->rate = core->rate;
+ 	return 0;
+ }
+ 
+@@ -1356,36 +1376,26 @@ static struct clk_core *clk_calc_new_rates(struct clk_core *core,
+ 	clk_core_get_boundaries(core, &min_rate, &max_rate);
+ 
+ 	/* find the closest rate and parent clk/rate */
+-	if (core->ops->determine_rate) {
++	if (core->ops->determine_rate || core->ops->round_rate) {
+ 		struct clk_rate_request req;
+ 
+ 		req.rate = rate;
+ 		req.min_rate = min_rate;
+ 		req.max_rate = max_rate;
+-		if (parent) {
+-			req.best_parent_hw = parent->hw;
+-			req.best_parent_rate = parent->rate;
+-		} else {
+-			req.best_parent_hw = NULL;
+-			req.best_parent_rate = 0;
+-		}
+ 
+-		ret = core->ops->determine_rate(core->hw, &req);
++		clk_core_init_rate_req(core, &req);
++
++		ret = clk_core_determine_round(core, &req);
+ 		if (ret < 0)
+ 			return NULL;
+ 
+ 		best_parent_rate = req.best_parent_rate;
+ 		new_rate = req.rate;
+ 		parent = req.best_parent_hw ? req.best_parent_hw->core : NULL;
+-	} else if (core->ops->round_rate) {
+-		ret = core->ops->round_rate(core->hw, rate,
+-					    &best_parent_rate);
+-		if (ret < 0)
+-			return NULL;
+ 
+-		new_rate = ret;
+ 		if (new_rate < min_rate || new_rate > max_rate)
+ 			return NULL;
++
+ 	} else if (!parent || !(core->flags & CLK_SET_RATE_PARENT)) {
+ 		/* pass-through clock without adjustable parent */
+ 		core->new_rate = core->rate;
+-- 
+2.9.4
