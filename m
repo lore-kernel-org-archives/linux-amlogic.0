@@ -1,42 +1,55 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Jun 2017 09:38:15 +0200
-Subject: [PATCH 0/3] Meson (32-bit) multi_v7_defconfig updates
-In-Reply-To: <20170611100343.25868-1-martin.blumenstingl@googlemail.com>
-References: <20170611100343.25868-1-martin.blumenstingl@googlemail.com>
-Message-ID: <888ef3fd-d8aa-d09c-dace-8662a7fd9c5a@baylibre.com>
+Date: Mon, 12 Jun 2017 09:37:16 +0200
+Subject: [PATCH 13/13] ARM: dts: meson: use the real ethernet clock on
+ Meson8 and Meson8b
+In-Reply-To: <20170611101644.28581-14-martin.blumenstingl@googlemail.com>
+References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+ <20170611101644.28581-14-martin.blumenstingl@googlemail.com>
+Message-ID: <f26c205e-9956-3315-27bf-b520cbaff1ad@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/11/2017 12:03 PM, Martin Blumenstingl wrote:
-> This enables the following drivers which are supported on Meson8 and
-> Meson8b (as well as Meson8m2):
-> - Meson USB2 PHY driver (USB controller support is provided by dwc2,
->   which is already enabled)
-> - Meson PWM driver (used to dim LEDs and generate the 32.768 kHz LPO
->   clock for the SDIO wifi modules)
-> - the generic PWM clock driver (for the 32.768 kHz LPO clock for the
->   SDIO wifi modules)
+On 06/11/2017 12:16 PM, Martin Blumenstingl wrote:
+> Until now clk81 was used as gate clock for the ethernet controller on
+> Meson8 whereas Meson8b did not configure a gate clock at all. Use
+> CLKID_ETH for both SoCs, which is the real gate clock for the ethernet
+> controller.
 > 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm/boot/dts/meson8.dtsi  | 2 +-
+>  arch/arm/boot/dts/meson8b.dtsi | 5 +++++
+>  2 files changed, 6 insertions(+), 1 deletion(-)
 > 
-> I am not sure if these patches will go through Kevin's Amlogic tree
-> or through some other tree. However, these should be independent from
-> anything else, so it's just a matter of preference through which tree
-> they go.
-> 
-> 
-> Martin Blumenstingl (3):
->   ARM: multi_v7_defconfig: enable the Amlogic Meson USB2 PHY driver
->   ARM: multi_v7_defconfig: enable the Meson PWM controller
->   ARM: multi_v7_defconfig: enable the PWM clock driver
-> 
->  arch/arm/configs/multi_v7_defconfig | 3 +++
->  1 file changed, 3 insertions(+)
+> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+> index f6816ea09aeb..d997185896b7 100644
+> --- a/arch/arm/boot/dts/meson8.dtsi
+> +++ b/arch/arm/boot/dts/meson8.dtsi
+> @@ -242,7 +242,7 @@
+>  };
+>  
+>  &ethmac {
+> -	clocks = <&clkc CLKID_CLK81>;
+> +	clocks = <&clkc CLKID_ETH>;
+>  	clock-names = "stmmaceth";
+>  };
+>  
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index 2b13570b0e60..e57934f82098 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -176,6 +176,11 @@
+>  	};
+>  };
+>  
+> +&ethmac {
+> +	clocks = <&clkc CLKID_ETH>;
+> +	clock-names = "stmmaceth";
+> +};
+> +
+>  &hwrng {
+>  	clocks = <&clkc CLKID_RNG0>;
+>  	clock-names = "core";
 > 
 
-
-Hi Martin,
-
-Isn't it better to have these as modules like for the ARM64 counterpart ?
-
-Thanks,
-Neil
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
