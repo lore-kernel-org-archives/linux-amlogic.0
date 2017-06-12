@@ -1,83 +1,104 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Jun 2017 22:31:54 +0200
-Subject: [PATCH] mmc: meson-gx: work around broken SDIO with certain WiFi
- chips
-In-Reply-To: <e0844236-ba11-3256-c388-ce2405c3b7b8@gmail.com>
-References: <dd12ffc8-e2a4-53bd-caa5-83bb7cbcd5e5@gmail.com>
- <CAFBinCDUNCgwm9YS9w8uQ6i1MX4SR1ZHf-mn8UnObnejjZiQOw@mail.gmail.com>
- <e0844236-ba11-3256-c388-ce2405c3b7b8@gmail.com>
-Message-ID: <CAFBinCBOS7mDja3EdfNViCqzuk_=ur0bQOG+6ZeL-xFQZM7+Ug@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 12 Jun 2017 09:27:23 +0200
+Subject: [PATCH v4 6/7] ARM: dts: meson8: switch to new bindings for UART
+ nodes
+In-Reply-To: <CAFBinCBNhRtt8jiY+19_B-9_mNmB800rvD+rwBzYNfB5pXM53Q@mail.gmail.com>
+References: <1497001756-942-1-git-send-email-narmstrong@baylibre.com>
+ <1497001756-942-7-git-send-email-narmstrong@baylibre.com>
+ <CAFBinCD6_nGdqBSOJwyj0XQe8H05nw-r52pctY7ADJu0EqMb2A@mail.gmail.com>
+ <CAFBinCBNhRtt8jiY+19_B-9_mNmB800rvD+rwBzYNfB5pXM53Q@mail.gmail.com>
+Message-ID: <4a53855c-3e72-243d-6d74-2ccc5cbdc706@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Jun 10, 2017 at 1:34 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> Am 10.06.2017 um 00:06 schrieb Martin Blumenstingl:
->> Hi Heiner,
+On 06/11/2017 10:18 PM, Martin Blumenstingl wrote:
+> On Sat, Jun 10, 2017 at 12:37 AM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> Hi Neil,
 >>
->> thanks for finding a solution (it didn't even take you long)!
->>
->> On Thu, Jun 8, 2017 at 8:43 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
->>> There have been reports about SDIO failing with certain WiFi chips in
->>> descriptor chain mode. SD / eMMC are working fine.
->>>
->>> So let's fall back to bounce buffer mode for command SD_IO_RW_EXTENDED.
->>> This was reported to fix this error.
->>>
->>> Fixes: 79ed05e329c3 "mmc: meson-gx: add support for descriptor chain mode"
->>> Cc: <stable@vger.kernel.org> # 4.12.x
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>
+>> On Fri, Jun 9, 2017 at 11:49 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>> Switch to the stable UART bindings by adding a XTAL node and using the
+>>> proper compatible strings.
+>> unfortunately this won't apply now that Kevin has merged my "ARM: dts:
+>> meson8: add and use the real clock controller"
+>> on the other hand this will make the patch easier as you can now do
+>> the same changes as in meson8b.dtsi
+> Neil, if you want you could also drop this from your series and let me
+> handle this (just let me know). I would even go one step further and
+> export the CLKID_UART0, CLKID_UART1 and CLKID_UART2 gates and pass
+> them as "pclk" for uart_{A,B,C}
+> I'll even *try* to test if this works on real hardware (my Meson8m2
+> board has a RTL8723BS SDIO wifi + bluetooth chip - wifi driver support
+> has been pretty bad so far - but I'll try to see if I can get and
+> messages out of the bluetooth part)
+> just let me know if you want me to handle this patch for you
+
+
+No in fact it was just a "PoC" to show how to handle it on non-gx DTS.
+
+I'm ok to leave it to you when the UART code is merged.
+
+Neil
+
+> 
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >>> ---
->>>  drivers/mmc/host/meson-gx-mmc.c | 9 +++++++++
->>>  1 file changed, 9 insertions(+)
+>>>  arch/arm/boot/dts/meson8.dtsi | 23 +++++++++++++++++++----
+>>>  1 file changed, 19 insertions(+), 4 deletions(-)
 >>>
->>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->>> index 1842ed34..4cdbe3c0 100644
->>> --- a/drivers/mmc/host/meson-gx-mmc.c
->>> +++ b/drivers/mmc/host/meson-gx-mmc.c
->>> @@ -210,6 +210,15 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
->>>         int i;
->>>         bool use_desc_chain_mode = true;
+>>> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+>>> index 6993077..a2ea112 100644
+>>> --- a/arch/arm/boot/dts/meson8.dtsi
+>>> +++ b/arch/arm/boot/dts/meson8.dtsi
+>>> @@ -83,6 +83,13 @@
+>>>                 };
+>>>         };
 >>>
->>> +       /*
->>> +        * Broken SDIO with AP6335-based WiFi on Khadas VIM Pro has been
->> nit-pick: Khadas VIM Pro uses an Ampak AP6255 (not AP6335)
->>
-> Uups, I obviously mixed up the device with one of the S905-based tv boxes.
-> Will fix it.
->
->>> +        * reported. For some strange reason this occurs in descriptor
->>> +        * chain mode only. So let's fall back to bounce buffer mode
->>> +        * for command SD_IO_RW_EXTENDED.
->>> +        */
->>> +       if (mrq->cmd->opcode == SD_IO_RW_EXTENDED)
->>> +               return;
+>>> +       xtal: xtal-clk {
+>>> +               compatible = "fixed-clock";
+>>> +               clock-frequency = <24000000>;
+>>> +               clock-output-names = "xtal";
+>>> +               #clock-cells = <0>;
+>>> +       };
 >>> +
->>>         for_each_sg(data->sg, sg, data->sg_len, i)
->>>                 /* check for 8 byte alignment */
->>>                 if (sg->offset & 7) {
->>> --
->>> 2.13.0
+>>>         clk81: clk at 0 {
+>>>                 #clock-cells = <0>;
+>>>                 compatible = "fixed-clock";
+>>> @@ -199,17 +206,25 @@
+>>>  };
 >>>
->> for the record: wireless performance with this patch applied is excellent
->>
-> Just curious:
-> Do you also experience the lagging mentioned by crow?
-I just made a quick ping test:
-
-Khadas VIM Pro (AP6255, directly connected to my 802.11ac wifi AP):
-30 packets transmitted, 30 received, 0% packet loss, time 29057ms
-rtt min/avg/max/mdev = 2.263/13.614/20.336/4.583 ms
-
-on my workstation (connected via ethernet to a router running LEDE,
-which is also connected via wifi to my 802.11ac wifi AP):
-30 packets transmitted, 30 received, 0% packet loss, time 29040ms
-rtt min/avg/max/mdev = 1.040/1.405/5.977/0.862 ms
-
-(distance between my Khadas VIM Pro and my AP vs the router running
-LEDE vs my AP is roughly the same, less than 50cm difference in
-distance, no additional walls etc.)
-
-so the delay is definitely "higher" than with other devices, but an
-average pin time of ~14ms still doesn't seem to cause any lags for me
+>>>  &uart_AO {
+>>> -       clocks = <&clk81>;
+>>> +       compatible = "amlogic,meson8-uart", "amlogic,meson-ao-uart";
+>>> +       clocks = <&xtal>, <&clk81>, <&clk81>;
+>>> +       clock-names = "xtal", "pclk", "baud";
+>>>  };
+>>>
+>>>  &uart_A {
+>>> -       clocks = <&clk81>;
+>>> +       compatible = "amlogic,meson8-uart";
+>>> +       clocks = <&xtal>, <&clk81>, <&clk81>;
+>>> +       clock-names = "xtal", "pclk", "baud";
+>>>  };
+>>>
+>>>  &uart_B {
+>>> -       clocks = <&clk81>;
+>>> +       compatible = "amlogic,meson8-uart";
+>>> +       clocks = <&xtal>, <&clk81>, <&clk81>;
+>>> +       clock-names = "xtal", "pclk", "baud";
+>>>  };
+>>>
+>>>  &uart_C {
+>>> -       clocks = <&clk81>;
+>>> +       compatible = "amlogic,meson8-uart";
+>>> +       clocks = <&xtal>, <&clk81>, <&clk81>;
+>>> +       clock-names = "xtal", "pclk", "baud";
+>>>  };
+>>> --
+>>> 1.9.1
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-amlogic mailing list
+>>> linux-amlogic at lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
