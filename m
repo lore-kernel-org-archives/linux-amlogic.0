@@ -1,76 +1,51 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Jun 2017 11:47:59 +0200
-Subject: [PATCH v4 7/7] ARM: dts: meson8b: switch to new bindings for
- UART nodes
-In-Reply-To: <1497001756-942-8-git-send-email-narmstrong@baylibre.com>
+From: moore@free.fr (Chris Moore)
+Date: Mon, 12 Jun 2017 14:45:04 +0200
+Subject: [PATCH v4 2/7] tty/serial: meson_uart: update to stable bindings
+In-Reply-To: <1497001756-942-3-git-send-email-narmstrong@baylibre.com>
 References: <1497001756-942-1-git-send-email-narmstrong@baylibre.com>
- <1497001756-942-8-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1497260879.3086.13.camel@baylibre.com>
+ <1497001756-942-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <5096bbb9-aa11-ad9b-139e-e056463d1a1d@free.fr>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2017-06-09 at 11:49 +0200, Neil Armstrong wrote:
-> Switch to the stable UART bindings by adding a XTAL node and using the
-> proper compatible strings.
-> 
+Le 09/06/2017 ? 11:49, Neil Armstrong a ?crit :
+> From: Helmut Klein <hgkr.klein@gmail.com>
+>
+> This patch handle the stable UART bindings but also keeps compatibility
+> with the legacy non-stable bindings until all boards uses them.
+>
+> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
-> ?arch/arm/boot/dts/meson8b.dtsi | 23 +++++++++++++++++++----
-> ?1 file changed, 19 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index d9f116a..651ad4a 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -82,6 +82,13 @@
-> ?			reg = <0x203>;
-> ?		};
-> ?	};
+>   drivers/tty/serial/meson_uart.c | 109 +++++++++++++++++++++++++++++++++++++---
+>   1 file changed, 103 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> index 60f1679..d2c8136 100644
+> --- a/drivers/tty/serial/meson_uart.c
+> +++ b/drivers/tty/serial/meson_uart.c
+
+[snip]
+
+> +static int meson_uart_probe_clocks(struct platform_device *pdev,
+> +				   struct uart_port *port)
+> +{
+> +	struct clk *clk_xtal = NULL;
+> +	struct clk *clk_pclk = NULL;
+> +	struct clk *clk_baud = NULL;
+> +	int ret;
 > +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
+> +	clk_pclk = devm_clk_get(&pdev->dev, "pclk");
+> +	if (IS_ERR(clk_pclk))
+> +		return PTR_ERR(clk_pclk);
+> +
+> +	clk_xtal = devm_clk_get(&pdev->dev, "xtal");
+> +	if (IS_ERR(clk_xtal))
+> +		return PTR_ERR(clk_xtal);
+> +
+> +	clk_baud = devm_clk_get(&pdev->dev, "baud");
+> +	if (IS_ERR(clk_xtal))
 
-On meson8b, I think xtal is already provided by <&clkc CLKID_XTAL>.
-We have to choose which one we want.
+Copy/paste error: s/clk_xtal/clk_baud/
 
-With this handled:
-
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-
-> ?}; /* end of / */
-> ?
-> ?&aobus {
-> @@ -178,17 +185,25 @@
-> ?};
-> ?
-> ?&uart_AO {
-> -	clocks = <&clkc CLKID_CLK81>;
-> +	compatible = "amlogic,meson8b-uart", "amlogic,meson-ao-uart";
-> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
-> +	clock-names = "xtal", "pclk", "baud";
-> ?};
-> ?
-> ?&uart_A {
-> -	clocks = <&clkc CLKID_CLK81>;
-> +	compatible = "amlogic,meson8b-uart";
-> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
-> +	clock-names = "xtal", "pclk", "baud";
-> ?};
-> ?
-> ?&uart_B {
-> -	clocks = <&clkc CLKID_CLK81>;
-> +	compatible = "amlogic,meson8b-uart";
-> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
-> +	clock-names = "xtal", "pclk", "baud";
-> ?};
-> ?
-> ?&uart_C {
-> -	clocks = <&clkc CLKID_CLK81>;
-> +	compatible = "amlogic,meson8b-uart";
-> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&clkc CLKID_CLK81>;
-> +	clock-names = "xtal", "pclk", "baud";
-> ?};
+> +		return PTR_ERR(clk_baud);
