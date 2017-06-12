@@ -1,78 +1,80 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Jun 2017 21:44:30 +0200
-Subject: [PATCH v3 02/10] clk: add clk_core_set_phase_nolock function
+Date: Mon, 12 Jun 2017 21:44:32 +0200
+Subject: [PATCH v3 04/10] clk: use round rate to bail out early in set_rate
 In-Reply-To: <20170612194438.12298-1-jbrunet@baylibre.com>
 References: <20170612194438.12298-1-jbrunet@baylibre.com>
-Message-ID: <20170612194438.12298-3-jbrunet@baylibre.com>
+Message-ID: <20170612194438.12298-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Create a core function for set_phase, as it is done for set_rate and
-set_parent.
+The current implementation of clk_core_set_rate_nolock bails out early if
+the requested rate is exactly the same as the one set. It should bail out
+if the request would not result in rate a change.  This important when
+rate is not exactly what is requested, which is fairly common with PLLs.
 
-This rework is done to ease the integration of "protected" clock
-functionality.
+Ex: provider able to give any rate with steps of 100Hz
+ - 1st consumer request 48000Hz and gets it.
+ - 2nd consumer request 48010Hz as well. If we were to perform the usual
+   mechanism, we would get 48000Hz as well. The clock would not change so
+   there is no point performing any checks to make sure the clock can
+   change, we know it won't.
+
+This is important to prepare the addition of the clock protection
+mechanism
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/clk.c | 31 +++++++++++++++++++------------
- 1 file changed, 19 insertions(+), 12 deletions(-)
+ drivers/clk/clk.c | 23 +++++++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index f5c371532509..dceaf0ff23db 100644
+index 8cc4672414be..163cb9832f10 100644
 --- a/drivers/clk/clk.c
 +++ b/drivers/clk/clk.c
-@@ -1873,6 +1873,23 @@ int clk_set_parent(struct clk *clk, struct clk *parent)
+@@ -1570,15 +1570,34 @@ static void clk_change_rate(struct clk_core *core)
+ 		clk_change_rate(core->new_child);
  }
- EXPORT_SYMBOL_GPL(clk_set_parent);
  
-+static int clk_core_set_phase_nolock(struct clk_core *core, int degrees)
++static unsigned long clk_core_req_round_rate_nolock(struct clk_core *core,
++						     unsigned long req_rate)
 +{
-+	int ret = -EINVAL;
++	int ret;
++	struct clk_rate_request req;
 +
 +	if (!core)
 +		return 0;
 +
-+	trace_clk_set_phase(core, degrees);
++	clk_core_get_boundaries(core, &req.min_rate, &req.max_rate);
++	req.rate = req_rate;
 +
-+	if (core->ops->set_phase)
-+		ret = core->ops->set_phase(core->hw, degrees);
++	ret = clk_core_round_rate_nolock(core, &req);
 +
-+	trace_clk_set_phase_complete(core, degrees);
-+
-+	return ret;
++	return ret ? 0 : req.rate;
 +}
 +
- /**
-  * clk_set_phase - adjust the phase shift of a clock signal
-  * @clk: clock signal source
-@@ -1895,7 +1912,7 @@ EXPORT_SYMBOL_GPL(clk_set_parent);
-  */
- int clk_set_phase(struct clk *clk, int degrees)
+ static int clk_core_set_rate_nolock(struct clk_core *core,
+ 				    unsigned long req_rate)
  {
--	int ret = -EINVAL;
-+	int ret;
+ 	struct clk_core *top, *fail_clk;
+-	unsigned long rate = req_rate;
++	unsigned long rate;
  
- 	if (!clk)
+ 	if (!core)
  		return 0;
-@@ -1906,17 +1923,7 @@ int clk_set_phase(struct clk *clk, int degrees)
- 		degrees += 360;
  
- 	clk_prepare_lock();
--
--	trace_clk_set_phase(clk->core, degrees);
--
--	if (clk->core->ops->set_phase)
--		ret = clk->core->ops->set_phase(clk->core->hw, degrees);
--
--	trace_clk_set_phase_complete(clk->core, degrees);
--
--	if (!ret)
--		clk->core->phase = degrees;
--
-+	ret = clk_core_set_phase_nolock(clk->core, degrees);
- 	clk_prepare_unlock();
++	rate = clk_core_req_round_rate_nolock(core, req_rate);
++
+ 	/* bail early if nothing to do */
+ 	if (rate == clk_core_get_rate_nolock(core))
+ 		return 0;
+@@ -1587,7 +1606,7 @@ static int clk_core_set_rate_nolock(struct clk_core *core,
+ 		return -EBUSY;
  
- 	return ret;
+ 	/* calculate new rates and get the topmost changed clock */
+-	top = clk_calc_new_rates(core, rate);
++	top = clk_calc_new_rates(core, req_rate);
+ 	if (!top)
+ 		return -EINVAL;
+ 
 -- 
 2.9.4
