@@ -1,57 +1,58 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Jun 2017 09:38:55 +0200
-Subject: [PATCH] ARM: dts: meson8: fix the IR receiver pins
-In-Reply-To: <20170609222039.25191-1-martin.blumenstingl@googlemail.com>
-References: <20170609222039.25191-1-martin.blumenstingl@googlemail.com>
-Message-ID: <e4347b01-e221-2242-9bb9-bc1e93da06fb@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Mon, 12 Jun 2017 09:58:33 +0200
+Subject: [PATCH v2] mmc: meson-gx: work around broken SDIO with certain
+ WiFi chips
+In-Reply-To: <8ac1f97a-afbb-dde9-7e60-3e51396cb8ff@gmail.com>
+References: <8ac1f97a-afbb-dde9-7e60-3e51396cb8ff@gmail.com>
+Message-ID: <CAPDyKFoHtjm5-e-CTG4BrWyzayRe3Yir-2Y-bJkLfkyotRgT+Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/10/2017 12:20 AM, Martin Blumenstingl wrote:
-> The IR receiver pins are currently defined in the CBUS pin-controller.
-> However the pins are in the AO region, which is controlled by the AOBUS
-> pin-controller. Move the pins to pinctrl_aobus so they can actually be
-> used.
-> 
-> Fixes: b60e1157d8fa ("ARM: dts: amlogic: Split pinctrl device for Meson8 / Meson8b")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 10 June 2017 at 13:36, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> There have been reports about SDIO failing with certain WiFi chips in
+> descriptor chain mode. SD / eMMC are working fine.
+>
+> So let's fall back to bounce buffer mode for command SD_IO_RW_EXTENDED.
+> This was reported to fix the error.
+>
+> Fixes: 79ed05e329c3 "mmc: meson-gx: add support for descriptor chain mode"
+> Cc: <stable@vger.kernel.org> # 4.12.x
+> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Thanks, applied for fixes!
+
+Kind regards
+Uffe
+
 > ---
->  arch/arm/boot/dts/meson8.dtsi | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-> index 9b0b3ddbb17e..e4f7357b4b31 100644
-> --- a/arch/arm/boot/dts/meson8.dtsi
-> +++ b/arch/arm/boot/dts/meson8.dtsi
-> @@ -116,6 +116,13 @@
->  				function = "i2c_mst_ao";
->  			};
->  		};
+> v2:
+> - fixed affected WiFi chip: actually it is AP6255
+> - added tested-by
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 1842ed34..4cdbe3c0 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -210,6 +210,15 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
+>         int i;
+>         bool use_desc_chain_mode = true;
+>
+> +       /*
+> +        * Broken SDIO with AP6255-based WiFi on Khadas VIM Pro has been
+> +        * reported. For some strange reason this occurs in descriptor
+> +        * chain mode only. So let's fall back to bounce buffer mode
+> +        * for command SD_IO_RW_EXTENDED.
+> +        */
+> +       if (mrq->cmd->opcode == SD_IO_RW_EXTENDED)
+> +               return;
 > +
-> +		ir_recv_pins: remote {
-> +			mux {
-> +				groups = "remote_input";
-> +				function = "remote";
-> +			};
-> +		};
->  	};
->  };
->  
-> @@ -151,13 +158,6 @@
->  			};
->  		};
->  
-> -		ir_recv_pins: remote {
-> -			mux {
-> -				groups = "remote_input";
-> -				function = "remote";
-> -			};
-> -		};
-> -
->  		eth_pins: ethernet {
->  			mux {
->  				groups = "eth_tx_clk_50m", "eth_tx_en",
-> 
-
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>         for_each_sg(data->sg, sg, data->sg_len, i)
+>                 /* check for 8 byte alignment */
+>                 if (sg->offset & 7) {
+> --
+> 2.13.0
+>
