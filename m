@@ -1,15 +1,15 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Jun 2017 09:28:40 +0200
-Subject: [PATCH 05/13] clk: meson8b: export the ethernet gate clock
-In-Reply-To: <20170611101644.28581-6-martin.blumenstingl@googlemail.com>
+Date: Mon, 12 Jun 2017 09:28:14 +0200
+Subject: [PATCH 02/13] clk: meson8b: export the SDIO clock
+In-Reply-To: <20170611101644.28581-3-martin.blumenstingl@googlemail.com>
 References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
- <20170611101644.28581-6-martin.blumenstingl@googlemail.com>
-Message-ID: <b09cd563-a485-d52f-916e-ad87082cefff@baylibre.com>
+ <20170611101644.28581-3-martin.blumenstingl@googlemail.com>
+Message-ID: <cab58b96-050d-2992-394d-40204ca1cb7a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 06/11/2017 12:16 PM, Martin Blumenstingl wrote:
-> Export the ethernet gate clock to the dt-bindings.
+> Export the SDIO clock so it can be used in the dt-bindings.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
@@ -18,30 +18,30 @@ On 06/11/2017 12:16 PM, Martin Blumenstingl wrote:
 >  2 files changed, 2 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-> index 17479c60864d..a687e02547dc 100644
+> index 5447d4a5c9ba..e0fb386ccc23 100644
 > --- a/drivers/clk/meson/meson8b.h
 > +++ b/drivers/clk/meson/meson8b.h
-> @@ -100,7 +100,7 @@
+> @@ -94,7 +94,7 @@
+>  #define CLKID_SDHC		27
+>  #define CLKID_STREAM		28
+>  #define CLKID_ASYNC_FIFO	29
+> -#define CLKID_SDIO		30
+> +/* #define CLKID_SDIO */
+>  #define CLKID_ABUF		31
+>  #define CLKID_HIU_IFACE		32
 >  #define CLKID_ASSIST_MISC	33
->  #define CLKID_SPI		34
->  #define CLKID_I2S_SPDIF		35
-> -#define CLKID_ETH		36
-> +/* #define CLKID_ETH */
->  #define CLKID_DEMUX		37
->  #define CLKID_AIU_GLUE		38
->  #define CLKID_IEC958		39
 > diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
-> index 04f0d1fcd308..e29227fb52a1 100644
+> index 1c7f090da440..821b08574900 100644
 > --- a/include/dt-bindings/clock/meson8b-clkc.h
 > +++ b/include/dt-bindings/clock/meson8b-clkc.h
-> @@ -24,6 +24,7 @@
+> @@ -22,6 +22,7 @@
+>  #define CLKID_MPEG_SEL		14
+>  #define CLKID_MPEG_DIV		15
 >  #define CLKID_SAR_ADC		23
->  #define CLKID_RNG0		25
->  #define CLKID_SDIO		30
-> +#define CLKID_ETH		36
->  #define CLKID_USB0		50
->  #define CLKID_USB1		51
->  #define CLKID_USB		55
+> +#define CLKID_SDIO		30
+>  #define CLKID_SANA		69
+>  
+>  #endif /* __MESON8B_CLKC_H */
 > 
 
 
