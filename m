@@ -1,59 +1,70 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Jun 2017 09:38:42 +0200
-Subject: [PATCH] watchdog: meson-wdt: add support for the watchdog on
- Meson8 and Meson8m2
-In-Reply-To: <20170611095219.22095-1-martin.blumenstingl@googlemail.com>
-References: <20170611095219.22095-1-martin.blumenstingl@googlemail.com>
-Message-ID: <af787a82-e798-411a-3402-b9332deda672@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 12 Jun 2017 09:40:25 +0200
+Subject: [PATCH 1/3] clk: meson: meson8b: add compatibles for Meson8 and
+ Meson8m2
+In-Reply-To: <m2lgp19ghu.fsf@baylibre.com>
+References: <20170604183341.21417-1-martin.blumenstingl@googlemail.com>
+ <20170604183341.21417-2-martin.blumenstingl@googlemail.com>
+ <1496606325.3552.16.camel@baylibre.com> <m2lgp19ghu.fsf@baylibre.com>
+Message-ID: <1497253225.3086.2.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/11/2017 11:52 AM, Martin Blumenstingl wrote:
-> The watchdog IP block on Meson8 and Meson8m2 is already supported by the
-> existing meson-wdt driver. Meson8 uses the same register bits as Meson6,
-> while the newer Meson8m2 SoC uses the same register bits as Meson8b.
+On Fri, 2017-06-09 at 11:13 -0700, Kevin Hilman wrote:
+> Jerome Brunet <jbrunet@baylibre.com> writes:
 > 
-> Currently watchdog support on Meson8 SoC already works because
-> meson8.dtsi simply uses the "amlogic,meson6-wdt" compatible. Adding a
-> separate compatible for Meson8 makes this more explicit though.
+> > On Sun, 2017-06-04 at 20:33 +0200, Martin Blumenstingl wrote:
+> > > The clock controller on Meson8, Meson8b and Meson8m2 is very similar
+> > > based on the code from the Amlogic GPL kernel sources. Add separate
+> > > compatibles for each SoC to make sure that we can easily implement
+> > > all the small differences for each SoC later on.
+> > > 
+> > > In general the Meson8 and Meson8m2 seem to be almost identical as they
+> > > even share the same mach-meson8 directory in Amlogic's GPL kernel
+> > > sources.
+> > > The main clocks on Meson8, Meson8b and Meson8m2 are very similar,
+> > > because they are all using the same PLL values, 90% of the clock gates
+> > > are the same (the actual diffstat of the mach-meson8/clock.c and
+> > > mach-meson8b/clock.c files is around 30 to 40 lines, when excluding
+> > > all commented out code).
+> > > The difference between the Meson8 and Meson8b clock gates seem to be:
+> > > - Meson8 has AIU_PCLK, HDMI_RX, VCLK2_ENCT, VCLK2_ENCL, UART3,
+> > > ? CSI_DIG_CLKIN gates which don't seem to be available on Meson8b
+> > > - the gate on Meson8 for bit 7 seems to be named "_1200XXX" instead
+> > > ? of "PERIPHS_TOP" (on Meson8b)
+> > > - Meson8b has a SANA gate which doesn't seem to exist on Meson8 (or
+> > > ? on Meson8 the same bit is used by the UART3 gate in Amlogic's GPL
+> > > ? kernel sources)
+> > > None of these gates is added for now, since it's unclear whether these
+> > > definitions are actually correct (the VCLK2_ENCT gate for example is
+> > > defined, but only used in some commented block).
+> > > 
+> > > The main difference between all three SoCs seem to be the video (VPU)
+> > > clocks. Apart from different supported clock rates (according to vpu.c
+> > > in mach-meson8 and mach-meson8b from Amlogic's GPL kernel sources) the
+> > > most notable difference is that Meson8m2 has a GP_PLL clock and a mux
+> > > (probably the same as on the Meson GX SoCs) to support glitch-free
+> > > (clock rate) switching.
+> > > None of these VPU clocks are not supported by our mainline meson8b
+> > > clock driver yet though.
+> > > 
+> > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > > ---
+> > > ?.../devicetree/bindings/clock/amlogic,meson8b-clkc.txt????????| 11
+> > > +++++++---
+> > 
+> > I think you should split the binding documentation and clk changes into
+> > separate
+> > patches.
+> > 
+> > > -
+> > > ?drivers/clk/meson/Kconfig?????????????????????????????????????|??6 +++---
+> > > ?drivers/clk/meson/meson8b.c???????????????????????????????????|??5 ++++-
+> > 
+> > The change being more platform than clock related, I'd prefer if Kevin or
+> > Carlo
+> > ack it before we apply it.
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  Documentation/devicetree/bindings/watchdog/meson-wdt.txt | 6 +++++-
->  drivers/watchdog/meson_wdt.c                             | 2 ++
->  2 files changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
-> index ae70185d96e6..f2fbe1a39d31 100644
-> --- a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
-> +++ b/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
-> @@ -2,7 +2,11 @@ Meson SoCs Watchdog timer
->  
->  Required properties:
->  
-> -- compatible : should be "amlogic,meson6-wdt" or "amlogic,meson8b-wdt"
-> +- compatible : depending on the SoC this should be one of:
-> +	"amlogic,meson6-wdt"
-> +	"amlogic,meson8-wdt"
-> +	"amlogic,meson8b-wdt"
-> +	"amlogic,meson8m2-wdt"
->  - reg : Specifies base physical address and size of the registers.
->  
->  Example:
-> diff --git a/drivers/watchdog/meson_wdt.c b/drivers/watchdog/meson_wdt.c
-> index 491b9bf13d84..304274c67735 100644
-> --- a/drivers/watchdog/meson_wdt.c
-> +++ b/drivers/watchdog/meson_wdt.c
-> @@ -155,7 +155,9 @@ static const struct watchdog_ops meson_wdt_ops = {
->  
->  static const struct of_device_id meson_wdt_dt_ids[] = {
->  	{ .compatible = "amlogic,meson6-wdt", .data = &meson6_wdt_data },
-> +	{ .compatible = "amlogic,meson8-wdt", .data = &meson6_wdt_data },
->  	{ .compatible = "amlogic,meson8b-wdt", .data = &meson8b_wdt_data },
-> +	{ .compatible = "amlogic,meson8m2-wdt", .data = &meson8b_wdt_data },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, meson_wdt_dt_ids);
-> 
+> Acked-by: Kevin Hilman <khilman@baylibre.com>
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Applied to next/drivers with Kevin and Rob's Acks.
