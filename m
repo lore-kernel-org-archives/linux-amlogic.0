@@ -1,82 +1,157 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Jun 2017 09:35:50 +0200
-Subject: [PATCH 10/13] ARM: dts: meson: add the hardware random number
- generator
-In-Reply-To: <20170611101644.28581-11-martin.blumenstingl@googlemail.com>
+Date: Mon, 12 Jun 2017 09:36:54 +0200
+Subject: [PATCH 11/13] ARM: dts: meson: add USB support on Meson8 and
+ Meson8b
+In-Reply-To: <20170611101644.28581-12-martin.blumenstingl@googlemail.com>
 References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
- <20170611101644.28581-11-martin.blumenstingl@googlemail.com>
-Message-ID: <c950658f-9477-b456-c3e9-6bfe09c47c6c@baylibre.com>
+ <20170611101644.28581-12-martin.blumenstingl@googlemail.com>
+Message-ID: <8824aaae-9fd3-91f1-8101-bfb6fdf72b3e@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 06/11/2017 12:16 PM, Martin Blumenstingl wrote:
-> All supported Meson SoCs have a random number generator in CBUS.
-> Newer SoCs (GXBB, GXL and GXM) provide only one 32-bit random number
-> register, whereas the older SoCs (Meson6, Meson8 and Meson8b) have two
-> 32-bit random number registers. The existing meson-rng driver only
-> supports the lower 32-bit - but it still works fine on the older SoCs
-> apart from this small limitation.
+> This adds the DWC2 USB controller nodes and the corresponding USB2 PHY
+> nodes to meson.dtsi (as the same - or at least a very similar) IP block
+> is used on all SoCs (at the same physical address).
+> Additionally meson8.dtsi and meson8b.dtsi add the required clocks to the
+> DWC2 and USB2 PHY nodes, otherwise the DWC2 controller cannot be
+> initialized by the dwc2 driver.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  arch/arm/boot/dts/meson.dtsi   | 5 +++++
->  arch/arm/boot/dts/meson8.dtsi  | 5 +++++
->  arch/arm/boot/dts/meson8b.dtsi | 5 +++++
->  3 files changed, 15 insertions(+)
+>  arch/arm/boot/dts/meson.dtsi   | 38 ++++++++++++++++++++++++++++++++++++++
+>  arch/arm/boot/dts/meson8.dtsi  | 24 ++++++++++++++++++++++++
+>  arch/arm/boot/dts/meson8b.dtsi | 26 ++++++++++++++++++++++++++
+>  3 files changed, 88 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index b05796bee088..a210084398dc 100644
+> index a210084398dc..1a7a72005954 100644
 > --- a/arch/arm/boot/dts/meson.dtsi
 > +++ b/arch/arm/boot/dts/meson.dtsi
-> @@ -78,6 +78,11 @@
->  			#size-cells = <1>;
->  			ranges = <0x0 0xc1100000 0x200000>;
+> @@ -130,6 +130,20 @@
+>  				status = "disabled";
+>  			};
 >  
-> +			hwrng: rng at 8100 {
-> +				compatible = "amlogic,meson-rng";
-> +				reg = <0x8100 0x8>;
+> +			usb0_phy: phy at 8800 {
+> +				compatible = "amlogic,meson-mx-usb2-phy";
+> +				#phy-cells = <0>;
+> +				reg = <0x8800 0x20>;
+> +				status = "disabled";
 > +			};
 > +
+> +			usb1_phy: phy at 8820 {
+> +				compatible = "amlogic,meson-mx-usb2-phy";
+> +				#phy-cells = <0>;
+> +				reg = <0x8820 0x20>;
+> +				status = "disabled";
+> +			};
+> +
+>  			spifc: spi at 8c80 {
+>  				compatible = "amlogic,meson6-spifc";
+>  				reg = <0x8c80 0x80>;
+> @@ -182,6 +196,30 @@
+>  			};
+>  		};
+>  
+> +		usb0: usb at c9040000 {
+> +			compatible = "snps,dwc2";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0xc9040000 0x40000>;
+> +			interrupts = <0 30 1>;
 
-Maybe you can add a "amlogic,mesonX-rng" before the "amlogic,meson-rng" here so you will
-be able to support the different register layout and put the correct number in the meson8
-and meson8b dtsi files.
+Same as patch 8
 
->  			uart_A: serial at 84c0 {
->  				compatible = "amlogic,meson-uart";
->  				reg = <0x84c0 0x18>;
+> +			phys = <&usb0_phy>;
+> +			phy-names = "usb2-phy";
+> +			dr_mode = "host";
+> +			status = "disabled";
+> +		};
+> +
+> +		usb1: usb at c90c0000 {
+> +			compatible = "snps,dwc2";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0xc90c0000 0x40000>;
+> +			interrupts = <0 31 1>;
+
+Same as patch 8
+
+> +			phys = <&usb1_phy>;
+> +			phy-names = "usb2-phy";
+> +			dr_mode = "host";
+> +			status = "disabled";
+> +		};
+> +
+>  		ethmac: ethernet at c9410000 {
+>  			compatible = "amlogic,meson6-dwmac", "snps,dwmac";
+>  			reg = <0xc9410000 0x10000
 > diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-> index cf011dfe050e..a80181ddd416 100644
+> index a80181ddd416..7bfce6d8d0af 100644
 > --- a/arch/arm/boot/dts/meson8.dtsi
 > +++ b/arch/arm/boot/dts/meson8.dtsi
-> @@ -241,6 +241,11 @@
->  	clock-names = "stmmaceth";
->  };
->  
-> +&hwrng {
-> +	clocks = <&clkc CLKID_RNG0>;
-> +	clock-names = "core";
-> +};
-> +
->  &i2c_AO {
+> @@ -291,3 +291,27 @@
+>  &uart_C {
 >  	clocks = <&clkc CLKID_CLK81>;
 >  };
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index 1c09090ff4a5..52aa3f68a6bd 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -171,6 +171,11 @@
->  	};
->  };
->  
-> +&hwrng {
-> +	clocks = <&clkc CLKID_RNG0>;
-> +	clock-names = "core";
+> +
+> +&usb0 {
+> +	compatible = "amlogic,meson8-usb", "snps,dwc2";
+> +	clocks = <&clkc CLKID_USB0_DDR_BRIDGE>;
+> +	clock-names = "otg";
 > +};
 > +
->  &L2 {
->  	arm,data-latency = <3 3 3>;
->  	arm,tag-latency = <2 2 2>;
+> +&usb1 {
+> +	compatible = "amlogic,meson8-usb", "snps,dwc2";
+> +	clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
+> +	clock-names = "otg";
+> +};
+> +
+> +&usb0_phy {
+> +	compatible = "amlogic,meson8-usb2-phy", "amlogic,meson-mx-usb2-phy";
+> +	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB0>;
+> +	clock-names = "usb_general", "usb";
+> +};
+> +
+> +&usb1_phy {
+> +	compatible = "amlogic,meson8-usb2-phy", "amlogic,meson-mx-usb2-phy";
+> +	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1>;
+> +	clock-names = "usb_general", "usb";
+> +};
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index 52aa3f68a6bd..aa4664713b66 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -205,3 +205,29 @@
+>  &uart_C {
+>  	clocks = <&clkc CLKID_CLK81>;
+>  };
+> +
+> +&usb0 {
+> +	compatible = "amlogic,meson8b-usb", "snps,dwc2";
+> +	clocks = <&clkc CLKID_USB0_DDR_BRIDGE>;
+> +	clock-names = "otg";
+> +};
+> +
+> +&usb1 {
+> +	compatible = "amlogic,meson8b-usb", "snps,dwc2";
+> +	clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
+> +	clock-names = "otg";
+> +};
+> +
+> +&usb0_phy {
+> +	compatible = "amlogic,meson8b-usb2-phy", "amlogic,meson-mx-usb2-phy";
+> +	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB0>;
+> +	clock-names = "usb_general", "usb";
+> +	resets = <&reset RESET_USB_OTG>;
+> +};
+> +
+> +&usb1_phy {
+> +	compatible = "amlogic,meson8b-usb2-phy", "amlogic,meson-mx-usb2-phy";
+> +	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1>;
+> +	clock-names = "usb_general", "usb";
+> +	resets = <&reset RESET_USB_OTG>;
+> +};
 > 
 
 Apart from that :
