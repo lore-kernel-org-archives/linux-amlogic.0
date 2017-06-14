@@ -1,53 +1,73 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 14 Jun 2017 23:36:11 +0200
-Subject: [PATCH 0/3] Meson (32-bit) multi_v7_defconfig updates
-In-Reply-To: <888ef3fd-d8aa-d09c-dace-8662a7fd9c5a@baylibre.com>
-References: <20170611100343.25868-1-martin.blumenstingl@googlemail.com>
- <888ef3fd-d8aa-d09c-dace-8662a7fd9c5a@baylibre.com>
-Message-ID: <CAFBinCD8fO6TxCCVcr5idNA+G1wVdA5aWTdvewMFtj9+Kg-4xQ@mail.gmail.com>
+Date: Wed, 14 Jun 2017 23:39:21 +0200
+Subject: [PATCH 00/13] add support for more devices on Meson8 and Meson8b
+In-Reply-To: <1497252724.3086.0.camel@baylibre.com>
+References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+ <1497252724.3086.0.camel@baylibre.com>
+Message-ID: <CAFBinCCVxcVwTynb56adLj-X4KLh+euX-GQmOTPE1DvwBacMeg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Hi Jerome,
 
-On Mon, Jun 12, 2017 at 9:38 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> On 06/11/2017 12:03 PM, Martin Blumenstingl wrote:
->> This enables the following drivers which are supported on Meson8 and
->> Meson8b (as well as Meson8m2):
->> - Meson USB2 PHY driver (USB controller support is provided by dwc2,
->>   which is already enabled)
->> - Meson PWM driver (used to dim LEDs and generate the 32.768 kHz LPO
->>   clock for the SDIO wifi modules)
->> - the generic PWM clock driver (for the 32.768 kHz LPO clock for the
->>   SDIO wifi modules)
+On Mon, Jun 12, 2017 at 9:32 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> On Sun, 2017-06-11 at 12:16 +0200, Martin Blumenstingl wrote:
+>> This series adds:
+>> - USB support on Meson8 and Meson8b (it seems that some boards show an
+>>   error when trying to initialize one of the USB2 PHYs, but we have the
+>>   same problem on some GXBB boards. it is working fine for me - on a board
+>>   which is not supported upstream yet)
+>> - hardware random number generator support (Meson8 and Meson8b seem to
+>>   have two 32-bit hardware random number generator registers, while the
+>>   GX SoCs only have one. This is not handled by the meson-rng driver yet,
+>>   but that can still be improved later on)
+>> - SAR ADC support
+>> - add reserved memory zones to fix random hangs when filling the memory
+>>   (currently only on Meson8 until I have a Meson8b device to test if the
+>>   same problem appears there as well)
+>> - use the real ethernet clock on Meson8 and Meson8b to fix ethernet when
+>>   the bootloader does not enable the gate clock
+>> - add the SCU (Snoop Control Unit) which is needed for SMP support
+>> - minor preparations for further .dts updates as this already exports the
+>>   SDIO clocks (a driver for this MMC controller is work-in-progress) as
+>>   well as the corresponding pin definitions in meson8.dtsi
+>> - this adds the pwm_e (typically used for the 32.768 kHz LPO clock for the
+>>   SDIO wifi chip) and pwm_f (used on some boards for the dimmable power
+>>   LED) pins to meson8.dtsi
+>>
+>> NOTE: the .dts changes from this series depend on my previous patch from
+>> [0]: "ARM: dts: meson8: fix the IR receiver pins"
 >>
 >>
->> I am not sure if these patches will go through Kevin's Amlogic tree
->> or through some other tree. However, these should be independent from
->> anything else, so it's just a matter of preference through which tree
->> they go.
+>> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-June/003983.html
 >>
 >>
->> Martin Blumenstingl (3):
->>   ARM: multi_v7_defconfig: enable the Amlogic Meson USB2 PHY driver
->>   ARM: multi_v7_defconfig: enable the Meson PWM controller
->>   ARM: multi_v7_defconfig: enable the PWM clock driver
->>
->>  arch/arm/configs/multi_v7_defconfig | 3 +++
->>  1 file changed, 3 insertions(+)
+>> Martin Blumenstingl (13):
+>>   clk: meson8b: export the SAR ADC clocks
+>>   clk: meson8b: export the SDIO clock
+>>   clk: meson8b: export the gate clock for the HW random number generator
+>>   clk: meson8b: export the USB clocks
+>>   clk: meson8b: export the ethernet gate clock
+>
+> Applied these 5 clk patches to next/headers with Neil's Acks.
+thank you!
+
+>>   ARM: dts: meson8: add the PWM_E and PWM_F pins
+>>   ARM: dts: meson8: add the pins for the SDIO controller
+>>   ARM: dts: meson: add the SAR ADC
+>>   ARM: dts: meson8: add reserved memory zones
+>>   ARM: dts: meson: add the hardware random number generator
+>>   ARM: dts: meson: add USB support on Meson8 and Meson8b
+>>   ARM: dts: meson8b: add the SCU device node
+>>   ARM: dts: meson: use the real ethernet clock on Meson8 and Meson8b
+I will send a v2 (which will address Neil's comments on these) soon
+
+>>  arch/arm/boot/dts/meson.dtsi             |  51 +++++++++++++++
+>>  arch/arm/boot/dts/meson8.dtsi            | 109
+>> ++++++++++++++++++++++++++++++-
+>>  arch/arm/boot/dts/meson8b.dtsi           |  49 ++++++++++++++
+>>  drivers/clk/meson/meson8b.h              |  20 +++---
+>>  include/dt-bindings/clock/meson8b-clkc.h |  10 +++
+>>  5 files changed, 228 insertions(+), 11 deletions(-)
 >>
 >
->
-> Hi Martin,
->
-> Isn't it better to have these as modules like for the ARM64 counterpart ?
-indeed, I will look into this - thanks for the hint
-
-PS: I will also re-check if enabling CONFIG_PHY_MESON8B_USB2 is
-requires, since it defaults to ARCH_MESON (which means it should
-default to "y" automatically, which is also why we don't have it in
-arch/arm64/configs/defconfig)
-
-
-Regards,
-Martin
