@@ -1,24 +1,29 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 14 Jun 2017 10:38:05 -0700
-Subject: [PATCH v2 2/3] pwm: meson: add compatible for the gxbb ao pwms
-In-Reply-To: <20170608122416.1993-3-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Thu, 8 Jun 2017 14:24:15 +0200")
-References: <20170608122416.1993-1-jbrunet@baylibre.com>
- <20170608122416.1993-3-jbrunet@baylibre.com>
-Message-ID: <m21sqm4ghu.fsf@baylibre.com>
+Date: Wed, 14 Jun 2017 10:46:13 -0700
+Subject: [GIT PULL] Amlogic SoC updates for v4.13
+Message-ID: <7h60fycviy.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+The following changes since commit 2ea659a9ef488125eb46da6eb571de5eae5c43f6:
 
-> On the gxbb (and gxl) family, the PWMs of the AO domain require a
-> specific compatible because the possible input clocks are different
-> from the EE PWMs input clocks.
->
-> Since the number of possible input clocks is also different, the
-> 'num_parents' field is added to all the meson pwm data.
->
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+  Linux 4.12-rc1 (2017-05-13 13:19:49 -0700)
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-soc
+
+for you to fetch changes up to 2dda2de5a1e1684aa4d31d0c2db42f6446a76a86:
+
+  arm: meson: select the clock controller for Meson8 (2017-06-09 11:15:36 -0700)
+
+----------------------------------------------------------------
+Amlogic SoC updates for v4.13
+- enable the clock controller for 32-bit Meson8
+
+----------------------------------------------------------------
+Martin Blumenstingl (1):
+      arm: meson: select the clock controller for Meson8
+
+ arch/arm/mach-meson/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
