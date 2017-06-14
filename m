@@ -1,66 +1,150 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 14 Jun 2017 10:29:13 +0200
-Subject: [PATCH v5 0/4] tty/serial: meson_uart: add support for core clock
- handling
-Message-ID: <1497428957-19942-1-git-send-email-narmstrong@baylibre.com>
+Date: Wed, 14 Jun 2017 10:29:16 +0200
+Subject: [PATCH v5 3/4] ARM64: dts: meson-gx: use stable UART bindings with
+ correct gate clock
+In-Reply-To: <1497428957-19942-1-git-send-email-narmstrong@baylibre.com>
+References: <1497428957-19942-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1497428957-19942-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset is a re-spin of Helmut Klein's v3 patchset at [0] and the v4 patchset at [1].
+From: Helmut Klein <hgkr.klein@gmail.com>
 
-Initially, the original patchset was made to enable usage on the non-AO UARTS
-not enabled by the Bootloader (uart_B and uart_C), but the patchset needed
-an overall change to have clean and stable DT bindings.
+This patch switches to the stable UART bindings but also add the correct
+gate clock to the non-AO UART nodes for GXBB and GXL SoCs.
 
-The Amlogic Meson UART Driver did not have stable DT bindings and mismatched
-clock handling on non-AO UARTs since these "EE" UARTs needs a clock gate to
-be ungated to works correctly.
-In the same way, the AO UARTs does not need gating and can be used as
-Early Consoles.
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 12 +++++-------
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 25 +++++++++++++++++++++++++
+ 3 files changed, 55 insertions(+), 7 deletions(-)
 
-In the same time, the UART Interfaces can take clock input for the baudrate
-generate from either the external Xtal or the internal Bus Clock (clk81).
-
-So new bindings was necessary to meet these requirements and the DT
-maintainers requirements.
-
-The "legacy" binding actually used in the driver is left until all the DT
-files are switched to the new bindings.
-
-The GX DT has been tested, but the last 4 Meson6/Meson8/b are only
-compile-tested, and testing is welcome.
-Thus only the first 3 patches can be merged until the Meson6/Meson8/b are
-formally tested.
-
-It must be noted that the meson6 cannot work today except using an early
-console since the UART driver could not probe without a clocks property.
-
-Changes since v4 at [1]:
- - Droped meson8/meson8b DT patches
- - Fixes copy/paste error in patch 2
- - Refactored clock probing in patch 2
- - merged meson6 patches together to avoid breaking bisect
-
-[0] http://lkml.kernel.org/r/20170331165437.26227-1-hgkr.klein at gmail.com
-[1] http://lkml.kernel.org/r/1497001756-942-1-git-send-email-narmstrong at baylibre.com
-
-Helmut Klein (3):
-  dt-bindings: serial: Add bindings for the Amlogic Meson UARTs
-  tty/serial: meson_uart: update to stable bindings
-  ARM64: dts: meson-gx: use stable UART bindings with correct gate clock
-
-Neil Armstrong (1):
-  ARM: dts: meson6: use stable UART bindings
-
- .../bindings/serial/amlogic,meson-uart.txt         | 38 +++++++++
- arch/arm/boot/dts/meson.dtsi                       |  8 +-
- arch/arm/boot/dts/meson6.dtsi                      | 28 +++++++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi          | 12 ++-
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 25 ++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 25 ++++++
- drivers/tty/serial/meson_uart.c                    | 90 ++++++++++++++++++++--
- 7 files changed, 209 insertions(+), 17 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 603491d..86a4018 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -225,7 +225,7 @@
+ 			};
+ 
+ 			uart_A: serial at 84c0 {
+-				compatible = "amlogic,meson-uart";
++				compatible = "amlogic,meson-gx-uart";
+ 				reg = <0x0 0x84c0 0x0 0x14>;
+ 				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&xtal>;
+@@ -233,7 +233,7 @@
+ 			};
+ 
+ 			uart_B: serial at 84dc {
+-				compatible = "amlogic,meson-uart";
++				compatible = "amlogic,meson-gx-uart";
+ 				reg = <0x0 0x84dc 0x0 0x14>;
+ 				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&xtal>;
+@@ -279,7 +279,7 @@
+ 			};
+ 
+ 			uart_C: serial at 8700 {
+-				compatible = "amlogic,meson-uart";
++				compatible = "amlogic,meson-gx-uart";
+ 				reg = <0x0 0x8700 0x0 0x14>;
+ 				interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&xtal>;
+@@ -366,18 +366,16 @@
+ 			};
+ 
+ 			uart_AO: serial at 4c0 {
+-				compatible = "amlogic,meson-uart";
++				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x004c0 0x0 0x14>;
+ 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&xtal>;
+ 				status = "disabled";
+ 			};
+ 
+ 			uart_AO_B: serial at 4e0 {
+-				compatible = "amlogic,meson-uart";
++				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x004e0 0x0 0x14>;
+ 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&xtal>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index dbd300f..1ae8da7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -675,6 +675,31 @@
+ 	clocks = <&clkc CLKID_SPI>;
+ };
+ 
++&uart_A {
++	clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
++	clock-names = "xtal", "pclk", "baud";
++};
++
++&uart_AO {
++	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
++	clock-names = "xtal", "pclk", "baud";
++};
++
++&uart_AO_B {
++	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
++	clock-names = "xtal", "pclk", "baud";
++};
++
++&uart_B {
++	clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
++	clock-names = "xtal", "core", "baud";
++};
++
++&uart_C {
++	clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
++	clock-names = "xtal", "core", "baud";
++};
++
+ &vpu {
+ 	compatible = "amlogic,meson-gxbb-vpu", "amlogic,meson-gx-vpu";
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 4dfc22b..0c601f8 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -616,6 +616,31 @@
+ 	clocks = <&clkc CLKID_SPI>;
+ };
+ 
++&uart_A {
++	clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
++	clock-names = "xtal", "core", "baud";
++};
++
++&uart_AO {
++	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
++	clock-names = "xtal", "pclk", "baud";
++};
++
++&uart_AO_B {
++	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
++	clock-names = "xtal", "pclk", "baud";
++};
++
++&uart_B {
++	clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
++	clock-names = "xtal", "core", "baud";
++};
++
++&uart_C {
++	clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
++	clock-names = "xtal", "core", "baud";
++};
++
+ &vpu {
+ 	compatible = "amlogic,meson-gxl-vpu", "amlogic,meson-gx-vpu";
+ };
 -- 
 1.9.1
