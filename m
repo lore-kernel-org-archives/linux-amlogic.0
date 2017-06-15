@@ -1,485 +1,173 @@
-From: marc.zyngier@arm.com (Marc Zyngier)
-Date: Thu, 15 Jun 2017 14:27:02 +0100
-Subject: [PATCH v7 1/9] irqchip: add Amlogic Meson GPIO irqchip driver
-In-Reply-To: <1510ca1c-0a50-283d-42d5-b5710700460f@gmail.com>
-References: <5b352c8d-a426-fa73-58b7-0c935979492b@gmail.com>
- <b33ccc5c-f383-97e7-44e6-d6e1f104e26c@gmail.com>
- <91b20fc4-4969-02a6-cc47-ff711f604342@arm.com>
- <1510ca1c-0a50-283d-42d5-b5710700460f@gmail.com>
-Message-ID: <9129464d-b7b6-a8f6-8671-091fc30e3161@arm.com>
+From: crow@linux.org.ba (crow)
+Date: Thu, 15 Jun 2017 16:40:48 +0200
+Subject: ARM GLX Khadas VIM Pro - Ethernet detected as only 10Mbps and
+ stalled after some traffic
+In-Reply-To: <CAG_g8w6iEiJ4V2M1=toWWqi1D7H2_p08ceWsbgZ1=PrEGQ2HkA@mail.gmail.com>
+References: <CAG_g8w7PND+6r17cLoTG0rG0CqVDA-Z9kr8Zi+TOq5Qbpd9Gtw@mail.gmail.com>
+ <CAG_g8w40V_u7JnX+EuNvCLmB2dAzuk_TgMkkKT9pn-SLBRi1pA@mail.gmail.com>
+ <20170610152741.GB26740@lunn.ch>
+ <CAG_g8w71SWc_X2U9pNWLVheO9Jf4ydPznAVp1x-Y9kwU3qhf1A@mail.gmail.com>
+ <20170611152102.GA16021@lunn.ch>
+ <CAG_g8w6iEiJ4V2M1=toWWqi1D7H2_p08ceWsbgZ1=PrEGQ2HkA@mail.gmail.com>
+Message-ID: <CAG_g8w7hEdrwspMsNifZ+m82R_-V5=bxv5oMURWy9PRAZU+hHQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 15/06/17 14:10, Heiner Kallweit wrote:
-> Am 13.06.2017 um 10:31 schrieb Marc Zyngier:
->> On 10/06/17 22:57, Heiner Kallweit wrote:
->>> Add a driver supporting the GPIO interrupt controller on certain
->>> Amlogic meson SoC's.
+Hi,
+
+On Sun, Jun 11, 2017 at 7:03 PM, crow <crow@linux.org.ba> wrote:
+> Hi Andrew,
+>
+> On Sun, Jun 11, 2017 at 5:21 PM, Andrew Lunn <andrew@lunn.ch> wrote:
+>>> Thank your for the suggestion, and thanks Martin to explaining me over
+>>> IRC what actually I should do.
 >>>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> ---
->>> v5:
->>> - changed Kconfig entry based on Neil's suggestion
->>> - added authors
->>> - extended explanation why 2 * n hwirqs are used
->>> v6:
->>> - change DT property parent-interrupts to interrupts
->>> v7:
->>> - no changes
->>> ---
->>>  drivers/irqchip/Kconfig          |   5 +
->>>  drivers/irqchip/Makefile         |   1 +
->>>  drivers/irqchip/irq-meson-gpio.c | 295 +++++++++++++++++++++++++++++++++++++++
->>>  3 files changed, 301 insertions(+)
->>>  create mode 100644 drivers/irqchip/irq-meson-gpio.c
+>>> I recompiled mainline kernel 4.12-rc4 with the Amlogic driver:
+>>> replaced drivers/net/phy/meson-gxl.c with
+>>> https://github.com/khadas/linux/blob/ubuntu-4.9/drivers/amlogic/ethernet/phy/amlogic.c
 >>>
->>> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
->>> index 478f8ace..bdc86e14 100644
->>> --- a/drivers/irqchip/Kconfig
->>> +++ b/drivers/irqchip/Kconfig
->>> @@ -301,3 +301,8 @@ config QCOM_IRQ_COMBINER
->>>  	help
->>>  	  Say yes here to add support for the IRQ combiner devices embedded
->>>  	  in Qualcomm Technologies chips.
->>> +
->>> +config MESON_GPIO_INTC
->>> +	bool
->>> +	depends on ARCH_MESON
->>> +	default y
->>> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
->>> index b64c59b8..1be482bd 100644
->>> --- a/drivers/irqchip/Makefile
->>> +++ b/drivers/irqchip/Makefile
->>> @@ -76,3 +76,4 @@ obj-$(CONFIG_EZNPS_GIC)			+= irq-eznps.o
->>>  obj-$(CONFIG_ARCH_ASPEED)		+= irq-aspeed-vic.o
->>>  obj-$(CONFIG_STM32_EXTI) 		+= irq-stm32-exti.o
->>>  obj-$(CONFIG_QCOM_IRQ_COMBINER)		+= qcom-irq-combiner.o
->>> +obj-$(CONFIG_MESON_GPIO_INTC)		+= irq-meson-gpio.o
->>> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
->>> new file mode 100644
->>> index 00000000..925d00c2
->>> --- /dev/null
->>> +++ b/drivers/irqchip/irq-meson-gpio.c
->>> @@ -0,0 +1,295 @@
->>> +/*
->>> + * Amlogic Meson GPIO IRQ chip driver
->>> + *
->>> + * Copyright (c) 2015 Endless Mobile, Inc.
->>> + * Author: Carlo Caione <carlo@endlessm.com>
->>> + * Copyright (c) 2016 BayLibre, SAS.
->>> + * Author: Jerome Brunet <jbrunet@baylibre.com>
->>> + * Copyright (c) 2017 Heiner Kallweit <hkallweit1@gmail.com>
->>> + *
->>> + * This program is free software; you can redistribute it and/or
->>> + * modify it under the terms of the GNU General Public License as
->>> + * published by the Free Software Foundation, version 2.
->>> + */
->>> +
->>> +#include <linux/device.h>
->>> +#include <linux/init.h>
->>> +#include <linux/interrupt.h>
->>> +#include <linux/irqchip.h>
->>> +#include <linux/of.h>
->>> +#include <linux/of_irq.h>
->>> +#include <linux/of_address.h>
->>> +#include <linux/regmap.h>
->>> +
->>> +#define REG_EDGE_POL		0x00
->>> +#define REG_PIN_03_SEL		0x04
->>> +#define REG_PIN_47_SEL		0x08
->>> +#define REG_FILTER_SEL		0x0c
->>> +
->>> +#define REG_EDGE_POL_MASK(x)	(BIT(x) | BIT(16 + (x)))
->>> +#define REG_EDGE_POL_EDGE(x)	BIT(x)
->>> +#define REG_EDGE_POL_LOW(x)	BIT(16 + (x))
->>> +
->>> +#define MAX_PARENT_IRQ_NUM	8
->>> +
->>> +/* maximum number of GPIO IRQs on supported platforms */
->>> +#define MAX_NUM_GPIO_IRQ	133
+>>> But this did not solve the issue. As soon as i start git clone i lose
+>>> network connection to device (no session timeout/disconnect this time,
+>>> but I am unable to reconnect over SSH or to get OK ping replay back).
 >>
->> Why aren't these values coming from DT? I bet that a future revision of
->> the same HW will double these. Or at least, you could match it on the
->> compatible string.
->>
-> Alternatively this value can be set to 255. The GPIO source is an 8 bit
-> value with 255 being reserved for "no interrupt source assigned".
+>
+> 1) First problem reported I can't reproduce anymore, every reboot/cold
+> boot with mainline kernel the Ethernet speed is detected as
+> "100Mbps/Full" , but as seen in first post there was this issue.
 
-Who is reserving it? The HW? Or is that your own defined convention?
+Once I did setup u-boot to have network in u-boot and did just an ping
+to activate network. And after boot Ethernet was detected as 10Mbps.
+But again was not able to reproduce it. I double check that I have 5E
+cable.
 
-> This way we cover all chips based on the same IP.
+in u-boot Ethernet is detected as below
+kvim#ping x.x.x.x
+Speed: 100, full duplex
+Using dwmac.c9410000 device
+host x.x.x.x is alive
+kvim#
 
-Why? Where is that 8bit limit coming from?
+then I let ArchLinuxArm to boot and found out I can't connect to
+device over SSH. Check over serial console and found:
 
-> I think what we could gain by introducing an additional DT property
-> (saving a few bytes in the irqdomain mapping table) isn't worth the effort.
+# dmesg | tail -n 10
+[    8.334790] meson8b-dwmac c9410000.ethernet eth0: device MAC
+address 00:15:18:01:81:31
+[    8.436668] Meson GXL Internal PHY 0.e40908ff:08: attached PHY
+driver [Meson GXL Internal PHY] (mii_bus:phy_addr=0.e40908ff:08,
+irq=-1)
+[    8.535171] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+[   10.225264] brcmfmac: brcmf_c_preinit_dcmds: Firmware version =
+wl0: Mar  1 2015 07:29:38 version 7.45.18 (r538002) FWID 01-6a2c8ad4
+[   10.635703] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+10Mbps/Half - flow control off
+# uname -a
+Linux khadasvimpro 4.12.0-rc4-3-ARCH #1 SMP Thu Jun 8 00:17:20 CEST
+2017 aarch64 GNU/Linux
+#
+# mii-tool -vvv eth0
+Using SIOCGMIIPHY=0x8947
+eth0: no autonegotiation,, link ok
+  registers for MII PHY 8:
+    1000 782d 0181 4400 01e1 0001 0005 2001
+    ffff ffff ffff ffff ffff ffff ffff ffff
+    0040 0002 40e8 5400 1c1c 0000 0000 aaaa
+    fff0 ffff 0000 000a 1407 0040 0000 105a
+  product info: vendor 00:60:51, model 0 rev 0
+  basic mode:   autonegotiation enabled
+  basic status: autonegotiation complete, link ok
+  capabilities: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
+10baseT-FD 10baseT-HD
+  advertising:  1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
+10baseT-FD 10baseT-HD
+#
+# ifconfig eth0 down && ifconfig eth0 up
+[ 1972.596690] Meson GXL Internal PHY 0.e40908ff:08: attached PHY
+driver [Meson GXL Internal PHY] (mii_bus:phy_addr=0.e40908ff:08,
+irq=-1)
+[ 1972.704156] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
+[ 1974.795698] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
+100Mbps/Full - flow control off
+#
+# mii-tool -vvv eth0
+Using SIOCGMIIPHY=0x8947
+eth0: negotiated 1000baseT-HD flow-control, link ok
+  registers for MII PHY 8:
+    1000 782d 0181 4400 01e1 c1e1 000f 2001
+    ffff ffff ffff ffff ffff ffff ffff ffff
+    0040 0002 40e8 5400 1c1c 0000 0000 aaaa
+    fff0 ffff 0000 020a 1407 00ca 0000 105a
+  product info: vendor 00:60:51, model 0 rev 0
+  basic mode:   autonegotiation enabled
+  basic status: autonegotiation complete, link ok
+  capabilities: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
+10baseT-FD 10baseT-HD
+  advertising:  1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
+10baseT-FD 10baseT-HD
+  link partner: 1000baseT-HD 1000baseT-FD 100baseTx-FD 100baseTx-HD
+10baseT-FD 10baseT-HD
+#
 
-It is not about saving or wasting memory. It is about making the driver
-and its binding able to span multiple generation of the HW without too
-much churn. Which is why I'm suggesting that you either define these
-properties in DT *or* match the compatible string to obtain these values.
+2) see below
+> 2) see below
+>
+>> So this shows it is more than a PHY problem. The Ethernet MAC driver
+>> is probably also part of the problem.
+>
+> There are some stmmac fixes [1] in soon to be rc5, compiled current
+> master (without amlogic.c) with the fixes but for me the issue still
+> persist. I will compile once released rc5 with amlogic.c and report
+> back.
+>
+>> Are there any mainline kernels which work O.K?
+>
+> Khadas VIM support was added in 4.12-rc1. And I did test all four rc's
+> but without success.
 
->>> +
->>> +/*
->>> + * In case of IRQ_TYPE_EDGE_BOTH we need two parent interrupts, one for each
->>> + * edge. That's due to HW constraints.
->>> + * We use format 2 * GPIO_HWIRQ +(0|1) for the hwirq, so we can have one
->>> + * GPIO_HWIRQ twice and derive the GPIO_HWIRQ from hwirq by shifting hwirq
->>> + * one bit to the right.
->>
->> Please expand on how you expect this to work, specially when a random
->> driver expects a single interrupt.
->>
-> The gpio interrupt controller in this chip doesn't have native support for
-> IRQ_TYPE_EDGE_BOTH. As a workaround we would need to assign the same gpio
-> to two parent interrupts, one for each edge.
+I did test many Kernel builds but all test have failed when
+downloading bigger files / doing git clone.
+As Martin Blumenstingl suggested I start with first commit where
+Khadas VIM support was added [0]. Then also Neil Armstrong suggested
+[1]. Then all 4.12-rc1 - rc5.
+Martin Blumenstingl have also found himself that: "I can reproduce the
+Ethernet problem (tried downloading a 1GiB test file from leaseweb,
+network got stuck after downloading ~70 MiB)". He suggested that I
+should "play with the settings on your switch (disable jumbo frames,
+etc.) to rule out the "exotic" stuff?". Well other device (x86_64)
+connected on this same Switch port does not have any problem
+downloading big files or doing git clone, as well as Khadas VIM with
+Amlogic kernel. Also jumbo frames are not enabled, switch does have
+only standard settings.
 
-No, that's horrible, racy, and impractical. It has been proposed in the
-past (for the same HW), and we're not going there again.
+I also get questioned which qdisc I use:
+And it seems I am already using fq_codel (ArchLinuxArm uses systemd):
+$ tc -s -p qdisc
+qdisc noqueue 0: dev lo root refcnt 2
+ Sent 0 bytes 0 pkt (dropped 0, overlimits 0 requeues 0)
+ backlog 0b 0p requeues 0
+qdisc mq 0: dev eth0 root
+ Sent 7382956 bytes 60703 pkt (dropped 0, overlimits 0 requeues 18)
+ backlog 0b 0p requeues 18
+qdisc fq_codel 0: dev eth0 parent :1 limit 10240p flows 1024 quantum
+1514 target 5.0ms interval 100.0ms memory_limit 32Mb ecn
+ Sent 7382956 bytes 60703 pkt (dropped 0, overlimits 0 requeues 18)
+ backlog 0b 0p requeues 18
+  maxpacket 54 drop_overlimit 0 new_flow_count 14 ecn_mark 0
+  new_flows_len 0 old_flows_len 0
+$ pacman -Qi systemd
+Name            : systemd
+Version         : 232-8
+Description     : system and service manager
+Architecture    : aarch64
+...
+$
 
-> There's still no solution to achieve this in a way everybody is happy with.
-> Therefore this feature isn't part of this patch set.
-> 
-> However, to be prepared to include this feature later, the interface
-> between pinctrl/gpio and irqchip driver should (IMHO) cater for it already.
-> Else we may have to touch the irqchip driver later and change the interface
-> what I would like to avoid.
 
-Don't even think of it, and considered it pre-NAKed.
+Regards,
 
-> 
-> If a driver just needs one (parent) interrupt, it can request hwirq
-> (2 * GPIO_HWIRQ) only. There's no issue with that.
+>>     Andrew
+>
+> [1] https://github.com/torvalds/linux/commit/426849e6611f2092553f8d53372ae310818a6292
 
-Other than being utterly useless and confusing?
-
->>> + */
->>> +#define NUM_GPIO_HWIRQ		(2 * MAX_NUM_GPIO_IRQ)
->>> +
->>> +struct meson_irq_slot {
->>> +	unsigned int irq;
->>> +	unsigned int owner;
->>> +};
->>> +
->>> +struct meson_data {
->>> +	struct regmap *regmap;
->>> +	struct meson_irq_slot slots[MAX_PARENT_IRQ_NUM];
->>> +	unsigned int num_slots;
->>> +	struct mutex lock;
->>> +};
->>> +
->>> +static int meson_alloc_irq_slot(struct meson_data *md, unsigned int virq)
->>> +{
->>> +	int i, slot = -ENOSPC;
->>> +
->>> +	mutex_lock(&md->lock);
->>> +
->>> +	for (i = 0; i < md->num_slots && slot < 0; i++)
->>> +		if (!md->slots[i].owner) {
->>> +			md->slots[i].owner = virq;
->>
->> Why do you have to deal with the virq? It'd be more logical to deal with
->> the hwirq. The usual mechanism to reserve a "slot" is to use a bitmap
->> indexed by the hwirq. Why is that not working for you?
->>
-> Using the hwirq as owner should also be possible. Will consider this.
-> 
-> A slot has two members, the owner and a the associated parent irq number.
-> Of course we could split this into a slot bitmap + an array with parent
-> irq's indexed by slot number. Would you prefer this?
-
-Again, why do you need to consider the Linux irq number? All you need to
-track is whether a hwirq has been allocated or not, since all the
-irqchip function are called with an irq_data as a parameter, which
-contains both the irq and hwirq values.
-
->>> +			slot = i;
->>> +		}
->>> +
->>> +	mutex_unlock(&md->lock);
->>> +
->>> +	return slot;
->>> +}
->>> +
->>> +static void meson_free_irq_slot(struct meson_data *md, unsigned int virq)
->>> +{
->>> +	int i;
->>> +
->>> +	mutex_lock(&md->lock);
->>> +
->>> +	for (i = 0; i < md->num_slots; i++)
->>> +		if (md->slots[i].owner == virq) {
->>> +			md->slots[i].owner = 0;
->>> +			break;
->>> +		}
->>> +
->>> +	mutex_unlock(&md->lock);
->>> +}
->>
->> These two functions are basically the same...
->>
->>> +
->>> +static int meson_find_irq_slot(struct meson_data *md, unsigned int virq)
->>> +{
->>> +	int i, slot = -EINVAL;
->>> +
->>> +	mutex_lock(&md->lock);
->>> +
->>> +	for (i = 0; i < md->num_slots && slot < 0; i++)
->>> +		if (md->slots[i].owner == virq)
->>> +			slot = i;
->>> +
->>> +	mutex_unlock(&md->lock);
->>> +
->>> +	return slot;
->>> +}
->>
->> ... and could be expressed in terms of this one.
->>
->>> +
->>> +static void meson_set_hwirq(struct meson_data *md, int idx, unsigned int hwirq)
->>> +{
->>> +	int reg = idx > 3 ? REG_PIN_47_SEL : REG_PIN_03_SEL;
->>> +	int shift = 8 * (idx % 4);
->>
->> What's this?
->>
-> GPIO source for the eight parent irq's can be configured using two 32-bit registers
-> with four 8-bit fields each.
-
-Consider moving it to an accessor and document the mapping of the hwirqs
-in these registers.
-
->>> +
->>> +	regmap_update_bits(md->regmap, reg, 0xff << shift,
->>> +			   hwirq << shift);
->>> +}
->>> +
->>> +static void meson_irq_set_hwirq(struct irq_data *data, unsigned int hwirq)
->>> +{
->>> +	struct meson_data *md = data->domain->host_data;
->>> +	int slot = meson_find_irq_slot(md, data->irq);
->>> +
->>> +	if (slot >= 0)
->>> +		meson_set_hwirq(md, slot, hwirq);
->>> +}
->>> +
->>> +static int meson_irq_set_type(struct irq_data *data, unsigned int type)
->>> +{
->>> +	struct meson_data *md = data->domain->host_data;
->>> +	int slot;
->>> +	unsigned int val = 0;
->>> +
->>> +	if (type == IRQ_TYPE_EDGE_BOTH)
->>> +		return -EINVAL;
->>
->> So you reject EDGE_BOTH? So what's the deal with the beginning of the patch?
->>
-> We reject it in the initial version of the patch set as there's no consensus
-> yet on some details of the workaround needed for EDGE_BOTH support.
-
-There is a consensus: The HW doesn't support this feature.
-
->>> +
->>> +	slot = meson_find_irq_slot(md, data->irq);
->>> +	if (slot < 0)
->>> +		return slot;
->>
->> How can this happen?
->>
-> I see no way how this can happen. It was basically added to be on the safe
-> side and fail nicely in case I miss a scenario which could cause this to fail.
-> I can remove the check.
-> 
->>> +
->>> +	if (type & IRQ_TYPE_EDGE_BOTH)
->>> +		val |= REG_EDGE_POL_EDGE(slot);
->>> +
->>> +	if (type & (IRQ_TYPE_LEVEL_LOW | IRQ_TYPE_EDGE_FALLING))
->>> +		val |= REG_EDGE_POL_LOW(slot);
->>> +
->>> +	regmap_update_bits(md->regmap, REG_EDGE_POL,
->>> +			   REG_EDGE_POL_MASK(slot), val);
->>> +
->>> +	if (type & IRQ_TYPE_EDGE_BOTH)
->>> +		val = IRQ_TYPE_EDGE_RISING;
->>> +	else
->>> +		val = IRQ_TYPE_LEVEL_HIGH;
->>
->> How does this work? Does this HW have some magic falling->rising and
->> low->high conversion feature? If it doesn't, I cannot see how this can work.
->>
-> Exactly, HW has a programmable polarity inverter.
-> 
->>> +
->>> +	return irq_chip_set_type_parent(data, val);
->>> +}
->>> +
->>> +static unsigned int meson_irq_startup(struct irq_data *data)
->>> +{
->>> +	irq_chip_unmask_parent(data);
->>> +	/*
->>> +	 * An extra bit was added to allow having the same gpio hwirq twice
->>> +	 * for handling IRQ_TYPE_EDGE_BOTH. Remove this bit to get the
->>> +	 * gpio hwirq.
->>> +	 */
->>> +	meson_irq_set_hwirq(data, data->hwirq >> 1);
->>
->> Again. Do you support EDGE_BOTH or not?
->>
-> 
-> Not yet ..
-> 
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static void meson_irq_shutdown(struct irq_data *data)
->>> +{
->>> +	meson_irq_set_hwirq(data, 0xff);
->>
->> What's special about 0xff?
->>
-> 0xff is the reserved value indicating the no GPIO source is assigned
-> to the parent irq.
-
-Then document it, add a #define for this.
-
->>> +	irq_chip_mask_parent(data);
->>> +}
->>> +
->>> +static struct irq_chip meson_irq_chip = {
->>> +	.name = "meson_gpio_intc",
->>> +	.irq_set_type = meson_irq_set_type,
->>> +	.irq_eoi = irq_chip_eoi_parent,
->>> +	.irq_mask = irq_chip_mask_parent,
->>> +	.irq_unmask = irq_chip_unmask_parent,
->>> +	.irq_startup = meson_irq_startup,
->>> +	.irq_shutdown = meson_irq_shutdown,
->>> +	.irq_set_affinity = irq_chip_set_affinity_parent,
->>> +};
->>> +
->>> +static int meson_irq_alloc(struct irq_domain *d, unsigned int virq,
->>> +			   unsigned int nr_irqs, void *data)
->>> +{
->>> +	struct irq_fwspec parent_fwspec, *fwspec = data;
->>> +	struct meson_data *md = d->host_data;
->>> +	irq_hw_number_t hwirq;
->>> +	int ret, slot;
->>> +
->>> +	slot = meson_alloc_irq_slot(md, virq);
->>> +	if (slot < 0)
->>> +		return slot;
->>> +
->>> +	hwirq = fwspec->param[0];
->>> +	irq_domain_set_hwirq_and_chip(d, virq, hwirq, &meson_irq_chip, NULL);
->>> +
->>> +	parent_fwspec.fwnode = d->parent->fwnode;
->>> +	parent_fwspec.param_count = 3;
->>> +	parent_fwspec.param[0] = 0; /* SPI */
->>> +	parent_fwspec.param[1] = md->slots[slot].irq;
->>> +	parent_fwspec.param[2] = IRQ_TYPE_NONE;
->>
->> Hell no. Look at the GIC DT binding: there is no NONE. It is either
->> HIGH, or RISING.
->>
-> OK, will be changed.
-> 
->>> +
->>> +	ret = irq_domain_alloc_irqs_parent(d, virq, nr_irqs, &parent_fwspec);
->>> +	if (ret)
->>> +		meson_free_irq_slot(md, virq);
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static void meson_irq_free(struct irq_domain *d, unsigned int virq,
->>> +			   unsigned int nr_irqs)
->>> +{
->>> +	struct meson_data *md = d->host_data;
->>> +
->>> +	irq_domain_free_irqs_common(d, virq, nr_irqs);
->>> +	meson_free_irq_slot(md, virq);
->>> +}
->>> +
->>> +static const struct irq_domain_ops meson_irq_ops = {
->>> +	.alloc = meson_irq_alloc,
->>> +	.free = meson_irq_free,
->>> +	.xlate = irq_domain_xlate_twocell,
->>> +};
->>> +
->>> +static int meson_get_irqs(struct meson_data *md, struct device_node *node)
->>> +{
->>> +	int ret, i;
->>> +	u32 irq;
->>> +
->>> +	for (i = 0; i < MAX_PARENT_IRQ_NUM; i++) {
->>> +		ret = of_property_read_u32_index(node, "interrupts", i, &irq);
->>> +		if (ret)
->>> +			break;
->>> +		md->slots[i].irq = irq;
->>> +	}
->>> +
->>> +	md->num_slots = i;
->>> +
->>> +	return i ? 0 : -EINVAL;
->>> +}
->>> +
->>> +static const struct regmap_config meson_regmap_config = {
->>> +	.reg_bits       = 32,
->>> +	.reg_stride     = 4,
->>> +	.val_bits       = 32,
->>> +	.max_register	= REG_FILTER_SEL,
->>> +};
->>> +
->>> +static int __init meson_gpio_irq_init(struct device_node *node,
->>> +				      struct device_node *parent)
->>> +{
->>> +	struct irq_domain *meson_irq_domain, *parent_domain;
->>> +	struct meson_data *md;
->>> +	void __iomem *io_base;
->>> +	int ret;
->>> +
->>> +	md = kzalloc(sizeof(*md), GFP_KERNEL);
->>> +	if (!md)
->>> +		return -ENOMEM;
->>> +
->>> +	mutex_init(&md->lock);
->>> +
->>> +	io_base = of_iomap(node, 0);
->>> +	if (!io_base)
->>> +		return -EINVAL;
->>> +
->>> +	md->regmap = regmap_init_mmio(NULL, io_base, &meson_regmap_config);
->>> +	if (IS_ERR(md->regmap))
->>> +		return PTR_ERR(md->regmap);
->>> +
->>> +	/* initialize to IRQ_TYPE_LEVEL_HIGH */
->>> +	regmap_write(md->regmap, REG_EDGE_POL, 0);
->>> +	/* disable all GPIO interrupt sources */
->>> +	regmap_write(md->regmap, REG_PIN_03_SEL, 0xffffffff);
->>> +	regmap_write(md->regmap, REG_PIN_47_SEL, 0xffffffff);
->>> +	/* disable filtering */
->>> +	regmap_write(md->regmap, REG_FILTER_SEL, 0);
->>> +
->>> +	ret = meson_get_irqs(md, node);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	parent_domain = irq_find_host(parent);
->>> +	if (!parent_domain)
->>> +		return -ENXIO;
->>
->> Memory leak on all the return paths.
->>
-> Indeed. Most likely copy & paste error when I used other irqchip drivers
-> as inspiration. E.g. irq-crossbar faces the same issue, it allocates memory
-> in crossbar_of_init which isn't free'd if irq_domain_add_hierarchy fails.
-
-Then please submit a patch addressing the defect.
-
-Thanks,
-
-	M.
--- 
-Jazz is not dead. It just smells funny...
+[0] https://github.com/torvalds/linux/commit/e15d2774b8c096f116bf7192b37e8652da71369e
+[1] https://kernel.googlesource.com/pub/scm/linux/kernel/git/khilman/linux-amlogic/+/v4.12/integ
