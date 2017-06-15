@@ -1,50 +1,65 @@
-From: linux@roeck-us.net (Guenter Roeck)
-Date: Thu, 15 Jun 2017 14:22:48 -0700
-Subject: [PATCH] watchdog: meson-wdt: add support for the watchdog on
- Meson8 and Meson8m2
-In-Reply-To: <CAFBinCCyqX=TGwTyhxXZPP2noUvJ1v=xNs+Vs17Gg4z2uDgjEA@mail.gmail.com>
-References: <20170611095219.22095-1-martin.blumenstingl@googlemail.com>
- <20170615172510.GA7549@roeck-us.net>
- <CAFBinCCyqX=TGwTyhxXZPP2noUvJ1v=xNs+Vs17Gg4z2uDgjEA@mail.gmail.com>
-Message-ID: <20170615212248.GA30058@roeck-us.net>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 15 Jun 2017 23:33:43 +0200
+Subject: [PATCH v2 01/10] ARM: dts: meson: use C preprocessor friendly include
+ syntax
+In-Reply-To: <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
+References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+ <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170615213352.25134-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Jun 15, 2017 at 11:13:07PM +0200, Martin Blumenstingl wrote:
-> On Thu, Jun 15, 2017 at 7:25 PM, Guenter Roeck <linux@roeck-us.net> wrote:
-> > On Sun, Jun 11, 2017 at 11:52:19AM +0200, Martin Blumenstingl wrote:
-> >> The watchdog IP block on Meson8 and Meson8m2 is already supported by the
-> >> existing meson-wdt driver. Meson8 uses the same register bits as Meson6,
-> >> while the newer Meson8m2 SoC uses the same register bits as Meson8b.
-> >>
-> >> Currently watchdog support on Meson8 SoC already works because
-> >> meson8.dtsi simply uses the "amlogic,meson6-wdt" compatible. Adding a
-> >> separate compatible for Meson8 makes this more explicit though.
-> >>
-> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >
-> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> thank you!
-> is there anything holding you up from taking this patch (for example:
-> are you still missing any specific Signed-off-by / Acked-by)?
-> 
+This replaces the "/include/" syntax with the "#include" syntax in all
+Amlogic Meson .dts and .dtsi files. That is required to use preprocessor
+defines (like GIC_SPI and IRQ_TYPE_EDGE_RISING) in meson.dtsi (all files
+which directly or indirectly include meson.dtsi need to use the
+"#include" syntax, otherwise the .dts files cannot be compiled).
 
->From Rob.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson6-atv1200.dts | 2 +-
+ arch/arm/boot/dts/meson6.dtsi        | 2 +-
+ arch/arm/boot/dts/meson8.dtsi        | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Guenter
-
-> > In general, changes like this are not necessary, though. The dts file
-> > is supposed to reference both generic and specific compatible strings.
-> I thought about skipping this patch, but I find that it looks strange without.
-> 
-> the hierarchy and the corresponding compatible strings would be:
-> meson.dtsi / compatible = "amlogic,meson6-wdt";
-> |- meson8.dtsi / compatible = "amlogic,meson8-wdt", "amlogic,meson6-wdt";
->    |- meson8m2.dtsi (upcoming) / compatible = "amlogic,meson8m2-wdt",
-> "amlogic,meson8b-wdt";
-> |- meson8b.dtsi / compatible = "amlogic,meson8b-wdt";
-> 
-> instead of this seemingly random mixup of compatible strings I decided
-> to introduce separate ones for each SoC.
-> 
-> Martin
+diff --git a/arch/arm/boot/dts/meson6-atv1200.dts b/arch/arm/boot/dts/meson6-atv1200.dts
+index 1237faa63ce6..9444b0d9628f 100644
+--- a/arch/arm/boot/dts/meson6-atv1200.dts
++++ b/arch/arm/boot/dts/meson6-atv1200.dts
+@@ -46,7 +46,7 @@
+  */
+ 
+ /dts-v1/;
+-/include/ "meson6.dtsi"
++#include "meson6.dtsi"
+ 
+ / {
+ 	model = "Geniatech ATV1200";
+diff --git a/arch/arm/boot/dts/meson6.dtsi b/arch/arm/boot/dts/meson6.dtsi
+index b0fc91ffd6a1..8557b6117a4b 100644
+--- a/arch/arm/boot/dts/meson6.dtsi
++++ b/arch/arm/boot/dts/meson6.dtsi
+@@ -45,7 +45,7 @@
+  *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+-/include/ "meson.dtsi"
++#include "meson.dtsi"
+ 
+ / {
+ 	model = "Amlogic Meson6 SoC";
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index e4f7357b4b31..c5d73b999773 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -45,7 +45,7 @@
+ 
+ #include <dt-bindings/clock/meson8b-clkc.h>
+ #include <dt-bindings/gpio/meson8-gpio.h>
+-/include/ "meson.dtsi"
++#include "meson.dtsi"
+ 
+ / {
+ 	model = "Amlogic Meson8 SoC";
+-- 
+2.13.1
