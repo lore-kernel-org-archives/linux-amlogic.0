@@ -1,65 +1,82 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 15 Jun 2017 23:33:43 +0200
-Subject: [PATCH v2 01/10] ARM: dts: meson: use C preprocessor friendly include
- syntax
-In-Reply-To: <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
+Date: Thu, 15 Jun 2017 23:33:42 +0200
+Subject: [PATCH v2 00/10] add support for more devices on Meson8 and Meson8b
+In-Reply-To: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
 References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
- <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170615213352.25134-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This replaces the "/include/" syntax with the "#include" syntax in all
-Amlogic Meson .dts and .dtsi files. That is required to use preprocessor
-defines (like GIC_SPI and IRQ_TYPE_EDGE_RISING) in meson.dtsi (all files
-which directly or indirectly include meson.dtsi need to use the
-"#include" syntax, otherwise the .dts files cannot be compiled).
+This series adds:
+- USB support on Meson8 and Meson8b (it seems that some boards show an
+  error when trying to initialize one of the USB2 PHYs, but we have the
+  same problem on some GXBB boards. it is working fine for me - on a board
+  which is not supported upstream yet)
+- hardware random number generator support (Meson8 and Meson8b seem to
+  have two 32-bit hardware random number generator registers, while the
+  GX SoCs only have one. This is not handled by the meson-rng driver yet,
+  but that can still be improved later on)
+- SAR ADC support
+- add reserved memory zones to fix random hangs when filling the memory
+  (currently only on Meson8 until I have a Meson8b device to test if the
+  same problem appears there as well)
+- use the real ethernet clock on Meson8 and Meson8b to fix ethernet when
+  the bootloader does not enable the gate clock
+- add the SCU (Snoop Control Unit) which is needed for SMP support
+- minor preparations for further .dts updates as this already exports the
+  SDIO clocks (a driver for this MMC controller is work-in-progress) as
+  well as the corresponding pin definitions in meson8.dtsi
+- this adds the pwm_e (typically used for the 32.768 kHz LPO clock for the
+  SDIO wifi chip) and pwm_f (used on some boards for the dimmable power
+  LED) pins to meson8.dtsi
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson6-atv1200.dts | 2 +-
- arch/arm/boot/dts/meson6.dtsi        | 2 +-
- arch/arm/boot/dts/meson8.dtsi        | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+NOTE: the .dts changes from this series depend on my previous patch from
+[0]: "ARM: dts: meson8: fix the IR receiver pins"
 
-diff --git a/arch/arm/boot/dts/meson6-atv1200.dts b/arch/arm/boot/dts/meson6-atv1200.dts
-index 1237faa63ce6..9444b0d9628f 100644
---- a/arch/arm/boot/dts/meson6-atv1200.dts
-+++ b/arch/arm/boot/dts/meson6-atv1200.dts
-@@ -46,7 +46,7 @@
-  */
- 
- /dts-v1/;
--/include/ "meson6.dtsi"
-+#include "meson6.dtsi"
- 
- / {
- 	model = "Geniatech ATV1200";
-diff --git a/arch/arm/boot/dts/meson6.dtsi b/arch/arm/boot/dts/meson6.dtsi
-index b0fc91ffd6a1..8557b6117a4b 100644
---- a/arch/arm/boot/dts/meson6.dtsi
-+++ b/arch/arm/boot/dts/meson6.dtsi
-@@ -45,7 +45,7 @@
-  *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
--/include/ "meson.dtsi"
-+#include "meson.dtsi"
- 
- / {
- 	model = "Amlogic Meson6 SoC";
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index e4f7357b4b31..c5d73b999773 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -45,7 +45,7 @@
- 
- #include <dt-bindings/clock/meson8b-clkc.h>
- #include <dt-bindings/gpio/meson8-gpio.h>
--/include/ "meson.dtsi"
-+#include "meson.dtsi"
- 
- / {
- 	model = "Amlogic Meson8 SoC";
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-June/003983.html
+
+
+Changes since v1:
+- dropped patches 1-5 which export various clock IDs as these are
+  already applied by Jerome to clk-meson's next/headers branch
+- added new patch "ARM: dts: meson: use C preprocessor friendly include
+  syntax" so we can use preprocessor macros like GIC_SPI and
+  IRQ_TYPE_EDGE_RISING in the SAR ADC and USB patches
+- added new patch "ARM: dts: meson: use GIC_SPI and IRQ_TYPE_EDGE_RISING
+  macros" so the GIC_SPI and IRQ_TYPE_EDGE_RISING preprocessor macros
+  are available for the SAR ADC and USB patches (as a side-effect this
+  also provides a nice cleanup)
+- use GIC_SPI and IRQ_TYPE_EDGE_RISING instead of magic numbers in patch
+  "ARM: dts: meson: add the SAR ADC" and "ARM: dts: meson: add USB
+  support on Meson8 and Meson8b"
+- added (currently unused) "amlogic,meson8-rng" and "amlogic,meson8b-rng"
+  compatibles in "ARM: dts: meson: add the hardware random number
+  generator"
+- fixed node name (it's the memory region of the ARM Power Firmware,
+  not the secure monitor firmware) and dropped node alias (of both
+  reserved memory zones) in "ARM: dts: meson8: add reserved memory zones"
+- added Neil's Reviewed-By
+
+
+Martin Blumenstingl (10):
+  ARM: dts: meson: use C preprocessor friendly include syntax
+  ARM: dts: meson: use GIC_SPI and IRQ_TYPE_EDGE_RISING macros
+  ARM: dts: meson8: add the PWM_E and PWM_F pins
+  ARM: dts: meson8: add the pins for the SDIO controller
+  ARM: dts: meson: add the SAR ADC
+  ARM: dts: meson8: add reserved memory zones
+  ARM: dts: meson: add the hardware random number generator
+  ARM: dts: meson: add USB support on Meson8 and Meson8b
+  ARM: dts: meson8b: add the SCU device node
+  ARM: dts: meson: use the real ethernet clock on Meson8 and Meson8b
+
+ arch/arm/boot/dts/meson.dtsi         |  75 +++++++++++++++++++----
+ arch/arm/boot/dts/meson6-atv1200.dts |   2 +-
+ arch/arm/boot/dts/meson6.dtsi        |   2 +-
+ arch/arm/boot/dts/meson8.dtsi        | 112 ++++++++++++++++++++++++++++++++++-
+ arch/arm/boot/dts/meson8b.dtsi       |  50 ++++++++++++++++
+ 5 files changed, 226 insertions(+), 15 deletions(-)
+
 -- 
 2.13.1
