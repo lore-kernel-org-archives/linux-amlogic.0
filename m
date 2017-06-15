@@ -1,87 +1,96 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 14 Jun 2017 23:46:29 +0200
-Subject: [PATCH 09/13] ARM: dts: meson8: add reserved memory zones
-In-Reply-To: <2f93816d-4276-2ccb-fd3e-e6ec8a6c9f70@baylibre.com>
-References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
- <20170611101644.28581-10-martin.blumenstingl@googlemail.com>
- <2f93816d-4276-2ccb-fd3e-e6ec8a6c9f70@baylibre.com>
-Message-ID: <CAFBinCDv=fNVhuOatRukHED9xRMQ_8jTHvWpg1b4v4Pn11bevA@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 15 Jun 2017 07:31:38 +0200
+Subject: Mali on Mainline Linux
+In-Reply-To: <CAMWSM7izixre5oTLFtC4-BmSTW0oW_iGA2gKL3BKJrTa_n1wxw@mail.gmail.com>
+References: <CAMWSM7izixre5oTLFtC4-BmSTW0oW_iGA2gKL3BKJrTa_n1wxw@mail.gmail.com>
+Message-ID: <d0ed97ec-4ccb-4d1e-a69a-797d5beaa13c@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 12, 2017 at 9:32 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> On 06/11/2017 12:16 PM, Martin Blumenstingl wrote:
->> There seem to be two memory regions that need to be reserved, otherwise
->> the system just hangs when running:
->> $ stress --vm-bytes $(awk '/MemFree/{printf "%d\n", $2 * 0.9;}' < /proc/meminfo)k \
->>   --vm-keep -m 1
->>
->> The first memory region is really crucial and without it the system
->> hangs. I could not find any references to this in Amlogic's GPL kernel
->> sources.
->> The second region is used by the "suspend firmware". The u-boot sources
->> (/arch/arm/cpu/aml_meson/m8/firmwareld.c) state that the suspend
->> firmware is located at "64M + 15M" which matches CONFIG_MESON_SUSPEND in
->> the Amlogic GPL kernel sources. The "suspend firmware" is responsible
->> for waking up the system from suspend state.
->>
->> This also fixes reading the full SD card as without this the system
->> would simply hang (probably related to the first memory region, if some
->> buffer is allocated there).
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  arch/arm/boot/dts/meson8.dtsi | 27 +++++++++++++++++++++++++++
->>  1 file changed, 27 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
->> index 8582490fcb52..cf011dfe050e 100644
->> --- a/arch/arm/boot/dts/meson8.dtsi
->> +++ b/arch/arm/boot/dts/meson8.dtsi
->> @@ -83,6 +83,33 @@
->>                       reg = <0x203>;
->>               };
->>       };
->> +
->> +     reserved-memory {
->> +             #address-cells = <1>;
->> +             #size-cells = <1>;
->> +             ranges;
->> +
->> +             /* 2 MiB reserved for Hardware ROM Firmware? */
->> +             hwrom_reserved: hwrom at 0 {
->> +                     reg = <0x0 0x200000>;
->> +                     no-map;
->> +             };
->> +
->> +             /*
->> +              * 1 MiB reserved for the "ARM Power Firmware": this is ARM
->> +              * code which is responsible for system suspend. It loads a
->> +              * piece of ARC code ("arc_power" in the vendor u-boot tree)
->> +              * into SRAM, executes that and shuts down the (last) ARM core.
->> +              * The arc_power firmware then checks various wakeup sources
->> +              * (IR remote receiver, HDMI CEC, WIFI and Bluetooth wakeup or
->> +              * simply the power key) and re-starts the ARM core once it
->> +              * detects a wakeup request.
->> +              */
->> +             suspend_firmware: secmon at 4f00000 {
->> +                     reg = <0x4f00000 0x100000>;
->> +                     no-map;
->> +             };
->> +     };
->>  }; /* end of / */
->>
->>  &aobus {
->>
->
-> Good, but maybe you could add _reserved to the secmon alias.
-good catch, thanks
-it seems that "secmon@" is still a copy-and-paste left-over so I'd
-rather change the whole line to "power_firmware:
-power-firmware-memory at 4f00000" (as it's definitely not the secure
-monitor firmware) instead
-does that also sound good for you?
+Hi Joseph,
 
+On 06/14/2017 06:59 PM, Joseph Kogut wrote:
+> Hi Neil,
+> 
+> I've been following your work on mainlining support for Amlogic SoCs
+> for a while now, and I really appreciate what you and BayLibre are
+> doing. These devices are extremely popular, and only getting moreso.
 
-Regards,
-Martin
+Thanks !!
+
+> 
+> I have a GXL S905X device, and I'm working on getting Xorg with GLES
+> running on a mainline kernel (4.12.0-rc5). I found your repository on
+> GitHub for compiling the kernel driver for mainline kernels:
+> https://github.com/superna9999/meson_gx_mali_450
+
+Right
+
+> 
+> It only took a couple of patches to compile the kernel driver
+> (mali.ko), which I'm using with meson_drm. The driver appears to load
+> successfully, but upon starting X, I get the error:
+> 
+>     Fatal server error:
+>     (EE) no screens found(EE)
+> 
+> Checking the log reveals:
+> 
+>     [ 55706.674] (II) xfree86: Adding drm device (/dev/dri/card0)
+>     [ 55706.675] (II) no primary bus or device found
+>     [ 55706.675]    falling back to
+> /sys/devices/platform/soc/d0100000.vpu/drm/card0
+>     <snip>
+>     [ 55706.777] (EE) MALI(0): [mali_drm_open_master:1036] Error:
+> mali_drm_open_master Unable to open DRM: No such file or directory
+>     <snip>
+>     [ 55706.777] (EE) MALI(0): [MaliPreInit:1169] Error: Failed to be
+> master of DRM!
+
+Yes, it seems you are using the xf86-video-mali, but this X11 driver needs
+a special DRM driver to allocate Mali memory, but this one is hard to build with
+recent kernels.
+
+> I'm using Arch Linux ARM with the HardKernel X11 DDX for the ODROID C2
+> (S905 platform), and their Mali LibGL package.
+> 
+> It seems there's an incompatibility between some Mali driver
+> components, and the drm driver. I did some googling, and found this
+> thread on the ODROID forums that you started:
+> 
+> https://forum.odroid.com/viewtopic.php?t=26969
+> 
+> Does the Mali 450 driver for X11 currently not work at all on the
+> mainline kernel because of DRM differences? Is this something that
+> requires modifications to the blob to fix?
+
+The blobs delivered by HardKernel has been tweaked to work with their Amlogic kernel
+fork, and it will won't work on mainline.
+
+To have X11 running :
+- a mainline meson version of xf86-video-armsoc : https://github.com/superna9999/xf86-video-armsoc
+- you need to get the Amlogic libMali in : http://openlinux.amlogic.com:8000/download/ARM/filesystem/arm-buildroot-2016-08-18-5aaca1b35f.tar.gz
+
+You can follow the HOWTO at :
+https://github.com/superna9999/meson_gx_mali_450#howto
+to find the correct libMali for X11.
+
+- add an udev rule for mali (if not already the case) :
+ Add a file to /etc/udev/rules.d/, perhaps called 50-mali.rules, with the following content:
+KERNEL=="mali", MODE="0660", GROUP="video"
+
+- Change the xorg configuration :
+Then you should also change the /etc/X11/xorg.conf to something like :
+
+Section "Device"
+	Identifier	"Amlogic Meson DRM driver"
+	Driver		"armsoc"
+	Option	"DRI2"	"true"
+EndSection
+
+When X11 is running, you can get the status by running the glesgears.
+
+There is some more docs here :
+https://github.com/superna9999/OpenArenaPandora#amlogic-s905-mainline-linux
+
+Neil
