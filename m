@@ -1,82 +1,127 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 15 Jun 2017 23:33:42 +0200
-Subject: [PATCH v2 00/10] add support for more devices on Meson8 and Meson8b
-In-Reply-To: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+Date: Thu, 15 Jun 2017 23:33:44 +0200
+Subject: [PATCH v2 02/10] ARM: dts: meson: use GIC_SPI and
+ IRQ_TYPE_EDGE_RISING macros
+In-Reply-To: <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
 References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
+ <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170615213352.25134-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series adds:
-- USB support on Meson8 and Meson8b (it seems that some boards show an
-  error when trying to initialize one of the USB2 PHYs, but we have the
-  same problem on some GXBB boards. it is working fine for me - on a board
-  which is not supported upstream yet)
-- hardware random number generator support (Meson8 and Meson8b seem to
-  have two 32-bit hardware random number generator registers, while the
-  GX SoCs only have one. This is not handled by the meson-rng driver yet,
-  but that can still be improved later on)
-- SAR ADC support
-- add reserved memory zones to fix random hangs when filling the memory
-  (currently only on Meson8 until I have a Meson8b device to test if the
-  same problem appears there as well)
-- use the real ethernet clock on Meson8 and Meson8b to fix ethernet when
-  the bootloader does not enable the gate clock
-- add the SCU (Snoop Control Unit) which is needed for SMP support
-- minor preparations for further .dts updates as this already exports the
-  SDIO clocks (a driver for this MMC controller is work-in-progress) as
-  well as the corresponding pin definitions in meson8.dtsi
-- this adds the pwm_e (typically used for the 32.768 kHz LPO clock for the
-  SDIO wifi chip) and pwm_f (used on some boards for the dimmable power
-  LED) pins to meson8.dtsi
+This makes meson.dtsi easier to read as we are not using magic numbers
+for the GIC interrupt type (GIC_SPI) and the interrupt polarity
+(IRQ_TYPE_EDGE_RISING).
 
-NOTE: the .dts changes from this series depend on my previous patch from
-[0]: "ARM: dts: meson8: fix the IR receiver pins"
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson.dtsi | 24 +++++++++++++-----------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
 
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-June/003983.html
-
-
-Changes since v1:
-- dropped patches 1-5 which export various clock IDs as these are
-  already applied by Jerome to clk-meson's next/headers branch
-- added new patch "ARM: dts: meson: use C preprocessor friendly include
-  syntax" so we can use preprocessor macros like GIC_SPI and
-  IRQ_TYPE_EDGE_RISING in the SAR ADC and USB patches
-- added new patch "ARM: dts: meson: use GIC_SPI and IRQ_TYPE_EDGE_RISING
-  macros" so the GIC_SPI and IRQ_TYPE_EDGE_RISING preprocessor macros
-  are available for the SAR ADC and USB patches (as a side-effect this
-  also provides a nice cleanup)
-- use GIC_SPI and IRQ_TYPE_EDGE_RISING instead of magic numbers in patch
-  "ARM: dts: meson: add the SAR ADC" and "ARM: dts: meson: add USB
-  support on Meson8 and Meson8b"
-- added (currently unused) "amlogic,meson8-rng" and "amlogic,meson8b-rng"
-  compatibles in "ARM: dts: meson: add the hardware random number
-  generator"
-- fixed node name (it's the memory region of the ARM Power Firmware,
-  not the secure monitor firmware) and dropped node alias (of both
-  reserved memory zones) in "ARM: dts: meson8: add reserved memory zones"
-- added Neil's Reviewed-By
-
-
-Martin Blumenstingl (10):
-  ARM: dts: meson: use C preprocessor friendly include syntax
-  ARM: dts: meson: use GIC_SPI and IRQ_TYPE_EDGE_RISING macros
-  ARM: dts: meson8: add the PWM_E and PWM_F pins
-  ARM: dts: meson8: add the pins for the SDIO controller
-  ARM: dts: meson: add the SAR ADC
-  ARM: dts: meson8: add reserved memory zones
-  ARM: dts: meson: add the hardware random number generator
-  ARM: dts: meson: add USB support on Meson8 and Meson8b
-  ARM: dts: meson8b: add the SCU device node
-  ARM: dts: meson: use the real ethernet clock on Meson8 and Meson8b
-
- arch/arm/boot/dts/meson.dtsi         |  75 +++++++++++++++++++----
- arch/arm/boot/dts/meson6-atv1200.dts |   2 +-
- arch/arm/boot/dts/meson6.dtsi        |   2 +-
- arch/arm/boot/dts/meson8.dtsi        | 112 ++++++++++++++++++++++++++++++++++-
- arch/arm/boot/dts/meson8b.dtsi       |  50 ++++++++++++++++
- 5 files changed, 226 insertions(+), 15 deletions(-)
-
+diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
+index 8d9c36970dfd..d287f606e06f 100644
+--- a/arch/arm/boot/dts/meson.dtsi
++++ b/arch/arm/boot/dts/meson.dtsi
+@@ -45,6 +45,8 @@
+  *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
+ /include/ "skeleton.dtsi"
+ 
+ / {
+@@ -81,21 +83,21 @@
+ 			uart_A: serial at 84c0 {
+ 				compatible = "amlogic,meson-uart";
+ 				reg = <0x84c0 0x18>;
+-				interrupts = <0 26 1>;
++				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+ 
+ 			uart_B: serial at 84dc {
+ 				compatible = "amlogic,meson-uart";
+ 				reg = <0x84dc 0x18>;
+-				interrupts = <0 75 1>;
++				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+ 
+ 			i2c_A: i2c at 8500 {
+ 				compatible = "amlogic,meson6-i2c";
+ 				reg = <0x8500 0x20>;
+-				interrupts = <0 21 1>;
++				interrupts = <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>;
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+@@ -104,14 +106,14 @@
+ 			uart_C: serial at 8700 {
+ 				compatible = "amlogic,meson-uart";
+ 				reg = <0x8700 0x18>;
+-				interrupts = <0 93 1>;
++				interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+ 
+ 			i2c_B: i2c at 87c0 {
+ 				compatible = "amlogic,meson6-i2c";
+ 				reg = <0x87c0 0x20>;
+-				interrupts = <0 128 1>;
++				interrupts = <GIC_SPI 128 IRQ_TYPE_EDGE_RISING>;
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+@@ -128,13 +130,13 @@
+ 			wdt: watchdog at 9900 {
+ 				compatible = "amlogic,meson6-wdt";
+ 				reg = <0x9900 0x8>;
+-				interrupts = <0 0 1>;
++				interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>;
+ 			};
+ 
+ 			timer at 9940 {
+ 				compatible = "amlogic,meson6-timer";
+ 				reg = <0x9940 0x18>;
+-				interrupts = <0 10 1>;
++				interrupts = <GIC_SPI 10 IRQ_TYPE_EDGE_RISING>;
+ 			};
+ 		};
+ 
+@@ -148,21 +150,21 @@
+ 			ir_receiver: ir-receiver at 480 {
+ 				compatible= "amlogic,meson6-ir";
+ 				reg = <0x480 0x20>;
+-				interrupts = <0 15 1>;
++				interrupts = <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+ 
+ 			uart_AO: serial at 4c0 {
+ 				compatible = "amlogic,meson-uart";
+ 				reg = <0x4c0 0x18>;
+-				interrupts = <0 90 1>;
++				interrupts = <GIC_SPI 90 IRQ_TYPE_EDGE_RISING>;
+ 				status = "disabled";
+ 			};
+ 
+ 			i2c_AO: i2c at 500 {
+ 				compatible = "amlogic,meson6-i2c";
+ 				reg = <0x500 0x20>;
+-				interrupts = <0 92 1>;
++				interrupts = <GIC_SPI 92 IRQ_TYPE_EDGE_RISING>;
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+@@ -173,7 +175,7 @@
+ 			compatible = "amlogic,meson6-dwmac", "snps,dwmac";
+ 			reg = <0xc9410000 0x10000
+ 			       0xc1108108 0x4>;
+-			interrupts = <0 8 1>;
++			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
+ 			interrupt-names = "macirq";
+ 			status = "disabled";
+ 		};
 -- 
 2.13.1
