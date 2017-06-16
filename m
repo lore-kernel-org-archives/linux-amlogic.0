@@ -1,30 +1,49 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 16 Jun 2017 11:40:34 -0700
-Subject: [PATCH] ARM: dts: meson8: fix the IR receiver pins
-In-Reply-To: <e4347b01-e221-2242-9bb9-bc1e93da06fb@baylibre.com> (Neil
- Armstrong's message of "Mon, 12 Jun 2017 09:38:55 +0200")
-References: <20170609222039.25191-1-martin.blumenstingl@googlemail.com>
- <e4347b01-e221-2242-9bb9-bc1e93da06fb@baylibre.com>
-Message-ID: <m2k24bg4il.fsf@baylibre.com>
+Date: Fri, 16 Jun 2017 12:10:40 -0700
+Subject: [PATCH v2 00/10] add support for more devices on Meson8 and
+ Meson8b
+In-Reply-To: <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Thu, 15 Jun 2017 23:33:42 +0200")
+References: <20170611101644.28581-1-martin.blumenstingl@googlemail.com>
+ <20170615213352.25134-1-martin.blumenstingl@googlemail.com>
+Message-ID: <m2d1a3g34f.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> On 06/10/2017 12:20 AM, Martin Blumenstingl wrote:
->> The IR receiver pins are currently defined in the CBUS pin-controller.
->> However the pins are in the AO region, which is controlled by the AOBUS
->> pin-controller. Move the pins to pinctrl_aobus so they can actually be
->> used.
->> 
->> Fixes: b60e1157d8fa ("ARM: dts: amlogic: Split pinctrl device for Meson8 / Meson8b")
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> This series adds:
+> - USB support on Meson8 and Meson8b (it seems that some boards show an
+>   error when trying to initialize one of the USB2 PHYs, but we have the
+>   same problem on some GXBB boards. it is working fine for me - on a board
+>   which is not supported upstream yet)
+> - hardware random number generator support (Meson8 and Meson8b seem to
+>   have two 32-bit hardware random number generator registers, while the
+>   GX SoCs only have one. This is not handled by the meson-rng driver yet,
+>   but that can still be improved later on)
+> - SAR ADC support
+> - add reserved memory zones to fix random hangs when filling the memory
+>   (currently only on Meson8 until I have a Meson8b device to test if the
+>   same problem appears there as well)
+> - use the real ethernet clock on Meson8 and Meson8b to fix ethernet when
+>   the bootloader does not enable the gate clock
+> - add the SCU (Snoop Control Unit) which is needed for SMP support
+> - minor preparations for further .dts updates as this already exports the
+>   SDIO clocks (a driver for this MMC controller is work-in-progress) as
+>   well as the corresponding pin definitions in meson8.dtsi
+> - this adds the pwm_e (typically used for the 32.768 kHz LPO clock for the
+>   SDIO wifi chip) and pwm_f (used on some boards for the dimmable power
+>   LED) pins to meson8.dtsi
+>
+> NOTE: the .dts changes from this series depend on my previous patch from
+> [0]: "ARM: dts: meson8: fix the IR receiver pins"
 
-[..]
+Thanks for the reminder, I had missed that one.
 
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+This series now applied to v4.13/dt (after merging in the clock headers
+deps from Jerome) and will go in the 2nd round of pull requests to
+arm-soc, probably early next week.
 
-Applied to v4.13/dt with Neil's ack, will go in round 2 of pull requests
-to arm-soc.
+Thanks for the continued great work Martin!
 
 Kevin
