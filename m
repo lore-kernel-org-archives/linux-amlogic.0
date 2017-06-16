@@ -1,30 +1,31 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 16 Jun 2017 14:06:46 +0200
-Subject: [PATCH 1/3] dt-bindings: add Imprecision Systems vendor prefix
+Date: Fri, 16 Jun 2017 14:06:47 +0200
+Subject: [PATCH 2/3] dt-bindings: arm: amlogic: Add Libre Computer Board
 In-Reply-To: <20170616120648.23320-1-jbrunet@baylibre.com>
 References: <20170616120648.23320-1-jbrunet@baylibre.com>
-Message-ID: <20170616120648.23320-2-jbrunet@baylibre.com>
+Message-ID: <20170616120648.23320-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Imprecision System LLC is a single board computer manufacturer
+Add bindings documentation for the Libre Computer Board from Imprecision
+Systems
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+ Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
-index ee2e10f2ae41..0c1083990b7f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.txt
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
-@@ -145,6 +145,7 @@ ibm	International Business Machines (IBM)
- idt	Integrated Device Technologies, Inc.
- ifi	Ingenieurburo Fur Ic-Technologie (I/F/I)
- img	Imagination Technologies Ltd.
-+imprecision	Imprecision Systems LLC
- infineon Infineon Technologies
- inforce	Inforce Computing
- ingenic	Ingenic Semiconductor
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+index 5c01e65951fa..d1c77d7ae11d 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.txt
++++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+@@ -51,6 +51,7 @@ Board compatible values (alphabetically, grouped by SoC):
+ 
+   - "amlogic,p212" (Meson gxl s905x)
+   - "hwacom,amazetv" (Meson gxl s905x)
++  - "imprecision,librecomputer" (Meson gxl s905x)
+   - "khadas,vim" (Meson gxl s905x)
+ 
+   - "amlogic,p230" (Meson gxl s905d)
 -- 
 2.9.4
