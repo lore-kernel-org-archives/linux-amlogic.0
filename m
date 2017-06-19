@@ -1,24 +1,39 @@
-From: robh@kernel.org (Rob Herring)
-Date: Sun, 18 Jun 2017 09:05:44 -0500
-Subject: [PATCH v5 1/4] dt-bindings: serial: Add bindings for the Amlogic
- Meson UARTs
-In-Reply-To: <1497428957-19942-2-git-send-email-narmstrong@baylibre.com>
-References: <1497428957-19942-1-git-send-email-narmstrong@baylibre.com>
- <1497428957-19942-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20170618140544.elrzdxg6utvhaeht@rob-hp-laptop>
+From: olof@lixom.net (Olof Johansson)
+Date: Sun, 18 Jun 2017 20:37:34 -0700
+Subject: [GIT PULL] Amlogic defconfig updates for v4.13
+In-Reply-To: <7hzidabgwf.fsf@baylibre.com>
+References: <7hzidabgwf.fsf@baylibre.com>
+Message-ID: <20170619033734.GO30022@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Jun 14, 2017 at 10:29:14AM +0200, Neil Armstrong wrote:
-> From: Helmut Klein <hgkr.klein@gmail.com>
+On Wed, Jun 14, 2017 at 10:47:28AM -0700, Kevin Hilman wrote:
+> The following changes since commit 08332893e37af6ae779367e78e444f8f9571511d:
 > 
-> Add the documentation for the device tree binding of Amlogic Meson Serial UART.
+>   Linux 4.12-rc2 (2017-05-21 19:30:23 -0700)
 > 
-> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../bindings/serial/amlogic,meson-uart.txt         | 38 ++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+> are available in the git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-defconfig
+> 
+> for you to fetch changes up to b4cb6f0ab7b0c4dd7f5ba546abcc960caa57aa72:
+> 
+>   ARM64: defconfig: enable meson SPICC as module (2017-06-14 10:25:16 -0700)
+> 
+> ----------------------------------------------------------------
+> Amlogic arm64 defconfig changes for v4.13
+> - enable meson SPICC as module
+> - enable IR core, decoders and Meson IR device
+> 
+> ----------------------------------------------------------------
+> Neil Armstrong (2):
+>       ARM64: defconfig: enable IR core, decoders and Meson IR device
+>       ARM64: defconfig: enable meson SPICC as module
 
-Acked-by: Rob Herring <robh@kernel.org>
+I nearly accidentally merged this into next/defconfig since it didn't have '64'
+in the name. :)
+
+Merged into next/arm64. Thanks.
+
+
+-Olof
