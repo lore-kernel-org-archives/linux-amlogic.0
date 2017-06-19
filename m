@@ -1,89 +1,57 @@
-From: olof@lixom.net (Olof Johansson)
-Date: Sun, 18 Jun 2017 20:40:14 -0700
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.13
-In-Reply-To: <7ho9tqbgsv.fsf@baylibre.com>
-References: <7ho9tqbgsv.fsf@baylibre.com>
-Message-ID: <20170619034014.GR30022@localhost>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 19 Jun 2017 10:40:12 +0200
+Subject: [PATCH v5 3/4] ARM64: dts: meson-gx: use stable UART bindings
+ with correct gate clock
+In-Reply-To: <m2vanvejlc.fsf@baylibre.com>
+References: <1497428957-19942-1-git-send-email-narmstrong@baylibre.com>
+ <1497428957-19942-4-git-send-email-narmstrong@baylibre.com>
+ <m2vanvejlc.fsf@baylibre.com>
+Message-ID: <e409b45e-41bc-0c1c-5657-d6f2ef0152f2@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+On 06/16/2017 10:57 PM, Kevin Hilman wrote:
+> Neil Armstrong <narmstrong@baylibre.com> writes:
+> 
+>> From: Helmut Klein <hgkr.klein@gmail.com>
+>>
+>> This patch switches to the stable UART bindings but also add the correct
+>> gate clock to the non-AO UART nodes for GXBB and GXL SoCs.
+>>
+>> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+>> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 12 +++++-------
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 25 +++++++++++++++++++++++++
+>>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 25 +++++++++++++++++++++++++
+>>  3 files changed, 55 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> index 603491d..86a4018 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> @@ -225,7 +225,7 @@
+>>  			};
+>>  
+>>  			uart_A: serial at 84c0 {
+>> -				compatible = "amlogic,meson-uart";
+>> +				compatible = "amlogic,meson-gx-uart";
+> 
+> IMO, we should keep both compatibles (the more specific one first.)
+> That would allow new DTs to continue to run on older kernels.
+> 
+> It would also allow this DT change to be completely independent of the
+> driver changes.  Otherwise, if I merge this before the driver change are
+> merged, we'll have a bunch of boards with no more serial console output.
+> 
+> Kevin
+> 
 
-On Wed, Jun 14, 2017 at 10:49:36AM -0700, Kevin Hilman wrote:
-> The following changes since commit 2ea659a9ef488125eb46da6eb571de5eae5c43f6:
-> 
->   Linux 4.12-rc1 (2017-05-13 13:19:49 -0700)
-> 
-> are available in the git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64
-> 
-> for you to fetch changes up to 27f87bd2900b1a95d9c8e25deeb9768cf3fdcc4e:
-> 
->   ARM64: dts: meson-gxl-s905x-p212: Add HDMI and CVBS nodes (2017-06-09 11:38:22 -0700)
-> 
-> ----------------------------------------------------------------
-> Amlogic 64-bit DT changes for v4.13
-> - cleanup/reorganize alphabetically to better avoid conflicts
-> - add HDMI and CVBS nodes for multiple boards
-> - new pinctrl pins: SPI, HDMI CEC
-> - SCPI: fix thermal sensor reporting
-> 
-> New board support
-> - NanoPi K2 (GXBB)
-> - R-Box Pro (GXM)
+Hi Kevin,
 
-Merged, thanks!
+Sure, no problem with that.
 
-> 
-> ----------------------------------------------------------------
-> Andreas F??rber (23):
->       dt-bindings: arm: amlogic: Reorder boards
->       arm64: dts: amlogic: Sort Makefile
->       arm64: dts: meson-gxbb-vega-s95: Fix Wifi node name
->       arm64: dts: meson-gxbb-p20x: Fix Wifi node name
->       arm64: dts: meson-gx-p23x-q20x: Fix Wifi node name
->       arm64: dts: meson-gxl-s905x-khadas-vim: Fix Wifi node name
->       arm64: dts: meson-gxm-nexbox-a1: Drop UART comment
->       arm64: dts: meson-gxl-s905x: Comment typo fix
->       arm64: dts: meson-gxbb-wetek-hub: Reference CVBS node by label
->       arm64: dts: meson-gxbb: Fix node order
->       arm64: dts: meson-gxbb-odroidc2: Fix node order
->       arm64: dts: meson-gxbb-vega-s95: Fix node order
->       arm64: dts: meson-gxbb-nexbox-a95x: Fix node order
->       arm64: dts: meson-gxbb-p20x: Fix node order
->       arm64: dts: meson-gxl: Fix node order
->       arm64: dts: meson-gxl-s905x-nexbox-a95x: Fix node order
->       arm64: dts: meson-gxm-nexbox-a1: Fix node order
->       arm64: dts: meson-gx-p23x-q20x: Fix node order
+I'll push an update when the bindings + tty fixes are merged somewhere.
 
-Small nit: Most of these could probably have been squashed into a few
-patches, being able to bisect them individually isn't likely to be useful.
-
->       dt-bindings: Add Kingnovel vendor prefix
->       dt-bindings: arm: amlogic: Add R-Box Pro
->       arm64: dts: meson-gxm: Add R-Box Pro
->       dt-bindings: arm: amlogic: Add NanoPi K2
->       arm64: dts: amlogic: Add NanoPi K2
-> 
-> Carlo Caione (1):
->       ARM64: dts: meson-gx: Fix sensors reporting from SCP
-> 
-> Neil Armstrong (12):
->       ARM64: dts: meson-gxl: Fix pinctrl periphs gpio-ranges
->       ARM64: dts: Fix GXL periphs pinctrl pull-enable register base
->       ARM64: dts: Fix GXBB periphs pinctrl pull-enable register base
->       ARM64: dts: meson-gxbb: Add CEC pins nodes
->       ARM64: dts: meson-gxl: Add CEC pins nodes
->       ARM64: dts: meson-gxl: Add Ethernet PHY LEDS pins nodes
->       ARM64: dts: meson-gxbb: Add SPI pinctrl nodes
->       ARM64: dts: meson-gxl: Add SPI pinctrl nodes
->       ARM64: dts: meson-gxbb-wetek-play2: Add HDMI and CVBS Nodes
->       ARM64: dts: meson-gxl-s905d-p230: Add HDMI nodes
->       ARM64: dts: meson-gxl-s905x-khadas-vim: Add HDMI nodes
->       ARM64: dts: meson-gxl-s905x-p212: Add HDMI and CVBS nodes
-
-Same for some of these, but it's just a few.
-
-
--Olof
+Neil
