@@ -1,60 +1,20 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 19 Jun 2017 20:50:40 +0200
-Subject: [PATCH] watchdog: meson-wdt: add support for the watchdog on
- Meson8 and Meson8m2
-In-Reply-To: <20170616180009.h66dwnnhfwrjpui6@rob-hp-laptop>
-References: <20170611095219.22095-1-martin.blumenstingl@googlemail.com>
- <20170615172510.GA7549@roeck-us.net>
- <CAFBinCCyqX=TGwTyhxXZPP2noUvJ1v=xNs+Vs17Gg4z2uDgjEA@mail.gmail.com>
- <20170616180009.h66dwnnhfwrjpui6@rob-hp-laptop>
-Message-ID: <CAFBinCAZZMT-YDHg4SYF3da+00KLYE-dZaEDPaEMRz_2paXNQw@mail.gmail.com>
+From: joseph.kogut@gmail.com (Joseph Kogut)
+Date: Mon, 19 Jun 2017 16:53:27 -0700
+Subject: Mali on Mainline Linux
+In-Reply-To: <CAMWSM7iNTrBXo7wFvKVUDACfq66-oB3a-M4jP+XOLja+0GJMbA@mail.gmail.com>
+References: <CAMWSM7izixre5oTLFtC4-BmSTW0oW_iGA2gKL3BKJrTa_n1wxw@mail.gmail.com>
+ <d0ed97ec-4ccb-4d1e-a69a-797d5beaa13c@baylibre.com>
+ <CAMWSM7iNTrBXo7wFvKVUDACfq66-oB3a-M4jP+XOLja+0GJMbA@mail.gmail.com>
+Message-ID: <CAMWSM7h_rsJZ1H_WN5L249B9we=AzYpS=DmZ-DV72v2BqjQyHg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Rob,
+Hi Neil,
 
-On Sun, Jun 18, 2017 at 4:04 PM, Rob Herring <robh@kernel.org> wrote:
-> On Thu, Jun 15, 2017 at 11:13:07PM +0200, Martin Blumenstingl wrote:
->> On Thu, Jun 15, 2017 at 7:25 PM, Guenter Roeck <linux@roeck-us.net> wrote:
->> > On Sun, Jun 11, 2017 at 11:52:19AM +0200, Martin Blumenstingl wrote:
->> >> The watchdog IP block on Meson8 and Meson8m2 is already supported by the
->> >> existing meson-wdt driver. Meson8 uses the same register bits as Meson6,
->> >> while the newer Meson8m2 SoC uses the same register bits as Meson8b.
->> >>
->> >> Currently watchdog support on Meson8 SoC already works because
->> >> meson8.dtsi simply uses the "amlogic,meson6-wdt" compatible. Adding a
->> >> separate compatible for Meson8 makes this more explicit though.
->> >>
->> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> >
->> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->> thank you!
->> is there anything holding you up from taking this patch (for example:
->> are you still missing any specific Signed-off-by / Acked-by)?
->>
->> > In general, changes like this are not necessary, though. The dts file
->> > is supposed to reference both generic and specific compatible strings.
->> I thought about skipping this patch, but I find that it looks strange without.
->>
->> the hierarchy and the corresponding compatible strings would be:
->> meson.dtsi / compatible = "amlogic,meson6-wdt";
->> |- meson8.dtsi / compatible = "amlogic,meson8-wdt", "amlogic,meson6-wdt";
->>    |- meson8m2.dtsi (upcoming) / compatible = "amlogic,meson8m2-wdt",
->> "amlogic,meson8b-wdt";
->> |- meson8b.dtsi / compatible = "amlogic,meson8b-wdt";
->>
->> instead of this seemingly random mixup of compatible strings I decided
->> to introduce separate ones for each SoC.
->
-> But if the block is backwards compatible, you should also provide a
-> fallback compatible string.
-OK, fine with me - do you want me to update the documentation to
-reflect this (or is it enough if I take care of it in the .dts files)?
-the resulting documentation could look like this:
-       "amlogic,meson6-wdt" on Meson6 SoCs
-       "amlogic,meson8-wdt" along with "amlogic,meson6-wdt" on Meson8 SoCs
-       "amlogic,meson8b-wdt" on Meson8b SoCs
-       "amlogic,meson8m2-wdt" along with "amlogic,meson8b-wdt" on Meson8m2 SoCs
+Just a friendly heads up. I rebased your patches for xf86-video-armsoc
+onto https://github.com/endlessm/xf86-video-armsoc, and got the Xorg
+DDX working with meson_drm on Linux 4.12-rc5 with Xorg 1.19.
 
-Regards,
-Martin
+My repo is here:
+
+https://github.com/jakogut/xf86-video-armsoc
