@@ -1,80 +1,60 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Mon, 19 Jun 2017 13:50:39 +0200
-Subject: [RFC 2/2] mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8
- and Meson8b SoCs
-In-Reply-To: <CAFBinCD=uH=oQmWAcsMpxtbJCnJZernZx3XoNaPixUUQ7pk76w@mail.gmail.com>
-References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
- <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
- <CAPDyKFrrSLCjbXO9R4VqPpabiFsbE6_RqR=U7otVF4Ncv0jHjQ@mail.gmail.com>
- <CAFBinCD3modyyOpi3OY5XLhjX0UCuV+WPY2Z=mdvwdMCyeGoqg@mail.gmail.com>
- <CAPDyKFptXRPk7mVUiRHf=hECDbeyhTxuf3K1M6NkZcVEF0Enww@mail.gmail.com>
- <CAFBinCD=uH=oQmWAcsMpxtbJCnJZernZx3XoNaPixUUQ7pk76w@mail.gmail.com>
-Message-ID: <CAPDyKFrbxMpgDrZXKmrN4fyJWJ_ZML3jPxBs+YDEz=L1kA-BaA@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 19 Jun 2017 20:50:40 +0200
+Subject: [PATCH] watchdog: meson-wdt: add support for the watchdog on
+ Meson8 and Meson8m2
+In-Reply-To: <20170616180009.h66dwnnhfwrjpui6@rob-hp-laptop>
+References: <20170611095219.22095-1-martin.blumenstingl@googlemail.com>
+ <20170615172510.GA7549@roeck-us.net>
+ <CAFBinCCyqX=TGwTyhxXZPP2noUvJ1v=xNs+Vs17Gg4z2uDgjEA@mail.gmail.com>
+ <20170616180009.h66dwnnhfwrjpui6@rob-hp-laptop>
+Message-ID: <CAFBinCAZZMT-YDHg4SYF3da+00KLYE-dZaEDPaEMRz_2paXNQw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Rob,
+
+On Sun, Jun 18, 2017 at 4:04 PM, Rob Herring <robh@kernel.org> wrote:
+> On Thu, Jun 15, 2017 at 11:13:07PM +0200, Martin Blumenstingl wrote:
+>> On Thu, Jun 15, 2017 at 7:25 PM, Guenter Roeck <linux@roeck-us.net> wrote:
+>> > On Sun, Jun 11, 2017 at 11:52:19AM +0200, Martin Blumenstingl wrote:
+>> >> The watchdog IP block on Meson8 and Meson8m2 is already supported by the
+>> >> existing meson-wdt driver. Meson8 uses the same register bits as Meson6,
+>> >> while the newer Meson8m2 SoC uses the same register bits as Meson8b.
+>> >>
+>> >> Currently watchdog support on Meson8 SoC already works because
+>> >> meson8.dtsi simply uses the "amlogic,meson6-wdt" compatible. Adding a
+>> >> separate compatible for Meson8 makes this more explicit though.
+>> >>
+>> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> >
+>> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+>> thank you!
+>> is there anything holding you up from taking this patch (for example:
+>> are you still missing any specific Signed-off-by / Acked-by)?
+>>
+>> > In general, changes like this are not necessary, though. The dts file
+>> > is supposed to reference both generic and specific compatible strings.
+>> I thought about skipping this patch, but I find that it looks strange without.
+>>
+>> the hierarchy and the corresponding compatible strings would be:
+>> meson.dtsi / compatible = "amlogic,meson6-wdt";
+>> |- meson8.dtsi / compatible = "amlogic,meson8-wdt", "amlogic,meson6-wdt";
+>>    |- meson8m2.dtsi (upcoming) / compatible = "amlogic,meson8m2-wdt",
+>> "amlogic,meson8b-wdt";
+>> |- meson8b.dtsi / compatible = "amlogic,meson8b-wdt";
+>>
+>> instead of this seemingly random mixup of compatible strings I decided
+>> to introduce separate ones for each SoC.
 >
->> [...]
->>
->>>>> +       if (!(cmd->flags & MMC_RSP_CRC))
->>>>> +               send |= MESON_MX_SDIO_SEND_RESP_WITHOUT_CRC7;
->>>>> +
->>>>> +       if (cmd->flags & MMC_RSP_BUSY)
->>>>> +               send |= MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY;
->>>>
->>>> In case the controller has HW support of busy detection, please
->>>> consider to enable MMC_CAP_WAIT_WHILE_BUSY for this driver. Then also
->>>> assign host->max_busy_timeout a good value.
->>> the IRQS register has bit 4 (CMD_BUSY) - but apart from that there is
->>> no other documentation (about timeout values, etc.). the vendor driver
->>> also neither uses MMC_CAP_WAIT_WHILE_BUSY nor host->max_busy_timeout
->>> should I leave this as it is?
->>
->> Please don't just leave it as is. This is an important thing to get right.
->>
->> You should be able to explore this area and see how the controller
->> behaves without too much of documentation. Regarding timeouts, it may
->> very well be that the controller don't have a timeout, which is why
->> you need a software timeout. That's not so uncommon actually.
-> during my experiments I've never seen an interrupt when a command
-> timed out (nor could I find information about a timeout register in
-> the documentation). do you have any pointers (like a previous mail
-> where you've explained) how I can "explore the controller's timeout
-> behavior"?
+> But if the block is backwards compatible, you should also provide a
+> fallback compatible string.
+OK, fine with me - do you want me to update the documentation to
+reflect this (or is it enough if I take care of it in the .dts files)?
+the resulting documentation could look like this:
+       "amlogic,meson6-wdt" on Meson6 SoCs
+       "amlogic,meson8-wdt" along with "amlogic,meson6-wdt" on Meson8 SoCs
+       "amlogic,meson8b-wdt" on Meson8b SoCs
+       "amlogic,meson8m2-wdt" along with "amlogic,meson8b-wdt" on Meson8m2 SoCs
 
-Sorry, I don't have an pointers.
-
-Anyway. If you do a big erase operation on an SD card, the card should
-signal busy on DAT0 for a rather long time.
-
-You could probably explore how long it takes for the card to respond
-under those circumstances, and try both with and without
-MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY.
-
-Of course you also need to try with and without
-MMC_CAP_WAIT_WHILE_BUSY, as the core may sometimes convert R1B to R1
-responses depending on that cap.
-
-[...]
-
->>
->> It shouldn't be that hard to implement, although I strongly recommend
->> you to address this in a second step. In other words, I suggest you to
->> drop the entire multiple slot support in the first step, then we can
->> deal with that on top instead.
-> many thanks for the detailed explanation again!
-> I would be fine with dropping multiple slot support for the moment
-> *if* we can agree on the fact that the devicetree binding can support
-> multiple slots in theory (my idea here is: keep the child-nodes with
-> compatible = "mmc-slot" mandatory - but only allow one such child node
-> for now). I don't want to break DT compatibility after a few
-> weeks/months for a new driver. is that OK for you as well?
-
-That's fine! We already have such a binding available for some other
-mmc controllers. We could even consider to make that binding a generic
-mmc binding.
-
-[...]
-
-Kind regards
-Uffe
+Regards,
+Martin
