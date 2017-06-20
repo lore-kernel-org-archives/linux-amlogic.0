@@ -1,84 +1,129 @@
-From: gregkh@linuxfoundation.org (Greg KH)
-Date: Tue, 20 Jun 2017 10:51:37 +0800
-Subject: [PATCH v5 0/4] tty/serial: meson_uart: add support for core
- clock handling
-In-Reply-To: <f4179b26-54fc-30ee-2d8d-7659349ccb74@baylibre.com>
-References: <1497428957-19942-1-git-send-email-narmstrong@baylibre.com>
- <f4179b26-54fc-30ee-2d8d-7659349ccb74@baylibre.com>
-Message-ID: <20170620025137.GA7258@kroah.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Tue, 20 Jun 2017 10:39:42 +0200
+Subject: [RFC] gpio: about the need to manage irq mapping dynamically.
+In-Reply-To: <1497543642.3086.35.camel@baylibre.com>
+References: <1497543642.3086.35.camel@baylibre.com>
+Message-ID: <CACRpkdZWw_-joPT4CJ-RAJ31s4BxuE6vusjg5YnZWaHtkRg5+w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 19, 2017 at 10:43:05AM +0200, Neil Armstrong wrote:
-> On 06/14/2017 10:29 AM, Neil Armstrong wrote:
-> > This patchset is a re-spin of Helmut Klein's v3 patchset at [0] and the v4 patchset at [1].
-> > 
-> > Initially, the original patchset was made to enable usage on the non-AO UARTS
-> > not enabled by the Bootloader (uart_B and uart_C), but the patchset needed
-> > an overall change to have clean and stable DT bindings.
-> > 
-> > The Amlogic Meson UART Driver did not have stable DT bindings and mismatched
-> > clock handling on non-AO UARTs since these "EE" UARTs needs a clock gate to
-> > be ungated to works correctly.
-> > In the same way, the AO UARTs does not need gating and can be used as
-> > Early Consoles.
-> > 
-> > In the same time, the UART Interfaces can take clock input for the baudrate
-> > generate from either the external Xtal or the internal Bus Clock (clk81).
-> > 
-> > So new bindings was necessary to meet these requirements and the DT
-> > maintainers requirements.
-> > 
-> > The "legacy" binding actually used in the driver is left until all the DT
-> > files are switched to the new bindings.
-> > 
-> > The GX DT has been tested, but the last 4 Meson6/Meson8/b are only
-> > compile-tested, and testing is welcome.
-> > Thus only the first 3 patches can be merged until the Meson6/Meson8/b are
-> > formally tested.
-> > 
-> > It must be noted that the meson6 cannot work today except using an early
-> > console since the UART driver could not probe without a clocks property.
-> > 
-> > Changes since v4 at [1]:
-> >  - Droped meson8/meson8b DT patches
-> >  - Fixes copy/paste error in patch 2
-> >  - Refactored clock probing in patch 2
-> >  - merged meson6 patches together to avoid breaking bisect
-> > 
-> > [0] http://lkml.kernel.org/r/20170331165437.26227-1-hgkr.klein at gmail.com
-> > [1] http://lkml.kernel.org/r/1497001756-942-1-git-send-email-narmstrong at baylibre.com
-> > 
-> > Helmut Klein (3):
-> >   dt-bindings: serial: Add bindings for the Amlogic Meson UARTs
-> >   tty/serial: meson_uart: update to stable bindings
-> >   ARM64: dts: meson-gx: use stable UART bindings with correct gate clock
-> > 
-> > Neil Armstrong (1):
-> >   ARM: dts: meson6: use stable UART bindings
-> > 
-> >  .../bindings/serial/amlogic,meson-uart.txt         | 38 +++++++++
-> >  arch/arm/boot/dts/meson.dtsi                       |  8 +-
-> >  arch/arm/boot/dts/meson6.dtsi                      | 28 +++++++
-> >  arch/arm64/boot/dts/amlogic/meson-gx.dtsi          | 12 ++-
-> >  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 25 ++++++
-> >  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 25 ++++++
-> >  drivers/tty/serial/meson_uart.c                    | 90 ++++++++++++++++++++--
-> >  7 files changed, 209 insertions(+), 17 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
-> > 
-> 
-> 
-> Hi Greg,
-> 
-> Patches 3 & 4 will need a respin to avoid breaking compatibility with old kernel
-> like the tty patch does by keeping the legacy compatible string.
-> I will re-send then in a separate thread and Kevin will handle them.
-> 
-> Patches 1 & 2 can be taken if they are OK for you.
+On Thu, Jun 15, 2017 at 6:20 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-Looks good, now applied, thanks.
+> To handle this we tried:
+> - [0]: To create the mapping in the gpio_to_irq. Linus, you pointed out that
+> this is not allowed as gpio_to_irq is callable in irq context, therefore it
+> should not sleep. Actually 3 drivers [2] are calling gpio_to_irq in irq
+> handlers.
 
-Feel free to resend the other two whenever you have them ready.
+This is not the problem. The problem is that gpio_to_irq() is entirely
+optional: it is not at all requires to have called gpio_to_irq() before using
+an IRQ from a GPIO line, as the interrupt chips and gpio chips are
+orthogonal.
 
-greg k-h
+So if gpio_to_irq() is called, then a mapping needs to be retrieved, using
+an irqdomain or similar, and if one does not already exist, it should be mapped
+at this point.
+
+But actually doing the mapping/unmapping of IRQs and related resource
+management should be handled by the irqchip/irqdomain, not ever by
+gpio_to_irq().
+
+And someone may just be requesting an IRQ from the irqchip without
+calling gpio_to_irq(). Anytime. And with devicetree this happens all of the
+time.
+
+> I would also add that "gpio_to_irq" has no "free" counter part, so this approach
+> leaks mappings.
+
+Exactly.
+
+> The fact that 26 gpio drivers [3] create mapping in the
+> gpio_to_irq callback shows that the problem of managing the irq mapping is not
+> specific to Amlogic and that an evolution might be useful.
+
+Calling irq_create_mapping() in gpio_to_irq() is not a problem if
+the mapping is free:ed elsewhere. But yeah, there are lots of old
+drivers with old and erroneous solutions to this problem.
+
+> - [1]: To create an empty domain to get a virq for each pins but delay the setup
+> of the interrupt hierarchy to the "irq_request_resources" callback. Testing this
+> approach led me to some nasty race conditions in the interrupt handlers. I
+> discussed this solution with Marc and he told me that doing the setup of the
+> interrupt hierarchy in the irqchip callbacks is "too late" . If I understood
+> correctly (Marc feel to correct me if necessary), you should only get a virq
+> when the full interrupt hierarchy is setup, from the triggering device to the
+> CPU.
+
+OK I am as always confused by "virq" which I guess means "virtual IRQ"
+which is confusing since all Linux IRQ numbers are in some sense
+virtual, and since this has nothing to do with virtualization, which is another
+area where IRQchips are very delicate.
+
+But I get it.
+
+> With this last comment, I don't think there is a (clean) way ATM for a gpio
+> driver to create the mapping "on demand". By "on-demand", I mean the consumer
+> drivers doing this kind of thing:
+>
+> ret = request_irq(gpio_to_irq(GPIOX_Y), ... )
+>
+> I would to like propose a way to fix that.
+
+OK solutions are good....
+
+> It is not going to be a oneline fix,
+> but I'm convinced we can do it w/o breaking anything:
+>
+> 1) Introduce new gpio driver callbacks (.irq_prepare, .irq_unprepare): Drivers
+> will be free to implement those callbacks or not. Driver which can create all
+> their mappings at probe time would obviously skip those.
+>
+> 2) Introduce gpio_irq_prepare and gpio_irq_unprepare to the gpio API: This
+> functions would do refcounting to handle shared irq and avoid wrongly disposing
+> of used mappings. Then call the new drivers callbacks, if defined. A devm
+> version of gpio_irq_prepare might be usefull
+>
+> 3) Add calls to gpio_irq_prepare to consumer drivers probe/init which use the
+> gpio_to_irq callback. I don't think this is going to be that hard to do, but
+> it's going be to long and boring ...
+
+So how are you intending to deal with mixed semantics when, as in the
+devicetree case, the GPIO driver is also flagged as an interrupt-controller
+and consumers can request IRQs from it with just platform_get_irq()
+and expect it to work?
+
+It seems this usecase drives a truck through that approach.
+
+The keyword is separation of concerns, the irqchip abstraction should
+deal with interrupts, we do not want the gpiochip to do half of the work.
+
+Here is an example from arch/arm/boot/dts/ste-snowball.dts:
+
+ethernet at 0 {
+        compatible = "smsc,lan9115";
+        reg = <0 0x10000>;
+        interrupts = <12 IRQ_TYPE_EDGE_RISING>;
+        interrupt-parent = <&gpio4>;
+(...)
+};
+
+Notice: no GPIOs are taken by this driver, this ethernet driver does not know
+that its interrupt is supplied by a GPIO, in fact on many platforms
+this ethernet
+chip has a dedicated IRQ line so that should not be required, i.e. the ethernet
+chip does not need to know that a GPIO controller is supplying this interrupt,
+why should it? It is just some interrupt.
+
+The driver looks like so drivers/net/ethernet/smsc/smsc911x.c:
+
+irq = platform_get_irq(pdev, 0);
+
+And that is all it does.
+
+The above usecase is not uncommon.
+
+If this interrupt+GPIO controller was using your scheme, where would these
+new callbacks be called?
+
+Yours,
+Linus Walleij
