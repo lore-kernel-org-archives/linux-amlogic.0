@@ -1,37 +1,34 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Tue, 20 Jun 2017 10:47:54 +0200
-Subject: [PATCH v7 5/9] gpiolib: export gpiochip_irq_reqres and
- gpiochip_irq_relres
-In-Reply-To: <e6618077-a362-86cf-7cd3-f46de39396e4@gmail.com>
-References: <5b352c8d-a426-fa73-58b7-0c935979492b@gmail.com>
- <e6618077-a362-86cf-7cd3-f46de39396e4@gmail.com>
-Message-ID: <CACRpkdaS2emkbWP6Rq=i_8obSqieecK7Sq80symcCcfw3mXoaA@mail.gmail.com>
+Date: Tue, 20 Jun 2017 11:07:48 +0200
+Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
+In-Reply-To: <20170612194438.12298-1-jbrunet@baylibre.com>
+References: <20170612194438.12298-1-jbrunet@baylibre.com>
+Message-ID: <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Jun 10, 2017 at 11:57 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+On Mon, Jun 12, 2017 at 9:44 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-> Customized versions of the request_resources and release_resources
-> callbacks usually just extend what is available in gpiochip_irq_reqres
-> and gpiochip_irq_relres. Therefore export them to make them available
-> to gpio drivers.
->
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> The goal of this patchset is to provide a way for consumers to inform the
+> system that they depend on the rate of the clock source and can't tolerate
+> other consumers changing the rate or causing glitches.
 
-I'm not happy with this patch.
+Just for context: chat kind of consumers are these?
 
-The gpiolib IRQchip abstraction was created to pull common
-code into the gpiolib library so I get less mess of GPIO IRQ drivers
-spread out all over the place.
+i.e. the consumers that can't tolerate a clock rate change?
 
-This does the reverse and start to spread it all over the place again.
+I understand it if it is a hardware limitation (like the block would
+crash if it glitches or changes rate).
 
-Can you think about a way to try to centralize what you are trying to
-do into the gpiolib with a flag or special registration call or
-similar?
+On the other hand, in the kernel we have things like in
+arch/arm/kernel/smp_twd.c we use a notifier to deal
+with a changing clock rate.
 
-I guess I don't understand the context, I guess this is part of the
-problem Jerome is discussing with me in another thread.
+Just want to be sure that you're not working around something that
+can be dealt with using rate change notifiers.
+
+(OK maybe a stupid question, I assume this is not the case, but anyways,
+had to ask.)
 
 Yours,
 Linus Walleij
