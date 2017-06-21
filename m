@@ -1,110 +1,108 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 20 Jun 2017 19:23:58 +0200
-Subject: [RFC] gpio: about the need to manage irq mapping dynamically.
-In-Reply-To: <CACRpkdZu74aAsu8hggxsfffQPMk0nqihCSfuMaMbf+-4EFSYYA@mail.gmail.com>
-References: <1497543642.3086.35.camel@baylibre.com>
- <CACRpkdZWw_-joPT4CJ-RAJ31s4BxuE6vusjg5YnZWaHtkRg5+w@mail.gmail.com>
- <1497954416.7387.1.camel@baylibre.com>
- <CACRpkdZu74aAsu8hggxsfffQPMk0nqihCSfuMaMbf+-4EFSYYA@mail.gmail.com>
-Message-ID: <1497979438.7387.10.camel@baylibre.com>
+Date: Wed, 21 Jun 2017 15:15:03 +0200
+Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
+In-Reply-To: <1497961950.7387.7.camel@baylibre.com>
+References: <20170612194438.12298-1-jbrunet@baylibre.com>
+ <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
+ <1497955822.7387.3.camel@baylibre.com>
+ <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
+ <1497961950.7387.7.camel@baylibre.com>
+Message-ID: <1498050903.7387.12.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-06-20 at 18:37 +0200, Linus Walleij wrote:
-> On Tue, Jun 20, 2017 at 12:26 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> 
-> So I finally understood that what you want is to handle those cases
-> where gpio_to_irq() is currently in use, and not expand the use of that
-> function. And that is good.
-
-Indeed
-
-> 
-> > On Tue, 2017-06-20 at 10:39 +0200, Linus Walleij wrote:
-> > > > The fact that 26 gpio drivers [3] create mapping in the
-> > > > gpio_to_irq callback shows that the problem of managing the irq mapping
-> > > > is
-> > > > not
-> > > > specific to Amlogic and that an evolution might be useful.
-> > > 
-> > > Calling irq_create_mapping() in gpio_to_irq() is not a problem if
-> > > the mapping is free:ed elsewhere. But yeah, there are lots of old
-> > > drivers with old and erroneous solutions to this problem.
+On Tue, 2017-06-20 at 14:32 +0200, Jerome Brunet wrote:
+> On Tue, 2017-06-20 at 13:54 +0200, Linus Walleij wrote:
+> > On Tue, Jun 20, 2017 at 12:50 PM, Jerome Brunet <jbrunet@baylibre.com>
+> > wrote:
+> > > On Tue, 2017-06-20 at 11:07 +0200, Linus Walleij wrote:
+> > > When the rate is critical to perform a particular task. My example is the
+> > > audio
+> > > and i2s output. You can't tolerate glitches during the playback, the end
+> > > user
+> > > would complain (longer description in the original RFC)
 > > 
-> > A lot of these drivers are old indeed, and dealing with all this history
-> > must be
-> > quite a challenge ;)
-> > However, some are fairly recent.
+> > I see. Thanks for your detailed explanation!
+> > 
+> > > It also fixes the behavior of CLK_SET_RATE_GATE flag, which is why I put
+> > > you
+> > > in
+> > > CC.
+> > > 
+> > > ux500 uses this flag several time, I'd like make sure people are not
+> > > relying
+> > > on
+> > > its broken implementation.
+> > 
+> > Ux500 audio is broken, but I'm fixing it a little at a time...
 > 
-> Unfortunately the API has merits. Like for keys: OK there is a key
-> for an GPIO line, and then it asks "can I have an IRQ for that"?
-> There are cases where the IRQ is really optional, not a required
-> feature.
+> No problem with Ux500 audio, don't worry :)
+> Audio is just one application among others.
+> 
+> The concern regarding ux500 is that the clock controller declares clocks using
+> the CLK_SET_RATE_GATE flag (like qcom, at91 and several other)
+> 
+> here is the definition:
+> #define CLK_SET_RATE_GATE	BIT(0) /* must be gated across rate change */
+> 
+> My interpretation it that, as long as clock is enabled, rate can't change.
+> 
+> The implementation of this flag is currently broken:
+> * If you call set_rate on directly on the clock while it is enabled, you will
+> get -EBUSY, as expected
+> * If you call set_rate on its parent, rate will change, changing the rate of
+> the
+> child clock as well ...
+> 
+> With this patchset applied, calling set_rate on the parent would also return
+> -EBUSY, enforcing the "rate can't change while enabled" property.
+> 
+> To build confidence that this won't be causing regression, I'd like to check
+> that platform using this flag are no relying on the broken behavior.
+> 
+> I've included the clock maintainers of at91, qcom, and ux500 (you) in this
+> thread because they are the heaviest users of this flag, so the more likely to
+> report a problem.
+> 
+> If you could apply this series and just do things as usual, It'd be awesome !
+> 
+> I'll also seek the help of the kci guys, see if it is possible to give the
+> series spin on it.
 > 
 
-I think you misunderstood me. I have nothing against the API. I absolutely want
-to keep it. I'd like to extend it.
+I managed to have a run on kci - based on v4.12-rc6:
+https://kernelci.org/boot/all/job/khilman/branch/to-build/kernel/v4.12-rc6-10-ge
+a373ddef830/
 
-> > So there is 2 use cases:
-> > * What you described above: This is indeed completely orthogonal to gpio
-> > framework. It will be using the irqchip callbacks only. In this particular
-> > case,
-> > it is the device tree platform code which will handle the mapping creation
-> > for
-> > us.
+There was no build regression but kci did find one boot regression on qcom
+platforms:
+* qcom-apq8064-cm-qs600
+* qcom-apq8064-ifc6410
+
+it seems the problem is coming from the clock used by the mmc driver
+(drivers/mmc/host/mmci.c)
+
+the driver does following sequence:
+* get_clk
+* prepare_enable
+* get_rate
+* set_rate
+* ...
+
+with clock SDCx_clk (qcom_apq8064.dtsi:1037). This clock has CLK_SET_RATE_PARENT
+flag so it will transmit the request to its parent.
+The parent of this clock is SDCx_src which has the CLK_SET_RATE_GATE flag.
+
+This can't work with sequence above. The flag was clearly bypassed before, so I
+think it would be best to remove CLK_SET_RATE_GATE from the SDCx_src clocks
+
+Stephen, would you agree ?
+
+There was an issue with the chip board as well but this particular board has not
+been very reliable in this lab lately. It has failed on several other job.
+
+> > 
+> > Yours,
+> > Linus Walleij
 > 
-> OK
 > 
-> So the problem is really to use drivers that cannot do all their
-> mappings at probe
-> time with drivers that use gpio_to_irq(), right?
-
-Yep
-
-> 
-> So, if the idea is to patch *ALL* drivers using gpio_to_irq(), I think
-> for each case
-> it should be investigated whether that should really be using gpio_to_irq()
-> but I suspect they are all pretty solid.
-> 
-> Well you're probably right, the API has to change for the case where the
-> number
-> of IRQs are limited and cannot just be handled out to the left and right, but
-> we
-> should really replace *ALL* occurences of gpio_to_irq() with a pair of
-> gpio_irq_prepare() that also returns the valid IRQ if found, and
-> gpio_irq_unprepare()
-> that removes it.
-> 
-> For the transitional period, gpio_to_irq() should *FAIL* if gpio_irq_prepare()
-> was called first for the same GPIO line.
-> 
-> Eventually gpio_to_irq() should be DELETED and replaced in full with
-> the prepare/unprepare calls.
-
-Woahh, that's not what I meant. gpio_to_irq should stay. Getting rid of it would
-be a mess and it is a useful call.
-
-The gpio_irq_prepare is meant so that the consumer can tell the gpio driver it
-will want to get irq from a particular gpio at some point.
-
-IOW, it's the consumer saying to the gpio driver "please do whatever you need to
-do, if anything, so this gpio can generate an interrupt"
-
-This is a much simpler change. Using devm, all we need is to put a
-devm_gpio_irq_prepare(<gpio_num>) in the probe of the drivers using gpio_to_irq.
-
-Mandating call to gpio_irq_prepare before any call to gpio_to_irq will be fairly
-easy.
-
-> 
-> And I would like strong confidence that the change will be carried all the way
-> through, not half-done and left to me to complete. I already have too many
-> problems of that type.
-
-
-Fair enough.
-
-> 
-> Yours,
-> Linus Walleij
