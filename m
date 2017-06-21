@@ -1,108 +1,66 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 21 Jun 2017 15:15:03 +0200
-Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
-In-Reply-To: <1497961950.7387.7.camel@baylibre.com>
-References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
- <1497955822.7387.3.camel@baylibre.com>
- <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
- <1497961950.7387.7.camel@baylibre.com>
-Message-ID: <1498050903.7387.12.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 21 Jun 2017 16:42:10 +0200
+Subject: [PATCH v5.1 0/2] tty/serial: meson_uart: add support for core clock
+ handling
+Message-ID: <1498056132-18508-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-06-20 at 14:32 +0200, Jerome Brunet wrote:
-> On Tue, 2017-06-20 at 13:54 +0200, Linus Walleij wrote:
-> > On Tue, Jun 20, 2017 at 12:50 PM, Jerome Brunet <jbrunet@baylibre.com>
-> > wrote:
-> > > On Tue, 2017-06-20 at 11:07 +0200, Linus Walleij wrote:
-> > > When the rate is critical to perform a particular task. My example is the
-> > > audio
-> > > and i2s output. You can't tolerate glitches during the playback, the end
-> > > user
-> > > would complain (longer description in the original RFC)
-> > 
-> > I see. Thanks for your detailed explanation!
-> > 
-> > > It also fixes the behavior of CLK_SET_RATE_GATE flag, which is why I put
-> > > you
-> > > in
-> > > CC.
-> > > 
-> > > ux500 uses this flag several time, I'd like make sure people are not
-> > > relying
-> > > on
-> > > its broken implementation.
-> > 
-> > Ux500 audio is broken, but I'm fixing it a little at a time...
-> 
-> No problem with Ux500 audio, don't worry :)
-> Audio is just one application among others.
-> 
-> The concern regarding ux500 is that the clock controller declares clocks using
-> the CLK_SET_RATE_GATE flag (like qcom, at91 and several other)
-> 
-> here is the definition:
-> #define CLK_SET_RATE_GATE	BIT(0) /* must be gated across rate change */
-> 
-> My interpretation it that, as long as clock is enabled, rate can't change.
-> 
-> The implementation of this flag is currently broken:
-> * If you call set_rate on directly on the clock while it is enabled, you will
-> get -EBUSY, as expected
-> * If you call set_rate on its parent, rate will change, changing the rate of
-> the
-> child clock as well ...
-> 
-> With this patchset applied, calling set_rate on the parent would also return
-> -EBUSY, enforcing the "rate can't change while enabled" property.
-> 
-> To build confidence that this won't be causing regression, I'd like to check
-> that platform using this flag are no relying on the broken behavior.
-> 
-> I've included the clock maintainers of at91, qcom, and ux500 (you) in this
-> thread because they are the heaviest users of this flag, so the more likely to
-> report a problem.
-> 
-> If you could apply this series and just do things as usual, It'd be awesome !
-> 
-> I'll also seek the help of the kci guys, see if it is possible to give the
-> series spin on it.
-> 
+This patchset is a re-spin of Helmut Klein's v3 patchset at [0] and the v4/v5 patchset at [1] & [2].
 
-I managed to have a run on kci - based on v4.12-rc6:
-https://kernelci.org/boot/all/job/khilman/branch/to-build/kernel/v4.12-rc6-10-ge
-a373ddef830/
+Initially, the original patchset was made to enable usage on the non-AO UARTS
+not enabled by the Bootloader (uart_B and uart_C), but the patchset needed
+an overall change to have clean and stable DT bindings.
 
-There was no build regression but kci did find one boot regression on qcom
-platforms:
-* qcom-apq8064-cm-qs600
-* qcom-apq8064-ifc6410
+The Amlogic Meson UART Driver did not have stable DT bindings and mismatched
+clock handling on non-AO UARTs since these "EE" UARTs needs a clock gate to
+be ungated to works correctly.
+In the same way, the AO UARTs does not need gating and can be used as
+Early Consoles.
 
-it seems the problem is coming from the clock used by the mmc driver
-(drivers/mmc/host/mmci.c)
+In the same time, the UART Interfaces can take clock input for the baudrate
+generate from either the external Xtal or the internal Bus Clock (clk81).
 
-the driver does following sequence:
-* get_clk
-* prepare_enable
-* get_rate
-* set_rate
-* ...
+So new bindings was necessary to meet these requirements and the DT
+maintainers requirements.
 
-with clock SDCx_clk (qcom_apq8064.dtsi:1037). This clock has CLK_SET_RATE_PARENT
-flag so it will transmit the request to its parent.
-The parent of this clock is SDCx_src which has the CLK_SET_RATE_GATE flag.
+The "legacy" binding actually used in the driver is left until all the DT
+files are switched to the new bindings.
 
-This can't work with sequence above. The flag was clearly bypassed before, so I
-think it would be best to remove CLK_SET_RATE_GATE from the SDCx_src clocks
+The GX DT has been tested, but the last 4 Meson6/Meson8/b are only
+compile-tested, and testing is welcome.
+Thus only the first 3 patches can be merged until the Meson6/Meson8/b are
+formally tested.
 
-Stephen, would you agree ?
+It must be noted that the meson6 cannot work today except using an early
+console since the UART driver could not probe without a clocks property.
 
-There was an issue with the chip board as well but this particular board has not
-been very reliable in this lab lately. It has failed on several other job.
+Changes since v5 at [2]:
+ - Dropped bindings and tty patch since merged by greg kh into tty next branch
+ - Keep old bindings in DT files for retro-compatibility
 
-> > 
-> > Yours,
-> > Linus Walleij
-> 
-> 
+Changes since v4 at [1]:
+ - Droped meson8/meson8b DT patches
+ - Fixes copy/paste error in patch 2
+ - Refactored clock probing in patch 2
+ - merged meson6 patches together to avoid breaking bisect
+
+[0] http://lkml.kernel.org/r/20170331165437.26227-1-hgkr.klein at gmail.com
+[1] http://lkml.kernel.org/r/1497001756-942-1-git-send-email-narmstrong at baylibre.com
+[2] http://lkml.kernel.org/r/1497428957-19942-1-git-send-email-narmstrong at baylibre.com
+
+Helmut Klein (1):
+  ARM64: dts: meson-gx: use stable UART bindings with correct gate clock
+
+Neil Armstrong (1):
+  ARM: dts: meson6: use stable UART bindings
+
+ arch/arm/boot/dts/meson.dtsi                |  8 ++++----
+ arch/arm/boot/dts/meson6.dtsi               | 28 ++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 12 +++++-------
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 25 +++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 25 +++++++++++++++++++++++++
+ 5 files changed, 87 insertions(+), 11 deletions(-)
+
+-- 
+1.9.1
