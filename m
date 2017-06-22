@@ -1,64 +1,112 @@
-From: robh@kernel.org (Rob Herring)
-Date: Wed, 21 Jun 2017 22:22:56 -0500
-Subject: [PATCH] watchdog: meson-wdt: add support for the watchdog on
- Meson8 and Meson8m2
-In-Reply-To: <CAFBinCAZZMT-YDHg4SYF3da+00KLYE-dZaEDPaEMRz_2paXNQw@mail.gmail.com>
-References: <20170611095219.22095-1-martin.blumenstingl@googlemail.com>
- <20170615172510.GA7549@roeck-us.net>
- <CAFBinCCyqX=TGwTyhxXZPP2noUvJ1v=xNs+Vs17Gg4z2uDgjEA@mail.gmail.com>
- <20170616180009.h66dwnnhfwrjpui6@rob-hp-laptop>
- <CAFBinCAZZMT-YDHg4SYF3da+00KLYE-dZaEDPaEMRz_2paXNQw@mail.gmail.com>
-Message-ID: <CAL_JsqJutEYt0eG96RG+jMosCEkqK=145Kquj2qJdQCV=wh2zg@mail.gmail.com>
+From: quentin.schulz@free-electrons.com (Quentin Schulz)
+Date: Thu, 22 Jun 2017 09:07:25 +0200
+Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
+In-Reply-To: <20170620144726.5c2f3213@bbrezillon>
+References: <20170612194438.12298-1-jbrunet@baylibre.com>
+ <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
+ <1497955822.7387.3.camel@baylibre.com>
+ <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
+ <1497961950.7387.7.camel@baylibre.com> <20170620144726.5c2f3213@bbrezillon>
+Message-ID: <8249fd2e-a0c0-6519-87f5-d93e5114faa0@free-electrons.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 19, 2017 at 1:50 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Rob,
->
-> On Sun, Jun 18, 2017 at 4:04 PM, Rob Herring <robh@kernel.org> wrote:
->> On Thu, Jun 15, 2017 at 11:13:07PM +0200, Martin Blumenstingl wrote:
->>> On Thu, Jun 15, 2017 at 7:25 PM, Guenter Roeck <linux@roeck-us.net> wrote:
->>> > On Sun, Jun 11, 2017 at 11:52:19AM +0200, Martin Blumenstingl wrote:
->>> >> The watchdog IP block on Meson8 and Meson8m2 is already supported by the
->>> >> existing meson-wdt driver. Meson8 uses the same register bits as Meson6,
->>> >> while the newer Meson8m2 SoC uses the same register bits as Meson8b.
->>> >>
->>> >> Currently watchdog support on Meson8 SoC already works because
->>> >> meson8.dtsi simply uses the "amlogic,meson6-wdt" compatible. Adding a
->>> >> separate compatible for Meson8 makes this more explicit though.
->>> >>
->>> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>> >
->>> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->>> thank you!
->>> is there anything holding you up from taking this patch (for example:
->>> are you still missing any specific Signed-off-by / Acked-by)?
+Hi Jerome,
+
+On 20/06/2017 14:47, Boris Brezillon wrote:
+> +Quentin
+> 
+> On Tue, 20 Jun 2017 14:32:30 +0200
+> Jerome Brunet <jbrunet@baylibre.com> wrote:
+> 
+>> On Tue, 2017-06-20 at 13:54 +0200, Linus Walleij wrote:
+>>> On Tue, Jun 20, 2017 at 12:50 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:  
+>>>> On Tue, 2017-06-20 at 11:07 +0200, Linus Walleij wrote:
+>>>> When the rate is critical to perform a particular task. My example is the
+>>>> audio
+>>>> and i2s output. You can't tolerate glitches during the playback, the end
+>>>> user
+>>>> would complain (longer description in the original RFC)  
 >>>
->>> > In general, changes like this are not necessary, though. The dts file
->>> > is supposed to reference both generic and specific compatible strings.
->>> I thought about skipping this patch, but I find that it looks strange without.
+>>> I see. Thanks for your detailed explanation!
+>>>   
+>>>> It also fixes the behavior of CLK_SET_RATE_GATE flag, which is why I put you
+>>>> in
+>>>> CC.
+>>>>
+>>>> ux500 uses this flag several time, I'd like make sure people are not relying
+>>>> on
+>>>> its broken implementation.  
 >>>
->>> the hierarchy and the corresponding compatible strings would be:
->>> meson.dtsi / compatible = "amlogic,meson6-wdt";
->>> |- meson8.dtsi / compatible = "amlogic,meson8-wdt", "amlogic,meson6-wdt";
->>>    |- meson8m2.dtsi (upcoming) / compatible = "amlogic,meson8m2-wdt",
->>> "amlogic,meson8b-wdt";
->>> |- meson8b.dtsi / compatible = "amlogic,meson8b-wdt";
->>>
->>> instead of this seemingly random mixup of compatible strings I decided
->>> to introduce separate ones for each SoC.
+>>> Ux500 audio is broken, but I'm fixing it a little at a time...  
 >>
->> But if the block is backwards compatible, you should also provide a
->> fallback compatible string.
-> OK, fine with me - do you want me to update the documentation to
-> reflect this (or is it enough if I take care of it in the .dts files)?
-> the resulting documentation could look like this:
->        "amlogic,meson6-wdt" on Meson6 SoCs
->        "amlogic,meson8-wdt" along with "amlogic,meson6-wdt" on Meson8 SoCs
->        "amlogic,meson8b-wdt" on Meson8b SoCs
->        "amlogic,meson8m2-wdt" along with "amlogic,meson8b-wdt" on Meson8m2 SoCs
+>> No problem with Ux500 audio, don't worry :)
+>> Audio is just one application among others.
+>>
+>> The concern regarding ux500 is that the clock controller declares clocks using
+>> the CLK_SET_RATE_GATE flag (like qcom, at91 and several other)
+>>
+>> here is the definition:
+>> #define CLK_SET_RATE_GATE	BIT(0) /* must be gated across rate change */
+>>
+>> My interpretation it that, as long as clock is enabled, rate can't change.
+>>
+>> The implementation of this flag is currently broken:
+>> * If you call set_rate on directly on the clock while it is enabled, you will
+>> get -EBUSY, as expected
+>> * If you call set_rate on its parent, rate will change, changing the rate of the
+>> child clock as well ...
+>>
+>> With this patchset applied, calling set_rate on the parent would also return
+>> -EBUSY, enforcing the "rate can't change while enabled" property.
+>>
+>> To build confidence that this won't be causing regression, I'd like to check
+>> that platform using this flag are no relying on the broken behavior.
+>>
+>> I've included the clock maintainers of at91, qcom, and ux500 (you) in this
+>> thread because they are the heaviest users of this flag, so the more likely to
+>> report a problem.
+> 
+> This flag in at91 clk drivers really means that rate cannot be changed
+> while the clk is enabled. We have other clock where this is not a
+> problem (at least, nothing in mentioned in the datasheet).
+> 
+>>
+>> If you could apply this series and just do things as usual, It'd be awesome !
+> 
+> Actually, this is a feature I was pushing for a while back [1],
+> because I had the same problem (one user messing up with a PLL while
+> others were relying on its rate). I'm glad someone finally had time to
+> provide a solution for this problem.
+> 
+> Quentin tested the series, and I guess he'll soon add his Tested-by.
+> Note that this series does not address all problems. For example, when
+> several drivers are setting a rate on different clks that take the
+> same parent, the first one to set the rate and enable the clk wins.
+> 
+> He has an hack-ish solution for our audio-pll case preventing non audio
+> users to mess up with the audio PLL. It'd be great to have a generic
+> solution, though I don't know how this can be solved without advanced
+> description of the clk-rate setting policy.
+> 
+> [1]https://patchwork.kernel.org/patch/6204221/
+> 
 
-Yes, like this.
+I've tested the patch series and it seems good to me.
 
-Rob
+Tested-by: Quentin Schulz <quentin.schulz@free-electrons.com>
+
+Our hackish solution for the moment is to deny clock children to take
+the audio-pll clock as parent except if it's classd (the audio IP). That
+way, we take care of the driver probing "order" (i.e., the first driver
+to enable the clock will lock the rate, but maybe that rate isn't the
+one we want for a more critical driver) but it is definitely not a neat
+solution.
+
+Thanks,
+Quentin
+
+-- 
+Quentin Schulz, Free Electrons
+Embedded Linux and Kernel engineering
+http://free-electrons.com
