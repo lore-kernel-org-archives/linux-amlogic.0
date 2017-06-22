@@ -1,70 +1,78 @@
-From: robh@kernel.org (Rob Herring)
-Date: Thu, 22 Jun 2017 16:24:49 -0500
-Subject: [PATCH v3 1/3] dt-bindings: arm: amlogic: Add SoC information
- bindings
-In-Reply-To: <1497441946-24379-2-git-send-email-narmstrong@baylibre.com>
-References: <1497441946-24379-1-git-send-email-narmstrong@baylibre.com>
- <1497441946-24379-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20170622212449.wsck475jxabawqsv@rob-hp-laptop>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 22 Jun 2017 14:46:34 -0700
+Subject: [GIT PULL] Amlogic 32-bit DT changes for v4.13 (round 2)
+Message-ID: <7hfuerae6d.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Jun 14, 2017 at 02:05:44PM +0200, Neil Armstrong wrote:
-> Add bindings for the SoC information register of the Amlogic SoCs.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.txt | 29 +++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-> index 5c01e65..a6d8754 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-> @@ -60,3 +60,32 @@ Board compatible values (alphabetically, grouped by SoC):
->    - "amlogic,q201" (Meson gxm s912)
->    - "kingnovel,r-box-pro" (Meson gxm S912)
->    - "nexbox,a1" (Meson gxm s912)
-> +
-> +Amlogic Meson Firmware registers Interface
-> +------------------------------------------
-> +
-> +The Meson SoCs have a register bank with status and data shared with the
-> +secure firmware.
-> +
-> +Required properties:
-> + - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
-> +
-> +Properties should indentify components of this register interface :
-> +
-> +Meson GX SoC Information
-> +------------------------
-> +A firmware register encodes the SoC type, package and revision information on
-> +the Meson GX SoCs.
-> +If present, the following property should be added :
-> +
-> +Optional properties:
-> +  - has-chip-id: If present, the interface gives the current SoC version.
+Arnd, Olof,
 
-amlogic,has-chip-id
+Here's a small round 2 of 32-bit DT changes for Amlogic SoCs.  This was
+waiting for the clock dependencies to be merged, and they are now in
+clk-next.
 
-With that,
+The dependencies on clock headers were generously separated out by the
+clock maintainers (thanks Neil & Jerome)
 
-Acked-by: Rob Herring <robh@kernel.org>
+Kevin
 
-> +
-> +Example
-> +-------
-> +
-> +ao-secure at 140 {
-> +	compatible = "amlogic,meson-gx-ao-secure", "syscon";
-> +	reg = <0x0 0x140 0x0 0x140>;
-> +	has-chip-id;
-> +};
-> -- 
-> 1.9.1
-> 
-> --
-> To unsubscribe from this list: send the line "unsubscribe devicetree" in
-> the body of a message to majordomo at vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+The following changes since commit 2c323c43a3d619d67bffa57dc7480cfae4c53300:
+
+  ARM: dts: meson8: add and use the real clock controller (2017-06-09 11:21:21 -0700)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt-2
+
+for you to fetch changes up to f28d4bdb74b6fec482cdbba032369a185baa74b9:
+
+  ARM: dts: meson: use the real ethernet clock on Meson8 and Meson8b (2017-06-16 12:07:11 -0700)
+
+----------------------------------------------------------------
+Amlogic 32-bit DT changes for v4.13 (round 2)
+- greatly expands DT clock support for meson8b
+
+----------------------------------------------------------------
+Helmut Klein (1):
+      clk: meson-gxbb: expose UART clocks
+
+Jerome Brunet (3):
+      clk: meson-gxbb: expose spdif clock gates
+      clk: meson-gxbb: expose i2s master clock
+      clk: meson-gxbb: expose spdif master clock
+
+Kevin Hilman (1):
+      Merge tag 'meson-clk-headers-for-4.13-2' of git://github.com/BayLibre/clk-meson into v4.13/dt
+
+Martin Blumenstingl (17):
+      clk: meson-gxbb: un-export the CPU clock
+      clk: meson8b: export the SAR ADC clocks
+      clk: meson8b: export the SDIO clock
+      clk: meson8b: export the gate clock for the HW random number generator
+      clk: meson8b: export the USB clocks
+      clk: meson8b: export the ethernet gate clock
+      ARM: dts: meson8: fix the IR receiver pins
+      ARM: dts: meson: use C preprocessor friendly include syntax
+      ARM: dts: meson: use GIC_SPI and IRQ_TYPE_EDGE_RISING macros
+      ARM: dts: meson8: add the PWM_E and PWM_F pins
+      ARM: dts: meson8: add the pins for the SDIO controller
+      ARM: dts: meson: add the SAR ADC
+      ARM: dts: meson8: add reserved memory zones
+      ARM: dts: meson: add the hardware random number generator
+      ARM: dts: meson: add USB support on Meson8 and Meson8b
+      ARM: dts: meson8b: add the SCU device node
+      ARM: dts: meson: use the real ethernet clock on Meson8 and Meson8b
+
+Neil Armstrong (1):
+      clk: meson-gxbb: expose SPICC gate
+
+ arch/arm/boot/dts/meson.dtsi             |  75 ++++++++++++++++++++++++++++++++++++-------
+ arch/arm/boot/dts/meson6-atv1200.dts     |   2 +-
+ arch/arm/boot/dts/meson6.dtsi            |   2 +-
+ arch/arm/boot/dts/meson8.dtsi            | 124 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ arch/arm/boot/dts/meson8b.dtsi           |  50 +++++++++++++++++++++++++++++
+ drivers/clk/meson/gxbb.h                 |  20 ++++++------
+ drivers/clk/meson/meson8b.h              |  20 ++++++------
+ include/dt-bindings/clock/gxbb-clkc.h    |  10 +++++-
+ include/dt-bindings/clock/meson8b-clkc.h |  10 ++++++
+ 9 files changed, 271 insertions(+), 42 deletions(-)
