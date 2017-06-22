@@ -1,44 +1,64 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 21 Jun 2017 22:50:14 +0200
-Subject: [RFC] gpio: about the need to manage irq mapping dynamically.
-In-Reply-To: <1497979438.7387.10.camel@baylibre.com>
-References: <1497543642.3086.35.camel@baylibre.com>
- <CACRpkdZWw_-joPT4CJ-RAJ31s4BxuE6vusjg5YnZWaHtkRg5+w@mail.gmail.com>
- <1497954416.7387.1.camel@baylibre.com>
- <CACRpkdZu74aAsu8hggxsfffQPMk0nqihCSfuMaMbf+-4EFSYYA@mail.gmail.com>
- <1497979438.7387.10.camel@baylibre.com>
-Message-ID: <CACRpkdZ2cqUgMwOFG+9JVyAOxYTfHYa3+yrUzUozLpYD87KdOQ@mail.gmail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Wed, 21 Jun 2017 22:22:56 -0500
+Subject: [PATCH] watchdog: meson-wdt: add support for the watchdog on
+ Meson8 and Meson8m2
+In-Reply-To: <CAFBinCAZZMT-YDHg4SYF3da+00KLYE-dZaEDPaEMRz_2paXNQw@mail.gmail.com>
+References: <20170611095219.22095-1-martin.blumenstingl@googlemail.com>
+ <20170615172510.GA7549@roeck-us.net>
+ <CAFBinCCyqX=TGwTyhxXZPP2noUvJ1v=xNs+Vs17Gg4z2uDgjEA@mail.gmail.com>
+ <20170616180009.h66dwnnhfwrjpui6@rob-hp-laptop>
+ <CAFBinCAZZMT-YDHg4SYF3da+00KLYE-dZaEDPaEMRz_2paXNQw@mail.gmail.com>
+Message-ID: <CAL_JsqJutEYt0eG96RG+jMosCEkqK=145Kquj2qJdQCV=wh2zg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jun 20, 2017 at 7:23 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Tue, 2017-06-20 at 18:37 +0200, Linus Walleij wrote:
-
->> Eventually gpio_to_irq() should be DELETED and replaced in full with
->> the prepare/unprepare calls.
+On Mon, Jun 19, 2017 at 1:50 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Hi Rob,
 >
-> Woahh, that's not what I meant. gpio_to_irq should stay. Getting rid of it would
-> be a mess and it is a useful call.
->
-> The gpio_irq_prepare is meant so that the consumer can tell the gpio driver it
-> will want to get irq from a particular gpio at some point.
->
-> IOW, it's the consumer saying to the gpio driver "please do whatever you need to
-> do, if anything, so this gpio can generate an interrupt"
->
-> This is a much simpler change. Using devm, all we need is to put a
-> devm_gpio_irq_prepare(<gpio_num>) in the probe of the drivers using gpio_to_irq.
->
-> Mandating call to gpio_irq_prepare before any call to gpio_to_irq will be fairly
-> easy.
+> On Sun, Jun 18, 2017 at 4:04 PM, Rob Herring <robh@kernel.org> wrote:
+>> On Thu, Jun 15, 2017 at 11:13:07PM +0200, Martin Blumenstingl wrote:
+>>> On Thu, Jun 15, 2017 at 7:25 PM, Guenter Roeck <linux@roeck-us.net> wrote:
+>>> > On Sun, Jun 11, 2017 at 11:52:19AM +0200, Martin Blumenstingl wrote:
+>>> >> The watchdog IP block on Meson8 and Meson8m2 is already supported by the
+>>> >> existing meson-wdt driver. Meson8 uses the same register bits as Meson6,
+>>> >> while the newer Meson8m2 SoC uses the same register bits as Meson8b.
+>>> >>
+>>> >> Currently watchdog support on Meson8 SoC already works because
+>>> >> meson8.dtsi simply uses the "amlogic,meson6-wdt" compatible. Adding a
+>>> >> separate compatible for Meson8 makes this more explicit though.
+>>> >>
+>>> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>> >
+>>> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+>>> thank you!
+>>> is there anything holding you up from taking this patch (for example:
+>>> are you still missing any specific Signed-off-by / Acked-by)?
+>>>
+>>> > In general, changes like this are not necessary, though. The dts file
+>>> > is supposed to reference both generic and specific compatible strings.
+>>> I thought about skipping this patch, but I find that it looks strange without.
+>>>
+>>> the hierarchy and the corresponding compatible strings would be:
+>>> meson.dtsi / compatible = "amlogic,meson6-wdt";
+>>> |- meson8.dtsi / compatible = "amlogic,meson8-wdt", "amlogic,meson6-wdt";
+>>>    |- meson8m2.dtsi (upcoming) / compatible = "amlogic,meson8m2-wdt",
+>>> "amlogic,meson8b-wdt";
+>>> |- meson8b.dtsi / compatible = "amlogic,meson8b-wdt";
+>>>
+>>> instead of this seemingly random mixup of compatible strings I decided
+>>> to introduce separate ones for each SoC.
+>>
+>> But if the block is backwards compatible, you should also provide a
+>> fallback compatible string.
+> OK, fine with me - do you want me to update the documentation to
+> reflect this (or is it enough if I take care of it in the .dts files)?
+> the resulting documentation could look like this:
+>        "amlogic,meson6-wdt" on Meson6 SoCs
+>        "amlogic,meson8-wdt" along with "amlogic,meson6-wdt" on Meson8 SoCs
+>        "amlogic,meson8b-wdt" on Meson8b SoCs
+>        "amlogic,meson8m2-wdt" along with "amlogic,meson8b-wdt" on Meson8m2 SoCs
 
-So why can't we just return the IRQ from prepare() and be done with it
-instead of having two calls? (Plus a third eventual unprepare()).
+Yes, like this.
 
-Clocks, regulators and godknowswhat is managed by two symmetrical
-calls, so why shouldn't GPIO IRQs be?
-
-It would be counterintuitive to have a third call in the middle.
-
-Yours,
-Linus Walleij
+Rob
