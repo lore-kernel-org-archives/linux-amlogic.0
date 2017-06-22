@@ -1,131 +1,93 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 22 Jun 2017 12:09:08 +0200
-Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
-In-Reply-To: <8249fd2e-a0c0-6519-87f5-d93e5114faa0@free-electrons.com>
-References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
- <1497955822.7387.3.camel@baylibre.com>
- <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
- <1497961950.7387.7.camel@baylibre.com> <20170620144726.5c2f3213@bbrezillon>
- <8249fd2e-a0c0-6519-87f5-d93e5114faa0@free-electrons.com>
-Message-ID: <1498126148.7387.14.camel@baylibre.com>
+Date: Thu, 22 Jun 2017 16:25:15 +0200
+Subject: [RFC] gpio: about the need to manage irq mapping dynamically.
+In-Reply-To: <CACRpkdZ2cqUgMwOFG+9JVyAOxYTfHYa3+yrUzUozLpYD87KdOQ@mail.gmail.com>
+References: <1497543642.3086.35.camel@baylibre.com>
+ <CACRpkdZWw_-joPT4CJ-RAJ31s4BxuE6vusjg5YnZWaHtkRg5+w@mail.gmail.com>
+ <1497954416.7387.1.camel@baylibre.com>
+ <CACRpkdZu74aAsu8hggxsfffQPMk0nqihCSfuMaMbf+-4EFSYYA@mail.gmail.com>
+ <1497979438.7387.10.camel@baylibre.com>
+ <CACRpkdZ2cqUgMwOFG+9JVyAOxYTfHYa3+yrUzUozLpYD87KdOQ@mail.gmail.com>
+Message-ID: <1498141515.7387.16.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-06-22 at 09:07 +0200, Quentin Schulz wrote:
-> Hi Jerome,
+On Wed, 2017-06-21 at 22:50 +0200, Linus Walleij wrote:
+> On Tue, Jun 20, 2017 at 7:23 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> > On Tue, 2017-06-20 at 18:37 +0200, Linus Walleij wrote:
+> > > Eventually gpio_to_irq() should be DELETED and replaced in full with
+> > > the prepare/unprepare calls.
+> > 
+> > Woahh, that's not what I meant. gpio_to_irq should stay. Getting rid of it
+> > would
+> > be a mess and it is a useful call.
+> > 
+> > The gpio_irq_prepare is meant so that the consumer can tell the gpio driver
+> > it
+> > will want to get irq from a particular gpio at some point.
+> > 
+> > IOW, it's the consumer saying to the gpio driver "please do whatever you
+> > need to
+> > do, if anything, so this gpio can generate an interrupt"
+> > 
+> > This is a much simpler change. Using devm, all we need is to put a
+> > devm_gpio_irq_prepare(<gpio_num>) in the probe of the drivers using
+> > gpio_to_irq.
+> > 
+> > Mandating call to gpio_irq_prepare before any call to gpio_to_irq will be
+> > fairly
+> > easy.
 > 
-> On 20/06/2017 14:47, Boris Brezillon wrote:
-> > +Quentin
-> > 
-> > On Tue, 20 Jun 2017 14:32:30 +0200
-> > Jerome Brunet <jbrunet@baylibre.com> wrote:
-> > 
-> > > On Tue, 2017-06-20 at 13:54 +0200, Linus Walleij wrote:
-> > > > On Tue, Jun 20, 2017 at 12:50 PM, Jerome Brunet <jbrunet@baylibre.com>
-> > > > wrote:??
-> > > > > On Tue, 2017-06-20 at 11:07 +0200, Linus Walleij wrote:
-> > > > > When the rate is critical to perform a particular task. My example is
-> > > > > the
-> > > > > audio
-> > > > > and i2s output. You can't tolerate glitches during the playback, the
-> > > > > end
-> > > > > user
-> > > > > would complain (longer description in the original RFC)??
-> > > > 
-> > > > I see. Thanks for your detailed explanation!
-> > > > ??
-> > > > > It also fixes the behavior of CLK_SET_RATE_GATE flag, which is why I
-> > > > > put you
-> > > > > in
-> > > > > CC.
-> > > > > 
-> > > > > ux500 uses this flag several time, I'd like make sure people are not
-> > > > > relying
-> > > > > on
-> > > > > its broken implementation.??
-> > > > 
-> > > > Ux500 audio is broken, but I'm fixing it a little at a time...??
-> > > 
-> > > No problem with Ux500 audio, don't worry :)
-> > > Audio is just one application among others.
-> > > 
-> > > The concern regarding ux500 is that the clock controller declares clocks
-> > > using
-> > > the CLK_SET_RATE_GATE flag (like qcom, at91 and several other)
-> > > 
-> > > here is the definition:
-> > > #define CLK_SET_RATE_GATE	BIT(0) /* must be gated across rate
-> > > change */
-> > > 
-> > > My interpretation it that, as long as clock is enabled, rate can't change.
-> > > 
-> > > The implementation of this flag is currently broken:
-> > > * If you call set_rate on directly on the clock while it is enabled, you
-> > > will
-> > > get -EBUSY, as expected
-> > > * If you call set_rate on its parent, rate will change, changing the rate
-> > > of the
-> > > child clock as well ...
-> > > 
-> > > With this patchset applied, calling set_rate on the parent would also
-> > > return
-> > > -EBUSY, enforcing the "rate can't change while enabled" property.
-> > > 
-> > > To build confidence that this won't be causing regression, I'd like to
-> > > check
-> > > that platform using this flag are no relying on the broken behavior.
-> > > 
-> > > I've included the clock maintainers of at91, qcom, and ux500 (you) in this
-> > > thread because they are the heaviest users of this flag, so the more
-> > > likely to
-> > > report a problem.
-> > 
-> > This flag in at91 clk drivers really means that rate cannot be changed
-> > while the clk is enabled. We have other clock where this is not a
-> > problem (at least, nothing in mentioned in the datasheet).
-> > 
-> > > 
-> > > If you could apply this series and just do things as usual, It'd be
-> > > awesome !
-> > 
-> > Actually, this is a feature I was pushing for a while back [1],
-> > because I had the same problem (one user messing up with a PLL while
-> > others were relying on its rate). I'm glad someone finally had time to
-> > provide a solution for this problem.
-> > 
-> > Quentin tested the series, and I guess he'll soon add his Tested-by.
-> > Note that this series does not address all problems. For example, when
-> > several drivers are setting a rate on different clks that take the
-> > same parent, the first one to set the rate and enable the clk wins.
-> > 
-> > He has an hack-ish solution for our audio-pll case preventing non audio
-> > users to mess up with the audio PLL. It'd be great to have a generic
-> > solution, though I don't know how this can be solved without advanced
-> > description of the clk-rate setting policy.
-> > 
-> > [1]https://patchwork.kernel.org/patch/6204221/
-> > 
-> 
-> I've tested the patch series and it seems good to me.
-> 
-> Tested-by: Quentin Schulz <quentin.schulz@free-electrons.com>
+> So why can't we just return the IRQ from prepare() and be done with it
 
-Thx a lot for taking the time to test this.
+We can return it here as well, it's actually a good idea. New drivers could just
+use that one if they are keeping track of the irq number.
+
+> instead of having two calls? (Plus a third eventual unprepare()).
+> 
+> Clocks, regulators and godknowswhat is managed by two symmetrical
+> calls, so why shouldn't GPIO IRQs be?
+
+The approach is exactly the same as what we trying to follow in the irq
+framework:
+
+framework     | irq                 | gpio
+-----------------------------------------------------
+index         | hwirq               | gpio_num
+creation      | irq_create_mapping  | gpio_irq_prepare   ?
+removal       | irq_dispose_mapping | gpio_irq_unprepare ?
+(fast) lookup | irq_find_mapping    | gpio_to_irq
+
+We are going to have at lookup function somehow, why not expose it ?
+
+Another reason for keeping gpio_to_irq is that many existing drivers using the
+callback don't keep track of their irq number, just the gpio. For every irq
+operation, they call gpio_to_irq. Things like this:
+
+* irq_enable(gpio_to_irq(<gpio_num>))
+* irq_release(gpio_to_irq(<gpio_num>))
+* etc ...
+
+It's a bit lazy maybe, but I don't think there is anything utterly wrong with
+it.
+
+Getting rid of gpio_to_irq would mean reworking all those drivers so they keep
+track of their irq number. I think this would be a mess for a very little gain.
+
+Also, except for the 26 gpio drivers I have listed, the rest should already be
+implementing what qualify as a "lookup" function in gpio_to_irq. I don't think
+we should by modifying every single gpio driver when there is a solution to
+'surgically' address the matter.
+
+The series would already affect a significant amount of drivers, I'm trying to
+keep it as simple an contained as possible.
+
+If that is OK with you, I could send an RFC implementing the idea but fixing
+only 1 gpio driver and 2 or 3 consumer. We would have actual code to discuss on,
+it might be easier. 
 
 > 
-> Our hackish solution for the moment is to deny clock children to take
-> the audio-pll clock as parent except if it's classd (the audio IP). That
-> way, we take care of the driver probing "order" (i.e., the first driver
-> to enable the clock will lock the rate, but maybe that rate isn't the
-> one we want for a more critical driver) but it is definitely not a neat
-> solution.
+> It would be counterintuitive to have a third call in the middle.
 > 
-
-For sure, there is still a lot of thing to be done :) 
-Ressource allocation and management is a never ending story I suppose.
-If you have an idea to improve things, maybe you should post an RFC to kick offthe discussion. 
-
-> Thanks,
-> Quentin
-> 
+> Yours,
+> Linus Walleij
