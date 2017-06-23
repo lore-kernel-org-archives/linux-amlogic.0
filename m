@@ -1,34 +1,20 @@
 From: robh@kernel.org (Rob Herring)
-Date: Fri, 23 Jun 2017 13:51:07 -0500
-Subject: [PATCH 2/3] dt-bindings: arm: amlogic: Add Libre Computer Board
-In-Reply-To: <20170616120648.23320-3-jbrunet@baylibre.com>
-References: <20170616120648.23320-1-jbrunet@baylibre.com>
- <20170616120648.23320-3-jbrunet@baylibre.com>
-Message-ID: <20170623185107.yw7arhouu4byqbpk@rob-hp-laptop>
+Date: Fri, 23 Jun 2017 15:06:05 -0500
+Subject: [PATCH v2 1/3] dt-bindings: add Libre Technology vendor prefix
+In-Reply-To: <20170619090440.27099-2-jbrunet@baylibre.com>
+References: <20170619090440.27099-1-jbrunet@baylibre.com>
+ <20170619090440.27099-2-jbrunet@baylibre.com>
+Message-ID: <20170623200605.nkadcign24xj7rs5@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Jun 16, 2017 at 02:06:47PM +0200, Jerome Brunet wrote:
-> Add bindings documentation for the Libre Computer Board from Imprecision
-> Systems
+On Mon, Jun 19, 2017 at 11:04:38AM +0200, Jerome Brunet wrote:
+> Shenzhen Libre Technology Co., Ltd is a single board computer
+> manufacturer
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
+>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
 >  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-> index 5c01e65951fa..d1c77d7ae11d 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-> @@ -51,6 +51,7 @@ Board compatible values (alphabetically, grouped by SoC):
->  
->    - "amlogic,p212" (Meson gxl s905x)
->    - "hwacom,amazetv" (Meson gxl s905x)
-> +  - "imprecision,librecomputer" (Meson gxl s905x)
-
-Perhaps libre-computer?
-
-Either way,
 
 Acked-by: Rob Herring <robh@kernel.org>
