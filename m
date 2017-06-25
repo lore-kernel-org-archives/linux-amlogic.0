@@ -1,20 +1,29 @@
-From: robh@kernel.org (Rob Herring)
-Date: Fri, 23 Jun 2017 15:06:05 -0500
-Subject: [PATCH v2 1/3] dt-bindings: add Libre Technology vendor prefix
-In-Reply-To: <20170619090440.27099-2-jbrunet@baylibre.com>
-References: <20170619090440.27099-1-jbrunet@baylibre.com>
- <20170619090440.27099-2-jbrunet@baylibre.com>
-Message-ID: <20170623200605.nkadcign24xj7rs5@rob-hp-laptop>
+From: b.galvani@gmail.com (Beniamino Galvani)
+Date: Sun, 25 Jun 2017 17:55:08 +0200
+Subject: [PATCH 0/3] GPIO support for Meson GXBB and Odroid-C2
+Message-ID: <20170625155511.28447-1-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jun 19, 2017 at 11:04:38AM +0200, Jerome Brunet wrote:
-> Shenzhen Libre Technology Co., Ltd is a single board computer
-> manufacturer
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->  1 file changed, 1 insertion(+)
+Hi,
 
-Acked-by: Rob Herring <robh@kernel.org>
+this series adds a GPIO driver for Meson GXBB and enables it on
+Odroid-C2.
+
+Beniamino Galvani (3):
+  arm: dts: meson: import dts files from Linux 4.12-rc6
+  pinctrl: meson: add GPIO support
+  odroid-c2: enable GPIO
+
+ arch/arm/dts/meson-gx.dtsi                 |  97 +++++++++++++--
+ arch/arm/dts/meson-gxbb-odroidc2.dts       |  82 ++++++++++++-
+ arch/arm/dts/meson-gxbb.dtsi               | 187 ++++++++++++++++++++++++-----
+ configs/odroid-c2_defconfig                |   2 +
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c |  21 ++++
+ drivers/pinctrl/meson/pinctrl-meson.c      | 167 +++++++++++++++++++++++++-
+ drivers/pinctrl/meson/pinctrl-meson.h      |  63 ++++++++++
+ include/dt-bindings/clock/gxbb-clkc.h      |  14 ++-
+ 8 files changed, 586 insertions(+), 47 deletions(-)
+
+-- 
+2.9.3
