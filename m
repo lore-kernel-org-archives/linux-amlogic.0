@@ -1,40 +1,72 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 26 Jun 2017 12:24:24 +0200
-Subject: [PATCH 0/3] GPIO support for Meson GXBB and Odroid-C2
-In-Reply-To: <20170625155511.28447-1-b.galvani@gmail.com>
-References: <20170625155511.28447-1-b.galvani@gmail.com>
-Message-ID: <1498472664.25567.4.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 26 Jun 2017 20:57:18 +0200
+Subject: patch "iio: adc: meson-saradc: use NULL instead of 0 for pointer"
+ added to staging-testing
+In-Reply-To: <14984537865458@kroah.com>
+References: <14984537865458@kroah.com>
+Message-ID: <CAFBinCDOSaHF9GwGhMUpZjR7AUVWVwk7EJmHWt0q8bkChBhMZA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 2017-06-25 at 17:55 +0200, Beniamino Galvani wrote:
-> Hi,
-> 
-> this series adds a GPIO driver for Meson GXBB and enables it on
-> Odroid-C2.
-> 
-> Beniamino Galvani (3):
-> ? arm: dts: meson: import dts files from Linux 4.12-rc6
-> ? pinctrl: meson: add GPIO support
-> ? odroid-c2: enable GPIO
-> 
-> ?arch/arm/dts/meson-gx.dtsi?????????????????|??97 +++++++++++++--
-> ?arch/arm/dts/meson-gxbb-odroidc2.dts???????|??82 ++++++++++++-
-> ?arch/arm/dts/meson-gxbb.dtsi???????????????| 187 ++++++++++++++++++++++++--
+Hi Greg, Hi Jonathan,
+
+On Mon, Jun 26, 2017 at 7:09 AM,  <gregkh@linuxfoundation.org> wrote:
+>
+> This is a note to let you know that I've just added the patch titled
+>
+>     iio: adc: meson-saradc: use NULL instead of 0 for pointer
+>
+> to my staging git tree which can be found at
+>     git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
+> in the staging-testing branch.
+>
+> The patch will show up in the next release of the linux-next tree
+> (usually sometime within the next 24 hours during the week.)
+>
+> The patch will be merged to the staging-next branch sometime soon,
+> after it passes testing, and the merge window is open.
+>
+> If you have any questions about this process, please let me know.
+is there a way to drop below patch from your repo?
+during testing I found out that the code before and after this patch
+leads to a NULL deref. I provided a fix (see [0]) which solves the
+crash and the warning as reported by Paolo - and that fix is already
+part of v4.12-rc6
+so the patch below will cause a merge conflict
+
+> From 6b503b216d1eff4d61a0bc34e09d1fd4d6e0ee79 Mon Sep 17 00:00:00 2001
+> From: Paolo Cretaro <paolocretaro@gmail.com>
+> Date: Sun, 28 May 2017 13:24:38 +0200
+> Subject: iio: adc: meson-saradc: use NULL instead of 0 for pointer
+>
+> Fix sparse warning: Using plain integer as NULL pointer
+>
+> Signed-off-by: Paolo Cretaro <paolocretaro@gmail.com>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Jonathan Cameron <jic23@kernel.org>
 > ---
-> ?configs/odroid-c2_defconfig????????????????|???2 +
-> ?drivers/pinctrl/meson/pinctrl-meson-gxbb.c |??21 ++++
-> ?drivers/pinctrl/meson/pinctrl-meson.c??????| 167 +++++++++++++++++++++++++-
-> ?drivers/pinctrl/meson/pinctrl-meson.h??????|??63 ++++++++++
-> ?include/dt-bindings/clock/gxbb-clkc.h??????|??14 ++-
-> ?8 files changed, 586 insertions(+), 47 deletions(-)
-> 
+>  drivers/iio/adc/meson_saradc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index 81cd39a57fe3..fb3f67a9ae1f 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -481,7 +481,7 @@ static void meson_sar_adc_clear_fifo(struct iio_dev *indio_dev)
+>                 if (!meson_sar_adc_get_fifo_count(indio_dev))
+>                         break;
+>
+> -               regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, 0);
+> +               regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, NULL);
+>         }
+>  }
+>
+> --
+> 2.13.1
+>
+>
 
->From the recipient list, I'm guessing this patch is addressed to the u-boot
-community, right ?
+Regards,
+Martin
 
-Would you mind stating it a bit more clearly next time ? especially if you
-include linux-amlogic list.
-
-Thx
-Jerome
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-June/003863.html
