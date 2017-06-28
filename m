@@ -1,48 +1,51 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 28 Jun 2017 17:39:34 +0200
-Subject: [PATCH] dt-bindings: amlogic: add unstable statement
-In-Reply-To: <20170628145343.25443-1-khilman@baylibre.com>
-References: <20170628145343.25443-1-khilman@baylibre.com>
-Message-ID: <1498664374.2337.7.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 28 Jun 2017 22:12:31 +0200
+Subject: patch "iio: adc: meson-saradc: use NULL instead of 0 for pointer"
+ added to staging-testing
+In-Reply-To: <20170627064354.GA29793@kroah.com>
+References: <14984537865458@kroah.com>
+ <CAFBinCDOSaHF9GwGhMUpZjR7AUVWVwk7EJmHWt0q8bkChBhMZA@mail.gmail.com>
+ <20170627064354.GA29793@kroah.com>
+Message-ID: <CAFBinCC7g6WusieUak7eLi2NgbCNG5QB9Apr9A5eMei36yaFuw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2017-06-28 at 07:53 -0700, Kevin Hilman wrote:
-> Due to the lack of documentation on this SoC family, discovery of new
-> features, and correcting of previous misunderstandings is expected, so
-> it's unrealistic to expect any form of stable bindings for this SoC
-> family.??Make that clear inthe binding documentation.
-> 
+Hi Greg,
 
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+On Tue, Jun 27, 2017 at 8:43 AM, Greg KH <gregkh@linuxfoundation.org> wrote:
+> On Mon, Jun 26, 2017 at 08:57:18PM +0200, Martin Blumenstingl wrote:
+>> Hi Greg, Hi Jonathan,
+>>
+>> On Mon, Jun 26, 2017 at 7:09 AM,  <gregkh@linuxfoundation.org> wrote:
+>> >
+>> > This is a note to let you know that I've just added the patch titled
+>> >
+>> >     iio: adc: meson-saradc: use NULL instead of 0 for pointer
+>> >
+>> > to my staging git tree which can be found at
+>> >     git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
+>> > in the staging-testing branch.
+>> >
+>> > The patch will show up in the next release of the linux-next tree
+>> > (usually sometime within the next 24 hours during the week.)
+>> >
+>> > The patch will be merged to the staging-next branch sometime soon,
+>> > after it passes testing, and the merge window is open.
+>> >
+>> > If you have any questions about this process, please let me know.
+>> is there a way to drop below patch from your repo?
+>> during testing I found out that the code before and after this patch
+>> leads to a NULL deref. I provided a fix (see [0]) which solves the
+>> crash and the warning as reported by Paolo - and that fix is already
+>> part of v4.12-rc6
+>> so the patch below will cause a merge conflict
+>
+> I already handled the merge conflict, can you verify I got it right in
+> my tree?
+I just checked your staging.git/staging-testing branch: it seems that
+the conflict was resolved correctly (meaning that Paolo's patch is
+non-existent in your tree, which is correct)
 
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-> ---
-> ?Documentation/devicetree/bindings/arm/amlogic.txt | 12 ++++++++++++
-> ?1 file changed, 12 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt
-> b/Documentation/devicetree/bindings/arm/amlogic.txt
-> index bfd5b558477d..9be902b4656d 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-> @@ -1,6 +1,18 @@
-> ?Amlogic MesonX device tree bindings
-> ?-------------------------------------------
-> ?
-> +Work in progress statement:
-> +
-> +Device tree files and bindings applying to Amlogic SoCs and boards are
-> +considered "unstable". Any Amlogic device tree binding may change at
-> +any time. Be sure to use a device tree binary and a kernel image
-> +generated from the same source tree.
-> +
-> +Please refer to Documentation/devicetree/bindings/ABI.txt for a definition of
-> a
-> +stable binding/ABI.
-> +
-> +---------------------------------------------------------------
-> +
-> ?Boards with the Amlogic Meson6 SoC shall have the following properties:
-> ???Required root node property:
-> ?????compatible: "amlogic,meson6"
+
+Regards,
+Martin
