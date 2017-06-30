@@ -1,7 +1,7 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Fri, 30 Jun 2017 00:16:12 +0200
+From: grygorii.strashko@ti.com (Grygorii Strashko)
+Date: Fri, 30 Jun 2017 14:54:37 -0500
 Subject: [RFC] gpio: about the need to manage irq mapping dynamically.
-In-Reply-To: <1498748238.27840.5.camel@baylibre.com>
+In-Reply-To: <CACRpkdar9YwnMgLb1y1sP1Vbg-1MgPAOcRPcfNCtmpKuf+g+kQ@mail.gmail.com>
 References: <1497543642.3086.35.camel@baylibre.com>
  <CACRpkdZWw_-joPT4CJ-RAJ31s4BxuE6vusjg5YnZWaHtkRg5+w@mail.gmail.com>
  <1497954416.7387.1.camel@baylibre.com>
@@ -11,25 +11,37 @@ References: <1497543642.3086.35.camel@baylibre.com>
  <1498141515.7387.16.camel@baylibre.com>
  <0e12f9bd-4e0b-c602-5627-5dbda5371dee@ti.com>
  <1498587929.25567.12.camel@baylibre.com>
- <CACRpkdZfvGm+sy+B2wsuw5TfD57h9cTJc7ii=1Q1DEuMxNk_8A@mail.gmail.com>
- <1498748238.27840.5.camel@baylibre.com>
-Message-ID: <CACRpkda7Nsgwv9AqQeN1vnGu6sZmW_nKMbiWfXTtRYxRtfv+uA@mail.gmail.com>
+ <657221fa-c6b3-e914-1a81-9a48972ee6d5@ti.com>
+ <CACRpkdar9YwnMgLb1y1sP1Vbg-1MgPAOcRPcfNCtmpKuf+g+kQ@mail.gmail.com>
+Message-ID: <f8495533-b53f-8999-9320-38f18ca7691b@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Jun 29, 2017 at 4:57 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Thu, 2017-06-29 at 16:14 +0200, Linus Walleij wrote:
 
->> So I changed my mind, it is fine for this type of driver to call
->> irq_create_mapping() in gpio_to_irq(). Preferably with some comment
->> around the call.
->
-> What about disposing of the mapping ? there still is no counter part function to
-> gpio_to_irq. It seems weird to leave them lying around, don't you think ?
 
-Yeah that sucks. We need a way to fix that.
+On 06/29/2017 09:16 AM, Linus Walleij wrote:
+> On Tue, Jun 27, 2017 at 10:43 PM, Grygorii Strashko
+> <grygorii.strashko@ti.com> wrote:
+> 
+>> And my opinion is still the same here - It should be perfectly valid to create
+>> mappings from gpio_to_irq() to handle properly orthogonality of gpiochip and
+>> gpio-irqchip functionality and satisfy SPARSE_IRQ goal (allocate Linux virq and
+>> irq descriptors on demand).
+> 
+> You are right.
+> 
+> I would rather say: GPIO drivers that have a 1-to-1 mapping between GPIO
+> lines and IRQs should not do it, they should map up them all at probe().
+> 
 
-Is gpio_irq_prepare/unprepare the right approach?
+Sry, can't completely agree here :( There could be 300 (or even thousands)
+of gpios and only dozen of them will be used as GPIO IRQ, so statical mapping will
+just waste system resources. So, better not define such kind of restrictions -
+it seems platform/system specific.
 
-Yours,
-Linus Walleij
+> Drivers that actually have fewer IRQs than GPIO lines should be able to
+> create the mappings in gpio_to_irq().
+
+-- 
+regards,
+-grygorii
