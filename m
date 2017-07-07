@@ -1,32 +1,22 @@
-From: joseph.kogut@gmail.com (Joseph Kogut)
-Date: Thu,  6 Jul 2017 18:32:57 -0700
-Subject: [PATCH] ARM64: meson-gxl: disable broken eee
-Message-ID: <20170707013257.18250-1-joseph.kogut@gmail.com>
+From: sjg@chromium.org (Simon Glass)
+Date: Thu, 6 Jul 2017 21:57:40 -0600
+Subject: [PATCH 1/3] arm: dts: meson: import dts files from Linux 4.12-rc6
+In-Reply-To: <20170625155511.28447-2-b.galvani@gmail.com>
+References: <20170625155511.28447-1-b.galvani@gmail.com>
+ <20170625155511.28447-2-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ0OQ6837+BLigd6pFo_bpiSWdK4qBxrfgJ35irmhb05Qw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Meson GXL appears to suffer from the same broken eee issue as GXB,
-originally fixed by feb3cbea0946.
+On 25 June 2017 at 09:55, Beniamino Galvani <b.galvani@gmail.com> wrote:
+> Import Amlogic Meson DTS files from Linux kernel version 4.12-rc6.
+>
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  arch/arm/dts/meson-gx.dtsi            |  97 ++++++++++++++++--
+>  arch/arm/dts/meson-gxbb-odroidc2.dts  |  82 ++++++++++++++-
+>  arch/arm/dts/meson-gxbb.dtsi          | 187 ++++++++++++++++++++++++++++------
+>  include/dt-bindings/clock/gxbb-clkc.h |  14 ++-
+>  4 files changed, 335 insertions(+), 45 deletions(-)
 
-This patch disables the broken energy-efficient ethernet for GXL,
-avoiding the tx link breakage.
-
-Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 8d4f3160a0ee..620e8a4f9bb3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -570,6 +570,7 @@
- 				compatible = "ethernet-phy-id0181.4400", "ethernet-phy-ieee802.3-c22";
- 				reg = <8>;
- 				max-speed = <100>;
-+				eee-broken-100tx;
- 			};
- 		};
- 
--- 
-2.13.2
+Reviewed-by: Simon Glass <sjg@chromium.org>
