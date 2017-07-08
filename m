@@ -1,64 +1,53 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 07 Jul 2017 10:57:45 +0200
-Subject: [PATCH v2 3/3] pwm: meson: improve pwm calculation precision.
-In-Reply-To: <20170706212154.GA28918@mithrandir>
-References: <20170608122416.1993-1-jbrunet@baylibre.com>
- <20170608122416.1993-4-jbrunet@baylibre.com>
- <20170706212154.GA28918@mithrandir>
-Message-ID: <1499417865.15362.15.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 8 Jul 2017 15:42:46 +0200
+Subject: [PATCH] iio: adc: meson-saradc: add NULL check on
+ of_match_device() return value
+In-Reply-To: <20170707064630.GA21945@embeddedgus>
+References: <20170707064630.GA21945@embeddedgus>
+Message-ID: <CAFBinCBgXAFvLqXP5e-j=UeQVd+foUDqKUNzO8hwQ71tKga1Vg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-07-06 at 23:21 +0200, Thierry Reding wrote:
-> On Thu, Jun 08, 2017 at 02:24:16PM +0200, Jerome Brunet wrote:
-> > When using input clocks with high rates, such as clk81 (166MHz), the
-> > fin_ns = NSEC_PER_SEC / fin_freq can introduce a significant error.
-> > 
-> > Ex: fin_freq = 166666667, NSEC_PER_SEC = 1000000000
-> > ????fin_ns = 5,9999999
-> > 
-> > which is, of course, rounded down to 5. This introduce an error of ~20%
-> > on the period requested from the pwm.
-> > 
-> > This patch use ps instead of ns (and 64bits integer) to perform the
-> > calculation. This should give a good enough precision.
-> > 
-> > Fixes: 211ed630753d ("pwm: Add support for Meson PWM Controller")
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> > ?drivers/pwm/pwm-meson.c | 15 +++++++++------
-> > ?1 file changed, 9 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> > index b911a944744a..4cdc66f7f718 100644
-> > --- a/drivers/pwm/pwm-meson.c
-> > +++ b/drivers/pwm/pwm-meson.c
-> > @@ -163,7 +163,8 @@ static int meson_pwm_calc(struct meson_pwm *meson,
-> > ?			??unsigned int duty, unsigned int period)
-> > ?{
-> > ?	unsigned int pre_div, cnt, duty_cnt;
-> > -	unsigned long fin_freq = -1, fin_ns;
-> > +	unsigned long fin_freq = -1;
-> > +	u64 fin_ps;
-> > ?
-> > ?	if (~(meson->inverter_mask >> id) & 0x1)
-> > ?		duty = period - duty;
-> > @@ -179,13 +180,14 @@ static int meson_pwm_calc(struct meson_pwm *meson,
-> > ?	}
-> > ?
-> > ?	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
-> > -	fin_ns = NSEC_PER_SEC / fin_freq;
-> > +	fin_ps = ((u64)NSEC_PER_SEC * 1000) / fin_freq;
-> 
-> This failed to build, so I had to change this division to a do_div().
+On Fri, Jul 7, 2017 at 8:46 AM, Gustavo A. R. Silva
+<garsilva@embeddedor.com> wrote:
+> Check return value from call to of_match_device()
+> in order to prevent a NULL pointer dereference.
+>
+> In case of NULL print error message and return -ENODEV
+>
+> Signed-off-by: Gustavo A. R. Silva <garsilva@embeddedor.com>
+thanks for finding this. a crash here is a rather theoretical problem
+(since all compatible strings have their corresponding match data) -
+but it doesn't hurt either, so:
 
-Oh ! Indeed :(
-I have mostly tested with arm64 which is fine.
-I thought I had tested arm(32) build as well but I just noticed that MESON_PWM
-option is disabled in multi_v7_defconfig. 
-
-Thanks for catching and fixing this Thierry !
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 
-> 
-> Thierry
+> ---
+>  drivers/iio/adc/meson_saradc.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index 83da50e..07dbcc3 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -915,6 +915,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+>         init_completion(&priv->done);
+>
+>         match = of_match_device(meson_sar_adc_of_match, &pdev->dev);
+> +       if (!match) {
+> +               dev_err(&pdev->dev, "failed to match device\n");
+> +               return -ENODEV;
+> +       }
+> +
+>         priv->data = match->data;
+>
+>         indio_dev->name = priv->data->name;
+> --
+> 2.5.0
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
