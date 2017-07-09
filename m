@@ -1,64 +1,37 @@
-From: jic23@kernel.org (Jonathan Cameron)
-Date: Sun, 9 Jul 2017 19:08:43 +0100
-Subject: [PATCH] iio: adc: meson-saradc: add NULL check on
- of_match_device() return value
-In-Reply-To: <CAFBinCBgXAFvLqXP5e-j=UeQVd+foUDqKUNzO8hwQ71tKga1Vg@mail.gmail.com>
-References: <20170707064630.GA21945@embeddedgus>
- <CAFBinCBgXAFvLqXP5e-j=UeQVd+foUDqKUNzO8hwQ71tKga1Vg@mail.gmail.com>
-Message-ID: <20170709190843.0bfa292f@kernel.org>
+From: b.galvani@gmail.com (Beniamino Galvani)
+Date: Mon, 10 Jul 2017 00:30:02 +0200
+Subject: [PATCH v2 0/4] Add support for Meson GXBB GPIOs to U-Boot
+Message-ID: <20170709223006.3998-1-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 8 Jul 2017 15:42:46 +0200
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Hi,
 
-> On Fri, Jul 7, 2017 at 8:46 AM, Gustavo A. R. Silva
-> <garsilva@embeddedor.com> wrote:
-> > Check return value from call to of_match_device()
-> > in order to prevent a NULL pointer dereference.
-> >
-> > In case of NULL print error message and return -ENODEV
-> >
-> > Signed-off-by: Gustavo A. R. Silva <garsilva@embeddedor.com>  
-> thanks for finding this. a crash here is a rather theoretical problem
-> (since all compatible strings have their corresponding match data) -
-> but it doesn't hurt either, so:
-> 
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Applied.
+this series adds to U-Boot a GPIO driver for Meson GXBB and enables it
+on Odroid-C2.
 
-Jonathan
-> 
-> 
-> > ---
-> >  drivers/iio/adc/meson_saradc.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> > index 83da50e..07dbcc3 100644
-> > --- a/drivers/iio/adc/meson_saradc.c
-> > +++ b/drivers/iio/adc/meson_saradc.c
-> > @@ -915,6 +915,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
-> >         init_completion(&priv->done);
-> >
-> >         match = of_match_device(meson_sar_adc_of_match, &pdev->dev);
-> > +       if (!match) {
-> > +               dev_err(&pdev->dev, "failed to match device\n");
-> > +               return -ENODEV;
-> > +       }
-> > +
-> >         priv->data = match->data;
-> >
-> >         indio_dev->name = priv->data->name;
-> > --
-> > 2.5.0
-> >
-> >
-> > _______________________________________________
-> > linux-amlogic mailing list
-> > linux-amlogic at lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-amlogic  
-> --
-> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
-> the body of a message to majordomo at vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+Changes since v1:
+ - updated dts files from Linux 4.12
+ - added missing asm/arch/gpio.h
+ - added patch 4 to convert driver to livetree
+
+Beniamino Galvani (4):
+  arm: dts: meson: import dts files from Linux 4.12
+  pinctrl: meson: add GPIO support
+  odroid-c2: enable GPIO
+  pinctrl: meson: convert to livetree
+
+ arch/arm/dts/meson-gx.dtsi                 |  97 +++++++++++--
+ arch/arm/dts/meson-gxbb-odroidc2.dts       |  82 ++++++++++-
+ arch/arm/dts/meson-gxbb.dtsi               | 187 +++++++++++++++++++-----
+ arch/arm/include/asm/arch-meson/gpio.h     |  11 ++
+ configs/odroid-c2_defconfig                |   2 +
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c |  21 +++
+ drivers/pinctrl/meson/pinctrl-meson.c      | 221 +++++++++++++++++++++++++----
+ drivers/pinctrl/meson/pinctrl-meson.h      |  63 ++++++++
+ include/dt-bindings/clock/gxbb-clkc.h      |  24 +++-
+ 9 files changed, 636 insertions(+), 72 deletions(-)
+ create mode 100644 arch/arm/include/asm/arch-meson/gpio.h
+
+-- 
+2.9.3
