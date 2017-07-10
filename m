@@ -1,26 +1,65 @@
-From: andrew@lunn.ch (Andrew Lunn)
-Date: Mon, 10 Jul 2017 16:37:31 +0200
-Subject: [PATCH net] mdio: mux: fix parsing mux registers outside of the
- PHY address range
-In-Reply-To: <CAC3K-4p0gidfh1U+_o3i7bwCgQo1QtNb7D+MXwYa+X_-9sFhrw@mail.gmail.com>
-References: <20170710123523.6625-1-martin.blumenstingl@googlemail.com>
- <20170710125652.GG1616@lunn.ch>
- <CAC3K-4p0gidfh1U+_o3i7bwCgQo1QtNb7D+MXwYa+X_-9sFhrw@mail.gmail.com>
-Message-ID: <20170710143731.GE21118@lunn.ch>
+From: garsilva@embeddedor.com (Gustavo A. R. Silva)
+Date: Mon, 10 Jul 2017 14:40:25 -0500
+Subject: [PATCH] iio: adc: meson-saradc: add NULL check on
+ of_match_device() return value
+In-Reply-To: <CAFBinCBgXAFvLqXP5e-j=UeQVd+foUDqKUNzO8hwQ71tKga1Vg@mail.gmail.com>
+References: <20170707064630.GA21945@embeddedgus>
+ <CAFBinCBgXAFvLqXP5e-j=UeQVd+foUDqKUNzO8hwQ71tKga1Vg@mail.gmail.com>
+Message-ID: <20170710144025.Horde.vDNHGoVgk8qoRyi4crvw77O@gator4166.hostgator.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-> To be clear, are you suggesting that we add an additional property to
-> of_mdio_parse_addr() that specifies the limit to check against, or
-> remove the check and add it to each additional caller?
+Hi Martin,
 
-Hi Jon
+Quoting Martin Blumenstingl <martin.blumenstingl@googlemail.com>:
 
-Probably the simplest is to add an extra parameter to mdio_mux_init()
-which is the maximum allowed reg value.
+> On Fri, Jul 7, 2017 at 8:46 AM, Gustavo A. R. Silva
+> <garsilva@embeddedor.com> wrote:
+>> Check return value from call to of_match_device()
+>> in order to prevent a NULL pointer dereference.
+>>
+>> In case of NULL print error message and return -ENODEV
+>>
+>> Signed-off-by: Gustavo A. R. Silva <garsilva@embeddedor.com>
+> thanks for finding this. a crash here is a rather theoretical problem
+> (since all compatible strings have their corresponding match data) -
+> but it doesn't hurt either, so:
+>
 
-We should not touch of_mdio_parse_addr(). reg is not an mdio
-address. It is a count of gpios, or a value to be poked into an
-register.
+I get it, glad to help. :)
 
-      Andrew
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+>
+>> ---
+>>  drivers/iio/adc/meson_saradc.c | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+>> index 83da50e..07dbcc3 100644
+>> --- a/drivers/iio/adc/meson_saradc.c
+>> +++ b/drivers/iio/adc/meson_saradc.c
+>> @@ -915,6 +915,11 @@ static int meson_sar_adc_probe(struct  
+>> platform_device *pdev)
+>>         init_completion(&priv->done);
+>>
+>>         match = of_match_device(meson_sar_adc_of_match, &pdev->dev);
+>> +       if (!match) {
+>> +               dev_err(&pdev->dev, "failed to match device\n");
+>> +               return -ENODEV;
+>> +       }
+>> +
+>>         priv->data = match->data;
+>>
+>>         indio_dev->name = priv->data->name;
+>> --
+>> 2.5.0
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic at lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--
+Gustavo A. R. Silva
