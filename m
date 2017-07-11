@@ -1,102 +1,65 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 11 Jul 2017 23:23:44 +0200
-Subject: [RFC 2/2] mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8
- and Meson8b SoCs
-In-Reply-To: <CAPDyKFrbxMpgDrZXKmrN4fyJWJ_ZML3jPxBs+YDEz=L1kA-BaA@mail.gmail.com>
-References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
- <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
- <CAPDyKFrrSLCjbXO9R4VqPpabiFsbE6_RqR=U7otVF4Ncv0jHjQ@mail.gmail.com>
- <CAFBinCD3modyyOpi3OY5XLhjX0UCuV+WPY2Z=mdvwdMCyeGoqg@mail.gmail.com>
- <CAPDyKFptXRPk7mVUiRHf=hECDbeyhTxuf3K1M6NkZcVEF0Enww@mail.gmail.com>
- <CAFBinCD=uH=oQmWAcsMpxtbJCnJZernZx3XoNaPixUUQ7pk76w@mail.gmail.com>
- <CAPDyKFrbxMpgDrZXKmrN4fyJWJ_ZML3jPxBs+YDEz=L1kA-BaA@mail.gmail.com>
-Message-ID: <CAFBinCA-goSsyq7bo=ozPRnOqc8br4KDJJ_Lao5h==Xneh02nw@mail.gmail.com>
+Date: Wed, 12 Jul 2017 00:14:38 +0200
+Subject: [PATCH v2] watchdog: meson-wdt: add support for the watchdog on
+ Meson8 and Meson8m2
+Message-ID: <20170711221438.8958-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Ulf,
+The watchdog IP block on Meson8 and Meson8m2 is already supported by the
+existing meson-wdt driver. Meson8 uses the same register bits as Meson6,
+while the newer Meson8m2 SoC uses the same register bits as Meson8b.
 
-sorry for the delay, I've been pretty busy.
-however, I'll have more time to work in this driver this and next week
+Currently watchdog support on Meson8 SoC already works because
+meson8.dtsi simply uses the "amlogic,meson6-wdt" compatible. Adding a
+separate compatible for Meson8 makes this more explicit though.
 
-On Mon, Jun 19, 2017 at 1:50 PM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->>
->>> [...]
->>>
->>>>>> +       if (!(cmd->flags & MMC_RSP_CRC))
->>>>>> +               send |= MESON_MX_SDIO_SEND_RESP_WITHOUT_CRC7;
->>>>>> +
->>>>>> +       if (cmd->flags & MMC_RSP_BUSY)
->>>>>> +               send |= MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY;
->>>>>
->>>>> In case the controller has HW support of busy detection, please
->>>>> consider to enable MMC_CAP_WAIT_WHILE_BUSY for this driver. Then also
->>>>> assign host->max_busy_timeout a good value.
->>>> the IRQS register has bit 4 (CMD_BUSY) - but apart from that there is
->>>> no other documentation (about timeout values, etc.). the vendor driver
->>>> also neither uses MMC_CAP_WAIT_WHILE_BUSY nor host->max_busy_timeout
->>>> should I leave this as it is?
->>>
->>> Please don't just leave it as is. This is an important thing to get right.
->>>
->>> You should be able to explore this area and see how the controller
->>> behaves without too much of documentation. Regarding timeouts, it may
->>> very well be that the controller don't have a timeout, which is why
->>> you need a software timeout. That's not so uncommon actually.
->> during my experiments I've never seen an interrupt when a command
->> timed out (nor could I find information about a timeout register in
->> the documentation). do you have any pointers (like a previous mail
->> where you've explained) how I can "explore the controller's timeout
->> behavior"?
->
-> Sorry, I don't have an pointers.
->
-> Anyway. If you do a big erase operation on an SD card, the card should
-> signal busy on DAT0 for a rather long time.
-erase operation = mount sd card; rm big_file.bin; sync ?
-or is there some other way?
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+---
+Changes since v1 at [0]:
+- updated the documentation to indicate that Meson8 should also specify
+  the Meson6 compatible and that Meson8m2 should also specify the
+  Meson8b compatible
 
-> You could probably explore how long it takes for the card to respond
-> under those circumstances, and try both with and without
-> MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY.
-so I simply read the card status through sysfs? or would I need to get
-some of this information from the controller?
-I found that the IRQC register contains a few interesting bits:
-    u32 sdio_force_data:6; /*[13:8]
-        * Write operation: Data forced by software
-        * Read operation: {CLK,CMD,DAT[3:0]}*/
-I dumped these while transferring some data, the values seem to be
-changing constantly (0x3f, 0x1f, 0x20, ...)
-if I interpret those bits correctly then they are the status of the
-corresponding pin
+[0] https://patchwork.kernel.org/patch/9780093/
 
-> Of course you also need to try with and without
-> MMC_CAP_WAIT_WHILE_BUSY, as the core may sometimes convert R1B to R1
-> responses depending on that cap.
-so MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY + MMC_CAP_WAIT_WHILE_BUSY should
-go together?
-and MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY should not be set when
-MMC_CAP_WAIT_WHILE_BUSY isn't?
 
-> [...]
->
->>>
->>> It shouldn't be that hard to implement, although I strongly recommend
->>> you to address this in a second step. In other words, I suggest you to
->>> drop the entire multiple slot support in the first step, then we can
->>> deal with that on top instead.
->> many thanks for the detailed explanation again!
->> I would be fine with dropping multiple slot support for the moment
->> *if* we can agree on the fact that the devicetree binding can support
->> multiple slots in theory (my idea here is: keep the child-nodes with
->> compatible = "mmc-slot" mandatory - but only allow one such child node
->> for now). I don't want to break DT compatibility after a few
->> weeks/months for a new driver. is that OK for you as well?
->
-> That's fine! We already have such a binding available for some other
-> mmc controllers. We could even consider to make that binding a generic
-> mmc binding.
-OK, perfect :)
+ Documentation/devicetree/bindings/watchdog/meson-wdt.txt | 6 +++++-
+ drivers/watchdog/meson_wdt.c                             | 2 ++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-Regards,
-Martin
+diff --git a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
+index ae70185d96e6..8a6d84cb36c9 100644
+--- a/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
++++ b/Documentation/devicetree/bindings/watchdog/meson-wdt.txt
+@@ -2,7 +2,11 @@ Meson SoCs Watchdog timer
+ 
+ Required properties:
+ 
+-- compatible : should be "amlogic,meson6-wdt" or "amlogic,meson8b-wdt"
++- compatible : depending on the SoC this should be one of:
++	"amlogic,meson6-wdt" on Meson6 SoCs
++	"amlogic,meson8-wdt" and "amlogic,meson6-wdt" on Meson8 SoCs
++	"amlogic,meson8b-wdt" on Meson8b SoCs
++	"amlogic,meson8m2-wdt" and "amlogic,meson8b-wdt" on Meson8m2 SoCs
+ - reg : Specifies base physical address and size of the registers.
+ 
+ Example:
+diff --git a/drivers/watchdog/meson_wdt.c b/drivers/watchdog/meson_wdt.c
+index 491b9bf13d84..304274c67735 100644
+--- a/drivers/watchdog/meson_wdt.c
++++ b/drivers/watchdog/meson_wdt.c
+@@ -155,7 +155,9 @@ static const struct watchdog_ops meson_wdt_ops = {
+ 
+ static const struct of_device_id meson_wdt_dt_ids[] = {
+ 	{ .compatible = "amlogic,meson6-wdt", .data = &meson6_wdt_data },
++	{ .compatible = "amlogic,meson8-wdt", .data = &meson6_wdt_data },
+ 	{ .compatible = "amlogic,meson8b-wdt", .data = &meson8b_wdt_data },
++	{ .compatible = "amlogic,meson8m2-wdt", .data = &meson8b_wdt_data },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, meson_wdt_dt_ids);
+-- 
+2.13.2
