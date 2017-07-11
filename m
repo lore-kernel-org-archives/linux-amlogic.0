@@ -1,99 +1,102 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 11 Jul 2017 23:04:56 +0200
-Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
-In-Reply-To: <20170612194438.12298-1-jbrunet@baylibre.com>
-References: <20170612194438.12298-1-jbrunet@baylibre.com>
-Message-ID: <1499807096.2287.3.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 11 Jul 2017 23:23:44 +0200
+Subject: [RFC 2/2] mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8
+ and Meson8b SoCs
+In-Reply-To: <CAPDyKFrbxMpgDrZXKmrN4fyJWJ_ZML3jPxBs+YDEz=L1kA-BaA@mail.gmail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+ <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
+ <CAPDyKFrrSLCjbXO9R4VqPpabiFsbE6_RqR=U7otVF4Ncv0jHjQ@mail.gmail.com>
+ <CAFBinCD3modyyOpi3OY5XLhjX0UCuV+WPY2Z=mdvwdMCyeGoqg@mail.gmail.com>
+ <CAPDyKFptXRPk7mVUiRHf=hECDbeyhTxuf3K1M6NkZcVEF0Enww@mail.gmail.com>
+ <CAFBinCD=uH=oQmWAcsMpxtbJCnJZernZx3XoNaPixUUQ7pk76w@mail.gmail.com>
+ <CAPDyKFrbxMpgDrZXKmrN4fyJWJ_ZML3jPxBs+YDEz=L1kA-BaA@mail.gmail.com>
+Message-ID: <CAFBinCA-goSsyq7bo=ozPRnOqc8br4KDJJ_Lao5h==Xneh02nw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2017-06-12 at 21:44 +0200, Jerome Brunet wrote:
-> This Patchset is related the RFC [0] and the discussion around
-> CLK_SET_RATE_GATE available here [1]
-> 
-> This patchset is based on clk-next.
-> 
-> The goal of this patchset is to provide a way for consumers to inform the
-> system that they depend on the rate of the clock source and can't tolerate
-> other consumers changing the rate or causing glitches.
-> 
-> With this series there is 3 use-case:
-> ?- the provider is not protected: nothing changes
-> ?- the provider is protected by only 1 consumer (and only once), then only
-> ???this consumer will be able to alter the rate of the clock, as it is the
-> ???only one depending on it.
-> ?- If the provider is protected more than once, or by the provider itself,
-> ???the rate is basically locked and protected against reparenting.
-> 
-> The last patch provide the same functionnality for providers themself,
-> fixing CLK_SET_RATE_GATE flag (enforce clock gating along the tree)
-> 
-> qcom, at91 and ux500 are the heaviest users of this flag. If anybody having
-> one these platform could try this series, it would help build confidence
-> that the platform relying on CLK_SET_RATE_GATE (even if broken) don't get
-> any regression.
-> 
-> Changes since RFC:
-> ?- s/clk_protect/clk_rate_protect
-> ?- Request rework around core_nolock function
-> ?- Add clk_set_rate_protect
-> ?- Reword clk_rate_protect and clk_unprotect documentation
-> ?- Add few comments to explain the code
-> ?- Add 2 last patches to fix users of CLK_SET_RATE_GATE
-> 
-> Changes since v1:
-> ?- Add patch 4: Check if the rate would actually change before continuing, a
-> ???possibly in clk_set_rate.
-> 
-> Changes since v2: [2]
-> ?- Fix issues reported by Adriana Reus (Thanks !)
-> ?- Dropped patch "clk: move CLK_SET_RATE_GATE protection from prepare
-> ???to enable". This was broken as the protect count, like the prepare_count
-> ???should only be accessed under the prepare_lock.
-> ?- No change around bail-out code. Mike wanted to ponder a bit more on it.
-> ?- Patch 1 still included, could not find the clk-next-protect Mike was
-> ???referring to.
-> 
-> This was tested with the audio use case mentioned in [1]
-> 
-> [0]: https://lkml.kernel.org/r/20170321183330.26722-1-jbrunet at baylibre.com
-> [1]: https://lkml.kernel.org/r/148942423440.82235.17188153691656009029 at resonan
-> ce
-> [2]: https://lkml.kernel.org/r/20170521215958.19743-1-jbrunet at baylibre.com
-> 
-> 
+Hi Ulf,
 
-Mike, Stephen,
+sorry for the delay, I've been pretty busy.
+however, I'll have more time to work in this driver this and next week
 
-Gentle Ping: I bet you are busy but this v3 was posted 1 month ago. 
-So far, We've add the ack of Linus (ux500).
-Quentin (at91) and KCi (some other stuff ;) ) tested the series.
+On Mon, Jun 19, 2017 at 1:50 PM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>>
+>>> [...]
+>>>
+>>>>>> +       if (!(cmd->flags & MMC_RSP_CRC))
+>>>>>> +               send |= MESON_MX_SDIO_SEND_RESP_WITHOUT_CRC7;
+>>>>>> +
+>>>>>> +       if (cmd->flags & MMC_RSP_BUSY)
+>>>>>> +               send |= MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY;
+>>>>>
+>>>>> In case the controller has HW support of busy detection, please
+>>>>> consider to enable MMC_CAP_WAIT_WHILE_BUSY for this driver. Then also
+>>>>> assign host->max_busy_timeout a good value.
+>>>> the IRQS register has bit 4 (CMD_BUSY) - but apart from that there is
+>>>> no other documentation (about timeout values, etc.). the vendor driver
+>>>> also neither uses MMC_CAP_WAIT_WHILE_BUSY nor host->max_busy_timeout
+>>>> should I leave this as it is?
+>>>
+>>> Please don't just leave it as is. This is an important thing to get right.
+>>>
+>>> You should be able to explore this area and see how the controller
+>>> behaves without too much of documentation. Regarding timeouts, it may
+>>> very well be that the controller don't have a timeout, which is why
+>>> you need a software timeout. That's not so uncommon actually.
+>> during my experiments I've never seen an interrupt when a command
+>> timed out (nor could I find information about a timeout register in
+>> the documentation). do you have any pointers (like a previous mail
+>> where you've explained) how I can "explore the controller's timeout
+>> behavior"?
+>
+> Sorry, I don't have an pointers.
+>
+> Anyway. If you do a big erase operation on an SD card, the card should
+> signal busy on DAT0 for a rather long time.
+erase operation = mount sd card; rm big_file.bin; sync ?
+or is there some other way?
 
-If we could add tests on qcom (and the fix i suggested after the kci run), we
-would have tested the heaviest users of CLK_SET_RATE_GATE.
+> You could probably explore how long it takes for the card to respond
+> under those circumstances, and try both with and without
+> MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY.
+so I simply read the card status through sysfs? or would I need to get
+some of this information from the controller?
+I found that the IRQC register contains a few interesting bits:
+    u32 sdio_force_data:6; /*[13:8]
+        * Write operation: Data forced by software
+        * Read operation: {CLK,CMD,DAT[3:0]}*/
+I dumped these while transferring some data, the values seem to be
+changing constantly (0x3f, 0x1f, 0x20, ...)
+if I interpret those bits correctly then they are the status of the
+corresponding pin
 
-Please, could you let me know how to progress on this topic ?
-Thx
+> Of course you also need to try with and without
+> MMC_CAP_WAIT_WHILE_BUSY, as the core may sometimes convert R1B to R1
+> responses depending on that cap.
+so MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY + MMC_CAP_WAIT_WHILE_BUSY should
+go together?
+and MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY should not be set when
+MMC_CAP_WAIT_WHILE_BUSY isn't?
 
-Regards
-Jerome
+> [...]
+>
+>>>
+>>> It shouldn't be that hard to implement, although I strongly recommend
+>>> you to address this in a second step. In other words, I suggest you to
+>>> drop the entire multiple slot support in the first step, then we can
+>>> deal with that on top instead.
+>> many thanks for the detailed explanation again!
+>> I would be fine with dropping multiple slot support for the moment
+>> *if* we can agree on the fact that the devicetree binding can support
+>> multiple slots in theory (my idea here is: keep the child-nodes with
+>> compatible = "mmc-slot" mandatory - but only allow one such child node
+>> for now). I don't want to break DT compatibility after a few
+>> weeks/months for a new driver. is that OK for you as well?
+>
+> That's fine! We already have such a binding available for some other
+> mmc controllers. We could even consider to make that binding a generic
+> mmc binding.
+OK, perfect :)
 
-
-> Jerome Brunet (10):
-> ? clk: take the prepare lock out of clk_core_set_parent
-> ? clk: add clk_core_set_phase_nolock function
-> ? clk: rework calls to round and determine rate callbacks
-> ? clk: use round rate to bail out early in set_rate
-> ? clk: add support for clock protection
-> ? clk: add clk_set_rate_protect
-> ? clk: rollback set_rate_range changes on failure
-> ? clk: cosmetic changes to clk_summary debugfs entry
-> ? clk: fix incorrect usage of ENOSYS
-> ? clk: fix CLK_SET_RATE_GATE with clock rate protection
-> 
-> ?drivers/clk/clk.c????????????| 428 ++++++++++++++++++++++++++++++++++++----
-> ---
-> ?include/linux/clk-provider.h |???1 +
-> ?include/linux/clk.h??????????|??43 +++++
-> ?3 files changed, 402 insertions(+), 70 deletions(-)
-> 
+Regards,
+Martin
