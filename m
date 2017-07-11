@@ -1,37 +1,39 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 12 Jul 2017 00:26:55 +0200
-Subject: [PATCH] ARM: dts: meson: add a node which describes the SRAM
-Message-ID: <20170711222655.15859-1-martin.blumenstingl@googlemail.com>
+Date: Wed, 12 Jul 2017 00:49:37 +0200
+Subject: [PATCH 0/2] add the reset controller to the Meson8b clkc
+Message-ID: <20170711224939.26267-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-All 32bit Meson SoCs contain 128KiB SRAM. This SRAM is used when
-suspending the device (the the ARM Power Firmware on
-Meson8/Meson8b/Meson8m2 saves the DDR settings there) and to boot the
-secondary CPU cores.
+This registers the four CPU (soft) reset lines (one for each CPU core)
+provided by the clock controller's HHI_SYS_CPU_CLK_CNTL0 register.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This is the first preparation step for SMP and CPU hotplug support on
+Meson8/Meson8b/Meson8m2.
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index 4c27ca083afb..7e136991a4b9 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -244,5 +244,13 @@
- 			interrupt-names = "macirq";
- 			status = "disabled";
- 		};
-+
-+		ahb_sram: sram at d9000000 {
-+			compatible = "mmio-sram";
-+			reg = <0xd9000000 0x20000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0xd9000000 0x20000>;
-+		};
- 	};
- }; /* end of / */
+The reset controller part of the meson8b clock controller has to be
+registered early (which I did through CLK_OF_DECLARE_DRIVER), because
+the secondary cores are started *very* early in the boot process (and
+meson8b_clkc_probe is invoked long after we need the reset controller
+to be available for booting the secondary CPU cores).
+
+The user of the reset-controller (= the patches which enable SMP and
+CPU hotplug support) will follow in the next days. I decided to split
+this because the SMP series will probably consist of 6 patches alone
+(and may need to go through two separate trees).
+
+
+Martin Blumenstingl (2):
+  clk: meson: meson8b: register the built-in reset controller
+  ARM: dts: meson: mark the clock controller also as reset controller
+
+ .../bindings/clock/amlogic,meson8b-clkc.txt        |   7 +-
+ arch/arm/boot/dts/meson8.dtsi                      |   1 +
+ arch/arm/boot/dts/meson8b.dtsi                     |   1 +
+ drivers/clk/meson/Kconfig                          |   1 +
+ drivers/clk/meson/meson8b.c                        | 109 ++++++++++++++++++---
+ drivers/clk/meson/meson8b.h                        |   1 +
+ 6 files changed, 107 insertions(+), 13 deletions(-)
+
 -- 
 2.13.2
