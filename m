@@ -1,74 +1,76 @@
 From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Tue, 11 Jul 2017 18:16:04 -0700
-Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
-In-Reply-To: <1498050903.7387.12.camel@baylibre.com>
+Date: Tue, 11 Jul 2017 18:21:20 -0700
+Subject: [PATCH v3 01/10] clk: take the prepare lock out of
+ clk_core_set_parent
+In-Reply-To: <20170612194438.12298-2-jbrunet@baylibre.com>
 References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
- <1497955822.7387.3.camel@baylibre.com>
- <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
- <1497961950.7387.7.camel@baylibre.com>
- <1498050903.7387.12.camel@baylibre.com>
-Message-ID: <20170712011604.GQ22780@codeaurora.org>
+ <20170612194438.12298-2-jbrunet@baylibre.com>
+Message-ID: <20170712012120.GR22780@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/21, Jerome Brunet wrote:
-> 
-> I managed to have a run on kci - based on v4.12-rc6:
-> https://kernelci.org/boot/all/job/khilman/branch/to-build/kernel/v4.12-rc6-10-ge
-> a373ddef830/
-> 
-> There was no build regression but kci did find one boot regression on qcom
-> platforms:
-> * qcom-apq8064-cm-qs600
-> * qcom-apq8064-ifc6410
-> 
-> it seems the problem is coming from the clock used by the mmc driver
-> (drivers/mmc/host/mmci.c)
-> 
-> the driver does following sequence:
-> * get_clk
-> * prepare_enable
-> * get_rate
-> * set_rate
-> * ...
-> 
-> with clock SDCx_clk (qcom_apq8064.dtsi:1037). This clock has CLK_SET_RATE_PARENT
-> flag so it will transmit the request to its parent.
-> The parent of this clock is SDCx_src which has the CLK_SET_RATE_GATE flag.
-> 
-> This can't work with sequence above. The flag was clearly bypassed before, so I
-> think it would be best to remove CLK_SET_RATE_GATE from the SDCx_src clocks
-> 
-> Stephen, would you agree ?
-> 
-> There was an issue with the chip board as well but this particular board has not
-> been very reliable in this lab lately. It has failed on several other job.
-> 
+On 06/12, Jerome Brunet wrote:
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index fc58c52a26b4..f5c371532509 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -1787,7 +1787,8 @@ bool clk_has_parent(struct clk *clk, struct clk *parent)
+>  }
+>  EXPORT_SYMBOL_GPL(clk_has_parent);
+>  
+> -static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+> +static int clk_core_set_parent_nolock(struct clk_core *core,
+> +				      struct clk_core *parent)
+>  {
+>  	int ret = 0;
+>  	int p_index = 0;
+> @@ -1796,23 +1797,16 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>  	if (!core)
+>  		return 0;
+>  
+> -	/* prevent racing with updates to the clock topology */
+> -	clk_prepare_lock();
 
-Yes the flag was never working before and we've been ignoring the
-subtle problems that it causes to change the rate while the clk
-is enabled. On these older SoCs, all the clks marked with
-CLK_SET_RATE_GATE need to implement something to forcibly disable
-all child clks across the rate change. That is the hardware
-recommended procedure.
+Please add a lockdep assertion as we have in other places in this
+file so that callers can't mess up calling the nolock function
+without the lock held themselves.
 
-So something like
+> -
+>  	if (core->parent == parent)
+> -		goto out;
+> +		return 0;
+>  
+>  	/* verify ops for for multi-parent clks */
+> -	if ((core->num_parents > 1) && (!core->ops->set_parent)) {
+> -		ret = -ENOSYS;
+> -		goto out;
+> -	}
+> +	if ((core->num_parents > 1) && (!core->ops->set_parent))
 
-	get_clk
-	prepare_enable
-	get_rate
-	set_rate
-	 call ->set_rate() op
-	 forcibly disable children of rcgs
-	 actually change the rate of rcg
-	 forcibly enable all children that were disabled
+Nitpick: drop the extra parenthesis here.
 
-and have that happen under one big spinlock local to the qcom
-driver I suppose so that enable/disable can't leak into the rate
-change. Fun! I'll make an attempt at implementing the right
-solution tomorrow/tonight. Of course, we can remove the flag from
-qcom drivers if it's blocking this series.
+> +		return -ENOSYS;
+>  
+>  	/* check that we are allowed to re-parent if the clock is in use */
+> -	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count) {
+> -		ret = -EBUSY;
+> -		goto out;
+> -	}
+> +	if ((core->flags & CLK_SET_PARENT_GATE) && core->prepare_count)
+> +		return -EBUSY;
+>  
+>  	/* try finding the new parent index */
+>  	if (parent) {
+> @@ -1820,8 +1814,7 @@ static int clk_core_set_parent(struct clk_core *core, struct clk_core *parent)
+>  		if (p_index < 0) {
+>  			pr_debug("%s: clk %s can not be parent of clk %s\n",
+>  					__func__, parent->name, core->name);
+> -			ret = p_index;
+> -			goto out;
+> +			return p_index;
+>  		}
+>  		p_rate = parent->rate;
+>  	}
 
 -- 
 Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
