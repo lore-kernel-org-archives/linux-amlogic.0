@@ -1,166 +1,81 @@
 From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Tue, 11 Jul 2017 18:49:17 -0700
-Subject: [PATCH v3 03/10] clk: rework calls to round and determine rate
- callbacks
-In-Reply-To: <20170612194438.12298-4-jbrunet@baylibre.com>
+Date: Tue, 11 Jul 2017 19:00:41 -0700
+Subject: [PATCH v3 04/10] clk: use round rate to bail out early in set_rate
+In-Reply-To: <20170612194438.12298-5-jbrunet@baylibre.com>
 References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <20170612194438.12298-4-jbrunet@baylibre.com>
-Message-ID: <20170712014917.GT22780@codeaurora.org>
+ <20170612194438.12298-5-jbrunet@baylibre.com>
+Message-ID: <20170712020041.GU22780@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 06/12, Jerome Brunet wrote:
-> Rework the way the callbacks round_rate and determine_rate are called. The
-> goal is to do this at a single point and make it easier to add conditions
-> before calling them.
+> The current implementation of clk_core_set_rate_nolock bails out early if
 
-This should also say that now we check the rate returned by
-determine_rate ops against the min/max rates so that we don't
-exceed the limits?
+Add () to functions please.
+
+> the requested rate is exactly the same as the one set. It should bail out
+> if the request would not result in rate a change.  This important when
+
+s/in rate a change/in a rate change/
+s/This important/This is important/
+
+> rate is not exactly what is requested, which is fairly common with PLLs.
+
+s/rate/the rate/
 
 > 
-> This rework is done to ease the integration of "protected" clock
-> functionality.
+> Ex: provider able to give any rate with steps of 100Hz
+>  - 1st consumer request 48000Hz and gets it.
+>  - 2nd consumer request 48010Hz as well. If we were to perform the usual
+>    mechanism, we would get 48000Hz as well. The clock would not change so
+>    there is no point performing any checks to make sure the clock can
+>    change, we know it won't.
+
+I think Peter reported a similar problem as to what you're
+describing. Can you further explain a problem situation that this
+patch is fixing based on that thread (I can find the link if
+needed)? Some of this series if fixing rate constraints actually,
+so please Cc him on future patch sets.
+
+> 
+> This is important to prepare the addition of the clock protection
+> mechanism
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  drivers/clk/clk.c | 78 +++++++++++++++++++++++++++++++------------------------
->  1 file changed, 44 insertions(+), 34 deletions(-)
+>  drivers/clk/clk.c | 23 +++++++++++++++++++++--
+>  1 file changed, 21 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> index dceaf0ff23db..8cc4672414be 100644
+> index 8cc4672414be..163cb9832f10 100644
 > --- a/drivers/clk/clk.c
 > +++ b/drivers/clk/clk.c
-> @@ -833,16 +833,34 @@ static int clk_disable_unused(void)
+> @@ -1570,15 +1570,34 @@ static void clk_change_rate(struct clk_core *core)
+>  		clk_change_rate(core->new_child);
 >  }
->  late_initcall_sync(clk_disable_unused);
 >  
-> -static int clk_core_round_rate_nolock(struct clk_core *core,
-> -				      struct clk_rate_request *req)
-> +static int clk_core_determine_round(struct clk_core *core,
-> +				    struct clk_rate_request *req)
->  {
-> -	struct clk_core *parent;
->  	long rate;
->  
-> -	lockdep_assert_held(&prepare_lock);
-
-Best to leave this in place for clk_core_determine_round().
-
-> +	if (core->ops->determine_rate) {
-> +		return core->ops->determine_rate(core->hw, req);
-> +	} else if (core->ops->round_rate) {
-> +		rate = core->ops->round_rate(core->hw, req->rate,
-> +					     &req->best_parent_rate);
-> +		if (rate < 0)
-> +			return rate;
->  
-> -	if (!core)
-> -		return 0;
-> +		req->rate = rate;
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void clk_core_init_rate_req(struct clk_core *core,
-
-Can core be const?
-
-> +				   struct clk_rate_request *req)
+> +static unsigned long clk_core_req_round_rate_nolock(struct clk_core *core,
+> +						     unsigned long req_rate)
 > +{
-> +	struct clk_core *parent;
+> +	int ret;
+> +	struct clk_rate_request req;
 > +
-> +	if (WARN_ON(!core || !req))
-> +		return;
->  
->  	parent = core->parent;
->  	if (parent) {
-> @@ -852,22 +870,24 @@ static int clk_core_round_rate_nolock(struct clk_core *core,
->  		req->best_parent_hw = NULL;
->  		req->best_parent_rate = 0;
->  	}
-> +}
->  
-> -	if (core->ops->determine_rate) {
-> -		return core->ops->determine_rate(core->hw, req);
-> -	} else if (core->ops->round_rate) {
-> -		rate = core->ops->round_rate(core->hw, req->rate,
-> -					     &req->best_parent_rate);
-> -		if (rate < 0)
-> -			return rate;
-> +static int clk_core_round_rate_nolock(struct clk_core *core,
-> +				      struct clk_rate_request *req)
-> +{
-> +	lockdep_assert_held(&prepare_lock);
->  
-> -		req->rate = rate;
-> -	} else if (core->flags & CLK_SET_RATE_PARENT) {
-> -		return clk_core_round_rate_nolock(parent, req);
-> -	} else {
-> -		req->rate = core->rate;
-> -	}
 > +	if (!core)
 > +		return 0;
-> +
-> +	clk_core_init_rate_req(core, req);
-> +
-> +	if (core->ops->determine_rate || core->ops->round_rate)
-> +		return clk_core_determine_round(core, req);
-> +	else if (core->flags & CLK_SET_RATE_PARENT)
-> +		return clk_core_round_rate_nolock(core->parent, req);
->  
-> +	req->rate = core->rate;
->  	return 0;
->  }
->  
-> @@ -1356,36 +1376,26 @@ static struct clk_core *clk_calc_new_rates(struct clk_core *core,
->  	clk_core_get_boundaries(core, &min_rate, &max_rate);
->  
->  	/* find the closest rate and parent clk/rate */
-> -	if (core->ops->determine_rate) {
-> +	if (core->ops->determine_rate || core->ops->round_rate) {
 
-This is the second time we check this, maybe another function for
-clk_core_can_round(core) is in order?
+This is impossible because the only call site checks for core
+being NULL already.
 
->  		struct clk_rate_request req;
->  
->  		req.rate = rate;
->  		req.min_rate = min_rate;
->  		req.max_rate = max_rate;
-> -		if (parent) {
-> -			req.best_parent_hw = parent->hw;
-> -			req.best_parent_rate = parent->rate;
-> -		} else {
-> -			req.best_parent_hw = NULL;
-> -			req.best_parent_rate = 0;
-> -		}
->  
-> -		ret = core->ops->determine_rate(core->hw, &req);
-> +		clk_core_init_rate_req(core, &req);
 > +
-> +		ret = clk_core_determine_round(core, &req);
->  		if (ret < 0)
->  			return NULL;
->  
->  		best_parent_rate = req.best_parent_rate;
->  		new_rate = req.rate;
->  		parent = req.best_parent_hw ? req.best_parent_hw->core : NULL;
-> -	} else if (core->ops->round_rate) {
-> -		ret = core->ops->round_rate(core->hw, rate,
-> -					    &best_parent_rate);
-> -		if (ret < 0)
-> -			return NULL;
->  
-> -		new_rate = ret;
->  		if (new_rate < min_rate || new_rate > max_rate)
->  			return NULL;
+> +	clk_core_get_boundaries(core, &req.min_rate, &req.max_rate);
+> +	req.rate = req_rate;
 > +
+> +	ret = clk_core_round_rate_nolock(core, &req);
+> +
+> +	return ret ? 0 : req.rate;
 
-Nitpick: Kill this newline.
+What if the return value is negative? We should bail the set rate
+call instead of continuing on?
 
 -- 
 Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
