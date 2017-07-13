@@ -1,242 +1,57 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 13 Jul 2017 12:59:38 +0200
-Subject: [RFCv2 usb-next 2/3] usb: host: add a generic platform USB roothub
- driver
-In-Reply-To: <20170713105939.31566-1-martin.blumenstingl@googlemail.com>
-References: <20170713105939.31566-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170713105939.31566-3-martin.blumenstingl@googlemail.com>
+From: linux@armlinux.org.uk (Russell King - ARM Linux)
+Date: Thu, 13 Jul 2017 14:16:26 +0100
+Subject: [PATCH v3 4/6] ARM: meson: Add SMP bringup code for Meson8 and
+ Meson8b
+In-Reply-To: <20170713103113.21560-5-martin.blumenstingl@googlemail.com>
+References: <20170713103113.21560-1-martin.blumenstingl@googlemail.com>
+ <20170713103113.21560-5-martin.blumenstingl@googlemail.com>
+Message-ID: <20170713131625.GC31807@n2100.armlinux.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Many SoC platforms have separate devices for the USB PHY which are
-registered through the generic PHY framework. These PHYs have to be
-enabled to make the USB controller actually work. They also have to be
-disabled again on shutdown/suspend.
+On Thu, Jul 13, 2017 at 12:31:11PM +0200, Martin Blumenstingl wrote:
+> +static DEFINE_SPINLOCK(boot_lock);
+> +
+> +/*
+> + * Write pen_release in a way that is guaranteed to be visible to all
+> + * observers, irrespective of whether they're taking part in coherency
+> + * or not.  This is necessary for the hotplug code to work reliably.
+> + */
+> +static void write_pen_release(int val)
+> +{
+> +	pen_release = val;
+> +	smp_wmb();
+> +	sync_cache_w(&pen_release);
+> +}
 
-Currently (at least) the following HCI platform drivers are using custom
-code to obtain all PHYs via devicetree for the roothub/controller and
-disable/enable them when required:
-- ehci-platform.c has ehci_platform_power_{on,off}
-- xhci-mtk.c has xhci_mtk_phy_{init,exit,power_on,power_off}
-- ohci-platform.c has ohci_platform_power_{on,off}
+Hi Martin,
 
-These drivers are not using the generic devicetree USB device bindings
-yet which were only introduced recently (documentation is available in
-devicetree/bindings/usb/usb-device.txt).
-With this new driver the usb2-phy and usb3-phy can be specified directly
-in the child-node of the corresponding port of the roothub via
-devicetree. This can be extended by not just parsing PHYs (some of the
-other drivers listed above are for example also parsing a list of clocks
-as well) when required.
+This looks like a classic case of cargo-cult copying of the early ARM
+Ltd Realview SMP code, and people really need to understand that is
+not a good implementation to copy.  The Realview platforms are very
+limited in what they can do: there's no power control of the CPU cores,
+and there's no individual reset.  These platforms are evaluation
+platforms for the CPUs, where the CPUs themselves are often "test chips".
+They are not production systems.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/usb/host/Kconfig            |   3 +
- drivers/usb/host/Makefile           |   2 +
- drivers/usb/host/platform-roothub.c | 146 ++++++++++++++++++++++++++++++++++++
- drivers/usb/host/platform-roothub.h |  14 ++++
- 4 files changed, 165 insertions(+)
- create mode 100644 drivers/usb/host/platform-roothub.c
- create mode 100644 drivers/usb/host/platform-roothub.h
+The only way to control the cores on these platforms is via software
+loops such as the holding pen and loops in the hotplug code, since the
+CPUs always have to be executing some code somewhere.  There are other
+issues too which required the boot_lock (to ensure local timer
+calibration worked.)
 
-diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index fa5692dec832..b8b05c786b2a 100644
---- a/drivers/usb/host/Kconfig
-+++ b/drivers/usb/host/Kconfig
-@@ -805,6 +805,9 @@ config USB_HCD_SSB
- 
- 	  If unsure, say N.
- 
-+config USB_PLATFORM_ROOTHUB
-+	bool
-+
- config USB_HCD_TEST_MODE
- 	bool "HCD test mode support"
- 	---help---
-diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
-index cf2691fffcc0..dc817f82d632 100644
---- a/drivers/usb/host/Makefile
-+++ b/drivers/usb/host/Makefile
-@@ -29,6 +29,8 @@ obj-$(CONFIG_USB_WHCI_HCD)	+= whci/
- 
- obj-$(CONFIG_USB_PCI)	+= pci-quirks.o
- 
-+obj-$(CONFIG_USB_PLATFORM_ROOTHUB)	+= platform-roothub.o
-+
- obj-$(CONFIG_USB_EHCI_HCD)	+= ehci-hcd.o
- obj-$(CONFIG_USB_EHCI_PCI)	+= ehci-pci.o
- obj-$(CONFIG_USB_EHCI_HCD_PLATFORM)	+= ehci-platform.o
-diff --git a/drivers/usb/host/platform-roothub.c b/drivers/usb/host/platform-roothub.c
-new file mode 100644
-index 000000000000..84837e42b006
---- /dev/null
-+++ b/drivers/usb/host/platform-roothub.c
-@@ -0,0 +1,146 @@
-+/*
-+ * platform roothub driver - a virtual PHY device which passes all phy_*
-+ * function calls to multiple (actual) PHY devices. This is comes handy when
-+ * initializing all PHYs on a root-hub (to keep them all in the same state).
-+ *
-+ * Copyright (C) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 as
-+ * published by the Free Software Foundation.
-+ *
-+ * You should have received a copy of the GNU General Public License
-+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/list.h>
-+#include <linux/phy/phy.h>
-+#include <linux/of.h>
-+#include <linux/usb/of.h>
-+
-+#include "platform-roothub.h"
-+
-+#define ROOTHUB_PORTNUM		0
-+
-+struct platform_roothub {
-+	struct phy		*phy;
-+	struct list_head	list;
-+};
-+
-+static struct platform_roothub *platform_roothub_alloc(struct device *dev)
-+{
-+	struct platform_roothub *roothub_entry;
-+
-+	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
-+	if (!roothub_entry)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_LIST_HEAD(&roothub_entry->list);
-+
-+	return roothub_entry;
-+}
-+
-+static int platform_roothub_add_phy(struct device *dev,
-+				    struct device_node *port_np,
-+				    const char *con_id, struct list_head *list)
-+{
-+	struct platform_roothub *roothub_entry;
-+	struct phy *phy = devm_of_phy_get(dev, port_np, con_id);
-+
-+	if (IS_ERR_OR_NULL(phy)) {
-+		if (!phy || PTR_ERR(phy) == -ENODEV)
-+			return 0;
-+		else
-+			return PTR_ERR(phy);
-+	}
-+
-+	roothub_entry = platform_roothub_alloc(dev);
-+	if (IS_ERR(roothub_entry))
-+		return PTR_ERR(roothub_entry);
-+
-+	roothub_entry->phy = phy;
-+
-+	list_add_tail(&roothub_entry->list, list);
-+
-+	return 0;
-+}
-+
-+struct platform_roothub *platform_roothub_init(struct device *dev)
-+{
-+	struct device_node *roothub_np, *port_np;
-+	struct platform_roothub *plat_roothub;
-+	int err;
-+
-+	roothub_np = usb_of_get_child_node(dev->of_node, ROOTHUB_PORTNUM);
-+	if (!of_device_is_available(roothub_np))
-+		return NULL;
-+
-+	plat_roothub = platform_roothub_alloc(dev);
-+	if (IS_ERR(plat_roothub))
-+		return plat_roothub;
-+
-+	for_each_available_child_of_node(roothub_np, port_np) {
-+		err = platform_roothub_add_phy(dev, port_np, "usb2-phy",
-+					       &plat_roothub->list);
-+		if (err)
-+			return ERR_PTR(err);
-+
-+		err = platform_roothub_add_phy(dev, port_np, "usb3-phy",
-+					       &plat_roothub->list);
-+		if (err)
-+			return ERR_PTR(err);
-+	}
-+
-+	return plat_roothub;
-+}
-+EXPORT_SYMBOL_GPL(platform_roothub_init);
-+
-+int platform_roothub_power_on(struct platform_roothub *plat_roothub)
-+{
-+	struct platform_roothub *roothub_entry;
-+	struct list_head *head;
-+	int err;
-+
-+	if (!plat_roothub)
-+		return 0;
-+
-+	head = &plat_roothub->list;
-+
-+	list_for_each_entry(roothub_entry, head, list) {
-+		err = phy_init(roothub_entry->phy);
-+		if (err)
-+			goto err_out;
-+
-+		err = phy_power_on(roothub_entry->phy);
-+		if (err) {
-+			phy_exit(roothub_entry->phy);
-+			goto err_out;
-+		}
-+	}
-+
-+	return 0;
-+
-+err_out:
-+	list_for_each_entry_continue_reverse(roothub_entry, head, list) {
-+		phy_power_off(roothub_entry->phy);
-+		phy_exit(roothub_entry->phy);
-+	}
-+
-+	return err;
-+}
-+EXPORT_SYMBOL_GPL(platform_roothub_power_on);
-+
-+void platform_roothub_power_off(struct platform_roothub *plat_roothub)
-+{
-+	struct platform_roothub *roothub_entry;
-+
-+	if (!plat_roothub)
-+		return;
-+
-+	list_for_each_entry_reverse(roothub_entry, &plat_roothub->list, list) {
-+		phy_power_off(roothub_entry->phy);
-+		phy_exit(roothub_entry->phy);
-+	}
-+}
-+EXPORT_SYMBOL_GPL(platform_roothub_power_off);
-diff --git a/drivers/usb/host/platform-roothub.h b/drivers/usb/host/platform-roothub.h
-new file mode 100644
-index 000000000000..bde0bf299e3b
---- /dev/null
-+++ b/drivers/usb/host/platform-roothub.h
-@@ -0,0 +1,14 @@
-+#ifndef USB_HOST_PLATFORM_ROOTHUB_H
-+#define USB_HOST_PLATFORM_ROOTHUB_H
-+
-+struct phy;
-+struct device_node;
-+
-+struct platform_roothub;
-+
-+struct platform_roothub *platform_roothub_init(struct device *dev);
-+
-+int platform_roothub_power_on(struct platform_roothub *plat_roothub);
-+void platform_roothub_power_off(struct platform_roothub *plat_roothub);
-+
-+#endif /* USB_HOST_PLATFORM_ROOTHUB_H */
+None of these issues apply to production SMP platforms, so you likely do
+not need any of this - and I see from your code that you do have power
+and reset controls for the CPUs.  What I'm basically saying here is:
+please rip out the holding pen and boot_lock code from your SMP
+implementation.
+
+If you do need it, please include a detailed explanation why it's
+required - requiring it suggests that the hardware is broken, and
+probably doesn't support hotplug and therefore does not support suspend/
+resume.
+
 -- 
-2.13.2
+RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line: currently at 9.6Mbps down 400kbps up
+according to speedtest.net.
