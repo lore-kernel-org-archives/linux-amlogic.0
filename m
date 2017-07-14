@@ -1,20 +1,40 @@
-From: sjg@chromium.org (Simon Glass)
-Date: Fri, 14 Jul 2017 07:50:22 -0600
-Subject: [PATCH v2 3/4] odroid-c2: enable GPIO
-In-Reply-To: <20170709223006.3998-4-b.galvani@gmail.com>
-References: <20170709223006.3998-1-b.galvani@gmail.com>
- <20170709223006.3998-4-b.galvani@gmail.com>
-Message-ID: <CAPnjgZ0K9B36mO9c_X6fJ=ay94tKTfHePPVbGEU7qvZ=mOc+1A@mail.gmail.com>
+From: davem@davemloft.net (David Miller)
+Date: Fri, 14 Jul 2017 08:13:18 -0700 (PDT)
+Subject: [PATCH net] mdio: mux: fix parsing mux registers outside of
+ the PHY address range
+In-Reply-To: <20170710123523.6625-1-martin.blumenstingl@googlemail.com>
+References: <20170710123523.6625-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170714.081318.505725392656343819.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 9 July 2017 at 16:30, Beniamino Galvani <b.galvani@gmail.com> wrote:
-> GPIOs are now supported on Meson GXBB, enable driver and command in
-> the config.
->
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> ---
->  configs/odroid-c2_defconfig | 2 ++
->  1 file changed, 2 insertions(+)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 10 Jul 2017 14:35:23 +0200
 
-Reviewed-by: Simon Glass <sjg@chromium.org>
+> mdio_mux_init parses the child nodes of the MDIO mux. When using
+> "mdio-mux-mmioreg" the child nodes are describing the register value
+> that is written to switch between the MDIO busses.
+> 
+> The change which makes the error messages more verbose changed the
+> parsing of the "reg" property from a simple of_property_read_u32 call
+> to of_mdio_parse_addr. On a Khadas VIM (based on the Meson GXL SoC,
+> which uses mdio-mux-mmioreg) this prevents registering the MDIO mux
+> (because the "reg" values on the MDIO mux child nodes are 0x2009087f
+> and 0xe40908ff) and leads to the following errors:
+>   mdio-mux-mmioreg c883455c.eth-phy-mux: /soc/periphs at c8834000/eth-phy-mux/mdio at e40908ff PHY address -469169921 is too large
+>   mdio-mux-mmioreg c883455c.eth-phy-mux: Error: Failed to find reg for child /soc/periphs at c8834000/eth-phy-mux/mdio at e40908ff
+>   mdio-mux-mmioreg c883455c.eth-phy-mux: /soc/periphs at c8834000/eth-phy-mux/mdio at 2009087f PHY address 537462911 is too large
+>   mdio-mux-mmioreg c883455c.eth-phy-mux: Error: Failed to find reg for child /soc/periphs at c8834000/eth-phy-mux/mdio at 2009087f
+>   mdio-mux-mmioreg c883455c.eth-phy-mux: Error: No acceptable child buses found
+>   mdio-mux-mmioreg c883455c.eth-phy-mux: failed to register mdio-mux bus /soc/periphs at c8834000/eth-phy-mux
+> (as a result of that ethernet is not working, because the PHY which is
+> connected through the mux' child MDIO bus, which is not being
+> registered).
+> 
+> Fix this by reverting the change from of_mdio_parse_addr to
+> of_mdio_parse_addr.
+> 
+> Fixes: 342fa1964439 ("mdio: mux: make child bus walking more permissive and errors more verbose")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+Applied, thanks.
