@@ -1,25 +1,23 @@
-From: jk@ozlabs.org (Jeremy Kerr)
-Date: Fri, 14 Jul 2017 13:51:12 +0800
-Subject: [PATCH v2 0/3] pwm: add pwm AO on meson gx
-In-Reply-To: <20170706091743.GP16144@ulmo.fritz.box>
-References: <20170608122416.1993-1-jbrunet@baylibre.com>
- <20170706065910.GJ16144@ulmo.fritz.box>
- <1499331740.15362.11.camel@baylibre.com>
- <20170706091743.GP16144@ulmo.fritz.box>
-Message-ID: <62a43763-adf7-e207-4ca0-dfeebe990107@ozlabs.org>
+From: sjg@chromium.org (Simon Glass)
+Date: Fri, 14 Jul 2017 07:50:19 -0600
+Subject: [PATCH v2 1/4] arm: dts: meson: import dts files from Linux 4.12
+In-Reply-To: <20170709223006.3998-2-b.galvani@gmail.com>
+References: <20170709223006.3998-1-b.galvani@gmail.com>
+ <20170709223006.3998-2-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ01UoELp3HtDhok6kmKWVPHUgQBTrGSW2DxK-wMMkcB-A@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Thierry,
+On 9 July 2017 at 16:30, Beniamino Galvani <b.galvani@gmail.com> wrote:
+>
+> Import Amlogic Meson DTS files from Linux kernel version 4.12
+>
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  arch/arm/dts/meson-gx.dtsi            |  97 ++++++++++++++++--
+>  arch/arm/dts/meson-gxbb-odroidc2.dts  |  82 ++++++++++++++-
+>  arch/arm/dts/meson-gxbb.dtsi          | 187 ++++++++++++++++++++++++++++------
+>  include/dt-bindings/clock/gxbb-clkc.h |  24 ++++-
+>  4 files changed, 344 insertions(+), 46 deletions(-)
 
-> I /think/ Jeremy Kerr (To'ed) would be a good person to contact about
-> this.
-> 
-> Jeremy, anything you can do about this?
-
-OK, all sorted. I've updated Jerome's entry in the database to suit.
-
-Cheers,
-
-
-Jeremy
+Reviewed-by: Simon Glass <sjg@chromium.org>
