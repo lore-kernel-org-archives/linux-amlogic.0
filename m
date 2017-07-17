@@ -1,75 +1,157 @@
-From: garsilva@embeddedor.com (Gustavo A. R. Silva)
-Date: Sun, 16 Jul 2017 23:55:57 -0500
-Subject: [PATCH] iio: adc: meson-saradc: add NULL check on
- of_match_device() return value
-In-Reply-To: <20170709190843.0bfa292f@kernel.org>
-References: <20170707064630.GA21945@embeddedgus>
- <CAFBinCBgXAFvLqXP5e-j=UeQVd+foUDqKUNzO8hwQ71tKga1Vg@mail.gmail.com>
- <20170709190843.0bfa292f@kernel.org>
-Message-ID: <96a56ec0-898e-5339-a0aa-81c6f8e96d88@embeddedor.com>
+From: chunfeng.yun@mediatek.com (Chunfeng Yun)
+Date: Mon, 17 Jul 2017 15:21:07 +0800
+Subject: [RFCv2 usb-next 0/3] initialize (multiple) PHYs in xhci-plat
+In-Reply-To: <CAFBinCAw9yaaEO6Z9AdkBaPg9azGH4nqgdgoTir9U0eWZVu1DQ@mail.gmail.com>
+References: <20170713105939.31566-1-martin.blumenstingl@googlemail.com>
+ <1500111231.25536.18.camel@mhfsdcap03>
+ <CAFBinCAw9yaaEO6Z9AdkBaPg9azGH4nqgdgoTir9U0eWZVu1DQ@mail.gmail.com>
+Message-ID: <1500276067.25536.58.camel@mhfsdcap03>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi,
+On Sat, 2017-07-15 at 14:11 +0200, Martin Blumenstingl wrote:
+> Hi,
+> 
+> On Sat, Jul 15, 2017 at 11:33 AM, Chunfeng Yun
+> <chunfeng.yun@mediatek.com> wrote:
+> > Hi Martin,
+> >
+> > On Thu, 2017-07-13 at 12:59 +0200, Martin Blumenstingl wrote:
+> >> This series is the outcome of a discussion with Felipe Balbi,
+> >> see [0] and [1].
+> >> The quick-summary of this is:
+> >> - dwc3 already takes one USB2 and one USB3 PHY and initializes these
+> >>   correct
+> >> - some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
+> >>   ohci-platform.c) do not have a limitation on the number of PHYs - they
+> >>   support one PHY per actual host port
+> >> - Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
+> >>   or three USB2 ports enabled on the internal root-hub. The SoCs also
+> >>   provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
+> >>   internally "connected" to the dwc3 roothub) need to be powered on,
+> >>   otherwise USB devices cannot be enumerated (even if just one PHY is
+> >>   disabled and if the device is plugged into another, enabled port)
+> >>
+> >> In my first attempt to get USB supported on the GXL and GXM SoCs I tried
+> >> to work-around the problem that I could not pass multiple PHYs to the
+> >> dwc3 controller.
+> >> This was rejected by Rob Herring (which was definitely the thing to do in
+> >> my opinion), see [2]
+> >>
+> >> This series adds a new "platform-roothub". This can be configured through
+> >> devicetree by passing a child-node with "reg = <0>" to the USB
+> >> controller. Additionally there has to be a child-node for each port on
+> >> the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
+> >> property. This allows modeling the root-hub in devicetree similar to the
+> >> USB device binding (documented in devicetree/bindings/usb/usb-device.txt)
+> >> This avoids and backwards-compatibility problems (which was a concern
+> >> regardless of the solution, see [3]) since the binding for the root-hub
+> >> was previously not specified (and we're not using the "phys" property of
+> >> the controller, which might have served different purposes before,
+> >> depending on the drivers).
+> >>
+> >> Additionally this integrates the new platform-roothub into xhci-plat.c
+> >> which automatically enables it for the dwc3 driver (in host-mode).
+> >>
+> > How to handle the phy0(one u2phy and one u3phy) when port1 support
+> > dual-role mode? leave them to peripheral side as felipe suggested
+> > before? If so, no port1 node for roothub, is there any problem when
+> > change the port1 to host-only mode?
+> on Amlogic Meson GXL we have the following IP blocks:
+> - 2x USB2 PHYs, some external component has to tell them which mode
+> (host/device) they should operate in
+> - there is an additional (1x) USB3 PHY with built-in OTG detection logic
+> 
+> on Amlogic Meson GXL it could work like this:
+> USB2 and USB3 phy0 can be passed to the root-hub. Additionally the
+> USB2 phy0 could be passed to the USB3 PHY. The USB3 PHY would then
+> tell the USB2 PHY in which mode it should operate.
+> 
+> please note that device mode and OTG support on Amlogic Meson GXL is
+> more complicated, as it uses dwc2 and dwc3 controllers in combination:
+> - dwc3 is reponsible for host-only mode
+> - dwc2 is responsible for device-only mode
+> - OTG detection is done by the USB3 PHY
+> 
+> would you mind sharing a short overview of host/device/OTG support
+> works on Mediatek SoCs? I assume that the Amlogic Meson GXL
+> implementation is quite special, so comparing this with another
+> implementation (for example the Mediatek one) may help spotting
+> potential issues.
+> 
+MTK's mtu3 IP supports at most 5x USB2 phys and 4x USB3 phys. They work
+as following:
 
+1. device mode works as HS only:
 
-On 07/09/2017 01:08 PM, Jonathan Cameron wrote:
-> On Sat, 8 Jul 2017 15:42:46 +0200
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->
->> On Fri, Jul 7, 2017 at 8:46 AM, Gustavo A. R. Silva
->> <garsilva@embeddedor.com> wrote:
->>> Check return value from call to of_match_device()
->>> in order to prevent a NULL pointer dereference.
->>>
->>> In case of NULL print error message and return -ENODEV
->>>
->>> Signed-off-by: Gustavo A. R. Silva <garsilva@embeddedor.com>
->> thanks for finding this. a crash here is a rather theoretical problem
->> (since all compatible strings have their corresponding match data) -
->> but it doesn't hurt either, so:
->>
->> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Applied.
->
+u2phy0 --- dual-role/OTG
 
-Thank you, Jonathan.
+u2phy1 ---|
+          +  U3 host-only
+u3phy0 ---|
 
-> Jonathan
->>
->>
->>> ---
->>>  drivers/iio/adc/meson_saradc.c | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
->>> index 83da50e..07dbcc3 100644
->>> --- a/drivers/iio/adc/meson_saradc.c
->>> +++ b/drivers/iio/adc/meson_saradc.c
->>> @@ -915,6 +915,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
->>>         init_completion(&priv->done);
->>>
->>>         match = of_match_device(meson_sar_adc_of_match, &pdev->dev);
->>> +       if (!match) {
->>> +               dev_err(&pdev->dev, "failed to match device\n");
->>> +               return -ENODEV;
->>> +       }
->>> +
->>>         priv->data = match->data;
->>>
->>>         indio_dev->name = priv->data->name;
->>> --
->>> 2.5.0
->>>
->>>
->>> _______________________________________________
->>> linux-amlogic mailing list
->>> linux-amlogic at lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->> --
->> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
->> the body of a message to majordomo at vger.kernel.org
->> More majordomo info at  http://vger.kernel.org/majordomo-info.html
->
+...
+u2phy4 ---|
+          +  U3 host-only
+u3phy3 ---|
+(e.g. MT8173 supports 2x u2phys and 1x u3phy, u2phy0 can work as
+dual-role mode, u2phy1 & u3phy0 are host-only)
 
--- 
-Gustavo A. R. Silva
+2. device mode works as HS & SS, or host only:
+
+u2phy0 ---|
+          + dual-role or host-only
+u3phy0 ---|
+
+...
+u2phy3 ---|
+          + U3 host-only
+u3phy3 ---|
+
+u2phy4 --- U2 host-only
+(e.g. on MT2701, u2phy0 and u3phy0 work as host-only mode)
+
+mtu3 driver supports host-only, device-only and dual-role mode(use IDDIG
+pin), and will take all phys it needed, include host-only phys; 
+But if just host-only mode is supported, we can skip mtu3 driver and
+make use of xhci-mtk driver directly, then xhci-mtk will take all phys.
+
+> >>
+> >> Changes since RFCv1 at [4]:
+> >> - split the usb-xhci dt-binding documentation into a separate patch
+> >> - fixed a typo ("usb-phy" -> "phys" in the dt-binding example)
+> >> - rebased to apply against latest usb-next
+> >>
+> >>
+> >> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001945.html
+> >> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001947.html
+> >> [2] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001818.html
+> >> [3] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001948.html
+> >> [4] http://marc.info/?l=linux-usb&m=148414866303604&w=2
+> >>
+> >>
+> >> Martin Blumenstingl (3):
+> >>   dt-bindings: usb: add the documentation for USB root-hub
+> >>   usb: host: add a generic platform USB roothub driver
+> >>   usb: host: xhci: plat: integrate the platform-roothub
+> >>
+> >>  .../devicetree/bindings/usb/usb-roothub.txt        |  46 +++++++
+> >>  Documentation/devicetree/bindings/usb/usb-xhci.txt |   7 +
+> >>  drivers/usb/host/Kconfig                           |   4 +
+> >>  drivers/usb/host/Makefile                          |   2 +
+> >>  drivers/usb/host/platform-roothub.c                | 146 +++++++++++++++++++++
+> >>  drivers/usb/host/platform-roothub.h                |  14 ++
+> >>  drivers/usb/host/xhci-plat.c                       |  27 +++-
+> >>  drivers/usb/host/xhci.h                            |   2 +
+> >>  8 files changed, 247 insertions(+), 1 deletion(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/usb/usb-roothub.txt
+> >>  create mode 100644 drivers/usb/host/platform-roothub.c
+> >>  create mode 100644 drivers/usb/host/platform-roothub.h
+> >>
+> >
+> >
+> 
+> 
+> Regards,
+> Martin
