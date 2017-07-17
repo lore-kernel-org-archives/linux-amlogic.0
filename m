@@ -1,46 +1,75 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 16 Jul 2017 16:11:45 +0200
-Subject: [PATCH] ARM64: dts: meson-gx: consistently use the GIC_SPI and IRQ
- type macros
-Message-ID: <20170716141145.30295-1-martin.blumenstingl@googlemail.com>
+From: garsilva@embeddedor.com (Gustavo A. R. Silva)
+Date: Sun, 16 Jul 2017 23:55:57 -0500
+Subject: [PATCH] iio: adc: meson-saradc: add NULL check on
+ of_match_device() return value
+In-Reply-To: <20170709190843.0bfa292f@kernel.org>
+References: <20170707064630.GA21945@embeddedgus>
+ <CAFBinCBgXAFvLqXP5e-j=UeQVd+foUDqKUNzO8hwQ71tKga1Vg@mail.gmail.com>
+ <20170709190843.0bfa292f@kernel.org>
+Message-ID: <96a56ec0-898e-5339-a0aa-81c6f8e96d88@embeddedor.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-the mailbox and ethmac nodes used the magic number "0" instead of the
-GIC_SPI preprocessor macro. Additionally the ethmac used the magic
-number "1" instead of IRQ_TYPE_EDGE_RISING.
-Fix this to make the .dtsi easier to read.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 35b8c88c3220..492e6a24349a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -437,9 +437,9 @@
- 			mailbox: mailbox at 404 {
- 				compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
- 				reg = <0 0x404 0 0x4c>;
--				interrupts = <0 208 IRQ_TYPE_EDGE_RISING>,
--					     <0 209 IRQ_TYPE_EDGE_RISING>,
--					     <0 210 IRQ_TYPE_EDGE_RISING>;
-+				interrupts = <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
-+					     <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
-+					     <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>;
- 				#mbox-cells = <1>;
- 			};
- 		};
-@@ -448,7 +448,7 @@
- 			compatible = "amlogic,meson-gx-dwmac", "amlogic,meson-gxbb-dwmac", "snps,dwmac";
- 			reg = <0x0 0xc9410000 0x0 0x10000
- 			       0x0 0xc8834540 0x0 0x4>;
--			interrupts = <0 8 1>;
-+			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
- 			interrupt-names = "macirq";
- 			status = "disabled";
- 		};
+On 07/09/2017 01:08 PM, Jonathan Cameron wrote:
+> On Sat, 8 Jul 2017 15:42:46 +0200
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+>
+>> On Fri, Jul 7, 2017 at 8:46 AM, Gustavo A. R. Silva
+>> <garsilva@embeddedor.com> wrote:
+>>> Check return value from call to of_match_device()
+>>> in order to prevent a NULL pointer dereference.
+>>>
+>>> In case of NULL print error message and return -ENODEV
+>>>
+>>> Signed-off-by: Gustavo A. R. Silva <garsilva@embeddedor.com>
+>> thanks for finding this. a crash here is a rather theoretical problem
+>> (since all compatible strings have their corresponding match data) -
+>> but it doesn't hurt either, so:
+>>
+>> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Applied.
+>
+
+Thank you, Jonathan.
+
+> Jonathan
+>>
+>>
+>>> ---
+>>>  drivers/iio/adc/meson_saradc.c | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+>>> index 83da50e..07dbcc3 100644
+>>> --- a/drivers/iio/adc/meson_saradc.c
+>>> +++ b/drivers/iio/adc/meson_saradc.c
+>>> @@ -915,6 +915,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+>>>         init_completion(&priv->done);
+>>>
+>>>         match = of_match_device(meson_sar_adc_of_match, &pdev->dev);
+>>> +       if (!match) {
+>>> +               dev_err(&pdev->dev, "failed to match device\n");
+>>> +               return -ENODEV;
+>>> +       }
+>>> +
+>>>         priv->data = match->data;
+>>>
+>>>         indio_dev->name = priv->data->name;
+>>> --
+>>> 2.5.0
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-amlogic mailing list
+>>> linux-amlogic at lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>> --
+>> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
+>> the body of a message to majordomo at vger.kernel.org
+>> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+>
+
 -- 
-2.13.3
+Gustavo A. R. Silva
