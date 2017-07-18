@@ -1,139 +1,180 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 18 Jul 2017 00:22:57 +0200
-Subject: [PATCH 1/2] clk: meson: meson8b: register the built-in reset
- controller
-In-Reply-To: <20170717171329.nddlcslge6u33noc@rob-hp-laptop>
-References: <20170711224939.26267-1-martin.blumenstingl@googlemail.com>
- <20170711224939.26267-2-martin.blumenstingl@googlemail.com>
- <20170717171329.nddlcslge6u33noc@rob-hp-laptop>
-Message-ID: <CAFBinCC5+5wwOckWsrTdNeio+t31TrfRAsaMbrOEP-qZgtEOmg@mail.gmail.com>
+From: chunfeng.yun@mediatek.com (Chunfeng Yun)
+Date: Tue, 18 Jul 2017 09:40:58 +0800
+Subject: [RFCv2 usb-next 0/3] initialize (multiple) PHYs in xhci-plat
+In-Reply-To: <CAFBinCA8o0DzExJOKdh_7zmfJhLwu_hsAHp_POyNO7-ifdPUqQ@mail.gmail.com>
+References: <20170713105939.31566-1-martin.blumenstingl@googlemail.com>
+ <1500111231.25536.18.camel@mhfsdcap03>
+ <CAFBinCAw9yaaEO6Z9AdkBaPg9azGH4nqgdgoTir9U0eWZVu1DQ@mail.gmail.com>
+ <1500276067.25536.58.camel@mhfsdcap03>
+ <CAFBinCA8o0DzExJOKdh_7zmfJhLwu_hsAHp_POyNO7-ifdPUqQ@mail.gmail.com>
+Message-ID: <1500342058.25536.74.camel@mhfsdcap03>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Rob,
-
-On Mon, Jul 17, 2017 at 7:13 PM, Rob Herring <robh@kernel.org> wrote:
-> On Wed, Jul 12, 2017 at 12:49:38AM +0200, Martin Blumenstingl wrote:
->> The clock controller has a reset controller embedded. A large part of
->> the HHI_SYS_CPU_CLK_CNTL0 register contains reset bits. However, most of
->> them are only used by u-boot (as these are probably dangerous to use
->> when Linux is running).
->
-> u-boot reads DT's. The DT should be defined for the h/w, not what you
-> want for Linux today.
-OK, that matches with your comment regarding splitting the patch below
-
->> Bits 27:24 are interesting though: these are the CPUx core soft reset
->> bits (bit 24 = CPU0 soft reset, bit 25 = CPU1 ...).
->>
->> This patch implements a reset controller for these bits. The reset
->> controller itself is registered early (through CLK_OF_DECLARE_DRIVER)
->> because it is neede very early in the boot process (to start the
->> secondary CPU cores).
->>
->> Other reset bits in the HHI_SYS_CPU_CLK_CNTL0 register, which are not
->> implemented by this patch (as these may never be used from within the
->> Linux kernel - and I don't want to add dead code):
->> - bit 30: L2 cache soft reset
->> - bit 29: AXI64to128 bridge (A5-to-MMC) soft reset (A5 interface)
->> - bit 28: SCU soft reset
->> - bit 18: A5 Global Reset
->> - bit 17: A5 AXI Soft Reset
->> - bit 16: A5 APB Soft Reset
->> - bit 15: GEN_DIV_SOFT_RESET
->> - bit 14: SOFT_RESET
->>
->> All information was taken from the public S805 Datasheet and Amlogic's
->> vendor GPL kernel sources. This patch is based on an earlier version
->> submitted by Carlo Caione.
->>
->> Suggested-by: Carlo Caione <carlo@endlessm.com>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  .../bindings/clock/amlogic,meson8b-clkc.txt        |   7 +-
->
-> It's preferred to split bindings to a separate patch. Given all the
-> commentary about Linux, I'd suggest you do that here (so the Linux
-> details are gone from the binding patch).
-you are right - I'll split this into a dt-bindings and a clk driver
-patch and keep the commit messages appropriate for each patch
-
->>  drivers/clk/meson/Kconfig                          |   1 +
->>  drivers/clk/meson/meson8b.c                        | 109 ++++++++++++++++++---
->>  drivers/clk/meson/meson8b.h                        |   1 +
->>  4 files changed, 105 insertions(+), 13 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
->> index 606da38c0959..6f444e3867a0 100644
->> --- a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
->> @@ -16,18 +16,23 @@ Required Properties:
->>          mapped region.
->>
->>  - #clock-cells: should be 1.
->> +- #reset-cells: should be 1.
->>
->>  Each clock is assigned an identifier and client nodes can use this identifier
->>  to specify the clock which they consume. All available clocks are defined as
->>  preprocessor macros in the dt-bindings/clock/meson8b-clkc.h header and can be
->>  used in device tree sources.
->>
->> +The clock controller provides a (soft) reset line for each CPU core. Valid
->> +reset lines are 0, 1, 2 and 3 (one for each CPU core).
->
-> I suspect you would have different numbering if you enumerate all the
-> possible resets. Is it just this one register that has reset bits? If
-> so, I'd suggest using the bit position as the cell values. If not, well,
-> just enumerate them all.
-there are more resets in this register area:
-- "AXI64to128 bridge (A5-to-MMC) soft reset (MMC interface)": bit 30
-in HHI_SYS_CPU_CLK_CNTL1
-- SOFT_RESET: bit 15 in HHI_VID_CLK_CNTL
-- some more bits with "reset" in their name (CLK_DIV_RESET = bit 17 in
-HHI_VID_CLK_DIV, and four more in HHI_VID_DIVIDER_CNTL:
-SOFT_RESET_POST, SOFT_RESET_PRE, RESET_N_POST, RESET_N_PRE)
-
-Carlo's original patch added #defines (RST_CORE0...RST_CORE3) for each
-CPU reset bit.
-Arnd (I CC'ed him in this mail) suggested to skip the defines, see [0]
-- which is what I did with this patch.
-
-by looking at Amlogic's u-boot sources I can see that the following
-reset bits are used:
-- bits 30:28 and 18:16 from HHI_SYS_CPU_CLK_CNTL0 and bit 30 from
-HHI_SYS_CPU_CLK_CNTL1 are used during Meson8b system suspend/wakeup
-from suspend
-- the four resets from HHI_VID_DIVIDER_CNTL are used to setup the "vid PLL div"
-
-that leaves the following reset bits unused (hidden somewhere deep in the code):
-- HHI_VID_CLK_CNTL bit 15 is used in Meson6's u-boot code - but only
-in some #if 0'ed blocks
-- SOFT_RESET: bit 15 in HHI_VID_CLK_CNTL
-- bit 15:14 in HHI_SYS_CPU_CLK_CNTL0
-
-so if you want I can add more reset bits I found to the driver and
-introduce a #define for each reset.
-I guess this would be find for Arnd as well (please speak up if it isn't).
-however, I would only do this for the reset bits for which I could
-find a consumer in Amlogic's vendor GPL kernel/u-boot code (as there's
-not a lot documentation available, and I don't like guessing register
-bit purposes based on a 12-character description from a stripped down
-version of the SoC datasheet).
-
->> +
->>  Example: Clock controller node:
->>
->>       clkc: clock-controller at c1104000 {
->> -             #clock-cells = <1>;
->>               compatible = "amlogic,meson8b-clkc";
->>               reg = <0xc1108000 0x4>, <0xc1104000 0x460>;
->> +             #clock-cells = <1>;
->> +             #reset-cells = <1>;
->>       };
->>
->>
-
-Regards,
-Martin
-
-[0] http://lists.infradead.org/pipermail/linux-arm-kernel/2015-December/390397.html
+Hi,
+On Mon, 2017-07-17 at 11:27 +0200, Martin Blumenstingl wrote:
+> Hi,
+> 
+> On Mon, Jul 17, 2017 at 9:21 AM, Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+> > Hi,
+> > On Sat, 2017-07-15 at 14:11 +0200, Martin Blumenstingl wrote:
+> >> Hi,
+> >>
+> >> On Sat, Jul 15, 2017 at 11:33 AM, Chunfeng Yun
+> >> <chunfeng.yun@mediatek.com> wrote:
+> >> > Hi Martin,
+> >> >
+> >> > On Thu, 2017-07-13 at 12:59 +0200, Martin Blumenstingl wrote:
+> >> >> This series is the outcome of a discussion with Felipe Balbi,
+> >> >> see [0] and [1].
+> >> >> The quick-summary of this is:
+> >> >> - dwc3 already takes one USB2 and one USB3 PHY and initializes these
+> >> >>   correct
+> >> >> - some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
+> >> >>   ohci-platform.c) do not have a limitation on the number of PHYs - they
+> >> >>   support one PHY per actual host port
+> >> >> - Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
+> >> >>   or three USB2 ports enabled on the internal root-hub. The SoCs also
+> >> >>   provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
+> >> >>   internally "connected" to the dwc3 roothub) need to be powered on,
+> >> >>   otherwise USB devices cannot be enumerated (even if just one PHY is
+> >> >>   disabled and if the device is plugged into another, enabled port)
+> >> >>
+> >> >> In my first attempt to get USB supported on the GXL and GXM SoCs I tried
+> >> >> to work-around the problem that I could not pass multiple PHYs to the
+> >> >> dwc3 controller.
+> >> >> This was rejected by Rob Herring (which was definitely the thing to do in
+> >> >> my opinion), see [2]
+> >> >>
+> >> >> This series adds a new "platform-roothub". This can be configured through
+> >> >> devicetree by passing a child-node with "reg = <0>" to the USB
+> >> >> controller. Additionally there has to be a child-node for each port on
+> >> >> the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
+> >> >> property. This allows modeling the root-hub in devicetree similar to the
+> >> >> USB device binding (documented in devicetree/bindings/usb/usb-device.txt)
+> >> >> This avoids and backwards-compatibility problems (which was a concern
+> >> >> regardless of the solution, see [3]) since the binding for the root-hub
+> >> >> was previously not specified (and we're not using the "phys" property of
+> >> >> the controller, which might have served different purposes before,
+> >> >> depending on the drivers).
+> >> >>
+> >> >> Additionally this integrates the new platform-roothub into xhci-plat.c
+> >> >> which automatically enables it for the dwc3 driver (in host-mode).
+> >> >>
+> >> > How to handle the phy0(one u2phy and one u3phy) when port1 support
+> >> > dual-role mode? leave them to peripheral side as felipe suggested
+> >> > before? If so, no port1 node for roothub, is there any problem when
+> >> > change the port1 to host-only mode?
+> >> on Amlogic Meson GXL we have the following IP blocks:
+> >> - 2x USB2 PHYs, some external component has to tell them which mode
+> >> (host/device) they should operate in
+> >> - there is an additional (1x) USB3 PHY with built-in OTG detection logic
+> >>
+> >> on Amlogic Meson GXL it could work like this:
+> >> USB2 and USB3 phy0 can be passed to the root-hub. Additionally the
+> >> USB2 phy0 could be passed to the USB3 PHY. The USB3 PHY would then
+> >> tell the USB2 PHY in which mode it should operate.
+> >>
+> >> please note that device mode and OTG support on Amlogic Meson GXL is
+> >> more complicated, as it uses dwc2 and dwc3 controllers in combination:
+> >> - dwc3 is reponsible for host-only mode
+> >> - dwc2 is responsible for device-only mode
+> >> - OTG detection is done by the USB3 PHY
+> >>
+> >> would you mind sharing a short overview of host/device/OTG support
+> >> works on Mediatek SoCs? I assume that the Amlogic Meson GXL
+> >> implementation is quite special, so comparing this with another
+> >> implementation (for example the Mediatek one) may help spotting
+> >> potential issues.
+> >>
+> > MTK's mtu3 IP supports at most 5x USB2 phys and 4x USB3 phys. They work
+> > as following:
+> thank you for sharing this!
+> 
+> > 1. device mode works as HS only:
+> >
+> > u2phy0 --- dual-role/OTG
+> >
+> > u2phy1 ---|
+> >           +  U3 host-only
+> > u3phy0 ---|
+> >
+> > ...
+> > u2phy4 ---|
+> >           +  U3 host-only
+> > u3phy3 ---|
+> > (e.g. MT8173 supports 2x u2phys and 1x u3phy, u2phy0 can work as
+> > dual-role mode, u2phy1 & u3phy0 are host-only)
+> >
+> > 2. device mode works as HS & SS, or host only:
+> >
+> > u2phy0 ---|
+> >           + dual-role or host-only
+> > u3phy0 ---|
+> >
+> > ...
+> > u2phy3 ---|
+> >           + U3 host-only
+> > u3phy3 ---|
+> >
+> > u2phy4 --- U2 host-only
+> > (e.g. on MT2701, u2phy0 and u3phy0 work as host-only mode)
+> OK, so in both cases only one port (with one u2phy and one u3phy) is
+> dual-role capable
+Yes
+> 
+> > mtu3 driver supports host-only, device-only and dual-role mode(use IDDIG
+> > pin), and will take all phys it needed, include host-only phys;
+> > But if just host-only mode is supported, we can skip mtu3 driver and
+> > make use of xhci-mtk driver directly, then xhci-mtk will take all phys.
+> I see, in your example it's the mtu3
+> (Documentation/devicetree/bindings/usb/mt8173-mtu3.txt) which does the
+> mode switching. I assume that you're doing the host/device mode
+> switching through the extcon phandle (for example together with the
+> extcon-usb-gpio driver).
+> 
+> in you example: can't we *always* describe the roothub via devicetree
+> (just like in my example: [0])?
+> this means that (as you already mentioned) USB host-only support is now covered.
+> to handle dual-role (host/device switching) we now need to pass the
+> dual-role capable PHYs to whatever IP can detect the mode it should
+> operate in (in your case: mtu3, in Amlogic's case: the u3phy with
+> built-in mode detection logic -> the driver for this IP block should
+> call phy_set_mode(phy, PHY_MODE_USB_{HOST,DEVICE,OTG} accordingly).
+> here's a skeleton (stripped-down) of how the .dts could look like:
+> mtu3: usb at 11271000 {
+>     compatible = "mediatek,mt8173-mtu3";
+> ...
+>     /* MT2701 = 2nd example, for MT8173 = 1st example we would skip
+> the u3phy0 */
+>     /* only list the dual role capable PHYs here */
+>     phys = <&u3phy0>, <&u2phy0>;
+>     phy-names = "usb3-phy", "usb2-phy";
+> 
+>     usb_host: xhci at 11270000 {
+>         compatible = "mediatek,mt8173-xhci";
+>         ...
+>         roothub at 0 {
+>             /* includes all PHYs, including the dual role capable ones */
+If here include dual-role capable phys which are also taken by parent
+node(11271000), will cause phy_init/_power_on them twice.
+it seems ok if here include host-only phys, but I need test it.
+If here include host-only phys, there will not be port1 for roothub
+node, maybe it's a problem.
+>         };
+>     };
+> };
+> 
+> do you think that this would work for the Mediatek SoCs?
+> I've seen that the phy-mt65xx-usb3.c PHY driver does not have any
+> .set_mode callback - I assume it's simply because it doesn't need it
+> (as this is either managed by the hardware/IP block internally, or
+> through some firmware/mailbox mechanism).
+Hardware can automatically switch host/device mode by IDDIG pin, but
+also we can manually switch them. Phy driver makes use of auto way.
+> 
+> 
+> Regards,
+> Mart
+> 
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004305.html
