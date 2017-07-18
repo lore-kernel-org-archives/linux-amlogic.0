@@ -1,218 +1,157 @@
-From: chunfeng.yun@mediatek.com (Chunfeng Yun)
-Date: Tue, 18 Jul 2017 18:33:30 +0800
-Subject: [RFCv2 usb-next 0/3] initialize (multiple) PHYs in xhci-plat
-In-Reply-To: <CAFBinCAu9t2arCSE6QgujWw7OtApf0bfQ4hG=wDAtaERS2u0tg@mail.gmail.com>
-References: <20170713105939.31566-1-martin.blumenstingl@googlemail.com>
- <1500111231.25536.18.camel@mhfsdcap03>
- <CAFBinCAw9yaaEO6Z9AdkBaPg9azGH4nqgdgoTir9U0eWZVu1DQ@mail.gmail.com>
- <1500276067.25536.58.camel@mhfsdcap03>
- <CAFBinCA8o0DzExJOKdh_7zmfJhLwu_hsAHp_POyNO7-ifdPUqQ@mail.gmail.com>
- <1500342058.25536.74.camel@mhfsdcap03>
- <CAFBinCAu9t2arCSE6QgujWw7OtApf0bfQ4hG=wDAtaERS2u0tg@mail.gmail.com>
-Message-ID: <1500374010.25536.79.camel@mhfsdcap03>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 18 Jul 2017 13:17:21 +0200
+Subject: [RFC 2/2] mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8
+ and Meson8b SoCs
+In-Reply-To: <CAPDyKFoKaT_3MVF7SrS8bVm7iG=y6K+-R1+YNj=9bTS6qNrcug@mail.gmail.com>
+References: <20170506171857.16492-1-martin.blumenstingl@googlemail.com>
+ <20170506171857.16492-3-martin.blumenstingl@googlemail.com>
+ <CAPDyKFrrSLCjbXO9R4VqPpabiFsbE6_RqR=U7otVF4Ncv0jHjQ@mail.gmail.com>
+ <CAFBinCD3modyyOpi3OY5XLhjX0UCuV+WPY2Z=mdvwdMCyeGoqg@mail.gmail.com>
+ <CAPDyKFptXRPk7mVUiRHf=hECDbeyhTxuf3K1M6NkZcVEF0Enww@mail.gmail.com>
+ <CAFBinCD=uH=oQmWAcsMpxtbJCnJZernZx3XoNaPixUUQ7pk76w@mail.gmail.com>
+ <CAPDyKFrbxMpgDrZXKmrN4fyJWJ_ZML3jPxBs+YDEz=L1kA-BaA@mail.gmail.com>
+ <CAFBinCA-goSsyq7bo=ozPRnOqc8br4KDJJ_Lao5h==Xneh02nw@mail.gmail.com>
+ <CAPDyKFoKaT_3MVF7SrS8bVm7iG=y6K+-R1+YNj=9bTS6qNrcug@mail.gmail.com>
+Message-ID: <CAFBinCBmqkL7dRdRrrtyHJ3KFSaV9DEdQicev0x9t2eUAnhAzA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-07-18 at 10:19 +0200, Martin Blumenstingl wrote:
-> Hi,
-> 
-> On Tue, Jul 18, 2017 at 3:40 AM, Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> > Hi,
-> > On Mon, 2017-07-17 at 11:27 +0200, Martin Blumenstingl wrote:
-> >> Hi,
-> >>
-> >> On Mon, Jul 17, 2017 at 9:21 AM, Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> >> > Hi,
-> >> > On Sat, 2017-07-15 at 14:11 +0200, Martin Blumenstingl wrote:
-> >> >> Hi,
-> >> >>
-> >> >> On Sat, Jul 15, 2017 at 11:33 AM, Chunfeng Yun
-> >> >> <chunfeng.yun@mediatek.com> wrote:
-> >> >> > Hi Martin,
-> >> >> >
-> >> >> > On Thu, 2017-07-13 at 12:59 +0200, Martin Blumenstingl wrote:
-> >> >> >> This series is the outcome of a discussion with Felipe Balbi,
-> >> >> >> see [0] and [1].
-> >> >> >> The quick-summary of this is:
-> >> >> >> - dwc3 already takes one USB2 and one USB3 PHY and initializes these
-> >> >> >>   correct
-> >> >> >> - some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
-> >> >> >>   ohci-platform.c) do not have a limitation on the number of PHYs - they
-> >> >> >>   support one PHY per actual host port
-> >> >> >> - Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
-> >> >> >>   or three USB2 ports enabled on the internal root-hub. The SoCs also
-> >> >> >>   provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
-> >> >> >>   internally "connected" to the dwc3 roothub) need to be powered on,
-> >> >> >>   otherwise USB devices cannot be enumerated (even if just one PHY is
-> >> >> >>   disabled and if the device is plugged into another, enabled port)
-> >> >> >>
-> >> >> >> In my first attempt to get USB supported on the GXL and GXM SoCs I tried
-> >> >> >> to work-around the problem that I could not pass multiple PHYs to the
-> >> >> >> dwc3 controller.
-> >> >> >> This was rejected by Rob Herring (which was definitely the thing to do in
-> >> >> >> my opinion), see [2]
-> >> >> >>
-> >> >> >> This series adds a new "platform-roothub". This can be configured through
-> >> >> >> devicetree by passing a child-node with "reg = <0>" to the USB
-> >> >> >> controller. Additionally there has to be a child-node for each port on
-> >> >> >> the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
-> >> >> >> property. This allows modeling the root-hub in devicetree similar to the
-> >> >> >> USB device binding (documented in devicetree/bindings/usb/usb-device.txt)
-> >> >> >> This avoids and backwards-compatibility problems (which was a concern
-> >> >> >> regardless of the solution, see [3]) since the binding for the root-hub
-> >> >> >> was previously not specified (and we're not using the "phys" property of
-> >> >> >> the controller, which might have served different purposes before,
-> >> >> >> depending on the drivers).
-> >> >> >>
-> >> >> >> Additionally this integrates the new platform-roothub into xhci-plat.c
-> >> >> >> which automatically enables it for the dwc3 driver (in host-mode).
-> >> >> >>
-> >> >> > How to handle the phy0(one u2phy and one u3phy) when port1 support
-> >> >> > dual-role mode? leave them to peripheral side as felipe suggested
-> >> >> > before? If so, no port1 node for roothub, is there any problem when
-> >> >> > change the port1 to host-only mode?
-> >> >> on Amlogic Meson GXL we have the following IP blocks:
-> >> >> - 2x USB2 PHYs, some external component has to tell them which mode
-> >> >> (host/device) they should operate in
-> >> >> - there is an additional (1x) USB3 PHY with built-in OTG detection logic
-> >> >>
-> >> >> on Amlogic Meson GXL it could work like this:
-> >> >> USB2 and USB3 phy0 can be passed to the root-hub. Additionally the
-> >> >> USB2 phy0 could be passed to the USB3 PHY. The USB3 PHY would then
-> >> >> tell the USB2 PHY in which mode it should operate.
-> >> >>
-> >> >> please note that device mode and OTG support on Amlogic Meson GXL is
-> >> >> more complicated, as it uses dwc2 and dwc3 controllers in combination:
-> >> >> - dwc3 is reponsible for host-only mode
-> >> >> - dwc2 is responsible for device-only mode
-> >> >> - OTG detection is done by the USB3 PHY
-> >> >>
-> >> >> would you mind sharing a short overview of host/device/OTG support
-> >> >> works on Mediatek SoCs? I assume that the Amlogic Meson GXL
-> >> >> implementation is quite special, so comparing this with another
-> >> >> implementation (for example the Mediatek one) may help spotting
-> >> >> potential issues.
-> >> >>
-> >> > MTK's mtu3 IP supports at most 5x USB2 phys and 4x USB3 phys. They work
-> >> > as following:
-> >> thank you for sharing this!
-> >>
-> >> > 1. device mode works as HS only:
-> >> >
-> >> > u2phy0 --- dual-role/OTG
-> >> >
-> >> > u2phy1 ---|
-> >> >           +  U3 host-only
-> >> > u3phy0 ---|
-> >> >
-> >> > ...
-> >> > u2phy4 ---|
-> >> >           +  U3 host-only
-> >> > u3phy3 ---|
-> >> > (e.g. MT8173 supports 2x u2phys and 1x u3phy, u2phy0 can work as
-> >> > dual-role mode, u2phy1 & u3phy0 are host-only)
-> >> >
-> >> > 2. device mode works as HS & SS, or host only:
-> >> >
-> >> > u2phy0 ---|
-> >> >           + dual-role or host-only
-> >> > u3phy0 ---|
-> >> >
-> >> > ...
-> >> > u2phy3 ---|
-> >> >           + U3 host-only
-> >> > u3phy3 ---|
-> >> >
-> >> > u2phy4 --- U2 host-only
-> >> > (e.g. on MT2701, u2phy0 and u3phy0 work as host-only mode)
-> >> OK, so in both cases only one port (with one u2phy and one u3phy) is
-> >> dual-role capable
-> > Yes
-> >>
-> >> > mtu3 driver supports host-only, device-only and dual-role mode(use IDDIG
-> >> > pin), and will take all phys it needed, include host-only phys;
-> >> > But if just host-only mode is supported, we can skip mtu3 driver and
-> >> > make use of xhci-mtk driver directly, then xhci-mtk will take all phys.
-> >> I see, in your example it's the mtu3
-> >> (Documentation/devicetree/bindings/usb/mt8173-mtu3.txt) which does the
-> >> mode switching. I assume that you're doing the host/device mode
-> >> switching through the extcon phandle (for example together with the
-> >> extcon-usb-gpio driver).
-> >>
-> >> in you example: can't we *always* describe the roothub via devicetree
-> >> (just like in my example: [0])?
-> >> this means that (as you already mentioned) USB host-only support is now covered.
-> >> to handle dual-role (host/device switching) we now need to pass the
-> >> dual-role capable PHYs to whatever IP can detect the mode it should
-> >> operate in (in your case: mtu3, in Amlogic's case: the u3phy with
-> >> built-in mode detection logic -> the driver for this IP block should
-> >> call phy_set_mode(phy, PHY_MODE_USB_{HOST,DEVICE,OTG} accordingly).
-> >> here's a skeleton (stripped-down) of how the .dts could look like:
-> >> mtu3: usb at 11271000 {
-> >>     compatible = "mediatek,mt8173-mtu3";
-> >> ...
-> >>     /* MT2701 = 2nd example, for MT8173 = 1st example we would skip
-> >> the u3phy0 */
-> >>     /* only list the dual role capable PHYs here */
-> >>     phys = <&u3phy0>, <&u2phy0>;
-> >>     phy-names = "usb3-phy", "usb2-phy";
-> >>
-> >>     usb_host: xhci at 11270000 {
-> >>         compatible = "mediatek,mt8173-xhci";
-> >>         ...
-> >>         roothub at 0 {
-> >>             /* includes all PHYs, including the dual role capable ones */
-> > If here include dual-role capable phys which are also taken by parent
-> > node(11271000), will cause phy_init/_power_on them twice.
-> the PHY framework does ref-counting for all calls [0], so
-> phy_ops.init/power_on will only be called for the first time
-> phy_{init,power_on} is called
-> also phy_ops.exit/power_off is only called when the last consumer
-> calls phy_{exit,power_off}
-Sorry, I forgot it
-> 
-> > it seems ok if here include host-only phys, but I need test it.
-> > If here include host-only phys, there will not be port1 for roothub
-> > node, maybe it's a problem.
-> on Amlogic's GXL SoC it also makes sense to pass the OTG capable USB2
-> PHY to the roothub (remember: the USB3 PHY does mode-detection for the
-> USB2 PHY)
-> this way host-only mode works even if the USB3 PHY driver is not
-> loaded (or the kernel module is unloaded). and it gets even worse: if
-> one of the USB2 PHYs is powered off then host-only mode is broken for
-> the other PHYs as well!
-It's better if all phys are independent 
-> 
-> additionally the device-tree should describe the hardware - and the if
-> the dual-role capable PHYs are controlled by two different IP blocks:
-> why not add them to both (and let the PHY framework or the IP block -
-> like the Mediatek USB PHY IP does - handle this)
-Ok, I will test these patches.
-thanks a lot
-> 
-> >>         };
-> >>     };
-> >> };
-> >>
-> >> do you think that this would work for the Mediatek SoCs?
-> >> I've seen that the phy-mt65xx-usb3.c PHY driver does not have any
-> >> .set_mode callback - I assume it's simply because it doesn't need it
-> >> (as this is either managed by the hardware/IP block internally, or
-> >> through some firmware/mailbox mechanism).
-> > Hardware can automatically switch host/device mode by IDDIG pin, but
-> > also we can manually switch them. Phy driver makes use of auto way.
-> OK, that makes it easy for the driver developers :)
-> 
-> >>
-> >>
-> >> Regards,
-> >> Mart
-> >>
-> >> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004305.html
-> >
-> >
-> 
-> Regards,
-> Martin
-> 
-> [0] http://elixir.free-electrons.com/linux/latest/source/drivers/phy/phy-core.c#L218
+Hi Ulf,
+
+On Wed, Jul 12, 2017 at 3:42 PM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> On 11 July 2017 at 23:23, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> Hi Ulf,
+>>
+>> sorry for the delay, I've been pretty busy.
+>> however, I'll have more time to work in this driver this and next week
+>>
+>> On Mon, Jun 19, 2017 at 1:50 PM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>>>>
+>>>>> [...]
+>>>>>
+>>>>>>>> +       if (!(cmd->flags & MMC_RSP_CRC))
+>>>>>>>> +               send |= MESON_MX_SDIO_SEND_RESP_WITHOUT_CRC7;
+>>>>>>>> +
+>>>>>>>> +       if (cmd->flags & MMC_RSP_BUSY)
+>>>>>>>> +               send |= MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY;
+>>>>>>>
+>>>>>>> In case the controller has HW support of busy detection, please
+>>>>>>> consider to enable MMC_CAP_WAIT_WHILE_BUSY for this driver. Then also
+>>>>>>> assign host->max_busy_timeout a good value.
+>>>>>> the IRQS register has bit 4 (CMD_BUSY) - but apart from that there is
+>>>>>> no other documentation (about timeout values, etc.). the vendor driver
+>>>>>> also neither uses MMC_CAP_WAIT_WHILE_BUSY nor host->max_busy_timeout
+>>>>>> should I leave this as it is?
+>>>>>
+>>>>> Please don't just leave it as is. This is an important thing to get right.
+>>>>>
+>>>>> You should be able to explore this area and see how the controller
+>>>>> behaves without too much of documentation. Regarding timeouts, it may
+>>>>> very well be that the controller don't have a timeout, which is why
+>>>>> you need a software timeout. That's not so uncommon actually.
+>>>> during my experiments I've never seen an interrupt when a command
+>>>> timed out (nor could I find information about a timeout register in
+>>>> the documentation). do you have any pointers (like a previous mail
+>>>> where you've explained) how I can "explore the controller's timeout
+>>>> behavior"?
+>>>
+>>> Sorry, I don't have an pointers.
+>>>
+>>> Anyway. If you do a big erase operation on an SD card, the card should
+>>> signal busy on DAT0 for a rather long time.
+>> erase operation = mount sd card; rm big_file.bin; sync ?
+>> or is there some other way?
+>
+> There is tool called fstrim, maybe you can you that as well.
+>
+> Don't forget that the mount options of the fs also matters of what
+> will happen for the so called discard operations (translates to erase
+> in SD).
+I conducted a series of tests:
+
+(the system boots with / mounted read-only):
+mount -o remount,rw,discard
+dd if=/dev/zero of=test.bin bs=1M count=1k
+
+the actual test:
+rm test.bin; sync
+
+here are the results:
+
+without MMC_CAP_WAIT_WHILE_BUSY, with MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY:
+[ 98.891623] meson_mx_mmc_start_cmd: starting CMD38 with timeout = 33130
+[ 99.341293] meson_mx_mmc_irq: CMD38 IRQS = 0x00000220 (timeout = 33125)
+
+without MMC_CAP_WAIT_WHILE_BUSY, without MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY:
+[ 197.591441] meson_mx_mmc_start_cmd: starting CMD38 with timeout = 4000
+[ 197.591446] meson_mx_mmc_irq: CMD38 IRQS = 0x00000220 (timeout = 4000)
+[ 202.881495] meson_mx_mmc_start_cmd: starting CMD38 with timeout = 30250
+[ 202.881501] meson_mx_mmc_irq: CMD38 IRQS = 0x00000220 (timeout = 30250)
+
+(I think the first one is is some other delete command, the actual rm
+is probably the second one)
+
+with MMC_CAP_WAIT_WHILE_BUSY (mmc->max_busy_timeout = ~0;), with
+MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY:
+[ 65.701441] meson_mx_mmc_start_cmd: starting CMD38 with timeout = 33125
+[ 65.984235] meson_mx_mmc_irq: CMD38 IRQS = 0x00000220 (timeout = 33125)
+
+so in all conditions CMD38 completes in less than 1 second
+the card I'm using is a cheap "Intenso SDHC class 10" with 16GiB: [0]
+
+an additional "fstrim /" didn't result in any CMD38 (because, just
+like you said: the card is mounted with the discard flag)
+
+>>
+>>> You could probably explore how long it takes for the card to respond
+>>> under those circumstances, and try both with and without
+>>> MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY.
+>> so I simply read the card status through sysfs? or would I need to get
+>> some of this information from the controller?
+>> I found that the IRQC register contains a few interesting bits:
+>>     u32 sdio_force_data:6; /*[13:8]
+>>         * Write operation: Data forced by software
+>>         * Read operation: {CLK,CMD,DAT[3:0]}*/
+>> I dumped these while transferring some data, the values seem to be
+>> changing constantly (0x3f, 0x1f, 0x20, ...)
+>> if I interpret those bits correctly then they are the status of the
+>> corresponding pin
+>
+> Okay! So if the controller doesn't fully support HW busy detection,
+> you should at least be able to implement the ->card_busy() host ops,
+> which is used to poll the DAT0 line for busy detection.
+only the DAT0 or DAT3:0?
+the latter is what Amlogic does with their 8-bit bus capable drivers,
+see [1] and [2]
+(meson-gx-mmc.c is the upstream variant of [2] - where we don't
+implement .card_busy or MMC_CAP_WAIT_WHILE_BUSY though)
+
+>>
+>>> Of course you also need to try with and without
+>>> MMC_CAP_WAIT_WHILE_BUSY, as the core may sometimes convert R1B to R1
+>>> responses depending on that cap.
+>> so MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY + MMC_CAP_WAIT_WHILE_BUSY should
+>> go together?
+>> and MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY should not be set when
+>> MMC_CAP_WAIT_WHILE_BUSY isn't?
+>
+> Yeah, something like that.
+>
+> So if you controller fully supports HW busy detection, the driver
+> should set MMC_CAP_WAIT_WHILE_BUSY and then act accordingly when R1B
+> responses are expected.
+could you please have a look at my test results above and let me know
+whether I should do more tests or which implementation you'd prefer
+(from what I understood so far: if our hardware doesn't support
+MMC_CAP_WAIT_WHILE_BUSY then I should implement .card_busy - but what
+about MESON_MX_SDIO_SEND_CHECK_DAT0_BUSY then)?
+
+
+Regards,
+Martin
+
+
+[0] http://intenso.de/multimedia/produktblatt/1343573205_en.pdf
+[1] https://github.com/endlessm/linux-meson/blob/876ccc6ef48f406d8307dd741609c089e6e7e242/drivers/amlogic/mmc/aml_sdhc_m8.c#L2187
+[2] https://github.com/endlessm/linux-s905x/blob/74ef17c59dab367c6040040940b77382a6098a58/drivers/amlogic/mmc/aml_sd_emmc.c#L3024
