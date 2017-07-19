@@ -1,13 +1,17 @@
-From: p.zabel@pengutronix.de (Philipp Zabel)
-Date: Wed, 19 Jul 2017 10:21:21 +0200
+From: laurent.pinchart@ideasonboard.com (Laurent Pinchart)
+Date: Wed, 19 Jul 2017 23:03:17 +0300
 Subject: [PATCH] gpu: Convert to using %pOF instead of full_name
 In-Reply-To: <20170718214339.7774-24-robh@kernel.org>
 References: <20170718214339.7774-24-robh@kernel.org>
-Message-ID: <1500452481.2364.20.camel@pengutronix.de>
+Message-ID: <1822320.HPtxg24hjI@avalon>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-07-18 at 16:43 -0500, Rob Herring wrote:
+Hi Rob,
+
+Thank you for the patch.
+
+On Tuesday 18 Jul 2017 16:43:04 Rob Herring wrote:
 > Now that we have a custom printf format specifier, convert users of
 > full_name to use %pOF instead. This is preparation to remove storing
 > of the full path string for each node.
@@ -51,8 +55,20 @@ On Tue, 2017-07-18 at 16:43 -0500, Rob Herring wrote:
 > Cc: linux-renesas-soc at vger.kernel.org
 > Cc: linux-rockchip at lists.infradead.org
 > ---
+[snip]
+>  drivers/gpu/drm/drm_mipi_dsi.c                  |  6 +++---
+>  drivers/gpu/drm/drm_modes.c                     |  4 ++--
+>  drivers/gpu/drm/drm_of.c                        |  4 ++--
+[snip]
+>  drivers/gpu/drm/panel/panel-lvds.c              | 16 ++++++++--------
+>  drivers/gpu/drm/rcar-du/rcar_du_encoder.c       |  4 ++--
+>  drivers/gpu/drm/rcar-du/rcar_du_kms.c           | 16 ++++++++--------
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+For all the above,
 
-regards
-Philipp
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+-- 
+Regards,
+
+Laurent Pinchart
