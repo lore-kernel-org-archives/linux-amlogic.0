@@ -1,13 +1,13 @@
-From: maxime.ripard@free-electrons.com (Maxime Ripard)
-Date: Wed, 19 Jul 2017 08:23:48 +0200
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Wed, 19 Jul 2017 10:21:21 +0200
 Subject: [PATCH] gpu: Convert to using %pOF instead of full_name
 In-Reply-To: <20170718214339.7774-24-robh@kernel.org>
 References: <20170718214339.7774-24-robh@kernel.org>
-Message-ID: <20170719062348.3epnl4u6vdnkx5cb@flea>
+Message-ID: <1500452481.2364.20.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jul 18, 2017 at 04:43:04PM -0500, Rob Herring wrote:
+On Tue, 2017-07-18 at 16:43 -0500, Rob Herring wrote:
 > Now that we have a custom printf format specifier, convert users of
 > full_name to use %pOF instead. This is preparation to remove storing
 > of the full path string for each node.
@@ -51,45 +51,8 @@ On Tue, Jul 18, 2017 at 04:43:04PM -0500, Rob Herring wrote:
 > Cc: linux-renesas-soc at vger.kernel.org
 > Cc: linux-rockchip at lists.infradead.org
 > ---
->  drivers/gpu/drm/armada/armada_crtc.c            |  3 +--
->  drivers/gpu/drm/armada/armada_drv.c             |  4 ++--
->  drivers/gpu/drm/drm_mipi_dsi.c                  |  6 +++---
->  drivers/gpu/drm/drm_modes.c                     |  4 ++--
->  drivers/gpu/drm/drm_of.c                        |  4 ++--
->  drivers/gpu/drm/exynos/exynos_drm_dsi.c         |  3 +--
->  drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c |  3 +--
->  drivers/gpu/drm/mediatek/mtk_disp_color.c       |  4 ++--
->  drivers/gpu/drm/mediatek/mtk_disp_ovl.c         |  4 ++--
->  drivers/gpu/drm/mediatek/mtk_disp_rdma.c        |  4 ++--
->  drivers/gpu/drm/mediatek/mtk_dpi.c              |  6 +++---
->  drivers/gpu/drm/mediatek/mtk_drm_crtc.c         |  7 +++----
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c     |  6 ++----
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c          | 16 ++++++++--------
->  drivers/gpu/drm/mediatek/mtk_dsi.c              |  4 ++--
->  drivers/gpu/drm/mediatek/mtk_hdmi.c             |  8 ++++----
->  drivers/gpu/drm/meson/meson_drv.c               |  5 ++---
->  drivers/gpu/drm/panel/panel-lvds.c              | 16 ++++++++--------
->  drivers/gpu/drm/rcar-du/rcar_du_encoder.c       |  4 ++--
->  drivers/gpu/drm/rcar-du/rcar_du_kms.c           | 16 ++++++++--------
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.c     |  4 ++--
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.c     |  4 ++--
->  drivers/gpu/drm/stm/ltdc.c                      |  3 +--
->  drivers/gpu/drm/sun4i/sun4i_drv.c               |  9 ++++-----
 
-For sun4i-drm:
-Acked-by: Maxime Ripard <maxime.ripard@free-electrons.com>
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Thanks!
-Maxime
-
--- 
-Maxime Ripard, Free Electrons
-Embedded Linux and Kernel engineering
-http://free-electrons.com
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 801 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170719/025aa192/attachment.sig>
+regards
+Philipp
