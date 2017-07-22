@@ -1,46 +1,53 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 22 Jul 2017 20:58:07 +0200
-Subject: [PATCH v2 3/3] ARM: dts: meson: mark the clock controller also as
+Date: Sat, 22 Jul 2017 20:58:05 +0200
+Subject: [PATCH v2 1/3] dt-bindings: clock: meson8b: describe the embedded
  reset controller
 In-Reply-To: <20170722185807.10504-1-martin.blumenstingl@googlemail.com>
 References: <20170722185807.10504-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170722185807.10504-4-martin.blumenstingl@googlemail.com>
+Message-ID: <20170722185807.10504-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock controller provides a few reset lines as well. Add the
-#reset-cells property so we can pass the CPU soft reset lines to their
-corresponding CPU cores.
+The Amlogic Meson8/Meson8b/Meson8m2 clock controller provides some reset
+lines. These are used for example to boot the secondary CPU cores.
+
+This patch describes the reset controller which is embedded into the
+clock controller on these SoCs.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8.dtsi  | 1 +
- arch/arm/boot/dts/meson8b.dtsi | 1 +
- 2 files changed, 2 insertions(+)
+ Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 6fe6a159e960..b98d44fde6b6 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -168,6 +168,7 @@
- &cbus {
- 	clkc: clock-controller at 4000 {
- 		#clock-cells = <1>;
-+		#reset-cells = <1>;
- 		compatible = "amlogic,meson8-clkc";
- 		reg = <0x8000 0x4>, <0x4000 0x460>;
- 	};
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 8fce13844b0c..bc278da7df0d 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -119,6 +119,7 @@
- &cbus {
- 	clkc: clock-controller at 4000 {
- 		#clock-cells = <1>;
-+		#reset-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
+index 606da38c0959..e1af4764114d 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
++++ b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
+@@ -16,18 +16,24 @@ Required Properties:
+ 	   mapped region.
+ 
+ - #clock-cells: should be 1.
++- #reset-cells: should be 1.
+ 
+ Each clock is assigned an identifier and client nodes can use this identifier
+ to specify the clock which they consume. All available clocks are defined as
+ preprocessor macros in the dt-bindings/clock/meson8b-clkc.h header and can be
+ used in device tree sources.
++This is also valid for the reset lines provided by the clock controller: a
++preprocessor macro for each reset line is defined (in the same header file as
++the clock identifiers).
++
+ 
+ Example: Clock controller node:
+ 
+ 	clkc: clock-controller at c1104000 {
+-		#clock-cells = <1>;
  		compatible = "amlogic,meson8b-clkc";
- 		reg = <0x8000 0x4>, <0x4000 0x460>;
+ 		reg = <0xc1108000 0x4>, <0xc1104000 0x460>;
++		#clock-cells = <1>;
++		#reset-cells = <1>;
  	};
+ 
+ 
 -- 
 2.13.3
