@@ -1,97 +1,144 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 22 Jul 2017 21:19:45 +0200
-Subject: [PATCH v4 6/7] ARM: dts: meson8: add support for booting the
- secondary CPU cores
-In-Reply-To: <20170722191946.22938-1-martin.blumenstingl@googlemail.com>
-References: <20170722191946.22938-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170722191946.22938-7-martin.blumenstingl@googlemail.com>
+From: jic23@kernel.org (Jonathan Cameron)
+Date: Sat, 22 Jul 2017 22:01:23 +0100
+Subject: [PATCH] iio: Convert to using %pOF instead of full_name
+In-Reply-To: <20170718214339.7774-28-robh@kernel.org>
+References: <20170718214339.7774-28-robh@kernel.org>
+Message-ID: <20170722220123.702ab8d9@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Booting the secondary CPU cores involves the following nodes/devices:
-- SCU (Snoop-Control-Unit, for which we already have a DT node)
-- a reset line for each CPU core, provided by the reset-controller
-  which is built into the clock-controller
-- the PMU (power management unit) which controls the power of the CPU
-  cores
-- a range in the SRAM specifically reserved for booting secondary CPU
-  cores
-- the "enable-method" which activates booting the secondary CPU cores
+On Tue, 18 Jul 2017 16:43:08 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-This adds all required nodes and properties to boot the secondary CPU
-cores.
+> Now that we have a custom printf format specifier, convert users of
+> full_name to use %pOF instead. This is preparation to remove storing
+> of the full path string for each node.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Hartmut Knaack <knaack.h@gmx.de>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+> Cc: Carlo Caione <carlo@caione.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: linux-iio at vger.kernel.org
+> Cc: linux-arm-kernel at lists.infradead.org
+> Cc: linux-amlogic at lists.infradead.org
+Applied to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to play with it.
 
-Suggested-by: Carlo Caione <carlo@caione.org>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Thanks,
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index b98d44fde6b6..44515733df29 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -60,6 +60,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x200>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc RESETID_CPU0_SOFT_RESET>;
- 		};
- 
- 		cpu at 201 {
-@@ -67,6 +69,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x201>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc RESETID_CPU1_SOFT_RESET>;
- 		};
- 
- 		cpu at 202 {
-@@ -74,6 +78,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x202>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc RESETID_CPU2_SOFT_RESET>;
- 		};
- 
- 		cpu at 203 {
-@@ -81,6 +87,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x203>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc RESETID_CPU3_SOFT_RESET>;
- 		};
- 	};
- 
-@@ -118,6 +126,11 @@
- }; /* end of / */
- 
- &aobus {
-+	pmu: pmu at e0 {
-+		compatible = "amlogic,meson8-pmu", "syscon";
-+		reg = <0xe0 0x8>;
-+	};
-+
- 	pinctrl_aobus: pinctrl at 84 {
- 		compatible = "amlogic,meson8-aobus-pinctrl";
- 		reg = <0x84 0xc>;
-@@ -249,6 +262,13 @@
- 	};
- };
- 
-+&ahb_sram {
-+	smp-sram at 1ff80 {
-+		compatible = "amlogic,meson8-smp-sram";
-+		reg = <0x1ff80 0x8>;
-+	};
-+};
-+
- &ethmac {
- 	clocks = <&clkc CLKID_ETH>;
- 	clock-names = "stmmaceth";
--- 
-2.13.3
+Jonathan
+> ---
+>  drivers/iio/adc/max9611.c      |  4 ++--
+>  drivers/iio/adc/meson_saradc.c |  8 ++++----
+>  drivers/iio/adc/ti-ads1015.c   | 16 ++++++++--------
+>  drivers/iio/inkern.c           |  4 ++--
+>  4 files changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/max9611.c b/drivers/iio/adc/max9611.c
+> index b0526e4b9530..b1dd17cbce58 100644
+> --- a/drivers/iio/adc/max9611.c
+> +++ b/drivers/iio/adc/max9611.c
+> @@ -549,8 +549,8 @@ static int max9611_probe(struct i2c_client *client,
+>  	ret = of_property_read_u32(of_node, shunt_res_prop, &of_shunt);
+>  	if (ret) {
+>  		dev_err(&client->dev,
+> -			"Missing %s property for %s node\n",
+> -			shunt_res_prop, of_node->full_name);
+> +			"Missing %s property for %pOF node\n",
+> +			shunt_res_prop, of_node);
+>  		return ret;
+>  	}
+>  	max9611->shunt_resistor_uohm = of_shunt;
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index 83da50ed73ab..9dffbb3bf62f 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -572,8 +572,8 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+>  	struct clk_init_data init;
+>  	const char *clk_parents[1];
+> 
+> -	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_div",
+> -				   of_node_full_name(indio_dev->dev.of_node));
+> +	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_div",
+> +				   indio_dev->dev.of_node);
+>  	init.flags = 0;
+>  	init.ops = &clk_divider_ops;
+>  	clk_parents[0] = __clk_get_name(priv->clkin);
+> @@ -591,8 +591,8 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+>  	if (WARN_ON(IS_ERR(priv->adc_div_clk)))
+>  		return PTR_ERR(priv->adc_div_clk);
+> 
+> -	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_en",
+> -				   of_node_full_name(indio_dev->dev.of_node));
+> +	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_en",
+> +				   indio_dev->dev.of_node);
+>  	init.flags = CLK_SET_RATE_PARENT;
+>  	init.ops = &clk_gate_ops;
+>  	clk_parents[0] = __clk_get_name(priv->adc_div_clk);
+> diff --git a/drivers/iio/adc/ti-ads1015.c b/drivers/iio/adc/ti-ads1015.c
+> index 884b8e461b17..7972845b3823 100644
+> --- a/drivers/iio/adc/ti-ads1015.c
+> +++ b/drivers/iio/adc/ti-ads1015.c
+> @@ -505,24 +505,24 @@ static int ads1015_get_channels_config_of(struct i2c_client *client)
+>  		unsigned int data_rate = ADS1015_DEFAULT_DATA_RATE;
+> 
+>  		if (of_property_read_u32(node, "reg", &pval)) {
+> -			dev_err(&client->dev, "invalid reg on %s\n",
+> -				node->full_name);
+> +			dev_err(&client->dev, "invalid reg on %pOF\n",
+> +				node);
+>  			continue;
+>  		}
+> 
+>  		channel = pval;
+>  		if (channel >= ADS1015_CHANNELS) {
+>  			dev_err(&client->dev,
+> -				"invalid channel index %d on %s\n",
+> -				channel, node->full_name);
+> +				"invalid channel index %d on %pOF\n",
+> +				channel, node);
+>  			continue;
+>  		}
+> 
+>  		if (!of_property_read_u32(node, "ti,gain", &pval)) {
+>  			pga = pval;
+>  			if (pga > 6) {
+> -				dev_err(&client->dev, "invalid gain on %s\n",
+> -					node->full_name);
+> +				dev_err(&client->dev, "invalid gain on %pOF\n",
+> +					node);
+>  				of_node_put(node);
+>  				return -EINVAL;
+>  			}
+> @@ -532,8 +532,8 @@ static int ads1015_get_channels_config_of(struct i2c_client *client)
+>  			data_rate = pval;
+>  			if (data_rate > 7) {
+>  				dev_err(&client->dev,
+> -					"invalid data_rate on %s\n",
+> -					node->full_name);
+> +					"invalid data_rate on %pOF\n",
+> +					node);
+>  				of_node_put(node);
+>  				return -EINVAL;
+>  			}
+> diff --git a/drivers/iio/inkern.c b/drivers/iio/inkern.c
+> index da3d06b073bb..617372cc73e6 100644
+> --- a/drivers/iio/inkern.c
+> +++ b/drivers/iio/inkern.c
+> @@ -205,8 +205,8 @@ static struct iio_channel *of_iio_channel_get_by_name(struct device_node *np,
+>  		if (!IS_ERR(chan) || PTR_ERR(chan) == -EPROBE_DEFER)
+>  			break;
+>  		else if (name && index >= 0) {
+> -			pr_err("ERROR: could not get IIO channel %s:%s(%i)\n",
+> -				np->full_name, name ? name : "", index);
+> +			pr_err("ERROR: could not get IIO channel %pOF:%s(%i)\n",
+> +				np, name ? name : "", index);
+>  			return NULL;
+>  		}
+> 
+> --
+> 2.11.0
+> 
