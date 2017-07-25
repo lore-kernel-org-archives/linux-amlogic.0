@@ -1,25 +1,57 @@
-From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Tue, 25 Jul 2017 19:21:47 +0200
-Subject: [U-Boot,v2,4/4] pinctrl: meson: convert to livetree
-In-Reply-To: <20170725004510.GE26163@bill-the-cat>
-References: <20170709223006.3998-5-b.galvani@gmail.com>
- <20170725004510.GE26163@bill-the-cat>
-Message-ID: <20170725172147.GA4095@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 25 Jul 2017 20:51:15 +0200
+Subject: [PATCH] ARM: dts: meson: Fixing L2 cache controller node for
+ Meson8 and Meson8b
+In-Reply-To: <20170725152330.GA11792@ingrassia.epigenesys.com>
+References: <20170725152330.GA11792@ingrassia.epigenesys.com>
+Message-ID: <CAFBinCBZ9BWfZ3rewsM=agJaFvpKNT=bADdTfv=+kV5GbnfT6w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jul 24, 2017 at 08:45:10PM -0400, Tom Rini wrote:
-> On Mon, Jul 10, 2017 at 12:30:06AM +0200, Beniamino Galvani wrote:
-> 
-> > Update the Meson pinctrl/gpio driver to support a live device tree.
-> > 
-> > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> 
-> This does not apply on top of master currently.  Should I wait until
-> some other changes land to apply the whole series?  Or just 1-3 for now?
+Hi Emiliano,
 
-Please apply patches 1, 2, 3 for now. I'll update and resend patch 4
-separately.
+On Tue, Jul 25, 2017 at 5:23 PM, Emiliano Ingrassia
+<ingrassia@epigenesys.com> wrote:
+> Changing address filtering range to support the entire DDR region.
+> The previous range prevents ODROID-C1+ board from booting.
+thanks for the patch!
+could you please explain what issue you are seeing exactly? kernelci
+also has an Odroid-C1 in it's farm and it seems to boot mainline
+(4.13-rc2+) just fine, see: [0]
 
-Thanks,
-Beniamino
+I would like to understand why it's not working for you
+(I do not have an Odroid-C1 board myself, but my EC-100 also comes
+with a Meson8b SoC and 2GiB RAM and it boots fine there also)
+
+> Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> ---
+>  arch/arm/boot/dts/meson8b.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index 72e4f425f190..3f0850cf3403 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -190,7 +190,7 @@
+>  &L2 {
+>         arm,data-latency = <3 3 3>;
+>         arm,tag-latency = <2 2 2>;
+> -       arm,filter-ranges = <0x100000 0xc0000000>;
+> +       arm,filter-ranges = <0x0 0xc0000000>;
+>  };
+>
+>  &saradc {
+> --
+> 2.13.2
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+Regards,
+Martin
+
+
+[0] https://storage.kernelci.org/mainline/master/v4.13-rc2-11-g25f6a53799d6/arm/multi_v7_defconfig/lab-baylibre-seattle/boot-meson8b-odroidc1.html
