@@ -1,359 +1,1103 @@
-From: moore@free.fr (Chris Moore)
-Date: Tue, 25 Jul 2017 12:14:37 +0200
-Subject: Mainline Linux oopses
-Message-ID: <15f3032b-4895-6de7-2854-063a61de8cf7@free.fr>
+From: philippe.cornu@st.com (Philippe CORNU)
+Date: Tue, 25 Jul 2017 10:07:53 +0000
+Subject: [PATCH 7/8] drm: Nuke drm_atomic_helper_connector_dpms
+In-Reply-To: <20170725080122.20548-8-daniel.vetter@ffwll.ch>
+References: <20170725080122.20548-1-daniel.vetter@ffwll.ch>
+ <20170725080122.20548-8-daniel.vetter@ffwll.ch>
+Message-ID: <f5934e89-2fe6-bd83-db3b-924f41d63a00@st.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
 
-I have an Xtreamer mxV Pro S905 TV box which is a clone of the popular 
-KI PLUS boxes.
-I am using the mainline DTS for the Amlogic P201 development board which 
-has similar hardware.
 
-I have been trying mainline Linux since 4.10 and I have always had 
-random oopses during boot.
-Up till now I put this down to "early days" but as they continue with 
-4.13.0-rc2 I thought I should report them.
+On 07/25/2017 10:01 AM, Daniel Vetter wrote:
+> It's dead code, the core handles all this directly now.
+> 
+> The only special case is nouveau and tda988x which used one function
+> for both legacy modeset code and -nv50 atomic world instead of 2
+> vtables. But amounts to exactly the same.
+> 
+> v2: Rebase over the panel/brideg refactorings in stm/ltdc.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Archit Taneja <architt@codeaurora.org>
+> Cc: Andrzej Hajda <a.hajda@samsung.com>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Peter Senna Tschudin <peter.senna@collabora.com>
+> Cc: Martin Donnelly <martin.donnelly@ge.com>
+> Cc: Martyn Welch <martyn.welch@collabora.co.uk>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Inki Dae <inki.dae@samsung.com>
+> Cc: Joonyoung Shim <jy0922.shim@samsung.com>
+> Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
+> Cc: Kyungmin Park <kyungmin.park@samsung.com>
+> Cc: Kukjin Kim <kgene@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Stefan Agner <stefan@agner.ch>
+> Cc: Alison Wang <alison.wang@freescale.com>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: CK Hu <ck.hu@mediatek.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Carlo Caione <carlo@caione.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Cc: Eric Anholt <eric@anholt.net>
+> Cc: Mark Yao <mark.yao@rock-chips.com>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+> Cc: Vincent Abriou <vincent.abriou@st.com>
+> Cc: Yannick Fertre <yannick.fertre@st.com>
+> Cc: Philippe Cornu <philippe.cornu@st.com>
 
-Here are some extracts from boot logs concerning configuration, errors 
-and warnings:-
+Tested-by: Philippe Cornu <philippe.cornu@st.com> (on stm)
 
-...
-[    0.000000] Linux version 4.13.0-rc2 (cmoore at G3258) (gcc version 
-6.3.1 20170404 (Linaro GCC 6.3-2017.05)) #3 SMP PREEMPT Mon Jul 24 
-11:04:53 CEST 2017
-...
-[    0.000000] Machine model: Amlogic Meson GXBB P201 Development Board
-[    0.000000] efi: Getting EFI parameters from FDT:
-[    0.000000] efi: UEFI not found.
-...
-[    0.000000] Kernel command line: console=ttyAML0,115200n8 
-root=/dev/sda2 rootfstype=ext4 rootflags=data=writeback rootwait rw
-...
-[    0.132061] DMI not present or invalid.
-...
-[    0.150465] dmi: Firmware registration failed.
-...
-[    1.243402] dwc2 c9000000.usb: c9000000.usb supply vusb_d not found, 
-using dummy regulator
-[    1.246049] dwc2 c9000000.usb: c9000000.usb supply vusb_a not found, 
-using dummy regulator
-...
-[    1.358393] irq 31: nobody cared (try booting with the "irqpoll" option)
-[    1.359439] CPU: 0 PID: 3 Comm: kworker/0:0 Not tainted 4.13.0-rc2 #3
-[    1.365818] Hardware name: Amlogic Meson GXBB P201 Development Board (DT)
-[    1.372555] Workqueue: events deferred_probe_work_func
-[    1.377634] Call trace:
-[    1.380055] [<ffff000008088390>] dump_backtrace+0x0/0x230
-[    1.385399] [<ffff000008088684>] show_stack+0x14/0x20
-[    1.390403] [<ffff00000894f238>] dump_stack+0x98/0xb8
-[    1.395405] [<ffff000008114248>] __report_bad_irq+0x38/0xe8
-[    1.400923] [<ffff0000081145dc>] note_interrupt+0x214/0x2e8
-[    1.406443] [<ffff000008111844>] handle_irq_event_percpu+0x44/0x58
-[    1.412566] [<ffff0000081118a0>] handle_irq_event+0x48/0x78
-[    1.418087] [<ffff0000081153a0>] handle_fasteoi_irq+0xa0/0x180
-[    1.423866] [<ffff00000811086c>] generic_handle_irq+0x24/0x38
-[    1.429558] [<ffff000008110eec>] __handle_domain_irq+0x5c/0xb8
-[    1.435337] [<ffff00000808162c>] gic_handle_irq+0x54/0xa8
-[    1.440683] Exception stack(0xffff80002c36ade0 to 0xffff80002c36af10)
-[    1.447067] ade0: ffff80002c36ae10 0001000000000000 ffff80002c36af40 
-ffff0000080c64c4
-[    1.454829] ae00: 0000000040000145 ffff000008126a08 0000000000000000 
-ffff000008e8d000
-[    1.462591] ae20: 00000000fffedc42 00008000234da000 000000000624dd2f 
-0000000000000020
-[    1.470354] ae40: 000000006ad40eed 7fffffffffffffff 0000000000000020 
-00000000027f2854
-[    1.478116] ae60: ffff80002c376438 ffff0000089904a0 00000000000004e7 
-0000000000000000
-[    1.485879] ae80: 000000004ad0cf71 00000000000004e7 0000000000000019 
-0000000000000001
-[    1.493641] aea0: 0000000000000007 ffff000008e8d000 ffff000008e91ad8 
-0000000000000000
-[    1.501404] aec0: ffff000008fbf680 ffff80002ac10000 ffff000008e8d000 
-ffff000008e8d000
-[    1.509166] aee0: 0000000000000202 0000000000000040 ffff80002adb9c00 
-ffff80002c36af40
-[    1.516928] af00: ffff0000080c6930 ffff80002c36af40
-[    1.521759] [<ffff0000080827f4>] el1_irq+0xb4/0x128
-[    1.526591] [<ffff0000080c6930>] irq_exit+0xc8/0x100
-[    1.531505] [<ffff000008110ef0>] __handle_domain_irq+0x60/0xb8
-[    1.537284] [<ffff00000808162c>] gic_handle_irq+0x54/0xa8
-[    1.542630] Exception stack(0xffff80002add79b0 to 0xffff80002add7ae0)
-[    1.549013] 79a0: ffff80002a4c789c 0000000000000040
-[    1.556776] 79c0: 0000000000000005 0000000000000000 0000000000000084 
-000000000000000f
-[    1.564539] 79e0: 0000000055555555 0000000000000000 ffff80002a4b3d80 
-0000000000000000
-[    1.572301] 7a00: ffff80002a800270 0000000000000040 0000000000000000 
-2c646e756f662074
-[    1.580064] 7a20: 6420676e69737520 0000000000000006 000000009e732ca1 
-000000004d91aee7
-[    1.587826] 7a40: 0000000000000010 ffff80002a4c7800 ffff80002a4b3d00 
-000000000000001f
-[    1.595589] 7a60: ffff80002a4c7868 ffff80002a4c7820 0000000000000000 
-ffff80002a4c7950
-[    1.603351] 7a80: ffff80002a4c789c 0000000000000040 ffff80002c375ea8 
-ffff80002add7ae0
-[    1.611114] 7aa0: ffff0000081138a0 ffff80002add7ae0 ffff000008966518 
-0000000040000045
-[    1.618876] 7ac0: 000000000000001f ffff80002a4c7868 ffffffffffffffff 
-000000000000001f
-[    1.626639] [<ffff0000080827f4>] el1_irq+0xb4/0x128
-[    1.631471] [<ffff000008966518>] _raw_spin_unlock_irqrestore+0x10/0x48
-[    1.637938] [<ffff000008113be0>] request_threaded_irq+0xe0/0x188
-[    1.643890] [<ffff000008116530>] devm_request_threaded_irq+0x78/0xf0
-[    1.650187] [<ffff0000087024b8>] dwc2_driver_probe+0x1b0/0x4d8
-[    1.655965] [<ffff00000856d0f8>] platform_drv_probe+0x58/0xc0
-[    1.661657] [<ffff00000856b334>] driver_probe_device+0x214/0x2d0
-[    1.667608] [<ffff00000856b53c>] __device_attach_driver+0x9c/0xf8
-[    1.673645] [<ffff000008569694>] bus_for_each_drv+0x5c/0x98
-[    1.679165] [<ffff00000856affc>] __device_attach+0xc4/0x138
-[    1.684685] [<ffff00000856b5f8>] device_initial_probe+0x10/0x18
-[    1.690550] [<ffff00000856a57c>] bus_probe_device+0x94/0xa0
-[    1.696070] [<ffff00000856a9ec>] deferred_probe_work_func+0x74/0xa8
-[    1.702281] [<ffff0000080d8ecc>] process_one_work+0x1ac/0x318
-[    1.707972] [<ffff0000080d9274>] worker_thread+0x23c/0x420
-[    1.713408] [<ffff0000080df0b4>] kthread+0xfc/0x128
-[    1.718237] [<ffff000008082ec0>] ret_from_fork+0x10/0x50
-[    1.723496] handlers:
-[    1.725740] [<ffff000008701850>] dwc2_handle_common_intr
-[    1.731000] Disabling IRQ #31
-[    1.745313] dwc2 c9000000.usb: DWC OTG Controller
-[    1.745349] dwc2 c9000000.usb: new USB bus registered, assigned bus 
-number 1
-[    1.751535] dwc2 c9000000.usb: irq 31, io mem 0xc9000000
-[    1.757318] hub 1-0:1.0: USB hub found
-[    1.760488] hub 1-0:1.0: 1 port detected
-[    1.765351] dwc2 c9100000.usb: c9100000.usb supply vusb_d not found, 
-using dummy regulator
-[    1.772577] dwc2 c9100000.usb: c9100000.usb supply vusb_a not found, 
-using dummy regulator
-...
-[   10.630412] meson-drm d0100000.vpu: Failed to create debugfs directory
-...
+Many thanks
+Philippe :-)
 
-I added irqpoll to the command line as suggested in the boot log above 
-and I got these significant differences:-
-
-...
-[    0.000000] Kernel command line: console=ttyAML0,115200n8 
-root=/dev/sda2 rootfstype=ext4 rootflags=data=writeback rootwait rw irqpoll
-[    0.000000] Misrouted IRQ fixup and polling support enabled
-[    0.000000] This may significantly impact system performance
-...
-[    1.265604] ------------[ cut here ]------------
-[    1.270061] WARNING: CPU: 0 PID: 0 at 
-drivers/mmc/host/meson-gx-mmc.c:739 meson_mmc_irq+0x280/0x290
-[    1.278712] dwc2 c9000000.usb: DWC OTG Controller
-[    1.278740] dwc2 c9000000.usb: new USB bus registered, assigned bus 
-number 1
-[    1.278768] dwc2 c9000000.usb: irq 31, io mem 0xc9000000
-[    1.279315] hub 1-0:1.0: USB hub found
-[    1.279331] hub 1-0:1.0: 1 port detected
-[    1.280300] dwc2 c9100000.usb: c9100000.usb supply vusb_d not found, 
-using dummy regulator
-[    1.280333] dwc2 c9100000.usb: c9100000.usb supply vusb_a not found, 
-using dummy regulator
-[    1.319902] Modules linked in:
-[    1.322924] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 4.13.0-rc2 #3
-[    1.329131] Hardware name: Amlogic Meson GXBB P201 Development Board (DT)
-[    1.335858] task: ffff000008eb2b00 task.stack: ffff000008ea0000
-[    1.341726] PC is at meson_mmc_irq+0x280/0x290
-[    1.346126] LR is at __handle_irq_event_percpu+0x9c/0x128
-[    1.351469] pc : [<ffff0000087dbd80>] lr : [<ffff000008111774>] 
-pstate: 600001c5
-[    1.358800] sp : ffff80002c36add0
-[    1.362077] x29: ffff80002c36add0 x28: ffff000008eb2b00
-[    1.367339] x27: 0000000000000001 x26: ffff000008c5f590
-[    1.372600] x25: ffff000008ec2668 x24: ffff80002afcd200
-[    1.377861] x23: 0000000000000012 x22: ffff80002c36ae9c
-[    1.383122] x21: 0000000000000000 x20: ffff80002afcd200
-[    1.388384] x19: ffff80002a542b00 x18: 0000000000000007
-[    1.393645] x17: 0000000000000001 x16: 0000000000000019
-[    1.398906] x15: 0000000000000033 x14: 000000004b40b7b7
-[    1.404167] x13: 0000000000000000 x12: ffff80002adbe300
-[    1.409429] x11: 0000000000000040 x10: ffff80002a800270
-[    1.414690] x9 : ffff80002a800300 x8 : 0000000000000000
-[    1.419951] x7 : ffff80002afcd200 x6 : ffff80002afcd200
-[    1.425212] x5 : ffff80002a800248 x4 : ffff80002afcd200
-[    1.430474] x3 : 0000000000000000 x2 : ffff0000087dbb00
-[    1.435735] x1 : ffff80002a777580 x0 : 0000000000000012
-[    1.440997] Call trace:
-[    1.443414] Exception stack(0xffff80002c36ac00 to 0xffff80002c36ad30)
-[    1.449796] ac00: ffff80002a542b00 0001000000000000 ffff80002c36add0 
-ffff0000087dbd80
-[    1.457558] ac20: 0000000000000000 0000000000000400 ffff80002c36ac80 
-ffff0000080eed38
-[    1.465321] ac40: ffff80002adafe00 ffff000008e8d000 0000000000000000 
-0000000000000001
-[    1.473083] ac60: ffff80002c36ac80 ffff0000080eeb80 ffff80002adafe00 
-00000000000001a0
-[    1.480845] ac80: ffff80002c36add0 ffff0000080e70f4 ffff80002adbe200 
-0000000000000000
-[    1.488608] aca0: 0000000000000012 ffff80002a777580 ffff0000087dbb00 
-0000000000000000
-[    1.496370] acc0: ffff80002afcd200 ffff80002a800248 ffff80002afcd200 
-ffff80002afcd200
-[    1.504133] ace0: 0000000000000000 ffff80002a800300 ffff80002a800270 
-0000000000000040
-[    1.511895] ad00: ffff80002adbe300 0000000000000000 000000004b40b7b7 
-0000000000000033
-[    1.519657] ad20: 0000000000000019 0000000000000001
-[    1.524489] [<ffff0000087dbd80>] meson_mmc_irq+0x280/0x290
-[    1.529922] [<ffff000008111774>] __handle_irq_event_percpu+0x9c/0x128
-[    1.536305] [<ffff00000811181c>] handle_irq_event_percpu+0x1c/0x58
-[    1.542428] [<ffff0000081118a0>] handle_irq_event+0x48/0x78
-[    1.547948] [<ffff0000081140cc>] try_one_irq+0x94/0xe8
-[    1.553037] [<ffff0000081145a4>] note_interrupt+0x1dc/0x2e8
-[    1.558558] [<ffff000008111844>] handle_irq_event_percpu+0x44/0x58
-[    1.564681] [<ffff0000081118a0>] handle_irq_event+0x48/0x78
-[    1.570202] [<ffff0000081153a0>] handle_fasteoi_irq+0xa0/0x180
-[    1.575980] [<ffff00000811086c>] generic_handle_irq+0x24/0x38
-[    1.581672] [<ffff000008110eec>] __handle_domain_irq+0x5c/0xb8
-[    1.587451] [<ffff00000808162c>] gic_handle_irq+0x54/0xa8
-[    1.592797] Exception stack(0xffff000008ea3dd0 to 0xffff000008ea3f00)
-[    1.599180] 3dc0: 0000000000000000 0000000000000000
-[    1.606943] 3de0: 0000000000000001 0000000000000000 0000000000000000 
-ffff000008ea3f00
-[    1.614705] 3e00: 00008000234da000 0000000000000001 00000000000000c0 
-ffff000008ea3e70
-[    1.622468] 3e20: 0000000000000a00 0000000000000000 ffff80002adbe300 
-0000000000000000
-[    1.630230] 3e40: 000000004b40b7b7 0000000000000033 0000000000000019 
-0000000000000001
-[    1.637993] 3e60: 0000000000000007 ffff000008e8d000 ffff000008ea9df0 
-ffff000008ea9000
-[    1.645756] 3e80: ffff000008e9b3a0 0000000000000000 0000000000000000 
-ffff000008eb2b00
-[    1.653518] 3ea0: 0000000033ef0528 0000000037f67d10 0000000001d90018 
-ffff000008ea3f00
-[    1.661281] 3ec0: ffff000008084adc ffff000008ea3f00 ffff000008084ae0 
-0000000000000045
-[    1.669043] 3ee0: 0000000037f67d10 ffff000008135bec ffffffffffffffff 
-7fffffffffffffff
-[    1.676805] [<ffff0000080827f4>] el1_irq+0xb4/0x128
-[    1.681637] [<ffff000008084ae0>] arch_cpu_idle+0x10/0x18
-[    1.686898] [<ffff0000080fc854>] do_idle+0x10c/0x1d8
-[    1.691813] [<ffff0000080fcab0>] cpu_startup_entry+0x20/0x28
-[    1.697421] [<ffff000008960be8>] rest_init+0xd8/0xe8
-[    1.702338] [<ffff000008d90b4c>] start_kernel+0x384/0x398
-[    1.707683] [<ffff000008d901e0>] __primary_switched+0x64/0x6c
-[    1.713374] ---[ end trace 813001d8fe4efe3f ]---
-...
-[    6.703261] ------------[ cut here ]------------
-[    6.703283] WARNING: CPU: 0 PID: 0 at 
-drivers/mmc/host/meson-gx-mmc.c:739 meson_mmc_irq+0x280/0x290
-[    6.703285] Modules linked in: ip_tables x_tables ipv6
-[    6.703298] CPU: 0 PID: 0 Comm: swapper/0 Tainted: G W       
-4.13.0-rc2 #3
-[    6.703300] Hardware name: Amlogic Meson GXBB P201 Development Board (DT)
-[    6.703303] task: ffff000008eb2b00 task.stack: ffff000008ea0000
-[    6.703306] PC is at meson_mmc_irq+0x280/0x290
-[    6.703312] LR is at __handle_irq_event_percpu+0x9c/0x128
-[    6.703315] pc : [<ffff0000087dbd80>] lr : [<ffff000008111774>] 
-pstate: 600001c5
-[    6.703316] sp : ffff80002c36add0
-[    6.703318] x29: ffff80002c36add0 x28: ffff000008eb2b00
-[    6.703323] x27: 0000000000000001 x26: ffff000008c5f590
-[    6.703327] x25: ffff000008ec2668 x24: ffff80002afcd000
-[    6.703331] x23: 0000000000000011 x22: ffff80002c36ae9c
-[    6.703335] x21: 0000000000000000 x20: ffff80002afcd000
-[    6.703339] x19: ffff80002a546100 x18: 0000000000000000
-[    6.703343] x17: 0000ffffacc6be08 x16: ffff0000082446e8
-[    6.703347] x15: 000000018f8a7c77 x14: 000000018f8ad0c6
-[    6.703351] x13: 0000000000000000 x12: ffff80002a408f00
-[    6.703355] x11: 0000000000000040 x10: ffff80002a800270
-[    6.703358] x9 : ffff80002a8002f8 x8 : 0000000000000000
-[    6.703363] x7 : ffff80002afcd000 x6 : ffff80002afcd000
-[    6.703366] x5 : ffff80002a800248 x4 : ffff80002afcd000
-[    6.703371] x3 : 0000000000000000 x2 : ffff0000087dbb00
-[    6.703375] x1 : ffff80002a554580 x0 : 0000000000000011
-[    6.703379] Call trace:
-[    6.703383] Exception stack(0xffff80002c36ac00 to 0xffff80002c36ad30)
-[    6.703387] ac00: ffff80002a546100 0001000000000000 ffff80002c36add0 
-ffff0000087dbd80
-[    6.703390] ac20: ffff000008e9c000 ffff000008ea9000 0000000000000000 
-ffff80002a4091b0
-[    6.703393] ac40: 0000000000000001 ffff000008eb2b00 0000000000000001 
-ffff80002a4091b0
-[    6.703396] ac60: ffff80002c36ac80 ffff0000080f0b94 ffff80002c36ac80 
-ffff0000080f0b24
-[    6.703400] ac80: ffff80002c36ace0 ffff0000080e582c ffff80002c376400 
-ffff80002c376400
-[    6.703403] aca0: 0000000000000011 ffff80002a554580 ffff0000087dbb00 
-0000000000000000
-[    6.703406] acc0: ffff80002afcd000 ffff80002a800248 ffff80002afcd000 
-ffff80002afcd000
-[    6.703409] ace0: 0000000000000000 ffff80002a8002f8 ffff80002a800270 
-0000000000000040
-[    6.703412] ad00: ffff80002a408f00 0000000000000000 000000018f8ad0c6 
-000000018f8a7c77
-[    6.703415] ad20: ffff0000082446e8 0000ffffacc6be08
-[    6.703419] [<ffff0000087dbd80>] meson_mmc_irq+0x280/0x290
-[    6.703422] [<ffff000008111774>] __handle_irq_event_percpu+0x9c/0x128
-[    6.703426] [<ffff00000811181c>] handle_irq_event_percpu+0x1c/0x58
-[    6.703429] [<ffff0000081118a0>] handle_irq_event+0x48/0x78
-[    6.703433] [<ffff0000081140cc>] try_one_irq+0x94/0xe8
-[    6.703437] [<ffff0000081145a4>] note_interrupt+0x1dc/0x2e8
-[    6.703441] [<ffff000008111844>] handle_irq_event_percpu+0x44/0x58
-[    6.703444] [<ffff0000081118a0>] handle_irq_event+0x48/0x78
-[    6.703449] [<ffff0000081153a0>] handle_fasteoi_irq+0xa0/0x180
-[    6.703452] [<ffff00000811086c>] generic_handle_irq+0x24/0x38
-[    6.703456] [<ffff000008110eec>] __handle_domain_irq+0x5c/0xb8
-[    6.703460] [<ffff00000808162c>] gic_handle_irq+0x54/0xa8
-[    6.703462] Exception stack(0xffff000008ea3d20 to 0xffff000008ea3e50)
-[    6.703465] 3d20: ffff80002c376400 000000000000ad79 0000000000000002 
-00008000234da000
-[    6.703469] 3d40: 0000000000000000 00008000234da000 ffff80002a408f28 
-00000000ffffffff
-[    6.703472] 3d60: ffff000008eb3560 ffff000008ea3e70 0000000000000a00 
-0000000000000000
-[    6.703475] 3d80: ffff80002a408f00 0000000000000000 000000018f8ad0c6 
-000000018f8a7c77
-[    6.703478] 3da0: ffff0000082446e8 0000ffffacc6be08 0000000000000000 
-ffff000008eb2b00
-[    6.703481] 3dc0: ffff80002c376400 ffff000008962278 ffff80002a384000 
-ffff80002a408e00
-[    6.703484] 3de0: 0000000000000001 ffff000008eb3110 0000000000000000 
-0000000037f67d10
-[    6.703487] 3e00: 0000000001d90018 ffff000008ea3e50 ffff0000080e4988 
-ffff000008ea3e50
-[    6.703491] 3e20: ffff000008966560 0000000060000145 ffff000008e8d000 
-ffff000008962acc
-[    6.703493] 3e40: ffffffffffffffff 0000000000000000
-[    6.703496] [<ffff0000080827f4>] el1_irq+0xb4/0x128
-[    6.703502] [<ffff000008966560>] _raw_spin_unlock_irq+0x10/0x48
-[    6.703506] [<ffff000008962278>] __schedule+0x1a0/0x5d8
-[    6.703509] [<ffff000008962acc>] schedule_idle+0x24/0x40
-[    6.703514] [<ffff0000080fc7f8>] do_idle+0xb0/0x1d8
-[    6.703517] [<ffff0000080fcab4>] cpu_startup_entry+0x24/0x28
-[    6.703521] [<ffff000008960be8>] rest_init+0xd8/0xe8
-[    6.703526] [<ffff000008d90b4c>] start_kernel+0x384/0x398
-[    6.703530] [<ffff000008d901e0>] __primary_switched+0x64/0x6c
-[    6.703532] ---[ end trace 813001d8fe4efe40 ]---
-...
-
-I should be grateful for any information on whether these are real 
-problems or if I am doing something wrong.
-If my log extracts are insufficient I should be pleased to supply any 
-missing information.
-
-I am then running Ubuntu 17.04 without an initramfs.
-It works fine headless and is stable even after these oopses.
-However unfortunately I have never been able to get Mali to work on 
-mainline despite trying several recipes.
-If anybody can point me to one that works with 4.13.0-rc2 I should be 
-most grateful.
-
-I now boot from a USB stick as I have fried two UHS-I micro-SD cards 
-during my experiments.
-I suspect that they may have been over-voltaged by my box.
-Has anybody else had this problem?
-
-TIA.
-
-Cheers,
-Chris
+> Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
+> Cc: Chen-Yu Tsai <wens@csie.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: Jyri Sarha <jsarha@ti.com>
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: John Stultz <john.stultz@linaro.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+> Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
+> Cc: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Cc: Yakir Yang <kuankuan.y@gmail.com>
+> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+> Cc: Jose Abreu <Jose.Abreu@synopsys.com>
+> Cc: Romain Perier <romain.perier@collabora.com>
+> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Cc: Xinliang Liu <z.liuxinliang@hisilicon.com>
+> Cc: Alexey Brodkin <abrodkin@synopsys.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Rongrong Zou <zourongrong@gmail.com>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Hai Li <hali@codeaurora.org>
+> Cc: "Noralf Tr?nnes" <noralf@tronnes.org>
+> Cc: linux-arm-kernel at lists.infradead.org
+> Cc: linux-samsung-soc at vger.kernel.org
+> Cc: intel-gfx at lists.freedesktop.org
+> Cc: linux-mediatek at lists.infradead.org
+> Cc: linux-amlogic at lists.infradead.org
+> Cc: nouveau at lists.freedesktop.org
+> Cc: linux-renesas-soc at vger.kernel.org
+> Cc: linux-rockchip at lists.infradead.org
+> Cc: linux-tegra at vger.kernel.org
+> Cc: virtualization at lists.linux-foundation.org
+> Cc: zain wang <wzz@rock-chips.com>
+> Cc: Baoyou Xie <baoyou.xie@linaro.org>
+> Cc: Boris Brezillon <boris.brezillon@free-electrons.com>
+> ---
+>   drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       |  1 -
+>   drivers/gpu/drm/bridge/analogix-anx78xx.c          |  1 -
+>   drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |  1 -
+>   drivers/gpu/drm/bridge/dumb-vga-dac.c              |  1 -
+>   .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |  1 -
+>   drivers/gpu/drm/bridge/nxp-ptn3460.c               |  1 -
+>   drivers/gpu/drm/bridge/panel.c                     |  1 -
+>   drivers/gpu/drm/bridge/parade-ps8622.c             |  1 -
+>   drivers/gpu/drm/bridge/sii902x.c                   |  1 -
+>   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |  1 -
+>   drivers/gpu/drm/bridge/tc358767.c                  |  1 -
+>   drivers/gpu/drm/bridge/ti-tfp410.c                 |  1 -
+>   drivers/gpu/drm/drm_atomic_helper.c                | 79 ----------------------
+>   drivers/gpu/drm/exynos/exynos_drm_dpi.c            |  1 -
+>   drivers/gpu/drm/exynos/exynos_drm_dsi.c            |  1 -
+>   drivers/gpu/drm/exynos/exynos_drm_vidi.c           |  1 -
+>   drivers/gpu/drm/exynos/exynos_hdmi.c               |  1 -
+>   drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |  1 -
+>   drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c   |  1 -
+>   drivers/gpu/drm/i2c/tda998x_drv.c                  | 10 +--
+>   drivers/gpu/drm/i915/intel_crt.c                   |  1 -
+>   drivers/gpu/drm/i915/intel_dp.c                    |  1 -
+>   drivers/gpu/drm/i915/intel_dp_mst.c                |  1 -
+>   drivers/gpu/drm/i915/intel_dsi.c                   |  1 -
+>   drivers/gpu/drm/i915/intel_dvo.c                   |  1 -
+>   drivers/gpu/drm/i915/intel_hdmi.c                  |  1 -
+>   drivers/gpu/drm/i915/intel_lvds.c                  |  1 -
+>   drivers/gpu/drm/i915/intel_sdvo.c                  |  1 -
+>   drivers/gpu/drm/i915/intel_tv.c                    |  1 -
+>   drivers/gpu/drm/imx/imx-ldb.c                      |  1 -
+>   drivers/gpu/drm/imx/imx-tve.c                      |  1 -
+>   drivers/gpu/drm/imx/parallel-display.c             |  1 -
+>   drivers/gpu/drm/mediatek/mtk_dsi.c                 |  1 -
+>   drivers/gpu/drm/mediatek/mtk_hdmi.c                |  1 -
+>   drivers/gpu/drm/meson/meson_venc_cvbs.c            |  1 -
+>   drivers/gpu/drm/msm/dsi/dsi_manager.c              |  1 -
+>   drivers/gpu/drm/msm/edp/edp_connector.c            |  1 -
+>   drivers/gpu/drm/msm/hdmi/hdmi_connector.c          |  1 -
+>   drivers/gpu/drm/msm/mdp/mdp4/mdp4_lvds_connector.c |  1 -
+>   drivers/gpu/drm/mxsfb/mxsfb_out.c                  |  1 -
+>   drivers/gpu/drm/nouveau/nouveau_connector.c        | 12 +---
+>   drivers/gpu/drm/nouveau/nv50_display.c             |  1 -
+>   drivers/gpu/drm/omapdrm/omap_connector.c           |  1 -
+>   drivers/gpu/drm/pl111/pl111_connector.c            |  1 -
+>   drivers/gpu/drm/rcar-du/rcar_du_lvdscon.c          |  1 -
+>   drivers/gpu/drm/rockchip/cdn-dp-core.c             |  1 -
+>   drivers/gpu/drm/rockchip/dw-mipi-dsi.c             |  1 -
+>   drivers/gpu/drm/rockchip/inno_hdmi.c               |  1 -
+>   drivers/gpu/drm/sti/sti_dvo.c                      |  1 -
+>   drivers/gpu/drm/sti/sti_hda.c                      |  1 -
+>   drivers/gpu/drm/sti/sti_hdmi.c                     |  1 -
+>   drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |  1 -
+>   drivers/gpu/drm/sun4i/sun4i_rgb.c                  |  1 -
+>   drivers/gpu/drm/sun4i/sun4i_tv.c                   |  1 -
+>   drivers/gpu/drm/tegra/dsi.c                        |  1 -
+>   drivers/gpu/drm/tegra/hdmi.c                       |  1 -
+>   drivers/gpu/drm/tegra/rgb.c                        |  1 -
+>   drivers/gpu/drm/tegra/sor.c                        |  1 -
+>   drivers/gpu/drm/tilcdc/tilcdc_panel.c              |  1 -
+>   drivers/gpu/drm/tilcdc/tilcdc_tfp410.c             |  1 -
+>   drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c        |  1 -
+>   drivers/gpu/drm/vc4/vc4_hdmi.c                     |  1 -
+>   drivers/gpu/drm/vc4/vc4_vec.c                      |  1 -
+>   drivers/gpu/drm/virtio/virtgpu_display.c           |  1 -
+>   drivers/gpu/drm/zte/zx_hdmi.c                      |  1 -
+>   drivers/gpu/drm/zte/zx_tvenc.c                     |  1 -
+>   drivers/gpu/drm/zte/zx_vga.c                       |  1 -
+>   include/drm/drm_atomic_helper.h                    |  2 -
+>   68 files changed, 3 insertions(+), 164 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> index ff9792d350c8..682c090fa3ed 100644
+> --- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> +++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> @@ -786,7 +786,6 @@ adv7511_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static struct drm_connector_funcs adv7511_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = adv7511_connector_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix-anx78xx.c
+> index dc045e0c32fc..9385eb0b1ee4 100644
+> --- a/drivers/gpu/drm/bridge/analogix-anx78xx.c
+> +++ b/drivers/gpu/drm/bridge/analogix-anx78xx.c
+> @@ -1002,7 +1002,6 @@ static enum drm_connector_status anx78xx_detect(struct drm_connector *connector,
+>   }
+>   
+>   static const struct drm_connector_funcs anx78xx_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = anx78xx_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> index 4c758ed51939..5dd3f1cd074a 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> @@ -1005,7 +1005,6 @@ analogix_dp_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs analogix_dp_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = analogix_dp_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/dumb-vga-dac.c b/drivers/gpu/drm/bridge/dumb-vga-dac.c
+> index 8a52539e618e..de5e7dee7ad6 100644
+> --- a/drivers/gpu/drm/bridge/dumb-vga-dac.c
+> +++ b/drivers/gpu/drm/bridge/dumb-vga-dac.c
+> @@ -92,7 +92,6 @@ dumb_vga_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs dumb_vga_con_funcs = {
+> -	.dpms			= drm_atomic_helper_connector_dpms,
+>   	.detect			= dumb_vga_connector_detect,
+>   	.fill_modes		= drm_helper_probe_single_connector_modes,
+>   	.destroy		= drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c b/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c
+> index 11f11086a68f..7ccadba7c98c 100644
+> --- a/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c
+> +++ b/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c
+> @@ -193,7 +193,6 @@ static enum drm_connector_status ge_b850v3_lvds_detect(
+>   }
+>   
+>   static const struct drm_connector_funcs ge_b850v3_lvds_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = ge_b850v3_lvds_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/nxp-ptn3460.c b/drivers/gpu/drm/bridge/nxp-ptn3460.c
+> index f0b5d0fc8594..d64a3283822a 100644
+> --- a/drivers/gpu/drm/bridge/nxp-ptn3460.c
+> +++ b/drivers/gpu/drm/bridge/nxp-ptn3460.c
+> @@ -238,7 +238,6 @@ static const struct drm_connector_helper_funcs ptn3460_connector_helper_funcs =
+>   };
+>   
+>   static const struct drm_connector_funcs ptn3460_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+> index 685c1a480201..59288b248dc5 100644
+> --- a/drivers/gpu/drm/bridge/panel.c
+> +++ b/drivers/gpu/drm/bridge/panel.c
+> @@ -50,7 +50,6 @@ panel_bridge_connector_helper_funcs = {
+>   };
+>   
+>   static const struct drm_connector_funcs panel_bridge_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/parade-ps8622.c b/drivers/gpu/drm/bridge/parade-ps8622.c
+> index 4f7725d4a309..81198f5e9afa 100644
+> --- a/drivers/gpu/drm/bridge/parade-ps8622.c
+> +++ b/drivers/gpu/drm/bridge/parade-ps8622.c
+> @@ -476,7 +476,6 @@ static const struct drm_connector_helper_funcs ps8622_connector_helper_funcs = {
+>   };
+>   
+>   static const struct drm_connector_funcs ps8622_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+> index 9efb7b8fad57..b1ab4ab09532 100644
+> --- a/drivers/gpu/drm/bridge/sii902x.c
+> +++ b/drivers/gpu/drm/bridge/sii902x.c
+> @@ -124,7 +124,6 @@ sii902x_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs sii902x_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = sii902x_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index 60faf2d2bc6b..91ac849604a8 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -1920,7 +1920,6 @@ static void dw_hdmi_connector_force(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs dw_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = dw_hdmi_connector_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/bridge/tc358767.c b/drivers/gpu/drm/bridge/tc358767.c
+> index 12a35f9c3adc..503252d6a74d 100644
+> --- a/drivers/gpu/drm/bridge/tc358767.c
+> +++ b/drivers/gpu/drm/bridge/tc358767.c
+> @@ -1160,7 +1160,6 @@ static const struct drm_connector_helper_funcs tc_connector_helper_funcs = {
+>   };
+>   
+>   static const struct drm_connector_funcs tc_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
+> index 7ea2a15e8807..acb857030951 100644
+> --- a/drivers/gpu/drm/bridge/ti-tfp410.c
+> +++ b/drivers/gpu/drm/bridge/ti-tfp410.c
+> @@ -102,7 +102,6 @@ tfp410_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs tfp410_con_funcs = {
+> -	.dpms			= drm_atomic_helper_connector_dpms,
+>   	.detect			= tfp410_connector_detect,
+>   	.fill_modes		= drm_helper_probe_single_connector_modes,
+>   	.destroy		= drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index 1ca0dcca6230..877733ae44ac 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -3102,85 +3102,6 @@ int drm_atomic_helper_page_flip_target(struct drm_crtc *crtc,
+>   EXPORT_SYMBOL(drm_atomic_helper_page_flip_target);
+>   
+>   /**
+> - * drm_atomic_helper_connector_dpms() - connector dpms helper implementation
+> - * @connector: affected connector
+> - * @mode: DPMS mode
+> - *
+> - * This is the main helper function provided by the atomic helper framework for
+> - * implementing the legacy DPMS connector interface. It computes the new desired
+> - * &drm_crtc_state.active state for the corresponding CRTC (if the connector is
+> - * enabled) and updates it.
+> - *
+> - * Returns:
+> - * Returns 0 on success, negative errno numbers on failure.
+> - */
+> -int drm_atomic_helper_connector_dpms(struct drm_connector *connector,
+> -				     int mode)
+> -{
+> -	struct drm_mode_config *config = &connector->dev->mode_config;
+> -	struct drm_atomic_state *state;
+> -	struct drm_crtc_state *crtc_state;
+> -	struct drm_crtc *crtc;
+> -	struct drm_connector *tmp_connector;
+> -	struct drm_connector_list_iter conn_iter;
+> -	int ret;
+> -	bool active = false;
+> -	int old_mode = connector->dpms;
+> -
+> -	if (mode != DRM_MODE_DPMS_ON)
+> -		mode = DRM_MODE_DPMS_OFF;
+> -
+> -	connector->dpms = mode;
+> -	crtc = connector->state->crtc;
+> -
+> -	if (!crtc)
+> -		return 0;
+> -
+> -	state = drm_atomic_state_alloc(connector->dev);
+> -	if (!state)
+> -		return -ENOMEM;
+> -
+> -	state->acquire_ctx = crtc->dev->mode_config.acquire_ctx;
+> -retry:
+> -	crtc_state = drm_atomic_get_crtc_state(state, crtc);
+> -	if (IS_ERR(crtc_state)) {
+> -		ret = PTR_ERR(crtc_state);
+> -		goto fail;
+> -	}
+> -
+> -	WARN_ON(!drm_modeset_is_locked(&config->connection_mutex));
+> -
+> -	drm_connector_list_iter_begin(connector->dev, &conn_iter);
+> -	drm_for_each_connector_iter(tmp_connector, &conn_iter) {
+> -		if (tmp_connector->state->crtc != crtc)
+> -			continue;
+> -
+> -		if (tmp_connector->dpms == DRM_MODE_DPMS_ON) {
+> -			active = true;
+> -			break;
+> -		}
+> -	}
+> -	drm_connector_list_iter_end(&conn_iter);
+> -	crtc_state->active = active;
+> -
+> -	ret = drm_atomic_commit(state);
+> -fail:
+> -	if (ret == -EDEADLK)
+> -		goto backoff;
+> -	if (ret != 0)
+> -		connector->dpms = old_mode;
+> -	drm_atomic_state_put(state);
+> -	return ret;
+> -
+> -backoff:
+> -	drm_atomic_state_clear(state);
+> -	drm_atomic_legacy_backoff(state);
+> -
+> -	goto retry;
+> -}
+> -EXPORT_SYMBOL(drm_atomic_helper_connector_dpms);
+> -
+> -/**
+>    * drm_atomic_helper_best_encoder - Helper for
+>    * 	&drm_connector_helper_funcs.best_encoder callback
+>    * @connector: Connector control structure
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_dpi.c b/drivers/gpu/drm/exynos/exynos_drm_dpi.c
+> index 63abcd280fa0..76d80e5de521 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_dpi.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_dpi.c
+> @@ -59,7 +59,6 @@ static void exynos_dpi_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs exynos_dpi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = exynos_dpi_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = exynos_dpi_connector_destroy,
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> index f580be170089..4ea7cc7cb3de 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> @@ -1537,7 +1537,6 @@ static void exynos_dsi_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs exynos_dsi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = exynos_dsi_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = exynos_dsi_connector_destroy,
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_vidi.c b/drivers/gpu/drm/exynos/exynos_drm_vidi.c
+> index cb8a72842537..9186a654c3b5 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_vidi.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_vidi.c
+> @@ -289,7 +289,6 @@ static void vidi_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs vidi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = vidi_detect,
+>   	.destroy = vidi_connector_destroy,
+> diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/exynos/exynos_hdmi.c
+> index c953927fb0cb..0e2a472c3021 100644
+> --- a/drivers/gpu/drm/exynos/exynos_hdmi.c
+> +++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
+> @@ -835,7 +835,6 @@ static void hdmi_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = hdmi_detect,
+>   	.destroy = hdmi_connector_destroy,
+> diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c
+> index dcbf3c06e1d8..edd7d8127d19 100644
+> --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c
+> +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c
+> @@ -63,7 +63,6 @@ static const struct drm_connector_funcs fsl_dcu_drm_connector_funcs = {
+>   	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+>   	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+>   	.destroy = fsl_dcu_drm_connector_destroy,
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   };
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c
+> index 12a18557c5fd..ec4dd9df9150 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c
+> @@ -47,7 +47,6 @@ static const struct drm_connector_helper_funcs
+>   };
+>   
+>   static const struct drm_connector_funcs hibmc_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/i2c/tda998x_drv.c b/drivers/gpu/drm/i2c/tda998x_drv.c
+> index d1e7ac540199..54e3255dde13 100644
+> --- a/drivers/gpu/drm/i2c/tda998x_drv.c
+> +++ b/drivers/gpu/drm/i2c/tda998x_drv.c
+> @@ -969,14 +969,6 @@ static int tda998x_audio_codec_init(struct tda998x_priv *priv,
+>   
+>   /* DRM connector functions */
+>   
+> -static int tda998x_connector_dpms(struct drm_connector *connector, int mode)
+> -{
+> -	if (drm_core_check_feature(connector->dev, DRIVER_ATOMIC))
+> -		return drm_atomic_helper_connector_dpms(connector, mode);
+> -	else
+> -		return drm_helper_connector_dpms(connector, mode);
+> -}
+> -
+>   static int tda998x_connector_fill_modes(struct drm_connector *connector,
+>   					uint32_t maxX, uint32_t maxY)
+>   {
+> @@ -1014,7 +1006,7 @@ static void tda998x_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs tda998x_connector_funcs = {
+> -	.dpms = tda998x_connector_dpms,
+> +	.dpms = drm_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.fill_modes = tda998x_connector_fill_modes,
+>   	.detect = tda998x_connector_detect,
+> diff --git a/drivers/gpu/drm/i915/intel_crt.c b/drivers/gpu/drm/i915/intel_crt.c
+> index 84c3a6dc7c2a..70e0ff41070c 100644
+> --- a/drivers/gpu/drm/i915/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/intel_crt.c
+> @@ -802,7 +802,6 @@ void intel_crt_reset(struct drm_encoder *encoder)
+>    */
+>   
+>   static const struct drm_connector_funcs intel_crt_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.late_register = intel_connector_register,
+>   	.early_unregister = intel_connector_unregister,
+> diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/intel_dp.c
+> index 19b082ea57ef..76c8a0bd17f9 100644
+> --- a/drivers/gpu/drm/i915/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/intel_dp.c
+> @@ -5007,7 +5007,6 @@ void intel_dp_encoder_reset(struct drm_encoder *encoder)
+>   }
+>   
+>   static const struct drm_connector_funcs intel_dp_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.force = intel_dp_force,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.atomic_get_property = intel_digital_connector_atomic_get_property,
+> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+> index 59a6dfd48ed4..58568559711a 100644
+> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+> @@ -346,7 +346,6 @@ intel_dp_mst_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs intel_dp_mst_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = intel_dp_mst_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.late_register = intel_connector_register,
+> diff --git a/drivers/gpu/drm/i915/intel_dsi.c b/drivers/gpu/drm/i915/intel_dsi.c
+> index 375e7cfcf207..b0b3adf016f8 100644
+> --- a/drivers/gpu/drm/i915/intel_dsi.c
+> +++ b/drivers/gpu/drm/i915/intel_dsi.c
+> @@ -1653,7 +1653,6 @@ static const struct drm_connector_helper_funcs intel_dsi_connector_helper_funcs
+>   };
+>   
+>   static const struct drm_connector_funcs intel_dsi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.late_register = intel_connector_register,
+>   	.early_unregister = intel_connector_unregister,
+>   	.destroy = intel_dsi_connector_destroy,
+> diff --git a/drivers/gpu/drm/i915/intel_dvo.c b/drivers/gpu/drm/i915/intel_dvo.c
+> index 6b1970542911..baf369d2de30 100644
+> --- a/drivers/gpu/drm/i915/intel_dvo.c
+> +++ b/drivers/gpu/drm/i915/intel_dvo.c
+> @@ -344,7 +344,6 @@ static void intel_dvo_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs intel_dvo_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = intel_dvo_detect,
+>   	.late_register = intel_connector_register,
+>   	.early_unregister = intel_connector_unregister,
+> diff --git a/drivers/gpu/drm/i915/intel_hdmi.c b/drivers/gpu/drm/i915/intel_hdmi.c
+> index 3074190b9455..2ef1ee85129d 100644
+> --- a/drivers/gpu/drm/i915/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/intel_hdmi.c
+> @@ -1761,7 +1761,6 @@ static void intel_hdmi_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs intel_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = intel_hdmi_detect,
+>   	.force = intel_hdmi_force,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/i915/intel_lvds.c b/drivers/gpu/drm/i915/intel_lvds.c
+> index 6579299f5d00..61d557948e21 100644
+> --- a/drivers/gpu/drm/i915/intel_lvds.c
+> +++ b/drivers/gpu/drm/i915/intel_lvds.c
+> @@ -595,7 +595,6 @@ static const struct drm_connector_helper_funcs intel_lvds_connector_helper_funcs
+>   };
+>   
+>   static const struct drm_connector_funcs intel_lvds_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = intel_lvds_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.atomic_get_property = intel_digital_connector_atomic_get_property,
+> diff --git a/drivers/gpu/drm/i915/intel_sdvo.c b/drivers/gpu/drm/i915/intel_sdvo.c
+> index a8eee1984ddf..bea8152ae859 100644
+> --- a/drivers/gpu/drm/i915/intel_sdvo.c
+> +++ b/drivers/gpu/drm/i915/intel_sdvo.c
+> @@ -2193,7 +2193,6 @@ intel_sdvo_connector_duplicate_state(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs intel_sdvo_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = intel_sdvo_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.atomic_get_property = intel_sdvo_connector_atomic_get_property,
+> diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/intel_tv.c
+> index e4ef2919b682..906893c006d8 100644
+> --- a/drivers/gpu/drm/i915/intel_tv.c
+> +++ b/drivers/gpu/drm/i915/intel_tv.c
+> @@ -1407,7 +1407,6 @@ intel_tv_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs intel_tv_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.late_register = intel_connector_register,
+>   	.early_unregister = intel_connector_unregister,
+>   	.destroy = intel_tv_destroy,
+> diff --git a/drivers/gpu/drm/imx/imx-ldb.c b/drivers/gpu/drm/imx/imx-ldb.c
+> index 8b05ecb8fdef..56dd7a9a8e25 100644
+> --- a/drivers/gpu/drm/imx/imx-ldb.c
+> +++ b/drivers/gpu/drm/imx/imx-ldb.c
+> @@ -389,7 +389,6 @@ static int imx_ldb_encoder_atomic_check(struct drm_encoder *encoder,
+>   
+>   
+>   static const struct drm_connector_funcs imx_ldb_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = imx_drm_connector_destroy,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/imx/imx-tve.c b/drivers/gpu/drm/imx/imx-tve.c
+> index 4826bb781723..bc27c2699464 100644
+> --- a/drivers/gpu/drm/imx/imx-tve.c
+> +++ b/drivers/gpu/drm/imx/imx-tve.c
+> @@ -341,7 +341,6 @@ static int imx_tve_atomic_check(struct drm_encoder *encoder,
+>   }
+>   
+>   static const struct drm_connector_funcs imx_tve_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = imx_drm_connector_destroy,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/imx/parallel-display.c b/drivers/gpu/drm/imx/parallel-display.c
+> index 8aca20209cb8..8def97d75030 100644
+> --- a/drivers/gpu/drm/imx/parallel-display.c
+> +++ b/drivers/gpu/drm/imx/parallel-display.c
+> @@ -135,7 +135,6 @@ static int imx_pd_encoder_atomic_check(struct drm_encoder *encoder,
+>   }
+>   
+>   static const struct drm_connector_funcs imx_pd_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = imx_drm_connector_destroy,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> index a31bd2a82de5..7e5e24c2152a 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> @@ -766,7 +766,6 @@ static const struct drm_encoder_helper_funcs mtk_dsi_encoder_helper_funcs = {
+>   };
+>   
+>   static const struct drm_connector_funcs mtk_dsi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> index f2437cd1e0f9..690c67507cbc 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> @@ -1261,7 +1261,6 @@ static struct drm_encoder *mtk_hdmi_conn_best_enc(struct drm_connector *conn)
+>   }
+>   
+>   static const struct drm_connector_funcs mtk_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = hdmi_conn_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = hdmi_conn_destroy,
+> diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+> index 00775b397dba..79d95ca8a0c0 100644
+> --- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
+> +++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+> @@ -118,7 +118,6 @@ static int meson_cvbs_connector_mode_valid(struct drm_connector *connector,
+>   }
+>   
+>   static const struct drm_connector_funcs meson_cvbs_connector_funcs = {
+> -	.dpms			= drm_atomic_helper_connector_dpms,
+>   	.detect			= meson_cvbs_connector_detect,
+>   	.fill_modes		= drm_helper_probe_single_connector_modes,
+>   	.destroy		= meson_cvbs_connector_destroy,
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_manager.c b/drivers/gpu/drm/msm/dsi/dsi_manager.c
+> index a879ffa534b4..855248132b2b 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_manager.c
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_manager.c
+> @@ -626,7 +626,6 @@ static void dsi_mgr_bridge_mode_set(struct drm_bridge *bridge,
+>   }
+>   
+>   static const struct drm_connector_funcs dsi_mgr_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = dsi_mgr_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = dsi_mgr_connector_destroy,
+> diff --git a/drivers/gpu/drm/msm/edp/edp_connector.c b/drivers/gpu/drm/msm/edp/edp_connector.c
+> index 5960628ceb93..6f3fc6b0f0a3 100644
+> --- a/drivers/gpu/drm/msm/edp/edp_connector.c
+> +++ b/drivers/gpu/drm/msm/edp/edp_connector.c
+> @@ -92,7 +92,6 @@ static int edp_connector_mode_valid(struct drm_connector *connector,
+>   }
+>   
+>   static const struct drm_connector_funcs edp_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = edp_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = edp_connector_destroy,
+> diff --git a/drivers/gpu/drm/msm/hdmi/hdmi_connector.c b/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
+> index a2515b466ce5..71536d9c7fe8 100644
+> --- a/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
+> +++ b/drivers/gpu/drm/msm/hdmi/hdmi_connector.c
+> @@ -407,7 +407,6 @@ static int msm_hdmi_connector_mode_valid(struct drm_connector *connector,
+>   }
+>   
+>   static const struct drm_connector_funcs hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = hdmi_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = hdmi_connector_destroy,
+> diff --git a/drivers/gpu/drm/msm/mdp/mdp4/mdp4_lvds_connector.c b/drivers/gpu/drm/msm/mdp/mdp4/mdp4_lvds_connector.c
+> index 353429b05733..e3b1c86b7aae 100644
+> --- a/drivers/gpu/drm/msm/mdp/mdp4/mdp4_lvds_connector.c
+> +++ b/drivers/gpu/drm/msm/mdp/mdp4/mdp4_lvds_connector.c
+> @@ -91,7 +91,6 @@ static int mdp4_lvds_connector_mode_valid(struct drm_connector *connector,
+>   }
+>   
+>   static const struct drm_connector_funcs mdp4_lvds_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = mdp4_lvds_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = mdp4_lvds_connector_destroy,
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_out.c b/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> index f7d729aa09bd..e5edf016a439 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> @@ -74,7 +74,6 @@ static void mxsfb_panel_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs mxsfb_panel_connector_funcs = {
+> -	.dpms			= drm_atomic_helper_connector_dpms,
+>   	.detect			= mxsfb_panel_connector_detect,
+>   	.fill_modes		= drm_helper_probe_single_connector_modes,
+>   	.destroy		= mxsfb_panel_connector_destroy,
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> index 2468e81918fd..5137155bf3c0 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> @@ -1072,17 +1072,9 @@ nouveau_connector_helper_funcs = {
+>   	.best_encoder = nouveau_connector_best_encoder,
+>   };
+>   
+> -static int
+> -nouveau_connector_dpms(struct drm_connector *connector, int mode)
+> -{
+> -	if (drm_drv_uses_atomic_modeset(connector->dev))
+> -		return drm_atomic_helper_connector_dpms(connector, mode);
+> -	return drm_helper_connector_dpms(connector, mode);
+> -}
+> -
+>   static const struct drm_connector_funcs
+>   nouveau_connector_funcs = {
+> -	.dpms = nouveau_connector_dpms,
+> +	.dpms = drm_helper_connector_dpms,
+>   	.reset = nouveau_conn_reset,
+>   	.detect = nouveau_connector_detect,
+>   	.force = nouveau_connector_force,
+> @@ -1097,7 +1089,7 @@ nouveau_connector_funcs = {
+>   
+>   static const struct drm_connector_funcs
+>   nouveau_connector_funcs_lvds = {
+> -	.dpms = nouveau_connector_dpms,
+> +	.dpms = drm_helper_connector_dpms,
+>   	.reset = nouveau_conn_reset,
+>   	.detect = nouveau_connector_detect_lvds,
+>   	.force = nouveau_connector_force,
+> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+> index 80a96eb08bbf..d442def6c965 100644
+> --- a/drivers/gpu/drm/nouveau/nv50_display.c
+> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
+> @@ -3118,7 +3118,6 @@ nv50_mstc_destroy(struct drm_connector *connector)
+>   
+>   static const struct drm_connector_funcs
+>   nv50_mstc = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = nouveau_conn_reset,
+>   	.detect = nv50_mstc_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/omapdrm/omap_connector.c b/drivers/gpu/drm/omapdrm/omap_connector.c
+> index c24b6b783e9a..d1ec76ef5cc6 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_connector.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_connector.c
+> @@ -195,7 +195,6 @@ static int omap_connector_mode_valid(struct drm_connector *connector,
+>   }
+>   
+>   static const struct drm_connector_funcs omap_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.detect = omap_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/pl111/pl111_connector.c b/drivers/gpu/drm/pl111/pl111_connector.c
+> index 3f213d7e7692..d335f9a29ce4 100644
+> --- a/drivers/gpu/drm/pl111/pl111_connector.c
+> +++ b/drivers/gpu/drm/pl111/pl111_connector.c
+> @@ -69,7 +69,6 @@ const struct drm_connector_funcs connector_funcs = {
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = pl111_connector_destroy,
+>   	.detect = pl111_connector_detect,
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+>   	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_lvdscon.c b/drivers/gpu/drm/rcar-du/rcar_du_lvdscon.c
+> index ee91481131ad..b373ad48ef5f 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_lvdscon.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_lvdscon.c
+> @@ -46,7 +46,6 @@ static void rcar_du_lvds_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = rcar_du_lvds_connector_destroy,
+> diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.c b/drivers/gpu/drm/rockchip/cdn-dp-core.c
+> index 9b0b0588bbed..a57da051f516 100644
+> --- a/drivers/gpu/drm/rockchip/cdn-dp-core.c
+> +++ b/drivers/gpu/drm/rockchip/cdn-dp-core.c
+> @@ -254,7 +254,6 @@ static void cdn_dp_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs cdn_dp_atomic_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = cdn_dp_connector_detect,
+>   	.destroy = cdn_dp_connector_destroy,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi.c
+> index 21b9737662ae..9a20b9dc27c8 100644
+> --- a/drivers/gpu/drm/rockchip/dw-mipi-dsi.c
+> +++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi.c
+> @@ -1080,7 +1080,6 @@ static void dw_mipi_dsi_drm_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs dw_mipi_dsi_atomic_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = dw_mipi_dsi_drm_connector_destroy,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/rockchip/inno_hdmi.c
+> index 7149968aa25a..bd87768dd549 100644
+> --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
+> +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
+> @@ -593,7 +593,6 @@ static void inno_hdmi_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static struct drm_connector_funcs inno_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = inno_hdmi_probe_single_connector_modes,
+>   	.detect = inno_hdmi_connector_detect,
+>   	.destroy = inno_hdmi_connector_destroy,
+> diff --git a/drivers/gpu/drm/sti/sti_dvo.c b/drivers/gpu/drm/sti/sti_dvo.c
+> index a51cd9f754db..852bf2293b05 100644
+> --- a/drivers/gpu/drm/sti/sti_dvo.c
+> +++ b/drivers/gpu/drm/sti/sti_dvo.c
+> @@ -412,7 +412,6 @@ static int sti_dvo_late_register(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs sti_dvo_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = sti_dvo_connector_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/sti/sti_hda.c b/drivers/gpu/drm/sti/sti_hda.c
+> index d6ed909d9d75..cf65e32b5090 100644
+> --- a/drivers/gpu/drm/sti/sti_hda.c
+> +++ b/drivers/gpu/drm/sti/sti_hda.c
+> @@ -647,7 +647,6 @@ static int sti_hda_late_register(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs sti_hda_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/sti/sti_hdmi.c b/drivers/gpu/drm/sti/sti_hdmi.c
+> index 21f11dfae472..30f02d2fdd03 100644
+> --- a/drivers/gpu/drm/sti/sti_hdmi.c
+> +++ b/drivers/gpu/drm/sti/sti_hdmi.c
+> @@ -1113,7 +1113,6 @@ static int sti_hdmi_late_register(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs sti_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = sti_hdmi_connector_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c b/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
+> index 83b7a2a025f2..f5d0d6bd1084 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
+> @@ -306,7 +306,6 @@ sun4i_hdmi_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs sun4i_hdmi_connector_funcs = {
+> -	.dpms			= drm_atomic_helper_connector_dpms,
+>   	.detect			= sun4i_hdmi_connector_detect,
+>   	.fill_modes		= drm_helper_probe_single_connector_modes,
+>   	.destroy		= drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_rgb.c b/drivers/gpu/drm/sun4i/sun4i_rgb.c
+> index 422b191faa77..550bb262943f 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_rgb.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_rgb.c
+> @@ -120,7 +120,6 @@ sun4i_rgb_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static struct drm_connector_funcs sun4i_rgb_con_funcs = {
+> -	.dpms			= drm_atomic_helper_connector_dpms,
+>   	.fill_modes		= drm_helper_probe_single_connector_modes,
+>   	.destroy		= sun4i_rgb_connector_destroy,
+>   	.reset			= drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c b/drivers/gpu/drm/sun4i/sun4i_tv.c
+> index 338b9e5bb2a3..7b45ac9383ea 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_tv.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_tv.c
+> @@ -546,7 +546,6 @@ sun4i_tv_comp_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static struct drm_connector_funcs sun4i_tv_comp_connector_funcs = {
+> -	.dpms			= drm_atomic_helper_connector_dpms,
+>   	.fill_modes		= drm_helper_probe_single_connector_modes,
+>   	.destroy		= sun4i_tv_comp_connector_destroy,
+>   	.reset			= drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/tegra/dsi.c b/drivers/gpu/drm/tegra/dsi.c
+> index 3dea1216bafd..e4b5aedfdbd4 100644
+> --- a/drivers/gpu/drm/tegra/dsi.c
+> +++ b/drivers/gpu/drm/tegra/dsi.c
+> @@ -815,7 +815,6 @@ tegra_dsi_connector_duplicate_state(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs tegra_dsi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = tegra_dsi_connector_reset,
+>   	.detect = tegra_output_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdmi.c
+> index 718d8db406a6..a621b0da4092 100644
+> --- a/drivers/gpu/drm/tegra/hdmi.c
+> +++ b/drivers/gpu/drm/tegra/hdmi.c
+> @@ -902,7 +902,6 @@ tegra_hdmi_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs tegra_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.detect = tegra_hdmi_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/tegra/rgb.c b/drivers/gpu/drm/tegra/rgb.c
+> index a131b44e2d6f..78ec5193741d 100644
+> --- a/drivers/gpu/drm/tegra/rgb.c
+> +++ b/drivers/gpu/drm/tegra/rgb.c
+> @@ -88,7 +88,6 @@ static void tegra_dc_write_regs(struct tegra_dc *dc,
+>   }
+>   
+>   static const struct drm_connector_funcs tegra_rgb_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.detect = tegra_output_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/tegra/sor.c b/drivers/gpu/drm/tegra/sor.c
+> index fb2709c0c461..e0642d05a8d3 100644
+> --- a/drivers/gpu/drm/tegra/sor.c
+> +++ b/drivers/gpu/drm/tegra/sor.c
+> @@ -1340,7 +1340,6 @@ tegra_sor_connector_duplicate_state(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs tegra_sor_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = tegra_sor_connector_reset,
+>   	.detect = tegra_sor_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_panel.c b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> index 28c3e2f44f64..1813a3623ce6 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> @@ -189,7 +189,6 @@ static struct drm_encoder *panel_connector_best_encoder(
+>   
+>   static const struct drm_connector_funcs panel_connector_funcs = {
+>   	.destroy            = panel_connector_destroy,
+> -	.dpms               = drm_atomic_helper_connector_dpms,
+>   	.fill_modes         = drm_helper_probe_single_connector_modes,
+>   	.reset              = drm_atomic_helper_connector_reset,
+>   	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_tfp410.c b/drivers/gpu/drm/tilcdc/tilcdc_tfp410.c
+> index aabfad882e23..1e2dfb1b1d6b 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_tfp410.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_tfp410.c
+> @@ -202,7 +202,6 @@ static struct drm_encoder *tfp410_connector_best_encoder(
+>   
+>   static const struct drm_connector_funcs tfp410_connector_funcs = {
+>   	.destroy            = tfp410_connector_destroy,
+> -	.dpms               = drm_atomic_helper_connector_dpms,
+>   	.detect             = tfp410_connector_detect,
+>   	.fill_modes         = drm_helper_probe_single_connector_modes,
+>   	.reset              = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c b/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> index ec43fb7ad9e4..79b6687977d3 100644
+> --- a/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> +++ b/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> @@ -71,7 +71,6 @@ static void tinydrm_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs tinydrm_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.detect = tinydrm_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> index 406d6d83b6c6..b249b79ce04a 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> @@ -265,7 +265,6 @@ static int vc4_hdmi_connector_get_modes(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs vc4_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = vc4_hdmi_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = vc4_hdmi_connector_destroy,
+> diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_vec.c
+> index 369fea5a13a1..3a9a302247a2 100644
+> --- a/drivers/gpu/drm/vc4/vc4_vec.c
+> +++ b/drivers/gpu/drm/vc4/vc4_vec.c
+> @@ -366,7 +366,6 @@ static int vc4_vec_connector_get_modes(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs vc4_vec_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = vc4_vec_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = vc4_vec_connector_destroy,
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/drm/virtio/virtgpu_display.c
+> index ffd22e5ab43a..b6d52055a11f 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_display.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_display.c
+> @@ -252,7 +252,6 @@ static void virtio_gpu_conn_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs virtio_gpu_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.detect = virtio_gpu_conn_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = virtio_gpu_conn_destroy,
+> diff --git a/drivers/gpu/drm/zte/zx_hdmi.c b/drivers/gpu/drm/zte/zx_hdmi.c
+> index 7e834e3eeed9..b8abb1b496ff 100644
+> --- a/drivers/gpu/drm/zte/zx_hdmi.c
+> +++ b/drivers/gpu/drm/zte/zx_hdmi.c
+> @@ -300,7 +300,6 @@ zx_hdmi_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs zx_hdmi_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = zx_hdmi_connector_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/drivers/gpu/drm/zte/zx_tvenc.c b/drivers/gpu/drm/zte/zx_tvenc.c
+> index b56dc69843fc..0de1a71ca4e0 100644
+> --- a/drivers/gpu/drm/zte/zx_tvenc.c
+> +++ b/drivers/gpu/drm/zte/zx_tvenc.c
+> @@ -269,7 +269,6 @@ static struct drm_connector_helper_funcs zx_tvenc_connector_helper_funcs = {
+>   };
+>   
+>   static const struct drm_connector_funcs zx_tvenc_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.destroy = drm_connector_cleanup,
+>   	.reset = drm_atomic_helper_connector_reset,
+> diff --git a/drivers/gpu/drm/zte/zx_vga.c b/drivers/gpu/drm/zte/zx_vga.c
+> index 1e0811f775cb..3e7e33cd3dfa 100644
+> --- a/drivers/gpu/drm/zte/zx_vga.c
+> +++ b/drivers/gpu/drm/zte/zx_vga.c
+> @@ -138,7 +138,6 @@ zx_vga_connector_detect(struct drm_connector *connector, bool force)
+>   }
+>   
+>   static const struct drm_connector_funcs zx_vga_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
+>   	.detect = zx_vga_connector_detect,
+>   	.destroy = drm_connector_cleanup,
+> diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+> index 619089a027ec..d2b56cc657e9 100644
+> --- a/include/drm/drm_atomic_helper.h
+> +++ b/include/drm/drm_atomic_helper.h
+> @@ -136,8 +136,6 @@ int drm_atomic_helper_page_flip_target(
+>   				uint32_t flags,
+>   				uint32_t target,
+>   				struct drm_modeset_acquire_ctx *ctx);
+> -int drm_atomic_helper_connector_dpms(struct drm_connector *connector,
+> -				     int mode);
+>   struct drm_encoder *
+>   drm_atomic_helper_best_encoder(struct drm_connector *connector);
+>   
+> 
