@@ -1,26 +1,31 @@
-From: shawnguo@kernel.org (Shawn Guo)
-Date: Tue, 25 Jul 2017 22:42:38 +0800
-Subject: [PATCH 7/8] drm: Nuke drm_atomic_helper_connector_dpms
-In-Reply-To: <20170725080122.20548-8-daniel.vetter@ffwll.ch>
-References: <20170725080122.20548-1-daniel.vetter@ffwll.ch>
- <20170725080122.20548-8-daniel.vetter@ffwll.ch>
-Message-ID: <20170725144237.GF29754@dragon>
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Tue, 25 Jul 2017 17:23:30 +0200
+Subject: [PATCH] ARM: dts: meson: Fixing L2 cache controller node for Meson8
+ and Meson8b
+Message-ID: <20170725152330.GA11792@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jul 25, 2017 at 10:01:21AM +0200, Daniel Vetter wrote:
-> It's dead code, the core handles all this directly now.
-> 
-> The only special case is nouveau and tda988x which used one function
-> for both legacy modeset code and -nv50 atomic world instead of 2
-> vtables. But amounts to exactly the same.
-> 
-> v2: Rebase over the panel/brideg refactorings in stm/ltdc.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-...
->  drivers/gpu/drm/zte/zx_hdmi.c                      |  1 -
->  drivers/gpu/drm/zte/zx_tvenc.c                     |  1 -
->  drivers/gpu/drm/zte/zx_vga.c                       |  1 -
+Changing address filtering range to support the entire DDR region.
+The previous range prevents ODROID-C1+ board from booting.
 
-Acked-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+---
+ arch/arm/boot/dts/meson8b.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index 72e4f425f190..3f0850cf3403 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -190,7 +190,7 @@
+ &L2 {
+ 	arm,data-latency = <3 3 3>;
+ 	arm,tag-latency = <2 2 2>;
+-	arm,filter-ranges = <0x100000 0xc0000000>;
++	arm,filter-ranges = <0x0 0xc0000000>;
+ };
+ 
+ &saradc {
+-- 
+2.13.2
