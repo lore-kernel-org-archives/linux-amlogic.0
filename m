@@ -1,87 +1,164 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 26 Jul 2017 19:05:47 +0200
-Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
-In-Reply-To: <20170712011604.GQ22780@codeaurora.org>
+Date: Wed, 26 Jul 2017 19:13:03 +0200
+Subject: [PATCH v3 04/10] clk: use round rate to bail out early in set_rate
+In-Reply-To: <20170712020041.GU22780@codeaurora.org>
 References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
- <1497955822.7387.3.camel@baylibre.com>
- <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
- <1497961950.7387.7.camel@baylibre.com>
- <1498050903.7387.12.camel@baylibre.com>
- <20170712011604.GQ22780@codeaurora.org>
-Message-ID: <1501088747.2401.27.camel@baylibre.com>
+ <20170612194438.12298-5-jbrunet@baylibre.com>
+ <20170712020041.GU22780@codeaurora.org>
+Message-ID: <1501089183.2401.28.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-07-11 at 18:16 -0700, Stephen Boyd wrote:
-> On 06/21, Jerome Brunet wrote:
-> > 
-> > I managed to have a run on kci - based on v4.12-rc6:
-> > https://kernelci.org/boot/all/job/khilman/branch/to-build/kernel/v4.12-rc6-1
-> > 0-ge
-> > a373ddef830/
-> > 
-> > There was no build regression but kci did find one boot regression on qcom
-> > platforms:
-> > * qcom-apq8064-cm-qs600
-> > * qcom-apq8064-ifc6410
-> > 
-> > it seems the problem is coming from the clock used by the mmc driver
-> > (drivers/mmc/host/mmci.c)
-> > 
-> > the driver does following sequence:
-> > * get_clk
-> > * prepare_enable
-> > * get_rate
-> > * set_rate
-> > * ...
-> > 
-> > with clock SDCx_clk (qcom_apq8064.dtsi:1037). This clock has
-> > CLK_SET_RATE_PARENT
-> > flag so it will transmit the request to its parent.
-> > The parent of this clock is SDCx_src which has the CLK_SET_RATE_GATE flag.
-> > 
-> > This can't work with sequence above. The flag was clearly bypassed before,
-> > so I
-> > think it would be best to remove CLK_SET_RATE_GATE from the SDCx_src clocks
-> > 
-> > Stephen, would you agree ?
-> > 
-> > There was an issue with the chip board as well but this particular board has
-> > not
-> > been very reliable in this lab lately. It has failed on several other job.
-> > 
+On Tue, 2017-07-11 at 19:00 -0700, Stephen Boyd wrote:
+> On 06/12, Jerome Brunet wrote:
+> > The current implementation of clk_core_set_rate_nolock bails out early if
 > 
-> Yes the flag was never working before and we've been ignoring the
-> subtle problems that it causes to change the rate while the clk
-> is enabled. On these older SoCs, all the clks marked with
-> CLK_SET_RATE_GATE need to implement something to forcibly disable
-> all child clks across the rate change. That is the hardware
-> recommended procedure.
+> Add () to functions please.
+> 
+> > the requested rate is exactly the same as the one set. It should bail out
+> > if the request would not result in rate a change.??This important when
+> 
+> s/in rate a change/in a rate change/
+> s/This important/This is important/
+> 
+> > rate is not exactly what is requested, which is fairly common with PLLs.
+> 
+> s/rate/the rate/
+> 
+> > 
+> > Ex: provider able to give any rate with steps of 100Hz
+> > ?- 1st consumer request 48000Hz and gets it.
+> > ?- 2nd consumer request 48010Hz as well. If we were to perform the usual
+> > ???mechanism, we would get 48000Hz as well. The clock would not change so
+> > ???there is no point performing any checks to make sure the clock can
+> > ???change, we know it won't.
+> 
+> I think Peter reported a similar problem as to what you're
+> describing. Can you further explain a problem situation that this
+> patch is fixing based on that thread (I can find the link if
+> needed)?
+> Some of this series if fixing rate constraints actually,
+> so please Cc him on future patch sets.
 
-Seems that HW has been doing fine w/o recommended procedure so far ;)
+I had not seen the thread you referring to.
+I assume Peter is Peter De Schrijver and the thread is:
+
+http://lkml.kernel.org/r/1490103807-21821-1-git-send-email-pdeschrijver at nvidia.c
+om
+
+Peter is right, There is indeed a problem when the current rate is out of the
+requested range.
+
+I'm not sure about the proposed solution though. Even the rate set by
+set_rate_range() should go trough the bail-out mechanism because of the use-case 
+I have explained here.
+
+After spending some time on it, I realized that patch 7 is useless, as the call
+to clk_core_set_rate_nolock() with core->req_rate is a no-op and will never
+fail.
+
+We could request the rate to be changed to nearest rate range limit (here is a
+candidate fix doing that [0]
+
+But then we get to a more fundamental issue of the rate range mechanism.
+
+Take the example of Peter:
+* You had 500Mhz and you set a range of [100-300] MHz
+* The logical thing to do would be to request the clock rate to change to
+300MHz, right ?
+* Hw capabilities being what they are, the rate is unfortunately rounded to
+301Mhz.
+* In the end, you are out of the range and the call fails.
+
+That is when the clock only implement round_rate(). If it implement
+determine_rate(), it could take the range into account when rounding the rate.
+However, I doubt many clock drivers are taking care of this corner case, if any.
+
+The clean way to address this would be to have all clock drivers use
+determine_rate() and make sure they all that the case into account, and delete
+the round_rate() ... not happening tomorrow.
+
+The consistent way would be to systematically fail if the current rate is out of
+the requested range ... a bit rude maybe.
+
+The proposed patch [0] does it's best to change the rate, but may fail as
+explained above ... 
+
+For now, I have dropped patch 7 and pushed patch [0] at the end of the queue.
+Since It is really related to the clock protect mechanism, we should probably
+discuss this in another thread. 
+
+[0]: https://github.com/jeromebrunet/linux/commit/235e477f346a9e8d115dda257f9f73
+834151bd7f
 
 > 
-> So something like
+> > 
+> > This is important to prepare the addition of the clock protection
+> > mechanism
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > ---
+> > ?drivers/clk/clk.c | 23 +++++++++++++++++++++--
+> > ?1 file changed, 21 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> > index 8cc4672414be..163cb9832f10 100644
+> > --- a/drivers/clk/clk.c
+> > +++ b/drivers/clk/clk.c
+> > @@ -1570,15 +1570,34 @@ static void clk_change_rate(struct clk_core *core)
+> > ?		clk_change_rate(core->new_child);
+> > ?}
+> > ?
+> > +static unsigned long clk_core_req_round_rate_nolock(struct clk_core *core,
+> > +						?????unsigned long
+> > req_rate)
+> > +{
+> > +	int ret;
+> > +	struct clk_rate_request req;
+> > +
+> > +	if (!core)
+> > +		return 0;
 > 
-> 	get_clk
-> 	prepare_enable
-> 	get_rate
-> 	set_rate
-> 	 call ->set_rate() op
-> 	 forcibly disable children of rcgs
-> 	 actually change the rate of rcg
-> 	 forcibly enable all children that were disabled
-> 
-> and have that happen under one big spinlock local to the qcom
-> driver I suppose so that enable/disable can't leak into the rate
-> change. Fun! I'll make an attempt at implementing the right
-> solution tomorrow/tonight. Of course, we can remove the flag from
-> qcom drivers if it's blocking this series.
+> This is impossible because the only call site checks for core
+> being NULL already.
 > 
 
-Yeah, it is probably blocking the series.
+This more or less like the previous comments on lockdep_assert.
+Most (should be all) "_no_lock" function check the prepare_lock and the core
+pointer. Even when it is not strictly necessary, I think we should be consistent
+ about it.
 
-In the following mail, I've only replied where I wanted to discuss a bit more.
-For everything else, please consider the comments agreed and the modifications
-done as requested.
+In the unlikely event this function is used some place else, it would avoid bad
+surprise
+
+So?if it is OK with you, I would prefer to keep this check and add the check of
+the prepare lock. Maybe I could go over the other "_nolock" functions in clk.c
+to verify they are all doing it ? What do you think ?
+
+> > +
+> > +	clk_core_get_boundaries(core, &req.min_rate, &req.max_rate);
+> > +	req.rate = req_rate;
+> > +
+> > +	ret = clk_core_round_rate_nolock(core, &req);
+> > +
+> > +	return ret ? 0 : req.rate;
+> 
+> What if the return value is negative?
+
+Here we are trying to return a rate, so unsigned long.
+I think (and I remember discussing it with Mike sometimes ago) that a 0 clock
+rate quite often represent an error.?
+
+
+> We should bail the set rate
+> call instead of continuing on?
+
+I don't think this for this particular function to decide. It should try compute
+what the rate would be. It's up to the calling function to decide what do with
+this 0 (error)
+
+To answer your question, I think that if we can't figure out the what the rate
+would be, we should not error right away and just let the regular process happen
+(no bail-out) ... If there is a problem, it will error anyway 
+
+> 
