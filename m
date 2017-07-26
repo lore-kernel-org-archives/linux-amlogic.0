@@ -1,90 +1,87 @@
-From: ingrassia@epigenesys.com (Emiliano Ingrassia)
-Date: Wed, 26 Jul 2017 11:55:06 +0200
-Subject: [PATCH] ARM: dts: meson: Fixing L2 cache controller node for
- Meson8 and Meson8b
-In-Reply-To: <CAFBinCBZ9BWfZ3rewsM=agJaFvpKNT=bADdTfv=+kV5GbnfT6w@mail.gmail.com>
-References: <20170725152330.GA11792@ingrassia.epigenesys.com>
- <CAFBinCBZ9BWfZ3rewsM=agJaFvpKNT=bADdTfv=+kV5GbnfT6w@mail.gmail.com>
-Message-ID: <20170726095506.GA5985@ingrassia.epigenesys.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 26 Jul 2017 19:05:47 +0200
+Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
+In-Reply-To: <20170712011604.GQ22780@codeaurora.org>
+References: <20170612194438.12298-1-jbrunet@baylibre.com>
+ <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
+ <1497955822.7387.3.camel@baylibre.com>
+ <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
+ <1497961950.7387.7.camel@baylibre.com>
+ <1498050903.7387.12.camel@baylibre.com>
+ <20170712011604.GQ22780@codeaurora.org>
+Message-ID: <1501088747.2401.27.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
-
-thank you for the quick response!
-
-On Tue, Jul 25, 2017 at 08:51:15PM +0200, Martin Blumenstingl wrote:
-> Hi Emiliano,
+On Tue, 2017-07-11 at 18:16 -0700, Stephen Boyd wrote:
+> On 06/21, Jerome Brunet wrote:
+> > 
+> > I managed to have a run on kci - based on v4.12-rc6:
+> > https://kernelci.org/boot/all/job/khilman/branch/to-build/kernel/v4.12-rc6-1
+> > 0-ge
+> > a373ddef830/
+> > 
+> > There was no build regression but kci did find one boot regression on qcom
+> > platforms:
+> > * qcom-apq8064-cm-qs600
+> > * qcom-apq8064-ifc6410
+> > 
+> > it seems the problem is coming from the clock used by the mmc driver
+> > (drivers/mmc/host/mmci.c)
+> > 
+> > the driver does following sequence:
+> > * get_clk
+> > * prepare_enable
+> > * get_rate
+> > * set_rate
+> > * ...
+> > 
+> > with clock SDCx_clk (qcom_apq8064.dtsi:1037). This clock has
+> > CLK_SET_RATE_PARENT
+> > flag so it will transmit the request to its parent.
+> > The parent of this clock is SDCx_src which has the CLK_SET_RATE_GATE flag.
+> > 
+> > This can't work with sequence above. The flag was clearly bypassed before,
+> > so I
+> > think it would be best to remove CLK_SET_RATE_GATE from the SDCx_src clocks
+> > 
+> > Stephen, would you agree ?
+> > 
+> > There was an issue with the chip board as well but this particular board has
+> > not
+> > been very reliable in this lab lately. It has failed on several other job.
+> > 
 > 
-> On Tue, Jul 25, 2017 at 5:23 PM, Emiliano Ingrassia
-> <ingrassia@epigenesys.com> wrote:
-> > Changing address filtering range to support the entire DDR region.
-> > The previous range prevents ODROID-C1+ board from booting.
-> thanks for the patch!
-> could you please explain what issue you are seeing exactly? kernelci
-> also has an Odroid-C1 in it's farm and it seems to boot mainline
-> (4.13-rc2+) just fine, see: [0]
->
+> Yes the flag was never working before and we've been ignoring the
+> subtle problems that it causes to change the rate while the clk
+> is enabled. On these older SoCs, all the clks marked with
+> CLK_SET_RATE_GATE need to implement something to forcibly disable
+> all child clks across the rate change. That is the hardware
+> recommended procedure.
 
-The issue I'm seeing is simple: I have an ODROID-C1+ board (rev 0.4 20150930)
-which does not boot with the L2 cache controller filtering range set to <0x1000000 0xc0000000>.
-U-Boot launches the kernel, which decompression complete successfully, but then nothing happens.
+Seems that HW has been doing fine w/o recommended procedure so far ;)
 
-The S805 manual, chapter 4 (Memory Map), shows that the DDR memory
-region start at 0x0 and ends at 0xbfffffff.
-
-Following the description of the property "arm,filter-ranges" in Documentation/devicetree/bindings/arm/l2c2x0.txt,
-which is:
-
-- arm,filter-ranges : <start length> Starting address and length of window to
-  filter. Addresses in the filter window are directed to the M1 port. Other
-  addresses will go to the M0 port.
-
-it seems correct to set the range to <0x0 0xc0000000>, to direct memory accesses
-on port M1 and other accesses on port M0.
-
-If I'm wrong, could you please explain why the range used so far is correct ?
->From the memory map, that range covers part of the DDR region
-and part of the	APB3 CBUS memory region (0x01000000 + 0xc000000).
-Is this the intention?
-
-> I would like to understand why it's not working for you
-> (I do not have an Odroid-C1 board myself, but my EC-100 also comes
-> with a Meson8b SoC and 2GiB RAM and it boots fine there also)
 > 
-> > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
-> > ---
-> >  arch/arm/boot/dts/meson8b.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> > index 72e4f425f190..3f0850cf3403 100644
-> > --- a/arch/arm/boot/dts/meson8b.dtsi
-> > +++ b/arch/arm/boot/dts/meson8b.dtsi
-> > @@ -190,7 +190,7 @@
-> >  &L2 {
-> >         arm,data-latency = <3 3 3>;
-> >         arm,tag-latency = <2 2 2>;
-> > -       arm,filter-ranges = <0x100000 0xc0000000>;
-> > +       arm,filter-ranges = <0x0 0xc0000000>;
-> >  };
-> >
-> >  &saradc {
-> > --
-> > 2.13.2
-> >
-> >
-> > _______________________________________________
-> > linux-amlogic mailing list
-> > linux-amlogic at lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> So something like
 > 
-> Regards,
-> Martin
+> 	get_clk
+> 	prepare_enable
+> 	get_rate
+> 	set_rate
+> 	 call ->set_rate() op
+> 	 forcibly disable children of rcgs
+> 	 actually change the rate of rcg
+> 	 forcibly enable all children that were disabled
 > 
+> and have that happen under one big spinlock local to the qcom
+> driver I suppose so that enable/disable can't leak into the rate
+> change. Fun! I'll make an attempt at implementing the right
+> solution tomorrow/tonight. Of course, we can remove the flag from
+> qcom drivers if it's blocking this series.
 > 
-> [0] https://storage.kernelci.org/mainline/master/v4.13-rc2-11-g25f6a53799d6/arm/multi_v7_defconfig/lab-baylibre-seattle/boot-meson8b-odroidc1.html
 
-Best regards,
+Yeah, it is probably blocking the series.
 
-Emiliano
+In the following mail, I've only replied where I wanted to discuss a bit more.
+For everything else, please consider the comments agreed and the modifications
+done as requested.
