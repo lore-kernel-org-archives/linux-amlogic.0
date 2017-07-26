@@ -1,328 +1,160 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 25 Jul 2017 21:17:26 +0200
-Subject: [PATCH v2 2/3] clk: meson: meson8b: register the built-in reset
- controller
-In-Reply-To: <5976FA26.1050907@baylibre.com>
-References: <20170722185807.10504-1-martin.blumenstingl@googlemail.com>
- <20170722185807.10504-3-martin.blumenstingl@googlemail.com>
- <5976FA26.1050907@baylibre.com>
-Message-ID: <CAFBinCC0MeHyN2zHj1ZkO=7-h1sj1+bST5+08iR1dbt3Aqsn7w@mail.gmail.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Tue, 25 Jul 2017 17:12:17 -0700
+Subject: [PATCH v3 05/10] clk: add support for clock protection
+In-Reply-To: <20170612194438.12298-6-jbrunet@baylibre.com>
+References: <20170612194438.12298-1-jbrunet@baylibre.com>
+ <20170612194438.12298-6-jbrunet@baylibre.com>
+Message-ID: <20170726001217.GC2146@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+On 06/12, Jerome Brunet wrote:
+> The patch adds clk_protect and clk_unprotect to the CCF API. These
+> functions allow a consumer to inform the system that the rate of clock is
+> critical to for its operations and it can't tolerate other consumers
 
-On Tue, Jul 25, 2017 at 9:58 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
->
-> Le 22/07/2017 20:58, Martin Blumenstingl a ?crit :
->> The clock controller also includes some reset lines. This patch
->> implements a reset controller to assert and de-assert these resets.
->> The reset controller itself is registered early (through
->> CLK_OF_DECLARE_DRIVER) because it is needed very early in the boot
->> process (to start the secondary CPU cores).
->>
->> According to the public S805 datasheet there are two more reset bits
->> in the HHI_SYS_CPU_CLK_CNTL0 register, which are not implemented by
->> this patch (as these seem to be unused in Amlogic's vendor Linux kernel
->> sources and their u-boot tree):
->> - bit 15: GEN_DIV_SOFT_RESET
->> - bit 14: SOFT_RESET
->>
->> All information was taken from the public S805 Datasheet and Amlogic's
->> vendor GPL kernel sources. This patch is based on an earlier version
->> submitted by Carlo Caione.
->>
->> Suggested-by: Carlo Caione <carlo@endlessm.com>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  drivers/clk/meson/Kconfig   |   1 +
->>  drivers/clk/meson/meson8b.c | 159 ++++++++++++++++++++++++++++++++++++++++----
->>  drivers/clk/meson/meson8b.h |  25 ++++++-
->>  3 files changed, 172 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index 5588f75a8414..d2d0174a6eca 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -6,6 +6,7 @@ config COMMON_CLK_AMLOGIC
->>  config COMMON_CLK_MESON8B
->>       bool
->>       depends on COMMON_CLK_AMLOGIC
->> +     select RESET_CONTROLLER
->>       help
->>         Support for the clock controller on AmLogic S802 (Meson8),
->>         S805 (Meson8b) and S812 (Meson8m2) devices. Say Y if you
->> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
->> index bb3f1de876b1..0f853057885c 100644
->> --- a/drivers/clk/meson/meson8b.c
->> +++ b/drivers/clk/meson/meson8b.c
->> @@ -25,6 +25,8 @@
->>  #include <linux/clk-provider.h>
->>  #include <linux/of_address.h>
->>  #include <linux/platform_device.h>
->> +#include <linux/reset-controller.h>
->> +#include <linux/slab.h>
->>  #include <linux/init.h>
->>
->>  #include "clkc.h"
->> @@ -32,6 +34,13 @@
->>
->>  static DEFINE_SPINLOCK(clk_lock);
->>
->> +static void __iomem *clk_base;
->> +
->> +struct meson8b_clk_reset {
->> +     struct reset_controller_dev reset;
->> +     void __iomem *base;
->> +};
->> +
->>  static const struct pll_rate_table sys_pll_rate_table[] = {
->>       PLL_RATE(312000000, 52, 1, 2),
->>       PLL_RATE(336000000, 56, 1, 2),
->> @@ -690,20 +699,114 @@ static struct clk_divider *const meson8b_clk_dividers[] = {
->>       &meson8b_mpeg_clk_div,
->>  };
->>
->> +static const struct meson8b_clk_reset_line {
->> +     u32 reg;
->> +     u8 bit_idx;
->> +} meson8b_clk_reset_bits[] = {
->> +     [RESETID_L2_CACHE_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 30
->> +     },
->> +     [RESETID_AXI_64_TO_128_BRIDGE_A5_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 29
->> +     },
->> +     [RESETID_SCU_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 28
->> +     },
->> +     [RESETID_CPU3_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 27
->> +     },
->> +     [RESETID_CPU2_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 26
->> +     },
->> +     [RESETID_CPU1_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 25
->> +     },
->> +     [RESETID_CPU0_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 24
->> +     },
->> +     [RESETID_A5_GLOBAL_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 18
->> +     },
->> +     [RESETID_A5_AXI_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 17
->> +     },
->> +     [RESETID_A5_ABP_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL0, .bit_idx = 16
->> +     },
->> +     [RESETID_AXI_64_TO_128_BRIDGE_MMC_SOFT_RESET] = {
->> +             .reg = HHI_SYS_CPU_CLK_CNTL1, .bit_idx = 30
->> +     },
->> +     [RESETID_VID_CLK_CNTL_SOFT_RESET] = {
->> +             .reg = HHI_VID_CLK_CNTL, .bit_idx = 15
->> +     },
->> +     [RESETID_VID_DIVIDER_CNTL_SOFT_RESET_POST] = {
->> +             .reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 7
->> +     },
->> +     [RESETID_VID_DIVIDER_CNTL_SOFT_RESET_PRE] = {
->> +             .reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 3
->> +     },
->> +     [RESETID_VID_DIVIDER_CNTL_RESET_N_POST] = {
->> +             .reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 1
->> +     },
->> +     [RESETID_VID_DIVIDER_CNTL_RESET_N_PRE] = {
->> +             .reg = HHI_VID_DIVIDER_CNTL, .bit_idx = 0
->> +     },
->> +};
->> +
->> +static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
->> +                                 unsigned long id, bool assert)
->> +{
->> +     struct meson8b_clk_reset *meson8b_clk_reset =
->> +             container_of(rcdev, struct meson8b_clk_reset, reset);
->> +     unsigned long flags;
->> +     const struct meson8b_clk_reset_line *reset;
->> +     u32 val;
->> +
->> +     if (id >= ARRAY_SIZE(meson8b_clk_reset_bits))
->> +             return -EINVAL;
->> +
->> +     reset = &meson8b_clk_reset_bits[id];
->> +
->> +     spin_lock_irqsave(&clk_lock, flags);
->> +
->> +     val = readl(meson8b_clk_reset->base + reset->reg);
->> +     if (assert)
->> +             val |= BIT(reset->bit_idx);
->> +     else
->> +             val &= ~BIT(reset->bit_idx);
->> +     writel(val, meson8b_clk_reset->base + reset->reg);
->> +
->> +     spin_unlock_irqrestore(&clk_lock, flags);
->> +
->> +     return 0;
->> +}
->> +
->> +static int meson8b_clk_reset_assert(struct reset_controller_dev *rcdev,
->> +                                  unsigned long id)
->> +{
->> +     return meson8b_clk_reset_update(rcdev, id, true);
->> +}
->> +
->> +static int meson8b_clk_reset_deassert(struct reset_controller_dev *rcdev,
->> +                                    unsigned long id)
->> +{
->> +     return meson8b_clk_reset_update(rcdev, id, false);
->> +}
->> +
->> +static const struct reset_control_ops meson8b_clk_reset_ops = {
->> +     .assert = meson8b_clk_reset_assert,
->> +     .deassert = meson8b_clk_reset_deassert,
->> +};
->> +
->>  static int meson8b_clkc_probe(struct platform_device *pdev)
->>  {
->> -     void __iomem *clk_base;
->>       int ret, clkid, i;
->>       struct clk_hw *parent_hw;
->>       struct clk *parent_clk;
->>       struct device *dev = &pdev->dev;
->>
->> -     /*  Generic clocks and PLLs */
->> -     clk_base = of_iomap(dev->of_node, 1);
->> -     if (!clk_base) {
->> -             pr_err("%s: Unable to map clk base\n", __func__);
->> +     if (!clk_base)
->>               return -ENXIO;
->> -     }
->>
->>       /* Populate base address for PLLs */
->>       for (i = 0; i < ARRAY_SIZE(meson8b_clk_plls); i++)
->> @@ -743,7 +846,7 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
->>               /* FIXME convert to devm_clk_register */
->>               ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[clkid]);
->>               if (ret)
->> -                     goto iounmap;
->> +                     return ret;
->>       }
->>
->>       /*
->> @@ -766,15 +869,11 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
->>       if (ret) {
->>               pr_err("%s: failed to register clock notifier for cpu_clk\n",
->>                               __func__);
->> -             goto iounmap;
->> +             return ret;
->>       }
->>
->>       return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
->>                       &meson8b_hw_onecell_data);
->> -
->> -iounmap:
->> -     iounmap(clk_base);
->> -     return ret;
->>  }
->>
->>  static const struct of_device_id meson8b_clkc_match_table[] = {
->> @@ -793,3 +892,39 @@ static struct platform_driver meson8b_driver = {
->>  };
->>
->>  builtin_platform_driver(meson8b_driver);
->> +
->> +static void __init meson8b_clkc_reset_init(struct device_node *np)
->> +{
->> +     struct meson8b_clk_reset *rstc;
->> +     int ret;
->> +
->> +     /* Generic clocks, PLLs and some of the reset-bits */
->> +     clk_base = of_iomap(np, 1);
->> +     if (!clk_base) {
->> +             pr_err("%s: Unable to map clk base\n", __func__);
->> +             return;
->> +     }
->> +
->> +     rstc = kzalloc(sizeof(*rstc), GFP_KERNEL);
->> +     if (!rstc)
->> +             return;
->> +
->> +     /* Reset Controller */
->> +     rstc->base = clk_base;
->> +     rstc->reset.ops = &meson8b_clk_reset_ops;
->> +     rstc->reset.nr_resets = ARRAY_SIZE(meson8b_clk_reset_bits);
->> +     rstc->reset.of_node = np;
->> +     ret = reset_controller_register(&rstc->reset);
->> +     if (ret) {
->> +             pr_err("%s: Failed to register clkc reset controller: %d\n",
->> +                    __func__, ret);
->> +             return;
->> +     }
->> +}
->> +
->> +CLK_OF_DECLARE_DRIVER(meson8_clkc, "amlogic,meson8-clkc",
->> +                   meson8b_clkc_reset_init);
->> +CLK_OF_DECLARE_DRIVER(meson8b_clkc, "amlogic,meson8b-clkc",
->> +                   meson8b_clkc_reset_init);
->> +CLK_OF_DECLARE_DRIVER(meson8m2_clkc, "amlogic,meson8m2-clkc",
->> +                   meson8b_clkc_reset_init);
->> diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
->> index a687e02547dc..5f4d8e49dd4d 100644
->> --- a/drivers/clk/meson/meson8b.h
->> +++ b/drivers/clk/meson/meson8b.h
->> @@ -37,6 +37,9 @@
->>  #define HHI_GCLK_AO                  0x154 /* 0x55 offset in data sheet */
->>  #define HHI_SYS_CPU_CLK_CNTL1                0x15c /* 0x57 offset in data sheet */
->>  #define HHI_MPEG_CLK_CNTL            0x174 /* 0x5d offset in data sheet */
->> +#define HHI_VID_CLK_CNTL             0x17c /* 0x5f offset in data sheet */
->> +#define HHI_VID_DIVIDER_CNTL         0x198 /* 0x66 offset in data sheet */
->> +#define HHI_SYS_CPU_CLK_CNTL0                0x19c /* 0x67 offset in data sheet */
->>  #define HHI_MPLL_CNTL                        0x280 /* 0xa0 offset in data sheet */
->>  #define HHI_SYS_PLL_CNTL             0x300 /* 0xc0 offset in data sheet */
->>  #define HHI_VID_PLL_CNTL             0x320 /* 0xc8 offset in data sheet */
->> @@ -163,7 +166,27 @@
->>
->>  #define CLK_NR_CLKS          96
->>
->> -/* include the CLKIDs that have been made part of the stable DT binding */
->> +#define RESETID_L2_CACHE_SOFT_RESET                          0
->> +#define RESETID_AXI_64_TO_128_BRIDGE_A5_SOFT_RESET           1
->> +#define RESETID_SCU_SOFT_RESET                                       2
->> +#define RESETID_CPU0_SOFT_RESET                                      3
->> +#define RESETID_CPU1_SOFT_RESET                                      4
->> +#define RESETID_CPU2_SOFT_RESET                                      5
->> +#define RESETID_CPU3_SOFT_RESET                                      6
->> +#define RESETID_A5_GLOBAL_RESET                                      7
->> +#define RESETID_A5_AXI_SOFT_RESET                            8
->> +#define RESETID_A5_ABP_SOFT_RESET                            9
->> +#define RESETID_AXI_64_TO_128_BRIDGE_MMC_SOFT_RESET          10
->> +#define RESETID_VID_CLK_CNTL_SOFT_RESET                              11
->> +#define RESETID_VID_DIVIDER_CNTL_SOFT_RESET_POST             12
->> +#define RESETID_VID_DIVIDER_CNTL_SOFT_RESET_PRE                      13
->> +#define RESETID_VID_DIVIDER_CNTL_RESET_N_POST                        14
->> +#define RESETID_VID_DIVIDER_CNTL_RESET_N_PRE                 15
->
-> I think you should directly expose them in a dt-bindings/reset/meson8b-clkc-reset.h file and include it here.
-just to confirm: do you want to move these to separate (new) header or
-would meson8b-clkc.h be fine as well?
-in either case: I suspect that changes to these will be very rare (as
-I've re-checked that Amlogic's GPL kernel or u-boot definitely uses
-these), so exposing them directly probably makes sense
+s/for//
 
->> +
->> +/*
->> + * include the CLKID and RESETID that have
->> + * been made part of the stable DT binding
->> + */
->>  #include <dt-bindings/clock/meson8b-clkc.h>
->>
->>  #endif /* __MESON8B_H */
->>
->
-> Apart from that :
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-thank you for reviewing my patches from this and the SMP/hotplug series!
+> changing the rate or introducing glitches while the clock is protected.
 
 
-Martin
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index 163cb9832f10..d688b8f59a59 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> +
+> +/**
+> + * clk_rate_unprotect - unprotect the rate of a clock source
+> + * @clk: the clk being unprotected
+> + *
+> + * clk_unprotect completes a critical section during which the clock
+> + * consumer cannot tolerate any change to the clock rate. If no other clock
+> + * consumers have protected clocks in the parent chain, then calls to this
+> + * function will allow the clocks in the parent chain to change rates
+> + * freely.
+> + *
+> + * Unlike the clk_set_rate_range method, which allows the rate to change
+> + * within a given range, protected clocks cannot have their rate changed,
+> + * either directly or indirectly due to changes further up the parent chain
+> + * of clocks.
+> + *
+> + * Calls to clk_unprotect must be balanced with calls to clk_protect. Calls
+> + * to this function may sleep, and do not return error status.
+> + */
+> +void clk_rate_unprotect(struct clk *clk)
+> +{
+> +	if (!clk)
+> +		return;
+> +
+> +	clk_prepare_lock();
+> +
+> +	/*
+> +	 * if there is something wrong with this consumer protect count, stop
+> +	 * here before messing with the provider
+> +	 */
+> +	if (WARN_ON(clk->protect_count <= 0))
+> +		goto out;
+> +
+> +	clk_core_rate_unprotect(clk->core);
+
+Can we make this stuff non-recursive? I know that this is
+basically a copy paste of prepare/unprepare code and recursion is
+nice and elegant, but we really don't need to do it when we could
+have a loop that's the same and doesn't blow up our stack frame
+usage. I'll send a patch for prepare/enable so you get the idea.
+
+> +	clk->protect_count--;
+> +out:
+> +	clk_prepare_unlock();
+> +}
+> +EXPORT_SYMBOL_GPL(clk_rate_unprotect);
+[..]
+> +
+> @@ -2952,6 +3134,17 @@ void __clk_put(struct clk *clk)
+>  
+>  	clk_prepare_lock();
+>  
+> +	/*
+> +	 * Before calling clk_put, all calls to clk_rate_protect from a given
+> +	 * user must be balanced with calls to clk_rate_unprotect and by that
+> +	 * same user
+> +	 */
+> +	WARN_ON(clk->protect_count);
+> +
+> +	/* We voiced our concern, let's sanitize the situation */
+> +	for (; clk->protect_count; clk->protect_count--)
+> +		clk_core_rate_unprotect(clk->core);
+
+Does this do anything different than:
+
+	clk->core->protect_count -= clk->protect_count;
+	clk->protect_count = 1;
+	clk_core_rate_unprotect(clk->core);
+
+Just seems better to not do a loop here.
+
+> diff --git a/include/linux/clk.h b/include/linux/clk.h
+> index 91bd464f4c9b..b60c36f2e6b0 100644
+> --- a/include/linux/clk.h
+> +++ b/include/linux/clk.h
+> @@ -331,6 +331,30 @@ struct clk *devm_clk_get(struct device *dev, const char *id);
+>   */
+>  struct clk *devm_get_clk_from_child(struct device *dev,
+>  				    struct device_node *np, const char *con_id);
+> +/**
+> + * clk_rate_protect - inform the system when the clock rate must be protected.
+> + * @clk: clock source
+> + *
+> + * This function informs the system that the consumer protecting the clock
+> + * depends on the rate of the clock source and can't tolerate any glitches
+> + * introduced by further clock rate change or re-parenting of the clock source.
+> + *
+> + * Must not be called from within atomic context.
+> + */
+> +void clk_rate_protect(struct clk *clk);
+
+Is there any plan to use this clk_rate_protect() API? It seems
+inherently racy for a clk consumer to call clk_set_rate() and
+then this clk_rate_protect() API after that to lock the rate in.
+How about we leave this out of the consumer API until a user
+needs it?
+
+I'm tempted to say that we could do this rate locking stuff with
+clk_set_rate_range(), but with more thought that doesn't seem
+possible because there's a subtle difference. The range API is
+willing to accept a range of frequencies, and calling
+clk_set_rate_range() with some exact frequency should fail if
+that exact frequency can't be met. With this API and the
+subsequent clk_set_rate_protect() API we're willing to accept
+that the rate we call clk_set_rate_protect() with could be
+different than the rate we actually get.
+
+Finally, When does a consumer want the rate of a clk to change
+after they call clk_set_rate() on it? I would guess that very few
+consumers would be willing to accept that. Which begs the
+question, if anyone will keep calling clk_set_rate() after this
+API (and the clk_set_rate_protect() API) is added. It almost
+seems like we would want it to be opt-out, instead of opt-in, so
+that consumers would call clk_set_rate() and expect it to be a
+stable clk rate after that, and they would call
+clk_set_rate_trample_on_me() or something properly named when
+they don't care what the rate is after they call the API.
+
+> +
+> +/**
+> + * clk_rate_unprotect - release the protection of the clock source.
+> + * @clk: clock source
+> + *
+> + * This function informs the system that the consumer previously protecting the
+> + * clock rate can now deal with other consumer altering the clock source rate
+
+other consumers
+
+> + *
+> + * The caller must balance the number of rate_protect and rate_unprotect calls.
+
+Please say clk_rate_protect() and clk_rate_unprotect() here.
+
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
