@@ -1,71 +1,86 @@
 From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Tue, 25 Jul 2017 17:48:30 -0700
-Subject: [PATCH 3/3] dt-bindings: clock: amlogic,gxbb-aoclkc: Update
- bindings
-In-Reply-To: <1500897650.2401.1.camel@baylibre.com>
-References: <1499336663-23875-1-git-send-email-narmstrong@baylibre.com>
- <1499336663-23875-4-git-send-email-narmstrong@baylibre.com>
- <20170710035031.rdbi64ookkbq6zeo@rob-hp-laptop>
- <20170721204439.GJ19878@codeaurora.org>
- <1a971e80-1f91-c446-7e28-d193354b2859@baylibre.com>
- <1500897650.2401.1.camel@baylibre.com>
-Message-ID: <20170726004830.GI2146@codeaurora.org>
+Date: Tue, 25 Jul 2017 17:59:00 -0700
+Subject: [PATCH v3 06/10] clk: add clk_set_rate_protect
+In-Reply-To: <20170612194438.12298-7-jbrunet@baylibre.com>
+References: <20170612194438.12298-1-jbrunet@baylibre.com>
+ <20170612194438.12298-7-jbrunet@baylibre.com>
+Message-ID: <20170726005900.GJ2146@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 07/24, Jerome Brunet wrote:
-> On Mon, 2017-07-24 at 13:47 +0200, Neil Armstrong wrote:
-> > 
-> > Hi Rob, Stephen,
-> > 
-> > Thanks for your feedback, but on these Amlogic platforms, the AO register bank
-> > is
-> > filled with interleaved registers used for various purposes.
-> > 
-> > For instance, the first 1k of registers are :
-> > 
-> > 0-c RTI_STATUS
-> > c-14 RTI_PWR_CNTL
-> > 14-1c PIN_MUX
-> > 1c RTI_STATUS
-> > 24-30 GPIO
-> > 30 JTAG_CONFIG
-> > 34 WD
-> > 38-40 CPU_CTRL
-> > 40 RTI_GEN_CTRL
-> > 44 CPU_CTRL
-> > 4c-58 TIMER
-> > 58 OSCIN
-> > 60 AHB2DDR
-> > ...
-> > 
-> > 
-> > And so on, and the clock related registers are split among this space.
-> > 
-> > For sure, this could be declared as an system controller node, but this would
-> > imply completely
-> > re-designing the actual clock driver and drop the actual bindings.
-> > (and with re-writting the clock gate code to use regmap registers access)
+On 06/12, Jerome Brunet wrote:
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index d688b8f59a59..d91236e70a04 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -1809,6 +1809,51 @@ int clk_set_rate(struct clk *clk, unsigned long rate)
+>  EXPORT_SYMBOL_GPL(clk_set_rate);
+>  
+>  /**
+> + * clk_set_rate_protect - specify a new rate and protect it
+> + * @clk: the clk whose rate is being changed
+> + * @rate: the new rate for clk
+> + *
+> + * This is a combination of clk_set_rate and clk_rate_protect within
 
-I'm not suggesting a sycon node or binding usage here. There's an
-"always on" hw block here that could be implemented as an MFD
-driver that binds and creates a clk subdevice and whatever else
-is sitting in here. Those subdevices could be informed of the
-register base by knowing their parent driver is an MFD with a
-certain driver data structure inside and then get at an __iomem
-pointer through the parent's driver data. Or they could use a
-regmap approach and rewrite a bunch of code. Or there could be
-just a clk driver that binds to this node for now until a later
-time that other features are needed.
+s/clk_set_rate/clk_set_rate()/
+s/clk_rate_protect/clk_rate_protect()/
 
-> 
-> Maybe it is time to investigate having the regmap clock from qcom available to
-> every other platform ?
+> + * a critical section
+> + *
+> + * This can be used initially to ensure that at least 1 consumers is
 
-I think we have regmap clk duplicated a couple times in the
-drivers/clk/ directory now. Not sure how this is related, except
-for that there looks to be a desire to use a syscon binding here
-and that forces regmap on drivers?
+s/consumers/consumer/
+
+> + * statisfied when several protecting consummers are competing for the
+
+s/consummers/consumers/
+
+> + * same clock provider.
+> + *
+> + * The protection is not applied if setting the rate failed.
+> + *
+> + * Returns 0 on success, -EERROR otherwise.
+> + */
+> +int clk_set_rate_protect(struct clk *clk, unsigned long rate)
+> +{
+> +	int ret;
+> +
+> +	if (!clk)
+> +		return 0;
+> +
+> +	/* prevent racing with updates to the clock topology */
+> +	clk_prepare_lock();
+> +
+> +	/*
+> +	 * The temporary protection removal is not here, on purpose
+> +	 * This function is meant to be used in instead of clk_rate_protect,
+
+s/in//
+
+> +	 * so before the consumer code path protect the clock provider
+> +	 */
+> +
+> +	ret = clk_core_set_rate_nolock(clk->core, rate);
+> +
+
+Drop newline please.
+
+> +	if (!ret) {
+> +		clk_core_rate_protect(clk->core);
+> +		clk->protect_count++;
+> +	}
+> +
+> +	clk_prepare_unlock();
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(clk_set_rate_protect);
+> +
+> +/**
+>   * clk_set_rate_range - set a rate range for a clock source
+>   * @clk: clock source
+>   * @min: desired minimum clock rate in Hz, inclusive
 
 -- 
 Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
