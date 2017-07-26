@@ -1,164 +1,243 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 26 Jul 2017 19:13:03 +0200
-Subject: [PATCH v3 04/10] clk: use round rate to bail out early in set_rate
-In-Reply-To: <20170712020041.GU22780@codeaurora.org>
+Date: Wed, 26 Jul 2017 19:18:36 +0200
+Subject: [PATCH v3 05/10] clk: add support for clock protection
+In-Reply-To: <20170726001217.GC2146@codeaurora.org>
 References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <20170612194438.12298-5-jbrunet@baylibre.com>
- <20170712020041.GU22780@codeaurora.org>
-Message-ID: <1501089183.2401.28.camel@baylibre.com>
+ <20170612194438.12298-6-jbrunet@baylibre.com>
+ <20170726001217.GC2146@codeaurora.org>
+Message-ID: <1501089516.2401.29.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-07-11 at 19:00 -0700, Stephen Boyd wrote:
+On Tue, 2017-07-25 at 17:12 -0700, Stephen Boyd wrote:
 > On 06/12, Jerome Brunet wrote:
-> > The current implementation of clk_core_set_rate_nolock bails out early if
+> > The patch adds clk_protect and clk_unprotect to the CCF API. These
+> > functions allow a consumer to inform the system that the rate of clock is
+> > critical to for its operations and it can't tolerate other consumers
 > 
-> Add () to functions please.
+> s/for//
 > 
-> > the requested rate is exactly the same as the one set. It should bail out
-> > if the request would not result in rate a change.??This important when
+> > changing the rate or introducing glitches while the clock is protected.
 > 
-> s/in rate a change/in a rate change/
-> s/This important/This is important/
 > 
-> > rate is not exactly what is requested, which is fairly common with PLLs.
-> 
-> s/rate/the rate/
-> 
-> > 
-> > Ex: provider able to give any rate with steps of 100Hz
-> > ?- 1st consumer request 48000Hz and gets it.
-> > ?- 2nd consumer request 48010Hz as well. If we were to perform the usual
-> > ???mechanism, we would get 48000Hz as well. The clock would not change so
-> > ???there is no point performing any checks to make sure the clock can
-> > ???change, we know it won't.
-> 
-> I think Peter reported a similar problem as to what you're
-> describing. Can you further explain a problem situation that this
-> patch is fixing based on that thread (I can find the link if
-> needed)?
-> Some of this series if fixing rate constraints actually,
-> so please Cc him on future patch sets.
-
-I had not seen the thread you referring to.
-I assume Peter is Peter De Schrijver and the thread is:
-
-http://lkml.kernel.org/r/1490103807-21821-1-git-send-email-pdeschrijver at nvidia.c
-om
-
-Peter is right, There is indeed a problem when the current rate is out of the
-requested range.
-
-I'm not sure about the proposed solution though. Even the rate set by
-set_rate_range() should go trough the bail-out mechanism because of the use-case 
-I have explained here.
-
-After spending some time on it, I realized that patch 7 is useless, as the call
-to clk_core_set_rate_nolock() with core->req_rate is a no-op and will never
-fail.
-
-We could request the rate to be changed to nearest rate range limit (here is a
-candidate fix doing that [0]
-
-But then we get to a more fundamental issue of the rate range mechanism.
-
-Take the example of Peter:
-* You had 500Mhz and you set a range of [100-300] MHz
-* The logical thing to do would be to request the clock rate to change to
-300MHz, right ?
-* Hw capabilities being what they are, the rate is unfortunately rounded to
-301Mhz.
-* In the end, you are out of the range and the call fails.
-
-That is when the clock only implement round_rate(). If it implement
-determine_rate(), it could take the range into account when rounding the rate.
-However, I doubt many clock drivers are taking care of this corner case, if any.
-
-The clean way to address this would be to have all clock drivers use
-determine_rate() and make sure they all that the case into account, and delete
-the round_rate() ... not happening tomorrow.
-
-The consistent way would be to systematically fail if the current rate is out of
-the requested range ... a bit rude maybe.
-
-The proposed patch [0] does it's best to change the rate, but may fail as
-explained above ... 
-
-For now, I have dropped patch 7 and pushed patch [0] at the end of the queue.
-Since It is really related to the clock protect mechanism, we should probably
-discuss this in another thread. 
-
-[0]: https://github.com/jeromebrunet/linux/commit/235e477f346a9e8d115dda257f9f73
-834151bd7f
-
-> 
-> > 
-> > This is important to prepare the addition of the clock protection
-> > mechanism
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> > ?drivers/clk/clk.c | 23 +++++++++++++++++++++--
-> > ?1 file changed, 21 insertions(+), 2 deletions(-)
-> > 
 > > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> > index 8cc4672414be..163cb9832f10 100644
+> > index 163cb9832f10..d688b8f59a59 100644
 > > --- a/drivers/clk/clk.c
 > > +++ b/drivers/clk/clk.c
-> > @@ -1570,15 +1570,34 @@ static void clk_change_rate(struct clk_core *core)
-> > ?		clk_change_rate(core->new_child);
-> > ?}
-> > ?
-> > +static unsigned long clk_core_req_round_rate_nolock(struct clk_core *core,
-> > +						?????unsigned long
-> > req_rate)
+> > +
+> > +/**
+> > + * clk_rate_unprotect - unprotect the rate of a clock source
+> > + * @clk: the clk being unprotected
+> > + *
+> > + * clk_unprotect completes a critical section during which the clock
+> > + * consumer cannot tolerate any change to the clock rate. If no other clock
+> > + * consumers have protected clocks in the parent chain, then calls to this
+> > + * function will allow the clocks in the parent chain to change rates
+> > + * freely.
+> > + *
+> > + * Unlike the clk_set_rate_range method, which allows the rate to change
+> > + * within a given range, protected clocks cannot have their rate changed,
+> > + * either directly or indirectly due to changes further up the parent chain
+> > + * of clocks.
+> > + *
+> > + * Calls to clk_unprotect must be balanced with calls to clk_protect. Calls
+> > + * to this function may sleep, and do not return error status.
+> > + */
+> > +void clk_rate_unprotect(struct clk *clk)
 > > +{
-> > +	int ret;
-> > +	struct clk_rate_request req;
+> > +	if (!clk)
+> > +		return;
 > > +
-> > +	if (!core)
-> > +		return 0;
+> > +	clk_prepare_lock();
+> > +
+> > +	/*
+> > +	?* if there is something wrong with this consumer protect count,
+> > stop
+> > +	?* here before messing with the provider
+> > +	?*/
+> > +	if (WARN_ON(clk->protect_count <= 0))
+> > +		goto out;
+> > +
+> > +	clk_core_rate_unprotect(clk->core);
 > 
-> This is impossible because the only call site checks for core
-> being NULL already.
+> Can we make this stuff non-recursive? I know that this is
+> basically a copy paste of prepare/unprepare code and recursion is
+> nice and elegant, but we really don't need to do it when we could
+> have a loop that's the same and doesn't blow up our stack frame
+> usage. I'll send a patch for prepare/enable so you get the idea.
+
+I think we should not be doing the same thing differently inside the framework.
+If enable and disable are recursive, protect should be too. The stack can handle
+enable and prepare, why would it not handle protect ?
+
+Of course, If your patch to "stack-ify" enable and prepare merges first, I'll
+copy the mechanism. The important thing for me is keep things consistent.
+
+On a more general note, your idea is no light change ...
+Are the trees really that tall that it is becoming a problem ?
+I see in your patch comment that there is still a few question to be answered,
+right ?
+
+Could we take this one step at time and keep the recursion for now?
+When the whole CCF moves to a stack approach, I'll be happy to help.
+
+> 
+> > +	clk->protect_count--;
+> > +out:
+> > +	clk_prepare_unlock();
+> > +}
+> > +EXPORT_SYMBOL_GPL(clk_rate_unprotect);
+> 
+> [..]
+> > +
+> > @@ -2952,6 +3134,17 @@ void __clk_put(struct clk *clk)
+> > ?
+> > ?	clk_prepare_lock();
+> > ?
+> > +	/*
+> > +	?* Before calling clk_put, all calls to clk_rate_protect from a
+> > given
+> > +	?* user must be balanced with calls to clk_rate_unprotect and by
+> > that
+> > +	?* same user
+> > +	?*/
+> > +	WARN_ON(clk->protect_count);
+> > +
+> > +	/* We voiced our concern, let's sanitize the situation */
+> > +	for (; clk->protect_count; clk->protect_count--)
+> > +		clk_core_rate_unprotect(clk->core);
+> 
+> Does this do anything different than:
+> 
+> 	clk->core->protect_count -= clk->protect_count;
+> 	clk->protect_count = 1;
+
+this looks really hacky !
+
+> 	clk_core_rate_unprotect(clk->core);
+> 
+> Just seems better to not do a loop here.
+
+A loop a easy to understand.
+This code should actually never run, so readability looks more important to me
+than optimisation.
+If you really insist on this, I'll yield but I'm not a big fan.
+
+> 
+> > diff --git a/include/linux/clk.h b/include/linux/clk.h
+> > index 91bd464f4c9b..b60c36f2e6b0 100644
+> > --- a/include/linux/clk.h
+> > +++ b/include/linux/clk.h
+> > @@ -331,6 +331,30 @@ struct clk *devm_clk_get(struct device *dev, const char
+> > *id);
+> > ? */
+> > ?struct clk *devm_get_clk_from_child(struct device *dev,
+> > ?				????struct device_node *np, const char
+> > *con_id);
+> > +/**
+> > + * clk_rate_protect - inform the system when the clock rate must be
+> > protected.
+> > + * @clk: clock source
+> > + *
+> > + * This function informs the system that the consumer protecting the clock
+> > + * depends on the rate of the clock source and can't tolerate any glitches
+> > + * introduced by further clock rate change or re-parenting of the clock
+> > source.
+> > + *
+> > + * Must not be called from within atomic context.
+> > + */
+> > +void clk_rate_protect(struct clk *clk);
+> 
+> Is there any plan to use this clk_rate_protect() API? It seems
+> inherently racy for a clk consumer to call clk_set_rate() and
+> then this clk_rate_protect() API after that to lock the rate in.
+> How about we leave this out of the consumer API until a user
+> needs it?
+
+Having this API available is whole reason I've been working on this for so long.
+By the now, you may have forgot but I explained the use-case in first RFC [0]
+Here is an example (wip) of usage [1]
+
+[0]: http://lkml.kernel.org/r/20170302173835.18313-1-jbrunet at baylibre.co
+[1]: https://github.com/jeromebrunet/linux/commits/amlogic/wip/audio-clk-lock
+
+> 
+> I'm tempted to say that we could do this rate locking stuff with
+> clk_set_rate_range(), but with more thought that doesn't seem
+> possible because there's a subtle difference. The range API is
+> willing to accept a range of frequencies, and calling
+> clk_set_rate_range() with some exact frequency should fail if
+> that exact frequency can't be met. With this API and the
+> subsequent clk_set_rate_protect() API we're willing to accept
+> that the rate we call clk_set_rate_protect() with could be
+> different than the rate we actually get.
+
+Indeed and this point is important for PLLs which (almost) certainly never meet
+the exact requested rate.
+
+Also rate_range would give no guarantee regarding gliches and reparenting.
+Keep audio in mind here, glitches are the enemy.
+
+Say you have 2 clocks fed by a divider (SET_RATE_PARENT of course)
+# clock #1 is a PLL locked to 48000kHz
+# clock #2 request a new rate
+
+If the clock #1 is protected by rate_range mechanism, the divider could change,
+provided that PLL is able to relock at 48000kHz ... but we'll get a glitch
+
+This won't happen with clock protect, clock #2 will have to work with what the
+divider provides at the moment, or reparent to better suited (free) parent
+clock.
+
+> 
+> Finally, When does a consumer want the rate of a clk to change
+> after they call clk_set_rate() on it? I would guess that very few
+> consumers would be willing to accept that. Which begs the
+> question, if anyone will keep calling clk_set_rate() after this
+> API (and the clk_set_rate_protect() API) is added. It almost
+> seems like we would want it to be opt-out, instead of opt-in, so
+> that consumers would call clk_set_rate() and expect it to be a
+> stable clk rate after that, and they would call
+> clk_set_rate_trample_on_me() or something properly named when
+> they don't care what the rate is after they call the API.
 > 
 
-This more or less like the previous comments on lockdep_assert.
-Most (should be all) "_no_lock" function check the prepare_lock and the core
-pointer. Even when it is not strictly necessary, I think we should be consistent
- about it.
+Indeed, we generally don't want our rate to change, but:
+- This is mostly for leaf clocks, the internal path would generally not care, as
+long as the leaf are happy.
+- Even a leaf may be open (be able to deal with) to small glitches, pll relock,
+re parenting
 
-In the unlikely event this function is used some place else, it would avoid bad
-surprise
+Actually, if all the clock could not tolerate any glitches, there would have
+been a lot of complains about CCF by now, it does not prevent glitches at all.
 
-So?if it is OK with you, I would prefer to keep this check and add the check of
-the prepare lock. Maybe I could go over the other "_nolock" functions in clk.c
-to verify they are all doing it ? What do you think ?
+If you go over the initial RFC, the point is also for the CCF to favor other
+(unused parent) when several (sometimes with the same capabilities) are
+available. I think this is also a fairly common use case. That's something
+rate_range won't do either, as far as I understood.
+
+Last but not least, it allows consumer to set the rate in a sort of critical
+section and have the guarantee that nobody will be able to change the rate
+between the clk_set_rate() call and prepare_enable(). That's something we don't
+have at the moment.
+
+So I think this API bring quite a few things
 
 > > +
-> > +	clk_core_get_boundaries(core, &req.min_rate, &req.max_rate);
-> > +	req.rate = req_rate;
-> > +
-> > +	ret = clk_core_round_rate_nolock(core, &req);
-> > +
-> > +	return ret ? 0 : req.rate;
+> > +/**
+> > + * clk_rate_unprotect - release the protection of the clock source.
+> > + * @clk: clock source
+> > + *
+> > + * This function informs the system that the consumer previously protecting
+> > the
+> > + * clock rate can now deal with other consumer altering the clock source
+> > rate
 > 
-> What if the return value is negative?
-
-Here we are trying to return a rate, so unsigned long.
-I think (and I remember discussing it with Mike sometimes ago) that a 0 clock
-rate quite often represent an error.?
-
-
-> We should bail the set rate
-> call instead of continuing on?
-
-I don't think this for this particular function to decide. It should try compute
-what the rate would be. It's up to the calling function to decide what do with
-this 0 (error)
-
-To answer your question, I think that if we can't figure out the what the rate
-would be, we should not error right away and just let the regular process happen
-(no bail-out) ... If there is a problem, it will error anyway 
-
+> other consumers
+> 
+> > + *
+> > + * The caller must balance the number of rate_protect and rate_unprotect
+> > calls.
+> 
+> Please say clk_rate_protect() and clk_rate_unprotect() here.
 > 
