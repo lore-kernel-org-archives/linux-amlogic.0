@@ -1,67 +1,36 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 26 Jul 2017 19:22:29 +0200
-Subject: [PATCH v3 07/10] clk: rollback set_rate_range changes on failure
-In-Reply-To: <20170712020233.GV22780@codeaurora.org>
-References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <20170612194438.12298-8-jbrunet@baylibre.com>
- <20170712020233.GV22780@codeaurora.org>
-Message-ID: <1501089749.2401.31.camel@baylibre.com>
+From: noralf@tronnes.org (=?UTF-8?Q?Noralf_Tr=c3=b8nnes?=)
+Date: Wed, 26 Jul 2017 21:00:53 +0200
+Subject: [PATCH 7/8] drm: Nuke drm_atomic_helper_connector_dpms
+In-Reply-To: <20170725080122.20548-8-daniel.vetter@ffwll.ch>
+References: <20170725080122.20548-1-daniel.vetter@ffwll.ch>
+ <20170725080122.20548-8-daniel.vetter@ffwll.ch>
+Message-ID: <96fd05d9-6cab-4a40-6a63-d0b9a5872434@tronnes.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-07-11 at 19:02 -0700, Stephen Boyd wrote:
-> On 06/12, Jerome Brunet wrote:
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
-> There should be some commit text here describing the problem.
-> Also a Fixes: tag and please put this earlier in the series.
 
-Fixes added but as explained, I dropped this patch after thinking about Peter's
-observations.
+Den 25.07.2017 10.01, skrev Daniel Vetter:
+> It's dead code, the core handles all this directly now.
+>
+> The only special case is nouveau and tda988x which used one function
+> for both legacy modeset code and -nv50 atomic world instead of 2
+> vtables. But amounts to exactly the same.
+>
+> v2: Rebase over the panel/brideg refactorings in stm/ltdc.
+>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+...
+> diff --git a/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c b/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> index ec43fb7ad9e4..79b6687977d3 100644
+> --- a/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> +++ b/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> @@ -71,7 +71,6 @@ static void tinydrm_connector_destroy(struct drm_connector *connector)
+>   }
+>   
+>   static const struct drm_connector_funcs tinydrm_connector_funcs = {
+> -	.dpms = drm_atomic_helper_connector_dpms,
+>   	.reset = drm_atomic_helper_connector_reset,
+>   	.detect = tinydrm_connector_detect,
+>   	.fill_modes = drm_helper_probe_single_connector_modes,
 
-The new candidate patch would be [0]. I suggest we discuss this out of the clock
- protect thread to avoid mixing issues.
-
-[0]: https://github.com/jeromebrunet/linux/commit/235e477f346a9e8d115dda257f9f73
-834151bd7f
-
-
-> 
-> > ---
-> > ?drivers/clk/clk.c | 8 ++++++++
-> > ?1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> > index d91236e70a04..253f1d3f0971 100644
-> > --- a/drivers/clk/clk.c
-> > +++ b/drivers/clk/clk.c
-> > @@ -1864,6 +1864,7 @@ EXPORT_SYMBOL_GPL(clk_set_rate_protect);
-> > ?int clk_set_rate_range(struct clk *clk, unsigned long min, unsigned long
-> > max)
-> > ?{
-> > ?	int ret = 0;
-> > +	unsigned int old_min, old_max;
-> > ?
-> > ?	if (!clk)
-> > ?		return 0;
-> > @@ -1881,9 +1882,16 @@ int clk_set_rate_range(struct clk *clk, unsigned long
-> > min, unsigned long max)
-> > ?		clk_core_rate_unprotect(clk->core);
-> > ?
-> > ?	if (min != clk->min_rate || max != clk->max_rate) {
-> > +		old_min = clk->min_rate;
-> > +		old_max = clk->max_rate;
-> > ?		clk->min_rate = min;
-> > ?		clk->max_rate = max;
-> > ?		ret = clk_core_set_rate_nolock(clk->core, clk->core-
-> > >req_rate);
-> > +		if (ret) {
-> > +			/* undo changes */
-> > +			clk->min_rate = old_min;
-> > +			clk->max_rate = old_max;
-> > +		}
-> > ?	}
-> > ?
-> > ?	if (clk->protect_count)
-> 
-> 
+Acked-by: Noralf Tr?nnes <noralf@tronnes.org>
