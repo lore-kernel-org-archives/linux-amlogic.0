@@ -1,28 +1,36 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 26 Jul 2017 22:31:38 +0200
-Subject: [PATCH] clk: meson: gxbb: add sd_emmc clk0 clocks
-Message-ID: <20170726203138.11367-1-jbrunet@baylibre.com>
+Date: Thu, 27 Jul 2017 12:39:02 +0200
+Subject: [PATCH v2] clk: meson: gxbb: add sd_emmc clk0 clocks
+Message-ID: <20170727103902.3262-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Input source 0 of the mmc controllers are not the xtal, as currently
-described in DT, but  composite clocks (the usual mux, divider and gate).
-The muxes can take the crytal (default) and any of the fclk_div clocks
-which should provide any rate an mmc/nand could request.
+Input source 0 of the mmc controllers is not directly xtal, as currently
+described in DT. Each controller is fed by a composite clock (the usual
+mux, divider and gate). The muxes inputs are the xtal (default) and the
+fclk_div clocks. These parents, along with the divider, should be able to
+provide the necessary rates for mmc and nand operation.
 
-The mux should also be able to take mpll2, mpll3 and gp0_pll but these
-are precious clock for other usage. It is better if the mmc does not use
-these them. For this reason, mpll2, mpll3 and gp0_pll is not listed among
-the possible parent.
+The input muxes should also be able to take mpll2, mpll3 and gp0_pll but
+these are precious clocks, needed for other usage. It is better if the
+mmc does not use these them. For this reason, mpll2, mpll3 and gp0_pll is
+not listed among the possible parents.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
+
+Changes since v1: [0]
+ - Correct commit description and comments.
+ - No functional changes
+
+[0]: https://lkml.kernel.org/r/20170726203138.11367-1-jbrunet at baylibre.com
+
  drivers/clk/meson/gxbb.c | 167 +++++++++++++++++++++++++++++++++++++++++++++++
  drivers/clk/meson/gxbb.h |  11 +++-
  2 files changed, 177 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index a897ea45327c..d466901e88a2 100644
+index a897ea45327c..d966ae85f9f9 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
 @@ -974,6 +974,146 @@ static struct clk_mux gxbb_32k_clk_sel = {
@@ -33,10 +41,10 @@ index a897ea45327c..d466901e88a2 100644
 +	"xtal", "fclk_div2", "fclk_div3", "fclk_div5", "fclk_div7",
 +
 +	/*
-+	 * Following these clocks, we should also have had mpll2, mpll3
-+	 * and gp0_pll but these clocks are too precious to be used here.
-+	 * All the necessary rates for MMC and NAND operation can acheived
-+	 * using the xtal and the fclk_div clocks
++	 * Following these parent clocks, we should also have had mpll2, mpll3
++	 * and gp0_pll but these clocks are too precious to be used here. All
++	 * the necessary rates for MMC and NAND operation can be acheived using
++	 * xtal or fclk_div clocks
 +	 */
 +};
 +
