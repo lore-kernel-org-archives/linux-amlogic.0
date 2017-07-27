@@ -1,35 +1,44 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 27 Jul 2017 15:09:39 +0200
-Subject: [PATCH 1/2] clk: meson: gxbb: fix meson cts_amclk divider flags
+Date: Thu, 27 Jul 2017 15:09:40 +0200
+Subject: [PATCH 2/2] clk: meson: gxbb: fix clk_mclk_i958 divider flags
 In-Reply-To: <20170727130940.18005-1-jbrunet@baylibre.com>
 References: <20170727130940.18005-1-jbrunet@baylibre.com>
-Message-ID: <20170727130940.18005-2-jbrunet@baylibre.com>
+Message-ID: <20170727130940.18005-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 CLK_DIVIDER_ROUND_CLOSEST was incorrectly put in the hw.init flags
 while it should have been in the divider flags
 
-Fixes: 4087bd4b2170 ("clk: meson: gxbb: add cts_amclk")
+Fixes: 3c277c247eab ("clk: meson: gxbb: add cts_mclk_i958")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/gxbb.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/clk/meson/gxbb.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index a897ea45327c..b1b72524153b 100644
+index b1b72524153b..59a296b119ea 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -845,13 +845,14 @@ static struct meson_clk_audio_divider gxbb_cts_amclk_div = {
- 		.shift   = 0,
- 		.width   = 8,
- 	},
-+	.flags = CLK_DIVIDER_ROUND_CLOSEST,
+@@ -876,7 +876,7 @@ static struct clk_mux gxbb_cts_mclk_i958_sel = {
+ 	/* Default parent unknown (register reset value: 0) */
+ 	.table = (u32[]){ 1, 2, 3 },
  	.lock = &clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cts_amclk_div",
- 		.ops = &meson_clk_audio_divider_ops,
- 		.parent_names = (const char *[]){ "cts_amclk_sel" },
+-		.hw.init = &(struct clk_init_data){
++	.hw.init = &(struct clk_init_data) {
+ 		.name = "cts_mclk_i958_sel",
+ 		.ops = &clk_mux_ops,
+ 		.parent_names = (const char *[]){ "mpll0", "mpll1", "mpll2" },
+@@ -890,12 +890,13 @@ static struct clk_divider gxbb_cts_mclk_i958_div = {
+ 	.shift = 16,
+ 	.width = 8,
+ 	.lock = &clk_lock,
+-	.hw.init = &(struct clk_init_data){
++	.flags = CLK_DIVIDER_ROUND_CLOSEST,
++	.hw.init = &(struct clk_init_data) {
+ 		.name = "cts_mclk_i958_div",
+ 		.ops = &clk_divider_ops,
+ 		.parent_names = (const char *[]){ "cts_mclk_i958_sel" },
  		.num_parents = 1,
 -		.flags = CLK_SET_RATE_PARENT | CLK_DIVIDER_ROUND_CLOSEST,
 +		.flags = CLK_SET_RATE_PARENT,
