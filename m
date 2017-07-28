@@ -1,34 +1,69 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 27 Jul 2017 17:29:07 -0700
-Subject: [PATCH v3.1 0/3] soc: amlogic: Add Amlogic SoC Information driver
-In-Reply-To: <e9558b4f-b155-9f25-fe39-b876973299b5@baylibre.com> (Neil
- Armstrong's message of "Thu, 13 Jul 2017 12:25:20 +0200")
-References: <1498206498-19139-1-git-send-email-narmstrong@baylibre.com>
- <CAFBinCAK0iXJ5zLg64oABXs7rno48Dni6Zc2dQ3_aadJS7wiSQ@mail.gmail.com>
- <e9558b4f-b155-9f25-fe39-b876973299b5@baylibre.com>
-Message-ID: <7h4ltxs8to.fsf@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 28 Jul 2017 11:53:06 +0200
+Subject: [PATCH v2 1/4] dt-bindings: clock: amlogic,
+ gxbb-aoclkc: Update bindings
+In-Reply-To: <1501235589-318-1-git-send-email-narmstrong@baylibre.com>
+References: <1501235589-318-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1501235589-318-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+On the first revision of the bindings, only the gates + resets were known
+in the AO Clock HW, but more registers used to configures AO clock are known
+to be spread among the AO register space.
+This patch adds a parent node for the entire system control zone for the AO
+domain then moves the clock controller as a subnode of the system control
+node.
 
-> On 07/12/2017 09:03 PM, Martin Blumenstingl wrote:
->> Hi Kevin,
->> 
->> On Fri, Jun 23, 2017 at 10:28 AM, Neil Armstrong
->> <narmstrong@baylibre.com> wrote:
->>> Amlogic SoCs have a SoC information register for SoC type, package type and
->>> revision information.
->>> This patchset adds support for this register decoding and exposing with the
->>> SoC bus infrastructure, with dt-bindings and DT node.
->> I'm curious: are you going to take this through your tree or are we
->> waiting for someone's ACK here?
->
-> I'm curious also, it should go through armsoc-drivers, no ?
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
 
-I was being lazy and assuming that Arnd would have another look as he
-reviewed an earlier version, but since there appear to be no further
-reviews/comments, I'll take it through the amlogic tree in the
-v4.14/drivers branch.
-
-Kevin
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+index a55d31b..64884ed 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+@@ -5,9 +5,11 @@ controllers within the Always-On part of the SoC.
+ 
+ Required Properties:
+ 
+-- compatible: should be "amlogic,gxbb-aoclkc"
+-- reg: physical base address of the clock controller and length of memory
+-       mapped region.
++- compatible: value should be different for each SoC family as :
++	- GXBB (S905) : "amlogic,meson-gxbb-aoclkc"
++	- GXL (S905X, S905D) : "amlogic,meson-gxl-aoclkc"
++	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
++	followed by the common "amlogic,meson-gx-aoclkc"
+ 
+ - #clock-cells: should be 1.
+ 
+@@ -23,14 +25,22 @@ to specify the reset which they consume. All available resets are defined as
+ preprocessor macros in the dt-bindings/reset/gxbb-aoclkc.h header and can be
+ used in device tree sources.
+ 
++Parent node should have the following properties :
++- compatible: "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd"
++- reg: base address and size of the AO system control register space.
++
+ Example: AO Clock controller node:
+ 
+-	clkc_AO: clock-controller at 040 {
+-		compatible = "amlogic,gxbb-aoclkc";
+-		reg = <0x0 0x040 0x0 0x4>;
++ao_sysctrl: sys-ctrl at 0 {
++	compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
++	reg =  <0x0 0x0 0x0 0x100>;
++
++	clkc_AO: clock-controller {
++		compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
+ 		#clock-cells = <1>;
+ 		#reset-cells = <1>;
+ 	};
++};
+ 
+ Example: UART controller node that consumes the clock and reset generated
+   by the clock controller:
+-- 
+1.9.1
