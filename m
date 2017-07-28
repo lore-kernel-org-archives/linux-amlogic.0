@@ -1,83 +1,30 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 28 Jul 2017 18:32:28 +0200
-Subject: [PATCH] clk: meson: mpll: fix mpll0 fractional part ignored
-Message-ID: <20170728163228.10879-1-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 28 Jul 2017 09:43:44 -0700
+Subject: [PATCH 0/2] Add PWM support for Meson8
+In-Reply-To: <20170711222015.10401-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Wed, 12 Jul 2017 00:20:13 +0200")
+References: <20170711222015.10401-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7hziboqzpb.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-mpll0 clock is special compared to the other mplls. It needs another
-bit (ssen) to be set to activate the fractional part the mpll divider
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-Fixes: 007e6e5c5f01 ("clk: meson: mpll: add rw operation")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/clk-mpll.c | 7 +++++++
- drivers/clk/meson/clkc.h     | 1 +
- drivers/clk/meson/gxbb.c     | 5 +++++
- drivers/clk/meson/meson8b.c  | 5 +++++
- 4 files changed, 18 insertions(+)
+> This series moves the pwm_ab and pwm_cd nodes to the common meson.dtsi.
+> According to Amlogic's GPL kernel sources Meson6 contains the same PWM
+> IP blocks for pwm_ab and pwm_cd (at the same register offsets) as Meson8
+> and Meson8b.
+>
+> pwm_ef on the other hand does not exist on Meson6, so it stays in
+> meson8b.dtsi (and is added to meson8b.dtsi).
+>
+> Known usages of the PWM controllers:
+> - controlling the brightness of the system LED
+> - generating the 32.768kHz wifi LPO clock
+> - controlling the VDDEE (CPU) voltage
 
-diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
-index 39eab69fe51a..44a5a535ca63 100644
---- a/drivers/clk/meson/clk-mpll.c
-+++ b/drivers/clk/meson/clk-mpll.c
-@@ -161,6 +161,13 @@ static int mpll_set_rate(struct clk_hw *hw,
- 	reg = PARM_SET(p->width, p->shift, reg, 1);
- 	writel(reg, mpll->base + p->reg_off);
- 
-+	p = &mpll->ssen;
-+	if (p->width != 0) {
-+		reg = readl(mpll->base + p->reg_off);
-+		reg = PARM_SET(p->width, p->shift, reg, 1);
-+		writel(reg, mpll->base + p->reg_off);
-+	}
-+
- 	p = &mpll->n2;
- 	reg = readl(mpll->base + p->reg_off);
- 	reg = PARM_SET(p->width, p->shift, reg, n2);
-diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index d6feafe8bd6c..1629da9b4141 100644
---- a/drivers/clk/meson/clkc.h
-+++ b/drivers/clk/meson/clkc.h
-@@ -118,6 +118,7 @@ struct meson_clk_mpll {
- 	struct parm sdm_en;
- 	struct parm n2;
- 	struct parm en;
-+	struct parm ssen;
- 	spinlock_t *lock;
- };
- 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 59a296b119ea..79b195b4df03 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -528,6 +528,11 @@ static struct meson_clk_mpll gxbb_mpll0 = {
- 		.shift   = 14,
- 		.width	 = 1,
- 	},
-+	.ssen = {
-+		.reg_off = HHI_MPLL_CNTL,
-+		.shift   = 25,
-+		.width	 = 1,
-+	},
- 	.lock = &clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0",
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index bb3f1de876b1..6ec512ad2598 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -267,6 +267,11 @@ static struct meson_clk_mpll meson8b_mpll0 = {
- 		.shift   = 14,
- 		.width   = 1,
- 	},
-+	.ssen = {
-+		.reg_off = HHI_MPLL_CNTL,
-+		.shift   = 25,
-+		.width   = 1,
-+	},
- 	.lock = &clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0",
--- 
-2.9.4
+Applied to v4.14/dt,
+
+Thanks,
+
+Kevin
