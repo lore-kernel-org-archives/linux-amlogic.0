@@ -1,69 +1,71 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 28 Jul 2017 15:54:43 +0200
-Subject: [PATCH 1/2] ARM64: dts: meson-gxl-khadas-vim: Add GPIO lines names
+Date: Fri, 28 Jul 2017 15:54:44 +0200
+Subject: [PATCH 2/2] ARM64: dts: meson-gxbb-nanopi-k2: Add GPIO lines names
 In-Reply-To: <1501250084-19967-1-git-send-email-narmstrong@baylibre.com>
 References: <1501250084-19967-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1501250084-19967-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1501250084-19967-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch describes the GPIO lines usage on the Khadas VIM board.
+This patch describes the GPIO lines usage on the Nanopi K2 board.
 
 This is useful in the debugfs gpio file and using the cdev gpio API.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../dts/amlogic/meson-gxl-s905x-khadas-vim.dts     | 56 ++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 58 ++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index 72c5a9f..67bc40f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -105,6 +105,62 @@
- 	linux,rc-map-name = "rc-geekbox";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index fa46283..9697a7a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -175,6 +175,64 @@
+ 	pinctrl-names = "default";
  };
  
 +&pinctrl_aobus {
-+	gpio-line-names = "UART TX",
-+			  "UART RX",
-+			  "Power Key In",
-+			  "J9 Header Pin35",
-+			  "J9 Header Pin16",
-+			  "J9 Header Pin15",
-+			  "J9 Header Pin33",
-+			  "IR In",
-+			  "HDMI CEC",
-+			  "SYS LED";
++	gpio-line-names = "UART TX", "UART RX", "Power Control", "Power Key In",
++			  "VCCK En", "CON1 Header Pin31",
++			  "I2S Header Pin6", "IR In", "I2S Header Pin7",
++			  "I2S Header Pin3", "I2S Header Pin4",
++			  "I2S Header Pin5", "HDMI CEC", "SYS LED";
 +};
 +
 +&pinctrl_periphs {
 +	gpio-line-names = /* Bank GPIOZ */
-+			  "", "", "", "", "", "", "",
-+			  "", "", "", "", "", "", "",
-+			  "Power OFF",
-+			  "VCCK Enable",
++			  "Eth MDIO", "Eth MDC", "Eth RGMII RX Clk",
++			  "Eth RX DV", "Eth RX D0", "Eth RX D1", "Eth RX D2",
++			  "Eth RX D3", "Eth RGMII TX Clk", "Eth TX En",
++			  "Eth TX D0", "Eth TX D1", "Eth TX D2", "Eth TX D3",
++			  "Eth PHY nRESET", "Eth PHY Intc",
 +			  /* Bank GPIOH */
-+			  "HDMI HPD", "HDMI SDA", "HDMI SCL",
-+			  "HDMI_5V_EN", "SPDIF",
-+			  "J9 Header Pin37",
-+			  "J9 Header Pin30",
-+			  "J9 Header Pin29",
-+			  "J9 Header Pin32",
-+			  "J9 Header Pin31",
++			  "HDMI HPD", "HDMI DDC SDA", "HDMI DDC SCL",
++			  "CON1 Header Pin33",
 +			  /* Bank BOOT */
-+			  "eMMC D0", "eMMC D1", "eMMC D2", "eMMC D3",
-+			  "eMMC D4", "eMMC D5", "eMMC D6", "eMMC D7",
-+			  "eMMC Clk", "eMMC Reset", "eMMC CMD",
-+			  "", "BOOT_MODE", "", "", "eMMC Data Strobe", 
++			  "eMMC D0", "eMMC D1", "eMMC D2", "eMMC D3", "eMMC D4",
++			  "eMMC D5", "eMMC D6", "eMMC D7", "eMMC Clk",
++			  "eMMC Reset", "eMMC CMD",
++			  "", "", "", "", "eMMC DS",
++			  "", "",
 +			  /* Bank CARD */
 +			  "SDCard D1", "SDCard D0", "SDCard CLK", "SDCard CMD",
 +			  "SDCard D3", "SDCard D2", "SDCard Det",
 +			  /* Bank GPIODV */
-+			  "", "", "", "", "", "", "", "", "", "", "", "",
-+			  "", "", "", "", "", "", "", "", "", "", "", "",
++			  "", "", "", "", "", "", "", "", "", "", "", "", "",
++			  "", "", "", "", "", "", "", "", "", "", "",
 +			  "I2C A SDA", "I2C A SCK", "I2C B SDA", "I2C B SCK",
-+			  "VCCK Regulator", "VDDEE Regulator",
++			  "VDDEE Regulator", "VCCK Regulator",
++			  /* Bank GPIOY */
++			  "CON1 Header Pin7", "CON1 Header Pin11",
++			  "CON1 Header Pin13", "CON1 Header Pin15",
++			  "CON1 Header Pin18", "CON1 Header Pin19",
++			  "CON1 Header Pin22", "CON1 Header Pin21",
++			  "CON1 Header Pin24", "CON1 Header Pin23",
++			  "CON1 Header Pin26", "CON1 Header Pin29",
++			  "CON1 Header Pin32", "CON1 Header Pin8",
++			  "CON1 Header Pin10", "CON1 Header Pin16",
++			  "CON1 Header Pin12",
 +			  /* Bank GPIOX */
 +			  "WIFI SDIO D0", "WIFI SDIO D1", "WIFI SDIO D2",
 +			  "WIFI SDIO D3", "WIFI SDIO CLK", "WIFI SDIO CMD",
@@ -72,16 +74,16 @@ index 72c5a9f..67bc40f 100644
 +			  "Bluetooth PCM SYNC", "Bluetooth PCM CLK",
 +			  "Bluetooth UART TX", "Bluetooth UART RX",
 +			  "Bluetooth UART CTS", "Bluetooth UART RTS",
-+			  "WIFI 32K", "Bluetooth Enable",
++			  "", "", "", "WIFI 32K", "Bluetooth Enable",
 +			  "Bluetooth WAKE HOST",
 +			  /* Bank GPIOCLK */
-+			  "", "J9 Header Pin39",
++			  "", "CON1 Header Pin35", "", "",
 +			  /* GPIO_TEST_N */
 +			  "";
 +};
 +
- &pwm_AO_ab {
+ &pwm_ef {
  	status = "okay";
- 	pinctrl-0 = <&pwm_ao_a_3_pins>, <&pwm_ao_b_pins>;
+ 	pinctrl-0 = <&pwm_e_pins>;
 -- 
 1.9.1
