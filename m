@@ -1,103 +1,34 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Thu, 27 Jul 2017 15:44:59 -0700
-Subject: [PATCH v3 00/10] clk: implement clock rate protection mechanism
-In-Reply-To: <1501088747.2401.27.camel@baylibre.com>
-References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <CACRpkdaXFS-pW7qhbVLexzefaZwZ50ww3+KTeY4cuHRQUSCWKQ@mail.gmail.com>
- <1497955822.7387.3.camel@baylibre.com>
- <CACRpkdacB3HKgewSciQWB0c8v2KCF7u+eT0A_RSC0+z_KrQzhA@mail.gmail.com>
- <1497961950.7387.7.camel@baylibre.com>
- <1498050903.7387.12.camel@baylibre.com>
- <20170712011604.GQ22780@codeaurora.org>
- <1501088747.2401.27.camel@baylibre.com>
-Message-ID: <20170727224459.GO2146@codeaurora.org>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 27 Jul 2017 17:29:07 -0700
+Subject: [PATCH v3.1 0/3] soc: amlogic: Add Amlogic SoC Information driver
+In-Reply-To: <e9558b4f-b155-9f25-fe39-b876973299b5@baylibre.com> (Neil
+ Armstrong's message of "Thu, 13 Jul 2017 12:25:20 +0200")
+References: <1498206498-19139-1-git-send-email-narmstrong@baylibre.com>
+ <CAFBinCAK0iXJ5zLg64oABXs7rno48Dni6Zc2dQ3_aadJS7wiSQ@mail.gmail.com>
+ <e9558b4f-b155-9f25-fe39-b876973299b5@baylibre.com>
+Message-ID: <7h4ltxs8to.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 07/26, Jerome Brunet wrote:
-> On Tue, 2017-07-11 at 18:16 -0700, Stephen Boyd wrote:
-> > On 06/21, Jerome Brunet wrote:
-> > > 
-> > > I managed to have a run on kci - based on v4.12-rc6:
-> > > https://kernelci.org/boot/all/job/khilman/branch/to-build/kernel/v4.12-rc6-1
-> > > 0-ge
-> > > a373ddef830/
-> > > 
-> > > There was no build regression but kci did find one boot regression on qcom
-> > > platforms:
-> > > * qcom-apq8064-cm-qs600
-> > > * qcom-apq8064-ifc6410
-> > > 
-> > > it seems the problem is coming from the clock used by the mmc driver
-> > > (drivers/mmc/host/mmci.c)
-> > > 
-> > > the driver does following sequence:
-> > > * get_clk
-> > > * prepare_enable
-> > > * get_rate
-> > > * set_rate
-> > > * ...
-> > > 
-> > > with clock SDCx_clk (qcom_apq8064.dtsi:1037). This clock has
-> > > CLK_SET_RATE_PARENT
-> > > flag so it will transmit the request to its parent.
-> > > The parent of this clock is SDCx_src which has the CLK_SET_RATE_GATE flag.
-> > > 
-> > > This can't work with sequence above. The flag was clearly bypassed before,
-> > > so I
-> > > think it would be best to remove CLK_SET_RATE_GATE from the SDCx_src clocks
-> > > 
-> > > Stephen, would you agree ?
-> > > 
-> > > There was an issue with the chip board as well but this particular board has
-> > > not
-> > > been very reliable in this lab lately. It has failed on several other job.
-> > > 
-> > 
-> > Yes the flag was never working before and we've been ignoring the
-> > subtle problems that it causes to change the rate while the clk
-> > is enabled. On these older SoCs, all the clks marked with
-> > CLK_SET_RATE_GATE need to implement something to forcibly disable
-> > all child clks across the rate change. That is the hardware
-> > recommended procedure.
-> 
-> Seems that HW has been doing fine w/o recommended procedure so far ;)
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Dubious at best. There's only light testing with upstream kernels
-on these SoCs, and probably "doing fine" is more like "nobody has
-reported a problem" in this case.
+> On 07/12/2017 09:03 PM, Martin Blumenstingl wrote:
+>> Hi Kevin,
+>> 
+>> On Fri, Jun 23, 2017 at 10:28 AM, Neil Armstrong
+>> <narmstrong@baylibre.com> wrote:
+>>> Amlogic SoCs have a SoC information register for SoC type, package type and
+>>> revision information.
+>>> This patchset adds support for this register decoding and exposing with the
+>>> SoC bus infrastructure, with dt-bindings and DT node.
+>> I'm curious: are you going to take this through your tree or are we
+>> waiting for someone's ACK here?
+>
+> I'm curious also, it should go through armsoc-drivers, no ?
 
-> 
-> > 
-> > So something like
-> > 
-> > 	get_clk
-> > 	prepare_enable
-> > 	get_rate
-> > 	set_rate
-> > 	 call ->set_rate() op
-> > 	 forcibly disable children of rcgs
-> > 	 actually change the rate of rcg
-> > 	 forcibly enable all children that were disabled
-> > 
-> > and have that happen under one big spinlock local to the qcom
-> > driver I suppose so that enable/disable can't leak into the rate
-> > change. Fun! I'll make an attempt at implementing the right
-> > solution tomorrow/tonight. Of course, we can remove the flag from
-> > qcom drivers if it's blocking this series.
-> > 
-> 
-> Yeah, it is probably blocking the series.
-> 
-> In the following mail, I've only replied where I wanted to discuss a bit more.
-> For everything else, please consider the comments agreed and the modifications
-> done as requested.
-> 
+I was being lazy and assuming that Arnd would have another look as he
+reviewed an earlier version, but since there appear to be no further
+reviews/comments, I'll take it through the amlogic tree in the
+v4.14/drivers branch.
 
-Ok. Good that we can move forward in some way so this is not a
-blocker. I've almost completed writing the qcom code to force
-clks on and off so it will be resolved one way or the other soon.
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Kevin
