@@ -1,89 +1,50 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 28 Jul 2017 15:54:44 +0200
-Subject: [PATCH 2/2] ARM64: dts: meson-gxbb-nanopi-k2: Add GPIO lines names
-In-Reply-To: <1501250084-19967-1-git-send-email-narmstrong@baylibre.com>
-References: <1501250084-19967-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1501250084-19967-3-git-send-email-narmstrong@baylibre.com>
+Date: Fri, 28 Jul 2017 15:58:48 +0200
+Subject: [PATCH] ARM64: dts: meson-gx: consistently use the GIC_SPI and
+ IRQ type macros
+In-Reply-To: <20170716141145.30295-1-martin.blumenstingl@googlemail.com>
+References: <20170716141145.30295-1-martin.blumenstingl@googlemail.com>
+Message-ID: <4643e311-36d8-a694-78b3-6a4e2033d7d6@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch describes the GPIO lines usage on the Nanopi K2 board.
+On 07/16/2017 04:11 PM, Martin Blumenstingl wrote:
+> the mailbox and ethmac nodes used the magic number "0" instead of the
+> GIC_SPI preprocessor macro. Additionally the ethmac used the magic
+> number "1" instead of IRQ_TYPE_EDGE_RISING.
+> Fix this to make the .dtsi easier to read.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 35b8c88c3220..492e6a24349a 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -437,9 +437,9 @@
+>  			mailbox: mailbox at 404 {
+>  				compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
+>  				reg = <0 0x404 0 0x4c>;
+> -				interrupts = <0 208 IRQ_TYPE_EDGE_RISING>,
+> -					     <0 209 IRQ_TYPE_EDGE_RISING>,
+> -					     <0 210 IRQ_TYPE_EDGE_RISING>;
+> +				interrupts = <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
+> +					     <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
+> +					     <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>;
+>  				#mbox-cells = <1>;
+>  			};
+>  		};
+> @@ -448,7 +448,7 @@
+>  			compatible = "amlogic,meson-gx-dwmac", "amlogic,meson-gxbb-dwmac", "snps,dwmac";
+>  			reg = <0x0 0xc9410000 0x0 0x10000
+>  			       0x0 0xc8834540 0x0 0x4>;
+> -			interrupts = <0 8 1>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
+>  			interrupt-names = "macirq";
+>  			status = "disabled";
+>  		};
+> 
 
-This is useful in the debugfs gpio file and using the cdev gpio API.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 58 ++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-index fa46283..9697a7a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-@@ -175,6 +175,64 @@
- 	pinctrl-names = "default";
- };
- 
-+&pinctrl_aobus {
-+	gpio-line-names = "UART TX", "UART RX", "Power Control", "Power Key In",
-+			  "VCCK En", "CON1 Header Pin31",
-+			  "I2S Header Pin6", "IR In", "I2S Header Pin7",
-+			  "I2S Header Pin3", "I2S Header Pin4",
-+			  "I2S Header Pin5", "HDMI CEC", "SYS LED";
-+};
-+
-+&pinctrl_periphs {
-+	gpio-line-names = /* Bank GPIOZ */
-+			  "Eth MDIO", "Eth MDC", "Eth RGMII RX Clk",
-+			  "Eth RX DV", "Eth RX D0", "Eth RX D1", "Eth RX D2",
-+			  "Eth RX D3", "Eth RGMII TX Clk", "Eth TX En",
-+			  "Eth TX D0", "Eth TX D1", "Eth TX D2", "Eth TX D3",
-+			  "Eth PHY nRESET", "Eth PHY Intc",
-+			  /* Bank GPIOH */
-+			  "HDMI HPD", "HDMI DDC SDA", "HDMI DDC SCL",
-+			  "CON1 Header Pin33",
-+			  /* Bank BOOT */
-+			  "eMMC D0", "eMMC D1", "eMMC D2", "eMMC D3", "eMMC D4",
-+			  "eMMC D5", "eMMC D6", "eMMC D7", "eMMC Clk",
-+			  "eMMC Reset", "eMMC CMD",
-+			  "", "", "", "", "eMMC DS",
-+			  "", "",
-+			  /* Bank CARD */
-+			  "SDCard D1", "SDCard D0", "SDCard CLK", "SDCard CMD",
-+			  "SDCard D3", "SDCard D2", "SDCard Det",
-+			  /* Bank GPIODV */
-+			  "", "", "", "", "", "", "", "", "", "", "", "", "",
-+			  "", "", "", "", "", "", "", "", "", "", "",
-+			  "I2C A SDA", "I2C A SCK", "I2C B SDA", "I2C B SCK",
-+			  "VDDEE Regulator", "VCCK Regulator",
-+			  /* Bank GPIOY */
-+			  "CON1 Header Pin7", "CON1 Header Pin11",
-+			  "CON1 Header Pin13", "CON1 Header Pin15",
-+			  "CON1 Header Pin18", "CON1 Header Pin19",
-+			  "CON1 Header Pin22", "CON1 Header Pin21",
-+			  "CON1 Header Pin24", "CON1 Header Pin23",
-+			  "CON1 Header Pin26", "CON1 Header Pin29",
-+			  "CON1 Header Pin32", "CON1 Header Pin8",
-+			  "CON1 Header Pin10", "CON1 Header Pin16",
-+			  "CON1 Header Pin12",
-+			  /* Bank GPIOX */
-+			  "WIFI SDIO D0", "WIFI SDIO D1", "WIFI SDIO D2",
-+			  "WIFI SDIO D3", "WIFI SDIO CLK", "WIFI SDIO CMD",
-+			  "WIFI Power Enable", "WIFI WAKE HOST",
-+			  "Bluetooth PCM DOUT", "Bluetooth PCM DIN",
-+			  "Bluetooth PCM SYNC", "Bluetooth PCM CLK",
-+			  "Bluetooth UART TX", "Bluetooth UART RX",
-+			  "Bluetooth UART CTS", "Bluetooth UART RTS",
-+			  "", "", "", "WIFI 32K", "Bluetooth Enable",
-+			  "Bluetooth WAKE HOST",
-+			  /* Bank GPIOCLK */
-+			  "", "CON1 Header Pin35", "", "",
-+			  /* GPIO_TEST_N */
-+			  "";
-+};
-+
- &pwm_ef {
- 	status = "okay";
- 	pinctrl-0 = <&pwm_e_pins>;
--- 
-1.9.1
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
