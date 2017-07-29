@@ -1,105 +1,86 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 28 Jul 2017 23:21:37 +0200
-Subject: [PATCH v5 5/6] ARM: dts: meson8: add support for booting the
- secondary CPU cores
-In-Reply-To: <20170728212138.12217-1-martin.blumenstingl@googlemail.com>
-References: <20170728212138.12217-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170728212138.12217-6-martin.blumenstingl@googlemail.com>
+From: moore@free.fr (Chris Moore)
+Date: Sat, 29 Jul 2017 10:04:39 +0200
+Subject: [PATCH v2 4/4] clk: meson: gxbb-aoclk: Add CEC 32k clock
+In-Reply-To: <1501235589-318-5-git-send-email-narmstrong@baylibre.com>
+References: <1501235589-318-1-git-send-email-narmstrong@baylibre.com>
+ <1501235589-318-5-git-send-email-narmstrong@baylibre.com>
+Message-ID: <389b0cd5-4c93-e043-9c55-02bd56f590cf@free.fr>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Booting the secondary CPU cores involves the following nodes/devices:
-- SCU (Snoop-Control-Unit, for which we already have a DT node)
-- a reset line for each CPU core, provided by the reset-controller
-  which is built into the clock-controller
-- the PMU (power management unit) which controls the power of the CPU
-  cores
-- a range in the SRAM specifically reserved for booting secondary CPU
-  cores
-- the "enable-method" which activates booting the secondary CPU cores
+Hi,
 
-This adds all required nodes and properties to boot the secondary CPU
-cores.
+Sorry I forgot to reply to all in my previous post :(
+I hope this corrects things.
 
-Suggested-by: Carlo Caione <carlo@caione.org>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Le 28/07/2017 ? 11:53, Neil Armstrong a ?crit :
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index b98d44fde6b6..bf572fb45fe0 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -45,6 +45,7 @@
- 
- #include <dt-bindings/clock/meson8b-clkc.h>
- #include <dt-bindings/gpio/meson8-gpio.h>
-+#include <dt-bindings/reset/amlogic,meson8b-clkc-reset.h>
- #include "meson.dtsi"
- 
- / {
-@@ -60,6 +61,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x200>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc CLKC_RESET_CPU0_SOFT_RESET>;
- 		};
- 
- 		cpu at 201 {
-@@ -67,6 +70,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x201>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc CLKC_RESET_CPU1_SOFT_RESET>;
- 		};
- 
- 		cpu at 202 {
-@@ -74,6 +79,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x202>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc CLKC_RESET_CPU2_SOFT_RESET>;
- 		};
- 
- 		cpu at 203 {
-@@ -81,6 +88,8 @@
- 			compatible = "arm,cortex-a9";
- 			next-level-cache = <&L2>;
- 			reg = <0x203>;
-+			enable-method = "amlogic,meson8-smp";
-+			resets = <&clkc CLKC_RESET_CPU3_SOFT_RESET>;
- 		};
- 	};
- 
-@@ -118,6 +127,11 @@
- }; /* end of / */
- 
- &aobus {
-+	pmu: pmu at e0 {
-+		compatible = "amlogic,meson8-pmu", "syscon";
-+		reg = <0xe0 0x8>;
-+	};
-+
- 	pinctrl_aobus: pinctrl at 84 {
- 		compatible = "amlogic,meson8-aobus-pinctrl";
- 		reg = <0x84 0xc>;
-@@ -249,6 +263,13 @@
- 	};
- };
- 
-+&ahb_sram {
-+	smp-sram at 1ff80 {
-+		compatible = "amlogic,meson8-smp-sram";
-+		reg = <0x1ff80 0x8>;
-+	};
-+};
-+
- &ethmac {
- 	clocks = <&clkc CLKID_ETH>;
- 	clock-names = "stmmaceth";
--- 
-2.13.3
+[snip]
+
+> +static long aoclk_cec_32k_round_rate(struct clk_hw *hw, unsigned long 
+> rate,
+> +                     unsigned long *prate)
+> +{
+> +    const struct cec_32k_freq_table *freq = find_cec_32k_freq(rate,
+> +                                  *prate);
+> +
+> +    /* If invalid return first one */
+> +    if (!freq)
+> +        return freq[0].target_rate;
+
+Wouldn't this dereference a null pointer (or am I being stupid this 
+morning)?
+
+> +
+> +    return freq->target_rate;
+> +}
+> +
+> +static int aoclk_cec_32k_set_rate(struct clk_hw *hw, unsigned long rate,
+> +                  unsigned long parent_rate)
+> +{
+> +    const struct cec_32k_freq_table *freq = find_cec_32k_freq(rate,
+> +                                  parent_rate);
+> +    struct aoclk_cec_32k *cec_32k = to_aoclk_cec_32k(hw);
+> +    u32 reg = 0;
+> +
+> +    if (!freq)
+> +        return -EINVAL;
+> +
+> +    /* Disable clock */
+> +    regmap_update_bits(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0,
+> +               CLK_CNTL0_IN_GATE_EN | CLK_CNTL0_OUT_GATE_EN, 0);
+> +
+> +    if (freq->dualdiv)
+> +        reg = CLK_CNTL0_DUALDIV_EN |
+> +              FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1) |
+> +              FIELD_PREP(CLK_CNTL0_N2_MASK, freq->n2 - 1);
+> +    else
+> +        reg = FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1);
+> +
+
+Suggestion:
+
++    reg = FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1);
++    if (freq->dualdiv)
++        reg |= CLK_CNTL0_DUALDIV_EN |
++               FIELD_PREP(CLK_CNTL0_N2_MASK, freq->n2 - 1);
+
+is shorter but maybe generates the same code.
+
+> + regmap_write(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0, reg);
+> +
+> +    if (freq->dualdiv)
+> +        reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1) |
+> +              FIELD_PREP(CLK_CNTL1_M2_MASK, freq->m2 - 1);
+> +    else
+> +        reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1);
+> +
+
+Idem:
+
++    reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1);
++    if (freq->dualdiv)
++        reg |= FIELD_PREP(CLK_CNTL1_M2_MASK, freq->m2 - 1);
+
+Cheers,
+Chris
