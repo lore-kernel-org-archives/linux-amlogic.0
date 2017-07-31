@@ -1,80 +1,58 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 31 Jul 2017 14:05:52 +0200
-Subject: [PATCH] ARM64: dts: meson-gx: Use correct mmc clock source 0
-Message-ID: <20170731120552.31606-1-jbrunet@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 31 Jul 2017 14:42:33 +0200
+Subject: [PATCH v3 0/4] clk: meson: gxbb-aoclk: Add CEC 32k clock
+Message-ID: <1501504957-19476-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Now that the clock source 0 is properly described in the CCF, use it
-instead of assuming the default value (xtal)
+In order to support the standalone CEC Controller on the Amlogic SoCs,
+a specific CEC 32K clock must be handled in the AO domain.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
+The CEC 32K AO Clock is a dual divider with dual counter to provide a more
+precise 32768Hz clock for the CEC subsystem from the external xtal.
 
-This patchset depends on clock patchset adding the related clocks:
-* https://lkml.kernel.org/r/20170731115603.29720-1-jbrunet at baylibre.com
+The AO clocks management registers are spread among the AO register space,
+so this patch also adds management of these registers mappings then uses them
+for the CEC 32K AO clock management.
 
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 6 +++---
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+This patchset :
+ - updates the bindings accordingly
+ - switch driver to new bindings
+ - adds the CEC 32k clock
+ - adds the clock binding entry
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 17d3efdf1469..9a1e478f80d5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -652,21 +652,21 @@
- 
- &sd_emmc_a {
- 	clocks = <&clkc CLKID_SD_EMMC_A>,
--		 <&xtal>,
-+		 <&clkc CLKID_SD_EMMC_A_CLK0>,
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- };
- 
- &sd_emmc_b {
- 	clocks = <&clkc CLKID_SD_EMMC_B>,
--		 <&xtal>,
-+		 <&clkc CLKID_SD_EMMC_B_CLK0>,
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- };
- 
- &sd_emmc_c {
- 	clocks = <&clkc CLKID_SD_EMMC_C>,
--		 <&xtal>,
-+		 <&clkc CLKID_SD_EMMC_C_CLK0>,
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 8d4f3160a0ee..071eca074a91 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -593,21 +593,21 @@
- 
- &sd_emmc_a {
- 	clocks = <&clkc CLKID_SD_EMMC_A>,
--		 <&xtal>,
-+		 <&clkc CLKID_SD_EMMC_A_CLK0>,
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- };
- 
- &sd_emmc_b {
- 	clocks = <&clkc CLKID_SD_EMMC_B>,
--		 <&xtal>,
-+		 <&clkc CLKID_SD_EMMC_B_CLK0>,
- 		 <&clkc CLKID_FCLK_DIV2>;
-        clock-names = "core", "clkin0", "clkin1";
- };
- 
- &sd_emmc_c {
- 	clocks = <&clkc CLKID_SD_EMMC_C>,
--		 <&xtal>,
-+		 <&clkc CLKID_SD_EMMC_C_CLK0>,
- 		 <&clkc CLKID_FCLK_DIV2>;
- 	clock-names = "core", "clkin0", "clkin1";
- };
+The DT Update will be sent in another patchset.
+
+Changes since v2 at [2] :
+ - fix round_rate invalid handling
+ - enhance set_rate code thanks to Chris Moore
+ - add more explicit comments thanks to Martin
+
+Changes since v1 at [1] :
+ - move bindings to parent syscon node and move clkc to subnode
+ - switch aoclkc to use regmap only register access
+ - introduce aoclk-regmap-gate for this purpose until regmap clocks are generic
+
+[1] https://lkml.kernel.org/r/1499336663-23875-1-git-send-email-narmstrong at baylibre.com
+[2] https://lkml.kernel.org/r/1501235589-318-1-git-send-email-narmstrong at baylibre.com
+
+Neil Armstrong (4):
+  dt-bindings: clock: amlogic,gxbb-aoclkc: Update bindings
+  clk: meson: gxbb-aoclk: Switch to regmap for register access
+  dt-bindings: clock: gxbb-aoclk: Add CEC 32k clock
+  clk: meson: gxbb-aoclk: Add CEC 32k clock
+
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  22 ++-
+ drivers/clk/meson/Makefile                         |   2 +-
+ drivers/clk/meson/gxbb-aoclk-32k.c                 | 194 +++++++++++++++++++++
+ drivers/clk/meson/gxbb-aoclk-regmap.c              |  46 +++++
+ drivers/clk/meson/gxbb-aoclk.c                     |  65 ++++---
+ drivers/clk/meson/gxbb-aoclk.h                     |  42 +++++
+ include/dt-bindings/clock/gxbb-aoclkc.h            |   1 +
+ 7 files changed, 342 insertions(+), 30 deletions(-)
+ create mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
+ create mode 100644 drivers/clk/meson/gxbb-aoclk-regmap.c
+ create mode 100644 drivers/clk/meson/gxbb-aoclk.h
+
 -- 
-2.9.4
+1.9.1
