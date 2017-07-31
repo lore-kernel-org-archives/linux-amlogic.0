@@ -1,250 +1,93 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 31 Jul 2017 13:56:03 +0200
-Subject: [PATCH v3 2/2] clk: meson: gxbb: Add sd_emmc clk0 clocks
-In-Reply-To: <20170731115603.29720-1-jbrunet@baylibre.com>
-References: <20170731115603.29720-1-jbrunet@baylibre.com>
-Message-ID: <20170731115603.29720-3-jbrunet@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 31 Jul 2017 13:59:36 +0200
+Subject: [PATCH v3 0/3] add the reset controller to the Meson8b clkc
+In-Reply-To: <1501489667.6834.1.camel@baylibre.com>
+References: <20170728211313.10603-1-martin.blumenstingl@googlemail.com>
+ <1501489667.6834.1.camel@baylibre.com>
+Message-ID: <655f0326-df03-a810-9010-13148aee2db5@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Input source 0 of the mmc controllers is not directly xtal, as currently
-described in DT. Each controller is fed by a composite clock (the usual
-mux, divider and gate). The muxes inputs are the xtal (default) and the
-fclk_div clocks. These parents, along with the divider, should be able to
-provide the necessary rates for mmc and nand operation.
+On 07/31/2017 10:27 AM, Jerome Brunet wrote:
+> On Fri, 2017-07-28 at 23:13 +0200, Martin Blumenstingl wrote:
+>> This registers the known (soft) reset lines provided by the clock
+>> controller's registers.
+>>
+>> This is the first preparation step for SMP and CPU hotplug support on
+>> Meson8/Meson8b/Meson8m2. Booting the secondary cores on these SoCs
+>> requires asserting and de-asserting a reset line (one for each CPU
+>> core). These reset lines are provided by the clock controller.
+>>
+>> The reset controller part of the meson8b clock controller has to be
+>> registered early (which I did through CLK_OF_DECLARE_DRIVER), because
+>> the secondary cores are started *very* early in the boot process (and
+>> meson8b_clkc_probe is invoked long after we need the reset controller
+>> to be available for booting the secondary CPU cores).
+>>
+>> The user of the reset-controller (= the patches which enable SMP and
+>> CPU hotplug support) will follow in the next days. I decided to split
+>> this because the SMP series will probably consist of 6 patches alone
+>> (and may need to go through two separate trees).
+>>
+>> Changes since v2 at [3]:
+>> - move the reset line preprocessor defines into a separate file
+>>   (affects patch #1 as this header file is part of the dt-binding)
+>> - rename the reset line preprocessor macros from RESETID_ to
+>>   CLKC_RESET_ to clearly indicate that these are provided by the
+>>   clock controller (unlike the preprocessor macros for the reset
+>>   lines in the standlone reset controller, which start with RESET_)
+>> - updated patch #2 due to the changes mentioned above
+>> - added Neil's Reviewed-by to all patches
+>>
+>> Changes since v1 at [0]:
+>> - updated cover letter description as we are now registering more than
+>>   four reset lines
+>> - split patch #1 into a dt-binding and clk driver patch
+>> - slightly reworded the dt-binding documentation so it's now clear that
+>>   the reset identifiers are preprocessor macros in
+>>   dt-bindings/clock/meson8b-clkc.h (v1 of this series didn't have these
+>>   macros at all)
+>> - patch #2 (previously part of patch #1) now registers all known reset
+>>   lines (see [1] and [2] for the results of my detective work)
+>> - patch #3 is untouched
+>>
+>>
+>> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004283.html
+>> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004330.html
+>> [2] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004347.html
+>> [3] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004352.html
+>>
+>>
+>> Martin Blumenstingl (3):
+>>   dt-bindings: clock: meson8b: describe the embedded reset controller
+>>   clk: meson: meson8b: register the built-in reset controller
+>>   ARM: dts: meson: mark the clock controller also as reset controller
+>>
+>>  .../bindings/clock/amlogic,meson8b-clkc.txt        |   9 +-
+>>  arch/arm/boot/dts/meson8.dtsi                      |   1 +
+>>  arch/arm/boot/dts/meson8b.dtsi                     |   1 +
+>>  drivers/clk/meson/Kconfig                          |   1 +
+>>  drivers/clk/meson/meson8b.c                        | 159 +++++++++++++++++++-
+>> -
+>>  drivers/clk/meson/meson8b.h                        |   9 +-
+>>  .../dt-bindings/reset/amlogic,meson8b-clkc-reset.h |  27 ++++
+>>  7 files changed, 193 insertions(+), 14 deletions(-)
+>>  create mode 100644 include/dt-bindings/reset/amlogic,meson8b-clkc-reset.h
+>>
+> 
+> Series looks good to me overall.
+> 
+> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+> 
+> Just one thing, which is not an issue really, I wonder if the dt-bindings
+> documentation and the bindings them-self should be in separate patches ? 
+> 
 
-The input muxes should also be able to take mpll2, mpll3 and gp0_pll but
-these are precious clocks, needed for other usage. It is better if the
-mmc does not use these them. For this reason, mpll2, mpll3 and gp0_pll is
-not listed among the possible parents.
+Hi Martin,
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/gxbb.c | 177 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 177 insertions(+)
+Anyway it's OK for me, I've applied patches 1 & 2 on the clk-meson's next branches.
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 8409d86cda24..dd78c5a1ce4b 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -974,6 +974,156 @@ static struct clk_mux gxbb_32k_clk_sel = {
- 	},
- };
- 
-+static const char * const gxbb_sd_emmc_clk0_parent_names[] = {
-+	"xtal", "fclk_div2", "fclk_div3", "fclk_div5", "fclk_div7",
-+
-+	/*
-+	 * Following these parent clocks, we should also have had mpll2, mpll3
-+	 * and gp0_pll but these clocks are too precious to be used here. All
-+	 * the necessary rates for MMC and NAND operation can be acheived using
-+	 * xtal or fclk_div clocks
-+	 */
-+};
-+
-+/* SDIO clock */
-+static struct clk_mux gxbb_sd_emmc_a_clk0_sel = {
-+	.reg = (void *)HHI_SD_EMMC_CLK_CNTL,
-+	.mask = 0x7,
-+	.shift = 9,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_a_clk0_sel",
-+		.ops = &clk_mux_ops,
-+		.parent_names = gxbb_sd_emmc_clk0_parent_names,
-+		.num_parents = ARRAY_SIZE(gxbb_sd_emmc_clk0_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_divider gxbb_sd_emmc_a_clk0_div = {
-+	.reg = (void *)HHI_SD_EMMC_CLK_CNTL,
-+	.shift = 0,
-+	.width = 7,
-+	.lock = &clk_lock,
-+	.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_a_clk0_div",
-+		.ops = &clk_divider_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_a_clk0_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_gate gxbb_sd_emmc_a_clk0 = {
-+	.reg = (void *)HHI_SD_EMMC_CLK_CNTL,
-+	.bit_idx = 7,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_a_clk0",
-+		.ops = &clk_gate_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_a_clk0_div" },
-+		.num_parents = 1,
-+
-+		/*
-+		 * FIXME:
-+		 * We need CLK_IGNORE_UNUSED because mmc DT node point to xtal
-+		 * instead of this clock. CCF would gate this on boot, killing
-+		 * the mmc controller. Please remove this flag once DT properly
-+		 * point to this clock instead of xtal
-+		 *
-+		 * Same goes for emmc B and C clocks
-+		 */
-+		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-+	},
-+};
-+
-+/* SDcard clock */
-+static struct clk_mux gxbb_sd_emmc_b_clk0_sel = {
-+	.reg = (void *)HHI_SD_EMMC_CLK_CNTL,
-+	.mask = 0x7,
-+	.shift = 25,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_b_clk0_sel",
-+		.ops = &clk_mux_ops,
-+		.parent_names = gxbb_sd_emmc_clk0_parent_names,
-+		.num_parents = ARRAY_SIZE(gxbb_sd_emmc_clk0_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_divider gxbb_sd_emmc_b_clk0_div = {
-+	.reg = (void *)HHI_SD_EMMC_CLK_CNTL,
-+	.shift = 16,
-+	.width = 7,
-+	.lock = &clk_lock,
-+	.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_b_clk0_div",
-+		.ops = &clk_divider_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_b_clk0_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_gate gxbb_sd_emmc_b_clk0 = {
-+	.reg = (void *)HHI_SD_EMMC_CLK_CNTL,
-+	.bit_idx = 23,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_b_clk0",
-+		.ops = &clk_gate_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_b_clk0_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-+	},
-+};
-+
-+/* EMMC/NAND clock */
-+static struct clk_mux gxbb_sd_emmc_c_clk0_sel = {
-+	.reg = (void *)HHI_NAND_CLK_CNTL,
-+	.mask = 0x7,
-+	.shift = 9,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_c_clk0_sel",
-+		.ops = &clk_mux_ops,
-+		.parent_names = gxbb_sd_emmc_clk0_parent_names,
-+		.num_parents = ARRAY_SIZE(gxbb_sd_emmc_clk0_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_divider gxbb_sd_emmc_c_clk0_div = {
-+	.reg = (void *)HHI_NAND_CLK_CNTL,
-+	.shift = 0,
-+	.width = 7,
-+	.lock = &clk_lock,
-+	.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_c_clk0_div",
-+		.ops = &clk_divider_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_c_clk0_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_gate gxbb_sd_emmc_c_clk0 = {
-+	.reg = (void *)HHI_NAND_CLK_CNTL,
-+	.bit_idx = 7,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_c_clk0",
-+		.ops = &clk_gate_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_c_clk0_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-+	},
-+};
-+
- /* Everything Else (EE) domain gates */
- static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
- static MESON_GATE(gxbb_dos, HHI_GCLK_MPEG0, 1);
-@@ -1183,6 +1333,15 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
- 		[CLKID_32K_CLK]		    = &gxbb_32k_clk.hw,
- 		[CLKID_32K_CLK_SEL]	    = &gxbb_32k_clk_sel.hw,
- 		[CLKID_32K_CLK_DIV]	    = &gxbb_32k_clk_div.hw,
-+		[CLKID_SD_EMMC_A_CLK0_SEL]  = &gxbb_sd_emmc_a_clk0_sel.hw,
-+		[CLKID_SD_EMMC_A_CLK0_DIV]  = &gxbb_sd_emmc_a_clk0_div.hw,
-+		[CLKID_SD_EMMC_A_CLK0]	    = &gxbb_sd_emmc_a_clk0.hw,
-+		[CLKID_SD_EMMC_B_CLK0_SEL]  = &gxbb_sd_emmc_b_clk0_sel.hw,
-+		[CLKID_SD_EMMC_B_CLK0_DIV]  = &gxbb_sd_emmc_b_clk0_div.hw,
-+		[CLKID_SD_EMMC_B_CLK0]	    = &gxbb_sd_emmc_b_clk0.hw,
-+		[CLKID_SD_EMMC_C_CLK0_SEL]  = &gxbb_sd_emmc_c_clk0_sel.hw,
-+		[CLKID_SD_EMMC_C_CLK0_DIV]  = &gxbb_sd_emmc_c_clk0_div.hw,
-+		[CLKID_SD_EMMC_C_CLK0]	    = &gxbb_sd_emmc_c_clk0.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -1306,6 +1465,15 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
- 		[CLKID_32K_CLK]		    = &gxbb_32k_clk.hw,
- 		[CLKID_32K_CLK_SEL]	    = &gxbb_32k_clk_sel.hw,
- 		[CLKID_32K_CLK_DIV]	    = &gxbb_32k_clk_div.hw,
-+		[CLKID_SD_EMMC_A_CLK0_SEL]  = &gxbb_sd_emmc_a_clk0_sel.hw,
-+		[CLKID_SD_EMMC_A_CLK0_DIV]  = &gxbb_sd_emmc_a_clk0_div.hw,
-+		[CLKID_SD_EMMC_A_CLK0]	    = &gxbb_sd_emmc_a_clk0.hw,
-+		[CLKID_SD_EMMC_B_CLK0_SEL]  = &gxbb_sd_emmc_b_clk0_sel.hw,
-+		[CLKID_SD_EMMC_B_CLK0_DIV]  = &gxbb_sd_emmc_b_clk0_div.hw,
-+		[CLKID_SD_EMMC_B_CLK0]	    = &gxbb_sd_emmc_b_clk0.hw,
-+		[CLKID_SD_EMMC_C_CLK0_SEL]  = &gxbb_sd_emmc_c_clk0_sel.hw,
-+		[CLKID_SD_EMMC_C_CLK0_DIV]  = &gxbb_sd_emmc_c_clk0_div.hw,
-+		[CLKID_SD_EMMC_C_CLK0]	    = &gxbb_sd_emmc_c_clk0.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -1422,6 +1590,9 @@ static struct clk_gate *const gxbb_clk_gates[] = {
- 	&gxbb_cts_amclk,
- 	&gxbb_cts_mclk_i958,
- 	&gxbb_32k_clk,
-+	&gxbb_sd_emmc_a_clk0,
-+	&gxbb_sd_emmc_b_clk0,
-+	&gxbb_sd_emmc_c_clk0,
- };
- 
- static struct clk_mux *const gxbb_clk_muxes[] = {
-@@ -1434,6 +1605,9 @@ static struct clk_mux *const gxbb_clk_muxes[] = {
- 	&gxbb_cts_mclk_i958_sel,
- 	&gxbb_cts_i958,
- 	&gxbb_32k_clk_sel,
-+	&gxbb_sd_emmc_a_clk0_sel,
-+	&gxbb_sd_emmc_b_clk0_sel,
-+	&gxbb_sd_emmc_c_clk0_sel,
- };
- 
- static struct clk_divider *const gxbb_clk_dividers[] = {
-@@ -1443,6 +1617,9 @@ static struct clk_divider *const gxbb_clk_dividers[] = {
- 	&gxbb_mali_1_div,
- 	&gxbb_cts_mclk_i958_div,
- 	&gxbb_32k_clk_div,
-+	&gxbb_sd_emmc_a_clk0_div,
-+	&gxbb_sd_emmc_b_clk0_div,
-+	&gxbb_sd_emmc_c_clk0_div,
- };
- 
- static struct meson_clk_audio_divider *const gxbb_audio_dividers[] = {
--- 
-2.9.4
+Kevin, patch 3 is all yours !
+
+Thanks,
+Neil
