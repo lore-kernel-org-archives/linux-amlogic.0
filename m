@@ -1,32 +1,24 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 31 Jul 2017 10:52:56 -0700
-Subject: [GIT PULL] Amlogic fixes for v4.13-rc
-Message-ID: <7hefswqyrr.fsf@baylibre.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Mon, 31 Jul 2017 13:20:31 -0700
+Subject: [GIT PULL] Meson clock fixes for 4.13-rc4
+In-Reply-To: <ce41382f-fd93-1dc9-0dba-1484ac555945@baylibre.com>
+References: <ce41382f-fd93-1dc9-0dba-1484ac555945@baylibre.com>
+Message-ID: <20170731202031.GK2146@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The following changes since commit 5771a8c08880cdca3bfb4a3fc6d309d6bba20877:
+On 07/31, Neil Armstrong wrote:
+> Hi Mike, Stephen,
+> 
+> Here is some fixes for Meson GXBB and Meson8 drivers, that could go for 4.13-rc4.
+> 
 
-  Linux v4.13-rc1 (2017-07-15 15:22:10 -0700)
+Are any of these critical fixes for regressions in the v4.13-rc
+series? All the Fixes tags look like they go back to before
+v4.13-rc1, so they don't look critical at first glance. If
+anything, they're mostly nice to have non-critical fixes? If so,
+can we defer these until the next merge window?
 
-are available in the git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
-
-for you to fetch changes up to 72fb2c852188ad75ab3badb55bf491925b9eba46:
-
-  ARM64: dts: meson-gxl-s905x-libretech-cc: fixup board definition (2017-07-20 17:50:22 -0700)
-
-----------------------------------------------------------------
-Amlogic fixes for v4.13-rc
-- 2 minor DT fixes
-
-----------------------------------------------------------------
-Jerome Brunet (2):
-      ARM64: dts: meson-gx: use specific compatible for the AO pwms
-      ARM64: dts: meson-gxl-s905x-libretech-cc: fixup board definition
-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                    |   2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts   |   4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 103 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------
- 3 files changed, 94 insertions(+), 15 deletions(-)
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
