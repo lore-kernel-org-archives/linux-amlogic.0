@@ -1,88 +1,96 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 31 Jul 2017 10:09:00 +0200
-Subject: [PATCH] clk: meson: mpll: fix mpll0 fractional part ignored
-In-Reply-To: <20170728163228.10879-1-jbrunet@baylibre.com>
-References: <20170728163228.10879-1-jbrunet@baylibre.com>
-Message-ID: <e01befc7-7bc2-57eb-a52b-8ebb4c2a643a@baylibre.com>
+Date: Mon, 31 Jul 2017 10:10:55 +0200
+Subject: [PATCH v2 4/4] clk: meson: gxbb-aoclk: Add CEC 32k clock
+In-Reply-To: <389b0cd5-4c93-e043-9c55-02bd56f590cf@free.fr>
+References: <1501235589-318-1-git-send-email-narmstrong@baylibre.com>
+ <1501235589-318-5-git-send-email-narmstrong@baylibre.com>
+ <389b0cd5-4c93-e043-9c55-02bd56f590cf@free.fr>
+Message-ID: <85e100a8-2c83-b153-51fd-dcc80698c685@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 07/28/2017 06:32 PM, Jerome Brunet wrote:
-> mpll0 clock is special compared to the other mplls. It needs another
-> bit (ssen) to be set to activate the fractional part the mpll divider
-> 
-> Fixes: 007e6e5c5f01 ("clk: meson: mpll: add rw operation")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/meson/clk-mpll.c | 7 +++++++
->  drivers/clk/meson/clkc.h     | 1 +
->  drivers/clk/meson/gxbb.c     | 5 +++++
->  drivers/clk/meson/meson8b.c  | 5 +++++
->  4 files changed, 18 insertions(+)
-> 
-> diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
-> index 39eab69fe51a..44a5a535ca63 100644
-> --- a/drivers/clk/meson/clk-mpll.c
-> +++ b/drivers/clk/meson/clk-mpll.c
-> @@ -161,6 +161,13 @@ static int mpll_set_rate(struct clk_hw *hw,
->  	reg = PARM_SET(p->width, p->shift, reg, 1);
->  	writel(reg, mpll->base + p->reg_off);
->  
-> +	p = &mpll->ssen;
-> +	if (p->width != 0) {
-> +		reg = readl(mpll->base + p->reg_off);
-> +		reg = PARM_SET(p->width, p->shift, reg, 1);
-> +		writel(reg, mpll->base + p->reg_off);
-> +	}
-> +
->  	p = &mpll->n2;
->  	reg = readl(mpll->base + p->reg_off);
->  	reg = PARM_SET(p->width, p->shift, reg, n2);
-> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-> index d6feafe8bd6c..1629da9b4141 100644
-> --- a/drivers/clk/meson/clkc.h
-> +++ b/drivers/clk/meson/clkc.h
-> @@ -118,6 +118,7 @@ struct meson_clk_mpll {
->  	struct parm sdm_en;
->  	struct parm n2;
->  	struct parm en;
-> +	struct parm ssen;
->  	spinlock_t *lock;
->  };
->  
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 59a296b119ea..79b195b4df03 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -528,6 +528,11 @@ static struct meson_clk_mpll gxbb_mpll0 = {
->  		.shift   = 14,
->  		.width	 = 1,
->  	},
-> +	.ssen = {
-> +		.reg_off = HHI_MPLL_CNTL,
-> +		.shift   = 25,
-> +		.width	 = 1,
-> +	},
->  	.lock = &clk_lock,
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll0",
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index bb3f1de876b1..6ec512ad2598 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -267,6 +267,11 @@ static struct meson_clk_mpll meson8b_mpll0 = {
->  		.shift   = 14,
->  		.width   = 1,
->  	},
-> +	.ssen = {
-> +		.reg_off = HHI_MPLL_CNTL,
-> +		.shift   = 25,
-> +		.width   = 1,
-> +	},
->  	.lock = &clk_lock,
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll0",
-> 
+Hi,
 
+On 07/29/2017 10:04 AM, Chris Moore wrote:
+> Hi,
+> 
+> Sorry I forgot to reply to all in my previous post :(
+> I hope this corrects things.
+> 
+> Le 28/07/2017 ? 11:53, Neil Armstrong a ?crit :
+> 
+> [snip]
+> 
+>> +static long aoclk_cec_32k_round_rate(struct clk_hw *hw, unsigned long rate,
+>> +                     unsigned long *prate)
+>> +{
+>> +    const struct cec_32k_freq_table *freq = find_cec_32k_freq(rate,
+>> +                                  *prate);
+>> +
+>> +    /* If invalid return first one */
+>> +    if (!freq)
+>> +        return freq[0].target_rate;
+> 
+> Wouldn't this dereference a null pointer (or am I being stupid this morning)?
 
-Applied to clk-meson's fixes/drivers !
+No, it's me !!
+Will fix it in v3...
+
+> 
+>> +
+>> +    return freq->target_rate;
+>> +}
+>> +
+>> +static int aoclk_cec_32k_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +                  unsigned long parent_rate)
+>> +{
+>> +    const struct cec_32k_freq_table *freq = find_cec_32k_freq(rate,
+>> +                                  parent_rate);
+>> +    struct aoclk_cec_32k *cec_32k = to_aoclk_cec_32k(hw);
+>> +    u32 reg = 0;
+>> +
+>> +    if (!freq)
+>> +        return -EINVAL;
+>> +
+>> +    /* Disable clock */
+>> +    regmap_update_bits(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0,
+>> +               CLK_CNTL0_IN_GATE_EN | CLK_CNTL0_OUT_GATE_EN, 0);
+>> +
+>> +    if (freq->dualdiv)
+>> +        reg = CLK_CNTL0_DUALDIV_EN |
+>> +              FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1) |
+>> +              FIELD_PREP(CLK_CNTL0_N2_MASK, freq->n2 - 1);
+>> +    else
+>> +        reg = FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1);
+>> +
+> 
+> Suggestion:
+> 
+> +    reg = FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1);
+> +    if (freq->dualdiv)
+> +        reg |= CLK_CNTL0_DUALDIV_EN |
+> +               FIELD_PREP(CLK_CNTL0_N2_MASK, freq->n2 - 1);
+> 
+> is shorter but maybe generates the same code.
+> 
+>> + regmap_write(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0, reg);
+>> +
+>> +    if (freq->dualdiv)
+>> +        reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1) |
+>> +              FIELD_PREP(CLK_CNTL1_M2_MASK, freq->m2 - 1);
+>> +    else
+>> +        reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1);
+>> +
+> 
+> Idem:
+> 
+> +    reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1);
+> +    if (freq->dualdiv)
+> +        reg |= FIELD_PREP(CLK_CNTL1_M2_MASK, freq->m2 - 1);
+>
+
+Thanks for the suggestions, I will send a v3 asap.
+
+Neil
+> Cheers,
+> Chris
