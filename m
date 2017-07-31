@@ -1,47 +1,37 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 31 Jul 2017 11:25:46 +0200
-Subject: [GIT PULL] Meson clock fixes for 4.13-rc4
-Message-ID: <ce41382f-fd93-1dc9-0dba-1484ac555945@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 31 Jul 2017 13:38:30 +0200
+Subject: [PATCH 0/2] clk: meson: expose clk ids
+Message-ID: <20170731113832.26490-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Mike, Stephen,
+In previous cycles, concerns have been raised about the way clocks are
+exposed for the meson clock controller, only when validated and required
+in DT.
 
-Here is some fixes for Meson GXBB and Meson8 drivers, that could go for 4.13-rc4.
+Instead, this patchset expose all the known clocks which may be needed in
+DT later on. The clocks left out are internal clocks which should never be
+used directly in DT. These are mostly internal muxes and dividers of
+composite clocks.
 
-Thanks,
-Neil
+While this should reduce the patch flow on the related header files, It
+won't stop it completely. There are still many clocks we don't know about
+yet. We tend discover a few in every cycle.
 
-The following changes since commit 5771a8c08880cdca3bfb4a3fc6d309d6bba20877:
+This patchset depends on these fixes [0] to avoid issues when adding new
+clk ids.
 
-  Linux v4.13-rc1 (2017-07-15 15:22:10 -0700)
+[0]: https://lkml.kernel.org/r/20170727161755.10393-1-jbrunet at baylibre.com
 
-are available in the git repository at:
+Jerome Brunet (2):
+  clk: meson8b: expose every clock in the bindings
+  clk: meson-gxbb: expose almost every clock in the bindings
 
-  git://github.com/baylibre/clk-meson.git tags/meson-clk-fixes-for-4.13-rc4
+ drivers/clk/meson/gxbb.h                 | 117 ++-----------------------------
+ drivers/clk/meson/meson8b.h              | 103 ++-------------------------
+ include/dt-bindings/clock/gxbb-clkc.h    |  60 ++++++++++++++++
+ include/dt-bindings/clock/meson8b-clkc.h |  70 ++++++++++++++++++
+ 4 files changed, 141 insertions(+), 209 deletions(-)
 
-for you to fetch changes up to c1922eed58f38f3d7876f53e1000e3c3e3024e54:
-
-  clk: meson: mpll: fix mpll0 fractional part ignored (2017-07-31 10:08:01 +0200)
-
-----------------------------------------------------------------
-Meson Clock fixes:
-- gxbb: fix meson cts_amclk divider flags
-- gxbb: fix clk_mclk_i958 divider flags
-- meson8b: fix protection against undefined clks
-- gxbb: fix protection against undefined clks
-- mpll: fix mpll0 fractional part ignored
-
-----------------------------------------------------------------
-Jerome Brunet (5):
-      clk: meson: gxbb: fix meson cts_amclk divider flags
-      clk: meson: gxbb: fix clk_mclk_i958 divider flags
-      clk: meson: meson8b: fix protection against undefined clks
-      clk: meson: gxbb: fix protection against undefined clks
-      clk: meson: mpll: fix mpll0 fractional part ignored
-
- drivers/clk/meson/clk-mpll.c |  7 +++++++
- drivers/clk/meson/clkc.h     |  1 +
- drivers/clk/meson/gxbb.c     | 17 +++++++++++++----
- drivers/clk/meson/meson8b.c  |  6 ++++++
- 4 files changed, 27 insertions(+), 4 deletions(-)
+-- 
+2.9.4
