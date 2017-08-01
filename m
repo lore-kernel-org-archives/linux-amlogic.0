@@ -1,39 +1,36 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 1 Aug 2017 14:21:08 +0200
-Subject: [GIT PULL v2] Meson clock fixes for 4.13-rc4
-Message-ID: <5af2832c-c23c-c42b-c19f-ba7cb10c27c8@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue,  1 Aug 2017 17:22:24 +0200
+Subject: [PATCH] ARM64: dts: meson-gxbb: p20x: add card regulator settle times
+Message-ID: <20170801152224.15754-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Mike, Stephen,
+Changing the card voltage on the p200 is not instantaneous, especially
+when switching from 3.3v to 1.8v.
 
-Here is a fix for Meson GXBB driver, that could go for 4.13-rc4.
+I take at least 70ms for the regulator to go from 3.3v to 1.8v. Add
+margin to that to make sure we don't upset the sdcard during the voltage
+switch
 
-Thanks,
-Neil
+Fixes: ef8d2ffedf18 ("ARM64: dts: meson-gxbb: add MMC support")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-The following changes since commit 5771a8c08880cdca3bfb4a3fc6d309d6bba20877:
-
-  Linux v4.13-rc1 (2017-07-15 15:22:10 -0700)
-
-are available in the git repository at:
-
-  git://github.com/baylibre/clk-meson.git tags/meson-clk-fixes-for-4.13-rc4-v2
-
-for you to fetch changes up to 1f737ffa13efd3da2c703d45894ea234e9290c89:
-
-  clk: meson: mpll: fix mpll0 fractional part ignored (2017-08-01 14:18:31 +0200)
-
-----------------------------------------------------------------
-Meson Clock fixes:
-- mpll: fix mpll0 fractional part ignored
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      clk: meson: mpll: fix mpll0 fractional part ignored
-
- drivers/clk/meson/clk-mpll.c | 7 +++++++
- drivers/clk/meson/clkc.h     | 1 +
- drivers/clk/meson/gxbb.c     | 5 +++++
- drivers/clk/meson/meson8b.c  | 5 +++++
- 4 files changed, 18 insertions(+)
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index 9603a635c7af..d3b194c20b72 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -84,6 +84,9 @@
+ 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
+ 		states = <1800000 0
+ 			  3300000 1>;
++
++		regulator-settling-time-up-us = <10000>;
++		regulator-settling-time-down-us = <150000>;
+ 	};
+ 
+ 	vddio_boot: regulator-vddio_boot {
+-- 
+2.9.4
