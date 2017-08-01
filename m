@@ -1,70 +1,58 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 31 Aug 2017 15:52:17 +0200
-Subject: [PATCH v3 0/9] ARM64: dts: meson: update around mmc
-Message-ID: <20170831135226.19784-1-jbrunet@baylibre.com>
+From: shawn.lin@rock-chips.com (Shawn Lin)
+Date: Tue, 1 Aug 2017 08:38:16 +0800
+Subject: mmc: UHS Voltage switch and operating frequency question
+In-Reply-To: <1501518004.2759.5.camel@baylibre.com>
+References: <1501518004.2759.5.camel@baylibre.com>
+Message-ID: <03c65837-6d3c-c822-f505-838e90f34295@rock-chips.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset feature updates around mmc. It is linked to this series [0]
-but does not strictly depends on it. It adds:
 
-* The regulator settling times for the gpio regulator of nanopi-k2 and
-  the libretech-cc.
-* UHS modes for the p20x, nanopi-k2 and the libretech-cc
-* clk-gate pins: these are the pinmuxes used for the clk-stop work
-  around explained here [1]
+On 2017/8/1 0:20, Jerome Brunet wrote:
+> Hi Ulf,
+> 
+> I am working on adding signal voltage switch callback to the meson mmc driver.
+> While testing, I noticed that a few cards fail to exit the busy state after the
+> voltage switch.
+> 
+> After tinkering with the driver a bit, I noticed that increasing the clock
+> frequency from 400kHz to 1MHz solve the problem. Strange, isn't it ?
 
-It also removes cap-sd-highspeed from eMMC nodes.
+AFAICT, most of the internal circuit of card is running against the
+input clock from host. So if you increase your clock, cards will finish
+thier logic switch faster. Note that the spec does state that 400KHz is
+the max freq for indentification mode. But the fact is that almost all
+cards could accept higher frequecncy.
 
-Special note on SDR104:
-While the PCB of the p200 and the libretech-cc does not seems to handle
-SDR104 completely, the nanopi-k2 seems to be handling it correctly.
+For you issue, please try to hack mmc_set_uhs_voltage to increase the
+delay there to see if that could solve your problem.
 
-The patch enabling this mode on the nanopi-k2 is the last one of this
-series. It should propabably be left out until more people can test
-sdr104 on the nanopi-k2
+> 
+> I'm don't know MMC that much but is it possible that some card require a minimum
+> operating frequency to enter UHS mode ?
+> 
 
-This series has been tested on the gxbb-200, the gxbb-nanopi-k2 and the
-gxl-s905x-libretech-cc
+We shoule never give a hypothesis beyond the scope of spec.
 
-Changes since v2 [3]:
-* Rebase on Kevin's v4.14/dt64 branch
 
-Changes since v1 [2]:
-* Reorder patches to put fixes first, then enhancements
-* Fix error in the SDIO clk_gate pins (GPIOX_5 instead GPIOX_4)
+> The simplified spec (Part 1 - Physical Layer) says that before CMD11, we should
+> have had CMD41 (Init Command) . After CMD41, the card should be operating at
+> Default Speed or SDR12.
+> 
+> I believe that in both case, the frequency is "up to 25Mhz" ? This would be the
+> maximum, but is there a minimum ? 400kHz seems pretty low compared to 25Mhz ...
+> 
 
-[0]: https://lkml.kernel.org/r/20170828142915.27020-1-jbrunet at baylibre.com
-[1]: https://lkml.kernel.org/r/20170821160301.21899-11-jbrunet at baylibre.com
-[2]: https://lkml.kernel.org/r/20170804180816.18737-1-jbrunet at baylibre.com
-[3]: https://lkml.kernel.org/r/20170821160637.22456-1-jbrunet at baylibre.com
+400KHz is good for work unless your IP has limitation for that.
 
-Jerome Brunet (9):
-  ARM64: dts: meson-gx: Use correct mmc clock source 0
-  ARM64: dts: meson: remove cap-sd-highspeed from emmc nodes
-  ARM64: dts: meson: add mmc clk gate pins
-  ARM64: dts: meson-gxbb: nanopi-k2: add card regulator settle times
-  ARM64: dts: meson-gxl: libretech-cc: add card regulator settle times
-  ARM64: dts: meson-gxl: libretech-cc: enable high speed modes
-  ARM64: dts: meson-gxbb: p20x: enable sdcard UHS modes
-  ARM64: dts: meson-gxbb: nanopi-k2: enable sdcard UHS modes
-  ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode
-
- .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi | 10 +++---
- .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 19 ++++++++---
- .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 12 ++++---
- .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  9 ++---
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   | 13 +++++---
- .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 10 +++---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 39 ++++++++++++++++++++--
- .../dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts |  7 ++--
- .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 13 ++++++--
- .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 10 +++---
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     | 10 +++---
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 39 ++++++++++++++++++++--
- .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  7 ++--
- arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts |  1 -
- 14 files changed, 150 insertions(+), 49 deletions(-)
-
--- 
-2.9.5
+> I hope you will able to shed light on this :)
+> 
+> Best Regards
+> jerome
+> --
+> To unsubscribe from this list: send the line "unsubscribe linux-mmc" in
+> the body of a message to majordomo at vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+> 
+> 
+> 
