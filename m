@@ -1,36 +1,94 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue,  1 Aug 2017 17:22:24 +0200
-Subject: [PATCH] ARM64: dts: meson-gxbb: p20x: add card regulator settle times
-Message-ID: <20170801152224.15754-1-jbrunet@baylibre.com>
+Date: Tue, 01 Aug 2017 18:56:22 +0200
+Subject: mmc: UHS Voltage switch and operating frequency question
+In-Reply-To: <03c65837-6d3c-c822-f505-838e90f34295@rock-chips.com>
+References: <1501518004.2759.5.camel@baylibre.com>
+ <03c65837-6d3c-c822-f505-838e90f34295@rock-chips.com>
+Message-ID: <1501606582.2759.11.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Changing the card voltage on the p200 is not instantaneous, especially
-when switching from 3.3v to 1.8v.
+On Tue, 2017-08-01 at 08:38 +0800, Shawn Lin wrote:
+> On 2017/8/1 0:20, Jerome Brunet wrote:
+> > Hi Ulf,
+> > 
+> > I am working on adding signal voltage switch callback to the meson mmc
+> > driver.
+> > While testing, I noticed that a few cards fail to exit the busy state after
+> > the
+> > voltage switch.
+> > 
+> > After tinkering with the driver a bit, I noticed that increasing the clock
+> > frequency from 400kHz to 1MHz solve the problem. Strange, isn't it ?
+> 
 
-I take at least 70ms for the regulator to go from 3.3v to 1.8v. Add
-margin to that to make sure we don't upset the sdcard during the voltage
-switch
+Thanks for your reply Shawn !
 
-Fixes: ef8d2ffedf18 ("ARM64: dts: meson-gxbb: add MMC support")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+> AFAICT, most of the internal circuit of card is running against the
+> input clock from host. So if you increase your clock, cards will finish
+> thier logic switch faster.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 9603a635c7af..d3b194c20b72 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -84,6 +84,9 @@
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
- 		states = <1800000 0
- 			  3300000 1>;
-+
-+		regulator-settling-time-up-us = <10000>;
-+		regulator-settling-time-down-us = <150000>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
--- 
-2.9.4
+Yeah that would be my understanding as well
+
+>  Note that the spec does state that 400KHz is
+> the max freq for indentification mode. But the fact is that almost all
+> cards could accept higher frequecncy.
+
+Agreed. but I'm not talking about the frequency used during identification.
+The step I'm referring to is after CMD41, during CMD11. After CMD11, the spec
+says that the frequency is up to "default speed or SDR12" so 25Mhz. 
+
+If id mode is limited to 400kHz, it is clearly a different stage.
+
+> 
+> For you issue, please try to hack mmc_set_uhs_voltage to increase the
+> delay there to see if that could solve your problem.
+> 
+
+Ohhh believe me, I did :) however these 2 cards are quite stubborn 
+
+> > 
+> > I'm don't know MMC that much but is it possible that some card require a
+> > minimum
+> > operating frequency to enter UHS mode ?
+> > 
+> 
+> We shoule never give a hypothesis beyond the scope of spec.
+I don't get what you mean ? 
+
+> 
+> > The simplified spec (Part 1 - Physical Layer) says that before CMD11, we
+> > should
+> > have had CMD41 (Init Command) . After CMD41, the card should be operating at
+> > Default Speed or SDR12.
+> > 
+> > I believe that in both case, the frequency is "up to 25Mhz" ? This would be
+> > the
+> > maximum, but is there a minimum ? 400kHz seems pretty low compared to 25Mhz
+> > ...
+> > 
+> 
+> 400KHz is good for work unless your IP has limitation for that.
+Ip seems to be fine at 400KHz with every other cards, including uhs ones.
+The 2 "annoying" cards switch to UHS mode fine on a laptop.
+
+It the combination of the ip and the cards which seems broken, whatever the
+delays I put here and there.
+
+For a reason I don't understand, increasing the minimal frequency from 400Khz to
+1MHz make these cards work very nicely.
+
+> 
+> > I hope you will able to shed light on this :)
+> > 
+> > Best Regards
+> > jerome
+> > --
+> > To unsubscribe from this list: send the line "unsubscribe linux-mmc" in
+> > the body of a message to majordomo at vger.kernel.org
+> > More majordomo info at??http://vger.kernel.org/majordomo-info.html
+> > 
+> > 
+> > 
+> 
+> 
