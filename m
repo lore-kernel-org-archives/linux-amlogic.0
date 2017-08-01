@@ -1,77 +1,62 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 1 Aug 2017 13:51:09 +0200
-Subject: [PATCH v3 4/4] clk: meson: gxbb-aoclk: Add CEC 32k clock
-In-Reply-To: <37b45bd4-e3bf-1a1f-7b8c-fb1919042072@free.fr>
-References: <1501504957-19476-1-git-send-email-narmstrong@baylibre.com>
- <1501504957-19476-5-git-send-email-narmstrong@baylibre.com>
- <37b45bd4-e3bf-1a1f-7b8c-fb1919042072@free.fr>
-Message-ID: <f757ce17-a4b1-123f-dd52-260d03e2913b@baylibre.com>
+Date: Tue,  1 Aug 2017 13:56:55 +0200
+Subject: [PATCH v3.1 0/4] clk: meson: gxbb-aoclk: Add CEC 32k clock
+Message-ID: <1501588619-10991-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 07/31/2017 06:25 PM, Chris Moore wrote:
-> Hi,
-> 
-> Le 31/07/2017 ? 14:42, Neil Armstrong a ?crit :
->> The CEC 32K AO Clock is a dual divider with dual counter to provide a more
->> precise 32768Hz clock for the CEC subsystem from the external xtal.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>   drivers/clk/meson/Makefile         |   2 +-
->>   drivers/clk/meson/gxbb-aoclk-32k.c | 194 +++++++++++++++++++++++++++++++++++++
->>   drivers/clk/meson/gxbb-aoclk.c     |  21 +++-
->>   drivers/clk/meson/gxbb-aoclk.h     |  16 +++
->>   4 files changed, 231 insertions(+), 2 deletions(-)
->>   create mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
->>
->> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
->> index de65427..b139d41 100644
->> --- a/drivers/clk/meson/Makefile
->> +++ b/drivers/clk/meson/Makefile
->> @@ -4,4 +4,4 @@
->>     obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o clk-audio-divider.o
->>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
->> -obj-$(CONFIG_COMMON_CLK_GXBB)     += gxbb.o gxbb-aoclk.o gxbb-aoclk-regmap.o
->> +obj-$(CONFIG_COMMON_CLK_GXBB)     += gxbb.o gxbb-aoclk.o gxbb-aoclk-regmap.o gxbb-aoclk-32k.o
->> diff --git a/drivers/clk/meson/gxbb-aoclk-32k.c b/drivers/clk/meson/gxbb-aoclk-32k.c
-> 
-> [snip]
-> 
->> +static int aoclk_cec_32k_set_rate(struct clk_hw *hw, unsigned long rate,
->> +                  unsigned long parent_rate)
->> +{
->> +    const struct cec_32k_freq_table *freq = find_cec_32k_freq(rate,
->> +                                  parent_rate);
->> +    struct aoclk_cec_32k *cec_32k = to_aoclk_cec_32k(hw);
->> +    u32 reg = 0;
->> +
->> +    if (!freq)
->> +        return -EINVAL;
->> +
->> +    /* Disable clock */
->> +    regmap_update_bits(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0,
->> +               CLK_CNTL0_IN_GATE_EN | CLK_CNTL0_OUT_GATE_EN, 0);
->> +
->> +    reg = FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1);
->> +    if (freq->dualdiv)
->> +        reg |= CLK_CNTL0_DUALDIV_EN |
->> +               FIELD_PREP(CLK_CNTL0_N2_MASK, freq->n2 - 1);
->> +
->> +    regmap_write(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0, reg);
->> +
->> +    reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1);
->> +    if (freq->dualdiv)
->> +        reg = FIELD_PREP(CLK_CNTL1_M2_MASK, freq->m2 - 1);
-> 
-> s/=/|=/
+In order to support the standalone CEC Controller on the Amlogic SoCs,
+a specific CEC 32K clock must be handled in the AO domain.
 
-Aww, thanks for spotting it, I'll post a v3.1
-It still worked but was acting like a single divider...
+The CEC 32K AO Clock is a dual divider with dual counter to provide a more
+precise 32768Hz clock for the CEC subsystem from the external xtal.
 
-> 
-> Cheers,
-> Chris
+The AO clocks management registers are spread among the AO register space,
+so this patch also adds management of these registers mappings then uses them
+for the CEC 32K AO clock management.
 
-Thanks,
-Neil
+This patchset :
+ - updates the bindings accordingly
+ - switch driver to new bindings
+ - adds the CEC 32k clock
+ - adds the clock binding entry
+
+The DT Update will be sent in another patchset.
+
+Changes since v3 at [3] :
+ - fix typo in cec_32k set_rate
+
+Changes since v2 at [2] :
+ - fix round_rate invalid handling
+ - enhance set_rate code thanks to Chris Moore
+ - add more explicit comments thanks to Martin
+
+Changes since v1 at [1] :
+ - move bindings to parent syscon node and move clkc to subnode
+ - switch aoclkc to use regmap only register access
+ - introduce aoclk-regmap-gate for this purpose until regmap clocks are generic
+
+[1] https://lkml.kernel.org/r/1499336663-23875-1-git-send-email-narmstrong at baylibre.com
+[2] https://lkml.kernel.org/r/1501235589-318-1-git-send-email-narmstrong at baylibre.com
+[3] https://lkml.kernel.org/r/1501504957-19476-1-git-send-email-narmstrong at baylibre.com
+
+Neil Armstrong (4):
+  dt-bindings: clock: amlogic,gxbb-aoclkc: Update bindings
+  clk: meson: gxbb-aoclk: Switch to regmap for register access
+  dt-bindings: clock: gxbb-aoclk: Add CEC 32k clock
+  clk: meson: gxbb-aoclk: Add CEC 32k clock
+
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  22 ++-
+ drivers/clk/meson/Makefile                         |   2 +-
+ drivers/clk/meson/gxbb-aoclk-32k.c                 | 194 +++++++++++++++++++++
+ drivers/clk/meson/gxbb-aoclk-regmap.c              |  46 +++++
+ drivers/clk/meson/gxbb-aoclk.c                     |  65 ++++---
+ drivers/clk/meson/gxbb-aoclk.h                     |  42 +++++
+ include/dt-bindings/clock/gxbb-aoclkc.h            |   1 +
+ 7 files changed, 342 insertions(+), 30 deletions(-)
+ create mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
+ create mode 100644 drivers/clk/meson/gxbb-aoclk-regmap.c
+ create mode 100644 drivers/clk/meson/gxbb-aoclk.h
+
+-- 
+1.9.1
