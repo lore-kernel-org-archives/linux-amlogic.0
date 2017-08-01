@@ -1,49 +1,77 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Mon, 31 Jul 2017 18:38:00 -0700
-Subject: [GIT PULL] Meson clock fixes for 4.13-rc4
-In-Reply-To: <1501537388.2759.7.camel@baylibre.com>
-References: <ce41382f-fd93-1dc9-0dba-1484ac555945@baylibre.com>
- <20170731202031.GK2146@codeaurora.org>
- <1501537388.2759.7.camel@baylibre.com>
-Message-ID: <20170801013800.GL2146@codeaurora.org>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 1 Aug 2017 13:51:09 +0200
+Subject: [PATCH v3 4/4] clk: meson: gxbb-aoclk: Add CEC 32k clock
+In-Reply-To: <37b45bd4-e3bf-1a1f-7b8c-fb1919042072@free.fr>
+References: <1501504957-19476-1-git-send-email-narmstrong@baylibre.com>
+ <1501504957-19476-5-git-send-email-narmstrong@baylibre.com>
+ <37b45bd4-e3bf-1a1f-7b8c-fb1919042072@free.fr>
+Message-ID: <f757ce17-a4b1-123f-dd52-260d03e2913b@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 07/31, Jerome Brunet wrote:
-> On Mon, 2017-07-31 at 13:20 -0700, Stephen Boyd wrote:
-> > On 07/31, Neil Armstrong wrote:
-> > > Hi Mike, Stephen,
-> > > 
-> > > Here is some fixes for Meson GXBB and Meson8 drivers, that could go for
-> > > 4.13-rc4.
-> > > 
-> > 
-> > Are any of these critical fixes for regressions in the v4.13-rc
-> > series? All the Fixes tags look like they go back to before
-> > v4.13-rc1, so they don't look critical at first glance. If
-> > anything, they're mostly nice to have non-critical fixes? If so,
-> > can we defer these until the next merge window?
+On 07/31/2017 06:25 PM, Chris Moore wrote:
+> Hi,
 > 
-> I agree that these fixes hardly qualify as critical, except maybe for the mpll
-> fix. The clock rate actually applied can be really off compared to what CCF will
->  except to have set.
+> Le 31/07/2017 ? 14:42, Neil Armstrong a ?crit :
+>> The CEC 32K AO Clock is a dual divider with dual counter to provide a more
+>> precise 32768Hz clock for the CEC subsystem from the external xtal.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>   drivers/clk/meson/Makefile         |   2 +-
+>>   drivers/clk/meson/gxbb-aoclk-32k.c | 194 +++++++++++++++++++++++++++++++++++++
+>>   drivers/clk/meson/gxbb-aoclk.c     |  21 +++-
+>>   drivers/clk/meson/gxbb-aoclk.h     |  16 +++
+>>   4 files changed, 231 insertions(+), 2 deletions(-)
+>>   create mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
+>>
+>> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+>> index de65427..b139d41 100644
+>> --- a/drivers/clk/meson/Makefile
+>> +++ b/drivers/clk/meson/Makefile
+>> @@ -4,4 +4,4 @@
+>>     obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o clk-audio-divider.o
+>>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+>> -obj-$(CONFIG_COMMON_CLK_GXBB)     += gxbb.o gxbb-aoclk.o gxbb-aoclk-regmap.o
+>> +obj-$(CONFIG_COMMON_CLK_GXBB)     += gxbb.o gxbb-aoclk.o gxbb-aoclk-regmap.o gxbb-aoclk-32k.o
+>> diff --git a/drivers/clk/meson/gxbb-aoclk-32k.c b/drivers/clk/meson/gxbb-aoclk-32k.c
+> 
+> [snip]
+> 
+>> +static int aoclk_cec_32k_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +                  unsigned long parent_rate)
+>> +{
+>> +    const struct cec_32k_freq_table *freq = find_cec_32k_freq(rate,
+>> +                                  parent_rate);
+>> +    struct aoclk_cec_32k *cec_32k = to_aoclk_cec_32k(hw);
+>> +    u32 reg = 0;
+>> +
+>> +    if (!freq)
+>> +        return -EINVAL;
+>> +
+>> +    /* Disable clock */
+>> +    regmap_update_bits(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0,
+>> +               CLK_CNTL0_IN_GATE_EN | CLK_CNTL0_OUT_GATE_EN, 0);
+>> +
+>> +    reg = FIELD_PREP(CLK_CNTL0_N1_MASK, freq->n1 - 1);
+>> +    if (freq->dualdiv)
+>> +        reg |= CLK_CNTL0_DUALDIV_EN |
+>> +               FIELD_PREP(CLK_CNTL0_N2_MASK, freq->n2 - 1);
+>> +
+>> +    regmap_write(cec_32k->regmap, AO_RTC_ALT_CLK_CNTL0, reg);
+>> +
+>> +    reg = FIELD_PREP(CLK_CNTL1_M1_MASK, freq->m1 - 1);
+>> +    if (freq->dualdiv)
+>> +        reg = FIELD_PREP(CLK_CNTL1_M2_MASK, freq->m2 - 1);
+> 
+> s/=/|=/
 
-Ok. So perhaps just the mpll fix would be appropriate then?
+Aww, thanks for spotting it, I'll post a v3.1
+It still worked but was acting like a single divider...
 
 > 
-> These fixes are quite simple and safe, it would be nice if we could avoid having
->  the next version tagged with known issues.
-> 
+> Cheers,
+> Chris
 
-I agree they're simple and safe, but they're also not necessary
-to the release we're working on unless they're causing some
-problem with code that was introduced this merge window. We try
-to avoid merging non-critical fixes unless they're really causing
-someone some sort of problems. If they aren't, we can stick them
-into linux-next and wait until next release. Of course, they'll
-be backported to stable trees as well with the Fixes tag, so
-everything works out in the end.
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Thanks,
+Neil
