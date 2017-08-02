@@ -1,114 +1,153 @@
-From: shawn.lin@rock-chips.com (Shawn Lin)
-Date: Wed, 2 Aug 2017 10:54:06 +0800
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 02 Aug 2017 11:20:34 +0200
 Subject: mmc: UHS Voltage switch and operating frequency question
-In-Reply-To: <1501606582.2759.11.camel@baylibre.com>
+In-Reply-To: <2b79f5e8-2a60-128a-0e24-011e8f4e122f@rock-chips.com>
 References: <1501518004.2759.5.camel@baylibre.com>
  <03c65837-6d3c-c822-f505-838e90f34295@rock-chips.com>
  <1501606582.2759.11.camel@baylibre.com>
-Message-ID: <2b79f5e8-2a60-128a-0e24-011e8f4e122f@rock-chips.com>
+ <2b79f5e8-2a60-128a-0e24-011e8f4e122f@rock-chips.com>
+Message-ID: <1501665634.2759.14.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 2017/8/2 0:56, Jerome Brunet wrote:
-> On Tue, 2017-08-01 at 08:38 +0800, Shawn Lin wrote:
->> On 2017/8/1 0:20, Jerome Brunet wrote:
->>> Hi Ulf,
->>>
->>> I am working on adding signal voltage switch callback to the meson mmc
->>> driver.
->>> While testing, I noticed that a few cards fail to exit the busy state after
->>> the
->>> voltage switch.
->>>
->>> After tinkering with the driver a bit, I noticed that increasing the clock
->>> frequency from 400kHz to 1MHz solve the problem. Strange, isn't it ?
->>
+On Wed, 2017-08-02 at 10:54 +0800, Shawn Lin wrote:
+> On 2017/8/2 0:56, Jerome Brunet wrote:
+> > On Tue, 2017-08-01 at 08:38 +0800, Shawn Lin wrote:
+> > > On 2017/8/1 0:20, Jerome Brunet wrote:
+> > > > Hi Ulf,
+> > > > 
+> > > > I am working on adding signal voltage switch callback to the meson mmc
+> > > > driver.
+> > > > While testing, I noticed that a few cards fail to exit the busy state
+> > > > after
+> > > > the
+> > > > voltage switch.
+> > > > 
+> > > > After tinkering with the driver a bit, I noticed that increasing the
+> > > > clock
+> > > > frequency from 400kHz to 1MHz solve the problem. Strange, isn't it ?
+> > 
+> > Thanks for your reply Shawn !
+> > 
+> > > AFAICT, most of the internal circuit of card is running against the
+> > > input clock from host. So if you increase your clock, cards will finish
+> > > thier logic switch faster.
+> > 
+> > Yeah that would be my understanding as well
+> > 
+> > > ? Note that the spec does state that 400KHz is
+> > > the max freq for indentification mode. But the fact is that almost all
+> > > cards could accept higher frequecncy.
+> > 
+> > Agreed. but I'm not talking about the frequency used during identification.
+> > The step I'm referring to is after CMD41, during CMD11. After CMD11, the
+> > spec
 > 
-> Thanks for your reply Shawn !
-> 
->> AFAICT, most of the internal circuit of card is running against the
->> input clock from host. So if you increase your clock, cards will finish
->> thier logic switch faster.
-> 
-> Yeah that would be my understanding as well
-> 
->>   Note that the spec does state that 400KHz is
->> the max freq for indentification mode. But the fact is that almost all
->> cards could accept higher frequecncy.
-> 
-> Agreed. but I'm not talking about the frequency used during identification.
-> The step I'm referring to is after CMD41, during CMD11. After CMD11, the spec
+> I also notice you said "a few cards fail to exit teh busy state after
+> the voltage switch". That implies that card didn't finish voltage switch
+> at all, so it shouldn't argue for increasing the clk as the spec only
+> say "cmd11 invlokes voltage switching squence. If it is *completed*, the
+> card enters SDR12(default)." and "Completion of voltage switch sequence
+> is checked by high level of DAT[3:0]"
 
-I also notice you said "a few cards fail to exit teh busy state after
-the voltage switch". That implies that card didn't finish voltage switch
-at all, so it shouldn't argue for increasing the clk as the spec only
-say "cmd11 invlokes voltage switching squence. If it is *completed*, the
-card enters SDR12(default)." and "Completion of voltage switch sequence
-is checked by high level of DAT[3:0]"
+I understand increasing the frequency does not make much sense, but it makes it
+works. I'm trying to understand why ... hopefully it will lead to a real
+solution.
 
-So these two cards are probably still in id mode or some un-documented
-state, I guess. No hints for that per the spec but you should try to
-make sure the behaviour of your contrller follows the whole requirement
-of SD spec "4.2.4.2 Timing to Switch Signal Voltage".... especially
-to see if your 1.8v is stable within 5ms...
+> 
+> So these two cards are probably still in id mode or some un-documented
+> state, I guess. No hints for that per the spec but you should try to
+> make sure the behaviour of your contrller follows the whole requirement
+> of SD spec "4.2.4.2 Timing to Switch Signal Voltage".... especially
+> to see if your 1.8v is stable within 5ms...
+
+Unfortunately section "4.2.4.2 Timing to Switch Signal Voltage" is blank in the
+simplified (freely available) spec. I could not get my hands on the full spec
+yet.
+
+Unsettled regulator was one of my first guesses. The regulator setup on my board
+needs some time to settle when switch from 3.3v to 1.8v, around 70ms.
+I made sure to delay the return of the host voltage_switch callback until the
+voltage is stable at 1.8v.
+
+This probably is a bit long but, at this stage, the clock is gated so the card
+should?not see the difference, right ?
+
+So on return of "mmc_set_signal_voltage(host, MMC_SIGNAL_VOLTAGE_180)", the
+voltage should be stable at 1.8v and we will the get the 10ms (even if spec says
+5ms apparently) before re-enabling the clock.
 
 
-> says that the frequency is up to "default speed or SDR12" so 25Mhz >
-> If id mode is limited to 400kHz, it is clearly a different stage.
-> 
->>
->> For you issue, please try to hack mmc_set_uhs_voltage to increase the
->> delay there to see if that could solve your problem.
->>
-> 
-> Ohhh believe me, I did :) however these 2 cards are quite stubborn
-> 
->>>
->>> I'm don't know MMC that much but is it possible that some card require a
->>> minimum
->>> operating frequency to enter UHS mode ?
->>>
->>
->> We shoule never give a hypothesis beyond the scope of spec.
-> I don't get what you mean ?
-> 
->>
->>> The simplified spec (Part 1 - Physical Layer) says that before CMD11, we
->>> should
->>> have had CMD41 (Init Command) . After CMD41, the card should be operating at
->>> Default Speed or SDR12.
->>>
->>> I believe that in both case, the frequency is "up to 25Mhz" ? This would be
->>> the
->>> maximum, but is there a minimum ? 400kHz seems pretty low compared to 25Mhz
->>> ...
->>>
->>
->> 400KHz is good for work unless your IP has limitation for that.
-> Ip seems to be fine at 400KHz with every other cards, including uhs ones.
-> The 2 "annoying" cards switch to UHS mode fine on a laptop.
-> 
-> It the combination of the ip and the cards which seems broken, whatever the
-> delays I put here and there.
-> 
-> For a reason I don't understand, increasing the minimal frequency from 400Khz to
-> 1MHz make these cards work very nicely.
-> 
->>
->>> I hope you will able to shed light on this :)
->>>
->>> Best Regards
->>> jerome
->>> --
->>> To unsubscribe from this list: send the line "unsubscribe linux-mmc" in
->>> the body of a message to majordomo at vger.kernel.org
->>> More majordomo info at  http://vger.kernel.org/majordomo-info.html
->>>
->>>
->>>
->>
->>
+Again, Thanks for helping out Shawn !
+Cheers
+Jerome
+
 > 
 > 
+> > says that the frequency is up to "default speed or SDR12" so 25Mhz >
+> > If id mode is limited to 400kHz, it is clearly a different stage.
+> > 
+> > > 
+> > > For you issue, please try to hack mmc_set_uhs_voltage to increase the
+> > > delay there to see if that could solve your problem.
+> > > 
+> > 
+> > Ohhh believe me, I did :) however these 2 cards are quite stubborn
+> > 
+> > > > 
+> > > > I'm don't know MMC that much but is it possible that some card require a
+> > > > minimum
+> > > > operating frequency to enter UHS mode ?
+> > > > 
+> > > 
+> > > We shoule never give a hypothesis beyond the scope of spec.
+> > 
+> > I don't get what you mean ?
+> > 
+> > > 
+> > > > The simplified spec (Part 1 - Physical Layer) says that before CMD11, we
+> > > > should
+> > > > have had CMD41 (Init Command) . After CMD41, the card should be
+> > > > operating at
+> > > > Default Speed or SDR12.
+> > > > 
+> > > > I believe that in both case, the frequency is "up to 25Mhz" ? This would
+> > > > be
+> > > > the
+> > > > maximum, but is there a minimum ? 400kHz seems pretty low compared to
+> > > > 25Mhz
+> > > > ...
+> > > > 
+> > > 
+> > > 400KHz is good for work unless your IP has limitation for that.
+> > 
+> > Ip seems to be fine at 400KHz with every other cards, including uhs ones.
+> > The 2 "annoying" cards switch to UHS mode fine on a laptop.
+> > 
+> > It the combination of the ip and the cards which seems broken, whatever the
+> > delays I put here and there.
+> > 
+> > For a reason I don't understand, increasing the minimal frequency from
+> > 400Khz to
+> > 1MHz make these cards work very nicely.
+> > 
+> > > 
+> > > > I hope you will able to shed light on this :)
+> > > > 
+> > > > Best Regards
+> > > > jerome
+> > > > --
+> > > > To unsubscribe from this list: send the line "unsubscribe linux-mmc" in
+> > > > the body of a message to majordomo at vger.kernel.org
+> > > > More majordomo info at??http://vger.kernel.org/majordomo-info.html
+> > > > 
+> > > > 
+> > > > 
+> > > 
+> > > 
+> > 
+> > 
+> > 
+> > 
 > 
 > 
