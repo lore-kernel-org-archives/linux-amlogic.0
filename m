@@ -1,20 +1,29 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Wed, 2 Aug 2017 09:11:23 -0700
-Subject: [GIT PULL v2] Meson clock fixes for 4.13-rc4
-In-Reply-To: <5af2832c-c23c-c42b-c19f-ba7cb10c27c8@baylibre.com>
-References: <5af2832c-c23c-c42b-c19f-ba7cb10c27c8@baylibre.com>
-Message-ID: <20170802161123.GO2146@codeaurora.org>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 3 Aug 2017 18:08:22 -0500
+Subject: [PATCH v3 1/3] dt-bindings: clock: meson8b: describe the
+ embedded reset controller
+In-Reply-To: <20170728211313.10603-2-martin.blumenstingl@googlemail.com>
+References: <20170728211313.10603-1-martin.blumenstingl@googlemail.com>
+ <20170728211313.10603-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20170803230822.5kd6y46pqnpxezms@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/01, Neil Armstrong wrote:
-> Hi Mike, Stephen,
+On Fri, Jul 28, 2017 at 11:13:11PM +0200, Martin Blumenstingl wrote:
+> The Amlogic Meson8/Meson8b/Meson8m2 clock controller provides some reset
+> lines. These are used for example to boot the secondary CPU cores.
 > 
-> Here is a fix for Meson GXBB driver, that could go for 4.13-rc4.
+> This patch describes the reset controller which is embedded into the
+> clock controller on these SoCs.
+> A header file is provided which provides preprocessor macros for each
+> reset line (to make the .dts files easier to read).
 > 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/clock/amlogic,meson8b-clkc.txt        |  9 +++++++-
+>  .../dt-bindings/reset/amlogic,meson8b-clkc-reset.h | 27 ++++++++++++++++++++++
+>  2 files changed, 35 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson8b-clkc-reset.h
 
-Thanks. Pulled.
-
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Acked-by: Rob Herring <robh@kernel.org>
