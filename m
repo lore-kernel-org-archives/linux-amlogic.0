@@ -1,86 +1,78 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  4 Aug 2017 15:38:04 +0200
-Subject: [PATCH] ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names
-Message-ID: <1501853884-32680-1-git-send-email-narmstrong@baylibre.com>
+Date: Fri, 4 Aug 2017 18:18:22 +0200
+Subject: [GIT PULL] Amlogic clock driver updates for 4.14
+Message-ID: <894174b4-63d5-1e7d-c518-5bba150178ab@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch describes the GPIO lines usage on the LibreTech CC board.
+Hi Mike, Stephen,
 
-This is useful in the debugfs gpio file and using the cdev gpio API.
+Below is a request to pull the Amlogic clock driver updates for 4.14.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 57 ++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+Thanks,
+Neil
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 266fbcf..80ecd71 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -129,6 +129,63 @@
- 	};
- };
- 
-+&pinctrl_aobus {
-+	gpio-line-names = "UART TX",
-+			  "UART RX",
-+			  "Blue LED",
-+			  "SDCard Voltage Switch",
-+			  "7J1 Header Pin5",
-+			  "7J1 Header Pin3",
-+			  "7J1 Header Pin12",
-+			  "IR In",
-+			  "9J3 Switch HDMI CEC/7J1 Header Pin11",
-+			  "7J1 Header Pin13";
-+};
-+
-+&pinctrl_periphs {
-+	gpio-line-names = /* Bank GPIOZ */
-+			  "", "", "", "", "", "", "",
-+			  "", "", "", "", "", "", "",
-+			  "Eth Link LED", "Eth Activity LED",
-+			  /* Bank GPIOH */
-+			  "HDMI HPD", "HDMI SDA", "HDMI SCL",
-+			  "HDMI_5V_EN", "9J1 Header Pin2",
-+			  "Analog Audio Mute",
-+			  "2J3 Header Pin6",
-+			  "2J3 Header Pin5",
-+			  "2J3 Header Pin4",
-+			  "2J3 Header Pin3",
-+			  /* Bank BOOT */
-+			  "eMMC D0", "eMMC D1", "eMMC D2", "eMMC D3",
-+			  "eMMC D4", "eMMC D5", "eMMC D6", "eMMC D7",
-+			  "eMMC Clk", "eMMC Reset", "eMMC CMD",
-+			  "ALT BOOT MODE", "", "", "", "eMMC Data Strobe", 
-+			  /* Bank CARD */
-+			  "SDCard D1", "SDCard D0", "SDCard CLK", "SDCard CMD",
-+			  "SDCard D3", "SDCard D2", "SDCard Det",
-+			  /* Bank GPIODV */
-+			  "", "", "", "", "", "", "", "", "", "", "", "",
-+			  "", "", "", "", "", "", "", "", "", "", "", "",
-+			  "Green LED", "VCCK Enable",
-+			  "7J1 Header Pin27", "7J1 Header Pin28",
-+			  "VCCK Regulator", "VDDEE Regulator",
-+			  /* Bank GPIOX */
-+			  "7J1 Header Pin22", "7J1 Header Pin26",
-+			  "7J1 Header Pin36", "7J1 Header Pin38",
-+			  "7J1 Header Pin40", "7J1 Header Pin37",
-+			  "7J1 Header Pin33", "7J1 Header Pin35",
-+			  "7J1 Header Pin19", "7J1 Header Pin21",
-+			  "7J1 Header Pin24", "7J1 Header Pin23",
-+			  "7J1 Header Pin8", "7J1 Header Pin10",
-+			  "7J1 Header Pin16", "7J1 Header Pin18",
-+			  "7J1 Header Pin32", "7J1 Header Pin29",
-+			  "7J1 Header Pin31",
-+			  /* Bank GPIOCLK */
-+			  "7J1 Header Pin7", "",
-+			  /* GPIO_TEST_N */
-+			  "7J1 Header Pin15";
-+};
-+
- /* SD card */
- &sd_emmc_b {
- 	status = "okay";
--- 
-1.9.1
+The following changes since commit 5771a8c08880cdca3bfb4a3fc6d309d6bba20877:
+
+  Linux v4.13-rc1 (2017-07-15 15:22:10 -0700)
+
+are available in the git repository at:
+
+  git://github.com/baylibre/clk-meson.git tags/meson-clk-for-4.14
+
+for you to fetch changes up to 62ec0b9754aced0b4c02694886cbe9bfd3d00f2f:
+
+  clk: meson: gxbb-aoclk: Add CEC 32k clock (2017-08-04 18:02:02 +0200)
+
+----------------------------------------------------------------
+Amlogic clock driver updates for 4.14
+
+* meson8b: add the reset controller to the clkc
+* meson: expose all clk ids
+* gxbb-aoclk: Add CEC 32k clock
+* gxbb: add mmc input 0 clocks
+* meson: fix protection against undefined clks
+* gxbb: fix audio divider flags
+
+----------------------------------------------------------------
+Jerome Brunet (8):
+      clk: meson: meson8b: fix protection against undefined clks
+      clk: meson: gxbb: fix protection against undefined clks
+      clk: meson8b: expose every clock in the bindings
+      clk: meson-gxbb: expose almost every clock in the bindings
+      clk: meson: gxbb: Add sd_emmc clk0 clkids
+      clk: meson: gxbb: fix meson cts_amclk divider flags
+      clk: meson: gxbb: fix clk_mclk_i958 divider flags
+      clk: meson: gxbb: Add sd_emmc clk0 clocks
+
+Martin Blumenstingl (2):
+      dt-bindings: clock: meson8b: describe the embedded reset controller
+      clk: meson: meson8b: register the built-in reset controller
+
+Neil Armstrong (4):
+      dt-bindings: clock: gxbb-aoclk: Add CEC 32k clock
+      dt-bindings: clock: amlogic, gxbb-aoclkc: Update bindings
+      clk: meson: gxbb-aoclk: Switch to regmap for register access
+      clk: meson: gxbb-aoclk: Add CEC 32k clock
+
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  22 ++-
+ .../bindings/clock/amlogic,meson8b-clkc.txt        |   9 +-
+ drivers/clk/meson/Kconfig                          |   1 +
+ drivers/clk/meson/Makefile                         |   2 +-
+ drivers/clk/meson/gxbb-aoclk-32k.c                 | 194 +++++++++++++++++++++
+ drivers/clk/meson/gxbb-aoclk-regmap.c              |  46 +++++
+ drivers/clk/meson/gxbb-aoclk.c                     |  65 ++++---
+ drivers/clk/meson/gxbb-aoclk.h                     |  42 +++++
+ drivers/clk/meson/gxbb.c                           | 189 +++++++++++++++++++-
+ drivers/clk/meson/gxbb.h                           | 125 ++-----------
+ drivers/clk/meson/meson8b.c                        | 160 +++++++++++++++--
+ drivers/clk/meson/meson8b.h                        | 112 ++----------
+ include/dt-bindings/clock/gxbb-aoclkc.h            |   1 +
+ include/dt-bindings/clock/gxbb-clkc.h              |  63 +++++++
+ include/dt-bindings/clock/meson8b-clkc.h           |  70 ++++++++
+ .../dt-bindings/reset/amlogic,meson8b-clkc-reset.h |  27 +++
+ 16 files changed, 870 insertions(+), 258 deletions(-)
+ create mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
+ create mode 100644 drivers/clk/meson/gxbb-aoclk-regmap.c
+ create mode 100644 drivers/clk/meson/gxbb-aoclk.h
+ create mode 100644 include/dt-bindings/reset/amlogic,meson8b-clkc-reset.h
