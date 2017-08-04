@@ -1,500 +1,285 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 20:08:15 +0200
-Subject: [PATCH 5/6] ARM64: dts: meson: add mmc clk gate pins
-In-Reply-To: <20170804180816.18737-1-jbrunet@baylibre.com>
-References: <20170804180816.18737-1-jbrunet@baylibre.com>
-Message-ID: <20170804180816.18737-6-jbrunet@baylibre.com>
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Fri, 4 Aug 2017 20:26:04 +0200
+Subject: [PATCH] ARM: dts: meson: Fixing L2 cache controller node for
+ Meson8 and Meson8b
+In-Reply-To: <CAFBinCDnOQq_izOy74c29oPrwXZPxs76kSeTDz_YJFO5+3z6nA@mail.gmail.com>
+References: <20170725152330.GA11792@ingrassia.epigenesys.com>
+ <CAFBinCBZ9BWfZ3rewsM=agJaFvpKNT=bADdTfv=+kV5GbnfT6w@mail.gmail.com>
+ <20170726095506.GA5985@ingrassia.epigenesys.com>
+ <CAFBinCCx_JaKEAN3pSuc5TikCf24ovLO7kY4gtnjcgHWnuXKWg@mail.gmail.com>
+ <20170728142845.GB31059@ingrassia.epigenesys.com>
+ <CAFBinCA9X9ASfxoo3yDACYcU=WNAtAT9bgisOv3WS++9aWUuOQ@mail.gmail.com>
+ <20170729163236.GA20706@ingrassia.epigenesys.com>
+ <CAFBinCDnOQq_izOy74c29oPrwXZPxs76kSeTDz_YJFO5+3z6nA@mail.gmail.com>
+Message-ID: <20170804182604.GA21480@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the pinctrl to switch mmc clk pins in gpio (pulled down) mode. This
-is necessary to be able to gate the clk outside of the SoC while
-keeping it running in the controller
+Hi Martin,
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  9 ++++--
- .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      |  9 ++++--
- .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 11 +++++---
- .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  8 ++++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   |  9 ++++--
- .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      |  9 ++++--
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 33 ++++++++++++++++++++++
- .../dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts |  6 ++--
- .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   |  6 ++--
- .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    |  9 ++++--
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     |  9 ++++--
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 33 ++++++++++++++++++++++
- .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  6 ++--
- 13 files changed, 126 insertions(+), 31 deletions(-)
+On Tue, Aug 01, 2017 at 08:49:37PM +0200, Martin Blumenstingl wrote:
+> Hi Emiliano,
+> 
+> On Sat, Jul 29, 2017 at 6:32 PM, Emiliano Ingrassia
+> <ingrassia@epigenesys.com> wrote:
+> > Hi Martin,
+> >
+> > On Fri, Jul 28, 2017 at 10:38:07PM +0200, Martin Blumenstingl wrote:
+> >> Hi Emiliano,
+> >>
+> >> On Fri, Jul 28, 2017 at 4:28 PM, Emiliano Ingrassia
+> >> <ingrassia@epigenesys.com> wrote:
+> >> > Hi Martin,
+> >> >
+> >> > thanks for the review.
+> >> >
+> >> > On Fri, Jul 28, 2017 at 01:54:39PM +0200, Martin Blumenstingl wrote:
+> >> >> Hi Emiliano,
+> >> >>
+> >> >> many thanks for looking into this (and providing detailed information)!
+> >> >>
+> >> >> On Wed, Jul 26, 2017 at 11:55 AM, Emiliano Ingrassia
+> >> >> <ingrassia@epigenesys.com> wrote:
+> >> >> > Hi Martin,
+> >> >> >
+> >> >> > thank you for the quick response!
+> >> >> >
+> >> >> > On Tue, Jul 25, 2017 at 08:51:15PM +0200, Martin Blumenstingl wrote:
+> >> >> >> Hi Emiliano,
+> >> >> >>
+> >> >> >> On Tue, Jul 25, 2017 at 5:23 PM, Emiliano Ingrassia
+> >> >> >> <ingrassia@epigenesys.com> wrote:
+> >> >> >> > Changing address filtering range to support the entire DDR region.
+> >> >> >> > The previous range prevents ODROID-C1+ board from booting.
+> >> >> >> thanks for the patch!
+> >> >> >> could you please explain what issue you are seeing exactly? kernelci
+> >> >> >> also has an Odroid-C1 in it's farm and it seems to boot mainline
+> >> >> >> (4.13-rc2+) just fine, see: [0]
+> >> >> >>
+> >> >> >
+> >> >> > The issue I'm seeing is simple: I have an ODROID-C1+ board (rev 0.4 20150930)
+> >> >> > which does not boot with the L2 cache controller filtering range set to <0x1000000 0xc0000000>.
+> >> >> > U-Boot launches the kernel, which decompression complete successfully, but then nothing happens.
+> >> >> thank you for explaining this - would you please put this info into
+> >> >> the commit message?
+> >> >>
+> >> >
+> >> > Of course, thanks for the suggestion.
+> >> >
+> >> >> > The S805 manual, chapter 4 (Memory Map), shows that the DDR memory
+> >> >> > region start at 0x0 and ends at 0xbfffffff.
+> >> >> >
+> >> >> > Following the description of the property "arm,filter-ranges" in Documentation/devicetree/bindings/arm/l2c2x0.txt,
+> >> >> > which is:
+> >> >> >
+> >> >> > - arm,filter-ranges : <start length> Starting address and length of window to
+> >> >> >   filter. Addresses in the filter window are directed to the M1 port. Other
+> >> >> >   addresses will go to the M0 port.
+> >> >> >
+> >> >> > it seems correct to set the range to <0x0 0xc0000000>, to direct memory accesses
+> >> >> > on port M1 and other accesses on port M0.
+> >> >> ok, makes sense so far
+> >> >>
+> >> >> > If I'm wrong, could you please explain why the range used so far is correct ?
+> >> >> maybe Carlo (who originally brought up that we are missing this
+> >> >> property) can give some more details why the original value was
+> >> >> chosen. I think he took it from the Amlogic GPL kernel sources, see
+> >> >> [0]
+> >> >>
+> >> >
+> >> > Yes, I think so too.
+> >> >
+> >> >> > From the memory map, that range covers part of the DDR region
+> >> >> > and part of the APB3 CBUS memory region (0x01000000 + 0xc000000).
+> >> >> > Is this the intention?
+> >> >> indeed, this sounds suspicious
+> >> >> maybe you could put this information in the commit message as well
+> >> >>
+> >> >> I will give your patch a try on a Meson8m2 (very similar to Meson8)
+> >> >> and Meson8b device this weekend and let you know.
+> >> >>
+> >> >
+> >> > Ok, I'll prepare a new patch with more detailed informations
+> >> > as soon as I receive a feedback from you.
+> >> I have just tested this on my Meson8m2 (Akaso M8S) and Meson8b
+> >> (EC-100) devices. I have some good and some bad news:
+> >> 1. it works fine for me with both values (the original one and
+> >> arm,filter-ranges = <0x0 0xc0000000>;)
+> >> 2. I can reproduce a hang under the following conditions:
+> >> - disabling SMP support (= removing the "enable-method" property from
+> >> all CPU nodes)
+> >> - setting arm,filter-ranges = <0x0 0xc0000000>;
+> >>
+> >> it does *not* hang with arm,filter-ranges = <0x100000 0xc0000000>; -
+> >> regardless of whether SMP support is enabled or not
+> >> (SMP support is something I am working on currently)
+> >>
+> >> could you please try building a kernel with my SMP patches, see [0]?
+> >> I'm interested whether enabling SMP support fixes this for you as well
+> >>
+> >
+> > I tried your SMP patch and here are my results.
+> thank you for testing and reporting back!
+> 
+> > The kernel correctly boot with filtering range <0x0 0xc0000000>
+> > with or without enabling SMP. In case of SMP, it tooks about
+> > 20 s to start after kernel decompression.
+> I'll give it another try on my boards - I'm not sure how long I
+> actually waited for some output on the serial console
+> 
+> > The kernel correctly boot with filtering range <0x00100000 0xc0000000>,
+> > with or without enabling SMP, but at login I see many exceptions like the followings:
+> >
+> > [   15.701234] Unhandled fault: external abort on non-linefetch (0x1008) at 0xc0014004
+> > ...
+> > [   16.111141] Unhandled fault: external abort on non-linefetch (0x1008) at 0xc0015004
+> > ...
+> > [   16.471772] Unhandled fault: external abort on non-linefetch (0x1008) at 0xc004f006
+> >
+> > The interesting part is that the majority are about addresses greater than 0xc0000000.
+> that is interesting, indeed
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-index dc478d094c11..ac16096d095e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-@@ -161,7 +161,8 @@
- &sd_emmc_a {
- 	status = "okay";
- 	pinctrl-0 = <&sdio_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-@@ -187,7 +188,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -205,7 +207,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-index 5d59fd75cae7..919c956a204c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-@@ -195,7 +195,8 @@
- &sd_emmc_a {
- 	status = "okay";
- 	pinctrl-0 = <&sdio_pins>, <&sdio_irq_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-@@ -221,7 +222,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -242,7 +244,8 @@
- &sd_emmc_c {
- 	status = "disabled";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-index a1078b3e1c76..21cd94247f6c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-@@ -51,7 +51,7 @@
- / {
- 	compatible = "nexbox,a95x", "amlogic,meson-gxbb";
- 	model = "NEXBOX A95X";
--	
-+
- 	aliases {
- 		serial0 = &uart_AO;
- 	};
-@@ -225,7 +225,8 @@
- &sd_emmc_a {
- 	status = "okay";
- 	pinctrl-0 = <&sdio_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-@@ -246,7 +247,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -264,7 +266,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index d147c853ab05..d2fac2f62a21 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -50,7 +50,7 @@
- / {
- 	compatible = "hardkernel,odroid-c2", "amlogic,meson-gxbb";
- 	model = "Hardkernel ODROID-C2";
--	
-+
- 	aliases {
- 		serial0 = &uart_AO;
- 	};
-@@ -253,7 +253,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -271,7 +272,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 900a13cc24ee..738bb45fd07b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -187,7 +187,8 @@
- &sd_emmc_a {
- 	status = "okay";
- 	pinctrl-0 = <&sdio_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-@@ -213,7 +214,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -234,7 +236,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index 346753fb6324..8acd8d8b375a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -155,7 +155,8 @@
- &sd_emmc_a {
- 	status = "okay";
- 	pinctrl-0 = <&sdio_pins &sdio_irq_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-@@ -181,7 +182,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -198,7 +200,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 9a1e478f80d5..cac7a5530c4f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -383,6 +383,17 @@
- 			};
- 		};
- 
-+		emmc_clk_gate_pins: emmc_clk_gate {
-+			mux {
-+				groups = "BOOT_8";
-+				function = "gpio_periphs";
-+			};
-+			cfg-pull-down {
-+				pins = "BOOT_8";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		nor_pins: nor {
- 			mux {
- 				groups = "nor_d",
-@@ -421,6 +432,17 @@
- 			};
- 		};
- 
-+		sdcard_clk_gate_pins: sdcard_clk_gate {
-+			mux {
-+				groups = "CARD_2";
-+				function = "gpio_periphs";
-+			};
-+			cfg-pull-down {
-+				pins = "CARD_2";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		sdio_pins: sdio {
- 			mux {
- 				groups = "sdio_d0",
-@@ -433,6 +455,17 @@
- 			};
- 		};
- 
-+		sdio_clk_gate_pins: sdio_clk_gate {
-+			mux {
-+				groups = "GPIOX_5";
-+				function = "gpio_periphs";
-+			};
-+			cfg-pull-down {
-+				pins = "GPIOX_5";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		sdio_irq_pins: sdio_irq {
- 			mux {
- 				groups = "sdio_irq";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-index 2a5804ce7f4b..068623e75fec 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-@@ -123,7 +123,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -141,7 +142,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 185d737f1549..0537b92cd226 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -137,7 +137,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -159,7 +160,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-mmc-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-index 6633a5d8fdd3..cf3b6e7860a4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-@@ -182,7 +182,8 @@
- &sd_emmc_a {
- 	status = "okay";
- 	pinctrl-0 = <&sdio_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-@@ -203,7 +204,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -221,7 +223,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-index f3eea8e89d12..e2509a834a62 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-@@ -95,7 +95,8 @@
- &sd_emmc_a {
- 	status = "okay";
- 	pinctrl-0 = <&sdio_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-@@ -116,7 +117,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -134,7 +136,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 071eca074a91..c222f19fca3f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -271,6 +271,17 @@
- 			};
- 		};
- 
-+		emmc_clk_gate_pins: emmc_clk_gate {
-+			mux {
-+				groups = "BOOT_8";
-+				function = "gpio_periphs";
-+			};
-+			cfg-pull-down {
-+				pins = "BOOT_8";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		nor_pins: nor {
- 			mux {
- 				groups = "nor_d",
-@@ -309,6 +320,17 @@
- 			};
- 		};
- 
-+		sdcard_clk_gate_pins: sdcard_clk_gate {
-+			mux {
-+				groups = "CARD_2";
-+				function = "gpio_periphs";
-+			};
-+			cfg-pull-down {
-+				pins = "CARD_2";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		sdio_pins: sdio {
- 			mux {
- 				groups = "sdio_d0",
-@@ -321,6 +343,17 @@
- 			};
- 		};
- 
-+		sdio_clk_gate_pins: sdio_clk_gate {
-+			mux {
-+				groups = "GPIOX_5";
-+				function = "gpio_periphs";
-+			};
-+			cfg-pull-down {
-+				pins = "GPIOX_5";
-+				bias-pull-down;
-+			};
-+		};
-+
- 		sdio_irq_pins: sdio_irq {
- 			mux {
- 				groups = "sdio_irq";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-index 5f626d683088..ae988bdf1f92 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-@@ -168,7 +168,8 @@
- &sd_emmc_b {
- 	status = "okay";
- 	pinctrl-0 = <&sdcard_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-@@ -186,7 +187,8 @@
- &sd_emmc_c {
- 	status = "okay";
- 	pinctrl-0 = <&emmc_pins>;
--	pinctrl-names = "default";
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
- 
- 	bus-width = <8>;
- 	cap-sd-highspeed;
--- 
-2.9.4
+It is, indeed. Consider that my rootfs lies on an USB flash drive and those
+exceptions are shown when init starts executing init scripts.
+
+> > I suspect that the problem lies in SCU initialization, which depends on
+> > bootloader without your patch, and its interaction with the L2 cache.
+> so it could be either the SCU initialization or the L2 cache
+> initialization (or both).
+> I found that Amlogic sets quite a few L2 cache flags, see [0]
+> This should map to the following values on an upstream kernel:
+>   prefetch-data = <1>;
+>   prefetch-instr = <1>;
+>   arm,shared-override;
+>   arm,double-linefill = <1>;
+>   arm,prefetch-drop = <1>;
+>   arm,prefetch-offset = <7>;
+> (potentially more flags, those were the ones that I could easily translate)
+> have you tried experimenting with these yet?
+> 
+
+I tried the following flags with no success:
+
+arm,double-linefill = <1>;
+arm,prefetch-drop = <1>;
+arm,prefetch-offset = <7>;
+prefetch-data = <1>;
+prefetch-instr = <1>;
+arm,shared-override;
+cache-unified;
+cache-level = <2>;
+
+> > In particular, looking at the image at page 15 of S805 SoC manual, I saw
+> > that the SCU has two ports: one which directly connects it to the bus and
+> > one which connects it to the L2 cache memory.
+> >
+> > Is it possible that those are the M0 and M1 ports of the SCU and that
+> > the filtering range causes cached accesses only on the filtered range ?
+> I must admit that I don't know much about how this all works.
+> maybe someone else here on the list can help explaining this (I would
+> also like to understand all this). we might also include the linux-arm
+> list, since I'm sure that someone can explain this to us
+> 
+
+It seems that those ports were used to implement Trusted Execution Environment.
+Check the function pl310_of_setup() in [0].
+
+Other interesting thing: a read of SCU filtering start and end address
+registers, before initialization by kernel, returns 0x1 and 0xc0000000 values.
+The first is simple the oring of 0x0 with 1, which indicates that address filtering
+is enabled [1].
+
+I'm using hardkernel U-boot as bootloader [2].
+
+> >
+> >> >> >> I would like to understand why it's not working for you
+> >> >> >> (I do not have an Odroid-C1 board myself, but my EC-100 also comes
+> >> >> >> with a Meson8b SoC and 2GiB RAM and it boots fine there also)
+> >> >> >>
+> >> >> >> > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> >> >> >> > ---
+> >> >> >> >  arch/arm/boot/dts/meson8b.dtsi | 2 +-
+> >> >> >> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >> >> your commit message states that this patch should fix Meson8 and
+> >> >> Meson8b - that means you'll also have to apply the same change to
+> >> >> meson8.dtsi
+> >> >>
+> >> >
+> >> > Sorry, the patch is only for the S805 SoC (meson8b) and I'll correct
+> >> > that information in the new commit.
+> >> > I don't know the memory maps of the S802 SoC (meson8) and the S812 SoC (meson8m2)
+> >> > and don't have any manual about those SoCs.
+> >> > So, I can't guarantee that the same informations can be applied to them.
+> >> unfortunately there's basically no public information about Meson8
+> >> (S802) or Meson8m2 (S812). however, based on studying Amlogic's GPL
+> >> 3.10 kernel sources I believe that Meson8 and Meson8m2 only differ in
+> >> a few areas - most differences however were taken over from Meson8b
+> >> (CPU temperature calibration algorithm for example).
+> >> additionally Meson8/Meson8b/Meson8m2 share an almost identical clock
+> >> controller and so on.
+> >> so we cannot be 100% certain but in my opinion this indicates that
+> >> Meson8, Meson8b and Meson8m2 are pretty similar.
+> >>
+> >> >> >> >
+> >> >> >> > diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> >> >> >> > index 72e4f425f190..3f0850cf3403 100644
+> >> >> >> > --- a/arch/arm/boot/dts/meson8b.dtsi
+> >> >> >> > +++ b/arch/arm/boot/dts/meson8b.dtsi
+> >> >> >> > @@ -190,7 +190,7 @@
+> >> >> >> >  &L2 {
+> >> >> >> >         arm,data-latency = <3 3 3>;
+> >> >> >> >         arm,tag-latency = <2 2 2>;
+> >> >> >> > -       arm,filter-ranges = <0x100000 0xc0000000>;
+> >> >> >> > +       arm,filter-ranges = <0x0 0xc0000000>;
+> >> >> >> >  };
+> >> >> >> >
+> >> >> >> >  &saradc {
+> >> >> >> > --
+> >> >> >> > 2.13.2
+> >> >> >> >
+> >> >> >> >
+> >> >> >> > _______________________________________________
+> >> >> >> > linux-amlogic mailing list
+> >> >> >> > linux-amlogic at lists.infradead.org
+> >> >> >> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> >> >> >>
+> >> >> >> Regards,
+> >> >> >> Martin
+> >> >> >>
+> >> >> >>
+> >> >> >> [0] https://storage.kernelci.org/mainline/master/v4.13-rc2-11-g25f6a53799d6/arm/multi_v7_defconfig/lab-baylibre-seattle/boot-meson8b-odroidc1.html
+> >> >> >
+> >> >> > Best regards,
+> >> >> >
+> >> >> > Emiliano
+> >> >>
+> >> >>
+> >> >> Regards,
+> >> >> Martin
+> >> >>
+> >> >> [0] https://github.com/endlessm/linux-meson/blob/c173f4653186870f08dc9131b5d82ef4ab4151e1/arch/arm/boot/dts/meson8b_m201_1G.dts#L44
+> >> >
+> >> > Regards,
+> >> >
+> >> > Emiliano
+> >>
+> >> [0] https://github.com/xdarklight/linux/tree/meson-mx-integration-4.13-20170723
+> >
+> > Thanks,
+> >
+> > Emiliano
+> 
+> Regards,
+> Martin
+> 
+> 
+> [0] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/arch/arm/boot/dts/meson8b_odroidc.dts#L34
+
+[0] https://github.com/hardkernel/linux/blob/odroidc-3.10.y/arch/arm/mm/cache-l2x0.c
+[1] http://infocenter.arm.com/help/topic/com.arm.doc.ddi0246a/DDI0246A_l2cc_pl310_r0p0_trm.pdf
+[2] https://github.com/hardkernel/u-boot/tree/odroidc-v2011.03
+
+Best regards,
+
+Emiliano
