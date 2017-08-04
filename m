@@ -1,148 +1,49 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 19:43:52 +0200
-Subject: [PATCH 13/14] mmc: meson-gx: work around clk-stop issue
-In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
-References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <20170804174353.16486-14-jbrunet@baylibre.com>
+Date: Fri,  4 Aug 2017 20:08:10 +0200
+Subject: [PATCH 0/6] ARM64: dts: meson: update around mmc
+Message-ID: <20170804180816.18737-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-It seems that the signal clock is also used and required, somehow, by
-the controller it self.
+The patchset feature update around mmc. It is linked to this series [0]
+but does not strictly depends on it. It adds:
 
-It is shown during init, when writing to CFG while the divider is set
-to 0 will crash the SoC. During voltage switch, the controller may crash
-and the card may then fail to exit busy state if the clock is stopped.
+* The regulator settling times for the gpio regulator of nanopi-k2 and
+  the libretech-cc.
+* UHS modes for the p20x and nanopi-k2. SDR104 is left out because the
+  p20x does not support it and the driver requires more work to enable
+  it on the nanopi-k2
+* clk-gate pins: these are the pinmuxes used for the clk-stop work
+  around explained here [0]
 
-To avoid this, it is best to keep the clock running for the controller,
-except during rate change. However, we still need to be able to gate
-the clock out of the SoC. Let's use the pinmux for this, and fallback
-to gpio mode (pulled-down) when we need to gate the clock
+It also removes cap-sd-highspeed from eMMC nodes.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 74 +++++++++++++++++++++++++++++++++++++----
- 1 file changed, 68 insertions(+), 6 deletions(-)
+This series has been tested on the gxbb-200, the gxbb-nanopi-k2 and the
+gxl-s905x-libretech-cc
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index f973278a3f8d..e991c9e452ab 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -145,6 +145,10 @@ struct meson_host {
- 	struct clk *signal_clk;
- 	unsigned long req_rate;
- 
-+	struct pinctrl *pinctrl;
-+	struct pinctrl_state *pins_default;
-+	struct pinctrl_state *pins_clk_gate;
-+
- 	unsigned int bounce_buf_size;
- 	void *bounce_buf;
- 	dma_addr_t bounce_dma_addr;
-@@ -308,6 +312,42 @@ static bool meson_mmc_timing_is_ddr(struct mmc_ios *ios)
- 	return false;
- }
- 
-+/*
-+ * Gating the clock on this controller is tricky.  It seems the signal clock
-+ * is also used by the controller.  It may crash during some operation if the
-+ * clock is stopped.  The safest thing to do, whenever possible, is to keep
-+ * clock running at stop it at the pad using the pinmux.
-+ */
-+static void meson_mmc_clk_gate(struct meson_host *host)
-+{
-+	u32 cfg;
-+
-+	if (host->pins_clk_gate) {
-+		pinctrl_select_state(host->pinctrl, host->pins_clk_gate);
-+	} else {
-+		/*
-+		 * If the pinmux is not provided - default to the classic and
-+		 * unsafe method
-+		 */
-+		cfg = readl(host->regs + SD_EMMC_CFG);
-+		cfg |= CFG_STOP_CLOCK;
-+		writel(cfg, host->regs + SD_EMMC_CFG);
-+	}
-+}
-+
-+static void meson_mmc_clk_ungate(struct meson_host *host)
-+{
-+	u32 cfg;
-+
-+	if (host->pins_clk_gate)
-+		pinctrl_select_state(host->pinctrl, host->pins_default);
-+
-+	/* Make sure the clock is not stopped in the controller */
-+	cfg = readl(host->regs + SD_EMMC_CFG);
-+	cfg &= ~CFG_STOP_CLOCK;
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+}
-+
- static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
- {
- 	struct mmc_host *mmc = host->mmc;
-@@ -324,9 +364,7 @@ static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
- 		return 0;
- 
- 	/* stop clock */
--	cfg = readl(host->regs + SD_EMMC_CFG);
--	cfg |= CFG_STOP_CLOCK;
--	writel(cfg, host->regs + SD_EMMC_CFG);
-+	meson_mmc_clk_gate(host);
- 	host->req_rate = 0;
- 
- 	if (!rate) {
-@@ -335,6 +373,11 @@ static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
- 		return 0;
- 	}
- 
-+	/* Stop the clock during rate change to avoid glitches */
-+	cfg = readl(host->regs + SD_EMMC_CFG);
-+	cfg |= CFG_STOP_CLOCK;
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+
- 	ret = clk_set_rate(host->signal_clk, rate);
- 	if (ret) {
- 		dev_err(host->dev, "Unable to set cfg_div_clk to %lu. ret=%d\n",
-@@ -354,9 +397,7 @@ static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
- 		dev_dbg(host->dev, "requested rate was %u\n", ios->clock);
- 
- 	/* (re)start clock */
--	cfg = readl(host->regs + SD_EMMC_CFG);
--	cfg &= ~CFG_STOP_CLOCK;
--	writel(cfg, host->regs + SD_EMMC_CFG);
-+	meson_mmc_clk_ungate(host);
- 
- 	return 0;
- }
-@@ -1037,6 +1078,27 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 		goto free_host;
- 	}
- 
-+	host->pinctrl = devm_pinctrl_get(&pdev->dev);
-+	if (IS_ERR(host->pinctrl)) {
-+		ret = PTR_ERR(host->pinctrl);
-+		goto free_host;
-+	}
-+
-+	host->pins_default = pinctrl_lookup_state(host->pinctrl,
-+						  PINCTRL_STATE_DEFAULT);
-+	if (IS_ERR(host->pins_default)) {
-+		ret = PTR_ERR(host->pins_default);
-+		goto free_host;
-+	}
-+
-+	host->pins_clk_gate = pinctrl_lookup_state(host->pinctrl,
-+					     "clk-gate");
-+	if (IS_ERR(host->pins_clk_gate)) {
-+		dev_warn(&pdev->dev,
-+			 "can't get clk-gate pinctrl, using clk_stop bit\n");
-+		host->pins_clk_gate = NULL;
-+	}
-+
- 	host->core_clk = devm_clk_get(&pdev->dev, "core");
- 	if (IS_ERR(host->core_clk)) {
- 		ret = PTR_ERR(host->core_clk);
+Jerome Brunet (6):
+  ARM64: dts: meson-gxbb: nanopi-k2: add card regulator settle times
+  ARM64: dts: meson-gxl: libretech-cc: add card regulator settle times
+  ARM64: dts: meson-gxbb: p20x: enable sdcard UHS modes
+  ARM64: dts: meson-gxbb: nanopi-k2: enable sdcard UHS modes
+  ARM64: dts: meson: add mmc clk gate pins
+  ARM64: dts: meson: remove cap-sd-highspeed from emmc nodes
+
+ .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi | 10 ++++---
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 18 ++++++++----
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 12 ++++----
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  9 +++---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   | 13 ++++++---
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 10 ++++---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 33 ++++++++++++++++++++++
+ .../dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts |  7 +++--
+ .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   |  9 ++++--
+ .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 10 ++++---
+ .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     | 10 ++++---
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 33 ++++++++++++++++++++++
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  7 +++--
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts |  1 -
+ 14 files changed, 139 insertions(+), 43 deletions(-)
+
 -- 
 2.9.4
