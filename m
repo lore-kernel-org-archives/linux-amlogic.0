@@ -1,32 +1,49 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 19:43:40 +0200
-Subject: [PATCH 01/14] mmc: meson-gx: fix mux mask definition
+Date: Fri,  4 Aug 2017 19:43:43 +0200
+Subject: [PATCH 04/14] mmc: meson-gx: use _irqsave variant of spinlock
 In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
 References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <20170804174353.16486-2-jbrunet@baylibre.com>
+Message-ID: <20170804174353.16486-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-CCF generic mux will shift the mask using the value defined in shift
-Define the mask accordingly
+spinlock used in interrupt handler should use the _irqsave variant
 
+Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mmc/host/meson-gx-mmc.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index de962c2d5e00..4217287923d4 100644
+index 8a74a048db88..a399fbd415f4 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -366,7 +366,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 	init.num_parents = MUX_CLK_NUM_PARENTS;
- 	host->mux.reg = host->regs + SD_EMMC_CLOCK;
- 	host->mux.shift = __bf_shf(CLK_SRC_MASK);
--	host->mux.mask = CLK_SRC_MASK;
-+	host->mux.mask = CLK_SRC_MASK >> host->mux.shift;
- 	host->mux.flags = 0;
- 	host->mux.table = NULL;
- 	host->mux.hw.init = &init;
+@@ -727,6 +727,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	struct mmc_command *cmd;
+ 	struct mmc_data *data;
+ 	u32 irq_en, status, raw_status;
++	unsigned long flag;
+ 	irqreturn_t ret = IRQ_HANDLED;
+ 
+ 	if (WARN_ON(!host))
+@@ -739,7 +740,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 
+ 	data = cmd->data;
+ 
+-	spin_lock(&host->lock);
++	spin_lock_irqsave(&host->lock, flag);
+ 	irq_en = readl(host->regs + SD_EMMC_IRQ_EN);
+ 	raw_status = readl(host->regs + SD_EMMC_STATUS);
+ 	status = raw_status & irq_en;
+@@ -806,7 +807,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (ret == IRQ_HANDLED)
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+ 
+-	spin_unlock(&host->lock);
++	spin_unlock_irqrestore(&host->lock, flag);
+ 	return ret;
+ }
+ 
 -- 
 2.9.4
