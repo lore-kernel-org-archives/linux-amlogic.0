@@ -1,36 +1,44 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 19:43:41 +0200
-Subject: [PATCH 02/14] mmc: meson-gx: remove CLK_DIVIDER_ALLOW_ZERO clock flag
+Date: Fri,  4 Aug 2017 19:43:42 +0200
+Subject: [PATCH 03/14] mmc: meson-gx: clean up some constants
 In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
 References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <20170804174353.16486-3-jbrunet@baylibre.com>
+Message-ID: <20170804174353.16486-4-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove CLK_DIVIDER_ALLOW_ZERO. This flag means that a 1 based divider
-with a 0 value will behave as a bypass clock
+Remove useless clock rate defines. These should not be defined but
+equested from the clock framework.
 
-The mmc divider does not behave like this, a 0 value disables the clock
-Remove this flag so CCF never allows a 0 value on this clock
+Also correct typo on the DELAY register
 
-Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mmc/host/meson-gx-mmc.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 4217287923d4..d480a8052a06 100644
+index d480a8052a06..8a74a048db88 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -389,7 +389,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 	host->cfg_div.width = __builtin_popcountl(CLK_DIV_MASK);
- 	host->cfg_div.hw.init = &init;
- 	host->cfg_div.flags = CLK_DIVIDER_ONE_BASED |
--		CLK_DIVIDER_ROUND_CLOSEST | CLK_DIVIDER_ALLOW_ZERO;
-+		CLK_DIVIDER_ROUND_CLOSEST;
+@@ -45,9 +45,7 @@
+ #define   CLK_DIV_MAX 63
+ #define   CLK_SRC_MASK GENMASK(7, 6)
+ #define   CLK_SRC_XTAL 0   /* external crystal */
+-#define   CLK_SRC_XTAL_RATE 24000000
+ #define   CLK_SRC_PLL 1    /* FCLK_DIV2 */
+-#define   CLK_SRC_PLL_RATE 1000000000
+ #define   CLK_CORE_PHASE_MASK GENMASK(9, 8)
+ #define   CLK_TX_PHASE_MASK GENMASK(11, 10)
+ #define   CLK_RX_PHASE_MASK GENMASK(13, 12)
+@@ -57,7 +55,7 @@
+ #define   CLK_PHASE_270 3
+ #define   CLK_ALWAYS_ON BIT(24)
  
- 	host->cfg_div_clk = devm_clk_register(host->dev, &host->cfg_div.hw);
- 	if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
+-#define SD_EMMC_DElAY 0x4
++#define SD_EMMC_DELAY 0x4
+ #define SD_EMMC_ADJUST 0x8
+ #define SD_EMMC_CALOUT 0x10
+ #define SD_EMMC_START 0x40
 -- 
 2.9.4
