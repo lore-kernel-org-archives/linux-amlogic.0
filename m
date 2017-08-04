@@ -1,80 +1,70 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 19:43:45 +0200
-Subject: [PATCH 06/14] mmc: meson-gx: rework set_ios function
+Date: Fri,  4 Aug 2017 19:43:44 +0200
+Subject: [PATCH 05/14] mmc: meson-gx: cfg init overwrite values
 In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
 References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <20170804174353.16486-7-jbrunet@baylibre.com>
+Message-ID: <20170804174353.16486-6-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove conditional write of cfg register. Warn if set_clk fails for some
-reason. Consistently use host->dev instead of mixing with mmc_dev(mmc)
+cfg init function overwrite values set in the clk init function
+Remove the cfg pokes from the clk init. Actually, trying to use
+the CLK_AUTO, like initially tried in clk_init, would break
+the card initialization
+
+BEWARE not to poke the cfg register while the divider value in clk
+register is 0. It crashes the SoC.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 22 +++++++++-------------
- 1 file changed, 9 insertions(+), 13 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 61668891b4fc..18fff28025d8 100644
+index a399fbd415f4..61668891b4fc 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -445,8 +445,8 @@ static void meson_mmc_set_tuning_params(struct mmc_host *mmc)
- static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- {
- 	struct meson_host *host = mmc_priv(mmc);
--	u32 bus_width;
--	u32 val, orig;
-+	u32 bus_width, val;
-+	int err;
+@@ -337,7 +337,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	int i, ret = 0;
+ 	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
+ 	const char *clk_div_parents[1];
+-	u32 clk_reg, cfg;
++	u32 clk_reg;
  
- 	/*
- 	 * GPIO regulator, only controls switching between 1v8 and
-@@ -474,7 +474,7 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 			int ret = regulator_enable(mmc->supply.vqmmc);
+ 	/* get the mux parents */
+ 	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
+@@ -403,12 +403,6 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	clk_reg &= ~CLK_ALWAYS_ON;
+ 	writel(clk_reg, host->regs + SD_EMMC_CLOCK);
  
- 			if (ret < 0)
--				dev_err(mmc_dev(mmc),
-+				dev_err(host->dev,
- 					"failed to enable vqmmc regulator\n");
- 			else
- 				host->vqmmc_enabled = true;
-@@ -483,9 +483,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 		break;
- 	}
- 
+-	/* Ensure clock starts in "auto" mode, not "always on" */
+-	cfg = readl(host->regs + SD_EMMC_CFG);
+-	cfg &= ~CFG_CLK_ALWAYS_ON;
+-	cfg |= CFG_AUTO_CLK;
+-	writel(cfg, host->regs + SD_EMMC_CFG);
 -
--	meson_mmc_clk_set(host, ios->clock);
--
- 	/* Bus width */
- 	switch (ios->bus_width) {
- 	case MMC_BUS_WIDTH_1:
-@@ -504,8 +501,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	}
+ 	ret = clk_prepare_enable(host->cfg_div_clk);
+ 	if (ret)
+ 		return ret;
+@@ -958,6 +952,9 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_core_clk;
  
- 	val = readl(host->regs + SD_EMMC_CFG);
--	orig = val;
--
- 	val &= ~CFG_BUS_WIDTH_MASK;
- 	val |= FIELD_PREP(CFG_BUS_WIDTH_MASK, bus_width);
- 
-@@ -519,11 +514,12 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	if (ios->timing == MMC_TIMING_MMC_HS400)
- 		val |= CFG_CHK_DS;
- 
--	if (val != orig) {
--		writel(val, host->regs + SD_EMMC_CFG);
--		dev_dbg(host->dev, "%s: SD_EMMC_CFG: 0x%08x -> 0x%08x\n",
--			__func__, orig, val);
--	}
-+	err = meson_mmc_clk_set(host, ios->clock);
-+	if (err)
-+		dev_err(host->dev, "Failed to set clock: %d\n,", err);
++	/* set config to sane default */
++	meson_mmc_cfg_init(host);
 +
-+	writel(val, host->regs + SD_EMMC_CFG);
-+	dev_dbg(host->dev, "SD_EMMC_CFG:  0x%08x\n", val);
- }
+ 	/* Stop execution */
+ 	writel(0, host->regs + SD_EMMC_START);
  
- static void meson_mmc_request_done(struct mmc_host *mmc,
+@@ -966,9 +963,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_STATUS);
+ 	writel(IRQ_EN_MASK, host->regs + SD_EMMC_IRQ_EN);
+ 
+-	/* set config to sane default */
+-	meson_mmc_cfg_init(host);
+-
+ 	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+ 					meson_mmc_irq_thread, IRQF_SHARED,
+ 					NULL, host);
 -- 
 2.9.4
