@@ -1,78 +1,41 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 4 Aug 2017 18:18:22 +0200
-Subject: [GIT PULL] Amlogic clock driver updates for 4.14
-Message-ID: <894174b4-63d5-1e7d-c518-5bba150178ab@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri,  4 Aug 2017 19:43:39 +0200
+Subject: [PATCH 00/14] mmc: meson-gx: driver fixups and upgrade
+Message-ID: <20170804174353.16486-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Mike, Stephen,
+The patchset features several bugfixes, rework and upgrade for the
+meson-gx MMC driver.
 
-Below is a request to pull the Amlogic clock driver updates for 4.14.
+The main goal is to improve readability and enable new high speed
+modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
 
-Thanks,
-Neil
+While full speed SDR104 is stable with most cards, a few seems to
+require an even more precise tuning. For this, we'll probably have
+to implement per-line delay calibration.
 
-The following changes since commit 5771a8c08880cdca3bfb4a3fc6d309d6bba20877:
+This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
+gxl-s905x-libretech
 
-  Linux v4.13-rc1 (2017-07-15 15:22:10 -0700)
+Jerome Brunet (14):
+  mmc: meson-gx: fix mux mask definition
+  mmc: meson-gx: remove CLK_DIVIDER_ALLOW_ZERO clock flag
+  mmc: meson-gx: clean up some constants
+  mmc: meson-gx: use _irqsave variant of spinlock
+  mmc: meson-gx: cfg init overwrite values
+  mmc: meson-gx: rework set_ios function
+  mmc: meson-gx: rework clk_set function
+  mmc: meson-gx: rework clock init function
+  mmc: meson-gx: simplify interrupt handler
+  mmc: meson-gx: implement card_busy callback
+  mmc: meson-gx: rework tuning function
+  mmc: meson-gx: fix dual data rate mode frequencies
+  mmc: meson-gx: work around clk-stop issue
+  mmc: meson-gx: implement voltage switch callback
 
-are available in the git repository at:
+ drivers/mmc/host/meson-gx-mmc.c | 611 ++++++++++++++++++++++++++--------------
+ 1 file changed, 396 insertions(+), 215 deletions(-)
 
-  git://github.com/baylibre/clk-meson.git tags/meson-clk-for-4.14
-
-for you to fetch changes up to 62ec0b9754aced0b4c02694886cbe9bfd3d00f2f:
-
-  clk: meson: gxbb-aoclk: Add CEC 32k clock (2017-08-04 18:02:02 +0200)
-
-----------------------------------------------------------------
-Amlogic clock driver updates for 4.14
-
-* meson8b: add the reset controller to the clkc
-* meson: expose all clk ids
-* gxbb-aoclk: Add CEC 32k clock
-* gxbb: add mmc input 0 clocks
-* meson: fix protection against undefined clks
-* gxbb: fix audio divider flags
-
-----------------------------------------------------------------
-Jerome Brunet (8):
-      clk: meson: meson8b: fix protection against undefined clks
-      clk: meson: gxbb: fix protection against undefined clks
-      clk: meson8b: expose every clock in the bindings
-      clk: meson-gxbb: expose almost every clock in the bindings
-      clk: meson: gxbb: Add sd_emmc clk0 clkids
-      clk: meson: gxbb: fix meson cts_amclk divider flags
-      clk: meson: gxbb: fix clk_mclk_i958 divider flags
-      clk: meson: gxbb: Add sd_emmc clk0 clocks
-
-Martin Blumenstingl (2):
-      dt-bindings: clock: meson8b: describe the embedded reset controller
-      clk: meson: meson8b: register the built-in reset controller
-
-Neil Armstrong (4):
-      dt-bindings: clock: gxbb-aoclk: Add CEC 32k clock
-      dt-bindings: clock: amlogic, gxbb-aoclkc: Update bindings
-      clk: meson: gxbb-aoclk: Switch to regmap for register access
-      clk: meson: gxbb-aoclk: Add CEC 32k clock
-
- .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  22 ++-
- .../bindings/clock/amlogic,meson8b-clkc.txt        |   9 +-
- drivers/clk/meson/Kconfig                          |   1 +
- drivers/clk/meson/Makefile                         |   2 +-
- drivers/clk/meson/gxbb-aoclk-32k.c                 | 194 +++++++++++++++++++++
- drivers/clk/meson/gxbb-aoclk-regmap.c              |  46 +++++
- drivers/clk/meson/gxbb-aoclk.c                     |  65 ++++---
- drivers/clk/meson/gxbb-aoclk.h                     |  42 +++++
- drivers/clk/meson/gxbb.c                           | 189 +++++++++++++++++++-
- drivers/clk/meson/gxbb.h                           | 125 ++-----------
- drivers/clk/meson/meson8b.c                        | 160 +++++++++++++++--
- drivers/clk/meson/meson8b.h                        | 112 ++----------
- include/dt-bindings/clock/gxbb-aoclkc.h            |   1 +
- include/dt-bindings/clock/gxbb-clkc.h              |  63 +++++++
- include/dt-bindings/clock/meson8b-clkc.h           |  70 ++++++++
- .../dt-bindings/reset/amlogic,meson8b-clkc-reset.h |  27 +++
- 16 files changed, 870 insertions(+), 258 deletions(-)
- create mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
- create mode 100644 drivers/clk/meson/gxbb-aoclk-regmap.c
- create mode 100644 drivers/clk/meson/gxbb-aoclk.h
- create mode 100644 include/dt-bindings/reset/amlogic,meson8b-clkc-reset.h
+-- 
+2.9.4
