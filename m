@@ -1,70 +1,111 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 19:43:53 +0200
-Subject: [PATCH 14/14] mmc: meson-gx: implement voltage switch callback
+Date: Fri,  4 Aug 2017 19:43:51 +0200
+Subject: [PATCH 12/14] mmc: meson-gx: fix dual data rate mode frequencies
 In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
 References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <20170804174353.16486-15-jbrunet@baylibre.com>
+Message-ID: <20170804174353.16486-13-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Implement voltage switch callback (shamelessly copied from sunxi mmc
-driver). This allow, with the appropriate tuning function, to use
-SD ultra high speed modes.
+In DDR modes, meson mmc controller requires an input rate twice as fast
+as the output rate
 
+Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/mmc/host/meson-gx-mmc.c | 41 +++++++++++++++++++++++++++++------------
+ 1 file changed, 29 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index e991c9e452ab..de2d7b8a9d97 100644
+index 560de8faea50..f973278a3f8d 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -38,6 +38,8 @@
- #include <linux/interrupt.h>
- #include <linux/bitfield.h>
- 
-+#include <linux/delay.h>
-+
- #define DRIVER_NAME "meson-gx-mmc"
- 
- #define SD_EMMC_CLOCK 0x0
-@@ -1024,6 +1026,28 @@ static int meson_mmc_card_busy(struct mmc_host *mmc)
- 	return !(FIELD_GET(STATUS_DATI, regval) & 0xf);
+@@ -298,14 +298,29 @@ static void meson_mmc_clk_phase_dflt(struct meson_host *host)
+ 	writel(val, host->regs + SD_EMMC_CLOCK);
  }
  
-+static int meson_mmc_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
+-static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
++static bool meson_mmc_timing_is_ddr(struct mmc_ios *ios)
 +{
-+	/* vqmmc regulator is available */
-+	if (!IS_ERR(mmc->supply.vqmmc)) {
-+		/*
-+		 * The usual amlogic setup uses a GPIO to switch from one
-+		 * regulator to the other. While the voltage ramp up is
-+		 * pretty fast, care must be taken when switching from 3.3v
-+		 * to 1.8v. Please make sure the regulator framework is aware
-+		 * of your own regulator constraints
-+		 */
-+		return mmc_regulator_set_vqmmc(mmc, ios);
++	if (ios->timing == MMC_TIMING_MMC_DDR52 ||
++	    ios->timing == MMC_TIMING_UHS_DDR50 ||
++	    ios->timing == MMC_TIMING_MMC_HS400)
++		return true;
 +
-+	}
-+
-+	/* no vqmmc regulator, assume fixed regulator at 3/3.3V */
-+	if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
-+		return 0;
-+
-+	return -EINVAL;
++	return false;
 +}
 +
- static const struct mmc_host_ops meson_mmc_ops = {
- 	.request	= meson_mmc_request,
- 	.set_ios	= meson_mmc_set_ios,
-@@ -1032,6 +1056,7 @@ static const struct mmc_host_ops meson_mmc_ops = {
- 	.post_req	= meson_mmc_post_req,
- 	.execute_tuning = meson_mmc_execute_tuning,
- 	.card_busy	= meson_mmc_card_busy,
-+	.start_signal_voltage_switch = meson_mmc_voltage_switch,
- };
++static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
+ {
+ 	struct mmc_host *mmc = host->mmc;
++	unsigned long rate = ios->clock;
+ 	int ret;
+ 	u32 cfg;
  
- static int meson_mmc_probe(struct platform_device *pdev)
++	/* DDR modes require higher module clock */
++	if (meson_mmc_timing_is_ddr(ios))
++		rate <<= 1;
++
+ 	/* Same request - bail-out */
+-	if (host->req_rate == clk_rate)
++	if (host->req_rate == rate)
+ 		return 0;
+ 
+ 	/* stop clock */
+@@ -314,25 +329,29 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
+ 	writel(cfg, host->regs + SD_EMMC_CFG);
+ 	host->req_rate = 0;
+ 
+-	if (!clk_rate) {
++	if (!rate) {
+ 		mmc->actual_clock = 0;
+ 		/* return with clock being stopped */
+ 		return 0;
+ 	}
+ 
+-	ret = clk_set_rate(host->signal_clk, clk_rate);
++	ret = clk_set_rate(host->signal_clk, rate);
+ 	if (ret) {
+ 		dev_err(host->dev, "Unable to set cfg_div_clk to %lu. ret=%d\n",
+-			clk_rate, ret);
++			rate, ret);
+ 		return ret;
+ 	}
+ 
+-	host->req_rate = clk_rate;
++	host->req_rate = rate;
+ 	mmc->actual_clock = clk_get_rate(host->signal_clk);
+ 
++	/* We should report the real output frequency of the controller */
++	if (meson_mmc_timing_is_ddr(ios))
++		mmc->actual_clock >>= 1;
++
+ 	dev_dbg(host->dev, "clk rate: %u Hz\n", mmc->actual_clock);
+-	if (clk_rate != mmc->actual_clock)
+-		dev_dbg(host->dev, "requested rate was %lu\n", clk_rate);
++	if (ios->clock != mmc->actual_clock)
++		dev_dbg(host->dev, "requested rate was %u\n", ios->clock);
+ 
+ 	/* (re)start clock */
+ 	cfg = readl(host->regs + SD_EMMC_CFG);
+@@ -499,16 +518,14 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 	val |= FIELD_PREP(CFG_BUS_WIDTH_MASK, bus_width);
+ 
+ 	val &= ~CFG_DDR;
+-	if (ios->timing == MMC_TIMING_UHS_DDR50 ||
+-	    ios->timing == MMC_TIMING_MMC_DDR52 ||
+-	    ios->timing == MMC_TIMING_MMC_HS400)
++	if (meson_mmc_timing_is_ddr(ios))
+ 		val |= CFG_DDR;
+ 
+ 	val &= ~CFG_CHK_DS;
+ 	if (ios->timing == MMC_TIMING_MMC_HS400)
+ 		val |= CFG_CHK_DS;
+ 
+-	err = meson_mmc_clk_set(host, ios->clock);
++	err = meson_mmc_clk_set(host, ios);
+ 	if (err)
+ 		dev_err(host->dev, "Failed to set clock: %d\n,", err);
+ 
 -- 
 2.9.4
