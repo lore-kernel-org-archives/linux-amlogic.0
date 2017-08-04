@@ -1,83 +1,58 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 19:43:46 +0200
-Subject: [PATCH 07/14] mmc: meson-gx: rework clk_set function
+Date: Fri,  4 Aug 2017 19:43:49 +0200
+Subject: [PATCH 10/14] mmc: meson-gx: implement card_busy callback
 In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
 References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <20170804174353.16486-8-jbrunet@baylibre.com>
+Message-ID: <20170804174353.16486-11-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Clean-up clk_set function to prepare the next changes (DDR and clk-stop)
+The card_busy callback is important to then add the voltage switch
+callback as it allow to verify that the card is done dealing with
+the voltage switch
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 30 +++++++++---------------------
- 1 file changed, 9 insertions(+), 21 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 18fff28025d8..8f9ba5190c18 100644
+index d876b80db27d..33ab341a8b33 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -139,7 +139,7 @@ struct meson_host {
- 	struct clk *core_clk;
- 	struct clk_mux mux;
- 	struct clk *mux_clk;
--	unsigned long current_clock;
-+	unsigned long req_rate;
+@@ -76,6 +76,7 @@
  
- 	struct clk_divider cfg_div;
- 	struct clk *cfg_div_clk;
-@@ -275,29 +275,18 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
- 	int ret;
- 	u32 cfg;
+ #define SD_EMMC_STATUS 0x48
+ #define   STATUS_BUSY BIT(31)
++#define   STATUS_DATI GENMASK(23, 16)
  
--	if (clk_rate) {
--		if (WARN_ON(clk_rate > mmc->f_max))
--			clk_rate = mmc->f_max;
--		else if (WARN_ON(clk_rate < mmc->f_min))
--			clk_rate = mmc->f_min;
--	}
--
--	if (clk_rate == host->current_clock)
-+	/* Same request - bail-out */
-+	if (host->req_rate == clk_rate)
- 		return 0;
+ #define SD_EMMC_IRQ_EN 0x4c
+ #define   IRQ_RXD_ERR_MASK GENMASK(7, 0)
+@@ -845,6 +846,17 @@ static void meson_mmc_cfg_init(struct meson_host *host)
+ 	writel(cfg, host->regs + SD_EMMC_CFG);
+ }
  
- 	/* stop clock */
- 	cfg = readl(host->regs + SD_EMMC_CFG);
--	if (!(cfg & CFG_STOP_CLOCK)) {
--		cfg |= CFG_STOP_CLOCK;
--		writel(cfg, host->regs + SD_EMMC_CFG);
--	}
--
--	dev_dbg(host->dev, "change clock rate %u -> %lu\n",
--		mmc->actual_clock, clk_rate);
-+	cfg |= CFG_STOP_CLOCK;
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+	host->req_rate = 0;
++static int meson_mmc_card_busy(struct mmc_host *mmc)
++{
++	struct meson_host *host = mmc_priv(mmc);
++	u32 regval;
++
++	regval = readl(host->regs + SD_EMMC_STATUS);
++
++	/* We are only interrested in lines 0 to 3, so mask the other ones */
++	return !(FIELD_GET(STATUS_DATI, regval) & 0xf);
++}
++
+ static const struct mmc_host_ops meson_mmc_ops = {
+ 	.request	= meson_mmc_request,
+ 	.set_ios	= meson_mmc_set_ios,
+@@ -852,6 +864,7 @@ static const struct mmc_host_ops meson_mmc_ops = {
+ 	.pre_req	= meson_mmc_pre_req,
+ 	.post_req	= meson_mmc_post_req,
+ 	.execute_tuning = meson_mmc_execute_tuning,
++	.card_busy	= meson_mmc_card_busy,
+ };
  
- 	if (!clk_rate) {
- 		mmc->actual_clock = 0;
--		host->current_clock = 0;
- 		/* return with clock being stopped */
- 		return 0;
- 	}
-@@ -309,13 +298,12 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
- 		return ret;
- 	}
- 
-+	host->req_rate = clk_rate;
- 	mmc->actual_clock = clk_get_rate(host->cfg_div_clk);
--	host->current_clock = clk_rate;
- 
-+	dev_dbg(host->dev, "clk rate: %u Hz\n", mmc->actual_clock);
- 	if (clk_rate != mmc->actual_clock)
--		dev_dbg(host->dev,
--			"divider requested rate %lu != actual rate %u\n",
--			clk_rate, mmc->actual_clock);
-+		dev_dbg(host->dev, "requested rate was %lu\n", clk_rate);
- 
- 	/* (re)start clock */
- 	cfg = readl(host->regs + SD_EMMC_CFG);
+ static int meson_mmc_probe(struct platform_device *pdev)
 -- 
 2.9.4
