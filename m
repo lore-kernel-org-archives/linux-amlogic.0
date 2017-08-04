@@ -1,44 +1,83 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  4 Aug 2017 19:43:42 +0200
-Subject: [PATCH 03/14] mmc: meson-gx: clean up some constants
+Date: Fri,  4 Aug 2017 19:43:46 +0200
+Subject: [PATCH 07/14] mmc: meson-gx: rework clk_set function
 In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
 References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <20170804174353.16486-4-jbrunet@baylibre.com>
+Message-ID: <20170804174353.16486-8-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove useless clock rate defines. These should not be defined but
-equested from the clock framework.
-
-Also correct typo on the DELAY register
+Clean-up clk_set function to prepare the next changes (DDR and clk-stop)
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 30 +++++++++---------------------
+ 1 file changed, 9 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index d480a8052a06..8a74a048db88 100644
+index 18fff28025d8..8f9ba5190c18 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -45,9 +45,7 @@
- #define   CLK_DIV_MAX 63
- #define   CLK_SRC_MASK GENMASK(7, 6)
- #define   CLK_SRC_XTAL 0   /* external crystal */
--#define   CLK_SRC_XTAL_RATE 24000000
- #define   CLK_SRC_PLL 1    /* FCLK_DIV2 */
--#define   CLK_SRC_PLL_RATE 1000000000
- #define   CLK_CORE_PHASE_MASK GENMASK(9, 8)
- #define   CLK_TX_PHASE_MASK GENMASK(11, 10)
- #define   CLK_RX_PHASE_MASK GENMASK(13, 12)
-@@ -57,7 +55,7 @@
- #define   CLK_PHASE_270 3
- #define   CLK_ALWAYS_ON BIT(24)
+@@ -139,7 +139,7 @@ struct meson_host {
+ 	struct clk *core_clk;
+ 	struct clk_mux mux;
+ 	struct clk *mux_clk;
+-	unsigned long current_clock;
++	unsigned long req_rate;
  
--#define SD_EMMC_DElAY 0x4
-+#define SD_EMMC_DELAY 0x4
- #define SD_EMMC_ADJUST 0x8
- #define SD_EMMC_CALOUT 0x10
- #define SD_EMMC_START 0x40
+ 	struct clk_divider cfg_div;
+ 	struct clk *cfg_div_clk;
+@@ -275,29 +275,18 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
+ 	int ret;
+ 	u32 cfg;
+ 
+-	if (clk_rate) {
+-		if (WARN_ON(clk_rate > mmc->f_max))
+-			clk_rate = mmc->f_max;
+-		else if (WARN_ON(clk_rate < mmc->f_min))
+-			clk_rate = mmc->f_min;
+-	}
+-
+-	if (clk_rate == host->current_clock)
++	/* Same request - bail-out */
++	if (host->req_rate == clk_rate)
+ 		return 0;
+ 
+ 	/* stop clock */
+ 	cfg = readl(host->regs + SD_EMMC_CFG);
+-	if (!(cfg & CFG_STOP_CLOCK)) {
+-		cfg |= CFG_STOP_CLOCK;
+-		writel(cfg, host->regs + SD_EMMC_CFG);
+-	}
+-
+-	dev_dbg(host->dev, "change clock rate %u -> %lu\n",
+-		mmc->actual_clock, clk_rate);
++	cfg |= CFG_STOP_CLOCK;
++	writel(cfg, host->regs + SD_EMMC_CFG);
++	host->req_rate = 0;
+ 
+ 	if (!clk_rate) {
+ 		mmc->actual_clock = 0;
+-		host->current_clock = 0;
+ 		/* return with clock being stopped */
+ 		return 0;
+ 	}
+@@ -309,13 +298,12 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
+ 		return ret;
+ 	}
+ 
++	host->req_rate = clk_rate;
+ 	mmc->actual_clock = clk_get_rate(host->cfg_div_clk);
+-	host->current_clock = clk_rate;
+ 
++	dev_dbg(host->dev, "clk rate: %u Hz\n", mmc->actual_clock);
+ 	if (clk_rate != mmc->actual_clock)
+-		dev_dbg(host->dev,
+-			"divider requested rate %lu != actual rate %u\n",
+-			clk_rate, mmc->actual_clock);
++		dev_dbg(host->dev, "requested rate was %lu\n", clk_rate);
+ 
+ 	/* (re)start clock */
+ 	cfg = readl(host->regs + SD_EMMC_CFG);
 -- 
 2.9.4
