@@ -1,56 +1,56 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 07 Aug 2017 18:48:22 +0200
-Subject: [PATCH 00/14] mmc: meson-gx: driver fixups and upgrade
-In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 07 Aug 2017 14:06:20 -0700
+Subject: [PATCH 03/14] mmc: meson-gx: clean up some constants
+In-Reply-To: <20170804174353.16486-4-jbrunet@baylibre.com> (Jerome Brunet's
+ message of "Fri, 4 Aug 2017 19:43:42 +0200")
 References: <20170804174353.16486-1-jbrunet@baylibre.com>
-Message-ID: <1502124502.2759.32.camel@baylibre.com>
+ <20170804174353.16486-4-jbrunet@baylibre.com>
+Message-ID: <7ha83bozoz.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2017-08-04 at 19:43 +0200, Jerome Brunet wrote:
-> The patchset features several bugfixes, rework and upgrade for the
-> meson-gx MMC driver.
-> 
-> The main goal is to improve readability and enable new high speed
-> modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
-> 
-> While full speed SDR104 is stable with most cards, a few seems to
-> require an even more precise tuning. For this, we'll probably have
-> to implement per-line delay calibration.
-> 
-> This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
-> gxl-s905x-libretech
-> 
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-Ulf, Kevin,
+> Remove useless clock rate defines. These should not be defined but
 
-Please ignore this series. I'll resend it soon
+To be more precise, they're also unused, so maybe s/useless/unused/ ?
 
-I've discovered new things around the tuning capabilities of the SoC.
-I'll probably rework the tuning function again.
+> equested from the clock framework.
 
-Sorry for the noise
+s/equested/requested/
 
-Regards
-Jerome
+> Also correct typo on the DELAY register
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-> Jerome Brunet (14):
-> ? mmc: meson-gx: fix mux mask definition
-> ? mmc: meson-gx: remove CLK_DIVIDER_ALLOW_ZERO clock flag
-> ? mmc: meson-gx: clean up some constants
-> ? mmc: meson-gx: use _irqsave variant of spinlock
-> ? mmc: meson-gx: cfg init overwrite values
-> ? mmc: meson-gx: rework set_ios function
-> ? mmc: meson-gx: rework clk_set function
-> ? mmc: meson-gx: rework clock init function
-> ? mmc: meson-gx: simplify interrupt handler
-> ? mmc: meson-gx: implement card_busy callback
-> ? mmc: meson-gx: rework tuning function
-> ? mmc: meson-gx: fix dual data rate mode frequencies
-> ? mmc: meson-gx: work around clk-stop issue
-> ? mmc: meson-gx: implement voltage switch callback
-> 
-> ?drivers/mmc/host/meson-gx-mmc.c | 611 ++++++++++++++++++++++++++-------------
-> -
-> ?1 file changed, 396 insertions(+), 215 deletions(-)
-> 
+Otherwise,
+
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index d480a8052a06..8a74a048db88 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -45,9 +45,7 @@
+>  #define   CLK_DIV_MAX 63
+>  #define   CLK_SRC_MASK GENMASK(7, 6)
+>  #define   CLK_SRC_XTAL 0   /* external crystal */
+> -#define   CLK_SRC_XTAL_RATE 24000000
+>  #define   CLK_SRC_PLL 1    /* FCLK_DIV2 */
+> -#define   CLK_SRC_PLL_RATE 1000000000
+>  #define   CLK_CORE_PHASE_MASK GENMASK(9, 8)
+>  #define   CLK_TX_PHASE_MASK GENMASK(11, 10)
+>  #define   CLK_RX_PHASE_MASK GENMASK(13, 12)
+> @@ -57,7 +55,7 @@
+>  #define   CLK_PHASE_270 3
+>  #define   CLK_ALWAYS_ON BIT(24)
+>  
+> -#define SD_EMMC_DElAY 0x4
+> +#define SD_EMMC_DELAY 0x4
+>  #define SD_EMMC_ADJUST 0x8
+>  #define SD_EMMC_CALOUT 0x10
+>  #define SD_EMMC_START 0x40
