@@ -1,50 +1,38 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 07 Aug 2017 14:44:00 -0700
-Subject: [PATCH 00/14] mmc: meson-gx: driver fixups and upgrade
-In-Reply-To: <1502124502.2759.32.camel@baylibre.com> (Jerome Brunet's message
- of "Mon, 07 Aug 2017 18:48:22 +0200")
-References: <20170804174353.16486-1-jbrunet@baylibre.com>
- <1502124502.2759.32.camel@baylibre.com>
-Message-ID: <7hshh3njdr.fsf@baylibre.com>
+Date: Mon, 07 Aug 2017 14:45:41 -0700
+Subject: [PATCH 4/6] ARM64: dts: meson-gxbb: nanopi-k2: enable sdcard UHS
+ modes
+In-Reply-To: <20170804180816.18737-5-jbrunet@baylibre.com> (Jerome Brunet's
+ message of "Fri, 4 Aug 2017 20:08:14 +0200")
+References: <20170804180816.18737-1-jbrunet@baylibre.com>
+ <20170804180816.18737-5-jbrunet@baylibre.com>
+Message-ID: <7ho9rrnjay.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> On Fri, 2017-08-04 at 19:43 +0200, Jerome Brunet wrote:
->> The patchset features several bugfixes, rework and upgrade for the
->> meson-gx MMC driver.
->> 
->> The main goal is to improve readability and enable new high speed
->> modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
->> 
->> While full speed SDR104 is stable with most cards, a few seems to
->> require an even more precise tuning. For this, we'll probably have
->> to implement per-line delay calibration.
->> 
->> This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
->> gxl-s905x-libretech
->> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+
+nit: missing changelog.
+
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> Ulf, Kevin,
->
-> Please ignore this series. I'll resend it soon
->
-> I've discovered new things around the tuning capabilities of the SoC.
-> I'll probably rework the tuning function again.
->
-> Sorry for the noise
-
-No worries, I had a couple very minor comments on some individual
-patches. Other than that, LGTM.
-
-Feel free to add:
-
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-
-to anything that doesn't need major rework.
-
-Also, You might want to separate out the fixups/cleanups from the
-voltage/clock changes stuff.
-
-Kevin
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> index 6b7495dc6014..5d59fd75cae7 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> @@ -225,7 +225,10 @@
+>  
+>  	bus-width = <4>;
+>  	cap-sd-highspeed;
+> -	max-frequency = <100000000>;
+> +	sd-uhs-sdr12;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr50;
+> +	max-frequency = <200000000>;
+>  	disable-wp;
+>  
+>  	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
