@@ -1,42 +1,56 @@
-From: lkp@intel.com (kbuild test robot)
-Date: Sun, 6 Aug 2017 13:25:21 +0800
-Subject: [PATCH] ARM64: dts: meson-gx: Use correct mmc clock source 0
-In-Reply-To: <20170731120552.31606-1-jbrunet@baylibre.com>
-Message-ID: <201708061316.vyrWnnKm%fengguang.wu@intel.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 07 Aug 2017 18:48:22 +0200
+Subject: [PATCH 00/14] mmc: meson-gx: driver fixups and upgrade
+In-Reply-To: <20170804174353.16486-1-jbrunet@baylibre.com>
+References: <20170804174353.16486-1-jbrunet@baylibre.com>
+Message-ID: <1502124502.2759.32.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+On Fri, 2017-08-04 at 19:43 +0200, Jerome Brunet wrote:
+> The patchset features several bugfixes, rework and upgrade for the
+> meson-gx MMC driver.
+> 
+> The main goal is to improve readability and enable new high speed
+> modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
+> 
+> While full speed SDR104 is stable with most cards, a few seems to
+> require an even more precise tuning. For this, we'll probably have
+> to implement per-line delay calibration.
+> 
+> This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
+> gxl-s905x-libretech
+> 
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on v4.13-rc3 next-20170804]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+Ulf, Kevin,
 
-url:    https://github.com/0day-ci/linux/commits/Jerome-Brunet/ARM64-dts-meson-gx-Use-correct-mmc-clock-source-0/20170801-002221
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-allyesconfig (attached as .config)
-compiler: aarch64-linux-gnu-gcc (Debian 6.1.1-9) 6.1.1 20160705
-reproduce:
-        wget https://raw.githubusercontent.com/01org/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # save the attached .config to linux build tree
-        make.cross ARCH=arm64 
+Please ignore this series. I'll resend it soon
 
-All errors (new ones prefixed by >>):
+I've discovered new things around the tuning capabilities of the SoC.
+I'll probably rework the tuning function again.
 
->> Error: arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi:655.11-12 syntax error
-   FATAL ERROR: Unable to parse input tree
---
->> Error: arch/arm64/boot/dts/amlogic/meson-gxl.dtsi:596.11-12 syntax error
-   FATAL ERROR: Unable to parse input tree
+Sorry for the noise
 
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: .config.gz
-Type: application/gzip
-Size: 56922 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170806/127e1b70/attachment.gz>
+Regards
+Jerome
+
+> Jerome Brunet (14):
+> ? mmc: meson-gx: fix mux mask definition
+> ? mmc: meson-gx: remove CLK_DIVIDER_ALLOW_ZERO clock flag
+> ? mmc: meson-gx: clean up some constants
+> ? mmc: meson-gx: use _irqsave variant of spinlock
+> ? mmc: meson-gx: cfg init overwrite values
+> ? mmc: meson-gx: rework set_ios function
+> ? mmc: meson-gx: rework clk_set function
+> ? mmc: meson-gx: rework clock init function
+> ? mmc: meson-gx: simplify interrupt handler
+> ? mmc: meson-gx: implement card_busy callback
+> ? mmc: meson-gx: rework tuning function
+> ? mmc: meson-gx: fix dual data rate mode frequencies
+> ? mmc: meson-gx: work around clk-stop issue
+> ? mmc: meson-gx: implement voltage switch callback
+> 
+> ?drivers/mmc/host/meson-gx-mmc.c | 611 ++++++++++++++++++++++++++-------------
+> -
+> ?1 file changed, 396 insertions(+), 215 deletions(-)
+> 
