@@ -1,42 +1,28 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 08 Aug 2017 16:39:24 +0200
-Subject: [PATCH] MAINTAINERS: add entry for meson ao cec driver
-In-Reply-To: <323ef568-a88f-5bc1-390c-fd630dfc4535@xs4all.nl>
-References: <323ef568-a88f-5bc1-390c-fd630dfc4535@xs4all.nl>
-Message-ID: <5989CD1C.7080308@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 08 Aug 2017 14:49:27 -0700
+Subject: [PATCH v5.1 1/2] ARM64: dts: meson-gx: use stable UART bindings
+ with correct gate clock
+In-Reply-To: <1498056132-18508-2-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Wed, 21 Jun 2017 16:42:11 +0200")
+References: <1498056132-18508-1-git-send-email-narmstrong@baylibre.com>
+ <1498056132-18508-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7h1solohlk.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Le 08/08/2017 16:18, Hans Verkuil a ?crit :
-> Add entry to the MAINTAINERS file for the meson ao cec driver.
-> 
-> Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
-> ---
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9826a918d37a..ed568e1ac856 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8671,6 +8671,16 @@ F:	drivers/leds/leds-menf21bmc.c
->  F:	drivers/hwmon/menf21bmc_hwmon.c
->  F:	Documentation/hwmon/menf21bmc
-> 
-> +MESON AO CEC DRIVER FOR AMLOGIC SOCS
-> +M:	Neil Armstrong <narmstrong@baylibre.com>
-> +L:	linux-media at lists.freedesktop.org
-> +L:	linux-amlogic at lists.infradead.org
-> +W:	http://linux-meson.com/
-> +S:	Supported
-> +F:	drivers/media/platform/meson/ao-cec.c
-> +F:	Documentation/devicetree/bindings/media/meson-ao-cec.txt
-> +T:	git git://linuxtv.org/media_tree.git
-> +
->  METAG ARCHITECTURE
->  M:	James Hogan <james.hogan@imgtec.com>
->  L:	linux-metag at vger.kernel.org
-> 
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Hi Hans,
+> From: Helmut Klein <hgkr.klein@gmail.com>
+>
+> This patch switches to the stable UART bindings but also add the correct
+> gate clock to the non-AO UART nodes for GXBB and GXL SoCs.
+>
+> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Helmut Klein <hgkr.klein@gmail.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Thanks !
+Applied to v4.14/dt64,
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Thanks,
+
+Kevin
