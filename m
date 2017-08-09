@@ -1,119 +1,33 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 09 Aug 2017 15:45:56 +0200
-Subject: [PATCH v3 05/10] clk: add support for clock protection
-In-Reply-To: <20170809134036.GE20805@n2100.armlinux.org.uk>
-References: <20170612194438.12298-1-jbrunet@baylibre.com>
- <20170612194438.12298-6-jbrunet@baylibre.com>
- <20170726001217.GC2146@codeaurora.org>
- <1501089516.2401.29.camel@baylibre.com>
- <20170804001836.GU2146@codeaurora.org>
- <150223186723.22158.11617219588466426777@resonance>
- <20170809021906.GA2146@codeaurora.org>
- <20170809114548.GD20805@n2100.armlinux.org.uk>
- <1502285688.2759.41.camel@baylibre.com>
- <20170809134036.GE20805@n2100.armlinux.org.uk>
-Message-ID: <1502286356.2759.43.camel@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Wed, 9 Aug 2017 17:12:55 -0500
+Subject: [PATCH] pwm: Convert to using %pOF instead of full_name
+In-Reply-To: <20170725113854.GA22355@ulmo>
+References: <20170718214339.7774-45-robh@kernel.org>
+ <20170725113854.GA22355@ulmo>
+Message-ID: <CAL_Jsq+Oumkr=Npktxz2RnC9EMf8QWgvaw8SKx1uCLbjQg==Vg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2017-08-09 at 14:40 +0100, Russell King - ARM Linux wrote:
-> On Wed, Aug 09, 2017 at 03:34:48PM +0200, Jerome Brunet wrote:
-> > On Wed, 2017-08-09 at 12:45 +0100, Russell King - ARM Linux wrote:
-> > > On Tue, Aug 08, 2017 at 07:19:06PM -0700, Stephen Boyd wrote:
-> > > > I also vaguely remember Paul saying that
-> > > > clk_round_rate() could return something and then clk_set_rate()
-> > > > after that would fail because what was calculated during the rate
-> > > > speculation/rounding phase would be different if some other
-> > > > consumer goes and changes some rate high up in the tree.
-> > > 
-> > > That's probably because people tend to get this stuff wrong.??It is
-> > > _not_ supposed to be:
-> > > 
-> > > 	rounded_rate = clk_round_rate(clk, requested_rate);
-> > > 
-> > > 	clk_set_rate(clk, rounded_rate);
-> > > 
-> > > but:
-> > > 
-> > > 	rounded_rate = clk_round_rate(clk, requested_rate);
-> > > 
-> > > 	clk_set_rate(clk, requested_rate);
-> > > 
-> > > The former is wrong for two reasons:
-> > > 
-> > > 1. it's completely wasteful of CPU resources to do all the calculations
-> > > ???that need to be done within clk_set_rate().
-> > > 
-> > > 2. it's racy - there is no guarantee that you'll end up with
-> > > "rounded_rate"
-> > > 
-> > > The API definition of clk_round_rate() explicitly mentions that it is
-> > > equivalent to clk_set_rate() followed by clk_get_rate() with the
-> > > exception that it doesn't affect the hardware.
-> > > 
-> > > I'm not sure that the clock rate protection API is really the right
-> > > solution - if we're trying to stop others from changing the clock rate,
-> > > that implies we have multiple different threads potentially changing
-> > > the rate at any time.??If a driver does this:
-> > > 
-> > > 	clk_set_rate(clk, foo);
-> > > 	clk_rate_protect(clk);
-> > > 
-> > > what prevents another thread from changing the clock rate between these
-> > > two calls???The only way to do this safely would be something like:
-> > > 
-> > > 	r = clk_round_rate(clk, foo);
-> > > 	while (1) {
-> > > 		err = clk_set_rate(clk, foo);
-> > > 		clk_rate_protect(clk);
-> > > 		if (err < 0)
-> > > 			break;
-> > > 
-> > > 		if (r == clk_get_rate(clk)) /* success */
-> > > 			break;
-> > > 
-> > > 		clk_rate_unprotect(clk);
-> > > 	}
-> > > 
-> > > 	if (err)
-> > > 		failed;
-> > 
-> > Russell,
-> > I think you have missed one subtle thing, when trying any clock altering
-> > operation, if the consumer is protecting the clock, it will temporarily
-> > release?
-> > the protection once, under the prepare_lock (to guarantee safe operation).
-> > This
-> > is explained in the cover letter:
-> > 
-> > """
-> > With this series there is 3 use-case:
-> > ?- the provider is not protected: nothing changes
-> > ?- the provider is protected by only 1 consumer (and only once), then only
-> > ???this consumer will be able to alter the rate of the clock, as it is the
-> > ???only one depending on it.
-> > ?- If the provider is protected more than once, or by the provider itself,
-> > ???the rate is basically locked and protected against reparenting.
-> > """
-> > 
-> > So what you should do if you have to protect the clock is:
-> > 
-> > clk_rate_protect(clk);
-> > err = clk_set_rate(clk, foo);
-> > 
-> > [...]
-> > clk_rate_unprotect(clk);
-> 
-> So here you drop the protection, which means anyone can alter the clock
-> again.
-> 
+On Tue, Jul 25, 2017 at 6:38 AM, Thierry Reding
+<thierry.reding@gmail.com> wrote:
+> On Tue, Jul 18, 2017 at 04:43:25PM -0500, Rob Herring wrote:
+>> Now that we have a custom printf format specifier, convert users of
+>> full_name to use %pOF instead. This is preparation to remove storing
+>> of the full path string for each node.
+>>
+>> Signed-off-by: Rob Herring <robh@kernel.org>
+>> Cc: Thierry Reding <thierry.reding@gmail.com>
+>> Cc: Carlo Caione <carlo@caione.org>
+>> Cc: Kevin Hilman <khilman@baylibre.com>
+>> Cc: linux-pwm at vger.kernel.org
+>> Cc: linux-arm-kernel at lists.infradead.org
+>> Cc: linux-amlogic at lists.infradead.org
+>> ---
+>>  drivers/pwm/pwm-meson.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> Applied, thanks.
 
-That's just an example. The rate is set after clk_set_rate() if no other
-consumer depends on the clock.
+This is not showing up in -next.
 
-I just added clk_rate_unprotect() here to illustrate that the calls should be
-balanced, as documented.
-
-> Either that or "clk_rate_unprotect" is inappropriately named and doesn't
-> do what it says it does.
-> 
+Rob
