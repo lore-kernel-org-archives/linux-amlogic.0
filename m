@@ -1,107 +1,156 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 14 Aug 2017 23:59:00 +0200
-Subject: [PATCH v6 6/6] ARM: dts: meson8b: add support for booting the
- secondary CPU cores
-In-Reply-To: <20170814215900.1032-1-martin.blumenstingl@googlemail.com>
-References: <20170814215900.1032-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170814215900.1032-7-martin.blumenstingl@googlemail.com>
+Date: Tue, 15 Aug 2017 00:45:42 +0200
+Subject: [RFCv3 usb-next 3/3] usb: host: xhci: plat: integrate the
+ platform-roothub
+In-Reply-To: <20170814224542.18257-1-martin.blumenstingl@googlemail.com>
+References: <20170814224542.18257-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170814224542.18257-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Carlo Caione <carlo@caione.org>
+This enables the platform-roothub for the xhci-plat driver. This allows
+specifying a PHY for each port via devicetree. All PHYs will then be
+enabled/disabled by the platform-roothub driver.
 
-Booting the secondary CPU cores involves the following nodes/devices:
-- SCU (Snoop-Control-Unit, for which we already have a DT node)
-- a reset line for each CPU core, provided by the reset-controller
-  which is built into the clock-controller
-- the PMU (power management unit) which controls the power of the CPU
-  cores
-- a range in the SRAM specifically reserved for booting secondary CPU
-  cores
-- the "enable-method" which activates booting the secondary CPU cores
+One example where this is required is the Amlogic GXL and GXM SoCs:
+They are using a dwc3 USB controller with up to three ports enabled on
+the internal roothub. Using only the top-level "phy" properties does not
+work here since one can only specify one "usb2-phy" and one "usb3-phy",
+while actually at least two "usb2-phy" have to be specified.
 
-This adds all required nodes and properties to boot the secondary CPU
-cores.
-
-Signed-off-by: Carlo Caione <carlo@caione.org>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ Documentation/devicetree/bindings/usb/usb-xhci.txt |  7 +++++
+ drivers/usb/host/Kconfig                           |  1 +
+ drivers/usb/host/xhci-plat.c                       | 35 ++++++++++++++++++++--
+ drivers/usb/host/xhci.h                            |  2 ++
+ 4 files changed, 43 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index bc278da7df0d..aaebfcce9073 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -47,6 +47,7 @@
- #include <dt-bindings/clock/meson8b-clkc.h>
- #include <dt-bindings/gpio/meson8b-gpio.h>
- #include <dt-bindings/reset/amlogic,meson8b-reset.h>
-+#include <dt-bindings/reset/amlogic,meson8b-clkc-reset.h>
- #include "meson.dtsi"
+diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+index 2d80b60eeabe..31b4f681e9ca 100644
+--- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
++++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+@@ -29,6 +29,13 @@ Optional properties:
+   - usb3-lpm-capable: determines if platform is USB3 LPM capable
+   - quirk-broken-port-ped: set if the controller has broken port disable mechanism
  
- / {
-@@ -59,6 +60,8 @@
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
- 			reg = <0x200>;
-+			enable-method = "amlogic,meson8b-smp";
-+			resets = <&clkc CLKC_RESET_CPU0_SOFT_RESET>;
- 		};
- 
- 		cpu at 201 {
-@@ -66,6 +69,8 @@
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
- 			reg = <0x201>;
-+			enable-method = "amlogic,meson8b-smp";
-+			resets = <&clkc CLKC_RESET_CPU1_SOFT_RESET>;
- 		};
- 
- 		cpu at 202 {
-@@ -73,6 +78,8 @@
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
- 			reg = <0x202>;
-+			enable-method = "amlogic,meson8b-smp";
-+			resets = <&clkc CLKC_RESET_CPU2_SOFT_RESET>;
- 		};
- 
- 		cpu at 203 {
-@@ -80,6 +87,8 @@
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
- 			reg = <0x203>;
-+			enable-method = "amlogic,meson8b-smp";
-+			resets = <&clkc CLKC_RESET_CPU3_SOFT_RESET>;
- 		};
- 	};
- 
-@@ -90,6 +99,11 @@
- }; /* end of / */
- 
- &aobus {
-+	pmu: pmu at e0 {
-+		compatible = "amlogic,meson8b-pmu", "syscon";
-+		reg = <0xe0 0x18>;
-+	};
++sub-nodes:
++- optionally there can be a node for the root-hub, see usb-roothub.txt in the
++  current directory
++- one or more nodes with reg 1-31 for each port to which a device is connected.
++  See usb-device.txt in the current directory for more information.
 +
- 	pinctrl_aobus: pinctrl at 84 {
- 		compatible = "amlogic,meson8b-aobus-pinctrl";
- 		reg = <0x84 0xc>;
-@@ -157,6 +171,13 @@
- 	};
- };
- 
-+&ahb_sram {
-+	smp-sram at 1ff80 {
-+		compatible = "amlogic,meson8b-smp-sram";
-+		reg = <0x1ff80 0x8>;
-+	};
-+};
 +
- &ethmac {
- 	clocks = <&clkc CLKID_ETH>;
- 	clock-names = "stmmaceth";
+ Example:
+ 	usb at f0931000 {
+ 		compatible = "generic-xhci";
+diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
+index b8b05c786b2a..3bdc49e89c0f 100644
+--- a/drivers/usb/host/Kconfig
++++ b/drivers/usb/host/Kconfig
+@@ -36,6 +36,7 @@ config USB_XHCI_PCI
+ config USB_XHCI_PLATFORM
+ 	tristate "Generic xHCI driver for a platform device"
+ 	select USB_XHCI_RCAR if ARCH_RENESAS
++	select USB_PLATFORM_ROOTHUB
+ 	---help---
+ 	  Adds an xHCI host driver for a generic platform device, which
+ 	  provides a memory space and an irq.
+diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+index c04144b25a67..daf5bbcc310a 100644
+--- a/drivers/usb/host/xhci-plat.c
++++ b/drivers/usb/host/xhci-plat.c
+@@ -21,6 +21,7 @@
+ #include <linux/slab.h>
+ #include <linux/acpi.h>
+ 
++#include "platform-roothub.h"
+ #include "xhci.h"
+ #include "xhci-plat.h"
+ #include "xhci-mvebu.h"
+@@ -285,9 +286,19 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ 			goto put_usb3_hcd;
+ 	}
+ 
++	xhci->platform_roothub = platform_roothub_init(sysdev);
++	if (IS_ERR(xhci->platform_roothub)) {
++		ret = PTR_ERR(xhci->platform_roothub);
++		goto disable_usb_phy;
++	}
++
++	ret = platform_roothub_power_on(xhci->platform_roothub);
++	if (ret)
++		goto exit_plat_roothub;
++
+ 	ret = usb_add_hcd(hcd, irq, IRQF_SHARED);
+ 	if (ret)
+-		goto disable_usb_phy;
++		goto disable_plat_roothub;
+ 
+ 	if (HCC_MAX_PSA(xhci->hcc_params) >= 4)
+ 		xhci->shared_hcd->can_do_streams = 1;
+@@ -311,6 +322,12 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ dealloc_usb2_hcd:
+ 	usb_remove_hcd(hcd);
+ 
++disable_plat_roothub:
++	platform_roothub_power_off(xhci->platform_roothub);
++
++exit_plat_roothub:
++	platform_roothub_exit(xhci->platform_roothub);
++
+ disable_usb_phy:
+ 	usb_phy_shutdown(hcd->usb_phy);
+ 
+@@ -342,6 +359,9 @@ static int xhci_plat_remove(struct platform_device *dev)
+ 	usb_remove_hcd(xhci->shared_hcd);
+ 	usb_phy_shutdown(hcd->usb_phy);
+ 
++	platform_roothub_power_off(xhci->platform_roothub);
++	platform_roothub_exit(xhci->platform_roothub);
++
+ 	usb_remove_hcd(hcd);
+ 	usb_put_hcd(xhci->shared_hcd);
+ 
+@@ -374,7 +394,14 @@ static int __maybe_unused xhci_plat_suspend(struct device *dev)
+ 	if (!device_may_wakeup(dev) && !IS_ERR(xhci->clk))
+ 		clk_disable_unprepare(xhci->clk);
+ 
+-	return ret;
++	if (ret)
++		return ret;
++
++	ret = platform_roothub_power_off(xhci->platform_roothub);
++	if (ret)
++		return ret;
++
++	return 0;
+ }
+ 
+ static int __maybe_unused xhci_plat_resume(struct device *dev)
+@@ -386,6 +413,10 @@ static int __maybe_unused xhci_plat_resume(struct device *dev)
+ 	if (!device_may_wakeup(dev) && !IS_ERR(xhci->clk))
+ 		clk_prepare_enable(xhci->clk);
+ 
++	ret = platform_roothub_power_on(xhci->platform_roothub);
++	if (ret)
++		return ret;
++
+ 	ret = xhci_priv_resume_quirk(hcd);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+index e3e935291ed6..76118e254a54 100644
+--- a/drivers/usb/host/xhci.h
++++ b/drivers/usb/host/xhci.h
+@@ -1725,6 +1725,8 @@ struct xhci_hcd {
+ 	int		msix_count;
+ 	/* optional clock */
+ 	struct clk		*clk;
++	/* optional platform root-hub */
++	struct platform_roothub	*platform_roothub;
+ 	/* data structures */
+ 	struct xhci_device_context_array *dcbaa;
+ 	struct xhci_ring	*cmd_ring;
 -- 
 2.14.1
