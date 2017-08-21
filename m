@@ -1,38 +1,50 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 21 Aug 2017 18:02:47 +0200
-Subject: [PATCH v2 02/16] mmc: meson-gx: remove CLK_DIVIDER_ALLOW_ZERO clock
- flag
+Date: Mon, 21 Aug 2017 18:02:49 +0200
+Subject: [PATCH v2 04/16] mmc: meson-gx: use _irqsave variant of spinlock
 In-Reply-To: <20170821160301.21899-1-jbrunet@baylibre.com>
 References: <20170821160301.21899-1-jbrunet@baylibre.com>
-Message-ID: <20170821160301.21899-3-jbrunet@baylibre.com>
+Message-ID: <20170821160301.21899-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Remove CLK_DIVIDER_ALLOW_ZERO. This flag means that a 1 based divider
-with a 0 value will behave as a bypass clock
-
-The mmc divider does not behave like this, a 0 value disables the clock
-Remove this flag so CCF never allows a 0 value on this clock
+spinlock used in interrupt handler should use the _irqsave variant
 
 Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
 Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mmc/host/meson-gx-mmc.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 4217287923d4..d480a8052a06 100644
+index 8a74a048db88..a399fbd415f4 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -389,7 +389,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
- 	host->cfg_div.width = __builtin_popcountl(CLK_DIV_MASK);
- 	host->cfg_div.hw.init = &init;
- 	host->cfg_div.flags = CLK_DIVIDER_ONE_BASED |
--		CLK_DIVIDER_ROUND_CLOSEST | CLK_DIVIDER_ALLOW_ZERO;
-+		CLK_DIVIDER_ROUND_CLOSEST;
+@@ -727,6 +727,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	struct mmc_command *cmd;
+ 	struct mmc_data *data;
+ 	u32 irq_en, status, raw_status;
++	unsigned long flag;
+ 	irqreturn_t ret = IRQ_HANDLED;
  
- 	host->cfg_div_clk = devm_clk_register(host->dev, &host->cfg_div.hw);
- 	if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
+ 	if (WARN_ON(!host))
+@@ -739,7 +740,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 
+ 	data = cmd->data;
+ 
+-	spin_lock(&host->lock);
++	spin_lock_irqsave(&host->lock, flag);
+ 	irq_en = readl(host->regs + SD_EMMC_IRQ_EN);
+ 	raw_status = readl(host->regs + SD_EMMC_STATUS);
+ 	status = raw_status & irq_en;
+@@ -806,7 +807,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (ret == IRQ_HANDLED)
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+ 
+-	spin_unlock(&host->lock);
++	spin_unlock_irqrestore(&host->lock, flag);
+ 	return ret;
+ }
+ 
 -- 
 2.9.5
