@@ -1,39 +1,32 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 21 Aug 2017 18:06:33 +0200
-Subject: [PATCH v2 5/9] ARM64: dts: meson-gxl: libretech-cc: add card
- regulator settle times
+Date: Mon, 21 Aug 2017 18:06:34 +0200
+Subject: [PATCH v2 6/9] ARM64: dts: meson-gxl: libretech-cc: remove sdr104
+ capability
 In-Reply-To: <20170821160637.22456-1-jbrunet@baylibre.com>
 References: <20170821160637.22456-1-jbrunet@baylibre.com>
-Message-ID: <20170821160637.22456-6-jbrunet@baylibre.com>
+Message-ID: <20170821160637.22456-7-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Changing the card voltage on the cc is not instantaneous, especially
-when switching from 3.3v to 1.8v.
+Unfortunately, the PCB of the libretech-cc cannot handle sdcard
+at 200Mhz reliably, so sdr104 is removed
 
-It take at least 30ms for the regulator to go from 3.3v to 1.8v. Add
-margin to that to make sure we don't upset the sdcard during the voltage
-switch
-
-Fixes: 61ff2af9b278 ("ARM64: dts: fixup libretech cc definition")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 2b56f7d9be2b..0537b92cd226 100644
+index 0537b92cd226..a582152f5e63 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -92,6 +92,9 @@
+@@ -145,7 +145,6 @@
+ 	sd-uhs-sdr12;
+ 	sd-uhs-sdr25;
+ 	sd-uhs-sdr50;
+-	sd-uhs-sdr104;
+ 	max-frequency = <100000000>;
+ 	disable-wp;
  
- 		states = <3300000 0>,
- 		         <1800000 1>;
-+
-+		regulator-settling-time-up-us = <200>;
-+		regulator-settling-time-down-us = <50000>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
 -- 
 2.9.5
