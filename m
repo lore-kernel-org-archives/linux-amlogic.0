@@ -1,33 +1,45 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Fri, 18 Aug 2017 22:25:46 +0200
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.14
-In-Reply-To: <7hmv6yal05.fsf@baylibre.com>
-References: <7hmv6yal05.fsf@baylibre.com>
-Message-ID: <CAK8P3a3gE4yMzrdvXXBBuDOU4GMoMwSVZmtp9FfaaJMELhvrVw@mail.gmail.com>
+From: thierry.reding@gmail.com (Thierry Reding)
+Date: Mon, 21 Aug 2017 08:57:32 +0200
+Subject: [PATCH] pwm: Convert to using %pOF instead of full_name
+In-Reply-To: <CAL_Jsq+Oumkr=Npktxz2RnC9EMf8QWgvaw8SKx1uCLbjQg==Vg@mail.gmail.com>
+References: <20170718214339.7774-45-robh@kernel.org>
+ <20170725113854.GA22355@ulmo>
+ <CAL_Jsq+Oumkr=Npktxz2RnC9EMf8QWgvaw8SKx1uCLbjQg==Vg@mail.gmail.com>
+Message-ID: <20170821065732.GI18996@ulmo>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Aug 17, 2017 at 6:14 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> The following changes since commit 5771a8c08880cdca3bfb4a3fc6d309d6bba20877:
->
->   Linux v4.13-rc1 (2017-07-15 15:22:10 -0700)
->
-> are available in the git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64
->
-> for you to fetch changes up to f72d6f6037b7b07927f78e159e4949b8e0263258:
->
->   ARM64: dts: meson-gx: use stable UART bindings with correct gate clock (2017-08-08 14:48:56 -0700)
->
-> ----------------------------------------------------------------
-> Amlogic 64-bit DT updates for v4.14
-> - add GPIO line names to a few boards
-> - MMC regulator settle time updates
-> - misc cleanups/fixups
+On Wed, Aug 09, 2017 at 05:12:55PM -0500, Rob Herring wrote:
+> On Tue, Jul 25, 2017 at 6:38 AM, Thierry Reding
+> <thierry.reding@gmail.com> wrote:
+> > On Tue, Jul 18, 2017 at 04:43:25PM -0500, Rob Herring wrote:
+> >> Now that we have a custom printf format specifier, convert users of
+> >> full_name to use %pOF instead. This is preparation to remove storing
+> >> of the full path string for each node.
+> >>
+> >> Signed-off-by: Rob Herring <robh@kernel.org>
+> >> Cc: Thierry Reding <thierry.reding@gmail.com>
+> >> Cc: Carlo Caione <carlo@caione.org>
+> >> Cc: Kevin Hilman <khilman@baylibre.com>
+> >> Cc: linux-pwm at vger.kernel.org
+> >> Cc: linux-arm-kernel at lists.infradead.org
+> >> Cc: linux-amlogic at lists.infradead.org
+> >> ---
+> >>  drivers/pwm/pwm-meson.c | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > Applied, thanks.
+> 
+> This is not showing up in -next.
 
-It seems I forgot to reply to this, but I have already pulled it into
-next/dt64 when I did the
-last set of pull requests.
+Yes, I had forgotten to push this out. I've done that now, so it should
+be in the next -next.
 
-        Arnd
+Thierry
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 833 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170821/338c205e/attachment.sig>
