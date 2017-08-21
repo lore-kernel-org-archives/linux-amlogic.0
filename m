@@ -1,45 +1,60 @@
-From: thierry.reding@gmail.com (Thierry Reding)
-Date: Mon, 21 Aug 2017 08:57:32 +0200
-Subject: [PATCH] pwm: Convert to using %pOF instead of full_name
-In-Reply-To: <CAL_Jsq+Oumkr=Npktxz2RnC9EMf8QWgvaw8SKx1uCLbjQg==Vg@mail.gmail.com>
-References: <20170718214339.7774-45-robh@kernel.org>
- <20170725113854.GA22355@ulmo>
- <CAL_Jsq+Oumkr=Npktxz2RnC9EMf8QWgvaw8SKx1uCLbjQg==Vg@mail.gmail.com>
-Message-ID: <20170821065732.GI18996@ulmo>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 21 Aug 2017 13:54:57 +0200
+Subject: [PATCH 03/14] mmc: meson-gx: clean up some constants
+In-Reply-To: <7ha83bozoz.fsf@baylibre.com>
+References: <20170804174353.16486-1-jbrunet@baylibre.com>
+ <20170804174353.16486-4-jbrunet@baylibre.com> <7ha83bozoz.fsf@baylibre.com>
+Message-ID: <1503316497.7032.1.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Aug 09, 2017 at 05:12:55PM -0500, Rob Herring wrote:
-> On Tue, Jul 25, 2017 at 6:38 AM, Thierry Reding
-> <thierry.reding@gmail.com> wrote:
-> > On Tue, Jul 18, 2017 at 04:43:25PM -0500, Rob Herring wrote:
-> >> Now that we have a custom printf format specifier, convert users of
-> >> full_name to use %pOF instead. This is preparation to remove storing
-> >> of the full path string for each node.
-> >>
-> >> Signed-off-by: Rob Herring <robh@kernel.org>
-> >> Cc: Thierry Reding <thierry.reding@gmail.com>
-> >> Cc: Carlo Caione <carlo@caione.org>
-> >> Cc: Kevin Hilman <khilman@baylibre.com>
-> >> Cc: linux-pwm at vger.kernel.org
-> >> Cc: linux-arm-kernel at lists.infradead.org
-> >> Cc: linux-amlogic at lists.infradead.org
-> >> ---
-> >>  drivers/pwm/pwm-meson.c | 2 +-
-> >>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > Applied, thanks.
+On Mon, 2017-08-07 at 14:06 -0700, Kevin Hilman wrote:
+> Jerome Brunet <jbrunet@baylibre.com> writes:
 > 
-> This is not showing up in -next.
+> > Remove useless clock rate defines. These should not be defined but
+> 
+> To be more precise, they're also unused, so maybe s/useless/unused/ ?
+> 
+> > equested from the clock framework.
+> 
+> s/equested/requested/
+> 
 
-Yes, I had forgotten to push this out. I've done that now, so it should
-be in the next -next.
+Thx Kevin !
 
-Thierry
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 833 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20170821/338c205e/attachment.sig>
+> > Also correct typo on the DELAY register
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> 
+> Otherwise,
+> 
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> 
+> > ---
+> > ?drivers/mmc/host/meson-gx-mmc.c | 4 +---
+> > ?1 file changed, 1 insertion(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-
+> > mmc.c
+> > index d480a8052a06..8a74a048db88 100644
+> > --- a/drivers/mmc/host/meson-gx-mmc.c
+> > +++ b/drivers/mmc/host/meson-gx-mmc.c
+> > @@ -45,9 +45,7 @@
+> > ?#define???CLK_DIV_MAX 63
+> > ?#define???CLK_SRC_MASK GENMASK(7, 6)
+> > ?#define???CLK_SRC_XTAL 0???/* external crystal */
+> > -#define???CLK_SRC_XTAL_RATE 24000000
+> > ?#define???CLK_SRC_PLL 1????/* FCLK_DIV2 */
+> > -#define???CLK_SRC_PLL_RATE 1000000000
+> > ?#define???CLK_CORE_PHASE_MASK GENMASK(9, 8)
+> > ?#define???CLK_TX_PHASE_MASK GENMASK(11, 10)
+> > ?#define???CLK_RX_PHASE_MASK GENMASK(13, 12)
+> > @@ -57,7 +55,7 @@
+> > ?#define???CLK_PHASE_270 3
+> > ?#define???CLK_ALWAYS_ON BIT(24)
+> > ?
+> > -#define SD_EMMC_DElAY 0x4
+> > +#define SD_EMMC_DELAY 0x4
+> > ?#define SD_EMMC_ADJUST 0x8
+> > ?#define SD_EMMC_CALOUT 0x10
+> > ?#define SD_EMMC_START 0x40
