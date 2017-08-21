@@ -1,84 +1,66 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 21 Aug 2017 18:02:52 +0200
-Subject: [PATCH v2 07/16] mmc: meson-gx: rework clk_set function
-In-Reply-To: <20170821160301.21899-1-jbrunet@baylibre.com>
-References: <20170821160301.21899-1-jbrunet@baylibre.com>
-Message-ID: <20170821160301.21899-8-jbrunet@baylibre.com>
+Date: Mon, 21 Aug 2017 18:06:28 +0200
+Subject: [PATCH v2 0/9] ARM64: dts: meson: update around mmc
+Message-ID: <20170821160637.22456-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Clean-up clk_set function to prepare the next changes (DDR and clk-stop)
+This patchset feature updates around mmc. It is linked to this series [0]
+but does not strictly depends on it. It adds:
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 30 +++++++++---------------------
- 1 file changed, 9 insertions(+), 21 deletions(-)
+* The regulator settling times for the gpio regulator of nanopi-k2 and
+  the libretech-cc.
+* UHS modes for the p20x and nanopi-k2.
+* clk-gate pins: these are the pinmuxes used for the clk-stop work
+  around explained here [1]
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 18fff28025d8..8f9ba5190c18 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -139,7 +139,7 @@ struct meson_host {
- 	struct clk *core_clk;
- 	struct clk_mux mux;
- 	struct clk *mux_clk;
--	unsigned long current_clock;
-+	unsigned long req_rate;
- 
- 	struct clk_divider cfg_div;
- 	struct clk *cfg_div_clk;
-@@ -275,29 +275,18 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
- 	int ret;
- 	u32 cfg;
- 
--	if (clk_rate) {
--		if (WARN_ON(clk_rate > mmc->f_max))
--			clk_rate = mmc->f_max;
--		else if (WARN_ON(clk_rate < mmc->f_min))
--			clk_rate = mmc->f_min;
--	}
--
--	if (clk_rate == host->current_clock)
-+	/* Same request - bail-out */
-+	if (host->req_rate == clk_rate)
- 		return 0;
- 
- 	/* stop clock */
- 	cfg = readl(host->regs + SD_EMMC_CFG);
--	if (!(cfg & CFG_STOP_CLOCK)) {
--		cfg |= CFG_STOP_CLOCK;
--		writel(cfg, host->regs + SD_EMMC_CFG);
--	}
--
--	dev_dbg(host->dev, "change clock rate %u -> %lu\n",
--		mmc->actual_clock, clk_rate);
-+	cfg |= CFG_STOP_CLOCK;
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+	host->req_rate = 0;
- 
- 	if (!clk_rate) {
- 		mmc->actual_clock = 0;
--		host->current_clock = 0;
- 		/* return with clock being stopped */
- 		return 0;
- 	}
-@@ -309,13 +298,12 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
- 		return ret;
- 	}
- 
-+	host->req_rate = clk_rate;
- 	mmc->actual_clock = clk_get_rate(host->cfg_div_clk);
--	host->current_clock = clk_rate;
- 
-+	dev_dbg(host->dev, "clk rate: %u Hz\n", mmc->actual_clock);
- 	if (clk_rate != mmc->actual_clock)
--		dev_dbg(host->dev,
--			"divider requested rate %lu != actual rate %u\n",
--			clk_rate, mmc->actual_clock);
-+		dev_dbg(host->dev, "requested rate was %lu\n", clk_rate);
- 
- 	/* (re)start clock */
- 	cfg = readl(host->regs + SD_EMMC_CFG);
+It also removes cap-sd-highspeed from eMMC nodes.
+
+Special note on SDR104:
+While the PCB of the p200 and the libretech-cc does not seems to handle
+SDR104 completely, the nanopi-k2 seems to be handling it correctly.
+
+The patch enabling this mode on the nanopi-k2 is the last one of this
+series. It should propabably be left out until more people can test
+sdr104 on the nanopi-k2
+
+This series has been tested on the gxbb-200, the gxbb-nanopi-k2 and the
+gxl-s905x-libretech-cc
+
+Changes since v1 [2]:
+* Reorder patches to put fixes first, then enhancements
+* Fix error in the SDIO clk_gate pins (GPIOX_5 instead GPIOX_4)
+
+[0]: https://lkml.kernel.org/r/20170821160301.21899-1-jbrunet at baylibre.com
+[1]: https://lkml.kernel.org/r/20170821160301.21899-11-jbrunet at baylibre.com
+[2]: https://lkml.kernel.org/r/20170804180816.18737-1-jbrunet at baylibre.com
+
+Jerome Brunet (9):
+  ARM64: dts: meson-gx: Use correct mmc clock source 0
+  ARM64: dts: meson: remove cap-sd-highspeed from emmc nodes
+  ARM64: dts: meson: add mmc clk gate pins
+  ARM64: dts: meson-gxbb: nanopi-k2: add card regulator settle times
+  ARM64: dts: meson-gxl: libretech-cc: add card regulator settle times
+  ARM64: dts: meson-gxl: libretech-cc: remove sdr104 capability
+  ARM64: dts: meson-gxbb: p20x: enable sdcard UHS modes
+  ARM64: dts: meson-gxbb: nanopi-k2: enable sdcard UHS modes
+  ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode
+
+ .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi | 10 +++---
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 19 ++++++++---
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 12 ++++---
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts |  9 ++---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi   | 13 +++++---
+ .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi      | 10 +++---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 39 ++++++++++++++++++++--
+ .../dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts |  7 ++--
+ .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 10 ++++--
+ .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 10 +++---
+ .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     | 10 +++---
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 39 ++++++++++++++++++++--
+ .../arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts |  7 ++--
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts |  1 -
+ 14 files changed, 146 insertions(+), 50 deletions(-)
+
 -- 
 2.9.5
