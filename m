@@ -1,33 +1,39 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 21 Aug 2017 18:06:36 +0200
-Subject: [PATCH v2 8/9] ARM64: dts: meson-gxbb: nanopi-k2: enable sdcard UHS
- modes
+Date: Mon, 21 Aug 2017 18:06:33 +0200
+Subject: [PATCH v2 5/9] ARM64: dts: meson-gxl: libretech-cc: add card
+ regulator settle times
 In-Reply-To: <20170821160637.22456-1-jbrunet@baylibre.com>
 References: <20170821160637.22456-1-jbrunet@baylibre.com>
-Message-ID: <20170821160637.22456-9-jbrunet@baylibre.com>
+Message-ID: <20170821160637.22456-6-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable UHS modes, up to SDR50, on the nanopi-k2 SBC.
+Changing the card voltage on the cc is not instantaneous, especially
+when switching from 3.3v to 1.8v.
 
+It take at least 30ms for the regulator to go from 3.3v to 1.8v. Add
+margin to that to make sure we don't upset the sdcard during the voltage
+switch
+
+Fixes: 61ff2af9b278 ("ARM64: dts: fixup libretech cc definition")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 3 +++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-index de4ed28d78bc..38630871c2ea 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-@@ -227,6 +227,9 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index 2b56f7d9be2b..0537b92cd226 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -92,6 +92,9 @@
  
- 	bus-width = <4>;
- 	cap-sd-highspeed;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
- 	max-frequency = <100000000>;
- 	disable-wp;
+ 		states = <3300000 0>,
+ 		         <1800000 1>;
++
++		regulator-settling-time-up-us = <200>;
++		regulator-settling-time-down-us = <50000>;
+ 	};
  
+ 	vddio_boot: regulator-vddio_boot {
 -- 
 2.9.5
