@@ -1,43 +1,59 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 21 Aug 2017 18:03:00 +0200
-Subject: [PATCH v2 15/16] mmc: meson-gx: change default tx phase
-In-Reply-To: <20170821160301.21899-1-jbrunet@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Tue, 22 Aug 2017 13:08:46 +0200
+Subject: [PATCH v2 04/16] mmc: meson-gx: use _irqsave variant of spinlock
+In-Reply-To: <20170821160301.21899-5-jbrunet@baylibre.com>
 References: <20170821160301.21899-1-jbrunet@baylibre.com>
-Message-ID: <20170821160301.21899-16-jbrunet@baylibre.com>
+ <20170821160301.21899-5-jbrunet@baylibre.com>
+Message-ID: <CAPDyKFpoOc+1WMqLMOwhGkifP-Zp3GS7wTSkHmBUk4Pf0Dh+DQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Initial default tx phase was set to 0 while the datasheet recommends 270.
-Some cards fails to initialize with this setting and eMMC mode DDR52 does
-not work.
+On 21 August 2017 at 18:02, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> spinlock used in interrupt handler should use the _irqsave variant
 
-Changing this setting to 270 fixes these issues, without any regression
-so far
+Exactly why is that needed?
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 8a74a048db88..a399fbd415f4 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -727,6 +727,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>         struct mmc_command *cmd;
+>         struct mmc_data *data;
+>         u32 irq_en, status, raw_status;
+> +       unsigned long flag;
+>         irqreturn_t ret = IRQ_HANDLED;
+>
+>         if (WARN_ON(!host))
+> @@ -739,7 +740,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>
+>         data = cmd->data;
+>
+> -       spin_lock(&host->lock);
+> +       spin_lock_irqsave(&host->lock, flag);
+>         irq_en = readl(host->regs + SD_EMMC_IRQ_EN);
+>         raw_status = readl(host->regs + SD_EMMC_STATUS);
+>         status = raw_status & irq_en;
+> @@ -806,7 +807,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+>         if (ret == IRQ_HANDLED)
+>                 meson_mmc_request_done(host->mmc, cmd->mrq);
+>
+> -       spin_unlock(&host->lock);
+> +       spin_unlock_irqrestore(&host->lock, flag);
+>         return ret;
+>  }
+>
+> --
+> 2.9.5
+>
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 3167f561e1a6..290631d46a4b 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -1158,8 +1158,14 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_host;
- 
-+        /*
-+	 * Set phases : These values are mostly the datasheet recommended ones
-+	 * except for the Tx phase. Datasheet recommends 180 but some cards
-+	 * fail at initialisation with it. 270 works just fine, it fixes these
-+	 * initialisation issues and enable eMMC DDR52 mode.
-+	 */
- 	host->tp.core_phase = 180;
--	host->tp.tx_phase = 0;
-+	host->tp.tx_phase = 270;
- 	host->tp.rx_phase = 0;
- 
- 	ret = meson_mmc_clk_init(host);
--- 
-2.9.5
+Kind regards
+Uffe
