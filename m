@@ -1,59 +1,61 @@
 From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Tue, 22 Aug 2017 13:08:46 +0200
-Subject: [PATCH v2 04/16] mmc: meson-gx: use _irqsave variant of spinlock
-In-Reply-To: <20170821160301.21899-5-jbrunet@baylibre.com>
+Date: Tue, 22 Aug 2017 13:15:08 +0200
+Subject: [PATCH v2 00/16] mmc: meson-gx: driver fixups and upgrades
+In-Reply-To: <20170821160301.21899-1-jbrunet@baylibre.com>
 References: <20170821160301.21899-1-jbrunet@baylibre.com>
- <20170821160301.21899-5-jbrunet@baylibre.com>
-Message-ID: <CAPDyKFpoOc+1WMqLMOwhGkifP-Zp3GS7wTSkHmBUk4Pf0Dh+DQ@mail.gmail.com>
+Message-ID: <CAPDyKFoBebVf0wqJ+z5UHC+aMju2Qy0ONc1OVYrwzZKk+XgGTg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 21 August 2017 at 18:02, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> spinlock used in interrupt handler should use the _irqsave variant
-
-Exactly why is that needed?
-
+> The patchset features several bugfixes, rework and upgrade for the
+> meson-gx MMC driver.
 >
-> Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
-> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/mmc/host/meson-gx-mmc.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> The main goal is to improve readability and enable new high speed
+> modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
 >
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index 8a74a048db88..a399fbd415f4 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -727,6 +727,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->         struct mmc_command *cmd;
->         struct mmc_data *data;
->         u32 irq_en, status, raw_status;
-> +       unsigned long flag;
->         irqreturn_t ret = IRQ_HANDLED;
+> SDR104 is not working with a few cards on the p200 and the
+> libretech-cc. I suspect that 200Mhz might be a bit too fast for the PCB
+> of these boards, adding noise to the signal and eventually breaking
+> the communication with some cards. The same cards are working well on a
+> laptop or the nanopi-k2 at 200Mhz.
 >
->         if (WARN_ON(!host))
-> @@ -739,7 +740,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+> This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
+> gxl-s905x-libretech-cc
 >
->         data = cmd->data;
+> Changes since v1 [0]:
+> * Reorder patches to have fixes first, then rework and finally
+>   enhancements.
+> * Use CCF to manage clock phases
 >
-> -       spin_lock(&host->lock);
-> +       spin_lock_irqsave(&host->lock, flag);
->         irq_en = readl(host->regs + SD_EMMC_IRQ_EN);
->         raw_status = readl(host->regs + SD_EMMC_STATUS);
->         status = raw_status & irq_en;
-> @@ -806,7 +807,7 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
->         if (ret == IRQ_HANDLED)
->                 meson_mmc_request_done(host->mmc, cmd->mrq);
+> [0]: https://lkml.kernel.org/r/20170804174353.16486-1-jbrunet at baylibre.com
 >
-> -       spin_unlock(&host->lock);
-> +       spin_unlock_irqrestore(&host->lock, flag);
->         return ret;
->  }
+> Jerome Brunet (16):
+>   mmc: meson-gx: fix mux mask definition
+>   mmc: meson-gx: remove CLK_DIVIDER_ALLOW_ZERO clock flag
+>   mmc: meson-gx: clean up some constants
+>   mmc: meson-gx: use _irqsave variant of spinlock
+>   mmc: meson-gx: cfg init overwrite values
+>   mmc: meson-gx: rework set_ios function
+>   mmc: meson-gx: rework clk_set function
+>   mmc: meson-gx: rework clock init function
+>   mmc: meson-gx: fix dual data rate mode frequencies
+>   mmc: meson-gx: work around clk-stop issue
+>   mmc: meson-gx: simplify interrupt handler
+>   mmc: meson-gx: implement card_busy callback
+>   mmc: meson-gx: use CCF to handle the clock phases
+>   mmc: meson-gx: implement voltage switch callback
+>   mmc: meson-gx: change default tx phase
+>   mmc: meson-gx: rework tuning function
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 718 +++++++++++++++++++++++++++-------------
+>  1 file changed, 497 insertions(+), 221 deletions(-)
 >
 > --
 > 2.9.5
 >
+
+So far, I decided to pick patch 1 -> 3.
 
 Kind regards
 Uffe
