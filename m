@@ -1,112 +1,84 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 28 Aug 2017 16:29:08 +0200
-Subject: [PATCH v3 06/13] mmc: meson-gx: fix dual data rate mode frequencies
+Date: Mon, 28 Aug 2017 16:29:06 +0200
+Subject: [PATCH v3 04/13] mmc: meson-gx: rework clk_set function
 In-Reply-To: <20170828142915.27020-1-jbrunet@baylibre.com>
 References: <20170828142915.27020-1-jbrunet@baylibre.com>
-Message-ID: <20170828142915.27020-7-jbrunet@baylibre.com>
+Message-ID: <20170828142915.27020-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In DDR modes, meson mmc controller requires an input rate twice as fast
-as the output rate
+Clean-up clk_set function to prepare the next changes (DDR and clk-stop)
 
-Fixes: 51c5d8447bd7 ("MMC: meson: initial support for GX platforms")
 Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 41 +++++++++++++++++++++++++++++------------
- 1 file changed, 29 insertions(+), 12 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 30 +++++++++---------------------
+ 1 file changed, 9 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 7800a7ace2de..341e5a1b32cc 100644
+index 0d29f1f347eb..cd5964aa4f58 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -262,14 +262,29 @@ static void meson_mmc_post_req(struct mmc_host *mmc, struct mmc_request *mrq,
- 			     mmc_get_dma_dir(data));
- }
+@@ -139,7 +139,7 @@ struct meson_host {
+ 	struct clk *core_clk;
+ 	struct clk_mux mux;
+ 	struct clk *mux_clk;
+-	unsigned long current_clock;
++	unsigned long req_rate;
  
--static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
-+static bool meson_mmc_timing_is_ddr(struct mmc_ios *ios)
-+{
-+	if (ios->timing == MMC_TIMING_MMC_DDR52 ||
-+	    ios->timing == MMC_TIMING_UHS_DDR50 ||
-+	    ios->timing == MMC_TIMING_MMC_HS400)
-+		return true;
-+
-+	return false;
-+}
-+
-+static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
- {
- 	struct mmc_host *mmc = host->mmc;
-+	unsigned long rate = ios->clock;
+ 	struct clk_divider cfg_div;
+ 	struct clk *cfg_div_clk;
+@@ -275,29 +275,18 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
  	int ret;
  	u32 cfg;
  
-+	/* DDR modes require higher module clock */
-+	if (meson_mmc_timing_is_ddr(ios))
-+		rate <<= 1;
-+
- 	/* Same request - bail-out */
--	if (host->req_rate == clk_rate)
-+	if (host->req_rate == rate)
+-	if (clk_rate) {
+-		if (WARN_ON(clk_rate > mmc->f_max))
+-			clk_rate = mmc->f_max;
+-		else if (WARN_ON(clk_rate < mmc->f_min))
+-			clk_rate = mmc->f_min;
+-	}
+-
+-	if (clk_rate == host->current_clock)
++	/* Same request - bail-out */
++	if (host->req_rate == clk_rate)
  		return 0;
  
  	/* stop clock */
-@@ -278,25 +293,29 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
- 	writel(cfg, host->regs + SD_EMMC_CFG);
- 	host->req_rate = 0;
+ 	cfg = readl(host->regs + SD_EMMC_CFG);
+-	if (!(cfg & CFG_STOP_CLOCK)) {
+-		cfg |= CFG_STOP_CLOCK;
+-		writel(cfg, host->regs + SD_EMMC_CFG);
+-	}
+-
+-	dev_dbg(host->dev, "change clock rate %u -> %lu\n",
+-		mmc->actual_clock, clk_rate);
++	cfg |= CFG_STOP_CLOCK;
++	writel(cfg, host->regs + SD_EMMC_CFG);
++	host->req_rate = 0;
  
--	if (!clk_rate) {
-+	if (!rate) {
+ 	if (!clk_rate) {
  		mmc->actual_clock = 0;
+-		host->current_clock = 0;
  		/* return with clock being stopped */
  		return 0;
  	}
- 
--	ret = clk_set_rate(host->mmc_clk, clk_rate);
-+	ret = clk_set_rate(host->mmc_clk, rate);
- 	if (ret) {
- 		dev_err(host->dev, "Unable to set cfg_div_clk to %lu. ret=%d\n",
--			clk_rate, ret);
-+			rate, ret);
+@@ -309,13 +298,12 @@ static int meson_mmc_clk_set(struct meson_host *host, unsigned long clk_rate)
  		return ret;
  	}
  
--	host->req_rate = clk_rate;
-+	host->req_rate = rate;
- 	mmc->actual_clock = clk_get_rate(host->mmc_clk);
++	host->req_rate = clk_rate;
+ 	mmc->actual_clock = clk_get_rate(host->cfg_div_clk);
+-	host->current_clock = clk_rate;
  
-+	/* We should report the real output frequency of the controller */
-+	if (meson_mmc_timing_is_ddr(ios))
-+		mmc->actual_clock >>= 1;
-+
- 	dev_dbg(host->dev, "clk rate: %u Hz\n", mmc->actual_clock);
--	if (clk_rate != mmc->actual_clock)
--		dev_dbg(host->dev, "requested rate was %lu\n", clk_rate);
-+	if (ios->clock != mmc->actual_clock)
-+		dev_dbg(host->dev, "requested rate was %u\n", ios->clock);
++	dev_dbg(host->dev, "clk rate: %u Hz\n", mmc->actual_clock);
+ 	if (clk_rate != mmc->actual_clock)
+-		dev_dbg(host->dev,
+-			"divider requested rate %lu != actual rate %u\n",
+-			clk_rate, mmc->actual_clock);
++		dev_dbg(host->dev, "requested rate was %lu\n", clk_rate);
  
  	/* (re)start clock */
  	cfg = readl(host->regs + SD_EMMC_CFG);
-@@ -490,16 +509,14 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	val |= FIELD_PREP(CFG_BUS_WIDTH_MASK, bus_width);
- 
- 	val &= ~CFG_DDR;
--	if (ios->timing == MMC_TIMING_UHS_DDR50 ||
--	    ios->timing == MMC_TIMING_MMC_DDR52 ||
--	    ios->timing == MMC_TIMING_MMC_HS400)
-+	if (meson_mmc_timing_is_ddr(ios))
- 		val |= CFG_DDR;
- 
- 	val &= ~CFG_CHK_DS;
- 	if (ios->timing == MMC_TIMING_MMC_HS400)
- 		val |= CFG_CHK_DS;
- 
--	err = meson_mmc_clk_set(host, ios->clock);
-+	err = meson_mmc_clk_set(host, ios);
- 	if (err)
- 		dev_err(host->dev, "Failed to set clock: %d\n,", err);
- 
 -- 
 2.9.5
