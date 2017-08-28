@@ -1,22 +1,31 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 24 Aug 2017 17:08:31 -0700
-Subject: [PATCH] ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names
-In-Reply-To: <1501853884-32680-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Fri, 4 Aug 2017 15:38:04 +0200")
-References: <1501853884-32680-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <7hshggfr0g.fsf@baylibre.com>
+From: arvind.yadav.cs@gmail.com (Arvind Yadav)
+Date: Mon, 28 Aug 2017 11:22:20 +0530
+Subject: [PATCH] net: stmmac: constify clk_div_table
+Message-ID: <a54fe9764d287df370c16b0f0814d09d8fa24591.1503899422.git.arvind.yadav.cs@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+clk_div_table are not supposed to change at runtime.
+meson8b_dwmac structure is working with const clk_div_table.
+So mark the non-const structs as const.
 
-> This patch describes the GPIO lines usage on the LibreTech CC board.
->
-> This is useful in the debugfs gpio file and using the cdev gpio API.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
+---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied to v4.14/dt64 and included with the round2 dt64 pull request
-just sent.
-
-Kevin
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+index 9685555..4404650b 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+@@ -89,7 +89,7 @@ static int meson8b_init_clk(struct meson8b_dwmac *dwmac)
+ 	char clk_name[32];
+ 	const char *clk_div_parents[1];
+ 	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
+-	static struct clk_div_table clk_25m_div_table[] = {
++	static const struct clk_div_table clk_25m_div_table[] = {
+ 		{ .val = 0, .div = 5 },
+ 		{ .val = 1, .div = 10 },
+ 		{ /* sentinel */ },
+-- 
+1.9.1
