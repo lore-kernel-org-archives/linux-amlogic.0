@@ -1,63 +1,81 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 28 Aug 2017 16:29:02 +0200
-Subject: [PATCH v3 00/13] mmc: meson-gx: driver fixups and upgrades
-Message-ID: <20170828142915.27020-1-jbrunet@baylibre.com>
+Date: Mon, 28 Aug 2017 16:29:05 +0200
+Subject: [PATCH v3 03/13] mmc: meson-gx: rework set_ios function
+In-Reply-To: <20170828142915.27020-1-jbrunet@baylibre.com>
+References: <20170828142915.27020-1-jbrunet@baylibre.com>
+Message-ID: <20170828142915.27020-4-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patchset features several bugfixes, rework and upgrade for the
-meson-gx MMC driver.
+Remove conditional write of cfg register. Warn if set_clk fails for some
+reason. Consistently use host->dev instead of mixing with mmc_dev(mmc)
 
-The main goal is to improve readability and enable new high speed
-modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 22 +++++++++-------------
+ 1 file changed, 9 insertions(+), 13 deletions(-)
 
-SDR104 is not working with a few cards on the p200 and the
-libretech-cc. I suspect that 200Mhz might be a bit too fast for the PCB
-of these boards, adding noise to the signal and eventually breaking
-the communication with some cards. The same cards are working well on a
-laptop or the nanopi-k2 at 200Mhz.
-
-This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
-gxl-s905x-libretech-cc
-
-Changes since v2 [1]:
-* Drop patches 1 to 3: Applied.
-* Drop patch 4: Debug stuff which should not have been sent.
-* Added fix to previous patch 3:
-  If the clock register is not initialized before registering the clk
-  with CCF, the framework will complain about an illegal divider value.
-  This had gone unnoticed because it was later fixed by the clock init
-  rework.
-
-  Ulf, I know it is getting late but it would be nice if patch #1 of
-  this v3 could go with 3 patches you already applied. The rest can
-  wait for the following cycle.
-
-Changes since v1 [0]:
-* Reorder patches to have fixes first, then rework and finally
-  enhancements.
-* Use CCF to manage clock phases
-
-[0]: https://lkml.kernel.org/r/20170804174353.16486-1-jbrunet at baylibre.com
-[1]: https://lkml.kernel.org/r/20170821160301.21899-1-jbrunet at baylibre.com
-
-Jerome Brunet (13):
-  mmc: meson-gx: initialize sane clk default before clock register
-  mmc: meson-gx: cfg init overwrite values
-  mmc: meson-gx: rework set_ios function
-  mmc: meson-gx: rework clk_set function
-  mmc: meson-gx: rework clock init function
-  mmc: meson-gx: fix dual data rate mode frequencies
-  mmc: meson-gx: work around clk-stop issue
-  mmc: meson-gx: simplify interrupt handler
-  mmc: meson-gx: implement card_busy callback
-  mmc: meson-gx: use CCF to handle the clock phases
-  mmc: meson-gx: implement voltage switch callback
-  mmc: meson-gx: change default tx phase
-  mmc: meson-gx: rework tuning function
-
- drivers/mmc/host/meson-gx-mmc.c | 710 ++++++++++++++++++++++++++++------------
- 1 file changed, 493 insertions(+), 217 deletions(-)
-
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 7d14d382cb1c..0d29f1f347eb 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -444,8 +444,8 @@ static void meson_mmc_set_tuning_params(struct mmc_host *mmc)
+ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ {
+ 	struct meson_host *host = mmc_priv(mmc);
+-	u32 bus_width;
+-	u32 val, orig;
++	u32 bus_width, val;
++	int err;
+ 
+ 	/*
+ 	 * GPIO regulator, only controls switching between 1v8 and
+@@ -473,7 +473,7 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 			int ret = regulator_enable(mmc->supply.vqmmc);
+ 
+ 			if (ret < 0)
+-				dev_err(mmc_dev(mmc),
++				dev_err(host->dev,
+ 					"failed to enable vqmmc regulator\n");
+ 			else
+ 				host->vqmmc_enabled = true;
+@@ -482,9 +482,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 		break;
+ 	}
+ 
+-
+-	meson_mmc_clk_set(host, ios->clock);
+-
+ 	/* Bus width */
+ 	switch (ios->bus_width) {
+ 	case MMC_BUS_WIDTH_1:
+@@ -503,8 +500,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 	}
+ 
+ 	val = readl(host->regs + SD_EMMC_CFG);
+-	orig = val;
+-
+ 	val &= ~CFG_BUS_WIDTH_MASK;
+ 	val |= FIELD_PREP(CFG_BUS_WIDTH_MASK, bus_width);
+ 
+@@ -518,11 +513,12 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 	if (ios->timing == MMC_TIMING_MMC_HS400)
+ 		val |= CFG_CHK_DS;
+ 
+-	if (val != orig) {
+-		writel(val, host->regs + SD_EMMC_CFG);
+-		dev_dbg(host->dev, "%s: SD_EMMC_CFG: 0x%08x -> 0x%08x\n",
+-			__func__, orig, val);
+-	}
++	err = meson_mmc_clk_set(host, ios->clock);
++	if (err)
++		dev_err(host->dev, "Failed to set clock: %d\n,", err);
++
++	writel(val, host->regs + SD_EMMC_CFG);
++	dev_dbg(host->dev, "SD_EMMC_CFG:  0x%08x\n", val);
+ }
+ 
+ static void meson_mmc_request_done(struct mmc_host *mmc,
 -- 
 2.9.5
