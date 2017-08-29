@@ -1,44 +1,19 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 28 Aug 2017 16:29:14 +0200
-Subject: [PATCH v3 12/13] mmc: meson-gx: change default tx phase
-In-Reply-To: <20170828142915.27020-1-jbrunet@baylibre.com>
-References: <20170828142915.27020-1-jbrunet@baylibre.com>
-Message-ID: <20170828142915.27020-13-jbrunet@baylibre.com>
+From: davem@davemloft.net (David Miller)
+Date: Tue, 29 Aug 2017 10:56:51 -0700 (PDT)
+Subject: [PATCH] net: stmmac: constify clk_div_table
+In-Reply-To: <a54fe9764d287df370c16b0f0814d09d8fa24591.1503899422.git.arvind.yadav.cs@gmail.com>
+References: <a54fe9764d287df370c16b0f0814d09d8fa24591.1503899422.git.arvind.yadav.cs@gmail.com>
+Message-ID: <20170829.105651.2053286906261018644.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Initial default tx phase was set to 0 while the datasheet recommends 270.
-Some cards fails to initialize with this setting and eMMC mode DDR52 does
-not work.
+From: Arvind Yadav <arvind.yadav.cs@gmail.com>
+Date: Mon, 28 Aug 2017 11:22:20 +0530
 
-Changing this setting to 270 fixes these issues, without any regression
-so far
+> clk_div_table are not supposed to change at runtime.
+> meson8b_dwmac structure is working with const clk_div_table.
+> So mark the non-const structs as const.
+> 
+> Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 0cffc705bfe3..efffd36c8d77 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -1156,8 +1156,14 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_host;
- 
-+	/*
-+	 * Set phases : These values are mostly the datasheet recommended ones
-+	 * except for the Tx phase. Datasheet recommends 180 but some cards
-+	 * fail at initialisation with it. 270 works just fine, it fixes these
-+	 * initialisation issues and enable eMMC DDR52 mode.
-+	 */
- 	host->tp.core_phase = 180;
--	host->tp.tx_phase = 0;
-+	host->tp.tx_phase = 270;
- 	host->tp.rx_phase = 0;
- 
- 	ret = meson_mmc_clk_init(host);
--- 
-2.9.5
+Applied.
