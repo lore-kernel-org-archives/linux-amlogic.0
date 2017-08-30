@@ -1,70 +1,37 @@
-From: olof@lixom.net (Olof Johansson)
-Date: Tue, 29 Aug 2017 22:26:38 -0700
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.14 (round 2)
-In-Reply-To: <7h60dceef3.fsf@baylibre.com>
-References: <7h60dceef3.fsf@baylibre.com>
-Message-ID: <20170830052638.GG14499@localhost>
+From: mpe@ellerman.id.au (Michael Ellerman)
+Date: Wed, 30 Aug 2017 19:20:39 +1000
+Subject: [PATCH v3 3/6] dt: booting-without-of: DT fix
+ s/#interrupt-cell/#interrupt-cells/
+In-Reply-To: <1496407129-13527-4-git-send-email-geert+renesas@glider.be>
+References: <1496407129-13527-1-git-send-email-geert+renesas@glider.be>
+ <1496407129-13527-4-git-send-email-geert+renesas@glider.be>
+Message-ID: <87wp5l1kew.fsf@concordia.ellerman.id.au>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Aug 24, 2017 at 04:25:52PM -0700, Kevin Hilman wrote:
-> Olof, Arnd,
-> 
-> Here's a final round of 64-bit DT changes for Amlogic SoC family.
-> 
-> This is a bit late as it was waiting for the clock dependencies to be
-> merge into clk-next.  The good news is that clock dependencies should
-> not be happending every cycle anymore as we've now exposed all the
-> clocks for use by the bindings.
-> 
-> Also note that this branch pulls in -rc4 due to a minor add/add conflict
-> for the GPIO names patch, which is why the diffstat is so big.
-> 
-> Kevin
-> 
-> 
-> The following changes since commit f72d6f6037b7b07927f78e159e4949b8e0263258:
-> 
->   ARM64: dts: meson-gx: use stable UART bindings with correct gate clock (2017-08-08 14:48:56 -0700)
-> 
-> are available in the git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
-> 
-> for you to fetch changes up to 47884c5c746ee7c02e06fbf60480e0f13aa11dfe:
-> 
->   ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names (2017-08-22 15:37:50 -0700)
-> 
-> ----------------------------------------------------------------
-> Amlogic 64-bit DT updates for v4.14, round 2
-> - clock updates w/dependencies on clock tree
-> - GPIO names updates
-> 
-> ----------------------------------------------------------------
-> Jerome Brunet (5):
->       clk: meson: meson8b: fix protection against undefined clks
->       clk: meson: gxbb: fix protection against undefined clks
->       clk: meson8b: expose every clock in the bindings
->       clk: meson-gxbb: expose almost every clock in the bindings
->       clk: meson: gxbb: Add sd_emmc clk0 clkids
-> 
-> Kevin Hilman (2):
->       Merge tag 'meson-clk-headers-for-4.14' of git://github.com/BayLibre/clk-meson into v4.14/dt64
->       Merge tag 'v4.13-rc4' into v4.14/dt64
-> 
-> Martin Blumenstingl (1):
->       dt-bindings: clock: meson8b: describe the embedded reset controller
-> 
-> Neil Armstrong (4):
->       dt-bindings: clock: gxbb-aoclk: Add CEC 32k clock
->       ARM64: dts: meson-gx: update AO clkc to new bindings
->       ARM64: dts: meson-gx: Add AO CEC nodes
->       ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names
+Geert Uytterhoeven <geert+renesas@glider.be> writes:
 
-That looks OK but the diffstat doesn't seem right.
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
 
-Merged into next/dt64 though, please double check that it's the expected end
-result.
+Rob this has your ack, but I'd expect it to go via your tree? Or should
+I grab it?
 
+cheers
 
--Olof
+> diff --git a/Documentation/devicetree/booting-without-of.txt b/Documentation/devicetree/booting-without-of.txt
+> index 280d283304bb82d8..f35d3adacb987f7d 100644
+> --- a/Documentation/devicetree/booting-without-of.txt
+> +++ b/Documentation/devicetree/booting-without-of.txt
+> @@ -1309,7 +1309,7 @@ number and level/sense information. All interrupt children in an
+>  OpenPIC interrupt domain use 2 cells per interrupt in their interrupts
+>  property.
+>  
+> -The PCI bus binding specifies a #interrupt-cell value of 1 to encode
+> +The PCI bus binding specifies a #interrupt-cells value of 1 to encode
+>  which interrupt pin (INTA,INTB,INTC,INTD) is used.
+>  
+>  2) interrupt-parent property
+> -- 
+> 2.7.4
