@@ -1,37 +1,79 @@
-From: mpe@ellerman.id.au (Michael Ellerman)
-Date: Wed, 30 Aug 2017 19:20:39 +1000
-Subject: [PATCH v3 3/6] dt: booting-without-of: DT fix
- s/#interrupt-cell/#interrupt-cells/
-In-Reply-To: <1496407129-13527-4-git-send-email-geert+renesas@glider.be>
-References: <1496407129-13527-1-git-send-email-geert+renesas@glider.be>
- <1496407129-13527-4-git-send-email-geert+renesas@glider.be>
-Message-ID: <87wp5l1kew.fsf@concordia.ellerman.id.au>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Wed, 30 Aug 2017 15:13:57 +0200
+Subject: [PATCH v3 00/13] mmc: meson-gx: driver fixups and upgrades
+In-Reply-To: <20170828142915.27020-1-jbrunet@baylibre.com>
+References: <20170828142915.27020-1-jbrunet@baylibre.com>
+Message-ID: <CAPDyKFogy=L=BDKtMhKCN0nMLi-Yy5SHgAhB_=jog+CX91breA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Geert Uytterhoeven <geert+renesas@glider.be> writes:
+On 28 August 2017 at 16:29, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> The patchset features several bugfixes, rework and upgrade for the
+> meson-gx MMC driver.
+>
+> The main goal is to improve readability and enable new high speed
+> modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
+>
+> SDR104 is not working with a few cards on the p200 and the
+> libretech-cc. I suspect that 200Mhz might be a bit too fast for the PCB
+> of these boards, adding noise to the signal and eventually breaking
+> the communication with some cards. The same cards are working well on a
+> laptop or the nanopi-k2 at 200Mhz.
+>
+> This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
+> gxl-s905x-libretech-cc
+>
+> Changes since v2 [1]:
+> * Drop patches 1 to 3: Applied.
+> * Drop patch 4: Debug stuff which should not have been sent.
+> * Added fix to previous patch 3:
+>   If the clock register is not initialized before registering the clk
+>   with CCF, the framework will complain about an illegal divider value.
+>   This had gone unnoticed because it was later fixed by the clock init
+>   rework.
+>
+>   Ulf, I know it is getting late but it would be nice if patch #1 of
+>   this v3 could go with 3 patches you already applied. The rest can
+>   wait for the following cycle.
 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
+I decided to pick them all, so applied for next!
 
-Rob this has your ack, but I'd expect it to go via your tree? Or should
-I grab it?
+For patch1, I decided to update the changelog a bit, avoiding to have
+a specific fixes tag, becasue the fix might not end up having the same
+hash, when/if I rebase my branch.
 
-cheers
+Thanks!
 
-> diff --git a/Documentation/devicetree/booting-without-of.txt b/Documentation/devicetree/booting-without-of.txt
-> index 280d283304bb82d8..f35d3adacb987f7d 100644
-> --- a/Documentation/devicetree/booting-without-of.txt
-> +++ b/Documentation/devicetree/booting-without-of.txt
-> @@ -1309,7 +1309,7 @@ number and level/sense information. All interrupt children in an
->  OpenPIC interrupt domain use 2 cells per interrupt in their interrupts
->  property.
->  
-> -The PCI bus binding specifies a #interrupt-cell value of 1 to encode
-> +The PCI bus binding specifies a #interrupt-cells value of 1 to encode
->  which interrupt pin (INTA,INTB,INTC,INTD) is used.
->  
->  2) interrupt-parent property
-> -- 
-> 2.7.4
+Kind regards
+Uffe
+
+>
+> Changes since v1 [0]:
+> * Reorder patches to have fixes first, then rework and finally
+>   enhancements.
+> * Use CCF to manage clock phases
+>
+> [0]: https://lkml.kernel.org/r/20170804174353.16486-1-jbrunet at baylibre.com
+> [1]: https://lkml.kernel.org/r/20170821160301.21899-1-jbrunet at baylibre.com
+>
+> Jerome Brunet (13):
+>   mmc: meson-gx: initialize sane clk default before clock register
+>   mmc: meson-gx: cfg init overwrite values
+>   mmc: meson-gx: rework set_ios function
+>   mmc: meson-gx: rework clk_set function
+>   mmc: meson-gx: rework clock init function
+>   mmc: meson-gx: fix dual data rate mode frequencies
+>   mmc: meson-gx: work around clk-stop issue
+>   mmc: meson-gx: simplify interrupt handler
+>   mmc: meson-gx: implement card_busy callback
+>   mmc: meson-gx: use CCF to handle the clock phases
+>   mmc: meson-gx: implement voltage switch callback
+>   mmc: meson-gx: change default tx phase
+>   mmc: meson-gx: rework tuning function
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 710 ++++++++++++++++++++++++++++------------
+>  1 file changed, 493 insertions(+), 217 deletions(-)
+>
+> --
+> 2.9.5
+>
