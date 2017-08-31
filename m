@@ -1,55 +1,162 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Thu, 31 Aug 2017 12:46:12 +0200
-Subject: [PATCH v3 00/13] mmc: meson-gx: driver fixups and upgrades
-In-Reply-To: <7hr2vsdgj4.fsf@baylibre.com>
-References: <20170828142915.27020-1-jbrunet@baylibre.com>
- <CAPDyKFogy=L=BDKtMhKCN0nMLi-Yy5SHgAhB_=jog+CX91breA@mail.gmail.com>
- <7hr2vsdgj4.fsf@baylibre.com>
-Message-ID: <CAPDyKFpTkqH4qvLAraWxfxm=LOuWZv7P9nrznJ+o81y+9hDjjA@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 31 Aug 2017 15:52:19 +0200
+Subject: [PATCH v3 2/9] ARM64: dts: meson: remove cap-sd-highspeed from emmc
+ nodes
+In-Reply-To: <20170831135226.19784-1-jbrunet@baylibre.com>
+References: <20170831135226.19784-1-jbrunet@baylibre.com>
+Message-ID: <20170831135226.19784-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 30 August 2017 at 21:03, Kevin Hilman <khilman@baylibre.com> wrote:
-> Hi Ulf,
->
-> Ulf Hansson <ulf.hansson@linaro.org> writes:
->
->> On 28 August 2017 at 16:29, Jerome Brunet <jbrunet@baylibre.com> wrote:
->>> The patchset features several bugfixes, rework and upgrade for the
->>> meson-gx MMC driver.
->>>
->>> The main goal is to improve readability and enable new high speed
->>> modes, such as eMMC DDR52 and sdcard UHS modes up to SDR50 (100Mhz)
->>>
->>> SDR104 is not working with a few cards on the p200 and the
->>> libretech-cc. I suspect that 200Mhz might be a bit too fast for the PCB
->>> of these boards, adding noise to the signal and eventually breaking
->>> the communication with some cards. The same cards are working well on a
->>> laptop or the nanopi-k2 at 200Mhz.
->>>
->>> This series has been tested on gxbb-p200, gxbb-nanopi-k2 and
->>> gxl-s905x-libretech-cc
->>>
->>> Changes since v2 [1]:
->>> * Drop patches 1 to 3: Applied.
->>> * Drop patch 4: Debug stuff which should not have been sent.
->>> * Added fix to previous patch 3:
->>>   If the clock register is not initialized before registering the clk
->>>   with CCF, the framework will complain about an illegal divider value.
->>>   This had gone unnoticed because it was later fixed by the clock init
->>>   rework.
->>>
->>>   Ulf, I know it is getting late but it would be nice if patch #1 of
->>>   this v3 could go with 3 patches you already applied. The rest can
->>>   wait for the following cycle.
->>
->> I decided to pick them all, so applied for next!
->>
->
-> Just to double-check, so I can plan for the DT patches
-> accordingly... you are queuing this for v4.14, right?
+It does not make much sense to define cap-sd-highspeed in the emmc nodes
+Just remove it.
 
-Yes, correct!
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi            | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts           | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts         | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts            | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi               | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi           | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi          | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts            | 1 -
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts             | 1 -
+ 11 files changed, 11 deletions(-)
 
-Kind regards
-Uffe
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+index c89010e56488..d4f9c5b550c7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+@@ -215,7 +215,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index 9697a7a79464..7dae6acd3c8c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -297,7 +297,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+ 	disable-wp;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+index 9c59c3c6d1b6..a690956d6c75 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -274,7 +274,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index d147c853ab05..a12303becab4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -274,7 +274,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+ 	disable-wp;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index 81ffc689a5bf..d77e19591ee3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -241,7 +241,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+index 346753fb6324..0262ef8d48e4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+@@ -201,7 +201,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+index 2a5804ce7f4b..f779a985f923 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+@@ -144,7 +144,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <100000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+index 4c2ac7650fcd..21274a6c1b9b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+@@ -231,7 +231,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+index f3eea8e89d12..8899121f79e1 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+@@ -137,7 +137,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index 9b10c5f4f8c0..ff8a9f780485 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -196,7 +196,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index 08f1dd69b679..470f72bb863c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -220,7 +220,6 @@
+ 	pinctrl-names = "default";
+ 
+ 	bus-width = <8>;
+-	cap-sd-highspeed;
+ 	cap-mmc-highspeed;
+ 	max-frequency = <200000000>;
+ 	non-removable;
+-- 
+2.9.5
