@@ -1,64 +1,46 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 05 Sep 2017 12:18:41 -0700
-Subject: [PATCH v3 0/9] ARM64: dts: meson: update around mmc
-In-Reply-To: <20170831135226.19784-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Thu, 31 Aug 2017 15:52:17 +0200")
-References: <20170831135226.19784-1-jbrunet@baylibre.com>
-Message-ID: <7hlgltar8u.fsf@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 6 Sep 2017 09:29:51 +0200
+Subject: USB on Amlogic P231 using Linux 4.13
+In-Reply-To: <CA+xv_Tpuf4ZceQwn7w1mNqWy68GdMW4fpBz3itXsS+=gYTOJHQ@mail.gmail.com>
+References: <CA+xv_Tpuf4ZceQwn7w1mNqWy68GdMW4fpBz3itXsS+=gYTOJHQ@mail.gmail.com>
+Message-ID: <19fcd1fd-2088-3963-7be2-ce27f9a0f65a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Hi Alex,
 
-> This patchset feature updates around mmc. It is linked to this series [0]
-> but does not strictly depends on it. It adds:
->
-> * The regulator settling times for the gpio regulator of nanopi-k2 and
->   the libretech-cc.
-> * UHS modes for the p20x, nanopi-k2 and the libretech-cc
-> * clk-gate pins: these are the pinmuxes used for the clk-stop work
->   around explained here [1]
->
-> It also removes cap-sd-highspeed from eMMC nodes.
->
-> Special note on SDR104:
-> While the PCB of the p200 and the libretech-cc does not seems to handle
-> SDR104 completely, the nanopi-k2 seems to be handling it correctly.
->
-> The patch enabling this mode on the nanopi-k2 is the last one of this
-> series. It should propabably be left out until more people can test
-> sdr104 on the nanopi-k2
->
-> This series has been tested on the gxbb-200, the gxbb-nanopi-k2 and the
-> gxl-s905x-libretech-cc
->
-> Changes since v2 [3]:
-> * Rebase on Kevin's v4.14/dt64 branch
->
-> Changes since v1 [2]:
-> * Reorder patches to put fixes first, then enhancements
-> * Fix error in the SDIO clk_gate pins (GPIOX_5 instead GPIOX_4)
->
-> [0]: https://lkml.kernel.org/r/20170828142915.27020-1-jbrunet at baylibre.com
-> [1]: https://lkml.kernel.org/r/20170821160301.21899-11-jbrunet at baylibre.com
-> [2]: https://lkml.kernel.org/r/20170804180816.18737-1-jbrunet at baylibre.com
-> [3]: https://lkml.kernel.org/r/20170821160637.22456-1-jbrunet at baylibre.com
->
-> Jerome Brunet (9):
->   ARM64: dts: meson-gx: Use correct mmc clock source 0
->   ARM64: dts: meson: remove cap-sd-highspeed from emmc nodes
->   ARM64: dts: meson: add mmc clk gate pins
->   ARM64: dts: meson-gxbb: nanopi-k2: add card regulator settle times
->   ARM64: dts: meson-gxl: libretech-cc: add card regulator settle times
->   ARM64: dts: meson-gxl: libretech-cc: enable high speed modes
->   ARM64: dts: meson-gxbb: p20x: enable sdcard UHS modes
->   ARM64: dts: meson-gxbb: nanopi-k2: enable sdcard UHS modes
->   ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode
+(I add the mailing list on CC since it can be interesting to have a clarification of the USB for GXL/GXM)
 
-Applied to v4.14/dt64, and submitted to arm-soc.  It may miss this merge
-window, but if it does, we can submit for the first round of fixes after
--rc1 is out.
+The S905X/S905D/S912 shares (99%) the same USB architecture.
 
-Thanks,
+These SoCs have :
+ - a Synopsys DWC3 in *Host-Only* and *USB2* only
+ - a Synopsys DWC2 in *Device-Only*
 
-Kevin
+There is 3 (4 on GXM) Internal USB2 PHYs connected to a Root Hub, connected to the DWC3 Controller.
+The first PHY can be switched to device mode and muxed to the DWC2 Controller via another unknown "USB3" phy, this OTG support part is not documented and complex to understand and implement.
+
+For the USB Host to work, *all* PHYs must be enabled and configured, otherwise nothing happens.
+
+This is why Martin Blumenstingl posted an "initialize (multiple) PHYs in xhci-plat" serie to allow multiple PHYs behind a XHCI controller (DWC3 embeds a XHCI interface) to be configured in the same time, because historically SoCs
+only had a single PHY and on Intel platforms the multiple PHYs were initialized by the firmware.
+
+This is why the GXL/GXM PHY driver has been upstreamed, but nothing has been added to the DTS until Martin's patch has been merged.
+
+If you want to test the USB functionality, you can try my stable integration tree at : https://github.com/superna9999/linux/tree/linux-4.13-le-amlogic-gx
+It contains the USB patchs + dts patch with other Merged and WiP functionalities.
+
+Neil
+
+On 09/06/2017 02:49 AM, Alexander Kaplan wrote:
+> Hi Andreas, Hi Neil,
+> 
+> my name is Alex and  I just tried out the new Linux 4.13 on a Amlogic S905D p231 board. I am particularly interested in the USB support. As a test I plugged in a standard USB key drive which is recognized by the AML openlinux buildroot (kernel 3.14). However, using Linux 4.13 the USB drive is not recognized.
+> 
+> I compared meson-gxl-s905d-p231.dts to the meson-gxbb-odroidc2.dts and added nodes for usb to meson-gxl-s905d-p231.dts and meson-gxl.dtsi (attached dts.patch). After applying these changes I get some error messages about dwc2 in the kernel log (see p231_dmesg_4.13.txt) and the USB drive is still not recognized. I guess I'm missing something here - any hints are very welcome.
+> 
+> On http://linux-meson.com, the USB support on the S905D is still listed as "partial", so I'm not sure - should USB drives work in Linux 4.13 on the p231 board?
+> 
+> Thank you
+> Alex
+> 
