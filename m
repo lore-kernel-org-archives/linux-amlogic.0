@@ -1,75 +1,101 @@
-From: dlan@gentoo.org (Yixun Lan)
-Date: Wed,  6 Sep 2017 21:52:39 +0800
-Subject: [PATCH v2] serial: meson: add Magic SysRq support
-Message-ID: <20170906135239.29531-1-dlan@gentoo.org>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sat, 9 Sep 2017 15:14:35 +0200
+Subject: Problems after recent changes to meson-gx-mmc driver
+Message-ID: <e2171288-84ef-82db-2efc-300935e6c062@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This dirver try to implement the Magic SysRq support[1] for
-Amlogic Inc's meson platfo
->From the hardware perspective, the UART IP can't detect the 'BREAK' command
-clearly via the status register. Instead, we rely on the combination of
-'FRAME_ERR bit && ch == 0', and it works fine.
+Hi Jerome,
 
-[1] Documentation/admin-guide/sysrq.rst
+the recent changes, most likely one of the changes affecting the clock phase setting
+or tuning, break mmc on my system (Odroid C2 + Hardkernel 128GB eMMC card).
+"Next" kernel from Aug 25th works fine here. Hadn't time yet to bisect the issue.
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
+As additional info, that's what the eMMC DT config looks like here.
+The issue remains when switching to HS200.
 
----
-Changes since v1 at [0]:
-- add changelog & a few more comments
+/* eMMC */
+&sd_emmc_c {
+        status = "okay";
+        pinctrl-0 = <&emmc_pins>;
+        pinctrl-names = "default";
 
-[0] https://patchwork.kernel.org/patch/9728475/
----
- drivers/tty/serial/meson_uart.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+        bus-width = <8>;
+        cap-sd-highspeed;
+        max-frequency = <200000000>;
+        non-removable;
+        disable-wp;
+        cap-mmc-highspeed;
+        mmc-ddr-1_8v;
+        mmc-hs400-1_8v;
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 42e4a4c7597f..3fea24bafd80 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -14,6 +14,10 @@
-  *
-  */
- 
-+#if defined(CONFIG_SERIAL_MESON_CONSOLE) && defined(CONFIG_MAGIC_SYSRQ)
-+#define SUPPORT_SYSRQ
-+#endif
-+
- #include <linux/clk.h>
- #include <linux/console.h>
- #include <linux/delay.h>
-@@ -183,12 +187,12 @@ static void meson_receive_chars(struct uart_port *port)
- {
- 	struct tty_port *tport = &port->state->port;
- 	char flag;
--	u32 status, ch, mode;
-+	u32 ostatus, status, ch, mode;
- 
- 	do {
- 		flag = TTY_NORMAL;
- 		port->icount.rx++;
--		status = readl(port->membase + AML_UART_STATUS);
-+		ostatus = status = readl(port->membase + AML_UART_STATUS);
- 
- 		if (status & AML_UART_ERR) {
- 			if (status & AML_UART_TX_FIFO_WERR)
-@@ -216,6 +220,16 @@ static void meson_receive_chars(struct uart_port *port)
- 		ch = readl(port->membase + AML_UART_RFIFO);
- 		ch &= 0xff;
- 
-+		if ((ostatus & AML_UART_FRAME_ERR) && (ch == 0)) {
-+			port->icount.brk++;
-+			flag = TTY_BREAK;
-+			if (uart_handle_break(port))
-+				continue;
-+		}
-+
-+		if (uart_handle_sysrq_char(port, ch))
-+			continue;
-+
- 		if ((status & port->ignore_status_mask) == 0)
- 			tty_insert_flip_char(tport, ch, flag);
- 
--- 
-2.14.1
+        mmc-pwrseq = <&emmc_pwrseq>;
+        vmmc-supply = <&vcc3v3>;
+        vqmmc-supply = <&vcc1v8>;
+};
+
+Kind regards,
+Heiner
+
+
+[    0.784729] mmcblk0: mmc0:0001 DJNB4R 116 GiB
+[    0.790226] mmcblk0boot0: mmc0:0001 DJNB4R partition 1 4.00 MiB
+[    0.794860] mmcblk0boot1: mmc0:0001 DJNB4R partition 2 4.00 MiB
+[    0.800723] mmcblk0rpmb: mmc0:0001 DJNB4R partition 3 4.00 MiB
+[    0.807012]  mmcblk0: p1
+[    0.815910] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    0.818973] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    0.826699] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    0.836784] mmcblk0: error -110 sending stop command
+[    0.916784] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    0.920069] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    0.930234] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    0.933718] print_req_error: I/O error, dev mmcblk0, sector 2048
+[    0.939669] Buffer I/O error on dev mmcblk0p1, logical block 0, lost sync page write
+[    0.949190] EXT4-fs (mmcblk0p1): mounted filesystem with ordered data mode. Opts: (null)
+[    0.955397] VFS: Mounted root (ext4 filesystem) on device 179:1.
+[    0.963359] devtmpfs: mounted
+[    0.964411] Freeing unused kernel memory: 320K
+[    0.983379] mmcblk0: response CRC error sending SET_BLOCK_COUNT command, card status 0x900
+[    0.989571] mmcblk0: response CRC error sending r/w cmd command, card status 0x900
+[    1.093957] systemd[1]: System time before build time, advancing clock.
+[    1.159148] mmcblk0: response CRC error sending SET_BLOCK_COUNT command, card status 0x900
+[    1.193201] NET: Registered protocol family 10
+[    1.193750] Segment Routing with IPv6
+[    1.205032] systemd[1]: systemd 234 running in system mode. (+PAM -AUDIT -SELINUX -IMA -APPARMOR +SMACK -SYSVINIT +UTMP +LIBCRYP                                                                                                                                            TSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD -IDN2 +IDN default-hierarchy=hybrid)
+[    1.220390] systemd[1]: Detected architecture arm64.
+[    1.244200] systemd[1]: Set hostname to <odroidc2>.
+[    1.370901] mmcblk0: response CRC error sending SET_BLOCK_COUNT command, card status 0x900
+[    1.378114] mmcblk0: response CRC error sending SET_BLOCK_COUNT command, card status 0x900
+[    1.397501] systemd[1]: Created slice User and Session Slice.
+[    1.415651] systemd[1]: Reached target Remote File Systems.
+[    1.432905] systemd[1]: Created slice System Slice.
+[    1.451645] systemd[1]: Reached target Slices.
+[    1.468022] systemd[1]: Created slice system-serial\x2dgetty.slice.
+[    1.483793] systemd[1]: Listening on udev Control Socket.
+[    1.502607] systemd[1]: Mounting Kernel Debug File System...
+[    1.830855] EXT4-fs (mmcblk0p1): re-mounted. Opts: data=ordered,discard
+[    2.077375] systemd-journald[644]: Received request to flush runtime journal from PID 1
+[    2.085030] systemd-journald[644]: File /var/log/journal/5d03187c26854bbe9eab8ea99e9291cb/system.journal corrupted or uncleanly                                                                                                                                             shut down, renaming and replacing.
+[    2.096502] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.102475] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.110107] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.117608] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.125121] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.132627] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.140032] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.147511] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.155040] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.161860] print_req_error: I/O error, dev mmcblk0, sector 76224512
+[    2.168147] EXT4-fs warning (device mmcblk0p1): ext4_end_bio:322: I/O error 10 writing to inode 2359327 (offset 0 size 4096 star                                                                                                                                            ting block 9528065)
+[    2.181256] Buffer I/O error on device mmcblk0p1, logical block 9527808
+[    2.190050] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.196320] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.203573] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.211149] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.218616] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.226114] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.233593] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.241013] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.248513] mmcblk0: response CRC error sending r/w cmd command, card status 0xd00
+[    2.255350] print_req_error: I/O error, dev mmcblk0, sector 121899008
