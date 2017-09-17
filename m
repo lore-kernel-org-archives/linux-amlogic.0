@@ -1,45 +1,92 @@
-From: olof@lixom.net (Olof Johansson)
-Date: Fri, 15 Sep 2017 14:59:14 -0700
-Subject: [GIT PULL] Amlogic 64-bit DT updates for 4.14 (round 3, late)
-In-Reply-To: <7hr2vlarbn.fsf@baylibre.com>
-References: <7hr2vlarbn.fsf@baylibre.com>
-Message-ID: <CAOesGMjKjAE=OOcOK0KRzwvBO8NS2+qB7bt5zK19ryLopZhT-Q@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 17 Sep 2017 18:45:20 +0200
+Subject: [PATCH v7 3/6] ARM: smp_scu: allow the platform code to read the SCU
+ CPU status
+In-Reply-To: <20170917164523.6970-1-martin.blumenstingl@googlemail.com>
+References: <20170917164523.6970-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170917164523.6970-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+On Amlogic Meson8 / Meson8m2 (both Cortex-A9) and Meson8b (Cortex-A5)
+the CPU hotplug code needs to wait until the SCU status of the CPU that
+is being taken offline is SCU_PM_POWEROFF.
+Provide a utility function (which can be invoked for example from
+.cpu_kill()) which allows reading the SCU status of a CPU.
 
-On Tue, Sep 5, 2017 at 12:17 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Olof, Arnd,
->
-> I'm aware this is pretty late, so feel free to include in a late branch,
-> or we can wait and send after -rc1.  It's late because the corresponding
-> drivers/mmc change just got merged.
->
-> Thanks,
->
-> Kevin
->
->
-> The following changes since commit 47884c5c746ee7c02e06fbf60480e0f13aa11dfe:
->
->   ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names (2017-08-22 15:37:50 -0700)
->
-> are available in the git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-3
->
-> for you to fetch changes up to 485a308f05d843034b6e82f688704c44888aecde:
->
->   ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode (2017-09-05 12:05:01 -0700)
->
-> ----------------------------------------------------------------
-> Amlogic 64-bit DT updates for v4.14 (round 3)
-> - updates for new MMC driver features/fixes
-> - support high-speed modes
+While here, replace the magic number 0x3 with a preprocessor macro
+(SCU_CPU_STATUS_MASK) so we don't have to duplicate this magic number in
+the new function.
 
-I decided to merge into next/late, will send this afternoon or
-tomorrow together with a few other changes.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/include/asm/smp_scu.h |  6 ++++++
+ arch/arm/kernel/smp_scu.c      | 18 +++++++++++++++++-
+ 2 files changed, 23 insertions(+), 1 deletion(-)
 
-
--Olof
+diff --git a/arch/arm/include/asm/smp_scu.h b/arch/arm/include/asm/smp_scu.h
+index 4c47bdfd4f61..1529d1ae2f8d 100644
+--- a/arch/arm/include/asm/smp_scu.h
++++ b/arch/arm/include/asm/smp_scu.h
+@@ -28,6 +28,7 @@ static inline unsigned long scu_a9_get_base(void)
+ unsigned int scu_get_core_count(void __iomem *);
+ int scu_power_mode(void __iomem *, unsigned int);
+ int scu_cpu_power_enable(void __iomem *, unsigned int);
++int scu_get_cpu_power_mode(void __iomem *scu_base, unsigned int logical_cpu);
+ #else
+ static inline unsigned int scu_get_core_count(void __iomem *scu_base)
+ {
+@@ -42,6 +43,11 @@ static inline int scu_cpu_power_enable(void __iomem *scu_base,
+ {
+ 	return -EINVAL;
+ }
++static inline int scu_get_cpu_power_mode(void __iomem *scu_base,
++					 unsigned int logical_cpu)
++{
++	return -EINVAL;
++}
+ #endif
+ 
+ #if defined(CONFIG_SMP) && defined(CONFIG_HAVE_ARM_SCU)
+diff --git a/arch/arm/kernel/smp_scu.c b/arch/arm/kernel/smp_scu.c
+index 1d549c16b5fc..c6b33074c393 100644
+--- a/arch/arm/kernel/smp_scu.c
++++ b/arch/arm/kernel/smp_scu.c
+@@ -21,6 +21,7 @@
+ #define SCU_STANDBY_ENABLE	(1 << 5)
+ #define SCU_CONFIG		0x04
+ #define SCU_CPU_STATUS		0x08
++#define SCU_CPU_STATUS_MASK	GENMASK(1, 0)
+ #define SCU_INVALIDATE		0x0c
+ #define SCU_FPGA_REVISION	0x10
+ 
+@@ -82,7 +83,8 @@ static int scu_set_power_mode_internal(void __iomem *scu_base,
+ 	if (mode > 3 || mode == 1 || cpu > 3)
+ 		return -EINVAL;
+ 
+-	val = readb_relaxed(scu_base + SCU_CPU_STATUS + cpu) & ~0x03;
++	val = readb_relaxed(scu_base + SCU_CPU_STATUS + cpu);
++	val &= ~SCU_CPU_STATUS_MASK;
+ 	val |= mode;
+ 	writeb_relaxed(val, scu_base + SCU_CPU_STATUS + cpu);
+ 
+@@ -109,3 +111,17 @@ int scu_cpu_power_enable(void __iomem *scu_base, unsigned int cpu)
+ {
+ 	return scu_set_power_mode_internal(scu_base, cpu, SCU_PM_NORMAL);
+ }
++
++int scu_get_cpu_power_mode(void __iomem *scu_base, unsigned int logical_cpu)
++{
++	unsigned int val;
++	int cpu = MPIDR_AFFINITY_LEVEL(cpu_logical_map(logical_cpu), 0);
++
++	if (cpu > 3)
++		return -EINVAL;
++
++	val = readb_relaxed(scu_base + SCU_CPU_STATUS + cpu);
++	val &= SCU_CPU_STATUS_MASK;
++
++	return val;
++}
+-- 
+2.14.1
