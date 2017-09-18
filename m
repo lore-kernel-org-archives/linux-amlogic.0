@@ -1,8 +1,10 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 18 Sep 2017 15:46:07 +0200
+Date: Mon, 18 Sep 2017 15:46:08 +0200
 Subject: [PATCH v4 0/2] irqchip: meson: add support for the gpio interrupt
  controller
-Message-ID: <20170918134610.17743-1-jbrunet@baylibre.com>
+In-Reply-To: <20170918134610.17743-1-jbrunet@baylibre.com>
+References: <20170918134610.17743-1-jbrunet@baylibre.com>
+Message-ID: <20170918134610.17743-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
