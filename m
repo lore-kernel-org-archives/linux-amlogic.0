@@ -1,68 +1,111 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 20 Sep 2017 10:29:58 +0200
-Subject: [PATCH 2/2] ARM64: dts: meson-gxm: Add support for Khadas VIM2
-In-Reply-To: <CAFBinCD0ev5kY_5BY-fZ=fEZ7ZkKi7PdvO4NGAwzVxLEfOT=Dw@mail.gmail.com>
-References: <1505832820-3517-1-git-send-email-narmstrong@baylibre.com>
- <1505832820-3517-3-git-send-email-narmstrong@baylibre.com>
- <CAFBinCD0ev5kY_5BY-fZ=fEZ7ZkKi7PdvO4NGAwzVxLEfOT=Dw@mail.gmail.com>
-Message-ID: <84171990-f5f2-d7d2-2bf6-d28390daac4a@baylibre.com>
+Date: Wed, 20 Sep 2017 10:36:26 +0200
+Subject: [PATCH 1/2] ARM64: dts: meson-gxm: Add Vega S96 board
+In-Reply-To: <CAFBinCCVKFbU-kk9EFzbTbfKCGbOpmm+46spsVry=0E_JCTJgQ@mail.gmail.com>
+References: <1505822748-23431-1-git-send-email-narmstrong@baylibre.com>
+ <1505822748-23431-2-git-send-email-narmstrong@baylibre.com>
+ <CAFBinCCVKFbU-kk9EFzbTbfKCGbOpmm+46spsVry=0E_JCTJgQ@mail.gmail.com>
+Message-ID: <5e034ee7-278a-5b89-8ebc-ca24a00ae095@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/19/2017 07:55 PM, Martin Blumenstingl wrote:
+On 09/19/2017 07:51 PM, Martin Blumenstingl wrote:
 > Hi Neil,
 > 
-> On Tue, Sep 19, 2017 at 4:53 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
->> The Khadas VIM2 is a Single Board Computer, respin of the origin
->> Khadas VIM board, using an Amlogic S912 SoC and more server oriented.
+> On Tue, Sep 19, 2017 at 2:05 PM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> The Tronsmart Vega S96 is a TV box derived from Amlogic q200 reference design.
 >>
->> It provides the same external connectors and header pinout, plus a SPI
->> NOR Flash, a reprogrammable STM8S003 MCU, FPC Connector, Cooling FAN header
->> and Pogo Pads Arrays.
->>
->> Cc: Gouwa <gouwa@szwesion.com>
+>> Cc: support at tronsmart.com
+>> Signed-off-by: Oleg <balbes-150@yandex.ru>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  Documentation/devicetree/bindings/arm/amlogic.txt  |   1 +
->>  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
->>  .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     | 401 +++++++++++++++++++++
->>  3 files changed, 403 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+>>  arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+>>  arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts | 39 ++++++++++++++++++++++
+>>  2 files changed, 40 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts
 >>
-
-[...]
-
+>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>> index 7a9f48c..a6c4a06 100644
+>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>> @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
+>> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
+>>
+>>  always         := $(dtb-y)
+>>  subdir-y       := $(dts-dirs)
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts
+>> new file mode 100644
+>> index 0000000..ba74240
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts
+>> @@ -0,0 +1,39 @@
+>> +/*
+>> + * Copyright (c) 2017 BayLibre, SAS.
+>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>> + * Copyright (c) 2017 Oleg <balbes-150@yandex.ru>
+>> + *
+>> + * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "meson-gxm.dtsi"
+>> +#include "meson-gx-p23x-q20x.dtsi"
+>> +
+>> +/ {
+>> +       compatible = "tronsmart,vega-s96", "amlogic,s912", "amlogic,meson-gxm";
+>> +       model = "Tronsmart Vega S96";
+>> +
+>> +};
+>> +
+>> +&ethmac {
+>> +       pinctrl-0 = <&eth_pins>;
+>> +       pinctrl-names = "default";
+>> +
+>> +       /* Select external PHY by default */
+>> +       phy-handle = <&external_phy>;
+>> +
+>> +       amlogic,tx-delay-ns = <2>;
+>> +
+>> +       /* External PHY is in RGMII */
+>> +       phy-mode = "rgmii";
+>> +};
+>> +
 >> +&external_mdio {
->> +       external_phy: ethernet-phy at 1 {
+>> +       external_phy: ethernet-phy at 0 {
 >> +               compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-> could you please remove the compatible property and replace it with a
-> comment as explained in [0]?
+> some time ago I thought it was smart to add a compatible string with the PHY ID.
+> this was until I figured out that it should only be done if the PHY
+> reports an invalid ID: [0]
+> that's why most .dts files that I've touched skip the "compatible"
+> property and use a comment like "/* Realtek RTL8211F (0x001cc916) */"
+> instead
+
+Done, thanks !
+
+Neil
+
 > 
-
-Ok
-
 >> +               reg = <0>;
 >> +               max-speed = <1000>;
 >> +       };
 >> +};
->> +
-
-[...]
-
-> 
-> with that and Jerome's comments fixed:
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> --
+>> 1.9.1
+>>
+>>
+>> _______________________________________________
+>> linux-amlogic mailing list
+>> linux-amlogic at lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 > 
 > 
 > Regards,
 > Martin
 > 
 > 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004729.html
+> [0] https://github.com/torvalds/linux/commit/7630ea4bda18df2ee1c64dfdca1724a9cc32f920
 > 
-
-Thanks Martin !
-
-I'll send a v2 when eMMC DTS patches goes in 4.14-rc2.
-
-Neil
