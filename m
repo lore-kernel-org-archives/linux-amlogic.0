@@ -1,30 +1,59 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 20 Sep 2017 16:08:15 +0200
-Subject: [PATCH] pinctrl: meson: fix incorrect usage of ENOSYS
-Message-ID: <20170920140815.20776-1-jbrunet@baylibre.com>
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Wed, 20 Sep 2017 16:38:55 +0200
+Subject: ARM: dts: meson: fixing USB support on Meson8b
+Message-ID: <20170920143855.GA27243@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-ENOSYS is special and should only be used for incorrect syscall number.
-It is not the case here. let's use ENOTSUPP instead.
+This patch fixes the Meson8b USB1 dts node, changing the IRQ type
+from edge rising to level high.
+This avoids errors like "usb 1-1-port1: cannot reset (err = -110)" on
+Odroid-C1+ board.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+The patch also improves the same node adding the description of the digital
+and analog regulators found in DWC2 USB controller.
+
+Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/meson8b.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index c9cd54de0449..71bccb7acbf8 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -399,7 +399,7 @@ static int meson_pinconf_group_set(struct pinctrl_dev *pcdev,
- static int meson_pinconf_group_get(struct pinctrl_dev *pcdev,
- 				   unsigned int group, unsigned long *config)
- {
--	return -ENOSYS;
-+	return -ENOTSUPP;
- }
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index bc278da7df0d..3306bff3d44d 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -87,6 +87,22 @@
+ 		compatible = "arm,cortex-a5-scu";
+ 		reg = <0xc4300000 0x100>;
+ 	};
++
++	soc {
++		vusb_d: regulator-vusb_d {
++			compatible = "regulator-fixed";
++			regulator-name = "vusb_d";
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1200000>;
++		};
++
++		vusb_a: regulator-vusb_a {
++			compatible = "regulator-fixed";
++			regulator-name = "vusb_a";
++			regulator-min-microvolt = <1100000>;
++			regulator-max-microvolt = <1100000>;
++		};
++	};
+ }; /* end of / */
  
- static const struct pinconf_ops meson_pinconf_ops = {
+ &aobus {
+@@ -214,6 +230,9 @@
+ 
+ &usb1 {
+ 	compatible = "amlogic,meson8b-usb", "snps,dwc2";
++	interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
++	vusb_d-supply = <&vusb_d>;
++	vusb_a-supply = <&vusb_a>;
+ 	clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
+ 	clock-names = "otg";
+ };
 -- 
-2.13.5
+2.14.1
