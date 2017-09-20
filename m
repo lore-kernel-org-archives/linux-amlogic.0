@@ -1,46 +1,18 @@
-From: yamada.masahiro@socionext.com (Masahiro Yamada)
-Date: Wed, 20 Sep 2017 19:02:24 +0900
-Subject: [PATCH 0/5] nvmem: some cleanups and sparse warning fixes
-In-Reply-To: <1505134864-11975-1-git-send-email-yamada.masahiro@socionext.com>
-References: <1505134864-11975-1-git-send-email-yamada.masahiro@socionext.com>
-Message-ID: <CAK7LNAQHoDN=SOLA6AxyeCOUObRwy6nJHizo6xoDEX1gybvqNg@mail.gmail.com>
+From: balbes-150@yandex.ru (Oleg)
+Date: Wed, 20 Sep 2017 13:47:15 +0300
+Subject: [PATCH 1/2] ARM64: dts: meson-gxm: Add Vega S96 board
+In-Reply-To: <a342b95d-0300-f408-266f-e48deb1f72d7@baylibre.com>
+References: <1505822748-23431-1-git-send-email-narmstrong@baylibre.com>
+ <1505822748-23431-2-git-send-email-narmstrong@baylibre.com>
+ <1505833280.2703.83.camel@baylibre.com>
+ <a79c801a-c6bc-87d6-34f5-1a52f77704c6@yandex.ru>
+ <a342b95d-0300-f408-266f-e48deb1f72d7@baylibre.com>
+Message-ID: <8c982826-4f5d-5e91-dfe5-ca9f3a0ce8af@yandex.ru>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Srinivas,
 
-
-2017-09-11 22:00 GMT+09:00 Masahiro Yamada <yamada.masahiro@socionext.com>:
+> Ok, then can I replace the Signed-off-bys with "Signed-off-by: Oleg Ivanov <balbes-150@yandex.ru>" ?
 >
-> Socionext is trying to add a new nvmem driver.
->
-> Before adding a new one, I'd like to be sure about the preferred
-> coding style in this subsystem, and build-up cleaner code base.
->
-> Please pick up what you like.  Please feel free to throw away
-> what you do not like.
->
-> 1/5, 2/5: convert kzalloc to stack because nvmem_config
-> is small one-time use data.
-> This is what we agreed in the discussion.
->
-> 3/5, 4/5: fix sparse warning
-> For mtk-efuse, qfprom, the base address is the only private data
-> but, assigning (void __iomem *) to ->priv directly causes sparse
-> warnings.
->
-> 5/5: clean-up of owner settings - if the owner field matches
-> nvmem->dev->driver->onwer, we need not set the onwer field
-> explicitly.
 
-
-Does this series look OK?
-
-Thanks.
-
-
-
-
--- 
-Best Regards
-Masahiro Yamada
+Yes, that's right. Thanks for the patch.
