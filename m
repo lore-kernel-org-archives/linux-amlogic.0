@@ -1,23 +1,20 @@
 From: robh@kernel.org (Rob Herring)
-Date: Thu, 21 Sep 2017 18:09:14 -0500
-Subject: [PATCH v4 1/2] dt-bindings: interrupt-controller: add DT binding
- for meson GPIO interrupt controller
-In-Reply-To: <20170918134610.17743-3-jbrunet@baylibre.com>
-References: <20170918134610.17743-1-jbrunet@baylibre.com>
- <20170918134610.17743-3-jbrunet@baylibre.com>
-Message-ID: <20170921230914.sngqq6ls6fqqavwo@rob-hp-laptop>
+Date: Thu, 21 Sep 2017 18:41:31 -0500
+Subject: [PATCH 2/2] dt-bindings: arm: amlogic: Add Tronsmart Vega S96
+ binding
+In-Reply-To: <1505822748-23431-3-git-send-email-narmstrong@baylibre.com>
+References: <1505822748-23431-1-git-send-email-narmstrong@baylibre.com>
+ <1505822748-23431-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20170921234131.gofpgnzralycrtm5@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Sep 18, 2017 at 03:46:09PM +0200, Jerome Brunet wrote:
-> This commit adds the device tree bindings description for Amlogic's GPIO
-> interrupt controller available on the meson8b, gxbb and gxl SoC families
-> 
-> Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+On Tue, Sep 19, 2017 at 02:05:48PM +0200, Neil Armstrong wrote:
+> Cc: support at tronsmart.com
+> Signed-off-by: Oleg <balbes-150@yandex.ru>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  .../amlogic,meson-gpio-intc.txt                    | 35 ++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+>  Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
+>  1 file changed, 1 insertion(+)
 
 Acked-by: Rob Herring <robh@kernel.org>
