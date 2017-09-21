@@ -1,43 +1,23 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 21 Sep 2017 19:16:04 +0200
-Subject: [PATCH 7/7] ARM64: dts: meson-gxl: adjust libretech-cc gpio-line-names
-Message-ID: <20170921171604.27675-1-jbrunet@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 21 Sep 2017 18:09:14 -0500
+Subject: [PATCH v4 1/2] dt-bindings: interrupt-controller: add DT binding
+ for meson GPIO interrupt controller
+In-Reply-To: <20170918134610.17743-3-jbrunet@baylibre.com>
+References: <20170918134610.17743-1-jbrunet@baylibre.com>
+ <20170918134610.17743-3-jbrunet@baylibre.com>
+Message-ID: <20170921230914.sngqq6ls6fqqavwo@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-TEST_N gpio has been moved so the gpio-line-names of the cc
-must be adjusted accordingly
+On Mon, Sep 18, 2017 at 03:46:09PM +0200, Jerome Brunet wrote:
+> This commit adds the device tree bindings description for Amlogic's GPIO
+> interrupt controller available on the meson8b, gxbb and gxl SoC families
+> 
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../amlogic,meson-gpio-intc.txt                    | 35 ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 69ca14ac10fa..3e9b9c8b72f0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -146,7 +146,9 @@
- 			  "7J1 Header Pin12",
- 			  "IR In",
- 			  "9J3 Switch HDMI CEC/7J1 Header Pin11",
--			  "7J1 Header Pin13";
-+			  "7J1 Header Pin13",
-+			  /* GPIO_TEST_N */
-+			  "7J1 Header Pin15";
- };
- 
- &pinctrl_periphs {
-@@ -188,9 +190,7 @@
- 			  "7J1 Header Pin32", "7J1 Header Pin29",
- 			  "7J1 Header Pin31",
- 			  /* Bank GPIOCLK */
--			  "7J1 Header Pin7", "",
--			  /* GPIO_TEST_N */
--			  "7J1 Header Pin15";
-+			  "7J1 Header Pin7", "";
- };
- 
- /* SD card */
--- 
-2.13.5
+Acked-by: Rob Herring <robh@kernel.org>
