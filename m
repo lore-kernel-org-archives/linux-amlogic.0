@@ -1,48 +1,45 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 21 Sep 2017 19:14:48 +0200
-Subject: [PATCH 5/7] ARM64: dts: meson-gxbb: adjust odroid-c2 gpio-line-names
+Date: Thu, 21 Sep 2017 19:14:49 +0200
+Subject: [PATCH 6/7] ARM64: dts: meson-gxl: adjust kvim gpio-line-names
 In-Reply-To: <20170921171450.27407-1-jbrunet@baylibre.com>
 References: <20170921171450.27407-1-jbrunet@baylibre.com>
-Message-ID: <20170921171450.27407-6-jbrunet@baylibre.com>
+Message-ID: <20170921171450.27407-7-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-GPIOX22 is now declared properly and TEST_N has been moved so
-the gpio-line-names of the odroid-c2 must be adjusted accordingly
+TEST_N gpio has been moved so the gpio-line-names of the kvim
+must be adjusted accordingly
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index d147c853ab05..9fc50bc5f9f4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -194,7 +194,9 @@
- 			  "USB HUB nRESET", "USB OTG Power En",
- 			  "J7 Header Pin2", "IR In", "J7 Header Pin4",
- 			  "J7 Header Pin6", "J7 Header Pin5", "J7 Header Pin7",
--			  "HDMI CEC", "SYS LED";
-+			  "HDMI CEC", "SYS LED",
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+index edc512ad0bac..71a6e1ce7ad5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+@@ -122,7 +122,9 @@
+ 			  "J9 Header Pin33",
+ 			  "IR In",
+ 			  "HDMI CEC",
+-			  "SYS LED";
++			  "SYS LED",
 +			  /* GPIO_TEST_N */
 +			  "";
  };
  
  &pinctrl_periphs {
-@@ -233,11 +235,9 @@
- 			  "J2 Header Pin12", "J2 Header Pin13",
- 			  "J2 Header Pin8", "J2 Header Pin10",
- 			  "", "", "", "", "",
--			  "J2 Header Pin11", "", "J2 Header Pin7",
-+			  "J2 Header Pin11", "", "J2 Header Pin7", "",
+@@ -163,9 +165,7 @@
+ 			  "WIFI 32K", "Bluetooth Enable",
+ 			  "Bluetooth WAKE HOST",
  			  /* Bank GPIOCLK */
--			  "", "", "", "",
+-			  "", "J9 Header Pin39",
 -			  /* GPIO_TEST_N */
 -			  "";
-+			  "", "", "", "";
++			  "", "J9 Header Pin39";
  };
  
- &saradc {
+ &pwm_AO_ab {
 -- 
 2.13.5
