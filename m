@@ -1,78 +1,58 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 22 Sep 2017 08:59:42 +0200
-Subject: ARM: dts: meson: fixing USB support on Meson8b
-In-Reply-To: <20170920143855.GA27243@ingrassia.epigenesys.com>
-References: <20170920143855.GA27243@ingrassia.epigenesys.com>
-Message-ID: <CAFBinCCT2xoPELb7h34MqgcvDjYXOLqPM8cyf2faLD-j86-1Hw@mail.gmail.com>
+Date: Fri, 22 Sep 2017 09:01:04 +0200
+Subject: [PATCH] ARM: dts: meson: enabling the USB Host controller on
+ Odroid-C1/C1+ board
+In-Reply-To: <20170920144009.GA27374@ingrassia.epigenesys.com>
+References: <20170920144009.GA27374@ingrassia.epigenesys.com>
+Message-ID: <CAFBinCD5_5Ftgyr2-Q=Nxf4__h6CMABZ0hbxXpyTa8dyLkG=Cw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Emiliano,
-
-On Wed, Sep 20, 2017 at 4:38 PM, Emiliano Ingrassia
+On Wed, Sep 20, 2017 at 4:40 PM, Emiliano Ingrassia
 <ingrassia@epigenesys.com> wrote:
-> This patch fixes the Meson8b USB1 dts node, changing the IRQ type
-> from edge rising to level high.
-> This avoids errors like "usb 1-1-port1: cannot reset (err = -110)" on
-> Odroid-C1+ board.
-many thanks for investigating and even fixing this!
-
-> The patch also improves the same node adding the description of the digital
-> and analog regulators found in DWC2 USB controller.
-I could not find any other board that passes fixed regulators here.
-are you trying to fix a separate problem here?
-
-can you add the following line before your Signed-off-by please:
-Fixes: e29b1cf87473 ("ARM: dts: meson: add USB support on Meson8 and Meson8b")
-
+> This patch enables the USB Host controller (USB1) and the relative USB2 PHY
+> on Odroid-C1/C1+ board.
+>
 > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
-> ---
->  arch/arm/boot/dts/meson8b.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index bc278da7df0d..3306bff3d44d 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -87,6 +87,22 @@
->                 compatible = "arm,cortex-a5-scu";
->                 reg = <0xc4300000 0x100>;
->         };
-> +
-> +       soc {
-> +               vusb_d: regulator-vusb_d {
-> +                       compatible = "regulator-fixed";
-> +                       regulator-name = "vusb_d";
-> +                       regulator-min-microvolt = <1200000>;
-> +                       regulator-max-microvolt = <1200000>;
-> +               };
-> +
-> +               vusb_a: regulator-vusb_a {
-> +                       compatible = "regulator-fixed";
-> +                       regulator-name = "vusb_a";
-> +                       regulator-min-microvolt = <1100000>;
-> +                       regulator-max-microvolt = <1100000>;
-> +               };
-> +       };
->  }; /* end of / */
->
->  &aobus {
-> @@ -214,6 +230,9 @@
->
->  &usb1 {
->         compatible = "amlogic,meson8b-usb", "snps,dwc2";
-> +       interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-I checked Amlogic's code: even Meson6 uses IRQ_TYPE_LEVEL_HIGH
-(drivers/amlogic/usb/dwc_otg/310/dwc_otg_pcd_linux.c in Amlogic's 3.10
-kernel sources)
-can you please update meson.dtsi (instead of just updating
-meson8b.dtsi) and do the same for the usb0 node?
+I don't have any Odroid hardware to play with, but this looks good to me:
 
-> +       vusb_d-supply = <&vusb_d>;
-> +       vusb_a-supply = <&vusb_a>;
->         clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
->         clock-names = "otg";
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+> ---
+>  arch/arm/boot/dts/meson8b-odroidc1.dts | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> index e50f1a1fdbc7..9ff6ca4e20d0 100644
+> --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> @@ -76,3 +76,26 @@
+>         pinctrl-0 = <&uart_ao_a_pins>;
+>         pinctrl-names = "default";
 >  };
+> +
+> +&gpio_ao {
+> +       /*
+> +        * WARNING: The USB Hub on the Odroid-C1/C1+ needs a reset signal
+> +        * to be turned high in order to be detected by the USB Controller.
+> +        * This signal should be handled by a USB specific power sequence
+> +        * in order to reset the Hub when USB bus is powered down.
+> +        */
+> +       usb-hub {
+> +               gpio-hog;
+> +               gpios = <GPIOAO_4 GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name = "usb-hub-reset";
+> +       };
+> +};
+> +
+> +&usb1_phy {
+> +       status = "okay";
+> +};
+> +
+> +&usb1 {
+> +       status = "okay";
+> +};
 > --
 > 2.14.1
 >
@@ -81,7 +61,3 @@ meson8b.dtsi) and do the same for the usb0 node?
 > linux-amlogic mailing list
 > linux-amlogic at lists.infradead.org
 > http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
-
-Regards,
-Martin
