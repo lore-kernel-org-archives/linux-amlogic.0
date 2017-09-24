@@ -1,88 +1,66 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 23 Sep 2017 16:14:03 +0200
-Subject: [PATCH 3/3] ARM: dts: meson: add SoC information nodes
-In-Reply-To: <20170923141403.20882-1-martin.blumenstingl@googlemail.com>
-References: <20170923141403.20882-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20170923141403.20882-4-martin.blumenstingl@googlemail.com>
+From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
+Date: Sun, 24 Sep 2017 06:28:03 +0200
+Subject: [PATCH] ARM: dts: meson: fixing USB support on Meson6, Meson8
+ and Meson8b
+In-Reply-To: <20170922115708.GA14806@ingrassia.epigenesys.com>
+References: <20170922115708.GA14806@ingrassia.epigenesys.com>
+Message-ID: <20170924042803.GC2604@otheros>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The SoC type and version information is encoded in different register
-blocks.
-The SoC type information is part of the "assist" registers.
-The misc version information is part of the "bootrom" registers.
-On Meson8, Meson8b and Meson8m2 there is additionally information about
-the minor version. This information is stored in the "analog top"
-registers.
+On Fri, Sep 22, 2017 at 01:57:08PM +0200, Emiliano Ingrassia wrote:
+> This patch fixes the Meson6, Meson8 and Meson8b USB controllers dts nodes
+> which interrupts are level type instead of edge type.
+> This avoids errors like "usb 1-1-port1: cannot reset (err = -110)" and
+> similars on Odroid-C1+ board.
+> 
+> Fixes: e29b1cf87473 ("ARM: dts: meson: add USB support on Meson8 and Meson8b")
+> 
+> Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
 
-Add the nodes for these register blocks so we can decode the SoC type
-and version information.
+Hi Emiliano,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson.dtsi   | 10 ++++++++++
- arch/arm/boot/dts/meson8.dtsi  |  5 +++++
- arch/arm/boot/dts/meson8b.dtsi |  5 +++++
- 3 files changed, 20 insertions(+)
+Yes! I can confirm that these two patches made me able to boot a
+Debian unstable from a USB stick on an Odroid C1+ for the first time.
+I tested both a v4.13.2 kernel and a v4.14-rc1 with the SMP
+patches included.
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index e7edc2d7b75e..ea95c9773eb8 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -80,6 +80,11 @@
- 			#size-cells = <1>;
- 			ranges = <0x0 0xc1100000 0x200000>;
- 
-+			assist: assist at 7c00 {
-+				compatible = "amlogic,meson-mx-assist", "syscon";
-+				reg = <0x7c00 0x200>;
-+			};
-+
- 			hwrng: rng at 8100 {
- 				compatible = "amlogic,meson-rng";
- 				reg = <0x8100 0x8>;
-@@ -261,5 +266,10 @@
- 			#size-cells = <1>;
- 			ranges = <0 0xd9000000 0x20000>;
- 		};
-+
-+		bootrom: bootrom at d9040000 {
-+			compatible = "amlogic,meson-mx-bootrom", "syscon";
-+			reg = <0xd9040000 0x10000>;
-+		};
- 	};
- }; /* end of / */
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 1db9bbe94337..6c0886633820 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -271,6 +271,11 @@
- 		reg = <0x8000 0x4>, <0x4000 0x460>;
- 	};
- 
-+	analog_top: analog-top at 81a8 {
-+		compatible = "amlogic,meson8-analog-top", "syscon";
-+		reg = <0x81a8 0x14>;
-+	};
-+
- 	pwm_ef: pwm at 86c0 {
- 		compatible = "amlogic,meson8-pwm", "amlogic,meson8b-pwm";
- 		reg = <0x86c0 0x10>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index a31668cda166..d65017ced82e 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -223,6 +223,11 @@
- 		#reset-cells = <1>;
- 	};
- 
-+	analog_top: analog-top at 81a8 {
-+		compatible = "amlogic,meson8b-analog-top", "syscon";
-+		reg = <0x81a8 0x14>;
-+	};
-+
- 	pwm_ef: pwm at 86c0 {
- 		compatible = "amlogic,meson8b-pwm";
- 		reg = <0x86c0 0x10>;
--- 
-2.14.1
+
+I'm having one oddity with the stress-ng tool though: Several
+filesystem related tests make the Odroid hang for me. This works for
+me:
+
+$ cd /tmp/; time stress-ng -v --class filesystem --sequential 1 --exclude copy-file -t 30s
+(with /tmp being a tmpfs)
+
+Those tests make the system hang for me almost immediately, though:
+
+$ cd ~/; time stress-ng -v -t 30s --chdir 1
+$ cd ~/; time stress-ng -v -t 30s --dir 1
+$ cd ~/; time stress-ng -v -t 30s --dirdeep 1
+$ cd ~/; time stress-ng -v -t 30s --fallocate 1
+$ cd ~/; time stress-ng -v -t 30s --mknod 1
+$ cd ~/; time stress-ng -v -t 30s --sync-file 1
+$ cd ~/; time stress-ng -v -t 30s --xattr 1
+
+Unfortunately, there is no error message on my serial console
+then, it just hangs silently with the heartbeat LED stopping to
+blink.
+
+I also tried:
+
+* Using a USB connected hdd instead of the USB flash drive, with
+  an actively powered USB hub in between.
+* Using a clean v4.13.2 with the patched v4.14-rc1 DTB file
+  instead of v4.14-rc1 kernel (with the SMP patches included).
+
+Both without success. I also experienced a two freezes while
+apt-get installing a few patches.
+
+Anyone having an idea how I could make those crashes more
+verbose or what else I could try? Or could it be that it freezes
+so silently due to some sort of internal power issues? (I got a
+little paranoid with power stuff since the confirmed,
+hardware related power issues on the Odroid U3)
+
+Regards, Linus
