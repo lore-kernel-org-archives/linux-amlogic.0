@@ -1,33 +1,89 @@
-From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
-Date: Sun, 24 Sep 2017 06:42:41 +0200
-Subject: [PATCH] ARM: dts: meson: fixing USB support on Meson6, Meson8
- and Meson8b
-In-Reply-To: <20170924042803.GC2604@otheros>
-References: <20170922115708.GA14806@ingrassia.epigenesys.com>
- <20170924042803.GC2604@otheros>
-Message-ID: <20170924044241.GD2604@otheros>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 24 Sep 2017 21:05:27 +0200
+Subject: [RFC v2 1/2] dt-bindings: mmc: Document the Amlogic Meson8 and
+ Meson8b SDIO bindings
+In-Reply-To: <20170924190528.21841-1-martin.blumenstingl@googlemail.com>
+References: <20170924190528.21841-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170924190528.21841-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-> Or could it be that it freezes
-> so silently due to some sort of internal power issues? (I got a
-> little paranoid with power stuff since the confirmed,
-> hardware related power issues on the Odroid U3)
+From: Carlo Caione <carlo@endlessm.com>
 
-Although the USB powering seems to work way better with the Odroid
-C1+ than with my Odroid U3:
+This documents the devicetree bindings for the SDIO/MMC host found in
+Amlogic Meson8 and Meson8b SoCs. It supports the SD specification v2.0
+and the eMMC specification v4.41.
+It has an internal "mux" which allows connecting up to three MMC devices
+to it. The maximum supported bus-width is 4-bits.
 
-When connecting the HDD via USB directly without the HUB, I can
-hear the disk trying to spin up, then audibly failing (while
-spin-up with the actively powered HUB works just fine). Even
-though the kernel tries to respin it again and again, the system
-itself stays stable.
+Amlogic's GPL kernel sources call it "SDIO" to differentiate it from the
+other MMC controller in (at least the Meson8 and Meson8b) the SoCs (they
+call the other one "SDHC", which supports a bus-width of up to 8-bits).
 
-On the Odroid U3, connecting this HDD via USB would make the
-Odroid U3 crash or the internal USB hub or ethernet device
-(internally wired to the same USB chip, if I understood
-correctly?) vanish for me.
+Signed-off-by: Carlo Caione <carlo@endlessm.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 52 ++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
 
-(So probably not a power issue on the Odroid C1+?)
-
-Regards, Linus
+diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+new file mode 100644
+index 000000000000..124ea362eec9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+@@ -0,0 +1,52 @@
++* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
++
++The highspeed MMC host controller on Amlogic SoCs provides an interface
++for MMC, SD, SDIO and SDHC types of memory cards.
++
++Supported maximum speeds are the ones of the eMMC standard 4.41 as well
++as the speed of SD standard 2.0.
++
++The hardware provides an internal "mux" which allows up to three slots
++to be controlled. Only one slot can be accessed at a time.
++
++Required properties:
++ - compatible : must be one of
++	- "amlogic,meson8-sdio"
++	- "amlogic,meson8b-sdio"
++	along with the generic "amlogic,meson-mx-sdio"
++ - reg : mmc controller base registers
++ - interrupts : mmc controller interrupt
++ - #address-cells : must be 1
++ - size-cells : must be 0
++ - clocks : phandle to clock providers
++ - clock-names : must contain "core" and "clkin"
++
++Required child nodes:
++A node for each slot provided by the MMC controller is required.
++
++Required properties on each child node (= slot):
++ - compatible : must be "mmc-slot" (see mmc.txt within this directory)
++ - reg : the slot (or "port") ID
++
++Optional properties on each child node (= slot):
++ - bus-width : must be 1 or 4 (8-bit bus is not supported)
++ - for cd and all other additional generic mmc parameters
++   please refer to mmc.txt within this directory
++
++Examples:
++	mmc at c1108c20 {
++		compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
++		reg = <0xc1108c20 0x20>;
++		interrupts = <0 28 1>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
++		clock-names = "core", "clkin";
++
++		slot at 1 {
++			compatible = "mmc-slot";
++			reg = <1>;
++
++			bus-width = <4>;
++		};
++	};
+-- 
+2.14.1
