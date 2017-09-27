@@ -1,33 +1,33 @@
 From: ingrassia@epigenesys.com (Emiliano Ingrassia)
-Date: Wed, 27 Sep 2017 12:39:32 +0200
-Subject: [PATCH 0/4] meson8b-odroidc1: ethernet support
-Message-ID: <cover.1506507688.git.ingrassia@epigenesys.com>
+Date: Wed, 27 Sep 2017 12:40:08 +0200
+Subject: [PATCH 1/4] clk: meson8b: keep mpll2 clock enabled
+In-Reply-To: <cover.1506507688.git.ingrassia@epigenesys.com>
+References: <cover.1506507688.git.ingrassia@epigenesys.com>
+Message-ID: <71634468832113ec4b7e88eaed11ab673ef2bb30.1506507688.git.ingrassia@epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset enables ethernet support on Odroid-C1/C1+ boards,
-improving and extending the ethernet description in the relative
-device tree.
+The mpll2 clock, enabled by the bootloader, is disabled at boot.
+Enabling ethernet on Odroid-C1+ board leads to DMA initialization failure
+caused by a timeout on reset.
+Keeping the mpll2 clock enabled solve this issue.
 
-In particular:
-- the mpll2 clock is enabled to avoid timeout during ethernet DMA reset;
-- the Meson8b ethernet controller description is fixed and extended;
-- the Odroid-C1/C1+ ethernet PHY description is added;
-- the dwmac sleep and timeout values used during DMA reset are fixed.
+Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+---
+ drivers/clk/meson/meson8b.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-This patchset has been tested on Odroid-C1+ board.
-
-Emiliano Ingrassia (4):
-  clk: meson8b: keep mpll2 clock enabled
-  ARM: dts: meson8b: extending ethernet controller description
-  ARM: dts: meson8b-odroidc1: enabling ethernet support
-  net: stmmac: fixing DMA reset sleep and timeout values
-
- arch/arm/boot/dts/meson8b-odroidc1.dts          | 30 +++++++++++++++++
- arch/arm/boot/dts/meson8b.dtsi                  | 43 +++++++++++++++++++++++--
- drivers/clk/meson/meson8b.c                     |  1 +
- drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c |  2 +-
- 4 files changed, 73 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 20ab7190d328..5096539e4a63 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -347,6 +347,7 @@ static struct meson_clk_mpll meson8b_mpll2 = {
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
++		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
+ 	},
+ };
+ 
 -- 
 2.14.1
