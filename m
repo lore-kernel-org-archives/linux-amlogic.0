@@ -1,33 +1,51 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Wed, 27 Sep 2017 15:30:54 +0300
-Subject: [PATCH 1/2] ARM64: dts: meson-gxm: Add Vega S96 board
-In-Reply-To: <a342b95d-0300-f408-266f-e48deb1f72d7@baylibre.com>
-References: <1505822748-23431-1-git-send-email-narmstrong@baylibre.com>
- <1505822748-23431-2-git-send-email-narmstrong@baylibre.com>
- <1505833280.2703.83.camel@baylibre.com>
- <a79c801a-c6bc-87d6-34f5-1a52f77704c6@yandex.ru>
- <a342b95d-0300-f408-266f-e48deb1f72d7@baylibre.com>
-Message-ID: <077178e6-a9a0-355d-3ca5-563e98db98ea@yandex.ru>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 27 Sep 2017 16:55:13 +0200
+Subject: [GIT PULL] Amlogic 64-bit DT updates for 4.14 (round 3, late)
+In-Reply-To: <CAOesGMjKjAE=OOcOK0KRzwvBO8NS2+qB7bt5zK19ryLopZhT-Q@mail.gmail.com>
+ (Olof Johansson's message of "Fri, 15 Sep 2017 14:59:14 -0700")
+References: <7hr2vlarbn.fsf@baylibre.com>
+ <CAOesGMjKjAE=OOcOK0KRzwvBO8NS2+qB7bt5zK19ryLopZhT-Q@mail.gmail.com>
+Message-ID: <7h8th06vji.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Olof,
 
->>>> +        reg = <0>;
->>>> +        max-speed = <1000>;
->>> I don't think this max-speed property is necessary
->>>
->>>> +    };
->>>> +};
->> I will try to test and write the result.
-> Great, thanks !
+Olof Johansson <olof@lixom.net> writes:
+
+> On Tue, Sep 5, 2017 at 12:17 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> Olof, Arnd,
+>>
+>> I'm aware this is pretty late, so feel free to include in a late branch,
+>> or we can wait and send after -rc1.  It's late because the corresponding
+>> drivers/mmc change just got merged.
+>>
+>> Thanks,
+>>
+>> Kevin
+>>
+>>
+>> The following changes since commit 47884c5c746ee7c02e06fbf60480e0f13aa11dfe:
+>>
+>>   ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names (2017-08-22 15:37:50 -0700)
+>>
+>> are available in the git repository at:
+>>
+>>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-3
+>>
+>> for you to fetch changes up to 485a308f05d843034b6e82f688704c44888aecde:
+>>
+>>   ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode (2017-09-05 12:05:01 -0700)
+>>
+>> ----------------------------------------------------------------
+>> Amlogic 64-bit DT updates for v4.14 (round 3)
+>> - updates for new MMC driver features/fixes
+>> - support high-speed modes
 >
-> Neil
-I removed two strings and checked on Vega s96,
-the wired network works fine.
+> I decided to merge into next/late, will send this afternoon or
+> tomorrow together with a few other changes.
 
-+&external_mdio {
-+	external_phy: ethernet-phy at 0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+	};
-+};
+hmm, it doesn't look like this made it into -rc1 or -rc2.  Were there
+any problems?
+
+Kevin
