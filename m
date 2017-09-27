@@ -1,51 +1,39 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 27 Sep 2017 16:55:13 +0200
-Subject: [GIT PULL] Amlogic 64-bit DT updates for 4.14 (round 3, late)
-In-Reply-To: <CAOesGMjKjAE=OOcOK0KRzwvBO8NS2+qB7bt5zK19ryLopZhT-Q@mail.gmail.com>
- (Olof Johansson's message of "Fri, 15 Sep 2017 14:59:14 -0700")
-References: <7hr2vlarbn.fsf@baylibre.com>
- <CAOesGMjKjAE=OOcOK0KRzwvBO8NS2+qB7bt5zK19ryLopZhT-Q@mail.gmail.com>
-Message-ID: <7h8th06vji.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 27 Sep 2017 18:24:20 +0200
+Subject: [PATCH/RFT] mmc: meson-gx: include tx phase in the tuning process
+In-Reply-To: <d9c99f1e-bfe4-cdf7-bbfa-fc54837552e2@gmail.com>
+References: <b31253d8-38a3-dd25-1d74-6afde6ae8362@gmail.com>
+ <20170918134431.17520-1-jbrunet@baylibre.com>
+ <3fd34a04-9a22-83e7-fb48-833b72bbea9f@gmail.com>
+ <1505819337.2703.40.camel@baylibre.com>
+ <d9c99f1e-bfe4-cdf7-bbfa-fc54837552e2@gmail.com>
+Message-ID: <1506529460.16686.45.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Olof,
+On Tue, 2017-09-19 at 20:54 +0200, Heiner Kallweit wrote:
+> > > Unfortunately this still doesn't fix the issue here.
+> > > Tuning rx and tx clk sequentially assumes both are independent, what they
+> > > IMHO are not. So meybe we have to check all combinations of rx/tx clk
+> > > phase.
+> > 
+> > Interesting, I would be curious to know what tuning value you ended with,
+> > compared to the "hard-coded' working value you have set.
+> > 
+> > You can get that fairly easily now, using CCF in debugfs, in
+> > <debugfs>/clk/clk_summary, the different phase are reported
+> > 
+> 
+> This gives me:
+> 
+> core phase: 180
+> rx phase: 0
+> tx phase: 270
+> 
+> And I end up with a corrupted root file system.
 
-Olof Johansson <olof@lixom.net> writes:
+You should have had tuning on both the Rx and Tx phase and yet, you end up with
+the default values ... that's strange
 
-> On Tue, Sep 5, 2017 at 12:17 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->> Olof, Arnd,
->>
->> I'm aware this is pretty late, so feel free to include in a late branch,
->> or we can wait and send after -rc1.  It's late because the corresponding
->> drivers/mmc change just got merged.
->>
->> Thanks,
->>
->> Kevin
->>
->>
->> The following changes since commit 47884c5c746ee7c02e06fbf60480e0f13aa11dfe:
->>
->>   ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names (2017-08-22 15:37:50 -0700)
->>
->> are available in the git repository at:
->>
->>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-3
->>
->> for you to fetch changes up to 485a308f05d843034b6e82f688704c44888aecde:
->>
->>   ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode (2017-09-05 12:05:01 -0700)
->>
->> ----------------------------------------------------------------
->> Amlogic 64-bit DT updates for v4.14 (round 3)
->> - updates for new MMC driver features/fixes
->> - support high-speed modes
->
-> I decided to merge into next/late, will send this afternoon or
-> tomorrow together with a few other changes.
-
-hmm, it doesn't look like this made it into -rc1 or -rc2.  Were there
-any problems?
-
-Kevin
+I should be able to get my hands on 16GB emmc module for this platform soon.
+Let's see ...
