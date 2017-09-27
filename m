@@ -1,39 +1,51 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 27 Sep 2017 18:24:20 +0200
-Subject: [PATCH/RFT] mmc: meson-gx: include tx phase in the tuning process
-In-Reply-To: <d9c99f1e-bfe4-cdf7-bbfa-fc54837552e2@gmail.com>
-References: <b31253d8-38a3-dd25-1d74-6afde6ae8362@gmail.com>
- <20170918134431.17520-1-jbrunet@baylibre.com>
- <3fd34a04-9a22-83e7-fb48-833b72bbea9f@gmail.com>
- <1505819337.2703.40.camel@baylibre.com>
- <d9c99f1e-bfe4-cdf7-bbfa-fc54837552e2@gmail.com>
-Message-ID: <1506529460.16686.45.camel@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Wed, 27 Sep 2017 14:36:16 -0500
+Subject: [RFC v2 0/2] Add support for Meson MX "SDIO" MMC controller
+In-Reply-To: <20170924190528.21841-1-martin.blumenstingl@googlemail.com>
+References: <20170924190528.21841-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20170927193616.32gxszmk4cjjoqmo@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-09-19 at 20:54 +0200, Heiner Kallweit wrote:
-> > > Unfortunately this still doesn't fix the issue here.
-> > > Tuning rx and tx clk sequentially assumes both are independent, what they
-> > > IMHO are not. So meybe we have to check all combinations of rx/tx clk
-> > > phase.
-> > 
-> > Interesting, I would be curious to know what tuning value you ended with,
-> > compared to the "hard-coded' working value you have set.
-> > 
-> > You can get that fairly easily now, using CCF in debugfs, in
-> > <debugfs>/clk/clk_summary, the different phase are reported
-> > 
+On Sun, Sep 24, 2017 at 09:05:26PM +0200, Martin Blumenstingl wrote:
+> This is the successor to Carlo Caione's "Add support for Amlogic Meson
+> MMC driver" series (v5) from [0].
+> This new driver is for the "SDIO" controller found in Amlogic Meson6,
+> Meson8 and Meson8b SoCs and supports an internal mux to allow connecting
+> three cards to it.
 > 
-> This gives me:
 > 
-> core phase: 180
-> rx phase: 0
-> tx phase: 270
-> 
-> And I end up with a corrupted root file system.
+> changes since RFC v1 at [1]:
+> - added COMMON_CLK dependency as reported by the kbuild test robot
+> - use of_platform_device_{create,destroy} instead of open-coding it's
+>   logic
+> - moved struct device (which was an array) from meson_mx_mmc_host to
+>   the corresponding meson_mx_mmc_slot
+> - use struct mmc_command's busy_timeout instead of hard-coding the
+>   timeout values in meson_mx_mmc_start_cmd()
+> - don't use arrays with only one element for the clock parents in
+>   meson_mx_mmc_register_clks()
+> - removed the wrapper functions meson_mx_mmc_readl() meson_mx_mmc_writel()
+> - allow setting the MMC clock to 0 for UHS speed mode (the actual
+>   hardware clock cannot be gated as far as I know, so instead the
+>   lowest supported rate is chosen)
+> - remove unused #include <linux/init.h>
+> - add MMC_CAP_ERASE
+> - removed multiple slot support after discussing this with Ulf
+>   (this is a feature that needs to be part of the MMC core before drivers
+>   can use it)
+> - removed SDIO interrupt support (as I currently don't have a way to
+>   test it)
+> - merge meson_mx_mmc_apply_ios into meson_mx_mmc_set_ios (as that's
+>   the only place where it's needed after removing multiple slot support)
+> - updated the commit message of the driver patch to indicate the
+>   difference between the meson-mx-sdio.c and meson-gx.c (and the "still
+>   missing SDHC") driver
+> - NOTE: I did not add Rob's ACK on the dt-bindings patch because I
+>   introduced the "mmc-slot" compatible for the child nodes as suggested
+>   by Ulf (and I want confirmation from the DT maintainers that I did this
+>   correctly)
 
-You should have had tuning on both the Rx and Tx phase and yet, you end up with
-the default values ... that's strange
+Didn't slot support get removed as no h/w really uses that feature?
 
-I should be able to get my hands on 16GB emmc module for this platform soon.
-Let's see ...
+Rob
