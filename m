@@ -1,67 +1,34 @@
 From: ingrassia@epigenesys.com (Emiliano Ingrassia)
-Date: Wed, 27 Sep 2017 12:41:17 +0200
-Subject: [PATCH 3/4] ARM: dts: meson8b-odroidc1: enabling ethernet support
+Date: Wed, 27 Sep 2017 12:46:35 +0200
+Subject: [PATCH 4/4] net: stmmac: fixing DMA reset sleep and timeout values
 In-Reply-To: <cover.1506507688.git.ingrassia@epigenesys.com>
 References: <cover.1506507688.git.ingrassia@epigenesys.com>
-Message-ID: <c298d8fe0c887c21b427f715825e90037e4ab7f8.1506507688.git.ingrassia@epigenesys.com>
+Message-ID: <b9056c8aa948a95cb21396b6e99a0ac0c40a7787.1506507688.git.ingrassia@epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch adds ethernet PHY description and enables ethernet
-support on Odroid-C1/C1+ boards.
+This patch fixes the sleep and timeout values used during
+DMA reset, which were inverted in a previous patch.
+
+Fixes: 8a70aeca80c2 ("net: stmmac: Use readl_poll_timeout")
 
 Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
 ---
- arch/arm/boot/dts/meson8b-odroidc1.dts | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-index 9ff6ca4e20d0..6ac357ee3de6 100644
---- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-+++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-@@ -54,6 +54,7 @@
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c b/drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c
+index 67af0bdd7f10..7516ca210855 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c
+@@ -34,7 +34,7 @@ int dwmac_dma_reset(void __iomem *ioaddr)
  
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet = &ethmac;
- 	};
+ 	err = readl_poll_timeout(ioaddr + DMA_BUS_MODE, value,
+ 				 !(value & DMA_BUS_MODE_SFT_RESET),
+-				 100000, 10000);
++				 10000, 100000);
+ 	if (err)
+ 		return -EBUSY;
  
- 	memory {
-@@ -77,6 +78,35 @@
- 	pinctrl-names = "default";
- };
- 
-+&ethmac {
-+	status = "okay";
-+
-+	snps,reset-gpio = <&gpio GPIOH_4 GPIO_ACTIVE_HIGH>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 10000 30000>;
-+
-+	pinctrl-0 = <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+
-+	phy-mode = "rgmii";
-+	phy-handle = <&eth_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		eth_phy: ethernet-phy at 0 {
-+			/* ethernet PHY RTL8211F */
-+			compatible = "ethernet-phy-id001c.c916",
-+				     "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			max-speed = <1000>;
-+		};
-+	};
-+};
-+
- &gpio_ao {
- 	/*
- 	 * WARNING: The USB Hub on the Odroid-C1/C1+ needs a reset signal
 -- 
 2.14.1
