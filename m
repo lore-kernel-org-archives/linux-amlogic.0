@@ -1,47 +1,81 @@
-From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
-Date: Thu, 28 Sep 2017 16:51:41 +0200
-Subject: [PATCH] ARM: dts: meson: fixing USB support on Meson6, Meson8
- and Meson8b
-In-Reply-To: <20170925224802.GA31386@ingrassia.epigenesys.com>
-References: <20170922115708.GA14806@ingrassia.epigenesys.com>
- <20170924042803.GC2604@otheros>
- <20170925224802.GA31386@ingrassia.epigenesys.com>
-Message-ID: <20170928145141.GG6726@otheros>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 28 Sep 2017 17:08:24 +0200
+Subject: [PATCH 1/4] clk: meson8b: keep mpll2 clock enabled
+In-Reply-To: <20170928095952.GA24801@ingrassia.epigenesys.com>
+References: <cover.1506507688.git.ingrassia@epigenesys.com>
+ <71634468832113ec4b7e88eaed11ab673ef2bb30.1506507688.git.ingrassia@epigenesys.com>
+ <1506582709.16686.56.camel@baylibre.com>
+ <20170928095952.GA24801@ingrassia.epigenesys.com>
+Message-ID: <1506611304.16686.65.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Sep 26, 2017 at 12:48:02AM +0200, Emiliano Ingrassia wrote:
-> Could you list all the kernels you have tried (included versions and patches) ?
+On Thu, 2017-09-28 at 11:59 +0200, Emiliano Ingrassia wrote:
+> Hi Jerome,
+> 
+> thanks for review!
+> 
+> On Thu, Sep 28, 2017 at 09:11:49AM +0200, Jerome Brunet wrote:
+> > On Wed, 2017-09-27 at 12:40 +0200, Emiliano Ingrassia wrote:
+> > > The mpll2 clock, enabled by the bootloader, is disabled at boot.
+> > > Enabling ethernet on Odroid-C1+ board leads to DMA initialization failure
+> > > caused by a timeout on reset.
+> > > Keeping the mpll2 clock enabled solve this issue.
+> > 
+> > Shouldn't the DMA driver emable the clocks it needs itself instead ?
+> > BTW, I'm bit surprised an mpll is used to clock a DMA, is it possible we
+> > missed
+> > something here ?
+> > 
+> 
+> The mpll2 clocks the meson8b ethernet controller which, as one can suppose,
+> internally have a DMA engine. If the controller is enabled, the first
+> operation on hardware is the DMA engine reset which fails if mpll2 is
+> disabled.
 
-I tried your two patches with:
+I understand. I mentioned that's it strange to use mpll2 because:
+- On gxbb (and following SoCs), There is 2 clockin sources to the mac: FDIV2 and
+MPLL2. There is , of course, an mux in the ethernet device to select the clock
+you need/want.
+- I would not be surprised if it was the same thing on meson8(b). In such case,
+I think it is better to use FDIV2.
 
-A) a clean multi_v7_defconfig and no extra patches on:
-* 4.13.2
-* 4.13.3
+> Actually the patch not only solves that issue, but also permits the
+> ethernet controller to work correctly.
+> The correct solution would be to enable the mpll2 clock from dwmac-meson8b
+> driver;
 
-B) a multi_v7_defconfig excluding CONFIG_DRM_TEGRA
-(causes build errors):
-* 4.14.0-rc1, no extra patches
-* 4.14.0-rc2, no extra patches
-* 4.14.0-rc1, with SMP patches [0]
-
-All these kernels hung for me for the mentioned stress-ng tests
-almost immediately.
-
-I was also lucky to at least get a glimpse at a kernel crash
-output during a chdir test once. Unfortunately still cut very early:
-
-~~~
-[   97.499390] Unhandled fault: external abort on non-linefetch (0x1008) at 0
-~~~
-
-Regards, Linus
+Indeed.
+I would prefer that you fix the ethernet driver rather than adding this to the
+clock driver.
 
 
-[0]:
-81d519f ARM: dts: meson8b: add support for booting the secondary CPU cores
-85ded56 ARM: dts: meson8: add support for booting the secondary CPU cores
-c70daa9 ARM: meson: Add SMP bringup code for Meson8 and Meson8b
-a39342c ARM: smp_scu: allow the platform code to read the SCU CPU status
-0b1863d ARM: smp_scu: add a helper for powering on a specific CPU 
-27efddb dt-bindings: Amlogic: Add Meson8 and Meson8b SMP related documentation
+> I'm working on this.
+> In the meantime I release this patch to give others the chance
+> to use the ethernet controller on Odroid-C1/C1+.
+> 
+
+Ok
+
+> Regards,
+> 
+> Emiliano
+> 
+> > > 
+> > > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> > > ---
+> > >  drivers/clk/meson/meson8b.c | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> > > index 20ab7190d328..5096539e4a63 100644
+> > > --- a/drivers/clk/meson/meson8b.c
+> > > +++ b/drivers/clk/meson/meson8b.c
+> > > @@ -347,6 +347,7 @@ static struct meson_clk_mpll meson8b_mpll2 = {
+> > >  		.ops = &meson_clk_mpll_ops,
+> > >  		.parent_names = (const char *[]){ "fixed_pll" },
+> > >  		.num_parents = 1,
+> > > +		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
+> > >  	},
+> > >  };
+> > >  
