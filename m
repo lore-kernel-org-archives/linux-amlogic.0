@@ -1,53 +1,38 @@
-From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
-Date: Thu, 28 Sep 2017 04:23:46 +0200
-Subject: [PATCH 2/4] ARM: dts: meson8b: extending ethernet controller
- description
-In-Reply-To: <aecccf76841a035f8dc5cc23dadfad66fbbac03e.1506507688.git.ingrassia@epigenesys.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 28 Sep 2017 09:11:49 +0200
+Subject: [PATCH 1/4] clk: meson8b: keep mpll2 clock enabled
+In-Reply-To: <71634468832113ec4b7e88eaed11ab673ef2bb30.1506507688.git.ingrassia@epigenesys.com>
 References: <cover.1506507688.git.ingrassia@epigenesys.com>
- <aecccf76841a035f8dc5cc23dadfad66fbbac03e.1506507688.git.ingrassia@epigenesys.com>
-Message-ID: <20170928022346.GB6726@otheros>
+ <71634468832113ec4b7e88eaed11ab673ef2bb30.1506507688.git.ingrassia@epigenesys.com>
+Message-ID: <1506582709.16686.56.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Sep 27, 2017 at 11:39:53PM +0200, Emiliano Ingrassia wrote:
-> This patch corrects the meson8b-dwmac reg attributes updated by the previous
-> 2/4 patch (450a483abe07f8d903c6cb74091592743975a8eb).
-> The second addresses range, taken from S805 (aka Meson8b) SoC manual,
-> was not correct.
->
-> [..]
->  &ethmac {
-> -	clocks = <&clkc CLKID_ETH>;
-> -	clock-names = "stmmaceth";
-> +	compatible = "amlogic,meson8b-dwmac", "snps,dwmac-3.70a", "snps,dwmac";
-> +
-> +	interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>,
-> +		     <GIC_SPI 14 IRQ_TYPE_EDGE_RISING>;
-> +	interrupt-names = "macirq",
-> +			  "eth_lpi";
-> +
-> +	clock-names = "stmmaceth", "clkin0", "clkin1";
-> +	clocks = <&clkc CLKID_ETH>,
-> +		 <&clkc CLKID_FCLK_DIV2>,
-> +		 <&clkc CLKID_MPLL2>;
-> +
-> +	resets = <&reset RESET_ETHERNET>;
-> +	reset-names = "stmmaceth";
-> +
-> +	rx-fifo-depth=<4000>;
-> +	tx-fifo-depth=<2000>;
+On Wed, 2017-09-27 at 12:40 +0200, Emiliano Ingrassia wrote:
+> The mpll2 clock, enabled by the bootloader, is disabled at boot.
+> Enabling ethernet on Odroid-C1+ board leads to DMA initialization failure
+> caused by a timeout on reset.
+> Keeping the mpll2 clock enabled solve this issue.
+
+Shouldn't the DMA driver emable the clocks it needs itself instead ?
+BTW, I'm bit surprised an mpll is used to clock a DMA, is it possible we missed
+something here ?
+
+> 
+> Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> ---
+>  drivers/clk/meson/meson8b.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index 20ab7190d328..5096539e4a63 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -347,6 +347,7 @@ static struct meson_clk_mpll meson8b_mpll2 = {
+>  		.ops = &meson_clk_mpll_ops,
+>  		.parent_names = (const char *[]){ "fixed_pll" },
+>  		.num_parents = 1,
+> +		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
+>  	},
 >  };
-
-Hi Emiliano,
-
-Did you accidentally delete instead of replace the reg values?
-(or are there default values hidden somewhere else?)
-
-Also, please don't forget to add a v2/v3/etc. next time,
-makes it easier to follow here and in Patchwork, thanks :-).
-
-
-And thanks a lot at looking into ethernet support as well. Will
-try this patchset soon, too! You guys are killing it :D!
-
-Regards, Linus
+>  
