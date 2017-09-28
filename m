@@ -1,62 +1,75 @@
 From: ingrassia@epigenesys.com (Emiliano Ingrassia)
-Date: Thu, 28 Sep 2017 11:59:52 +0200
-Subject: [PATCH 1/4] clk: meson8b: keep mpll2 clock enabled
-In-Reply-To: <1506582709.16686.56.camel@baylibre.com>
+Date: Thu, 28 Sep 2017 12:31:04 +0200
+Subject: [PATCH 2/4] ARM: dts: meson8b: extending ethernet controller
+ description
+In-Reply-To: <20170928022346.GB6726@otheros>
 References: <cover.1506507688.git.ingrassia@epigenesys.com>
- <71634468832113ec4b7e88eaed11ab673ef2bb30.1506507688.git.ingrassia@epigenesys.com>
- <1506582709.16686.56.camel@baylibre.com>
-Message-ID: <20170928095952.GA24801@ingrassia.epigenesys.com>
+ <aecccf76841a035f8dc5cc23dadfad66fbbac03e.1506507688.git.ingrassia@epigenesys.com>
+ <20170928022346.GB6726@otheros>
+Message-ID: <20170928103104.GA25546@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+Hi Linus,
 
-thanks for review!
+thanks for the review!
 
-On Thu, Sep 28, 2017 at 09:11:49AM +0200, Jerome Brunet wrote:
-> On Wed, 2017-09-27 at 12:40 +0200, Emiliano Ingrassia wrote:
-> > The mpll2 clock, enabled by the bootloader, is disabled at boot.
-> > Enabling ethernet on Odroid-C1+ board leads to DMA initialization failure
-> > caused by a timeout on reset.
-> > Keeping the mpll2 clock enabled solve this issue.
+On Thu, Sep 28, 2017 at 04:23:46AM +0200, Linus L?ssing wrote:
+> On Wed, Sep 27, 2017 at 11:39:53PM +0200, Emiliano Ingrassia wrote:
+> > This patch corrects the meson8b-dwmac reg attributes updated by the previous
+> > 2/4 patch (450a483abe07f8d903c6cb74091592743975a8eb).
+> > The second addresses range, taken from S805 (aka Meson8b) SoC manual,
+> > was not correct.
+> >
+> > [..]
+> >  &ethmac {
+> > -	clocks = <&clkc CLKID_ETH>;
+> > -	clock-names = "stmmaceth";
+> > +	compatible = "amlogic,meson8b-dwmac", "snps,dwmac-3.70a", "snps,dwmac";
+> > +
+> > +	interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>,
+> > +		     <GIC_SPI 14 IRQ_TYPE_EDGE_RISING>;
+> > +	interrupt-names = "macirq",
+> > +			  "eth_lpi";
+> > +
+> > +	clock-names = "stmmaceth", "clkin0", "clkin1";
+> > +	clocks = <&clkc CLKID_ETH>,
+> > +		 <&clkc CLKID_FCLK_DIV2>,
+> > +		 <&clkc CLKID_MPLL2>;
+> > +
+> > +	resets = <&reset RESET_ETHERNET>;
+> > +	reset-names = "stmmaceth";
+> > +
+> > +	rx-fifo-depth=<4000>;
+> > +	tx-fifo-depth=<2000>;
+> >  };
 > 
-> Shouldn't the DMA driver emable the clocks it needs itself instead ?
-> BTW, I'm bit surprised an mpll is used to clock a DMA, is it possible we missed
-> something here ?
+> Hi Emiliano,
+> 
+> Did you accidentally delete instead of replace the reg values?
+> (or are there default values hidden somewhere else?)
+> 
+
+I intentionally deleted the reg attribute which is already included
+in meson.dtsi. That attribute contains two address ranges, the second
+of which is not reported on the S805 SoC manual and probably taken from
+Amlogic's 3.10 GPL kernel sources.
+
+> Also, please don't forget to add a v2/v3/etc. next time,
+> makes it easier to follow here and in Patchwork, thanks :-).
+> 
+> 
+
+Sure, sorry for the incovenience.
+
+> And thanks a lot at looking into ethernet support as well. Will
+> try this patchset soon, too! You guys are killing it :D!
 >
 
-The mpll2 clocks the meson8b ethernet controller which, as one can suppose,
-internally have a DMA engine. If the controller is enabled, the first
-operation on hardware is the DMA engine reset which fails if mpll2 is
-disabled.
-Actually the patch not only solves that issue, but also permits the
-ethernet controller to work correctly.
+Thanks! :D
 
-The correct solution would be to enable the mpll2 clock from dwmac-meson8b
-driver; I'm working on this.
-In the meantime I release this patch to give others the chance
-to use the ethernet controller on Odroid-C1/C1+.
+> Regards, Linus
 
 Regards,
 
 Emiliano
-
-> > 
-> > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
-> > ---
-> >  drivers/clk/meson/meson8b.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> > index 20ab7190d328..5096539e4a63 100644
-> > --- a/drivers/clk/meson/meson8b.c
-> > +++ b/drivers/clk/meson/meson8b.c
-> > @@ -347,6 +347,7 @@ static struct meson_clk_mpll meson8b_mpll2 = {
-> >  		.ops = &meson_clk_mpll_ops,
-> >  		.parent_names = (const char *[]){ "fixed_pll" },
-> >  		.num_parents = 1,
-> > +		.flags = (CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED),
-> >  	},
-> >  };
-> >  
-> 
