@@ -1,17 +1,44 @@
 From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
-Date: Fri, 29 Sep 2017 13:01:27 +0200
-Subject: [RFC PATCH] ARM: dts: meson8b: add reserved memory zones
-In-Reply-To: <20170929104132.18138-1-linus.luessing@c0d3.blue>
-References: <20170929104132.18138-1-linus.luessing@c0d3.blue>
-Message-ID: <20170929110127.GL6726@otheros>
+Date: Fri, 29 Sep 2017 13:29:59 +0200
+Subject: [PATCH v7 6/6] ARM: dts: meson8b: add support for booting the
+ secondary CPU cores
+In-Reply-To: <20170917164523.6970-7-martin.blumenstingl@googlemail.com>
+Message-ID: <20170929112959.GM6726@otheros>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Sep 29, 2017 at 12:41:32PM +0200, Linus L?ssing wrote:
-> The following stress-ng command worked fine now:
-> $ stress-ng -v --sequential 0 -t 120s --exclude sysfs,opcode --metrics
-> (5 hours runtime, tested on an Odroid C1+ with an 4.14-rc1 kernel + SMP
-> + USB DTS patches)
+A five hours test run with the stress-ng tool worked fine for this
+patchset for me.
 
-Full log file (6.3MB) here:
+stress-ng command:
+$ stress-ng -v --sequential 0 -t 120s --exclude sysfs,opcode --metrics
+
+Logfile (6.3MB):
 http://metameute.de/~tux/linux/amlogic/stress-ng-odroidc1%2b-with-resmem%2bsmp-log.txt
+
+Tested device:
+- Odroid C1+
+
+Tested OS:
+- Debian stable (stress-ng 0.07.16)
+
+Tested kernel: v4.14-rc1 plus this patchset plus:
+- "ARM: dts: meson: fixing USB support on Meson6, Meson8 and Meson8b"
+  https://patchwork.kernel.org/patch/9965871/
+- "ARM: dts: meson: enabling the USB Host controller on Odroid-C1/C1+ board"
+  https://patchwork.kernel.org/patch/9961565/
+- "[RFC] ARM: dts: meson8b: add reserved memory zones"
+  https://patchwork.kernel.org/patch/9977479/
+
+Tested kernel config:
+- multi_v7_defconfig, except CONFIG_DRM_TEGRA=n (build error otherwise)
+
+ 
+I had to exclude the sysfs and opcode tests though. The former
+created an unhandled kernel paging request. And the latter a
+silent freeze after some seconds.
+
+Those two issues seem unrelated to this patchset though,
+therefore
+
+Tested-by: Linus L?ssing <linus.luessing@c0d3.blue>
