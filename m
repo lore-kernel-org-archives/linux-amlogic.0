@@ -1,108 +1,186 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 29 Sep 2017 20:49:25 +0200
-Subject: [RFC PATCH] ARM: dts: meson8b: add reserved memory zones
-In-Reply-To: <20170929104132.18138-1-linus.luessing@c0d3.blue>
-References: <20170929104132.18138-1-linus.luessing@c0d3.blue>
-Message-ID: <CAFBinCCy-5G=mM+ZsoxY8SrK5OWs7C-bbrj-Ayh7e-3-QiF4TA@mail.gmail.com>
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Fri, 29 Sep 2017 21:10:21 +0200
+Subject: [PATCH 2/4] ARM: dts: meson8b: extending ethernet controller
+ description
+In-Reply-To: <CAFBinCAwn7mz8LWMmF4cvYTWz_v6dDCQBGOu-1iU6+AOd+nbrA@mail.gmail.com>
+References: <cover.1506507688.git.ingrassia@epigenesys.com>
+ <aecccf76841a035f8dc5cc23dadfad66fbbac03e.1506507688.git.ingrassia@epigenesys.com>
+ <CAFBinCAwn7mz8LWMmF4cvYTWz_v6dDCQBGOu-1iU6+AOd+nbrA@mail.gmail.com>
+Message-ID: <20170929191021.GA20840@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Linus,
+Hi Martin,
 
-On Fri, Sep 29, 2017 at 12:41 PM, Linus L?ssing
-<linus.luessing@c0d3.blue> wrote:
-> So far, the stress-ng tool for instance quickly resulted in a silent
-> freeze of the system with no prior notice on a serial console when
-> running its filesystem or memory stressor classes.
->
-> Even with a panic-on-OOM and reboot-on-panic (vm.panic_on_oom=1,
-> kernel.panic=10) configured, the system would neither reboot nor
-> would the OOM killer get any chance to otherwise do its job.
->
-> By copying the reserved memory sections used for meson8 already,
-> stress-ng was able to run on an Odroid C1+ just fine for several hours,
-> the OOM killer was able to do kill processes again and if configured
-> would successfully trigger a reboot of the system.
->
-> Reported-by: Linus L?ssing <linus.luessing@c0d3.blue>
-maybe you could add a reference to my commit (8a7f0c52e8a0) and state
-that your patch solves the same problem on the Meson8b platform
-with that:
+thanks for the review!
 
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Thu, Sep 28, 2017 at 11:41:48PM +0200, Martin Blumenstingl wrote:
+> Hi Emiliano,
+> 
+> On Wed, Sep 27, 2017 at 11:39 PM, Emiliano Ingrassia
+> <ingrassia@epigenesys.com> wrote:
+> > This patch adds ethernet controller pin description and extend its
+> > attributes in the relative node.
+> >
+> > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> > ---
+> >
+> > This patch corrects the meson8b-dwmac reg attributes updated by the previous
+> > 2/4 patch (450a483abe07f8d903c6cb74091592743975a8eb).
+> > The second addresses range, taken from S805 (aka Meson8b) SoC manual,
+> > was not correct.
+> >
+> > Please, apply this patch and discard the previous
+> > (450a483abe07f8d903c6cb74091592743975a8eb).
+> >
+> >  arch/arm/boot/dts/meson8b.dtsi | 40 ++++++++++++++++++++++++++++++++++++++--
+> >  1 file changed, 38 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> > index bc278da7df0d..816bc9188f44 100644
+> > --- a/arch/arm/boot/dts/meson8b.dtsi
+> > +++ b/arch/arm/boot/dts/meson8b.dtsi
+> > @@ -154,12 +154,48 @@
+> >                         #gpio-cells = <2>;
+> >                         gpio-ranges = <&pinctrl_cbus 0 0 130>;
+> >                 };
+> > +
+> > +               eth_rgmii_pins: eth-rgmii {
+> > +                       mux {
+> > +                               groups = "eth_tx_clk",
+> > +                                        "eth_tx_en",
+> > +                                        "eth_txd1_0",
+> > +                                        "eth_txd1_1",
+> > +                                        "eth_txd0_0",
+> > +                                        "eth_txd0_1",
+> > +                                        "eth_rx_clk",
+> > +                                        "eth_rx_dv",
+> > +                                        "eth_rxd1",
+> > +                                        "eth_rxd0",
+> > +                                        "eth_mdio_en",
+> > +                                        "eth_mdc",
+> > +                                        "eth_ref_clk",
+> > +                                        "eth_txd2",
+> > +                                        "eth_txd3";
+> > +                               function = "ethernet";
+> > +                       };
+> > +               };
+> >         };
+> >  };
+> >
+> >  &ethmac {
+> > -       clocks = <&clkc CLKID_ETH>;
+> > -       clock-names = "stmmaceth";
+> > +       compatible = "amlogic,meson8b-dwmac", "snps,dwmac-3.70a", "snps,dwmac";
+> without a reg property this passes 0xc1108108 (as defined in
+> meson.dtsi) to the meson8b-dwmac driver.
+> are you sure that this shouldn't be 0xc1108140 (like in your initial patch)?
+> 0xc1108108 translates to 0x2050 (calculation formula: (0xc1108108 -
+> cbus base addr 0xc1100000) / 4) which is used in Amlogic's u-boot
+> sources, for example [0]
+>
 
->
-> ---
-> The following stress-ng command worked fine now:
-> $ stress-ng -v --sequential 0 -t 120s --exclude sysfs,opcode --metrics
-> (5 hours runtime, tested on an Odroid C1+ with an 4.14-rc1 kernel + SMP
-> + USB DTS patches)
-great to hear that this works for you!
+Yes, I know. This was the intention.
 
->
-> I do not know why these memory regions would need to be reserved, I
-> copied them blindly from mesno8.dtsi. Furthermore I'm a little confused
-> because the Hardkernel sources seem to reserver a totally different
-> memory region (16MB from the region at 80MB to 96MB):
->
-> https://github.com/hardkernel/linux/blob/odroidc-3.10.y/arch/arm/boot/dts/meson8b_odroidc.dts#L58
-I think that specific region is used for the video hardware, see [0]
-we might need that as soon as we have a HDMI driver
+> currently the meson8b-dwmac driver is writing to the old register
+> location which probably does nothing.
 
->
-> If anyone more experienced and knowledege in this would like to claim
-> authorship and responsibility for this patch or would like to suggest
-> an alternative one then please feel free to do so.
-> ---
->  arch/arm/boot/dts/meson8b.dtsi | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index b9b6600..aa5c79c 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -92,6 +92,33 @@
->                 };
->         };
->
-> +       reserved-memory {
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               ranges;
-> +
-> +               /* 2 MiB reserved for Hardware ROM Firmware? */
-> +               hwrom at 0 {
-> +                       reg = <0x0 0x200000>;
-> +                       no-map;
-> +               };
-> +
-> +               /*
-> +                * 1 MiB reserved for the "ARM Power Firmware": this is ARM
-> +                * code which is responsible for system suspend. It loads a
-> +                * piece of ARC code ("arc_power" in the vendor u-boot tree)
-> +                * into SRAM, executes that and shuts down the (last) ARM core.
-> +                * The arc_power firmware then checks various wakeup sources
-> +                * (IR remote receiver, HDMI CEC, WIFI and Bluetooth wakeup or
-> +                * simply the power key) and re-starts the ARM core once it
-> +                * detects a wakeup request.
-> +                */
-> +               power-firmware at 4f00000 {
-> +                       reg = <0x4f00000 0x100000>;
-> +                       no-map;
-> +               };
-> +       };
-> +
->         scu at c4300000 {
->                 compatible = "arm,cortex-a5-scu";
->                 reg = <0xc4300000 0x100>;
-> --
-> 2.1.4
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Actually, changing the second addresses range from 0xc1108108 to
+0xc1108140 leads to an unusable ethernet controller.
 
+> if above statement is true then you are relying on the bootloader to
+> set up 0xc1108140 correctly.
 
-[0] https://github.com/endlessm/linux-meson/blob/c173f4653186870f08dc9131b5d82ef4ab4151e1/arch/arm/kernel/devtree.c#L253
+OK, sure this is bad! Those addresses are documented in S805 SoC manual
+and we should set up them correctly.
+However, checking the Odroid-C2 device tree I couldn't find
+the PRG_ETHERNET_ADDR{0,1} addresses, which are documented in S905 SoC
+manual.
+Probably I'm missing something, but don't we have the same situation on
+that board?
+
+> the reason why I wrote this meson8b-dwmac driver is because I had a
+> GXBB board with RGMII PHY but u-boot configured the register to RMII
+> mode -> ethernet wasn't working.
+
+Meson8b refers to S805 SoC while GXBB should refer to S905 SoC.
+At first look it seemed to me that dwmac-meson8b driver correctly
+support dwmac on Meson8b or we should extend the driver to better
+support it?
+
+> you could verify this by zeroing both (0xc1108108 and 0xc1108140) in
+> u-boot or at the start of the meson8b-dwmac driver and see if ethernet
+> still works for you
+>
+
+I'll check it.
+
+> > +
+> > +       interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>,
+> > +                    <GIC_SPI 14 IRQ_TYPE_EDGE_RISING>;
+> > +       interrupt-names = "macirq",
+> > +                         "eth_lpi";
+> did you receive one of the eth_lpi interrupts? if it works for you
+> then we should try to add this to meson-gx.dtsi as well
+> I also wonder if we should configure it in meson8b.dtsi or meson.dtsi
+>
+
+Needs more testing.
+
+> > +
+> > +       clock-names = "stmmaceth", "clkin0", "clkin1";
+> > +       clocks = <&clkc CLKID_ETH>,
+> > +                <&clkc CLKID_FCLK_DIV2>,
+> > +                <&clkc CLKID_MPLL2>;
+> > +
+> > +       resets = <&reset RESET_ETHERNET>;
+> > +       reset-names = "stmmaceth";
+> I'm not sure if this works:
+> our reset controller implements a reset pulse (write bit, IP block
+> executes a reset and clears the bit again)
+> stmmac on the other hand manually asserts and deasserts the reset line
+> (which is not implemented by our reset driver), see [1]
+> 
+
+OK, I'll check and eventually fix this.
+
+> > +
+> > +       rx-fifo-depth=<4000>;
+> > +       tx-fifo-depth=<2000>;
+> could you please add spaces around "=" and some info to the commit
+> message why this is necessary and where you got these values from
+>
+
+Those are optional attributes documented in
+Documentation/devicetree/bindings/net/stmmac.txt.
+The values were taken from S805 SoC manual, ch. 22 (ETHERNET MAC).
+
+> >  };
+> >
+> >  &hwrng {
+> > --
+> > 2.14.1
+> >
+> >
+> > _______________________________________________
+> > linux-amlogic mailing list
+> > linux-amlogic at lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
+> looking forward to proper ethernet support on Meson8/Meson8b!
+>
+
+OK, thanks for your suggestions!
+
+> 
+> Regards,
+> Martin
+> 
+
+Regards,
+
+Emiliano
+
+> 
+> [0] https://github.com/hardkernel/u-boot/blob/odroidc-v2011.03/board/hardkernel/odroidc/odroidc-eth.c#L29
+> [1] https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c#L4123
