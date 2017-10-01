@@ -1,21 +1,87 @@
-From: balbes-150@yandex.ru (Oleg)
-Date: Sun, 1 Oct 2017 21:24:35 +0300
-Subject: S805/S812 Device Tree upstreaming
-In-Reply-To: <CAFBinCAq3iYkjh2wdadf8aCH6gvB0zn3f33qud9nn9tkaeo=pw@mail.gmail.com>
-References: <CAFBinCA__tiW03VrMzbfAFUOkKY1VoZG=OK7BNfZyfm05HOLng@mail.gmail.com>
- <939ef72d-a4e5-7535-2252-d607158bd0fe@yandex.ru>
- <a9179db4-1db6-3c8d-de34-cee4454f07de@yandex.ru>
- <CAFBinCCAxjtreC0EtpWKxrx9=zqJmv6w4fEhg_aZZNT_G3qARg@mail.gmail.com>
- <9b803bac-4ce8-689c-44a8-40532e294dae@yandex.ru>
- <CAFBinCDXx5j_W5WtLSd8q0RDp7TXezCdDNHtXp5mYNnY=jR5wA@mail.gmail.com>
- <fdc29cda-b67d-add9-9c8a-f0a61db537da@yandex.ru>
- <CAFBinCBhVGabCo-2j-sd=5JSPa2xsQ4a1Tn=iMC6QuzxrnSfQQ@mail.gmail.com>
- <60f432cf-ea24-9158-a5ab-f967f19393ed@yandex.ru>
- <CAFBinCD0YZchEYxr8Ts1u3PoqY6+0C1kgKsF2Qj2oBZObmQuNg@mail.gmail.com>
- <6cc8520a-cadc-7c53-f40b-768ed0b071b0@yandex.ru>
- <CAFBinCAq3iYkjh2wdadf8aCH6gvB0zn3f33qud9nn9tkaeo=pw@mail.gmail.com>
-Message-ID: <7b0a5d85-0842-0298-9d37-f5132858c134@yandex.ru>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 1 Oct 2017 22:32:06 +0200
+Subject: [PATCH v4 0/3] initialize (multiple) PHYs in xhci-plat
+In-Reply-To: <20170918084943.GA19123@kroah.com>
+References: <20170903213829.6589-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCCRM1e08styDV8uodkhonTUPyZrQAdYRz_bfUMe-YP1Rg@mail.gmail.com>
+ <20170918084943.GA19123@kroah.com>
+Message-ID: <CAFBinCAweHXFbWrF9gW5f_+NeC9jChU1EkRsiLzkaKtOZkEREQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Tested, this works.
+Hello Greg, Hello Mathias,
+
+On Mon, Sep 18, 2017 at 10:49 AM, Greg KH <gregkh@linuxfoundation.org> wrote:
+> On Sun, Sep 17, 2017 at 10:51:31PM +0200, Martin Blumenstingl wrote:
+>> Hello Mathias, Hello Greg,
+>>
+>> On Sun, Sep 3, 2017 at 11:38 PM, Martin Blumenstingl
+>> <martin.blumenstingl@googlemail.com> wrote:
+>> > This series is the outcome of a discussion with Felipe Balbi,
+>> > see [0] and [1].
+>> > The quick-summary of this is:
+>> > - dwc3 already takes one USB2 and one USB3 PHY and initializes these
+>> >   correct
+>> > - some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
+>> >   ohci-platform.c) do not have a limitation on the number of PHYs - they
+>> >   support one PHY per actual host port
+>> > - Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
+>> >   or three USB2 ports enabled on the internal root-hub. The SoCs also
+>> >   provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
+>> >   internally "connected" to the dwc3 roothub) need to be powered on,
+>> >   otherwise USB devices cannot be enumerated (even if just one PHY is
+>> >   disabled and if the device is plugged into another, enabled port)
+>> >
+>> > In my first attempt to get USB supported on the GXL and GXM SoCs I tried
+>> > to work-around the problem that I could not pass multiple PHYs to the
+>> > dwc3 controller.
+>> > This was rejected by Rob Herring (which was definitely the thing to do in
+>> > my opinion), see [2]
+>> >
+>> > This series adds a new "platform-roothub". This can be configured through
+>> > devicetree by passing a child-node with "reg = <0>" to the USB
+>> > controller. Additionally there has to be a child-node for each port on
+>> > the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
+>> > property. This allows modeling the root-hub in devicetree similar to the
+>> > USB device binding (documented in devicetree/bindings/usb/usb-device.txt)
+>> > This avoids and backwards-compatibility problems (which was a concern
+>> > regardless of the solution, see [3]) since the binding for the root-hub
+>> > was previously not specified (and we're not using the "phys" property of
+>> > the controller, which might have served different purposes before,
+>> > depending on the drivers).
+>> >
+>> > Additionally this integrates the new platform-roothub into xhci-plat.c
+>> > which automatically enables it for the dwc3 driver (in host-mode).
+>> >
+>> >
+>> > Changes since RFCv3 at [6]:
+>> > - moved the DT binding change from patch #3 to patch #1 as suggested
+>> >   by Rob Herring (and slightly adjusted the commit message to account
+>> >   for that)
+>> > - added Tested-by from Chunfeng Yun (who confirmed that the whole
+>> >   concept and implementation works fine on Mediatek SoCs - many thanks
+>> >   again!) to patch #2
+>> > - added Rob Herring's ACK to patches 1 and 3
+>> > - dropped RFC status (RFCv3 -> PATCH v4)
+>> I just wanted to rebase this to v4.14-rc1 (now that this is out) -
+>> however I noticed that v4 still applies to v4.14-rc1 cleanly (the
+>> patches are still identical to v4 after rebasing).
+>>
+>> we have an ACK from the devicetree maintainers and a "Tested-by" for a
+>> Mediatek (= non-Amlogic) SoC.
+>> I already have patches for the Amlogic GXL/GXM platforms queued, those
+>> are just waiting on this series.
+>>
+>> what is still missing to get this series into v4.15?
+>
+> Well, we couldn't do anything until 4.14-rc1 is out, now that it is, let
+> us catch up on patch review please...
+OK, I understand that.
+please let me know once you've caught up with the review backlog - as
+I said I would like to get this into 4.15 if nothing else comes up
+during the code-review
+
+
+Thank you!
+Regards,
+Martin
