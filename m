@@ -1,58 +1,65 @@
-From: linus.luessing@c0d3.blue (=?UTF-8?q?Linus=20L=C3=BCssing?=)
-Date: Mon,  2 Oct 2017 17:59:03 +0200
-Subject: [PATCH] ARM: dts: meson8b: add reserved memory zone to fix silent
- freezes
-Message-ID: <20171002155903.19511-1-linus.luessing@c0d3.blue>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 02 Oct 2017 10:36:38 -0700
+Subject: [GIT PULL] Amlogic fixes for v4.14-rc
+Message-ID: <7hr2ul8na1.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-So far, the stress-ng tool for instance quickly resulted in a silent
-freeze of the system with no prior notice on a serial console when
-running its filesystem or memory stressor classes.
+Hi Olof,
 
-Even with a panic-on-OOM and reboot-on-panic (vm.panic_on_oom=1,
-kernel.panic=10) configured, the system would neither reboot nor
-would the OOM killer get any chance to otherwise do its job.
+This is the same DT series that was sent for next/late but was missed,
+so I'm sending it again as fixes for v4.14-rc since we have some users
+having issues because the driver was merged for v4.14, but the
+correspnding DT enhancements were not.
 
-The Amlogic reference source code uses a 2MB PHYS_OFFSET. With these 2MB
-reserved via DT, stress-ng was able to run on an Odroid C1+ just fine for
-several hours, the OOM killer was able to kill processes again and if
-configured would successfully trigger a reboot of the system.
+Please merge for v4.14-rc3.  It's unmodified since the previous pull request.
 
-Fixes: 4a69fcd3a108 ("ARM: meson: Add DTS for Odroid-C1 and Tronfy MXQ boards")
-Signed-off-by: Linus L?ssing <linus.luessing@c0d3.blue>
+Thanks,
 
----
-The following stress-ng command worked fine now:
-$ stress-ng -v --sequential 0 -t 120s --exclude sysfs,opcode --metrics
-(5 hours runtime, tested on an Odroid C1+ with an 4.14-rc1 kernel + SMP
-+ USB DTS patches)
----
- arch/arm/boot/dts/meson8b.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Kevin
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index bc278da..d75a5b5 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -83,6 +83,18 @@
- 		};
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		/* 2 MiB reserved for Hardware ROM Firmware? */
-+		hwrom at 0 {
-+			reg = <0x0 0x200000>;
-+			no-map;
-+		};
-+	};
-+
- 	scu at c4300000 {
- 		compatible = "arm,cortex-a5-scu";
- 		reg = <0xc4300000 0x100>;
--- 
-2.1.4
+
+The following changes since commit 47884c5c746ee7c02e06fbf60480e0f13aa11dfe:
+
+  ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names (2017-08-22 15:37:50 -0700)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-3
+
+for you to fetch changes up to 485a308f05d843034b6e82f688704c44888aecde:
+
+  ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode (2017-09-05 12:05:01 -0700)
+
+----------------------------------------------------------------
+Amlogic 64-bit DT updates for v4.14 (round 3)
+- updates for new MMC driver features/fixes
+- support high-speed modes
+
+----------------------------------------------------------------
+Jerome Brunet (9):
+      ARM64: dts: meson-gx: Use correct mmc clock source 0
+      ARM64: dts: meson: remove cap-sd-highspeed from emmc nodes
+      ARM64: dts: meson: add mmc clk gate pins
+      ARM64: dts: meson-gxbb: nanopi-k2: add card regulator settle times
+      ARM64: dts: meson-gxl: libretech-cc: add card regulator settle times
+      ARM64: dts: meson-gxl: libretech-cc: enable high speed modes
+      ARM64: dts: meson-gxbb: p20x: enable sdcard UHS modes
+      ARM64: dts: meson-gxbb: nanopi-k2: enable sdcard UHS modes
+      ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode
+
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi            | 10 ++++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts           | 19 ++++++++++++++-----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts         | 12 +++++++-----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts            |  9 +++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi               | 13 +++++++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi           | 10 ++++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                    | 39 ++++++++++++++++++++++++++++++++++++---
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts |  7 ++++---
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 13 +++++++++++--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 10 ++++++----
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi          | 10 ++++++----
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                     | 39 ++++++++++++++++++++++++++++++++++++---
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts            |  7 ++++---
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts             |  1 -
+ 14 files changed, 150 insertions(+), 49 deletions(-)
