@@ -1,87 +1,102 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 1 Oct 2017 22:32:06 +0200
-Subject: [PATCH v4 0/3] initialize (multiple) PHYs in xhci-plat
-In-Reply-To: <20170918084943.GA19123@kroah.com>
-References: <20170903213829.6589-1-martin.blumenstingl@googlemail.com>
- <CAFBinCCRM1e08styDV8uodkhonTUPyZrQAdYRz_bfUMe-YP1Rg@mail.gmail.com>
- <20170918084943.GA19123@kroah.com>
-Message-ID: <CAFBinCAweHXFbWrF9gW5f_+NeC9jChU1EkRsiLzkaKtOZkEREQ@mail.gmail.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Mon, 2 Oct 2017 09:55:32 +0200
+Subject: [RFC v2 1/2] dt-bindings: mmc: Document the Amlogic Meson8 and
+ Meson8b SDIO bindings
+In-Reply-To: <20170924190528.21841-2-martin.blumenstingl@googlemail.com>
+References: <20170924190528.21841-1-martin.blumenstingl@googlemail.com>
+ <20170924190528.21841-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CAPDyKFohh0_aONKyoc2deN+L8TCzY8tdEs5-fja3t5oVL2Gs7w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello Greg, Hello Mathias,
-
-On Mon, Sep 18, 2017 at 10:49 AM, Greg KH <gregkh@linuxfoundation.org> wrote:
-> On Sun, Sep 17, 2017 at 10:51:31PM +0200, Martin Blumenstingl wrote:
->> Hello Mathias, Hello Greg,
->>
->> On Sun, Sep 3, 2017 at 11:38 PM, Martin Blumenstingl
->> <martin.blumenstingl@googlemail.com> wrote:
->> > This series is the outcome of a discussion with Felipe Balbi,
->> > see [0] and [1].
->> > The quick-summary of this is:
->> > - dwc3 already takes one USB2 and one USB3 PHY and initializes these
->> >   correct
->> > - some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
->> >   ohci-platform.c) do not have a limitation on the number of PHYs - they
->> >   support one PHY per actual host port
->> > - Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
->> >   or three USB2 ports enabled on the internal root-hub. The SoCs also
->> >   provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
->> >   internally "connected" to the dwc3 roothub) need to be powered on,
->> >   otherwise USB devices cannot be enumerated (even if just one PHY is
->> >   disabled and if the device is plugged into another, enabled port)
->> >
->> > In my first attempt to get USB supported on the GXL and GXM SoCs I tried
->> > to work-around the problem that I could not pass multiple PHYs to the
->> > dwc3 controller.
->> > This was rejected by Rob Herring (which was definitely the thing to do in
->> > my opinion), see [2]
->> >
->> > This series adds a new "platform-roothub". This can be configured through
->> > devicetree by passing a child-node with "reg = <0>" to the USB
->> > controller. Additionally there has to be a child-node for each port on
->> > the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
->> > property. This allows modeling the root-hub in devicetree similar to the
->> > USB device binding (documented in devicetree/bindings/usb/usb-device.txt)
->> > This avoids and backwards-compatibility problems (which was a concern
->> > regardless of the solution, see [3]) since the binding for the root-hub
->> > was previously not specified (and we're not using the "phys" property of
->> > the controller, which might have served different purposes before,
->> > depending on the drivers).
->> >
->> > Additionally this integrates the new platform-roothub into xhci-plat.c
->> > which automatically enables it for the dwc3 driver (in host-mode).
->> >
->> >
->> > Changes since RFCv3 at [6]:
->> > - moved the DT binding change from patch #3 to patch #1 as suggested
->> >   by Rob Herring (and slightly adjusted the commit message to account
->> >   for that)
->> > - added Tested-by from Chunfeng Yun (who confirmed that the whole
->> >   concept and implementation works fine on Mediatek SoCs - many thanks
->> >   again!) to patch #2
->> > - added Rob Herring's ACK to patches 1 and 3
->> > - dropped RFC status (RFCv3 -> PATCH v4)
->> I just wanted to rebase this to v4.14-rc1 (now that this is out) -
->> however I noticed that v4 still applies to v4.14-rc1 cleanly (the
->> patches are still identical to v4 after rebasing).
->>
->> we have an ACK from the devicetree maintainers and a "Tested-by" for a
->> Mediatek (= non-Amlogic) SoC.
->> I already have patches for the Amlogic GXL/GXM platforms queued, those
->> are just waiting on this series.
->>
->> what is still missing to get this series into v4.15?
+On 24 September 2017 at 21:05, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> From: Carlo Caione <carlo@endlessm.com>
 >
-> Well, we couldn't do anything until 4.14-rc1 is out, now that it is, let
-> us catch up on patch review please...
-OK, I understand that.
-please let me know once you've caught up with the review backlog - as
-I said I would like to get this into 4.15 if nothing else comes up
-during the code-review
+> This documents the devicetree bindings for the SDIO/MMC host found in
+> Amlogic Meson8 and Meson8b SoCs. It supports the SD specification v2.0
+> and the eMMC specification v4.41.
+> It has an internal "mux" which allows connecting up to three MMC devices
+> to it. The maximum supported bus-width is 4-bits.
+>
+> Amlogic's GPL kernel sources call it "SDIO" to differentiate it from the
+> other MMC controller in (at least the Meson8 and Meson8b) the SoCs (they
+> call the other one "SDHC", which supports a bus-width of up to 8-bits).
+>
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 52 ++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+> new file mode 100644
+> index 000000000000..124ea362eec9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+> @@ -0,0 +1,52 @@
+> +* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+> +
+> +The highspeed MMC host controller on Amlogic SoCs provides an interface
+> +for MMC, SD, SDIO and SDHC types of memory cards.
+> +
+> +Supported maximum speeds are the ones of the eMMC standard 4.41 as well
+> +as the speed of SD standard 2.0.
+> +
+> +The hardware provides an internal "mux" which allows up to three slots
+> +to be controlled. Only one slot can be accessed at a time.
 
+This is good information, however as the driver won't support multiple
+slots, at least short term, I think we need to mention that. Otherwise
+people may think that three slots is actually supported, while in fact
+it isn't.
 
-Thank you!
-Regards,
-Martin
+> +
+> +Required properties:
+> + - compatible : must be one of
+> +       - "amlogic,meson8-sdio"
+> +       - "amlogic,meson8b-sdio"
+> +       along with the generic "amlogic,meson-mx-sdio"
+> + - reg : mmc controller base registers
+> + - interrupts : mmc controller interrupt
+> + - #address-cells : must be 1
+> + - size-cells : must be 0
+> + - clocks : phandle to clock providers
+> + - clock-names : must contain "core" and "clkin"
+> +
+> +Required child nodes:
+> +A node for each slot provided by the MMC controller is required.
+> +
+> +Required properties on each child node (= slot):
+> + - compatible : must be "mmc-slot" (see mmc.txt within this directory)
+> + - reg : the slot (or "port") ID
+> +
+> +Optional properties on each child node (= slot):
+> + - bus-width : must be 1 or 4 (8-bit bus is not supported)
+> + - for cd and all other additional generic mmc parameters
+> +   please refer to mmc.txt within this directory
+> +
+> +Examples:
+> +       mmc at c1108c20 {
+> +               compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
+> +               reg = <0xc1108c20 0x20>;
+> +               interrupts = <0 28 1>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +               clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
+> +               clock-names = "core", "clkin";
+> +
+> +               slot at 1 {
+> +                       compatible = "mmc-slot";
+> +                       reg = <1>;
+> +
+> +                       bus-width = <4>;
+> +               };
+> +       };
+> --
+> 2.14.1
+>
+
+Kind regards
+Uffe
