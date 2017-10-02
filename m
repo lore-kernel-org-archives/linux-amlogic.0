@@ -1,109 +1,77 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 2 Oct 2017 20:47:48 +0200
-Subject: [RFC v2 1/2] dt-bindings: mmc: Document the Amlogic Meson8 and
- Meson8b SDIO bindings
-In-Reply-To: <CAPDyKFohh0_aONKyoc2deN+L8TCzY8tdEs5-fja3t5oVL2Gs7w@mail.gmail.com>
-References: <20170924190528.21841-1-martin.blumenstingl@googlemail.com>
- <20170924190528.21841-2-martin.blumenstingl@googlemail.com>
- <CAPDyKFohh0_aONKyoc2deN+L8TCzY8tdEs5-fja3t5oVL2Gs7w@mail.gmail.com>
-Message-ID: <CAFBinCA6HfKTNSLczx=V3dtfsrUSMKJw-nLAp6s9m55dJ9nQxA@mail.gmail.com>
+From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
+Date: Mon, 2 Oct 2017 21:54:32 +0200
+Subject: [PATCH 0/4] meson8b-odroidc1: ethernet support
+In-Reply-To: <cover.1506507688.git.ingrassia@epigenesys.com>
+References: <cover.1506507688.git.ingrassia@epigenesys.com>
+Message-ID: <20171002195432.GX6726@otheros>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 2, 2017 at 9:55 AM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> On 24 September 2017 at 21:05, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> From: Carlo Caione <carlo@endlessm.com>
->>
->> This documents the devicetree bindings for the SDIO/MMC host found in
->> Amlogic Meson8 and Meson8b SoCs. It supports the SD specification v2.0
->> and the eMMC specification v4.41.
->> It has an internal "mux" which allows connecting up to three MMC devices
->> to it. The maximum supported bus-width is 4-bits.
->>
->> Amlogic's GPL kernel sources call it "SDIO" to differentiate it from the
->> other MMC controller in (at least the Meson8 and Meson8b) the SoCs (they
->> call the other one "SDHC", which supports a bus-width of up to 8-bits).
->>
->> Signed-off-by: Carlo Caione <carlo@endlessm.com>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 52 ++++++++++++++++++++++
->>  1 file changed, 52 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
->> new file mode 100644
->> index 000000000000..124ea362eec9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
->> @@ -0,0 +1,52 @@
->> +* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
->> +
->> +The highspeed MMC host controller on Amlogic SoCs provides an interface
->> +for MMC, SD, SDIO and SDHC types of memory cards.
->> +
->> +Supported maximum speeds are the ones of the eMMC standard 4.41 as well
->> +as the speed of SD standard 2.0.
->> +
->> +The hardware provides an internal "mux" which allows up to three slots
->> +to be controlled. Only one slot can be accessed at a time.
->
-> This is good information, however as the driver won't support multiple
-> slots, at least short term, I think we need to mention that. Otherwise
-> people may think that three slots is actually supported, while in fact
-> it isn't.
-OK, I'll add a note when I re-spin this series
+Hi Emiliano,
 
->> +
->> +Required properties:
->> + - compatible : must be one of
->> +       - "amlogic,meson8-sdio"
->> +       - "amlogic,meson8b-sdio"
->> +       along with the generic "amlogic,meson-mx-sdio"
->> + - reg : mmc controller base registers
->> + - interrupts : mmc controller interrupt
->> + - #address-cells : must be 1
->> + - size-cells : must be 0
->> + - clocks : phandle to clock providers
->> + - clock-names : must contain "core" and "clkin"
->> +
->> +Required child nodes:
->> +A node for each slot provided by the MMC controller is required.
->> +
->> +Required properties on each child node (= slot):
->> + - compatible : must be "mmc-slot" (see mmc.txt within this directory)
->> + - reg : the slot (or "port") ID
->> +
->> +Optional properties on each child node (= slot):
->> + - bus-width : must be 1 or 4 (8-bit bus is not supported)
->> + - for cd and all other additional generic mmc parameters
->> +   please refer to mmc.txt within this directory
->> +
->> +Examples:
->> +       mmc at c1108c20 {
->> +               compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
->> +               reg = <0xc1108c20 0x20>;
->> +               interrupts = <0 28 1>;
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +               clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
->> +               clock-names = "core", "clkin";
->> +
->> +               slot at 1 {
->> +                       compatible = "mmc-slot";
->> +                       reg = <1>;
->> +
->> +                       bus-width = <4>;
->> +               };
->> +       };
->> --
->> 2.14.1
->>
->
-> Kind regards
-> Uffe
+On Wed, Sep 27, 2017 at 12:39:32PM +0200, Emiliano Ingrassia wrote:
+> This patchset enables ethernet support on Odroid-C1/C1+ boards,
+> improving and extending the ethernet description in the relative
+> device tree.
+> 
+> In particular:
+> - the mpll2 clock is enabled to avoid timeout during ethernet DMA reset;
+> - the Meson8b ethernet controller description is fixed and extended;
+> - the Odroid-C1/C1+ ethernet PHY description is added;
+> - the dwmac sleep and timeout values used during DMA reset are fixed.
+> 
+> This patchset has been tested on Odroid-C1+ board.
+
+I tried this patchset on an Odroid C1+ with a v4.14-rc3 kernel
+plus these currently pending patches from this mailing list [0].
+
+I'm observing the following issue:
+
+1) The C1+ successfully gets an IPv6 address from stateless
+   autoconfiguration
+2) IPv6 pinging from the C1+ to another host X works
+        C1+ -> X => OK
+3) IPv6 pinging from host X to the C1+ does not work:
+        X -> C1+ => not OK
+4) While ping'ing from X->C1+ after some seconds / a minute  a
+   parallel C1+->X ping stops working too. After stopping the
+   X->C1+ ping the C1+->X ping quickly recovers within about
+   one or two seconds.
+
+I tried adding the "eee-broken-1000t;" parameter to
+meson8b-odroidc1.dts similar to meson-gxbb-odroidc2.dts. Did not
+seem to help though.
+
+Still, this behaviour very much feels like a powersaving issue.
+And/or an incomplete setup of the random MAC address on the C1+,
+for instance a missing notification of the MAC address for the
+ethernet chip, leaving it unable to wake up / create interrupts
+for incoming frames with the destination of the C1+.
+
+The C1+ and host X are both connected via cable to the same switch
+of a router.
+
+Can you reproduce this issue on your side, Emiliano?
+
+Regards, Linus
 
 
-Regards,
-Martin
+[0]:
+
+e008445 ARM: multi_v7_defconfig: Add Amlogic Meson MMC support
+a315380 ARM: dts: meson8b: Add MMC nodes
+90a73b6 mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8 and Meson8b SoCs
+2f0b808 dt-bindings: mmc: Document the Amlogic Meson8 and Meson8b SDIO bindings
+31247f2 net: stmmac: fixing DMA reset sleep and timeout values
+1f43db3 ARM: dts: meson8b-odroidc1: enabling ethernet support
+8ecc9d3 ARM: dts: meson8b: extending ethernet controller description
+be4a137 clk: meson8b: keep mpll2 clock enabled
+54b818c ARM: dts: meson8b: add reserved memory zone to fix silent freezes
+113819d ARM: dts: meson: enabling the USB Host controller on Odroid-C1/C1+ board
+7240c6d ARM: dts: meson: fixing USB support on Meson8b
+a9153ba ARM: dts: meson8b: add support for booting the secondary CPU cores
+8529b23 ARM: dts: meson8: add support for booting the secondary CPU cores
+fd053c9 ARM: meson: Add SMP bringup code for Meson8 and Meson8b
+d6b74cd ARM: smp_scu: allow the platform code to read the SCU CPU status
+822a0d8 ARM: smp_scu: add a helper for powering on a specific CPU
+7da8338 dt-bindings: Amlogic: Add Meson8 and Meson8b SMP related documentation
