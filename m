@@ -1,171 +1,32 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Mon, 2 Oct 2017 10:08:09 +0200
-Subject: [RFC v2 2/2] mmc: meson-mx-sdio: Add a driver for the Amlogic
- Meson8 and Meson8b SoCs
-In-Reply-To: <20170924190528.21841-3-martin.blumenstingl@googlemail.com>
-References: <20170924190528.21841-1-martin.blumenstingl@googlemail.com>
- <20170924190528.21841-3-martin.blumenstingl@googlemail.com>
-Message-ID: <CAPDyKFqj1CkhHO4SvUySEV4OnKcTeHRu6YAfBPSN4hvkQpHKfA@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon,  2 Oct 2017 14:27:40 +0200
+Subject: [PATCH 0/3] mmc: meson-gx: fixes for v4.14
+Message-ID: <20171002122743.32334-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-[...]
+This patchset fixes the issues reported by Heiner [0] with the odroid-c2.
+In a nutshell, this series does the following:
 
-> +#define MESON_MX_SDIO_MAX_SLOTS                                        3
-> +
-> +struct meson_mx_mmc_slot {
-> +       struct device                   *dev;
-> +       struct mmc_host                 *mmc;
-> +       struct meson_mx_mmc_host        *host;
-> +
-> +       struct mmc_request              *mrq;
-> +       struct mmc_command              *cmd;
-> +       int                             error;
-> +
-> +       unsigned int                    id;
-> +};
+* Make sure the mmc clock rate is not set higher than what is requested
+* Reset the tuning values on mmc power cycle instead of POWER_ON
+* Add tuning of the tx phase to the tuning function.
 
-If I recall correctly, we agreed on postponing the multiple slot
-support for now as to start simple.
-Therefore, can you please remove all that code, and instead only use
-the struct meson_mx_mmc_host for the data needed.
+This fixes the problem seen on the odroid-c2, both for hs200 and hs400.
+To check for regression, this series has also been tested on the gxl
+libretech-cc
 
-Just to be clear, I am fine having using the mmc slot bindings, as we
-agreed. However as only one slot is supported in this stage, we don't
-need a separate struct for that.
+Ulf, could you please pick this as fixes for v4.14 ?
 
-> +
-> +struct meson_mx_mmc_host {
-> +       struct device                   *dev;
-> +
-> +       struct clk                      *parent_clk;
-> +       struct clk                      *core_clk;
-> +       struct clk_divider              cfg_div;
-> +       struct clk                      *cfg_div_clk;
-> +       struct clk_fixed_factor         fixed_factor;
-> +       struct clk                      *fixed_factor_clk;
-> +
-> +       void __iomem                    *base;
-> +       int                             irq;
-> +       spinlock_t                      irq_lock;
-> +
-> +       struct timer_list               cmd_timeout;
-> +
-> +       struct meson_mx_mmc_slot        *slot;
-> +};
-> +
+[0]: https://lkml.kernel.org/r/e2171288-84ef-82db-2efc-300935e6c062 at gmail.com
 
-[...]
+Jerome Brunet (3):
+  mmc: meson-gx: make sure the clock is rounded down
+  mmc: meson-gx: fix rx phase reset
+  mmc: meson-gx: include tx phase in the tuning process
 
-> +static int meson_mx_mmc_slot_probe(struct device *slot_dev,
-> +                                  struct meson_mx_mmc_host *host)
-> +{
-> +       struct meson_mx_mmc_slot *slot;
-> +       struct mmc_host *mmc;
-> +       unsigned int id;
-> +       int ret;
-> +
-> +       if (of_property_read_u32(slot_dev->of_node, "reg", &id)) {
-> +               dev_err(slot_dev, "missing 'reg' property\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (id >= MESON_MX_SDIO_MAX_SLOTS) {
-> +               dev_err(slot_dev, "invalid 'reg' property value %d\n", id);
-> +               return -EINVAL;
-> +       }
-> +
-> +       mmc = mmc_alloc_host(sizeof(*slot), slot_dev);
-> +       if (!mmc)
-> +               return -ENOMEM;
-> +
-> +       slot = mmc_priv(mmc);
-> +       slot->dev = slot_dev;
-> +       slot->mmc = mmc;
-> +       slot->id = id;
-> +       slot->host = host;
-> +
-> +       host->slot = slot;
-> +
-> +       /* Get regulators and the supported OCR mask */
-> +       ret = mmc_regulator_get_supply(mmc);
-> +       if (ret == -EPROBE_DEFER)
-> +               goto error_free_host;
-> +
-> +       mmc->max_req_size = MESON_MX_SDIO_BOUNCE_REQ_SIZE;
-> +       mmc->max_seg_size = mmc->max_req_size;
-> +       mmc->max_blk_count =
-> +               FIELD_GET(MESON_MX_SDIO_SEND_REPEAT_PACKAGE_TIMES_MASK,
-> +                         0xffffffff);
-> +       mmc->max_blk_size = FIELD_GET(MESON_MX_SDIO_EXT_DATA_RW_NUMBER_MASK,
-> +                                     0xffffffff);
-> +       mmc->max_blk_size -= (4 * MESON_MX_SDIO_RESPONSE_CRC16_BITS);
-> +       mmc->max_blk_size /= BITS_PER_BYTE;
-> +
-> +       /* Get the min and max supported clock rates */
-> +       mmc->f_min = clk_round_rate(host->cfg_div_clk, 1);
-> +       mmc->f_max = clk_round_rate(host->cfg_div_clk,
-> +                                   clk_get_rate(host->parent_clk));
-> +
-> +       mmc->caps |= MMC_CAP_ERASE | MMC_CAP_CMD23;
-> +       mmc->ops = &meson_mx_mmc_ops;
-> +
-> +       ret = mmc_of_parse(mmc);
-> +       if (ret)
-> +               goto error_free_host;
-> +
-> +       ret = mmc_add_host(mmc);
-> +       if (ret)
-> +               goto error_free_host;
-> +
-> +       return 0;
-> +
-> +error_free_host:
-> +       mmc_free_host(mmc);
-> +       return ret;
-> +}
-> +
-> +static int meson_mx_mmc_probe_slots(struct meson_mx_mmc_host *host)
-> +{
-> +       struct device_node *slot_node;
-> +       struct platform_device *slot_pdev;
-> +       int ret;
-> +
-> +       for_each_child_of_node(host->dev->of_node, slot_node) {
-> +               if (!of_device_is_compatible(slot_node, "mmc-slot"))
-> +                       continue;
-> +
-> +               /*
-> +                * TODO: the MMC core framework currently does not support
-> +                * controllers with multiple slots properly.
-> +                */
-> +               if (host->slot) {
-> +                       dev_warn(host->dev,
-> +                                "skipping slot other than the first\n");
-> +                       continue;
-> +               }
-> +
-> +               slot_pdev = of_platform_device_create(slot_node, NULL,
-> +                                                     host->dev);
-> +               if (!slot_pdev)
-> +                       continue;
-> +
-> +               ret = meson_mx_mmc_slot_probe(&slot_pdev->dev, host);
-> +               if (ret) {
-> +                       of_platform_device_destroy(&slot_pdev->dev, NULL);
-> +                       return ret;
-> +               }
-> +       }
-> +
-> +       return 0;
-> +}
+ drivers/mmc/host/meson-gx-mmc.c | 26 ++++++++++++++++++++++----
+ 1 file changed, 22 insertions(+), 4 deletions(-)
 
-For the above two functions, please simplify the code by limiting them
-to deal with only one valid mmc-slot.
-
-[...]
-
-Besides the comments on the multiple slot support, this looks good to me.
-
-Kind regards
-Uffe
+-- 
+2.13.5
