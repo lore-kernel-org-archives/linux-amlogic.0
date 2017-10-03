@@ -1,68 +1,151 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 03 Oct 2017 10:04:20 +0200
-Subject: ATF regions and Synchronous External Aborts
-Message-ID: <1507017860.17300.106.camel@baylibre.com>
+Date: Tue, 03 Oct 2017 10:15:44 +0200
+Subject: [PATCH v4 0/3] initialize (multiple) PHYs in xhci-plat
+In-Reply-To: <20171002124421.GA2324@kroah.com>
+References: <20170903213829.6589-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCCRM1e08styDV8uodkhonTUPyZrQAdYRz_bfUMe-YP1Rg@mail.gmail.com>
+ <20170918084943.GA19123@kroah.com>
+ <CAFBinCAweHXFbWrF9gW5f_+NeC9jChU1EkRsiLzkaKtOZkEREQ@mail.gmail.com>
+ <1506947708.17300.21.camel@baylibre.com> <20171002124421.GA2324@kroah.com>
+Message-ID: <1507018544.17300.116.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear Amlogic users,
+On Mon, 2017-10-02 at 14:44 +0200, Greg KH wrote:
+> On Mon, Oct 02, 2017 at 02:35:08PM +0200, Jerome Brunet wrote:
+> > On Sun, 2017-10-01 at 22:32 +0200, Martin Blumenstingl wrote:
+> > > Hello Greg, Hello Mathias,
+> > > 
+> > > On Mon, Sep 18, 2017 at 10:49 AM, Greg KH <gregkh@linuxfoundation.org>
+> > > wrote:
+> > > > On Sun, Sep 17, 2017 at 10:51:31PM +0200, Martin Blumenstingl wrote:
+> > > > > Hello Mathias, Hello Greg,
+> > > > > 
+> > > > > On Sun, Sep 3, 2017 at 11:38 PM, Martin Blumenstingl
+> > > > > <martin.blumenstingl@googlemail.com> wrote:
+> > > > > > This series is the outcome of a discussion with Felipe Balbi,
+> > > > > > see [0] and [1].
+> > > > > > The quick-summary of this is:
+> > > > > > - dwc3 already takes one USB2 and one USB3 PHY and initializes these
+> > > > > >   correct
+> > > > > > - some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c
+> > > > > > and
+> > > > > >   ohci-platform.c) do not have a limitation on the number of PHYs -
+> > > > > > they
+> > > > > >   support one PHY per actual host port
+> > > > > > - Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has
+> > > > > > two
+> > > > > >   or three USB2 ports enabled on the internal root-hub. The SoCs
+> > > > > > also
+> > > > > >   provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
+> > > > > >   internally "connected" to the dwc3 roothub) need to be powered on,
+> > > > > >   otherwise USB devices cannot be enumerated (even if just one PHY
+> > > > > > is
+> > > > > >   disabled and if the device is plugged into another, enabled port)
+> > > > > > 
+> > > > > > In my first attempt to get USB supported on the GXL and GXM SoCs I
+> > > > > > tried
+> > > > > > to work-around the problem that I could not pass multiple PHYs to
+> > > > > > the
+> > > > > > dwc3 controller.
+> > > > > > This was rejected by Rob Herring (which was definitely the thing to
+> > > > > > do
+> > > > > > in
+> > > > > > my opinion), see [2]
+> > > > > > 
+> > > > > > This series adds a new "platform-roothub". This can be configured
+> > > > > > through
+> > > > > > devicetree by passing a child-node with "reg = <0>" to the USB
+> > > > > > controller. Additionally there has to be a child-node for each port
+> > > > > > on
+> > > > > > the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
+> > > > > > property. This allows modeling the root-hub in devicetree similar to
+> > > > > > the
+> > > > > > USB device binding (documented in devicetree/bindings/usb/usb-
+> > > > > > device.txt)
+> > > > > > This avoids and backwards-compatibility problems (which was a
+> > > > > > concern
+> > > > > > regardless of the solution, see [3]) since the binding for the root-
+> > > > > > hub
+> > > > > > was previously not specified (and we're not using the "phys"
+> > > > > > property of
+> > > > > > the controller, which might have served different purposes before,
+> > > > > > depending on the drivers).
+> > > > > > 
+> > > > > > Additionally this integrates the new platform-roothub into xhci-
+> > > > > > plat.c
+> > > > > > which automatically enables it for the dwc3 driver (in host-mode).
+> > > > > > 
+> > > > > > 
+> > > > > > Changes since RFCv3 at [6]:
+> > > > > > - moved the DT binding change from patch #3 to patch #1 as suggested
+> > > > > >   by Rob Herring (and slightly adjusted the commit message to
+> > > > > > account
+> > > > > >   for that)
+> > > > > > - added Tested-by from Chunfeng Yun (who confirmed that the whole
+> > > > > >   concept and implementation works fine on Mediatek SoCs - many
+> > > > > > thanks
+> > > > > >   again!) to patch #2
+> > > > > > - added Rob Herring's ACK to patches 1 and 3
+> > > > > > - dropped RFC status (RFCv3 -> PATCH v4)
+> > > > > 
+> > > > > I just wanted to rebase this to v4.14-rc1 (now that this is out) -
+> > > > > however I noticed that v4 still applies to v4.14-rc1 cleanly (the
+> > > > > patches are still identical to v4 after rebasing).
+> > > > > 
+> > > > > we have an ACK from the devicetree maintainers and a "Tested-by" for a
+> > > > > Mediatek (= non-Amlogic) SoC.
+> > > > > I already have patches for the Amlogic GXL/GXM platforms queued, those
+> > > > > are just waiting on this series.
+> > > > > 
+> > > > > what is still missing to get this series into v4.15?
+> > > > 
+> > > > Well, we couldn't do anything until 4.14-rc1 is out, now that it is, let
+> > > > us catch up on patch review please...
+> > > 
+> > > OK, I understand that.
+> > > please let me know once you've caught up with the review backlog - as
+> > > I said I would like to get this into 4.15 if nothing else comes up
+> > > during the code-review
+> > 
+> > This series works well on the libretech-cc (le potato)
+> > For the series:
+> > 
+> > Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+> 
+> Hey, I have one of those boards now, was just about to try to get it to
+> work.  Is this series necessary for it to run properly on 4.14-rc?
 
-Some of you may have recently experienced "Synchronous External Abort" error
-while running amlogic devices with the mainline kernel.
+To run w/o usb, no. It should already be decent on 4.14-rc.
+To run with usb, you need this series and:
 
-This may happen if the memory reserved for the Arm Trusted Firmware (see meson-
-gx.dtsi) is not aligned with the ATF binary embedded in your u-boot. If/When the
-kernel use the memory region allocated by the ATF, this will raise an exception
-and show a "Synchronous External Abort" in your kernel logs.
+* the usb3 phy driver sent but (I believe) not yet merged [0]
+* A few DT changes enable the whole thing.
 
-It entirely depends on when the kernel use that region. It may never happen, or
-it may happen very quickly.
+The whole thing is available here [1]
 
-A quick and easy way to check your platform for this issue is using the mmc and
-dd.
+However, while you were at KR2017, we found an unrelated, yet very annoying,
+issue which may trigger "Synchronous External Aborts" ... The whole story is
+available here [2] and the work around patch is available here [3].
 
-> dd if=/dev/mmcblkX of=/dev/zero bs=4M count=YYYY
+If you have downloaded your image from here [4], the kernel is a v4.13 plus
+* few changes already merged in next or under review (cec, mmc, usb, ...)
+* Overlay support 
+* WIP for the hdmi audio.
+Sources are here [5]
 
-the important things is that 4M*count is more than the ram amount you have.
-The kernel is going write buffer everywhere and, if the region is not properly
-set, it will eventually trigger the issue.
+[0]: https://lkml.kernel.org/r/20170924195000.13276-1-martin.blumenstingl at google
+mail.com
+[1]: https://github.com/libre-computer-project/libretech-linux/commits/linux-4.1
+3/usb
+[2]: https://lkml.kernel.org/r/1507017860.17300.106.camel at baylibre.com
+[3]: https://github.com/libre-computer-project/libretech-linux/commit/0f71f762a9
+c37ab423e0c9e0498081a9a17f2b8a
+[4]: http://baylibre.com/kernel-recipes-mainline-aml-s905x-cc-le-potato/
+[5]: https://github.com/libre-computer-project/libretech-linux/commits/linux-4.1
+3/libretech-cc-overlays
 
-So far, ATF and meson-gx.dtsi is aligned for all known gxbb devices.
-It's more tricky for gxl and gxm. Some early released devices (such as the kvim)
-use the old 0x10000000-0x10200000 (OK) region while most recent one uses
-0x5000000-0x5300000 (will trigger the problem).
-
-This entirely depends on the u-boot (bl31 and bl32) which is used on the device.
-It is possible to have different regions for the same platform, which is why we
-can't really fix this by updating every DT we have.
-
-There is a way to get those regions at runtime (please see aml u-boot sources in
-their buildroot, in ./common/cmd_rsvmem.c ... you can also check khadas github
-[0]) ... only 3 registers to read...
-
-We are currently looking for the best way to address this problem:
-
-* We could patch the DT in u-boot. Problem is that there is wide variety of u-
-boot binary out there. This issue might reported a lot until we get everyone to
-a update u-boot (mainline or vendor)
-
-* We could try to detect this in Linux boot. I think this would be the best as
-anyone running mainline would get the fix immediately. Problem is, I think, this
-would need to done before the call to request_standard_ressources() in
-arch/arm64/kernel/setup.c:setup_arch(). This pretty early and I don't know if we
-can execute platform specific init that early on arm64 ?
-Feel free to comment on this !
-
-In the meantime, If you experience this kind of error, and you are running a
-vendor u-boot, please try the following in u-boot prompt:
-
-> rsvmem dump
-
-If the regions reported are different from what you have in your dts, you can
-* Modify you are dts accordingly, or
-* Patch the dts on-the-fly, using u-boot fdt api
-
-[0]: https://github.com/khadas/u-boot/blob/Vim/common/cmd_rsvmem.c
-
-Cheers
-Jerome
+> 
+> thanks,
+> 
+> greg k-h
