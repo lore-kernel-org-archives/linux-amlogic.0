@@ -1,30 +1,42 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 4 Oct 2017 09:53:32 +0200
-Subject: [PATCH v2 2/2] dt-bindings: arm: amlogic: Add Tronsmart Vega S96
- binding
-In-Reply-To: <20171003213002.64dj4prex63ax5mn@rob-hp-laptop>
-References: <1507044585-20117-1-git-send-email-narmstrong@baylibre.com>
- <1507044585-20117-3-git-send-email-narmstrong@baylibre.com>
- <20171003213002.64dj4prex63ax5mn@rob-hp-laptop>
-Message-ID: <ee06206b-83c2-32e8-dfbe-fb4895b9aa91@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Wed, 4 Oct 2017 10:59:34 +0200
+Subject: [PATCH 0/3] mmc: meson-gx: fixes for v4.14
+In-Reply-To: <20171002122743.32334-1-jbrunet@baylibre.com>
+References: <20171002122743.32334-1-jbrunet@baylibre.com>
+Message-ID: <CAPDyKFqoDraQquAvA_n5+9R9rQXHNX+GG=Z=vXhw3x6B2=R6ig@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 03/10/2017 23:30, Rob Herring wrote:
-> On Tue, Oct 03, 2017 at 05:29:45PM +0200, Neil Armstrong wrote:
->> Cc: support at tronsmart.com
->> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
->> Signed-off-by: Oleg Ivanov <balbes-150@yandex.ru>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
->>  1 file changed, 1 insertion(+)
-> 
-> I acked v1. Please add acks when posting new versions.
-> 
+On 2 October 2017 at 14:27, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> This patchset fixes the issues reported by Heiner [0] with the odroid-c2.
+> In a nutshell, this series does the following:
+>
+> * Make sure the mmc clock rate is not set higher than what is requested
+> * Reset the tuning values on mmc power cycle instead of POWER_ON
+> * Add tuning of the tx phase to the tuning function.
+>
+> This fixes the problem seen on the odroid-c2, both for hs200 and hs400.
+> To check for regression, this series has also been tested on the gxl
+> libretech-cc
+>
+> Ulf, could you please pick this as fixes for v4.14 ?
 
-Sorry, I misses it.
+Thanks, applied for fixes!
 
-Kevin, can you add the missing ack when applying ?
+Kind regards
+Uffe
 
-Neil
+>
+> [0]: https://lkml.kernel.org/r/e2171288-84ef-82db-2efc-300935e6c062 at gmail.com
+>
+> Jerome Brunet (3):
+>   mmc: meson-gx: make sure the clock is rounded down
+>   mmc: meson-gx: fix rx phase reset
+>   mmc: meson-gx: include tx phase in the tuning process
+>
+>  drivers/mmc/host/meson-gx-mmc.c | 26 ++++++++++++++++++++++----
+>  1 file changed, 22 insertions(+), 4 deletions(-)
+>
+> --
+> 2.13.5
+>
