@@ -1,187 +1,53 @@
-From: mathias.nyman@linux.intel.com (Mathias Nyman)
-Date: Wed, 4 Oct 2017 16:05:02 +0300
-Subject: [PATCH v4 2/3] usb: host: add a generic platform USB roothub
- driver
-In-Reply-To: <20170903213829.6589-3-martin.blumenstingl@googlemail.com>
-References: <20170903213829.6589-1-martin.blumenstingl@googlemail.com>
- <20170903213829.6589-3-martin.blumenstingl@googlemail.com>
-Message-ID: <59D4DC7E.6040003@linux.intel.com>
+From: olof@lixom.net (Olof Johansson)
+Date: Wed, 4 Oct 2017 10:32:47 -0700
+Subject: [GIT PULL] Amlogic fixes for v4.14-rc
+In-Reply-To: <7hr2ul8na1.fsf@baylibre.com>
+References: <7hr2ul8na1.fsf@baylibre.com>
+Message-ID: <CAOesGMhV0iLP9=YoRhvEmQK7fGpQfhCnoOmsVf8B=+7o4=tuHw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04.09.2017 00:38, Martin Blumenstingl wrote:
-> Many SoC platforms have separate devices for the USB PHY which are
-> registered through the generic PHY framework. These PHYs have to be
-> enabled to make the USB controller actually work. They also have to be
-> disabled again on shutdown/suspend.
+On Mon, Oct 2, 2017 at 10:36 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Hi Olof,
 >
-> Currently (at least) the following HCI platform drivers are using custom
-> code to obtain all PHYs via devicetree for the roothub/controller and
-> disable/enable them when required:
-> - ehci-platform.c has ehci_platform_power_{on,off}
-> - xhci-mtk.c has xhci_mtk_phy_{init,exit,power_on,power_off}
-> - ohci-platform.c has ohci_platform_power_{on,off}
+> This is the same DT series that was sent for next/late but was missed,
+> so I'm sending it again as fixes for v4.14-rc since we have some users
+> having issues because the driver was merged for v4.14, but the
+> correspnding DT enhancements were not.
 >
-> These drivers are not using the generic devicetree USB device bindings
-> yet which were only introduced recently (documentation is available in
-> devicetree/bindings/usb/usb-device.txt).
-> With this new driver the usb2-phy and usb3-phy can be specified directly
-> in the child-node of the corresponding port of the roothub via
-> devicetree. This can be extended by not just parsing PHYs (some of the
-> other drivers listed above are for example also parsing a list of clocks
-> as well) when required.
-
-usb_add_hcd() in usb/core/hcd.c is already finding, initializing and turning
-on a phy, would it make sense to expand that one to support several phys instead?
-
-xhci will add two hcd's one for USB2 and one for USB3
-
+> Please merge for v4.14-rc3.  It's unmodified since the previous pull request.
 >
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Tested-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->   drivers/usb/host/Kconfig            |   3 +
->   drivers/usb/host/Makefile           |   2 +
->   drivers/usb/host/platform-roothub.c | 180 ++++++++++++++++++++++++++++++++++++
->   drivers/usb/host/platform-roothub.h |  12 +++
->   4 files changed, 197 insertions(+)
->   create mode 100644 drivers/usb/host/platform-roothub.c
->   create mode 100644 drivers/usb/host/platform-roothub.h
+> Thanks,
 >
-
-Instead of creating  platform-roothub files could this content
-be added into into core/hcd.*, core/phy.* and host/xhci-plat.c
-
-> diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-> index fa5692dec832..b8b05c786b2a 100644
-> --- a/drivers/usb/host/Kconfig
-> +++ b/drivers/usb/host/Kconfig
-> @@ -805,6 +805,9 @@ config USB_HCD_SSB
+> Kevin
 >
->   	  If unsure, say N.
 >
-> +config USB_PLATFORM_ROOTHUB
-> +	bool
-> +
->   config USB_HCD_TEST_MODE
->   	bool "HCD test mode support"
->   	---help---
-> diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
-> index cf2691fffcc0..dc817f82d632 100644
-> --- a/drivers/usb/host/Makefile
-> +++ b/drivers/usb/host/Makefile
-> @@ -29,6 +29,8 @@ obj-$(CONFIG_USB_WHCI_HCD)	+= whci/
+> The following changes since commit 47884c5c746ee7c02e06fbf60480e0f13aa11dfe:
 >
->   obj-$(CONFIG_USB_PCI)	+= pci-quirks.o
+>   ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names (2017-08-22 15:37:50 -0700)
 >
-> +obj-$(CONFIG_USB_PLATFORM_ROOTHUB)	+= platform-roothub.o
-> +
->   obj-$(CONFIG_USB_EHCI_HCD)	+= ehci-hcd.o
->   obj-$(CONFIG_USB_EHCI_PCI)	+= ehci-pci.o
->   obj-$(CONFIG_USB_EHCI_HCD_PLATFORM)	+= ehci-platform.o
-> diff --git a/drivers/usb/host/platform-roothub.c b/drivers/usb/host/platform-roothub.c
-> new file mode 100644
-> index 000000000000..70d2d97aa8b2
-> --- /dev/null
-> +++ b/drivers/usb/host/platform-roothub.c
-> @@ -0,0 +1,180 @@
-> +/*
-> + * platform roothub driver - a virtual PHY device which passes all phy_*
-> + * function calls to multiple (actual) PHY devices. This is comes handy when
-> + * initializing all PHYs on a root-hub (to keep them all in the same state).
-> + *
-> + * Copyright (C) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> + *
-> + * This program is free software; you can redistribute it and/or modify
-> + * it under the terms of the GNU General Public License version 2 as
-> + * published by the Free Software Foundation.
-> + *
-> + * You should have received a copy of the GNU General Public License
-> + * along with this program. If not, see <http://www.gnu.org/licenses/>.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/list.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/of.h>
-> +#include <linux/usb/of.h>
-> +
-> +#include "platform-roothub.h"
-> +
-> +#define ROOTHUB_PORTNUM		0
-> +
-> +struct platform_roothub {
-> +	struct phy		*phy;
-> +	struct list_head	list;
-> +};
-> +
-> +static struct platform_roothub *platform_roothub_alloc(struct device *dev)
-> +{
-> +	struct platform_roothub *roothub_entry;
-> +
-> +	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
-> +	if (!roothub_entry)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	INIT_LIST_HEAD(&roothub_entry->list);
-> +
-> +	return roothub_entry;
-> +}
-> +
-> +static int platform_roothub_add_phy(struct device *dev,
-> +				    struct device_node *port_np,
-> +				    const char *con_id, struct list_head *list)
-> +{
-> +	struct platform_roothub *roothub_entry;
-> +	struct phy *phy = devm_of_phy_get(dev, port_np, con_id);
-> +
-> +	if (IS_ERR_OR_NULL(phy)) {
-> +		if (!phy || PTR_ERR(phy) == -ENODEV)
-> +			return 0;
-> +		else
-> +			return PTR_ERR(phy);
-> +	}
-> +
-> +	roothub_entry = platform_roothub_alloc(dev);
-> +	if (IS_ERR(roothub_entry))
-> +		return PTR_ERR(roothub_entry);
-> +
-> +	roothub_entry->phy = phy;
-> +
-> +	list_add_tail(&roothub_entry->list, list);
-> +
-> +	return 0;
-> +}
-> +
-> +struct platform_roothub *platform_roothub_init(struct device *dev)
-> +{
-> +	struct device_node *roothub_np, *port_np;
-> +	struct platform_roothub *plat_roothub;
-> +	struct platform_roothub *roothub_entry;
-> +	struct list_head *head;
-> +	int err;
-> +
-> +	roothub_np = usb_of_get_child_node(dev->of_node, ROOTHUB_PORTNUM);
-> +	if (!of_device_is_available(roothub_np))
-> +		return NULL;
-> +
-> +	plat_roothub = platform_roothub_alloc(dev);
-> +	if (IS_ERR(plat_roothub))
-> +		return plat_roothub;
-> +
-> +	for_each_available_child_of_node(roothub_np, port_np) {
-> +		err = platform_roothub_add_phy(dev, port_np, "usb2-phy",
-> +					       &plat_roothub->list);
-> +		if (err)
-> +			goto err_out;
-> +
-> +		err = platform_roothub_add_phy(dev, port_np, "usb3-phy",
-> +					       &plat_roothub->list);
+> are available in the git repository at:
+>
+>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-3
+>
+> for you to fetch changes up to 485a308f05d843034b6e82f688704c44888aecde:
+>
+>   ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode (2017-09-05 12:05:01 -0700)
+>
+> ----------------------------------------------------------------
+> Amlogic 64-bit DT updates for v4.14 (round 3)
+> - updates for new MMC driver features/fixes
+> - support high-speed modes
 
-So if the first 10 ports have the same phy, and 11th and 12th have an other one, won't we end up
-with a phy list with 12 entries for 2 phys, and initialize and turn on the same first phy 10 times?
+It's really unfortunate that the drivers went in with regressions
+unless the DT contents was updated. That's usually not how we expect
+development to be (by default, previous behavior should be retained if
+DT lacks the data -- it's the only way to stay compatible with older
+bindings).
 
-I'm also not sure I understand the reason for having the "usb3-phy" and "usb2-phy" phy-names
-for the ports if we anyways just add everything to one list.
+I've merged this for now anyway, but please be more considerate of
+this going forward. Even if the contents makes it in within the same
+merge window.
 
--Mathias
+
+-Olof
