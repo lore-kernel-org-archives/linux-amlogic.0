@@ -1,58 +1,63 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 4 Oct 2017 12:06:40 -0700
-Subject: [GIT PULL] Amlogic fixes for v4.14-rc
-In-Reply-To: <CAOesGMhV0iLP9=YoRhvEmQK7fGpQfhCnoOmsVf8B=+7o4=tuHw@mail.gmail.com>
-References: <7hr2ul8na1.fsf@baylibre.com>
- <CAOesGMhV0iLP9=YoRhvEmQK7fGpQfhCnoOmsVf8B=+7o4=tuHw@mail.gmail.com>
-Message-ID: <CAOi56cXCnkamsOeKUJJoK7t2wf-M59DM4T_Cxonw=EvBm2F2-Q@mail.gmail.com>
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Wed, 4 Oct 2017 22:16:45 +0200
+Subject: [PATCH] ARM: dts: meson8b: add reserved memory zone to fix
+ silent freezes
+In-Reply-To: <20171003105427.GZ6726@otheros>
+References: <20171002155903.19511-1-linus.luessing@c0d3.blue>
+ <CAFBinCCde249b0o9aKMErEbKznM7UQrg1FzhLQ2whej0x_XLAg@mail.gmail.com>
+ <20171002234755.GA18646@ingrassia.epigenesys.com>
+ <20171003072703.GY6726@otheros>
+ <20171003082310.GA15501@ingrassia.epigenesys.com>
+ <20171003105427.GZ6726@otheros>
+Message-ID: <20171004201645.GA23053@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Oct 4, 2017 at 10:32 AM, Olof Johansson <olof@lixom.net> wrote:
-> On Mon, Oct 2, 2017 at 10:36 AM, Kevin Hilman <khilman@baylibre.com> wrote:
->> Hi Olof,
->>
->> This is the same DT series that was sent for next/late but was missed,
->> so I'm sending it again as fixes for v4.14-rc since we have some users
->> having issues because the driver was merged for v4.14, but the
->> correspnding DT enhancements were not.
->>
->> Please merge for v4.14-rc3.  It's unmodified since the previous pull request.
->>
->> Thanks,
->>
->> Kevin
->>
->>
->> The following changes since commit 47884c5c746ee7c02e06fbf60480e0f13aa11dfe:
->>
->>   ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names (2017-08-22 15:37:50 -0700)
->>
->> are available in the git repository at:
->>
->>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-3
->>
->> for you to fetch changes up to 485a308f05d843034b6e82f688704c44888aecde:
->>
->>   ARM64: dts: meson-gxbb: nanopi-k2: enable sdr104 mode (2017-09-05 12:05:01 -0700)
->>
->> ----------------------------------------------------------------
->> Amlogic 64-bit DT updates for v4.14 (round 3)
->> - updates for new MMC driver features/fixes
->> - support high-speed modes
->
-> It's really unfortunate that the drivers went in with regressions
-> unless the DT contents was updated. That's usually not how we expect
-> development to be (by default, previous behavior should be retained if
-> DT lacks the data -- it's the only way to stay compatible with older
-> bindings).
->
-> I've merged this for now anyway, but please be more considerate of
-> this going forward. Even if the contents makes it in within the same
-> merge window.
+Hi Linus,
 
-Noted, we'll keep a closer eye on that going forward.
+On Tue, Oct 03, 2017 at 12:54:27PM +0200, Linus L?ssing wrote:
+> On Tue, Oct 03, 2017 at 10:23:10AM +0200, Emiliano Ingrassia wrote:
+> > I just completed those tests succesfully. See [0].
+> > 
+> > > Does the OOM killer work for you there?
+> > > 
+> > 
+> > It seems that OOM killer worked correctly [1].
+> 
+> That looks good, indeed, weird. Would it be possible for you to
+> share the compiled, binary uImage/uInitrd/DTB-file and u-boot you
+> are using, which worked for you? I'd like to retry those on my
+> Odroid C1+.
 
-Thanks for merging,
+My configuration is:
 
-Kevin
+- U-Boot odroidc-v2011.03 [0];
+- kernel linux-stable 4.14-rc3 [1];
+- Meson8b-odroidc1 USB patch [2], [3].
+
+All compiled with gcc-4.9.4 cross compiler generated with
+crosstool-ng 1.22.
+
+Consider that I need to remove the line about address filtering
+range in L2 cache node in meson8b.dtsi (arm,filter-ranges)
+to boot linux. I think that something is already missing without
+the full Martin's SMP patch. We discussed this point the past summer [4].
+In this regard, are you experimenting the same issue ?
+
+> Regards, Linus
+> 
+
+Regards,
+
+Emiliano
+
+[0] https://github.com/hardkernel/u-boot/tree/odroidc-v2011.03
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/
+[2] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004767.html
+[3] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004749.html
+[4] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004402.html
+
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
