@@ -1,42 +1,102 @@
 From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Wed, 4 Oct 2017 10:59:34 +0200
-Subject: [PATCH 0/3] mmc: meson-gx: fixes for v4.14
-In-Reply-To: <20171002122743.32334-1-jbrunet@baylibre.com>
-References: <20171002122743.32334-1-jbrunet@baylibre.com>
-Message-ID: <CAPDyKFqoDraQquAvA_n5+9R9rQXHNX+GG=Z=vXhw3x6B2=R6ig@mail.gmail.com>
+Date: Wed, 4 Oct 2017 11:00:00 +0200
+Subject: [PATCH v3 1/2] dt-bindings: mmc: Document the Amlogic Meson8 and
+ Meson8b SDIO bindings
+In-Reply-To: <20171003112417.31860-2-martin.blumenstingl@googlemail.com>
+References: <20171003112417.31860-1-martin.blumenstingl@googlemail.com>
+ <20171003112417.31860-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CAPDyKFqkDdpe3qcyTAEL6E_WwmWZ2pWzkUM0M+=gWH6YOtohrg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 2 October 2017 at 14:27, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> This patchset fixes the issues reported by Heiner [0] with the odroid-c2.
-> In a nutshell, this series does the following:
+On 3 October 2017 at 13:24, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> From: Carlo Caione <carlo@endlessm.com>
 >
-> * Make sure the mmc clock rate is not set higher than what is requested
-> * Reset the tuning values on mmc power cycle instead of POWER_ON
-> * Add tuning of the tx phase to the tuning function.
+> This documents the devicetree bindings for the SDIO/MMC host found in
+> Amlogic Meson8 and Meson8b SoCs. It supports the SD specification v2.0
+> and the eMMC specification v4.41.
+> It has an internal "mux" which allows connecting up to three MMC devices
+> to it. The maximum supported bus-width is 4-bits.
 >
-> This fixes the problem seen on the odroid-c2, both for hs200 and hs400.
-> To check for regression, this series has also been tested on the gxl
-> libretech-cc
+> Amlogic's GPL kernel sources call it "SDIO" to differentiate it from the
+> other MMC controller in (at least the Meson8 and Meson8b) the SoCs (they
+> call the other one "SDHC", which supports a bus-width of up to 8-bits).
 >
-> Ulf, could you please pick this as fixes for v4.14 ?
+> Signed-off-by: Carlo Caione <carlo@endlessm.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Thanks, applied for fixes!
+Thanks, applied for next!
 
 Kind regards
 Uffe
 
+> ---
+>  .../bindings/mmc/amlogic,meson-mx-sdio.txt         | 54 ++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
 >
-> [0]: https://lkml.kernel.org/r/e2171288-84ef-82db-2efc-300935e6c062 at gmail.com
->
-> Jerome Brunet (3):
->   mmc: meson-gx: make sure the clock is rounded down
->   mmc: meson-gx: fix rx phase reset
->   mmc: meson-gx: include tx phase in the tuning process
->
->  drivers/mmc/host/meson-gx-mmc.c | 26 ++++++++++++++++++++++----
->  1 file changed, 22 insertions(+), 4 deletions(-)
->
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+> new file mode 100644
+> index 000000000000..8765c605e6bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.txt
+> @@ -0,0 +1,54 @@
+> +* Amlogic Meson6, Meson8 and Meson8b SDIO/MMC controller
+> +
+> +The highspeed MMC host controller on Amlogic SoCs provides an interface
+> +for MMC, SD, SDIO and SDHC types of memory cards.
+> +
+> +Supported maximum speeds are the ones of the eMMC standard 4.41 as well
+> +as the speed of SD standard 2.0.
+> +
+> +The hardware provides an internal "mux" which allows up to three slots
+> +to be controlled. Only one slot can be accessed at a time.
+> +
+> +Required properties:
+> + - compatible : must be one of
+> +       - "amlogic,meson8-sdio"
+> +       - "amlogic,meson8b-sdio"
+> +       along with the generic "amlogic,meson-mx-sdio"
+> + - reg : mmc controller base registers
+> + - interrupts : mmc controller interrupt
+> + - #address-cells : must be 1
+> + - size-cells : must be 0
+> + - clocks : phandle to clock providers
+> + - clock-names : must contain "core" and "clkin"
+> +
+> +Required child nodes:
+> +A node for each slot provided by the MMC controller is required.
+> +NOTE: due to a driver limitation currently only one slot (= child node)
+> +      is supported!
+> +
+> +Required properties on each child node (= slot):
+> + - compatible : must be "mmc-slot" (see mmc.txt within this directory)
+> + - reg : the slot (or "port") ID
+> +
+> +Optional properties on each child node (= slot):
+> + - bus-width : must be 1 or 4 (8-bit bus is not supported)
+> + - for cd and all other additional generic mmc parameters
+> +   please refer to mmc.txt within this directory
+> +
+> +Examples:
+> +       mmc at c1108c20 {
+> +               compatible = "amlogic,meson8-sdio", "amlogic,meson-mx-sdio";
+> +               reg = <0xc1108c20 0x20>;
+> +               interrupts = <0 28 1>;
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +               clocks = <&clkc CLKID_SDIO>, <&clkc CLKID_CLK81>;
+> +               clock-names = "core", "clkin";
+> +
+> +               slot at 1 {
+> +                       compatible = "mmc-slot";
+> +                       reg = <1>;
+> +
+> +                       bus-width = <4>;
+> +               };
+> +       };
 > --
-> 2.13.5
+> 2.14.2
 >
