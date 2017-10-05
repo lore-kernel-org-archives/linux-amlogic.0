@@ -1,20 +1,20 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 5 Oct 2017 13:43:15 +0200
-Subject: [PATCH 6/8] pinctrl: meson: get rid of pin_base
-In-Reply-To: <20170920133927.17390-7-jbrunet@baylibre.com>
+Date: Thu, 5 Oct 2017 13:44:15 +0200
+Subject: [PATCH 7/8] pinctrl: meson-gx: TEST_N belongs to the AO controller
+In-Reply-To: <20170920133927.17390-8-jbrunet@baylibre.com>
 References: <20170920133927.17390-1-jbrunet@baylibre.com>
- <20170920133927.17390-7-jbrunet@baylibre.com>
-Message-ID: <CACRpkdYpWqVUSwkD9VeyztL7MxaffoKo8Cmh0_PkMuenLC2wTQ@mail.gmail.com>
+ <20170920133927.17390-8-jbrunet@baylibre.com>
+Message-ID: <CACRpkdZ-Gc7O=2GEQDX42zHwXcF=karpW-D2LxSW-7+HL5rjBA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On Wed, Sep 20, 2017 at 3:39 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-> pin_base was used with the manually set pin offset in meson pinctrl. This
-> is no longer the case, pin_base is 0 on every meson pinctrl controllers
-> and should go away.
+> On meson-gx platforms, TEST_N has been incorrectly declared in the EE
+> controller while it belongs to AO controller.
 >
-> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Move the pin to the appropriate controller
+>
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
 Patch applied.
