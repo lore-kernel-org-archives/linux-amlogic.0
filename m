@@ -1,35 +1,27 @@
 From: robh@kernel.org (Rob Herring)
-Date: Thu, 5 Oct 2017 14:52:46 -0500
-Subject: [PATCH 1/3] dt-bindings: Amlogic: add documentation for the SoC
- info register areas
-In-Reply-To: <20170923141403.20882-2-martin.blumenstingl@googlemail.com>
-References: <20170923141403.20882-1-martin.blumenstingl@googlemail.com>
- <20170923141403.20882-2-martin.blumenstingl@googlemail.com>
-Message-ID: <20171005195246.6nddrovf53zenxxo@rob-hp-laptop>
+Date: Thu, 5 Oct 2017 15:02:40 -0500
+Subject: [PATCH 1/2] dt-bindings: phy: Add support for the USB3 PHY on
+ Amlogic Meson GXL SoCs
+In-Reply-To: <20170924195000.13276-2-martin.blumenstingl@googlemail.com>
+References: <20170924195000.13276-1-martin.blumenstingl@googlemail.com>
+ <20170924195000.13276-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20171005200240.bdxd4kupapkqlosh@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Sep 23, 2017 at 04:14:01PM +0200, Martin Blumenstingl wrote:
-> There are three register areas which contain information about the SoC
-> version and revision:
-> - the assist registers contain the SoC's "major version" which encodes
->   the SoC generation and part number. this is available on Meson6,
->   Meson8 and Meson8b SoCs.
-> - the bootrom register contains at least the SoCs "misc version". this
->   is avilable on Meson6, Meson8 and Meson8b
-> - the analog top registers contain information about the SoC revision.
->   this is only available on Meson8 and Meson8b
-> 
-> Not much else is currently known about these registers.
+On Sun, Sep 24, 2017 at 09:49:59PM +0200, Martin Blumenstingl wrote:
+> Amlogic Meson GXL SoCs use a dwc3 controller with two (GXM - a variant
+> for GXL, has three) USB2 ports. The first USB2 port supports host and
+> peripheral (also called "device") mode.
+> While the dwc3 controller has no USB3 port enabled we still need the
+> USB3 PHY to be initialized, otherwise some boards (probably those where
+> the bootloader does not initialize the USB3 PHY) show errors with
+> high-speed USB devices connected to any of the USB2 ports.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  .../devicetree/bindings/arm/amlogic/analog-top.txt   | 20 ++++++++++++++++++++
->  .../devicetree/bindings/arm/amlogic/assist.txt       | 17 +++++++++++++++++
->  .../devicetree/bindings/arm/amlogic/bootrom.txt      | 17 +++++++++++++++++
->  3 files changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/analog-top.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/assist.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/bootrom.txt
+>  .../devicetree/bindings/phy/meson-gxl-usb3-phy.txt    | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
 
 Acked-by: Rob Herring <robh@kernel.org>
