@@ -1,68 +1,35 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 5 Oct 2017 15:23:34 +0200
-Subject: [PATCH] ARM64: dts: meson-gxbb-nexbox-a95x: Enable USB Nodes
-In-Reply-To: <20171005132118.2150-1-peter@korsgaard.com>
-References: <20171005132118.2150-1-peter@korsgaard.com>
-Message-ID: <89e9980a-2ca6-4509-b9d5-36aac433b9bd@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 5 Oct 2017 14:52:46 -0500
+Subject: [PATCH 1/3] dt-bindings: Amlogic: add documentation for the SoC
+ info register areas
+In-Reply-To: <20170923141403.20882-2-martin.blumenstingl@googlemail.com>
+References: <20170923141403.20882-1-martin.blumenstingl@googlemail.com>
+ <20170923141403.20882-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20171005195246.6nddrovf53zenxxo@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/10/2017 15:21, Peter Korsgaard wrote:
-> Enable both gxbb USB controllers and add a 5V regulator for the OTG port
-> VBUS, similar to p20x.
+On Sat, Sep 23, 2017 at 04:14:01PM +0200, Martin Blumenstingl wrote:
+> There are three register areas which contain information about the SoC
+> version and revision:
+> - the assist registers contain the SoC's "major version" which encodes
+>   the SoC generation and part number. this is available on Meson6,
+>   Meson8 and Meson8b SoCs.
+> - the bootrom register contains at least the SoCs "misc version". this
+>   is avilable on Meson6, Meson8 and Meson8b
+> - the analog top registers contain information about the SoC revision.
+>   this is only available on Meson8 and Meson8b
 > 
-> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+> Not much else is currently known about these registers.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 29 ++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-> index 38dfdde5c147..60cd9c3b11c8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-> @@ -88,6 +88,18 @@
->  		};
->  	};
->  
-> +	usb_pwr: regulator-usb-pwrs {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "USB_PWR";
-> +
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +
-> +		gpio = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
->  	vddio_card: gpio-regulator {
->  		compatible = "regulator-gpio";
->  
-> @@ -294,3 +306,20 @@
->  	pinctrl-0 = <&uart_ao_a_pins>;
->  	pinctrl-names = "default";
->  };
-> +
-> +&usb0_phy {
-> +	status = "okay";
-> +	phy-supply = <&usb_pwr>;
-> +};
-> +
-> +&usb1_phy {
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	status = "okay";
-> +};
-> 
+>  .../devicetree/bindings/arm/amlogic/analog-top.txt   | 20 ++++++++++++++++++++
+>  .../devicetree/bindings/arm/amlogic/assist.txt       | 17 +++++++++++++++++
+>  .../devicetree/bindings/arm/amlogic/bootrom.txt      | 17 +++++++++++++++++
+>  3 files changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/analog-top.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/assist.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/bootrom.txt
 
-Indeed, I forgot to add USB to this board,
-Thanks
-
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Rob Herring <robh@kernel.org>
