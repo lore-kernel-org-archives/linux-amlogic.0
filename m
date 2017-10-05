@@ -1,37 +1,61 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 05 Oct 2017 13:47:48 +0200
-Subject: [PATCH 1/8] pinctrl: meson: remove offset from pinctrl
-In-Reply-To: <CACRpkdZJ6YWaMig2HSf6kf3aHHRmQ-ZdB0GhqF7f-EXX6iWLUA@mail.gmail.com>
-References: <20170920133927.17390-1-jbrunet@baylibre.com>
- <20170920133927.17390-2-jbrunet@baylibre.com>
- <CACRpkdZJ6YWaMig2HSf6kf3aHHRmQ-ZdB0GhqF7f-EXX6iWLUA@mail.gmail.com>
-Message-ID: <1507204068.17300.204.camel@baylibre.com>
+From: peter@korsgaard.com (Peter Korsgaard)
+Date: Thu,  5 Oct 2017 15:21:18 +0200
+Subject: [PATCH] ARM64: dts: meson-gxbb-nexbox-a95x: Enable USB Nodes
+Message-ID: <20171005132118.2150-1-peter@korsgaard.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-10-05 at 13:22 +0200, Linus Walleij wrote:
-> On Wed, Sep 20, 2017 at 3:39 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> 
-> > Offset on meson pinctrl and gpios is something that was carried from the
-> > vendor driver, where there is a weird link between the 2
-> > controllers. Since these 2 controllers are independent, this offset adds
-> > an unnecessary complexity.
-> > 
-> > This patch remove this manually set offset and rely on pinctrl to figure
-> > out the gpio base offset
-> > 
-> > Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
-> Patch applied.
+Enable both gxbb USB controllers and add a 5V regulator for the OTG port
+VBUS, similar to p20x.
 
-Thx Linus.
+Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+---
+ .../boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 29 ++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-Just to be sure, did you remember to squash patch 1 to 5 together ?
-
-I know it is a bit unusual but, as explained earlier, those patches were only
-split to ease the review. Keeping the change split would break bisect.
-
-> 
-> Yours,
-> Linus Walleij
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+index 38dfdde5c147..60cd9c3b11c8 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -88,6 +88,18 @@
+ 		};
+ 	};
+ 
++	usb_pwr: regulator-usb-pwrs {
++		compatible = "regulator-fixed";
++
++		regulator-name = "USB_PWR";
++
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++
++		gpio = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	vddio_card: gpio-regulator {
+ 		compatible = "regulator-gpio";
+ 
+@@ -294,3 +306,20 @@
+ 	pinctrl-0 = <&uart_ao_a_pins>;
+ 	pinctrl-names = "default";
+ };
++
++&usb0_phy {
++	status = "okay";
++	phy-supply = <&usb_pwr>;
++};
++
++&usb1_phy {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++};
++
++&usb1 {
++	status = "okay";
++};
+-- 
+2.11.0
