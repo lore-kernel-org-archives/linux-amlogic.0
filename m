@@ -1,31 +1,17 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 06 Oct 2017 16:10:43 -0700
-Subject: [PATCH] ARM64: dts: meson-gxbb-nexbox-a95x: Enable USB Nodes
-In-Reply-To: <89e9980a-2ca6-4509-b9d5-36aac433b9bd@baylibre.com> (Neil
- Armstrong's message of "Thu, 5 Oct 2017 15:23:34 +0200")
-References: <20171005132118.2150-1-peter@korsgaard.com>
- <89e9980a-2ca6-4509-b9d5-36aac433b9bd@baylibre.com>
-Message-ID: <7hlgkn7tzg.fsf@baylibre.com>
+Date: Fri, 06 Oct 2017 16:15:23 -0700
+Subject: [PATCH] pinctrl: meson-gx: add TEST_N i2s pinmux
+In-Reply-To: <20171006083142.19325-1-jbrunet@baylibre.com> (Jerome Brunet's
+ message of "Fri, 6 Oct 2017 10:31:42 +0200")
+References: <20171006083142.19325-1-jbrunet@baylibre.com>
+Message-ID: <7hh8vb7tro.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> On 05/10/2017 15:21, Peter Korsgaard wrote:
->> Enable both gxbb USB controllers and add a 5V regulator for the OTG port
->> VBUS, similar to p20x.
->> 
->> Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
-
-[...]
-
-> Indeed, I forgot to add USB to this board,
-> Thanks
+> Add TEST_N pinmux for channel 6 and 7 of the i2s output
 >
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Applied to v4.15/dt64,
-
-Thanks,
-
-Kevin
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
