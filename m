@@ -1,22 +1,27 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 06 Oct 2017 15:26:03 -0700
-Subject: [PATCH] ARM: dts: meson: enabling the USB Host controller on
- Odroid-C1/C1+ board
-In-Reply-To: <20170920144009.GA27374@ingrassia.epigenesys.com> (Emiliano
- Ingrassia's message of "Wed, 20 Sep 2017 16:40:09 +0200")
-References: <20170920144009.GA27374@ingrassia.epigenesys.com>
-Message-ID: <7hefqf9amc.fsf@baylibre.com>
+Date: Fri, 06 Oct 2017 15:30:03 -0700
+Subject: [PATCH 0/7] ARM: dts: meson: clean pin offsets
+In-Reply-To: <20170921171450.27407-1-jbrunet@baylibre.com> (Jerome Brunet's
+ message of "Thu, 21 Sep 2017 19:14:43 +0200")
+References: <20170921171450.27407-1-jbrunet@baylibre.com>
+Message-ID: <7ha8139afo.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Emiliano Ingrassia <ingrassia@epigenesys.com> writes:
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> This patch enables the USB Host controller (USB1) and the relative USB2 PHY
-> on Odroid-C1/C1+ board.
+> The series is the device-tree part of the series sent to pinctrl [0]
+> The present patchset depends on the pinctrl part.
 >
-> Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> The purpose of this series is to:
+> 1) remove the hardcoded gpio offset
+> 2) adjust gpio-ranges with respect to the new pin number of each
+>    controller
+> 3) adjust gpio-line-names accordingly for the boards having this property.
+>
+> [0]: https://lkml.kernel.org/r/20170918134610.17743-1-jbrunet at baylibre.com
 
-Appled to v4.15/dt,
+Seeing the driver part is now merged, applying to v4.15/dt64,
 
 Thanks,
 
