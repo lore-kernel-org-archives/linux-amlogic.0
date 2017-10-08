@@ -1,124 +1,132 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun,  8 Oct 2017 23:17:13 +0200
-Subject: [RFC usb-next v5 3/3] usb: core: hcd: integrate the PHY roothub
- wrapper
-In-Reply-To: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
-References: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171008211713.18696-4-martin.blumenstingl@googlemail.com>
+Date: Sun,  8 Oct 2017 23:17:10 +0200
+Subject: [RFC usb-next v5 0/3] initialize (multiple) PHYs on the roothub
+Message-ID: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This integrates the PHY roothub wrapper into the core hcd
-infrastructure. Multiple PHYs which are part of the roothub devicetree
-node (which is a sub-node of the sysdev's node) are now managed
-(= powered on/off when needed), by the new usb_phy_roothub code.
+This series is the outcome of a discussion with Felipe Balbi,
+see [0] and [1] as well as Mathias Nyman, see [7] and [8].
+The quick-summary of this is:
+- dwc3 already takes one USB2 and one USB3 PHY and initializes these
+  correct
+- some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
+  ohci-platform.c) do not have a limitation on the number of PHYs - they
+  support one PHY per actual host port
+- Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
+  or three USB2 ports enabled on the internal root-hub. The SoCs also
+  provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
+  internally "connected" to the dwc3 roothub) need to be powered on,
+  otherwise USB devices cannot be enumerated (even if just one PHY is
+  disabled and if the device is plugged into another, enabled port)
 
-One example where this is required is the Amlogic GXL and GXM SoCs:
-They are using a dwc3 USB controller with up to three ports enabled on
-the internal roothub. Using only the top-level "phy" properties does not
-work here since one can only specify one "usb2-phy" and one "usb3-phy",
-while actually at least two "usb2-phy" have to be specified.
+In my first attempt to get USB supported on the GXL and GXM SoCs I tried
+to work-around the problem that I could not pass multiple PHYs to the
+dwc3 controller.
+This was rejected by Rob Herring (which was definitely the thing to do in
+my opinion), see [2]
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/usb/core/hcd.c  | 30 +++++++++++++++++++++++++++++-
- include/linux/usb/hcd.h |  1 +
- 2 files changed, 30 insertions(+), 1 deletion(-)
+This series adds a new "roothub PHY wrapper". This can be configured
+through devicetree by passing a child-node with "reg = <0>" (in other
+words: it describes the roothub) to the USB controller.
+Additionally there has to be a child-node for each port on
+the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
+property. This allows modeling the root-hub in devicetree similar to the
+USB device binding (documented in devicetree/bindings/usb/usb-device.txt)
+This avoids and backwards-compatibility problems (which was a concern
+regardless of the solution, see [3]) since the binding for the root-hub
+was previously not specified (and we're not using the "phys" property of
+the controller, which might have served different purposes before,
+depending on the drivers).
 
-diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
-index 67aa3d039b9b..56704dd10c15 100644
---- a/drivers/usb/core/hcd.c
-+++ b/drivers/usb/core/hcd.c
-@@ -50,6 +50,7 @@
- #include <linux/usb/otg.h>
- 
- #include "usb.h"
-+#include "phy.h"
- 
- 
- /*-------------------------------------------------------------------------*/
-@@ -2292,7 +2293,11 @@ int hcd_bus_suspend(struct usb_device *rhdev, pm_message_t msg)
- 		dev_dbg(&rhdev->dev, "bus %s fail, err %d\n",
- 				"suspend", status);
- 	}
--	return status;
-+
-+	if (status == 0)
-+		return usb_phy_roothub_power_off(hcd->phy_roothub);
-+	else
-+		return status;
- }
- 
- int hcd_bus_resume(struct usb_device *rhdev, pm_message_t msg)
-@@ -2307,6 +2312,11 @@ int hcd_bus_resume(struct usb_device *rhdev, pm_message_t msg)
- 		dev_dbg(&rhdev->dev, "skipped %s of dead bus\n", "resume");
- 		return 0;
- 	}
-+
-+	status = usb_phy_roothub_power_on(hcd->phy_roothub);
-+	if (status)
-+		return status;
-+
- 	if (!hcd->driver->bus_resume)
- 		return -ENOENT;
- 	if (HCD_RH_RUNNING(hcd))
-@@ -2344,6 +2354,7 @@ int hcd_bus_resume(struct usb_device *rhdev, pm_message_t msg)
- 		}
- 	} else {
- 		hcd->state = old_state;
-+		usb_phy_roothub_power_off(hcd->phy_roothub);
- 		dev_dbg(&rhdev->dev, "bus %s fail, err %d\n",
- 				"resume", status);
- 		if (status != -ESHUTDOWN)
-@@ -2780,6 +2791,16 @@ int usb_add_hcd(struct usb_hcd *hcd,
- 		}
- 	}
- 
-+	hcd->phy_roothub = usb_phy_roothub_init(hcd->self.sysdev);
-+	if (IS_ERR(hcd->phy_roothub)) {
-+		retval = PTR_ERR(hcd->phy_roothub);
-+		goto err_phy_roothub_init;
-+	}
-+
-+	retval = usb_phy_roothub_power_on(hcd->phy_roothub);
-+	if (retval)
-+		goto err_usb_phy_roothub_power_on;
-+
- 	dev_info(hcd->self.controller, "%s\n", hcd->product_desc);
- 
- 	/* Keep old behaviour if authorized_default is not in [0, 1]. */
-@@ -2944,6 +2965,10 @@ int usb_add_hcd(struct usb_hcd *hcd,
- err_register_bus:
- 	hcd_buffer_destroy(hcd);
- err_create_buf:
-+	usb_phy_roothub_power_off(hcd->phy_roothub);
-+err_usb_phy_roothub_power_on:
-+	usb_phy_roothub_exit(hcd->phy_roothub);
-+err_phy_roothub_init:
- 	if (IS_ENABLED(CONFIG_GENERIC_PHY) && hcd->remove_phy && hcd->phy) {
- 		phy_power_off(hcd->phy);
- 		phy_exit(hcd->phy);
-@@ -3028,6 +3053,9 @@ void usb_remove_hcd(struct usb_hcd *hcd)
- 	usb_deregister_bus(&hcd->self);
- 	hcd_buffer_destroy(hcd);
- 
-+	usb_phy_roothub_power_off(hcd->phy_roothub);
-+	usb_phy_roothub_exit(hcd->phy_roothub);
-+
- 	if (IS_ENABLED(CONFIG_GENERIC_PHY) && hcd->remove_phy && hcd->phy) {
- 		phy_power_off(hcd->phy);
- 		phy_exit(hcd->phy);
-diff --git a/include/linux/usb/hcd.h b/include/linux/usb/hcd.h
-index a1f03ebfde47..6915b2afc209 100644
---- a/include/linux/usb/hcd.h
-+++ b/include/linux/usb/hcd.h
-@@ -103,6 +103,7 @@ struct usb_hcd {
- 	 */
- 	struct usb_phy		*usb_phy;
- 	struct phy		*phy;
-+	struct usb_phy_roothub	*phy_roothub;
- 
- 	/* Flags that need to be manipulated atomically because they can
- 	 * change while the host controller is running.  Always use
+Additionally this integrates the new roothub PHY wrapper into hcd.c
+which automatically enables it for all USB controller drivers (tested
+on an Amlogic Meson GXL SoC which uses a dwc3 controller).
+
+
+Changes since v4 at [9]:
+- renamed the subject of the cover-letter (old name was:
+  "initialize (multiple) PHYs in xhci-plat")
+- back into RFC status (see below for the reasons)
+- dropped Tested-by from Chunfeng Yun (same reasons as RFC status)
+- reworded cover-letter and commit messages from "platform-roothub"
+  to "roothub PHY wrapper"
+- moved code from drivers/usb/host/platform-roothub.* to
+  drivers/usb/core/phy.* and the changes to
+  drivers/usb/host/xhci-plat.c to drivers/usb/core/hcd.c as suggested
+  by Mathias Nyman (as a benefit this will enable the new logic for
+  non-xHCI controllers as well - however this was not tested yet)
+- rename the structs, function names, etc from platform_roothub_* to
+  usb_phy_roothub*
+
+Changes since RFCv3 at [6]:
+- moved the DT binding change from patch #3 to patch #1 as suggested
+  by Rob Herring (and slightly adjusted the commit message to account
+  for that)
+- added Tested-by from Chunfeng Yun (who confirmed that the whole
+  concept and implementation works fine on Mediatek SoCs - many thanks
+  again!) to patch #2
+- added Rob Herring's ACK to patches 1 and 3
+- dropped RFC status (RFCv3 -> PATCH v4)
+
+Changes since RFCv2 at [5]:
+- split phy_{init,exit} and phy_power_{on,off} handling. up until RFCv2
+  I called phy_init plus phy_power_on in platform_roothub_power_on and
+  phy_power_off plus phy_exit in platform_roothub_power_off. However,
+  Chunfeng Yun (a Mediatek SoC developer - many thanks for testing my
+  series and providing great feedback) reported that only using
+  phy_power_off (and omitting phy_exit) during system suspend fixes an
+  issue where USB devices would be re-enumerated when resuming. His
+  original problem description: "In order to keep link state on mt8173,
+  we just power off all phys(not exit) when system enter suspend, then
+  power on them again (needn't init, otherwise device will be
+  disconnected) when system resume, this can avoid re-enumerating
+  device.". This fix affects patch #2 and #3 as we now have
+  platform_roothub_init (which calls phy_init internally),
+  platform_roothub_power_on (which calls phy_power_on internally),
+  platform_roothub_power_off (which calls phy_power_off internally) and
+  platform_roothub_exit (which calls phy_exit internally). suspend and
+  resume only call platform_roothub_power_{on,off} to prevent the issue
+  described by Chunfeng Yun (unfortunately I cannot test this because
+  the Amlogic platform currently does not support system suspend).
+- dropped two struct forward declarations from platform-roothub.h which
+  are not used in the header file (thanks to Chunfeng Yun for spotting
+  this)
+
+Changes since RFCv1 at [4]:
+- split the usb-xhci dt-binding documentation into a separate patch
+- fixed a typo ("usb-phy" -> "phys" in the dt-binding example)
+- rebased to apply against latest usb-next
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001945.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001947.html
+[2] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001818.html
+[3] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001948.html
+[4] http://marc.info/?l=linux-usb&m=148414866303604&w=2
+[5] https://www.spinics.net/lists/linux-usb/msg158967.html
+[6] https://www.spinics.net/lists/devicetree/msg190426.html
+[7] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004881.html
+[8] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004920.html
+[9] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004685.html
+
+
+Martin Blumenstingl (3):
+  dt-bindings: usb: add the documentation for USB root-hub
+  usb: core: add a wrapper for the USB PHYs on the root-hub
+  usb: core: hcd: integrate the PHY roothub wrapper
+
+ .../devicetree/bindings/usb/usb-roothub.txt        |  46 ++++++
+ Documentation/devicetree/bindings/usb/usb-xhci.txt |   7 +
+ drivers/usb/core/Makefile                          |   2 +-
+ drivers/usb/core/hcd.c                             |  30 +++-
+ drivers/usb/core/phy.c                             | 184 +++++++++++++++++++++
+ drivers/usb/core/phy.h                             |   7 +
+ include/linux/usb/hcd.h                            |   1 +
+ 7 files changed, 275 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-roothub.txt
+ create mode 100644 drivers/usb/core/phy.c
+ create mode 100644 drivers/usb/core/phy.h
+
 -- 
 2.14.2
