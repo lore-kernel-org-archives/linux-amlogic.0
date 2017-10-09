@@ -1,132 +1,56 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun,  8 Oct 2017 23:17:10 +0200
-Subject: [RFC usb-next v5 0/3] initialize (multiple) PHYs on the roothub
-Message-ID: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
+From: will.deacon@arm.com (Will Deacon)
+Date: Mon, 9 Oct 2017 10:24:09 +0100
+Subject: arm64: 4.14 of_match_node() issues
+In-Reply-To: <5d2ff063-1f7e-0200-cc02-99804f7d9219@suse.de>
+References: <5d2ff063-1f7e-0200-cc02-99804f7d9219@suse.de>
+Message-ID: <20171009092409.GB5127@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series is the outcome of a discussion with Felipe Balbi,
-see [0] and [1] as well as Mathias Nyman, see [7] and [8].
-The quick-summary of this is:
-- dwc3 already takes one USB2 and one USB3 PHY and initializes these
-  correct
-- some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
-  ohci-platform.c) do not have a limitation on the number of PHYs - they
-  support one PHY per actual host port
-- Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
-  or three USB2 ports enabled on the internal root-hub. The SoCs also
-  provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
-  internally "connected" to the dwc3 roothub) need to be powered on,
-  otherwise USB devices cannot be enumerated (even if just one PHY is
-  disabled and if the device is plugged into another, enabled port)
+Hi Andreas,
 
-In my first attempt to get USB supported on the GXL and GXM SoCs I tried
-to work-around the problem that I could not pass multiple PHYs to the
-dwc3 controller.
-This was rejected by Rob Herring (which was definitely the thing to do in
-my opinion), see [2]
+On Sat, Oct 07, 2017 at 02:42:13AM +0200, Andreas F?rber wrote:
+> Since 4.14-rc1 I am seeing frequent oopses during module loading (e.g.,
+> MMC, USB) from initrd on aarch64. Symptoms are similar to this in -rc3:
+> 
+> [  OK  ] Started udev Coldplug all Devices.
+> [   10.117775] usbcore: registered new interface driver usbfs
+> [   10.118235] Unable to handle kernel paging request at virtual address
+> ffff000008e5abc0
+> [   10.118238] Mem abort info:
+> [   10.118245]   Exception class = DABT (current EL), IL = 32 bits
+> [   10.118249]   SET = 0, FnV = 0
+> [   10.118253]   EA = 0, S1PTW = 0
+> [   10.118256] Data abort info:
+> [   10.118261]   ISV = 0, ISS = 0x00000006
+> [   10.118264]   CM = 0, WnR = 0
+> [   10.118274] swapper pgtable: 4k pages, 48-bit VAs, pgd = ffff0000094a5000
+> [   10.118279] [ffff000008e5abc0] *pgd=00000000bfffe003,
+> *pud=00000000bfffd003, *pmd=0000000000000000
+> [   10.118299] Internal error: Oops: 96000006 [#1] SMP
+> [   10.118305] Modules linked in: fixed usbcore(+) sunxi_mmc mmc_core
+> phy_sun4i_usb sg
+> [   10.118341] CPU: 3 PID: 49 Comm: kworker/3:1 Not tainted
+> 4.14.0-rc3-2.gf27997b-default #1
+> [   10.118345] Hardware name: sunxi sunxi/sunxi, BIOS 2017.05-rc1 04/13/2017
+> [   10.118369] Workqueue: events deferred_probe_work_func
+> [   10.118378] task: ffff80007c8f4000 task.stack: ffff0000099d8000
+> [   10.118394] PC is at __of_match_node.part.1+0x48/0x88
+> [   10.118403] LR is at of_match_node+0x40/0x70
+> [   10.118411] pc : [<ffff00000879aed0>] lr : [<ffff00000879af50>]
 
-This series adds a new "roothub PHY wrapper". This can be configured
-through devicetree by passing a child-node with "reg = <0>" (in other
-words: it describes the roothub) to the USB controller.
-Additionally there has to be a child-node for each port on
-the root-hub. Each of the child-nodes takes a "phys" and "phy-names"
-property. This allows modeling the root-hub in devicetree similar to the
-USB device binding (documented in devicetree/bindings/usb/usb-device.txt)
-This avoids and backwards-compatibility problems (which was a concern
-regardless of the solution, see [3]) since the binding for the root-hub
-was previously not specified (and we're not using the "phys" property of
-the controller, which might have served different purposes before,
-depending on the drivers).
+[...]
 
-Additionally this integrates the new roothub PHY wrapper into hcd.c
-which automatically enables it for all USB controller drivers (tested
-on an Amlogic Meson GXL SoC which uses a dwc3 controller).
+> This has been observed on Pine64 (>60%; also by Stefan) and Odroid-C2;
+> my other arm64 boards such as Raspberry Pi 3 have not run into this so
+> far. No such problems on 32-bit boards.
+> 
+> This is using the openSUSE config:
+> https://kernel.opensuse.org/cgit/kernel-source/plain/config/arm64/default
 
+Hmm, hard to know what to suggest without a concrete reproducer. Do you know
+which driver is being probed in the log above? Also, does this still break
+if you pass "keepinitrd" on the cmdline? Finally, can you dump the kernel
+virtual memory layout, please?
 
-Changes since v4 at [9]:
-- renamed the subject of the cover-letter (old name was:
-  "initialize (multiple) PHYs in xhci-plat")
-- back into RFC status (see below for the reasons)
-- dropped Tested-by from Chunfeng Yun (same reasons as RFC status)
-- reworded cover-letter and commit messages from "platform-roothub"
-  to "roothub PHY wrapper"
-- moved code from drivers/usb/host/platform-roothub.* to
-  drivers/usb/core/phy.* and the changes to
-  drivers/usb/host/xhci-plat.c to drivers/usb/core/hcd.c as suggested
-  by Mathias Nyman (as a benefit this will enable the new logic for
-  non-xHCI controllers as well - however this was not tested yet)
-- rename the structs, function names, etc from platform_roothub_* to
-  usb_phy_roothub*
-
-Changes since RFCv3 at [6]:
-- moved the DT binding change from patch #3 to patch #1 as suggested
-  by Rob Herring (and slightly adjusted the commit message to account
-  for that)
-- added Tested-by from Chunfeng Yun (who confirmed that the whole
-  concept and implementation works fine on Mediatek SoCs - many thanks
-  again!) to patch #2
-- added Rob Herring's ACK to patches 1 and 3
-- dropped RFC status (RFCv3 -> PATCH v4)
-
-Changes since RFCv2 at [5]:
-- split phy_{init,exit} and phy_power_{on,off} handling. up until RFCv2
-  I called phy_init plus phy_power_on in platform_roothub_power_on and
-  phy_power_off plus phy_exit in platform_roothub_power_off. However,
-  Chunfeng Yun (a Mediatek SoC developer - many thanks for testing my
-  series and providing great feedback) reported that only using
-  phy_power_off (and omitting phy_exit) during system suspend fixes an
-  issue where USB devices would be re-enumerated when resuming. His
-  original problem description: "In order to keep link state on mt8173,
-  we just power off all phys(not exit) when system enter suspend, then
-  power on them again (needn't init, otherwise device will be
-  disconnected) when system resume, this can avoid re-enumerating
-  device.". This fix affects patch #2 and #3 as we now have
-  platform_roothub_init (which calls phy_init internally),
-  platform_roothub_power_on (which calls phy_power_on internally),
-  platform_roothub_power_off (which calls phy_power_off internally) and
-  platform_roothub_exit (which calls phy_exit internally). suspend and
-  resume only call platform_roothub_power_{on,off} to prevent the issue
-  described by Chunfeng Yun (unfortunately I cannot test this because
-  the Amlogic platform currently does not support system suspend).
-- dropped two struct forward declarations from platform-roothub.h which
-  are not used in the header file (thanks to Chunfeng Yun for spotting
-  this)
-
-Changes since RFCv1 at [4]:
-- split the usb-xhci dt-binding documentation into a separate patch
-- fixed a typo ("usb-phy" -> "phys" in the dt-binding example)
-- rebased to apply against latest usb-next
-
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001945.html
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001947.html
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001818.html
-[3] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001948.html
-[4] http://marc.info/?l=linux-usb&m=148414866303604&w=2
-[5] https://www.spinics.net/lists/linux-usb/msg158967.html
-[6] https://www.spinics.net/lists/devicetree/msg190426.html
-[7] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004881.html
-[8] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004920.html
-[9] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004685.html
-
-
-Martin Blumenstingl (3):
-  dt-bindings: usb: add the documentation for USB root-hub
-  usb: core: add a wrapper for the USB PHYs on the root-hub
-  usb: core: hcd: integrate the PHY roothub wrapper
-
- .../devicetree/bindings/usb/usb-roothub.txt        |  46 ++++++
- Documentation/devicetree/bindings/usb/usb-xhci.txt |   7 +
- drivers/usb/core/Makefile                          |   2 +-
- drivers/usb/core/hcd.c                             |  30 +++-
- drivers/usb/core/phy.c                             | 184 +++++++++++++++++++++
- drivers/usb/core/phy.h                             |   7 +
- include/linux/usb/hcd.h                            |   1 +
- 7 files changed, 275 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/usb/usb-roothub.txt
- create mode 100644 drivers/usb/core/phy.c
- create mode 100644 drivers/usb/core/phy.h
-
--- 
-2.14.2
+Will
