@@ -1,84 +1,453 @@
-From: m.szyprowski@samsung.com (Marek Szyprowski)
-Date: Mon, 09 Oct 2017 14:20:01 +0200
-Subject: arm64: 4.14 of_match_node() issues
-In-Reply-To: <d4e48d3d-015f-08d2-7745-51c482c1a09a@arm.com>
-References: <5d2ff063-1f7e-0200-cc02-99804f7d9219@suse.de>
- <20171009092409.GB5127@arm.com>
- <66956548-fa7a-332a-8045-8202ae0aa564@arm.com>
- <CGME20171009120447epcas2p3d22ec871318e38a71a5b92f840b5e4d4@epcas2p3.samsung.com>
- <d4e48d3d-015f-08d2-7745-51c482c1a09a@arm.com>
-Message-ID: <42630b8b-8987-57ff-be7e-79af7294856e@samsung.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 09 Oct 2017 15:11:01 +0200
+Subject: [PATCH 1/2] pinctrl: meson: separate soc drivers
+In-Reply-To: <f695448c-eb6c-2503-4381-93386fd6176f@baylibre.com>
+References: <20171009101747.16940-1-jbrunet@baylibre.com>
+ <20171009101747.16940-2-jbrunet@baylibre.com>
+ <f695448c-eb6c-2503-4381-93386fd6176f@baylibre.com>
+Message-ID: <1507554661.16356.43.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi All,
+On Mon, 2017-10-09 at 13:35 +0200, Neil Armstrong wrote:
+> On 09/10/2017 12:17, Jerome Brunet wrote:
+> > When meson pinctrl is enabled, all meson platforms pinctrl drivers are
+> > built in the kernel, with a significant amount of data.
+> > 
+> > This leads to situation where pinctrl drivers targeting an architecture
+> > are also compiled and shipped on another one (ex: meson8 - ARM - compiled
+> > and shipped on ARM64 builds). This is a waste of memory we can easily
+> > avoid.
+> > 
+> > This change makes 4 pinctrl drivers (1 per SoC) out the original single
+> > driver, allowing to compile and ship only the ones required.
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > ---
+> >  drivers/pinctrl/Kconfig                    | 11 +------
+> >  drivers/pinctrl/meson/Kconfig              | 36 +++++++++++++++++++++
+> >  drivers/pinctrl/meson/Makefile             |  8 +++--
+> >  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 25 +++++++++++++--
+> >  drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 25 +++++++++++++--
+> >  drivers/pinctrl/meson/pinctrl-meson.c      | 51 ++-------------------------
+> > ---
+> >  drivers/pinctrl/meson/pinctrl-meson.h      | 11 ++-----
+> >  drivers/pinctrl/meson/pinctrl-meson8.c     | 25 +++++++++++++--
+> >  drivers/pinctrl/meson/pinctrl-meson8b.c    | 25 +++++++++++++--
+> >  9 files changed, 140 insertions(+), 77 deletions(-)
+> >  create mode 100644 drivers/pinctrl/meson/Kconfig
+> > 
+> > diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+> > index 1778cf4f81c7..15b5b3b76ba9 100644
+> > --- a/drivers/pinctrl/Kconfig
+> > +++ b/drivers/pinctrl/Kconfig
+> > @@ -167,16 +167,6 @@ config PINCTRL_MCP23S08
+> >  	  This provides a GPIO interface supporting inputs and outputs.
+> >  	  The I2C versions of the chips can be used as interrupt-
+> > controller.
+> >  
+> > -config PINCTRL_MESON
+> > -	bool
+> > -	depends on OF
+> > -	select PINMUX
+> > -	select PINCONF
+> > -	select GENERIC_PINCONF
+> > -	select GPIOLIB
+> > -	select OF_GPIO
+> > -	select REGMAP_MMIO
+> > -
+> >  config PINCTRL_OXNAS
+> >  	bool
+> >  	depends on OF
+> > @@ -368,6 +358,7 @@ source "drivers/pinctrl/uniphier/Kconfig"
+> >  source "drivers/pinctrl/vt8500/Kconfig"
+> >  source "drivers/pinctrl/mediatek/Kconfig"
+> >  source "drivers/pinctrl/zte/Kconfig"
+> > +source "drivers/pinctrl/meson/Kconfig"
+> >  
+> >  config PINCTRL_XWAY
+> >  	bool
+> > diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+> > new file mode 100644
+> > index 000000000000..15655bfd39b6
+> > --- /dev/null
+> > +++ b/drivers/pinctrl/meson/Kconfig
+> > @@ -0,0 +1,36 @@
+> > +menuconfig PINCTRL_MESON
+> > +	bool "Amlogic SoC pinctrl drivers"
+> > +	depends on ARCH_MESON || COMPILE_TEST
+> > +	depends on OF
+> > +	select PINMUX
+> > +	select PINCONF
+> > +	select GENERIC_PINCONF
+> > +	select GPIOLIB
+> > +	select OF_GPIO
+> > +	select REGMAP_MMIO
+> > +	select PINMUX
+> > +	select GENERIC_PINCONF
+> > +
+> > +if PINCTRL_MESON
+> > +
+> > +config PINCTRL_MESON8
+> > +	bool "Meson 8 SoC pinctrl driver"
+> > +	depends on ARM
+> > +	default y
+> > +
+> > +config PINCTRL_MESON8B
+> > +	bool "Meson 8b SoC pinctrl driver"
+> > +	depends on ARM
+> > +	default y
+> > +
+> > +config PINCTRL_MESON_GXBB
+> > +	bool "Meson gxbb SoC pinctrl driver"
+> > +	depends on ARM64
+> > +	default y
+> > +
+> > +config PINCTRL_MESON_GXL
+> > +	bool "Meson gxl SoC pinctrl driver"
+> > +	depends on ARM64
+> > +	default y
+> > +
+> > +endif
+> > diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
+> > index 27c5b5126008..a6ef5ff4e9b1 100644
+> > --- a/drivers/pinctrl/meson/Makefile
+> > +++ b/drivers/pinctrl/meson/Makefile
+> > @@ -1,3 +1,5 @@
+> > -obj-y	+= pinctrl-meson8.o pinctrl-meson8b.o
+> > -obj-y	+= pinctrl-meson-gxbb.o pinctrl-meson-gxl.o
+> > -obj-y	+= pinctrl-meson.o
+> > +obj-y += pinctrl-meson.o
+> > +obj-$(CONFIG_PINCTRL_MESON8) += pinctrl-meson8.o
+> > +obj-$(CONFIG_PINCTRL_MESON8B) += pinctrl-meson8b.o
+> > +obj-$(CONFIG_PINCTRL_MESON_GXBB) += pinctrl-meson-gxbb.o
+> > +obj-$(CONFIG_PINCTRL_MESON_GXL) += pinctrl-meson-gxl.o
+> > diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> > b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> > index 1881d4a0eca2..a87bdb17414b 100644
+> > --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> > +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+> > @@ -824,7 +824,7 @@ static struct meson_bank meson_gxbb_aobus_banks[] = {
+> >  	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0, 13, 0,  0,  0,
+> > 16,  0,  0,  0, 16,  1,  0),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
+> >  	.name		= "periphs-banks",
+> >  	.pins		= meson_gxbb_periphs_pins,
+> >  	.groups		= meson_gxbb_periphs_groups,
+> > @@ -836,7 +836,7 @@ struct meson_pinctrl_data
+> > meson_gxbb_periphs_pinctrl_data = {
+> >  	.num_banks	= ARRAY_SIZE(meson_gxbb_periphs_banks),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
+> >  	.name		= "aobus-banks",
+> >  	.pins		= meson_gxbb_aobus_pins,
+> >  	.groups		= meson_gxbb_aobus_groups,
+> > @@ -847,3 +847,24 @@ struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data
+> > = {
+> >  	.num_funcs	= ARRAY_SIZE(meson_gxbb_aobus_functions),
+> >  	.num_banks	= ARRAY_SIZE(meson_gxbb_aobus_banks),
+> >  };
+> > +
+> > +static const struct of_device_id meson_gxbb_pinctrl_dt_match[] = {
+> > +	{
+> > +		.compatible = "amlogic,meson-gxbb-periphs-pinctrl",
+> > +		.data = &meson_gxbb_periphs_pinctrl_data,
+> > +	},
+> > +	{
+> > +		.compatible = "amlogic,meson-gxbb-aobus-pinctrl",
+> > +		.data = &meson_gxbb_aobus_pinctrl_data,
+> > +	},
+> > +	{ },
+> > +};
+> > +
+> > +static struct platform_driver meson_gxbb_pinctrl_driver = {
+> > +	.probe		= meson_pinctrl_probe,
+> > +	.driver = {
+> > +		.name	= "meson-gxbb-pinctrl",
+> > +		.of_match_table = meson_gxbb_pinctrl_dt_match,
+> > +	},
+> > +};
+> > +builtin_platform_driver(meson_gxbb_pinctrl_driver);
+> > diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> > b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> > index 3a14ecae9f31..088ac94f76b0 100644
+> > --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> > +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+> > @@ -809,7 +809,7 @@ static struct meson_bank meson_gxl_aobus_banks[] = {
+> >  	BANK("AO",   GPIOAO_0,  GPIOAO_9, 0, 9, 0,  0,  0, 16,  0,  0,  0,
+> > 16,  1,  0),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data = {
+> >  	.name		= "periphs-banks",
+> >  	.pins		= meson_gxl_periphs_pins,
+> >  	.groups		= meson_gxl_periphs_groups,
+> > @@ -821,7 +821,7 @@ struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data
+> > = {
+> >  	.num_banks	= ARRAY_SIZE(meson_gxl_periphs_banks),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data = {
+> >  	.name		= "aobus-banks",
+> >  	.pins		= meson_gxl_aobus_pins,
+> >  	.groups		= meson_gxl_aobus_groups,
+> > @@ -832,3 +832,24 @@ struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data
+> > = {
+> >  	.num_funcs	= ARRAY_SIZE(meson_gxl_aobus_functions),
+> >  	.num_banks	= ARRAY_SIZE(meson_gxl_aobus_banks),
+> >  };
+> > +
+> > +static const struct of_device_id meson_gxl_pinctrl_dt_match[] = {
+> > +	{
+> > +		.compatible = "amlogic,meson-gxl-periphs-pinctrl",
+> > +		.data = &meson_gxl_periphs_pinctrl_data,
+> > +	},
+> > +	{
+> > +		.compatible = "amlogic,meson-gxl-aobus-pinctrl",
+> > +		.data = &meson_gxl_aobus_pinctrl_data,
+> > +	},
+> > +	{ },
+> > +};
+> > +
+> > +static struct platform_driver meson_gxl_pinctrl_driver = {
+> > +	.probe		= meson_pinctrl_probe,
+> > +	.driver = {
+> > +		.name	= "meson-gxl-pinctrl",
+> > +		.of_match_table = meson_gxl_pinctrl_dt_match,
+> > +	},
+> > +};
+> > +builtin_platform_driver(meson_gxl_pinctrl_driver);
+> > diff --git a/drivers/pinctrl/meson/pinctrl-meson.c
+> > b/drivers/pinctrl/meson/pinctrl-meson.c
+> > index 71bccb7acbf8..8fc1f1b45435 100644
+> > --- a/drivers/pinctrl/meson/pinctrl-meson.c
+> > +++ b/drivers/pinctrl/meson/pinctrl-meson.c
+> > @@ -481,42 +481,6 @@ static int meson_gpio_get(struct gpio_chip *chip,
+> > unsigned gpio)
+> >  	return !!(val & BIT(bit));
+> >  }
+> >  
+> > -static const struct of_device_id meson_pinctrl_dt_match[] = {
+> > -	{
+> > -		.compatible = "amlogic,meson8-cbus-pinctrl",
+> > -		.data = &meson8_cbus_pinctrl_data,
+> > -	},
+> > -	{
+> > -		.compatible = "amlogic,meson8b-cbus-pinctrl",
+> > -		.data = &meson8b_cbus_pinctrl_data,
+> > -	},
+> > -	{
+> > -		.compatible = "amlogic,meson8-aobus-pinctrl",
+> > -		.data = &meson8_aobus_pinctrl_data,
+> > -	},
+> > -	{
+> > -		.compatible = "amlogic,meson8b-aobus-pinctrl",
+> > -		.data = &meson8b_aobus_pinctrl_data,
+> > -	},
+> > -	{
+> > -		.compatible = "amlogic,meson-gxbb-periphs-pinctrl",
+> > -		.data = &meson_gxbb_periphs_pinctrl_data,
+> > -	},
+> > -	{
+> > -		.compatible = "amlogic,meson-gxbb-aobus-pinctrl",
+> > -		.data = &meson_gxbb_aobus_pinctrl_data,
+> > -	},
+> > -	{
+> > -		.compatible = "amlogic,meson-gxl-periphs-pinctrl",
+> > -		.data = &meson_gxl_periphs_pinctrl_data,
+> > -	},
+> > -	{
+> > -		.compatible = "amlogic,meson-gxl-aobus-pinctrl",
+> > -		.data = &meson_gxl_aobus_pinctrl_data,
+> > -	},
+> > -	{ },
+> > -};
+> > -
+> >  static int meson_gpiolib_register(struct meson_pinctrl *pc)
+> >  {
+> >  	int ret;
+> > @@ -624,7 +588,7 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl
+> > *pc,
+> >  	return 0;
+> >  }
+> >  
+> > -static int meson_pinctrl_probe(struct platform_device *pdev)
+> > +int meson_pinctrl_probe(struct platform_device *pdev)
+> >  {
+> >  	const struct of_device_id *match;
+> >  	struct device *dev = &pdev->dev;
+> > @@ -636,10 +600,10 @@ static int meson_pinctrl_probe(struct platform_device
+> > *pdev)
+> >  		return -ENOMEM;
+> >  
+> >  	pc->dev = dev;
+> > -	match = of_match_node(meson_pinctrl_dt_match, pdev->dev.of_node);
+> > +	match = of_match_node(dev->driver->of_match_table, dev->of_node);
+> 
+> 
+> Minor comment, maybe you could use of_device_get_match_data(dev) here, it will
+> be simpler.
 
-On 2017-10-09 14:04, Robin Murphy wrote:
-> On 09/10/17 11:58, Robin Murphy wrote:
->> On 09/10/17 10:24, Will Deacon wrote:
->>> Hi Andreas,
->>>
->>> On Sat, Oct 07, 2017 at 02:42:13AM +0200, Andreas F?rber wrote:
->>>> Since 4.14-rc1 I am seeing frequent oopses during module loading (e.g.,
->>>> MMC, USB) from initrd on aarch64. Symptoms are similar to this in -rc3:
->>>>
->>>> [  OK  ] Started udev Coldplug all Devices.
->>>> [   10.117775] usbcore: registered new interface driver usbfs
->>>> [   10.118235] Unable to handle kernel paging request at virtual address
->>>> ffff000008e5abc0
->>>> [   10.118238] Mem abort info:
->>>> [   10.118245]   Exception class = DABT (current EL), IL = 32 bits
->>>> [   10.118249]   SET = 0, FnV = 0
->>>> [   10.118253]   EA = 0, S1PTW = 0
->>>> [   10.118256] Data abort info:
->>>> [   10.118261]   ISV = 0, ISS = 0x00000006
->>>> [   10.118264]   CM = 0, WnR = 0
->>>> [   10.118274] swapper pgtable: 4k pages, 48-bit VAs, pgd = ffff0000094a5000
->>>> [   10.118279] [ffff000008e5abc0] *pgd=00000000bfffe003,
->>>> *pud=00000000bfffd003, *pmd=0000000000000000
->>>> [   10.118299] Internal error: Oops: 96000006 [#1] SMP
->>>> [   10.118305] Modules linked in: fixed usbcore(+) sunxi_mmc mmc_core
->>>> phy_sun4i_usb sg
->>>> [   10.118341] CPU: 3 PID: 49 Comm: kworker/3:1 Not tainted
->>>> 4.14.0-rc3-2.gf27997b-default #1
->>>> [   10.118345] Hardware name: sunxi sunxi/sunxi, BIOS 2017.05-rc1 04/13/2017
->>>> [   10.118369] Workqueue: events deferred_probe_work_func
->>>> [   10.118378] task: ffff80007c8f4000 task.stack: ffff0000099d8000
->>>> [   10.118394] PC is at __of_match_node.part.1+0x48/0x88
->>>> [   10.118403] LR is at of_match_node+0x40/0x70
->>>> [   10.118411] pc : [<ffff00000879aed0>] lr : [<ffff00000879af50>]
->>> [...]
->>>
->>>> This has been observed on Pine64 (>60%; also by Stefan) and Odroid-C2;
->>>> my other arm64 boards such as Raspberry Pi 3 have not run into this so
->>>> far. No such problems on 32-bit boards.
->>>>
->>>> This is using the openSUSE config:
->>>> https://kernel.opensuse.org/cgit/kernel-source/plain/config/arm64/default
->>> Hmm, hard to know what to suggest without a concrete reproducer. Do you know
->>> which driver is being probed in the log above? Also, does this still break
->>> if you pass "keepinitrd" on the cmdline? Finally, can you dump the kernel
->>> virtual memory layout, please?
->> FWIW, this looks a lot like what happens when a built-in driver's
->> of_match_table is marked __init, but for whatever reason (deferred probe
->> etc.) winds up getting poked by a module load after it no longer exists.
-> Heh, synchronicity...
->
-> https://lists.linuxfoundation.org/pipermail/iommu/2017-October/024572.html
->
-> Looks like we either have to revert plenty of patches from the const
-> brigade, avoid freeing init, or come up with some way to make the driver
-> core cleverer about the whole deal :(
+Indeed, I missed this particular helper. Thx !
 
-It's not that bad. I did a quick check with
-
-# git grep "of_device_id.*init"
-
-and Exynos SYSMMU driver was the only candidate for a fix. Maybe someone
-else should double check that list to make sure that there is no other
-platform device/driver related code there.
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+> 
+> >  	pc->data = (struct meson_pinctrl_data *) match->data;
+> >  
+> > -	ret = meson_pinctrl_parse_dt(pc, pdev->dev.of_node);
+> > +	ret = meson_pinctrl_parse_dt(pc, dev->of_node);
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > @@ -659,12 +623,3 @@ static int meson_pinctrl_probe(struct platform_device
+> > *pdev)
+> >  
+> >  	return meson_gpiolib_register(pc);
+> >  }
+> > -
+> > -static struct platform_driver meson_pinctrl_driver = {
+> > -	.probe		= meson_pinctrl_probe,
+> > -	.driver = {
+> > -		.name	= "meson-pinctrl",
+> > -		.of_match_table = meson_pinctrl_dt_match,
+> > -	},
+> > -};
+> > -builtin_platform_driver(meson_pinctrl_driver);
+> > diff --git a/drivers/pinctrl/meson/pinctrl-meson.h
+> > b/drivers/pinctrl/meson/pinctrl-meson.h
+> > index 7ed0a80fd9dc..284157d43612 100644
+> > --- a/drivers/pinctrl/meson/pinctrl-meson.h
+> > +++ b/drivers/pinctrl/meson/pinctrl-meson.h
+> > @@ -13,6 +13,7 @@
+> >  
+> >  #include <linux/gpio.h>
+> >  #include <linux/pinctrl/pinctrl.h>
+> > +#include <linux/platform_device.h>
+> >  #include <linux/regmap.h>
+> >  #include <linux/types.h>
+> >  
+> > @@ -165,11 +166,5 @@ struct meson_pinctrl {
+> >  
+> >  #define MESON_PIN(x) PINCTRL_PIN(x, #x)
+> >  
+> > -extern struct meson_pinctrl_data meson8_cbus_pinctrl_data;
+> > -extern struct meson_pinctrl_data meson8_aobus_pinctrl_data;
+> > -extern struct meson_pinctrl_data meson8b_cbus_pinctrl_data;
+> > -extern struct meson_pinctrl_data meson8b_aobus_pinctrl_data;
+> > -extern struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data;
+> > -extern struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data;
+> > -extern struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data;
+> > -extern struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data;
+> > +/* Common probe function */
+> > +int meson_pinctrl_probe(struct platform_device *pdev);
+> > diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c
+> > b/drivers/pinctrl/meson/pinctrl-meson8.c
+> > index fbf8ecd1c2b6..68b345fc105a 100644
+> > --- a/drivers/pinctrl/meson/pinctrl-meson8.c
+> > +++ b/drivers/pinctrl/meson/pinctrl-meson8.c
+> > @@ -1044,7 +1044,7 @@ static struct meson_bank meson8_aobus_banks[] = {
+> >  	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0,  0,  0,
+> > 16,  0,  0,  0, 16,  1,  0),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
+> >  	.name		= "cbus-banks",
+> >  	.pins		= meson8_cbus_pins,
+> >  	.groups		= meson8_cbus_groups,
+> > @@ -1056,7 +1056,7 @@ struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
+> >  	.num_banks	= ARRAY_SIZE(meson8_cbus_banks),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson8_aobus_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson8_aobus_pinctrl_data = {
+> >  	.name		= "ao-bank",
+> >  	.pins		= meson8_aobus_pins,
+> >  	.groups		= meson8_aobus_groups,
+> > @@ -1067,3 +1067,24 @@ struct meson_pinctrl_data meson8_aobus_pinctrl_data =
+> > {
+> >  	.num_funcs	= ARRAY_SIZE(meson8_aobus_functions),
+> >  	.num_banks	= ARRAY_SIZE(meson8_aobus_banks),
+> >  };
+> > +
+> > +static const struct of_device_id meson8_pinctrl_dt_match[] = {
+> > +	{
+> > +		.compatible = "amlogic,meson8-cbus-pinctrl",
+> > +		.data = &meson8_cbus_pinctrl_data,
+> > +	},
+> > +	{
+> > +		.compatible = "amlogic,meson8-aobus-pinctrl",
+> > +		.data = &meson8_aobus_pinctrl_data,
+> > +	},
+> > +	{ },
+> > +};
+> > +
+> > +static struct platform_driver meson8_pinctrl_driver = {
+> > +	.probe		= meson_pinctrl_probe,
+> > +	.driver = {
+> > +		.name	= "meson8-pinctrl",
+> > +		.of_match_table = meson8_pinctrl_dt_match,
+> > +	},
+> > +};
+> > +builtin_platform_driver(meson8_pinctrl_driver);
+> > diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c
+> > b/drivers/pinctrl/meson/pinctrl-meson8b.c
+> > index 7af296db48c8..4d61df09bc3f 100644
+> > --- a/drivers/pinctrl/meson/pinctrl-meson8b.c
+> > +++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
+> > @@ -904,7 +904,7 @@ static struct meson_bank meson8b_aobus_banks[] = {
+> >  	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0,  0,  0,
+> > 16,  0,  0,  0, 16,  1,  0),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
+> >  	.name		= "cbus-banks",
+> >  	.pins		= meson8b_cbus_pins,
+> >  	.groups		= meson8b_cbus_groups,
+> > @@ -916,7 +916,7 @@ struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
+> >  	.num_banks	= ARRAY_SIZE(meson8b_cbus_banks),
+> >  };
+> >  
+> > -struct meson_pinctrl_data meson8b_aobus_pinctrl_data = {
+> > +static struct meson_pinctrl_data meson8b_aobus_pinctrl_data = {
+> >  	.name		= "aobus-banks",
+> >  	.pins		= meson8b_aobus_pins,
+> >  	.groups		= meson8b_aobus_groups,
+> > @@ -927,3 +927,24 @@ struct meson_pinctrl_data meson8b_aobus_pinctrl_data =
+> > {
+> >  	.num_funcs	= ARRAY_SIZE(meson8b_aobus_functions),
+> >  	.num_banks	= ARRAY_SIZE(meson8b_aobus_banks),
+> >  };
+> > +
+> > +static const struct of_device_id meson8b_pinctrl_dt_match[] = {
+> > +	{
+> > +		.compatible = "amlogic,meson8b-cbus-pinctrl",
+> > +		.data = &meson8b_cbus_pinctrl_data,
+> > +	},
+> > +	{
+> > +		.compatible = "amlogic,meson8b-aobus-pinctrl",
+> > +		.data = &meson8b_aobus_pinctrl_data,
+> > +	},
+> > +	{ },
+> > +};
+> > +
+> > +static struct platform_driver meson8b_pinctrl_driver = {
+> > +	.probe		= meson_pinctrl_probe,
+> > +	.driver = {
+> > +		.name	= "meson8b-pinctrl",
+> > +		.of_match_table = meson8b_pinctrl_dt_match,
+> > +	},
+> > +};
+> > +builtin_platform_driver(meson8b_pinctrl_driver);
+> > 
+> 
+> Apart the comment on of_device_get_match_data() :
+> 
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
