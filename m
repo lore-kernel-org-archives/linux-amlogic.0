@@ -1,28 +1,26 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 10 Oct 2017 16:18:22 +0200
-Subject: [PATCH] ARM64: dts: meson-gxm: enable HS400 on the vim2
-Message-ID: <20171010141822.16266-1-jbrunet@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Tue, 10 Oct 2017 13:56:56 -0500
+Subject: [PATCH v2 1/4] dt-bindings: nvmem: Describe the Amlogic
+ Meson6/Meson8/Meson8b efuse
+In-Reply-To: <20171002232804.20042-2-martin.blumenstingl@googlemail.com>
+References: <20171002232804.20042-1-martin.blumenstingl@googlemail.com>
+ <20171002232804.20042-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20171010185656.pf4jybiohcywp7wj@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable HS400 high speed eMMC mode on the khadas vim2
+On Tue, Oct 03, 2017 at 01:28:01AM +0200, Martin Blumenstingl wrote:
+> Amlogic Meson6, Meson8 and Meson8b SoCs have an efuse which contains
+> calibration data from the factory (for the internal temperature sensor
+> and some CVBS connector settings). Some manufacturers also store the MAC
+> address or serial number in the efuse.
+> 
+> This documents the devicetree bindings for the efuse on these SoCs.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../bindings/nvmem/amlogic-meson-mx-efuse.txt      | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/amlogic-meson-mx-efuse.txt
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index 32c138ec0e58..34a41b26a4ed 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -348,6 +348,7 @@
- 	disable-wp;
- 	mmc-ddr-1_8v;
- 	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
- 
- 	mmc-pwrseq = <&emmc_pwrseq>;
- 	vmmc-supply = <&vcc_3v3>;
--- 
-2.13.6
+Acked-by: Rob Herring <robh@kernel.org>
