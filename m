@@ -1,16 +1,21 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 11 Oct 2017 09:53:45 +0200
-Subject: [PATCH] pinctrl: meson-gx: add TEST_N i2s pinmux
-In-Reply-To: <20171006083142.19325-1-jbrunet@baylibre.com>
-References: <20171006083142.19325-1-jbrunet@baylibre.com>
-Message-ID: <CACRpkdZGNaLqQaKJy5A=6J=7YsdjnHXd-jy+16kYJy4m4M4dZQ@mail.gmail.com>
+Date: Wed, 11 Oct 2017 09:54:49 +0200
+Subject: [PATCH] pinctrl: meson: remove unused pin_base
+In-Reply-To: <20171006085407.27905-1-jbrunet@baylibre.com>
+References: <20171006085407.27905-1-jbrunet@baylibre.com>
+Message-ID: <CACRpkda7z==geUfZFGRXHiVLPaUcZU6s9Pub2VSa4UNuEUr4fw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Oct 6, 2017 at 10:31 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Fri, Oct 6, 2017 at 10:54 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-> Add TEST_N pinmux for channel 6 and 7 of the i2s output
+> While removing the need to have pin_base defined in meson pinctrl
+> drivers, I forgot to remove the corresponding field from the
+> pinctrl_data structure.
 >
+> Fixing this now.
+>
+> Fixes: 70e5ecb1b994 ("pinctrl: meson: get rid of pin_base")
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
 Patch applied with Kevin's reviewed-by.
