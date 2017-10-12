@@ -1,37 +1,33 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 11 Oct 2017 17:15:29 -0700
-Subject: [PATCH v2 0/2] pinctrl: meson: prepare for new SoC
-In-Reply-To: <20171011120230.30483-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Wed, 11 Oct 2017 14:02:28 +0200")
-References: <20171011120230.30483-1-jbrunet@baylibre.com>
-Message-ID: <7hshepfcgu.fsf@baylibre.com>
+Date: Wed, 11 Oct 2017 17:20:22 -0700
+Subject: [PATCH 0/2] Enable the Amlogic Meson SDIO MMC controller
+In-Reply-To: <20171007162940.14595-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sat, 7 Oct 2017 18:29:38 +0200")
+References: <20171007162940.14595-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7ho9pdfc8p.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> The goal of this patchset is to prepare meson pinctrl driver to
-> add a new meson SoC support. This new SoC will share the same pinconf/gpio
-> registers but the pinmux part will be slightly different.
->
-> First patch allows to compile and ship only the necessary pinctrl drivers,
-> depending on the architecture and configuration needs. This should save
-> a bit of memory.
->
-> Second patch provide a way to deal with a different pinmux scheme, while
-> reusing most of the meson pinctrl driver.
->
-> Linus, FYI, this series depends on the meson changes you have already
-> merged in this cycle.
->
-> Change since v1: [0]
-> * Use of_device_get_match_data() in patch
-> * Change pmx naming scheme for the SoC parts
->
-> [0]: https://lkml.kernel.org/r/20171009101747.16940-1-jbrunet at baylibre.com
->
-> Jerome Brunet (2):
->   pinctrl: meson: separate soc drivers
->   pinctrl: meson: rework pinmux ops
+> Now that the SDIO MMC driver is queued for v4.15 we need to prepare
+> our platform so boards can actually use this driver.
+> This adds the Meson SDIO MMC controller to the .dts files and
+> enables the corresponding driver in the multi_v7_defconfig.
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Just curious... were you able to test this on any meson8 platform?
+
+[...]
+
+> Martin Blumenstingl (2):
+>   ARM: dts: meson: add the SDIO MMC controller
+
+Applied to v4.15/dt
+
+>   ARM: multi_v7_defconfig: enable the Meson MX SDIO/MMC controller
+
+Applied to v4.15/defconfig
+
+Thanks!
+
+Kevin
