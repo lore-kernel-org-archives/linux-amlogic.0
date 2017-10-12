@@ -1,51 +1,48 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 12 Oct 2017 22:50:01 +0200
-Subject: [PATCH 0/2] Enable the Amlogic Meson SDIO MMC controller
-In-Reply-To: <7ho9pdfc8p.fsf@baylibre.com>
-References: <20171007162940.14595-1-martin.blumenstingl@googlemail.com>
- <7ho9pdfc8p.fsf@baylibre.com>
-Message-ID: <CAFBinCAPsrw89nhWevO6=BG=POa5caepgCNg0xHx=iWD7H6jWg@mail.gmail.com>
+Date: Thu, 12 Oct 2017 22:56:49 +0200
+Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation for
+ USB root-hub
+In-Reply-To: <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
+References: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
+ <20171008211713.18696-2-martin.blumenstingl@googlemail.com>
+ <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
+Message-ID: <CAFBinCCc+Fj6wwGk+OLNQTHEYU8xBPe7OGHVSQ82kMew3xUsww@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
+Hi Arnd,
 
-On Thu, Oct 12, 2017 at 2:20 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->
->> Now that the SDIO MMC driver is queued for v4.15 we need to prepare
->> our platform so boards can actually use this driver.
->> This adds the Meson SDIO MMC controller to the .dts files and
->> enables the corresponding driver in the multi_v7_defconfig.
->
-> Just curious... were you able to test this on any meson8 platform?
-I have two 32-bit Meson boards:
-- Meson8m2 (S812) based Akaso M8S
-- Meson8b based Endless Mini EC-100
+thank you for reviewing this patch!
 
-I do not have any Meson8 (S805) based board, however I believe that
-there aren't many differences between Meson8 and Meson8m2 in terms of
-"peripherals" (they share the same mach-meson8 directory in Amlogic's
-kernel sources).
-
-most of my tests were done my Meson8m2 board, however I also did a
-quick test on the EC-100 some time ago.
-
-> [...]
+On Mon, Oct 9, 2017 at 12:24 PM, Arnd Bergmann <arnd@arndb.de> wrote:
+> On Sun, Oct 8, 2017 at 11:17 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> A USB root-hub may have several PHYs which need to be configured before
+>> the root-hub starts working.
+>> This adds the documentation for such a USB root-hub as well as a hint
+>> regarding the child-nodes on XHCI controllers which can include the
+>> roothub.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Acked-by: Rob Herring <robh@kernel.org>
 >
->> Martin Blumenstingl (2):
->>   ARM: dts: meson: add the SDIO MMC controller
->
-> Applied to v4.15/dt
->
->>   ARM: multi_v7_defconfig: enable the Meson MX SDIO/MMC controller
->
-> Applied to v4.15/defconfig
-Thank you!
-
-> Thanks!
->
-> Kevin
+> Have you checked that this still works with DT properties on a USB device
+> that is listed in the DT? A common use-case is to provide the MAC address
+> of a soldered-down USB-ethernet that lacks its own eeprom, and it seems
+> you are changing the way the parent devices of that get represented,
+> so the dev->of_node pointer in the USB device might no longer refer
+> to the correct device.
+I haven't tested the described use-case. however, this patch is not
+supposed to change the binding for actual devices.
+USB device numbering starts at 1, while 0 is reserved for the root-hub
+(at least from what I know). before this patch there was no way to
+describe the root-hub via .dts. this however is required for some
+platforms that need to set up a PHY for each port on the root-hub
+(Amlogic Meson GXL platform is one example: there are two ports
+enabled on dwc3's root-hub with 2x USB2 and 1x USB3 PHYs) - so this
+patch uses a similar binding as we already have (to describe the
+devices) to describe the root-hub
 
 
+Regards,
 Martin
