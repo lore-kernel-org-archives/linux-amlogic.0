@@ -1,48 +1,111 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 12 Oct 2017 22:56:49 +0200
-Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation for
- USB root-hub
-In-Reply-To: <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
-References: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
- <20171008211713.18696-2-martin.blumenstingl@googlemail.com>
- <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
-Message-ID: <CAFBinCCc+Fj6wwGk+OLNQTHEYU8xBPe7OGHVSQ82kMew3xUsww@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 12 Oct 2017 22:59:12 +0200
+Subject: eMMC tuning issue on Odroid C2 and a possible solution
+In-Reply-To: <08c2642a-06b2-f36b-80b1-3be82c346887@gmail.com>
+References: <b931985f-16b2-0a90-e73b-b6c349ad7d6c@gmail.com>
+ <1507821759.16356.225.camel@baylibre.com>
+ <aa13028e-b42a-094f-7bd1-ef22e8cdacbd@gmail.com>
+ <1507836874.16356.258.camel@baylibre.com>
+ <fa52e311-bafe-0a6a-1b85-ac8f40db62ed@gmail.com>
+ <1507838745.16356.270.camel@baylibre.com>
+ <08c2642a-06b2-f36b-80b1-3be82c346887@gmail.com>
+Message-ID: <1507841952.16356.285.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Arnd,
+On Thu, 2017-10-12 at 22:29 +0200, Heiner Kallweit wrote:
+> Am 12.10.2017 um 22:05 schrieb Jerome Brunet:
+> > On Thu, 2017-10-12 at 21:49 +0200, Heiner Kallweit wrote:
+> > > > The result of the tuning does not depends on starting point, so I don't
+> > > > really
+> > > > understand how it would significantly change things.
+> > > > 
+> > > 
+> > > I think it depends on the tx phase starting point.
+> > > 
+> > 
+> > If the result of the tuning is not independent of the starting, instead of
+> > just
+> > telling me, it is fairly easy for you to give actual result, like I asked
+> > you:
+> > 
+> 
+> With hs200 at 200 and tx phase starting point 0 I get the following with no
+> further CRC errors.
+> 
+> [    0.726572] meson-gx-mmc d0074000.mmc: d0074000.mmc#rx phase/delay
+> tunning...
+> [    0.728664] hctosys: unable to open rtc device (rtc0)
+> [    0.728827] USB_OTG_PWR: disabling
+> [    0.728831] TFLASH_VDD: disabling
+> [    0.728833] TF_IO: disabling
+> [    0.753183] Waiting for root device /dev/mmcblk0p1...
+> [    0.754352] meson-gx-mmc d0074000.mmc: success with phase: 270
+> [    0.758386] meson-gx-mmc d0074000.mmc: d0074000.mmc#tx phase/delay
+> tunning...
+> [    0.768050] meson-gx-mmc d0074000.mmc: success with phase: 120
+> [    0.771235] meson-gx-mmc d0074000.mmc: d0074000.mmc#rx phase/delay
+> tunning...
+> [    0.780902] meson-gx-mmc d0074000.mmc: success with phase: 0
+> [    0.784036] mmc0: new HS200 MMC card at address 0001
+> [    0.789090] mmcblk0: mmc0:0001 DJNB4R 116 GiB
+> [    0.793328] mmcblk0boot0: mmc0:0001 DJNB4R partition 1 4.00 MiB
+> [    0.799198] mmcblk0boot1: mmc0:0001 DJNB4R partition 2 4.00 MiB
+> [    0.805048] mmcblk0rpmb: mmc0:0001 DJNB4R partition 3 4.00 MiB, chardev
+> (249:0)
+> [    0.812799] mmcblk0: response CRC error sending r/w cmd command, card
+> status 0x900
+> [    0.819727] meson-gx-mmc d0074000.mmc: d0074000.mmc#tx phase/delay
+> tunning...
+> [    0.827007] meson-gx-mmc d0074000.mmc: success with phase: 210
+> [    0.832559] meson-gx-mmc d0074000.mmc: d0074000.mmc#rx phase/delay
+> tunning...
+> [    0.839848] meson-gx-mmc d0074000.mmc: success with phase: 0
+> 
+> 
+> > > > Ok, starting from Rx:0 Tx:270 then tuning gives you Tx:300 Rx:90
+> > > > And what different did it gives you starting Rx:0/Tx:0 ?
+> > 
+> > And if the result are indeed vastly different, let's debug and get a real
+> > explanation.
+> > 
+> > > Tuning does:
+> > > rx phase tuning
+> > > tx phase tuning
+> > > rx phase tuning
+> > > 
+> > > Result of each step depends on result of previous step.
+> > 
+> > Again, we don't agree. 
+> > 
+> > > So also the initial
+> > > rx phase tuning result depends on the starting point of tx phase.
+> > 
+> > The first Rx tuning is there only to get a sane starting point for the tx
+> > tuning
+> > ,as explained in the code. This is the reason why is not done when re-
+> > tuning.
+> > 
 
-thank you for reviewing this patch!
+Heiner, This is the same story again and again !
+Getting clear status is just really painful. It's like half the message is
+ignored each time. 
 
-On Mon, Oct 9, 2017 at 12:24 PM, Arnd Bergmann <arnd@arndb.de> wrote:
-> On Sun, Oct 8, 2017 at 11:17 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> A USB root-hub may have several PHYs which need to be configured before
->> the root-hub starts working.
->> This adds the documentation for such a USB root-hub as well as a hint
->> regarding the child-nodes on XHCI controllers which can include the
->> roothub.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->
-> Have you checked that this still works with DT properties on a USB device
-> that is listed in the DT? A common use-case is to provide the MAC address
-> of a soldered-down USB-ethernet that lacks its own eeprom, and it seems
-> you are changing the way the parent devices of that get represented,
-> so the dev->of_node pointer in the USB device might no longer refer
-> to the correct device.
-I haven't tested the described use-case. however, this patch is not
-supposed to change the binding for actual devices.
-USB device numbering starts at 1, while 0 is reserved for the root-hub
-(at least from what I know). before this patch there was no way to
-describe the root-hub via .dts. this however is required for some
-platforms that need to set up a PHY for each port on the root-hub
-(Amlogic Meson GXL platform is one example: there are two ports
-enabled on dwc3's root-hub with 2x USB2 and 1x USB3 PHYs) - so this
-patch uses a similar binding as we already have (to describe the
-devices) to describe the root-hub
+I can clearly see that, this result comes from your hack, and this hack makes no
+sense. I don't care about this result. This is not what I asked.
 
+What I asked is:
+1) From linux-next what is tuning result in hs200 at 200Mhz with the starting :
+* Rx:0/Tx:270/Core:180 (current setting)
+* Rx:0/Tx:0/Core:180 (the setting you keep on mentioning)
 
-Regards,
-Martin
+Please don't send your logs: the phase set are displayed in
+debugfs/clk?clk_summary
+
+2) Try to come up with a real explanation: "It just happens ..." is not an
+explanation. 
+
+> > 
+> > 
+> 
+> 
