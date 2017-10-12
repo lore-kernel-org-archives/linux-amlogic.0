@@ -1,76 +1,51 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Thu, 12 Oct 2017 22:29:34 +0200
-Subject: eMMC tuning issue on Odroid C2 and a possible solution
-In-Reply-To: <1507838745.16356.270.camel@baylibre.com>
-References: <b931985f-16b2-0a90-e73b-b6c349ad7d6c@gmail.com>
- <1507821759.16356.225.camel@baylibre.com>
- <aa13028e-b42a-094f-7bd1-ef22e8cdacbd@gmail.com>
- <1507836874.16356.258.camel@baylibre.com>
- <fa52e311-bafe-0a6a-1b85-ac8f40db62ed@gmail.com>
- <1507838745.16356.270.camel@baylibre.com>
-Message-ID: <08c2642a-06b2-f36b-80b1-3be82c346887@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 12 Oct 2017 22:50:01 +0200
+Subject: [PATCH 0/2] Enable the Amlogic Meson SDIO MMC controller
+In-Reply-To: <7ho9pdfc8p.fsf@baylibre.com>
+References: <20171007162940.14595-1-martin.blumenstingl@googlemail.com>
+ <7ho9pdfc8p.fsf@baylibre.com>
+Message-ID: <CAFBinCAPsrw89nhWevO6=BG=POa5caepgCNg0xHx=iWD7H6jWg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 12.10.2017 um 22:05 schrieb Jerome Brunet:
-> On Thu, 2017-10-12 at 21:49 +0200, Heiner Kallweit wrote:
->>> The result of the tuning does not depends on starting point, so I don't
->>> really
->>> understand how it would significantly change things.
->>>
->>
->> I think it depends on the tx phase starting point.
->>
-> 
-> If the result of the tuning is not independent of the starting, instead of just
-> telling me, it is fairly easy for you to give actual result, like I asked you:
-> 
+Hi Kevin,
 
-With hs200 at 200 and tx phase starting point 0 I get the following with no further CRC errors.
+On Thu, Oct 12, 2017 at 2:20 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+>> Now that the SDIO MMC driver is queued for v4.15 we need to prepare
+>> our platform so boards can actually use this driver.
+>> This adds the Meson SDIO MMC controller to the .dts files and
+>> enables the corresponding driver in the multi_v7_defconfig.
+>
+> Just curious... were you able to test this on any meson8 platform?
+I have two 32-bit Meson boards:
+- Meson8m2 (S812) based Akaso M8S
+- Meson8b based Endless Mini EC-100
 
-[    0.726572] meson-gx-mmc d0074000.mmc: d0074000.mmc#rx phase/delay tunning...
-[    0.728664] hctosys: unable to open rtc device (rtc0)
-[    0.728827] USB_OTG_PWR: disabling
-[    0.728831] TFLASH_VDD: disabling
-[    0.728833] TF_IO: disabling
-[    0.753183] Waiting for root device /dev/mmcblk0p1...
-[    0.754352] meson-gx-mmc d0074000.mmc: success with phase: 270
-[    0.758386] meson-gx-mmc d0074000.mmc: d0074000.mmc#tx phase/delay tunning...
-[    0.768050] meson-gx-mmc d0074000.mmc: success with phase: 120
-[    0.771235] meson-gx-mmc d0074000.mmc: d0074000.mmc#rx phase/delay tunning...
-[    0.780902] meson-gx-mmc d0074000.mmc: success with phase: 0
-[    0.784036] mmc0: new HS200 MMC card at address 0001
-[    0.789090] mmcblk0: mmc0:0001 DJNB4R 116 GiB
-[    0.793328] mmcblk0boot0: mmc0:0001 DJNB4R partition 1 4.00 MiB
-[    0.799198] mmcblk0boot1: mmc0:0001 DJNB4R partition 2 4.00 MiB
-[    0.805048] mmcblk0rpmb: mmc0:0001 DJNB4R partition 3 4.00 MiB, chardev (249:0)
-[    0.812799] mmcblk0: response CRC error sending r/w cmd command, card status 0x900
-[    0.819727] meson-gx-mmc d0074000.mmc: d0074000.mmc#tx phase/delay tunning...
-[    0.827007] meson-gx-mmc d0074000.mmc: success with phase: 210
-[    0.832559] meson-gx-mmc d0074000.mmc: d0074000.mmc#rx phase/delay tunning...
-[    0.839848] meson-gx-mmc d0074000.mmc: success with phase: 0
+I do not have any Meson8 (S805) based board, however I believe that
+there aren't many differences between Meson8 and Meson8m2 in terms of
+"peripherals" (they share the same mach-meson8 directory in Amlogic's
+kernel sources).
+
+most of my tests were done my Meson8m2 board, however I also did a
+quick test on the EC-100 some time ago.
+
+> [...]
+>
+>> Martin Blumenstingl (2):
+>>   ARM: dts: meson: add the SDIO MMC controller
+>
+> Applied to v4.15/dt
+>
+>>   ARM: multi_v7_defconfig: enable the Meson MX SDIO/MMC controller
+>
+> Applied to v4.15/defconfig
+Thank you!
+
+> Thanks!
+>
+> Kevin
 
 
->>> Ok, starting from Rx:0 Tx:270 then tuning gives you Tx:300 Rx:90
->>> And what different did it gives you starting Rx:0/Tx:0 ?
-> 
-> And if the result are indeed vastly different, let's debug and get a real
-> explanation.
-> 
->> Tuning does:
->> rx phase tuning
->> tx phase tuning
->> rx phase tuning
->>
->> Result of each step depends on result of previous step.
-> 
-> Again, we don't agree. 
-> 
->> So also the initial
->> rx phase tuning result depends on the starting point of tx phase.
-> 
-> The first Rx tuning is there only to get a sane starting point for the tx tuning
-> ,as explained in the code. This is the reason why is not done when re-tuning.
-> 
-> 
-> 
+Martin
