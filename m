@@ -1,27 +1,38 @@
 From: dan.carpenter@oracle.com (Dan Carpenter)
-Date: Fri, 13 Oct 2017 14:19:43 +0300
-Subject: [PATCH 1/2] mmc: meson-mx-sdio: return correct error code
-Message-ID: <20171013111943.zyp5myiwb3pp56vh@mwanda>
+Date: Fri, 13 Oct 2017 14:20:49 +0300
+Subject: [PATCH 2/2] mmc: meson-mx-sdio: Cleanup IS_ERR() checks
+In-Reply-To: <20171013111943.zyp5myiwb3pp56vh@mwanda>
+Message-ID: <20171013112049.rdcdqv6ooktlv5wz@mwanda>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This has a copy and paste bug so we use "host->fixed_factor_clk" which
-is a valid pointer instead of "host->cfg_div_clk" which holds the error
-code.
+Using PTR_ERR_OR_ZERO() instead of IS_ERR() works, but it's not how
+you're supposed to write these conditions.
 
-Fixes: 0aa0fb9cd239 ("mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8 and Meson8b SoCs")
 Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+I really hope it doesn't become a trend on to wrap all error checks in a
+WARN_ON() macro...
 
 diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index 19b499bbe691..dc30ed5e964b 100644
+index dc30ed5e964b..d0d921e0e589 100644
 --- a/drivers/mmc/host/meson-mx-sdio.c
 +++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -621,7 +621,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+@@ -602,7 +602,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+ 
+ 	host->fixed_factor_clk = devm_clk_register(host->controller_dev,
+ 						 &host->fixed_factor.hw);
+-	if (WARN_ON(PTR_ERR_OR_ZERO(host->fixed_factor_clk)))
++	if (WARN_ON(IS_ERR(host->fixed_factor_clk)))
+ 		return PTR_ERR(host->fixed_factor_clk);
+ 
+ 	clk_div_parent = __clk_get_name(host->fixed_factor_clk);
+@@ -620,7 +620,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+ 
  	host->cfg_div_clk = devm_clk_register(host->controller_dev,
  					      &host->cfg_div.hw);
- 	if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
--		return PTR_ERR(host->fixed_factor_clk);
-+		return PTR_ERR(host->cfg_div_clk);
+-	if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
++	if (WARN_ON(IS_ERR(host->cfg_div_clk)))
+ 		return PTR_ERR(host->cfg_div_clk);
  
  	return 0;
- }
