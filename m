@@ -1,38 +1,74 @@
-From: dan.carpenter@oracle.com (Dan Carpenter)
-Date: Fri, 13 Oct 2017 14:20:49 +0300
-Subject: [PATCH 2/2] mmc: meson-mx-sdio: Cleanup IS_ERR() checks
-In-Reply-To: <20171013111943.zyp5myiwb3pp56vh@mwanda>
-Message-ID: <20171013112049.rdcdqv6ooktlv5wz@mwanda>
+From: stern@rowland.harvard.edu (Alan Stern)
+Date: Fri, 13 Oct 2017 10:07:55 -0400 (EDT)
+Subject: [RFC usb-next v5 3/3] usb: core: hcd: integrate the PHY roothub
+ wrapper
+In-Reply-To: <CAFBinCC4qseHoEkTtNa4NtVXgrcV=NRrOf2BBKvQRbhaZeEzsw@mail.gmail.com>
+Message-ID: <Pine.LNX.4.44L0.1710131005420.1364-100000@iolanthe.rowland.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Using PTR_ERR_OR_ZERO() instead of IS_ERR() works, but it's not how
-you're supposed to write these conditions.
+On Thu, 12 Oct 2017, Martin Blumenstingl wrote:
 
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
-I really hope it doesn't become a trend on to wrap all error checks in a
-WARN_ON() macro...
+> Hi Alan,
+> 
+> On Mon, Oct 9, 2017 at 7:18 PM, Alan Stern <stern@rowland.harvard.edu> wrote:
+> > On Sun, 8 Oct 2017, Martin Blumenstingl wrote:
+> >
+> >> This integrates the PHY roothub wrapper into the core hcd
+> >> infrastructure. Multiple PHYs which are part of the roothub devicetree
+> >> node (which is a sub-node of the sysdev's node) are now managed
+> >> (= powered on/off when needed), by the new usb_phy_roothub code.
+> >>
+> >> One example where this is required is the Amlogic GXL and GXM SoCs:
+> >> They are using a dwc3 USB controller with up to three ports enabled on
+> >> the internal roothub. Using only the top-level "phy" properties does not
+> >> work here since one can only specify one "usb2-phy" and one "usb3-phy",
+> >> while actually at least two "usb2-phy" have to be specified.
+> >>
+> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> >> ---
+> >>  drivers/usb/core/hcd.c  | 30 +++++++++++++++++++++++++++++-
+> >>  include/linux/usb/hcd.h |  1 +
+> >>  2 files changed, 30 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
+> >> index 67aa3d039b9b..56704dd10c15 100644
+> >> --- a/drivers/usb/core/hcd.c
+> >> +++ b/drivers/usb/core/hcd.c
+> >> @@ -50,6 +50,7 @@
+> >>  #include <linux/usb/otg.h>
+> >>
+> >>  #include "usb.h"
+> >> +#include "phy.h"
+> >>
+> >>
+> >>  /*-------------------------------------------------------------------------*/
+> >> @@ -2292,7 +2293,11 @@ int hcd_bus_suspend(struct usb_device *rhdev, pm_message_t msg)
+> >>               dev_dbg(&rhdev->dev, "bus %s fail, err %d\n",
+> >>                               "suspend", status);
+> >>       }
+> >> -     return status;
+> >> +
+> >> +     if (status == 0)
+> >> +             return usb_phy_roothub_power_off(hcd->phy_roothub);
+> >
+> > Is this really the right thing to do?  If usb_phy_roothub_power_off()
+> > fails, what condition does this leave the bus in?  And what condition
+> > does the kernel _think_ the bus is in?
+> indeed, thank you for spotting this!
+> 
+> do you have any suggestions how to improve this?
+> maybe I should move usb_phy_roothub_power_off a few lines up and only
+> call it after the "rhdev->do_remote_wakeup" block if status is 0. if
+> usb_phy_roothub_power_off then returns an error I could call
+> "hcd_bus_resume(rhdev, PMSG_AUTO_RESUME);". what do you think about
+> this?
 
-diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-index dc30ed5e964b..d0d921e0e589 100644
---- a/drivers/mmc/host/meson-mx-sdio.c
-+++ b/drivers/mmc/host/meson-mx-sdio.c
-@@ -602,7 +602,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
- 
- 	host->fixed_factor_clk = devm_clk_register(host->controller_dev,
- 						 &host->fixed_factor.hw);
--	if (WARN_ON(PTR_ERR_OR_ZERO(host->fixed_factor_clk)))
-+	if (WARN_ON(IS_ERR(host->fixed_factor_clk)))
- 		return PTR_ERR(host->fixed_factor_clk);
- 
- 	clk_div_parent = __clk_get_name(host->fixed_factor_clk);
-@@ -620,7 +620,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
- 
- 	host->cfg_div_clk = devm_clk_register(host->controller_dev,
- 					      &host->cfg_div.hw);
--	if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
-+	if (WARN_ON(IS_ERR(host->cfg_div_clk)))
- 		return PTR_ERR(host->cfg_div_clk);
- 
- 	return 0;
+Or you could just throw away the return code from 
+usb_phy_roothub_power_off().  Maybe print it out in a warning message, 
+but do not report it to the caller.
+
+After all, given the choice between leaving the entire USB bus at full 
+power and leaving just the phy at full power, which would you prefer?
+
+Alan Stern
