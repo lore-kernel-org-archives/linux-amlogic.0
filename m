@@ -1,45 +1,82 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 13 Oct 2017 10:22:06 +0200
-Subject: [PATCH] i2c: meson: use generic compatible
-Message-ID: <20171013082206.31632-1-jbrunet@baylibre.com>
+Date: Fri, 13 Oct 2017 11:16:42 +0200
+Subject: [PATCH] pwm: meson: use generic compatibles
+Message-ID: <20171013091642.31948-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The meson i2c driver seems to be compatible with more SoCs than
-initially thought. Let's use the most generic compatible he have in
-DT instead of the gxbb specific one
+The meson pwm driver seems to be compatible with more SoCs than
+initially thought. Let's use the most generic compatibles he have in
+DT instead of the gxbb specific ones
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- Documentation/devicetree/bindings/i2c/i2c-meson.txt | 2 +-
- drivers/i2c/busses/i2c-meson.c                      | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/pwm/pwm-meson.txt |  6 +++---
+ drivers/pwm/pwm-meson.c                             | 12 ++++++------
+ 2 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-meson.txt b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
-index 611b934c7e10..e6a563443e26 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-meson.txt
-+++ b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
-@@ -1,7 +1,7 @@
- Amlogic Meson I2C controller
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+index 1ee81321c35e..439e05030553 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
++++ b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
+@@ -3,8 +3,8 @@ Amlogic Meson PWM Controller
  
  Required properties:
-- - compatible: must be "amlogic,meson6-i2c" or "amlogic,meson-gxbb-i2c"
-+ - compatible: must be "amlogic,meson6-i2c" or "amlogic,meson-gx-i2c"
-  - reg: physical address and length of the device registers
-  - interrupts: a single interrupt specifier
-  - clocks: clock for the device
-diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
-index 88d15b92ec35..7b238d8c19af 100644
---- a/drivers/i2c/busses/i2c-meson.c
-+++ b/drivers/i2c/busses/i2c-meson.c
-@@ -442,7 +442,7 @@ static int meson_i2c_remove(struct platform_device *pdev)
+ - compatible: Shall contain "amlogic,meson8b-pwm"
+-                         or "amlogic,meson-gxbb-pwm"
+-                         or "amlogic,meson-gxbb-ao-pwm"
++                         or "amlogic,meson-gx-pwm"
++                         or "amlogic,meson-gx-ao-pwm"
+ - #pwm-cells: Should be 3. See pwm.txt in this directory for a description of
+   the cells format.
  
- static const struct of_device_id meson_i2c_match[] = {
- 	{ .compatible = "amlogic,meson6-i2c" },
--	{ .compatible = "amlogic,meson-gxbb-i2c" },
-+	{ .compatible = "amlogic,meson-gx-i2c" },
- 	{ },
+@@ -16,7 +16,7 @@ Optional properties:
+ Example:
+ 
+ 	pwm_ab: pwm at 8550 {
+-		compatible = "amlogic,meson-gxbb-pwm";
++		compatible = "amlogic,meson-gx-pwm";
+ 		reg = <0x0 0x08550 0x0 0x10>;
+ 		#pwm-cells = <3>;
+ 		clocks = <&xtal>, <&xtal>;
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index d589331d1884..ababcc5ca3f1 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -393,7 +393,7 @@ static const char * const pwm_gxbb_parent_names[] = {
+ 	"xtal", "hdmi_pll", "fclk_div4", "fclk_div3"
  };
- MODULE_DEVICE_TABLE(of, meson_i2c_match);
+ 
+-static const struct meson_pwm_data pwm_gxbb_data = {
++static const struct meson_pwm_data pwm_gx_data = {
+ 	.parent_names = pwm_gxbb_parent_names,
+ 	.num_parents = ARRAY_SIZE(pwm_gxbb_parent_names),
+ };
+@@ -406,7 +406,7 @@ static const char * const pwm_gxbb_ao_parent_names[] = {
+ 	"xtal", "clk81"
+ };
+ 
+-static const struct meson_pwm_data pwm_gxbb_ao_data = {
++static const struct meson_pwm_data pwm_gx_ao_data = {
+ 	.parent_names = pwm_gxbb_ao_parent_names,
+ 	.num_parents = ARRAY_SIZE(pwm_gxbb_ao_parent_names),
+ };
+@@ -417,12 +417,12 @@ static const struct of_device_id meson_pwm_matches[] = {
+ 		.data = &pwm_meson8b_data
+ 	},
+ 	{
+-		.compatible = "amlogic,meson-gxbb-pwm",
+-		.data = &pwm_gxbb_data
++		.compatible = "amlogic,meson-gx-pwm",
++		.data = &pwm_gx_data
+ 	},
+ 	{
+-		.compatible = "amlogic,meson-gxbb-ao-pwm",
+-		.data = &pwm_gxbb_ao_data
++		.compatible = "amlogic,meson-gx-ao-pwm",
++		.data = &pwm_gx_ao_data
+ 	},
+ 	{},
+ };
 -- 
 2.13.6
