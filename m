@@ -1,50 +1,67 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 13 Oct 2017 21:02:28 +0200
-Subject: [PATCH 2/2] mmc: meson-mx-sdio: Cleanup IS_ERR() checks
-In-Reply-To: <20171013112049.rdcdqv6ooktlv5wz@mwanda>
-References: <20171013111943.zyp5myiwb3pp56vh@mwanda>
- <20171013112049.rdcdqv6ooktlv5wz@mwanda>
-Message-ID: <CAFBinCBz95u=DdrVF2UL0wPe2oUP2Qhz37K7MVkMUDj0jn2HmA@mail.gmail.com>
+Date: Fri, 13 Oct 2017 21:14:59 +0200
+Subject: [PATCH] nvmem: meson: use generic compatible
+In-Reply-To: <20171012152450.12454-1-jbrunet@baylibre.com>
+References: <20171012152450.12454-1-jbrunet@baylibre.com>
+Message-ID: <CAFBinCBVNEqTk+NUHz62FetLhYagFb5K+g17P_2Xb7sBUfEmdA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Oct 13, 2017 at 1:20 PM, Dan Carpenter <dan.carpenter@oracle.com> wrote:
-> Using PTR_ERR_OR_ZERO() instead of IS_ERR() works, but it's not how
-> you're supposed to write these conditions.
+Hi Jerome,
+
+On Thu, Oct 12, 2017 at 5:24 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> The meson efuse driver seems to be compatible with more SoCs than
+> initially thought. Let's use the most generic compatible he have in
+> DT instead of the gxbb specific one
 >
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-thank you for spotting and fixing this!
-I double-checked devm_clk_register: we don't need IS_ERR_OR_NULL
-because devm_clk_register never returns NULL
-
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
-> I really hope it doesn't become a trend on to wrap all error checks in a
-> WARN_ON() macro...
+>  Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 4 ++--
+>  drivers/nvmem/meson-efuse.c                               | 2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-> index dc30ed5e964b..d0d921e0e589 100644
-> --- a/drivers/mmc/host/meson-mx-sdio.c
-> +++ b/drivers/mmc/host/meson-mx-sdio.c
-> @@ -602,7 +602,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+> index fafd85bd67a6..0260524292fe 100644
+> --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+> +++ b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+> @@ -1,7 +1,7 @@
+>  = Amlogic eFuse device tree bindings =
 >
->         host->fixed_factor_clk = devm_clk_register(host->controller_dev,
->                                                  &host->fixed_factor.hw);
-> -       if (WARN_ON(PTR_ERR_OR_ZERO(host->fixed_factor_clk)))
-> +       if (WARN_ON(IS_ERR(host->fixed_factor_clk)))
->                 return PTR_ERR(host->fixed_factor_clk);
+>  Required properties:
+> -- compatible: should be "amlogic,meson-gxbb-efuse"
+> +- compatible: should be "amlogic,meson-gx-efuse"
+have you checked with the devicetree maintainers how they want the
+documentation to look like in this case?
+(I don't know if the old one should be kept instead of removing it)
+
 >
->         clk_div_parent = __clk_get_name(host->fixed_factor_clk);
-> @@ -620,7 +620,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+>  = Data cells =
+>  Are child nodes of eFuse, bindings of which as described in
+> @@ -10,7 +10,7 @@ bindings/nvmem/nvmem.txt
+>  Example:
 >
->         host->cfg_div_clk = devm_clk_register(host->controller_dev,
->                                               &host->cfg_div.hw);
-> -       if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
-> +       if (WARN_ON(IS_ERR(host->cfg_div_clk)))
->                 return PTR_ERR(host->cfg_div_clk);
+>         efuse: efuse {
+> -               compatible = "amlogic,meson-gxbb-efuse";
+> +               compatible = "amlogic,meson-gx-efuse";
+>                 #address-cells = <1>;
+>                 #size-cells = <1>;
 >
->         return 0;
+> diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
+> index 70bfc9839bb2..e90c6d68a263 100644
+> --- a/drivers/nvmem/meson-efuse.c
+> +++ b/drivers/nvmem/meson-efuse.c
+> @@ -44,7 +44,7 @@ static struct nvmem_config econfig = {
+>  };
+>
+>  static const struct of_device_id meson_efuse_match[] = {
+> -       { .compatible = "amlogic,meson-gxbb-efuse", },
+> +       { .compatible = "amlogic,meson-gx-efuse", },
+>         { /* sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, meson_efuse_match);
+> --
+> 2.13.6
+>
 >
 > _______________________________________________
 > linux-amlogic mailing list
