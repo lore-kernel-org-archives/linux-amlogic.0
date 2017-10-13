@@ -1,39 +1,39 @@
-From: stern@rowland.harvard.edu (Alan Stern)
-Date: Thu, 12 Oct 2017 17:17:01 -0400 (EDT)
-Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation
- for USB root-hub
-In-Reply-To: <CAFBinCCc+Fj6wwGk+OLNQTHEYU8xBPe7OGHVSQ82kMew3xUsww@mail.gmail.com>
-Message-ID: <Pine.LNX.4.44L0.1710121715390.1278-100000@iolanthe.rowland.org>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 13 Oct 2017 20:58:59 +0200
+Subject: [PATCH 1/2] mmc: meson-mx-sdio: return correct error code
+In-Reply-To: <20171013111943.zyp5myiwb3pp56vh@mwanda>
+References: <20171013111943.zyp5myiwb3pp56vh@mwanda>
+Message-ID: <CAFBinCBE7EpGJ3LnAYd-yc+=OSxYsU-BFigugHBkrAn8S0uTPQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 12 Oct 2017, Martin Blumenstingl wrote:
+On Fri, Oct 13, 2017 at 1:19 PM, Dan Carpenter <dan.carpenter@oracle.com> wrote:
+> This has a copy and paste bug so we use "host->fixed_factor_clk" which
+> is a valid pointer instead of "host->cfg_div_clk" which holds the error
+> code.
+>
+> Fixes: 0aa0fb9cd239 ("mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8 and Meson8b SoCs")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-> I haven't tested the described use-case. however, this patch is not
-> supposed to change the binding for actual devices.
-> USB device numbering starts at 1, while 0 is reserved for the root-hub
-> (at least from what I know).
+thank you for spotting and fixing this!
 
-Actually 1 is reserved for the root hub.  External devices are numbered 
-starting from 2.  (We can't use 0 for the root hub because, as you 
-said, USB device numbering starts at 1!)
-
-Alan Stern
-
-> before this patch there was no way to
-> describe the root-hub via .dts. this however is required for some
-> platforms that need to set up a PHY for each port on the root-hub
-> (Amlogic Meson GXL platform is one example: there are two ports
-> enabled on dwc3's root-hub with 2x USB2 and 1x USB3 PHYs) - so this
-> patch uses a similar binding as we already have (to describe the
-> devices) to describe the root-hub
-> 
-> 
-> Regards,
-> Martin
-> --
-> To unsubscribe from this list: send the line "unsubscribe linux-usb" in
-> the body of a message to majordomo at vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
-> 
-> 
+>
+> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
+> index 19b499bbe691..dc30ed5e964b 100644
+> --- a/drivers/mmc/host/meson-mx-sdio.c
+> +++ b/drivers/mmc/host/meson-mx-sdio.c
+> @@ -621,7 +621,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+>         host->cfg_div_clk = devm_clk_register(host->controller_dev,
+>                                               &host->cfg_div.hw);
+>         if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
+> -               return PTR_ERR(host->fixed_factor_clk);
+> +               return PTR_ERR(host->cfg_div_clk);
+>
+>         return 0;
+>  }
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
