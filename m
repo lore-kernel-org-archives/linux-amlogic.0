@@ -1,9 +1,9 @@
 From: stern@rowland.harvard.edu (Alan Stern)
-Date: Fri, 13 Oct 2017 10:07:55 -0400 (EDT)
-Subject: [RFC usb-next v5 3/3] usb: core: hcd: integrate the PHY roothub
- wrapper
-In-Reply-To: <CAFBinCC4qseHoEkTtNa4NtVXgrcV=NRrOf2BBKvQRbhaZeEzsw@mail.gmail.com>
-Message-ID: <Pine.LNX.4.44L0.1710131005420.1364-100000@iolanthe.rowland.org>
+Date: Fri, 13 Oct 2017 10:15:05 -0400 (EDT)
+Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation
+ for USB root-hub
+In-Reply-To: <CAFBinCBwzzzj-ew-VTb9zojfzC9gedHd0uu0ez4WejBRTpnsWg@mail.gmail.com>
+Message-ID: <Pine.LNX.4.44L0.1710131008390.1364-100000@iolanthe.rowland.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -11,64 +11,28 @@ On Thu, 12 Oct 2017, Martin Blumenstingl wrote:
 
 > Hi Alan,
 > 
-> On Mon, Oct 9, 2017 at 7:18 PM, Alan Stern <stern@rowland.harvard.edu> wrote:
-> > On Sun, 8 Oct 2017, Martin Blumenstingl wrote:
+> On Thu, Oct 12, 2017 at 11:17 PM, Alan Stern <stern@rowland.harvard.edu> wrote:
+> > On Thu, 12 Oct 2017, Martin Blumenstingl wrote:
 > >
-> >> This integrates the PHY roothub wrapper into the core hcd
-> >> infrastructure. Multiple PHYs which are part of the roothub devicetree
-> >> node (which is a sub-node of the sysdev's node) are now managed
-> >> (= powered on/off when needed), by the new usb_phy_roothub code.
-> >>
-> >> One example where this is required is the Amlogic GXL and GXM SoCs:
-> >> They are using a dwc3 USB controller with up to three ports enabled on
-> >> the internal roothub. Using only the top-level "phy" properties does not
-> >> work here since one can only specify one "usb2-phy" and one "usb3-phy",
-> >> while actually at least two "usb2-phy" have to be specified.
-> >>
-> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >> ---
-> >>  drivers/usb/core/hcd.c  | 30 +++++++++++++++++++++++++++++-
-> >>  include/linux/usb/hcd.h |  1 +
-> >>  2 files changed, 30 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
-> >> index 67aa3d039b9b..56704dd10c15 100644
-> >> --- a/drivers/usb/core/hcd.c
-> >> +++ b/drivers/usb/core/hcd.c
-> >> @@ -50,6 +50,7 @@
-> >>  #include <linux/usb/otg.h>
-> >>
-> >>  #include "usb.h"
-> >> +#include "phy.h"
-> >>
-> >>
-> >>  /*-------------------------------------------------------------------------*/
-> >> @@ -2292,7 +2293,11 @@ int hcd_bus_suspend(struct usb_device *rhdev, pm_message_t msg)
-> >>               dev_dbg(&rhdev->dev, "bus %s fail, err %d\n",
-> >>                               "suspend", status);
-> >>       }
-> >> -     return status;
-> >> +
-> >> +     if (status == 0)
-> >> +             return usb_phy_roothub_power_off(hcd->phy_roothub);
+> >> I haven't tested the described use-case. however, this patch is not
+> >> supposed to change the binding for actual devices.
+> >> USB device numbering starts at 1, while 0 is reserved for the root-hub
+> >> (at least from what I know).
 > >
-> > Is this really the right thing to do?  If usb_phy_roothub_power_off()
-> > fails, what condition does this leave the bus in?  And what condition
-> > does the kernel _think_ the bus is in?
-> indeed, thank you for spotting this!
+> > Actually 1 is reserved for the root hub.  External devices are numbered
+> > starting from 2.  (We can't use 0 for the root hub because, as you
+> > said, USB device numbering starts at 1!)
+> I just had a look at lsusb again:
+> $ lsusb -t
+> /:  Bus 04.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/2p, 5000M
 > 
-> do you have any suggestions how to improve this?
-> maybe I should move usb_phy_roothub_power_off a few lines up and only
-> call it after the "rhdev->do_remote_wakeup" block if status is 0. if
-> usb_phy_roothub_power_off then returns an error I could call
-> "hcd_bus_resume(rhdev, PMSG_AUTO_RESUME);". what do you think about
-> this?
+> however, for the devicetree bindings the devices are supposed to use 1-31: [0]
+> 
+> Alan: just to make sure I understood you correctly: do you agree with
+> this patch?
 
-Or you could just throw away the return code from 
-usb_phy_roothub_power_off().  Maybe print it out in a warning message, 
-but do not report it to the caller.
-
-After all, given the choice between leaving the entire USB bus at full 
-power and leaving just the phy at full power, which would you prefer?
+I have no idea.  I haven't read the patch and I'm not familiar with the
+details of DeviceTree.  I was just trying to clear up your
+misunderstanding of USB device numbering.
 
 Alan Stern
