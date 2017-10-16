@@ -1,25 +1,26 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Mon, 16 Oct 2017 14:00:33 +0200
-Subject: [PATCH v3 1/2] pinctrl: meson: separate soc drivers
-In-Reply-To: <20171012124026.2111-2-jbrunet@baylibre.com>
+Date: Mon, 16 Oct 2017 14:01:50 +0200
+Subject: [PATCH v3 2/2] pinctrl: meson: rework pinmux ops
+In-Reply-To: <20171012124026.2111-3-jbrunet@baylibre.com>
 References: <20171012124026.2111-1-jbrunet@baylibre.com>
- <20171012124026.2111-2-jbrunet@baylibre.com>
-Message-ID: <CACRpkdavA_yLJb81K+-q0Bpd5Lt4DqiZyBaDX5xAbEyW-8ROWg@mail.gmail.com>
+ <20171012124026.2111-3-jbrunet@baylibre.com>
+Message-ID: <CACRpkdbM94-ovZWN3quuXBrmPxB+O1C=dxAqPCspf-Bragg7Qw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On Thu, Oct 12, 2017 at 2:40 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-> When meson pinctrl is enabled, all meson platforms pinctrl drivers are
-> built in the kernel, with a significant amount of data.
+> This change prepare the introduction of new meson SoC. This new SoC will
+> share the same gpio/pinconf registers but the pinmux part will be
+> different. While the format of the data associated with each pinmux group
+> will change, the way to handle pinmuxing will be similar.
 >
-> This leads to situation where pinctrl drivers targeting an architecture
-> are also compiled and shipped on another one (ex: meson8 - ARM - compiled
-> and shipped on ARM64 builds). This is a waste of memory we can easily
-> avoid.
->
-> This change makes 4 pinctrl drivers (1 per SoC) out the original single
-> driver, allowing to compile and ship only the ones required.
+> To deal with this new situation, the meson_pmx_struture is kept but the
+> data associated to it is now generic. This allows to reuse the basic
+> functions which would otherwise be copy/pasted in each pinmux driver
+> (such as getting the name a count of groups and functions) Only the
+> functions actually using this specific data is taken out of the common
+> code and is handling the SoC pinmuxing
 >
 > Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 > Reviewed-by: Kevin Hilman <khilman@baylibre.com>
