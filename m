@@ -1,33 +1,31 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 16 Oct 2017 11:34:57 +0200
-Subject: [PATCH 0/2] Introduce new DT files for Meson-AXG SoC
-In-Reply-To: <20171013231313.22850-1-dlan@gentoo.org>
-References: <20171013231313.22850-1-dlan@gentoo.org>
-Message-ID: <90f8d36a-c045-7851-19ce-ce2cfcc619d6@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Mon, 16 Oct 2017 14:00:33 +0200
+Subject: [PATCH v3 1/2] pinctrl: meson: separate soc drivers
+In-Reply-To: <20171012124026.2111-2-jbrunet@baylibre.com>
+References: <20171012124026.2111-1-jbrunet@baylibre.com>
+ <20171012124026.2111-2-jbrunet@baylibre.com>
+Message-ID: <CACRpkdavA_yLJb81K+-q0Bpd5Lt4DqiZyBaDX5xAbEyW-8ROWg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 14/10/2017 01:13, Yixun Lan wrote:
-> This attempt will try to add new DT files to support Meson-AXG SoC.
-> Due to the AXG series has new memory layout, we decide to start a new
-> DT structure without sharing with previous meson-gx.dtsi
-> 
-> 1) in the first patch, we try to document the new Meson-AXG bindings
-> 2) in the second patch, we try to bring up a minimal serial console,
-> so it's capable of running a minimal system (in ramdisk).
-> 
-> 
-> Yixun Lan (2):
->   dt-bindings: arm: amlogic: Add Meson AXG binding
->   arm64: dts: meson-axg: add initial A113D SoC DT support
-> 
->  Documentation/devicetree/bindings/arm/amlogic.txt |   6 +
->  arch/arm64/boot/dts/amlogic/Makefile              |   1 +
->  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts    |  22 +++
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi        | 204 ++++++++++++++++++++++
->  4 files changed, 233 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> 
+On Thu, Oct 12, 2017 at 2:40 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> When meson pinctrl is enabled, all meson platforms pinctrl drivers are
+> built in the kernel, with a significant amount of data.
+>
+> This leads to situation where pinctrl drivers targeting an architecture
+> are also compiled and shipped on another one (ex: meson8 - ARM - compiled
+> and shipped on ARM64 builds). This is a waste of memory we can easily
+> avoid.
+>
+> This change makes 4 pinctrl drivers (1 per SoC) out the original single
+> driver, allowing to compile and ship only the ones required.
+>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+
+Patch applied.
+
+Yours,
+Linus Walleij
