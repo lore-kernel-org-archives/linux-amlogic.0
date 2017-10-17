@@ -1,38 +1,125 @@
-From: robh@kernel.org (Rob Herring)
-Date: Tue, 17 Oct 2017 17:09:20 -0500
-Subject: [PATCH] pwm: meson: use generic compatibles
-In-Reply-To: <20171013091642.31948-1-jbrunet@baylibre.com>
-References: <20171013091642.31948-1-jbrunet@baylibre.com>
-Message-ID: <20171017220920.acjq6dr3ntf7xkid@rob-hp-laptop>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Wed, 18 Oct 2017 01:24:16 +0200
+Subject: arm64: 4.14 of_match_node() issues
+In-Reply-To: <bbf611c8-c7e8-d67f-f933-3e7b23bdba22@arm.com>
+References: <5d2ff063-1f7e-0200-cc02-99804f7d9219@suse.de>
+ <20171009092409.GB5127@arm.com>
+ <66956548-fa7a-332a-8045-8202ae0aa564@arm.com>
+ <CGME20171009120447epcas2p3d22ec871318e38a71a5b92f840b5e4d4@epcas2p3.samsung.com>
+ <d4e48d3d-015f-08d2-7745-51c482c1a09a@arm.com>
+ <42630b8b-8987-57ff-be7e-79af7294856e@samsung.com>
+ <bbf611c8-c7e8-d67f-f933-3e7b23bdba22@arm.com>
+Message-ID: <4155378a-446e-8a18-a1fc-7ff4568a23d3@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Oct 13, 2017 at 11:16:42AM +0200, Jerome Brunet wrote:
-> The meson pwm driver seems to be compatible with more SoCs than
-> initially thought. Let's use the most generic compatibles he have in
-> DT instead of the gxbb specific ones
+Am 11.10.2017 um 12:07 schrieb Suzuki K Poulose:
+> On 09/10/17 13:20, Marek Szyprowski wrote:
+>> Hi All,
+>>
+>> On 2017-10-09 14:04, Robin Murphy wrote:
+>>> On 09/10/17 11:58, Robin Murphy wrote:
+>>>> On 09/10/17 10:24, Will Deacon wrote:
+>>>>> Hi Andreas,
+>>>>>
+>>>>> On Sat, Oct 07, 2017 at 02:42:13AM +0200, Andreas F?rber wrote:
+>>>>>> Since 4.14-rc1 I am seeing frequent oopses during module loading
+>>>>>> (e.g.,
+>>>>>> MMC, USB) from initrd on aarch64. Symptoms are similar to this in
+>>>>>> -rc3:
+>>>>>>
+>>>>>> [? OK? ] Started udev Coldplug all Devices.
+>>>>>> [?? 10.117775] usbcore: registered new interface driver usbfs
+>>>>>> [?? 10.118235] Unable to handle kernel paging request at virtual
+>>>>>> address
+>>>>>> ffff000008e5abc0
+>>>>>> [?? 10.118238] Mem abort info:
+>>>>>> [?? 10.118245]?? Exception class = DABT (current EL), IL = 32 bits
+>>>>>> [?? 10.118249]?? SET = 0, FnV = 0
+>>>>>> [?? 10.118253]?? EA = 0, S1PTW = 0
+>>>>>> [?? 10.118256] Data abort info:
+>>>>>> [?? 10.118261]?? ISV = 0, ISS = 0x00000006
+>>>>>> [?? 10.118264]?? CM = 0, WnR = 0
+>>>>>> [?? 10.118274] swapper pgtable: 4k pages, 48-bit VAs, pgd =
+>>>>>> ffff0000094a5000
+>>>>>> [?? 10.118279] [ffff000008e5abc0] *pgd=00000000bfffe003,
+>>>>>> *pud=00000000bfffd003, *pmd=0000000000000000
+>>>>>> [?? 10.118299] Internal error: Oops: 96000006 [#1] SMP
+>>>>>> [?? 10.118305] Modules linked in: fixed usbcore(+) sunxi_mmc mmc_core
+>>>>>> phy_sun4i_usb sg
+>>>>>> [?? 10.118341] CPU: 3 PID: 49 Comm: kworker/3:1 Not tainted
+>>>>>> 4.14.0-rc3-2.gf27997b-default #1
+>>>>>> [?? 10.118345] Hardware name: sunxi sunxi/sunxi, BIOS 2017.05-rc1
+>>>>>> 04/13/2017
+>>>>>> [?? 10.118369] Workqueue: events deferred_probe_work_func
+>>>>>> [?? 10.118378] task: ffff80007c8f4000 task.stack: ffff0000099d8000
+>>>>>> [?? 10.118394] PC is at __of_match_node.part.1+0x48/0x88
+>>>>>> [?? 10.118403] LR is at of_match_node+0x40/0x70
+>>>>>> [?? 10.118411] pc : [<ffff00000879aed0>] lr : [<ffff00000879af50>]
+>>>>> [...]
+>>>>>
+>>>>>> This has been observed on Pine64 (>60%; also by Stefan) and
+>>>>>> Odroid-C2;
+>>>>>> my other arm64 boards such as Raspberry Pi 3 have not run into
+>>>>>> this so
+>>>>>> far. No such problems on 32-bit boards.
+>>>>>>
+>>>>>> This is using the openSUSE config:
+>>>>>> https://kernel.opensuse.org/cgit/kernel-source/plain/config/arm64/default
+>>>>>>
+>>>>> Hmm, hard to know what to suggest without a concrete reproducer. Do
+>>>>> you know
+>>>>> which driver is being probed in the log above? Also, does this
+>>>>> still break
+>>>>> if you pass "keepinitrd" on the cmdline? Finally, can you dump the
+>>>>> kernel
+>>>>> virtual memory layout, please?
+>>>> FWIW, this looks a lot like what happens when a built-in driver's
+>>>> of_match_table is marked __init, but for whatever reason (deferred
+>>>> probe
+>>>> etc.) winds up getting poked by a module load after it no longer
+>>>> exists.
+>>> Heh, synchronicity...
+>>>
+>>> https://lists.linuxfoundation.org/pipermail/iommu/2017-October/024572.html
+>>>
+>>>
+>>> Looks like we either have to revert plenty of patches from the const
+>>> brigade, avoid freeing init, or come up with some way to make the driver
+>>> core cleverer about the whole deal :(
+>>
+>> It's not that bad. I did a quick check with
+>>
+>> # git grep "of_device_id.*init"
+>>
+>> and Exynos SYSMMU driver was the only candidate for a fix. Maybe someone
+>> else should double check that list to make sure that there is no other
+>> platform device/driver related code there.
+>>
+>> Best regards
 > 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/pwm/pwm-meson.txt |  6 +++---
->  drivers/pwm/pwm-meson.c                             | 12 ++++++------
->  2 files changed, 9 insertions(+), 9 deletions(-)
+> The root cause of the problem we hit here is definitely the exynos_smmu
+> driver
+> problem. The modrpobe triggers a device scan and the deferred_probe work
+> goes
+> through the registered drivers again for each device and since the
+> exynos_smmu
+> driver table is gone already, we end up in this crash.
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-meson.txt b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> index 1ee81321c35e..439e05030553 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-meson.txt
-> @@ -3,8 +3,8 @@ Amlogic Meson PWM Controller
->  
->  Required properties:
->  - compatible: Shall contain "amlogic,meson8b-pwm"
-> -                         or "amlogic,meson-gxbb-pwm"
-> -                         or "amlogic,meson-gxbb-ao-pwm"
-> +                         or "amlogic,meson-gx-pwm"
-> +                         or "amlogic,meson-gx-ao-pwm"
+> Andreas,
+> 
+> Please could you try with the patch above in the link ?
 
-I've already said the same on other patches, but so other 
-maintainers see it, this seems like pointless, non-backwards compatible 
-change.
+The above patch resolves the symptoms I observed on both boards, thanks.
 
-Rob
+I'm not on the iommu list and it's not on linux-samsung-soc, so here's my
+
+Tested-by: Andreas F?rber <afaerber@suse.de>
+
+Best regards,
+Andreas
+
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
