@@ -1,61 +1,38 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 17 Oct 2017 10:07:44 +0200
-Subject: [PATCH 4/4] drm/meson: Add missing VPU init
-In-Reply-To: <1508227664-11171-1-git-send-email-narmstrong@baylibre.com>
-References: <1508227664-11171-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1508227664-11171-5-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 17 Oct 2017 10:16:05 +0200
+Subject: [PATCH v2 0/2] soc: amlogic: add support for Meson GX VPU Domains
+Message-ID: <1508228167-11753-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The VPU init misses these configurations values.
+On the Amlogic Gx SoCs (GXBB, GXL & GXM), the VPU power domain is initialized
+by the vendor U-Boot code, but running mainline U-boot has been possible
+on these SoCs. But lacking such init made the system lock at kernel boot.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_drv.c       | 9 +++++++++
- drivers/gpu/drm/meson/meson_registers.h | 4 ++++
- 2 files changed, 13 insertions(+)
+This patchset adds the Video Processing Unit power domain driver to enable
+the same power-on and power-down sequences and was designed to allow booting
+with the power domain already initialized or not.
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 7742c7d..19a0d8d 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -150,6 +150,14 @@ static struct regmap_config meson_regmap_config = {
- 	.max_register   = 0x1000,
- };
- 
-+static void meson_vpu_init(struct meson_drm *priv)
-+{
-+	writel_relaxed(0x210000, priv->io_base + _REG(VPU_RDARB_MODE_L1C1));
-+	writel_relaxed(0x10000, priv->io_base + _REG(VPU_RDARB_MODE_L1C2));
-+	writel_relaxed(0x900000, priv->io_base + _REG(VPU_RDARB_MODE_L2C1));
-+	writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
-+}
-+
- static int meson_drv_bind_master(struct device *dev, bool has_components)
- {
- 	struct platform_device *pdev = to_platform_device(dev);
-@@ -221,6 +229,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 
- 	/* Hardware Initialization */
- 
-+	meson_vpu_init(priv);
- 	meson_venc_init(priv);
- 	meson_vpp_init(priv);
- 	meson_viu_init(priv);
-diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-index 2847381..bca8714 100644
---- a/drivers/gpu/drm/meson/meson_registers.h
-+++ b/drivers/gpu/drm/meson/meson_registers.h
-@@ -1363,6 +1363,10 @@
- #define VPU_PROT3_STAT_1 0x277a
- #define VPU_PROT3_STAT_2 0x277b
- #define VPU_PROT3_REQ_ONOFF 0x277c
-+#define VPU_RDARB_MODE_L1C1 0x2790
-+#define VPU_RDARB_MODE_L1C2 0x2799
-+#define VPU_RDARB_MODE_L2C1 0x279d
-+#define VPU_WRARB_MODE_L2C1 0x27a2
- 
- /* osd super scale */
- #define OSDSR_HV_SIZEIN 0x3130
+This driver has been tested on :
+- Odroid-C2 (GXBB) with Vendor and Mainline U-Boot
+- P212 (GXL) with Vendor and Mainline U-Boot
+- Khadas Vim (GXL) with Vendor U-Boot
+- Khadas Vim2 with (GXM) Vendor U-Boot
+
+Changes since v1:
+- fixed bindings compatible string
+
+Neil Armstrong (2):
+  soc: amlogic: add Meson GX VPU Domains driver
+  dt-bindings: power: add amlogic meson power domain bindings
+
+ .../bindings/power/amlogic,meson-gx-pwrc.txt       |  61 ++++++
+ drivers/soc/amlogic/Kconfig                        |  10 +
+ drivers/soc/amlogic/Makefile                       |   1 +
+ drivers/soc/amlogic/meson-gx-pwrc-vpu.c            | 234 +++++++++++++++++++++
+ 4 files changed, 306 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
+ create mode 100644 drivers/soc/amlogic/meson-gx-pwrc-vpu.c
+
 -- 
 2.7.4
