@@ -1,33 +1,59 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 17 Oct 2017 10:07:40 +0200
-Subject: [PATCH 0/4] drm/meson: power domain init related fixes
-Message-ID: <1508227664-11171-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 17 Oct 2017 10:07:43 +0200
+Subject: [PATCH 3/4] drm/meson: dw_hdmi: Add support for an optional external
+ 5V regulator
+In-Reply-To: <1508227664-11171-1-git-send-email-narmstrong@baylibre.com>
+References: <1508227664-11171-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1508227664-11171-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On the Amlogic Gx SoCs (GXBB, GXL & GXM), the VPU power domain is initialized
-by the vendor U-Boot code, but running mainline U-boot has been possible
-on these SoCs. But lacking such init made the system lock at kernel boot.
+On reference boards and derivatives, the HDMI Logic is powered by an external
+5V regulator.
+This regulator was set by the Vendor U-Boot, add optional support for it.
 
-A PM Power Domain driver has been pushed at [1] to solve the main issue.
-The following patches :
-- updates the DT bindings accordingly
-- adds support for missing regulators and registers init
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Neil Armstrong (4):
-  dt-bindings: display: amlogic,meson-vpu: Add optional power domain
-    property
-  dt-bindings: display: amlogic,meson-dw-hdmi: Add optional HDMI 5V
-    regulator
-  drm/meson: dw_hdmi: Add support for an optional external 5V regulator
-  drm/meson: Add missing VPU init
-
- .../devicetree/bindings/display/amlogic,meson-dw-hdmi.txt   |  4 ++++
- .../devicetree/bindings/display/amlogic,meson-vpu.txt       |  4 ++++
- drivers/gpu/drm/meson/meson_drv.c                           |  9 +++++++++
- drivers/gpu/drm/meson/meson_dw_hdmi.c                       | 13 +++++++++++++
- drivers/gpu/drm/meson/meson_registers.h                     |  4 ++++
- 5 files changed, 34 insertions(+)
-
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index cef4144..17de3af 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -23,6 +23,7 @@
+ #include <linux/of_graph.h>
+ #include <linux/reset.h>
+ #include <linux/clk.h>
++#include <linux/regulator/consumer.h>
+ 
+ #include <drm/drmP.h>
+ #include <drm/drm_edid.h>
+@@ -137,6 +138,7 @@ struct meson_dw_hdmi {
+ 	struct reset_control *hdmitx_phy;
+ 	struct clk *hdmi_pclk;
+ 	struct clk *venci_clk;
++	struct regulator *hdmi_supply;
+ 	u32 irq_stat;
+ };
+ #define encoder_to_meson_dw_hdmi(x) \
+@@ -751,6 +753,17 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 	dw_plat_data = &meson_dw_hdmi->dw_plat_data;
+ 	encoder = &meson_dw_hdmi->encoder;
+ 
++	meson_dw_hdmi->hdmi_supply = devm_regulator_get_optional(dev, "hdmi");
++	if (IS_ERR(meson_dw_hdmi->hdmi_supply)) {
++		if (PTR_ERR(meson_dw_hdmi->hdmi_supply) == -EPROBE_DEFER)
++			return -EPROBE_DEFER;
++		meson_dw_hdmi->hdmi_supply = NULL;
++	} else {
++		ret = regulator_enable(meson_dw_hdmi->hdmi_supply);
++		if (ret)
++			return ret;
++	}
++
+ 	meson_dw_hdmi->hdmitx_apb = devm_reset_control_get_exclusive(dev,
+ 						"hdmitx_apb");
+ 	if (IS_ERR(meson_dw_hdmi->hdmitx_apb)) {
 -- 
 2.7.4
