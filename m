@@ -1,68 +1,142 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 18 Oct 2017 09:31:07 +0200
-Subject: [PATCH] nvmem: meson: use generic compatible
-In-Reply-To: <20171017205204.t4vfvbc2c5nsrnhm@rob-hp-laptop>
-References: <20171012152450.12454-1-jbrunet@baylibre.com>
- <CAFBinCBVNEqTk+NUHz62FetLhYagFb5K+g17P_2Xb7sBUfEmdA@mail.gmail.com>
- <1507923553.30658.10.camel@baylibre.com>
- <20171017205204.t4vfvbc2c5nsrnhm@rob-hp-laptop>
-Message-ID: <1508311867.3957.33.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 18 Oct 2017 10:02:10 +0200
+Subject: [PATCH u-boot 1/3] net: phy: Add Amlogic Meson GXL Internal PHY
+ support
+In-Reply-To: <1508313732-19282-1-git-send-email-narmstrong@baylibre.com>
+References: <1508313732-19282-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1508313732-19282-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-10-17 at 15:52 -0500, Rob Herring wrote:
-> On Fri, Oct 13, 2017 at 09:39:13PM +0200, Jerome Brunet wrote:
-> > On Fri, 2017-10-13 at 21:14 +0200, Martin Blumenstingl wrote:
-> > > Hi Jerome,
-> > > 
-> > > On Thu, Oct 12, 2017 at 5:24 PM, Jerome Brunet <jbrunet@baylibre.com>
-> > > wrote:
-> > > > The meson efuse driver seems to be compatible with more SoCs than
-> > > > initially thought. Let's use the most generic compatible he have in
-> > > > DT instead of the gxbb specific one
-> > > > 
-> > > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 4 ++--
-> > > >  drivers/nvmem/meson-efuse.c                               | 2 +-
-> > > >  2 files changed, 3 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> > > > b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> > > > index fafd85bd67a6..0260524292fe 100644
-> > > > --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> > > > +++ b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> > > > @@ -1,7 +1,7 @@
-> > > >  = Amlogic eFuse device tree bindings =
-> > > > 
-> > > >  Required properties:
-> > > > -- compatible: should be "amlogic,meson-gxbb-efuse"
-> > > > +- compatible: should be "amlogic,meson-gx-efuse"
-> 
-> Same comment as for the firmware.
-> 
-> > > 
-> > > have you checked with the devicetree maintainers how they want the
-> > > documentation to look like in this case?
-> > 
-> > You mean "Should we put every compatible existing (in DT) in the
-> > documentation"
-> > From what I've seen, at least in meson drivers, only the matched ones are
-> > listed.
-> > 
-> > That's a good question though.
-> > We tend to put soc specific compatible "in case"  we need them later on.
-> > Should
-> > we document those ?
-> 
-> Absolutely.
+The Amlogic Meson GXL/GXM families embeds an internal RMII Ethernet PHY.
 
-My understanding is that this documentation is the documentation of the bindings
-used by the driver. 
+The PHY acts as a generic PHY but needs a slight configuration right
+before it's configuration.
 
-If I understand your point, we should document bindings (compatible in that
-case) that are in fact not fact by the driver. This means that if someone refer
-only to the documentation, he might be surprised by the result.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/net/phy/Kconfig     |  3 +++
+ drivers/net/phy/Makefile    |  1 +
+ drivers/net/phy/meson-gxl.c | 57 +++++++++++++++++++++++++++++++++++++++++++++
+ drivers/net/phy/phy.c       |  3 +++
+ include/phy.h               |  1 +
+ 5 files changed, 65 insertions(+)
+ create mode 100644 drivers/net/phy/meson-gxl.c
 
-> 
-> Rob
+diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
+index 4d02d8b..e32f1eb 100644
+--- a/drivers/net/phy/Kconfig
++++ b/drivers/net/phy/Kconfig
+@@ -55,6 +55,9 @@ config PHY_LXT
+ config PHY_MARVELL
+ 	bool "Marvell Ethernet PHYs support"
+ 
++config PHY_MESON_GXL
++	bool "Amlogic Meson GXL Internal PHY support"
++
+ config PHY_MICREL
+ 	bool "Micrel Ethernet PHYs support"
+ 	help
+diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
+index 54f32f6..1e264b2 100644
+--- a/drivers/net/phy/Makefile
++++ b/drivers/net/phy/Makefile
+@@ -21,6 +21,7 @@ obj-$(CONFIG_PHY_LXT) += lxt.o
+ obj-$(CONFIG_PHY_MARVELL) += marvell.o
+ obj-$(CONFIG_PHY_MICREL_KSZ8XXX) += micrel_ksz8xxx.o
+ obj-$(CONFIG_PHY_MICREL_KSZ90X1) += micrel_ksz90x1.o
++obj-$(CONFIG_PHY_MESON_GXL) += meson-gxl.o
+ obj-$(CONFIG_PHY_NATSEMI) += natsemi.o
+ obj-$(CONFIG_PHY_REALTEK) += realtek.o
+ obj-$(CONFIG_PHY_SMSC) += smsc.o
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+new file mode 100644
+index 0000000..ccf70c9
+--- /dev/null
++++ b/drivers/net/phy/meson-gxl.c
+@@ -0,0 +1,57 @@
++/*
++ * Meson GXL Internal PHY Driver
++ *
++ * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
++ * Copyright (C) 2016 BayLibre, SAS. All rights reserved.
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ *
++ * SPDX-License-Identifier:	GPL-2.0+
++ */
++#include <config.h>
++#include <common.h>
++#include <linux/bitops.h>
++#include <phy.h>
++
++static int meson_gxl_phy_config(struct phy_device *phydev)
++{
++	/* Enable Analog and DSP register Bank access by */
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x0000);
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x0400);
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x0000);
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x0400);
++
++	/* Write Analog register 23 */
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x17, 0x8E0D);
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x4417);
++
++	/* Enable fractional PLL */
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x17, 0x0005);
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x5C1B);
++
++	/* Program fraction FR_PLL_DIV1 */
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x17, 0x029A);
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x5C1D);
++
++	/* Program fraction FR_PLL_DIV1 */
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x17, 0xAAAA);
++	phy_write(phydev, MDIO_DEVAD_NONE, 0x14, 0x5C1C);
++
++	return genphy_config(phydev);
++}
++
++static struct phy_driver meson_gxl_phy_driver = {
++	.name = "Meson GXL Internal PHY",
++	.uid = 0x01814400,
++	.mask = 0xfffffff0,
++	.features = PHY_BASIC_FEATURES,
++	.config = &meson_gxl_phy_config,
++	.startup = &genphy_startup,
++	.shutdown = &genphy_shutdown,
++};
++
++int phy_meson_gxl_init(void)
++{
++	phy_register(&meson_gxl_phy_driver);
++
++	return 0;
++}
+diff --git a/drivers/net/phy/phy.c b/drivers/net/phy/phy.c
+index 5be51d7..fd3dd55 100644
+--- a/drivers/net/phy/phy.c
++++ b/drivers/net/phy/phy.c
+@@ -494,6 +494,9 @@ int phy_init(void)
+ #ifdef CONFIG_PHY_MICREL_KSZ90X1
+ 	phy_micrel_ksz90x1_init();
+ #endif
++#ifdef CONFIG_PHY_MESON_GXL
++	phy_meson_gxl_init();
++#endif
+ #ifdef CONFIG_PHY_NATSEMI
+ 	phy_natsemi_init();
+ #endif
+diff --git a/include/phy.h b/include/phy.h
+index a0b1f12..50f1e12 100644
+--- a/include/phy.h
++++ b/include/phy.h
+@@ -268,6 +268,7 @@ int phy_lxt_init(void);
+ int phy_marvell_init(void);
+ int phy_micrel_ksz8xxx_init(void);
+ int phy_micrel_ksz90x1_init(void);
++int phy_meson_gxl_init(void);
+ int phy_natsemi_init(void);
+ int phy_realtek_init(void);
+ int phy_smsc_init(void);
+-- 
+2.7.4
