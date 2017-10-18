@@ -1,46 +1,47 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Wed, 18 Oct 2017 11:05:15 +0200
-Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation for
- USB root-hub
-In-Reply-To: <CAFBinCCmk3bSa4-OY7Mu0sPEhVv6=dQbSO94P=YMqk_hc+53Pg@mail.gmail.com>
-References: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
- <20171008211713.18696-2-martin.blumenstingl@googlemail.com>
- <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
- <CAFBinCCc+Fj6wwGk+OLNQTHEYU8xBPe7OGHVSQ82kMew3xUsww@mail.gmail.com>
- <CAK8P3a2C+8w5_8uZF2qHvq7Cp=AH6DDx5Y=mGJFCCz2pTLvPPg@mail.gmail.com>
- <CAFBinCC7disratgMmmaSJMfywb-bPF32L-1BarSsX6zTChHEJg@mail.gmail.com>
- <CAK8P3a31GLjQDUUdyTeaAX_fELV5_UkNQfbj+ssHrGa7Ek2NcA@mail.gmail.com>
- <CAFBinCCmk3bSa4-OY7Mu0sPEhVv6=dQbSO94P=YMqk_hc+53Pg@mail.gmail.com>
-Message-ID: <CAK8P3a0hFF-gMa4UWMXh-28=scF-8cnzPv-Sa11PzyvgMYAkQw@mail.gmail.com>
+From: jeffy.chen@rock-chips.com (Jeffy Chen)
+Date: Wed, 18 Oct 2017 20:09:35 +0800
+Subject: [PATCH v5 0/9] rockchip: kevin: Enable edp display
+Message-ID: <20171018120944.7819-1-jeffy.chen@rock-chips.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Oct 17, 2017 at 11:19 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->> Ok, very good!
->>
->>> is there anything else you want me to test?
->>
->> What about the same dtb when run on a kernel without your
->> patch series? Does that work as well, or are your patches
->> required to make it work?
->
-> this is the only device I have which uses devicetree and a xHCI
-> controller. I can test it with a dwc2 based device though if you want
 
-Does dwc2 also use separate nodes for the roothub? From your
-description it sounds like it would not be affected by your patch.
+Make edp display works on chromebook kevin(at least for boot animation).
 
-To rephrase what I'm interested in, can you check that with your
-patch series, we correctly associate a device node in DT with the
-struct device in the kernel both with and without the optional
-roothub node in the dtb?
+Also solve some issues i meet during the bringup.
 
-Since you used a dtb that already listed an endpoint device below
-an xhci, that would answer my earlier question of whether it worked
-before your patch series, and you tested that it still works with your
-patches applied and the roothub node added in the dtb.  Now we
-just need to make sure we don't break existing dtb files that don't
-have the roothub node but do have endpoint device nodes.
+Changes in v5:
+Call the destroy hook in the error handling path like in unbind().
+Call the destroy hook in the error handling path like in unbind().
+Update cleanup order in unbind().
+Add disable to unbind(), and inline clk_prepare_enable() with bind().
 
-       Arnd
+Jeffy Chen (9):
+  arm64: dts: rockchip: Enable edp disaplay on kevin
+  drm/rockchip: analogix_dp: Remove unnecessary init code
+  drm/bridge: analogix: Do not use device's drvdata
+  drm/bridge: analogix_dp: Fix connector & encoder cleanup
+  drm/rockchip: dw-mipi-dsi: Fix error handling path
+  drm/rockchip: inno_hdmi: Fix error handling path
+  drm/bridge/synopsys: dw-hdmi: Add missing bridge detach
+  drm/bridge/synopsys: dw-hdmi: Do not use device's drvdata
+  drm/rockchip: dw_hdmi: Fix error handling path
+
+ arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts  | 29 ++++++++
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi       | 16 ++++
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 52 +++++--------
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 53 ++++++-------
+ drivers/gpu/drm/exynos/exynos_dp.c                 | 29 +++++---
+ drivers/gpu/drm/imx/dw_hdmi-imx.c                  | 22 +++---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              | 20 +++--
+ drivers/gpu/drm/rcar-du/rcar_dw_hdmi.c             | 14 +++-
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    | 87 ++++++++++------------
+ drivers/gpu/drm/rockchip/dw-mipi-dsi.c             | 21 ++++--
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 39 +++++-----
+ drivers/gpu/drm/rockchip/inno_hdmi.c               | 22 ++++--
+ include/drm/bridge/analogix_dp.h                   | 19 +++--
+ include/drm/bridge/dw_hdmi.h                       | 17 +++--
+ 14 files changed, 257 insertions(+), 183 deletions(-)
+
+-- 
+2.11.0
