@@ -1,44 +1,72 @@
-From: robh@kernel.org (Rob Herring)
-Date: Thu, 19 Oct 2017 16:18:17 -0500
-Subject: [PATCH] firmware: meson-sm: use generic compatible
-In-Reply-To: <7h8tg7zb6t.fsf@baylibre.com>
-References: <20171012134743.10625-1-jbrunet@baylibre.com>
- <20171017204959.kfbhn2yxhv2sb5qg@rob-hp-laptop>
- <7h8tg7zb6t.fsf@baylibre.com>
-Message-ID: <CAL_JsqJ-XAqMA_zjxrJNAtysQsXzmWYUFqLJtKX2wUJ0oebtuw@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 19 Oct 2017 23:25:48 +0200
+Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation for
+ USB root-hub
+In-Reply-To: <CAK8P3a0hFF-gMa4UWMXh-28=scF-8cnzPv-Sa11PzyvgMYAkQw@mail.gmail.com>
+References: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
+ <20171008211713.18696-2-martin.blumenstingl@googlemail.com>
+ <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
+ <CAFBinCCc+Fj6wwGk+OLNQTHEYU8xBPe7OGHVSQ82kMew3xUsww@mail.gmail.com>
+ <CAK8P3a2C+8w5_8uZF2qHvq7Cp=AH6DDx5Y=mGJFCCz2pTLvPPg@mail.gmail.com>
+ <CAFBinCC7disratgMmmaSJMfywb-bPF32L-1BarSsX6zTChHEJg@mail.gmail.com>
+ <CAK8P3a31GLjQDUUdyTeaAX_fELV5_UkNQfbj+ssHrGa7Ek2NcA@mail.gmail.com>
+ <CAFBinCCmk3bSa4-OY7Mu0sPEhVv6=dQbSO94P=YMqk_hc+53Pg@mail.gmail.com>
+ <CAK8P3a0hFF-gMa4UWMXh-28=scF-8cnzPv-Sa11PzyvgMYAkQw@mail.gmail.com>
+Message-ID: <CAFBinCAtsxu2gFXABhq5r0_DMJwsLGkLYjgWaEXMg=CVEjiv7w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Oct 19, 2017 at 5:25 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Rob Herring <robh@kernel.org> writes:
->
->> On Thu, Oct 12, 2017 at 03:47:43PM +0200, Jerome Brunet wrote:
->>> The meson secure monitor seems to be compatible with more SoCs than
->>> initially thought. Let's use the most generic compatible he have in
->>> DT instead of the gxbb specific one
+Hi Arnd,
+
+On Wed, Oct 18, 2017 at 11:05 AM, Arnd Bergmann <arnd@arndb.de> wrote:
+> On Tue, Oct 17, 2017 at 11:19 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>>> Ok, very good!
 >>>
->>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->>> ---
->>>  Documentation/devicetree/bindings/firmware/meson/meson_sm.txt | 4 ++--
->>>  drivers/firmware/meson/meson_sm.c                             | 4 ++--
->>>  2 files changed, 4 insertions(+), 4 deletions(-)
+>>>> is there anything else you want me to test?
+>>>
+>>> What about the same dtb when run on a kernel without your
+>>> patch series? Does that work as well, or are your patches
+>>> required to make it work?
 >>
->> Seems like a pointless, not backwards compatible change to me.
+>> this is the only device I have which uses devicetree and a xHCI
+>> controller. I can test it with a dwc2 based device though if you want
 >
-> I've verified that it's backwards compatible with existing upstream DTs.
+> Does dwc2 also use separate nodes for the roothub? From your
+> description it sounds like it would not be affected by your patch.
+currently it doesn't use separate notes for the roothub - however,
+with this patch it could (although I haven't explicitly tested this)
 
-Perhaps if you all are documenting only what the driver uses, not what
-the dts can have as Jerome said.
+> To rephrase what I'm interested in, can you check that with your
+> patch series, we correctly associate a device node in DT with the
+> struct device in the kernel both with and without the optional
+> roothub node in the dtb?
+I can do the same tests that Neil did with SoCs that use a dwc2
+controller (Amlogic Meson8m2 and Meson8b).
+the only SoC I have which uses a dwc3 controller is an Amlogic Meson
+GXL - however this won't see any devices (apart from the root-hub)
+without this patch
 
->> end, it's just a string to match on. Who cares what the string is.
->
-> As platform maintiner, I very much care what the strings are and I want
-> it to be coherent with the platform generic names, and I want the
-> SoC-specific strings to correspond to the actual SoC names.
+> Since you used a dtb that already listed an endpoint device below
+> an xhci, that would answer my earlier question of whether it worked
+> before your patch series, and you tested that it still works with your
+> patches applied and the roothub node added in the dtb.  Now we
+> just need to make sure we don't break existing dtb files that don't
+> have the roothub node but do have endpoint device nodes.
+the endpoint you're seeing is the root-hub - you can see the full .dts here: [0]
 
-The most specific compatible should be, absolutely. The fallbacks can
-be anything really. Ideally, they are the compatible string for the
-1st SoC with "the same" compatible IP. Could be another vendor
-entirely even because mergers happen.
+maybe my patch description or documentation is not clear - could you
+please explain what makes you think that specifying the root-hub
+didn't work before (so I can update the comments where needed)?
+to sum up what this series does: find the node with reg = <0>; (= the
+root-hub) and get all PHY instances from the child-nodes
+this should not change any existing behavior except if someone had a
+node with reg = <0>; below any USB controller node (which was
+undocumented behavior before my patches)
 
-Rob
+
+Regards,
+Martin
+
+
+[0] https://github.com/xdarklight/linux/blob/meson-gxl-usb-v6/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi#L55
