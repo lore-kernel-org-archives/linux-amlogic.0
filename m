@@ -1,197 +1,70 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 19 Oct 2017 11:04:52 +0200
-Subject: [RFC PATCH u-boot] ARM: arch-meson: build memory banks using reported
- memory from registers
-Message-ID: <1508403892-22578-1-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 19 Oct 2017 11:54:29 +0200
+Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation for
+ USB root-hub
+In-Reply-To: <CAK8P3a0hFF-gMa4UWMXh-28=scF-8cnzPv-Sa11PzyvgMYAkQw@mail.gmail.com>
+References: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
+ <20171008211713.18696-2-martin.blumenstingl@googlemail.com>
+ <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
+ <CAFBinCCc+Fj6wwGk+OLNQTHEYU8xBPe7OGHVSQ82kMew3xUsww@mail.gmail.com>
+ <CAK8P3a2C+8w5_8uZF2qHvq7Cp=AH6DDx5Y=mGJFCCz2pTLvPPg@mail.gmail.com>
+ <CAFBinCC7disratgMmmaSJMfywb-bPF32L-1BarSsX6zTChHEJg@mail.gmail.com>
+ <CAK8P3a31GLjQDUUdyTeaAX_fELV5_UkNQfbj+ssHrGa7Ek2NcA@mail.gmail.com>
+ <CAFBinCCmk3bSa4-OY7Mu0sPEhVv6=dQbSO94P=YMqk_hc+53Pg@mail.gmail.com>
+ <CAK8P3a0hFF-gMa4UWMXh-28=scF-8cnzPv-Sa11PzyvgMYAkQw@mail.gmail.com>
+Message-ID: <d154baad-45c6-2665-6515-b151609e4605@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-As discussed at [1], the Amlogic Meson GX SoCs can embed a BL31 firmware
-and a secondary BL32 firmware.
-Since mid-2017, the reserved memory address of the BL31 firmware was moved
-and grown for security reasons.
+On 18/10/2017 11:05, Arnd Bergmann wrote:
+> On Tue, Oct 17, 2017 at 11:19 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>>> Ok, very good!
+>>>
+>>>> is there anything else you want me to test?
+>>>
+>>> What about the same dtb when run on a kernel without your
+>>> patch series? Does that work as well, or are your patches
+>>> required to make it work?
+>>
+>> this is the only device I have which uses devicetree and a xHCI
+>> controller. I can test it with a dwc2 based device though if you want
+> 
+> Does dwc2 also use separate nodes for the roothub? From your
+> description it sounds like it would not be affected by your patch.
+> 
+> To rephrase what I'm interested in, can you check that with your
+> patch series, we correctly associate a device node in DT with the
+> struct device in the kernel both with and without the optional
+> roothub node in the dtb?
+> 
+> Since you used a dtb that already listed an endpoint device below
+> an xhci, that would answer my earlier question of whether it worked
+> before your patch series, and you tested that it still works with your
+> patches applied and the roothub node added in the dtb.  Now we
+> just need to make sure we don't break existing dtb files that don't
+> have the roothub node but do have endpoint device nodes.
+> 
+>        Arnd
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
 
-But mainline U-boot and Linux has the old address and size fixed.
+Hi Arnd,
 
-These SoCs have a register interface to get the two firmware reserved
-memory start and sizes.
+I tested in the same conditions :
+- On Odroid-C2 using DWC2, but not using the roothub functionnality
+- patch v6 applied
+- node for on-board hub
+- printk in usb core
 
-This patch adds a dynamic memory bank redistribution according to the
-values in the firmware.
+And it works :
+[    8.767964] usb 1-1: of_node /soc/usb at c9100000/hub at 1 parent /soc/usb at c9100000
+[    8.955901] usb 1-1: new high-speed USB device number 2 using dwc2
+[    9.165641] hub 1-1:1.0: USB hub found
+[    9.165939] hub 1-1:1.0: 4 ports detected
 
-Note that the memory address ordering between BL31 and BL32 is not etablished,
-so it must be determined dynamically.
-
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm/include/asm/arch-meson/gxbb.h | 15 ++++++
- arch/arm/mach-meson/board.c            | 99 +++++++++++++++++++++++++++++++---
- include/configs/meson-gxbb-common.h    |  2 +-
- 3 files changed, 109 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm/include/asm/arch-meson/gxbb.h b/arch/arm/include/asm/arch-meson/gxbb.h
-index 74d5290..57db37e 100644
---- a/arch/arm/include/asm/arch-meson/gxbb.h
-+++ b/arch/arm/include/asm/arch-meson/gxbb.h
-@@ -7,10 +7,25 @@
- #ifndef __GXBB_H__
- #define __GXBB_H__
- 
-+#define GXBB_AOBUS_BASE		0xc8100000
- #define GXBB_PERIPHS_BASE	0xc8834400
- #define GXBB_HIU_BASE		0xc883c000
- #define GXBB_ETH_BASE		0xc9410000
- 
-+/* Always-On Peripherals registers */
-+#define GXBB_AO_ADDR(off)	(GXBB_AOBUS_BASE + ((off) << 2))
-+
-+#define GXBB_AO_SEC_GP_CFG0	GXBB_AO_ADDR(0x90)
-+#define GXBB_AO_SEC_GP_CFG3	GXBB_AO_ADDR(0x93)
-+#define GXBB_AO_SEC_GP_CFG4	GXBB_AO_ADDR(0x94)
-+#define GXBB_AO_SEC_GP_CFG5	GXBB_AO_ADDR(0x95)
-+
-+#define GXBB_AO_MEM_SIZE_MASK	0xFFFF0000
-+#define GXBB_AO_MEM_SIZE_SHIFT	16
-+#define GXBB_AO_BL31_RSVMEM_SIZE_MASK	0xFFFF0000
-+#define GXBB_AO_BL31_RSVMEM_SIZE_SHIFT	16
-+#define GXBB_AO_BL32_RSVMEM_SIZE_MASK	0xFFFF
-+
- /* Peripherals registers */
- #define GXBB_PERIPHS_ADDR(off)	(GXBB_PERIPHS_BASE + ((off) << 2))
- 
-diff --git a/arch/arm/mach-meson/board.c b/arch/arm/mach-meson/board.c
-index e89c6aa..bd330af 100644
---- a/arch/arm/mach-meson/board.c
-+++ b/arch/arm/mach-meson/board.c
-@@ -11,6 +11,8 @@
- #include <asm/arch/sm.h>
- #include <asm/armv8/mmu.h>
- #include <asm/unaligned.h>
-+#include <linux/sizes.h>
-+#include <asm/io.h>
- 
- DECLARE_GLOBAL_DATA_PTR;
- 
-@@ -34,14 +36,99 @@ int dram_init(void)
- 	return 0;
- }
- 
-+phys_size_t get_effective_memsize(void)
-+{
-+	/* Size is reported in MiB, convert it in bytes */
-+	return ((in_le32(GXBB_AO_SEC_GP_CFG0) & GXBB_AO_MEM_SIZE_MASK)
-+			>> GXBB_AO_MEM_SIZE_SHIFT) * SZ_1M;
-+}
-+
- int dram_init_banksize(void)
- {
--	/* Reserve first 16 MiB of RAM for firmware */
--	gd->bd->bi_dram[0].start = 0x1000000;
--	gd->bd->bi_dram[0].size  = 0xf000000;
--	/* Reserve 2 MiB for ARM Trusted Firmware (BL31) */
--	gd->bd->bi_dram[1].start = 0x10000000;
--	gd->bd->bi_dram[1].size  = gd->ram_size - 0x10200000;
-+	u32 bl31_size, bl31_start;
-+	u32 bl32_size, bl32_start;
-+	/* Start after first 16MiB reserved zone */
-+	unsigned int next = 0;
-+	u32 last = 0x1000000;
-+	u32 reg;
-+
-+	/*
-+	 * Get ARM Trusted Firmware reserved memory zones in :
-+	 * - AO_SEC_GP_CFG3: bl32 & bl31 size in KiB, can be 0
-+	 * - AO_SEC_GP_CFG5: bl31 physical start address, can be NULL
-+	 * - AO_SEC_GP_CFG4: bl32 physical start address, can be NULL
-+	 */
-+
-+	reg = in_le32(GXBB_AO_SEC_GP_CFG3);
-+
-+	bl31_size = ((reg & GXBB_AO_BL31_RSVMEM_SIZE_MASK)
-+			>> GXBB_AO_BL31_RSVMEM_SIZE_SHIFT) * SZ_1K;
-+	bl32_size = (reg & GXBB_AO_BL32_RSVMEM_SIZE_MASK) * SZ_1K;
-+
-+	bl31_start = in_le32(GXBB_AO_SEC_GP_CFG5);
-+	bl32_start = in_le32(GXBB_AO_SEC_GP_CFG4);
-+
-+	if (bl31_size && bl31_start && bl32_size && bl32_start) {
-+		/* Reserve memory for ARM Trusted Firmware (BL31 && BL32) */
-+		gd->bd->bi_dram[next].start = last;
-+		if (bl31_start > bl32_start)
-+			gd->bd->bi_dram[next].size = bl32_start - last;
-+		else
-+			gd->bd->bi_dram[next].size = bl31_start - last;
-+
-+		last = gd->bd->bi_dram[next].start +
-+			gd->bd->bi_dram[next].size;
-+
-+		if (bl31_start > bl32_start)
-+			last += bl32_size;
-+		else
-+			last += bl31_size;
-+		next++;
-+
-+		gd->bd->bi_dram[next].start = last;
-+		if (bl31_start > bl32_start)
-+			gd->bd->bi_dram[next].size = bl31_start - last;
-+		else
-+			gd->bd->bi_dram[next].size = bl32_start - last;
-+
-+		last = gd->bd->bi_dram[next].start +
-+			gd->bd->bi_dram[next].size;
-+
-+		if (bl31_start > bl32_start)
-+			last += bl31_size;
-+		else
-+			last += bl32_size;
-+		next++;
-+	} else if ((bl31_size && bl31_start) || (bl32_size && bl32_start)) {
-+		/* Reserve memory for ARM Trusted Firmware (BL31 || BL32) */
-+		gd->bd->bi_dram[next].start = last;
-+		if (bl31_start && bl31_size)
-+			gd->bd->bi_dram[next].size = bl31_start - last;
-+		else
-+			gd->bd->bi_dram[next].size = bl32_start - last;
-+
-+		last = gd->bd->bi_dram[next].start +
-+			gd->bd->bi_dram[next].size;
-+
-+		if (bl31_start && bl31_size)
-+			last += bl31_size;
-+		else
-+			last += bl32_size;
-+
-+		next++;
-+	}
-+
-+	/* Add remaining memory */
-+	gd->bd->bi_dram[next].start = last;
-+	gd->bd->bi_dram[next].size = get_effective_memsize() - last;
-+	next++;
-+
-+	/* Reset unused banks */
-+	for ( ; next < CONFIG_NR_DRAM_BANKS ; ++next) {
-+		gd->bd->bi_dram[next].start = 0;
-+		gd->bd->bi_dram[next].size = 0;
-+	}
-+
- 	return 0;
- }
- 
-diff --git a/include/configs/meson-gxbb-common.h b/include/configs/meson-gxbb-common.h
-index d88d42d..e70fccd 100644
---- a/include/configs/meson-gxbb-common.h
-+++ b/include/configs/meson-gxbb-common.h
-@@ -10,7 +10,7 @@
- 
- #define CONFIG_CPU_ARMV8
- #define CONFIG_REMAKE_ELF
--#define CONFIG_NR_DRAM_BANKS		2
-+#define CONFIG_NR_DRAM_BANKS		3
- #define CONFIG_ENV_SIZE			0x2000
- #define CONFIG_SYS_MAXARGS		32
- #define CONFIG_SYS_MALLOC_LEN		(32 << 20)
--- 
-2.7.4
+Neil
