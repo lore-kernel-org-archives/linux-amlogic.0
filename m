@@ -1,41 +1,52 @@
-From: marc.zyngier@arm.com (Marc Zyngier)
-Date: Wed, 18 Oct 2017 17:48:24 +0100
-Subject: [PATCH v4 0/2] irqchip: meson: add support for the gpio interrupt
- controller
-In-Reply-To: <20170918134610.17743-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Mon, 18 Sep 2017 15:46:07 +0200")
-References: <20170918134610.17743-1-jbrunet@baylibre.com>
-Message-ID: <87shegieqv.fsf@on-the-bus.cambridge.arm.com>
+From: jeffy.chen@rock-chips.com (Jeffy Chen)
+Date: Thu, 19 Oct 2017 11:48:02 +0800
+Subject: [PATCH v6 00/10] rockchip: kevin: Enable edp display
+Message-ID: <20171019034812.13768-1-jeffy.chen@rock-chips.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Sep 18 2017 at  3:46:07 pm BST, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> This patch series adds support for the GPIO interrupt controller found on
-> Amlogic's meson SoC families.
->
-> Unlike what the name suggests, this controller is not part of the SoC
-> GPIO subsystem. It is a separate controller which can watch almost all
-> gpio pads of the SoC and generate and interrupt from it. "Almost" because
-> there are always exceptions and some specific gpios (TEST_N) lack this
-> capability.
->
-> Hardware wise, the controller is a 256 to 8 router with a filtering block
-> to select edge or level input and the polarity of the signal. We can't
-> setup the filtring to generate a signal on both the high and low polarity
-> so, ATM, IRQ_TYPE_EDGE_BOTH is not supported.
->
-> The number of interrupt line routed to the controller depends on the SoC,
-> and essentially the total number of GPIO available on the different gpio
-> controllers of the SoC.
->
-> This series has been tested on Amlogic S905-P200 board with the front
-> panel power button. Also tested on the Nanopi-k2 with the ethernet PHY
-> interrupt pin.
->
-> This work is derived from the previous work of Carlo Caione [1].
 
-Queued for 4.15.
+Make edp display works on chromebook kevin(at least for boot animation).
 
-	M.
+Also solve some issues i meet during the bringup.
+
+Changes in v6:
+Don't change order of rockchip_drm_psr_register().
+
+Changes in v5:
+Call the destroy hook in the error handling path like in unbind().
+Call the destroy hook in the error handling path like in unbind().
+Update cleanup order in unbind().
+Add disable to unbind(), and inline clk_prepare_enable() with bind().
+
+Jeffy Chen (10):
+  arm64: dts: rockchip: Enable edp disaplay on kevin
+  drm/rockchip: analogix_dp: Remove unnecessary init code
+  drm/bridge: analogix: Do not use device's drvdata
+  drm/bridge: analogix_dp: Fix connector and encoder cleanup
+  drm/rockchip: analogix_dp: Add a sanity check for
+    rockchip_drm_psr_register()
+  drm/rockchip: dw-mipi-dsi: Fix error handling path
+  drm/rockchip: inno_hdmi: Fix error handling path
+  drm/bridge/synopsys: dw-hdmi: Add missing bridge detach
+  drm/bridge/synopsys: dw-hdmi: Do not use device's drvdata
+  drm/rockchip: dw_hdmi: Fix error handling path
+
+ arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts  | 29 +++++++
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi       | 16 ++++
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 52 +++++-------
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 53 ++++++------
+ drivers/gpu/drm/exynos/exynos_dp.c                 | 29 ++++---
+ drivers/gpu/drm/imx/dw_hdmi-imx.c                  | 22 +++--
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              | 20 +++--
+ drivers/gpu/drm/rcar-du/rcar_dw_hdmi.c             | 14 +++-
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    | 95 +++++++++++-----------
+ drivers/gpu/drm/rockchip/dw-mipi-dsi.c             | 21 +++--
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 39 +++++----
+ drivers/gpu/drm/rockchip/inno_hdmi.c               | 22 +++--
+ include/drm/bridge/analogix_dp.h                   | 19 +++--
+ include/drm/bridge/dw_hdmi.h                       | 17 ++--
+ 14 files changed, 265 insertions(+), 183 deletions(-)
+
 -- 
-Jazz is not dead, it just smell funny.
+2.11.0
