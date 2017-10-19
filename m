@@ -1,302 +1,73 @@
-From: ben.dooks@codethink.co.uk (Ben Dooks)
-Date: Thu, 19 Oct 2017 19:38:50 +0100
-Subject: [RFC PATCH u-boot v2] ARM: arch-meson: build memory banks using
- reported memory from registers
-In-Reply-To: <1508419324-6325-1-git-send-email-narmstrong@baylibre.com>
-References: <1508419324-6325-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <79224f10b5677311b7d72b39bd7db1b6@codethink.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 19 Oct 2017 16:10:34 -0500
+Subject: [PATCH] nvmem: meson: use generic compatible
+In-Reply-To: <1508311867.3957.33.camel@baylibre.com>
+References: <20171012152450.12454-1-jbrunet@baylibre.com>
+ <CAFBinCBVNEqTk+NUHz62FetLhYagFb5K+g17P_2Xb7sBUfEmdA@mail.gmail.com>
+ <1507923553.30658.10.camel@baylibre.com>
+ <20171017205204.t4vfvbc2c5nsrnhm@rob-hp-laptop>
+ <1508311867.3957.33.camel@baylibre.com>
+Message-ID: <CAL_JsqKV5yGNFXxsPzAgF6_g-bQn8x8ScXVZ=Wgc1=APPL=mMw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 2017-10-19 14:22, Neil Armstrong wrote:
-> As discussed at [1], the Amlogic Meson GX SoCs can embed a BL31 
-> firmware
-> and a secondary BL32 firmware.
-> Since mid-2017, the reserved memory address of the BL31 firmware was 
-> moved
-> and grown for security reasons.
-> 
-> But mainline U-boot and Linux has the old address and size fixed.
-> 
-> These SoCs have a register interface to get the two firmware reserved
-> memory start and sizes.
-> 
-> This patch adds a dynamic reservation of the memory zones in the
-> device tree bootmem
-> reserved memory zone used by the kernel in early boot.
-> To be complete, the memory zones are also added to the EFI reserved 
-> zones.
-> 
-> [1] 
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
-> 
-> Changes since v1:
-> - switch to fdt rsv mem table and efi reserve memory
-> - replaced in_le32 by readl()
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/arm/include/asm/arch-meson/gxbb.h |  17 +++++
->  arch/arm/mach-meson/board.c            | 117 
-> ++++++++++++++++++++++++++++++---
->  board/amlogic/odroid-c2/odroid-c2.c    |   7 ++
->  board/amlogic/p212/p212.c              |   7 ++
->  configs/odroid-c2_defconfig            |   1 +
->  configs/p212_defconfig                 |   1 +
->  include/configs/meson-gxbb-common.h    |   2 +-
->  7 files changed, 143 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm/include/asm/arch-meson/gxbb.h
-> b/arch/arm/include/asm/arch-meson/gxbb.h
-> index 74d5290..117f796 100644
-> --- a/arch/arm/include/asm/arch-meson/gxbb.h
-> +++ b/arch/arm/include/asm/arch-meson/gxbb.h
-> @@ -7,10 +7,27 @@
->  #ifndef __GXBB_H__
->  #define __GXBB_H__
-> 
-> +#define GXBB_FIRMWARE_MEM_SIZE	0x1000000
-> +
-> +#define GXBB_AOBUS_BASE		0xc8100000
->  #define GXBB_PERIPHS_BASE	0xc8834400
->  #define GXBB_HIU_BASE		0xc883c000
->  #define GXBB_ETH_BASE		0xc9410000
-> 
-> +/* Always-On Peripherals registers */
-> +#define GXBB_AO_ADDR(off)	(GXBB_AOBUS_BASE + ((off) << 2))
-> +
-> +#define GXBB_AO_SEC_GP_CFG0	GXBB_AO_ADDR(0x90)
-> +#define GXBB_AO_SEC_GP_CFG3	GXBB_AO_ADDR(0x93)
-> +#define GXBB_AO_SEC_GP_CFG4	GXBB_AO_ADDR(0x94)
-> +#define GXBB_AO_SEC_GP_CFG5	GXBB_AO_ADDR(0x95)
-> +
-> +#define GXBB_AO_MEM_SIZE_MASK	0xFFFF0000
-> +#define GXBB_AO_MEM_SIZE_SHIFT	16
-> +#define GXBB_AO_BL31_RSVMEM_SIZE_MASK	0xFFFF0000
-> +#define GXBB_AO_BL31_RSVMEM_SIZE_SHIFT	16
-> +#define GXBB_AO_BL32_RSVMEM_SIZE_MASK	0xFFFF
-> +
->  /* Peripherals registers */
->  #define GXBB_PERIPHS_ADDR(off)	(GXBB_PERIPHS_BASE + ((off) << 2))
-> 
-> diff --git a/arch/arm/mach-meson/board.c b/arch/arm/mach-meson/board.c
-> index e89c6aa..24733e1 100644
-> --- a/arch/arm/mach-meson/board.c
-> +++ b/arch/arm/mach-meson/board.c
-> @@ -11,6 +11,9 @@
->  #include <asm/arch/sm.h>
->  #include <asm/armv8/mmu.h>
->  #include <asm/unaligned.h>
-> +#include <linux/sizes.h>
-> +#include <efi_loader.h>
-> +#include <asm/io.h>
-> 
->  DECLARE_GLOBAL_DATA_PTR;
-> 
-> @@ -34,16 +37,114 @@ int dram_init(void)
->  	return 0;
->  }
-> 
-> -int dram_init_banksize(void)
-> +phys_size_t get_effective_memsize(void)
->  {
-> -	/* Reserve first 16 MiB of RAM for firmware */
-> -	gd->bd->bi_dram[0].start = 0x1000000;
-> -	gd->bd->bi_dram[0].size  = 0xf000000;
-> -	/* Reserve 2 MiB for ARM Trusted Firmware (BL31) */
-> -	gd->bd->bi_dram[1].start = 0x10000000;
-> -	gd->bd->bi_dram[1].size  = gd->ram_size - 0x10200000;
-> -	return 0;
-> +	/* Size is reported in MiB, convert it in bytes */
-> +	return ((readl(GXBB_AO_SEC_GP_CFG0) & GXBB_AO_MEM_SIZE_MASK)
-> +			>> GXBB_AO_MEM_SIZE_SHIFT) * SZ_1M;
-> +}
-> +
-> +#ifdef CONFIG_MESON_GXBB
-> +/*
-> + * Early Meson GXBB Firmware revision did not provide the reserved
-> + * memory zones in the registers, keep fixed memory zone handling.
-> + */
-> +
-> +void ft_cpu_setup(void *fdt, bd_t *bd)
-> +{
-> +	int ret;
-> +
-> +	/* Add first 16MiB reserved zone */
-> +	ret = fdt_add_mem_rsv(fdt, 0, GXBB_FIRMWARE_MEM_SIZE);
-> +	if (ret)
-> +		printf("Could not reserve zone @ 0x0\n");
-> +
-> +#if defined(CONFIG_EFI_LOADER)
-> +	efi_add_memory_map(0, ALIGN(GXBB_FIRMWARE_MEM_SIZE, EFI_PAGE_SIZE)
-> +				>> EFI_PAGE_SHIFT,
-> +			   EFI_RESERVED_MEMORY_TYPE, false);
-> +#endif
+On Wed, Oct 18, 2017 at 2:31 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> On Tue, 2017-10-17 at 15:52 -0500, Rob Herring wrote:
+>> On Fri, Oct 13, 2017 at 09:39:13PM +0200, Jerome Brunet wrote:
+>> > On Fri, 2017-10-13 at 21:14 +0200, Martin Blumenstingl wrote:
+>> > > Hi Jerome,
+>> > >
+>> > > On Thu, Oct 12, 2017 at 5:24 PM, Jerome Brunet <jbrunet@baylibre.com>
+>> > > wrote:
+>> > > > The meson efuse driver seems to be compatible with more SoCs than
+>> > > > initially thought. Let's use the most generic compatible he have in
+>> > > > DT instead of the gxbb specific one
+>> > > >
+>> > > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> > > > ---
+>> > > >  Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 4 ++--
+>> > > >  drivers/nvmem/meson-efuse.c                               | 2 +-
+>> > > >  2 files changed, 3 insertions(+), 3 deletions(-)
+>> > > >
+>> > > > diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+>> > > > b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+>> > > > index fafd85bd67a6..0260524292fe 100644
+>> > > > --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+>> > > > +++ b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+>> > > > @@ -1,7 +1,7 @@
+>> > > >  = Amlogic eFuse device tree bindings =
+>> > > >
+>> > > >  Required properties:
+>> > > > -- compatible: should be "amlogic,meson-gxbb-efuse"
+>> > > > +- compatible: should be "amlogic,meson-gx-efuse"
+>>
+>> Same comment as for the firmware.
+>>
+>> > >
+>> > > have you checked with the devicetree maintainers how they want the
+>> > > documentation to look like in this case?
+>> >
+>> > You mean "Should we put every compatible existing (in DT) in the
+>> > documentation"
+>> > From what I've seen, at least in meson drivers, only the matched ones are
+>> > listed.
+>> >
+>> > That's a good question though.
+>> > We tend to put soc specific compatible "in case"  we need them later on.
+>> > Should
+>> > we document those ?
+>>
+>> Absolutely.
+>
+> My understanding is that this documentation is the documentation of the bindings
+> used by the driver.
 
-Could you make a sub function that does most of this and then have
-only one set of #if defined ?
+No, the binding doc should be sufficient to validate the dts.
 
-Would anyone mind if efi_add_memory_map had a default 'null' 
-implementation
-if !CONFIG_EFI_LOADER ?
+> If I understand your point, we should document bindings (compatible in that
+> case) that are in fact not fact by the driver. This means that if someone refer
+> only to the documentation, he might be surprised by the result.
 
-> +
-> +	/* Add BL31 reserved zone */
-> +	ret = fdt_add_mem_rsv(fdt, 0x10000000, 0x200000);
-> +	if (ret)
-> +		printf("Could not reserve BL1 zone @ 0x10000000\n");
-> +
-> +#if defined(CONFIG_EFI_LOADER)
-> +	efi_add_memory_map(0x10000000,
-> +			   ALIGN(0x200000, EFI_PAGE_SIZE)
-> +				>> EFI_PAGE_SHIFT,
-> +			   EFI_RESERVED_MEMORY_TYPE, false);
-> +#endif
-> +}
-> +#endif
+How so?
 
-Can we reduce the pre-processor load here, I'm not even sure
-we're testing the entire file can be compiled.
-
-> +
-> +#ifdef CONFIG_MESON_GXL
-
-you're mixing #ifdef and #if defined.
-
-> +void ft_cpu_setup(void *fdt, bd_t *bd)
-> +{
-> +	u64 bl31_size, bl31_start;
-> +	u64 bl32_size, bl32_start;
-> +	u32 reg;
-> +	int ret;
-> +
-> +	/*
-> +	 * Get ARM Trusted Firmware reserved memory zones in :
-> +	 * - AO_SEC_GP_CFG3: bl32 & bl31 size in KiB, can be 0
-> +	 * - AO_SEC_GP_CFG5: bl31 physical start address, can be NULL
-> +	 * - AO_SEC_GP_CFG4: bl32 physical start address, can be NULL
-> +	 */
-> +
-> +	reg = readl(GXBB_AO_SEC_GP_CFG3);
-> +
-> +	bl31_size = ((reg & GXBB_AO_BL31_RSVMEM_SIZE_MASK)
-> +			>> GXBB_AO_BL31_RSVMEM_SIZE_SHIFT) * SZ_1K;
-> +	bl32_size = (reg & GXBB_AO_BL32_RSVMEM_SIZE_MASK) * SZ_1K;
-> +
-> +	bl31_start = readl(GXBB_AO_SEC_GP_CFG5);
-> +	bl32_start = readl(GXBB_AO_SEC_GP_CFG4);
-> +
-> +	/* Add first 16MiB reserved zone */
-> +	ret = fdt_add_mem_rsv(fdt, 0, GXBB_FIRMWARE_MEM_SIZE);
-> +	if (ret)
-> +		printf("Could not reserve zone @ 0x0\n");
-> +
-> +#if defined(CONFIG_EFI_LOADER)
-> +	efi_add_memory_map(0, ALIGN(GXBB_FIRMWARE_MEM_SIZE, EFI_PAGE_SIZE)
-> +				>> EFI_PAGE_SHIFT,
-> +			   EFI_RESERVED_MEMORY_TYPE, false);
-> +#endif
-> +
-> +	/* Add BL31 reserved zone */
-> +	if (bl31_start && bl31_size) {
-> +		ret = fdt_add_mem_rsv(fdt, bl31_start, bl31_size);
-> +		if (ret)
-> +			printf("Could not reserve BL1 zone @ 0x%llx\n",
-> +			       bl31_start);
-> +
-> +#if defined(CONFIG_EFI_LOADER)
-> +		efi_add_memory_map(bl31_start,
-> +				   ALIGN(bl31_size, EFI_PAGE_SIZE)
-> +					>> EFI_PAGE_SHIFT,
-> +				   EFI_RESERVED_MEMORY_TYPE, false);
-> +#endif
-> +	}
-> +
-> +	/* Add BL32 reserved zone */
-> +	if (bl32_start && bl32_size) {
-> +		ret = fdt_add_mem_rsv(fdt, bl32_start, bl32_size);
-> +		if (ret)
-> +			printf("Could not reserve BL2 zone @ 0x%llx\n",
-> +			       bl32_start);
-> +
-> +#if defined(CONFIG_EFI_LOADER)
-> +		efi_add_memory_map(bl32_start,
-> +				   ALIGN(bl32_size, EFI_PAGE_SIZE)
-> +					>> EFI_PAGE_SHIFT,
-> +				   EFI_RESERVED_MEMORY_TYPE, false);
-> +#endif
-> +	}
->  }
-> +#endif
-> 
->  void reset_cpu(ulong addr)
->  {
-> diff --git a/board/amlogic/odroid-c2/odroid-c2.c
-> b/board/amlogic/odroid-c2/odroid-c2.c
-> index eac04d8..a9ca34c 100644
-> --- a/board/amlogic/odroid-c2/odroid-c2.c
-> +++ b/board/amlogic/odroid-c2/odroid-c2.c
-> @@ -60,3 +60,10 @@ int misc_init_r(void)
-> 
->  	return 0;
->  }
-> +
-> +int ft_board_setup(void *blob, bd_t *bd)
-> +{
-> +	ft_cpu_setup(blob, bd);
-> +
-> +	return 0;
-> +}
-> diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
-> index ece8096..abd4f76 100644
-> --- a/board/amlogic/p212/p212.c
-> +++ b/board/amlogic/p212/p212.c
-> @@ -56,3 +56,10 @@ int misc_init_r(void)
-> 
->  	return 0;
->  }
-> +
-> +int ft_board_setup(void *blob, bd_t *bd)
-> +{
-> +	ft_cpu_setup(blob, bd);
-> +
-> +	return 0;
-> +}
-> diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
-> index f7f8016..4615e03 100644
-> --- a/configs/odroid-c2_defconfig
-> +++ b/configs/odroid-c2_defconfig
-> @@ -15,6 +15,7 @@ CONFIG_CMD_GPIO=y
->  CONFIG_CMD_MMC=y
->  # CONFIG_CMD_SETEXPR is not set
->  CONFIG_OF_CONTROL=y
-> +CONFIG_OF_BOARD_SETUP=y
->  CONFIG_NET_RANDOM_ETHADDR=y
->  CONFIG_DM_GPIO=y
->  CONFIG_DM_MMC=y
-> diff --git a/configs/p212_defconfig b/configs/p212_defconfig
-> index d4b5349..b6e788b 100644
-> --- a/configs/p212_defconfig
-> +++ b/configs/p212_defconfig
-> @@ -17,6 +17,7 @@ CONFIG_CMD_MMC=y
->  CONFIG_CMD_GPIO=y
->  # CONFIG_CMD_SETEXPR is not set
->  CONFIG_OF_CONTROL=y
-> +CONFIG_OF_BOARD_SETUP=y
->  CONFIG_DM_GPIO=y
->  CONFIG_DM_MMC=y
->  CONFIG_MMC_MESON_GX=y
-> diff --git a/include/configs/meson-gxbb-common.h
-> b/include/configs/meson-gxbb-common.h
-> index d88d42d..c2b306a 100644
-> --- a/include/configs/meson-gxbb-common.h
-> +++ b/include/configs/meson-gxbb-common.h
-> @@ -10,7 +10,7 @@
-> 
->  #define CONFIG_CPU_ARMV8
->  #define CONFIG_REMAKE_ELF
-> -#define CONFIG_NR_DRAM_BANKS		2
-> +#define CONFIG_NR_DRAM_BANKS		1
->  #define CONFIG_ENV_SIZE			0x2000
->  #define CONFIG_SYS_MAXARGS		32
->  #define CONFIG_SYS_MALLOC_LEN		(32 << 20)
+Rob
