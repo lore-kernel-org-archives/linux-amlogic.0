@@ -1,98 +1,134 @@
-From: robh@kernel.org (Rob Herring)
-Date: Fri, 20 Oct 2017 14:34:06 -0500
-Subject: [PATCH] firmware: meson-sm: use generic compatible
-In-Reply-To: <1508488253.3616.28.camel@baylibre.com>
-References: <20171012134743.10625-1-jbrunet@baylibre.com>
- <20171017204959.kfbhn2yxhv2sb5qg@rob-hp-laptop>
- <7h8tg7zb6t.fsf@baylibre.com>
- <CAL_JsqJ-XAqMA_zjxrJNAtysQsXzmWYUFqLJtKX2wUJ0oebtuw@mail.gmail.com>
- <1508488253.3616.28.camel@baylibre.com>
-Message-ID: <CAL_JsqKON3mKrkjg1gR-JjM_YarWMdGRURTx39MVgC=beCKz3g@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 21 Oct 2017 00:14:28 +0200
+Subject: [PATCH v7 0/6] SMP and CPU hotplug support for Meson8/Meson8b
+In-Reply-To: <7hpoa07yn6.fsf@baylibre.com>
+References: <20170917164523.6970-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCCdj8LwXvUSoCPeVfPUTaLVFFyvKZcNceLGvj26Z740DQ@mail.gmail.com>
+ <7hpoa07yn6.fsf@baylibre.com>
+Message-ID: <CAFBinCB0YkApefxJCVDmEc0cD3JWv7+ZHE3PY2BjD3tXD6gbEQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Oct 20, 2017 at 3:30 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Thu, 2017-10-19 at 16:18 -0500, Rob Herring wrote:
->> On Thu, Oct 19, 2017 at 5:25 AM, Kevin Hilman <khilman@baylibre.com> wrote:
->> > Rob Herring <robh@kernel.org> writes:
->> >
->> > > On Thu, Oct 12, 2017 at 03:47:43PM +0200, Jerome Brunet wrote:
->> > > > The meson secure monitor seems to be compatible with more SoCs than
->> > > > initially thought. Let's use the most generic compatible he have in
->> > > > DT instead of the gxbb specific one
->> > > >
->> > > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> > > > ---
->> > > >  Documentation/devicetree/bindings/firmware/meson/meson_sm.txt | 4 ++--
->> > > >  drivers/firmware/meson/meson_sm.c                             | 4 ++--
->> > > >  2 files changed, 4 insertions(+), 4 deletions(-)
->> > >
->> > > Seems like a pointless, not backwards compatible change to me.
->> >
->> > I've verified that it's backwards compatible with existing upstream DTs.
->>
->> Perhaps if you all are documenting only what the driver uses, not what
->> the dts can have as Jerome said.
->>
->> > > end, it's just a string to match on. Who cares what the string is.
->> >
->> > As platform maintiner, I very much care what the strings are and I want
->> > it to be coherent with the platform generic names, and I want the
->> > SoC-specific strings to correspond to the actual SoC names.
->>
->> The most specific compatible should be, absolutely. The fallbacks can
->> be anything really. Ideally, they are the compatible string for the
->> 1st SoC with "the same" compatible IP. Could be another vendor
->> entirely even because mergers happen.
+Hi Russel,
+
+On Fri, Oct 6, 2017 at 11:30 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 >
-> Then what's your problem with these patches again ?
+>> Hello Russel, Hi Kevin,
+>>
+>> On Sun, Sep 17, 2017 at 6:45 PM, Martin Blumenstingl
+>> <martin.blumenstingl@googlemail.com> wrote:
+>>> This patchset adds support for booting the secondary CPU cores (and
+>>> taking them offline again) on Amlogic Meson8 and Meson8b SoCs.
+>>> It is based on an earlier version from Carlo Caione - this helped me
+>>> a lot to get a better understanding of how SMP/CPU hotplug works
+>>> (compared to the code found in Amlogic's GPL kernel sources from
+>>> year 2015).
+>>>
+>>> Changes since v6 from [6]:
+>>> - rebased on top of v4.14-rc1 (which only corrected some line
+>>>   numbers in the SCU patches)
+>> it's been two weeks since v6 and since then Linus L?ssing has
+>> confirmed that this works fine on his Odroid-C1 as well (many thanks
+>> for testing!): [7]
+>>
+>>> Changes since v5 from [5]:
+>>> - dropped dependency on another patch series (for the clock
+>>>   controller's embedded reset controller, which is needed to boot
+>>>   the secondary CPUs) from the cover-letter as that series is now
+>>>   merged
+>>> - fix incorrect documentation of scu_cpu_power_enable (thanks to
+>>>   Russell King for spotting these). removed the paragraph about
+>>>   preemption, cache coherency and interrupts as we're powering on
+>>>   a CPU core (the text was copied from the original scu_power_mode
+>>>   but simply not adjusted). also changed "Set the executing CPUs"
+>>>   to "Set the given (logical) CPU's" as we're not modifying the
+>>>   current CPU. this affects only patch #2
+>>> - extended the commit message of patch #3 with a short sentence
+>>>   about why SCU_CPU_STATUS_MASK was introduced
+>>>
+>>> Changes since v4 from [4]:
+>>> - use __pa_symbol(secondary_startup) instead of
+>>>   virt_to_phys(secondary_startup) as suggested by Florian Fainelli
+>>>   (affects patch #4)
+>>> - (cover-letter) removed dependency on my other patch
+>>>   "ARM: dts: meson: add a node which describes the SRAM" [2] as that
+>>>   was merged into Kevin's Amlogic repo today
+>>> - dropped patch #5 ("clk: meson: meson8b: export the CPU soft reset
+>>>   lines") again because the reset controller series exposes the
+>>>   preprocessor macros now directly, see [1]
+>>> - refreshed the .dts patches so they now include the new header for
+>>>   the reset line preprocessor macros
+>>>
+>>> Changes since v3 from [3]:
+>>> - added Rob's ACK to patch #1
+>>> - replaced a msleep(10) with usleep_range(10000, 15000) in patch #4
+>>> - removed all "pen" code from patch #4 as that code was not needed
+>>>   at all (it was left-over while trying to fix Meson8 secondary CPU
+>>>   boot - which turned out to have nothing to do with this "pen" code)
+>>> - removed all memory barrier operations as they were added based on
+>>>   the code in the Amlogic GPL kernel tree (while trying to fix the
+>>>   Meson8 secondary CPU boot - just like the "pen" code). Everything
+>>>   still works fine with these on my Meson8m2 and Meson8b boards.
+>>> - added PATCH #5 as we now have to export the reset identifiers
+>>>   (just like we do it with the clock identifiers / preprocessor
+>>>   macros) - this is the result of a change in the reset controller
+>>>   patch in version 2, see [1]
+>>> - use the reset line preprocessor macros (from patch #5) in patches
+>>>   #6 and #7
+>>>
+>>> Changes since v2 from [0]:
+>>> - added support for Meson8 (which requires a slightly different
+>>>   enable-method)
+>>> - implemented CPU hotplug support which allows taking a CPU core
+>>>   offline for both, Meson8 and Meson8b
+>>> - add a function to smp_scu.c which allows enabling a CPU core from
+>>>   a different CPU (previously only the power mode for the current CPU
+>>>   could be changed). Without this the CPU cores on Meson8 won't come
+>>>   up (Amlogic's vendor GPL kernel sources also enable power through
+>>>   SCU as very first step for Meson8b as well)
+>>> - add a function to smp_scu.c to get the power status of a CPU core
+>>>   (which is needed because the code in .cpu_kill needs to wait until
+>>>   the core is actually powered off)
+>>> - dropped patch "ARM: DTS: meson8b: Extend L2 cache controller node"
+>>>   as it is already applied (for both, Meson8 and Meson8b)
+>>> - dropped the patches which implement the reset controller which is
+>>>   built into the clock-controller, these are a separate series: [1]
+>>> - moved the enable-method property to each CPU node
+>>>
+>>>
+>>> [0] http://lists.infradead.org/pipermail/linux-arm-kernel/2015-December/390355.html
+>>> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004456.html
+>>> [2] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004282.html
+>>> [3] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004297.html
+>>> [4] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004354.html
+>>> [5] http://lists.infradead.org/pipermail/linux-amlogic/2017-July/004460.html
+>>> [6] http://lists.infradead.org/pipermail/linux-amlogic/2017-August/004588.html
+>>>
+>>> Carlo Caione (2):
+>>>   dt-bindings: Amlogic: Add Meson8 and Meson8b SMP related documentation
+>>>   ARM: dts: meson8b: add support for booting the secondary CPU cores
+>>>
+>>> Martin Blumenstingl (4):
+>>>   ARM: smp_scu: add a helper for powering on a specific CPU
+>>>   ARM: smp_scu: allow the platform code to read the SCU CPU status
+could you please have a look at these two patches? it would be great
+if you could give feedback on these, because they are needed for SMP
+support on the Amlogic Meson8 and Meson8b platforms
 
-Removal of the SoC specific compatible and breaking compatibility.
-Kevin says compatibility is not broken, but it obviously it based on
-the example and the driver change. So that can only mean your dts file
-doesn't match the example.
-
-> I am just asking the driver to match the generic binding instead of the SoC
-> specific, because we are also using it on other SoC, as explain in the patch
-> comment. Does not seems that "pointless" to me.
+>>>   ARM: meson: Add SMP bringup code for Meson8 and Meson8b
+>>>   ARM: dts: meson8: add support for booting the secondary CPU cores
+>> @Russel: should Kevin take all patches including the two smp_scu ones?
+>> or do you want to take them through your own tree?
 >
-> Right now the driver match only on: vendor,soc-one
-> in dts, we have compatible = "vendor,family", "vendor,soc-one"
+> With Russell's ack, I can take the series via the amlogic tree.  But I'm
+> also fine if Russell wants to take the arch/arm/* via his tree, and I
+> will just queue up the DT.
+please also let Kevin know if you would like him to take these patches
+through the amlogic tree
 
-That's backwards if I understand this right. It should be most
-specific first, but that's a separate issue.
+thank you in advance!
 
-> but it is compatible with soc-two as well.
-> to match we would have to put "vendor,soc-one" as well which is a mess
 
-Why? That's how DT works and every other platform follows. Either you have:
-
-"vendor,soc-one", "vendor,family"
-"vendor,soc-two", "vendor,family"
-
-or
-
-"vendor,soc-one"
-"vendor,soc-two", "vendor,soc-one"
-
-The latter is how DT has existed and worked for 20+ years. The former
-is what we allow because for some reason people have such an aversion
-to saying soc2 is compatible with soc1.
-
-Either one is fine, but the documentation must be clear what the
-constraints are for the dts file. For example, "vendor,soc-two" or
-"vendor,family" alone are not valid. There's plenty of examples to
-follow. Renesas is one using "vendor,family" extensively.
-
-> By expressing correctly what the driver is compatible with, "vendor,family"
-> we can dts that makes sense for soc-two as well
-> compatible = "vendor,family", "vendor,soc-two"
-
-Binding docs may live in the kernel, but they are separate from
-drivers. They describe the constraints of the dts files. There's no
-reason to document what the driver wants because I can read the driver
-source. I can't say the same thing about the dts file. The dts may not
-come from the kernel and one dts file is not all possible options for
-a given binding.
-
-Rob
+Regards
+Martin
