@@ -1,68 +1,98 @@
-From: seanpaul@chromium.org (Sean Paul)
-Date: Fri, 20 Oct 2017 13:07:35 -0400
-Subject: [PATCH v6 00/10] rockchip: kevin: Enable edp display
-In-Reply-To: <20171019034812.13768-1-jeffy.chen@rock-chips.com>
-References: <20171019034812.13768-1-jeffy.chen@rock-chips.com>
-Message-ID: <20171020170735.yahyoshwsewttjvy@art_vandelay>
+From: robh@kernel.org (Rob Herring)
+Date: Fri, 20 Oct 2017 14:34:06 -0500
+Subject: [PATCH] firmware: meson-sm: use generic compatible
+In-Reply-To: <1508488253.3616.28.camel@baylibre.com>
+References: <20171012134743.10625-1-jbrunet@baylibre.com>
+ <20171017204959.kfbhn2yxhv2sb5qg@rob-hp-laptop>
+ <7h8tg7zb6t.fsf@baylibre.com>
+ <CAL_JsqJ-XAqMA_zjxrJNAtysQsXzmWYUFqLJtKX2wUJ0oebtuw@mail.gmail.com>
+ <1508488253.3616.28.camel@baylibre.com>
+Message-ID: <CAL_JsqKON3mKrkjg1gR-JjM_YarWMdGRURTx39MVgC=beCKz3g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Oct 19, 2017 at 11:48:02AM +0800, Jeffy Chen wrote:
-> 
-> Make edp display works on chromebook kevin(at least for boot animation).
-> 
-> Also solve some issues i meet during the bringup.
-> 
-> Changes in v6:
-> Don't change order of rockchip_drm_psr_register().
-> 
-> Changes in v5:
-> Call the destroy hook in the error handling path like in unbind().
-> Call the destroy hook in the error handling path like in unbind().
-> Update cleanup order in unbind().
-> Add disable to unbind(), and inline clk_prepare_enable() with bind().
-> 
-> Jeffy Chen (10):
->   arm64: dts: rockchip: Enable edp disaplay on kevin
->   drm/rockchip: analogix_dp: Remove unnecessary init code
->   drm/bridge: analogix: Do not use device's drvdata
->   drm/bridge: analogix_dp: Fix connector and encoder cleanup
->   drm/rockchip: analogix_dp: Add a sanity check for
->     rockchip_drm_psr_register()
->   drm/rockchip: dw-mipi-dsi: Fix error handling path
->   drm/rockchip: inno_hdmi: Fix error handling path
->   drm/bridge/synopsys: dw-hdmi: Add missing bridge detach
->   drm/bridge/synopsys: dw-hdmi: Do not use device's drvdata
->   drm/rockchip: dw_hdmi: Fix error handling path
+On Fri, Oct 20, 2017 at 3:30 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> On Thu, 2017-10-19 at 16:18 -0500, Rob Herring wrote:
+>> On Thu, Oct 19, 2017 at 5:25 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> > Rob Herring <robh@kernel.org> writes:
+>> >
+>> > > On Thu, Oct 12, 2017 at 03:47:43PM +0200, Jerome Brunet wrote:
+>> > > > The meson secure monitor seems to be compatible with more SoCs than
+>> > > > initially thought. Let's use the most generic compatible he have in
+>> > > > DT instead of the gxbb specific one
+>> > > >
+>> > > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> > > > ---
+>> > > >  Documentation/devicetree/bindings/firmware/meson/meson_sm.txt | 4 ++--
+>> > > >  drivers/firmware/meson/meson_sm.c                             | 4 ++--
+>> > > >  2 files changed, 4 insertions(+), 4 deletions(-)
+>> > >
+>> > > Seems like a pointless, not backwards compatible change to me.
+>> >
+>> > I've verified that it's backwards compatible with existing upstream DTs.
+>>
+>> Perhaps if you all are documenting only what the driver uses, not what
+>> the dts can have as Jerome said.
+>>
+>> > > end, it's just a string to match on. Who cares what the string is.
+>> >
+>> > As platform maintiner, I very much care what the strings are and I want
+>> > it to be coherent with the platform generic names, and I want the
+>> > SoC-specific strings to correspond to the actual SoC names.
+>>
+>> The most specific compatible should be, absolutely. The fallbacks can
+>> be anything really. Ideally, they are the compatible string for the
+>> 1st SoC with "the same" compatible IP. Could be another vendor
+>> entirely even because mergers happen.
+>
+> Then what's your problem with these patches again ?
 
-Hi Jeffy,
-I've pushed 2/10. Once you fix 3/10, I can push 3-7. I'd like someone familiar
-with synopsys to review 8-9 before pushing those. Since 10 depends on 9, it'll
-be blocked on synopsys review.
+Removal of the SoC specific compatible and breaking compatibility.
+Kevin says compatibility is not broken, but it obviously it based on
+the example and the driver change. So that can only mean your dts file
+doesn't match the example.
 
-Sean
+> I am just asking the driver to match the generic binding instead of the SoC
+> specific, because we are also using it on other SoC, as explain in the patch
+> comment. Does not seems that "pointless" to me.
+>
+> Right now the driver match only on: vendor,soc-one
+> in dts, we have compatible = "vendor,family", "vendor,soc-one"
 
-> 
->  arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts  | 29 +++++++
->  arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi       | 16 ++++
->  drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 52 +++++-------
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 53 ++++++------
->  drivers/gpu/drm/exynos/exynos_dp.c                 | 29 ++++---
->  drivers/gpu/drm/imx/dw_hdmi-imx.c                  | 22 +++--
->  drivers/gpu/drm/meson/meson_dw_hdmi.c              | 20 +++--
->  drivers/gpu/drm/rcar-du/rcar_dw_hdmi.c             | 14 +++-
->  drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    | 95 +++++++++++-----------
->  drivers/gpu/drm/rockchip/dw-mipi-dsi.c             | 21 +++--
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 39 +++++----
->  drivers/gpu/drm/rockchip/inno_hdmi.c               | 22 +++--
->  include/drm/bridge/analogix_dp.h                   | 19 +++--
->  include/drm/bridge/dw_hdmi.h                       | 17 ++--
->  14 files changed, 265 insertions(+), 183 deletions(-)
-> 
-> -- 
-> 2.11.0
-> 
-> 
+That's backwards if I understand this right. It should be most
+specific first, but that's a separate issue.
 
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+> but it is compatible with soc-two as well.
+> to match we would have to put "vendor,soc-one" as well which is a mess
+
+Why? That's how DT works and every other platform follows. Either you have:
+
+"vendor,soc-one", "vendor,family"
+"vendor,soc-two", "vendor,family"
+
+or
+
+"vendor,soc-one"
+"vendor,soc-two", "vendor,soc-one"
+
+The latter is how DT has existed and worked for 20+ years. The former
+is what we allow because for some reason people have such an aversion
+to saying soc2 is compatible with soc1.
+
+Either one is fine, but the documentation must be clear what the
+constraints are for the dts file. For example, "vendor,soc-two" or
+"vendor,family" alone are not valid. There's plenty of examples to
+follow. Renesas is one using "vendor,family" extensively.
+
+> By expressing correctly what the driver is compatible with, "vendor,family"
+> we can dts that makes sense for soc-two as well
+> compatible = "vendor,family", "vendor,soc-two"
+
+Binding docs may live in the kernel, but they are separate from
+drivers. They describe the constraints of the dts files. There's no
+reason to document what the driver wants because I can read the driver
+source. I can't say the same thing about the dts file. The dts may not
+come from the kernel and one dts file is not all possible options for
+a given binding.
+
+Rob
