@@ -1,113 +1,36 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 20 Oct 2017 10:48:38 +0200
-Subject: [PATCH v2] serial: meson: add Magic SysRq support
-In-Reply-To: <20171020083227.GA20623@ofmlt>
-References: <20170906135239.29531-1-dlan@gentoo.org>
- <d727b350-7936-2671-45c2-cf32dfda1a2a@baylibre.com>
- <20171020083227.GA20623@ofmlt>
-Message-ID: <a37790aa-3721-76f5-1db8-80568191f98d@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Fri, 20 Oct 2017 12:02:41 +0200
+Subject: [PATCH 1/2] mmc: meson-mx-sdio: return correct error code
+In-Reply-To: <20171013111943.zyp5myiwb3pp56vh@mwanda>
+References: <20171013111943.zyp5myiwb3pp56vh@mwanda>
+Message-ID: <CAPDyKFpT78pzBAArnPT=poc6Mm5kQaTgnUKA2DyR3vm1wdfpBg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-I Yixun,
+On 13 October 2017 at 13:19, Dan Carpenter <dan.carpenter@oracle.com> wrote:
+> This has a copy and paste bug so we use "host->fixed_factor_clk" which
+> is a valid pointer instead of "host->cfg_div_clk" which holds the error
+> code.
+>
+> Fixes: 0aa0fb9cd239 ("mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8 and Meson8b SoCs")
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 
-On 20/10/2017 10:32, Yixun Lan wrote:
-> Hi Greg-KH
-> 
-> I think you've already accepted this patch (and merged into your git repo)
-> 
-> so, is it possible for you to amend the commit message? or do you want me
-> to send a PATCH v3 then?
+Thanks, applied for next!
 
-I was not aware greg applied it, no need to amen anything, ignore my tag.
+Kind regards
+Uffe
 
-Neil
-
-> 
-> On 10:10 Fri 20 Oct     , Neil Armstrong wrote:
->> Hi Yixun,
->>
->> On 06/09/2017 15:52, Yixun Lan wrote:
->>> This dirver try to implement the Magic SysRq support[1] for
->>> Amlogic Inc's meson platfo
->>
->> Please fix these typos.
->>
-> oops, not sure why this line is broken..
-> 
-> s/platfo/platform./
-> and should squash next line .
-> 
->>> From the hardware perspective, the UART IP can't detect the 'BREAK' command
->>> clearly via the status register. Instead, we rely on the combination of
->>> 'FRAME_ERR bit && ch == 0', and it works fine.
->>>
->>> [1] Documentation/admin-guide/sysrq.rst
->>>
->>> Signed-off-by: Yixun Lan <dlan@gentoo.org>
->>>
->>> ---
->>> Changes since v1 at [0]:
->>> - add changelog & a few more comments
->>>
->>> [0] https://patchwork.kernel.org/patch/9728475/
->>> ---
->>>  drivers/tty/serial/meson_uart.c | 18 ++++++++++++++++--
->>>  1 file changed, 16 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
->>> index 42e4a4c7597f..3fea24bafd80 100644
->>> --- a/drivers/tty/serial/meson_uart.c
->>> +++ b/drivers/tty/serial/meson_uart.c
->>> @@ -14,6 +14,10 @@
->>>   *
->>>   */
->>>  
->>> +#if defined(CONFIG_SERIAL_MESON_CONSOLE) && defined(CONFIG_MAGIC_SYSRQ)
->>> +#define SUPPORT_SYSRQ
->>> +#endif
->>> +
->>>  #include <linux/clk.h>
->>>  #include <linux/console.h>
->>>  #include <linux/delay.h>
->>> @@ -183,12 +187,12 @@ static void meson_receive_chars(struct uart_port *port)
->>>  {
->>>  	struct tty_port *tport = &port->state->port;
->>>  	char flag;
->>> -	u32 status, ch, mode;
->>> +	u32 ostatus, status, ch, mode;
->>>  
->>>  	do {
->>>  		flag = TTY_NORMAL;
->>>  		port->icount.rx++;
->>> -		status = readl(port->membase + AML_UART_STATUS);
->>> +		ostatus = status = readl(port->membase + AML_UART_STATUS);
->>>  
->>>  		if (status & AML_UART_ERR) {
->>>  			if (status & AML_UART_TX_FIFO_WERR)
->>> @@ -216,6 +220,16 @@ static void meson_receive_chars(struct uart_port *port)
->>>  		ch = readl(port->membase + AML_UART_RFIFO);
->>>  		ch &= 0xff;
->>>  
->>> +		if ((ostatus & AML_UART_FRAME_ERR) && (ch == 0)) {
->>> +			port->icount.brk++;
->>> +			flag = TTY_BREAK;
->>> +			if (uart_handle_break(port))
->>> +				continue;
->>> +		}
->>> +
->>> +		if (uart_handle_sysrq_char(port, ch))
->>> +			continue;
->>> +
->>>  		if ((status & port->ignore_status_mask) == 0)
->>>  			tty_insert_flip_char(tport, ch, flag);
->>>  
->>>
->>
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic at lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+>
+> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
+> index 19b499bbe691..dc30ed5e964b 100644
+> --- a/drivers/mmc/host/meson-mx-sdio.c
+> +++ b/drivers/mmc/host/meson-mx-sdio.c
+> @@ -621,7 +621,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+>         host->cfg_div_clk = devm_clk_register(host->controller_dev,
+>                                               &host->cfg_div.hw);
+>         if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
+> -               return PTR_ERR(host->fixed_factor_clk);
+> +               return PTR_ERR(host->cfg_div_clk);
+>
+>         return 0;
+>  }
