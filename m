@@ -1,47 +1,68 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Fri, 20 Oct 2017 12:02:46 +0200
-Subject: [PATCH 2/2] mmc: meson-mx-sdio: Cleanup IS_ERR() checks
-In-Reply-To: <20171013112049.rdcdqv6ooktlv5wz@mwanda>
-References: <20171013111943.zyp5myiwb3pp56vh@mwanda>
- <20171013112049.rdcdqv6ooktlv5wz@mwanda>
-Message-ID: <CAPDyKFrm_RmRid2hD=E2Pkf++FS2rZ30ONynVbJ6h_42xjUFqQ@mail.gmail.com>
+From: seanpaul@chromium.org (Sean Paul)
+Date: Fri, 20 Oct 2017 13:07:35 -0400
+Subject: [PATCH v6 00/10] rockchip: kevin: Enable edp display
+In-Reply-To: <20171019034812.13768-1-jeffy.chen@rock-chips.com>
+References: <20171019034812.13768-1-jeffy.chen@rock-chips.com>
+Message-ID: <20171020170735.yahyoshwsewttjvy@art_vandelay>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 13 October 2017 at 13:20, Dan Carpenter <dan.carpenter@oracle.com> wrote:
-> Using PTR_ERR_OR_ZERO() instead of IS_ERR() works, but it's not how
-> you're supposed to write these conditions.
->
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+On Thu, Oct 19, 2017 at 11:48:02AM +0800, Jeffy Chen wrote:
+> 
+> Make edp display works on chromebook kevin(at least for boot animation).
+> 
+> Also solve some issues i meet during the bringup.
+> 
+> Changes in v6:
+> Don't change order of rockchip_drm_psr_register().
+> 
+> Changes in v5:
+> Call the destroy hook in the error handling path like in unbind().
+> Call the destroy hook in the error handling path like in unbind().
+> Update cleanup order in unbind().
+> Add disable to unbind(), and inline clk_prepare_enable() with bind().
+> 
+> Jeffy Chen (10):
+>   arm64: dts: rockchip: Enable edp disaplay on kevin
+>   drm/rockchip: analogix_dp: Remove unnecessary init code
+>   drm/bridge: analogix: Do not use device's drvdata
+>   drm/bridge: analogix_dp: Fix connector and encoder cleanup
+>   drm/rockchip: analogix_dp: Add a sanity check for
+>     rockchip_drm_psr_register()
+>   drm/rockchip: dw-mipi-dsi: Fix error handling path
+>   drm/rockchip: inno_hdmi: Fix error handling path
+>   drm/bridge/synopsys: dw-hdmi: Add missing bridge detach
+>   drm/bridge/synopsys: dw-hdmi: Do not use device's drvdata
+>   drm/rockchip: dw_hdmi: Fix error handling path
 
-Thanks, applied for next!
+Hi Jeffy,
+I've pushed 2/10. Once you fix 3/10, I can push 3-7. I'd like someone familiar
+with synopsys to review 8-9 before pushing those. Since 10 depends on 9, it'll
+be blocked on synopsys review.
 
-Kind regards
-Uffe
+Sean
 
-> ---
-> I really hope it doesn't become a trend on to wrap all error checks in a
-> WARN_ON() macro...
->
-> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
-> index dc30ed5e964b..d0d921e0e589 100644
-> --- a/drivers/mmc/host/meson-mx-sdio.c
-> +++ b/drivers/mmc/host/meson-mx-sdio.c
-> @@ -602,7 +602,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
->
->         host->fixed_factor_clk = devm_clk_register(host->controller_dev,
->                                                  &host->fixed_factor.hw);
-> -       if (WARN_ON(PTR_ERR_OR_ZERO(host->fixed_factor_clk)))
-> +       if (WARN_ON(IS_ERR(host->fixed_factor_clk)))
->                 return PTR_ERR(host->fixed_factor_clk);
->
->         clk_div_parent = __clk_get_name(host->fixed_factor_clk);
-> @@ -620,7 +620,7 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
->
->         host->cfg_div_clk = devm_clk_register(host->controller_dev,
->                                               &host->cfg_div.hw);
-> -       if (WARN_ON(PTR_ERR_OR_ZERO(host->cfg_div_clk)))
-> +       if (WARN_ON(IS_ERR(host->cfg_div_clk)))
->                 return PTR_ERR(host->cfg_div_clk);
->
->         return 0;
+> 
+>  arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts  | 29 +++++++
+>  arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi       | 16 ++++
+>  drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 52 +++++-------
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 53 ++++++------
+>  drivers/gpu/drm/exynos/exynos_dp.c                 | 29 ++++---
+>  drivers/gpu/drm/imx/dw_hdmi-imx.c                  | 22 +++--
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c              | 20 +++--
+>  drivers/gpu/drm/rcar-du/rcar_dw_hdmi.c             | 14 +++-
+>  drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    | 95 +++++++++++-----------
+>  drivers/gpu/drm/rockchip/dw-mipi-dsi.c             | 21 +++--
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        | 39 +++++----
+>  drivers/gpu/drm/rockchip/inno_hdmi.c               | 22 +++--
+>  include/drm/bridge/analogix_dp.h                   | 19 +++--
+>  include/drm/bridge/dw_hdmi.h                       | 17 ++--
+>  14 files changed, 265 insertions(+), 183 deletions(-)
+> 
+> -- 
+> 2.11.0
+> 
+> 
+
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
