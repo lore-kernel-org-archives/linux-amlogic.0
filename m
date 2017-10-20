@@ -1,109 +1,26 @@
-From: dlan@gentoo.org (Yixun Lan)
-Date: Fri, 20 Oct 2017 16:32:27 +0800
-Subject: [PATCH v2] serial: meson: add Magic SysRq support
-In-Reply-To: <d727b350-7936-2671-45c2-cf32dfda1a2a@baylibre.com>
-References: <20170906135239.29531-1-dlan@gentoo.org>
- <d727b350-7936-2671-45c2-cf32dfda1a2a@baylibre.com>
-Message-ID: <20171020083227.GA20623@ofmlt>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 20 Oct 2017 10:40:52 +0200
+Subject: [PATCH 0/2] clk: meson: gxbb: Add VPU and VAPB clocks
+In-Reply-To: <1508168085-19032-1-git-send-email-narmstrong@baylibre.com>
+References: <1508168085-19032-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1c908eb9-a7ea-b083-d52a-e017f4ca997f@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Greg-KH
-
-I think you've already accepted this patch (and merged into your git repo)
-
-so, is it possible for you to amend the commit message? or do you want me
-to send a PATCH v3 then?
-
-
-On 10:10 Fri 20 Oct     , Neil Armstrong wrote:
-> Hi Yixun,
+On 16/10/2017 17:34, Neil Armstrong wrote:
+> This patchset adds the VPU and VAPB clocks used to feed the Amlogic Meson
+> GX SoC Video Processing Unit and it's power domain.
 > 
-> On 06/09/2017 15:52, Yixun Lan wrote:
-> > This dirver try to implement the Magic SysRq support[1] for
-> > Amlogic Inc's meson platfo
+> Neil Armstrong (2):
+>   clk: meson: gxbb: Add VPU and VAPB clockids
+>   clk: meson: gxbb: Add VPU and VAPB clocks data
 > 
-> Please fix these typos.
+>  drivers/clk/meson/gxbb.c              | 292 ++++++++++++++++++++++++++++++++++
+>  drivers/clk/meson/gxbb.h              |   6 +-
+>  include/dt-bindings/clock/gxbb-clkc.h |  11 ++
+>  3 files changed, 308 insertions(+), 1 deletion(-)
 > 
-oops, not sure why this line is broken..
 
-s/platfo/platform./
-and should squash next line .
+Applied to next/headers and next/drivers with removal of CLK_IGNORE_UNUSED for muxes and dividers.
 
-> > From the hardware perspective, the UART IP can't detect the 'BREAK' command
-> > clearly via the status register. Instead, we rely on the combination of
-> > 'FRAME_ERR bit && ch == 0', and it works fine.
-> > 
-> > [1] Documentation/admin-guide/sysrq.rst
-> > 
-> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > 
-> > ---
-> > Changes since v1 at [0]:
-> > - add changelog & a few more comments
-> > 
-> > [0] https://patchwork.kernel.org/patch/9728475/
-> > ---
-> >  drivers/tty/serial/meson_uart.c | 18 ++++++++++++++++--
-> >  1 file changed, 16 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> > index 42e4a4c7597f..3fea24bafd80 100644
-> > --- a/drivers/tty/serial/meson_uart.c
-> > +++ b/drivers/tty/serial/meson_uart.c
-> > @@ -14,6 +14,10 @@
-> >   *
-> >   */
-> >  
-> > +#if defined(CONFIG_SERIAL_MESON_CONSOLE) && defined(CONFIG_MAGIC_SYSRQ)
-> > +#define SUPPORT_SYSRQ
-> > +#endif
-> > +
-> >  #include <linux/clk.h>
-> >  #include <linux/console.h>
-> >  #include <linux/delay.h>
-> > @@ -183,12 +187,12 @@ static void meson_receive_chars(struct uart_port *port)
-> >  {
-> >  	struct tty_port *tport = &port->state->port;
-> >  	char flag;
-> > -	u32 status, ch, mode;
-> > +	u32 ostatus, status, ch, mode;
-> >  
-> >  	do {
-> >  		flag = TTY_NORMAL;
-> >  		port->icount.rx++;
-> > -		status = readl(port->membase + AML_UART_STATUS);
-> > +		ostatus = status = readl(port->membase + AML_UART_STATUS);
-> >  
-> >  		if (status & AML_UART_ERR) {
-> >  			if (status & AML_UART_TX_FIFO_WERR)
-> > @@ -216,6 +220,16 @@ static void meson_receive_chars(struct uart_port *port)
-> >  		ch = readl(port->membase + AML_UART_RFIFO);
-> >  		ch &= 0xff;
-> >  
-> > +		if ((ostatus & AML_UART_FRAME_ERR) && (ch == 0)) {
-> > +			port->icount.brk++;
-> > +			flag = TTY_BREAK;
-> > +			if (uart_handle_break(port))
-> > +				continue;
-> > +		}
-> > +
-> > +		if (uart_handle_sysrq_char(port, ch))
-> > +			continue;
-> > +
-> >  		if ((status & port->ignore_status_mask) == 0)
-> >  			tty_insert_flip_char(tport, ch, flag);
-> >  
-> > 
-> 
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+Neil
