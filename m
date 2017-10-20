@@ -1,87 +1,373 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Fri, 20 Oct 2017 00:10:11 +0200
-Subject: [RFC usb-next v5 1/3] dt-bindings: usb: add the documentation for
- USB root-hub
-In-Reply-To: <CAFBinCAtsxu2gFXABhq5r0_DMJwsLGkLYjgWaEXMg=CVEjiv7w@mail.gmail.com>
-References: <20171008211713.18696-1-martin.blumenstingl@googlemail.com>
- <20171008211713.18696-2-martin.blumenstingl@googlemail.com>
- <CAK8P3a2607YnNRRmAJJyTNJTTJmJvx-ZJm3QNAq84noPLy+F+A@mail.gmail.com>
- <CAFBinCCc+Fj6wwGk+OLNQTHEYU8xBPe7OGHVSQ82kMew3xUsww@mail.gmail.com>
- <CAK8P3a2C+8w5_8uZF2qHvq7Cp=AH6DDx5Y=mGJFCCz2pTLvPPg@mail.gmail.com>
- <CAFBinCC7disratgMmmaSJMfywb-bPF32L-1BarSsX6zTChHEJg@mail.gmail.com>
- <CAK8P3a31GLjQDUUdyTeaAX_fELV5_UkNQfbj+ssHrGa7Ek2NcA@mail.gmail.com>
- <CAFBinCCmk3bSa4-OY7Mu0sPEhVv6=dQbSO94P=YMqk_hc+53Pg@mail.gmail.com>
- <CAK8P3a0hFF-gMa4UWMXh-28=scF-8cnzPv-Sa11PzyvgMYAkQw@mail.gmail.com>
- <CAFBinCAtsxu2gFXABhq5r0_DMJwsLGkLYjgWaEXMg=CVEjiv7w@mail.gmail.com>
-Message-ID: <CAK8P3a1cdob4trLG80xos1Zh1oXWLMExFTyS2EFsq0g+YULKpw@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 20 Oct 2017 10:02:57 +0200
+Subject: [PATCH 2/2] clk: meson: gxbb: Add VPU and VAPB clocks data
+In-Reply-To: <1508168085-19032-3-git-send-email-narmstrong@baylibre.com>
+References: <1508168085-19032-1-git-send-email-narmstrong@baylibre.com>
+ <1508168085-19032-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1508486577.3616.11.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Oct 19, 2017 at 11:25 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->> Does dwc2 also use separate nodes for the roothub? From your
->> description it sounds like it would not be affected by your patch.
-> currently it doesn't use separate notes for the roothub - however,
-> with this patch it could (although I haven't explicitly tested this)
+On Mon, 2017-10-16 at 17:34 +0200, Neil Armstrong wrote:
+> The Amlogic Meson GX SoCs needs these two clocks to power up the
+> VPU power domain.
+> 
+> These two clocks are similar to the MALI clocks by having a glitch-free
+> mux and two similar clocks with gate, divider and muxes.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/clk/meson/gxbb.c | 292
+> +++++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 292 insertions(+)
+> 
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index b2d1e8e..a713744 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -1131,6 +1131,253 @@ static struct clk_gate gxbb_sd_emmc_c_clk0 = {
+>  	},
+>  };
+>  
+> +/* VPU Clock */
+> +
+> +static u32 mux_table_vpu[] = {0, 1, 2, 3};
+> +static const char * const gxbb_vpu_parent_names[] = {
+> +	"fclk_div4", "fclk_div3", "fclk_div5", "fclk_div7"
+> +};
+> +
+> +static struct clk_mux gxbb_vpu_0_sel = {
+> +	.reg = (void *)HHI_VPU_CLK_CNTL,
+> +	.mask = 0x3,
+> +	.shift = 9,
+> +	.lock = &clk_lock,
+> +	.table = mux_table_vpu,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vpu_0_sel",
+> +		.ops = &clk_mux_ops,
+> +		/*
+> +		 * bits 9:10 selects from 4 possible parents:
+> +		 * fclk_div4, fclk_div3, fclk_div5, fclk_div7,
+> +		 */
+> +		.parent_names = gxbb_vpu_parent_names,
+> +		.num_parents = ARRAY_SIZE(gxbb_vpu_parent_names),
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED,
 
-Ok.
+AFAIK, CLK_IGNORE_UNUSED is not useful for generic muxes and dividers since they
+don't implement enable/disbale.
 
->> Since you used a dtb that already listed an endpoint device below
->> an xhci, that would answer my earlier question of whether it worked
->> before your patch series, and you tested that it still works with your
->> patches applied and the roothub node added in the dtb.  Now we
->> just need to make sure we don't break existing dtb files that don't
->> have the roothub node but do have endpoint device nodes.
-> the endpoint you're seeing is the root-hub - you can see the full .dts here: [0]
->
-> maybe my patch description or documentation is not clear - could you
-> please explain what makes you think that specifying the root-hub
-> didn't work before (so I can update the comments where needed)?
-> to sum up what this series does: find the node with reg = <0>; (= the
-> root-hub) and get all PHY instances from the child-nodes
-> this should not change any existing behavior except if someone had a
-> node with reg = <0>; below any USB controller node (which was
-> undocumented behavior before my patches)
+You can drop these.
+With that changed:
 
-Maybe I misunderstand what the actual change to the hierarchy
-is. Quoting from your example for the new code
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 
-+       &usb1 {
-+               #address-cells = <1>;
-+               #size-cells = <0>;
-+
-+               roothub at 0 {
-+                       compatible = "usb1d6b,3", "usb1d6b,2";
-+                       #address-cells = <1>;
-+                       #size-cells = <0>;
-+                       reg = <0>;
-+
-+                       port at 1 {
-+                               reg = <1>;
-+                               phys = <&usb2_phy1>, <&usb3_phy1>;
-+                               phy-names = "usb2-phy", "usb3-phy";
-+                       };
-
-The way I understand it, an endpoing device would now be
-located in
-
- &usb1/roothub at 0/port at 1/hub at 2/device at 1
-
-where previously it was in
-
- &usb1/port at 1/hub at 2/device at 1
-
-Is that correct?
-
-I don't see any code that can deal with both cases and still
-assign the correct of_node pointer to the device device at 1 in
-the end (maybe it's there and you just need to point me
-to the right patch).
-
-The reason why we have to be careful here is that the
-Linux device hierarchy is not just derived from DT here, but
-it gets created from the physical devices under &usb1
-and the 'struct device' hierarchy has to match the DT hierarchy
-exactly.
-
-      Arnd
+> +	},
+> +};
+> +
+> +static struct clk_divider gxbb_vpu_0_div = {
+> +	.reg = (void *)HHI_VPU_CLK_CNTL,
+> +	.shift = 0,
+> +	.width = 7,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vpu_0_div",
+> +		.ops = &clk_divider_ops,
+> +		.parent_names = (const char *[]){ "vpu_0_sel" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_gate gxbb_vpu_0 = {
+> +	.reg = (void *)HHI_VPU_CLK_CNTL,
+> +	.bit_idx = 8,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vpu_0",
+> +		.ops = &clk_gate_ops,
+> +		.parent_names = (const char *[]){ "vpu_0_div" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_mux gxbb_vpu_1_sel = {
+> +	.reg = (void *)HHI_VPU_CLK_CNTL,
+> +	.mask = 0x3,
+> +	.shift = 25,
+> +	.lock = &clk_lock,
+> +	.table = mux_table_vpu,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vpu_1_sel",
+> +		.ops = &clk_mux_ops,
+> +		/*
+> +		 * bits 25:26 selects from 4 possible parents:
+> +		 * fclk_div4, fclk_div3, fclk_div5, fclk_div7,
+> +		 */
+> +		.parent_names = gxbb_vpu_parent_names,
+> +		.num_parents = ARRAY_SIZE(gxbb_vpu_parent_names),
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_divider gxbb_vpu_1_div = {
+> +	.reg = (void *)HHI_VPU_CLK_CNTL,
+> +	.shift = 16,
+> +	.width = 7,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vpu_1_div",
+> +		.ops = &clk_divider_ops,
+> +		.parent_names = (const char *[]){ "vpu_1_sel" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_gate gxbb_vpu_1 = {
+> +	.reg = (void *)HHI_VPU_CLK_CNTL,
+> +	.bit_idx = 24,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vpu_1",
+> +		.ops = &clk_gate_ops,
+> +		.parent_names = (const char *[]){ "vpu_1_div" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_mux gxbb_vpu = {
+> +	.reg = (void *)HHI_VPU_CLK_CNTL,
+> +	.mask = 1,
+> +	.shift = 31,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vpu",
+> +		.ops = &clk_mux_ops,
+> +		/*
+> +		 * bit 31 selects from 2 possible parents:
+> +		 * vpu_0 or vpu_1
+> +		 */
+> +		.parent_names = (const char *[]){ "vpu_0", "vpu_1" },
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +/* VAPB Clock */
+> +
+> +static u32 mux_table_vapb[] = {0, 1, 2, 3};
+> +static const char * const gxbb_vapb_parent_names[] = {
+> +	"fclk_div4", "fclk_div3", "fclk_div5", "fclk_div7"
+> +};
+> +
+> +static struct clk_mux gxbb_vapb_0_sel = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.mask = 0x3,
+> +	.shift = 9,
+> +	.lock = &clk_lock,
+> +	.table = mux_table_vapb,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vapb_0_sel",
+> +		.ops = &clk_mux_ops,
+> +		/*
+> +		 * bits 9:10 selects from 4 possible parents:
+> +		 * fclk_div4, fclk_div3, fclk_div5, fclk_div7,
+> +		 */
+> +		.parent_names = gxbb_vapb_parent_names,
+> +		.num_parents = ARRAY_SIZE(gxbb_vapb_parent_names),
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_divider gxbb_vapb_0_div = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.shift = 0,
+> +	.width = 7,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vapb_0_div",
+> +		.ops = &clk_divider_ops,
+> +		.parent_names = (const char *[]){ "vapb_0_sel" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_gate gxbb_vapb_0 = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.bit_idx = 8,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vapb_0",
+> +		.ops = &clk_gate_ops,
+> +		.parent_names = (const char *[]){ "vapb_0_div" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_mux gxbb_vapb_1_sel = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.mask = 0x3,
+> +	.shift = 25,
+> +	.lock = &clk_lock,
+> +	.table = mux_table_vapb,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vapb_1_sel",
+> +		.ops = &clk_mux_ops,
+> +		/*
+> +		 * bits 25:26 selects from 4 possible parents:
+> +		 * fclk_div4, fclk_div3, fclk_div5, fclk_div7,
+> +		 */
+> +		.parent_names = gxbb_vapb_parent_names,
+> +		.num_parents = ARRAY_SIZE(gxbb_vapb_parent_names),
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_divider gxbb_vapb_1_div = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.shift = 16,
+> +	.width = 7,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vapb_1_div",
+> +		.ops = &clk_divider_ops,
+> +		.parent_names = (const char *[]){ "vapb_1_sel" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_gate gxbb_vapb_1 = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.bit_idx = 24,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vapb_1",
+> +		.ops = &clk_gate_ops,
+> +		.parent_names = (const char *[]){ "vapb_1_div" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_mux gxbb_vapb_sel = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.mask = 1,
+> +	.shift = 31,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data){
+> +		.name = "vapb_sel",
+> +		.ops = &clk_mux_ops,
+> +		/*
+> +		 * bit 31 selects from 2 possible parents:
+> +		 * vapb_0 or vapb_1
+> +		 */
+> +		.parent_names = (const char *[]){ "vapb_0", "vapb_1" },
+> +		.num_parents = 2,
+> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+> +static struct clk_gate gxbb_vapb = {
+> +	.reg = (void *)HHI_VAPBCLK_CNTL,
+> +	.bit_idx = 30,
+> +	.lock = &clk_lock,
+> +	.hw.init = &(struct clk_init_data) {
+> +		.name = "vapb",
+> +		.ops = &clk_gate_ops,
+> +		.parent_names = (const char *[]){ "vapb_sel" },
+> +		.num_parents = 1,
+> +		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+> +	},
+> +};
+> +
+>  /* Everything Else (EE) domain gates */
+>  static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
+>  static MESON_GATE(gxbb_dos, HHI_GCLK_MPEG0, 1);
+> @@ -1349,6 +1596,21 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data
+> = {
+>  		[CLKID_SD_EMMC_C_CLK0_SEL]  = &gxbb_sd_emmc_c_clk0_sel.hw,
+>  		[CLKID_SD_EMMC_C_CLK0_DIV]  = &gxbb_sd_emmc_c_clk0_div.hw,
+>  		[CLKID_SD_EMMC_C_CLK0]	    = &gxbb_sd_emmc_c_clk0.hw,
+> +		[CLKID_VPU_0_SEL]	    = &gxbb_vpu_0_sel.hw,
+> +		[CLKID_VPU_0_DIV]	    = &gxbb_vpu_0_div.hw,
+> +		[CLKID_VPU_0]		    = &gxbb_vpu_0.hw,
+> +		[CLKID_VPU_1_SEL]	    = &gxbb_vpu_1_sel.hw,
+> +		[CLKID_VPU_1_DIV]	    = &gxbb_vpu_1_div.hw,
+> +		[CLKID_VPU_1]		    = &gxbb_vpu_1.hw,
+> +		[CLKID_VPU]		    = &gxbb_vpu.hw,
+> +		[CLKID_VAPB_0_SEL]	    = &gxbb_vapb_0_sel.hw,
+> +		[CLKID_VAPB_0_DIV]	    = &gxbb_vapb_0_div.hw,
+> +		[CLKID_VAPB_0]		    = &gxbb_vapb_0.hw,
+> +		[CLKID_VAPB_1_SEL]	    = &gxbb_vapb_1_sel.hw,
+> +		[CLKID_VAPB_1_DIV]	    = &gxbb_vapb_1_div.hw,
+> +		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
+> +		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
+> +		[CLKID_VAPB]		    = &gxbb_vapb.hw,
+>  		[NR_CLKS]		    = NULL,
+>  	},
+>  	.num = NR_CLKS,
+> @@ -1481,6 +1743,21 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data =
+> {
+>  		[CLKID_SD_EMMC_C_CLK0_SEL]  = &gxbb_sd_emmc_c_clk0_sel.hw,
+>  		[CLKID_SD_EMMC_C_CLK0_DIV]  = &gxbb_sd_emmc_c_clk0_div.hw,
+>  		[CLKID_SD_EMMC_C_CLK0]	    = &gxbb_sd_emmc_c_clk0.hw,
+> +		[CLKID_VPU_0_SEL]	    = &gxbb_vpu_0_sel.hw,
+> +		[CLKID_VPU_0_DIV]	    = &gxbb_vpu_0_div.hw,
+> +		[CLKID_VPU_0]		    = &gxbb_vpu_0.hw,
+> +		[CLKID_VPU_1_SEL]	    = &gxbb_vpu_1_sel.hw,
+> +		[CLKID_VPU_1_DIV]	    = &gxbb_vpu_1_div.hw,
+> +		[CLKID_VPU_1]		    = &gxbb_vpu_1.hw,
+> +		[CLKID_VPU]		    = &gxbb_vpu.hw,
+> +		[CLKID_VAPB_0_SEL]	    = &gxbb_vapb_0_sel.hw,
+> +		[CLKID_VAPB_0_DIV]	    = &gxbb_vapb_0_div.hw,
+> +		[CLKID_VAPB_0]		    = &gxbb_vapb_0.hw,
+> +		[CLKID_VAPB_1_SEL]	    = &gxbb_vapb_1_sel.hw,
+> +		[CLKID_VAPB_1_DIV]	    = &gxbb_vapb_1_div.hw,
+> +		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
+> +		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
+> +		[CLKID_VAPB]		    = &gxbb_vapb.hw,
+>  		[NR_CLKS]		    = NULL,
+>  	},
+>  	.num = NR_CLKS,
+> @@ -1600,6 +1877,11 @@ static struct clk_gate *const gxbb_clk_gates[] = {
+>  	&gxbb_sd_emmc_a_clk0,
+>  	&gxbb_sd_emmc_b_clk0,
+>  	&gxbb_sd_emmc_c_clk0,
+> +	&gxbb_vpu_0,
+> +	&gxbb_vpu_1,
+> +	&gxbb_vapb_0,
+> +	&gxbb_vapb_1,
+> +	&gxbb_vapb,
+>  };
+>  
+>  static struct clk_mux *const gxbb_clk_muxes[] = {
+> @@ -1615,6 +1897,12 @@ static struct clk_mux *const gxbb_clk_muxes[] = {
+>  	&gxbb_sd_emmc_a_clk0_sel,
+>  	&gxbb_sd_emmc_b_clk0_sel,
+>  	&gxbb_sd_emmc_c_clk0_sel,
+> +	&gxbb_vpu_0_sel,
+> +	&gxbb_vpu_1_sel,
+> +	&gxbb_vpu,
+> +	&gxbb_vapb_0_sel,
+> +	&gxbb_vapb_1_sel,
+> +	&gxbb_vapb_sel,
+>  };
+>  
+>  static struct clk_divider *const gxbb_clk_dividers[] = {
+> @@ -1627,6 +1915,10 @@ static struct clk_divider *const gxbb_clk_dividers[] =
+> {
+>  	&gxbb_sd_emmc_a_clk0_div,
+>  	&gxbb_sd_emmc_b_clk0_div,
+>  	&gxbb_sd_emmc_c_clk0_div,
+> +	&gxbb_vpu_0_div,
+> +	&gxbb_vpu_1_div,
+> +	&gxbb_vapb_0_div,
+> +	&gxbb_vapb_1_div,
+>  };
+>  
+>  static struct meson_clk_audio_divider *const gxbb_audio_dividers[] = {
