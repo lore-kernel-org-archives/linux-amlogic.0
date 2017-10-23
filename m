@@ -1,58 +1,21 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 23 Oct 2017 23:57:18 +0200
-Subject: [PATCH v7 usb-next 4/4] dt-bindings: usb: xhci: include the roothub
- and a device in the example
-In-Reply-To: <20171023215718.3446-1-martin.blumenstingl@googlemail.com>
-References: <20171023215718.3446-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171023215718.3446-5-martin.blumenstingl@googlemail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 23 Oct 2017 17:44:47 -0500
+Subject: [PATCH 1/4] dt-bindings: display: amlogic, meson-vpu: Add
+ optional power domain property
+In-Reply-To: <1508227664-11171-2-git-send-email-narmstrong@baylibre.com>
+References: <1508227664-11171-1-git-send-email-narmstrong@baylibre.com>
+ <1508227664-11171-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20171023224447.3elnyvq7j44l55id@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This extends the existing example from the USB xHCI binding
-documentation so it includes the roothub and an actual device.
-The goal of this is to show that the roothub is specified alongside the
-actual devices on the USB bus (which is important because a device on
-the USB bus - for example a hub - might need it's own phys / phy-names
-properties. modelling the roothub as separate device and not nesting the
-other devices on the bus below the roothub allows us to keep the
-properties, for example the PHYs, separated).
+On Tue, Oct 17, 2017 at 10:07:41AM +0200, Neil Armstrong wrote:
+> The Video Processing Unit power domain was setup by the Vendor U-Boot,
+> add support for an optional Power Domain phandle to setup it from the kernel.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- Documentation/devicetree/bindings/usb/usb-xhci.txt | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-index 5b49ba9f2f9a..20e5ce2b016a 100644
---- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-@@ -42,4 +42,27 @@ Example:
- 		compatible = "generic-xhci";
- 		reg = <0xf0931000 0x8c8>;
- 		interrupts = <0x0 0x4e 0x0>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* see usb-roothub.txt */
-+		roothub at 0 {
-+			compatible = "usb1d6b,3", "usb1d6b,2";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			port at 1 {
-+				reg = <1>;
-+				phys = <&usb2_phy1>, <&usb3_phy1>;
-+				phy-names = "usb2-phy", "usb3-phy";
-+			};
-+		};
-+
-+		/* see usb-device.txt */
-+		hub: genesys at 1 {
-+			compatible = "usb5e3,608";
-+			reg = <1>;
-+		};
- 	};
--- 
-2.14.2
+Acked-by: Rob Herring <robh@kernel.org> 
