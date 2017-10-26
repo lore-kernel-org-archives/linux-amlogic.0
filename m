@@ -1,41 +1,42 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 26 Oct 2017 15:39:17 +0200
-Subject: [PATCH u-boot 1/3] net: phy: Add Amlogic Meson GXL Internal PHY
- support
-In-Reply-To: <CAPnjgZ1-oU0E1-tH-Z3mu0snsYBt87p_FDnJ5hgP1fLU8nXoNQ@mail.gmail.com>
-References: <1508313732-19282-1-git-send-email-narmstrong@baylibre.com>
- <1508313732-19282-2-git-send-email-narmstrong@baylibre.com>
- <CAPnjgZ1-oU0E1-tH-Z3mu0snsYBt87p_FDnJ5hgP1fLU8nXoNQ@mail.gmail.com>
-Message-ID: <0921db70-a4bb-ea2e-d273-44280a2acc3c@baylibre.com>
+From: will.deacon@arm.com (Will Deacon)
+Date: Thu, 26 Oct 2017 14:50:05 +0100
+Subject: [PATCH] ARM64: dts: meson-gxl: Add alternate ARM Trusted
+ Firmware reserved memory zone
+In-Reply-To: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com>
+References: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20171026135005.GB16787@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 22/10/2017 16:36, Simon Glass wrote:
-> On 18 October 2017 at 10:02, Neil Armstrong <narmstrong@baylibre.com> wrote:
->> The Amlogic Meson GXL/GXM families embeds an internal RMII Ethernet PHY.
->>
->> The PHY acts as a generic PHY but needs a slight configuration right
->> before it's configuration.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/net/phy/Kconfig     |  3 +++
->>  drivers/net/phy/Makefile    |  1 +
->>  drivers/net/phy/meson-gxl.c | 57 +++++++++++++++++++++++++++++++++++++++++++++
->>  drivers/net/phy/phy.c       |  3 +++
->>  include/phy.h               |  1 +
->>  5 files changed, 65 insertions(+)
->>  create mode 100644 drivers/net/phy/meson-gxl.c
+On Wed, Oct 11, 2017 at 05:23:12PM +0200, Neil Armstrong wrote:
+> This year, Amlogic updated the ARM Trusted Firmware reserved memory mapping
+> for Meson GXL SoCs and products sold since May 2017 uses this alternate
+> reserved memory mapping.
+> But products had been sold using the previous mapping.
 > 
-> We really should create a uclass for PHY drivers before adding any
-> more of these.
+> This issue has been explained in [1] and a dynamic solution is yet to be
+> found to avoid loosing another 3Mbytes of reservable memory.
 > 
-> Regards,
-> Simon
+> In the meantime, this patch adds this alternate memory zone only for
+> the GXL and GXM SoCs since GXBB based new products stopped earlier.
 > 
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
+> 
+> Fixes: bba8e3f42736 ("ARM64: dts: meson-gx: Add firmware reserved memory zones")
+> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-Hi Simon,
+Thanks. Without this patch, memtest dies early on at physical address
+0x05100000 due to an SError. With the patch, things work well, so:
 
-Sure, this would indeed be necessary, but is it necessary to wait for the uclass to merge mode PHYs ?
+Acked-by: Will Deacon <will.deacon@arm.com>
+Tested-by: Will Deacon <will.deacon@arm.com>
 
-Neil
+Please also CC stable, because random SErrors under load aren't much fun ;)
+
+Cheers,
+
+Will
