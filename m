@@ -1,42 +1,64 @@
-From: will.deacon@arm.com (Will Deacon)
-Date: Thu, 26 Oct 2017 14:50:05 +0100
-Subject: [PATCH] ARM64: dts: meson-gxl: Add alternate ARM Trusted
- Firmware reserved memory zone
-In-Reply-To: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com>
-References: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20171026135005.GB16787@arm.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 26 Oct 2017 22:29:57 -0500
+Subject: [PATCH v7 usb-next 4/4] dt-bindings: usb: xhci: include the
+ roothub and a device in the example
+In-Reply-To: <20171023215718.3446-5-martin.blumenstingl@googlemail.com>
+References: <20171023215718.3446-1-martin.blumenstingl@googlemail.com>
+ <20171023215718.3446-5-martin.blumenstingl@googlemail.com>
+Message-ID: <20171027032957.m55ntlce646hpd5a@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Oct 11, 2017 at 05:23:12PM +0200, Neil Armstrong wrote:
-> This year, Amlogic updated the ARM Trusted Firmware reserved memory mapping
-> for Meson GXL SoCs and products sold since May 2017 uses this alternate
-> reserved memory mapping.
-> But products had been sold using the previous mapping.
+On Mon, Oct 23, 2017 at 11:57:18PM +0200, Martin Blumenstingl wrote:
+> This extends the existing example from the USB xHCI binding
+> documentation so it includes the roothub and an actual device.
+> The goal of this is to show that the roothub is specified alongside the
+> actual devices on the USB bus (which is important because a device on
+> the USB bus - for example a hub - might need it's own phys / phy-names
+> properties. modelling the roothub as separate device and not nesting the
+> other devices on the bus below the roothub allows us to keep the
+> properties, for example the PHYs, separated).
 > 
-> This issue has been explained in [1] and a dynamic solution is yet to be
-> found to avoid loosing another 3Mbytes of reservable memory.
-> 
-> In the meantime, this patch adds this alternate memory zone only for
-> the GXL and GXM SoCs since GXBB based new products stopped earlier.
-> 
-> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
-> 
-> Fixes: bba8e3f42736 ("ARM64: dts: meson-gx: Add firmware reserved memory zones")
-> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  Documentation/devicetree/bindings/usb/usb-xhci.txt | 23 ++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+> index 5b49ba9f2f9a..20e5ce2b016a 100644
+> --- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
+> +++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
+> @@ -42,4 +42,27 @@ Example:
+>  		compatible = "generic-xhci";
+>  		reg = <0xf0931000 0x8c8>;
+>  		interrupts = <0x0 0x4e 0x0>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		/* see usb-roothub.txt */
+> +		roothub at 0 {
+> +			compatible = "usb1d6b,3", "usb1d6b,2";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0>;
+> +
+> +			port at 1 {
+> +				reg = <1>;
+> +				phys = <&usb2_phy1>, <&usb3_phy1>;
+> +				phy-names = "usb2-phy", "usb3-phy";
+> +			};
+> +		};
+> +
+> +		/* see usb-device.txt */
+> +		hub: genesys at 1 {
 
-Thanks. Without this patch, memtest dies early on at physical address
-0x05100000 due to an SError. With the patch, things work well, so:
+What do the 0 and 1 addresses correspond to?
 
-Acked-by: Will Deacon <will.deacon@arm.com>
-Tested-by: Will Deacon <will.deacon@arm.com>
-
-Please also CC stable, because random SErrors under load aren't much fun ;)
-
-Cheers,
-
-Will
+> +			compatible = "usb5e3,608";
+> +			reg = <1>;
+> +		};
+>  	};
+> -- 
+> 2.14.2
+> 
