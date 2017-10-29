@@ -1,61 +1,74 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Sun, 29 Oct 2017 15:47:53 +0100
-Subject: [PATCH u-boot 1/3] net: phy: Add Amlogic Meson GXL Internal PHY
- support
-In-Reply-To: <20171029120411.GV12185@bill-the-cat>
-References: <1508313732-19282-1-git-send-email-narmstrong@baylibre.com>
- <1508313732-19282-2-git-send-email-narmstrong@baylibre.com>
- <CAPnjgZ1-oU0E1-tH-Z3mu0snsYBt87p_FDnJ5hgP1fLU8nXoNQ@mail.gmail.com>
- <0921db70-a4bb-ea2e-d273-44280a2acc3c@baylibre.com>
- <20171029120411.GV12185@bill-the-cat>
-Message-ID: <59F5EA19.1090608@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Sun, 29 Oct 2017 15:59:03 +0100
+Subject: [RESEND PATCH v2 1/2] soc: amlogic: add Meson GX VPU Domains
+ driver
+In-Reply-To: <1509208817-30632-2-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Sat, 28 Oct 2017 18:40:16 +0200")
+References: <1509208817-30632-1-git-send-email-narmstrong@baylibre.com>
+ <1509208817-30632-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7h60ayvw3s.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Neil,
 
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Le 29/10/2017 13:04, Tom Rini a ?crit :
-> On Thu, Oct 26, 2017 at 03:39:17PM +0200, Neil Armstrong wrote:
->> On 22/10/2017 16:36, Simon Glass wrote:
->>> On 18 October 2017 at 10:02, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>> The Amlogic Meson GXL/GXM families embeds an internal RMII Ethernet PHY.
->>>>
->>>> The PHY acts as a generic PHY but needs a slight configuration right
->>>> before it's configuration.
->>>>
->>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>>> ---
->>>>  drivers/net/phy/Kconfig     |  3 +++
->>>>  drivers/net/phy/Makefile    |  1 +
->>>>  drivers/net/phy/meson-gxl.c | 57 +++++++++++++++++++++++++++++++++++++++++++++
->>>>  drivers/net/phy/phy.c       |  3 +++
->>>>  include/phy.h               |  1 +
->>>>  5 files changed, 65 insertions(+)
->>>>  create mode 100644 drivers/net/phy/meson-gxl.c
->>>
->>> We really should create a uclass for PHY drivers before adding any
->>> more of these.
->>>
->>> Regards,
->>> Simon
->>>
->>
->> Hi Simon,
->>
->> Sure, this would indeed be necessary, but is it necessary to wait for
->> the uclass to merge mode PHYs ?
-> 
-> Well, this isn't going in before the next release (along with all of the
-> other amlogic stuff, which looks good otherwise btw).  So, do you have
-> time to take a pass at a uclass?
-> 
+> The Video Processing Unit needs a specific Power Domain powering scheme
+> this driver handles this as a PM Power Domain driver.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Hi Tom, Simon,
+[...]
 
-I can give a try, but with my limited uclass/dm knowledge, it will only be basic and will some review.
+> +static inline
+> +struct meson_gx_pwrc_vpu *genpd_to_pd(struct generic_pm_domain *d)
+> +{
+> +	return container_of(d, struct meson_gx_pwrc_vpu, genpd);
+> +}
+> +
+> +static int meson_gx_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
+> +{
+> +	struct meson_gx_pwrc_vpu *pd = genpd_to_pd(genpd);
+> +	int i;
+> +
+> +	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
+> +			   GEN_PWR_VPU_HDMI_ISO, GEN_PWR_VPU_HDMI_ISO);
+> +	udelay(20);
 
-Should the plan be to introduce DM support for net PHY subsystem, then introduce this meson GXL phy as first implementation ?
+Some minor nits/questions.  I know the vendor code does it this way,
+but...
 
-Should I remove support for non-dm PHY drivers and probing when DM is enabled ?
+> +	/* Power Down Memories */
+> +	for (i = 0; i < 32; i += 2) {
+> +		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
+> +				   0x2 << i, 0x3 << i);
+> +		udelay(5);
+> +	}
 
-Neil
+several of these bits are marked "reserved" in the datasheet.  Have you tried
+without writing to the reserved bits?
+
+> +	for (i = 0; i < 32; i += 2) {
+> +		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
+> +				   0x2 << i, 0x3 << i);
+> +		udelay(5);
+> +	}
+
+ditto
+
+> +	for (i = 8; i < 16; i++) {
+> +		regmap_update_bits(pd->regmap_hhi, HHI_MEM_PD_REG0,
+> +				   BIT(i), BIT(i));
+> +		udelay(5);
+> +	}
+
+Do these really have to be written one bit at a time?
+
+I'm actually OK to merge things like this, since it also captures the
+sequences used by the vendor kernel, but I'm just curious if you did any
+of the other experiments.
+
+If you can try those experiments, we can take them as follow-on patches.
+
+Kevin
