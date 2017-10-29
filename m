@@ -1,31 +1,30 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 30 Oct 2017 00:05:23 +0100
-Subject: [PATCH 3/3] ARM: meson: enable MESON_IRQ_GPIO also for MACH_MESON8
-In-Reply-To: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
-References: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171029230523.7355-4-martin.blumenstingl@googlemail.com>
+Date: Mon, 30 Oct 2017 00:17:13 +0100
+Subject: [PATCH 0/2] ARM: dts: meson: GPIO interrupt fixes for v4.15
+Message-ID: <20171029231715.13391-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Now that the GPIO interrupt controller also supports the Meson8 SoCs we
-can enable it via Kconfig.
+This provides two small fixes for the GPIO interrupt support on the
+32-bit Meson SoCs.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/mach-meson/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+The first change is purely cosmetic - I still decided to include to it
+because it keeps the sort order consistent. Also it's easier to find
+the node if you can rely on the sorting to be consistent.
 
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index aff6164b2083..d90f61e6254f 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -23,6 +23,7 @@ config MACH_MESON8
- 	default ARCH_MESON
- 	select MESON6_TIMER
- 	select COMMON_CLK_MESON8B
-+	select MESON_IRQ_GPIO
- 
- config MACH_MESON8B
- 	bool "Amlogic Meson8b SoCs support"
+The second patch however is required to make the GPIO interrupt
+controller functional on Meson8b. Without this the driver simply fails
+during the of_iomap call - and as a result of that GPIO interrupts are
+unavailable.
+
+
+Martin Blumenstingl (2):
+  ARM: dts: meson: correct the sort order for the the gpio_intc node
+  ARM: dts: meson: fix the memory region of the GPIO interrupt
+    controller
+
+ arch/arm/boot/dts/meson.dtsi | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
 -- 
 2.14.3
