@@ -1,74 +1,38 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Sun, 29 Oct 2017 15:59:03 +0100
-Subject: [RESEND PATCH v2 1/2] soc: amlogic: add Meson GX VPU Domains
- driver
-In-Reply-To: <1509208817-30632-2-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Sat, 28 Oct 2017 18:40:16 +0200")
-References: <1509208817-30632-1-git-send-email-narmstrong@baylibre.com>
- <1509208817-30632-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <7h60ayvw3s.fsf@baylibre.com>
+Date: Sun, 29 Oct 2017 16:31:55 +0100
+Subject: [PATCH v7 0/6] SMP and CPU hotplug support for Meson8/Meson8b
+In-Reply-To: <20170917164523.6970-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 17 Sep 2017 18:45:17 +0200")
+References: <20170917164523.6970-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7hwp3eug0k.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> The Video Processing Unit needs a specific Power Domain powering scheme
-> this driver handles this as a PM Power Domain driver.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> This patchset adds support for booting the secondary CPU cores (and
+> taking them offline again) on Amlogic Meson8 and Meson8b SoCs.
+> It is based on an earlier version from Carlo Caione - this helped me
+> a lot to get a better understanding of how SMP/CPU hotplug works
+> (compared to the code found in Amlogic's GPL kernel sources from
+> year 2015).
 
 [...]
 
-> +static inline
-> +struct meson_gx_pwrc_vpu *genpd_to_pd(struct generic_pm_domain *d)
-> +{
-> +	return container_of(d, struct meson_gx_pwrc_vpu, genpd);
-> +}
-> +
-> +static int meson_gx_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
-> +{
-> +	struct meson_gx_pwrc_vpu *pd = genpd_to_pd(genpd);
-> +	int i;
-> +
-> +	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
-> +			   GEN_PWR_VPU_HDMI_ISO, GEN_PWR_VPU_HDMI_ISO);
-> +	udelay(20);
+> Carlo Caione (2):
+>   dt-bindings: Amlogic: Add Meson8 and Meson8b SMP related documentation
+>   ARM: dts: meson8b: add support for booting the secondary CPU cores
 
-Some minor nits/questions.  I know the vendor code does it this way,
-but...
+Applied to v4.15/dt...
 
-> +	/* Power Down Memories */
-> +	for (i = 0; i < 32; i += 2) {
-> +		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
-> +				   0x2 << i, 0x3 << i);
-> +		udelay(5);
-> +	}
+> Martin Blumenstingl (4):
+>   ARM: smp_scu: add a helper for powering on a specific CPU
+>   ARM: smp_scu: allow the platform code to read the SCU CPU status
+>   ARM: meson: Add SMP bringup code for Meson8 and Meson8b
+>   ARM: dts: meson8: add support for booting the secondary CPU cores
 
-several of these bits are marked "reserved" in the datasheet.  Have you tried
-without writing to the reserved bits?
+Applied to v4.15/soc with Russell's ack.
 
-> +	for (i = 0; i < 32; i += 2) {
-> +		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
-> +				   0x2 << i, 0x3 << i);
-> +		udelay(5);
-> +	}
-
-ditto
-
-> +	for (i = 8; i < 16; i++) {
-> +		regmap_update_bits(pd->regmap_hhi, HHI_MEM_PD_REG0,
-> +				   BIT(i), BIT(i));
-> +		udelay(5);
-> +	}
-
-Do these really have to be written one bit at a time?
-
-I'm actually OK to merge things like this, since it also captures the
-sequences used by the vendor kernel, but I'm just curious if you did any
-of the other experiments.
-
-If you can try those experiments, we can take them as follow-on patches.
+Thanks,
 
 Kevin
