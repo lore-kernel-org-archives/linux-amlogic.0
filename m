@@ -1,31 +1,29 @@
-From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
-Date: Sat, 28 Oct 2017 23:08:41 +0200
-Subject: [PATCH v7 4/6] ARM: meson: Add SMP bringup code for Meson8 and
- Meson8b
-In-Reply-To: <20170917164523.6970-5-martin.blumenstingl@googlemail.com>
-Message-ID: <20171028210841.GQ2750@otheros>
+From: b.galvani@gmail.com (Beniamino Galvani)
+Date: Sun, 29 Oct 2017 10:08:59 +0100
+Subject: [PATCH 0/2] Amlogic I2C driver for u-boot
+Message-ID: <20171029090901.24299-1-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-> diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-> index 47d3a1ab08d2..82faa958ab88 100644
-> --- a/arch/arm/Makefile
-> +++ b/arch/arm/Makefile
-> @@ -147,6 +147,7 @@ textofs-$(CONFIG_SA1111) := 0x00208000
->  endif
->  textofs-$(CONFIG_ARCH_MSM8X60) := 0x00208000
->  textofs-$(CONFIG_ARCH_MSM8960) := 0x00208000
-> +textofs-$(CONFIG_ARCH_MESON) := 0x00208000
->  textofs-$(CONFIG_ARCH_AXXIA) := 0x00308000
->  
-> # Machine directory name.  This list is sorted alphanumerically
+Hi,
 
-Due to the observations made/explained here [0], would it make
-sense to put this diff into an extra patch? With a
-"Fixes: 4a69fcd3a108 ("ARM: meson: Add DTS for Odroid-C1 and Tronfy MXQ boards")"
-and "Reported-by: Emiliano Ingrassia <ingrassia@epigenesys.com>"
-maybe?
+this series adds support for the Amlogic Meson I2C controller to
+u-boot.
 
-Regards, Linus
+Beniamino Galvani (2):
+  i2c: add Amlogic Meson driver
+  odroid-c2: enable I2C
 
-[0]: https://lkml.org/lkml/2017/10/28/148
+ arch/arm/include/asm/arch-meson/gxbb.h |   1 +
+ arch/arm/include/asm/arch-meson/i2c.h  |  11 ++
+ board/amlogic/odroid-c2/odroid-c2.c    |   1 +
+ configs/odroid-c2_defconfig            |   3 +
+ drivers/i2c/Kconfig                    |   6 +
+ drivers/i2c/Makefile                   |   1 +
+ drivers/i2c/meson_i2c.c                | 263 +++++++++++++++++++++++++++++++++
+ 7 files changed, 286 insertions(+)
+ create mode 100644 arch/arm/include/asm/arch-meson/i2c.h
+ create mode 100644 drivers/i2c/meson_i2c.c
+
+-- 
+2.13.6
