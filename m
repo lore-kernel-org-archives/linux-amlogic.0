@@ -1,72 +1,343 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Sun, 29 Oct 2017 15:42:30 +0100
-Subject: [PATCH 2/2] odroid-c2: enable I2C
-In-Reply-To: <20171029090901.24299-3-b.galvani@gmail.com>
+Date: Sun, 29 Oct 2017 15:44:14 +0100
+Subject: [PATCH 1/2] i2c: add Amlogic Meson driver
+In-Reply-To: <20171029090901.24299-2-b.galvani@gmail.com>
 References: <20171029090901.24299-1-b.galvani@gmail.com>
- <20171029090901.24299-3-b.galvani@gmail.com>
-Message-ID: <59F5E8D6.50803@baylibre.com>
+ <20171029090901.24299-2-b.galvani@gmail.com>
+Message-ID: <59F5E93E.3070000@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
 
 Le 29/10/2017 10:09, Beniamino Galvani a ?crit :
+> Add a driver for the I2C controller available on Amlogic Meson SoCs.
+> 
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->  arch/arm/include/asm/arch-meson/gxbb.h | 1 +
->  board/amlogic/odroid-c2/odroid-c2.c    | 1 +
->  configs/odroid-c2_defconfig            | 3 +++
->  3 files changed, 5 insertions(+)
+>  arch/arm/include/asm/arch-meson/i2c.h |  11 ++
+>  drivers/i2c/Kconfig                   |   6 +
+>  drivers/i2c/Makefile                  |   1 +
+>  drivers/i2c/meson_i2c.c               | 263 ++++++++++++++++++++++++++++++++++
+>  4 files changed, 281 insertions(+)
+>  create mode 100644 arch/arm/include/asm/arch-meson/i2c.h
+>  create mode 100644 drivers/i2c/meson_i2c.c
 > 
-> diff --git a/arch/arm/include/asm/arch-meson/gxbb.h b/arch/arm/include/asm/arch-meson/gxbb.h
-> index ce41349792..96c9535f53 100644
-> --- a/arch/arm/include/asm/arch-meson/gxbb.h
-> +++ b/arch/arm/include/asm/arch-meson/gxbb.h
-> @@ -44,6 +44,7 @@
->  #define GXBB_GCLK_MPEG_OTHER	GXBB_HIU_ADDR(0x53)
->  #define GXBB_GCLK_MPEG_AO	GXBB_HIU_ADDR(0x54)
+> diff --git a/arch/arm/include/asm/arch-meson/i2c.h b/arch/arm/include/asm/arch-meson/i2c.h
+> new file mode 100644
+> index 0000000000..783bc3786f
+> --- /dev/null
+> +++ b/arch/arm/include/asm/arch-meson/i2c.h
+> @@ -0,0 +1,11 @@
+> +/*
+> + * Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:	GPL-2.0+
+> + */
+> +#ifndef _MESON_I2C_H_
+> +#define _MESON_I2C_H_
+> +
+> +#define MESON_I2C_CLK_RATE	167000000
+> +
+> +#endif
+> diff --git a/drivers/i2c/Kconfig b/drivers/i2c/Kconfig
+> index c296985d9b..1989f8eb57 100644
+> --- a/drivers/i2c/Kconfig
+> +++ b/drivers/i2c/Kconfig
+> @@ -137,6 +137,12 @@ config SYS_I2C_IMX_LPI2C
+>  	help
+>  	  Add support for the NXP i.MX LPI2C driver.
 >  
-> +#define GXBB_GCLK_MPEG_0_I2C   BIT(9)
->  #define GXBB_GCLK_MPEG_1_ETH	BIT(3)
->  
->  #endif /* __GXBB_H__ */
-> diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
-> index eac04d8178..a5ea8dc5af 100644
-> --- a/board/amlogic/odroid-c2/odroid-c2.c
-> +++ b/board/amlogic/odroid-c2/odroid-c2.c
-> @@ -35,6 +35,7 @@ int misc_init_r(void)
->  				     GXBB_ETH_REG_0_CLK_EN);
->  
->  	/* Enable power and clock gate */
-> +	setbits_le32(GXBB_GCLK_MPEG_0, GXBB_GCLK_MPEG_0_I2C);
-
-Hi Beniamino,
-
-At some point, this should maybe be implemented as a (basic) clock driver to handle these gates.
-
-Neil
-
->  	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
->  	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
->  
-> diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
-> index f7f8016644..1afd2fc111 100644
-> --- a/configs/odroid-c2_defconfig
-> +++ b/configs/odroid-c2_defconfig
-> @@ -11,12 +11,15 @@ CONFIG_DEBUG_UART=y
->  # CONFIG_CMD_IMI is not set
->  # CONFIG_CMD_FPGA is not set
->  CONFIG_CMD_GPIO=y
-> +CONFIG_CMD_I2C=y
->  # CONFIG_CMD_LOADS is not set
->  CONFIG_CMD_MMC=y
->  # CONFIG_CMD_SETEXPR is not set
->  CONFIG_OF_CONTROL=y
->  CONFIG_NET_RANDOM_ETHADDR=y
->  CONFIG_DM_GPIO=y
-> +CONFIG_DM_I2C=y
-> +CONFIG_SYS_I2C_MESON=y
->  CONFIG_DM_MMC=y
->  CONFIG_MMC_MESON_GX=y
->  CONFIG_DM_ETH=y
+> +config SYS_I2C_MESON
+> +	bool "Amlogic Meson I2C driver"
+> +	depends on DM_I2C && ARCH_MESON
+> +	help
+> +	  Add support for the Amlogic Meson I2C driver.
+> +
+>  config SYS_I2C_MXC
+>  	bool "NXP i.MX I2C driver"
+>  	depends on MX6
+> diff --git a/drivers/i2c/Makefile b/drivers/i2c/Makefile
+> index 3a8c61b485..733cd3e92f 100644
+> --- a/drivers/i2c/Makefile
+> +++ b/drivers/i2c/Makefile
+> @@ -25,6 +25,7 @@ obj-$(CONFIG_SYS_I2C_INTEL) += intel_i2c.o
+>  obj-$(CONFIG_SYS_I2C_IMX_LPI2C) += imx_lpi2c.o
+>  obj-$(CONFIG_SYS_I2C_KONA) += kona_i2c.o
+>  obj-$(CONFIG_SYS_I2C_LPC32XX) += lpc32xx_i2c.o
+> +obj-$(CONFIG_SYS_I2C_MESON) += meson_i2c.o
+>  obj-$(CONFIG_SYS_I2C_MVTWSI) += mvtwsi.o
+>  obj-$(CONFIG_SYS_I2C_MXC) += mxc_i2c.o
+>  obj-$(CONFIG_SYS_I2C_MXS) += mxs_i2c.o
+> diff --git a/drivers/i2c/meson_i2c.c b/drivers/i2c/meson_i2c.c
+> new file mode 100644
+> index 0000000000..2434d9ed53
+> --- /dev/null
+> +++ b/drivers/i2c/meson_i2c.c
+> @@ -0,0 +1,263 @@
+> +/*
+> + * (C) Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:	GPL-2.0+
+> + */
+> +#include <common.h>
+> +#include <asm/arch/i2c.h>
+> +#include <asm/io.h>
+> +#include <dm.h>
+> +#include <i2c.h>
+> +
+> +#define I2C_TIMEOUT_MS		500
+> +
+> +/* Control register fields */
+> +#define REG_CTRL_START		BIT(0)
+> +#define REG_CTRL_ACK_IGNORE	BIT(1)
+> +#define REG_CTRL_STATUS		BIT(2)
+> +#define REG_CTRL_ERROR		BIT(3)
+> +#define REG_CTRL_CLKDIV_SHIFT	12
+> +#define REG_CTRL_CLKDIV_MASK	GENMASK(21, 12)
+> +#define REG_CTRL_CLKDIVEXT_SHIFT 28
+> +#define REG_CTRL_CLKDIVEXT_MASK	GENMASK(29, 28)
+> +
+> +enum {
+> +	TOKEN_END = 0,
+> +	TOKEN_START,
+> +	TOKEN_SLAVE_ADDR_WRITE,
+> +	TOKEN_SLAVE_ADDR_READ,
+> +	TOKEN_DATA,
+> +	TOKEN_DATA_LAST,
+> +	TOKEN_STOP,
+> +};
+> +
+> +struct i2c_regs {
+> +	u32 ctrl;
+> +	u32 slave_addr;
+> +	u32 tok_list0;
+> +	u32 tok_list1;
+> +	u32 tok_wdata0;
+> +	u32 tok_wdata1;
+> +	u32 tok_rdata0;
+> +	u32 tok_rdata1;
+> +};
+> +
+> +struct meson_i2c {
+> +	struct i2c_regs *regs;
+> +	struct i2c_msg *msg;
+> +	bool last;
+> +	uint count;
+> +	uint pos;
+> +	u32 tokens[2];
+> +	uint num_tokens;
+> +};
+> +
+> +static void meson_i2c_reset_tokens(struct meson_i2c *i2c)
+> +{
+> +	i2c->tokens[0] = 0;
+> +	i2c->tokens[1] = 0;
+> +	i2c->num_tokens = 0;
+> +}
+> +
+> +static void meson_i2c_add_token(struct meson_i2c *i2c, int token)
+> +{
+> +	if (i2c->num_tokens < 8)
+> +		i2c->tokens[0] |= (token & 0xf) << (i2c->num_tokens * 4);
+> +	else
+> +		i2c->tokens[1] |= (token & 0xf) << ((i2c->num_tokens % 8) * 4);
+> +
+> +	i2c->num_tokens++;
+> +}
+> +
+> +static void meson_i2c_get_data(struct meson_i2c *i2c, u8 *buf, int len)
+> +{
+> +	u32 rdata0, rdata1;
+> +	int i;
+> +
+> +	rdata0 = readl(&i2c->regs->tok_rdata0);
+> +	rdata1 = readl(&i2c->regs->tok_rdata1);
+> +
+> +	debug("meson i2c: read data %08x %08x len %d\n", rdata0, rdata1, len);
+> +
+> +	for (i = 0; i < min(4, len); i++)
+> +		*buf++ = (rdata0 >> i * 8) & 0xff;
+> +
+> +	for (i = 4; i < min(8, len); i++)
+> +		*buf++ = (rdata1 >> (i - 4) * 8) & 0xff;
+> +}
+> +
+> +static void meson_i2c_put_data(struct meson_i2c *i2c, u8 *buf, int len)
+> +{
+> +	u32 wdata0 = 0, wdata1 = 0;
+> +	int i;
+> +
+> +	for (i = 0; i < min(4, len); i++)
+> +		wdata0 |= *buf++ << (i * 8);
+> +
+> +	for (i = 4; i < min(8, len); i++)
+> +		wdata1 |= *buf++ << ((i - 4) * 8);
+> +
+> +	writel(wdata0, &i2c->regs->tok_wdata0);
+> +	writel(wdata1, &i2c->regs->tok_wdata1);
+> +
+> +	debug("meson i2c: write data %08x %08x len %d\n", wdata0, wdata1, len);
+> +}
+> +
+> +static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
+> +{
+> +	bool write = !(i2c->msg->flags & I2C_M_RD);
+> +	int i;
+> +
+> +	i2c->count = min(i2c->msg->len - i2c->pos, 8u);
+> +
+> +	for (i = 0; i + 1 < i2c->count; i++)
+> +		meson_i2c_add_token(i2c, TOKEN_DATA);
+> +
+> +	if (i2c->count) {
+> +		if (write || i2c->pos + i2c->count < i2c->msg->len)
+> +			meson_i2c_add_token(i2c, TOKEN_DATA);
+> +		else
+> +			meson_i2c_add_token(i2c, TOKEN_DATA_LAST);
+> +	}
+> +
+> +	if (write)
+> +		meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+> +
+> +	if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
+> +		meson_i2c_add_token(i2c, TOKEN_STOP);
+> +
+> +	writel(i2c->tokens[0], &i2c->regs->tok_list0);
+> +	writel(i2c->tokens[1], &i2c->regs->tok_list1);
+> +}
+> +
+> +static void meson_i2c_do_start(struct meson_i2c *i2c, struct i2c_msg *msg)
+> +{
+> +	int token;
+> +
+> +	token = (msg->flags & I2C_M_RD) ? TOKEN_SLAVE_ADDR_READ :
+> +		TOKEN_SLAVE_ADDR_WRITE;
+> +
+> +	writel(msg->addr << 1, &i2c->regs->slave_addr);
+> +	meson_i2c_add_token(i2c, TOKEN_START);
+> +	meson_i2c_add_token(i2c, token);
+> +}
+> +
+> +static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+> +			      int last)
+> +{
+> +	ulong start;
+> +
+> +	debug("meson i2c: %s addr %u len %u\n",
+> +	      (msg->flags & I2C_M_RD) ? "read" : "write",
+> +	      msg->addr, msg->len);
+> +
+> +	i2c->msg = msg;
+> +	i2c->last = last;
+> +	i2c->pos = 0;
+> +	i2c->count = 0;
+> +
+> +	meson_i2c_reset_tokens(i2c);
+> +	meson_i2c_do_start(i2c, msg);
+> +
+> +	do {
+> +		meson_i2c_prepare_xfer(i2c);
+> +
+> +		/* start the transfer */
+> +		setbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +		start = get_timer(0);
+> +		while (readl(&i2c->regs->ctrl) & REG_CTRL_STATUS) {
+> +			if (get_timer(start) > I2C_TIMEOUT_MS) {
+> +				clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +				debug("meson i2c: timeout\n");
+> +				return -ETIMEDOUT;
+> +			}
+> +			udelay(1);
+> +		}
+> +		meson_i2c_reset_tokens(i2c);
+> +		clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +
+> +		if (readl(&i2c->regs->ctrl) & REG_CTRL_ERROR) {
+> +			debug("meson i2c: error\n");
+> +			return -ENXIO;
+> +		}
+> +
+> +		if ((msg->flags & I2C_M_RD) && i2c->count) {
+> +			meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos,
+> +					   i2c->count);
+> +		}
+> +		i2c->pos += i2c->count;
+> +	} while (i2c->pos < msg->len);
+> +
+> +	return 0;
+> +}
+> +
+> +static int meson_i2c_xfer(struct udevice *bus, struct i2c_msg *msg,
+> +			  int nmsgs)
+> +{
+> +	struct meson_i2c *i2c = dev_get_priv(bus);
+> +	int i, ret = 0;
+> +
+> +	for (i = 0; i < nmsgs; i++) {
+> +		ret = meson_i2c_xfer_msg(i2c, msg + i, i == nmsgs - 1);
+> +		if (ret)
+> +			return -EREMOTEIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
+> +{
+> +	struct meson_i2c *i2c = dev_get_priv(bus);
+> +	unsigned int clk_rate = MESON_I2C_CLK_RATE;
+> +	unsigned int div;
+> +
+> +	div = DIV_ROUND_UP(clk_rate, speed * 4);
+> +
+> +	/* clock divider has 12 bits */
+> +	if (div >= (1 << 12)) {
+> +		debug("meson i2c: requested bus frequency too low\n");
+> +		div = (1 << 12) - 1;
+> +	}
+> +
+> +	clrsetbits_le32(&i2c->regs->ctrl, REG_CTRL_CLKDIV_MASK,
+> +			(div & GENMASK(9, 0)) << REG_CTRL_CLKDIV_SHIFT);
+> +
+> +	clrsetbits_le32(&i2c->regs->ctrl, REG_CTRL_CLKDIVEXT_MASK,
+> +			(div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
+> +
+> +	debug("meson i2c: set clk %u, src %u, div %u\n", speed, clk_rate, div);
+> +
+> +	return 0;
+> +}
+> +
+> +static int meson_i2c_probe(struct udevice *bus)
+> +{
+> +	struct meson_i2c *i2c = dev_get_priv(bus);
+> +
+> +	i2c->regs = dev_read_addr_ptr(bus);
+> +	clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dm_i2c_ops meson_i2c_ops = {
+> +	.xfer          = meson_i2c_xfer,
+> +	.set_bus_speed = meson_i2c_set_bus_speed,
+> +};
+> +
+> +static const struct udevice_id meson_i2c_ids[] = {
+> +	{ .compatible = "amlogic,meson6-i2c" },
+> +	{ .compatible = "amlogic,meson-gx-i2c" },
+> +	{ .compatible = "amlogic,meson-gxbb-i2c" },
+> +	{ }
+> +};
+> +
+> +U_BOOT_DRIVER(i2c_meson) = {
+> +	.name = "i2c_meson",
+> +	.id   = UCLASS_I2C,
+> +	.of_match = meson_i2c_ids,
+> +	.probe = meson_i2c_probe,
+> +	.priv_auto_alloc_size = sizeof(struct meson_i2c),
+> +	.ops = &meson_i2c_ops,
+> +};
 > 
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
