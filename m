@@ -1,56 +1,72 @@
-From: trini@konsulko.com (Tom Rini)
-Date: Sun, 29 Oct 2017 08:04:11 -0400
-Subject: [PATCH u-boot 1/3] net: phy: Add Amlogic Meson GXL Internal PHY
- support
-In-Reply-To: <0921db70-a4bb-ea2e-d273-44280a2acc3c@baylibre.com>
-References: <1508313732-19282-1-git-send-email-narmstrong@baylibre.com>
- <1508313732-19282-2-git-send-email-narmstrong@baylibre.com>
- <CAPnjgZ1-oU0E1-tH-Z3mu0snsYBt87p_FDnJ5hgP1fLU8nXoNQ@mail.gmail.com>
- <0921db70-a4bb-ea2e-d273-44280a2acc3c@baylibre.com>
-Message-ID: <20171029120411.GV12185@bill-the-cat>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Sun, 29 Oct 2017 15:42:30 +0100
+Subject: [PATCH 2/2] odroid-c2: enable I2C
+In-Reply-To: <20171029090901.24299-3-b.galvani@gmail.com>
+References: <20171029090901.24299-1-b.galvani@gmail.com>
+ <20171029090901.24299-3-b.galvani@gmail.com>
+Message-ID: <59F5E8D6.50803@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Oct 26, 2017 at 03:39:17PM +0200, Neil Armstrong wrote:
-> On 22/10/2017 16:36, Simon Glass wrote:
-> > On 18 October 2017 at 10:02, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >> The Amlogic Meson GXL/GXM families embeds an internal RMII Ethernet PHY.
-> >>
-> >> The PHY acts as a generic PHY but needs a slight configuration right
-> >> before it's configuration.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/net/phy/Kconfig     |  3 +++
-> >>  drivers/net/phy/Makefile    |  1 +
-> >>  drivers/net/phy/meson-gxl.c | 57 +++++++++++++++++++++++++++++++++++++++++++++
-> >>  drivers/net/phy/phy.c       |  3 +++
-> >>  include/phy.h               |  1 +
-> >>  5 files changed, 65 insertions(+)
-> >>  create mode 100644 drivers/net/phy/meson-gxl.c
-> > 
-> > We really should create a uclass for PHY drivers before adding any
-> > more of these.
-> > 
-> > Regards,
-> > Simon
-> > 
-> 
-> Hi Simon,
-> 
-> Sure, this would indeed be necessary, but is it necessary to wait for
-> the uclass to merge mode PHYs ?
 
-Well, this isn't going in before the next release (along with all of the
-other amlogic stuff, which looks good otherwise btw).  So, do you have
-time to take a pass at a uclass?
 
--- 
-Tom
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20171029/9ed4e0fe/attachment.sig>
+Le 29/10/2017 10:09, Beniamino Galvani a ?crit :
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  arch/arm/include/asm/arch-meson/gxbb.h | 1 +
+>  board/amlogic/odroid-c2/odroid-c2.c    | 1 +
+>  configs/odroid-c2_defconfig            | 3 +++
+>  3 files changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm/include/asm/arch-meson/gxbb.h b/arch/arm/include/asm/arch-meson/gxbb.h
+> index ce41349792..96c9535f53 100644
+> --- a/arch/arm/include/asm/arch-meson/gxbb.h
+> +++ b/arch/arm/include/asm/arch-meson/gxbb.h
+> @@ -44,6 +44,7 @@
+>  #define GXBB_GCLK_MPEG_OTHER	GXBB_HIU_ADDR(0x53)
+>  #define GXBB_GCLK_MPEG_AO	GXBB_HIU_ADDR(0x54)
+>  
+> +#define GXBB_GCLK_MPEG_0_I2C   BIT(9)
+>  #define GXBB_GCLK_MPEG_1_ETH	BIT(3)
+>  
+>  #endif /* __GXBB_H__ */
+> diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
+> index eac04d8178..a5ea8dc5af 100644
+> --- a/board/amlogic/odroid-c2/odroid-c2.c
+> +++ b/board/amlogic/odroid-c2/odroid-c2.c
+> @@ -35,6 +35,7 @@ int misc_init_r(void)
+>  				     GXBB_ETH_REG_0_CLK_EN);
+>  
+>  	/* Enable power and clock gate */
+> +	setbits_le32(GXBB_GCLK_MPEG_0, GXBB_GCLK_MPEG_0_I2C);
+
+Hi Beniamino,
+
+At some point, this should maybe be implemented as a (basic) clock driver to handle these gates.
+
+Neil
+
+>  	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
+>  	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
+>  
+> diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
+> index f7f8016644..1afd2fc111 100644
+> --- a/configs/odroid-c2_defconfig
+> +++ b/configs/odroid-c2_defconfig
+> @@ -11,12 +11,15 @@ CONFIG_DEBUG_UART=y
+>  # CONFIG_CMD_IMI is not set
+>  # CONFIG_CMD_FPGA is not set
+>  CONFIG_CMD_GPIO=y
+> +CONFIG_CMD_I2C=y
+>  # CONFIG_CMD_LOADS is not set
+>  CONFIG_CMD_MMC=y
+>  # CONFIG_CMD_SETEXPR is not set
+>  CONFIG_OF_CONTROL=y
+>  CONFIG_NET_RANDOM_ETHADDR=y
+>  CONFIG_DM_GPIO=y
+> +CONFIG_DM_I2C=y
+> +CONFIG_SYS_I2C_MESON=y
+>  CONFIG_DM_MMC=y
+>  CONFIG_MMC_MESON_GX=y
+>  CONFIG_DM_ETH=y
+> 
