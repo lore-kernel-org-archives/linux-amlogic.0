@@ -1,89 +1,24 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 31 Oct 2017 21:01:47 +0100
-Subject: [PATCH 5/5] iio: adc: meson-saradc: program the channel muxes during
- initialization
-In-Reply-To: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
-References: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171031200147.14660-6-martin.blumenstingl@googlemail.com>
+Date: Tue, 31 Oct 2017 23:23:14 +0100
+Subject: [PATCH 0/2] update the L2 cache settings on Meson8/Meson8b
+Message-ID: <20171031222316.24548-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On some Meson8 devices the channel muxes are not programmed. This
-results in garbage values when trying to read channels that are not set
-up.
-Fix this by initializing the channel 0 and 1 muxes in
-MESON_SAR_ADC_CHAN_10_SW as well as the muxes for all other channels in
-MESON_SAR_ADC_AUX_SW based on what the vendor driver does (which is
-simply a 1:1 mapping of channel number and channel mux).
-This only showed up on Meson8 devices, because for GXBB and newer BL30
-is taking care of initializing the channel muxes.
+The L2 cache settings on our mainline kernel did not match the
+configuration from Amlogic's vendor kernel.
 
-This additionally fixes a typo in the
-MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_MASK macro because the old definition
-assumed that the register fields were 2 bit wide, while they are
-actually 3 bit wide.
+This was boot-tested on a Meson8 (actually Meson8m2, but both use
+the same CPU cores and L2 cache configuration) and a Meson8b board.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/iio/adc/meson_saradc.c | 32 +++++++++++++++++++++++++++++---
- 1 file changed, 29 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index fa3c1378c2c9..48fb1b642a5e 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -96,8 +96,8 @@
- 	#define MESON_SAR_ADC_FIFO_RD_SAMPLE_VALUE_MASK		GENMASK(11, 0)
- 
- #define MESON_SAR_ADC_AUX_SW					0x1c
--	#define MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_MASK(_chan)	\
--					(GENMASK(10, 8) << (((_chan) - 2) * 2))
-+	#define MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_SHIFT(_chan)	\
-+					(8 + (((_chan) - 2) * 3))
- 	#define MESON_SAR_ADC_AUX_SW_VREF_P_MUX			BIT(6)
- 	#define MESON_SAR_ADC_AUX_SW_VREF_N_MUX			BIT(5)
- 	#define MESON_SAR_ADC_AUX_SW_MODE_SEL			BIT(4)
-@@ -623,7 +623,7 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
- static int meson_sar_adc_init(struct iio_dev *indio_dev)
- {
- 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
--	int regval, ret;
-+	int regval, i, ret;
- 
- 	/*
- 	 * make sure we start@CH7 input since the other muxes are only used
-@@ -678,6 +678,32 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
- 			   FIELD_PREP(MESON_SAR_ADC_DELAY_INPUT_DLY_SEL_MASK,
- 				      1));
- 
-+	/*
-+	 * set up the input channel muxes in MESON_SAR_ADC_CHAN_10_SW
-+	 * (0 = SAR_ADC_CH0, 1 = SAR_ADC_CH1)
-+	 */
-+	regval = FIELD_PREP(MESON_SAR_ADC_CHAN_10_SW_CHAN0_MUX_SEL_MASK, 0);
-+	regmap_update_bits(priv->regmap, MESON_SAR_ADC_CHAN_10_SW,
-+			   MESON_SAR_ADC_CHAN_10_SW_CHAN0_MUX_SEL_MASK,
-+			   regval);
-+	regval = FIELD_PREP(MESON_SAR_ADC_CHAN_10_SW_CHAN1_MUX_SEL_MASK, 1);
-+	regmap_update_bits(priv->regmap, MESON_SAR_ADC_CHAN_10_SW,
-+			   MESON_SAR_ADC_CHAN_10_SW_CHAN1_MUX_SEL_MASK,
-+			   regval);
-+
-+	/*
-+	 * set up the input channel muxes in MESON_SAR_ADC_AUX_SW
-+	 * (2 = SAR_ADC_CH2, 3 = SAR_ADC_CH3, ...) and enable
-+	 * MESON_SAR_ADC_AUX_SW_YP_DRIVE_SW and
-+	 * MESON_SAR_ADC_AUX_SW_XP_DRIVE_SW like the vendor driver.
-+	 */
-+	regval = 0;
-+	for (i = 2; i <= 7; i++)
-+		regval |= i << MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_SHIFT(i);
-+	regval |= MESON_SAR_ADC_AUX_SW_YP_DRIVE_SW;
-+	regval |= MESON_SAR_ADC_AUX_SW_XP_DRIVE_SW;
-+	regmap_write(priv->regmap, MESON_SAR_ADC_AUX_SW, regval);
-+
- 	ret = clk_set_parent(priv->adc_sel_clk, priv->clkin);
- 	if (ret) {
- 		dev_err(indio_dev->dev.parent,
+Martin Blumenstingl (2):
+  ARM: dts: meson8b: add more L2 cache settings
+  ARM: dts: meson8: add more L2 cache settings
+
+ arch/arm/boot/dts/meson8.dtsi  | 3 +++
+ arch/arm/boot/dts/meson8b.dtsi | 3 +++
+ 2 files changed, 6 insertions(+)
+
 -- 
 2.15.0
