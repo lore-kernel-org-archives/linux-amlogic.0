@@ -1,49 +1,57 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 31 Oct 2017 23:23:15 +0100
-Subject: [PATCH 1/2] ARM: dts: meson8b: add more L2 cache settings
-In-Reply-To: <20171031222316.24548-1-martin.blumenstingl@googlemail.com>
-References: <20171031222316.24548-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171031222316.24548-2-martin.blumenstingl@googlemail.com>
+From: marc.zyngier@arm.com (Marc Zyngier)
+Date: Tue, 31 Oct 2017 23:57:37 +0000
+Subject: [PATCH 0/3] Meson8 GPIO interrupt support
+In-Reply-To: <7h1sljmxp6.fsf@baylibre.com> (Kevin Hilman's message of "Tue, 31
+ Oct 2017 11:13:57 +0100")
+References: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
+ <8637605bly.fsf@arm.com> <7h1sljmxp6.fsf@baylibre.com>
+Message-ID: <86ineu3m6m.fsf@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Amlogic's vendor kernel prints these PL310 L2 cache controller settings
-during boot:
-  8 ways, 2048 sets, CACHE_ID 0x4100a0c9,  Cache size: 524288 B
-  AUX_CTRL 0x7ec60001, PERFETCH_CTRL 0x75000007, POWER_CTRL  0x00000000
-  TAG_LATENCY 0x00000111, DATA_LATENCY 0x00000222
+On Tue, Oct 31 2017 at 11:13:57 am GMT, Kevin Hilman <khilman@baylibre.com> wrote:
+> Marc Zyngier <marc.zyngier@arm.com> writes:
+>
+>> On Mon, Oct 30 2017 at 12:05:20 am GMT, Martin Blumenstingl
+>> <martin.blumenstingl@googlemail.com> wrote:
+>>> This is a simple follow-up of two series from Jerome:
+>>> - "irqchip: meson: add support for the gpio interrupt controller"
+>>> - "ARM: meson: enable gpio interrupt controller"
+>>>
+>>> This fills in the missing bits to have GPIO interrupt support on Meson8,
+>>> which includes:
+>>> - a new binding in the driver with the correct IRQ number
+>>> - enabling the GPIO interrupt controller in meson8.dts
+>>> - enabling the GPIO interrupt controller via Kconfig for MACH_MESON8
+>>>
+>>>
+>>> Martin Blumenstingl (3):
+>>>   irqchip/meson-gpio: add support for Meson8 SoCs
+>>>   ARM: dts: meson8: enable the GPIO interrupt controller
+>>>   ARM: meson: enable MESON_IRQ_GPIO also for MACH_MESON8
+>>>
+>>>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt        | 1 +
+>>>  arch/arm/boot/dts/meson8.dtsi                                        | 5 +++++
+>>>  arch/arm/mach-meson/Kconfig                                          | 1 +
+>>>  drivers/irqchip/irq-meson-gpio.c                                     | 5 +++++
+>>>  4 files changed, 12 insertions(+)
+>>
+>> Kevin, Carlos: Are you OK with this one? It seems pretty minor, and I'm
+>> happy to queue it if I get an Ack for it. If you'd rather get it through
+>> via armsoc, let me know.
+>
+> Can you take the drivers/irqchip and bindings patch (PATCH 1/3) and I'll
+> take the rest to avoid conflicts with a bunch of other moving parts we
+> have in arch/arm.
 
-Add the "prefetch-data", "prefetch-instr" and "arm,shared-override"
-properties to get the same L2 cache controller configuration as the
-vendor kernel.
-Four differences still remain:
-- L310_AUX_CTRL_EARLY_BRESP is enabled by the vendor kernel, however
-  this is only supported on Cortex-A9 cores (Meson8b has Cortex-A5 cores
-  though)
-- L310_AUX_CTRL_NS_INT_CTRL is currently not supported by the cache-l2x0
-  driver
-- bit 23 is set by the vendor kernel, but this is defined in cache-l2x0.h
-- L310_AUX_CTRL_FULL_LINE_ZERO is enabled by the vendor kernel which is
-  also only supported on Cortex-A9 cores
+Sure, no problem.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+> For the driver, feel free to add
+>
+> Acked-by: Kevin Hilman <khilman@baylibre.com>
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 554c58e67b01..71466077890e 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -223,6 +223,9 @@
- 	arm,data-latency = <3 3 3>;
- 	arm,tag-latency = <2 2 2>;
- 	arm,filter-ranges = <0x100000 0xc0000000>;
-+	prefetch-data = <1>;
-+	prefetch-instr = <1>;
-+	arm,shared-override;
- };
- 
- &pwm_ab {
+Thanks,
+
+	M.
 -- 
-2.15.0
+Jazz is not dead. It just smells funny.
