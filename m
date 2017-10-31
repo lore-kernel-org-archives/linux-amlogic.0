@@ -1,42 +1,91 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 31 Oct 2017 21:01:43 +0100
-Subject: [PATCH 1/5] iio: adc: meson-saradc: fix the bit_idx of the adc_en
- clock
+Date: Tue, 31 Oct 2017 21:01:46 +0100
+Subject: [PATCH 4/5] iio: adc: meson-saradc: fix the clock frequency on Meson8
+ and Meson8b
 In-Reply-To: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
 References: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171031200147.14660-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20171031200147.14660-5-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Meson8 and Meson8b SoCs use the the SAR ADC gate clock provided by the
-MESON_SAR_ADC_REG3 register within the SAR ADC register area.
-According to the datasheet (and the existing MESON_SAR_ADC_REG3_CLK_EN
-definition) the gate is on bit 30.
-The fls() function returns the last set bit, which is "bit index + 1"
-(fls(MESON_SAR_ADC_REG3_CLK_EN) returns 31). Fix this by switching to
-__ffs() which returns the first set bit, which is bit 30 in our case.
+GX SoCs use a 1.2 MHz ADC clock, while the older SoCs use a 1.14 MHz
+clock.
 
-This off by one error results in the ADC not being usable on devices
-where the bootloader did not enable the clock.
+A comment in the driver from Amlogic's GPL kernel says that it's
+running at 1.28 MHz. However, it's actually programming a divider of
+20 + 1. With a XTAL clock of 24 MHz this results in a frequency of
+1.14 MHz. (their calculation might be based on a 27 MHz XTAL clock,
+but this is not what we have on the Meson8 and Meson8b SoCs).
 
-Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
+The ADC was still working with the 1.2MHz clock. In my own tests I did
+not see a difference between 1.2 and 1.14 MHz (regardless of the clock
+frequency used, the ADC results were identical).
+
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/iio/adc/meson_saradc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/iio/adc/meson_saradc.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 2e8dbb89c8c9..55611244c799 100644
+index 7dc7d297a0fc..fa3c1378c2c9 100644
 --- a/drivers/iio/adc/meson_saradc.c
 +++ b/drivers/iio/adc/meson_saradc.c
-@@ -600,7 +600,7 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
- 	init.num_parents = 1;
+@@ -221,6 +221,7 @@ enum meson_sar_adc_chan7_mux_sel {
  
- 	priv->clk_gate.reg = base + MESON_SAR_ADC_REG3;
--	priv->clk_gate.bit_idx = fls(MESON_SAR_ADC_REG3_CLK_EN);
-+	priv->clk_gate.bit_idx = __ffs(MESON_SAR_ADC_REG3_CLK_EN);
- 	priv->clk_gate.hw.init = &init;
+ struct meson_sar_adc_data {
+ 	bool					has_bl30_integration;
++	unsigned long				clock_rate;
+ 	u32					bandgap_reg;
+ 	unsigned int				resolution;
+ 	const char				*name;
+@@ -684,7 +685,7 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
+ 		return ret;
+ 	}
  
- 	priv->adc_clk = devm_clk_register(&indio_dev->dev, &priv->clk_gate.hw);
+-	ret = clk_set_rate(priv->adc_clk, 1200000);
++	ret = clk_set_rate(priv->adc_clk, priv->data->clock_rate);
+ 	if (ret) {
+ 		dev_err(indio_dev->dev.parent,
+ 			"failed to set adc clock rate\n");
+@@ -867,6 +868,7 @@ static const struct iio_info meson_sar_adc_iio_info = {
+ 
+ static const struct meson_sar_adc_data meson_sar_adc_meson8_data = {
+ 	.has_bl30_integration = false,
++	.clock_rate = 1150000,
+ 	.bandgap_reg = MESON_SAR_ADC_DELTA_10,
+ 	.regmap_config = &meson_sar_adc_regmap_config_meson8,
+ 	.resolution = 10,
+@@ -875,6 +877,7 @@ static const struct meson_sar_adc_data meson_sar_adc_meson8_data = {
+ 
+ static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
+ 	.has_bl30_integration = false,
++	.clock_rate = 1150000,
+ 	.bandgap_reg = MESON_SAR_ADC_DELTA_10,
+ 	.regmap_config = &meson_sar_adc_regmap_config_meson8,
+ 	.resolution = 10,
+@@ -883,6 +886,7 @@ static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
+ 
+ static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+ 	.has_bl30_integration = true,
++	.clock_rate = 1200000,
+ 	.bandgap_reg = MESON_SAR_ADC_REG11,
+ 	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+ 	.resolution = 10,
+@@ -891,6 +895,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+ 
+ static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
+ 	.has_bl30_integration = true,
++	.clock_rate = 1200000,
+ 	.bandgap_reg = MESON_SAR_ADC_REG11,
+ 	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+ 	.resolution = 12,
+@@ -899,6 +904,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
+ 
+ static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+ 	.has_bl30_integration = true,
++	.clock_rate = 1200000,
+ 	.bandgap_reg = MESON_SAR_ADC_REG11,
+ 	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+ 	.resolution = 12,
 -- 
 2.15.0
