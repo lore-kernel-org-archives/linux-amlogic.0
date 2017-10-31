@@ -1,96 +1,42 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 31 Oct 2017 00:10:03 +0100
-Subject: [PATCH v7 usb-next 3/4] usb: core: hcd: integrate the PHY roothub
- wrapper
-In-Reply-To: <89fc89e9-4510-2283-aad4-59eacf5cf925@codeaurora.org>
-References: <20171023215718.3446-1-martin.blumenstingl@googlemail.com>
- <20171023215718.3446-4-martin.blumenstingl@googlemail.com>
- <89fc89e9-4510-2283-aad4-59eacf5cf925@codeaurora.org>
-Message-ID: <CAFBinCD0kMkoWT4veoH8ZM7Rj2XwdvuE+tr7mM4n0J86eaOL-Q@mail.gmail.com>
+From: marc.zyngier@arm.com (Marc Zyngier)
+Date: Tue, 31 Oct 2017 01:50:49 +0000
+Subject: [PATCH 0/3] Meson8 GPIO interrupt support
+In-Reply-To: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Mon, 30 Oct 2017 00:05:20 +0100")
+References: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
+Message-ID: <8637605bly.fsf@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Manu,
+On Mon, Oct 30 2017 at 12:05:20 am GMT, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+> This is a simple follow-up of two series from Jerome:
+> - "irqchip: meson: add support for the gpio interrupt controller"
+> - "ARM: meson: enable gpio interrupt controller"
+>
+> This fills in the missing bits to have GPIO interrupt support on Meson8,
+> which includes:
+> - a new binding in the driver with the correct IRQ number
+> - enabling the GPIO interrupt controller in meson8.dts
+> - enabling the GPIO interrupt controller via Kconfig for MACH_MESON8
+>
+>
+> Martin Blumenstingl (3):
+>   irqchip/meson-gpio: add support for Meson8 SoCs
+>   ARM: dts: meson8: enable the GPIO interrupt controller
+>   ARM: meson: enable MESON_IRQ_GPIO also for MACH_MESON8
+>
+>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt        | 1 +
+>  arch/arm/boot/dts/meson8.dtsi                                        | 5 +++++
+>  arch/arm/mach-meson/Kconfig                                          | 1 +
+>  drivers/irqchip/irq-meson-gpio.c                                     | 5 +++++
+>  4 files changed, 12 insertions(+)
 
-thank you for reviewing this!
+Kevin, Carlos: Are you OK with this one? It seems pretty minor, and I'm
+happy to queue it if I get an Ack for it. If you'd rather get it through
+via armsoc, let me know.
 
-On Thu, Oct 26, 2017 at 7:42 AM, Manu Gautam <mgautam@codeaurora.org> wrote:
-> Hi,
->
->
-> On 10/24/2017 3:27 AM, Martin Blumenstingl wrote:
->> This integrates the PHY roothub wrapper into the core hcd
->> infrastructure. Multiple PHYs which are part of the roothub devicetree
->> node (which is a sub-node of the sysdev's node) are now managed
->> (= powered on/off when needed), by the new usb_phy_roothub code.
->>
->> One example where this is required is the Amlogic GXL and GXM SoCs:
->> They are using a dwc3 USB controller with up to three ports enabled on
->> the internal roothub. Using only the top-level "phy" properties does not
->> work here since one can only specify one "usb2-phy" and one "usb3-phy",
->> while actually at least two "usb2-phy" have to be specified.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
->> Acked-by: Alan Stern <stern@rowland.harvard.edu>
->> ---
->>  drivers/usb/core/hcd.c  | 26 ++++++++++++++++++++++++++
->>  include/linux/usb/hcd.h |  1 +
->>  2 files changed, 27 insertions(+)
->>
->> diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
->> index 67aa3d039b9b..6ee97222cdad 100644
->> --- a/drivers/usb/core/hcd.c
->> +++ b/drivers/usb/core/hcd.c
->> @@ -50,6 +50,7 @@
->>  #include <linux/usb/otg.h>
->>
->>  #include "usb.h"
->> +#include "phy.h"
->>
->>
->>  /*-------------------------------------------------------------------------*/
->> @@ -2271,6 +2272,8 @@ int hcd_bus_suspend(struct usb_device *rhdev, pm_message_t msg)
->>               usb_set_device_state(rhdev, USB_STATE_SUSPENDED);
->>               hcd->state = HC_STATE_SUSPENDED;
->>
->> +             usb_phy_roothub_power_off(hcd->phy_roothub);
->> +
->
-> For system-suspend it should be ok.
-> But, in case of runtime/auto suspend, I think PHYs shouldn't be powered off.
-> Should we have check for that like-
->
-> if (!PMSG_IS_AUTO(msg))
->     usb_phy_roothub_power_off()
->
-> Similar check in hcd_bus_resume?
-disclaimer: I must admit that I am not very familiar with the PM code
-and even worse: the platform I'm developing with does not have suspend support
+Thanks,
 
-can I take your suggestion and include it in the next version of this
-series or should we wait for feedback from another developer on this
-topic?
-
->
->>               /* Did we race with a root-hub wakeup event? */
->>               if (rhdev->do_remote_wakeup) {
->>                       char    buffer[6];
->> @@ -2307,6 +2310,11 @@ int hcd_bus_resume(struct usb_device *rhdev, pm_message_t msg)
->>               dev_dbg(&rhdev->dev, "skipped %s of dead bus\n", "resume");
->>               return 0;
->>       }
->> +
->> +     status = usb_phy_roothub_power_on(hcd->phy_roothub);
->> +     if (status)
->> +             return status;
->> +
->
-> --
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
->
-
-
-Regards
-Martin
+	M.
+-- 
+Jazz is not dead. It just smells funny.
