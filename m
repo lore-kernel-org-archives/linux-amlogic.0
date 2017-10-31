@@ -1,36 +1,49 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 31 Oct 2017 11:02:06 +0100
-Subject: [PATCH 0/2] ARM: dts: meson: GPIO interrupt fixes for v4.15
-In-Reply-To: <20171029231715.13391-1-martin.blumenstingl@googlemail.com>
-References: <20171029231715.13391-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1509444126.13838.25.camel@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 31 Oct 2017 11:13:57 +0100
+Subject: [PATCH 0/3] Meson8 GPIO interrupt support
+In-Reply-To: <8637605bly.fsf@arm.com> (Marc Zyngier's message of "Tue, 31 Oct
+ 2017 01:50:49 +0000")
+References: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
+ <8637605bly.fsf@arm.com>
+Message-ID: <7h1sljmxp6.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2017-10-30 at 00:17 +0100, Martin Blumenstingl wrote:
-> This provides two small fixes for the GPIO interrupt support on the
-> 32-bit Meson SoCs.
-> 
-> The first change is purely cosmetic - I still decided to include to it
-> because it keeps the sort order consistent. Also it's easier to find
-> the node if you can rely on the sorting to be consistent.
-> 
-> The second patch however is required to make the GPIO interrupt
-> controller functional on Meson8b. Without this the driver simply fails
-> during the of_iomap call - and as a result of that GPIO interrupts are
-> unavailable.
-> 
+Marc Zyngier <marc.zyngier@arm.com> writes:
 
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+> On Mon, Oct 30 2017 at 12:05:20 am GMT, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+>> This is a simple follow-up of two series from Jerome:
+>> - "irqchip: meson: add support for the gpio interrupt controller"
+>> - "ARM: meson: enable gpio interrupt controller"
+>>
+>> This fills in the missing bits to have GPIO interrupt support on Meson8,
+>> which includes:
+>> - a new binding in the driver with the correct IRQ number
+>> - enabling the GPIO interrupt controller in meson8.dts
+>> - enabling the GPIO interrupt controller via Kconfig for MACH_MESON8
+>>
+>>
+>> Martin Blumenstingl (3):
+>>   irqchip/meson-gpio: add support for Meson8 SoCs
+>>   ARM: dts: meson8: enable the GPIO interrupt controller
+>>   ARM: meson: enable MESON_IRQ_GPIO also for MACH_MESON8
+>>
+>>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt        | 1 +
+>>  arch/arm/boot/dts/meson8.dtsi                                        | 5 +++++
+>>  arch/arm/mach-meson/Kconfig                                          | 1 +
+>>  drivers/irqchip/irq-meson-gpio.c                                     | 5 +++++
+>>  4 files changed, 12 insertions(+)
+>
+> Kevin, Carlos: Are you OK with this one? It seems pretty minor, and I'm
+> happy to queue it if I get an Ack for it. If you'd rather get it through
+> via armsoc, let me know.
 
-And thanks for catching this early !
+Can you take the drivers/irqchip and bindings patch (PATCH 1/3) and I'll
+take the rest to avoid conflicts with a bunch of other moving parts we
+have in arch/arm.
 
-> 
-> Martin Blumenstingl (2):
->   ARM: dts: meson: correct the sort order for the the gpio_intc node
->   ARM: dts: meson: fix the memory region of the GPIO interrupt
->     controller
-> 
->  arch/arm/boot/dts/meson.dtsi | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
-> 
+For the driver, feel free to add
+
+Acked-by: Kevin Hilman <khilman@baylibre.com>
+
+Kevin
