@@ -1,29 +1,35 @@
-From: robh@kernel.org (Rob Herring)
-Date: Wed, 1 Nov 2017 16:29:30 -0500
-Subject: [PATCH 1/3] irqchip/meson-gpio: add support for Meson8 SoCs
-In-Reply-To: <20171029230523.7355-2-martin.blumenstingl@googlemail.com>
-References: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
- <20171029230523.7355-2-martin.blumenstingl@googlemail.com>
-Message-ID: <20171101212930.7i5w7quwejzcvlaf@rob-hp-laptop>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Wed, 1 Nov 2017 22:35:46 -0700
+Subject: [GIT PULL] Amlogic clock driver updates for 4.15
+In-Reply-To: <f83efd53-0600-a4b4-3ee2-089e435a8cb4@baylibre.com>
+References: <f83efd53-0600-a4b4-3ee2-089e435a8cb4@baylibre.com>
+Message-ID: <20171102053546.GM30645@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 30, 2017 at 12:05:21AM +0100, Martin Blumenstingl wrote:
-> Meson8 uses the same GPIO interrupt controller IP block as the other
-> Meson SoCs. A total of 134 pins can be spied on, which is the sum of:
-> - 22 pins on bank GPIOX
-> - 17 pins on bank GPIOY
-> - 30 pins on bank GPIODV
-> - 10 pins on bank GPIOH
-> - 15 pins on bank GPIOZ
-> - 7 pins on bank CARD
-> - 19 pins on bank BOOT
-> - 14 pins in the AO domain
+On 10/20, Neil Armstrong wrote:
+> Hi Mike, Stephen,
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt        | 1 +
->  drivers/irqchip/irq-meson-gpio.c                                     | 5 +++++
->  2 files changed, 6 insertions(+)
+> Below is a request to pull the Amlogic clock driver updates for 4.15.
+> 
+> Thanks,
+> Neil
+> 
+> The following changes since commit 2bd6bf03f4c1c59381d62c61d03f6cc3fe71f66e:
+> 
+>   Linux 4.14-rc1 (2017-09-16 15:47:51 -0700)
+> 
+> are available in the git repository at:
+> 
+>   git://github.com/baylibre/clk-meson.git tags/meson-clk-for-4.15
+> 
+> for you to fetch changes up to 762a1f2098b2fd4f84ccdb62d5747fff1ad7f816:
+> 
+>   clk: meson: gxbb: Add VPU and VAPB clocks data (2017-10-20 10:34:49 +0200)
+> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Thanks. Pulled.
+
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
