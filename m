@@ -1,48 +1,47 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Thu, 2 Nov 2017 16:49:35 +0100
-Subject: [GIT PULL] Amlogic SoC updates for v4.15
-In-Reply-To: <CAFBinCBpDsn1rrUUy74dpkCsHj_wca3ojmCaUUEiVB41cfvTMQ@mail.gmail.com>
-References: <7hy3ntq50j.fsf@baylibre.com>
- <CAK8P3a1fLbzp4xzFyTEO1w4vu=X=wwSV74_WBXiuYqTeF1P5ng@mail.gmail.com>
- <CAFBinCBpDsn1rrUUy74dpkCsHj_wca3ojmCaUUEiVB41cfvTMQ@mail.gmail.com>
-Message-ID: <CAK8P3a3sJ3okbxv3qAcmeWV9erPZD8Zk+uC31G+srYE-C+ru-Q@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 2 Nov 2017 22:06:44 +0100
+Subject: [PATCH] ARM: meson: fix spelling mistake: "Couln't" -> "Couldn't"
+In-Reply-To: <20171102092737.16957-1-colin.king@canonical.com>
+References: <20171102092737.16957-1-colin.king@canonical.com>
+Message-ID: <CAFBinCAHRg8y-=ELPu3_tRnskjgPe6gXAG67tmEt75OeSBn-sw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 30, 2017 at 10:52 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Arnd,
+On Thu, Nov 2, 2017 at 10:27 AM, Colin King <colin.king@canonical.com> wrote:
+> From: Colin Ian King <colin.king@canonical.com>
 >
-> On Mon, Oct 30, 2017 at 11:26 AM, Arnd Bergmann <arnd@arndb.de> wrote:
->> On Sun, Oct 29, 2017 at 5:43 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->>
->>> ----------------------------------------------------------------
->>> Amlogic SoC updates for v4.15
->>> - add SMP support to Meson8/8b
->>
->> Pulled into next/soc. For my understanding, could you clarify what
->> this line is needed for on meson?
->>
->> +textofs-$(CONFIG_ARCH_MESON) := 0x00208000
-> this was already part of Carlo's version of the SMP patches. I didn't
-> question this change (I simply assumed that it's relevant - I never
-> questioned "why" it was relevant) so far
-> however, that was until Linus L?ssing (CC'ed) investigated a
-> bug-report from Emiliano Ingrassia (also CC'ed). you can find his
-> results here: [0]
-> (tl;dr: kernel refuses to boot without this change when using a
-> slightly modified multi_v7_defconfig)
+> Trivial fix to spelling mistake in pr_err error message
 >
-> Linus even asked me to split this change out into a separate patch [1]
-> however, by the time I came back home Kevin already sent out the pull request
->
-> please let me know if
-> - we can keep the patches the way they are right now
-> - or if you want to separate this change into a separate patch
->
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-I think it's good enough to keep it this time, especially now that your
-explanation is in the mailing list archives. If you get into a similar
-situation again, splitting up the patch is better though.
+thank you for catching and fixing this!
 
-     Arnd
+> ---
+>  arch/arm/mach-meson/platsmp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/mach-meson/platsmp.c b/arch/arm/mach-meson/platsmp.c
+> index 2555f9056a33..cad7ee8f0d6b 100644
+> --- a/arch/arm/mach-meson/platsmp.c
+> +++ b/arch/arm/mach-meson/platsmp.c
+> @@ -102,7 +102,7 @@ static void __init meson_smp_prepare_cpus(const char *scu_compatible,
+>
+>         scu_base = of_iomap(node, 0);
+>         if (!scu_base) {
+> -               pr_err("Couln't map SCU registers\n");
+> +               pr_err("Couldn't map SCU registers\n");
+>                 return;
+>         }
+>
+> --
+> 2.14.1
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+Regards
+Martin
