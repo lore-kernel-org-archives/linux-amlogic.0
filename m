@@ -1,35 +1,31 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Wed, 1 Nov 2017 22:35:46 -0700
-Subject: [GIT PULL] Amlogic clock driver updates for 4.15
-In-Reply-To: <f83efd53-0600-a4b4-3ee2-089e435a8cb4@baylibre.com>
-References: <f83efd53-0600-a4b4-3ee2-089e435a8cb4@baylibre.com>
-Message-ID: <20171102053546.GM30645@codeaurora.org>
+From: colin.king@canonical.com (Colin King)
+Date: Thu,  2 Nov 2017 09:27:37 +0000
+Subject: [PATCH] ARM: meson: fix spelling mistake: "Couln't" -> "Couldn't"
+Message-ID: <20171102092737.16957-1-colin.king@canonical.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/20, Neil Armstrong wrote:
-> Hi Mike, Stephen,
-> 
-> Below is a request to pull the Amlogic clock driver updates for 4.15.
-> 
-> Thanks,
-> Neil
-> 
-> The following changes since commit 2bd6bf03f4c1c59381d62c61d03f6cc3fe71f66e:
-> 
->   Linux 4.14-rc1 (2017-09-16 15:47:51 -0700)
-> 
-> are available in the git repository at:
-> 
->   git://github.com/baylibre/clk-meson.git tags/meson-clk-for-4.15
-> 
-> for you to fetch changes up to 762a1f2098b2fd4f84ccdb62d5747fff1ad7f816:
-> 
->   clk: meson: gxbb: Add VPU and VAPB clocks data (2017-10-20 10:34:49 +0200)
-> 
+From: Colin Ian King <colin.king@canonical.com>
 
-Thanks. Pulled.
+Trivial fix to spelling mistake in pr_err error message
 
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ arch/arm/mach-meson/platsmp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/mach-meson/platsmp.c b/arch/arm/mach-meson/platsmp.c
+index 2555f9056a33..cad7ee8f0d6b 100644
+--- a/arch/arm/mach-meson/platsmp.c
++++ b/arch/arm/mach-meson/platsmp.c
+@@ -102,7 +102,7 @@ static void __init meson_smp_prepare_cpus(const char *scu_compatible,
+ 
+ 	scu_base = of_iomap(node, 0);
+ 	if (!scu_base) {
+-		pr_err("Couln't map SCU registers\n");
++		pr_err("Couldn't map SCU registers\n");
+ 		return;
+ 	}
+ 
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.14.1
