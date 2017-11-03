@@ -1,105 +1,38 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  3 Nov 2017 16:43:24 +0100
-Subject: [PATCH] soc: amlogic: meson-gx-pwrc-vpu: fix power-off when powered
- by bootloader
-Message-ID: <1509723804-21114-1-git-send-email-narmstrong@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Sat, 4 Nov 2017 02:17:03 +0800
+Subject: [PATCH] clk: meson: gxbb: fix wrong clock for SARADC
+Message-ID: <20171103181703.30434-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In the case the VPU power domain has been powered on by the bootloader
-and no driver are attached to this power domain, the genpd will power it
-off after a certain amount of time, but the clocks hasn't been enabled
-by the kernel itself and the power-off will trigger some faults.
-This patch enable the clocks to have a coherent state for an eventual
-poweroff and switches to the pm_domain_always_on_gov governor.
+According to the datasheet, the clock gate bit for
+SARADC is bit[22] in Meson-GXBB/GXL series.
 
-Fixes: 75fcb5ca4b46 ("soc: amlogic: add Meson GX VPU Domains driver")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Change-Id: Ic4fa58276d2a9ea273eef0a08541fc213ac5ac89
+Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 ---
- drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 29 +++++++++++++++++++----------
- 1 file changed, 19 insertions(+), 10 deletions(-)
+ drivers/clk/meson/gxbb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-index bf5190b..2bdeebc 100644
---- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-+++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-@@ -34,7 +34,6 @@ struct meson_gx_pwrc_vpu {
- 	struct reset_control *rstc;
- 	struct clk *vpu_clk;
- 	struct clk *vapb_clk;
--	bool powered;
- };
- 
- static inline
-@@ -78,8 +77,6 @@ static int meson_gx_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
- 	clk_disable_unprepare(pd->vpu_clk);
- 	clk_disable_unprepare(pd->vapb_clk);
- 
--	pd->powered = false;
--
- 	return 0;
- }
- 
-@@ -91,7 +88,11 @@ static int meson_gx_pwrc_vpu_setup_clk(struct meson_gx_pwrc_vpu *pd)
- 	if (ret)
- 		return ret;
- 
--	return clk_prepare_enable(pd->vapb_clk);
-+	ret = clk_prepare_enable(pd->vapb_clk);
-+	if (ret)
-+		clk_disable_unprepare(pd->vpu_clk);
-+
-+	return ret;
- }
- 
- static int meson_gx_pwrc_vpu_power_on(struct generic_pm_domain *genpd)
-@@ -139,8 +140,6 @@ static int meson_gx_pwrc_vpu_power_on(struct generic_pm_domain *genpd)
- 	if (ret)
- 		return ret;
- 
--	pd->powered = true;
--
- 	return 0;
- }
- 
-@@ -167,6 +166,8 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
- 	struct reset_control *rstc;
- 	struct clk *vpu_clk;
- 	struct clk *vapb_clk;
-+	bool powered_off;
-+	int ret;
- 
- 	regmap_ao = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
- 	if (IS_ERR(regmap_ao)) {
-@@ -205,8 +206,17 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
- 	vpu_hdmi_pd.vpu_clk = vpu_clk;
- 	vpu_hdmi_pd.vapb_clk = vapb_clk;
- 
--	pm_genpd_init(&vpu_hdmi_pd.genpd, &simple_qos_governor,
--		      meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd));
-+	powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
-+
-+	/* If already powered, sync the clock states */
-+	if (!powered_off) {
-+		ret = meson_gx_pwrc_vpu_setup_clk(&vpu_hdmi_pd);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	pm_genpd_init(&vpu_hdmi_pd.genpd, &pm_domain_always_on_gov,
-+		      powered_off);
- 
- 	return of_genpd_add_provider_simple(pdev->dev.of_node,
- 					    &vpu_hdmi_pd.genpd);
-@@ -214,8 +224,7 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
- 
- static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
- {
--	if (vpu_hdmi_pd.powered)
--		meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
-+	meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
- }
- 
- static const struct of_device_id meson_gx_pwrc_vpu_match_table[] = {
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index b2d1e8ed7152..4f5b535fcd12 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1139,7 +1139,6 @@ static MESON_GATE(gxbb_pl301, HHI_GCLK_MPEG0, 6);
+ static MESON_GATE(gxbb_periphs, HHI_GCLK_MPEG0, 7);
+ static MESON_GATE(gxbb_spicc, HHI_GCLK_MPEG0, 8);
+ static MESON_GATE(gxbb_i2c, HHI_GCLK_MPEG0, 9);
+-static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 10);
+ static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
+ static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
+ static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
+@@ -1149,6 +1148,7 @@ static MESON_GATE(gxbb_async_fifo, HHI_GCLK_MPEG0, 16);
+ static MESON_GATE(gxbb_sdio, HHI_GCLK_MPEG0, 17);
+ static MESON_GATE(gxbb_abuf, HHI_GCLK_MPEG0, 18);
+ static MESON_GATE(gxbb_hiu_iface, HHI_GCLK_MPEG0, 19);
++static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 22);
+ static MESON_GATE(gxbb_assist_misc, HHI_GCLK_MPEG0, 23);
+ static MESON_GATE(gxbb_emmc_a, HHI_GCLK_MPEG0, 24);
+ static MESON_GATE(gxbb_emmc_b, HHI_GCLK_MPEG0, 25);
 -- 
-2.7.4
+2.14.1
