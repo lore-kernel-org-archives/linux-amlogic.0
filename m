@@ -1,61 +1,39 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 5 Nov 2017 16:02:37 +0100
-Subject: [PATCH v4] tty: serial: meson: allow baud-rates lower than 9600
-In-Reply-To: <20171105141206.GA31306@kroah.com>
-References: <bb0a70cc-6cc1-46d2-aa04-046a37c9f516@myway.de>
- <20171105141206.GA31306@kroah.com>
-Message-ID: <CAFBinCAVvJ8BS3FiEUYs+6ChVg0=yi5KnNvTM=cLt7g86GXGRQ@mail.gmail.com>
+From: v10lator@myway.de (Thomas Rohloff)
+Date: Sun,  5 Nov 2017 20:33:20 +0100
+Subject: [PATCH] tty: serial: meson: allow baud-rates lower than 9600
+Message-ID: <20171105193320.6710-1-v10lator@myway.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Thomas,
+Devices like DCF77 receivers need the baud-rate to be as low as 50.
 
-thank you for this patch!
+I have tested this on a Meson GXL device with uart_A.
 
-On Sun, Nov 5, 2017 at 3:12 PM, Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
-> On Sun, Nov 05, 2017 at 05:29:30AM +0100, Thomas Rohloff wrote:
->> Devices like DCF77 receivers need the baud-rate to be as low as 50.
->>
->> I have tested this on a Meson GXL device with uart_A.
->>
->> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> Cc: Jiri Slaby <jslaby@suse.com>
->> Cc: Carlo Caione <carlo@caione.org>
->> Cc: Kevin Hilman <khilman@baylibre.com>
->> Cc: linux-amlogic at lists.infradead.org
->> Cc: linux-arm-kernel at lists.infradead.org
->> Cc: linux-kernel at vger.kernel.org
->> Signed-off-by: Thomas Rohloff <v10lator@myway.de>
->> ---
->> drivers/tty/serial/meson_uart.c | 2 +-
->> 1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/tty/serial/meson_uart.c
->> b/drivers/tty/serial/meson_uart.c
->> index 07c0f98be3ac..e281ce5d101d 100644
->> --- a/drivers/tty/serial/meson_uart.c
->> +++ b/drivers/tty/serial/meson_uart.c
->> @@ -362,7 +362,7 @@ static void meson_uart_set_termios(struct uart_port
->> *port,
->
-> This is line-wrapped and can not be applied :(
->
-> It's your email client, look at this setting:
->         Content-Type: text/plain; charset=utf-8; format=flowed
->
-> format=flowed does not work for kernel patches, it corruptes and edits
-> them as it thinks this is just a conversation, not a machine-readable
-> format.
->
-> 5th try?  :)
-if you send a 5th version, please also include Neil's "Reviewed-by"
-just below your Signed-off-by:
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Jiri Slaby <jslaby@suse.com>
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic at lists.infradead.org
+Cc: linux-arm-kernel at lists.infradead.org
+Cc: linux-kernel at vger.kernel.org
+Signed-off-by: Thomas Rohloff <v10lator@myway.de>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/tty/serial/meson_uart.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-you can do this by running git commit --amend - this lets you edit the
-existing commit message so you can append that
-
-
-Regards,
-Martin
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 07c0f98be3ac..e281ce5d101d 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -362,7 +362,7 @@ static void meson_uart_set_termios(struct uart_port *port,
+ 
+ 	writel(val, port->membase + AML_UART_CONTROL);
+ 
+-	baud = uart_get_baud_rate(port, termios, old, 9600, 4000000);
++	baud = uart_get_baud_rate(port, termios, old, 50, 4000000);
+ 	meson_uart_change_speed(port, baud);
+ 
+ 	port->read_status_mask = AML_UART_TX_FIFO_WERR;
+-- 
+2.13.6
