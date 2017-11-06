@@ -1,48 +1,59 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 6 Nov 2017 15:52:12 +0800
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 6 Nov 2017 09:57:26 +0100
 Subject: [PATCH] clk: meson: gxbb: fix wrong clock for SARADC/SANA
-Message-ID: <20171106075212.14275-1-yixun.lan@amlogic.com>
+In-Reply-To: <20171106075212.14275-1-yixun.lan@amlogic.com>
+References: <20171106075212.14275-1-yixun.lan@amlogic.com>
+Message-ID: <889b8fd5-31e4-1371-6121-0f1aec6fa777@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-According to the datasheet, in Meson-GXBB/GXL series,
-The clock gate bit for SARADC is HHI_GCLK_MPEG2 bit[22],
-while clock gate bit for SANA is HHI_GCLK_MPEG0 bit[10].
+On 06/11/2017 08:52, Yixun Lan wrote:
+> According to the datasheet, in Meson-GXBB/GXL series,
+> The clock gate bit for SARADC is HHI_GCLK_MPEG2 bit[22],
+> while clock gate bit for SANA is HHI_GCLK_MPEG0 bit[10].
+> 
+> Test passed at gxl_skt dev board.
+> 
+> Tested-by: Xingyu Chen <xingyu.chen@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> 
+> ---
+> I think this error was introduced by a copy & paste from meson8 code?
+> and we didn't notice them due to the SANA clock is also enabled by
+> DTS (so SAR_ADC works fine)?
+> ---
+>  drivers/clk/meson/gxbb.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index b2d1e8ed7152..92168348ffa6 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -1139,7 +1139,7 @@ static MESON_GATE(gxbb_pl301, HHI_GCLK_MPEG0, 6);
+>  static MESON_GATE(gxbb_periphs, HHI_GCLK_MPEG0, 7);
+>  static MESON_GATE(gxbb_spicc, HHI_GCLK_MPEG0, 8);
+>  static MESON_GATE(gxbb_i2c, HHI_GCLK_MPEG0, 9);
+> -static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 10);
+> +static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG0, 10);
+>  static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
+>  static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
+>  static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
+> @@ -1190,7 +1190,7 @@ static MESON_GATE(gxbb_usb0_ddr_bridge, HHI_GCLK_MPEG2, 9);
+>  static MESON_GATE(gxbb_mmc_pclk, HHI_GCLK_MPEG2, 11);
+>  static MESON_GATE(gxbb_dvin, HHI_GCLK_MPEG2, 12);
+>  static MESON_GATE(gxbb_uart2, HHI_GCLK_MPEG2, 15);
+> -static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG2, 22);
+> +static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG2, 22);
+>  static MESON_GATE(gxbb_vpu_intr, HHI_GCLK_MPEG2, 25);
+>  static MESON_GATE(gxbb_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
+>  static MESON_GATE(gxbb_clk81_a53, HHI_GCLK_MPEG2, 29);
+> 
 
-Test passed at gxl_skt dev board.
+Hi Yixun,
 
-Tested-by: Xingyu Chen <xingyu.chen@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+Can you precise how it affects the saradc driver ? from the DT and clk PoV ?
 
----
-I think this error was introduced by a copy & paste from meson8 code?
-and we didn't notice them due to the SANA clock is also enabled by
-DTS (so SAR_ADC works fine)?
----
- drivers/clk/meson/gxbb.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Also, can you add a Fixes: tag on the patch ?
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index b2d1e8ed7152..92168348ffa6 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -1139,7 +1139,7 @@ static MESON_GATE(gxbb_pl301, HHI_GCLK_MPEG0, 6);
- static MESON_GATE(gxbb_periphs, HHI_GCLK_MPEG0, 7);
- static MESON_GATE(gxbb_spicc, HHI_GCLK_MPEG0, 8);
- static MESON_GATE(gxbb_i2c, HHI_GCLK_MPEG0, 9);
--static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 10);
-+static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG0, 10);
- static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
- static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
- static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
-@@ -1190,7 +1190,7 @@ static MESON_GATE(gxbb_usb0_ddr_bridge, HHI_GCLK_MPEG2, 9);
- static MESON_GATE(gxbb_mmc_pclk, HHI_GCLK_MPEG2, 11);
- static MESON_GATE(gxbb_dvin, HHI_GCLK_MPEG2, 12);
- static MESON_GATE(gxbb_uart2, HHI_GCLK_MPEG2, 15);
--static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG2, 22);
-+static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG2, 22);
- static MESON_GATE(gxbb_vpu_intr, HHI_GCLK_MPEG2, 25);
- static MESON_GATE(gxbb_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
- static MESON_GATE(gxbb_clk81_a53, HHI_GCLK_MPEG2, 29);
--- 
-2.14.1
+Thanks,
+Neil
