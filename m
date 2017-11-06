@@ -1,21 +1,28 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 6 Nov 2017 09:57:26 +0100
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 06 Nov 2017 10:10:54 +0100
 Subject: [PATCH] clk: meson: gxbb: fix wrong clock for SARADC/SANA
 In-Reply-To: <20171106075212.14275-1-yixun.lan@amlogic.com>
 References: <20171106075212.14275-1-yixun.lan@amlogic.com>
-Message-ID: <889b8fd5-31e4-1371-6121-0f1aec6fa777@baylibre.com>
+Message-ID: <1509959454.1328.8.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/11/2017 08:52, Yixun Lan wrote:
+On Mon, 2017-11-06 at 15:52 +0800, Yixun Lan wrote:
 > According to the datasheet, in Meson-GXBB/GXL series,
 > The clock gate bit for SARADC is HHI_GCLK_MPEG2 bit[22],
 > while clock gate bit for SANA is HHI_GCLK_MPEG0 bit[10].
 > 
 > Test passed at gxl_skt dev board.
+I think this refer to a board naming used in amlogic vendor kernel ?
+Would you mind telling what it is ?
+
 > 
 > Tested-by: Xingyu Chen <xingyu.chen@amlogic.com>
 > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+
+Subject is missing "v2" tag and a reference to the previous message:
+20171103181703.30434-1-yixun.lan at amlogic.com
+
 > 
 > ---
 > I think this error was introduced by a copy & paste from meson8 code?
@@ -38,22 +45,24 @@ On 06/11/2017 08:52, Yixun Lan wrote:
 >  static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
 >  static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
 >  static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
-> @@ -1190,7 +1190,7 @@ static MESON_GATE(gxbb_usb0_ddr_bridge, HHI_GCLK_MPEG2, 9);
+> @@ -1190,7 +1190,7 @@ static MESON_GATE(gxbb_usb0_ddr_bridge, HHI_GCLK_MPEG2,
+> 9);
 >  static MESON_GATE(gxbb_mmc_pclk, HHI_GCLK_MPEG2, 11);
 >  static MESON_GATE(gxbb_dvin, HHI_GCLK_MPEG2, 12);
 >  static MESON_GATE(gxbb_uart2, HHI_GCLK_MPEG2, 15);
 > -static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG2, 22);
 > +static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG2, 22);
+
+The value currently used in the driver are with respect to the
+Datasheet of GXBB (v1.1.4) and GXL (S905X - V0.3-20170314), which are available
+to the public at http://http://linux-meson.com
+
+the adc driver is claiming both clock, so this patch should not change anything
+to the adc operation.
+
+* Is this patch fixing any issue ?
+* Is it an error in the published datasheets ?
+
 >  static MESON_GATE(gxbb_vpu_intr, HHI_GCLK_MPEG2, 25);
 >  static MESON_GATE(gxbb_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
 >  static MESON_GATE(gxbb_clk81_a53, HHI_GCLK_MPEG2, 29);
-> 
-
-Hi Yixun,
-
-Can you precise how it affects the saradc driver ? from the DT and clk PoV ?
-
-Also, can you add a Fixes: tag on the patch ?
-
-Thanks,
-Neil
