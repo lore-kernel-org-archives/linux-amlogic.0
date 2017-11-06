@@ -1,71 +1,33 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 6 Nov 2017 10:56:46 +0800
-Subject: [PATCH] clk: meson: gxbb: fix wrong clock for SARADC
-In-Reply-To: <59FDED7E.8030100@baylibre.com>
-References: <20171103181703.30434-1-yixun.lan@amlogic.com>
- <e8a5faa9-d3ca-e03e-3589-2685d6ada30a@amlogic.com>
- <59FDED7E.8030100@baylibre.com>
-Message-ID: <db60769c-cd96-5deb-32ba-e092d1bc9346@amlogic.com>
+Date: Mon, 6 Nov 2017 15:31:34 +0800
+Subject: [PATCH 0/2] add clk controller driver for Meson-AXG SoC
+Message-ID: <20171106073134.13830-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil
+patch 1: add driver for the clk controller which found in Meson AXG
 
-On 11/05/17 00:40, Neil Armstrong wrote:
-> Hi Yixun,
-> 
-> Le 04/11/2017 09:41, Yixun Lan a ?crit :
->>
->>
->> On 11/04/17 02:17, Yixun Lan wrote:
->>> According to the datasheet, the clock gate bit for
->>> SARADC is bit[22] in Meson-GXBB/GXL series.
->>>
->>> Change-Id: Ic4fa58276d2a9ea273eef0a08541fc213ac5ac89
->>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->>> ---
->>>  drivers/clk/meson/gxbb.c | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
->>> index b2d1e8ed7152..4f5b535fcd12 100644
->>> --- a/drivers/clk/meson/gxbb.c
->>> +++ b/drivers/clk/meson/gxbb.c
->>> @@ -1139,7 +1139,6 @@ static MESON_GATE(gxbb_pl301, HHI_GCLK_MPEG0, 6);
->>>  static MESON_GATE(gxbb_periphs, HHI_GCLK_MPEG0, 7);
->>>  static MESON_GATE(gxbb_spicc, HHI_GCLK_MPEG0, 8);
->>>  static MESON_GATE(gxbb_i2c, HHI_GCLK_MPEG0, 9);
->>> -static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 10);
->>>  static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
->>>  static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
->>>  static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
->>> @@ -1149,6 +1148,7 @@ static MESON_GATE(gxbb_async_fifo, HHI_GCLK_MPEG0, 16);
->>>  static MESON_GATE(gxbb_sdio, HHI_GCLK_MPEG0, 17);
->>>  static MESON_GATE(gxbb_abuf, HHI_GCLK_MPEG0, 18);
->>>  static MESON_GATE(gxbb_hiu_iface, HHI_GCLK_MPEG0, 19);
->>> +static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 22);
->>>  static MESON_GATE(gxbb_assist_misc, HHI_GCLK_MPEG0, 23);
->>>  static MESON_GATE(gxbb_emmc_a, HHI_GCLK_MPEG0, 24);
->>>  static MESON_GATE(gxbb_emmc_b, HHI_GCLK_MPEG0, 25);
->>>
->> Hi Neil
->>  I assume you will take this via the clk-meson tree..
->> could you amend the commit msg and drop the 'Change-Id'?
->> (for other parts, please feel free to adjust if you see fit)
->>  thanks
-> 
-> Yes, I will push it as a fix.
-> 
-> Can you check if the saradc driver is still functional when applied ?
->
-sorry, this isn't a correct fix.
-please drop this one, and I will push another patch
+  Note, we deliberately create a seperate source file for the Meson AXG
+series, instead of sharing code with previous GXBB/GXL - the file axg.c
+It would help us maintaining the code more easily.
 
-> Neil
-> 
->>
->> Yixun
->>
-> 
-> .
-> 
+patch 2: describe the DT info for Meson AXG
+
+Qiufang Dai (2):
+  clk: meson-axg: add clock controller drivers
+  arm64: dts: meson-axg: add clock DT info for Meson AXG SoC
+
+ arch/arm64/Kconfig.platforms               |   1 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi |  16 +
+ drivers/clk/meson/Kconfig                  |   8 +
+ drivers/clk/meson/Makefile                 |   1 +
+ drivers/clk/meson/axg.c                    | 948 +++++++++++++++++++++++++++++
+ drivers/clk/meson/axg.h                    | 127 ++++
+ include/dt-bindings/clock/axg-clkc.h       |  72 +++
+ 7 files changed, 1173 insertions(+)
+ create mode 100644 drivers/clk/meson/axg.c
+ create mode 100644 drivers/clk/meson/axg.h
+ create mode 100644 include/dt-bindings/clock/axg-clkc.h
+
+-- 
+2.14.1
