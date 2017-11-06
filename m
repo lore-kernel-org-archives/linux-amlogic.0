@@ -1,66 +1,71 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 5 Nov 2017 22:35:50 +0100
-Subject: [PATCH 0/2] Meson GXL USB3 PHY and OTG detection driver
-In-Reply-To: <20170924195000.13276-1-martin.blumenstingl@googlemail.com>
-References: <20170924195000.13276-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCAL48XqDGGcm6zTNDnVUwKVfeP6PP1SpHZNS6Kc9HApQA@mail.gmail.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 6 Nov 2017 10:56:46 +0800
+Subject: [PATCH] clk: meson: gxbb: fix wrong clock for SARADC
+In-Reply-To: <59FDED7E.8030100@baylibre.com>
+References: <20171103181703.30434-1-yixun.lan@amlogic.com>
+ <e8a5faa9-d3ca-e03e-3589-2685d6ada30a@amlogic.com>
+ <59FDED7E.8030100@baylibre.com>
+Message-ID: <db60769c-cd96-5deb-32ba-e092d1bc9346@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kishon,
+Hi Neil
 
-On Sun, Sep 24, 2017 at 9:49 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Amlogic Meson GXL SoCs use a dwc3 controller with two USB2 ports,
-> Meson GXM SoCs use the same dwc3 controller but with three USB3
-> ports enabled. Neither of these SoCs has any USB3 port enabled in
-> the dwc3 registers.
-> The first USB2 port on both SoCs supports host and peripheral
-> (also called "device") mode.
+On 11/05/17 00:40, Neil Armstrong wrote:
+> Hi Yixun,
+> 
+> Le 04/11/2017 09:41, Yixun Lan a ?crit :
+>>
+>>
+>> On 11/04/17 02:17, Yixun Lan wrote:
+>>> According to the datasheet, the clock gate bit for
+>>> SARADC is bit[22] in Meson-GXBB/GXL series.
+>>>
+>>> Change-Id: Ic4fa58276d2a9ea273eef0a08541fc213ac5ac89
+>>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>>> ---
+>>>  drivers/clk/meson/gxbb.c | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+>>> index b2d1e8ed7152..4f5b535fcd12 100644
+>>> --- a/drivers/clk/meson/gxbb.c
+>>> +++ b/drivers/clk/meson/gxbb.c
+>>> @@ -1139,7 +1139,6 @@ static MESON_GATE(gxbb_pl301, HHI_GCLK_MPEG0, 6);
+>>>  static MESON_GATE(gxbb_periphs, HHI_GCLK_MPEG0, 7);
+>>>  static MESON_GATE(gxbb_spicc, HHI_GCLK_MPEG0, 8);
+>>>  static MESON_GATE(gxbb_i2c, HHI_GCLK_MPEG0, 9);
+>>> -static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 10);
+>>>  static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
+>>>  static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
+>>>  static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
+>>> @@ -1149,6 +1148,7 @@ static MESON_GATE(gxbb_async_fifo, HHI_GCLK_MPEG0, 16);
+>>>  static MESON_GATE(gxbb_sdio, HHI_GCLK_MPEG0, 17);
+>>>  static MESON_GATE(gxbb_abuf, HHI_GCLK_MPEG0, 18);
+>>>  static MESON_GATE(gxbb_hiu_iface, HHI_GCLK_MPEG0, 19);
+>>> +static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 22);
+>>>  static MESON_GATE(gxbb_assist_misc, HHI_GCLK_MPEG0, 23);
+>>>  static MESON_GATE(gxbb_emmc_a, HHI_GCLK_MPEG0, 24);
+>>>  static MESON_GATE(gxbb_emmc_b, HHI_GCLK_MPEG0, 25);
+>>>
+>> Hi Neil
+>>  I assume you will take this via the clk-meson tree..
+>> could you amend the commit msg and drop the 'Change-Id'?
+>> (for other parts, please feel free to adjust if you see fit)
+>>  thanks
+> 
+> Yes, I will push it as a fix.
+> 
+> Can you check if the saradc driver is still functional when applied ?
 >
-> The dwc3 controller supports host mode only. Peripheral mode is
-> implemented through an additional dwc2 controller (which only enables
-> device mode). The USB3 PHY has register bits which allow a driver to
-> detect the current mode - however this is currently not implemented
-> as the dwc2 controller seems to hang during reset (and I do not have
-> a use-case where I need peripheral/device mode).
->
-> While the dwc3 controller has no USB3 port enabled we still need the
-> USB3 PHY to be initialized, otherwise some boards (probably those where
-> the bootloader does not initialize the USB3 PHY) show errors with
-> high-speed USB devices connected to any of the USB2 ports. Configuring
-> the USB_R1_U3H_FLADJ_30MHZ_REG_MASK register as it's done by Amlogic's
-> vendor GPL kernel sources makes these error go away.
->
-> Thanks to Jerome Brunet for reporting the errors and Neil Armstrong
-> for discovering that initializing the USB3 PHY fixes these USB errors!
->
->
-> Martin Blumenstingl (2):
->   dt-bindings: phy: Add support for the USB3 PHY on Amlogic Meson GXL
->     SoCs
-I need to update the dt-bindings patch as there is an interrupt which
-seems to exist on all hardware revisions (but this interrupt is not
-described in the binding yet)
-so please do NOT take this series until I re-spin it so I can add the
-mandatory interrupt (if we add it later we can only add it optionally)
+sorry, this isn't a correct fix.
+please drop this one, and I will push another patch
 
->   phy: amlogic: add USB3 PHY support for Meson GXL and GXM
-could you please give your feedback on this one?
-
->
->  .../devicetree/bindings/phy/meson-gxl-usb3-phy.txt |  19 +++
->  drivers/phy/amlogic/Kconfig                        |  12 ++
->  drivers/phy/amlogic/Makefile                       |   1 +
->  drivers/phy/amlogic/phy-meson-gxl-usb3.c           | 177 +++++++++++++++++++++
->  4 files changed, 209 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
->  create mode 100644 drivers/phy/amlogic/phy-meson-gxl-usb3.c
->
-> --
-> 2.14.1
->
-
-
-Regards,
-Martin
+> Neil
+> 
+>>
+>> Yixun
+>>
+> 
+> .
+> 
