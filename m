@@ -1,65 +1,78 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 07 Nov 2017 11:38:59 +0100
-Subject: [PATCH v3 1/4] clk: meson: gxbb: fix wrong clock for SARADC/SANA
-In-Reply-To: <20171107054142.7935-1-yixun.lan@amlogic.com>
-References: <20171107054142.7935-1-yixun.lan@amlogic.com>
-Message-ID: <1510051139.1328.52.camel@baylibre.com>
+Date: Tue, 07 Nov 2017 12:03:17 +0100
+Subject: [PATCH v3 0/4] fix the clock setting for SAR ADC
+In-Reply-To: <20171107053646.31087-1-yixun.lan@amlogic.com>
+References: <20171107053646.31087-1-yixun.lan@amlogic.com>
+Message-ID: <1510052597.1328.69.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-11-07 at 13:41 +0800, Yixun Lan wrote:
-> According to the datasheet, in Meson-GXBB/GXL series,
-> The clock gate bit for SARADC is HHI_GCLK_MPEG2 bit[22],
-> while clock gate bit for SANA is HHI_GCLK_MPEG0 bit[10].
+On Tue, 2017-11-07 at 13:36 +0800, Yixun Lan wrote:
+> patch [1/4]:
+>   Fix wrong SARADC/SANA clock gate bit in Meson-GXBB/GXL,
+> the published datasheet also has wrong description about this.
 > 
-> Test passed at gxl-s905x-p212 board.
+> patch [2-4/4]:
+>   Drop the "sana" clock from SAR ADC module,
 > 
-> The following published datasheets are wrong and should be updated
-> [1] GXBB v1.1.4, page 57
-> http://dn.odroid.com/S905/DataSheet/S905_Public_Datasheet_V1.1.4.pdf
-> [2] GXL v0.3_20170314, page
-> http://www.mediafire.com/file/5bpt054va5ut7v9/S905X_Datasheet_V0.3_20170314pub
-> licversion-Wesion.pdf
+>   From the hardware perspective, the SAR ADC module doesn't
+> require "sana" clock to wrok. This should apply to all SoC,
+> including meson6,8, GXBB, GXL..
+> 
+> Note: the whole patchset series has been tested at GXL-P212 board,
+> we haven't got any meson6,8 board to test, so I would appreciate
+> if someone (Martin?) could help to confirm it works there.
+>  
+> Changes since v2 at [2] :
+>   - explicitly point out 'sana' clock is not required for saradc, and drop
+> them
+>   - update comments, as the published datasheet is wrong
+>  
+> Changes since v1 at [1] :
+>   - correct SAR ADC/SANA clock gate bit
+> 
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005221.ht
+> ml
+> [2] http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005242.ht
+> ml
+> 
 
-You may mention those links in the cover letter, since mediafire links are
-unlikely to last, better no mentioning them here. The version is enough.
+Those patches should go through different trees. To avoid causing a (temporary)
+regression, the clk patch absolutely needs to be merged before any other patches
+is merged.
+
+I can take the clk patch as a fix for v4.15. It's too late for v4.14 but it's
+not big deal, I suppose the long term kernel will pick it up later on.
+
+Once the sana clock is indeed *the* sana clock, which of IIO or DT patch is
+merged first does not matter, the sana clock is optional.
+
+BTW, the cover letter and the IIO patch are missing the IIO maintainer and
+mailing list. According to MAINTAINERS, you are missing:
+
+* Jonathan Cameron <jic23@kernel.org>
+* linux-iio at vger.kernel.org
+
+Please resend with the warning note above (so other maintainers are aware of
+dependency), the correction applied to patch 1 commit log and the missing
+recipients.
 
 > 
-> Fixes: 7ba64d82b358 ("gxbb: clk: Adjust MESON_GATE macro to be shared..")
-
-The commit where the issue is introduced is actually
-Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver") 
-
-Yes there has been a rework afterward, but the problem you are fixing originate
-from that commit.
-
-
-> Tested-by: Xingyu Chen <xingyu.chen@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> Xingyu Chen (3):
+>   iio: adc: meson-saradc: remove irrelevant clock "sana"
+>   dt-bindings: iio: adc: update the doc for SAR ADC
+>   ARM64: dts: meson: drop "sana" clock from SAR ADC
+> 
+> Yixun Lan (1):
+>   clk: meson: gxbb: fix wrong clock for SARADC/SANA
+> 
+>  .../bindings/iio/adc/amlogic,meson-saradc.txt        |  1 -
+>  arch/arm/boot/dts/meson8.dtsi                        |  5 ++---
+>  arch/arm/boot/dts/meson8b.dtsi                       |  5 ++---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi          |  3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi           |  3 +--
+>  drivers/clk/meson/gxbb.c                             |  4 ++--
+>  drivers/iio/adc/meson_saradc.c                       | 20 -----------------
 > ---
->  drivers/clk/meson/gxbb.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  7 files changed, 8 insertions(+), 33 deletions(-)
 > 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index b2d1e8ed7152..92168348ffa6 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -1139,7 +1139,7 @@ static MESON_GATE(gxbb_pl301, HHI_GCLK_MPEG0, 6);
->  static MESON_GATE(gxbb_periphs, HHI_GCLK_MPEG0, 7);
->  static MESON_GATE(gxbb_spicc, HHI_GCLK_MPEG0, 8);
->  static MESON_GATE(gxbb_i2c, HHI_GCLK_MPEG0, 9);
-> -static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG0, 10);
-> +static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG0, 10);
->  static MESON_GATE(gxbb_smart_card, HHI_GCLK_MPEG0, 11);
->  static MESON_GATE(gxbb_rng0, HHI_GCLK_MPEG0, 12);
->  static MESON_GATE(gxbb_uart0, HHI_GCLK_MPEG0, 13);
-> @@ -1190,7 +1190,7 @@ static MESON_GATE(gxbb_usb0_ddr_bridge, HHI_GCLK_MPEG2,
-> 9);
->  static MESON_GATE(gxbb_mmc_pclk, HHI_GCLK_MPEG2, 11);
->  static MESON_GATE(gxbb_dvin, HHI_GCLK_MPEG2, 12);
->  static MESON_GATE(gxbb_uart2, HHI_GCLK_MPEG2, 15);
-> -static MESON_GATE(gxbb_sana, HHI_GCLK_MPEG2, 22);
-> +static MESON_GATE(gxbb_sar_adc, HHI_GCLK_MPEG2, 22);
->  static MESON_GATE(gxbb_vpu_intr, HHI_GCLK_MPEG2, 25);
->  static MESON_GATE(gxbb_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
->  static MESON_GATE(gxbb_clk81_a53, HHI_GCLK_MPEG2, 29);
