@@ -1,94 +1,39 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Tue, 7 Nov 2017 13:49:26 +0800
-Subject: [PATCH v3 4/4] ARM64: dts: meson: drop "sana" clock from SARADC
-In-Reply-To: <20171107053728.32169-2-yixun.lan@amlogic.com>
-References: <20171107053728.32169-1-yixun.lan@amlogic.com>
- <20171107053728.32169-2-yixun.lan@amlogic.com>
-Message-ID: <1042f0e2-1a13-af57-5057-6f97ff4c4aa2@amlogic.com>
+From: kishon@ti.com (Kishon Vijay Abraham I)
+Date: Tue, 7 Nov 2017 11:23:18 +0530
+Subject: [PATCH 2/2] phy: amlogic: add USB3 PHY support for Meson GXL and
+ GXM
+In-Reply-To: <20170924195000.13276-3-martin.blumenstingl@googlemail.com>
+References: <20170924195000.13276-1-martin.blumenstingl@googlemail.com>
+ <20170924195000.13276-3-martin.blumenstingl@googlemail.com>
+Message-ID: <463fae8a-4b6d-1111-7ac2-1d3f1f31b9b1@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi
+Hi,
 
-On 11/07/17 13:37, Yixun Lan wrote:
-> From: Xingyu Chen <xingyu.chen@amlogic.com>
+On Monday 25 September 2017 01:20 AM, Martin Blumenstingl wrote:
+> This adds a new driver for the USB3 PHY found on Meson GXL and GXM SoCs
+> (both SoCs are using the same USB PHY register layout).
 > 
-> The SAR ADC modules doesn't require The "sana" clock.
+> Unfortunately there is no documentation for this PHY in the public S905X
+> datasheet (published for example by Khadas). What we know so far about
+> this PHY:
+> - even though the Meson GXL and GXM SoCs do not expose an USB3 port (the
+>   dwc3 controller only has USB2 ports enabled) we need to initialize the
+>   USB3 PHY (specifically USB_R1_U3H_FLADJ_30MHZ_REG_MASK). Without this
+>   initialization high-speed USB devices (especially USB hard disks and
+>   thumb drives, slower devices like mice do not seem to be affected)
+> - it is responsible for the OTG detection and for switching the first
+>   USB2 PHY between host and peripheral (aka device) mode. an interrupt
+>   can be used to detect changes between host and device mode.
 > 
-> Singed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  arch/arm/boot/dts/meson8.dtsi               | 5 ++---
->  arch/arm/boot/dts/meson8b.dtsi              | 5 ++---
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 3 +--
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 3 +--
->  4 files changed, 6 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-> index b98d44fde6b6..f93d6cf6e094 100644
-> --- a/arch/arm/boot/dts/meson8.dtsi
-> +++ b/arch/arm/boot/dts/meson8.dtsi
-> @@ -289,9 +289,8 @@
->  &saradc {
->  	compatible = "amlogic,meson8-saradc", "amlogic,meson-saradc";
->  	clocks = <&clkc CLKID_XTAL>,
-> -		<&clkc CLKID_SAR_ADC>,
-> -		<&clkc CLKID_SANA>;
-> -	clock-names = "clkin", "core", "sana";
-> +		<&clkc CLKID_SAR_ADC>;
-> +	clock-names = "clkin", "core";
->  };
->  
->  &spifc {
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index bc278da7df0d..4aa444284f0c 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -185,9 +185,8 @@
->  &saradc {
->  	compatible = "amlogic,meson8b-saradc", "amlogic,meson-saradc";
->  	clocks = <&clkc CLKID_XTAL>,
-> -		<&clkc CLKID_SAR_ADC>,
-> -		<&clkc CLKID_SANA>;
-> -	clock-names = "clkin", "core", "sana";
-> +		<&clkc CLKID_SAR_ADC>;
-> +	clock-names = "clkin", "core";
->  };
->  
->  &uart_AO {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> index af834cdbba79..b77f2593cdc3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-> @@ -686,10 +686,9 @@
->  	compatible = "amlogic,meson-gxbb-saradc", "amlogic,meson-saradc";
->  	clocks = <&xtal>,
->  		 <&clkc CLKID_SAR_ADC>,
-> -		 <&clkc CLKID_SANA>,
->  		 <&clkc CLKID_SAR_ADC_CLK>,
->  		 <&clkc CLKID_SAR_ADC_SEL>;
-> -	clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
-> +	clock-names = "clkin", "core", "adc_clk", "adc_sel";
->  };
->  
->  &sd_emmc_a {
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> index d8dd3298b15c..07805a3b4db0 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> @@ -628,10 +628,9 @@
->  	compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
->  	clocks = <&xtal>,
->  		 <&clkc CLKID_SAR_ADC>,
-> -		 <&clkc CLKID_SANA>,
->  		 <&clkc CLKID_SAR_ADC_CLK>,
->  		 <&clkc CLKID_SAR_ADC_SEL>;
-> -	clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
-> +	clock-names = "clkin", "core", "adc_clk", "adc_sel";
->  };
->  
->  &sd_emmc_a {
-> 
+> The whole OTG detection logic is currently not implemented.
 
-sorry, please drop this particular 'patch [4/4]', I've actually send it
-twice, others are good.
+Is this an independent instance of the phy? The programming model looks similar
+to phy-meson-gxl-usb2.c..
+
+I'm just thinking if we should have only a phy-meson-gxl-usb.c and have both
+usb2 and usb3 phy programming there?
+
+Thanks
+Kishon
