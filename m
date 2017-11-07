@@ -1,53 +1,39 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 7 Nov 2017 22:29:45 +0100
-Subject: [PATCH 2/2] phy: amlogic: add USB3 PHY support for Meson GXL and
- GXM
-In-Reply-To: <463fae8a-4b6d-1111-7ac2-1d3f1f31b9b1@ti.com>
-References: <20170924195000.13276-1-martin.blumenstingl@googlemail.com>
- <20170924195000.13276-3-martin.blumenstingl@googlemail.com>
- <463fae8a-4b6d-1111-7ac2-1d3f1f31b9b1@ti.com>
-Message-ID: <CAFBinCAcrGX3vPEzBgn94Wk44PzJoweU1tp66ebcM3hs-j_6BQ@mail.gmail.com>
+Date: Tue, 7 Nov 2017 22:36:00 +0100
+Subject: [PATCH v4 0/4] fix the clock setting for SAR ADC
+In-Reply-To: <20171107140942.29243-1-yixun.lan@amlogic.com>
+References: <20171107140942.29243-1-yixun.lan@amlogic.com>
+Message-ID: <CAFBinCB=2pb9dZkpSqdVAiumkSCzgaW0oejftjZNP7aYbiQJuw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kishon,
+Hi Yixun,
 
-thank you for reviewing this!
-
-On Tue, Nov 7, 2017 at 6:53 AM, Kishon Vijay Abraham I <kishon@ti.com> wrote:
-> Hi,
+On Tue, Nov 7, 2017 at 3:09 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
+> patch [1/4]:
+>   Fix wrong SARADC/SANA clock gate bit in Meson-GXBB/GXL,
+> the published datasheets[4] also has wrong description about this.
+>   This patch should be explicitly merged *before* other patches.
 >
-> On Monday 25 September 2017 01:20 AM, Martin Blumenstingl wrote:
->> This adds a new driver for the USB3 PHY found on Meson GXL and GXM SoCs
->> (both SoCs are using the same USB PHY register layout).
->>
->> Unfortunately there is no documentation for this PHY in the public S905X
->> datasheet (published for example by Khadas). What we know so far about
->> this PHY:
->> - even though the Meson GXL and GXM SoCs do not expose an USB3 port (the
->>   dwc3 controller only has USB2 ports enabled) we need to initialize the
->>   USB3 PHY (specifically USB_R1_U3H_FLADJ_30MHZ_REG_MASK). Without this
->>   initialization high-speed USB devices (especially USB hard disks and
->>   thumb drives, slower devices like mice do not seem to be affected)
->> - it is responsible for the OTG detection and for switching the first
->>   USB2 PHY between host and peripheral (aka device) mode. an interrupt
->>   can be used to detect changes between host and device mode.
->>
->> The whole OTG detection logic is currently not implemented.
->
-> Is this an independent instance of the phy? The programming model looks similar
-> to phy-meson-gxl-usb2.c..
-there are up to four USB2 PHYs in these SoCs but only one USB3 PHY.
-from what I can tell both PHY types are different (both use a totally
-different register layout)
+> patch [2-4/4]:
+>   Drop the "sana" clock from SAR ADC module,
+I agree with Jerome that patch 2/4 should be applied last.
+when I wrote the driver I couldn't get it to work on my GXBB board
+(which unfortunately has died since then) because the clocks were
+disabled (they weren't enabled by the bootloader). people who are
+using an old .dtb would get the same problem again until the clock
+driver is merged
 
-> I'm just thinking if we should have only a phy-meson-gxl-usb.c and have both
-> usb2 and usb3 phy programming there?
-I can try that, but I think it would make the result harder to read
-(as the only parts that can be re-used are in the priv memory
-allocation, creating the regmap and the PHY registration in the _probe
-function)
-so I would prefer to keep both PHYs as separate drivers in separate files
+>   From the hardware perspective, the SAR ADC module doesn't
+> require "sana" clock to wrok. This should apply to all SoC,
+> including meson6,8, GXBB, GXL..
+thank you for clarifying this!
+
+> Note: the whole patchset series has been tested at GXL-P212 board,
+> we haven't got any meson6,8 board to test, so I would appreciate
+> if someone (Martin?) could help to confirm it works there.
+I can test this on a Meson8b and a Meson8m2 board on the weekend -
+I'll let you know about the results
 
 
 Regards
