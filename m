@@ -1,40 +1,44 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 7 Nov 2017 22:36:00 +0100
-Subject: [PATCH v4 0/4] fix the clock setting for SAR ADC
-In-Reply-To: <20171107140942.29243-1-yixun.lan@amlogic.com>
-References: <20171107140942.29243-1-yixun.lan@amlogic.com>
-Message-ID: <CAFBinCB=2pb9dZkpSqdVAiumkSCzgaW0oejftjZNP7aYbiQJuw@mail.gmail.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Wed, 8 Nov 2017 14:46:25 +0800
+Subject: [PATCH 0/4] add pinctrl driver for Meson-AXG SoC
+Message-ID: <20171108064625.30517-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yixun,
+patch [1/4]:
+	Document the new pinctrl compatible string for Meson-AXG
 
-On Tue, Nov 7, 2017 at 3:09 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
-> patch [1/4]:
->   Fix wrong SARADC/SANA clock gate bit in Meson-GXBB/GXL,
-> the published datasheets[4] also has wrong description about this.
->   This patch should be explicitly merged *before* other patches.
->
-> patch [2-4/4]:
->   Drop the "sana" clock from SAR ADC module,
-I agree with Jerome that patch 2/4 should be applied last.
-when I wrote the driver I couldn't get it to work on my GXBB board
-(which unfortunately has died since then) because the clocks were
-disabled (they weren't enabled by the bootloader). people who are
-using an old .dtb would get the same problem again until the clock
-driver is merged
+patch [2/4]:
+	Introduce a new pinctrl pinmux ops for Meson-AXG SoC.
+The pinctrl IP has been changed, and now it use 4-bit continuous bit
+to decribe the pin.
+	    
+patch [3/4]:
+	Add pinctrl driver for Meson-AXG SoC.
 
->   From the hardware perspective, the SAR ADC module doesn't
-> require "sana" clock to wrok. This should apply to all SoC,
-> including meson6,8, GXBB, GXL..
-thank you for clarifying this!
+patch [4/4]:
+	Add the DT info for the pinctrl driver found in Meson-AXG SoC.
 
-> Note: the whole patchset series has been tested at GXL-P212 board,
-> we haven't got any meson6,8 board to test, so I would appreciate
-> if someone (Martin?) could help to confirm it works there.
-I can test this on a Meson8b and a Meson8m2 board on the weekend -
-I'll let you know about the results
+Xingyu Chen (4):
+  documentation: Add compatibles for Amlogic Meson AXG pin controllers
+  pinctrl: meson-axg: Introduce a pinctrl pinmux ops for Meson-AXG SoC
+  pinctrl: meson-axg: Add new pinctrl driver for Meson AXG  SoC
+  ARM64: dts: meson-axg: add pinctrl DT info for Meson-AXG SoC
 
+ .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |   2 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  43 +
+ drivers/pinctrl/meson/Kconfig                      |   9 +
+ drivers/pinctrl/meson/Makefile                     |   2 +
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c      | 118 +++
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h      |  62 ++
+ drivers/pinctrl/meson/pinctrl-meson-axg.c          | 976 +++++++++++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson.h              |   1 +
+ include/dt-bindings/gpio/meson-axg-gpio.h          | 116 +++
+ 9 files changed, 1329 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.c
+ create mode 100644 include/dt-bindings/gpio/meson-axg-gpio.h
 
-Regards
-Martin
+-- 
+2.14.1
