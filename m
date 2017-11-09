@@ -1,88 +1,36 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Wed, 8 Nov 2017 14:48:02 +0800
-Subject: [PATCH 4/4] ARM64: dts: meson-axg: add pinctrl DT info for Meson-AXG
- SoC
-Message-ID: <20171108064802.1707-1-yixun.lan@amlogic.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 08 Nov 2017 16:50:55 -0800
+Subject: [PATCH] soc: amlogic: meson-gx-pwrc-vpu: fix power-off when
+ powered by bootloader
+In-Reply-To: <1509723804-21114-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Fri, 3 Nov 2017 16:43:24 +0100")
+References: <1509723804-21114-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7hshdoi8b4.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Xingyu Chen <xingyu.chen@amlogic.com>
+Arnd, Olof,
 
-Add new pinctrl DT info for the Amlogic's Meson-AXG SoC.
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 43 ++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+> In the case the VPU power domain has been powered on by the bootloader
+> and no driver are attached to this power domain, the genpd will power it
+> off after a certain amount of time, but the clocks hasn't been enabled
+> by the kernel itself and the power-off will trigger some faults.
+> This patch enable the clocks to have a coherent state for an eventual
+> poweroff and switches to the pm_domain_always_on_gov governor.
+>
+> Fixes: 75fcb5ca4b46 ("soc: amlogic: add Meson GX VPU Domains driver")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 4a07fc7daa99..771a1c46b8a8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/axg-clkc.h>
- #include <dt-bindings/clock/gxbb-aoclkc.h>
-+#include <dt-bindings/gpio/meson-axg-gpio.h>
- 
- / {
- 	compatible = "amlogic,meson-axg";
-@@ -173,6 +174,32 @@
- 			#mbox-cells = <1>;
- 		};
- 
-+		periphs: periphs at ff634000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xff634000 0x0 0x2000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xff634000 0x0 0x2000>;
-+
-+			pinctrl_periphs: pinctrl at 480 {
-+				compatible = "amlogic,meson-axg-periphs-pinctrl";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges;
-+
-+				gpio: bank at 480 {
-+					reg = <0x0 0x00480 0x0 0x40>,
-+						<0x0 0x004e8 0x0 0x14>,
-+						<0x0 0x00520 0x0 0x14>,
-+						<0x0 0x00430 0x0 0x3c>;
-+					reg-names = "mux", "pull", "pull-enable", "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&pinctrl_periphs 0 0 86>;
-+				};
-+			};
-+		};
-+
- 		sram: sram at fffc0000 {
- 			compatible = "amlogic,meson-axg-sram", "mmio-sram";
- 			reg = <0x0 0xfffc0000 0x0 0x20000>;
-@@ -197,6 +224,22 @@
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xff800000 0x0 0x100000>;
-+			pinctrl_aobus: pinctrl at 14 {
-+				compatible = "amlogic,meson-axg-aobus-pinctrl";
-+				#address-cells = <2>;
-+				#size-cells = <2>;
-+				ranges;
-+
-+				gpio_ao: bank at 14 {
-+					reg = <0x0 0x00014 0x0 0x8>,
-+						<0x0 0x0002c 0x0 0x4>,
-+						<0x0 0x00024 0x0 0x8>;
-+					reg-names = "mux", "pull", "gpio";
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					gpio-ranges = <&pinctrl_aobus 0 0 15>;
-+				};
-+			};
- 
- 			uart_AO: serial at 3000 {
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
--- 
-2.14.1
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+
+This fixes a patch that's currently in arm-soc next/drivers (or
+amlogic/drivers-2 to be precise.)
+
+If it's not too late, please feel free to apply directly.  If not, I
+will queue up for v4.15-rc fixes cycle.
+
+Thanks,
+
+Kevin
