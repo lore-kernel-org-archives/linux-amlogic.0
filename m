@@ -1,21 +1,16 @@
-From: robh@kernel.org (Rob Herring)
-Date: Fri, 10 Nov 2017 15:21:39 -0600
-Subject: [PATCH v4 3/4] dt-bindings: iio: adc: update the doc for SAR ADC
-In-Reply-To: <20171107141020.30419-1-yixun.lan@amlogic.com>
-References: <20171107141020.30419-1-yixun.lan@amlogic.com>
-Message-ID: <20171110212139.ssh5kts3xo35hqeu@rob-hp-laptop>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Fri, 10 Nov 2017 23:30:52 +0100
+Subject: Ethernet stopped working after commit "ARM64: dts: meson-gx: add
+ external PHY interrupt on some platforms"
+Message-ID: <c398c180-e1dc-dea6-36b4-bc385a4c2eb3@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Nov 07, 2017 at 10:10:20PM +0800, Yixun Lan wrote:
-> From: Xingyu Chen <xingyu.chen@amlogic.com>
-> 
-> Update the doc as the SAR ADC modules doesn't require "sana" clock.
-> 
-> Singed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt | 1 -
->  1 file changed, 1 deletion(-)
+Hi Jerome,
 
-Acked-by: Rob Herring <robh@kernel.org>
+after commit b94d22d94ad22 "ARM64: dts: meson-gx: add external PHY
+interrupt on some platforms" ethernet stopped working on my Odroid-C2.
+
+AFAIK you meanwhile also have an Odroid-C2 for testing. Does it work for you?
+
+Rgds, Heiner
