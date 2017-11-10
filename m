@@ -1,37 +1,25 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Thu, 9 Nov 2017 11:42:46 +0100
-Subject: [PATCH] soc: amlogic: meson-gx-pwrc-vpu: fix power-off when
- powered by bootloader
-In-Reply-To: <7hshdoi8b4.fsf@baylibre.com>
-References: <1509723804-21114-1-git-send-email-narmstrong@baylibre.com>
- <7hshdoi8b4.fsf@baylibre.com>
-Message-ID: <CAK8P3a2eYi0bajPmmfjOJWOE76_-A-oDLOKObWyijY_95FEXqw@mail.gmail.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Fri, 10 Nov 2017 16:46:43 +0800
+Subject: [PATCH 0/3] add Reset controller driver for Meson-AXG
+Message-ID: <20171110084643.30980-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Nov 9, 2017 at 1:50 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Arnd, Olof,
->
-> Neil Armstrong <narmstrong@baylibre.com> writes:
->
->> In the case the VPU power domain has been powered on by the bootloader
->> and no driver are attached to this power domain, the genpd will power it
->> off after a certain amount of time, but the clocks hasn't been enabled
->> by the kernel itself and the power-off will trigger some faults.
->> This patch enable the clocks to have a coherent state for an eventual
->> poweroff and switches to the pm_domain_always_on_gov governor.
->>
->> Fixes: 75fcb5ca4b46 ("soc: amlogic: add Meson GX VPU Domains driver")
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
->
-> This fixes a patch that's currently in arm-soc next/drivers (or
-> amlogic/drivers-2 to be precise.)
->
-> If it's not too late, please feel free to apply directly.  If not, I
-> will queue up for v4.15-rc fixes cycle.
+This patches add the Reset controller driver which found at
+the Amlogic Meson-AXG SoC.
 
-Applied to next/drivers, thanks!
+Yixun Lan (3):
+  dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset
+    Controller
+  reset: meson-axg: add compatible string for Meson-AXG SoC
+  arm64: dts: meson-axg: add new reset DT node
 
-      Arnd
+ .../bindings/reset/amlogic,meson-reset.txt         |   3 +-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |   6 +
+ drivers/reset/reset-meson.c                        |   2 +
+ .../dt-bindings/reset/amlogic,meson-axg-reset.h    | 124 +++++++++++++++++++++
+ 4 files changed, 134 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-reset.h
+
+-- 
+2.14.1
