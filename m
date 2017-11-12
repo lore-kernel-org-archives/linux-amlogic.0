@@ -1,54 +1,43 @@
-From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Sun, 12 Nov 2017 10:29:24 -0800
-Subject: [PATCH] net: phy: realtek: fix RTL8211F interrupt mode
-In-Reply-To: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
-References: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
-Message-ID: <3a460dee-e714-e430-ce34-44c55d8a7490@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 12 Nov 2017 19:34:12 +0100
+Subject: [PATCH] nvmem: meson-mx-efuse: fix reading from an offset other than 0
+Message-ID: <20171112183412.12806-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heiner,
+meson_mx_efuse_read calculates the address internal to the eFuse based
+on the offset and the word size. This works fine with any given offset.
+However, the offset is also included when writing to the output buffer.
+This means that reading 4 bytes at offset 500 tries to write beyond the
+array allocated by the nvmem core as it wants to write the 4 bytes to
+"buffer address + offset (500)".
+This issue did not show up in the previous tests since no driver uses
+any value from the eFuse yet and reading the eFuse via sysfs simply
+reads the whole eFuse, starting at offset 0.
 
-On 11/12/2017 07:16 AM, Heiner Kallweit wrote:
-> After commit b94d22d94ad22 "ARM64: dts: meson-gx: add external PHY
-> interrupt on some platforms" ethernet stopped working on my Odroid-C2
-> which has a RTL8211F phy.
-> 
-> It turned out that no interrupts were triggered. Further analysis
-> showed the register INER can't be altered on page 0.
-> Because register INSR needs to be accessed via page 0xa43 I assumed
-> that register INER needs to be accessed via some page too.
-> Some brute force check resulted in page 0xa42 being the right one.
-> 
-> With this patch the phy is working properly in interrupt mode.
+Fix this by only including the offset in the internal address
+calculation.
 
-What would be the appropriate Fixes: tag for that patch?
+Fixes: 8caef1fa9176 ("nvmem: add a driver for the Amlogic Meson6/Meson8/Meson8b SoCs")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/nvmem/meson-mx-efuse.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
-> ---
->  drivers/net/phy/realtek.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-> index d4670ecdb..eda0a6e86 100644
-> --- a/drivers/net/phy/realtek.c
-> +++ b/drivers/net/phy/realtek.c
-> @@ -115,11 +115,13 @@ static int rtl8211f_config_intr(struct phy_device *phydev)
->  {
->  	int err;
->  
-> +	phy_write(phydev, RTL821x_PAGE_SELECT, 0xa42);
->  	if (phydev->interrupts == PHY_INTERRUPT_ENABLED)
->  		err = phy_write(phydev, RTL821x_INER,
->  				RTL8211F_INER_LINK_STATUS);
->  	else
->  		err = phy_write(phydev, RTL821x_INER, 0);
-> +	phy_write(phydev, RTL821x_PAGE_SELECT, 0);
->  
->  	return err;
->  }
-> 
-
+diff --git a/drivers/nvmem/meson-mx-efuse.c b/drivers/nvmem/meson-mx-efuse.c
+index a346b4923550..41d3a3c1104e 100644
+--- a/drivers/nvmem/meson-mx-efuse.c
++++ b/drivers/nvmem/meson-mx-efuse.c
+@@ -156,8 +156,8 @@ static int meson_mx_efuse_read(void *context, unsigned int offset,
+ 				 MESON_MX_EFUSE_CNTL1_AUTO_RD_ENABLE,
+ 				 MESON_MX_EFUSE_CNTL1_AUTO_RD_ENABLE);
+ 
+-	for (i = offset; i < offset + bytes; i += efuse->config.word_size) {
+-		addr = i / efuse->config.word_size;
++	for (i = 0; i < bytes; i += efuse->config.word_size) {
++		addr = (offset + i) / efuse->config.word_size;
+ 
+ 		err = meson_mx_efuse_read_addr(efuse, addr, &tmp);
+ 		if (err)
 -- 
-Florian
+2.15.0
