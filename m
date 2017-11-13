@@ -1,115 +1,108 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 13 Nov 2017 15:38:57 +0800
-Subject: [PATCH v4 4/4] ARM64: dts: meson: drop "sana" clock from SAR ADC
-In-Reply-To: <CAFBinCAEgCzZQQN4V8bJMpkNJ9AJLDLWC2DSEkz7N7m60p=QDg@mail.gmail.com>
-References: <20171107141027.30717-1-yixun.lan@amlogic.com>
- <CAFBinCAEgCzZQQN4V8bJMpkNJ9AJLDLWC2DSEkz7N7m60p=QDg@mail.gmail.com>
-Message-ID: <1f191946-7cd2-04c9-7b1f-f5e790b6ddc7@amlogic.com>
+Date: Mon, 13 Nov 2017 16:01:55 +0800
+Subject: [PATCH] ARM64: dts: meson-axg: add ethernet mac controller
+Message-ID: <20171113080155.2463-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin & others
+Add DT info for the stmmac ethernet MAC which found in
+the Amlogic's Meson-AXG SoC, also describe the ethernet
+pinctrl & clock information here.
 
-  I'd like to just re-send the patch [4/4] (while leave others[1-3/4]
-unchanged), to have separated DT patch the for 32bit / 64bit platform.
-  is this ok for you?
+This is tested in the S400 dev board which use a RTL8211F PHY,
+and the pins connect to the 'eth_rgmii_y_pins' group.
 
+Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts |  7 ++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 53 ++++++++++++++++++++++++++
+ 2 files changed, 60 insertions(+)
 
-On 11/12/17 09:33, Martin Blumenstingl wrote:
-> Hi Yixun,
-> 
-> On Tue, Nov 7, 2017 at 3:10 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
->> From: Xingyu Chen <xingyu.chen@amlogic.com>
->>
->> The SAR ADC modules doesn't require The "sana" clock.
->>
->> Singed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> ---
->>  arch/arm/boot/dts/meson8.dtsi               | 5 ++---
->>  arch/arm/boot/dts/meson8b.dtsi              | 5 ++---
-> these two should go into a separate patch (with "ARM: dts: ..."
-> prefix) - the ARM maintainers want separate pull requests for the
-> 32-bit and 64-bit .dts changes, so patches should also follow that
-> schema
-> 
-> with that fixed, you can add my ACK on both (32-bit and 64-bit) .dts patches:
-> Acked-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
-> 
-
-thanks, I will send separate patch for this, and I will add your 'Acked-by'
-
->>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 3 +--
->>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 3 +--
->>  4 files changed, 6 insertions(+), 10 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
->> index b98d44fde6b6..f93d6cf6e094 100644
->> --- a/arch/arm/boot/dts/meson8.dtsi
->> +++ b/arch/arm/boot/dts/meson8.dtsi
->> @@ -289,9 +289,8 @@
->>  &saradc {
->>         compatible = "amlogic,meson8-saradc", "amlogic,meson-saradc";
->>         clocks = <&clkc CLKID_XTAL>,
->> -               <&clkc CLKID_SAR_ADC>,
->> -               <&clkc CLKID_SANA>;
->> -       clock-names = "clkin", "core", "sana";
->> +               <&clkc CLKID_SAR_ADC>;
->> +       clock-names = "clkin", "core";
->>  };
->>
->>  &spifc {
->> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
->> index bc278da7df0d..4aa444284f0c 100644
->> --- a/arch/arm/boot/dts/meson8b.dtsi
->> +++ b/arch/arm/boot/dts/meson8b.dtsi
->> @@ -185,9 +185,8 @@
->>  &saradc {
->>         compatible = "amlogic,meson8b-saradc", "amlogic,meson-saradc";
->>         clocks = <&clkc CLKID_XTAL>,
->> -               <&clkc CLKID_SAR_ADC>,
->> -               <&clkc CLKID_SANA>;
->> -       clock-names = "clkin", "core", "sana";
->> +               <&clkc CLKID_SAR_ADC>;
->> +       clock-names = "clkin", "core";
->>  };
->>
->>  &uart_AO {
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->> index af834cdbba79..b77f2593cdc3 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
->> @@ -686,10 +686,9 @@
->>         compatible = "amlogic,meson-gxbb-saradc", "amlogic,meson-saradc";
->>         clocks = <&xtal>,
->>                  <&clkc CLKID_SAR_ADC>,
->> -                <&clkc CLKID_SANA>,
->>                  <&clkc CLKID_SAR_ADC_CLK>,
->>                  <&clkc CLKID_SAR_ADC_SEL>;
->> -       clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
->> +       clock-names = "clkin", "core", "adc_clk", "adc_sel";
->>  };
->>
->>  &sd_emmc_a {
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> index d8dd3298b15c..07805a3b4db0 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> @@ -628,10 +628,9 @@
->>         compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
->>         clocks = <&xtal>,
->>                  <&clkc CLKID_SAR_ADC>,
->> -                <&clkc CLKID_SANA>,
->>                  <&clkc CLKID_SAR_ADC_CLK>,
->>                  <&clkc CLKID_SAR_ADC_SEL>;
->> -       clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
->> +       clock-names = "clkin", "core", "adc_clk", "adc_sel";
->>  };
->>
->>  &sd_emmc_a {
->> --
->> 2.14.1
->>
-> 
-> .
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index 9eb6aaee155d..7b39a9fe2b0f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -21,3 +21,10 @@
+ 	status = "okay";
+ };
+ 
++&ethmac {
++	status = "okay";
++	phy-mode = "rgmii";
++
++	pinctrl-0 = <&eth_rgmii_y_pins>;
++	pinctrl-names = "default";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 65945c6c8b65..57faaa9d8013 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -157,6 +157,19 @@
+ 			#address-cells = <0>;
+ 		};
+ 
++		ethmac: ethernet at ff3f0000 {
++			compatible = "amlogic,meson-axg-dwmac", "amlogic,meson-gxbb-dwmac", "snps,dwmac";
++			reg = <0x0 0xff3f0000 0x0 0x10000
++				0x0 0xff634540 0x0 0x8>;
++			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "macirq";
++			status = "disabled";
++			clocks = <&clkc CLKID_ETH>,
++				 <&clkc CLKID_FCLK_DIV2>,
++				 <&clkc CLKID_MPLL2>;
++			clock-names = "stmmaceth", "clkin0", "clkin1";
++		};
++
+ 		hiubus: hiubus at ff63c000 {
+ 			compatible = "simple-bus";
+ 			reg = <0x0 0xff63c000 0x0 0x1c00>;
+@@ -203,6 +216,46 @@
+ 					#gpio-cells = <2>;
+ 					gpio-ranges = <&pinctrl_periphs 0 0 86>;
+ 				};
++
++				eth_rgmii_x_pins: eth-x-rgmii {
++					mux {
++						groups = "eth_mdio_x",
++						       "eth_mdc_x",
++						       "eth_rgmii_rx_clk_x",
++						       "eth_rx_dv_x",
++						       "eth_rxd0_x",
++						       "eth_rxd1_x",
++						       "eth_rxd2_rgmii",
++						       "eth_rxd3_rgmii",
++						       "eth_rgmii_tx_clk",
++						       "eth_txen_x",
++						       "eth_txd0_x",
++						       "eth_txd1_x",
++						       "eth_txd2_rgmii",
++						       "eth_txd3_rgmii";
++						function = "eth";
++					};
++				};
++
++				eth_rgmii_y_pins: eth-y-rgmii {
++					mux {
++						groups = "eth_mdio_y",
++						       "eth_mdc_y",
++						       "eth_rgmii_rx_clk_y",
++						       "eth_rx_dv_y",
++						       "eth_rxd0_y",
++						       "eth_rxd1_y",
++						       "eth_rxd2_rgmii",
++						       "eth_rxd3_rgmii",
++						       "eth_rgmii_tx_clk",
++						       "eth_txen_y",
++						       "eth_txd0_y",
++						       "eth_txd1_y",
++						       "eth_txd2_rgmii",
++						       "eth_txd3_rgmii";
++						function = "eth";
++					};
++				};
+ 			};
+ 		};
+ 
+-- 
+2.14.1
