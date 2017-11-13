@@ -1,165 +1,115 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 12 Nov 2017 21:48:36 +0100
-Subject: [PATCH v7 usb-next 4/4] dt-bindings: usb: xhci: include the
- roothub and a device in the example
-In-Reply-To: <CAFBinCBJuL7J7847ZU0jO=O0WuwNZj_oBT4NO1+ge11dEbQL+w@mail.gmail.com>
-References: <CAFBinCALbByzAiAqTOzGj6XHASGwWX34xg7GKf=Fa6_eiCEnkA@mail.gmail.com>
- <Pine.LNX.4.44L0.1710271550360.1355-100000@iolanthe.rowland.org>
- <CAFBinCBocmr6fywO9vqWu+ngfrbG=FBFqdEvYEBWR84VgMANpw@mail.gmail.com>
- <CAK8P3a1xdUy7g991MbtrSTYFsM864MQDc61=sLZmfSMwrokCBg@mail.gmail.com>
- <CAFBinCBJuL7J7847ZU0jO=O0WuwNZj_oBT4NO1+ge11dEbQL+w@mail.gmail.com>
-Message-ID: <CAFBinCCFN-AWjQPWoC-0VaJZz0zK8EKcZP89d_=BqVAoz1vROA@mail.gmail.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 13 Nov 2017 15:38:57 +0800
+Subject: [PATCH v4 4/4] ARM64: dts: meson: drop "sana" clock from SAR ADC
+In-Reply-To: <CAFBinCAEgCzZQQN4V8bJMpkNJ9AJLDLWC2DSEkz7N7m60p=QDg@mail.gmail.com>
+References: <20171107141027.30717-1-yixun.lan@amlogic.com>
+ <CAFBinCAEgCzZQQN4V8bJMpkNJ9AJLDLWC2DSEkz7N7m60p=QDg@mail.gmail.com>
+Message-ID: <1f191946-7cd2-04c9-7b1f-f5e790b6ddc7@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Arnd (and anyone else who is interested in this),
+Hi Kevin & others
 
-On Mon, Oct 30, 2017 at 11:59 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Arnd,
->
-> On Mon, Oct 30, 2017 at 3:08 PM, Arnd Bergmann <arnd@arndb.de> wrote:
->> On Sat, Oct 28, 2017 at 3:33 PM, Martin Blumenstingl
->> <martin.blumenstingl@googlemail.com> wrote:
->>> On Fri, Oct 27, 2017 at 9:55 PM, Alan Stern <stern@rowland.harvard.edu> wrote:
->>>> On Fri, 27 Oct 2017, Martin Blumenstingl wrote:
->>>>> >> diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
->>>>> >> index 5b49ba9f2f9a..20e5ce2b016a 100644
->>>>> >> --- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
->>>>> >> +++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
->>>>> >> @@ -42,4 +42,27 @@ Example:
->>>>> >>               compatible = "generic-xhci";
->>>>> >>               reg = <0xf0931000 0x8c8>;
->>>>> >>               interrupts = <0x0 0x4e 0x0>;
->>>>> >> +
->>>>> >> +             #address-cells = <1>;
->>>>> >> +             #size-cells = <0>;
->>>>> >> +
->>>>> >> +             /* see usb-roothub.txt */
->>>>> >> +             roothub at 0 {
->>>>> >> +                     compatible = "usb1d6b,3", "usb1d6b,2";
->>>>> >> +                     #address-cells = <1>;
->>>>> >> +                     #size-cells = <0>;
->>>>> >> +                     reg = <0>;
->>>>> >> +
->>>>> >> +                     port at 1 {
->>>>> >> +                             reg = <1>;
->>>>> >> +                             phys = <&usb2_phy1>, <&usb3_phy1>;
->>>>> >> +                             phy-names = "usb2-phy", "usb3-phy";
->>>>> >> +                     };
->>>>> >> +             };
->>>>> >> +
->>>>> >> +             /* see usb-device.txt */
->>>>> >> +             hub: genesys at 1 {
+  I'd like to just re-send the patch [4/4] (while leave others[1-3/4]
+unchanged), to have separated DT patch the for 32bit / 64bit platform.
+  is this ok for you?
+
+
+On 11/12/17 09:33, Martin Blumenstingl wrote:
+> Hi Yixun,
+> 
+> On Tue, Nov 7, 2017 at 3:10 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
+>> From: Xingyu Chen <xingyu.chen@amlogic.com>
 >>
->>>> Two things to be aware of:
->>>>
->>>>     1.  /sys/kernel/debug/usb/devices has an off-by-one error in the
->>>>         "Port=" field.  Every value you see should actually be one
->>>>         higher than it is.  It has been this way for many, many years
->>>>         so we can't fix it now.
->>> here's the output of "lsusb -t" (which is easier to read I guess):
->>> # lsusb -t
->>> /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/0p, 5000M
->>> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/2p, 480M
->>>    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
->>>        |__ Port 3: Dev 3, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+>> The SAR ADC modules doesn't require The "sana" clock.
 >>
->> I see two possible problems here:
+>> Singed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>> ---
+>>  arch/arm/boot/dts/meson8.dtsi               | 5 ++---
+>>  arch/arm/boot/dts/meson8b.dtsi              | 5 ++---
+> these two should go into a separate patch (with "ARM: dts: ..."
+> prefix) - the ARM maintainers want separate pull requests for the
+> 32-bit and 64-bit .dts changes, so patches should also follow that
+> schema
+> 
+> with that fixed, you can add my ACK on both (32-bit and 64-bit) .dts patches:
+> Acked-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
+> 
+
+thanks, I will send separate patch for this, and I will add your 'Acked-by'
+
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 3 +--
+>>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 3 +--
+>>  4 files changed, 6 insertions(+), 10 deletions(-)
 >>
->> * Linux does show the root hub as a parent of the external hub,
->>   while the DT shows them as two unrelated children of the host
->>   controller. This clearly doesn't reflect the reality, and may come
->>   to bite us again later when we try to extend it in some other way.
-> ok, I see your point here
->
->> * Listing the root hub as compatible="usb1d6b,3" encodes a Linux
->>   implementation detail into the OS-independent DT ABI: The
->>   root hub does not actually have this vendor/device ID, it's
->>   just something we make up in Linux.
-> I see, this would have to be more generic then (compatible =
-> "usb-root-hub", etc..)
-> however, let's postpone this discussion and evaluate more options (see below)
->
->> I think you mentioned that an earlier version of the patch set
->> did not have the root hub at all but instead listed the PHYs directly
->> under the host controller. Can you summarize what the problem
->> with that approach was?
-> this is going on for a while now, I think it started with Rob's
-> comment here: [0]
-> I do not remember any explicit NACKs on that idea
->
-> I took a step back and tried to figure out the
-> requirements/constraints again (in no specific order):
-> a) we need to initialize multiple PHYs on an xHCI controller
-> b) other USB controller implementation already initialize multiple
-> PHYs (see [1]) and we must not break these
-> c) we need to make sure that we don't get any conflicts when specifying PHYs
->   (for example: if we pass the PHY for the root-hub/controller port 1
-> at &usb/device at 1 then we may run into a problem where device at 1 also
-> requires a USB PHY. I'm not sure if such cases exist in real-life
-> though)
-> d) currently the devicetree phy bindings state that a phy-names
-> property is mandatory (see [2], I interpret this as 'we cannot have
-> "phys = <...>" without "phy-names = ...'")
-> e) existing USB OF helper functions (like of_usb_get_dr_mode_by_phy)
-> rely on the fact that the PHY is specified directly at the controller
-> f) DT hierarchy should match the reality
-> g) ...feel free to name more
->
-> defining the PHYs directly under the controller node gives these
-> results (my own interpretation):
-> a) we can implement this similar to my current patch (the only
-> difference would be where the code takes the PHYs from)
-> b) I am not familiar with these other drivers, however we might be
-> able to fix those by simply removing the "parse all PHYs" code from
-> them (and rely on our new code)
-> c) I don't see any problems, if a controller needs more than just an
-> USB PHY then we could still use the "phy-names" to skip all non USB
-> PHYs
-> d) we would either have to make phy-names optional for this specific
-> use-case or come up with a convention how the phy-names should be
-> built for our case
-> e) of_usb_get_dr_mode_by_phy and friends would still work - no changes required
-> f) hierarchy matches the reality if we define that the root-hub is not
-> specified in device-tree (this would mean that we simply treat the
-> PHYs as properties of the controller, I'm not aware of any other
-> "root-hub" specific properties)
->
-> defining the PHYs in a root-hub node gives these results (my own
-> interpretation):
-> a) that's what this series does
-> b) we're not touching the other implementations - however, existing
-> .dts files would have to be changed to switch to this new binding
-> c) the root-hub is currently separated, so there are no conflicts
-> (needs more thoughts though if we need to nest the USB devices below
-> the root-hub)
-> d) phy-names can be specified easily and non USB PHYs are skipped by
-> the current code already
-> e) of_usb_get_dr_mode_by_phy and friends would have to be adjusted
-> (not part of this series yet)
-> f) the root-hub is now described in devicetree but the hierarchy may
-> not be correct
->
-> could you please let me know if you see more requirements or constraints?
-> do you agree with my interpretation of the two possible solutions (and
-> even more important: which are the ones you don't agree with)?
-did you have time to go through this yet?
-I have more time to work on this next week
-
->> Is it correct that roothub at 0/port at 1 corresponds to the same
->> connector that genesys at 1 is connected to?
-> yes, both refer to the same port/connector
->
->
-> Regards
-> Martin
->
->
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001818.html
-> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-January/001947.html
-> [2] http://elixir.free-electrons.com/linux/v4.13.9/source/Documentation/devicetree/bindings/phy/phy-bindings.txt#L33
-
-
-Regards
-Martin
+>> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+>> index b98d44fde6b6..f93d6cf6e094 100644
+>> --- a/arch/arm/boot/dts/meson8.dtsi
+>> +++ b/arch/arm/boot/dts/meson8.dtsi
+>> @@ -289,9 +289,8 @@
+>>  &saradc {
+>>         compatible = "amlogic,meson8-saradc", "amlogic,meson-saradc";
+>>         clocks = <&clkc CLKID_XTAL>,
+>> -               <&clkc CLKID_SAR_ADC>,
+>> -               <&clkc CLKID_SANA>;
+>> -       clock-names = "clkin", "core", "sana";
+>> +               <&clkc CLKID_SAR_ADC>;
+>> +       clock-names = "clkin", "core";
+>>  };
+>>
+>>  &spifc {
+>> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+>> index bc278da7df0d..4aa444284f0c 100644
+>> --- a/arch/arm/boot/dts/meson8b.dtsi
+>> +++ b/arch/arm/boot/dts/meson8b.dtsi
+>> @@ -185,9 +185,8 @@
+>>  &saradc {
+>>         compatible = "amlogic,meson8b-saradc", "amlogic,meson-saradc";
+>>         clocks = <&clkc CLKID_XTAL>,
+>> -               <&clkc CLKID_SAR_ADC>,
+>> -               <&clkc CLKID_SANA>;
+>> -       clock-names = "clkin", "core", "sana";
+>> +               <&clkc CLKID_SAR_ADC>;
+>> +       clock-names = "clkin", "core";
+>>  };
+>>
+>>  &uart_AO {
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> index af834cdbba79..b77f2593cdc3 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> @@ -686,10 +686,9 @@
+>>         compatible = "amlogic,meson-gxbb-saradc", "amlogic,meson-saradc";
+>>         clocks = <&xtal>,
+>>                  <&clkc CLKID_SAR_ADC>,
+>> -                <&clkc CLKID_SANA>,
+>>                  <&clkc CLKID_SAR_ADC_CLK>,
+>>                  <&clkc CLKID_SAR_ADC_SEL>;
+>> -       clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
+>> +       clock-names = "clkin", "core", "adc_clk", "adc_sel";
+>>  };
+>>
+>>  &sd_emmc_a {
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> index d8dd3298b15c..07805a3b4db0 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+>> @@ -628,10 +628,9 @@
+>>         compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
+>>         clocks = <&xtal>,
+>>                  <&clkc CLKID_SAR_ADC>,
+>> -                <&clkc CLKID_SANA>,
+>>                  <&clkc CLKID_SAR_ADC_CLK>,
+>>                  <&clkc CLKID_SAR_ADC_SEL>;
+>> -       clock-names = "clkin", "core", "sana", "adc_clk", "adc_sel";
+>> +       clock-names = "clkin", "core", "adc_clk", "adc_sel";
+>>  };
+>>
+>>  &sd_emmc_a {
+>> --
+>> 2.14.1
+>>
+> 
+> .
+> 
