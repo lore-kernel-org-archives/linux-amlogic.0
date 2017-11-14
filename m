@@ -1,13 +1,15 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 13 Nov 2017 17:36:02 +0100
+From: davem@davemloft.net (David Miller)
+Date: Tue, 14 Nov 2017 21:34:14 +0900 (KST)
 Subject: [PATCH] net: phy: realtek: fix RTL8211F interrupt mode
 In-Reply-To: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
 References: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
-Message-ID: <1510590962.3607.1.camel@baylibre.com>
+Message-ID: <20171114.213414.1380323996609297743.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 2017-11-12 at 16:16 +0100, Heiner Kallweit wrote:
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Date: Sun, 12 Nov 2017 16:16:04 +0100
+
 > After commit b94d22d94ad22 "ARM64: dts: meson-gx: add external PHY
 > interrupt on some platforms" ethernet stopped working on my Odroid-C2
 > which has a RTL8211F phy.
@@ -22,4 +24,4 @@ On Sun, 2017-11-12 at 16:16 +0100, Heiner Kallweit wrote:
 > 
 > Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+Applied.
