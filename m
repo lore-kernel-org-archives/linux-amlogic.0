@@ -1,27 +1,29 @@
-From: davem@davemloft.net (David Miller)
-Date: Tue, 14 Nov 2017 21:34:14 +0900 (KST)
-Subject: [PATCH] net: phy: realtek: fix RTL8211F interrupt mode
-In-Reply-To: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
-References: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
-Message-ID: <20171114.213414.1380323996609297743.davem@davemloft.net>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Thu, 16 Nov 2017 17:01:13 +0800
+Subject: [PATCH v5 0/2] meson: saradc: drop the sana clock
+Message-ID: <20171116090115.29915-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Date: Sun, 12 Nov 2017 16:16:04 +0100
+This is a rework for the patch [v4 4/4] of previous series,
+which mean this will make the patch [1] obsolete.
 
-> After commit b94d22d94ad22 "ARM64: dts: meson-gx: add external PHY
-> interrupt on some platforms" ethernet stopped working on my Odroid-C2
-> which has a RTL8211F phy.
-> 
-> It turned out that no interrupts were triggered. Further analysis
-> showed the register INER can't be altered on page 0.
-> Because register INSR needs to be accessed via page 0xa43 I assumed
-> that register INER needs to be accessed via some page too.
-> Some brute force check resulted in page 0xa42 being the right one.
-> 
-> With this patch the phy is working properly in interrupt mode.
-> 
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+Changes since v4:
+ * separate DTS for ARM(32bit) vs ARM64
+ * add ACK from Martin
 
-Applied.
+[1] [PATCH v4 4/4] ARM64: dts: meson: drop "sana" clock from SAR ADC
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005266.html
+
+Xingyu Chen (2):
+  ARM64: dts: meson: drop "sana" clock from SAR ADC
+  ARM: dts: meson: drop "sana" clock from SAR ADC
+
+ arch/arm/boot/dts/meson8.dtsi               | 5 ++---
+ arch/arm/boot/dts/meson8b.dtsi              | 5 ++---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 3 +--
+ 4 files changed, 6 insertions(+), 10 deletions(-)
+
+-- 
+2.14.1
