@@ -1,28 +1,24 @@
-From: trini@konsulko.com (Tom Rini)
-Date: Fri, 17 Nov 2017 10:43:57 -0500
-Subject: [U-Boot, u-boot, 3/3] arm: amlogic: p212: Add support for
- Ethernet with Internal PHY
-In-Reply-To: <1508313732-19282-4-git-send-email-narmstrong@baylibre.com>
-References: <1508313732-19282-4-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20171117154357.GE9986@bill-the-cat>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 17 Nov 2017 19:17:58 +0100
+Subject: [PATCH 0/3] tty: serial: meson: small code improvements
+Message-ID: <20171117181801.29734-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Oct 18, 2017 at 10:02:12AM +0200, Neil Armstrong wrote:
+The goal of this series is to make some the pre-processor defines also
+useful for humans (like me) who want to compare register dumps.
+These patches should not have any functional impact (which is also why
+I didn't add a "Fixes" tag).
 
-> This patch adds support for the Internal RMII Ethernet PHY on the
-> Amlogic P212 Reference Board.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Applied to u-boot/master, thanks!
+Martin Blumenstingl (3):
+  tty: serial: meson: remove duplicate "clear error" bit definition
+  tty: serial: meson: merge the two register sections for
+    AML_UART_CONTROL
+  tty: serial: meson: fix typo in the "stop bit" register definition
+
+ drivers/tty/serial/meson_uart.c | 31 ++++++++++++++-----------------
+ 1 file changed, 14 insertions(+), 17 deletions(-)
 
 -- 
-Tom
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20171117/be913554/attachment.sig>
+2.15.0
