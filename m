@@ -1,58 +1,29 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 17 Nov 2017 19:18:00 +0100
-Subject: [PATCH 2/3] tty: serial: meson: merge the two register sections for
- AML_UART_CONTROL
-In-Reply-To: <20171117181801.29734-1-martin.blumenstingl@googlemail.com>
-References: <20171117181801.29734-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171117181801.29734-3-martin.blumenstingl@googlemail.com>
+From: arvind.yadav.cs@gmail.com (Arvind Yadav)
+Date: Sat, 18 Nov 2017 01:58:16 +0530
+Subject: [PATCH 0/6] mmc: Handle platform_get_irq's error checking and return
+Message-ID: <1510950502-22565-1-git-send-email-arvind.yadav.cs@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In the code there are two separate sections which each describe some of
-the bits in the AML_UART_CONTROL register.
-Merge these into one section to make the code easier to read.
-No functional changes intended.
+The platform_get_irq() function returns negative if an error occurs.
+zero or positive number on success. platform_get_irq() error checking
+for zero is not correct and and we must check its return value.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/tty/serial/meson_uart.c | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
+Arvind Yadav (6):
+  [PATCH 1/6] mmc: meson-gx-mmc: Fix platform_get_irq's error checking
+  [PATCH 2/6] mmc: s3cmci: Fix platform_get_irq's error checking
+  [PATCH 3/6] mmc: sdhci-acpi: Handle return value of platform_get_irq
+  [PATCH 4/6] mmc: sdhci-spear: Handle return value of platform_get_irq
+  [PATCH 5/6] mmc: sh_mmcif: Handle return value of platform_get_irq
+  [PATCH 6/6] mmc: sunxi-mmc: Handle return value of platform_get_irq
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 78b5d2d15a97..72d425579a4d 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -34,8 +34,15 @@
- /* AML_UART_CONTROL bits */
- #define AML_UART_TX_EN			BIT(12)
- #define AML_UART_RX_EN			BIT(13)
-+#define AML_UART_TWO_WIRE_EN		BIT(15)
-+#define AML_UART_STOP_BIN_LEN_MASK	(0x03 << 16)
-+#define AML_UART_STOP_BIN_1SB		(0x00 << 16)
-+#define AML_UART_STOP_BIN_2SB		(0x01 << 16)
-+#define AML_UART_PARITY_TYPE		BIT(18)
-+#define AML_UART_PARITY_EN		BIT(19)
- #define AML_UART_TX_RST			BIT(22)
- #define AML_UART_RX_RST			BIT(23)
-+#define AML_UART_CLEAR_ERR		BIT(24)
- #define AML_UART_RX_INT_EN		BIT(27)
- #define AML_UART_TX_INT_EN		BIT(28)
- #define AML_UART_DATA_LEN_MASK		(0x03 << 20)
-@@ -56,15 +63,6 @@
- 					 AML_UART_FRAME_ERR  | \
- 					 AML_UART_TX_FIFO_WERR)
- 
--/* AML_UART_CONTROL bits */
--#define AML_UART_TWO_WIRE_EN		BIT(15)
--#define AML_UART_PARITY_TYPE		BIT(18)
--#define AML_UART_PARITY_EN		BIT(19)
--#define AML_UART_CLEAR_ERR		BIT(24)
--#define AML_UART_STOP_BIN_LEN_MASK	(0x03 << 16)
--#define AML_UART_STOP_BIN_1SB		(0x00 << 16)
--#define AML_UART_STOP_BIN_2SB		(0x01 << 16)
--
- /* AML_UART_MISC bits */
- #define AML_UART_XMIT_IRQ(c)		(((c) & 0xff) << 8)
- #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
+ drivers/mmc/host/meson-gx-mmc.c | 4 ++--
+ drivers/mmc/host/s3cmci.c       | 4 ++--
+ drivers/mmc/host/sdhci-acpi.c   | 4 ++++
+ drivers/mmc/host/sdhci-spear.c  | 4 ++++
+ drivers/mmc/host/sh_mmcif.c     | 2 +-
+ drivers/mmc/host/sunxi-mmc.c    | 5 +++++
+ 6 files changed, 18 insertions(+), 5 deletions(-)
+
 -- 
-2.15.0
+2.7.4
