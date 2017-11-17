@@ -1,55 +1,25 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 16 Nov 2017 17:01:15 +0800
-Subject: [PATCH v5 2/2] ARM: dts: meson: drop "sana" clock from SAR ADC
-In-Reply-To: <20171116090115.29915-1-yixun.lan@amlogic.com>
-References: <20171116090115.29915-1-yixun.lan@amlogic.com>
-Message-ID: <20171116090115.29915-3-yixun.lan@amlogic.com>
+Date: Fri, 17 Nov 2017 16:02:31 +0800
+Subject: [PATCH 0/5] i2c: meson-axg: add I2C controller driver
+Message-ID: <20171117080236.32504-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Xingyu Chen <xingyu.chen@amlogic.com>
+This patch set try to add I2C controller driver for
+the Amlogic's Meson-AXG SoC.
 
-The SAR ADC modules doesn't require The "sana" clock.
+Jian Hu (5):
+  dt-bindings: i2c: update documentation for the Meson-AXG
+  i2c: meson: add configurable divider factors
+  ARM64: dts: meson-axg: add I2C DT info for Meson-AXG SoC
+  ARM64: dts: meson-axg: describe pin DT info for I2C controller
+  ARM64: dts: meson-axg: enable I2C Master-1 for the audio speaker
 
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm/boot/dts/meson8.dtsi  | 5 ++---
- arch/arm/boot/dts/meson8b.dtsi | 5 ++---
- 2 files changed, 4 insertions(+), 6 deletions(-)
+ .../devicetree/bindings/i2c/i2c-meson.txt          |   1 +
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts     |   6 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi         | 123 +++++++++++++++++++++
+ drivers/i2c/busses/i2c-meson.c                     |  32 +++++-
+ 4 files changed, 158 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index b98d44fde6b6..f93d6cf6e094 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -289,9 +289,8 @@
- &saradc {
- 	compatible = "amlogic,meson8-saradc", "amlogic,meson-saradc";
- 	clocks = <&clkc CLKID_XTAL>,
--		<&clkc CLKID_SAR_ADC>,
--		<&clkc CLKID_SANA>;
--	clock-names = "clkin", "core", "sana";
-+		<&clkc CLKID_SAR_ADC>;
-+	clock-names = "clkin", "core";
- };
- 
- &spifc {
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index bc278da7df0d..4aa444284f0c 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -185,9 +185,8 @@
- &saradc {
- 	compatible = "amlogic,meson8b-saradc", "amlogic,meson-saradc";
- 	clocks = <&clkc CLKID_XTAL>,
--		<&clkc CLKID_SAR_ADC>,
--		<&clkc CLKID_SANA>;
--	clock-names = "clkin", "core", "sana";
-+		<&clkc CLKID_SAR_ADC>;
-+	clock-names = "clkin", "core";
- };
- 
- &uart_AO {
 -- 
 2.14.1
