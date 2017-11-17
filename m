@@ -1,104 +1,31 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Fri, 17 Nov 2017 22:02:32 +0800
-Subject: [PATCH 3/5] ARM64: dts: meson-axg: add I2C DT info for Meson-AXG
- SoC
-In-Reply-To: <96dc68e3-c394-70c4-eabe-f59d4c36150e@baylibre.com>
-References: <20171117080236.32504-1-yixun.lan@amlogic.com>
- <20171117080236.32504-4-yixun.lan@amlogic.com>
- <96dc68e3-c394-70c4-eabe-f59d4c36150e@baylibre.com>
-Message-ID: <1dd88afc-04fd-2443-f948-1d5bcd186ab8@amlogic.com>
+From: trini@konsulko.com (Tom Rini)
+Date: Fri, 17 Nov 2017 10:42:57 -0500
+Subject: [U-Boot, u-boot, 1/3] ARM: dts: Synchronize Amlogic from Linux
+ Mainline 4.13.5
+In-Reply-To: <1507816232-8227-2-git-send-email-narmstrong@baylibre.com>
+References: <1507816232-8227-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20171117154257.GQ9986@bill-the-cat>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil
+On Thu, Oct 12, 2017 at 03:50:30PM +0200, Neil Armstrong wrote:
 
-see my comments in line
+> Synchronize the Amlogic ARM64 dts from mainline Linux 4.13.5
+> 
+> In the preparation of the support of the Amlogic P212 board,
+> import the corresponding meson-gxl-s905x-p212.dts file.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Beniamino Galvani <b.galvani@gmail.com>
 
-On 11/17/17 21:05, Neil Armstrong wrote:
-> Hi Yixun, Jian,
-> 
-> On 17/11/2017 09:02, Yixun Lan wrote:
->> From: Jian Hu <jian.hu@amlogic.com>
->>
->> There are four I2C masters in EE domain, and one I2C Master in
->> AO domain, the DT info here should describe them all.
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 59 ++++++++++++++++++++++++++++++
->>  1 file changed, 59 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> index 57faaa9d8013..99e967aff439 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> @@ -129,6 +129,54 @@
->>  				#reset-cells = <1>;
->>  			};
->>  
->> +			i2c_m0: i2c at 1f000 {
-> 
-> Can you use a more simple "i2c0" phandle naming instead ? or get back to the "i2c_A/B/C/D" naming like in meson_gx to keep consistency ?
-> 
-Ok, I would prefer to use 'i2c0' then
+Applied to u-boot/master, thanks!
 
-we had a internal discussion about the inconsistent naming of the I2C
-controller, and reach a consensus to name them as:
- the EE domain: ee_i2c_m0, ee_i2c_m1 ..
- the AO domain: ao_i2c_m0, ao_i2c_s0
-in the future datasheet.
-
-note: 'ee' means the EE domain, m0 mean the master 0, s0 mean the I2C
-slave 0
-
-
-> [...]
-> 
->> +			};
->> +
->> +			i2c_m1: i2c at 1e000 {
-> 
-> [...]
-> 
->> +			};
->> +
->> +			i2c_m2: i2c at 1d000 {
-> 
-> [...]
-> 
->> +			};
->> +
->> +			i2c_m3: i2c at 1c000 {
-> 
-> [...]
-> 
->> +			};
->> +
->>  			uart_A: serial at 24000 {
->>  				compatible = "amlogic,meson-gx-uart", "amlogic,meson-uart";
->>  				reg = <0x0 0x24000 0x0 0x14>;
->> @@ -312,6 +360,17 @@
->>  				};
->>  			};
->>  
->> +			i2c_ao: i2c at 5000 {
-> 
-> Can you keep the same "i2c_AO" as in meson-gx ?
-> 
-> 
-sure, can do
-
-> [...]
-> 
->> +			};
->> +
->>  			uart_AO: serial at 3000 {
->>  				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
->>  				reg = <0x0 0x3000 0x0 0x18>;
->>
-> 
-> Neil
-> 
-> .
-> 
+-- 
+Tom
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20171117/291f5686/attachment.sig>
