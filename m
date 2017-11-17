@@ -1,56 +1,104 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Fri, 17 Nov 2017 21:47:14 +0800
-Subject: [PATCH 1/5] dt-bindings: i2c: update documentation for the
- Meson-AXG
-In-Reply-To: <03c9ea24-5f8d-f5dd-6e96-f53f56db530c@baylibre.com>
+Date: Fri, 17 Nov 2017 22:02:32 +0800
+Subject: [PATCH 3/5] ARM64: dts: meson-axg: add I2C DT info for Meson-AXG
+ SoC
+In-Reply-To: <96dc68e3-c394-70c4-eabe-f59d4c36150e@baylibre.com>
 References: <20171117080236.32504-1-yixun.lan@amlogic.com>
- <20171117080236.32504-2-yixun.lan@amlogic.com>
- <03c9ea24-5f8d-f5dd-6e96-f53f56db530c@baylibre.com>
-Message-ID: <dc339e2a-d8ab-7412-0c9e-bf4d052fc17e@amlogic.com>
+ <20171117080236.32504-4-yixun.lan@amlogic.com>
+ <96dc68e3-c394-70c4-eabe-f59d4c36150e@baylibre.com>
+Message-ID: <1dd88afc-04fd-2443-f948-1d5bcd186ab8@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Neil
 
+see my comments in line
 
-On 11/17/17 21:02, Neil Armstrong wrote:
+On 11/17/17 21:05, Neil Armstrong wrote:
+> Hi Yixun, Jian,
+> 
 > On 17/11/2017 09:02, Yixun Lan wrote:
 >> From: Jian Hu <jian.hu@amlogic.com>
 >>
->> Update the doc to explicitly add Meson-AXG to support list
+>> There are four I2C masters in EE domain, and one I2C Master in
+>> AO domain, the DT info here should describe them all.
 >>
 >> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 >> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 >> ---
->>  Documentation/devicetree/bindings/i2c/i2c-meson.txt | 1 +
->>  1 file changed, 1 insertion(+)
+>>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 59 ++++++++++++++++++++++++++++++
+>>  1 file changed, 59 insertions(+)
 >>
->> diff --git a/Documentation/devicetree/bindings/i2c/i2c-meson.txt b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
->> index 611b934c7e10..3097d2b44dad 100644
->> --- a/Documentation/devicetree/bindings/i2c/i2c-meson.txt
->> +++ b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
->> @@ -2,6 +2,7 @@ Amlogic Meson I2C controller
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> index 57faaa9d8013..99e967aff439 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> @@ -129,6 +129,54 @@
+>>  				#reset-cells = <1>;
+>>  			};
 >>  
->>  Required properties:
->>   - compatible: must be "amlogic,meson6-i2c" or "amlogic,meson-gxbb-i2c"
->> +						"amlogic,meson-axg-i2c"
+>> +			i2c_m0: i2c at 1f000 {
 > 
-> Hi Yixun, Jian,
+> Can you use a more simple "i2c0" phandle naming instead ? or get back to the "i2c_A/B/C/D" naming like in meson_gx to keep consistency ?
 > 
-> Maybe you should reformat by using :
-> - compatible: must be :
-> 	"amlogic,meson6-i2c" for Meson8 and compatible SoCs
-> 	"amlogic,meson-gxbb-i2c" for GXBB and compatible SoCs
-> 	"amlogic,meson-axg-i2c"for AXG and compatible SoCs
+Ok, I would prefer to use 'i2c0' then
+
+we had a internal discussion about the inconsistent naming of the I2C
+controller, and reach a consensus to name them as:
+ the EE domain: ee_i2c_m0, ee_i2c_m1 ..
+ the AO domain: ao_i2c_m0, ao_i2c_s0
+in the future datasheet.
+
+note: 'ee' means the EE domain, m0 mean the master 0, s0 mean the I2C
+slave 0
+
+
+> [...]
+> 
+>> +			};
+>> +
+>> +			i2c_m1: i2c at 1e000 {
+> 
+> [...]
+> 
+>> +			};
+>> +
+>> +			i2c_m2: i2c at 1d000 {
+> 
+> [...]
+> 
+>> +			};
+>> +
+>> +			i2c_m3: i2c at 1c000 {
+> 
+> [...]
+> 
+>> +			};
+>> +
+>>  			uart_A: serial at 24000 {
+>>  				compatible = "amlogic,meson-gx-uart", "amlogic,meson-uart";
+>>  				reg = <0x0 0x24000 0x0 0x14>;
+>> @@ -312,6 +360,17 @@
+>>  				};
+>>  			};
+>>  
+>> +			i2c_ao: i2c at 5000 {
+> 
+> Can you keep the same "i2c_AO" as in meson-gx ?
+> 
+> 
+sure, can do
+
+> [...]
+> 
+>> +			};
+>> +
+>>  			uart_AO: serial at 3000 {
+>>  				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+>>  				reg = <0x0 0x3000 0x0 0x18>;
+>>
 > 
 > Neil
-> 
-sure, we can do this.
-thanks for the review
->>   - reg: physical address and length of the device registers
->>   - interrupts: a single interrupt specifier
->>   - clocks: clock for the device
->>
 > 
 > .
 > 
