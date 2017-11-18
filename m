@@ -1,58 +1,24 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 17 Nov 2017 23:58:57 +0100
-Subject: [PATCH v2 2/2] ARM: dts: meson8b: use stable UART bindings with
- correct gate clock
-In-Reply-To: <20171117225857.9571-1-martin.blumenstingl@googlemail.com>
-References: <20171117225857.9571-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171117225857.9571-3-martin.blumenstingl@googlemail.com>
+From: linux@armlinux.org.uk (Russell King - ARM Linux)
+Date: Sat, 18 Nov 2017 08:19:47 +0000
+Subject: [PATCH 0/6] mmc: Handle platform_get_irq's error checking and
+ return
+In-Reply-To: <1510950502-22565-1-git-send-email-arvind.yadav.cs@gmail.com>
+References: <1510950502-22565-1-git-send-email-arvind.yadav.cs@gmail.com>
+Message-ID: <20171118081947.GX31757@n2100.armlinux.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Switch to the stable UART bindings and add the correct gate clocks
-to the non-AO UART nodes.
-This fixes the non-AO UARTs if the bootloader didn't un-gate the clocks.
+On Sat, Nov 18, 2017 at 01:58:16AM +0530, Arvind Yadav wrote:
+> The platform_get_irq() function returns negative if an error occurs.
+> zero or positive number on success. platform_get_irq() error checking
+> for zero is not correct and and we must check its return value.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
+IRQ 0 is not a valid interrupt.  The correct test here is <= 0.
+Please rework your patches for this.
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index d75e0ceda8bb..db296e5bd88a 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -248,19 +248,27 @@
- };
- 
- &uart_AO {
--	clocks = <&clkc CLKID_CLK81>;
-+	compatible = "amlogic,meson8b-uart", "amlogic,meson-uart";
-+	clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_XTAL>, <&clkc CLKID_CLK81>;
-+	clock-names = "baud", "xtal", "pclk";
- };
- 
- &uart_A {
--	clocks = <&clkc CLKID_CLK81>;
-+	compatible = "amlogic,meson8b-uart", "amlogic,meson-uart";
-+	clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_XTAL>, <&clkc CLKID_UART0>;
-+	clock-names = "baud", "xtal", "pclk";
- };
- 
- &uart_B {
--	clocks = <&clkc CLKID_CLK81>;
-+	compatible = "amlogic,meson8b-uart", "amlogic,meson-uart";
-+	clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_XTAL>, <&clkc CLKID_UART1>;
-+	clock-names = "baud", "xtal", "pclk";
- };
- 
- &uart_C {
--	clocks = <&clkc CLKID_CLK81>;
-+	compatible = "amlogic,meson8b-uart", "amlogic,meson-uart";
-+	clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_XTAL>, <&clkc CLKID_UART2>;
-+	clock-names = "baud", "xtal", "pclk";
- };
- 
- &usb0 {
+Thanks.
+
 -- 
-2.15.0
+RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync@8.8Mbps down 630kbps up
+According to speedtest.net: 8.21Mbps down 510kbps up
