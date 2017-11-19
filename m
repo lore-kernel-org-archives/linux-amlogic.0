@@ -1,37 +1,37 @@
 From: arvind.yadav.cs@gmail.com (Arvind Yadav)
-Date: Sat, 18 Nov 2017 15:03:48 +0530
-Subject: [PATCH 6/6 v2] mmc: sunxi-mmc: Handle return value of platform_get_irq
-In-Reply-To: <130df0c2c60ed6a0f460b68c586cc0a4167aed0b.1510997223.git.arvind.yadav.cs@gmail.com>
-References: <130df0c2c60ed6a0f460b68c586cc0a4167aed0b.1510997223.git.arvind.yadav.cs@gmail.com>
-Message-ID: <27a6d3a22516b3711b48bfbf305b6d8f3960eeac.1510997223.git.arvind.yadav.cs@gmail.com>
+Date: Sun, 19 Nov 2017 10:22:43 +0530
+Subject: [PATCH 1/6 v3] mmc: meson-gx-mmc: Fix platform_get_irq's error
+ checking
+Message-ID: <c1c27676e9f141ace1254b40807bf2dc03f072c6.1511066652.git.arvind.yadav.cs@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-platform_get_irq() can fail here and we must check its return value.
+The platform_get_irq() function returns negative if an error occurs.
+zero or positive number on success. platform_get_irq() error checking
+for zero is not correct.
 
 Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
 ---
 changes in v2 :
               Add failure case '<= 0' instead of '< 0'. IRQ0 is not valid.
+changes in v3 :
+              return -EINVAL instead of irq.
 
- drivers/mmc/host/sunxi-mmc.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/mmc/host/meson-gx-mmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/mmc/host/sunxi-mmc.c b/drivers/mmc/host/sunxi-mmc.c
-index cc98355d..ec2a16b 100644
---- a/drivers/mmc/host/sunxi-mmc.c
-+++ b/drivers/mmc/host/sunxi-mmc.c
-@@ -1255,6 +1255,11 @@ static int sunxi_mmc_resource_request(struct sunxi_mmc_host *host,
- 		goto error_assert_reset;
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index e0862d3..32a6a22 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -1208,7 +1208,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	}
  
- 	host->irq = platform_get_irq(pdev, 0);
-+	if (host->irq <= 0) {
-+		ret = host->irq;
-+		goto error_assert_reset;
-+	}
-+
- 	return devm_request_threaded_irq(&pdev->dev, host->irq, sunxi_mmc_irq,
- 			sunxi_mmc_handle_manual_stop, 0, "sunxi-mmc", host);
- 
+ 	irq = platform_get_irq(pdev, 0);
+-	if (!irq) {
++	if (irq <= 0) {
+ 		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
+ 		ret = -EINVAL;
+ 		goto free_host;
 -- 
 2.7.4
