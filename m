@@ -1,113 +1,101 @@
 From: jic23@kernel.org (Jonathan Cameron)
-Date: Sun, 19 Nov 2017 15:46:43 +0000
-Subject: [PATCH 3/5] iio: adc: meson-saradc: Meson8 and Meson8b do not
- have REG11 and REG13
-In-Reply-To: <20171031200147.14660-4-martin.blumenstingl@googlemail.com>
+Date: Sun, 19 Nov 2017 15:57:01 +0000
+Subject: [PATCH 5/5] iio: adc: meson-saradc: program the channel muxes
+ during initialization
+In-Reply-To: <20171031200147.14660-6-martin.blumenstingl@googlemail.com>
 References: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
- <20171031200147.14660-4-martin.blumenstingl@googlemail.com>
-Message-ID: <20171119154643.78826fd4@archlinux>
+ <20171031200147.14660-6-martin.blumenstingl@googlemail.com>
+Message-ID: <20171119155701.551b4cd1@archlinux>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 31 Oct 2017 21:01:45 +0100
+On Tue, 31 Oct 2017 21:01:47 +0100
 Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-> The Meson GXBB and newer SoCs have a few more registers than the older
-> Meson8 and Meson8b SoCs.
-> Use a separate regmap config to limit the older SoCs to the DELTA_10
-> register.
+> On some Meson8 devices the channel muxes are not programmed. This
+> results in garbage values when trying to read channels that are not set
+> up.
+> Fix this by initializing the channel 0 and 1 muxes in
+> MESON_SAR_ADC_CHAN_10_SW as well as the muxes for all other channels in
+> MESON_SAR_ADC_AUX_SW based on what the vendor driver does (which is
+> simply a 1:1 mapping of channel number and channel mux).
+> This only showed up on Meson8 devices, because for GXBB and newer BL30
+> is taking care of initializing the channel muxes.
 > 
-> Fixes: 6c76ed31cd05 ("iio: adc: meson-saradc: add Meson8b SoC compatibility")
+> This additionally fixes a typo in the
+> MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_MASK macro because the old definition
+> assumed that the register fields were 2 bit wide, while they are
+> actually 3 bit wide.
+> 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-While this may not have any obvious symptoms, I think it is better to make sure
-it is fixed in stable so it doesn't bite us in unexpected ways later.
+I'll go with your opinion on this.   We can always request that it is
+added to stable after it has gone in during the next merge window.
 
-Applied to the fixes-togreg branch of iio.git and marked for stable.
+Let me know if I seem to have forgotten this once the fixes have
+come back round the loop to my togreg branch.
+
+Thanks,
+
+Jonathan
 > ---
->  drivers/iio/adc/meson_saradc.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
+>  drivers/iio/adc/meson_saradc.c | 32 +++++++++++++++++++++++++++++---
+>  1 file changed, 29 insertions(+), 3 deletions(-)
 > 
 > diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index abe9df879b2a..7dc7d297a0fc 100644
+> index fa3c1378c2c9..48fb1b642a5e 100644
 > --- a/drivers/iio/adc/meson_saradc.c
 > +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -224,6 +224,7 @@ struct meson_sar_adc_data {
->  	u32					bandgap_reg;
->  	unsigned int				resolution;
->  	const char				*name;
-> +	const struct regmap_config		*regmap_config;
->  };
+> @@ -96,8 +96,8 @@
+>  	#define MESON_SAR_ADC_FIFO_RD_SAMPLE_VALUE_MASK		GENMASK(11, 0)
 >  
->  struct meson_sar_adc_priv {
-> @@ -243,13 +244,20 @@ struct meson_sar_adc_priv {
->  	int					calibscale;
->  };
->  
-> -static const struct regmap_config meson_sar_adc_regmap_config = {
-> +static const struct regmap_config meson_sar_adc_regmap_config_gxbb = {
->  	.reg_bits = 8,
->  	.val_bits = 32,
->  	.reg_stride = 4,
->  	.max_register = MESON_SAR_ADC_REG13,
->  };
->  
-> +static const struct regmap_config meson_sar_adc_regmap_config_meson8 = {
-> +	.reg_bits = 8,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = MESON_SAR_ADC_DELTA_10,
-> +};
-> +
->  static unsigned int meson_sar_adc_get_fifo_count(struct iio_dev *indio_dev)
+>  #define MESON_SAR_ADC_AUX_SW					0x1c
+> -	#define MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_MASK(_chan)	\
+> -					(GENMASK(10, 8) << (((_chan) - 2) * 2))
+> +	#define MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_SHIFT(_chan)	\
+> +					(8 + (((_chan) - 2) * 3))
+>  	#define MESON_SAR_ADC_AUX_SW_VREF_P_MUX			BIT(6)
+>  	#define MESON_SAR_ADC_AUX_SW_VREF_N_MUX			BIT(5)
+>  	#define MESON_SAR_ADC_AUX_SW_MODE_SEL			BIT(4)
+> @@ -623,7 +623,7 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+>  static int meson_sar_adc_init(struct iio_dev *indio_dev)
 >  {
 >  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-> @@ -860,6 +868,7 @@ static const struct iio_info meson_sar_adc_iio_info = {
->  static const struct meson_sar_adc_data meson_sar_adc_meson8_data = {
->  	.has_bl30_integration = false,
->  	.bandgap_reg = MESON_SAR_ADC_DELTA_10,
-> +	.regmap_config = &meson_sar_adc_regmap_config_meson8,
->  	.resolution = 10,
->  	.name = "meson-meson8-saradc",
->  };
-> @@ -867,6 +876,7 @@ static const struct meson_sar_adc_data meson_sar_adc_meson8_data = {
->  static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
->  	.has_bl30_integration = false,
->  	.bandgap_reg = MESON_SAR_ADC_DELTA_10,
-> +	.regmap_config = &meson_sar_adc_regmap_config_meson8,
->  	.resolution = 10,
->  	.name = "meson-meson8b-saradc",
->  };
-> @@ -874,6 +884,7 @@ static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
->  static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
->  	.has_bl30_integration = true,
->  	.bandgap_reg = MESON_SAR_ADC_REG11,
-> +	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
->  	.resolution = 10,
->  	.name = "meson-gxbb-saradc",
->  };
-> @@ -881,6 +892,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
->  static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
->  	.has_bl30_integration = true,
->  	.bandgap_reg = MESON_SAR_ADC_REG11,
-> +	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
->  	.resolution = 12,
->  	.name = "meson-gxl-saradc",
->  };
-> @@ -888,6 +900,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
->  static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
->  	.has_bl30_integration = true,
->  	.bandgap_reg = MESON_SAR_ADC_REG11,
-> +	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
->  	.resolution = 12,
->  	.name = "meson-gxm-saradc",
->  };
-> @@ -965,7 +978,7 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
->  		return ret;
+> -	int regval, ret;
+> +	int regval, i, ret;
 >  
->  	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
-> -					     &meson_sar_adc_regmap_config);
-> +					     priv->data->regmap_config);
->  	if (IS_ERR(priv->regmap))
->  		return PTR_ERR(priv->regmap);
+>  	/*
+>  	 * make sure we start at CH7 input since the other muxes are only used
+> @@ -678,6 +678,32 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
+>  			   FIELD_PREP(MESON_SAR_ADC_DELAY_INPUT_DLY_SEL_MASK,
+>  				      1));
 >  
+> +	/*
+> +	 * set up the input channel muxes in MESON_SAR_ADC_CHAN_10_SW
+> +	 * (0 = SAR_ADC_CH0, 1 = SAR_ADC_CH1)
+> +	 */
+> +	regval = FIELD_PREP(MESON_SAR_ADC_CHAN_10_SW_CHAN0_MUX_SEL_MASK, 0);
+> +	regmap_update_bits(priv->regmap, MESON_SAR_ADC_CHAN_10_SW,
+> +			   MESON_SAR_ADC_CHAN_10_SW_CHAN0_MUX_SEL_MASK,
+> +			   regval);
+> +	regval = FIELD_PREP(MESON_SAR_ADC_CHAN_10_SW_CHAN1_MUX_SEL_MASK, 1);
+> +	regmap_update_bits(priv->regmap, MESON_SAR_ADC_CHAN_10_SW,
+> +			   MESON_SAR_ADC_CHAN_10_SW_CHAN1_MUX_SEL_MASK,
+> +			   regval);
+> +
+> +	/*
+> +	 * set up the input channel muxes in MESON_SAR_ADC_AUX_SW
+> +	 * (2 = SAR_ADC_CH2, 3 = SAR_ADC_CH3, ...) and enable
+> +	 * MESON_SAR_ADC_AUX_SW_YP_DRIVE_SW and
+> +	 * MESON_SAR_ADC_AUX_SW_XP_DRIVE_SW like the vendor driver.
+> +	 */
+> +	regval = 0;
+> +	for (i = 2; i <= 7; i++)
+> +		regval |= i << MESON_SAR_ADC_AUX_SW_MUX_SEL_CHAN_SHIFT(i);
+> +	regval |= MESON_SAR_ADC_AUX_SW_YP_DRIVE_SW;
+> +	regval |= MESON_SAR_ADC_AUX_SW_XP_DRIVE_SW;
+> +	regmap_write(priv->regmap, MESON_SAR_ADC_AUX_SW, regval);
+> +
+>  	ret = clk_set_parent(priv->adc_sel_clk, priv->clkin);
+>  	if (ret) {
+>  		dev_err(indio_dev->dev.parent,
