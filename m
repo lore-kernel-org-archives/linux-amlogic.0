@@ -1,39 +1,48 @@
-From: arvind.yadav.cs@gmail.com (Arvind Yadav)
-Date: Sun, 19 Nov 2017 10:22:47 +0530
-Subject: [PATCH 6/6 v3] mmc: sunxi-mmc: Handle return value of platform_get_irq
-In-Reply-To: <c1c27676e9f141ace1254b40807bf2dc03f072c6.1511066652.git.arvind.yadav.cs@gmail.com>
-References: <c1c27676e9f141ace1254b40807bf2dc03f072c6.1511066652.git.arvind.yadav.cs@gmail.com>
-Message-ID: <6ad5c6077b96353a77ea30d1b64651c77d5622f6.1511066652.git.arvind.yadav.cs@gmail.com>
+From: marcel@holtmann.org (Marcel Holtmann)
+Date: Sun, 19 Nov 2017 09:21:19 +0100
+Subject: [RFC v1 7/8] Bluetooth: hci_serdev: remove the
+ HCI_UART_INIT_PENDING check
+In-Reply-To: <20171117223543.32429-8-martin.blumenstingl@googlemail.com>
+References: <20171117223543.32429-1-martin.blumenstingl@googlemail.com>
+ <20171117223543.32429-8-martin.blumenstingl@googlemail.com>
+Message-ID: <56889A64-AFB2-454C-9889-FAA4C051168A@holtmann.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-platform_get_irq() can fail here and we must check its return value.
+Hi Martin,
 
-Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
----
-changes in v2 :
-              Add failure case '<= 0' instead of '< 0'. IRQ0 is not valid.
-changes in v3 :
-              return -EINVAL instead of host->irq.
+> The three-wire (H5) protocol is the only protocol which uses
+> HCI_UART_INIT_PENDING.
+> Unfortunately the protocol implementation never receives data with this
+> check still in place. For the H5 protocol this means that the
+> initialization never completes and thus the firmware download never
+> starts. Even if the initialization would succeed later on the drivers
+> would call hci_uart_init_ready() which schedules the registration which
+> is currently not implemented by hci_serdev.c.
+> 
+> Removing the HCI_UART_INIT_PENDING check makes the code easier to read
+> and also fixes the initalization of devices (implemented with the serdev
+> library) which use the H5 protocol.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+> drivers/bluetooth/hci_serdev.c | 3 ---
+> 1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/bluetooth/hci_serdev.c b/drivers/bluetooth/hci_serdev.c
+> index e0e6461b9200..fe67eb6d4278 100644
+> --- a/drivers/bluetooth/hci_serdev.c
+> +++ b/drivers/bluetooth/hci_serdev.c
+> @@ -333,9 +333,6 @@ int hci_uart_register_device(struct hci_uart *hu,
+> 	else
+> 		hdev->dev_type = HCI_PRIMARY;
+> 
+> -	if (test_bit(HCI_UART_INIT_PENDING, &hu->hdev_flags))
+> -		return 0;
+> -
 
- drivers/mmc/host/sunxi-mmc.c | 5 +++++
- 1 file changed, 5 insertions(+)
+then lets also remove the flag definition itself. Or if that is still needed for some legacy operation, then describe this. For example I also see it used in hci_serdev.c and main question would be if it is used there as well or some legacy cruft.
 
-diff --git a/drivers/mmc/host/sunxi-mmc.c b/drivers/mmc/host/sunxi-mmc.c
-index cc98355d..c926ac8 100644
---- a/drivers/mmc/host/sunxi-mmc.c
-+++ b/drivers/mmc/host/sunxi-mmc.c
-@@ -1255,6 +1255,11 @@ static int sunxi_mmc_resource_request(struct sunxi_mmc_host *host,
- 		goto error_assert_reset;
- 
- 	host->irq = platform_get_irq(pdev, 0);
-+	if (host->irq <= 0) {
-+		ret = -EINVAL;
-+		goto error_assert_reset;
-+	}
-+
- 	return devm_request_threaded_irq(&pdev->dev, host->irq, sunxi_mmc_irq,
- 			sunxi_mmc_handle_manual_stop, 0, "sunxi-mmc", host);
- 
--- 
-2.7.4
+Regards
+
+Marcel
