@@ -1,29 +1,24 @@
 From: hs@denx.de (Heiko Schocher)
-Date: Mon, 20 Nov 2017 13:39:21 +0100
-Subject: [PATCH 1/2] i2c: add Amlogic Meson driver
-In-Reply-To: <20171029090901.24299-2-b.galvani@gmail.com>
+Date: Mon, 20 Nov 2017 13:40:02 +0100
+Subject: [PATCH 2/2] odroid-c2: enable I2C
+In-Reply-To: <20171029090901.24299-3-b.galvani@gmail.com>
 References: <20171029090901.24299-1-b.galvani@gmail.com>
- <20171029090901.24299-2-b.galvani@gmail.com>
-Message-ID: <2b885b34-1b23-034a-37d9-256100e1d13b@denx.de>
+ <20171029090901.24299-3-b.galvani@gmail.com>
+Message-ID: <d16bdfcd-cd65-07f9-8f8b-80142cf070bb@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hello Beniamino,
 
 Am 29.10.2017 um 10:09 schrieb Beniamino Galvani:
-> Add a driver for the I2C controller available on Amlogic Meson SoCs.
-> 
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->   arch/arm/include/asm/arch-meson/i2c.h |  11 ++
->   drivers/i2c/Kconfig                   |   6 +
->   drivers/i2c/Makefile                  |   1 +
->   drivers/i2c/meson_i2c.c               | 263 ++++++++++++++++++++++++++++++++++
->   4 files changed, 281 insertions(+)
->   create mode 100644 arch/arm/include/asm/arch-meson/i2c.h
->   create mode 100644 drivers/i2c/meson_i2c.c
+>   arch/arm/include/asm/arch-meson/gxbb.h | 1 +
+>   board/amlogic/odroid-c2/odroid-c2.c    | 1 +
+>   configs/odroid-c2_defconfig            | 3 +++
+>   3 files changed, 5 insertions(+)
 
-Applied to u-boot-i2c master
+Applied to u-boot-i2c master.
 
 Thanks!
 
