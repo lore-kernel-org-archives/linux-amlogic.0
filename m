@@ -1,48 +1,46 @@
-From: arvind.yadav.cs@gmail.com (Arvind Yadav)
-Date: Mon, 20 Nov 2017 12:15:35 +0530
-Subject: [PATCH 4/6 v2] mmc: sdhci-spear: Handle return value of
- platform_get_irq
-In-Reply-To: <20171120054415.GC6125@vireshk-i7>
-References: <130df0c2c60ed6a0f460b68c586cc0a4167aed0b.1510997223.git.arvind.yadav.cs@gmail.com>
- <d8fc48bacf7cc153d806e10bc39ab507534f4691.1510997223.git.arvind.yadav.cs@gmail.com>
- <20171120054415.GC6125@vireshk-i7>
-Message-ID: <477653f9-5263-678a-fa26-498d744a8639@gmail.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 20 Nov 2017 18:08:23 +0800
+Subject: [PATCH v2 0/2] add pinctrl driver for Meson-AXG SoC
+Message-ID: <20171120100825.16613-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi viresh,
+This patchset adds pinctrl support for the Amlogic's Meson-AXG SoC.
+  
+While the gpio and pin configuration part is the same the as previous
+meson SoCs, the pinmux part is different. This requires slightly
+different pinmux operations along with the actual pinctrl driver description.
 
-Could you please acknowledge a latest version(v3) of this patch.
+Changes since v1 at [1]:
+  -- Rename i2c_m0 to i2c0 style (no logic changed)
+  -- Rename uart_tx_ao_XX to uart_ao_tx, etc .. (no logic changed)
+  -- Separate DT part patches
+  -- Add Neil Armstrong's Ack
 
-Thanks,
+[1] 
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005270.html
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005271.html
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005272.html
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005273.html
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005274.html
 
 
-On Monday 20 November 2017 11:14 AM, Viresh Kumar wrote:
-> On 18-11-17, 15:03, Arvind Yadav wrote:
->> platform_get_irq() can fail here and we must check its return value.
->>
->> Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
->> ---
->> changes in v2 :
->>                Add failure case '<= 0' instead of '< 0'. IRQ0 is not valid.
->>
->>   drivers/mmc/host/sdhci-spear.c | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/drivers/mmc/host/sdhci-spear.c b/drivers/mmc/host/sdhci-spear.c
->> index 8c0f884..900838b 100644
->> --- a/drivers/mmc/host/sdhci-spear.c
->> +++ b/drivers/mmc/host/sdhci-spear.c
->> @@ -82,6 +82,10 @@ static int sdhci_probe(struct platform_device *pdev)
->>   	host->hw_name = "sdhci";
->>   	host->ops = &sdhci_pltfm_ops;
->>   	host->irq = platform_get_irq(pdev, 0);
->> +	if (host->irq <= 0) {
->> +		ret = host->irq;
->> +		goto err_host;
->> +	}
->>   	host->quirks = SDHCI_QUIRK_BROKEN_ADMA;
->>   
->>   	sdhci = sdhci_priv(host);
-> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
->
+Xingyu Chen (2):
+  pinctrl: meson-axg: Introduce a pinctrl pinmux ops for Meson-AXG SoC
+  pinctrl: meson-axg: Add new pinctrl driver for Meson AXG  SoC
+
+ drivers/pinctrl/meson/Kconfig                 |   9 +
+ drivers/pinctrl/meson/Makefile                |   2 +
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c | 118 ++++
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h |  62 ++
+ drivers/pinctrl/meson/pinctrl-meson-axg.c     | 975 ++++++++++++++++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson.h         |   1 +
+ include/dt-bindings/gpio/meson-axg-gpio.h     | 116 +++
+ 7 files changed, 1283 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.c
+ create mode 100644 include/dt-bindings/gpio/meson-axg-gpio.h
+
+-- 
+2.15.0
