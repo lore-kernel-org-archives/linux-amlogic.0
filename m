@@ -1,46 +1,67 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 20 Nov 2017 15:19:53 +0100
-Subject: [PATCH v2 0/4] ARM64: dts: meson-gx: fix VPU init for non-vendor
- u-boot
-Message-ID: <1511187597-18248-1-git-send-email-narmstrong@baylibre.com>
+Date: Mon, 20 Nov 2017 15:19:57 +0100
+Subject: [PATCH v2 4/4] ARM64: dts: odroid-c2: Add HDMI and CEC Nodes
+In-Reply-To: <1511187597-18248-1-git-send-email-narmstrong@baylibre.com>
+References: <1511187597-18248-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1511187597-18248-5-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On the Amlogic Gx SoCs (GXBB, GXL & GXM), the VPU power domain is initialized
-by the vendor U-Boot code, but running mainline U-boot has been possible
-on these SoCs. But lacking such init made the system lock at kernel boot.
+Now the VPU Power Domain has been fixed while boothing from Mainline U-Boot,
+VPU and HDMI nodes can finally be added to the Odroid-C2 DTS.
 
-A PM Power Domain driver has been pushed at [1] to solve the main issue.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 30 ++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-This patchset depends on the the following patchsets :
-- [1] soc: amlogic: add support for Meson GX VPU Domains
-- [2] reset: meson: add level reset support for GX SoC family
-- [3] clk: meson: gxbb: Add VPU and VAPB clocks
-
-Changes since v1 at [4] :
- - Dropped hdmi-supply in hdmi node until 4.16
- - set 5v regulator always-on for now
-
-[1] https://lkml.kernel.org/r/1508228167-11753-1-git-send-email-narmstrong at baylibre.com
-[2] https://lkml.kernel.org/r/1508167573-17396-1-git-send-email-narmstrong at baylibre.com
-[3] https://lkml.kernel.org/r/1508168085-19032-1-git-send-email-narmstrong at baylibre.com
-[4] https://lkml.kernel.org/r/1508228951-12384-1-git-send-email-narmstrong at baylibre.com
-
-Neil Armstrong (4):
-  ARM64: dts: meson-gx: add VPU power domain
-  ARM64: dts: meson-gx: Add HDMI_5V regulator on selected boards
-  ARM64: dts: meson-gx: grow reset controller memory zone
-  ARM64: dts: odroid-c2: Add HDMI and CEC Nodes
-
- .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi | 12 ++++++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi          | 13 ++++++-
- .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 30 +++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 43 ++++++++++++++++++++++
- .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 12 ++++++
- .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     | 12 ++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 43 ++++++++++++++++++++++
- .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     | 12 ++++++
- 8 files changed, 176 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index f8d2214..d6d3af5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -135,6 +135,24 @@
+ 		compatible = "mmc-pwrseq-emmc";
+ 		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+ 	};
++
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_tmds_out>;
++			};
++		};
++	};
++};
++
++&cec_AO {
++	status = "okay";
++	pinctrl-0 = <&ao_cec_pins>;
++	pinctrl-names = "default";
++	hdmi-phandle = <&hdmi_tx>;
+ };
+ 
+ &ethmac {
+@@ -179,6 +197,18 @@
+ 	};
+ };
+ 
++&hdmi_tx {
++	status = "okay";
++	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
++	pinctrl-names = "default";
++};
++
++&hdmi_tx_tmds_port {
++	hdmi_tx_tmds_out: endpoint {
++		remote-endpoint = <&hdmi_connector_in>;
++	};
++};
++
+ &i2c_A {
+ 	status = "okay";
+ 	pinctrl-0 = <&i2c_a_pins>;
 -- 
 2.7.4
