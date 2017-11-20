@@ -1,68 +1,66 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 20 Nov 2017 16:04:44 +0100
-Subject: [PATCH u-boot 1/2] arm: Add LibreTech CC support based on Meson GXL
+Date: Mon, 20 Nov 2017 16:04:45 +0100
+Subject: [PATCH u-boot 2/2] arm: Add Khadas VIM support based on Meson GXL
  family
 In-Reply-To: <1511190285-4281-1-git-send-email-narmstrong@baylibre.com>
 References: <1511190285-4281-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1511190285-4281-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1511190285-4281-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds platform code for the Libre Computer CC "Le Potato" board based on a
+This adds platform code for the Khadas VIM board based on a
 Meson GXL (S905X) SoC with the Meson GXL configuration.
 
 This initial submission supports UART, MMC/SDCard and Ethernet with the
 Internal RMII PHY.
 
-The meson-gxl-s905x-libretech-cc.dts is synchronised from the linux 4.13
+The meson-gxl-s905x-khadas-vim.dts is synchronised from the linux 4.13
 stable tree as of 4.13.8.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/dts/Makefile                         |   3 +-
- arch/arm/dts/meson-gxl-s905x-libretech-cc.dts | 171 ++++++++++++++++++++++++++
- arch/arm/mach-meson/Kconfig                   |   9 ++
- board/amlogic/libretech-cc/Kconfig            |  12 ++
- board/amlogic/libretech-cc/MAINTAINERS        |   6 +
- board/amlogic/libretech-cc/Makefile           |   8 ++
- board/amlogic/libretech-cc/README             |  96 +++++++++++++++
- board/amlogic/libretech-cc/libretech-cc.c     |  58 +++++++++
- configs/libretech-cc_defconfig                |  35 ++++++
- include/configs/libretech-cc.h                |  24 ++++
- 10 files changed, 421 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/dts/meson-gxl-s905x-libretech-cc.dts
- create mode 100644 board/amlogic/libretech-cc/Kconfig
- create mode 100644 board/amlogic/libretech-cc/MAINTAINERS
- create mode 100644 board/amlogic/libretech-cc/Makefile
- create mode 100644 board/amlogic/libretech-cc/README
- create mode 100644 board/amlogic/libretech-cc/libretech-cc.c
- create mode 100644 configs/libretech-cc_defconfig
- create mode 100644 include/configs/libretech-cc.h
+ arch/arm/dts/Makefile                       |   3 +-
+ arch/arm/dts/meson-gxl-s905x-khadas-vim.dts | 137 ++++++++++++++++++++++++++++
+ arch/arm/mach-meson/Kconfig                 |   9 ++
+ board/amlogic/khadas-vim/Kconfig            |  12 +++
+ board/amlogic/khadas-vim/MAINTAINERS        |   6 ++
+ board/amlogic/khadas-vim/Makefile           |   8 ++
+ board/amlogic/khadas-vim/README             |  96 +++++++++++++++++++
+ board/amlogic/khadas-vim/khadas-vim.c       |  58 ++++++++++++
+ configs/khadas-vim_defconfig                |  35 +++++++
+ include/configs/khadas-vim.h                |  24 +++++
+ 10 files changed, 387 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/dts/meson-gxl-s905x-khadas-vim.dts
+ create mode 100644 board/amlogic/khadas-vim/Kconfig
+ create mode 100644 board/amlogic/khadas-vim/MAINTAINERS
+ create mode 100644 board/amlogic/khadas-vim/Makefile
+ create mode 100644 board/amlogic/khadas-vim/README
+ create mode 100644 board/amlogic/khadas-vim/khadas-vim.c
+ create mode 100644 configs/khadas-vim_defconfig
+ create mode 100644 include/configs/khadas-vim.h
 
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index cd540e9..1845552 100644
+index 1845552..b44a915 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -55,7 +55,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rv1108-evb.dtb
+@@ -56,7 +56,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
  dtb-$(CONFIG_ARCH_MESON) += \
  	meson-gxbb-odroidc2.dtb \
--	meson-gxl-s905x-p212.dtb
-+	meson-gxl-s905x-p212.dtb \
-+	meson-gxl-s905x-libretech-cc.dtb
+ 	meson-gxl-s905x-p212.dtb \
+-	meson-gxl-s905x-libretech-cc.dtb
++	meson-gxl-s905x-libretech-cc.dtb \
++	meson-gxl-s905x-khadas-vim.dtb
  dtb-$(CONFIG_TEGRA) += tegra20-harmony.dtb \
  	tegra20-medcom-wide.dtb \
  	tegra20-paz00.dtb \
-diff --git a/arch/arm/dts/meson-gxl-s905x-libretech-cc.dts b/arch/arm/dts/meson-gxl-s905x-libretech-cc.dts
+diff --git a/arch/arm/dts/meson-gxl-s905x-khadas-vim.dts b/arch/arm/dts/meson-gxl-s905x-khadas-vim.dts
 new file mode 100644
-index 0000000..266fbcf
+index 0000000..94567eb
 --- /dev/null
-+++ b/arch/arm/dts/meson-gxl-s905x-libretech-cc.dts
-@@ -0,0 +1,171 @@
++++ b/arch/arm/dts/meson-gxl-s905x-khadas-vim.dts
+@@ -0,0 +1,137 @@
 +/*
-+ * Copyright (c) 2017 BayLibre, SAS.
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
++ * Copyright (c) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
 + *
 + * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 + */
@@ -71,33 +69,51 @@ index 0000000..266fbcf
 +
 +#include <dt-bindings/input/input.h>
 +
-+#include "meson-gxl-s905x.dtsi"
++#include "meson-gxl-s905x-p212.dtsi"
 +
 +/ {
-+	compatible = "libretech,cc", "amlogic,s905x", "amlogic,meson-gxl";
-+	model = "Libre Technology CC";
++	compatible = "khadas,vim", "amlogic,s905x", "amlogic,meson-gxl";
++	model = "Khadas VIM";
 +
-+	aliases {
-+		serial0 = &uart_AO;
-+	};
++	adc-keys {
++		compatible = "adc-keys";
++		io-channels = <&saradc 0>;
++		io-channel-names = "buttons";
++		keyup-threshold-microvolt = <1710000>;
 +
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
++		button-function {
++			label = "Function";
++			linux,code = <KEY_FN>;
++			press-threshold-microvolt = <10000>;
 +		};
 +	};
 +
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	aliases {
++		serial2 = &uart_AO_B;
++	};
++
++	gpio-keys-polled {
++		compatible = "gpio-keys-polled";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		poll-interval = <100>;
++
++		button at 0 {
++			label = "power";
++			linux,code = <KEY_POWER>;
++			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
++		};
++	};
++
++	pwmleds {
++		compatible = "pwm-leds";
++
++		power {
++			label = "vim:red:power";
++			pwms = <&pwm_AO_ab 1 7812500 0>;
++			max-brightness = <255>;
++			linux,default-trigger = "default-on";
++		};
 +	};
 +
 +	hdmi-connector {
@@ -110,72 +126,6 @@ index 0000000..266fbcf
 +			};
 +		};
 +	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		system {
-+			label = "librecomputer:system-status";
-+			gpios = <&gpio GPIODV_24 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+			panic-indicator;
-+		};
-+
-+		blue {
-+			label = "librecomputer:blue";
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	memory at 0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vcc_card: regulator-vcc-card {
-+		compatible = "regulator-gpio";
-+
-+		regulator-name = "VCC_CARD";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+
-+		states = <3300000 0>,
-+			 <1800000 1>;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
 +};
 +
 +&hdmi_tx {
@@ -190,106 +140,122 @@ index 0000000..266fbcf
 +	};
 +};
 +
-+/* SD card */
-+&sd_emmc_b {
++&i2c_A {
 +	status = "okay";
-+	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-0 = <&i2c_a_pins>;
 +	pinctrl-names = "default";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-+	cd-inverted;
-+
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vcc_card>;
 +};
 +
-+/* eMMC */
-+&sd_emmc_c {
++&i2c_B {
 +	status = "okay";
-+	pinctrl-0 = <&emmc_pins>;
++	pinctrl-0 = <&i2c_b_pins>;
 +	pinctrl-names = "default";
 +
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <50000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
++	rtc: rtc at 51 {
++		/* has to be enabled manually when a battery is connected: */
++		status = "disabled";
++		compatible = "haoyu,hym8563";
++		reg = <0x51>;
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		clock-output-names = "xin32k";
++	};
 +};
 +
++&ir {
++	linux,rc-map-name = "rc-geekbox";
++};
++
++&pwm_AO_ab {
++	status = "okay";
++	pinctrl-0 = <&pwm_ao_a_3_pins>, <&pwm_ao_b_pins>;
++	pinctrl-names = "default";
++	clocks = <&xtal> , <&xtal>;
++	clock-names = "clkin0", "clkin1" ;
++};
++
++&pwm_ef {
++	pinctrl-0 = <&pwm_e_pins>, <&pwm_f_clk_pins>;
++};
++
++&sd_emmc_a {
++	brcmf: wifi at 1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++	};
++};
++
++/* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
 +&uart_AO {
 +	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
++};
++
++/* This is brought out on the UART_RX_AO_B (15) and UART_TX_AO_B (16) pins: */
++&uart_AO_B {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_b_pins>;
 +	pinctrl-names = "default";
 +};
 diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index d4bd230..ca08dc3 100644
+index ca08dc3..0350787 100644
 --- a/arch/arm/mach-meson/Kconfig
 +++ b/arch/arm/mach-meson/Kconfig
-@@ -38,6 +38,13 @@ config TARGET_P212
- 	  with 2 GiB of RAM, Ethernet, HDMI, 2 USB, micro-SD slot,
- 	  eMMC, IR receiver, CVBS+Audio jack and a SDIO WiFi module.
+@@ -45,6 +45,13 @@ config TARGET_LIBRETECH_CC
+ 	  with 2 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
+ 	  eMMC, IR receiver and a 40-pin GPIO header.
  
-+config TARGET_LIBRETECH_CC
-+	bool "LIBRETECH-CC"
++config TARGET_KHADAS_VIM
++	bool "KHADAS-VIM"
 +	help
-+	  LibreTech CC is a single board computer based on Meson GXL
++	  Khadas VIM is a single board computer based on Meson GXL
 +	  with 2 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
 +	  eMMC, IR receiver and a 40-pin GPIO header.
 +
  endif
  
  config SYS_SOC
-@@ -50,4 +57,6 @@ source "board/amlogic/odroid-c2/Kconfig"
+@@ -59,4 +66,6 @@ source "board/amlogic/p212/Kconfig"
  
- source "board/amlogic/p212/Kconfig"
+ source "board/amlogic/libretech-cc/Kconfig"
  
-+source "board/amlogic/libretech-cc/Kconfig"
++source "board/amlogic/khadas-vim/Kconfig"
 +
  endif
-diff --git a/board/amlogic/libretech-cc/Kconfig b/board/amlogic/libretech-cc/Kconfig
+diff --git a/board/amlogic/khadas-vim/Kconfig b/board/amlogic/khadas-vim/Kconfig
 new file mode 100644
-index 0000000..7a6f916
+index 0000000..0fa8db9
 --- /dev/null
-+++ b/board/amlogic/libretech-cc/Kconfig
++++ b/board/amlogic/khadas-vim/Kconfig
 @@ -0,0 +1,12 @@
-+if TARGET_LIBRETECH_CC
++if TARGET_KHADAS_VIM
 +
 +config SYS_BOARD
-+	default "libretech-cc"
++	default "khadas-vim"
 +
 +config SYS_VENDOR
 +	default "amlogic"
 +
 +config SYS_CONFIG_NAME
-+	default "libretech-cc"
++	default "khadas-vim"
 +
 +endif
-diff --git a/board/amlogic/libretech-cc/MAINTAINERS b/board/amlogic/libretech-cc/MAINTAINERS
+diff --git a/board/amlogic/khadas-vim/MAINTAINERS b/board/amlogic/khadas-vim/MAINTAINERS
 new file mode 100644
-index 0000000..398ce57
+index 0000000..024220a
 --- /dev/null
-+++ b/board/amlogic/libretech-cc/MAINTAINERS
++++ b/board/amlogic/khadas-vim/MAINTAINERS
 @@ -0,0 +1,6 @@
-+LIBRETECH-CC
++KHADAS-VIM
 +M:	Neil Armstrong <narmstrong@baylibre.com>
 +S:	Maintained
-+F:	board/amlogic/libretech-cc/
-+F:	include/configs/libretech-cc.h
-+F:	configs/libretech-cc_defconfig
-diff --git a/board/amlogic/libretech-cc/Makefile b/board/amlogic/libretech-cc/Makefile
++F:	board/amlogic/khadas-vim/
++F:	include/configs/khadas-vim.h
++F:	configs/khadas-vim_defconfig
+diff --git a/board/amlogic/khadas-vim/Makefile b/board/amlogic/khadas-vim/Makefile
 new file mode 100644
-index 0000000..d0e3bbb
+index 0000000..eedc1bf
 --- /dev/null
-+++ b/board/amlogic/libretech-cc/Makefile
++++ b/board/amlogic/khadas-vim/Makefile
 @@ -0,0 +1,8 @@
 +#
 +# (C) Copyright 2016 BayLibre, SAS
@@ -298,30 +264,30 @@ index 0000000..d0e3bbb
 +# SPDX-License-Identifier:	GPL-2.0+
 +#
 +
-+obj-y	:= libretech-cc.o
-diff --git a/board/amlogic/libretech-cc/README b/board/amlogic/libretech-cc/README
++obj-y	:= khadas-vim.o
+diff --git a/board/amlogic/khadas-vim/README b/board/amlogic/khadas-vim/README
 new file mode 100644
-index 0000000..9711e8a
+index 0000000..1e07d11
 --- /dev/null
-+++ b/board/amlogic/libretech-cc/README
++++ b/board/amlogic/khadas-vim/README
 @@ -0,0 +1,96 @@
-+U-Boot for LibreTech CC
++U-Boot for Khadas VIM
 +=======================
 +
-+LibreTech CC is a single board computer manufactured by Libre Technology
-+with the following specifications:
++Khadas VIM is an Open Source DIY Box manufactured by Shenzhen Tomato
++Technology Co., Ltd with the following specifications:
 +
-+ - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 2GHz
++ - Amlogic S905x ARM Cortex-A53 quad-core SoC @ 2GHz
 + - ARM Mali 450 GPU
 + - 2GB DDR3 SDRAM
-+ - Gigabit Ethernet
++ - 10/100 Ethernet
 + - HDMI 2.0 4K/60Hz display
 + - 40-pin GPIO header
-+ - 4 x USB 2.0 Host, 1 x USB OTG
-+ - eMMC, microSD
-+ - Infrared receiver
-+
-+Schematics are available on the manufacturer website.
++ - 2 x USB 2.0 Host, 1 x USB 2.0 Type-C OTG
++ - 8GB/16GBeMMC
++ - microSD
++ - SDIO Wifi Module, Bluetooth
++ - Two channels IR receiver
 +
 +Currently the u-boot port supports the following devices:
 + - serial
@@ -333,7 +299,7 @@ index 0000000..9711e8a
 +
 + > export ARCH=arm
 + > export CROSS_COMPILE=aarch64-none-elf-
-+ > make libretech-cc_defconfig
++ > make khadas-vim_defconfig
 + > make
 +
 +Image creation
@@ -348,9 +314,9 @@ index 0000000..9711e8a
 + > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
 + > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
 + > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-+ > git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
-+ > cd amlogic-u-boot
-+ > make libretech_cc_defconfig
++ > git clone https://github.com/khadas/u-boot -b Vim vim-u-boot
++ > cd vim-u-boot
++ > make kvim_defconfig
 + > make
 + > export FIPDIR=$PWD/fip
 +
@@ -401,11 +367,11 @@ index 0000000..9711e8a
 + > DEV=/dev/your_sd_device
 + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
 + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
-diff --git a/board/amlogic/libretech-cc/libretech-cc.c b/board/amlogic/libretech-cc/libretech-cc.c
+diff --git a/board/amlogic/khadas-vim/khadas-vim.c b/board/amlogic/khadas-vim/khadas-vim.c
 new file mode 100644
 index 0000000..ece8096
 --- /dev/null
-+++ b/board/amlogic/libretech-cc/libretech-cc.c
++++ b/board/amlogic/khadas-vim/khadas-vim.c
 @@ -0,0 +1,58 @@
 +/*
 + * Copyright (C) 2016 BayLibre, SAS
@@ -465,18 +431,18 @@ index 0000000..ece8096
 +
 +	return 0;
 +}
-diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
+diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
 new file mode 100644
-index 0000000..a63e940
+index 0000000..dcccc69
 --- /dev/null
-+++ b/configs/libretech-cc_defconfig
++++ b/configs/khadas-vim_defconfig
 @@ -0,0 +1,35 @@
 +CONFIG_ARM=y
 +CONFIG_ARCH_MESON=y
 +CONFIG_MESON_GXL=y
-+CONFIG_TARGET_LIBRETECH_CC=y
-+CONFIG_IDENT_STRING=" libretech-cc"
-+CONFIG_DEFAULT_DEVICE_TREE="meson-gxl-s905x-libretech-cc"
++CONFIG_TARGET_KHADAS_VIM=y
++CONFIG_IDENT_STRING=" khadas-vim"
++CONFIG_DEFAULT_DEVICE_TREE="meson-gxl-s905x-khadas-vim"
 +CONFIG_DEBUG_UART=y
 +CONFIG_ENV_IS_NOWHERE=y
 +# CONFIG_DISPLAY_CPUINFO is not set
@@ -506,14 +472,14 @@ index 0000000..a63e940
 +CONFIG_DEBUG_UART_SKIP_INIT=y
 +CONFIG_MESON_SERIAL=y
 +CONFIG_OF_LIBFDT_OVERLAY=y
-diff --git a/include/configs/libretech-cc.h b/include/configs/libretech-cc.h
+diff --git a/include/configs/khadas-vim.h b/include/configs/khadas-vim.h
 new file mode 100644
-index 0000000..4e01b40
+index 0000000..28bf7d1
 --- /dev/null
-+++ b/include/configs/libretech-cc.h
++++ b/include/configs/khadas-vim.h
 @@ -0,0 +1,24 @@
 +/*
-+ * Configuration for LibreTech CC
++ * Configuration for Khadas VIM
 + *
 + * Copyright (C) 2017 Baylibre, SAS
 + * Author: Neil Armstrong <narmstrong@baylibre.com>
@@ -531,7 +497,7 @@ index 0000000..4e01b40
 +/* Serial setup */
 +#define CONFIG_CONS_INDEX		0
 +
-+#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxl-s905x-libretech-cc.dtb\0"
++#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxl-s905x-khadas-vim.dtb\0"
 +
 +#include <configs/meson-gxbb-common.h>
 +
