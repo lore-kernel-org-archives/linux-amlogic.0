@@ -1,67 +1,32 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 20 Nov 2017 15:19:57 +0100
-Subject: [PATCH v2 4/4] ARM64: dts: odroid-c2: Add HDMI and CEC Nodes
-In-Reply-To: <1511187597-18248-1-git-send-email-narmstrong@baylibre.com>
-References: <1511187597-18248-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1511187597-18248-5-git-send-email-narmstrong@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 20 Nov 2017 22:54:10 +0800
+Subject: [PATCH v2 0/5]  i2c: meson-axg: add I2C controller driver
+Message-ID: <20171120145415.6581-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Now the VPU Power Domain has been fixed while boothing from Mainline U-Boot,
-VPU and HDMI nodes can finally be added to the Odroid-C2 DTS.
+This patch set try to add I2C controller driver for
+the Amlogic's Meson-AXG SoC.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 30 ++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Changes since v1 [1]
+ - update dt-bindings doc (Neil Armstrong)
+ - make meson_i2c_data const (Martin Blumenstingl)
+ - DTS: adjust naming, change from the 'i2c_m0' to 'i2c0' style
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index f8d2214..d6d3af5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -135,6 +135,24 @@
- 		compatible = "mmc-pwrseq-emmc";
- 		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
- 	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
- };
- 
- &ethmac {
-@@ -179,6 +197,18 @@
- 	};
- };
- 
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
- &i2c_A {
- 	status = "okay";
- 	pinctrl-0 = <&i2c_a_pins>;
+[1] http://lkml.kernel.org/r/20171117080236.32504-1-yixun.lan at amlogic.com
+
+Jian Hu (5):
+  dt-bindings: i2c: update documentation for the Meson-AXG
+  i2c: meson: add configurable divider factors
+  ARM64: dts: meson-axg: add I2C DT info for Meson-AXG SoC
+  ARM64: dts: meson-axg: describe pin DT info for I2C controller
+  ARM64: dts: meson-axg: enable I2C Master-1 for the audio speaker
+
+ .../devicetree/bindings/i2c/i2c-meson.txt          |   6 +-
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts     |   6 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi         | 123 +++++++++++++++++++++
+ drivers/i2c/busses/i2c-meson.c                     |  32 +++++-
+ 4 files changed, 162 insertions(+), 5 deletions(-)
+
 -- 
-2.7.4
+2.15.0
