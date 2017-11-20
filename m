@@ -1,30 +1,116 @@
-From: hs@denx.de (Heiko Schocher)
-Date: Mon, 20 Nov 2017 13:40:02 +0100
-Subject: [PATCH 2/2] odroid-c2: enable I2C
-In-Reply-To: <20171029090901.24299-3-b.galvani@gmail.com>
-References: <20171029090901.24299-1-b.galvani@gmail.com>
- <20171029090901.24299-3-b.galvani@gmail.com>
-Message-ID: <d16bdfcd-cd65-07f9-8f8b-80142cf070bb@denx.de>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 20 Nov 2017 15:19:55 +0100
+Subject: [PATCH v2 2/4] ARM64: dts: meson-gx: Add HDMI_5V regulator on
+ selected boards
+In-Reply-To: <1511187597-18248-1-git-send-email-narmstrong@baylibre.com>
+References: <1511187597-18248-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1511187597-18248-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello Beniamino,
+On reference boards and derivatives, the HDMI Logic is powered by an external
+5V regulator.
+This regulator was set by the Vendor U-Boot, add the regulator and set it always-on for now.
 
-Am 29.10.2017 um 10:09 schrieb Beniamino Galvani:
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> ---
->   arch/arm/include/asm/arch-meson/gxbb.h | 1 +
->   board/amlogic/odroid-c2/odroid-c2.c    | 1 +
->   configs/odroid-c2_defconfig            | 3 +++
->   3 files changed, 5 insertions(+)
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi          | 12 ++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 12 ++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi        | 12 ++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts        | 12 ++++++++++++
+ 4 files changed, 48 insertions(+)
 
-Applied to u-boot-i2c master.
-
-Thanks!
-
-bye,
-Heiko
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+index 7d4b95e..aeb6d21 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+@@ -59,6 +59,18 @@
+ 		reg = <0x0 0x0 0x0 0x80000000>;
+ 	};
+ 
++	hdmi_5v: regulator-hdmi-5v {
++		compatible = "regulator-fixed";
++
++		regulator-name = "HDMI_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++
++		gpio = <&gpio GPIOH_3 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
+ 	vddio_boot: regulator-vddio_boot {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VDDIO_BOOT";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index dc9c3b8..9671f1e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -72,6 +72,18 @@
+ 		reg = <0x0 0x0 0x0 0x80000000>;
+ 	};
+ 
++	hdmi_5v: regulator-hdmi-5v {
++		compatible = "regulator-fixed";
++
++		regulator-name = "HDMI_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++
++		gpio = <&gpio GPIOH_3 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
+ 	vcc_3v3: regulator-vcc_3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VCC_3V3";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+index ff09df1..7005068 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+@@ -28,6 +28,18 @@
+ 		reg = <0x0 0x0 0x0 0x80000000>;
+ 	};
+ 
++	hdmi_5v: regulator-hdmi-5v {
++		compatible = "regulator-fixed";
++
++		regulator-name = "HDMI_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++
++		gpio = <&gpio GPIOH_3 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
+ 	vddio_boot: regulator-vddio_boot {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VDDIO_BOOT";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index 34a41b2..d2595c0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -153,6 +153,18 @@
+ 		};
+ 	};
+ 
++	hdmi_5v: regulator-hdmi-5v {
++		compatible = "regulator-fixed";
++
++		regulator-name = "HDMI_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++
++		gpio = <&gpio GPIOH_3 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
+ 	vcc_3v3: regulator-vcc_3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VCC_3V3";
 -- 
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs at denx.de
+2.7.4
