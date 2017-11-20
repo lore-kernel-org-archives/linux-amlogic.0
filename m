@@ -1,298 +1,378 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 20 Nov 2017 16:36:09 +0100
-Subject: [PATCH u-boot] ARM: arch-meson: build memory banks using reported
- memory from registers
-Message-ID: <1511192169-18458-1-git-send-email-narmstrong@baylibre.com>
+From: sjg@chromium.org (Simon Glass)
+Date: Mon, 20 Nov 2017 08:36:34 -0700
+Subject: [PATCH 1/2] i2c: add Amlogic Meson driver
+In-Reply-To: <20171029090901.24299-2-b.galvani@gmail.com>
+References: <20171029090901.24299-1-b.galvani@gmail.com>
+ <20171029090901.24299-2-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ16FmTk0ev5z=p5ng+SfhPWujkFF26_nFsAE8bdMQ0+QQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-As discussed at [1], the Amlogic Meson GX SoCs can embed a BL31 firmware
-and a secondary BL32 firmware.
-Since mid-2017, the reserved memory address of the BL31 firmware was moved
-and grown for security reasons.
+Hi Benjamin,
 
-But mainline U-boot and Linux has the old address and size fixed.
+On 29 October 2017 at 03:09, Beniamino Galvani <b.galvani@gmail.com> wrote:
+>
+> Add a driver for the I2C controller available on Amlogic Meson SoCs.
+>
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  arch/arm/include/asm/arch-meson/i2c.h |  11 ++
+>  drivers/i2c/Kconfig                   |   6 +
+>  drivers/i2c/Makefile                  |   1 +
+>  drivers/i2c/meson_i2c.c               | 263 ++++++++++++++++++++++++++++++++++
+>  4 files changed, 281 insertions(+)
+>  create mode 100644 arch/arm/include/asm/arch-meson/i2c.h
+>  create mode 100644 drivers/i2c/meson_i2c.c
 
-These SoCs have a register interface to get the two firmware reserved
-memory start and sizes.
+Reviewed-by: Simon Glass <sjg@chromium.org>
 
-This patch adds a dynamic reservation of the memory zones in the device tree bootmem
-reserved memory zone used by the kernel in early boot.
-To be complete, the memory zones are also added to the EFI reserved zones.
+But please look at the comments below.
 
-Depends on patchset "Add support for Amlogic GXL Based SBCs" at [2].
+>
+> diff --git a/arch/arm/include/asm/arch-meson/i2c.h b/arch/arm/include/asm/arch-meson/i2c.h
+> new file mode 100644
+> index 0000000000..783bc3786f
+> --- /dev/null
+> +++ b/arch/arm/include/asm/arch-meson/i2c.h
+> @@ -0,0 +1,11 @@
+> +/*
+> + * Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:    GPL-2.0+
+> + */
+> +#ifndef _MESON_I2C_H_
+> +#define _MESON_I2C_H_
+> +
+> +#define MESON_I2C_CLK_RATE     167000000
+> +
+> +#endif
+> diff --git a/drivers/i2c/Kconfig b/drivers/i2c/Kconfig
+> index c296985d9b..1989f8eb57 100644
+> --- a/drivers/i2c/Kconfig
+> +++ b/drivers/i2c/Kconfig
+> @@ -137,6 +137,12 @@ config SYS_I2C_IMX_LPI2C
+>         help
+>           Add support for the NXP i.MX LPI2C driver.
+>
+> +config SYS_I2C_MESON
+> +       bool "Amlogic Meson I2C driver"
+> +       depends on DM_I2C && ARCH_MESON
+> +       help
+> +         Add support for the Amlogic Meson I2C driver.
 
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005410.html
+Any more details on this? What features does that hardware and your
+driver support?
 
-Changes since RFC v2:
-- reduced preprocessor load
-- kept Odroid-C2 static memory mapping as exception
+> +
+>  config SYS_I2C_MXC
+>         bool "NXP i.MX I2C driver"
+>         depends on MX6
+> diff --git a/drivers/i2c/Makefile b/drivers/i2c/Makefile
+> index 3a8c61b485..733cd3e92f 100644
+> --- a/drivers/i2c/Makefile
+> +++ b/drivers/i2c/Makefile
+> @@ -25,6 +25,7 @@ obj-$(CONFIG_SYS_I2C_INTEL) += intel_i2c.o
+>  obj-$(CONFIG_SYS_I2C_IMX_LPI2C) += imx_lpi2c.o
+>  obj-$(CONFIG_SYS_I2C_KONA) += kona_i2c.o
+>  obj-$(CONFIG_SYS_I2C_LPC32XX) += lpc32xx_i2c.o
+> +obj-$(CONFIG_SYS_I2C_MESON) += meson_i2c.o
+>  obj-$(CONFIG_SYS_I2C_MVTWSI) += mvtwsi.o
+>  obj-$(CONFIG_SYS_I2C_MXC) += mxc_i2c.o
+>  obj-$(CONFIG_SYS_I2C_MXS) += mxs_i2c.o
+> diff --git a/drivers/i2c/meson_i2c.c b/drivers/i2c/meson_i2c.c
+> new file mode 100644
+> index 0000000000..2434d9ed53
+> --- /dev/null
+> +++ b/drivers/i2c/meson_i2c.c
+> @@ -0,0 +1,263 @@
+> +/*
+> + * (C) Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:    GPL-2.0+
+> + */
+> +#include <common.h>
+> +#include <asm/arch/i2c.h>
+> +#include <asm/io.h>
+> +#include <dm.h>
+> +#include <i2c.h>
+> +
+> +#define I2C_TIMEOUT_MS         500
 
-Changes since RFC v1:
-- switch to fdt rsv mem table and efi reserve memory
-- replaced in_le32 by readl()
+Wow that is a long time. Does it really take that long to fail>
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm/include/asm/arch-meson/gxbb.h    | 17 +++++++
- arch/arm/mach-meson/board.c               | 74 +++++++++++++++++++++++++++----
- board/amlogic/khadas-vim/khadas-vim.c     |  7 +++
- board/amlogic/libretech-cc/libretech-cc.c |  7 +++
- board/amlogic/odroid-c2/odroid-c2.c       |  7 +++
- board/amlogic/p212/p212.c                 |  7 +++
- configs/khadas-vim_defconfig              |  1 +
- configs/libretech-cc_defconfig            |  1 +
- configs/odroid-c2_defconfig               |  1 +
- configs/p212_defconfig                    |  1 +
- include/configs/meson-gxbb-common.h       |  2 +-
- 11 files changed, 116 insertions(+), 9 deletions(-)
+> +
+> +/* Control register fields */
+> +#define REG_CTRL_START         BIT(0)
+> +#define REG_CTRL_ACK_IGNORE    BIT(1)
+> +#define REG_CTRL_STATUS                BIT(2)
+> +#define REG_CTRL_ERROR         BIT(3)
+> +#define REG_CTRL_CLKDIV_SHIFT  12
+> +#define REG_CTRL_CLKDIV_MASK   GENMASK(21, 12)
+> +#define REG_CTRL_CLKDIVEXT_SHIFT 28
+> +#define REG_CTRL_CLKDIVEXT_MASK        GENMASK(29, 28)
+> +
+> +enum {
+> +       TOKEN_END = 0,
+> +       TOKEN_START,
+> +       TOKEN_SLAVE_ADDR_WRITE,
+> +       TOKEN_SLAVE_ADDR_READ,
+> +       TOKEN_DATA,
+> +       TOKEN_DATA_LAST,
+> +       TOKEN_STOP,
+> +};
+> +
+> +struct i2c_regs {
+> +       u32 ctrl;
+> +       u32 slave_addr;
+> +       u32 tok_list0;
+> +       u32 tok_list1;
+> +       u32 tok_wdata0;
+> +       u32 tok_wdata1;
+> +       u32 tok_rdata0;
+> +       u32 tok_rdata1;
+> +};
+> +
+> +struct meson_i2c {
+> +       struct i2c_regs *regs;
+> +       struct i2c_msg *msg;
+> +       bool last;
+> +       uint count;
+> +       uint pos;
+> +       u32 tokens[2];
+> +       uint num_tokens;
+> +};
 
-diff --git a/arch/arm/include/asm/arch-meson/gxbb.h b/arch/arm/include/asm/arch-meson/gxbb.h
-index 74d5290..117f796 100644
---- a/arch/arm/include/asm/arch-meson/gxbb.h
-+++ b/arch/arm/include/asm/arch-meson/gxbb.h
-@@ -7,10 +7,27 @@
- #ifndef __GXBB_H__
- #define __GXBB_H__
- 
-+#define GXBB_FIRMWARE_MEM_SIZE	0x1000000
-+
-+#define GXBB_AOBUS_BASE		0xc8100000
- #define GXBB_PERIPHS_BASE	0xc8834400
- #define GXBB_HIU_BASE		0xc883c000
- #define GXBB_ETH_BASE		0xc9410000
- 
-+/* Always-On Peripherals registers */
-+#define GXBB_AO_ADDR(off)	(GXBB_AOBUS_BASE + ((off) << 2))
-+
-+#define GXBB_AO_SEC_GP_CFG0	GXBB_AO_ADDR(0x90)
-+#define GXBB_AO_SEC_GP_CFG3	GXBB_AO_ADDR(0x93)
-+#define GXBB_AO_SEC_GP_CFG4	GXBB_AO_ADDR(0x94)
-+#define GXBB_AO_SEC_GP_CFG5	GXBB_AO_ADDR(0x95)
-+
-+#define GXBB_AO_MEM_SIZE_MASK	0xFFFF0000
-+#define GXBB_AO_MEM_SIZE_SHIFT	16
-+#define GXBB_AO_BL31_RSVMEM_SIZE_MASK	0xFFFF0000
-+#define GXBB_AO_BL31_RSVMEM_SIZE_SHIFT	16
-+#define GXBB_AO_BL32_RSVMEM_SIZE_MASK	0xFFFF
-+
- /* Peripherals registers */
- #define GXBB_PERIPHS_ADDR(off)	(GXBB_PERIPHS_BASE + ((off) << 2))
- 
-diff --git a/arch/arm/mach-meson/board.c b/arch/arm/mach-meson/board.c
-index e89c6aa..855614a 100644
---- a/arch/arm/mach-meson/board.c
-+++ b/arch/arm/mach-meson/board.c
-@@ -11,6 +11,9 @@
- #include <asm/arch/sm.h>
- #include <asm/armv8/mmu.h>
- #include <asm/unaligned.h>
-+#include <linux/sizes.h>
-+#include <efi_loader.h>
-+#include <asm/io.h>
- 
- DECLARE_GLOBAL_DATA_PTR;
- 
-@@ -34,15 +37,70 @@ int dram_init(void)
- 	return 0;
- }
- 
--int dram_init_banksize(void)
-+phys_size_t get_effective_memsize(void)
- {
--	/* Reserve first 16 MiB of RAM for firmware */
--	gd->bd->bi_dram[0].start = 0x1000000;
--	gd->bd->bi_dram[0].size  = 0xf000000;
--	/* Reserve 2 MiB for ARM Trusted Firmware (BL31) */
--	gd->bd->bi_dram[1].start = 0x10000000;
--	gd->bd->bi_dram[1].size  = gd->ram_size - 0x10200000;
--	return 0;
-+	/* Size is reported in MiB, convert it in bytes */
-+	return ((readl(GXBB_AO_SEC_GP_CFG0) & GXBB_AO_MEM_SIZE_MASK)
-+			>> GXBB_AO_MEM_SIZE_SHIFT) * SZ_1M;
-+}
-+
-+static void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size)
-+{
-+	int ret;
-+
-+	ret = fdt_add_mem_rsv(fdt, start, size);
-+	if (ret)
-+		printf("Could not reserve zone @ 0x%llx\n", start);
-+
-+#if defined(CONFIG_EFI_LOADER)
-+	efi_add_memory_map(start, ALIGN(size, EFI_PAGE_SIZE) >> EFI_PAGE_SHIFT,
-+			   EFI_RESERVED_MEMORY_TYPE, false);
-+#endif
-+}
-+
-+void ft_cpu_setup(void *fdt, bd_t *bd)
-+{
-+	u64 bl31_size, bl31_start;
-+	u64 bl32_size, bl32_start;
-+	u32 reg;
-+
-+	/*
-+	 * Get ARM Trusted Firmware reserved memory zones in :
-+	 * - AO_SEC_GP_CFG3: bl32 & bl31 size in KiB, can be 0
-+	 * - AO_SEC_GP_CFG5: bl31 physical start address, can be NULL
-+	 * - AO_SEC_GP_CFG4: bl32 physical start address, can be NULL
-+	 */
-+
-+	reg = readl(GXBB_AO_SEC_GP_CFG3);
-+
-+	bl31_size = ((reg & GXBB_AO_BL31_RSVMEM_SIZE_MASK)
-+			>> GXBB_AO_BL31_RSVMEM_SIZE_SHIFT) * SZ_1K;
-+	bl32_size = (reg & GXBB_AO_BL32_RSVMEM_SIZE_MASK) * SZ_1K;
-+
-+	bl31_start = readl(GXBB_AO_SEC_GP_CFG5);
-+	bl32_start = readl(GXBB_AO_SEC_GP_CFG4);
-+
-+	/*
-+	 * Early Meson GXBB Firmware revisions did not provide the reserved
-+	 * memory zones in the registers, keep fixed memory zone handling.
-+	 */
-+#ifdef CONFIG_MESON_GXBB
-+	if (!reg && !bl31_start && !bl32_start) {
-+		bl31_start = 0x10000000;
-+		bl31_size = 0x200000;
-+	}
-+#endif
-+
-+	/* Add first 16MiB reserved zone */
-+	meson_board_add_reserved_memory(fdt, 0, GXBB_FIRMWARE_MEM_SIZE);
-+
-+	/* Add BL31 reserved zone */
-+	if (bl31_start && bl31_size)
-+		meson_board_add_reserved_memory(fdt, bl31_start, bl31_size);
-+
-+	/* Add BL32 reserved zone */
-+	if (bl32_start && bl32_size)
-+		meson_board_add_reserved_memory(fdt, bl32_start, bl32_size);
- }
- 
- void reset_cpu(ulong addr)
-diff --git a/board/amlogic/khadas-vim/khadas-vim.c b/board/amlogic/khadas-vim/khadas-vim.c
-index ece8096..54e31f5 100644
---- a/board/amlogic/khadas-vim/khadas-vim.c
-+++ b/board/amlogic/khadas-vim/khadas-vim.c
-@@ -56,3 +56,10 @@ int misc_init_r(void)
- 
- 	return 0;
- }
-+
-+int ft_board_setup(void *blob, bd_t *bd)
-+{
-+       ft_cpu_setup(blob, bd);
-+
-+       return 0;
-+}
-diff --git a/board/amlogic/libretech-cc/libretech-cc.c b/board/amlogic/libretech-cc/libretech-cc.c
-index ece8096..54e31f5 100644
---- a/board/amlogic/libretech-cc/libretech-cc.c
-+++ b/board/amlogic/libretech-cc/libretech-cc.c
-@@ -56,3 +56,10 @@ int misc_init_r(void)
- 
- 	return 0;
- }
-+
-+int ft_board_setup(void *blob, bd_t *bd)
-+{
-+       ft_cpu_setup(blob, bd);
-+
-+       return 0;
-+}
-diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
-index eac04d8..a9ca34c 100644
---- a/board/amlogic/odroid-c2/odroid-c2.c
-+++ b/board/amlogic/odroid-c2/odroid-c2.c
-@@ -60,3 +60,10 @@ int misc_init_r(void)
- 
- 	return 0;
- }
-+
-+int ft_board_setup(void *blob, bd_t *bd)
-+{
-+	ft_cpu_setup(blob, bd);
-+
-+	return 0;
-+}
-diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
-index ece8096..abd4f76 100644
---- a/board/amlogic/p212/p212.c
-+++ b/board/amlogic/p212/p212.c
-@@ -56,3 +56,10 @@ int misc_init_r(void)
- 
- 	return 0;
- }
-+
-+int ft_board_setup(void *blob, bd_t *bd)
-+{
-+	ft_cpu_setup(blob, bd);
-+
-+	return 0;
-+}
-diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-index dcccc69..f2a30a8 100644
---- a/configs/khadas-vim_defconfig
-+++ b/configs/khadas-vim_defconfig
-@@ -17,6 +17,7 @@ CONFIG_CMD_MMC=y
- CONFIG_CMD_GPIO=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_OF_CONTROL=y
-+CONFIG_OF_BOARD_SETUP=y
- CONFIG_DM_GPIO=y
- CONFIG_DM_MMC=y
- CONFIG_MMC_MESON_GX=y
-diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
-index a63e940..6583c43 100644
---- a/configs/libretech-cc_defconfig
-+++ b/configs/libretech-cc_defconfig
-@@ -17,6 +17,7 @@ CONFIG_CMD_MMC=y
- CONFIG_CMD_GPIO=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_OF_CONTROL=y
-+CONFIG_OF_BOARD_SETUP=y
- CONFIG_DM_GPIO=y
- CONFIG_DM_MMC=y
- CONFIG_MMC_MESON_GX=y
-diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
-index f7f8016..4615e03 100644
---- a/configs/odroid-c2_defconfig
-+++ b/configs/odroid-c2_defconfig
-@@ -15,6 +15,7 @@ CONFIG_CMD_GPIO=y
- CONFIG_CMD_MMC=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_OF_CONTROL=y
-+CONFIG_OF_BOARD_SETUP=y
- CONFIG_NET_RANDOM_ETHADDR=y
- CONFIG_DM_GPIO=y
- CONFIG_DM_MMC=y
-diff --git a/configs/p212_defconfig b/configs/p212_defconfig
-index d4b5349..b6e788b 100644
---- a/configs/p212_defconfig
-+++ b/configs/p212_defconfig
-@@ -17,6 +17,7 @@ CONFIG_CMD_MMC=y
- CONFIG_CMD_GPIO=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_OF_CONTROL=y
-+CONFIG_OF_BOARD_SETUP=y
- CONFIG_DM_GPIO=y
- CONFIG_DM_MMC=y
- CONFIG_MMC_MESON_GX=y
-diff --git a/include/configs/meson-gxbb-common.h b/include/configs/meson-gxbb-common.h
-index d88d42d..c2b306a 100644
---- a/include/configs/meson-gxbb-common.h
-+++ b/include/configs/meson-gxbb-common.h
-@@ -10,7 +10,7 @@
- 
- #define CONFIG_CPU_ARMV8
- #define CONFIG_REMAKE_ELF
--#define CONFIG_NR_DRAM_BANKS		2
-+#define CONFIG_NR_DRAM_BANKS		1
- #define CONFIG_ENV_SIZE			0x2000
- #define CONFIG_SYS_MAXARGS		32
- #define CONFIG_SYS_MALLOC_LEN		(32 << 20)
--- 
-2.7.4
+This struct could use some comments
+
+> +
+> +static void meson_i2c_reset_tokens(struct meson_i2c *i2c)
+> +{
+> +       i2c->tokens[0] = 0;
+> +       i2c->tokens[1] = 0;
+> +       i2c->num_tokens = 0;
+> +}
+> +
+> +static void meson_i2c_add_token(struct meson_i2c *i2c, int token)
+> +{
+> +       if (i2c->num_tokens < 8)
+> +               i2c->tokens[0] |= (token & 0xf) << (i2c->num_tokens * 4);
+> +       else
+> +               i2c->tokens[1] |= (token & 0xf) << ((i2c->num_tokens % 8) * 4);
+> +
+> +       i2c->num_tokens++;
+> +}
+> +
+> +static void meson_i2c_get_data(struct meson_i2c *i2c, u8 *buf, int len)
+> +{
+> +       u32 rdata0, rdata1;
+> +       int i;
+> +
+> +       rdata0 = readl(&i2c->regs->tok_rdata0);
+> +       rdata1 = readl(&i2c->regs->tok_rdata1);
+> +
+> +       debug("meson i2c: read data %08x %08x len %d\n", rdata0, rdata1, len);
+> +
+> +       for (i = 0; i < min(4, len); i++)
+> +               *buf++ = (rdata0 >> i * 8) & 0xff;
+> +
+> +       for (i = 4; i < min(8, len); i++)
+> +               *buf++ = (rdata1 >> (i - 4) * 8) & 0xff;
+
+I don't really understand this function. If len is >= 8, what happens?
+I think you should add a comment to this function describing what it
+does and what the args mean.
+
+> +}
+> +
+> +static void meson_i2c_put_data(struct meson_i2c *i2c, u8 *buf, int len)
+> +{
+> +       u32 wdata0 = 0, wdata1 = 0;
+> +       int i;
+> +
+> +       for (i = 0; i < min(4, len); i++)
+> +               wdata0 |= *buf++ << (i * 8);
+> +
+> +       for (i = 4; i < min(8, len); i++)
+> +               wdata1 |= *buf++ << ((i - 4) * 8);
+
+Same with this function.
+
+> +
+> +       writel(wdata0, &i2c->regs->tok_wdata0);
+> +       writel(wdata1, &i2c->regs->tok_wdata1);
+> +
+> +       debug("meson i2c: write data %08x %08x len %d\n", wdata0, wdata1, len);
+> +}
+> +
+> +static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
+> +{
+> +       bool write = !(i2c->msg->flags & I2C_M_RD);
+> +       int i;
+> +
+> +       i2c->count = min(i2c->msg->len - i2c->pos, 8u);
+> +
+> +       for (i = 0; i + 1 < i2c->count; i++)
+> +               meson_i2c_add_token(i2c, TOKEN_DATA);
+> +
+> +       if (i2c->count) {
+> +               if (write || i2c->pos + i2c->count < i2c->msg->len)
+> +                       meson_i2c_add_token(i2c, TOKEN_DATA);
+> +               else
+> +                       meson_i2c_add_token(i2c, TOKEN_DATA_LAST);
+> +       }
+> +
+> +       if (write)
+> +               meson_i2c_put_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
+> +
+> +       if (i2c->last && i2c->pos + i2c->count >= i2c->msg->len)
+> +               meson_i2c_add_token(i2c, TOKEN_STOP);
+> +
+> +       writel(i2c->tokens[0], &i2c->regs->tok_list0);
+> +       writel(i2c->tokens[1], &i2c->regs->tok_list1);
+> +}
+> +
+> +static void meson_i2c_do_start(struct meson_i2c *i2c, struct i2c_msg *msg)
+> +{
+> +       int token;
+> +
+> +       token = (msg->flags & I2C_M_RD) ? TOKEN_SLAVE_ADDR_READ :
+> +               TOKEN_SLAVE_ADDR_WRITE;
+> +
+> +       writel(msg->addr << 1, &i2c->regs->slave_addr);
+> +       meson_i2c_add_token(i2c, TOKEN_START);
+> +       meson_i2c_add_token(i2c, token);
+> +}
+> +
+> +static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+> +                             int last)
+> +{
+> +       ulong start;
+> +
+> +       debug("meson i2c: %s addr %u len %u\n",
+> +             (msg->flags & I2C_M_RD) ? "read" : "write",
+> +             msg->addr, msg->len);
+> +
+> +       i2c->msg = msg;
+> +       i2c->last = last;
+> +       i2c->pos = 0;
+> +       i2c->count = 0;
+> +
+> +       meson_i2c_reset_tokens(i2c);
+> +       meson_i2c_do_start(i2c, msg);
+> +
+> +       do {
+> +               meson_i2c_prepare_xfer(i2c);
+> +
+> +               /* start the transfer */
+> +               setbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +               start = get_timer(0);
+> +               while (readl(&i2c->regs->ctrl) & REG_CTRL_STATUS) {
+> +                       if (get_timer(start) > I2C_TIMEOUT_MS) {
+> +                               clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +                               debug("meson i2c: timeout\n");
+> +                               return -ETIMEDOUT;
+> +                       }
+> +                       udelay(1);
+> +               }
+> +               meson_i2c_reset_tokens(i2c);
+> +               clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +
+> +               if (readl(&i2c->regs->ctrl) & REG_CTRL_ERROR) {
+> +                       debug("meson i2c: error\n");
+> +                       return -ENXIO;
+> +               }
+> +
+> +               if ((msg->flags & I2C_M_RD) && i2c->count) {
+> +                       meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos,
+> +                                          i2c->count);
+> +               }
+> +               i2c->pos += i2c->count;
+> +       } while (i2c->pos < msg->len);
+> +
+> +       return 0;
+> +}
+> +
+> +static int meson_i2c_xfer(struct udevice *bus, struct i2c_msg *msg,
+> +                         int nmsgs)
+> +{
+> +       struct meson_i2c *i2c = dev_get_priv(bus);
+> +       int i, ret = 0;
+> +
+> +       for (i = 0; i < nmsgs; i++) {
+> +               ret = meson_i2c_xfer_msg(i2c, msg + i, i == nmsgs - 1);
+> +               if (ret)
+> +                       return -EREMOTEIO;
+
+Why not return ret? We don't normally change the error on the way through.
+
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
+> +{
+> +       struct meson_i2c *i2c = dev_get_priv(bus);
+> +       unsigned int clk_rate = MESON_I2C_CLK_RATE;
+> +       unsigned int div;
+> +
+> +       div = DIV_ROUND_UP(clk_rate, speed * 4);
+> +
+> +       /* clock divider has 12 bits */
+> +       if (div >= (1 << 12)) {
+> +               debug("meson i2c: requested bus frequency too low\n");
+> +               div = (1 << 12) - 1;
+> +       }
+> +
+> +       clrsetbits_le32(&i2c->regs->ctrl, REG_CTRL_CLKDIV_MASK,
+> +                       (div & GENMASK(9, 0)) << REG_CTRL_CLKDIV_SHIFT);
+> +
+> +       clrsetbits_le32(&i2c->regs->ctrl, REG_CTRL_CLKDIVEXT_MASK,
+> +                       (div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
+> +
+> +       debug("meson i2c: set clk %u, src %u, div %u\n", speed, clk_rate, div);
+> +
+> +       return 0;
+> +}
+> +
+> +static int meson_i2c_probe(struct udevice *bus)
+> +{
+> +       struct meson_i2c *i2c = dev_get_priv(bus);
+> +
+> +       i2c->regs = dev_read_addr_ptr(bus);
+> +       clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct dm_i2c_ops meson_i2c_ops = {
+> +       .xfer          = meson_i2c_xfer,
+> +       .set_bus_speed = meson_i2c_set_bus_speed,
+> +};
+> +
+> +static const struct udevice_id meson_i2c_ids[] = {
+> +       { .compatible = "amlogic,meson6-i2c" },
+> +       { .compatible = "amlogic,meson-gx-i2c" },
+> +       { .compatible = "amlogic,meson-gxbb-i2c" },
+> +       { }
+> +};
+> +
+> +U_BOOT_DRIVER(i2c_meson) = {
+> +       .name = "i2c_meson",
+> +       .id   = UCLASS_I2C,
+> +       .of_match = meson_i2c_ids,
+> +       .probe = meson_i2c_probe,
+> +       .priv_auto_alloc_size = sizeof(struct meson_i2c),
+
+I think meson_i2c_priv might be a better name since it indicates that
+it is driver-private data. But if you prefer the shorter name, that's
+fine with me.
+
+> +       .ops = &meson_i2c_ops,
+> +};
+> --
+> 2.13.6
+>
+
+Regards,
+Simon
