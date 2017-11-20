@@ -1,37 +1,64 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 20 Nov 2017 22:54:15 +0800
-Subject: [PATCH v2 5/5] ARM64: dts: meson-axg: enable I2C Master-1 for the
- audio speaker
-In-Reply-To: <20171120145415.6581-1-yixun.lan@amlogic.com>
-References: <20171120145415.6581-1-yixun.lan@amlogic.com>
-Message-ID: <20171120145415.6581-6-yixun.lan@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 20 Nov 2017 16:04:43 +0100
+Subject: [PATCH u-boot 0/2] Add support for Amlogic GXL Based SBCs
+Message-ID: <1511190285-4281-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jian Hu <jian.hu@amlogic.com>
+This patchset aimed to add minimal support for the following Amlogic GXL SoC
+based board:
+- LibreTech-CC
+- Khadas VIM
 
-In the S400 board, The I2C master-1 is connecting to
-the audio speaker daughter board.
+The initial support is composed of :
+- Minimal boot support with serial, MMC, Ethernet and SDCard
+- Updated DTS from Linux 4.13.8
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+Commands to generate a valid binary are provided in the board README.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index 7b39a9fe2b0f..0864d1ff2d9b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -28,3 +28,9 @@
- 	pinctrl-0 = <&eth_rgmii_y_pins>;
- 	pinctrl-names = "default";
- };
-+
-+&i2c1 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c1_z_pins>;
-+	pinctrl-names = "default";
-+};
+The following work will be pushed later on :
+- Support for dynamic reading of DDR memory size from registers
+- USB DWC3 Host Support with PHY support
+
+Neil Armstrong (2):
+  arm: Add LibreTech CC support based on Meson GXL family
+  arm: Add Khadas VIM support based on Meson GXL family
+
+ arch/arm/dts/Makefile                         |   4 +-
+ arch/arm/dts/meson-gxl-s905x-khadas-vim.dts   | 137 +++++++++++++++++++++
+ arch/arm/dts/meson-gxl-s905x-libretech-cc.dts | 171 ++++++++++++++++++++++++++
+ arch/arm/mach-meson/Kconfig                   |  18 +++
+ board/amlogic/khadas-vim/Kconfig              |  12 ++
+ board/amlogic/khadas-vim/MAINTAINERS          |   6 +
+ board/amlogic/khadas-vim/Makefile             |   8 ++
+ board/amlogic/khadas-vim/README               |  96 +++++++++++++++
+ board/amlogic/khadas-vim/khadas-vim.c         |  58 +++++++++
+ board/amlogic/libretech-cc/Kconfig            |  12 ++
+ board/amlogic/libretech-cc/MAINTAINERS        |   6 +
+ board/amlogic/libretech-cc/Makefile           |   8 ++
+ board/amlogic/libretech-cc/README             |  96 +++++++++++++++
+ board/amlogic/libretech-cc/libretech-cc.c     |  58 +++++++++
+ configs/khadas-vim_defconfig                  |  35 ++++++
+ configs/libretech-cc_defconfig                |  35 ++++++
+ include/configs/khadas-vim.h                  |  24 ++++
+ include/configs/libretech-cc.h                |  24 ++++
+ 18 files changed, 807 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/dts/meson-gxl-s905x-khadas-vim.dts
+ create mode 100644 arch/arm/dts/meson-gxl-s905x-libretech-cc.dts
+ create mode 100644 board/amlogic/khadas-vim/Kconfig
+ create mode 100644 board/amlogic/khadas-vim/MAINTAINERS
+ create mode 100644 board/amlogic/khadas-vim/Makefile
+ create mode 100644 board/amlogic/khadas-vim/README
+ create mode 100644 board/amlogic/khadas-vim/khadas-vim.c
+ create mode 100644 board/amlogic/libretech-cc/Kconfig
+ create mode 100644 board/amlogic/libretech-cc/MAINTAINERS
+ create mode 100644 board/amlogic/libretech-cc/Makefile
+ create mode 100644 board/amlogic/libretech-cc/README
+ create mode 100644 board/amlogic/libretech-cc/libretech-cc.c
+ create mode 100644 configs/khadas-vim_defconfig
+ create mode 100644 configs/libretech-cc_defconfig
+ create mode 100644 include/configs/khadas-vim.h
+ create mode 100644 include/configs/libretech-cc.h
+
 -- 
-2.15.0
+2.7.4
