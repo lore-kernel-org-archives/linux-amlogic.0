@@ -1,23 +1,49 @@
-From: robh@kernel.org (Rob Herring)
-Date: Mon, 20 Nov 2017 15:33:03 -0600
-Subject: [PATCH v2 1/5] dt-bindings: i2c: update documentation for the
- Meson-AXG
-In-Reply-To: <20171120145415.6581-2-yixun.lan@amlogic.com>
-References: <20171120145415.6581-1-yixun.lan@amlogic.com>
- <20171120145415.6581-2-yixun.lan@amlogic.com>
-Message-ID: <20171120213303.7emjj2ranix45otc@rob-hp-laptop>
+From: sjg@chromium.org (Simon Glass)
+Date: Mon, 20 Nov 2017 21:09:03 -0700
+Subject: [PATCH u-boot 2/2] arm: Add Khadas VIM support based on Meson GXL
+ family
+In-Reply-To: <1511190285-4281-3-git-send-email-narmstrong@baylibre.com>
+References: <1511190285-4281-1-git-send-email-narmstrong@baylibre.com>
+ <1511190285-4281-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAPnjgZ1vzkGoYSTDw+H=Puy=nXADHXdYxrPatMMtRE-gUT3_RQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Nov 20, 2017 at 10:54:11PM +0800, Yixun Lan wrote:
-> From: Jian Hu <jian.hu@amlogic.com>
-> 
-> Update the doc to explicitly add Meson-AXG to support list
-> 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-meson.txt | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+Hi Neil,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On 20 November 2017 at 08:04, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> This adds platform code for the Khadas VIM board based on a
+> Meson GXL (S905X) SoC with the Meson GXL configuration.
+>
+> This initial submission supports UART, MMC/SDCard and Ethernet with the
+> Internal RMII PHY.
+>
+> The meson-gxl-s905x-khadas-vim.dts is synchronised from the linux 4.13
+> stable tree as of 4.13.8.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  arch/arm/dts/Makefile                       |   3 +-
+>  arch/arm/dts/meson-gxl-s905x-khadas-vim.dts | 137 ++++++++++++++++++++++++++++
+>  arch/arm/mach-meson/Kconfig                 |   9 ++
+>  board/amlogic/khadas-vim/Kconfig            |  12 +++
+>  board/amlogic/khadas-vim/MAINTAINERS        |   6 ++
+>  board/amlogic/khadas-vim/Makefile           |   8 ++
+>  board/amlogic/khadas-vim/README             |  96 +++++++++++++++++++
+>  board/amlogic/khadas-vim/khadas-vim.c       |  58 ++++++++++++
+>  configs/khadas-vim_defconfig                |  35 +++++++
+>  include/configs/khadas-vim.h                |  24 +++++
+>  10 files changed, 387 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/dts/meson-gxl-s905x-khadas-vim.dts
+>  create mode 100644 board/amlogic/khadas-vim/Kconfig
+>  create mode 100644 board/amlogic/khadas-vim/MAINTAINERS
+>  create mode 100644 board/amlogic/khadas-vim/Makefile
+>  create mode 100644 board/amlogic/khadas-vim/README
+>  create mode 100644 board/amlogic/khadas-vim/khadas-vim.c
+>  create mode 100644 configs/khadas-vim_defconfig
+>  create mode 100644 include/configs/khadas-vim.h
+
+Sees like quite a bit of duplication with the previous patch,
+including the README. Can you fix this please?
+
+- Simon
