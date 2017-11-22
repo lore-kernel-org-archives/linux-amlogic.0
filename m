@@ -1,114 +1,86 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 22 Nov 2017 14:25:47 +0100
-Subject: [PATCH v2 1/5] ARM: arch-meson: add ethernet common init function
-In-Reply-To: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
-References: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1511357151-3771-2-git-send-email-narmstrong@baylibre.com>
+Date: Wed, 22 Nov 2017 14:25:46 +0100
+Subject: [PATCH v2 0/5] Add support for Amlogic GXL Based SBCs
+Message-ID: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Introduce a generic common Ethernet Hardware init function
-common to all Amlogic GX SoCs with support for the
-Internal PHY enable for GXL SoCs.
+This patchset aimed to add minimal support for the following Amlogic GXL SoC
+based board:
+- LibreTech-CC
+- Khadas VIM
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm/include/asm/arch-meson/eth.h | 15 ++++++++++
- arch/arm/mach-meson/Makefile          |  2 +-
- arch/arm/mach-meson/eth.c             | 53 +++++++++++++++++++++++++++++++++++
- 3 files changed, 69 insertions(+), 1 deletion(-)
+The initial support is composed of :
+- Minimal boot support with serial, MMC, Ethernet and SDCard
+- Updated DTS from Linux 4.13.8
+
+Commands to generate a valid binary are provided in the board README.
+
+A common Ethernet init function is introduced to avoid duplicating
+the same hardware init code.
+
+The P212 and Odroid-C2 board are also converted to this common function
+by this patchset.
+
+The following work will be pushed later on :
+- Support for dynamic reading of DDR memory size from registers
+- USB DWC3 Host Support with PHY support
+
+Changes since v1:
+- Add common ethernet init function
+- Switch P212 and Odroid-C2 to use this ethernet init function
+- Fix typos in READMEs
+- Drop #define CONFIG_CONS_INDEX
+
+Neil Armstrong (5):
+  ARM: arch-meson: add ethernet common init function
+  board: odroid-c2: use common ethernet init function
+  board: p212: use common ethernet init function
+  arm: Add LibreTech CC support based on Meson GXL family
+  arm: Add Khadas VIM support based on Meson GXL family
+
+ arch/arm/dts/Makefile                         |   4 +-
+ arch/arm/dts/meson-gxl-s905x-khadas-vim.dts   | 137 +++++++++++++++++++++
+ arch/arm/dts/meson-gxl-s905x-libretech-cc.dts | 171 ++++++++++++++++++++++++++
+ arch/arm/include/asm/arch-meson/eth.h         |  15 +++
+ arch/arm/mach-meson/Kconfig                   |  18 +++
+ arch/arm/mach-meson/Makefile                  |   2 +-
+ arch/arm/mach-meson/eth.c                     |  53 ++++++++
+ board/amlogic/khadas-vim/Kconfig              |  12 ++
+ board/amlogic/khadas-vim/MAINTAINERS          |   6 +
+ board/amlogic/khadas-vim/Makefile             |   8 ++
+ board/amlogic/khadas-vim/README               |  96 +++++++++++++++
+ board/amlogic/khadas-vim/khadas-vim.c         |  48 ++++++++
+ board/amlogic/libretech-cc/Kconfig            |  12 ++
+ board/amlogic/libretech-cc/MAINTAINERS        |   6 +
+ board/amlogic/libretech-cc/Makefile           |   8 ++
+ board/amlogic/libretech-cc/README             |  96 +++++++++++++++
+ board/amlogic/libretech-cc/libretech-cc.c     |  52 ++++++++
+ board/amlogic/odroid-c2/odroid-c2.c           |  11 +-
+ board/amlogic/p212/p212.c                     |  14 +--
+ configs/khadas-vim_defconfig                  |  35 ++++++
+ configs/libretech-cc_defconfig                |  35 ++++++
+ include/configs/khadas-vim.h                  |  21 ++++
+ include/configs/libretech-cc.h                |  21 ++++
+ 23 files changed, 858 insertions(+), 23 deletions(-)
+ create mode 100644 arch/arm/dts/meson-gxl-s905x-khadas-vim.dts
+ create mode 100644 arch/arm/dts/meson-gxl-s905x-libretech-cc.dts
  create mode 100644 arch/arm/include/asm/arch-meson/eth.h
  create mode 100644 arch/arm/mach-meson/eth.c
+ create mode 100644 board/amlogic/khadas-vim/Kconfig
+ create mode 100644 board/amlogic/khadas-vim/MAINTAINERS
+ create mode 100644 board/amlogic/khadas-vim/Makefile
+ create mode 100644 board/amlogic/khadas-vim/README
+ create mode 100644 board/amlogic/khadas-vim/khadas-vim.c
+ create mode 100644 board/amlogic/libretech-cc/Kconfig
+ create mode 100644 board/amlogic/libretech-cc/MAINTAINERS
+ create mode 100644 board/amlogic/libretech-cc/Makefile
+ create mode 100644 board/amlogic/libretech-cc/README
+ create mode 100644 board/amlogic/libretech-cc/libretech-cc.c
+ create mode 100644 configs/khadas-vim_defconfig
+ create mode 100644 configs/libretech-cc_defconfig
+ create mode 100644 include/configs/khadas-vim.h
+ create mode 100644 include/configs/libretech-cc.h
 
-diff --git a/arch/arm/include/asm/arch-meson/eth.h b/arch/arm/include/asm/arch-meson/eth.h
-new file mode 100644
-index 0000000..8ea8e10
---- /dev/null
-+++ b/arch/arm/include/asm/arch-meson/eth.h
-@@ -0,0 +1,15 @@
-+/*
-+ * Copyright (C) 2016 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * SPDX-License-Identifier:	GPL-2.0+
-+ */
-+
-+#ifndef __MESON_ETH_H__
-+#define __MESON_ETH_H__
-+
-+#include <phy.h>
-+
-+void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy);
-+
-+#endif /* __MESON_ETH_H__ */
-diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
-index bf49b8b..b4e8dde 100644
---- a/arch/arm/mach-meson/Makefile
-+++ b/arch/arm/mach-meson/Makefile
-@@ -4,4 +4,4 @@
- # SPDX-License-Identifier:	GPL-2.0+
- #
- 
--obj-y += board.o sm.o
-+obj-y += board.o sm.o eth.o
-diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
-new file mode 100644
-index 0000000..46ecb5e
---- /dev/null
-+++ b/arch/arm/mach-meson/eth.c
-@@ -0,0 +1,53 @@
-+/*
-+ * Copyright (C) 2016 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * SPDX-License-Identifier:	GPL-2.0+
-+ */
-+
-+#include <common.h>
-+#include <dm.h>
-+#include <asm/io.h>
-+#include <asm/arch/gxbb.h>
-+#include <asm/arch/eth.h>
-+#include <phy.h>
-+
-+void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy)
-+{
-+	switch (mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		/* Set RGMII mode */
-+		setbits_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_PHY_INTF |
-+			     GXBB_ETH_REG_0_TX_PHASE(1) |
-+			     GXBB_ETH_REG_0_TX_RATIO(4) |
-+			     GXBB_ETH_REG_0_PHY_CLK_EN |
-+			     GXBB_ETH_REG_0_CLK_EN);
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RMII:
-+		/* Set RMII mode */
-+		out_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_INVERT_RMII_CLK |
-+					 GXBB_ETH_REG_0_CLK_EN);
-+
-+#ifdef CONFIG_MESON_GXL
-+		if (use_internal_phy) {
-+			/* Use Internal PHY */
-+			out_le32(GXBB_ETH_REG_2, 0x10110181);
-+			out_le32(GXBB_ETH_REG_3, 0xe40908ff);
-+		}
-+#endif
-+
-+		break;
-+	
-+	default:
-+		printf("Invalid Ethernet interface mode\n");
-+		return;
-+	}
-+
-+	/* Enable power and clock gate */
-+	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
-+	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
-+}
 -- 
 2.7.4
