@@ -1,43 +1,50 @@
-From: adrian.hunter@intel.com (Adrian Hunter)
-Date: Wed, 22 Nov 2017 14:02:58 +0200
-Subject: [PATCH 3/6 v3] mmc: sdhci-acpi: Handle return value of
- platform_get_irq
-In-Reply-To: <ecd11732b6a29aee23a1be94616755e575b0d438.1511066652.git.arvind.yadav.cs@gmail.com>
-References: <c1c27676e9f141ace1254b40807bf2dc03f072c6.1511066652.git.arvind.yadav.cs@gmail.com>
- <ecd11732b6a29aee23a1be94616755e575b0d438.1511066652.git.arvind.yadav.cs@gmail.com>
-Message-ID: <f40f2259-1f79-6c79-8997-76d955fd7714@intel.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 22 Nov 2017 14:25:49 +0100
+Subject: [PATCH v2 3/5] board: p212: use common ethernet init function
+In-Reply-To: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
+References: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1511357151-3771-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 19/11/17 06:52, Arvind Yadav wrote:
-> platform_get_irq() can fail here and we must check its return value.
-> 
-> Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
+Switch P212 Ethernet init to the common Ethernet init function.
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ board/amlogic/p212/p212.c | 14 ++------------
+ 1 file changed, 2 insertions(+), 12 deletions(-)
 
-> ---
-> changes in v2 :
->               Add failure case '<= 0' instead of '< 0'. IRQ0 is not valid.
-> changes in v3 :
->               return -EINVAL instead of host->irq.
-> 
->  drivers/mmc/host/sdhci-acpi.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-acpi.c b/drivers/mmc/host/sdhci-acpi.c
-> index b988997..0d9965b 100644
-> --- a/drivers/mmc/host/sdhci-acpi.c
-> +++ b/drivers/mmc/host/sdhci-acpi.c
-> @@ -566,6 +566,10 @@ static int sdhci_acpi_probe(struct platform_device *pdev)
->  	host->hw_name	= "ACPI";
->  	host->ops	= &sdhci_acpi_ops_dflt;
->  	host->irq	= platform_get_irq(pdev, 0);
-> +	if (host->irq <= 0) {
-> +		err = -EINVAL;
-> +		goto err_free;
-> +	}
->  
->  	host->ioaddr = devm_ioremap_nocache(dev, iomem->start,
->  					    resource_size(iomem));
-> 
+diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
+index ece8096..a120ab0 100644
+--- a/board/amlogic/p212/p212.c
++++ b/board/amlogic/p212/p212.c
+@@ -10,7 +10,7 @@
+ #include <asm/io.h>
+ #include <asm/arch/gxbb.h>
+ #include <asm/arch/sm.h>
+-#include <phy.h>
++#include <asm/arch/eth.h>
+ 
+ #define EFUSE_SN_OFFSET		20
+ #define EFUSE_SN_SIZE		16
+@@ -28,17 +28,7 @@ int misc_init_r(void)
+ 	char serial[EFUSE_SN_SIZE];
+ 	ssize_t len;
+ 
+-	/* Set RMII mode */
+-	out_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_INVERT_RMII_CLK |
+-				 GXBB_ETH_REG_0_CLK_EN);
+-
+-	/* Use Internal PHY */
+-	out_le32(GXBB_ETH_REG_2, 0x10110181);
+-	out_le32(GXBB_ETH_REG_3, 0xe40908ff);
+-
+-	/* Enable power and clock gate */
+-	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
+-	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
++	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII, true);
+ 
+ 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+ 		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+-- 
+2.7.4
