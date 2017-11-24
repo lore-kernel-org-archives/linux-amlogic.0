@@ -1,77 +1,92 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Fri, 24 Nov 2017 15:35:50 -0700
-Subject: [PATCH v2 5/5] arm: Add Khadas VIM support based on Meson GXL
+Date: Fri, 24 Nov 2017 15:35:47 -0700
+Subject: [PATCH v2 4/5] arm: Add LibreTech CC support based on Meson GXL
  family
-In-Reply-To: <1511357151-3771-6-git-send-email-narmstrong@baylibre.com>
+In-Reply-To: <1511357151-3771-5-git-send-email-narmstrong@baylibre.com>
 References: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
- <1511357151-3771-6-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAPnjgZ2Bcv==RCoJmdZyVG1uqzBQDXTUL8hTcQ3we-qWC5Jc8g@mail.gmail.com>
+ <1511357151-3771-5-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAPnjgZ1v8xmQwP2g+pq2Wv0U6eEgFryf58V4tSZFcNpT95=Z=Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Neil,
 
 On 22 November 2017 at 06:25, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> This adds platform code for the Khadas VIM board based on a
+> This adds platform code for the Libre Computer CC "Le Potato" board based on a
 > Meson GXL (S905X) SoC with the Meson GXL configuration.
 >
 > This initial submission supports UART, MMC/SDCard and Ethernet with the
 > Internal RMII PHY.
 >
-> The meson-gxl-s905x-khadas-vim.dts is synchronised from the linux 4.13
+> The meson-gxl-s905x-libretech-cc.dts is synchronised from the linux 4.13
 > stable tree as of 4.13.8.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  arch/arm/dts/Makefile                       |   3 +-
->  arch/arm/dts/meson-gxl-s905x-khadas-vim.dts | 137 ++++++++++++++++++++++++++++
->  arch/arm/mach-meson/Kconfig                 |   9 ++
->  board/amlogic/khadas-vim/Kconfig            |  12 +++
->  board/amlogic/khadas-vim/MAINTAINERS        |   6 ++
->  board/amlogic/khadas-vim/Makefile           |   8 ++
->  board/amlogic/khadas-vim/README             |  96 +++++++++++++++++++
->  board/amlogic/khadas-vim/khadas-vim.c       |  48 ++++++++++
->  configs/khadas-vim_defconfig                |  35 +++++++
->  include/configs/khadas-vim.h                |  21 +++++
->  10 files changed, 374 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/dts/meson-gxl-s905x-khadas-vim.dts
->  create mode 100644 board/amlogic/khadas-vim/Kconfig
->  create mode 100644 board/amlogic/khadas-vim/MAINTAINERS
->  create mode 100644 board/amlogic/khadas-vim/Makefile
->  create mode 100644 board/amlogic/khadas-vim/README
->  create mode 100644 board/amlogic/khadas-vim/khadas-vim.c
->  create mode 100644 configs/khadas-vim_defconfig
->  create mode 100644 include/configs/khadas-vim.h
+>  arch/arm/dts/Makefile                         |   3 +-
+>  arch/arm/dts/meson-gxl-s905x-libretech-cc.dts | 171 ++++++++++++++++++++++++++
+>  arch/arm/mach-meson/Kconfig                   |   9 ++
+>  board/amlogic/libretech-cc/Kconfig            |  12 ++
+>  board/amlogic/libretech-cc/MAINTAINERS        |   6 +
+>  board/amlogic/libretech-cc/Makefile           |   8 ++
+>  board/amlogic/libretech-cc/README             |  96 +++++++++++++++
+>  board/amlogic/libretech-cc/libretech-cc.c     |  52 ++++++++
+>  configs/libretech-cc_defconfig                |  35 ++++++
+>  include/configs/libretech-cc.h                |  21 ++++
+>  10 files changed, 412 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/dts/meson-gxl-s905x-libretech-cc.dts
+>  create mode 100644 board/amlogic/libretech-cc/Kconfig
+>  create mode 100644 board/amlogic/libretech-cc/MAINTAINERS
+>  create mode 100644 board/amlogic/libretech-cc/Makefile
+>  create mode 100644 board/amlogic/libretech-cc/README
+>  create mode 100644 board/amlogic/libretech-cc/libretech-cc.c
+>  create mode 100644 configs/libretech-cc_defconfig
+>  create mode 100644 include/configs/libretech-cc.h
+>
 
 Reviewed-by: Simon Glass <sjg@chromium.org>
 
-Please see below.
 
-> diff --git a/board/amlogic/khadas-vim/README b/board/amlogic/khadas-vim/README
+[..]
+
 > new file mode 100644
-> index 0000000..add6a29
+> index 0000000..d0e3bbb
 > --- /dev/null
-> +++ b/board/amlogic/khadas-vim/README
+> +++ b/board/amlogic/libretech-cc/Makefile
+> @@ -0,0 +1,8 @@
+> +#
+> +# (C) Copyright 2016 BayLibre, SAS
+> +# Author: Neil Armstrong <narmstrong@baylibre.com>
+> +#
+> +# SPDX-License-Identifier:     GPL-2.0+
+> +#
+> +
+> +obj-y  := libretech-cc.o
+> diff --git a/board/amlogic/libretech-cc/README b/board/amlogic/libretech-cc/README
+> new file mode 100644
+> index 0000000..8b38fff
+> --- /dev/null
+> +++ b/board/amlogic/libretech-cc/README
 > @@ -0,0 +1,96 @@
-> +U-Boot for Khadas VIM
+> +U-Boot for LibreTech CC
 > +=======================
 > +
-> +Khadas VIM is an Open Source DIY Box manufactured by Shenzhen Tomato
-> +Technology Co., Ltd with the following specifications:
+> +LibreTech CC is a single board computer manufactured by Libre Technology
+> +with the following specifications:
 > +
-> + - Amlogic S905x ARM Cortex-A53 quad-core SoC @ 2GHz
+> + - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 2GHz
 > + - ARM Mali 450 GPU
 > + - 2GB DDR3 SDRAM
-> + - 10/100 Ethernet
+> + - Gigabit Ethernet
 > + - HDMI 2.0 4K/60Hz display
 > + - 40-pin GPIO header
-> + - 2 x USB 2.0 Host, 1 x USB 2.0 Type-C OTG
-> + - 8GB/16GBeMMC
-> + - microSD
-> + - SDIO Wifi Module, Bluetooth
-> + - Two channels IR receiver
+> + - 4 x USB 2.0 Host, 1 x USB OTG
+> + - eMMC, microSD
+> + - Infrared receiver
 > +
-> +Currently the u-boot port supports the following devices:
+> +Schematics are available on the manufacturer website.
+> +
+> +Currently the U-Boot port supports the following devices:
 > + - serial
 > + - eMMC, microSD
 > + - Ethernet
@@ -84,7 +99,7 @@ U-Boot
 > +
 > + > export ARCH=arm
 > + > export CROSS_COMPILE=aarch64-none-elf-
-> + > make khadas-vim_defconfig
+> + > make libretech-cc_defconfig
 > + > make
 > +
 > +Image creation
@@ -99,9 +114,9 @@ U-Boot
 > + > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
 > + > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
 > + > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-> + > git clone https://github.com/khadas/u-boot -b Vim vim-u-boot
-> + > cd vim-u-boot
-> + > make kvim_defconfig
+> + > git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
+> + > cd amlogic-u-boot
+> + > make libretech_cc_defconfig
 > + > make
 > + > export FIPDIR=$PWD/fip
 > +
@@ -153,8 +168,8 @@ U-Boot
 > + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
 > + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
 
-This bit (from 'got back to U-Boot sources') seems like a job for
-binman, as I just mentioned in the other patch.
+I wonder if the above could be done with binman? It is designed for
+putting images together.
 
 Regards,
 Simon
