@@ -1,47 +1,48 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Sat, 25 Nov 2017 17:04:19 +0100
-Subject: [U-Boot] [PATCH u-boot] ARM: arch-meson: build memory banks using
- reported memory from registers
-In-Reply-To: <5A193DD7.1050002@baylibre.com>
-References: <1511192169-18458-1-git-send-email-narmstrong@baylibre.com>
- <CAPnjgZ2QwOrAEC+nvA+6doG6cKLJKT-4b=P5ry66_SUZyyucGw@mail.gmail.com>
- <5A193DD7.1050002@baylibre.com>
-Message-ID: <cc2f305d-1bfb-5ee9-c467-ba205969bc45@suse.de>
+From: sjg@chromium.org (Simon Glass)
+Date: Sat, 25 Nov 2017 15:34:21 -0700
+Subject: [PATCH v2 0/5] Add support for Amlogic GXL Based SBCs
+In-Reply-To: <5A193C7A.8030400@baylibre.com>
+References: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
+ <5A193C7A.8030400@baylibre.com>
+Message-ID: <CAPnjgZ0H_+sE5CdUVALuKZd31UEAkbXTe_E8Q7M8EBbbFV-DOA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Neil,
 
-Am 25.11.2017 um 10:54 schrieb Neil Armstrong:
-> Le 24/11/2017 23:35, Simon Glass a ?crit :
->> On 20 November 2017 at 08:36, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>> diff --git a/arch/arm/include/asm/arch-meson/gxbb.h b/arch/arm/include/asm/arch-meson/gxbb.h
->>> index 74d5290..117f796 100644
->>> --- a/arch/arm/include/asm/arch-meson/gxbb.h
->>> +++ b/arch/arm/include/asm/arch-meson/gxbb.h
->>> @@ -7,10 +7,27 @@
->>>  #ifndef __GXBB_H__
->>>  #define __GXBB_H__
->>>
->>> +#define GXBB_FIRMWARE_MEM_SIZE 0x1000000
->>> +
->>> +#define GXBB_AOBUS_BASE                0xc8100000
+On 25 November 2017 at 02:48, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> Hi Tom, Simon,
+>
+> Le 22/11/2017 14:25, Neil Armstrong a ?crit :
+>> This patchset aimed to add minimal support for the following Amlogic GXL SoC
+>> based board:
+>> - LibreTech-CC
+>> - Khadas VIM
 >>
->> Does this not come from the device tree?
-> 
-> Yes it could.
+>> The initial support is composed of :
+>> - Minimal boot support with serial, MMC, Ethernet and SDCard
+>> - Updated DTS from Linux 4.13.8
+>>
+>> Commands to generate a valid binary are provided in the board README.
+>>
+>> A common Ethernet init function is introduced to avoid duplicating
+>> the same hardware init code.
+>>
+>> The P212 and Odroid-C2 board are also converted to this common function
+>> by this patchset.
+>>
+>> The following work will be pushed later on :
+>> - Support for dynamic reading of DDR memory size from registers
+>> - USB DWC3 Host Support with PHY support
+>
+>
+> I'll try to address Simon's comments, but is it still possible
+> to have this merged for v2018.01 ?
+>
+> For the next release cycle, I'll try to add a proper clock driver
+> and have a look to binman for sure.
 
-FTR I had prepared an even more hardcoded patch for the Vega S95 before
-(wanted to avoid three configs for three models):
-
-https://github.com/afaerber/u-boot/commit/93145dda0b9e557393edcce4dcc36774394ddb2a
-
-Please keep me in the loop here.
+>From my side this seems fine.
 
 Regards,
-Andreas
-
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+Simon
