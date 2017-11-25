@@ -1,164 +1,185 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Sat, 25 Nov 2017 10:45:30 +0100
-Subject: [PATCH v2 1/5] ARM: arch-meson: add ethernet common init function
-In-Reply-To: <CAPnjgZ1FaU5JBAuNv5nZGa0PjRyk-jYNeeoGTGN0Y_4q3_po8A@mail.gmail.com>
+Date: Sat, 25 Nov 2017 10:46:10 +0100
+Subject: [PATCH v2 4/5] arm: Add LibreTech CC support based on Meson GXL
+ family
+In-Reply-To: <CAPnjgZ1v8xmQwP2g+pq2Wv0U6eEgFryf58V4tSZFcNpT95=Z=Q@mail.gmail.com>
 References: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
- <1511357151-3771-2-git-send-email-narmstrong@baylibre.com>
- <CAPnjgZ1FaU5JBAuNv5nZGa0PjRyk-jYNeeoGTGN0Y_4q3_po8A@mail.gmail.com>
-Message-ID: <5A193BBA.2080102@baylibre.com>
+ <1511357151-3771-5-git-send-email-narmstrong@baylibre.com>
+ <CAPnjgZ1v8xmQwP2g+pq2Wv0U6eEgFryf58V4tSZFcNpT95=Z=Q@mail.gmail.com>
+Message-ID: <5A193BE2.80207@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Simon,
+
 
 Le 24/11/2017 23:35, Simon Glass a ?crit :
 > Hi Neil,
 > 
 > On 22 November 2017 at 06:25, Neil Armstrong <narmstrong@baylibre.com> wrote:
->> Introduce a generic common Ethernet Hardware init function
->> common to all Amlogic GX SoCs with support for the
->> Internal PHY enable for GXL SoCs.
+>> This adds platform code for the Libre Computer CC "Le Potato" board based on a
+>> Meson GXL (S905X) SoC with the Meson GXL configuration.
+>>
+>> This initial submission supports UART, MMC/SDCard and Ethernet with the
+>> Internal RMII PHY.
+>>
+>> The meson-gxl-s905x-libretech-cc.dts is synchronised from the linux 4.13
+>> stable tree as of 4.13.8.
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  arch/arm/include/asm/arch-meson/eth.h | 15 ++++++++++
->>  arch/arm/mach-meson/Makefile          |  2 +-
->>  arch/arm/mach-meson/eth.c             | 53 +++++++++++++++++++++++++++++++++++
->>  3 files changed, 69 insertions(+), 1 deletion(-)
->>  create mode 100644 arch/arm/include/asm/arch-meson/eth.h
->>  create mode 100644 arch/arm/mach-meson/eth.c
+>>  arch/arm/dts/Makefile                         |   3 +-
+>>  arch/arm/dts/meson-gxl-s905x-libretech-cc.dts | 171 ++++++++++++++++++++++++++
+>>  arch/arm/mach-meson/Kconfig                   |   9 ++
+>>  board/amlogic/libretech-cc/Kconfig            |  12 ++
+>>  board/amlogic/libretech-cc/MAINTAINERS        |   6 +
+>>  board/amlogic/libretech-cc/Makefile           |   8 ++
+>>  board/amlogic/libretech-cc/README             |  96 +++++++++++++++
+>>  board/amlogic/libretech-cc/libretech-cc.c     |  52 ++++++++
+>>  configs/libretech-cc_defconfig                |  35 ++++++
+>>  include/configs/libretech-cc.h                |  21 ++++
+>>  10 files changed, 412 insertions(+), 1 deletion(-)
+>>  create mode 100644 arch/arm/dts/meson-gxl-s905x-libretech-cc.dts
+>>  create mode 100644 board/amlogic/libretech-cc/Kconfig
+>>  create mode 100644 board/amlogic/libretech-cc/MAINTAINERS
+>>  create mode 100644 board/amlogic/libretech-cc/Makefile
+>>  create mode 100644 board/amlogic/libretech-cc/README
+>>  create mode 100644 board/amlogic/libretech-cc/libretech-cc.c
+>>  create mode 100644 configs/libretech-cc_defconfig
+>>  create mode 100644 include/configs/libretech-cc.h
 >>
->> diff --git a/arch/arm/include/asm/arch-meson/eth.h b/arch/arm/include/asm/arch-meson/eth.h
+> 
+> Reviewed-by: Simon Glass <sjg@chromium.org>
+> 
+> 
+> [..]
+> 
 >> new file mode 100644
->> index 0000000..8ea8e10
+>> index 0000000..d0e3bbb
 >> --- /dev/null
->> +++ b/arch/arm/include/asm/arch-meson/eth.h
->> @@ -0,0 +1,15 @@
->> +/*
->> + * Copyright (C) 2016 BayLibre, SAS
->> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->> + *
->> + * SPDX-License-Identifier:    GPL-2.0+
->> + */
+>> +++ b/board/amlogic/libretech-cc/Makefile
+>> @@ -0,0 +1,8 @@
+>> +#
+>> +# (C) Copyright 2016 BayLibre, SAS
+>> +# Author: Neil Armstrong <narmstrong@baylibre.com>
+>> +#
+>> +# SPDX-License-Identifier:     GPL-2.0+
+>> +#
 >> +
->> +#ifndef __MESON_ETH_H__
->> +#define __MESON_ETH_H__
->> +
->> +#include <phy.h>
->> +
->> +void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy);
->> +
->> +#endif /* __MESON_ETH_H__ */
->> diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
->> index bf49b8b..b4e8dde 100644
->> --- a/arch/arm/mach-meson/Makefile
->> +++ b/arch/arm/mach-meson/Makefile
->> @@ -4,4 +4,4 @@
->>  # SPDX-License-Identifier:     GPL-2.0+
->>  #
->>
->> -obj-y += board.o sm.o
->> +obj-y += board.o sm.o eth.o
->> diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
+>> +obj-y  := libretech-cc.o
+>> diff --git a/board/amlogic/libretech-cc/README b/board/amlogic/libretech-cc/README
 >> new file mode 100644
->> index 0000000..46ecb5e
+>> index 0000000..8b38fff
 >> --- /dev/null
->> +++ b/arch/arm/mach-meson/eth.c
->> @@ -0,0 +1,53 @@
->> +/*
->> + * Copyright (C) 2016 BayLibre, SAS
->> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->> + *
->> + * SPDX-License-Identifier:    GPL-2.0+
->> + */
+>> +++ b/board/amlogic/libretech-cc/README
+>> @@ -0,0 +1,96 @@
+>> +U-Boot for LibreTech CC
+>> +=======================
 >> +
->> +#include <common.h>
->> +#include <dm.h>
->> +#include <asm/io.h>
->> +#include <asm/arch/gxbb.h>
->> +#include <asm/arch/eth.h>
->> +#include <phy.h>
+>> +LibreTech CC is a single board computer manufactured by Libre Technology
+>> +with the following specifications:
 >> +
->> +void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy)
-> 
-> Can you add a header file addition for this somewhere, with comments?
-
-Do you mean comments in the added arch/arm/include/asm/arch-meson/eth.h in this
-same patchset ?
-
-> 
->> +{
->> +       switch (mode) {
->> +       case PHY_INTERFACE_MODE_RGMII:
->> +       case PHY_INTERFACE_MODE_RGMII_ID:
->> +       case PHY_INTERFACE_MODE_RGMII_RXID:
->> +       case PHY_INTERFACE_MODE_RGMII_TXID:
->> +               /* Set RGMII mode */
->> +               setbits_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_PHY_INTF |
->> +                            GXBB_ETH_REG_0_TX_PHASE(1) |
->> +                            GXBB_ETH_REG_0_TX_RATIO(4) |
->> +                            GXBB_ETH_REG_0_PHY_CLK_EN |
->> +                            GXBB_ETH_REG_0_CLK_EN);
->> +               break;
+>> + - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 2GHz
+>> + - ARM Mali 450 GPU
+>> + - 2GB DDR3 SDRAM
+>> + - Gigabit Ethernet
+>> + - HDMI 2.0 4K/60Hz display
+>> + - 40-pin GPIO header
+>> + - 4 x USB 2.0 Host, 1 x USB OTG
+>> + - eMMC, microSD
+>> + - Infrared receiver
 >> +
->> +       case PHY_INTERFACE_MODE_RMII:
->> +               /* Set RMII mode */
->> +               out_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_INVERT_RMII_CLK |
->> +                                        GXBB_ETH_REG_0_CLK_EN);
-> 
-> How come this is using out_le32() instead of (for example) writel()?
-
-It should be writel(), but since the register size is 32bit, it can be out_le32
-
-> 
+>> +Schematics are available on the manufacturer website.
 >> +
->> +#ifdef CONFIG_MESON_GXL
-> 
-> This doesn't seem fully generic if it has this #ifdef in it. Can this
-> be a parameter? At worst can we use if() instead of #ifdef ?
-
-Yeah, I didn't really figured out how to specify the internal PHY.
-
-GXL and GXM SoCs have an internal PHY, but yeah GXBB does't.
-I hesitated to add a different meson_gx_eth_init() signature
-for these different SoCs, what do you think about that ?
-
-The new AXG SoC does not have internal PHY, so it will use the same
-code as GXBB.
-
-> 
->> +               if (use_internal_phy) {
->> +                       /* Use Internal PHY */
->> +                       out_le32(GXBB_ETH_REG_2, 0x10110181);
->> +                       out_le32(GXBB_ETH_REG_3, 0xe40908ff);
->> +               }
->> +#endif
+>> +Currently the U-Boot port supports the following devices:
+>> + - serial
+>> + - eMMC, microSD
+>> + - Ethernet
 >> +
->> +               break;
->> +
->> +       default:
->> +               printf("Invalid Ethernet interface mode\n");
->> +               return;
->> +       }
->> +
->> +       /* Enable power and clock gate */
->> +       setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
->> +       clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
+>> +u-boot compilation
 > 
-> Seems like this should be in a clock driver.
-
-It should, in next release ? Beniamino's I2C driver also used this,
-but yes a proper clock driver becomes necessary here.
-
+> U-Boot
 > 
->> +}
->> --
->> 2.7.4
->>
+>> +==================
+>> +
+>> + > export ARCH=arm
+>> + > export CROSS_COMPILE=aarch64-none-elf-
+>> + > make libretech-cc_defconfig
+>> + > make
+>> +
+>> +Image creation
+>> +==============
+>> +
+>> +Amlogic doesn't provide sources for the firmware and for tools needed
+>> +to create the bootloader image, so it is necessary to obtain them from
+>> +the git tree published by the board vendor:
+>> +
+>> + > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+>> + > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+>> + > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+>> + > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+>> + > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
+>> + > git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
+>> + > cd amlogic-u-boot
+>> + > make libretech_cc_defconfig
+>> + > make
+>> + > export FIPDIR=$PWD/fip
+>> +
+>> +Go back to mainline U-Boot source tree then :
+>> + > mkdir fip
+>> +
+>> + > cp $FIPDIR/gxl/bl2.bin fip/
+>> + > cp $FIPDIR/gxl/acs.bin fip/
+>> + > cp $FIPDIR/gxl/bl21.bin fip/
+>> + > cp $FIPDIR/gxl/bl30.bin fip/
+>> + > cp $FIPDIR/gxl/bl301.bin fip/
+>> + > cp $FIPDIR/gxl/bl31.img fip/
+>> + > cp u-boot.bin fip/bl33.bin
+>> +
+>> + > $FIPDIR/blx_fix.sh \
+>> +       fip/bl30.bin \
+>> +       fip/zero_tmp \
+>> +       fip/bl30_zero.bin \
+>> +       fip/bl301.bin \
+>> +       fip/bl301_zero.bin \
+>> +       fip/bl30_new.bin \
+>> +       bl30
+>> +
+>> + > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
+>> +
+>> + > $FIPDIR/blx_fix.sh \
+>> +       fip/bl2_acs.bin \
+>> +       fip/zero_tmp \
+>> +       fip/bl2_zero.bin \
+>> +       fip/bl21.bin \
+>> +       fip/bl21_zero.bin \
+>> +       fip/bl2_new.bin \
+>> +       bl2
+>> +
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
+>> +               --output fip/u-boot.bin \
+>> +               --bl2 fip/bl2.n.bin.sig \
+>> +               --bl30 fip/bl30_new.bin.enc \
+>> +               --bl31 fip/bl31.img.enc \
+>> +               --bl33 fip/bl33.bin.enc
+>> +
+>> +and then write the image to SD with:
+>> +
+>> + > DEV=/dev/your_sd_device
+>> + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+>> + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+> 
+> I wonder if the above could be done with binman? It is designed for
+> putting images together.
+
+Thanks for the tip, I'll have a look !
+
+Neil
+
 > 
 > Regards,
 > Simon
 > 
-
-Thanks,
-Neil
