@@ -1,32 +1,42 @@
 From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun, 26 Nov 2017 17:40:55 +0100
-Subject: [PATCH 2/4] i2c: meson: reduce timeout
+Date: Sun, 26 Nov 2017 17:40:56 +0100
+Subject: [PATCH 3/4] i2c: meson: fix return codes on error
 In-Reply-To: <20171126164057.27728-1-b.galvani@gmail.com>
 References: <20171126164057.27728-1-b.galvani@gmail.com>
-Message-ID: <20171126164057.27728-3-b.galvani@gmail.com>
+Message-ID: <20171126164057.27728-4-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The datasheet doesn't specify a suggested timeout and 500ms seems very
-long: reduce it to 100ms.
+Change meson_i2c_xfer_msg() to return -EREMOTEIO in case of NACK, as
+done by other drivers. Also, don't change the return error in
+meson_i2c_xfer().
 
 Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 ---
- drivers/i2c/meson_i2c.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/i2c/meson_i2c.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/i2c/meson_i2c.c b/drivers/i2c/meson_i2c.c
-index 2434d9ed53..84e1997c76 100644
+index 84e1997c76..2f39214ad2 100644
 --- a/drivers/i2c/meson_i2c.c
 +++ b/drivers/i2c/meson_i2c.c
-@@ -9,7 +9,7 @@
- #include <dm.h>
- #include <i2c.h>
+@@ -178,7 +178,7 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
  
--#define I2C_TIMEOUT_MS		500
-+#define I2C_TIMEOUT_MS		100
+ 		if (readl(&i2c->regs->ctrl) & REG_CTRL_ERROR) {
+ 			debug("meson i2c: error\n");
+-			return -ENXIO;
++			return -EREMOTEIO;
+ 		}
  
- /* Control register fields */
- #define REG_CTRL_START		BIT(0)
+ 		if ((msg->flags & I2C_M_RD) && i2c->count) {
+@@ -200,7 +200,7 @@ static int meson_i2c_xfer(struct udevice *bus, struct i2c_msg *msg,
+ 	for (i = 0; i < nmsgs; i++) {
+ 		ret = meson_i2c_xfer_msg(i2c, msg + i, i == nmsgs - 1);
+ 		if (ret)
+-			return -EREMOTEIO;
++			return ret;
+ 	}
+ 
+ 	return 0;
 -- 
 2.14.3
