@@ -1,21 +1,32 @@
 From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun, 26 Nov 2017 17:40:53 +0100
-Subject: [PATCH 0/4] meson i2c driver cleanups
-Message-ID: <20171126164057.27728-1-b.galvani@gmail.com>
+Date: Sun, 26 Nov 2017 17:40:55 +0100
+Subject: [PATCH 2/4] i2c: meson: reduce timeout
+In-Reply-To: <20171126164057.27728-1-b.galvani@gmail.com>
+References: <20171126164057.27728-1-b.galvani@gmail.com>
+Message-ID: <20171126164057.27728-3-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Some cleanups for the u-boot meson i2c driver.
+The datasheet doesn't specify a suggested timeout and 500ms seems very
+long: reduce it to 100ms.
 
-Beniamino Galvani (4):
-  i2c: meson: improve Kconfig description
-  i2c: meson: reduce timeout
-  i2c: meson: fix return codes on error
-  i2c: meson: add some comments
+Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+---
+ drivers/i2c/meson_i2c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/i2c/Kconfig     |  7 ++++++-
- drivers/i2c/meson_i2c.c | 31 ++++++++++++++++++++++---------
- 2 files changed, 28 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/i2c/meson_i2c.c b/drivers/i2c/meson_i2c.c
+index 2434d9ed53..84e1997c76 100644
+--- a/drivers/i2c/meson_i2c.c
++++ b/drivers/i2c/meson_i2c.c
+@@ -9,7 +9,7 @@
+ #include <dm.h>
+ #include <i2c.h>
+ 
+-#define I2C_TIMEOUT_MS		500
++#define I2C_TIMEOUT_MS		100
+ 
+ /* Control register fields */
+ #define REG_CTRL_START		BIT(0)
 -- 
 2.14.3
