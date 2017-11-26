@@ -1,170 +1,83 @@
-From: sjg@chromium.org (Simon Glass)
-Date: Sun, 26 Nov 2017 04:39:24 -0700
-Subject: [PATCH v2 1/5] ARM: arch-meson: add ethernet common init function
-In-Reply-To: <5A193BBA.2080102@baylibre.com>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Sun, 26 Nov 2017 14:48:44 +0100
+Subject: [U-Boot] [PATCH v2 5/5] arm: Add Khadas VIM support based on
+ Meson GXL family
+In-Reply-To: <CAPnjgZ2Bcv==RCoJmdZyVG1uqzBQDXTUL8hTcQ3we-qWC5Jc8g@mail.gmail.com>
 References: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
- <1511357151-3771-2-git-send-email-narmstrong@baylibre.com>
- <CAPnjgZ1FaU5JBAuNv5nZGa0PjRyk-jYNeeoGTGN0Y_4q3_po8A@mail.gmail.com>
- <5A193BBA.2080102@baylibre.com>
-Message-ID: <CAPnjgZ2V=heb6Et=V_xBiahMDoszz8pmoeQ=ZC4KSh++55MTpA@mail.gmail.com>
+ <1511357151-3771-6-git-send-email-narmstrong@baylibre.com>
+ <CAPnjgZ2Bcv==RCoJmdZyVG1uqzBQDXTUL8hTcQ3we-qWC5Jc8g@mail.gmail.com>
+Message-ID: <82d31d94-29cc-ed99-32f1-f9ea8dc121bb@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Hi Simon,
 
-On 25 November 2017 at 02:45, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> Hi Simon,
->
-> Le 24/11/2017 23:35, Simon Glass a ?crit :
->> Hi Neil,
->>
->> On 22 November 2017 at 06:25, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>> Introduce a generic common Ethernet Hardware init function
->>> common to all Amlogic GX SoCs with support for the
->>> Internal PHY enable for GXL SoCs.
->>>
->>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>> ---
->>>  arch/arm/include/asm/arch-meson/eth.h | 15 ++++++++++
->>>  arch/arm/mach-meson/Makefile          |  2 +-
->>>  arch/arm/mach-meson/eth.c             | 53 +++++++++++++++++++++++++++++++++++
->>>  3 files changed, 69 insertions(+), 1 deletion(-)
->>>  create mode 100644 arch/arm/include/asm/arch-meson/eth.h
->>>  create mode 100644 arch/arm/mach-meson/eth.c
->>>
->>> diff --git a/arch/arm/include/asm/arch-meson/eth.h b/arch/arm/include/asm/arch-meson/eth.h
->>> new file mode 100644
->>> index 0000000..8ea8e10
->>> --- /dev/null
->>> +++ b/arch/arm/include/asm/arch-meson/eth.h
->>> @@ -0,0 +1,15 @@
->>> +/*
->>> + * Copyright (C) 2016 BayLibre, SAS
->>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->>> + *
->>> + * SPDX-License-Identifier:    GPL-2.0+
->>> + */
->>> +
->>> +#ifndef __MESON_ETH_H__
->>> +#define __MESON_ETH_H__
->>> +
->>> +#include <phy.h>
->>> +
->>> +void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy);
->>> +
->>> +#endif /* __MESON_ETH_H__ */
->>> diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
->>> index bf49b8b..b4e8dde 100644
->>> --- a/arch/arm/mach-meson/Makefile
->>> +++ b/arch/arm/mach-meson/Makefile
->>> @@ -4,4 +4,4 @@
->>>  # SPDX-License-Identifier:     GPL-2.0+
->>>  #
->>>
->>> -obj-y += board.o sm.o
->>> +obj-y += board.o sm.o eth.o
->>> diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
->>> new file mode 100644
->>> index 0000000..46ecb5e
->>> --- /dev/null
->>> +++ b/arch/arm/mach-meson/eth.c
->>> @@ -0,0 +1,53 @@
->>> +/*
->>> + * Copyright (C) 2016 BayLibre, SAS
->>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->>> + *
->>> + * SPDX-License-Identifier:    GPL-2.0+
->>> + */
->>> +
->>> +#include <common.h>
->>> +#include <dm.h>
->>> +#include <asm/io.h>
->>> +#include <asm/arch/gxbb.h>
->>> +#include <asm/arch/eth.h>
->>> +#include <phy.h>
->>> +
->>> +void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy)
->>
->> Can you add a header file addition for this somewhere, with comments?
->
-> Do you mean comments in the added arch/arm/include/asm/arch-meson/eth.h in this
-> same patchset ?
+Am 24.11.2017 um 23:35 schrieb Simon Glass:
+> On 22 November 2017 at 06:25, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> +Go back to mainline U-Boot source tree then :
+>> + > mkdir fip
+>> +
+>> + > cp $FIPDIR/gxl/bl2.bin fip/
+>> + > cp $FIPDIR/gxl/acs.bin fip/
+>> + > cp $FIPDIR/gxl/bl21.bin fip/
+>> + > cp $FIPDIR/gxl/bl30.bin fip/
+>> + > cp $FIPDIR/gxl/bl301.bin fip/
+>> + > cp $FIPDIR/gxl/bl31.img fip/
+>> + > cp u-boot.bin fip/bl33.bin
+>> +
+>> + > $FIPDIR/blx_fix.sh \
+>> +       fip/bl30.bin \
+>> +       fip/zero_tmp \
+>> +       fip/bl30_zero.bin \
+>> +       fip/bl301.bin \
+>> +       fip/bl301_zero.bin \
+>> +       fip/bl30_new.bin \
+>> +       bl30
+>> +
+>> + > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
+>> +
+>> + > $FIPDIR/blx_fix.sh \
+>> +       fip/bl2_acs.bin \
+>> +       fip/zero_tmp \
+>> +       fip/bl2_zero.bin \
+>> +       fip/bl21.bin \
+>> +       fip/bl21_zero.bin \
+>> +       fip/bl2_new.bin \
+>> +       bl2
+>> +
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
+>> + > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
+>> +               --output fip/u-boot.bin \
+>> +               --bl2 fip/bl2.n.bin.sig \
+>> +               --bl30 fip/bl30_new.bin.enc \
+>> +               --bl31 fip/bl31.img.enc \
+>> +               --bl33 fip/bl33.bin.enc
+>> +
+>> +and then write the image to SD with:
+>> +
+>> + > DEV=/dev/your_sd_device
+>> + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+>> + > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+> 
+> This bit (from 'got back to U-Boot sources') seems like a job for
+> binman, as I just mentioned in the other patch.
 
-Yes that's what I meant.
+I'm not familiar with binman either but would like to point out that
+I've authored Open Source meson-tools for GXBB that could/should/will be
+adapted to GXL at some point, too.
 
->
->>
->>> +{
->>> +       switch (mode) {
->>> +       case PHY_INTERFACE_MODE_RGMII:
->>> +       case PHY_INTERFACE_MODE_RGMII_ID:
->>> +       case PHY_INTERFACE_MODE_RGMII_RXID:
->>> +       case PHY_INTERFACE_MODE_RGMII_TXID:
->>> +               /* Set RGMII mode */
->>> +               setbits_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_PHY_INTF |
->>> +                            GXBB_ETH_REG_0_TX_PHASE(1) |
->>> +                            GXBB_ETH_REG_0_TX_RATIO(4) |
->>> +                            GXBB_ETH_REG_0_PHY_CLK_EN |
->>> +                            GXBB_ETH_REG_0_CLK_EN);
->>> +               break;
->>> +
->>> +       case PHY_INTERFACE_MODE_RMII:
->>> +               /* Set RMII mode */
->>> +               out_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_INVERT_RMII_CLK |
->>> +                                        GXBB_ETH_REG_0_CLK_EN);
->>
->> How come this is using out_le32() instead of (for example) writel()?
->
-> It should be writel(), but since the register size is 32bit, it can be out_le32
+https://github.com/afaerber/meson-tools
 
-So why do we have out_le32()? What is the difference?
+So I'll be strictly opposed to hiding the above instructions from users
+or to hardcoding the use of non-free x86_64-only tools inside U-Boot!
 
->
->>
->>> +
->>> +#ifdef CONFIG_MESON_GXL
->>
->> This doesn't seem fully generic if it has this #ifdef in it. Can this
->> be a parameter? At worst can we use if() instead of #ifdef ?
->
-> Yeah, I didn't really figured out how to specify the internal PHY.
->
-> GXL and GXM SoCs have an internal PHY, but yeah GXBB does't.
-> I hesitated to add a different meson_gx_eth_init() signature
-> for these different SoCs, what do you think about that ?
->
-> The new AXG SoC does not have internal PHY, so it will use the same
-> code as GXBB.
-
-I think this function needs to be told which SoC type it is dealing
-with, as a separate enum parameters.
-
->
->>
->>> +               if (use_internal_phy) {
->>> +                       /* Use Internal PHY */
->>> +                       out_le32(GXBB_ETH_REG_2, 0x10110181);
->>> +                       out_le32(GXBB_ETH_REG_3, 0xe40908ff);
->>> +               }
->>> +#endif
->>> +
->>> +               break;
->>> +
->>> +       default:
->>> +               printf("Invalid Ethernet interface mode\n");
->>> +               return;
->>> +       }
->>> +
->>> +       /* Enable power and clock gate */
->>> +       setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
->>> +       clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
->>
->> Seems like this should be in a clock driver.
->
-> It should, in next release ? Beniamino's I2C driver also used this,
-> but yes a proper clock driver becomes necessary here.
-
-OK.
 Regards,
+Andreas
 
-Simon
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
