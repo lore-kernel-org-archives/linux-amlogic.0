@@ -1,42 +1,170 @@
-From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun, 26 Nov 2017 11:14:59 +0100
+From: sjg@chromium.org (Simon Glass)
+Date: Sun, 26 Nov 2017 04:39:24 -0700
 Subject: [PATCH v2 1/5] ARM: arch-meson: add ethernet common init function
 In-Reply-To: <5A193BBA.2080102@baylibre.com>
 References: <1511357151-3771-1-git-send-email-narmstrong@baylibre.com>
  <1511357151-3771-2-git-send-email-narmstrong@baylibre.com>
  <CAPnjgZ1FaU5JBAuNv5nZGa0PjRyk-jYNeeoGTGN0Y_4q3_po8A@mail.gmail.com>
  <5A193BBA.2080102@baylibre.com>
-Message-ID: <20171126101459.GA3519@gmail.com>
+Message-ID: <CAPnjgZ2V=heb6Et=V_xBiahMDoszz8pmoeQ=ZC4KSh++55MTpA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Nov 25, 2017 at 10:45:30AM +0100, Neil Armstrong wrote:
-> > 
-> >> +               if (use_internal_phy) {
-> >> +                       /* Use Internal PHY */
-> >> +                       out_le32(GXBB_ETH_REG_2, 0x10110181);
-> >> +                       out_le32(GXBB_ETH_REG_3, 0xe40908ff);
-> >> +               }
-> >> +#endif
-> >> +
-> >> +               break;
-> >> +
-> >> +       default:
-> >> +               printf("Invalid Ethernet interface mode\n");
-> >> +               return;
-> >> +       }
-> >> +
-> >> +       /* Enable power and clock gate */
-> >> +       setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
-> >> +       clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
-> > 
-> > Seems like this should be in a clock driver.
-> 
+Hi Neil,
+
+On 25 November 2017 at 02:45, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> Hi Simon,
+>
+> Le 24/11/2017 23:35, Simon Glass a ?crit :
+>> Hi Neil,
+>>
+>> On 22 November 2017 at 06:25, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>> Introduce a generic common Ethernet Hardware init function
+>>> common to all Amlogic GX SoCs with support for the
+>>> Internal PHY enable for GXL SoCs.
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>> ---
+>>>  arch/arm/include/asm/arch-meson/eth.h | 15 ++++++++++
+>>>  arch/arm/mach-meson/Makefile          |  2 +-
+>>>  arch/arm/mach-meson/eth.c             | 53 +++++++++++++++++++++++++++++++++++
+>>>  3 files changed, 69 insertions(+), 1 deletion(-)
+>>>  create mode 100644 arch/arm/include/asm/arch-meson/eth.h
+>>>  create mode 100644 arch/arm/mach-meson/eth.c
+>>>
+>>> diff --git a/arch/arm/include/asm/arch-meson/eth.h b/arch/arm/include/asm/arch-meson/eth.h
+>>> new file mode 100644
+>>> index 0000000..8ea8e10
+>>> --- /dev/null
+>>> +++ b/arch/arm/include/asm/arch-meson/eth.h
+>>> @@ -0,0 +1,15 @@
+>>> +/*
+>>> + * Copyright (C) 2016 BayLibre, SAS
+>>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>>> + *
+>>> + * SPDX-License-Identifier:    GPL-2.0+
+>>> + */
+>>> +
+>>> +#ifndef __MESON_ETH_H__
+>>> +#define __MESON_ETH_H__
+>>> +
+>>> +#include <phy.h>
+>>> +
+>>> +void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy);
+>>> +
+>>> +#endif /* __MESON_ETH_H__ */
+>>> diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
+>>> index bf49b8b..b4e8dde 100644
+>>> --- a/arch/arm/mach-meson/Makefile
+>>> +++ b/arch/arm/mach-meson/Makefile
+>>> @@ -4,4 +4,4 @@
+>>>  # SPDX-License-Identifier:     GPL-2.0+
+>>>  #
+>>>
+>>> -obj-y += board.o sm.o
+>>> +obj-y += board.o sm.o eth.o
+>>> diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
+>>> new file mode 100644
+>>> index 0000000..46ecb5e
+>>> --- /dev/null
+>>> +++ b/arch/arm/mach-meson/eth.c
+>>> @@ -0,0 +1,53 @@
+>>> +/*
+>>> + * Copyright (C) 2016 BayLibre, SAS
+>>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>>> + *
+>>> + * SPDX-License-Identifier:    GPL-2.0+
+>>> + */
+>>> +
+>>> +#include <common.h>
+>>> +#include <dm.h>
+>>> +#include <asm/io.h>
+>>> +#include <asm/arch/gxbb.h>
+>>> +#include <asm/arch/eth.h>
+>>> +#include <phy.h>
+>>> +
+>>> +void meson_gx_eth_init(phy_interface_t mode, bool use_internal_phy)
+>>
+>> Can you add a header file addition for this somewhere, with comments?
+>
+> Do you mean comments in the added arch/arm/include/asm/arch-meson/eth.h in this
+> same patchset ?
+
+Yes that's what I meant.
+
+>
+>>
+>>> +{
+>>> +       switch (mode) {
+>>> +       case PHY_INTERFACE_MODE_RGMII:
+>>> +       case PHY_INTERFACE_MODE_RGMII_ID:
+>>> +       case PHY_INTERFACE_MODE_RGMII_RXID:
+>>> +       case PHY_INTERFACE_MODE_RGMII_TXID:
+>>> +               /* Set RGMII mode */
+>>> +               setbits_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_PHY_INTF |
+>>> +                            GXBB_ETH_REG_0_TX_PHASE(1) |
+>>> +                            GXBB_ETH_REG_0_TX_RATIO(4) |
+>>> +                            GXBB_ETH_REG_0_PHY_CLK_EN |
+>>> +                            GXBB_ETH_REG_0_CLK_EN);
+>>> +               break;
+>>> +
+>>> +       case PHY_INTERFACE_MODE_RMII:
+>>> +               /* Set RMII mode */
+>>> +               out_le32(GXBB_ETH_REG_0, GXBB_ETH_REG_0_INVERT_RMII_CLK |
+>>> +                                        GXBB_ETH_REG_0_CLK_EN);
+>>
+>> How come this is using out_le32() instead of (for example) writel()?
+>
+> It should be writel(), but since the register size is 32bit, it can be out_le32
+
+So why do we have out_le32()? What is the difference?
+
+>
+>>
+>>> +
+>>> +#ifdef CONFIG_MESON_GXL
+>>
+>> This doesn't seem fully generic if it has this #ifdef in it. Can this
+>> be a parameter? At worst can we use if() instead of #ifdef ?
+>
+> Yeah, I didn't really figured out how to specify the internal PHY.
+>
+> GXL and GXM SoCs have an internal PHY, but yeah GXBB does't.
+> I hesitated to add a different meson_gx_eth_init() signature
+> for these different SoCs, what do you think about that ?
+>
+> The new AXG SoC does not have internal PHY, so it will use the same
+> code as GXBB.
+
+I think this function needs to be told which SoC type it is dealing
+with, as a separate enum parameters.
+
+>
+>>
+>>> +               if (use_internal_phy) {
+>>> +                       /* Use Internal PHY */
+>>> +                       out_le32(GXBB_ETH_REG_2, 0x10110181);
+>>> +                       out_le32(GXBB_ETH_REG_3, 0xe40908ff);
+>>> +               }
+>>> +#endif
+>>> +
+>>> +               break;
+>>> +
+>>> +       default:
+>>> +               printf("Invalid Ethernet interface mode\n");
+>>> +               return;
+>>> +       }
+>>> +
+>>> +       /* Enable power and clock gate */
+>>> +       setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
+>>> +       clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
+>>
+>> Seems like this should be in a clock driver.
+>
 > It should, in next release ? Beniamino's I2C driver also used this,
 > but yes a proper clock driver becomes necessary here.
 
-I have written a basic clock driver that allows to enable/disable
-gates and get their frequency. Do you think this is enough? I will
-submit it soon (hopefully later today).
+OK.
+Regards,
 
-Beniamino
+Simon
