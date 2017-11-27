@@ -1,39 +1,34 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 27 Nov 2017 15:33:25 -0800
-Subject: [PATCH] ARM64: dts: meson-gxl: Add alternate ARM Trusted Firmware
- reserved memory zone
-In-Reply-To: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Wed, 11 Oct 2017 17:23:12 +0200")
-References: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <7h8tere1q2.fsf@baylibre.com>
+Date: Mon, 27 Nov 2017 15:38:51 -0800
+Subject: [PATCH 0/2] ARM: dts: meson: GPIO interrupt fixes for v4.15
+In-Reply-To: <1509444126.13838.25.camel@baylibre.com> (Jerome Brunet's message
+ of "Tue, 31 Oct 2017 11:02:06 +0100")
+References: <20171029231715.13391-1-martin.blumenstingl@googlemail.com>
+ <1509444126.13838.25.camel@baylibre.com>
+Message-ID: <7h1skje1h0.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Greg,
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> This year, Amlogic updated the ARM Trusted Firmware reserved memory mapping
-> for Meson GXL SoCs and products sold since May 2017 uses this alternate
-> reserved memory mapping.
-> But products had been sold using the previous mapping.
+> On Mon, 2017-10-30 at 00:17 +0100, Martin Blumenstingl wrote:
+>> This provides two small fixes for the GPIO interrupt support on the
+>> 32-bit Meson SoCs.
+>> 
+>> The first change is purely cosmetic - I still decided to include to it
+>> because it keeps the sort order consistent. Also it's easier to find
+>> the node if you can rely on the sorting to be consistent.
+>> 
+>> The second patch however is required to make the GPIO interrupt
+>> controller functional on Meson8b. Without this the driver simply fails
+>> during the of_iomap call - and as a result of that GPIO interrupts are
+>> unavailable.
+>> 
 >
-> This issue has been explained in [1] and a dynamic solution is yet to be
-> found to avoid loosing another 3Mbytes of reservable memory.
+> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 >
-> In the meantime, this patch adds this alternate memory zone only for
-> the GXL and GXM SoCs since GXBB based new products stopped earlier.
->
-> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
->
-> Fixes: bba8e3f42736 ("ARM64: dts: meson-gx: Add firmware reserved memory zones")
-> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> And thanks for catching this early !
 
-I missed the Fixes tag on this one, but it's now commit 4ee8e51b9edf upstream.
-
-Please apply to stable v4.10+
-
-Thanks,
+Thanks, adding to v4.15/fixes for v4.15-rc,
 
 Kevin
