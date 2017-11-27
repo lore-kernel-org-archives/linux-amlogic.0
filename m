@@ -1,20 +1,39 @@
-From: sjg@chromium.org (Simon Glass)
-Date: Mon, 27 Nov 2017 10:10:02 -0700
-Subject: [PATCH 4/4] i2c: meson: add some comments
-In-Reply-To: <20171126164057.27728-5-b.galvani@gmail.com>
-References: <20171126164057.27728-1-b.galvani@gmail.com>
- <20171126164057.27728-5-b.galvani@gmail.com>
-Message-ID: <CAPnjgZ2HAdgFdzSEG2v6cLk9HANu564xEOeJz3qU7yt1pdZqnA@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 27 Nov 2017 15:33:25 -0800
+Subject: [PATCH] ARM64: dts: meson-gxl: Add alternate ARM Trusted Firmware
+ reserved memory zone
+In-Reply-To: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Wed, 11 Oct 2017 17:23:12 +0200")
+References: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7h8tere1q2.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 26 November 2017 at 09:40, Beniamino Galvani <b.galvani@gmail.com> wrote:
-> Add some comment describing the purpose of struct members and
-> functions.
->
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> ---
->  drivers/i2c/meson_i2c.c | 25 +++++++++++++++++++------
->  1 file changed, 19 insertions(+), 6 deletions(-)
+Greg,
 
-Reviewed-by: Simon Glass <sjg@chromium.org>
+Neil Armstrong <narmstrong@baylibre.com> writes:
+
+> This year, Amlogic updated the ARM Trusted Firmware reserved memory mapping
+> for Meson GXL SoCs and products sold since May 2017 uses this alternate
+> reserved memory mapping.
+> But products had been sold using the previous mapping.
+>
+> This issue has been explained in [1] and a dynamic solution is yet to be
+> found to avoid loosing another 3Mbytes of reservable memory.
+>
+> In the meantime, this patch adds this alternate memory zone only for
+> the GXL and GXM SoCs since GXBB based new products stopped earlier.
+>
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
+>
+> Fixes: bba8e3f42736 ("ARM64: dts: meson-gx: Add firmware reserved memory zones")
+> Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+
+I missed the Fixes tag on this one, but it's now commit 4ee8e51b9edf upstream.
+
+Please apply to stable v4.10+
+
+Thanks,
+
+Kevin
