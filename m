@@ -1,58 +1,43 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 27 Nov 2017 14:48:09 +0100
-Subject: [PATCH v2 0/2] add clk controller driver for Meson-AXG SoC
-In-Reply-To: <20171127094844.16742-1-yixun.lan@amlogic.com>
-References: <20171127094844.16742-1-yixun.lan@amlogic.com>
-Message-ID: <1511790489.30519.11.camel@baylibre.com>
+From: sjg@chromium.org (Simon Glass)
+Date: Mon, 27 Nov 2017 10:09:52 -0700
+Subject: [PATCH 1/4] i2c: meson: improve Kconfig description
+In-Reply-To: <20171126164057.27728-2-b.galvani@gmail.com>
+References: <20171126164057.27728-1-b.galvani@gmail.com>
+ <20171126164057.27728-2-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ1V3G4QXWVGk5bZhiZ-GjiGot9HPyZYXsBBNXLvS3LxeQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2017-11-27 at 17:48 +0800, Yixun Lan wrote:
-> Add driver for the clk controller which found in Meson AXG SoC
-> 
->   Note, we deliberately create a seperate source file for the Meson AXG
-> series, instead of sharing code with previous GXBB/GXL - the file axg.c
-> It would help us maintaining the code more easily.
+On 26 November 2017 at 09:40, Beniamino Galvani <b.galvani@gmail.com> wrote:
+> Expand the Kconfig description with hardware features.
+>
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  drivers/i2c/Kconfig | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/i2c/Kconfig b/drivers/i2c/Kconfig
+> index 1989f8eb57..a7931aa6d4 100644
+> --- a/drivers/i2c/Kconfig
+> +++ b/drivers/i2c/Kconfig
+> @@ -141,7 +141,12 @@ config SYS_I2C_MESON
+>         bool "Amlogic Meson I2C driver"
+>         depends on DM_I2C && ARCH_MESON
+>         help
+> -         Add support for the Amlogic Meson I2C driver.
+> +         Add support for the I2C controller available in Amlogic Meson
+> +         SoCs. The controller supports programmable bus speed including
+> +         standard (100kbits/s) and fast (400kbit/s) speed and allows the
+> +         software to define a flexible format of the bit streams. It has an
+> +         internal buffer holding up to 8 bytes for transfers and supports
+> +         both 7-bit and 10-bit addresses.
+>
+>  config SYS_I2C_MXC
+>         bool "NXP i.MX I2C driver"
+> --
+> 2.14.3
+>
 
-But this will be the last meson SoC added this way. We need factor the code the
-between meson8, gx and axg series since there is a lot of duplication there.
+Great!
 
-> 
-> Changes since v1 [1]:
->  - rework register definion, use '(offset << 2)' to better match
-
-As previously discussed, please drop these calculations and just write what the
-offset actually are. Putting one comment@the top, explaining the translation,
-would be nice though. 
-
->    the description from data sheet
->  - drop "#include dt-bindings/clock/gxbb-aoclkc.h" from dts
->  - rebase code to v4.15-rc1
-> 
-> [1] 
->   http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005239.html
->   http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005240.html
->   http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005241.html
-> 
-> 
-> Qiufang Dai (2):
-
-First patch of the series should be adding the compatible documentation, which
-is missing here (unless it has gone through another channel and I missed it)
-
->   clk: meson-axg: add clock controller drivers
->   arm64: dts: meson-axg: add clock DT info for Meson AXG SoC
-> 
->  arch/arm64/Kconfig.platforms               |   1 +
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi |  15 +
->  drivers/clk/meson/Kconfig                  |   8 +
->  drivers/clk/meson/Makefile                 |   1 +
->  drivers/clk/meson/axg.c                    | 948
-> +++++++++++++++++++++++++++++
->  drivers/clk/meson/axg.h                    | 126 ++++
->  include/dt-bindings/clock/axg-clkc.h       |  72 +++
->  7 files changed, 1171 insertions(+)
->  create mode 100644 drivers/clk/meson/axg.c
->  create mode 100644 drivers/clk/meson/axg.h
->  create mode 100644 include/dt-bindings/clock/axg-clkc.h
-> 
+Reviewed-by: Simon Glass <sjg@chromium.org>
