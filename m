@@ -1,15 +1,14 @@
 From: broonie@kernel.org (Mark Brown)
-Date: Tue, 28 Nov 2017 20:22:16 +0000
-Subject: Applied "spi: meson-axg: update compatible string for the Meson-AXG"
- to the spi tree
-In-Reply-To: <20171128132926.19051-2-yixun.lan@amlogic.com>
-Message-ID: <E1eJmOW-0008Dj-RE@debutante>
+Date: Tue, 28 Nov 2017 20:22:13 +0000
+Subject: Applied "spi: meson-axg: add SPICC driver support" to the spi tree
+In-Reply-To: <20171128132926.19051-3-yixun.lan@amlogic.com>
+Message-ID: <E1eJmOT-0008CS-OP@debutante>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 The patch
 
-   spi: meson-axg: update compatible string for the Meson-AXG
+   spi: meson-axg: add SPICC driver support
 
 has been applied to the spi tree at
 
@@ -34,35 +33,33 @@ to this mail.
 Thanks,
 Mark
 
->From a78841479696efa557a2251c86462c936a208f90 Mon Sep 17 00:00:00 2001
+>From a5db27c00da37654ba518b814925d4e9cd05259c Mon Sep 17 00:00:00 2001
 From: Sunny Luo <sunny.luo@amlogic.com>
-Date: Tue, 28 Nov 2017 21:29:24 +0800
-Subject: [PATCH] spi: meson-axg: update compatible string for the Meson-AXG
+Date: Tue, 28 Nov 2017 21:29:25 +0800
+Subject: [PATCH] spi: meson-axg: add SPICC driver support
 
-Update the compatbile string to support Meson-AXG SoCs.
+Add new compatible string to support SPICC controller which
+found at Amlogic Meson-AXG SoC. This is aiming at adding
+a couple of enhanced feature patches.
 
 Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
 Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- Documentation/devicetree/bindings/spi/spi-meson.txt | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/spi/spi-meson-spicc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-meson.txt b/Documentation/devicetree/bindings/spi/spi-meson.txt
-index 825c39cae74a..b7f5e86fed22 100644
---- a/Documentation/devicetree/bindings/spi/spi-meson.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-meson.txt
-@@ -27,7 +27,9 @@ The Meson SPICC is generic SPI controller for general purpose Full-Duplex
- communications with dedicated 16 words RX/TX PIO FIFOs.
+diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+index 7f8429635502..5c82910e3480 100644
+--- a/drivers/spi/spi-meson-spicc.c
++++ b/drivers/spi/spi-meson-spicc.c
+@@ -599,6 +599,7 @@ static int meson_spicc_remove(struct platform_device *pdev)
  
- Required properties:
-- - compatible: should be "amlogic,meson-gx-spicc" on Amlogic GX SoCs.
-+ - compatible: should be:
-+	"amlogic,meson-gx-spicc" on Amlogic GX and compatible SoCs.
-+	"amlogic,meson-axg-spicc" on Amlogic AXG and compatible SoCs
-  - reg: physical base address and length of the controller registers
-  - interrupts: The interrupt specifier
-  - clock-names: Must contain "core"
+ static const struct of_device_id meson_spicc_of_match[] = {
+ 	{ .compatible = "amlogic,meson-gx-spicc", },
++	{ .compatible = "amlogic,meson-axg-spicc", },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, meson_spicc_of_match);
 -- 
 2.15.0
