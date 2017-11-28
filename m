@@ -1,65 +1,49 @@
-From: broonie@kernel.org (Mark Brown)
-Date: Tue, 28 Nov 2017 20:22:13 +0000
-Subject: Applied "spi: meson-axg: add SPICC driver support" to the spi tree
-In-Reply-To: <20171128132926.19051-3-yixun.lan@amlogic.com>
-Message-ID: <E1eJmOT-0008CS-OP@debutante>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Wed, 29 Nov 2017 07:16:52 +0800
+Subject: [PATCH v3 2/3] clk: meson-axg: add clock controller drivers
+In-Reply-To: <20171128163022.7b7wvfqedkhhnaj6@rob-hp-laptop>
+References: <20171128125330.363-1-yixun.lan@amlogic.com>
+ <20171128125330.363-3-yixun.lan@amlogic.com>
+ <20171128163022.7b7wvfqedkhhnaj6@rob-hp-laptop>
+Message-ID: <1811d609-36bc-290c-6405-80121e4de8bb@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patch
 
-   spi: meson-axg: add SPICC driver support
 
-has been applied to the spi tree at
+HI Rob
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git 
+On 11/29/17 00:30, Rob Herring wrote:
+> On Tue, Nov 28, 2017 at 08:53:29PM +0800, Yixun Lan wrote:
+>> From: Qiufang Dai <qiufang.dai@amlogic.com>
+>>
+>> Add clock controller drivers for Amlogic Meson-AXG SoC.
+>>
+>> Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
+>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>> ---
+>>  arch/arm64/Kconfig.platforms         |   1 +
+>>  drivers/clk/meson/Kconfig            |   8 +
+>>  drivers/clk/meson/Makefile           |   1 +
+>>  drivers/clk/meson/axg.c              | 948 +++++++++++++++++++++++++++++++++++
+>>  drivers/clk/meson/axg.h              | 126 +++++
+> 
+>>  include/dt-bindings/clock/axg-clkc.h |  72 +++
+> 
+> This belongs in the binding patch.
+> 
+is it Ok to keep it in this patch?
+the initial idea to do this is to keep the commit bisectable..
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
->From a5db27c00da37654ba518b814925d4e9cd05259c Mon Sep 17 00:00:00 2001
-From: Sunny Luo <sunny.luo@amlogic.com>
-Date: Tue, 28 Nov 2017 21:29:25 +0800
-Subject: [PATCH] spi: meson-axg: add SPICC driver support
-
-Add new compatible string to support SPICC controller which
-found at Amlogic Meson-AXG SoC. This is aiming at adding
-a couple of enhanced feature patches.
-
-Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- drivers/spi/spi-meson-spicc.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index 7f8429635502..5c82910e3480 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -599,6 +599,7 @@ static int meson_spicc_remove(struct platform_device *pdev)
- 
- static const struct of_device_id meson_spicc_of_match[] = {
- 	{ .compatible = "amlogic,meson-gx-spicc", },
-+	{ .compatible = "amlogic,meson-axg-spicc", },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, meson_spicc_of_match);
--- 
-2.15.0
+> Otherwise, 
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> 
+> 
+>>  6 files changed, 1156 insertions(+)
+>>  create mode 100644 drivers/clk/meson/axg.c
+>>  create mode 100644 drivers/clk/meson/axg.h
+>>  create mode 100644 include/dt-bindings/clock/axg-clkc.h
+> 
+> .
+> 
