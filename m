@@ -1,69 +1,40 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 27 Nov 2017 15:47:14 -0800
-Subject: [PATCH 0/5] meson_saradc fixes and minor improvements
-In-Reply-To: <20171102150512.0000558c@huawei.com> (Jonathan Cameron's message
- of "Thu, 2 Nov 2017 15:05:12 +0000")
-References: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
- <20171102150512.0000558c@huawei.com>
-Message-ID: <7hr2sjcmil.fsf@baylibre.com>
+From: greg@kroah.com (Greg KH)
+Date: Tue, 28 Nov 2017 09:39:51 +0100
+Subject: [PATCH] ARM64: dts: meson-gxl: Add alternate ARM Trusted
+ Firmware reserved memory zone
+In-Reply-To: <7h8tere1q2.fsf@baylibre.com>
+References: <1507735392-20005-1-git-send-email-narmstrong@baylibre.com>
+ <7h8tere1q2.fsf@baylibre.com>
+Message-ID: <20171128083951.GD9413@kroah.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jonathan,
+On Mon, Nov 27, 2017 at 03:33:25PM -0800, Kevin Hilman wrote:
+> Greg,
+> 
+> Neil Armstrong <narmstrong@baylibre.com> writes:
+> 
+> > This year, Amlogic updated the ARM Trusted Firmware reserved memory mapping
+> > for Meson GXL SoCs and products sold since May 2017 uses this alternate
+> > reserved memory mapping.
+> > But products had been sold using the previous mapping.
+> >
+> > This issue has been explained in [1] and a dynamic solution is yet to be
+> > found to avoid loosing another 3Mbytes of reservable memory.
+> >
+> > In the meantime, this patch adds this alternate memory zone only for
+> > the GXL and GXM SoCs since GXBB based new products stopped earlier.
+> >
+> > [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004860.html
+> >
+> > Fixes: bba8e3f42736 ("ARM64: dts: meson-gx: Add firmware reserved memory zones")
+> > Reported-by: Jerome Brunet <jbrunet@baylibre.com>
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> 
+> I missed the Fixes tag on this one, but it's now commit 4ee8e51b9edf upstream.
+> 
+> Please apply to stable v4.10+
 
-Jonathan Cameron <Jonathan.Cameron@huawei.com> writes:
+Now applied, thanks.
 
-> On Tue, 31 Oct 2017 21:01:42 +0100
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->
->> Meson8 and Meson8b require that the driver initializes the registers
->> correctly, while on GXBB and newer this is done by the firmware.
->> Thus the changes from this series are only relevant for Meson8 and
->> Meson8b.
->> 
->> The first two patches are bugfixes:
->> - the first patch fixes an issue where the SAR ADC would not work at
->>   all
->> - the second patch initializes the bandgrap register on Meson8 and
->>   Meson8b (which is required for the SAR ADC to operate)
->> 
->> The third patch is mainly a cosmetic fix because we don't want to
->> read/write registers that are not documented.
->> 
->> Patch four is purely cosmetic so the mainline driver uses the same
->> settings as Amlogic's vendor kernel driver.
->> 
->> The last patch initializes the channel muxes. There are sane defaults
->> for these in the hardware itself. However, some bootloaders are
->> setting strange values - the result is that reading the ADC gives
->> garbage values.
->> I did not tag this as "fix" since in my opinion it's a feature for
->> fixing broken bootloaders.
->> 
->> Tested on:
->> - a Meson8m2 board (compatible with Meson8)
->> - a Meson8b EC-100
->> - on a Khadas VIM to ensure that the newer SoCs are still working
->> 
->> 
->> Martin Blumenstingl (5):
->>   iio: adc: meson-saradc: fix the bit_idx of the adc_en clock
->>   iio: adc: meson-saradc: initialize the bandgap correctly on older
->> SoCs iio: adc: meson-saradc: Meson8 and Meson8b do not have REG11 and
->> REG13 iio: adc: meson-saradc: fix the clock frequency on Meson8 and
->> Meson8b iio: adc: meson-saradc: program the channel muxes during
->>     initialization
->> 
->>  drivers/iio/adc/meson_saradc.c | 92
->> +++++++++++++++++++++++++++++++++++------- 1 file changed, 78
->> insertions(+), 14 deletions(-)
->> 
-> Series seems fine to me.  If no one else raises anything I'll pick this
-> up when I'm am back in the UK the week after next.
-
-Just a gentle ping on the status of this series as I'm not seeing it in
-linux-next.
-
-Thanks,
-
-Kevin
+greg k-h
