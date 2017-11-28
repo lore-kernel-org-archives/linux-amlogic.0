@@ -1,56 +1,96 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Tue, 28 Nov 2017 20:53:30 +0800
-Subject: [PATCH v3 3/3] arm64: dts: meson-axg: add clock DT info for Meson AXG
- SoC
-In-Reply-To: <20171128125330.363-1-yixun.lan@amlogic.com>
-References: <20171128125330.363-1-yixun.lan@amlogic.com>
-Message-ID: <20171128125330.363-4-yixun.lan@amlogic.com>
+Date: Tue, 28 Nov 2017 21:11:29 +0800
+Subject: [PATCH v4 0/4] fix the clock setting for SAR ADC
+In-Reply-To: <20171111003737.000038f0@huawei.com>
+References: <20171107140942.29243-1-yixun.lan@amlogic.com>
+ <CAFBinCB=2pb9dZkpSqdVAiumkSCzgaW0oejftjZNP7aYbiQJuw@mail.gmail.com>
+ <20171111003737.000038f0@huawei.com>
+Message-ID: <15745fd0-1af9-c7c0-8769-063f218a3d28@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Qiufang Dai <qiufang.dai@amlogic.com>
 
-Try to add Hiubus DT info, and also enable clock DT info
-for the Amlogic's Meson-AXG SoC.
+On 11/11/17 08:37, Jonathan Cameron wrote:
+> On Tue, 7 Nov 2017 22:36:00 +0100
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+> 
+>> Hi Yixun,
+>>
+>> On Tue, Nov 7, 2017 at 3:09 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
+>>> patch [1/4]:
+>>>   Fix wrong SARADC/SANA clock gate bit in Meson-GXBB/GXL,
+>>> the published datasheets[4] also has wrong description about this.
+>>>   This patch should be explicitly merged *before* other patches.
+>>>
+>>> patch [2-4/4]:
+>>>   Drop the "sana" clock from SAR ADC module,  
+>> I agree with Jerome that patch 2/4 should be applied last.
+> 
+> Let me know when I should take this.
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+>> when I wrote the driver I couldn't get it to work on my GXBB board
+>> (which unfortunately has died since then) because the clocks were
+>> disabled (they weren't enabled by the bootloader). people who are
+>> using an old .dtb would get the same problem again until the clock
+>> driver is merged
+>>
+>>>   From the hardware perspective, the SAR ADC module doesn't
+>>> require "sana" clock to wrok. This should apply to all SoC,
+>>> including meson6,8, GXBB, GXL..  
+>> thank you for clarifying this!
+>>
+>>> Note: the whole patchset series has been tested at GXL-P212 board,
+>>> we haven't got any meson6,8 board to test, so I would appreciate
+>>> if someone (Martin?) could help to confirm it works there.  
+>> I can test this on a Meson8b and a Meson8m2 board on the weekend -
+>> I'll let you know about the results
+>>
+>>
+>> Regards
+>> Martin
+>> --
+>> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
+>> the body of a message to majordomo at vger.kernel.org
+>> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
+> .
+> 
 
-Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Hi Jonathan Cameron & Kevin Hilman:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index b932a784b02a..36a2e98338a8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/axg-clkc.h>
- 
- / {
- 	compatible = "amlogic,meson-axg";
-@@ -148,6 +149,20 @@
- 			#address-cells = <0>;
- 		};
- 
-+		hiubus: hiubus at ff63c000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xff63c000 0x0 0x1c00>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
-+
-+			clkc: clock-controller at 0 {
-+				compatible = "amlogic,axg-clkc";
-+				#clock-cells = <1>;
-+				reg = <0x0 0x0 0x0 0x320>;
-+			};
-+		};
-+
- 		mailbox: mailbox at ff63dc00 {
- 			compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
- 			reg = <0 0xff63dc00 0 0x400>;
--- 
-2.15.0
+ since the clk part patch has been applied[1], can we proceed with others?
+
+to Jonathan:
+I think the iio part(patch [2/4]) should be merged via your iio tree?
+see [2]
+
+to Kevin:
+could you take the DTS part? see [3], and the patch [4/4] has a rework
+version, see [4], to separate dt64 vs dt32 device tree.
+
+
+[1]
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005472.html
+
+[2]
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005264.html
+
+[3]
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005265.html
+
+[4]
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005304.html
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005305.html
+http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005306.html
+
+Yixun
