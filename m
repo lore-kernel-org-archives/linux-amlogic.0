@@ -1,55 +1,64 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Wed, 29 Nov 2017 11:35:36 -0800
-Subject: [PATCH v3 3/3] arm64: dts: meson-axg: add clock DT info for
- Meson AXG SoC
-In-Reply-To: <20171128125330.363-4-yixun.lan@amlogic.com>
-References: <20171128125330.363-1-yixun.lan@amlogic.com>
- <20171128125330.363-4-yixun.lan@amlogic.com>
-Message-ID: <20171129193536.GB19419@codeaurora.org>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 29 Nov 2017 16:00:36 -0800
+Subject: [PATCH] meson-gx-socinfo: Fix package id parsing
+In-Reply-To: <2d1b540e-74c3-07e6-eedd-94a9c6f52213@baylibre.com> (Neil
+ Armstrong's message of "Wed, 29 Nov 2017 16:16:11 +0100")
+References: <20171129151000.710502415@rtp-net.org>
+ <2d1b540e-74c3-07e6-eedd-94a9c6f52213@baylibre.com>
+Message-ID: <7h4lpc8wkb.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/28, Yixun Lan wrote:
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index b932a784b02a..36a2e98338a8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/axg-clkc.h>
->  
->  / {
->  	compatible = "amlogic,meson-axg";
-> @@ -148,6 +149,20 @@
->  			#address-cells = <0>;
->  		};
->  
-> +		hiubus: hiubus at ff63c000 {
+Hi Arnaud,
 
-Maybe just call the node "bus at ff63c000"?
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> +			compatible = "simple-bus";
-> +			reg = <0x0 0xff63c000 0x0 0x1c00>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
-> +
-> +			clkc: clock-controller at 0 {
-> +				compatible = "amlogic,axg-clkc";
-> +				#clock-cells = <1>;
-> +				reg = <0x0 0x0 0x0 0x320>;
-> +			};
-> +		};
-> +
->  		mailbox: mailbox at ff63dc00 {
->  			compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
->  			reg = <0 0xff63dc00 0 0x400>;
-> -- 
-> 2.15.0
-> 
+> On 29/11/2017 16:09, Arnaud Patard wrote:
+>> I've noticed the following message while booting a S905X based board:
+>> 
+>> soc soc0: Amlogic Meson GXL (S905D) Revision 21:82 (b:2) Detected
+>> 
+>> The S905D string is obviously wrong. The vendor code does:
+>> ...
+>>         ver = (readl(assist_hw_rev) >> 8) & 0xff;
+>>         meson_cpu_version[MESON_CPU_VERSION_LVL_MINOR] = ver;
+>>         ver =  (readl(assist_hw_rev) >> 16) & 0xff;
+>>         meson_cpu_version[MESON_CPU_VERSION_LVL_PACK] = ver;
+>> ...
+>> 
+>> while the current code does:
+>> ...
+>> #define SOCINFO_MINOR  GENMASK(23, 16)
+>> #define SOCINFO_PACK   GENMASK(15, 8)
+>> ...
+>> 
+>> This means that the current mainline code has package id and minor
+>> version reversed.
+>> 
+>> Fixes: a9daaba2965e8 ("soc: Add Amlogic SoC Information driver")
+>> Signed-off-by: Arnaud Patard <apatard@hupstream.com>
+>> Index: linux/drivers/soc/amlogic/meson-gx-socinfo.c
+>> ===================================================================
+>> --- linux.orig/drivers/soc/amlogic/meson-gx-socinfo.c	2017-11-29 10:26:49.081335917 +0100
+>> +++ linux/drivers/soc/amlogic/meson-gx-socinfo.c	2017-11-29 10:26:49.041335074 +0100
+>> @@ -20,8 +20,8 @@
+>>  #define AO_SEC_SOCINFO_OFFSET	AO_SEC_SD_CFG8
+>>  
+>>  #define SOCINFO_MAJOR	GENMASK(31, 24)
+>> -#define SOCINFO_MINOR	GENMASK(23, 16)
+>> -#define SOCINFO_PACK	GENMASK(15, 8)
+>> +#define SOCINFO_PACK	GENMASK(23, 16)
+>> +#define SOCINFO_MINOR	GENMASK(15, 8)
+>>  #define SOCINFO_MISC	GENMASK(7, 0)
+>>  
+>>  static const struct meson_gx_soc_id {
+>> 
+>> 
+>
+> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Thanks for the fix!
+
+Applied to v4.15/fixes with  Neil's ack.
+
+Kevin
