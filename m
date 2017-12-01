@@ -1,59 +1,52 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 01 Dec 2017 17:03:54 +0100
-Subject: SCPI regressions in v4.15-rc1 on Amlogic SoCs.
-In-Reply-To: <CAOi56cXCBAJO6iOONTENqGdm9kE+t4fGYgTENupzkRgHjJfykw@mail.gmail.com>
-References: <CAOi56cXCBAJO6iOONTENqGdm9kE+t4fGYgTENupzkRgHjJfykw@mail.gmail.com>
-Message-ID: <1512144234.12869.4.camel@baylibre.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Fri, 1 Dec 2017 08:34:37 -0800
+Subject: [PATCH v3 3/3] arm64: dts: meson-axg: add clock DT info for
+ Meson AXG SoC
+In-Reply-To: <8353c264-3253-0268-91fc-8d42fbe82611@amlogic.com>
+References: <20171128125330.363-1-yixun.lan@amlogic.com>
+ <20171128125330.363-4-yixun.lan@amlogic.com>
+ <20171129193536.GB19419@codeaurora.org>
+ <8353c264-3253-0268-91fc-8d42fbe82611@amlogic.com>
+Message-ID: <20171201163437.GE19419@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-11-30 at 16:21 -0800, Kevin Hilman wrote:
-> Hi Sudeep,
+On 11/30, Yixun Lan wrote:
+> Hi Stephen
 > 
-> There's been a pretty major regression in v4.15-rc1 compared to v4.15
-> in SCPI causing warning splats on amlogic SoCs when cpufreq starts up
-> and tries to set the OPP for the first time[1].
+> On 11/30/17 03:35, Stephen Boyd wrote:
+> > On 11/28, Yixun Lan wrote:
+> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> index b932a784b02a..36a2e98338a8 100644
+> >> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> @@ -7,6 +7,7 @@
+> >>  #include <dt-bindings/gpio/gpio.h>
+> >>  #include <dt-bindings/interrupt-controller/irq.h>
+> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >> +#include <dt-bindings/clock/axg-clkc.h>
+> >>  
+> >>  / {
+> >>  	compatible = "amlogic,meson-axg";
+> >> @@ -148,6 +149,20 @@
+> >>  			#address-cells = <0>;
+> >>  		};
+> >>  
+> >> +		hiubus: hiubus at ff63c000 {
+> > 
+> > Maybe just call the node "bus at ff63c000"?
+> > 
+> isn't this just a name? what's the benefits to change?
+> personally, I tend to keep it this way, because it's better map to the
+> data sheet
 > 
-> I ran out of time to narrow it down further since there have been
-> quite a few changes since v4.14, but simply reverting
-> drivers/firmware/arm_scpi.c to its v4.14 state gets things working
-> again.
+> we also has 'aobus', 'cbus' scattered there..
 
-Same thing for me. One of my early libretech-cc gets completely stuck during
-boot with v4.15-rc1
+Per the ePAPR node names are supposed to be generic, like disk,
+cpu, display-controller, gpu, etc. I've never heard of a hiubus,
+so probably it's some vendor specific thing? We have the phandle
+anyway so it's not like we're losing much information here.
 
-reverting drivers/firmware/arm_scpi.c to v4.14 fixes the problem.
-
-On the u-art, we see traces that appear to be coming from the FW:
-> domain-0 init dvfs: 4 
-
-My platform gets stuck on one of these traces with v4.15-rc1
-
-> 
-> This has been happening for awhile, and we should've caught it sooner
-> in kernelCI.org, however this warning splat still allows the kernel to
-> finish booting, so it still resulted in a PASS for the boot test.
-> That combined with the fact that we've been tracking some other
-> regressions, we didn't notice it until now.
-> 
-> Also, is this the expected result for the pre-1.0 firmware:
-> 
->     scpi_protocol scpi: SCP Protocol 0.0 Firmware 0.0.0 version
-> 
-> Kevin
-> 
-> [1] Here are a few boot logs from v4.15-rc1 with the splat:
-> 
-> https://storage.kernelci.org/mainline/master/v4.15-rc1/arm64/defconfig/lab-bay
-> libre-seattle/boot-meson-gxl-s905x-khadas-vim.html
-> 
-> https://storage.kernelci.org/mainline/master/v4.15-rc1/arm64/defconfig/lab-bay
-> libre-seattle/boot-meson-gxbb-p200.html
-> 
-> https://storage.kernelci.org/mainline/master/v4.15-rc1/arm64/defconfig/lab-bay
-> libre-seattle/boot-meson-gxl-s905d-p230.html
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
