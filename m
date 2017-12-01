@@ -1,95 +1,62 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Fri, 1 Dec 2017 08:39:03 -0800
-Subject: [PATCH v3 2/3] clk: meson-axg: add clock controller drivers
-In-Reply-To: <d2b58c06-93dc-4368-501e-4b8bdc9a4c34@amlogic.com>
-References: <20171128125330.363-1-yixun.lan@amlogic.com>
- <20171128125330.363-3-yixun.lan@amlogic.com>
- <20171129193433.GA19419@codeaurora.org>
- <d2b58c06-93dc-4368-501e-4b8bdc9a4c34@amlogic.com>
-Message-ID: <20171201163903.GF19419@codeaurora.org>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 01 Dec 2017 11:53:05 -0800
+Subject: [GIT PULL] revert ARM SCPI changes for v4.15-rc1
+Message-ID: <7hlgimns2m.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/30, Yixun Lan wrote:
-> Hi Stephen
-> 
-> On 11/30/17 03:34, Stephen Boyd wrote:
-> > On 11/28, Yixun Lan wrote:
-> >> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-> >> new file mode 100644
-> >> index 000000000000..51c5b4062715
-> >> --- /dev/null
-> >> +++ b/drivers/clk/meson/axg.c
-> >> @@ -0,0 +1,948 @@
-> >> +/*
-> >> + * AmLogic Meson-AXG Clock Controller Driver
-> >> + *
-> >> + * Copyright (c) 2016 Baylibre SAS.
-> >> + * Author: Michael Turquette <mturquette@baylibre.com>
-> >> + *
-> >> + * Copyright (c) 2017 Amlogic, inc.
-> >> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-> >> + *
-> >> + * SPDX-License-Identifier: GPL-2.0+
-> >> + */
-> >> +
-> >> +#include <linux/clk.h>
-> >> +#include <linux/clk-provider.h>
-> >> +#include <linux/of_address.h>
-> >> +#include <linux/of_device.h>
-> >> +#include <linux/platform_device.h>
-> >> +#include <linux/init.h>
-> >> +
-> >> +#include "clkc.h"
-> >> +#include "axg.h"
-> >> +
-> >> +static DEFINE_SPINLOCK(clk_lock);
-> > 
-> > meson_axg_clk_lock?
-> > 
-> em... I'd leave it unchanged
-> 
-> because the spinlock will be used at macro MESON_GATE() [1] which
-> defined at drivers/clk/meson/clkc.h, and it assume using the generic
-> name 'clk_lock', change name will break the code..
-> 
-> and besides it's already defined as static, so I see no problem here
+Arnd, Olof,
 
-The problem is lockdep debugging and ctags/grep on the source
-code. clk_lock is very generic when it should be more specific so
-we can find this lock later on from a lockdep report with a
-simple search of the code.
+These ARM SCPI changes caused SCPI regressions resulting in CPUfreq
+failures on most Amlogic SoCs (found by kernelci.org.)
 
-Maybe make another patch to rename it to meson_clk_lock so the
-macro doesn't have to change too much, and we get it slightly
-more unique. Looks like v4l2 also has a clk_lock.
+Unfortunately, this was not caught in linux-next due to other
+bugs/panics on these platforms masking this problem so we've only found
+it since we've fixed the other issues.
 
-> 
-> >> +};
-> >> +
-> >> +static int axg_clkc_probe(struct platform_device *pdev)
-> >> +{
-> >> +	const struct clkc_data *clkc_data;
-> >> +	void __iomem *clk_base;
-> >> +	int ret, clkid, i;
-> >> +	struct device *dev = &pdev->dev;
-> >> +
-> >> +	clkc_data = of_device_get_match_data(&pdev->dev);
-> >> +	if (!clkc_data)
-> >> +		return -EINVAL;
-> >> +
-> >> +	/*  Generic clocks and PLLs */
-> >> +	clk_base = of_iomap(dev->of_node, 0);
-> > 
-> > Use platform device APIs for ioremapping?
-> > 
-> I assume you are referring to 'platform_get_resource +
-> devm_ioremap_resource' ?
-> 
-> the idea sounds good to me.
+Since we're already in the -rc cycle, I'd prefer to revert to a known
+working state (that of v4.14) rather than finding/reverting a subset,
+which would just lead to another untested state.
 
-Yes.
+These changes can then have some time to be better reviewed and tested
+and resubmitted for v4.16.
 
--- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+I've tested this revert on the affect Amlogic SoCs and verified that
+we're back to the previous (working) condition.
+
+Also, I'm sending the pull directly to arm-soc instead of Sudeeep
+because I understand that Sudeep is currently out-of-office and unlikely
+to be able to address this himself during the -rc cycle.
+
+Please pull,
+
+Thanks,
+
+Kevin
+
+
+The following changes since commit 4fbd8d194f06c8a3fd2af1ce560ddb31f7ec8323:
+
+  Linux 4.15-rc1 (2017-11-26 16:01:47 -0800)
+
+are available in the git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/scpi-revert
+
+for you to fetch changes up to 5f56b7f4854aaab34eb570c24a1866b2050fc3f5:
+
+  Revert "Merge tag 'scpi-updates-4.15' of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux into next/drivers" (2017-12-01 10:56:35 -0800)
+
+----------------------------------------------------------------
+Revert ARM SCPI changes since v4.14.
+
+Untested changes caused regressions in SCPI and CPUfreq/DVFS failures
+on most Amlogic SoCs.  Changes reverted for v4.15 so they can be
+better reviewed and tested.
+
+----------------------------------------------------------------
+Kevin Hilman (1):
+      Revert "Merge tag 'scpi-updates-4.15' of git://git.kernel.org/.../sudeep.holla/linux into next/drivers"
+
+ drivers/firmware/arm_scpi.c | 216 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------------------------------------
+ 1 file changed, 129 insertions(+), 87 deletions(-)
