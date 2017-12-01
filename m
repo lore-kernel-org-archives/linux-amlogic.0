@@ -1,26 +1,70 @@
-From: pure.logic@nexus-software.ie (Bryan O'Donoghue)
-Date: Sun, 31 Dec 2017 13:40:07 +0000
-Subject: [PATCH 01/33] clk_ops: change round_rate() to return unsigned long
-In-Reply-To: <9f4bef5a-8a71-6f30-5cfb-5e8fe133e3d3@kapsi.fi>
-References: <1514596392-22270-1-git-send-email-pure.logic@nexus-software.ie>
- <1514596392-22270-2-git-send-email-pure.logic@nexus-software.ie>
- <9f4bef5a-8a71-6f30-5cfb-5e8fe133e3d3@kapsi.fi>
-Message-ID: <6d83a5c3-6589-24bc-4ca5-4d1bbca47432@nexus-software.ie>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Fri, 1 Dec 2017 09:24:48 +0800
+Subject: [PATCH v4 0/4] add clk controller driver for Meson-AXG SoC
+Message-ID: <20171201012452.27086-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 30/12/17 16:36, Mikko Perttunen wrote:
-> FWIW, we had this problem some years ago with the Tegra CPU clock - then 
-> it was determined that a simpler solution was to have the determine_rate 
-> callback support unsigned long rates - so clock drivers that need to 
-> return rates higher than 2^31 can instead implement the determine_rate 
-> callback. That is what's currently implemented.
-> 
-> Mikko
+Add driver for the clk controller which found in Meson AXG SoC
 
-Granted we could work around it but, having both zero and less than zero 
-indicate error means you can't support larger than LONG_MAX which is I 
-think worth fixing.
+  Note, we deliberately create a seperate source file for the Meson AXG
+series, instead of sharing code with previous GXBB/GXL - the file axg.c
+It would help us maintaining the code more easily.
 
----
-bod
+Changes since v3 [3]:
+ - separate dt-bindings header file
+ - adjust license note as standard way
+ - replace of_iomap with platform/devm API
+ - add Rob's Ack to Patch 1,4
+
+Changes since v2 [2]:
+ - drop register offset calculation
+ - update dt-bindings for new compatible variant
+
+Changes since v1 [1]:
+ - rework register definion, use '(offset << 2)' to better match
+   the description from data sheet
+ - drop "#include dt-bindings/clock/gxbb-aoclkc.h" from dts
+ - rebase code to v4.15-rc1
+
+[3]
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005487.html
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005488.html
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005489.html
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005490.html
+
+[2]
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005468.html
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005469.html
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005470.html
+
+[1] 
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005239.html
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005240.html
+  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005241.html
+
+
+
+Qiufang Dai (3):
+  clk: meson-axg: add clocks dt-bindings required header
+  clk: meson-axg: add clock controller drivers
+  arm64: dts: meson-axg: add clock DT info for Meson AXG SoC
+
+Yixun Lan (1):
+  dt-bindings: clock: add compatible variant for the Meson-AXG
+
+ .../bindings/clock/amlogic,gxbb-clkc.txt           |   7 +-
+ arch/arm64/Kconfig.platforms                       |   1 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi         |  15 +
+ drivers/clk/meson/Kconfig                          |   8 +
+ drivers/clk/meson/Makefile                         |   1 +
+ drivers/clk/meson/axg.c                            | 944 +++++++++++++++++++++
+ drivers/clk/meson/axg.h                            | 126 +++
+ include/dt-bindings/clock/axg-clkc.h               |  71 ++
+ 8 files changed, 1171 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/clk/meson/axg.c
+ create mode 100644 drivers/clk/meson/axg.h
+ create mode 100644 include/dt-bindings/clock/axg-clkc.h
+
+-- 
+2.15.0
