@@ -1,66 +1,76 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 30 Nov 2017 16:46:19 -0800
-Subject: [GIT PULL] Amlogic fixes for v4.15-rc (redo)
-Message-ID: <7h7eu7p95w.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 01 Dec 2017 10:25:38 +0100
+Subject: [PATCH] ARM64: dts: meson-axg: enable IR controller
+In-Reply-To: <20171201013612.13927-1-yixun.lan@amlogic.com>
+References: <20171201013612.13927-1-yixun.lan@amlogic.com>
+Message-ID: <1512120338.4667.4.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arnd, Olof,
+On Fri, 2017-12-01 at 09:36 +0800, Yixun Lan wrote:
+> Enable IR remote controller which find in Amlogic's Meson-AXG SoC.
+> 
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts |  6 ++++++
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 14 ++++++++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> index 0864d1ff2d9b..ca676cafdbb3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> @@ -34,3 +34,9 @@
+>  	pinctrl-0 = <&i2c1_z_pins>;
+>  	pinctrl-names = "default";
+>  };
+> +
+> +&ir {
+> +	status = "okay";
+> +	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-names = "default";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 9bb85893c1b7..80d5b8c13fac 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -616,6 +616,13 @@
+>  					#gpio-cells = <2>;
+>  					gpio-ranges = <&pinctrl_aobus 0 0
+> 15>;
+>  				};
+> +
+> +				remote_input_ao_pins: remote_input_ao {
+> +					mux {
+> +						groups = "remote_input_ao";
+> +						function = "remote_input_ao";
+> +					};
+> +				};
+>  			};
+>  
+>  			i2c_AO: i2c at 5000 {
+> @@ -664,6 +671,13 @@
+>  				clock-names = "xtal", "pclk", "baud";
+>  				status = "disabled";
+>  			};
+> +
+> +			ir: ir at 8000 {
+> +				compatible = "amlogic,meson-gx-
+> ir","amlogic,meson-gxbb-ir";
 
-A handful of minor v4.15 fixes for Amlogic family SoCs.  They're mostly
-DT, but some trivial non-DT stuff mixed in.  Let me know if you prefer
-those in separate pulls, and I will do so.
+The order is bad here (Yes the same mistake is present a *LOT* in the gx family
+- I'm preparing a patch for that). In addition, "amlogic,meson-gx-ir" is
+unmatched, undocumented and unlikely to be ever used since every compatible SoC
+will use the gxbb compatible string. You may as well drop it and just keep the
+gxbb one
 
-Thanks,
-
-Kevin
-
-
-The following changes since commit 4fbd8d194f06c8a3fd2af1ce560ddb31f7ec8323:
-
-  Linux 4.15-rc1 (2017-11-26 16:01:47 -0800)
-
-are available in the git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git amlogic-fixes
-
-for you to fetch changes up to 9f8e06ca1d0e3ef1167a2f43a8b1e63763b283b8:
-
-  ARM64: dts: odroid-c2: Add HDMI and CEC Nodes (2017-11-30 15:30:09 -0800)
-
-----------------------------------------------------------------
-Amlogic fixes for v4.15-rc
-- GPIO interrupt fixes
-- new nodes for drivers merged late (VPU domains)
-- socinfo fix for GX series
-- fix typo
-
-----------------------------------------------------------------
-Arnaud Patard (1):
-      meson-gx-socinfo: Fix package id parsing
-
-Colin Ian King (1):
-      ARM: meson: fix spelling mistake: "Couln't" -> "Couldn't"
-
-Martin Blumenstingl (2):
-      ARM: dts: meson: correct the sort order for the the gpio_intc node
-      ARM: dts: meson: fix the memory region of the GPIO interrupt controller
-
-Neil Armstrong (4):
-      ARM64: dts: meson-gx: add VPU power domain
-      ARM64: dts: meson-gx: Add HDMI_5V regulator on selected boards
-      ARM64: dts: meson-gx: grow reset controller memory zone
-      ARM64: dts: odroid-c2: Add HDMI and CEC Nodes
-
- arch/arm/boot/dts/meson.dtsi                                 | 18 +++++++++---------
- arch/arm/mach-meson/platsmp.c                                |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi          | 12 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                    | 13 ++++++++++++-
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts          | 30 ++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                  | 43 +++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 12 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi        | 12 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                   | 43 +++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts        | 12 ++++++++++++
- drivers/soc/amlogic/meson-gx-socinfo.c                       |  4 ++--
- 11 files changed, 188 insertions(+), 13 deletions(-)
+> +				reg = <0x0 0x8000 0x0 0x20>;
+> +				interrupts = <GIC_SPI 196
+> IRQ_TYPE_EDGE_RISING>;
+> +				status = "disabled";
+> +			};
+>  		};
+>  	};
+>  };
