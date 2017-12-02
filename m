@@ -1,36 +1,62 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  2 Dec 2017 22:40:37 +0100
-Subject: [PATCH 2/2] ARM64: dts: meson-gxm: add the PHY interrupt line on
- Khadas VIM2
-In-Reply-To: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
-References: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171202214037.17017-3-martin.blumenstingl@googlemail.com>
+Date: Sat,  2 Dec 2017 22:51:27 +0100
+Subject: [PATCH net-next 4/5] net: phy: realtek: use the same indentation for
+ all #defines
+In-Reply-To: <20171202215128.20202-1-martin.blumenstingl@googlemail.com>
+References: <20171202215128.20202-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20171202215128.20202-5-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The INTB/PMEB pin of the RTL8211F PHY on the Khadas VIM2 is routed to
-GPIOZ_15. Add the corresponding interrupt using the GPIO interrupt
-controller so the PHY framework doesn't have to poll the PHY for it's
-status.
+This simply makes the code easier to read. No functional changes.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/net/phy/realtek.c | 27 ++++++++++++++-------------
+ 1 file changed, 14 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index 34a41b26a4ed..5c2bc2989519 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -232,6 +232,9 @@
- 	external_phy: ethernet-phy at 0 {
- 		/* Realtek RTL8211F (0x001cc916) */
- 		reg = <0>;
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_15 */
-+		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
+diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+index da263a92d6b1..d6868e8daaab 100644
+--- a/drivers/net/phy/realtek.c
++++ b/drivers/net/phy/realtek.c
+@@ -17,24 +17,25 @@
+ #include <linux/phy.h>
+ #include <linux/module.h>
  
+-#define RTL821x_PHYSR		0x11
+-#define RTL821x_PHYSR_DUPLEX	BIT(13)
+-#define RTL821x_PHYSR_SPEED	GENMASK(15, 14)
++#define RTL821x_PHYSR				0x11
++#define RTL821x_PHYSR_DUPLEX			BIT(13)
++#define RTL821x_PHYSR_SPEED			GENMASK(15, 14)
+ 
+-#define RTL821x_INER		0x12
+-#define RTL8211B_INER_INIT	0x6400
+-#define RTL8211E_INER_LINK_STATUS	BIT(10)
+-#define RTL8211F_INER_LINK_STATUS	BIT(4)
++#define RTL821x_INER				0x12
++#define RTL8211B_INER_INIT			0x6400
++#define RTL8211E_INER_LINK_STATUS		BIT(10)
++#define RTL8211F_INER_LINK_STATUS		BIT(4)
+ 
+-#define RTL821x_INSR		0x13
++#define RTL821x_INSR				0x13
+ 
+-#define RTL821x_PAGE_SELECT	0x1f
++#define RTL821x_PAGE_SELECT			0x1f
+ 
+-#define RTL8211F_INSR		0x1d
+-#define RTL8211F_TX_DELAY	BIT(8)
++#define RTL8211F_INSR				0x1d
+ 
+-#define RTL8201F_ISR		0x1e
+-#define RTL8201F_IER		0x13
++#define RTL8211F_TX_DELAY			BIT(8)
++
++#define RTL8201F_ISR				0x1e
++#define RTL8201F_IER				0x13
+ 
+ MODULE_DESCRIPTION("Realtek PHY driver");
+ MODULE_AUTHOR("Johnson Leung");
 -- 
 2.15.1
