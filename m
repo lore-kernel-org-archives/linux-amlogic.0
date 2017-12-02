@@ -1,43 +1,79 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 2 Dec 2017 18:14:42 +0100
-Subject: [PATCH] net: phy: realtek: fix RTL8211F interrupt mode
-In-Reply-To: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
-References: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
-Message-ID: <CAFBinCC-wJ6QsC1ufjfR-875OnBbCoUiWOT+00MvFMX3Z4CZxw@mail.gmail.com>
+Date: Sat,  2 Dec 2017 22:40:36 +0100
+Subject: [PATCH 1/2] ARM64: dts: meson: add comments with the GPIO for the PHY
+ interrupts
+In-Reply-To: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
+References: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20171202214037.17017-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heiner,
+Currently one has to look/calculate the GPIO for the PHY interrupts
+manually. Add a comment for the existing PHY interrupt lines to make it
+easier to find out which GPIO is used.
+This is done using the following calculation:
+- number of GPIO AO pins (14 on GXBB: GPIOAO_0..13)
+- add the offset of the pin which is used for the interrupt (for example
+  GPIOZ_15 = 15 on Odroid-C2)
 
-On Sun, Nov 12, 2017 at 4:16 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
-> After commit b94d22d94ad22 "ARM64: dts: meson-gx: add external PHY
-> interrupt on some platforms" ethernet stopped working on my Odroid-C2
-> which has a RTL8211F phy.
->
-> It turned out that no interrupts were triggered. Further analysis
-> showed the register INER can't be altered on page 0.
-> Because register INSR needs to be accessed via page 0xa43 I assumed
-> that register INER needs to be accessed via some page too.
-> Some brute force check resulted in page 0xa42 being the right one.
-unfortunately there's no public datasheet for the RTL8211F.
-I contacted Realtek to see if we could get a datasheet. unfortunately
-an NDA is required for that
-however, they were kind enough to share some information from the
-RTL8211F datasheet with me
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 1 +
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 2 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts      | 1 +
+ arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 1 +
+ 4 files changed, 5 insertions(+)
 
-RTL821x_INER is called INER (Interrupt Enable Register) in the datasheet.
-it is located at page 0xa42, address (the register after selecting the
-page) 0x12 (RTL821x_INER is also 0x12)
-
-in other words: your findings were correct!
-(I know that my mail is too late to make it into the commit message -
-but with this mail it's "documented" online now)
-
-RTL8211E also uses RTL821x_INER (0x12) register, but according to the
-information I got from Realtek it is located in page 0x0 (so no
-special page has to be selected before changing that register on
-RTL8211E)
-
-
-Regards
-Martin
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index 4a4251001bfd..011e8e08e429 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -169,6 +169,7 @@
+ 			/* Realtek RTL8211F (0x001cc916) */
+ 			reg = <0>;
+ 			interrupt-parent = <&gpio_intc>;
++			/* MAC_INTR on GPIOZ_15 */
+ 			interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index f8d221463c60..dde3cb894c19 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -156,8 +156,10 @@
+ 		#size-cells = <0>;
+ 
+ 		eth_phy0: ethernet-phy at 0 {
++			/* Realtek RTL8211F (0x001cc916) */
+ 			reg = <0>;
+ 			interrupt-parent = <&gpio_intc>;
++			/* MAC_INTR on GPIOZ_15 */
+ 			interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
+ 			eee-broken-1000t;
+ 		};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+index 9bf16bb7c491..09f34f7ef084 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts
+@@ -118,6 +118,7 @@
+ 			/* Micrel KSZ9031 (0x00221620) */
+ 			reg = <3>;
+ 			interrupt-parent = <&gpio_intc>;
++			/* MAC_INTR on GPIOZ_15 */
+ 			interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
+index 66c6da7e112c..9847fce443a8 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
+@@ -111,6 +111,7 @@
+ 		reg = <0>;
+ 		max-speed = <1000>;
+ 		interrupt-parent = <&gpio_intc>;
++		/* MAC_INTR on GPIOH_3 */
+ 		interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
+ 	};
+ };
+-- 
+2.15.1
