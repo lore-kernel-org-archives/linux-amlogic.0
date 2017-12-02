@@ -1,56 +1,84 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  2 Dec 2017 23:06:47 +0100
-Subject: [RfC net-next 0/3] RTL8211F Ethernet PHY "documentation"
-Message-ID: <20171202220650.23391-1-martin.blumenstingl@googlemail.com>
+Date: Sat,  2 Dec 2017 23:06:49 +0100
+Subject: [RfC net-next 2/3] net: phy: realtek: configure the INTB pin on
+ RTL8211F
+In-Reply-To: <20171202220650.23391-1-martin.blumenstingl@googlemail.com>
+References: <20171202220650.23391-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20171202220650.23391-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-A recent patch from Heiner made me curious if the RTL8211F part of
-the realtek.c PHY driver is correct: [0]
-I contacted Realtek and asked if we could get a datasheet for the
-RTL8211F PHY. it seems that the full datasheet can only be obtained
-with an NDA. however, the contact at Realtek kindly answered all
-questions I had regarding the RTL8211F PHY (thank you very much
-again!). I am not permitted to share the exact answers I received,
-but I am allowed to put them into my own words.
+The interrupt pin on the RTL8211F PHY can be used in two different
+modes:
+INTB
+- the default mode of the PHY
+- interrupts can be configured through page 0xa42 register RTL821x_INER
+- interrupts can be ACK'ed through RTL8211F_INSR
+- it acts as a level-interrupt which is active low
+- Wake-on-LAN "wakeup" status is available in RTL8211F_INSR bit 7
 
-This series is a result of the conversation with Realtek: the main
-intention behind this series is to *document* the information I got.
-I am not aware of any board which needs the RX delay, has a problem
-with the INTB pin configuration or requires any of the additional
-interrupts.
+PMEB:
+- special mode for Wake-on-LAN
+- interrupts configured through page 0xa42 register RTL821x_INER are
+  disabled
+- it supports a "pulse low" waveform for the interrupt
 
-I only tested that these patches don't break existing functionality
-on Khadas VIM2 board with RTL8211F PHY.
+For now we simply force the pin into INTB mode since the PHY driver does
+not support Wake-on-LAN yet.
 
-PS: I also received information about the RTL8211E PHY's RX and TX
-delay configuration. however, I don't understand that part of the
-datasheet so I did not add any #defines in patch #3. the datasheet
-says that:
-- TX delay is configured through bit 12 and bit 13 in register 0x1c
-  in page 0xa4 (value 1 = enabled, 0 = disabled)
-- RX delay is configured through bit 11 and bit 13 in register 0x1c
-  in page 0xa4 (value 1 = enabled, 0 = disabled)
-I don't have any board with a RTL8211E PHY, so I could not test this
-part at all. thus I don't know why bit 13 is listed for both, RX and
-TX delay.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/net/phy/realtek.c | 27 +++++++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
 
-I do not expect that this series is applied. if someone is interested
-in testing this: it applies on top of my other series:
-"Realtek Ethernet PHY driver improvements" [1]
-
-
-[0] https://www.spinics.net/lists/netdev/msg466661.html
-[1] https://marc.info/?l=linux-netdev&m=151225151410593&w=2
-
-Martin Blumenstingl (3):
-  net: phy: realtek: add support for configuring the RX delay on
-    RTL8211F
-  net: phy: realtek: configure the INTB pin on RTL8211F
-  net: phy: realtek: add more interrupt bits for RTL8211E and RTL8211F
-
- drivers/net/phy/realtek.c | 89 ++++++++++++++++++++++++++++++++++++++++-------
- 1 file changed, 77 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+index d4e7f249a4bc..961165d128d6 100644
+--- a/drivers/net/phy/realtek.c
++++ b/drivers/net/phy/realtek.c
+@@ -40,6 +40,9 @@
+ #define RTL8201F_ISR				0x1e
+ #define RTL8201F_IER				0x13
+ 
++#define RTL8211F_INTBCR				0x16
++#define RTL8211F_INTBCR_INTB_PMEB		BIT(5)
++
+ MODULE_DESCRIPTION("Realtek PHY driver");
+ MODULE_AUTHOR("Johnson Leung");
+ MODULE_LICENSE("GPL");
+@@ -161,12 +164,32 @@ static int rtl8211e_config_intr(struct phy_device *phydev)
+ 
+ static int rtl8211f_config_intr(struct phy_device *phydev)
+ {
++	int err;
+ 	u16 val;
+ 
+-	if (phydev->interrupts == PHY_INTERRUPT_ENABLED)
++	if (phydev->interrupts == PHY_INTERRUPT_ENABLED) {
++		/*
++		 * The interrupt pin has two functions:
++		 * 0: INTB: it acts as interrupt pin which can be configured
++		 *    through RTL821x_INER and the status can be read through
++		 *    RTL8211F_INSR
++		 * 1: PMEB: a special "Power Management Event" mode for
++		 *    Wake-on-LAN operation (with support for a "pulse low"
++		 *    wave format). Interrupts configured through RTL821x_INER
++		 *    will not work in this mode
++		 *
++		 * select INTB mode in the "INTB pin control" register to
++		 * ensure that the interrupt pin is in the correct mode.
++		 */
++		err = rtl8211x_page_mask_bits(phydev, 0xd40, RTL8211F_INTBCR,
++					      RTL8211F_INTBCR_INTB_PMEB, 0);
++		if (err)
++			return err;
++
+ 		val = RTL8211F_INER_LINK_STATUS;
+-	else
++	} else {
+ 		val = 0;
++	}
+ 
+ 	return rtl8211x_page_write(phydev, 0xa42, RTL821x_INER, val);
+ }
 -- 
 2.15.1
