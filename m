@@ -1,88 +1,111 @@
 From: jic23@kernel.org (Jonathan Cameron)
-Date: Sat, 2 Dec 2017 11:30:05 +0000
-Subject: [PATCH 0/5] meson_saradc fixes and minor improvements
-In-Reply-To: <7hr2sjcmil.fsf@baylibre.com>
-References: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
- <20171102150512.0000558c@huawei.com> <7hr2sjcmil.fsf@baylibre.com>
-Message-ID: <20171202113005.4fbb128e@archlinux>
+Date: Sat, 2 Dec 2017 11:38:32 +0000
+Subject: [PATCH v4 0/4] fix the clock setting for SAR ADC
+In-Reply-To: <15745fd0-1af9-c7c0-8769-063f218a3d28@amlogic.com>
+References: <20171107140942.29243-1-yixun.lan@amlogic.com>
+ <CAFBinCB=2pb9dZkpSqdVAiumkSCzgaW0oejftjZNP7aYbiQJuw@mail.gmail.com>
+ <20171111003737.000038f0@huawei.com>
+ <15745fd0-1af9-c7c0-8769-063f218a3d28@amlogic.com>
+Message-ID: <20171202113832.6b3eda46@archlinux>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 27 Nov 2017 15:47:14 -0800
-Kevin Hilman <khilman@baylibre.com> wrote:
+On Tue, 28 Nov 2017 21:11:29 +0800
+Yixun Lan <yixun.lan@amlogic.com> wrote:
 
-> Hi Jonathan,
-> 
-> Jonathan Cameron <Jonathan.Cameron@huawei.com> writes:
-> 
-> > On Tue, 31 Oct 2017 21:01:42 +0100
+> On 11/11/17 08:37, Jonathan Cameron wrote:
+> > On Tue, 7 Nov 2017 22:36:00 +0100
 > > Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-> >  
-> >> Meson8 and Meson8b require that the driver initializes the registers
-> >> correctly, while on GXBB and newer this is done by the firmware.
-> >> Thus the changes from this series are only relevant for Meson8 and
-> >> Meson8b.
-> >> 
-> >> The first two patches are bugfixes:
-> >> - the first patch fixes an issue where the SAR ADC would not work at
-> >>   all
-> >> - the second patch initializes the bandgrap register on Meson8 and
-> >>   Meson8b (which is required for the SAR ADC to operate)
-> >> 
-> >> The third patch is mainly a cosmetic fix because we don't want to
-> >> read/write registers that are not documented.
-> >> 
-> >> Patch four is purely cosmetic so the mainline driver uses the same
-> >> settings as Amlogic's vendor kernel driver.
-> >> 
-> >> The last patch initializes the channel muxes. There are sane defaults
-> >> for these in the hardware itself. However, some bootloaders are
-> >> setting strange values - the result is that reading the ADC gives
-> >> garbage values.
-> >> I did not tag this as "fix" since in my opinion it's a feature for
-> >> fixing broken bootloaders.
-> >> 
-> >> Tested on:
-> >> - a Meson8m2 board (compatible with Meson8)
-> >> - a Meson8b EC-100
-> >> - on a Khadas VIM to ensure that the newer SoCs are still working
-> >> 
-> >> 
-> >> Martin Blumenstingl (5):
-> >>   iio: adc: meson-saradc: fix the bit_idx of the adc_en clock
-> >>   iio: adc: meson-saradc: initialize the bandgap correctly on older
-> >> SoCs iio: adc: meson-saradc: Meson8 and Meson8b do not have REG11 and
-> >> REG13 iio: adc: meson-saradc: fix the clock frequency on Meson8 and
-> >> Meson8b iio: adc: meson-saradc: program the channel muxes during
-> >>     initialization
-> >> 
-> >>  drivers/iio/adc/meson_saradc.c | 92
-> >> +++++++++++++++++++++++++++++++++++------- 1 file changed, 78
-> >> insertions(+), 14 deletions(-)
-> >>   
-> > Series seems fine to me.  If no one else raises anything I'll pick this
-> > up when I'm am back in the UK the week after next.  
+> >   
+> >> Hi Yixun,
+> >>
+> >> On Tue, Nov 7, 2017 at 3:09 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:  
+> >>> patch [1/4]:
+> >>>   Fix wrong SARADC/SANA clock gate bit in Meson-GXBB/GXL,
+> >>> the published datasheets[4] also has wrong description about this.
+> >>>   This patch should be explicitly merged *before* other patches.
+> >>>
+> >>> patch [2-4/4]:
+> >>>   Drop the "sana" clock from SAR ADC module,    
+> >> I agree with Jerome that patch 2/4 should be applied last.  
+> > 
+> > Let me know when I should take this.
+> > 
+> > Thanks,
+> > 
+> > Jonathan
+> >   
+> >> when I wrote the driver I couldn't get it to work on my GXBB board
+> >> (which unfortunately has died since then) because the clocks were
+> >> disabled (they weren't enabled by the bootloader). people who are
+> >> using an old .dtb would get the same problem again until the clock
+> >> driver is merged
+> >>  
+> >>>   From the hardware perspective, the SAR ADC module doesn't
+> >>> require "sana" clock to wrok. This should apply to all SoC,
+> >>> including meson6,8, GXBB, GXL..    
+> >> thank you for clarifying this!
+> >>  
+> >>> Note: the whole patchset series has been tested at GXL-P212 board,
+> >>> we haven't got any meson6,8 board to test, so I would appreciate
+> >>> if someone (Martin?) could help to confirm it works there.    
+> >> I can test this on a Meson8b and a Meson8m2 board on the weekend -
+> >> I'll let you know about the results
+> >>
+> >>
+> >> Regards
+> >> Martin
+> >> --
+> >> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
+> >> the body of a message to majordomo at vger.kernel.org
+> >> More majordomo info at  http://vger.kernel.org/majordomo-info.html  
+> > 
+> > 
+> > _______________________________________________
+> > linux-amlogic mailing list
+> > linux-amlogic at lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> > 
+> > .
+> >   
 > 
-> Just a gentle ping on the status of this series as I'm not seeing it in
-> linux-next.
+> Hi Jonathan Cameron & Kevin Hilman:
+> 
+>  since the clk part patch has been applied[1], can we proceed with others?
+> 
+> to Jonathan:
+> I think the iio part(patch [2/4]) should be merged via your iio tree?
+> see [2]
+I've applied to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to play with it.  It also makes sense for me to
+take the dts binding update as it goes with the driver change. 
 
-Sure, I'll be sending out a pull request including the first couple
-of patches later today at which time they'll hit Greg's tree and show
-up in linux-next. (patches 1, 2 and 3)
+Hence I've just left patch 4 for Kevin.  Doesn't matter if this crosses
+with Kevin also taking patch 3 though as it'll get sorted out automatically
+by git later anyway.
 
-The series was a spit of fixes and improvements that will take longer
-as we'll have to wait for the fixes to go up to mainline and come
-back to me - so will be a few weeks before I can apply those and they
-won't hit linux-next for perhaps a week after that.
-(this covers patches 4 and 5)
+Thanks
 
 Jonathan
-
 > 
-> Thanks,
+> to Kevin:
+> could you take the DTS part? see [3], and the patch [4/4] has a rework
+> version, see [4], to separate dt64 vs dt32 device tree.
 > 
-> Kevin
-> --
-> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
-> the body of a message to majordomo at vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+> 
+> [1]
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005472.html
+> 
+> [2]
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005264.html
+> 
+> [3]
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005265.html
+> 
+> [4]
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005304.html
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005305.html
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005306.html
+> 
+> Yixun
+> 
