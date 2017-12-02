@@ -1,111 +1,43 @@
-From: jic23@kernel.org (Jonathan Cameron)
-Date: Sat, 2 Dec 2017 11:38:32 +0000
-Subject: [PATCH v4 0/4] fix the clock setting for SAR ADC
-In-Reply-To: <15745fd0-1af9-c7c0-8769-063f218a3d28@amlogic.com>
-References: <20171107140942.29243-1-yixun.lan@amlogic.com>
- <CAFBinCB=2pb9dZkpSqdVAiumkSCzgaW0oejftjZNP7aYbiQJuw@mail.gmail.com>
- <20171111003737.000038f0@huawei.com>
- <15745fd0-1af9-c7c0-8769-063f218a3d28@amlogic.com>
-Message-ID: <20171202113832.6b3eda46@archlinux>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 2 Dec 2017 18:14:42 +0100
+Subject: [PATCH] net: phy: realtek: fix RTL8211F interrupt mode
+In-Reply-To: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
+References: <66991733-9d1a-dbd2-9857-bba1ffca1cf8@gmail.com>
+Message-ID: <CAFBinCC-wJ6QsC1ufjfR-875OnBbCoUiWOT+00MvFMX3Z4CZxw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 28 Nov 2017 21:11:29 +0800
-Yixun Lan <yixun.lan@amlogic.com> wrote:
+Hi Heiner,
 
-> On 11/11/17 08:37, Jonathan Cameron wrote:
-> > On Tue, 7 Nov 2017 22:36:00 +0100
-> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-> >   
-> >> Hi Yixun,
-> >>
-> >> On Tue, Nov 7, 2017 at 3:09 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:  
-> >>> patch [1/4]:
-> >>>   Fix wrong SARADC/SANA clock gate bit in Meson-GXBB/GXL,
-> >>> the published datasheets[4] also has wrong description about this.
-> >>>   This patch should be explicitly merged *before* other patches.
-> >>>
-> >>> patch [2-4/4]:
-> >>>   Drop the "sana" clock from SAR ADC module,    
-> >> I agree with Jerome that patch 2/4 should be applied last.  
-> > 
-> > Let me know when I should take this.
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> >> when I wrote the driver I couldn't get it to work on my GXBB board
-> >> (which unfortunately has died since then) because the clocks were
-> >> disabled (they weren't enabled by the bootloader). people who are
-> >> using an old .dtb would get the same problem again until the clock
-> >> driver is merged
-> >>  
-> >>>   From the hardware perspective, the SAR ADC module doesn't
-> >>> require "sana" clock to wrok. This should apply to all SoC,
-> >>> including meson6,8, GXBB, GXL..    
-> >> thank you for clarifying this!
-> >>  
-> >>> Note: the whole patchset series has been tested at GXL-P212 board,
-> >>> we haven't got any meson6,8 board to test, so I would appreciate
-> >>> if someone (Martin?) could help to confirm it works there.    
-> >> I can test this on a Meson8b and a Meson8m2 board on the weekend -
-> >> I'll let you know about the results
-> >>
-> >>
-> >> Regards
-> >> Martin
-> >> --
-> >> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
-> >> the body of a message to majordomo at vger.kernel.org
-> >> More majordomo info at  http://vger.kernel.org/majordomo-info.html  
-> > 
-> > 
-> > _______________________________________________
-> > linux-amlogic mailing list
-> > linux-amlogic at lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> > 
-> > .
-> >   
-> 
-> Hi Jonathan Cameron & Kevin Hilman:
-> 
->  since the clk part patch has been applied[1], can we proceed with others?
-> 
-> to Jonathan:
-> I think the iio part(patch [2/4]) should be merged via your iio tree?
-> see [2]
-I've applied to the togreg branch of iio.git and pushed out as testing
-for the autobuilders to play with it.  It also makes sense for me to
-take the dts binding update as it goes with the driver change. 
+On Sun, Nov 12, 2017 at 4:16 PM, Heiner Kallweit <hkallweit1@gmail.com> wrote:
+> After commit b94d22d94ad22 "ARM64: dts: meson-gx: add external PHY
+> interrupt on some platforms" ethernet stopped working on my Odroid-C2
+> which has a RTL8211F phy.
+>
+> It turned out that no interrupts were triggered. Further analysis
+> showed the register INER can't be altered on page 0.
+> Because register INSR needs to be accessed via page 0xa43 I assumed
+> that register INER needs to be accessed via some page too.
+> Some brute force check resulted in page 0xa42 being the right one.
+unfortunately there's no public datasheet for the RTL8211F.
+I contacted Realtek to see if we could get a datasheet. unfortunately
+an NDA is required for that
+however, they were kind enough to share some information from the
+RTL8211F datasheet with me
 
-Hence I've just left patch 4 for Kevin.  Doesn't matter if this crosses
-with Kevin also taking patch 3 though as it'll get sorted out automatically
-by git later anyway.
+RTL821x_INER is called INER (Interrupt Enable Register) in the datasheet.
+it is located at page 0xa42, address (the register after selecting the
+page) 0x12 (RTL821x_INER is also 0x12)
 
-Thanks
+in other words: your findings were correct!
+(I know that my mail is too late to make it into the commit message -
+but with this mail it's "documented" online now)
 
-Jonathan
-> 
-> to Kevin:
-> could you take the DTS part? see [3], and the patch [4/4] has a rework
-> version, see [4], to separate dt64 vs dt32 device tree.
-> 
-> 
-> [1]
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005472.html
-> 
-> [2]
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005264.html
-> 
-> [3]
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005265.html
-> 
-> [4]
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005304.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005305.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005306.html
-> 
-> Yixun
-> 
+RTL8211E also uses RTL821x_INER (0x12) register, but according to the
+information I got from Realtek it is located in page 0x0 (so no
+special page has to be selected before changing that register on
+RTL8211E)
+
+
+Regards
+Martin
