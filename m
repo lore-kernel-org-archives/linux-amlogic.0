@@ -1,39 +1,36 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  2 Dec 2017 22:40:35 +0100
-Subject: [PATCH 0/2] Ethernet PHY interrupt improvements
-Message-ID: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
+Date: Sat,  2 Dec 2017 22:40:37 +0100
+Subject: [PATCH 2/2] ARM64: dts: meson-gxm: add the PHY interrupt line on
+ Khadas VIM2
+In-Reply-To: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
+References: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20171202214037.17017-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-this small series consists of two patches:
-#1 documents the GPIO to which the PHY's interrupt line is connected
-   (the name "MAC_INTR" is used in the schematics of Odroid-C2 and
-    Khadas VIM2)
-#2 adds the RTL8211F PHY's interrupt line on Khadas VIM2
+The INTB/PMEB pin of the RTL8211F PHY on the Khadas VIM2 is routed to
+GPIOZ_15. Add the corresponding interrupt using the GPIO interrupt
+controller so the PHY framework doesn't have to poll the PHY for it's
+status.
 
-I was a bit surprised to see that the GXM Q200 board seems to use
-GPIOH_3 instead of GPIOZ_15 like all other boards.
-@Jerome: could you please check if GPIOH_3 is correct or if it's
-a "copy-and-paste" issue (Q200 is the only GXL/GXM based board.
-GXL/GXM SoCs have fewer GPIOAO pins than GXBB, so the interrupt
-offset for the same non-GPIOAO pin is different than on GXBB)
-
-compile-tested: all boards
-runtime tested: Khadas VIM2 (unplugging / plugging the Ethernet
-cable increases the interrupt counter in /proc/interrupts and the
-kernel correctly reports that the cable has been {un,}plugged)
-
-
-Martin Blumenstingl (2):
-  ARM64: dts: meson: add comments with the GPIO for the PHY interrupts
-  ARM64: dts: meson-gxm: add the PHY interrupt line on Khadas VIM2
-
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts  | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts   | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts       | 1 +
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 3 +++
- arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts        | 1 +
- 5 files changed, 8 insertions(+)
+ 1 file changed, 3 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index 34a41b26a4ed..5c2bc2989519 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -232,6 +232,9 @@
+ 	external_phy: ethernet-phy at 0 {
+ 		/* Realtek RTL8211F (0x001cc916) */
+ 		reg = <0>;
++		interrupt-parent = <&gpio_intc>;
++		/* MAC_INTR on GPIOZ_15 */
++		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
+ 	};
+ };
+ 
 -- 
 2.15.1
