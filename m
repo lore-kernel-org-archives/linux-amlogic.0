@@ -1,39 +1,20 @@
-From: olof@lixom.net (Olof Johansson)
-Date: Sat, 2 Dec 2017 17:04:35 -0800
-Subject: [GIT PULL] revert ARM SCPI changes for v4.15-rc1
-In-Reply-To: <7hlgimns2m.fsf@baylibre.com>
-References: <7hlgimns2m.fsf@baylibre.com>
-Message-ID: <20171203010435.6ycn75rxss5yiixe@localhost>
+From: andrew@lunn.ch (Andrew Lunn)
+Date: Sun, 3 Dec 2017 04:24:24 +0100
+Subject: [PATCH net-next 1/5] net: phy: realtek: use the BIT and GENMASK
+ macros
+In-Reply-To: <20171202215128.20202-2-martin.blumenstingl@googlemail.com>
+References: <20171202215128.20202-1-martin.blumenstingl@googlemail.com>
+ <20171202215128.20202-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20171203032424.GA21613@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Dec 01, 2017 at 11:53:05AM -0800, Kevin Hilman wrote:
-> Arnd, Olof,
+On Sat, Dec 02, 2017 at 10:51:24PM +0100, Martin Blumenstingl wrote:
+> This makes it easier to compare the #defines with the datasheets.
+> No functional changes.
 > 
-> These ARM SCPI changes caused SCPI regressions resulting in CPUfreq
-> failures on most Amlogic SoCs (found by kernelci.org.)
-> 
-> Unfortunately, this was not caught in linux-next due to other
-> bugs/panics on these platforms masking this problem so we've only found
-> it since we've fixed the other issues.
-> 
-> Since we're already in the -rc cycle, I'd prefer to revert to a known
-> working state (that of v4.14) rather than finding/reverting a subset,
-> which would just lead to another untested state.
-> 
-> These changes can then have some time to be better reviewed and tested
-> and resubmitted for v4.16.
-> 
-> I've tested this revert on the affect Amlogic SoCs and verified that
-> we're back to the previous (working) condition.
-> 
-> Also, I'm sending the pull directly to arm-soc instead of Sudeeep
-> because I understand that Sudeep is currently out-of-office and unlikely
-> to be able to address this himself during the -rc cycle.
-> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Sounds like the right approach here. I've merged this and added the above text
-to the merge commit as well.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-
--Olof
+    Andrew
