@@ -1,152 +1,123 @@
 From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun,  3 Dec 2017 10:17:13 +0100
-Subject: [PATCH 4/4] meson: use the clock driver
+Date: Sun,  3 Dec 2017 10:17:11 +0100
+Subject: [PATCH 2/4] ARM: meson: add clock measurement function
 In-Reply-To: <20171203091713.22029-1-b.galvani@gmail.com>
 References: <20171203091713.22029-1-b.galvani@gmail.com>
-Message-ID: <20171203091713.22029-5-b.galvani@gmail.com>
+Message-ID: <20171203091713.22029-3-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Use the clk framework to initialize clocks from drivers that need them
-instead of having hardcoded frequencies and initializations from board
-code.
+Add add a function to measure the current clock rate.
 
 Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 ---
- arch/arm/include/asm/arch-meson/gxbb.h | 10 ----------
- arch/arm/include/asm/arch-meson/i2c.h  | 11 -----------
- board/amlogic/odroid-c2/odroid-c2.c    |  4 +---
- board/amlogic/p212/p212.c              |  3 +--
- drivers/i2c/meson_i2c.c                | 20 +++++++++++++++++---
- 5 files changed, 19 insertions(+), 29 deletions(-)
- delete mode 100644 arch/arm/include/asm/arch-meson/i2c.h
+ arch/arm/include/asm/arch-meson/clock.h | 34 +++++++++++++++++++++++++
+ arch/arm/mach-meson/Makefile            |  2 +-
+ arch/arm/mach-meson/clock.c             | 45 +++++++++++++++++++++++++++++++++
+ 3 files changed, 80 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/include/asm/arch-meson/clock.h
+ create mode 100644 arch/arm/mach-meson/clock.c
 
-diff --git a/arch/arm/include/asm/arch-meson/gxbb.h b/arch/arm/include/asm/arch-meson/gxbb.h
-index 95a6fe6998..48a2ab7425 100644
---- a/arch/arm/include/asm/arch-meson/gxbb.h
-+++ b/arch/arm/include/asm/arch-meson/gxbb.h
-@@ -40,14 +40,4 @@
- /* Ethernet memory power domain */
- #define GXBB_MEM_PD_REG_0_ETH_MASK	(BIT(2) | BIT(3))
- 
--/* Clock gates */
--#define GXBB_GCLK_MPEG_0	GXBB_HIU_ADDR(0x50)
--#define GXBB_GCLK_MPEG_1	GXBB_HIU_ADDR(0x51)
--#define GXBB_GCLK_MPEG_2	GXBB_HIU_ADDR(0x52)
--#define GXBB_GCLK_MPEG_OTHER	GXBB_HIU_ADDR(0x53)
--#define GXBB_GCLK_MPEG_AO	GXBB_HIU_ADDR(0x54)
--
--#define GXBB_GCLK_MPEG_0_I2C   BIT(9)
--#define GXBB_GCLK_MPEG_1_ETH	BIT(3)
--
- #endif /* __GXBB_H__ */
-diff --git a/arch/arm/include/asm/arch-meson/i2c.h b/arch/arm/include/asm/arch-meson/i2c.h
-deleted file mode 100644
-index 783bc3786f..0000000000
---- a/arch/arm/include/asm/arch-meson/i2c.h
-+++ /dev/null
-@@ -1,11 +0,0 @@
--/*
-- * Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
-- *
-- * SPDX-License-Identifier:	GPL-2.0+
-- */
--#ifndef _MESON_I2C_H_
--#define _MESON_I2C_H_
--
--#define MESON_I2C_CLK_RATE	167000000
--
--#endif
-diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
-index a5ea8dc5af..833f01b4cf 100644
---- a/board/amlogic/odroid-c2/odroid-c2.c
-+++ b/board/amlogic/odroid-c2/odroid-c2.c
-@@ -34,9 +34,7 @@ int misc_init_r(void)
- 				     GXBB_ETH_REG_0_PHY_CLK_EN |
- 				     GXBB_ETH_REG_0_CLK_EN);
- 
--	/* Enable power and clock gate */
--	setbits_le32(GXBB_GCLK_MPEG_0, GXBB_GCLK_MPEG_0_I2C);
--	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
-+	/* Enable power */
- 	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
- 
- 	/* Reset PHY on GPIOZ_14 */
-diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
-index ece8096c5c..907bbb286e 100644
---- a/board/amlogic/p212/p212.c
-+++ b/board/amlogic/p212/p212.c
-@@ -36,8 +36,7 @@ int misc_init_r(void)
- 	out_le32(GXBB_ETH_REG_2, 0x10110181);
- 	out_le32(GXBB_ETH_REG_3, 0xe40908ff);
- 
--	/* Enable power and clock gate */
--	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
-+	/* Enable power */
- 	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
- 
- 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
-diff --git a/drivers/i2c/meson_i2c.c b/drivers/i2c/meson_i2c.c
-index 2434d9ed53..1d92b09c32 100644
---- a/drivers/i2c/meson_i2c.c
-+++ b/drivers/i2c/meson_i2c.c
-@@ -4,8 +4,8 @@
-  * SPDX-License-Identifier:	GPL-2.0+
-  */
- #include <common.h>
--#include <asm/arch/i2c.h>
- #include <asm/io.h>
-+#include <clk.h>
- #include <dm.h>
- #include <i2c.h>
- 
-@@ -43,6 +43,7 @@ struct i2c_regs {
- };
- 
- struct meson_i2c {
-+	struct clk clk;
- 	struct i2c_regs *regs;
- 	struct i2c_msg *msg;
- 	bool last;
-@@ -209,9 +210,13 @@ static int meson_i2c_xfer(struct udevice *bus, struct i2c_msg *msg,
- static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
- {
- 	struct meson_i2c *i2c = dev_get_priv(bus);
--	unsigned int clk_rate = MESON_I2C_CLK_RATE;
-+	ulong clk_rate;
- 	unsigned int div;
- 
-+	clk_rate = clk_get_rate(&i2c->clk);
-+	if (IS_ERR_VALUE(clk_rate))
-+		return -EINVAL;
+diff --git a/arch/arm/include/asm/arch-meson/clock.h b/arch/arm/include/asm/arch-meson/clock.h
+new file mode 100644
+index 0000000000..b43b23386c
+--- /dev/null
++++ b/arch/arm/include/asm/arch-meson/clock.h
+@@ -0,0 +1,34 @@
++/*
++ * Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
++ *
++ * SPDX-License-Identifier:	GPL-2.0+
++ */
++#ifndef _MESON_CLOCK_H_
++#define _MESON_CLOCK_H_
 +
- 	div = DIV_ROUND_UP(clk_rate, speed * 4);
- 
- 	/* clock divider has 12 bits */
-@@ -226,7 +231,7 @@ static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
- 	clrsetbits_le32(&i2c->regs->ctrl, REG_CTRL_CLKDIVEXT_MASK,
- 			(div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
- 
--	debug("meson i2c: set clk %u, src %u, div %u\n", speed, clk_rate, div);
-+	debug("meson i2c: set clk %u, src %lu, div %u\n", speed, clk_rate, div);
- 
- 	return 0;
- }
-@@ -234,6 +239,15 @@ static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
- static int meson_i2c_probe(struct udevice *bus)
- {
- 	struct meson_i2c *i2c = dev_get_priv(bus);
-+	int ret;
++/* CBUS clock measure registers */
++#define MSR_CLK_DUTY		0xc1108758
++#define MSR_CLK_REG0		0xc110875c
++#define MSR_CLK_REG1		0xc1108760
++#define MSR_CLK_REG2		0xc1108764
 +
-+	ret = clk_get_by_index(bus, 0, &i2c->clk);
-+	if (ret < 0)
-+		return ret;
++#define CLK_GP0_PLL		4
++#define CLK_GP1_PLL		5
++#define CLK_81			7
++#define CLK_MMC			23
++#define CLK_MOD_ETH_TX		40
++#define CLK_MOD_ETH_RX_RMII	41
++#define CLK_FCLK_DIV5		43
++#define CLK_SD_EMMC_CLK_C	51
++#define CLK_SD_EMMC_CLK_B	52
 +
-+	ret = clk_enable(&i2c->clk);
-+	if (ret)
-+		return ret;
++/* Clock gates */
++#define HHI_GCLK_MPEG0		0x140
++#define HHI_GCLK_MPEG1		0x144
++#define HHI_GCLK_MPEG2		0x148
++#define HHI_GCLK_OTHER		0x150
++#define HHI_GCLK_AO		0x154
++
++ulong meson_measure_clk_rate(unsigned int clk);
++
++#endif
+diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
+index bf49b8b1e5..e7ea4fc5b0 100644
+--- a/arch/arm/mach-meson/Makefile
++++ b/arch/arm/mach-meson/Makefile
+@@ -4,4 +4,4 @@
+ # SPDX-License-Identifier:	GPL-2.0+
+ #
  
- 	i2c->regs = dev_read_addr_ptr(bus);
- 	clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
+-obj-y += board.o sm.o
++obj-y += board.o clock.o sm.o
+diff --git a/arch/arm/mach-meson/clock.c b/arch/arm/mach-meson/clock.c
+new file mode 100644
+index 0000000000..73be11e90d
+--- /dev/null
++++ b/arch/arm/mach-meson/clock.c
+@@ -0,0 +1,45 @@
++/*
++ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
++ *
++ * SPDX-License-Identifier:	GPL-2.0+
++ *
++ * Clock rate measuring.
++ */
++
++#include <common.h>
++#include <asm/arch/clock.h>
++#include <asm/io.h>
++
++ulong meson_measure_clk_rate(unsigned int clk)
++{
++	ulong start;
++	ulong mhz;
++
++	writel(0, MSR_CLK_REG0);
++
++	/* Set the measurement gate to 64uS */
++	clrsetbits_le32(MSR_CLK_REG0, 0xffff, 64 - 1);
++	clrbits_le32(MSR_CLK_REG0,
++		     BIT(17) |		/* disable continuous measurement */
++		     BIT(18));		/* disable interrupts */
++	clrsetbits_le32(MSR_CLK_REG0,
++			GENMASK(20, 26),
++			clk << 20);	/* select the clock */
++	setbits_le32(MSR_CLK_REG0,
++		     BIT(19) |		/* enable the clock */
++		     BIT(16));		/* enable measuring */
++
++	start = get_timer(0);
++	while (readl(MSR_CLK_REG0) & BIT(31)) {
++		if (get_timer(start) > 100) {
++			debug("could not measure clk %u rate\n", clk);
++			return -ETIMEDOUT;
++		}
++	}
++
++	/* Disable measuring */
++	clrbits_le32(MSR_CLK_REG0, BIT(16));
++
++	mhz = ((readl(MSR_CLK_REG2) + 31) & 0xfffff) >> 6;
++	return mhz * 1000000;
++}
 -- 
 2.14.3
