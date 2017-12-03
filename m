@@ -1,145 +1,40 @@
 From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Sun,  3 Dec 2017 10:17:10 +0100
-Subject: [PATCH 1/4] ARM: dts: update gxbb-clkc.h from Linux 4.14
-In-Reply-To: <20171203091713.22029-1-b.galvani@gmail.com>
-References: <20171203091713.22029-1-b.galvani@gmail.com>
-Message-ID: <20171203091713.22029-2-b.galvani@gmail.com>
+Date: Sun,  3 Dec 2017 10:17:09 +0100
+Subject: [PATCH 0/4] Meson clock driver
+Message-ID: <20171203091713.22029-1-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Update gxbb-clkc.h from Linux 4.14 as it contains new clock ids.
+Hi,
 
-Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
----
- include/dt-bindings/clock/gxbb-clkc.h | 75 +++++++++++++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
+this is a basic clock driver for u-boot that supports
+enabling/disabling clock gates and getting their frequency. With this,
+some hardcoded initializations can be removed from the board code, and
+drivers can use the information from device tree to initialize clocks.
 
-diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-index e3e9f7919c..8ba99a5e3f 100644
---- a/include/dt-bindings/clock/gxbb-clkc.h
-+++ b/include/dt-bindings/clock/gxbb-clkc.h
-@@ -1,3 +1,4 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
- /*
-  * GXBB clock tree IDs
-  */
-@@ -5,37 +6,96 @@
- #ifndef __GXBB_CLKC_H
- #define __GXBB_CLKC_H
- 
-+#define CLKID_SYS_PLL		0
- #define CLKID_HDMI_PLL		2
-+#define CLKID_FIXED_PLL		3
- #define CLKID_FCLK_DIV2		4
- #define CLKID_FCLK_DIV3		5
- #define CLKID_FCLK_DIV4		6
-+#define CLKID_FCLK_DIV5		7
-+#define CLKID_FCLK_DIV7		8
- #define CLKID_GP0_PLL		9
- #define CLKID_CLK81		12
-+#define CLKID_MPLL0		13
-+#define CLKID_MPLL1		14
- #define CLKID_MPLL2		15
-+#define CLKID_DDR		16
-+#define CLKID_DOS		17
-+#define CLKID_ISA		18
-+#define CLKID_PL301		19
-+#define CLKID_PERIPHS		20
- #define CLKID_SPICC		21
- #define CLKID_I2C		22
- #define CLKID_SAR_ADC		23
-+#define CLKID_SMART_CARD	24
- #define CLKID_RNG0		25
- #define CLKID_UART0		26
-+#define CLKID_SDHC		27
-+#define CLKID_STREAM		28
-+#define CLKID_ASYNC_FIFO	29
-+#define CLKID_SDIO		30
-+#define CLKID_ABUF		31
-+#define CLKID_HIU_IFACE		32
-+#define CLKID_ASSIST_MISC	33
- #define CLKID_SPI		34
- #define CLKID_ETH		36
-+#define CLKID_I2S_SPDIF		35
-+#define CLKID_DEMUX		37
- #define CLKID_AIU_GLUE		38
- #define CLKID_IEC958		39
- #define CLKID_I2S_OUT		40
-+#define CLKID_AMCLK		41
-+#define CLKID_AIFIFO2		42
-+#define CLKID_MIXER		43
- #define CLKID_MIXER_IFACE	44
-+#define CLKID_ADC		45
-+#define CLKID_BLKMV		46
- #define CLKID_AIU		47
- #define CLKID_UART1		48
-+#define CLKID_G2D		49
- #define CLKID_USB0		50
- #define CLKID_USB1		51
-+#define CLKID_RESET		52
-+#define CLKID_NAND		53
-+#define CLKID_DOS_PARSER	54
- #define CLKID_USB		55
-+#define CLKID_VDIN1		56
-+#define CLKID_AHB_ARB0		57
-+#define CLKID_EFUSE		58
-+#define CLKID_BOOT_ROM		59
-+#define CLKID_AHB_DATA_BUS	60
-+#define CLKID_AHB_CTRL_BUS	61
-+#define CLKID_HDMI_INTR_SYNC	62
- #define CLKID_HDMI_PCLK		63
- #define CLKID_USB1_DDR_BRIDGE	64
- #define CLKID_USB0_DDR_BRIDGE	65
-+#define CLKID_MMC_PCLK		66
-+#define CLKID_DVIN		67
- #define CLKID_UART2		68
- #define CLKID_SANA		69
-+#define CLKID_VPU_INTR		70
-+#define CLKID_SEC_AHB_AHB3_BRIDGE 71
-+#define CLKID_CLK81_A53		72
-+#define CLKID_VCLK2_VENCI0	73
-+#define CLKID_VCLK2_VENCI1	74
-+#define CLKID_VCLK2_VENCP0	75
-+#define CLKID_VCLK2_VENCP1	76
- #define CLKID_GCLK_VENCI_INT0	77
-+#define CLKID_GCLK_VENCI_INT	78
-+#define CLKID_DAC_CLK		79
- #define CLKID_AOCLK_GATE	80
- #define CLKID_IEC958_GATE	81
-+#define CLKID_ENC480P		82
-+#define CLKID_RNG1		83
-+#define CLKID_GCLK_VENCI_INT1	84
-+#define CLKID_VCLK2_VENCLMCC	85
-+#define CLKID_VCLK2_VENCL	86
-+#define CLKID_VCLK_OTHER	87
-+#define CLKID_EDP		88
-+#define CLKID_AO_MEDIA_CPU	89
-+#define CLKID_AO_AHB_SRAM	90
-+#define CLKID_AO_AHB_BUS	91
-+#define CLKID_AO_IFACE		92
- #define CLKID_AO_I2C		93
- #define CLKID_SD_EMMC_A		94
- #define CLKID_SD_EMMC_B		95
-@@ -50,5 +110,20 @@
- #define CLKID_CTS_AMCLK		107
- #define CLKID_CTS_MCLK_I958	110
- #define CLKID_CTS_I958		113
-+#define CLKID_32K_CLK		114
-+#define CLKID_SD_EMMC_A_CLK0	119
-+#define CLKID_SD_EMMC_B_CLK0	122
-+#define CLKID_SD_EMMC_C_CLK0	125
-+#define CLKID_VPU_0_SEL		126
-+#define CLKID_VPU_0		128
-+#define CLKID_VPU_1_SEL		129
-+#define CLKID_VPU_1		131
-+#define CLKID_VPU		132
-+#define CLKID_VAPB_0_SEL	133
-+#define CLKID_VAPB_0		135
-+#define CLKID_VAPB_1_SEL	136
-+#define CLKID_VAPB_1		138
-+#define CLKID_VAPB_SEL		139
-+#define CLKID_VAPB		140
- 
- #endif /* __GXBB_CLKC_H */
+Beniamino Galvani (4):
+  ARM: dts: update gxbb-clkc.h from Linux 4.14
+  ARM: meson: add clock measurement function
+  clk: add Amlogic meson clock driver
+  meson: use the clock driver
+
+ arch/arm/include/asm/arch-meson/clock.h |  34 ++++++
+ arch/arm/include/asm/arch-meson/gxbb.h  |  10 --
+ arch/arm/include/asm/arch-meson/i2c.h   |  11 --
+ arch/arm/mach-meson/Kconfig             |   2 +
+ arch/arm/mach-meson/Makefile            |   2 +-
+ arch/arm/mach-meson/clock.c             |  45 ++++++++
+ board/amlogic/odroid-c2/odroid-c2.c     |   4 +-
+ board/amlogic/p212/p212.c               |   3 +-
+ drivers/clk/Makefile                    |   1 +
+ drivers/clk/clk_meson.c                 | 196 ++++++++++++++++++++++++++++++++
+ drivers/i2c/meson_i2c.c                 |  20 +++-
+ include/dt-bindings/clock/gxbb-clkc.h   |  75 ++++++++++++
+ 12 files changed, 373 insertions(+), 30 deletions(-)
+ create mode 100644 arch/arm/include/asm/arch-meson/clock.h
+ delete mode 100644 arch/arm/include/asm/arch-meson/i2c.h
+ create mode 100644 arch/arm/mach-meson/clock.c
+ create mode 100644 drivers/clk/clk_meson.c
+
 -- 
 2.14.3
