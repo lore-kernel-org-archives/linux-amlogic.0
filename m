@@ -1,43 +1,27 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sun, 03 Dec 2017 15:16:57 +0100
-Subject: [PATCH 0/2] Ethernet PHY interrupt improvements
-In-Reply-To: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
-References: <20171202214037.17017-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1512310617.2574.4.camel@baylibre.com>
+From: davem@davemloft.net (David Miller)
+Date: Sun, 03 Dec 2017 09:38:31 -0500 (EST)
+Subject: [PATCH net-next 0/5] Realtek Ethernet PHY driver improvements
+In-Reply-To: <20171202215128.20202-1-martin.blumenstingl@googlemail.com>
+References: <20171202215128.20202-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20171203.093831.1940811223427294065.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2017-12-02 at 22:40 +0100, Martin Blumenstingl wrote:
-> this small series consists of two patches:
-> #1 documents the GPIO to which the PHY's interrupt line is connected
->    (the name "MAC_INTR" is used in the schematics of Odroid-C2 and
->     Khadas VIM2)
-> #2 adds the RTL8211F PHY's interrupt line on Khadas VIM2
-> 
-> I was a bit surprised to see that the GXM Q200 board seems to use
-> GPIOH_3 instead of GPIOZ_15 like all other boards.
-> @Jerome: could you please check if GPIOH_3 is correct or if it's
-> a "copy-and-paste" issue (Q200 is the only GXL/GXM based board.
-> GXL/GXM SoCs have fewer GPIOAO pins than GXBB, so the interrupt
-> offset for the same non-GPIOAO pin is different than on GXBB)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat,  2 Dec 2017 22:51:23 +0100
 
-Good catch, I confirm that the interrupt in GPIOZ_15 and certainly not GPIOH_3
+> This series provides some small improvements and cleanups for the
+> Realtek Ethernet PHY driver.
+> None of the patches in this series should change any functionality.
+> The goal is to make the code a bit easier to read by:
+> - re-using the BIT and GENMASK macros (which makes it easier to compare
+>   the #defines in the kernel with the values from the datasheets)
+> - rename a #define from a generic name to a PHY-specific name since it's
+>   only used for one specific PHY
+> - logically group the register #defines and their register bit #defines
+>   together
+> - indentation cleanups
+> - removed some code duplicating for reading/writing registers on a
+>   Realtek specific "page"
 
-> 
-> compile-tested: all boards
-> runtime tested: Khadas VIM2 (unplugging / plugging the Ethernet
-> cable increases the interrupt counter in /proc/interrupts and the
-> kernel correctly reports that the cable has been {un,}plugged)
-> 
-> 
-> Martin Blumenstingl (2):
->   ARM64: dts: meson: add comments with the GPIO for the PHY interrupts
->   ARM64: dts: meson-gxm: add the PHY interrupt line on Khadas VIM2
-> 
->  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts  | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts   | 2 ++
->  arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts       | 1 +
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 3 +++
->  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts        | 1 +
->  5 files changed, 8 insertions(+)
-> 
+Series applied.
