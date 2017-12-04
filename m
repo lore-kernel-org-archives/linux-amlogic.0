@@ -1,62 +1,80 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Sun, 3 Dec 2017 17:26:11 +0100
-Subject: [GIT PULL] revert ARM SCPI changes for v4.15-rc1
-In-Reply-To: <20171203010435.6ycn75rxss5yiixe@localhost>
-References: <7hlgimns2m.fsf@baylibre.com>
- <20171203010435.6ycn75rxss5yiixe@localhost>
-Message-ID: <19697169-9209-ba59-781f-e79e15961fca@gmail.com>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Mon, 4 Dec 2017 01:16:39 +0100
+Subject: [PATCH v5.1 1/2] ARM64: dts: meson-gx: use stable UART bindings
+ with correct gate clock
+In-Reply-To: <4e0d1db1-6382-a4b7-d112-3e45e0c1af2d@suse.de>
+References: <1498056132-18508-1-git-send-email-narmstrong@baylibre.com>
+ <1498056132-18508-2-git-send-email-narmstrong@baylibre.com>
+ <4e0d1db1-6382-a4b7-d112-3e45e0c1af2d@suse.de>
+Message-ID: <61a59a32-a812-cc88-79f9-02c13f1901d7@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 03.12.2017 um 02:04 schrieb Olof Johansson:
-> On Fri, Dec 01, 2017 at 11:53:05AM -0800, Kevin Hilman wrote:
->> Arnd, Olof,
->>
->> These ARM SCPI changes caused SCPI regressions resulting in CPUfreq
->> failures on most Amlogic SoCs (found by kernelci.org.)
->>
->> Unfortunately, this was not caught in linux-next due to other
->> bugs/panics on these platforms masking this problem so we've only found
->> it since we've fixed the other issues.
->>
->> Since we're already in the -rc cycle, I'd prefer to revert to a known
->> working state (that of v4.14) rather than finding/reverting a subset,
->> which would just lead to another untested state.
->>
->> These changes can then have some time to be better reviewed and tested
->> and resubmitted for v4.16.
->>
->> I've tested this revert on the affect Amlogic SoCs and verified that
->> we're back to the previous (working) condition.
->>
->> Also, I'm sending the pull directly to arm-soc instead of Sudeeep
->> because I understand that Sudeep is currently out-of-office and unlikely
->> to be able to address this himself during the -rc cycle.
->>
+Am 03.12.2017 um 15:15 schrieb Andreas F?rber:
+> Hi,
 > 
-> Sounds like the right approach here. I've merged this and added the above text
-> to the merge commit as well.
+> Am 21.06.2017 um 16:42 schrieb Neil Armstrong:
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> index 17d3efd..ea53cc2 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>> @@ -682,6 +682,31 @@
+>>  	clocks = <&clkc CLKID_SPI>;
+>>  };
+>>  
+>> +&uart_A {
+>> +	clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
+>> +	clock-names = "xtal", "pclk", "baud";
+>> +};
+>> +
+>> +&uart_AO {
+>> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
+>> +	clock-names = "xtal", "pclk", "baud";
+>> +};
+>> +
+>> +&uart_AO_B {
+>> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
+>> +	clock-names = "xtal", "pclk", "baud";
+>> +};
+>> +
+>> +&uart_B {
+>> +	clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
+>> +	clock-names = "xtal", "core", "baud";
 > 
-I can't reproduce the issue on my systems, however I'm quite sure that commit
-931cf0c53e69 "firmware: arm_scpi: pre-populate dvfs info in scpi_probe" causes
-the problem.
-I could re-submit the series w/o this patch, the other patches then need some
-re-basing.
-
-I'd include a patch addressing the following question from Kevin because I was
-asking myself the same thing too:
-"Also, is this the expected result for the pre-1.0 firmware:
-scpi_protocol scpi: SCP Protocol 0.0 Firmware 0.0.0 version"
-
-In case a legacy firmware doesn't provide version information I propose to
-print the following message instead:
-scpi_protocol scpi: SCP Protocol legacy pre-1.0 firmware
-
-The series could be applied to a devel branch first to give the Baylibre
-Amlogic team some time for testing.
-
-Rgds, Heiner
-
+> Looking at the meson_uart driver, it only looks for a "pclk" clock,
+> never for "core", and the only unnamed clock used should be the first.
 > 
-> -Olof
+> There is no bindings documentation for "core", so I assume this was an
+> oversight and should be "pclk" everywhere?
 > 
+>> +};
+>> +
+>> +&uart_C {
+>> +	clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
+>> +	clock-names = "xtal", "core", "baud";
+>> +};
+> 
+> The issue I'm facing is that uart_C on NanoPi K2 is not working in
+> 4.14.1. To my surprise it appears to be probing okay though.
+
+In 4.14 the serial driver checks for the legacy compatible and if
+present (even alongside the new compatible) always takes the legacy code
+path, using only the first clock, thus not tripping over "core" and not
+enabling the "pclk" if supplied.
+
+This was changed for v4.15-rc1, so we should start seeing errors for
+missing "pclk" clocks.
+
+> Sadly just overwriting the clock-names property via overlay does not fix
+> my issue. Any ideas?
+
+For reference here's my latest overlay, overriding compatible, too:
+https://github.com/afaerber/dt-overlays/blob/master/meson-gxbb-nanopi-k2%2Barpi600%2Bnucleo-lrwan1.dts
+
+Regards,
+Andreas
+
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
