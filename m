@@ -1,68 +1,64 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon,  4 Dec 2017 10:04:53 +0100
-Subject: [PATCH] ARM64: dts: meson-gx: fix UART pclk clock name
-Message-ID: <1512378293-22198-1-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 04 Dec 2017 10:17:39 +0100
+Subject: [PATCH 3/3] ARM64: dts: meson-axg: add PWM DT info for
+ Meson-Axg SoC
+In-Reply-To: <20171204060018.8856-4-yixun.lan@amlogic.com>
+References: <20171204060018.8856-1-yixun.lan@amlogic.com>
+ <20171204060018.8856-4-yixun.lan@amlogic.com>
+Message-ID: <1512379059.2574.17.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock-names for pclk was wrongly set to "core", but the bindings
-specifies "pclk".
-This was not cathed until the legacy non-documented bindings were removed.
+On Mon, 2017-12-04 at 14:00 +0800, Yixun Lan wrote:
+> From: Jian Hu <jian.hu@amlogic.com>
+> 
+> Add PWM DT info for the Amlogic's Meson-Axg SoC.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 120
+> +++++++++++++++++++++++++++++
+>  1 file changed, 120 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 92f65eec3e18..f7f228701df1 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -177,6 +177,24 @@
+> 
 
-Reported-by: Andreas F?rber <afaerber@suse.de>
-Fixes: f72d6f6037b7 ("ARM64: dts: meson-gx: use stable UART bindings with correct gate clock")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 6 +++---
- 2 files changed, 5 insertions(+), 5 deletions(-)
+[...]
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index ead895a..1fb8b9d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -753,12 +753,12 @@
- 
- &uart_B {
- 	clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
--	clock-names = "xtal", "core", "baud";
-+	clock-names = "xtal", "pclk", "baud";
- };
- 
- &uart_C {
- 	clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
--	clock-names = "xtal", "core", "baud";
-+	clock-names = "xtal", "pclk", "baud";
- };
- 
- &vpu {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 8ed981f..6524b89 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -688,7 +688,7 @@
- 
- &uart_A {
- 	clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
--	clock-names = "xtal", "core", "baud";
-+	clock-names = "xtal", "pclk", "baud";
- };
- 
- &uart_AO {
-@@ -703,12 +703,12 @@
- 
- &uart_B {
- 	clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
--	clock-names = "xtal", "core", "baud";
-+	clock-names = "xtal", "pclk", "baud";
- };
- 
- &uart_C {
- 	clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
--	clock-names = "xtal", "core", "baud";
-+	clock-names = "xtal", "pclk", "baud";
- };
- 
- &vpu {
--- 
-2.7.4
+> 
+> @@ -435,6 +537,24 @@
+>  				clock-names = "clk_i2c";
+>  			};
+>  
+> +			pwm_AO_ab: pwm at 7000 {
+> +				compatible = "amlogic,meson-axg-ao-pwm";
+> +				reg = <0x0 0x07000 0x0 0x20>;
+> +				#pwm-cells = <3>;
+> +				clocks = <&xtal>, <&xtal>;
+> +				clock-names = "clkin0", "clkin1";
+
+like gxbb, "amlogic,meson-axg-ao-pwm" does not have such clock bindings,
+Later on, if we want to "correctly" get the clock from DT, it will have to gothrough a new compatible, I guess. 
+
+> +				status = "disabled";
+> +			};
+> +
+> +			pwm_AO_cd: pwm at 2000 {
+> +				compatible = "amlogic,axg-ao-pwm";
+> +				reg = <0x0 0x02000  0x0 0x20>;
+> +				#pwm-cells = <3>;
+> +				clocks = <&xtal>, <&xtal>;
+> +				clock-names = "clkin0", "clkin1";
+> +				status = "disabled";
+> +			};
+> +
+>  			uart_AO: serial at 3000 {
+>  				compatible = "amlogic,meson-gx-uart",
+> "amlogic,meson-ao-uart";
+>  				reg = <0x0 0x3000 0x0 0x18>;
