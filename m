@@ -1,166 +1,92 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 4 Dec 2017 14:00:18 +0800
-Subject: [PATCH 3/3] ARM64: dts: meson-axg: add PWM DT info for Meson-Axg SoC
-In-Reply-To: <20171204060018.8856-1-yixun.lan@amlogic.com>
-References: <20171204060018.8856-1-yixun.lan@amlogic.com>
-Message-ID: <20171204060018.8856-4-yixun.lan@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 4 Dec 2017 09:52:34 +0100
+Subject: [PATCH v5.1 1/2] ARM64: dts: meson-gx: use stable UART bindings
+ with correct gate clock
+In-Reply-To: <61a59a32-a812-cc88-79f9-02c13f1901d7@suse.de>
+References: <1498056132-18508-1-git-send-email-narmstrong@baylibre.com>
+ <1498056132-18508-2-git-send-email-narmstrong@baylibre.com>
+ <4e0d1db1-6382-a4b7-d112-3e45e0c1af2d@suse.de>
+ <61a59a32-a812-cc88-79f9-02c13f1901d7@suse.de>
+Message-ID: <5c689c0f-1861-d65f-0aa4-5d751ad90611@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jian Hu <jian.hu@amlogic.com>
+On 04/12/2017 01:16, Andreas F?rber wrote:
+> Am 03.12.2017 um 15:15 schrieb Andreas F?rber:
+>> Hi,
+>>
+>> Am 21.06.2017 um 16:42 schrieb Neil Armstrong:
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>>> index 17d3efd..ea53cc2 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+>>> @@ -682,6 +682,31 @@
+>>>  	clocks = <&clkc CLKID_SPI>;
+>>>  };
+>>>  
+>>> +&uart_A {
+>>> +	clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
+>>> +	clock-names = "xtal", "pclk", "baud";
+>>> +};
+>>> +
+>>> +&uart_AO {
+>>> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
+>>> +	clock-names = "xtal", "pclk", "baud";
+>>> +};
+>>> +
+>>> +&uart_AO_B {
+>>> +	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
+>>> +	clock-names = "xtal", "pclk", "baud";
+>>> +};
+>>> +
+>>> +&uart_B {
+>>> +	clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
+>>> +	clock-names = "xtal", "core", "baud";
+>>
+>> Looking at the meson_uart driver, it only looks for a "pclk" clock,
+>> never for "core", and the only unnamed clock used should be the first.
+>>
+>> There is no bindings documentation for "core", so I assume this was an
+>> oversight and should be "pclk" everywhere?
+>>
+>>> +};
+>>> +
+>>> +&uart_C {
+>>> +	clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
+>>> +	clock-names = "xtal", "core", "baud";
+>>> +};
+>>
+>> The issue I'm facing is that uart_C on NanoPi K2 is not working in
+>> 4.14.1. To my surprise it appears to be probing okay though.
+> 
+> In 4.14 the serial driver checks for the legacy compatible and if
+> present (even alongside the new compatible) always takes the legacy code
+> path, using only the first clock, thus not tripping over "core" and not
+> enabling the "pclk" if supplied.
 
-Add PWM DT info for the Amlogic's Meson-Axg SoC.
+I only used UART_A, this explains a lot.
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 120 +++++++++++++++++++++++++++++
- 1 file changed, 120 insertions(+)
+> 
+> This was changed for v4.15-rc1, so we should start seeing errors for
+> missing "pclk" clocks.
+> 
+>> Sadly just overwriting the clock-names property via overlay does not fix
+>> my issue. Any ideas?
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 92f65eec3e18..f7f228701df1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -177,6 +177,24 @@
- 				clock-names = "clk_i2c";
- 			};
- 
-+			pwm_ab: pwm at 1b000 {
-+				compatible = "amlogic,meson-axg-ee-pwm";
-+				reg = <0x0 0x1b000 0x0 0x20>;
-+				#pwm-cells = <3>;
-+				clocks = <&xtal>, <&xtal>;
-+				clock-names = "clkin0", "clkin1";
-+				status = "disabled";
-+			};
-+
-+			pwm_cd: pwm at 1a000 {
-+				compatible = "amlogic,meson-axg-ee-pwm";
-+				reg = <0x0 0x1a000 0x0 0x20>;
-+				#pwm-cells = <3>;
-+				clocks = <&xtal>, <&xtal>;
-+				clock-names = "clkin0", "clkin1";
-+				status = "disabled";
-+			};
-+
- 			uart_A: serial at 24000 {
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-uart";
- 				reg = <0x0 0x24000 0x0 0x14>;
-@@ -368,6 +386,90 @@
- 						function = "i2c3";
- 					};
- 				};
-+
-+				pwm_a_a_pins: pwm_a_a {
-+					mux {
-+						groups = "pwm_a_a";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_x18_pins: pwm_a_x18 {
-+					mux {
-+						groups = "pwm_a_x18";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_x20_pins: pwm_a_x20 {
-+					mux {
-+						groups = "pwm_a_x20";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_a_z_pins: pwm_a_z {
-+					mux {
-+						groups = "pwm_a_z";
-+						function = "pwm_a";
-+					};
-+				};
-+
-+				pwm_b_a_pins: pwm_b_a {
-+					mux {
-+						groups = "pwm_b_a";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_b_x_pins: pwm_b_x {
-+					mux {
-+						groups = "pwm_b_x";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_b_z_pins: pwm_b_z {
-+					mux {
-+						groups = "pwm_b_z";
-+						function = "pwm_b";
-+					};
-+				};
-+
-+				pwm_c_a_pins: pwm_c_a {
-+					mux {
-+						groups = "pwm_c_a";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_c_x10_pins: pwm_c_x10 {
-+					mux {
-+						groups = "pwm_c_x10";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_c_x17_pins: pwm_c_x17 {
-+					mux {
-+						groups = "pwm_c_x17";
-+						function = "pwm_c";
-+					};
-+				};
-+
-+				pwm_d_x11_pins: pwm_d_x11 {
-+					mux {
-+						groups = "pwm_d_x11";
-+						function = "pwm_d";
-+					};
-+				};
-+
-+				pwm_d_x16_pins: pwm_d_x16 {
-+					mux {
-+						groups = "pwm_d_x16";
-+						function = "pwm_d";
-+					};
-+				};
- 			};
- 		};
- 
-@@ -435,6 +537,24 @@
- 				clock-names = "clk_i2c";
- 			};
- 
-+			pwm_AO_ab: pwm at 7000 {
-+				compatible = "amlogic,meson-axg-ao-pwm";
-+				reg = <0x0 0x07000 0x0 0x20>;
-+				#pwm-cells = <3>;
-+				clocks = <&xtal>, <&xtal>;
-+				clock-names = "clkin0", "clkin1";
-+				status = "disabled";
-+			};
-+
-+			pwm_AO_cd: pwm at 2000 {
-+				compatible = "amlogic,axg-ao-pwm";
-+				reg = <0x0 0x02000  0x0 0x20>;
-+				#pwm-cells = <3>;
-+				clocks = <&xtal>, <&xtal>;
-+				clock-names = "clkin0", "clkin1";
-+				status = "disabled";
-+			};
-+
- 			uart_AO: serial at 3000 {
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x3000 0x0 0x18>;
--- 
-2.15.0
+You need to rebind the devices.
+
+> 
+> For reference here's my latest overlay, overriding compatible, too:
+> https://github.com/afaerber/dt-overlays/blob/master/meson-gxbb-nanopi-k2%2Barpi600%2Bnucleo-lrwan1.dts
+> 
+> Regards,
+> Andreas
+> 
+
+Wow I must have been very tired when pushing this....
+
+Thanks for spotting this.
+
+I'll send a fix asap.
+
+Neil
