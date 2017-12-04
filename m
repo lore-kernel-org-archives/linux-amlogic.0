@@ -1,59 +1,73 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 04 Dec 2017 10:05:57 -0800
-Subject: [GIT PULL] Amlogic fixes for v4.15-rc (redo)
-In-Reply-To: <20171203010837.chbvhkrhayfbnmsz@localhost> (Olof Johansson's
- message of "Sat, 2 Dec 2017 17:08:37 -0800")
-References: <7h7eu7p95w.fsf@baylibre.com>
- <20171203010837.chbvhkrhayfbnmsz@localhost>
-Message-ID: <7htvx6tlkq.fsf@baylibre.com>
+Date: Mon, 04 Dec 2017 10:14:00 -0800
+Subject: SCPI regressions in v4.15-rc1 on Amlogic SoCs.
+In-Reply-To: <20171204022441.GB6870@e107533-lin> (Sudeep Holla's message of
+ "Mon, 4 Dec 2017 02:24:41 +0000")
+References: <CAOi56cXCBAJO6iOONTENqGdm9kE+t4fGYgTENupzkRgHjJfykw@mail.gmail.com>
+ <9754d389-1dd4-e189-6c8f-c725d049dea8@gmail.com>
+ <20171204022441.GB6870@e107533-lin>
+Message-ID: <7hindmtl7b.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Olof Johansson <olof@lixom.net> writes:
+Sudeep Holla <sudeep.holla@arm.com> writes:
 
-> Hi,
+> On Fri, Dec 01, 2017 at 08:08:25AM +0100, Heiner Kallweit wrote:
+>> Am 01.12.2017 um 01:21 schrieb Kevin Hilman:
+>> > Hi Sudeep,
+>> > 
+>> > There's been a pretty major regression in v4.15-rc1 compared to v4.15
+>> > in SCPI causing warning splats on amlogic SoCs when cpufreq starts up
+>> > and tries to set the OPP for the first time[1].
+>> > 
+>> Thanks for the report. Strange enough, it works perfectly fine on my
+>> Odroid-C2, see below log part from latest next kernel.
+>>
 >
-> On Thu, Nov 30, 2017 at 04:46:19PM -0800, Kevin Hilman wrote:
->> Arnd, Olof,
->> 
->> A handful of minor v4.15 fixes for Amlogic family SoCs.  They're mostly
->> DT, but some trivial non-DT stuff mixed in.  Let me know if you prefer
->> those in separate pulls, and I will do so.
->> 
->> Thanks,
->> 
->> Kevin
->> 
->> 
->> The following changes since commit 4fbd8d194f06c8a3fd2af1ce560ddb31f7ec8323:
->> 
->>   Linux 4.15-rc1 (2017-11-26 16:01:47 -0800)
->> 
->> are available in the git repository at:
->> 
->>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git amlogic-fixes
->> 
->> for you to fetch changes up to 9f8e06ca1d0e3ef1167a2f43a8b1e63763b283b8:
->> 
->>   ARM64: dts: odroid-c2: Add HDMI and CEC Nodes (2017-11-30 15:30:09 -0800)
->> 
->> ----------------------------------------------------------------
->> Amlogic fixes for v4.15-rc
->> - GPIO interrupt fixes
->> - new nodes for drivers merged late (VPU domains)
->
-> The VPU power domain and HDMI regulator changes look more like new hardware
-> support than bugfixes to me, is that a correct assessment? I.e. is something
-> breaking by not having these new DT nodes in the tree one existing hardware?
->
-> If it isn't a bugfix, I think I'd rather see it queued up for next merge
-> window
+> OK, I would like to understand/get the list of AmLogic SoC using SCPI,
+> so that I get any changes tested on all of them next time.
 
-You're right, it's new hardware support that was supposed to be
-submitted for the late branch (since the drivers were queued up late.)
-But I was late for late :) so was hoping since they are DT only and
-platform specific, they could go in for -rc1.
+You can start here: https://kernelci.org/soc/amlogic/
 
-If they need to wait for the next merge window, we'll survive.
+The "Available boards" section lists 8 boards we have fully automated
+that are representative (enough) to catch problems.  We have a bunch
+more that are not (yet) fully automated in kernelCI.
+
+Anything that is meson-gx* will use SCPI, and it's entirely possible
+that they've changed SCPI firmware since the GXBB SoCs (which Heiner is
+testing) and the GXL SoCs which seem to be the ones failing.  I don't
+have much visibiliy into the firmware, but as you mentioned this is
+starting to look like it could be related to a firmware change.
+
+The failing logs are showing some new messages on the console that are
+not coming from the kernel.  I'm guessing they're from the firmware
+(still using the serial console!) but I have not fully verified that.
 
 Kevin
+
+> As Kevin mentioned, it's always safer to just cc the amlogic mailing
+> list. I have done that in past and failed to observe that this time.
+>
+>> Your log seems to indicate that due to deferred probing something is
+>> not done in the right order.
+>> Can you bisect the issue? I'd assume that it's commit 931cf0c53e69
+>> ("firmware: arm_scpi: pre-populate dvfs info in scpi_probe").
+>> 
+>
+> Yes, even I suspect the same change. But I don't fully understand the issue.
+>
+> I remember asking you to make some changes in probe path. I think I
+> wanted you to continue with SCPI probe even if DVFS fails as that causes
+> issues on platforms that have partial DVFS implemented but other protocols
+> like clock and sensors working fine.
+>
+> I guess all platforms with broken SCPI implementation should have it
+> disabled in the DT instead of taking special care for that in DT.
+>
+> I assume that's the case even with the platform under regression now.
+> The correct way to fix it would be to disable DVFS node but it may need
+> some investigation to narrow down to this comment.
+>
+> --
+> Regards,
+> Sudeep
