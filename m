@@ -1,27 +1,151 @@
-From: thierry.reding@gmail.com (Thierry Reding)
-Date: Tue, 5 Dec 2017 09:52:27 +0100
-Subject: [PATCH 0/3] pwm: meson-axg: add pwm controller driver
-In-Reply-To: <20171204060018.8856-1-yixun.lan@amlogic.com>
-References: <20171204060018.8856-1-yixun.lan@amlogic.com>
-Message-ID: <20171205085227.GD7386@ulmo>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue,  5 Dec 2017 10:33:34 +0100
+Subject: [PATCH net-next] net: phy: meson-gxl: cleanup by defining the control
+ registers
+Message-ID: <20171205093334.8261-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Dec 04, 2017 at 02:00:15PM +0800, Yixun Lan wrote:
-> This patch series try to add PWM controller driver for the 
-> Amlogic's Meson-AXG SoC. Update the Clock sources, pin DT.
-> 
-> Jian Hu (3):
->   dt-bindings: pwm: update bindings for the Meson-AXG
->   pwm: meson: add clock source configuratin for Meson-AXG
+From: Neil Armstrong <narmstrong@baylibre.com>
 
-Applied both of these, thanks.
+Define registers and bits in meson-gxl PHY driver to make a bit
+more human friendly. No functional change
 
-Thierry
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 833 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20171205/79d728d5/attachment.sig>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/net/phy/meson-gxl.c | 111 +++++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 93 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index 1ea69b7585d9..82c11556605e 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -22,32 +22,107 @@
+ #include <linux/ethtool.h>
+ #include <linux/phy.h>
+ #include <linux/netdevice.h>
++#include <linux/bitfield.h>
++
++#define TSTCNTL		0x14
++#define TSTREAD1	0x15
++#define TSTREAD2	0x16
++#define TSTWRITE	0x17
++
++#define TSTCNTL_READ		BIT(15)
++#define TSTCNTL_WRITE		BIT(14)
++#define TSTCNTL_REG_BANK_SEL	GENMASK(12, 11)
++#define TSTCNTL_TEST_MODE	BIT(10)
++#define TSTCNTL_READ_ADDRESS	GENMASK(9, 5)
++#define TSTCNTL_WRITE_ADDRESS	GENMASK(4, 0)
++
++#define BANK_ANALOG_DSP		0
++#define BANK_BIST		3
++
++/* Analog/DSP Registers */
++#define A6_CONFIG_REG		0x17
++
++/* BIST Registers */
++#define FR_PLL_CONTROL		0x1b
++#define FR_PLL_DIV0		0x1c
++#define FR_PLL_DIV1		0x1d
++
++#define A6_CONFIG_PLLMULX4ICH		BIT(15)
++#define A6_CONFIG_PLLBIASSEL		BIT(14)
++#define A6_CONFIG_PLLINTRATIO		GENMASK(13, 12)
++#define A6_CONFIG_PLLBUFITRIM		GENMASK(11, 9)
++#define A6_CONFIG_PLLCHTRIM		GENMASK(8, 5)
++#define A6_CONFIG_PLLCHBIASSEL		BIT(4)
++#define A6_CONFIG_PLLRSTVCOPD		BIT(3)
++#define A6_CONFIG_PLLCPOFF		BIT(2)
++#define A6_CONFIG_PLLPD			BIT(1)
++#define A6_CONFIG_PLL_SRC		BIT(0)
++
++static inline int meson_gxl_write_reg(struct phy_device *phydev,
++				      unsigned int bank, unsigned int reg,
++				      uint16_t value)
++{
++	int ret;
++
++	/* Enable Analog and DSP register Bank access by
++	 * toggling TSTCNTL_TEST_MODE bit in the TSTCNTL register
++	 */
++	ret = phy_write(phydev, TSTCNTL, 0);
++	if (ret)
++		goto out;
++	ret = phy_write(phydev, TSTCNTL, TSTCNTL_TEST_MODE);
++	if (ret)
++		goto out;
++	ret = phy_write(phydev, TSTCNTL, 0);
++	if (ret)
++		goto out;
++	ret = phy_write(phydev, TSTCNTL, TSTCNTL_TEST_MODE);
++	if (ret)
++		goto out;
++
++	ret = phy_write(phydev, TSTWRITE, value);
++	if (ret)
++		goto out;
++
++	ret = phy_write(phydev, TSTCNTL, TSTCNTL_WRITE |
++			FIELD_PREP(TSTCNTL_REG_BANK_SEL, bank) |
++			TSTCNTL_TEST_MODE |
++			FIELD_PREP(TSTCNTL_WRITE_ADDRESS, reg));
++
++out:
++	/* Close the bank access on our way out */
++	phy_write(phydev, TSTCNTL, 0);
++	return ret;
++}
++
+ 
+ static int meson_gxl_config_init(struct phy_device *phydev)
+ {
+-	/* Enable Analog and DSP register Bank access by */
+-	phy_write(phydev, 0x14, 0x0000);
+-	phy_write(phydev, 0x14, 0x0400);
+-	phy_write(phydev, 0x14, 0x0000);
+-	phy_write(phydev, 0x14, 0x0400);
++	int ret;
+ 
+-	/* Write Analog register 23 */
+-	phy_write(phydev, 0x17, 0x8E0D);
+-	phy_write(phydev, 0x14, 0x4417);
++	/* Write PLL Configuration 1 */
++	ret = meson_gxl_write_reg(phydev, BANK_ANALOG_DSP, A6_CONFIG_REG,
++				  A6_CONFIG_PLLMULX4ICH |
++				  FIELD_PREP(A6_CONFIG_PLLBUFITRIM, 7) |
++				  A6_CONFIG_PLLRSTVCOPD |
++				  A6_CONFIG_PLLCPOFF |
++				  A6_CONFIG_PLL_SRC);
++	if (ret)
++		return ret;
+ 
+-	/* Enable fractional PLL */
+-	phy_write(phydev, 0x17, 0x0005);
+-	phy_write(phydev, 0x14, 0x5C1B);
++	/* Enable fractional PLL configuration */
++	ret = meson_gxl_write_reg(phydev, BANK_BIST, FR_PLL_CONTROL, 0x5);
++	if (ret)
++		return ret;
+ 
+-	/* Program fraction FR_PLL_DIV1 */
+-	phy_write(phydev, 0x17, 0x029A);
+-	phy_write(phydev, 0x14, 0x5C1D);
++	ret = meson_gxl_write_reg(phydev, BANK_BIST, FR_PLL_DIV1, 0x029a);
++	if (ret)
++		return ret;
+ 
+-	/* Program fraction FR_PLL_DIV1 */
+-	phy_write(phydev, 0x17, 0xAAAA);
+-	phy_write(phydev, 0x14, 0x5C1C);
++	/* Program fraction FR_PLL_DIV0 */
++	ret = meson_gxl_write_reg(phydev, BANK_BIST, FR_PLL_DIV0, 0xaaaa);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static struct phy_driver meson_gxl_phy[] = {
+-- 
+2.14.3
