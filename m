@@ -1,51 +1,51 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 5 Dec 2017 23:16:58 +0100
-Subject: [PATCH 06/12] firmware: arm_scpi: improve struct sensor_value
+Date: Tue, 5 Dec 2017 23:17:13 +0100
+Subject: [PATCH 10/12] firmware: arm_scpi: remove struct sensor_capabilities
 In-Reply-To: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
 References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
-Message-ID: <d9278f12-9f3d-66fc-114d-f940388b6cf7@gmail.com>
+Message-ID: <15722eb4-836c-eb30-fdff-8389ff8e6703@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-lo_val and hi_val together in this order are a little endian 64 bit value.
-Therefore we can simplify struct sensor_value and the code by defining
-it as a __le64 value and by using le64_to_cpu.
+One more single-element struct was left, remove it.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/firmware/arm_scpi.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/firmware/arm_scpi.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
-index 63441e40..4447af48 100644
+index b653ada4..5695b1f4 100644
 --- a/drivers/firmware/arm_scpi.c
 +++ b/drivers/firmware/arm_scpi.c
-@@ -347,9 +347,8 @@ struct _scpi_sensor_info {
- };
+@@ -331,10 +331,6 @@ struct dvfs_set {
+ 	u8 index;
+ } __packed;
  
- struct sensor_value {
--	__le32 lo_val;
--	__le32 hi_val;
+-struct sensor_capabilities {
+-	__le16 sensors;
 -} __packed;
-+	__le64 val;
-+};
+-
+ struct _scpi_sensor_info {
+ 	__le16 sensor_id;
+ 	u8 class;
+@@ -730,13 +726,13 @@ static int scpi_dvfs_add_opps_to_device(struct device *dev)
  
- struct dev_pstate_set {
- 	__le16 dev_id;
-@@ -777,11 +776,10 @@ static int scpi_sensor_get_value(u16 sensor, u64 *val)
- 		return ret;
+ static int scpi_sensor_get_capability(u16 *sensors)
+ {
+-	struct sensor_capabilities cap_buf;
++	__le16 cap;
+ 	int ret;
  
- 	if (scpi_info->is_legacy)
--		/* only 32-bits supported, hi_val can be junk */
--		*val = le32_to_cpu(buf.lo_val);
-+		/* only 32-bits supported, upper 32 bits can be junk */
-+		*val = le32_to_cpup((__le32 *)&buf.val);
- 	else
--		*val = (u64)le32_to_cpu(buf.hi_val) << 32 |
--			le32_to_cpu(buf.lo_val);
-+		*val = le64_to_cpu(buf.val);
+-	ret = scpi_send_message(CMD_SENSOR_CAPABILITIES, NULL, 0, &cap_buf,
+-				sizeof(cap_buf));
++	ret = scpi_send_message(CMD_SENSOR_CAPABILITIES, NULL, 0, &cap,
++				sizeof(cap));
+ 	if (!ret)
+-		*sensors = le16_to_cpu(cap_buf.sensors);
++		*sensors = le16_to_cpu(cap);
  
- 	return 0;
+ 	return ret;
  }
 -- 
 2.15.1
