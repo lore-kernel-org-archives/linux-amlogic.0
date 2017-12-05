@@ -1,38 +1,33 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 5 Dec 2017 22:54:30 +0100
-Subject: [PATCH 00/12] firmware: arm_scpi: series with smaller improvements
-Message-ID: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
+Date: Tue, 5 Dec 2017 23:16:35 +0100
+Subject: [PATCH 01/12] firmware: arm_scpi: remove two unneeded devm_kfree's in
+ scpi_remove
+In-Reply-To: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
+References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
+Message-ID: <14a7fdfe-a854-0fe7-bf4b-f7e62a001c2e@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-After recent revert of all changes since 4.14 this is a resubmit of
-the patch series, reduced to patches which should not cause any
-regression.
-Based on a remark from Kevin I added one patch for improving the
-version info for pre-1.0 firmware that doesn't provide version
-information.
+Both memory areas are free'd anyway when the device is destroyed,
+so we don't have to do it manually. 
 
-Best should be to apply it to a devel branch first so that the
-Baylibre Amlogic team can test before mainlining.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ drivers/firmware/arm_scpi.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Heiner Kallweit (10):
-  firmware: arm_scpi: remove two unneeded devm_kfree's in scpi_remove
-  firmware: arm_scpi: make freeing mbox channels device-managed
-  firmware: arm_scpi: make scpi_probe completely device-managed
-  firmware: arm_scpi: improve struct dvfs_info to make code better readable
-  firmware: arm_scpi: improve handling of protocol and firmware version subfields
-  firmware: arm_scpi: improve struct sensor_value
-  firmware: arm_scpi: silence sparse warnings
-  firmware: arm_scpi: remove struct sensor_capabilities
-  firmware: arm_scpi: use FIELD_GET/_PREP to simplify macro definitions
-  firmware: arm_scpi: improve info message for pre-1.0 firmware
-
-Sudeep Holla (2):
-  firmware: arm_scpi: drop unnecessary type cast to scpi_shared_mem
-  firmware: arm_scpi: remove all single element structures
-
- drivers/firmware/arm_scpi.c | 211 +++++++++++++++++++-------------------------
- 1 file changed, 89 insertions(+), 122 deletions(-)
-
+diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
+index 7da9f1b8..2a30d255 100644
+--- a/drivers/firmware/arm_scpi.c
++++ b/drivers/firmware/arm_scpi.c
+@@ -918,8 +918,6 @@ static int scpi_remove(struct platform_device *pdev)
+ 		kfree(info->dvfs[i]->opps);
+ 		kfree(info->dvfs[i]);
+ 	}
+-	devm_kfree(dev, info->channels);
+-	devm_kfree(dev, info);
+ 
+ 	return 0;
+ }
 -- 
 2.15.1
