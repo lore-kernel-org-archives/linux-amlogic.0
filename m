@@ -1,83 +1,57 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 5 Dec 2017 23:17:15 +0100
-Subject: [PATCH 11/12] firmware: arm_scpi: use FIELD_GET/_PREP to simplify
- macro definitions
+Date: Tue, 5 Dec 2017 23:17:19 +0100
+Subject: [PATCH 12/12] firmware: arm_scpi: improve info message for pre-1.0
+ firmware
 In-Reply-To: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
 References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
-Message-ID: <d1575132-5e29-a598-ad72-1cc3fbe442a3@gmail.com>
+Message-ID: <587dc762-ab75-e349-87e7-c3ed0c42cd4a@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Macro definitions can be simplified by making use of the FIELD_GET/_PREP
-bitfield macros.
+On legacy pre-1.0 firmware versions so far the following message is
+printed which may cause some confusion:
+SCP Protocol 0.0 Firmware 0.0.0 version
+
+Therefore replace the message with the following if firmware doesn't
+provide usable version information:
+SCP Protocol legacy pre-1.0 firmware
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/firmware/arm_scpi.c | 38 +++++++++++++++-----------------------
- 1 file changed, 15 insertions(+), 23 deletions(-)
+ drivers/firmware/arm_scpi.c | 21 +++++++++++++++------
+ 1 file changed, 15 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
-index 5695b1f4..bc7055a6 100644
+index bc7055a6..6d7a6c0a 100644
 --- a/drivers/firmware/arm_scpi.c
 +++ b/drivers/firmware/arm_scpi.c
-@@ -46,27 +46,19 @@
- #include <linux/sort.h>
- #include <linux/spinlock.h>
+@@ -1005,12 +1005,21 @@ static int scpi_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
  
--#define CMD_ID_SHIFT		0
--#define CMD_ID_MASK		0x7f
--#define CMD_TOKEN_ID_SHIFT	8
--#define CMD_TOKEN_ID_MASK	0xff
--#define CMD_DATA_SIZE_SHIFT	16
--#define CMD_DATA_SIZE_MASK	0x1ff
--#define CMD_LEGACY_DATA_SIZE_SHIFT	20
--#define CMD_LEGACY_DATA_SIZE_MASK	0x1ff
--#define PACK_SCPI_CMD(cmd_id, tx_sz)			\
--	((((cmd_id) & CMD_ID_MASK) << CMD_ID_SHIFT) |	\
--	(((tx_sz) & CMD_DATA_SIZE_MASK) << CMD_DATA_SIZE_SHIFT))
--#define ADD_SCPI_TOKEN(cmd, token)			\
--	((cmd) |= (((token) & CMD_TOKEN_ID_MASK) << CMD_TOKEN_ID_SHIFT))
--#define PACK_LEGACY_SCPI_CMD(cmd_id, tx_sz)				\
--	((((cmd_id) & CMD_ID_MASK) << CMD_ID_SHIFT) |			       \
--	(((tx_sz) & CMD_LEGACY_DATA_SIZE_MASK) << CMD_LEGACY_DATA_SIZE_SHIFT))
--
--#define CMD_SIZE(cmd)	(((cmd) >> CMD_DATA_SIZE_SHIFT) & CMD_DATA_SIZE_MASK)
--#define CMD_LEGACY_SIZE(cmd)	(((cmd) >> CMD_LEGACY_DATA_SIZE_SHIFT) & \
--					CMD_LEGACY_DATA_SIZE_MASK)
--#define CMD_UNIQ_MASK	(CMD_TOKEN_ID_MASK << CMD_TOKEN_ID_SHIFT | CMD_ID_MASK)
-+#define CMD_ID_MASK		GENMASK(6, 0)
-+#define CMD_TOKEN_ID_MASK	GENMASK(15, 8)
-+#define CMD_DATA_SIZE_MASK	GENMASK(24, 16)
-+#define CMD_LEGACY_DATA_SIZE_MASK	GENMASK(28, 20)
-+#define PACK_SCPI_CMD(cmd_id, tx_sz)		\
-+	(FIELD_PREP(CMD_ID_MASK, cmd_id) |	\
-+	FIELD_PREP(CMD_DATA_SIZE_MASK, tx_sz))
-+#define PACK_LEGACY_SCPI_CMD(cmd_id, tx_sz)	\
-+	(FIELD_PREP(CMD_ID_MASK, cmd_id) |	\
-+	FIELD_PREP(CMD_LEGACY_DATA_SIZE_MASK, tx_sz))
-+
-+#define CMD_SIZE(cmd)	FIELD_GET(CMD_DATA_SIZE_MASK, cmd)
-+#define CMD_UNIQ_MASK	(CMD_TOKEN_ID_MASK | CMD_ID_MASK)
- #define CMD_XTRACT_UNIQ(cmd)	((cmd) & CMD_UNIQ_MASK)
+-	dev_info(dev, "SCP Protocol %lu.%lu Firmware %lu.%lu.%lu version\n",
+-		 FIELD_GET(PROTO_REV_MAJOR_MASK, scpi_info->protocol_version),
+-		 FIELD_GET(PROTO_REV_MINOR_MASK, scpi_info->protocol_version),
+-		 FIELD_GET(FW_REV_MAJOR_MASK, scpi_info->firmware_version),
+-		 FIELD_GET(FW_REV_MINOR_MASK, scpi_info->firmware_version),
+-		 FIELD_GET(FW_REV_PATCH_MASK, scpi_info->firmware_version));
++	if (scpi_info->is_legacy && !scpi_info->protocol_version &&
++	    !scpi_info->firmware_version)
++		dev_info(dev, "SCP Protocol legacy pre-1.0 firmware\n");
++	else
++		dev_info(dev, "SCP Protocol %lu.%lu Firmware %lu.%lu.%lu version\n",
++			 FIELD_GET(PROTO_REV_MAJOR_MASK,
++				   scpi_info->protocol_version),
++			 FIELD_GET(PROTO_REV_MINOR_MASK,
++				   scpi_info->protocol_version),
++			 FIELD_GET(FW_REV_MAJOR_MASK,
++				   scpi_info->firmware_version),
++			 FIELD_GET(FW_REV_MINOR_MASK,
++				   scpi_info->firmware_version),
++			 FIELD_GET(FW_REV_PATCH_MASK,
++				   scpi_info->firmware_version));
+ 	scpi_info->scpi_ops = &scpi_ops;
  
- #define SCPI_SLOT		0
-@@ -412,7 +404,7 @@ static void scpi_process_cmd(struct scpi_chan *ch, u32 cmd)
- 		} else {
- 			struct scpi_shared_mem __iomem *mem = ch->rx_payload;
- 
--			len = min(match->rx_len, CMD_SIZE(cmd));
-+			len = min_t(unsigned int, match->rx_len, CMD_SIZE(cmd));
- 
- 			match->status = ioread32(&mem->status);
- 			memcpy_fromio(match->rx_buf, mem->payload, len);
-@@ -454,7 +446,7 @@ static void scpi_tx_prepare(struct mbox_client *c, void *msg)
- 	if (t->rx_buf) {
- 		if (!(++ch->token))
- 			++ch->token;
--		ADD_SCPI_TOKEN(t->cmd, ch->token);
-+		t->cmd |= FIELD_PREP(CMD_TOKEN_ID_MASK, ch->token);
- 		spin_lock_irqsave(&ch->rx_lock, flags);
- 		list_add_tail(&t->node, &ch->rx_pending);
- 		spin_unlock_irqrestore(&ch->rx_lock, flags);
+ 	ret = devm_device_add_groups(dev, versions_groups);
 -- 
 2.15.1
