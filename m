@@ -1,54 +1,38 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 05 Dec 2017 19:47:14 +0100
-Subject: [PATCH net-next] net: phy: meson-gxl: cleanup by defining the
- control registers
-In-Reply-To: <20171205180142.GS12805@lunn.ch>
-References: <20171205093334.8261-1-jbrunet@baylibre.com>
- <20171205180142.GS12805@lunn.ch>
-Message-ID: <1512499634.21892.6.camel@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Tue, 5 Dec 2017 22:54:30 +0100
+Subject: [PATCH 00/12] firmware: arm_scpi: series with smaller improvements
+Message-ID: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-12-05 at 19:01 +0100, Andrew Lunn wrote:
-> On Tue, Dec 05, 2017 at 10:33:34AM +0100, Jerome Brunet wrote:
-> > From: Neil Armstrong <narmstrong@baylibre.com>
-> > 
-> > Define registers and bits in meson-gxl PHY driver to make a bit
-> > more human friendly. No functional change
-> 
-> 
-> >  static int meson_gxl_config_init(struct phy_device *phydev)
-> >  {
-> > -	/* Enable Analog and DSP register Bank access by */
-> > -	phy_write(phydev, 0x14, 0x0000);
-> > -	phy_write(phydev, 0x14, 0x0400);
-> > -	phy_write(phydev, 0x14, 0x0000);
-> > -	phy_write(phydev, 0x14, 0x0400);
-> > +	int ret;
-> >  
-> > -	/* Write Analog register 23 */
-> > -	phy_write(phydev, 0x17, 0x8E0D);
-> > -	phy_write(phydev, 0x14, 0x4417);
-> > +	/* Write PLL Configuration 1 */
-> > +	ret = meson_gxl_write_reg(phydev, BANK_ANALOG_DSP, A6_CONFIG_REG,
-> > +				  A6_CONFIG_PLLMULX4ICH |
-> > +				  FIELD_PREP(A6_CONFIG_PLLBUFITRIM, 7) |
-> > +				  A6_CONFIG_PLLRSTVCOPD |
-> > +				  A6_CONFIG_PLLCPOFF |
-> > +				  A6_CONFIG_PLL_SRC);
-> > +	if (ret)
-> > +		return ret;
-> 
-> This does not look like "No functional Change".
-> 
-> Please can you break this up. First make use of #defines.
-> That should be a clear "No functional Change".
-> 
-> Then a second patch adding a helper for banked registers?
+After recent revert of all changes since 4.14 this is a resubmit of
+the patch series, reduced to patches which should not cause any
+regression.
+Based on a remark from Kevin I added one patch for improving the
+version info for pre-1.0 firmware that doesn't provide version
+information.
 
-Sure, It would be better.
-I also noticed that the write function was inlined which is probably not good.
+Best should be to apply it to a devel branch first so that the
+Baylibre Amlogic team can test before mainlining.
 
-> 
->      Thanks
-> 	Andrew
+Heiner Kallweit (10):
+  firmware: arm_scpi: remove two unneeded devm_kfree's in scpi_remove
+  firmware: arm_scpi: make freeing mbox channels device-managed
+  firmware: arm_scpi: make scpi_probe completely device-managed
+  firmware: arm_scpi: improve struct dvfs_info to make code better readable
+  firmware: arm_scpi: improve handling of protocol and firmware version subfields
+  firmware: arm_scpi: improve struct sensor_value
+  firmware: arm_scpi: silence sparse warnings
+  firmware: arm_scpi: remove struct sensor_capabilities
+  firmware: arm_scpi: use FIELD_GET/_PREP to simplify macro definitions
+  firmware: arm_scpi: improve info message for pre-1.0 firmware
+
+Sudeep Holla (2):
+  firmware: arm_scpi: drop unnecessary type cast to scpi_shared_mem
+  firmware: arm_scpi: remove all single element structures
+
+ drivers/firmware/arm_scpi.c | 211 +++++++++++++++++++-------------------------
+ 1 file changed, 89 insertions(+), 122 deletions(-)
+
+-- 
+2.15.1
