@@ -1,51 +1,80 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 5 Dec 2017 23:17:13 +0100
-Subject: [PATCH 10/12] firmware: arm_scpi: remove struct sensor_capabilities
+Date: Tue, 5 Dec 2017 23:17:11 +0100
+Subject: [PATCH 09/12] firmware: arm_scpi: silence sparse warnings
 In-Reply-To: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
 References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
-Message-ID: <15722eb4-836c-eb30-fdff-8389ff8e6703@gmail.com>
+Message-ID: <c9c7ff77-23f7-5536-4275-76f6ffd090da@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-One more single-element struct was left, remove it.
+At several positions in the code sparse complains about incorrect access
+to __iomem annotated memory. Fix this and make sparse happy. 
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/firmware/arm_scpi.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/firmware/arm_scpi.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
-index b653ada4..5695b1f4 100644
+index 3a722e5a..b653ada4 100644
 --- a/drivers/firmware/arm_scpi.c
 +++ b/drivers/firmware/arm_scpi.c
-@@ -331,10 +331,6 @@ struct dvfs_set {
- 	u8 index;
- } __packed;
+@@ -405,19 +405,20 @@ static void scpi_process_cmd(struct scpi_chan *ch, u32 cmd)
+ 		unsigned int len;
  
--struct sensor_capabilities {
--	__le16 sensors;
--} __packed;
--
- struct _scpi_sensor_info {
- 	__le16 sensor_id;
- 	u8 class;
-@@ -730,13 +726,13 @@ static int scpi_dvfs_add_opps_to_device(struct device *dev)
+ 		if (scpi_info->is_legacy) {
+-			struct legacy_scpi_shared_mem *mem = ch->rx_payload;
++			struct legacy_scpi_shared_mem __iomem *mem =
++							ch->rx_payload;
  
- static int scpi_sensor_get_capability(u16 *sensors)
+ 			/* RX Length is not replied by the legacy Firmware */
+ 			len = match->rx_len;
+ 
+-			match->status = le32_to_cpu(mem->status);
++			match->status = ioread32(&mem->status);
+ 			memcpy_fromio(match->rx_buf, mem->payload, len);
+ 		} else {
+-			struct scpi_shared_mem *mem = ch->rx_payload;
++			struct scpi_shared_mem __iomem *mem = ch->rx_payload;
+ 
+ 			len = min(match->rx_len, CMD_SIZE(cmd));
+ 
+-			match->status = le32_to_cpu(mem->status);
++			match->status = ioread32(&mem->status);
+ 			memcpy_fromio(match->rx_buf, mem->payload, len);
+ 		}
+ 
+@@ -431,11 +432,11 @@ static void scpi_process_cmd(struct scpi_chan *ch, u32 cmd)
+ static void scpi_handle_remote_msg(struct mbox_client *c, void *msg)
  {
--	struct sensor_capabilities cap_buf;
-+	__le16 cap;
- 	int ret;
+ 	struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
+-	struct scpi_shared_mem *mem = ch->rx_payload;
++	struct scpi_shared_mem __iomem *mem = ch->rx_payload;
+ 	u32 cmd = 0;
  
--	ret = scpi_send_message(CMD_SENSOR_CAPABILITIES, NULL, 0, &cap_buf,
--				sizeof(cap_buf));
-+	ret = scpi_send_message(CMD_SENSOR_CAPABILITIES, NULL, 0, &cap,
-+				sizeof(cap));
- 	if (!ret)
--		*sensors = le16_to_cpu(cap_buf.sensors);
-+		*sensors = le16_to_cpu(cap);
+ 	if (!scpi_info->is_legacy)
+-		cmd = le32_to_cpu(mem->command);
++		cmd = ioread32(&mem->command);
  
- 	return ret;
+ 	scpi_process_cmd(ch, cmd);
  }
+@@ -445,7 +446,7 @@ static void scpi_tx_prepare(struct mbox_client *c, void *msg)
+ 	unsigned long flags;
+ 	struct scpi_xfer *t = msg;
+ 	struct scpi_chan *ch = container_of(c, struct scpi_chan, cl);
+-	struct scpi_shared_mem *mem = ch->tx_payload;
++	struct scpi_shared_mem __iomem *mem = ch->tx_payload;
+ 
+ 	if (t->tx_buf) {
+ 		if (scpi_info->is_legacy)
+@@ -464,7 +465,7 @@ static void scpi_tx_prepare(struct mbox_client *c, void *msg)
+ 	}
+ 
+ 	if (!scpi_info->is_legacy)
+-		mem->command = cpu_to_le32(t->cmd);
++		iowrite32(t->cmd, &mem->command);
+ }
+ 
+ static struct scpi_xfer *get_scpi_xfer(struct scpi_chan *ch)
 -- 
 2.15.1
