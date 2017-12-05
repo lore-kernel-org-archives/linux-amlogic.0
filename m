@@ -1,61 +1,103 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Tue, 5 Dec 2017 23:16:48 +0100
-Subject: [PATCH 03/12] firmware: arm_scpi: make scpi_probe completely
- device-managed
+Date: Tue, 5 Dec 2017 23:16:55 +0100
+Subject: [PATCH 05/12] firmware: arm_scpi: improve handling of protocol and
+ firmware version subfields
 In-Reply-To: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
 References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
-Message-ID: <58c40520-bc3f-b4d2-a400-c2b6b18e7422@gmail.com>
+Message-ID: <ddf6ec17-c592-7b6a-16a3-13c7bc2e595c@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Replace two remaining functions in probe with their devm versions.
+By using FIELD_GET and proper masks we can avoid quite some shifting
+and masking macro magic and make the code better readable.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/firmware/arm_scpi.c | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
+ drivers/firmware/arm_scpi.c | 43 +++++++++++++++++++------------------------
+ 1 file changed, 19 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
-index 4447738d..a6f6039e 100644
+index 9eeb53b7..63441e40 100644
 --- a/drivers/firmware/arm_scpi.c
 +++ b/drivers/firmware/arm_scpi.c
-@@ -901,15 +901,10 @@ static void scpi_free_channels(void *data)
- static int scpi_remove(struct platform_device *pdev)
+@@ -28,6 +28,7 @@
+ #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+ 
+ #include <linux/bitmap.h>
++#include <linux/bitfield.h>
+ #include <linux/device.h>
+ #include <linux/err.h>
+ #include <linux/export.h>
+@@ -73,18 +74,12 @@
+ #define MAX_DVFS_DOMAINS	8
+ #define MAX_DVFS_OPPS		16
+ 
+-#define PROTOCOL_REV_MINOR_BITS	16
+-#define PROTOCOL_REV_MINOR_MASK	((1U << PROTOCOL_REV_MINOR_BITS) - 1)
+-#define PROTOCOL_REV_MAJOR(x)	((x) >> PROTOCOL_REV_MINOR_BITS)
+-#define PROTOCOL_REV_MINOR(x)	((x) & PROTOCOL_REV_MINOR_MASK)
++#define PROTO_REV_MAJOR_MASK	GENMASK(31, 16)
++#define PROTO_REV_MINOR_MASK	GENMASK(15, 0)
+ 
+-#define FW_REV_MAJOR_BITS	24
+-#define FW_REV_MINOR_BITS	16
+-#define FW_REV_PATCH_MASK	((1U << FW_REV_MINOR_BITS) - 1)
+-#define FW_REV_MINOR_MASK	((1U << FW_REV_MAJOR_BITS) - 1)
+-#define FW_REV_MAJOR(x)		((x) >> FW_REV_MAJOR_BITS)
+-#define FW_REV_MINOR(x)		(((x) & FW_REV_MINOR_MASK) >> FW_REV_MINOR_BITS)
+-#define FW_REV_PATCH(x)		((x) & FW_REV_PATCH_MASK)
++#define FW_REV_MAJOR_MASK	GENMASK(31, 24)
++#define FW_REV_MINOR_MASK	GENMASK(23, 16)
++#define FW_REV_PATCH_MASK	GENMASK(15, 0)
+ 
+ #define MAX_RX_TIMEOUT		(msecs_to_jiffies(30))
+ 
+@@ -861,9 +856,9 @@ static ssize_t protocol_version_show(struct device *dev,
  {
- 	int i;
--	struct device *dev = &pdev->dev;
- 	struct scpi_drvinfo *info = platform_get_drvdata(pdev);
+ 	struct scpi_drvinfo *scpi_info = dev_get_drvdata(dev);
  
- 	scpi_info = NULL; /* stop exporting SCPI ops through get_scpi_ops */
+-	return sprintf(buf, "%d.%d\n",
+-		       PROTOCOL_REV_MAJOR(scpi_info->protocol_version),
+-		       PROTOCOL_REV_MINOR(scpi_info->protocol_version));
++	return sprintf(buf, "%lu.%lu\n",
++		FIELD_GET(PROTO_REV_MAJOR_MASK, scpi_info->protocol_version),
++		FIELD_GET(PROTO_REV_MINOR_MASK, scpi_info->protocol_version));
+ }
+ static DEVICE_ATTR_RO(protocol_version);
  
--	of_platform_depopulate(dev);
--	sysfs_remove_groups(&dev->kobj, versions_groups);
--	platform_set_drvdata(pdev, NULL);
--
- 	for (i = 0; i < MAX_DVFS_DOMAINS && info->dvfs[i]; i++) {
- 		kfree(info->dvfs[i]->opps);
- 		kfree(info->dvfs[i]);
-@@ -1036,7 +1031,6 @@ static int scpi_probe(struct platform_device *pdev)
- 	ret = scpi_init_versions(scpi_info);
- 	if (ret) {
- 		dev_err(dev, "incorrect or no SCP firmware found\n");
--		scpi_remove(pdev);
+@@ -872,10 +867,10 @@ static ssize_t firmware_version_show(struct device *dev,
+ {
+ 	struct scpi_drvinfo *scpi_info = dev_get_drvdata(dev);
+ 
+-	return sprintf(buf, "%d.%d.%d\n",
+-		       FW_REV_MAJOR(scpi_info->firmware_version),
+-		       FW_REV_MINOR(scpi_info->firmware_version),
+-		       FW_REV_PATCH(scpi_info->firmware_version));
++	return sprintf(buf, "%lu.%lu.%lu\n",
++		FIELD_GET(FW_REV_MAJOR_MASK, scpi_info->firmware_version),
++		FIELD_GET(FW_REV_MINOR_MASK, scpi_info->firmware_version),
++		FIELD_GET(FW_REV_PATCH_MASK, scpi_info->firmware_version));
+ }
+ static DEVICE_ATTR_RO(firmware_version);
+ 
+@@ -1031,12 +1026,12 @@ static int scpi_probe(struct platform_device *pdev)
  		return ret;
  	}
  
-@@ -1048,11 +1042,11 @@ static int scpi_probe(struct platform_device *pdev)
- 		  FW_REV_PATCH(scpi_info->firmware_version));
+-	_dev_info(dev, "SCP Protocol %d.%d Firmware %d.%d.%d version\n",
+-		  PROTOCOL_REV_MAJOR(scpi_info->protocol_version),
+-		  PROTOCOL_REV_MINOR(scpi_info->protocol_version),
+-		  FW_REV_MAJOR(scpi_info->firmware_version),
+-		  FW_REV_MINOR(scpi_info->firmware_version),
+-		  FW_REV_PATCH(scpi_info->firmware_version));
++	dev_info(dev, "SCP Protocol %lu.%lu Firmware %lu.%lu.%lu version\n",
++		 FIELD_GET(PROTO_REV_MAJOR_MASK, scpi_info->protocol_version),
++		 FIELD_GET(PROTO_REV_MINOR_MASK, scpi_info->protocol_version),
++		 FIELD_GET(FW_REV_MAJOR_MASK, scpi_info->firmware_version),
++		 FIELD_GET(FW_REV_MINOR_MASK, scpi_info->firmware_version),
++		 FIELD_GET(FW_REV_PATCH_MASK, scpi_info->firmware_version));
  	scpi_info->scpi_ops = &scpi_ops;
  
--	ret = sysfs_create_groups(&dev->kobj, versions_groups);
-+	ret = devm_device_add_groups(dev, versions_groups);
- 	if (ret)
- 		dev_err(dev, "unable to create sysfs version group\n");
- 
--	return of_platform_populate(dev->of_node, NULL, NULL, dev);
-+	return devm_of_platform_populate(dev);
- }
- 
- static const struct of_device_id scpi_of_match[] = {
+ 	ret = devm_device_add_groups(dev, versions_groups);
 -- 
 2.15.1
