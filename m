@@ -1,41 +1,48 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 05 Dec 2017 16:57:10 +0100
+From: andrew@lunn.ch (Andrew Lunn)
+Date: Tue, 5 Dec 2017 19:01:42 +0100
 Subject: [PATCH net-next] net: phy: meson-gxl: cleanup by defining the
  control registers
-In-Reply-To: <970919cd-cf0f-1782-22b8-46746a92fc43@amlogic.com>
+In-Reply-To: <20171205093334.8261-1-jbrunet@baylibre.com>
 References: <20171205093334.8261-1-jbrunet@baylibre.com>
- <970919cd-cf0f-1782-22b8-46746a92fc43@amlogic.com>
-Message-ID: <1512489430.21892.3.camel@baylibre.com>
+Message-ID: <20171205180142.GS12805@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2017-12-05 at 23:23 +0800, Yixun Lan wrote:
-> > +static inline int meson_gxl_write_reg(struct phy_device *phydev,
-> > +                                   unsigned int bank, unsigned int reg,
-> > +                                   uint16_t value)
-> > +{
-> > +     int ret;
-> > +
-> > +     /* Enable Analog and DSP register Bank access by
-> > +      * toggling TSTCNTL_TEST_MODE bit in the TSTCNTL register
-> > +      */
-> > +     ret = phy_write(phydev, TSTCNTL, 0);
-> > +     if (ret)
-> > +             goto out;
-> > +     ret = phy_write(phydev, TSTCNTL, TSTCNTL_TEST_MODE);
-> > +     if (ret)
-> > +             goto out;
-> > +     ret = phy_write(phydev, TSTCNTL, 0);
-> > +     if (ret)
-> > +             goto out;
-> > +     ret = phy_write(phydev, TSTCNTL, TSTCNTL_TEST_MODE);
-> > +     if (ret)
-> > +             goto out;
-> > +
+On Tue, Dec 05, 2017 at 10:33:34AM +0100, Jerome Brunet wrote:
+> From: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> how about just do the above enable procedure once?
-> from the datasheet, the access won't be disabled if don't reset, or
-> write to register TSTCNTL with TEST_MODE=0
+> Define registers and bits in meson-gxl PHY driver to make a bit
+> more human friendly. No functional change
 
-It just seems more clean. This is way, the write function is self sufficient and
-we can use it w/o making assumption about what happened out of it.
+
+>  static int meson_gxl_config_init(struct phy_device *phydev)
+>  {
+> -	/* Enable Analog and DSP register Bank access by */
+> -	phy_write(phydev, 0x14, 0x0000);
+> -	phy_write(phydev, 0x14, 0x0400);
+> -	phy_write(phydev, 0x14, 0x0000);
+> -	phy_write(phydev, 0x14, 0x0400);
+> +	int ret;
+>  
+> -	/* Write Analog register 23 */
+> -	phy_write(phydev, 0x17, 0x8E0D);
+> -	phy_write(phydev, 0x14, 0x4417);
+> +	/* Write PLL Configuration 1 */
+> +	ret = meson_gxl_write_reg(phydev, BANK_ANALOG_DSP, A6_CONFIG_REG,
+> +				  A6_CONFIG_PLLMULX4ICH |
+> +				  FIELD_PREP(A6_CONFIG_PLLBUFITRIM, 7) |
+> +				  A6_CONFIG_PLLRSTVCOPD |
+> +				  A6_CONFIG_PLLCPOFF |
+> +				  A6_CONFIG_PLL_SRC);
+> +	if (ret)
+> +		return ret;
+
+This does not look like "No functional Change".
+
+Please can you break this up. First make use of #defines.
+That should be a clear "No functional Change".
+
+Then a second patch adding a helper for banked registers?
+
+     Thanks
+	Andrew
