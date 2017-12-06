@@ -1,148 +1,136 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 6 Dec 2017 14:38:47 +0100
-Subject: [PATCH 1/4] ARM: dts: update gxbb-clkc.h from Linux 4.14
-In-Reply-To: <20171203091713.22029-2-b.galvani@gmail.com>
+Date: Wed, 6 Dec 2017 14:40:39 +0100
+Subject: [PATCH 2/4] ARM: meson: add clock measurement function
+In-Reply-To: <20171203091713.22029-3-b.galvani@gmail.com>
 References: <20171203091713.22029-1-b.galvani@gmail.com>
- <20171203091713.22029-2-b.galvani@gmail.com>
-Message-ID: <84607d14-9134-c806-d555-0fde9571a5a7@baylibre.com>
+ <20171203091713.22029-3-b.galvani@gmail.com>
+Message-ID: <410a57c8-590b-f802-d71e-b2e994535c18@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 03/12/2017 10:17, Beniamino Galvani wrote:
-> Update gxbb-clkc.h from Linux 4.14 as it contains new clock ids.
+> Add add a function to measure the current clock rate.
 > 
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->  include/dt-bindings/clock/gxbb-clkc.h | 75 +++++++++++++++++++++++++++++++++++
->  1 file changed, 75 insertions(+)
+>  arch/arm/include/asm/arch-meson/clock.h | 34 +++++++++++++++++++++++++
+>  arch/arm/mach-meson/Makefile            |  2 +-
+>  arch/arm/mach-meson/clock.c             | 45 +++++++++++++++++++++++++++++++++
+>  3 files changed, 80 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/include/asm/arch-meson/clock.h
+>  create mode 100644 arch/arm/mach-meson/clock.c
 > 
-> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
-> index e3e9f7919c..8ba99a5e3f 100644
-> --- a/include/dt-bindings/clock/gxbb-clkc.h
-> +++ b/include/dt-bindings/clock/gxbb-clkc.h
-> @@ -1,3 +1,4 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
->  /*
->   * GXBB clock tree IDs
->   */
-> @@ -5,37 +6,96 @@
->  #ifndef __GXBB_CLKC_H
->  #define __GXBB_CLKC_H
+> diff --git a/arch/arm/include/asm/arch-meson/clock.h b/arch/arm/include/asm/arch-meson/clock.h
+> new file mode 100644
+> index 0000000000..b43b23386c
+> --- /dev/null
+> +++ b/arch/arm/include/asm/arch-meson/clock.h
+> @@ -0,0 +1,34 @@
+> +/*
+> + * Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:	GPL-2.0+
+> + */
+> +#ifndef _MESON_CLOCK_H_
+> +#define _MESON_CLOCK_H_
+> +
+> +/* CBUS clock measure registers */
+> +#define MSR_CLK_DUTY		0xc1108758
+> +#define MSR_CLK_REG0		0xc110875c
+> +#define MSR_CLK_REG1		0xc1108760
+> +#define MSR_CLK_REG2		0xc1108764
+> +
+> +#define CLK_GP0_PLL		4
+> +#define CLK_GP1_PLL		5
+> +#define CLK_81			7
+> +#define CLK_MMC			23
+> +#define CLK_MOD_ETH_TX		40
+> +#define CLK_MOD_ETH_RX_RMII	41
+> +#define CLK_FCLK_DIV5		43
+> +#define CLK_SD_EMMC_CLK_C	51
+> +#define CLK_SD_EMMC_CLK_B	52
+> +
+> +/* Clock gates */
+> +#define HHI_GCLK_MPEG0		0x140
+> +#define HHI_GCLK_MPEG1		0x144
+> +#define HHI_GCLK_MPEG2		0x148
+> +#define HHI_GCLK_OTHER		0x150
+> +#define HHI_GCLK_AO		0x154
+> +
+> +ulong meson_measure_clk_rate(unsigned int clk);
+> +
+> +#endif
+> diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
+> index bf49b8b1e5..e7ea4fc5b0 100644
+> --- a/arch/arm/mach-meson/Makefile
+> +++ b/arch/arm/mach-meson/Makefile
+> @@ -4,4 +4,4 @@
+>  # SPDX-License-Identifier:	GPL-2.0+
+>  #
 >  
-> +#define CLKID_SYS_PLL		0
->  #define CLKID_HDMI_PLL		2
-> +#define CLKID_FIXED_PLL		3
->  #define CLKID_FCLK_DIV2		4
->  #define CLKID_FCLK_DIV3		5
->  #define CLKID_FCLK_DIV4		6
-> +#define CLKID_FCLK_DIV5		7
-> +#define CLKID_FCLK_DIV7		8
->  #define CLKID_GP0_PLL		9
->  #define CLKID_CLK81		12
-> +#define CLKID_MPLL0		13
-> +#define CLKID_MPLL1		14
->  #define CLKID_MPLL2		15
-> +#define CLKID_DDR		16
-> +#define CLKID_DOS		17
-> +#define CLKID_ISA		18
-> +#define CLKID_PL301		19
-> +#define CLKID_PERIPHS		20
->  #define CLKID_SPICC		21
->  #define CLKID_I2C		22
->  #define CLKID_SAR_ADC		23
-> +#define CLKID_SMART_CARD	24
->  #define CLKID_RNG0		25
->  #define CLKID_UART0		26
-> +#define CLKID_SDHC		27
-> +#define CLKID_STREAM		28
-> +#define CLKID_ASYNC_FIFO	29
-> +#define CLKID_SDIO		30
-> +#define CLKID_ABUF		31
-> +#define CLKID_HIU_IFACE		32
-> +#define CLKID_ASSIST_MISC	33
->  #define CLKID_SPI		34
->  #define CLKID_ETH		36
-> +#define CLKID_I2S_SPDIF		35
-> +#define CLKID_DEMUX		37
->  #define CLKID_AIU_GLUE		38
->  #define CLKID_IEC958		39
->  #define CLKID_I2S_OUT		40
-> +#define CLKID_AMCLK		41
-> +#define CLKID_AIFIFO2		42
-> +#define CLKID_MIXER		43
->  #define CLKID_MIXER_IFACE	44
-> +#define CLKID_ADC		45
-> +#define CLKID_BLKMV		46
->  #define CLKID_AIU		47
->  #define CLKID_UART1		48
-> +#define CLKID_G2D		49
->  #define CLKID_USB0		50
->  #define CLKID_USB1		51
-> +#define CLKID_RESET		52
-> +#define CLKID_NAND		53
-> +#define CLKID_DOS_PARSER	54
->  #define CLKID_USB		55
-> +#define CLKID_VDIN1		56
-> +#define CLKID_AHB_ARB0		57
-> +#define CLKID_EFUSE		58
-> +#define CLKID_BOOT_ROM		59
-> +#define CLKID_AHB_DATA_BUS	60
-> +#define CLKID_AHB_CTRL_BUS	61
-> +#define CLKID_HDMI_INTR_SYNC	62
->  #define CLKID_HDMI_PCLK		63
->  #define CLKID_USB1_DDR_BRIDGE	64
->  #define CLKID_USB0_DDR_BRIDGE	65
-> +#define CLKID_MMC_PCLK		66
-> +#define CLKID_DVIN		67
->  #define CLKID_UART2		68
->  #define CLKID_SANA		69
-> +#define CLKID_VPU_INTR		70
-> +#define CLKID_SEC_AHB_AHB3_BRIDGE 71
-> +#define CLKID_CLK81_A53		72
-> +#define CLKID_VCLK2_VENCI0	73
-> +#define CLKID_VCLK2_VENCI1	74
-> +#define CLKID_VCLK2_VENCP0	75
-> +#define CLKID_VCLK2_VENCP1	76
->  #define CLKID_GCLK_VENCI_INT0	77
-> +#define CLKID_GCLK_VENCI_INT	78
-> +#define CLKID_DAC_CLK		79
->  #define CLKID_AOCLK_GATE	80
->  #define CLKID_IEC958_GATE	81
-> +#define CLKID_ENC480P		82
-> +#define CLKID_RNG1		83
-> +#define CLKID_GCLK_VENCI_INT1	84
-> +#define CLKID_VCLK2_VENCLMCC	85
-> +#define CLKID_VCLK2_VENCL	86
-> +#define CLKID_VCLK_OTHER	87
-> +#define CLKID_EDP		88
-> +#define CLKID_AO_MEDIA_CPU	89
-> +#define CLKID_AO_AHB_SRAM	90
-> +#define CLKID_AO_AHB_BUS	91
-> +#define CLKID_AO_IFACE		92
->  #define CLKID_AO_I2C		93
->  #define CLKID_SD_EMMC_A		94
->  #define CLKID_SD_EMMC_B		95
-> @@ -50,5 +110,20 @@
->  #define CLKID_CTS_AMCLK		107
->  #define CLKID_CTS_MCLK_I958	110
->  #define CLKID_CTS_I958		113
-> +#define CLKID_32K_CLK		114
-> +#define CLKID_SD_EMMC_A_CLK0	119
-> +#define CLKID_SD_EMMC_B_CLK0	122
-> +#define CLKID_SD_EMMC_C_CLK0	125
-> +#define CLKID_VPU_0_SEL		126
-> +#define CLKID_VPU_0		128
-> +#define CLKID_VPU_1_SEL		129
-> +#define CLKID_VPU_1		131
-> +#define CLKID_VPU		132
-> +#define CLKID_VAPB_0_SEL	133
-> +#define CLKID_VAPB_0		135
-> +#define CLKID_VAPB_1_SEL	136
-> +#define CLKID_VAPB_1		138
-> +#define CLKID_VAPB_SEL		139
-> +#define CLKID_VAPB		140
->  
->  #endif /* __GXBB_CLKC_H */
+> -obj-y += board.o sm.o
+> +obj-y += board.o clock.o sm.o
+> diff --git a/arch/arm/mach-meson/clock.c b/arch/arm/mach-meson/clock.c
+> new file mode 100644
+> index 0000000000..73be11e90d
+> --- /dev/null
+> +++ b/arch/arm/mach-meson/clock.c
+> @@ -0,0 +1,45 @@
+> +/*
+> + * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:	GPL-2.0+
+> + *
+> + * Clock rate measuring.
+> + */
+> +
+> +#include <common.h>
+> +#include <asm/arch/clock.h>
+> +#include <asm/io.h>
+> +
+> +ulong meson_measure_clk_rate(unsigned int clk)
+> +{
+> +	ulong start;
+> +	ulong mhz;
+> +
+> +	writel(0, MSR_CLK_REG0);
+> +
+> +	/* Set the measurement gate to 64uS */
+> +	clrsetbits_le32(MSR_CLK_REG0, 0xffff, 64 - 1);
+> +	clrbits_le32(MSR_CLK_REG0,
+> +		     BIT(17) |		/* disable continuous measurement */
+> +		     BIT(18));		/* disable interrupts */
+
+You can maybe document these bits somehow.
+
+> +	clrsetbits_le32(MSR_CLK_REG0,
+> +			GENMASK(20, 26),
+> +			clk << 20);	/* select the clock */
+> +	setbits_le32(MSR_CLK_REG0,
+> +		     BIT(19) |		/* enable the clock */
+> +		     BIT(16));		/* enable measuring */
+
+Same here.
+
+> +
+> +	start = get_timer(0);
+> +	while (readl(MSR_CLK_REG0) & BIT(31)) {
+> +		if (get_timer(start) > 100) {
+> +			debug("could not measure clk %u rate\n", clk);
+> +			return -ETIMEDOUT;
+> +		}
+> +	}
+> +
+> +	/* Disable measuring */
+> +	clrbits_le32(MSR_CLK_REG0, BIT(16));
+> +
+> +	mhz = ((readl(MSR_CLK_REG2) + 31) & 0xfffff) >> 6;
+> +	return mhz * 1000000;
+> +}
 > 
+
+I'm skeptical about this, but it simplifies a lot the clock driver !
+
+Anyway, it can be changed later if we want to control the PLLs and so on.
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
