@@ -1,36 +1,37 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  6 Dec 2017 12:54:25 +0100
-Subject: [RESEND PATCH 1/4] dt-bindings: display: amlogic,
- meson-vpu: Add optional power domain property
+Date: Wed,  6 Dec 2017 12:54:26 +0100
+Subject: [RESEND PATCH 2/4] dt-bindings: display: amlogic,
+ meson-dw-hdmi: Add optional HDMI 5V regulator
 In-Reply-To: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
 References: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1512561268-29806-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1512561268-29806-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Video Processing Unit power domain was setup by the Vendor U-Boot,
-add support for an optional Power Domain phandle to setup it from the kernel.
+On reference boards and derivatives, the HDMI Logic is powered by an external
+5V regulator.
+This regulator was set by the Vendor U-Boot, add optional support for it.
 
-Acked-by: Rob Herring <robh@kernel.org> 
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt | 4 ++++
+ Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-index 00f74ba..057b813 100644
---- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-@@ -64,6 +64,10 @@ Required properties:
- - reg-names: should contain the names of the previous memory regions
- - interrupts: should contain the VENC Vsync interrupt number
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+index 7f040ed..bf4a180 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+@@ -48,6 +48,10 @@ Required properties:
+   Documentation/devicetree/bindings/reset/reset.txt,
+   the reset-names should be "hdmitx_apb", "hdmitx", "hdmitx_phy"
  
 +Optional properties:
-+- power-domains: Optional phandle to associated power domain as described in
-+	the file ../power/power_domain.txt
++- hdmi-supply: Optional phandle to an external 5V regulator to power the HDMI
++  logic, as described in the file ../regulator/regulator.txt
 +
  Required nodes:
  
- The connections to the VPU output video ports are modeled using the OF graph
+ The connections to the HDMI ports are modeled using the OF graph
 -- 
 2.7.4
