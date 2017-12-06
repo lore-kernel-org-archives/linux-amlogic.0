@@ -1,59 +1,148 @@
-From: chris@chris-wilson.co.uk (Chris Wilson)
-Date: Wed, 06 Dec 2017 12:09:42 +0000
-Subject: [RESEND PATCH 4/4] drm/meson: Add missing VPU init
-In-Reply-To: <50101688-72c0-565e-bc15-9c229fd1a167@baylibre.com>
-References: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
- <1512561268-29806-5-git-send-email-narmstrong@baylibre.com>
- <151256172859.3497.16672223686685414318@mail.alporthouse.com>
- <50101688-72c0-565e-bc15-9c229fd1a167@baylibre.com>
-Message-ID: <151256218243.3497.3915689507960580831@mail.alporthouse.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 6 Dec 2017 14:38:47 +0100
+Subject: [PATCH 1/4] ARM: dts: update gxbb-clkc.h from Linux 4.14
+In-Reply-To: <20171203091713.22029-2-b.galvani@gmail.com>
+References: <20171203091713.22029-1-b.galvani@gmail.com>
+ <20171203091713.22029-2-b.galvani@gmail.com>
+Message-ID: <84607d14-9134-c806-d555-0fde9571a5a7@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Neil Armstrong (2017-12-06 12:03:59)
-> On 06/12/2017 13:02, Chris Wilson wrote:
-> > Quoting Neil Armstrong (2017-12-06 11:54:28)
-> >> The VPU init misses these configurations values.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/gpu/drm/meson/meson_drv.c       | 9 +++++++++
-> >>  drivers/gpu/drm/meson/meson_registers.h | 4 ++++
-> >>  2 files changed, 13 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> >> index 3b804fd..f9ad0e9 100644
-> >> --- a/drivers/gpu/drm/meson/meson_drv.c
-> >> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> >> @@ -151,6 +151,14 @@ static struct regmap_config meson_regmap_config = {
-> >>         .max_register   = 0x1000,
-> >>  };
-> >>  
-> >> +static void meson_vpu_init(struct meson_drm *priv)
-> >> +{
-> >> +       writel_relaxed(0x210000, priv->io_base + _REG(VPU_RDARB_MODE_L1C1));
-> >> +       writel_relaxed(0x10000, priv->io_base + _REG(VPU_RDARB_MODE_L1C2));
-> >> +       writel_relaxed(0x900000, priv->io_base + _REG(VPU_RDARB_MODE_L2C1));
-> >> +       writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
-> >> +}
-> > 
-> >> diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-> >> index 2847381..bca8714 100644
-> >> --- a/drivers/gpu/drm/meson/meson_registers.h
-> >> +++ b/drivers/gpu/drm/meson/meson_registers.h
-> >> @@ -1363,6 +1363,10 @@
-> >>  #define VPU_PROT3_STAT_1 0x277a
-> >>  #define VPU_PROT3_STAT_2 0x277b
-> >>  #define VPU_PROT3_REQ_ONOFF 0x277c
-> >> +#define VPU_RDARB_MODE_L1C1 0x2790
-> >> +#define VPU_RDARB_MODE_L1C2 0x2799
-> > 
-> > Hmm, not naturally aligned for writel. Is the register width correct,
-> > address correct, or this really is an unaligned iowrite?
+On 03/12/2017 10:17, Beniamino Galvani wrote:
+> Update gxbb-clkc.h from Linux 4.14 as it contains new clock ids.
 > 
-> The registers are aligned with the documentation, then are used with the _REG() macro
-> to align them with the bus (on top of the file).
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  include/dt-bindings/clock/gxbb-clkc.h | 75 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+> 
+> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+> index e3e9f7919c..8ba99a5e3f 100644
+> --- a/include/dt-bindings/clock/gxbb-clkc.h
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h
+> @@ -1,3 +1,4 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+>  /*
+>   * GXBB clock tree IDs
+>   */
+> @@ -5,37 +6,96 @@
+>  #ifndef __GXBB_CLKC_H
+>  #define __GXBB_CLKC_H
+>  
+> +#define CLKID_SYS_PLL		0
+>  #define CLKID_HDMI_PLL		2
+> +#define CLKID_FIXED_PLL		3
+>  #define CLKID_FCLK_DIV2		4
+>  #define CLKID_FCLK_DIV3		5
+>  #define CLKID_FCLK_DIV4		6
+> +#define CLKID_FCLK_DIV5		7
+> +#define CLKID_FCLK_DIV7		8
+>  #define CLKID_GP0_PLL		9
+>  #define CLKID_CLK81		12
+> +#define CLKID_MPLL0		13
+> +#define CLKID_MPLL1		14
+>  #define CLKID_MPLL2		15
+> +#define CLKID_DDR		16
+> +#define CLKID_DOS		17
+> +#define CLKID_ISA		18
+> +#define CLKID_PL301		19
+> +#define CLKID_PERIPHS		20
+>  #define CLKID_SPICC		21
+>  #define CLKID_I2C		22
+>  #define CLKID_SAR_ADC		23
+> +#define CLKID_SMART_CARD	24
+>  #define CLKID_RNG0		25
+>  #define CLKID_UART0		26
+> +#define CLKID_SDHC		27
+> +#define CLKID_STREAM		28
+> +#define CLKID_ASYNC_FIFO	29
+> +#define CLKID_SDIO		30
+> +#define CLKID_ABUF		31
+> +#define CLKID_HIU_IFACE		32
+> +#define CLKID_ASSIST_MISC	33
+>  #define CLKID_SPI		34
+>  #define CLKID_ETH		36
+> +#define CLKID_I2S_SPDIF		35
+> +#define CLKID_DEMUX		37
+>  #define CLKID_AIU_GLUE		38
+>  #define CLKID_IEC958		39
+>  #define CLKID_I2S_OUT		40
+> +#define CLKID_AMCLK		41
+> +#define CLKID_AIFIFO2		42
+> +#define CLKID_MIXER		43
+>  #define CLKID_MIXER_IFACE	44
+> +#define CLKID_ADC		45
+> +#define CLKID_BLKMV		46
+>  #define CLKID_AIU		47
+>  #define CLKID_UART1		48
+> +#define CLKID_G2D		49
+>  #define CLKID_USB0		50
+>  #define CLKID_USB1		51
+> +#define CLKID_RESET		52
+> +#define CLKID_NAND		53
+> +#define CLKID_DOS_PARSER	54
+>  #define CLKID_USB		55
+> +#define CLKID_VDIN1		56
+> +#define CLKID_AHB_ARB0		57
+> +#define CLKID_EFUSE		58
+> +#define CLKID_BOOT_ROM		59
+> +#define CLKID_AHB_DATA_BUS	60
+> +#define CLKID_AHB_CTRL_BUS	61
+> +#define CLKID_HDMI_INTR_SYNC	62
+>  #define CLKID_HDMI_PCLK		63
+>  #define CLKID_USB1_DDR_BRIDGE	64
+>  #define CLKID_USB0_DDR_BRIDGE	65
+> +#define CLKID_MMC_PCLK		66
+> +#define CLKID_DVIN		67
+>  #define CLKID_UART2		68
+>  #define CLKID_SANA		69
+> +#define CLKID_VPU_INTR		70
+> +#define CLKID_SEC_AHB_AHB3_BRIDGE 71
+> +#define CLKID_CLK81_A53		72
+> +#define CLKID_VCLK2_VENCI0	73
+> +#define CLKID_VCLK2_VENCI1	74
+> +#define CLKID_VCLK2_VENCP0	75
+> +#define CLKID_VCLK2_VENCP1	76
+>  #define CLKID_GCLK_VENCI_INT0	77
+> +#define CLKID_GCLK_VENCI_INT	78
+> +#define CLKID_DAC_CLK		79
+>  #define CLKID_AOCLK_GATE	80
+>  #define CLKID_IEC958_GATE	81
+> +#define CLKID_ENC480P		82
+> +#define CLKID_RNG1		83
+> +#define CLKID_GCLK_VENCI_INT1	84
+> +#define CLKID_VCLK2_VENCLMCC	85
+> +#define CLKID_VCLK2_VENCL	86
+> +#define CLKID_VCLK_OTHER	87
+> +#define CLKID_EDP		88
+> +#define CLKID_AO_MEDIA_CPU	89
+> +#define CLKID_AO_AHB_SRAM	90
+> +#define CLKID_AO_AHB_BUS	91
+> +#define CLKID_AO_IFACE		92
+>  #define CLKID_AO_I2C		93
+>  #define CLKID_SD_EMMC_A		94
+>  #define CLKID_SD_EMMC_B		95
+> @@ -50,5 +110,20 @@
+>  #define CLKID_CTS_AMCLK		107
+>  #define CLKID_CTS_MCLK_I958	110
+>  #define CLKID_CTS_I958		113
+> +#define CLKID_32K_CLK		114
+> +#define CLKID_SD_EMMC_A_CLK0	119
+> +#define CLKID_SD_EMMC_B_CLK0	122
+> +#define CLKID_SD_EMMC_C_CLK0	125
+> +#define CLKID_VPU_0_SEL		126
+> +#define CLKID_VPU_0		128
+> +#define CLKID_VPU_1_SEL		129
+> +#define CLKID_VPU_1		131
+> +#define CLKID_VPU		132
+> +#define CLKID_VAPB_0_SEL	133
+> +#define CLKID_VAPB_0		135
+> +#define CLKID_VAPB_1_SEL	136
+> +#define CLKID_VAPB_1		138
+> +#define CLKID_VAPB_SEL		139
+> +#define CLKID_VAPB		140
+>  
+>  #endif /* __GXBB_CLKC_H */
+> 
 
-Oh, that surprised me.
-Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
