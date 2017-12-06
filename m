@@ -1,53 +1,61 @@
-From: sboyd@codeaurora.org (Stephen Boyd)
-Date: Tue, 5 Dec 2017 17:00:55 -0800
-Subject: [PATCH v3 3/3] arm64: dts: meson-axg: add clock DT info for
- Meson AXG SoC
-In-Reply-To: <1512147583.12869.10.camel@baylibre.com>
-References: <20171128125330.363-1-yixun.lan@amlogic.com>
- <20171128125330.363-4-yixun.lan@amlogic.com>
- <20171129193536.GB19419@codeaurora.org>
- <8353c264-3253-0268-91fc-8d42fbe82611@amlogic.com>
- <20171201163437.GE19419@codeaurora.org>
- <1512147583.12869.10.camel@baylibre.com>
-Message-ID: <20171206010055.GE4283@codeaurora.org>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed,  6 Dec 2017 12:54:28 +0100
+Subject: [RESEND PATCH 4/4] drm/meson: Add missing VPU init
+In-Reply-To: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
+References: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1512561268-29806-5-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 12/01, Jerome Brunet wrote:
-> On Fri, 2017-12-01 at 08:34 -0800, Stephen Boyd wrote:
-> > On 11/30, Yixun Lan wrote:
-> > > Hi Stephen
-> > > 
-> > > On 11/30/17 03:35, Stephen Boyd wrote:
-> > > > 
-> > > > Maybe just call the node "bus at ff63c000"?
-> > > > 
-> > > 
-> > > isn't this just a name? what's the benefits to change?
-> > > personally, I tend to keep it this way, because it's better map to the
-> > > data sheet
-> > > 
-> > > we also has 'aobus', 'cbus' scattered there..
-> > 
-> > Per the ePAPR node names are supposed to be generic, like disk,
-> > cpu, display-controller, gpu, etc. I've never heard of a hiubus,
-> > so probably it's some vendor specific thing? We have the phandle
-> > anyway so it's not like we're losing much information here.
-> 
-> Stephen, there is a lot of busses on platform. We can't just call them all
-> 'bus'.
-> I don't get the problem with this name.
-> We are re-using the name from the datasheet here, no fancy invention. It seems
-> to be quite common. 
-> 
+The VPU init misses these configurations values.
 
-Ok. I'm not the maintainer of the DTS so no worries from me. I'm
-just pointing out that the ePAPR says that node names should be
-generic, and 'hiubus' doesn't sound generic to me. If it matches
-some datasheet then I suppose that's good, but probably that sort
-of distinction should have gone into the compatible string
-instead of the node name.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/meson/meson_drv.c       | 9 +++++++++
+ drivers/gpu/drm/meson/meson_registers.h | 4 ++++
+ 2 files changed, 13 insertions(+)
 
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 3b804fd..f9ad0e9 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -151,6 +151,14 @@ static struct regmap_config meson_regmap_config = {
+ 	.max_register   = 0x1000,
+ };
+ 
++static void meson_vpu_init(struct meson_drm *priv)
++{
++	writel_relaxed(0x210000, priv->io_base + _REG(VPU_RDARB_MODE_L1C1));
++	writel_relaxed(0x10000, priv->io_base + _REG(VPU_RDARB_MODE_L1C2));
++	writel_relaxed(0x900000, priv->io_base + _REG(VPU_RDARB_MODE_L2C1));
++	writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
++}
++
+ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ {
+ 	struct platform_device *pdev = to_platform_device(dev);
+@@ -222,6 +230,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 
+ 	/* Hardware Initialization */
+ 
++	meson_vpu_init(priv);
+ 	meson_venc_init(priv);
+ 	meson_vpp_init(priv);
+ 	meson_viu_init(priv);
+diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
+index 2847381..bca8714 100644
+--- a/drivers/gpu/drm/meson/meson_registers.h
++++ b/drivers/gpu/drm/meson/meson_registers.h
+@@ -1363,6 +1363,10 @@
+ #define VPU_PROT3_STAT_1 0x277a
+ #define VPU_PROT3_STAT_2 0x277b
+ #define VPU_PROT3_REQ_ONOFF 0x277c
++#define VPU_RDARB_MODE_L1C1 0x2790
++#define VPU_RDARB_MODE_L1C2 0x2799
++#define VPU_RDARB_MODE_L2C1 0x279d
++#define VPU_WRARB_MODE_L2C1 0x27a2
+ 
+ /* osd super scale */
+ #define OSDSR_HV_SIZEIN 0x3130
 -- 
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.7.4
