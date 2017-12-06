@@ -1,261 +1,159 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 6 Dec 2017 14:41:49 +0100
-Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
-In-Reply-To: <20171203091713.22029-4-b.galvani@gmail.com>
+Date: Wed, 6 Dec 2017 14:43:56 +0100
+Subject: [PATCH 4/4] meson: use the clock driver
+In-Reply-To: <20171203091713.22029-5-b.galvani@gmail.com>
 References: <20171203091713.22029-1-b.galvani@gmail.com>
- <20171203091713.22029-4-b.galvani@gmail.com>
-Message-ID: <4b4ee0f1-255f-4a16-c906-c89298617ea2@baylibre.com>
+ <20171203091713.22029-5-b.galvani@gmail.com>
+Message-ID: <9b2970dc-8a88-f86e-0bf0-6711a10c8109@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 03/12/2017 10:17, Beniamino Galvani wrote:
-> Introduce a basic clock driver for Amlogic Meson SoCs which supports
-> enabling/disabling clock gates and getting their frequency.
+> Use the clk framework to initialize clocks from drivers that need them
+> instead of having hardcoded frequencies and initializations from board
+> code.
 > 
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->  arch/arm/mach-meson/Kconfig |   2 +
->  drivers/clk/Makefile        |   1 +
->  drivers/clk/clk_meson.c     | 196 ++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 199 insertions(+)
->  create mode 100644 drivers/clk/clk_meson.c
+>  arch/arm/include/asm/arch-meson/gxbb.h | 10 ----------
+>  arch/arm/include/asm/arch-meson/i2c.h  | 11 -----------
+>  board/amlogic/odroid-c2/odroid-c2.c    |  4 +---
+>  board/amlogic/p212/p212.c              |  3 +--
+>  drivers/i2c/meson_i2c.c                | 20 +++++++++++++++++---
+>  5 files changed, 19 insertions(+), 29 deletions(-)
+>  delete mode 100644 arch/arm/include/asm/arch-meson/i2c.h
 > 
-> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-> index d4bd230be3..7acee3bc5c 100644
-> --- a/arch/arm/mach-meson/Kconfig
-> +++ b/arch/arm/mach-meson/Kconfig
-> @@ -3,6 +3,7 @@ if ARCH_MESON
->  config MESON_GXBB
->  	bool "Support Meson GXBaby"
->  	select ARM64
-> +	select CLK
->  	select DM
->  	select DM_SERIAL
->  	help
-> @@ -12,6 +13,7 @@ config MESON_GXBB
->  config MESON_GXL
->  	bool "Support Meson GXL"
->  	select ARM64
-> +	select CLK
->  	select DM
->  	select DM_SERIAL
->  	help
-> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> index bcc8f82fb6..67da27873d 100644
-> --- a/drivers/clk/Makefile
-> +++ b/drivers/clk/Makefile
-> @@ -7,6 +7,7 @@
+> diff --git a/arch/arm/include/asm/arch-meson/gxbb.h b/arch/arm/include/asm/arch-meson/gxbb.h
+> index 95a6fe6998..48a2ab7425 100644
+> --- a/arch/arm/include/asm/arch-meson/gxbb.h
+> +++ b/arch/arm/include/asm/arch-meson/gxbb.h
+> @@ -40,14 +40,4 @@
+>  /* Ethernet memory power domain */
+>  #define GXBB_MEM_PD_REG_0_ETH_MASK	(BIT(2) | BIT(3))
 >  
->  obj-$(CONFIG_$(SPL_TPL_)CLK) += clk-uclass.o clk_fixed_rate.o
->  obj-$(CONFIG_ARCH_ROCKCHIP) += rockchip/
-> +obj-$(CONFIG_ARCH_MESON) += clk_meson.o
->  obj-$(CONFIG_SANDBOX) += clk_sandbox.o
->  obj-$(CONFIG_SANDBOX) += clk_sandbox_test.o
->  obj-$(CONFIG_MACH_PIC32) += clk_pic32.o
-> diff --git a/drivers/clk/clk_meson.c b/drivers/clk/clk_meson.c
-> new file mode 100644
-> index 0000000000..3cf9372e05
-> --- /dev/null
-> +++ b/drivers/clk/clk_meson.c
-> @@ -0,0 +1,196 @@
-> +/*
-> + * (C) Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
-> + *
-> + * SPDX-License-Identifier:	GPL-2.0+
-> + */
+> -/* Clock gates */
+> -#define GXBB_GCLK_MPEG_0	GXBB_HIU_ADDR(0x50)
+> -#define GXBB_GCLK_MPEG_1	GXBB_HIU_ADDR(0x51)
+> -#define GXBB_GCLK_MPEG_2	GXBB_HIU_ADDR(0x52)
+> -#define GXBB_GCLK_MPEG_OTHER	GXBB_HIU_ADDR(0x53)
+> -#define GXBB_GCLK_MPEG_AO	GXBB_HIU_ADDR(0x54)
+> -
+> -#define GXBB_GCLK_MPEG_0_I2C   BIT(9)
+> -#define GXBB_GCLK_MPEG_1_ETH	BIT(3)
+> -
+>  #endif /* __GXBB_H__ */
+> diff --git a/arch/arm/include/asm/arch-meson/i2c.h b/arch/arm/include/asm/arch-meson/i2c.h
+> deleted file mode 100644
+> index 783bc3786f..0000000000
+> --- a/arch/arm/include/asm/arch-meson/i2c.h
+> +++ /dev/null
+> @@ -1,11 +0,0 @@
+> -/*
+> - * Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
+> - *
+> - * SPDX-License-Identifier:	GPL-2.0+
+> - */
+> -#ifndef _MESON_I2C_H_
+> -#define _MESON_I2C_H_
+> -
+> -#define MESON_I2C_CLK_RATE	167000000
+> -
+> -#endif
+> diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
+> index a5ea8dc5af..833f01b4cf 100644
+> --- a/board/amlogic/odroid-c2/odroid-c2.c
+> +++ b/board/amlogic/odroid-c2/odroid-c2.c
+> @@ -34,9 +34,7 @@ int misc_init_r(void)
+>  				     GXBB_ETH_REG_0_PHY_CLK_EN |
+>  				     GXBB_ETH_REG_0_CLK_EN);
+>  
+> -	/* Enable power and clock gate */
+> -	setbits_le32(GXBB_GCLK_MPEG_0, GXBB_GCLK_MPEG_0_I2C);
+> -	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
+> +	/* Enable power */
+>  	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
+>  
+>  	/* Reset PHY on GPIOZ_14 */
+> diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
+> index ece8096c5c..907bbb286e 100644
+> --- a/board/amlogic/p212/p212.c
+> +++ b/board/amlogic/p212/p212.c
+> @@ -36,8 +36,7 @@ int misc_init_r(void)
+>  	out_le32(GXBB_ETH_REG_2, 0x10110181);
+>  	out_le32(GXBB_ETH_REG_3, 0xe40908ff);
+>  
+> -	/* Enable power and clock gate */
+> -	setbits_le32(GXBB_GCLK_MPEG_1, GXBB_GCLK_MPEG_1_ETH);
+> +	/* Enable power */
+>  	clrbits_le32(GXBB_MEM_PD_REG_0, GXBB_MEM_PD_REG_0_ETH_MASK);
+>  
+>  	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+> diff --git a/drivers/i2c/meson_i2c.c b/drivers/i2c/meson_i2c.c
+> index 2434d9ed53..1d92b09c32 100644
+> --- a/drivers/i2c/meson_i2c.c
+> +++ b/drivers/i2c/meson_i2c.c
+> @@ -4,8 +4,8 @@
+>   * SPDX-License-Identifier:	GPL-2.0+
+>   */
+>  #include <common.h>
+> -#include <asm/arch/i2c.h>
+>  #include <asm/io.h>
+> +#include <clk.h>
+>  #include <dm.h>
+>  #include <i2c.h>
+>  
+> @@ -43,6 +43,7 @@ struct i2c_regs {
+>  };
+>  
+>  struct meson_i2c {
+> +	struct clk clk;
+>  	struct i2c_regs *regs;
+>  	struct i2c_msg *msg;
+>  	bool last;
+> @@ -209,9 +210,13 @@ static int meson_i2c_xfer(struct udevice *bus, struct i2c_msg *msg,
+>  static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
+>  {
+>  	struct meson_i2c *i2c = dev_get_priv(bus);
+> -	unsigned int clk_rate = MESON_I2C_CLK_RATE;
+> +	ulong clk_rate;
+>  	unsigned int div;
+>  
+> +	clk_rate = clk_get_rate(&i2c->clk);
+> +	if (IS_ERR_VALUE(clk_rate))
+> +		return -EINVAL;
 > +
-> +#include <common.h>
-> +#include <asm/arch/clock.h>
-> +#include <asm/io.h>
-> +#include <clk-uclass.h>
-> +#include <dm.h>
-> +#include <dt-bindings/clock/gxbb-clkc.h>
+>  	div = DIV_ROUND_UP(clk_rate, speed * 4);
+>  
+>  	/* clock divider has 12 bits */
+> @@ -226,7 +231,7 @@ static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
+>  	clrsetbits_le32(&i2c->regs->ctrl, REG_CTRL_CLKDIVEXT_MASK,
+>  			(div >> 10) << REG_CTRL_CLKDIVEXT_SHIFT);
+>  
+> -	debug("meson i2c: set clk %u, src %u, div %u\n", speed, clk_rate, div);
+> +	debug("meson i2c: set clk %u, src %lu, div %u\n", speed, clk_rate, div);
+>  
+>  	return 0;
+>  }
+> @@ -234,6 +239,15 @@ static int meson_i2c_set_bus_speed(struct udevice *bus, unsigned int speed)
+>  static int meson_i2c_probe(struct udevice *bus)
+>  {
+>  	struct meson_i2c *i2c = dev_get_priv(bus);
+> +	int ret;
 > +
-> +struct meson_clk {
-> +	void __iomem *addr;
-> +	ulong rate;
-> +};
+> +	ret = clk_get_by_index(bus, 0, &i2c->clk);
+> +	if (ret < 0)
+> +		return ret;
 > +
-> +struct meson_gate {
-> +	unsigned int reg;
-> +	unsigned int bit;
-> +};
-> +
-> +#define MESON_GATE(id, _reg, _bit)		\
-> +	[id] = {				\
-> +		.reg = (_reg),			\
-> +		.bit = (_bit),			\
-> +	}
-> +
-> +struct meson_gate gates[] = {
-> +	/* Everything Else (EE) domain gates */
-> +	MESON_GATE(CLKID_DDR, HHI_GCLK_MPEG0, 0),
-> +	MESON_GATE(CLKID_DOS, HHI_GCLK_MPEG0, 1),
-> +	MESON_GATE(CLKID_ISA, HHI_GCLK_MPEG0, 5),
-> +	MESON_GATE(CLKID_PL301, HHI_GCLK_MPEG0, 6),
-> +	MESON_GATE(CLKID_PERIPHS, HHI_GCLK_MPEG0, 7),
-> +	MESON_GATE(CLKID_SPICC, HHI_GCLK_MPEG0, 8),
-> +	MESON_GATE(CLKID_I2C, HHI_GCLK_MPEG0, 9),
-> +	MESON_GATE(CLKID_SAR_ADC, HHI_GCLK_MPEG0, 10),
-> +	MESON_GATE(CLKID_SMART_CARD, HHI_GCLK_MPEG0, 11),
-> +	MESON_GATE(CLKID_RNG0, HHI_GCLK_MPEG0, 12),
-> +	MESON_GATE(CLKID_UART0, HHI_GCLK_MPEG0, 13),
-> +	MESON_GATE(CLKID_SDHC, HHI_GCLK_MPEG0, 14),
-> +	MESON_GATE(CLKID_STREAM, HHI_GCLK_MPEG0, 15),
-> +	MESON_GATE(CLKID_ASYNC_FIFO, HHI_GCLK_MPEG0, 16),
-> +	MESON_GATE(CLKID_SDIO, HHI_GCLK_MPEG0, 17),
-> +	MESON_GATE(CLKID_ABUF, HHI_GCLK_MPEG0, 18),
-> +	MESON_GATE(CLKID_HIU_IFACE, HHI_GCLK_MPEG0, 19),
-> +	MESON_GATE(CLKID_ASSIST_MISC, HHI_GCLK_MPEG0, 23),
-> +	MESON_GATE(CLKID_SD_EMMC_A, HHI_GCLK_MPEG0, 24),
-> +	MESON_GATE(CLKID_SD_EMMC_B, HHI_GCLK_MPEG0, 25),
-> +	MESON_GATE(CLKID_SD_EMMC_C, HHI_GCLK_MPEG0, 26),
-> +	MESON_GATE(CLKID_SPI, HHI_GCLK_MPEG0, 30),
-> +
-> +	MESON_GATE(CLKID_I2S_SPDIF, HHI_GCLK_MPEG1, 2),
-> +	MESON_GATE(CLKID_ETH, HHI_GCLK_MPEG1, 3),
-> +	MESON_GATE(CLKID_DEMUX, HHI_GCLK_MPEG1, 4),
-> +	MESON_GATE(CLKID_AIU_GLUE, HHI_GCLK_MPEG1, 6),
-> +	MESON_GATE(CLKID_IEC958, HHI_GCLK_MPEG1, 7),
-> +	MESON_GATE(CLKID_I2S_OUT, HHI_GCLK_MPEG1, 8),
-> +	MESON_GATE(CLKID_AMCLK, HHI_GCLK_MPEG1, 9),
-> +	MESON_GATE(CLKID_AIFIFO2, HHI_GCLK_MPEG1, 10),
-> +	MESON_GATE(CLKID_MIXER, HHI_GCLK_MPEG1, 11),
-> +	MESON_GATE(CLKID_MIXER_IFACE, HHI_GCLK_MPEG1, 12),
-> +	MESON_GATE(CLKID_ADC, HHI_GCLK_MPEG1, 13),
-> +	MESON_GATE(CLKID_BLKMV, HHI_GCLK_MPEG1, 14),
-> +	MESON_GATE(CLKID_AIU, HHI_GCLK_MPEG1, 15),
-> +	MESON_GATE(CLKID_UART1, HHI_GCLK_MPEG1, 16),
-> +	MESON_GATE(CLKID_G2D, HHI_GCLK_MPEG1, 20),
-> +	MESON_GATE(CLKID_USB0, HHI_GCLK_MPEG1, 21),
-> +	MESON_GATE(CLKID_USB1, HHI_GCLK_MPEG1, 22),
-> +	MESON_GATE(CLKID_RESET, HHI_GCLK_MPEG1, 23),
-> +	MESON_GATE(CLKID_NAND, HHI_GCLK_MPEG1, 24),
-> +	MESON_GATE(CLKID_DOS_PARSER, HHI_GCLK_MPEG1, 25),
-> +	MESON_GATE(CLKID_USB, HHI_GCLK_MPEG1, 26),
-> +	MESON_GATE(CLKID_VDIN1, HHI_GCLK_MPEG1, 28),
-> +	MESON_GATE(CLKID_AHB_ARB0, HHI_GCLK_MPEG1, 29),
-> +	MESON_GATE(CLKID_EFUSE, HHI_GCLK_MPEG1, 30),
-> +	MESON_GATE(CLKID_BOOT_ROM, HHI_GCLK_MPEG1, 31),
-> +
-> +	MESON_GATE(CLKID_AHB_DATA_BUS, HHI_GCLK_MPEG2, 1),
-> +	MESON_GATE(CLKID_AHB_CTRL_BUS, HHI_GCLK_MPEG2, 2),
-> +	MESON_GATE(CLKID_HDMI_INTR_SYNC, HHI_GCLK_MPEG2, 3),
-> +	MESON_GATE(CLKID_HDMI_PCLK, HHI_GCLK_MPEG2, 4),
-> +	MESON_GATE(CLKID_USB1_DDR_BRIDGE, HHI_GCLK_MPEG2, 8),
-> +	MESON_GATE(CLKID_USB0_DDR_BRIDGE, HHI_GCLK_MPEG2, 9),
-> +	MESON_GATE(CLKID_MMC_PCLK, HHI_GCLK_MPEG2, 11),
-> +	MESON_GATE(CLKID_DVIN, HHI_GCLK_MPEG2, 12),
-> +	MESON_GATE(CLKID_UART2, HHI_GCLK_MPEG2, 15),
-> +	MESON_GATE(CLKID_SANA, HHI_GCLK_MPEG2, 22),
-> +	MESON_GATE(CLKID_VPU_INTR, HHI_GCLK_MPEG2, 25),
-> +	MESON_GATE(CLKID_SEC_AHB_AHB3_BRIDGE, HHI_GCLK_MPEG2, 26),
-> +	MESON_GATE(CLKID_CLK81_A53, HHI_GCLK_MPEG2, 29),
-> +
-> +	MESON_GATE(CLKID_VCLK2_VENCI0, HHI_GCLK_OTHER, 1),
-> +	MESON_GATE(CLKID_VCLK2_VENCI1, HHI_GCLK_OTHER, 2),
-> +	MESON_GATE(CLKID_VCLK2_VENCP0, HHI_GCLK_OTHER, 3),
-> +	MESON_GATE(CLKID_VCLK2_VENCP1, HHI_GCLK_OTHER, 4),
-> +	MESON_GATE(CLKID_GCLK_VENCI_INT0, HHI_GCLK_OTHER, 8),
-> +	MESON_GATE(CLKID_DAC_CLK, HHI_GCLK_OTHER, 10),
-> +	MESON_GATE(CLKID_AOCLK_GATE, HHI_GCLK_OTHER, 14),
-> +	MESON_GATE(CLKID_IEC958_GATE, HHI_GCLK_OTHER, 16),
-> +	MESON_GATE(CLKID_ENC480P, HHI_GCLK_OTHER, 20),
-> +	MESON_GATE(CLKID_RNG1, HHI_GCLK_OTHER, 21),
-> +	MESON_GATE(CLKID_GCLK_VENCI_INT1, HHI_GCLK_OTHER, 22),
-> +	MESON_GATE(CLKID_VCLK2_VENCLMCC, HHI_GCLK_OTHER, 24),
-> +	MESON_GATE(CLKID_VCLK2_VENCL, HHI_GCLK_OTHER, 25),
-> +	MESON_GATE(CLKID_VCLK_OTHER, HHI_GCLK_OTHER, 26),
-> +	MESON_GATE(CLKID_EDP, HHI_GCLK_OTHER, 31),
-> +
-> +	/* Always On (AO) domain gates */
-> +	MESON_GATE(CLKID_AO_MEDIA_CPU, HHI_GCLK_AO, 0),
-> +	MESON_GATE(CLKID_AO_AHB_SRAM, HHI_GCLK_AO, 1),
-> +	MESON_GATE(CLKID_AO_AHB_BUS, HHI_GCLK_AO, 2),
-> +	MESON_GATE(CLKID_AO_IFACE, HHI_GCLK_AO, 3),
-> +	MESON_GATE(CLKID_AO_I2C, HHI_GCLK_AO, 4),
-> +};
-> +
-> +static int meson_set_gate(struct clk *clk, bool on)
-> +{
-> +	struct meson_clk *priv = dev_get_priv(clk->dev);
-> +	struct meson_gate *gate;
-> +
-> +	if (clk->id >= ARRAY_SIZE(gates))
-> +		return -ENOENT;
-> +
-> +	gate = &gates[clk->id];
-> +
-> +	if (gate->reg == 0)
-> +		return -ENOENT;
-> +
-> +	clrsetbits_le32(priv->addr + gate->reg,
-> +			BIT(gate->bit), on ? BIT(gate->bit) : 0);
-> +	return 0;
-> +}
-> +
-> +static int meson_clk_enable(struct clk *clk)
-> +{
-> +	return meson_set_gate(clk, true);
-> +}
-> +
-> +static int meson_clk_disable(struct clk *clk)
-> +{
-> +	return meson_set_gate(clk, false);
-> +}
-> +
-> +static ulong meson_clk_get_rate(struct clk *clk)
-> +{
-> +	struct meson_clk *priv = dev_get_priv(clk->dev);
-> +
-> +	if (clk->id != CLKID_CLK81) {
-> +		if (clk->id >= ARRAY_SIZE(gates))
-> +			return -ENOENT;
-> +		if (gates[clk->id].reg == 0)
-> +			return -ENOENT;
-> +	}
-> +
-> +	/* Use cached value if available */
-> +	if (priv->rate)
-> +		return priv->rate;
-> +
-> +	priv->rate = meson_measure_clk_rate(CLK_81);
-> +
-> +	return priv->rate;
-> +}
-> +
-> +static int meson_clk_probe(struct udevice *dev)
-> +{
-> +	struct meson_clk *priv = dev_get_priv(dev);
-> +
-> +	priv->addr = dev_read_addr_ptr(dev);
-> +	debug("meson-clk: probed at addr %p\n", priv->addr);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct clk_ops meson_clk_ops = {
-> +	.disable	= meson_clk_disable,
-> +	.enable		= meson_clk_enable,
-> +	.get_rate	= meson_clk_get_rate,
-> +};
-> +
-> +static const struct udevice_id meson_clk_ids[] = {
-> +	{ .compatible = "amlogic,gxbb-clkc" },
-> +	{ .compatible = "amlogic,gxl-clkc" },
-> +	{ }
-> +};
-> +
-> +U_BOOT_DRIVER(meson_clk) = {
-> +	.name		= "meson_clk",
-> +	.id		= UCLASS_CLK,
-> +	.of_match	= meson_clk_ids,
-> +	.priv_auto_alloc_size = sizeof(struct meson_clk),
-> +	.ops		= &meson_clk_ops,
-> +	.probe		= meson_clk_probe,
-> +};
+> +	ret = clk_enable(&i2c->clk);
+> +	if (ret)
+> +		return ret;
+>  
+>  	i2c->regs = dev_read_addr_ptr(bus);
+>  	clrbits_le32(&i2c->regs->ctrl, REG_CTRL_START);
 > 
 
-Ok for now to only handle the gates with the clock measure function.
+You must now rebase it to master since tom merged the Khadas and LibreTech-CC patches.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Thanks for the patchset, it looks very good.
+
+Neil
