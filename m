@@ -1,35 +1,23 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 06 Dec 2017 11:36:16 -0800
-Subject: [PATCH 0/2] add Meson8/Meson8b serial core clock handling
-In-Reply-To: <1509445230.13838.26.camel@baylibre.com> (Jerome Brunet's message
- of "Tue, 31 Oct 2017 11:20:30 +0100")
-References: <20171028123430.7796-1-martin.blumenstingl@googlemail.com>
- <1509445230.13838.26.camel@baylibre.com>
-Message-ID: <7hindjsl73.fsf@baylibre.com>
+Date: Wed, 06 Dec 2017 11:44:48 -0800
+Subject: [PATCH 0/2] update the L2 cache settings on Meson8/Meson8b
+In-Reply-To: <20171031222316.24548-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Tue, 31 Oct 2017 23:23:14 +0100")
+References: <20171031222316.24548-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7ha7yvsksv.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> On Sat, 2017-10-28 at 14:34 +0200, Martin Blumenstingl wrote:
->> This patchset adds the tty/serial core clock handling to the UARTs
->> on Meson8 and Meson8b.
->> 
->> Basically this is the Meson8 and Meson8b version of a patchset from
->> Helmut Klein and Neil Armstrong, who implemented this for Meson GX
->> (see [0]). Back then I asked Neil to drop Meson8b from his patchset
->> because I was working on the Meson8 clock controller at that time.
->> 
->> This also removes the last users that rely on the "amlogic,meson-uart"
->> binding. Removing that binding from the meson_uart driver is not part
->> of this series though.
->> 
->> 
->> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-June/004173.html
->> 
+> The L2 cache settings on our mainline kernel did not match the
+> configuration from Amlogic's vendor kernel.
 >
-> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+> This was boot-tested on a Meson8 (actually Meson8m2, but both use
+> the same CPU cores and L2 cache configuration) and a Meson8b board.
 
-Applied to v4.16/dt with Jerome's ack.
+Boot tested on meson8b-odroidc1, and applied to v4.16/dt,
+
+Thanks,
 
 Kevin
