@@ -1,61 +1,33 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  6 Dec 2017 12:54:28 +0100
-Subject: [RESEND PATCH 4/4] drm/meson: Add missing VPU init
-In-Reply-To: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
-References: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1512561268-29806-5-git-send-email-narmstrong@baylibre.com>
+Date: Wed,  6 Dec 2017 12:54:24 +0100
+Subject: [RESEND PATCH 0/4] drm/meson: power domain init related fixes
+Message-ID: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The VPU init misses these configurations values.
+On the Amlogic Gx SoCs (GXBB, GXL & GXM), the VPU power domain is initialized
+by the vendor U-Boot code, but running mainline U-boot has been possible
+on these SoCs. But lacking such init made the system lock at kernel boot.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_drv.c       | 9 +++++++++
- drivers/gpu/drm/meson/meson_registers.h | 4 ++++
- 2 files changed, 13 insertions(+)
+A PM Power Domain driver has been pushed at [1] to solve the main issue.
+The following patches :
+- updates the DT bindings accordingly
+- adds support for missing regulators and registers init
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 3b804fd..f9ad0e9 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -151,6 +151,14 @@ static struct regmap_config meson_regmap_config = {
- 	.max_register   = 0x1000,
- };
- 
-+static void meson_vpu_init(struct meson_drm *priv)
-+{
-+	writel_relaxed(0x210000, priv->io_base + _REG(VPU_RDARB_MODE_L1C1));
-+	writel_relaxed(0x10000, priv->io_base + _REG(VPU_RDARB_MODE_L1C2));
-+	writel_relaxed(0x900000, priv->io_base + _REG(VPU_RDARB_MODE_L2C1));
-+	writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
-+}
-+
- static int meson_drv_bind_master(struct device *dev, bool has_components)
- {
- 	struct platform_device *pdev = to_platform_device(dev);
-@@ -222,6 +230,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 
- 	/* Hardware Initialization */
- 
-+	meson_vpu_init(priv);
- 	meson_venc_init(priv);
- 	meson_vpp_init(priv);
- 	meson_viu_init(priv);
-diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-index 2847381..bca8714 100644
---- a/drivers/gpu/drm/meson/meson_registers.h
-+++ b/drivers/gpu/drm/meson/meson_registers.h
-@@ -1363,6 +1363,10 @@
- #define VPU_PROT3_STAT_1 0x277a
- #define VPU_PROT3_STAT_2 0x277b
- #define VPU_PROT3_REQ_ONOFF 0x277c
-+#define VPU_RDARB_MODE_L1C1 0x2790
-+#define VPU_RDARB_MODE_L1C2 0x2799
-+#define VPU_RDARB_MODE_L2C1 0x279d
-+#define VPU_WRARB_MODE_L2C1 0x27a2
- 
- /* osd super scale */
- #define OSDSR_HV_SIZEIN 0x3130
+Neil Armstrong (4):
+  dt-bindings: display: amlogic,meson-vpu: Add optional power domain
+    property
+  dt-bindings: display: amlogic,meson-dw-hdmi: Add optional HDMI 5V
+    regulator
+  drm/meson: dw_hdmi: Add support for an optional external 5V regulator
+  drm/meson: Add missing VPU init
+
+ .../devicetree/bindings/display/amlogic,meson-dw-hdmi.txt   |  4 ++++
+ .../devicetree/bindings/display/amlogic,meson-vpu.txt       |  4 ++++
+ drivers/gpu/drm/meson/meson_drv.c                           |  9 +++++++++
+ drivers/gpu/drm/meson/meson_dw_hdmi.c                       | 13 +++++++++++++
+ drivers/gpu/drm/meson/meson_registers.h                     |  4 ++++
+ 5 files changed, 34 insertions(+)
+
 -- 
 2.7.4
