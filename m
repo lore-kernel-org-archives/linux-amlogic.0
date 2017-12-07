@@ -1,30 +1,26 @@
 From: andrew@lunn.ch (Andrew Lunn)
-Date: Thu, 7 Dec 2017 17:02:35 +0100
-Subject: [PATCH net-next v2 3/8] net: phy: meson-gxl: add read and write
- helpers for bank registers
-In-Reply-To: <1512661873.7042.9.camel@baylibre.com>
+Date: Thu, 7 Dec 2017 17:12:48 +0100
+Subject: [PATCH net-next v2 5/8] net: phy: meson-gxl: detect LPA corruption
+In-Reply-To: <1512661332.7042.5.camel@baylibre.com>
 References: <20171207142715.32578-1-jbrunet@baylibre.com>
- <20171207142715.32578-4-jbrunet@baylibre.com>
- <20171207154610.GG24750@lunn.ch>
- <1512661873.7042.9.camel@baylibre.com>
-Message-ID: <20171207160235.GL24750@lunn.ch>
+ <20171207142715.32578-6-jbrunet@baylibre.com>
+ <20171207153403.GE24750@lunn.ch>
+ <1512661332.7042.5.camel@baylibre.com>
+Message-ID: <20171207161248.GN24750@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-> Banks actually comes from the datasheet, Yes.
-> I don't mind renaming it but I would be making things up. As you wish ?
+> Would it be Ok if send patches 1 to 5 to net ?
+> and 6 to 8 separately on net-next ?
 
-Keep it as is for the moment.
- 
-> Does the usual pages comes with this weird toggle thing to open the access ?
-> Would we able to use these generic helpers with our this kind of quirks ?
+No. The rules for stable is that a patch must really fix something and
+be minimal.
 
-I don't think the API has been defined yet. But what has been
-discussed is adding functions to struct phy_driver. The driver can
-then implement whatever is needed to select a given page. There will
-then be helpers which take the lock, select the page, do the
-read/write, select page 0, and unlock.
+Documentation/process/stable-kernel-rules.rst 
 
-Supporting this funny toggle should not be a problem.
+What might be best is to develop a minimal, but ugly patch for stable.
+Get it applied. Around a week later, net will be merged into
+net-next. You can then have a 'revert' patch, followed by this series
+making it nice and clean.
 
-	   Andrew
+       Andrew
