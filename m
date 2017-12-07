@@ -1,22 +1,23 @@
 From: hs@denx.de (Heiko Schocher)
-Date: Thu, 7 Dec 2017 13:19:09 +0100
-Subject: [PATCH 1/4] i2c: meson: improve Kconfig description
-In-Reply-To: <20171126164057.27728-2-b.galvani@gmail.com>
+Date: Thu, 7 Dec 2017 13:19:39 +0100
+Subject: [PATCH 2/4] i2c: meson: reduce timeout
+In-Reply-To: <20171126164057.27728-3-b.galvani@gmail.com>
 References: <20171126164057.27728-1-b.galvani@gmail.com>
- <20171126164057.27728-2-b.galvani@gmail.com>
-Message-ID: <4604c8bc-4b90-8405-c621-210886615612@denx.de>
+ <20171126164057.27728-3-b.galvani@gmail.com>
+Message-ID: <ac7cb52b-7547-9d78-efbe-c5e59367776c@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hello Beniamino,
 
 Am 26.11.2017 um 17:40 schrieb Beniamino Galvani:
-> Expand the Kconfig description with hardware features.
+> The datasheet doesn't specify a suggested timeout and 500ms seems very
+> long: reduce it to 100ms.
 > 
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->   drivers/i2c/Kconfig | 7 ++++++-
->   1 file changed, 6 insertions(+), 1 deletion(-)
+>   drivers/i2c/meson_i2c.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 
 Applied to u-boot-i2c master
 
