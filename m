@@ -1,24 +1,23 @@
 From: hs@denx.de (Heiko Schocher)
-Date: Thu, 7 Dec 2017 09:25:14 +0100
-Subject: [PATCH 3/4] i2c: meson: fix return codes on error
-In-Reply-To: <20171126164057.27728-4-b.galvani@gmail.com>
+Date: Thu, 7 Dec 2017 09:25:44 +0100
+Subject: [PATCH 4/4] i2c: meson: add some comments
+In-Reply-To: <20171126164057.27728-5-b.galvani@gmail.com>
 References: <20171126164057.27728-1-b.galvani@gmail.com>
- <20171126164057.27728-4-b.galvani@gmail.com>
-Message-ID: <8dce02fc-ce3d-98cf-c925-c5755dee4303@denx.de>
+ <20171126164057.27728-5-b.galvani@gmail.com>
+Message-ID: <6665e6e8-d93b-2f92-41a6-0ccea8cc9bba@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello Beniamino,
+Hello Beniammino,
 
 Am 26.11.2017 um 17:40 schrieb Beniamino Galvani:
-> Change meson_i2c_xfer_msg() to return -EREMOTEIO in case of NACK, as
-> done by other drivers. Also, don't change the return error in
-> meson_i2c_xfer().
+> Add some comment describing the purpose of struct members and
+> functions.
 > 
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->   drivers/i2c/meson_i2c.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   drivers/i2c/meson_i2c.c | 25 +++++++++++++++++++------
+>   1 file changed, 19 insertions(+), 6 deletions(-)
 
 Thanks!
 
