@@ -1,32 +1,47 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 07 Dec 2017 16:42:12 +0100
-Subject: [PATCH net-next v2 5/8] net: phy: meson-gxl: detect LPA corruption
-In-Reply-To: <20171207153403.GE24750@lunn.ch>
+From: andrew@lunn.ch (Andrew Lunn)
+Date: Thu, 7 Dec 2017 16:46:10 +0100
+Subject: [PATCH net-next v2 3/8] net: phy: meson-gxl: add read and write
+ helpers for bank registers
+In-Reply-To: <20171207142715.32578-4-jbrunet@baylibre.com>
 References: <20171207142715.32578-1-jbrunet@baylibre.com>
- <20171207142715.32578-6-jbrunet@baylibre.com>
- <20171207153403.GE24750@lunn.ch>
-Message-ID: <1512661332.7042.5.camel@baylibre.com>
+ <20171207142715.32578-4-jbrunet@baylibre.com>
+Message-ID: <20171207154610.GG24750@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-12-07 at 16:34 +0100, Andrew Lunn wrote:
-> On Thu, Dec 07, 2017 at 03:27:12PM +0100, Jerome Brunet wrote:
-> > The purpose of this change is to fix the incorrect detection of the link
-> > partner (LP) advertised capabilities which sometimes happens with this PHY
-> > (roughly 1 time in a dozen)
+On Thu, Dec 07, 2017 at 03:27:10PM +0100, Jerome Brunet wrote:
+> Add read and write helpers to manipulate banked registers on this PHY
+> This helps clarify the settings applied to these registers in the init
+> function and upcoming changes.
 > 
-> Hi Jerome
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/net/phy/meson-gxl.c | 103 ++++++++++++++++++++++++++++----------------
+>  1 file changed, 67 insertions(+), 36 deletions(-)
 > 
-> Since this is a real fix, please send it alone. Base it on net, not
-> net-next.  David will then get it applied to stable, so it will be
-> backported.
+> diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+> index d82aa8cea401..05054770aefb 100644
+> --- a/drivers/net/phy/meson-gxl.c
+> +++ b/drivers/net/phy/meson-gxl.c
+> @@ -45,11 +45,13 @@
+>  #define FR_PLL_DIV0	0x1c
+>  #define FR_PLL_DIV1	0x1d
+>  
+> -static int meson_gxl_config_init(struct phy_device *phydev)
+> +static int meson_gxl_open_banks(struct phy_device *phydev)
 
-I hesitated on this. For this fix to be "not too ugly" I need at least the
-helper functions (patch 1 to 3) ... which are not really fixes.
+Hi Jerome
 
-Would it be Ok if send patches 1 to 5 to net ?
-and 6 to 8 separately on net-next ?
+Does the word bank come from the datasheet? Most of the phy drives use
+page instead.
 
-> 
-> Thanks
-> 	Andrew
+Also, we have discovered a race condition which affects drivers using
+pages, which can lead to corruption of registers. At some point, i
+expect we will be adding helpers to access paged registers, which do
+the right thing with respect to locks.
+
+So it would be nice if you used the work page, not bank.
+
+   Thanks
+
+      Andrew
