@@ -1,41 +1,89 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  7 Dec 2017 15:27:07 +0100
-Subject: [PATCH net-next v2 0/8] phy: net: meson-gxl: clean-up and improvements
-Message-ID: <20171207142715.32578-1-jbrunet@baylibre.com>
+Date: Thu,  7 Dec 2017 15:27:08 +0100
+Subject: [PATCH net-next v2 1/8] net: phy: meson-gxl: check phy_write return
+ value
+In-Reply-To: <20171207142715.32578-1-jbrunet@baylibre.com>
+References: <20171207142715.32578-1-jbrunet@baylibre.com>
+Message-ID: <20171207142715.32578-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patchset is a v2 of the previous single clean-up patch [0] which was
-part of larger series. I initially to send these patches separately but
-adding helper function without using them did not make much sense after
-all. So, here is the complete patchset.
+Always check phy_write return values. Better to be safe than sorry
 
-This patchset add defines for the control registers and helpers to access
-the banked registers. The goal being to make it easier to understand what
-the driver actually does.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/net/phy/meson-gxl.c | 50 ++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 38 insertions(+), 12 deletions(-)
 
-Then there is fix for the incorrect sampling of the MII LPA register which
-is often breaking the auto-negotiation with this PHY. More details on this
-in the related patch
-
-CONFIG_A6 settings is removed since this statement was without effect
-
-Finally interrupt support is added, speeding things up a little
-
-This series has been tested on the libretech-cc and khadas VIM
-
-Jerome Brunet (8):
-  net: phy: meson-gxl: check phy_write return value
-  net: phy: meson-gxl: define control registers
-  net: phy: meson-gxl: add read and write helpers for bank registers
-  net: phy: meson-gxl: use genphy_config_init
-  net: phy: meson-gxl: detect LPA corruption
-  net: phy: meson-gxl: leave CONFIG_A6 untouched
-  net: phy: meson-gxl: add interrupt support
-  net: phy: meson-gxl: join the authors
-
- drivers/net/phy/meson-gxl.c | 215 ++++++++++++++++++++++++++++++++++++++++----
- 1 file changed, 197 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index 1ea69b7585d9..7ddb709f69fc 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -25,27 +25,53 @@
+ 
+ static int meson_gxl_config_init(struct phy_device *phydev)
+ {
++	int ret;
++
+ 	/* Enable Analog and DSP register Bank access by */
+-	phy_write(phydev, 0x14, 0x0000);
+-	phy_write(phydev, 0x14, 0x0400);
+-	phy_write(phydev, 0x14, 0x0000);
+-	phy_write(phydev, 0x14, 0x0400);
++	ret = phy_write(phydev, 0x14, 0x0000);
++	if (ret)
++		return ret;
++	ret = phy_write(phydev, 0x14, 0x0400);
++	if (ret)
++		return ret;
++	ret = phy_write(phydev, 0x14, 0x0000);
++	if (ret)
++		return ret;
++	ret = phy_write(phydev, 0x14, 0x0400);
++	if (ret)
++		return ret;
+ 
+ 	/* Write Analog register 23 */
+-	phy_write(phydev, 0x17, 0x8E0D);
+-	phy_write(phydev, 0x14, 0x4417);
++	ret = phy_write(phydev, 0x17, 0x8E0D);
++	if (ret)
++		return ret;
++	ret = phy_write(phydev, 0x14, 0x4417);
++	if (ret)
++		return ret;
+ 
+ 	/* Enable fractional PLL */
+-	phy_write(phydev, 0x17, 0x0005);
+-	phy_write(phydev, 0x14, 0x5C1B);
++	ret = phy_write(phydev, 0x17, 0x0005);
++	if (ret)
++		return ret;
++	ret = phy_write(phydev, 0x14, 0x5C1B);
++	if (ret)
++		return ret;
+ 
+ 	/* Program fraction FR_PLL_DIV1 */
+-	phy_write(phydev, 0x17, 0x029A);
+-	phy_write(phydev, 0x14, 0x5C1D);
++	ret = phy_write(phydev, 0x17, 0x029A);
++	if (ret)
++		return ret;
++	ret = phy_write(phydev, 0x14, 0x5C1D);
++	if (ret)
++		return ret;
+ 
+ 	/* Program fraction FR_PLL_DIV1 */
+-	phy_write(phydev, 0x17, 0xAAAA);
+-	phy_write(phydev, 0x14, 0x5C1C);
++	ret = phy_write(phydev, 0x17, 0xAAAA);
++	if (ret)
++		return ret;
++	ret = phy_write(phydev, 0x14, 0x5C1C);
++	if (ret)
++		return ret;
+ 
+ 	return 0;
+ }
 -- 
 2.14.3
