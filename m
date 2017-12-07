@@ -1,28 +1,27 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 07 Dec 2017 12:31:16 -0800
-Subject: [PATCH] clk: meson: make the spinlock naming more specific
-In-Reply-To: <20171204052739.10747-1-yixun.lan@amlogic.com> (Yixun Lan's
- message of "Mon, 4 Dec 2017 13:27:39 +0800")
-References: <20171204052739.10747-1-yixun.lan@amlogic.com>
-Message-ID: <7hpo7qp9ez.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 7 Dec 2017 16:10:14 -0600
+Subject: [PATCH v5 2/4] clk: meson-axg: add clocks dt-bindings required
+ header
+In-Reply-To: <20171207095300.15384-3-yixun.lan@amlogic.com>
+References: <20171207095300.15384-1-yixun.lan@amlogic.com>
+ <20171207095300.15384-3-yixun.lan@amlogic.com>
+Message-ID: <20171207221014.6qwcb43w5hms4ma5@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Yixun Lan <yixun.lan@amlogic.com> writes:
-
-> Make the spinlock more specific, so better for lockdep
-> debugging and ctags/grep.
->
+On Thu, Dec 07, 2017 at 05:52:58PM +0800, Yixun Lan wrote:
+> From: Qiufang Dai <qiufang.dai@amlogic.com>
+> 
+> Add the required header for the clocks ID dt-bindings
+> exported from various subsystem in the Meson-AXG SoC.
+> 
+> Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
 > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->
 > ---
->
-> this patch try to address the issue which bring up by Stephen at [1]
-> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005534.html
+>  include/dt-bindings/clock/axg-clkc.h | 71 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/axg-clkc.h
 
-FYI... for future reference, it's common to use a Suggested-by tag to
-give credit for these kinds of things.  e.g.:
+Please add acks when posting new versions.
 
-Suggested-by: Stephen Boyd <sboyd@codeaurora.org>
-
-Kevin
+Rob
