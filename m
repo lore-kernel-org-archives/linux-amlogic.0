@@ -1,83 +1,23 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  7 Dec 2017 15:27:14 +0100
-Subject: [PATCH net-next v2 7/8] net: phy: meson-gxl: add interrupt support
-In-Reply-To: <20171207142715.32578-1-jbrunet@baylibre.com>
+From: andrew@lunn.ch (Andrew Lunn)
+Date: Thu, 7 Dec 2017 16:34:03 +0100
+Subject: [PATCH net-next v2 5/8] net: phy: meson-gxl: detect LPA corruption
+In-Reply-To: <20171207142715.32578-6-jbrunet@baylibre.com>
 References: <20171207142715.32578-1-jbrunet@baylibre.com>
-Message-ID: <20171207142715.32578-8-jbrunet@baylibre.com>
+ <20171207142715.32578-6-jbrunet@baylibre.com>
+Message-ID: <20171207153403.GE24750@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable interrupt support in meson-gxl PHY driver
+On Thu, Dec 07, 2017 at 03:27:12PM +0100, Jerome Brunet wrote:
+> The purpose of this change is to fix the incorrect detection of the link
+> partner (LP) advertised capabilities which sometimes happens with this PHY
+> (roughly 1 time in a dozen)
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/net/phy/meson-gxl.c | 37 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
+Hi Jerome
 
-diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-index 5325940fe899..861b021b9758 100644
---- a/drivers/net/phy/meson-gxl.c
-+++ b/drivers/net/phy/meson-gxl.c
-@@ -33,6 +33,14 @@
- #define  TSTCNTL_WRITE_ADDRESS	GENMASK(4, 0)
- #define TSTREAD1	21
- #define TSTWRITE	23
-+#define INTSRC_FLAG	29
-+#define  INTSRC_ANEG_PR		BIT(1)
-+#define  INTSRC_PARALLEL_FAULT	BIT(2)
-+#define  INTSRC_ANEG_LP_ACK	BIT(3)
-+#define  INTSRC_LINK_DOWN	BIT(4)
-+#define  INTSRC_REMOTE_FAULT	BIT(5)
-+#define  INTSRC_ANEG_COMPLETE	BIT(6)
-+#define INTSRC_MASK	30
- 
- #define BANK_ANALOG_DSP		0
- #define BANK_WOL		1
-@@ -193,17 +201,44 @@ int meson_gxl_read_status(struct phy_device *phydev)
- 	return genphy_read_status(phydev);
- }
- 
-+static int meson_gxl_ack_interrupt(struct phy_device *phydev)
-+{
-+	int ret = phy_read(phydev, INTSRC_FLAG);
-+
-+	return ret < 0 ? ret : 0;
-+}
-+
-+static int meson_gxl_config_intr(struct phy_device *phydev)
-+{
-+	u16 val;
-+
-+	if (phydev->interrupts == PHY_INTERRUPT_ENABLED) {
-+		val = INTSRC_ANEG_PR
-+			| INTSRC_PARALLEL_FAULT
-+			| INTSRC_ANEG_LP_ACK
-+			| INTSRC_LINK_DOWN
-+			| INTSRC_REMOTE_FAULT
-+			| INTSRC_ANEG_COMPLETE;
-+	} else {
-+		val = 0;
-+	}
-+
-+	return phy_write(phydev, INTSRC_MASK, val);
-+}
-+
- static struct phy_driver meson_gxl_phy[] = {
- 	{
- 		.phy_id		= 0x01814400,
- 		.phy_id_mask	= 0xfffffff0,
- 		.name		= "Meson GXL Internal PHY",
- 		.features	= PHY_BASIC_FEATURES,
--		.flags		= PHY_IS_INTERNAL,
-+		.flags		= PHY_IS_INTERNAL | PHY_HAS_INTERRUPT,
- 		.config_init	= meson_gxl_config_init,
- 		.config_aneg	= genphy_config_aneg,
- 		.aneg_done      = genphy_aneg_done,
- 		.read_status	= meson_gxl_read_status,
-+		.ack_interrupt	= meson_gxl_ack_interrupt,
-+		.config_intr	= meson_gxl_config_intr,
- 		.suspend        = genphy_suspend,
- 		.resume         = genphy_resume,
- 	},
--- 
-2.14.3
+Since this is a real fix, please send it alone. Base it on net, not
+net-next.  David will then get it applied to stable, so it will be
+backported.
+
+Thanks
+	Andrew
