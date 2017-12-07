@@ -1,40 +1,51 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 6 Dec 2017 16:04:04 -0800
-Subject: [PATCH 3/3] ARM64: dts: meson-axg: add the SPICC controller
-In-Reply-To: <7hy3mfmmtd.fsf@baylibre.com>
-References: <20171128132926.19051-1-yixun.lan@amlogic.com>
- <20171128132926.19051-4-yixun.lan@amlogic.com>
- <7hy3mfmmtd.fsf@baylibre.com>
-Message-ID: <CAOi56cU0gQfCViSF=6o3uYKYaVi_Lwqwjiv_-Z6p1FFCPP1PMA@mail.gmail.com>
+Date: Wed, 06 Dec 2017 16:50:02 -0800
+Subject: [PATCH v4 4/4] arm64: dts: meson-axg: add clock DT info for Meson
+ AXG SoC
+In-Reply-To: <20171201012452.27086-5-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Fri, 1 Dec 2017 09:24:52 +0800")
+References: <20171201012452.27086-1-yixun.lan@amlogic.com>
+ <20171201012452.27086-5-yixun.lan@amlogic.com>
+Message-ID: <7ho9nbmked.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Dec 6, 2017 at 3:57 PM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Yixun Lan <yixun.lan@amlogic.com> writes:
->
->> From: Sunny Luo <sunny.luo@amlogic.com>
->>
->> Add DT info for the SPICC controller which found in
->> the Amlogic's Meson-AXG SoC.
->>
->> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->
-> This patch looks OK but it doesn't apply cleanly.
->
-> A quick glance suggests that it's becuase it has a dependency on the PWM
-> series, but that dependency was not described here (or in the cover
-> letter.)
->
-> If the series does not apply directly on mainline, the cover letter
-> should describe the dependencies clearly.
->
-> In your case, I understand it's difficult because you have many series
-> in parallel at the same time.  I would suggest that locally, you keep
-> each series as independent branches based on the latest -rc tag.
+Yixun Lan <yixun.lan@amlogic.com> writes:
 
-Correction: while in general it's best to keep things based on the
-latest -rc tag, for DT patches, it's even better if you base things on
-my current <version>/dt64 branch (currently v4.16/dt64)
+> From: Qiufang Dai <qiufang.dai@amlogic.com>
+>
+> Try to add Hiubus DT info, and also enable clock DT info
+> for the Amlogic's Meson-AXG SoC.
+>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index b932a784b02a..36a2e98338a8 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -7,6 +7,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/clock/axg-clkc.h>
+
+This #include will cause an unnessary dependency from the amlogic tree
+to the clock tree even though this patch is not currently using any of
+the #defines from that header.  It will simplify the dependencies if you
+drop this #include from this patch.
+
+In my comment on the cover letter, I suggested adding a patch that also
+switches the UART over to the new clock provider.  That is the patch
+that should add this #include, since it will actually need #defines from
+the header.
+
+Doing it in that order means that we could merge this patch
+independently of the clock driver, and then merge the UART switch-over
+patch only after the driver (and headers) are merged.
 
 Kevin
