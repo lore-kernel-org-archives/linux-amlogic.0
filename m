@@ -1,117 +1,30 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 7 Dec 2017 09:44:14 +0800
-Subject: [RESEND PATCH v3 2/2] ARM64: dts: meson-axg: add pinctrl DT info
- for Meson-AXG SoC
-In-Reply-To: <7htvx3r4o7.fsf@baylibre.com>
-References: <20171120102354.5354-1-yixun.lan@amlogic.com>
- <20171120102354.5354-3-yixun.lan@amlogic.com> <7htvx3r4o7.fsf@baylibre.com>
-Message-ID: <9d28dcdf-655b-a843-1f21-24ebb1f27be3@amlogic.com>
+From: hs@denx.de (Heiko Schocher)
+Date: Thu, 7 Dec 2017 09:24:20 +0100
+Subject: [PATCH 1/4] i2c: meson: improve Kconfig description
+In-Reply-To: <20171126164057.27728-2-b.galvani@gmail.com>
+References: <20171126164057.27728-1-b.galvani@gmail.com>
+ <20171126164057.27728-2-b.galvani@gmail.com>
+Message-ID: <65b37233-3922-6808-52dc-7bf0216b220c@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin
+Hello Baniamino,
 
+Am 26.11.2017 um 17:40 schrieb Beniamino Galvani:
+> Expand the Kconfig description with hardware features.
+> 
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>   drivers/i2c/Kconfig | 7 ++++++-
+>   1 file changed, 6 insertions(+), 1 deletion(-)
 
-On 12/07/17 04:18, Kevin Hilman wrote:
-> Yixun Lan <yixun.lan@amlogic.com> writes:
-> 
->> From: Xingyu Chen <xingyu.chen@amlogic.com>
->>
->> Add new pinctrl DT info for the Amlogic's Meson-AXG SoC.
->>
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 44 ++++++++++++++++++++++++++++++
->>  1 file changed, 44 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> index 5fc33b76b91c..e0fb860e12c5 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> @@ -9,6 +9,7 @@
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  #include <dt-bindings/clock/axg-clkc.h>
->>  #include <dt-bindings/clock/axg-aoclkc.h>
-> 
-> This doesn't apply because this aoclkc.h header does not exist in
-> mainline.
-> 
-> Kevin
-> 
+Thanks!
 
-this is due to I create the patch in serial sequence (first clk, then
-pinctrl), I probably will fix my work flow next time - to rebase all the
-patch separately on the -rc version
+Reviewed-by: Heiko Schocher <hs@denx.de>
 
-but here, the pinctrl DT part has no dependency on DT clk patch..
-you could drop the above two #include and just apply the reset
-
-could you amend & apply this? or do you want me to send another updated
-version?
-
->> +#include <dt-bindings/gpio/meson-axg-gpio.h>
->>  
->>  / {
->>  	compatible = "amlogic,meson-axg";
->> @@ -173,6 +174,32 @@
->>  			#mbox-cells = <1>;
->>  		};
->>  
->> +		periphs: periphs at ff634000 {
->> +			compatible = "simple-bus";
->> +			reg = <0x0 0xff634000 0x0 0x2000>;
->> +			#address-cells = <2>;
->> +			#size-cells = <2>;
->> +			ranges = <0x0 0x0 0x0 0xff634000 0x0 0x2000>;
->> +
->> +			pinctrl_periphs: pinctrl at 480 {
->> +				compatible = "amlogic,meson-axg-periphs-pinctrl";
->> +				#address-cells = <2>;
->> +				#size-cells = <2>;
->> +				ranges;
->> +
->> +				gpio: bank at 480 {
->> +					reg = <0x0 0x00480 0x0 0x40>,
->> +						<0x0 0x004e8 0x0 0x14>,
->> +						<0x0 0x00520 0x0 0x14>,
->> +						<0x0 0x00430 0x0 0x3c>;
->> +					reg-names = "mux", "pull", "pull-enable", "gpio";
->> +					gpio-controller;
->> +					#gpio-cells = <2>;
->> +					gpio-ranges = <&pinctrl_periphs 0 0 86>;
->> +				};
->> +			};
->> +		};
->> +
->>  		sram: sram at fffc0000 {
->>  			compatible = "amlogic,meson-axg-sram", "mmio-sram";
->>  			reg = <0x0 0xfffc0000 0x0 0x20000>;
->> @@ -209,6 +236,23 @@
->>  				};
->>  			};
->>  
->> +			pinctrl_aobus: pinctrl at 14 {
->> +				compatible = "amlogic,meson-axg-aobus-pinctrl";
->> +				#address-cells = <2>;
->> +				#size-cells = <2>;
->> +				ranges;
->> +
->> +				gpio_ao: bank at 14 {
->> +					reg = <0x0 0x00014 0x0 0x8>,
->> +						<0x0 0x0002c 0x0 0x4>,
->> +						<0x0 0x00024 0x0 0x8>;
->> +					reg-names = "mux", "pull", "gpio";
->> +					gpio-controller;
->> +					#gpio-cells = <2>;
->> +					gpio-ranges = <&pinctrl_aobus 0 0 15>;
->> +				};
->> +			};
->> +
->>  			uart_AO: serial at 3000 {
->>  				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
->>  				reg = <0x0 0x3000 0x0 0x18>;
-> 
-> .
-> 
+bye,
+Heiko
+--
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs at denx.de
