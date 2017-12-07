@@ -1,29 +1,30 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 07 Dec 2017 16:56:12 +0100
-Subject: [PATCH net-next v2 6/8] net: phy: meson-gxl: leave CONFIG_A6
- untouched
-In-Reply-To: <20171207154943.GI24750@lunn.ch>
+From: andrew@lunn.ch (Andrew Lunn)
+Date: Thu, 7 Dec 2017 17:02:35 +0100
+Subject: [PATCH net-next v2 3/8] net: phy: meson-gxl: add read and write
+ helpers for bank registers
+In-Reply-To: <1512661873.7042.9.camel@baylibre.com>
 References: <20171207142715.32578-1-jbrunet@baylibre.com>
- <20171207142715.32578-7-jbrunet@baylibre.com>
- <20171207154943.GI24750@lunn.ch>
-Message-ID: <1512662172.7042.14.camel@baylibre.com>
+ <20171207142715.32578-4-jbrunet@baylibre.com>
+ <20171207154610.GG24750@lunn.ch>
+ <1512661873.7042.9.camel@baylibre.com>
+Message-ID: <20171207160235.GL24750@lunn.ch>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2017-12-07 at 16:49 +0100, Andrew Lunn wrote:
-> On Thu, Dec 07, 2017 at 03:27:13PM +0100, Jerome Brunet wrote:
-> > The PHY performs just as well when left in its default configuration and
-> > it makes senses because this poke gets reset just after init.
-> 
-> The only thing which might speak against this, is some bootloader
-> which sets something other than the default, and here we put it back
-> to the value it should have. But if you say a reset will put it back
-> to the default value anyway, this seems save.
+> Banks actually comes from the datasheet, Yes.
+> I don't mind renaming it but I would be making things up. As you wish ?
 
-I was worried about this too bu the bank also gets reset on power down and soft
-reset, so we won't get bootloader value at this point 
+Keep it as is for the moment.
+ 
+> Does the usual pages comes with this weird toggle thing to open the access ?
+> Would we able to use these generic helpers with our this kind of quirks ?
 
-> 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> 
->     Andrew
+I don't think the API has been defined yet. But what has been
+discussed is adding functions to struct phy_driver. The driver can
+then implement whatever is needed to select a given page. There will
+then be helpers which take the lock, select the page, do the
+read/write, select page 0, and unlock.
+
+Supporting this funny toggle should not be a problem.
+
+	   Andrew
