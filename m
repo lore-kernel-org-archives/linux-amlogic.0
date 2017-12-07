@@ -1,88 +1,28 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 07 Dec 2017 11:30:27 -0800
-Subject: [PATCH] ARM64: dts: amlogic: use generic bus node names
-In-Reply-To: <fb631d1c-2b12-34e4-c157-ba11242e68de@baylibre.com> (Neil
- Armstrong's message of "Thu, 7 Dec 2017 09:35:50 +0100")
-References: <20171206193005.24171-1-khilman@baylibre.com>
- <fb631d1c-2b12-34e4-c157-ba11242e68de@baylibre.com>
-Message-ID: <7hindiqqss.fsf@baylibre.com>
+Date: Thu, 07 Dec 2017 12:31:16 -0800
+Subject: [PATCH] clk: meson: make the spinlock naming more specific
+In-Reply-To: <20171204052739.10747-1-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Mon, 4 Dec 2017 13:27:39 +0800")
+References: <20171204052739.10747-1-yixun.lan@amlogic.com>
+Message-ID: <7hpo7qp9ez.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Yixun Lan <yixun.lan@amlogic.com> writes:
 
-> On 06/12/2017 20:30, Kevin Hilman wrote:
->> The DT spec recommends that node-names have generic names like "bus".
->> Fix that in the Amlogic DTs, while leaving the label names to have more
->> SoC-specific names that match with the HW documentation.
->> 
->> Suggested-by: Stephen Boyd <sboyd@codeaurora.org>
->> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
->>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 6 +++---
->>  2 files changed, 5 insertions(+), 5 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> index b932a784b02a..e7213eb53958 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> @@ -113,7 +113,7 @@
->>  		#size-cells = <2>;
->>  		ranges;
->>  
->> -		cbus: cbus at ffd00000 {
->> +		cbus: bus at ffd00000 {
->>  			compatible = "simple-bus";
->>  			reg = <0x0 0xffd00000 0x0 0x25000>;
->>  			#address-cells = <2>;
->> @@ -175,7 +175,7 @@
->>  			};
->>  		};
->>  
->> -		aobus: aobus at ff800000 {
->> +		aobus: bus at ff800000 {
->>  			compatible = "simple-bus";
->>  			reg = <0x0 0xff800000 0x0 0x100000>;
->>  			#address-cells = <2>;
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> index 7cdbf58a062f..6cb3c2a52baf 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> @@ -211,7 +211,7 @@
->>  		#size-cells = <2>;
->>  		ranges;
->>  
->> -		cbus: cbus at c1100000 {
->> +		cbus: bus at c1100000 {
->>  			compatible = "simple-bus";
->>  			reg = <0x0 0xc1100000 0x0 0x100000>;
->>  			#address-cells = <2>;
->> @@ -366,7 +366,7 @@
->>  			};
->>  		};
->>  
->> -		aobus: aobus at c8100000 {
->> +		aobus: bus at c8100000 {
->>  			compatible = "simple-bus";
->>  			reg = <0x0 0xc8100000 0x0 0x100000>;
->>  			#address-cells = <2>;
->> @@ -453,7 +453,7 @@
->>  			};
->>  		};
->>  
->> -		hiubus: hiubus at c883c000 {
->> +		hiubus: bus at c883c000 {
->>  			compatible = "simple-bus";
->>  			reg = <0x0 0xc883c000 0x0 0x2000>;
->>  			#address-cells = <2>;
->> 
+> Make the spinlock more specific, so better for lockdep
+> debugging and ctags/grep.
 >
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>
+> ---
+>
+> this patch try to address the issue which bring up by Stephen at [1]
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005534.html
 
-Applied to v4.16/dt64 with Neil's review and after doing some basic
-build/boot tests.
+FYI... for future reference, it's common to use a Suggested-by tag to
+give credit for these kinds of things.  e.g.:
 
-Thanks,
+Suggested-by: Stephen Boyd <sboyd@codeaurora.org>
 
 Kevin
