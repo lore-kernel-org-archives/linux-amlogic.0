@@ -1,20 +1,30 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 06 Dec 2017 16:58:27 -0800
-Subject: [PATCH 1/6 v3] mmc: meson-gx-mmc: Fix platform_get_irq's error
- checking
-In-Reply-To: <c1c27676e9f141ace1254b40807bf2dc03f072c6.1511066652.git.arvind.yadav.cs@gmail.com>
- (Arvind Yadav's message of "Sun, 19 Nov 2017 10:22:43 +0530")
-References: <c1c27676e9f141ace1254b40807bf2dc03f072c6.1511066652.git.arvind.yadav.cs@gmail.com>
-Message-ID: <7h4lp3mk0c.fsf@baylibre.com>
+Date: Wed, 06 Dec 2017 17:05:52 -0800
+Subject: [PATCH v2 0/2] add Meson8/Meson8b serial core clock handling
+In-Reply-To: <20171117225857.9571-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Fri, 17 Nov 2017 23:58:55 +0100")
+References: <20171117225857.9571-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7hvahjl53j.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arvind Yadav <arvind.yadav.cs@gmail.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> The platform_get_irq() function returns negative if an error occurs.
-> zero or positive number on success. platform_get_irq() error checking
-> for zero is not correct.
+> This patchset adds the tty/serial core clock handling to the UARTs
+> on Meson8 and Meson8b.
 >
-> Signed-off-by: Arvind Yadav <arvind.yadav.cs@gmail.com>
+> Basically this is the Meson8 and Meson8b version of a patchset from
+> Helmut Klein and Neil Armstrong, who implemented this for Meson GX
+> (see [0]). Back then I asked Neil to drop Meson8b from his patchset
+> because I was working on the Meson8 clock controller at that time.
+>
+> This also removes the last users that rely on the "amlogic,meson-uart"
+> binding. Removing that binding from the meson_uart driver is not part
+> of this series though.
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+I mistakenly replied to the v1 of this series.  It's this version (v2)
+that I applied to v4.16/dt.
+
+Sorry for the confusion, and thanks for the patches!
+
+Kevin
