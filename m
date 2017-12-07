@@ -1,23 +1,24 @@
 From: hs@denx.de (Heiko Schocher)
-Date: Thu, 7 Dec 2017 09:24:47 +0100
-Subject: [PATCH 2/4] i2c: meson: reduce timeout
-In-Reply-To: <20171126164057.27728-3-b.galvani@gmail.com>
+Date: Thu, 7 Dec 2017 09:25:14 +0100
+Subject: [PATCH 3/4] i2c: meson: fix return codes on error
+In-Reply-To: <20171126164057.27728-4-b.galvani@gmail.com>
 References: <20171126164057.27728-1-b.galvani@gmail.com>
- <20171126164057.27728-3-b.galvani@gmail.com>
-Message-ID: <41282ddf-659e-f573-c8e9-de00906ddc85@denx.de>
+ <20171126164057.27728-4-b.galvani@gmail.com>
+Message-ID: <8dce02fc-ce3d-98cf-c925-c5755dee4303@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hello Beniamino,
 
 Am 26.11.2017 um 17:40 schrieb Beniamino Galvani:
-> The datasheet doesn't specify a suggested timeout and 500ms seems very
-> long: reduce it to 100ms.
+> Change meson_i2c_xfer_msg() to return -EREMOTEIO in case of NACK, as
+> done by other drivers. Also, don't change the return error in
+> meson_i2c_xfer().
 > 
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->   drivers/i2c/meson_i2c.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/i2c/meson_i2c.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 
 Thanks!
 
