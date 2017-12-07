@@ -1,57 +1,30 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 7 Dec 2017 17:53:00 +0800
-Subject: [PATCH v5 4/4] arm64: dts: meson-axg: add clock DT info for Meson AXG
- SoC
-In-Reply-To: <20171207095300.15384-1-yixun.lan@amlogic.com>
-References: <20171207095300.15384-1-yixun.lan@amlogic.com>
-Message-ID: <20171207095300.15384-5-yixun.lan@amlogic.com>
+From: hs@denx.de (Heiko Schocher)
+Date: Thu, 7 Dec 2017 13:19:09 +0100
+Subject: [PATCH 1/4] i2c: meson: improve Kconfig description
+In-Reply-To: <20171126164057.27728-2-b.galvani@gmail.com>
+References: <20171126164057.27728-1-b.galvani@gmail.com>
+ <20171126164057.27728-2-b.galvani@gmail.com>
+Message-ID: <4604c8bc-4b90-8405-c621-210886615612@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Qiufang Dai <qiufang.dai@amlogic.com>
+Hello Beniamino,
 
-Try to add Hiubus DT info, and also enable clock DT info
-for the Amlogic's Meson-AXG SoC.
+Am 26.11.2017 um 17:40 schrieb Beniamino Galvani:
+> Expand the Kconfig description with hardware features.
+> 
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>   drivers/i2c/Kconfig | 7 ++++++-
+>   1 file changed, 6 insertions(+), 1 deletion(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Applied to u-boot-i2c master
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index b932a784b02a..c2239c6d6310 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/axg-clkc.h>
- 
- / {
- 	compatible = "amlogic,meson-axg";
-@@ -148,6 +149,20 @@
- 			#address-cells = <0>;
- 		};
- 
-+		hiubus: bus at ff63c000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xff63c000 0x0 0x1c00>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
-+
-+			clkc: clock-controller at 0 {
-+				compatible = "amlogic,axg-clkc";
-+				#clock-cells = <1>;
-+				reg = <0x0 0x0 0x0 0x320>;
-+			};
-+		};
-+
- 		mailbox: mailbox at ff63dc00 {
- 			compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
- 			reg = <0 0xff63dc00 0 0x400>;
+Thanks!
+
+bye,
+Heiko
 -- 
-2.15.0
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs at denx.de
