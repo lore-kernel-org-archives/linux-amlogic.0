@@ -1,31 +1,41 @@
-From: hs@denx.de (Heiko Schocher)
-Date: Thu, 7 Dec 2017 13:20:34 +0100
-Subject: [PATCH 4/4] i2c: meson: add some comments
-In-Reply-To: <20171126164057.27728-5-b.galvani@gmail.com>
-References: <20171126164057.27728-1-b.galvani@gmail.com>
- <20171126164057.27728-5-b.galvani@gmail.com>
-Message-ID: <6098cf3a-4696-0ea2-dff8-f715aca01f0f@denx.de>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu,  7 Dec 2017 15:27:07 +0100
+Subject: [PATCH net-next v2 0/8] phy: net: meson-gxl: clean-up and improvements
+Message-ID: <20171207142715.32578-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello Beniamino,
+The patchset is a v2 of the previous single clean-up patch [0] which was
+part of larger series. I initially to send these patches separately but
+adding helper function without using them did not make much sense after
+all. So, here is the complete patchset.
 
-Am 26.11.2017 um 17:40 schrieb Beniamino Galvani:
-> Add some comment describing the purpose of struct members and
-> functions.
-> 
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> ---
->   drivers/i2c/meson_i2c.c | 25 +++++++++++++++++++------
->   1 file changed, 19 insertions(+), 6 deletions(-)
+This patchset add defines for the control registers and helpers to access
+the banked registers. The goal being to make it easier to understand what
+the driver actually does.
 
-Applied to u-boot-i2c master
+Then there is fix for the incorrect sampling of the MII LPA register which
+is often breaking the auto-negotiation with this PHY. More details on this
+in the related patch
 
-Thanks!
+CONFIG_A6 settings is removed since this statement was without effect
 
-bye,
-Heiko
+Finally interrupt support is added, speeding things up a little
+
+This series has been tested on the libretech-cc and khadas VIM
+
+Jerome Brunet (8):
+  net: phy: meson-gxl: check phy_write return value
+  net: phy: meson-gxl: define control registers
+  net: phy: meson-gxl: add read and write helpers for bank registers
+  net: phy: meson-gxl: use genphy_config_init
+  net: phy: meson-gxl: detect LPA corruption
+  net: phy: meson-gxl: leave CONFIG_A6 untouched
+  net: phy: meson-gxl: add interrupt support
+  net: phy: meson-gxl: join the authors
+
+ drivers/net/phy/meson-gxl.c | 215 ++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 197 insertions(+), 18 deletions(-)
+
 -- 
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs at denx.de
+2.14.3
