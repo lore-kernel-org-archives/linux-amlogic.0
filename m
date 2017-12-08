@@ -1,41 +1,53 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 08 Dec 2017 10:04:20 +0100
-Subject: [RESEND PATCH 0/4] drm/meson: power domain init related fixes
-In-Reply-To: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
-References: <1512561268-29806-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1512723860.17256.12.camel@baylibre.com>
+From: linux@armlinux.org.uk (Russell King - ARM Linux)
+Date: Fri, 8 Dec 2017 09:11:17 +0000
+Subject: [PATCH net-next v2 3/8] net: phy: meson-gxl: add read and write
+ helpers for bank registers
+In-Reply-To: <20171207160235.GL24750@lunn.ch>
+References: <20171207142715.32578-1-jbrunet@baylibre.com>
+ <20171207142715.32578-4-jbrunet@baylibre.com>
+ <20171207154610.GG24750@lunn.ch>
+ <1512661873.7042.9.camel@baylibre.com>
+ <20171207160235.GL24750@lunn.ch>
+Message-ID: <20171208091116.GZ10595@n2100.armlinux.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2017-12-06 at 12:54 +0100, Neil Armstrong wrote:
-> On the Amlogic Gx SoCs (GXBB, GXL & GXM), the VPU power domain is initialized
-> by the vendor U-Boot code, but running mainline U-boot has been possible
-> on these SoCs. But lacking such init made the system lock at kernel boot.
+On Thu, Dec 07, 2017 at 05:02:35PM +0100, Andrew Lunn wrote:
+> > Banks actually comes from the datasheet, Yes.
+> > I don't mind renaming it but I would be making things up. As you wish ?
 > 
-> A PM Power Domain driver has been pushed at [1] to solve the main issue.
-> The following patches :
-> - updates the DT bindings accordingly
-> - adds support for missing regulators and registers init
+> Keep it as is for the moment.
+>  
+> > Does the usual pages comes with this weird toggle thing to open the access ?
+> > Would we able to use these generic helpers with our this kind of quirks ?
 > 
-> Neil Armstrong (4):
->   dt-bindings: display: amlogic,meson-vpu: Add optional power domain
->     property
->   dt-bindings: display: amlogic,meson-dw-hdmi: Add optional HDMI 5V
->     regulator
->   drm/meson: dw_hdmi: Add support for an optional external 5V regulator
->   drm/meson: Add missing VPU init
-> 
->  .../devicetree/bindings/display/amlogic,meson-dw-hdmi.txt   |  4 ++++
->  .../devicetree/bindings/display/amlogic,meson-vpu.txt       |  4 ++++
->  drivers/gpu/drm/meson/meson_drv.c                           |  9 +++++++++
->  drivers/gpu/drm/meson/meson_dw_hdmi.c                       | 13
-> +++++++++++++
->  drivers/gpu/drm/meson/meson_registers.h                     |  4 ++++
->  5 files changed, 34 insertions(+)
-> 
+> I don't think the API has been defined yet. But what has been
+> discussed is adding functions to struct phy_driver. The driver can
+> then implement whatever is needed to select a given page. There will
+> then be helpers which take the lock, select the page, do the
+> read/write, select page 0, and unlock.
 
-No dependencies on the bootloader anymore, this is great ! Thanks 
-Series tested on libretech-cc s905x
+I'm not sure adding generic helpers really works, because the indirection
+through phy_driver just makes the code more complex.  For Marvell, I
+ended up with:
 
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+http://git.armlinux.org.uk/cgit/linux-arm.git/commit/?h=phy&id=9ca46084228bb1b8851e7d24276d85c4ec6e13ae
+
+and the preceding three commits.
+
+The "generic" versions I came up with were basically lifting
+marvell_read_paged(), marvell_write_paged() and marvell_modify_paged()
+to phylib, along with the lower leve marvell_save_page(),
+marvell_select_page() and marvell_restore_page().  The result is a
+fair amount of out-of-line code and an assumption that it's a single
+register.  As soon as a PHY has other requirements, these generic
+implementations don't work.
+
+Also, unfortunately, we can't get help from sparse for statically
+checking the locking - the __acquire()/__release() annotations don't
+work for mutexes.
+
+-- 
+RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 8.8Mbps down 630kbps up
+According to speedtest.net: 8.21Mbps down 510kbps up
