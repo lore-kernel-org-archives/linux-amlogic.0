@@ -1,156 +1,55 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  8 Dec 2017 12:08:11 +0100
-Subject: [PATCH net v3] net: phy: meson-gxl: detect LPA corruption
-Message-ID: <20171208110811.30789-1-jbrunet@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Fri, 8 Dec 2017 22:22:36 +0800
+Subject: [PATCH v5 2/4] clk: meson-axg: add clocks dt-bindings required
+ header
+In-Reply-To: <1512725587.17256.19.camel@baylibre.com>
+References: <20171207095300.15384-1-yixun.lan@amlogic.com>
+ <20171207095300.15384-3-yixun.lan@amlogic.com>
+ <20171207221014.6qwcb43w5hms4ma5@rob-hp-laptop>
+ <1512725587.17256.19.camel@baylibre.com>
+Message-ID: <060fab5b-0832-198d-9aab-d986a909c449@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The purpose of this change is to fix the incorrect detection of the link
-partner (LP) advertised capabilities which sometimes happens with this PHY
-(roughly 1 time in a dozen)
+On 12/08/17 17:33, Jerome Brunet wrote:
+> On Thu, 2017-12-07 at 16:10 -0600, Rob Herring wrote:
+>> On Thu, Dec 07, 2017 at 05:52:58PM +0800, Yixun Lan wrote:
+>>> From: Qiufang Dai <qiufang.dai@amlogic.com>
+>>>
+>>> Add the required header for the clocks ID dt-bindings
+>>> exported from various subsystem in the Meson-AXG SoC.
+>>>
+>>> Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
+>>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>>> ---
+>>>  include/dt-bindings/clock/axg-clkc.h | 71
+>>> ++++++++++++++++++++++++++++++++++++
+>>>  1 file changed, 71 insertions(+)
+>>>  create mode 100644 include/dt-bindings/clock/axg-clkc.h
+>>
+>> Please add acks when posting new versions.
+>>
+>> Rob
+> 
+> Yixun, please be consistent about this. Maintainers are not going to dig
+> through your previous revision to collect Tags
+> 
+> I believe Neil acked patch 3, didn't he ?
+> 
+> Please resend your series with the Tags collected
+sorry, I missed Neil's ACK for the pacth [3/4]
 
-This issue may cause the link to be negotiated at 10Mbps/Full or
-10Mbps/Half when 100MBps/Full is actually possible. In some case, the link
-is even completely broken and no communication is possible.
+let's just wait for a few more days, to see if there are more comments
+coming up, then I would fold them together
 
-To detect the corruption, we must look for a magic undocumented bit in the
-WOL bank (hint given by the SoC vendor kernel) but this is not enough to
-cover all cases. We also have to look at the LPA ack. If the LP supports
-Aneg but did not ack our base code when aneg is completed, we assume
-something went wrong.
+> If not already done, please make sure patches 1-3 apply on top of rc1 and patch
+> 4 on Kevin's dt64 branch.
+> 
+the above is already base on -rc2, and patch 4 can apply to kevin's dt64
+cleanly
 
-The detection of a corrupted LPA triggers a restart of the aneg process.
-This solves the problem but may take up to 6 retries to complete.
-
-Fixes: 7334b3e47aee ("net: phy: Add Meson GXL Internal PHY driver")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
-
-I suppose this patch probably seems a bit hacky, especially the part
-about the link partner acknowledge. I'm trying to figure out if the
-value in MII_LPA makes sense but I don't have such a deep knowledge
-of the ethernet spec.
-
-To me, it does not makes sense for the LP to support ANEG (Bit 1 in
-MII_EXPENSION), the aneg to have successfully complete and, at the
-same time, LP does not ACK our base code word, which we should have
-sent during this aneg.
-
-If you think this may have unintended consequences or if you have
-an idea to do this differently, feel free to let me know.
-
-This fix has been tested on the libretech-cc and khadas VIM
-
-The v2 [0] had dependencies on other changes which were not fixes.
-This v3 is re-implementation of v2 without the dependencies to be
-merged as a fix and easily backportable.
-
-All the ugly phy_write() with hexadecimal values will go away when
-then clean-up gets through.
-
-[0]: https://lkml.kernel.org/r/20171207142715.32578-6-jbrunet at baylibre.com
-
- drivers/net/phy/meson-gxl.c | 74 ++++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 73 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-index 1ea69b7585d9..700007dd4be5 100644
---- a/drivers/net/phy/meson-gxl.c
-+++ b/drivers/net/phy/meson-gxl.c
-@@ -22,6 +22,7 @@
- #include <linux/ethtool.h>
- #include <linux/phy.h>
- #include <linux/netdevice.h>
-+#include <linux/bitfield.h>
- 
- static int meson_gxl_config_init(struct phy_device *phydev)
- {
-@@ -50,6 +51,77 @@ static int meson_gxl_config_init(struct phy_device *phydev)
- 	return 0;
- }
- 
-+/* This function is provided to cope with the possible failures of this phy
-+ * during aneg process. When aneg fails, the PHY reports that aneg is done
-+ * but the value found in MII_LPA is wrong:
-+ *  - Early failures: MII_LPA is just 0x0001. if MII_EXPANSION reports that
-+ *    the link partner (LP) supports aneg but the LP never acked our base
-+ *    code word, it is likely that we never sent it to begin with.
-+ *  - Late failures: MII_LPA is filled with a value which seems to make sense
-+ *    but it actually is not what the LP is advertising. It seems that we
-+ *    can detect this using a magic bit in the WOL bank (reg 12 - bit 12).
-+ *    If this particular bit is not set when aneg is reported being done,
-+ *    it means MII_LPA is likely to be wrong.
-+ *
-+ * In both case, forcing a restart of the aneg process solve the problem.
-+ * When this failure happens, the first retry is usually successful but,
-+ * in some cases, it may take up to 6 retries to get a decent result
-+ */
-+int meson_gxl_read_status(struct phy_device *phydev)
-+{
-+	int ret, wol, lpa, exp;
-+
-+	if (phydev->autoneg == AUTONEG_ENABLE) {
-+		ret = genphy_aneg_done(phydev);
-+		if (ret < 0)
-+			return ret;
-+		else if (!ret)
-+			goto read_status_continue;
-+
-+		/* Need to access WOL bank, make sure the access is open */
-+		ret = phy_write(phydev, 0x14, 0x0000);
-+		if (ret)
-+			return ret;
-+		ret = phy_write(phydev, 0x14, 0x0400);
-+		if (ret)
-+			return ret;
-+		ret = phy_write(phydev, 0x14, 0x0000);
-+		if (ret)
-+			return ret;
-+		ret = phy_write(phydev, 0x14, 0x0400);
-+		if (ret)
-+			return ret;
-+
-+		/* Request LPI_STATUS WOL register */
-+		ret = phy_write(phydev, 0x14, 0x8D80);
-+		if (ret)
-+			return ret;
-+
-+		/* Read LPI_STATUS value */
-+		wol = phy_read(phydev, 0x15);
-+		if (wol < 0)
-+			return wol;
-+
-+		lpa = phy_read(phydev, MII_LPA);
-+		if (lpa < 0)
-+			return lpa;
-+
-+		exp = phy_read(phydev, MII_EXPANSION);
-+		if (exp < 0)
-+			return exp;
-+
-+		if (!(wol & BIT(12)) ||
-+		    ((exp & EXPANSION_NWAY) && !(lpa & LPA_LPACK))) {
-+			/* Looks like aneg failed after all */
-+			phydev_dbg(phydev, "LPA corruption - aneg restart\n");
-+			return genphy_restart_aneg(phydev);
-+		}
-+	}
-+
-+read_status_continue:
-+	return genphy_read_status(phydev);
-+}
-+
- static struct phy_driver meson_gxl_phy[] = {
- 	{
- 		.phy_id		= 0x01814400,
-@@ -60,7 +132,7 @@ static struct phy_driver meson_gxl_phy[] = {
- 		.config_init	= meson_gxl_config_init,
- 		.config_aneg	= genphy_config_aneg,
- 		.aneg_done      = genphy_aneg_done,
--		.read_status	= genphy_read_status,
-+		.read_status	= meson_gxl_read_status,
- 		.suspend        = genphy_suspend,
- 		.resume         = genphy_resume,
- 	},
--- 
-2.14.3
+> Thanks
+> Jerome
+> 
+> .
+> 
