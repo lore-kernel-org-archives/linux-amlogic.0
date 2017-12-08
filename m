@@ -1,53 +1,42 @@
-From: linux@armlinux.org.uk (Russell King - ARM Linux)
-Date: Fri, 8 Dec 2017 09:11:17 +0000
-Subject: [PATCH net-next v2 3/8] net: phy: meson-gxl: add read and write
- helpers for bank registers
-In-Reply-To: <20171207160235.GL24750@lunn.ch>
-References: <20171207142715.32578-1-jbrunet@baylibre.com>
- <20171207142715.32578-4-jbrunet@baylibre.com>
- <20171207154610.GG24750@lunn.ch>
- <1512661873.7042.9.camel@baylibre.com>
- <20171207160235.GL24750@lunn.ch>
-Message-ID: <20171208091116.GZ10595@n2100.armlinux.org.uk>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 08 Dec 2017 10:33:07 +0100
+Subject: [PATCH v5 2/4] clk: meson-axg: add clocks dt-bindings required
+ header
+In-Reply-To: <20171207221014.6qwcb43w5hms4ma5@rob-hp-laptop>
+References: <20171207095300.15384-1-yixun.lan@amlogic.com>
+ <20171207095300.15384-3-yixun.lan@amlogic.com>
+ <20171207221014.6qwcb43w5hms4ma5@rob-hp-laptop>
+Message-ID: <1512725587.17256.19.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Dec 07, 2017 at 05:02:35PM +0100, Andrew Lunn wrote:
-> > Banks actually comes from the datasheet, Yes.
-> > I don't mind renaming it but I would be making things up. As you wish ?
+On Thu, 2017-12-07 at 16:10 -0600, Rob Herring wrote:
+> On Thu, Dec 07, 2017 at 05:52:58PM +0800, Yixun Lan wrote:
+> > From: Qiufang Dai <qiufang.dai@amlogic.com>
+> > 
+> > Add the required header for the clocks ID dt-bindings
+> > exported from various subsystem in the Meson-AXG SoC.
+> > 
+> > Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
+> > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> > ---
+> >  include/dt-bindings/clock/axg-clkc.h | 71
+> > ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 71 insertions(+)
+> >  create mode 100644 include/dt-bindings/clock/axg-clkc.h
 > 
-> Keep it as is for the moment.
->  
-> > Does the usual pages comes with this weird toggle thing to open the access ?
-> > Would we able to use these generic helpers with our this kind of quirks ?
+> Please add acks when posting new versions.
 > 
-> I don't think the API has been defined yet. But what has been
-> discussed is adding functions to struct phy_driver. The driver can
-> then implement whatever is needed to select a given page. There will
-> then be helpers which take the lock, select the page, do the
-> read/write, select page 0, and unlock.
+> Rob
 
-I'm not sure adding generic helpers really works, because the indirection
-through phy_driver just makes the code more complex.  For Marvell, I
-ended up with:
+Yixun, please be consistent about this. Maintainers are not going to dig
+through your previous revision to collect Tags
 
-http://git.armlinux.org.uk/cgit/linux-arm.git/commit/?h=phy&id=9ca46084228bb1b8851e7d24276d85c4ec6e13ae
+I believe Neil acked patch 3, didn't he ?
 
-and the preceding three commits.
+Please resend your series with the Tags collected
+If not already done, please make sure patches 1-3 apply on top of rc1 and patch
+4 on Kevin's dt64 branch.
 
-The "generic" versions I came up with were basically lifting
-marvell_read_paged(), marvell_write_paged() and marvell_modify_paged()
-to phylib, along with the lower leve marvell_save_page(),
-marvell_select_page() and marvell_restore_page().  The result is a
-fair amount of out-of-line code and an assumption that it's a single
-register.  As soon as a PHY has other requirements, these generic
-implementations don't work.
-
-Also, unfortunately, we can't get help from sparse for statically
-checking the locking - the __acquire()/__release() annotations don't
-work for mutexes.
-
--- 
-RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 8.8Mbps down 630kbps up
-According to speedtest.net: 8.21Mbps down 510kbps up
+Thanks
+Jerome
