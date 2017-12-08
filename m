@@ -1,20 +1,25 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 08 Dec 2017 10:50:03 -0800
-Subject: [PATCH] clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks
-In-Reply-To: <20171204133428.24631-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Mon, 4 Dec 2017 14:34:28 +0100")
-References: <20171204133428.24631-1-jbrunet@baylibre.com>
-Message-ID: <7hmv2tm4v8.fsf@baylibre.com>
+Date: Fri, 08 Dec 2017 10:56:22 -0800
+Subject: [PATCH] ARM64: dts: meson-gx: fix UART pclk clock name
+In-Reply-To: <1512378293-22198-1-git-send-email-narmstrong@baylibre.com> (Neil
+ Armstrong's message of "Mon, 4 Dec 2017 10:04:53 +0100")
+References: <1512378293-22198-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7hindhm4kp.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> Remove CLK_IGNORE_UNUSED from mmc clocks. This was only needed while the
-> mmc driver incorrectly used the xtal as source instead of the mmc
-> clock. Now, the driver takes the correct clock, CCF is aware that the
-> clock is being used and we can remove this flag.
+> The clock-names for pclk was wrongly set to "core", but the bindings
+> specifies "pclk".
+> This was not cathed until the legacy non-documented bindings were removed.
 >
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Reported-by: Andreas F?rber <afaerber@suse.de>
+> Fixes: f72d6f6037b7 ("ARM64: dts: meson-gx: use stable UART bindings with correct gate clock")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Applied to v4.15/fixes,
+
+Thanks,
+
+Kevin
