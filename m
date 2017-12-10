@@ -1,52 +1,118 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 10 Dec 2017 19:15:28 +0100
-Subject: [PATCH 0/3] Meson8 GPIO interrupt support
-In-Reply-To: <7h1sljmxp6.fsf@baylibre.com>
-References: <20171029230523.7355-1-martin.blumenstingl@googlemail.com>
- <8637605bly.fsf@arm.com> <7h1sljmxp6.fsf@baylibre.com>
-Message-ID: <CAFBinCDdJtE4g7iCgaw9KEYPhKWjt0YoDy2CfXcTKq+OTDPbLA@mail.gmail.com>
+From: jic23@jic23.retrosnub.co.uk (Jonathan Cameron)
+Date: Sun, 10 Dec 2017 19:47:57 +0000
+Subject: [PATCH 4/5] iio: adc: meson-saradc: fix the clock frequency on
+ Meson8 and Meson8b
+In-Reply-To: <20171119155548.41cf4f6f@archlinux>
+References: <20171031200147.14660-1-martin.blumenstingl@googlemail.com>
+ <20171031200147.14660-5-martin.blumenstingl@googlemail.com>
+ <20171119155548.41cf4f6f@archlinux>
+Message-ID: <20171210194757.08f2ba29@archlinux>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
+On Sun, 19 Nov 2017 15:55:48 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-On Tue, Oct 31, 2017 at 11:13 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Marc Zyngier <marc.zyngier@arm.com> writes:
->
->> On Mon, Oct 30 2017 at 12:05:20 am GMT, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->>> This is a simple follow-up of two series from Jerome:
->>> - "irqchip: meson: add support for the gpio interrupt controller"
->>> - "ARM: meson: enable gpio interrupt controller"
->>>
->>> This fills in the missing bits to have GPIO interrupt support on Meson8,
->>> which includes:
->>> - a new binding in the driver with the correct IRQ number
->>> - enabling the GPIO interrupt controller in meson8.dts
->>> - enabling the GPIO interrupt controller via Kconfig for MACH_MESON8
->>>
->>>
->>> Martin Blumenstingl (3):
->>>   irqchip/meson-gpio: add support for Meson8 SoCs
->>>   ARM: dts: meson8: enable the GPIO interrupt controller
->>>   ARM: meson: enable MESON_IRQ_GPIO also for MACH_MESON8
->>>
->>>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt        | 1 +
->>>  arch/arm/boot/dts/meson8.dtsi                                        | 5 +++++
->>>  arch/arm/mach-meson/Kconfig                                          | 1 +
->>>  drivers/irqchip/irq-meson-gpio.c                                     | 5 +++++
->>>  4 files changed, 12 insertions(+)
->>
->> Kevin, Carlos: Are you OK with this one? It seems pretty minor, and I'm
->> happy to queue it if I get an Ack for it. If you'd rather get it through
->> via armsoc, let me know.
->
-> Can you take the drivers/irqchip and bindings patch (PATCH 1/3) and I'll
-> take the rest to avoid conflicts with a bunch of other moving parts we
-> have in arch/arm.
-PATCH 1/3 even made it into v4.15
-can you please queue the remaining two patches for v4.16 - or do you
-want me to re-send these?
+> On Tue, 31 Oct 2017 21:01:46 +0100
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+> 
+> > GX SoCs use a 1.2 MHz ADC clock, while the older SoCs use a 1.14 MHz
+> > clock.
+> > 
+> > A comment in the driver from Amlogic's GPL kernel says that it's
+> > running at 1.28 MHz. However, it's actually programming a divider of
+> > 20 + 1. With a XTAL clock of 24 MHz this results in a frequency of
+> > 1.14 MHz. (their calculation might be based on a 27 MHz XTAL clock,
+> > but this is not what we have on the Meson8 and Meson8b SoCs).
+> > 
+> > The ADC was still working with the 1.2MHz clock. In my own tests I did
+> > not see a difference between 1.2 and 1.14 MHz (regardless of the clock
+> > frequency used, the ADC results were identical).
+> > 
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>  
+> 
+> Hmm. This will have to wait until the other patches have gotten into
+> mainline and back to my upstream.  Let me know if I seem to have lost
+> it. 
+Applied to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to play with it.
 
+Thanks,
 
-thank you!
-Martin
+Jonathan
+> 
+> Thanks,
+> 
+>  
+> Jonathan
+> 
+> > ---
+> >  drivers/iio/adc/meson_saradc.c | 8 +++++++-
+> >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> > index 7dc7d297a0fc..fa3c1378c2c9 100644
+> > --- a/drivers/iio/adc/meson_saradc.c
+> > +++ b/drivers/iio/adc/meson_saradc.c
+> > @@ -221,6 +221,7 @@ enum meson_sar_adc_chan7_mux_sel {
+> >  
+> >  struct meson_sar_adc_data {
+> >  	bool					has_bl30_integration;
+> > +	unsigned long				clock_rate;
+> >  	u32					bandgap_reg;
+> >  	unsigned int				resolution;
+> >  	const char				*name;
+> > @@ -684,7 +685,7 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
+> >  		return ret;
+> >  	}
+> >  
+> > -	ret = clk_set_rate(priv->adc_clk, 1200000);
+> > +	ret = clk_set_rate(priv->adc_clk, priv->data->clock_rate);
+> >  	if (ret) {
+> >  		dev_err(indio_dev->dev.parent,
+> >  			"failed to set adc clock rate\n");
+> > @@ -867,6 +868,7 @@ static const struct iio_info meson_sar_adc_iio_info = {
+> >  
+> >  static const struct meson_sar_adc_data meson_sar_adc_meson8_data = {
+> >  	.has_bl30_integration = false,
+> > +	.clock_rate = 1150000,
+> >  	.bandgap_reg = MESON_SAR_ADC_DELTA_10,
+> >  	.regmap_config = &meson_sar_adc_regmap_config_meson8,
+> >  	.resolution = 10,
+> > @@ -875,6 +877,7 @@ static const struct meson_sar_adc_data meson_sar_adc_meson8_data = {
+> >  
+> >  static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
+> >  	.has_bl30_integration = false,
+> > +	.clock_rate = 1150000,
+> >  	.bandgap_reg = MESON_SAR_ADC_DELTA_10,
+> >  	.regmap_config = &meson_sar_adc_regmap_config_meson8,
+> >  	.resolution = 10,
+> > @@ -883,6 +886,7 @@ static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
+> >  
+> >  static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+> >  	.has_bl30_integration = true,
+> > +	.clock_rate = 1200000,
+> >  	.bandgap_reg = MESON_SAR_ADC_REG11,
+> >  	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+> >  	.resolution = 10,
+> > @@ -891,6 +895,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+> >  
+> >  static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
+> >  	.has_bl30_integration = true,
+> > +	.clock_rate = 1200000,
+> >  	.bandgap_reg = MESON_SAR_ADC_REG11,
+> >  	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+> >  	.resolution = 12,
+> > @@ -899,6 +904,7 @@ static const struct meson_sar_adc_data meson_sar_adc_gxl_data = {
+> >  
+> >  static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
+> >  	.has_bl30_integration = true,
+> > +	.clock_rate = 1200000,
+> >  	.bandgap_reg = MESON_SAR_ADC_REG11,
+> >  	.regmap_config = &meson_sar_adc_regmap_config_gxbb,
+> >  	.resolution = 12,  
+> 
+> --
+> To unsubscribe from this list: send the line "unsubscribe linux-iio" in
+> the body of a message to majordomo at vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
