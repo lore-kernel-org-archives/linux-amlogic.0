@@ -1,24 +1,32 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 08 Dec 2017 22:01:21 +0100
-Subject: [PATCH] clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks
-In-Reply-To: <7hmv2tm4v8.fsf@baylibre.com>
-References: <20171204133428.24631-1-jbrunet@baylibre.com>
- <7hmv2tm4v8.fsf@baylibre.com>
-Message-ID: <1512766881.334.0.camel@baylibre.com>
+From: olof@lixom.net (Olof Johansson)
+Date: Sat, 9 Dec 2017 20:23:41 -0800
+Subject: [GIT PULL] Amlogic fixes for v4.15-rc (redo v2)
+In-Reply-To: <7ha7ytm2tv.fsf@baylibre.com>
+References: <7ha7ytm2tv.fsf@baylibre.com>
+Message-ID: <20171210042341.ziouwxqvaw74zswl@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2017-12-08 at 10:50 -0800, Kevin Hilman wrote:
-> Jerome Brunet <jbrunet@baylibre.com> writes:
+On Fri, Dec 08, 2017 at 11:34:04AM -0800, Kevin Hilman wrote:
+> Arnd, Olof,
 > 
-> > Remove CLK_IGNORE_UNUSED from mmc clocks. This was only needed while the
-> > mmc driver incorrectly used the xtal as source instead of the mmc
-> > clock. Now, the driver takes the correct clock, CCF is aware that the
-> > clock is being used and we can remove this flag.
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Here's a re-spin of the Amlogic fixes for v4.15-rc with the DT changes
+> for new hardware dropped.  Will (re)send those for v4.16.
 > 
-> Acked-by: Kevin Hilman <khilman@baylibre.com>
+> Also, since the last round, I've collected one more fix for a UART clock
+> naming bug.
+> 
+> Kevin
+> 
+> The following changes since commit 4fbd8d194f06c8a3fd2af1ce560ddb31f7ec8323:
+> 
+>   Linux 4.15-rc1 (2017-11-26 16:01:47 -0800)
+> 
+> are available in the git repository at:
+> 
+>   git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-1
 
-Thanks Kevin
-Applied
+Merged, thanks.
+
+
+-Olof
