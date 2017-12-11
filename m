@@ -1,61 +1,25 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 11 Dec 2017 14:48:53 +0800
-Subject: [PATCH v6 6/6] arm64: dts: meson-axg: switch uart_ao clock to CLK81
-In-Reply-To: <20171211064853.32111-1-yixun.lan@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 11 Dec 2017 10:26:54 +0100
+Subject: [PATCH v6 4/6] clk: meson: make the spinlock naming more specific
+In-Reply-To: <20171211064853.32111-5-yixun.lan@amlogic.com>
 References: <20171211064853.32111-1-yixun.lan@amlogic.com>
-Message-ID: <20171211064853.32111-7-yixun.lan@amlogic.com>
+ <20171211064853.32111-5-yixun.lan@amlogic.com>
+Message-ID: <1512984414.334.10.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Switch the uart_ao pclk to CLK81 since the clock driver is ready.
-Also move the clock info to the board.dts instead in the soc.dtsi.
+On Mon, 2017-12-11 at 14:48 +0800, Yixun Lan wrote:
+> Make the spinlock more specific, so better for lockdep
+> debugging and ctags/grep.
+> 
+> Suggested-by: Stephen Boyd <sboyd@codeaurora.org>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 2 ++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 5 +----
- 2 files changed, 3 insertions(+), 4 deletions(-)
+Yixun,
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index 70eca1f8736a..718bbebff107 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -19,4 +19,6 @@
- 
- &uart_AO {
- 	status = "okay";
-+	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clock-names = "xtal", "pclk", "baud";
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 6fe5ee0c144e..f5b496bfd4de 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/axg-clkc.h>
- 
- / {
- 	compatible = "amlogic,meson-axg";
-@@ -200,8 +201,6 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x3000 0x0 0x18>;
- 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&xtal>, <&xtal>;
--				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
- 
-@@ -209,8 +208,6 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x4000 0x0 0x18>;
- 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&xtal>, <&xtal>;
--				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
- 		};
--- 
-2.15.1
+This change is not related to the main task describe in the cover letter.
+Next time, please send it after your series, or before as a dependency to avoid
+mixing topics
+
+Thanks
+Jerome
