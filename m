@@ -1,25 +1,26 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Mon, 11 Dec 2017 07:57:38 -0700
-Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
-In-Reply-To: <20171203091713.22029-4-b.galvani@gmail.com>
+Date: Mon, 11 Dec 2017 07:57:41 -0700
+Subject: [PATCH 4/4] meson: use the clock driver
+In-Reply-To: <20171203091713.22029-5-b.galvani@gmail.com>
 References: <20171203091713.22029-1-b.galvani@gmail.com>
- <20171203091713.22029-4-b.galvani@gmail.com>
-Message-ID: <CAPnjgZ0rsi8kY2mSZtjRy4CTbDRj6fpx=8Y9G-x3pKXdbMsrLQ@mail.gmail.com>
+ <20171203091713.22029-5-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ0uODiA_dje7SSJF3qZhYH=LW1tkCqodPMyxFCukyaxJQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Benjamin,
-
 On 3 December 2017 at 02:17, Beniamino Galvani <b.galvani@gmail.com> wrote:
-> Introduce a basic clock driver for Amlogic Meson SoCs which supports
-> enabling/disabling clock gates and getting their frequency.
+> Use the clk framework to initialize clocks from drivers that need them
+> instead of having hardcoded frequencies and initializations from board
+> code.
 >
 > Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 > ---
->  arch/arm/mach-meson/Kconfig |   2 +
->  drivers/clk/Makefile        |   1 +
->  drivers/clk/clk_meson.c     | 196 ++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 199 insertions(+)
->  create mode 100644 drivers/clk/clk_meson.c
+>  arch/arm/include/asm/arch-meson/gxbb.h | 10 ----------
+>  arch/arm/include/asm/arch-meson/i2c.h  | 11 -----------
+>  board/amlogic/odroid-c2/odroid-c2.c    |  4 +---
+>  board/amlogic/p212/p212.c              |  3 +--
+>  drivers/i2c/meson_i2c.c                | 20 +++++++++++++++++---
+>  5 files changed, 19 insertions(+), 29 deletions(-)
+>  delete mode 100644 arch/arm/include/asm/arch-meson/i2c.h
 
 Reviewed-by: Simon Glass <sjg@chromium.org>
