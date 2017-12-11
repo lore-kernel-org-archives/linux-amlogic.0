@@ -1,61 +1,141 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 11 Dec 2017 22:13:48 +0800
-Subject: [PATCH v7 6/6] arm64: dts: meson-axg: switch uart_ao clock to CLK81
-In-Reply-To: <20171211141348.22048-1-yixun.lan@amlogic.com>
-References: <20171211141348.22048-1-yixun.lan@amlogic.com>
-Message-ID: <20171211141348.22048-7-yixun.lan@amlogic.com>
+From: sjg@chromium.org (Simon Glass)
+Date: Mon, 11 Dec 2017 07:57:33 -0700
+Subject: [PATCH 2/4] ARM: meson: add clock measurement function
+In-Reply-To: <20171203091713.22029-3-b.galvani@gmail.com>
+References: <20171203091713.22029-1-b.galvani@gmail.com>
+ <20171203091713.22029-3-b.galvani@gmail.com>
+Message-ID: <CAPnjgZ318=vbqv6ArGUKQhm2wqq-DgicH0F3bD0O3xM-+U6tgA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Switch the uart_ao pclk to CLK81 since the clock driver is ready.
-Also move the clock info to the board.dts instead in the soc.dtsi.
+Hi Benjamin,
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 2 ++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 5 +----
- 2 files changed, 3 insertions(+), 4 deletions(-)
+On 3 December 2017 at 02:17, Beniamino Galvani <b.galvani@gmail.com> wrote:
+> Add add a function to measure the current clock rate.
+>
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  arch/arm/include/asm/arch-meson/clock.h | 34 +++++++++++++++++++++++++
+>  arch/arm/mach-meson/Makefile            |  2 +-
+>  arch/arm/mach-meson/clock.c             | 45 +++++++++++++++++++++++++++++++++
+>  3 files changed, 80 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/include/asm/arch-meson/clock.h
+>  create mode 100644 arch/arm/mach-meson/clock.c
+>
+> diff --git a/arch/arm/include/asm/arch-meson/clock.h b/arch/arm/include/asm/arch-meson/clock.h
+> new file mode 100644
+> index 0000000000..b43b23386c
+> --- /dev/null
+> +++ b/arch/arm/include/asm/arch-meson/clock.h
+> @@ -0,0 +1,34 @@
+> +/*
+> + * Copyright 2017 - Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:    GPL-2.0+
+> + */
+> +#ifndef _MESON_CLOCK_H_
+> +#define _MESON_CLOCK_H_
+> +
+> +/* CBUS clock measure registers */
+> +#define MSR_CLK_DUTY           0xc1108758
+> +#define MSR_CLK_REG0           0xc110875c
+> +#define MSR_CLK_REG1           0xc1108760
+> +#define MSR_CLK_REG2           0xc1108764
+> +
+> +#define CLK_GP0_PLL            4
+> +#define CLK_GP1_PLL            5
+> +#define CLK_81                 7
+> +#define CLK_MMC                        23
+> +#define CLK_MOD_ETH_TX         40
+> +#define CLK_MOD_ETH_RX_RMII    41
+> +#define CLK_FCLK_DIV5          43
+> +#define CLK_SD_EMMC_CLK_C      51
+> +#define CLK_SD_EMMC_CLK_B      52
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index 70eca1f8736a..718bbebff107 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -19,4 +19,6 @@
- 
- &uart_AO {
- 	status = "okay";
-+	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clock-names = "xtal", "pclk", "baud";
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 6fe5ee0c144e..f5b496bfd4de 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/axg-clkc.h>
- 
- / {
- 	compatible = "amlogic,meson-axg";
-@@ -200,8 +201,6 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x3000 0x0 0x18>;
- 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&xtal>, <&xtal>;
--				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
- 
-@@ -209,8 +208,6 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x4000 0x0 0x18>;
- 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&xtal>, <&xtal>;
--				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
- 		};
--- 
-2.15.1
+Are these constants in the dt-binding file somewhere?
+
+> +
+> +/* Clock gates */
+> +#define HHI_GCLK_MPEG0         0x140
+> +#define HHI_GCLK_MPEG1         0x144
+> +#define HHI_GCLK_MPEG2         0x148
+> +#define HHI_GCLK_OTHER         0x150
+> +#define HHI_GCLK_AO            0x154
+> +
+> +ulong meson_measure_clk_rate(unsigned int clk);
+
+Please can you add a function comment and mention error-return values also?
+
+> +
+> +#endif
+> diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
+> index bf49b8b1e5..e7ea4fc5b0 100644
+> --- a/arch/arm/mach-meson/Makefile
+> +++ b/arch/arm/mach-meson/Makefile
+> @@ -4,4 +4,4 @@
+>  # SPDX-License-Identifier:     GPL-2.0+
+>  #
+>
+> -obj-y += board.o sm.o
+> +obj-y += board.o clock.o sm.o
+> diff --git a/arch/arm/mach-meson/clock.c b/arch/arm/mach-meson/clock.c
+> new file mode 100644
+> index 0000000000..73be11e90d
+> --- /dev/null
+> +++ b/arch/arm/mach-meson/clock.c
+> @@ -0,0 +1,45 @@
+> +/*
+> + * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
+> + *
+> + * SPDX-License-Identifier:    GPL-2.0+
+> + *
+> + * Clock rate measuring.
+> + */
+> +
+> +#include <common.h>
+> +#include <asm/arch/clock.h>
+> +#include <asm/io.h>
+> +
+> +ulong meson_measure_clk_rate(unsigned int clk)
+> +{
+> +       ulong start;
+> +       ulong mhz;
+> +
+> +       writel(0, MSR_CLK_REG0);
+> +
+> +       /* Set the measurement gate to 64uS */
+> +       clrsetbits_le32(MSR_CLK_REG0, 0xffff, 64 - 1);
+> +       clrbits_le32(MSR_CLK_REG0,
+> +                    BIT(17) |          /* disable continuous measurement */
+> +                    BIT(18));          /* disable interrupts */
+> +       clrsetbits_le32(MSR_CLK_REG0,
+> +                       GENMASK(20, 26),
+> +                       clk << 20);     /* select the clock */
+> +       setbits_le32(MSR_CLK_REG0,
+> +                    BIT(19) |          /* enable the clock */
+> +                    BIT(16));          /* enable measuring */
+> +
+> +       start = get_timer(0);
+> +       while (readl(MSR_CLK_REG0) & BIT(31)) {
+> +               if (get_timer(start) > 100) {
+
+How long does this take to measure? Is it up to 100ms?
+
+> +                       debug("could not measure clk %u rate\n", clk);
+> +                       return -ETIMEDOUT;
+> +               }
+> +       }
+> +
+> +       /* Disable measuring */
+> +       clrbits_le32(MSR_CLK_REG0, BIT(16));
+> +
+> +       mhz = ((readl(MSR_CLK_REG2) + 31) & 0xfffff) >> 6;
+> +       return mhz * 1000000;
+> +}
+> --
+> 2.14.3
+>
+
+
+Regards,
+Simon
