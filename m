@@ -1,29 +1,56 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 11 Dec 2017 12:27:17 +0100
-Subject: [PATCH v6 4/6] clk: meson: make the spinlock naming more specific
-In-Reply-To: <20171211064853.32111-5-yixun.lan@amlogic.com>
-References: <20171211064853.32111-1-yixun.lan@amlogic.com>
- <20171211064853.32111-5-yixun.lan@amlogic.com>
-Message-ID: <1512991637.334.28.camel@baylibre.com>
+From: srinivas.kandagatla@linaro.org (Srinivas Kandagatla)
+Date: Mon, 11 Dec 2017 11:48:03 +0000
+Subject: [PATCH] nvmem: meson-mx-efuse: fix reading from an offset other
+ than 0
+In-Reply-To: <20171112183412.12806-1-martin.blumenstingl@googlemail.com>
+References: <20171112183412.12806-1-martin.blumenstingl@googlemail.com>
+Message-ID: <553c40db-d781-b275-be9c-996205a7788e@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2017-12-11 at 14:48 +0800, Yixun Lan wrote:
->                 .ops = &clk_gate_ops,
-> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-> index 1629da9b4141..87f06a801a4d 100644
-> --- a/drivers/clk/meson/clkc.h
-> +++ b/drivers/clk/meson/clkc.h
-> @@ -134,7 +134,7 @@ struct meson_clk_audio_divider {
->  struct clk_gate _name = {                                              \
->         .reg = (void __iomem *) _reg,                                   \
->         .bit_idx = (_bit),                                              \
-> -       .lock = &clk_lock,                                              \
-> +       .lock = &meson_clk_lock,                                                \
+Hi Martin,
+On 12/11/17 18:34, Martin Blumenstingl wrote:
+> meson_mx_efuse_read calculates the address internal to the eFuse based
+> on the offset and the word size. This works fine with any given offset.
+> However, the offset is also included when writing to the output buffer.
+> This means that reading 4 bytes at offset 500 tries to write beyond the
+> array allocated by the nvmem core as it wants to write the 4 bytes to
+> "buffer address + offset (500)".
+> This issue did not show up in the previous tests since no driver uses
+> any value from the eFuse yet and reading the eFuse via sysfs simply
+> reads the whole eFuse, starting at offset 0.
+> 
+> Fix this by only including the offset in the internal address
+> calculation.
+> 
+> Fixes: 8caef1fa9176 ("nvmem: add a driver for the Amlogic Meson6/Meson8/Meson8b SoCs")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+Thanks for your patience,
 
-Something is not right here, line is over 80 characters
-Remember to run checkpatch on your series please.
+I will send this to Greg along with other fixes some time this week!
 
->         .hw.init = &(struct clk_init_data) {                            \
->                 .name = #_name,                                 \
->                 .ops = &clk_gate_ops,                                   \
+thanks,
+srini
+
+
+
+>   drivers/nvmem/meson-mx-efuse.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/nvmem/meson-mx-efuse.c b/drivers/nvmem/meson-mx-efuse.c
+> index a346b4923550..41d3a3c1104e 100644
+> --- a/drivers/nvmem/meson-mx-efuse.c
+> +++ b/drivers/nvmem/meson-mx-efuse.c
+> @@ -156,8 +156,8 @@ static int meson_mx_efuse_read(void *context, unsigned int offset,
+>   				 MESON_MX_EFUSE_CNTL1_AUTO_RD_ENABLE,
+>   				 MESON_MX_EFUSE_CNTL1_AUTO_RD_ENABLE);
+>   
+> -	for (i = offset; i < offset + bytes; i += efuse->config.word_size) {
+> -		addr = i / efuse->config.word_size;
+> +	for (i = 0; i < bytes; i += efuse->config.word_size) {
+> +		addr = (offset + i) / efuse->config.word_size;
+>   
+>   		err = meson_mx_efuse_read_addr(efuse, addr, &tmp);
+>   		if (err)
+> 
