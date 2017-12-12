@@ -1,58 +1,36 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 11 Dec 2017 16:28:09 -0800
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.16
-Message-ID: <7hmv2oaixy.fsf@baylibre.com>
+From: colin.king@canonical.com (Colin King)
+Date: Tue, 12 Dec 2017 13:03:11 +0000
+Subject: [PATCH][next] net: phy: meson-gxl: make function
+ meson_gxl_read_status static
+Message-ID: <20171212130311.17185-1-colin.king@canonical.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The following changes since commit 4fbd8d194f06c8a3fd2af1ce560ddb31f7ec8323:
+From: Colin Ian King <colin.king@canonical.com>
 
-  Linux 4.15-rc1 (2017-11-26 16:01:47 -0800)
+The function meson_gxl_read_status is local to the source and does
+not need to be in global scope, so make it static.
 
-are available in the git repository at:
+Cleans up sparse warning:
+symbol 'meson_gxl_read_status' was not declared. Should it be static?
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/net/phy/meson-gxl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-for you to fetch changes up to 3106507e1004dd398ef75d0caf048f97ba2dfd0b:
-
-  ARM64: dts: meson-gxm: fix q200 interrupt number (2017-12-08 10:47:28 -0800)
-
-----------------------------------------------------------------
-Amlogic 64-bit DT updates for v4.16
-- meson-gx: add VPU power domain support
-- odroid-c2: add HDMI and CEC nodes
-- misc cleanups
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      ARM64: dts: meson-gxm: fix q200 interrupt number
-
-Kevin Hilman (1):
-      ARM64: dts: amlogic: use generic bus node names
-
-Martin Blumenstingl (2):
-      ARM64: dts: meson: add comments with the GPIO for the PHY interrupts
-      ARM64: dts: meson-gxm: add the PHY interrupt line on Khadas VIM2
-
-Neil Armstrong (4):
-      ARM64: dts: meson-gx: add VPU power domain
-      ARM64: dts: meson-gx: Add HDMI_5V regulator on selected boards
-      ARM64: dts: meson-gx: grow reset controller memory zone
-      ARM64: dts: odroid-c2: Add HDMI and CEC Nodes
-
-Xingyu Chen (1):
-      ARM64: dts: meson: drop "sana" clock from SAR ADC
-
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi                   |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi          | 12 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                    | 19 +++++++++++++++----
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts         |  1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts          | 32 ++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts              |  1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                  | 46 ++++++++++++++++++++++++++++++++++++++++++++--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 12 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi        | 12 ++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                   | 46 ++++++++++++++++++++++++++++++++++++++++++++--
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts        | 15 +++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts               |  3 ++-
- 12 files changed, 192 insertions(+), 11 deletions(-)
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index c64b81e50f60..4ee630afe43a 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -67,7 +67,7 @@ static int meson_gxl_config_init(struct phy_device *phydev)
+  * When this failure happens, the first retry is usually successful but,
+  * in some cases, it may take up to 6 retries to get a decent result
+  */
+-int meson_gxl_read_status(struct phy_device *phydev)
++static int meson_gxl_read_status(struct phy_device *phydev)
+ {
+ 	int ret, wol, lpa, exp;
+ 
+-- 
+2.14.1
