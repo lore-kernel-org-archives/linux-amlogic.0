@@ -1,38 +1,24 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 12 Dec 2017 14:23:39 +0100
-Subject: [PATCH u-boot] ARM: arch-meson: fix writel arguments order
-Message-ID: <1513085019-8071-1-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 12 Dec 2017 15:20:42 +0100
+Subject: [PATCH][next] net: phy: meson-gxl: make function
+ meson_gxl_read_status static
+In-Reply-To: <20171212130311.17185-1-colin.king@canonical.com>
+References: <20171212130311.17185-1-colin.king@canonical.com>
+Message-ID: <1513088442.26438.18.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Hans Verkuil <hans.verkuil@cisco.com>
+On Tue, 2017-12-12 at 13:03 +0000, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> The function meson_gxl_read_status is local to the source and does
+> not need to be in global scope, so make it static.
+> 
+> Cleans up sparse warning:
+> symbol 'meson_gxl_read_status' was not declared. Should it be static?
+> 
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-Using writel causes a "Synchronous Abort". Invert the arguments.
+Indeed, silly mistake, thx for spotting it.
 
-Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm/mach-meson/eth.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-Thanks Hans for finding this stupid error !
-
-Neil
-
-diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
-index 2debe93..8c6577b 100644
---- a/arch/arm/mach-meson/eth.c
-+++ b/arch/arm/mach-meson/eth.c
-@@ -38,8 +38,8 @@ void meson_gx_eth_init(phy_interface_t mode, unsigned int flags)
- 		/* Use GXL RMII Internal PHY */
- 		if (IS_ENABLED(CONFIG_MESON_GXL) &&
- 		    (flags & MESON_GXL_USE_INTERNAL_RMII_PHY)) {
--			writel(GXBB_ETH_REG_2, 0x10110181);
--			writel(GXBB_ETH_REG_3, 0xe40908ff);
-+			writel(0x10110181, GXBB_ETH_REG_2);
-+			writel(0xe40908ff, GXBB_ETH_REG_3);
- 		}
- 
- 		break;
--- 
-2.7.4
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
