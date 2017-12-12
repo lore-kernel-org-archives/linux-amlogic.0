@@ -1,36 +1,38 @@
-From: colin.king@canonical.com (Colin King)
-Date: Tue, 12 Dec 2017 13:03:11 +0000
-Subject: [PATCH][next] net: phy: meson-gxl: make function
- meson_gxl_read_status static
-Message-ID: <20171212130311.17185-1-colin.king@canonical.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 12 Dec 2017 14:23:39 +0100
+Subject: [PATCH u-boot] ARM: arch-meson: fix writel arguments order
+Message-ID: <1513085019-8071-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Colin Ian King <colin.king@canonical.com>
+From: Hans Verkuil <hans.verkuil@cisco.com>
 
-The function meson_gxl_read_status is local to the source and does
-not need to be in global scope, so make it static.
+Using writel causes a "Synchronous Abort". Invert the arguments.
 
-Cleans up sparse warning:
-symbol 'meson_gxl_read_status' was not declared. Should it be static?
-
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/net/phy/meson-gxl.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/mach-meson/eth.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-index c64b81e50f60..4ee630afe43a 100644
---- a/drivers/net/phy/meson-gxl.c
-+++ b/drivers/net/phy/meson-gxl.c
-@@ -67,7 +67,7 @@ static int meson_gxl_config_init(struct phy_device *phydev)
-  * When this failure happens, the first retry is usually successful but,
-  * in some cases, it may take up to 6 retries to get a decent result
-  */
--int meson_gxl_read_status(struct phy_device *phydev)
-+static int meson_gxl_read_status(struct phy_device *phydev)
- {
- 	int ret, wol, lpa, exp;
+Thanks Hans for finding this stupid error !
+
+Neil
+
+diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
+index 2debe93..8c6577b 100644
+--- a/arch/arm/mach-meson/eth.c
++++ b/arch/arm/mach-meson/eth.c
+@@ -38,8 +38,8 @@ void meson_gx_eth_init(phy_interface_t mode, unsigned int flags)
+ 		/* Use GXL RMII Internal PHY */
+ 		if (IS_ENABLED(CONFIG_MESON_GXL) &&
+ 		    (flags & MESON_GXL_USE_INTERNAL_RMII_PHY)) {
+-			writel(GXBB_ETH_REG_2, 0x10110181);
+-			writel(GXBB_ETH_REG_3, 0xe40908ff);
++			writel(0x10110181, GXBB_ETH_REG_2);
++			writel(0xe40908ff, GXBB_ETH_REG_3);
+ 		}
  
+ 		break;
 -- 
-2.14.1
+2.7.4
