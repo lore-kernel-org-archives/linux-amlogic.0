@@ -1,50 +1,50 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Wed, 13 Dec 2017 22:07:36 +0800
-Subject: [PATCH 2/3] reset: meson-axg: add compatible string for Meson-AXG
- SoC
-In-Reply-To: <20171110084650.31325-2-yixun.lan@amlogic.com>
-References: <20171110084650.31325-1-yixun.lan@amlogic.com>
- <20171110084650.31325-2-yixun.lan@amlogic.com>
-Message-ID: <3b61170c-c352-6b23-ab19-82c76954a911@amlogic.com>
+From: hao5781286@gmail.com (hao_zhang)
+Date: Wed, 13 Dec 2017 22:38:40 +0800
+Subject: [PATCH v4 0/4] pwm support for allwinner sun8i R40/V40/T3 SOCs.
+Message-ID: <20171213143840.GA17754@arx-s1>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Philipp
+This patchset add pwm support for allwinner sun8i R40/V40/T3 SOCs.
 
-On 11/10/2017 04:46 PM, Yixun Lan wrote:
-> Try to add compatible string explictly to support new Meson-AXG SoC.
-> 
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  drivers/reset/reset-meson.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> index c419a3753d00..93cbee1ae8ef 100644
-> --- a/drivers/reset/reset-meson.c
-> +++ b/drivers/reset/reset-meson.c
-> @@ -139,6 +139,8 @@ static const struct of_device_id meson_reset_dt_ids[] = {
->  	   .data = &meson_reset_meson8_ops, },
->  	 { .compatible = "amlogic,meson-gxbb-reset",
->  	   .data = &meson_reset_gx_ops, },
-> +	 { .compatible = "amlogic,meson-axg-reset",
-> +	   .data = &meson_reset_gx_ops, },
->  	 { /* sentinel */ },
->  };
->  
-> 
+all has been teat on T3 board.
 
-it's generally a ping to the status of these two patches[1], are they
-ready to go? or do you have any comment? or do you want me to send
-another version with Neil's Reviewed-by added[1]
+Some features
+	8 PWM channels outputs(4 PWM pairs) 
+	Supports capturing input 
+	Supports three kinds of output waveforms: continuous waveform, pulse
+	waveform and complementarity pair 
+	Programmable deadzone generator and controllable dead-time 
+	0% to 100% adjustable duty cycle 
+	Up to 24/100MHz output frequency 
+	Minimum resolution is 1/65536 
+	Supports interrupt for PWM output and capturing input
 
-thanks
 
-Yixun
+DOC:
+https://github.com/tinalinux/docs/blob/r40-v1.y/Allwinner_R40_User_Manual_V1.0.pdf
+https://github.com/tinalinux/docs/blob/r40-v1.y/R40_Datasheet_V1.0.pdf
 
-[1]
-http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005278.html
+Regards;-)
+Hao Zhang
 
-[2]
-http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005318.html
-http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005319.html
+hao_zhang (4):
+  dt-bindings: pwm: binding allwinner R40, V40, T3
+  ARM: PWM: add allwinner sun8i R40/V40/T3 pwm support.
+  ARM: dts: add pwm node for r40.
+  ARM: pinctrl: sunxi-pinctrl: fix pin funtion can not be match
+    correctly.
+
+ .../devicetree/bindings/pwm/pwm-sun8i.txt          |  18 +
+ arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts  |   6 +
+ arch/arm/boot/dts/sun8i-r40.dtsi                   |  13 +
+ drivers/pinctrl/sunxi/pinctrl-sunxi.c              |   6 +-
+ drivers/pwm/Kconfig                                |  10 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-sun8i-r40.c                        | 449 +++++++++++++++++++++
+ 7 files changed, 501 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sun8i.txt
+ create mode 100644 drivers/pwm/pwm-sun8i-r40.c
+
+-- 
+2.7.4
