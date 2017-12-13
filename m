@@ -1,24 +1,38 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 13 Dec 2017 00:53:24 +0100
-Subject: [PATCH] pinctrl: meson-axg: adjust spicc pin naming
-In-Reply-To: <20171208152909.15632-1-yixun.lan@amlogic.com>
-References: <20171208152909.15632-1-yixun.lan@amlogic.com>
-Message-ID: <CACRpkdYnQDsy7T+Tdj_ALic=x3pUReAEyCYDE7f+trkSABDzBw@mail.gmail.com>
+From: trini@konsulko.com (Tom Rini)
+Date: Tue, 12 Dec 2017 21:33:27 -0500
+Subject: [U-Boot,4/4] meson: use the clock driver
+In-Reply-To: <20171203091713.22029-5-b.galvani@gmail.com>
+References: <20171203091713.22029-5-b.galvani@gmail.com>
+Message-ID: <20171213023327.GA24685@bill-the-cat>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Dec 8, 2017 at 4:29 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
-> According to datasheet, we should use numbers for the pin naming
-> instead of letters. The patch here try to fix this to keep
-> the consistency.
->
-> This patch should not bring any functional change.
->
-> Fixes: 83c566806a68 ("pinctrl: meson-axg: Add new pinctrl driver for Meson AXG SoC")
-> Suggested-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+On Sun, Dec 03, 2017 at 10:17:13AM +0100, Beniamino Galvani wrote:
 
-Patch applied.
+> Use the clk framework to initialize clocks from drivers that need them
+> instead of having hardcoded frequencies and initializations from board
+> code.
+> 
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> Reviewed-by: Simon Glass <sjg@chromium.org>
+> ---
+>  arch/arm/include/asm/arch-meson/gxbb.h | 10 ----------
+>  arch/arm/include/asm/arch-meson/i2c.h  | 11 -----------
+>  board/amlogic/odroid-c2/odroid-c2.c    |  4 +---
+>  board/amlogic/p212/p212.c              |  3 +--
+>  drivers/i2c/meson_i2c.c                | 20 +++++++++++++++++---
+>  5 files changed, 19 insertions(+), 29 deletions(-)
+>  delete mode 100644 arch/arm/include/asm/arch-meson/i2c.h
 
-Yours,
-Linus Walleij
+This fails to apply in non-trivial ways, please update and re-test,
+thanks!
+
+-- 
+Tom
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20171212/5cd90295/attachment.sig>
