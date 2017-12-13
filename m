@@ -1,54 +1,24 @@
-From: p.zabel@pengutronix.de (Philipp Zabel)
-Date: Wed, 13 Dec 2017 17:01:38 +0100
-Subject: [PATCH 2/3] reset: meson-axg: add compatible string for
- Meson-AXG SoC
-In-Reply-To: <3b61170c-c352-6b23-ab19-82c76954a911@amlogic.com>
-References: <20171110084650.31325-1-yixun.lan@amlogic.com>
- <20171110084650.31325-2-yixun.lan@amlogic.com>
- <3b61170c-c352-6b23-ab19-82c76954a911@amlogic.com>
-Message-ID: <1513180898.9445.3.camel@pengutronix.de>
+From: davem@davemloft.net (David Miller)
+Date: Wed, 13 Dec 2017 15:05:11 -0500 (EST)
+Subject: [PATCH][next] net: phy: meson-gxl: make function
+ meson_gxl_read_status static
+In-Reply-To: <20171212130311.17185-1-colin.king@canonical.com>
+References: <20171212130311.17185-1-colin.king@canonical.com>
+Message-ID: <20171213.150511.1299918610251349853.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yixun,
+From: Colin King <colin.king@canonical.com>
+Date: Tue, 12 Dec 2017 13:03:11 +0000
 
-On Wed, 2017-12-13 at 22:07 +0800, Yixun Lan wrote:
-> Hi Philipp
+> From: Colin Ian King <colin.king@canonical.com>
 > 
-> On 11/10/2017 04:46 PM, Yixun Lan wrote:
-> > Try to add compatible string explictly to support new Meson-AXG SoC.
-> > 
-> > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> > ---
-> >  drivers/reset/reset-meson.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> > index c419a3753d00..93cbee1ae8ef 100644
-> > --- a/drivers/reset/reset-meson.c
-> > +++ b/drivers/reset/reset-meson.c
-> > @@ -139,6 +139,8 @@ static const struct of_device_id meson_reset_dt_ids[] = {
-> >  	   .data = &meson_reset_meson8_ops, },
-> >  	 { .compatible = "amlogic,meson-gxbb-reset",
-> >  	   .data = &meson_reset_gx_ops, },
-> > +	 { .compatible = "amlogic,meson-axg-reset",
-> > +	   .data = &meson_reset_gx_ops, },
-> >  	 { /* sentinel */ },
-> >  };
-> >  
-> > 
+> The function meson_gxl_read_status is local to the source and does
+> not need to be in global scope, so make it static.
 > 
-> it's generally a ping to the status of these two patches[1], are they
-> ready to go? or do you have any comment? or do you want me to send
-> another version with Neil's Reviewed-by added[1]
+> Cleans up sparse warning:
+> symbol 'meson_gxl_read_status' was not declared. Should it be static?
+> 
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-I forgot to update you on the status. I have put both patches on the
-reset/next branch with Neil's R-b, they are in linux-next:
-
-0e5721f76252 ("reset: meson-axg: add compatible string for Meson-AXG SoC")
-c16292578ffa ("dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller")
-
-I'll include them with the next pull request.
-
-regards
-Philipp
+Applied.
