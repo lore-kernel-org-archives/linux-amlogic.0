@@ -1,32 +1,72 @@
-From: arnaud.patard@rtp-net.org (Arnaud Patard (Rtp))
-Date: Thu, 14 Dec 2017 13:41:11 +0100
-Subject: [RFC PATCH] net: stmmac: enable EEE in MII, GMII or RGMII only
-In-Reply-To: <20171205102809.4347-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Tue, 5 Dec 2017 11:28:09 +0100")
-References: <20171205102809.4347-1-jbrunet@baylibre.com>
-Message-ID: <87ind9fpnc.fsf@lechat.rtp-net.org>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 14 Dec 2017 15:52:56 +0100
+Subject: [PATCH v2] ARM64: dts: meson-axg: add ethernet mac controller
+In-Reply-To: <20171214030242.113152-1-yixun.lan@amlogic.com>
+References: <20171214030242.113152-1-yixun.lan@amlogic.com>
+Message-ID: <1513263176.32163.12.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+On Thu, 2017-12-14 at 11:02 +0800, Yixun Lan wrote:
+> Add DT info for the stmmac ethernet MAC which found in
+> the Amlogic's Meson-AXG SoC, also describe the ethernet
+> pinctrl & clock information here.
+> 
+> This is tested in the S400 dev board which use a RTL8211F PHY,
+> and the pins connect to the 'eth_rgmii_y_pins' group.
+> 
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-> Note in the databook - Section 4.4 - EEE :
-> " The EEE feature is not supported when the MAC is configured to use the
-> TBI, RTBI, SMII, RMII or SGMII single PHY interface. Even if the MAC
-> supports multiple PHY interfaces, you should activate the EEE mode only
-> when the MAC is operating with GMII, MII, or RGMII interface."
->
-> Applying this restriction solves a stability issue observed on Amlogic
-> gxl platforms operating with RMII interface and the internal PHY.
+I think it would have been better to split this into 2 patches.
+One adding the controller for axg, the other using it in the s400, but maybe
+Kevin is OK with it...
 
-I was having the issue on my libretech AML-S905X-CC / potato board. With
-this patch, I've not been able to trigger it at all. Without it and with
-my test case, I was able to trigger the hang several times reliably.
+> 
+> ---
+> Changes in v2 since [1]:
+>  - rebase to kevin's v4.16/dt64 branch
+>  - add Neil's Reviewed-by
+>  - move clock info to board.dts instead of in soc.dtsi
+>  - drop "meson-axg-dwmac" compatible string, since we didn't use this
+>    we could re-add it later when we really need.
+>  - note: to make ethernet work properly,it depend on clock & pinctrl[2],
+>    to compile the DTS, the patch [3] is required.
+>    the code part will be taken via clock & pinctrl subsystem tree.
+> 
+> [1]
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005301.html
+> 
+> [2]
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005735.html
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005694.html
+> 
+> [3]
+> http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005738.html
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 11 ++++++
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 50 ++++++++++++++++++++++++++
+>  2 files changed, 61 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> index 70eca1f8736a..138de3bc7cc8 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> @@ -20,3 +20,14 @@
+>  &uart_AO {
+>  	status = "okay";
+>  };
+> +
+> +&ethmac {
 
-Any hope to see this merged ?
+We try to keep nodes alphabetically ordered.
+Please put ethmac before uart_A0
 
->
-> Fixes: 83bf79b6bb64 ("stmmac: disable at run-time the EEE if not supported")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+thx
 
-Tested-by: Arnaud Patard <arnaud.patard@rtp-net.org>
+> 
+> 
+
+With all the dependencies sorted out, it works
+
+Tested-by: Jerome Brunet <jbrunet@baylibre.com> 
