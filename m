@@ -1,40 +1,36 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 15 Dec 2017 12:20:06 -0800
-Subject: [PATCH v4 2/2] ARM64: dts: meson-axg: add pinctrl DT info for
- Meson-AXG SoC
-In-Reply-To: <20171208015418.9632-3-yixun.lan@amlogic.com> (Yixun Lan's
- message of "Fri, 8 Dec 2017 09:54:18 +0800")
-References: <20171208015418.9632-1-yixun.lan@amlogic.com>
- <20171208015418.9632-3-yixun.lan@amlogic.com>
-Message-ID: <7hr2rv7ngp.fsf@baylibre.com>
+From: hkallweit1@gmail.com (Heiner Kallweit)
+Date: Sat, 16 Dec 2017 00:19:56 +0100
+Subject: Faults on Odroid-C2 during shutdown and fix proposal
+Message-ID: <c28e0ecf-9bf3-f6e8-b8c8-91b14bf797f6@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Yixun Lan <yixun.lan@amlogic.com> writes:
+Neil,
 
-> From: Xingyu Chen <xingyu.chen@amlogic.com>
->
-> Add new pinctrl DT info for the Amlogic's Meson-AXG SoC.
->
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 44 ++++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index e7213eb53958..7b24f83ab4bf 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/gpio/meson-axg-gpio.h>
+during shutdown I experience faults as described in the commit message of
+339cd0ea0822 "soc: amlogic: meson-gx-pwrc-vpu: fix power-off when powered by bootloader"
 
-FYI: I dropped this line, since it's not used (yet) and it causes an
-unncessary dependency on an external tree.  It can be added back as soon
-as there are users.
+My best guess:
+I operate the board headless, therefore the domain is never powered on, leaving the
+clocks disabled. The shutdown function then tries to disable the already disabled
+clocks.
+The following change fixes it for me, however there may be scenarios I miss,
+therefore I'd like to hear your opinion.
 
-Kevin
+ static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
+ {
+-       meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
++       bool powered_off;
++
++       powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
++       if (!powered_off)
++               meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
+ }
+
+And something completely different:
+I get a misleading error message "failed to get reset lines", caused by the fact
+that devm_reset_control_array_get() returns -EPROBE_DEFER. So I think we should
+print the error message only if the error is not caused by a probe deferral.
+
+Kind regards,
+Heiner
