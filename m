@@ -1,52 +1,29 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 15 Dec 2017 11:48:29 -0800
-Subject: [PATCH v4 0/2] dt: add pinctrl driver for Meson-AXG SoC
-In-Reply-To: <20171208015418.9632-1-yixun.lan@amlogic.com> (Yixun Lan's
- message of "Fri, 8 Dec 2017 09:54:16 +0800")
-References: <20171208015418.9632-1-yixun.lan@amlogic.com>
-Message-ID: <7ha7yj93hu.fsf@baylibre.com>
+Date: Fri, 15 Dec 2017 11:51:05 -0800
+Subject: [PATCH v2] ARM64: dts: meson-axg: add PWM DT info for Meson-Axg
+ SoC
+In-Reply-To: <20171215024739.106705-1-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Fri, 15 Dec 2017 10:47:39 +0800")
+References: <20171215024739.106705-1-yixun.lan@amlogic.com>
+Message-ID: <7h609793di.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Yixun Lan <yixun.lan@amlogic.com> writes:
 
-> This is DT part patchset for adding pinctrl support for
-> the Amlogic's Meson-AXG SoC.
->   
-> Changes since v3 at [3]
->   -- rebase to khilman's v4.16/dt64 branch and re-send
->   -- add Rob's Ack
+> From: Jian Hu <jian.hu@amlogic.com>
 >
-> Changes since v2 at [2]:
->   -- Resend this patch series due to fail to send patch [2/2]
+> Add PWM DT info for the Amlogic's Meson-Axg SoC.
 >
-> Changes since v1 at [1]:
->   -- Separate DT part patches
->   -- Add Neil Armstrong's Ack
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 >
-> [3]
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005392.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005393.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005394.html
->
-> [2]
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005390.html
->
-> [1] 
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005270.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005271.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005272.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005273.html
-> http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005274.html
->
-> Xingyu Chen (2):
->   documentation: Add compatibles for Amlogic Meson AXG pin controllers
->   ARM64: dts: meson-axg: add pinctrl DT info for Meson-AXG SoC
+> ---
+> Changes in v2 since [1]
+>  - drop clock DT info from soc.dtsi
 
-Applied both to v4.14/dt64
+Applied to v4.16/dt64,
 
-Normally, the documentation patch should go with the driver, but since
-Linus has already merged the driver, this time I'll take it with the DT
-itself.
+Thanks,
 
 Kevin
