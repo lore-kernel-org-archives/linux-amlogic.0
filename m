@@ -1,60 +1,58 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 15 Dec 2017 16:41:49 +0100
-Subject: [GIT PULL] Amlogic clock driver updates for 4.16 - 2nd batch
-Message-ID: <1513352509.2261.66.camel@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 15 Dec 2017 10:58:51 -0800
+Subject: [PATCH v7 5/6] arm64: dts: meson-axg: add clock DT info for Meson
+ AXG SoC
+In-Reply-To: <20171211141348.22048-6-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Mon, 11 Dec 2017 22:13:47 +0800")
+References: <20171211141348.22048-1-yixun.lan@amlogic.com>
+ <20171211141348.22048-6-yixun.lan@amlogic.com>
+Message-ID: <7h7etnakd0.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear clock maintainers
+Yixun Lan <yixun.lan@amlogic.com> writes:
 
-Here is a 2nd round of update for amlogic clocks. It is based on top the
-first PR sent last week.
+> From: Qiufang Dai <qiufang.dai@amlogic.com>
+>
+> Try to add Hiubus DT info, and also enable clock DT info
+> for the Amlogic's Meson-AXG SoC.
+>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-Thanks for pulling
-Jerome
+Applied to v4.16/dt64,
 
-The following changes since commit ed3fb5af69afc802d6e29700fff3401ba99edac1:
+Thanks,
 
-  clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks (2017-12-08 21:37:19
-+0100)
+Kevin
 
-are available in the Git repository at:
-
-  git://github.com/BayLibre/clk-meson.git tags/meson-clk-for-v4.16-2
-
-for you to fetch changes up to 78b4af312f910e4f28ebf4cb0a8c1983daa16924:
-
-  clk: meson-axg: add clock controller drivers (2017-12-14 10:19:37 +0100)
-
-----------------------------------------------------------------
-Second round of meson clock updates for v4.16
-
-* Rename clock lock to help in case of lockdep issues
-* Initial axg support
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      Merge branch 'next/dt' into next/drivers
-
-Qiufang Dai (2):
-      clk: meson-axg: add clocks dt-bindings required header
-      clk: meson-axg: add clock controller drivers
-
-Yixun Lan (2):
-      clk: meson: make the spinlock naming more specific
-      dt-bindings: clock: add compatible variant for the Meson-AXG
-
- .../bindings/clock/amlogic,gxbb-clkc.txt           |   7 +-
- arch/arm64/Kconfig.platforms                       |   1 +
- drivers/clk/meson/Kconfig                          |   8 +
- drivers/clk/meson/Makefile                         |   1 +
- drivers/clk/meson/axg.c                            | 936 +++++++++++++++++++++
- drivers/clk/meson/axg.h                            | 126 +++
- drivers/clk/meson/clkc.h                           |   2 +-
- drivers/clk/meson/gxbb.c                           | 112 +--
- drivers/clk/meson/meson8b.c                        |  24 +-
- include/dt-bindings/clock/axg-clkc.h               |  71 ++
- 10 files changed, 1217 insertions(+), 71 deletions(-)
- create mode 100644 drivers/clk/meson/axg.c
- create mode 100644 drivers/clk/meson/axg.h
- create mode 100644 include/dt-bindings/clock/axg-clkc.h
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index b932a784b02a..6fe5ee0c144e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -148,6 +148,20 @@
+>  			#address-cells = <0>;
+>  		};
+>  
+> +		hiubus: bus at ff63c000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xff63c000 0x0 0x1c00>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+> +
+> +			clkc: clock-controller at 0 {
+> +				compatible = "amlogic,axg-clkc";
+> +				#clock-cells = <1>;
+> +				reg = <0x0 0x0 0x0 0x320>;
+> +			};
+> +		};
+> +
+>  		mailbox: mailbox at ff63dc00 {
+>  			compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
+>  			reg = <0 0xff63dc00 0 0x400>;
