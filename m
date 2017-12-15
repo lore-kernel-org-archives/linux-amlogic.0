@@ -1,34 +1,116 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 15 Dec 2017 11:14:48 -0800
-Subject: [PATCH v7 6/6] arm64: dts: meson-axg: switch uart_ao clock to
- CLK81
-In-Reply-To: <b4e29e22-c0e9-1085-fbb7-eabc5c361445@amlogic.com> (Yixun Lan's
- message of "Fri, 15 Dec 2017 09:49:11 +0800")
-References: <20171211141348.22048-1-yixun.lan@amlogic.com>
- <20171211141348.22048-7-yixun.lan@amlogic.com>
- <1513270051.2261.11.camel@baylibre.com>
- <b4e29e22-c0e9-1085-fbb7-eabc5c361445@amlogic.com>
-Message-ID: <7h1sjvajmf.fsf@baylibre.com>
+Date: Fri, 15 Dec 2017 11:29:31 -0800
+Subject: [PATCH v3 1/2] ARM64: dts: meson-axg: add ethernet mac controller
+In-Reply-To: <20171215021014.231308-2-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Fri, 15 Dec 2017 10:10:13 +0800")
+References: <20171215021014.231308-1-yixun.lan@amlogic.com>
+ <20171215021014.231308-2-yixun.lan@amlogic.com>
+Message-ID: <7ho9mz94dg.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Yixun Lan <yixun.lan@amlogic.com> writes:
 
-> On 12/15/17 00:47, Jerome Brunet wrote:
->> On Mon, 2017-12-11 at 22:13 +0800, Yixun Lan wrote:
->>> Switch the uart_ao pclk to CLK81 since the clock driver is ready.
->>> Also move the clock info to the board.dts instead in the soc.dtsi.
->> 
->> Same comment as for ethmac, is it really wise ?
->> Isn't the clock setup the same for the axg family ?
->> 
-> HI Jerome:
-> yes, should be same for AXG family
+> Add DT info for the stmmac ethernet MAC which found in
+> the Amlogic's Meson-AXG SoC, also describe the ethernet
+> pinctrl & clock information here.
 >
->
-> HI Kevin:
-> could you take the patch [5/6]? then I just need to resend for this one
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-Yes, I've applied PATCH 5/6.
+This patch does not apply, and dependencies are not described.
+
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 54 ++++++++++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index d356ce74ad89..94c4972222b7 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -7,6 +7,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/clock/axg-clkc.h>
+>  
+>  / {
+>  	compatible = "amlogic,meson-axg";
+> @@ -148,6 +149,19 @@
+>  			#address-cells = <0>;
+>  		};
+>  
+> +		ethmac: ethernet at ff3f0000 {
+> +			compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
+> +			reg = <0x0 0xff3f0000 0x0 0x10000
+> +				0x0 0xff634540 0x0 0x8>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "macirq";
+> +			clocks = <&clkc CLKID_ETH>,
+> +				 <&clkc CLKID_FCLK_DIV2>,
+> +				 <&clkc CLKID_MPLL2>;
+> +			clock-names = "stmmaceth", "clkin0", "clkin1";
+> +			status = "disabled";
+> +		};
+> +
+>  		hiubus: bus at ff63c000 {
+>  			compatible = "simple-bus";
+>  			reg = <0x0 0xff63c000 0x0 0x1c00>;
+
+Based on the hiubus node, presumably this depends on the patch from the
+clock series.
+
+> @@ -194,6 +208,46 @@
+>  					#gpio-cells = <2>;
+>  					gpio-ranges = <&pinctrl_periphs 0 0 86>;
+>  				};
+
+I'm not sure where this part is coming from, but it causes the rest of
+it to not apply.
+
+Please be sure to describe all dependencies.
 
 Kevin
+
+> +
+> +				eth_rgmii_x_pins: eth-x-rgmii {
+> +					mux {
+> +						groups = "eth_mdio_x",
+> +						       "eth_mdc_x",
+> +						       "eth_rgmii_rx_clk_x",
+> +						       "eth_rx_dv_x",
+> +						       "eth_rxd0_x",
+> +						       "eth_rxd1_x",
+> +						       "eth_rxd2_rgmii",
+> +						       "eth_rxd3_rgmii",
+> +						       "eth_rgmii_tx_clk",
+> +						       "eth_txen_x",
+> +						       "eth_txd0_x",
+> +						       "eth_txd1_x",
+> +						       "eth_txd2_rgmii",
+> +						       "eth_txd3_rgmii";
+> +						function = "eth";
+> +					};
+> +				};
+> +
+> +				eth_rgmii_y_pins: eth-y-rgmii {
+> +					mux {
+> +						groups = "eth_mdio_y",
+> +						       "eth_mdc_y",
+> +						       "eth_rgmii_rx_clk_y",
+> +						       "eth_rx_dv_y",
+> +						       "eth_rxd0_y",
+> +						       "eth_rxd1_y",
+> +						       "eth_rxd2_rgmii",
+> +						       "eth_rxd3_rgmii",
+> +						       "eth_rgmii_tx_clk",
+> +						       "eth_txen_y",
+> +						       "eth_txd0_y",
+> +						       "eth_txd1_y",
+> +						       "eth_txd2_rgmii",
+> +						       "eth_txd3_rgmii";
+> +						function = "eth";
+> +					};
+> +				};
+>  			};
+>  		};
