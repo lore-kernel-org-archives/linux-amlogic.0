@@ -1,50 +1,35 @@
-From: lkp@intel.com (kbuild test robot)
-Date: Mon, 18 Dec 2017 13:31:54 +0800
-Subject: [PATCH v8] arm64: dts: meson-axg: switch uart_ao clock to CLK81
-In-Reply-To: <20171215141741.175985-1-yixun.lan@amlogic.com>
-References: <20171215141741.175985-1-yixun.lan@amlogic.com>
-Message-ID: <201712181217.MyHBkHay%fengguang.wu@intel.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 18 Dec 2017 10:44:39 +0100
+Subject: [PATCH net-next v3 0/7] net: phy: meson-gxl: clean-up and improvements
+Message-ID: <20171218094446.31912-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yixun,
+This patchset adds defines for the control registers and helpers to access
+the banked registers. The goal being to make it easier to understand what
+the driver actually does.
+Then CONFIG_A6 settings is removed since this statement was without effect
+Finally interrupt support is added, speeding things up a little
 
-Thank you for the patch! Yet something to improve:
+This series has been tested on the libretech-cc and khadas VIM
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on v4.15-rc4 next-20171215]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+Changes since v2 [0]:
+Drop LPA corruption fix which has been merged through net. Apart from this,
+series remains the same.
 
-url:    https://github.com/0day-ci/linux/commits/Yixun-Lan/arm64-dts-meson-axg-switch-uart_ao-clock-to-CLK81/20171218-100949
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-defconfig (attached as .config)
-compiler: aarch64-linux-gnu-gcc (Debian 7.2.0-11) 7.2.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # save the attached .config to linux build tree
-        make.cross ARCH=arm64 
+[0]: https://lkml.kernel.org/r/20171207142715.32578-1-jbrunet at baylibre.com
 
-All errors (new ones prefixed by >>):
+Jerome Brunet (7):
+  net: phy: meson-gxl: check phy_write return value
+  net: phy: meson-gxl: define control registers
+  net: phy: meson-gxl: add read and write helpers for banked registers
+  net: phy: meson-gxl: use genphy_config_init
+  net: phy: meson-gxl: leave CONFIG_A6 untouched
+  net: phy: meson-gxl: add interrupt support
+  net: phy: meson-gxl: join the authors
 
-   In file included from arch/arm64/boot/dts/amlogic/meson-axg-s400.dts:9:0:
->> arch/arm64/boot/dts/amlogic/meson-axg.dtsi:10:10: fatal error: dt-bindings/clock/axg-clkc.h: No such file or directory
-    #include <dt-bindings/clock/axg-clkc.h>
-             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
+ drivers/net/phy/meson-gxl.c | 185 ++++++++++++++++++++++++++++++++++----------
+ 1 file changed, 146 insertions(+), 39 deletions(-)
 
-vim +10 arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-
-  > 10	#include <dt-bindings/clock/axg-clkc.h>
-    11	
-
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: .config.gz
-Type: application/gzip
-Size: 37473 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20171218/2b7bfe2a/attachment.gz>
+-- 
+2.14.3
