@@ -1,35 +1,33 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 18 Dec 2017 10:44:39 +0100
-Subject: [PATCH net-next v3 0/7] net: phy: meson-gxl: clean-up and improvements
-Message-ID: <20171218094446.31912-1-jbrunet@baylibre.com>
+Date: Mon, 18 Dec 2017 10:44:43 +0100
+Subject: [PATCH net-next v3 4/7] net: phy: meson-gxl: use genphy_config_init
+In-Reply-To: <20171218094446.31912-1-jbrunet@baylibre.com>
+References: <20171218094446.31912-1-jbrunet@baylibre.com>
+Message-ID: <20171218094446.31912-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset adds defines for the control registers and helpers to access
-the banked registers. The goal being to make it easier to understand what
-the driver actually does.
-Then CONFIG_A6 settings is removed since this statement was without effect
-Finally interrupt support is added, speeding things up a little
+Use the generic init function to populate some of the phydev
+structure fields
 
-This series has been tested on the libretech-cc and khadas VIM
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/net/phy/meson-gxl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes since v2 [0]:
-Drop LPA corruption fix which has been merged through net. Apart from this,
-series remains the same.
-
-[0]: https://lkml.kernel.org/r/20171207142715.32578-1-jbrunet at baylibre.com
-
-Jerome Brunet (7):
-  net: phy: meson-gxl: check phy_write return value
-  net: phy: meson-gxl: define control registers
-  net: phy: meson-gxl: add read and write helpers for banked registers
-  net: phy: meson-gxl: use genphy_config_init
-  net: phy: meson-gxl: leave CONFIG_A6 untouched
-  net: phy: meson-gxl: add interrupt support
-  net: phy: meson-gxl: join the authors
-
- drivers/net/phy/meson-gxl.c | 185 ++++++++++++++++++++++++++++++++++----------
- 1 file changed, 146 insertions(+), 39 deletions(-)
-
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index a52645566d0d..0a34656a2086 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -147,7 +147,7 @@ static int meson_gxl_config_init(struct phy_device *phydev)
+ 	if (ret)
+ 		return ret;
+ 
+-	return 0;
++	return genphy_config_init(phydev);
+ }
+ 
+ /* This function is provided to cope with the possible failures of this phy
 -- 
 2.14.3
