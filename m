@@ -1,41 +1,51 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 20 Dec 2017 09:05:29 +0100
-Subject: [PATCH v4 4/4] ARM: pinctrl: sunxi-pinctrl: fix pin funtion can
- not be match correctly.
-In-Reply-To: <20171213144748.GA18267@arx-s1>
-References: <20171213144748.GA18267@arx-s1>
-Message-ID: <CACRpkdYtn6N6MOqS=oFXDcfgmkN8-qJY5tJpWP8+9JBb1gU9Kw@mail.gmail.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Tue, 19 Dec 2017 14:45:11 -0800
+Subject: [GIT PULL] Amlogic clock driver updates for 4.16
+In-Reply-To: <1512987406.334.22.camel@baylibre.com>
+References: <1512987406.334.22.camel@baylibre.com>
+Message-ID: <151372351174.45969.9682784070292328756@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Dec 13, 2017 at 3:47 PM, hao_zhang <hao5781286@gmail.com> wrote:
-> Pin function can not be match correctly when SUNXI_PIN describe with
-> mutiple variant and same function.
->
-> such as:
-> on pinctrl-sun4i-a10.c
->
-> SUNXI_PIN(SUNXI_PINCTRL_PIN(B, 2),
->                 SUNXI_FUNCTION(0x0, "gpio_in"),
->                 SUNXI_FUNCTION(0x1, "gpio_out"),
->                 SUNXI_FUNCTION_VARIANT(0x2, "pwm",    /* PWM0 */
->                         PINCTRL_SUN4I_A10 |
->                         PINCTRL_SUN7I_A20),
->                 SUNXI_FUNCTION_VARIANT(0x3, "pwm",    /* PWM0 */
->                         PINCTRL_SUN8I_R40)),
->
-> it would always match to the first variant function
-> (PINCTRL_SUN4I_A10, PINCTRL_SUN7I_A20)
->
-> so we should add variant compare on it.
->
-> Signed-off-by: hao_zhang <hao5781286@gmail.com>
+Quoting Jerome Brunet (2017-12-11 02:16:46)
+> Dear clock maintainers,
+> 
+> Below is a request to pull a 1st batch of Amlogic clock driver updates for this
+> cycle. There is just 2 trivial changes for now. We expect/hope to have a 2nd
+> batch later in this cycle
 
-Please resend patch with Maxime's suggestions fixed and his
-ACK added so I can apply it.
+Applied to clk-meson
 
-I can take this patch separatelt, it does not need to be part of
-the PWM series.
+Regards,
+Mike
 
-Yours,
-Linus Walleij
+> 
+> Cheers
+> Jerome
+> 
+> The following changes since commit 4fbd8d194f06c8a3fd2af1ce560ddb31f7ec8323:
+> 
+>   Linux 4.15-rc1 (2017-11-26 16:01:47 -0800)
+> 
+> are available in the Git repository at:
+> 
+>   git://github.com/BayLibre/clk-meson.git tags/clk-for-v4.16-1
+> 
+> for you to fetch changes up to ed3fb5af69afc802d6e29700fff3401ba99edac1:
+> 
+>   clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks (2017-12-08 21:37:19 +0100)
+> 
+> ----------------------------------------------------------------
+> First round of meson clock for v4.16
+> * Fix 2 clock gates mixed up in the datasheet
+> * Remove unnecessary CLK_IGNORE_UNUSED on mmc clocks
+> 
+> ----------------------------------------------------------------
+> Jerome Brunet (1):
+>       clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks
+> 
+> Yixun Lan (1):
+>       clk: meson: gxbb: fix wrong clock for SARADC/SANA
+> 
+>  drivers/clk/meson/gxbb.c | 20 +++++---------------
+>  1 file changed, 5 insertions(+), 15 deletions(-)
