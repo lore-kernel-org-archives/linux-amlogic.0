@@ -1,48 +1,50 @@
-From: gregkh@linuxfoundation.org (Greg Kroah-Hartman)
-Date: Tue, 19 Dec 2017 09:56:38 +0100
-Subject: [PATCH v3] tty: serial: meson: allow baud-rates lower than 9600
-In-Reply-To: <7cf5ad02-6003-4222-a2cb-030ae613b337@myway.de>
-References: <7cf5ad02-6003-4222-a2cb-030ae613b337@myway.de>
-Message-ID: <20171219085638.GA21577@kroah.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 19 Dec 2017 11:28:13 +0100
+Subject: Faults on Odroid-C2 during shutdown and fix proposal
+In-Reply-To: <c28e0ecf-9bf3-f6e8-b8c8-91b14bf797f6@gmail.com>
+References: <c28e0ecf-9bf3-f6e8-b8c8-91b14bf797f6@gmail.com>
+Message-ID: <ca5d79dd-5a6a-e580-1cd7-6bbe698fd6b3@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Nov 04, 2017 at 01:36:07PM +0100, Thomas Rohloff wrote:
-> Devices like DCF77 receivers need the baud-rate to be as low as 50.
+On 16/12/2017 00:19, Heiner Kallweit wrote:
+> Neil,
 > 
-> I have tested this on a Meson GXL device with uart_A.
+> during shutdown I experience faults as described in the commit message of
+> 339cd0ea0822 "soc: amlogic: meson-gx-pwrc-vpu: fix power-off when powered by bootloader"
 > 
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Jiri Slaby <jslaby@suse.com>
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: linux-amlogic at lists.infradead.org
-> Cc: linux-arm-kernel at lists.infradead.org
-> Cc: linux-kernel at vger.kernel.org
-> Signed-off-by: Thomas Rohloff <v10lator@myway.de>
-> ---
-> drivers/tty/serial/meson_uart.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
+> My best guess:
+> I operate the board headless, therefore the domain is never powered on, leaving the
+> clocks disabled. The shutdown function then tries to disable the already disabled
+> clocks.
+> The following change fixes it for me, however there may be scenarios I miss,
+> therefore I'd like to hear your opinion.
 > 
-> diff --git a/drivers/tty/serial/meson_uart.c
-> b/drivers/tty/serial/meson_uart.c
-> index 07c0f98be3ac..e281ce5d101d 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -362,7 +362,7 @@ static void meson_uart_set_termios(struct uart_port
-> *port,
+>  static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
+>  {
+> -       meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
+> +       bool powered_off;
+> +
+> +       powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
+> +       if (!powered_off)
+> +               meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
+>  }
 > 
-> 	writel(val, port->membase + AML_UART_CONTROL);
-> 
-> -	baud = uart_get_baud_rate(port, termios, old, 9600, 4000000);
-> +	baud = uart_get_baud_rate(port, termios, old, 50, 4000000);
-> 	meson_uart_change_speed(port, baud);
-> 
-> 	port->read_status_mask = AML_UART_TX_FIFO_WERR;
+> And something completely different:
+> I get a misleading error message "failed to get reset lines", caused by the fact
+> that devm_reset_control_array_get() returns -EPROBE_DEFER. So I think we should
+> print the error message only if the error is not caused by a probe deferral.
 
-This patch is corrupted (line-wrapped), and can not be applied.  Please
-fix up and resend.
+Feel free to provide a patch.
 
-thanks,
+> 
+> Kind regards,
+> Heiner
+> 
 
-greg k-h
+Hi Heiner,
+
+Indeed, it's another corner case, please provide a patch.
+
+Thanks,
+Neil
