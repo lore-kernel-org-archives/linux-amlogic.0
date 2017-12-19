@@ -1,18 +1,33 @@
 From: mturquette@baylibre.com (Michael Turquette)
-Date: Tue, 19 Dec 2017 14:45:11 -0800
-Subject: [GIT PULL] Amlogic clock driver updates for 4.16
-In-Reply-To: <1512987406.334.22.camel@baylibre.com>
-References: <1512987406.334.22.camel@baylibre.com>
-Message-ID: <151372351174.45969.9682784070292328756@resonance>
+Date: Tue, 19 Dec 2017 14:45:31 -0800
+Subject: [GIT PULL] Amlogic clock driver updates for 4.16 - 2nd batch
+In-Reply-To: <1513352509.2261.66.camel@baylibre.com>
+References: <1513352509.2261.66.camel@baylibre.com>
+Message-ID: <151372353128.45969.1867853345627459618@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2017-12-11 02:16:46)
-> Dear clock maintainers,
+Quoting Jerome Brunet (2017-12-15 07:41:49)
+> Dear clock maintainers
 > 
-> Below is a request to pull a 1st batch of Amlogic clock driver updates for this
-> cycle. There is just 2 trivial changes for now. We expect/hope to have a 2nd
-> batch later in this cycle
+> Here is a 2nd round of update for amlogic clocks. It is based on top the
+> first PR sent last week.
+> 
+> Thanks for pulling
+> Jerome
+> 
+> The following changes since commit ed3fb5af69afc802d6e29700fff3401ba99edac1:
+> 
+>   clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks (2017-12-08 21:37:19
+> +0100)
+> 
+> are available in the Git repository at:
+> 
+>   git://github.com/BayLibre/clk-meson.git tags/meson-clk-for-v4.16-2
+> 
+> for you to fetch changes up to 78b4af312f910e4f28ebf4cb0a8c1983daa16924:
+> 
+>   clk: meson-axg: add clock controller drivers (2017-12-14 10:19:37 +0100)
 
 Applied to clk-meson
 
@@ -20,32 +35,35 @@ Regards,
 Mike
 
 > 
-> Cheers
-> Jerome
-> 
-> The following changes since commit 4fbd8d194f06c8a3fd2af1ce560ddb31f7ec8323:
-> 
->   Linux 4.15-rc1 (2017-11-26 16:01:47 -0800)
-> 
-> are available in the Git repository at:
-> 
->   git://github.com/BayLibre/clk-meson.git tags/clk-for-v4.16-1
-> 
-> for you to fetch changes up to ed3fb5af69afc802d6e29700fff3401ba99edac1:
-> 
->   clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks (2017-12-08 21:37:19 +0100)
-> 
 > ----------------------------------------------------------------
-> First round of meson clock for v4.16
-> * Fix 2 clock gates mixed up in the datasheet
-> * Remove unnecessary CLK_IGNORE_UNUSED on mmc clocks
+> Second round of meson clock updates for v4.16
+> 
+> * Rename clock lock to help in case of lockdep issues
+> * Initial axg support
 > 
 > ----------------------------------------------------------------
 > Jerome Brunet (1):
->       clk: meson: gxbb: remove IGNORE_UNUSED from mmc clocks
+>       Merge branch 'next/dt' into next/drivers
 > 
-> Yixun Lan (1):
->       clk: meson: gxbb: fix wrong clock for SARADC/SANA
+> Qiufang Dai (2):
+>       clk: meson-axg: add clocks dt-bindings required header
+>       clk: meson-axg: add clock controller drivers
 > 
->  drivers/clk/meson/gxbb.c | 20 +++++---------------
->  1 file changed, 5 insertions(+), 15 deletions(-)
+> Yixun Lan (2):
+>       clk: meson: make the spinlock naming more specific
+>       dt-bindings: clock: add compatible variant for the Meson-AXG
+> 
+>  .../bindings/clock/amlogic,gxbb-clkc.txt           |   7 +-
+>  arch/arm64/Kconfig.platforms                       |   1 +
+>  drivers/clk/meson/Kconfig                          |   8 +
+>  drivers/clk/meson/Makefile                         |   1 +
+>  drivers/clk/meson/axg.c                            | 936 +++++++++++++++++++++
+>  drivers/clk/meson/axg.h                            | 126 +++
+>  drivers/clk/meson/clkc.h                           |   2 +-
+>  drivers/clk/meson/gxbb.c                           | 112 +--
+>  drivers/clk/meson/meson8b.c                        |  24 +-
+>  include/dt-bindings/clock/axg-clkc.h               |  71 ++
+>  10 files changed, 1217 insertions(+), 71 deletions(-)
+>  create mode 100644 drivers/clk/meson/axg.c
+>  create mode 100644 drivers/clk/meson/axg.h
+>  create mode 100644 include/dt-bindings/clock/axg-clkc.h
