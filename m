@@ -1,9 +1,10 @@
 From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Wed, 20 Dec 2017 20:11:55 +0100
-Subject: [PATCH 2/2] soc: amlogic: meson-gx-pwrc-vpu:
+Date: Wed, 20 Dec 2017 20:15:03 +0100
+Subject: [PATCH 1/2] soc: amlogic: meson-gx-pwrc-vpu: fix error on shutdown
+ when domain is powered off
 In-Reply-To: <943d2b32-86ad-d1d5-b798-12c3ae54a0fe@gmail.com>
 References: <943d2b32-86ad-d1d5-b798-12c3ae54a0fe@gmail.com>
-Message-ID: <134dd04e-3a27-2fef-8882-61dfc509eb7c@gmail.com>
+Message-ID: <315cd169-ca9e-badc-a27f-f43dffb62907@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
