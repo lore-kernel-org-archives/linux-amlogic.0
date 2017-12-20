@@ -1,50 +1,41 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 19 Dec 2017 11:28:13 +0100
-Subject: Faults on Odroid-C2 during shutdown and fix proposal
-In-Reply-To: <c28e0ecf-9bf3-f6e8-b8c8-91b14bf797f6@gmail.com>
-References: <c28e0ecf-9bf3-f6e8-b8c8-91b14bf797f6@gmail.com>
-Message-ID: <ca5d79dd-5a6a-e580-1cd7-6bbe698fd6b3@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Wed, 20 Dec 2017 09:05:29 +0100
+Subject: [PATCH v4 4/4] ARM: pinctrl: sunxi-pinctrl: fix pin funtion can
+ not be match correctly.
+In-Reply-To: <20171213144748.GA18267@arx-s1>
+References: <20171213144748.GA18267@arx-s1>
+Message-ID: <CACRpkdYtn6N6MOqS=oFXDcfgmkN8-qJY5tJpWP8+9JBb1gU9Kw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 16/12/2017 00:19, Heiner Kallweit wrote:
-> Neil,
-> 
-> during shutdown I experience faults as described in the commit message of
-> 339cd0ea0822 "soc: amlogic: meson-gx-pwrc-vpu: fix power-off when powered by bootloader"
-> 
-> My best guess:
-> I operate the board headless, therefore the domain is never powered on, leaving the
-> clocks disabled. The shutdown function then tries to disable the already disabled
-> clocks.
-> The following change fixes it for me, however there may be scenarios I miss,
-> therefore I'd like to hear your opinion.
-> 
->  static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
->  {
-> -       meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
-> +       bool powered_off;
-> +
-> +       powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
-> +       if (!powered_off)
-> +               meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
->  }
-> 
-> And something completely different:
-> I get a misleading error message "failed to get reset lines", caused by the fact
-> that devm_reset_control_array_get() returns -EPROBE_DEFER. So I think we should
-> print the error message only if the error is not caused by a probe deferral.
+On Wed, Dec 13, 2017 at 3:47 PM, hao_zhang <hao5781286@gmail.com> wrote:
+> Pin function can not be match correctly when SUNXI_PIN describe with
+> mutiple variant and same function.
+>
+> such as:
+> on pinctrl-sun4i-a10.c
+>
+> SUNXI_PIN(SUNXI_PINCTRL_PIN(B, 2),
+>                 SUNXI_FUNCTION(0x0, "gpio_in"),
+>                 SUNXI_FUNCTION(0x1, "gpio_out"),
+>                 SUNXI_FUNCTION_VARIANT(0x2, "pwm",    /* PWM0 */
+>                         PINCTRL_SUN4I_A10 |
+>                         PINCTRL_SUN7I_A20),
+>                 SUNXI_FUNCTION_VARIANT(0x3, "pwm",    /* PWM0 */
+>                         PINCTRL_SUN8I_R40)),
+>
+> it would always match to the first variant function
+> (PINCTRL_SUN4I_A10, PINCTRL_SUN7I_A20)
+>
+> so we should add variant compare on it.
+>
+> Signed-off-by: hao_zhang <hao5781286@gmail.com>
 
-Feel free to provide a patch.
+Please resend patch with Maxime's suggestions fixed and his
+ACK added so I can apply it.
 
-> 
-> Kind regards,
-> Heiner
-> 
+I can take this patch separatelt, it does not need to be part of
+the PWM series.
 
-Hi Heiner,
-
-Indeed, it's another corner case, please provide a patch.
-
-Thanks,
-Neil
+Yours,
+Linus Walleij
