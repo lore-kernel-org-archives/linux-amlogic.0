@@ -1,72 +1,57 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 24 Dec 2017 00:40:59 +0100
-Subject: [RFT net-next v2 2/3] net: stmmac: dwmac-meson8b: fix setting the
- RGMII clock on Meson8b
+Date: Sun, 24 Dec 2017 00:41:00 +0100
+Subject: [RFT net-next v2 3/3] net: stmmac: dwmac-meson8b: propagate rate
+ changes to the parent clock
 In-Reply-To: <20171223234100.11814-1-martin.blumenstingl@googlemail.com>
 References: <20171223234100.11814-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171223234100.11814-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20171223234100.11814-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Meson8b only supports MPLL2 as clock input. The rate of the MPLL2 clock
-set by Odroid-C1's u-boot is close to 500MHz. The exact rate is
-500002394Hz, which is calculated in drivers/clk/meson/clk-mpll.c
-using the following formula:
-DIV_ROUND_UP_ULL((u64)parent_rate * SDM_DEN, (SDM_DEN * n2) + sdm)
-Odroid-C1's u-boot configures MPLL2 with the following values:
-- SDM_DEN = 16384
-- SDM = 1638
-- N2 = 5
+On Meson8b the only valid input clock is MPLL2. The bootloader
+configures that to run at 500002394Hz which cannot be divided evenly
+down to 25MHz using the m250_div and m25_div clocks. Currently the
+common clock framework chooses a m250_div of 2 and a m25_div of 10,
+which results in a RGMII clock of 25000120Hz (120Hz above the requested
+25MHz).
 
-The 250MHz and 25MHz clocks inside dwmac-meson8b driver are derived
-from the MPLL2 clock. Due to MPLL2 running slightly faster than 500MHz
-the common clock framework chooses dividers which are too big to
-generate the 250MHz and 25MHz clocks. Emiliano Ingrassia observed that
-the divider for the 250MHz clock was set to 0x5 which results in a clock
-rate of close to 100MHz instead of 250MHz. The divider for the 25MHz
-clock is set to 0x0 (which means "divide by 5") so the resulting RGMII
-clock is running at 20MHz (plus a few additional Hz). The RTL8211F PHY
-on Odroid-C1 however fails to operate with a 20MHz RGMII clock.
+Letting the common clock framework propagate the rate changes from the
+m25_div clock to m250_div clock to m250_mux to it's parent allows us to
+get the best possible parent clock rate. With this patch the common clock
+framework calculates a rate of close-to-125MHz (124999851Hz to be exact)
+for the MPLL2 clock (which is the mux input). Dividing that by 5 (using
+only the m25_div) gives us a RGMII clock of 24999971Hz (which is only
+29Hz off the requested 25MHz, compared to 120Hz from u-boot and the
+vendor driver).
 
-Round the divider's clock rates to prevent this issue on Meson8b. This
-means we'll now end up with a clock rate of 25000120Hz (= 25MHz plus
-120Hz).
-This has no effect on the Meson GX SoCs since there fclk_div2 is used as
-input clock, which has a rate of 1000MHz (and thus is divisible cleanly
-to 250MHz and 25MHz).
+For now we only want to propagate rate changes to make sure that the mux
+parent is not changed automatically by the common clock framework. This
+is just to keep the number of side-effects from this patch at a minimum.
+
+SoCs from the Meson GX series are not affected by this change because
+the input clock is FCLK_DIV2 whose rate cannot be changed. Additionally
+the GX SoCs don't need to use the "closest" divider since the parent
+clock is a multiple of 250MHz.
 
 Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
-Reported-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index e1d5907e481c..0da551c84fe8 100644
+index 0da551c84fe8..e542c8a14f2a 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -144,7 +144,9 @@ static int meson8b_init_rgmii_clk(struct meson8b_dwmac *dwmac)
- 	dwmac->m250_div.shift = PRG_ETH0_CLK_M250_DIV_SHIFT;
- 	dwmac->m250_div.width = PRG_ETH0_CLK_M250_DIV_WIDTH;
- 	dwmac->m250_div.hw.init = &init;
--	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO;
-+	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED |
-+				CLK_DIVIDER_ALLOW_ZERO |
-+				CLK_DIVIDER_ROUND_CLOSEST;
+@@ -116,7 +116,7 @@ static int meson8b_init_rgmii_clk(struct meson8b_dwmac *dwmac)
+ 	snprintf(clk_name, sizeof(clk_name), "%s#m250_sel", dev_name(dev));
+ 	init.name = clk_name;
+ 	init.ops = &clk_mux_ops;
+-	init.flags = 0;
++	init.flags = CLK_SET_RATE_PARENT;
+ 	init.parent_names = mux_parent_names;
+ 	init.num_parents = MUX_CLK_NUM_PARENTS;
  
- 	dwmac->m250_div_clk = devm_clk_register(dev, &dwmac->m250_div.hw);
- 	if (WARN_ON(IS_ERR(dwmac->m250_div_clk)))
-@@ -164,7 +166,8 @@ static int meson8b_init_rgmii_clk(struct meson8b_dwmac *dwmac)
- 	dwmac->m25_div.width = PRG_ETH0_CLK_M25_DIV_WIDTH;
- 	dwmac->m25_div.table = clk_25m_div_table;
- 	dwmac->m25_div.hw.init = &init;
--	dwmac->m25_div.flags = CLK_DIVIDER_ALLOW_ZERO;
-+	dwmac->m25_div.flags = CLK_DIVIDER_ALLOW_ZERO |
-+				CLK_DIVIDER_ROUND_CLOSEST;
- 
- 	dwmac->m25_div_clk = devm_clk_register(dev, &dwmac->m25_div.hw);
- 	if (WARN_ON(IS_ERR(dwmac->m25_div_clk)))
 -- 
 2.15.1
