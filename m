@@ -1,80 +1,38 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sat, 23 Dec 2017 18:40:57 +0100
+Date: Sat, 23 Dec 2017 18:43:24 +0100
 Subject: [RFT net-next 2/2] net: stmmac: dwmac-meson8b: don't try to
  change m250_div parent's rate
-In-Reply-To: <20171223170433.8150-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <1514050857.29566.53.camel@baylibre.com>
 References: <20171223170433.8150-1-martin.blumenstingl@googlemail.com>
  <20171223170433.8150-3-martin.blumenstingl@googlemail.com>
-Message-ID: <1514050857.29566.53.camel@baylibre.com>
+ <1514050857.29566.53.camel@baylibre.com>
+Message-ID: <1514051004.29566.55.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2017-12-23 at 18:04 +0100, Martin Blumenstingl wrote:
-> Trying to set the rate of m250_div's parent clock makes no sense since
-> it's a mux which has neither CLK_MUX_ROUND_CLOSEST nor
-> CLK_SET_RATE_PARENT set.
-> It even does harm on Meson8b SoCs where the input clock for the mux
-> cannot be divided down to 250MHz evenly (the parent rate is 500002394Hz)
-
-So your problem is more with the mux actually, not the divider. Instead of
-removing CLK_SET_RATE_PARENT from the divider, may I suggest to put
-
-CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT on the parent mux, and keep
-CLK_SET_RATE_PARENT (with CLK_DIVIDER_ROUND_CLOSEST)  on the divS.
-
-I suppose it would a accomplish the same thing with one added benefits for
-meson8b :
-
-If the bootloader did not set the mpll2 to the correct rate, it will now be done
-thanks to rate propagation.
-
-If I missed anything, feel free to point it out.
-
-Cheers 
-
-> which is why we need to use CLK_DIVIDER_ROUND_CLOSEST for the m250_div
-> clock. The clk-divider driver however ignores the
-> CLK_DIVIDER_ROUND_CLOSEST flag if CLK_SET_RATE_PARENT is set (because
-> it simply tries to set the best possible clock rate for the parent,
-> which does nothing in our case since the parent is a mux which doesn't
-> allow rate changes as explained above).
+On Sat, 2017-12-23 at 18:40 +0100, Jerome Brunet wrote:
+> > Trying to set the rate of m250_div's parent clock makes no sense since
+> > it's a mux which has neither CLK_MUX_ROUND_CLOSEST nor
+> > CLK_SET_RATE_PARENT set.
+> > It even does harm on Meson8b SoCs where the input clock for the mux
+> > cannot be divided down to 250MHz evenly (the parent rate is 500002394Hz)
 > 
-> This fixes setting the RGMII clock on Meson8 SoCs which ended up with a
-> ~20MHz clock instead of the expected ~25MHz.
-> The dwmac-meson8b driver requests a 25MHz clock rate for the m25_div
-> (which only supports "divide by 5" and "divide by 10") clock which is
-> derived from the m250_div clock. Due to clk-divider ignoring the
-> CLK_DIVIDER_ROUND_CLOSEST flag the resulting m250_div clock was set to
-> ~100MHz (divider = 5) and the m25_div clock was set to ~20MHz (divider =
-> 5) by the common clock framework (as this value is closest to 25MHz if
-> we would not have set CLK_DIVIDER_ROUND_CLOSEST). What we actually need
-> however is a rate of ~250MHz on the m250_div clock (divider = 2) and
-> ~25MHz on the m25_div clock (divider = 10) - these are also the values
-> chosen by the out-of-tree vendor driver.
-> With this we end up with a RGMII clock of 25000120Hz (which is as close
-> to 25MHz we can get with an input clock of 500002394Hz).
+> So your problem is more with the mux actually, not the divider. Instead of
+> removing CLK_SET_RATE_PARENT from the divider, may I suggest to put
 > 
-> SoCs from the Meson GX series are not affected by this change because
-> the input clock is FCLK_DIV2 whose rate cannot be changed. Additionally
-> the GX SoCs don't need to use the "closest" divider since the parent
-> clock is a multiple of 250MHz.
+> CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT on the parent mux, and keep
+
+Thinking about it, you don't even need CLK_SET_RATE_NO_REPARENT. Just let rate
+propagation figure out the best combination 
+
+> CLK_SET_RATE_PARENT (with CLK_DIVIDER_ROUND_CLOSEST)  on the divS.
 > 
-> Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> I suppose it would a accomplish the same thing with one added benefits for
+> meson8b :
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> index c71966332387..26f41c117d63 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> @@ -135,7 +135,7 @@ static int meson8b_init_clk(struct meson8b_dwmac *dwmac)
->  	snprintf(clk_name, sizeof(clk_name), "%s#m250_div", dev_name(dev));
->  	init.name = devm_kstrdup(dev, clk_name, GFP_KERNEL);
->  	init.ops = &clk_divider_ops;
-> -	init.flags = CLK_SET_RATE_PARENT;
-> +	init.flags = 0;
->  	clk_div_parents[0] = __clk_get_name(dwmac->m250_mux_clk);
->  	init.parent_names = clk_div_parents;
->  	init.num_parents = ARRAY_SIZE(clk_div_parents);
+> If the bootloader did not set the mpll2 to the correct rate, it will now be done
+> thanks to rate propagation.
+> 
+> If I missed anything, feel free to point it out.
+> 
+> Cheers 
