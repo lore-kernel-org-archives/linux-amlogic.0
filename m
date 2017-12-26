@@ -1,38 +1,36 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 26 Dec 2017 12:43:43 +0100
-Subject: [PATCH 1/3] ARM: dts: meson8b: grow the reset controller memory zone
+Date: Tue, 26 Dec 2017 12:43:45 +0100
+Subject: [PATCH 3/3] ARM: dts: meson8: add the USB reset line
 In-Reply-To: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
 References: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171226114345.23905-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20171226114345.23905-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The reset controller in the Meson8b SoCs also supports level resets.
-These use the same defines (from
-dt-bindings/reset/amlogic,meson8b-reset.h) as the reset pulses.
+Now that we support the reset controller on Meson8 we can add the reset
+line to the USB PHYs (just like on Meson8b).
 
-The reset-meson driver internally handles the difference if a consumer
-requests a reset pulse or a level reset. However, for this to work we
-must extend the memory zone of the reset controller.
-
-Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/meson8.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index df21b066c60b..ade602bbe482 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -257,7 +257,7 @@
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index ad4cfbeaf706..77f7c992ff70 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -539,10 +539,12 @@
+ 	compatible = "amlogic,meson8-usb2-phy", "amlogic,meson-mx-usb2-phy";
+ 	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB0>;
+ 	clock-names = "usb_general", "usb";
++	resets = <&reset RESET_USB_OTG>;
+ };
  
- 	reset: reset-controller at 4404 {
- 		compatible = "amlogic,meson8b-reset";
--		reg = <0x4404 0x20>;
-+		reg = <0x4404 0x9c>;
- 		#reset-cells = <1>;
- 	};
- 
+ &usb1_phy {
+ 	compatible = "amlogic,meson8-usb2-phy", "amlogic,meson-mx-usb2-phy";
+ 	clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1>;
+ 	clock-names = "usb_general", "usb";
++	resets = <&reset RESET_USB_OTG>;
+ };
 -- 
 2.15.1
