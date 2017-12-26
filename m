@@ -1,31 +1,38 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 26 Dec 2017 12:43:42 +0100
-Subject: [PATCH 0/3] Meson8/Meson8b reset improvements
-Message-ID: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
+Date: Tue, 26 Dec 2017 12:43:43 +0100
+Subject: [PATCH 1/3] ARM: dts: meson8b: grow the reset controller memory zone
+In-Reply-To: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
+References: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20171226114345.23905-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Recently Neil landed reset level support (.assert/.deassert) for the
-reset-meson driver.
-While the driver does not support level resets on Meson8b yet we can
-already prepare the .dts to do so (I actually found out that level
-resets are implemented identical on Meson8/Meson8b/GX - a patch for
-the reset-meson driver will follow in a separate series).
+The reset controller in the Meson8b SoCs also supports level resets.
+These use the same defines (from
+dt-bindings/reset/amlogic,meson8b-reset.h) as the reset pulses.
 
-I also noticed that Meson8 does not have the reset controller in it's
-.dtsi yet, so this series adds that as well.
-It also adds the USB reset lines on Meson8 afterwards to stay
-consistent with Meson8b.
+The reset-meson driver internally handles the difference if a consumer
+requests a reset pulse or a level reset. However, for this to work we
+must extend the memory zone of the reset controller.
 
-
-Martin Blumenstingl (3):
-  ARM: dts: meson8b: grow the reset controller memory zone
-  ARM: dts: meson8: add the reset controller
-  ARM: dts: meson8: add the USB reset line
-
- arch/arm/boot/dts/meson8.dtsi  | 9 +++++++++
+Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
  arch/arm/boot/dts/meson8b.dtsi | 2 +-
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index df21b066c60b..ade602bbe482 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -257,7 +257,7 @@
+ 
+ 	reset: reset-controller at 4404 {
+ 		compatible = "amlogic,meson8b-reset";
+-		reg = <0x4404 0x20>;
++		reg = <0x4404 0x9c>;
+ 		#reset-cells = <1>;
+ 	};
+ 
 -- 
 2.15.1
