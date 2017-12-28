@@ -1,44 +1,31 @@
-From: andrew.smirnov@gmail.com (Andrey Smirnov)
-Date: Wed, 27 Dec 2017 14:59:55 -0800
-Subject: [PATCH 19/20] nvmem: imx-iim: Do not use "&pdev->dev" explicitly
-In-Reply-To: <20171227225956.14442-1-andrew.smirnov@gmail.com>
-References: <20171227225956.14442-1-andrew.smirnov@gmail.com>
-Message-ID: <20171227225956.14442-20-andrew.smirnov@gmail.com>
+From: weiyongjun1@huawei.com (Wei Yongjun)
+Date: Thu, 28 Dec 2017 02:40:49 +0000
+Subject: [PATCH -next] clk: meson-axg: fix return value check in
+ axg_clkc_probe()
+Message-ID: <1514428849-61681-1-git-send-email-weiyongjun1@huawei.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-There's already "dev" variable for that. Use it.
+In case of error, the function devm_ioremap() returns NULL pointer
+not ERR_PTR(). The IS_ERR() test in the return value check should be
+replaced with NULL test.
 
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Joachim Eastwood <manabian@gmail.com>
-Cc: cphealy at gmail.com
-Cc: linux-kernel at vger.kernel.org
-Cc: linux-mediatek at lists.infradead.org
-Cc: linux-rockchip at lists.infradead.org
-Cc: linux-amlogic at lists.infradead.org
-Cc: linux-arm-kernel at lists.infradead.org
-Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+Fixes: 78b4af312f91 ("clk: meson-axg: add clock controller drivers")
+Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
 ---
- drivers/nvmem/imx-iim.c | 2 +-
+ drivers/clk/meson/axg.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/nvmem/imx-iim.c b/drivers/nvmem/imx-iim.c
-index 635561a441bd..3022bd96bd7e 100644
---- a/drivers/nvmem/imx-iim.c
-+++ b/drivers/nvmem/imx-iim.c
-@@ -125,7 +125,7 @@ static int imx_iim_probe(struct platform_device *pdev)
- 
- 	drvdata = of_id->data;
- 
--	iim->clk = devm_clk_get(&pdev->dev, NULL);
-+	iim->clk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(iim->clk))
- 		return PTR_ERR(iim->clk);
- 
--- 
-2.14.3
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index a66b3a5..717c02d 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -880,7 +880,7 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 	/*  Generic clocks and PLLs */
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	clk_base = devm_ioremap(&pdev->dev, res->start, resource_size(res));
+-	if (IS_ERR(clk_base)) {
++	if (!clk_base) {
+ 		dev_err(&pdev->dev, "Unable to map clk base\n");
+ 		return -ENXIO;
+ 	}
