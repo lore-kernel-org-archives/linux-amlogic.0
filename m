@@ -1,86 +1,137 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 28 Dec 2017 23:21:23 +0100
-Subject: [RFT net-next v3 0/5] dwmac-meson8b: RGMII clock fixes for Meson8b
-Message-ID: <20171228222128.15215-1-martin.blumenstingl@googlemail.com>
+Date: Thu, 28 Dec 2017 23:21:24 +0100
+Subject: [RFT net-next v3 1/5] net: stmmac: dwmac-meson8b: only configure the
+ clocks in RGMII mode
+In-Reply-To: <20171228222128.15215-1-martin.blumenstingl@googlemail.com>
+References: <20171228222128.15215-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20171228222128.15215-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Dave,
+Neither the m25_div_clk nor the m250_div_clk or m250_mux_clk are used in
+RMII mode. The m25_div_clk output is routed to the RGMII PHY's "RGMII
+clock".
+This means that we don't need to configure the clocks in RMII mode. The
+driver however did this - with no effect since the clocks are not routed
+to the PHY in RMII mode.
 
-please do not apply this series until it got a Tested-by from Emiliano.
+While here also rename meson8b_init_clk to meson8b_init_rgmii_clk to
+make it easier to understand the code.
 
+Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 46 ++++++++++------------
+ 1 file changed, 21 insertions(+), 25 deletions(-)
 
-Hi Emiliano,
-
-you reported [0] that you couldn't get dwmac-meson8b to work on your
-Odroid-C1. With your findings (register dumps, clk_summary output, etc.)
-I think I was able to find a fix: it consists of two patches (which you
-find in this series)
-
-Unfortunately I don't have any Meson8b boards with RGMII PHY so I could
-only partially test this (I could only check if the clocks were
-calculated correctly when using a dummy 500002394Hz input clock instead
-of MPLL2).
-
-Could you please give this series a try and let me know about the
-results?
-You obviously still need your two "ARM: dts: meson8b" patches which
-- add the amlogic,meson8b-dwmac" compatible to meson8b.dtsi
-- enable Ethernet on the Odroid-C1
-
-When testing on Meson8b this also needs a fix for the MPLL clock driver:
-"clk: meson: mpll: use 64-bit maths in params_from_rate", see:
-https://patchwork.kernel.org/patch/10131677/
-
-
-I have tested this myself on a Khadas VIM (GXL SoC, internal RMII PHY)
-and a Khadas VIM2 (GXM SoC, external RGMII PHY). Both are still working
-fine (so let's hope that this also fixes your Meson8b issue :)).
-
-
-changes since v1 at [1]:
-- changed the subject of the cover-letter to indicate that this is all
-  about the RGMII clock
-- added PATCH #1 which ensures that we don't unnecessarily change the
-  parent clocks in RMII mode (and also makes the code easier to
-  understand)
-- changed subject of PATCH #2 (formerly PATCH #1) to state that this
-  is about the RGMII clock
-- added Jerome's Reviewed-by to PATCH #2 (formerly PATCH #1)
-- replaced PATCH #3 (formerly PATCH #2) with one that sets
-  CLK_SET_RATE_PARENT on the mux and thus re-configures the MPLL2 clock
-  on Meson8b correctly
-
-changes since v2 at [2]:
-- added PATCH #2 to make the following patch easier
-- Emiliano reported that there's currently another bug in the
-  dwmac-meson8b driver which prevents it from working with RGMII PHYs on
-  Meson8b: bit 10 of the PRG_ETH0 register is configures a clock gate
-  (instead of a divide by 5 or divide by 10 clock divider). This has not
-  been visible on GXBB and later due to the input clock which always led
-  to a selection of "divide by 10" (which is done internally in the IP
-  block, but the bit actually means "enable RGMII clock output").
-  PATCH #3 was added to address this issue.
-- the commit message of PATCH #4 and #5 (formerly PATCH #2 and #3) were
-  updated and the patch itself rebased because the m25_div clock was
-  removed with the new PATCH #3 (so some of the statements were not
-  valid anymore)
-
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005596.html
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005848.html
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005861.html
-
-
-Martin Blumenstingl (5):
-  net: stmmac: dwmac-meson8b: only configure the clocks in RGMII mode
-  net: stmmac: dwmac-meson8b: simplify generating the clock names
-  net: stmmac: dwmac-meson8b: fix internal RGMII clock configuration
-  net: stmmac: dwmac-meson8b: fix setting the RGMII clock on Meson8b
-  net: stmmac: dwmac-meson8b: propagate rate changes to the parent clock
-
- .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 119 +++++++++++----------
- 1 file changed, 63 insertions(+), 56 deletions(-)
-
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+index 4404650b32c5..e1d5907e481c 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+@@ -81,7 +81,7 @@ static void meson8b_dwmac_mask_bits(struct meson8b_dwmac *dwmac, u32 reg,
+ 	writel(data, dwmac->regs + reg);
+ }
+ 
+-static int meson8b_init_clk(struct meson8b_dwmac *dwmac)
++static int meson8b_init_rgmii_clk(struct meson8b_dwmac *dwmac)
+ {
+ 	struct clk_init_data init;
+ 	int i, ret;
+@@ -176,7 +176,6 @@ static int meson8b_init_clk(struct meson8b_dwmac *dwmac)
+ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ {
+ 	int ret;
+-	unsigned long clk_rate;
+ 	u8 tx_dly_val = 0;
+ 
+ 	switch (dwmac->phy_mode) {
+@@ -191,9 +190,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 
+ 	case PHY_INTERFACE_MODE_RGMII_ID:
+ 	case PHY_INTERFACE_MODE_RGMII_TXID:
+-		/* Generate a 25MHz clock for the PHY */
+-		clk_rate = 25 * 1000 * 1000;
+-
+ 		/* enable RGMII mode */
+ 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
+ 					PRG_ETH0_RGMII_MODE);
+@@ -204,12 +200,24 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 
+ 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
+ 					tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
++
++		ret = clk_prepare_enable(dwmac->m25_div_clk);
++		if (ret) {
++			dev_err(&dwmac->pdev->dev, "failed to enable the PHY clock\n");
++			return ret;
++		}
++
++		/* Generate the 25MHz RGMII clock for the PHY */
++		ret = clk_set_rate(dwmac->m25_div_clk, 25 * 1000 * 1000);
++		if (ret) {
++			clk_disable_unprepare(dwmac->m25_div_clk);
++
++			dev_err(&dwmac->pdev->dev, "failed to set PHY clock\n");
++			return ret;
++		}
+ 		break;
+ 
+ 	case PHY_INTERFACE_MODE_RMII:
+-		/* Use the rate of the mux clock for the internal RMII PHY */
+-		clk_rate = clk_get_rate(dwmac->m250_mux_clk);
+-
+ 		/* disable RGMII mode -> enables RMII mode */
+ 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
+ 					0);
+@@ -231,20 +239,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 		return -EINVAL;
+ 	}
+ 
+-	ret = clk_prepare_enable(dwmac->m25_div_clk);
+-	if (ret) {
+-		dev_err(&dwmac->pdev->dev, "failed to enable the PHY clock\n");
+-		return ret;
+-	}
+-
+-	ret = clk_set_rate(dwmac->m25_div_clk, clk_rate);
+-	if (ret) {
+-		clk_disable_unprepare(dwmac->m25_div_clk);
+-
+-		dev_err(&dwmac->pdev->dev, "failed to set PHY clock\n");
+-		return ret;
+-	}
+-
+ 	/* enable TX_CLK and PHY_REF_CLK generator */
+ 	meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TX_AND_PHY_REF_CLK,
+ 				PRG_ETH0_TX_AND_PHY_REF_CLK);
+@@ -294,7 +288,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 				 &dwmac->tx_delay_ns))
+ 		dwmac->tx_delay_ns = 2;
+ 
+-	ret = meson8b_init_clk(dwmac);
++	ret = meson8b_init_rgmii_clk(dwmac);
+ 	if (ret)
+ 		goto err_remove_config_dt;
+ 
+@@ -311,7 +305,8 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
+ 	return 0;
+ 
+ err_clk_disable:
+-	clk_disable_unprepare(dwmac->m25_div_clk);
++	if (phy_interface_mode_is_rgmii(dwmac->phy_mode))
++		clk_disable_unprepare(dwmac->m25_div_clk);
+ err_remove_config_dt:
+ 	stmmac_remove_config_dt(pdev, plat_dat);
+ 
+@@ -322,7 +317,8 @@ static int meson8b_dwmac_remove(struct platform_device *pdev)
+ {
+ 	struct meson8b_dwmac *dwmac = get_stmmac_bsp_priv(&pdev->dev);
+ 
+-	clk_disable_unprepare(dwmac->m25_div_clk);
++	if (phy_interface_mode_is_rgmii(dwmac->phy_mode))
++		clk_disable_unprepare(dwmac->m25_div_clk);
+ 
+ 	return stmmac_pltfr_remove(pdev);
+ }
 -- 
 2.15.1
