@@ -1,59 +1,125 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 28 Dec 2017 23:21:27 +0100
-Subject: [RFT net-next v3 4/5] net: stmmac: dwmac-meson8b: fix setting the
- RGMII clock on Meson8b
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Fri, 29 Dec 2017 02:31:16 +0100
+Subject: [RFT net-next v3 0/5] dwmac-meson8b: RGMII clock fixes for Meson8b
 In-Reply-To: <20171228222128.15215-1-martin.blumenstingl@googlemail.com>
 References: <20171228222128.15215-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20171228222128.15215-5-martin.blumenstingl@googlemail.com>
+Message-ID: <20171229013116.GA5446@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Meson8b only supports MPLL2 as clock input. The rate of the MPLL2 clock
-set by Odroid-C1's u-boot is close to 500MHz. The exact rate is
-500002394Hz, which is calculated in drivers/clk/meson/clk-mpll.c
-using the following formula:
-DIV_ROUND_UP_ULL((u64)parent_rate * SDM_DEN, (SDM_DEN * n2) + sdm)
-Odroid-C1's u-boot configures MPLL2 with the following values:
-- SDM_DEN = 16384
-- SDM = 1638
-- N2 = 5
+Hi Martin, Hi Dave,
 
-The 250MHz clock (m250_div) inside dwmac-meson8b driver is derived from
-the MPLL2 clock. Due to MPLL2 running slightly faster than 500MHz the
-common clock framework chooses a divider which is too big to generate
-the 250MHz clock (a divider of 2 would be needed, but this is rounded up
-to a divider of 3). This breaks the RTL8211F RGMII PHY on Odroid-C1
-because it requires a (close to) 25MHz clock.
+On Thu, Dec 28, 2017 at 11:21:23PM +0100, Martin Blumenstingl wrote:
+> Hi Dave,
+> 
+> please do not apply this series until it got a Tested-by from Emiliano.
+> 
+> 
+> Hi Emiliano,
+> 
+> you reported [0] that you couldn't get dwmac-meson8b to work on your
+> Odroid-C1. With your findings (register dumps, clk_summary output, etc.)
+> I think I was able to find a fix: it consists of two patches (which you
+> find in this series)
+> 
+> Unfortunately I don't have any Meson8b boards with RGMII PHY so I could
+> only partially test this (I could only check if the clocks were
+> calculated correctly when using a dummy 500002394Hz input clock instead
+> of MPLL2).
+> 
+> Could you please give this series a try and let me know about the
+> results?
+> You obviously still need your two "ARM: dts: meson8b" patches which
+> - add the amlogic,meson8b-dwmac" compatible to meson8b.dtsi
+> - enable Ethernet on the Odroid-C1
+> 
+> When testing on Meson8b this also needs a fix for the MPLL clock driver:
+> "clk: meson: mpll: use 64-bit maths in params_from_rate", see:
+> https://patchwork.kernel.org/patch/10131677/
+> 
+> 
+> I have tested this myself on a Khadas VIM (GXL SoC, internal RMII PHY)
+> and a Khadas VIM2 (GXM SoC, external RGMII PHY). Both are still working
+> fine (so let's hope that this also fixes your Meson8b issue :)).
+> 
+> 
+> changes since v1 at [1]:
+> - changed the subject of the cover-letter to indicate that this is all
+>   about the RGMII clock
+> - added PATCH #1 which ensures that we don't unnecessarily change the
+>   parent clocks in RMII mode (and also makes the code easier to
+>   understand)
+> - changed subject of PATCH #2 (formerly PATCH #1) to state that this
+>   is about the RGMII clock
+> - added Jerome's Reviewed-by to PATCH #2 (formerly PATCH #1)
+> - replaced PATCH #3 (formerly PATCH #2) with one that sets
+>   CLK_SET_RATE_PARENT on the mux and thus re-configures the MPLL2 clock
+>   on Meson8b correctly
+> 
+> changes since v2 at [2]:
+> - added PATCH #2 to make the following patch easier
+> - Emiliano reported that there's currently another bug in the
+>   dwmac-meson8b driver which prevents it from working with RGMII PHYs on
+>   Meson8b: bit 10 of the PRG_ETH0 register is configures a clock gate
+>   (instead of a divide by 5 or divide by 10 clock divider). This has not
+>   been visible on GXBB and later due to the input clock which always led
+>   to a selection of "divide by 10" (which is done internally in the IP
+>   block, but the bit actually means "enable RGMII clock output").
+>   PATCH #3 was added to address this issue.
+> - the commit message of PATCH #4 and #5 (formerly PATCH #2 and #3) were
+>   updated and the patch itself rebased because the m25_div clock was
+>   removed with the new PATCH #3 (so some of the statements were not
+>   valid anymore)
+>
 
-Round the divider to the closest value to prevent this issue on Meson8b.
-This means we'll now end up with a clock rate of 25000120Hz (= 25MHz
-plus 120Hz).
-This has no effect on the Meson GX SoCs since there fclk_div2 is used as
-input clock, which has a rate of 1000MHz (and thus is divisible cleanly
-to 250MHz and 25MHz).
+Here is the clk_summary relative to ethernet on Odroid-C1+
+with this new series applied:
 
-Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
-Reported-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+xtal				    1            1    24000000          0 0
+ sys_pll			    0            0  1200000000          0 0
+  cpu_clk			    0            0  1200000000          0 0
+ vid_pll			    0            0   732000000          0 0
+ fixed_pll			    2            2  2550000000          0 0
+  mpll2				    1            1   249999701          0 0
+   c9410000.ethernet#m250_sel       1            1   249999701          0 0
+    c9410000.ethernet#m250_div	    1            1   249999701          0 0
+     c9410000.ethernet#fixed_div10  1            1    24999970          0 0
+      c9410000.ethernet#m25_en	    1            1    24999970          0 0
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 7199e8c08536..d06106417063 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -139,7 +139,9 @@ static int meson8b_init_rgmii_clk(struct meson8b_dwmac *dwmac)
- 	dwmac->m250_div.shift = PRG_ETH0_CLK_M250_DIV_SHIFT;
- 	dwmac->m250_div.width = PRG_ETH0_CLK_M250_DIV_WIDTH;
- 	dwmac->m250_div.hw.init = &init;
--	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO;
-+	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED |
-+				CLK_DIVIDER_ALLOW_ZERO |
-+				CLK_DIVIDER_ROUND_CLOSEST;
- 
- 	dwmac->m250_div_clk = devm_clk_register(dev, &dwmac->m250_div.hw);
- 	if (WARN_ON(IS_ERR(dwmac->m250_div_clk)))
--- 
-2.15.1
+The ethernet prg0 register is set to 0x74A1 which should be correct with
+respect to the information contained in the S805 SoC manual.
+Actually, the ethernet is not yet fully functional.
+Trying to ping the board, I can see ARP request from host to board using
+tcpdump. However, the host can't see any response.
+
+Following the U-Boot value for prg0 register, which is 0x7d21, I also
+tried to set bit 11. As expected, this did not have any influence.
+Another thing that we should check is the "Ethernet Memory PD" (see S805
+manual - sec. 5.4) register which bits 3-2 enable/disable ethernet
+normal operation. However, those bits are already cleared by U-Boot.
+
+Thank you for the support.
+
+Best regards,
+
+Emiliano
+
+> 
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005596.html
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005848.html
+> [2] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005861.html
+> 
+> 
+> Martin Blumenstingl (5):
+>   net: stmmac: dwmac-meson8b: only configure the clocks in RGMII mode
+>   net: stmmac: dwmac-meson8b: simplify generating the clock names
+>   net: stmmac: dwmac-meson8b: fix internal RGMII clock configuration
+>   net: stmmac: dwmac-meson8b: fix setting the RGMII clock on Meson8b
+>   net: stmmac: dwmac-meson8b: propagate rate changes to the parent clock
+> 
+>  .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 119 +++++++++++----------
+>  1 file changed, 63 insertions(+), 56 deletions(-)
+> 
+> -- 
+> 2.15.1
+> 
