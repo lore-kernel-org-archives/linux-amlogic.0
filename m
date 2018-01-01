@@ -1,164 +1,125 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon,  1 Jan 2018 22:01:39 +0100
-Subject: [PATCH v2 1/1] clk: meson: meson8b: add support for the NAND clocks
-In-Reply-To: <20180101210139.29808-1-martin.blumenstingl@googlemail.com>
-References: <20180101210139.29808-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180101210139.29808-2-martin.blumenstingl@googlemail.com>
+Date: Mon,  1 Jan 2018 22:35:53 +0100
+Subject: [RFC HACK 0/2] CVBS output on Meson8/Meson8b/Meson8m2
+Message-ID: <20180101213555.5519-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds the NAND clocks (from the HHI_NAND_CLK_CNTL register) to the
-Meson8b clock driver. There are three NAND clocks: a gate which enables
-or disables the NAND clock, a mux and a divider (which divides the mux
-output).
-Unfortunately the public S805 datasheet does not document the mux
-parents. However, the vendor kernel has a few hints for us which allows
-us to make an educated guess about the clock parents. To do this we need
-to have a look at set_nand_core_clk() from the vendor's NAND driver (see
-[0]):
-- XTAL = (4<<9) | (1<<8) | 0
-- 160MHz = (0<<9) | (1<<8) | 3)
-- 182MHz = (3<<9) | (1<<8) | 1)
-- 212MHz = (1<<9) | (1<<8) | 3)
-- 255MHz = (2<<9) | (1<<8) | 1)
+Hi Neil,
 
-While there is a comment for the XTAL parent (which indicates that it
-should only be used for debugging) we have to do a bit of math for the
-other parents: target_freq * divider = rate of parent clock
-Bit 8 above is the enable bit, so we can ignore it here. Bits 11:9 are
-the mux index and bits 6:0 are the 0-based divider (so we need to add
-1). This gives us:
-- mux 0 (160MHz * 4) = fclk_div4 (actual rate = 637.5MHz, off by 2.5MHz)
-- mux 1 (212MHz * 4) = fclk_div3 (actual rate = 850MHz, off by 2MHz)
-- mux 2 (255MHz * 2) = fclk_div5 (matches exactly 510MHz)
-- mux 3 (182MHz * 2) = fclk_div7 (actual rate = 346.3MHz, off by 0.3MHz)
+DISCLAIMER: none of these patches is meant to be applied anywhere!
+their purpose is to document what I found out so far (things that are
+not documented in any public datasheet that I am aware of).
 
-[0] https://github.com/khadas/linux/blob/9587681285cb/drivers/amlogic/amlnf/dev/amlnf_ctrl.c#L314
+I was curious and wanted to see if there are any differences between
+the video IP blocks between Meson8/Meson8b/Meson8m2 and GXBB/GXL/GXM.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c              | 51 ++++++++++++++++++++++++++++++++
- drivers/clk/meson/meson8b.h              |  3 +-
- include/dt-bindings/clock/meson8b-clkc.h |  3 ++
- 3 files changed, 56 insertions(+), 1 deletion(-)
+after reading your gpu/drm/meson/meson_vclk.c I stumbled across the
+first problem (which is a big one): the 32-bit SoCs don't have the
+HHI_VID_PLL_CLK_DIV register.
+unfortunately there is no documentation in the public S805 datasheet
+that describes the video clock path on Meson8b. some of the registers
+that are documented in the GXM datasheet published by Khadas (which
+also contains a nice video clock tree documentation). so I tried to
+take a different approach: extending the clock controller driver so
+I could play around until I could read the clock frequencies set by
+u-boot (which displays an image on the CVBS output).
+the result of this is the clock patch from this series, which gives
+me the following output in /sys/kernel/debug/clk/clk_summary:
+vid_pll                               0            0   648000000          0 0  
+   vid_pll_pre_div                    0            0   108000000          0 0  
+      vid_pll_post_sel                0            0   108000000          0 0  
+         vid_pll_post_en              0            0   108000000          0 0  
+            vclk2_sel                 0            0   108000000          0 0  
+               vclk2_en0              0            0   108000000          0 0  
+                  vclk2_xd0           0            0    54000000          0 0  
+                     vclk2_clk_div_en           0            0    54000000          0 0  
+                        vclk2_div12           0            0     4500000          0 0  
+                           vclk2_div12_en           0            0     4500000          0 0  
+                        vclk2_div6           0            0     9000000          0 0  
+                           vclk2_div6_en           0            0     9000000          0 0  
+                        vclk2_div4           0            0    13500000          0 0  
+                           vclk2_div4_en           0            0    13500000          0 0  
+                        vclk2_div2           0            0    27000000          0 0  
+                           vclk2_div2_en           0            0    27000000          0 0  
+                              hdmi_tx_pixel_sel           0            0    27000000          0 0  
+                                 hdmi_tx_pixel_en           0            0    27000000          0 0  
+                              vdac0_sel           0            0    27000000          0 0  
+                                 vdac0_en           0            0    27000000          0 0  
+                        vclk2_div1_en           0            0    54000000          0 0  
+                           encl_sel           0            0    54000000          0 0  
+                              encl_en           0            0    54000000          0 0  
+            vclk_sel                  0            0   108000000          0 0  
+               vclk_en0               0            0   108000000          0 0  
+                  vclk_xd0            0            0    27000000          0 0  
+                     vclk_clk_div_en           0            0    27000000          0 0  
+                        vclk_div12           0            0     2250000          0 0  
+                           vclk_div12_en           0            0     2250000          0 0  
+                        vclk_div6           0            0     4500000          0 0  
+                           vclk_div6_en           0            0     4500000          0 0  
+                        vclk_div4           0            0     6750000          0 0  
+                           vclk_div4_en           0            0     6750000          0 0  
+                        vclk_div2           0            0    13500000          0 0  
+                           vclk_div2_en           0            0    13500000          0 0  
+                              enci_sel           0            0    13500000          0 0  
+                                 enci_en           0            0    13500000          0 0  
+                        vclk_div1_en           0            0    27000000          0 0  
+                           encp_sel           0            0    27000000          0 0  
+                              encp_en           0            0    27000000          0 0  
+                           enct_sel           0            0    27000000          0 0  
+                              enct_en           0            0    27000000          0 0  
+      vid_pll_post_div                0            0   108000000          0 0  
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 20ab7190d328..929f6947e679 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -418,6 +418,51 @@ struct clk_gate meson8b_clk81 = {
- 	},
- };
- 
-+struct clk_mux meson8b_nand_clk_sel = {
-+	.reg = (void *)HHI_NAND_CLK_CNTL,
-+	.mask = 0x7,
-+	.shift = 9,
-+	.flags = CLK_MUX_ROUND_CLOSEST,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "nand_clk_sel",
-+		.ops = &clk_mux_ops,
-+		/* FIXME all other parents are unknown: */
-+		.parent_names = (const char *[]){ "fclk_div4", "fclk_div3",
-+			"fclk_div5", "fclk_div7", "xtal" },
-+		.num_parents = 5,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+struct clk_divider meson8b_nand_clk_div = {
-+	.reg = (void *)HHI_NAND_CLK_CNTL,
-+	.shift = 0,
-+	.width = 7,
-+	.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "nand_clk_div",
-+		.ops = &clk_divider_ops,
-+		.parent_names = (const char *[]){ "nand_clk_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+struct clk_gate meson8b_nand_clk_gate = {
-+	.reg = (void *)HHI_NAND_CLK_CNTL,
-+	.bit_idx = 8,
-+	.lock = &clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "nand_clk_gate",
-+		.ops = &clk_gate_ops,
-+		.parent_names = (const char *[]){ "nand_clk_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- /* Everything Else (EE) domain gates */
- 
- static MESON_GATE(meson8b_ddr, HHI_GCLK_MPEG0, 0);
-@@ -599,6 +644,9 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_MPLL0]		    = &meson8b_mpll0.hw,
- 		[CLKID_MPLL1]		    = &meson8b_mpll1.hw,
- 		[CLKID_MPLL2]		    = &meson8b_mpll2.hw,
-+		[CLKID_NAND_SEL]	    = &meson8b_nand_clk_sel.hw,
-+		[CLKID_NAND_DIV]	    = &meson8b_nand_clk_div.hw,
-+		[CLKID_NAND_CLK]	    = &meson8b_nand_clk_gate.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-@@ -695,14 +743,17 @@ static struct clk_gate *const meson8b_clk_gates[] = {
- 	&meson8b_ao_ahb_sram,
- 	&meson8b_ao_ahb_bus,
- 	&meson8b_ao_iface,
-+	&meson8b_nand_clk_gate,
- };
- 
- static struct clk_mux *const meson8b_clk_muxes[] = {
- 	&meson8b_mpeg_clk_sel,
-+	&meson8b_nand_clk_sel,
- };
- 
- static struct clk_divider *const meson8b_clk_dividers[] = {
- 	&meson8b_mpeg_clk_div,
-+	&meson8b_nand_clk_div,
- };
- 
- static const struct meson8b_clk_reset_line {
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index 2eaf8a52e7dd..87731d3c7e55 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -40,6 +40,7 @@
- #define HHI_VID_CLK_CNTL		0x17c /* 0x5f offset in data sheet */
- #define HHI_VID_DIVIDER_CNTL		0x198 /* 0x66 offset in data sheet */
- #define HHI_SYS_CPU_CLK_CNTL0		0x19c /* 0x67 offset in data sheet */
-+#define HHI_NAND_CLK_CNTL		0x25c /* 0x97 offset in data sheet */
- #define HHI_MPLL_CNTL			0x280 /* 0xa0 offset in data sheet */
- #define HHI_SYS_PLL_CNTL		0x300 /* 0xc0 offset in data sheet */
- #define HHI_VID_PLL_CNTL		0x320 /* 0xc8 offset in data sheet */
-@@ -69,7 +70,7 @@
-  * will remain defined here.
-  */
- 
--#define CLK_NR_CLKS		96
-+#define CLK_NR_CLKS		99
- 
- /*
-  * include the CLKID and RESETID that have
-diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
-index dea9d46d4fa7..aa1a8148c785 100644
---- a/include/dt-bindings/clock/meson8b-clkc.h
-+++ b/include/dt-bindings/clock/meson8b-clkc.h
-@@ -102,5 +102,8 @@
- #define CLKID_MPLL0		93
- #define CLKID_MPLL1		94
- #define CLKID_MPLL2		95
-+#define CLKID_NAND_SEL		96
-+#define CLKID_NAND_DIV		97
-+#define CLKID_NAND_CLK		98
- 
- #endif /* __MESON8B_CLKC_H */
+I am not sure whether the ENCI clock is supposed to be 27MHz. at least
+the VDAC0 clock is 27MHz, which is definitely correct (in my opinion ;))
+"clkmsr" in u-boot (which I don't trust by the way, but I'll document my
+results here for the sake of completeness) shows these video related
+clocks:
+- [ 216 MHz]  VID_PLL_CLK(6)
+- [  54 MHz]  CTS_ENCP_CLK(8)
+- [  54 MHz]  CTS_ENCL_CLK(9)
+- [  24 MHz]  CTS_HDMI_SYS_CLK(19)
+- [  27 MHz]  CTS_HDMI_TX_PIXEL_CLK(36)
+
+
+after having fun with the clock driver I discovered that the CVBS output
+turns black when I boot a kernel with the .dts VPU node. a bit later I
+found out that we must not overwrite VIU_OSD2_CTRL_STAT with 0 and that
+some of the code in gpu/drm/meson/meson_vpp.c didn't seem to be
+compatible with the 32-bit SoCs so I simply "#if 0" that code. even
+later I found out that the 32-bit SoCs seem to use OSD2 (instead of
+OSD1) for the CVBS output. a small hack in meson_plane.c and
+meson_canvas.c later I am now able to send my own images through the
+CVBS output (colors are slightly incorrect and the image is cut off, but
+you have to start small: [0])
+
+are you planning to support OSD2 at some point?
+
+
+Regards
+Martin
+
+
+[0] https://abload.de/img/vlcsnap-2018-01-01-22b1uym.png
+
+
+Martin Blumenstingl (2):
+  gpu: drm: meson: HACK - Meson8/Meson8b/Meson8m2 support - WiP
+  clk: meson: meson8b: add the video clock trees - WiP
+
+ .../bindings/display/amlogic,meson-vpu.txt         |  18 +-
+ drivers/clk/meson/meson8b.c                        | 637 +++++++++++++++++++++
+ drivers/clk/meson/meson8b.h                        |   7 +-
+ drivers/gpu/drm/meson/meson_canvas.c               |  11 +
+ drivers/gpu/drm/meson/meson_canvas.h               |   4 +-
+ drivers/gpu/drm/meson/meson_drv.c                  |   3 +
+ drivers/gpu/drm/meson/meson_plane.c                |   5 +-
+ drivers/gpu/drm/meson/meson_vclk.c                 |  21 +-
+ drivers/gpu/drm/meson/meson_venc_cvbs.c            |   5 +-
+ drivers/gpu/drm/meson/meson_viu.c                  |   5 +-
+ drivers/gpu/drm/meson/meson_vpp.c                  |  28 +
+ include/dt-bindings/clock/meson8b-clkc.h           |  42 ++
+ 12 files changed, 771 insertions(+), 15 deletions(-)
+
 -- 
 2.15.1
