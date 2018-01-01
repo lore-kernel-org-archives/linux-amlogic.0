@@ -1,9 +1,9 @@
 From: lkp@intel.com (kbuild test robot)
-Date: Mon, 1 Jan 2018 22:47:11 +0800
+Date: Tue, 2 Jan 2018 02:01:18 +0800
 Subject: [PATCH 01/33] clk_ops: change round_rate() to return unsigned long
 In-Reply-To: <1514596392-22270-2-git-send-email-pure.logic@nexus-software.ie>
 References: <1514596392-22270-2-git-send-email-pure.logic@nexus-software.ie>
-Message-ID: <201801012236.kquIizPb%fengguang.wu@intel.com>
+Message-ID: <201801020112.PEMNifTo%fengguang.wu@intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -18,18 +18,14 @@ I love your patch! Perhaps something to improve:
 
 url:    https://github.com/0day-ci/linux/commits/Bryan-O-Donoghue/change-clk_ops-round_rate-to-scale-past-LONG_MAX/20180101-212907
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/tegra/linux.git for-next
-config: i386-randconfig-b0-01011934 (attached as .config)
-compiler: gcc-4.9 (Debian 4.9.4-2) 4.9.4
 reproduce:
-        # save the attached .config to linux build tree
-        make ARCH=i386 
+        # apt-get install sparse
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF=-D__CHECK_ENDIAN__
 
-All warnings (new ones prefixed by >>):
 
->> drivers/clk/clk-versaclock5.c:321:2: warning: initialization from incompatible pointer type
-     .round_rate = vc5_dbl_round_rate,
-     ^
-   drivers/clk/clk-versaclock5.c:321:2: warning: (near initialization for 'vc5_dbl_ops.round_rate')
+sparse warnings: (new ones prefixed by >>)
+
 
 vim +321 drivers/clk/clk-versaclock5.c
 
@@ -50,10 +46,3 @@ vim +321 drivers/clk/clk-versaclock5.c
 ---
 0-DAY kernel test infrastructure                Open Source Technology Center
 https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: .config.gz
-Type: application/gzip
-Size: 27230 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180101/941c6843/attachment.gz>
