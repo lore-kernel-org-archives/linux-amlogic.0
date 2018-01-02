@@ -1,58 +1,62 @@
-From: marcel@holtmann.org (Marcel Holtmann)
-Date: Tue, 2 Jan 2018 12:38:23 +0100
-Subject: [RFC v2 7/9] bluetooth: btrtl: load the config blob from
- devicetree when available
-In-Reply-To: <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
- <563D6F9F-8495-40D4-BE56-5338ED2B9B99@holtmann.org>
- <CAL9uMOEMDup4hRkxD-tM8R0YirGs5uQi31AjJUnFCPNMKUdRHg@mail.gmail.com>
- <E8E39477-CF1A-4A3E-84C5-830E182C2266@holtmann.org>
- <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
-Message-ID: <F38429FB-2D20-4EF7-8547-E5A5D67D1618@holtmann.org>
+From: srinivas.kandagatla@linaro.org (Srinivas Kandagatla)
+Date: Tue, 2 Jan 2018 11:44:24 +0000
+Subject: [PATCH v2 01/21] nvmem: core: Allow specifying device name
+ verbatim
+In-Reply-To: <20180101232310.30420-2-andrew.smirnov@gmail.com>
+References: <20180101232310.30420-1-andrew.smirnov@gmail.com>
+ <20180101232310.30420-2-andrew.smirnov@gmail.com>
+Message-ID: <ba0b8125-6094-d042-a391-edcc2f68a114@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Carlo,
+Thanks for the Patch,
 
->>>>> Some Realtek bluetooth devices need a "config" blob. The btrtl driver
->>>>> currently only allows loading this config blob via the request_firmware
->>>>> mechanism.
->>>>> 
->>>>> The UART Bluetooth chips use this config blob to specify the baudrate,
->>>>> whether flow control is used and some other unknown bits. This means
->>>>> that the config blob is board-specific - thus loading it via
->>>>> request_firmware means that the rootfs is tied to a specific board.
->>>>> 
->>>>> The UART Bluetooth chips are implemented through serdev. This means
->>>>> there is also a devicetree node which describes the Bluetooth chip.
->>>>> Thus we can also load the blob from the devicetree node to keep the
->>>>> filesystem independent of any board configuration data. In the future
->>>>> this could be extended to support ACPI as well (in case that's needed).
->>>>> 
->>>>> Parse the devicetree node if it exists and obtain the config blob from
->>>>> there. Otherwise fall back to using the "old" request_firmware
->>>>> mechanism.
->>>> 
->>>> where are these config blobs coming from? I think we also need to give people a helping hand on how to add them to DT. I still wonder if the only pieces we are using are the UART config, then maybe skipping the config blob and allowing for clear named values in DT might be better.
->>> 
->>> What about x86 platforms where we do not have DT (I didn't check but I
->>> don't think that the UART config in that case is shipped in the ACPI
->>> tables)?
->> 
->> if we have this hardware in x86 systems, then I would really like to see ACPI table dumps. Some pieces might need hardcoding based on ACPI ID.
+On 01/01/18 23:22, Andrey Smirnov wrote:
+> Add code to allow avoid having nvmem core append a numeric suffix to
+> the end of the name by passing config->id of -1.
 > 
-> Yes, we have, especially on cherry-trail SoCs. In [0] the DSDT of a
-> cherry-trail laptop shipping the rtl8723bs (device OBDA8723).
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Cc: Carlo Caione <carlo@caione.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: cphealy at gmail.com
+> Cc: linux-kernel at vger.kernel.org
+> Cc: linux-mediatek at lists.infradead.org
+> Cc: linux-rockchip at lists.infradead.org
+> Cc: linux-amlogic at lists.infradead.org
+> Cc: linux-arm-kernel at lists.infradead.org
+> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+> ---
+>   drivers/nvmem/core.c | 11 ++++++++---
+>   1 file changed, 8 insertions(+), 3 deletions(-)
 > 
-> [0] https://gist.github.com/carlocaione/82bff95ababb67dd33f52a86e94ce3ff
+This looks fine for me, Can you also add a line in kernel doc about this 
+behavior.
 
-so the BTHx entries normally come at least with the UART configuration. It would be useful check if it is actually correct. And then I think similar handling like what is done in hci_bcm.c and hci_intel.c needs to happen here.
-
-I think that we extended serdev to ACPI as well. Don?t recall of the top of my head if these patches were merged or not. But if they are then it is as simple as a serdev DT based driver. Just add the appropriate _HID and got from there.
-
-However now I think that moving towards making hci_h5.c more like generic abstraction like hci_h4.c and having a hci_rtl.c be specific for Realtek chips seems a bit cleaner direction. Frankly only H:4 and H:5 plain protocols should be used by btattach. And all others should go via serdev.
-
-Regards
-
-Marcel
+thanks,
+srini
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index 5a5cefd12153..57cbeacfbeb2 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -475,9 +475,14 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+>   	nvmem->reg_write = config->reg_write;
+>   	np = config->dev->of_node;
+>   	nvmem->dev.of_node = np;
+> -	dev_set_name(&nvmem->dev, "%s%d",
+> -		     config->name ? : "nvmem",
+> -		     config->name ? config->id : nvmem->id);
+> +
+> +	if (config->id == -1 && config->name) {
+> +		dev_set_name(&nvmem->dev, "%s", config->name);
+> +	} else {
+> +		dev_set_name(&nvmem->dev, "%s%d",
+> +			     config->name ? : "nvmem",
+> +			     config->name ? config->id : nvmem->id);
+> +	}
+>   
+>   	nvmem->read_only = of_property_read_bool(np, "read-only") |
+>   			   config->read_only;
+> 
