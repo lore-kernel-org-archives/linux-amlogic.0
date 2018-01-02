@@ -1,63 +1,72 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 2 Jan 2018 22:46:32 +0100
-Subject: [RFC v2 7/9] bluetooth: btrtl: load the config blob from
- devicetree when available
-In-Reply-To: <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
- <563D6F9F-8495-40D4-BE56-5338ED2B9B99@holtmann.org>
- <CAL9uMOEMDup4hRkxD-tM8R0YirGs5uQi31AjJUnFCPNMKUdRHg@mail.gmail.com>
- <E8E39477-CF1A-4A3E-84C5-830E182C2266@holtmann.org>
- <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
-Message-ID: <CAFBinCBB=SmviOMRHGDH6vzjTjV-mrtQEc8nBUhDbJGs9SBpgw@mail.gmail.com>
+Date: Tue, 2 Jan 2018 22:53:30 +0100
+Subject: [PATCH] reset: meson: enable level reset support on Meson8b
+In-Reply-To: <1514898067.5080.9.camel@pengutronix.de>
+References: <20171226115041.4786-1-martin.blumenstingl@googlemail.com>
+ <1514892915.5080.5.camel@pengutronix.de>
+ <30459dd9-78ef-e462-1c38-7048aebd0b40@baylibre.com>
+ <1514898067.5080.9.camel@pengutronix.de>
+Message-ID: <CAFBinCDLLV9XHfwqM+zsEY=tLZZv0XNYKuA2FPc70qApkOvkxw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Carlo,
+Hi Philipp,
 
-On Tue, Jan 2, 2018 at 12:31 PM, Carlo Caione <carlo@endlessm.com> wrote:
-> On Tue, Jan 2, 2018 at 11:19 AM, Marcel Holtmann <marcel@holtmann.org> wrote:
->> Hi Carlo,
+On Tue, Jan 2, 2018 at 2:01 PM, Philipp Zabel <p.zabel@pengutronix.de> wrote:
+> On Tue, 2018-01-02 at 13:49 +0100, Neil Armstrong wrote:
+>> On 02/01/2018 12:35, Philipp Zabel wrote:
+>> > Hi Martin,
+>> >
+>> > On Tue, 2017-12-26 at 12:50 +0100, Martin Blumenstingl wrote:
+>> > > Commit a5a10afe04ef ("reset: meson: add level reset support for GX SoC
+>> > > family") only enabled the level resets for the newer GX SoC family.
+>> > > However, the older 32-Meson SoCs (Meson8, Meson8b and Meson8m2) also
+>> > > support level resets using the same offset as the newer GX SoCs.
+>> > >
+>> > > This removes the separation between Meson8b and the GX SoCs from the
+>> > > reset-meson driver to enable the level resets also on Meson8b.
+>> > >
+>> > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> >
+>> > Thank you for the patch. It looks fine to me, not knowing the hardware
+>> > details.
+>> > The referenced commit made it sound like reset level handling on Meson8
+>> > is different from GX, though. Could somebody clarify?
+>> >
+>> > regards
+>> > Philipp
+>> >
 >>
->>>>> Some Realtek bluetooth devices need a "config" blob. The btrtl driver
->>>>> currently only allows loading this config blob via the request_firmware
->>>>> mechanism.
->>>>>
->>>>> The UART Bluetooth chips use this config blob to specify the baudrate,
->>>>> whether flow control is used and some other unknown bits. This means
->>>>> that the config blob is board-specific - thus loading it via
->>>>> request_firmware means that the rootfs is tied to a specific board.
->>>>>
->>>>> The UART Bluetooth chips are implemented through serdev. This means
->>>>> there is also a devicetree node which describes the Bluetooth chip.
->>>>> Thus we can also load the blob from the devicetree node to keep the
->>>>> filesystem independent of any board configuration data. In the future
->>>>> this could be extended to support ACPI as well (in case that's needed).
->>>>>
->>>>> Parse the devicetree node if it exists and obtain the config blob from
->>>>> there. Otherwise fall back to using the "old" request_firmware
->>>>> mechanism.
->>>>
->>>> where are these config blobs coming from? I think we also need to give people a helping hand on how to add them to DT. I still wonder if the only pieces we are using are the UART config, then maybe skipping the config blob and allowing for clear named values in DT might be better.
->>>
->>> What about x86 platforms where we do not have DT (I didn't check but I
->>> don't think that the UART config in that case is shipped in the ACPI
->>> tables)?
+>> Hi Philipp,
 >>
->> if we have this hardware in x86 systems, then I would really like to see ACPI table dumps. Some pieces might need hardcoding based on ACPI ID.
+>> This is highly undocumented and needs reading the vendor source code and experimenting,
+>> this patch is ok for me. Seems the register mapping did not change for a long time since
+>> it's still the same on the latest AXG family.
+>>
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 >
-> Yes, we have, especially on cherry-trail SoCs. In [0] the DSDT of a
-> cherry-trail laptop shipping the rtl8723bs (device OBDA8723).
->
-> [0] https://gist.github.com/carlocaione/82bff95ababb67dd33f52a86e94ce3ff
-so this shows that the UART settings (initial baudrate, HW flow
-control, etc.) are part of the DSDT
-however, the actual config blob is not
+> Thank you, applied it to reset/next with your R-b.
+thank you
 
-the description of this patch explains: "Parse the devicetree node ...
-[or] ... fall back to using the "old" request_firmware mechanism."
-do you have any other solution in mind?
+I guess I could have been a bit more verbose in the commit message:
+as Neil already said our public datasheet doesn't mention these
+registers (neither on GXBB, GXL, GXM nor Meson8b)
+however, the vendor kernel sources contain enough information: [0]
+- the reset controller starts at CBUS (0x1101 * 4)
+- the RESET0_LEVEL register is at CBUS (0x1120 * 4)
+- offset between start and the LEVEL registers: (0x1120 - 0x1101) * 4 = 0x7c
+
+I tested this with the dwmac (Ethernet) reset:
+I modified the stmmac driver so it only asserts the reset, but never
+de-asserts it:
+this breaks ethernet - and even if I reboot into u-boot ethernet is
+dead (I have to do a full power-cycle to get it working again)
+with the unmodified stmmac driver (which de-asserts the reset line
+again) both the stmmac driver itself and u-boot are working fine again
 
 
 Regards
 Martin
+
+
+[0] https://github.com/endlessm/linux-meson/blob/af743b87ad00dad42a4af84d0445f45ef251d046/arch/arm/mach-meson8b/include/mach/register.h#L1015
