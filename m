@@ -1,53 +1,29 @@
-From: carlo@endlessm.com (Carlo Caione)
-Date: Tue, 2 Jan 2018 11:31:06 +0000
-Subject: [RFC v2 7/9] bluetooth: btrtl: load the config blob from
- devicetree when available
-In-Reply-To: <E8E39477-CF1A-4A3E-84C5-830E182C2266@holtmann.org>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
- <563D6F9F-8495-40D4-BE56-5338ED2B9B99@holtmann.org>
- <CAL9uMOEMDup4hRkxD-tM8R0YirGs5uQi31AjJUnFCPNMKUdRHg@mail.gmail.com>
- <E8E39477-CF1A-4A3E-84C5-830E182C2266@holtmann.org>
-Message-ID: <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Tue, 02 Jan 2018 12:35:15 +0100
+Subject: [PATCH] reset: meson: enable level reset support on Meson8b
+In-Reply-To: <20171226115041.4786-1-martin.blumenstingl@googlemail.com>
+References: <20171226115041.4786-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1514892915.5080.5.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jan 2, 2018 at 11:19 AM, Marcel Holtmann <marcel@holtmann.org> wrote:
-> Hi Carlo,
->
->>>> Some Realtek bluetooth devices need a "config" blob. The btrtl driver
->>>> currently only allows loading this config blob via the request_firmware
->>>> mechanism.
->>>>
->>>> The UART Bluetooth chips use this config blob to specify the baudrate,
->>>> whether flow control is used and some other unknown bits. This means
->>>> that the config blob is board-specific - thus loading it via
->>>> request_firmware means that the rootfs is tied to a specific board.
->>>>
->>>> The UART Bluetooth chips are implemented through serdev. This means
->>>> there is also a devicetree node which describes the Bluetooth chip.
->>>> Thus we can also load the blob from the devicetree node to keep the
->>>> filesystem independent of any board configuration data. In the future
->>>> this could be extended to support ACPI as well (in case that's needed).
->>>>
->>>> Parse the devicetree node if it exists and obtain the config blob from
->>>> there. Otherwise fall back to using the "old" request_firmware
->>>> mechanism.
->>>
->>> where are these config blobs coming from? I think we also need to give people a helping hand on how to add them to DT. I still wonder if the only pieces we are using are the UART config, then maybe skipping the config blob and allowing for clear named values in DT might be better.
->>
->> What about x86 platforms where we do not have DT (I didn't check but I
->> don't think that the UART config in that case is shipped in the ACPI
->> tables)?
->
-> if we have this hardware in x86 systems, then I would really like to see ACPI table dumps. Some pieces might need hardcoding based on ACPI ID.
+Hi Martin,
 
-Yes, we have, especially on cherry-trail SoCs. In [0] the DSDT of a
-cherry-trail laptop shipping the rtl8723bs (device OBDA8723).
+On Tue, 2017-12-26 at 12:50 +0100, Martin Blumenstingl wrote:
+> Commit a5a10afe04ef ("reset: meson: add level reset support for GX SoC
+> family") only enabled the level resets for the newer GX SoC family.
+> However, the older 32-Meson SoCs (Meson8, Meson8b and Meson8m2) also
+> support level resets using the same offset as the newer GX SoCs.
+> 
+> This removes the separation between Meson8b and the GX SoCs from the
+> reset-meson driver to enable the level resets also on Meson8b.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[0] https://gist.github.com/carlocaione/82bff95ababb67dd33f52a86e94ce3ff
+Thank you for the patch.?It looks fine to me, not knowing the hardware
+details.
+The referenced commit made it sound like reset level handling on Meson8
+is different from GX, though. Could somebody clarify?
 
-Cheers,
-
--- 
-Carlo Caione  |  +44.7384.69.16.04  |  Endless
+regards
+Philipp
