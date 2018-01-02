@@ -1,47 +1,46 @@
-From: p.zabel@pengutronix.de (Philipp Zabel)
-Date: Tue, 02 Jan 2018 14:01:07 +0100
-Subject: [PATCH] reset: meson: enable level reset support on Meson8b
-In-Reply-To: <30459dd9-78ef-e462-1c38-7048aebd0b40@baylibre.com>
-References: <20171226115041.4786-1-martin.blumenstingl@googlemail.com>
- <1514892915.5080.5.camel@pengutronix.de>
- <30459dd9-78ef-e462-1c38-7048aebd0b40@baylibre.com>
-Message-ID: <1514898067.5080.9.camel@pengutronix.de>
+From: andrew.smirnov@gmail.com (Andrey Smirnov)
+Date: Tue, 2 Jan 2018 10:40:22 -0800
+Subject: [PATCH v2 01/21] nvmem: core: Allow specifying device name
+ verbatim
+In-Reply-To: <ba0b8125-6094-d042-a391-edcc2f68a114@linaro.org>
+References: <20180101232310.30420-1-andrew.smirnov@gmail.com>
+ <20180101232310.30420-2-andrew.smirnov@gmail.com>
+ <ba0b8125-6094-d042-a391-edcc2f68a114@linaro.org>
+Message-ID: <CAHQ1cqEnRL=Lwk_35NVR9r-mQ8giJ=mku+WGxp8gAMm_1Wi__w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-01-02 at 13:49 +0100, Neil Armstrong wrote:
-> On 02/01/2018 12:35, Philipp Zabel wrote:
-> > Hi Martin,
-> > 
-> > On Tue, 2017-12-26 at 12:50 +0100, Martin Blumenstingl wrote:
-> > > Commit a5a10afe04ef ("reset: meson: add level reset support for GX SoC
-> > > family") only enabled the level resets for the newer GX SoC family.
-> > > However, the older 32-Meson SoCs (Meson8, Meson8b and Meson8m2) also
-> > > support level resets using the same offset as the newer GX SoCs.
-> > > 
-> > > This removes the separation between Meson8b and the GX SoCs from the
-> > > reset-meson driver to enable the level resets also on Meson8b.
-> > > 
-> > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > 
-> > Thank you for the patch.?It looks fine to me, not knowing the hardware
-> > details.
-> > The referenced commit made it sound like reset level handling on Meson8
-> > is different from GX, though. Could somebody clarify?
-> > 
-> > regards
-> > Philipp
-> > 
-> 
-> Hi Philipp,
-> 
-> This is highly undocumented and needs reading the vendor source code and experimenting,
-> this patch is ok for me. Seems the register mapping did not change for a long time since
-> it's still the same on the latest AXG family.
-> 
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+On Tue, Jan 2, 2018 at 3:44 AM, Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
+> Thanks for the Patch,
+>
+> On 01/01/18 23:22, Andrey Smirnov wrote:
+>>
+>> Add code to allow avoid having nvmem core append a numeric suffix to
+>> the end of the name by passing config->id of -1.
+>>
+>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Cc: Heiko Stuebner <heiko@sntech.de>
+>> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+>> Cc: Carlo Caione <carlo@caione.org>
+>> Cc: Kevin Hilman <khilman@baylibre.com>
+>> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+>> Cc: cphealy at gmail.com
+>> Cc: linux-kernel at vger.kernel.org
+>> Cc: linux-mediatek at lists.infradead.org
+>> Cc: linux-rockchip at lists.infradead.org
+>> Cc: linux-amlogic at lists.infradead.org
+>> Cc: linux-arm-kernel at lists.infradead.org
+>> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+>> ---
+>>   drivers/nvmem/core.c | 11 ++++++++---
+>>   1 file changed, 8 insertions(+), 3 deletions(-)
+>>
+> This looks fine for me, Can you also add a line in kernel doc about this
+> behavior.
+>
 
-Thank you, applied it to reset/next with your R-b.
+Sure, will do in v3.
 
-regards
-Philipp
+Thanks,
+Andrey Smirnov
