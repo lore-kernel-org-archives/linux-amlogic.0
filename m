@@ -1,80 +1,203 @@
-From: pure.logic@nexus-software.ie (Bryan O'Donoghue)
-Date: Tue, 2 Jan 2018 20:43:44 +0000
-Subject: [PATCH 01/33] clk_ops: change round_rate() to return unsigned long
-In-Reply-To: <20180102190159.GH7997@codeaurora.org>
-References: <1514596392-22270-1-git-send-email-pure.logic@nexus-software.ie>
- <1514596392-22270-2-git-send-email-pure.logic@nexus-software.ie>
- <9f4bef5a-8a71-6f30-5cfb-5e8fe133e3d3@kapsi.fi>
- <6d83a5c3-6589-24bc-4ca5-4d1bbca47432@nexus-software.ie>
- <20180102190159.GH7997@codeaurora.org>
-Message-ID: <c2212d56-a8b5-cba5-46a7-c2c7f66e752b@nexus-software.ie>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 2 Jan 2018 22:06:46 +0100
+Subject: [RFC v2 8/9] Bluetooth: drop HCI_UART_INIT_PENDING support
+In-Reply-To: <5F8922BB-5A97-43B1-88D5-591EB76FF787@holtmann.org>
+References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
+ <20180101204217.26165-9-martin.blumenstingl@googlemail.com>
+ <5F8922BB-5A97-43B1-88D5-591EB76FF787@holtmann.org>
+Message-ID: <CAFBinCAxUmxivp_PWkoydha84LbJi-GGv6Uhs6cKR+D_8c8QCw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/01/18 19:01, Stephen Boyd wrote:
-> On 12/31, Bryan O'Donoghue wrote:
->> On 30/12/17 16:36, Mikko Perttunen wrote:
->>> FWIW, we had this problem some years ago with the Tegra CPU clock
->>> - then it was determined that a simpler solution was to have the
->>> determine_rate callback support unsigned long rates - so clock
->>> drivers that need to return rates higher than 2^31 can instead
->>> implement the determine_rate callback. That is what's currently
->>> implemented.
->>>
->>> Mikko
+Hi Marcel,
+
+thank you for looking into this latest version!
+
+On Tue, Jan 2, 2018 at 12:04 PM, Marcel Holtmann <marcel@holtmann.org> wrote:
+> Hi Martin,
+>
+>> The three-wire (H5) protocol is the only protocol which uses
+>> HCI_UART_INIT_PENDING.
+>> Unfortunately the benefits of using this flag are currently unknown. It
+>> was added in commit 9f2aee848fe6 ("Bluetooth: Add delayed init sequence
+>> support for UART controllers"). In my experiments (with the
+>> "rtk_hciattach" tool - a customized version of hciattach for Realtek
+>> chipsets) I started the tool before and after this patch while the
+>> Bluetooth chipset was disabled (by pulling it's enable GPIO LOW). In
+>> both cases hci0 was not created - thus HCI_UART_INIT_PENDING is not
+>> required in that case.
 >>
->> Granted we could work around it but, having both zero and less than
->> zero indicate error means you can't support larger than LONG_MAX
->> which is I think worth fixing.
+>> Removing this code also has another benefit: hci_serdev.c does not
+>> support the delayed initialization / registration. Thus the protocol
+>> implementation (hci_h5) never receives any data with this check still
+>> in place. For the H5 protocol this means that the initialization never
+>> completes (because the sync response never arrives). Even if the
+>> initialization would succeed later on the drivers would call
+>> hci_uart_init_ready() which schedules the registration which is
+>> currently not implemented by hci_serdev.c.
 >>
-> 
-> Ok. But can you implement the determine_rate op instead of the
-> round_rate op for your clk?
+>> Removing the HCI_UART_INIT_PENDING check makes the code easier to read
+>> and also fixes the initalization of devices (implemented with the serdev
+>> library) which use the H5 protocol.
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> I really like Johan to ack this one, but generally I am fine with removing unneeded code.
+I would also like as many ACKs/Tested-by/Reviewed-by as possible since
+this is all new code for me (so it's easy for me to make mistakes)!
 
-Don't know .
+> We might also want to look at hciattach to btattach code and make sure it gets removed there as well. I am not even sure anybody used hciattach with H:5 ever.
+a quick glance shows that it's defined in bluez.git but never used
+there (which is good in this case)
 
-> It's not a work-around, it's the
-> preferred solution. That would allow rates larger than 2^31 for
-> the clk without pushing through a change to all the drivers to
-> express zero as "error" and non-zero as the rounded rate.
-> 
-> I'm not entirely opposed to this approach, because we probably
-> don't care to pass the particular error value from a clk provider
-> to a clk consumer about what the error is.
+>> ---
+>> drivers/bluetooth/hci_h5.c     |  3 ---
+>> drivers/bluetooth/hci_ldisc.c  | 38 --------------------------------------
+>> drivers/bluetooth/hci_serdev.c |  3 ---
+>> drivers/bluetooth/hci_uart.h   |  4 +---
+>> 4 files changed, 1 insertion(+), 47 deletions(-)
+>>
+>> diff --git a/drivers/bluetooth/hci_h5.c b/drivers/bluetooth/hci_h5.c
+>> index 6a8d0d06aba7..6cfc2f276250 100644
+>> --- a/drivers/bluetooth/hci_h5.c
+>> +++ b/drivers/bluetooth/hci_h5.c
+>> @@ -210,8 +210,6 @@ static int h5_open(struct hci_uart *hu)
+>>
+>>       h5->tx_win = H5_TX_WIN_MAX;
+>>
+>> -     set_bit(HCI_UART_INIT_PENDING, &hu->hdev_flags);
+>> -
+>>       /* Send initial sync request */
+>>       h5_link_control(hu, sync, sizeof(sync));
+>>       mod_timer(&h5->timer, jiffies + H5_SYNC_TIMEOUT);
+>> @@ -316,7 +314,6 @@ static void h5_handle_internal_rx(struct hci_uart *hu)
+>>                       h5->tx_win = (data[2] & 0x07);
+>>               BT_DBG("Three-wire init complete. tx_win %u", h5->tx_win);
+>>               h5->state = H5_ACTIVE;
+>> -             hci_uart_init_ready(hu);
+>>               return;
+>>       } else if (memcmp(data, sleep_req, 2) == 0) {
+>>               BT_DBG("Peer went to sleep");
+>> diff --git a/drivers/bluetooth/hci_ldisc.c b/drivers/bluetooth/hci_ldisc.c
+>> index c823914b3a80..5dd3e1bebfe4 100644
+>> --- a/drivers/bluetooth/hci_ldisc.c
+>> +++ b/drivers/bluetooth/hci_ldisc.c
+>> @@ -195,39 +195,6 @@ static void hci_uart_write_work(struct work_struct *work)
+>>       clear_bit(HCI_UART_SENDING, &hu->tx_state);
+>> }
+>>
+>> -static void hci_uart_init_work(struct work_struct *work)
+>> -{
+>> -     struct hci_uart *hu = container_of(work, struct hci_uart, init_ready);
+>> -     int err;
+>> -     struct hci_dev *hdev;
+>> -
+>> -     if (!test_and_clear_bit(HCI_UART_INIT_PENDING, &hu->hdev_flags))
+>> -             return;
+>> -
+>> -     err = hci_register_dev(hu->hdev);
+>> -     if (err < 0) {
+>> -             BT_ERR("Can't register HCI device");
+>> -             hdev = hu->hdev;
+>> -             hu->hdev = NULL;
+>> -             hci_free_dev(hdev);
+>> -             clear_bit(HCI_UART_PROTO_READY, &hu->flags);
+>> -             hu->proto->close(hu);
+>> -             return;
+>> -     }
+>> -
+>> -     set_bit(HCI_UART_REGISTERED, &hu->flags);
+>> -}
+>> -
+>> -int hci_uart_init_ready(struct hci_uart *hu)
+>> -{
+>> -     if (!test_bit(HCI_UART_INIT_PENDING, &hu->hdev_flags))
+>> -             return -EALREADY;
+>> -
+>> -     schedule_work(&hu->init_ready);
+>> -
+>> -     return 0;
+>> -}
+>> -
+>> /* ------- Interface to HCI layer ------ */
+>> /* Initialize device */
+>> static int hci_uart_open(struct hci_dev *hdev)
+>> @@ -490,7 +457,6 @@ static int hci_uart_tty_open(struct tty_struct *tty)
+>>       hu->alignment = 1;
+>>       hu->padding = 0;
+>>
+>> -     INIT_WORK(&hu->init_ready, hci_uart_init_work);
+>>       INIT_WORK(&hu->write_work, hci_uart_write_work);
+>>
+>>       percpu_init_rwsem(&hu->proto_lock);
+>> @@ -653,9 +619,6 @@ static int hci_uart_register_dev(struct hci_uart *hu)
+>>       else
+>>               hdev->dev_type = HCI_PRIMARY;
+>>
+>> -     if (test_bit(HCI_UART_INIT_PENDING, &hu->hdev_flags))
+>> -             return 0;
+>> -
+>>       if (hci_register_dev(hdev) < 0) {
+>>               BT_ERR("Can't register HCI device");
+>>               hu->hdev = NULL;
+>> @@ -699,7 +662,6 @@ static int hci_uart_set_flags(struct hci_uart *hu, unsigned long flags)
+>>       unsigned long valid_flags = BIT(HCI_UART_RAW_DEVICE) |
+>>                                   BIT(HCI_UART_RESET_ON_INIT) |
+>>                                   BIT(HCI_UART_CREATE_AMP) |
+>> -                                 BIT(HCI_UART_INIT_PENDING) |
+>>                                   BIT(HCI_UART_EXT_CONFIG) |
+>>                                   BIT(HCI_UART_VND_DETECT);
+>>
+>> diff --git a/drivers/bluetooth/hci_serdev.c b/drivers/bluetooth/hci_serdev.c
+>> index e0e6461b9200..fe67eb6d4278 100644
+>> --- a/drivers/bluetooth/hci_serdev.c
+>> +++ b/drivers/bluetooth/hci_serdev.c
+>> @@ -333,9 +333,6 @@ int hci_uart_register_device(struct hci_uart *hu,
+>>       else
+>>               hdev->dev_type = HCI_PRIMARY;
+>>
+>> -     if (test_bit(HCI_UART_INIT_PENDING, &hu->hdev_flags))
+>> -             return 0;
+>> -
+>>       if (hci_register_dev(hdev) < 0) {
+>>               BT_ERR("Can't register HCI device");
+>>               err = -ENODEV;
+>> diff --git a/drivers/bluetooth/hci_uart.h b/drivers/bluetooth/hci_uart.h
+>> index 66e8c68e4607..47e755ff4092 100644
+>> --- a/drivers/bluetooth/hci_uart.h
+>> +++ b/drivers/bluetooth/hci_uart.h
+>> @@ -53,7 +53,7 @@
+>> #define HCI_UART_RAW_DEVICE   0
+>> #define HCI_UART_RESET_ON_INIT        1
+>> #define HCI_UART_CREATE_AMP   2
+>> -#define HCI_UART_INIT_PENDING        3
+>> +/* 3 is unused - was HCI_UART_INIT_PENDING */
+>
+> #define HCI_UART_INIT_PENDING   3       /* unused */
+>
+> I prefer it this way since it is easier on the eyes.
+OK, I'll do it that way in the next version
 
-Which was my thought. The return value of clk_ops->round_rate() appears 
-not to get pushed up the stack, which is what the last patch in this 
-series deals with.
-
-[PATCH 33/33] clk: change handling of round_rate() such that only zero 
-is an error
-
-> It's actually what we
-> proposed as the solution for clk_round_rate() to return values
-> larger than LONG_MAX to consumers. But doing that consumer API
-> change or this provider side change is going to require us to
-> evaluate all the consumers of these clks to make sure they don't
-> check for some error value that's less than zero. This series
-> does half the work,
-
-Do you mean users of clk_rounda_rate() ? I have a set of patches for 
-that but wanted to separate that from clk_ops->round_rate() so as not to 
-send ~70 patches out to LKML at once - even if they are in two blocks.
-
-If so, I can publish that set too for reference.
-
-AFAICT on clk_ops->round_rate the last patch #33 ought to cover the 
-usage of the return value of clk_ops->round_rate().
-
-Have I missed something ?
-
-> by changing the provider side, while ignoring
-> the consumer side and any potential fallout of the less than zero
-> to zero return value change.
-> 
-
-Can you look at #33 ? I'm not sure if you saw that one.
+>> #define HCI_UART_EXT_CONFIG   4
+>> #define HCI_UART_VND_DETECT   5
+>>
+>> @@ -83,7 +83,6 @@ struct hci_uart {
+>>       unsigned long           flags;
+>>       unsigned long           hdev_flags;
+>>
+>> -     struct work_struct      init_ready;
+>>       struct work_struct      write_work;
+>>
+>>       const struct hci_uart_proto *proto;
+>> @@ -115,7 +114,6 @@ int hci_uart_register_device(struct hci_uart *hu, const struct hci_uart_proto *p
+>> void hci_uart_unregister_device(struct hci_uart *hu);
+>>
+>> int hci_uart_tx_wakeup(struct hci_uart *hu);
+>> -int hci_uart_init_ready(struct hci_uart *hu);
+>> void hci_uart_set_baudrate(struct hci_uart *hu, unsigned int speed);
+>> void hci_uart_set_flow_control(struct hci_uart *hu, bool enable);
+>> void hci_uart_set_speeds(struct hci_uart *hu, unsigned int init_speed,
 
 
----
-bod
+Regards
+Martin
