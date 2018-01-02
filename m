@@ -1,47 +1,49 @@
-From: andrew.smirnov@gmail.com (Andrey Smirnov)
-Date: Tue, 2 Jan 2018 10:40:57 -0800
-Subject: [PATCH v2 02/21] nvmem: Introduce devm_nvmem_(un)register()
-In-Reply-To: <f3ffb0f7-2d27-9c58-549f-dc44209f27c6@linaro.org>
-References: <20180101232310.30420-1-andrew.smirnov@gmail.com>
- <20180101232310.30420-3-andrew.smirnov@gmail.com>
- <f3ffb0f7-2d27-9c58-549f-dc44209f27c6@linaro.org>
-Message-ID: <CAHQ1cqGTophCKYsf=c_YECwBt8tQRhpT0wfvQwVxj+YyJO49xg@mail.gmail.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Tue, 2 Jan 2018 11:01:59 -0800
+Subject: [PATCH 01/33] clk_ops: change round_rate() to return unsigned long
+In-Reply-To: <6d83a5c3-6589-24bc-4ca5-4d1bbca47432@nexus-software.ie>
+References: <1514596392-22270-1-git-send-email-pure.logic@nexus-software.ie>
+ <1514596392-22270-2-git-send-email-pure.logic@nexus-software.ie>
+ <9f4bef5a-8a71-6f30-5cfb-5e8fe133e3d3@kapsi.fi>
+ <6d83a5c3-6589-24bc-4ca5-4d1bbca47432@nexus-software.ie>
+Message-ID: <20180102190159.GH7997@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jan 2, 2018 at 3:44 AM, Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
-> Thanks for the patch,
->
-> On 01/01/18 23:22, Andrey Smirnov wrote:
->>
->> Introduce devm_nvmem_register()/devm_nvmem_unregister() to make
->> .remove() unnecessary in trivial drivers.
->>
->> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Cc: Heiko Stuebner <heiko@sntech.de>
->> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
->> Cc: Carlo Caione <carlo@caione.org>
->> Cc: Kevin Hilman <khilman@baylibre.com>
->> Cc: Matthias Brugger <matthias.bgg@gmail.com>
->> Cc: cphealy at gmail.com
->> Cc: linux-kernel at vger.kernel.org
->> Cc: linux-mediatek at lists.infradead.org
->> Cc: linux-rockchip at lists.infradead.org
->> Cc: linux-amlogic at lists.infradead.org
->> Cc: linux-arm-kernel at lists.infradead.org
->> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
->> ---
->>   drivers/nvmem/core.c           | 41
->> +++++++++++++++++++++++++++++++++++++++++
->>   include/linux/nvmem-provider.h | 17 +++++++++++++++++
->>   2 files changed, 58 insertions(+)
->>
-> Patch looks good, kernel doc for these exported symbols are missing, you
-> should add them in next version!
->
+On 12/31, Bryan O'Donoghue wrote:
+> On 30/12/17 16:36, Mikko Perttunen wrote:
+> >FWIW, we had this problem some years ago with the Tegra CPU clock
+> >- then it was determined that a simpler solution was to have the
+> >determine_rate callback support unsigned long rates - so clock
+> >drivers that need to return rates higher than 2^31 can instead
+> >implement the determine_rate callback. That is what's currently
+> >implemented.
+> >
+> >Mikko
+> 
+> Granted we could work around it but, having both zero and less than
+> zero indicate error means you can't support larger than LONG_MAX
+> which is I think worth fixing.
+> 
 
-Good point! Will do in v3.
+Ok. But can you implement the determine_rate op instead of the
+round_rate op for your clk? It's not a work-around, it's the
+preferred solution. That would allow rates larger than 2^31 for
+the clk without pushing through a change to all the drivers to
+express zero as "error" and non-zero as the rounded rate.
 
-Thanks,
-Andrey Smirnov
+I'm not entirely opposed to this approach, because we probably
+don't care to pass the particular error value from a clk provider
+to a clk consumer about what the error is. It's actually what we
+proposed as the solution for clk_round_rate() to return values
+larger than LONG_MAX to consumers. But doing that consumer API
+change or this provider side change is going to require us to
+evaluate all the consumers of these clks to make sure they don't
+check for some error value that's less than zero. This series
+does half the work, by changing the provider side, while ignoring
+the consumer side and any potential fallout of the less than zero
+to zero return value change.
+
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
