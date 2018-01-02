@@ -1,81 +1,110 @@
-From: carlo@endlessm.com (Carlo Caione)
-Date: Tue, 2 Jan 2018 23:06:34 +0000
-Subject: [RFC v2 7/9] bluetooth: btrtl: load the config blob from
- devicetree when available
-In-Reply-To: <CAFBinCBB=SmviOMRHGDH6vzjTjV-mrtQEc8nBUhDbJGs9SBpgw@mail.gmail.com>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
- <563D6F9F-8495-40D4-BE56-5338ED2B9B99@holtmann.org>
- <CAL9uMOEMDup4hRkxD-tM8R0YirGs5uQi31AjJUnFCPNMKUdRHg@mail.gmail.com>
- <E8E39477-CF1A-4A3E-84C5-830E182C2266@holtmann.org>
- <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
- <CAFBinCBB=SmviOMRHGDH6vzjTjV-mrtQEc8nBUhDbJGs9SBpgw@mail.gmail.com>
-Message-ID: <CAL9uMOFyfr_qGf5BeTojkMeWeH8LqPoKj=LrdgEMB2wmhGBxmA@mail.gmail.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Tue, 2 Jan 2018 15:28:11 -0800
+Subject: [PATCH 01/33] clk_ops: change round_rate() to return unsigned long
+In-Reply-To: <c2212d56-a8b5-cba5-46a7-c2c7f66e752b@nexus-software.ie>
+References: <1514596392-22270-1-git-send-email-pure.logic@nexus-software.ie>
+ <1514596392-22270-2-git-send-email-pure.logic@nexus-software.ie>
+ <9f4bef5a-8a71-6f30-5cfb-5e8fe133e3d3@kapsi.fi>
+ <6d83a5c3-6589-24bc-4ca5-4d1bbca47432@nexus-software.ie>
+ <20180102190159.GH7997@codeaurora.org>
+ <c2212d56-a8b5-cba5-46a7-c2c7f66e752b@nexus-software.ie>
+Message-ID: <20180102232811.GN7997@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jan 2, 2018 at 9:46 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Carlo,
+On 01/02, Bryan O'Donoghue wrote:
+> On 02/01/18 19:01, Stephen Boyd wrote:
+> >On 12/31, Bryan O'Donoghue wrote:
+> >>On 30/12/17 16:36, Mikko Perttunen wrote:
+> >>>FWIW, we had this problem some years ago with the Tegra CPU clock
+> >>>- then it was determined that a simpler solution was to have the
+> >>>determine_rate callback support unsigned long rates - so clock
+> >>>drivers that need to return rates higher than 2^31 can instead
+> >>>implement the determine_rate callback. That is what's currently
+> >>>implemented.
+> >>>
+> >>>Mikko
+> >>
+> >>Granted we could work around it but, having both zero and less than
+> >>zero indicate error means you can't support larger than LONG_MAX
+> >>which is I think worth fixing.
+> >>
+> >
+> >Ok. But can you implement the determine_rate op instead of the
+> >round_rate op for your clk?
+> 
+> Don't know .
 
-Hi Martin,
+Please try.
 
-> On Tue, Jan 2, 2018 at 12:31 PM, Carlo Caione <carlo@endlessm.com> wrote:
->> On Tue, Jan 2, 2018 at 11:19 AM, Marcel Holtmann <marcel@holtmann.org> wrote:
->>> Hi Carlo,
->>>
->>>>>> Some Realtek bluetooth devices need a "config" blob. The btrtl driver
->>>>>> currently only allows loading this config blob via the request_firmware
->>>>>> mechanism.
->>>>>>
->>>>>> The UART Bluetooth chips use this config blob to specify the baudrate,
->>>>>> whether flow control is used and some other unknown bits. This means
->>>>>> that the config blob is board-specific - thus loading it via
->>>>>> request_firmware means that the rootfs is tied to a specific board.
->>>>>>
->>>>>> The UART Bluetooth chips are implemented through serdev. This means
->>>>>> there is also a devicetree node which describes the Bluetooth chip.
->>>>>> Thus we can also load the blob from the devicetree node to keep the
->>>>>> filesystem independent of any board configuration data. In the future
->>>>>> this could be extended to support ACPI as well (in case that's needed).
->>>>>>
->>>>>> Parse the devicetree node if it exists and obtain the config blob from
->>>>>> there. Otherwise fall back to using the "old" request_firmware
->>>>>> mechanism.
->>>>>
->>>>> where are these config blobs coming from? I think we also need to give people a helping hand on how to add them to DT. I still wonder if the only pieces we are using are the UART config, then maybe skipping the config blob and allowing for clear named values in DT might be better.
->>>>
->>>> What about x86 platforms where we do not have DT (I didn't check but I
->>>> don't think that the UART config in that case is shipped in the ACPI
->>>> tables)?
->>>
->>> if we have this hardware in x86 systems, then I would really like to see ACPI table dumps. Some pieces might need hardcoding based on ACPI ID.
->>
->> Yes, we have, especially on cherry-trail SoCs. In [0] the DSDT of a
->> cherry-trail laptop shipping the rtl8723bs (device OBDA8723).
->>
->> [0] https://gist.github.com/carlocaione/82bff95ababb67dd33f52a86e94ce3ff
-> so this shows that the UART settings (initial baudrate, HW flow
-> control, etc.) are part of the DSDT
-> however, the actual config blob is not
->
-> the description of this patch explains: "Parse the devicetree node ...
-> [or] ... fall back to using the "old" request_firmware mechanism."
-> do you have any other solution in mind?
+> 
+> >It's not a work-around, it's the
+> >preferred solution. That would allow rates larger than 2^31 for
+> >the clk without pushing through a change to all the drivers to
+> >express zero as "error" and non-zero as the rounded rate.
+> >
+> >I'm not entirely opposed to this approach, because we probably
+> >don't care to pass the particular error value from a clk provider
+> >to a clk consumer about what the error is.
+> 
+> Which was my thought. The return value of clk_ops->round_rate()
+> appears not to get pushed up the stack, which is what the last patch
+> in this series deals with.
+> 
+> [PATCH 33/33] clk: change handling of round_rate() such that only
+> zero is an error
 
-As Marcel suggested we can assume that the information in the DSDT is
-correct so that we can get rid of the config blob also for x86
-platforms (assuming that the only useful information in the config
-blobs is the UART configuration).
+Hmm? clk_core_determine_round_nolock() returns 'rate' if rate < 0
+from the round_rate op. clk_core_round_rate_nolock() returns that
+value to clk_round_rate() which returns it to the consumer.
 
-Adding the ACPI support on top of your patches is (hopefully) trivial,
-just follow what was done for hci_bcm.c, basically adding a new _HID
-and reading the configuration for GPIOs and UART, all the rest should
-be transparent for serdev.
+> 
+> >It's actually what we
+> >proposed as the solution for clk_round_rate() to return values
+> >larger than LONG_MAX to consumers. But doing that consumer API
+> >change or this provider side change is going to require us to
+> >evaluate all the consumers of these clks to make sure they don't
+> >check for some error value that's less than zero. This series
+> >does half the work,
+> 
+> Do you mean users of clk_rounda_rate() ? I have a set of patches for
+> that but wanted to separate that from clk_ops->round_rate() so as
+> not to send ~70 patches out to LKML at once - even if they are in
+> two blocks.
 
-I'll test your patches on the hardware I have.
+Ok. What have you done to the consumers of clk_round_rate()?
+Made them treat 0 as an error instead of less than zero? The
+documentation in clk.h needs to be updated. See this patch from
+Paul Wamsley[1] for one proposed patch that went nowhere. Also
+include Russell King please. It was also proposed to change the
+function signature of clk_round_rate() to return unsigned long,
+but that didn't go anywhere either.
 
-Cheers,
+> 
+> If so, I can publish that set too for reference.
+> 
+> AFAICT on clk_ops->round_rate the last patch #33 ought to cover the
+> usage of the return value of clk_ops->round_rate().
+> 
+> Have I missed something ?
+
+Hopefully not!
+
+> 
+> >by changing the provider side, while ignoring
+> >the consumer side and any potential fallout of the less than zero
+> >to zero return value change.
+> >
+> 
+> Can you look at #33 ? I'm not sure if you saw that one.
+> 
+
+Yeah I looked at it. From what I can tell it makes
+clk_round_rate() return 0 now instead of whatever negative value
+the clk_ops::round_rate function returns.
+
+[1] https://lkml.kernel.org/r/alpine.DEB.2.02.1311251603310.23090 at tamien
 
 -- 
-Carlo Caione  |  +44.7384.69.16.04  |  Endless
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
