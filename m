@@ -1,38 +1,77 @@
 From: marcel@holtmann.org (Marcel Holtmann)
-Date: Tue, 2 Jan 2018 12:11:40 +0100
-Subject: [RFC v2 7/9] bluetooth: btrtl: load the config blob from
- devicetree when available
-In-Reply-To: <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
+Date: Tue, 2 Jan 2018 12:16:02 +0100
+Subject: [RFC v2 2/9] dt-bindings: net: bluetooth: add support for Realtek
+ Bluetooth chips
+In-Reply-To: <20180101204217.26165-3-martin.blumenstingl@googlemail.com>
 References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
-Message-ID: <563D6F9F-8495-40D4-BE56-5338ED2B9B99@holtmann.org>
+ <20180101204217.26165-3-martin.blumenstingl@googlemail.com>
+Message-ID: <2A1D60F1-F86F-4A2B-A43A-F3419506DE99@holtmann.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Martin,
 
-> Some Realtek bluetooth devices need a "config" blob. The btrtl driver
-> currently only allows loading this config blob via the request_firmware
-> mechanism.
+> This adds the documentation for Bluetooth functionality of the Realtek
+> RTL8723BS and RTL8723DS.
+> Both are SDIO wifi chips with an additional Bluetooth module which is
+> connected via UART to the host.
 > 
-> The UART Bluetooth chips use this config blob to specify the baudrate,
-> whether flow control is used and some other unknown bits. This means
-> that the config blob is board-specific - thus loading it via
-> request_firmware means that the rootfs is tied to a specific board.
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+> .../devicetree/bindings/net/realtek-bluetooth.txt  | 41 ++++++++++++++++++++++
+> 1 file changed, 41 insertions(+)
+> create mode 100644 Documentation/devicetree/bindings/net/realtek-bluetooth.txt
 > 
-> The UART Bluetooth chips are implemented through serdev. This means
-> there is also a devicetree node which describes the Bluetooth chip.
-> Thus we can also load the blob from the devicetree node to keep the
-> filesystem independent of any board configuration data. In the future
-> this could be extended to support ACPI as well (in case that's needed).
-> 
-> Parse the devicetree node if it exists and obtain the config blob from
-> there. Otherwise fall back to using the "old" request_firmware
-> mechanism.
+> diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.txt b/Documentation/devicetree/bindings/net/realtek-bluetooth.txt
+> new file mode 100644
+> index 000000000000..1491329c4cd1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.txt
+> @@ -0,0 +1,41 @@
+> +Realtek Bluetooth Chips
+> +-----------------------
+> +
+> +This documents the binding structure and common properties for serial
+> +attached Realtek devices.
+> +
+> +Serial attached Realtek devices shall be a child node of the host UART
+> +device the slave device is attached to. See ../serial/slave-device.txt
+> +for more information
+> +
+> +Required properties:
+> +- compatible: should contain one of the following:
+> +    * "realtek,rtl8723bs-bluetooth"
+> +    * "realtek,rtl8723ds-bluetooth"
+> +
+> +Optional properties:
+> +- realtek,config-data: Bluetooth chipset configuration data which is
+> +			needed for communication (it typically contains
+> +			board specific settings like the baudrate and
+> +			whether flow-control is used).
+> +			This is an array of u8 values.
 
-where are these config blobs coming from? I think we also need to give people a helping hand on how to add them to DT. I still wonder if the only pieces we are using are the UART config, then maybe skipping the config blob and allowing for clear named values in DT might be better.
+any chance we can at least include the basic format of these config blobs. And I prefer at least an ACK from Rob here.
 
-I might have asked before, but can we get a userspace similar to nokfw included in bluez.git that can parse and maybe even create/modify these blobs.
+> +- enable-gpios: GPIO specifier, used to enable/disable the BT module
+> +- reset-gpios: GPIO specifier, used to reset the BT module
+> +
+> +
+> +Example:
+> +
+> +&uart {
+> +	...
+> +
+> +	bluetooth {
+> +		compatible = "realtek,rtl8723bs-bluetooth";
+> +		enable-gpios = <&gpio 20 GPIO_ACTIVE_HIGH>;
+> +		reset-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
+> +		realtek,config-data = /bits/ 8 <
+> +			0x55 0xab 0x23 0x87 0x29 0x00 0xf4 0x00 0x01 0x01 0xf6 0x00
+> +			0x02 0x81 0x00 0xfa 0x00 0x02 0x12 0x80 0x0c 0x00 0x10 0x02
+> +			0x80 0x92 0x04 0x50 0xc5 0xea 0x19 0xe1 0x1b 0xfd 0xaf 0x5f
+> +			0x01 0xa4 0x0b 0xd9 0x00 0x01 0x0f 0xe4 0x00 0x01 0x08>;
+> +	};
+> +};
 
 Regards
 
