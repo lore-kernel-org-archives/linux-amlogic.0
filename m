@@ -1,42 +1,28 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 2 Jan 2018 13:49:38 +0100
-Subject: [PATCH] reset: meson: enable level reset support on Meson8b
-In-Reply-To: <1514892915.5080.5.camel@pengutronix.de>
-References: <20171226115041.4786-1-martin.blumenstingl@googlemail.com>
- <1514892915.5080.5.camel@pengutronix.de>
-Message-ID: <30459dd9-78ef-e462-1c38-7048aebd0b40@baylibre.com>
+From: trini@konsulko.com (Tom Rini)
+Date: Tue, 2 Jan 2018 07:57:41 -0500
+Subject: [PATCH] boards: amlogic: khadas-vim: Typo fixup
+In-Reply-To: <1514896499-29136-1-git-send-email-narmstrong@baylibre.com>
+References: <1514896499-29136-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20180102125741.GQ31350@bill-the-cat>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/01/2018 12:35, Philipp Zabel wrote:
-> Hi Martin,
-> 
-> On Tue, 2017-12-26 at 12:50 +0100, Martin Blumenstingl wrote:
->> Commit a5a10afe04ef ("reset: meson: add level reset support for GX SoC
->> family") only enabled the level resets for the newer GX SoC family.
->> However, the older 32-Meson SoCs (Meson8, Meson8b and Meson8m2) also
->> support level resets using the same offset as the newer GX SoCs.
->>
->> This removes the separation between Meson8b and the GX SoCs from the
->> reset-meson driver to enable the level resets also on Meson8b.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> Thank you for the patch.?It looks fine to me, not knowing the hardware
-> details.
-> The referenced commit made it sound like reset level handling on Meson8
-> is different from GX, though. Could somebody clarify?
-> 
-> regards
-> Philipp
-> 
+On Tue, Jan 02, 2018 at 01:34:59PM +0100, Neil Armstrong wrote:
 
-Hi Philipp,
+> Khadas VIM is an Open Source DIY Box manufactured by Shenzhen Wesion NOT 'Tomato'
+> 
+> The fix was provided by Khadas Team member 'numbqq'.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-This is highly undocumented and needs reading the vendor source code and experimenting,
-this patch is ok for me. Seems the register mapping did not change for a long time since
-it's still the same on the latest AXG family.
+Applied to u-boot/master, thanks!
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Neil
+-- 
+Tom
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180102/edd43ba7/attachment.sig>
