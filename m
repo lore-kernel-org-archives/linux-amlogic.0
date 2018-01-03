@@ -1,78 +1,68 @@
-From: robh+dt@kernel.org (Rob Herring)
-Date: Wed, 3 Jan 2018 13:07:28 -0600
-Subject: [RFC v2 2/9] dt-bindings: net: bluetooth: add support for Realtek
- Bluetooth chips
-In-Reply-To: <CAFBinCBNro18Ak3h1fHFpAioDzimh5KcUeOE8PjQr_CCkAs7PA@mail.gmail.com>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-3-martin.blumenstingl@googlemail.com>
- <2A1D60F1-F86F-4A2B-A43A-F3419506DE99@holtmann.org>
- <CAFBinCBNro18Ak3h1fHFpAioDzimh5KcUeOE8PjQr_CCkAs7PA@mail.gmail.com>
-Message-ID: <CAL_JsqLRkicv0p8ur==mq3bCp6Sn7b41M+CoFYx_qrhcdsY9Qg@mail.gmail.com>
+From: andrew.smirnov@gmail.com (Andrey Smirnov)
+Date: Wed,  3 Jan 2018 12:00:59 -0800
+Subject: [PATCH v3 07/22] nvmem: snvs_lgpr: Convert to use
+ devm_nvmem_register()
+In-Reply-To: <20180103200114.23922-1-andrew.smirnov@gmail.com>
+References: <20180103200114.23922-1-andrew.smirnov@gmail.com>
+Message-ID: <20180103200114.23922-8-andrew.smirnov@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jan 2, 2018 at 3:10 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Marcel,
->
-> On Tue, Jan 2, 2018 at 12:16 PM, Marcel Holtmann <marcel@holtmann.org> wrote:
->> Hi Martin,
->>
->>> This adds the documentation for Bluetooth functionality of the Realtek
->>> RTL8723BS and RTL8723DS.
->>> Both are SDIO wifi chips with an additional Bluetooth module which is
->>> connected via UART to the host.
->>>
->>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>> ---
->>> .../devicetree/bindings/net/realtek-bluetooth.txt  | 41 ++++++++++++++++++++++
->>> 1 file changed, 41 insertions(+)
->>> create mode 100644 Documentation/devicetree/bindings/net/realtek-bluetooth.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.txt b/Documentation/devicetree/bindings/net/realtek-bluetooth.txt
->>> new file mode 100644
->>> index 000000000000..1491329c4cd1
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.txt
->>> @@ -0,0 +1,41 @@
->>> +Realtek Bluetooth Chips
->>> +-----------------------
->>> +
->>> +This documents the binding structure and common properties for serial
->>> +attached Realtek devices.
->>> +
->>> +Serial attached Realtek devices shall be a child node of the host UART
->>> +device the slave device is attached to. See ../serial/slave-device.txt
->>> +for more information
->>> +
->>> +Required properties:
->>> +- compatible: should contain one of the following:
->>> +    * "realtek,rtl8723bs-bluetooth"
->>> +    * "realtek,rtl8723ds-bluetooth"
->>> +
->>> +Optional properties:
->>> +- realtek,config-data: Bluetooth chipset configuration data which is
->>> +                     needed for communication (it typically contains
->>> +                     board specific settings like the baudrate and
->>> +                     whether flow-control is used).
->>> +                     This is an array of u8 values.
->>
->> any chance we can at least include the basic format of these config blobs. And I prefer at least an ACK from Rob here.
-> with including the basic format you mean a description that the config
-> blob should start with 0x55 0xab 0x23 0x87 (which translates to:
-> 0x8723ab55)?
+Drop all of the code related to .remove hook and make use of
+devm_nvmem_register() instead.
 
-That and the size if it is fixed (or fixed per compatible). Also,
-would be useful to state what are the defaults if not present.
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: cphealy at gmail.com
+Cc: linux-kernel at vger.kernel.org
+Cc: linux-mediatek at lists.infradead.org
+Cc: linux-rockchip at lists.infradead.org
+Cc: linux-amlogic at lists.infradead.org
+Cc: linux-arm-kernel at lists.infradead.org
+Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+---
+ drivers/nvmem/snvs_lpgpr.c | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
 
-If it is all documented somewhere else, a pointer to that is fine.
-
-> I think all non-trivial dt-binding patches should be ACKed by the DT
-> maintainers, so waiting for Rob's ACK is perfectly fine for me
->
->>> +- enable-gpios: GPIO specifier, used to enable/disable the BT module
->>> +- reset-gpios: GPIO specifier, used to reset the BT module
-
-These should state active high or low.
-
-Rob
+diff --git a/drivers/nvmem/snvs_lpgpr.c b/drivers/nvmem/snvs_lpgpr.c
+index e5c2a4a17f03..6a2fdd09e74a 100644
+--- a/drivers/nvmem/snvs_lpgpr.c
++++ b/drivers/nvmem/snvs_lpgpr.c
+@@ -117,22 +117,13 @@ static int snvs_lpgpr_probe(struct platform_device *pdev)
+ 	cfg->reg_read  = snvs_lpgpr_read,
+ 	cfg->reg_write = snvs_lpgpr_write,
+ 
+-	nvmem = nvmem_register(cfg);
++	nvmem = devm_nvmem_register(dev, cfg);
+ 	if (IS_ERR(nvmem))
+ 		return PTR_ERR(nvmem);
+ 
+-	platform_set_drvdata(pdev, nvmem);
+-
+ 	return 0;
+ }
+ 
+-static int snvs_lpgpr_remove(struct platform_device *pdev)
+-{
+-	struct nvmem_device *nvmem = platform_get_drvdata(pdev);
+-
+-	return nvmem_unregister(nvmem);
+-}
+-
+ static const struct of_device_id snvs_lpgpr_dt_ids[] = {
+ 	{ .compatible = "fsl,imx6q-snvs-lpgpr", .data = &snvs_lpgpr_cfg_imx6q },
+ 	{ .compatible = "fsl,imx6ul-snvs-lpgpr",
+@@ -143,7 +134,6 @@ MODULE_DEVICE_TABLE(of, snvs_lpgpr_dt_ids);
+ 
+ static struct platform_driver snvs_lpgpr_driver = {
+ 	.probe	= snvs_lpgpr_probe,
+-	.remove	= snvs_lpgpr_remove,
+ 	.driver = {
+ 		.name	= "snvs_lpgpr",
+ 		.of_match_table = snvs_lpgpr_dt_ids,
+-- 
+2.14.3
