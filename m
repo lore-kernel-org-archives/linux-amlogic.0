@@ -1,14 +1,14 @@
 From: andrew.smirnov@gmail.com (Andrey Smirnov)
-Date: Wed,  3 Jan 2018 12:00:55 -0800
-Subject: [PATCH v3 03/22] nvmem: Introduce devm_nvmem_(un)register()
+Date: Wed,  3 Jan 2018 12:00:54 -0800
+Subject: [PATCH v3 02/22] nvmem: core: Allow specifying device name verbatim
 In-Reply-To: <20180103200114.23922-1-andrew.smirnov@gmail.com>
 References: <20180103200114.23922-1-andrew.smirnov@gmail.com>
-Message-ID: <20180103200114.23922-4-andrew.smirnov@gmail.com>
+Message-ID: <20180103200114.23922-3-andrew.smirnov@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Introduce devm_nvmem_register()/devm_nvmem_unregister() to make
-.remove() unnecessary in trivial drivers.
+Add code to allow avoid having nvmem core append a numeric suffix to
+the end of the name by passing config->id of -1.
 
 Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc: Heiko Stuebner <heiko@sntech.de>
@@ -24,111 +24,45 @@ Cc: linux-amlogic at lists.infradead.org
 Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 ---
- drivers/nvmem/core.c           | 57 ++++++++++++++++++++++++++++++++++++++++++
- include/linux/nvmem-provider.h | 17 +++++++++++++
- 2 files changed, 74 insertions(+)
+ drivers/nvmem/core.c           | 11 ++++++++---
+ include/linux/nvmem-provider.h |  3 +++
+ 2 files changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 57cbeacfbeb2..1f387a2d915f 100644
+index 5a5cefd12153..57cbeacfbeb2 100644
 --- a/drivers/nvmem/core.c
 +++ b/drivers/nvmem/core.c
-@@ -551,6 +551,63 @@ int nvmem_unregister(struct nvmem_device *nvmem)
- }
- EXPORT_SYMBOL_GPL(nvmem_unregister);
- 
-+static void devm_nvmem_release(struct device *dev, void *res)
-+{
-+	WARN_ON(nvmem_unregister(*(struct nvmem_device **)res));
-+}
+@@ -475,9 +475,14 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+ 	nvmem->reg_write = config->reg_write;
+ 	np = config->dev->of_node;
+ 	nvmem->dev.of_node = np;
+-	dev_set_name(&nvmem->dev, "%s%d",
+-		     config->name ? : "nvmem",
+-		     config->name ? config->id : nvmem->id);
 +
-+/**
-+ * devm_nvmem_register() - Register a managed nvmem device for given nvmem_config.
-+ * Also creates an binary entry in /sys/bus/nvmem/devices/dev-name/nvmem
-+ *
-+ * @config: nvmem device configuration with which nvmem device is created.
-+ *
-+ * Return: Will be an ERR_PTR() on error or a valid pointer to nvmem_device
-+ * on success.
-+ */
-+struct nvmem_device *devm_nvmem_register(struct device *dev,
-+					 const struct nvmem_config *config)
-+{
-+	struct nvmem_device **ptr, *nvmem;
-+
-+	ptr = devres_alloc(devm_nvmem_release, sizeof(*ptr), GFP_KERNEL);
-+	if (!ptr)
-+		return ERR_PTR(-ENOMEM);
-+
-+	nvmem = nvmem_register(config);
-+
-+	if (!IS_ERR(nvmem)) {
-+		*ptr = nvmem;
-+		devres_add(dev, ptr);
++	if (config->id == -1 && config->name) {
++		dev_set_name(&nvmem->dev, "%s", config->name);
 +	} else {
-+		devres_free(ptr);
++		dev_set_name(&nvmem->dev, "%s%d",
++			     config->name ? : "nvmem",
++			     config->name ? config->id : nvmem->id);
 +	}
-+
-+	return nvmem;
-+}
-+EXPORT_SYMBOL_GPL(devm_nvmem_register);
-+
-+static int devm_nvmem_match(struct device *dev, void *res, void *data)
-+{
-+	struct nvmem_device **r = res;
-+
-+	return *r == data;
-+}
-+
-+/**
-+ * devm_nvmem_unregister() - Unregister previously registered managed nvmem device
-+ *
-+ * @nvmem: Pointer to previously registered nvmem device.
-+ *
-+ * Return: Will be an negative on error or a zero on success.
-+ */
-+int devm_nvmem_unregister(struct device *dev, struct nvmem_device *nvmem)
-+{
-+	return devres_release(dev, devm_nvmem_release, devm_nvmem_match, nvmem);
-+}
-+EXPORT_SYMBOL(devm_nvmem_unregister);
-+
-+
- static struct nvmem_device *__nvmem_device_get(struct device_node *np,
- 					       struct nvmem_cell **cellp,
- 					       const char *cell_id)
+ 
+ 	nvmem->read_only = of_property_read_bool(np, "read-only") |
+ 			   config->read_only;
 diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-index 4889a6c62a81..7f2f610c6eea 100644
+index 27e599222ec1..4889a6c62a81 100644
 --- a/include/linux/nvmem-provider.h
 +++ b/include/linux/nvmem-provider.h
-@@ -72,6 +72,11 @@ struct nvmem_config {
- struct nvmem_device *nvmem_register(const struct nvmem_config *cfg);
- int nvmem_unregister(struct nvmem_device *nvmem);
- 
-+struct nvmem_device *devm_nvmem_register(struct device *dev,
-+					 const struct nvmem_config *cfg);
-+
-+int devm_nvmem_unregister(struct device *dev, struct nvmem_device *nvmem);
-+
- #else
- 
- static inline struct nvmem_device *nvmem_register(const struct nvmem_config *c)
-@@ -84,5 +89,17 @@ static inline int nvmem_unregister(struct nvmem_device *nvmem)
- 	return -ENOSYS;
- }
- 
-+static inline struct nvmem_device *
-+devm_nvmem_register(struct device *dev, const struct nvmem_config *c)
-+{
-+	return nvmem_register(c);
-+}
-+
-+static inline int
-+devm_nvmem_unregister(struct device *dev, struct nvmem_device *nvmem)
-+{
-+	return nvmem_unregister(nvmem);
-+}
-+
- #endif /* CONFIG_NVMEM */
- #endif  /* ifndef _LINUX_NVMEM_PROVIDER_H */
+@@ -43,6 +43,9 @@ typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
+  * Note: A default "nvmem<id>" name will be assigned to the device if
+  * no name is specified in its configuration. In such case "<id>" is
+  * generated with ida_simple_get() and provided id field is ignored.
++ *
++ * Note: Specifying name and setting id to -1 implies a unique device
++ * whose name is provided as-is (kept unaltered).
+  */
+ struct nvmem_config {
+ 	struct device		*dev;
 -- 
 2.14.3
