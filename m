@@ -1,43 +1,69 @@
-From: andrew.smirnov@gmail.com (Andrey Smirnov)
-Date: Wed,  3 Jan 2018 12:01:13 -0800
-Subject: [PATCH v3 21/22] nvmem: imx-iim: Do not use "&pdev->dev" explicitly
-In-Reply-To: <20180103200114.23922-1-andrew.smirnov@gmail.com>
-References: <20180103200114.23922-1-andrew.smirnov@gmail.com>
-Message-ID: <20180103200114.23922-22-andrew.smirnov@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 3 Jan 2018 21:30:15 +0100
+Subject: [RFC v2 8/9] Bluetooth: drop HCI_UART_INIT_PENDING support
+In-Reply-To: <CAMZdPi9KkPZvuvrNgfGmRksJnR0cFti8P5XC-HTFeUfkFbCZ_g@mail.gmail.com>
+References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
+ <20180101204217.26165-9-martin.blumenstingl@googlemail.com>
+ <5F8922BB-5A97-43B1-88D5-591EB76FF787@holtmann.org>
+ <CAFBinCAxUmxivp_PWkoydha84LbJi-GGv6Uhs6cKR+D_8c8QCw@mail.gmail.com>
+ <CAMZdPi9KkPZvuvrNgfGmRksJnR0cFti8P5XC-HTFeUfkFbCZ_g@mail.gmail.com>
+Message-ID: <CAFBinCCnRM2JhozueaenqGdcu3PJ0aXom+Rt__e6YQy85B=fEA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-There's already "dev" variable for that. Use it.
+Hi Loic,
 
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: cphealy at gmail.com
-Cc: linux-kernel at vger.kernel.org
-Cc: linux-mediatek at lists.infradead.org
-Cc: linux-rockchip at lists.infradead.org
-Cc: linux-amlogic at lists.infradead.org
-Cc: linux-arm-kernel at lists.infradead.org
-Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
----
- drivers/nvmem/imx-iim.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed, Jan 3, 2018 at 6:14 PM, Loic Poulain <loic.poulain@linaro.org> wrote:
+> Hi Martin,
+>
+> On 2 January 2018 at 22:06, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> Hi Marcel,
+>>
+>> thank you for looking into this latest version!
+>>
+>> On Tue, Jan 2, 2018 at 12:04 PM, Marcel Holtmann <marcel@holtmann.org> wrote:
+>>> Hi Martin,
+>>>
+>>>> The three-wire (H5) protocol is the only protocol which uses
+>>>> HCI_UART_INIT_PENDING.
+>>>> Unfortunately the benefits of using this flag are currently unknown. It
+>>>> was added in commit 9f2aee848fe6 ("Bluetooth: Add delayed init sequence
+>>>> support for UART controllers"). In my experiments (with the
+>>>> "rtk_hciattach" tool - a customized version of hciattach for Realtek
+>>>> chipsets) I started the tool before and after this patch while the
+>>>> Bluetooth chipset was disabled (by pulling it's enable GPIO LOW). In
+>>>> both cases hci0 was not created - thus HCI_UART_INIT_PENDING is not
+>>>> required in that case.
+>>>>
+>>>> Removing this code also has another benefit: hci_serdev.c does not
+>>>> support the delayed initialization / registration. Thus the protocol
+>>>> implementation (hci_h5) never receives any data with this check still
+>>>> in place. For the H5 protocol this means that the initialization never
+>>>> completes (because the sync response never arrives). Even if the
+>>>> initialization would succeed later on the drivers would call
+>>>> hci_uart_init_ready() which schedules the registration which is
+>>>> currently not implemented by hci_serdev.c.
+>>>>
+>>>> Removing the HCI_UART_INIT_PENDING check makes the code easier to read
+>>>> and also fixes the initalization of devices (implemented with the serdev
+>>>> library) which use the H5 protocol.
+>>>>
+>>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> I think the original goal is to perform H5 init peacefully.
+> The H5 protocol needs to be open in order to send/receive H5 link
+> packets during the H5 initialization/synchronization step.
+> During this stage, driver prevents upper stack to send any HCI packet
+> by delaying the HCI device registration.
+thank you for this explanation
+do you have a test-case (manual list of steps, a scripts, etc.) which
+I can use to compare the old and new behavior?
 
-diff --git a/drivers/nvmem/imx-iim.c b/drivers/nvmem/imx-iim.c
-index 635561a441bd..3022bd96bd7e 100644
---- a/drivers/nvmem/imx-iim.c
-+++ b/drivers/nvmem/imx-iim.c
-@@ -125,7 +125,7 @@ static int imx_iim_probe(struct platform_device *pdev)
- 
- 	drvdata = of_id->data;
- 
--	iim->clk = devm_clk_get(&pdev->dev, NULL);
-+	iim->clk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(iim->clk))
- 		return PTR_ERR(iim->clk);
- 
--- 
-2.14.3
+based on your explanation this would mean that we should add
+HCI_UART_INIT_PENDING support to the serdev code rather than removing
+it
+
+
+Regards
+Martin
