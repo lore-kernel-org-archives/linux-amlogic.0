@@ -1,68 +1,67 @@
-From: marcel@holtmann.org (Marcel Holtmann)
-Date: Wed, 3 Jan 2018 13:37:29 +0100
-Subject: [RFC v2 1/9] serdev: implement parity configuration
-In-Reply-To: <CAFBinCD=iuE+ho22kihCFG=AJV5t+JtjRww8PLuq-cAJ2RkAHQ@mail.gmail.com>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-2-martin.blumenstingl@googlemail.com>
- <4FDCB65A-641A-4134-BAF1-4A777012FDE7@holtmann.org>
- <CAFBinCCq9mYBhzoL1XBVQNGxALg8oK5GB7Md9HJf_mchEMu3-A@mail.gmail.com>
- <CAFBinCD=iuE+ho22kihCFG=AJV5t+JtjRww8PLuq-cAJ2RkAHQ@mail.gmail.com>
-Message-ID: <046E5A40-D66C-4965-B8D4-E5CE6B44571F@holtmann.org>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed,  3 Jan 2018 16:46:29 +0100
+Subject: [PATCH net] net: stmmac: enable EEE in MII, GMII or RGMII only
+Message-ID: <20180103154629.1433-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+Note in the databook - Section 4.4 - EEE :
+" The EEE feature is not supported when the MAC is configured to use the
+TBI, RTBI, SMII, RMII or SGMII single PHY interface. Even if the MAC
+supports multiple PHY interfaces, you should activate the EEE mode only
+when the MAC is operating with GMII, MII, or RGMII interface."
 
->>>> Some Bluetooth modules (for example the ones found in Realtek RTL8723BS
->>>> and RTL8723DS) want to communicate with the host with even parity
->>>> enabled.
->>>> Add a new function and the corresponding internal callbacks so parity
->>>> can be configured. This supports enabling and disabling parity as well
->>>> as setting the type to odd or even.
->>>> 
->>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>>> ---
->>>> drivers/tty/serdev/core.c           | 12 ++++++++++++
->>>> drivers/tty/serdev/serdev-ttyport.c | 21 +++++++++++++++++++++
->>>> include/linux/serdev.h              |  5 +++++
->>>> 3 files changed, 38 insertions(+)
->>>> 
->>>> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
->>>> index 1bef39828ca7..d327b02980f5 100644
->>>> --- a/drivers/tty/serdev/core.c
->>>> +++ b/drivers/tty/serdev/core.c
->>>> @@ -225,6 +225,18 @@ void serdev_device_set_flow_control(struct serdev_device *serdev, bool enable)
->>>> }
->>>> EXPORT_SYMBOL_GPL(serdev_device_set_flow_control);
->>>> 
->>>> +void serdev_device_set_parity(struct serdev_device *serdev, bool enable,
->>>> +                           bool odd)
->>>> +{
->>>> +     struct serdev_controller *ctrl = serdev->ctrl;
->>>> +
->>>> +     if (!ctrl || !ctrl->ops->set_parity)
->>>> +             return;
->>>> +
->>>> +     ctrl->ops->set_parity(ctrl, enable, odd);
->>>> +}
->>>> +EXPORT_SYMBOL_GPL(serdev_device_set_parity);
->>>> +
->>> 
->>> this really needs Rob?s ACK before I take the patch.
->> sure
->> 
->> I could even live with a NACK in case these two bool parameters are
->> considered to be ugly
->> in that case I would propose an enum with three values: DISABLED,
->> EVEN, ODD so the arguments would look like this:
->> void serdev_device_set_parity(struct serdev_device *serdev, enum parity)
-> I just discovered: such a patch was already posted by Ulrich Hecht: [0]
-> 
-> 
-> [0] https://patchwork.kernel.org/patch/9903787/
+Applying this restriction solves a stability issue observed on Amlogic
+gxl platforms operating with RMII interface and the internal PHY.
 
-any idea what the status of this one is? It would be good if we get an ACK from Rob and you just include it in your patch series. I do not see it currently in Linus? tree or net-next. If it goes via a different path to Linus, we will have a bit of a problem getting this all merged for the next kernel.
+Fixes: 83bf79b6bb64 ("stmmac: disable at run-time the EEE if not supported")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Tested-by: Arnaud Patard <arnaud.patard@rtp-net.org>
+---
 
-Regards
+Hi David,
 
-Marcel
+As quickly explained in the log above, we are having some stability issue on
+Amlogic gxl platform: synopsys MAC + internal PHY over RMII. We found out that
+these issues are caused by EEE. Forcefully disabling this feature solves our
+problem.
+
+I only had access to a snip of databook. I have no idea if the restriction
+explained above applies to all the revision of Synopsys MAC controller.
+
+Anyway, this change should be safe to apply. If we get more information from
+Synopsys later on, it will be easy to revert, if necessary.
+
+Thanks
+Jerome
+
+Change since RFC [0]:
+* use phy_interface_mode_is_rgmii() as suggested by Andrew
+
+[0]: http://lkml.kernel.org/r/20171205102809.4347-1-jbrunet at baylibre.com
+
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+index c52a9963c19d..023938166821 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -364,9 +364,15 @@ static void stmmac_eee_ctrl_timer(struct timer_list *t)
+ bool stmmac_eee_init(struct stmmac_priv *priv)
+ {
+ 	struct net_device *ndev = priv->dev;
++	int interface = priv->plat->interface;
+ 	unsigned long flags;
+ 	bool ret = false;
+ 
++	if ((interface != PHY_INTERFACE_MODE_MII) &&
++	    (interface != PHY_INTERFACE_MODE_GMII) &&
++	    !phy_interface_mode_is_rgmii(interface))
++		goto out;
++
+ 	/* Using PCS we cannot dial with the phy registers at this stage
+ 	 * so we do not support extra feature like EEE.
+ 	 */
+-- 
+2.14.3
