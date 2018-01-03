@@ -1,80 +1,43 @@
-From: johan@kernel.org (Johan Hovold)
-Date: Wed, 3 Jan 2018 10:06:33 +0100
-Subject: [RFC v2 1/9] serdev: implement parity configuration
-In-Reply-To: <CAFBinCD=iuE+ho22kihCFG=AJV5t+JtjRww8PLuq-cAJ2RkAHQ@mail.gmail.com>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-2-martin.blumenstingl@googlemail.com>
- <4FDCB65A-641A-4134-BAF1-4A777012FDE7@holtmann.org>
- <CAFBinCCq9mYBhzoL1XBVQNGxALg8oK5GB7Md9HJf_mchEMu3-A@mail.gmail.com>
- <CAFBinCD=iuE+ho22kihCFG=AJV5t+JtjRww8PLuq-cAJ2RkAHQ@mail.gmail.com>
-Message-ID: <20180103090633.GP16993@localhost>
+From: mchehab@s-opensource.com (Mauro Carvalho Chehab)
+Date: Wed, 3 Jan 2018 08:07:42 -0200
+Subject: [PATCH v3 01/34] clk_ops: change round_rate() to return
+ unsigned long
+In-Reply-To: <1514835793-1104-2-git-send-email-pure.logic@nexus-software.ie>
+References: <1514835793-1104-1-git-send-email-pure.logic@nexus-software.ie>
+ <1514835793-1104-2-git-send-email-pure.logic@nexus-software.ie>
+Message-ID: <20180103080742.6ad76c2d@vento.lan>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jan 02, 2018 at 10:34:04PM +0100, Martin Blumenstingl wrote:
-> On Tue, Jan 2, 2018 at 10:16 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> > Hi Marcel, Hi Rob,
-> >
-> > On Tue, Jan 2, 2018 at 12:16 PM, Marcel Holtmann <marcel@holtmann.org> wrote:
-> >> Hi Martin,
-> >>
-> >>> Some Bluetooth modules (for example the ones found in Realtek RTL8723BS
-> >>> and RTL8723DS) want to communicate with the host with even parity
-> >>> enabled.
-> >>> Add a new function and the corresponding internal callbacks so parity
-> >>> can be configured. This supports enabling and disabling parity as well
-> >>> as setting the type to odd or even.
-> >>>
-> >>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >>> ---
-> >>> drivers/tty/serdev/core.c           | 12 ++++++++++++
-> >>> drivers/tty/serdev/serdev-ttyport.c | 21 +++++++++++++++++++++
-> >>> include/linux/serdev.h              |  5 +++++
-> >>> 3 files changed, 38 insertions(+)
-> >>>
-> >>> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
-> >>> index 1bef39828ca7..d327b02980f5 100644
-> >>> --- a/drivers/tty/serdev/core.c
-> >>> +++ b/drivers/tty/serdev/core.c
-> >>> @@ -225,6 +225,18 @@ void serdev_device_set_flow_control(struct serdev_device *serdev, bool enable)
-> >>> }
-> >>> EXPORT_SYMBOL_GPL(serdev_device_set_flow_control);
-> >>>
-> >>> +void serdev_device_set_parity(struct serdev_device *serdev, bool enable,
-> >>> +                           bool odd)
-> >>> +{
-> >>> +     struct serdev_controller *ctrl = serdev->ctrl;
-> >>> +
-> >>> +     if (!ctrl || !ctrl->ops->set_parity)
-> >>> +             return;
-> >>> +
-> >>> +     ctrl->ops->set_parity(ctrl, enable, odd);
-> >>> +}
-> >>> +EXPORT_SYMBOL_GPL(serdev_device_set_parity);
-> >>> +
-> >>
-> >> this really needs Rob?s ACK before I take the patch.
-> > sure
-> >
-> > I could even live with a NACK in case these two bool parameters are
-> > considered to be ugly
-> > in that case I would propose an enum with three values: DISABLED,
-> > EVEN, ODD so the arguments would look like this:
-> > void serdev_device_set_parity(struct serdev_device *serdev, enum parity)
-> I just discovered: such a patch was already posted by Ulrich Hecht: [0]
-> 
-> 
-> [0] https://patchwork.kernel.org/patch/9903787/
+Em Mon,  1 Jan 2018 19:42:40 +0000
+Bryan O'Donoghue <pure.logic@nexus-software.ie> escreveu:
 
-Yeah, that would be the preferred way of doing this as it's more
-readable and less error prone (and more easily extended if anyone ever
-needs mark and space parity).
+> Right now it is not possible to return a value larger than LONG_MAX on 32
+> bit systems. You can pass a rate of ULONG_MAX but can't return anything
+> past LONG_MAX due to the fact both the rounded_rate and negative error
+> codes are represented in the return value of round_rate().
+> 
+> Most implementations either return zero on error or don't return error
+> codes at all. A minority of implementations do return a negative number -
+> typically -EINVAL or -ENODEV.
+> 
+> At the higher level then callers of round_rate() typically and rightly
+> check for a value of <= 0.
+> 
+> It is possible then to convert round_rate() to an unsigned long return
+> value and change error code indication for the minority from -ERRORCODE to
+> a simple 0.
+> 
+> This patch is the first step in making it possible to scale round_rate past
+> LONG_MAX, later patches will change the previously mentioned minority of
+> round_rate() implementations to return zero only on error if those
+> implementations currently return a negative error number. Implementations
+> that do not return an error code of < 0 will be left as-is.
+> 
 
-Also, I know serdev currently fails to check for errors from
-tty_set_termios, but we really need to start doing that. Not all serial
-drivers support (every) parity mode so you need to check the tty termios
-for the actual mode used after tty_set_termios() returns.
+>  drivers/media/platform/omap3isp/isp.c           |  4 ++--
+
+Acked-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
 
 Thanks,
-Johan
+Mauro
