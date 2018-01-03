@@ -1,63 +1,68 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 03 Jan 2018 12:06:43 +0100
-Subject: [RFT net-next v3 3/5] net: stmmac: dwmac-meson8b: fix internal
- RGMII clock configuration
-In-Reply-To: <CAFBinCAXy+cgju3peA=YBHJReUu=vh8to4UVU5qebN67AZOgPg@mail.gmail.com>
-References: <20171228222128.15215-1-martin.blumenstingl@googlemail.com>
- <20171228222128.15215-4-martin.blumenstingl@googlemail.com>
- <1514570234.7439.15.camel@baylibre.com>
- <CAFBinCAXy+cgju3peA=YBHJReUu=vh8to4UVU5qebN67AZOgPg@mail.gmail.com>
-Message-ID: <1514977603.7439.30.camel@baylibre.com>
+From: marcel@holtmann.org (Marcel Holtmann)
+Date: Wed, 3 Jan 2018 13:37:29 +0100
+Subject: [RFC v2 1/9] serdev: implement parity configuration
+In-Reply-To: <CAFBinCD=iuE+ho22kihCFG=AJV5t+JtjRww8PLuq-cAJ2RkAHQ@mail.gmail.com>
+References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
+ <20180101204217.26165-2-martin.blumenstingl@googlemail.com>
+ <4FDCB65A-641A-4134-BAF1-4A777012FDE7@holtmann.org>
+ <CAFBinCCq9mYBhzoL1XBVQNGxALg8oK5GB7Md9HJf_mchEMu3-A@mail.gmail.com>
+ <CAFBinCD=iuE+ho22kihCFG=AJV5t+JtjRww8PLuq-cAJ2RkAHQ@mail.gmail.com>
+Message-ID: <046E5A40-D66C-4965-B8D4-E5CE6B44571F@holtmann.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2017-12-30 at 00:40 +0100, Martin Blumenstingl wrote:
-> > Maybe this bit 10 is indeed a 5/10 divider, as amlogic claims it is. Maybe, as
-> > Emiliano suggested, the output rate of div250 actually needs to be 250Mhz in
-> > RGMII, before being divided by 10 to produce the 25MHz of div25
-> > 
-> > IOW, maybe we need this intermediate rate.
+Hi Martin,
+
+>>>> Some Bluetooth modules (for example the ones found in Realtek RTL8723BS
+>>>> and RTL8723DS) want to communicate with the host with even parity
+>>>> enabled.
+>>>> Add a new function and the corresponding internal callbacks so parity
+>>>> can be configured. This supports enabling and disabling parity as well
+>>>> as setting the type to odd or even.
+>>>> 
+>>>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>>> ---
+>>>> drivers/tty/serdev/core.c           | 12 ++++++++++++
+>>>> drivers/tty/serdev/serdev-ttyport.c | 21 +++++++++++++++++++++
+>>>> include/linux/serdev.h              |  5 +++++
+>>>> 3 files changed, 38 insertions(+)
+>>>> 
+>>>> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
+>>>> index 1bef39828ca7..d327b02980f5 100644
+>>>> --- a/drivers/tty/serdev/core.c
+>>>> +++ b/drivers/tty/serdev/core.c
+>>>> @@ -225,6 +225,18 @@ void serdev_device_set_flow_control(struct serdev_device *serdev, bool enable)
+>>>> }
+>>>> EXPORT_SYMBOL_GPL(serdev_device_set_flow_control);
+>>>> 
+>>>> +void serdev_device_set_parity(struct serdev_device *serdev, bool enable,
+>>>> +                           bool odd)
+>>>> +{
+>>>> +     struct serdev_controller *ctrl = serdev->ctrl;
+>>>> +
+>>>> +     if (!ctrl || !ctrl->ops->set_parity)
+>>>> +             return;
+>>>> +
+>>>> +     ctrl->ops->set_parity(ctrl, enable, odd);
+>>>> +}
+>>>> +EXPORT_SYMBOL_GPL(serdev_device_set_parity);
+>>>> +
+>>> 
+>>> this really needs Rob?s ACK before I take the patch.
+>> sure
+>> 
+>> I could even live with a NACK in case these two bool parameters are
+>> considered to be ugly
+>> in that case I would propose an enum with three values: DISABLED,
+>> EVEN, ODD so the arguments would look like this:
+>> void serdev_device_set_parity(struct serdev_device *serdev, enum parity)
+> I just discovered: such a patch was already posted by Ulrich Hecht: [0]
 > 
-> I am starting to believe that you (Emiliano and Jerome) are both right
-> does anyone of you have access to a scope so we can measure the actual
-> clock output?
-
-I wanted to check this out on Gx but the 25M output is not any of the boards I
-have (p200, OC2, S400). I should be able to look at the related SoC pad on the
-p200 but, I don't know how to enable the GPIOCLK_1 Function 1 in the pinmux
-configuration
-
 > 
-> > It would not be surprising, 1GBps usually requires a 125MHz clock somewhere.
-> 
-> this could mean that two clocks are derived from m250_div (names are
-> not final obviously):
-> - phy_ref_clk (25MHz or 50MHz)
-> - rgmii_tx_clk (fixed divide by 2, 125MHz)
+> [0] https://patchwork.kernel.org/patch/9903787/
 
-Probably yes.
+any idea what the status of this one is? It would be good if we get an ACK from Rob and you just include it in your patch series. I do not see it currently in Linus? tree or net-next. If it goes via a different path to Linus, we will have a bit of a problem getting this all merged for the next kernel.
 
-What we consider in the code as div250 divider is actually described in snip of
-doc we have as:
------
-bit 10 : Generate 25MHz clock for PHY
-bit 9-7: RMII & RGMII mode:
-- 001: clock source is 250MHz
-- 010: clock source is 500MHz.
-...
------
+Regards
 
-1) It kind of shows that the minimum input frequency could be 250M indeed.
-2) It is these unclear whether bit 10 is a gate or a divider ... ATM, I can't
-check that myself
-3) Looks like properly setting up div250 should also be done for RMII.
-
-> 
-> > This is still doable:
-> > * Keep the divider
-> > * drop CLK_SET_RATE_PARENT on div25
-> > * call set_rate on div250 with 250MHz then on div25 with 25Mhz
-> 
-> yep, I will try this next
-> this would also be work with the assumption that the rgmii_tx_clk is
-> derived from m250_div
+Marcel
