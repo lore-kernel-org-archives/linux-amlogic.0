@@ -1,43 +1,63 @@
-From: mchehab@s-opensource.com (Mauro Carvalho Chehab)
-Date: Wed, 3 Jan 2018 08:07:42 -0200
-Subject: [PATCH v3 01/34] clk_ops: change round_rate() to return
- unsigned long
-In-Reply-To: <1514835793-1104-2-git-send-email-pure.logic@nexus-software.ie>
-References: <1514835793-1104-1-git-send-email-pure.logic@nexus-software.ie>
- <1514835793-1104-2-git-send-email-pure.logic@nexus-software.ie>
-Message-ID: <20180103080742.6ad76c2d@vento.lan>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 03 Jan 2018 12:06:43 +0100
+Subject: [RFT net-next v3 3/5] net: stmmac: dwmac-meson8b: fix internal
+ RGMII clock configuration
+In-Reply-To: <CAFBinCAXy+cgju3peA=YBHJReUu=vh8to4UVU5qebN67AZOgPg@mail.gmail.com>
+References: <20171228222128.15215-1-martin.blumenstingl@googlemail.com>
+ <20171228222128.15215-4-martin.blumenstingl@googlemail.com>
+ <1514570234.7439.15.camel@baylibre.com>
+ <CAFBinCAXy+cgju3peA=YBHJReUu=vh8to4UVU5qebN67AZOgPg@mail.gmail.com>
+Message-ID: <1514977603.7439.30.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Em Mon,  1 Jan 2018 19:42:40 +0000
-Bryan O'Donoghue <pure.logic@nexus-software.ie> escreveu:
+On Sat, 2017-12-30 at 00:40 +0100, Martin Blumenstingl wrote:
+> > Maybe this bit 10 is indeed a 5/10 divider, as amlogic claims it is. Maybe, as
+> > Emiliano suggested, the output rate of div250 actually needs to be 250Mhz in
+> > RGMII, before being divided by 10 to produce the 25MHz of div25
+> > 
+> > IOW, maybe we need this intermediate rate.
+> 
+> I am starting to believe that you (Emiliano and Jerome) are both right
+> does anyone of you have access to a scope so we can measure the actual
+> clock output?
 
-> Right now it is not possible to return a value larger than LONG_MAX on 32
-> bit systems. You can pass a rate of ULONG_MAX but can't return anything
-> past LONG_MAX due to the fact both the rounded_rate and negative error
-> codes are represented in the return value of round_rate().
-> 
-> Most implementations either return zero on error or don't return error
-> codes at all. A minority of implementations do return a negative number -
-> typically -EINVAL or -ENODEV.
-> 
-> At the higher level then callers of round_rate() typically and rightly
-> check for a value of <= 0.
-> 
-> It is possible then to convert round_rate() to an unsigned long return
-> value and change error code indication for the minority from -ERRORCODE to
-> a simple 0.
-> 
-> This patch is the first step in making it possible to scale round_rate past
-> LONG_MAX, later patches will change the previously mentioned minority of
-> round_rate() implementations to return zero only on error if those
-> implementations currently return a negative error number. Implementations
-> that do not return an error code of < 0 will be left as-is.
-> 
+I wanted to check this out on Gx but the 25M output is not any of the boards I
+have (p200, OC2, S400). I should be able to look at the related SoC pad on the
+p200 but, I don't know how to enable the GPIOCLK_1 Function 1 in the pinmux
+configuration
 
->  drivers/media/platform/omap3isp/isp.c           |  4 ++--
+> 
+> > It would not be surprising, 1GBps usually requires a 125MHz clock somewhere.
+> 
+> this could mean that two clocks are derived from m250_div (names are
+> not final obviously):
+> - phy_ref_clk (25MHz or 50MHz)
+> - rgmii_tx_clk (fixed divide by 2, 125MHz)
 
-Acked-by: Mauro Carvalho Chehab <mchehab@s-opensource.com>
+Probably yes.
 
-Thanks,
-Mauro
+What we consider in the code as div250 divider is actually described in snip of
+doc we have as:
+-----
+bit 10 : Generate 25MHz clock for PHY
+bit 9-7: RMII & RGMII mode:
+- 001: clock source is 250MHz
+- 010: clock source is 500MHz.
+...
+-----
+
+1) It kind of shows that the minimum input frequency could be 250M indeed.
+2) It is these unclear whether bit 10 is a gate or a divider ... ATM, I can't
+check that myself
+3) Looks like properly setting up div250 should also be done for RMII.
+
+> 
+> > This is still doable:
+> > * Keep the divider
+> > * drop CLK_SET_RATE_PARENT on div25
+> > * call set_rate on div250 with 250MHz then on div25 with 25Mhz
+> 
+> yep, I will try this next
+> this would also be work with the assumption that the rgmii_tx_clk is
+> derived from m250_div
