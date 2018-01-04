@@ -1,8 +1,8 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 3 Jan 2018 21:50:22 +0100
+From: carlo@endlessm.com (Carlo Caione)
+Date: Thu, 4 Jan 2018 09:46:12 +0000
 Subject: [RFC v2 7/9] bluetooth: btrtl: load the config blob from
  devicetree when available
-In-Reply-To: <CAL9uMOFyfr_qGf5BeTojkMeWeH8LqPoKj=LrdgEMB2wmhGBxmA@mail.gmail.com>
+In-Reply-To: <CAFBinCAFsDRpp=4We1hQPiutM1Q0MrqebPLyS3e2_e+JcBoSmg@mail.gmail.com>
 References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
  <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
  <563D6F9F-8495-40D4-BE56-5338ED2B9B99@holtmann.org>
@@ -11,102 +11,80 @@ References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
  <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
  <CAFBinCBB=SmviOMRHGDH6vzjTjV-mrtQEc8nBUhDbJGs9SBpgw@mail.gmail.com>
  <CAL9uMOFyfr_qGf5BeTojkMeWeH8LqPoKj=LrdgEMB2wmhGBxmA@mail.gmail.com>
-Message-ID: <CAFBinCAFsDRpp=4We1hQPiutM1Q0MrqebPLyS3e2_e+JcBoSmg@mail.gmail.com>
+ <CAFBinCAFsDRpp=4We1hQPiutM1Q0MrqebPLyS3e2_e+JcBoSmg@mail.gmail.com>
+Message-ID: <CAL9uMOGkZefjD_JNxjf4yJ0ATFtOG5Cm_XQq1fy0VQDjiMFBmg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Carlo,
+On Wed, Jan 3, 2018 at 8:50 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Hi Carlo,
 
-On Wed, Jan 3, 2018 at 12:06 AM, Carlo Caione <carlo@endlessm.com> wrote:
-> On Tue, Jan 2, 2018 at 9:46 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> Hi Carlo,
+Hi Martin,
+
+>> As Marcel suggested we can assume that the information in the DSDT is
+>> correct so that we can get rid of the config blob also for x86
+>> platforms (assuming that the only useful information in the config
+>> blobs is the UART configuration).
+> in my tests I tried to send only the firmware without the config to my
+> RTL8723BS. unfortunately the last firmware chunk (sent to the
+> controller) times out in that case (even if I set a proper baudrate
+> before or if I specify no baudrate at all and keep the serdev at
+> 115200)
+
+What's in the config blobs besides UART configuration?
+
+It's odd because reading into hciattach_rtk.c it seems that the config
+file is actually only used by the userspace tools (hciattach) to
+retrieve the UART configuration and nothing else, whereas in the
+kernel driver the config blob is appended to the firmware.
+
+> have you tested this (= uploading the firmware without the config
+> blob) on your x86 board before?
+
+No, on the cherry-trail I have I'm using hciattach to upload the
+firmware and AFAICT only the firmware is uploaded and (as written
+before) the config blob is only used to get the UART configuration.
+
+> so far the following solutions for the config blob were discussed:
+> 1) put the config blob in userspace (/lib/firmware/...) -> not good
+> because it makes the rootfs board-specific
+> 2) auto-generate the config blob -> didn't work for me, last firmware
+> chunk times out (just as if I had no config at all)
+> 3) putting the config blob in DT -> possible but not very nice to read
 >
-> Hi Martin,
+> I had another idea:
+> what if we mix solution 1) and 2)?
+> the idea: load the config blob from userspace (/lib/firmware/...) and
+> update it's settings with the values we got from devicetree-properties
+> / DSDT
+
+If you are shipping already the config blob in userspace I don't see
+why you would do the update since you have already all the info you
+need.
+I would rather check why (2) didn't work fine. Have you any
+documentation how the config blobs are generated? The code in
+hciattach_rtk.c seems a good starting point.
+
+> I have not tested this yet, but I just want to hear everyone's (at
+> least Marcel, Rob and Carlo) opinion on that
+> (this would also allow us to fully auto-generate the config blob in
+> the future once we figure out how to do that)
 >
->> On Tue, Jan 2, 2018 at 12:31 PM, Carlo Caione <carlo@endlessm.com> wrote:
->>> On Tue, Jan 2, 2018 at 11:19 AM, Marcel Holtmann <marcel@holtmann.org> wrote:
->>>> Hi Carlo,
->>>>
->>>>>>> Some Realtek bluetooth devices need a "config" blob. The btrtl driver
->>>>>>> currently only allows loading this config blob via the request_firmware
->>>>>>> mechanism.
->>>>>>>
->>>>>>> The UART Bluetooth chips use this config blob to specify the baudrate,
->>>>>>> whether flow control is used and some other unknown bits. This means
->>>>>>> that the config blob is board-specific - thus loading it via
->>>>>>> request_firmware means that the rootfs is tied to a specific board.
->>>>>>>
->>>>>>> The UART Bluetooth chips are implemented through serdev. This means
->>>>>>> there is also a devicetree node which describes the Bluetooth chip.
->>>>>>> Thus we can also load the blob from the devicetree node to keep the
->>>>>>> filesystem independent of any board configuration data. In the future
->>>>>>> this could be extended to support ACPI as well (in case that's needed).
->>>>>>>
->>>>>>> Parse the devicetree node if it exists and obtain the config blob from
->>>>>>> there. Otherwise fall back to using the "old" request_firmware
->>>>>>> mechanism.
->>>>>>
->>>>>> where are these config blobs coming from? I think we also need to give people a helping hand on how to add them to DT. I still wonder if the only pieces we are using are the UART config, then maybe skipping the config blob and allowing for clear named values in DT might be better.
->>>>>
->>>>> What about x86 platforms where we do not have DT (I didn't check but I
->>>>> don't think that the UART config in that case is shipped in the ACPI
->>>>> tables)?
->>>>
->>>> if we have this hardware in x86 systems, then I would really like to see ACPI table dumps. Some pieces might need hardcoding based on ACPI ID.
->>>
->>> Yes, we have, especially on cherry-trail SoCs. In [0] the DSDT of a
->>> cherry-trail laptop shipping the rtl8723bs (device OBDA8723).
->>>
->>> [0] https://gist.github.com/carlocaione/82bff95ababb67dd33f52a86e94ce3ff
->> so this shows that the UART settings (initial baudrate, HW flow
->> control, etc.) are part of the DSDT
->> however, the actual config blob is not
->>
->> the description of this patch explains: "Parse the devicetree node ...
->> [or] ... fall back to using the "old" request_firmware mechanism."
->> do you have any other solution in mind?
->
-> As Marcel suggested we can assume that the information in the DSDT is
-> correct so that we can get rid of the config blob also for x86
-> platforms (assuming that the only useful information in the config
-> blobs is the UART configuration).
-in my tests I tried to send only the firmware without the config to my
-RTL8723BS. unfortunately the last firmware chunk (sent to the
-controller) times out in that case (even if I set a proper baudrate
-before or if I specify no baudrate at all and keep the serdev at
-115200)
-have you tested this (= uploading the firmware without the config
-blob) on your x86 board before?
+>> Adding the ACPI support on top of your patches is (hopefully) trivial,
+>> just follow what was done for hci_bcm.c, basically adding a new _HID
+>> and reading the configuration for GPIOs and UART, all the rest should
+>> be transparent for serdev.
+> thanks for the reference to hci_bcm.c - I will have a look at this for
+> the next version
+> one question: "_HID" would be OBDA8723 in our case?
 
-so far the following solutions for the config blob were discussed:
-1) put the config blob in userspace (/lib/firmware/...) -> not good
-because it makes the rootfs board-specific
-2) auto-generate the config blob -> didn't work for me, last firmware
-chunk times out (just as if I had no config at all)
-3) putting the config blob in DT -> possible but not very nice to read
+Yes
 
-I had another idea:
-what if we mix solution 1) and 2)?
-the idea: load the config blob from userspace (/lib/firmware/...) and
-update it's settings with the values we got from devicetree-properties
-/ DSDT
-I have not tested this yet, but I just want to hear everyone's (at
-least Marcel, Rob and Carlo) opinion on that
-(this would also allow us to fully auto-generate the config blob in
-the future once we figure out how to do that)
+>> I'll test your patches on the hardware I have.
+> great, thank you!
 
-> Adding the ACPI support on top of your patches is (hopefully) trivial,
-> just follow what was done for hci_bcm.c, basically adding a new _HID
-> and reading the configuration for GPIOs and UART, all the rest should
-> be transparent for serdev.
-thanks for the reference to hci_bcm.c - I will have a look at this for
-the next version
-one question: "_HID" would be OBDA8723 in our case?
+Cheers!
 
-> I'll test your patches on the hardware I have.
-great, thank you!
-
-
-Regards
-Martin
+-- 
+Carlo Caione  |  +44.7384.69.16.04  |  Endless
