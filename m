@@ -1,32 +1,36 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 05 Jan 2018 10:09:30 +0100
-Subject: [PATCH -next] clk: meson-axg: fix potential NULL dereference in
- axg_clkc_probe()
-In-Reply-To: <1515117059-176004-1-git-send-email-weiyongjun1@huawei.com>
-References: <1515117059-176004-1-git-send-email-weiyongjun1@huawei.com>
-Message-ID: <1515143370.7439.62.camel@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Fri, 5 Jan 2018 17:56:15 +0800
+Subject: [PATCH 0/6] ARM64: dts: meson-axg: UART DT updates
+Message-ID: <20180105095621.196472-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2018-01-05 at 01:50 +0000, Wei Yongjun wrote:
-> platform_get_resource() may return NULL, add proper
-> check to avoid potential NULL dereferencing.
-> 
-> This is detected by Coccinelle semantic patch.
-> 
-> @@
-> expression pdev, res, n, t, e, e1, e2;
-> @@
-> 
-> res = platform_get_resource(pdev, t, n);
-> + if (!res)
-> +   return -EINVAL;
-> ... when != res == NULL
-> e = devm_ioremap(e1, res->start, e2);
-> 
-> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
-> ---
+HI Kevin
+ These are the UART DT updates for the Meson-AXG platform.
 
-Looks good. Thank you.
+The patch 1, 2 are two general fixes.
+Other patches are about adding clock & pinctrl info, then using them.
+Last patch enable UART_A which connect to BT module in the S400 board.
 
-Stephen, do you prefer to take this directly ?
+Note: 
+This series depend on previous UART_AO clock switch patch[1]
+also, these patch request clocks, so they need the
+tag:meson-clk-for-v4.16-2 from clk-meson's tree in order to compile.
+
+[1] 
+http://lkml.kernel.org/r/20171215141741.175985-1-yixun.lan at amlogic.com
+
+Yixun Lan (6):
+  ARM64: dts: meson-axg: uart: drop legacy compatible name from EE UART
+  ARM64: dts: meson-axg: uart: fix address space range
+  ARM64: dts: meson-axg: uart: Add the clock info description
+  ARM64: dts: meson-axg: uart: Add the pinctrl info description
+  arm64: dts: meson-axg: complete the pinctrl info for UART_AO_A
+  ARM64: dts: meson-axg: enable the UART_A controller
+
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts |   9 +++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 108 ++++++++++++++++++++++++-
+ 2 files changed, 113 insertions(+), 4 deletions(-)
+
+-- 
+2.15.1
