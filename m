@@ -1,165 +1,49 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 7 Jan 2018 21:07:33 +0100
-Subject: [RFC v2 7/9] bluetooth: btrtl: load the config blob from
- devicetree when available
-In-Reply-To: <41669609-3E28-473D-8616-71B9D0EEDCDF@holtmann.org>
-References: <20180101204217.26165-1-martin.blumenstingl@googlemail.com>
- <20180101204217.26165-8-martin.blumenstingl@googlemail.com>
- <563D6F9F-8495-40D4-BE56-5338ED2B9B99@holtmann.org>
- <CAL9uMOEMDup4hRkxD-tM8R0YirGs5uQi31AjJUnFCPNMKUdRHg@mail.gmail.com>
- <E8E39477-CF1A-4A3E-84C5-830E182C2266@holtmann.org>
- <CAL9uMOH0N-4jgQncmPjK-KyU0vY9Q0ZnHYSAGgz3z3ywzc8Avw@mail.gmail.com>
- <CAFBinCBB=SmviOMRHGDH6vzjTjV-mrtQEc8nBUhDbJGs9SBpgw@mail.gmail.com>
- <CAL9uMOFyfr_qGf5BeTojkMeWeH8LqPoKj=LrdgEMB2wmhGBxmA@mail.gmail.com>
- <CAFBinCAFsDRpp=4We1hQPiutM1Q0MrqebPLyS3e2_e+JcBoSmg@mail.gmail.com>
- <CAL9uMOGkZefjD_JNxjf4yJ0ATFtOG5Cm_XQq1fy0VQDjiMFBmg@mail.gmail.com>
- <EC216531-81EC-4EE8-BAC4-C6954C222092@holtmann.org>
- <1F394D8B-CFB8-48BA-BC6B-15D1EE51DB08@holtmann.org>
- <41669609-3E28-473D-8616-71B9D0EEDCDF@holtmann.org>
-Message-ID: <CAFBinCBasb-WkLngxL2RAk9YMihC437ZgPKSkOd7Fm0RHG_aTw@mail.gmail.com>
+Date: Sun, 7 Jan 2018 21:11:53 +0100
+Subject: [PATCH 0/3] Meson8/Meson8b reset improvements
+In-Reply-To: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
+References: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCAMwNFAKRVgUnwWbCxXC1g8Xjg_5SHAtoqOigo=7xXD8A@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Marcel,
+Hi Kevin,
 
-thank you for digging into this!
+On Tue, Dec 26, 2017 at 12:43 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Recently Neil landed reset level support (.assert/.deassert) for the
+> reset-meson driver.
+> While the driver does not support level resets on Meson8b yet we can
+> already prepare the .dts to do so (I actually found out that level
+> resets are implemented identical on Meson8/Meson8b/GX - a patch for
+> the reset-meson driver will follow in a separate series).
+even though there's no hard dependency on that:
+the patch which enables level resets for Meson8b (see [0]) is now
+queued for v4.16
 
-On Fri, Jan 5, 2018 at 9:44 PM, Marcel Holtmann <marcel@holtmann.org> wrote:
-> Hi Carlo,
+> I also noticed that Meson8 does not have the reset controller in it's
+> .dtsi yet, so this series adds that as well.
+> It also adds the USB reset lines on Meson8 afterwards to stay
+> consistent with Meson8b.
+will you take this series for v4.16 or should I re-send it (with
+Neil's "Reviewed-by") after v4.16-rc1 is out?
+
 >
->>>>>> As Marcel suggested we can assume that the information in the DSDT is
->>>>>> correct so that we can get rid of the config blob also for x86
->>>>>> platforms (assuming that the only useful information in the config
->>>>>> blobs is the UART configuration).
->>>>> in my tests I tried to send only the firmware without the config to my
->>>>> RTL8723BS. unfortunately the last firmware chunk (sent to the
->>>>> controller) times out in that case (even if I set a proper baudrate
->>>>> before or if I specify no baudrate at all and keep the serdev at
->>>>> 115200)
->>>>
->>>> What's in the config blobs besides UART configuration?
->>>
->>> is anybody writing a rtlfw.c tool (like nokfw.c) so that we can print out what we actually have in these config files?
->>>
->>>> It's odd because reading into hciattach_rtk.c it seems that the config
->>>> file is actually only used by the userspace tools (hciattach) to
->>>> retrieve the UART configuration and nothing else, whereas in the
->>>> kernel driver the config blob is appended to the firmware.
->>>
->>> Frankly, I am inclined to not use the config file even for DT based system and just allow specifying the UART settings via normal DT properties like we do for Broadcom and others.
->>
->> so I googled for a few config files and this is what this turns into:
->>
->> Analyzing rtl8723d_config_1000000_noflow.dms
->> Signature:   0x8723ab55
->> Data length: 41
->> len=1   offset=f4,{ 01 }
->> len=2   offset=f6,{ 81 00 }
->> len=2   offset=fa,{ 12 80 }
->> len=16  offset=0c,{ 04 50 00 00 50 c5 ea 19 e1 1b fd af 5b 01 a4 0b }
->> len=1   offset=d9,{ 0f }
->> len=1   offset=e4,{ 08 }
->> Analyzing rtl8723d_config.dms
->> Signature:   0x8723ab55
->> Data length: 41
->> len=1   offset=f4,{ 01 }
->> len=2   offset=f6,{ 81 00 }
->> len=2   offset=fa,{ 12 80 }
->> len=16  offset=0c,{ 02 80 92 04 50 c5 ea 19 e1 1b fd af 5f 01 a4 0b }
->> len=1   offset=d9,{ 0f }
->> len=1   offset=e4,{ 08 }
->> Analyzing rtl8822b_config.bin
->> Signature:   0x8723ab55
->> Data length: 8
->> len=1   offset=d9,{ 0f }
->> len=1   offset=e4,{ 08 }
->>
->> The first two are some UART based ones and the last one is USB based.
->>
->> So the 0x3c offset seems to be the BD_ADDR and 0x0c offset is the UART configuration. It would be good to know which settings the other ones control.
-this matches my findings from the hciattach_rtk tool for rtl8723bs_bt
-and rtl8723ds_bt
-
->> Also the 16 octet UART config blob seems to be decoded like this:
->>
->>       uart_config {
->>               le32 baudrate;
->>               u8[8] reserved1;
->>               u8 flowctl;
->>               u8[3] reserved2;
->>       }
->>
-I could not find this in any of the rtl8723bs_bt or rtl8723ds_bt sources
-so thank you for sharing this (even though this descriptin is missing
-a few bytes)!
-
->> Actually hciattach_rtk just takes the baud rate and and hardware flow control bit out of this file. That is clearly two things that are better written in plain text in the DT file.
-this matches my findings apart from that hciattach_rtk also appends
-the config blob to the "firmware patch" that is being uploaded to the
-device
-if you are brave you can have a look at [0]
-
-> so this is actually some funny stuff if you start to understand it.
+> Martin Blumenstingl (3):
+>   ARM: dts: meson8b: grow the reset controller memory zone
+>   ARM: dts: meson8: add the reset controller
+>   ARM: dts: meson8: add the USB reset line
 >
-> Analyzing rtl8723b_config.dms
-> Signature: 0x8723ab55
-> Data len:  38
-> len=8   offset=00f4,{ 01 00 00 00 05 50 00 00 }
-> len=16  offset=000c,{ 02 80 92 04 50 c5 ea 19 e1 1b f1 af 5f 01 a4 0b },UART_CONFIG
-> len=1   offset=0027,{ 63 }
-> len=1   offset=00fe,{ 01 }
-> Analyzing rtl8723d_config_1000000_noflow.dms
-> Signature: 0x8723ab55
-> Data len:  41
-> len=1   offset=00f4,{ 01 }
-> len=2   offset=00f6,{ 81 00 }
-> len=2   offset=00fa,{ 12 80 }
-> len=16  offset=000c,{ 04 50 00 00 50 c5 ea 19 e1 1b fd af 5b 01 a4 0b },UART_CONFIG
-> len=1   offset=00d9,{ 0f }
-> len=1   offset=00e4,{ 08 }
+>  arch/arm/boot/dts/meson8.dtsi  | 9 +++++++++
+>  arch/arm/boot/dts/meson8b.dtsi | 2 +-
+>  2 files changed, 10 insertions(+), 1 deletion(-)
 >
-> Seems like Realtek really defines memory offsets in this file and they can be defined in various different ways.
-wow, that is interesting - I was wondering why they called it "offset"
-instead of "config_id" (or something similar)
-
-> So 00f4,{ 01 00 00 00 05 50 00 00 } defines the whole PCM settings for interface 1 and 2. And 00f4,{ 01 } + 00f6,{ 81 00 } + 00fa,{ 12 80 } is the same PCM settings, but with only pieces of it defined.
+> --
+> 2.15.1
 >
-> This also means a 000c,{ 04 50 00 00 50 } for just setting the baud rate is as valid if flow control defaults to off and all other values are actual defaults. So code inside hciattach_rtk.c is also kind faulty on how it handles the flow control bit. It works if the config files all have offset 000c in it, but if not, then they are going funky.
->
-> Since these are efuse settings, I really wonder if there is just a HCI vendor command to read out the defaults and we use that to compare. And what I would really like to know is what these settings are suppose to change. Since even for USB, we are actually not even applying them.
-the idea with the vendor command to read out existing memory is interesting
-
-based on the code in "btrtl.c" it seems that we are applying the
-settings from the config blob.
-we are simply appending it at the end of the "firmware patch", see [1]
-
-> Anyway, I am certain that for Realtek UART devices, we just want to specify max-speed DT property like we do with the others. And then maybe a flow-control DT property to control that one (following what nfcmrvl.txt does). We can use the rtlfw tool that I wrote to extract the values from Realtek provided config files. Frankly the PCM settings we have to deal with as well at some point. But that is also missing for Broadcom and others.
-just to make sure I understand you correctly: would you generate the
-config blob in-memory (in a function in btrtl.c) and hardcode all
-unknown bits (the reserved bits in the UART config entry for example)
-or would you mandate that a config blob is present (so
-request_firmware can fetch it) for "high-speed" operation?
-
-for PCM: I cannot test that anyways since the Amlogic platform does
-not have audio support yet
-
-> Also if there is no config file, we should be able to just assume no flow control, 115200 baud rate and H:5 as protocol. That means that almost all chips will just work. They are just slow since we do not deal with the max-speed setting.
-my problem so far was that uploading the firmware patch without
-appending a config blob (see [1]) broke the UART communication (it was
-not 115200 baud as before, and I also tried other speeds such as
-1500000 and 1000000 baud - neither worked)
-however, extracting the existing values from the efuse using a vendor
-command might give a hint why (maybe they are fallling back to some
-exotic baudrate in that case, etc...)
-
-> At the end of the day, this is the same as for Broadcom and ACPI vs DT. This should be no different. The only bit nasty part is that this is H:5 as protocol and we have not really abstracted that one nicely to just have a tiny hci_rtl.c for vendor specific pieces.
-yes, you already suggested that I should start making that re-usable
-(this is still on my TODO-list)
-
 
 Regards
 Martin
 
 
-[0] https://github.com/NextThingCo/rtl8723ds_bt/blob/master/rtk_hciattach/hciattach_rtk.c#L2742
-[1] https://elixir.free-electrons.com/linux/v4.14.11/source/drivers/bluetooth/btrtl.c#L377
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005869.html
