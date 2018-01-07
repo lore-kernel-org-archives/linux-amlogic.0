@@ -1,49 +1,169 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 7 Jan 2018 21:11:53 +0100
-Subject: [PATCH 0/3] Meson8/Meson8b reset improvements
-In-Reply-To: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
-References: <20171226114345.23905-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCAMwNFAKRVgUnwWbCxXC1g8Xjg_5SHAtoqOigo=7xXD8A@mail.gmail.com>
+Date: Sun, 7 Jan 2018 21:19:29 +0100
+Subject: [PATCH v2 3/5] ARM64: dts: meson-axg: uart: Add the pinctrl info
+ description
+In-Reply-To: <20180106001044.108163-4-yixun.lan@amlogic.com>
+References: <20180106001044.108163-1-yixun.lan@amlogic.com>
+ <20180106001044.108163-4-yixun.lan@amlogic.com>
+Message-ID: <CAFBinCCuQ-NK747+GHDkhZty_UMMgzCYOYFcNTrRDJgU8OM=Gw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
+Hi Yixun,
 
-On Tue, Dec 26, 2017 at 12:43 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Recently Neil landed reset level support (.assert/.deassert) for the
-> reset-meson driver.
-> While the driver does not support level resets on Meson8b yet we can
-> already prepare the .dts to do so (I actually found out that level
-> resets are implemented identical on Meson8/Meson8b/GX - a patch for
-> the reset-meson driver will follow in a separate series).
-even though there's no hard dependency on that:
-the patch which enables level resets for Meson8b (see [0]) is now
-queued for v4.16
+On Sat, Jan 6, 2018 at 1:10 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
+> Describe the pinctrl info for the UART controller which is found
+> in the Meson-AXG SoCs.
+>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 97 ++++++++++++++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 644d0f9eaf8c..1eb45781c850 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -448,6 +448,70 @@
+>                                                 function = "spi1";
+>                                         };
+>                                 };
+> +
+> +                               uart_a_pins: uart_a {
+> +                                       mux {
+> +                                               groups = "uart_tx_a",
+> +                                                       "uart_rx_a";
+> +                                               function = "uart_a";
+> +                                       };
+> +                               };
+> +
+> +                               uart_a_cts_rts_pins: uart_a_cts_rts {
+> +                                       mux {
+> +                                               groups = "uart_cts_a",
+> +                                                       "uart_rts_a";
+> +                                               function = "uart_a";
+> +                                       };
+> +                               };
+> +
+> +                               uart_b_x_pins: uart_b_x {
+> +                                       mux {
+> +                                               groups = "uart_tx_b_x",
+> +                                                       "uart_rx_b_x";
+> +                                               function = "uart_b";
+> +                                       };
+> +                               };
+> +
+> +                               uart_b_x_cts_rts_pins: uart_b_x_cts_rts {
+> +                                       mux {
+> +                                               groups = "uart_cts_b_x",
+> +                                                       "uart_rts_b_x";
+> +                                               function = "uart_b";
+> +                                       };
+> +                               };
+> +
+> +                               uart_b_z_pins: uart_b_z {
+> +                                       mux {
+> +                                               groups = "uart_tx_b_z",
+> +                                                       "uart_rx_b_z";
+> +                                               function = "uart_b";
+> +                                       };
+> +                               };
+> +
+> +                               uart_b_z_cts_rts_pins: uart_b_z_cts_rts {
+> +                                       mux {
+> +                                               groups = "uart_cts_b_z",
+> +                                                       "uart_rts_b_z";
+> +                                               function = "uart_b";
+> +                                       };
+> +                               };
+> +
+> +                               uart_ao_b_z_pins: uart_ao_b_z {
+> +                                       mux {
+> +                                               groups = "uart_ao_tx_b_z",
+> +                                                       "uart_ao_rx_b_z";
+> +                                               function = "uart_ao_b_gpioz";
+(the following question just came up while I was looking at this
+patch, but I guess it's more a question towards the pinctrl driver)
+the name of the function looks a bit "weird" since below you are also
+using "uart_ao_b"
+did you choose "uart_ao_b_gpioz" here because we cannot have the same
+function name for the periphs and AO pinctrl or is there some other
+reason?
 
-> I also noticed that Meson8 does not have the reset controller in it's
-> .dtsi yet, so this series adds that as well.
-> It also adds the USB reset lines on Meson8 afterwards to stay
-> consistent with Meson8b.
-will you take this series for v4.16 or should I re-send it (with
-Neil's "Reviewed-by") after v4.16-rc1 is out?
+I am asking because I would have expected it to look like this:
+    groups = "uart_ao_tx_b_z", "uart_ao_rx_b_z";
+    function = "uart_ao_b";
 
+(same for the cts/rts pins below)
+
+> +                                       };
+> +                               };
+> +
+> +                               uart_ao_b_z_cts_rts_pins: uart_ao_b_z_cts_rts {
+> +                                       mux {
+> +                                               groups = "uart_ao_cts_b_z",
+> +                                                       "uart_ao_rts_b_z";
+> +                                               function = "uart_ao_b_gpioz";
+> +                                       };
+> +                               };
+>                         };
+>                 };
 >
-> Martin Blumenstingl (3):
->   ARM: dts: meson8b: grow the reset controller memory zone
->   ARM: dts: meson8: add the reset controller
->   ARM: dts: meson8: add the USB reset line
+> @@ -492,12 +556,45 @@
+>                                         gpio-ranges = <&pinctrl_aobus 0 0 15>;
+>                                 };
 >
->  arch/arm/boot/dts/meson8.dtsi  | 9 +++++++++
->  arch/arm/boot/dts/meson8b.dtsi | 2 +-
->  2 files changed, 10 insertions(+), 1 deletion(-)
+> +
+did you add this additional newline on purpose?
+>                                 remote_input_ao_pins: remote_input_ao {
+>                                         mux {
+>                                                 groups = "remote_input_ao";
+>                                                 function = "remote_input_ao";
+>                                         };
+>                                 };
+> +
+> +                               uart_ao_a_pins: uart_ao_a {
+> +                                       mux {
+> +                                               groups = "uart_ao_tx_a",
+> +                                                       "uart_ao_rx_a";
+> +                                               function = "uart_ao_a";
+> +                                       };
+> +                               };
+> +
+> +                               uart_ao_a_cts_rts_pins: uart_ao_a_cts_rts {
+> +                                       mux {
+> +                                               groups = "uart_ao_cts_a",
+> +                                                       "uart_ao_rts_a";
+> +                                               function = "uart_ao_a";
+> +                                       };
+> +                               };
+> +
+> +                               uart_ao_b_pins: uart_ao_b {
+> +                                       mux {
+> +                                               groups = "uart_ao_tx_b",
+> +                                                       "uart_ao_rx_b";
+> +                                               function = "uart_ao_b";
+> +                                       };
+> +                               };
+> +
+> +                               uart_ao_b_cts_rts_pins: uart_ao_b_cts_rts {
+> +                                       mux {
+> +                                               groups = "uart_ao_cts_b",
+> +                                                       "uart_ao_rts_b";
+> +                                               function = "uart_ao_b";
+> +                                       };
+> +                               };
+>                         };
 >
+>                         pwm_AO_ab: pwm at 7000 {
 > --
 > 2.15.1
 >
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 Regards
 Martin
-
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-December/005869.html
