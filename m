@@ -1,103 +1,28 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 8 Jan 2018 14:44:25 +0800
-Subject: [PATCH v2 3/5] ARM64: dts: meson-axg: uart: Add the pinctrl info
- description
-In-Reply-To: <b2571e30-d543-9288-68cf-1af86bb5f4bc@amlogic.com>
-References: <20180106001044.108163-1-yixun.lan@amlogic.com>
- <20180106001044.108163-4-yixun.lan@amlogic.com>
- <CAFBinCCuQ-NK747+GHDkhZty_UMMgzCYOYFcNTrRDJgU8OM=Gw@mail.gmail.com>
- <b2571e30-d543-9288-68cf-1af86bb5f4bc@amlogic.com>
-Message-ID: <882732bb-952c-ca90-1776-a9da294456f6@amlogic.com>
+Date: Mon, 8 Jan 2018 15:33:26 +0800
+Subject: [PATCH 0/2] pinctrl: meson: use one uniform 'function' name
+Message-ID: <20180108073328.205769-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-HI Martin:
+These two patches are general improvement for meson pinctrl driver.
+It make the two pinctrl trees (ee/ao) to share one uniform 'function' name for
+one hardware block even its pin groups live inside two differet hardware domains,
+which for example EE vs AO domain here.
 
-On 01/08/18 14:07, Yixun Lan wrote:
-> Hi Martin
-> 
-> On 01/08/18 04:19, Martin Blumenstingl wrote:
->> Hi Yixun,
->>
->> On Sat, Jan 6, 2018 at 1:10 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
->>> Describe the pinctrl info for the UART controller which is found
->>> in the Meson-AXG SoCs.
->>>
->>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->>> ---
->>>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 97 ++++++++++++++++++++++++++++++
->>>  1 file changed, 97 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->>> index 644d0f9eaf8c..1eb45781c850 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->>> @@ -448,6 +448,70 @@
->>>                                                 function = "spi1";
->>>                                         };
+This idea is motivated by Martin's question at [1]
 
-.
+[1]
+ http://lkml.kernel.org/r/CAFBinCCuQ-NK747+GHDkhZty_UMMgzCYOYFcNTrRDJgU8OM=Gw at mail.gmail.com
 
->>>
->>> +
->> did you add this additional newline on purpose?
-oops, this is added by mistake..
-thanks for catching this, I will fix it
 
->>>                                 remote_input_ao_pins: remote_input_ao {
->>>                                         mux {
->>>                                                 groups = "remote_input_ao";
->>>                                                 function = "remote_input_ao";
->>>                                         };
->>>                                 };
->>> +
->>> +                               uart_ao_a_pins: uart_ao_a {
->>> +                                       mux {
->>> +                                               groups = "uart_ao_tx_a",
->>> +                                                       "uart_ao_rx_a";
->>> +                                               function = "uart_ao_a";
->>> +                                       };
->>> +                               };
->>> +
->>> +                               uart_ao_a_cts_rts_pins: uart_ao_a_cts_rts {
->>> +                                       mux {
->>> +                                               groups = "uart_ao_cts_a",
->>> +                                                       "uart_ao_rts_a";
->>> +                                               function = "uart_ao_a";
->>> +                                       };
->>> +                               };
->>> +
->>> +                               uart_ao_b_pins: uart_ao_b {
->>> +                                       mux {
->>> +                                               groups = "uart_ao_tx_b",
->>> +                                                       "uart_ao_rx_b";
->>> +                                               function = "uart_ao_b";
->>> +                                       };
->>> +                               };
->>> +
->>> +                               uart_ao_b_cts_rts_pins: uart_ao_b_cts_rts {
->>> +                                       mux {
->>> +                                               groups = "uart_ao_cts_b",
->>> +                                                       "uart_ao_rts_b";
->>> +                                               function = "uart_ao_b";
->>> +                                       };
->>> +                               };
->>>                         };
->>>
->>>                         pwm_AO_ab: pwm at 7000 {
->>> --
->>> 2.15.1
->>>
->>>
->>> _______________________________________________
->>> linux-amlogic mailing list
->>> linux-amlogic at lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>
->> Regards
->> Martin
->>
->> .
->>
-> .
-> 
+Yixun Lan (2):
+  pinctrl: meson: introduce a macro to have name/groups seperated
+  pinctrl: meson-axg: correct the pin expansion of UART_AO_B
+
+ drivers/pinctrl/meson/pinctrl-meson-axg.c | 4 ++--
+ drivers/pinctrl/meson/pinctrl-meson.h     | 8 +++++---
+ 2 files changed, 7 insertions(+), 5 deletions(-)
+
+-- 
+2.15.1
