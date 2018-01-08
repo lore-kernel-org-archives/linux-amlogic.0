@@ -1,51 +1,41 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 08 Jan 2018 09:42:54 +0100
-Subject: [PATCH v2 3/5] ARM64: dts: meson-axg: uart: Add the pinctrl
- info description
-In-Reply-To: <b2571e30-d543-9288-68cf-1af86bb5f4bc@amlogic.com>
-References: <20180106001044.108163-1-yixun.lan@amlogic.com>
- <20180106001044.108163-4-yixun.lan@amlogic.com>
- <CAFBinCCuQ-NK747+GHDkhZty_UMMgzCYOYFcNTrRDJgU8OM=Gw@mail.gmail.com>
- <b2571e30-d543-9288-68cf-1af86bb5f4bc@amlogic.com>
-Message-ID: <1515400974.5048.58.camel@baylibre.com>
+Date: Mon, 08 Jan 2018 09:52:24 +0100
+Subject: [PATCH 0/2] pinctrl: meson: use one uniform 'function' name
+In-Reply-To: <20180108073328.205769-1-yixun.lan@amlogic.com>
+References: <20180108073328.205769-1-yixun.lan@amlogic.com>
+Message-ID: <1515401544.5048.67.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2018-01-08 at 14:07 +0800, Yixun Lan wrote:
-> > (the following question just came up while I was looking at this
-> > patch, but I guess it's more a question towards the pinctrl driver)
-> > the name of the function looks a bit "weird" since below you are also
-> > using "uart_ao_b"
+On Mon, 2018-01-08 at 15:33 +0800, Yixun Lan wrote:
+> These two patches are general improvement for meson pinctrl driver.
+> It make the two pinctrl trees (ee/ao) to share one uniform 'function' name for
+> one hardware block even its pin groups live inside two differet hardware domains,
+> which for example EE vs AO domain here.
 > 
-> you right here, it's a question related to pinctrl subsystem.
-> from my point of view, it's even weird from the hardware perspective:
->  that, the UART function of AO domain route the pin of EE domain..
+> This idea is motivated by Martin's question at [1]
 > 
-> > did you choose "uart_ao_b_gpioz" here because we cannot have the same
-> > function name for the periphs and AO pinctrl or is there some other
-> > reason?
-> > 
-> 
-> Current there is a conflict in the code level which both two pinctrl
-> tree (EE, AO) are using the same macro[1] to expand the definitions, so
-> there would be conflict symbol if we name both as 'uart_ao_b'
-> 
-> I think your idea of having an uniform function 'uart_ao_b' for both
-> pinctrl subsystem is actually possible/positive..
-> 
-> I will think about your suggestion and come up with a patch later,
-> thanks a lot!
+> [1]
+>  http://lkml.kernel.org/r/CAFBinCCuQ-NK747+GHDkhZty_UMMgzCYOYFcNTrRDJgU8OM=Gw at mail.gmail.com
 > 
 > 
-> [1] drivers/pinctrl/meson/pinctrl-meson.h
+> Yixun Lan (2):
+>   pinctrl: meson: introduce a macro to have name/groups seperated
+>   pinctrl: meson-axg: correct the pin expansion of UART_AO_B
 > 
-> #define FUNCTION(fn)                                                    \
->         {                                                               \
->                 .name = #fn,                                            \
->                 .groups = fn ## _groups,                                \
->                 .num_groups = ARRAY_SIZE(fn ## _groups),                \
->         }
+>  drivers/pinctrl/meson/pinctrl-meson-axg.c | 4 ++--
+>  drivers/pinctrl/meson/pinctrl-meson.h     | 8 +++++---
+>  2 files changed, 7 insertions(+), 5 deletions(-)
 
-The name feels weird because it should have been uart_ao_b_z ... We missed it in
-the initial review. Except for correcting the function name, I don't think this
-justify a change a pinctrl
+Hi Yixun,
+
+Honestly, I don't like the idea. I think it adds an unnecessary complexity.
+I don't see the point of FUNCTION_EX(uart_ao_b, _z) when you could simply write 
+FUNCTION(uart_ao_b_z) ... especially when there is just a couple of function per
+SoC available on different domains.
+
+A pinctrl driver can already be challenging to understand at first, let's keep
+it simple and avoid adding more macros.
+
+Regards
+Jerome
