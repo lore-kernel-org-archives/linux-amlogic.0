@@ -1,38 +1,33 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Wed, 10 Jan 2018 16:56:49 +0000
-Subject: [PATCH 00/12] firmware: arm_scpi: series with smaller improvements
-In-Reply-To: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
-References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
-Message-ID: <db85dc34-5755-c48d-8a23-379d95fc0342@arm.com>
+From: sboyd@codeaurora.org (Stephen Boyd)
+Date: Wed, 10 Jan 2018 13:18:44 -0800
+Subject: [PATCH -next] clk: meson-axg: fix potential NULL dereference in
+ axg_clkc_probe()
+In-Reply-To: <1515117059-176004-1-git-send-email-weiyongjun1@huawei.com>
+References: <1515117059-176004-1-git-send-email-weiyongjun1@huawei.com>
+Message-ID: <20180110211844.GM21040@codeaurora.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Heiner,
-
-(Sorry for the late response, was off for a month)
-
-On 05/12/17 21:54, Heiner Kallweit wrote:
-> After recent revert of all changes since 4.14 this is a resubmit of
-> the patch series, reduced to patches which should not cause any
-> regression.
-> Based on a remark from Kevin I added one patch for improving the
-> version info for pre-1.0 firmware that doesn't provide version
-> information.
+On 01/05, Wei Yongjun wrote:
+> platform_get_resource() may return NULL, add proper
+> check to avoid potential NULL dereferencing.
 > 
-> Best should be to apply it to a devel branch first so that the
-> Baylibre Amlogic team can test before mainlining.
+> This is detected by Coccinelle semantic patch.
 > 
+> @@
+> expression pdev, res, n, t, e, e1, e2;
+> @@
+> 
+> res = platform_get_resource(pdev, t, n);
+> + if (!res)
+> +   return -EINVAL;
+> ... when != res == NULL
+> e = devm_ioremap(e1, res->start, e2);
 
-I am still waiting for tested by from Amlogic team for this series.
-However I prefer even the patch you dropped as causing the issue to
-be tested as it's nice cleanup to have. I strongly think that the issue
-Kevin reported was due to broken DVFS in the scp firmware in which case
-the solution is to have the dvfs node in DT removed or disabled rather
-than not having that patch at all.
-
-Please post that patch on rebased on top of this series and get it
-tested with DVFS nodes disabled.
+Can this script be put into scripts/coccinelle/? I'd like to be
+able to run it instead of getting emails from you after patches
+merge.
 
 -- 
-Regards,
-Sudeep
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
