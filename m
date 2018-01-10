@@ -1,31 +1,39 @@
-From: weiyongjun1@huawei.com (Wei Yongjun)
-Date: Wed, 10 Jan 2018 14:19:40 +0000
-Subject: [PATCH -next] meson-mx-socinfo: Make local function
- meson_mx_socinfo_init() static
-Message-ID: <1515593980-78559-1-git-send-email-weiyongjun1@huawei.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Wed, 10 Jan 2018 16:44:13 +0000
+Subject: [PATCH v2 0/2] drivers: remove incorrect usage/dependency on
+ topology_physical_package_id
+Message-ID: <1515602655-12740-1-git-send-email-sudeep.holla@arm.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Fixes the following sparse warnings:
+Hi all,
 
-drivers/soc/amlogic/meson-mx-socinfo.c:107:12: warning:
- symbol 'meson_mx_socinfo_init' was not declared. Should it be static?
+There has been ongoing attempt to add ACPI topology support on ARM/ARM64
+platform using PPTT. However it was discovered that the physical package
+id is mapped to the so called clusters on ARM platforms and they don't
+map to the physical socket as in other architectures.
 
-Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
----
- drivers/soc/amlogic/meson-mx-socinfo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+In order to add the correct support for the well defined physical sockets,
+we need to find remove the incorrect usage or any dependency on
+topology_physical_package_id which currently maps to the clusters.
 
-diff --git a/drivers/soc/amlogic/meson-mx-socinfo.c b/drivers/soc/amlogic/meson-mx-socinfo.c
-index 7bfff5f..78f0f1a 100644
---- a/drivers/soc/amlogic/meson-mx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-mx-socinfo.c
-@@ -104,7 +104,7 @@ static const char *meson_mx_socinfo_soc_id(unsigned int major_ver,
- 	{ /* sentinel */ }
- };
- 
--int __init meson_mx_socinfo_init(void)
-+static int __init meson_mx_socinfo_init(void)
- {
- 	struct soc_device_attribute *soc_dev_attr;
- 	struct soc_device *soc_dev;
+There's still one pending user of topology_physical_package_id, which is
+arm_big_little driver which is used by bL switcher and by TC2 platform.
+For now, we can leave that as is until we change the definition even for
+ARM32 platforms as it's just used by only 32-bit platforms.
+
+v1->v2:
+	- Update change log in patch 1/2 as suggested by Lorenzo
+	- Added acks from Viresh and Lorenzo
+
+Sudeep Holla (2):
+  drivers: psci: remove cluster terminology and dependency on
+    physical_package_id
+  cpufreq: scpi: remove arm_big_little dependency
+
+ drivers/cpufreq/scpi-cpufreq.c  | 193 ++++++++++++++++++++++++++++++++++++----
+ drivers/firmware/psci_checker.c |  46 +++++-----
+ 2 files changed, 200 insertions(+), 39 deletions(-)
+
+--
+2.7.4
