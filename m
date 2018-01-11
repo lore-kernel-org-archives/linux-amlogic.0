@@ -1,37 +1,26 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 11 Jan 2018 10:33:27 +0100
-Subject: [PATCH] ARM64: dts: meson-axg: add RMII pins for ethernet
- controller
-In-Reply-To: <2fa28259-cce9-37fc-3bcd-6017a35a052a@amlogic.com>
-References: <20180111030411.197054-1-yixun.lan@amlogic.com>
- <1515659863.5048.112.camel@baylibre.com>
- <2fa28259-cce9-37fc-3bcd-6017a35a052a@amlogic.com>
-Message-ID: <593cbb66-7040-b27d-5109-702fb43dc18e@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Thu, 11 Jan 2018 10:46:38 +0100
+Subject: [PATCH 0/2] pinctrl: meson: use one uniform 'function' name
+In-Reply-To: <20180108073328.205769-1-yixun.lan@amlogic.com>
+References: <20180108073328.205769-1-yixun.lan@amlogic.com>
+Message-ID: <CACRpkdZ6pW_3QTeQMGVbpa=1WTgR59fi+0aWCqmbRBzOn+F0cA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/01/2018 10:11, Yixun Lan wrote:
-> Hi Jerome?
-> 
-> On 01/11/18 16:37, Jerome Brunet wrote:
->> On Thu, 2018-01-11 at 11:04 +0800, Yixun Lan wrote:
->>> Comparing to RGMII interface, the RMII interface require few pins.
->>> So it's worth describing them here.
->>>
->>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->>
->> The only axg platform we have upstream is the s400 and is using rgmii.
->> May I ask how this was tested ?
->>
-> It's true that S400 using RGMII interface.
-> 
-> but, we have customer using RTL8201FR-VB/VD which is a RMII PHY,
-> 
-> This is actually tested with the 'eth_rmii_x_pins' group.
-> 
-> Yixun
-> 
+On Mon, Jan 8, 2018 at 8:33 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
 
-I pushed the same for GXBB,
+> These two patches are general improvement for meson pinctrl driver.
+> It make the two pinctrl trees (ee/ao) to share one uniform 'function' name for
+> one hardware block even its pin groups live inside two differet hardware domains,
+> which for example EE vs AO domain here.
+>
+> This idea is motivated by Martin's question at [1]
+>
+> [1]
+>  http://lkml.kernel.org/r/CAFBinCCuQ-NK747+GHDkhZty_UMMgzCYOYFcNTrRDJgU8OM=Gw at mail.gmail.com
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+There seems to be controversy here so I'd like input from Carlo
+and/or Beniamino if possible.
+
+Yours,
+Linus Walleij
