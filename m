@@ -1,30 +1,37 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 11 Jan 2018 17:11:39 +0800
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 11 Jan 2018 10:33:27 +0100
 Subject: [PATCH] ARM64: dts: meson-axg: add RMII pins for ethernet
  controller
-In-Reply-To: <1515659863.5048.112.camel@baylibre.com>
+In-Reply-To: <2fa28259-cce9-37fc-3bcd-6017a35a052a@amlogic.com>
 References: <20180111030411.197054-1-yixun.lan@amlogic.com>
  <1515659863.5048.112.camel@baylibre.com>
-Message-ID: <2fa28259-cce9-37fc-3bcd-6017a35a052a@amlogic.com>
+ <2fa28259-cce9-37fc-3bcd-6017a35a052a@amlogic.com>
+Message-ID: <593cbb66-7040-b27d-5109-702fb43dc18e@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome?
-
-On 01/11/18 16:37, Jerome Brunet wrote:
-> On Thu, 2018-01-11 at 11:04 +0800, Yixun Lan wrote:
->> Comparing to RGMII interface, the RMII interface require few pins.
->> So it's worth describing them here.
+On 11/01/2018 10:11, Yixun Lan wrote:
+> Hi Jerome?
+> 
+> On 01/11/18 16:37, Jerome Brunet wrote:
+>> On Thu, 2018-01-11 at 11:04 +0800, Yixun Lan wrote:
+>>> Comparing to RGMII interface, the RMII interface require few pins.
+>>> So it's worth describing them here.
+>>>
+>>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 >>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>> The only axg platform we have upstream is the s400 and is using rgmii.
+>> May I ask how this was tested ?
+>>
+> It's true that S400 using RGMII interface.
 > 
-> The only axg platform we have upstream is the s400 and is using rgmii.
-> May I ask how this was tested ?
+> but, we have customer using RTL8201FR-VB/VD which is a RMII PHY,
 > 
-It's true that S400 using RGMII interface.
+> This is actually tested with the 'eth_rmii_x_pins' group.
+> 
+> Yixun
+> 
 
-but, we have customer using RTL8201FR-VB/VD which is a RMII PHY,
+I pushed the same for GXBB,
 
-This is actually tested with the 'eth_rmii_x_pins' group.
-
-Yixun
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
