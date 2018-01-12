@@ -1,144 +1,108 @@
 From: claudiu.beznea@microchip.com (Claudiu Beznea)
-Date: Fri, 12 Jan 2018 16:22:59 +0200
-Subject: [PATCH v2 12/16] pwm: atmel: add pwm capabilities
+Date: Fri, 12 Jan 2018 16:22:58 +0200
+Subject: [PATCH v2 11/16] pwm: add documentation for PWM modes
 In-Reply-To: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
 References: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
-Message-ID: <1515766983-15151-13-git-send-email-claudiu.beznea@microchip.com>
+Message-ID: <1515766983-15151-12-git-send-email-claudiu.beznea@microchip.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add pwm capabilities to Atmel PWM controllers.
+Add documentation for PWM normal and complementary modes.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 ---
- drivers/pwm/pwm-atmel.c | 58 +++++++++++++++++++++++++++++++------------------
- 1 file changed, 37 insertions(+), 21 deletions(-)
+ Documentation/devicetree/bindings/pwm/pwm.txt | 17 ++++++++++++++--
+ Documentation/pwm.txt                         | 29 +++++++++++++++++++++++++--
+ 2 files changed, 42 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pwm/pwm-atmel.c b/drivers/pwm/pwm-atmel.c
-index 32427d2b7877..e879d5459b55 100644
---- a/drivers/pwm/pwm-atmel.c
-+++ b/drivers/pwm/pwm-atmel.c
-@@ -65,6 +65,11 @@ struct atmel_pwm_registers {
- 	u8 duty_upd;
- };
+diff --git a/Documentation/devicetree/bindings/pwm/pwm.txt b/Documentation/devicetree/bindings/pwm/pwm.txt
+index 8556263b8502..fdff25bad1db 100644
+--- a/Documentation/devicetree/bindings/pwm/pwm.txt
++++ b/Documentation/devicetree/bindings/pwm/pwm.txt
+@@ -43,8 +43,8 @@ because the name "backlight" would be used as fallback anyway.
+ pwm-specifier typically encodes the chip-relative PWM number and the PWM
+ period in nanoseconds.
  
-+struct atmel_pwm_data {
-+	struct atmel_pwm_registers regs;
-+	struct pwm_caps caps;
-+};
+-Optionally, the pwm-specifier can encode a number of flags (defined in
+-<dt-bindings/pwm/pwm.h>) in a third cell:
++Optionally, the pwm-specifier can encode:
++1. a number of flags (defined in <dt-bindings/pwm/pwm.h>) in a third cell:
+ - PWM_POLARITY_INVERTED: invert the PWM signal polarity
+ 
+ Example with optional PWM specifier for inverse polarity
+@@ -54,6 +54,19 @@ Example with optional PWM specifier for inverse polarity
+ 		pwm-names = "backlight";
+ 	};
+ 
++2. PWM working modes (defined in <dt-bindings/pwm/pwm.h>) in the 4th cell:
++- PWM_MODE_NORMAL: for all PWM controllers
++- PWM_MODE_COMPLEMENTARY: for PWM controllers with more than one output per
++PWM channel
 +
- struct atmel_pwm_chip {
- 	struct pwm_chip chip;
- 	struct clk *clk;
-@@ -277,27 +282,37 @@ static const struct pwm_ops atmel_pwm_ops = {
- 	.owner = THIS_MODULE,
- };
++Example with PWM modes:
++
++	bl: blacklight {
++		pwms = <&pwm 0 5000000 PWM_POLARITY_INVERTED
++			PWM_DTMODE_NORMAL | PWM_DTMODE_COMPLEMENTARY>;
++		pwm-names = "backlight";
++	};
++
+ 2) PWM controller nodes
+ -----------------------
  
--static const struct atmel_pwm_registers atmel_pwm_regs_v1 = {
--	.period		= PWMV1_CPRD,
--	.period_upd	= PWMV1_CUPD,
--	.duty		= PWMV1_CDTY,
--	.duty_upd	= PWMV1_CUPD,
-+static const struct atmel_pwm_data atmel_pwm_data_v1 = {
-+	.regs = {
-+		.period		= PWMV1_CPRD,
-+		.period_upd	= PWMV1_CUPD,
-+		.duty		= PWMV1_CDTY,
-+		.duty_upd	= PWMV1_CUPD,
-+	},
-+	.caps = {
-+		.modes = PWM_MODE_NORMAL,
-+	},
- };
+diff --git a/Documentation/pwm.txt b/Documentation/pwm.txt
+index 8fbf0aa3ba2d..58c9bd55f021 100644
+--- a/Documentation/pwm.txt
++++ b/Documentation/pwm.txt
+@@ -61,8 +61,8 @@ In addition to the PWM state, the PWM API also exposes PWM arguments, which
+ are the reference PWM config one should use on this PWM.
+ PWM arguments are usually platform-specific and allows the PWM user to only
+ care about dutycycle relatively to the full period (like, duty = 50% of the
+-period). struct pwm_args contains 2 fields (period and polarity) and should
+-be used to set the initial PWM config (usually done in the probe function
++period). struct pwm_args contains 3 fields (period, polarity and mode) and
++should be used to set the initial PWM config (usually done in the probe function
+ of the PWM user). PWM arguments are retrieved with pwm_get_args().
  
--static const struct atmel_pwm_registers atmel_pwm_regs_v2 = {
--	.period		= PWMV2_CPRD,
--	.period_upd	= PWMV2_CPRDUPD,
--	.duty		= PWMV2_CDTY,
--	.duty_upd	= PWMV2_CDTYUPD,
-+static const struct atmel_pwm_data atmel_pwm_data_v2 = {
-+	.regs = {
-+		.period		= PWMV2_CPRD,
-+		.period_upd	= PWMV2_CPRDUPD,
-+		.duty		= PWMV2_CDTY,
-+		.duty_upd	= PWMV2_CDTYUPD,
-+	},
-+	.caps = {
-+		.modes = PWM_MODE_NORMAL | PWM_MODE_COMPLEMENTARY,
-+	},
- };
+ Using PWMs with the sysfs interface
+@@ -83,6 +83,9 @@ will find:
+   unexport
+    Unexports a PWM channel from sysfs (write-only).
  
- static const struct platform_device_id atmel_pwm_devtypes[] = {
- 	{
- 		.name = "at91sam9rl-pwm",
--		.driver_data = (kernel_ulong_t)&atmel_pwm_regs_v1,
-+		.driver_data = (kernel_ulong_t)&atmel_pwm_data_v1,
- 	}, {
- 		.name = "sama5d3-pwm",
--		.driver_data = (kernel_ulong_t)&atmel_pwm_regs_v2,
-+		.driver_data = (kernel_ulong_t)&atmel_pwm_data_v2,
- 	}, {
- 		/* sentinel */
- 	},
-@@ -307,20 +322,20 @@ MODULE_DEVICE_TABLE(platform, atmel_pwm_devtypes);
- static const struct of_device_id atmel_pwm_dt_ids[] = {
- 	{
- 		.compatible = "atmel,at91sam9rl-pwm",
--		.data = &atmel_pwm_regs_v1,
-+		.data = &atmel_pwm_data_v1,
- 	}, {
- 		.compatible = "atmel,sama5d3-pwm",
--		.data = &atmel_pwm_regs_v2,
-+		.data = &atmel_pwm_data_v2,
- 	}, {
- 		.compatible = "atmel,sama5d2-pwm",
--		.data = &atmel_pwm_regs_v2,
-+		.data = &atmel_pwm_data_v2,
- 	}, {
- 		/* sentinel */
- 	},
- };
- MODULE_DEVICE_TABLE(of, atmel_pwm_dt_ids);
++  mode
++   PWM chip supported modes.
++
+ The PWM channels are numbered using a per-chip index from 0 to npwm-1.
  
--static inline const struct atmel_pwm_registers *
-+static inline const struct atmel_pwm_data *
- atmel_pwm_get_driver_data(struct platform_device *pdev)
- {
- 	const struct platform_device_id *id;
-@@ -330,18 +345,18 @@ atmel_pwm_get_driver_data(struct platform_device *pdev)
+ When a PWM channel is exported a pwmX directory will be created in the
+@@ -110,6 +113,28 @@ channel that was exported. The following properties will then be available:
+ 	- 0 - disabled
+ 	- 1 - enabled
  
- 	id = platform_get_device_id(pdev);
- 
--	return (struct atmel_pwm_registers *)id->driver_data;
-+	return (struct atmel_pwm_data *)id->driver_data;
- }
- 
- static int atmel_pwm_probe(struct platform_device *pdev)
- {
--	const struct atmel_pwm_registers *regs;
-+	const struct atmel_pwm_data *data;
- 	struct atmel_pwm_chip *atmel_pwm;
- 	struct resource *res;
- 	int ret;
- 
--	regs = atmel_pwm_get_driver_data(pdev);
--	if (!regs)
-+	data = atmel_pwm_get_driver_data(pdev);
-+	if (!data)
- 		return -ENODEV;
- 
- 	atmel_pwm = devm_kzalloc(&pdev->dev, sizeof(*atmel_pwm), GFP_KERNEL);
-@@ -365,9 +380,10 @@ static int atmel_pwm_probe(struct platform_device *pdev)
- 
- 	atmel_pwm->chip.dev = &pdev->dev;
- 	atmel_pwm->chip.ops = &atmel_pwm_ops;
-+	atmel_pwm->chip.caps = &data->caps;
- 	atmel_pwm->chip.base = -1;
- 	atmel_pwm->chip.npwm = 4;
--	atmel_pwm->regs = regs;
-+	atmel_pwm->regs = &data->regs;
- 	atmel_pwm->updated_pwms = 0;
- 	mutex_init(&atmel_pwm->isr_lock);
++  mode
++    Set PWM channel working mode (normal and complementary). PWM chip with
++    complementary mode could also work in normal mode by using only one physical
++    output.
++
++    Normal mode - for PWM chips with one output per PWM channel; output
++        waveforms looks like this:
++             __    __    __    __
++    PWM   __|  |__|  |__|  |__|  |__
++            <--T-->
++
++    Complementary mode - for PWM chips with more than one output per PWM
++        channel; output waveforms for a PWM controller with 2 outputs per PWM
++        channel looks line this:
++             __    __    __    __
++    PWMH1 __|  |__|  |__|  |__|  |__
++          __    __    __    __    __
++    PWML1   |__|  |__|  |__|  |__|
++            <--T-->
++
++    Where T is the signal period.
++
+ Implementing a PWM driver
+ -------------------------
  
 -- 
 2.7.4
