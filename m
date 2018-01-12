@@ -1,26 +1,24 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 11 Jan 2018 10:46:38 +0100
-Subject: [PATCH 0/2] pinctrl: meson: use one uniform 'function' name
-In-Reply-To: <20180108073328.205769-1-yixun.lan@amlogic.com>
-References: <20180108073328.205769-1-yixun.lan@amlogic.com>
-Message-ID: <CACRpkdZ6pW_3QTeQMGVbpa=1WTgR59fi+0aWCqmbRBzOn+F0cA@mail.gmail.com>
+From: olof@lixom.net (Olof Johansson)
+Date: Thu, 11 Jan 2018 16:51:04 -0800
+Subject: [GIT PULL] Amlogic 64-bit DT changes for v4.16, round 3
+In-Reply-To: <7hh8rz25of.fsf@baylibre.com>
+References: <7hh8rz25of.fsf@baylibre.com>
+Message-ID: <20180112005104.q2e2kqnrodziw4ae@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jan 8, 2018 at 8:33 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
+On Fri, Jan 05, 2018 at 04:26:40PM -0800, Kevin Hilman wrote:
+> Arnd, Olof,
+> 
+> A final round of 64-bit DT changes for Amlogic SoCs.
+> 
+> These were just waiting for the clock dependencies to land in the clock
+> tree which they now have.  I've merged the same tag into this branch to
+> avoid any dependency issues.
+> 
+> Thanks,
 
-> These two patches are general improvement for meson pinctrl driver.
-> It make the two pinctrl trees (ee/ao) to share one uniform 'function' name for
-> one hardware block even its pin groups live inside two differet hardware domains,
-> which for example EE vs AO domain here.
->
-> This idea is motivated by Martin's question at [1]
->
-> [1]
->  http://lkml.kernel.org/r/CAFBinCCuQ-NK747+GHDkhZty_UMMgzCYOYFcNTrRDJgU8OM=Gw at mail.gmail.com
+Thanks, merged.
 
-There seems to be controversy here so I'd like input from Carlo
-and/or Beniamino if possible.
 
-Yours,
-Linus Walleij
+-Olof
