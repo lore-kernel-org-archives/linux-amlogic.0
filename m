@@ -1,435 +1,296 @@
 From: claudiu.beznea@microchip.com (Claudiu Beznea)
-Date: Fri, 12 Jan 2018 16:22:55 +0200
-Subject: [PATCH v2 08/16] drivers: pwm: core: extend PWM framework with PWM
- modes
+Date: Fri, 12 Jan 2018 16:22:56 +0200
+Subject: [PATCH v2 09/16] drivers: pwm: core: add PWM mode to pwm_config()
 In-Reply-To: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
 References: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
-Message-ID: <1515766983-15151-9-git-send-email-claudiu.beznea@microchip.com>
+Message-ID: <1515766983-15151-10-git-send-email-claudiu.beznea@microchip.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add basic PWM modes: normal and complementary. These modes should
-differentiate the single output per channel PWM controllers from multiple
-outputs per channel PWM controllers. These modes whould be set as follow:
-1. PWM controllers with only one output per channel:
-- normal mode
-2. PWM controllers with more than one output per channel:
-- normal mode
-- complementary mode
-Since users could use the PWM channel of a multiple output per channel PWM
-controller, he could set the channel in normal mode and use only one
-physical output.
-The PWM modes were implemented as capabilities of PWM chip. In the probe
-function of PWM driver the PWM capabilities (which currently contains only
-PWM modes) should be provided in the structure of PWM chip. If no
-capabilities are provided by the probe function, the default capabilities
-will be used (the default capabilities involves PWM normal mode).
-Every PWM channel will have associated a mode in the PWM state. Proper
-helper functions were added to get/set PWM mode. The mode could also be set
-from DT. Only modes registered for PWM chip could be set for a PWM channel.
+Add PWM mode to pwm_config() function. The drivers which uses pwm_config()
+were adapted to this change.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 ---
- drivers/pwm/core.c  | 62 ++++++++++++++++++++++++++++++++++++++++++++++++++++-
- drivers/pwm/sysfs.c | 62 +++++++++++++++++++++++++++++++++++++++++++++++++++++
- include/linux/pwm.h | 60 ++++++++++++++++++++++++++++++++++++++++++++++++++-
- 3 files changed, 182 insertions(+), 2 deletions(-)
+ arch/arm/mach-s3c24xx/mach-rx1950.c  | 5 +++--
+ drivers/bus/ts-nbus.c                | 2 +-
+ drivers/clk/clk-pwm.c                | 3 ++-
+ drivers/gpu/drm/i915/intel_panel.c   | 8 +++++---
+ drivers/hwmon/pwm-fan.c              | 2 +-
+ drivers/input/misc/max77693-haptic.c | 2 +-
+ drivers/input/misc/max8997_haptic.c  | 3 ++-
+ drivers/leds/leds-pwm.c              | 2 +-
+ drivers/media/rc/ir-rx51.c           | 2 +-
+ drivers/media/rc/pwm-ir-tx.c         | 2 +-
+ drivers/video/backlight/lm3630a_bl.c | 2 +-
+ drivers/video/backlight/lp855x_bl.c  | 2 +-
+ drivers/video/backlight/lp8788_bl.c  | 2 +-
+ drivers/video/backlight/pwm_bl.c     | 4 ++--
+ drivers/video/fbdev/ssd1307fb.c      | 3 ++-
+ include/linux/pwm.h                  | 4 +++-
+ 16 files changed, 28 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
-index 7208b95e8d2f..99126127a467 100644
---- a/drivers/pwm/core.c
-+++ b/drivers/pwm/core.c
-@@ -41,6 +41,10 @@ static LIST_HEAD(pwm_chips);
- static DECLARE_BITMAP(allocated_pwms, MAX_PWMS);
- static RADIX_TREE(pwm_tree, GFP_KERNEL);
+diff --git a/arch/arm/mach-s3c24xx/mach-rx1950.c b/arch/arm/mach-s3c24xx/mach-rx1950.c
+index e86ad6a68a0b..9ee0ed9ff37e 100644
+--- a/arch/arm/mach-s3c24xx/mach-rx1950.c
++++ b/arch/arm/mach-s3c24xx/mach-rx1950.c
+@@ -433,14 +433,15 @@ static void rx1950_lcd_power(int enable)
  
-+static const struct pwm_caps pwm_chip_default_caps = {
-+	.modes = PWM_MODE_NORMAL,
-+};
-+
- static struct pwm_device *pwm_to_device(unsigned int pwm)
- {
- 	return radix_tree_lookup(&pwm_tree, pwm);
-@@ -142,6 +146,31 @@ static inline void of_pwm_xlate_flags(struct pwm_device *pwm,
- 		pwm->args.polarity = PWM_POLARITY_NORMAL;
- }
+ 		/* GPB1->OUTPUT, GPB1->0 */
+ 		gpio_direction_output(S3C2410_GPB(1), 0);
+-		pwm_config(lcd_pwm, 0, LCD_PWM_PERIOD);
++		pwm_config(lcd_pwm, 0, LCD_PWM_PERIOD, PWM_MODE_NORMAL);
+ 		pwm_disable(lcd_pwm);
  
-+static inline bool pwm_mode_valid(const struct pwm_chip *chip,
-+				  const enum pwm_mode mode)
-+{
-+	return !!(chip->caps->modes & mode);
-+}
-+
-+static inline void of_pwm_xlate_mode(struct pwm_device *pwm,
-+				     const struct of_phandle_args *args)
-+{
-+	unsigned int first = 0, last = 0;
-+
-+	if (args->args_count >= PWM_ARGS_CNT_XLATE_MODE) {
-+		first = ffs(args->args[PWM_ARGS_CNT_XLATE_MODE - 1]);
-+		last = fls(args->args[PWM_ARGS_CNT_XLATE_MODE - 1]);
-+	}
-+
-+	/* At least one valid mode provided from DT: use one valid mode */
-+	if (first && pwm_mode_valid(pwm->chip, BIT(first - 1)))
-+		pwm->args.mode = BIT(first - 1);
-+	else if (last && pwm_mode_valid(pwm->chip, BIT(last - 1)))
-+		pwm->args.mode = BIT(last - 1);
-+	else /* Invalid modes provided from DT: use first available chip mode */
-+		pwm->args.mode = BIT(ffs(pwm->chip->caps->modes) - 1);
-+}
-+
- struct pwm_device *of_pwm_xlate(struct pwm_chip *pc,
- 				const struct of_phandle_args *args)
- {
-@@ -161,6 +190,7 @@ struct pwm_device *of_pwm_xlate(struct pwm_chip *pc,
- 	pwm->args.period = args->args[PWM_ARGS_CNT_XLATE_PERIOD - 1];
+ 		/* GPC0->0, GPC10->0 */
+ 		gpio_direction_output(S3C2410_GPC(0), 0);
+ 		gpio_direction_output(S3C2410_GPC(10), 0);
+ 	} else {
+-		pwm_config(lcd_pwm, LCD_PWM_DUTY, LCD_PWM_PERIOD);
++		pwm_config(lcd_pwm, LCD_PWM_DUTY, LCD_PWM_PERIOD,
++			   PWM_MODE_NORMAL);
+ 		pwm_enable(lcd_pwm);
  
- 	of_pwm_xlate_flags(pwm, args);
-+	of_pwm_xlate_mode(pwm, args);
- 
- 	return pwm;
- }
-@@ -223,6 +253,18 @@ static bool pwm_ops_check(const struct pwm_ops *ops)
- 	return false;
- }
- 
-+static inline bool pwm_caps_valid(const struct pwm_caps *caps)
-+{
-+	unsigned long modes = PWM_MODE_MAX - 1;
-+
-+	return !!((modes & caps->modes) == caps->modes);
-+}
-+
-+static inline bool pwm_caps_zero(const struct pwm_caps *caps)
-+{
-+	return !!(caps->modes == 0);
-+}
-+
- /**
-  * pwmchip_add_with_polarity() - register a new PWM chip
-  * @chip: the PWM chip to add
-@@ -247,8 +289,14 @@ int pwmchip_add_with_polarity(struct pwm_chip *chip,
- 	if (!pwm_ops_check(chip->ops))
- 		return -EINVAL;
- 
-+	if (chip->caps && !pwm_caps_valid(chip->caps))
-+		return -EINVAL;
-+
- 	mutex_lock(&pwm_lock);
- 
-+	if (!chip->caps || (chip->caps && pwm_caps_zero(chip->caps)))
-+		chip->caps = &pwm_chip_default_caps;
-+
- 	ret = alloc_pwms(chip->base, chip->npwm);
+ 		gpio_direction_output(S3C2410_GPC(0), 1);
+diff --git a/drivers/bus/ts-nbus.c b/drivers/bus/ts-nbus.c
+index 073fd9011154..dcd2ca3bcd99 100644
+--- a/drivers/bus/ts-nbus.c
++++ b/drivers/bus/ts-nbus.c
+@@ -316,7 +316,7 @@ static int ts_nbus_probe(struct platform_device *pdev)
+ 	 * the atomic PWM API.
+ 	 */
+ 	pwm_apply_args(pwm);
+-	ret = pwm_config(pwm, pargs.period, pargs.period);
++	ret = pwm_config(pwm, pargs.period, pargs.period, pargs.mode);
  	if (ret < 0)
- 		goto out;
-@@ -268,6 +316,7 @@ int pwmchip_add_with_polarity(struct pwm_chip *chip,
- 		pwm->pwm = chip->base + i;
- 		pwm->hwpwm = i;
- 		pwm->state.polarity = polarity;
-+		pwm->state.mode = BIT(ffs(chip->caps->modes) - 1);
+ 		return ret;
  
- 		if (chip->ops->get_state)
- 			chip->ops->get_state(chip, pwm, &pwm->state);
-@@ -443,7 +492,11 @@ int pwm_apply_state(struct pwm_device *pwm, struct pwm_state *state)
- 	int err;
+diff --git a/drivers/clk/clk-pwm.c b/drivers/clk/clk-pwm.c
+index 8cb9d117fdbf..605a6bffe893 100644
+--- a/drivers/clk/clk-pwm.c
++++ b/drivers/clk/clk-pwm.c
+@@ -92,7 +92,8 @@ static int clk_pwm_probe(struct platform_device *pdev)
+ 	 * atomic PWM API.
+ 	 */
+ 	pwm_apply_args(pwm);
+-	ret = pwm_config(pwm, (pargs.period + 1) >> 1, pargs.period);
++	ret = pwm_config(pwm, (pargs.period + 1) >> 1, pargs.period,
++			 pargs.mode);
+ 	if (ret < 0)
+ 		return ret;
  
- 	if (!pwm || !state || !state->period ||
--	    state->duty_cycle > state->period)
-+	    state->duty_cycle > state->period ||
-+	    !pwm->chip || !pwm->chip->caps ||
-+	    !pwm_mode_valid(pwm->chip, state->mode) ||
-+	    /* Only one active mode at a time. */
-+	    fls(state->mode) != ffs(state->mode))
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/i915/intel_panel.c b/drivers/gpu/drm/i915/intel_panel.c
+index adc51e452e3e..1ea93ebd3e56 100644
+--- a/drivers/gpu/drm/i915/intel_panel.c
++++ b/drivers/gpu/drm/i915/intel_panel.c
+@@ -634,7 +634,8 @@ static void pwm_set_backlight(const struct drm_connector_state *conn_state, u32
+ 	struct intel_panel *panel = &to_intel_connector(conn_state->connector)->panel;
+ 	int duty_ns = DIV_ROUND_UP(level * CRC_PMIC_PWM_PERIOD_NS, 100);
  
- 	if (!memcmp(state, &pwm->state, sizeof(*state)))
-@@ -504,6 +557,9 @@ int pwm_apply_state(struct pwm_device *pwm, struct pwm_state *state)
+-	pwm_config(panel->backlight.pwm, duty_ns, CRC_PMIC_PWM_PERIOD_NS);
++	pwm_config(panel->backlight.pwm, duty_ns, CRC_PMIC_PWM_PERIOD_NS,
++		   PWM_MODE_NORMAL);
+ }
  
- 			pwm->state.enabled = state->enabled;
- 		}
-+
-+		/* No mode support for non-atomic PWM. */
-+		pwm->state.mode = state->mode;
- 	}
+ static void
+@@ -823,7 +824,8 @@ static void pwm_disable_backlight(const struct drm_connector_state *old_conn_sta
+ 	struct intel_panel *panel = &connector->panel;
+ 
+ 	/* Disable the backlight */
+-	pwm_config(panel->backlight.pwm, 0, CRC_PMIC_PWM_PERIOD_NS);
++	pwm_config(panel->backlight.pwm, 0, CRC_PMIC_PWM_PERIOD_NS,
++		   PWM_MODE_NORMAL);
+ 	usleep_range(2000, 3000);
+ 	pwm_disable(panel->backlight.pwm);
+ }
+@@ -1771,7 +1773,7 @@ static int pwm_setup_backlight(struct intel_connector *connector,
+ 	pwm_apply_args(panel->backlight.pwm);
+ 
+ 	retval = pwm_config(panel->backlight.pwm, CRC_PMIC_PWM_PERIOD_NS,
+-			    CRC_PMIC_PWM_PERIOD_NS);
++			    CRC_PMIC_PWM_PERIOD_NS, PWM_MODE_NORMAL);
+ 	if (retval < 0) {
+ 		DRM_ERROR("Failed to configure the pwm chip\n");
+ 		pwm_put(panel->backlight.pwm);
+diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
+index 70cc0d134f3c..bd05cd81d3d5 100644
+--- a/drivers/hwmon/pwm-fan.c
++++ b/drivers/hwmon/pwm-fan.c
+@@ -308,7 +308,7 @@ static int pwm_fan_resume(struct device *dev)
+ 
+ 	pwm_get_args(ctx->pwm, &pargs);
+ 	duty = DIV_ROUND_UP(ctx->pwm_value * (pargs.period - 1), MAX_PWM);
+-	ret = pwm_config(ctx->pwm, duty, pargs.period);
++	ret = pwm_config(ctx->pwm, duty, pargs.period, pargs.mode);
+ 	if (ret)
+ 		return ret;
+ 	return pwm_enable(ctx->pwm);
+diff --git a/drivers/input/misc/max77693-haptic.c b/drivers/input/misc/max77693-haptic.c
+index 46b0f48fbf49..5fe2ff2b408b 100644
+--- a/drivers/input/misc/max77693-haptic.c
++++ b/drivers/input/misc/max77693-haptic.c
+@@ -76,7 +76,7 @@ static int max77693_haptic_set_duty_cycle(struct max77693_haptic *haptic)
+ 
+ 	pwm_get_args(haptic->pwm_dev, &pargs);
+ 	delta = (pargs.period + haptic->pwm_duty) / 2;
+-	error = pwm_config(haptic->pwm_dev, delta, pargs.period);
++	error = pwm_config(haptic->pwm_dev, delta, pargs.period, pargs.mode);
+ 	if (error) {
+ 		dev_err(haptic->dev, "failed to configure pwm: %d\n", error);
+ 		return error;
+diff --git a/drivers/input/misc/max8997_haptic.c b/drivers/input/misc/max8997_haptic.c
+index 99bc762881d5..c16be1e410c6 100644
+--- a/drivers/input/misc/max8997_haptic.c
++++ b/drivers/input/misc/max8997_haptic.c
+@@ -73,7 +73,8 @@ static int max8997_haptic_set_duty_cycle(struct max8997_haptic *chip)
+ 
+ 	if (chip->mode == MAX8997_EXTERNAL_MODE) {
+ 		unsigned int duty = chip->pwm_period * chip->level / 100;
+-		ret = pwm_config(chip->pwm, duty, chip->pwm_period);
++		ret = pwm_config(chip->pwm, duty, chip->pwm_period,
++				 PWM_MODE_NORMAL);
+ 	} else {
+ 		int i;
+ 		u8 duty_index = 0;
+diff --git a/drivers/leds/leds-pwm.c b/drivers/leds/leds-pwm.c
+index 8d456dc6c5bf..4d7a55db046a 100644
+--- a/drivers/leds/leds-pwm.c
++++ b/drivers/leds/leds-pwm.c
+@@ -40,7 +40,7 @@ static void __led_pwm_set(struct led_pwm_data *led_dat)
+ {
+ 	int new_duty = led_dat->duty;
+ 
+-	pwm_config(led_dat->pwm, new_duty, led_dat->period);
++	pwm_config(led_dat->pwm, new_duty, led_dat->period, PWM_MODE_NORMAL);
+ 
+ 	if (new_duty == 0)
+ 		pwm_disable(led_dat->pwm);
+diff --git a/drivers/media/rc/ir-rx51.c b/drivers/media/rc/ir-rx51.c
+index 49265f02e772..0667aa9f1566 100644
+--- a/drivers/media/rc/ir-rx51.c
++++ b/drivers/media/rc/ir-rx51.c
+@@ -58,7 +58,7 @@ static int init_timing_params(struct ir_rx51 *ir_rx51)
+ 
+ 	duty = DIV_ROUND_CLOSEST(ir_rx51->duty_cycle * period, 100);
+ 
+-	pwm_config(pwm, duty, period);
++	pwm_config(pwm, duty, period, PWM_MODE_NORMAL);
  
  	return 0;
-@@ -553,6 +609,8 @@ int pwm_adjust_config(struct pwm_device *pwm)
- 	pwm_get_args(pwm, &pargs);
- 	pwm_get_state(pwm, &state);
- 
-+	state.mode = pargs.mode;
-+
- 	/*
- 	 * If the current period is zero it means that either the PWM driver
- 	 * does not support initial state retrieval or the PWM has not yet
-@@ -824,6 +882,7 @@ struct pwm_device *pwm_get(struct device *dev, const char *con_id)
- 
- 	pwm->args.period = chosen->period;
- 	pwm->args.polarity = chosen->polarity;
-+	pwm->args.mode = BIT(ffs(chip->caps->modes) - 1);
- 
- 	return pwm;
  }
-@@ -973,6 +1032,7 @@ static void pwm_dbg_show(struct pwm_chip *chip, struct seq_file *s)
- 		seq_printf(s, " duty: %u ns", state.duty_cycle);
- 		seq_printf(s, " polarity: %s",
- 			   state.polarity ? "inverse" : "normal");
-+		seq_printf(s, " mode: %s", pwm_get_mode_desc(state.mode));
+diff --git a/drivers/media/rc/pwm-ir-tx.c b/drivers/media/rc/pwm-ir-tx.c
+index 27d0f5837a76..4829b09f3a0b 100644
+--- a/drivers/media/rc/pwm-ir-tx.c
++++ b/drivers/media/rc/pwm-ir-tx.c
+@@ -68,7 +68,7 @@ static int pwm_ir_tx(struct rc_dev *dev, unsigned int *txbuf,
+ 	period = DIV_ROUND_CLOSEST(NSEC_PER_SEC, pwm_ir->carrier);
+ 	duty = DIV_ROUND_CLOSEST(pwm_ir->duty_cycle * period, 100);
  
- 		seq_puts(s, "\n");
+-	pwm_config(pwm, duty, period);
++	pwm_config(pwm, duty, period, PWM_MODE_NORMAL);
+ 
+ 	edge = ktime_get();
+ 
+diff --git a/drivers/video/backlight/lm3630a_bl.c b/drivers/video/backlight/lm3630a_bl.c
+index 2030a6b77a09..9992aa9c4cf5 100644
+--- a/drivers/video/backlight/lm3630a_bl.c
++++ b/drivers/video/backlight/lm3630a_bl.c
+@@ -166,7 +166,7 @@ static void lm3630a_pwm_ctrl(struct lm3630a_chip *pchip, int br, int br_max)
+ 	unsigned int period = pchip->pdata->pwm_period;
+ 	unsigned int duty = br * period / br_max;
+ 
+-	pwm_config(pchip->pwmd, duty, period);
++	pwm_config(pchip->pwmd, duty, period, PWM_MODE_NORMAL);
+ 	if (duty)
+ 		pwm_enable(pchip->pwmd);
+ 	else
+diff --git a/drivers/video/backlight/lp855x_bl.c b/drivers/video/backlight/lp855x_bl.c
+index 939f057836e1..018be55d762c 100644
+--- a/drivers/video/backlight/lp855x_bl.c
++++ b/drivers/video/backlight/lp855x_bl.c
+@@ -256,7 +256,7 @@ static void lp855x_pwm_ctrl(struct lp855x *lp, int br, int max_br)
+ 		pwm_apply_args(pwm);
  	}
-diff --git a/drivers/pwm/sysfs.c b/drivers/pwm/sysfs.c
-index 83f2b0b15712..7d111ab17e43 100644
---- a/drivers/pwm/sysfs.c
-+++ b/drivers/pwm/sysfs.c
-@@ -223,11 +223,50 @@ static ssize_t capture_show(struct device *child,
- 	return sprintf(buf, "%u %u\n", result.period, result.duty_cycle);
- }
  
-+static ssize_t mode_show(struct device *child,
-+			 struct device_attribute *attr,
-+			 char *buf)
-+{
-+	const struct pwm_device *pwm = child_to_pwm_device(child);
-+	struct pwm_state state;
-+
-+	pwm_get_state(pwm, &state);
-+
-+	return sprintf(buf, "%s\n", pwm_get_mode_desc(state.mode));
-+}
-+
-+static ssize_t mode_store(struct device *child,
-+			  struct device_attribute *attr,
-+			  const char *buf, size_t size)
-+{
-+	struct pwm_export *export = child_to_pwm_export(child);
-+	struct pwm_device *pwm = export->pwm;
-+	struct pwm_state state;
-+	enum pwm_mode mode;
-+	int ret;
-+
-+	if (sysfs_streq(buf, pwm_get_mode_desc(PWM_MODE_NORMAL)))
-+		mode = PWM_MODE_NORMAL;
-+	else if (sysfs_streq(buf, pwm_get_mode_desc(PWM_MODE_COMPLEMENTARY)))
-+		mode = PWM_MODE_COMPLEMENTARY;
-+	else
-+		return -EINVAL;
-+
-+	mutex_lock(&export->lock);
-+	pwm_get_state(pwm, &state);
-+	state.mode = mode;
-+	ret = pwm_apply_state(pwm, &state);
-+	mutex_unlock(&export->lock);
-+
-+	return ret ? : size;
-+}
-+
- static DEVICE_ATTR_RW(period);
- static DEVICE_ATTR_RW(duty_cycle);
- static DEVICE_ATTR_RW(enable);
- static DEVICE_ATTR_RW(polarity);
- static DEVICE_ATTR_RO(capture);
-+static DEVICE_ATTR_RW(mode);
+-	pwm_config(lp->pwm, duty, period);
++	pwm_config(lp->pwm, duty, period, PWM_MODE_NORMAL);
+ 	if (duty)
+ 		pwm_enable(lp->pwm);
+ 	else
+diff --git a/drivers/video/backlight/lp8788_bl.c b/drivers/video/backlight/lp8788_bl.c
+index cf869ec90cce..cb49f34a7f2e 100644
+--- a/drivers/video/backlight/lp8788_bl.c
++++ b/drivers/video/backlight/lp8788_bl.c
+@@ -153,7 +153,7 @@ static void lp8788_pwm_ctrl(struct lp8788_bl *bl, int br, int max_br)
+ 		pwm_apply_args(pwm);
+ 	}
  
- static struct attribute *pwm_attrs[] = {
- 	&dev_attr_period.attr,
-@@ -235,6 +274,7 @@ static struct attribute *pwm_attrs[] = {
- 	&dev_attr_enable.attr,
- 	&dev_attr_polarity.attr,
- 	&dev_attr_capture.attr,
-+	&dev_attr_mode.attr,
- 	NULL
- };
- ATTRIBUTE_GROUPS(pwm);
-@@ -362,10 +402,32 @@ static ssize_t npwm_show(struct device *parent, struct device_attribute *attr,
- }
- static DEVICE_ATTR_RO(npwm);
+-	pwm_config(bl->pwm, duty, period);
++	pwm_config(bl->pwm, duty, period, PWM_MODE_NORMAL);
+ 	if (duty)
+ 		pwm_enable(bl->pwm);
+ 	else
+diff --git a/drivers/video/backlight/pwm_bl.c b/drivers/video/backlight/pwm_bl.c
+index 1c2289ddd555..ec5215c4c937 100644
+--- a/drivers/video/backlight/pwm_bl.c
++++ b/drivers/video/backlight/pwm_bl.c
+@@ -66,7 +66,7 @@ static void pwm_backlight_power_off(struct pwm_bl_data *pb)
+ 	if (!pb->enabled)
+ 		return;
  
-+static ssize_t modes_show(struct device *parent,
-+			  struct device_attribute *attr,
-+			  char *buf)
-+{
-+	const struct pwm_chip *chip = dev_get_drvdata(parent);
-+	enum pwm_mode mode;
-+	int i, len = 0;
-+
-+	for (i = 0; i < PWM_MODE_MAX - 1; i++) {
-+		mode = BIT(i);
-+		if (chip->caps->modes & mode)
-+			len += scnprintf(buf + len, PAGE_SIZE - len, "%s ",
-+					 pwm_get_mode_desc(mode));
-+	}
-+
-+	len += scnprintf(buf + len, PAGE_SIZE - len, "\n");
-+
-+	return len;
-+}
-+static DEVICE_ATTR_RO(modes);
-+
- static struct attribute *pwm_chip_attrs[] = {
- 	&dev_attr_export.attr,
- 	&dev_attr_unexport.attr,
- 	&dev_attr_npwm.attr,
-+	&dev_attr_modes.attr,
- 	NULL,
- };
- ATTRIBUTE_GROUPS(pwm_chip);
+-	pwm_config(pb->pwm, 0, pb->period);
++	pwm_config(pb->pwm, 0, pb->period, PWM_MODE_NORMAL);
+ 	pwm_disable(pb->pwm);
+ 
+ 	if (pb->enable_gpio)
+@@ -108,7 +108,7 @@ static int pwm_backlight_update_status(struct backlight_device *bl)
+ 
+ 	if (brightness > 0) {
+ 		duty_cycle = compute_duty_cycle(pb, brightness);
+-		pwm_config(pb->pwm, duty_cycle, pb->period);
++		pwm_config(pb->pwm, duty_cycle, pb->period, PWM_MODE_NORMAL);
+ 		pwm_backlight_power_on(pb, brightness);
+ 	} else
+ 		pwm_backlight_power_off(pb);
+diff --git a/drivers/video/fbdev/ssd1307fb.c b/drivers/video/fbdev/ssd1307fb.c
+index f599520374dd..9cf17721e6e2 100644
+--- a/drivers/video/fbdev/ssd1307fb.c
++++ b/drivers/video/fbdev/ssd1307fb.c
+@@ -308,7 +308,8 @@ static int ssd1307fb_init(struct ssd1307fb_par *par)
+ 
+ 		par->pwm_period = pargs.period;
+ 		/* Enable the PWM */
+-		pwm_config(par->pwm, par->pwm_period / 2, par->pwm_period);
++		pwm_config(par->pwm, par->pwm_period / 2, par->pwm_period,
++			   PWM_MODE_NORMAL);
+ 		pwm_enable(par->pwm);
+ 
+ 		dev_dbg(&par->client->dev, "Using PWM%d with a %dns period.\n",
 diff --git a/include/linux/pwm.h b/include/linux/pwm.h
-index 4bb628b94d88..0fdc680651aa 100644
+index 0fdc680651aa..2e8dfc3ea516 100644
 --- a/include/linux/pwm.h
 +++ b/include/linux/pwm.h
-@@ -26,9 +26,23 @@ enum pwm_polarity {
- };
- 
- /**
-+ * enum pwm_mode - PWM working modes
-+ * PWM_MODE_NORMAL: PWM has one output per channel
-+ * PWM_MODE_COMPLEMENTARY: PWM has 2 outputs per channel with opposite polarity
-+ * PWM_MODE_MAX: Used to get the defined PWM modes mask (PWM_MODE_MAX - 1)
-+ * phase-shifted
-+ */
-+enum pwm_mode {
-+	PWM_MODE_NORMAL		= BIT(0),
-+	PWM_MODE_COMPLEMENTARY	= BIT(1),
-+	PWM_MODE_MAX		= BIT(2),
-+};
-+
-+/**
-  * struct pwm_args - board-dependent PWM arguments
-  * @period: reference period
-  * @polarity: reference polarity
-+ * @mode: reference mode
-  *
-  * This structure describes board-dependent arguments attached to a PWM
-  * device. These arguments are usually retrieved from the PWM lookup table or
-@@ -41,6 +55,7 @@ enum pwm_polarity {
- struct pwm_args {
- 	unsigned int period;
- 	enum pwm_polarity polarity;
-+	enum pwm_mode mode;
- };
- 
- enum {
-@@ -52,12 +67,22 @@ enum {
-  * enum pwm_args_xlate_options - options for translating PWM options
-  * @PWM_ARGS_CNT_XLATE_PERIOD: translate period
-  * @PWM_ARGS_CNT_XLATE_FLAGS: translate flags (polarity flags)
-+ * @PWM_ARGS_CNT_XLATE_MODE: translate with flags and mode
-  * @PWM_ARGS_CNT_XLATE_MAX: maximum number of translate options
-  */
- enum pwm_args_xlate_options {
- 	PWM_ARGS_CNT_XLATE_PERIOD = 2,
- 	PWM_ARGS_CNT_XLATE_FLAGS,
--	PWM_ARGS_CNT_XLATE_MAX = PWM_ARGS_CNT_XLATE_FLAGS,
-+	PWM_ARGS_CNT_XLATE_MODE,
-+	PWM_ARGS_CNT_XLATE_MAX = PWM_ARGS_CNT_XLATE_MODE,
-+};
-+
-+/**
-+ * struct pwm_caps - PWM capabilities
-+ * @modes: PWM chip supported modes
-+ */
-+struct pwm_caps {
-+	unsigned long modes;
- };
- 
- /*
-@@ -65,12 +90,14 @@ enum pwm_args_xlate_options {
-  * @period: PWM period (in nanoseconds)
-  * @duty_cycle: PWM duty cycle (in nanoseconds)
-  * @polarity: PWM polarity
+@@ -375,11 +375,12 @@ int pwm_adjust_config(struct pwm_device *pwm);
+  * @pwm: PWM device
+  * @duty_ns: "on" time (in nanoseconds)
+  * @period_ns: duration (in nanoseconds) of one cycle
 + * @mode: PWM mode
-  * @enabled: PWM enabled status
+  *
+  * Returns: 0 on success or a negative error code on failure.
   */
- struct pwm_state {
- 	unsigned int period;
- 	unsigned int duty_cycle;
- 	enum pwm_polarity polarity;
-+	enum pwm_mode mode;
- 	bool enabled;
- };
- 
-@@ -156,6 +183,21 @@ static inline enum pwm_polarity pwm_get_polarity(const struct pwm_device *pwm)
- 	return state.polarity;
- }
- 
-+static inline enum pwm_mode pwm_get_mode(const struct pwm_device *pwm)
-+{
-+	struct pwm_state state;
-+
-+	pwm_get_state(pwm, &state);
-+
-+	return state.mode;
-+}
-+
-+static inline void pwm_set_mode(struct pwm_device *pwm, enum pwm_mode mode)
-+{
-+	if (pwm)
-+		pwm->state.mode = mode;
-+}
-+
- static inline void pwm_get_args(const struct pwm_device *pwm,
- 				struct pwm_args *args)
+ static inline int pwm_config(struct pwm_device *pwm, int duty_ns,
+-			     int period_ns)
++			     int period_ns, enum pwm_mode mode)
  {
-@@ -193,6 +235,7 @@ static inline void pwm_init_state(const struct pwm_device *pwm,
- 	state->period = args.period;
- 	state->polarity = args.polarity;
- 	state->duty_cycle = 0;
-+	state->mode = args.mode;
+ 	struct pwm_state state;
+ 
+@@ -395,6 +396,7 @@ static inline int pwm_config(struct pwm_device *pwm, int duty_ns,
+ 
+ 	state.duty_cycle = duty_ns;
+ 	state.period = period_ns;
++	state.mode = mode;
+ 	return pwm_apply_state(pwm, &state);
  }
  
- /**
-@@ -295,6 +338,7 @@ struct pwm_ops {
-  * @dev: device providing the PWMs
-  * @list: list node for internal use
-  * @ops: callbacks for this PWM controller
-+ * @caps: capabilities for this PWM controller
-  * @base: number of first PWM controlled by this chip
-  * @npwm: number of PWMs controlled by this chip
-  * @pwms: array of PWM devices allocated by the framework
-@@ -303,6 +347,7 @@ struct pwm_chip {
- 	struct device *dev;
- 	struct list_head list;
- 	const struct pwm_ops *ops;
-+	const struct pwm_caps *caps;
- 	int base;
- 	unsigned int npwm;
- 	struct pwm_device *pwms;
-@@ -429,6 +474,13 @@ static inline void pwm_disable(struct pwm_device *pwm)
- 	pwm_apply_state(pwm, &state);
- }
- 
-+static inline const char * const pwm_get_mode_desc(enum pwm_mode mode)
-+{
-+	static const char * const modes[] = { "normal", "complementary" };
-+
-+	return mode ? modes[ffs(mode) - 1] : "invalid";
-+}
-+
- /* PWM provider APIs */
- int pwm_capture(struct pwm_device *pwm, struct pwm_capture *result,
- 		unsigned long timeout);
-@@ -503,6 +555,11 @@ static inline void pwm_disable(struct pwm_device *pwm)
- {
- }
- 
-+static inline const char * const pwm_get_mode_desc(enum pwm_mode mode)
-+{
-+	return NULL;
-+}
-+
- static inline int pwm_set_chip_data(struct pwm_device *pwm, void *data)
- {
- 	return -EINVAL;
-@@ -597,6 +654,7 @@ static inline void pwm_apply_args(struct pwm_device *pwm)
- 	state.enabled = false;
- 	state.polarity = pwm->args.polarity;
- 	state.period = pwm->args.period;
-+	state.mode = pwm->args.mode;
- 
- 	pwm_apply_state(pwm, &state);
- }
 -- 
 2.7.4
