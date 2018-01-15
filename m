@@ -1,56 +1,38 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 15 Jan 2018 18:10:15 +0100
-Subject: [PATCH net-next v5 4/4] net: stmmac: dwmac-meson8b: propagate rate
- changes to the parent clock
-In-Reply-To: <20180115171015.1118-1-martin.blumenstingl@googlemail.com>
-References: <20180115171015.1118-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180115171015.1118-5-martin.blumenstingl@googlemail.com>
+From: andy.shevchenko@gmail.com (Andy Shevchenko)
+Date: Mon, 15 Jan 2018 22:27:31 +0200
+Subject: [PATCH v2 01/16] drivers: pwm: core: use a single of xlate
+ function
+In-Reply-To: <6441df76-fb4a-ce00-1019-f7ff9143b75e@microchip.com>
+References: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
+ <1515766983-15151-2-git-send-email-claudiu.beznea@microchip.com>
+ <20180112183512.GB102880@google.com>
+ <6441df76-fb4a-ce00-1019-f7ff9143b75e@microchip.com>
+Message-ID: <CAHp75VcaFDEQ1cBzeU2eBj_vf19ok6EWLC07SOTQLRH8BQSbzA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Meson8b the only valid input clock is MPLL2. The bootloader
-configures that to run at 500002394Hz which cannot be divided evenly
-down to 125MHz using the m250_div clock. Currently the common clock
-framework chooses a m250_div of 2 - with the internal fixed
-"divide by 10" this results in a RGMII TX clock of 125001197Hz (120Hz
-above the requested 125MHz).
+On Mon, Jan 15, 2018 at 10:41 AM, Claudiu Beznea
+<Claudiu.Beznea@microchip.com> wrote:
 
-Letting the common clock framework propagate the rate changes up to the
-parent of m250_mux allows us to get the best possible clock rate. With
-this patch the common clock framework calculates a rate of
-very-close-to-250MHz (249999701Hz to be exact) for the MPLL2 clock
-(which is the mux input). Dividing that by 2 (which is an internal,
-fixed divider for the RGMII TX clock) gives us an RGMII TX clock of
-124999850Hz (which is only 150Hz off the requested 125MHz, compared to
-1197Hz based on the MPLL2 rate set by u-boot and the Amlogic GPL kernel
-sources).
+> For this driver, the PWM bindings were changed (I did a grep by "google,cros-ec-pwm"
+> and located only:
+> arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
+> arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+> files) and changed the bindings in this series, as follows, patch 7 from this series:
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
+> index 0384e3121f18..0c790ec387eb 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts
+> @@ -77,7 +77,7 @@
+>
+>         backlight: backlight {
+>                 compatible = "pwm-backlight";
+> -               pwms = <&cros_ec_pwm 1>;
+> +               pwms = <&cros_ec_pwm 1 65535>;
 
-SoCs from the Meson GX series are not affected by this change because
-the input clock is FCLK_DIV2 whose rate cannot be changed (which is fine
-since it's running at 1GHz, so it's already a multiple of 250MHz and
-125MHz).
+This shows an breakage for user. The old PWM device tree sources or
+binaries should work independently on what changes you did to kernel.
 
-Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
-Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index de01ce75a1b1..5270d26f0bc6 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -112,7 +112,7 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
- 	snprintf(clk_name, sizeof(clk_name), "%s#m250_sel", dev_name(dev));
- 	init.name = clk_name;
- 	init.ops = &clk_mux_ops;
--	init.flags = 0;
-+	init.flags = CLK_SET_RATE_PARENT;
- 	init.parent_names = mux_parent_names;
- 	init.num_parents = MUX_CLK_NUM_PARENTS;
- 
 -- 
-2.15.1
+With Best Regards,
+Andy Shevchenko
