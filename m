@@ -1,138 +1,63 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 15 Jan 2018 18:10:12 +0100
-Subject: [PATCH net-next v5 1/4] net: stmmac: dwmac-meson8b: only configure
- the clocks in RGMII mode
+Date: Mon, 15 Jan 2018 18:10:14 +0100
+Subject: [PATCH net-next v5 3/4] net: stmmac: dwmac-meson8b: fix setting the
+ RGMII TX clock on Meson8b
 In-Reply-To: <20180115171015.1118-1-martin.blumenstingl@googlemail.com>
 References: <20180115171015.1118-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180115171015.1118-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20180115171015.1118-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neither the m25_div_clk nor the m250_div_clk or m250_mux_clk are used in
-RMII mode. The m25_div_clk output is routed to the RGMII PHY's "RGMII
-clock".
-This means that we don't need to configure the clocks in RMII mode. The
-driver however did this - with no effect since the clocks are not routed
-to the PHY in RMII mode.
+Meson8b only supports MPLL2 as clock input. The rate of the MPLL2 clock
+set by Odroid-C1's u-boot is close to (but not exactly) 500MHz. The
+exact rate is 500002394Hz, which is calculated in
+drivers/clk/meson/clk-mpll.c using the following formula:
+DIV_ROUND_UP_ULL((u64)parent_rate * SDM_DEN, (SDM_DEN * n2) + sdm)
+Odroid-C1's u-boot configures MPLL2 with the following values:
+- SDM_DEN = 16384
+- SDM = 1638
+- N2 = 5
 
-While here also rename meson8b_init_clk to meson8b_init_rgmii_tx_clk to
-make it easier to understand the code.
+The 250MHz clock (m250_div) inside dwmac-meson8b driver is derived from
+the MPLL2 clock. Due to MPLL2 running slightly faster than 500MHz the
+common clock framework chooses a divider which is too big to generate
+the 250MHz clock (a divider of 2 would be needed, but this is rounded up
+to a divider of 3). This breaks the RTL8211F RGMII PHY on Odroid-C1
+because it requires a (close to) 125MHz RGMII TX clock (on Gbit speeds,
+the IP block internally divides that down to 25MHz on 100Mbit/s
+connections and 2.5MHz on 10Mbit/s connections - we don't need any
+special configuration for that).
+
+Round the divider to the closest value to prevent this issue on Meson8b.
+This means we'll now end up with a clock rate for the RGMII TX clock of
+125001197Hz (= 125MHz plus 1197Hz), which is close-enough to 125MHz.
+This has no effect on the Meson GX SoCs since there fclk_div2 is used as
+input clock, which has a rate of 1000MHz (and thus is divisible cleanly
+to 250MHz and 125MHz).
 
 Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
+Reported-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 Tested-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 46 ++++++++++------------
- 1 file changed, 21 insertions(+), 25 deletions(-)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 4404650b32c5..c6f87e9c4ccb 100644
+index 7930a152dd63..de01ce75a1b1 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -81,7 +81,7 @@ static void meson8b_dwmac_mask_bits(struct meson8b_dwmac *dwmac, u32 reg,
- 	writel(data, dwmac->regs + reg);
- }
+@@ -140,7 +140,9 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
+ 	dwmac->m250_div.shift = PRG_ETH0_CLK_M250_DIV_SHIFT;
+ 	dwmac->m250_div.width = PRG_ETH0_CLK_M250_DIV_WIDTH;
+ 	dwmac->m250_div.hw.init = &init;
+-	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED | CLK_DIVIDER_ALLOW_ZERO;
++	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED |
++				CLK_DIVIDER_ALLOW_ZERO |
++				CLK_DIVIDER_ROUND_CLOSEST;
  
--static int meson8b_init_clk(struct meson8b_dwmac *dwmac)
-+static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
- {
- 	struct clk_init_data init;
- 	int i, ret;
-@@ -176,7 +176,6 @@ static int meson8b_init_clk(struct meson8b_dwmac *dwmac)
- static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- {
- 	int ret;
--	unsigned long clk_rate;
- 	u8 tx_dly_val = 0;
- 
- 	switch (dwmac->phy_mode) {
-@@ -191,9 +190,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 
- 	case PHY_INTERFACE_MODE_RGMII_ID:
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
--		/* Generate a 25MHz clock for the PHY */
--		clk_rate = 25 * 1000 * 1000;
--
- 		/* enable RGMII mode */
- 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
- 					PRG_ETH0_RGMII_MODE);
-@@ -204,12 +200,24 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 
- 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
- 					tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
-+
-+		ret = clk_prepare_enable(dwmac->m25_div_clk);
-+		if (ret) {
-+			dev_err(&dwmac->pdev->dev, "failed to enable the PHY clock\n");
-+			return ret;
-+		}
-+
-+		/* Generate the 25MHz RGMII clock for the PHY */
-+		ret = clk_set_rate(dwmac->m25_div_clk, 25 * 1000 * 1000);
-+		if (ret) {
-+			clk_disable_unprepare(dwmac->m25_div_clk);
-+
-+			dev_err(&dwmac->pdev->dev, "failed to set PHY clock\n");
-+			return ret;
-+		}
- 		break;
- 
- 	case PHY_INTERFACE_MODE_RMII:
--		/* Use the rate of the mux clock for the internal RMII PHY */
--		clk_rate = clk_get_rate(dwmac->m250_mux_clk);
--
- 		/* disable RGMII mode -> enables RMII mode */
- 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
- 					0);
-@@ -231,20 +239,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 		return -EINVAL;
- 	}
- 
--	ret = clk_prepare_enable(dwmac->m25_div_clk);
--	if (ret) {
--		dev_err(&dwmac->pdev->dev, "failed to enable the PHY clock\n");
--		return ret;
--	}
--
--	ret = clk_set_rate(dwmac->m25_div_clk, clk_rate);
--	if (ret) {
--		clk_disable_unprepare(dwmac->m25_div_clk);
--
--		dev_err(&dwmac->pdev->dev, "failed to set PHY clock\n");
--		return ret;
--	}
--
- 	/* enable TX_CLK and PHY_REF_CLK generator */
- 	meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TX_AND_PHY_REF_CLK,
- 				PRG_ETH0_TX_AND_PHY_REF_CLK);
-@@ -294,7 +288,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 				 &dwmac->tx_delay_ns))
- 		dwmac->tx_delay_ns = 2;
- 
--	ret = meson8b_init_clk(dwmac);
-+	ret = meson8b_init_rgmii_tx_clk(dwmac);
- 	if (ret)
- 		goto err_remove_config_dt;
- 
-@@ -311,7 +305,8 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	return 0;
- 
- err_clk_disable:
--	clk_disable_unprepare(dwmac->m25_div_clk);
-+	if (phy_interface_mode_is_rgmii(dwmac->phy_mode))
-+		clk_disable_unprepare(dwmac->m25_div_clk);
- err_remove_config_dt:
- 	stmmac_remove_config_dt(pdev, plat_dat);
- 
-@@ -322,7 +317,8 @@ static int meson8b_dwmac_remove(struct platform_device *pdev)
- {
- 	struct meson8b_dwmac *dwmac = get_stmmac_bsp_priv(&pdev->dev);
- 
--	clk_disable_unprepare(dwmac->m25_div_clk);
-+	if (phy_interface_mode_is_rgmii(dwmac->phy_mode))
-+		clk_disable_unprepare(dwmac->m25_div_clk);
- 
- 	return stmmac_pltfr_remove(pdev);
- }
+ 	dwmac->m250_div_clk = devm_clk_register(dev, &dwmac->m250_div.hw);
+ 	if (WARN_ON(IS_ERR(dwmac->m250_div_clk)))
 -- 
 2.15.1
