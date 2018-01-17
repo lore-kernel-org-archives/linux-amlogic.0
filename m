@@ -1,48 +1,47 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 17 Jan 2018 09:34:27 +0100
-Subject: [PATCH 2/2] soc: amlogic: meson-gx-pwrc-vpu: fix error on
- shutdown when domain is powered off
-In-Reply-To: <c925832c-2420-10f4-4510-a236384181de@gmail.com>
-References: <ef5a7b53-867e-3a34-96d2-b22d13526b90@gmail.com>
- <c925832c-2420-10f4-4510-a236384181de@gmail.com>
-Message-ID: <cd5e69ba-0e48-f8fc-87ba-db71d4436733@baylibre.com>
+Date: Wed, 17 Jan 2018 09:38:53 +0100
+Subject: [PATCH] ARM64: dts: meson: enable passing MAC addr on u-boot
+ environment
+In-Reply-To: <1516122805-20227-1-git-send-email-jramirez@baylibre.com>
+References: <1516122805-20227-1-git-send-email-jramirez@baylibre.com>
+Message-ID: <dbbf50b8-7911-14d3-7357-e9f153b1ab71@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 21/12/2017 20:41, Heiner Kallweit wrote:
-> When operating the system headless headless, the domain is never
-> powered on, leaving the clocks disabled. The shutdown function then
-> tries to disable the already disabled clocks, resulting in errors.
-> Therefore call meson_gx_pwrc_vpu_power_off() only if domain is
-> powered on.
-> This patch fixes the described issue on my system (Odorid-C2).
+Hi Jorge,
+
+On 16/01/2018 18:13, Jorge Ramirez-Ortiz wrote:
+> From: Jorge Ramirez-Ortiz <jramirez@baylibre.org>
 > 
-> Fixes: 339cd0ea0822 "soc: amlogic: meson-gx-pwrc-vpu: fix power-off when powered by bootloader"
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> With the adequate configuration settings, u-boot will loop through the
+> list of aliases looking for "ethernetX".
+> 
+> By adding an ethernet alias, u-boot can fixup the local-mac-address
+> property in the kernel's device tree using a value held in its
+> environment variable ethaddr.
+> 
+> Signed-off-by: Jorge Ramirez-Ortiz <jramirez@baylibre.org>
 > ---
->  drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> index 3adb2f2ec..6289965c4 100644
-> --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-> @@ -225,7 +225,11 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+> index 68d2c90..8ed2a98 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+> @@ -18,6 +18,7 @@
 >  
->  static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
->  {
-> -	meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
-> +	bool powered_off;
-> +
-> +	powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
-> +	if (!powered_off)
-> +		meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
->  }
+>  	aliases {
+>  		serial0 = &uart_AO;
+> +		ethernet = &ethmac;
+
+Isn't it ethernet0 instead ?
+
+>  	};
 >  
->  static const struct of_device_id meson_gx_pwrc_vpu_match_table[] = {
+>  	chosen {
 > 
 
-Ok, this occurs using mainline U-Boot, but with Meson DRM driver disabled,
-this use case should be covered.
+It would be great to have this on all boards with ethernet enabled.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Neil
