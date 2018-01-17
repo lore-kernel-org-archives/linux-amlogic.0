@@ -1,174 +1,103 @@
-From: jramirez@baylibre.com (Jorge Ramirez-Ortiz)
-Date: Wed, 17 Jan 2018 11:56:27 +0100
-Subject: [PATCH] ARM64: dts: meson: accept MAC addr from u-boot  environment
-Message-ID: <1516186587-22157-1-git-send-email-jramirez@baylibre.com>
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Wed, 17 Jan 2018 15:09:46 +0100
+Subject: [PATCH 1/2] ARM: dts: meson8b: extend ethernet controller
+ description
+In-Reply-To: <1516097873.2608.70.camel@baylibre.com>
+References: <20180116003412.GA10581@ingrassia.epigenesys.com>
+ <1516097873.2608.70.camel@baylibre.com>
+Message-ID: <20180117140946.GA23738@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Extend configuring the MAC address from u-boot to all meson boards.
+Hi Jerome,
 
-I didn't test this changeset but having checked libretech's u-boot
-tree I believe it should just work.
+On Tue, Jan 16, 2018 at 11:17:53AM +0100, Jerome Brunet wrote:
+> On Tue, 2018-01-16 at 01:34 +0100, Emiliano Ingrassia wrote:
+> > Extend ethernet controller description adding pin multiplexing and
+> > setting the needed attributes in ethmac node.
+> > As reported in S805 SoC manual, the MAC clock source is MPLL2 only.
+> > 
+> > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> > ---
+> >  arch/arm/boot/dts/meson8b.dtsi | 35 +++++++++++++++++++++++++++++++++--
+> >  1 file changed, 33 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> > index 7cd03ed3742e..3c66d9bdc3a8 100644
+> > --- a/arch/arm/boot/dts/meson8b.dtsi
+> > +++ b/arch/arm/boot/dts/meson8b.dtsi
+> > @@ -185,6 +185,27 @@
+> >  			#gpio-cells = <2>;
+> >  			gpio-ranges = <&pinctrl_cbus 0 0 130>;
+> >  		};
+> > +
+> > +		eth_rgmii_pins: eth-rgmii {
+> > +			mux {
+> > +				groups = "eth_tx_clk",
+> > +					 "eth_tx_en",
+> > +					 "eth_txd1_0",
+> > +					 "eth_txd1_1",
+> > +					 "eth_txd0_0",
+> > +					 "eth_txd0_1",
+> > +					 "eth_rx_clk",
+> > +					 "eth_rx_dv",
+> > +					 "eth_rxd1",
+> > +					 "eth_rxd0",
+> > +					 "eth_mdio_en",
+> > +					 "eth_mdc",
+> > +					 "eth_ref_clk",
+> > +					 "eth_txd2",
+> > +					 "eth_txd3";
+> > +				function = "ethernet";
+> > +			};
+> > +		};
+> >  	};
+> >  };
+> >  
+> > @@ -203,8 +224,18 @@
+> >  };
+> >  
+> >  &ethmac {
+> > -	clocks = <&clkc CLKID_ETH>;
+> > -	clock-names = "stmmaceth";
+> > +	compatible = "amlogic,meson8b-dwmac", "snps,dwmac-3.70a", "snps,dwmac";
+> 
+> Does meson8 shared the same IP block ? is yes, then this compatible should
+> probably be changed one level up, along with the regs
+>
 
-Signed-off-by: Jorge Ramirez-Ortiz <jramirez@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi            | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts           | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts         | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts            | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi               | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi           | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts     | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi          | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts            | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts             | 1 +
- 12 files changed, 12 insertions(+)
+I don't have any information about S802 SoC (aka meson8). It seems that
+no public informations are available. If you have any, please share.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-index 4157987..c58ee4c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-@@ -48,6 +48,7 @@
- / {
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-index 4b17a76..82faff3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-@@ -52,6 +52,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-index 38dfdde..ac4e4fd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-@@ -54,6 +54,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 08b7bb7..bc39c24 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -53,6 +53,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 23c08c3..9d97a78 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -47,6 +47,7 @@
- / {
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index f2bc6de..284d8db 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -47,6 +47,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-index 977b424..a60361d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-@@ -16,6 +16,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index edc512a..35cdcea 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -29,6 +29,7 @@
- 
- 	aliases {
- 		serial2 = &uart_AO_B;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	gpio-keys-polled {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-index 1b8f328..012d355 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-@@ -52,6 +52,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-index 129af90..b60f1be 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-@@ -17,6 +17,7 @@
- 	aliases {
- 		serial0 = &uart_AO;
- 		serial1 = &uart_A;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-index 22c6977..c51f2fb8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
-@@ -54,6 +54,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-index 470f72b..90dc882 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-@@ -58,6 +58,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
- 	};
- 
- 	chosen {
--- 
-2.7.4
+> If not, it means that ethmac node should not be defined in meson.dtsi but in
+> meson8.dtsi and meson8b.dtsi
+>
+
+Sounds logic! As I understand, Martin has a plan about this.
+
+> In any case, overloading the node like this really clean, even if it works.
+> 
+> > +
+> > +	reg = <0xc9410000 0x10000
+> > +	       0xc1108140 0x4>;
+> > +
+> > +	clocks = <&clkc CLKID_ETH>,
+> > +		 <&clkc CLKID_MPLL2>,
+> > +		 <&clkc CLKID_MPLL2>;
+> > +	clock-names = "stmmaceth", "clkin0", "clkin1";
+> > +
+> > +	resets = <&reset RESET_ETHERNET>;
+> > +	reset-names = "stmmaceth";
+> >  };
+> >  
+> >  &gpio_intc {
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+Thanks,
+
+Emiliano
