@@ -1,108 +1,120 @@
 From: ingrassia@epigenesys.com (Emiliano Ingrassia)
-Date: Wed, 17 Jan 2018 15:13:36 +0100
-Subject: [PATCH 1/2] ARM: dts: meson8b: extend ethernet controller
- description
-In-Reply-To: <CAFBinCBdjMVw1d=c4P0fZi395mMPG_uZQ9en1MRq6zfQNxEbiA@mail.gmail.com>
-References: <20180116003412.GA10581@ingrassia.epigenesys.com>
- <CAFBinCBdjMVw1d=c4P0fZi395mMPG_uZQ9en1MRq6zfQNxEbiA@mail.gmail.com>
-Message-ID: <20180117141336.GA23975@ingrassia.epigenesys.com>
+Date: Wed, 17 Jan 2018 15:30:21 +0100
+Subject: [PATCH 2/2] ARM: dts: meson8b-odroidc1: ethernet support
+In-Reply-To: <CAFBinCAYWvZ=kK7+_4DbGr0S8cWTJJ=PzJRdaGG9QSQx-bFUHQ@mail.gmail.com>
+References: <20180116003443.GA10587@ingrassia.epigenesys.com>
+ <CAFBinCAYWvZ=kK7+_4DbGr0S8cWTJJ=PzJRdaGG9QSQx-bFUHQ@mail.gmail.com>
+Message-ID: <20180117143021.GB23975@ingrassia.epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Martin,
 
-thanks for the feedback!
+thanks for the review.
 
-On Tue, Jan 16, 2018 at 11:14:37AM +0100, Martin Blumenstingl wrote:
+On Tue, Jan 16, 2018 at 11:27:07AM +0100, Martin Blumenstingl wrote:
+> Hi Emiliano,
+> 
 > On Tue, Jan 16, 2018 at 1:34 AM, Emiliano Ingrassia
 > <ingrassia@epigenesys.com> wrote:
-> > Extend ethernet controller description adding pin multiplexing and
-> > setting the needed attributes in ethmac node.
-> > As reported in S805 SoC manual, the MAC clock source is MPLL2 only.
+> > The Odroid-C1+ board is equipped with an RTL8211F ethernet PHY
+> > which supports 10/100/1000 Mbps ethernet.
+> > This patch adds the PHY description to the board DT,
+> > setting the maximum speed to 1 Gbps, and enables the ethernet controller.
 > >
 > > Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+> I have two minor change-requests - with these you can add my:
 > Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
-> I had your patch also in my local tree, where I added the following
-> comments to the patch description (this is nothing final though, I
-> just added them so I don't forget about these facts):
-> Until now we have been using the "amlogic,meson6-dwmac" binding with the
-> register offset (0xc1108108) defined in meson.dtsi.
-> During testing (and by reading Hardkernel's u-boot sources for the
-> Odroid-C1) it turns out that the actual register that should be used is
-> at 0xc1108140. This also requires us to switch to the new
-> "amlogic,meson8b-dwmac" binding, because the dwmac-meson8b driver knows
-> how to configure that register. The old register is a no-op, so using
-> the old "amlogic,meson6-dwmac" binding with the old register meant that
-> we relied on the bootloader to set up the Ethernet clocks etc.
-> correctly.
->
+> > ---
+> >  arch/arm/boot/dts/meson8b-odroidc1.dts | 32 ++++++++++++++++++++++++++++++++
+> >  1 file changed, 32 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > index 9ff6ca4e20d0..3766f6fd1882 100644
+> > --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > @@ -99,3 +99,35 @@
+> >  &usb1 {
+> >         status = "okay";
+> >  };
+> > +
+> > +&ethmac {
+> > +       status = "okay";
+> > +
+> > +       snps,reset-gpio = <&gpio GPIOH_4 GPIO_ACTIVE_HIGH>;
+> > +       snps,reset-active-low;
+> > +       snps,reset-delays-us = <0 10000 30000>;
+> > +
+> > +       pinctrl-0 = <&eth_rgmii_pins>;
+> > +       pinctrl-names = "default";
+> > +
+> > +       phy-mode = "rgmii";
+> > +       phy-handle = <&eth_phy>;
+> > +       amlogic,tx-delay-ns = <4>;
+> > +
+> > +       mdio {
+> > +               compatible = "snps,dwmac-mdio";
+> > +               #address-cells = <1>;
+> > +               #size-cells = <0>;
+> > +
+> > +               eth_phy: ethernet-phy at 0 {
+> > +                       /* ethernet PHY RTL8211F */
+> > +                       compatible = "ethernet-phy-id001c.c916",
+> > +                                    "ethernet-phy-ieee802.3-c22";
+> could you please remove the "ethernet-phy-id001c.c916" compatible?
+> the Ethernet PHY documentation [0] states: 'If the PHY reports an
+> incorrect ID (or none at all) then the "compatible" list may contain
+> an entry with the correct PHY ID'
+> I have not seen any Amlogic board where the RTL8211F PHY reported an
+> incorrect ID yet
 
-Ok, I could send a second version of the patch integrating these
-informations in log message.
-What do you think?
+OK, you're correct! I'll test without this and submit a second version.
 
 > 
-> > ---
-> >  arch/arm/boot/dts/meson8b.dtsi | 35 +++++++++++++++++++++++++++++++++--
-> >  1 file changed, 33 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> > index 7cd03ed3742e..3c66d9bdc3a8 100644
-> > --- a/arch/arm/boot/dts/meson8b.dtsi
-> > +++ b/arch/arm/boot/dts/meson8b.dtsi
-> > @@ -185,6 +185,27 @@
-> >                         #gpio-cells = <2>;
-> >                         gpio-ranges = <&pinctrl_cbus 0 0 130>;
-> >                 };
-> > +
-> > +               eth_rgmii_pins: eth-rgmii {
-> > +                       mux {
-> > +                               groups = "eth_tx_clk",
-> > +                                        "eth_tx_en",
-> > +                                        "eth_txd1_0",
-> > +                                        "eth_txd1_1",
-> > +                                        "eth_txd0_0",
-> > +                                        "eth_txd0_1",
-> > +                                        "eth_rx_clk",
-> > +                                        "eth_rx_dv",
-> > +                                        "eth_rxd1",
-> > +                                        "eth_rxd0",
-> > +                                        "eth_mdio_en",
-> > +                                        "eth_mdc",
-> > +                                        "eth_ref_clk",
-> > +                                        "eth_txd2",
-> > +                                        "eth_txd3";
-> > +                               function = "ethernet";
-> > +                       };
+> On Odroid-C2 we simply add the ID to the comment above:
+> /* Realtek RTL8211F (0x001cc916) */
+>
+
+Ok.
+
+> the "ethernet-phy-ieee802.3-c22" compatible is fine - but I'm also
+> fine if you remove the whole compatible property (like we have it on
+> Odroid-C2)
+
+Ok, that is also the default so no need to indicate explicitly.
+
+> 
+> > +                       reg = <0>;
+> > +                       max-speed = <1000>;
+> > +                       eee-broken-1000t;
+> > +                       interrupt-parent = <&gpio_intc>;
+> could you please add a comment here (which will allow us to specify
+> the IRQs by their GPIO #define later on, without having to calculate
+> what "17" means in the context of Meson8b, as this calculation depends
+> on the SoC) - for example:
+> /* GPIOH_3 */
+> > +                       interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
 > > +               };
-> >         };
-> >  };
-> >
-> > @@ -203,8 +224,18 @@
-> >  };
-> >
-> >  &ethmac {
-> > -       clocks = <&clkc CLKID_ETH>;
-> > -       clock-names = "stmmaceth";
-> > +       compatible = "amlogic,meson8b-dwmac", "snps,dwmac-3.70a", "snps,dwmac";
-> > +
-> > +       reg = <0xc9410000 0x10000
-> > +              0xc1108140 0x4>;
-> > +
-> > +       clocks = <&clkc CLKID_ETH>,
-> > +                <&clkc CLKID_MPLL2>,
-> > +                <&clkc CLKID_MPLL2>;
-> > +       clock-names = "stmmaceth", "clkin0", "clkin1";
-> > +
-> > +       resets = <&reset RESET_ETHERNET>;
-> > +       reset-names = "stmmaceth";
-> >  };
-> >
-> >  &gpio_intc {
+> > +       };
+> > +};
 > > --
 > > 2.15.1
 > >
+>
+
+Ok, sure!
+
+> many thanks for your work!
+>
+
+Thanks for your work and support!
+
+> Regards,
+> Martin
+>
+> 
+> [0] https://elixir.free-electrons.com/linux/v4.14/source/Documentation/devicetree/bindings/net/phy.txt#L12
 
 Regards,
 
