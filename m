@@ -1,61 +1,38 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 Jan 2018 19:45:26 +0100
-Subject: [PATCH 3/9] clk: meson: remove unnecessary rounding in the pll clock
+Date: Thu, 18 Jan 2018 19:45:31 +0100
+Subject: [PATCH 8/9] clk: meson: gxbb: add the fractional part of the fixed_pll
 In-Reply-To: <20180118184532.6856-1-jbrunet@baylibre.com>
 References: <20180118184532.6856-1-jbrunet@baylibre.com>
-Message-ID: <20180118184532.6856-4-jbrunet@baylibre.com>
+Message-ID: <20180118184532.6856-9-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The pll driver perform the rate calculation in Mhz, which adds an
-unnecessary rounding down to the Mhz of the rate. Use 64bits long
-integer to perform this calculation safely on meson8b and perform the
-calculation in Hz instead
+The fixed_pll of gxbb and gxl also has a fractional parameter. This has
+not been a problem so far because fractional part is actually set to 0
+on these platforms, so the rate remains correct when it is ignored.
+Still, it is better represent the pll the way it is, so add the frac
+parameter now
 
-Fixes: 7a29a869434e ("clk: meson: Add support for Meson clock controller")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/clk-pll.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/clk/meson/gxbb.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index 2614341fc4ad..fa4cec13d6e8 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -51,8 +51,7 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- {
- 	struct meson_clk_pll *pll = to_meson_clk_pll(hw);
- 	struct parm *p;
--	unsigned long parent_rate_mhz = parent_rate / 1000000;
--	unsigned long rate_mhz;
-+	u64 rate;
- 	u16 n, m, frac = 0, od, od2 = 0;
- 	u32 reg;
- 
-@@ -74,17 +73,18 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- 		od2 = PARM_GET(p->width, p->shift, reg);
- 	}
- 
-+	rate = (u64)m * parent_rate;
-+
- 	p = &pll->frac;
- 	if (p->width) {
- 		reg = readl(pll->base + p->reg_off);
- 		frac = PARM_GET(p->width, p->shift, reg);
--		rate_mhz = (parent_rate_mhz * m + \
--				(parent_rate_mhz * frac >> 12)) * 2 / n;
--		rate_mhz = rate_mhz >> od >> od2;
--	} else
--		rate_mhz = (parent_rate_mhz * m / n) >> od >> od2;
- 
--	return rate_mhz * 1000000;
-+		rate += (u64)parent_rate * frac >> 12;
-+		rate *= 2;
-+	}
-+
-+	return (rate / n) >> od >> od2;
- }
- 
- static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 9a92e64b428c..3202f85e69e5 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -202,6 +202,11 @@ static struct meson_clk_pll gxbb_fixed_pll = {
+ 		.shift   = 16,
+ 		.width   = 2,
+ 	},
++	.frac = {
++		.reg_off = HHI_MPLL_CNTL2,
++		.shift   = 0,
++		.width   = 12,
++	},
+ 	.lock = &meson_clk_lock,
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fixed_pll",
 -- 
 2.14.3
