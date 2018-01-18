@@ -1,38 +1,33 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 Jan 2018 19:45:31 +0100
-Subject: [PATCH 8/9] clk: meson: gxbb: add the fractional part of the fixed_pll
+Date: Thu, 18 Jan 2018 19:45:27 +0100
+Subject: [PATCH 4/9] clk: meson: use frac parameter width instead of a constant
 In-Reply-To: <20180118184532.6856-1-jbrunet@baylibre.com>
 References: <20180118184532.6856-1-jbrunet@baylibre.com>
-Message-ID: <20180118184532.6856-9-jbrunet@baylibre.com>
+Message-ID: <20180118184532.6856-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The fixed_pll of gxbb and gxl also has a fractional parameter. This has
-not been a problem so far because fractional part is actually set to 0
-on these platforms, so the rate remains correct when it is ignored.
-Still, it is better represent the pll the way it is, so add the frac
-parameter now
+Use the fractional part width in the calculation instead of 12, which
+happens to e the witdh right now. This is safer in case the field width
+ever change in the future
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/gxbb.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/clk/meson/clk-pll.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 9a92e64b428c..3202f85e69e5 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -202,6 +202,11 @@ static struct meson_clk_pll gxbb_fixed_pll = {
- 		.shift   = 16,
- 		.width   = 2,
- 	},
-+	.frac = {
-+		.reg_off = HHI_MPLL_CNTL2,
-+		.shift   = 0,
-+		.width   = 12,
-+	},
- 	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "fixed_pll",
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index fa4cec13d6e8..d9efe725b7ad 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -80,7 +80,7 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+ 		reg = readl(pll->base + p->reg_off);
+ 		frac = PARM_GET(p->width, p->shift, reg);
+ 
+-		rate += (u64)parent_rate * frac >> 12;
++		rate += (u64)parent_rate * frac >>  p->width;
+ 		rate *= 2;
+ 	}
+ 
 -- 
 2.14.3
