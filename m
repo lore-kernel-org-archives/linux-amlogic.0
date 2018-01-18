@@ -1,22 +1,68 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 Jan 2018 13:08:29 +0100
-Subject: [PATCH 0/2] clk: meson: probe clean-ups
-Message-ID: <20180118120831.8349-1-jbrunet@baylibre.com>
+Date: Thu, 18 Jan 2018 13:08:30 +0100
+Subject: [PATCH 1/2] clk: meson: use dev pointer where possible
+In-Reply-To: <20180118120831.8349-1-jbrunet@baylibre.com>
+References: <20180118120831.8349-1-jbrunet@baylibre.com>
+Message-ID: <20180118120831.8349-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This changeset feature a couple of clean-ups in the probe
-function of meson's clock controllers. It is the beginning
-of a refactoring of meson's clock controllers
+The 'dev' pointer is directly available in gxbb and axg clock
+controller, so consistently use it instead of going the through the
+'pdev' pointer once in while
 
-Jerome Brunet (2):
-  clk: meson: use dev pointer where possible
-  clk: meson: use devm_of_clk_add_hw_provider
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/axg.c  | 8 ++++----
+ drivers/clk/meson/gxbb.c | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
- drivers/clk/meson/axg.c     | 12 ++++++------
- drivers/clk/meson/gxbb.c    |  7 ++++---
- drivers/clk/meson/meson8b.c |  4 ++--
- 3 files changed, 12 insertions(+), 11 deletions(-)
-
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 1294f3ad7cd5..87aba8e871a0 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -873,7 +873,7 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 	void __iomem *clk_base;
+ 	int ret, clkid, i;
+ 
+-	clkc_data = of_device_get_match_data(&pdev->dev);
++	clkc_data = of_device_get_match_data(dev);
+ 	if (!clkc_data)
+ 		return -EINVAL;
+ 
+@@ -881,9 +881,9 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	if (!res)
+ 		return -EINVAL;
+-	clk_base = devm_ioremap(&pdev->dev, res->start, resource_size(res));
++	clk_base = devm_ioremap(dev, res->start, resource_size(res));
+ 	if (!clk_base) {
+-		dev_err(&pdev->dev, "Unable to map clk base\n");
++		dev_err(dev, "Unable to map clk base\n");
+ 		return -ENXIO;
+ 	}
+ 
+@@ -918,7 +918,7 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 		ret = devm_clk_hw_register(dev,
+ 					clkc_data->hw_onecell_data->hws[clkid]);
+ 		if (ret) {
+-			dev_err(&pdev->dev, "Clock registration failed\n");
++			dev_err(dev, "Clock registration failed\n");
+ 			return ret;
+ 		}
+ 	}
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index af24455af5b4..ba1023983d79 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1976,7 +1976,7 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+ 	int ret, clkid, i;
+ 	struct device *dev = &pdev->dev;
+ 
+-	clkc_data = of_device_get_match_data(&pdev->dev);
++	clkc_data = of_device_get_match_data(dev);
+ 	if (!clkc_data)
+ 		return -EINVAL;
+ 
 -- 
 2.14.3
