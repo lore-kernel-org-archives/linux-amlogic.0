@@ -1,50 +1,80 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 18 Jan 2018 22:17:57 +0800
-Subject: [PATCH] pinctrl: meson-axg: adjust uart_ao_b pin group naming
-Message-ID: <20180118141757.41290-1-yixun.lan@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 18 Jan 2018 16:25:56 +0100
+Subject: [PATCH 2/2] clk: meson: use devm_of_clk_add_hw_provider
+In-Reply-To: <20180118120831.8349-3-jbrunet@baylibre.com>
+References: <20180118120831.8349-1-jbrunet@baylibre.com>
+ <20180118120831.8349-3-jbrunet@baylibre.com>
+Message-ID: <a54cff83-33f4-6767-9f0e-abbfc19172d0@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Simply adjust the pin group to _x _y _z style, as to
-keep the consistency in DT with previous naming scheme.
+On 18/01/2018 13:08, Jerome Brunet wrote:
+> There is no remove callbacks in meson's clock controllers and
+> of_clk_del_provider is never called if of_clk_add_hw_provider has been
+> executed, introducing a potential memory leak.
+> Fixing this by the using the devm variant.
+> 
+> In reality, the leak would never happen since these controllers are
+> never unloaded once in use ... still, this is worth cleaning.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/clk/meson/axg.c     | 4 ++--
+>  drivers/clk/meson/gxbb.c    | 5 +++--
+>  drivers/clk/meson/meson8b.c | 4 ++--
+>  3 files changed, 7 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+> index 87aba8e871a0..02f4401d7bc3 100644
+> --- a/drivers/clk/meson/axg.c
+> +++ b/drivers/clk/meson/axg.c
+> @@ -923,8 +923,8 @@ static int axg_clkc_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> -	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+> -			clkc_data->hw_onecell_data);
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   clkc_data->hw_onecell_data);
+>  }
+>  
+>  static struct platform_driver axg_driver = {
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index ba1023983d79..472a3cfbfbc5 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -2028,8 +2028,9 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+>  			goto iounmap;
+>  	}
+>  
+> -	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+> -			clkc_data->hw_onecell_data);
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   clkc_data->hw_onecell_data);
+>  
+>  iounmap:
+>  	iounmap(clk_base);
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index 3ffea80c1308..abac079ff77f 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -878,8 +878,8 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> -	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+> -			&meson8b_hw_onecell_data);
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   &meson8b_hw_onecell_data);
+>  }
+>  
+>  static const struct of_device_id meson8b_clkc_match_table[] = {
+> 
 
-Fixes: 83c566806a68 ("pinctrl: meson-axg: Add new pinctrl driver for Meson AXG SoC")
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+Well devm is allocating a devm structure to unregister the clocks when removed, which will never happen
+so this allocation is useless.
 
----
-Hi Linus,
+Anyway it's cleaner if we do some other stuff after this call in the future.
 
- Please also consider merging this patch into 'for-next', since it
-fixes issue added in the same cycle.
- This patch will also obsolete previous one patches [1]
-
-[1] pinctrl: meson: use one uniform 'function' name
-http://lkml.kernel.org/r/20180108073328.205769-1-yixun.lan at amlogic.com
----
- drivers/pinctrl/meson/pinctrl-meson-axg.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-index 1fda9d6c7ea3..4b91ff74779b 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-@@ -716,7 +716,7 @@ static const char * const uart_b_groups[] = {
- 	"uart_tx_b_x", "uart_rx_b_x", "uart_cts_b_x", "uart_rts_b_x",
- };
- 
--static const char * const uart_ao_b_gpioz_groups[] = {
-+static const char * const uart_ao_b_z_groups[] = {
- 	"uart_ao_tx_b_z", "uart_ao_rx_b_z",
- 	"uart_ao_cts_b_z", "uart_ao_rts_b_z",
- };
-@@ -855,7 +855,7 @@ static struct meson_pmx_func meson_axg_periphs_functions[] = {
- 	FUNCTION(nand),
- 	FUNCTION(uart_a),
- 	FUNCTION(uart_b),
--	FUNCTION(uart_ao_b_gpioz),
-+	FUNCTION(uart_ao_b_z),
- 	FUNCTION(i2c0),
- 	FUNCTION(i2c1),
- 	FUNCTION(i2c2),
--- 
-2.15.1
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
