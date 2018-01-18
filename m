@@ -1,246 +1,94 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 Jan 2018 19:45:25 +0100
-Subject: [PATCH 2/9] clk: meson: remove useless pll rate param tables
+Date: Thu, 18 Jan 2018 19:45:30 +0100
+Subject: [PATCH 7/9] clk: meson: fix pll with fractional part calculation
 In-Reply-To: <20180118184532.6856-1-jbrunet@baylibre.com>
 References: <20180118184532.6856-1-jbrunet@baylibre.com>
-Message-ID: <20180118184532.6856-3-jbrunet@baylibre.com>
+Message-ID: <20180118184532.6856-8-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Read-only pll don't need param table to recalculate the rate. Providing
-them with a param table is just a waste of memory.
+The rate of the parent should not be multiplied by 2 when there is a
+fractional part to the pll. This is making the rate calculation of
+gxl_hdmi_pll wrong (and others as well). This multiplication is specific
+to the hdmi_pll of gxbb and is most likely due to a multiplier sitting
+in front of this particular pll.
 
-Remove the useless tables from sys_pll on gxbb and axg.
+Add fixed factor clock in front on the gxbb pll and remove this constant
+from the calculation
 
+Fixes: 4a47295144dd ("clk: meson: fractional pll support")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c  | 94 ------------------------------------------------
- drivers/clk/meson/gxbb.c | 94 ------------------------------------------------
- 2 files changed, 188 deletions(-)
+ drivers/clk/meson/clk-pll.c |  1 -
+ drivers/clk/meson/gxbb.c    | 14 +++++++++++++-
+ drivers/clk/meson/gxbb.h    |  3 ++-
+ 3 files changed, 15 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 02f4401d7bc3..56806c6bd9d5 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -21,98 +21,6 @@
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 3f560b2cd83b..8845f65aeb07 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -87,7 +87,6 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
+ 		frac = PARM_GET(p->width, p->shift, reg);
  
- static DEFINE_SPINLOCK(meson_clk_lock);
+ 		rate += (u64)parent_rate * frac >>  p->width;
+-		rate *= 2;
+ 	}
  
--static const struct pll_rate_table sys_pll_rate_table[] = {
--	PLL_RATE(24000000, 56, 1, 2),
--	PLL_RATE(48000000, 64, 1, 2),
--	PLL_RATE(72000000, 72, 1, 2),
--	PLL_RATE(96000000, 64, 1, 2),
--	PLL_RATE(120000000, 80, 1, 2),
--	PLL_RATE(144000000, 96, 1, 2),
--	PLL_RATE(168000000, 56, 1, 1),
--	PLL_RATE(192000000, 64, 1, 1),
--	PLL_RATE(216000000, 72, 1, 1),
--	PLL_RATE(240000000, 80, 1, 1),
--	PLL_RATE(264000000, 88, 1, 1),
--	PLL_RATE(288000000, 96, 1, 1),
--	PLL_RATE(312000000, 52, 1, 2),
--	PLL_RATE(336000000, 56, 1, 2),
--	PLL_RATE(360000000, 60, 1, 2),
--	PLL_RATE(384000000, 64, 1, 2),
--	PLL_RATE(408000000, 68, 1, 2),
--	PLL_RATE(432000000, 72, 1, 2),
--	PLL_RATE(456000000, 76, 1, 2),
--	PLL_RATE(480000000, 80, 1, 2),
--	PLL_RATE(504000000, 84, 1, 2),
--	PLL_RATE(528000000, 88, 1, 2),
--	PLL_RATE(552000000, 92, 1, 2),
--	PLL_RATE(576000000, 96, 1, 2),
--	PLL_RATE(600000000, 50, 1, 1),
--	PLL_RATE(624000000, 52, 1, 1),
--	PLL_RATE(648000000, 54, 1, 1),
--	PLL_RATE(672000000, 56, 1, 1),
--	PLL_RATE(696000000, 58, 1, 1),
--	PLL_RATE(720000000, 60, 1, 1),
--	PLL_RATE(744000000, 62, 1, 1),
--	PLL_RATE(768000000, 64, 1, 1),
--	PLL_RATE(792000000, 66, 1, 1),
--	PLL_RATE(816000000, 68, 1, 1),
--	PLL_RATE(840000000, 70, 1, 1),
--	PLL_RATE(864000000, 72, 1, 1),
--	PLL_RATE(888000000, 74, 1, 1),
--	PLL_RATE(912000000, 76, 1, 1),
--	PLL_RATE(936000000, 78, 1, 1),
--	PLL_RATE(960000000, 80, 1, 1),
--	PLL_RATE(984000000, 82, 1, 1),
--	PLL_RATE(1008000000, 84, 1, 1),
--	PLL_RATE(1032000000, 86, 1, 1),
--	PLL_RATE(1056000000, 88, 1, 1),
--	PLL_RATE(1080000000, 90, 1, 1),
--	PLL_RATE(1104000000, 92, 1, 1),
--	PLL_RATE(1128000000, 94, 1, 1),
--	PLL_RATE(1152000000, 96, 1, 1),
--	PLL_RATE(1176000000, 98, 1, 1),
--	PLL_RATE(1200000000, 50, 1, 0),
--	PLL_RATE(1224000000, 51, 1, 0),
--	PLL_RATE(1248000000, 52, 1, 0),
--	PLL_RATE(1272000000, 53, 1, 0),
--	PLL_RATE(1296000000, 54, 1, 0),
--	PLL_RATE(1320000000, 55, 1, 0),
--	PLL_RATE(1344000000, 56, 1, 0),
--	PLL_RATE(1368000000, 57, 1, 0),
--	PLL_RATE(1392000000, 58, 1, 0),
--	PLL_RATE(1416000000, 59, 1, 0),
--	PLL_RATE(1440000000, 60, 1, 0),
--	PLL_RATE(1464000000, 61, 1, 0),
--	PLL_RATE(1488000000, 62, 1, 0),
--	PLL_RATE(1512000000, 63, 1, 0),
--	PLL_RATE(1536000000, 64, 1, 0),
--	PLL_RATE(1560000000, 65, 1, 0),
--	PLL_RATE(1584000000, 66, 1, 0),
--	PLL_RATE(1608000000, 67, 1, 0),
--	PLL_RATE(1632000000, 68, 1, 0),
--	PLL_RATE(1656000000, 68, 1, 0),
--	PLL_RATE(1680000000, 68, 1, 0),
--	PLL_RATE(1704000000, 68, 1, 0),
--	PLL_RATE(1728000000, 69, 1, 0),
--	PLL_RATE(1752000000, 69, 1, 0),
--	PLL_RATE(1776000000, 69, 1, 0),
--	PLL_RATE(1800000000, 69, 1, 0),
--	PLL_RATE(1824000000, 70, 1, 0),
--	PLL_RATE(1848000000, 70, 1, 0),
--	PLL_RATE(1872000000, 70, 1, 0),
--	PLL_RATE(1896000000, 70, 1, 0),
--	PLL_RATE(1920000000, 71, 1, 0),
--	PLL_RATE(1944000000, 71, 1, 0),
--	PLL_RATE(1968000000, 71, 1, 0),
--	PLL_RATE(1992000000, 71, 1, 0),
--	PLL_RATE(2016000000, 72, 1, 0),
--	PLL_RATE(2040000000, 72, 1, 0),
--	PLL_RATE(2064000000, 72, 1, 0),
--	PLL_RATE(2088000000, 72, 1, 0),
--	PLL_RATE(2112000000, 73, 1, 0),
--	{ /* sentinel */ },
--};
--
- static struct meson_clk_pll axg_fixed_pll = {
- 	.m = {
- 		.reg_off = HHI_MPLL_CNTL,
-@@ -154,8 +62,6 @@ static struct meson_clk_pll axg_sys_pll = {
- 		.shift   = 10,
- 		.width   = 2,
- 	},
--	.rate_table = sys_pll_rate_table,
--	.rate_count = ARRAY_SIZE(sys_pll_rate_table),
- 	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "sys_pll",
+ 	return (rate / n) >> od >> od2 >> od3;
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 472a3cfbfbc5..2d851bad13fa 100644
+index 08b3e1cdba5b..9a92e64b428c 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -29,98 +29,6 @@
- 
- static DEFINE_SPINLOCK(meson_clk_lock);
- 
--static const struct pll_rate_table sys_pll_rate_table[] = {
--	PLL_RATE(24000000, 56, 1, 2),
--	PLL_RATE(48000000, 64, 1, 2),
--	PLL_RATE(72000000, 72, 1, 2),
--	PLL_RATE(96000000, 64, 1, 2),
--	PLL_RATE(120000000, 80, 1, 2),
--	PLL_RATE(144000000, 96, 1, 2),
--	PLL_RATE(168000000, 56, 1, 1),
--	PLL_RATE(192000000, 64, 1, 1),
--	PLL_RATE(216000000, 72, 1, 1),
--	PLL_RATE(240000000, 80, 1, 1),
--	PLL_RATE(264000000, 88, 1, 1),
--	PLL_RATE(288000000, 96, 1, 1),
--	PLL_RATE(312000000, 52, 1, 2),
--	PLL_RATE(336000000, 56, 1, 2),
--	PLL_RATE(360000000, 60, 1, 2),
--	PLL_RATE(384000000, 64, 1, 2),
--	PLL_RATE(408000000, 68, 1, 2),
--	PLL_RATE(432000000, 72, 1, 2),
--	PLL_RATE(456000000, 76, 1, 2),
--	PLL_RATE(480000000, 80, 1, 2),
--	PLL_RATE(504000000, 84, 1, 2),
--	PLL_RATE(528000000, 88, 1, 2),
--	PLL_RATE(552000000, 92, 1, 2),
--	PLL_RATE(576000000, 96, 1, 2),
--	PLL_RATE(600000000, 50, 1, 1),
--	PLL_RATE(624000000, 52, 1, 1),
--	PLL_RATE(648000000, 54, 1, 1),
--	PLL_RATE(672000000, 56, 1, 1),
--	PLL_RATE(696000000, 58, 1, 1),
--	PLL_RATE(720000000, 60, 1, 1),
--	PLL_RATE(744000000, 62, 1, 1),
--	PLL_RATE(768000000, 64, 1, 1),
--	PLL_RATE(792000000, 66, 1, 1),
--	PLL_RATE(816000000, 68, 1, 1),
--	PLL_RATE(840000000, 70, 1, 1),
--	PLL_RATE(864000000, 72, 1, 1),
--	PLL_RATE(888000000, 74, 1, 1),
--	PLL_RATE(912000000, 76, 1, 1),
--	PLL_RATE(936000000, 78, 1, 1),
--	PLL_RATE(960000000, 80, 1, 1),
--	PLL_RATE(984000000, 82, 1, 1),
--	PLL_RATE(1008000000, 84, 1, 1),
--	PLL_RATE(1032000000, 86, 1, 1),
--	PLL_RATE(1056000000, 88, 1, 1),
--	PLL_RATE(1080000000, 90, 1, 1),
--	PLL_RATE(1104000000, 92, 1, 1),
--	PLL_RATE(1128000000, 94, 1, 1),
--	PLL_RATE(1152000000, 96, 1, 1),
--	PLL_RATE(1176000000, 98, 1, 1),
--	PLL_RATE(1200000000, 50, 1, 0),
--	PLL_RATE(1224000000, 51, 1, 0),
--	PLL_RATE(1248000000, 52, 1, 0),
--	PLL_RATE(1272000000, 53, 1, 0),
--	PLL_RATE(1296000000, 54, 1, 0),
--	PLL_RATE(1320000000, 55, 1, 0),
--	PLL_RATE(1344000000, 56, 1, 0),
--	PLL_RATE(1368000000, 57, 1, 0),
--	PLL_RATE(1392000000, 58, 1, 0),
--	PLL_RATE(1416000000, 59, 1, 0),
--	PLL_RATE(1440000000, 60, 1, 0),
--	PLL_RATE(1464000000, 61, 1, 0),
--	PLL_RATE(1488000000, 62, 1, 0),
--	PLL_RATE(1512000000, 63, 1, 0),
--	PLL_RATE(1536000000, 64, 1, 0),
--	PLL_RATE(1560000000, 65, 1, 0),
--	PLL_RATE(1584000000, 66, 1, 0),
--	PLL_RATE(1608000000, 67, 1, 0),
--	PLL_RATE(1632000000, 68, 1, 0),
--	PLL_RATE(1656000000, 68, 1, 0),
--	PLL_RATE(1680000000, 68, 1, 0),
--	PLL_RATE(1704000000, 68, 1, 0),
--	PLL_RATE(1728000000, 69, 1, 0),
--	PLL_RATE(1752000000, 69, 1, 0),
--	PLL_RATE(1776000000, 69, 1, 0),
--	PLL_RATE(1800000000, 69, 1, 0),
--	PLL_RATE(1824000000, 70, 1, 0),
--	PLL_RATE(1848000000, 70, 1, 0),
--	PLL_RATE(1872000000, 70, 1, 0),
--	PLL_RATE(1896000000, 70, 1, 0),
--	PLL_RATE(1920000000, 71, 1, 0),
--	PLL_RATE(1944000000, 71, 1, 0),
--	PLL_RATE(1968000000, 71, 1, 0),
--	PLL_RATE(1992000000, 71, 1, 0),
--	PLL_RATE(2016000000, 72, 1, 0),
--	PLL_RATE(2040000000, 72, 1, 0),
--	PLL_RATE(2064000000, 72, 1, 0),
--	PLL_RATE(2088000000, 72, 1, 0),
--	PLL_RATE(2112000000, 73, 1, 0),
--	{ /* sentinel */ },
--};
--
- static const struct pll_rate_table gxbb_gp0_pll_rate_table[] = {
- 	PLL_RATE(96000000, 32, 1, 3),
- 	PLL_RATE(99000000, 33, 1, 3),
-@@ -356,8 +264,6 @@ static struct meson_clk_pll gxbb_sys_pll = {
- 		.shift   = 10,
- 		.width   = 2,
+@@ -212,6 +212,17 @@ static struct meson_clk_pll gxbb_fixed_pll = {
  	},
--	.rate_table = sys_pll_rate_table,
--	.rate_count = ARRAY_SIZE(sys_pll_rate_table),
- 	.lock = &meson_clk_lock,
+ };
+ 
++static struct clk_fixed_factor gxbb_hdmi_pll_pre_mult = {
++	.mult = 2,
++	.div = 1,
++	.hw.init = &(struct clk_init_data){
++		.name = "hdmi_pll_pre_mult",
++		.ops = &clk_fixed_factor_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++	},
++};
++
+ static struct meson_clk_pll gxbb_hdmi_pll = {
+ 	.m = {
+ 		.reg_off = HHI_HDMI_PLL_CNTL,
+@@ -247,7 +258,7 @@ static struct meson_clk_pll gxbb_hdmi_pll = {
  	.hw.init = &(struct clk_init_data){
- 		.name = "sys_pll",
+ 		.name = "hdmi_pll",
+ 		.ops = &meson_clk_pll_ro_ops,
+-		.parent_names = (const char *[]){ "xtal" },
++		.parent_names = (const char *[]){ "hdmi_pll_pre_mult" },
+ 		.num_parents = 1,
+ 		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+@@ -1558,6 +1569,7 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
+ 		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
+ 		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
+ 		[CLKID_VAPB]		    = &gxbb_vapb.hw,
++		[CLKID_HDMI_PLL_PRE_MULT]   = &gxbb_hdmi_pll_pre_mult.hw,
+ 		[NR_CLKS]		    = NULL,
+ 	},
+ 	.num = NR_CLKS,
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index aee6fbba2004..42573b28a137 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -194,8 +194,9 @@
+ #define CLKID_VPU_1_DIV		  130
+ #define CLKID_VAPB_0_DIV	  134
+ #define CLKID_VAPB_1_DIV	  137
++#define CLKID_HDMI_PLL_PRE_MULT	  141
+ 
+-#define NR_CLKS			  141
++#define NR_CLKS			  142
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/gxbb-clkc.h>
 -- 
 2.14.3
