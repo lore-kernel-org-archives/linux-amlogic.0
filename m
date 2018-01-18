@@ -1,94 +1,49 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 18 Jan 2018 19:45:30 +0100
-Subject: [PATCH 7/9] clk: meson: fix pll with fractional part calculation
+Date: Thu, 18 Jan 2018 19:45:24 +0100
+Subject: [PATCH 1/9] clk: meson: check pll rate param table before using it
 In-Reply-To: <20180118184532.6856-1-jbrunet@baylibre.com>
 References: <20180118184532.6856-1-jbrunet@baylibre.com>
-Message-ID: <20180118184532.6856-8-jbrunet@baylibre.com>
+Message-ID: <20180118184532.6856-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The rate of the parent should not be multiplied by 2 when there is a
-fractional part to the pll. This is making the rate calculation of
-gxl_hdmi_pll wrong (and others as well). This multiplication is specific
-to the hdmi_pll of gxbb and is most likely due to a multiplier sitting
-in front of this particular pll.
+Make sure the rate param table is available before using it.
+Some read-only pll don't provide it, which is ok because the
+table is not used by read-only clock. R/W clock are supposed
+to provide it, but it does not hurt check it.
 
-Add fixed factor clock in front on the gxbb pll and remove this constant
-from the calculation
-
-Fixes: 4a47295144dd ("clk: meson: fractional pll support")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/clk-pll.c |  1 -
- drivers/clk/meson/gxbb.c    | 14 +++++++++++++-
- drivers/clk/meson/gxbb.h    |  3 ++-
- 3 files changed, 15 insertions(+), 3 deletions(-)
+ drivers/clk/meson/clk-pll.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index 3f560b2cd83b..8845f65aeb07 100644
+index 01341553f50b..2614341fc4ad 100644
 --- a/drivers/clk/meson/clk-pll.c
 +++ b/drivers/clk/meson/clk-pll.c
-@@ -87,7 +87,6 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- 		frac = PARM_GET(p->width, p->shift, reg);
+@@ -94,6 +94,13 @@ static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+ 	const struct pll_rate_table *rate_table = pll->rate_table;
+ 	int i;
  
- 		rate += (u64)parent_rate * frac >>  p->width;
--		rate *= 2;
- 	}
- 
- 	return (rate / n) >> od >> od2 >> od3;
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 08b3e1cdba5b..9a92e64b428c 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -212,6 +212,17 @@ static struct meson_clk_pll gxbb_fixed_pll = {
- 	},
- };
- 
-+static struct clk_fixed_factor gxbb_hdmi_pll_pre_mult = {
-+	.mult = 2,
-+	.div = 1,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "hdmi_pll_pre_mult",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "xtal" },
-+		.num_parents = 1,
-+	},
-+};
++	/*
++	 * if the table is missing, just return the current rate
++	 * since we don't have the other available frequencies
++	 */
++	if (!rate_table)
++		return meson_clk_pll_recalc_rate(hw, *parent_rate);
 +
- static struct meson_clk_pll gxbb_hdmi_pll = {
- 	.m = {
- 		.reg_off = HHI_HDMI_PLL_CNTL,
-@@ -247,7 +258,7 @@ static struct meson_clk_pll gxbb_hdmi_pll = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "hdmi_pll",
- 		.ops = &meson_clk_pll_ro_ops,
--		.parent_names = (const char *[]){ "xtal" },
-+		.parent_names = (const char *[]){ "hdmi_pll_pre_mult" },
- 		.num_parents = 1,
- 		.flags = CLK_GET_RATE_NOCACHE,
- 	},
-@@ -1558,6 +1569,7 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
- 		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
- 		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
- 		[CLKID_VAPB]		    = &gxbb_vapb.hw,
-+		[CLKID_HDMI_PLL_PRE_MULT]   = &gxbb_hdmi_pll_pre_mult.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index aee6fbba2004..42573b28a137 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -194,8 +194,9 @@
- #define CLKID_VPU_1_DIV		  130
- #define CLKID_VAPB_0_DIV	  134
- #define CLKID_VAPB_1_DIV	  137
-+#define CLKID_HDMI_PLL_PRE_MULT	  141
+ 	for (i = 0; i < pll->rate_count; i++) {
+ 		if (rate <= rate_table[i].rate)
+ 			return rate_table[i].rate;
+@@ -109,6 +116,9 @@ static const struct pll_rate_table *meson_clk_get_pll_settings(struct meson_clk_
+ 	const struct pll_rate_table *rate_table = pll->rate_table;
+ 	int i;
  
--#define NR_CLKS			  141
-+#define NR_CLKS			  142
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/gxbb-clkc.h>
++	if (!rate_table)
++		return NULL;
++
+ 	for (i = 0; i < pll->rate_count; i++) {
+ 		if (rate == rate_table[i].rate)
+ 			return &rate_table[i];
 -- 
 2.14.3
