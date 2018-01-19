@@ -1,70 +1,56 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 19 Jan 2018 16:55:23 +0100
-Subject: [PATCH v2 3/9] clk: meson: remove unnecessary rounding in the pll
- clock
-In-Reply-To: <20180119155529.11532-1-jbrunet@baylibre.com>
-References: <20180119155529.11532-1-jbrunet@baylibre.com>
-Message-ID: <20180119155529.11532-4-jbrunet@baylibre.com>
+Date: Fri, 19 Jan 2018 16:55:20 +0100
+Subject: [PATCH v2 0/9] clk: meson: pll fixes
+Message-ID: <20180119155529.11532-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The pll driver performs the rate calculation in Mhz, which adds an
-unnecessary rounding down to the Mhz of the rate. Use 64bits long
-integers to perform this calculation safely on meson8b and perform the
-calculation in Hz instead
+This changeset is a collection of fixes and clean-up around the pll clock
+provider. This has been triggered by the discussion around the ethernet
+clock on the axg [0].
 
-Fixes: 7a29a869434e ("clk: meson: Add support for Meson clock controller")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/clk-pll.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+On the axg the rate reported by the fixed_pll is off by 8Mhz, which leads
+the internal mux of the ethernet driver to pick an mpll2 instead of the
+fdiv4.
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index 2614341fc4ad..087dfc532ba8 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -34,6 +34,7 @@
- #include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/io.h>
-+#include <linux/math64.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
- #include <linux/slab.h>
-@@ -51,8 +52,7 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- {
- 	struct meson_clk_pll *pll = to_meson_clk_pll(hw);
- 	struct parm *p;
--	unsigned long parent_rate_mhz = parent_rate / 1000000;
--	unsigned long rate_mhz;
-+	u64 rate;
- 	u16 n, m, frac = 0, od, od2 = 0;
- 	u32 reg;
- 
-@@ -74,17 +74,18 @@ static unsigned long meson_clk_pll_recalc_rate(struct clk_hw *hw,
- 		od2 = PARM_GET(p->width, p->shift, reg);
- 	}
- 
-+	rate = (u64)parent_rate * m;
-+
- 	p = &pll->frac;
- 	if (p->width) {
- 		reg = readl(pll->base + p->reg_off);
- 		frac = PARM_GET(p->width, p->shift, reg);
--		rate_mhz = (parent_rate_mhz * m + \
--				(parent_rate_mhz * frac >> 12)) * 2 / n;
--		rate_mhz = rate_mhz >> od >> od2;
--	} else
--		rate_mhz = (parent_rate_mhz * m / n) >> od >> od2;
- 
--	return rate_mhz * 1000000;
-+		rate += mul_u64_u32_shr(parent_rate, frac, 12);
-+		rate *= 2;
-+	}
-+
-+	return div_u64(rate, n) >> od >> od2;
- }
- 
- static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+With this series applied, the fixed_pll of the axg now reports
+1999998046 Hz, which is coherent with measurements (~2GHz)
+
+While debugging this, we uncovered quite a mess around the hdmi_pll
+of the gxbb and gxl family. This is also fixed by this series.
+
+Last, the parameters table provided to the read-only sys_plls have
+been removed, saving a bit of memory
+
+There is still work to be done on this clock provider. Someday,
+I hope to see the parameter tables go away completely. This pll
+is just a (quite complex) fractional divider, we sould be able to
+figure something out at runtime.
+
+Changes since v1: [1]
+* fix several typos in the comments
+* fix arm32 u64 math in patch 3 (Thanks a lot Martin!!)
+
+[0]: https://lkml.kernel.org/r/1516095424.2608.36.camel at baylibre.com
+[1]: https://lkml.kernel.org/r/20180118184532.6856-1-jbrunet at baylibre.com
+
+Jerome Brunet (9):
+  clk: meson: check pll rate param table before using it
+  clk: meson: remove useless pll rate params tables
+  clk: meson: remove unnecessary rounding in the pll clock
+  clk: meson: use the frac parameter width instead of a constant
+  clk: meson: add od3 to the pll driver
+  clk: meson: add the gxl hdmi pll
+  clk: meson: fix rate calculation of plls with a fractional part
+  clk: meson: gxbb: add the fractional part of the fixed_pll
+  clk: meson: axg: add the fractional part of the fixed_pll
+
+ drivers/clk/meson/axg.c     |  99 ++------------------------
+ drivers/clk/meson/clk-pll.c |  41 ++++++++---
+ drivers/clk/meson/clkc.h    |   2 +
+ drivers/clk/meson/gxbb.c    | 166 +++++++++++++++++++-------------------------
+ drivers/clk/meson/gxbb.h    |   3 +-
+ 5 files changed, 111 insertions(+), 200 deletions(-)
+
 -- 
 2.14.3
