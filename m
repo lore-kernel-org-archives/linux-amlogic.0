@@ -1,59 +1,36 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 19 Jan 2018 11:17:35 -0800
-Subject: [PATCH] pinctrl: meson-axg: adjust uart_ao_b pin group naming
-In-Reply-To: <20180118141757.41290-1-yixun.lan@amlogic.com> (Yixun Lan's
- message of "Thu, 18 Jan 2018 22:17:57 +0800")
-References: <20180118141757.41290-1-yixun.lan@amlogic.com>
-Message-ID: <7hzi59wtdc.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Fri, 19 Jan 2018 16:30:24 -0600
+Subject: [PATCH v2 02/16] pwm: pxa: update documentation regarding
+ pwm-cells
+In-Reply-To: <1515766983-15151-3-git-send-email-claudiu.beznea@microchip.com>
+References: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
+ <1515766983-15151-3-git-send-email-claudiu.beznea@microchip.com>
+Message-ID: <20180119223024.m5kuc6467xmgkgac@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Yixun Lan <yixun.lan@amlogic.com> writes:
-
-> Simply adjust the pin group to _x _y _z style, as to
-> keep the consistency in DT with previous naming scheme.
->
-> Fixes: 83c566806a68 ("pinctrl: meson-axg: Add new pinctrl driver for Meson AXG SoC")
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-
-Thanks for cleaning this up before we have any DT users.
-
-Kevin
-
+On Fri, Jan 12, 2018 at 04:22:49PM +0200, Claudiu Beznea wrote:
+> pwm-cells should be at least 2 to provide channel number and period value.
+> 
+> Cc: Mike Dunn <mikedunn@newsguy.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 > ---
-> Hi Linus,
->
->  Please also consider merging this patch into 'for-next', since it
-> fixes issue added in the same cycle.
->  This patch will also obsolete previous one patches [1]
->
-> [1] pinctrl: meson: use one uniform 'function' name
-> http://lkml.kernel.org/r/20180108073328.205769-1-yixun.lan at amlogic.com
-> ---
->  drivers/pinctrl/meson/pinctrl-meson-axg.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> index 1fda9d6c7ea3..4b91ff74779b 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> @@ -716,7 +716,7 @@ static const char * const uart_b_groups[] = {
->  	"uart_tx_b_x", "uart_rx_b_x", "uart_cts_b_x", "uart_rts_b_x",
->  };
->  
-> -static const char * const uart_ao_b_gpioz_groups[] = {
-> +static const char * const uart_ao_b_z_groups[] = {
->  	"uart_ao_tx_b_z", "uart_ao_rx_b_z",
->  	"uart_ao_cts_b_z", "uart_ao_rts_b_z",
->  };
-> @@ -855,7 +855,7 @@ static struct meson_pmx_func meson_axg_periphs_functions[] = {
->  	FUNCTION(nand),
->  	FUNCTION(uart_a),
->  	FUNCTION(uart_b),
-> -	FUNCTION(uart_ao_b_gpioz),
-> +	FUNCTION(uart_ao_b_z),
->  	FUNCTION(i2c0),
->  	FUNCTION(i2c1),
->  	FUNCTION(i2c2),
+>  Documentation/devicetree/bindings/pwm/pxa-pwm.txt | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt b/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
+> index 5ae9f1e3c338..a0e20edeeebc 100644
+> --- a/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
+> +++ b/Documentation/devicetree/bindings/pwm/pxa-pwm.txt
+> @@ -10,7 +10,7 @@ Required properties:
+>    Note that one device instance must be created for each PWM that is used, so the
+>    length covers only the register window for one PWM output, not that of the
+>    entire PWM controller.  Currently length is 0x10 for all supported devices.
+> -- #pwm-cells: Should be 1.  This cell is used to specify the period in
+> +- #pwm-cells: Should be 2.  This cell is used to specify the period in
+>    nanoseconds.
+
+What's the new cell? channel? Does the PXA PWM have more than one 
+channel? If not, then you shouldn't add a cell.
+
+Rob
