@@ -1,106 +1,49 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 19 Jan 2018 16:42:36 +0100
-Subject: [PATCH] clk: meson: add axg misc bit to the mpll driver
-Message-ID: <20180119154236.9797-1-jbrunet@baylibre.com>
+Date: Fri, 19 Jan 2018 16:55:21 +0100
+Subject: [PATCH v2 1/9] clk: meson: check pll rate param table before using it
+In-Reply-To: <20180119155529.11532-1-jbrunet@baylibre.com>
+References: <20180119155529.11532-1-jbrunet@baylibre.com>
+Message-ID: <20180119155529.11532-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On axg, the rate of the mpll is stuck as if sdm value was 4 and could not
-change (expect for mpll2 strangely). Looking at the vendor kernel, it
-turns out a new magic bit from the undocumented HHI_PLL_TOP_MISC register
-is required.
+Make sure the rate param table is available before using it.
+Some read-only plls don't provide it, which is ok since the
+table is not used by read-only clocks. R/W clocks are supposed
+to provide it, but it does not hurt check it.
 
-Setting this bit solves the problem and the mpll rates are back to normal
-
-Fixes: 78b4af312f91 ("clk: meson-axg: add clock controller drivers")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c      | 20 ++++++++++++++++++++
- drivers/clk/meson/clk-mpll.c |  7 +++++++
- drivers/clk/meson/clkc.h     |  1 +
- 3 files changed, 28 insertions(+)
+ drivers/clk/meson/clk-pll.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 953e119635a2..2f2b3845c01d 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -292,6 +292,11 @@ static struct meson_clk_mpll axg_mpll0 = {
- 		.shift   = 25,
- 		.width	 = 1,
- 	},
-+	.misc = {
-+		.reg_off = HHI_PLL_TOP_MISC,
-+		.shift   = 0,
-+		.width	 = 1,
-+	},
- 	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0",
-@@ -322,6 +327,11 @@ static struct meson_clk_mpll axg_mpll1 = {
- 		.shift   = 14,
- 		.width	 = 1,
- 	},
-+	.misc = {
-+		.reg_off = HHI_PLL_TOP_MISC,
-+		.shift   = 1,
-+		.width	 = 1,
-+	},
- 	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll1",
-@@ -352,6 +362,11 @@ static struct meson_clk_mpll axg_mpll2 = {
- 		.shift   = 14,
- 		.width	 = 1,
- 	},
-+	.misc = {
-+		.reg_off = HHI_PLL_TOP_MISC,
-+		.shift   = 2,
-+		.width	 = 1,
-+	},
- 	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll2",
-@@ -382,6 +397,11 @@ static struct meson_clk_mpll axg_mpll3 = {
- 		.shift   = 0,
- 		.width	 = 1,
- 	},
-+	.misc = {
-+		.reg_off = HHI_PLL_TOP_MISC,
-+		.shift   = 3,
-+		.width	 = 1,
-+	},
- 	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll3",
-diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
-index 5144360e2c80..6d79d6daadc4 100644
---- a/drivers/clk/meson/clk-mpll.c
-+++ b/drivers/clk/meson/clk-mpll.c
-@@ -173,6 +173,13 @@ static int mpll_set_rate(struct clk_hw *hw,
- 	reg = PARM_SET(p->width, p->shift, reg, n2);
- 	writel(reg, mpll->base + p->reg_off);
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index 01341553f50b..2614341fc4ad 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -94,6 +94,13 @@ static long meson_clk_pll_round_rate(struct clk_hw *hw, unsigned long rate,
+ 	const struct pll_rate_table *rate_table = pll->rate_table;
+ 	int i;
  
-+	p = &mpll->misc;
-+	if (p->width != 0) {
-+		reg = readl(mpll->base + p->reg_off);
-+		reg = PARM_SET(p->width, p->shift, reg, 1);
-+		writel(reg, mpll->base + p->reg_off);
-+	}
++	/*
++	 * if the table is missing, just return the current rate
++	 * since we don't have the other available frequencies
++	 */
++	if (!rate_table)
++		return meson_clk_pll_recalc_rate(hw, *parent_rate);
 +
- 	if (mpll->lock)
- 		spin_unlock_irqrestore(mpll->lock, flags);
- 	else
-diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 4acb35bda669..07aaba26a857 100644
---- a/drivers/clk/meson/clkc.h
-+++ b/drivers/clk/meson/clkc.h
-@@ -121,6 +121,7 @@ struct meson_clk_mpll {
- 	struct parm n2;
- 	struct parm en;
- 	struct parm ssen;
-+	struct parm misc;
- 	spinlock_t *lock;
- };
+ 	for (i = 0; i < pll->rate_count; i++) {
+ 		if (rate <= rate_table[i].rate)
+ 			return rate_table[i].rate;
+@@ -109,6 +116,9 @@ static const struct pll_rate_table *meson_clk_get_pll_settings(struct meson_clk_
+ 	const struct pll_rate_table *rate_table = pll->rate_table;
+ 	int i;
  
++	if (!rate_table)
++		return NULL;
++
+ 	for (i = 0; i < pll->rate_count; i++) {
+ 		if (rate == rate_table[i].rate)
+ 			return &rate_table[i];
 -- 
 2.14.3
