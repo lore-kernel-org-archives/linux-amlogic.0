@@ -1,99 +1,55 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 19 Jan 2018 16:55:26 +0100
-Subject: [PATCH v2 6/9] clk: meson: add the gxl hdmi pll
-In-Reply-To: <20180119155529.11532-1-jbrunet@baylibre.com>
-References: <20180119155529.11532-1-jbrunet@baylibre.com>
-Message-ID: <20180119155529.11532-7-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 19 Jan 2018 10:04:19 -0800
+Subject: [PATCH 00/12] firmware: arm_scpi: series with smaller improvements
+In-Reply-To: <db85dc34-5755-c48d-8a23-379d95fc0342@arm.com> (Sudeep Holla's
+ message of "Wed, 10 Jan 2018 16:56:49 +0000")
+References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
+ <db85dc34-5755-c48d-8a23-379d95fc0342@arm.com>
+Message-ID: <7hbmhpybbw.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The hdmi pll used in the gxl family is actually different from the gxbb
-one. The register layout is completely different, which explain why the
-hdmi pll rate has always been rubbish on the gxl family.
+Sudeep Holla <sudeep.holla@arm.com> writes:
 
-Adding the correct register field is the first part of the fix to get a
-correct rate out the hdmi pll
+> Hi Heiner,
+>
+> (Sorry for the late response, was off for a month)
+>
+> On 05/12/17 21:54, Heiner Kallweit wrote:
+>> After recent revert of all changes since 4.14 this is a resubmit of
+>> the patch series, reduced to patches which should not cause any
+>> regression.
+>> Based on a remark from Kevin I added one patch for improving the
+>> version info for pre-1.0 firmware that doesn't provide version
+>> information.
+>> 
+>> Best should be to apply it to a devel branch first so that the
+>> Baylibre Amlogic team can test before mainlining.
+>> 
+>
+> I am still waiting for tested by from Amlogic team for this series.
 
-Fixes: 0d48fc558d01 ("clk: meson-gxbb: Add GXL/GXM GP0 Variant")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/gxbb.c | 50 ++++++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 48 insertions(+), 2 deletions(-)
+I (finally) tested this series on a few of the boards that were failing
+last time, and those issues are gone.
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index cf083a1906d1..f74ed52e2673 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -253,6 +253,52 @@ static struct meson_clk_pll gxbb_hdmi_pll = {
- 	},
- };
- 
-+static struct meson_clk_pll gxl_hdmi_pll = {
-+	.m = {
-+		.reg_off = HHI_HDMI_PLL_CNTL,
-+		.shift   = 0,
-+		.width   = 9,
-+	},
-+	.n = {
-+		.reg_off = HHI_HDMI_PLL_CNTL,
-+		.shift   = 9,
-+		.width   = 5,
-+	},
-+	.frac = {
-+		/*
-+		 * On gxl, there is a register shift due to HHI_HDMI_PLL_CNTL1
-+		 * which does not exist on gxbb, so we compute the register
-+		 * offset based on the PLL base to get it right
-+		 */
-+		.reg_off = HHI_HDMI_PLL_CNTL + 4,
-+		.shift   = 0,
-+		.width   = 12,
-+	},
-+	.od = {
-+		.reg_off = HHI_HDMI_PLL_CNTL + 8,
-+		.shift   = 21,
-+		.width   = 2,
-+	},
-+	.od2 = {
-+		.reg_off = HHI_HDMI_PLL_CNTL + 8,
-+		.shift   = 23,
-+		.width   = 2,
-+	},
-+	.od3 = {
-+		.reg_off = HHI_HDMI_PLL_CNTL + 8,
-+		.shift   = 19,
-+		.width   = 2,
-+	},
-+	.lock = &meson_clk_lock,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "hdmi_pll",
-+		.ops = &meson_clk_pll_ro_ops,
-+		.parent_names = (const char *[]){ "xtal" },
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
- static struct meson_clk_pll gxbb_sys_pll = {
- 	.m = {
- 		.reg_off = HHI_SYS_PLL_CNTL,
-@@ -1520,7 +1566,7 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
- static struct clk_hw_onecell_data gxl_hw_onecell_data = {
- 	.hws = {
- 		[CLKID_SYS_PLL]		    = &gxbb_sys_pll.hw,
--		[CLKID_HDMI_PLL]	    = &gxbb_hdmi_pll.hw,
-+		[CLKID_HDMI_PLL]	    = &gxl_hdmi_pll.hw,
- 		[CLKID_FIXED_PLL]	    = &gxbb_fixed_pll.hw,
- 		[CLKID_FCLK_DIV2]	    = &gxbb_fclk_div2.hw,
- 		[CLKID_FCLK_DIV3]	    = &gxbb_fclk_div3.hw,
-@@ -1675,7 +1721,7 @@ static struct meson_clk_pll *const gxbb_clk_plls[] = {
- 
- static struct meson_clk_pll *const gxl_clk_plls[] = {
- 	&gxbb_fixed_pll,
--	&gxbb_hdmi_pll,
-+	&gxl_hdmi_pll,
- 	&gxbb_sys_pll,
- 	&gxl_gp0_pll,
- };
--- 
-2.14.3
+So, for the series...
+
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+
+
+> However I prefer even the patch you dropped as causing the issue to
+> be tested as it's nice cleanup to have. I strongly think that the issue
+> Kevin reported was due to broken DVFS in the scp firmware in which case
+> the solution is to have the dvfs node in DT removed or disabled rather
+> than not having that patch at all.
+
+Yes, I suspect we're up against broken firmware also.
+
+> Please post that patch on rebased on top of this series and get it
+> tested with DVFS nodes disabled.
+
+I'll give that a test as well,
+
+Thanks,
+
+Kevin
