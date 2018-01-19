@@ -1,237 +1,29 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 18 Jan 2018 21:05:15 +0100
-Subject: [RFT net-next v4 3/5] net: stmmac: dwmac-meson8b: fix internal
- RGMII clock configuration
-In-Reply-To: <CAFBinCDxrxuow-e3aofu6k0ShQdCehVbAJH_u3b26RKN6D0Hug@mail.gmail.com>
-References: <20180114214858.7217-1-martin.blumenstingl@googlemail.com>
- <20180114214858.7217-4-martin.blumenstingl@googlemail.com>
- <CAFBinCDxrxuow-e3aofu6k0ShQdCehVbAJH_u3b26RKN6D0Hug@mail.gmail.com>
-Message-ID: <CAFBinCB2s3Nk_ChA_=A44w=9nS8RRH_v4W=fGhkYBY=1=Vyu4A@mail.gmail.com>
+From: ingrassia@epigenesys.com (Emiliano Ingrassia)
+Date: Fri, 19 Jan 2018 02:47:17 +0100
+Subject: [PATCH v2 0/2] meson8b-odroidc1: ethernet support
+Message-ID: <cover.1516326105.git.ingrassia@epigenesys.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jan 16, 2018 at 12:20 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> On Sun, Jan 14, 2018 at 10:48 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->> Tests (using an oscilloscope and an Odroid-C1 board with a RTL8211F
->> RGMII PHY) have shown that the PRG_ETH0 register behaves as follows:
->> - bit 4 is a mux to choose between two parent clocks. according to the
->>   public S805 datasheet the only supported parent clock is MPLL2 (this
->>   was not verified using the oscilloscope).
->>   The public S805/S905 datasheet claims that this bit is reserved.
->> - bits 9:7 control a one-based divider (register value 1 means "divide
->>   by 1", etc.) for the input clock. we call this clock the "m250_div"
->>   clock because it's value is always supposed to be (close to) 250MHz
->>   (see below for an explanation).
->>   The description in the public S805/S905 datasheet is a bit cryptic,
->>   but it comes down to "input clock = 250MHz * value" (which could also
->>   be expressed as "250MHz = input clock / value")
->> - there seems to be an internal fixed divide-by-2 clock which takes the
->>   output from the m250_div and divides it by 2. This is not unusual on
->>   Amlogic SoCs, since the SDIO (MMC) driver also uses an internal fixed
->>   divide-by-2 clock.
->>   This is not documented in the public S805/S905 datasheet
->> - bit 10 controls a gate clock which enables or disables the RGMII TX
->>   clock (which is an output on the MAC/SoC and an input in the PHY). we
->>   call this the "rgmii_tx_en" clock. if this bit is set to "0" the RGMII
->>   TX clock output is close to 0
->>   The description for this bit in the public S805/S905 datasheet is
->>   "Generate 25MHz clock for PHY". Based on these tests it's believed
->>   that this is wrong, and should probably read "Generate the 125MHz
->>   RGMII TX clock for the PHY"
->> - the RGMII TX clock has to be set to 125MHz - the IP block adjusts the
->>   output (automatically) depending on the line speed (RGMII specifies
->>   that Gbit connections use a 125MHz clock, 100Mbit/s connections use a
->>   25MHz clock and 10Mbit/s connections use a 2.5MHz clock. only Gbit and
->>   100Mbit/s were tested with an oscilloscope). Due to the requirement
->>   that this clock always has to be set to 125MHz and due to the fixed
->>   divide-by-2 parent clock this means that m250_div will always end up
->>   with a rate of (close to) 250MHz.
->> - bits 6:5 are the TX delay, which is also named "clock phase" in some
->>   of Amlogic's older GPL kernel sources.
->>
->> The PHY also has an XTAL_IN pin where a 25MHz clock has to be provided.
->> Tests with the oscilloscope have shown that this is routed to a crystal
->> right next to the RTL8211F PHY. The same seems to be true on the Khadas
->> VIM2 (which uses a GXM SoC) board - however the 25MHz crystal is on the
->> other side of the PCB there.
->>
->> This updates the clocks in the dwmac-meson8b driver by replacing the
->> "m25_div" with the "rgmii_tx_en" clock and additionally introducing a
->> fixed divide-by-2 clock between "m250_div" and "rgmii_tx_en".
->> Now we also need to set a frequency of 125MHz on the RGMII clock
->> (opposed to the 25MHz we set before, with that non-existing
->> divide-by-5-or-10 divider).
->>
->> Special thanks go to Linus L?ssing for testing the various bits and
->> checking the results with an oscilloscope on his Odroid-C1!
->>
->> Fixes: 566e8251625304 ("net: stmmac: add a glue driver for the Amlogic Meson 8b / GXBB DWMAC")
->> Reported-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> NACK-ed by: Yixun Lan <yixun.lan@amlogic.com>
->
-> as it breaks the AXG SoCs (maybe not even directly related to this
-> patch, but we're currently not sure if m250_mux is defined correctly)
-> see: [0]
-for the record (as this series is now merged): it turned out that the
-breakage (of this series) on the AXG SoC is a side-effect of at least
-two problems in the clock controller driver - these should be fixed
-with: [0]
+This patchset, tested on an Odroid-C1+ board, enables ethernet support
+on Odroid-C1/C1+ boards, improving and extending the ethernet description
+in the relative device tree.
 
->> ---
->>  .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 79 +++++++++++++---------
->>  1 file changed, 47 insertions(+), 32 deletions(-)
->>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
->> index 670f344f7168..e9fec9e0425c 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
->> @@ -40,9 +40,7 @@
->>  #define PRG_ETH0_CLK_M250_DIV_SHIFT    7
->>  #define PRG_ETH0_CLK_M250_DIV_WIDTH    3
->>
->> -/* divides the result of m25_sel by either 5 (bit unset) or 10 (bit set) */
->> -#define PRG_ETH0_CLK_M25_DIV_SHIFT     10
->> -#define PRG_ETH0_CLK_M25_DIV_WIDTH     1
->> +#define PRG_ETH0_RGMII_TX_CLK_EN       10
->>
->>  #define PRG_ETH0_INVERTED_RMII_CLK     BIT(11)
->>  #define PRG_ETH0_TX_AND_PHY_REF_CLK    BIT(12)
->> @@ -63,8 +61,11 @@ struct meson8b_dwmac {
->>         struct clk_divider      m250_div;
->>         struct clk              *m250_div_clk;
->>
->> -       struct clk_divider      m25_div;
->> -       struct clk              *m25_div_clk;
->> +       struct clk_fixed_factor fixed_div2;
->> +       struct clk              *fixed_div2_clk;
->> +
->> +       struct clk_gate         rgmii_tx_en;
->> +       struct clk              *rgmii_tx_en_clk;
->>
->>         u32                     tx_delay_ns;
->>  };
->> @@ -88,11 +89,6 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
->>         struct device *dev = &dwmac->pdev->dev;
->>         const char *clk_div_parents[1];
->>         const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
->> -       static const struct clk_div_table clk_25m_div_table[] = {
->> -               { .val = 0, .div = 5 },
->> -               { .val = 1, .div = 10 },
->> -               { /* sentinel */ },
->> -       };
->>
->>         /* get the mux parents from DT */
->>         for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
->> @@ -149,25 +145,40 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
->>         if (WARN_ON(IS_ERR(dwmac->m250_div_clk)))
->>                 return PTR_ERR(dwmac->m250_div_clk);
->>
->> -       /* create the m25_div */
->> -       init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#m25_div",
->> +       /* create the fixed_div2 */
->> +       init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#fixed_div2",
->>                                    dev_name(dev));
->> -       init.ops = &clk_divider_ops;
->> -       init.flags = CLK_IS_BASIC | CLK_SET_RATE_PARENT;
->> +       init.ops = &clk_fixed_factor_ops;
->> +       init.flags = CLK_SET_RATE_PARENT;
->>         clk_div_parents[0] = __clk_get_name(dwmac->m250_div_clk);
->>         init.parent_names = clk_div_parents;
->>         init.num_parents = ARRAY_SIZE(clk_div_parents);
->>
->> -       dwmac->m25_div.reg = dwmac->regs + PRG_ETH0;
->> -       dwmac->m25_div.shift = PRG_ETH0_CLK_M25_DIV_SHIFT;
->> -       dwmac->m25_div.width = PRG_ETH0_CLK_M25_DIV_WIDTH;
->> -       dwmac->m25_div.table = clk_25m_div_table;
->> -       dwmac->m25_div.hw.init = &init;
->> -       dwmac->m25_div.flags = CLK_DIVIDER_ALLOW_ZERO;
->> +       dwmac->fixed_div2.mult = 1;
->> +       dwmac->fixed_div2.div = 2;
->> +       dwmac->fixed_div2.hw.init = &init;
->> +
->> +       dwmac->fixed_div2_clk = devm_clk_register(dev, &dwmac->fixed_div2.hw);
->> +       if (WARN_ON(IS_ERR(dwmac->fixed_div2_clk)))
->> +               return PTR_ERR(dwmac->fixed_div2_clk);
->> +
->> +       /* create the rgmii_tx_en */
->> +       init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#rgmii_tx_en",
->> +                                  dev_name(dev));
->> +       init.ops = &clk_gate_ops;
->> +       init.flags = CLK_SET_RATE_PARENT;
->> +       clk_div_parents[0] = __clk_get_name(dwmac->fixed_div2_clk);
->> +       init.parent_names = clk_div_parents;
->> +       init.num_parents = ARRAY_SIZE(clk_div_parents);
->> +
->> +       dwmac->rgmii_tx_en.reg = dwmac->regs + PRG_ETH0;
->> +       dwmac->rgmii_tx_en.bit_idx = PRG_ETH0_RGMII_TX_CLK_EN;
->> +       dwmac->rgmii_tx_en.hw.init = &init;
->>
->> -       dwmac->m25_div_clk = devm_clk_register(dev, &dwmac->m25_div.hw);
->> -       if (WARN_ON(IS_ERR(dwmac->m25_div_clk)))
->> -               return PTR_ERR(dwmac->m25_div_clk);
->> +       dwmac->rgmii_tx_en_clk = devm_clk_register(dev,
->> +                                                  &dwmac->rgmii_tx_en.hw);
->> +       if (WARN_ON(IS_ERR(dwmac->rgmii_tx_en_clk)))
->> +               return PTR_ERR(dwmac->rgmii_tx_en_clk);
->>
->>         return 0;
->>  }
->> @@ -200,18 +211,22 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->>                 meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
->>                                         tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
->>
->> -               ret = clk_prepare_enable(dwmac->m25_div_clk);
->> +               /* Configure the 125MHz RGMII TX clock, the IP block changes
->> +                * the output automatically (= without us having to configure
->> +                * a register) based on the line-speed (125MHz for Gbit speeds,
->> +                * 25MHz for 100Mbit/s and 2.5MHz for 10Mbit/s).
->> +                */
->> +               ret = clk_set_rate(dwmac->rgmii_tx_en_clk, 125 * 1000 * 1000);
->>                 if (ret) {
->> -                       dev_err(&dwmac->pdev->dev, "failed to enable the PHY clock\n");
->> +                       dev_err(&dwmac->pdev->dev,
->> +                               "failed to set RGMII TX clock\n");
->>                         return ret;
->>                 }
->>
->> -               /* Generate the 25MHz RGMII clock for the PHY */
->> -               ret = clk_set_rate(dwmac->m25_div_clk, 25 * 1000 * 1000);
->> +               ret = clk_prepare_enable(dwmac->rgmii_tx_en_clk);
->>                 if (ret) {
->> -                       clk_disable_unprepare(dwmac->m25_div_clk);
->> -
->> -                       dev_err(&dwmac->pdev->dev, "failed to set PHY clock\n");
->> +                       dev_err(&dwmac->pdev->dev,
->> +                               "failed to enable the RGMII TX clock\n");
->>                         return ret;
->>                 }
->>                 break;
->> @@ -305,7 +320,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->>
->>  err_clk_disable:
->>         if (phy_interface_mode_is_rgmii(dwmac->phy_mode))
->> -               clk_disable_unprepare(dwmac->m25_div_clk);
->> +               clk_disable_unprepare(dwmac->rgmii_tx_en_clk);
->>  err_remove_config_dt:
->>         stmmac_remove_config_dt(pdev, plat_dat);
->>
->> @@ -317,7 +332,7 @@ static int meson8b_dwmac_remove(struct platform_device *pdev)
->>         struct meson8b_dwmac *dwmac = get_stmmac_bsp_priv(&pdev->dev);
->>
->>         if (phy_interface_mode_is_rgmii(dwmac->phy_mode))
->> -               clk_disable_unprepare(dwmac->m25_div_clk);
->> +               clk_disable_unprepare(dwmac->rgmii_tx_en_clk);
->>
->>         return stmmac_pltfr_remove(pdev);
->>  }
->> --
->> 2.15.1
->>
->
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006153.html
+In particular:
+- enables the Meson8b ethernet controller pin multiplexing;
+- fixes and extends the Meson8b ethernet controller description;
+- adds the Odroid-C1+ ethernet PHY description and enables the
+  ethernet controller.
 
+This patchset depends on patchset "dwmac-meson8b: clock fixes for Meson8b".
 
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006204.html
+Emiliano Ingrassia (2):
+  ARM: dts: meson8b: extend ethernet controller description
+  ARM: dts: meson8b-odroidc1: ethernet support
+
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 30 +++++++++++++++++++++++++++++
+ arch/arm/boot/dts/meson8b.dtsi         | 35 ++++++++++++++++++++++++++++++++--
+ 2 files changed, 63 insertions(+), 2 deletions(-)
+
+-- 
+2.15.1
