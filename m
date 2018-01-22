@@ -1,37 +1,63 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 22 Jan 2018 12:01:20 +0100
-Subject: [PATCH] clk: meson: axg: fix the od shift of the sys_pll
-In-Reply-To: <20180119020926.246887-1-yixun.lan@amlogic.com>
-References: <20180119020926.246887-1-yixun.lan@amlogic.com>
-Message-ID: <1516618880.7870.1.camel@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 22 Jan 2018 12:12:44 -0600
+Subject: [PATCH v2 10/16] pwm: Add PWM modes
+In-Reply-To: <c5aeb8df-6aa8-cde4-9305-08777cac2f45@microchip.com>
+References: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
+ <1515766983-15151-11-git-send-email-claudiu.beznea@microchip.com>
+ <20180119223452.doeqfd4aewkf5fla@rob-hp-laptop>
+ <c5aeb8df-6aa8-cde4-9305-08777cac2f45@microchip.com>
+Message-ID: <CAL_JsqJho2OrdnHwRPpYsbNB4RFTq5qSLA=36D2zy=Mi7B8XwQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2018-01-19 at 10:09 +0800, Yixun Lan wrote:
-> According to datasheet, the od shift of sys_pll is 16,
-> fix the typo which introduced at previous commit.
-> 
-> Fixes: 78b4af312f91 ('clk: meson-axg: add clock controller drivers')
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  drivers/clk/meson/axg.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-> index 7988dc8506b0..04a231eaf648 100644
-> --- a/drivers/clk/meson/axg.c
-> +++ b/drivers/clk/meson/axg.c
-> @@ -64,7 +64,7 @@ static struct meson_clk_pll axg_sys_pll = {
->  	},
->  	.od = {
->  		.reg_off = HHI_SYS_PLL_CNTL,
-> -		.shift   = 10,
-> +		.shift   = 16,
->  		.width   = 2,
->  	},
->  	.lock = &meson_clk_lock,
+On Mon, Jan 22, 2018 at 2:54 AM, Claudiu Beznea
+<Claudiu.Beznea@microchip.com> wrote:
+>
+>
+> On 20.01.2018 00:34, Rob Herring wrote:
+>> On Fri, Jan 12, 2018 at 04:22:57PM +0200, Claudiu Beznea wrote:
+>>> Define a macros for PWM modes to be used by device tree sources.
+>>>
+>>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+>>> ---
+>>>  include/dt-bindings/pwm/pwm.h | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/include/dt-bindings/pwm/pwm.h b/include/dt-bindings/pwm/pwm.h
+>>> index ab9a077e3c7d..b8617431f8ec 100644
+>>> --- a/include/dt-bindings/pwm/pwm.h
+>>> +++ b/include/dt-bindings/pwm/pwm.h
+>>> @@ -12,4 +12,7 @@
+>>>
+>>>  #define PWM_POLARITY_INVERTED                       (1 << 0)
+>>>
+>>> +#define PWM_DTMODE_NORMAL                   (1 << 0)
+>>
+>> Bit 0 is already taken. I think you mean (0 << 1)?
+> I wanted to have the PWM modes in a new cell, so that the pwms binding to be
+> something like:
+> pwms=<pwm-controller pwm-channel pwm-period pwm-flags pwm-mode>
+>
+> If you think it is mode feasible to also include PWM mode in the cell for
+> PWM flags, please let me know.
 
-Looks good. Thx
-I'll take it when the rc1 is released
+Yes, but you have to make "normal" be no bit set to be compatible with
+everything already out there.
 
-Jerome
+>> Personally, I'd just drop this define. A define for a 0 value makes more
+>> sense when each state is equally used (like active high or low), but if
+>> 0 is the more common case, then I don't the need for a define.
+> I want it to have these defines like bit defines:
+> PWM_DTMODE_NORMAL=0x1
+> PWM_DTMODE_COMPLEMENTARY=0x2
+> PWM_DTMODE_PUSH_PULL=0x4
+
+Thinking about this some more, shouldn't the new modes just be
+implied? A client is going to require one of these modes or it won't
+work right.
+
+Also complementary mode could be accomplished with a single pwm output
+and a board level inverter, right? How would that be handled when the
+PWM driver doesn't support that mode?
+
+Rob
