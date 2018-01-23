@@ -1,234 +1,744 @@
-From: Claudiu.Beznea@microchip.com (Claudiu Beznea)
-Date: Tue, 23 Jan 2018 18:55:30 +0200
-Subject: [PATCH v2 10/16] pwm: Add PWM modes
-In-Reply-To: <CAL_JsqKs7t36xaOwx2mOeRgk_tHPjtvqfqJY+OJ49VjOStfs_w@mail.gmail.com>
-References: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
- <1515766983-15151-11-git-send-email-claudiu.beznea@microchip.com>
- <20180119223452.doeqfd4aewkf5fla@rob-hp-laptop>
- <c5aeb8df-6aa8-cde4-9305-08777cac2f45@microchip.com>
- <CAL_JsqJho2OrdnHwRPpYsbNB4RFTq5qSLA=36D2zy=Mi7B8XwQ@mail.gmail.com>
- <759435bf-764f-68ea-de51-c878ceec28e2@microchip.com>
- <CAL_JsqKs7t36xaOwx2mOeRgk_tHPjtvqfqJY+OJ49VjOStfs_w@mail.gmail.com>
-Message-ID: <d62911da-35d7-5b08-a141-092c2f5bb9ee@microchip.com>
+From: ville.syrjala@linux.intel.com (Ville Syrjala)
+Date: Tue, 23 Jan 2018 19:08:57 +0200
+Subject: [PATCH 5/5] drm: Don't pass clip to
+ drm_atomic_helper_check_plane_state()
+In-Reply-To: <20180123170857.13818-1-ville.syrjala@linux.intel.com>
+References: <20180123170857.13818-1-ville.syrjala@linux.intel.com>
+Message-ID: <20180123170857.13818-5-ville.syrjala@linux.intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+From: Ville Syrj?l? <ville.syrjala@linux.intel.com>
 
+Move the plane clip rectangle handling into
+drm_atomic_helper_check_plane_state(). Drivers no longer
+have to worry about such mundane details.
 
-On 23.01.2018 17:21, Rob Herring wrote:
-> On Tue, Jan 23, 2018 at 4:40 AM, Claudiu Beznea
-> <Claudiu.Beznea@microchip.com> wrote:
->>
->>
->> On 22.01.2018 20:12, Rob Herring wrote:
->>> On Mon, Jan 22, 2018 at 2:54 AM, Claudiu Beznea
->>> <Claudiu.Beznea@microchip.com> wrote:
->>>>
->>>>
->>>> On 20.01.2018 00:34, Rob Herring wrote:
->>>>> On Fri, Jan 12, 2018 at 04:22:57PM +0200, Claudiu Beznea wrote:
->>>>>> Define a macros for PWM modes to be used by device tree sources.
->>>>>>
->>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
->>>>>> ---
->>>>>>  include/dt-bindings/pwm/pwm.h | 3 +++
->>>>>>  1 file changed, 3 insertions(+)
->>>>>>
->>>>>> diff --git a/include/dt-bindings/pwm/pwm.h b/include/dt-bindings/pwm/pwm.h
->>>>>> index ab9a077e3c7d..b8617431f8ec 100644
->>>>>> --- a/include/dt-bindings/pwm/pwm.h
->>>>>> +++ b/include/dt-bindings/pwm/pwm.h
->>>>>> @@ -12,4 +12,7 @@
->>>>>>
->>>>>>  #define PWM_POLARITY_INVERTED                       (1 << 0)
->>>>>>
->>>>>> +#define PWM_DTMODE_NORMAL                   (1 << 0)
->>>>>
->>>>> Bit 0 is already taken. I think you mean (0 << 1)?
->>>> I wanted to have the PWM modes in a new cell, so that the pwms binding to be
->>>> something like:
->>>> pwms=<pwm-controller pwm-channel pwm-period pwm-flags pwm-mode>
->>>>
->>>> If you think it is mode feasible to also include PWM mode in the cell for
->>>> PWM flags, please let me know.
->>>
->>> Yes, but you have to make "normal" be no bit set to be compatible with
->>> everything already out there.
->> I'm thinking having it separately is more clear and modular.
-> 
-> Having a standard number of cells (and fields in cells) is easier to
-> maintain. We've set this at 3 for PWMs and you have already found what
-> happens when you have a different number of cells. Adding a 4th cell
-> (and possibly a different form of 3 cells in the case of no channel #
-> cell) just creates more combinations to parse. 
-Agree with you!
+v2: Convert armada, rcar, and sun4i as well
 
-And we don't want to go
-> update all the existing users using 3 cells to use 4 cells just to
-> align.
-Is this necessary? I mean, the drivers that will use PWM modes could be
-updated to use 4 cells or not. For these drivers I created a generic OF
-parse function which parse everything. This is currently on my local branch
-only (previous approach to have a common parse function for all driver wasn't
-well accepted):
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Brian Starkey <brian.starkey@arm.com>
+Cc: Mali DP Maintainers <malidp@foss.arm.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Gustavo Padovan <gustavo@padovan.org>
+Cc: Sean Paul <seanpaul@chromium.org>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: CK Hu <ck.hu@mediatek.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Sandy Huang <hjc@rock-chips.com>
+Cc: "Heiko St?bner" <heiko@sntech.de>
+Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: VMware Graphics <linux-graphics-maintainer@vmware.com>
+Cc: Sinclair Yeh <syeh@vmware.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Archit Taneja <architt@codeaurora.org>
+Cc: linux-amlogic at lists.infradead.org
+Cc: linux-arm-msm at vger.kernel.org
+Cc: freedreno at lists.freedesktop.org
+Cc: nouveau at lists.freedesktop.org
+Cc: linux-renesas-soc at vger.kernel.org
+Cc: linux-tegra at vger.kernel.org
+Cc: Russell King <rmk+kernel@armlinux.org.uk>
+Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+Signed-off-by: Ville Syrj?l? <ville.syrjala@linux.intel.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Reviewed-by: Thierry Reding <treding@nvidia.com>
+Reviewed-by: Archit Taneja <architt@codeaurora.org> #msm
+---
+ drivers/gpu/drm/arm/hdlcd_crtc.c            |  7 +------
+ drivers/gpu/drm/arm/malidp_planes.c         |  7 +------
+ drivers/gpu/drm/armada/armada_crtc.c        |  8 ++------
+ drivers/gpu/drm/armada/armada_overlay.c     |  8 ++------
+ drivers/gpu/drm/drm_atomic_helper.c         | 12 +++++++-----
+ drivers/gpu/drm/drm_plane_helper.c          | 11 +++--------
+ drivers/gpu/drm/drm_simple_kms_helper.c     |  6 ------
+ drivers/gpu/drm/i915/intel_display.c        | 12 ------------
+ drivers/gpu/drm/imx/ipuv3-plane.c           |  7 +------
+ drivers/gpu/drm/mediatek/mtk_drm_plane.c    |  7 +------
+ drivers/gpu/drm/meson/meson_plane.c         |  7 +------
+ drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c   | 14 ++------------
+ drivers/gpu/drm/nouveau/nv50_display.c      | 12 ------------
+ drivers/gpu/drm/rcar-du/rcar_du_plane.c     |  7 +------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c |  7 +------
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c      |  7 +------
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c      |  7 +------
+ drivers/gpu/drm/tegra/plane.c               |  7 +------
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |  7 +------
+ drivers/gpu/drm/zte/zx_plane.c              | 13 +------------
+ include/drm/drm_atomic_helper.h             |  1 -
+ include/drm/drm_plane_helper.h              |  1 -
+ 22 files changed, 28 insertions(+), 147 deletions(-)
 
-struct pwm_device *
-of_pwm_xlate_all(struct pwm_chip *pc, const struct of_phandle_args *args)
-{
-	struct pwm_device *pwm;
-	enum pwm_mode mode;
-
-	/* check, whether the driver supports all cells */
-	if (pc->of_pwm_n_cells < 4)
-		return ERR_PTR(-EINVAL);
-
-	/* flags in the third and fourth cells are optional */
-	if (args->args_count < 2)
-		return ERR_PTR(-EINVAL);
-
-	if (args->args[0] >= pc->npwm)
-		return ERR_PTR(-EINVAL);
-
-	pwm = pwm_request_from_chip(pc, args->args[0], NULL);
-	if (IS_ERR(pwm))
-		return pwm;
-
-	pwm->args.period = args->args[1];
-	pwm->args.polarity = PWM_POLARITY_NORMAL;
-	pwm->args.mode = BIT(ffs(pwm->chip->caps->modes) - 1);
-
-	switch (args->args_count) {
-	case 3:
-		mode = BIT(ffs(args->args[3]) - 1);
-		if (pwm_mode_valid(pwm->chip, mode))
-			pwm->args.mode = mode;
-
-	case 2:
-		if (args->args[2] & PWM_POLARITY_INVERTED)
-			pwm->args.polarity = PWM_POLARITY_INVERSED;
-		break;
-
-	default:
-		break;
-	}
-
-	return pwm;
-}
-
-Drivers which uses PWM mode could use this generic parse function.
-In case of using old DT binaries, with no PWM mode bindings, and with
-- a driver that support PWM modes, the pwm->args will be initialized
-with PWM mode normal (the default for every PWM controller).
-
-In case the driver haven't specific support for PWM modes (so it support
-only PWM normal mode) there is no need to update to 4 cells. The
-of_pwm_xlate_with_flags() or
-of_pwm_simple_xlate()
-could be used to parse DT bindings (with some little changes to also update
-the PWM mode for pwm->args). Currently I have this line to be added, in these
-two functions, in next version for this series:
-
-pwm->args.mode = BIT(ffs(pwm->chip->caps->modes) - 1);
-
-I did some tests on my side and it looks ok.
-
-Please correct me if I'm saying something wrong.
-
-> 
-> If the mode needed to be set in the common case, then I might feel
-> differently about having a separate cell. 
-No there is no need to set the mode explicitly. The implicit mode is normal
-mode. If other mode needs to be set then the mode cells (or the mode inserted
-in the flag cells as you wish) should take care of this.
-
-But these modes seem like a
-> special case. How many PWM controllers actually support modes like
-> these?I did a little research on this back in time and seems that is a characteristic
-of PWM controller. I'm saying about PWM push-pull mode. Also about PWM controllers
-with 2 outputs per PWM channel.
-
-Regarding the other modes I had a discussion with Thierry, back in time, regarding
-this (see [1]) where he asked me to add these normal and complementary modes
-before adding push-pull mode in order to differentiate b/w PWM controllers with
-one output and PWM controllers with 2 outputs per PWM channel so that the PWM
-user to be aware of how its PWM channel works.
-
-[1] https://www.spinics.net/lists/arm-kernel/msg580275.html
-
-> 
->>>>> Personally, I'd just drop this define. A define for a 0 value makes more
->>>>> sense when each state is equally used (like active high or low), but if
->>>>> 0 is the more common case, then I don't the need for a define.
->>>> I want it to have these defines like bit defines:
->>>> PWM_DTMODE_NORMAL=0x1
->>>> PWM_DTMODE_COMPLEMENTARY=0x2
->>>> PWM_DTMODE_PUSH_PULL=0x4
->>>
->>> Thinking about this some more, shouldn't the new modes just be
->>> implied? A client is going to require one of these modes or it won't
->>> work right.
->> The clients could or could not request the mode via DT. Every PWM chip registers
->> supported modes at driver probe (default, if no PWM mode support is added
->> to the PWM chip driver the PWM chip will supports only normal mode). If a
->> PWM channel is requested by a PWM client via DT, and there is no PWM mode setting
->> in DT bindings, e.g. requested with these bindings:
->> pwms=<pwm-controller pwm-channel pwm-period> or
->> pwms=<pwm-controller pwm-channel pwm-period pwm-flags>
->> the first available mode of PWM chip will be used to instantiate the mode.
->> If the defined modes are:
->> PWM_DTMODE_NORMAL=0x1
->> PWM_DTMODE_COMPLEMENTARY=0x2
->> PWM_DTMODE_PUSH_PULL=0x4
->> and the PWM chip driver registers itself, at probe, with (PWM_DTMODE_COMPLEMENTARY | PWM_DTMODE_PUSH_PULL)
->> then the first available mode will be PWM_DTMODE_COMPLEMENTARY (first LSB bit
->> of the variable that keeps the available modes).
-> 
-> Every driver already supports "normal", so that's implied. It would be
-> pointless to make every driver register that explicitly.
-Agree! The chip registered with COMPLEMENTARY and PUSH-PULL modes was just
-an example.
-
-It would be
-> pretty hard to not support normal as that's just ignore the 2nd
-> signal.
-Also, agree!
-
-> 
->>> Also complementary mode could be accomplished with a single pwm output
->>> and a board level inverter, right?
->> Yes, I think this could be accomplished. Here I took into account only PWM controller
->> capabilities. Having this, I think will involve having extra PWM bindings describing
->> extra capabilities per-channel. And to change a little bit the implementation in order
->> to have these capabilities per channel nor per PWM controller. What do you think?
->>
->> I think push-pull mode could also be accomplished having board inverter and delay
->> modules. So, in these cases make sense to have per channel capabilities, as per my
->> understanding.
-> 
-> Yes, it certainly is per channel. You may or may not have the 2nd pin
-> on any given channel.The changes in this series are for PWM controllers. Having for instance push-pull mode
-registered for the channel of a PWM controller which has only one output
-will also involve some control of the external h/w that is doing push-pull.
-For instance, I'm talking about a schema like this:
-
-+---------------+
-|               | ch0   +-----------+       __          __
-|               |------>| push-pull |---> _|  |________|  |____
-|PWM controller |       | external  |             __           __
-|               |       | module    |---> _______|  |_________|  |__
-|               |       +-----------+
-+---------------+
-
->From my point of view, for this kind of schematic having the PWM channel controller
-supporting all the modes (normal, complementary, push-pull) will be useless without
-a way to control the push-pull external module (e.g. a GPIO).
-
-Thank you,
-Claudiu Beznea
-
-But again, if the client needs one of these
-> modes, then the h/w must be hooked up correctly to a channel with 2
-> signals.
-> 
-> Rob
-> 
+diff --git a/drivers/gpu/drm/arm/hdlcd_crtc.c b/drivers/gpu/drm/arm/hdlcd_crtc.c
+index 877647ef35a9..cf5cbd63ecdf 100644
+--- a/drivers/gpu/drm/arm/hdlcd_crtc.c
++++ b/drivers/gpu/drm/arm/hdlcd_crtc.c
+@@ -229,7 +229,6 @@ static const struct drm_crtc_helper_funcs hdlcd_crtc_helper_funcs = {
+ static int hdlcd_plane_atomic_check(struct drm_plane *plane,
+ 				    struct drm_plane_state *state)
+ {
+-	struct drm_rect clip = { 0 };
+ 	struct drm_crtc_state *crtc_state;
+ 	u32 src_h = state->src_h >> 16;
+ 
+@@ -249,11 +248,7 @@ static int hdlcd_plane_atomic_check(struct drm_plane *plane,
+ 		return -EINVAL;
+ 	}
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	return drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   false, true);
+diff --git a/drivers/gpu/drm/arm/malidp_planes.c b/drivers/gpu/drm/arm/malidp_planes.c
+index 2885d69af456..ee32361c87ac 100644
+--- a/drivers/gpu/drm/arm/malidp_planes.c
++++ b/drivers/gpu/drm/arm/malidp_planes.c
+@@ -141,18 +141,13 @@ static int malidp_se_check_scaling(struct malidp_plane *mp,
+ 	struct drm_crtc_state *crtc_state =
+ 		drm_atomic_get_existing_crtc_state(state->state, state->crtc);
+ 	struct malidp_crtc_state *mc;
+-	struct drm_rect clip = { 0 };
+ 	u32 src_w, src_h;
+ 	int ret;
+ 
+ 	if (!crtc_state)
+ 		return -EINVAL;
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  0, INT_MAX, true, true);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/gpu/drm/armada/armada_crtc.c b/drivers/gpu/drm/armada/armada_crtc.c
+index fdc34ad4ca62..03eeee11dd5b 100644
+--- a/drivers/gpu/drm/armada/armada_crtc.c
++++ b/drivers/gpu/drm/armada/armada_crtc.c
+@@ -1203,15 +1203,11 @@ static int armada_drm_primary_update(struct drm_plane *plane,
+ 	struct drm_crtc_state crtc_state = {
+ 		.crtc = crtc,
+ 		.enable = crtc->enabled,
++		.mode = crtc->mode,
+ 	};
+-	struct drm_rect clip = {};
+ 	int ret;
+ 
+-	if (crtc->enabled)
+-		drm_mode_get_hv_timing(&crtc->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, &clip, 0,
++	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, 0,
+ 						  INT_MAX, true, false);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/gpu/drm/armada/armada_overlay.c b/drivers/gpu/drm/armada/armada_overlay.c
+index 4f2a7a6e0fd3..c391955009d6 100644
+--- a/drivers/gpu/drm/armada/armada_overlay.c
++++ b/drivers/gpu/drm/armada/armada_overlay.c
+@@ -208,19 +208,15 @@ armada_ovl_plane_update(struct drm_plane *plane, struct drm_crtc *crtc,
+ 	struct drm_crtc_state crtc_state = {
+ 		.crtc = crtc,
+ 		.enable = crtc->enabled,
++		.mode = crtc->mode,
+ 	};
+-	struct drm_rect clip = {};
+ 	int ret;
+ 
+ 	trace_armada_ovl_plane_update(plane, crtc, fb,
+ 				 crtc_x, crtc_y, crtc_w, crtc_h,
+ 				 src_x, src_y, src_w, src_h);
+ 
+-	if (crtc->enabled)
+-		drm_mode_get_hv_timing(&crtc->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, &clip, 0,
++	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, 0,
+ 						  INT_MAX, true, false);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index ab4032167094..9fb96f9cc36e 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -699,7 +699,6 @@ EXPORT_SYMBOL(drm_atomic_helper_check_modeset);
+  * drm_atomic_helper_check_plane_state() - Check plane state for validity
+  * @plane_state: plane state to check
+  * @crtc_state: crtc state to check
+- * @clip: integer clipping coordinates
+  * @min_scale: minimum @src:@dest scaling factor in 16.16 fixed point
+  * @max_scale: maximum @src:@dest scaling factor in 16.16 fixed point
+  * @can_position: is it legal to position the plane such that it
+@@ -719,7 +718,6 @@ EXPORT_SYMBOL(drm_atomic_helper_check_modeset);
+  */
+ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+ 					const struct drm_crtc_state *crtc_state,
+-					const struct drm_rect *clip,
+ 					int min_scale,
+ 					int max_scale,
+ 					bool can_position,
+@@ -729,6 +727,7 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+ 	struct drm_rect *src = &plane_state->src;
+ 	struct drm_rect *dst = &plane_state->dst;
+ 	unsigned int rotation = plane_state->rotation;
++	struct drm_rect clip = {};
+ 	int hscale, vscale;
+ 
+ 	WARN_ON(plane_state->crtc && plane_state->crtc != crtc_state->crtc);
+@@ -764,7 +763,10 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+ 		return -ERANGE;
+ 	}
+ 
+-	plane_state->visible = drm_rect_clip_scaled(src, dst, clip, hscale, vscale);
++	if (crtc_state->enable)
++		drm_mode_get_hv_timing(&crtc_state->mode, &clip.x2, &clip.y2);
++
++	plane_state->visible = drm_rect_clip_scaled(src, dst, &clip, hscale, vscale);
+ 
+ 	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
+ 
+@@ -778,10 +780,10 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+ 		 */
+ 		return 0;
+ 
+-	if (!can_position && !drm_rect_equals(dst, clip)) {
++	if (!can_position && !drm_rect_equals(dst, &clip)) {
+ 		DRM_DEBUG_KMS("Plane must cover entire CRTC\n");
+ 		drm_rect_debug_print("dst: ", dst, false);
+-		drm_rect_debug_print("clip: ", clip, false);
++		drm_rect_debug_print("clip: ", &clip, false);
+ 		return -EINVAL;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/drm_plane_helper.c b/drivers/gpu/drm/drm_plane_helper.c
+index f1be8cd4e387..f88f68161519 100644
+--- a/drivers/gpu/drm/drm_plane_helper.c
++++ b/drivers/gpu/drm/drm_plane_helper.c
+@@ -106,7 +106,6 @@ static int get_connectors_for_crtc(struct drm_crtc *crtc,
+  * @fb: framebuffer to flip onto plane
+  * @src: source coordinates in 16.16 fixed point
+  * @dst: integer destination coordinates
+- * @clip: integer clipping coordinates
+  * @rotation: plane rotation
+  * @min_scale: minimum @src:@dest scaling factor in 16.16 fixed point
+  * @max_scale: maximum @src:@dest scaling factor in 16.16 fixed point
+@@ -131,7 +130,6 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
+ 				  struct drm_framebuffer *fb,
+ 				  struct drm_rect *src,
+ 				  struct drm_rect *dst,
+-				  const struct drm_rect *clip,
+ 				  unsigned int rotation,
+ 				  int min_scale,
+ 				  int max_scale,
+@@ -157,11 +155,12 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
+ 	struct drm_crtc_state crtc_state = {
+ 		.crtc = crtc,
+ 		.enable = crtc->enabled,
++		.mode = crtc->mode,
+ 	};
+ 	int ret;
+ 
+ 	ret = drm_atomic_helper_check_plane_state(&plane_state, &crtc_state,
+-						  clip, min_scale, max_scale,
++						  min_scale, max_scale,
+ 						  can_position,
+ 						  can_update_disabled);
+ 	if (ret)
+@@ -239,16 +238,12 @@ int drm_primary_helper_update(struct drm_plane *plane, struct drm_crtc *crtc,
+ 		.x2 = crtc_x + crtc_w,
+ 		.y2 = crtc_y + crtc_h,
+ 	};
+-	const struct drm_rect clip = {
+-		.x2 = crtc->mode.hdisplay,
+-		.y2 = crtc->mode.vdisplay,
+-	};
+ 	struct drm_connector **connector_list;
+ 	int num_connectors, ret;
+ 	bool visible;
+ 
+ 	ret = drm_plane_helper_check_update(plane, crtc, fb,
+-					    &src, &dest, &clip,
++					    &src, &dest,
+ 					    DRM_MODE_ROTATE_0,
+ 					    DRM_PLANE_HELPER_NO_SCALING,
+ 					    DRM_PLANE_HELPER_NO_SCALING,
+diff --git a/drivers/gpu/drm/drm_simple_kms_helper.c b/drivers/gpu/drm/drm_simple_kms_helper.c
+index 9d3f6b70812c..165bc756af96 100644
+--- a/drivers/gpu/drm/drm_simple_kms_helper.c
++++ b/drivers/gpu/drm/drm_simple_kms_helper.c
+@@ -89,7 +89,6 @@ static const struct drm_crtc_funcs drm_simple_kms_crtc_funcs = {
+ static int drm_simple_kms_plane_atomic_check(struct drm_plane *plane,
+ 					struct drm_plane_state *plane_state)
+ {
+-	struct drm_rect clip = { 0 };
+ 	struct drm_simple_display_pipe *pipe;
+ 	struct drm_crtc_state *crtc_state;
+ 	int ret;
+@@ -100,12 +99,7 @@ static int drm_simple_kms_plane_atomic_check(struct drm_plane *plane,
+ 	if (!crtc_state->enable)
+ 		return 0; /* nothing to check when disabling or disabled */
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	ret = drm_atomic_helper_check_plane_state(plane_state, crtc_state,
+-						  &clip,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  false, true);
+diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
+index d585ce4c8732..3933420c6911 100644
+--- a/drivers/gpu/drm/i915/intel_display.c
++++ b/drivers/gpu/drm/i915/intel_display.c
+@@ -9309,18 +9309,12 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+ 			      struct intel_plane_state *plane_state)
+ {
+ 	const struct drm_framebuffer *fb = plane_state->base.fb;
+-	struct drm_rect clip = {};
+ 	int src_x, src_y;
+ 	u32 offset;
+ 	int ret;
+ 
+-	if (crtc_state->base.enable)
+-		drm_mode_get_hv_timing(&crtc_state->base.mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	ret = drm_atomic_helper_check_plane_state(&plane_state->base,
+ 						  &crtc_state->base,
+-						  &clip,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  true, true);
+@@ -12755,7 +12749,6 @@ intel_check_primary_plane(struct intel_plane *plane,
+ 	int min_scale = DRM_PLANE_HELPER_NO_SCALING;
+ 	int max_scale = DRM_PLANE_HELPER_NO_SCALING;
+ 	bool can_position = false;
+-	struct drm_rect clip = {};
+ 	int ret;
+ 
+ 	if (INTEL_GEN(dev_priv) >= 9) {
+@@ -12767,13 +12760,8 @@ intel_check_primary_plane(struct intel_plane *plane,
+ 		can_position = true;
+ 	}
+ 
+-	if (crtc_state->base.enable)
+-		drm_mode_get_hv_timing(&crtc_state->base.mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	ret = drm_atomic_helper_check_plane_state(&state->base,
+ 						  &crtc_state->base,
+-						  &clip,
+ 						  min_scale, max_scale,
+ 						  can_position, true);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/imx/ipuv3-plane.c b/drivers/gpu/drm/imx/ipuv3-plane.c
+index 150628293c51..d7e3583e608e 100644
+--- a/drivers/gpu/drm/imx/ipuv3-plane.c
++++ b/drivers/gpu/drm/imx/ipuv3-plane.c
+@@ -351,7 +351,6 @@ static int ipu_plane_atomic_check(struct drm_plane *plane,
+ 	struct drm_framebuffer *old_fb = old_state->fb;
+ 	unsigned long eba, ubo, vbo, old_ubo, old_vbo, alpha_eba;
+ 	bool can_position = (plane->type == DRM_PLANE_TYPE_OVERLAY);
+-	struct drm_rect clip = {};
+ 	int hsub, vsub;
+ 	int ret;
+ 
+@@ -367,11 +366,7 @@ static int ipu_plane_atomic_check(struct drm_plane *plane,
+ 	if (WARN_ON(!crtc_state))
+ 		return -EINVAL;
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  can_position, true);
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_plane.c b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
+index b5c6eec9a584..2f4b0ffee598 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_plane.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
+@@ -91,7 +91,6 @@ static int mtk_plane_atomic_check(struct drm_plane *plane,
+ {
+ 	struct drm_framebuffer *fb = state->fb;
+ 	struct drm_crtc_state *crtc_state;
+-	struct drm_rect clip = { 0, };
+ 
+ 	if (!fb)
+ 		return 0;
+@@ -108,11 +107,7 @@ static int mtk_plane_atomic_check(struct drm_plane *plane,
+ 	if (IS_ERR(crtc_state))
+ 		return PTR_ERR(crtc_state);
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	return drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   true, true);
+diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+index 3801bee1f9e6..c78a3a59f58c 100644
+--- a/drivers/gpu/drm/meson/meson_plane.c
++++ b/drivers/gpu/drm/meson/meson_plane.c
+@@ -49,7 +49,6 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
+ 				    struct drm_plane_state *state)
+ {
+ 	struct drm_crtc_state *crtc_state;
+-	struct drm_rect clip = { 0, };
+ 
+ 	if (!state->crtc)
+ 		return 0;
+@@ -58,11 +57,7 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
+ 	if (IS_ERR(crtc_state))
+ 		return PTR_ERR(crtc_state);
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	return drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   true, true);
+diff --git a/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c b/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c
+index 98d4d7331767..44fc9fe4737a 100644
+--- a/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c
++++ b/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c
+@@ -286,7 +286,6 @@ static int mdp5_plane_atomic_check_with_state(struct drm_crtc_state *crtc_state,
+ 	uint32_t max_width, max_height;
+ 	bool out_of_bounds = false;
+ 	uint32_t caps = 0;
+-	struct drm_rect clip = {};
+ 	int min_scale, max_scale;
+ 	int ret;
+ 
+@@ -323,11 +322,7 @@ static int mdp5_plane_atomic_check_with_state(struct drm_crtc_state *crtc_state,
+ 	min_scale = FRAC_16_16(1, 8);
+ 	max_scale = FRAC_16_16(8, 1);
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  min_scale, max_scale,
+ 						  true, true);
+ 	if (ret)
+@@ -471,7 +466,6 @@ static int mdp5_plane_atomic_async_check(struct drm_plane *plane,
+ {
+ 	struct mdp5_plane_state *mdp5_state = to_mdp5_plane_state(state);
+ 	struct drm_crtc_state *crtc_state;
+-	struct drm_rect clip = {};
+ 	int min_scale, max_scale;
+ 	int ret;
+ 
+@@ -502,11 +496,7 @@ static int mdp5_plane_atomic_async_check(struct drm_plane *plane,
+ 	min_scale = FRAC_16_16(1, 8);
+ 	max_scale = FRAC_16_16(8, 1);
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  min_scale, max_scale,
+ 						  true, true);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+index 5a9a51c735f0..eea94c098237 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -1135,15 +1135,9 @@ static int
+ nv50_curs_acquire(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw,
+ 		  struct nv50_head_atom *asyh)
+ {
+-	struct drm_rect clip = {};
+ 	int ret;
+ 
+-	if (asyh->state.enable)
+-		drm_mode_get_hv_timing(&asyh->state.mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	ret = drm_atomic_helper_check_plane_state(&asyw->state, &asyh->state,
+-						  &clip,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  true, true);
+@@ -1427,18 +1421,12 @@ nv50_base_acquire(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw,
+ 		  struct nv50_head_atom *asyh)
+ {
+ 	const struct drm_framebuffer *fb = asyw->state.fb;
+-	struct drm_rect clip = {};
+ 	int ret;
+ 
+ 	if (!fb->format->depth)
+ 		return -EINVAL;
+ 
+-	if (asyh->state.enable)
+-		drm_mode_get_hv_timing(&asyh->state.mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	ret = drm_atomic_helper_check_plane_state(&asyw->state, &asyh->state,
+-						  &clip,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  false, true);
+diff --git a/drivers/gpu/drm/rcar-du/rcar_du_plane.c b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+index 5687a94d4cb1..68556bd9dad2 100644
+--- a/drivers/gpu/drm/rcar-du/rcar_du_plane.c
++++ b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+@@ -572,7 +572,6 @@ int __rcar_du_plane_atomic_check(struct drm_plane *plane,
+ {
+ 	struct drm_device *dev = plane->dev;
+ 	struct drm_crtc_state *crtc_state;
+-	struct drm_rect clip = {};
+ 	int ret;
+ 
+ 	if (!state->crtc) {
+@@ -589,11 +588,7 @@ int __rcar_du_plane_atomic_check(struct drm_plane *plane,
+ 	if (IS_ERR(crtc_state))
+ 		return PTR_ERR(crtc_state);
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  true, true);
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+index cd2c72389629..b95e9d45a435 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+@@ -641,7 +641,6 @@ static int vop_plane_atomic_check(struct drm_plane *plane,
+ 	struct vop_win *vop_win = to_vop_win(plane);
+ 	const struct vop_win_data *win = vop_win->data;
+ 	int ret;
+-	struct drm_rect clip = {};
+ 	int min_scale = win->phy->scl ? FRAC_16_16(1, 8) :
+ 					DRM_PLANE_HELPER_NO_SCALING;
+ 	int max_scale = win->phy->scl ? FRAC_16_16(8, 1) :
+@@ -654,11 +653,7 @@ static int vop_plane_atomic_check(struct drm_plane *plane,
+ 	if (WARN_ON(!crtc_state))
+ 		return -EINVAL;
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  min_scale, max_scale,
+ 						  true, true);
+ 	if (ret)
+diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+index 2f0ccd50b54d..9a540330cb79 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
++++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+@@ -211,7 +211,6 @@ static int sun8i_ui_layer_atomic_check(struct drm_plane *plane,
+ 	struct drm_crtc *crtc = state->crtc;
+ 	struct drm_crtc_state *crtc_state;
+ 	int min_scale, max_scale;
+-	struct drm_rect clip = {};
+ 
+ 	if (!crtc)
+ 		return 0;
+@@ -220,10 +219,6 @@ static int sun8i_ui_layer_atomic_check(struct drm_plane *plane,
+ 	if (WARN_ON(!crtc_state))
+ 		return -EINVAL;
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	min_scale = DRM_PLANE_HELPER_NO_SCALING;
+ 	max_scale = DRM_PLANE_HELPER_NO_SCALING;
+ 
+@@ -232,7 +227,7 @@ static int sun8i_ui_layer_atomic_check(struct drm_plane *plane,
+ 		max_scale = SUN8I_UI_SCALER_SCALE_MAX;
+ 	}
+ 
+-	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	return drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						   min_scale, max_scale,
+ 						   true, true);
+ }
+diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+index eb3bf2d7291a..5877f8ef5895 100644
+--- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
++++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+@@ -239,7 +239,6 @@ static int sun8i_vi_layer_atomic_check(struct drm_plane *plane,
+ 	struct drm_crtc *crtc = state->crtc;
+ 	struct drm_crtc_state *crtc_state;
+ 	int min_scale, max_scale;
+-	struct drm_rect clip = {};
+ 
+ 	if (!crtc)
+ 		return 0;
+@@ -248,10 +247,6 @@ static int sun8i_vi_layer_atomic_check(struct drm_plane *plane,
+ 	if (WARN_ON(!crtc_state))
+ 		return -EINVAL;
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	min_scale = DRM_PLANE_HELPER_NO_SCALING;
+ 	max_scale = DRM_PLANE_HELPER_NO_SCALING;
+ 
+@@ -260,7 +255,7 @@ static int sun8i_vi_layer_atomic_check(struct drm_plane *plane,
+ 		max_scale = SUN8I_VI_SCALER_SCALE_MAX;
+ 	}
+ 
+-	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	return drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						   min_scale, max_scale,
+ 						   true, true);
+ }
+diff --git a/drivers/gpu/drm/tegra/plane.c b/drivers/gpu/drm/tegra/plane.c
+index 7267a01e6f08..a056fbf83b53 100644
+--- a/drivers/gpu/drm/tegra/plane.c
++++ b/drivers/gpu/drm/tegra/plane.c
+@@ -82,7 +82,6 @@ int tegra_plane_state_add(struct tegra_plane *plane,
+ {
+ 	struct drm_crtc_state *crtc_state;
+ 	struct tegra_dc_state *tegra;
+-	struct drm_rect clip = {};
+ 	int err;
+ 
+ 	/* Propagate errors from allocation or locking failures. */
+@@ -90,12 +89,8 @@ int tegra_plane_state_add(struct tegra_plane *plane,
+ 	if (IS_ERR(crtc_state))
+ 		return PTR_ERR(crtc_state);
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	/* Check plane state for visibility and calculate clipping bounds */
+-	err = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	err = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  0, INT_MAX, true, true);
+ 	if (err < 0)
+ 		return err;
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+index 1107d6d03506..34ecc27fc30a 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+@@ -443,17 +443,12 @@ int vmw_du_primary_plane_atomic_check(struct drm_plane *plane,
+ {
+ 	struct drm_crtc_state *crtc_state = NULL;
+ 	struct drm_framebuffer *new_fb = state->fb;
+-	struct drm_rect clip = {};
+ 	int ret;
+ 
+ 	if (state->crtc)
+ 		crtc_state = drm_atomic_get_new_crtc_state(state->state, state->crtc);
+ 
+-	if (crtc_state && crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+-	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
++	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  DRM_PLANE_HELPER_NO_SCALING,
+ 						  false, true);
+diff --git a/drivers/gpu/drm/zte/zx_plane.c b/drivers/gpu/drm/zte/zx_plane.c
+index 8e1f34274e24..94545adac50d 100644
+--- a/drivers/gpu/drm/zte/zx_plane.c
++++ b/drivers/gpu/drm/zte/zx_plane.c
+@@ -55,7 +55,6 @@ static int zx_vl_plane_atomic_check(struct drm_plane *plane,
+ 	struct drm_framebuffer *fb = plane_state->fb;
+ 	struct drm_crtc *crtc = plane_state->crtc;
+ 	struct drm_crtc_state *crtc_state;
+-	struct drm_rect clip = {};
+ 	int min_scale = FRAC_16_16(1, 8);
+ 	int max_scale = FRAC_16_16(8, 1);
+ 
+@@ -75,12 +74,8 @@ static int zx_vl_plane_atomic_check(struct drm_plane *plane,
+ 	if (!plane_state->crtc)
+ 		return -EINVAL;
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	return drm_atomic_helper_check_plane_state(plane_state, crtc_state,
+-						   &clip, min_scale, max_scale,
++						   min_scale, max_scale,
+ 						   true, true);
+ }
+ 
+@@ -291,7 +286,6 @@ static int zx_gl_plane_atomic_check(struct drm_plane *plane,
+ 	struct drm_framebuffer *fb = plane_state->fb;
+ 	struct drm_crtc *crtc = plane_state->crtc;
+ 	struct drm_crtc_state *crtc_state;
+-	struct drm_rect clip = {};
+ 
+ 	if (!crtc || !fb)
+ 		return 0;
+@@ -309,12 +303,7 @@ static int zx_gl_plane_atomic_check(struct drm_plane *plane,
+ 	if (!plane_state->crtc)
+ 		return -EINVAL;
+ 
+-	if (crtc_state->enable)
+-		drm_mode_get_hv_timing(&crtc_state->mode,
+-				       &clip.x2, &clip.y2);
+-
+ 	return drm_atomic_helper_check_plane_state(plane_state, crtc_state,
+-						   &clip,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   DRM_PLANE_HELPER_NO_SCALING,
+ 						   false, true);
+diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+index 4842ee9485ce..26aaba58d6ce 100644
+--- a/include/drm/drm_atomic_helper.h
++++ b/include/drm/drm_atomic_helper.h
+@@ -40,7 +40,6 @@ int drm_atomic_helper_check_modeset(struct drm_device *dev,
+ 				struct drm_atomic_state *state);
+ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+ 					const struct drm_crtc_state *crtc_state,
+-					const struct drm_rect *clip,
+ 					int min_scale,
+ 					int max_scale,
+ 					bool can_position,
+diff --git a/include/drm/drm_plane_helper.h b/include/drm/drm_plane_helper.h
+index 8aa49c0ecd4d..28d7ce620729 100644
+--- a/include/drm/drm_plane_helper.h
++++ b/include/drm/drm_plane_helper.h
+@@ -43,7 +43,6 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
+ 				  struct drm_framebuffer *fb,
+ 				  struct drm_rect *src,
+ 				  struct drm_rect *dest,
+-				  const struct drm_rect *clip,
+ 				  unsigned int rotation,
+ 				  int min_scale,
+ 				  int max_scale,
+-- 
+2.13.6
