@@ -1,116 +1,61 @@
-From: robh@kernel.org (Rob Herring)
-Date: Tue, 23 Jan 2018 09:21:12 -0600
-Subject: [PATCH v2 10/16] pwm: Add PWM modes
-In-Reply-To: <759435bf-764f-68ea-de51-c878ceec28e2@microchip.com>
-References: <1515766983-15151-1-git-send-email-claudiu.beznea@microchip.com>
- <1515766983-15151-11-git-send-email-claudiu.beznea@microchip.com>
- <20180119223452.doeqfd4aewkf5fla@rob-hp-laptop>
- <c5aeb8df-6aa8-cde4-9305-08777cac2f45@microchip.com>
- <CAL_JsqJho2OrdnHwRPpYsbNB4RFTq5qSLA=36D2zy=Mi7B8XwQ@mail.gmail.com>
- <759435bf-764f-68ea-de51-c878ceec28e2@microchip.com>
-Message-ID: <CAL_JsqKs7t36xaOwx2mOeRgk_tHPjtvqfqJY+OJ49VjOStfs_w@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 23 Jan 2018 17:12:43 +0100
+Subject: eMMC errors on Khadas VIM2
+Message-ID: <CAFBinCCfHZy+VpdAduBOtwPhM3==Vvmn_wDruHfk5G4aMxAu1Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jan 23, 2018 at 4:40 AM, Claudiu Beznea
-<Claudiu.Beznea@microchip.com> wrote:
->
->
-> On 22.01.2018 20:12, Rob Herring wrote:
->> On Mon, Jan 22, 2018 at 2:54 AM, Claudiu Beznea
->> <Claudiu.Beznea@microchip.com> wrote:
->>>
->>>
->>> On 20.01.2018 00:34, Rob Herring wrote:
->>>> On Fri, Jan 12, 2018 at 04:22:57PM +0200, Claudiu Beznea wrote:
->>>>> Define a macros for PWM modes to be used by device tree sources.
->>>>>
->>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
->>>>> ---
->>>>>  include/dt-bindings/pwm/pwm.h | 3 +++
->>>>>  1 file changed, 3 insertions(+)
->>>>>
->>>>> diff --git a/include/dt-bindings/pwm/pwm.h b/include/dt-bindings/pwm/pwm.h
->>>>> index ab9a077e3c7d..b8617431f8ec 100644
->>>>> --- a/include/dt-bindings/pwm/pwm.h
->>>>> +++ b/include/dt-bindings/pwm/pwm.h
->>>>> @@ -12,4 +12,7 @@
->>>>>
->>>>>  #define PWM_POLARITY_INVERTED                       (1 << 0)
->>>>>
->>>>> +#define PWM_DTMODE_NORMAL                   (1 << 0)
->>>>
->>>> Bit 0 is already taken. I think you mean (0 << 1)?
->>> I wanted to have the PWM modes in a new cell, so that the pwms binding to be
->>> something like:
->>> pwms=<pwm-controller pwm-channel pwm-period pwm-flags pwm-mode>
->>>
->>> If you think it is mode feasible to also include PWM mode in the cell for
->>> PWM flags, please let me know.
->>
->> Yes, but you have to make "normal" be no bit set to be compatible with
->> everything already out there.
-> I'm thinking having it separately is more clear and modular.
+Hello,
 
-Having a standard number of cells (and fields in cells) is easier to
-maintain. We've set this at 3 for PWMs and you have already found what
-happens when you have a different number of cells. Adding a 4th cell
-(and possibly a different form of 3 cells in the case of no channel #
-cell) just creates more combinations to parse. And we don't want to go
-update all the existing users using 3 cells to use 4 cells just to
-align.
+I've been observing the following error on my Khadas VIM2 (with 16GiB eMMC):
+[    4.829411] mmc1: mmc_select_hs400 failed, error -84
+[    4.829444] mmc1: error -84 whilst initialising MMC card
 
-If the mode needed to be set in the common case, then I might feel
-differently about having a separate cell. But these modes seem like a
-special case. How many PWM controllers actually support modes like
-these?
+removing the "mmc-hs400-1_8v" property from the sd_emmc_c node results in:
+[    4.710491] mmc1: new HS200 MMC card at address 0001
+[    4.710844] mmcblk1: mmc1:0001 AJNB4R 14.6 GiB
+[    4.714424] mmcblk1boot0: mmc1:0001 AJNB4R partition 1 4.00 MiB
+[    4.720272] mmcblk1boot1: mmc1:0001 AJNB4R partition 2 4.00 MiB
+[    4.726176] mmcblk1rpmb: mmc1:0001 AJNB4R partition 3 4.00 MiB,
+chardev (240:0)
+...
+# dd if=/dev/mmcblk1 | sha1sum
+30535680+0 records in
+30535680+0 records out
+912b9d765a0ffee2711f65f2bbbdc2bc7544e52c  -
+15634268160 bytes (16 GB, 15 GiB) copied, 205.13 s, 76.2 MB/s
+(no CRC errors are shown in the kernel log)
 
->>>> Personally, I'd just drop this define. A define for a 0 value makes more
->>>> sense when each state is equally used (like active high or low), but if
->>>> 0 is the more common case, then I don't the need for a define.
->>> I want it to have these defines like bit defines:
->>> PWM_DTMODE_NORMAL=0x1
->>> PWM_DTMODE_COMPLEMENTARY=0x2
->>> PWM_DTMODE_PUSH_PULL=0x4
->>
->> Thinking about this some more, shouldn't the new modes just be
->> implied? A client is going to require one of these modes or it won't
->> work right.
-> The clients could or could not request the mode via DT. Every PWM chip registers
-> supported modes at driver probe (default, if no PWM mode support is added
-> to the PWM chip driver the PWM chip will supports only normal mode). If a
-> PWM channel is requested by a PWM client via DT, and there is no PWM mode setting
-> in DT bindings, e.g. requested with these bindings:
-> pwms=<pwm-controller pwm-channel pwm-period> or
-> pwms=<pwm-controller pwm-channel pwm-period pwm-flags>
-> the first available mode of PWM chip will be used to instantiate the mode.
-> If the defined modes are:
-> PWM_DTMODE_NORMAL=0x1
-> PWM_DTMODE_COMPLEMENTARY=0x2
-> PWM_DTMODE_PUSH_PULL=0x4
-> and the PWM chip driver registers itself, at probe, with (PWM_DTMODE_COMPLEMENTARY | PWM_DTMODE_PUSH_PULL)
-> then the first available mode will be PWM_DTMODE_COMPLEMENTARY (first LSB bit
-> of the variable that keeps the available modes).
+since I was curious I added the "mmc-hs400-1_8v" property back and
+added "mmc-hs400-enhanced-strobe" to the sd_emmc_c node, which results
+in:
+[    4.227948] mmc1: new HS400 Enhanced strobe MMC card at address 0001
+[    4.230284] mmcblk1: mmc1:0001 AJNB4R 14.6 GiB
+[    4.254733] mmcblk1boot0: mmc1:0001 AJNB4R partition 1 4.00 MiB
+[    4.260559] mmcblk1boot1: mmc1:0001 AJNB4R partition 2 4.00 MiB
+[    4.407234] mmcblk1rpmb: mmc1:0001 AJNB4R partition 3 4.00 MiB,
+chardev (240:0)
+...
+# cat /sys/kernel/debug/mmc1/ios
+clock:          200000000 Hz
+actual clock:   166666667 Hz
+vdd:            21 (3.3 ~ 3.4 V)
+bus mode:       2 (push-pull)
+chip select:    0 (don't care)
+power mode:     2 (on)
+bus width:      3 (8 bits)
+timing spec:    10 (mmc HS400 enhanced strobe)
+signal voltage: 1 (1.80 V)
+driver type:    0 (driver type B)
+# dd if=/dev/mmcblk1 | sha1sum
+30535680+0 records in
+30535680+0 records out
+912b9d765a0ffee2711f65f2bbbdc2bc7544e52c  -
+15634268160 bytes (16 GB, 15 GiB) copied, 203.118 s, 77.0 MB/s
+(no CRC errors are shown in the kernel log)
 
-Every driver already supports "normal", so that's implied. It would be
-pointless to make every driver register that explicitly. It would be
-pretty hard to not support normal as that's just ignore the 2nd
-signal.
+@Jerome: is this something you have seen before?
 
->> Also complementary mode could be accomplished with a single pwm output
->> and a board level inverter, right?
-> Yes, I think this could be accomplished. Here I took into account only PWM controller
-> capabilities. Having this, I think will involve having extra PWM bindings describing
-> extra capabilities per-channel. And to change a little bit the implementation in order
-> to have these capabilities per channel nor per PWM controller. What do you think?
->
-> I think push-pull mode could also be accomplished having board inverter and delay
-> modules. So, in these cases make sense to have per channel capabilities, as per my
-> understanding.
 
-Yes, it certainly is per channel. You may or may not have the 2nd pin
-on any given channel. But again, if the client needs one of these
-modes, then the h/w must be hooked up correctly to a channel with 2
-signals.
-
-Rob
+Regards
+Martin
