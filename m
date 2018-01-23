@@ -1,242 +1,87 @@
-From: p.zabel@pengutronix.de (Philipp Zabel)
-Date: Tue, 23 Jan 2018 19:06:53 +0100
-Subject: [PATCH 5/5] drm: Don't pass clip to
- drm_atomic_helper_check_plane_state()
-In-Reply-To: <20180123170857.13818-5-ville.syrjala@linux.intel.com>
-References: <20180123170857.13818-1-ville.syrjala@linux.intel.com>
- <20180123170857.13818-5-ville.syrjala@linux.intel.com>
-Message-ID: <1516730813.7564.15.camel@pengutronix.de>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 23 Jan 2018 19:25:08 +0100
+Subject: eMMC errors on Khadas VIM2
+In-Reply-To: <CAFBinCCfHZy+VpdAduBOtwPhM3==Vvmn_wDruHfk5G4aMxAu1Q@mail.gmail.com>
+References: <CAFBinCCfHZy+VpdAduBOtwPhM3==Vvmn_wDruHfk5G4aMxAu1Q@mail.gmail.com>
+Message-ID: <1516731908.7870.85.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-01-23 at 19:08 +0200, Ville Syrjala wrote:
-> From: Ville Syrj?l? <ville.syrjala@linux.intel.com>
+On Tue, 2018-01-23 at 17:12 +0100, Martin Blumenstingl wrote:
+> Hello,
 > 
-> Move the plane clip rectangle handling into
-> drm_atomic_helper_check_plane_state(). Drivers no longer
-> have to worry about such mundane details.
-> 
-> v2: Convert armada, rcar, and sun4i as well
-> 
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Brian Starkey <brian.starkey@arm.com>
-> Cc: Mali DP Maintainers <malidp@foss.arm.com>
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Gustavo Padovan <gustavo@padovan.org>
-> Cc: Sean Paul <seanpaul@chromium.org>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: CK Hu <ck.hu@mediatek.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Sandy Huang <hjc@rock-chips.com>
-> Cc: "Heiko St?bner" <heiko@sntech.de>
-> Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: VMware Graphics <linux-graphics-maintainer@vmware.com>
-> Cc: Sinclair Yeh <syeh@vmware.com>
-> Cc: Thomas Hellstrom <thellstrom@vmware.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Archit Taneja <architt@codeaurora.org>
-> Cc: linux-amlogic at lists.infradead.org
-> Cc: linux-arm-msm at vger.kernel.org
-> Cc: freedreno at lists.freedesktop.org
-> Cc: nouveau at lists.freedesktop.org
-> Cc: linux-renesas-soc at vger.kernel.org
-> Cc: linux-tegra at vger.kernel.org
-> Cc: Russell King <rmk+kernel@armlinux.org.uk>
-> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
-> Signed-off-by: Ville Syrj?l? <ville.syrjala@linux.intel.com>
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> Reviewed-by: Archit Taneja <architt@codeaurora.org> #msm
-> ---
->  drivers/gpu/drm/arm/hdlcd_crtc.c            |  7 +------
->  drivers/gpu/drm/arm/malidp_planes.c         |  7 +------
->  drivers/gpu/drm/armada/armada_crtc.c        |  8 ++------
->  drivers/gpu/drm/armada/armada_overlay.c     |  8 ++------
->  drivers/gpu/drm/drm_atomic_helper.c         | 12 +++++++-----
->  drivers/gpu/drm/drm_plane_helper.c          | 11 +++--------
->  drivers/gpu/drm/drm_simple_kms_helper.c     |  6 ------
->  drivers/gpu/drm/i915/intel_display.c        | 12 ------------
->  drivers/gpu/drm/imx/ipuv3-plane.c           |  7 +------
->  drivers/gpu/drm/mediatek/mtk_drm_plane.c    |  7 +------
->  drivers/gpu/drm/meson/meson_plane.c         |  7 +------
->  drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c   | 14 ++------------
->  drivers/gpu/drm/nouveau/nv50_display.c      | 12 ------------
->  drivers/gpu/drm/rcar-du/rcar_du_plane.c     |  7 +------
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.c |  7 +------
->  drivers/gpu/drm/sun4i/sun8i_ui_layer.c      |  7 +------
->  drivers/gpu/drm/sun4i/sun8i_vi_layer.c      |  7 +------
->  drivers/gpu/drm/tegra/plane.c               |  7 +------
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |  7 +------
->  drivers/gpu/drm/zte/zx_plane.c              | 13 +------------
->  include/drm/drm_atomic_helper.h             |  1 -
->  include/drm/drm_plane_helper.h              |  1 -
->  22 files changed, 28 insertions(+), 147 deletions(-)
-> 
-[...]
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index ab4032167094..9fb96f9cc36e 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -699,7 +699,6 @@ EXPORT_SYMBOL(drm_atomic_helper_check_modeset);
->   * drm_atomic_helper_check_plane_state() - Check plane state for validity
->   * @plane_state: plane state to check
->   * @crtc_state: crtc state to check
-> - * @clip: integer clipping coordinates
->   * @min_scale: minimum @src:@dest scaling factor in 16.16 fixed point
->   * @max_scale: maximum @src:@dest scaling factor in 16.16 fixed point
->   * @can_position: is it legal to position the plane such that it
-> @@ -719,7 +718,6 @@ EXPORT_SYMBOL(drm_atomic_helper_check_modeset);
->   */
->  int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
->  					const struct drm_crtc_state *crtc_state,
-> -					const struct drm_rect *clip,
->  					int min_scale,
->  					int max_scale,
->  					bool can_position,
-> @@ -729,6 +727,7 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
->  	struct drm_rect *src = &plane_state->src;
->  	struct drm_rect *dst = &plane_state->dst;
->  	unsigned int rotation = plane_state->rotation;
-> +	struct drm_rect clip = {};
->  	int hscale, vscale;
->  
->  	WARN_ON(plane_state->crtc && plane_state->crtc != crtc_state->crtc);
-> @@ -764,7 +763,10 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
->  		return -ERANGE;
->  	}
->  
-> -	plane_state->visible = drm_rect_clip_scaled(src, dst, clip, hscale, vscale);
-> +	if (crtc_state->enable)
-> +		drm_mode_get_hv_timing(&crtc_state->mode, &clip.x2, &clip.y2);
-> +
-> +	plane_state->visible = drm_rect_clip_scaled(src, dst, &clip, hscale, vscale);
->  
->  	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
->  
-> @@ -778,10 +780,10 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
->  		 */
->  		return 0;
->  
-> -	if (!can_position && !drm_rect_equals(dst, clip)) {
-> +	if (!can_position && !drm_rect_equals(dst, &clip)) {
->  		DRM_DEBUG_KMS("Plane must cover entire CRTC\n");
->  		drm_rect_debug_print("dst: ", dst, false);
-> -		drm_rect_debug_print("clip: ", clip, false);
-> +		drm_rect_debug_print("clip: ", &clip, false);
->  		return -EINVAL;
->  	}
->  
-> diff --git a/drivers/gpu/drm/drm_plane_helper.c b/drivers/gpu/drm/drm_plane_helper.c
-> index f1be8cd4e387..f88f68161519 100644
-> --- a/drivers/gpu/drm/drm_plane_helper.c
-> +++ b/drivers/gpu/drm/drm_plane_helper.c
-> @@ -106,7 +106,6 @@ static int get_connectors_for_crtc(struct drm_crtc *crtc,
->   * @fb: framebuffer to flip onto plane
->   * @src: source coordinates in 16.16 fixed point
->   * @dst: integer destination coordinates
-> - * @clip: integer clipping coordinates
->   * @rotation: plane rotation
->   * @min_scale: minimum @src:@dest scaling factor in 16.16 fixed point
->   * @max_scale: maximum @src:@dest scaling factor in 16.16 fixed point
-> @@ -131,7 +130,6 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
->  				  struct drm_framebuffer *fb,
->  				  struct drm_rect *src,
->  				  struct drm_rect *dst,
-> -				  const struct drm_rect *clip,
->  				  unsigned int rotation,
->  				  int min_scale,
->  				  int max_scale,
-> @@ -157,11 +155,12 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
->  	struct drm_crtc_state crtc_state = {
->  		.crtc = crtc,
->  		.enable = crtc->enabled,
-> +		.mode = crtc->mode,
->  	};
->  	int ret;
->  
->  	ret = drm_atomic_helper_check_plane_state(&plane_state, &crtc_state,
-> -						  clip, min_scale, max_scale,
-> +						  min_scale, max_scale,
->  						  can_position,
->  						  can_update_disabled);
->  	if (ret)
-> @@ -239,16 +238,12 @@ int drm_primary_helper_update(struct drm_plane *plane, struct drm_crtc *crtc,
->  		.x2 = crtc_x + crtc_w,
->  		.y2 = crtc_y + crtc_h,
->  	};
-> -	const struct drm_rect clip = {
-> -		.x2 = crtc->mode.hdisplay,
-> -		.y2 = crtc->mode.vdisplay,
-> -	};
->  	struct drm_connector **connector_list;
->  	int num_connectors, ret;
->  	bool visible;
->  
->  	ret = drm_plane_helper_check_update(plane, crtc, fb,
-> -					    &src, &dest, &clip,
-> +					    &src, &dest,
->  					    DRM_MODE_ROTATE_0,
->  					    DRM_PLANE_HELPER_NO_SCALING,
->  					    DRM_PLANE_HELPER_NO_SCALING,
-[...]
-> diff --git a/drivers/gpu/drm/imx/ipuv3-plane.c b/drivers/gpu/drm/imx/ipuv3-plane.c
-> index 150628293c51..d7e3583e608e 100644
-> --- a/drivers/gpu/drm/imx/ipuv3-plane.c
-> +++ b/drivers/gpu/drm/imx/ipuv3-plane.c
-> @@ -351,7 +351,6 @@ static int ipu_plane_atomic_check(struct drm_plane *plane,
->  	struct drm_framebuffer *old_fb = old_state->fb;
->  	unsigned long eba, ubo, vbo, old_ubo, old_vbo, alpha_eba;
->  	bool can_position = (plane->type == DRM_PLANE_TYPE_OVERLAY);
-> -	struct drm_rect clip = {};
->  	int hsub, vsub;
->  	int ret;
->  
-> @@ -367,11 +366,7 @@ static int ipu_plane_atomic_check(struct drm_plane *plane,
->  	if (WARN_ON(!crtc_state))
->  		return -EINVAL;
->  
-> -	if (crtc_state->enable)
-> -		drm_mode_get_hv_timing(&crtc_state->mode,
-> -				       &clip.x2, &clip.y2);
-> -
-> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
-> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
->  						  DRM_PLANE_HELPER_NO_SCALING,
->  						  DRM_PLANE_HELPER_NO_SCALING,
->  						  can_position, true);
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_plane.c b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> index b5c6eec9a584..2f4b0ffee598 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> @@ -91,7 +91,6 @@ static int mtk_plane_atomic_check(struct drm_plane *plane,
->  {
->  	struct drm_framebuffer *fb = state->fb;
->  	struct drm_crtc_state *crtc_state;
-> -	struct drm_rect clip = { 0, };
->  
->  	if (!fb)
->  		return 0;
-> @@ -108,11 +107,7 @@ static int mtk_plane_atomic_check(struct drm_plane *plane,
->  	if (IS_ERR(crtc_state))
->  		return PTR_ERR(crtc_state);
->  
-> -	if (crtc_state->enable)
-> -		drm_mode_get_hv_timing(&crtc_state->mode,
-> -				       &clip.x2, &clip.y2);
-> -
-> -	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
-> +	return drm_atomic_helper_check_plane_state(state, crtc_state,
->  						   DRM_PLANE_HELPER_NO_SCALING,
->  						   DRM_PLANE_HELPER_NO_SCALING,
->  						   true, true);
-[...]
+> I've been observing the following error on my Khadas VIM2 (with 16GiB eMMC):
+> [    4.829411] mmc1: mmc_select_hs400 failed, error -84
+> [    4.829444] mmc1: error -84 whilst initialising MMC card
 
-For the imx and mtk changes,
-Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+I remember testing this quickly on the vim2 I have, but that was before we added
+tx phase tunning.
 
-regards
-Philipp
+I had a quick try and kvim2 indeed miserably fail on kevin's integ branch
+
+I reverted 0a44697627d1, and it seems to be back to normal
+
+I never really liked this tweak and amlogic mentioned to us that we should
+probably not tune this and keep the default value ...
+
+> 
+> removing the "mmc-hs400-1_8v" property from the sd_emmc_c node results in:
+> [    4.710491] mmc1: new HS200 MMC card at address 0001
+> [    4.710844] mmcblk1: mmc1:0001 AJNB4R 14.6 GiB
+> [    4.714424] mmcblk1boot0: mmc1:0001 AJNB4R partition 1 4.00 MiB
+> [    4.720272] mmcblk1boot1: mmc1:0001 AJNB4R partition 2 4.00 MiB
+> [    4.726176] mmcblk1rpmb: mmc1:0001 AJNB4R partition 3 4.00 MiB,
+> chardev (240:0)
+
+The input frequency of the controller is lower in hs200 (200Mhz vs 333Mhz)
+
+> ...
+> # dd if=/dev/mmcblk1 | sha1sum
+> 30535680+0 records in
+> 30535680+0 records out
+> 912b9d765a0ffee2711f65f2bbbdc2bc7544e52c  -
+> 15634268160 bytes (16 GB, 15 GiB) copied, 205.13 s, 76.2 MB/s
+> (no CRC errors are shown in the kernel log)
+> 
+> since I was curious I added the "mmc-hs400-1_8v" property back and
+> added "mmc-hs400-enhanced-strobe" to the sd_emmc_c node, which results
+> in:
+> [    4.227948] mmc1: new HS400 Enhanced strobe MMC card at address 0001
+> [    4.230284] mmcblk1: mmc1:0001 AJNB4R 14.6 GiB
+> [    4.254733] mmcblk1boot0: mmc1:0001 AJNB4R partition 1 4.00 MiB
+> [    4.260559] mmcblk1boot1: mmc1:0001 AJNB4R partition 2 4.00 MiB
+> [    4.407234] mmcblk1rpmb: mmc1:0001 AJNB4R partition 3 4.00 MiB,
+> chardev (240:0)
+
+Weird ! If I understand the code correctly, adding this caps should only trigger
+the related "enhance-strobe" callback ... but meson-gx-mmc does not implement it
+, so this should have no effect
+
+Maybe I missed something
+
+
+
+> ...
+> # cat /sys/kernel/debug/mmc1/ios
+> clock:          200000000 Hz
+> actual clock:   166666667 Hz
+> vdd:            21 (3.3 ~ 3.4 V)
+> bus mode:       2 (push-pull)
+> chip select:    0 (don't care)
+> power mode:     2 (on)
+> bus width:      3 (8 bits)
+> timing spec:    10 (mmc HS400 enhanced strobe)
+> signal voltage: 1 (1.80 V)
+> driver type:    0 (driver type B)
+> # dd if=/dev/mmcblk1 | sha1sum
+> 30535680+0 records in
+> 30535680+0 records out
+> 912b9d765a0ffee2711f65f2bbbdc2bc7544e52c  -
+> 15634268160 bytes (16 GB, 15 GiB) copied, 203.118 s, 77.0 MB/s
+> (no CRC errors are shown in the kernel log)
+> 
+> @Jerome: is this something you have seen before?
+> 
+> 
+> Regards
+> Martin
