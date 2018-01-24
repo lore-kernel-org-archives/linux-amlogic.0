@@ -1,72 +1,148 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 24 Jan 2018 00:35:47 +0100
-Subject: eMMC errors on Khadas VIM2
-In-Reply-To: <1516731908.7870.85.camel@baylibre.com>
-References: <CAFBinCCfHZy+VpdAduBOtwPhM3==Vvmn_wDruHfk5G4aMxAu1Q@mail.gmail.com>
- <1516731908.7870.85.camel@baylibre.com>
-Message-ID: <CAFBinCALC=OqtihBXeqS194JH6xLbrn=WrURHMj2J1a-Mdaozw@mail.gmail.com>
+Date: Wed, 24 Jan 2018 01:27:38 +0100
+Subject: [RFC PATCH v1] pinctrl: meson: meson8b: fix requesting GPIOs greater
+ than GPIOZ_3
+Message-ID: <20180124002738.32338-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+Meson8b is a cost reduced variant of the Meson8 SoC. It's package size
+is smaller than Meson8.
+Unfortunately there are a few key differences which cannot be seen
+without close inspection of the code and the public S805 data-sheet:
+- the GPIOX bank is missing the GPIOX_12, GPIOX_13, GPIOX_14 and
+  GPIOX_15 GPIOs
+- the GPIOY bank is missing the GPIOY_2, GPIOY_4, GPIOY_5, GPIOY_15 and
+  GPIOY_16 GPIOs
+- the GPIODV bank is missing all GPIOs except GPIODV_9, GPIODV_24,
+  GPIODV_25, GPIODV_26, GPIODV_27, GPIODV_28 and GPIODV_29
+- the GPIOZ bank is missing completely
+- there is a new GPIO bank called "DIF"
+- (all other pads exist on both, Meson8 and Meson8b)
 
-On Tue, Jan 23, 2018 at 7:25 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Tue, 2018-01-23 at 17:12 +0100, Martin Blumenstingl wrote:
->> Hello,
->>
->> I've been observing the following error on my Khadas VIM2 (with 16GiB eMMC):
->> [    4.829411] mmc1: mmc_select_hs400 failed, error -84
->> [    4.829444] mmc1: error -84 whilst initialising MMC card
->
-> I remember testing this quickly on the vim2 I have, but that was before we added
-> tx phase tunning.
->
-> I had a quick try and kvim2 indeed miserably fail on kevin's integ branch
->
-> I reverted 0a44697627d1, and it seems to be back to normal
->
-> I never really liked this tweak and amlogic mentioned to us that we should
-> probably not tune this and keep the default value ...
-do you have any other board which has an HS400 eMMC?
+The pinctrl-meson driver internally uses struct meson_bank, which
+assumes that the GPIOs are continuous, without any holes in between.
+This also matches with how the registers work:
+- GPIOX_0 for example uses bit 0 for switching this pad between
+  input/output, configuring pull-up/down, etc.
+- GPIOX_16 uses bit 16 for switching this pad between input/output,
+  configuring pull-up/down/, etc
+GPIOX_16 uses bit 16 even though GPIOX12..15 don't exist. (This is
+probably the reason why Meson8b inherits the dt-bindings - with all GPIO
+IDs - from Meson8)
+This means that Meson8b only has 83 actual GPIO lines. Without any holes
+there would be 130 GPIO lines in total (120 are inherited from Meson8
+plus 10 new from the DIF bank).
 
->>
->> removing the "mmc-hs400-1_8v" property from the sd_emmc_c node results in:
->> [    4.710491] mmc1: new HS200 MMC card at address 0001
->> [    4.710844] mmcblk1: mmc1:0001 AJNB4R 14.6 GiB
->> [    4.714424] mmcblk1boot0: mmc1:0001 AJNB4R partition 1 4.00 MiB
->> [    4.720272] mmcblk1boot1: mmc1:0001 AJNB4R partition 2 4.00 MiB
->> [    4.726176] mmcblk1rpmb: mmc1:0001 AJNB4R partition 3 4.00 MiB,
->> chardev (240:0)
->
-> The input frequency of the controller is lower in hs200 (200Mhz vs 333Mhz)
-ah, I see - thanks for the explanation!
+The pinctrl framework handles holes in the pin list fine, which can be
+seen in debugfs:
+$ cat /sys/kernel/debug/pinctrl/c1109880.pinctrl/pins
+pin 9 (GPIOX_9)  c1109880.pinctrl
+pin 10 (GPIOX_10)  c1109880.pinctrl
+pin 11 (GPIOX_11)  c1109880.pinctrl
+pin 16 (GPIOX_16)  c1109880.pinctrl
+pin 17 (GPIOX_17)  c1109880.pinctrl
 
->> ...
->> # dd if=/dev/mmcblk1 | sha1sum
->> 30535680+0 records in
->> 30535680+0 records out
->> 912b9d765a0ffee2711f65f2bbbdc2bc7544e52c  -
->> 15634268160 bytes (16 GB, 15 GiB) copied, 205.13 s, 76.2 MB/s
->> (no CRC errors are shown in the kernel log)
->>
->> since I was curious I added the "mmc-hs400-1_8v" property back and
->> added "mmc-hs400-enhanced-strobe" to the sd_emmc_c node, which results
->> in:
->> [    4.227948] mmc1: new HS400 Enhanced strobe MMC card at address 0001
->> [    4.230284] mmcblk1: mmc1:0001 AJNB4R 14.6 GiB
->> [    4.254733] mmcblk1boot0: mmc1:0001 AJNB4R partition 1 4.00 MiB
->> [    4.260559] mmcblk1boot1: mmc1:0001 AJNB4R partition 2 4.00 MiB
->> [    4.407234] mmcblk1rpmb: mmc1:0001 AJNB4R partition 3 4.00 MiB,
->> chardev (240:0)
->
-> Weird ! If I understand the code correctly, adding this caps should only trigger
-> the related "enhance-strobe" callback ... but meson-gx-mmc does not implement it
-> , so this should have no effect
-indeed, I just checked the code and it *should* not have any effect
-have you tested this on your VIM2 - I did multiple reboots (and
-hardware resets) with that flag and it seems to "fix" it for me (I'd
-like to rule out that this is a fluke though!)
+GPIOs which don't exist cannot be requested either ("base" of the GPIO
+controller is 382):
+$ echo 394 > /sys/class/gpio/export
+meson8b-pinctrl c1109880.pinctrl: pin 12 is not registered so it cannot be requested
+meson8b-pinctrl c1109880.pinctrl: pin-12 (cbus-banks:394) status -22
 
+Unfortunately GPIOs greater GPIOZ_3 (whose ID is 83 - as a reminder:
+this is exactly the number of actual GPIO lines on Meson8b) cannot be
+requested. Using CARD_6 (ID 100, "base of the GPIO controller is 382) as
+an example:
+$ echo 482 > /sys/class/gpio/export
+export_store: invalid GPIO 482
 
-Regards
-Martin
+The problem here is that struct gpio_chip's "ngpio" is set to 83. Thus
+requesting a GPIO higher than 83 fails. Commit 984cffdeaeb7ea ("pinctrl:
+Fix gpio/pin mapping for Meson8b") fixed this problem a while ago, by
+setting "ngpio" to 130. Unfortunately this broke again while cleaning up
+the pinctrl-meson driver in commit db80f0e158e621 ("pinctrl: meson: get
+rid of unneeded domain structures"), which started using
+ARRAY_SIZE(meson8b_cbus_pins) - which evaluates to 83 - as "ngpio".
+
+This is now fixed by introducing a new "override_ngpio" field in struct
+meson_pinctrl_data. This value is passed to struct gpio_chip's "ngpio"
+when set - if override_ngpio is <= 0 then num_pins is used (which works
+for all other Meson SoCs, except Meson8b).
+The definitions in "include/dt-bindings/gpio/meson8b-gpio.h" were not
+changed. Cleaning up these definitions would allow us to get rid of the
+GPIOZ definitions (which are inherited from Meson8). However, we still
+need to handle GPIO banks with holes (such as GPIOX), so this include is
+not touched for now (touching it could also break the device-tree ABI).
+
+Meson8b's AO GPIO controller is not affected by this issue since it does
+not have any holes in it - only the CBUS GPIO controller is affected.
+
+This was initially seen by Linus L?ssing who was preparing SD card
+support on Odroid-C1 which uses CARD_6 as "card detect" GPIO.
+
+Fixes: db80f0e158e621 ("pinctrl: meson: get rid of unneeded domain structures")
+Reported-by: Linus L?ssing <linus.luessing@c0d3.blue>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson.c   |  7 ++++++-
+ drivers/pinctrl/meson/pinctrl-meson.h   |  1 +
+ drivers/pinctrl/meson/pinctrl-meson8b.c | 14 ++++++++++++++
+ 3 files changed, 21 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index 29a458da78db..1befe67fd187 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -413,7 +413,12 @@ static int meson_gpiolib_register(struct meson_pinctrl *pc)
+ 	pc->chip.get = meson_gpio_get;
+ 	pc->chip.set = meson_gpio_set;
+ 	pc->chip.base = -1;
+-	pc->chip.ngpio = pc->data->num_pins;
++
++	if (pc->data->override_ngpio > 0)
++		pc->chip.ngpio = pc->data->override_ngpio;
++	else
++		pc->chip.ngpio = pc->data->num_pins;
++
+ 	pc->chip.can_sleep = false;
+ 	pc->chip.of_node = pc->of_node;
+ 	pc->chip.of_gpio_n_cells = 2;
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
+index 183b6e471635..afd7efaad9bb 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.h
++++ b/drivers/pinctrl/meson/pinctrl-meson.h
+@@ -108,6 +108,7 @@ struct meson_pinctrl_data {
+ 	struct meson_bank *banks;
+ 	unsigned int num_banks;
+ 	const struct pinmux_ops *pmx_ops;
++	unsigned int override_ngpio;
+ };
+ 
+ struct meson_pinctrl {
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
+index 5bd808dc81e1..05bb4c3143d9 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8b.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
+@@ -916,6 +916,20 @@ static struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
+ 	.num_funcs	= ARRAY_SIZE(meson8b_cbus_functions),
+ 	.num_banks	= ARRAY_SIZE(meson8b_cbus_banks),
+ 	.pmx_ops	= &meson8_pmx_ops,
++	/*
++	 * there are holes in the meson8b_cbus_pins mapping because we are
++	 * mapping the GPIO identifiers to register bits. on Meson8b some bits
++	 * (and thus the corresponding pads) are not used on the SoC
++	 * (presumably because they were skipped because Meson8b is a cost
++	 * reduced variant of Meson8 and it didn't make sense to create a whole
++	 * new register layout for this variant).
++	 * this informs the GPIO framework know about the number of GPIOs we
++	 * have, including the pins which are not available on Meson8b (= the
++	 * holes). The pinctrl/GPIO framework knows the holes because it checks
++	 * all pinctrl_pin_desc in meson8b_cbus_pins and reports an error as
++	 * soon as a GPIO is requested which is not part of meson8b_cbus_pins.
++	 */
++	.override_ngpio	= 130,
+ };
+ 
+ static struct meson_pinctrl_data meson8b_aobus_pinctrl_data = {
+-- 
+2.16.1
