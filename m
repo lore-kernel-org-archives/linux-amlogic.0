@@ -1,221 +1,749 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 24 Jan 2018 18:54:38 +0100
-Subject: [RFC PATCH v1] pinctrl: meson: meson8b: fix requesting GPIOs
- greater than GPIOZ_3
-In-Reply-To: <1516805576.2344.86.camel@baylibre.com>
-References: <20180124002738.32338-1-martin.blumenstingl@googlemail.com>
- <1516782493.2344.48.camel@baylibre.com>
- <CAFBinCCBHcjMRJ5sd9qWnL3FDEcHxp96rahgcYmSS3q-af-9Pw@mail.gmail.com>
- <1516805576.2344.86.camel@baylibre.com>
-Message-ID: <CAFBinCAC8d=qEf-DSkp8bjwRJCwCjuHfhVO-9h+mY3zHEy0fcg@mail.gmail.com>
+From: syeh@vmware.com (Sinclair Yeh)
+Date: Wed, 24 Jan 2018 11:48:09 -0800
+Subject: [PATCH 5/5] drm: Don't pass clip to
+ drm_atomic_helper_check_plane_state()
+In-Reply-To: <20180123170857.13818-5-ville.syrjala@linux.intel.com>
+References: <20180123170857.13818-1-ville.syrjala@linux.intel.com>
+ <20180123170857.13818-5-ville.syrjala@linux.intel.com>
+Message-ID: <20180124194809.GB57403@syeh-m02.local>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+vmwgfx part: Reviewed-by: Sinclair Yeh <syeh@vmware.com>
 
-On Wed, Jan 24, 2018 at 3:52 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Wed, 2018-01-24 at 11:10 +0100, Martin Blumenstingl wrote:
->> Hi Jerome,
->>
->> On Wed, Jan 24, 2018 at 9:28 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
->> > On Wed, 2018-01-24 at 01:27 +0100, Martin Blumenstingl wrote:
->> > > Meson8b is a cost reduced variant of the Meson8 SoC. It's package size
->> > > is smaller than Meson8.
->> > > Unfortunately there are a few key differences which cannot be seen
->> > > without close inspection of the code and the public S805 data-sheet:
->> > > - the GPIOX bank is missing the GPIOX_12, GPIOX_13, GPIOX_14 and
->> > >   GPIOX_15 GPIOs
->> > > - the GPIOY bank is missing the GPIOY_2, GPIOY_4, GPIOY_5, GPIOY_15 and
->> > >   GPIOY_16 GPIOs
->> > > - the GPIODV bank is missing all GPIOs except GPIODV_9, GPIODV_24,
->> > >   GPIODV_25, GPIODV_26, GPIODV_27, GPIODV_28 and GPIODV_29
->> > > - the GPIOZ bank is missing completely
->> > > - there is a new GPIO bank called "DIF"
->> > > - (all other pads exist on both, Meson8 and Meson8b)
->> > >
->> > > The pinctrl-meson driver internally uses struct meson_bank, which
->> > > assumes that the GPIOs are continuous, without any holes in between.
->> > > This also matches with how the registers work:
->> > > - GPIOX_0 for example uses bit 0 for switching this pad between
->> > >   input/output, configuring pull-up/down, etc.
->> > > - GPIOX_16 uses bit 16 for switching this pad between input/output,
->> > >   configuring pull-up/down/, etc
->> > > GPIOX_16 uses bit 16 even though GPIOX12..15 don't exist. (This is
->> > > probably the reason why Meson8b inherits the dt-bindings - with all GPIO
->> > > IDs - from Meson8)
->> > > This means that Meson8b only has 83 actual GPIO lines. Without any holes
->> > > there would be 130 GPIO lines in total (120 are inherited from Meson8
->> > > plus 10 new from the DIF bank).
->> > >
->> > > The pinctrl framework handles holes in the pin list fine, which can be
->> > > seen in debugfs:
->> > > $ cat /sys/kernel/debug/pinctrl/c1109880.pinctrl/pins
->> > > pin 9 (GPIOX_9)  c1109880.pinctrl
->> > > pin 10 (GPIOX_10)  c1109880.pinctrl
->> > > pin 11 (GPIOX_11)  c1109880.pinctrl
->> > > pin 16 (GPIOX_16)  c1109880.pinctrl
->> > > pin 17 (GPIOX_17)  c1109880.pinctrl
->> >
->> > Hi Martin,
->> >
->> > While working on this controller a few weeks ago, I have seen that our current
->> > design does not tolerate having holes in the declared PINS. This is something
->> > that predate the changes mentioned here.
->> >
->> > I'm not a big fan of the this overrides_ngpio here, I'm sure it fixes your
->> > problem but it seems a bit hacky, don't you think ?
->>
->> this is the reason why I sent it as RFC - I'm open to better solutions!
->>
->> > I would prefer either of these 2 approach:
->> >
->> > * Update the binding and kill the necessary pins. We are still figuring out
->> > those chips, which is why the bindings are marked as un-stable. If sharing the
->> > binding with meson8 was a mistake, now is the time to fix it.
->>
->> let's say we produce a header file which does not contain GPIOX_12:
->> this would be nice since it gives compile errors if non-existent GPIOs
->> are used (instead of failing only at run-time)
->>
->> however, the problem is meson8b_cbus_banks (annotated here to make it
->> easier to read):
->> BANK("X", /* name */
->>           GPIOX_0, GPIOX_21, /* first and last GPIO */
->>           97, 118, /* first and last IRQ */
->>           4,  0, /* pull-up/down enable register and bit offset */
->>           4,  0, /* pull-up/down configuration register and bit offset */
->>           0,  0, /* input/output direction register and bit offset */
->>           1,  0, /* output value register and bit offset */
->>           2,  0), /* input value register and bit offset */
->>
->> let's say we want to configure GPIOX_0 as an input:
->> - we need to find the "offset" of this pad within the bank -> 0
->> - find the input/output direction register -> 0
->> - find the bit in that register: bit 0 + pad offset 0 = 0
->> - we clear bit 0 in register 0
->>
->> with the current code configuring GPIOX_16 as input works like this:
->> - we need to find the "offset" of this pad within the bank -> 16
->> - find the input/output direction register -> 0
->> - find the bit in that register: bit 0 + pad offset 16 = 16
->> - we clear bit 16 in register 0
->
-> If offset calculation is really the problem, nothing is stopping you from the
-> splitting BANK in two. With your example of GPIOX_12...15 missing:
->
-> BANK("X1", /* name */
->            GPIOX_0, GPIOX_11, /* first and last GPIO */
->            97, 108, /* first and last IRQ */
->            4,  0, /* pull-up/down enable register and bit offset */
->            4,  0, /* pull-up/down configuration register and bit offset */
->            0,  0, /* input/output direction register and bit offset */
->            1,  0, /* output value register and bit offset */
->            2,  0), /* input value register and bit offset */
->
-> BANK("X2", /* name */
->            GPIOX_16, GPIOX_21, /* first and last GPIO */
->            113, 118, /* first and last IRQ */
->            X,  Y, /* pull-up/down enable register and bit offset */
->            X,  Y, /* pull-up/down configuration register and bit offset */
->            Z,  XX, /* input/output direction register and bit offset */
->            FOO,  0, /* output value register and bit offset */
->            BAR,  0), /* input value register and bit offset */
-nice thinking :)
-the only solution I could come up with was to change the MESON_PIN
-definition to something like:
-#define MESON_PIN(pad, pullen_bit, pull_bit, direction_bit,
-output_bit, input_bit, irq_num)
-
-that however means that we would have to change a lot of code in all
-pinctrl drivers
-
->>
->> let's assume that we removed GPIOX_12...15 from Meson8b
->> GPIOX_16 could now have the same value that was assigned to GPIOX_12
->> before (= 12)
->> but how do we now know the offset of GPIOX_16?
->> if we don't consider it in the calculation above we would end up
->> writing to bit 12 (instead of bit 16).
->>
->> we could still cleanup the header file but leave the IDs of the
->> existing GPIOs untouched (so GPIOX_16 would still be 16).
->
-> I don't really get the point of doing so, especially is this patch is still
-> needed in the end.
->
->> however, that means that this patch is still needed because our last
->> ID would be DIF_4_N (= value 129) again (so with holes our total count
->> is still 130).
->> with that we wouldn't even break the DT ABI
->
-> While I prefer changing the bindings over the 'over_ngpio' tweak, it is not my
-> favorite solution.
->
->>
->> > * If meson8b is indeed a cost reduction, it is likely to be same the approach as
->> > s905x vs s905d: The D version is the same SoC with less ball pad but, as far as
->> > we know, the logic is still there on the silicium (same die), it is just not
->> > routed to the outside world. Both version share the same pinctrl driver (gxl).
->> > The pad not routed to the outside world can just be considered "internal pads"
->>
->> there are a few differences between Meson8 and Meson8b, see also [0]:
->> - Meson8 (and Meson8m2) CPU cores: 4x Cortex-A9
->> - Meson8b CPU cores: 4x Cortex-A5
->> - Meson8 (and Meson8m2) GPU: Mali-450MP8
->> - Meson8b GPU: Mali-450MP4
->> - Meson8 (and Meson8m2) package size: 19mm x 19 mm, LFBGA
->> - Meson8b package size: 12mm x 12 mm, LFBGA
->>
->> the pinctrl register layout seems to be *mostly* compatible between
->> Meson8 and Meson8b.
->> unfortunately it's not entirely compatible, here is one example:
->> - Meson8: GROUP(uart_tx_b1, 6, 23),
->> - Meson8b: GROUP(uart_tx_b1, 6, 19),
->> - Meson8: GROUP(eth_mdc, 6, 5),
->> - Meson8b: GROUP(eth_mdc, 6, 9),
->>
->> > Long story short, if meson8 and meson8b share the same bindings, maybe they
->> > should also share the driver. If they can't share the driver because they are
->> > definitely incompatible, maybe they should not share the same bindings
->>
->> based on what I have seen so far I believe that they should not share
->> the same bindings
->
-> It looks to me to be same gpio/pinconf IP with a few pads not exposed to the
-> outside world, so I think they could share the bindings, and apparently fair
-> part of the driver data.
->
-> Apparently amlogic tweaked a bit the pinmux. With the current architecture of
-> our pinctrl driver, it should be fairly easy to register 2  drivers sharing
-> everything but the GROUP table (and maybe the FUNCS if necessary)
->
-> If possible, I would be more in favor of this last solution, as we could kill
-> one the pinctrl-meson8.c file, which are mostly a copy/paste of one another.
-> While fixing you issue, we would end up with less code to maintain and save a
-> bit of memory.
->
-> Do you see any other big issue with this approach ?
-I would have to go through the whole list of pads to see what the
-actual differences are
-a quick comparison (diff between pinctrl-meson8.c and
-pinctrl-meson8b.c) shows that the largest differences are:
-- GPIOZ bank which exists on Meson8 but not on Meson8b
-- DIF bank which exists on Meson8b but not on Meson8
-- (the other changes seem to be mostly either sorting differences, or
-the "holes" where pads were removed from Meson8b)
-
-if we do this we would have to keep the following information separated:
-- groups (and with that: num_groups)
-- banks (and with that: num_banks) - because the IRQ numbers are
-different between Meson8 and Meson8b
-- as you already mentioned: maybe functions (and with that: num_functions)
-
-with this approach we would lose the ability to check whether a pin
-exists for a specific SoC (as far as I can see)
-requesting GPIOX_12 on Meson8b would not show any errors, but
-obviously nothing can be done with it (since it's not routed to a pad)
-do we have the same issue on GXL (with S905X, S905D and S912)?
-
-
-Regards
-Martin
+On Tue, Jan 23, 2018 at 07:08:57PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj?l? <ville.syrjala@linux.intel.com>
+> 
+> Move the plane clip rectangle handling into
+> drm_atomic_helper_check_plane_state(). Drivers no longer
+> have to worry about such mundane details.
+> 
+> v2: Convert armada, rcar, and sun4i as well
+> 
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Brian Starkey <brian.starkey@arm.com>
+> Cc: Mali DP Maintainers <malidp@foss.arm.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Gustavo Padovan <gustavo@padovan.org>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: CK Hu <ck.hu@mediatek.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Rob Clark <robdclark@gmail.com>
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Sandy Huang <hjc@rock-chips.com>
+> Cc: "Heiko St?bner" <heiko@sntech.de>
+> Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: VMware Graphics <linux-graphics-maintainer@vmware.com>
+> Cc: Sinclair Yeh <syeh@vmware.com>
+> Cc: Thomas Hellstrom <thellstrom@vmware.com>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Archit Taneja <architt@codeaurora.org>
+> Cc: linux-amlogic at lists.infradead.org
+> Cc: linux-arm-msm at vger.kernel.org
+> Cc: freedreno at lists.freedesktop.org
+> Cc: nouveau at lists.freedesktop.org
+> Cc: linux-renesas-soc at vger.kernel.org
+> Cc: linux-tegra at vger.kernel.org
+> Cc: Russell King <rmk+kernel@armlinux.org.uk>
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> Signed-off-by: Ville Syrj?l? <ville.syrjala@linux.intel.com>
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Reviewed-by: Thierry Reding <treding@nvidia.com>
+> Reviewed-by: Archit Taneja <architt@codeaurora.org> #msm
+> ---
+>  drivers/gpu/drm/arm/hdlcd_crtc.c            |  7 +------
+>  drivers/gpu/drm/arm/malidp_planes.c         |  7 +------
+>  drivers/gpu/drm/armada/armada_crtc.c        |  8 ++------
+>  drivers/gpu/drm/armada/armada_overlay.c     |  8 ++------
+>  drivers/gpu/drm/drm_atomic_helper.c         | 12 +++++++-----
+>  drivers/gpu/drm/drm_plane_helper.c          | 11 +++--------
+>  drivers/gpu/drm/drm_simple_kms_helper.c     |  6 ------
+>  drivers/gpu/drm/i915/intel_display.c        | 12 ------------
+>  drivers/gpu/drm/imx/ipuv3-plane.c           |  7 +------
+>  drivers/gpu/drm/mediatek/mtk_drm_plane.c    |  7 +------
+>  drivers/gpu/drm/meson/meson_plane.c         |  7 +------
+>  drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c   | 14 ++------------
+>  drivers/gpu/drm/nouveau/nv50_display.c      | 12 ------------
+>  drivers/gpu/drm/rcar-du/rcar_du_plane.c     |  7 +------
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop.c |  7 +------
+>  drivers/gpu/drm/sun4i/sun8i_ui_layer.c      |  7 +------
+>  drivers/gpu/drm/sun4i/sun8i_vi_layer.c      |  7 +------
+>  drivers/gpu/drm/tegra/plane.c               |  7 +------
+>  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |  7 +------
+>  drivers/gpu/drm/zte/zx_plane.c              | 13 +------------
+>  include/drm/drm_atomic_helper.h             |  1 -
+>  include/drm/drm_plane_helper.h              |  1 -
+>  22 files changed, 28 insertions(+), 147 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/arm/hdlcd_crtc.c b/drivers/gpu/drm/arm/hdlcd_crtc.c
+> index 877647ef35a9..cf5cbd63ecdf 100644
+> --- a/drivers/gpu/drm/arm/hdlcd_crtc.c
+> +++ b/drivers/gpu/drm/arm/hdlcd_crtc.c
+> @@ -229,7 +229,6 @@ static const struct drm_crtc_helper_funcs hdlcd_crtc_helper_funcs = {
+>  static int hdlcd_plane_atomic_check(struct drm_plane *plane,
+>  				    struct drm_plane_state *state)
+>  {
+> -	struct drm_rect clip = { 0 };
+>  	struct drm_crtc_state *crtc_state;
+>  	u32 src_h = state->src_h >> 16;
+>  
+> @@ -249,11 +248,7 @@ static int hdlcd_plane_atomic_check(struct drm_plane *plane,
+>  		return -EINVAL;
+>  	}
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	return drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   false, true);
+> diff --git a/drivers/gpu/drm/arm/malidp_planes.c b/drivers/gpu/drm/arm/malidp_planes.c
+> index 2885d69af456..ee32361c87ac 100644
+> --- a/drivers/gpu/drm/arm/malidp_planes.c
+> +++ b/drivers/gpu/drm/arm/malidp_planes.c
+> @@ -141,18 +141,13 @@ static int malidp_se_check_scaling(struct malidp_plane *mp,
+>  	struct drm_crtc_state *crtc_state =
+>  		drm_atomic_get_existing_crtc_state(state->state, state->crtc);
+>  	struct malidp_crtc_state *mc;
+> -	struct drm_rect clip = { 0 };
+>  	u32 src_w, src_h;
+>  	int ret;
+>  
+>  	if (!crtc_state)
+>  		return -EINVAL;
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  0, INT_MAX, true, true);
+>  	if (ret)
+>  		return ret;
+> diff --git a/drivers/gpu/drm/armada/armada_crtc.c b/drivers/gpu/drm/armada/armada_crtc.c
+> index fdc34ad4ca62..03eeee11dd5b 100644
+> --- a/drivers/gpu/drm/armada/armada_crtc.c
+> +++ b/drivers/gpu/drm/armada/armada_crtc.c
+> @@ -1203,15 +1203,11 @@ static int armada_drm_primary_update(struct drm_plane *plane,
+>  	struct drm_crtc_state crtc_state = {
+>  		.crtc = crtc,
+>  		.enable = crtc->enabled,
+> +		.mode = crtc->mode,
+>  	};
+> -	struct drm_rect clip = {};
+>  	int ret;
+>  
+> -	if (crtc->enabled)
+> -		drm_mode_get_hv_timing(&crtc->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, &clip, 0,
+> +	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, 0,
+>  						  INT_MAX, true, false);
+>  	if (ret)
+>  		return ret;
+> diff --git a/drivers/gpu/drm/armada/armada_overlay.c b/drivers/gpu/drm/armada/armada_overlay.c
+> index 4f2a7a6e0fd3..c391955009d6 100644
+> --- a/drivers/gpu/drm/armada/armada_overlay.c
+> +++ b/drivers/gpu/drm/armada/armada_overlay.c
+> @@ -208,19 +208,15 @@ armada_ovl_plane_update(struct drm_plane *plane, struct drm_crtc *crtc,
+>  	struct drm_crtc_state crtc_state = {
+>  		.crtc = crtc,
+>  		.enable = crtc->enabled,
+> +		.mode = crtc->mode,
+>  	};
+> -	struct drm_rect clip = {};
+>  	int ret;
+>  
+>  	trace_armada_ovl_plane_update(plane, crtc, fb,
+>  				 crtc_x, crtc_y, crtc_w, crtc_h,
+>  				 src_x, src_y, src_w, src_h);
+>  
+> -	if (crtc->enabled)
+> -		drm_mode_get_hv_timing(&crtc->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, &clip, 0,
+> +	ret = drm_atomic_helper_check_plane_state(&state, &crtc_state, 0,
+>  						  INT_MAX, true, false);
+>  	if (ret)
+>  		return ret;
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index ab4032167094..9fb96f9cc36e 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -699,7 +699,6 @@ EXPORT_SYMBOL(drm_atomic_helper_check_modeset);
+>   * drm_atomic_helper_check_plane_state() - Check plane state for validity
+>   * @plane_state: plane state to check
+>   * @crtc_state: crtc state to check
+> - * @clip: integer clipping coordinates
+>   * @min_scale: minimum @src:@dest scaling factor in 16.16 fixed point
+>   * @max_scale: maximum @src:@dest scaling factor in 16.16 fixed point
+>   * @can_position: is it legal to position the plane such that it
+> @@ -719,7 +718,6 @@ EXPORT_SYMBOL(drm_atomic_helper_check_modeset);
+>   */
+>  int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+>  					const struct drm_crtc_state *crtc_state,
+> -					const struct drm_rect *clip,
+>  					int min_scale,
+>  					int max_scale,
+>  					bool can_position,
+> @@ -729,6 +727,7 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+>  	struct drm_rect *src = &plane_state->src;
+>  	struct drm_rect *dst = &plane_state->dst;
+>  	unsigned int rotation = plane_state->rotation;
+> +	struct drm_rect clip = {};
+>  	int hscale, vscale;
+>  
+>  	WARN_ON(plane_state->crtc && plane_state->crtc != crtc_state->crtc);
+> @@ -764,7 +763,10 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+>  		return -ERANGE;
+>  	}
+>  
+> -	plane_state->visible = drm_rect_clip_scaled(src, dst, clip, hscale, vscale);
+> +	if (crtc_state->enable)
+> +		drm_mode_get_hv_timing(&crtc_state->mode, &clip.x2, &clip.y2);
+> +
+> +	plane_state->visible = drm_rect_clip_scaled(src, dst, &clip, hscale, vscale);
+>  
+>  	drm_rect_rotate_inv(src, fb->width << 16, fb->height << 16, rotation);
+>  
+> @@ -778,10 +780,10 @@ int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+>  		 */
+>  		return 0;
+>  
+> -	if (!can_position && !drm_rect_equals(dst, clip)) {
+> +	if (!can_position && !drm_rect_equals(dst, &clip)) {
+>  		DRM_DEBUG_KMS("Plane must cover entire CRTC\n");
+>  		drm_rect_debug_print("dst: ", dst, false);
+> -		drm_rect_debug_print("clip: ", clip, false);
+> +		drm_rect_debug_print("clip: ", &clip, false);
+>  		return -EINVAL;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/drm_plane_helper.c b/drivers/gpu/drm/drm_plane_helper.c
+> index f1be8cd4e387..f88f68161519 100644
+> --- a/drivers/gpu/drm/drm_plane_helper.c
+> +++ b/drivers/gpu/drm/drm_plane_helper.c
+> @@ -106,7 +106,6 @@ static int get_connectors_for_crtc(struct drm_crtc *crtc,
+>   * @fb: framebuffer to flip onto plane
+>   * @src: source coordinates in 16.16 fixed point
+>   * @dst: integer destination coordinates
+> - * @clip: integer clipping coordinates
+>   * @rotation: plane rotation
+>   * @min_scale: minimum @src:@dest scaling factor in 16.16 fixed point
+>   * @max_scale: maximum @src:@dest scaling factor in 16.16 fixed point
+> @@ -131,7 +130,6 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
+>  				  struct drm_framebuffer *fb,
+>  				  struct drm_rect *src,
+>  				  struct drm_rect *dst,
+> -				  const struct drm_rect *clip,
+>  				  unsigned int rotation,
+>  				  int min_scale,
+>  				  int max_scale,
+> @@ -157,11 +155,12 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
+>  	struct drm_crtc_state crtc_state = {
+>  		.crtc = crtc,
+>  		.enable = crtc->enabled,
+> +		.mode = crtc->mode,
+>  	};
+>  	int ret;
+>  
+>  	ret = drm_atomic_helper_check_plane_state(&plane_state, &crtc_state,
+> -						  clip, min_scale, max_scale,
+> +						  min_scale, max_scale,
+>  						  can_position,
+>  						  can_update_disabled);
+>  	if (ret)
+> @@ -239,16 +238,12 @@ int drm_primary_helper_update(struct drm_plane *plane, struct drm_crtc *crtc,
+>  		.x2 = crtc_x + crtc_w,
+>  		.y2 = crtc_y + crtc_h,
+>  	};
+> -	const struct drm_rect clip = {
+> -		.x2 = crtc->mode.hdisplay,
+> -		.y2 = crtc->mode.vdisplay,
+> -	};
+>  	struct drm_connector **connector_list;
+>  	int num_connectors, ret;
+>  	bool visible;
+>  
+>  	ret = drm_plane_helper_check_update(plane, crtc, fb,
+> -					    &src, &dest, &clip,
+> +					    &src, &dest,
+>  					    DRM_MODE_ROTATE_0,
+>  					    DRM_PLANE_HELPER_NO_SCALING,
+>  					    DRM_PLANE_HELPER_NO_SCALING,
+> diff --git a/drivers/gpu/drm/drm_simple_kms_helper.c b/drivers/gpu/drm/drm_simple_kms_helper.c
+> index 9d3f6b70812c..165bc756af96 100644
+> --- a/drivers/gpu/drm/drm_simple_kms_helper.c
+> +++ b/drivers/gpu/drm/drm_simple_kms_helper.c
+> @@ -89,7 +89,6 @@ static const struct drm_crtc_funcs drm_simple_kms_crtc_funcs = {
+>  static int drm_simple_kms_plane_atomic_check(struct drm_plane *plane,
+>  					struct drm_plane_state *plane_state)
+>  {
+> -	struct drm_rect clip = { 0 };
+>  	struct drm_simple_display_pipe *pipe;
+>  	struct drm_crtc_state *crtc_state;
+>  	int ret;
+> @@ -100,12 +99,7 @@ static int drm_simple_kms_plane_atomic_check(struct drm_plane *plane,
+>  	if (!crtc_state->enable)
+>  		return 0; /* nothing to check when disabling or disabled */
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	ret = drm_atomic_helper_check_plane_state(plane_state, crtc_state,
+> -						  &clip,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  false, true);
+> diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i915/intel_display.c
+> index d585ce4c8732..3933420c6911 100644
+> --- a/drivers/gpu/drm/i915/intel_display.c
+> +++ b/drivers/gpu/drm/i915/intel_display.c
+> @@ -9309,18 +9309,12 @@ static int intel_check_cursor(struct intel_crtc_state *crtc_state,
+>  			      struct intel_plane_state *plane_state)
+>  {
+>  	const struct drm_framebuffer *fb = plane_state->base.fb;
+> -	struct drm_rect clip = {};
+>  	int src_x, src_y;
+>  	u32 offset;
+>  	int ret;
+>  
+> -	if (crtc_state->base.enable)
+> -		drm_mode_get_hv_timing(&crtc_state->base.mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	ret = drm_atomic_helper_check_plane_state(&plane_state->base,
+>  						  &crtc_state->base,
+> -						  &clip,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  true, true);
+> @@ -12755,7 +12749,6 @@ intel_check_primary_plane(struct intel_plane *plane,
+>  	int min_scale = DRM_PLANE_HELPER_NO_SCALING;
+>  	int max_scale = DRM_PLANE_HELPER_NO_SCALING;
+>  	bool can_position = false;
+> -	struct drm_rect clip = {};
+>  	int ret;
+>  
+>  	if (INTEL_GEN(dev_priv) >= 9) {
+> @@ -12767,13 +12760,8 @@ intel_check_primary_plane(struct intel_plane *plane,
+>  		can_position = true;
+>  	}
+>  
+> -	if (crtc_state->base.enable)
+> -		drm_mode_get_hv_timing(&crtc_state->base.mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	ret = drm_atomic_helper_check_plane_state(&state->base,
+>  						  &crtc_state->base,
+> -						  &clip,
+>  						  min_scale, max_scale,
+>  						  can_position, true);
+>  	if (ret)
+> diff --git a/drivers/gpu/drm/imx/ipuv3-plane.c b/drivers/gpu/drm/imx/ipuv3-plane.c
+> index 150628293c51..d7e3583e608e 100644
+> --- a/drivers/gpu/drm/imx/ipuv3-plane.c
+> +++ b/drivers/gpu/drm/imx/ipuv3-plane.c
+> @@ -351,7 +351,6 @@ static int ipu_plane_atomic_check(struct drm_plane *plane,
+>  	struct drm_framebuffer *old_fb = old_state->fb;
+>  	unsigned long eba, ubo, vbo, old_ubo, old_vbo, alpha_eba;
+>  	bool can_position = (plane->type == DRM_PLANE_TYPE_OVERLAY);
+> -	struct drm_rect clip = {};
+>  	int hsub, vsub;
+>  	int ret;
+>  
+> @@ -367,11 +366,7 @@ static int ipu_plane_atomic_check(struct drm_plane *plane,
+>  	if (WARN_ON(!crtc_state))
+>  		return -EINVAL;
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  can_position, true);
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_plane.c b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
+> index b5c6eec9a584..2f4b0ffee598 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_plane.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
+> @@ -91,7 +91,6 @@ static int mtk_plane_atomic_check(struct drm_plane *plane,
+>  {
+>  	struct drm_framebuffer *fb = state->fb;
+>  	struct drm_crtc_state *crtc_state;
+> -	struct drm_rect clip = { 0, };
+>  
+>  	if (!fb)
+>  		return 0;
+> @@ -108,11 +107,7 @@ static int mtk_plane_atomic_check(struct drm_plane *plane,
+>  	if (IS_ERR(crtc_state))
+>  		return PTR_ERR(crtc_state);
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	return drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   true, true);
+> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+> index 3801bee1f9e6..c78a3a59f58c 100644
+> --- a/drivers/gpu/drm/meson/meson_plane.c
+> +++ b/drivers/gpu/drm/meson/meson_plane.c
+> @@ -49,7 +49,6 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
+>  				    struct drm_plane_state *state)
+>  {
+>  	struct drm_crtc_state *crtc_state;
+> -	struct drm_rect clip = { 0, };
+>  
+>  	if (!state->crtc)
+>  		return 0;
+> @@ -58,11 +57,7 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
+>  	if (IS_ERR(crtc_state))
+>  		return PTR_ERR(crtc_state);
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	return drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   true, true);
+> diff --git a/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c b/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c
+> index 98d4d7331767..44fc9fe4737a 100644
+> --- a/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c
+> +++ b/drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c
+> @@ -286,7 +286,6 @@ static int mdp5_plane_atomic_check_with_state(struct drm_crtc_state *crtc_state,
+>  	uint32_t max_width, max_height;
+>  	bool out_of_bounds = false;
+>  	uint32_t caps = 0;
+> -	struct drm_rect clip = {};
+>  	int min_scale, max_scale;
+>  	int ret;
+>  
+> @@ -323,11 +322,7 @@ static int mdp5_plane_atomic_check_with_state(struct drm_crtc_state *crtc_state,
+>  	min_scale = FRAC_16_16(1, 8);
+>  	max_scale = FRAC_16_16(8, 1);
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  min_scale, max_scale,
+>  						  true, true);
+>  	if (ret)
+> @@ -471,7 +466,6 @@ static int mdp5_plane_atomic_async_check(struct drm_plane *plane,
+>  {
+>  	struct mdp5_plane_state *mdp5_state = to_mdp5_plane_state(state);
+>  	struct drm_crtc_state *crtc_state;
+> -	struct drm_rect clip = {};
+>  	int min_scale, max_scale;
+>  	int ret;
+>  
+> @@ -502,11 +496,7 @@ static int mdp5_plane_atomic_async_check(struct drm_plane *plane,
+>  	min_scale = FRAC_16_16(1, 8);
+>  	max_scale = FRAC_16_16(8, 1);
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  min_scale, max_scale,
+>  						  true, true);
+>  	if (ret)
+> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+> index 5a9a51c735f0..eea94c098237 100644
+> --- a/drivers/gpu/drm/nouveau/nv50_display.c
+> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
+> @@ -1135,15 +1135,9 @@ static int
+>  nv50_curs_acquire(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw,
+>  		  struct nv50_head_atom *asyh)
+>  {
+> -	struct drm_rect clip = {};
+>  	int ret;
+>  
+> -	if (asyh->state.enable)
+> -		drm_mode_get_hv_timing(&asyh->state.mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	ret = drm_atomic_helper_check_plane_state(&asyw->state, &asyh->state,
+> -						  &clip,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  true, true);
+> @@ -1427,18 +1421,12 @@ nv50_base_acquire(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw,
+>  		  struct nv50_head_atom *asyh)
+>  {
+>  	const struct drm_framebuffer *fb = asyw->state.fb;
+> -	struct drm_rect clip = {};
+>  	int ret;
+>  
+>  	if (!fb->format->depth)
+>  		return -EINVAL;
+>  
+> -	if (asyh->state.enable)
+> -		drm_mode_get_hv_timing(&asyh->state.mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	ret = drm_atomic_helper_check_plane_state(&asyw->state, &asyh->state,
+> -						  &clip,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  false, true);
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_plane.c b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> index 5687a94d4cb1..68556bd9dad2 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> @@ -572,7 +572,6 @@ int __rcar_du_plane_atomic_check(struct drm_plane *plane,
+>  {
+>  	struct drm_device *dev = plane->dev;
+>  	struct drm_crtc_state *crtc_state;
+> -	struct drm_rect clip = {};
+>  	int ret;
+>  
+>  	if (!state->crtc) {
+> @@ -589,11 +588,7 @@ int __rcar_du_plane_atomic_check(struct drm_plane *plane,
+>  	if (IS_ERR(crtc_state))
+>  		return PTR_ERR(crtc_state);
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  true, true);
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> index cd2c72389629..b95e9d45a435 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> @@ -641,7 +641,6 @@ static int vop_plane_atomic_check(struct drm_plane *plane,
+>  	struct vop_win *vop_win = to_vop_win(plane);
+>  	const struct vop_win_data *win = vop_win->data;
+>  	int ret;
+> -	struct drm_rect clip = {};
+>  	int min_scale = win->phy->scl ? FRAC_16_16(1, 8) :
+>  					DRM_PLANE_HELPER_NO_SCALING;
+>  	int max_scale = win->phy->scl ? FRAC_16_16(8, 1) :
+> @@ -654,11 +653,7 @@ static int vop_plane_atomic_check(struct drm_plane *plane,
+>  	if (WARN_ON(!crtc_state))
+>  		return -EINVAL;
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  min_scale, max_scale,
+>  						  true, true);
+>  	if (ret)
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+> index 2f0ccd50b54d..9a540330cb79 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+> @@ -211,7 +211,6 @@ static int sun8i_ui_layer_atomic_check(struct drm_plane *plane,
+>  	struct drm_crtc *crtc = state->crtc;
+>  	struct drm_crtc_state *crtc_state;
+>  	int min_scale, max_scale;
+> -	struct drm_rect clip = {};
+>  
+>  	if (!crtc)
+>  		return 0;
+> @@ -220,10 +219,6 @@ static int sun8i_ui_layer_atomic_check(struct drm_plane *plane,
+>  	if (WARN_ON(!crtc_state))
+>  		return -EINVAL;
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	min_scale = DRM_PLANE_HELPER_NO_SCALING;
+>  	max_scale = DRM_PLANE_HELPER_NO_SCALING;
+>  
+> @@ -232,7 +227,7 @@ static int sun8i_ui_layer_atomic_check(struct drm_plane *plane,
+>  		max_scale = SUN8I_UI_SCALER_SCALE_MAX;
+>  	}
+>  
+> -	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	return drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						   min_scale, max_scale,
+>  						   true, true);
+>  }
+> diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> index eb3bf2d7291a..5877f8ef5895 100644
+> --- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> +++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> @@ -239,7 +239,6 @@ static int sun8i_vi_layer_atomic_check(struct drm_plane *plane,
+>  	struct drm_crtc *crtc = state->crtc;
+>  	struct drm_crtc_state *crtc_state;
+>  	int min_scale, max_scale;
+> -	struct drm_rect clip = {};
+>  
+>  	if (!crtc)
+>  		return 0;
+> @@ -248,10 +247,6 @@ static int sun8i_vi_layer_atomic_check(struct drm_plane *plane,
+>  	if (WARN_ON(!crtc_state))
+>  		return -EINVAL;
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	min_scale = DRM_PLANE_HELPER_NO_SCALING;
+>  	max_scale = DRM_PLANE_HELPER_NO_SCALING;
+>  
+> @@ -260,7 +255,7 @@ static int sun8i_vi_layer_atomic_check(struct drm_plane *plane,
+>  		max_scale = SUN8I_VI_SCALER_SCALE_MAX;
+>  	}
+>  
+> -	return drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	return drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						   min_scale, max_scale,
+>  						   true, true);
+>  }
+> diff --git a/drivers/gpu/drm/tegra/plane.c b/drivers/gpu/drm/tegra/plane.c
+> index 7267a01e6f08..a056fbf83b53 100644
+> --- a/drivers/gpu/drm/tegra/plane.c
+> +++ b/drivers/gpu/drm/tegra/plane.c
+> @@ -82,7 +82,6 @@ int tegra_plane_state_add(struct tegra_plane *plane,
+>  {
+>  	struct drm_crtc_state *crtc_state;
+>  	struct tegra_dc_state *tegra;
+> -	struct drm_rect clip = {};
+>  	int err;
+>  
+>  	/* Propagate errors from allocation or locking failures. */
+> @@ -90,12 +89,8 @@ int tegra_plane_state_add(struct tegra_plane *plane,
+>  	if (IS_ERR(crtc_state))
+>  		return PTR_ERR(crtc_state);
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	/* Check plane state for visibility and calculate clipping bounds */
+> -	err = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	err = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  0, INT_MAX, true, true);
+>  	if (err < 0)
+>  		return err;
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+> index 1107d6d03506..34ecc27fc30a 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
+> @@ -443,17 +443,12 @@ int vmw_du_primary_plane_atomic_check(struct drm_plane *plane,
+>  {
+>  	struct drm_crtc_state *crtc_state = NULL;
+>  	struct drm_framebuffer *new_fb = state->fb;
+> -	struct drm_rect clip = {};
+>  	int ret;
+>  
+>  	if (state->crtc)
+>  		crtc_state = drm_atomic_get_new_crtc_state(state->state, state->crtc);
+>  
+> -	if (crtc_state && crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+> -	ret = drm_atomic_helper_check_plane_state(state, crtc_state, &clip,
+> +	ret = drm_atomic_helper_check_plane_state(state, crtc_state,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  DRM_PLANE_HELPER_NO_SCALING,
+>  						  false, true);
+> diff --git a/drivers/gpu/drm/zte/zx_plane.c b/drivers/gpu/drm/zte/zx_plane.c
+> index 8e1f34274e24..94545adac50d 100644
+> --- a/drivers/gpu/drm/zte/zx_plane.c
+> +++ b/drivers/gpu/drm/zte/zx_plane.c
+> @@ -55,7 +55,6 @@ static int zx_vl_plane_atomic_check(struct drm_plane *plane,
+>  	struct drm_framebuffer *fb = plane_state->fb;
+>  	struct drm_crtc *crtc = plane_state->crtc;
+>  	struct drm_crtc_state *crtc_state;
+> -	struct drm_rect clip = {};
+>  	int min_scale = FRAC_16_16(1, 8);
+>  	int max_scale = FRAC_16_16(8, 1);
+>  
+> @@ -75,12 +74,8 @@ static int zx_vl_plane_atomic_check(struct drm_plane *plane,
+>  	if (!plane_state->crtc)
+>  		return -EINVAL;
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	return drm_atomic_helper_check_plane_state(plane_state, crtc_state,
+> -						   &clip, min_scale, max_scale,
+> +						   min_scale, max_scale,
+>  						   true, true);
+>  }
+>  
+> @@ -291,7 +286,6 @@ static int zx_gl_plane_atomic_check(struct drm_plane *plane,
+>  	struct drm_framebuffer *fb = plane_state->fb;
+>  	struct drm_crtc *crtc = plane_state->crtc;
+>  	struct drm_crtc_state *crtc_state;
+> -	struct drm_rect clip = {};
+>  
+>  	if (!crtc || !fb)
+>  		return 0;
+> @@ -309,12 +303,7 @@ static int zx_gl_plane_atomic_check(struct drm_plane *plane,
+>  	if (!plane_state->crtc)
+>  		return -EINVAL;
+>  
+> -	if (crtc_state->enable)
+> -		drm_mode_get_hv_timing(&crtc_state->mode,
+> -				       &clip.x2, &clip.y2);
+> -
+>  	return drm_atomic_helper_check_plane_state(plane_state, crtc_state,
+> -						   &clip,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   DRM_PLANE_HELPER_NO_SCALING,
+>  						   false, true);
+> diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+> index 4842ee9485ce..26aaba58d6ce 100644
+> --- a/include/drm/drm_atomic_helper.h
+> +++ b/include/drm/drm_atomic_helper.h
+> @@ -40,7 +40,6 @@ int drm_atomic_helper_check_modeset(struct drm_device *dev,
+>  				struct drm_atomic_state *state);
+>  int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
+>  					const struct drm_crtc_state *crtc_state,
+> -					const struct drm_rect *clip,
+>  					int min_scale,
+>  					int max_scale,
+>  					bool can_position,
+> diff --git a/include/drm/drm_plane_helper.h b/include/drm/drm_plane_helper.h
+> index 8aa49c0ecd4d..28d7ce620729 100644
+> --- a/include/drm/drm_plane_helper.h
+> +++ b/include/drm/drm_plane_helper.h
+> @@ -43,7 +43,6 @@ int drm_plane_helper_check_update(struct drm_plane *plane,
+>  				  struct drm_framebuffer *fb,
+>  				  struct drm_rect *src,
+>  				  struct drm_rect *dest,
+> -				  const struct drm_rect *clip,
+>  				  unsigned int rotation,
+>  				  int min_scale,
+>  				  int max_scale,
+> -- 
+> 2.13.6
+> 
