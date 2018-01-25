@@ -1,140 +1,32 @@
-From: linus.luessing@c0d3.blue (=?UTF-8?q?Linus=20L=C3=BCssing?=)
-Date: Thu, 25 Jan 2018 05:23:13 +0100
-Subject: [RFC PATCH] ARM: dts: meson8b-odroidc1: add microSD support
-Message-ID: <20180125042313.20927-1-linus.luessing@c0d3.blue>
+From: srinivas.kandagatla@linaro.org (Srinivas Kandagatla)
+Date: Thu, 25 Jan 2018 09:17:21 +0000
+Subject: [PATCH v3 00/22] Verbatim device names and
+ devm_nvmem_(un)register()
+In-Reply-To: <CAMRc=Mct60LMcr-CGJue1dTK+XNwz=dmkm2arTGeN1czeN9JoA@mail.gmail.com>
+References: <20180103200114.23922-1-andrew.smirnov@gmail.com>
+ <CAMRc=Mct60LMcr-CGJue1dTK+XNwz=dmkm2arTGeN1czeN9JoA@mail.gmail.com>
+Message-ID: <61e56a69-5722-138e-481e-44473a79b388@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Odroid C1 features a microSD slot. This patch adds the necessary
-DT bindings to support it.
-
-Signed-off-by: Linus L?ssing <linus.luessing@c0d3.blue>
----
-This patch only worked after Martin's attempt to fix the pinctrl issues
-for meson8b:
-
-https://patchwork.kernel.org/patch/10181185/
-
-Another note: I was seeing the following error message in dmesg after
-writing a 64MB file to the microSD card and right after typing "$ sync":
-
-[  512.584687] mmcblk0: error -84 sending status command, retrying
-[  512.586985] mmcblk0: timed out sending r/w cmd command, card status 0xd00
-[  512.591756] mmcblk0: status not valid, retrying timeout
-
-However read/write operations seemed unaffected. The file seemed fine
-afterwards, even after unmounting, replugging and remounting the microSD
-card.
-
-Not sure whether this error message could potentially point to some
-error in the changes in here.
 
 
- arch/arm/boot/dts/meson8b-odroidc1.dts | 58 ++++++++++++++++++++++++++++++++++
- arch/arm/boot/dts/meson8b.dtsi         |  8 +++++
- 2 files changed, 66 insertions(+)
+On 24/01/18 11:13, Bartosz Golaszewski wrote:
+>>
+> Hi Srinivas,
+> 
+> I don't see this series in next - is it going to miss this merge window?
+> 
 
-diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-index d5e83051bb54..3a5603d95b70 100644
---- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-+++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-@@ -54,6 +54,7 @@
- 
- 	aliases {
- 		serial0 = &uart_AO;
-+		mmc0 = &sd_card_slot;
- 	};
- 
- 	memory {
-@@ -69,6 +70,37 @@
- 			default-state = "off";
- 		};
- 	};
-+
-+	tflash_vdd: regulator-tflash_vdd {
-+		/*
-+		 * signal name from schematics: TFLASH_VDD_EN
-+		 */
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "TFLASH_VDD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&gpio GPIOY_12 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	tf_io: gpio-regulator-tf_io {
-+		compatible = "regulator-gpio";
-+
-+		regulator-name = "TF_IO";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		/*
-+		 * signal name from schematics: TF_3V3N_1V8_EN
-+		 */
-+		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+
-+		states = <3300000 0
-+			  1800000 1>;
-+	};
- };
- 
- &uart_AO {
-@@ -100,6 +132,32 @@
- 	status = "okay";
- };
- 
-+&sdio {
-+	status = "okay";
-+
-+	pinctrl-0 = <&sd_b_pins>;
-+	pinctrl-names = "default";
-+
-+	/* SD card */
-+	sd_card_slot: slot at 1 {
-+		compatible = "mmc-slot";
-+		reg = <1>;
-+		status = "okay";
-+
-+		bus-width = <4>;
-+		no-sdio;
-+		cap-mmc-highspeed;
-+		cap-sd-highspeed;
-+		disable-wp;
-+
-+		cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-+		cd-inverted;
-+
-+		vmmc-supply = <&tflash_vdd>;
-+		vqmmc-supply = <&tf_io>;
-+	};
-+};
-+
- &ethmac {
- 	status = "okay";
- 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index fa5274aa370b..87687c09ca3f 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -206,6 +206,14 @@
- 				function = "ethernet";
- 			};
- 		};
-+
-+		sd_b_pins: sd-b {
-+			mux {
-+				groups = "sd_d0_b", "sd_d1_b", "sd_d2_b",
-+					"sd_d3_b", "sd_clk_b", "sd_cmd_b";
-+				function = "sd_b";
-+			};
-+		};
- 	};
- };
- 
--- 
-2.11.0
+Thanks for your patience.
+
+In general, I pick stuff which are sent before rc5-rc6 and send it to 
+Greg KH for inclusion in char-misc tree.
+
+These patches will be queued for next release cycle..
+
+Thanks,
+srini
+
+> Thanks,
+> Bartosz
