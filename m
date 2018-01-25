@@ -1,47 +1,140 @@
-From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
-Date: Thu, 25 Jan 2018 05:03:31 +0100
-Subject: [RFC PATCH v1] pinctrl: meson: meson8b: fix requesting GPIOs
- greater than GPIOZ_3
-In-Reply-To: <20180124002738.32338-1-martin.blumenstingl@googlemail.com>
-References: <20180124002738.32338-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180125040331.GE1756@otheros>
+From: linus.luessing@c0d3.blue (=?UTF-8?q?Linus=20L=C3=BCssing?=)
+Date: Thu, 25 Jan 2018 05:23:13 +0100
+Subject: [RFC PATCH] ARM: dts: meson8b-odroidc1: add microSD support
+Message-ID: <20180125042313.20927-1-linus.luessing@c0d3.blue>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Jan 24, 2018 at 01:27:38AM +0100, Martin Blumenstingl wrote:
-> Meson8b's AO GPIO controller is not affected by this issue since it does
-> not have any holes in it - only the CBUS GPIO controller is affected.
-> 
-> This was initially seen by Linus L?ssing who was preparing SD card
-> support on Odroid-C1 which uses CARD_6 as "card detect" GPIO.
-> 
-> Fixes: db80f0e158e621 ("pinctrl: meson: get rid of unneeded domain structures")
-> Reported-by: Linus L?ssing <linus.luessing@c0d3.blue>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+The Odroid C1 features a microSD slot. This patch adds the necessary
+DT bindings to support it.
 
-Hi Martin,
+Signed-off-by: Linus L?ssing <linus.luessing@c0d3.blue>
+---
+This patch only worked after Martin's attempt to fix the pinctrl issues
+for meson8b:
 
-Just wanted to confirm that this indeed fixes the splats and
-crashes I was experiencing. And I was able to successfully
-read/write from/to a microSD card. Also card detect worked fine, I
-could successfully unplug, replug and then read from it again.
-Here some dmesg from a successful card detection:
+https://patchwork.kernel.org/patch/10181185/
+
+Another note: I was seeing the following error message in dmesg after
+writing a 64MB file to the microSD card and right after typing "$ sync":
 
 [  512.584687] mmcblk0: error -84 sending status command, retrying
 [  512.586985] mmcblk0: timed out sending r/w cmd command, card status 0xd00
 [  512.591756] mmcblk0: status not valid, retrying timeout
-[  638.652986] mmc0: card 1234 removed
-[  656.722455] mmc0: new high speed SDHC card at address 1234
-[  656.724667] mmcblk0: mmc0:1234 SA16G 14.4 GiB 
-[  656.730312]  mmcblk0: p1 p2
 
-There error happened when typing "$ sync" after the write. However
-the written file seemed fine in the end.
+However read/write operations seemed unaffected. The file seemed fine
+afterwards, even after unmounting, replugging and remounting the microSD
+card.
 
-The address 1234 also seemed like a weird coincidence. But maybe
-that's just a bug in my DT changes.
+Not sure whether this error message could potentially point to some
+error in the changes in here.
 
-I'll post the DT changes I had been experimenting with as an RFC
-to linux-amlogic shortly.
 
-Regards, Linus
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 58 ++++++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/meson8b.dtsi         |  8 +++++
+ 2 files changed, 66 insertions(+)
+
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index d5e83051bb54..3a5603d95b70 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -54,6 +54,7 @@
+ 
+ 	aliases {
+ 		serial0 = &uart_AO;
++		mmc0 = &sd_card_slot;
+ 	};
+ 
+ 	memory {
+@@ -69,6 +70,37 @@
+ 			default-state = "off";
+ 		};
+ 	};
++
++	tflash_vdd: regulator-tflash_vdd {
++		/*
++		 * signal name from schematics: TFLASH_VDD_EN
++		 */
++		compatible = "regulator-fixed";
++
++		regulator-name = "TFLASH_VDD";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&gpio GPIOY_12 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	tf_io: gpio-regulator-tf_io {
++		compatible = "regulator-gpio";
++
++		regulator-name = "TF_IO";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++
++		/*
++		 * signal name from schematics: TF_3V3N_1V8_EN
++		 */
++		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
++		gpios-states = <0>;
++
++		states = <3300000 0
++			  1800000 1>;
++	};
+ };
+ 
+ &uart_AO {
+@@ -100,6 +132,32 @@
+ 	status = "okay";
+ };
+ 
++&sdio {
++	status = "okay";
++
++	pinctrl-0 = <&sd_b_pins>;
++	pinctrl-names = "default";
++
++	/* SD card */
++	sd_card_slot: slot at 1 {
++		compatible = "mmc-slot";
++		reg = <1>;
++		status = "okay";
++
++		bus-width = <4>;
++		no-sdio;
++		cap-mmc-highspeed;
++		cap-sd-highspeed;
++		disable-wp;
++
++		cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
++		cd-inverted;
++
++		vmmc-supply = <&tflash_vdd>;
++		vqmmc-supply = <&tf_io>;
++	};
++};
++
+ &ethmac {
+ 	status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index fa5274aa370b..87687c09ca3f 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -206,6 +206,14 @@
+ 				function = "ethernet";
+ 			};
+ 		};
++
++		sd_b_pins: sd-b {
++			mux {
++				groups = "sd_d0_b", "sd_d1_b", "sd_d2_b",
++					"sd_d3_b", "sd_clk_b", "sd_cmd_b";
++				function = "sd_b";
++			};
++		};
+ 	};
+ };
+ 
+-- 
+2.11.0
