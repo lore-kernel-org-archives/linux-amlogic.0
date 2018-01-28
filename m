@@ -1,54 +1,68 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Jan 2018 21:22:45 +0100
-Subject: [PATCH 5/5] phy: amlogic: phy-meson-gxl-usb2: rename some of the
- U2P_R2 registers
-In-Reply-To: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
-References: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180128202245.25021-6-martin.blumenstingl@googlemail.com>
+Date: Sun, 28 Jan 2018 21:26:34 +0100
+Subject: [PATCH v2 2/2] ARM: dts: meson8b-odroidc1: ethernet support
+In-Reply-To: <e0edec83100c6f76136721dd05ffe4fab8653ca4.1516326105.git.ingrassia@epigenesys.com>
+References: <cover.1516326105.git.ingrassia@epigenesys.com>
+ <e0edec83100c6f76136721dd05ffe4fab8653ca4.1516326105.git.ingrassia@epigenesys.com>
+Message-ID: <CAFBinCABGQSPVPGw3O0xOU6SCCKMrNaF9wDAi9ieA7gjmsih4w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The U2P_R2 register provides "test mode" functionality for bits 17:0.
-These are only used during SoC development and should be left untouched
-on production SoC versions.
-Rename these register definitions to indicate that these are for "test
-mode" only.
+On Fri, Jan 19, 2018 at 2:49 AM, Emiliano Ingrassia
+<ingrassia@epigenesys.com> wrote:
+> The Odroid-C1+ board is equipped with an RTL8211F ethernet PHY
+> which supports 10/100/1000 Mbps ethernet.
+> The PHY reset and interrupt lines are controlled by the SoC via
+> two GPIO lines (GPIOH_4 and GPIOH_3 respectively).
+> The PHY energy efficient ethernet (eee) mode is marked as broken
+> using "eee-broken-1000t" because, during tests, high packet losses
+> were experienced without it.
+>
+> Signed-off-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-While here, also merge the definitions for U2P_R2_DATA_IN_MASK and
-U2P_R2_DATA_IN_EN_MASK (bits 0:7) because Amlogic's internal
-documentation suggests that these bits belong together. The old
-definition was not taken from the documentation but rather from a struct
-definition in the Amlogic GPL kernel sources.
-
-No functional changes.
-
-Suggested-by: Yixun Lan <yixun.lan@amlogic.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/amlogic/phy-meson-gxl-usb2.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/phy/amlogic/phy-meson-gxl-usb2.c b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-index f062fc7f0a3a..9f9b5414b97a 100644
---- a/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-@@ -71,12 +71,11 @@
- 
- /* bits [31:14] are read-only */
- #define U2P_R2							0x8
--	#define U2P_R2_DATA_IN_MASK				GENMASK(3, 0)
--	#define U2P_R2_DATA_IN_EN_MASK				GENMASK(7, 4)
--	#define U2P_R2_ADDR_MASK				GENMASK(11, 8)
--	#define U2P_R2_DATA_OUT_SEL				BIT(12)
--	#define U2P_R2_CLK					BIT(13)
--	#define U2P_R2_DATA_OUT_MASK				GENMASK(17, 14)
-+	#define U2P_R2_TESTDATA_IN_MASK				GENMASK(7, 0)
-+	#define U2P_R2_TESTADDR_MASK				GENMASK(11, 8)
-+	#define U2P_R2_TESTDATA_OUT_SEL				BIT(12)
-+	#define U2P_R2_TESTCLK					BIT(13)
-+	#define U2P_R2_TESTDATA_OUT_MASK			GENMASK(17, 14)
- 	#define U2P_R2_ACA_PIN_RANGE_C				BIT(18)
- 	#define U2P_R2_ACA_PIN_RANGE_B				BIT(19)
- 	#define U2P_R2_ACA_PIN_RANGE_A				BIT(20)
--- 
-2.16.1
+> ---
+>  arch/arm/boot/dts/meson8b-odroidc1.dts | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> index 9ff6ca4e20d0..d5e83051bb54 100644
+> --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> @@ -99,3 +99,33 @@
+>  &usb1 {
+>         status = "okay";
+>  };
+> +
+> +&ethmac {
+> +       status = "okay";
+> +
+> +       snps,reset-gpio = <&gpio GPIOH_4 GPIO_ACTIVE_HIGH>;
+> +       snps,reset-active-low;
+> +       snps,reset-delays-us = <0 10000 30000>;
+> +
+> +       pinctrl-0 = <&eth_rgmii_pins>;
+> +       pinctrl-names = "default";
+> +
+> +       phy-mode = "rgmii";
+> +       phy-handle = <&eth_phy>;
+> +       amlogic,tx-delay-ns = <4>;
+> +
+> +       mdio {
+> +               compatible = "snps,dwmac-mdio";
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               /* Realtek RTL8211F (0x001cc916) */
+> +               eth_phy: ethernet-phy at 0 {
+> +                       reg = <0>;
+> +                       eee-broken-1000t;
+> +                       interrupt-parent = <&gpio_intc>;
+> +                       /* GPIOH_3 */
+> +                       interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+> +               };
+> +       };
+> +};
+> --
+> 2.15.1
+>
