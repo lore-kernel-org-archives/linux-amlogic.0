@@ -1,71 +1,55 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Jan 2018 21:03:31 +0100
-Subject: [PATCH 1/3] dt-bindings: usb: add support for dwc3 controller on
- Amlogic Meson GX
+Date: Sun, 28 Jan 2018 21:03:33 +0100
+Subject: [PATCH 3/3] usb: dwc3: of-simple: add support for the Amlogic Meson
+ GXL and AXG SoCs
 In-Reply-To: <20180128200333.20093-1-martin.blumenstingl@googlemail.com>
 References: <20180128200333.20093-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180128200333.20093-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20180128200333.20093-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Amlogic Meson GX SoCs (GXL and AXG) come with a (host-only) dwc3 USB
-controller. This requires a clock to be enabled and a reset line to be
-pulsed to get the hardware into a known state.
-Add the documentation for this IP block, similar to "qcom,dwc3.txt".
+Amlogic Meson GXL and AXG SoCs come with a (host-only) dwc3 USB
+controller. To use this controller a clock has to be enabled and a reset
+line has to be pulsed.
+Enabling the clock works identical to other SoCs. However, the reset
+line has to be pulsed (using reset_control_reset) instead of using a
+level reset (reset_control_{assert,deassert}).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- .../devicetree/bindings/usb/amlogic,dwc3.txt       | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+ drivers/usb/dwc3/dwc3-of-simple.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
-new file mode 100644
-index 000000000000..9a8b631904fd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
-@@ -0,0 +1,42 @@
-+Amlogic Meson GX DWC3 USB SoC controller
+diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
+index ceb9f0cd822a..d9e4b8b09eaf 100644
+--- a/drivers/usb/dwc3/dwc3-of-simple.c
++++ b/drivers/usb/dwc3/dwc3-of-simple.c
+@@ -217,6 +217,11 @@ static const struct dwc3_of_simple_params dwc3_of_simple_default_params = {
+ 	.pulse_resets = false,
+ };
+ 
++static const struct dwc3_of_simple_params dwc3_of_simple_amlogic_params = {
++	.shared_resets = true,
++	.pulse_resets = true,
++};
 +
-+Required properties:
-+- compatible:	depending on the SoC this should contain one of:
-+			* amlogic,meson-axg-dwc3
-+			* amlogic,meson-gxl-dwc3
-+- clocks:	a handle for the "USB general" clock
-+- clock-names:	must be "usb_general"
-+- resets:	a handle for the shared "USB OTG" reset line
-+- reset-names:	must be "usb_otg"
-+
-+Required child node:
-+A child node must exist to represent the core DWC3 IP block. The name of
-+the node is not important. The content of the node is defined in dwc3.txt.
-+
-+PHY documentation is provided in the following places:
-+- Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
-+- Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
-+
-+Example device nodes:
-+		usb0: usb at ff500000 {
-+			compatible = "amlogic,meson-axg-dwc3";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&clkc CLKID_USB>;
-+			clock-names = "usb_general";
-+			resets = <&reset RESET_USB_OTG>;
-+			reset-names = "usb_otg";
-+
-+			dwc3: dwc3 at ff500000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff500000 0x0 0x100000>;
-+				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+				dr_mode = "host";
-+				maximum-speed = "high-speed";
-+				snps,dis_u2_susphy_quirk;
-+				phys = <&usb3_phy>, <&usb2_phy0>;
-+				phy-names = "usb2-phy", "usb3-phy";
-+			};
-+		};
+ static const struct of_device_id of_dwc3_simple_match[] = {
+ 	{
+ 		.compatible = "qcom,dwc3",
+@@ -238,6 +243,14 @@ static const struct of_device_id of_dwc3_simple_match[] = {
+ 		.compatible = "sprd,sc9860-dwc3",
+ 		.data = &dwc3_of_simple_default_params
+ 	},
++	{
++		.compatible = "amlogic,meson-axg-dwc3",
++		.data = &dwc3_of_simple_amlogic_params
++	},
++	{
++		.compatible = "amlogic,meson-gxl-dwc3",
++		.data = &dwc3_of_simple_amlogic_params
++	},
+ 	{ /* Sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, of_dwc3_simple_match);
 -- 
 2.16.1
