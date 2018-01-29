@@ -1,160 +1,99 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Jan 2018 21:33:28 +0100
-Subject: [RFC PATCH] ARM: dts: meson8b-odroidc1: add microSD support
-In-Reply-To: <20180125042313.20927-1-linus.luessing@c0d3.blue>
-References: <20180125042313.20927-1-linus.luessing@c0d3.blue>
-Message-ID: <CAFBinCA8eWBEqeJCM3La0sm1BvMNkKjbxfZ5GA2sEzXb4AN=8w@mail.gmail.com>
+From: balbi@kernel.org (Felipe Balbi)
+Date: Mon, 29 Jan 2018 10:18:28 +0200
+Subject: [PATCH 2/3] usb: dwc3: of-simple: add support for shared and
+ pulsed reset lines
+In-Reply-To: <20180128200333.20093-3-martin.blumenstingl@googlemail.com>
+References: <20180128200333.20093-1-martin.blumenstingl@googlemail.com>
+ <20180128200333.20093-3-martin.blumenstingl@googlemail.com>
+Message-ID: <87fu6pjcx7.fsf@linux.intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Linus,
 
-thank you for this patch!
+Hi,
 
-On Thu, Jan 25, 2018 at 5:23 AM, Linus L?ssing <linus.luessing@c0d3.blue> wrote:
-> The Odroid C1 features a microSD slot. This patch adds the necessary
-> DT bindings to support it.
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> Some SoCs (such as Amlogic Meson GXL for example) share the reset line
+> with other components (in case of the Meson GXL example there's a shared
+> reset line between the USB2 PHYs, USB3 PHYs and the dwc3 controller).
+> Additionally SoC implementations may prefer a reset pulse over level
+> resets.
 >
-> Signed-off-by: Linus L?ssing <linus.luessing@c0d3.blue>
+> Add an internal per-of_device_id struct which can be used to configure
+> whether the reset lines are shared and whether they use level or pulse
+> resets.
+>
+> For now this falls back to the old defaults, which are:
+> - reset lines are exclusive
+> - level resets are being used
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
-> This patch only worked after Martin's attempt to fix the pinctrl issues
-> for meson8b:
+>  drivers/usb/dwc3/dwc3-of-simple.c | 65 ++++++++++++++++++++++++++++++++-------
+>  1 file changed, 54 insertions(+), 11 deletions(-)
 >
-> https://patchwork.kernel.org/patch/10181185/
-unfortunately that patch requires more work
-
-> Another note: I was seeing the following error message in dmesg after
-> writing a 64MB file to the microSD card and right after typing "$ sync":
->
-> [  512.584687] mmcblk0: error -84 sending status command, retrying
-> [  512.586985] mmcblk0: timed out sending r/w cmd command, card status 0xd00
-> [  512.591756] mmcblk0: status not valid, retrying timeout
->
-> However read/write operations seemed unaffected. The file seemed fine
-> afterwards, even after unmounting, replugging and remounting the microSD
-> card.
->
-> Not sure whether this error message could potentially point to some
-> error in the changes in here.
-these errors may be a problem with the meson-mx-sdio (MMC) driver
-can you please show the output of /sys/kernel/debug/mmc0/ios ?
-
->
->  arch/arm/boot/dts/meson8b-odroidc1.dts | 58 ++++++++++++++++++++++++++++++++++
->  arch/arm/boot/dts/meson8b.dtsi         |  8 +++++
->  2 files changed, 66 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> index d5e83051bb54..3a5603d95b70 100644
-> --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-> +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> @@ -54,6 +54,7 @@
->
->         aliases {
->                 serial0 = &uart_AO;
-> +               mmc0 = &sd_card_slot;
->         };
->
->         memory {
-> @@ -69,6 +70,37 @@
->                         default-state = "off";
->                 };
->         };
-> +
-> +       tflash_vdd: regulator-tflash_vdd {
-> +               /*
-> +                * signal name from schematics: TFLASH_VDD_EN
-> +                */
-> +               compatible = "regulator-fixed";
-> +
-> +               regulator-name = "TFLASH_VDD";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +
-> +               gpio = <&gpio GPIOY_12 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +       };
-> +
-> +       tf_io: gpio-regulator-tf_io {
-> +               compatible = "regulator-gpio";
-> +
-> +               regulator-name = "TF_IO";
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <3300000>;
-> +
-> +               /*
-> +                * signal name from schematics: TF_3V3N_1V8_EN
-> +                */
-> +               gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
-> +               gpios-states = <0>;
-> +
-> +               states = <3300000 0
-> +                         1800000 1>;
-> +       };
->  };
->
->  &uart_AO {
-> @@ -100,6 +132,32 @@
->         status = "okay";
->  };
->
-> +&sdio {
-> +       status = "okay";
-> +
-> +       pinctrl-0 = <&sd_b_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       /* SD card */
-> +       sd_card_slot: slot at 1 {
-> +               compatible = "mmc-slot";
-> +               reg = <1>;
-> +               status = "okay";
-> +
-> +               bus-width = <4>;
-> +               no-sdio;
-> +               cap-mmc-highspeed;
-> +               cap-sd-highspeed;
-> +               disable-wp;
-> +
-> +               cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-> +               cd-inverted;
-> +
-> +               vmmc-supply = <&tflash_vdd>;
-> +               vqmmc-supply = <&tf_io>;
-> +       };
+> diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
+> index 7ae0eefc7cc7..ceb9f0cd822a 100644
+> --- a/drivers/usb/dwc3/dwc3-of-simple.c
+> +++ b/drivers/usb/dwc3/dwc3-of-simple.c
+> @@ -22,11 +22,22 @@
+>  #include <linux/pm_runtime.h>
+>  #include <linux/reset.h>
+>  
+> +/**
+> + * struct dwc3_of_simple_params - hardware specific parameters
+> + * @shared_resets: indicates that the resets are shared or exclusive
+> + * @pulse_resets: use a reset pulse instead of level based resets
+> + */
+> +struct dwc3_of_simple_params {
+> +	bool			shared_resets;
+> +	bool			pulse_resets;
 > +};
 > +
->  &ethmac {
->         status = "okay";
->
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index fa5274aa370b..87687c09ca3f 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -206,6 +206,14 @@
->                                 function = "ethernet";
->                         };
->                 };
-> +
-> +               sd_b_pins: sd-b {
-> +                       mux {
-> +                               groups = "sd_d0_b", "sd_d1_b", "sd_d2_b",
-> +                                       "sd_d3_b", "sd_clk_b", "sd_cmd_b";
-> +                               function = "sd_b";
-> +                       };
-> +               };
->         };
->  };
->
-> --
-> 2.11.0
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>  struct dwc3_of_simple {
+>  	struct device		*dev;
+>  	struct clk		**clks;
+>  	int			num_clocks;
+>  	struct reset_control	*resets;
+> +	const struct dwc3_of_simple_params	*params;
 
+instead, you can add these two fields here:
 
-Regards
-Martin
+	bool shared_resets;
+        bool pulse_resets;
+
+and ...
+
+> @@ -90,17 +101,26 @@ static int dwc3_of_simple_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, simple);
+>  	simple->dev = dev;
+> +	simple->params = of_device_get_match_data(dev);
+>  
+> -	simple->resets = of_reset_control_array_get_optional_exclusive(np);
+> +	simple->resets = of_reset_control_array_get(np,
+> +						simple->params->shared_resets,
+> +						true);
+
+wrap this with a of_device_is_compatible() check:
+
+	if (of_device_is_compatible(dev->of_node, "foobar")) {
+        	simple->shared_resets = true;
+		simple->pulse_resets = true;
+	}
+
+or something like that. Then we don't need to add a new
+dwc3_of_simple_params for everybody.
+
+Also, the why isn't the reset type (pulse vs level) handled by reset
+framework itself? Why does dwc3-of-simple need to know about it?
+
+-- 
+balbi
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 832 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180129/dd2feb7d/attachment.sig>
