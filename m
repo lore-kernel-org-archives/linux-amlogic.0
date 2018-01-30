@@ -1,21 +1,27 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 30 Jan 2018 20:12:55 +0100
-Subject: [PATCH] clk: meson: add axg misc bit to the mpll driver
-In-Reply-To: <20180119154236.9797-1-jbrunet@baylibre.com>
-References: <20180119154236.9797-1-jbrunet@baylibre.com>
-Message-ID: <1517339575.3153.11.camel@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 30 Jan 2018 15:53:54 -0800
+Subject: [PATCH v2 0/5]  i2c: meson-axg: add I2C controller driver
+In-Reply-To: <20180124063019.mzq7egwotn2uakr5@ninjato> (Wolfram Sang's message
+ of "Wed, 24 Jan 2018 07:30:19 +0100")
+References: <20171120145415.6581-1-yixun.lan@amlogic.com>
+ <7ho9ltba6c.fsf@baylibre.com>
+ <20180124063019.mzq7egwotn2uakr5@ninjato>
+Message-ID: <7hzi4uc38t.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2018-01-19 at 16:42 +0100, Jerome Brunet wrote:
-> On axg, the rate of the mpll is stuck as if sdm value was 4 and could not
-> change (expect for mpll2 strangely). Looking at the vendor kernel, it
-> turns out a new magic bit from the undocumented HHI_PLL_TOP_MISC register
-> is required.
-> 
-> Setting this bit solves the problem and the mpll rates are back to normal
-> 
-> Fixes: 78b4af312f91 ("clk: meson-axg: add clock controller drivers")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Wolfram Sang <wsa@the-dreams.de> writes:
 
-Applied to clk-meson next/drivers
+>> >   ARM64: dts: meson-axg: add I2C DT info for Meson-AXG SoC
+>> >   ARM64: dts: meson-axg: describe pin DT info for I2C controller
+>> >   ARM64: dts: meson-axg: enable I2C Master-1 for the audio speaker
+>> 
+>> Once you've merged, I'll take the DT patches through my amlogic tree.
+>
+> Done now! Have fun with the patches...
+
+Thanks!
+
+The DT patches are now queued in the amlogic tree (branch: v4.17/dt64)
+
+Kevin
