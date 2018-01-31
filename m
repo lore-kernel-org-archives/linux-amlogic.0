@@ -1,94 +1,72 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 31 Jan 2018 19:09:33 +0100
-Subject: [PATCH 07/19] clk: meson: remove superseded aoclk_gate_regmap
+Date: Wed, 31 Jan 2018 19:09:28 +0100
+Subject: [PATCH 02/19] clk: meson: use devm_of_clk_add_hw_provider
 In-Reply-To: <20180131180945.18025-1-jbrunet@baylibre.com>
 References: <20180131180945.18025-1-jbrunet@baylibre.com>
-Message-ID: <20180131180945.18025-8-jbrunet@baylibre.com>
+Message-ID: <20180131180945.18025-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-aoclk_gate_regmap has been replaced by meson's clk_regmap.
-It is no longer necessary so, remove it
+There is no remove callbacks in meson's clock controllers and
+of_clk_del_provider is never called if of_clk_add_hw_provider has been
+executed, introducing a potential memory leak.
+Fixing this by the using the devm variant.
+
+In reality, the leak would never happen since these controllers are
+never unloaded once in use ... still, this is worth cleaning.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/gxbb-aoclk-regmap.c | 46 -----------------------------------
- drivers/clk/meson/gxbb-aoclk.h        | 10 --------
- 2 files changed, 56 deletions(-)
- delete mode 100644 drivers/clk/meson/gxbb-aoclk-regmap.c
+ drivers/clk/meson/axg.c     | 4 ++--
+ drivers/clk/meson/gxbb.c    | 5 +++--
+ drivers/clk/meson/meson8b.c | 4 ++--
+ 3 files changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/clk/meson/gxbb-aoclk-regmap.c b/drivers/clk/meson/gxbb-aoclk-regmap.c
-deleted file mode 100644
-index 2515fbfa0467..000000000000
---- a/drivers/clk/meson/gxbb-aoclk-regmap.c
-+++ /dev/null
-@@ -1,46 +0,0 @@
--/*
-- * Copyright (c) 2017 BayLibre, SAS.
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- *
-- * SPDX-License-Identifier: GPL-2.0+
-- */
--
--#include <linux/clk-provider.h>
--#include <linux/bitfield.h>
--#include <linux/regmap.h>
--#include "gxbb-aoclk.h"
--
--static int aoclk_gate_regmap_enable(struct clk_hw *hw)
--{
--	struct aoclk_gate_regmap *gate = to_aoclk_gate_regmap(hw);
--
--	return regmap_update_bits(gate->regmap, AO_RTI_GEN_CNTL_REG0,
--				  BIT(gate->bit_idx), BIT(gate->bit_idx));
--}
--
--static void aoclk_gate_regmap_disable(struct clk_hw *hw)
--{
--	struct aoclk_gate_regmap *gate = to_aoclk_gate_regmap(hw);
--
--	regmap_update_bits(gate->regmap, AO_RTI_GEN_CNTL_REG0,
--			   BIT(gate->bit_idx), 0);
--}
--
--static int aoclk_gate_regmap_is_enabled(struct clk_hw *hw)
--{
--	struct aoclk_gate_regmap *gate = to_aoclk_gate_regmap(hw);
--	unsigned int val;
--	int ret;
--
--	ret = regmap_read(gate->regmap, AO_RTI_GEN_CNTL_REG0, &val);
--	if (ret)
--		return ret;
--
--	return (val & BIT(gate->bit_idx)) != 0;
--}
--
--const struct clk_ops meson_aoclk_gate_regmap_ops = {
--	.enable = aoclk_gate_regmap_enable,
--	.disable = aoclk_gate_regmap_disable,
--	.is_enabled = aoclk_gate_regmap_is_enabled,
--};
-diff --git a/drivers/clk/meson/gxbb-aoclk.h b/drivers/clk/meson/gxbb-aoclk.h
-index 127d58954cca..0be78383f257 100644
---- a/drivers/clk/meson/gxbb-aoclk.h
-+++ b/drivers/clk/meson/gxbb-aoclk.h
-@@ -17,16 +17,6 @@
- #define AO_RTC_ALT_CLK_CNTL0	0x94
- #define AO_RTC_ALT_CLK_CNTL1	0x98
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 0db0fc0762e2..2f2b3845c01d 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -854,8 +854,8 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 		}
+ 	}
  
--struct aoclk_gate_regmap {
--	struct clk_hw hw;
--	unsigned bit_idx;
--	struct regmap *regmap;
--	spinlock_t *lock;
--};
--
--#define to_aoclk_gate_regmap(_hw) \
--	container_of(_hw, struct aoclk_gate_regmap, hw)
--
- extern const struct clk_ops meson_aoclk_gate_regmap_ops;
+-	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+-			clkc_data->hw_onecell_data);
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   clkc_data->hw_onecell_data);
+ }
  
- struct aoclk_cec_32k {
+ static struct platform_driver axg_driver = {
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 423abcb8ef88..17f44ac751b3 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -2002,8 +2002,9 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+ 			goto iounmap;
+ 	}
+ 
+-	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+-			clkc_data->hw_onecell_data);
++
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   clkc_data->hw_onecell_data);
+ 
+ iounmap:
+ 	iounmap(clk_base);
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 3ffea80c1308..abac079ff77f 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -878,8 +878,8 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+-			&meson8b_hw_onecell_data);
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   &meson8b_hw_onecell_data);
+ }
+ 
+ static const struct of_device_id meson8b_clkc_match_table[] = {
 -- 
 2.14.3
