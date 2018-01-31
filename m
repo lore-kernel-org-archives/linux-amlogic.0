@@ -1,32 +1,49 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 30 Jan 2018 16:44:45 -0800
-Subject: [PATCH v2 0/3] Meson8/Meson8b reset improvements
-In-Reply-To: <20180121221414.1060-1-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Sun, 21 Jan 2018 23:14:11 +0100")
-References: <20180121221414.1060-1-martin.blumenstingl@googlemail.com>
-Message-ID: <7hy3keambm.fsf@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Wed, 31 Jan 2018 10:25:45 +0800
+Subject: [PATCH v3 0/5] ARM64: dts: meson-axg: UART DT updates
+In-Reply-To: <CAOi56cW4ufsegpy7heK1+pCxvZ2gz5Lf3dkUgxkZCgMq5oBzSA@mail.gmail.com>
+References: <20180111023401.125658-1-yixun.lan@amlogic.com>
+ <7hr2q6c2r4.fsf@baylibre.com>
+ <CAOi56cW4ufsegpy7heK1+pCxvZ2gz5Lf3dkUgxkZCgMq5oBzSA@mail.gmail.com>
+Message-ID: <8990554d-e995-e432-8f50-3b247f71b0fd@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Recently reset level support (.assert/.deassert) was added to the
-> reset-meson driver.
-> This prepares Meson8b to enable level resets as well (for this we
-> have to grow the memory zone of the reset controller).
->
-> I also noticed that Meson8 does not have the reset controller in it's
-> .dtsi yet, so this series adds that as well.
-> It also adds the USB reset lines on Meson8 afterwards to stay
-> consistent with Meson8b.
->
-> changes since v1 at [0]:
-> - added Neil's Reviewed-by (thank you)
-> - updated cover-letter since the reset-meson driver changes which
->   add level reset support also for Meson8b are queued for v4.16
 
-Applied to v4.17/dt,
+On 01/31/18 08:22, Kevin Hilman wrote:
+> On Tue, Jan 30, 2018 at 4:04 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> Yixun Lan <yixun.lan@amlogic.com> writes:
+>>
+>>> HI Kevin
+>>>  These are the UART DT updates for the Meson-AXG platform.
+>>>
+>>>  The patch 1 is a general fix.
+>>> Other patches are about adding clock & pinctrl info, then using them.
+>>> Last patch enable UART_A which connect to a BT module on the S400 board.
+>>
+>> Applied to v4.16/dt64,
+> 
+> Oops, I meant v4.17.
+> 
 
-Thanks,
+Hi Kevin
+ I should warn you about the patch 3 [1], it actually depend on the gpio
+renaming patch [2]
 
-Kevin
+ I'm still waiting Linus to take patch [2], then update according
+(or you could help amend the patch? it's simply a
+'s/uart_ao_b_gpioz/uart_ao_b_z/g)
+
+Yixun
+
+
+
+[1] [PATCH v3 3/5] ARM64: dts: meson-axg: uart: Add the pinctrl info
+description
+
+http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006096.html
+
+
+[2] [PATCH] pinctrl: meson-axg: adjust uart_ao_b pin group naming
+http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006201.html
