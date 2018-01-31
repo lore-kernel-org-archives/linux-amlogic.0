@@ -1,71 +1,68 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 31 Jan 2018 19:09:30 +0100
-Subject: [PATCH 04/19] clk: meson: remove obsolete comments
+Date: Wed, 31 Jan 2018 19:09:27 +0100
+Subject: [PATCH 01/19] clk: meson: use dev pointer where possible
 In-Reply-To: <20180131180945.18025-1-jbrunet@baylibre.com>
 References: <20180131180945.18025-1-jbrunet@baylibre.com>
-Message-ID: <20180131180945.18025-5-jbrunet@baylibre.com>
+Message-ID: <20180131180945.18025-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Over time things changes in CCF and issues have been fixed in meson
-controllers.
-
-Now, clk81 is decently modeled by read-only PLLs, a mux, a divider
-and a gate. We can remove the FIXME comments related to clk81.
-Also remove the comment about devm_clk_hw_register, as there is
-apparently nothing wrong with it.
+The 'dev' pointer is directly available in gxbb and axg clock
+controller, so consistently use it instead of going the through the
+'pdev' pointer once in while
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c     | 5 -----
- drivers/clk/meson/gxbb.c    | 6 ------
- drivers/clk/meson/meson8b.c | 1 -
- 3 files changed, 12 deletions(-)
+ drivers/clk/meson/axg.c  | 8 ++++----
+ drivers/clk/meson/gxbb.c | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 81565b025b70..f84927e76f88 100644
+index b5dacfde64bb..0db0fc0762e2 100644
 --- a/drivers/clk/meson/axg.c
 +++ b/drivers/clk/meson/axg.c
-@@ -411,11 +411,6 @@ static struct meson_clk_mpll axg_mpll3 = {
- 	},
- };
+@@ -804,7 +804,7 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 	void __iomem *clk_base;
+ 	int ret, clkid, i;
  
--/*
-- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
-- * and should be modeled with their respective PLLs via the forthcoming
-- * coordinated clock rates feature
-- */
- static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
- static const char * const clk81_parent_names[] = {
- 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+-	clkc_data = of_device_get_match_data(&pdev->dev);
++	clkc_data = of_device_get_match_data(dev);
+ 	if (!clkc_data)
+ 		return -EINVAL;
+ 
+@@ -812,9 +812,9 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	if (!res)
+ 		return -EINVAL;
+-	clk_base = devm_ioremap(&pdev->dev, res->start, resource_size(res));
++	clk_base = devm_ioremap(dev, res->start, resource_size(res));
+ 	if (!clk_base) {
+-		dev_err(&pdev->dev, "Unable to map clk base\n");
++		dev_err(dev, "Unable to map clk base\n");
+ 		return -ENXIO;
+ 	}
+ 
+@@ -849,7 +849,7 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 		ret = devm_clk_hw_register(dev,
+ 					clkc_data->hw_onecell_data->hws[clkid]);
+ 		if (ret) {
+-			dev_err(&pdev->dev, "Clock registration failed\n");
++			dev_err(dev, "Clock registration failed\n");
+ 			return ret;
+ 		}
+ 	}
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index e6adab49c0ba..6609024eee00 100644
+index a5f25cc1944c..423abcb8ef88 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -575,12 +575,6 @@ static struct meson_clk_mpll gxbb_mpll2 = {
- 	},
- };
+@@ -1950,7 +1950,7 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+ 	int ret, clkid, i;
+ 	struct device *dev = &pdev->dev;
  
--/*
-- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
-- * and should be modeled with their respective PLLs via the forthcoming
-- * coordinated clock rates feature
-- */
--
- static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
- static const char * const clk81_parent_names[] = {
- 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index ffadad27375e..db017c29a84c 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -849,7 +849,6 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
- 		if (!meson8b_hw_onecell_data.hws[i])
- 			continue;
+-	clkc_data = of_device_get_match_data(&pdev->dev);
++	clkc_data = of_device_get_match_data(dev);
+ 	if (!clkc_data)
+ 		return -EINVAL;
  
--		/* FIXME convert to devm_clk_register */
- 		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[i]);
- 		if (ret)
- 			return ret;
 -- 
 2.14.3
