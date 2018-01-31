@@ -1,49 +1,123 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Wed, 31 Jan 2018 10:25:45 +0800
-Subject: [PATCH v3 0/5] ARM64: dts: meson-axg: UART DT updates
-In-Reply-To: <CAOi56cW4ufsegpy7heK1+pCxvZ2gz5Lf3dkUgxkZCgMq5oBzSA@mail.gmail.com>
-References: <20180111023401.125658-1-yixun.lan@amlogic.com>
- <7hr2q6c2r4.fsf@baylibre.com>
- <CAOi56cW4ufsegpy7heK1+pCxvZ2gz5Lf3dkUgxkZCgMq5oBzSA@mail.gmail.com>
-Message-ID: <8990554d-e995-e432-8f50-3b247f71b0fd@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 31 Jan 2018 19:09:32 +0100
+Subject: [PATCH 06/19] clk: meson: switch gxbb ao_clk to clk_regmap
+In-Reply-To: <20180131180945.18025-1-jbrunet@baylibre.com>
+References: <20180131180945.18025-1-jbrunet@baylibre.com>
+Message-ID: <20180131180945.18025-7-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Drop the gxbb ao specific regmap based clock and use the
+meson clk_regmap based clock instead.
 
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/Kconfig      |  1 +
+ drivers/clk/meson/Makefile     |  2 +-
+ drivers/clk/meson/gxbb-aoclk.c | 20 ++++++++++----------
+ drivers/clk/meson/gxbb-aoclk.h |  1 -
+ 4 files changed, 12 insertions(+), 12 deletions(-)
 
-On 01/31/18 08:22, Kevin Hilman wrote:
-> On Tue, Jan 30, 2018 at 4:04 PM, Kevin Hilman <khilman@baylibre.com> wrote:
->> Yixun Lan <yixun.lan@amlogic.com> writes:
->>
->>> HI Kevin
->>>  These are the UART DT updates for the Meson-AXG platform.
->>>
->>>  The patch 1 is a general fix.
->>> Other patches are about adding clock & pinctrl info, then using them.
->>> Last patch enable UART_A which connect to a BT module on the S400 board.
->>
->> Applied to v4.16/dt64,
-> 
-> Oops, I meant v4.17.
-> 
-
-Hi Kevin
- I should warn you about the patch 3 [1], it actually depend on the gpio
-renaming patch [2]
-
- I'm still waiting Linus to take patch [2], then update according
-(or you could help amend the patch? it's simply a
-'s/uart_ao_b_gpioz/uart_ao_b_z/g)
-
-Yixun
-
-
-
-[1] [PATCH v3 3/5] ARM64: dts: meson-axg: uart: Add the pinctrl info
-description
-
-http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006096.html
-
-
-[2] [PATCH] pinctrl: meson-axg: adjust uart_ao_b pin group naming
-http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006201.html
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index e97e85077da1..33d148e19066 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -20,6 +20,7 @@ config COMMON_CLK_GXBB
+ 	bool
+ 	depends on COMMON_CLK_AMLOGIC
+ 	select RESET_CONTROLLER
++	select COMMON_CLK_REGMAP_MESON
+ 	help
+ 	  Support for the clock controller on AmLogic S905 devices, aka gxbb.
+ 	  Say Y if you want peripherals and CPU frequency scaling to work.
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 11a50586666a..465086118d62 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -4,6 +4,6 @@
+ 
+ obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o clk-audio-divider.o
+ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+-obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-regmap.o gxbb-aoclk-32k.o
++obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
+ obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o
+ obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)	+= clk-regmap.o
+diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
+index 6c161e0a8e59..9ec23ae9a219 100644
+--- a/drivers/clk/meson/gxbb-aoclk.c
++++ b/drivers/clk/meson/gxbb-aoclk.c
+@@ -62,10 +62,9 @@
+ #include <linux/delay.h>
+ #include <dt-bindings/clock/gxbb-aoclkc.h>
+ #include <dt-bindings/reset/gxbb-aoclkc.h>
++#include "clk-regmap.h"
+ #include "gxbb-aoclk.h"
+ 
+-static DEFINE_SPINLOCK(gxbb_aoclk_lock);
+-
+ struct gxbb_aoclk_reset_controller {
+ 	struct reset_controller_dev reset;
+ 	unsigned int *data;
+@@ -87,12 +86,14 @@ static const struct reset_control_ops gxbb_aoclk_reset_ops = {
+ };
+ 
+ #define GXBB_AO_GATE(_name, _bit)					\
+-static struct aoclk_gate_regmap _name##_ao = {				\
+-	.bit_idx = (_bit),						\
+-	.lock = &gxbb_aoclk_lock,					\
++static struct clk_regmap _name##_ao = {					\
++	.data = &(struct clk_regmap_gate_data) {			\
++		.offset = AO_RTI_GEN_CNTL_REG0,				\
++		.bit_idx = (_bit),					\
++	},								\
+ 	.hw.init = &(struct clk_init_data) {				\
+ 		.name = #_name "_ao",					\
+-		.ops = &meson_aoclk_gate_regmap_ops,			\
++		.ops = &clk_regmap_gate_ops,				\
+ 		.parent_names = (const char *[]){ "clk81" },		\
+ 		.num_parents = 1,					\
+ 		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),	\
+@@ -107,7 +108,6 @@ GXBB_AO_GATE(uart2, 5);
+ GXBB_AO_GATE(ir_blaster, 6);
+ 
+ static struct aoclk_cec_32k cec_32k_ao = {
+-	.lock = &gxbb_aoclk_lock,
+ 	.hw.init = &(struct clk_init_data) {
+ 		.name = "cec_32k_ao",
+ 		.ops = &meson_aoclk_cec_32k_ops,
+@@ -126,7 +126,7 @@ static unsigned int gxbb_aoclk_reset[] = {
+ 	[RESET_AO_IR_BLASTER] = 23,
+ };
+ 
+-static struct aoclk_gate_regmap *gxbb_aoclk_gate[] = {
++static struct clk_regmap *gxbb_aoclk_gate[] = {
+ 	[CLKID_AO_REMOTE] = &remote_ao,
+ 	[CLKID_AO_I2C_MASTER] = &i2c_master_ao,
+ 	[CLKID_AO_I2C_SLAVE] = &i2c_slave_ao,
+@@ -177,10 +177,10 @@ static int gxbb_aoclkc_probe(struct platform_device *pdev)
+ 	 * Populate regmap and register all clks
+ 	 */
+ 	for (clkid = 0; clkid < ARRAY_SIZE(gxbb_aoclk_gate); clkid++) {
+-		gxbb_aoclk_gate[clkid]->regmap = regmap;
++		gxbb_aoclk_gate[clkid]->map = regmap;
+ 
+ 		ret = devm_clk_hw_register(dev,
+-					gxbb_aoclk_onecell_data.hws[clkid]);
++					   gxbb_aoclk_onecell_data.hws[clkid]);
+ 		if (ret)
+ 			return ret;
+ 	}
+diff --git a/drivers/clk/meson/gxbb-aoclk.h b/drivers/clk/meson/gxbb-aoclk.h
+index e8604c8f7eee..127d58954cca 100644
+--- a/drivers/clk/meson/gxbb-aoclk.h
++++ b/drivers/clk/meson/gxbb-aoclk.h
+@@ -32,7 +32,6 @@ extern const struct clk_ops meson_aoclk_gate_regmap_ops;
+ struct aoclk_cec_32k {
+ 	struct clk_hw hw;
+ 	struct regmap *regmap;
+-	spinlock_t *lock;
+ };
+ 
+ #define to_aoclk_cec_32k(_hw) container_of(_hw, struct aoclk_cec_32k, hw)
+-- 
+2.14.3
