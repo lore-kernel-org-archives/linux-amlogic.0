@@ -1,22 +1,29 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 30 Jan 2018 16:33:28 -0800
-Subject: [PATCH] ARM64: dts: meson: accept MAC addr from u-boot environment
-In-Reply-To: <1516186587-22157-1-git-send-email-jramirez@baylibre.com> (Jorge
- Ramirez-Ortiz's message of "Wed, 17 Jan 2018 11:56:27 +0100")
-References: <1516186587-22157-1-git-send-email-jramirez@baylibre.com>
-Message-ID: <7hd11qc1ev.fsf@baylibre.com>
+Date: Tue, 30 Jan 2018 16:38:32 -0800
+Subject: [PATCH v2 0/2] meson8b-odroidc1: ethernet support
+In-Reply-To: <cover.1516326105.git.ingrassia@epigenesys.com> (Emiliano
+ Ingrassia's message of "Fri, 19 Jan 2018 02:47:17 +0100")
+References: <cover.1516326105.git.ingrassia@epigenesys.com>
+Message-ID: <7h607ic16f.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jorge Ramirez-Ortiz <jramirez@baylibre.com> writes:
+Emiliano Ingrassia <ingrassia@epigenesys.com> writes:
 
-> Extend configuring the MAC address from u-boot to all meson boards.
+> This patchset, tested on an Odroid-C1+ board, enables ethernet support
+> on Odroid-C1/C1+ boards, improving and extending the ethernet description
+> in the relative device tree.
 >
-> I didn't test this changeset but having checked libretech's u-boot
-> tree I believe it should just work.
+> In particular:
+> - enables the Meson8b ethernet controller pin multiplexing;
+> - fixes and extends the Meson8b ethernet controller description;
+> - adds the Odroid-C1+ ethernet PHY description and enables the
+>   ethernet controller.
 >
-> Signed-off-by: Jorge Ramirez-Ortiz <jramirez@baylibre.com>
+> This patchset depends on patchset "dwmac-meson8b: clock fixes for Meson8b".
 
-Applied for v4.17, let's see we find any breakage in linux-next,
+Series applied to v4.17/dt64, with tags from Martin and Linus,
+
+Thanks,
 
 Kevin
