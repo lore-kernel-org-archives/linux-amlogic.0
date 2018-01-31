@@ -1,118 +1,71 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 31 Jan 2018 19:09:29 +0100
-Subject: [PATCH 03/19] clk: meson: only one loop index is necessary in probe
+Date: Wed, 31 Jan 2018 19:09:30 +0100
+Subject: [PATCH 04/19] clk: meson: remove obsolete comments
 In-Reply-To: <20180131180945.18025-1-jbrunet@baylibre.com>
 References: <20180131180945.18025-1-jbrunet@baylibre.com>
-Message-ID: <20180131180945.18025-4-jbrunet@baylibre.com>
+Message-ID: <20180131180945.18025-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-We don't need several loop index variables in the probe function
-This is far from being critical but since we are doing a vast
-rework of meson clock controllers, now is the time to lower the
-entropy a bit
+Over time things changes in CCF and issues have been fixed in meson
+controllers.
+
+Now, clk81 is decently modeled by read-only PLLs, a mux, a divider
+and a gate. We can remove the FIXME comments related to clk81.
+Also remove the comment about devm_clk_hw_register, as there is
+apparently nothing wrong with it.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c     |  8 ++++----
- drivers/clk/meson/gxbb.c    | 13 ++++++-------
- drivers/clk/meson/meson8b.c |  8 ++++----
- 3 files changed, 14 insertions(+), 15 deletions(-)
+ drivers/clk/meson/axg.c     | 5 -----
+ drivers/clk/meson/gxbb.c    | 6 ------
+ drivers/clk/meson/meson8b.c | 1 -
+ 3 files changed, 12 deletions(-)
 
 diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 2f2b3845c01d..81565b025b70 100644
+index 81565b025b70..f84927e76f88 100644
 --- a/drivers/clk/meson/axg.c
 +++ b/drivers/clk/meson/axg.c
-@@ -802,7 +802,7 @@ static int axg_clkc_probe(struct platform_device *pdev)
- 	const struct clkc_data *clkc_data;
- 	struct resource *res;
- 	void __iomem *clk_base;
--	int ret, clkid, i;
-+	int ret, i;
+@@ -411,11 +411,6 @@ static struct meson_clk_mpll axg_mpll3 = {
+ 	},
+ };
  
- 	clkc_data = of_device_get_match_data(dev);
- 	if (!clkc_data)
-@@ -841,13 +841,13 @@ static int axg_clkc_probe(struct platform_device *pdev)
- 		clkc_data->clk_dividers[i]->reg = clk_base +
- 			(u64)clkc_data->clk_dividers[i]->reg;
- 
--	for (clkid = 0; clkid < clkc_data->hw_onecell_data->num; clkid++) {
-+	for (i = 0; i < clkc_data->hw_onecell_data->num; i++) {
- 		/* array might be sparse */
--		if (!clkc_data->hw_onecell_data->hws[clkid])
-+		if (!clkc_data->hw_onecell_data->hws[i])
- 			continue;
- 
- 		ret = devm_clk_hw_register(dev,
--					clkc_data->hw_onecell_data->hws[clkid]);
-+					   clkc_data->hw_onecell_data->hws[i]);
- 		if (ret) {
- 			dev_err(dev, "Clock registration failed\n");
- 			return ret;
+-/*
+- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
+- * and should be modeled with their respective PLLs via the forthcoming
+- * coordinated clock rates feature
+- */
+ static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
+ static const char * const clk81_parent_names[] = {
+ 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 17f44ac751b3..e6adab49c0ba 100644
+index e6adab49c0ba..6609024eee00 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -1947,7 +1947,7 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
- {
- 	const struct clkc_data *clkc_data;
- 	void __iomem *clk_base;
--	int ret, clkid, i;
-+	int ret, i;
- 	struct device *dev = &pdev->dev;
+@@ -575,12 +575,6 @@ static struct meson_clk_mpll gxbb_mpll2 = {
+ 	},
+ };
  
- 	clkc_data = of_device_get_match_data(dev);
-@@ -1988,16 +1988,15 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
- 	for (i = 0; i < clkc_data->clk_audio_dividers_count; i++)
- 		clkc_data->clk_audio_dividers[i]->base = clk_base;
- 
--	/*
--	 * register all clks
--	 */
--	for (clkid = 0; clkid < clkc_data->hw_onecell_data->num; clkid++) {
-+
-+	/* Register all clks */
-+	for (i = 0; i < clkc_data->hw_onecell_data->num; i++) {
- 		/* array might be sparse */
--		if (!clkc_data->hw_onecell_data->hws[clkid])
-+		if (!clkc_data->hw_onecell_data->hws[i])
- 			continue;
- 
- 		ret = devm_clk_hw_register(dev,
--					clkc_data->hw_onecell_data->hws[clkid]);
-+					   clkc_data->hw_onecell_data->hws[i]);
- 		if (ret)
- 			goto iounmap;
- 	}
+-/*
+- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
+- * and should be modeled with their respective PLLs via the forthcoming
+- * coordinated clock rates feature
+- */
+-
+ static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
+ static const char * const clk81_parent_names[] = {
+ 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index abac079ff77f..ffadad27375e 100644
+index ffadad27375e..db017c29a84c 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -806,7 +806,7 @@ static const struct reset_control_ops meson8b_clk_reset_ops = {
- 
- static int meson8b_clkc_probe(struct platform_device *pdev)
- {
--	int ret, clkid, i;
-+	int ret, i;
- 	struct clk_hw *parent_hw;
- 	struct clk *parent_clk;
- 	struct device *dev = &pdev->dev;
-@@ -844,13 +844,13 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
- 	 * register all clks
- 	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
- 	 */
--	for (clkid = CLKID_XTAL; clkid < CLK_NR_CLKS; clkid++) {
-+	for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
- 		/* array might be sparse */
--		if (!meson8b_hw_onecell_data.hws[clkid])
-+		if (!meson8b_hw_onecell_data.hws[i])
+@@ -849,7 +849,6 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
+ 		if (!meson8b_hw_onecell_data.hws[i])
  			continue;
  
- 		/* FIXME convert to devm_clk_register */
--		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[clkid]);
-+		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[i]);
+-		/* FIXME convert to devm_clk_register */
+ 		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[i]);
  		if (ret)
  			return ret;
- 	}
 -- 
 2.14.3
