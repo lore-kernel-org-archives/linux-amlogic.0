@@ -1,250 +1,235 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 3 Feb 2018 19:48:57 +0100
-Subject: [PATCH 18/19] clk: meson: remove obsolete cpu_clk
-In-Reply-To: <20180131180945.18025-19-jbrunet@baylibre.com>
+Date: Sat, 3 Feb 2018 19:53:24 +0100
+Subject: [PATCH 08/19] clk: meson: add regmap to the clock controllers
+In-Reply-To: <20180131180945.18025-9-jbrunet@baylibre.com>
 References: <20180131180945.18025-1-jbrunet@baylibre.com>
- <20180131180945.18025-19-jbrunet@baylibre.com>
-Message-ID: <CAFBinCDd8sh69Jq+02UfCX3WuKw-+31VH3NwA2MpeN=JkA=W4A@mail.gmail.com>
+ <20180131180945.18025-9-jbrunet@baylibre.com>
+Message-ID: <CAFBinCD2TRRraJ7hGoLy2Y42-LAK1ZXyvOLbPCsf1Aip_ELJHQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On Wed, Jan 31, 2018 at 7:09 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> meson8b cpu_clk has been replaced by a set of divider and mux clocks.
-> meson_cpu_clk is no longer used and can be removed
-as I mentioned in the other series: I've seen the system lock up with
-the "old" clk-cpu implementation.
-the new code still seem to lock up in some cases, but now always (so I
-call it an improvement)
+> This change register a regmap in meson8b, gxbb and axg controllers.
+> The clock are still accessing their registers directly through iomem.
+> Once all clocks handled by these controllers have been move to regmap,
+> the regmap register will be removed and replaced with a syscon request.
+maybe you can add a comment that some of the registers from this area
+need to be accessed outside the clock driver (by the HDMI driver for
+example - which is the case on GX and Meson8/8b IIRC) if you have to
+re-spin this series
 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 > ---
->  drivers/clk/meson/Makefile  |   2 +-
->  drivers/clk/meson/clk-cpu.c | 178 --------------------------------------------
->  drivers/clk/meson/clkc.h    |  11 ---
->  3 files changed, 1 insertion(+), 190 deletions(-)
->  delete mode 100644 drivers/clk/meson/clk-cpu.c
+>  drivers/clk/meson/Kconfig   |  2 ++
+>  drivers/clk/meson/axg.c     | 15 ++++++++++++++-
+>  drivers/clk/meson/gxbb.c    | 33 +++++++++++++++++++++++----------
+>  drivers/clk/meson/meson8b.c | 14 +++++++++++++-
+>  4 files changed, 52 insertions(+), 12 deletions(-)
 >
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 465086118d62..ffee82e60b7a 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -2,7 +2,7 @@
->  # Makefile for Meson specific clk
->  #
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index 33d148e19066..9735335b17a9 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -11,6 +11,7 @@ config COMMON_CLK_MESON8B
+>         bool
+>         depends on COMMON_CLK_AMLOGIC
+>         select RESET_CONTROLLER
+> +       select REGMAP
+>         help
+>           Support for the clock controller on AmLogic S802 (Meson8),
+>           S805 (Meson8b) and S812 (Meson8m2) devices. Say Y if you
+> @@ -29,6 +30,7 @@ config COMMON_CLK_AXG
+>         bool
+>         depends on COMMON_CLK_AMLOGIC
+>         select RESET_CONTROLLER
+> +       select REGMAP
+>         help
+>           Support for the clock controller on AmLogic A113D devices, aka axg.
+>           Say Y if you want peripherals and CPU frequency scaling to work.
+> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+> index f84927e76f88..669d0ed84ebc 100644
+> --- a/drivers/clk/meson/axg.c
+> +++ b/drivers/clk/meson/axg.c
+> @@ -11,10 +11,11 @@
 >
-> -obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o clk-audio-divider.o
-> +obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-audio-divider.o
->  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
->  obj-$(CONFIG_COMMON_CLK_GXBB)   += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
->  obj-$(CONFIG_COMMON_CLK_AXG)    += axg.o
-> diff --git a/drivers/clk/meson/clk-cpu.c b/drivers/clk/meson/clk-cpu.c
-> deleted file mode 100644
-> index f8b2b7efd016..000000000000
-> --- a/drivers/clk/meson/clk-cpu.c
-> +++ /dev/null
-> @@ -1,178 +0,0 @@
-> -/*
-> - * Copyright (c) 2015 Endless Mobile, Inc.
-> - * Author: Carlo Caione <carlo@endlessm.com>
-> - *
-> - * This program is free software; you can redistribute it and/or modify it
-> - * under the terms and conditions of the GNU General Public License,
-> - * version 2, as published by the Free Software Foundation.
-> - *
-> - * This program is distributed in the hope it will be useful, but WITHOUT
-> - * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-> - * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-> - * more details.
-> - *
-> - * You should have received a copy of the GNU General Public License along with
-> - * this program.  If not, see <http://www.gnu.org/licenses/>.
-> - */
-> -
-> -/*
-> - * CPU clock path:
-> - *
-> - *                           +-[/N]-----|3|
-> - *             MUX2  +--[/3]-+----------|2| MUX1
-> - * [sys_pll]---|1|   |--[/2]------------|1|-|1|
-> - *             | |---+------------------|0| | |----- [a5_clk]
-> - *          +--|0|                          | |
-> - * [xtal]---+-------------------------------|0|
-> - *
-> - *
-> - *
-> - */
-> -
-> -#include <linux/delay.h>
-> -#include <linux/err.h>
-> -#include <linux/io.h>
-> -#include <linux/module.h>
-> -#include <linux/of_address.h>
-> -#include <linux/slab.h>
-> -#include <linux/clk.h>
-> -#include <linux/clk-provider.h>
-> -
-> -#define MESON_CPU_CLK_CNTL1            0x00
-> -#define MESON_CPU_CLK_CNTL             0x40
-> -
-> -#define MESON_CPU_CLK_MUX1             BIT(7)
-> -#define MESON_CPU_CLK_MUX2             BIT(0)
-> -
-> -#define MESON_N_WIDTH                  9
-> -#define MESON_N_SHIFT                  20
-> -#define MESON_SEL_WIDTH                        2
-> -#define MESON_SEL_SHIFT                        2
-> -
-> -#include "clkc.h"
-> -
-> -#define to_meson_clk_cpu_hw(_hw) container_of(_hw, struct meson_clk_cpu, hw)
-> -#define to_meson_clk_cpu_nb(_nb) container_of(_nb, struct meson_clk_cpu, clk_nb)
-> -
-> -static long meson_clk_cpu_round_rate(struct clk_hw *hw, unsigned long rate,
-> -                                    unsigned long *prate)
-> -{
-> -       struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_hw(hw);
-> -
-> -       return divider_round_rate(hw, rate, prate, clk_cpu->div_table,
-> -                                 MESON_N_WIDTH, CLK_DIVIDER_ROUND_CLOSEST);
-> -}
-> -
-> -static int meson_clk_cpu_set_rate(struct clk_hw *hw, unsigned long rate,
-> -                                 unsigned long parent_rate)
-> -{
-> -       struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_hw(hw);
-> -       unsigned int div, sel, N = 0;
-> -       u32 reg;
-> -
-> -       div = DIV_ROUND_UP(parent_rate, rate);
-> -
-> -       if (div <= 3) {
-> -               sel = div - 1;
-> -       } else {
-> -               sel = 3;
-> -               N = div / 2;
-> -       }
-> -
-> -       reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL1);
-> -       reg = PARM_SET(MESON_N_WIDTH, MESON_N_SHIFT, reg, N);
-> -       writel(reg, clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL1);
-> -
-> -       reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL);
-> -       reg = PARM_SET(MESON_SEL_WIDTH, MESON_SEL_SHIFT, reg, sel);
-> -       writel(reg, clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL);
-> -
-> -       return 0;
-> -}
-> -
-> -static unsigned long meson_clk_cpu_recalc_rate(struct clk_hw *hw,
-> -                                              unsigned long parent_rate)
-> -{
-> -       struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_hw(hw);
-> -       unsigned int N, sel;
-> -       unsigned int div = 1;
-> -       u32 reg;
-> -
-> -       reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL1);
-> -       N = PARM_GET(MESON_N_WIDTH, MESON_N_SHIFT, reg);
-> -
-> -       reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL);
-> -       sel = PARM_GET(MESON_SEL_WIDTH, MESON_SEL_SHIFT, reg);
-> -
-> -       if (sel < 3)
-> -               div = sel + 1;
-> -       else
-> -               div = 2 * N;
-> -
-> -       return parent_rate / div;
-> -}
-> -
-> -/* FIXME MUX1 & MUX2 should be struct clk_hw objects */
-> -static int meson_clk_cpu_pre_rate_change(struct meson_clk_cpu *clk_cpu,
-> -                                        struct clk_notifier_data *ndata)
-> -{
-> -       u32 cpu_clk_cntl;
-> -
-> -       /* switch MUX1 to xtal */
-> -       cpu_clk_cntl = readl(clk_cpu->base + clk_cpu->reg_off
-> -                               + MESON_CPU_CLK_CNTL);
-> -       cpu_clk_cntl &= ~MESON_CPU_CLK_MUX1;
-> -       writel(cpu_clk_cntl, clk_cpu->base + clk_cpu->reg_off
-> -                               + MESON_CPU_CLK_CNTL);
-> -       udelay(100);
-> -
-> -       /* switch MUX2 to sys-pll */
-> -       cpu_clk_cntl |= MESON_CPU_CLK_MUX2;
-> -       writel(cpu_clk_cntl, clk_cpu->base + clk_cpu->reg_off
-> -                               + MESON_CPU_CLK_CNTL);
-> -
-> -       return 0;
-> -}
-> -
-> -/* FIXME MUX1 & MUX2 should be struct clk_hw objects */
-> -static int meson_clk_cpu_post_rate_change(struct meson_clk_cpu *clk_cpu,
-> -                                         struct clk_notifier_data *ndata)
-> -{
-> -       u32 cpu_clk_cntl;
-> -
-> -       /* switch MUX1 to divisors' output */
-> -       cpu_clk_cntl = readl(clk_cpu->base + clk_cpu->reg_off
-> -                               + MESON_CPU_CLK_CNTL);
-> -       cpu_clk_cntl |= MESON_CPU_CLK_MUX1;
-> -       writel(cpu_clk_cntl, clk_cpu->base + clk_cpu->reg_off
-> -                               + MESON_CPU_CLK_CNTL);
-> -       udelay(100);
-> -
-> -       return 0;
-> -}
-> -
-> -/*
-> - * This clock notifier is called when the frequency of the of the parent
-> - * PLL clock is to be changed. We use the xtal input as temporary parent
-> - * while the PLL frequency is stabilized.
-> - */
-> -int meson_clk_cpu_notifier_cb(struct notifier_block *nb,
-> -                                    unsigned long event, void *data)
-> -{
-> -       struct clk_notifier_data *ndata = data;
-> -       struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_nb(nb);
-> -       int ret = 0;
-> -
-> -       if (event == PRE_RATE_CHANGE)
-> -               ret = meson_clk_cpu_pre_rate_change(clk_cpu, ndata);
-> -       else if (event == POST_RATE_CHANGE)
-> -               ret = meson_clk_cpu_post_rate_change(clk_cpu, ndata);
-> -
-> -       return notifier_from_errno(ret);
-> -}
-> -
-> -const struct clk_ops meson_clk_cpu_ops = {
-> -       .recalc_rate    = meson_clk_cpu_recalc_rate,
-> -       .round_rate     = meson_clk_cpu_round_rate,
-> -       .set_rate       = meson_clk_cpu_set_rate,
-> -};
-> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-> index cc1a964cd4d7..8d8fe608cff4 100644
-> --- a/drivers/clk/meson/clkc.h
-> +++ b/drivers/clk/meson/clkc.h
-> @@ -101,17 +101,6 @@ struct meson_clk_pll_data {
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+> +#include <linux/init.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> -#include <linux/init.h>
+> +#include <linux/regmap.h>
 >
->  #define to_meson_clk_pll(_hw) container_of(_hw, struct meson_clk_pll, hw)
+>  #include "clkc.h"
+>  #include "axg.h"
+> @@ -791,12 +792,19 @@ static const struct of_device_id clkc_match_table[] = {
+>         {}
+>  };
 >
-> -struct meson_clk_cpu {
-> -       struct clk_hw hw;
-> -       void __iomem *base;
-> -       u16 reg_off;
-> -       struct notifier_block clk_nb;
-> -       const struct clk_div_table *div_table;
-> -};
+> +static const struct regmap_config clkc_regmap_config = {
+> +       .reg_bits       = 32,
+> +       .val_bits       = 32,
+> +       .reg_stride     = 4,
+> +};
+> +
+>  static int axg_clkc_probe(struct platform_device *pdev)
+>  {
+>         struct device *dev = &pdev->dev;
+>         const struct clkc_data *clkc_data;
+>         struct resource *res;
+>         void __iomem *clk_base;
+> +       struct regmap *map;
+>         int ret, i;
+>
+>         clkc_data = of_device_get_match_data(dev);
+> @@ -807,12 +815,17 @@ static int axg_clkc_probe(struct platform_device *pdev)
+>         res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>         if (!res)
+>                 return -EINVAL;
+> +
+>         clk_base = devm_ioremap(dev, res->start, resource_size(res));
+>         if (!clk_base) {
+>                 dev_err(dev, "Unable to map clk base\n");
+>                 return -ENXIO;
+>         }
+>
+> +       map = devm_regmap_init_mmio(dev, clk_base, &clkc_regmap_config);
+> +       if (IS_ERR(map))
+> +               return PTR_ERR(map);
+> +
+>         /* Populate base address for PLLs */
+>         for (i = 0; i < clkc_data->clk_plls_count; i++)
+>                 clkc_data->clk_plls[i]->base = clk_base;
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index 6609024eee00..e3faf0a0fdb7 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -19,10 +19,11 @@
+>
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+> +#include <linux/init.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> -#include <linux/init.h>
+> +#include <linux/regmap.h>
+>
+>  #include "clkc.h"
+>  #include "gxbb.h"
+> @@ -1937,10 +1938,18 @@ static const struct of_device_id clkc_match_table[] = {
+>         {},
+>  };
+>
+> +static const struct regmap_config clkc_regmap_config = {
+> +       .reg_bits       = 32,
+> +       .val_bits       = 32,
+> +       .reg_stride     = 4,
+> +};
+> +
+>  static int gxbb_clkc_probe(struct platform_device *pdev)
+>  {
+>         const struct clkc_data *clkc_data;
+> +       struct resource *res;
+>         void __iomem *clk_base;
+> +       struct regmap *map;
+>         int ret, i;
+>         struct device *dev = &pdev->dev;
+>
+> @@ -1948,13 +1957,20 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+>         if (!clkc_data)
+>                 return -EINVAL;
+>
+> -       /*  Generic clocks and PLLs */
+> -       clk_base = of_iomap(dev->of_node, 0);
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       if (!res)
+> +               return -EINVAL;
+> +
+> +       clk_base = devm_ioremap(dev, res->start, resource_size(res));
+>         if (!clk_base) {
+>                 pr_err("%s: Unable to map clk base\n", __func__);
+>                 return -ENXIO;
+>         }
+>
+> +       map = devm_regmap_init_mmio(dev, clk_base, &clkc_regmap_config);
+> +       if (IS_ERR(map))
+> +               return PTR_ERR(map);
+> +
+>         /* Populate base address for PLLs */
+>         for (i = 0; i < clkc_data->clk_plls_count; i++)
+>                 clkc_data->clk_plls[i]->base = clk_base;
+> @@ -1991,17 +2007,14 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+>
+>                 ret = devm_clk_hw_register(dev,
+>                                            clkc_data->hw_onecell_data->hws[i]);
+> -               if (ret)
+> -                       goto iounmap;
+> +               if (ret) {
+> +                       dev_err(dev, "Clock registration failed\n");
+> +                       return ret;
+> +               }
+>         }
+>
 > -
-> -int meson_clk_cpu_notifier_cb(struct notifier_block *nb, unsigned long event,
-> -               void *data);
+>         return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>                                            clkc_data->hw_onecell_data);
 > -
->  struct meson_clk_mpll_data {
->         struct parm sdm;
->         struct parm sdm_en;
+> -iounmap:
+> -       iounmap(clk_base);
+> -       return ret;
+>  }
+>
+>  static struct platform_driver gxbb_driver = {
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index db017c29a84c..0981e970de3d 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -23,11 +23,12 @@
+>
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+> +#include <linux/init.h>
+>  #include <linux/of_address.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/reset-controller.h>
+>  #include <linux/slab.h>
+> -#include <linux/init.h>
+> +#include <linux/regmap.h>
+>
+>  #include "clkc.h"
+>  #include "meson8b.h"
+> @@ -804,16 +805,27 @@ static const struct reset_control_ops meson8b_clk_reset_ops = {
+>         .deassert = meson8b_clk_reset_deassert,
+>  };
+>
+> +static const struct regmap_config clkc_regmap_config = {
+> +       .reg_bits       = 32,
+> +       .val_bits       = 32,
+> +       .reg_stride     = 4,
+> +};
+> +
+>  static int meson8b_clkc_probe(struct platform_device *pdev)
+>  {
+>         int ret, i;
+>         struct clk_hw *parent_hw;
+>         struct clk *parent_clk;
+>         struct device *dev = &pdev->dev;
+> +       struct regmap *map;
+>
+>         if (!clk_base)
+>                 return -ENXIO;
+>
+> +       map = devm_regmap_init_mmio(dev, clk_base, &clkc_regmap_config);
+> +       if (IS_ERR(map))
+> +               return PTR_ERR(map);
+> +
+>         /* Populate base address for PLLs */
+>         for (i = 0; i < ARRAY_SIZE(meson8b_clk_plls); i++)
+>                 meson8b_clk_plls[i]->base = clk_base;
 > --
 > 2.14.3
 >
