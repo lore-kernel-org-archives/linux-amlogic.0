@@ -1,39 +1,21 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 6 Feb 2018 13:25:19 +0100
-Subject: [PATCH -next] meson-gx-socinfo: make local function
- meson_gx_socinfo_init static
-In-Reply-To: <1515593988-78626-1-git-send-email-weiyongjun1@huawei.com>
-References: <1515593988-78626-1-git-send-email-weiyongjun1@huawei.com>
-Message-ID: <3cb83737-bb60-7648-e72e-2d39590c8418@baylibre.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Wed, 7 Feb 2018 13:31:58 +0100
+Subject: [PATCH] pinctrl: meson-axg: adjust uart_ao_b pin group naming
+In-Reply-To: <20180118141757.41290-1-yixun.lan@amlogic.com>
+References: <20180118141757.41290-1-yixun.lan@amlogic.com>
+Message-ID: <CACRpkdYvC3wokib4ixjzJ8wWSTU1XQ90ix+iH_3vh70xOnkCcg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/01/2018 15:19, Wei Yongjun wrote:
-> Fixes the following sparse warnings:
-> 
-> drivers/soc/amlogic/meson-gx-socinfo.c:100:12: warning:
->  symbol 'meson_gx_socinfo_init' was not declared. Should it be static?
-> 
-> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
-> ---
->  drivers/soc/amlogic/meson-gx-socinfo.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-> index f2d8c3c..ea091f1 100644
-> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
-> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-> @@ -97,7 +97,7 @@ static const char *socinfo_to_soc_id(u32 socinfo)
->  	return "Unknown";
->  }
->  
-> -int __init meson_gx_socinfo_init(void)
-> +static int __init meson_gx_socinfo_init(void)
->  {
->  	struct soc_device_attribute *soc_dev_attr;
->  	struct soc_device *soc_dev;
-> 
-> 
-> 
+On Thu, Jan 18, 2018 at 3:17 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> Simply adjust the pin group to _x _y _z style, as to
+> keep the consistency in DT with previous naming scheme.
+>
+> Fixes: 83c566806a68 ("pinctrl: meson-axg: Add new pinctrl driver for Meson AXG SoC")
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+
+Patch applied for fixes.
+
+Yours,
+Linus Walleij
