@@ -1,46 +1,21 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 08 Feb 2018 09:07:00 +0100
-Subject: [PATCH 05/19] clk: meson: add regmap clocks
-In-Reply-To: <0bd2c95c-dab3-9796-1267-472e6a00a403@amlogic.com>
-References: <20180131180945.18025-1-jbrunet@baylibre.com>
- <20180131180945.18025-6-jbrunet@baylibre.com>
- <0bd2c95c-dab3-9796-1267-472e6a00a403@amlogic.com>
-Message-ID: <1518077220.15707.3.camel@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 8 Feb 2018 16:49:15 -0800
+Subject: [PATCH -next] meson-mx-socinfo: Make local function
+ meson_mx_socinfo_init() static
+In-Reply-To: <1515593980-78559-1-git-send-email-weiyongjun1@huawei.com>
+References: <1515593980-78559-1-git-send-email-weiyongjun1@huawei.com>
+Message-ID: <CAOi56cXBqOrABbwwaf-S9_vvYFSRg4855QH4ZvE_ZPZ=nnsphg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-02-08 at 15:33 +0800, Yixun Lan wrote:
-> > +/**
-> > + * struct clk_regmap_mux_data - regmap backed multiplexer clock specific data
-> > + *
-> > + * @hw:              handle between common and hardware-specific interfaces
-> > + * @offset:  offset of theregister controlling multiplexer
-> > + * @table:   array of parent indexed register values
-> > + * @shift:   shift to multiplexer bit field
-> > + * @width:   width of mutliplexer bit field
-> 
->       ~~~~~~ this is wrong, please update to keep it sync with the
-> struct definition
+On Wed, Jan 10, 2018 at 6:19 AM, Wei Yongjun <weiyongjun1@huawei.com> wrote:
+> Fixes the following sparse warnings:
+>
+> drivers/soc/amlogic/meson-mx-socinfo.c:107:12: warning:
+>  symbol 'meson_mx_socinfo_init' was not declared. Should it be static?
+>
+> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
 
-Indeed, it is.
-This is just a copy/paste of the mux documentation provided in
-include/linux/clk-provider.h ... which is also inaccurate.
+Applied for v4.17,
 
-Thanks for pointing it out
-
-> 
-> > + * @flags:   hardware-specific flags
-> > + *
-> > + * Flags:
-> > + * Same as clk_divider except CLK_MUX_HIWORD_MASK which is ignored
-> > + */
-> > +struct clk_regmap_mux_data {
-> > +     unsigned int    offset;
-> > +     u32             *table;
-> > +     u32             mask;
-> 
->                         ~~~~~ here
-> > +     u8              shift;
-> > +     u8              flags;
-> > +};
-> > +
+Kevin
