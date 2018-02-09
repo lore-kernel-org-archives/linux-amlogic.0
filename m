@@ -1,64 +1,62 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Fri, 9 Feb 2018 16:27:43 +0800
-Subject: [PATCH 0/5] improvements and fixes for the phy-meson-gxl-usb2
- driver
-In-Reply-To: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
-References: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
-Message-ID: <9b5295ea-74a2-7bb1-744e-6e8eb76f2673@amlogic.com>
+From: viresh.kumar@linaro.org (Viresh Kumar)
+Date: Fri,  9 Feb 2018 14:28:00 +0530
+Subject: [PATCH 00/10] thermal: Remove "cooling-{min|max}-level" properties
+Message-ID: <cover.1518166039.git.viresh.kumar@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+The "cooling-min-level" and "cooling-max-level" properties are not
+parsed by any part of the kernel currently and the max cooling state of
+a cooling devices is found by cooling-device's driver itself.
 
+Also note that a very small number of platforms that support cooling
+devices currently contain these properties in their dts files. Most of
+them don't specify them (as no one is going to use them anyway).
 
-On 01/29/18 04:22, Martin Blumenstingl wrote:
-> This contains two fixes and two (minor) fixes for the phy-meson-gxl-usb2
-> driver:
-> - a clock and reset line is used for the PHYs. this was not clear from
->   the Amlogic GPL kernel sources since the clock is enabled very early
->   in the boot process (either because the hardware defaults to "on",
->   the bootrom enables it or a bootloader before BL3-3/u-boot enables it)
-> - we don't read the controller's dr_mode anymore because the USB2 PHY
->   can only be switched into host mode if the USB3 PHY knows about it.
->   Thus auto-detecting the mode doesn't work for this PHY so it's removed
->   in patch #3
-> - do not log an error message when the phy-supply is not ready yet and
->   we have to return -EPROBE_DEFER
-> - improve the naming of some U2P_R2 test mode registers
-> 
-> 
-> Martin Blumenstingl (5):
->   dt-bindings: phy: meson-gxl-usb2-phy: add the reset line and clock
->   phy: amlogic: phy-meson-gxl-usb2: support the clock and reset line
->   phy: amlogic: phy-meson-gxl-usb2: default to host mode
->   phy: amlogic: phy-meson-gxl-usb2: don't log an error on -EPROBE_DEFER
->   phy: amlogic: phy-meson-gxl-usb2: rename some of the U2P_R2 registers
-> 
->  .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  4 ++
->  drivers/phy/amlogic/Kconfig                        |  1 -
->  drivers/phy/amlogic/phy-meson-gxl-usb2.c           | 78 ++++++++++++++++------
->  3 files changed, 61 insertions(+), 22 deletions(-)
-> 
+Only two type of cooling devices are using these properties currently:
+cpu-cooling and gpio-fan. This series first updates all the dts files to
+not specify the min/max cooling states and then removes the bindings.
 
-Hi Martin
+The maintainers are requested to apply the relevant patches to their
+trees directly as there is no dependency between the patches.
 
-  thanks for your great work for pushing the USB driver upstream.
+--
+viresh
 
-  I've test your whole series[1] on AXG S400 board and it works fine here.
+Viresh Kumar (10):
+  ARM: dts: exynos: Remove "cooling-{min|max}-level" for CPU nodes
+  ARM: dts: omap: Remove "cooling-{min|max}-level" for CPU nodes
+  ARM: dts: mt7623: Remove "cooling-{min|max}-level" for CPU nodes
+  ARM: dts: sun[4-7]i: Remove "cooling-{min|max}-level" for CPU nodes
+  ARM64: dts: hi6220: Remove "cooling-{min|max}-level" for CPU nodes
+  ARM64: dts: meson: Remove "cooling-{min|max}-level" for CPU nodes
+  ARM: dts: gemini: Remove "cooling-{min|max}-level" for gpio-fan node
+  ARM64: dts: meson: Remove "cooling-{min|max}-level" for gpio-fan node
+  dt-bindings: cpufreq-dt: Remove "cooling-{min|max}-level" properties
+  dt-bindings: thermal: Remove "cooling-{min|max}-level" properties
 
-Yixun
+ Documentation/devicetree/bindings/cpufreq/cpufreq-dt.txt |  4 ----
+ .../devicetree/bindings/cpufreq/cpufreq-mediatek.txt     |  4 ----
+ Documentation/devicetree/bindings/thermal/thermal.txt    | 16 +---------------
+ arch/arm/boot/dts/dra7.dtsi                              |  2 --
+ arch/arm/boot/dts/exynos4210.dtsi                        |  2 --
+ arch/arm/boot/dts/exynos4412.dtsi                        |  2 --
+ arch/arm/boot/dts/exynos5250.dtsi                        |  2 --
+ arch/arm/boot/dts/exynos5420-cpus.dtsi                   | 16 ----------------
+ arch/arm/boot/dts/exynos5422-cpus.dtsi                   | 16 ----------------
+ arch/arm/boot/dts/gemini-dlink-dns-313.dts               |  2 --
+ arch/arm/boot/dts/mt7623.dtsi                            |  2 --
+ arch/arm/boot/dts/omap443x.dtsi                          |  2 --
+ arch/arm/boot/dts/omap4460.dtsi                          |  2 --
+ arch/arm/boot/dts/omap5.dtsi                             |  2 --
+ arch/arm/boot/dts/sun4i-a10-olinuxino-lime.dts           |  1 -
+ arch/arm/boot/dts/sun4i-a10.dtsi                         |  2 --
+ arch/arm/boot/dts/sun5i-a13.dtsi                         |  2 --
+ arch/arm/boot/dts/sun6i-a31.dtsi                         |  2 --
+ arch/arm/boot/dts/sun7i-a20.dtsi                         |  2 --
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts    |  6 ------
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi                |  2 --
+ 21 files changed, 1 insertion(+), 90 deletions(-)
 
-
-[1] the whole patch series include
-
-[RFC usb-next v8 0/3] initialize (multiple) PHYs for a HCD
-https://lkml.kernel.org/r/20180125000053.9387-1-martin.blumenstingl at googlemail.com
-
-[PATCH 0/3] DWC3 support for Amlogic Meson AXG and GXL SoCs
-https://lkml.kernel.org/r/20180128200333.20093-1-martin.blumenstingl at googlemail.com
-
-[PATCH v2 0/2] Meson GXL USB3 PHY driver
-https://lkml.kernel.org/r/20180128201554.23889-1-martin.blumenstingl at googlemail.com
-
-[PATCH 1/5] dt-bindings: phy: meson-gxl-usb2-phy: add the reset line and
-clock
-https://lkml.kernel.org/r/20180128202245.25021-1-martin.blumenstingl at googlemail.com
+-- 
+2.15.0.194.g9af6a3dea062
