@@ -1,39 +1,53 @@
-From: marcus.folkesson@gmail.com (Marcus Folkesson)
-Date: Fri, 9 Feb 2018 20:32:25 +0100
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Fri, 9 Feb 2018 14:38:03 -0800
 Subject: [PATCH 1/7] watchdog: sama5d4: make use of timeout-secs provided
  in devicetree
 In-Reply-To: <20180209192724.1227-2-marcus.folkesson@gmail.com>
 References: <marcus.folkesson@gmail.com>
  <20180209192724.1227-1-marcus.folkesson@gmail.com>
  <20180209192724.1227-2-marcus.folkesson@gmail.com>
-Message-ID: <20180209193225.GA1932@gmail.com>
+Message-ID: <20180209223803.GB19627@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The summary email did not make it for some reason.
+On Fri, Feb 09, 2018 at 08:27:18PM +0100, Marcus Folkesson wrote:
+> watchdog_init_timeout() will allways pick timeout_param since it
+> defaults to a valid timeout.
+> 
+> Following best practice described in
+> Documentation/watchdog/watchdog-kernel-api.txt to make use of
+> the parameter logic.
+> 
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 
-However.
-All these drivers is using watchdog_init_timeout() to set timeout.
-If the timeout-parameter is set to an valid value, it will allways pick
-that and not even consider if timeout-secs is set in devicetree.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Most of the patches will just remove the initial value for
-timeout-parameter.
-
-Some of the drivers allready has documented device-tree-bindings for
-timeout-secs (but will not work), add property for those which not.
-
-I wrote a similiar (tested) patch for imx2 and simply did the same to these drivers.
-These patches is *NOT* tested, so please review extra carefully.
-
-
-Taken from Documentation/watchdog/watchdog-kernel-api.txt:
-	The watchdog_init_timeout function allows you to initialize the timeout field
-	using the module timeout parameter or by retrieving the timeout-sec property from
-	the device tree (if the module timeout parameter is invalid). Best practice is
-	to set the default timeout value as timeout value in the watchdog_device and
-	then use this function to set the user "preferred" timeout value.
-
-
-Best regards
-Marcus Folkesson
+> ---
+>  drivers/watchdog/sama5d4_wdt.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/watchdog/sama5d4_wdt.c b/drivers/watchdog/sama5d4_wdt.c
+> index 0ae947c3d7bc..e6c679383734 100644
+> --- a/drivers/watchdog/sama5d4_wdt.c
+> +++ b/drivers/watchdog/sama5d4_wdt.c
+> @@ -33,7 +33,7 @@ struct sama5d4_wdt {
+>  	unsigned long		last_ping;
+>  };
+>  
+> -static int wdt_timeout = WDT_DEFAULT_TIMEOUT;
+> +static int wdt_timeout;
+>  static bool nowayout = WATCHDOG_NOWAYOUT;
+>  
+>  module_param(wdt_timeout, int, 0);
+> @@ -212,7 +212,7 @@ static int sama5d4_wdt_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  
+>  	wdd = &wdt->wdd;
+> -	wdd->timeout = wdt_timeout;
+> +	wdd->timeout = WDT_DEFAULT_TIMEOUT;
+>  	wdd->info = &sama5d4_wdt_info;
+>  	wdd->ops = &sama5d4_wdt_ops;
+>  	wdd->min_timeout = MIN_WDT_TIMEOUT;
+> -- 
+> 2.15.1
+> 
