@@ -1,40 +1,42 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 9 Feb 2018 10:04:04 +0100
-Subject: [PATCH 08/10] ARM64: dts: meson: Remove "cooling-{min|max}-level"
- for gpio-fan node
-In-Reply-To: <24b53440922491982c781a3eb032b04c167d733d.1518166039.git.viresh.kumar@linaro.org>
-References: <cover.1518166039.git.viresh.kumar@linaro.org>
- <24b53440922491982c781a3eb032b04c167d733d.1518166039.git.viresh.kumar@linaro.org>
-Message-ID: <3237154b-18a9-9e8b-1e5f-a7ce261fe3ae@baylibre.com>
+From: pombredanne@nexb.com (Philippe Ombredanne)
+Date: Fri, 9 Feb 2018 12:07:20 +0100
+Subject: [PATCH 1/2] dt-bindings: clock: reset: Add AXG AO Clock and Reset
+ Bindings
+In-Reply-To: <20180209070026.193879-2-yixun.lan@amlogic.com>
+References: <20180209070026.193879-1-yixun.lan@amlogic.com>
+ <20180209070026.193879-2-yixun.lan@amlogic.com>
+Message-ID: <CAOFm3uFj-7kZNp6b3SerOzQ8Amfa5Usod+MxwvZJ1E1Z_V9VJA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/02/2018 09:58, Viresh Kumar wrote:
-> The "cooling-min-level" and "cooling-max-level" properties are not
-> parsed by any part of the kernel currently and the max cooling state of
-> gpio-fan cooling device is found by referring to the
-> "gpio-fan,speed-map" instead.
-> 
-> Remove the unused properties from the gpio-fan node.
-> 
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+On Fri, Feb 9, 2018 at 8:00 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
+> Add dt-bindings headers for the Meson-AXG's AO clock and
+> reset controller.
+>
+> CC: <devicetree@vger.kernel.org>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index 658215c9822c..8ee4a693c438 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -59,8 +59,6 @@
->  				      1 1
->  				      2 2
->  				      3 3>;
-> -		cooling-min-level = <0>;
-> -		cooling-max-level = <3>;
->  		#cooling-cells = <2>;
->  	};
->  
-> 
+>  include/dt-bindings/clock/axg-aoclkc.h | 26 ++++++++++++++++++++++++++
+>  include/dt-bindings/reset/axg-aoclkc.h | 20 ++++++++++++++++++++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+>  create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
+>
+> diff --git a/include/dt-bindings/clock/axg-aoclkc.h b/include/dt-bindings/clock/axg-aoclkc.h
+> new file mode 100644
+> index 000000000000..78683abb4247
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/axg-aoclkc.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD) */
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+nit... BSD is not a valid license id as documented in LICENSES [1] :
+please use one of these:
+BSD-2-Clause or BSD-3-Clause
+
+Thank you!
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/LICENSES/preferred
+-- 
+Cordially
+Philippe Ombredanne
