@@ -1,56 +1,73 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Feb 2018 22:15:14 +0100
-Subject: [PATCH usb-next v2 0/3] DWC3 support for Amlogic Meson AXG and GXL
- SoCs
-Message-ID: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
+Date: Sun, 11 Feb 2018 22:15:15 +0100
+Subject: [PATCH usb-next v2 1/3] dt-bindings: usb: add support for dwc3
+ controller on Amlogic Meson GX
+In-Reply-To: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
+References: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180211211517.5846-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Amlogic Meson AXG and GXL SoCs can use the dwc3-of-simple with little
-modifications. These SoCs use:
-- a gate clock for the USB components (DWC3, USB PHYs)
-- a reset line which is shared across all USB components (DWC3, USB2 and
-  USB3 PHYs, OTG detection logic inside the USB3 PHY registers)
-- a reset pulse to trigger the reset
-- depending on the SoC two or more PHYs (AXG: 1x USB2 and 1x USB3 PHY,
-  GXL: 2x USB2 and 1x USB3 PHY)
+Amlogic Meson GX SoCs (GXL and AXG) come with a (host-only) dwc3 USB
+controller. This requires a clock to be enabled and a reset line to be
+pulsed to get the hardware into a known state.
+Add the documentation for this IP block, similar to "qcom,dwc3.txt".
 
-This extends the dwc3-of-simple so it supports (depending on the
-platform) shared and level resets. Additionally it adds new bindings
-for the Amlogic Meson AXG and GXL SoCs, along with the documentation
-(dt-bindings).
-
-NOTE: for full support on Amlogic Meson GXL SoCs my other series called
-"initialize (multiple) PHYs for a HCD" (see [0] for v8 of that series)
-is required. However, there is no direct dependency on that series.
-Especially since Meson AXG doesn't need it (since it only has one USB2
-and one USB3 PHY, which is already supported by the current dwc3 driver,
-unlike the 2x USB2 and 1x USB3 PHYs on Meson GXL).
-So I believe that this series can still be merged, even if the other
-patchset is not ready yet.
-
-
-changes since v1 at [1]:
-- use of_device_is_compatible() instead of struct dwc3_of_simple_params
-  as requested by Felipe Balbi (affects PATCH #2 and #3)
-- added Rob's Acked-by to the dt-bindings patch
-- added Yixun Lan's Tested-by to the whole series as he tested this
-  successfully (along with other patches) on the Amlogic Meson AXG SoC
-
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006274.html
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006286.html
-
-Martin Blumenstingl (3):
-  dt-bindings: usb: add support for dwc3 controller on Amlogic Meson GX
-  usb: dwc3: of-simple: add support for shared and pulsed reset lines
-  usb: dwc3: of-simple: add support for the Amlogic Meson GXL and AXG
-    SoCs
-
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Tested-by: Yixun Lan <yixun.lan@amlogic.com>
+---
  .../devicetree/bindings/usb/amlogic,dwc3.txt       | 42 ++++++++++++++++++++++
- drivers/usb/dwc3/dwc3-of-simple.c                  | 31 ++++++++++++----
- 2 files changed, 67 insertions(+), 6 deletions(-)
+ 1 file changed, 42 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
 
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+new file mode 100644
+index 000000000000..9a8b631904fd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+@@ -0,0 +1,42 @@
++Amlogic Meson GX DWC3 USB SoC controller
++
++Required properties:
++- compatible:	depending on the SoC this should contain one of:
++			* amlogic,meson-axg-dwc3
++			* amlogic,meson-gxl-dwc3
++- clocks:	a handle for the "USB general" clock
++- clock-names:	must be "usb_general"
++- resets:	a handle for the shared "USB OTG" reset line
++- reset-names:	must be "usb_otg"
++
++Required child node:
++A child node must exist to represent the core DWC3 IP block. The name of
++the node is not important. The content of the node is defined in dwc3.txt.
++
++PHY documentation is provided in the following places:
++- Documentation/devicetree/bindings/phy/meson-gxl-usb2-phy.txt
++- Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
++
++Example device nodes:
++		usb0: usb at ff500000 {
++			compatible = "amlogic,meson-axg-dwc3";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			clocks = <&clkc CLKID_USB>;
++			clock-names = "usb_general";
++			resets = <&reset RESET_USB_OTG>;
++			reset-names = "usb_otg";
++
++			dwc3: dwc3 at ff500000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0xff500000 0x0 0x100000>;
++				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++				dr_mode = "host";
++				maximum-speed = "high-speed";
++				snps,dis_u2_susphy_quirk;
++				phys = <&usb3_phy>, <&usb2_phy0>;
++				phy-names = "usb2-phy", "usb3-phy";
++			};
++		};
 -- 
 2.16.1
