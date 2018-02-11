@@ -1,161 +1,181 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Feb 2018 22:06:44 +0100
-Subject: [PATCH usb-next v9 1/8] dt-bindings: usb: add the documentation for
- USB HCDs
+Date: Sun, 11 Feb 2018 22:06:45 +0100
+Subject: [PATCH usb-next v9 2/8] usb: add a flag to skip PHY initialization to
+ struct usb_hcd
 In-Reply-To: <20180211210651.2046-1-martin.blumenstingl@googlemail.com>
 References: <20180211210651.2046-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180211210651.2046-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20180211210651.2046-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-A USB HCD may have several PHYs which need to be configured before the
-the HCD starts working.
-This adds the documentation for such a USB HCD as well as a reference to
-the new "usb-hcd.txt" from all bindings that implement a USB HCD which
-support one USB PHY per port.
+The USB HCD core driver parses the device-tree node for "phys" and
+"usb-phys" properties. It also manages the power state of these PHYs
+automatically.
+However, drivers may opt-out of this behavior by setting "phy" or
+"usb_phy" in struct usb_hcd to a non-null value. An example where this
+is required is the "Qualcomm USB2 controller", implemented by the
+chipidea driver. The hardware requires that the PHY is only powered on
+after the "reset completed" event from the controller is received.
+
+A follow-up patch will allow the USB HCD core driver to manage more than
+one PHY. Add a new "bool skip_phy_initialization" field to struct
+usb_hcd so drivers can opt-out of any PHY management provided by the USB
+HCD core driver. The new field will be used in that patch as well.
+
+This also updates the existing drivers so they use the new flag if they
+want to opt out of the PHY management provided by the USB HCD core
+driver. This means that for these drivers the new "multiple PHY"
+handling (which will be added in a follow-up patch) will be disabled as
+well.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Tested-by: Yixun Lan <yixun.lan@amlogic.com>
 ---
- Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt | 5 ++++-
- Documentation/devicetree/bindings/usb/mediatek,mtu3.txt     | 5 ++++-
- Documentation/devicetree/bindings/usb/usb-ehci.txt          | 6 ++++--
- Documentation/devicetree/bindings/usb/usb-hcd.txt           | 9 +++++++++
- Documentation/devicetree/bindings/usb/usb-ohci.txt          | 6 ++++--
- Documentation/devicetree/bindings/usb/usb-uhci.txt          | 3 +++
- Documentation/devicetree/bindings/usb/usb-xhci.txt          | 5 +++++
- 7 files changed, 33 insertions(+), 6 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/usb/usb-hcd.txt
+ drivers/usb/chipidea/host.c      | 5 +----
+ drivers/usb/core/hcd.c           | 4 ++--
+ drivers/usb/host/ehci-fsl.c      | 2 ++
+ drivers/usb/host/ehci-platform.c | 4 ++--
+ drivers/usb/host/ehci-tegra.c    | 1 +
+ drivers/usb/host/ohci-omap.c     | 1 +
+ drivers/usb/host/ohci-platform.c | 4 ++--
+ drivers/usb/host/xhci-plat.c     | 1 +
+ include/linux/usb/hcd.h          | 6 ++++++
+ 9 files changed, 18 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-index 88d9f4a4b280..266c2d917a28 100644
---- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-@@ -32,7 +32,7 @@ Required properties:
- 	"mcu_ck": mcu_bus clock for register access,
- 	"dma_ck": dma_bus clock for data transfer by DMA
+diff --git a/drivers/usb/chipidea/host.c b/drivers/usb/chipidea/host.c
+index 19d60ed7e41f..493ef826ef4c 100644
+--- a/drivers/usb/chipidea/host.c
++++ b/drivers/usb/chipidea/host.c
+@@ -124,10 +124,7 @@ static int host_start(struct ci_hdrc *ci)
  
-- - phys : a list of phandle + phy specifier pairs
-+ - phys : see usb-hcd.txt in the current directory
+ 	hcd->power_budget = ci->platdata->power_budget;
+ 	hcd->tpl_support = ci->platdata->tpl_support;
+-	if (ci->phy)
+-		hcd->phy = ci->phy;
+-	else
+-		hcd->usb_phy = ci->usb_phy;
++	hcd->skip_phy_initialization = ci->phy || ci->usb_phy;
  
- Optional properties:
-  - wakeup-source : enable USB remote wakeup;
-@@ -52,6 +52,9 @@ Optional properties:
- 	See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-  - imod-interval-ns: default interrupt moderation interval is 5000ns
+ 	ehci = hcd_to_ehci(hcd);
+ 	ehci->caps = ci->hw_bank.cap;
+diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
+index fc32391a34d5..f2307470a31e 100644
+--- a/drivers/usb/core/hcd.c
++++ b/drivers/usb/core/hcd.c
+@@ -2727,7 +2727,7 @@ int usb_add_hcd(struct usb_hcd *hcd,
+ 	int retval;
+ 	struct usb_device *rhdev;
  
-+additionally the properties from usb-hcd.txt (in the current directory) are
-+supported.
+-	if (IS_ENABLED(CONFIG_USB_PHY) && !hcd->usb_phy) {
++	if (IS_ENABLED(CONFIG_USB_PHY) && !hcd->skip_phy_initialization) {
+ 		struct usb_phy *phy = usb_get_phy_dev(hcd->self.sysdev, 0);
+ 
+ 		if (IS_ERR(phy)) {
+@@ -2745,7 +2745,7 @@ int usb_add_hcd(struct usb_hcd *hcd,
+ 		}
+ 	}
+ 
+-	if (IS_ENABLED(CONFIG_GENERIC_PHY) && !hcd->phy) {
++	if (IS_ENABLED(CONFIG_GENERIC_PHY) && !hcd->skip_phy_initialization) {
+ 		struct phy *phy = phy_get(hcd->self.sysdev, "usb");
+ 
+ 		if (IS_ERR(phy)) {
+diff --git a/drivers/usb/host/ehci-fsl.c b/drivers/usb/host/ehci-fsl.c
+index c5094cb88cd5..009de5e4e136 100644
+--- a/drivers/usb/host/ehci-fsl.c
++++ b/drivers/usb/host/ehci-fsl.c
+@@ -155,6 +155,8 @@ static int fsl_ehci_drv_probe(struct platform_device *pdev)
+ 			retval = -ENODEV;
+ 			goto err2;
+ 		}
 +
- Example:
- usb30: usb at 11270000 {
- 	compatible = "mediatek,mt8173-xhci";
-diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt b/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-index d589a1ef96a1..3382b5cb471d 100644
---- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-+++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.txt
-@@ -17,7 +17,7 @@ Required properties:
-  - clock-names : must contain "sys_ck" for clock of controller,
- 	the following clocks are optional:
- 	"ref_ck", "mcu_ck" and "dam_ck";
-- - phys : a list of phandle + phy specifier pairs
-+ - phys : see usb-hcd.txt in the current directory
-  - dr_mode : should be one of "host", "peripheral" or "otg",
- 	refer to usb/generic.txt
++		hcd->skip_phy_initialization = true;
+ 	}
+ #endif
+ 	return retval;
+diff --git a/drivers/usb/host/ehci-platform.c b/drivers/usb/host/ehci-platform.c
+index b065a960adc2..40fbc4925378 100644
+--- a/drivers/usb/host/ehci-platform.c
++++ b/drivers/usb/host/ehci-platform.c
+@@ -219,9 +219,9 @@ static int ehci_platform_probe(struct platform_device *dev)
+ 			if (IS_ERR(priv->phys[phy_num])) {
+ 				err = PTR_ERR(priv->phys[phy_num]);
+ 					goto err_put_hcd;
+-			} else if (!hcd->phy) {
++			} else {
+ 				/* Avoiding phy_get() in usb_add_hcd() */
+-				hcd->phy = priv->phys[phy_num];
++				hcd->skip_phy_initialization = true;
+ 			}
+ 		}
  
-@@ -53,6 +53,9 @@ Optional properties:
-  - mediatek,u3p-dis-msk : mask to disable u3ports, bit0 for u3port0,
- 	bit1 for u3port1, ... etc;
+diff --git a/drivers/usb/host/ehci-tegra.c b/drivers/usb/host/ehci-tegra.c
+index c809f7d2f08f..9a8442a66b14 100644
+--- a/drivers/usb/host/ehci-tegra.c
++++ b/drivers/usb/host/ehci-tegra.c
+@@ -461,6 +461,7 @@ static int tegra_ehci_probe(struct platform_device *pdev)
+ 		goto cleanup_clk_en;
+ 	}
+ 	hcd->usb_phy = u_phy;
++	hcd->skip_phy_initialization = true;
  
-+additionally the properties from usb-hcd.txt (in the current directory) are
-+supported.
-+
- Sub-nodes:
- The xhci should be added as subnode to mtu3 as shown in the following example
- if host mode is enabled. The DT binding details of xhci can be found in:
-diff --git a/Documentation/devicetree/bindings/usb/usb-ehci.txt b/Documentation/devicetree/bindings/usb/usb-ehci.txt
-index 3efde12b5d68..0f1b75386207 100644
---- a/Documentation/devicetree/bindings/usb/usb-ehci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-ehci.txt
-@@ -16,10 +16,12 @@ Optional properties:
-  - has-transaction-translator : boolean, set this if EHCI have a Transaction
- 				Translator built into the root hub.
-  - clocks : a list of phandle + clock specifier pairs
-- - phys : phandle + phy specifier pair
-- - phy-names : "usb"
-+ - phys : see usb-hcd.txt in the current directory
-  - resets : phandle + reset specifier pair
+ 	tegra->needs_double_reset = of_property_read_bool(pdev->dev.of_node,
+ 		"nvidia,needs-double-reset");
+diff --git a/drivers/usb/host/ohci-omap.c b/drivers/usb/host/ohci-omap.c
+index 0201c49bc4fc..2255cbd73fb5 100644
+--- a/drivers/usb/host/ohci-omap.c
++++ b/drivers/usb/host/ohci-omap.c
+@@ -230,6 +230,7 @@ static int ohci_omap_reset(struct usb_hcd *hcd)
+ 		} else {
+ 			return -EPROBE_DEFER;
+ 		}
++		hcd->skip_phy_initialization = true;
+ 		ohci->start_hnp = start_hnp;
+ 	}
+ #endif
+diff --git a/drivers/usb/host/ohci-platform.c b/drivers/usb/host/ohci-platform.c
+index 1e6c954f4b3f..bd605e79ae7d 100644
+--- a/drivers/usb/host/ohci-platform.c
++++ b/drivers/usb/host/ohci-platform.c
+@@ -186,9 +186,9 @@ static int ohci_platform_probe(struct platform_device *dev)
+ 			if (IS_ERR(priv->phys[phy_num])) {
+ 				err = PTR_ERR(priv->phys[phy_num]);
+ 				goto err_put_hcd;
+-			} else if (!hcd->phy) {
++			} else {
+ 				/* Avoiding phy_get() in usb_add_hcd() */
+-				hcd->phy = priv->phys[phy_num];
++				hcd->skip_phy_initialization = true;
+ 			}
+ 		}
  
-+additionally the properties from usb-hcd.txt (in the current directory) are
-+supported.
-+
- Example (Sequoia 440EPx):
-     ehci at e0000300 {
- 	   compatible = "ibm,usb-ehci-440epx", "usb-ehci";
-diff --git a/Documentation/devicetree/bindings/usb/usb-hcd.txt b/Documentation/devicetree/bindings/usb/usb-hcd.txt
-new file mode 100644
-index 000000000000..50529b838c9c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/usb-hcd.txt
-@@ -0,0 +1,9 @@
-+Generic USB HCD (Host Controller Device) Properties
-+
-+Optional properties:
-+- phys: a list of all USB PHYs on this HCD
-+
-+Example:
-+	&usb1 {
-+		phys = <&usb2_phy1>, <&usb3_phy1>;
-+	};
-diff --git a/Documentation/devicetree/bindings/usb/usb-ohci.txt b/Documentation/devicetree/bindings/usb/usb-ohci.txt
-index 09e70c875bc6..a8d2103d1f3d 100644
---- a/Documentation/devicetree/bindings/usb/usb-ohci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-ohci.txt
-@@ -13,10 +13,12 @@ Optional properties:
- - remote-wakeup-connected: remote wakeup is wired on the platform
- - num-ports : u32, to override the detected port count
- - clocks : a list of phandle + clock specifier pairs
--- phys : phandle + phy specifier pair
--- phy-names : "usb"
-+- phys : see usb-hcd.txt in the current directory
- - resets : a list of phandle + reset specifier pairs
+diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+index 6f038306c14d..ef01bc18bcf3 100644
+--- a/drivers/usb/host/xhci-plat.c
++++ b/drivers/usb/host/xhci-plat.c
+@@ -284,6 +284,7 @@ static int xhci_plat_probe(struct platform_device *pdev)
+ 		ret = usb_phy_init(hcd->usb_phy);
+ 		if (ret)
+ 			goto put_usb3_hcd;
++		hcd->skip_phy_initialization = true;
+ 	}
  
-+additionally the properties from usb-hcd.txt (in the current directory) are
-+supported.
-+
- Example:
+ 	ret = usb_add_hcd(hcd, irq, IRQF_SHARED);
+diff --git a/include/linux/usb/hcd.h b/include/linux/usb/hcd.h
+index 176900528822..b46fb6dd43ab 100644
+--- a/include/linux/usb/hcd.h
++++ b/include/linux/usb/hcd.h
+@@ -98,6 +98,12 @@ struct usb_hcd {
+ 	 */
+ 	const struct hc_driver	*driver;	/* hw-specific hooks */
  
- 	ohci0: usb at 1c14400 {
-diff --git a/Documentation/devicetree/bindings/usb/usb-uhci.txt b/Documentation/devicetree/bindings/usb/usb-uhci.txt
-index 298133416c97..cc2e6f7d602e 100644
---- a/Documentation/devicetree/bindings/usb/usb-uhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-uhci.txt
-@@ -6,6 +6,9 @@ Required properties:
- - reg : Should contain 1 register ranges(address and length)
- - interrupts : UHCI controller interrupt
- 
-+additionally the properties from usb-hcd.txt (in the current directory) are
-+supported.
-+
- Example:
- 
- 	uhci at d8007b00 {
-diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-index e2ea59bbca93..2f7663bb69ff 100644
---- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-@@ -32,6 +32,11 @@ Optional properties:
-   - usb3-lpm-capable: determines if platform is USB3 LPM capable
-   - quirk-broken-port-ped: set if the controller has broken port disable mechanism
-   - imod-interval-ns: default interrupt moderation interval is 5000ns
-+  - phys : see usb-hcd.txt in the current directory
-+
-+additionally the properties from usb-hcd.txt (in the current directory) are
-+supported.
-+
- 
- Example:
- 	usb at f0931000 {
++	/*
++	 * do not manage the PHY state in the HCD core, instead let the driver
++	 * handle this (for example if the PHY can only be turned on after a
++	 * specific event)
++	 */
++	bool skip_phy_initialization;
+ 	/*
+ 	 * OTG and some Host controllers need software interaction with phys;
+ 	 * other external phys should be software-transparent
 -- 
 2.16.1
