@@ -1,141 +1,56 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Feb 2018 22:06:49 +0100
-Subject: [PATCH usb-next v9 6/8] usb: host: ehci-platform: remove custom USB
- PHY handling
-In-Reply-To: <20180211210651.2046-1-martin.blumenstingl@googlemail.com>
-References: <20180211210651.2046-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180211210651.2046-7-martin.blumenstingl@googlemail.com>
+Date: Sun, 11 Feb 2018 22:15:14 +0100
+Subject: [PATCH usb-next v2 0/3] DWC3 support for Amlogic Meson AXG and GXL
+ SoCs
+Message-ID: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The new PHY wrapper is now wired up in the core HCD code. This means
-that PHYs are now controlled (initialized, enabled, disabled, exited)
-without requiring any host-driver specific code.
-Remove the custom USB PHY handling from the ehci-platform driver as the
-core HCD code now handles this.
+Amlogic Meson AXG and GXL SoCs can use the dwc3-of-simple with little
+modifications. These SoCs use:
+- a gate clock for the USB components (DWC3, USB PHYs)
+- a reset line which is shared across all USB components (DWC3, USB2 and
+  USB3 PHYs, OTG detection logic inside the USB3 PHY registers)
+- a reset pulse to trigger the reset
+- depending on the SoC two or more PHYs (AXG: 1x USB2 and 1x USB3 PHY,
+  GXL: 2x USB2 and 1x USB3 PHY)
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Alan Stern <stern@rowland.harvard.edu>
----
- drivers/usb/host/ehci-platform.c | 55 +++-------------------------------------
- 1 file changed, 4 insertions(+), 51 deletions(-)
+This extends the dwc3-of-simple so it supports (depending on the
+platform) shared and level resets. Additionally it adds new bindings
+for the Amlogic Meson AXG and GXL SoCs, along with the documentation
+(dt-bindings).
 
-diff --git a/drivers/usb/host/ehci-platform.c b/drivers/usb/host/ehci-platform.c
-index 40fbc4925378..4c306fb6b069 100644
---- a/drivers/usb/host/ehci-platform.c
-+++ b/drivers/usb/host/ehci-platform.c
-@@ -27,7 +27,6 @@
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of.h>
--#include <linux/phy/phy.h>
- #include <linux/platform_device.h>
- #include <linux/reset.h>
- #include <linux/usb.h>
-@@ -44,8 +43,6 @@
- struct ehci_platform_priv {
- 	struct clk *clks[EHCI_MAX_CLKS];
- 	struct reset_control *rsts;
--	struct phy **phys;
--	int num_phys;
- 	bool reset_on_resume;
- };
- 
-@@ -80,7 +77,7 @@ static int ehci_platform_power_on(struct platform_device *dev)
- {
- 	struct usb_hcd *hcd = platform_get_drvdata(dev);
- 	struct ehci_platform_priv *priv = hcd_to_ehci_priv(hcd);
--	int clk, ret, phy_num;
-+	int clk, ret;
- 
- 	for (clk = 0; clk < EHCI_MAX_CLKS && priv->clks[clk]; clk++) {
- 		ret = clk_prepare_enable(priv->clks[clk]);
-@@ -88,24 +85,8 @@ static int ehci_platform_power_on(struct platform_device *dev)
- 			goto err_disable_clks;
- 	}
- 
--	for (phy_num = 0; phy_num < priv->num_phys; phy_num++) {
--		ret = phy_init(priv->phys[phy_num]);
--		if (ret)
--			goto err_exit_phy;
--		ret = phy_power_on(priv->phys[phy_num]);
--		if (ret) {
--			phy_exit(priv->phys[phy_num]);
--			goto err_exit_phy;
--		}
--	}
--
- 	return 0;
- 
--err_exit_phy:
--	while (--phy_num >= 0) {
--		phy_power_off(priv->phys[phy_num]);
--		phy_exit(priv->phys[phy_num]);
--	}
- err_disable_clks:
- 	while (--clk >= 0)
- 		clk_disable_unprepare(priv->clks[clk]);
-@@ -117,12 +98,7 @@ static void ehci_platform_power_off(struct platform_device *dev)
- {
- 	struct usb_hcd *hcd = platform_get_drvdata(dev);
- 	struct ehci_platform_priv *priv = hcd_to_ehci_priv(hcd);
--	int clk, phy_num;
--
--	for (phy_num = 0; phy_num < priv->num_phys; phy_num++) {
--		phy_power_off(priv->phys[phy_num]);
--		phy_exit(priv->phys[phy_num]);
--	}
-+	int clk;
- 
- 	for (clk = EHCI_MAX_CLKS - 1; clk >= 0; clk--)
- 		if (priv->clks[clk])
-@@ -149,7 +125,7 @@ static int ehci_platform_probe(struct platform_device *dev)
- 	struct usb_ehci_pdata *pdata = dev_get_platdata(&dev->dev);
- 	struct ehci_platform_priv *priv;
- 	struct ehci_hcd *ehci;
--	int err, irq, phy_num, clk = 0;
-+	int err, irq, clk = 0;
- 
- 	if (usb_disabled())
- 		return -ENODEV;
-@@ -202,29 +178,6 @@ static int ehci_platform_probe(struct platform_device *dev)
- 					  "has-transaction-translator"))
- 			hcd->has_tt = 1;
- 
--		priv->num_phys = of_count_phandle_with_args(dev->dev.of_node,
--				"phys", "#phy-cells");
--
--		if (priv->num_phys > 0) {
--			priv->phys = devm_kcalloc(&dev->dev, priv->num_phys,
--					    sizeof(struct phy *), GFP_KERNEL);
--			if (!priv->phys)
--				return -ENOMEM;
--		} else
--			priv->num_phys = 0;
--
--		for (phy_num = 0; phy_num < priv->num_phys; phy_num++) {
--			priv->phys[phy_num] = devm_of_phy_get_by_index(
--					&dev->dev, dev->dev.of_node, phy_num);
--			if (IS_ERR(priv->phys[phy_num])) {
--				err = PTR_ERR(priv->phys[phy_num]);
--					goto err_put_hcd;
--			} else {
--				/* Avoiding phy_get() in usb_add_hcd() */
--				hcd->skip_phy_initialization = true;
--			}
--		}
--
- 		for (clk = 0; clk < EHCI_MAX_CLKS; clk++) {
- 			priv->clks[clk] = of_clk_get(dev->dev.of_node, clk);
- 			if (IS_ERR(priv->clks[clk])) {
-@@ -306,7 +259,7 @@ static int ehci_platform_probe(struct platform_device *dev)
- err_put_clks:
- 	while (--clk >= 0)
- 		clk_put(priv->clks[clk]);
--err_put_hcd:
-+
- 	if (pdata == &ehci_platform_defaults)
- 		dev->dev.platform_data = NULL;
- 
+NOTE: for full support on Amlogic Meson GXL SoCs my other series called
+"initialize (multiple) PHYs for a HCD" (see [0] for v8 of that series)
+is required. However, there is no direct dependency on that series.
+Especially since Meson AXG doesn't need it (since it only has one USB2
+and one USB3 PHY, which is already supported by the current dwc3 driver,
+unlike the 2x USB2 and 1x USB3 PHYs on Meson GXL).
+So I believe that this series can still be merged, even if the other
+patchset is not ready yet.
+
+
+changes since v1 at [1]:
+- use of_device_is_compatible() instead of struct dwc3_of_simple_params
+  as requested by Felipe Balbi (affects PATCH #2 and #3)
+- added Rob's Acked-by to the dt-bindings patch
+- added Yixun Lan's Tested-by to the whole series as he tested this
+  successfully (along with other patches) on the Amlogic Meson AXG SoC
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006274.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006286.html
+
+Martin Blumenstingl (3):
+  dt-bindings: usb: add support for dwc3 controller on Amlogic Meson GX
+  usb: dwc3: of-simple: add support for shared and pulsed reset lines
+  usb: dwc3: of-simple: add support for the Amlogic Meson GXL and AXG
+    SoCs
+
+ .../devicetree/bindings/usb/amlogic,dwc3.txt       | 42 ++++++++++++++++++++++
+ drivers/usb/dwc3/dwc3-of-simple.c                  | 31 ++++++++++++----
+ 2 files changed, 67 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+
 -- 
 2.16.1
