@@ -1,76 +1,80 @@
 From: linux@roeck-us.net (Guenter Roeck)
-Date: Sun, 11 Feb 2018 03:17:16 -0800
-Subject: [PATCH v2 5/7] watchdog: mtk: allow setting timeout in devicetree
-In-Reply-To: <1518335184.9025.43.camel@mtkswgap22>
-References: <20180210091911.3644-1-marcus.folkesson@gmail.com>
- <20180210091911.3644-5-marcus.folkesson@gmail.com>
- <1518261002.9025.36.camel@mtkswgap22> <20180210124328.GB744@gmail.com>
- <20180210201207.GC744@gmail.com>
- <5449674d-2812-c9b5-9c06-af2fbfa72737@roeck-us.net>
- <1518335184.9025.43.camel@mtkswgap22>
-Message-ID: <80a95963-7bd9-a350-d899-3b0cf2d646fc@roeck-us.net>
+Date: Sun, 11 Feb 2018 09:33:56 -0800
+Subject: [v2, 7/7] watchdog: coh901327: make use of timeout-secs provided
+ in devicetree
+In-Reply-To: <20180210091911.3644-7-marcus.folkesson@gmail.com>
+References: <20180210091911.3644-7-marcus.folkesson@gmail.com>
+Message-ID: <20180211173356.GA18292@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/10/2018 11:46 PM, Sean Wang wrote:
-> On Sat, 2018-02-10 at 17:52 -0800, Guenter Roeck wrote:
->> On 02/10/2018 12:12 PM, Marcus Folkesson wrote:
->>> Hello Sean,
->>>
->>> On Sat, Feb 10, 2018 at 01:43:28PM +0100, Marcus Folkesson wrote:
->>>> Hello Sean,
->>>>
->>>> On Sat, Feb 10, 2018 at 07:10:02PM +0800, Sean Wang wrote:
->>>>>
->>>>> Hi, Marcus
->>>>>
->>>>> The changes you made for dt-bindings and driver should be put into
->>>>> separate patches.
->>>>
->>>> I actually thought about it but chose to have it in the same patch because I
->>>> did not see any direct advantage to separating them.
->>>>
->>>> But I can do that.
->>>> I will come up with a v3 with this change if no one thinks differently.
->>>>
->>>
->>> When looking at the git log, I'm not that convinced it should be
->>> separate patches.
->>>
->>> For example, I found a4f741e3e157c3a5c8aea5f2ea62b692fbf17338 that is
->>> doing the exact same thing as this patch.
->>>
->>> There is plenty of patches that mixes the code change and dt bindings
->>> updates.
->>> Could it not be useful to overview both the implementation and
->>> dt-mapping change in one view?
->>>
->>> If you or anyone else still think it should be separated, please let me know and I will
->>> come up with a v3.
->>>
->>
->> If we were talking about something new, specifically new and unapproved DT bindings,
->> it should be separate patches. However, that is not the case here. The DT bindings
->> are well established. Sure, we could be pedantic and request a split into two
->> patches. However, the only benefit of that would be more work for the maintainers,
->> ie Wim and myself (including me having to send this e-mail). I don't really see
->> the point of that.
->>
->> I have already sent my Reviewed-by:, and I don't intend to withdraw it.
->>
-> Hi, both
+On Sat, Feb 10, 2018 at 10:19:11AM +0100, Marcus Folkesson wrote:
+> watchdog_init_timeout() will allways pick timeout_param since it
+> defaults to a valid timeout.
 > 
-> Sorry for that if I caused any inconvenience to you. I didn't really
-> insist on if the patch is needed to split into two, which totally
-> depends on whether dt maintainers like it.
+> Following best practice described in
+> Documentation/watchdog/watchdog-kernel-api.txt to make use of
+> the parameter logic.
 > 
-> The change for dt-binding is usually added as a split patch with
-> dt-bindings as a prefix. This way I thought dt maintainers is not
-> easy to miss those patches and also can give some useful feedback
-> for them.
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
 > 
+> v2:
+> 	- Set .timeout in coh901327_wdt structure declaration.
+> 	- Set .min_timeout to 1 instead of 0. I could not find a datasheet
+> 	  for coh901327, so I'm not sure if 0 is valid. However, 0 seems
+> 		  wrong to me and most driver has 1 as min value. If it should
+> 		  be 0, please let me know and I have to set another initial
+> 		  value for margin.
 
-With all the trouble this one-line change is making, I feel inclined to drop
-the patch for this driver.
+Makes sense to me.
+
+> 
+>  drivers/watchdog/coh901327_wdt.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/watchdog/coh901327_wdt.c b/drivers/watchdog/coh901327_wdt.c
+> index 4410337f4f7f..5d8eb9a30879 100644
+> --- a/drivers/watchdog/coh901327_wdt.c
+> +++ b/drivers/watchdog/coh901327_wdt.c
+> @@ -67,7 +67,9 @@
+>  #define U300_WDOG_IFR_WILL_BARK_IRQ_FORCE_ENABLE			0x0001U
+>  
+>  /* Default timeout in seconds = 1 minute */
+> -static unsigned int margin = 60;
+> +#define U300_WDOG_DEFAULT_TIMEOUT					60
+> +
+> +static unsigned int margin;
+
+I just realized that 'margin' instead of the actual timeout is used
+at the end of the probe function to display the selected timeout.
+This will have to change as well (and I'll have to go back to the
+other patches to make sure that this doesn't happen there as well).
 
 Guenter
+
+>  static int irq;
+>  static void __iomem *virtbase;
+>  static struct device *parent;
+> @@ -235,8 +237,9 @@ static struct watchdog_device coh901327_wdt = {
+>  	 * timeout register is max
+>  	 * 0x7FFF = 327670ms ~= 327s.
+>  	 */
+> -	.min_timeout = 0,
+> +	.min_timeout = 1,
+>  	.max_timeout = 327,
+> +	.timeout = U300_WDOG_DEFAULT_TIMEOUT,
+>  };
+>  
+>  static int __exit coh901327_remove(struct platform_device *pdev)
+> @@ -315,9 +318,7 @@ static int __init coh901327_probe(struct platform_device *pdev)
+>  		goto out_no_irq;
+>  	}
+>  
+> -	ret = watchdog_init_timeout(&coh901327_wdt, margin, dev);
+> -	if (ret < 0)
+> -		coh901327_wdt.timeout = 60;
+> +	watchdog_init_timeout(&coh901327_wdt, margin, dev);
+>  
+>  	coh901327_wdt.parent = dev;
+>  	ret = watchdog_register_device(&coh901327_wdt);
