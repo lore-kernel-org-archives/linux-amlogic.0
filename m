@@ -1,123 +1,71 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Feb 2018 15:58:33 +0100
-Subject: [PATCH v2 06/19] clk: meson: switch gxbb ao_clk to clk_regmap
+Date: Mon, 12 Feb 2018 15:58:31 +0100
+Subject: [PATCH v2 04/19] clk: meson: remove obsolete comments
 In-Reply-To: <20180212145846.19380-1-jbrunet@baylibre.com>
 References: <20180212145846.19380-1-jbrunet@baylibre.com>
-Message-ID: <20180212145846.19380-7-jbrunet@baylibre.com>
+Message-ID: <20180212145846.19380-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Drop the gxbb ao specific regmap based clock and use the
-meson clk_regmap based clock instead.
+Over time things changes in CCF and issues have been fixed in meson
+controllers.
+
+Now, clk81 is decently modeled by read-only PLLs, a mux, a divider
+and a gate. We can remove the FIXME comments related to clk81.
+Also remove the comment about devm_clk_hw_register, as there is
+apparently nothing wrong with it.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/Kconfig      |  1 +
- drivers/clk/meson/Makefile     |  2 +-
- drivers/clk/meson/gxbb-aoclk.c | 20 ++++++++++----------
- drivers/clk/meson/gxbb-aoclk.h |  1 -
- 4 files changed, 12 insertions(+), 12 deletions(-)
+ drivers/clk/meson/axg.c     | 5 -----
+ drivers/clk/meson/gxbb.c    | 6 ------
+ drivers/clk/meson/meson8b.c | 1 -
+ 3 files changed, 12 deletions(-)
 
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index e97e85077da1..33d148e19066 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -20,6 +20,7 @@ config COMMON_CLK_GXBB
- 	bool
- 	depends on COMMON_CLK_AMLOGIC
- 	select RESET_CONTROLLER
-+	select COMMON_CLK_REGMAP_MESON
- 	help
- 	  Support for the clock controller on AmLogic S905 devices, aka gxbb.
- 	  Say Y if you want peripherals and CPU frequency scaling to work.
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 11a50586666a..465086118d62 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -4,6 +4,6 @@
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 3bb77b4f1e8d..bc5c29f13282 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -411,11 +411,6 @@ static struct meson_clk_mpll axg_mpll3 = {
+ 	},
+ };
  
- obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o clk-audio-divider.o
- obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
--obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-regmap.o gxbb-aoclk-32k.o
-+obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
- obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o
- obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)	+= clk-regmap.o
-diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
-index 6c161e0a8e59..9ec23ae9a219 100644
---- a/drivers/clk/meson/gxbb-aoclk.c
-+++ b/drivers/clk/meson/gxbb-aoclk.c
-@@ -62,10 +62,9 @@
- #include <linux/delay.h>
- #include <dt-bindings/clock/gxbb-aoclkc.h>
- #include <dt-bindings/reset/gxbb-aoclkc.h>
-+#include "clk-regmap.h"
- #include "gxbb-aoclk.h"
+-/*
+- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
+- * and should be modeled with their respective PLLs via the forthcoming
+- * coordinated clock rates feature
+- */
+ static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
+ static const char * const clk81_parent_names[] = {
+ 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index e6adab49c0ba..6609024eee00 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -575,12 +575,6 @@ static struct meson_clk_mpll gxbb_mpll2 = {
+ 	},
+ };
  
--static DEFINE_SPINLOCK(gxbb_aoclk_lock);
+-/*
+- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
+- * and should be modeled with their respective PLLs via the forthcoming
+- * coordinated clock rates feature
+- */
 -
- struct gxbb_aoclk_reset_controller {
- 	struct reset_controller_dev reset;
- 	unsigned int *data;
-@@ -87,12 +86,14 @@ static const struct reset_control_ops gxbb_aoclk_reset_ops = {
- };
+ static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
+ static const char * const clk81_parent_names[] = {
+ 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index ffadad27375e..db017c29a84c 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -849,7 +849,6 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
+ 		if (!meson8b_hw_onecell_data.hws[i])
+ 			continue;
  
- #define GXBB_AO_GATE(_name, _bit)					\
--static struct aoclk_gate_regmap _name##_ao = {				\
--	.bit_idx = (_bit),						\
--	.lock = &gxbb_aoclk_lock,					\
-+static struct clk_regmap _name##_ao = {					\
-+	.data = &(struct clk_regmap_gate_data) {			\
-+		.offset = AO_RTI_GEN_CNTL_REG0,				\
-+		.bit_idx = (_bit),					\
-+	},								\
- 	.hw.init = &(struct clk_init_data) {				\
- 		.name = #_name "_ao",					\
--		.ops = &meson_aoclk_gate_regmap_ops,			\
-+		.ops = &clk_regmap_gate_ops,				\
- 		.parent_names = (const char *[]){ "clk81" },		\
- 		.num_parents = 1,					\
- 		.flags = (CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED),	\
-@@ -107,7 +108,6 @@ GXBB_AO_GATE(uart2, 5);
- GXBB_AO_GATE(ir_blaster, 6);
- 
- static struct aoclk_cec_32k cec_32k_ao = {
--	.lock = &gxbb_aoclk_lock,
- 	.hw.init = &(struct clk_init_data) {
- 		.name = "cec_32k_ao",
- 		.ops = &meson_aoclk_cec_32k_ops,
-@@ -126,7 +126,7 @@ static unsigned int gxbb_aoclk_reset[] = {
- 	[RESET_AO_IR_BLASTER] = 23,
- };
- 
--static struct aoclk_gate_regmap *gxbb_aoclk_gate[] = {
-+static struct clk_regmap *gxbb_aoclk_gate[] = {
- 	[CLKID_AO_REMOTE] = &remote_ao,
- 	[CLKID_AO_I2C_MASTER] = &i2c_master_ao,
- 	[CLKID_AO_I2C_SLAVE] = &i2c_slave_ao,
-@@ -177,10 +177,10 @@ static int gxbb_aoclkc_probe(struct platform_device *pdev)
- 	 * Populate regmap and register all clks
- 	 */
- 	for (clkid = 0; clkid < ARRAY_SIZE(gxbb_aoclk_gate); clkid++) {
--		gxbb_aoclk_gate[clkid]->regmap = regmap;
-+		gxbb_aoclk_gate[clkid]->map = regmap;
- 
- 		ret = devm_clk_hw_register(dev,
--					gxbb_aoclk_onecell_data.hws[clkid]);
-+					   gxbb_aoclk_onecell_data.hws[clkid]);
+-		/* FIXME convert to devm_clk_register */
+ 		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[i]);
  		if (ret)
  			return ret;
- 	}
-diff --git a/drivers/clk/meson/gxbb-aoclk.h b/drivers/clk/meson/gxbb-aoclk.h
-index e8604c8f7eee..127d58954cca 100644
---- a/drivers/clk/meson/gxbb-aoclk.h
-+++ b/drivers/clk/meson/gxbb-aoclk.h
-@@ -32,7 +32,6 @@ extern const struct clk_ops meson_aoclk_gate_regmap_ops;
- struct aoclk_cec_32k {
- 	struct clk_hw hw;
- 	struct regmap *regmap;
--	spinlock_t *lock;
- };
- 
- #define to_aoclk_cec_32k(_hw) container_of(_hw, struct aoclk_cec_32k, hw)
 -- 
 2.14.3
