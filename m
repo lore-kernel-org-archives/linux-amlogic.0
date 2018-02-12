@@ -1,71 +1,72 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Feb 2018 15:58:31 +0100
-Subject: [PATCH v2 04/19] clk: meson: remove obsolete comments
+Date: Mon, 12 Feb 2018 15:58:29 +0100
+Subject: [PATCH v2 02/19] clk: meson: use devm_of_clk_add_hw_provider
 In-Reply-To: <20180212145846.19380-1-jbrunet@baylibre.com>
 References: <20180212145846.19380-1-jbrunet@baylibre.com>
-Message-ID: <20180212145846.19380-5-jbrunet@baylibre.com>
+Message-ID: <20180212145846.19380-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Over time things changes in CCF and issues have been fixed in meson
-controllers.
+There is no remove callbacks in meson's clock controllers and
+of_clk_del_provider is never called if of_clk_add_hw_provider has been
+executed, introducing a potential memory leak.
+Fixing this by the using the devm variant.
 
-Now, clk81 is decently modeled by read-only PLLs, a mux, a divider
-and a gate. We can remove the FIXME comments related to clk81.
-Also remove the comment about devm_clk_hw_register, as there is
-apparently nothing wrong with it.
+In reality, the leak would never happen since these controllers are
+never unloaded once in use ... still, this is worth cleaning.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c     | 5 -----
- drivers/clk/meson/gxbb.c    | 6 ------
- drivers/clk/meson/meson8b.c | 1 -
- 3 files changed, 12 deletions(-)
+ drivers/clk/meson/axg.c     | 4 ++--
+ drivers/clk/meson/gxbb.c    | 5 +++--
+ drivers/clk/meson/meson8b.c | 4 ++--
+ 3 files changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 3bb77b4f1e8d..bc5c29f13282 100644
+index 1f48649a7d2a..e16d53b6be30 100644
 --- a/drivers/clk/meson/axg.c
 +++ b/drivers/clk/meson/axg.c
-@@ -411,11 +411,6 @@ static struct meson_clk_mpll axg_mpll3 = {
- 	},
- };
+@@ -854,8 +854,8 @@ static int axg_clkc_probe(struct platform_device *pdev)
+ 		}
+ 	}
  
--/*
-- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
-- * and should be modeled with their respective PLLs via the forthcoming
-- * coordinated clock rates feature
-- */
- static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
- static const char * const clk81_parent_names[] = {
- 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+-	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+-			clkc_data->hw_onecell_data);
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   clkc_data->hw_onecell_data);
+ }
+ 
+ static struct platform_driver axg_driver = {
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index e6adab49c0ba..6609024eee00 100644
+index 423abcb8ef88..17f44ac751b3 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -575,12 +575,6 @@ static struct meson_clk_mpll gxbb_mpll2 = {
- 	},
- };
+@@ -2002,8 +2002,9 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
+ 			goto iounmap;
+ 	}
  
--/*
-- * FIXME The legacy composite clocks (e.g. clk81) are both PLL post-dividers
-- * and should be modeled with their respective PLLs via the forthcoming
-- * coordinated clock rates feature
-- */
--
- static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
- static const char * const clk81_parent_names[] = {
- 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+-	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+-			clkc_data->hw_onecell_data);
++
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   clkc_data->hw_onecell_data);
+ 
+ iounmap:
+ 	iounmap(clk_base);
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index ffadad27375e..db017c29a84c 100644
+index 3ffea80c1308..abac079ff77f 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -849,7 +849,6 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
- 		if (!meson8b_hw_onecell_data.hws[i])
- 			continue;
+@@ -878,8 +878,8 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
  
--		/* FIXME convert to devm_clk_register */
- 		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[i]);
- 		if (ret)
- 			return ret;
+-	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+-			&meson8b_hw_onecell_data);
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   &meson8b_hw_onecell_data);
+ }
+ 
+ static const struct of_device_id meson8b_clkc_match_table[] = {
 -- 
 2.14.3
