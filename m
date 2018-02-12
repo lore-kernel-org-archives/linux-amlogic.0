@@ -1,14 +1,14 @@
-From: linux@roeck-us.net (Guenter Roeck)
-Date: Sun, 11 Feb 2018 17:11:58 -0800
-Subject: [v3, 7/7] watchdog: coh901327: make use of timeout-secs provided
- in devicetree
-In-Reply-To: <20180211200847.25000-7-marcus.folkesson@gmail.com>
-References: <20180211200847.25000-7-marcus.folkesson@gmail.com>
-Message-ID: <20180212011158.GA4778@roeck-us.net>
+From: nicolas.ferre@microchip.com (Nicolas Ferre)
+Date: Mon, 12 Feb 2018 09:59:00 +0100
+Subject: [PATCH v3 1/7] watchdog: sama5d4: make use of timeout-secs
+ provided in devicetree
+In-Reply-To: <20180211200847.25000-1-marcus.folkesson@gmail.com>
+References: <20180211200847.25000-1-marcus.folkesson@gmail.com>
+Message-ID: <c925c4cb-1367-d57e-49eb-f88a6d2a1e70@microchip.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Feb 11, 2018 at 09:08:47PM +0100, Marcus Folkesson wrote:
+On 11/02/2018 at 21:08, Marcus Folkesson wrote:
 > watchdog_init_timeout() will allways pick timeout_param since it
 > defaults to a valid timeout.
 > 
@@ -18,69 +18,54 @@ On Sun, Feb 11, 2018 at 09:08:47PM +0100, Marcus Folkesson wrote:
 > 
 > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Thanks, best regards,
+  Nicolas
 
 > ---
 > 
 > Notes:
 >     v3:
->     	- Reformat and use coh901327_wdt.timeout instead of margin when print out
+>     	- Use wdd->timeout instead of wdt_timeout when print out
 >     	  timout in probe function.
->     
->     v2:
->     	- Set .timeout in coh901327_wdt structure declaration.
->     	- Set .min_timeout to 1 instead of 0. I could not find a datasheet
->     	  for coh901327, so I'm not sure if 0 is valid. However, 0 seems
->     	  wrong to me and most driver has 1 as min value. If it should
->     	  be 0, please let me know and I have to set another initial
->     	  value for margin.
 > 
->  drivers/watchdog/coh901327_wdt.c | 14 ++++++++------
->  1 file changed, 8 insertions(+), 6 deletions(-)
+>  drivers/watchdog/sama5d4_wdt.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/watchdog/coh901327_wdt.c b/drivers/watchdog/coh901327_wdt.c
-> index 4410337f4f7f..500af8a7ec5a 100644
-> --- a/drivers/watchdog/coh901327_wdt.c
-> +++ b/drivers/watchdog/coh901327_wdt.c
-> @@ -67,7 +67,9 @@
->  #define U300_WDOG_IFR_WILL_BARK_IRQ_FORCE_ENABLE			0x0001U
->  
->  /* Default timeout in seconds = 1 minute */
-> -static unsigned int margin = 60;
-> +#define U300_WDOG_DEFAULT_TIMEOUT					60
-> +
-> +static unsigned int margin;
->  static int irq;
->  static void __iomem *virtbase;
->  static struct device *parent;
-> @@ -235,8 +237,9 @@ static struct watchdog_device coh901327_wdt = {
->  	 * timeout register is max
->  	 * 0x7FFF = 327670ms ~= 327s.
->  	 */
-> -	.min_timeout = 0,
-> +	.min_timeout = 1,
->  	.max_timeout = 327,
-> +	.timeout = U300_WDOG_DEFAULT_TIMEOUT,
+> diff --git a/drivers/watchdog/sama5d4_wdt.c b/drivers/watchdog/sama5d4_wdt.c
+> index 0ae947c3d7bc..255169916dbb 100644
+> --- a/drivers/watchdog/sama5d4_wdt.c
+> +++ b/drivers/watchdog/sama5d4_wdt.c
+> @@ -33,7 +33,7 @@ struct sama5d4_wdt {
+>  	unsigned long		last_ping;
 >  };
 >  
->  static int __exit coh901327_remove(struct platform_device *pdev)
-> @@ -315,16 +318,15 @@ static int __init coh901327_probe(struct platform_device *pdev)
->  		goto out_no_irq;
->  	}
+> -static int wdt_timeout = WDT_DEFAULT_TIMEOUT;
+> +static int wdt_timeout;
+>  static bool nowayout = WATCHDOG_NOWAYOUT;
 >  
-> -	ret = watchdog_init_timeout(&coh901327_wdt, margin, dev);
-> -	if (ret < 0)
-> -		coh901327_wdt.timeout = 60;
-> +	watchdog_init_timeout(&coh901327_wdt, margin, dev);
+>  module_param(wdt_timeout, int, 0);
+> @@ -212,7 +212,7 @@ static int sama5d4_wdt_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
 >  
->  	coh901327_wdt.parent = dev;
->  	ret = watchdog_register_device(&coh901327_wdt);
->  	if (ret)
->  		goto out_no_wdog;
+>  	wdd = &wdt->wdd;
+> -	wdd->timeout = wdt_timeout;
+> +	wdd->timeout = WDT_DEFAULT_TIMEOUT;
+>  	wdd->info = &sama5d4_wdt_info;
+>  	wdd->ops = &sama5d4_wdt_ops;
+>  	wdd->min_timeout = MIN_WDT_TIMEOUT;
+> @@ -273,7 +273,7 @@ static int sama5d4_wdt_probe(struct platform_device *pdev)
+>  	platform_set_drvdata(pdev, wdt);
 >  
-> -	dev_info(dev, "initialized. timer margin=%d sec\n", margin);
-> +	dev_info(dev, "initialized. (timeout=%d sec)\n",
-> +			coh901327_wdt.timeout);
+>  	dev_info(&pdev->dev, "initialized (timeout = %d sec, nowayout = %d)\n",
+> -		 wdt_timeout, nowayout);
+> +		 wdd->timeout, nowayout);
+>  
 >  	return 0;
->  
->  out_no_wdog:
+>  }
+> 
+
+
+-- 
+Nicolas Ferre
