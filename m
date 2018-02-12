@@ -1,957 +1,242 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Feb 2018 15:58:40 +0100
-Subject: [PATCH v2 13/19] clk: meson: migrate mplls clocks to clk_regmap
+Date: Mon, 12 Feb 2018 15:58:45 +0100
+Subject: [PATCH v2 18/19] clk: meson: remove obsolete cpu_clk
 In-Reply-To: <20180212145846.19380-1-jbrunet@baylibre.com>
 References: <20180212145846.19380-1-jbrunet@baylibre.com>
-Message-ID: <20180212145846.19380-14-jbrunet@baylibre.com>
+Message-ID: <20180212145846.19380-19-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Rework meson mpll driver to use clk_regmap and move meson8b, gxbb
-and axg clocks using meson_clk_mpll to clk_regmap
+meson8b cpu_clk has been replaced by a set of divider and mux clocks.
+meson_cpu_clk is no longer used and can be removed
 
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c      | 245 +++++++++++++++++++++----------------------
- drivers/clk/meson/clk-mpll.c | 102 +++++++-----------
- drivers/clk/meson/clkc.h     |   4 +-
- drivers/clk/meson/gxbb.c     | 161 ++++++++++++++--------------
- drivers/clk/meson/meson8b.c  | 155 ++++++++++++++-------------
- 5 files changed, 313 insertions(+), 354 deletions(-)
+ drivers/clk/meson/Makefile  |   2 +-
+ drivers/clk/meson/clk-cpu.c | 178 --------------------------------------------
+ drivers/clk/meson/clkc.h    |  11 ---
+ 3 files changed, 1 insertion(+), 190 deletions(-)
+ delete mode 100644 drivers/clk/meson/clk-cpu.c
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 9f0c36e12cb8..85f9466ce006 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -267,38 +267,40 @@ static struct clk_fixed_factor axg_fclk_div7 = {
- 	},
- };
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 465086118d62..ffee82e60b7a 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -2,7 +2,7 @@
+ # Makefile for Meson specific clk
+ #
  
--static struct meson_clk_mpll axg_mpll0 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 15,
--		.width	 = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 14,
--		.width	 = 1,
-+static struct clk_regmap axg_mpll0 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 15,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 14,
-+			.width	 = 1,
-+		},
-+		.ssen = {
-+			.reg_off = HHI_MPLL_CNTL,
-+			.shift   = 25,
-+			.width	 = 1,
-+		},
-+		.misc = {
-+			.reg_off = HHI_PLL_TOP_MISC,
-+			.shift   = 0,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.ssen = {
--		.reg_off = HHI_MPLL_CNTL,
--		.shift   = 25,
--		.width	 = 1,
--	},
--	.misc = {
--		.reg_off = HHI_PLL_TOP_MISC,
--		.shift   = 0,
--		.width	 = 1,
--	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0",
- 		.ops = &meson_clk_mpll_ops,
-@@ -307,33 +309,35 @@ static struct meson_clk_mpll axg_mpll0 = {
- 	},
- };
- 
--static struct meson_clk_mpll axg_mpll1 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 0,
--		.width   = 14,
-+static struct clk_regmap axg_mpll1 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 15,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 14,
-+			.width	 = 1,
-+		},
-+		.misc = {
-+			.reg_off = HHI_PLL_TOP_MISC,
-+			.shift   = 1,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 15,
--		.width	 = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 14,
--		.width	 = 1,
--	},
--	.misc = {
--		.reg_off = HHI_PLL_TOP_MISC,
--		.shift   = 1,
--		.width	 = 1,
--	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll1",
- 		.ops = &meson_clk_mpll_ops,
-@@ -342,33 +346,35 @@ static struct meson_clk_mpll axg_mpll1 = {
- 	},
- };
- 
--static struct meson_clk_mpll axg_mpll2 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 15,
--		.width	 = 1,
-+static struct clk_regmap axg_mpll2 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 15,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 14,
-+			.width	 = 1,
-+		},
-+		.misc = {
-+			.reg_off = HHI_PLL_TOP_MISC,
-+			.shift   = 2,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 14,
--		.width	 = 1,
--	},
--	.misc = {
--		.reg_off = HHI_PLL_TOP_MISC,
--		.shift   = 2,
--		.width	 = 1,
--	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll2",
- 		.ops = &meson_clk_mpll_ops,
-@@ -377,33 +383,35 @@ static struct meson_clk_mpll axg_mpll2 = {
- 	},
- };
- 
--static struct meson_clk_mpll axg_mpll3 = {
--	.sdm = {
--		.reg_off = HHI_MPLL3_CNTL0,
--		.shift   = 12,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL3_CNTL0,
--		.shift   = 11,
--		.width	 = 1,
-+static struct clk_regmap axg_mpll3 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL3_CNTL0,
-+			.shift   = 12,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL3_CNTL0,
-+			.shift   = 11,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL3_CNTL0,
-+			.shift   = 2,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL3_CNTL0,
-+			.shift   = 0,
-+			.width	 = 1,
-+		},
-+		.misc = {
-+			.reg_off = HHI_PLL_TOP_MISC,
-+			.shift   = 3,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.n2 = {
--		.reg_off = HHI_MPLL3_CNTL0,
--		.shift   = 2,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL3_CNTL0,
--		.shift   = 0,
--		.width	 = 1,
--	},
--	.misc = {
--		.reg_off = HHI_PLL_TOP_MISC,
--		.shift   = 3,
--		.width	 = 1,
--	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll3",
- 		.ops = &meson_clk_mpll_ops,
-@@ -698,13 +706,6 @@ static struct meson_clk_pll *const axg_clk_plls[] = {
- 	&axg_gp0_pll,
- };
- 
--static struct meson_clk_mpll *const axg_clk_mplls[] = {
--	&axg_mpll0,
--	&axg_mpll1,
--	&axg_mpll2,
--	&axg_mpll3,
+-obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-cpu.o clk-mpll.o clk-audio-divider.o
++obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-audio-divider.o
+ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+ obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
+ obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o
+diff --git a/drivers/clk/meson/clk-cpu.c b/drivers/clk/meson/clk-cpu.c
+deleted file mode 100644
+index f8b2b7efd016..000000000000
+--- a/drivers/clk/meson/clk-cpu.c
++++ /dev/null
+@@ -1,178 +0,0 @@
+-/*
+- * Copyright (c) 2015 Endless Mobile, Inc.
+- * Author: Carlo Caione <carlo@endlessm.com>
+- *
+- * This program is free software; you can redistribute it and/or modify it
+- * under the terms and conditions of the GNU General Public License,
+- * version 2, as published by the Free Software Foundation.
+- *
+- * This program is distributed in the hope it will be useful, but WITHOUT
+- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+- * more details.
+- *
+- * You should have received a copy of the GNU General Public License along with
+- * this program.  If not, see <http://www.gnu.org/licenses/>.
+- */
+-
+-/*
+- * CPU clock path:
+- *
+- *                           +-[/N]-----|3|
+- *             MUX2  +--[/3]-+----------|2| MUX1
+- * [sys_pll]---|1|   |--[/2]------------|1|-|1|
+- *             | |---+------------------|0| | |----- [a5_clk]
+- *          +--|0|                          | |
+- * [xtal]---+-------------------------------|0|
+- *
+- *
+- *
+- */
+-
+-#include <linux/delay.h>
+-#include <linux/err.h>
+-#include <linux/io.h>
+-#include <linux/module.h>
+-#include <linux/of_address.h>
+-#include <linux/slab.h>
+-#include <linux/clk.h>
+-#include <linux/clk-provider.h>
+-
+-#define MESON_CPU_CLK_CNTL1		0x00
+-#define MESON_CPU_CLK_CNTL		0x40
+-
+-#define MESON_CPU_CLK_MUX1		BIT(7)
+-#define MESON_CPU_CLK_MUX2		BIT(0)
+-
+-#define MESON_N_WIDTH			9
+-#define MESON_N_SHIFT			20
+-#define MESON_SEL_WIDTH			2
+-#define MESON_SEL_SHIFT			2
+-
+-#include "clkc.h"
+-
+-#define to_meson_clk_cpu_hw(_hw) container_of(_hw, struct meson_clk_cpu, hw)
+-#define to_meson_clk_cpu_nb(_nb) container_of(_nb, struct meson_clk_cpu, clk_nb)
+-
+-static long meson_clk_cpu_round_rate(struct clk_hw *hw, unsigned long rate,
+-				     unsigned long *prate)
+-{
+-	struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_hw(hw);
+-
+-	return divider_round_rate(hw, rate, prate, clk_cpu->div_table,
+-				  MESON_N_WIDTH, CLK_DIVIDER_ROUND_CLOSEST);
+-}
+-
+-static int meson_clk_cpu_set_rate(struct clk_hw *hw, unsigned long rate,
+-				  unsigned long parent_rate)
+-{
+-	struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_hw(hw);
+-	unsigned int div, sel, N = 0;
+-	u32 reg;
+-
+-	div = DIV_ROUND_UP(parent_rate, rate);
+-
+-	if (div <= 3) {
+-		sel = div - 1;
+-	} else {
+-		sel = 3;
+-		N = div / 2;
+-	}
+-
+-	reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL1);
+-	reg = PARM_SET(MESON_N_WIDTH, MESON_N_SHIFT, reg, N);
+-	writel(reg, clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL1);
+-
+-	reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL);
+-	reg = PARM_SET(MESON_SEL_WIDTH, MESON_SEL_SHIFT, reg, sel);
+-	writel(reg, clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL);
+-
+-	return 0;
+-}
+-
+-static unsigned long meson_clk_cpu_recalc_rate(struct clk_hw *hw,
+-					       unsigned long parent_rate)
+-{
+-	struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_hw(hw);
+-	unsigned int N, sel;
+-	unsigned int div = 1;
+-	u32 reg;
+-
+-	reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL1);
+-	N = PARM_GET(MESON_N_WIDTH, MESON_N_SHIFT, reg);
+-
+-	reg = readl(clk_cpu->base + clk_cpu->reg_off + MESON_CPU_CLK_CNTL);
+-	sel = PARM_GET(MESON_SEL_WIDTH, MESON_SEL_SHIFT, reg);
+-
+-	if (sel < 3)
+-		div = sel + 1;
+-	else
+-		div = 2 * N;
+-
+-	return parent_rate / div;
+-}
+-
+-/* FIXME MUX1 & MUX2 should be struct clk_hw objects */
+-static int meson_clk_cpu_pre_rate_change(struct meson_clk_cpu *clk_cpu,
+-					 struct clk_notifier_data *ndata)
+-{
+-	u32 cpu_clk_cntl;
+-
+-	/* switch MUX1 to xtal */
+-	cpu_clk_cntl = readl(clk_cpu->base + clk_cpu->reg_off
+-				+ MESON_CPU_CLK_CNTL);
+-	cpu_clk_cntl &= ~MESON_CPU_CLK_MUX1;
+-	writel(cpu_clk_cntl, clk_cpu->base + clk_cpu->reg_off
+-				+ MESON_CPU_CLK_CNTL);
+-	udelay(100);
+-
+-	/* switch MUX2 to sys-pll */
+-	cpu_clk_cntl |= MESON_CPU_CLK_MUX2;
+-	writel(cpu_clk_cntl, clk_cpu->base + clk_cpu->reg_off
+-				+ MESON_CPU_CLK_CNTL);
+-
+-	return 0;
+-}
+-
+-/* FIXME MUX1 & MUX2 should be struct clk_hw objects */
+-static int meson_clk_cpu_post_rate_change(struct meson_clk_cpu *clk_cpu,
+-					  struct clk_notifier_data *ndata)
+-{
+-	u32 cpu_clk_cntl;
+-
+-	/* switch MUX1 to divisors' output */
+-	cpu_clk_cntl = readl(clk_cpu->base + clk_cpu->reg_off
+-				+ MESON_CPU_CLK_CNTL);
+-	cpu_clk_cntl |= MESON_CPU_CLK_MUX1;
+-	writel(cpu_clk_cntl, clk_cpu->base + clk_cpu->reg_off
+-				+ MESON_CPU_CLK_CNTL);
+-	udelay(100);
+-
+-	return 0;
+-}
+-
+-/*
+- * This clock notifier is called when the frequency of the of the parent
+- * PLL clock is to be changed. We use the xtal input as temporary parent
+- * while the PLL frequency is stabilized.
+- */
+-int meson_clk_cpu_notifier_cb(struct notifier_block *nb,
+-				     unsigned long event, void *data)
+-{
+-	struct clk_notifier_data *ndata = data;
+-	struct meson_clk_cpu *clk_cpu = to_meson_clk_cpu_nb(nb);
+-	int ret = 0;
+-
+-	if (event == PRE_RATE_CHANGE)
+-		ret = meson_clk_cpu_pre_rate_change(clk_cpu, ndata);
+-	else if (event == POST_RATE_CHANGE)
+-		ret = meson_clk_cpu_post_rate_change(clk_cpu, ndata);
+-
+-	return notifier_from_errno(ret);
+-}
+-
+-const struct clk_ops meson_clk_cpu_ops = {
+-	.recalc_rate	= meson_clk_cpu_recalc_rate,
+-	.round_rate	= meson_clk_cpu_round_rate,
+-	.set_rate	= meson_clk_cpu_set_rate,
 -};
--
- static struct clk_regmap *const axg_clk_regmaps[] = {
- 	&axg_clk81,
- 	&axg_ddr,
-@@ -759,19 +760,19 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
- 	&axg_mpeg_clk_sel,
- 	&axg_sd_emmc_b_clk0_sel,
- 	&axg_sd_emmc_c_clk0_sel,
-+	&axg_mpll0,
-+	&axg_mpll1,
-+	&axg_mpll2,
-+	&axg_mpll3,
- };
- 
- struct clkc_data {
--	struct meson_clk_mpll *const *clk_mplls;
--	unsigned int clk_mplls_count;
- 	struct meson_clk_pll *const *clk_plls;
- 	unsigned int clk_plls_count;
- 	struct clk_hw_onecell_data *hw_onecell_data;
- };
- 
- static const struct clkc_data axg_clkc_data = {
--	.clk_mplls = axg_clk_mplls,
--	.clk_mplls_count = ARRAY_SIZE(axg_clk_mplls),
- 	.clk_plls = axg_clk_plls,
- 	.clk_plls_count = ARRAY_SIZE(axg_clk_plls),
- 	.hw_onecell_data = &axg_hw_onecell_data,
-@@ -820,10 +821,6 @@ static int axg_clkc_probe(struct platform_device *pdev)
- 	for (i = 0; i < clkc_data->clk_plls_count; i++)
- 		clkc_data->clk_plls[i]->base = clk_base;
- 
--	/* Populate base address for MPLLs */
--	for (i = 0; i < clkc_data->clk_mplls_count; i++)
--		clkc_data->clk_mplls[i]->base = clk_base;
--
- 	/* Populate regmap for the regmap backed clocks */
- 	for (i = 0; i < ARRAY_SIZE(axg_clk_regmaps); i++)
- 		axg_clk_regmaps[i]->map = map;
-diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
-index 6d79d6daadc4..66998ff47635 100644
---- a/drivers/clk/meson/clk-mpll.c
-+++ b/drivers/clk/meson/clk-mpll.c
-@@ -68,11 +68,15 @@
- #define N2_MIN	4
- #define N2_MAX	511
- 
--#define to_meson_clk_mpll(_hw) container_of(_hw, struct meson_clk_mpll, hw)
-+static inline struct meson_clk_mpll_data *
-+meson_clk_mpll_data(struct clk_regmap *clk)
-+{
-+	return (struct meson_clk_mpll_data *)clk->data;
-+}
- 
- static long rate_from_params(unsigned long parent_rate,
--				      unsigned long sdm,
--				      unsigned long n2)
-+			     unsigned int sdm,
-+			     unsigned int n2)
- {
- 	unsigned long divisor = (SDM_DEN * n2) + sdm;
- 
-@@ -84,8 +88,8 @@ static long rate_from_params(unsigned long parent_rate,
- 
- static void params_from_rate(unsigned long requested_rate,
- 			     unsigned long parent_rate,
--			     unsigned long *sdm,
--			     unsigned long *n2)
-+			     unsigned int *sdm,
-+			     unsigned int *n2)
- {
- 	uint64_t div = parent_rate;
- 	unsigned long rem = do_div(div, requested_rate);
-@@ -105,31 +109,23 @@ static void params_from_rate(unsigned long requested_rate,
- static unsigned long mpll_recalc_rate(struct clk_hw *hw,
- 		unsigned long parent_rate)
- {
--	struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
--	struct parm *p;
--	unsigned long reg, sdm, n2;
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
-+	unsigned int sdm, n2;
- 	long rate;
- 
--	p = &mpll->sdm;
--	reg = readl(mpll->base + p->reg_off);
--	sdm = PARM_GET(p->width, p->shift, reg);
--
--	p = &mpll->n2;
--	reg = readl(mpll->base + p->reg_off);
--	n2 = PARM_GET(p->width, p->shift, reg);
-+	sdm = meson_parm_read(clk->map, &mpll->sdm);
-+	n2 = meson_parm_read(clk->map, &mpll->n2);
- 
- 	rate = rate_from_params(parent_rate, sdm, n2);
--	if (rate < 0)
--		return 0;
--
--	return rate;
-+	return rate < 0 ? 0 : rate;
- }
- 
- static long mpll_round_rate(struct clk_hw *hw,
- 			    unsigned long rate,
- 			    unsigned long *parent_rate)
- {
--	unsigned long sdm, n2;
-+	unsigned int sdm, n2;
- 
- 	params_from_rate(rate, *parent_rate, &sdm, &n2);
- 	return rate_from_params(*parent_rate, sdm, n2);
-@@ -139,9 +135,9 @@ static int mpll_set_rate(struct clk_hw *hw,
- 			 unsigned long rate,
- 			 unsigned long parent_rate)
- {
--	struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
--	struct parm *p;
--	unsigned long reg, sdm, n2;
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
-+	unsigned int sdm, n2;
- 	unsigned long flags = 0;
- 
- 	params_from_rate(rate, parent_rate, &sdm, &n2);
-@@ -151,34 +147,20 @@ static int mpll_set_rate(struct clk_hw *hw,
- 	else
- 		__acquire(mpll->lock);
- 
--	p = &mpll->sdm;
--	reg = readl(mpll->base + p->reg_off);
--	reg = PARM_SET(p->width, p->shift, reg, sdm);
--	writel(reg, mpll->base + p->reg_off);
--
--	p = &mpll->sdm_en;
--	reg = readl(mpll->base + p->reg_off);
--	reg = PARM_SET(p->width, p->shift, reg, 1);
--	writel(reg, mpll->base + p->reg_off);
--
--	p = &mpll->ssen;
--	if (p->width != 0) {
--		reg = readl(mpll->base + p->reg_off);
--		reg = PARM_SET(p->width, p->shift, reg, 1);
--		writel(reg, mpll->base + p->reg_off);
--	}
-+	/* Enable and set the fractional part */
-+	meson_parm_write(clk->map, &mpll->sdm, sdm);
-+	meson_parm_write(clk->map, &mpll->sdm_en, 1);
- 
--	p = &mpll->n2;
--	reg = readl(mpll->base + p->reg_off);
--	reg = PARM_SET(p->width, p->shift, reg, n2);
--	writel(reg, mpll->base + p->reg_off);
-+	/* Set additional fractional part enable if required */
-+	if (MESON_PARM_APPLICABLE(&mpll->ssen))
-+		meson_parm_write(clk->map, &mpll->ssen, 1);
- 
--	p = &mpll->misc;
--	if (p->width != 0) {
--		reg = readl(mpll->base + p->reg_off);
--		reg = PARM_SET(p->width, p->shift, reg, 1);
--		writel(reg, mpll->base + p->reg_off);
--	}
-+	/* Set the integer divider part */
-+	meson_parm_write(clk->map, &mpll->n2, n2);
-+
-+	/* Set the magic misc bit if required */
-+	if (MESON_PARM_APPLICABLE(&mpll->misc))
-+		meson_parm_write(clk->map, &mpll->misc, 1);
- 
- 	if (mpll->lock)
- 		spin_unlock_irqrestore(mpll->lock, flags);
-@@ -190,9 +172,8 @@ static int mpll_set_rate(struct clk_hw *hw,
- 
- static void mpll_enable_core(struct clk_hw *hw, int enable)
- {
--	struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
--	struct parm *p;
--	unsigned long reg;
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
- 	unsigned long flags = 0;
- 
- 	if (mpll->lock)
-@@ -200,10 +181,7 @@ static void mpll_enable_core(struct clk_hw *hw, int enable)
- 	else
- 		__acquire(mpll->lock);
- 
--	p = &mpll->en;
--	reg = readl(mpll->base + p->reg_off);
--	reg = PARM_SET(p->width, p->shift, reg, enable ? 1 : 0);
--	writel(reg, mpll->base + p->reg_off);
-+	meson_parm_write(clk->map, &mpll->en, enable ? 1 : 0);
- 
- 	if (mpll->lock)
- 		spin_unlock_irqrestore(mpll->lock, flags);
-@@ -226,16 +204,10 @@ static void mpll_disable(struct clk_hw *hw)
- 
- static int mpll_is_enabled(struct clk_hw *hw)
- {
--	struct meson_clk_mpll *mpll = to_meson_clk_mpll(hw);
--	struct parm *p;
--	unsigned long reg;
--	int en;
--
--	p = &mpll->en;
--	reg = readl(mpll->base + p->reg_off);
--	en = PARM_GET(p->width, p->shift, reg);
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
- 
--	return en;
-+	return meson_parm_read(clk->map, &mpll->en);
- }
- 
- const struct clk_ops meson_clk_mpll_ro_ops = {
 diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 8edc25297422..08a1ebfc65dc 100644
+index cc1a964cd4d7..8d8fe608cff4 100644
 --- a/drivers/clk/meson/clkc.h
 +++ b/drivers/clk/meson/clkc.h
-@@ -132,9 +132,7 @@ struct meson_clk_cpu {
- int meson_clk_cpu_notifier_cb(struct notifier_block *nb, unsigned long event,
- 		void *data);
+@@ -101,17 +101,6 @@ struct meson_clk_pll_data {
  
--struct meson_clk_mpll {
+ #define to_meson_clk_pll(_hw) container_of(_hw, struct meson_clk_pll, hw)
+ 
+-struct meson_clk_cpu {
 -	struct clk_hw hw;
 -	void __iomem *base;
-+struct meson_clk_mpll_data {
+-	u16 reg_off;
+-	struct notifier_block clk_nb;
+-	const struct clk_div_table *div_table;
+-};
+-
+-int meson_clk_cpu_notifier_cb(struct notifier_block *nb, unsigned long event,
+-		void *data);
+-
+ struct meson_clk_mpll_data {
  	struct parm sdm;
  	struct parm sdm_en;
- 	struct parm n2;
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index d9f426265774..d2724a7ce9e7 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -482,33 +482,35 @@ static struct clk_fixed_factor gxbb_fclk_div7 = {
- 	},
- };
- 
--static struct meson_clk_mpll gxbb_mpll0 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 15,
--		.width	 = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 14,
--		.width	 = 1,
--	},
--	.ssen = {
--		.reg_off = HHI_MPLL_CNTL,
--		.shift   = 25,
--		.width	 = 1,
-+static struct clk_regmap gxbb_mpll0 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 15,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 14,
-+			.width	 = 1,
-+		},
-+		.ssen = {
-+			.reg_off = HHI_MPLL_CNTL,
-+			.shift   = 25,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0",
- 		.ops = &meson_clk_mpll_ops,
-@@ -517,28 +519,30 @@ static struct meson_clk_mpll gxbb_mpll0 = {
- 	},
- };
- 
--static struct meson_clk_mpll gxbb_mpll1 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 15,
--		.width	 = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 14,
--		.width	 = 1,
-+static struct clk_regmap gxbb_mpll1 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 15,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 14,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll1",
- 		.ops = &meson_clk_mpll_ops,
-@@ -547,28 +551,30 @@ static struct meson_clk_mpll gxbb_mpll1 = {
- 	},
- };
- 
--static struct meson_clk_mpll gxbb_mpll2 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 15,
--		.width	 = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 14,
--		.width	 = 1,
-+static struct clk_regmap gxbb_mpll2 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 15,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 14,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll2",
- 		.ops = &meson_clk_mpll_ops,
-@@ -1771,12 +1777,6 @@ static struct meson_clk_pll *const gxl_clk_plls[] = {
- 	&gxl_gp0_pll,
- };
- 
--static struct meson_clk_mpll *const gxbb_clk_mplls[] = {
--	&gxbb_mpll0,
--	&gxbb_mpll1,
--	&gxbb_mpll2,
--};
--
- static struct meson_clk_audio_divider *const gxbb_audio_dividers[] = {
- 	&gxbb_cts_amclk_div,
- };
-@@ -1909,11 +1909,12 @@ static struct clk_regmap *const gx_clk_regmaps[] = {
- 	&gxbb_vapb_0_sel,
- 	&gxbb_vapb_1_sel,
- 	&gxbb_vapb_sel,
-+	&gxbb_mpll0,
-+	&gxbb_mpll1,
-+	&gxbb_mpll2,
- };
- 
- struct clkc_data {
--	struct meson_clk_mpll *const *clk_mplls;
--	unsigned int clk_mplls_count;
- 	struct meson_clk_pll *const *clk_plls;
- 	unsigned int clk_plls_count;
- 	struct meson_clk_audio_divider *const *clk_audio_dividers;
-@@ -1922,8 +1923,6 @@ struct clkc_data {
- };
- 
- static const struct clkc_data gxbb_clkc_data = {
--	.clk_mplls = gxbb_clk_mplls,
--	.clk_mplls_count = ARRAY_SIZE(gxbb_clk_mplls),
- 	.clk_plls = gxbb_clk_plls,
- 	.clk_plls_count = ARRAY_SIZE(gxbb_clk_plls),
- 	.clk_audio_dividers = gxbb_audio_dividers,
-@@ -1932,8 +1931,6 @@ static const struct clkc_data gxbb_clkc_data = {
- };
- 
- static const struct clkc_data gxl_clkc_data = {
--	.clk_mplls = gxbb_clk_mplls,
--	.clk_mplls_count = ARRAY_SIZE(gxbb_clk_mplls),
- 	.clk_plls = gxl_clk_plls,
- 	.clk_plls_count = ARRAY_SIZE(gxl_clk_plls),
- 	.clk_audio_dividers = gxbb_audio_dividers,
-@@ -1984,10 +1981,6 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
- 	for (i = 0; i < clkc_data->clk_plls_count; i++)
- 		clkc_data->clk_plls[i]->base = clk_base;
- 
--	/* Populate base address for MPLLs */
--	for (i = 0; i < clkc_data->clk_mplls_count; i++)
--		clkc_data->clk_mplls[i]->base = clk_base;
--
- 	/* Populate base address for the audio dividers */
- 	for (i = 0; i < clkc_data->clk_audio_dividers_count; i++)
- 		clkc_data->clk_audio_dividers[i]->base = clk_base;
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index e643f7556f5e..4bb51c8f3102 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -257,33 +257,35 @@ static struct clk_fixed_factor meson8b_fclk_div7 = {
- 	},
- };
- 
--static struct meson_clk_mpll meson8b_mpll0 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 15,
--		.width   = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL7,
--		.shift   = 14,
--		.width   = 1,
--	},
--	.ssen = {
--		.reg_off = HHI_MPLL_CNTL,
--		.shift   = 25,
--		.width   = 1,
-+static struct clk_regmap meson8b_mpll0 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 15,
-+			.width   = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 14,
-+			.width   = 1,
-+		},
-+		.ssen = {
-+			.reg_off = HHI_MPLL_CNTL,
-+			.shift   = 25,
-+			.width   = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0",
- 		.ops = &meson_clk_mpll_ops,
-@@ -292,28 +294,30 @@ static struct meson_clk_mpll meson8b_mpll0 = {
- 	},
- };
- 
--static struct meson_clk_mpll meson8b_mpll1 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 15,
--		.width   = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 16,
--		.width   = 9,
-+static struct clk_regmap meson8b_mpll1 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 15,
-+			.width   = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL8,
-+			.shift   = 14,
-+			.width   = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL8,
--		.shift   = 14,
--		.width   = 1,
--	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll1",
- 		.ops = &meson_clk_mpll_ops,
-@@ -322,28 +326,30 @@ static struct meson_clk_mpll meson8b_mpll1 = {
- 	},
- };
- 
--static struct meson_clk_mpll meson8b_mpll2 = {
--	.sdm = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 0,
--		.width   = 14,
--	},
--	.sdm_en = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 15,
--		.width   = 1,
--	},
--	.n2 = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 16,
--		.width   = 9,
--	},
--	.en = {
--		.reg_off = HHI_MPLL_CNTL9,
--		.shift   = 14,
--		.width   = 1,
-+static struct clk_regmap meson8b_mpll2 = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 15,
-+			.width   = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 16,
-+			.width   = 9,
-+		},
-+		.en = {
-+			.reg_off = HHI_MPLL_CNTL9,
-+			.shift   = 14,
-+			.width   = 1,
-+		},
-+		.lock = &meson_clk_lock,
- 	},
--	.lock = &meson_clk_lock,
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll2",
- 		.ops = &meson_clk_mpll_ops,
-@@ -613,12 +619,6 @@ static struct meson_clk_pll *const meson8b_clk_plls[] = {
- 	&meson8b_sys_pll,
- };
- 
--static struct meson_clk_mpll *const meson8b_clk_mplls[] = {
--	&meson8b_mpll0,
--	&meson8b_mpll1,
--	&meson8b_mpll2,
--};
--
- static struct clk_regmap *const meson8b_clk_regmaps[] = {
- 	&meson8b_clk81,
- 	&meson8b_ddr,
-@@ -700,6 +700,9 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
- 	&meson8b_ao_iface,
- 	&meson8b_mpeg_clk_div,
- 	&meson8b_mpeg_clk_sel,
-+	&meson8b_mpll0,
-+	&meson8b_mpll1,
-+	&meson8b_mpll2,
- };
- 
- static const struct meson8b_clk_reset_line {
-@@ -826,10 +829,6 @@ static int meson8b_clkc_probe(struct platform_device *pdev)
- 	for (i = 0; i < ARRAY_SIZE(meson8b_clk_plls); i++)
- 		meson8b_clk_plls[i]->base = clk_base;
- 
--	/* Populate base address for MPLLs */
--	for (i = 0; i < ARRAY_SIZE(meson8b_clk_mplls); i++)
--		meson8b_clk_mplls[i]->base = clk_base;
--
- 	/* Populate the base address for CPU clk */
- 	meson8b_cpu_clk.base = clk_base;
- 
 -- 
 2.14.3
