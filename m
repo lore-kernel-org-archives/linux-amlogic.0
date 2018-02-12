@@ -1,45 +1,119 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 12 Feb 2018 23:39:23 +0100
-Subject: [PATCH v2 0/5] improvements and fixes for the phy-meson-gxl-usb2
- driver
-Message-ID: <20180212223928.22993-1-martin.blumenstingl@googlemail.com>
+Date: Mon, 12 Feb 2018 23:39:25 +0100
+Subject: [PATCH v2 2/5] phy: amlogic: phy-meson-gxl-usb2: support the clock
+ and reset line
+In-Reply-To: <20180212223928.22993-1-martin.blumenstingl@googlemail.com>
+References: <20180212223928.22993-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180212223928.22993-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This contains two fixes and two (minor) fixes for the phy-meson-gxl-usb2
-driver:
-- a clock and reset line is used for the PHYs. this was not clear from
-  the Amlogic GPL kernel sources since the clock is enabled very early
-  in the boot process (either because the hardware defaults to "on",
-  the bootrom enables it or a bootloader before BL3-3/u-boot enables it)
-- we don't read the controller's dr_mode anymore because the USB2 PHY
-  can only be switched into host mode if the USB3 PHY knows about it.
-  Thus auto-detecting the mode doesn't work for this PHY so it's removed
-  in patch #3
-- do not log an error message when the phy-supply is not ready yet and
-  we have to return -EPROBE_DEFER
-- improve the naming of some U2P_R2 test mode registers
+The Meson GXL USB2 PHYs require an additional clock (USB) which has to
+be enabled. If that clock is disabled then all PHY registers read 0x0.
+Luckily for us that clock is always enabled (either by harddware
+defaults, the bootrom, or any of the bootloaders before u-boot/BL3-3).
 
+The OTG capable USB2 PHY additionally has a reset line (USB_OTG, which
+is shared with other components, such as the USB3 PHY for example).
 
-changes since v1 at [0]:
-- collected Rob's Reviewed-by on patch #1 and Yixun's Tested-by
-- rebased on top of v4.16-rc1
+Extend the driver so it handles this clock and the shared reset line.
+We only trigger the reset during the .init phase since it's a shared
+reset line, so triggering it during the driver's .reset implementation
+would effectively also only trigger it once anyways.
 
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Tested-by: Yixun Lan <yixun.lan@amlogic.com>
+---
+ drivers/phy/amlogic/phy-meson-gxl-usb2.c | 44 ++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006293.html
-
-
-Martin Blumenstingl (5):
-  dt-bindings: phy: meson-gxl-usb2-phy: add the reset line and clock
-  phy: amlogic: phy-meson-gxl-usb2: support the clock and reset line
-  phy: amlogic: phy-meson-gxl-usb2: default to host mode
-  phy: amlogic: phy-meson-gxl-usb2: don't log an error on -EPROBE_DEFER
-  phy: amlogic: phy-meson-gxl-usb2: rename some of the U2P_R2 registers
-
- .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  4 ++
- drivers/phy/amlogic/Kconfig                        |  1 -
- drivers/phy/amlogic/phy-meson-gxl-usb2.c           | 78 ++++++++++++++++------
- 3 files changed, 61 insertions(+), 22 deletions(-)
-
+diff --git a/drivers/phy/amlogic/phy-meson-gxl-usb2.c b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
+index e90c4ee25dfe..303b2b46af3c 100644
+--- a/drivers/phy/amlogic/phy-meson-gxl-usb2.c
++++ b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
+@@ -11,11 +11,13 @@
+  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
++#include <linux/clk.h>
+ #include <linux/delay.h>
+ #include <linux/io.h>
+ #include <linux/module.h>
+ #include <linux/of_device.h>
+ #include <linux/regmap.h>
++#include <linux/reset.h>
+ #include <linux/phy/phy.h>
+ #include <linux/platform_device.h>
+ #include <linux/usb/of.h>
+@@ -99,6 +101,8 @@ struct phy_meson_gxl_usb2_priv {
+ 	struct regmap		*regmap;
+ 	enum phy_mode		mode;
+ 	int			is_enabled;
++	struct clk		*clk;
++	struct reset_control	*reset;
+ };
+ 
+ static const struct regmap_config phy_meson_gxl_usb2_regmap_conf = {
+@@ -108,6 +112,31 @@ static const struct regmap_config phy_meson_gxl_usb2_regmap_conf = {
+ 	.max_register = U2P_R3,
+ };
+ 
++static int phy_meson_gxl_usb2_init(struct phy *phy)
++{
++	struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
++	int ret;
++
++	ret = reset_control_reset(priv->reset);
++	if (ret)
++		return ret;
++
++	ret = clk_prepare_enable(priv->clk);
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
++static int phy_meson_gxl_usb2_exit(struct phy *phy)
++{
++	struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
++
++	clk_disable_unprepare(priv->clk);
++
++	return 0;
++}
++
+ static int phy_meson_gxl_usb2_reset(struct phy *phy)
+ {
+ 	struct phy_meson_gxl_usb2_priv *priv = phy_get_drvdata(phy);
+@@ -195,6 +224,8 @@ static int phy_meson_gxl_usb2_power_on(struct phy *phy)
+ }
+ 
+ static const struct phy_ops phy_meson_gxl_usb2_ops = {
++	.init		= phy_meson_gxl_usb2_init,
++	.exit		= phy_meson_gxl_usb2_exit,
+ 	.power_on	= phy_meson_gxl_usb2_power_on,
+ 	.power_off	= phy_meson_gxl_usb2_power_off,
+ 	.set_mode	= phy_meson_gxl_usb2_set_mode,
+@@ -240,6 +271,19 @@ static int phy_meson_gxl_usb2_probe(struct platform_device *pdev)
+ 	if (IS_ERR(priv->regmap))
+ 		return PTR_ERR(priv->regmap);
+ 
++	priv->clk = devm_clk_get(dev, "phy");
++	if (IS_ERR(priv->clk)) {
++		ret = PTR_ERR(priv->clk);
++		if (ret == -ENOENT)
++			priv->clk = NULL;
++		else
++			return ret;
++	}
++
++	priv->reset = devm_reset_control_get_optional_shared(dev, "phy");
++	if (IS_ERR(priv->reset))
++		return PTR_ERR(priv->reset);
++
+ 	phy = devm_phy_create(dev, NULL, &phy_meson_gxl_usb2_ops);
+ 	if (IS_ERR(phy)) {
+ 		dev_err(dev, "failed to create PHY\n");
 -- 
 2.16.1
