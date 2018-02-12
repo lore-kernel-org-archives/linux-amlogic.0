@@ -1,68 +1,66 @@
-From: stern@rowland.harvard.edu (Alan Stern)
-Date: Mon, 12 Feb 2018 14:42:29 -0500 (EST)
-Subject: [PATCH usb-next v9 2/8] usb: add a flag to skip PHY initialization
- to struct usb_hcd
-In-Reply-To: <CAFBinCBnea-Nt73Lz6K+hKub++Upxa6ot8o857rG3GeuLugZYw@mail.gmail.com>
-Message-ID: <Pine.LNX.4.44L0.1802121441030.1411-100000@iolanthe.rowland.org>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 12 Feb 2018 23:33:49 +0100
+Subject: [PATCH v3 1/2] dt-bindings: phy: Add support for the USB3 PHY on
+ Amlogic Meson GXL SoCs
+In-Reply-To: <20180212223350.21036-1-martin.blumenstingl@googlemail.com>
+References: <20180212223350.21036-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180212223350.21036-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 12 Feb 2018, Martin Blumenstingl wrote:
+Amlogic Meson GXL SoCs use a dwc3 controller with two (GXM - a variant
+for GXL, has three) USB2 ports. The first USB2 port supports host and
+peripheral (also called "device") mode.
+While the dwc3 controller has no USB3 port enabled we still need the
+USB3 PHY to be initialized. Otherwise high-speed USB transfers (for
+example with a USB flash drive) may time out (most often seen on boards
+with mainline u-boot, where the bootloader does not initialize the USB3
+PHY registers).
 
-> Hi Alan,
-> 
-> On Mon, Feb 12, 2018 at 4:15 PM, Alan Stern <stern@rowland.harvard.edu> wrote:
-> > On Sun, 11 Feb 2018, Martin Blumenstingl wrote:
-> >
-> >> The USB HCD core driver parses the device-tree node for "phys" and
-> >> "usb-phys" properties. It also manages the power state of these PHYs
-> >> automatically.
-> >> However, drivers may opt-out of this behavior by setting "phy" or
-> >> "usb_phy" in struct usb_hcd to a non-null value. An example where this
-> >> is required is the "Qualcomm USB2 controller", implemented by the
-> >> chipidea driver. The hardware requires that the PHY is only powered on
-> >> after the "reset completed" event from the controller is received.
-> >>
-> >> A follow-up patch will allow the USB HCD core driver to manage more than
-> >> one PHY. Add a new "bool skip_phy_initialization" field to struct
-> >> usb_hcd so drivers can opt-out of any PHY management provided by the USB
-> >> HCD core driver. The new field will be used in that patch as well.
-> >>
-> >> This also updates the existing drivers so they use the new flag if they
-> >> want to opt out of the PHY management provided by the USB HCD core
-> >> driver. This means that for these drivers the new "multiple PHY"
-> >> handling (which will be added in a follow-up patch) will be disabled as
-> >> well.
-> >>
-> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >> ---
-> >
-> >> --- a/include/linux/usb/hcd.h
-> >> +++ b/include/linux/usb/hcd.h
-> >> @@ -98,6 +98,12 @@ struct usb_hcd {
-> >>        */
-> >>       const struct hc_driver  *driver;        /* hw-specific hooks */
-> >>
-> >> +     /*
-> >> +      * do not manage the PHY state in the HCD core, instead let the driver
-> >> +      * handle this (for example if the PHY can only be turned on after a
-> >> +      * specific event)
-> >> +      */
-> >> +     bool skip_phy_initialization;
-> >
-> > Instead of declaring this as a bool at some random location in the
-> > structure, it would be better to make this a bitflag along with the
-> > other ones that get set at registration.  For example, it could come
-> > right after the remove_phy flag.
-> I'll move it to the other bitflags as suggested - thanks for pointing this out!
-> 
-> just to save you from reviewing this over and over again:
-> - I'll move the skip_phy_initialization field below remove_phy
-> - it's new definition will be "unsigned skip_phy_initialization:1"
-> - do you see any issues with the rest of the patch (the "concept" of
-> using a flag to skip all kinds of PHY initialization)?
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Tested-by: Yixun Lan <yixun.lan@amlogic.com>
+---
+ .../devicetree/bindings/phy/meson-gxl-usb3-phy.txt | 31 ++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
 
-It's okay as far as I can tell.  But I haven't done any PHY
-programming, so I'm not a good judge.
-
-Alan Stern
+diff --git a/Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt b/Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
+new file mode 100644
+index 000000000000..114947e1de3d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
+@@ -0,0 +1,31 @@
++* Amlogic Meson GXL and GXM USB3 PHY and OTG detection binding
++
++Required properties:
++- compatible:	Should be "amlogic,meson-gxl-usb3-phy"
++- #phys-cells:	must be 0 (see phy-bindings.txt in this directory)
++- reg:		The base address and length of the registers
++- interrupts:	the interrupt specifier for the OTG detection
++- clocks:	phandles to the clocks for
++		- the USB3 PHY
++		- and peripheral mode/OTG detection
++- clock-names:	must contain "phy" and "peripheral"
++- resets:	phandle to the reset lines for:
++		- the USB3 PHY and
++		- peripheral mode/OTG detection
++- reset-names:	must contain "phy" and "peripheral"
++
++Optional properties:
++- phy-supply:	see phy-bindings.txt in this directory
++
++
++Example:
++	usb3_phy0: phy at 78080 {
++		compatible = "amlogic,meson-gxl-usb3-phy";
++		#phy-cells = <0>;
++		reg = <0x0 0x78080 0x0 0x20>;
++		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clkc CLKID_USB_OTG>, <&clkc_AO CLKID_AO_CEC_32K>;
++		clock-names = "phy", "peripheral";
++		resets = <&reset RESET_USB_OTG>, <&reset RESET_USB_OTG>;
++		reset-names = "phy", "peripheral";
++	};
+-- 
+2.16.1
