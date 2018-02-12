@@ -1,71 +1,111 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Feb 2018 14:13:59 +0100
-Subject: [PATCH] Revert "mmc: meson-gx: include tx phase in the tuning process"
-Message-ID: <20180212131359.7741-1-jbrunet@baylibre.com>
+Date: Mon, 12 Feb 2018 15:58:27 +0100
+Subject: [PATCH v2 00/19] clk: meson: use regmap in clock controllers
+Message-ID: <20180212145846.19380-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This reverts commit 0a44697627d17a66d7dc98f17aeca07ca79c5c20.
+This changeset is a rework of meson's clock controllers to use regmap
+instead of directly using io memory. It based clk-meson next/drivers
+and depends on few core clock patches, mainly to export generic clocks
+helpers: [0],[1]. The line count is pretty high but the changes are
+actually fairly simple and repetitive.
 
-This commit was initially intended to fix problems with hs200 and hs400
-on some boards, mainly the odroid-c2. The OC2 (Rev 0.2) I have performs
-well in this modes, so I could not confirm these issues.
+This work has been triggered by the fact that the HHI register space on
+gxbb and axg provides more than just clocks. The display driver already
+uses a syscon for HHI on gxbb. This is why gxbb did not use
+devm_ioremap_resource() to map the registers, since it would have
+reserved the memory region, preventing another driver from re-mapping
+it. The cleaner solution is, of course, to use syscon to handle. The
+purpose of this changeset is to allow it. Even if meson8b does not need
+this ATM, there is real reason to leave it behind. It is actually easier
+to migrate it as well, so all meson clock drivers may support regmap
+only.
 
-We've had several reports about the issues being still present on (some)
-OC2, so apparently, this change does not do what it was supposed to do.
-Maybe the eMMC signal quality is on the edge on the board. This may
-explain the variability we see in term of stability, but this is just a
-guess. Lowering the max_frequency to 100Mhz seems to do trick for those
-affected by the issue
+The rework starts with a few easy clean-ups. The real deal starts with
+patch 5, which adds meson's clk_regmap. This will be used as common
+structure to implement all the controller clocks. Having this replaces
+the gxbb AO controller specific regmap gate. This structure will also be
+re-used in upcoming controllers, such as the axg's AO and audio
+controllers.  Each clock type is then migrated, one at a time, to this
+new structure.
 
-Worse, the commit created new issues (CRC errors and hangs) on other
-boards, such as the kvim 1 and 2, the p200 or the libretech-cc.
+While at it, the meson clock drivers have been cleaned-up a bit,
+removing the gate embedded in the mpll driver, simplifying the pll
+driver and removing the legacy cpu_clk of meson8b.
 
-According to amlogic, the Tx phase should not be tuned and left in its
-default configuration, so it is best to just revert the commit.
+The new code around the cpu clk of the meson8b is just re-implementation,
+using simple elements, of the old cpu_clk. As explained by Martin, the
+old cpu_clk would hang quite often when changing the rate of the cpu
+clock. Surprisingly, the new implementation improved the situation a bit,
+but still hangs from time to time. As this is not acceptable, the cpu
+clk subtree as been switched to a read-only mode, preventing any change
+of the cpu rate, until an acceptable solution is found.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 19 +------------------
- 1 file changed, 1 insertion(+), 18 deletions(-)
+With this series applied, the clock controllers of the gxbb, gxl and axg
+SoC will try get regmap from their parent DT node. If this fails, they
+will fallback to mapping the register themselves. This fallback will be
+kept until platform DTs have changed so clock controllers is a child of
+the HHI system controller.
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 22438ebfe4e6..4f972b879fe6 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -717,22 +717,6 @@ static int meson_mmc_clk_phase_tuning(struct mmc_host *mmc, u32 opcode,
- static int meson_mmc_execute_tuning(struct mmc_host *mmc, u32 opcode)
- {
- 	struct meson_host *host = mmc_priv(mmc);
--	int ret;
--
--	/*
--	 * If this is the initial tuning, try to get a sane Rx starting
--	 * phase before doing the actual tuning.
--	 */
--	if (!mmc->doing_retune) {
--		ret = meson_mmc_clk_phase_tuning(mmc, opcode, host->rx_clk);
--
--		if (ret)
--			return ret;
--	}
--
--	ret = meson_mmc_clk_phase_tuning(mmc, opcode, host->tx_clk);
--	if (ret)
--		return ret;
- 
- 	return meson_mmc_clk_phase_tuning(mmc, opcode, host->rx_clk);
- }
-@@ -763,9 +747,8 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 		if (!IS_ERR(mmc->supply.vmmc))
- 			mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
- 
--		/* Reset phases */
-+		/* Reset rx phase */
- 		clk_set_phase(host->rx_clk, 0);
--		clk_set_phase(host->tx_clk, 270);
- 
- 		break;
- 
+Based on this changeset, more patches are coming. For those interested,
+the WIP is available here [2]
+
+Changes since v1 [3]:
+* Fixed a few typos in patches descriptions
+* Fixed cpu clock names on meson8b, as suggested by Martin
+* Switched cpu clock subtree to reead-only mode
+* Fix clk_regmap mux documentation, as reported by Yixun
+
+[0]: https://lkml.kernel.org/r/20180118110144.30619-1-jbrunet at baylibre.com
+[1]: https://lkml.kernel.org/r/20180122105759.12206-1-jbrunet at baylibre.com
+[2]: https://github.com/jeromebrunet/linux/tree/v4.17/meson/clk-regmap
+[1]: https://lkml.kernel.org/r/20180131180945.18025-1-jbrunet at baylibre.com
+
+Jerome Brunet (19):
+  clk: meson: use dev pointer where possible
+  clk: meson: use devm_of_clk_add_hw_provider
+  clk: meson: only one loop index is necessary in probe
+  clk: meson: remove obsolete comments
+  clk: meson: add regmap clocks
+  clk: meson: switch gxbb ao_clk to clk_regmap
+  clk: meson: remove superseded aoclk_gate_regmap
+  clk: meson: add regmap to the clock controllers
+  clk: meson: migrate gates to clk_regmap
+  clk: meson: migrate dividers to clk_regmap
+  clk: meson: migrate muxes to clk_regmap
+  clk: meson: add regmap helpers for parm
+  clk: meson: migrate mplls clocks to clk_regmap
+  clk: meson: migrate the audio divider clock to clk_regmap
+  clk: meson: migrate plls clocks to clk_regmap
+  clk: meson: split divider and gate part of mpll
+  clk: meson: rework meson8b cpu clock
+  clk: meson: remove obsolete cpu_clk
+  clk: meson: use hhi syscon if available
+
+ drivers/clk/meson/Kconfig             |    9 +
+ drivers/clk/meson/Makefile            |    5 +-
+ drivers/clk/meson/axg.c               |  722 +++++++++--------
+ drivers/clk/meson/axg.h               |    6 +-
+ drivers/clk/meson/clk-audio-divider.c |   63 +-
+ drivers/clk/meson/clk-cpu.c           |  178 -----
+ drivers/clk/meson/clk-mpll.c          |  132 +---
+ drivers/clk/meson/clk-pll.c           |  243 +++---
+ drivers/clk/meson/clk-regmap.c        |  166 ++++
+ drivers/clk/meson/clk-regmap.h        |  111 +++
+ drivers/clk/meson/clkc.h              |   93 +--
+ drivers/clk/meson/gxbb-aoclk-regmap.c |   46 --
+ drivers/clk/meson/gxbb-aoclk.c        |   20 +-
+ drivers/clk/meson/gxbb-aoclk.h        |   11 -
+ drivers/clk/meson/gxbb.c              | 1402 ++++++++++++++++++---------------
+ drivers/clk/meson/gxbb.h              |    5 +-
+ drivers/clk/meson/meson8b.c           |  588 ++++++++------
+ drivers/clk/meson/meson8b.h           |   11 +-
+ 18 files changed, 1978 insertions(+), 1833 deletions(-)
+ delete mode 100644 drivers/clk/meson/clk-cpu.c
+ create mode 100644 drivers/clk/meson/clk-regmap.c
+ create mode 100644 drivers/clk/meson/clk-regmap.h
+ delete mode 100644 drivers/clk/meson/gxbb-aoclk-regmap.c
+
 -- 
 2.14.3
