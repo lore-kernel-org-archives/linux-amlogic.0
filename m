@@ -1,174 +1,677 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 12 Feb 2018 15:58:46 +0100
-Subject: [PATCH v2 19/19] clk: meson: use hhi syscon if available
+Date: Mon, 12 Feb 2018 15:58:43 +0100
+Subject: [PATCH v2 16/19] clk: meson: split divider and gate part of mpll
 In-Reply-To: <20180212145846.19380-1-jbrunet@baylibre.com>
 References: <20180212145846.19380-1-jbrunet@baylibre.com>
-Message-ID: <20180212145846.19380-20-jbrunet@baylibre.com>
+Message-ID: <20180212145846.19380-17-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On gxbb and axg, try to get the hhi regmap from the parent DT node, which
-should be the HHI system controller once the necessary changes have been
-made in amlogic's DTs
+The mpll clock is a kind of fractional divider which can gate.
+When the RW operation have been added, enable/disable ops have been
+mistakenly inserted in this driver. These ops are essentially a
+poor copy/paste of the generic gate ops.
 
-Until then, if getting regmap through the system controller fails, the
-clock controller will fall back to the old way, requesting memory region
-directly and then registering the regmap itself.
-
-This should allow a smooth transition to syscon
+This change removes the gate ops from the mpll driver and inserts a
+generic gate clock on each mpll divider, simplifying the mpll
+driver and reducing code duplication.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/Kconfig |  2 ++
- drivers/clk/meson/axg.c   | 43 ++++++++++++++++++++++++++++++-------------
- drivers/clk/meson/gxbb.c  | 39 ++++++++++++++++++++++++++++-----------
- 3 files changed, 60 insertions(+), 24 deletions(-)
+ drivers/clk/meson/axg.c      | 100 +++++++++++++++++++++++++++++++------------
+ drivers/clk/meson/axg.h      |   6 ++-
+ drivers/clk/meson/clk-mpll.c |  44 -------------------
+ drivers/clk/meson/clkc.h     |   1 -
+ drivers/clk/meson/gxbb.c     |  78 ++++++++++++++++++++++++---------
+ drivers/clk/meson/gxbb.h     |   5 ++-
+ drivers/clk/meson/meson8b.c  |  75 +++++++++++++++++++++++---------
+ drivers/clk/meson/meson8b.h  |   6 ++-
+ 8 files changed, 197 insertions(+), 118 deletions(-)
 
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index 936afddae406..d5cbec522aec 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -22,6 +22,7 @@ config COMMON_CLK_GXBB
- 	depends on COMMON_CLK_AMLOGIC
- 	select RESET_CONTROLLER
- 	select COMMON_CLK_REGMAP_MESON
-+	select MFD_SYSCON
- 	help
- 	  Support for the clock controller on AmLogic S905 devices, aka gxbb.
- 	  Say Y if you want peripherals and CPU frequency scaling to work.
-@@ -31,6 +32,7 @@ config COMMON_CLK_AXG
- 	depends on COMMON_CLK_AMLOGIC
- 	select RESET_CONTROLLER
- 	select COMMON_CLK_REGMAP_MESON
-+	select MFD_SYSCON
- 	help
- 	  Support for the clock controller on AmLogic A113D devices, aka axg.
- 	  Say Y if you want peripherals and CPU frequency scaling to work.
 diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 6813b632c1a9..acb63c8e0fd8 100644
+index 8c27ceffda4a..6813b632c1a9 100644
 --- a/drivers/clk/meson/axg.c
 +++ b/drivers/clk/meson/axg.c
-@@ -14,6 +14,7 @@
- #include <linux/init.h>
- #include <linux/of_address.h>
- #include <linux/of_device.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
+@@ -296,7 +296,7 @@ static struct clk_fixed_factor axg_fclk_div7 = {
+ 	},
+ };
  
-@@ -850,25 +851,41 @@ static int axg_clkc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct resource *res;
--	void __iomem *clk_base;
-+	void __iomem *clk_base = NULL;
- 	struct regmap *map;
- 	int ret, i;
+-static struct clk_regmap axg_mpll0 = {
++static struct clk_regmap axg_mpll0_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL7,
+@@ -313,11 +313,6 @@ static struct clk_regmap axg_mpll0 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL7,
+-			.shift   = 14,
+-			.width	 = 1,
+-		},
+ 		.ssen = {
+ 			.reg_off = HHI_MPLL_CNTL,
+ 			.shift   = 25,
+@@ -331,14 +326,28 @@ static struct clk_regmap axg_mpll0 = {
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll0",
++		.name = "mpll0_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
  
--	/*  Generic clocks and PLLs */
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	if (!res)
--		return -EINVAL;
-+	/* Get the hhi system controller node if available */
-+	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
-+	if (IS_ERR(map)) {
-+		dev_err(dev,
-+			"failed to get HHI regmap - Trying obsolete regs\n");
+-static struct clk_regmap axg_mpll1 = {
++static struct clk_regmap axg_mpll0 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL7,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll0",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll0_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
 +
-+		/*
-+		 * FIXME: HHI registers should be accessed through
-+		 * the appropriate system controller. This is required because
-+		 * there is more than just clocks in this register space
-+		 *
-+		 * This fallback method is only provided temporarily until
-+		 * all the platform DTs are properly using the syscon node
-+		 */
-+		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+		if (!res)
-+			return -EINVAL;
-+
-+
-+		clk_base = devm_ioremap(dev, res->start, resource_size(res));
-+		if (!clk_base) {
-+			dev_err(dev, "Unable to map clk base\n");
-+			return -ENXIO;
-+		}
++static struct clk_regmap axg_mpll1_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL8,
+@@ -355,11 +364,6 @@ static struct clk_regmap axg_mpll1 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL8,
+-			.shift   = 14,
+-			.width	 = 1,
+-		},
+ 		.misc = {
+ 			.reg_off = HHI_PLL_TOP_MISC,
+ 			.shift   = 1,
+@@ -368,14 +372,28 @@ static struct clk_regmap axg_mpll1 = {
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll1",
++		.name = "mpll1_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
  
--	clk_base = devm_ioremap(dev, res->start, resource_size(res));
--	if (!clk_base) {
--		dev_err(dev, "Unable to map clk base\n");
--		return -ENXIO;
-+		map = devm_regmap_init_mmio(dev, clk_base,
-+					    &clkc_regmap_config);
-+		if (IS_ERR(map))
-+			return PTR_ERR(map);
- 	}
+-static struct clk_regmap axg_mpll2 = {
++static struct clk_regmap axg_mpll1 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL8,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll1",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll1_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap axg_mpll2_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL9,
+@@ -392,11 +410,6 @@ static struct clk_regmap axg_mpll2 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL9,
+-			.shift   = 14,
+-			.width	 = 1,
+-		},
+ 		.misc = {
+ 			.reg_off = HHI_PLL_TOP_MISC,
+ 			.shift   = 2,
+@@ -405,14 +418,28 @@ static struct clk_regmap axg_mpll2 = {
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll2",
++		.name = "mpll2_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
  
--	map = devm_regmap_init_mmio(dev, clk_base, &clkc_regmap_config);
--	if (IS_ERR(map))
--		return PTR_ERR(map);
+-static struct clk_regmap axg_mpll3 = {
++static struct clk_regmap axg_mpll2 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL9,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll2",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll2_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap axg_mpll3_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL3_CNTL0,
+@@ -429,11 +456,6 @@ static struct clk_regmap axg_mpll3 = {
+ 			.shift   = 2,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL3_CNTL0,
+-			.shift   = 0,
+-			.width	 = 1,
+-		},
+ 		.misc = {
+ 			.reg_off = HHI_PLL_TOP_MISC,
+ 			.shift   = 3,
+@@ -442,13 +464,27 @@ static struct clk_regmap axg_mpll3 = {
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll3",
++		.name = "mpll3_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
+ 
++static struct clk_regmap axg_mpll3 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL3_CNTL0,
++		.bit_idx = 0,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll3",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll3_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
+ static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
+ static const char * const clk81_parent_names[] = {
+ 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+@@ -722,6 +758,10 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
+ 		[CLKID_SD_EMMC_C_CLK0_SEL]	= &axg_sd_emmc_c_clk0_sel.hw,
+ 		[CLKID_SD_EMMC_C_CLK0_DIV]	= &axg_sd_emmc_c_clk0_div.hw,
+ 		[CLKID_SD_EMMC_C_CLK0]		= &axg_sd_emmc_c_clk0.hw,
++		[CLKID_MPLL0_DIV]		= &axg_mpll0_div.hw,
++		[CLKID_MPLL1_DIV]		= &axg_mpll1_div.hw,
++		[CLKID_MPLL2_DIV]		= &axg_mpll2_div.hw,
++		[CLKID_MPLL3_DIV]		= &axg_mpll3_div.hw,
+ 		[NR_CLKS]			= NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -786,6 +826,10 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
+ 	&axg_mpll1,
+ 	&axg_mpll2,
+ 	&axg_mpll3,
++	&axg_mpll0_div,
++	&axg_mpll1_div,
++	&axg_mpll2_div,
++	&axg_mpll3_div,
+ 	&axg_fixed_pll,
+ 	&axg_sys_pll,
+ 	&axg_gp0_pll,
+diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
+index ce0bafdb6b28..4c1502a8b8c9 100644
+--- a/drivers/clk/meson/axg.h
++++ b/drivers/clk/meson/axg.h
+@@ -117,8 +117,12 @@
+ #define CLKID_SD_EMMC_B_CLK0_DIV		62
+ #define CLKID_SD_EMMC_C_CLK0_SEL		63
+ #define CLKID_SD_EMMC_C_CLK0_DIV		64
++#define CLKID_MPLL0_DIV				65
++#define CLKID_MPLL1_DIV				66
++#define CLKID_MPLL2_DIV				67
++#define CLKID_MPLL3_DIV				68
+ 
+-#define NR_CLKS					65
++#define NR_CLKS					69
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/axg-clkc.h>
+diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
+index 66998ff47635..0df1227b65b3 100644
+--- a/drivers/clk/meson/clk-mpll.c
++++ b/drivers/clk/meson/clk-mpll.c
+@@ -170,57 +170,13 @@ static int mpll_set_rate(struct clk_hw *hw,
+ 	return 0;
+ }
+ 
+-static void mpll_enable_core(struct clk_hw *hw, int enable)
+-{
+-	struct clk_regmap *clk = to_clk_regmap(hw);
+-	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
+-	unsigned long flags = 0;
 -
- 	/* Populate regmap for the regmap backed clocks */
- 	for (i = 0; i < ARRAY_SIZE(axg_clk_regmaps); i++)
- 		axg_clk_regmaps[i]->map = map;
+-	if (mpll->lock)
+-		spin_lock_irqsave(mpll->lock, flags);
+-	else
+-		__acquire(mpll->lock);
+-
+-	meson_parm_write(clk->map, &mpll->en, enable ? 1 : 0);
+-
+-	if (mpll->lock)
+-		spin_unlock_irqrestore(mpll->lock, flags);
+-	else
+-		__release(mpll->lock);
+-}
+-
+-
+-static int mpll_enable(struct clk_hw *hw)
+-{
+-	mpll_enable_core(hw, 1);
+-
+-	return 0;
+-}
+-
+-static void mpll_disable(struct clk_hw *hw)
+-{
+-	mpll_enable_core(hw, 0);
+-}
+-
+-static int mpll_is_enabled(struct clk_hw *hw)
+-{
+-	struct clk_regmap *clk = to_clk_regmap(hw);
+-	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
+-
+-	return meson_parm_read(clk->map, &mpll->en);
+-}
+-
+ const struct clk_ops meson_clk_mpll_ro_ops = {
+ 	.recalc_rate	= mpll_recalc_rate,
+ 	.round_rate	= mpll_round_rate,
+-	.is_enabled	= mpll_is_enabled,
+ };
+ 
+ const struct clk_ops meson_clk_mpll_ops = {
+ 	.recalc_rate	= mpll_recalc_rate,
+ 	.round_rate	= mpll_round_rate,
+ 	.set_rate	= mpll_set_rate,
+-	.enable		= mpll_enable,
+-	.disable	= mpll_disable,
+-	.is_enabled	= mpll_is_enabled,
+ };
+diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+index f0d70eaffcf3..cc1a964cd4d7 100644
+--- a/drivers/clk/meson/clkc.h
++++ b/drivers/clk/meson/clkc.h
+@@ -116,7 +116,6 @@ struct meson_clk_mpll_data {
+ 	struct parm sdm;
+ 	struct parm sdm_en;
+ 	struct parm n2;
+-	struct parm en;
+ 	struct parm ssen;
+ 	struct parm misc;
+ 	spinlock_t *lock;
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 5ab8338eb894..bb0b0529ca81 100644
+index 49f5716ce8b6..5ab8338eb894 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -22,6 +22,7 @@
- #include <linux/init.h>
- #include <linux/of_address.h>
- #include <linux/of_device.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
+@@ -540,7 +540,7 @@ static struct clk_fixed_factor gxbb_fclk_div7 = {
+ 	},
+ };
  
-@@ -2045,19 +2046,35 @@ static int gxbb_clkc_probe(struct platform_device *pdev)
- 	if (!clkc_data)
- 		return -EINVAL;
+-static struct clk_regmap gxbb_mpll0 = {
++static struct clk_regmap gxbb_mpll0_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL7,
+@@ -557,11 +557,6 @@ static struct clk_regmap gxbb_mpll0 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL7,
+-			.shift   = 14,
+-			.width	 = 1,
+-		},
+ 		.ssen = {
+ 			.reg_off = HHI_MPLL_CNTL,
+ 			.shift   = 25,
+@@ -570,14 +565,28 @@ static struct clk_regmap gxbb_mpll0 = {
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll0",
++		.name = "mpll0_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
  
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	if (!res)
--		return -EINVAL;
-+	/* Get the hhi system controller node if available */
-+	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
-+	if (IS_ERR(map)) {
-+		dev_err(dev,
-+			"failed to get HHI regmap - Trying obsolete regs\n");
- 
--	clk_base = devm_ioremap(dev, res->start, resource_size(res));
--	if (!clk_base) {
--		pr_err("%s: Unable to map clk base\n", __func__);
--		return -ENXIO;
--	}
-+		/*
-+		 * FIXME: HHI registers should be accessed through
-+		 * the appropriate system controller. This is required because
-+		 * there is more than just clocks in this register space
-+		 *
-+		 * This fallback method is only provided temporarily until
-+		 * all the platform DTs are properly using the syscon node
-+		 */
-+		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+		if (!res)
-+			return -EINVAL;
+-static struct clk_regmap gxbb_mpll1 = {
++static struct clk_regmap gxbb_mpll0 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL7,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll0",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll0_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
 +
-+		clk_base = devm_ioremap(dev, res->start, resource_size(res));
-+		if (!clk_base) {
-+			dev_err(dev, "Unable to map clk base\n");
-+			return -ENXIO;
-+		}
++static struct clk_regmap gxbb_mpll1_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL8,
+@@ -594,22 +603,31 @@ static struct clk_regmap gxbb_mpll1 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL8,
+-			.shift   = 14,
+-			.width	 = 1,
+-		},
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll1",
++		.name = "mpll1_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
  
--	map = devm_regmap_init_mmio(dev, clk_base, &clkc_regmap_config);
--	if (IS_ERR(map))
--		return PTR_ERR(map);
-+		map = devm_regmap_init_mmio(dev, clk_base,
-+					    &clkc_regmap_config);
-+		if (IS_ERR(map))
-+			return PTR_ERR(map);
-+	}
+-static struct clk_regmap gxbb_mpll2 = {
++static struct clk_regmap gxbb_mpll1 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL8,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll1",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll1_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap gxbb_mpll2_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL9,
+@@ -626,21 +644,30 @@ static struct clk_regmap gxbb_mpll2 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL9,
+-			.shift   = 14,
+-			.width	 = 1,
+-		},
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll2",
++		.name = "mpll2_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
  
- 	/* Populate regmap for the common regmap backed clocks */
- 	for (i = 0; i < ARRAY_SIZE(gx_clk_regmaps); i++)
++static struct clk_regmap gxbb_mpll2 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL9,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll2",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll2_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
+ static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
+ static const char * const clk81_parent_names[] = {
+ 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+@@ -1668,6 +1695,9 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
+ 		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
+ 		[CLKID_VAPB]		    = &gxbb_vapb.hw,
+ 		[CLKID_HDMI_PLL_PRE_MULT]   = &gxbb_hdmi_pll_pre_mult.hw,
++		[CLKID_MPLL0_DIV]	    = &gxbb_mpll0_div.hw,
++		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
++		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
+ 		[NR_CLKS]		    = NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -1815,6 +1845,9 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
+ 		[CLKID_VAPB_1]		    = &gxbb_vapb_1.hw,
+ 		[CLKID_VAPB_SEL]	    = &gxbb_vapb_sel.hw,
+ 		[CLKID_VAPB]		    = &gxbb_vapb.hw,
++		[CLKID_MPLL0_DIV]	    = &gxbb_mpll0_div.hw,
++		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
++		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
+ 		[NR_CLKS]		    = NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -1961,6 +1994,9 @@ static struct clk_regmap *const gx_clk_regmaps[] = {
+ 	&gxbb_mpll0,
+ 	&gxbb_mpll1,
+ 	&gxbb_mpll2,
++	&gxbb_mpll0_div,
++	&gxbb_mpll1_div,
++	&gxbb_mpll2_div,
+ 	&gxbb_cts_amclk_div,
+ 	&gxbb_fixed_pll,
+ 	&gxbb_sys_pll,
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index 42573b28a137..a8e7b8884e95 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -195,8 +195,11 @@
+ #define CLKID_VAPB_0_DIV	  134
+ #define CLKID_VAPB_1_DIV	  137
+ #define CLKID_HDMI_PLL_PRE_MULT	  141
++#define CLKID_MPLL0_DIV		  142
++#define CLKID_MPLL1_DIV		  143
++#define CLKID_MPLL2_DIV		  144
+ 
+-#define NR_CLKS			  142
++#define NR_CLKS			  145
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/gxbb-clkc.h>
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 4fd8253c54bb..625d953511be 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -289,7 +289,7 @@ static struct clk_fixed_factor meson8b_fclk_div7 = {
+ 	},
+ };
+ 
+-static struct clk_regmap meson8b_mpll0 = {
++static struct clk_regmap meson8b_mpll0_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL7,
+@@ -306,11 +306,6 @@ static struct clk_regmap meson8b_mpll0 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL7,
+-			.shift   = 14,
+-			.width   = 1,
+-		},
+ 		.ssen = {
+ 			.reg_off = HHI_MPLL_CNTL,
+ 			.shift   = 25,
+@@ -319,14 +314,28 @@ static struct clk_regmap meson8b_mpll0 = {
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll0",
++		.name = "mpll0_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
+ 
+-static struct clk_regmap meson8b_mpll1 = {
++static struct clk_regmap meson8b_mpll0 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL7,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll0",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll0_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap meson8b_mpll1_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL8,
+@@ -343,22 +352,31 @@ static struct clk_regmap meson8b_mpll1 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL8,
+-			.shift   = 14,
+-			.width   = 1,
+-		},
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll1",
++		.name = "mpll1_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
+ 
+-static struct clk_regmap meson8b_mpll2 = {
++static struct clk_regmap meson8b_mpll1 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL8,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll1",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll1_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap meson8b_mpll2_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+ 			.reg_off = HHI_MPLL_CNTL9,
+@@ -375,21 +393,30 @@ static struct clk_regmap meson8b_mpll2 = {
+ 			.shift   = 16,
+ 			.width   = 9,
+ 		},
+-		.en = {
+-			.reg_off = HHI_MPLL_CNTL9,
+-			.shift   = 14,
+-			.width   = 1,
+-		},
+ 		.lock = &meson_clk_lock,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "mpll2",
++		.name = "mpll2_div",
+ 		.ops = &meson_clk_mpll_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
+ 	},
+ };
+ 
++static struct clk_regmap meson8b_mpll2 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_MPLL_CNTL9,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll2",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "mpll2_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
+ /*
+  * FIXME cpu clocks and the legacy composite clocks (e.g. clk81) are both PLL
+  * post-dividers and should be modeled with their respective PLLs via the
+@@ -640,6 +667,9 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+ 		[CLKID_MPLL0]		    = &meson8b_mpll0.hw,
+ 		[CLKID_MPLL1]		    = &meson8b_mpll1.hw,
+ 		[CLKID_MPLL2]		    = &meson8b_mpll2.hw,
++		[CLKID_MPLL0_DIV]	    = &meson8b_mpll0_div.hw,
++		[CLKID_MPLL1_DIV]	    = &meson8b_mpll1_div.hw,
++		[CLKID_MPLL2_DIV]	    = &meson8b_mpll2_div.hw,
+ 		[CLK_NR_CLKS]		    = NULL,
+ 	},
+ 	.num = CLK_NR_CLKS,
+@@ -729,6 +759,9 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
+ 	&meson8b_mpll0,
+ 	&meson8b_mpll1,
+ 	&meson8b_mpll2,
++	&meson8b_mpll0_div,
++	&meson8b_mpll1_div,
++	&meson8b_mpll2_div,
+ 	&meson8b_fixed_pll,
+ 	&meson8b_vid_pll,
+ 	&meson8b_sys_pll,
+diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+index 2eaf8a52e7dd..f2780508edec 100644
+--- a/drivers/clk/meson/meson8b.h
++++ b/drivers/clk/meson/meson8b.h
+@@ -69,7 +69,11 @@
+  * will remain defined here.
+  */
+ 
+-#define CLK_NR_CLKS		96
++#define CLKID_MPLL0_DIV		96
++#define CLKID_MPLL1_DIV		97
++#define CLKID_MPLL2_DIV		98
++
++#define CLK_NR_CLKS		99
+ 
+ /*
+  * include the CLKID and RESETID that have
 -- 
 2.14.3
