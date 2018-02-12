@@ -1,82 +1,63 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 11 Feb 2018 22:18:09 +0100
-Subject: [PATCH 0/5] improvements and fixes for the phy-meson-gxl-usb2
- driver
-In-Reply-To: <9b5295ea-74a2-7bb1-744e-6e8eb76f2673@amlogic.com>
-References: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
- <9b5295ea-74a2-7bb1-744e-6e8eb76f2673@amlogic.com>
-Message-ID: <CAFBinCCZ+eYp0Y7qdvxiHtCxF+AAdxubpUATbzMptFsvRiRvmA@mail.gmail.com>
+From: linux@roeck-us.net (Guenter Roeck)
+Date: Sun, 11 Feb 2018 17:10:51 -0800
+Subject: [v3, 1/7] watchdog: sama5d4: make use of timeout-secs provided
+ in devicetree
+In-Reply-To: <20180211200847.25000-1-marcus.folkesson@gmail.com>
+References: <20180211200847.25000-1-marcus.folkesson@gmail.com>
+Message-ID: <20180212011051.GA4673@roeck-us.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yixun,
+On Sun, Feb 11, 2018 at 09:08:41PM +0100, Marcus Folkesson wrote:
+> watchdog_init_timeout() will allways pick timeout_param since it
+> defaults to a valid timeout.
+> 
+> Following best practice described in
+> Documentation/watchdog/watchdog-kernel-api.txt to make use of
+> the parameter logic.
+> 
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 
-On Fri, Feb 9, 2018 at 9:27 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
->
->
-> On 01/29/18 04:22, Martin Blumenstingl wrote:
->> This contains two fixes and two (minor) fixes for the phy-meson-gxl-usb2
->> driver:
->> - a clock and reset line is used for the PHYs. this was not clear from
->>   the Amlogic GPL kernel sources since the clock is enabled very early
->>   in the boot process (either because the hardware defaults to "on",
->>   the bootrom enables it or a bootloader before BL3-3/u-boot enables it)
->> - we don't read the controller's dr_mode anymore because the USB2 PHY
->>   can only be switched into host mode if the USB3 PHY knows about it.
->>   Thus auto-detecting the mode doesn't work for this PHY so it's removed
->>   in patch #3
->> - do not log an error message when the phy-supply is not ready yet and
->>   we have to return -EPROBE_DEFER
->> - improve the naming of some U2P_R2 test mode registers
->>
->>
->> Martin Blumenstingl (5):
->>   dt-bindings: phy: meson-gxl-usb2-phy: add the reset line and clock
->>   phy: amlogic: phy-meson-gxl-usb2: support the clock and reset line
->>   phy: amlogic: phy-meson-gxl-usb2: default to host mode
->>   phy: amlogic: phy-meson-gxl-usb2: don't log an error on -EPROBE_DEFER
->>   phy: amlogic: phy-meson-gxl-usb2: rename some of the U2P_R2 registers
->>
->>  .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  4 ++
->>  drivers/phy/amlogic/Kconfig                        |  1 -
->>  drivers/phy/amlogic/phy-meson-gxl-usb2.c           | 78 ++++++++++++++++------
->>  3 files changed, 61 insertions(+), 22 deletions(-)
->>
->
-> Hi Martin
->
->   thanks for your great work for pushing the USB driver upstream.
-you're welcome - I hope that most problems are sorted out in the latest version
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
->   I've test your whole series[1] on AXG S400 board and it works fine here.
-many thanks!
-I just re-sent v9 of "initialize (multiple) PHYs for a HCD" and v2
-"DWC3 support for Amlogic Meson AXG and GXL SoCs" which both include
-fixes based on the feedback I got. I added your "Tested-by" to all
-applicable patches, which I hope is fine for you!
-
-I will re-send the USB2 and USB3 PHY patches once -rc1 is out if
-Kishon wants me to re-send those with all Reviewed-by/Tested-by's
-collected.
-
-> Yixun
->
->
-> [1] the whole patch series include
->
-> [RFC usb-next v8 0/3] initialize (multiple) PHYs for a HCD
-> https://lkml.kernel.org/r/20180125000053.9387-1-martin.blumenstingl at googlemail.com
->
-> [PATCH 0/3] DWC3 support for Amlogic Meson AXG and GXL SoCs
-> https://lkml.kernel.org/r/20180128200333.20093-1-martin.blumenstingl at googlemail.com
->
-> [PATCH v2 0/2] Meson GXL USB3 PHY driver
-> https://lkml.kernel.org/r/20180128201554.23889-1-martin.blumenstingl at googlemail.com
->
-> [PATCH 1/5] dt-bindings: phy: meson-gxl-usb2-phy: add the reset line and
-> clock
-> https://lkml.kernel.org/r/20180128202245.25021-1-martin.blumenstingl at googlemail.com
-
-
-Regards
-Martin
+> ---
+> 
+> Notes:
+>     v3:
+>     	- Use wdd->timeout instead of wdt_timeout when print out
+>     	  timout in probe function.
+> 
+>  drivers/watchdog/sama5d4_wdt.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/watchdog/sama5d4_wdt.c b/drivers/watchdog/sama5d4_wdt.c
+> index 0ae947c3d7bc..255169916dbb 100644
+> --- a/drivers/watchdog/sama5d4_wdt.c
+> +++ b/drivers/watchdog/sama5d4_wdt.c
+> @@ -33,7 +33,7 @@ struct sama5d4_wdt {
+>  	unsigned long		last_ping;
+>  };
+>  
+> -static int wdt_timeout = WDT_DEFAULT_TIMEOUT;
+> +static int wdt_timeout;
+>  static bool nowayout = WATCHDOG_NOWAYOUT;
+>  
+>  module_param(wdt_timeout, int, 0);
+> @@ -212,7 +212,7 @@ static int sama5d4_wdt_probe(struct platform_device *pdev)
+>  		return -ENOMEM;
+>  
+>  	wdd = &wdt->wdd;
+> -	wdd->timeout = wdt_timeout;
+> +	wdd->timeout = WDT_DEFAULT_TIMEOUT;
+>  	wdd->info = &sama5d4_wdt_info;
+>  	wdd->ops = &sama5d4_wdt_ops;
+>  	wdd->min_timeout = MIN_WDT_TIMEOUT;
+> @@ -273,7 +273,7 @@ static int sama5d4_wdt_probe(struct platform_device *pdev)
+>  	platform_set_drvdata(pdev, wdt);
+>  
+>  	dev_info(&pdev->dev, "initialized (timeout = %d sec, nowayout = %d)\n",
+> -		 wdt_timeout, nowayout);
+> +		 wdd->timeout, nowayout);
+>  
+>  	return 0;
+>  }
