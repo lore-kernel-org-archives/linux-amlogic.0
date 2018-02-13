@@ -1,55 +1,46 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 12 Feb 2018 23:39:28 +0100
-Subject: [PATCH v2 5/5] phy: amlogic: phy-meson-gxl-usb2: rename some of the
- U2P_R2 registers
-In-Reply-To: <20180212223928.22993-1-martin.blumenstingl@googlemail.com>
-References: <20180212223928.22993-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180212223928.22993-6-martin.blumenstingl@googlemail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Mon, 12 Feb 2018 16:19:38 -0800
+Subject: [GIT PULL] Amlogic fixes for v4.16-rc2
+Message-ID: <7h8tbxagh1.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The U2P_R2 register provides "test mode" functionality for bits 17:0.
-These are only used during SoC development and should be left untouched
-on production SoC versions.
-Rename these register definitions to indicate that these are for "test
-mode" only.
+Arnd, Olof,
 
-While here, also merge the definitions for U2P_R2_DATA_IN_MASK and
-U2P_R2_DATA_IN_EN_MASK (bits 0:7) because Amlogic's internal
-documentation suggests that these bits belong together. The old
-definition was not taken from the documentation but rather from a struct
-definition in the Amlogic GPL kernel sources.
+Here are a couple small DT-only fixes for v4.16-rc.
 
-No functional changes.
+Please pull,
 
-Suggested-by: Yixun Lan <yixun.lan@amlogic.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Yixun Lan <yixun.lan@amlogic.com>
----
- drivers/phy/amlogic/phy-meson-gxl-usb2.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+Thanks,
 
-diff --git a/drivers/phy/amlogic/phy-meson-gxl-usb2.c b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-index f062fc7f0a3a..9f9b5414b97a 100644
---- a/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson-gxl-usb2.c
-@@ -71,12 +71,11 @@
- 
- /* bits [31:14] are read-only */
- #define U2P_R2							0x8
--	#define U2P_R2_DATA_IN_MASK				GENMASK(3, 0)
--	#define U2P_R2_DATA_IN_EN_MASK				GENMASK(7, 4)
--	#define U2P_R2_ADDR_MASK				GENMASK(11, 8)
--	#define U2P_R2_DATA_OUT_SEL				BIT(12)
--	#define U2P_R2_CLK					BIT(13)
--	#define U2P_R2_DATA_OUT_MASK				GENMASK(17, 14)
-+	#define U2P_R2_TESTDATA_IN_MASK				GENMASK(7, 0)
-+	#define U2P_R2_TESTADDR_MASK				GENMASK(11, 8)
-+	#define U2P_R2_TESTDATA_OUT_SEL				BIT(12)
-+	#define U2P_R2_TESTCLK					BIT(13)
-+	#define U2P_R2_TESTDATA_OUT_MASK			GENMASK(17, 14)
- 	#define U2P_R2_ACA_PIN_RANGE_C				BIT(18)
- 	#define U2P_R2_ACA_PIN_RANGE_B				BIT(19)
- 	#define U2P_R2_ACA_PIN_RANGE_A				BIT(20)
--- 
-2.16.1
+Kevin
+
+
+The following changes since commit 7928b2cbe55b2a410a0f5c1f154610059c57b1b2:
+
+  Linux 4.16-rc1 (2018-02-11 15:04:29 -0800)
+
+are available in the git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
+
+for you to fetch changes up to 77f5cdbd78ec5e17022725a5da476f4ca08b1dfa:
+
+  ARM64: dts: meson: uart: fix address space range (2018-02-12 14:13:04 -0800)
+
+----------------------------------------------------------------
+Amlogic fixes for v4.16-rc1
+- DT: fix UART address ranges
+- DT: enable PHY interrupts
+
+----------------------------------------------------------------
+Jerome Brunet (1):
+      ARM64: dts: meson-gxl: add internal ethernet PHY irq
+
+Yixun Lan (1):
+      ARM64: dts: meson: uart: fix address space range
+
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi |  4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 10 +++++-----
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi |  1 +
+ 3 files changed, 8 insertions(+), 7 deletions(-)
