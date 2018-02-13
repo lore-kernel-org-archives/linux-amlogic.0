@@ -1,46 +1,39 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 12 Feb 2018 16:19:38 -0800
-Subject: [GIT PULL] Amlogic fixes for v4.16-rc2
-Message-ID: <7h8tbxagh1.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 13 Feb 2018 15:51:33 +0100
+Subject: [PATCH 2/2] clk: meson-axg: Add AO Clock and Reset controller
+ driver
+In-Reply-To: <1518449571.2883.30.camel@baylibre.com>
+References: <20180209070026.193879-1-yixun.lan@amlogic.com>
+ <20180209070026.193879-3-yixun.lan@amlogic.com>
+ <1518449571.2883.30.camel@baylibre.com>
+Message-ID: <1518533493.2883.35.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arnd, Olof,
+On Mon, 2018-02-12 at 16:32 +0100, Jerome Brunet wrote:
+> On Fri, 2018-02-09 at 15:00 +0800, Yixun Lan wrote:
+> > Adds a Clock and Reset controller driver for the Always-On part
+> > of the Amlogic Meson-AXG SoC.
+> > 
+> > Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
+> > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> > ---
+> >   drivers/clk/meson/Makefile    |   2 +-
+> >   drivers/clk/meson/axg-aoclk.c | 236 ++++++++++++++++++++++++++++++++++++++++++
+> >   drivers/clk/meson/axg-aoclk.h |  25 +++++
+> >   3 files changed, 262 insertions(+), 1 deletion(-)
+> >   create mode 100644 drivers/clk/meson/axg-aoclk.c
+> >   create mode 100644 drivers/clk/meson/axg-aoclk.h
 
-Here are a couple small DT-only fixes for v4.16-rc.
+Yixun,
 
-Please pull,
+Actually, looking at this driver further, except for some of the data, the
+driver is exactly the same as gxbb-aoclk. There is no reason to duplicate all
+this code.
 
-Thanks,
+I'd prefer if you'd factor all this in a dedicated driver.
+This philosophy is more or less the same as meson's pinctrl drivers, which all
+provides their own data and bindings but share the driver code.
 
-Kevin
-
-
-The following changes since commit 7928b2cbe55b2a410a0f5c1f154610059c57b1b2:
-
-  Linux 4.16-rc1 (2018-02-11 15:04:29 -0800)
-
-are available in the git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
-
-for you to fetch changes up to 77f5cdbd78ec5e17022725a5da476f4ca08b1dfa:
-
-  ARM64: dts: meson: uart: fix address space range (2018-02-12 14:13:04 -0800)
-
-----------------------------------------------------------------
-Amlogic fixes for v4.16-rc1
-- DT: fix UART address ranges
-- DT: enable PHY interrupts
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      ARM64: dts: meson-gxl: add internal ethernet PHY irq
-
-Yixun Lan (1):
-      ARM64: dts: meson: uart: fix address space range
-
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi |  4 ++--
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 10 +++++-----
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi |  1 +
- 3 files changed, 8 insertions(+), 7 deletions(-)
+Regards
+Jerome
