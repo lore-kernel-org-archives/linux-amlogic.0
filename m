@@ -1,39 +1,82 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 13 Feb 2018 15:51:33 +0100
-Subject: [PATCH 2/2] clk: meson-axg: Add AO Clock and Reset controller
- driver
-In-Reply-To: <1518449571.2883.30.camel@baylibre.com>
-References: <20180209070026.193879-1-yixun.lan@amlogic.com>
- <20180209070026.193879-3-yixun.lan@amlogic.com>
- <1518449571.2883.30.camel@baylibre.com>
-Message-ID: <1518533493.2883.35.camel@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Wed, 14 Feb 2018 11:38:34 +0100
+Subject: [PATCH] Revert "mmc: meson-gx: include tx phase in the tuning
+ process"
+In-Reply-To: <20180212131359.7741-1-jbrunet@baylibre.com>
+References: <20180212131359.7741-1-jbrunet@baylibre.com>
+Message-ID: <CAPDyKFp=rPwbXLPcD35dGGqNLwZBMgVd1jbFvzUG7tO6zfGNAg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2018-02-12 at 16:32 +0100, Jerome Brunet wrote:
-> On Fri, 2018-02-09 at 15:00 +0800, Yixun Lan wrote:
-> > Adds a Clock and Reset controller driver for the Always-On part
-> > of the Amlogic Meson-AXG SoC.
-> > 
-> > Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
-> > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> > ---
-> >   drivers/clk/meson/Makefile    |   2 +-
-> >   drivers/clk/meson/axg-aoclk.c | 236 ++++++++++++++++++++++++++++++++++++++++++
-> >   drivers/clk/meson/axg-aoclk.h |  25 +++++
-> >   3 files changed, 262 insertions(+), 1 deletion(-)
-> >   create mode 100644 drivers/clk/meson/axg-aoclk.c
-> >   create mode 100644 drivers/clk/meson/axg-aoclk.h
+On 12 February 2018 at 14:13, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> This reverts commit 0a44697627d17a66d7dc98f17aeca07ca79c5c20.
+>
+> This commit was initially intended to fix problems with hs200 and hs400
+> on some boards, mainly the odroid-c2. The OC2 (Rev 0.2) I have performs
+> well in this modes, so I could not confirm these issues.
+>
+> We've had several reports about the issues being still present on (some)
+> OC2, so apparently, this change does not do what it was supposed to do.
+> Maybe the eMMC signal quality is on the edge on the board. This may
+> explain the variability we see in term of stability, but this is just a
+> guess. Lowering the max_frequency to 100Mhz seems to do trick for those
+> affected by the issue
+>
+> Worse, the commit created new issues (CRC errors and hangs) on other
+> boards, such as the kvim 1 and 2, the p200 or the libretech-cc.
+>
+> According to amlogic, the Tx phase should not be tuned and left in its
+> default configuration, so it is best to just revert the commit.
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Yixun,
+Thanks, applied for fixes and added a stable/fixes tag.
 
-Actually, looking at this driver further, except for some of the data, the
-driver is exactly the same as gxbb-aoclk. There is no reason to duplicate all
-this code.
+Kind regards
+Uffe
 
-I'd prefer if you'd factor all this in a dedicated driver.
-This philosophy is more or less the same as meson's pinctrl drivers, which all
-provides their own data and bindings but share the driver code.
-
-Regards
-Jerome
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 19 +------------------
+>  1 file changed, 1 insertion(+), 18 deletions(-)
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 22438ebfe4e6..4f972b879fe6 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -717,22 +717,6 @@ static int meson_mmc_clk_phase_tuning(struct mmc_host *mmc, u32 opcode,
+>  static int meson_mmc_execute_tuning(struct mmc_host *mmc, u32 opcode)
+>  {
+>         struct meson_host *host = mmc_priv(mmc);
+> -       int ret;
+> -
+> -       /*
+> -        * If this is the initial tuning, try to get a sane Rx starting
+> -        * phase before doing the actual tuning.
+> -        */
+> -       if (!mmc->doing_retune) {
+> -               ret = meson_mmc_clk_phase_tuning(mmc, opcode, host->rx_clk);
+> -
+> -               if (ret)
+> -                       return ret;
+> -       }
+> -
+> -       ret = meson_mmc_clk_phase_tuning(mmc, opcode, host->tx_clk);
+> -       if (ret)
+> -               return ret;
+>
+>         return meson_mmc_clk_phase_tuning(mmc, opcode, host->rx_clk);
+>  }
+> @@ -763,9 +747,8 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+>                 if (!IS_ERR(mmc->supply.vmmc))
+>                         mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
+>
+> -               /* Reset phases */
+> +               /* Reset rx phase */
+>                 clk_set_phase(host->rx_clk, 0);
+> -               clk_set_phase(host->tx_clk, 270);
+>
+>                 break;
+>
+> --
+> 2.14.3
+>
