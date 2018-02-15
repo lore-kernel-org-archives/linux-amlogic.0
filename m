@@ -1,43 +1,31 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 14 Feb 2018 15:58:55 +0100
-Subject: [PATCH] amlogic: meson-gx-socinfo: Update soc ids
-Message-ID: <1518620335-17716-1-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 15 Feb 2018 11:10:31 +0100
+Subject: [PATCH] ARM64: dts: meson-axg: fix pwm_AO_cd compatible
+Message-ID: <20180215101031.18934-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Updates the Amlogic Meson SoCs IDs for the Armv8 based SoCs.
-It includes the new families and packages.
+The compatible in pwm_AO_cd is wrong and does not match anything.
+Correct this with the correct compatible string
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Fixes: 4a81e5ddfb43 ("ARM64: dts: meson-axg: add PWM DT info for Meson-Axg SoC")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/soc/amlogic/meson-gx-socinfo.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index f2d8c3c..a7efe30 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -33,6 +33,10 @@ static const struct meson_gx_soc_id {
- 	{ "GXL", 0x21 },
- 	{ "GXM", 0x22 },
- 	{ "TXL", 0x23 },
-+	{ "TXLX", 0x24 },
-+	{ "AXG", 0x25 },
-+	{ "GXLX", 0x26 },
-+	{ "TXHD", 0x27 },
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index a7cc9e401a92..880e25b113c1 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -844,7 +844,7 @@
+ 			};
  
- static const struct meson_gx_package_id {
-@@ -47,6 +51,10 @@ static const struct meson_gx_package_id {
- 	{ "S905L", 0x21, 0xc0 },
- 	{ "S905M2", 0x21, 0xe0 },
- 	{ "S912", 0x22, 0 },
-+	{ "962X", 0x24, 0x10 },
-+	{ "962E", 0x24, 0x20 },
-+	{ "A113X", 0x25, 0x37 },
-+	{ "A113D", 0x25, 0xd0 },
- };
- 
- static inline unsigned int socinfo_to_major(u32 socinfo)
+ 			pwm_AO_cd: pwm at 2000 {
+-				compatible = "amlogic,axg-ao-pwm";
++				compatible = "amlogic,meson-axg-ao-pwm";
+ 				reg = <0x0 0x02000  0x0 0x20>;
+ 				#pwm-cells = <3>;
+ 				status = "disabled";
 -- 
-2.7.4
+2.14.3
