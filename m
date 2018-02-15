@@ -1,84 +1,35 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 15 Feb 2018 11:19:36 +0100
-Subject: [PATCH] drm/meson: fix vsync buffer update
-Message-ID: <1518689976-23292-1-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 15 Feb 2018 12:55:19 +0100
+Subject: [PATCH] ARM64: dts: meson-axg: fix pwm_AO_cd compatible
+In-Reply-To: <20180215101031.18934-1-jbrunet@baylibre.com>
+References: <20180215101031.18934-1-jbrunet@baylibre.com>
+Message-ID: <9a161f47-3e4a-d1ed-f829-d6989191583a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The plane buffer address/stride/height was incorrectly updated in the
-plane_atomic_update operation instead of the vsync irq.
-This patch delays this operation in the vsync irq along with the
-other plane delayed setup.
+On 15/02/2018 11:10, Jerome Brunet wrote:
+> The compatible in pwm_AO_cd is wrong and does not match anything.
+> Correct this with the correct compatible string
+> 
+> Fixes: 4a81e5ddfb43 ("ARM64: dts: meson-axg: add PWM DT info for Meson-Axg SoC")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index a7cc9e401a92..880e25b113c1 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -844,7 +844,7 @@
+>  			};
+>  
+>  			pwm_AO_cd: pwm at 2000 {
+> -				compatible = "amlogic,axg-ao-pwm";
+> +				compatible = "amlogic,meson-axg-ao-pwm";
+>  				reg = <0x0 0x02000  0x0 0x20>;
+>  				#pwm-cells = <3>;
+>  				status = "disabled";
+> 
 
-This issue was masked using legacy framebuffer and X11 modesetting, but
-is clearly visible using gbm rendering when buffer is submitted late after
-vblank, like using software decoding and OpenGL rendering in Kodi.
-With this patch, tearing and other artifacts disappears completely.
-
-Cc: Michal Lazo <michal.lazo@gmail.com>
-Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_crtc.c  | 6 ++++++
- drivers/gpu/drm/meson/meson_drv.h   | 3 +++
- drivers/gpu/drm/meson/meson_plane.c | 7 +++----
- 3 files changed, 12 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index 5155f01..0552020 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -36,6 +36,7 @@
- #include "meson_venc.h"
- #include "meson_vpp.h"
- #include "meson_viu.h"
-+#include "meson_canvas.h"
- #include "meson_registers.h"
- 
- /* CRTC definition */
-@@ -192,6 +193,11 @@ void meson_crtc_irq(struct meson_drm *priv)
- 		} else
- 			meson_vpp_disable_interlace_vscaler_osd1(priv);
- 
-+		meson_canvas_setup(priv, MESON_CANVAS_ID_OSD1,
-+			   priv->viu.osd1_addr, priv->viu.osd1_stride,
-+			   priv->viu.osd1_height, MESON_CANVAS_WRAP_NONE,
-+			   MESON_CANVAS_BLKMODE_LINEAR);
-+
- 		/* Enable OSD1 */
- 		writel_bits_relaxed(VPP_OSD1_POSTBLEND, VPP_OSD1_POSTBLEND,
- 				    priv->io_base + _REG(VPP_MISC));
-diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
-index 5e8b392..8450d6ac 100644
---- a/drivers/gpu/drm/meson/meson_drv.h
-+++ b/drivers/gpu/drm/meson/meson_drv.h
-@@ -43,6 +43,9 @@ struct meson_drm {
- 		bool osd1_commit;
- 		uint32_t osd1_ctrl_stat;
- 		uint32_t osd1_blk0_cfg[5];
-+		uint32_t osd1_addr;
-+		uint32_t osd1_stride;
-+		uint32_t osd1_height;
- 	} viu;
- 
- 	struct {
-diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-index d0a6ac8..27bd350 100644
---- a/drivers/gpu/drm/meson/meson_plane.c
-+++ b/drivers/gpu/drm/meson/meson_plane.c
-@@ -164,10 +164,9 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
- 	/* Update Canvas with buffer address */
- 	gem = drm_fb_cma_get_gem_obj(fb, 0);
- 
--	meson_canvas_setup(priv, MESON_CANVAS_ID_OSD1,
--			   gem->paddr, fb->pitches[0],
--			   fb->height, MESON_CANVAS_WRAP_NONE,
--			   MESON_CANVAS_BLKMODE_LINEAR);
-+	priv->viu.osd1_addr = gem->paddr;
-+	priv->viu.osd1_stride = fb->pitches[0];
-+	priv->viu.osd1_height = fb->height;
- 
- 	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
- }
--- 
-2.7.4
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
