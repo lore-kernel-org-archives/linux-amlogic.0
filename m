@@ -1,75 +1,44 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 15 Feb 2018 12:56:41 +0100
-Subject: [PATCH v2] ARM64: dts: meson-axg: enable IR controller
-In-Reply-To: <20171204053858.1697-1-yixun.lan@amlogic.com>
-References: <20171204053858.1697-1-yixun.lan@amlogic.com>
-Message-ID: <faa30eb9-9872-bd78-6f25-d6425651887e@baylibre.com>
+From: kishon@ti.com (Kishon Vijay Abraham I)
+Date: Fri, 16 Feb 2018 17:51:54 +0530
+Subject: [PATCH 0/5] improvements and fixes for the phy-meson-gxl-usb2
+ driver
+In-Reply-To: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
+References: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
+Message-ID: <a2971b23-526a-a611-4f22-098e60e1fa74@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04/12/2017 06:38, Yixun Lan wrote:
-> Enable IR remote controller which find in Amlogic's Meson-AXG SoC.
-> 
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> 
-> ---
-> 
-> Changes since v1 at [1]:
->  - drop the compatbile 'amlogic,meson-gx-ir'
-> 
-> [1]
->  http://lists.infradead.org/pipermail/linux-amlogic/2017-November/005527.html
-> ---
->  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts |  6 ++++++
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 14 ++++++++++++++
->  2 files changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> index 0864d1ff2d9b..ca676cafdbb3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> @@ -34,3 +34,9 @@
->  	pinctrl-0 = <&i2c1_z_pins>;
->  	pinctrl-names = "default";
->  };
-> +
-> +&ir {
-> +	status = "okay";
-> +	pinctrl-0 = <&remote_input_ao_pins>;
-> +	pinctrl-names = "default";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index 9bb85893c1b7..f68f709762dd 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -616,6 +616,13 @@
->  					#gpio-cells = <2>;
->  					gpio-ranges = <&pinctrl_aobus 0 0 15>;
->  				};
-> +
-> +				remote_input_ao_pins: remote_input_ao {
-> +					mux {
-> +						groups = "remote_input_ao";
-> +						function = "remote_input_ao";
-> +					};
-> +				};
->  			};
->  
->  			i2c_AO: i2c at 5000 {
-> @@ -664,6 +671,13 @@
->  				clock-names = "xtal", "pclk", "baud";
->  				status = "disabled";
->  			};
-> +
-> +			ir: ir at 8000 {
-> +				compatible = "amlogic,meson-gxbb-ir";
-> +				reg = <0x0 0x8000 0x0 0x20>;
-> +				interrupts = <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>;
-> +				status = "disabled";
-> +			};
->  		};
->  	};
->  };
-> 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+On Monday 29 January 2018 01:52 AM, Martin Blumenstingl wrote:
+> This contains two fixes and two (minor) fixes for the phy-meson-gxl-usb2
+> driver:
+> - a clock and reset line is used for the PHYs. this was not clear from
+>   the Amlogic GPL kernel sources since the clock is enabled very early
+>   in the boot process (either because the hardware defaults to "on",
+>   the bootrom enables it or a bootloader before BL3-3/u-boot enables it)
+> - we don't read the controller's dr_mode anymore because the USB2 PHY
+>   can only be switched into host mode if the USB3 PHY knows about it.
+>   Thus auto-detecting the mode doesn't work for this PHY so it's removed
+>   in patch #3
+> - do not log an error message when the phy-supply is not ready yet and
+>   we have to return -EPROBE_DEFER
+> - improve the naming of some U2P_R2 test mode registers
+
+merged, thanks!
+
+-Kishon
+> 
+> 
+> Martin Blumenstingl (5):
+>   dt-bindings: phy: meson-gxl-usb2-phy: add the reset line and clock
+>   phy: amlogic: phy-meson-gxl-usb2: support the clock and reset line
+>   phy: amlogic: phy-meson-gxl-usb2: default to host mode
+>   phy: amlogic: phy-meson-gxl-usb2: don't log an error on -EPROBE_DEFER
+>   phy: amlogic: phy-meson-gxl-usb2: rename some of the U2P_R2 registers
+> 
+>  .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  4 ++
+>  drivers/phy/amlogic/Kconfig                        |  1 -
+>  drivers/phy/amlogic/phy-meson-gxl-usb2.c           | 78 ++++++++++++++++------
+>  3 files changed, 61 insertions(+), 22 deletions(-)
+> 
