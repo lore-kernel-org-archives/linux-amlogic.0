@@ -1,44 +1,124 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Fri, 16 Feb 2018 17:51:54 +0530
-Subject: [PATCH 0/5] improvements and fixes for the phy-meson-gxl-usb2
- driver
-In-Reply-To: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
-References: <20180128202245.25021-1-martin.blumenstingl@googlemail.com>
-Message-ID: <a2971b23-526a-a611-4f22-098e60e1fa74@ti.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 17 Feb 2018 15:08:20 +0100
+Subject: [net-next PATCH v1 3/3] net: stmmac: dwmac-meson8b: make the clock
+ configurations private
+In-Reply-To: <20180217140820.30257-1-martin.blumenstingl@googlemail.com>
+References: <20180217140820.30257-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180217140820.30257-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+The common clock framework needs access to the "clock configuration"
+structs during runtime.
+However, only the common clock framework should access these. Ensure
+this by moving the configuration structs out of struct meson8b_dwmac,
+so only meson8b_init_rgmii_tx_clk() and the common clock framework know
+about these configurations.
 
+Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 45 ++++++++++++----------
+ 1 file changed, 24 insertions(+), 21 deletions(-)
 
-On Monday 29 January 2018 01:52 AM, Martin Blumenstingl wrote:
-> This contains two fixes and two (minor) fixes for the phy-meson-gxl-usb2
-> driver:
-> - a clock and reset line is used for the PHYs. this was not clear from
->   the Amlogic GPL kernel sources since the clock is enabled very early
->   in the boot process (either because the hardware defaults to "on",
->   the bootrom enables it or a bootloader before BL3-3/u-boot enables it)
-> - we don't read the controller's dr_mode anymore because the USB2 PHY
->   can only be switched into host mode if the USB3 PHY knows about it.
->   Thus auto-detecting the mode doesn't work for this PHY so it's removed
->   in patch #3
-> - do not log an error message when the phy-supply is not ready yet and
->   we have to return -EPROBE_DEFER
-> - improve the naming of some U2P_R2 test mode registers
-
-merged, thanks!
-
--Kishon
-> 
-> 
-> Martin Blumenstingl (5):
->   dt-bindings: phy: meson-gxl-usb2-phy: add the reset line and clock
->   phy: amlogic: phy-meson-gxl-usb2: support the clock and reset line
->   phy: amlogic: phy-meson-gxl-usb2: default to host mode
->   phy: amlogic: phy-meson-gxl-usb2: don't log an error on -EPROBE_DEFER
->   phy: amlogic: phy-meson-gxl-usb2: rename some of the U2P_R2 registers
-> 
->  .../devicetree/bindings/phy/meson-gxl-usb2-phy.txt |  4 ++
->  drivers/phy/amlogic/Kconfig                        |  1 -
->  drivers/phy/amlogic/phy-meson-gxl-usb2.c           | 78 ++++++++++++++++------
->  3 files changed, 61 insertions(+), 22 deletions(-)
-> 
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+index 0dfce35c5583..2d5d4aea3bcb 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+@@ -49,19 +49,17 @@
+ 
+ struct meson8b_dwmac {
+ 	struct device		*dev;
+-
+ 	void __iomem		*regs;
+-
+ 	phy_interface_t		phy_mode;
++	struct clk		*rgmii_tx_clk;
++	u32			tx_delay_ns;
++};
+ 
++struct meson8b_dwmac_clk_configs {
+ 	struct clk_mux		m250_mux;
+ 	struct clk_divider	m250_div;
+ 	struct clk_fixed_factor	fixed_div2;
+ 	struct clk_gate		rgmii_tx_en;
+-
+-	struct clk		*rgmii_tx_clk;
+-
+-	u32			tx_delay_ns;
+ };
+ 
+ static void meson8b_dwmac_mask_bits(struct meson8b_dwmac *dwmac, u32 reg,
+@@ -106,6 +104,11 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
+ 	struct clk *clk;
+ 	struct device *dev = dwmac->dev;
+ 	const char *parent_name, *mux_parent_names[MUX_CLK_NUM_PARENTS];
++	struct meson8b_dwmac_clk_configs *clk_configs;
++
++	clk_configs = devm_kzalloc(dev, sizeof(*clk_configs), GFP_KERNEL);
++	if (!clk_configs)
++		return -ENOMEM;
+ 
+ 	/* get the mux parents from DT */
+ 	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
+@@ -123,43 +126,43 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
+ 		mux_parent_names[i] = __clk_get_name(clk);
+ 	}
+ 
+-	dwmac->m250_mux.reg = dwmac->regs + PRG_ETH0;
+-	dwmac->m250_mux.shift = PRG_ETH0_CLK_M250_SEL_SHIFT;
+-	dwmac->m250_mux.mask = PRG_ETH0_CLK_M250_SEL_MASK;
++	clk_configs->m250_mux.reg = dwmac->regs + PRG_ETH0;
++	clk_configs->m250_mux.shift = PRG_ETH0_CLK_M250_SEL_SHIFT;
++	clk_configs->m250_mux.mask = PRG_ETH0_CLK_M250_SEL_MASK;
+ 	clk = meson8b_dwmac_register_clk(dwmac, "m250_sel", mux_parent_names,
+ 					 MUX_CLK_NUM_PARENTS, &clk_mux_ops,
+-					 &dwmac->m250_mux.hw);
++					 &clk_configs->m250_mux.hw);
+ 	if (WARN_ON(IS_ERR(clk)))
+ 		return PTR_ERR(clk);
+ 
+ 	parent_name = __clk_get_name(clk);
+-	dwmac->m250_div.reg = dwmac->regs + PRG_ETH0;
+-	dwmac->m250_div.shift = PRG_ETH0_CLK_M250_DIV_SHIFT;
+-	dwmac->m250_div.width = PRG_ETH0_CLK_M250_DIV_WIDTH;
+-	dwmac->m250_div.flags = CLK_DIVIDER_ONE_BASED |
++	clk_configs->m250_div.reg = dwmac->regs + PRG_ETH0;
++	clk_configs->m250_div.shift = PRG_ETH0_CLK_M250_DIV_SHIFT;
++	clk_configs->m250_div.width = PRG_ETH0_CLK_M250_DIV_WIDTH;
++	clk_configs->m250_div.flags = CLK_DIVIDER_ONE_BASED |
+ 				CLK_DIVIDER_ALLOW_ZERO |
+ 				CLK_DIVIDER_ROUND_CLOSEST;
+ 	clk = meson8b_dwmac_register_clk(dwmac, "m250_div", &parent_name, 1,
+ 					 &clk_divider_ops,
+-					 &dwmac->m250_div.hw);
++					 &clk_configs->m250_div.hw);
+ 	if (WARN_ON(IS_ERR(clk)))
+ 		return PTR_ERR(clk);
+ 
+ 	parent_name = __clk_get_name(clk);
+-	dwmac->fixed_div2.mult = 1;
+-	dwmac->fixed_div2.div = 2;
++	clk_configs->fixed_div2.mult = 1;
++	clk_configs->fixed_div2.div = 2;
+ 	clk = meson8b_dwmac_register_clk(dwmac, "fixed_div2", &parent_name, 1,
+ 					 &clk_fixed_factor_ops,
+-					 &dwmac->fixed_div2.hw);
++					 &clk_configs->fixed_div2.hw);
+ 	if (WARN_ON(IS_ERR(clk)))
+ 		return PTR_ERR(clk);
+ 
+ 	parent_name = __clk_get_name(clk);
+-	dwmac->rgmii_tx_en.reg = dwmac->regs + PRG_ETH0;
+-	dwmac->rgmii_tx_en.bit_idx = PRG_ETH0_RGMII_TX_CLK_EN;
++	clk_configs->rgmii_tx_en.reg = dwmac->regs + PRG_ETH0;
++	clk_configs->rgmii_tx_en.bit_idx = PRG_ETH0_RGMII_TX_CLK_EN;
+ 	clk = meson8b_dwmac_register_clk(dwmac, "rgmii_tx_en", &parent_name, 1,
+ 					 &clk_gate_ops,
+-					 &dwmac->rgmii_tx_en.hw);
++					 &clk_configs->rgmii_tx_en.hw);
+ 	if (WARN_ON(IS_ERR(clk)))
+ 		return PTR_ERR(clk);
+ 
+-- 
+2.16.1
