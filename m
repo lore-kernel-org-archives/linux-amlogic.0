@@ -1,42 +1,29 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 17 Feb 2018 17:06:50 +0100
-Subject: [PATCH] ARM: dts: meson8b: add the I2C clocks
-Message-ID: <20180217160650.9959-1-martin.blumenstingl@googlemail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Sat, 17 Feb 2018 17:38:23 +0100
+Subject: [net-next PATCH v1 1/3] net: stmmac: dwmac-meson8b: simplify
+ clock registration
+In-Reply-To: <20180217140820.30257-2-martin.blumenstingl@googlemail.com>
+References: <20180217140820.30257-1-martin.blumenstingl@googlemail.com>
+ <20180217140820.30257-2-martin.blumenstingl@googlemail.com>
+Message-ID: <1518885503.2883.109.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the I2C clocks so the I2C busses can be used. The clock input is not
-device specific (the AO I2C bus uses clk81 as input, while the two I2C
-busses in CBUS have a separate "CLKID_I2C" gate, provided by the clock
-controller.
+On Sat, 2018-02-17 at 15:08 +0100, Martin Blumenstingl wrote:
+> To goal of this patch is to simplify the registration of the RGMII TX
+> clock (and it's parent clocks). This is achieved by:
+> - introducing the meson8b_dwmac_register_clk helper-function to remove
+>   code duplication when registering a single clock (this saves a few
+>   lines since we have 4 clocks internally)
+> - using devm_add_action_or_reset to disable the RGMII TX clock
+>   automatically when needed. This also allows us to re-use the standard
+>   stmmac_pltfr_remove function.
+> - devm_kasprintf() and devm_kstrdup() are not used anymore to generate
+>   the clock name (these are replaced by a variable on the stack) because
+>   the common clock framework already uses kstrdup() internally.
+> 
+> No functional changes intended.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 1a7c16640ea5..5f7841b2d163 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -250,6 +250,18 @@
- 	clock-names = "core";
- };
- 
-+&i2c_AO {
-+	clocks = <&clkc CLKID_CLK81>;
-+};
-+
-+&i2c_A {
-+	clocks = <&clkc CLKID_I2C>;
-+};
-+
-+&i2c_B {
-+	clocks = <&clkc CLKID_I2C>;
-+};
-+
- &L2 {
- 	arm,data-latency = <3 3 3>;
- 	arm,tag-latency = <2 2 2>;
--- 
-2.16.1
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
