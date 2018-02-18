@@ -1,299 +1,221 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 17 Feb 2018 20:44:32 +0100
-Subject: [RFC PATCH v1] pinctrl: meson: meson8b: fix requesting GPIOs
- greater than GPIOZ_3
-In-Reply-To: <CAFBinCAC8d=qEf-DSkp8bjwRJCwCjuHfhVO-9h+mY3zHEy0fcg@mail.gmail.com>
-References: <20180124002738.32338-1-martin.blumenstingl@googlemail.com>
- <1516782493.2344.48.camel@baylibre.com>
- <CAFBinCCBHcjMRJ5sd9qWnL3FDEcHxp96rahgcYmSS3q-af-9Pw@mail.gmail.com>
- <1516805576.2344.86.camel@baylibre.com>
- <CAFBinCAC8d=qEf-DSkp8bjwRJCwCjuHfhVO-9h+mY3zHEy0fcg@mail.gmail.com>
-Message-ID: <CAFBinCC=Oo0BOvSzp59xriTse3ViLd24RiGNSF0uKEwHnrXj+g@mail.gmail.com>
+Date: Sun, 18 Feb 2018 19:44:56 +0100
+Subject: [PATCH usb-next v10 0/8] initialize (multiple) PHYs for a HCD
+Message-ID: <20180218184504.3331-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+The goal of this series is to initialize multiple PHYs on a USB host
+controller, which is needed on Amlogic Meson GXL and GXM SoCs.
+- Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
+  or three USB2 ports enabled on the internal root-hub. The SoCs also
+  provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
+  internally "connected" to the dwc3 roothub) need to be powered on,
+  otherwise USB devices cannot be enumerated (even if just one PHY is
+  disabled and if the device is plugged into another, enabled port)
+- dwc3 already takes one USB2 and one USB3 PHY and initializes these
+  correctly
+- some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
+  ohci-platform.c) do not have a limitation on the number of PHYs - they
+  support any number of USB PHYs (typically one PHY per actual port)
 
-On Wed, Jan 24, 2018 at 6:54 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Hi Jerome,
->
-> On Wed, Jan 24, 2018 at 3:52 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
->> On Wed, 2018-01-24 at 11:10 +0100, Martin Blumenstingl wrote:
->>> Hi Jerome,
->>>
->>> On Wed, Jan 24, 2018 at 9:28 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
->>> > On Wed, 2018-01-24 at 01:27 +0100, Martin Blumenstingl wrote:
->>> > > Meson8b is a cost reduced variant of the Meson8 SoC. It's package size
->>> > > is smaller than Meson8.
->>> > > Unfortunately there are a few key differences which cannot be seen
->>> > > without close inspection of the code and the public S805 data-sheet:
->>> > > - the GPIOX bank is missing the GPIOX_12, GPIOX_13, GPIOX_14 and
->>> > >   GPIOX_15 GPIOs
->>> > > - the GPIOY bank is missing the GPIOY_2, GPIOY_4, GPIOY_5, GPIOY_15 and
->>> > >   GPIOY_16 GPIOs
->>> > > - the GPIODV bank is missing all GPIOs except GPIODV_9, GPIODV_24,
->>> > >   GPIODV_25, GPIODV_26, GPIODV_27, GPIODV_28 and GPIODV_29
->>> > > - the GPIOZ bank is missing completely
->>> > > - there is a new GPIO bank called "DIF"
->>> > > - (all other pads exist on both, Meson8 and Meson8b)
->>> > >
->>> > > The pinctrl-meson driver internally uses struct meson_bank, which
->>> > > assumes that the GPIOs are continuous, without any holes in between.
->>> > > This also matches with how the registers work:
->>> > > - GPIOX_0 for example uses bit 0 for switching this pad between
->>> > >   input/output, configuring pull-up/down, etc.
->>> > > - GPIOX_16 uses bit 16 for switching this pad between input/output,
->>> > >   configuring pull-up/down/, etc
->>> > > GPIOX_16 uses bit 16 even though GPIOX12..15 don't exist. (This is
->>> > > probably the reason why Meson8b inherits the dt-bindings - with all GPIO
->>> > > IDs - from Meson8)
->>> > > This means that Meson8b only has 83 actual GPIO lines. Without any holes
->>> > > there would be 130 GPIO lines in total (120 are inherited from Meson8
->>> > > plus 10 new from the DIF bank).
->>> > >
->>> > > The pinctrl framework handles holes in the pin list fine, which can be
->>> > > seen in debugfs:
->>> > > $ cat /sys/kernel/debug/pinctrl/c1109880.pinctrl/pins
->>> > > pin 9 (GPIOX_9)  c1109880.pinctrl
->>> > > pin 10 (GPIOX_10)  c1109880.pinctrl
->>> > > pin 11 (GPIOX_11)  c1109880.pinctrl
->>> > > pin 16 (GPIOX_16)  c1109880.pinctrl
->>> > > pin 17 (GPIOX_17)  c1109880.pinctrl
->>> >
->>> > Hi Martin,
->>> >
->>> > While working on this controller a few weeks ago, I have seen that our current
->>> > design does not tolerate having holes in the declared PINS. This is something
->>> > that predate the changes mentioned here.
->>> >
->>> > I'm not a big fan of the this overrides_ngpio here, I'm sure it fixes your
->>> > problem but it seems a bit hacky, don't you think ?
->>>
->>> this is the reason why I sent it as RFC - I'm open to better solutions!
->>>
->>> > I would prefer either of these 2 approach:
->>> >
->>> > * Update the binding and kill the necessary pins. We are still figuring out
->>> > those chips, which is why the bindings are marked as un-stable. If sharing the
->>> > binding with meson8 was a mistake, now is the time to fix it.
->>>
->>> let's say we produce a header file which does not contain GPIOX_12:
->>> this would be nice since it gives compile errors if non-existent GPIOs
->>> are used (instead of failing only at run-time)
->>>
->>> however, the problem is meson8b_cbus_banks (annotated here to make it
->>> easier to read):
->>> BANK("X", /* name */
->>>           GPIOX_0, GPIOX_21, /* first and last GPIO */
->>>           97, 118, /* first and last IRQ */
->>>           4,  0, /* pull-up/down enable register and bit offset */
->>>           4,  0, /* pull-up/down configuration register and bit offset */
->>>           0,  0, /* input/output direction register and bit offset */
->>>           1,  0, /* output value register and bit offset */
->>>           2,  0), /* input value register and bit offset */
->>>
->>> let's say we want to configure GPIOX_0 as an input:
->>> - we need to find the "offset" of this pad within the bank -> 0
->>> - find the input/output direction register -> 0
->>> - find the bit in that register: bit 0 + pad offset 0 = 0
->>> - we clear bit 0 in register 0
->>>
->>> with the current code configuring GPIOX_16 as input works like this:
->>> - we need to find the "offset" of this pad within the bank -> 16
->>> - find the input/output direction register -> 0
->>> - find the bit in that register: bit 0 + pad offset 16 = 16
->>> - we clear bit 16 in register 0
->>
->> If offset calculation is really the problem, nothing is stopping you from the
->> splitting BANK in two. With your example of GPIOX_12...15 missing:
->>
->> BANK("X1", /* name */
->>            GPIOX_0, GPIOX_11, /* first and last GPIO */
->>            97, 108, /* first and last IRQ */
->>            4,  0, /* pull-up/down enable register and bit offset */
->>            4,  0, /* pull-up/down configuration register and bit offset */
->>            0,  0, /* input/output direction register and bit offset */
->>            1,  0, /* output value register and bit offset */
->>            2,  0), /* input value register and bit offset */
->>
->> BANK("X2", /* name */
->>            GPIOX_16, GPIOX_21, /* first and last GPIO */
->>            113, 118, /* first and last IRQ */
->>            X,  Y, /* pull-up/down enable register and bit offset */
->>            X,  Y, /* pull-up/down configuration register and bit offset */
->>            Z,  XX, /* input/output direction register and bit offset */
->>            FOO,  0, /* output value register and bit offset */
->>            BAR,  0), /* input value register and bit offset */
-> nice thinking :)
-> the only solution I could come up with was to change the MESON_PIN
-> definition to something like:
-> #define MESON_PIN(pad, pullen_bit, pull_bit, direction_bit,
-> output_bit, input_bit, irq_num)
->
-> that however means that we would have to change a lot of code in all
-> pinctrl drivers
->
->>>
->>> let's assume that we removed GPIOX_12...15 from Meson8b
->>> GPIOX_16 could now have the same value that was assigned to GPIOX_12
->>> before (= 12)
->>> but how do we now know the offset of GPIOX_16?
->>> if we don't consider it in the calculation above we would end up
->>> writing to bit 12 (instead of bit 16).
->>>
->>> we could still cleanup the header file but leave the IDs of the
->>> existing GPIOs untouched (so GPIOX_16 would still be 16).
->>
->> I don't really get the point of doing so, especially is this patch is still
->> needed in the end.
->>
->>> however, that means that this patch is still needed because our last
->>> ID would be DIF_4_N (= value 129) again (so with holes our total count
->>> is still 130).
->>> with that we wouldn't even break the DT ABI
->>
->> While I prefer changing the bindings over the 'over_ngpio' tweak, it is not my
->> favorite solution.
->>
->>>
->>> > * If meson8b is indeed a cost reduction, it is likely to be same the approach as
->>> > s905x vs s905d: The D version is the same SoC with less ball pad but, as far as
->>> > we know, the logic is still there on the silicium (same die), it is just not
->>> > routed to the outside world. Both version share the same pinctrl driver (gxl).
->>> > The pad not routed to the outside world can just be considered "internal pads"
->>>
->>> there are a few differences between Meson8 and Meson8b, see also [0]:
->>> - Meson8 (and Meson8m2) CPU cores: 4x Cortex-A9
->>> - Meson8b CPU cores: 4x Cortex-A5
->>> - Meson8 (and Meson8m2) GPU: Mali-450MP8
->>> - Meson8b GPU: Mali-450MP4
->>> - Meson8 (and Meson8m2) package size: 19mm x 19 mm, LFBGA
->>> - Meson8b package size: 12mm x 12 mm, LFBGA
->>>
->>> the pinctrl register layout seems to be *mostly* compatible between
->>> Meson8 and Meson8b.
->>> unfortunately it's not entirely compatible, here is one example:
->>> - Meson8: GROUP(uart_tx_b1, 6, 23),
->>> - Meson8b: GROUP(uart_tx_b1, 6, 19),
->>> - Meson8: GROUP(eth_mdc, 6, 5),
->>> - Meson8b: GROUP(eth_mdc, 6, 9),
->>>
->>> > Long story short, if meson8 and meson8b share the same bindings, maybe they
->>> > should also share the driver. If they can't share the driver because they are
->>> > definitely incompatible, maybe they should not share the same bindings
->>>
->>> based on what I have seen so far I believe that they should not share
->>> the same bindings
->>
->> It looks to me to be same gpio/pinconf IP with a few pads not exposed to the
->> outside world, so I think they could share the bindings, and apparently fair
->> part of the driver data.
->>
->> Apparently amlogic tweaked a bit the pinmux. With the current architecture of
->> our pinctrl driver, it should be fairly easy to register 2  drivers sharing
->> everything but the GROUP table (and maybe the FUNCS if necessary)
->>
->> If possible, I would be more in favor of this last solution, as we could kill
->> one the pinctrl-meson8.c file, which are mostly a copy/paste of one another.
->> While fixing you issue, we would end up with less code to maintain and save a
->> bit of memory.
->>
->> Do you see any other big issue with this approach ?
-> I would have to go through the whole list of pads to see what the
-> actual differences are
-I tried to automate this as far as possible with the attached script
-you can use it like this:
-- first get the gpio.c files from the Amlogic 3.10 kernel for Meson8
-and Meson8b: [0] and [1]
-- ./list-meson8-pinmux-reg-bits.sh path/to/meson8/gpio.c | sort -u > meson8.txt
-- ./list-meson8-pinmux-reg-bits.sh path/to/meson8b/gpio.c | sort -u >
-meson8b.txt
-- diff -Naur meson8.txt meson8b.txt > diff.patch
-- (the resulting diff is attached)
-- compare the Meson8 documentation (found in a .csv file, see [2])
-with the public Meson8b datasheet (see [3])
-
-the major differences are:
-- DIF_TTL bank only exists on Meson8b
-- GPIOZ bank only exists on Meson8
-- HDMI_TTL bank only exists on Meson8b (not supported by our mainline driver)
-- some of the Ethernet pins are using the GPIOH bank on Meson8b while
-Meson8 has these in the GPIOZ bank
-- Meson8b has various SPI pins in the GPIOH bank while Meson8 has them
-in the GPIOZ bank
-- Meson8 only has pins for one TSin interface, Meson8b seems to
-support two TSin interfaces
-
-smaller differences are:
-- the LCD_* pins (maybe even all of the LCD support) in GPIODV only
-exists on Meson8
-- Meson8b has the I2C_A pins on GPIODV_24 and GPIODV_25 (Meson8 has
-multiple pins for this in the GPIOZ bank)
-- Meson8b has the I2C_B pins on GPIODV_26 and GPIODV_27 (Meson8 has
-these on GPIOZ_2 and GPIOZ_3)
-- Meson8b has the I2C_C pins on GPIODV_28 and GPIODV_29 (Meson8 two
-chices: either GPIOY_0 and GPIOY_1 or GPIOZ_4 and GPIOZ_5)
-- the XTAL_24M_OUT signal uses GPIODV_29 on Meson8b but GPIOX_11 on Meson8
-- Meson8b can output UART_CTS_B on GPIOX_10 - Meson8 supports GPIODV_26 instead
-- Meson8b can output UART_RTS_B on GPIOX_20 - Meson8 supports GPIODV_27 instead
-- Meson8b can output SPI_SS0 on GPIOX_20 - Meson8 supports GPIOZ_9 instead
-
-not checked yet:
-- Meson8b seems to have a few more bits in BOOT_8 BOOT_10 and BOOT_18
-- Meson8b seems to have a few more bits in GPIOAO_2, GPIOAO_3,
-GPIOAO_6, GPIOAO_7, GPIOAO_9, GPIOAO_10 and GPIOAO_13
-- GPIOY_0, GPIOX_4, GPIOX_5, GPIOX_6, GPIOX_7, GPIOX_8, GPIOX_9
-- the changes (there are quite a few) in the GPIOY bank
-
-notes for other pins I have randomly checked:
-- Meson8b's gpio.c has a function for GPIOX_0 at reg9[24] - this seems
-undocumented
-- Meson8b's gpio.c has a function for GPIOX_1 at reg9[23] - this seems
-undocumented
-- Meson8b's gpio.c has a function for GPIOX_2 at reg9[22] - this seems
-undocumented
-- Meson8b's gpio.c has a function for GPIOX_3 at reg9[21] - this seems
-undocumented
-
-I'm not sure if we should try to create a unified pinctrl driver for
-Meson8 and Meson8b
-so far we have:
-- meson_pmx_group are roughly 67% identical (meson_pmx_func depend on
-meson_pmx_group)
-- different pinctrl_pin_desc (due to different GPIO banks)
-- different IRQ numbering
-
-so I wonder how much we would actually save by creating a unified
-Meson8/Meson8b pinctrl driver.
-
-as a side-note: I found out that Meson8m2 has 10 pins which each add
-one function compared to Meson8, see: [4]
-I would integrate these into the Meson8 driver (if we keep separate
-drivers for Meson8 and Meson8b) when needed, because these definitely
-don't justify adding a new pinctrl driver
+This series adds a new "PHY wrapper". This can be configured through
+devicetree by passing a "phys" property (with any number of PHY handles)
+to the USB controller.
+Additionally it this integrates this new PHY wrapper into hcd.c which
+automatically enables it for all USB controller drivers (tested on an
+Amlogic Meson GXL SoC which uses a dwc3 controller). Since this leaves
+some duplicate code (which now becomes obsolete!) in various drivers
+this is being cleaned up as well.
 
 
-Regards
-Martin
+Changes since v9 at [12]:
+- changed "skip_phy_initialization" from PATCH #2 into a bitfield and
+  moved it below the "remove_phy" bitfield as suggested by Alan Stern
+  (thanks!)
+- rebased against usb-next (which is currently identical to v4.16-rc1)
+
+Changes since v8 at [10]:
+- add new patch #2 which allows disabling "USB PHY management" in the
+  USB HCD core driver. this also affects patch #4 which now checks the
+  skip_phy_initialization flag before calling
+  usb_phy_roothub_{init,power_on} (other functions don't need to be
+  guarded since they are null-safe - see patch #3)
+- integrated my other series 'remove driver-specific "multiple PHY"
+  handling' from [11] into this one so the result of this "generic"
+  code (= removing duplicate code in various drivers) can be seen
+  directly. affects patches #5-8. (note: patch #1 "usb: mtu3: remove
+  custom USB PHY handling" from that series was dropped, because it
+  broke device mode support - Chunfeng Yun will come up with a
+  separate patch later. patch #5 "usb: chipidea: do not set the "phy"
+  field in struct usb_hcd" from that series was rewritten and is now
+  integrated into the new patch #2 from this series)
+- collected all {Reviewed,Tested,Acked}-by
+- dropped RfC prefix since this v8 was out for review for two weeks
+  and it only got Reviewed-by's and Tested-by's since then
+
+Changes since v7 at [8]:
+- updated the description in the cover-letter
+- wrapped the only call usb_phy_roothub_power_{on,off} in
+  hcd_bus_{resume,suspend} during system-suspend (excluding it from
+  being called during runtime/auto suspend). this also fixes a problem
+  on Meson GXL which does not detect that a new device has been
+  connected if the PHYs are powered off. Thanks to Manu Gautam for
+  suggesting this! (affects patch #3)
+- after a discussion about the dt-bindings of this patch I went back to
+  simply specifying a "phys" property (without a corresponding phy-names
+  property) to pass all PHYs directly in the node of the USB controller.
+  From my understanding the root hub node was "artificial" and we should
+  describe it's properties as part of the controller, rather than
+  introducing a sub-node. see also the discussion with Arnd in [9]
+  (this affects patch #1 and #2)
+- dropped patch #4 ("dt-bindings: usb: xhci: include the roothub and a
+  device in the example") because we're back to just specifying a "phys"
+  property directly within the controller.
+  NOTE: some HCI platform drivers are using the "phys" property as well.
+  With this series phy_{init,power_on,power_off,exit} will be called
+  twice for each PHY when using a ehci-platform.c or xhci-mtk.c USB
+  controller (because the controller driver and our new, generic code
+  now manage the PHYs). the PHY framework handles this gracefully (by
+  ref-counting all operations). a follow-up series will be sent which
+  removes the custom handling from the affected drivers (so only the
+  new PHY wrapper will manage the PHYs state after that follow-up
+  series).
+- fixed an unnecessary whitespace change spotted by Alan Stern (thanks!)
+  in patch #3
+- removed all Tested-by's since we're changing code again
+
+Changes since v6 at [6]:
+- fixed unnecessary whitespace change (noticed by Alan Stern - thanks)
+- added PATCH #4 to clarify (with an example) how I understood how Rob
+  wanted the dt-binding to look like (see [0]). please wait for an ACK
+  from Rob on this one to make sure that we're not introducing some
+  broken binding (as discussed with Arnd: [7])
+- added Alan Stern's ACK on PATCH #3
+- added Neil's Tested-by on PATCH #2 and #3
+
+Changes since RfC v5 at [5]:
+- dropped RfC prefix
+- removed noisy dev_err if no roothub node was found (spotted by
+  Xiaolong Ye's kbuild test robot - thank you for that!)
+- moved the call to usb_phy_roothub_power_off() within
+  hcd_bus_suspend() to make sure that the PHYs are turned off
+  if the "race with a root-hub wakeup event" condition is met (in
+  this case the PHYs are turned on again, with the old code we did
+  break the PHYs internal ref-counting because we never turned the
+  PHYs off before turning them on again in case of that special
+  "race with a root-hub wakeup event").
+  additionally we're not handling the status returned by
+  usb_phy_roothub_power_off() anymore (the bus is already turned off
+  and we tried to turn off all PHYs as well - only the PHYs which
+  failed to power off will stay in the current state).
+  thanks to Alan Stern for the suggestion
+- removed return value from usb_phy_roothub_power_off() because none
+  of my code uses it anymore. thanks to Alan Stern for the suggestion
+
+Changes since v4 at [4]:
+- renamed the subject of the cover-letter (old name was:
+  "initialize (multiple) PHYs in xhci-plat")
+- back into RFC status (see below for the reasons)
+- dropped Tested-by from Chunfeng Yun (same reasons as RFC status)
+- reworded cover-letter and commit messages from "platform-roothub"
+  to "roothub PHY wrapper"
+- moved code from drivers/usb/host/platform-roothub.* to
+  drivers/usb/core/phy.* and the changes to
+  drivers/usb/host/xhci-plat.c to drivers/usb/core/hcd.c as suggested
+  by Mathias Nyman (as a benefit this will enable the new logic for
+  non-xHCI controllers as well - however this was not tested yet)
+- rename the structs, function names, etc from platform_roothub_* to
+  usb_phy_roothub*
+
+Changes since RFCv3 at [3]:
+- moved the DT binding change from patch #3 to patch #1 as suggested
+  by Rob Herring (and slightly adjusted the commit message to account
+  for that)
+- added Tested-by from Chunfeng Yun (who confirmed that the whole
+  concept and implementation works fine on Mediatek SoCs - many thanks
+  again!) to patch #2
+- added Rob Herring's ACK to patches 1 and 3
+- dropped RFC status (RFCv3 -> PATCH v4)
+
+Changes since RFCv2 at [2]:
+- split phy_{init,exit} and phy_power_{on,off} handling. up until RFCv2
+  I called phy_init plus phy_power_on in platform_roothub_power_on and
+  phy_power_off plus phy_exit in platform_roothub_power_off. However,
+  Chunfeng Yun (a Mediatek SoC developer - many thanks for testing my
+  series and providing great feedback) reported that only using
+  phy_power_off (and omitting phy_exit) during system suspend fixes an
+  issue where USB devices would be re-enumerated when resuming. His
+  original problem description: "In order to keep link state on mt8173,
+  we just power off all phys(not exit) when system enter suspend, then
+  power on them again (needn't init, otherwise device will be
+  disconnected) when system resume, this can avoid re-enumerating
+  device.". This fix affects patch #2 and #3 as we now have
+  platform_roothub_init (which calls phy_init internally),
+  platform_roothub_power_on (which calls phy_power_on internally),
+  platform_roothub_power_off (which calls phy_power_off internally) and
+  platform_roothub_exit (which calls phy_exit internally). suspend and
+  resume only call platform_roothub_power_{on,off} to prevent the issue
+  described by Chunfeng Yun (unfortunately I cannot test this because
+  the Amlogic platform currently does not support system suspend).
+- dropped two struct forward declarations from platform-roothub.h which
+  are not used in the header file (thanks to Chunfeng Yun for spotting
+  this)
+
+Changes since RFCv1 at [1]:
+- split the usb-xhci dt-binding documentation into a separate patch
+- fixed a typo ("usb-phy" -> "phys" in the dt-binding example)
+- rebased to apply against latest usb-next
 
 
-[0] https://github.com/endlessm/linux-meson/blob/5cb4882cdda584878a29132aeb9a90497a121df9/arch/arm/mach-meson8/gpio.c
-[1] https://github.com/endlessm/linux-meson/blob/5cb4882cdda584878a29132aeb9a90497a121df9/arch/arm/mach-meson8b/gpio.c
-[2] https://github.com/endlessm/linux-meson/blob/5cb4882cdda584878a29132aeb9a90497a121df9/arch/arm/mach-meson8/tool/m8_gpio.csv
-[3] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-[4] https://github.com/endlessm/linux-meson/blob/5cb4882cdda584878a29132aeb9a90497a121df9/arch/arm/mach-meson8/gpio.c#L242
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: list-meson8-pinmux-reg-bits.sh
-Type: application/x-sh
-Size: 486 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180217/9f3c7119/attachment.sh>
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: diff.patch
-Type: text/x-patch
-Size: 11467 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180217/9f3c7119/attachment.bin>
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001818.html
+[1] http://marc.info/?l=linux-usb&m=148414866303604&w=2
+[2] https://www.spinics.net/lists/linux-usb/msg158967.html
+[3] https://www.spinics.net/lists/devicetree/msg190426.html
+[4] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004685.html
+[5] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004924.html
+[6] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005049.html
+[7] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005121.html
+[8] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005124.html
+[9] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005192.html
+[10] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006274.html
+[11] https://marc.info/?l=linux-usb&m=151683941207898&w=2
+[12] http://lists.infradead.org/pipermail/linux-amlogic/2018-February/006412.html
+
+Martin Blumenstingl (8):
+  dt-bindings: usb: add the documentation for USB HCDs
+  usb: add a flag to skip PHY initialization to struct usb_hcd
+  usb: core: add a wrapper for the USB PHYs on the HCD
+  usb: core: hcd: integrate the PHY wrapper into the HCD core
+  usb: host: xhci-mtk: remove custom USB PHY handling
+  usb: host: ehci-platform: remove custom USB PHY handling
+  usb: host: ohci-platform: remove custom USB PHY handling
+  usb: core: hcd: remove support for initializing a single PHY
+
+ .../devicetree/bindings/usb/mediatek,mtk-xhci.txt  |   5 +-
+ .../devicetree/bindings/usb/mediatek,mtu3.txt      |   5 +-
+ Documentation/devicetree/bindings/usb/usb-ehci.txt |   6 +-
+ Documentation/devicetree/bindings/usb/usb-hcd.txt  |   9 ++
+ Documentation/devicetree/bindings/usb/usb-ohci.txt |   6 +-
+ Documentation/devicetree/bindings/usb/usb-uhci.txt |   3 +
+ Documentation/devicetree/bindings/usb/usb-xhci.txt |   5 +
+ drivers/usb/chipidea/host.c                        |   6 +-
+ drivers/usb/core/Makefile                          |   2 +-
+ drivers/usb/core/hcd.c                             |  64 ++++-----
+ drivers/usb/core/phy.c                             | 158 +++++++++++++++++++++
+ drivers/usb/core/phy.h                             |   7 +
+ drivers/usb/host/ehci-fsl.c                        |   2 +
+ drivers/usb/host/ehci-platform.c                   |  55 +------
+ drivers/usb/host/ehci-tegra.c                      |   1 +
+ drivers/usb/host/ohci-omap.c                       |   1 +
+ drivers/usb/host/ohci-platform.c                   |  56 +-------
+ drivers/usb/host/xhci-mtk.c                        |  98 +------------
+ drivers/usb/host/xhci-plat.c                       |   1 +
+ include/linux/usb/hcd.h                            |   8 +-
+ 20 files changed, 253 insertions(+), 245 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-hcd.txt
+ create mode 100644 drivers/usb/core/phy.c
+ create mode 100644 drivers/usb/core/phy.h
+
+-- 
+2.16.1
