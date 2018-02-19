@@ -1,591 +1,104 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Feb 2018 12:21:45 +0100
-Subject: [PATCH 10/11] clk: meson: add fdiv clock gates
-In-Reply-To: <20180219112146.21746-1-jbrunet@baylibre.com>
-References: <20180219112146.21746-1-jbrunet@baylibre.com>
-Message-ID: <20180219112146.21746-11-jbrunet@baylibre.com>
+From: daniel@ffwll.ch (Daniel Vetter)
+Date: Mon, 19 Feb 2018 16:19:00 +0100
+Subject: [PATCH] drm/meson: fix vsync buffer update
+In-Reply-To: <1518689976-23292-1-git-send-email-narmstrong@baylibre.com>
+References: <1518689976-23292-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20180219151900.GP22199@phenom.ffwll.local>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Fdiv fixed dividers clocks of the fixed_pll can actually gate
-independently. We never had an issue so far because these clocks
-were provided 'enabled' by the bootloader.
+On Thu, Feb 15, 2018 at 11:19:36AM +0100, Neil Armstrong wrote:
+> The plane buffer address/stride/height was incorrectly updated in the
+> plane_atomic_update operation instead of the vsync irq.
+> This patch delays this operation in the vsync irq along with the
+> other plane delayed setup.
+> 
+> This issue was masked using legacy framebuffer and X11 modesetting, but
+> is clearly visible using gbm rendering when buffer is submitted late after
+> vblank, like using software decoding and OpenGL rendering in Kodi.
+> With this patch, tearing and other artifacts disappears completely.
 
-Add these gates to enable/disable the clocks when required.
+You mean the frontbuffer rendering nature of X11 with all it's tearing
+made the issue not noticeable? I'm also not clear what you mean with
+legacy framebuffer ...
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/axg.c     |  95 ++++++++++++++++++++++++++++++++++++-----
- drivers/clk/meson/axg.h     |   7 +++-
- drivers/clk/meson/gxbb.c    | 100 +++++++++++++++++++++++++++++++++++++++-----
- drivers/clk/meson/gxbb.h    |   7 +++-
- drivers/clk/meson/meson8b.c |  95 ++++++++++++++++++++++++++++++++++++-----
- drivers/clk/meson/meson8b.h |   7 +++-
- 6 files changed, 278 insertions(+), 33 deletions(-)
+Either way looks reasonable:
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 2989087fb52d..99b2738c204f 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -299,61 +299,126 @@ static struct clk_regmap axg_hifi_pll = {
- 	},
- };
- 
--static struct clk_fixed_factor axg_fclk_div2 = {
-+static struct clk_fixed_factor axg_fclk_div2_div = {
- 	.mult = 1,
- 	.div = 2,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div2",
-+		.name = "fclk_div2_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor axg_fclk_div3 = {
-+static struct clk_regmap axg_fclk_div2 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 27,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div2_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor axg_fclk_div3_div = {
- 	.mult = 1,
- 	.div = 3,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div3",
-+		.name = "fclk_div3_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor axg_fclk_div4 = {
-+static struct clk_regmap axg_fclk_div3 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 28,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div3",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div3_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor axg_fclk_div4_div = {
- 	.mult = 1,
- 	.div = 4,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div4",
-+		.name = "fclk_div4_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor axg_fclk_div5 = {
-+static struct clk_regmap axg_fclk_div4 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 29,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div4",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div4_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor axg_fclk_div5_div = {
- 	.mult = 1,
- 	.div = 5,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div5",
-+		.name = "fclk_div5_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor axg_fclk_div7 = {
-+static struct clk_regmap axg_fclk_div5 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div5",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div5_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor axg_fclk_div7_div = {
- 	.mult = 1,
- 	.div = 7,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div7",
-+		.name = "fclk_div7_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
-+static struct clk_regmap axg_fclk_div7 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div7",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div7_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
- static struct clk_regmap axg_mpll_prediv = {
- 	.data = &(struct clk_regmap_div_data){
- 		.offset = HHI_MPLL_CNTL5,
-@@ -836,6 +901,11 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
- 		[CLKID_MPLL3_DIV]		= &axg_mpll3_div.hw,
- 		[CLKID_HIFI_PLL]		= &axg_hifi_pll.hw,
- 		[CLKID_MPLL_PREDIV]		= &axg_mpll_prediv.hw,
-+		[CLKID_FCLK_DIV2_DIV]		= &axg_fclk_div2_div.hw,
-+		[CLKID_FCLK_DIV3_DIV]		= &axg_fclk_div3_div.hw,
-+		[CLKID_FCLK_DIV4_DIV]		= &axg_fclk_div4_div.hw,
-+		[CLKID_FCLK_DIV5_DIV]		= &axg_fclk_div5_div.hw,
-+		[CLKID_FCLK_DIV7_DIV]		= &axg_fclk_div7_div.hw,
- 		[NR_CLKS]			= NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -909,6 +979,11 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
- 	&axg_gp0_pll,
- 	&axg_hifi_pll,
- 	&axg_mpll_prediv,
-+	&axg_fclk_div2,
-+	&axg_fclk_div3,
-+	&axg_fclk_div4,
-+	&axg_fclk_div5,
-+	&axg_fclk_div7,
- };
- 
- static const struct of_device_id clkc_match_table[] = {
-diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
-index 6e5dc65041b5..b421df6a7ea0 100644
---- a/drivers/clk/meson/axg.h
-+++ b/drivers/clk/meson/axg.h
-@@ -122,8 +122,13 @@
- #define CLKID_MPLL2_DIV				67
- #define CLKID_MPLL3_DIV				68
- #define CLKID_MPLL_PREDIV			70
-+#define CLKID_FCLK_DIV2_DIV			71
-+#define CLKID_FCLK_DIV3_DIV			72
-+#define CLKID_FCLK_DIV4_DIV			73
-+#define CLKID_FCLK_DIV5_DIV			74
-+#define CLKID_FCLK_DIV7_DIV			75
- 
--#define NR_CLKS					71
-+#define NR_CLKS					76
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/axg-clkc.h>
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index b62d181a6d33..70b4669cf7d6 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -490,61 +490,126 @@ static struct clk_regmap gxl_gp0_pll = {
- 	},
- };
- 
--static struct clk_fixed_factor gxbb_fclk_div2 = {
-+static struct clk_fixed_factor gxbb_fclk_div2_div = {
- 	.mult = 1,
- 	.div = 2,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div2",
-+		.name = "fclk_div2_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor gxbb_fclk_div3 = {
-+static struct clk_regmap gxbb_fclk_div2 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 27,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div2_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor gxbb_fclk_div3_div = {
- 	.mult = 1,
- 	.div = 3,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div3",
-+		.name = "fclk_div3_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor gxbb_fclk_div4 = {
-+static struct clk_regmap gxbb_fclk_div3 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 28,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div3",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div3_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor gxbb_fclk_div4_div = {
- 	.mult = 1,
- 	.div = 4,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div4",
-+		.name = "fclk_div4_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor gxbb_fclk_div5 = {
-+static struct clk_regmap gxbb_fclk_div4 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 29,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div4",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div4_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor gxbb_fclk_div5_div = {
- 	.mult = 1,
- 	.div = 5,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div5",
-+		.name = "fclk_div5_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor gxbb_fclk_div7 = {
-+static struct clk_regmap gxbb_fclk_div5 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div5",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div5_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor gxbb_fclk_div7_div = {
- 	.mult = 1,
- 	.div = 7,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div7",
-+		.name = "fclk_div7_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
-+static struct clk_regmap gxbb_fclk_div7 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div7",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div7_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
- static struct clk_regmap gxbb_mpll_prediv = {
- 	.data = &(struct clk_regmap_div_data){
- 		.offset = HHI_MPLL_CNTL5,
-@@ -1718,6 +1783,11 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
- 		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
- 		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
- 		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
-+		[CLKID_FCLK_DIV2_DIV]	    = &gxbb_fclk_div2_div.hw,
-+		[CLKID_FCLK_DIV3_DIV]	    = &gxbb_fclk_div3_div.hw,
-+		[CLKID_FCLK_DIV4_DIV]	    = &gxbb_fclk_div4_div.hw,
-+		[CLKID_FCLK_DIV5_DIV]	    = &gxbb_fclk_div5_div.hw,
-+		[CLKID_FCLK_DIV7_DIV]	    = &gxbb_fclk_div7_div.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -1869,6 +1939,11 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
- 		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
- 		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
- 		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
-+		[CLKID_FCLK_DIV2_DIV]	    = &gxbb_fclk_div2_div.hw,
-+		[CLKID_FCLK_DIV3_DIV]	    = &gxbb_fclk_div3_div.hw,
-+		[CLKID_FCLK_DIV4_DIV]	    = &gxbb_fclk_div4_div.hw,
-+		[CLKID_FCLK_DIV5_DIV]	    = &gxbb_fclk_div5_div.hw,
-+		[CLKID_FCLK_DIV7_DIV]	    = &gxbb_fclk_div7_div.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -2022,6 +2097,11 @@ static struct clk_regmap *const gx_clk_regmaps[] = {
- 	&gxbb_fixed_pll,
- 	&gxbb_sys_pll,
- 	&gxbb_mpll_prediv,
-+	&gxbb_fclk_div2,
-+	&gxbb_fclk_div3,
-+	&gxbb_fclk_div4,
-+	&gxbb_fclk_div5,
-+	&gxbb_fclk_div7,
- };
- 
- struct clkc_data {
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index afae007ae1ec..9febf3f03739 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -199,8 +199,13 @@
- #define CLKID_MPLL1_DIV		  143
- #define CLKID_MPLL2_DIV		  144
- #define CLKID_MPLL_PREDIV	  145
-+#define CLKID_FCLK_DIV2_DIV	  146
-+#define CLKID_FCLK_DIV3_DIV	  147
-+#define CLKID_FCLK_DIV4_DIV	  148
-+#define CLKID_FCLK_DIV5_DIV	  149
-+#define CLKID_FCLK_DIV7_DIV	  150
- 
--#define NR_CLKS			  146
-+#define NR_CLKS			  151
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/gxbb-clkc.h>
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index f8b2f23c49de..9c9e3d180120 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -225,61 +225,126 @@ static struct clk_regmap meson8b_sys_pll = {
- 	},
- };
- 
--static struct clk_fixed_factor meson8b_fclk_div2 = {
-+static struct clk_fixed_factor meson8b_fclk_div2_div = {
- 	.mult = 1,
- 	.div = 2,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div2",
-+		.name = "fclk_div2_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor meson8b_fclk_div3 = {
-+static struct clk_regmap meson8b_fclk_div2 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 27,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div2_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor meson8b_fclk_div3_div = {
- 	.mult = 1,
- 	.div = 3,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div3",
-+		.name = "fclk_div_div3",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor meson8b_fclk_div4 = {
-+static struct clk_regmap meson8b_fclk_div3 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 28,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div3",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div3_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor meson8b_fclk_div4_div = {
- 	.mult = 1,
- 	.div = 4,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div4",
-+		.name = "fclk_div4_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor meson8b_fclk_div5 = {
-+static struct clk_regmap meson8b_fclk_div4 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 29,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div4",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div4_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor meson8b_fclk_div5_div = {
- 	.mult = 1,
- 	.div = 5,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div5",
-+		.name = "fclk_div5_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
--static struct clk_fixed_factor meson8b_fclk_div7 = {
-+static struct clk_regmap meson8b_fclk_div5 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div5",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div5_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor meson8b_fclk_div7_div = {
- 	.mult = 1,
- 	.div = 7,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div7",
-+		.name = "fclk_div7_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
- 	},
- };
- 
-+static struct clk_regmap meson8b_fclk_div7 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL6,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div7",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div7_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
- static struct clk_regmap meson8b_mpll_prediv = {
- 	.data = &(struct clk_regmap_div_data){
- 		.offset = HHI_MPLL_CNTL5,
-@@ -766,6 +831,11 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_CPU_SCALE_DIV]	    = &meson8b_cpu_scale_div.hw,
- 		[CLKID_CPU_SCALE_OUT_SEL]   = &meson8b_cpu_scale_out_sel.hw,
- 		[CLKID_MPLL_PREDIV]	    = &meson8b_mpll_prediv.hw,
-+		[CLKID_FCLK_DIV2_DIV]	    = &meson8b_fclk_div2_div.hw,
-+		[CLKID_FCLK_DIV3_DIV]	    = &meson8b_fclk_div3_div.hw,
-+		[CLKID_FCLK_DIV4_DIV]	    = &meson8b_fclk_div4_div.hw,
-+		[CLKID_FCLK_DIV5_DIV]	    = &meson8b_fclk_div5_div.hw,
-+		[CLKID_FCLK_DIV7_DIV]	    = &meson8b_fclk_div7_div.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-@@ -866,6 +936,11 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
- 	&meson8b_cpu_scale_out_sel,
- 	&meson8b_cpu_clk,
- 	&meson8b_mpll_prediv,
-+	&meson8b_fclk_div2,
-+	&meson8b_fclk_div3,
-+	&meson8b_fclk_div4,
-+	&meson8b_fclk_div5,
-+	&meson8b_fclk_div7,
- };
- 
- static const struct meson8b_clk_reset_line {
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index 839ffc9da5f7..6e414bd36981 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -78,8 +78,13 @@
- #define CLKID_CPU_SCALE_DIV	102
- #define CLKID_CPU_SCALE_OUT_SEL	103
- #define CLKID_MPLL_PREDIV	104
-+#define CLKID_FCLK_DIV2_DIV	105
-+#define CLKID_FCLK_DIV3_DIV	106
-+#define CLKID_FCLK_DIV4_DIV	107
-+#define CLKID_FCLK_DIV5_DIV	108
-+#define CLKID_FCLK_DIV7_DIV	109
- 
--#define CLK_NR_CLKS		105
-+#define CLK_NR_CLKS		110
- 
- /*
-  * include the CLKID and RESETID that have
+> Cc: Michal Lazo <michal.lazo@gmail.com>
+> Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/meson/meson_crtc.c  | 6 ++++++
+>  drivers/gpu/drm/meson/meson_drv.h   | 3 +++
+>  drivers/gpu/drm/meson/meson_plane.c | 7 +++----
+>  3 files changed, 12 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+> index 5155f01..0552020 100644
+> --- a/drivers/gpu/drm/meson/meson_crtc.c
+> +++ b/drivers/gpu/drm/meson/meson_crtc.c
+> @@ -36,6 +36,7 @@
+>  #include "meson_venc.h"
+>  #include "meson_vpp.h"
+>  #include "meson_viu.h"
+> +#include "meson_canvas.h"
+>  #include "meson_registers.h"
+>  
+>  /* CRTC definition */
+> @@ -192,6 +193,11 @@ void meson_crtc_irq(struct meson_drm *priv)
+>  		} else
+>  			meson_vpp_disable_interlace_vscaler_osd1(priv);
+>  
+> +		meson_canvas_setup(priv, MESON_CANVAS_ID_OSD1,
+> +			   priv->viu.osd1_addr, priv->viu.osd1_stride,
+> +			   priv->viu.osd1_height, MESON_CANVAS_WRAP_NONE,
+> +			   MESON_CANVAS_BLKMODE_LINEAR);
+> +
+>  		/* Enable OSD1 */
+>  		writel_bits_relaxed(VPP_OSD1_POSTBLEND, VPP_OSD1_POSTBLEND,
+>  				    priv->io_base + _REG(VPP_MISC));
+> diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+> index 5e8b392..8450d6ac 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.h
+> +++ b/drivers/gpu/drm/meson/meson_drv.h
+> @@ -43,6 +43,9 @@ struct meson_drm {
+>  		bool osd1_commit;
+>  		uint32_t osd1_ctrl_stat;
+>  		uint32_t osd1_blk0_cfg[5];
+> +		uint32_t osd1_addr;
+> +		uint32_t osd1_stride;
+> +		uint32_t osd1_height;
+>  	} viu;
+>  
+>  	struct {
+> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+> index d0a6ac8..27bd350 100644
+> --- a/drivers/gpu/drm/meson/meson_plane.c
+> +++ b/drivers/gpu/drm/meson/meson_plane.c
+> @@ -164,10 +164,9 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>  	/* Update Canvas with buffer address */
+>  	gem = drm_fb_cma_get_gem_obj(fb, 0);
+>  
+> -	meson_canvas_setup(priv, MESON_CANVAS_ID_OSD1,
+> -			   gem->paddr, fb->pitches[0],
+> -			   fb->height, MESON_CANVAS_WRAP_NONE,
+> -			   MESON_CANVAS_BLKMODE_LINEAR);
+> +	priv->viu.osd1_addr = gem->paddr;
+> +	priv->viu.osd1_stride = fb->pitches[0];
+> +	priv->viu.osd1_height = fb->height;
+>  
+>  	spin_unlock_irqrestore(&priv->drm->event_lock, flags);
+>  }
+> -- 
+> 2.7.4
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel at lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
 -- 
-2.14.3
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
