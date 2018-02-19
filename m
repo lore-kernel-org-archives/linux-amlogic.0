@@ -1,51 +1,35 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Feb 2018 12:21:35 +0100
-Subject: [PATCH 00/11] clk: meson: second round of updates
-Message-ID: <20180219112146.21746-1-jbrunet@baylibre.com>
+Date: Mon, 19 Feb 2018 12:21:36 +0100
+Subject: [PATCH 01/11] clk: meson: add fractional part of meson8b fixed_pll
+In-Reply-To: <20180219112146.21746-1-jbrunet@baylibre.com>
+References: <20180219112146.21746-1-jbrunet@baylibre.com>
+Message-ID: <20180219112146.21746-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This changeset applies on top of the previous updates series
-available here [0].
+Add the missing frac parameter to the meson8b fixed_pll. It seems to be
+always on this platform, so the rate remains unchanged
 
-Most of the changes proposed here are related to the plls of meson
-SoCs. Details can be found in each patches but, in nutshell, there
-is :
-* a bit of clean-up,
-* improved pll capabilities using the frac parameter,
-* several clocks added to model the tree more accurately.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/meson8b.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Beware: patch #10 depends on this core clock framework fix: [1]
-As explained in the description on the patch, if the gates are
-added w/o this fix, the system will crash when
-clk_disable_unused() is called.
-
-[0]: https://lkml.kernel.org/r/20180212145846.19380-1-jbrunet at baylibre.com
-[1]: https://lkml.kernel.org/r/20180214134340.17242-5-jbrunet at baylibre.com
-
-Jerome Brunet (11):
-  clk: meson: add fractional part of meson8b fixed_pll
-  clk: meson: poke pll CNTL last
-  clk: meson: remove special gp0 lock loop
-  clk: meson: improve pll driver results with frac
-  clk: meson: add gp0 frac parameter for axg and gxl
-  clk: meson: add ROUND_CLOSEST to the pll driver
-  clk: meson: axg: add hifi clock bindings
-  clk: meson: axg: add hifi pll clock
-  clk: meson: add mpll pre-divider
-  clk: meson: add fdiv clock gates
-  clk: meson: clean-up clk81 clocks
-
- drivers/clk/meson/axg.c              | 184 +++++++++++++++++++++++++++++++----
- drivers/clk/meson/axg.h              |   8 +-
- drivers/clk/meson/clk-pll.c          | 154 ++++++++++++++++++-----------
- drivers/clk/meson/clkc.h             |  15 +--
- drivers/clk/meson/gxbb.c             | 141 +++++++++++++++++++++++----
- drivers/clk/meson/gxbb.h             |  10 +-
- drivers/clk/meson/meson8b.c          | 128 ++++++++++++++++++++----
- drivers/clk/meson/meson8b.h          |   8 +-
- include/dt-bindings/clock/axg-clkc.h |   1 +
- 9 files changed, 521 insertions(+), 128 deletions(-)
-
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index ea73b5de9672..62c54a75a1d2 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -125,6 +125,11 @@ static struct clk_regmap meson8b_fixed_pll = {
+ 			.shift   = 16,
+ 			.width   = 2,
+ 		},
++		.frac = {
++			.reg_off = HHI_MPLL_CNTL2,
++			.shift   = 0,
++			.width   = 12,
++		},
+ 		.l = {
+ 			.reg_off = HHI_MPLL_CNTL,
+ 			.shift   = 31,
 -- 
 2.14.3
