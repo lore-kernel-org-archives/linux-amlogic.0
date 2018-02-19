@@ -1,29 +1,61 @@
-From: davem@davemloft.net (David Miller)
-Date: Mon, 19 Feb 2018 11:27:00 -0500 (EST)
-Subject: [net-next PATCH v1 0/3] dwmac-meson8b: small cleanup
-In-Reply-To: <20180217140820.30257-1-martin.blumenstingl@googlemail.com>
-References: <20180217140820.30257-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180219.112700.346909623772944138.davem@davemloft.net>
+From: matthias.bgg@gmail.com (Matthias Brugger)
+Date: Mon, 19 Feb 2018 18:02:56 +0100
+Subject: [PATCH v3 5/7] watchdog: mtk: allow setting timeout in devicetree
+In-Reply-To: <20180211200847.25000-5-marcus.folkesson@gmail.com>
+References: <20180211200847.25000-1-marcus.folkesson@gmail.com>
+ <20180211200847.25000-5-marcus.folkesson@gmail.com>
+Message-ID: <e179fed7-225f-2c07-2c00-41ccd28d4784@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 17 Feb 2018 15:08:17 +0100
 
-> This is a follow-up to my previous series "dwmac-meson8b: clock fixes for
-> Meson8b" from [0].
-> during the review of that series it was found that the clock registration
-> could be simplified. now that the previous series has landed we can start
-> cleaning up the clock registration.
-> 
-> the goal of this series is to simplify the code in the dwmac-meson8b
-> driver. no functional changes are intended.
-> 
-> I have tested this on my Khadas VIM2 (GXM SoC, with RGMII PHY) and my
-> Endless Mini (EC-100, Meson8b SoC with RMII PHY, .dts support is not part
-> of mainline yet). no problems were found.
-> 
-> 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006143.html
 
-Series applied, thank you very much.
+On 02/11/2018 09:08 PM, Marcus Folkesson wrote:
+> watchdog_init_timeout() will allways pick timeout_param since it
+> defaults to a valid timeout.
+> 
+> By following best practice described in
+> Documentation/watchdog/watchdog-kernel-api.txt, it also
+> let us to set timout-sec property in devicetree.
+> 
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> ---
+>  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 4 ++++
+>  drivers/watchdog/mtk_wdt.c                             | 2 +-
+>  2 files changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> index 5b38a30e608c..859dee167b91 100644
+> --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> +++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+> @@ -11,9 +11,13 @@ Required properties:
+>  
+>  - reg : Specifies base physical address and size of the registers.
+>  
+> +Optional properties:
+> +- timeout-sec: contains the watchdog timeout in seconds.
+> +
+>  Example:
+>  
+>  wdt: watchdog at 10000000 {
+>  	compatible = "mediatek,mt6589-wdt";
+>  	reg = <0x10000000 0x18>;
+> +	timeout-sec = <10>;
+>  };
+> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
+> index 7ed417a765c7..fcdc10ec28a3 100644
+> --- a/drivers/watchdog/mtk_wdt.c
+> +++ b/drivers/watchdog/mtk_wdt.c
+> @@ -57,7 +57,7 @@
+>  #define DRV_VERSION		"1.0"
+>  
+>  static bool nowayout = WATCHDOG_NOWAYOUT;
+> -static unsigned int timeout = WDT_MAX_TIMEOUT;
+> +static unsigned int timeout;
+>  
+>  struct mtk_wdt_dev {
+>  	struct watchdog_device wdt_dev;
+> 
+
+Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
