@@ -1,71 +1,292 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Feb 2018 12:21:40 +0100
-Subject: [PATCH 05/11] clk: meson: add gp0 frac parameter for axg and gxl
+Date: Mon, 19 Feb 2018 12:21:44 +0100
+Subject: [PATCH 09/11] clk: meson: add mpll pre-divider
 In-Reply-To: <20180219112146.21746-1-jbrunet@baylibre.com>
 References: <20180219112146.21746-1-jbrunet@baylibre.com>
-Message-ID: <20180219112146.21746-6-jbrunet@baylibre.com>
+Message-ID: <20180219112146.21746-10-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the frac parameter for the gp0 pll of the axg and gxl.
-This allows to achieve rates between the fixed settings provided
-by the table.
+mpll clocks parent can actually be divided by 1 or 2. So far, this
+divider has always been set to 1, so the calculation was correct.
+Now that we know it exists, model the tree correctly. If we ever get
+a platform where the divider is different, we won't get into trouble
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c  | 7 ++++++-
- drivers/clk/meson/gxbb.c | 7 ++++++-
- 2 files changed, 12 insertions(+), 2 deletions(-)
+ drivers/clk/meson/axg.c     | 24 ++++++++++++++++++++----
+ drivers/clk/meson/axg.h     |  3 ++-
+ drivers/clk/meson/gxbb.c    | 23 ++++++++++++++++++++---
+ drivers/clk/meson/gxbb.h    |  3 ++-
+ drivers/clk/meson/meson8b.c | 22 +++++++++++++++++++---
+ drivers/clk/meson/meson8b.h |  3 ++-
+ 6 files changed, 65 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 4f13929cd594..892572a2d70f 100644
+index ed4a645753c4..2989087fb52d 100644
 --- a/drivers/clk/meson/axg.c
 +++ b/drivers/clk/meson/axg.c
-@@ -193,7 +193,7 @@ static const struct pll_rate_table axg_gp0_pll_rate_table[] = {
+@@ -354,6 +354,20 @@ static struct clk_fixed_factor axg_fclk_div7 = {
+ 	},
  };
  
- const struct reg_sequence axg_gp0_init_regs[] = {
--	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084a000 },
-+	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084b000 },
- 	{ .reg = HHI_GP0_PLL_CNTL2,	.def = 0xb75020be },
- 	{ .reg = HHI_GP0_PLL_CNTL3,	.def = 0x0a59a288 },
- 	{ .reg = HHI_GP0_PLL_CNTL4,	.def = 0xc000004d },
-@@ -218,6 +218,11 @@ static struct clk_regmap axg_gp0_pll = {
- 			.shift   = 16,
- 			.width   = 2,
- 		},
-+		.frac = {
-+			.reg_off = HHI_GP0_PLL_CNTL1,
-+			.shift   = 0,
-+			.width   = 10,
-+		},
- 		.l = {
- 			.reg_off = HHI_GP0_PLL_CNTL,
- 			.shift   = 31,
++static struct clk_regmap axg_mpll_prediv = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = HHI_MPLL_CNTL5,
++		.shift = 12,
++		.width = 1,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll_prediv",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_names = (const char *[]){ "fixed_pll" },
++		.num_parents = 1,
++	},
++};
++
+ static struct clk_regmap axg_mpll0_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+@@ -386,7 +400,7 @@ static struct clk_regmap axg_mpll0_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll0_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -432,7 +446,7 @@ static struct clk_regmap axg_mpll1_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll1_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -478,7 +492,7 @@ static struct clk_regmap axg_mpll2_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll2_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -524,7 +538,7 @@ static struct clk_regmap axg_mpll3_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll3_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -821,6 +835,7 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
+ 		[CLKID_MPLL2_DIV]		= &axg_mpll2_div.hw,
+ 		[CLKID_MPLL3_DIV]		= &axg_mpll3_div.hw,
+ 		[CLKID_HIFI_PLL]		= &axg_hifi_pll.hw,
++		[CLKID_MPLL_PREDIV]		= &axg_mpll_prediv.hw,
+ 		[NR_CLKS]			= NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -893,6 +908,7 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
+ 	&axg_sys_pll,
+ 	&axg_gp0_pll,
+ 	&axg_hifi_pll,
++	&axg_mpll_prediv,
+ };
+ 
+ static const struct of_device_id clkc_match_table[] = {
+diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
+index 4916c7045c48..6e5dc65041b5 100644
+--- a/drivers/clk/meson/axg.h
++++ b/drivers/clk/meson/axg.h
+@@ -121,8 +121,9 @@
+ #define CLKID_MPLL1_DIV				66
+ #define CLKID_MPLL2_DIV				67
+ #define CLKID_MPLL3_DIV				68
++#define CLKID_MPLL_PREDIV			70
+ 
+-#define NR_CLKS					70
++#define NR_CLKS					71
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/axg-clkc.h>
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index ac48eef0f490..fdeb372863de 100644
+index fdeb372863de..b62d181a6d33 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -437,7 +437,7 @@ static struct clk_regmap gxbb_gp0_pll = {
+@@ -545,6 +545,20 @@ static struct clk_fixed_factor gxbb_fclk_div7 = {
+ 	},
  };
  
- const struct reg_sequence gxl_gp0_init_regs[] = {
--	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084a000 },
-+	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084b000 },
- 	{ .reg = HHI_GP0_PLL_CNTL2,	.def = 0xb75020be },
- 	{ .reg = HHI_GP0_PLL_CNTL3,	.def = 0x0a59a288 },
- 	{ .reg = HHI_GP0_PLL_CNTL4,	.def = 0xc000004d },
-@@ -462,6 +462,11 @@ static struct clk_regmap gxl_gp0_pll = {
- 			.shift   = 16,
- 			.width   = 2,
- 		},
-+		.frac = {
-+			.reg_off = HHI_GP0_PLL_CNTL1,
-+			.shift   = 0,
-+			.width   = 10,
-+		},
- 		.l = {
- 			.reg_off = HHI_GP0_PLL_CNTL,
- 			.shift   = 31,
++static struct clk_regmap gxbb_mpll_prediv = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = HHI_MPLL_CNTL5,
++		.shift = 12,
++		.width = 1,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll_prediv",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_names = (const char *[]){ "fixed_pll" },
++		.num_parents = 1,
++	},
++};
++
+ static struct clk_regmap gxbb_mpll0_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+@@ -572,7 +586,7 @@ static struct clk_regmap gxbb_mpll0_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll0_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -613,7 +627,7 @@ static struct clk_regmap gxbb_mpll1_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll1_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -654,7 +668,7 @@ static struct clk_regmap gxbb_mpll2_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll2_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -1703,6 +1717,7 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
+ 		[CLKID_MPLL0_DIV]	    = &gxbb_mpll0_div.hw,
+ 		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
+ 		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
++		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
+ 		[NR_CLKS]		    = NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -1853,6 +1868,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
+ 		[CLKID_MPLL0_DIV]	    = &gxbb_mpll0_div.hw,
+ 		[CLKID_MPLL1_DIV]	    = &gxbb_mpll1_div.hw,
+ 		[CLKID_MPLL2_DIV]	    = &gxbb_mpll2_div.hw,
++		[CLKID_MPLL_PREDIV]	    = &gxbb_mpll_prediv.hw,
+ 		[NR_CLKS]		    = NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -2005,6 +2021,7 @@ static struct clk_regmap *const gx_clk_regmaps[] = {
+ 	&gxbb_cts_amclk_div,
+ 	&gxbb_fixed_pll,
+ 	&gxbb_sys_pll,
++	&gxbb_mpll_prediv,
+ };
+ 
+ struct clkc_data {
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index a8e7b8884e95..afae007ae1ec 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -198,8 +198,9 @@
+ #define CLKID_MPLL0_DIV		  142
+ #define CLKID_MPLL1_DIV		  143
+ #define CLKID_MPLL2_DIV		  144
++#define CLKID_MPLL_PREDIV	  145
+ 
+-#define NR_CLKS			  145
++#define NR_CLKS			  146
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/gxbb-clkc.h>
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 62c54a75a1d2..f8b2f23c49de 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -280,6 +280,20 @@ static struct clk_fixed_factor meson8b_fclk_div7 = {
+ 	},
+ };
+ 
++static struct clk_regmap meson8b_mpll_prediv = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = HHI_MPLL_CNTL5,
++		.shift = 12,
++		.width = 1,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "mpll_prediv",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_names = (const char *[]){ "fixed_pll" },
++		.num_parents = 1,
++	},
++};
++
+ static struct clk_regmap meson8b_mpll0_div = {
+ 	.data = &(struct meson_clk_mpll_data){
+ 		.sdm = {
+@@ -307,7 +321,7 @@ static struct clk_regmap meson8b_mpll0_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll0_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -348,7 +362,7 @@ static struct clk_regmap meson8b_mpll1_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll1_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -389,7 +403,7 @@ static struct clk_regmap meson8b_mpll2_div = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll2_div",
+ 		.ops = &meson_clk_mpll_ops,
+-		.parent_names = (const char *[]){ "fixed_pll" },
++		.parent_names = (const char *[]){ "mpll_prediv" },
+ 		.num_parents = 1,
+ 	},
+ };
+@@ -751,6 +765,7 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+ 		[CLKID_CPU_DIV3]	    = &meson8b_cpu_div3.hw,
+ 		[CLKID_CPU_SCALE_DIV]	    = &meson8b_cpu_scale_div.hw,
+ 		[CLKID_CPU_SCALE_OUT_SEL]   = &meson8b_cpu_scale_out_sel.hw,
++		[CLKID_MPLL_PREDIV]	    = &meson8b_mpll_prediv.hw,
+ 		[CLK_NR_CLKS]		    = NULL,
+ 	},
+ 	.num = CLK_NR_CLKS,
+@@ -850,6 +865,7 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
+ 	&meson8b_cpu_scale_div,
+ 	&meson8b_cpu_scale_out_sel,
+ 	&meson8b_cpu_clk,
++	&meson8b_mpll_prediv,
+ };
+ 
+ static const struct meson8b_clk_reset_line {
+diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+index 73dae83d9932..839ffc9da5f7 100644
+--- a/drivers/clk/meson/meson8b.h
++++ b/drivers/clk/meson/meson8b.h
+@@ -77,8 +77,9 @@
+ #define CLKID_CPU_DIV3		101
+ #define CLKID_CPU_SCALE_DIV	102
+ #define CLKID_CPU_SCALE_OUT_SEL	103
++#define CLKID_MPLL_PREDIV	104
+ 
+-#define CLK_NR_CLKS		104
++#define CLK_NR_CLKS		105
+ 
+ /*
+  * include the CLKID and RESETID that have
 -- 
 2.14.3
