@@ -1,35 +1,71 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Feb 2018 12:21:36 +0100
-Subject: [PATCH 01/11] clk: meson: add fractional part of meson8b fixed_pll
+Date: Mon, 19 Feb 2018 12:21:40 +0100
+Subject: [PATCH 05/11] clk: meson: add gp0 frac parameter for axg and gxl
 In-Reply-To: <20180219112146.21746-1-jbrunet@baylibre.com>
 References: <20180219112146.21746-1-jbrunet@baylibre.com>
-Message-ID: <20180219112146.21746-2-jbrunet@baylibre.com>
+Message-ID: <20180219112146.21746-6-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the missing frac parameter to the meson8b fixed_pll. It seems to be
-always on this platform, so the rate remains unchanged
+Add the frac parameter for the gp0 pll of the axg and gxl.
+This allows to achieve rates between the fixed settings provided
+by the table.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/meson8b.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/clk/meson/axg.c  | 7 ++++++-
+ drivers/clk/meson/gxbb.c | 7 ++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index ea73b5de9672..62c54a75a1d2 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -125,6 +125,11 @@ static struct clk_regmap meson8b_fixed_pll = {
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 4f13929cd594..892572a2d70f 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -193,7 +193,7 @@ static const struct pll_rate_table axg_gp0_pll_rate_table[] = {
+ };
+ 
+ const struct reg_sequence axg_gp0_init_regs[] = {
+-	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084a000 },
++	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084b000 },
+ 	{ .reg = HHI_GP0_PLL_CNTL2,	.def = 0xb75020be },
+ 	{ .reg = HHI_GP0_PLL_CNTL3,	.def = 0x0a59a288 },
+ 	{ .reg = HHI_GP0_PLL_CNTL4,	.def = 0xc000004d },
+@@ -218,6 +218,11 @@ static struct clk_regmap axg_gp0_pll = {
  			.shift   = 16,
  			.width   = 2,
  		},
 +		.frac = {
-+			.reg_off = HHI_MPLL_CNTL2,
++			.reg_off = HHI_GP0_PLL_CNTL1,
 +			.shift   = 0,
-+			.width   = 12,
++			.width   = 10,
 +		},
  		.l = {
- 			.reg_off = HHI_MPLL_CNTL,
+ 			.reg_off = HHI_GP0_PLL_CNTL,
+ 			.shift   = 31,
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index ac48eef0f490..fdeb372863de 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -437,7 +437,7 @@ static struct clk_regmap gxbb_gp0_pll = {
+ };
+ 
+ const struct reg_sequence gxl_gp0_init_regs[] = {
+-	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084a000 },
++	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0xc084b000 },
+ 	{ .reg = HHI_GP0_PLL_CNTL2,	.def = 0xb75020be },
+ 	{ .reg = HHI_GP0_PLL_CNTL3,	.def = 0x0a59a288 },
+ 	{ .reg = HHI_GP0_PLL_CNTL4,	.def = 0xc000004d },
+@@ -462,6 +462,11 @@ static struct clk_regmap gxl_gp0_pll = {
+ 			.shift   = 16,
+ 			.width   = 2,
+ 		},
++		.frac = {
++			.reg_off = HHI_GP0_PLL_CNTL1,
++			.shift   = 0,
++			.width   = 10,
++		},
+ 		.l = {
+ 			.reg_off = HHI_GP0_PLL_CNTL,
  			.shift   = 31,
 -- 
 2.14.3
