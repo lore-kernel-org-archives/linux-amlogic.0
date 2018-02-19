@@ -1,29 +1,71 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Feb 2018 12:21:42 +0100
-Subject: [PATCH 07/11] clk: meson: axg: add hifi clock bindings
+Date: Mon, 19 Feb 2018 12:21:41 +0100
+Subject: [PATCH 06/11] clk: meson: add ROUND_CLOSEST to the pll driver
 In-Reply-To: <20180219112146.21746-1-jbrunet@baylibre.com>
 References: <20180219112146.21746-1-jbrunet@baylibre.com>
-Message-ID: <20180219112146.21746-8-jbrunet@baylibre.com>
+Message-ID: <20180219112146.21746-7-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the new HIFI pll to axg clock bindings
+Provide an option for the pll driver to round to the rate closest to the
+requested rate, instead of systematically rounding down.
+
+This may allow the provided rate to be closer to the requested rate when
+rounding up is not an issue
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- include/dt-bindings/clock/axg-clkc.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/meson/clk-pll.c | 17 +++++++++++++----
+ drivers/clk/meson/clkc.h    |  2 ++
+ 2 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
-index 941ac70e7f30..555937a25504 100644
---- a/include/dt-bindings/clock/axg-clkc.h
-+++ b/include/dt-bindings/clock/axg-clkc.h
-@@ -67,5 +67,6 @@
- #define CLKID_AO_I2C				58
- #define CLKID_SD_EMMC_B_CLK0			59
- #define CLKID_SD_EMMC_C_CLK0			60
-+#define CLKID_HIFI_PLL				69
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index d58961f35b71..65a7bd903551 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -105,7 +105,12 @@ static u16 __pll_params_with_frac(unsigned long rate,
+ 	u64 val = (u64)rate * pllt->n;
  
- #endif /* __AXG_CLKC_H */
+ 	val <<= pllt->od + pllt->od2 + pllt->od3;
+-	val = div_u64(val * frac_max, parent_rate);
++
++	if (pll->flags & CLK_MESON_PLL_ROUND_CLOSEST)
++		val = DIV_ROUND_CLOSEST_ULL(val * frac_max, parent_rate);
++	else
++		val = div_u64(val * frac_max, parent_rate);
++
+ 	val -= pllt->m * frac_max;
+ 
+ 	return min((u16)val, (u16)(frac_max - 1));
+@@ -125,9 +130,13 @@ meson_clk_get_pll_settings(unsigned long rate,
+ 	while (table[i].rate && table[i].rate <= rate)
+ 		i++;
+ 
+-	/* Select the setting of the rounded down rate */
+-	if (i != 0)
+-		i--;
++	if (i != 0) {
++		if (MESON_PARM_APPLICABLE(&pll->frac) ||
++		    !(pll->flags & CLK_MESON_PLL_ROUND_CLOSEST) ||
++		    (abs(rate - table[i - 1].rate) <
++		     abs(rate - table[i].rate)))
++			i--;
++	}
+ 
+ 	return (struct pll_rate_table *)&table[i];
+ }
+diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+index 9cdcd9b6c16c..8fe73c4edca8 100644
+--- a/drivers/clk/meson/clkc.h
++++ b/drivers/clk/meson/clkc.h
+@@ -71,6 +71,8 @@ struct pll_rate_table {
+ 		.od		= (_od),				\
+ 	}
+ 
++#define CLK_MESON_PLL_ROUND_CLOSEST	BIT(0)
++
+ struct meson_clk_pll_data {
+ 	struct parm m;
+ 	struct parm n;
 -- 
 2.14.3
