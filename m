@@ -1,90 +1,114 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 19 Feb 2018 12:21:38 +0100
-Subject: [PATCH 03/11] clk: meson: remove special gp0 lock loop
+Date: Mon, 19 Feb 2018 12:21:43 +0100
+Subject: [PATCH 08/11] clk: meson: axg: add hifi pll clock
 In-Reply-To: <20180219112146.21746-1-jbrunet@baylibre.com>
 References: <20180219112146.21746-1-jbrunet@baylibre.com>
-Message-ID: <20180219112146.21746-4-jbrunet@baylibre.com>
+Message-ID: <20180219112146.21746-9-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-After testing, it appears that the gxl (and axg) does not require the
-special locking/reset loop which was initially added for it.
-
-All the values present in the gxl table can locked with the simple lock
-checking loop.
-
-The change switches the gxl and axg gp0 back to the simple lock checking
-loop and removes the code no longer required.
+Add the hifi pll to the axg clock controller. This clock maybe used as an
+input of the axg audio clock controller. It uses the same settings table
+as the gp0 pll but has a frac parameter allowing more precision.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c     |  1 -
- drivers/clk/meson/clk-pll.c | 12 +-----------
- drivers/clk/meson/clkc.h    |  2 --
- drivers/clk/meson/gxbb.c    |  1 -
- 4 files changed, 1 insertion(+), 15 deletions(-)
+ drivers/clk/meson/axg.c | 55 +++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/clk/meson/axg.h |  2 +-
+ 2 files changed, 56 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 8226b82c67fd..4f13929cd594 100644
+index 892572a2d70f..ed4a645753c4 100644
 --- a/drivers/clk/meson/axg.c
 +++ b/drivers/clk/meson/axg.c
-@@ -231,7 +231,6 @@ static struct clk_regmap axg_gp0_pll = {
- 		.table = axg_gp0_pll_rate_table,
- 		.init_regs = axg_gp0_init_regs,
- 		.init_count = ARRAY_SIZE(axg_gp0_init_regs),
--		.flags = CLK_MESON_PLL_LOCK_LOOP_RST,
+@@ -245,6 +245,59 @@ static struct clk_regmap axg_gp0_pll = {
  	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "gp0_pll",
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index f3d909719111..0b9b4422c968 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -121,19 +121,9 @@ static int meson_clk_pll_wait_lock(struct clk_hw *hw)
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
--	int delay = pll->flags & CLK_MESON_PLL_LOCK_LOOP_RST ?
--		100 : 24000000;
-+	int delay = 24000000;
+ };
  
- 	do {
--		/* Specific wait loop for GXL/GXM GP0 PLL */
--		if (pll->flags & CLK_MESON_PLL_LOCK_LOOP_RST) {
--			/* Procedure taken from the vendor kernel */
--			meson_parm_write(clk->map, &pll->rst, 1);
--			udelay(10);
--			meson_parm_write(clk->map, &pll->rst, 0);
--			mdelay(1);
--		}
--
- 		/* Is the clock locked now ? */
- 		if (meson_parm_read(clk->map, &pll->l))
- 			return 0;
-diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 8d8fe608cff4..ebd88afe1eb5 100644
---- a/drivers/clk/meson/clkc.h
-+++ b/drivers/clk/meson/clkc.h
-@@ -82,8 +82,6 @@ struct pll_rate_table {
- 		.frac		= (_frac),				\
- 	}								\
++const struct reg_sequence axg_hifi_init_regs[] = {
++	{ .reg = HHI_HIFI_PLL_CNTL1,	.def = 0xc084b000 },
++	{ .reg = HHI_HIFI_PLL_CNTL2,	.def = 0xb75020be },
++	{ .reg = HHI_HIFI_PLL_CNTL3,	.def = 0x0a6a3a88 },
++	{ .reg = HHI_HIFI_PLL_CNTL4,	.def = 0xc000004d },
++	{ .reg = HHI_HIFI_PLL_CNTL5,	.def = 0x00058000 },
++	{ .reg = HHI_HIFI_PLL_CNTL,	.def = 0x40010250 },
++};
++
++static struct clk_regmap axg_hifi_pll = {
++	.data = &(struct meson_clk_pll_data){
++		.m = {
++			.reg_off = HHI_HIFI_PLL_CNTL,
++			.shift   = 0,
++			.width   = 9,
++		},
++		.n = {
++			.reg_off = HHI_HIFI_PLL_CNTL,
++			.shift   = 9,
++			.width   = 5,
++		},
++		.od = {
++			.reg_off = HHI_HIFI_PLL_CNTL,
++			.shift   = 16,
++			.width   = 2,
++		},
++		.frac = {
++			.reg_off = HHI_HIFI_PLL_CNTL5,
++			.shift   = 0,
++			.width   = 13,
++		},
++		.l = {
++			.reg_off = HHI_HIFI_PLL_CNTL,
++			.shift   = 31,
++			.width   = 1,
++		},
++		.rst = {
++			.reg_off = HHI_HIFI_PLL_CNTL,
++			.shift   = 29,
++			.width   = 1,
++		},
++		.table = axg_gp0_pll_rate_table,
++		.init_regs = axg_hifi_init_regs,
++		.init_count = ARRAY_SIZE(axg_hifi_init_regs),
++		.flags = CLK_MESON_PLL_ROUND_CLOSEST,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "hifi_pll",
++		.ops = &meson_clk_pll_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++	},
++};
  
--#define CLK_MESON_PLL_LOCK_LOOP_RST	BIT(0)
--
- struct meson_clk_pll_data {
- 	struct parm m;
- 	struct parm n;
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 3cd07f960489..ac48eef0f490 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -475,7 +475,6 @@ static struct clk_regmap gxl_gp0_pll = {
- 		.table = gxl_gp0_pll_rate_table,
- 		.init_regs = gxl_gp0_init_regs,
- 		.init_count = ARRAY_SIZE(gxl_gp0_init_regs),
--		.flags = CLK_MESON_PLL_LOCK_LOOP_RST,
+ static struct clk_fixed_factor axg_fclk_div2 = {
+ 	.mult = 1,
+@@ -767,6 +820,7 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
+ 		[CLKID_MPLL1_DIV]		= &axg_mpll1_div.hw,
+ 		[CLKID_MPLL2_DIV]		= &axg_mpll2_div.hw,
+ 		[CLKID_MPLL3_DIV]		= &axg_mpll3_div.hw,
++		[CLKID_HIFI_PLL]		= &axg_hifi_pll.hw,
+ 		[NR_CLKS]			= NULL,
  	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "gp0_pll",
+ 	.num = NR_CLKS,
+@@ -838,6 +892,7 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
+ 	&axg_fixed_pll,
+ 	&axg_sys_pll,
+ 	&axg_gp0_pll,
++	&axg_hifi_pll,
+ };
+ 
+ static const struct of_device_id clkc_match_table[] = {
+diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
+index 4c1502a8b8c9..4916c7045c48 100644
+--- a/drivers/clk/meson/axg.h
++++ b/drivers/clk/meson/axg.h
+@@ -122,7 +122,7 @@
+ #define CLKID_MPLL2_DIV				67
+ #define CLKID_MPLL3_DIV				68
+ 
+-#define NR_CLKS					69
++#define NR_CLKS					70
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/axg-clkc.h>
 -- 
 2.14.3
