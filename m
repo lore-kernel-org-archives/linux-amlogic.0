@@ -1,138 +1,70 @@
-From: marcus.folkesson@gmail.com (Marcus Folkesson)
-Date: Tue, 20 Feb 2018 16:33:26 +0100
+From: matthias.bgg@gmail.com (Matthias Brugger)
+Date: Tue, 20 Feb 2018 17:26:34 +0100
 Subject: [PATCH v2] watchdog: add SPDX identifiers for watchdog subsystem
-In-Reply-To: <48db897e-8a61-a5bc-5a61-56349cafaa10@roeck-us.net>
+In-Reply-To: <20180220104542.32286-1-marcus.folkesson@gmail.com>
 References: <20180220104542.32286-1-marcus.folkesson@gmail.com>
- <20180220124955.GA17814@sophia> <20180220132103.GD24311@gmail.com>
- <48db897e-8a61-a5bc-5a61-56349cafaa10@roeck-us.net>
-Message-ID: <20180220153326.GE24311@gmail.com>
+Message-ID: <c5dece62-c129-fdb2-7e91-dbe587055cc0@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Feb 20, 2018 at 07:13:43AM -0800, Guenter Roeck wrote:
-> On 02/20/2018 05:21 AM, Marcus Folkesson wrote:
-> > Hello William,
-> > 
-> > On Tue, Feb 20, 2018 at 07:49:55AM -0500, William Breathitt Gray wrote:
-> > > On Tue, Feb 20, 2018 at 11:45:31AM +0100, Marcus Folkesson wrote:
-> > > > - Add SPDX identifier
-> > > > - Remove boiler plate license text
-> > > > - If MODULE_LICENSE and boiler plate does not match, go for boiler plate
-> > > >   license
-> > > > 
-> > > > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > > > Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-> > > > Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> > > > Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> > > > Acked-by: Michal Simek <michal.simek@xilinx.com>
-> > > > ---
-> > > > 
-> > > > Notes:
-> > > >     v2:
-> > > >     	- Put back removed copyright texts for meson_gxbb_wdt and coh901327_wdt
-> > > >     	- Change to BSD-3-Clause for meson_gxbb_wdt
-> > > >     v1: Please have an extra look at meson_gxbb_wdt.c
-> > > 
-> > > [...]
-> > > 
-> > > > diff --git a/drivers/watchdog/ebc-c384_wdt.c b/drivers/watchdog/ebc-c384_wdt.c
-> > > > index 2170b275ea01..c173b6f5c866 100644
-> > > > --- a/drivers/watchdog/ebc-c384_wdt.c
-> > > > +++ b/drivers/watchdog/ebc-c384_wdt.c
-> > > > @@ -1,15 +1,8 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > /*
-> > > >   * Watchdog timer driver for the WinSystems EBC-C384
-> > > >   * Copyright (C) 2016 William Breathitt Gray
-> > > >   *
 
-The copyright is untouched?
 
-> > > > - * This program is free software; you can redistribute it and/or modify
-> > > > - * it under the terms of the GNU General Public License, version 2, as
-> > > > - * published by the Free Software Foundation.
-> > > > - *
-> > > > - * This program is distributed in the hope that it will be useful, but
-> > > > - * WITHOUT ANY WARRANTY; without even the implied warranty of
-> > > > - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-> > > > - * General Public License for more details.
-> > > >   */
-> > > > #include <linux/device.h>
-> > > > #include <linux/dmi.h>
-> > 
-> > Thank you for your feedback!
-> > > 
-> > > I have no problem with adding a SPDX line to the top of this file, but
-> > > use "SPDX-License-Identifier: GPL-2.0-only" as I was very intentional
-> > > with the selection of GPL version 2 only when I published this code.
-> > 
-> > SPDX-License-Identifier: GPL-2.0
-> > Is GPL-2.0 only [1], so it respects your choice of license.
-> > 
-> > > 
-> > > Furthermore, please do not remove the existing copyright text; although
-> > 
+On 02/20/2018 11:45 AM, Marcus Folkesson wrote:
+> - Add SPDX identifier
+> - Remove boiler plate license text
+> - If MODULE_LICENSE and boiler plate does not match, go for boiler plate
+>   license
 > 
-> It is not a matter if you CAN keep a copyright. You MUST NOT remove a copyright.
-> As long as you do, the series is
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+> Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Acked-by: Michal Simek <michal.simek@xilinx.com>
+> ---
 > 
-> Nacked-by: Guenter Roeck <linux@roeck-us.net>
+> Notes:
+>     v2:
+>     	- Put back removed copyright texts for meson_gxbb_wdt and coh901327_wdt
+>     	- Change to BSD-3-Clause for meson_gxbb_wdt
+>     v1: Please have an extra look at meson_gxbb_wdt.c
 > 
-> Guenter
+>  drivers/watchdog/acquirewdt.c          |  6 +---
 
-I'm sorry, I do not see where the copyright is removed unless you count
-the license text as part of the copyright.
+[...]
 
-Can you please point it out?
+>  drivers/watchdog/mpc8xxx_wdt.c         |  6 +---
+>  drivers/watchdog/mt7621_wdt.c          |  5 +---
+>  drivers/watchdog/mtk_wdt.c             | 11 +-------
+>  drivers/watchdog/mtx-1_wdt.c           | 11 +-------
+>  drivers/watchdog/mv64x60_wdt.c         |  6 ++--
 
-> 
-> > The copyright text:
-> > 
-> >   Copyright (C) 2016 William Breathitt Gray
-> > 
-> > Is still in the file.
+[...]
 
-^^^
+> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
+> index 7ed417a765c7..498e7d4e1b66 100644
+> --- a/drivers/watchdog/mtk_wdt.c
+> +++ b/drivers/watchdog/mtk_wdt.c
+> @@ -1,3 +1,4 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+>  /*
+>   * Mediatek Watchdog Driver
+>   *
+> @@ -5,16 +6,6 @@
+>   *
+>   * Matthias Brugger <matthias.bgg@gmail.com>
+>   *
+> - * This program is free software; you can redistribute it and/or modify
+> - * it under the terms of the GNU General Public License as published by
+> - * the Free Software Foundation; either version 2 of the License, or
+> - * (at your option) any later version.
+> - *
+> - * This program is distributed in the hope that it will be useful,
+> - * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> - * GNU General Public License for more details.
+> - *
+>   * Based on sunxi_wdt.c
+>   */
+>  
 
-> > 
-> > 
-> > > it's just boilerplate for some, I was careful with the selection of
-> > > these words, and I worry the SPDX line only -- despite its useful
-> > > conciseness -- may lead to misunderstandings about my intentioned
-> > > license for this code.
-> > 
-> > I'm not sure I understand your concerns here, the SPDX identifier is
-> > a shorthand for the GPL 2.0 only license. See [1] - Linux kernel licensing rules.
-> > 
-> > One of the biggest benefits with SPDX identifier is that it is hard to verify
-> > boiler plate licenses due to formatting, types, different formulations and so on.
-> > 
-> > If still worrying, I think we could keep the license text as
-> > well.
-> > 
-> > > 
-> > > For the time being, I can't Ack this patch with the changes it makes
-> > > currently:
-> > > 
-> > >          Nacked-by: William Breathitt Gray <vilhelm.gray@gmail.com>
-> > > 
-> > > William Breathitt Gray
-> > 
-> > Please let me know if I got you wrong at some point.
-> > 
-> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/license-rules.rst
-> > 
-> > Best regards
-> > Marcus Folkesson
-> > 
-> 
-
-Best regards
-Marcus Folkesson
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 833 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180220/e5788c63/attachment.sig>
+Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
