@@ -1,144 +1,62 @@
-From: marcus.folkesson@gmail.com (Marcus Folkesson)
-Date: Tue, 20 Feb 2018 19:45:22 +0100
-Subject: [PATCH v2] watchdog: add SPDX identifiers for watchdog subsystem
-In-Reply-To: <20180220181427.GA25467@sophia>
-References: <20180220104542.32286-1-marcus.folkesson@gmail.com>
- <20180220124955.GA17814@sophia> <20180220132103.GD24311@gmail.com>
- <48db897e-8a61-a5bc-5a61-56349cafaa10@roeck-us.net>
- <20180220153326.GE24311@gmail.com> <20180220181427.GA25467@sophia>
-Message-ID: <20180220184522.GF24311@gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Tue, 20 Feb 2018 23:39:45 +0100
+Subject: [PATCH usb-next v2 0/3] DWC3 support for Amlogic Meson AXG and
+ GXL SoCs
+In-Reply-To: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
+References: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCBhOy2J7dgyLg-Oii1iMn0RJyud7ykW=EMBGg+F8X7DpA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Feb 20, 2018 at 01:14:27PM -0500, William Breathitt Gray wrote:
-> On Tue, Feb 20, 2018 at 04:33:26PM +0100, Marcus Folkesson wrote:
-> >On Tue, Feb 20, 2018 at 07:13:43AM -0800, Guenter Roeck wrote:
-> >> On 02/20/2018 05:21 AM, Marcus Folkesson wrote:
-> >> > Hello William,
-> >> > 
-> >> > On Tue, Feb 20, 2018 at 07:49:55AM -0500, William Breathitt Gray wrote:
-> >> > > On Tue, Feb 20, 2018 at 11:45:31AM +0100, Marcus Folkesson wrote:
-> >> > > > - Add SPDX identifier
-> >> > > > - Remove boiler plate license text
-> >> > > > - If MODULE_LICENSE and boiler plate does not match, go for boiler plate
-> >> > > >   license
-> >> > > > 
-> >> > > > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> >> > > > Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-> >> > > > Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> >> > > > Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> >> > > > Acked-by: Michal Simek <michal.simek@xilinx.com>
-> >> > > > ---
-> >> > > > 
-> >> > > > Notes:
-> >> > > >     v2:
-> >> > > >     	- Put back removed copyright texts for meson_gxbb_wdt and coh901327_wdt
-> >> > > >     	- Change to BSD-3-Clause for meson_gxbb_wdt
-> >> > > >     v1: Please have an extra look at meson_gxbb_wdt.c
-> >> > > 
-> >> > > [...]
-> >> > > 
-> >> > > > diff --git a/drivers/watchdog/ebc-c384_wdt.c b/drivers/watchdog/ebc-c384_wdt.c
-> >> > > > index 2170b275ea01..c173b6f5c866 100644
-> >> > > > --- a/drivers/watchdog/ebc-c384_wdt.c
-> >> > > > +++ b/drivers/watchdog/ebc-c384_wdt.c
-> >> > > > @@ -1,15 +1,8 @@
-> >> > > > +// SPDX-License-Identifier: GPL-2.0
-> >> > > > /*
-> >> > > >   * Watchdog timer driver for the WinSystems EBC-C384
-> >> > > >   * Copyright (C) 2016 William Breathitt Gray
-> >> > > >   *
-> >
-> >The copyright is untouched?
-> >
-> >> > > > - * This program is free software; you can redistribute it and/or modify
-> >> > > > - * it under the terms of the GNU General Public License, version 2, as
-> >> > > > - * published by the Free Software Foundation.
-> >> > > > - *
-> >> > > > - * This program is distributed in the hope that it will be useful, but
-> >> > > > - * WITHOUT ANY WARRANTY; without even the implied warranty of
-> >> > > > - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-> >> > > > - * General Public License for more details.
-> >> > > >   */
-> >> > > > #include <linux/device.h>
-> >> > > > #include <linux/dmi.h>
-> >> > 
-> >> > Thank you for your feedback!
-> >> > > 
-> >> > > I have no problem with adding a SPDX line to the top of this file, but
-> >> > > use "SPDX-License-Identifier: GPL-2.0-only" as I was very intentional
-> >> > > with the selection of GPL version 2 only when I published this code.
-> >> > 
-> >> > SPDX-License-Identifier: GPL-2.0
-> >> > Is GPL-2.0 only [1], so it respects your choice of license.
-> 
-> Ah, this should be fine then. :)
-> 
+Hello Felipe,
 
-Good!
+On Sun, Feb 11, 2018 at 10:15 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Amlogic Meson AXG and GXL SoCs can use the dwc3-of-simple with little
+> modifications. These SoCs use:
+> - a gate clock for the USB components (DWC3, USB PHYs)
+> - a reset line which is shared across all USB components (DWC3, USB2 and
+>   USB3 PHYs, OTG detection logic inside the USB3 PHY registers)
+> - a reset pulse to trigger the reset
+> - depending on the SoC two or more PHYs (AXG: 1x USB2 and 1x USB3 PHY,
+>   GXL: 2x USB2 and 1x USB3 PHY)
+>
+> This extends the dwc3-of-simple so it supports (depending on the
+> platform) shared and level resets. Additionally it adds new bindings
+> for the Amlogic Meson AXG and GXL SoCs, along with the documentation
+> (dt-bindings).
+>
+> NOTE: for full support on Amlogic Meson GXL SoCs my other series called
+> "initialize (multiple) PHYs for a HCD" (see [0] for v8 of that series)
+> is required. However, there is no direct dependency on that series.
+> Especially since Meson AXG doesn't need it (since it only has one USB2
+> and one USB3 PHY, which is already supported by the current dwc3 driver,
+> unlike the 2x USB2 and 1x USB3 PHYs on Meson GXL).
+> So I believe that this series can still be merged, even if the other
+> patchset is not ready yet.
+>
+>
+> changes since v1 at [1]:
+> - use of_device_is_compatible() instead of struct dwc3_of_simple_params
+>   as requested by Felipe Balbi (affects PATCH #2 and #3)
+> - added Rob's Acked-by to the dt-bindings patch
+> - added Yixun Lan's Tested-by to the whole series as he tested this
+>   successfully (along with other patches) on the Amlogic Meson AXG SoC
+>
+>
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006274.html
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006286.html
+>
+> Martin Blumenstingl (3):
+>   dt-bindings: usb: add support for dwc3 controller on Amlogic Meson GX
+>   usb: dwc3: of-simple: add support for shared and pulsed reset lines
+>   usb: dwc3: of-simple: add support for the Amlogic Meson GXL and AXG
+>     SoCs
+could you please let me know if you spotted any problems, code-style
+issues in v2 or whether you are waiting for feedback from another
+maintainer?
+in case everything is fine: will you take this series through your tree?
 
-> >> > 
-> >> > > 
-> >> > > Furthermore, please do not remove the existing copyright text; although
-> >> > 
-> >> 
-> >> It is not a matter if you CAN keep a copyright. You MUST NOT remove a copyright.
-> >> As long as you do, the series is
-> >> 
-> >> Nacked-by: Guenter Roeck <linux@roeck-us.net>
-> >> 
-> >> Guenter
-> >
-> >I'm sorry, I do not see where the copyright is removed unless you count
-> >the license text as part of the copyright.
-> >
-> >Can you please point it out?
-> >
-> >> 
-> >> > The copyright text:
-> >> > 
-> >> >   Copyright (C) 2016 William Breathitt Gray
-> >> > 
-> >> > Is still in the file.
-> >
-> >^^^
-> >
-> >> > 
-> >> > 
-> >> > > it's just boilerplate for some, I was careful with the selection of
-> >> > > these words, and I worry the SPDX line only -- despite its useful
-> >> > > conciseness -- may lead to misunderstandings about my intentioned
-> >> > > license for this code.
-> >> > 
-> >> > I'm not sure I understand your concerns here, the SPDX identifier is
-> >> > a shorthand for the GPL 2.0 only license. See [1] - Linux kernel licensing rules.
-> >> > 
-> >> > One of the biggest benefits with SPDX identifier is that it is hard to verify
-> >> > boiler plate licenses due to formatting, types, different formulations and so on.
-> >> > 
-> >> > If still worrying, I think we could keep the license text as
-> >> > well.
-> 
-> I'm sorry for the confusion, I should have wrote "license text" rather
-> than "copyright text" in my previous message. I agree with the benefits
 
-No problem at all.
-
-> of utilizing the SPDX identifier, and I see the addition of the SPDX
-> line as useful, but I would prefer the original license text remain as
-> well.
-
-Of course, I will keep the the original license intact for v3.
-> 
-> William Breathitt Gray
-> 
-
-Best regards
-Marcus Folkesson
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 833 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180220/07769713/attachment.sig>
+Regards
+Martin
