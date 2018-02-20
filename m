@@ -1,39 +1,22 @@
-From: mans@mansr.com (=?iso-8859-1?Q?M=E5ns_Rullg=E5rd?=)
-Date: Tue, 20 Feb 2018 10:58:59 +0000
+From: thierry.reding@gmail.com (Thierry Reding)
+Date: Tue, 20 Feb 2018 12:24:55 +0100
 Subject: [PATCH v2] watchdog: add SPDX identifiers for watchdog subsystem
-In-Reply-To: <20180220104542.32286-1-marcus.folkesson@gmail.com> (Marcus
- Folkesson's message of "Tue, 20 Feb 2018 11:45:31 +0100")
+In-Reply-To: <20180220104542.32286-1-marcus.folkesson@gmail.com>
 References: <20180220104542.32286-1-marcus.folkesson@gmail.com>
-Message-ID: <yw1xvaeskjv0.fsf@mansr.com>
+Message-ID: <20180220112455.GB9556@ulmo>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Marcus Folkesson <marcus.folkesson@gmail.com> writes:
-
-> - Add SPDX identifier
-> - Remove boiler plate license text
-> - If MODULE_LICENSE and boiler plate does not match, go for boiler plate
->   license
->
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-> Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Acked-by: Michal Simek <michal.simek@xilinx.com>
-> ---
->
-> Notes:
->     v2:
->     	- Put back removed copyright texts for meson_gxbb_wdt and coh901327_wdt
->     	- Change to BSD-3-Clause for meson_gxbb_wdt
->     v1: Please have an extra look at meson_gxbb_wdt.c
-
+On Tue, Feb 20, 2018 at 11:45:31AM +0100, Marcus Folkesson wrote:
+[...]
+>  drivers/watchdog/tegra_wdt.c           | 10 +------
 [...]
 
->  drivers/watchdog/tangox_wdt.c          |  6 +---
-
-For tangox_wdt:
-Acked-by: Mans Rullgard <mans@mansr.com>
-
--- 
-M?ns Rullg?rd
+Acked-by: Thierry Reding <treding@nvidia.com>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 833 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180220/2f28d549/attachment.sig>
