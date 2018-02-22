@@ -1,87 +1,36 @@
-From: robh@kernel.org (Rob Herring)
-Date: Wed, 21 Feb 2018 18:02:02 -0600
-Subject: [PATCH v3 3/7] watchdog: sirfsoc: allow setting timeout in
- devicetree
-In-Reply-To: <e318fd7a-f855-d0c0-ae6f-86bd48f58e1f@roeck-us.net>
-References: <20180211200847.25000-1-marcus.folkesson@gmail.com>
- <20180211200847.25000-3-marcus.folkesson@gmail.com>
- <20180219000735.i5i3gne4idzzhxot@rob-hp-laptop>
- <e318fd7a-f855-d0c0-ae6f-86bd48f58e1f@roeck-us.net>
-Message-ID: <CAL_Jsq+kQza8ouKCreOapno42iSBiG0SwLjJqziv_23cmFxJxw@mail.gmail.com>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Thu, 22 Feb 2018 15:00:47 +0100
+Subject: [PATCH v2 7/7] watchdog: coh901327: make use of timeout-secs
+ provided in devicetree
+In-Reply-To: <20180210091911.3644-7-marcus.folkesson@gmail.com>
+References: <20180210091911.3644-1-marcus.folkesson@gmail.com>
+ <20180210091911.3644-7-marcus.folkesson@gmail.com>
+Message-ID: <CACRpkdbhm5s8tcF8vBeDVdzFbgo-L_BJk=76Qv=m5WNBdSbRhA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Feb 18, 2018 at 7:07 PM, Guenter Roeck <linux@roeck-us.net> wrote:
-> On 02/18/2018 04:07 PM, Rob Herring wrote:
->>
->> On Sun, Feb 11, 2018 at 09:08:43PM +0100, Marcus Folkesson wrote:
->>>
->>> watchdog_init_timeout() will allways pick timeout_param since it
->>> defaults to a valid timeout.
->>>
->>> By following best practice described in
->>> Documentation/watchdog/watchdog-kernel-api.txt, it also
->>> let us to set timout-sec property in devicetree.
->>
->>
->> typo
->>
->>>
->>> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
->>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->>> ---
->>>   Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt | 4 ++++
->>>   drivers/watchdog/sirfsoc_wdt.c                             | 2 +-
->>>   2 files changed, 5 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
->>> b/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
->>> index 9cbc76c89b2b..0dce5e3100b4 100644
->>> --- a/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
->>> +++ b/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
->>> @@ -5,10 +5,14 @@ Required properties:
->>>   - reg: Address range of tick timer/WDT register set
->>>   - interrupts: interrupt number to the cpu
->>>   +Optional properties:
->>> +- timeout-sec : Contains the watchdog timeout in seconds
->>> +
->>>   Example:
->>>     timer at b0020000 {
->>>         compatible = "sirf,prima2-tick";
->>>         reg = <0xb0020000 0x1000>;
->>>         interrupts = <0>;
->>> +       timeout-sec = <30>;
->>>   };
->>> diff --git a/drivers/watchdog/sirfsoc_wdt.c
->>> b/drivers/watchdog/sirfsoc_wdt.c
->>> index 4eea351e09b0..ac0c9d2c4aee 100644
->>> --- a/drivers/watchdog/sirfsoc_wdt.c
->>> +++ b/drivers/watchdog/sirfsoc_wdt.c
->>> @@ -29,7 +29,7 @@
->>>   #define SIRFSOC_WDT_MAX_TIMEOUT               (10 * 60)       /* 10
->>> mins */
->>>   #define SIRFSOC_WDT_DEFAULT_TIMEOUT   30              /* 30 secs */
->>>   -static unsigned int timeout = SIRFSOC_WDT_DEFAULT_TIMEOUT;
->>> +static unsigned int timeout;
->>
->>
->> If you have an old dtb, then you still need the default.
->>
+On Sat, Feb 10, 2018 at 10:19 AM, Marcus Folkesson
+<marcus.folkesson@gmail.com> wrote:
+
+> watchdog_init_timeout() will allways pick timeout_param since it
+> defaults to a valid timeout.
 >
-> No. It is optional to start with, and the driver already has
+> Following best practice described in
+> Documentation/watchdog/watchdog-kernel-api.txt to make use of
+> the parameter logic.
 >
-> static struct watchdog_device sirfsoc_wdd = {
->         .info = &sirfsoc_wdt_ident,
->         .ops = &sirfsoc_wdt_ops,
->         .timeout = SIRFSOC_WDT_DEFAULT_TIMEOUT,                 <------
->         .min_timeout = SIRFSOC_WDT_MIN_TIMEOUT,
->         .max_timeout = SIRFSOC_WDT_MAX_TIMEOUT,
-> };
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+>
+> v2:
+>         - Set .timeout in coh901327_wdt structure declaration.
+>         - Set .min_timeout to 1 instead of 0. I could not find a datasheet
+>           for coh901327, so I'm not sure if 0 is valid. However, 0 seems
+>                   wrong to me and most driver has 1 as min value. If it should
+>                   be 0, please let me know and I have to set another initial
+>                   value for margin.
 
-Okay, then:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-for the lot.
-
-Rob
+Yours,
+Linus Walleij
