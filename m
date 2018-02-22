@@ -1,76 +1,87 @@
-From: tomas.winkler@intel.com (Winkler, Tomas)
-Date: Wed, 21 Feb 2018 13:39:35 +0000
-Subject: [PATCH v3] watchdog: add SPDX identifiers for watchdog subsystem
-In-Reply-To: <20180221122744.28300-1-marcus.folkesson@gmail.com>
-References: <20180221122744.28300-1-marcus.folkesson@gmail.com>
-Message-ID: <5B8DA87D05A7694D9FA63FD143655C1B9422545A@hasmsx108.ger.corp.intel.com>
+From: robh@kernel.org (Rob Herring)
+Date: Wed, 21 Feb 2018 18:02:02 -0600
+Subject: [PATCH v3 3/7] watchdog: sirfsoc: allow setting timeout in
+ devicetree
+In-Reply-To: <e318fd7a-f855-d0c0-ae6f-86bd48f58e1f@roeck-us.net>
+References: <20180211200847.25000-1-marcus.folkesson@gmail.com>
+ <20180211200847.25000-3-marcus.folkesson@gmail.com>
+ <20180219000735.i5i3gne4idzzhxot@rob-hp-laptop>
+ <e318fd7a-f855-d0c0-ae6f-86bd48f58e1f@roeck-us.net>
+Message-ID: <CAL_Jsq+kQza8ouKCreOapno42iSBiG0SwLjJqziv_23cmFxJxw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-> 
-> - Add SPDX identifier
-> - Remove boiler plate license text
-> - If MODULE_LICENSE and boiler plate does not match, go for boiler plate
->   license
-> 
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-> Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> Acked-by: Mans Rullgard <mans@mansr.com>
-> Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Acked-by: Michal Simek <michal.simek@xilinx.com>
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> Reviewed-by: Eric Anholt <eric@anholt.net>
-> ---
-> 
-> Notes:
->     v3:
->     	- Keep license text for ebc-c384_wdt
->     v2:
->     	- Put back removed copyright texts for meson_gxbb_wdt and
-> coh901327_wdt
->     	- Change to BSD-3-Clause for meson_gxbb_wdt
->     v1: Please have an extra look at meson_gxbb_wdt.c
-> 
->   *
-> - * This program is free software; you can redistribute it and/or modify it
-> - * under the terms of the GNU General Public License version 2 as published
-> - * by the Free Software Foundation.
->   *
-> 
+On Sun, Feb 18, 2018 at 7:07 PM, Guenter Roeck <linux@roeck-us.net> wrote:
+> On 02/18/2018 04:07 PM, Rob Herring wrote:
+>>
+>> On Sun, Feb 11, 2018 at 09:08:43PM +0100, Marcus Folkesson wrote:
+>>>
+>>> watchdog_init_timeout() will allways pick timeout_param since it
+>>> defaults to a valid timeout.
+>>>
+>>> By following best practice described in
+>>> Documentation/watchdog/watchdog-kernel-api.txt, it also
+>>> let us to set timout-sec property in devicetree.
+>>
+>>
+>> typo
+>>
+>>>
+>>> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+>>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+>>> ---
+>>>   Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt | 4 ++++
+>>>   drivers/watchdog/sirfsoc_wdt.c                             | 2 +-
+>>>   2 files changed, 5 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
+>>> b/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
+>>> index 9cbc76c89b2b..0dce5e3100b4 100644
+>>> --- a/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
+>>> +++ b/Documentation/devicetree/bindings/watchdog/sirfsoc_wdt.txt
+>>> @@ -5,10 +5,14 @@ Required properties:
+>>>   - reg: Address range of tick timer/WDT register set
+>>>   - interrupts: interrupt number to the cpu
+>>>   +Optional properties:
+>>> +- timeout-sec : Contains the watchdog timeout in seconds
+>>> +
+>>>   Example:
+>>>     timer at b0020000 {
+>>>         compatible = "sirf,prima2-tick";
+>>>         reg = <0xb0020000 0x1000>;
+>>>         interrupts = <0>;
+>>> +       timeout-sec = <30>;
+>>>   };
+>>> diff --git a/drivers/watchdog/sirfsoc_wdt.c
+>>> b/drivers/watchdog/sirfsoc_wdt.c
+>>> index 4eea351e09b0..ac0c9d2c4aee 100644
+>>> --- a/drivers/watchdog/sirfsoc_wdt.c
+>>> +++ b/drivers/watchdog/sirfsoc_wdt.c
+>>> @@ -29,7 +29,7 @@
+>>>   #define SIRFSOC_WDT_MAX_TIMEOUT               (10 * 60)       /* 10
+>>> mins */
+>>>   #define SIRFSOC_WDT_DEFAULT_TIMEOUT   30              /* 30 secs */
+>>>   -static unsigned int timeout = SIRFSOC_WDT_DEFAULT_TIMEOUT;
+>>> +static unsigned int timeout;
+>>
+>>
+>> If you have an old dtb, then you still need the default.
+>>
+>
+> No. It is optional to start with, and the driver already has
+>
+> static struct watchdog_device sirfsoc_wdd = {
+>         .info = &sirfsoc_wdt_ident,
+>         .ops = &sirfsoc_wdt_ops,
+>         .timeout = SIRFSOC_WDT_DEFAULT_TIMEOUT,                 <------
+>         .min_timeout = SIRFSOC_WDT_MIN_TIMEOUT,
+>         .max_timeout = SIRFSOC_WDT_MAX_TIMEOUT,
+> };
 
->  #include <linux/err.h>
-> diff --git a/drivers/watchdog/mei_wdt.c b/drivers/watchdog/mei_wdt.c
-> index b8194b02abe0..8023cf28657a 100644
-> --- a/drivers/watchdog/mei_wdt.c
-> +++ b/drivers/watchdog/mei_wdt.c
-> @@ -1,15 +1,7 @@
-> +// SPDX-License-Identifier: GPL-2.0
->  /*
->   * Intel Management Engine Interface (Intel MEI) Linux driver
->   * Copyright (c) 2015, Intel Corporation.
-> - *
-> - * This program is free software; you can redistribute it and/or modify it
-> - * under the terms and conditions of the GNU General Public License,
-> - * version 2, as published by the Free Software Foundation.
-> - *
-> - * This program is distributed in the hope it will be useful, but WITHOUT
-> - * ANY WARRANTY; without even the implied warranty of
-> MERCHANTABILITY or
-> - * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
-> for
-> - * more details.
->   */
-> 
->  #include <linux/module.h>
-> @@ -687,5 +679,5 @@ static struct mei_cl_driver mei_wdt_driver = {
->  module_mei_cl_driver(mei_wdt_driver);
-> 
->  MODULE_AUTHOR("Intel Corporation");
-> -MODULE_LICENSE("GPL");
-> +MODULE_LICENSE("GPL v2");
->  MODULE_DESCRIPTION("Device driver for Intel MEI iAMT watchdog");
+Okay, then:
 
-Acked-by: Tomas Winkler <tomas.winkler@intel.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+for the lot.
+
+Rob
