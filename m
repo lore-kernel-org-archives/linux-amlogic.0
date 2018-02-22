@@ -1,24 +1,31 @@
-From: morbidrsa@gmail.com (Johannes Thumshirn)
-Date: Thu, 22 Feb 2018 16:48:21 +0100
-Subject: [PATCH v3] watchdog: add SPDX identifiers for watchdog subsystem
-In-Reply-To: <20180221122744.28300-1-marcus.folkesson@gmail.com> (Marcus
- Folkesson's message of "Wed, 21 Feb 2018 13:27:34 +0100")
-References: <20180221122744.28300-1-marcus.folkesson@gmail.com>
-Message-ID: <mqdlgflm3ei.fsf@linux-x5ow.site>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Thu, 22 Feb 2018 17:37:09 +0100
+Subject: [GIT PULL] Amlogic fixes for v4.16-rc2
+In-Reply-To: <7h8tbxagh1.fsf@baylibre.com>
+References: <7h8tbxagh1.fsf@baylibre.com>
+Message-ID: <CAK8P3a2Z0ULU7S27a9zae208qb_BUyJ7yvihaawC_KUfzarM=Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Marcus Folkesson <marcus.folkesson@gmail.com> writes:
-[...]
->  drivers/watchdog/mena21_wdt.c          |  4 +--
+On Tue, Feb 13, 2018 at 1:19 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Arnd, Olof,
+> The following changes since commit 7928b2cbe55b2a410a0f5c1f154610059c57b1b2:
+>
+>   Linux 4.16-rc1 (2018-02-11 15:04:29 -0800)
+>
+> are available in the git repository at:
+>
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
+>
+> for you to fetch changes up to 77f5cdbd78ec5e17022725a5da476f4ca08b1dfa:
+>
+>   ARM64: dts: meson: uart: fix address space range (2018-02-12 14:13:04 -0800)
+>
+> ----------------------------------------------------------------
+> Amlogic fixes for v4.16-rc1
+> - DT: fix UART address ranges
+> - DT: enable PHY interrupts
 
-For mena21_wdt:
-Acked-by: Johannes Thumshirn <jth@kernel.org>
+Pulled into fixes, thanks!
 
--- 
-Johannes Thumshirn                                          Storage
-jthumshirn at suse.de                                +49 911 74053 689
-SUSE LINUX GmbH, Maxfeldstr. 5, 90409 N?rnberg
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
-Key fingerprint = EC38 9CAB C2C4 F25D 8600 D0D0 0393 969D 2D76 0850
+     Arnd
