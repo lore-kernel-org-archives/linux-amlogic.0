@@ -1,41 +1,24 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Thu, 22 Feb 2018 15:01:30 +0100
-Subject: [PATCH v3 7/7] watchdog: coh901327: make use of timeout-secs
- provided in devicetree
-In-Reply-To: <20180211200847.25000-7-marcus.folkesson@gmail.com>
-References: <20180211200847.25000-1-marcus.folkesson@gmail.com>
- <20180211200847.25000-7-marcus.folkesson@gmail.com>
-Message-ID: <CACRpkdZzw+3DPvS7VOUzghmSgDTgDeCZ2i+FE=DCE+R5i1qycQ@mail.gmail.com>
+From: morbidrsa@gmail.com (Johannes Thumshirn)
+Date: Thu, 22 Feb 2018 16:48:21 +0100
+Subject: [PATCH v3] watchdog: add SPDX identifiers for watchdog subsystem
+In-Reply-To: <20180221122744.28300-1-marcus.folkesson@gmail.com> (Marcus
+ Folkesson's message of "Wed, 21 Feb 2018 13:27:34 +0100")
+References: <20180221122744.28300-1-marcus.folkesson@gmail.com>
+Message-ID: <mqdlgflm3ei.fsf@linux-x5ow.site>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Feb 11, 2018 at 9:08 PM, Marcus Folkesson
-<marcus.folkesson@gmail.com> wrote:
+Marcus Folkesson <marcus.folkesson@gmail.com> writes:
+[...]
+>  drivers/watchdog/mena21_wdt.c          |  4 +--
 
-> watchdog_init_timeout() will allways pick timeout_param since it
-> defaults to a valid timeout.
->
-> Following best practice described in
-> Documentation/watchdog/watchdog-kernel-api.txt to make use of
-> the parameter logic.
->
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> ---
->
-> Notes:
->     v3:
->         - Reformat and use coh901327_wdt.timeout instead of margin when print out
->           timout in probe function.
->
->     v2:
->         - Set .timeout in coh901327_wdt structure declaration.
->         - Set .min_timeout to 1 instead of 0. I could not find a datasheet
->           for coh901327, so I'm not sure if 0 is valid. However, 0 seems
->           wrong to me and most driver has 1 as min value. If it should
->           be 0, please let me know and I have to set another initial
->           value for margin.
+For mena21_wdt:
+Acked-by: Johannes Thumshirn <jth@kernel.org>
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+-- 
+Johannes Thumshirn                                          Storage
+jthumshirn at suse.de                                +49 911 74053 689
+SUSE LINUX GmbH, Maxfeldstr. 5, 90409 N?rnberg
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
+Key fingerprint = EC38 9CAB C2C4 F25D 8600 D0D0 0393 969D 2D76 0850
