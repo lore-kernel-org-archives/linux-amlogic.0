@@ -1,32 +1,83 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 25 Feb 2018 12:38:52 +0100
-Subject: [PATCH] Meson8b GPIO fix - WiP
+Date: Sun, 25 Feb 2018 12:38:53 +0100
+Subject: [PATCH v2 1/2] pinctrl: meson: meson8b: fix requesting GPIOs greater
+ than GPIOZ_3
 In-Reply-To: <20180225113854.20731-1-martin.blumenstingl@googlemail.com>
 References: <20180225113854.20731-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180225113854.20731-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20180225113854.20731-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Meson8b is a cost reduced variant of the Meson8 SoC. It's package size
+is smaller than Meson8.
+Unfortunately there are a few key differences which cannot be seen
+without close inspection of the code and the public S805 datasheet:
+- the GPIOX bank is missing the GPIOX_12, GPIOX_13, GPIOX_14 and
+  GPIOX_15 GPIOs
+- the GPIOY bank is missing the GPIOY_2, GPIOY_4, GPIOY_5, GPIOY_15 and
+  GPIOY_16 GPIOs
+- the GPIODV bank is missing all GPIOs except GPIODV_9, GPIODV_24,
+  GPIODV_25, GPIODV_26, GPIODV_27, GPIODV_28 and GPIODV_29
+- the GPIOZ bank is missing completely
+- there is a new GPIO bank called "DIF"
+
+This means that Meson8b only has 83 actual GPIO lines. Without any holes
+there would be 130 GPIO lines in total (120 are inherited from Meson8
+plus 10 new from the DIF bank).
+
+GPIOs greater GPIOZ_3 (whose ID is 83 - as a reminder: this is exactly
+the number of actual GPIO lines on Meson8b and also the value of
+meson8b_cbus_pinctrl_data.num_pins) cannot berequested. Using CARD_6
+(which used ID 100 prior to this patch, "base of the GPIO controller was
+382) as an example:
+$ echo 482 > /sys/class/gpio/export
+export_store: invalid GPIO 482
+
+This removes all non-existing pins from to dt-bindings header file
+(include/dt-bindings/gpio/meson8b-gpio.h). This allows us to have a
+consecutive numbering for the GPIO #defines (GPIOY_2 doesn't exist for
+example, so previously the GPIOY_3 ID was "GPIOY_1 + 2", after this
+patch it is "GPIOY_1 + 1"). As a nice side-effect this means that we get
+compile-time (instead of runtime) errors if Meson8b .dts uses a pin that
+only exists on Meson8.
+
+Additionally the pinctrl-meson8b driver has to be updated to handle this
+new GPIO numbering. By default a struct meson_bank only handles GPIO
+banks where the pins are numbered consecutively because it calculates
+the bit offsets based on the GPIO IDs.
+This is solved by  taking the original BANK() definition and splitting it
+into consecutive subsets (X0..11 and X16..21). The bit offsets for each
+new bank includes the skipped GPIOs (the definition of the "X0..11" bank
+is identical to the old "X" bank apart from the "last IRQ" field, the
+definition of the new, split "X16..21" bank takes the original "X" bank
+and adds 16 - the start of the new split bank - to the "first IRQ",
+pullen bit, pull bit, dir bit, out bit and in bit).
+
+Commit 984cffdeaeb7ea ("pinctrl: Fix gpio/pin mapping for Meson8b")
+fixed the same issue by setting "ngpio" (of the gpio_chip) to 130.
+Unfortunately this broke in db80f0e158e621 ("pinctrl: meson: get rid of
+unneeded domain structures").
+The solution from this patch was considered to be better than the
+previous attempt at fixing this because it provides compile-time error
+checking for the GPIOs that exist on Meson8 but don't exist on Meson8b.
+
+The following pins were tested on an Odroid-C1 using the sysfs GPIO
+interface checking that their value (high or low) could be read:
+- GPIOX_0, GPIOX_1, GPIOX_2, GPIOX_3, GPIOX_4, GPIOX_5, GPIOX_6,
+  GPIOX_7, GPIOX_8, GPIOX_9, GPIOX_10, GPIOX_11, GPIOX_18, GPIOX_19,
+  GPIOX_20, GPIOX_21
+- GPIOY_3, GPIOY_7, GPIOY_8
+(some of these had to be pulled up because they were low by default,
+others were high by default so these had to be pulled down)
+
+Reported-by: Linus L?ssing <linus.luessing@c0d3.blue>
+Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8b.dtsi          |   2 +-
  drivers/pinctrl/meson/pinctrl-meson8b.c |  20 +++---
  include/dt-bindings/gpio/meson8b-gpio.h | 121 ++++++++++++++++++++++++++++----
- 3 files changed, 121 insertions(+), 22 deletions(-)
+ 2 files changed, 120 insertions(+), 21 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 1a7c16640ea5..144dc3b750b6 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -183,7 +183,7 @@
- 			reg-names = "mux", "pull", "pull-enable", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
--			gpio-ranges = <&pinctrl_cbus 0 0 130>;
-+			gpio-ranges = <&pinctrl_cbus 0 0 83>;
- 		};
- 
- 		eth_rgmii_pins: eth-rgmii {
 diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
 index 5bd808dc81e1..bb2a30964fc6 100644
 --- a/drivers/pinctrl/meson/pinctrl-meson8b.c
