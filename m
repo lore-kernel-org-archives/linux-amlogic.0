@@ -1,41 +1,26 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 25 Feb 2018 12:38:54 +0100
-Subject: [PATCH v2 2/2] ARM: dts: meson8b: the CBUS GPIO controller only has
- 83 GPIOs
-In-Reply-To: <20180225113854.20731-1-martin.blumenstingl@googlemail.com>
+Date: Sun, 25 Feb 2018 12:43:08 +0100
+Subject: [PATCH] Meson8b GPIO fix - WiP
+In-Reply-To: <20180225113854.20731-2-martin.blumenstingl@googlemail.com>
 References: <20180225113854.20731-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180225113854.20731-4-martin.blumenstingl@googlemail.com>
+ <20180225113854.20731-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCAFfoCi=_VQ0kPK5eeGnyOJ5br9bu-pkSoA-MEj+FBawg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Update the "gpio-ranges" property of the CBUS GPIO controller on Meson8b
-because it only provides 83 GPIOs.
-The GPIO definitions in include/dt-bindings/gpio/meson8b-gpio.h
-inherited all GPIOs from Meson8 until recently. However, Meson8b does
-not support all GPIOs which are supported by Meson8 (Meson8b doesn't
-have a GPIOZ bank, most of the pins from the GPIODV bank are missing on
-Meson8b - just to name a few differences).
+On Sun, Feb 25, 2018 at 12:38 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm/boot/dts/meson8b.dtsi          |   2 +-
+>  drivers/pinctrl/meson/pinctrl-meson8b.c |  20 +++---
+>  include/dt-bindings/gpio/meson8b-gpio.h | 121 ++++++++++++++++++++++++++++----
+>  3 files changed, 121 insertions(+), 22 deletions(-)
+please ignore this patch, I accidentally sent this
+the actual result of this patch is split into two patches and each of
+them contains a proper patch description: [0]
 
-The actual number of GPIOs is only 83, instead of 120 from Meson8 plus
-the 10 GPIOs from the DIF bank on Meson8b.
+sorry for the noise
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 5f7841b2d163..9fa77975354b 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -183,7 +183,7 @@
- 			reg-names = "mux", "pull", "pull-enable", "gpio";
- 			gpio-controller;
- 			#gpio-cells = <2>;
--			gpio-ranges = <&pinctrl_cbus 0 0 130>;
-+			gpio-ranges = <&pinctrl_cbus 0 0 83>;
- 		};
- 
- 		eth_rgmii_pins: eth-rgmii {
--- 
-2.16.2
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-February/006546.html
