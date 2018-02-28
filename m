@@ -1,48 +1,61 @@
-From: sudeep.holla@arm.com (Sudeep Holla)
-Date: Wed, 28 Feb 2018 16:32:37 +0000
-Subject: [PATCH 00/12] firmware: arm_scpi: series with smaller improvements
-In-Reply-To: <7hbmhpybbw.fsf@baylibre.com>
-References: <99220c79-8b35-2978-11d1-6d101ccb6772@gmail.com>
- <db85dc34-5755-c48d-8a23-379d95fc0342@arm.com> <7hbmhpybbw.fsf@baylibre.com>
-Message-ID: <e931fc0b-301d-b4cb-96e4-a34b84648170@arm.com>
+From: f.fainelli@gmail.com (Florian Fainelli)
+Date: Wed, 28 Feb 2018 15:45:43 -0800
+Subject: [PATCH v4] watchdog: add SPDX identifiers for watchdog subsystem
+In-Reply-To: <20180228150209.2525-1-marcus.folkesson@gmail.com>
+References: <20180228150209.2525-1-marcus.folkesson@gmail.com>
+Message-ID: <786d740d-f29c-8f09-4648-95244c06e59b@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On 02/28/2018 07:01 AM, Marcus Folkesson wrote:
+> - Add SPDX identifier
+> - Remove boiler plate license text
+> - If MODULE_LICENSE and boiler plate does not match, go for boiler plate
+>   license
+> 
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+> Acked-by: Baruch Siach <baruch@tkos.co.il>
+> Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> Acked-by: Keiji Hayashibara <hayashibara.keiji@socionext.com>
+> Acked-by: Johannes Thumshirn <jth@kernel.org>
+> Acked-by: Mans Rullgard <mans@mansr.com>
+> Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Acked-by: Michal Simek <michal.simek@xilinx.com>
+> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Acked-by: Thierry Reding <treding@nvidia.com>
+> Acked-by: Tomas Winkler <tomas.winkler@intel.com>
+> Acked-by: Patrice Chotard <patrice.chotard@st.com>
+> Acked-by: William Breathitt Gray <vilhelm.gray@gmail.com>
+> Reviewed-by: Eric Anholt <eric@anholt.net>
+> ---
+> 
+> Notes:
+>     v4:
+>     	- Drop coh901327_wdt since it allready is a pending patch
+>     v3:
+>     	- Keep license text for ebc-c384_wdt
+>     v2:
+>     	- Put back removed copyright texts for meson_gxbb_wdt and coh901327_wdt
+>     	- Change to BSD-3-Clause for meson_gxbb_wdt
+>     v1: Please have an extra look at meson_gxbb_wdt.c
+> 
 
+>  drivers/watchdog/ar7_wdt.c             | 14 +---------
 
-On 19/01/18 18:04, Kevin Hilman wrote:
-> Sudeep Holla <sudeep.holla@arm.com> writes:
-> 
->> Hi Heiner,
->>
->> (Sorry for the late response, was off for a month)
->>
->> On 05/12/17 21:54, Heiner Kallweit wrote:
->>> After recent revert of all changes since 4.14 this is a resubmit of
->>> the patch series, reduced to patches which should not cause any
->>> regression.
->>> Based on a remark from Kevin I added one patch for improving the
->>> version info for pre-1.0 firmware that doesn't provide version
->>> information.
->>>
->>> Best should be to apply it to a devel branch first so that the
->>> Baylibre Amlogic team can test before mainlining.
->>>
->>
->> I am still waiting for tested by from Amlogic team for this series.
-> 
-> I (finally) tested this series on a few of the boards that were failing
-> last time, and those issues are gone.
-> 
-> So, for the series...
-> 
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> 
+>  drivers/watchdog/bcm2835_wdt.c         |  5 +---
+>  drivers/watchdog/bcm47xx_wdt.c         |  5 +---
+>  drivers/watchdog/bcm63xx_wdt.c         |  5 +---
+>  drivers/watchdog/bcm7038_wdt.c         | 12 ++------
+>  drivers/watchdog/bcm_kona_wdt.c        |  9 +-----
 
-Thanks, pulled the series[1] with Kevin's tested-by now.
+>  drivers/watchdog/mtx-1_wdt.c           | 11 +-------
 
+For these drivers above:
+
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+
+and it looks like you missed rdc321x_wdt.c, is there a specific reason?
 -- 
-Regards,
-Sudeep
-
-[1] https://git.kernel.org/sudeep.holla/linux/h/for-next/scpi
+Florian
