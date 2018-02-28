@@ -1,9 +1,10 @@
 From: andrew.smirnov@gmail.com (Andrey Smirnov)
-Date: Wed, 28 Feb 2018 06:40:52 -0800
-Subject: [PATCH v4 08/22] nvmem: qfprom: Convert to use devm_nvmem_register()
+Date: Wed, 28 Feb 2018 06:40:56 -0800
+Subject: [PATCH v4 12/22] nvmem: meson-efuse: Convert to use
+ devm_nvmem_register()
 In-Reply-To: <20180228144106.16363-1-andrew.smirnov@gmail.com>
 References: <20180228144106.16363-1-andrew.smirnov@gmail.com>
-Message-ID: <20180228144106.16363-9-andrew.smirnov@gmail.com>
+Message-ID: <20180228144106.16363-13-andrew.smirnov@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -24,33 +25,19 @@ Cc: linux-amlogic at lists.infradead.org
 Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 ---
- drivers/nvmem/qfprom.c | 12 +-----------
+ drivers/nvmem/meson-efuse.c | 12 +-----------
  1 file changed, 1 insertion(+), 11 deletions(-)
 
-diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-index cb3b48b47d64..13bf43c84bd4 100644
---- a/drivers/nvmem/qfprom.c
-+++ b/drivers/nvmem/qfprom.c
-@@ -47,13 +47,6 @@ static int qfprom_reg_write(void *context,
- 	return 0;
- }
- 
--static int qfprom_remove(struct platform_device *pdev)
--{
--	struct nvmem_device *nvmem = platform_get_drvdata(pdev);
--
--	return nvmem_unregister(nvmem);
--}
--
- static struct nvmem_config econfig = {
- 	.name = "qfprom",
- 	.stride = 1,
-@@ -82,12 +75,10 @@ static int qfprom_probe(struct platform_device *pdev)
- 	econfig.dev = dev;
- 	econfig.priv = priv;
+diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
+index a43c68f90937..66029fc85ba9 100644
+--- a/drivers/nvmem/meson-efuse.c
++++ b/drivers/nvmem/meson-efuse.c
+@@ -60,25 +60,15 @@ static int meson_efuse_probe(struct platform_device *pdev)
+ 	econfig.reg_read = meson_efuse_read;
+ 	econfig.size = size;
  
 -	nvmem = nvmem_register(&econfig);
-+	nvmem = devm_nvmem_register(dev, &econfig);
++	nvmem = devm_nvmem_register(&pdev->dev, &econfig);
  	if (IS_ERR(nvmem))
  		return PTR_ERR(nvmem);
  
@@ -59,13 +46,18 @@ index cb3b48b47d64..13bf43c84bd4 100644
  	return 0;
  }
  
-@@ -99,7 +90,6 @@ MODULE_DEVICE_TABLE(of, qfprom_of_match);
- 
- static struct platform_driver qfprom_driver = {
- 	.probe = qfprom_probe,
--	.remove = qfprom_remove,
+-static int meson_efuse_remove(struct platform_device *pdev)
+-{
+-	struct nvmem_device *nvmem = platform_get_drvdata(pdev);
+-
+-	return nvmem_unregister(nvmem);
+-}
+-
+ static struct platform_driver meson_efuse_driver = {
+ 	.probe = meson_efuse_probe,
+-	.remove = meson_efuse_remove,
  	.driver = {
- 		.name = "qcom,qfprom",
- 		.of_match_table = qfprom_of_match,
+ 		.name = "meson-efuse",
+ 		.of_match_table = meson_efuse_match,
 -- 
 2.14.3
