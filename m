@@ -1,41 +1,106 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 2 Mar 2018 15:52:38 +0100
-Subject: [PATCH v4 3/4] dt-bindings: display: amlogic: DT fix
- s/resets-names/reset-names/
-In-Reply-To: <1519998993-14398-4-git-send-email-geert+renesas@glider.be>
-References: <1519998993-14398-1-git-send-email-geert+renesas@glider.be>
- <1519998993-14398-4-git-send-email-geert+renesas@glider.be>
-Message-ID: <d2be8243-caf1-32e3-bda2-b454a2cc147c@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 2 Mar 2018 21:56:44 +0100
+Subject: [PATCH v2 1/2] pinctrl: meson: meson8b: fix requesting GPIOs
+ greater than GPIOZ_3
+In-Reply-To: <CACRpkdarGMSLOqynrne9M21gOiQ0XyXW+SqY=2gkJVq2xeRyFQ@mail.gmail.com>
+References: <20180225113854.20731-1-martin.blumenstingl@googlemail.com>
+ <20180225113854.20731-3-martin.blumenstingl@googlemail.com>
+ <CACRpkdarGMSLOqynrne9M21gOiQ0XyXW+SqY=2gkJVq2xeRyFQ@mail.gmail.com>
+Message-ID: <CAFBinCDHV-Y72r1iwD7Md=t5Rzoh8AapnOxZfdoH9_dYmQEc=w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/03/2018 14:56, Geert Uytterhoeven wrote:
-> Fixes: 8cceda5349377e30 ("dt-bindings: Add bindings for the Amlogic Meson dw-hdmi extension")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
-> v4:
->   - Add Acked-by,
-> 
-> v3:
->   - New.
-> ---
->  Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
-> index bf4a18047309a5f8..d8f6268849f43621 100644
-> --- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
-> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
-> @@ -43,7 +43,7 @@ Required properties:
->    and the Amlogic Meson venci clocks as described in
->    Documentation/devicetree/bindings/clock/clock-bindings.txt,
->    the clocks are soc specific, the clock-names should be "iahb", "isfr", "venci"
-> -- resets, resets-names: must have the phandles to the HDMI apb, glue and phy
-> +- resets, reset-names: must have the phandles to the HDMI apb, glue and phy
->    resets as described in :
->    Documentation/devicetree/bindings/reset/reset.txt,
->    the reset-names should be "hdmitx_apb", "hdmitx", "hdmitx_phy"
-> 
+Hi Linus,
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+On Fri, Mar 2, 2018 at 10:48 AM, Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Sun, Feb 25, 2018 at 12:38 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>
+>> Meson8b is a cost reduced variant of the Meson8 SoC. It's package size
+>> is smaller than Meson8.
+>> Unfortunately there are a few key differences which cannot be seen
+>> without close inspection of the code and the public S805 datasheet:
+>> - the GPIOX bank is missing the GPIOX_12, GPIOX_13, GPIOX_14 and
+>>   GPIOX_15 GPIOs
+>> - the GPIOY bank is missing the GPIOY_2, GPIOY_4, GPIOY_5, GPIOY_15 and
+>>   GPIOY_16 GPIOs
+>> - the GPIODV bank is missing all GPIOs except GPIODV_9, GPIODV_24,
+>>   GPIODV_25, GPIODV_26, GPIODV_27, GPIODV_28 and GPIODV_29
+>> - the GPIOZ bank is missing completely
+>> - there is a new GPIO bank called "DIF"
+>>
+>> This means that Meson8b only has 83 actual GPIO lines. Without any holes
+>> there would be 130 GPIO lines in total (120 are inherited from Meson8
+>> plus 10 new from the DIF bank).
+>>
+>> GPIOs greater GPIOZ_3 (whose ID is 83 - as a reminder: this is exactly
+>> the number of actual GPIO lines on Meson8b and also the value of
+>> meson8b_cbus_pinctrl_data.num_pins) cannot berequested. Using CARD_6
+>> (which used ID 100 prior to this patch, "base of the GPIO controller was
+>> 382) as an example:
+>> $ echo 482 > /sys/class/gpio/export
+>> export_store: invalid GPIO 482
+>>
+>> This removes all non-existing pins from to dt-bindings header file
+>> (include/dt-bindings/gpio/meson8b-gpio.h). This allows us to have a
+>> consecutive numbering for the GPIO #defines (GPIOY_2 doesn't exist for
+>> example, so previously the GPIOY_3 ID was "GPIOY_1 + 2", after this
+>> patch it is "GPIOY_1 + 1"). As a nice side-effect this means that we get
+>> compile-time (instead of runtime) errors if Meson8b .dts uses a pin that
+>> only exists on Meson8.
+>>
+>> Additionally the pinctrl-meson8b driver has to be updated to handle this
+>> new GPIO numbering. By default a struct meson_bank only handles GPIO
+>> banks where the pins are numbered consecutively because it calculates
+>> the bit offsets based on the GPIO IDs.
+>> This is solved by  taking the original BANK() definition and splitting it
+>> into consecutive subsets (X0..11 and X16..21). The bit offsets for each
+>> new bank includes the skipped GPIOs (the definition of the "X0..11" bank
+>> is identical to the old "X" bank apart from the "last IRQ" field, the
+>> definition of the new, split "X16..21" bank takes the original "X" bank
+>> and adds 16 - the start of the new split bank - to the "first IRQ",
+>> pullen bit, pull bit, dir bit, out bit and in bit).
+>>
+>> Commit 984cffdeaeb7ea ("pinctrl: Fix gpio/pin mapping for Meson8b")
+>> fixed the same issue by setting "ngpio" (of the gpio_chip) to 130.
+>> Unfortunately this broke in db80f0e158e621 ("pinctrl: meson: get rid of
+>> unneeded domain structures").
+>> The solution from this patch was considered to be better than the
+>> previous attempt at fixing this because it provides compile-time error
+>> checking for the GPIOs that exist on Meson8 but don't exist on Meson8b.
+>>
+>> The following pins were tested on an Odroid-C1 using the sysfs GPIO
+>> interface checking that their value (high or low) could be read:
+>> - GPIOX_0, GPIOX_1, GPIOX_2, GPIOX_3, GPIOX_4, GPIOX_5, GPIOX_6,
+>>   GPIOX_7, GPIOX_8, GPIOX_9, GPIOX_10, GPIOX_11, GPIOX_18, GPIOX_19,
+>>   GPIOX_20, GPIOX_21
+>> - GPIOY_3, GPIOY_7, GPIOY_8
+>> (some of these had to be pulled up because they were low by default,
+>> others were high by default so these had to be pulled down)
+>>
+>> Reported-by: Linus L?ssing <linus.luessing@c0d3.blue>
+>> Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> Patch applied with Jerome's review tag.
+thank you!
+
+> Do I need to queue this for v4.16 fixes or is v4.17 good
+> enough?
+>
+> Should it even be tagged for stable?
+in my opinion v4.17 is good
+
+the CARD, BOOT and DIF banks are affected (and only when trying to use
+them as GPIO, pinctrl still works without this patch).
+as far as I can see only CARD_6 (SD card detection) and BOOT_9 (eMMC
+reset) are used as GPIOs on Odroid-C1 (I assume that other boards only
+use these too)
+
+this issue only came up when adding SD card support for Odroid-C1
+it went unnoticed for ~1.5 years, so I believe it won't hurt anybody
+if it "only" makes it into v4.17
+
+
+Regards
+Martin
