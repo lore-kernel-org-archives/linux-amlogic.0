@@ -1,36 +1,41 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Fri, 2 Mar 2018 10:49:22 +0100
-Subject: [PATCH v2 2/2] ARM: dts: meson8b: the CBUS GPIO controller only
- has 83 GPIOs
-In-Reply-To: <20180225113854.20731-4-martin.blumenstingl@googlemail.com>
-References: <20180225113854.20731-1-martin.blumenstingl@googlemail.com>
- <20180225113854.20731-4-martin.blumenstingl@googlemail.com>
-Message-ID: <CACRpkdZ0J8w2ReFwYbivKWEj7pFTfksj_cBFz2fZCbDLhJ+ojw@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri,  2 Mar 2018 14:44:36 +0100
+Subject: [PATCH] ARM64: dts: meson: reduce odroid-c2 eMMC maximum rate
+Message-ID: <20180302134436.18844-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Feb 25, 2018 at 12:38 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+Different modules maybe installed by the user on the eMMC connector
+of the odroid-c2. While the red modules are working without an issue,
+it seems some black modules (apparently Samsung based) are having
+issue at 200MHz
 
-> Update the "gpio-ranges" property of the CBUS GPIO controller on Meson8b
-> because it only provides 83 GPIOs.
-> The GPIO definitions in include/dt-bindings/gpio/meson8b-gpio.h
-> inherited all GPIOs from Meson8 until recently. However, Meson8b does
-> not support all GPIOs which are supported by Meson8 (Meson8b doesn't
-> have a GPIOZ bank, most of the pins from the GPIODV bank are missing on
-> Meson8b - just to name a few differences).
->
-> The actual number of GPIOs is only 83, instead of 120 from Meson8 plus
-> the 10 GPIOs from the DIF bank on Meson8b.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+While the tuning algorithm introduced in v4.14 enables high speed modes
+on every other tested designs, it seems a problem remains for this
+particular combination of board and eMMC module.
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Lowering the maximum frequency of the eMMC on this board until we can
+figure out a better solution.
 
-Please funnel this through the ARM SoC tree. If it is closesly
-associated with patch 1/2 and need to go in together with it,
-I can merge it if some ARM SoC maintainer can provide an
-ACK.
+Fixes: d341ca88eead ("mmc: meson-gx: rework tuning function")
+Suggested-by: Ellie Reeves <ellierevves@gmail.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Yours,
-Linus Walleij
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 73a030a5ecf3..43475139576c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -311,7 +311,7 @@
+ 	pinctrl-names = "default", "clk-gate";
+ 
+ 	bus-width = <8>;
+-	max-frequency = <200000000>;
++	max-frequency = <100000000>;
+ 	non-removable;
+ 	disable-wp;
+ 	cap-mmc-highspeed;
+-- 
+2.14.3
