@@ -1,106 +1,75 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 2 Mar 2018 21:56:44 +0100
-Subject: [PATCH v2 1/2] pinctrl: meson: meson8b: fix requesting GPIOs
- greater than GPIOZ_3
-In-Reply-To: <CACRpkdarGMSLOqynrne9M21gOiQ0XyXW+SqY=2gkJVq2xeRyFQ@mail.gmail.com>
-References: <20180225113854.20731-1-martin.blumenstingl@googlemail.com>
- <20180225113854.20731-3-martin.blumenstingl@googlemail.com>
- <CACRpkdarGMSLOqynrne9M21gOiQ0XyXW+SqY=2gkJVq2xeRyFQ@mail.gmail.com>
-Message-ID: <CAFBinCDHV-Y72r1iwD7Md=t5Rzoh8AapnOxZfdoH9_dYmQEc=w@mail.gmail.com>
+Date: Sat,  3 Mar 2018 19:46:58 +0100
+Subject: [PATCH v4 0/2] Meson GXL USB3 PHY driver
+Message-ID: <20180303184700.21480-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Linus,
+Amlogic Meson GXL SoCs use a dwc3 controller with two USB2 ports,
+Meson GXM SoCs use the same dwc3 controller but with three USB3
+ports enabled. Neither of these SoCs has any USB3 port enabled in
+the dwc3 registers.
+The second USB2 port on both SoCs supports host and peripheral
+(also called "device") mode.
 
-On Fri, Mar 2, 2018 at 10:48 AM, Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Sun, Feb 25, 2018 at 12:38 PM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->
->> Meson8b is a cost reduced variant of the Meson8 SoC. It's package size
->> is smaller than Meson8.
->> Unfortunately there are a few key differences which cannot be seen
->> without close inspection of the code and the public S805 datasheet:
->> - the GPIOX bank is missing the GPIOX_12, GPIOX_13, GPIOX_14 and
->>   GPIOX_15 GPIOs
->> - the GPIOY bank is missing the GPIOY_2, GPIOY_4, GPIOY_5, GPIOY_15 and
->>   GPIOY_16 GPIOs
->> - the GPIODV bank is missing all GPIOs except GPIODV_9, GPIODV_24,
->>   GPIODV_25, GPIODV_26, GPIODV_27, GPIODV_28 and GPIODV_29
->> - the GPIOZ bank is missing completely
->> - there is a new GPIO bank called "DIF"
->>
->> This means that Meson8b only has 83 actual GPIO lines. Without any holes
->> there would be 130 GPIO lines in total (120 are inherited from Meson8
->> plus 10 new from the DIF bank).
->>
->> GPIOs greater GPIOZ_3 (whose ID is 83 - as a reminder: this is exactly
->> the number of actual GPIO lines on Meson8b and also the value of
->> meson8b_cbus_pinctrl_data.num_pins) cannot berequested. Using CARD_6
->> (which used ID 100 prior to this patch, "base of the GPIO controller was
->> 382) as an example:
->> $ echo 482 > /sys/class/gpio/export
->> export_store: invalid GPIO 482
->>
->> This removes all non-existing pins from to dt-bindings header file
->> (include/dt-bindings/gpio/meson8b-gpio.h). This allows us to have a
->> consecutive numbering for the GPIO #defines (GPIOY_2 doesn't exist for
->> example, so previously the GPIOY_3 ID was "GPIOY_1 + 2", after this
->> patch it is "GPIOY_1 + 1"). As a nice side-effect this means that we get
->> compile-time (instead of runtime) errors if Meson8b .dts uses a pin that
->> only exists on Meson8.
->>
->> Additionally the pinctrl-meson8b driver has to be updated to handle this
->> new GPIO numbering. By default a struct meson_bank only handles GPIO
->> banks where the pins are numbered consecutively because it calculates
->> the bit offsets based on the GPIO IDs.
->> This is solved by  taking the original BANK() definition and splitting it
->> into consecutive subsets (X0..11 and X16..21). The bit offsets for each
->> new bank includes the skipped GPIOs (the definition of the "X0..11" bank
->> is identical to the old "X" bank apart from the "last IRQ" field, the
->> definition of the new, split "X16..21" bank takes the original "X" bank
->> and adds 16 - the start of the new split bank - to the "first IRQ",
->> pullen bit, pull bit, dir bit, out bit and in bit).
->>
->> Commit 984cffdeaeb7ea ("pinctrl: Fix gpio/pin mapping for Meson8b")
->> fixed the same issue by setting "ngpio" (of the gpio_chip) to 130.
->> Unfortunately this broke in db80f0e158e621 ("pinctrl: meson: get rid of
->> unneeded domain structures").
->> The solution from this patch was considered to be better than the
->> previous attempt at fixing this because it provides compile-time error
->> checking for the GPIOs that exist on Meson8 but don't exist on Meson8b.
->>
->> The following pins were tested on an Odroid-C1 using the sysfs GPIO
->> interface checking that their value (high or low) could be read:
->> - GPIOX_0, GPIOX_1, GPIOX_2, GPIOX_3, GPIOX_4, GPIOX_5, GPIOX_6,
->>   GPIOX_7, GPIOX_8, GPIOX_9, GPIOX_10, GPIOX_11, GPIOX_18, GPIOX_19,
->>   GPIOX_20, GPIOX_21
->> - GPIOY_3, GPIOY_7, GPIOY_8
->> (some of these had to be pulled up because they were low by default,
->> others were high by default so these had to be pulled down)
->>
->> Reported-by: Linus L?ssing <linus.luessing@c0d3.blue>
->> Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> Patch applied with Jerome's review tag.
-thank you!
+The dwc3 controller supports host mode only. Peripheral mode is
+implemented through an additional dwc2 controller (which only enables
+device mode). The USB3 PHY has register bits which allow a driver to
+detect the current mode - however this is currently not implemented
+as the dwc2 controller seems to hang during reset (and I do not have
+a use-case where I need peripheral/device mode).
 
-> Do I need to queue this for v4.16 fixes or is v4.17 good
-> enough?
->
-> Should it even be tagged for stable?
-in my opinion v4.17 is good
+While the dwc3 controller has no USB3 port enabled we still need the
+USB3 PHY to be initialized, otherwise some boards (probably those where
+the bootloader does not initialize the USB3 PHY) show errors with
+high-speed USB devices connected to any of the USB2 ports. Configuring
+the USB_R1_U3H_FLADJ_30MHZ_REG_MASK register as it's done by Amlogic's
+vendor GPL kernel sources makes these error go away.
 
-the CARD, BOOT and DIF banks are affected (and only when trying to use
-them as GPIO, pinctrl still works without this patch).
-as far as I can see only CARD_6 (SD card detection) and BOOT_9 (eMMC
-reset) are used as GPIOs on Odroid-C1 (I assume that other boards only
-use these too)
-
-this issue only came up when adding SD card support for Odroid-C1
-it went unnoticed for ~1.5 years, so I believe it won't hurt anybody
-if it "only" makes it into v4.17
+Thanks to Jerome Brunet for reporting the errors and Neil Armstrong
+for discovering that initializing the USB3 PHY fixes these USB errors!
 
 
-Regards
-Martin
+changes since v3 at [2]:
+- rebased on top of Kishon's linux-phy next branch (commit:
+  1f846be367fba4 "phy: allwinner: sun4i-usb: poll vbus changes on
+  A23/A33 when driving VBUS")
+- use SPDX-License-Identifier instead of the full license text
+
+changes since v2 at [1]:
+- collected Rob's Reviewed-by on patch #1 and Yixun's Tested-by
+- rebased on top of v4.16-rc1 (no changes were required though)
+
+changes since v1 at [0]:
+- document the interrupt in the dt-bindings patch (we don't use it in
+  the driver yet, but this interrupt is there so it should be
+  documented)
+- added the clock and reset lines, thank to Yixun Lan who gave me the
+  hints that these are needed (it's not clear when reading the Amlogic
+  GPL kernel sources, because the clock for example is always enabled
+  by hardware default, bootrom, etc..)
+- implemented the .set_mode callback
+- NOTE: I chose *NOT* to add Jerome's and Neil's Tested-by's as well as
+  Rob's Acked-by on the dt-bindings patch since I made changes that I
+  want to have reviewed again
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004780.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006290.html
+[2] http://lists.infradead.org/pipermail/linux-amlogic/2018-February/006449.html
+
+Martin Blumenstingl (2):
+  dt-bindings: phy: Add support for the USB3 PHY on Amlogic Meson GXL
+    SoCs
+  phy: amlogic: add USB3 PHY support for Meson GXL and GXM
+
+ .../devicetree/bindings/phy/meson-gxl-usb3-phy.txt |  31 +++
+ drivers/phy/amlogic/Kconfig                        |  12 +
+ drivers/phy/amlogic/Makefile                       |   1 +
+ drivers/phy/amlogic/phy-meson-gxl-usb3.c           | 282 +++++++++++++++++++++
+ 4 files changed, 326 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
+ create mode 100644 drivers/phy/amlogic/phy-meson-gxl-usb3.c
+
+-- 
+2.16.2
