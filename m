@@ -1,97 +1,77 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  3 Mar 2018 22:43:09 +0100
-Subject: [usb-next PATCH v11 8/8] usb: core: hcd: remove support for
- initializing a single PHY
-In-Reply-To: <20180303214309.25643-1-martin.blumenstingl@googlemail.com>
-References: <20180303214309.25643-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180303214309.25643-9-martin.blumenstingl@googlemail.com>
+Date: Sat, 3 Mar 2018 22:50:51 +0100
+Subject: [PATCH usb-next v2 0/3] DWC3 support for Amlogic Meson AXG and
+ GXL SoCs
+In-Reply-To: <CAFBinCBhOy2J7dgyLg-Oii1iMn0RJyud7ykW=EMBGg+F8X7DpA@mail.gmail.com>
+References: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCBhOy2J7dgyLg-Oii1iMn0RJyud7ykW=EMBGg+F8X7DpA@mail.gmail.com>
+Message-ID: <CAFBinCB=8xQcJHcw5bX4z5Y2JOEqU7O-FH02JS4myJ-d487_zQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-With the new PHY wrapper in place we can now handle multiple PHYs.
-Remove the code which handles only one generic PHY as this is now
-covered (with support for multiple PHYs as well as suspend/resume
-support) by the new PHY wrapper.
+Hello Felipe, Hello Greg,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/usb/core/hcd.c  | 37 -------------------------------------
- include/linux/usb/hcd.h |  1 -
- 2 files changed, 38 deletions(-)
+On Tue, Feb 20, 2018 at 11:39 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Hello Felipe,
+>
+> On Sun, Feb 11, 2018 at 10:15 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> Amlogic Meson AXG and GXL SoCs can use the dwc3-of-simple with little
+>> modifications. These SoCs use:
+>> - a gate clock for the USB components (DWC3, USB PHYs)
+>> - a reset line which is shared across all USB components (DWC3, USB2 and
+>>   USB3 PHYs, OTG detection logic inside the USB3 PHY registers)
+>> - a reset pulse to trigger the reset
+>> - depending on the SoC two or more PHYs (AXG: 1x USB2 and 1x USB3 PHY,
+>>   GXL: 2x USB2 and 1x USB3 PHY)
+>>
+>> This extends the dwc3-of-simple so it supports (depending on the
+>> platform) shared and level resets. Additionally it adds new bindings
+>> for the Amlogic Meson AXG and GXL SoCs, along with the documentation
+>> (dt-bindings).
+>>
+>> NOTE: for full support on Amlogic Meson GXL SoCs my other series called
+>> "initialize (multiple) PHYs for a HCD" (see [0] for v8 of that series)
+>> is required. However, there is no direct dependency on that series.
+>> Especially since Meson AXG doesn't need it (since it only has one USB2
+>> and one USB3 PHY, which is already supported by the current dwc3 driver,
+>> unlike the 2x USB2 and 1x USB3 PHYs on Meson GXL).
+>> So I believe that this series can still be merged, even if the other
+>> patchset is not ready yet.
+>>
+>>
+>> changes since v1 at [1]:
+>> - use of_device_is_compatible() instead of struct dwc3_of_simple_params
+>>   as requested by Felipe Balbi (affects PATCH #2 and #3)
+>> - added Rob's Acked-by to the dt-bindings patch
+>> - added Yixun Lan's Tested-by to the whole series as he tested this
+>>   successfully (along with other patches) on the Amlogic Meson AXG SoC
+>>
+>>
+>> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006274.html
+>> [1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006286.html
+>>
+>> Martin Blumenstingl (3):
+>>   dt-bindings: usb: add support for dwc3 controller on Amlogic Meson GX
+>>   usb: dwc3: of-simple: add support for shared and pulsed reset lines
+>>   usb: dwc3: of-simple: add support for the Amlogic Meson GXL and AXG
+>>     SoCs
+> could you please let me know if you spotted any problems, code-style
+> issues in v2 or whether you are waiting for feedback from another
+> maintainer?
+> in case everything is fine: will you take this series through your tree?
+could you please let me know how this series is supposed to land in
+the next kernel release:
+- Felipe, will you take it through your usb tree (which contains many
+other dwc2/dwc3 driver changes)?
+- Greg, will you take it through your usb-next tree?
+- should Kevin apply it to his linux-amlogic tree (drivers branch,
+which goes to the the arm-soc tree)?
 
-diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
-index 32797c25ac3b..5a92d8f7c484 100644
---- a/drivers/usb/core/hcd.c
-+++ b/drivers/usb/core/hcd.c
-@@ -2757,30 +2757,6 @@ int usb_add_hcd(struct usb_hcd *hcd,
- 		}
- 	}
- 
--	if (IS_ENABLED(CONFIG_GENERIC_PHY) && !hcd->skip_phy_initialization) {
--		struct phy *phy = phy_get(hcd->self.sysdev, "usb");
--
--		if (IS_ERR(phy)) {
--			retval = PTR_ERR(phy);
--			if (retval == -EPROBE_DEFER)
--				goto err_phy;
--		} else {
--			retval = phy_init(phy);
--			if (retval) {
--				phy_put(phy);
--				goto err_phy;
--			}
--			retval = phy_power_on(phy);
--			if (retval) {
--				phy_exit(phy);
--				phy_put(phy);
--				goto err_phy;
--			}
--			hcd->phy = phy;
--			hcd->remove_phy = 1;
--		}
--	}
--
- 	if (!hcd->skip_phy_initialization) {
- 		hcd->phy_roothub = usb_phy_roothub_init(hcd->self.sysdev);
- 		if (IS_ERR(hcd->phy_roothub)) {
-@@ -2961,13 +2937,6 @@ int usb_add_hcd(struct usb_hcd *hcd,
- err_usb_phy_roothub_power_on:
- 	usb_phy_roothub_exit(hcd->phy_roothub);
- err_phy_roothub_init:
--	if (IS_ENABLED(CONFIG_GENERIC_PHY) && hcd->remove_phy && hcd->phy) {
--		phy_power_off(hcd->phy);
--		phy_exit(hcd->phy);
--		phy_put(hcd->phy);
--		hcd->phy = NULL;
--	}
--err_phy:
- 	if (hcd->remove_phy && hcd->usb_phy) {
- 		usb_phy_shutdown(hcd->usb_phy);
- 		usb_put_phy(hcd->usb_phy);
-@@ -3048,12 +3017,6 @@ void usb_remove_hcd(struct usb_hcd *hcd)
- 	usb_phy_roothub_power_off(hcd->phy_roothub);
- 	usb_phy_roothub_exit(hcd->phy_roothub);
- 
--	if (IS_ENABLED(CONFIG_GENERIC_PHY) && hcd->remove_phy && hcd->phy) {
--		phy_power_off(hcd->phy);
--		phy_exit(hcd->phy);
--		phy_put(hcd->phy);
--		hcd->phy = NULL;
--	}
- 	if (hcd->remove_phy && hcd->usb_phy) {
- 		usb_phy_shutdown(hcd->usb_phy);
- 		usb_put_phy(hcd->usb_phy);
-diff --git a/include/linux/usb/hcd.h b/include/linux/usb/hcd.h
-index a042675e03ba..aef50cb2ed1b 100644
---- a/include/linux/usb/hcd.h
-+++ b/include/linux/usb/hcd.h
-@@ -103,7 +103,6 @@ struct usb_hcd {
- 	 * other external phys should be software-transparent
- 	 */
- 	struct usb_phy		*usb_phy;
--	struct phy		*phy;
- 	struct usb_phy_roothub	*phy_roothub;
- 
- 	/* Flags that need to be manipulated atomically because they can
--- 
-2.16.2
+as noted in the cover-letter Meson AXG support does not depend on any
+other series
+
+
+Regards
+Martin
