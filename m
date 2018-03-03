@@ -1,57 +1,56 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  3 Mar 2018 22:43:08 +0100
-Subject: [usb-next PATCH v11 7/8] usb: host: ohci-platform: remove custom USB
+Date: Sat,  3 Mar 2018 22:43:07 +0100
+Subject: [usb-next PATCH v11 6/8] usb: host: ehci-platform: remove custom USB
  PHY handling
 In-Reply-To: <20180303214309.25643-1-martin.blumenstingl@googlemail.com>
 References: <20180303214309.25643-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180303214309.25643-8-martin.blumenstingl@googlemail.com>
+Message-ID: <20180303214309.25643-7-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 The new PHY wrapper is now wired up in the core HCD code. This means
 that PHYs are now controlled (initialized, enabled, disabled, exited)
 without requiring any host-driver specific code.
-Remove the custom USB PHY handling from the ohci-platform driver as the
+Remove the custom USB PHY handling from the ehci-platform driver as the
 core HCD code now handles this.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Acked-by: Alan Stern <stern@rowland.harvard.edu>
 ---
- drivers/usb/host/ohci-platform.c | 56 ++++------------------------------------
- 1 file changed, 5 insertions(+), 51 deletions(-)
+ drivers/usb/host/ehci-platform.c | 55 +++-------------------------------------
+ 1 file changed, 4 insertions(+), 51 deletions(-)
 
-diff --git a/drivers/usb/host/ohci-platform.c b/drivers/usb/host/ohci-platform.c
-index 62ef36a9333f..65a1c3fdc88c 100644
---- a/drivers/usb/host/ohci-platform.c
-+++ b/drivers/usb/host/ohci-platform.c
-@@ -21,7 +21,7 @@
- #include <linux/kernel.h>
+diff --git a/drivers/usb/host/ehci-platform.c b/drivers/usb/host/ehci-platform.c
+index b91eea8c73ae..4c306fb6b069 100644
+--- a/drivers/usb/host/ehci-platform.c
++++ b/drivers/usb/host/ehci-platform.c
+@@ -27,7 +27,6 @@
+ #include <linux/io.h>
  #include <linux/module.h>
- #include <linux/err.h>
+ #include <linux/of.h>
 -#include <linux/phy/phy.h>
-+#include <linux/of.h>
  #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
  #include <linux/reset.h>
-@@ -38,8 +38,6 @@
- struct ohci_platform_priv {
- 	struct clk *clks[OHCI_MAX_CLKS];
- 	struct reset_control *resets;
+ #include <linux/usb.h>
+@@ -44,8 +43,6 @@
+ struct ehci_platform_priv {
+ 	struct clk *clks[EHCI_MAX_CLKS];
+ 	struct reset_control *rsts;
 -	struct phy **phys;
 -	int num_phys;
+ 	bool reset_on_resume;
  };
  
- static const char hcd_name[] = "ohci-platform";
-@@ -48,7 +46,7 @@ static int ohci_platform_power_on(struct platform_device *dev)
+@@ -80,7 +77,7 @@ static int ehci_platform_power_on(struct platform_device *dev)
  {
  	struct usb_hcd *hcd = platform_get_drvdata(dev);
- 	struct ohci_platform_priv *priv = hcd_to_ohci_priv(hcd);
+ 	struct ehci_platform_priv *priv = hcd_to_ehci_priv(hcd);
 -	int clk, ret, phy_num;
 +	int clk, ret;
  
- 	for (clk = 0; clk < OHCI_MAX_CLKS && priv->clks[clk]; clk++) {
+ 	for (clk = 0; clk < EHCI_MAX_CLKS && priv->clks[clk]; clk++) {
  		ret = clk_prepare_enable(priv->clks[clk]);
-@@ -56,24 +54,8 @@ static int ohci_platform_power_on(struct platform_device *dev)
+@@ -88,24 +85,8 @@ static int ehci_platform_power_on(struct platform_device *dev)
  			goto err_disable_clks;
  	}
  
@@ -76,10 +75,10 @@ index 62ef36a9333f..65a1c3fdc88c 100644
  err_disable_clks:
  	while (--clk >= 0)
  		clk_disable_unprepare(priv->clks[clk]);
-@@ -85,12 +67,7 @@ static void ohci_platform_power_off(struct platform_device *dev)
+@@ -117,12 +98,7 @@ static void ehci_platform_power_off(struct platform_device *dev)
  {
  	struct usb_hcd *hcd = platform_get_drvdata(dev);
- 	struct ohci_platform_priv *priv = hcd_to_ohci_priv(hcd);
+ 	struct ehci_platform_priv *priv = hcd_to_ehci_priv(hcd);
 -	int clk, phy_num;
 -
 -	for (phy_num = 0; phy_num < priv->num_phys; phy_num++) {
@@ -88,20 +87,20 @@ index 62ef36a9333f..65a1c3fdc88c 100644
 -	}
 +	int clk;
  
- 	for (clk = OHCI_MAX_CLKS - 1; clk >= 0; clk--)
+ 	for (clk = EHCI_MAX_CLKS - 1; clk >= 0; clk--)
  		if (priv->clks[clk])
-@@ -117,7 +94,7 @@ static int ohci_platform_probe(struct platform_device *dev)
- 	struct usb_ohci_pdata *pdata = dev_get_platdata(&dev->dev);
- 	struct ohci_platform_priv *priv;
- 	struct ohci_hcd *ohci;
+@@ -149,7 +125,7 @@ static int ehci_platform_probe(struct platform_device *dev)
+ 	struct usb_ehci_pdata *pdata = dev_get_platdata(&dev->dev);
+ 	struct ehci_platform_priv *priv;
+ 	struct ehci_hcd *ehci;
 -	int err, irq, phy_num, clk = 0;
 +	int err, irq, clk = 0;
  
  	if (usb_disabled())
  		return -ENODEV;
-@@ -169,29 +146,6 @@ static int ohci_platform_probe(struct platform_device *dev)
- 		of_property_read_u32(dev->dev.of_node, "num-ports",
- 				     &ohci->num_ports);
+@@ -202,29 +178,6 @@ static int ehci_platform_probe(struct platform_device *dev)
+ 					  "has-transaction-translator"))
+ 			hcd->has_tt = 1;
  
 -		priv->num_phys = of_count_phandle_with_args(dev->dev.of_node,
 -				"phys", "#phy-cells");
@@ -119,23 +118,23 @@ index 62ef36a9333f..65a1c3fdc88c 100644
 -					&dev->dev, dev->dev.of_node, phy_num);
 -			if (IS_ERR(priv->phys[phy_num])) {
 -				err = PTR_ERR(priv->phys[phy_num]);
--				goto err_put_hcd;
+-					goto err_put_hcd;
 -			} else {
 -				/* Avoiding phy_get() in usb_add_hcd() */
 -				hcd->skip_phy_initialization = 1;
 -			}
 -		}
 -
- 		for (clk = 0; clk < OHCI_MAX_CLKS; clk++) {
+ 		for (clk = 0; clk < EHCI_MAX_CLKS; clk++) {
  			priv->clks[clk] = of_clk_get(dev->dev.of_node, clk);
  			if (IS_ERR(priv->clks[clk])) {
-@@ -277,7 +231,7 @@ static int ohci_platform_probe(struct platform_device *dev)
+@@ -306,7 +259,7 @@ static int ehci_platform_probe(struct platform_device *dev)
  err_put_clks:
  	while (--clk >= 0)
  		clk_put(priv->clks[clk]);
 -err_put_hcd:
 +
- 	if (pdata == &ohci_platform_defaults)
+ 	if (pdata == &ehci_platform_defaults)
  		dev->dev.platform_data = NULL;
  
 -- 
