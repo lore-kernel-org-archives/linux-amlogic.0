@@ -1,366 +1,226 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  3 Mar 2018 19:47:00 +0100
-Subject: [PATCH v4 2/2] phy: amlogic: add USB3 PHY support for Meson GXL and
- GXM
-In-Reply-To: <20180303184700.21480-1-martin.blumenstingl@googlemail.com>
-References: <20180303184700.21480-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180303184700.21480-3-martin.blumenstingl@googlemail.com>
+Date: Sat,  3 Mar 2018 22:43:01 +0100
+Subject: [usb-next PATCH v11 0/8] initialize (multiple) PHYs for a HCD
+Message-ID: <20180303214309.25643-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds a new driver for the USB3 PHY found on Meson GXL and GXM SoCs
-(both SoCs are using the same USB PHY register layout).
+The goal of this series is to initialize multiple PHYs on a USB host
+controller, which is needed on Amlogic Meson GXL and GXM SoCs.
+- Amlogic Meson GXL and GXM SoCs come with a dwc3 IP block which has two
+  or three USB2 ports enabled on the internal root-hub. The SoCs also
+  provide separate USB2 PHYs, one per port. All USB2 PHYs (which are
+  internally "connected" to the dwc3 roothub) need to be powered on,
+  otherwise USB devices cannot be enumerated (even if just one PHY is
+  disabled and if the device is plugged into another, enabled port)
+- dwc3 already takes one USB2 and one USB3 PHY and initializes these
+  correctly
+- some other HCI platform drivers (like ehci-platform.c, xhci-mtk.c and
+  ohci-platform.c) do not have a limitation on the number of PHYs - they
+  support any number of USB PHYs (typically one PHY per actual port)
 
-Unfortunately there is no documentation for this PHY in the public S905X
-datasheet (published for example by Khadas). What we know so far about
-this PHY:
-- even though the Meson GXL and GXM SoCs do not expose an USB3 port (the
-  dwc3 controller only has USB2 ports enabled) we need to initialize the
-  USB3 PHY (specifically USB_R1_U3H_FLADJ_30MHZ_REG_MASK). Without this
-  initialization high-speed USB devices (especially USB hard disks and
-  thumb drives, slower devices like mice do not seem to be affected)
-- on some boards the USB3 PHY starts in "device mode" - we want to bring
-  it into a known state (by switching it to host mode for now).
-- it is responsible for the OTG detection and for switching the first
-  USB2 PHY between host and peripheral (aka device) mode. an interrupt
-  can be used to detect changes between host and device mode.
+This series adds a new "PHY wrapper". This can be configured through
+devicetree by passing a "phys" property (with any number of PHY handles)
+to the USB controller.
+Additionally it this integrates this new PHY wrapper into hcd.c which
+automatically enables it for all USB controller drivers (tested on an
+Amlogic Meson GXL SoC which uses a dwc3 controller). Since this leaves
+some duplicate code (which now becomes obsolete!) in various drivers
+this is being cleaned up as well.
 
-There are five inputs to this register area:
-- the clock and reset line for the USB3 PHY itself
-- the clock and reset line for the peripheral mode and OTG detection
-  logic (on the GXL and GXM SoCs these are the same clock and reset line
-  as for the USB3 PHY itself, but Amlogic sees this as two different
-  components - even though they share the same register space - so they
-  have to be passed individually to allow specifying different inputs on
-  other SoCs if needed)
-- the interrupt for the OTG detection logic
 
-The whole OTG detection logic is not implemented yet.
+Changes since v10 at [13]:
+- added Peter Chen's Acked-by to patch #2 (thank you!)
+- rebased to usb-next (134d1fd44221614 "Merge 4.16-rc3 into usb-next")
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Yixun Lan <yixun.lan@amlogic.com>
----
- drivers/phy/amlogic/Kconfig              |  12 ++
- drivers/phy/amlogic/Makefile             |   1 +
- drivers/phy/amlogic/phy-meson-gxl-usb3.c | 282 +++++++++++++++++++++++++++++++
- 3 files changed, 295 insertions(+)
- create mode 100644 drivers/phy/amlogic/phy-meson-gxl-usb3.c
+Changes since v9 at [12]:
+- changed "skip_phy_initialization" from PATCH #2 into a bitfield and
+  moved it below the "remove_phy" bitfield as suggested by Alan Stern
+  (thanks!)
+- rebased against usb-next (which is currently identical to v4.16-rc1)
 
-diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-index ef3625cd25bb..23fe1cda2f70 100644
---- a/drivers/phy/amlogic/Kconfig
-+++ b/drivers/phy/amlogic/Kconfig
-@@ -24,3 +24,15 @@ config PHY_MESON_GXL_USB2
- 	  Enable this to support the Meson USB2 PHYs found in Meson
- 	  GXL and GXM SoCs.
- 	  If unsure, say N.
-+
-+config PHY_MESON_GXL_USB3
-+	tristate "Meson GXL and GXM USB3 PHY drivers"
-+	default ARCH_MESON
-+	depends on OF && (ARCH_MESON || COMPILE_TEST)
-+	depends on USB_SUPPORT
-+	select GENERIC_PHY
-+	select REGMAP_MMIO
-+	help
-+	  Enable this to support the Meson USB3 PHY and OTG detection
-+	  IP block found in Meson GXL and GXM SoCs.
-+	  If unsure, say N.
-diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-index cfdc98715c30..4fd8848c194d 100644
---- a/drivers/phy/amlogic/Makefile
-+++ b/drivers/phy/amlogic/Makefile
-@@ -1,2 +1,3 @@
- obj-$(CONFIG_PHY_MESON8B_USB2)		+= phy-meson8b-usb2.o
- obj-$(CONFIG_PHY_MESON_GXL_USB2)	+= phy-meson-gxl-usb2.o
-+obj-$(CONFIG_PHY_MESON_GXL_USB3)	+= phy-meson-gxl-usb3.o
-diff --git a/drivers/phy/amlogic/phy-meson-gxl-usb3.c b/drivers/phy/amlogic/phy-meson-gxl-usb3.c
-new file mode 100644
-index 000000000000..d37d94ddf9c0
---- /dev/null
-+++ b/drivers/phy/amlogic/phy-meson-gxl-usb3.c
-@@ -0,0 +1,282 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Meson GXL USB3 PHY and OTG mode detection driver
-+ *
-+ * Copyright (C) 2018 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include <linux/platform_device.h>
-+
-+#define USB_R0							0x00
-+	#define USB_R0_P30_FSEL_MASK				GENMASK(5, 0)
-+	#define USB_R0_P30_PHY_RESET				BIT(6)
-+	#define USB_R0_P30_TEST_POWERDOWN_HSP			BIT(7)
-+	#define USB_R0_P30_TEST_POWERDOWN_SSP			BIT(8)
-+	#define USB_R0_P30_ACJT_LEVEL_MASK			GENMASK(13, 9)
-+	#define USB_R0_P30_TX_BOOST_LEVEL_MASK			GENMASK(16, 14)
-+	#define USB_R0_P30_LANE0_TX2RX_LOOPBACK			BIT(17)
-+	#define USB_R0_P30_LANE0_EXT_PCLK_REQ			BIT(18)
-+	#define USB_R0_P30_PCS_RX_LOS_MASK_VAL_MASK		GENMASK(28, 19)
-+	#define USB_R0_U2D_SS_SCALEDOWN_MODE_MASK		GENMASK(30, 29)
-+	#define USB_R0_U2D_ACT					BIT(31)
-+
-+#define USB_R1							0x04
-+	#define USB_R1_U3H_BIGENDIAN_GS				BIT(0)
-+	#define USB_R1_U3H_PME_ENABLE				BIT(1)
-+	#define USB_R1_U3H_HUB_PORT_OVERCURRENT_MASK		GENMASK(6, 2)
-+	#define USB_R1_U3H_HUB_PORT_PERM_ATTACH_MASK		GENMASK(11, 7)
-+	#define USB_R1_U3H_HOST_U2_PORT_DISABLE_MASK		GENMASK(15, 12)
-+	#define USB_R1_U3H_HOST_U3_PORT_DISABLE			BIT(16)
-+	#define USB_R1_U3H_HOST_PORT_POWER_CONTROL_PRESENT	BIT(17)
-+	#define USB_R1_U3H_HOST_MSI_ENABLE			BIT(18)
-+	#define USB_R1_U3H_FLADJ_30MHZ_REG_MASK			GENMASK(24, 19)
-+	#define USB_R1_P30_PCS_TX_SWING_FULL_MASK		GENMASK(31, 25)
-+
-+#define USB_R2							0x08
-+	#define USB_R2_P30_CR_DATA_IN_MASK			GENMASK(15, 0)
-+	#define USB_R2_P30_CR_READ				BIT(16)
-+	#define USB_R2_P30_CR_WRITE				BIT(17)
-+	#define USB_R2_P30_CR_CAP_ADDR				BIT(18)
-+	#define USB_R2_P30_CR_CAP_DATA				BIT(19)
-+	#define USB_R2_P30_PCS_TX_DEEMPH_3P5DB_MASK		GENMASK(25, 20)
-+	#define USB_R2_P30_PCS_TX_DEEMPH_6DB_MASK		GENMASK(31, 26)
-+
-+#define USB_R3							0x0c
-+	#define USB_R3_P30_SSC_ENABLE				BIT(0)
-+	#define USB_R3_P30_SSC_RANGE_MASK			GENMASK(3, 1)
-+	#define USB_R3_P30_SSC_REF_CLK_SEL_MASK			GENMASK(12, 4)
-+	#define USB_R3_P30_REF_SSP_EN				BIT(13)
-+	#define USB_R3_P30_LOS_BIAS_MASK			GENMASK(18, 16)
-+	#define USB_R3_P30_LOS_LEVEL_MASK			GENMASK(23, 19)
-+	#define USB_R3_P30_MPLL_MULTIPLIER_MASK			GENMASK(30, 24)
-+
-+#define USB_R4							0x10
-+	#define USB_R4_P21_PORT_RESET_0				BIT(0)
-+	#define USB_R4_P21_SLEEP_M0				BIT(1)
-+	#define USB_R4_MEM_PD_MASK				GENMASK(3, 2)
-+	#define USB_R4_P21_ONLY					BIT(4)
-+
-+#define USB_R5							0x14
-+	#define USB_R5_ID_DIG_SYNC				BIT(0)
-+	#define USB_R5_ID_DIG_REG				BIT(1)
-+	#define USB_R5_ID_DIG_CFG_MASK				GENMASK(3, 2)
-+	#define USB_R5_ID_DIG_EN_0				BIT(4)
-+	#define USB_R5_ID_DIG_EN_1				BIT(5)
-+	#define USB_R5_ID_DIG_CURR				BIT(6)
-+	#define USB_R5_ID_DIG_IRQ				BIT(7)
-+	#define USB_R5_ID_DIG_TH_MASK				GENMASK(15, 8)
-+	#define USB_R5_ID_DIG_CNT_MASK				GENMASK(23, 16)
-+
-+/* read-only register */
-+#define USB_R6							0x18
-+	#define USB_R6_P30_CR_DATA_OUT_MASK			GENMASK(15, 0)
-+	#define USB_R6_P30_CR_ACK				BIT(16)
-+
-+struct phy_meson_gxl_usb3_priv {
-+	struct regmap		*regmap;
-+	enum phy_mode		mode;
-+	struct clk		*clk_phy;
-+	struct clk		*clk_peripheral;
-+	struct reset_control	*reset;
-+};
-+
-+static const struct regmap_config phy_meson_gxl_usb3_regmap_conf = {
-+	.reg_bits = 8,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = USB_R6,
-+};
-+
-+static int phy_meson_gxl_usb3_power_on(struct phy *phy)
-+{
-+	struct phy_meson_gxl_usb3_priv *priv = phy_get_drvdata(phy);
-+
-+	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_EN_0,
-+			   USB_R5_ID_DIG_EN_0);
-+	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_EN_1,
-+			   USB_R5_ID_DIG_EN_1);
-+	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_TH_MASK,
-+			   FIELD_PREP(USB_R5_ID_DIG_TH_MASK, 0xff));
-+
-+	return 0;
-+}
-+
-+static int phy_meson_gxl_usb3_power_off(struct phy *phy)
-+{
-+	struct phy_meson_gxl_usb3_priv *priv = phy_get_drvdata(phy);
-+
-+	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_EN_0, 0);
-+	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_EN_1, 0);
-+
-+	return 0;
-+}
-+
-+static int phy_meson_gxl_usb3_set_mode(struct phy *phy, enum phy_mode mode)
-+{
-+	struct phy_meson_gxl_usb3_priv *priv = phy_get_drvdata(phy);
-+
-+	switch (mode) {
-+	case PHY_MODE_USB_HOST:
-+		regmap_update_bits(priv->regmap, USB_R0, USB_R0_U2D_ACT, 0);
-+		regmap_update_bits(priv->regmap, USB_R4, USB_R4_P21_SLEEP_M0,
-+				   0);
-+		break;
-+
-+	case PHY_MODE_USB_DEVICE:
-+		regmap_update_bits(priv->regmap, USB_R0, USB_R0_U2D_ACT,
-+				   USB_R0_U2D_ACT);
-+		regmap_update_bits(priv->regmap, USB_R4, USB_R4_P21_SLEEP_M0,
-+				   USB_R4_P21_SLEEP_M0);
-+		break;
-+
-+	default:
-+		dev_err(&phy->dev, "unsupported PHY mode %d\n", mode);
-+		return -EINVAL;
-+	}
-+
-+	priv->mode = mode;
-+
-+	return 0;
-+}
-+
-+static int phy_meson_gxl_usb3_init(struct phy *phy)
-+{
-+	struct phy_meson_gxl_usb3_priv *priv = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = reset_control_reset(priv->reset);
-+	if (ret)
-+		goto err;
-+
-+	ret = clk_prepare_enable(priv->clk_phy);
-+	if (ret)
-+		goto err;
-+
-+	ret = clk_prepare_enable(priv->clk_peripheral);
-+	if (ret)
-+		goto err_disable_clk_phy;
-+
-+	ret = phy_meson_gxl_usb3_set_mode(phy, priv->mode);
-+	if (ret)
-+		goto err_disable_clk_peripheral;
-+
-+	regmap_update_bits(priv->regmap, USB_R1,
-+			   USB_R1_U3H_FLADJ_30MHZ_REG_MASK,
-+			   FIELD_PREP(USB_R1_U3H_FLADJ_30MHZ_REG_MASK, 0x20));
-+
-+	return 0;
-+
-+err_disable_clk_peripheral:
-+	clk_disable_unprepare(priv->clk_peripheral);
-+err_disable_clk_phy:
-+	clk_disable_unprepare(priv->clk_phy);
-+err:
-+	return ret;
-+}
-+
-+static int phy_meson_gxl_usb3_exit(struct phy *phy)
-+{
-+	struct phy_meson_gxl_usb3_priv *priv = phy_get_drvdata(phy);
-+
-+	clk_disable_unprepare(priv->clk_peripheral);
-+	clk_disable_unprepare(priv->clk_phy);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops phy_meson_gxl_usb3_ops = {
-+	.power_on	= phy_meson_gxl_usb3_power_on,
-+	.power_off	= phy_meson_gxl_usb3_power_off,
-+	.set_mode	= phy_meson_gxl_usb3_set_mode,
-+	.init		= phy_meson_gxl_usb3_init,
-+	.exit		= phy_meson_gxl_usb3_exit,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int phy_meson_gxl_usb3_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct phy_meson_gxl_usb3_priv *priv;
-+	struct resource *res;
-+	struct phy *phy;
-+	struct phy_provider *phy_provider;
-+	void __iomem *base;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	priv->regmap = devm_regmap_init_mmio(dev, base,
-+					     &phy_meson_gxl_usb3_regmap_conf);
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
-+	priv->clk_phy = devm_clk_get(dev, "phy");
-+	if (IS_ERR(priv->clk_phy))
-+		return PTR_ERR(priv->clk_phy);
-+
-+	priv->clk_peripheral = devm_clk_get(dev, "peripheral");
-+	if (IS_ERR(priv->clk_peripheral))
-+		return PTR_ERR(priv->clk_peripheral);
-+
-+	priv->reset = devm_reset_control_array_get_shared(dev);
-+	if (IS_ERR(priv->reset))
-+		return PTR_ERR(priv->reset);
-+
-+	/*
-+	 * default to host mode as hardware defaults and/or boot-loader
-+	 * behavior can result in this PHY starting up in device mode. this
-+	 * default and the initialization in phy_meson_gxl_usb3_init ensure
-+	 * that we reproducibly start in a known mode on all devices.
-+	 */
-+	priv->mode = PHY_MODE_USB_HOST;
-+
-+	phy = devm_phy_create(dev, np, &phy_meson_gxl_usb3_ops);
-+	if (IS_ERR(phy)) {
-+		ret = PTR_ERR(phy);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to create PHY\n");
-+
-+		return ret;
-+	}
-+
-+	phy_set_drvdata(phy, priv);
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id phy_meson_gxl_usb3_of_match[] = {
-+	{ .compatible = "amlogic,meson-gxl-usb3-phy", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, phy_meson_gxl_usb3_of_match);
-+
-+static struct platform_driver phy_meson_gxl_usb3_driver = {
-+	.probe	= phy_meson_gxl_usb3_probe,
-+	.driver	= {
-+		.name		= "phy-meson-gxl-usb3",
-+		.of_match_table	= phy_meson_gxl_usb3_of_match,
-+	},
-+};
-+module_platform_driver(phy_meson_gxl_usb3_driver);
-+
-+MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-+MODULE_DESCRIPTION("Meson GXL USB3 PHY and OTG detection driver");
-+MODULE_LICENSE("GPL v2");
+Changes since v8 at [10]:
+- add new patch #2 which allows disabling "USB PHY management" in the
+  USB HCD core driver. this also affects patch #4 which now checks the
+  skip_phy_initialization flag before calling
+  usb_phy_roothub_{init,power_on} (other functions don't need to be
+  guarded since they are null-safe - see patch #3)
+- integrated my other series 'remove driver-specific "multiple PHY"
+  handling' from [11] into this one so the result of this "generic"
+  code (= removing duplicate code in various drivers) can be seen
+  directly. affects patches #5-8. (note: patch #1 "usb: mtu3: remove
+  custom USB PHY handling" from that series was dropped, because it
+  broke device mode support - Chunfeng Yun will come up with a
+  separate patch later. patch #5 "usb: chipidea: do not set the "phy"
+  field in struct usb_hcd" from that series was rewritten and is now
+  integrated into the new patch #2 from this series)
+- collected all {Reviewed,Tested,Acked}-by
+- dropped RfC prefix since this v8 was out for review for two weeks
+  and it only got Reviewed-by's and Tested-by's since then
+
+Changes since v7 at [8]:
+- updated the description in the cover-letter
+- wrapped the only call usb_phy_roothub_power_{on,off} in
+  hcd_bus_{resume,suspend} during system-suspend (excluding it from
+  being called during runtime/auto suspend). this also fixes a problem
+  on Meson GXL which does not detect that a new device has been
+  connected if the PHYs are powered off. Thanks to Manu Gautam for
+  suggesting this! (affects patch #3)
+- after a discussion about the dt-bindings of this patch I went back to
+  simply specifying a "phys" property (without a corresponding phy-names
+  property) to pass all PHYs directly in the node of the USB controller.
+  From my understanding the root hub node was "artificial" and we should
+  describe it's properties as part of the controller, rather than
+  introducing a sub-node. see also the discussion with Arnd in [9]
+  (this affects patch #1 and #2)
+- dropped patch #4 ("dt-bindings: usb: xhci: include the roothub and a
+  device in the example") because we're back to just specifying a "phys"
+  property directly within the controller.
+  NOTE: some HCI platform drivers are using the "phys" property as well.
+  With this series phy_{init,power_on,power_off,exit} will be called
+  twice for each PHY when using a ehci-platform.c or xhci-mtk.c USB
+  controller (because the controller driver and our new, generic code
+  now manage the PHYs). the PHY framework handles this gracefully (by
+  ref-counting all operations). a follow-up series will be sent which
+  removes the custom handling from the affected drivers (so only the
+  new PHY wrapper will manage the PHYs state after that follow-up
+  series).
+- fixed an unnecessary whitespace change spotted by Alan Stern (thanks!)
+  in patch #3
+- removed all Tested-by's since we're changing code again
+
+Changes since v6 at [6]:
+- fixed unnecessary whitespace change (noticed by Alan Stern - thanks)
+- added PATCH #4 to clarify (with an example) how I understood how Rob
+  wanted the dt-binding to look like (see [0]). please wait for an ACK
+  from Rob on this one to make sure that we're not introducing some
+  broken binding (as discussed with Arnd: [7])
+- added Alan Stern's ACK on PATCH #3
+- added Neil's Tested-by on PATCH #2 and #3
+
+Changes since RfC v5 at [5]:
+- dropped RfC prefix
+- removed noisy dev_err if no roothub node was found (spotted by
+  Xiaolong Ye's kbuild test robot - thank you for that!)
+- moved the call to usb_phy_roothub_power_off() within
+  hcd_bus_suspend() to make sure that the PHYs are turned off
+  if the "race with a root-hub wakeup event" condition is met (in
+  this case the PHYs are turned on again, with the old code we did
+  break the PHYs internal ref-counting because we never turned the
+  PHYs off before turning them on again in case of that special
+  "race with a root-hub wakeup event").
+  additionally we're not handling the status returned by
+  usb_phy_roothub_power_off() anymore (the bus is already turned off
+  and we tried to turn off all PHYs as well - only the PHYs which
+  failed to power off will stay in the current state).
+  thanks to Alan Stern for the suggestion
+- removed return value from usb_phy_roothub_power_off() because none
+  of my code uses it anymore. thanks to Alan Stern for the suggestion
+
+Changes since v4 at [4]:
+- renamed the subject of the cover-letter (old name was:
+  "initialize (multiple) PHYs in xhci-plat")
+- back into RFC status (see below for the reasons)
+- dropped Tested-by from Chunfeng Yun (same reasons as RFC status)
+- reworded cover-letter and commit messages from "platform-roothub"
+  to "roothub PHY wrapper"
+- moved code from drivers/usb/host/platform-roothub.* to
+  drivers/usb/core/phy.* and the changes to
+  drivers/usb/host/xhci-plat.c to drivers/usb/core/hcd.c as suggested
+  by Mathias Nyman (as a benefit this will enable the new logic for
+  non-xHCI controllers as well - however this was not tested yet)
+- rename the structs, function names, etc from platform_roothub_* to
+  usb_phy_roothub*
+
+Changes since RFCv3 at [3]:
+- moved the DT binding change from patch #3 to patch #1 as suggested
+  by Rob Herring (and slightly adjusted the commit message to account
+  for that)
+- added Tested-by from Chunfeng Yun (who confirmed that the whole
+  concept and implementation works fine on Mediatek SoCs - many thanks
+  again!) to patch #2
+- added Rob Herring's ACK to patches 1 and 3
+- dropped RFC status (RFCv3 -> PATCH v4)
+
+Changes since RFCv2 at [2]:
+- split phy_{init,exit} and phy_power_{on,off} handling. up until RFCv2
+  I called phy_init plus phy_power_on in platform_roothub_power_on and
+  phy_power_off plus phy_exit in platform_roothub_power_off. However,
+  Chunfeng Yun (a Mediatek SoC developer - many thanks for testing my
+  series and providing great feedback) reported that only using
+  phy_power_off (and omitting phy_exit) during system suspend fixes an
+  issue where USB devices would be re-enumerated when resuming. His
+  original problem description: "In order to keep link state on mt8173,
+  we just power off all phys(not exit) when system enter suspend, then
+  power on them again (needn't init, otherwise device will be
+  disconnected) when system resume, this can avoid re-enumerating
+  device.". This fix affects patch #2 and #3 as we now have
+  platform_roothub_init (which calls phy_init internally),
+  platform_roothub_power_on (which calls phy_power_on internally),
+  platform_roothub_power_off (which calls phy_power_off internally) and
+  platform_roothub_exit (which calls phy_exit internally). suspend and
+  resume only call platform_roothub_power_{on,off} to prevent the issue
+  described by Chunfeng Yun (unfortunately I cannot test this because
+  the Amlogic platform currently does not support system suspend).
+- dropped two struct forward declarations from platform-roothub.h which
+  are not used in the header file (thanks to Chunfeng Yun for spotting
+  this)
+
+Changes since RFCv1 at [1]:
+- split the usb-xhci dt-binding documentation into a separate patch
+- fixed a typo ("usb-phy" -> "phys" in the dt-binding example)
+- rebased to apply against latest usb-next
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2016-November/001818.html
+[1] http://marc.info/?l=linux-usb&m=148414866303604&w=2
+[2] https://www.spinics.net/lists/linux-usb/msg158967.html
+[3] https://www.spinics.net/lists/devicetree/msg190426.html
+[4] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004685.html
+[5] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/004924.html
+[6] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005049.html
+[7] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005121.html
+[8] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005124.html
+[9] http://lists.infradead.org/pipermail/linux-amlogic/2017-October/005192.html
+[10] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006274.html
+[11] https://marc.info/?l=linux-usb&m=151683941207898&w=2
+[12] http://lists.infradead.org/pipermail/linux-amlogic/2018-February/006412.html
+[13] http://lists.infradead.org/pipermail/linux-amlogic/2018-February/006478.html
+
+Martin Blumenstingl (8):
+  dt-bindings: usb: add the documentation for USB HCDs
+  usb: add a flag to skip PHY initialization to struct usb_hcd
+  usb: core: add a wrapper for the USB PHYs on the HCD
+  usb: core: hcd: integrate the PHY wrapper into the HCD core
+  usb: host: xhci-mtk: remove custom USB PHY handling
+  usb: host: ehci-platform: remove custom USB PHY handling
+  usb: host: ohci-platform: remove custom USB PHY handling
+  usb: core: hcd: remove support for initializing a single PHY
+
+ .../devicetree/bindings/usb/mediatek,mtk-xhci.txt  |   5 +-
+ .../devicetree/bindings/usb/mediatek,mtu3.txt      |   5 +-
+ Documentation/devicetree/bindings/usb/usb-ehci.txt |   6 +-
+ Documentation/devicetree/bindings/usb/usb-hcd.txt  |   9 ++
+ Documentation/devicetree/bindings/usb/usb-ohci.txt |   6 +-
+ Documentation/devicetree/bindings/usb/usb-uhci.txt |   3 +
+ Documentation/devicetree/bindings/usb/usb-xhci.txt |   5 +
+ drivers/usb/chipidea/host.c                        |   6 +-
+ drivers/usb/core/Makefile                          |   2 +-
+ drivers/usb/core/hcd.c                             |  64 ++++-----
+ drivers/usb/core/phy.c                             | 158 +++++++++++++++++++++
+ drivers/usb/core/phy.h                             |   7 +
+ drivers/usb/host/ehci-fsl.c                        |   2 +
+ drivers/usb/host/ehci-platform.c                   |  55 +------
+ drivers/usb/host/ehci-tegra.c                      |   1 +
+ drivers/usb/host/ohci-omap.c                       |   1 +
+ drivers/usb/host/ohci-platform.c                   |  56 +-------
+ drivers/usb/host/xhci-mtk.c                        |  98 +------------
+ drivers/usb/host/xhci-plat.c                       |   1 +
+ include/linux/usb/hcd.h                            |   8 +-
+ 20 files changed, 253 insertions(+), 245 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/usb-hcd.txt
+ create mode 100644 drivers/usb/core/phy.c
+ create mode 100644 drivers/usb/core/phy.h
+
 -- 
 2.16.2
