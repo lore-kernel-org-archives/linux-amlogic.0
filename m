@@ -1,18 +1,28 @@
-From: andrew@lunn.ch (Andrew Lunn)
-Date: Tue, 6 Mar 2018 13:48:55 +0100
-Subject: [PATCH net-next] net: phy: mdio-mux: slience probe defer error
-In-Reply-To: <20180306111045.19315-1-jbrunet@baylibre.com>
-References: <20180306111045.19315-1-jbrunet@baylibre.com>
-Message-ID: <20180306124855.GC26143@lunn.ch>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  6 Mar 2018 17:17:42 +0100
+Subject: [PATCH] meson-gx-socinfo: Add package id for S905H
+Message-ID: <1520353062-8919-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Mar 06, 2018 at 12:10:45PM +0100, Jerome Brunet wrote:
-> If we fail to register the mdio bus due to probe defer, we should not
-> print an error message. Just be silent in this case.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+The S905H can be found on the Wetek Hub and Play2 boards.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/soc/amlogic/meson-gx-socinfo.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-    Andrew
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index ea091f1..60fa2de 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -41,6 +41,7 @@ static const struct meson_gx_package_id {
+ 	unsigned int pack_id;
+ } soc_packages[] = {
+ 	{ "S905", 0x1f, 0 },
++	{ "S905H", 0x1f, 0x13 },
+ 	{ "S905M", 0x1f, 0x20 },
+ 	{ "S905D", 0x21, 0 },
+ 	{ "S905X", 0x21, 0x80 },
+-- 
+2.7.4
