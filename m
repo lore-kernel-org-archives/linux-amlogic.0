@@ -1,88 +1,92 @@
-From: hias@horus.com (Matthias Reichl)
-Date: Tue,  6 Mar 2018 18:41:22 +0100
-Subject: [PATCH] media: rc: meson-ir: add timeout on idle
-Message-ID: <20180306174122.6017-1-hias@horus.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 7 Mar 2018 14:13:36 +0100
+Subject: [PATCH v4 0/2] Meson GXL USB3 PHY driver
+In-Reply-To: <20180303184700.21480-1-martin.blumenstingl@googlemail.com>
+References: <20180303184700.21480-1-martin.blumenstingl@googlemail.com>
+Message-ID: <c34e4897-368f-26e8-efca-76fcbf7ae112@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Meson doesn't seem to be able to generate timeout events
-in hardware. So install a software timer to generate the
-timeout events required by the decoders to prevent
-"ghost keypresses".
+On 03/03/2018 19:46, Martin Blumenstingl wrote:
+> Amlogic Meson GXL SoCs use a dwc3 controller with two USB2 ports,
+> Meson GXM SoCs use the same dwc3 controller but with three USB3
+> ports enabled. Neither of these SoCs has any USB3 port enabled in
+> the dwc3 registers.
+> The second USB2 port on both SoCs supports host and peripheral
+> (also called "device") mode.
+> 
+> The dwc3 controller supports host mode only. Peripheral mode is
+> implemented through an additional dwc2 controller (which only enables
+> device mode). The USB3 PHY has register bits which allow a driver to
+> detect the current mode - however this is currently not implemented
+> as the dwc2 controller seems to hang during reset (and I do not have
+> a use-case where I need peripheral/device mode).
+> 
+> While the dwc3 controller has no USB3 port enabled we still need the
+> USB3 PHY to be initialized, otherwise some boards (probably those where
+> the bootloader does not initialize the USB3 PHY) show errors with
+> high-speed USB devices connected to any of the USB2 ports. Configuring
+> the USB_R1_U3H_FLADJ_30MHZ_REG_MASK register as it's done by Amlogic's
+> vendor GPL kernel sources makes these error go away.
+> 
+> Thanks to Jerome Brunet for reporting the errors and Neil Armstrong
+> for discovering that initializing the USB3 PHY fixes these USB errors!
+> 
+> 
+> changes since v3 at [2]:
+> - rebased on top of Kishon's linux-phy next branch (commit:
+>   1f846be367fba4 "phy: allwinner: sun4i-usb: poll vbus changes on
+>   A23/A33 when driving VBUS")
+> - use SPDX-License-Identifier instead of the full license text
+> 
+> changes since v2 at [1]:
+> - collected Rob's Reviewed-by on patch #1 and Yixun's Tested-by
+> - rebased on top of v4.16-rc1 (no changes were required though)
+> 
+> changes since v1 at [0]:
+> - document the interrupt in the dt-bindings patch (we don't use it in
+>   the driver yet, but this interrupt is there so it should be
+>   documented)
+> - added the clock and reset lines, thank to Yixun Lan who gave me the
+>   hints that these are needed (it's not clear when reading the Amlogic
+>   GPL kernel sources, because the clock for example is always enabled
+>   by hardware default, bootrom, etc..)
+> - implemented the .set_mode callback
+> - NOTE: I chose *NOT* to add Jerome's and Neil's Tested-by's as well as
+>   Rob's Acked-by on the dt-bindings patch since I made changes that I
+>   want to have reviewed again
+> 
+> 
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2017-September/004780.html
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006290.html
+> [2] http://lists.infradead.org/pipermail/linux-amlogic/2018-February/006449.html
+> 
+> Martin Blumenstingl (2):
+>   dt-bindings: phy: Add support for the USB3 PHY on Amlogic Meson GXL
+>     SoCs
+>   phy: amlogic: add USB3 PHY support for Meson GXL and GXM
+> 
+>  .../devicetree/bindings/phy/meson-gxl-usb3-phy.txt |  31 +++
+>  drivers/phy/amlogic/Kconfig                        |  12 +
+>  drivers/phy/amlogic/Makefile                       |   1 +
+>  drivers/phy/amlogic/phy-meson-gxl-usb3.c           | 282 +++++++++++++++++++++
+>  4 files changed, 326 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/meson-gxl-usb3-phy.txt
+>  create mode 100644 drivers/phy/amlogic/phy-meson-gxl-usb3.c
+> 
 
-Signed-off-by: Matthias Reichl <hias@horus.com>
----
- drivers/media/rc/meson-ir.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Hi Martin, Kishon,
 
-diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index f2204eb77e2a..f34c5836412b 100644
---- a/drivers/media/rc/meson-ir.c
-+++ b/drivers/media/rc/meson-ir.c
-@@ -69,6 +69,7 @@ struct meson_ir {
- 	void __iomem	*reg;
- 	struct rc_dev	*rc;
- 	spinlock_t	lock;
-+	struct timer_list timeout_timer;
- };
- 
- static void meson_ir_set_mask(struct meson_ir *ir, unsigned int reg,
-@@ -98,6 +99,10 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
- 	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
- 
- 	ir_raw_event_store(ir->rc, &rawir);
-+
-+	mod_timer(&ir->timeout_timer,
-+		jiffies + nsecs_to_jiffies(ir->rc->timeout));
-+
- 	ir_raw_event_handle(ir->rc);
- 
- 	spin_unlock(&ir->lock);
-@@ -105,6 +110,17 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
-+static void meson_ir_timeout_timer(struct timer_list *t)
-+{
-+	struct meson_ir *ir = from_timer(ir, t, timeout_timer);
-+	DEFINE_IR_RAW_EVENT(rawir);
-+
-+	rawir.timeout = true;
-+	rawir.duration = ir->rc->timeout;
-+	ir_raw_event_store(ir->rc, &rawir);
-+	ir_raw_event_handle(ir->rc);
-+}
-+
- static int meson_ir_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -145,7 +161,9 @@ static int meson_ir_probe(struct platform_device *pdev)
- 	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
- 	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
- 	ir->rc->rx_resolution = US_TO_NS(MESON_TRATE);
-+	ir->rc->min_timeout = 1;
- 	ir->rc->timeout = MS_TO_NS(200);
-+	ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
- 	ir->rc->driver_name = DRIVER_NAME;
- 
- 	spin_lock_init(&ir->lock);
-@@ -157,6 +175,8 @@ static int meson_ir_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	timer_setup(&ir->timeout_timer, meson_ir_timeout_timer, 0);
-+
- 	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, NULL, ir);
- 	if (ret) {
- 		dev_err(dev, "failed to request irq\n");
-@@ -198,6 +218,8 @@ static int meson_ir_remove(struct platform_device *pdev)
- 	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, 0);
- 	spin_unlock_irqrestore(&ir->lock, flags);
- 
-+	del_timer_sync(&ir->timeout_timer);
-+
- 	return 0;
- }
- 
--- 
-2.11.0
+Successfully tested on Amlogic Q200 Reference Design board with a Meson GXM S912 SoC.
+
+Other patchsets included :
+- improvements and fixes for the phy-meson-gxl-usb2 driver https://lkml.kernel.org/r/20180128202245.25021-1-martin.blumenstingl at googlemail.com
+- DWC3 support for Amlogic Meson AXG and GXL SoCs V2 https://lkml.kernel.org/r/20180211211517.5846-1-martin.blumenstingl at googlemail.com
+- initialize (multiple) PHYs for a HCD V11 https://lkml.kernel.org/r/20180303214309.25643-1-martin.blumenstingl at googlemail.com
+
+Tested-by: Neil Armstrong <narmstrong@baylibre.con>
+
+Kishon, This driver has been around for a long time now, can you take for the next release ?
+
+Thanks,
+Neil
