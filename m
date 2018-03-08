@@ -1,18 +1,56 @@
-From: davem@davemloft.net (David Miller)
-Date: Wed, 07 Mar 2018 12:40:29 -0500 (EST)
-Subject: [PATCH net-next] net: phy: mdio-mux: slience probe defer error
-In-Reply-To: <20180306111045.19315-1-jbrunet@baylibre.com>
-References: <20180306111045.19315-1-jbrunet@baylibre.com>
-Message-ID: <20180307.124029.619020251426137855.davem@davemloft.net>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 07 Mar 2018 17:08:33 -0800
+Subject: [PATCH] amlogic: meson-gx-socinfo: Update soc ids
+In-Reply-To: <1518689694.2883.68.camel@baylibre.com> (Jerome Brunet's message
+ of "Thu, 15 Feb 2018 11:14:54 +0100")
+References: <1518620335-17716-1-git-send-email-narmstrong@baylibre.com>
+ <1518689694.2883.68.camel@baylibre.com>
+Message-ID: <7ho9jzgyr2.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue,  6 Mar 2018 12:10:45 +0100
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> If we fail to register the mdio bus due to probe defer, we should not
-> print an error message. Just be silent in this case.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> On Wed, 2018-02-14 at 15:58 +0100, Neil Armstrong wrote:
+>> Updates the Amlogic Meson SoCs IDs for the Armv8 based SoCs.
+>> It includes the new families and packages.
+>> 
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/soc/amlogic/meson-gx-socinfo.c | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>> 
+>> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+>> index f2d8c3c..a7efe30 100644
+>> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
+>> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+>> @@ -33,6 +33,10 @@ static const struct meson_gx_soc_id {
+>>  	{ "GXL", 0x21 },
+>>  	{ "GXM", 0x22 },
+>>  	{ "TXL", 0x23 },
+>> +	{ "TXLX", 0x24 },
+>> +	{ "AXG", 0x25 },
+>> +	{ "GXLX", 0x26 },
+>> +	{ "TXHD", 0x27 },
+>>  };
+>>  
+>>  static const struct meson_gx_package_id {
+>> @@ -47,6 +51,10 @@ static const struct meson_gx_package_id {
+>>  	{ "S905L", 0x21, 0xc0 },
+>>  	{ "S905M2", 0x21, 0xe0 },
+>>  	{ "S912", 0x22, 0 },
+>> +	{ "962X", 0x24, 0x10 },
+>> +	{ "962E", 0x24, 0x20 },
+>> +	{ "A113X", 0x25, 0x37 },
+>> +	{ "A113D", 0x25, 0xd0 },
+>>  };
+>>  
+>>  static inline unsigned int socinfo_to_major(u32 socinfo)
+>
+> Tested on my s400 board which, according to the marking, features an AXG A113D.
+> AXG is detected correctly but the package id read is 0x22 instead of 0xd0.
 
-Applied, thanks Jerome.
+Neil, can you update accordingly?  Have you seen 0xd0 on other A11x
+chips?  or is this from the docs?
+
+Kevin
