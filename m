@@ -1,13 +1,15 @@
 From: andrew.smirnov@gmail.com (Andrey Smirnov)
-Date: Thu,  8 Mar 2018 11:11:45 -0800
-Subject: [PATCH v5 01/21] nvmem: Document struct nvmem_config
+Date: Thu,  8 Mar 2018 11:11:54 -0800
+Subject: [PATCH v5 10/21] nvmem: meson-mx-efuse: Convert to use
+ devm_nvmem_register()
 In-Reply-To: <20180308191205.26943-1-andrew.smirnov@gmail.com>
 References: <20180308191205.26943-1-andrew.smirnov@gmail.com>
-Message-ID: <20180308191205.26943-2-andrew.smirnov@gmail.com>
+Message-ID: <20180308191205.26943-11-andrew.smirnov@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add a simple description of struct nvmem_config and its fields.
+Drop all of the code related to .remove hook and make use of
+devm_nvmem_register() instead.
 
 Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc: Heiko Stuebner <heiko@sntech.de>
@@ -23,41 +25,40 @@ Cc: linux-amlogic at lists.infradead.org
 Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 ---
- include/linux/nvmem-provider.h | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/nvmem/meson-mx-efuse.c | 16 ++--------------
+ 1 file changed, 2 insertions(+), 14 deletions(-)
 
-diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-index 497706f5adca..a39f76ff2ccd 100644
---- a/include/linux/nvmem-provider.h
-+++ b/include/linux/nvmem-provider.h
-@@ -22,6 +22,28 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
- typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
- 				 void *val, size_t bytes);
+diff --git a/drivers/nvmem/meson-mx-efuse.c b/drivers/nvmem/meson-mx-efuse.c
+index 41d3a3c1104e..a085563e39e3 100644
+--- a/drivers/nvmem/meson-mx-efuse.c
++++ b/drivers/nvmem/meson-mx-efuse.c
+@@ -233,25 +233,13 @@ static int meson_mx_efuse_probe(struct platform_device *pdev)
+ 		return PTR_ERR(efuse->core_clk);
+ 	}
  
-+/**
-+ * struct nvmem_config - NVMEM device configuration
-+ *
-+ * @dev:	Parent device.
-+ * @name:	Optional name.
-+ * @id:		Optional device ID used in full name. Ignored if name is NULL.
-+ * @owner:	Pointer to exporter module. Used for refcounting.
-+ * @cells:	Optional array of pre-defined NVMEM cells.
-+ * @ncells:	Number of elements in cells.
-+ * @read_only:	Device is read-only.
-+ * @root_only:	Device is accessibly to root only.
-+ * @reg_read:	Callback to read data.
-+ * @reg_write:	Callback to write data.
-+ * @size:	Device size.
-+ * @word_size:	Minimum read/write access granularity.
-+ * @stride:	Minimum read/write access stride.
-+ * @priv:	User context passed to read/write callbacks.
-+ *
-+ * Note: A default "nvmem<id>" name will be assigned to the device if
-+ * no name is specified in its configuration. In such case "<id>" is
-+ * generated with ida_simple_get() and provided id field is ignored.
-+ */
- struct nvmem_config {
- 	struct device		*dev;
- 	const char		*name;
+-	efuse->nvmem = nvmem_register(&efuse->config);
+-	if (IS_ERR(efuse->nvmem))
+-		return PTR_ERR(efuse->nvmem);
++	efuse->nvmem = devm_nvmem_register(&pdev->dev, &efuse->config);
+ 
+-	platform_set_drvdata(pdev, efuse);
+-
+-	return 0;
+-}
+-
+-static int meson_mx_efuse_remove(struct platform_device *pdev)
+-{
+-	struct meson_mx_efuse *efuse = platform_get_drvdata(pdev);
+-
+-	return nvmem_unregister(efuse->nvmem);
++	return PTR_ERR_OR_ZERO(efuse->nvmem);
+ }
+ 
+ static struct platform_driver meson_mx_efuse_driver = {
+ 	.probe = meson_mx_efuse_probe,
+-	.remove = meson_mx_efuse_remove,
+ 	.driver = {
+ 		.name = "meson-mx-efuse",
+ 		.of_match_table = meson_mx_efuse_match,
 -- 
 2.14.3
