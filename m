@@ -1,25 +1,41 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 07 Mar 2018 17:27:20 -0800
-Subject: [PATCH] ARM64: dts: meson-gxbb-wetek: add a wetek specific dtsi
- to cleanup hub and play2
-In-Reply-To: <1520353173-9157-1-git-send-email-narmstrong@baylibre.com> (Neil
- Armstrong's message of "Tue, 6 Mar 2018 17:19:33 +0100")
-References: <1520353173-9157-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <7htvtrfjbb.fsf@baylibre.com>
+From: balbi@kernel.org (Felipe Balbi)
+Date: Thu, 08 Mar 2018 10:49:35 +0200
+Subject: [PATCH usb-next v2 0/3] DWC3 support for Amlogic Meson AXG and
+ GXL SoCs
+In-Reply-To: <CAFBinCB=8xQcJHcw5bX4z5Y2JOEqU7O-FH02JS4myJ-d487_zQ@mail.gmail.com>
+References: <20180211211517.5846-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCBhOy2J7dgyLg-Oii1iMn0RJyud7ykW=EMBGg+F8X7DpA@mail.gmail.com>
+ <CAFBinCB=8xQcJHcw5bX4z5Y2JOEqU7O-FH02JS4myJ-d487_zQ@mail.gmail.com>
+Message-ID: <87o9jzuf34.fsf@linux.intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> This patch adds a specific wetek dtsi to handle the specific Hub and Play2
-> boards by no more depending on the p20x dtsi.
-> This simplifies the hub and play2 dts and will avoid breaking these
-> boards when adding p200 and p201 specific changes.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Hi,
 
-Applied to v4.17/dt64,
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>>> Martin Blumenstingl (3):
+>>>   dt-bindings: usb: add support for dwc3 controller on Amlogic Meson GX
+>>>   usb: dwc3: of-simple: add support for shared and pulsed reset lines
+>>>   usb: dwc3: of-simple: add support for the Amlogic Meson GXL and AXG
+>>>     SoCs
+>> could you please let me know if you spotted any problems, code-style
+>> issues in v2 or whether you are waiting for feedback from another
+>> maintainer?
+>> in case everything is fine: will you take this series through your tree?
+> could you please let me know how this series is supposed to land in
+> the next kernel release:
+> - Felipe, will you take it through your usb tree (which contains many
+> other dwc2/dwc3 driver changes)?
 
-Thanks,
+it'll go through my tree. I'm about to merge it into my testing/next.
 
-Kevin
+-- 
+balbi
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 832 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180308/99f17c96/attachment.sig>
