@@ -1,213 +1,63 @@
-From: sean@mess.org (Sean Young)
-Date: Thu, 8 Mar 2018 16:43:27 +0000
-Subject: [PATCH] media: rc: meson-ir: add timeout on idle
-In-Reply-To: <20180306174122.6017-1-hias@horus.com>
-References: <20180306174122.6017-1-hias@horus.com>
-Message-ID: <20180308164327.ihhmvm6ntzvnsjy7@gofer.mess.org>
+From: andrew.smirnov@gmail.com (Andrey Smirnov)
+Date: Thu, 8 Mar 2018 10:22:09 -0800
+Subject: [PATCH v3 01/22] nvmem: Document struct nvmem_config
+In-Reply-To: <1519842888.8089.88.camel@mtkswgap22>
+References: <20180103200114.23922-1-andrew.smirnov@gmail.com>
+ <20180103200114.23922-2-andrew.smirnov@gmail.com>
+ <1519842888.8089.88.camel@mtkswgap22>
+Message-ID: <CAHQ1cqGCX8eFt4x-G=V6YnM64kr8cHXauVjepFi47uaX_hn6Vw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Matthias,
+On Wed, Feb 28, 2018 at 10:34 AM, Sean Wang <sean.wang@mediatek.com> wrote:
+> On Wed, 2018-01-03 at 12:00 -0800, Andrey Smirnov wrote:
+>> Add a simple description of struct nvmem_config and its fields.
+>>
+>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Cc: Heiko Stuebner <heiko@sntech.de>
+>> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+>> Cc: Carlo Caione <carlo@caione.org>
+>> Cc: Kevin Hilman <khilman@baylibre.com>
+>> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+>> Cc: cphealy at gmail.com
+>> Cc: linux-kernel at vger.kernel.org
+>> Cc: linux-mediatek at lists.infradead.org
+>> Cc: linux-rockchip at lists.infradead.org
+>> Cc: linux-amlogic at lists.infradead.org
+>> Cc: linux-arm-kernel at lists.infradead.org
+>> Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+>> ---
+>>  include/linux/nvmem-provider.h | 22 ++++++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
+>>
+>> diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
+>> index 497706f5adca..27e599222ec1 100644
+>> --- a/include/linux/nvmem-provider.h
+>> +++ b/include/linux/nvmem-provider.h
+>> @@ -22,6 +22,28 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
+>>  typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
+>>                                void *val, size_t bytes);
+>>
+>> +/**
+>> + * struct nvmem_config - NVMEM device configuration
+>> + *
+>> + * @dev:     Parent device.
+>> + * @name:    Optional name.
+>> + * @id:              Optional device ID used in full name. Ignored if name is NULL.
+>> + * @owner:   Pointer to exporter module. Used for refcounting.
+>> + * @cells:   Optional array of pre-defined NVMEM cells.
+>> + * @ncells:  Number of elements in cells.
+>> + * @read_only:       Device is read-only.
+>> + * @root_only:       Device is accessibly to root only.
+>> + * @reg_read:        Callback to read data.
+>> + * @reg_write:       Callback to write data.
+>> + * @size:    Device size.
+>> + * @word_size:       Minimum read/write access granularity.
+>> + * @stride:  Minimum read/write access stide.
+>
+> typo on stide ?
 
-On Tue, Mar 06, 2018 at 06:41:22PM +0100, Matthias Reichl wrote:
-> Meson doesn't seem to be able to generate timeout events
-> in hardware. So install a software timer to generate the
-> timeout events required by the decoders to prevent
-> "ghost keypresses".
-> 
-> Signed-off-by: Matthias Reichl <hias@horus.com>
-> ---
->  drivers/media/rc/meson-ir.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-> index f2204eb77e2a..f34c5836412b 100644
-> --- a/drivers/media/rc/meson-ir.c
-> +++ b/drivers/media/rc/meson-ir.c
-> @@ -69,6 +69,7 @@ struct meson_ir {
->  	void __iomem	*reg;
->  	struct rc_dev	*rc;
->  	spinlock_t	lock;
-> +	struct timer_list timeout_timer;
->  };
->  
->  static void meson_ir_set_mask(struct meson_ir *ir, unsigned int reg,
-> @@ -98,6 +99,10 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
->  	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
->  
->  	ir_raw_event_store(ir->rc, &rawir);
-> +
-> +	mod_timer(&ir->timeout_timer,
-> +		jiffies + nsecs_to_jiffies(ir->rc->timeout));
-> +
->  	ir_raw_event_handle(ir->rc);
->  
->  	spin_unlock(&ir->lock);
-> @@ -105,6 +110,17 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
->  	return IRQ_HANDLED;
->  }
->  
-> +static void meson_ir_timeout_timer(struct timer_list *t)
-> +{
-> +	struct meson_ir *ir = from_timer(ir, t, timeout_timer);
-> +	DEFINE_IR_RAW_EVENT(rawir);
-> +
-> +	rawir.timeout = true;
-> +	rawir.duration = ir->rc->timeout;
-> +	ir_raw_event_store(ir->rc, &rawir);
-> +	ir_raw_event_handle(ir->rc);
-> +}
+Definitely, will fix in next version.
 
-Now there can be concurrent access to the raw IR kfifo from the interrupt
-handler and the timer. As there is a race condition between the timeout
-timer and new IR arriving from the interrupt handler, the timeout could
-end being generated after new IR and corrupting a message. There is very
-similar functionality in rc-ir-raw.c (with a spinlock).
-
-> +
->  static int meson_ir_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -145,7 +161,9 @@ static int meson_ir_probe(struct platform_device *pdev)
->  	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
->  	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
->  	ir->rc->rx_resolution = US_TO_NS(MESON_TRATE);
-> +	ir->rc->min_timeout = 1;
->  	ir->rc->timeout = MS_TO_NS(200);
-> +	ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
-
-Any idea why the default timeout is to 200ms? It seems very high.
-
->  	ir->rc->driver_name = DRIVER_NAME;
->  
->  	spin_lock_init(&ir->lock);
-> @@ -157,6 +175,8 @@ static int meson_ir_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	timer_setup(&ir->timeout_timer, meson_ir_timeout_timer, 0);
-> +
->  	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, NULL, ir);
->  	if (ret) {
->  		dev_err(dev, "failed to request irq\n");
-> @@ -198,6 +218,8 @@ static int meson_ir_remove(struct platform_device *pdev)
->  	meson_ir_set_mask(ir, IR_DEC_REG1, REG1_ENABLE, 0);
->  	spin_unlock_irqrestore(&ir->lock, flags);
->  
-> +	del_timer_sync(&ir->timeout_timer);
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.11.0
-
-Would you mind trying this patch?
-
-Thanks
-
-Sean
----
->From f98f4fc05d743ac48a95694996985b2c1f0c4a4b Mon Sep 17 00:00:00 2001
-From: Sean Young <sean@mess.org>
-Date: Thu, 8 Mar 2018 14:42:44 +0000
-Subject: [PATCH] media: rc: meson-ir: add timeout on idle
-
-Meson doesn't seem to be able to generate timeout events in hardware. So
-install a software timer to generate the timeout events required by the
-decoders to prevent "ghost keypresses".
-
-Signed-off-by: Sean Young <sean@mess.org>
----
- drivers/media/rc/meson-ir.c  |  3 +--
- drivers/media/rc/rc-ir-raw.c | 30 +++++++++++++++++++++++++++---
- include/media/rc-core.h      |  4 +++-
- 3 files changed, 31 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-index f2204eb77e2a..64b0aa4f4db7 100644
---- a/drivers/media/rc/meson-ir.c
-+++ b/drivers/media/rc/meson-ir.c
-@@ -97,8 +97,7 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
- 	status = readl_relaxed(ir->reg + IR_DEC_STATUS);
- 	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
- 
--	ir_raw_event_store(ir->rc, &rawir);
--	ir_raw_event_handle(ir->rc);
-+	ir_raw_event_store_with_timeout(ir->rc, &rawir);
- 
- 	spin_unlock(&ir->lock);
- 
-diff --git a/drivers/media/rc/rc-ir-raw.c b/drivers/media/rc/rc-ir-raw.c
-index 984bb82851f9..374f83105a23 100644
---- a/drivers/media/rc/rc-ir-raw.c
-+++ b/drivers/media/rc/rc-ir-raw.c
-@@ -92,7 +92,6 @@ int ir_raw_event_store_edge(struct rc_dev *dev, bool pulse)
- {
- 	ktime_t			now;
- 	DEFINE_IR_RAW_EVENT(ev);
--	int			rc = 0;
- 
- 	if (!dev->raw)
- 		return -EINVAL;
-@@ -101,8 +100,33 @@ int ir_raw_event_store_edge(struct rc_dev *dev, bool pulse)
- 	ev.duration = ktime_to_ns(ktime_sub(now, dev->raw->last_event));
- 	ev.pulse = !pulse;
- 
-+	return ir_raw_event_store_with_timeout(dev, &ev);
-+}
-+EXPORT_SYMBOL_GPL(ir_raw_event_store_edge);
-+
-+/*
-+ * ir_raw_event_store_with_timeout() - pass a pulse/space duration to the raw
-+ *				       ir decoders, schedule decoding and
-+ *				       timeout
-+ * @dev:	the struct rc_dev device descriptor
-+ * @ev:		the struct ir_raw_event descriptor of the pulse/space
-+ *
-+ * This routine (which may be called from an interrupt context) stores a
-+ * pulse/space duration for the raw ir decoding state machines, schedules
-+ * decoding and generates a timeout.
-+ */
-+int ir_raw_event_store_with_timeout(struct rc_dev *dev, struct ir_raw_event *ev)
-+{
-+	ktime_t		now;
-+	int		rc = 0;
-+
-+	if (!dev->raw)
-+		return -EINVAL;
-+
-+	now = ktime_get();
-+
- 	spin_lock(&dev->raw->edge_spinlock);
--	rc = ir_raw_event_store(dev, &ev);
-+	rc = ir_raw_event_store(dev, ev);
- 
- 	dev->raw->last_event = now;
- 
-@@ -117,7 +141,7 @@ int ir_raw_event_store_edge(struct rc_dev *dev, bool pulse)
- 
- 	return rc;
- }
--EXPORT_SYMBOL_GPL(ir_raw_event_store_edge);
-+EXPORT_SYMBOL_GPL(ir_raw_event_store_with_timeout);
- 
- /**
-  * ir_raw_event_store_with_filter() - pass next pulse/space to decoders with some processing
-diff --git a/include/media/rc-core.h b/include/media/rc-core.h
-index fc3a92668bab..6742fd86ff65 100644
---- a/include/media/rc-core.h
-+++ b/include/media/rc-core.h
-@@ -334,7 +334,9 @@ void ir_raw_event_handle(struct rc_dev *dev);
- int ir_raw_event_store(struct rc_dev *dev, struct ir_raw_event *ev);
- int ir_raw_event_store_edge(struct rc_dev *dev, bool pulse);
- int ir_raw_event_store_with_filter(struct rc_dev *dev,
--				struct ir_raw_event *ev);
-+				   struct ir_raw_event *ev);
-+int ir_raw_event_store_with_timeout(struct rc_dev *dev,
-+				    struct ir_raw_event *ev);
- void ir_raw_event_set_idle(struct rc_dev *dev, bool idle);
- int ir_raw_encode_scancode(enum rc_proto protocol, u32 scancode,
- 			   struct ir_raw_event *events, unsigned int max);
--- 
-2.14.3
+Thanks,
+Andrey Smirnov
