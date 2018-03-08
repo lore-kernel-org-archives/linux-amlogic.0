@@ -1,44 +1,67 @@
-From: andrew.smirnov@gmail.com (Andrey Smirnov)
-Date: Thu,  8 Mar 2018 11:12:05 -0800
-Subject: [PATCH v5 21/21] nvmem: bcm-ocotp: Do not use "&pdev->dev" explicitly
-In-Reply-To: <20180308191205.26943-1-andrew.smirnov@gmail.com>
-References: <20180308191205.26943-1-andrew.smirnov@gmail.com>
-Message-ID: <20180308191205.26943-22-andrew.smirnov@gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 08 Mar 2018 11:45:28 -0800
+Subject: [PATCH] amlogic: meson-gx-socinfo: Update soc ids
+In-Reply-To: <37263741-e817-9a48-615e-13c5b1e2cec0@baylibre.com> (Neil
+ Armstrong's message of "Thu, 8 Mar 2018 10:36:34 +0100")
+References: <1518620335-17716-1-git-send-email-narmstrong@baylibre.com>
+ <1518689694.2883.68.camel@baylibre.com> <7ho9jzgyr2.fsf@baylibre.com>
+ <37263741-e817-9a48-615e-13c5b1e2cec0@baylibre.com>
+Message-ID: <7hina6fj1j.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-There's "dev" variable for this already. Use it.
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: cphealy at gmail.com
-Cc: linux-kernel at vger.kernel.org
-Cc: linux-mediatek at lists.infradead.org
-Cc: linux-rockchip at lists.infradead.org
-Cc: linux-amlogic at lists.infradead.org
-Cc: linux-arm-kernel at lists.infradead.org
-Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
----
- drivers/nvmem/bcm-ocotp.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+> Hi Kevin,
+>
+> On 08/03/2018 02:08, Kevin Hilman wrote:
+>> Jerome Brunet <jbrunet@baylibre.com> writes:
+>> 
+>>> On Wed, 2018-02-14 at 15:58 +0100, Neil Armstrong wrote:
+>>>> Updates the Amlogic Meson SoCs IDs for the Armv8 based SoCs.
+>>>> It includes the new families and packages.
+>>>>
+>>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>>> ---
+>>>>  drivers/soc/amlogic/meson-gx-socinfo.c | 8 ++++++++
+>>>>  1 file changed, 8 insertions(+)
+>>>>
+>>>> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+>>>> index f2d8c3c..a7efe30 100644
+>>>> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
+>>>> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+>>>> @@ -33,6 +33,10 @@ static const struct meson_gx_soc_id {
+>>>>  	{ "GXL", 0x21 },
+>>>>  	{ "GXM", 0x22 },
+>>>>  	{ "TXL", 0x23 },
+>>>> +	{ "TXLX", 0x24 },
+>>>> +	{ "AXG", 0x25 },
+>>>> +	{ "GXLX", 0x26 },
+>>>> +	{ "TXHD", 0x27 },
+>>>>  };
+>>>>  
+>>>>  static const struct meson_gx_package_id {
+>>>> @@ -47,6 +51,10 @@ static const struct meson_gx_package_id {
+>>>>  	{ "S905L", 0x21, 0xc0 },
+>>>>  	{ "S905M2", 0x21, 0xe0 },
+>>>>  	{ "S912", 0x22, 0 },
+>>>> +	{ "962X", 0x24, 0x10 },
+>>>> +	{ "962E", 0x24, 0x20 },
+>>>> +	{ "A113X", 0x25, 0x37 },
+>>>> +	{ "A113D", 0x25, 0xd0 },
+>>>>  };
+>>>>  
+>>>>  static inline unsigned int socinfo_to_major(u32 socinfo)
+>>>
+>>> Tested on my s400 board which, according to the marking, features an AXG A113D.
+>>> AXG is detected correctly but the package id read is 0x22 instead of 0xd0.
+>> 
+>> Neil, can you update accordingly?  Have you seen 0xd0 on other A11x
+>> chips?  or is this from the docs?
+>
+> I got it from the Amlogic lastest Linux and U-boot code.
+> I will set 0x22 and squash the "meson-gx-socinfo: Add package id for S905H" patch, is it ok ?
 
-diff --git a/drivers/nvmem/bcm-ocotp.c b/drivers/nvmem/bcm-ocotp.c
-index 24c30fa475cc..4159b3f41d79 100644
---- a/drivers/nvmem/bcm-ocotp.c
-+++ b/drivers/nvmem/bcm-ocotp.c
-@@ -262,8 +262,7 @@ static int bcm_otpc_probe(struct platform_device *pdev)
- 	else if (of_device_is_compatible(dev->of_node, "brcm,ocotp-v2"))
- 		priv->map = &otp_map_v2;
- 	else {
--		dev_err(&pdev->dev,
--			"%s otpc config map not defined\n", __func__);
-+		dev_err(dev, "%s otpc config map not defined\n", __func__);
- 		return -EINVAL;
- 	}
- 
--- 
-2.14.3
+Sure, that's fine.
+
+Kevin
