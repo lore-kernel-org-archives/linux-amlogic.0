@@ -1,16 +1,16 @@
 From: srinivas.kandagatla@linaro.org (srinivas.kandagatla at linaro.org)
-Date: Fri,  9 Mar 2018 14:46:57 +0000
-Subject: [PATCH 03/25] nvmem: Introduce devm_nvmem_(un)register()
+Date: Fri,  9 Mar 2018 14:47:13 +0000
+Subject: [PATCH 19/25] nvmem: rockchip-efuse: Do not use "&pdev->dev"
+ explicitly
 In-Reply-To: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
 References: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
-Message-ID: <20180309144719.29904-4-srinivas.kandagatla@linaro.org>
+Message-ID: <20180309144719.29904-20-srinivas.kandagatla@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Andrey Smirnov <andrew.smirnov@gmail.com>
 
-Introduce devm_nvmem_register()/devm_nvmem_unregister() to make
-.remove() unnecessary in trivial drivers.
+There's "dev" variable for this already. Use it.
 
 Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc: Heiko Stuebner <heiko@sntech.de>
@@ -27,113 +27,38 @@ Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/nvmem/core.c           | 59 ++++++++++++++++++++++++++++++++++++++++++
- include/linux/nvmem-provider.h | 17 ++++++++++++
- 2 files changed, 76 insertions(+)
+ drivers/nvmem/rockchip-efuse.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 99e04cfcc723..b05aa8e81303 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -549,6 +549,65 @@ int nvmem_unregister(struct nvmem_device *nvmem)
- }
- EXPORT_SYMBOL_GPL(nvmem_unregister);
+diff --git a/drivers/nvmem/rockchip-efuse.c b/drivers/nvmem/rockchip-efuse.c
+index ade8848adf82..b3b0b648be62 100644
+--- a/drivers/nvmem/rockchip-efuse.c
++++ b/drivers/nvmem/rockchip-efuse.c
+@@ -268,21 +268,21 @@ static int rockchip_efuse_probe(struct platform_device *pdev)
+ 		return -EINVAL;
+ 	}
  
-+static void devm_nvmem_release(struct device *dev, void *res)
-+{
-+	WARN_ON(nvmem_unregister(*(struct nvmem_device **)res));
-+}
-+
-+/**
-+ * devm_nvmem_register() - Register a managed nvmem device for given
-+ * nvmem_config.
-+ * Also creates an binary entry in /sys/bus/nvmem/devices/dev-name/nvmem
-+ *
-+ * @config: nvmem device configuration with which nvmem device is created.
-+ *
-+ * Return: Will be an ERR_PTR() on error or a valid pointer to nvmem_device
-+ * on success.
-+ */
-+struct nvmem_device *devm_nvmem_register(struct device *dev,
-+					 const struct nvmem_config *config)
-+{
-+	struct nvmem_device **ptr, *nvmem;
-+
-+	ptr = devres_alloc(devm_nvmem_release, sizeof(*ptr), GFP_KERNEL);
-+	if (!ptr)
-+		return ERR_PTR(-ENOMEM);
-+
-+	nvmem = nvmem_register(config);
-+
-+	if (!IS_ERR(nvmem)) {
-+		*ptr = nvmem;
-+		devres_add(dev, ptr);
-+	} else {
-+		devres_free(ptr);
-+	}
-+
-+	return nvmem;
-+}
-+EXPORT_SYMBOL_GPL(devm_nvmem_register);
-+
-+static int devm_nvmem_match(struct device *dev, void *res, void *data)
-+{
-+	struct nvmem_device **r = res;
-+
-+	return *r == data;
-+}
-+
-+/**
-+ * devm_nvmem_unregister() - Unregister previously registered managed nvmem
-+ * device.
-+ *
-+ * @nvmem: Pointer to previously registered nvmem device.
-+ *
-+ * Return: Will be an negative on error or a zero on success.
-+ */
-+int devm_nvmem_unregister(struct device *dev, struct nvmem_device *nvmem)
-+{
-+	return devres_release(dev, devm_nvmem_release, devm_nvmem_match, nvmem);
-+}
-+EXPORT_SYMBOL(devm_nvmem_unregister);
-+
-+
- static struct nvmem_device *__nvmem_device_get(struct device_node *np,
- 					       struct nvmem_cell **cellp,
- 					       const char *cell_id)
-diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-index b00567a07496..f89598bc4e1c 100644
---- a/include/linux/nvmem-provider.h
-+++ b/include/linux/nvmem-provider.h
-@@ -72,6 +72,11 @@ struct nvmem_config {
- struct nvmem_device *nvmem_register(const struct nvmem_config *cfg);
- int nvmem_unregister(struct nvmem_device *nvmem);
+-	efuse = devm_kzalloc(&pdev->dev, sizeof(struct rockchip_efuse_chip),
++	efuse = devm_kzalloc(dev, sizeof(struct rockchip_efuse_chip),
+ 			     GFP_KERNEL);
+ 	if (!efuse)
+ 		return -ENOMEM;
  
-+struct nvmem_device *devm_nvmem_register(struct device *dev,
-+					 const struct nvmem_config *cfg);
-+
-+int devm_nvmem_unregister(struct device *dev, struct nvmem_device *nvmem);
-+
- #else
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	efuse->base = devm_ioremap_resource(&pdev->dev, res);
++	efuse->base = devm_ioremap_resource(dev, res);
+ 	if (IS_ERR(efuse->base))
+ 		return PTR_ERR(efuse->base);
  
- static inline struct nvmem_device *nvmem_register(const struct nvmem_config *c)
-@@ -84,5 +89,17 @@ static inline int nvmem_unregister(struct nvmem_device *nvmem)
- 	return -ENOSYS;
- }
+-	efuse->clk = devm_clk_get(&pdev->dev, "pclk_efuse");
++	efuse->clk = devm_clk_get(dev, "pclk_efuse");
+ 	if (IS_ERR(efuse->clk))
+ 		return PTR_ERR(efuse->clk);
  
-+static inline struct nvmem_device *
-+devm_nvmem_register(struct device *dev, const struct nvmem_config *c)
-+{
-+	return nvmem_register(c);
-+}
-+
-+static inline int
-+devm_nvmem_unregister(struct device *dev, struct nvmem_device *nvmem)
-+{
-+	return nvmem_unregister(nvmem);
-+}
-+
- #endif /* CONFIG_NVMEM */
- #endif  /* ifndef _LINUX_NVMEM_PROVIDER_H */
+-	efuse->dev = &pdev->dev;
++	efuse->dev = dev;
+ 	if (of_property_read_u32(dev->of_node, "rockchip,efuse-size",
+ 				 &econfig.size))
+ 		econfig.size = resource_size(res);
 -- 
 2.15.1
