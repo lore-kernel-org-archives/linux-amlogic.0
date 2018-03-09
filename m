@@ -1,9 +1,9 @@
 From: srinivas.kandagatla@linaro.org (srinivas.kandagatla at linaro.org)
-Date: Fri,  9 Mar 2018 14:46:58 +0000
-Subject: [PATCH 04/25] nvmem: vf610-ocotp: Convert to use devm_nvmem_register()
+Date: Fri,  9 Mar 2018 14:46:59 +0000
+Subject: [PATCH 05/25] nvmem: imx-ocotp: Convert to use devm_nvmem_register()
 In-Reply-To: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
 References: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
-Message-ID: <20180309144719.29904-5-srinivas.kandagatla@linaro.org>
+Message-ID: <20180309144719.29904-6-srinivas.kandagatla@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -27,57 +27,41 @@ Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/nvmem/vf610-ocotp.c | 21 ++++-----------------
- 1 file changed, 4 insertions(+), 17 deletions(-)
+ drivers/nvmem/imx-ocotp.c | 16 ++--------------
+ 1 file changed, 2 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/nvmem/vf610-ocotp.c b/drivers/nvmem/vf610-ocotp.c
-index 5ae9e002f195..5a395ffb2ca8 100644
---- a/drivers/nvmem/vf610-ocotp.c
-+++ b/drivers/nvmem/vf610-ocotp.c
-@@ -217,13 +217,6 @@ static const struct of_device_id ocotp_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, ocotp_of_match);
+diff --git a/drivers/nvmem/imx-ocotp.c b/drivers/nvmem/imx-ocotp.c
+index d7ba351a70c9..f1482c664b19 100644
+--- a/drivers/nvmem/imx-ocotp.c
++++ b/drivers/nvmem/imx-ocotp.c
+@@ -466,26 +466,14 @@ static int imx_ocotp_probe(struct platform_device *pdev)
+ 	imx_ocotp_nvmem_config.dev = dev;
+ 	imx_ocotp_nvmem_config.priv = priv;
+ 	priv->config = &imx_ocotp_nvmem_config;
+-	nvmem = nvmem_register(&imx_ocotp_nvmem_config);
++	nvmem = devm_nvmem_register(dev, &imx_ocotp_nvmem_config);
  
--static int vf610_ocotp_remove(struct platform_device *pdev)
--{
--	struct vf610_ocotp *ocotp_dev = platform_get_drvdata(pdev);
--
--	return nvmem_unregister(ocotp_dev->nvmem);
--}
--
- static int vf610_ocotp_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -246,26 +239,20 @@ static int vf610_ocotp_probe(struct platform_device *pdev)
- 			PTR_ERR(ocotp_dev->clk));
- 		return PTR_ERR(ocotp_dev->clk);
- 	}
-+	ocotp_dev->dev = dev;
-+	ocotp_dev->timing = vf610_ocotp_calculate_timing(ocotp_dev);
+-	if (IS_ERR(nvmem))
+-		return PTR_ERR(nvmem);
  
- 	ocotp_config.size = resource_size(res);
- 	ocotp_config.priv = ocotp_dev;
- 	ocotp_config.dev = dev;
- 
--	ocotp_dev->nvmem = nvmem_register(&ocotp_config);
--	if (IS_ERR(ocotp_dev->nvmem))
--		return PTR_ERR(ocotp_dev->nvmem);
-+	ocotp_dev->nvmem = devm_nvmem_register(dev, &ocotp_config);
- 
--	ocotp_dev->dev = dev;
--	platform_set_drvdata(pdev, ocotp_dev);
--
--	ocotp_dev->timing = vf610_ocotp_calculate_timing(ocotp_dev);
+-	platform_set_drvdata(pdev, nvmem);
 -
 -	return 0;
-+	return PTR_ERR_OR_ZERO(ocotp_dev->nvmem);
+-}
+-
+-static int imx_ocotp_remove(struct platform_device *pdev)
+-{
+-	struct nvmem_device *nvmem = platform_get_drvdata(pdev);
+-
+-	return nvmem_unregister(nvmem);
++	return PTR_ERR_OR_ZERO(nvmem);
  }
  
- static struct platform_driver vf610_ocotp_driver = {
- 	.probe = vf610_ocotp_probe,
--	.remove = vf610_ocotp_remove,
+ static struct platform_driver imx_ocotp_driver = {
+ 	.probe	= imx_ocotp_probe,
+-	.remove	= imx_ocotp_remove,
  	.driver = {
- 		.name = "vf610-ocotp",
- 		.of_match_table = ocotp_of_match,
+ 		.name	= "imx_ocotp",
+ 		.of_match_table = imx_ocotp_dt_ids,
 -- 
 2.15.1
