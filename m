@@ -1,17 +1,16 @@
 From: srinivas.kandagatla@linaro.org (srinivas.kandagatla at linaro.org)
-Date: Fri,  9 Mar 2018 14:47:11 +0000
-Subject: [PATCH 17/25] nvmem: rockchip-efuse: Make use of
- of_device_get_match_data()
+Date: Fri,  9 Mar 2018 14:47:05 +0000
+Subject: [PATCH 11/25] nvmem: meson-efuse: Convert to use devm_nvmem_register()
 In-Reply-To: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
 References: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
-Message-ID: <20180309144719.29904-18-srinivas.kandagatla@linaro.org>
+Message-ID: <20180309144719.29904-12-srinivas.kandagatla@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Andrey Smirnov <andrew.smirnov@gmail.com>
 
-Simplify code a bit by using of_device_get_match_data() instead of
-of_match_device().
+Drop all of the code related to .remove hook and make use of
+devm_nvmem_register() instead.
 
 Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc: Heiko Stuebner <heiko@sntech.de>
@@ -28,36 +27,40 @@ Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/nvmem/rockchip-efuse.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/nvmem/meson-efuse.c | 16 ++--------------
+ 1 file changed, 2 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/nvmem/rockchip-efuse.c b/drivers/nvmem/rockchip-efuse.c
-index fec6e4c48b9a..ade8848adf82 100644
---- a/drivers/nvmem/rockchip-efuse.c
-+++ b/drivers/nvmem/rockchip-efuse.c
-@@ -259,11 +259,11 @@ static int rockchip_efuse_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct nvmem_device *nvmem;
- 	struct rockchip_efuse_chip *efuse;
--	const struct of_device_id *match;
-+	const void *data;
- 	struct device *dev = &pdev->dev;
+diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
+index a43c68f90937..71823d1403c5 100644
+--- a/drivers/nvmem/meson-efuse.c
++++ b/drivers/nvmem/meson-efuse.c
+@@ -60,25 +60,13 @@ static int meson_efuse_probe(struct platform_device *pdev)
+ 	econfig.reg_read = meson_efuse_read;
+ 	econfig.size = size;
  
--	match = of_match_device(dev->driver->of_match_table, dev);
--	if (!match || !match->data) {
-+	data = of_device_get_match_data(dev);
-+	if (!data) {
- 		dev_err(dev, "failed to get match data\n");
- 		return -EINVAL;
- 	}
-@@ -286,7 +286,7 @@ static int rockchip_efuse_probe(struct platform_device *pdev)
- 	if (of_property_read_u32(dev->of_node, "rockchip,efuse-size",
- 				 &econfig.size))
- 		econfig.size = resource_size(res);
--	econfig.reg_read = match->data;
-+	econfig.reg_read = data;
- 	econfig.priv = efuse;
- 	econfig.dev = efuse->dev;
- 	nvmem = devm_nvmem_register(dev, &econfig);
+-	nvmem = nvmem_register(&econfig);
+-	if (IS_ERR(nvmem))
+-		return PTR_ERR(nvmem);
++	nvmem = devm_nvmem_register(&pdev->dev, &econfig);
+ 
+-	platform_set_drvdata(pdev, nvmem);
+-
+-	return 0;
+-}
+-
+-static int meson_efuse_remove(struct platform_device *pdev)
+-{
+-	struct nvmem_device *nvmem = platform_get_drvdata(pdev);
+-
+-	return nvmem_unregister(nvmem);
++	return PTR_ERR_OR_ZERO(nvmem);
+ }
+ 
+ static struct platform_driver meson_efuse_driver = {
+ 	.probe = meson_efuse_probe,
+-	.remove = meson_efuse_remove,
+ 	.driver = {
+ 		.name = "meson-efuse",
+ 		.of_match_table = meson_efuse_match,
 -- 
 2.15.1
