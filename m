@@ -1,15 +1,16 @@
 From: srinivas.kandagatla@linaro.org (srinivas.kandagatla at linaro.org)
-Date: Fri,  9 Mar 2018 14:46:55 +0000
-Subject: [PATCH 01/25] nvmem: Document struct nvmem_config
+Date: Fri,  9 Mar 2018 14:46:56 +0000
+Subject: [PATCH 02/25] nvmem: core: Allow specifying device name verbatim
 In-Reply-To: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
 References: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
-Message-ID: <20180309144719.29904-2-srinivas.kandagatla@linaro.org>
+Message-ID: <20180309144719.29904-3-srinivas.kandagatla@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Andrey Smirnov <andrew.smirnov@gmail.com>
 
-Add a simple description of struct nvmem_config and its fields.
+Add code to allow avoid having nvmem core append a numeric suffix to
+the end of the name by passing config->id of -1.
 
 Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc: Heiko Stuebner <heiko@sntech.de>
@@ -26,41 +27,45 @@ Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- include/linux/nvmem-provider.h | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/nvmem/core.c           | 11 ++++++++---
+ include/linux/nvmem-provider.h |  3 +++
+ 2 files changed, 11 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+index 35a3dbeea324..99e04cfcc723 100644
+--- a/drivers/nvmem/core.c
++++ b/drivers/nvmem/core.c
+@@ -473,9 +473,14 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+ 	nvmem->reg_read = config->reg_read;
+ 	nvmem->reg_write = config->reg_write;
+ 	nvmem->dev.of_node = config->dev->of_node;
+-	dev_set_name(&nvmem->dev, "%s%d",
+-		     config->name ? : "nvmem",
+-		     config->name ? config->id : nvmem->id);
++
++	if (config->id == -1 && config->name) {
++		dev_set_name(&nvmem->dev, "%s", config->name);
++	} else {
++		dev_set_name(&nvmem->dev, "%s%d",
++			     config->name ? : "nvmem",
++			     config->name ? config->id : nvmem->id);
++	}
+ 
+ 	nvmem->read_only = device_property_present(config->dev, "read-only") |
+ 			   config->read_only;
 diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
-index 497706f5adca..a39f76ff2ccd 100644
+index a39f76ff2ccd..b00567a07496 100644
 --- a/include/linux/nvmem-provider.h
 +++ b/include/linux/nvmem-provider.h
-@@ -22,6 +22,28 @@ typedef int (*nvmem_reg_read_t)(void *priv, unsigned int offset,
- typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
- 				 void *val, size_t bytes);
- 
-+/**
-+ * struct nvmem_config - NVMEM device configuration
+@@ -43,6 +43,9 @@ typedef int (*nvmem_reg_write_t)(void *priv, unsigned int offset,
+  * Note: A default "nvmem<id>" name will be assigned to the device if
+  * no name is specified in its configuration. In such case "<id>" is
+  * generated with ida_simple_get() and provided id field is ignored.
 + *
-+ * @dev:	Parent device.
-+ * @name:	Optional name.
-+ * @id:		Optional device ID used in full name. Ignored if name is NULL.
-+ * @owner:	Pointer to exporter module. Used for refcounting.
-+ * @cells:	Optional array of pre-defined NVMEM cells.
-+ * @ncells:	Number of elements in cells.
-+ * @read_only:	Device is read-only.
-+ * @root_only:	Device is accessibly to root only.
-+ * @reg_read:	Callback to read data.
-+ * @reg_write:	Callback to write data.
-+ * @size:	Device size.
-+ * @word_size:	Minimum read/write access granularity.
-+ * @stride:	Minimum read/write access stride.
-+ * @priv:	User context passed to read/write callbacks.
-+ *
-+ * Note: A default "nvmem<id>" name will be assigned to the device if
-+ * no name is specified in its configuration. In such case "<id>" is
-+ * generated with ida_simple_get() and provided id field is ignored.
-+ */
++ * Note: Specifying name and setting id to -1 implies a unique device
++ * whose name is provided as-is (kept unaltered).
+  */
  struct nvmem_config {
  	struct device		*dev;
- 	const char		*name;
 -- 
 2.15.1
