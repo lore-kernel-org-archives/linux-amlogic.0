@@ -1,10 +1,9 @@
 From: srinivas.kandagatla@linaro.org (srinivas.kandagatla at linaro.org)
-Date: Fri,  9 Mar 2018 14:47:02 +0000
-Subject: [PATCH 08/25] nvmem: rockchip-efuse: Convert to use
- devm_nvmem_register()
+Date: Fri,  9 Mar 2018 14:47:01 +0000
+Subject: [PATCH 07/25] nvmem: snvs_lgpr: Convert to use devm_nvmem_register()
 In-Reply-To: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
 References: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
-Message-ID: <20180309144719.29904-9-srinivas.kandagatla@linaro.org>
+Message-ID: <20180309144719.29904-8-srinivas.kandagatla@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -28,28 +27,28 @@ Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/nvmem/rockchip-efuse.c | 16 ++--------------
+ drivers/nvmem/snvs_lpgpr.c | 16 ++--------------
  1 file changed, 2 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/nvmem/rockchip-efuse.c b/drivers/nvmem/rockchip-efuse.c
-index f13a8335f364..fec6e4c48b9a 100644
---- a/drivers/nvmem/rockchip-efuse.c
-+++ b/drivers/nvmem/rockchip-efuse.c
-@@ -289,25 +289,13 @@ static int rockchip_efuse_probe(struct platform_device *pdev)
- 	econfig.reg_read = match->data;
- 	econfig.priv = efuse;
- 	econfig.dev = efuse->dev;
--	nvmem = nvmem_register(&econfig);
+diff --git a/drivers/nvmem/snvs_lpgpr.c b/drivers/nvmem/snvs_lpgpr.c
+index e5c2a4a17f03..cb471d5e8e86 100644
+--- a/drivers/nvmem/snvs_lpgpr.c
++++ b/drivers/nvmem/snvs_lpgpr.c
+@@ -117,20 +117,9 @@ static int snvs_lpgpr_probe(struct platform_device *pdev)
+ 	cfg->reg_read  = snvs_lpgpr_read,
+ 	cfg->reg_write = snvs_lpgpr_write,
+ 
+-	nvmem = nvmem_register(cfg);
 -	if (IS_ERR(nvmem))
 -		return PTR_ERR(nvmem);
-+	nvmem = devm_nvmem_register(dev, &econfig);
++	nvmem = devm_nvmem_register(dev, cfg);
  
 -	platform_set_drvdata(pdev, nvmem);
 -
 -	return 0;
 -}
 -
--static int rockchip_efuse_remove(struct platform_device *pdev)
+-static int snvs_lpgpr_remove(struct platform_device *pdev)
 -{
 -	struct nvmem_device *nvmem = platform_get_drvdata(pdev);
 -
@@ -57,11 +56,14 @@ index f13a8335f364..fec6e4c48b9a 100644
 +	return PTR_ERR_OR_ZERO(nvmem);
  }
  
- static struct platform_driver rockchip_efuse_driver = {
- 	.probe = rockchip_efuse_probe,
--	.remove = rockchip_efuse_remove,
+ static const struct of_device_id snvs_lpgpr_dt_ids[] = {
+@@ -143,7 +132,6 @@ MODULE_DEVICE_TABLE(of, snvs_lpgpr_dt_ids);
+ 
+ static struct platform_driver snvs_lpgpr_driver = {
+ 	.probe	= snvs_lpgpr_probe,
+-	.remove	= snvs_lpgpr_remove,
  	.driver = {
- 		.name = "rockchip-efuse",
- 		.of_match_table = rockchip_efuse_match,
+ 		.name	= "snvs_lpgpr",
+ 		.of_match_table = snvs_lpgpr_dt_ids,
 -- 
 2.15.1
