@@ -1,15 +1,16 @@
 From: srinivas.kandagatla@linaro.org (srinivas.kandagatla at linaro.org)
-Date: Fri,  9 Mar 2018 14:47:12 +0000
-Subject: [PATCH 18/25] nvmem: vf610-ocotp: Do not use "&pdev->dev" explicitly
+Date: Fri,  9 Mar 2018 14:47:10 +0000
+Subject: [PATCH 16/25] nvmem: snvs_lpgpr: Convert commas to semicolons
 In-Reply-To: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
 References: <20180309144719.29904-1-srinivas.kandagatla@linaro.org>
-Message-ID: <20180309144719.29904-19-srinivas.kandagatla@linaro.org>
+Message-ID: <20180309144719.29904-17-srinivas.kandagatla@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Andrey Smirnov <andrew.smirnov@gmail.com>
 
-There already a "dev" variable for that. Use it.
+Looks like commas were accidentally used where semicolons were
+supposed to be. Fix that.
 
 Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc: Heiko Stuebner <heiko@sntech.de>
@@ -26,22 +27,31 @@ Cc: linux-arm-kernel at lists.infradead.org
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/nvmem/vf610-ocotp.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/nvmem/snvs_lpgpr.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/nvmem/vf610-ocotp.c b/drivers/nvmem/vf610-ocotp.c
-index 5a395ffb2ca8..4662309489db 100644
---- a/drivers/nvmem/vf610-ocotp.c
-+++ b/drivers/nvmem/vf610-ocotp.c
-@@ -223,8 +223,7 @@ static int vf610_ocotp_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct vf610_ocotp *ocotp_dev;
+diff --git a/drivers/nvmem/snvs_lpgpr.c b/drivers/nvmem/snvs_lpgpr.c
+index cb471d5e8e86..92e1e41d128e 100644
+--- a/drivers/nvmem/snvs_lpgpr.c
++++ b/drivers/nvmem/snvs_lpgpr.c
+@@ -110,12 +110,12 @@ static int snvs_lpgpr_probe(struct platform_device *pdev)
+ 	cfg->priv = priv;
+ 	cfg->name = dev_name(dev);
+ 	cfg->dev = dev;
+-	cfg->stride = 4,
+-	cfg->word_size = 4,
+-	cfg->size = 4,
+-	cfg->owner = THIS_MODULE,
+-	cfg->reg_read  = snvs_lpgpr_read,
+-	cfg->reg_write = snvs_lpgpr_write,
++	cfg->stride = 4;
++	cfg->word_size = 4;
++	cfg->size = 4;
++	cfg->owner = THIS_MODULE;
++	cfg->reg_read  = snvs_lpgpr_read;
++	cfg->reg_write = snvs_lpgpr_write;
  
--	ocotp_dev = devm_kzalloc(&pdev->dev,
--			sizeof(struct vf610_ocotp), GFP_KERNEL);
-+	ocotp_dev = devm_kzalloc(dev, sizeof(struct vf610_ocotp), GFP_KERNEL);
- 	if (!ocotp_dev)
- 		return -ENOMEM;
+ 	nvmem = devm_nvmem_register(dev, cfg);
  
 -- 
 2.15.1
