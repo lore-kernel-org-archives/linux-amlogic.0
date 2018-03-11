@@ -1,100 +1,76 @@
-From: hias@horus.com (Matthias Reichl)
-Date: Sat, 10 Mar 2018 18:38:28 +0100
+From: sean@mess.org (Sean Young)
+Date: Sun, 11 Mar 2018 12:55:19 +0000
 Subject: [PATCH] media: rc: meson-ir: add timeout on idle
-In-Reply-To: <20180310112744.plfxkmqbgvii7n7r@gofer.mess.org>
+In-Reply-To: <20180310173828.7lwyicxzar22dyb7@camel2.lan>
 References: <20180306174122.6017-1-hias@horus.com>
  <20180308164327.ihhmvm6ntzvnsjy7@gofer.mess.org>
  <20180309155451.gbocsaj4s3puc4cq@camel2.lan>
  <20180310112744.plfxkmqbgvii7n7r@gofer.mess.org>
-Message-ID: <20180310173828.7lwyicxzar22dyb7@camel2.lan>
+ <20180310173828.7lwyicxzar22dyb7@camel2.lan>
+Message-ID: <20180311125518.pcob4wii43odmana@gofer.mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Sean,
+Hi Matthias,
 
-On Sat, Mar 10, 2018 at 11:27:45AM +0000, Sean Young wrote:
-> Hi Matthias,
-> 
-> On Fri, Mar 09, 2018 at 04:54:51PM +0100, Matthias Reichl wrote:
-> > On Thu, Mar 08, 2018 at 04:43:27PM +0000, Sean Young wrote:
-> > > On Tue, Mar 06, 2018 at 06:41:22PM +0100, Matthias Reichl wrote:
-> > > > +
-> > > >  static int meson_ir_probe(struct platform_device *pdev)
-> > > >  {
-> > > >  	struct device *dev = &pdev->dev;
-> > > > @@ -145,7 +161,9 @@ static int meson_ir_probe(struct platform_device *pdev)
-> > > >  	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
-> > > >  	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
-> > > >  	ir->rc->rx_resolution = US_TO_NS(MESON_TRATE);
-> > > > +	ir->rc->min_timeout = 1;
-> > > >  	ir->rc->timeout = MS_TO_NS(200);
-> > > > +	ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
-> > > 
-> > > Any idea why the default timeout is to 200ms? It seems very high.
+On Sat, Mar 10, 2018 at 06:38:28PM +0100, Matthias Reichl wrote:
+> On Sat, Mar 10, 2018 at 11:27:45AM +0000, Sean Young wrote:
+> > So if the timeout is below N then you will never get a space of N or larger;
+> > the largest space I know of in an IR message is 40ms in the sanyo protocol:
 > > 
-> > Indeed it is very high, but I have no idea where that might be
-> > coming from - so I didn't touch it.
+> > https://www.sbprojects.net/knowledge/ir/sharp.php
 > > 
-> > I've been testing rc-5 and NEC remotes with 20-50ms timeouts
-> > on meson-ir/upstream kernel and a couple of LibreELEC users are
-> > using 30-50ms timeouts without issues on Amlogic devices as well
-> > (on 3.14 vendor kernel with meson-ir timeout patch):
+> > So if timeout is set to less than 40ms, we would have trouble decoding the
+> > sharp protocol.
 > > 
-> > https://forum.libreelec.tv/thread/11643-le9-0-remote-configs-ir-keytable-amlogic-devices/?postID=83124#post83124
+> > The space between nec repeats is a little less than 100ms. I'm trying to
+> > remember what would could go wrong if the space between them would be
+> > timeouts instead. Mauro do you remember? I can imagine some IR hardware
+> > (e.g. winbond) queuing up IR after generating a timeout, thus delaying
+> > delivering IR to the kernel and we ending up generating a key up.
 > > 
-> > Out of curiosity: where does the 125ms IR_DEFAULT_TIMEOUT value
-> > come from? For raw IR signals processed by the decoders this seems
-> > rather high to me as well. On my RPi3 with gpio-ir-recv I'm
-> > using 30ms timeout (with an rc-5 remote) without issues.
+> > The problem with a higher timeout is that the trailing space (=timeout)
+> > is sometimes needed for decoding, and decoding of the last message is
+> > delayed until the timeout is received. That means the keyup message is
+> > delayed until that time, making keys a bit "sticky" and more likely to
+> > generate repeats. I'm pretty sure that is needed for rc-5 and nec.
 > 
-> So if the timeout is below N then you will never get a space of N or larger;
-> the largest space I know of in an IR message is 40ms in the sanyo protocol:
+> Another issue with high timeouts is the response to very short button
+> presses where the remote only transmits a single scancode. It then
+> takes signal transmission time plus timeout, so roughly a quarter
+> of a second on meson-ir and ite-cir with 200ms timeout, until the
+> scancode is decoded and the keydown event is generated.
 > 
-> https://www.sbprojects.net/knowledge/ir/sharp.php
+> On longer button presses this is less of an issue as we get the
+> space signal when the first pulse of the repeated scancode is
+> received. So the delay between button press and keydown is determined
+> by the remote scancode repeat interval and with typically ~110ms
+> on nec/rc-5 a lot lower.
 > 
-> So if timeout is set to less than 40ms, we would have trouble decoding the
-> sharp protocol.
+> This affects both "quick fingers" using a standard remote and
+> users of programmable remotes like the Logitech Harmony where
+> the number of scancodes transmitted on a short press can be
+> configured. With a single scancode transmission we run into
+> the long keydown delay, 2 scancodes is fine, and at 3 or 4 we
+> start running into the key repeat issue.
 > 
-> The space between nec repeats is a little less than 100ms. I'm trying to
-> remember what would could go wrong if the space between them would be
-> timeouts instead. Mauro do you remember? I can imagine some IR hardware
-> (e.g. winbond) queuing up IR after generating a timeout, thus delaying
-> delivering IR to the kernel and we ending up generating a key up.
+> We received several reports from users that their remote felt
+> "sluggish" when we switched from the downstream "amremote" driver
+> (which IIRC decoded the nec protocol in hardware) to meson-ir.
 > 
-> The problem with a higher timeout is that the trailing space (=timeout)
-> is sometimes needed for decoding, and decoding of the last message is
-> delayed until the timeout is received. That means the keyup message is
-> delayed until that time, making keys a bit "sticky" and more likely to
-> generate repeats. I'm pretty sure that is needed for rc-5 and nec.
+> Lowering the timeout to 125ms or even significantly lower
+> (depending on what the protocol and IR receiver permits)
+> removes this "sluggishness", users report that their remote
+> is more "responsive".
 
-Another issue with high timeouts is the response to very short button
-presses where the remote only transmits a single scancode. It then
-takes signal transmission time plus timeout, so roughly a quarter
-of a second on meson-ir and ite-cir with 200ms timeout, until the
-scancode is decoded and the keydown event is generated.
+That makes complete sense. I'm actually keen to get this lowered, since
+this makes it possible to lower the repeat period per-protocol, see
+commit d57ea877af38 which had to be reverted (the ite driver will
+need fixing up as well before this can happen).
 
-On longer button presses this is less of an issue as we get the
-space signal when the first pulse of the repeated scancode is
-received. So the delay between button press and keydown is determined
-by the remote scancode repeat interval and with typically ~110ms
-on nec/rc-5 a lot lower.
+Lowering to below 125ms does increase the risk of regressions, so I
+am weary of that. Do you think there is benefit in doing this?
 
-This affects both "quick fingers" using a standard remote and
-users of programmable remotes like the Logitech Harmony where
-the number of scancodes transmitted on a short press can be
-configured. With a single scancode transmission we run into
-the long keydown delay, 2 scancodes is fine, and at 3 or 4 we
-start running into the key repeat issue.
+Thanks
 
-We received several reports from users that their remote felt
-"sluggish" when we switched from the downstream "amremote" driver
-(which IIRC decoded the nec protocol in hardware) to meson-ir.
-
-Lowering the timeout to 125ms or even significantly lower
-(depending on what the protocol and IR receiver permits)
-removes this "sluggishness", users report that their remote
-is more "responsive".
-
-so long,
-
-Hias
+Sean
