@@ -1,82 +1,41 @@
-From: christophe.jaillet@wanadoo.fr (Christophe JAILLET)
-Date: Mon, 12 Mar 2018 21:15:10 +0100
-Subject: [PATCH 3/3] drm/meson: Fix some error handling paths in
- 'meson_drv_bind_master()'
-In-Reply-To: <cover.1520885192.git.christophe.jaillet@wanadoo.fr>
-References: <cover.1520885192.git.christophe.jaillet@wanadoo.fr>
-Message-ID: <df47e03d36c2cf7bc37ec3105fc47c16555bd946.1520885192.git.christophe.jaillet@wanadoo.fr>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 12 Mar 2018 21:57:08 +0100
+Subject: [PATCH v3 0/1] Meson8b: fix requesting GPIOs greater than GPIOZ_3
+Message-ID: <20180312205709.27131-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-If one of these functions fail, we whould free 'drm', as alreadry done in
-the other error handling paths, below and above.
+GPIOs greater GPIOZ_3 (whose ID is 83 - as a reminder: this is exactly
+the number of actual GPIO lines on Meson8b) could not be requested. Using
+CARD_6 (ID 100, "base of the GPIO controller is 382) as an example:
+$ echo 482 > /sys/class/gpio/export
+export_store: invalid GPIO 482
 
-Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
- drivers/gpu/drm/meson/meson_drv.c | 24 ++++++++++++++++--------
- 1 file changed, 16 insertions(+), 8 deletions(-)
+This was discovered by Linus L?ssing when he was adding SD card support
+on the Odroid-C1.
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 6ee3dd7fa450..3baceb744beb 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -189,35 +189,43 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "vpu");
- 	regs = devm_ioremap_resource(dev, res);
--	if (IS_ERR(regs))
--		return PTR_ERR(regs);
-+	if (IS_ERR(regs)) {
-+		ret = PTR_ERR(regs);
-+		goto free_drm;
-+	}
- 
- 	priv->io_base = regs;
- 
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
- 	/* Simply ioremap since it may be a shared register zone */
- 	regs = devm_ioremap(dev, res->start, resource_size(res));
--	if (!regs)
--		return -EADDRNOTAVAIL;
-+	if (!regs) {
-+		ret = -EADDRNOTAVAIL;
-+		goto free_drm;
-+	}
- 
- 	priv->hhi = devm_regmap_init_mmio(dev, regs,
- 					  &meson_regmap_config);
- 	if (IS_ERR(priv->hhi)) {
- 		dev_err(&pdev->dev, "Couldn't create the HHI regmap\n");
--		return PTR_ERR(priv->hhi);
-+		ret = PTR_ERR(priv->hhi);
-+		goto free_drm;
- 	}
- 
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dmc");
- 	/* Simply ioremap since it may be a shared register zone */
- 	regs = devm_ioremap(dev, res->start, resource_size(res));
--	if (!regs)
--		return -EADDRNOTAVAIL;
-+	if (!regs) {
-+		ret = -EADDRNOTAVAIL;
-+		goto free_drm;
-+	}
- 
- 	priv->dmc = devm_regmap_init_mmio(dev, regs,
- 					  &meson_regmap_config);
- 	if (IS_ERR(priv->dmc)) {
- 		dev_err(&pdev->dev, "Couldn't create the DMC regmap\n");
--		return PTR_ERR(priv->dmc);
-+		ret = PTR_ERR(priv->dmc);
-+		goto free_drm;
- 	}
- 
- 	priv->vsync_irq = platform_get_irq(pdev, 0);
+
+changes since v2 at [1]
+- added Jerome's Reviewed-by and Linus' Acked-by (thanks to both of you!)
+- dropped patch #1 since Linus already applied it to the for-next branch
+  of his linux-pinctrl tree (this leaves only patch #2 which should go
+  through Kevin's linux-amlogic tree)
+
+changes since RFC v1 at [0]:
+- dropped RFC prefix
+- instead of adding a hack to override the "ngpio" field this now splits
+  the register definitions as suggested by Jerome (and based on the
+  discussion of RFC v1). see the description of PATCH #1 for a more
+  detailed explanation
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006259.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-February/006546.html
+
+Martin Blumenstingl (1):
+  ARM: dts: meson8b: the CBUS GPIO controller only has 83 GPIOs
+
+ arch/arm/boot/dts/meson8b.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 -- 
-2.14.1
-
-
----
-L'absence de virus dans ce courrier ?lectronique a ?t? v?rifi?e par le logiciel antivirus Avast.
-https://www.avast.com/antivirus
+2.16.2
