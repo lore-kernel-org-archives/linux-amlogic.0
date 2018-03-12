@@ -1,36 +1,110 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 12 Mar 2018 22:42:45 +0100
-Subject: [RFC v1 3/7] ARM64: dts: meson-gxl-s905x-p212: enable the USB
- controller
+Date: Mon, 12 Mar 2018 22:42:43 +0100
+Subject: [RFC v1 1/7] ARM64: dts: meson-gxl: add USB host support
 In-Reply-To: <20180312214249.17846-1-martin.blumenstingl@googlemail.com>
 References: <20180312214249.17846-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180312214249.17846-4-martin.blumenstingl@googlemail.com>
+Message-ID: <20180312214249.17846-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-All boards based on the P212 reference design (the P212 reference board
-itself and the Khadas VIM) have USB connectors (in case of the Khadas
-VIM the first port is exposed through the USB Type-C connector, the
-second port is connected to a 4-port USB hub).
-This enables the USB controller on these boards to make the USB ports
-actually usable.
+This adds USB host support to the Meson GXL SoC. A dwc3 controller is
+used for host-mode, while a dwc2 controller (not added in this patch
+because I could not get it working) is used for device-mode only.
+
+The dwc3 controller's internal roothub has two USB2 ports enabled but no
+USB3 port. Each of the ports is supplied by a separate PHY. The USB pins
+are connected to the SoC's USBHOST_A and USBOTG_B pins.
+Due to the way the roothub works internally the USB PHYs are left
+enabled. When the dwc3 controller is disabled the PHY is never powered on
+so it does not draw any extra power. However, when the dwc3 host
+controller is enabled then all PHYs also have to be enabled, otherwise
+USB devices will not be detected (regardless of whether they are plugged
+into an enabled port or not). This means that only the dwc3 controller
+has to be enabled on boards with USB support (instead of requiring all
+boards to enable the PHYs additionally with the chance of forgetting to
+enable one and breaking all other ports with that as well).
+
+This also adds the USB3 PHY which currently only does some basic
+initialization. That however is required because without it high-speed
+devices (like USB thumb drives) do not work on some devices (probably
+because the bootloader does not configure the USB3 PHY registers).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 61 ++++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-index 0a0953fbc7d4..0cfd701809de 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-@@ -185,3 +185,7 @@
- 	pinctrl-0 = <&uart_ao_a_pins>;
- 	pinctrl-names = "default";
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index e1a39cbed8c9..dba365ed4bd5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -20,6 +20,67 @@
+ 			no-map;
+ 		};
+ 	};
 +
-+&usb0 {
-+	status = "okay";
++	soc {
++		usb0: usb at c9000000 {
++			status = "disabled";
++			compatible = "amlogic,meson-gxl-dwc3";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			clocks = <&clkc CLKID_USB>;
++			clock-names = "usb_general";
++			resets = <&reset RESET_USB_OTG>;
++			reset-names = "usb_otg";
++
++			dwc3: dwc3 at c9000000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0xc9000000 0x0 0x100000>;
++				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++				dr_mode = "host";
++				maximum-speed = "high-speed";
++				snps,dis_u2_susphy_quirk;
++				phys = <&usb3_phy>, <&usb2_phy0>, <&usb2_phy1>;
++			};
++		};
++	};
 +};
++
++&apb {
++	usb2_phy0: phy at 78000 {
++		compatible = "amlogic,meson-gxl-usb2-phy";
++		#phy-cells = <0>;
++		reg = <0x0 0x78000 0x0 0x20>;
++		clocks = <&clkc CLKID_USB>;
++		clock-names = "phy";
++		resets = <&reset RESET_USB_OTG>;
++		reset-names = "phy";
++		status = "okay";
++	};
++
++	usb2_phy1: phy at 78020 {
++		compatible = "amlogic,meson-gxl-usb2-phy";
++		#phy-cells = <0>;
++		reg = <0x0 0x78020 0x0 0x20>;
++		clocks = <&clkc CLKID_USB>;
++		clock-names = "phy";
++		resets = <&reset RESET_USB_OTG>;
++		reset-names = "phy";
++		status = "okay";
++	};
++
++	usb3_phy: phy at 78080 {
++		compatible = "amlogic,meson-gxl-usb3-phy";
++		#phy-cells = <0>;
++		reg = <0x0 0x78080 0x0 0x20>;
++		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&clkc CLKID_USB>, <&clkc_AO CLKID_AO_CEC_32K>;
++		clock-names = "phy", "peripheral";
++		resets = <&reset RESET_USB_OTG>, <&reset RESET_USB_OTG>;
++		reset-names = "phy", "peripheral";
++		status = "okay";
++	};
+ };
+ 
+ &ethmac {
 -- 
 2.16.2
