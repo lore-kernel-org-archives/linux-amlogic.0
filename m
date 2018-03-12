@@ -1,34 +1,45 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 12 Mar 2018 22:42:49 +0100
-Subject: [RFC v1 7/7] ARM64: dts: meson-gxm-khadas-vim2: enable the USB
- controller
-In-Reply-To: <20180312214249.17846-1-martin.blumenstingl@googlemail.com>
-References: <20180312214249.17846-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180312214249.17846-8-martin.blumenstingl@googlemail.com>
+From: sean@mess.org (Sean Young)
+Date: Mon, 12 Mar 2018 21:48:40 +0000
+Subject: [PATCH] media: rc: meson-ir: lower timeout and make configurable
+In-Reply-To: <20180312135811.g25jjzhmh3jnvgjr@gofer.mess.org>
+References: <20180306174122.6017-1-hias@horus.com>
+ <20180308164327.ihhmvm6ntzvnsjy7@gofer.mess.org>
+ <20180309155451.gbocsaj4s3puc4cq@camel2.lan>
+ <20180310112744.plfxkmqbgvii7n7r@gofer.mess.org>
+ <20180310173828.7lwyicxzar22dyb7@camel2.lan>
+ <20180311125518.pcob4wii43odmana@gofer.mess.org>
+ <20180312132000.oqrj4xjdi7lvupnu@camel2.lan>
+ <20180312135811.g25jjzhmh3jnvgjr@gofer.mess.org>
+Message-ID: <20180312214840.rnuflajm6n6kozxt@gofer.mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Khadas VIM2 board connects the dwc3 controller to an internal 4-port
-USB hub which. Two of these ports are accessible directly soldered to
-the board, while the other two are accessible through the 40-pin "GPIO"
-header.
+A timeout of 200ms is much longer than necessary, and delays the decoding
+decoding of a single scancode and the last scancode when a button is being
+held. This makes the remote seem sluggish.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+If the min_timeout and max_timeout values are set, the timeout is
+configurable via the LIRC_SET_REC_TIMEOUT ioctl.
+
+Signed-off-by: Sean Young <sean@mess.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/media/rc/meson-ir.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index 447b9e22cf8e..6fda7283c732 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -412,3 +412,7 @@
- 	status = "okay";
- 	vref-supply = <&vddio_ao18>;
- };
-+
-+&usb0 {
-+	status = "okay";
-+};
+diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
+index 64b0aa4f4db7..f449b35d25e7 100644
+--- a/drivers/media/rc/meson-ir.c
++++ b/drivers/media/rc/meson-ir.c
+@@ -144,7 +144,9 @@ static int meson_ir_probe(struct platform_device *pdev)
+ 	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
+ 	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
+ 	ir->rc->rx_resolution = US_TO_NS(MESON_TRATE);
+-	ir->rc->timeout = MS_TO_NS(200);
++	ir->rc->min_timeout = 1;
++	ir->rc->timeout = IR_DEFAULT_TIMEOUT;
++	ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
+ 	ir->rc->driver_name = DRIVER_NAME;
+ 
+ 	spin_lock_init(&ir->lock);
 -- 
-2.16.2
+2.14.3
