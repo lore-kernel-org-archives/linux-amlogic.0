@@ -1,71 +1,56 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 12 Mar 2018 12:10:21 +0100
-Subject: [PATCH] ARM64: dts: meson: bump mali450 clk to 744MHz
-Message-ID: <1520853021-5412-1-git-send-email-narmstrong@baylibre.com>
+Date: Mon, 12 Mar 2018 12:17:40 +0100
+Subject: [PATCH v2] amlogic: meson-gx-socinfo: Update soc ids
+Message-ID: <1520853460-6960-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Mali-450 IP can run up to 744MHz, bump the frequency using
-the GP0 PLL clock.
+Updates the Amlogic Meson SoCs IDs for the Armv8 based SoCs.
+It includes the new families and packages.
 
-Cc: Michal Lazo <michal.lazo@gmail.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi     | 11 +++++++----
- arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi | 11 +++++++----
- 2 files changed, 14 insertions(+), 8 deletions(-)
+Changes since v1 :
+ - Merge with S905H patch
+ - Add missing S905W package id
+ - Fix A113D package ID with jbrunet's comment
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 3290a4dc..6013d32 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -284,14 +284,17 @@
- 		 * MALI_0 and MALI_1 muxed to a single clock by a glitch
- 		 * free mux to safely change frequency while running.
- 		 */
--		assigned-clocks = <&clkc CLKID_MALI_0_SEL>,
-+		assigned-clocks = <&clkc CLKID_GP0_PLL>,
-+				  <&clkc CLKID_MALI_0_SEL>,
- 				  <&clkc CLKID_MALI_0>,
- 				  <&clkc CLKID_MALI>; /* Glitch free mux */
--		assigned-clock-parents = <&clkc CLKID_FCLK_DIV3>,
-+		assigned-clock-parents = <0>, /* Do Nothing */
-+					 <&clkc CLKID_GP0_PLL>,
- 					 <0>, /* Do Nothing */
- 					 <&clkc CLKID_MALI_0>;
--		assigned-clock-rates = <0>, /* Do Nothing */
--				       <666666666>,
-+		assigned-clock-rates = <744000000>,
-+				       <0>, /* Do Nothing */
-+				       <744000000>,
- 				       <0>; /* Do Nothing */
- 	};
+ drivers/soc/amlogic/meson-gx-socinfo.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index f2d8c3c..9f83c0c 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -33,6 +33,10 @@ static const struct meson_gx_soc_id {
+ 	{ "GXL", 0x21 },
+ 	{ "GXM", 0x22 },
+ 	{ "TXL", 0x23 },
++	{ "TXLX", 0x24 },
++	{ "AXG", 0x25 },
++	{ "GXLX", 0x26 },
++	{ "TXHD", 0x27 },
  };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-index f06cc234..972df67 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-@@ -30,14 +30,17 @@
- 		 * MALI_0 and MALI_1 muxed to a single clock by a glitch
- 		 * free mux to safely change frequency while running.
- 		 */
--		assigned-clocks = <&clkc CLKID_MALI_0_SEL>,
-+		assigned-clocks = <&clkc CLKID_GP0_PLL>,
-+				  <&clkc CLKID_MALI_0_SEL>,
- 				  <&clkc CLKID_MALI_0>,
- 				  <&clkc CLKID_MALI>; /* Glitch free mux */
--		assigned-clock-parents = <&clkc CLKID_FCLK_DIV3>,
-+		assigned-clock-parents = <0>, /* Do Nothing */
-+					 <&clkc CLKID_GP0_PLL>,
- 					 <0>, /* Do Nothing */
- 					 <&clkc CLKID_MALI_0>;
--		assigned-clock-rates = <0>, /* Do Nothing */
--				       <666666666>,
-+		assigned-clock-rates = <744000000>,
-+				       <0>, /* Do Nothing */
-+				       <744000000>,
- 				       <0>; /* Do Nothing */
- 	};
+ 
+ static const struct meson_gx_package_id {
+@@ -41,12 +45,18 @@ static const struct meson_gx_package_id {
+ 	unsigned int pack_id;
+ } soc_packages[] = {
+ 	{ "S905", 0x1f, 0 },
++	{ "S905H", 0x1f, 0x13 },
+ 	{ "S905M", 0x1f, 0x20 },
+ 	{ "S905D", 0x21, 0 },
+ 	{ "S905X", 0x21, 0x80 },
++	{ "S905W", 0x21, 0xa0 },
+ 	{ "S905L", 0x21, 0xc0 },
+ 	{ "S905M2", 0x21, 0xe0 },
+ 	{ "S912", 0x22, 0 },
++	{ "962X", 0x24, 0x10 },
++	{ "962E", 0x24, 0x20 },
++	{ "A113X", 0x25, 0x37 },
++	{ "A113D", 0x25, 0x22 },
  };
+ 
+ static inline unsigned int socinfo_to_major(u32 socinfo)
 -- 
 2.7.4
