@@ -1,62 +1,126 @@
-From: sean@mess.org (Sean Young)
-Date: Mon, 12 Mar 2018 13:58:11 +0000
-Subject: [PATCH] media: rc: meson-ir: add timeout on idle
-In-Reply-To: <20180312132000.oqrj4xjdi7lvupnu@camel2.lan>
-References: <20180306174122.6017-1-hias@horus.com>
- <20180308164327.ihhmvm6ntzvnsjy7@gofer.mess.org>
- <20180309155451.gbocsaj4s3puc4cq@camel2.lan>
- <20180310112744.plfxkmqbgvii7n7r@gofer.mess.org>
- <20180310173828.7lwyicxzar22dyb7@camel2.lan>
- <20180311125518.pcob4wii43odmana@gofer.mess.org>
- <20180312132000.oqrj4xjdi7lvupnu@camel2.lan>
-Message-ID: <20180312135811.g25jjzhmh3jnvgjr@gofer.mess.org>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Mon, 12 Mar 2018 11:25:24 -0700
+Subject: [PATCH v2 00/19] clk: meson: use regmap in clock controllers
+In-Reply-To: <20180212145846.19380-1-jbrunet@baylibre.com>
+References: <20180212145846.19380-1-jbrunet@baylibre.com>
+Message-ID: <1520878632.grlxixwihc.astroid@resonance.none>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Mar 12, 2018 at 02:20:00PM +0100, Matthias Reichl wrote:
-> On Sun, Mar 11, 2018 at 12:55:19PM +0000, Sean Young wrote:
-> > That makes complete sense. I'm actually keen to get this lowered, since
-> > this makes it possible to lower the repeat period per-protocol, see
-> > commit d57ea877af38 which had to be reverted (the ite driver will
-> > need fixing up as well before this can happen).
+Bonjour Jerome,
+
+Excerpts from Jerome Brunet's message of February 12, 2018 6:58 am:
+> This changeset is a rework of meson's clock controllers to use regmap
+> instead of directly using io memory. It based clk-meson next/drivers
+> and depends on few core clock patches, mainly to export generic clocks
+> helpers: [0],[1]. The line count is pretty high but the changes are
+> actually fairly simple and repetitive.
 > 
-> I remember the commit, this issue hit us in LibreELEC testbuilds
-> as well :-)
+> This work has been triggered by the fact that the HHI register space on
+> gxbb and axg provides more than just clocks. The display driver already
+> uses a syscon for HHI on gxbb. This is why gxbb did not use
+> devm_ioremap_resource() to map the registers, since it would have
+> reserved the memory region, preventing another driver from re-mapping
+> it. The cleaner solution is, of course, to use syscon to handle. The
+> purpose of this changeset is to allow it. Even if meson8b does not need
+> this ATM, there is real reason to leave it behind. It is actually easier
+> to migrate it as well, so all meson clock drivers may support regmap
+> only.
 > 
-> > Lowering to below 125ms does increase the risk of regressions, so I
-> > am weary of that. Do you think there is benefit in doing this?
+> The rework starts with a few easy clean-ups. The real deal starts with
+> patch 5, which adds meson's clk_regmap. This will be used as common
+> structure to implement all the controller clocks. Having this replaces
+> the gxbb AO controller specific regmap gate. This structure will also be
+> re-used in upcoming controllers, such as the axg's AO and audio
+> controllers.  Each clock type is then migrated, one at a time, to this
+> new structure.
 > 
-> I'd also say stick to the 125ms default. The default settings
-> should always be safe ones IMO.
+> While at it, the meson clock drivers have been cleaned-up a bit,
+> removing the gate embedded in the mpll driver, simplifying the pll
+> driver and removing the legacy cpu_clk of meson8b.
+> 
+> The new code around the cpu clk of the meson8b is just re-implementation,
+> using simple elements, of the old cpu_clk. As explained by Martin, the
+> old cpu_clk would hang quite often when changing the rate of the cpu
+> clock. Surprisingly, the new implementation improved the situation a bit,
+> but still hangs from time to time. As this is not acceptable, the cpu
+> clk subtree as been switched to a read-only mode, preventing any change
+> of the cpu rate, until an acceptable solution is found.
+> 
+> With this series applied, the clock controllers of the gxbb, gxl and axg
+> SoC will try get regmap from their parent DT node. If this fails, they
+> will fallback to mapping the register themselves. This fallback will be
+> kept until platform DTs have changed so clock controllers is a child of
+> the HHI system controller.
 
-Well, yes. I just wanted to explore the ideal situation before making
-up our minds.
+Looks OK to me. As we discussed off-list, can you send this (and the
+other meson patches) as a PR based on top of the clk-helpers branch in
+the clk git tree? That should satisfy the dependencies (I hope).
 
-> People who want to optimize for the last bit of performance can
-> easily do that on their own, at their own risk.
+Best regards,
+Mike
+
+> 
+> Based on this changeset, more patches are coming. For those interested,
+> the WIP is available here [2]
+> 
+> Changes since v1 [3]:
+> * Fixed a few typos in patches descriptions
+> * Fixed cpu clock names on meson8b, as suggested by Martin
+> * Switched cpu clock subtree to reead-only mode
+> * Fix clk_regmap mux documentation, as reported by Yixun
+> 
+> [0]: https://lkml.kernel.org/r/20180118110144.30619-1-jbrunet at baylibre.com
+> [1]: https://lkml.kernel.org/r/20180122105759.12206-1-jbrunet at baylibre.com
+> [2]: https://github.com/jeromebrunet/linux/tree/v4.17/meson/clk-regmap
+> [1]: https://lkml.kernel.org/r/20180131180945.18025-1-jbrunet at baylibre.com
+> 
+> Jerome Brunet (19):
+>   clk: meson: use dev pointer where possible
+>   clk: meson: use devm_of_clk_add_hw_provider
+>   clk: meson: only one loop index is necessary in probe
+>   clk: meson: remove obsolete comments
+>   clk: meson: add regmap clocks
+>   clk: meson: switch gxbb ao_clk to clk_regmap
+>   clk: meson: remove superseded aoclk_gate_regmap
+>   clk: meson: add regmap to the clock controllers
+>   clk: meson: migrate gates to clk_regmap
+>   clk: meson: migrate dividers to clk_regmap
+>   clk: meson: migrate muxes to clk_regmap
+>   clk: meson: add regmap helpers for parm
+>   clk: meson: migrate mplls clocks to clk_regmap
+>   clk: meson: migrate the audio divider clock to clk_regmap
+>   clk: meson: migrate plls clocks to clk_regmap
+>   clk: meson: split divider and gate part of mpll
+>   clk: meson: rework meson8b cpu clock
+>   clk: meson: remove obsolete cpu_clk
+>   clk: meson: use hhi syscon if available
+> 
+>  drivers/clk/meson/Kconfig             |    9 +
+>  drivers/clk/meson/Makefile            |    5 +-
+>  drivers/clk/meson/axg.c               |  722 +++++++++--------
+>  drivers/clk/meson/axg.h               |    6 +-
+>  drivers/clk/meson/clk-audio-divider.c |   63 +-
+>  drivers/clk/meson/clk-cpu.c           |  178 -----
+>  drivers/clk/meson/clk-mpll.c          |  132 +---
+>  drivers/clk/meson/clk-pll.c           |  243 +++---
+>  drivers/clk/meson/clk-regmap.c        |  166 ++++
+>  drivers/clk/meson/clk-regmap.h        |  111 +++
+>  drivers/clk/meson/clkc.h              |   93 +--
+>  drivers/clk/meson/gxbb-aoclk-regmap.c |   46 --
+>  drivers/clk/meson/gxbb-aoclk.c        |   20 +-
+>  drivers/clk/meson/gxbb-aoclk.h        |   11 -
+>  drivers/clk/meson/gxbb.c              | 1402 ++++++++++++++++++---------------
+>  drivers/clk/meson/gxbb.h              |    5 +-
+>  drivers/clk/meson/meson8b.c           |  588 ++++++++------
+>  drivers/clk/meson/meson8b.h           |   11 +-
+>  18 files changed, 1978 insertions(+), 1833 deletions(-)
+>  delete mode 100644 drivers/clk/meson/clk-cpu.c
+>  create mode 100644 drivers/clk/meson/clk-regmap.c
+>  create mode 100644 drivers/clk/meson/clk-regmap.h
+>  delete mode 100644 drivers/clk/meson/gxbb-aoclk-regmap.c
+> 
+> -- 
+> 2.14.3
 > 
 > 
-> Personally I've been using gpio-ir-recv on RPi with the default 125ms
-> timeout and a Hauppauge rc-5 remote for about 2 years now and I've
-> always been happy with that.
-
-Ok. We should try to get this change for meson-ir ready for v4.17. I can
-write a patch later.
-
-> I have to acknowledge though that the responsiveness of a remote
-> with short messages, like rc-5, in combination with a low timeout
-> (I tested down to 10ms) is pretty impressive.
-
-I've been thinking about this problem. What we could do is have a 
-per-protocol maximum space length, and repeat period. The timeout
-can then be set to a maximum space length (+safety margin), and the
-keyup timer can be set to timeout + repeat period (+safety margin).
-
-If memory serves, the lirc daemon always sets the timeout with
-LIRC_SET_REC_TIMEOUT, so it would not affect lirc daemon decoding.
-
-Anyway, just an idea. Not something for v4.17.
-
-Thanks,
-
-Sean
