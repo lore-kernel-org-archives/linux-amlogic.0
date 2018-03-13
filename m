@@ -1,42 +1,31 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 13 Mar 2018 10:36:26 +0100
-Subject: [PATCH 1/3] drm/meson: Fix an un-handled error path in
+Date: Tue, 13 Mar 2018 10:40:26 +0100
+Subject: [PATCH 0/3] Fix some error handling paths in
  'meson_drv_bind_master()'
-In-Reply-To: <6cbf3d70ac3904489c7194c895225c4103aebb96.1520885192.git.christophe.jaillet@wanadoo.fr>
+In-Reply-To: <cover.1520885192.git.christophe.jaillet@wanadoo.fr>
 References: <cover.1520885192.git.christophe.jaillet@wanadoo.fr>
- <6cbf3d70ac3904489c7194c895225c4103aebb96.1520885192.git.christophe.jaillet@wanadoo.fr>
-Message-ID: <48544583-2bf9-0904-b848-ec4194200af6@baylibre.com>
+Message-ID: <d0bc2518-ec6d-d919-f358-579211c50d9a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 12/03/2018 21:15, Christophe JAILLET wrote:
-> 'drm_vblank_init()' can fail. So handle this (unlikely) error.
+> Patch 1 and 3 are fixes.
+> Patch 2 is just a kind of clean-up noticed while patching this driver.
 > 
-> Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> ---
->  drivers/gpu/drm/meson/meson_drv.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> If patch 2 is considered as useless, patch 3 can be applied on top of 
+> patch 1, it does nor depend on the 2nd patch.
 > 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index f9ad0e960263..02b0886debc0 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -222,7 +222,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->  
->  	priv->vsync_irq = platform_get_irq(pdev, 0);
->  
-> -	drm_vblank_init(drm, 1);
-> +	ret = drm_vblank_init(drm, 1);
-> +	if (ret)
-> +		goto free_drm;
-> +
->  	drm_mode_config_init(drm);
->  	drm->mode_config.max_width = 3840;
->  	drm->mode_config.max_height = 2160;
+> Christophe JAILLET (3):
+>   drm/meson: Fix an un-handled error path in 'meson_drv_bind_master()'
+>   drm/meson: Use drm_dev_put() instead of drm_dev_unref()
+>   drm/meson: Fix some error handling paths in 'meson_drv_bind_master()'
+> 
+>  drivers/gpu/drm/meson/meson_drv.c | 33 ++++++++++++++++++++++-----------
+>  1 file changed, 22 insertions(+), 11 deletions(-)
 > 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Hi,
 
-Thanks,
+Thanks for the fixes, since they are not critical, I pushed them on drm-misc-next, they will be backported onto stable tree by the stable team later on using the Fixes tag.
+
 Neil
