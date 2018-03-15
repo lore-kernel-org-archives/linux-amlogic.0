@@ -1,39 +1,58 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 15 Mar 2018 12:55:41 +0100
-Subject: [PATCH 0/4] ARM64: dts: meson: hhi syscon and clock controllers
-Message-ID: <20180315115545.1884-1-jbrunet@baylibre.com>
+Date: Thu, 15 Mar 2018 12:55:43 +0100
+Subject: [PATCH 2/4] ARM64: dts: meson-gx: sysctrl is the parent of the clock
+ controller
+In-Reply-To: <20180315115545.1884-1-jbrunet@baylibre.com>
+References: <20180315115545.1884-1-jbrunet@baylibre.com>
+Message-ID: <20180315115545.1884-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The HHI register region provides more than just clocks. Several drivers may
-need to access this region, such as the clock controllers and the display
-driver.
+The parent of the meson-gx clock controller should be the hhi system
+controller, not the HIU bus. This way, the HHI register region can be
+used safely by multiple drivers
 
-Meson-gx clock controllers has been developed and merged before we knew the
-hhi could be needed elsewhere, which is why it requests the region directly.
-Meson-axg was built following the model of meson-gx.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 5 ++---
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 5 ++---
+ 2 files changed, 4 insertions(+), 6 deletions(-)
 
-To fix this situation, the clock controller should be a child of the hhi
-system controllers. The hhi system controller node already exists on meson-gx.
-It needs to be added on the axg.
-
-This changeset depends on [0]. This dependency has been merged in
-clk-next. A topic branch is available here [1]
-
-[0]: https://lkml.kernel.org/r/20180212145846.19380-1-jbrunet at baylibre.com
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/log/?h=clk-amlogic
-
-Jerome Brunet (4):
-  dt-bindings: clock: meson: update documentation with hhi syscon
-  ARM64: dts: meson-gx: sysctrl is the parent of the clock controller
-  ARM64: dts: meson-axg: use hhi syscon for the clock controller
-  ARM64: dts: meson-gx: fix gxl clock controller compatible
-
- .../devicetree/bindings/clock/amlogic,gxbb-clkc.txt      | 16 +++++++++++-----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi               | 12 ++++++++----
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi              |  5 ++---
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi               |  7 +++----
- 4 files changed, 24 insertions(+), 16 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index cac72acb85b1..a48d2b821a49 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -304,11 +304,10 @@
+ 	clock-names = "isfr", "iahb", "venci";
+ };
+ 
+-&hiubus {
+-	clkc: clock-controller at 0 {
++&sysctrl {
++	clkc: clock-controller {
+ 		compatible = "amlogic,gxbb-clkc";
+ 		#clock-cells = <1>;
+-		reg = <0x0 0x0 0x0 0x3db>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index e1a39cbed8c9..6b7dfa2d48e4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -206,11 +206,10 @@
+ 	clock-names = "isfr", "iahb", "venci";
+ };
+ 
+-&hiubus {
+-	clkc: clock-controller at 0 {
++&sysctrl {
++	clkc: clock-controller {
+ 		compatible = "amlogic,gxl-clkc", "amlogic,gxbb-clkc";
+ 		#clock-cells = <1>;
+-		reg = <0x0 0x0 0x0 0x3db>;
+ 	};
+ };
+ 
 -- 
 2.14.3
