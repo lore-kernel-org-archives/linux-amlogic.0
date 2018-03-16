@@ -1,30 +1,54 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 16 Mar 2018 15:50:21 +0100
-Subject: [PATCH] ARM64: dts: meson-gx: make efuse read-only
-Message-ID: <20180316145021.8517-1-jbrunet@baylibre.com>
+Date: Fri, 16 Mar 2018 16:01:13 +0100
+Subject: [PATCH 2/2] nvmem: meson-efuse: add write support
+In-Reply-To: <20180316150113.9779-1-jbrunet@baylibre.com>
+References: <20180316150113.9779-1-jbrunet@baylibre.com>
+Message-ID: <20180316150113.9779-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-efuse is one time programmable, so it is safer to deny write request
-to this memory, unless the user is savvy enough to remove the read-only
-flag from DTB
+Add write support to the meson-gx efuse driver.
+Beware, this efuse is one time programmable !
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/nvmem/meson-efuse.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 2d51ccd60628..3c31e21cbed7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -132,6 +132,7 @@
- 		compatible = "amlogic,meson-gx-efuse", "amlogic,meson-gxbb-efuse";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-+		read-only;
+diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
+index 7ad80b80b293..30da5e1abf84 100644
+--- a/drivers/nvmem/meson-efuse.c
++++ b/drivers/nvmem/meson-efuse.c
+@@ -35,6 +35,20 @@ static int meson_efuse_read(void *context, unsigned int offset,
+ 	return 0;
+ }
  
- 		sn: sn at 14 {
- 			reg = <0x14 0x10>;
++static int meson_efuse_write(void *context, unsigned int offset,
++			     void *val, size_t bytes)
++{
++	u8 *buf = val;
++	int ret;
++
++	ret = meson_sm_call_write(buf, bytes, SM_EFUSE_WRITE, offset,
++				  bytes, 0, 0, 0);
++	if (ret < 0)
++		return ret;
++
++	return 0;
++}
++
+ static const struct of_device_id meson_efuse_match[] = {
+ 	{ .compatible = "amlogic,meson-gxbb-efuse", },
+ 	{ /* sentinel */ },
+@@ -59,8 +73,8 @@ static int meson_efuse_probe(struct platform_device *pdev)
+ 	econfig->name = dev_name(dev);
+ 	econfig->stride = 1;
+ 	econfig->word_size = 1;
+-	econfig->read_only = true;
+ 	econfig->reg_read = meson_efuse_read;
++	econfig->reg_write = meson_efuse_write;
+ 	econfig->size = size;
+ 
+ 	nvmem = nvmem_register(econfig);
 -- 
 2.14.3
