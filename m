@@ -1,52 +1,134 @@
-From: linus.luessing@c0d3.blue (Linus =?utf-8?Q?L=C3=BCssing?=)
-Date: Sat, 17 Mar 2018 18:11:25 +0100
-Subject: [RFC PATCH] ARM: dts: meson8b-odroidc1: add microSD support
-In-Reply-To: <CAFBinCDZCkrB2aWvjtwaF-DSa5Zs_gmDKei_+wB4g3nxau8kbg@mail.gmail.com>
-References: <20180125042313.20927-1-linus.luessing@c0d3.blue>
- <CAFBinCA8eWBEqeJCM3La0sm1BvMNkKjbxfZ5GA2sEzXb4AN=8w@mail.gmail.com>
- <CAFBinCDZCkrB2aWvjtwaF-DSa5Zs_gmDKei_+wB4g3nxau8kbg@mail.gmail.com>
-Message-ID: <20180317171125.GK2681@otheros>
+From: linus.luessing@c0d3.blue (=?UTF-8?q?Linus=20L=C3=BCssing?=)
+Date: Sat, 17 Mar 2018 21:11:14 +0100
+Subject: [PATCH] ARM: dts: meson8b-odroidc1: add microSD support
+Message-ID: <20180317201114.25503-1-linus.luessing@c0d3.blue>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+The Odroid C1 features a microSD slot. This patch adds the necessary
+DT bindings to support it.
 
-Sorry for the late reply.
+Signed-off-by: Linus L?ssing <linus.luessing@c0d3.blue>
+---
 
-On Mon, Mar 12, 2018 at 10:00:17PM +0100, Martin Blumenstingl wrote:
-> >> Not sure whether this error message could potentially point to some
-> >> error in the changes in here.
-> > these errors may be a problem with the meson-mx-sdio (MMC) driver
-> > can you please show the output of /sys/kernel/debug/mmc0/ios ?
-> some users on IRC have successfully tested this patch (together with
-> the two patches from my series which fix the GPIO handling)
-> can you please re-send this patch so Kevin can queue it for the next
-> development cycle?
+Should probably be applied only after:
+"[PATCH v3 1/1] ARM: dts: meson8b: the CBUS GPIO controller only has 83 GPIOs"
+-> https://patchwork.kernel.org/patch/10277473/
 
-Glad to hear! I also just retried it with a 4.16-rc5 kernel and
-your latest fixes and microSD still works for me, too :-).
+Changes since "RFC":
+- none
 
-Regarding the error message, I can't reproduce it anymore. With
-the 4.16-rc5 kernel I did not see it. Nevertheless, here's the
-output of mmc/ios:
+But retested with the following patches on top of 4.16-rc5:
+- "[PATCH v2 1/2] pinctrl: meson: meson8b: fix requesting GPIOs greater than GPIOZ_3"
+  -> https://patchwork.kernel.org/patch/10240807/
+- "[PATCH v3 1/1] ARM: dts: meson8b: the CBUS GPIO controller only has 83 GPIOs"
+  -> https://patchwork.kernel.org/patch/10277473/
 
------
-$ cat /sys/kernel/debug/mmc0/ios
-clock:		50000000 Hz
-actual clock:	39843750 Hz
-vdd:		21 (3.3 ~ 3.4 V)
-bus mode:	2 (push-pull)
-chip select:	0 (don't care)
-power mode:	2 (on)
-bus width:	2 (4 bits)
-timing spec:	2 (sd high-speed)
-signal voltage:	0 (3.30 V)
-driver type:	0 (driver type B)
------
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 58 ++++++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/meson8b.dtsi         |  8 +++++
+ 2 files changed, 66 insertions(+)
 
-Out of curiousity, is the "actual clock" supposed to be so
-much lower than "clock"?
-
-Anyway, will resend the patch without the "RFC" now.
-
-Regards, Linus
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index d5e83051bb54..3a5603d95b70 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -54,6 +54,7 @@
+ 
+ 	aliases {
+ 		serial0 = &uart_AO;
++		mmc0 = &sd_card_slot;
+ 	};
+ 
+ 	memory {
+@@ -69,6 +70,37 @@
+ 			default-state = "off";
+ 		};
+ 	};
++
++	tflash_vdd: regulator-tflash_vdd {
++		/*
++		 * signal name from schematics: TFLASH_VDD_EN
++		 */
++		compatible = "regulator-fixed";
++
++		regulator-name = "TFLASH_VDD";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&gpio GPIOY_12 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	tf_io: gpio-regulator-tf_io {
++		compatible = "regulator-gpio";
++
++		regulator-name = "TF_IO";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++
++		/*
++		 * signal name from schematics: TF_3V3N_1V8_EN
++		 */
++		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
++		gpios-states = <0>;
++
++		states = <3300000 0
++			  1800000 1>;
++	};
+ };
+ 
+ &uart_AO {
+@@ -100,6 +132,32 @@
+ 	status = "okay";
+ };
+ 
++&sdio {
++	status = "okay";
++
++	pinctrl-0 = <&sd_b_pins>;
++	pinctrl-names = "default";
++
++	/* SD card */
++	sd_card_slot: slot at 1 {
++		compatible = "mmc-slot";
++		reg = <1>;
++		status = "okay";
++
++		bus-width = <4>;
++		no-sdio;
++		cap-mmc-highspeed;
++		cap-sd-highspeed;
++		disable-wp;
++
++		cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
++		cd-inverted;
++
++		vmmc-supply = <&tflash_vdd>;
++		vqmmc-supply = <&tf_io>;
++	};
++};
++
+ &ethmac {
+ 	status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index 202c2b8c79b8..92e240d08fb2 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -206,6 +206,14 @@
+ 				function = "ethernet";
+ 			};
+ 		};
++
++		sd_b_pins: sd-b {
++			mux {
++				groups = "sd_d0_b", "sd_d1_b", "sd_d2_b",
++					"sd_d3_b", "sd_clk_b", "sd_cmd_b";
++				function = "sd_b";
++			};
++		};
+ 	};
+ };
+ 
+-- 
+2.11.0
