@@ -1,70 +1,70 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 18 Mar 2018 23:54:55 +0100
-Subject: [PATCH v2 1/1] clk: meson: meson8b: add support for the NAND
- clocks
-In-Reply-To: <1521219591.6569.82.camel@baylibre.com>
-References: <20180101210139.29808-1-martin.blumenstingl@googlemail.com>
- <20180101210139.29808-2-martin.blumenstingl@googlemail.com>
- <152121876042.70929.5606827507365233258@swboyd.mtv.corp.google.com>
- <1521219591.6569.82.camel@baylibre.com>
-Message-ID: <CAFBinCAVZcws9-r9EET8o7TXWnGJmcTA517WTn0srXAMHtMHWw@mail.gmail.com>
+Date: Mon, 19 Mar 2018 00:00:58 +0100
+Subject: [RFC PATCH] ARM: dts: meson8b-odroidc1: add microSD support
+In-Reply-To: <20180317171125.GK2681@otheros>
+References: <20180125042313.20927-1-linus.luessing@c0d3.blue>
+ <CAFBinCA8eWBEqeJCM3La0sm1BvMNkKjbxfZ5GA2sEzXb4AN=8w@mail.gmail.com>
+ <CAFBinCDZCkrB2aWvjtwaF-DSa5Zs_gmDKei_+wB4g3nxau8kbg@mail.gmail.com>
+ <20180317171125.GK2681@otheros>
+Message-ID: <CAFBinCBQfHC-0RNRkycoB=3AvX-7Ha99xr0WSc5aajKdck=H9w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome, Hi Stephen,
+Hi Linus,
 
-On Fri, Mar 16, 2018 at 5:59 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Fri, 2018-03-16 at 09:46 -0700, Stephen Boyd wrote:
->> Quoting Martin Blumenstingl (2018-01-01 13:01:39)
->> > This adds the NAND clocks (from the HHI_NAND_CLK_CNTL register) to the
->> > Meson8b clock driver. There are three NAND clocks: a gate which enables
->> > or disables the NAND clock, a mux and a divider (which divides the mux
->> > output).
->> > Unfortunately the public S805 datasheet does not document the mux
->> > parents. However, the vendor kernel has a few hints for us which allows
->> > us to make an educated guess about the clock parents. To do this we need
->> > to have a look at set_nand_core_clk() from the vendor's NAND driver (see
->> > [0]):
->> > - XTAL = (4<<9) | (1<<8) | 0
->> > - 160MHz = (0<<9) | (1<<8) | 3)
->> > - 182MHz = (3<<9) | (1<<8) | 1)
->> > - 212MHz = (1<<9) | (1<<8) | 3)
->> > - 255MHz = (2<<9) | (1<<8) | 1)
->> >
->> > While there is a comment for the XTAL parent (which indicates that it
->> > should only be used for debugging) we have to do a bit of math for the
->> > other parents: target_freq * divider = rate of parent clock
->> > Bit 8 above is the enable bit, so we can ignore it here. Bits 11:9 are
->> > the mux index and bits 6:0 are the 0-based divider (so we need to add
->> > 1). This gives us:
->> > - mux 0 (160MHz * 4) = fclk_div4 (actual rate = 637.5MHz, off by 2.5MHz)
->> > - mux 1 (212MHz * 4) = fclk_div3 (actual rate = 850MHz, off by 2MHz)
->> > - mux 2 (255MHz * 2) = fclk_div5 (matches exactly 510MHz)
->> > - mux 3 (182MHz * 2) = fclk_div7 (actual rate = 346.3MHz, off by 0.3MHz)
->> >
->> > [0] https://github.com/khadas/linux/blob/9587681285cb/drivers/amlogic/amlnf/dev/amlnf_ctrl.c#L314
->> >
->> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> > ---
->>
->> Is this patch still needed? (Leaving patch below for interested
->> readers).
->>
->> -Stephen
+On Sat, Mar 17, 2018 at 6:11 PM, Linus L?ssing <linus.luessing@c0d3.blue> wrote:
+> Hi Martin,
 >
-> Hi Stephen,
+> Sorry for the late reply.
 >
-> I guess we missed it after new year's day :(
+> On Mon, Mar 12, 2018 at 10:00:17PM +0100, Martin Blumenstingl wrote:
+>> >> Not sure whether this error message could potentially point to some
+>> >> error in the changes in here.
+>> > these errors may be a problem with the meson-mx-sdio (MMC) driver
+>> > can you please show the output of /sys/kernel/debug/mmc0/ios ?
+>> some users on IRC have successfully tested this patch (together with
+>> the two patches from my series which fix the GPIO handling)
+>> can you please re-send this patch so Kevin can queue it for the next
+>> development cycle?
 >
-> The patch looks fine to me but, following the rework of meson clocks, we'll need
-> to migrate the clocks inserted to our clk_regmap and change the IDs (96-98 are
-> used now)
+> Glad to hear! I also just retried it with a 4.16-rc5 kernel and
+> your latest fixes and microSD still works for me, too :-).
+that's great :-)
+
+> Regarding the error message, I can't reproduce it anymore. With
+> the 4.16-rc5 kernel I did not see it. Nevertheless, here's the
+> output of mmc/ios:
 >
-> Martin, I can do this rebase if you want ? As you prefer
-Jerome, if you have time to rebase it then feel free
-otherwise I'll do it once v4.17-rc1 is out (no need to hurry with
-these clocks, they are unused until the mainline NAND driver is
-finished - which will probably not happen anytime soon)
+> -----
+> $ cat /sys/kernel/debug/mmc0/ios
+> clock:          50000000 Hz
+> actual clock:   39843750 Hz
+> vdd:            21 (3.3 ~ 3.4 V)
+> bus mode:       2 (push-pull)
+> chip select:    0 (don't care)
+> power mode:     2 (on)
+> bus width:      2 (4 bits)
+> timing spec:    2 (sd high-speed)
+> signal voltage: 0 (3.30 V)
+> driver type:    0 (driver type B)
+> -----
+thank you!
+not sure why you got an error before, let's hope it won't happen again
+
+> Out of curiousity, is the "actual clock" supposed to be so
+> much lower than "clock"?
+short answer: yes
+long answer: ideally "clock" and "actual clock" should be identical.
+however, due to the clock setup for the "SDIO" controller we can't get
+much closer because there's no "fractional" divider and we can't
+change the rate of the top-most clock (see
+/sys/kernel/debug/clk/clk_summary). there is a second MMC controller
+in the Meson8b SoCs (which also supports 8-bit bus width, typically
+used for eMMC) which can generate better frequencies. the other
+controller however is not supported (by the mainline kernel) yet
+
+> Anyway, will resend the patch without the "RFC" now.
+thank you, I'll send a Tested-by once I have time to run it on my Odroid-C1
 
 
 Regards
