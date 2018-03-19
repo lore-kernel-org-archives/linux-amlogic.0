@@ -1,34 +1,36 @@
 From: hverkuil@xs4all.nl (Hans Verkuil)
-Date: Mon, 19 Mar 2018 12:43:45 +0100
-Subject: [PATCH 3/3] arm64: dts: meson-gxl-s905x-libretech-cc: add cec-disable
-In-Reply-To: <20180319114345.29837-1-hverkuil@xs4all.nl>
-References: <20180319114345.29837-1-hverkuil@xs4all.nl>
-Message-ID: <20180319114345.29837-4-hverkuil@xs4all.nl>
+Date: Mon, 19 Mar 2018 12:43:42 +0100
+Subject: [PATCH 0/3] dw-hdmi: add property to disable CEC
+Message-ID: <20180319114345.29837-1-hverkuil@xs4all.nl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Hans Verkuil <hans.verkuil@cisco.com>
 
-This board has two CEC controllers: the DesignWare controller and
-a meson-specific controller. Disable the DW controller since the
-CEC line is hooked up to the meson controller.
+Some boards (amlogic) have two CEC controllers: the DesignWare controller
+and their own CEC controller (meson ao-cec).
 
-Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
----
+Since the CEC line is not hooked up to the DW controller we need a way
+to disable that controller. This patch series adds the cec-disable
+property for that purpose.
+
+Neil, I have added cec-disable to meson-gxl-s905x-libretech-cc.dts
+only, but I suspect it is probably valid for all meson-glx devices?
+Should I move it to meson-gxl.dtsi?
+
+Regards,
+
+	Hans
+
+Hans Verkuil (3):
+  dt-bindings: display: dw_hdmi.txt
+  drm: bridge: dw-hdmi: check the cec-disable property
+  arm64: dts: meson-gxl-s905x-libretech-cc: add cec-disable
+
+ Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt | 3 +++
  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c                    | 3 ++-
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 9671f1e3c74a..271bd486fd65 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -155,6 +155,7 @@
- 	status = "okay";
- 	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
- 	pinctrl-names = "default";
-+	cec-disable;
- };
- 
- &hdmi_tx_tmds_port {
 -- 
 2.15.1
