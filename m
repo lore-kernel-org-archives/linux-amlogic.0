@@ -1,36 +1,16 @@
-From: hverkuil@xs4all.nl (Hans Verkuil)
-Date: Mon, 19 Mar 2018 12:43:44 +0100
-Subject: [PATCH 2/3] drm: bridge: dw-hdmi: check the cec-disable property
-In-Reply-To: <20180319114345.29837-1-hverkuil@xs4all.nl>
+From: festevam@gmail.com (Fabio Estevam)
+Date: Mon, 19 Mar 2018 08:46:34 -0300
+Subject: [PATCH 1/3] dt-bindings: display: dw_hdmi.txt
+In-Reply-To: <20180319114345.29837-2-hverkuil@xs4all.nl>
 References: <20180319114345.29837-1-hverkuil@xs4all.nl>
-Message-ID: <20180319114345.29837-3-hverkuil@xs4all.nl>
+ <20180319114345.29837-2-hverkuil@xs4all.nl>
+Message-ID: <CAOMZO5CmehWh5gudCXF2wchdbi2yFULvcHwSHY-jUr7zEsr=0A@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Hans Verkuil <hans.verkuil@cisco.com>
+Hi Hans,
 
-If the cec-disable property was set, then disable the DW CEC
-controller. This is needed for boards that have their own
-CEC controller.
+On Mon, Mar 19, 2018 at 8:43 AM, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+> From: Hans Verkuil <hans.verkuil@cisco.com>
 
-Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index a38db40ce990..597220e40541 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2508,7 +2508,8 @@ __dw_hdmi_probe(struct platform_device *pdev,
- 		hdmi->audio = platform_device_register_full(&pdevinfo);
- 	}
- 
--	if (config0 & HDMI_CONFIG0_CEC) {
-+	if ((config0 & HDMI_CONFIG0_CEC) &&
-+	    !of_property_read_bool(np, "cec-disable")) {
- 		cec.hdmi = hdmi;
- 		cec.ops = &dw_hdmi_cec_ops;
- 		cec.irq = irq;
--- 
-2.15.1
+It seems the Subject line is missing some content?
