@@ -1,22 +1,21 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 19 Mar 2018 16:44:50 -0700
-Subject: [PATCH] ARM64: dts: meson-gx: make efuse read-only
-In-Reply-To: <20180316145021.8517-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Fri, 16 Mar 2018 15:50:21 +0100")
-References: <20180316145021.8517-1-jbrunet@baylibre.com>
-Message-ID: <7h370vsk99.fsf@baylibre.com>
+Date: Mon, 19 Mar 2018 16:47:13 -0700
+Subject: [PATCH] ARM: dts: meson8b-odroidc1: add microSD support
+In-Reply-To: <20180317201114.25503-1-linus.luessing@c0d3.blue> ("Linus
+ =?utf-8?Q?L=C3=BCssing=22's?= message of "Sat, 17 Mar 2018 21:11:14 +0100")
+References: <20180317201114.25503-1-linus.luessing@c0d3.blue>
+Message-ID: <7hy3inr5ku.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Linus L?ssing <linus.luessing@c0d3.blue> writes:
 
-> efuse is one time programmable, so it is safer to deny write request
-> to this memory, unless the user is savvy enough to remove the read-only
-> flag from DTB
+> The Odroid C1 features a microSD slot. This patch adds the necessary
+> DT bindings to support it.
 >
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Linus L?ssing <linus.luessing@c0d3.blue>
 
-Applied to v4.17/dt64,
+Applied to v4.17/dt,
 
 Thanks,
 
