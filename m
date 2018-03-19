@@ -1,36 +1,36 @@
 From: hverkuil@xs4all.nl (Hans Verkuil)
-Date: Mon, 19 Mar 2018 12:43:42 +0100
-Subject: [PATCH 0/3] dw-hdmi: add property to disable CEC
-Message-ID: <20180319114345.29837-1-hverkuil@xs4all.nl>
+Date: Mon, 19 Mar 2018 12:43:44 +0100
+Subject: [PATCH 2/3] drm: bridge: dw-hdmi: check the cec-disable property
+In-Reply-To: <20180319114345.29837-1-hverkuil@xs4all.nl>
+References: <20180319114345.29837-1-hverkuil@xs4all.nl>
+Message-ID: <20180319114345.29837-3-hverkuil@xs4all.nl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Hans Verkuil <hans.verkuil@cisco.com>
 
-Some boards (amlogic) have two CEC controllers: the DesignWare controller
-and their own CEC controller (meson ao-cec).
+If the cec-disable property was set, then disable the DW CEC
+controller. This is needed for boards that have their own
+CEC controller.
 
-Since the CEC line is not hooked up to the DW controller we need a way
-to disable that controller. This patch series adds the cec-disable
-property for that purpose.
+Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Neil, I have added cec-disable to meson-gxl-s905x-libretech-cc.dts
-only, but I suspect it is probably valid for all meson-glx devices?
-Should I move it to meson-gxl.dtsi?
-
-Regards,
-
-	Hans
-
-Hans Verkuil (3):
-  dt-bindings: display: dw_hdmi.txt
-  drm: bridge: dw-hdmi: check the cec-disable property
-  arm64: dts: meson-gxl-s905x-libretech-cc: add cec-disable
-
- Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt | 3 +++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 1 +
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c                    | 3 ++-
- 3 files changed, 6 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index a38db40ce990..597220e40541 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2508,7 +2508,8 @@ __dw_hdmi_probe(struct platform_device *pdev,
+ 		hdmi->audio = platform_device_register_full(&pdevinfo);
+ 	}
+ 
+-	if (config0 & HDMI_CONFIG0_CEC) {
++	if ((config0 & HDMI_CONFIG0_CEC) &&
++	    !of_property_read_bool(np, "cec-disable")) {
+ 		cec.hdmi = hdmi;
+ 		cec.ops = &dw_hdmi_cec_ops;
+ 		cec.irq = irq;
 -- 
 2.15.1
