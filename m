@@ -1,45 +1,29 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 19 Mar 2018 17:10:32 -0700
-Subject: [GIT PULL] Amlogic driver updates for v4.17, redo
-Message-ID: <7h7eq7r4hz.fsf@baylibre.com>
+From: viresh.kumar@linaro.org (Viresh Kumar)
+Date: Tue, 20 Mar 2018 09:37:31 +0800
+Subject: [PATCH 06/10] ARM64: dts: meson: Remove
+ "cooling-{min|max}-level" for CPU nodes
+In-Reply-To: <6c91ebfecf86da98a7682c6d262ff1218a1d7343.1518166039.git.viresh.kumar@linaro.org>
+References: <cover.1518166039.git.viresh.kumar@linaro.org>
+ <6c91ebfecf86da98a7682c6d262ff1218a1d7343.1518166039.git.viresh.kumar@linaro.org>
+Message-ID: <20180320013731.olxjil4qfj6ppjsl@vireshk-mac-ubuntu>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The following changes since commit 7928b2cbe55b2a410a0f5c1f154610059c57b1b2:
+On 09-02-18, 14:28, Viresh Kumar wrote:
+> The "cooling-min-level" and "cooling-max-level" properties are not
+> parsed by any part of the kernel currently and the max cooling state of
+> a CPU cooling device is found by referring to the cpufreq table instead.
+> 
+> Remove the unused properties from the CPU nodes.
+> 
+> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 4 ----
+>  1 file changed, 4 deletions(-)
 
-  Linux 4.16-rc1 (2018-02-11 15:04:29 -0800)
+@Arnd: Can you please pick this and patch 8/10 from this series for 4.17 ? Both
+are already Acked by Neil. I have just re-bounced both the messages to
+arm at kernel.org. Thanks.
 
-are available in the git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
-
-for you to fetch changes up to f842c41adc044e4586dd232c6e889f9d46180fa8:
-
-  amlogic: meson-gx-socinfo: Update soc ids (2018-03-19 16:40:26 -0700)
-
-----------------------------------------------------------------
-Amlogic driver updates for v4.17
-- socinfo: add more IDs for newer SoC detection
-- firmware: update init to use module_platform_driver_probe
-- soc: mix. VPU power controller fixes
-
-----------------------------------------------------------------
-Heiner Kallweit (2):
-      soc: amlogic: meson-gx-pwrc-vpu: don't print error message on probe deferral
-      soc: amlogic: meson-gx-pwrc-vpu: fix error on shutdown when domain is powered off
-
-Neil Armstrong (1):
-      amlogic: meson-gx-socinfo: Update soc ids
-
-Sudeep Holla (1):
-      firmware: meson-sm: rework meson_sm_init to use module_platform_driver_probe
-
-weiyongjun (A) (2):
-      meson-mx-socinfo: Make local function meson_mx_socinfo_init() static
-      meson-gx-socinfo: make local function meson_gx_socinfo_init static
-
- drivers/firmware/meson/meson_sm.c       | 25 ++++++++++++-------------
- drivers/soc/amlogic/meson-gx-pwrc-vpu.c |  9 +++++++--
- drivers/soc/amlogic/meson-gx-socinfo.c  | 12 +++++++++++-
- drivers/soc/amlogic/meson-mx-socinfo.c  |  2 +-
- 4 files changed, 31 insertions(+), 17 deletions(-)
+--
+viresh
