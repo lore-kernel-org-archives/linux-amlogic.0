@@ -1,22 +1,25 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 19 Mar 2018 16:47:13 -0700
-Subject: [PATCH] ARM: dts: meson8b-odroidc1: add microSD support
-In-Reply-To: <20180317201114.25503-1-linus.luessing@c0d3.blue> ("Linus
- =?utf-8?Q?L=C3=BCssing=22's?= message of "Sat, 17 Mar 2018 21:11:14 +0100")
-References: <20180317201114.25503-1-linus.luessing@c0d3.blue>
-Message-ID: <7hy3inr5ku.fsf@baylibre.com>
+Date: Mon, 19 Mar 2018 17:03:40 -0700
+Subject: [GIT PULL] Amlogic driver updates for v4.17
+Message-ID: <7htvtbr4tf.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Linus L?ssing <linus.luessing@c0d3.blue> writes:
+The following changes since commit 7928b2cbe55b2a410a0f5c1f154610059c57b1b2:
 
-> The Odroid C1 features a microSD slot. This patch adds the necessary
-> DT bindings to support it.
->
-> Signed-off-by: Linus L?ssing <linus.luessing@c0d3.blue>
+  Linux 4.16-rc1 (2018-02-11 15:04:29 -0800)
 
-Applied to v4.17/dt,
+are available in the git repository at:
 
-Thanks,
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git v4.17/defconfig
 
-Kevin
+for you to fetch changes up to 266c157de3b21b6da3e015085dda48cfa9f0f76d:
+
+  arm64: defconfig: enable MESON EFUSE (2018-02-12 14:20:43 -0800)
+
+----------------------------------------------------------------
+Jerome Brunet (1):
+      arm64: defconfig: enable MESON EFUSE
+
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
