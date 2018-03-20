@@ -1,69 +1,53 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 20 Mar 2018 17:16:41 +0100
-Subject: [PATCH -next] drm/meson: Fix potential NULL dereference in
- meson_drv_bind_master()
-In-Reply-To: <4cad8099-dbb8-d12c-9ce8-b64688222bd7@baylibre.com>
-References: <1521555630-29284-1-git-send-email-weiyongjun1@huawei.com>
- <4cad8099-dbb8-d12c-9ce8-b64688222bd7@baylibre.com>
-Message-ID: <1772626e-c521-a072-76e4-64e3b4883f2e@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 20 Mar 2018 14:32:07 -0700
+Subject: [GIT PULL] Amlogic 32-bit DT updates for v4.17
+In-Reply-To: <7hh8pbr4kp.fsf@baylibre.com>
+References: <7hh8pbr4kp.fsf@baylibre.com>
+Message-ID: <CAOi56cU2PaWD87w9RrOz5qXjTYZPNN4GQxB=qd=HiGPxjJWKpA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 20/03/2018 16:04, Neil Armstrong wrote:
-> On 20/03/2018 15:20, Wei Yongjun wrote:
->> platform_get_resource_byname() may fail and return NULL, so we should
->> better check it's return value to avoid a NULL pointer dereference
->> a bit later in the code.
->>
->> This is detected by Coccinelle semantic patch.
->>
->> @@
->> expression pdev, res, n, t, e, e1, e2;
->> @@
->>
->> res = platform_get_resource_byname(pdev, t, n);
->> + if (!res)
->> +   return -EINVAL;
->> ... when != res == NULL
->> e = devm_ioremap(e1, res->start, e2);
->>
->> Signed-off-by: Wei Yongjun <weiyongjun1@huawei.com>
->> ---
->>  drivers/gpu/drm/meson/meson_drv.c | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
->> index 3baceb7..32b1a6c 100644
->> --- a/drivers/gpu/drm/meson/meson_drv.c
->> +++ b/drivers/gpu/drm/meson/meson_drv.c
->> @@ -197,6 +197,8 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->>  	priv->io_base = regs;
->>  
->>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
->> +	if (!res)
->> +		return -EINVAL;
->>  	/* Simply ioremap since it may be a shared register zone */
->>  	regs = devm_ioremap(dev, res->start, resource_size(res));
->>  	if (!regs) {
->> @@ -213,6 +215,8 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->>  	}
->>  
->>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dmc");
->> +	if (!res)
->> +		return -EINVAL;
->>  	/* Simply ioremap since it may be a shared register zone */
->>  	regs = devm_ioremap(dev, res->start, resource_size(res));
->>  	if (!regs) {
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic at lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>
-> Thanks,
-> 
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
+On Mon, Mar 19, 2018 at 5:08 PM, Kevin Hilman <khilman@baylibre.com> wrote:
+> The following changes since commit 7928b2cbe55b2a410a0f5c1f154610059c57b1b2:
+>
+>   Linux 4.16-rc1 (2018-02-11 15:04:29 -0800)
+>
+> are available in the git repository at:
+>
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt
+>
+> for you to fetch changes up to 0793d5376b9986283e8bf9c777eb6ffda5c1b925:
+>
+>   ARM: dts: meson8b-odroidc1: add microSD support (2018-03-19 16:46:46 -0700)
 
-Applied to drm-misc-next
+Retracted.  Please ignore  (I've also deleted the tag)
+
+> ----------------------------------------------------------------
+> Amlogic 32-bit DT updates for v4.17
+> - odroid-c1: add microSD, ethernet, USB reset
+> - add reset controller
+> - fix requesting GPIOs greater than GPIOZ_3
+>
+> ----------------------------------------------------------------
+> Emiliano Ingrassia (2):
+>       ARM: dts: meson8b: extend ethernet controller description
+>       ARM: dts: meson8b-odroidc1: ethernet support
+>
+> Linus L?ssing (1):
+>       ARM: dts: meson8b-odroidc1: add microSD support
+>
+> Martin Blumenstingl (5):
+>       ARM: dts: meson8b: grow the reset controller memory zone
+>       ARM: dts: meson8: add the reset controller
+>       ARM: dts: meson8: add the USB reset line
+>       ARM: dts: meson8b: add the I2C clocks
+>       pinctrl: meson: meson8b: fix requesting GPIOs greater than GPIOZ_3
+
+This patch is extra, and is already going through the pinctrl tree.  I
+mistakenly applied the driver patch instead of the DT patch.
+
+Respin coming right up.
+
+Thanks to Martin Blumenstingl for pointing out my mistake.
+
+Kevin
