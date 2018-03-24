@@ -1,38 +1,44 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Fri, 23 Mar 2018 22:38:16 +0800
-Subject: [PATCH v2 7/7] ARM64: dts: meson-axg: add an 32K alt aoclk
-In-Reply-To: <20180323143816.200573-1-yixun.lan@amlogic.com>
-References: <20180323143816.200573-1-yixun.lan@amlogic.com>
-Message-ID: <20180323143816.200573-8-yixun.lan@amlogic.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 24 Mar 2018 12:00:26 +0100
+Subject: [PATCHv2 0/3] dw-hdmi: add property to disable CEC
+In-Reply-To: <20180323125915.13986-1-hverkuil@xs4all.nl>
+References: <20180323125915.13986-1-hverkuil@xs4all.nl>
+Message-ID: <CAFBinCA-x=4J_a_+oJX7fxhXO0qP=apEPFesATP=UNsH91qiCw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The ao_clk81 in AO domain have two clock source,
-one from a 32K alt crystal we name it as ao_alt_clk,
-another is the clk81 signal from EE domain.
+Hello Hans, Hi Neil,
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+(apologies in advance if any of this is wrong, I don't have any CEC
+capable TV so I can't test it)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index b3d394f5d95a..48584d5a329b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -109,6 +109,13 @@
- 		#clock-cells = <0>;
- 	};
- 
-+	ao_alt_xtal: ao_alt_xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <32000000>;
-+		clock-output-names = "ao_alt_xtal";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
--- 
-2.15.1
+On Fri, Mar 23, 2018 at 1:59 PM, Hans Verkuil <hverkuil@xs4all.nl> wrote:
+> From: Hans Verkuil <hans.verkuil@cisco.com>
+>
+> Some boards (amlogic) have two CEC controllers: the DesignWare controller
+> and their own CEC controller (meson ao-cec).
+as far as I understand the Amlogic Meson SoCs have two domains:
+- AO (always-on, powered even in suspend mode) where meson-ao-cec can
+wake up the system from suspend
+- EE (everything else, not powered during suspend) where dw-hdmi-cec lives
+
+this far everything is OK
+
+> Since the CEC line is not hooked up to the DW controller we need a way
+> to disable that controller. This patch series adds the cec-disable
+> property for that purpose.
+drivers/pinctrl/meson/pinctrl-meson-gxbb.c has ao_cec_pins and
+ee_cec_pins, both use GPIOAO_12
+drivers/pinctrl/meson/pinctrl-meson-gxl.c has ao_cec_pins and
+ee_cec_pins, both use GPIOAO_8
+
+@Neil: do you know if the CEC signal routing is:
+ao_cec_pins -> meson-ao-cec
+ee_cec_pins -> dw-hdmi-cec
+
+I'm curious because if both CEC controllers can be used then it might
+be worth mentioning this in the cover-letter and patch description
+
+
+Regards
+Martin
