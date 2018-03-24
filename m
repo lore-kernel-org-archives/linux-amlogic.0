@@ -1,110 +1,254 @@
 From: sean@mess.org (Sean Young)
-Date: Sat, 24 Mar 2018 14:50:44 +0000
-Subject: [PATCH 2/3] media: rc: add ioctl to get the current timeout
+Date: Sat, 24 Mar 2018 14:50:43 +0000
+Subject: [PATCH 1/3] media: rc: set timeout to smallest value required by
+ enabled protocols
 In-Reply-To: <cover.1521901953.git.sean@mess.org>
 References: <cover.1521901953.git.sean@mess.org>
-Message-ID: <1f8a78c1d3fb04a5b81cd88792761466b61d865a.1521901953.git.sean@mess.org>
+Message-ID: <1bfde5431538be705f5336e147a040e83779b0b9.1521901953.git.sean@mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Since the kernel now modifies the timeout, make it possible to retrieve
-the current value.
+The longer the IR timeout, the longer we wait until delivering each
+scancode. By reducing this timeout, we reduce the time it take for the
+last scancode to be delivered.
+
+Note that the lirc daemon disables all protocols, in case we revert back
+to the default value.
 
 Signed-off-by: Sean Young <sean@mess.org>
 ---
- Documentation/media/uapi/rc/lirc-func.rst            |  1 +
- Documentation/media/uapi/rc/lirc-set-rec-timeout.rst | 14 +++++++++-----
- drivers/media/rc/lirc_dev.c                          |  7 +++++++
- include/uapi/linux/lirc.h                            |  6 ++++++
- 4 files changed, 23 insertions(+), 5 deletions(-)
+ drivers/media/rc/ir-imon-decoder.c    |  1 +
+ drivers/media/rc/ir-jvc-decoder.c     |  1 +
+ drivers/media/rc/ir-mce_kbd-decoder.c |  1 +
+ drivers/media/rc/ir-nec-decoder.c     |  1 +
+ drivers/media/rc/ir-rc5-decoder.c     |  1 +
+ drivers/media/rc/ir-rc6-decoder.c     |  1 +
+ drivers/media/rc/ir-sanyo-decoder.c   |  1 +
+ drivers/media/rc/ir-sharp-decoder.c   |  1 +
+ drivers/media/rc/ir-sony-decoder.c    |  1 +
+ drivers/media/rc/ir-xmp-decoder.c     |  1 +
+ drivers/media/rc/rc-core-priv.h       |  1 +
+ drivers/media/rc/rc-ir-raw.c          | 31 ++++++++++++++++++++++++++++++-
+ drivers/media/rc/rc-main.c            | 12 ++++++------
+ 13 files changed, 47 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/media/uapi/rc/lirc-func.rst b/Documentation/media/uapi/rc/lirc-func.rst
-index ddb4620de294..9656423a3f28 100644
---- a/Documentation/media/uapi/rc/lirc-func.rst
-+++ b/Documentation/media/uapi/rc/lirc-func.rst
-@@ -17,6 +17,7 @@ LIRC Function Reference
-     lirc-get-rec-resolution
-     lirc-set-send-duty-cycle
-     lirc-get-timeout
-+    lirc-get-rec-timeout
-     lirc-set-rec-timeout
-     lirc-set-rec-carrier
-     lirc-set-rec-carrier-range
-diff --git a/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst b/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst
-index b3e16bbdbc90..a833a6a4c25a 100644
---- a/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst
-+++ b/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst
-@@ -1,19 +1,23 @@
- .. -*- coding: utf-8; mode: rst -*-
+diff --git a/drivers/media/rc/ir-imon-decoder.c b/drivers/media/rc/ir-imon-decoder.c
+index a1ff06a26542..9024b359e5ee 100644
+--- a/drivers/media/rc/ir-imon-decoder.c
++++ b/drivers/media/rc/ir-imon-decoder.c
+@@ -170,6 +170,7 @@ static struct ir_raw_handler imon_handler = {
+ 	.decode		= ir_imon_decode,
+ 	.encode		= ir_imon_encode,
+ 	.carrier	= 38000,
++	.max_space	= IMON_UNIT * IMON_BITS * 2,
+ };
  
- .. _lirc_set_rec_timeout:
-+.. _lirc_get_rec_timeout:
+ static int __init ir_imon_decode_init(void)
+diff --git a/drivers/media/rc/ir-jvc-decoder.c b/drivers/media/rc/ir-jvc-decoder.c
+index 8cb68ae43282..190c690b14f8 100644
+--- a/drivers/media/rc/ir-jvc-decoder.c
++++ b/drivers/media/rc/ir-jvc-decoder.c
+@@ -213,6 +213,7 @@ static struct ir_raw_handler jvc_handler = {
+ 	.decode		= ir_jvc_decode,
+ 	.encode		= ir_jvc_encode,
+ 	.carrier	= 38000,
++	.max_space	= JVC_TRAILER_SPACE,
+ };
  
--**************************
--ioctl LIRC_SET_REC_TIMEOUT
--**************************
-+***************************************************
-+ioctl LIRC_GET_REC_TIMEOUT and LIRC_SET_REC_TIMEOUT
-+***************************************************
+ static int __init ir_jvc_decode_init(void)
+diff --git a/drivers/media/rc/ir-mce_kbd-decoder.c b/drivers/media/rc/ir-mce_kbd-decoder.c
+index c110984ca671..ae4b980c4a16 100644
+--- a/drivers/media/rc/ir-mce_kbd-decoder.c
++++ b/drivers/media/rc/ir-mce_kbd-decoder.c
+@@ -475,6 +475,7 @@ static struct ir_raw_handler mce_kbd_handler = {
+ 	.raw_register	= ir_mce_kbd_register,
+ 	.raw_unregister	= ir_mce_kbd_unregister,
+ 	.carrier	= 36000,
++	.max_space	= MCIR2_MAX_LEN,
+ };
  
- Name
- ====
+ static int __init ir_mce_kbd_decode_init(void)
+diff --git a/drivers/media/rc/ir-nec-decoder.c b/drivers/media/rc/ir-nec-decoder.c
+index 21647b809e6f..fac12f867a81 100644
+--- a/drivers/media/rc/ir-nec-decoder.c
++++ b/drivers/media/rc/ir-nec-decoder.c
+@@ -253,6 +253,7 @@ static struct ir_raw_handler nec_handler = {
+ 	.decode		= ir_nec_decode,
+ 	.encode		= ir_nec_encode,
+ 	.carrier	= 38000,
++	.max_space	= NEC_TRAILER_SPACE,
+ };
  
--LIRC_SET_REC_TIMEOUT - sets the integer value for IR inactivity timeout.
-+LIRC_GET_REC_TIMEOUT/LIRC_SET_REC_TIMEOUT - Get/set the integer value for IR inactivity timeout.
+ static int __init ir_nec_decode_init(void)
+diff --git a/drivers/media/rc/ir-rc5-decoder.c b/drivers/media/rc/ir-rc5-decoder.c
+index 74d3b859c3a2..711068c8de90 100644
+--- a/drivers/media/rc/ir-rc5-decoder.c
++++ b/drivers/media/rc/ir-rc5-decoder.c
+@@ -274,6 +274,7 @@ static struct ir_raw_handler rc5_handler = {
+ 	.decode		= ir_rc5_decode,
+ 	.encode		= ir_rc5_encode,
+ 	.carrier	= 36000,
++	.max_space	= RC5_TRAILER,
+ };
  
- Synopsis
- ========
+ static int __init ir_rc5_decode_init(void)
+diff --git a/drivers/media/rc/ir-rc6-decoder.c b/drivers/media/rc/ir-rc6-decoder.c
+index 8314da32453f..9cc4820878c7 100644
+--- a/drivers/media/rc/ir-rc6-decoder.c
++++ b/drivers/media/rc/ir-rc6-decoder.c
+@@ -394,6 +394,7 @@ static struct ir_raw_handler rc6_handler = {
+ 	.decode		= ir_rc6_decode,
+ 	.encode		= ir_rc6_encode,
+ 	.carrier	= 36000,
++	.max_space	= RC6_SUFFIX_SPACE,
+ };
  
-+.. c:function:: int ioctl( int fd, LIRC_GET_REC_TIMEOUT, __u32 *timeout )
-+    :name: LIRC_GET_REC_TIMEOUT
+ static int __init ir_rc6_decode_init(void)
+diff --git a/drivers/media/rc/ir-sanyo-decoder.c b/drivers/media/rc/ir-sanyo-decoder.c
+index 4efe6db5376a..e72787b446c9 100644
+--- a/drivers/media/rc/ir-sanyo-decoder.c
++++ b/drivers/media/rc/ir-sanyo-decoder.c
+@@ -210,6 +210,7 @@ static struct ir_raw_handler sanyo_handler = {
+ 	.decode		= ir_sanyo_decode,
+ 	.encode		= ir_sanyo_encode,
+ 	.carrier	= 38000,
++	.max_space	= SANYO_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_sanyo_decode_init(void)
+diff --git a/drivers/media/rc/ir-sharp-decoder.c b/drivers/media/rc/ir-sharp-decoder.c
+index 6a38c50566a4..ccbd4c12d1d7 100644
+--- a/drivers/media/rc/ir-sharp-decoder.c
++++ b/drivers/media/rc/ir-sharp-decoder.c
+@@ -226,6 +226,7 @@ static struct ir_raw_handler sharp_handler = {
+ 	.decode		= ir_sharp_decode,
+ 	.encode		= ir_sharp_encode,
+ 	.carrier	= 38000,
++	.max_space	= SHARP_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_sharp_decode_init(void)
+diff --git a/drivers/media/rc/ir-sony-decoder.c b/drivers/media/rc/ir-sony-decoder.c
+index 6764ec9de646..598bae8d8ffb 100644
+--- a/drivers/media/rc/ir-sony-decoder.c
++++ b/drivers/media/rc/ir-sony-decoder.c
+@@ -224,6 +224,7 @@ static struct ir_raw_handler sony_handler = {
+ 	.decode		= ir_sony_decode,
+ 	.encode		= ir_sony_encode,
+ 	.carrier	= 40000,
++	.max_space	= SONY_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_sony_decode_init(void)
+diff --git a/drivers/media/rc/ir-xmp-decoder.c b/drivers/media/rc/ir-xmp-decoder.c
+index 58b47af1a763..e005a75a86fe 100644
+--- a/drivers/media/rc/ir-xmp-decoder.c
++++ b/drivers/media/rc/ir-xmp-decoder.c
+@@ -199,6 +199,7 @@ static int ir_xmp_decode(struct rc_dev *dev, struct ir_raw_event ev)
+ static struct ir_raw_handler xmp_handler = {
+ 	.protocols	= RC_PROTO_BIT_XMP,
+ 	.decode		= ir_xmp_decode,
++	.max_space	= XMP_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_xmp_decode_init(void)
+diff --git a/drivers/media/rc/rc-core-priv.h b/drivers/media/rc/rc-core-priv.h
+index e0e6a17460f6..8c38941295b8 100644
+--- a/drivers/media/rc/rc-core-priv.h
++++ b/drivers/media/rc/rc-core-priv.h
+@@ -37,6 +37,7 @@ struct ir_raw_handler {
+ 	int (*encode)(enum rc_proto protocol, u32 scancode,
+ 		      struct ir_raw_event *events, unsigned int max);
+ 	u32 carrier;
++	u32 max_space;
+ 
+ 	/* These two should only be used by the mce kbd decoder */
+ 	int (*raw_register)(struct rc_dev *dev);
+diff --git a/drivers/media/rc/rc-ir-raw.c b/drivers/media/rc/rc-ir-raw.c
+index 374f83105a23..f4e1fd95f839 100644
+--- a/drivers/media/rc/rc-ir-raw.c
++++ b/drivers/media/rc/rc-ir-raw.c
+@@ -233,7 +233,36 @@ ir_raw_get_allowed_protocols(void)
+ 
+ static int change_protocol(struct rc_dev *dev, u64 *rc_proto)
+ {
+-	/* the caller will update dev->enabled_protocols */
++	struct ir_raw_handler *handler;
++	u32 timeout = 0;
 +
- .. c:function:: int ioctl( int fd, LIRC_SET_REC_TIMEOUT, __u32 *timeout )
-     :name: LIRC_SET_REC_TIMEOUT
- 
-@@ -30,7 +34,7 @@ Arguments
- Description
- ===========
- 
--Sets the integer value for IR inactivity timeout.
-+Get and set the integer value for IR inactivity timeout.
- 
- If supported by the hardware, setting it to 0  disables all hardware timeouts
- and data should be reported as soon as possible. If the exact value
-diff --git a/drivers/media/rc/lirc_dev.c b/drivers/media/rc/lirc_dev.c
-index 24e9fbb80e81..17f40c8e939f 100644
---- a/drivers/media/rc/lirc_dev.c
-+++ b/drivers/media/rc/lirc_dev.c
-@@ -575,6 +575,13 @@ static long ir_lirc_ioctl(struct file *file, unsigned int cmd,
- 		}
- 		break;
- 
-+	case LIRC_GET_REC_TIMEOUT:
-+		if (!dev->timeout)
-+			ret = -ENOTTY;
-+		else
-+			val = DIV_ROUND_UP(dev->timeout, 1000);
-+		break;
++	if (!dev->max_timeout)
++		return 0;
 +
- 	case LIRC_SET_REC_TIMEOUT_REPORTS:
- 		if (!dev->timeout)
- 			ret = -ENOTTY;
-diff --git a/include/uapi/linux/lirc.h b/include/uapi/linux/lirc.h
-index 948d9a491083..7db6063fa6a2 100644
---- a/include/uapi/linux/lirc.h
-+++ b/include/uapi/linux/lirc.h
-@@ -134,6 +134,12 @@
- 
- #define LIRC_SET_WIDEBAND_RECEIVER     _IOW('i', 0x00000023, __u32)
- 
-+/*
-+ * Return the recording timeout, which is either set by
-+ * the ioctl LIRC_SET_REC_TIMEOUT or by the kernel after setting the protocols.
-+ */
-+#define LIRC_GET_REC_TIMEOUT	       _IOR('i', 0x00000024, __u32)
++	mutex_lock(&ir_raw_handler_lock);
++	list_for_each_entry(handler, &ir_raw_handler_list, list) {
++		if (handler->protocols & *rc_proto) {
++			if (timeout < handler->max_space)
++				timeout = handler->max_space;
++		}
++	}
++	mutex_unlock(&ir_raw_handler_lock);
 +
- /*
-  * struct lirc_scancode - decoded scancode with protocol for use with
-  *	LIRC_MODE_SCANCODE
++	if (timeout == 0)
++		timeout = IR_DEFAULT_TIMEOUT;
++	else
++		timeout += MS_TO_NS(10);
++
++	if (timeout < dev->min_timeout)
++		timeout = dev->min_timeout;
++	else if (timeout > dev->max_timeout)
++		timeout = dev->max_timeout;
++
++	if (dev->s_timeout)
++		dev->s_timeout(dev, timeout);
++	else
++		dev->timeout = timeout;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/media/rc/rc-main.c b/drivers/media/rc/rc-main.c
+index b67be33bd62f..6a720e9c7aa8 100644
+--- a/drivers/media/rc/rc-main.c
++++ b/drivers/media/rc/rc-main.c
+@@ -1241,6 +1241,9 @@ static ssize_t store_protocols(struct device *device,
+ 	if (rc < 0)
+ 		goto out;
+ 
++	if (dev->driver_type == RC_DRIVER_IR_RAW)
++		ir_raw_load_modules(&new_protocols);
++
+ 	rc = dev->change_protocol(dev, &new_protocols);
+ 	if (rc < 0) {
+ 		dev_dbg(&dev->dev, "Error setting protocols to 0x%llx\n",
+@@ -1248,9 +1251,6 @@ static ssize_t store_protocols(struct device *device,
+ 		goto out;
+ 	}
+ 
+-	if (dev->driver_type == RC_DRIVER_IR_RAW)
+-		ir_raw_load_modules(&new_protocols);
+-
+ 	if (new_protocols != old_protocols) {
+ 		*current_protocols = new_protocols;
+ 		dev_dbg(&dev->dev, "Protocols changed to 0x%llx\n",
+@@ -1735,6 +1735,9 @@ static int rc_prepare_rx_device(struct rc_dev *dev)
+ 	if (dev->driver_type == RC_DRIVER_SCANCODE && !dev->change_protocol)
+ 		dev->enabled_protocols = dev->allowed_protocols;
+ 
++	if (dev->driver_type == RC_DRIVER_IR_RAW)
++		ir_raw_load_modules(&rc_proto);
++
+ 	if (dev->change_protocol) {
+ 		rc = dev->change_protocol(dev, &rc_proto);
+ 		if (rc < 0)
+@@ -1742,9 +1745,6 @@ static int rc_prepare_rx_device(struct rc_dev *dev)
+ 		dev->enabled_protocols = rc_proto;
+ 	}
+ 
+-	if (dev->driver_type == RC_DRIVER_IR_RAW)
+-		ir_raw_load_modules(&rc_proto);
+-
+ 	set_bit(EV_KEY, dev->input_dev->evbit);
+ 	set_bit(EV_REP, dev->input_dev->evbit);
+ 	set_bit(EV_MSC, dev->input_dev->evbit);
 -- 
 2.14.3
