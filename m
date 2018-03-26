@@ -1,44 +1,58 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 26 Mar 2018 23:17:46 +0200
-Subject: [PATCH v2 5/7] ARM64: dts: meson-gxl-s905x-libretech-cc: enable the
- USB controller
+Date: Mon, 26 Mar 2018 23:17:43 +0200
+Subject: [PATCH v2 2/7] ARM64: dts: meson-gxm: add GXM specific USB host
+ configuration
 In-Reply-To: <20180326211748.16488-1-martin.blumenstingl@googlemail.com>
 References: <20180326211748.16488-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180326211748.16488-6-martin.blumenstingl@googlemail.com>
+Message-ID: <20180326211748.16488-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The LibreTech CC ("Le Potato") board provides four USB connectors.
-These are provided by a hub which is connected to the SoC's USB
-controller.
-Enable the SoC's USB controller to make the USB ports usable. Also turn
-on the HDMI_5V regulator when powering on the PHY because (even though
-it's not shown in the schematics) HDMI_5V also supplies the USB VBUS.
+The USB configuration on GXM is slightly different than on GXL. The dwc3
+controller's internal hub has three USB2 ports (instead of 2 on GXL)
+along with a dedicated USB2 PHY for this port. However, it seems that
+there are no pins on GXM which would allow connecting the third port to
+a physical USB port.
+Passing the third PHY is required though, because without it none of the
+other USB ports is working (this seems to be a limitation of how the
+internal USB hub works, if one PHY is disabled then no USB port works).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 22bf37404ff1..3e3eb31748a3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -271,3 +271,15 @@
- 	pinctrl-0 = <&uart_ao_a_pins>;
- 	pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+index d076a7c425dd..247888d68a3a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+@@ -80,6 +80,19 @@
+ 	};
  };
-+
-+&usb0 {
-+	status = "okay";
+ 
++&apb {
++	usb2_phy2: phy at 78040 {
++		compatible = "amlogic,meson-gxl-usb2-phy";
++		#phy-cells = <0>;
++		reg = <0x0 0x78040 0x0 0x20>;
++		clocks = <&clkc CLKID_USB>;
++		clock-names = "phy";
++		resets = <&reset RESET_USB_OTG>;
++		reset-names = "phy";
++		status = "okay";
++	};
 +};
 +
-+&usb2_phy0 {
-+	/*
-+	 * even though the schematics don't show it:
-+	 * HDMI_5V is also used as supply for the USB VBUS.
-+	 */
-+	phy-supply = <&hdmi_5v>;
+ &clkc_AO {
+ 	compatible = "amlogic,meson-gxm-aoclkc", "amlogic,meson-gx-aoclkc";
+ };
+@@ -100,3 +113,7 @@
+ &hdmi_tx {
+ 	compatible = "amlogic,meson-gxm-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
+ };
++
++&dwc3 {
++	phys = <&usb3_phy>, <&usb2_phy0>, <&usb2_phy1>, <&usb2_phy2>;
 +};
 -- 
 2.16.3
