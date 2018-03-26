@@ -1,87 +1,29 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 26 Mar 2018 16:18:09 +0800
-Subject: [PATCH 3/3] ARM64: dts: meson: fix clock source of the pclk for
- UART_AO
-In-Reply-To: <20180326081809.49493-1-yixun.lan@amlogic.com>
-References: <20180326081809.49493-1-yixun.lan@amlogic.com>
-Message-ID: <20180326081809.49493-4-yixun.lan@amlogic.com>
+Date: Mon, 26 Mar 2018 16:46:26 +0800
+Subject: [PATCH 0/3] iio: adc: meson-axg: add saradc driver support
+Message-ID: <20180326084629.100070-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
->From the hardware perspective, the clk81 is the parent of
-the UART_AO clocks. So it make more sense to mark
-the CLKID_AO_UART1/2 as the pclk.
+ The patch 1 is a general small improvement, no function changed!
+ The last two patches try to add saradc support for Amlogic'S Meson-AXG
+SoC platfrom.
+ I will send the DTS part patch in another thread, since it depend on
+the clock AO driver[0].
 
-Previous we had flag=CLK_IGNORE_UNUSED in AO clock driver.
-This will make kernel leave clock as it is while bootloader
-set the clock on.
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+[0] https://lkml.kernel.org/r/20180323143816.200573-1-yixun.lan at amlogic.com
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 48584d5a329b..e538e2448bb5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -533,7 +533,7 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x3000 0x0 0x18>;
- 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART1>, <&xtal>;
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-@@ -542,7 +542,7 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x4000 0x0 0x18>;
- 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 3290a4dc3522..a458ea50c2ef 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -783,12 +783,12 @@
- };
- 
- &uart_AO {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART1>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
- &uart_AO_B {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 4f355f17eed6..474f4f9630e4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -733,12 +733,12 @@
- };
- 
- &uart_AO {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART1>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
- &uart_AO_B {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
+Xingyu Chen (2):
+  dt-bindings: iio: adc: document the Meson AXG support
+  iio: adc: meson-axg: add saradc driver
+
+Yixun Lan (1):
+  iio: adc: meson-saradc: squash and share the common adc platform data
+
+ .../bindings/iio/adc/amlogic,meson-saradc.txt      |  1 +
+ drivers/iio/adc/meson_saradc.c                     | 83 +++++++++++++---------
+ 2 files changed, 51 insertions(+), 33 deletions(-)
+
 -- 
 2.15.1
