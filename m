@@ -1,58 +1,36 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 26 Mar 2018 23:17:43 +0200
-Subject: [PATCH v2 2/7] ARM64: dts: meson-gxm: add GXM specific USB host
- configuration
+Date: Mon, 26 Mar 2018 23:17:44 +0200
+Subject: [PATCH v2 3/7] ARM64: dts: meson-gxl-s905x-p212: enable the USB
+ controller
 In-Reply-To: <20180326211748.16488-1-martin.blumenstingl@googlemail.com>
 References: <20180326211748.16488-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180326211748.16488-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20180326211748.16488-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The USB configuration on GXM is slightly different than on GXL. The dwc3
-controller's internal hub has three USB2 ports (instead of 2 on GXL)
-along with a dedicated USB2 PHY for this port. However, it seems that
-there are no pins on GXM which would allow connecting the third port to
-a physical USB port.
-Passing the third PHY is required though, because without it none of the
-other USB ports is working (this seems to be a limitation of how the
-internal USB hub works, if one PHY is disabled then no USB port works).
+All boards based on the P212 reference design (the P212 reference board
+itself and the Khadas VIM) have USB connectors (in case of the Khadas
+VIM the first port is exposed through the USB Type-C connector, the
+second port is connected to a 4-port USB hub).
+This enables the USB controller on these boards to make the USB ports
+actually usable.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
-index d076a7c425dd..247888d68a3a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
-@@ -80,6 +80,19 @@
- 	};
- };
- 
-+&apb {
-+	usb2_phy2: phy at 78040 {
-+		compatible = "amlogic,meson-gxl-usb2-phy";
-+		#phy-cells = <0>;
-+		reg = <0x0 0x78040 0x0 0x20>;
-+		clocks = <&clkc CLKID_USB>;
-+		clock-names = "phy";
-+		resets = <&reset RESET_USB_OTG>;
-+		reset-names = "phy";
-+		status = "okay";
-+	};
-+};
-+
- &clkc_AO {
- 	compatible = "amlogic,meson-gxm-aoclkc", "amlogic,meson-gx-aoclkc";
- };
-@@ -100,3 +113,7 @@
- &hdmi_tx {
- 	compatible = "amlogic,meson-gxm-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+index 0a0953fbc7d4..0cfd701809de 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+@@ -185,3 +185,7 @@
+ 	pinctrl-0 = <&uart_ao_a_pins>;
+ 	pinctrl-names = "default";
  };
 +
-+&dwc3 {
-+	phys = <&usb3_phy>, <&usb2_phy0>, <&usb2_phy1>, <&usb2_phy2>;
++&usb0 {
++	status = "okay";
 +};
 -- 
 2.16.3
