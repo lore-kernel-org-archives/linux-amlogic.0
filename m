@@ -1,168 +1,149 @@
-From: sean@mess.org (Sean Young)
-Date: Sat, 24 Mar 2018 14:50:45 +0000
-Subject: [PATCH 3/3] media: rc: per-protocol repeat period and minimum keyup
- timer
-In-Reply-To: <cover.1521901953.git.sean@mess.org>
-References: <cover.1521901953.git.sean@mess.org>
-Message-ID: <b90bfed2bfd6f2938c23984b5dcb75d718cdab62.1521901953.git.sean@mess.org>
+From: chunfeng.yun@mediatek.com (Chunfeng Yun)
+Date: Mon, 26 Mar 2018 11:21:40 +0800
+Subject: [RFC usb-next v2 2/2] usb: core: use phy_exit during suspend if
+ wake up is not supported
+In-Reply-To: <20180324142121.8618-3-martin.blumenstingl@googlemail.com>
+References: <20180324142121.8618-1-martin.blumenstingl@googlemail.com>
+ <20180324142121.8618-3-martin.blumenstingl@googlemail.com>
+Message-ID: <1522034500.3717.170.camel@mhfsdcap03>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Each IR protocol has its own repeat period. We can minimise the keyup
-timer to be the protocol period + IR timeout. This makes keys less
-"sticky" and makes IR more reactive and nicer to use.
+On Sat, 2018-03-24 at 15:21 +0100, Martin Blumenstingl wrote:
+> If the USB controller can wake up the system (which is the case for
+> example with the Mediatek USB3 IP) then we must not call phy_exit during
+> suspend to ensure that the USB controller doesn't have to re-enumerate
+> the devices during resume.
+> However, if the USB controller cannot wake up the system (which is the
+> case for example on various TI platforms using a dwc3 controller) then
+> we must call phy_exit during suspend. Otherwise the PHY driver keeps the
+> clocks enabled, which prevents the system from entering the suspend
+> state.
+> 
+> Solve this by introducing two new functions in the PHY wrapper which are
+> dedicated to the suspend and resume handling.
+> If the controller can wake up the system the new usb_phy_roothub_suspend
+> function will simply call usb_phy_roothub_power_off. However, if wake up
+> is not supported by the controller it will also call
+> usb_phy_roothub_exit.
+> The also new usb_phy_roothub_resume function takes care of calling
+> usb_phy_roothub_init (if the controller can't wake up the system) in
+> addition to usb_phy_roothub_power_on.
+> 
+> Fixes: 07dbff0ddbd86c ("usb: core: add a wrapper for the USB PHYs on the HCD")
+> Fixes: 178a0bce05cbc1 ("usb: core: hcd: integrate the PHY wrapper into the HCD core")
+> Reported-by: Roger Quadros <rogerq@ti.com>
+> Suggested-by: Roger Quadros <rogerq@ti.com>
+> Suggested-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/usb/core/hcd.c |  8 +++++---
+>  drivers/usb/core/phy.c | 37 +++++++++++++++++++++++++++++++++++++
+>  drivers/usb/core/phy.h |  5 +++++
+>  3 files changed, 47 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
+> index 15b0418e3b6a..78bae4ecd68b 100644
+> --- a/drivers/usb/core/hcd.c
+> +++ b/drivers/usb/core/hcd.c
+> @@ -2262,7 +2262,8 @@ int hcd_bus_suspend(struct usb_device *rhdev, pm_message_t msg)
+>  		hcd->state = HC_STATE_SUSPENDED;
+>  
+>  		if (!PMSG_IS_AUTO(msg))
+> -			usb_phy_roothub_power_off(hcd->phy_roothub);
+> +			usb_phy_roothub_suspend(hcd->self.sysdev,
+> +						hcd->phy_roothub);
+>  
+>  		/* Did we race with a root-hub wakeup event? */
+>  		if (rhdev->do_remote_wakeup) {
+> @@ -2302,7 +2303,8 @@ int hcd_bus_resume(struct usb_device *rhdev, pm_message_t msg)
+>  	}
+>  
+>  	if (!PMSG_IS_AUTO(msg)) {
+> -		status = usb_phy_roothub_power_on(hcd->phy_roothub);
+> +		status = usb_phy_roothub_resume(hcd->self.sysdev,
+> +						hcd->phy_roothub);
+>  		if (status)
+>  			return status;
+>  	}
+> @@ -2344,7 +2346,7 @@ int hcd_bus_resume(struct usb_device *rhdev, pm_message_t msg)
+>  		}
+>  	} else {
+>  		hcd->state = old_state;
+> -		usb_phy_roothub_power_off(hcd->phy_roothub);
+> +		usb_phy_roothub_suspend(hcd->self.sysdev, hcd->phy_roothub);
+>  		dev_dbg(&rhdev->dev, "bus %s fail, err %d\n",
+>  				"resume", status);
+>  		if (status != -ESHUTDOWN)
+> diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
+> index d1861c5a74de..e794cbee97e9 100644
+> --- a/drivers/usb/core/phy.c
+> +++ b/drivers/usb/core/phy.c
+> @@ -155,3 +155,40 @@ void usb_phy_roothub_power_off(struct usb_phy_roothub *phy_roothub)
+>  		phy_power_off(roothub_entry->phy);
+>  }
+>  EXPORT_SYMBOL_GPL(usb_phy_roothub_power_off);
+> +
+> +int usb_phy_roothub_suspend(struct device *controller_dev,
+> +			    struct usb_phy_roothub *phy_roothub)
+> +{
+> +	usb_phy_roothub_power_off(phy_roothub);
+> +
+> +	/* keep the PHYs initialized so the device can wake up the system */
+> +	if (device_may_wakeup(controller_dev))
+> +		return 0;
+> +
+> +	return usb_phy_roothub_exit(phy_roothub);
+> +}
+> +EXPORT_SYMBOL_GPL(usb_phy_roothub_suspend);
+> +
+> +int usb_phy_roothub_resume(struct device *controller_dev,
+> +			   struct usb_phy_roothub *phy_roothub)
+> +{
+> +	int err;
+> +
+> +	/* if the device can't wake up the system _exit was called */
+> +	if (device_may_wakeup(controller_dev)) {
+fix it as Roger suggested before:
 
-This feature was previously attempted in commit d57ea877af38 ("media: rc:
-per-protocol repeat period"), but that did not take the IR timeout into
-account, and had to be reverted.
+if (!device_may_wakeup(controller_dev)) {
 
-Signed-off-by: Sean Young <sean@mess.org>
----
- drivers/media/cec/cec-core.c |  2 +-
- drivers/media/rc/lirc_dev.c  |  2 +-
- drivers/media/rc/rc-main.c   | 56 +++++++++++++++++++++++---------------------
- 3 files changed, 31 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/media/cec/cec-core.c b/drivers/media/cec/cec-core.c
-index b0c87f9ea08f..b278ab90b387 100644
---- a/drivers/media/cec/cec-core.c
-+++ b/drivers/media/cec/cec-core.c
-@@ -322,7 +322,7 @@ struct cec_adapter *cec_allocate_adapter(const struct cec_adap_ops *ops,
- 	adap->rc->allowed_protocols = RC_PROTO_BIT_CEC;
- 	adap->rc->priv = adap;
- 	adap->rc->map_name = RC_MAP_CEC;
--	adap->rc->timeout = MS_TO_NS(100);
-+	adap->rc->timeout = MS_TO_NS(550);
- #endif
- 	return adap;
- }
-diff --git a/drivers/media/rc/lirc_dev.c b/drivers/media/rc/lirc_dev.c
-index 17f40c8e939f..19660f9757e1 100644
---- a/drivers/media/rc/lirc_dev.c
-+++ b/drivers/media/rc/lirc_dev.c
-@@ -583,7 +583,7 @@ static long ir_lirc_ioctl(struct file *file, unsigned int cmd,
- 		break;
- 
- 	case LIRC_SET_REC_TIMEOUT_REPORTS:
--		if (!dev->timeout)
-+		if (dev->driver_type != RC_DRIVER_IR_RAW)
- 			ret = -ENOTTY;
- 		else
- 			fh->send_timeout_reports = !!val;
-diff --git a/drivers/media/rc/rc-main.c b/drivers/media/rc/rc-main.c
-index 6a720e9c7aa8..9f4df60f62e1 100644
---- a/drivers/media/rc/rc-main.c
-+++ b/drivers/media/rc/rc-main.c
-@@ -26,50 +26,50 @@ static const struct {
- 	unsigned int repeat_period;
- 	unsigned int scancode_bits;
- } protocols[] = {
--	[RC_PROTO_UNKNOWN] = { .name = "unknown", .repeat_period = 250 },
--	[RC_PROTO_OTHER] = { .name = "other", .repeat_period = 250 },
-+	[RC_PROTO_UNKNOWN] = { .name = "unknown", .repeat_period = 125 },
-+	[RC_PROTO_OTHER] = { .name = "other", .repeat_period = 125 },
- 	[RC_PROTO_RC5] = { .name = "rc-5",
--		.scancode_bits = 0x1f7f, .repeat_period = 250 },
-+		.scancode_bits = 0x1f7f, .repeat_period = 114 },
- 	[RC_PROTO_RC5X_20] = { .name = "rc-5x-20",
--		.scancode_bits = 0x1f7f3f, .repeat_period = 250 },
-+		.scancode_bits = 0x1f7f3f, .repeat_period = 114 },
- 	[RC_PROTO_RC5_SZ] = { .name = "rc-5-sz",
--		.scancode_bits = 0x2fff, .repeat_period = 250 },
-+		.scancode_bits = 0x2fff, .repeat_period = 114 },
- 	[RC_PROTO_JVC] = { .name = "jvc",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 125 },
- 	[RC_PROTO_SONY12] = { .name = "sony-12",
--		.scancode_bits = 0x1f007f, .repeat_period = 250 },
-+		.scancode_bits = 0x1f007f, .repeat_period = 100 },
- 	[RC_PROTO_SONY15] = { .name = "sony-15",
--		.scancode_bits = 0xff007f, .repeat_period = 250 },
-+		.scancode_bits = 0xff007f, .repeat_period = 100 },
- 	[RC_PROTO_SONY20] = { .name = "sony-20",
--		.scancode_bits = 0x1fff7f, .repeat_period = 250 },
-+		.scancode_bits = 0x1fff7f, .repeat_period = 100 },
- 	[RC_PROTO_NEC] = { .name = "nec",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 110 },
- 	[RC_PROTO_NECX] = { .name = "nec-x",
--		.scancode_bits = 0xffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffff, .repeat_period = 110 },
- 	[RC_PROTO_NEC32] = { .name = "nec-32",
--		.scancode_bits = 0xffffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffffff, .repeat_period = 110 },
- 	[RC_PROTO_SANYO] = { .name = "sanyo",
--		.scancode_bits = 0x1fffff, .repeat_period = 250 },
-+		.scancode_bits = 0x1fffff, .repeat_period = 125 },
- 	[RC_PROTO_MCIR2_KBD] = { .name = "mcir2-kbd",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 100 },
- 	[RC_PROTO_MCIR2_MSE] = { .name = "mcir2-mse",
--		.scancode_bits = 0x1fffff, .repeat_period = 250 },
-+		.scancode_bits = 0x1fffff, .repeat_period = 100 },
- 	[RC_PROTO_RC6_0] = { .name = "rc-6-0",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_6A_20] = { .name = "rc-6-6a-20",
--		.scancode_bits = 0xfffff, .repeat_period = 250 },
-+		.scancode_bits = 0xfffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_6A_24] = { .name = "rc-6-6a-24",
--		.scancode_bits = 0xffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_6A_32] = { .name = "rc-6-6a-32",
--		.scancode_bits = 0xffffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_MCE] = { .name = "rc-6-mce",
--		.scancode_bits = 0xffff7fff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff7fff, .repeat_period = 114 },
- 	[RC_PROTO_SHARP] = { .name = "sharp",
--		.scancode_bits = 0x1fff, .repeat_period = 250 },
--	[RC_PROTO_XMP] = { .name = "xmp", .repeat_period = 250 },
--	[RC_PROTO_CEC] = { .name = "cec", .repeat_period = 550 },
-+		.scancode_bits = 0x1fff, .repeat_period = 125 },
-+	[RC_PROTO_XMP] = { .name = "xmp", .repeat_period = 125 },
-+	[RC_PROTO_CEC] = { .name = "cec", .repeat_period = 0 },
- 	[RC_PROTO_IMON] = { .name = "imon",
--		.scancode_bits = 0x7fffffff, .repeat_period = 250 },
-+		.scancode_bits = 0x7fffffff, .repeat_period = 114 },
- };
- 
- /* Used to keep track of known keymaps */
-@@ -690,7 +690,8 @@ static void ir_timer_repeat(struct timer_list *t)
- void rc_repeat(struct rc_dev *dev)
- {
- 	unsigned long flags;
--	unsigned int timeout = protocols[dev->last_protocol].repeat_period;
-+	unsigned int timeout = nsecs_to_jiffies(dev->timeout) +
-+		msecs_to_jiffies(protocols[dev->last_protocol].repeat_period);
- 	struct lirc_scancode sc = {
- 		.scancode = dev->last_scancode, .rc_proto = dev->last_protocol,
- 		.keycode = dev->keypressed ? dev->last_keycode : KEY_RESERVED,
-@@ -706,7 +707,7 @@ void rc_repeat(struct rc_dev *dev)
- 	input_sync(dev->input_dev);
- 
- 	if (dev->keypressed) {
--		dev->keyup_jiffies = jiffies + msecs_to_jiffies(timeout);
-+		dev->keyup_jiffies = jiffies + timeout;
- 		mod_timer(&dev->timer_keyup, dev->keyup_jiffies);
- 	}
- 
-@@ -801,7 +802,7 @@ void rc_keydown(struct rc_dev *dev, enum rc_proto protocol, u32 scancode,
- 	ir_do_keydown(dev, protocol, scancode, keycode, toggle);
- 
- 	if (dev->keypressed) {
--		dev->keyup_jiffies = jiffies +
-+		dev->keyup_jiffies = jiffies + nsecs_to_jiffies(dev->timeout) +
- 			msecs_to_jiffies(protocols[protocol].repeat_period);
- 		mod_timer(&dev->timer_keyup, dev->keyup_jiffies);
- 	}
-@@ -1647,6 +1648,7 @@ struct rc_dev *rc_allocate_device(enum rc_driver_type type)
- 		dev->input_dev->setkeycode = ir_setkeycode;
- 		input_set_drvdata(dev->input_dev, dev);
- 
-+		dev->timeout = IR_DEFAULT_TIMEOUT;
- 		timer_setup(&dev->timer_keyup, ir_timer_keyup, 0);
- 		timer_setup(&dev->timer_repeat, ir_timer_repeat, 0);
- 
--- 
-2.14.3
+> +		err = usb_phy_roothub_init(phy_roothub);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	err = usb_phy_roothub_power_on(phy_roothub);
+> +	if (err) {
+> +		if (device_may_wakeup(controller_dev))
+ditto
+
+After fixing them, it's ok on MTK's platform.
+
+> +			usb_phy_roothub_exit(phy_roothub);
+> +
+> +		return err;
+Can be removed?
+
+> +	}
+> +
+> +	return 0;
+return err;
+> +}
+
+
+> +EXPORT_SYMBOL_GPL(usb_phy_roothub_resume);
+> diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
+> index eb31253201ad..605555901d44 100644
+> --- a/drivers/usb/core/phy.h
+> +++ b/drivers/usb/core/phy.h
+> @@ -7,3 +7,8 @@ int usb_phy_roothub_exit(struct usb_phy_roothub *phy_roothub);
+>  
+>  int usb_phy_roothub_power_on(struct usb_phy_roothub *phy_roothub);
+>  void usb_phy_roothub_power_off(struct usb_phy_roothub *phy_roothub);
+> +
+> +int usb_phy_roothub_suspend(struct device *controller_dev,
+> +			    struct usb_phy_roothub *phy_roothub);
+> +int usb_phy_roothub_resume(struct device *controller_dev,
+> +			   struct usb_phy_roothub *phy_roothub);
