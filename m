@@ -1,229 +1,186 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 26 Mar 2018 22:31:00 +0200
-Subject: [RFC usb-next v2 1/2] usb: core: split usb_phy_roothub_{init,
- alloc}
-In-Reply-To: <1522035422.3717.181.camel@mhfsdcap03>
-References: <20180324142121.8618-1-martin.blumenstingl@googlemail.com>
- <20180324142121.8618-2-martin.blumenstingl@googlemail.com>
- <1522035422.3717.181.camel@mhfsdcap03>
-Message-ID: <CAFBinCBaY6io5kye2inbjKvECBZY9bpuiftYhVS9i=Ro8AxHXg@mail.gmail.com>
+Date: Mon, 26 Mar 2018 22:38:45 +0200
+Subject: [RFC usb-next v3 1/2] usb: core: split usb_phy_roothub_{init,alloc}
+In-Reply-To: <20180326203846.7248-1-martin.blumenstingl@googlemail.com>
+References: <20180326203846.7248-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180326203846.7248-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Chunfeng,
+Before this patch usb_phy_roothub_init served two purposes (from a
+caller's point of view - like hcd.c):
+- parsing the PHYs and allocating the list entries
+- calling phy_init on each list entry
 
-On Mon, Mar 26, 2018 at 5:37 AM, Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> On Sat, 2018-03-24 at 15:21 +0100, Martin Blumenstingl wrote:
->> Before this patch usb_phy_roothub_init served two purposes (from a
->> caller's point of view - like hcd.c):
->> - parsing the PHYs and allocating the list entries
->> - calling phy_init on each list entry
->>
->> While this worked so far it has one disadvantage: if we need to call
->> phy_init for each PHY instance then the existing code cannot be re-used.
->> Solve this by splitting off usb_phy_roothub_alloc which only parses the
->> PHYs and allocates the list entries.
->> usb_phy_roothub_init then gets a struct usb_phy_roothub and only calls
->> phy_init on each PHY instance (along with the corresponding cleanup if
->> that failed somewhere).
->>
->> This is a preparation step for adding proper suspend support for some
->> hardware that requires phy_exit to be called during suspend and phy_init
->> to be called during resume.
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  drivers/usb/core/hcd.c | 10 +++++++---
->>  drivers/usb/core/phy.c | 51 +++++++++++++++++++++++++-------------------------
->>  drivers/usb/core/phy.h |  4 +++-
->>  3 files changed, 35 insertions(+), 30 deletions(-)
->>
->> diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
->> index 777036ae6367..15b0418e3b6a 100644
->> --- a/drivers/usb/core/hcd.c
->> +++ b/drivers/usb/core/hcd.c
->> @@ -2758,12 +2758,16 @@ int usb_add_hcd(struct usb_hcd *hcd,
->>       }
->>
->>       if (!hcd->skip_phy_initialization && usb_hcd_is_primary_hcd(hcd)) {
->> -             hcd->phy_roothub = usb_phy_roothub_init(hcd->self.sysdev);
->> +             hcd->phy_roothub = usb_phy_roothub_alloc(hcd->self.sysdev);
->>               if (IS_ERR(hcd->phy_roothub)) {
->>                       retval = PTR_ERR(hcd->phy_roothub);
->> -                     goto err_phy_roothub_init;
->> +                     goto err_phy_roothub_alloc;
->>               }
->>
->> +             retval = usb_phy_roothub_init(hcd->phy_roothub);
->> +             if (retval)
->> +                     goto err_phy_roothub_alloc;
->> +
->>               retval = usb_phy_roothub_power_on(hcd->phy_roothub);
->>               if (retval)
->>                       goto err_usb_phy_roothub_power_on;
->> @@ -2936,7 +2940,7 @@ int usb_add_hcd(struct usb_hcd *hcd,
->>       usb_phy_roothub_power_off(hcd->phy_roothub);
->>  err_usb_phy_roothub_power_on:
->>       usb_phy_roothub_exit(hcd->phy_roothub);
->> -err_phy_roothub_init:
->> +err_phy_roothub_alloc:
->>       if (hcd->remove_phy && hcd->usb_phy) {
->>               usb_phy_shutdown(hcd->usb_phy);
->>               usb_put_phy(hcd->usb_phy);
->> diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
->> index f19aaa3c899c..d1861c5a74de 100644
->> --- a/drivers/usb/core/phy.c
->> +++ b/drivers/usb/core/phy.c
->> @@ -19,19 +19,6 @@ struct usb_phy_roothub {
->>       struct list_head        list;
->>  };
->>
->> -static struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
->> -{
->> -     struct usb_phy_roothub *roothub_entry;
->> -
->> -     roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
->> -     if (!roothub_entry)
->> -             return ERR_PTR(-ENOMEM);
->> -
->> -     INIT_LIST_HEAD(&roothub_entry->list);
->> -
->> -     return roothub_entry;
->> -}
->> -
->>  static int usb_phy_roothub_add_phy(struct device *dev, int index,
->>                                  struct list_head *list)
->>  {
->> @@ -45,9 +32,9 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
->>                       return PTR_ERR(phy);
->>       }
->
->>
->> -     roothub_entry = usb_phy_roothub_alloc(dev);
->> -     if (IS_ERR(roothub_entry))
->> -             return PTR_ERR(roothub_entry);
->> +     roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
->> +     if (!roothub_entry)
->> +             return -ENOMEM;
->>
->>       roothub_entry->phy = phy;
->>
->> @@ -56,11 +43,9 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
->>       return 0;
->>  }
->>
->> -struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
->> +struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
->>  {
->>       struct usb_phy_roothub *phy_roothub;
->> -     struct usb_phy_roothub *roothub_entry;
->> -     struct list_head *head;
->>       int i, num_phys, err;
->>
->>       num_phys = of_count_phandle_with_args(dev->of_node, "phys",
->> @@ -68,16 +53,31 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
->>       if (num_phys <= 0)
->>               return NULL;
->>
->> -     phy_roothub = usb_phy_roothub_alloc(dev);
->> -     if (IS_ERR(phy_roothub))
->> -             return phy_roothub;
->> +     phy_roothub = devm_kzalloc(dev, sizeof(*phy_roothub), GFP_KERNEL);
->> +     if (!phy_roothub)
->> +             return ERR_PTR(-ENOMEM);
->> +
->> +     INIT_LIST_HEAD(&phy_roothub->list);
->>
->>       for (i = 0; i < num_phys; i++) {
->>               err = usb_phy_roothub_add_phy(dev, i, &phy_roothub->list);
-> BTW:
->
-> static int usb_phy_roothub_add_phy(struct device *dev, int index,
->                    struct list_head *list)
-> {
->     struct usb_phy_roothub *roothub_entry;
->     struct phy *phy = devm_of_phy_get_by_index(dev, dev->of_node,
-> index);
->
->     if (IS_ERR_OR_NULL(phy)) {
->         if (!phy || PTR_ERR(phy) == -ENODEV)
->             return 0;
->         else
->             return PTR_ERR(phy);
->     }
->
-> changed as:
->     if (IS_ERR(phy))
->          return PTR_ERR(phy);
->
-> The checking of return code of devm_of_phy_get_by_index() called by
-> usb_phy_roothub_add_phy() need be fixed? because it should exist for
-> index @i.
-good catch - thank you!
-I think (but I don't remember exactly) my idea was to catch the case
-where CONFIG_GENERIC_PHY was disabled. however, in that case the PHY
-framework returns ERR_PTR(-ENOSYS);
+While this worked so far it has one disadvantage: if we need to call
+phy_init for each PHY instance then the existing code cannot be re-used.
+Solve this by splitting off usb_phy_roothub_alloc which only parses the
+PHYs and allocates the list entries.
+usb_phy_roothub_init then gets a struct usb_phy_roothub and only calls
+phy_init on each PHY instance (along with the corresponding cleanup if
+that failed somewhere).
 
-let me know if I should send a patch for this issue or if you want to
-send a patch yourself
-however, I'd suggest waiting until this RFC is finished/merged because
-this issue already exist in the code before this series
+This is a preparation step for adding proper suspend support for some
+hardware that requires phy_exit to be called during suspend and phy_init
+to be called during resume.
 
->>               if (err)
->> -                     goto err_out;
->> +                     return ERR_PTR(err);
->>       }
->>
->> +     return phy_roothub;
->> +}
->> +EXPORT_SYMBOL_GPL(usb_phy_roothub_alloc);
->> +
->> +int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub)
->> +{
->> +     struct usb_phy_roothub *roothub_entry;
->> +     struct list_head *head;
->> +     int err;
->> +
->> +     if (!phy_roothub)
->> +             return 0;
->> +
->>       head = &phy_roothub->list;
->>
->>       list_for_each_entry(roothub_entry, head, list) {
->> @@ -86,14 +86,13 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
->>                       goto err_exit_phys;
->>       }
->>
->> -     return phy_roothub;
->> +     return 0;
->>
->>  err_exit_phys:
->>       list_for_each_entry_continue_reverse(roothub_entry, head, list)
->>               phy_exit(roothub_entry->phy);
->>
->> -err_out:
->> -     return ERR_PTR(err);
->> +     return err;
->>  }
->>  EXPORT_SYMBOL_GPL(usb_phy_roothub_init);
->>
->> diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
->> index 6fde59bfbff8..eb31253201ad 100644
->> --- a/drivers/usb/core/phy.h
->> +++ b/drivers/usb/core/phy.h
->> @@ -1,6 +1,8 @@
->>  struct usb_phy_roothub;
->>
->> -struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev);
->> +struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev);
->> +
->> +int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub);
->>  int usb_phy_roothub_exit(struct usb_phy_roothub *phy_roothub);
->>
->>  int usb_phy_roothub_power_on(struct usb_phy_roothub *phy_roothub);
->
->
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/usb/core/hcd.c | 10 +++++++---
+ drivers/usb/core/phy.c | 53 +++++++++++++++++++++++++-------------------------
+ drivers/usb/core/phy.h |  4 +++-
+ 3 files changed, 37 insertions(+), 30 deletions(-)
 
-
-Regards
-Martin
+diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
+index 777036ae6367..15b0418e3b6a 100644
+--- a/drivers/usb/core/hcd.c
++++ b/drivers/usb/core/hcd.c
+@@ -2758,12 +2758,16 @@ int usb_add_hcd(struct usb_hcd *hcd,
+ 	}
+ 
+ 	if (!hcd->skip_phy_initialization && usb_hcd_is_primary_hcd(hcd)) {
+-		hcd->phy_roothub = usb_phy_roothub_init(hcd->self.sysdev);
++		hcd->phy_roothub = usb_phy_roothub_alloc(hcd->self.sysdev);
+ 		if (IS_ERR(hcd->phy_roothub)) {
+ 			retval = PTR_ERR(hcd->phy_roothub);
+-			goto err_phy_roothub_init;
++			goto err_phy_roothub_alloc;
+ 		}
+ 
++		retval = usb_phy_roothub_init(hcd->phy_roothub);
++		if (retval)
++			goto err_phy_roothub_alloc;
++
+ 		retval = usb_phy_roothub_power_on(hcd->phy_roothub);
+ 		if (retval)
+ 			goto err_usb_phy_roothub_power_on;
+@@ -2936,7 +2940,7 @@ int usb_add_hcd(struct usb_hcd *hcd,
+ 	usb_phy_roothub_power_off(hcd->phy_roothub);
+ err_usb_phy_roothub_power_on:
+ 	usb_phy_roothub_exit(hcd->phy_roothub);
+-err_phy_roothub_init:
++err_phy_roothub_alloc:
+ 	if (hcd->remove_phy && hcd->usb_phy) {
+ 		usb_phy_shutdown(hcd->usb_phy);
+ 		usb_put_phy(hcd->usb_phy);
+diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
+index f19aaa3c899c..44f008cda7a8 100644
+--- a/drivers/usb/core/phy.c
++++ b/drivers/usb/core/phy.c
+@@ -19,19 +19,6 @@ struct usb_phy_roothub {
+ 	struct list_head	list;
+ };
+ 
+-static struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
+-{
+-	struct usb_phy_roothub *roothub_entry;
+-
+-	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
+-	if (!roothub_entry)
+-		return ERR_PTR(-ENOMEM);
+-
+-	INIT_LIST_HEAD(&roothub_entry->list);
+-
+-	return roothub_entry;
+-}
+-
+ static int usb_phy_roothub_add_phy(struct device *dev, int index,
+ 				   struct list_head *list)
+ {
+@@ -45,9 +32,11 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
+ 			return PTR_ERR(phy);
+ 	}
+ 
+-	roothub_entry = usb_phy_roothub_alloc(dev);
+-	if (IS_ERR(roothub_entry))
+-		return PTR_ERR(roothub_entry);
++	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
++	if (!roothub_entry)
++		return -ENOMEM;
++
++	INIT_LIST_HEAD(&roothub_entry->list);
+ 
+ 	roothub_entry->phy = phy;
+ 
+@@ -56,11 +45,9 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
+ 	return 0;
+ }
+ 
+-struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
++struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
+ {
+ 	struct usb_phy_roothub *phy_roothub;
+-	struct usb_phy_roothub *roothub_entry;
+-	struct list_head *head;
+ 	int i, num_phys, err;
+ 
+ 	num_phys = of_count_phandle_with_args(dev->of_node, "phys",
+@@ -68,16 +55,31 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
+ 	if (num_phys <= 0)
+ 		return NULL;
+ 
+-	phy_roothub = usb_phy_roothub_alloc(dev);
+-	if (IS_ERR(phy_roothub))
+-		return phy_roothub;
++	phy_roothub = devm_kzalloc(dev, sizeof(*phy_roothub), GFP_KERNEL);
++	if (!phy_roothub)
++		return ERR_PTR(-ENOMEM);
++
++	INIT_LIST_HEAD(&phy_roothub->list);
+ 
+ 	for (i = 0; i < num_phys; i++) {
+ 		err = usb_phy_roothub_add_phy(dev, i, &phy_roothub->list);
+ 		if (err)
+-			goto err_out;
++			return ERR_PTR(err);
+ 	}
+ 
++	return phy_roothub;
++}
++EXPORT_SYMBOL_GPL(usb_phy_roothub_alloc);
++
++int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub)
++{
++	struct usb_phy_roothub *roothub_entry;
++	struct list_head *head;
++	int err;
++
++	if (!phy_roothub)
++		return 0;
++
+ 	head = &phy_roothub->list;
+ 
+ 	list_for_each_entry(roothub_entry, head, list) {
+@@ -86,14 +88,13 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
+ 			goto err_exit_phys;
+ 	}
+ 
+-	return phy_roothub;
++	return 0;
+ 
+ err_exit_phys:
+ 	list_for_each_entry_continue_reverse(roothub_entry, head, list)
+ 		phy_exit(roothub_entry->phy);
+ 
+-err_out:
+-	return ERR_PTR(err);
++	return err;
+ }
+ EXPORT_SYMBOL_GPL(usb_phy_roothub_init);
+ 
+diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
+index 6fde59bfbff8..eb31253201ad 100644
+--- a/drivers/usb/core/phy.h
++++ b/drivers/usb/core/phy.h
+@@ -1,6 +1,8 @@
+ struct usb_phy_roothub;
+ 
+-struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev);
++struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev);
++
++int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub);
+ int usb_phy_roothub_exit(struct usb_phy_roothub *phy_roothub);
+ 
+ int usb_phy_roothub_power_on(struct usb_phy_roothub *phy_roothub);
+-- 
+2.16.3
