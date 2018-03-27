@@ -1,65 +1,41 @@
-From: chunfeng.yun@mediatek.com (Chunfeng Yun)
-Date: Tue, 27 Mar 2018 08:58:07 +0800
-Subject: [PATCH usb-next v1] usb: core: phy: fix return value of
- usb_phy_roothub_exit()
-In-Reply-To: <CAFBinCC-nt3oV5sORzedyMO799gWDxw-1YoduACW6n=ckE_twA@mail.gmail.com>
-References: <20180324135629.31409-1-martin.blumenstingl@googlemail.com>
- <1522035792.3717.183.camel@mhfsdcap03>
- <CAFBinCC-nt3oV5sORzedyMO799gWDxw-1YoduACW6n=ckE_twA@mail.gmail.com>
-Message-ID: <1522112287.3717.192.camel@mhfsdcap03>
+From: lkp@intel.com (kbuild test robot)
+Date: Tue, 27 Mar 2018 09:11:50 +0800
+Subject: [PATCH] ARM64: dts: meson-axg: add saradc support
+In-Reply-To: <20180326092117.208416-1-yixun.lan@amlogic.com>
+References: <20180326092117.208416-1-yixun.lan@amlogic.com>
+Message-ID: <201803270741.hpZ3d2Fr%fengguang.wu@intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
-On Mon, 2018-03-26 at 22:12 +0200, Martin Blumenstingl wrote:
-> Hi Chunfeng,
-> 
-> On Mon, Mar 26, 2018 at 5:43 AM, Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-> > On Sat, 2018-03-24 at 14:56 +0100, Martin Blumenstingl wrote:
-> >> usb_phy_roothub_exit() should return the error code from the phy_exit()
-> >> call if exiting the PHY failed.
-> >> However, since a wrong variable is used usb_phy_roothub_exit() currently
-> >> always returns 0, even if one of the phy_exit calls returned an error.
-> >> Fix this by assigning the error code from phy_exit() to the "ret"
-> >> variable to propagate the error correctly.
-> >>
-> >> Fixes: 07dbff0ddbd86c ("usb: core: add a wrapper for the USB PHYs on the HCD")
-> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >> ---
-> >>  drivers/usb/core/phy.c | 2 +-
-> >>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
-> >> index 09b7c43c0ea4..f19aaa3c899c 100644
-> >> --- a/drivers/usb/core/phy.c
-> >> +++ b/drivers/usb/core/phy.c
-> >> @@ -111,7 +111,7 @@ int usb_phy_roothub_exit(struct usb_phy_roothub *phy_roothub)
-> >>       list_for_each_entry(roothub_entry, head, list) {
-> >>               err = phy_exit(roothub_entry->phy);
-> >>               if (err)
-> >> -                     ret = ret;
-> >> +                     ret = err;
-> > Need break the loop?
-> in the original implementation I decided not to break the loop here so
-> phy_exit is called for all PHYs -> only the problematic ones will
-> remain initialized
-> (in the _power_on implementation we can try to fix the state by adding
-> a break and then calling _power_off for all PHYs before the "broken"
-> one where _power_on failed)
-> 
-got it
-> also if phy_exit fails then something is probably very wrong
-> 
-> do you have any specific use-case in mind where the missing break
-> could be a problem?
-No
-> 
-> >>       }
-> >>
-> >>       return ret;
-> >
-> >
-> 
-> 
-> Regards
-> Martin
+Hi Xingyu,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on next-20180326]
+[cannot apply to robh/for-next v4.16-rc7 v4.16-rc6 v4.16-rc5 v4.16-rc7]
+[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+
+url:    https://github.com/0day-ci/linux/commits/Yixun-Lan/ARM64-dts-meson-axg-add-saradc-support/20180326-233815
+config: arm64-defconfig (attached as .config)
+compiler: aarch64-linux-gnu-gcc (Debian 7.2.0-11) 7.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # save the attached .config to linux build tree
+        make.cross ARCH=arm64 
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/amlogic/meson-axg.dtsi:810.16-17 syntax error
+   FATAL ERROR: Unable to parse input tree
+
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: .config.gz
+Type: application/gzip
+Size: 37376 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180327/2fafa237/attachment.gz>
