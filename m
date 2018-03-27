@@ -1,41 +1,190 @@
-From: lkp@intel.com (kbuild test robot)
-Date: Tue, 27 Mar 2018 09:11:50 +0800
-Subject: [PATCH] ARM64: dts: meson-axg: add saradc support
-In-Reply-To: <20180326092117.208416-1-yixun.lan@amlogic.com>
-References: <20180326092117.208416-1-yixun.lan@amlogic.com>
-Message-ID: <201803270741.hpZ3d2Fr%fengguang.wu@intel.com>
+From: chunfeng.yun@mediatek.com (Chunfeng Yun)
+Date: Tue, 27 Mar 2018 11:19:27 +0800
+Subject: [RFC usb-next v3 1/2] usb: core: split
+ usb_phy_roothub_{init,alloc}
+In-Reply-To: <20180326203846.7248-2-martin.blumenstingl@googlemail.com>
+References: <20180326203846.7248-1-martin.blumenstingl@googlemail.com>
+ <20180326203846.7248-2-martin.blumenstingl@googlemail.com>
+Message-ID: <1522120767.3717.195.camel@mhfsdcap03>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Xingyu,
+hi,
+On Mon, 2018-03-26 at 22:38 +0200, Martin Blumenstingl wrote:
+> Before this patch usb_phy_roothub_init served two purposes (from a
+> caller's point of view - like hcd.c):
+> - parsing the PHYs and allocating the list entries
+> - calling phy_init on each list entry
+> 
+> While this worked so far it has one disadvantage: if we need to call
+> phy_init for each PHY instance then the existing code cannot be re-used.
+> Solve this by splitting off usb_phy_roothub_alloc which only parses the
+> PHYs and allocates the list entries.
+> usb_phy_roothub_init then gets a struct usb_phy_roothub and only calls
+> phy_init on each PHY instance (along with the corresponding cleanup if
+> that failed somewhere).
+> 
+> This is a preparation step for adding proper suspend support for some
+> hardware that requires phy_exit to be called during suspend and phy_init
+> to be called during resume.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/usb/core/hcd.c | 10 +++++++---
+>  drivers/usb/core/phy.c | 53 +++++++++++++++++++++++++-------------------------
+>  drivers/usb/core/phy.h |  4 +++-
+>  3 files changed, 37 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
+> index 777036ae6367..15b0418e3b6a 100644
+> --- a/drivers/usb/core/hcd.c
+> +++ b/drivers/usb/core/hcd.c
+> @@ -2758,12 +2758,16 @@ int usb_add_hcd(struct usb_hcd *hcd,
+>  	}
+>  
+>  	if (!hcd->skip_phy_initialization && usb_hcd_is_primary_hcd(hcd)) {
+> -		hcd->phy_roothub = usb_phy_roothub_init(hcd->self.sysdev);
+> +		hcd->phy_roothub = usb_phy_roothub_alloc(hcd->self.sysdev);
+>  		if (IS_ERR(hcd->phy_roothub)) {
+>  			retval = PTR_ERR(hcd->phy_roothub);
+> -			goto err_phy_roothub_init;
+> +			goto err_phy_roothub_alloc;
+>  		}
+>  
+> +		retval = usb_phy_roothub_init(hcd->phy_roothub);
+> +		if (retval)
+> +			goto err_phy_roothub_alloc;
+> +
+>  		retval = usb_phy_roothub_power_on(hcd->phy_roothub);
+>  		if (retval)
+>  			goto err_usb_phy_roothub_power_on;
+> @@ -2936,7 +2940,7 @@ int usb_add_hcd(struct usb_hcd *hcd,
+>  	usb_phy_roothub_power_off(hcd->phy_roothub);
+>  err_usb_phy_roothub_power_on:
+>  	usb_phy_roothub_exit(hcd->phy_roothub);
+> -err_phy_roothub_init:
+> +err_phy_roothub_alloc:
+>  	if (hcd->remove_phy && hcd->usb_phy) {
+>  		usb_phy_shutdown(hcd->usb_phy);
+>  		usb_put_phy(hcd->usb_phy);
+> diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
+> index f19aaa3c899c..44f008cda7a8 100644
+> --- a/drivers/usb/core/phy.c
+> +++ b/drivers/usb/core/phy.c
+> @@ -19,19 +19,6 @@ struct usb_phy_roothub {
+>  	struct list_head	list;
+>  };
+>  
+> -static struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
+> -{
+> -	struct usb_phy_roothub *roothub_entry;
+> -
+> -	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
+> -	if (!roothub_entry)
+> -		return ERR_PTR(-ENOMEM);
+> -
+> -	INIT_LIST_HEAD(&roothub_entry->list);
+> -
+> -	return roothub_entry;
+> -}
+> -
+>  static int usb_phy_roothub_add_phy(struct device *dev, int index,
+>  				   struct list_head *list)
+>  {
+> @@ -45,9 +32,11 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
+>  			return PTR_ERR(phy);
+>  	}
+>  
+> -	roothub_entry = usb_phy_roothub_alloc(dev);
+> -	if (IS_ERR(roothub_entry))
+> -		return PTR_ERR(roothub_entry);
+> +	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
+> +	if (!roothub_entry)
+> +		return -ENOMEM;
+> +
+> +	INIT_LIST_HEAD(&roothub_entry->list);
+>  
+>  	roothub_entry->phy = phy;
+>  
+> @@ -56,11 +45,9 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
+>  	return 0;
+>  }
+>  
+> -struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
+> +struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
+>  {
+>  	struct usb_phy_roothub *phy_roothub;
+> -	struct usb_phy_roothub *roothub_entry;
+> -	struct list_head *head;
+>  	int i, num_phys, err;
+>  
+>  	num_phys = of_count_phandle_with_args(dev->of_node, "phys",
+> @@ -68,16 +55,31 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
+>  	if (num_phys <= 0)
+>  		return NULL;
+>  
+> -	phy_roothub = usb_phy_roothub_alloc(dev);
+> -	if (IS_ERR(phy_roothub))
+> -		return phy_roothub;
+> +	phy_roothub = devm_kzalloc(dev, sizeof(*phy_roothub), GFP_KERNEL);
+> +	if (!phy_roothub)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	INIT_LIST_HEAD(&phy_roothub->list);
+>  
+>  	for (i = 0; i < num_phys; i++) {
+>  		err = usb_phy_roothub_add_phy(dev, i, &phy_roothub->list);
+>  		if (err)
+> -			goto err_out;
+> +			return ERR_PTR(err);
+>  	}
+>  
+> +	return phy_roothub;
+> +}
+> +EXPORT_SYMBOL_GPL(usb_phy_roothub_alloc);
+> +
+> +int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub)
+> +{
+> +	struct usb_phy_roothub *roothub_entry;
+> +	struct list_head *head;
+> +	int err;
+> +
+> +	if (!phy_roothub)
+> +		return 0;
+> +
+>  	head = &phy_roothub->list;
+>  
+>  	list_for_each_entry(roothub_entry, head, list) {
+> @@ -86,14 +88,13 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
+>  			goto err_exit_phys;
+>  	}
+>  
+> -	return phy_roothub;
+> +	return 0;
+>  
+>  err_exit_phys:
+>  	list_for_each_entry_continue_reverse(roothub_entry, head, list)
+>  		phy_exit(roothub_entry->phy);
+>  
+> -err_out:
+> -	return ERR_PTR(err);
+> +	return err;
+>  }
+>  EXPORT_SYMBOL_GPL(usb_phy_roothub_init);
+>  
+> diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
+> index 6fde59bfbff8..eb31253201ad 100644
+> --- a/drivers/usb/core/phy.h
+> +++ b/drivers/usb/core/phy.h
+> @@ -1,6 +1,8 @@
+>  struct usb_phy_roothub;
+>  
+> -struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev);
+> +struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev);
+> +
+> +int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub);
+>  int usb_phy_roothub_exit(struct usb_phy_roothub *phy_roothub);
+>  
+>  int usb_phy_roothub_power_on(struct usb_phy_roothub *phy_roothub);
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on next-20180326]
-[cannot apply to robh/for-next v4.16-rc7 v4.16-rc6 v4.16-rc5 v4.16-rc7]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
-
-url:    https://github.com/0day-ci/linux/commits/Yixun-Lan/ARM64-dts-meson-axg-add-saradc-support/20180326-233815
-config: arm64-defconfig (attached as .config)
-compiler: aarch64-linux-gnu-gcc (Debian 7.2.0-11) 7.2.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # save the attached .config to linux build tree
-        make.cross ARCH=arm64 
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/amlogic/meson-axg.dtsi:810.16-17 syntax error
-   FATAL ERROR: Unable to parse input tree
-
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: .config.gz
-Type: application/gzip
-Size: 37376 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180327/2fafa237/attachment.gz>
+Tested-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
