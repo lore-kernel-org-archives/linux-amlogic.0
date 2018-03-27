@@ -1,37 +1,47 @@
-From: gregkh@linuxfoundation.org (Greg KH)
-Date: Tue, 27 Mar 2018 11:00:04 +0200
-Subject: [RFC usb-next v3 1/2] usb: core: split
- usb_phy_roothub_{init,alloc}
-In-Reply-To: <05b749dc-c8e6-260f-287d-7b3e8f599d13@ti.com>
-References: <20180326203846.7248-1-martin.blumenstingl@googlemail.com>
- <20180326203846.7248-2-martin.blumenstingl@googlemail.com>
- <05b749dc-c8e6-260f-287d-7b3e8f599d13@ti.com>
-Message-ID: <20180327090004.GA6649@kroah.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 27 Mar 2018 11:00:49 +0200
+Subject: [PATCH v2 7/7] ARM64: dts: meson-axg: add an 32K alt aoclk
+In-Reply-To: <20180323143816.200573-8-yixun.lan@amlogic.com>
+References: <20180323143816.200573-1-yixun.lan@amlogic.com>
+ <20180323143816.200573-8-yixun.lan@amlogic.com>
+Message-ID: <1522141249.2632.25.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Mar 27, 2018 at 11:24:08AM +0300, Roger Quadros wrote:
-> On 26/03/18 23:38, Martin Blumenstingl wrote:
-> > Before this patch usb_phy_roothub_init served two purposes (from a
-> > caller's point of view - like hcd.c):
-> > - parsing the PHYs and allocating the list entries
-> > - calling phy_init on each list entry
-> > 
-> > While this worked so far it has one disadvantage: if we need to call
-> > phy_init for each PHY instance then the existing code cannot be re-used.
-> > Solve this by splitting off usb_phy_roothub_alloc which only parses the
-> > PHYs and allocates the list entries.
-> > usb_phy_roothub_init then gets a struct usb_phy_roothub and only calls
-> > phy_init on each PHY instance (along with the corresponding cleanup if
-> > that failed somewhere).
-> > 
-> > This is a preparation step for adding proper suspend support for some
-> > hardware that requires phy_exit to be called during suspend and phy_init
-> > to be called during resume.
-> > 
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Fri, 2018-03-23 at 22:38 +0800, Yixun Lan wrote:
+> The ao_clk81 in AO domain have two clock source,
+> one from a 32K alt crystal we name it as ao_alt_clk,
+> another is the clk81 signal from EE domain.
 > 
-> I don't think we need RFC in subject.
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index b3d394f5d95a..48584d5a329b 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -109,6 +109,13 @@
+>  		#clock-cells = <0>;
+>  	};
+>  
+> +	ao_alt_xtal: ao_alt_xtal-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <32000000>;
+> +		clock-output-names = "ao_alt_xtal";
+> +		#clock-cells = <0>;
+> +	};
 
-As I don't apply series with RFC in the subject, that might be a good
-idea :)
+In DT, we seem to be using 'ao' and 'AO' to designate the Always On domain.
+Maybe we should be try be consistent about this.
+
+Anyway, this patch looks good but does not need to be part of the clkc_ao
+series, it could go in independently.
+
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		#address-cells = <2>;
