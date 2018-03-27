@@ -1,37 +1,22 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 27 Mar 2018 11:21:49 +0200
-Subject: [PATCH 0/3] clk: meson: drop unnecessary AO clock flags
-In-Reply-To: <20180326081809.49493-1-yixun.lan@amlogic.com>
-References: <20180326081809.49493-1-yixun.lan@amlogic.com>
-Message-ID: <1522142509.2632.42.camel@baylibre.com>
+From: arnd@arndb.de (Arnd Bergmann)
+Date: Tue, 27 Mar 2018 14:23:24 +0200
+Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.17
+In-Reply-To: <7hd0zzr4jp.fsf@baylibre.com>
+References: <7hd0zzr4jp.fsf@baylibre.com>
+Message-ID: <CAK8P3a1kJu+XrNfzYvarP6c2VLX4fWwkZV6Sq_u8qqpeprpk9w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2018-03-26 at 16:18 +0800, Yixun Lan wrote:
->   This first two patches will drop unnecessary flags for
-> the AO clock driver.
->   The third DTS patch is a follow-up fix for the second patch,
-> and I've tested them on P200, P212, Q200, S400 boards.
-> 
->  Note: this patch series was made on top of patch [0]
-> 
-> [0] https://lkml.kernel.org/r/20180323143816.200573-1-yixun.lan at amlogic.com
-> 
-> Yixun Lan (3):
->   clk: meson: drop CLK_SET_RATE_PARENT flag
->   clk: meson: drop CLK_IGNORE_UNUSED flag
->   ARM64: dts: meson: fix clock source of the pclk for UART_AO
+On Tue, Mar 20, 2018 at 1:09 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Neil Armstrong (4):
+>       ARM64: dts: amlogic: Convert to new-style SPDX license identifiers
+>       ARM64: dts: meson-gxbb-wetek: add a wetek specific dtsi to cleanup hub and play2
+>       meson-gx-socinfo: Add package id for S905H
 
-Please add patch 1 and 2 to the next version of your clkc_ao series
+That last commit seems misplaced in this branch, but I've pulled it anyway,
+since it's only a oneline change.
 
-Patch 3 should sent independently to Kevin, with note warning about the
-different dependencies (see comment in patch 3)
+Any idea what happened? If it was intentional, I would have expected an
+explanation in the tag description.
 
-> 
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 4 ++--
->  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++--
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++--
->  drivers/clk/meson/axg-aoclk.c               | 1 -
->  drivers/clk/meson/gxbb-aoclk.c              | 1 -
->  5 files changed, 6 insertions(+), 8 deletions(-)
-> 
+      Arnd
