@@ -1,188 +1,84 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 27 Mar 2018 23:26:20 +0200
-Subject: [PATCH usb-next v4 1/2] usb: core: split usb_phy_roothub_{init, alloc}
-In-Reply-To: <20180327212621.3400-1-martin.blumenstingl@googlemail.com>
-References: <20180327212621.3400-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180327212621.3400-2-martin.blumenstingl@googlemail.com>
+Date: Tue, 27 Mar 2018 23:33:49 +0200
+Subject: [PATCH v2 0/7] Meson GXL/GXM USB host mode support
+In-Reply-To: <20180326211748.16488-1-martin.blumenstingl@googlemail.com>
+References: <20180326211748.16488-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCDfjRaMOOXbSx8j1yNpRrovyf+wZBF2=cwyQD7HN2RMHw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Before this patch usb_phy_roothub_init served two purposes (from a
-caller's point of view - like hcd.c):
-- parsing the PHYs and allocating the list entries
-- calling phy_init on each list entry
+On Mon, Mar 26, 2018 at 11:17 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> the goal of this series is to enable USB host mode on Meson GXL and GXM.
+> there are four dependencies to get this working:
+> 1. "improvements and fixes for the phy-meson-gxl-usb2 driver" from [0]
+>    (this is already queued for v4.17 and part of linux-next)
+> 2. "DWC3 support for Amlogic Meson AXG and GXL SoCs from" [1] (this is
+>    also queued for v4.17 and part of linux-next)
+> 3. "initialize (multiple) PHYs for a HCD" from [3] (this is also queued
+>    for v4.17 and part of linux-next)
+> 4. "Meson GXL USB3 PHY driver" from [3] (this is also queued for v4.17
+>    and part of linux-next)
+> there is a soft dependency on the following series (currently dependency
+> #3 from above breaks suspend on some TI SoCs, so there's a risk that #3
+> will get reverted if the following series doesn't fix it):
+> 5. "fix HCD PHY suspend handling" from [4] (not queued for v4.17 yet)
+I just re-sent the series for dependency #5 in version 4: [0]
+version 4 includes a Tested-by and Reviewed-by of the Mediatek and TI
+USB maintainers. so chances are good that all pre-conditions for this
+(USB on GXL/GXM devicetree) series will make it into v4.17
 
-While this worked so far it has one disadvantage: if we need to call
-phy_init for each PHY instance then the existing code cannot be re-used.
-Solve this by splitting off usb_phy_roothub_alloc which only parses the
-PHYs and allocates the list entries.
-usb_phy_roothub_init then gets a struct usb_phy_roothub and only calls
-phy_init on each PHY instance (along with the corresponding cleanup if
-that failed somewhere).
+> select boards get USB enabled. I have tested this myself successfully
+> on:
+> - Khadas VIM (GXL S905X)
+> - Le Potato (GXL S905X)
+> - Khadas VIM2 (GXM S912)
+> - a board which is similar to P230 (GXL S905D)
+>
+> a user on IRC reported that Nexbox A95X (S905X) support is working fine
+> as well.
+>
+>
+> changes since RFC v1 at [5]:
+> - rebased on top of Kevin's v4.17/dt64 branch (c339f0e29ce9f9 "ARM64:
+>   dts: meson-gx: make efuse read-only")
+> - dropped RFC prefix because this was also tested and confirmed working
+>   by a user on IRC on his Nexbox A95X (S905X)
+>
+>
+> [0] https://lkml.kernel.org/r/20180128202245.25021-1-martin.blumenstingl at googlemail.com
+> [1] https://lkml.kernel.org/r/20180211211517.5846-1-martin.blumenstingl at googlemail.com
+> [2] https://lkml.kernel.org/r/20180303214309.25643-1-martin.blumenstingl at googlemail.com
+> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006707.html
+> [4] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006847.html
+> [5] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006711.html
+>
+>
+> Martin Blumenstingl (7):
+>   ARM64: dts: meson-gxl: add USB host support
+>   ARM64: dts: meson-gxm: add GXM specific USB host configuration
+>   ARM64: dts: meson-gxl-s905x-p212: enable the USB controller
+>   ARM64: dts: meson-gx-p23x-q20x: enable the USB controller
+>   ARM64: dts: meson-gxl-s905x-libretech-cc: enable the USB controller
+>   ARM64: dts: meson-gxl-nexbox-a95x: enable the USB controller
+>   ARM64: dts: meson-gxm-khadas-vim2: enable the USB controller
+>
+>  .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  4 ++
+>  .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 12 +++++
+>  .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    |  4 ++
+>  .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     |  4 ++
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 61 ++++++++++++++++++++++
+>  .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     |  4 ++
+>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         | 17 ++++++
+>  7 files changed, 106 insertions(+)
+>
+> --
+> 2.16.3
+>
 
-This is a preparation step for adding proper suspend support for some
-hardware that requires phy_exit to be called during suspend and phy_init
-to be called during resume.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Reviewed-by: Roger Quadros <rogerq@ti.com>
----
- drivers/usb/core/hcd.c | 10 +++++++---
- drivers/usb/core/phy.c | 53 +++++++++++++++++++++++++-------------------------
- drivers/usb/core/phy.h |  4 +++-
- 3 files changed, 37 insertions(+), 30 deletions(-)
+Regards
+Martin
 
-diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
-index 777036ae6367..15b0418e3b6a 100644
---- a/drivers/usb/core/hcd.c
-+++ b/drivers/usb/core/hcd.c
-@@ -2758,12 +2758,16 @@ int usb_add_hcd(struct usb_hcd *hcd,
- 	}
- 
- 	if (!hcd->skip_phy_initialization && usb_hcd_is_primary_hcd(hcd)) {
--		hcd->phy_roothub = usb_phy_roothub_init(hcd->self.sysdev);
-+		hcd->phy_roothub = usb_phy_roothub_alloc(hcd->self.sysdev);
- 		if (IS_ERR(hcd->phy_roothub)) {
- 			retval = PTR_ERR(hcd->phy_roothub);
--			goto err_phy_roothub_init;
-+			goto err_phy_roothub_alloc;
- 		}
- 
-+		retval = usb_phy_roothub_init(hcd->phy_roothub);
-+		if (retval)
-+			goto err_phy_roothub_alloc;
-+
- 		retval = usb_phy_roothub_power_on(hcd->phy_roothub);
- 		if (retval)
- 			goto err_usb_phy_roothub_power_on;
-@@ -2936,7 +2940,7 @@ int usb_add_hcd(struct usb_hcd *hcd,
- 	usb_phy_roothub_power_off(hcd->phy_roothub);
- err_usb_phy_roothub_power_on:
- 	usb_phy_roothub_exit(hcd->phy_roothub);
--err_phy_roothub_init:
-+err_phy_roothub_alloc:
- 	if (hcd->remove_phy && hcd->usb_phy) {
- 		usb_phy_shutdown(hcd->usb_phy);
- 		usb_put_phy(hcd->usb_phy);
-diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
-index f19aaa3c899c..44f008cda7a8 100644
---- a/drivers/usb/core/phy.c
-+++ b/drivers/usb/core/phy.c
-@@ -19,19 +19,6 @@ struct usb_phy_roothub {
- 	struct list_head	list;
- };
- 
--static struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
--{
--	struct usb_phy_roothub *roothub_entry;
--
--	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
--	if (!roothub_entry)
--		return ERR_PTR(-ENOMEM);
--
--	INIT_LIST_HEAD(&roothub_entry->list);
--
--	return roothub_entry;
--}
--
- static int usb_phy_roothub_add_phy(struct device *dev, int index,
- 				   struct list_head *list)
- {
-@@ -45,9 +32,11 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
- 			return PTR_ERR(phy);
- 	}
- 
--	roothub_entry = usb_phy_roothub_alloc(dev);
--	if (IS_ERR(roothub_entry))
--		return PTR_ERR(roothub_entry);
-+	roothub_entry = devm_kzalloc(dev, sizeof(*roothub_entry), GFP_KERNEL);
-+	if (!roothub_entry)
-+		return -ENOMEM;
-+
-+	INIT_LIST_HEAD(&roothub_entry->list);
- 
- 	roothub_entry->phy = phy;
- 
-@@ -56,11 +45,9 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
- 	return 0;
- }
- 
--struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
-+struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev)
- {
- 	struct usb_phy_roothub *phy_roothub;
--	struct usb_phy_roothub *roothub_entry;
--	struct list_head *head;
- 	int i, num_phys, err;
- 
- 	num_phys = of_count_phandle_with_args(dev->of_node, "phys",
-@@ -68,16 +55,31 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
- 	if (num_phys <= 0)
- 		return NULL;
- 
--	phy_roothub = usb_phy_roothub_alloc(dev);
--	if (IS_ERR(phy_roothub))
--		return phy_roothub;
-+	phy_roothub = devm_kzalloc(dev, sizeof(*phy_roothub), GFP_KERNEL);
-+	if (!phy_roothub)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_LIST_HEAD(&phy_roothub->list);
- 
- 	for (i = 0; i < num_phys; i++) {
- 		err = usb_phy_roothub_add_phy(dev, i, &phy_roothub->list);
- 		if (err)
--			goto err_out;
-+			return ERR_PTR(err);
- 	}
- 
-+	return phy_roothub;
-+}
-+EXPORT_SYMBOL_GPL(usb_phy_roothub_alloc);
-+
-+int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub)
-+{
-+	struct usb_phy_roothub *roothub_entry;
-+	struct list_head *head;
-+	int err;
-+
-+	if (!phy_roothub)
-+		return 0;
-+
- 	head = &phy_roothub->list;
- 
- 	list_for_each_entry(roothub_entry, head, list) {
-@@ -86,14 +88,13 @@ struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev)
- 			goto err_exit_phys;
- 	}
- 
--	return phy_roothub;
-+	return 0;
- 
- err_exit_phys:
- 	list_for_each_entry_continue_reverse(roothub_entry, head, list)
- 		phy_exit(roothub_entry->phy);
- 
--err_out:
--	return ERR_PTR(err);
-+	return err;
- }
- EXPORT_SYMBOL_GPL(usb_phy_roothub_init);
- 
-diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
-index 6fde59bfbff8..eb31253201ad 100644
---- a/drivers/usb/core/phy.h
-+++ b/drivers/usb/core/phy.h
-@@ -1,6 +1,8 @@
- struct usb_phy_roothub;
- 
--struct usb_phy_roothub *usb_phy_roothub_init(struct device *dev);
-+struct usb_phy_roothub *usb_phy_roothub_alloc(struct device *dev);
-+
-+int usb_phy_roothub_init(struct usb_phy_roothub *phy_roothub);
- int usb_phy_roothub_exit(struct usb_phy_roothub *phy_roothub);
- 
- int usb_phy_roothub_power_on(struct usb_phy_roothub *phy_roothub);
--- 
-2.16.3
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006882.html
