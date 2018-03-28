@@ -1,30 +1,61 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 27 Mar 2018 17:11:11 -0700
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.17
-In-Reply-To: <CAK8P3a1kJu+XrNfzYvarP6c2VLX4fWwkZV6Sq_u8qqpeprpk9w@mail.gmail.com>
- (Arnd Bergmann's message of "Tue, 27 Mar 2018 14:23:24 +0200")
-References: <7hd0zzr4jp.fsf@baylibre.com>
- <CAK8P3a1kJu+XrNfzYvarP6c2VLX4fWwkZV6Sq_u8qqpeprpk9w@mail.gmail.com>
-Message-ID: <7ho9j9oy8w.fsf@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Wed, 28 Mar 2018 10:50:44 +0800
+Subject: [PATCH v3 0/6] clk: meson-axg: Add AO Cloclk and Reset driver
+Message-ID: <20180328025050.221585-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Arnd Bergmann <arnd@arndb.de> writes:
+  This patch try to add AO clock and Reset driver for Amlogic's
+Meson-AXG SoC.
+  Please note that patch 6 need to wait for the DTS changes[3] merged
+into mainline first, otherwise it will break the serial console.
 
-> On Tue, Mar 20, 2018 at 1:09 AM, Kevin Hilman <khilman@baylibre.com> wrote:
->> Neil Armstrong (4):
->>       ARM64: dts: amlogic: Convert to new-style SPDX license identifiers
->>       ARM64: dts: meson-gxbb-wetek: add a wetek specific dtsi to cleanup hub and play2
->>       meson-gx-socinfo: Add package id for S905H
->
-> That last commit seems misplaced in this branch, but I've pulled it anyway,
-> since it's only a oneline change.
->
-> Any idea what happened? If it was intentional, I would have expected an
-> explanation in the tag description.
+ patch 1: factor the common code into a dedicated file
+ patch 2-4: add the aoclk driver for AXG SoC
+ patch 5-6: drop unnecessary clock flags
 
-It was a mistake, it should've been in the drivers pull.
+changes since v2 at [2]: 
+ - rework meson_aoclkc_probe() which leverage the of_match_data
+ - merge patch 5-6 into this series
+ - seperate DTS patch, will send to Kevin Hilman independently
+ 
+changes since v1 at [0]: 
+ - rebase to clk-meson's branch 'next/drivers' [1]
+ - fix license, update to BSD-3-Clause
+ - drop un-used include header file
 
-Thanks for taking it anyways,
+[0] https://lkml.kernel.org/r/20180209070026.193879-1-yixun.lan at amlogic.com
+[1] git://github.com/BayLibre/clk-meson.git branch: next-drivers
+[2] https://lkml.kernel.org/r/20180323143816.200573-1-yixun.lan at amlogic.com
+[3] https://lkml.kernel.org/r/20180326081809.49493-4-yixun.lan at amlogic.com
 
-Kevin
+Qiufang Dai (1):
+  clk: meson-axg: Add AO Clock and Reset controller driver
+
+Yixun Lan (5):
+  clk: meson: aoclk: refactor common code into dedicated file
+  dt-bindings: clock: axg-aoclkc: New binding for Meson-AXG SoC
+  dt-bindings: clock: reset: Add AXG AO Clock and Reset Bindings
+  clk: meson: drop CLK_SET_RATE_PARENT flag
+  clk: meson: drop CLK_IGNORE_UNUSED flag
+
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |   1 +
+ drivers/clk/meson/Makefile                         |   4 +-
+ drivers/clk/meson/axg-aoclk.c                      | 163 +++++++++++++++++++++
+ drivers/clk/meson/axg-aoclk.h                      |  31 ++++
+ drivers/clk/meson/gxbb-aoclk.c                     |  88 ++++-------
+ drivers/clk/meson/gxbb-aoclk.h                     |   7 +
+ drivers/clk/meson/meson-aoclk.c                    |  79 ++++++++++
+ drivers/clk/meson/meson-aoclk.h                    |  35 +++++
+ include/dt-bindings/clock/axg-aoclkc.h             |  26 ++++
+ include/dt-bindings/reset/axg-aoclkc.h             |  20 +++
+ 10 files changed, 393 insertions(+), 61 deletions(-)
+ create mode 100644 drivers/clk/meson/axg-aoclk.c
+ create mode 100644 drivers/clk/meson/axg-aoclk.h
+ create mode 100644 drivers/clk/meson/meson-aoclk.c
+ create mode 100644 drivers/clk/meson/meson-aoclk.h
+ create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+ create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
+
+-- 
+2.15.1
