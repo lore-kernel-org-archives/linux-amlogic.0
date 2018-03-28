@@ -1,87 +1,95 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Wed, 28 Mar 2018 11:01:30 +0800
-Subject: [PATCH v3 3/3] ARM64: dts: meson: fix clock source of the pclk for
- UART_AO
-In-Reply-To: <20180328030130.240336-1-yixun.lan@amlogic.com>
-References: <20180328030130.240336-1-yixun.lan@amlogic.com>
-Message-ID: <20180328030130.240336-4-yixun.lan@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 28 Mar 2018 10:18:03 +0200
+Subject: [PATCH v2 0/7] Meson GXL/GXM USB host mode support
+In-Reply-To: <CAFBinCDfjRaMOOXbSx8j1yNpRrovyf+wZBF2=cwyQD7HN2RMHw@mail.gmail.com>
+References: <20180326211748.16488-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCDfjRaMOOXbSx8j1yNpRrovyf+wZBF2=cwyQD7HN2RMHw@mail.gmail.com>
+Message-ID: <5c162f08-e285-c8c3-6021-0071e5ae4a2d@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
->From the hardware perspective, the actual pclk of the AO uarts
-is the corresponding clkc_ao uart gate, not the main clock controller clk81.
-This was not problem so far, because the uart_gate had
-the CLK_IGNORE_UNUSED flag, which kept the gate open.
+On 27/03/2018 23:33, Martin Blumenstingl wrote:
+> On Mon, Mar 26, 2018 at 11:17 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>> the goal of this series is to enable USB host mode on Meson GXL and GXM.
+>> there are four dependencies to get this working:
+>> 1. "improvements and fixes for the phy-meson-gxl-usb2 driver" from [0]
+>>    (this is already queued for v4.17 and part of linux-next)
+>> 2. "DWC3 support for Amlogic Meson AXG and GXL SoCs from" [1] (this is
+>>    also queued for v4.17 and part of linux-next)
+>> 3. "initialize (multiple) PHYs for a HCD" from [3] (this is also queued
+>>    for v4.17 and part of linux-next)
+>> 4. "Meson GXL USB3 PHY driver" from [3] (this is also queued for v4.17
+>>    and part of linux-next)
+>> there is a soft dependency on the following series (currently dependency
+>> #3 from above breaks suspend on some TI SoCs, so there's a risk that #3
+>> will get reverted if the following series doesn't fix it):
+>> 5. "fix HCD PHY suspend handling" from [4] (not queued for v4.17 yet)
+> I just re-sent the series for dependency #5 in version 4: [0]
+> version 4 includes a Tested-by and Reviewed-by of the Mediatek and TI
+> USB maintainers. so chances are good that all pre-conditions for this
+> (USB on GXL/GXM devicetree) series will make it into v4.17
 
-We plan to remove the CLK_IGNORE_UNUSED flag in another patch,
-but before doing that, we need to fix the clock in the DTS file.
+Hi,
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+I think these should go into 4.17 anyway since the DT nodes are conform to all bindings.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 40ca49fb94a6..dc6ca0895f11 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -798,7 +798,7 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x3000 0x0 0x18>;
- 				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART1>, <&xtal>;
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-@@ -807,7 +807,7 @@
- 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
- 				reg = <0x0 0x4000 0x0 0x18>;
- 				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
--				clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 562c26a0ba33..ea6898f62044 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -749,12 +749,12 @@
- };
- 
- &uart_AO {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART1>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
- &uart_AO_B {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index e1a39cbed8c9..472106ce9a75 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -697,12 +697,12 @@
- };
- 
- &uart_AO {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART1>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
- &uart_AO_B {
--	clocks = <&xtal>, <&clkc CLKID_CLK81>, <&xtal>;
-+	clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
- 	clock-names = "xtal", "pclk", "baud";
- };
- 
--- 
-2.15.1
+Neil
+
+
+> 
+>> select boards get USB enabled. I have tested this myself successfully
+>> on:
+>> - Khadas VIM (GXL S905X)
+>> - Le Potato (GXL S905X)
+>> - Khadas VIM2 (GXM S912)
+>> - a board which is similar to P230 (GXL S905D)
+>>
+>> a user on IRC reported that Nexbox A95X (S905X) support is working fine
+>> as well.
+>>
+>>
+>> changes since RFC v1 at [5]:
+>> - rebased on top of Kevin's v4.17/dt64 branch (c339f0e29ce9f9 "ARM64:
+>>   dts: meson-gx: make efuse read-only")
+>> - dropped RFC prefix because this was also tested and confirmed working
+>>   by a user on IRC on his Nexbox A95X (S905X)
+>>
+>>
+>> [0] https://lkml.kernel.org/r/20180128202245.25021-1-martin.blumenstingl at googlemail.com
+>> [1] https://lkml.kernel.org/r/20180211211517.5846-1-martin.blumenstingl at googlemail.com
+>> [2] https://lkml.kernel.org/r/20180303214309.25643-1-martin.blumenstingl at googlemail.com
+>> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006707.html
+>> [4] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006847.html
+>> [5] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006711.html
+>>
+>>
+>> Martin Blumenstingl (7):
+>>   ARM64: dts: meson-gxl: add USB host support
+>>   ARM64: dts: meson-gxm: add GXM specific USB host configuration
+>>   ARM64: dts: meson-gxl-s905x-p212: enable the USB controller
+>>   ARM64: dts: meson-gx-p23x-q20x: enable the USB controller
+>>   ARM64: dts: meson-gxl-s905x-libretech-cc: enable the USB controller
+>>   ARM64: dts: meson-gxl-nexbox-a95x: enable the USB controller
+>>   ARM64: dts: meson-gxm-khadas-vim2: enable the USB controller
+>>
+>>  .../arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi |  4 ++
+>>  .../dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 12 +++++
+>>  .../dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    |  4 ++
+>>  .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi     |  4 ++
+>>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 61 ++++++++++++++++++++++
+>>  .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     |  4 ++
+>>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi         | 17 ++++++
+>>  7 files changed, 106 insertions(+)
+>>
+>> --
+>> 2.16.3
+>>
+> 
+> 
+> Regards
+> Martin
+> 
+> 
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006882.html
+> 
