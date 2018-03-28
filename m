@@ -1,43 +1,30 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 27 Mar 2018 17:10:02 -0700
-Subject: [PATCH] ARM64: dts: meson: reduce odroid-c2 eMMC maximum rate
-In-Reply-To: <20180327062714.GB28908@kroah.com> (Greg KH's message of "Tue, 27
- Mar 2018 08:27:14 +0200")
-References: <20180302134436.18844-1-jbrunet@baylibre.com>
- <CAOi56cUO_sPYb+t2g1GmSEULu5aGA8cKqa2Yan2=T0YCYGOmSA@mail.gmail.com>
- <20180327062714.GB28908@kroah.com>
-Message-ID: <7htvt1oyat.fsf@baylibre.com>
+Date: Tue, 27 Mar 2018 17:11:11 -0700
+Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.17
+In-Reply-To: <CAK8P3a1kJu+XrNfzYvarP6c2VLX4fWwkZV6Sq_u8qqpeprpk9w@mail.gmail.com>
+ (Arnd Bergmann's message of "Tue, 27 Mar 2018 14:23:24 +0200")
+References: <7hd0zzr4jp.fsf@baylibre.com>
+ <CAK8P3a1kJu+XrNfzYvarP6c2VLX4fWwkZV6Sq_u8qqpeprpk9w@mail.gmail.com>
+Message-ID: <7ho9j9oy8w.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Greg KH <gregkh@linuxfoundation.org> writes:
+Arnd Bergmann <arnd@arndb.de> writes:
 
-> On Mon, Mar 26, 2018 at 01:23:44PM -0700, Kevin Hilman wrote:
->> On Fri, Mar 2, 2018 at 5:44 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
->> > Different modules maybe installed by the user on the eMMC connector
->> > of the odroid-c2. While the red modules are working without an issue,
->> > it seems some black modules (apparently Samsung based) are having
->> > issue at 200MHz
->> >
->> > While the tuning algorithm introduced in v4.14 enables high speed modes
->> > on every other tested designs, it seems a problem remains for this
->> > particular combination of board and eMMC module.
->> >
->> > Lowering the maximum frequency of the eMMC on this board until we can
->> > figure out a better solution.
->> >
->> > Fixes: d341ca88eead ("mmc: meson-gx: rework tuning function")
->> > Suggested-by: Ellie Reeves <ellierevves@gmail.com>
->> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> 
->> Now in mainline as commit c04ffa71ff49 upstream.
+> On Tue, Mar 20, 2018 at 1:09 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+>> Neil Armstrong (4):
+>>       ARM64: dts: amlogic: Convert to new-style SPDX license identifiers
+>>       ARM64: dts: meson-gxbb-wetek: add a wetek specific dtsi to cleanup hub and play2
+>>       meson-gx-socinfo: Add package id for S905H
 >
-> Really?  I do not see it in Linus's tree, are you sure about that?
+> That last commit seems misplaced in this branch, but I've pulled it anyway,
+> since it's only a oneline change.
 >
-> $ git show c04ffa71ff49
-> fatal: ambiguous argument 'c04ffa71ff49': unknown revision or path not in the working tree.
+> Any idea what happened? If it was intentional, I would have expected an
+> explanation in the tag description.
 
-Oops, you're right.  It's still in arm-soc, not yet in mainline.  Sorry
-for the noise.
+It was a mistake, it should've been in the drivers pull.
+
+Thanks for taking it anyways,
 
 Kevin
