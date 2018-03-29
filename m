@@ -1,115 +1,53 @@
-From: sjg@chromium.org (Simon Glass)
-Date: Fri, 30 Mar 2018 06:41:35 +0800
-Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
-In-Reply-To: <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
-References: <20171203091713.22029-1-b.galvani@gmail.com>
- <20171203091713.22029-4-b.galvani@gmail.com>
- <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
-Message-ID: <CAPnjgZ176Z7gjh=zvpzFvWEp=XrA6jML4UmgxSzc_WfDqyOJbw@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 30 Mar 2018 01:00:34 +0200
+Subject: [PATCH net-next v1 1/2] dt-bindings: net: meson-dwmac: add support
+ for the Meson8m2 SoC
+In-Reply-To: <20180329230035.20958-1-martin.blumenstingl@googlemail.com>
+References: <20180329230035.20958-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180329230035.20958-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+The Meson8m2 SoC uses a similar (potentially even identical) register
+layout for the dwmac glue as Meson8b and GXBB. Unfortunately there is no
+documentation available.
+Testing shows that both, RMII and RGMII PHYs are working if they are
+configured as on Meson8b. Add a new compatible string to the
+documentation so differences (if there are any) between Meson8m2 and the
+other SoCs can be taken care of within the driver.
 
-On 29 March 2018 at 16:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> Hi Beniamino,
->
-> On 03/12/2017 10:17, Beniamino Galvani wrote:
->> Introduce a basic clock driver for Amlogic Meson SoCs which supports
->> enabling/disabling clock gates and getting their frequency.
->>
->> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
->> ---
->>  arch/arm/mach-meson/Kconfig |   2 +
->>  drivers/clk/Makefile        |   1 +
->>  drivers/clk/clk_meson.c     | 196 ++++++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 199 insertions(+)
->>  create mode 100644 drivers/clk/clk_meson.c
->>
->> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
->> index d4bd230be3..7acee3bc5c 100644
->> --- a/arch/arm/mach-meson/Kconfig
->> +++ b/arch/arm/mach-meson/Kconfig
->
-> [...]
->> +
->> +static int meson_set_gate(struct clk *clk, bool on)
->> +{
->> +     struct meson_clk *priv = dev_get_priv(clk->dev);
->> +     struct meson_gate *gate;
->> +
->> +     if (clk->id >= ARRAY_SIZE(gates))
->> +             return -ENOENT;
->
-> This should be -ENOSYS, otherwise it breaks the ethernet driver since it waits -ENOSYS if clock cannot be enabled.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ Documentation/devicetree/bindings/net/meson-dwmac.txt | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Perhaps, but this is a genuine error, so it is OK to break the
-Ethernet driver, isn't it? We don't want errors to be silently
-ignored.
-
-Not having a device is one thing, but having a device that does not work is bad.
-
-Also I have tried to keep -ENOSYS for cases where the driver does not
-support the operation. We should be very clear in clk-uclass.h as to
-what errors are returned. At present I don't see ENOSYS mentioned. At
-the very least we should update the docs if certain behaviour is
-expected. I would also expect us to have a sandbox test for it.
-
->
->> +
->> +     gate = &gates[clk->id];
->> +
->> +     if (gate->reg == 0)
->> +             return -ENOENT;
->
-> Same here -ENOSYS
->
->> +
->> +     clrsetbits_le32(priv->addr + gate->reg,
->> +                     BIT(gate->bit), on ? BIT(gate->bit) : 0);
->> +     return 0;
->> +}
->> +
->> +static int meson_clk_enable(struct clk *clk)
->> +{
->> +     return meson_set_gate(clk, true);
->> +}
->> +
->> +static int meson_clk_disable(struct clk *clk)
->> +{
->> +     return meson_set_gate(clk, false);
->> +}
->> +
->> +static ulong meson_clk_get_rate(struct clk *clk)
->> +{
->> +     struct meson_clk *priv = dev_get_priv(clk->dev);
->> +
->> +     if (clk->id != CLKID_CLK81) {
->> +             if (clk->id >= ARRAY_SIZE(gates))
->> +                     return -ENOENT;
->
-> Same here -ENOSYS
->
->> +             if (gates[clk->id].reg == 0)
->> +                     return -ENOENT;
->
-> Same here -ENOSYS
->
->> +     }
->> +
->> +     /* Use cached value if available */
->> +     if (priv->rate)
->> +             return priv->rate;
->> +
->> +     priv->rate = meson_measure_clk_rate(CLK_81);
->> +
->> +     return priv->rate;
->> +}
->> +
->
-> [...]
->
-> Neil
-
-Regards,
-Simon
+diff --git a/Documentation/devicetree/bindings/net/meson-dwmac.txt b/Documentation/devicetree/bindings/net/meson-dwmac.txt
+index 354dd9896bb5..61cada22ae6c 100644
+--- a/Documentation/devicetree/bindings/net/meson-dwmac.txt
++++ b/Documentation/devicetree/bindings/net/meson-dwmac.txt
+@@ -9,6 +9,7 @@ Required properties on all platforms:
+ - compatible:	Depending on the platform this should be one of:
+ 			- "amlogic,meson6-dwmac"
+ 			- "amlogic,meson8b-dwmac"
++			- "amlogic,meson8m2-dwmac"
+ 			- "amlogic,meson-gxbb-dwmac"
+ 		Additionally "snps,dwmac" and any applicable more
+ 		detailed version number described in net/stmmac.txt
+@@ -19,13 +20,13 @@ Required properties on all platforms:
+ 	configuration (for example the PRG_ETHERNET register range
+ 	on Meson8b and newer)
+ 
+-Required properties on Meson8b and newer:
++Required properties on Meson8b, Meson8m2, GXBB and newer:
+ - clock-names:	Should contain the following:
+ 		- "stmmaceth" - see stmmac.txt
+ 		- "clkin0" - first parent clock of the internal mux
+ 		- "clkin1" - second parent clock of the internal mux
+ 
+-Optional properties on Meson8b and newer:
++Optional properties on Meson8b, Meson8m2, GXBB and newer:
+ - amlogic,tx-delay-ns:	The internal RGMII TX clock delay (provided
+ 			by this driver) in nanoseconds. Allowed values
+ 			are: 0ns, 2ns, 4ns, 6ns.
+-- 
+2.16.3
