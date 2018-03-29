@@ -1,26 +1,108 @@
 From: marex@denx.de (Marek Vasut)
-Date: Thu, 29 Mar 2018 15:54:25 +0200
-Subject: [PATCH u-boot 3/3] phy: Add Amlogic Meson USB2 & USB3 Generic PHY
- drivers
-In-Reply-To: <1522330940-25062-4-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 29 Mar 2018 15:53:56 +0200
+Subject: [PATCH u-boot 2/3] usb: host: dwc3: Add support for multiple PHYs
+In-Reply-To: <1522330940-25062-3-git-send-email-narmstrong@baylibre.com>
 References: <1522330940-25062-1-git-send-email-narmstrong@baylibre.com>
- <1522330940-25062-4-git-send-email-narmstrong@baylibre.com>
-Message-ID: <5e871c6b-d4b9-4765-607d-229a5fbfa0ec@denx.de>
+ <1522330940-25062-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <630e8bba-a5d8-2965-98a3-34ca8ed2c868@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On 03/29/2018 03:42 PM, Neil Armstrong wrote:
+> DWC3 Ips can have more than 1 PHY for USB2 and 1 PHY for USB3, add support
+> for a generic number of PHYs and adapt the code to handle a generic
+> number of PHYs.
+> 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  drivers/phy/Kconfig          |   8 ++
->  drivers/phy/Makefile         |   1 +
->  drivers/phy/meson-gxl-usb2.c | 238 +++++++++++++++++++++++++++++++++++++++++++
->  drivers/phy/meson-gxl-usb3.c | 201 ++++++++++++++++++++++++++++++++++++
->  4 files changed, 448 insertions(+)
->  create mode 100644 drivers/phy/meson-gxl-usb2.c
->  create mode 100644 drivers/phy/meson-gxl-usb3.c
+>  drivers/usb/host/xhci-dwc3.c | 105 ++++++++++++++++++++++++-------------------
+>  1 file changed, 58 insertions(+), 47 deletions(-)
+> 
+> diff --git a/drivers/usb/host/xhci-dwc3.c b/drivers/usb/host/xhci-dwc3.c
+> index 1022dd5..da29162 100644
+> --- a/drivers/usb/host/xhci-dwc3.c
+> +++ b/drivers/usb/host/xhci-dwc3.c
+> @@ -22,8 +22,8 @@
+>  DECLARE_GLOBAL_DATA_PTR;
+>  
+>  struct xhci_dwc3_platdata {
+> -	struct phy usb_phy;
+> -	struct phy usb3_phy;
+> +	struct phy *usb_phys;
+> +	int num_phys;
+>  };
+>  
+>  void dwc3_set_mode(struct dwc3 *dwc3_reg, u32 mode)
+> @@ -113,45 +113,74 @@ void dwc3_set_fladj(struct dwc3 *dwc3_reg, u32 val)
+>  }
+>  
+>  #ifdef CONFIG_DM_USB
+> -static int xhci_dwc3_setup_phy(struct udevice *dev, int index, struct phy *phy)
+> +static int xhci_dwc3_setup_phy(struct udevice *dev, int count)
+>  {
+> -	int ret = 0;
+> +	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
+> +	int i, ret;
+> +
+> +	if (!count)
+> +		return 0;
+>  
+> -	ret = generic_phy_get_by_index(dev, index, phy);
+> -	if (ret) {
+> -		if (ret != -ENOENT) {
+> -			pr_err("Failed to get USB PHY for %s\n", dev->name);
+> +	plat->usb_phys = devm_kcalloc(dev, count, sizeof(struct phy),
+> +					GFP_KERNEL);
+> +	if (!plat->usb_phys)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < count; i++) {
+> +		ret = generic_phy_get_by_index(dev, i, &plat->usb_phys[i]);
+> +		if (ret && ret != -ENOENT) {
+> +			pr_err("Failed to get USB PHY%d for %s\n",
+> +			       i, dev->name);
+>  			return ret;
+>  		}
+> -	} else {
+> -		ret = generic_phy_init(phy);
+> +
+> +		++plat->num_phys;
+> +	}
+> +	
+> +	for (i = 0; i < plat->num_phys; i++) {
+> +		ret = generic_phy_init(&plat->usb_phys[i]);
+>  		if (ret) {
+> -			pr_err("Can't init USB PHY for %s\n", dev->name);
+> -			return ret;
+> +			pr_err("Can't init USB PHY%d for %s\n",
+> +			       i, dev->name);
+> +			goto phys_err;
+>  		}
+> -		ret = generic_phy_power_on(phy);
+> +	}
+> +	
+> +	for (i = 0; i < plat->num_phys; i++) {
+> +		ret = generic_phy_power_on(&plat->usb_phys[i]);
+>  		if (ret) {
+> -			pr_err("Can't power on USB PHY for %s\n", dev->name);
+> -			generic_phy_exit(phy);
+> -			return ret;
+> +			pr_err("Can't power USB PHY%d for %s\n",
+> +			       i, dev->name);
+> +			goto phys_err;
+>  		}
+>  	}
+>  
+>  	return 0;
+> +
+> +phys_err:
+> +	for (; i >= 0; i--) {
+> +		generic_phy_power_off(&plat->usb_phys[i]);
+> +		generic_phy_exit(&plat->usb_phys[i]);
+> +	}
 
-Commit message is missing, otherwise looks reasonable.
+This will not work if all the PHYs are inited, but the power up function
+fails -- at that point the phy_exit will not be called for all inited PHys.
 
 -- 
 Best regards,
