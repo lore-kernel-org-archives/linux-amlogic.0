@@ -1,24 +1,115 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Fri, 30 Mar 2018 06:41:31 +0800
-Subject: [PATCH] serial: meson: Update compatible with new Linux bindings
-In-Reply-To: <1522328162-13786-1-git-send-email-narmstrong@baylibre.com>
-References: <1522328162-13786-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAPnjgZ1LME5basLqY1pq7JK_eAvZ4xoyyK8NhNfS2wmWDSFDsg@mail.gmail.com>
+Date: Fri, 30 Mar 2018 06:41:35 +0800
+Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
+In-Reply-To: <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
+References: <20171203091713.22029-1-b.galvani@gmail.com>
+ <20171203091713.22029-4-b.galvani@gmail.com>
+ <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
+Message-ID: <CAPnjgZ176Z7gjh=zvpzFvWEp=XrA6jML4UmgxSzc_WfDqyOJbw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 29 March 2018 at 20:56, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> The Amlogic Meson SoCs serial bindings were not written when serial
-> support was pushed into Linux and U-Boot.
-> A clean bindings document has been merged into Linux tree to correctly
-> handle the multiple clocks feeding the serial peripheral.
-> This update the U-Boot serial_meson driver with the new compatible
-> string for Amlogic Meson GX Socs.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/serial/serial_meson.c | 1 +
->  1 file changed, 1 insertion(+)
->
+Hi Neil,
 
-Reviewed-by: Simon Glass <sjg@chromium.org>
+On 29 March 2018 at 16:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> Hi Beniamino,
+>
+> On 03/12/2017 10:17, Beniamino Galvani wrote:
+>> Introduce a basic clock driver for Amlogic Meson SoCs which supports
+>> enabling/disabling clock gates and getting their frequency.
+>>
+>> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+>> ---
+>>  arch/arm/mach-meson/Kconfig |   2 +
+>>  drivers/clk/Makefile        |   1 +
+>>  drivers/clk/clk_meson.c     | 196 ++++++++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 199 insertions(+)
+>>  create mode 100644 drivers/clk/clk_meson.c
+>>
+>> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+>> index d4bd230be3..7acee3bc5c 100644
+>> --- a/arch/arm/mach-meson/Kconfig
+>> +++ b/arch/arm/mach-meson/Kconfig
+>
+> [...]
+>> +
+>> +static int meson_set_gate(struct clk *clk, bool on)
+>> +{
+>> +     struct meson_clk *priv = dev_get_priv(clk->dev);
+>> +     struct meson_gate *gate;
+>> +
+>> +     if (clk->id >= ARRAY_SIZE(gates))
+>> +             return -ENOENT;
+>
+> This should be -ENOSYS, otherwise it breaks the ethernet driver since it waits -ENOSYS if clock cannot be enabled.
+
+Perhaps, but this is a genuine error, so it is OK to break the
+Ethernet driver, isn't it? We don't want errors to be silently
+ignored.
+
+Not having a device is one thing, but having a device that does not work is bad.
+
+Also I have tried to keep -ENOSYS for cases where the driver does not
+support the operation. We should be very clear in clk-uclass.h as to
+what errors are returned. At present I don't see ENOSYS mentioned. At
+the very least we should update the docs if certain behaviour is
+expected. I would also expect us to have a sandbox test for it.
+
+>
+>> +
+>> +     gate = &gates[clk->id];
+>> +
+>> +     if (gate->reg == 0)
+>> +             return -ENOENT;
+>
+> Same here -ENOSYS
+>
+>> +
+>> +     clrsetbits_le32(priv->addr + gate->reg,
+>> +                     BIT(gate->bit), on ? BIT(gate->bit) : 0);
+>> +     return 0;
+>> +}
+>> +
+>> +static int meson_clk_enable(struct clk *clk)
+>> +{
+>> +     return meson_set_gate(clk, true);
+>> +}
+>> +
+>> +static int meson_clk_disable(struct clk *clk)
+>> +{
+>> +     return meson_set_gate(clk, false);
+>> +}
+>> +
+>> +static ulong meson_clk_get_rate(struct clk *clk)
+>> +{
+>> +     struct meson_clk *priv = dev_get_priv(clk->dev);
+>> +
+>> +     if (clk->id != CLKID_CLK81) {
+>> +             if (clk->id >= ARRAY_SIZE(gates))
+>> +                     return -ENOENT;
+>
+> Same here -ENOSYS
+>
+>> +             if (gates[clk->id].reg == 0)
+>> +                     return -ENOENT;
+>
+> Same here -ENOSYS
+>
+>> +     }
+>> +
+>> +     /* Use cached value if available */
+>> +     if (priv->rate)
+>> +             return priv->rate;
+>> +
+>> +     priv->rate = meson_measure_clk_rate(CLK_81);
+>> +
+>> +     return priv->rate;
+>> +}
+>> +
+>
+> [...]
+>
+> Neil
+
+Regards,
+Simon
