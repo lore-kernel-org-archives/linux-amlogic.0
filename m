@@ -1,158 +1,112 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 29 Mar 2018 16:23:09 +0200
-Subject: [PATCH u-boot 1/3] usb: host: Add simple of glue driver for DWC3
- USB Controllers integration
-In-Reply-To: <fb62880a-1a3e-c95b-647e-7f80d1319fe1@denx.de>
+Date: Thu, 29 Mar 2018 16:23:48 +0200
+Subject: [PATCH u-boot 2/3] usb: host: dwc3: Add support for multiple PHYs
+In-Reply-To: <630e8bba-a5d8-2965-98a3-34ca8ed2c868@denx.de>
 References: <1522330940-25062-1-git-send-email-narmstrong@baylibre.com>
- <1522330940-25062-2-git-send-email-narmstrong@baylibre.com>
- <fb62880a-1a3e-c95b-647e-7f80d1319fe1@denx.de>
-Message-ID: <549799c4-8e69-6c47-bad9-49d6c07c8caf@baylibre.com>
+ <1522330940-25062-3-git-send-email-narmstrong@baylibre.com>
+ <630e8bba-a5d8-2965-98a3-34ca8ed2c868@denx.de>
+Message-ID: <19da48b5-c314-1a8a-e3e4-de1107b196e8@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 29/03/2018 15:52, Marek Vasut wrote:
+On 29/03/2018 15:53, Marek Vasut wrote:
 > On 03/29/2018 03:42 PM, Neil Armstrong wrote:
+>> DWC3 Ips can have more than 1 PHY for USB2 and 1 PHY for USB3, add support
+>> for a generic number of PHYs and adapt the code to handle a generic
+>> number of PHYs.
+>>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  drivers/usb/host/Kconfig          |   7 ++
->>  drivers/usb/host/Makefile         |   1 +
->>  drivers/usb/host/dwc3-of-simple.c | 187 ++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 195 insertions(+)
->>  create mode 100644 drivers/usb/host/dwc3-of-simple.c
+>>  drivers/usb/host/xhci-dwc3.c | 105 ++++++++++++++++++++++++-------------------
+>>  1 file changed, 58 insertions(+), 47 deletions(-)
 >>
->> diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
->> index a7249b7..6caa615 100644
->> --- a/drivers/usb/host/Kconfig
->> +++ b/drivers/usb/host/Kconfig
->> @@ -21,6 +21,13 @@ config USB_XHCI_DWC3
->>  	  Say Y or if your system has a Dual Role SuperSpeed
->>  	  USB controller based on the DesignWare USB3 IP Core.
+>> diff --git a/drivers/usb/host/xhci-dwc3.c b/drivers/usb/host/xhci-dwc3.c
+>> index 1022dd5..da29162 100644
+>> --- a/drivers/usb/host/xhci-dwc3.c
+>> +++ b/drivers/usb/host/xhci-dwc3.c
+>> @@ -22,8 +22,8 @@
+>>  DECLARE_GLOBAL_DATA_PTR;
 >>  
->> +config USB_XHCI_DWC3_OF_SIMPLE
->> +	bool "DesignWare USB3 DRD Generic OF Simple Glue Layer"
->> +	select MISC
->> +	help
->> +	  Support USB2/3 functionality in simple SoC integrations with
->> +	  USB controller based on the DesignWare USB3 IP Core.
->> +
->>  config USB_XHCI_MVEBU
->>  	bool "MVEBU USB 3.0 support"
->>  	default y
->> diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
->> index 9819489..abe4f90 100644
->> --- a/drivers/usb/host/Makefile
->> +++ b/drivers/usb/host/Makefile
->> @@ -49,6 +49,7 @@ obj-$(CONFIG_USB_EHCI_ZYNQ) += ehci-zynq.o
->>  # xhci
->>  obj-$(CONFIG_USB_XHCI_HCD) += xhci.o xhci-mem.o xhci-ring.o
->>  obj-$(CONFIG_USB_XHCI_DWC3) += xhci-dwc3.o
->> +obj-$(CONFIG_USB_XHCI_DWC3_OF_SIMPLE) += dwc3-of-simple.o
->>  obj-$(CONFIG_USB_XHCI_ROCKCHIP) += xhci-rockchip.o
->>  obj-$(CONFIG_USB_XHCI_ZYNQMP) += xhci-zynqmp.o
->>  obj-$(CONFIG_USB_XHCI_KEYSTONE) += xhci-keystone.o
->> diff --git a/drivers/usb/host/dwc3-of-simple.c b/drivers/usb/host/dwc3-of-simple.c
->> new file mode 100644
->> index 0000000..826a996
->> --- /dev/null
->> +++ b/drivers/usb/host/dwc3-of-simple.c
->> @@ -0,0 +1,187 @@
->> +/*
->> + * dwc3-of-simple.c - OF glue layer for simple integrations
->> + *
->> + * Copyright (c) 2015 Texas Instruments Incorporated - http://www.ti.com
->> + *
->> + * Author: Felipe Balbi <balbi@ti.com>
->> + *
->> + * Copyright (C) 2018 BayLibre, SAS
->> + * Author: Neil Armstrong <narmstron@baylibre.com>
->> + *
->> + * SPDX-License-Identifier:     GPL-2.0+
->> + */
->> +
->> +#include <common.h>
->> +#include <dm.h>
->> +#include <fdtdec.h>
->> +#include <reset.h>
->> +#include <clk.h>
->> +
->> +DECLARE_GLOBAL_DATA_PTR;
->> +
->> +struct dwc3_of_simple {
->> +#if CONFIG_IS_ENABLED(CLK)
->> +	struct clk		*clks;
->> +	int			num_clocks;
->> +#endif
->> +#if CONFIG_IS_ENABLED(DM_RESET)
->> +	struct reset_ctl	*resets;
->> +	int			num_resets;
->> +#endif
->> +};
->> +
->> +#if CONFIG_IS_ENABLED(DM_RESET)
->> +static int dwc3_of_simple_reset_init(struct udevice *dev,
->> +				     struct dwc3_of_simple *simple,
->> +				     int count)
->> +{
->> +	int i, ret, err;
+>>  struct xhci_dwc3_platdata {
+>> -	struct phy usb_phy;
+>> -	struct phy usb3_phy;
+>> +	struct phy *usb_phys;
+>> +	int num_phys;
+>>  };
+>>  
+>>  void dwc3_set_mode(struct dwc3 *dwc3_reg, u32 mode)
+>> @@ -113,45 +113,74 @@ void dwc3_set_fladj(struct dwc3 *dwc3_reg, u32 val)
+>>  }
+>>  
+>>  #ifdef CONFIG_DM_USB
+>> -static int xhci_dwc3_setup_phy(struct udevice *dev, int index, struct phy *phy)
+>> +static int xhci_dwc3_setup_phy(struct udevice *dev, int count)
+>>  {
+>> -	int ret = 0;
+>> +	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
+>> +	int i, ret;
 >> +
 >> +	if (!count)
 >> +		return 0;
->> +
->> +	simple->resets = devm_kcalloc(dev, count, sizeof(struct reset_ctl),
->> +				      GFP_KERNEL);
->> +	if (!simple->resets)
+>>  
+>> -	ret = generic_phy_get_by_index(dev, index, phy);
+>> -	if (ret) {
+>> -		if (ret != -ENOENT) {
+>> -			pr_err("Failed to get USB PHY for %s\n", dev->name);
+>> +	plat->usb_phys = devm_kcalloc(dev, count, sizeof(struct phy),
+>> +					GFP_KERNEL);
+>> +	if (!plat->usb_phys)
 >> +		return -ENOMEM;
 >> +
 >> +	for (i = 0; i < count; i++) {
->> +		ret = reset_get_by_index(dev, i, &simple->resets[i]);
->> +		if (ret < 0)
->> +			break;
+>> +		ret = generic_phy_get_by_index(dev, i, &plat->usb_phys[i]);
+>> +		if (ret && ret != -ENOENT) {
+>> +			pr_err("Failed to get USB PHY%d for %s\n",
+>> +			       i, dev->name);
+>>  			return ret;
+>>  		}
+>> -	} else {
+>> -		ret = generic_phy_init(phy);
 >> +
->> +		ret = reset_request(&simple->resets[i]);
->> +		if (ret) {
->> +			pr_err("failed to request reset line %d\n", i);
->> +			reset_free(&simple->resets[i]);
->> +			goto reset_err;
->> +		}
->> +
->> +		
->> +		++simple->num_resets;
+>> +		++plat->num_phys;
 >> +	}
->> +
->> +	for (i = 0; i < simple->num_resets; i++) {
->> +		ret = reset_deassert(&simple->resets[i]);
->> +		if (ret && ret != -ENOSYS && ret != -ENOTSUPP) {
->> +			pr_err("failed to deassert reset line %d\n", i);
->> +			goto reset_err;
->> +		}
+>> +	
+>> +	for (i = 0; i < plat->num_phys; i++) {
+>> +		ret = generic_phy_init(&plat->usb_phys[i]);
+>>  		if (ret) {
+>> -			pr_err("Can't init USB PHY for %s\n", dev->name);
+>> -			return ret;
+>> +			pr_err("Can't init USB PHY%d for %s\n",
+>> +			       i, dev->name);
+>> +			goto phys_err;
+>>  		}
+>> -		ret = generic_phy_power_on(phy);
 >> +	}
+>> +	
+>> +	for (i = 0; i < plat->num_phys; i++) {
+>> +		ret = generic_phy_power_on(&plat->usb_phys[i]);
+>>  		if (ret) {
+>> -			pr_err("Can't power on USB PHY for %s\n", dev->name);
+>> -			generic_phy_exit(phy);
+>> -			return ret;
+>> +			pr_err("Can't power USB PHY%d for %s\n",
+>> +			       i, dev->name);
+>> +			goto phys_err;
+>>  		}
+>>  	}
+>>  
+>>  	return 0;
 >> +
->> +	return 0;
+>> +phys_err:
+>> +	for (; i >= 0; i--) {
+>> +		generic_phy_power_off(&plat->usb_phys[i]);
+>> +		generic_phy_exit(&plat->usb_phys[i]);
+>> +	}
 > 
-> This looks like some driver I've seen before. Isn't there similar code
-> for simple EHCI or OHCI driver already ?
+> This will not work if all the PHYs are inited, but the power up function
+> fails -- at that point the phy_exit will not be called for all inited PHys.
 > 
 
-Hi,
-
-This is not an EHCI/OHCI driver, only the glue to init the clocks and reset,
-it's the exact same as the drivers/usb/dwc3/dwc3-of-simple.c adapted to U-Boot.
-
-yes, similar code exists in drivers/usb/host/ehci-generic.c and
-drivers/usb/host/ohci-generic.c but the goal here is not to initialize the controller
-but only the glue.
-
-The device tree representation is :
-glue@ {
-	compatible = "amlogic,meson-gxl-dwc3";
-	clocks = <>;
-	resets = <>;
-
-	dwc3@ {
-		compatible = "snps,dwc3";
-		clocks = <>;
-		phys = <>;
-	};
-};
+Ok will split in 2 parts.
 
 Neil
