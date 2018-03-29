@@ -1,95 +1,50 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 29 Mar 2018 10:42:58 +0200
-Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
-In-Reply-To: <20171203091713.22029-4-b.galvani@gmail.com>
-References: <20171203091713.22029-1-b.galvani@gmail.com>
- <20171203091713.22029-4-b.galvani@gmail.com>
-Message-ID: <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
+From: lkp@intel.com (kbuild test robot)
+Date: Thu, 29 Mar 2018 16:59:51 +0800
+Subject: [PATCH v3 1/3] arm64: dts: meson-axg: add AO clock driver DT info
+In-Reply-To: <20180328030130.240336-2-yixun.lan@amlogic.com>
+References: <20180328030130.240336-2-yixun.lan@amlogic.com>
+Message-ID: <201803291636.a7yizm7C%fengguang.wu@intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Beniamino,
+Hi Qiufang,
 
-On 03/12/2017 10:17, Beniamino Galvani wrote:
-> Introduce a basic clock driver for Amlogic Meson SoCs which supports
-> enabling/disabling clock gates and getting their frequency.
-> 
-> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
-> ---
->  arch/arm/mach-meson/Kconfig |   2 +
->  drivers/clk/Makefile        |   1 +
->  drivers/clk/clk_meson.c     | 196 ++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 199 insertions(+)
->  create mode 100644 drivers/clk/clk_meson.c
-> 
-> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-> index d4bd230be3..7acee3bc5c 100644
-> --- a/arch/arm/mach-meson/Kconfig
-> +++ b/arch/arm/mach-meson/Kconfig
+Thank you for the patch! Yet something to improve:
 
-[...]
-> +
-> +static int meson_set_gate(struct clk *clk, bool on)
-> +{
-> +	struct meson_clk *priv = dev_get_priv(clk->dev);
-> +	struct meson_gate *gate;
-> +
-> +	if (clk->id >= ARRAY_SIZE(gates))
-> +		return -ENOENT;
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on v4.16-rc7]
+[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
 
-This should be -ENOSYS, otherwise it breaks the ethernet driver since it waits -ENOSYS if clock cannot be enabled.
+url:    https://github.com/0day-ci/linux/commits/Yixun-Lan/ARM64-dts-meson-axg-add-AO-clock-driver/20180329-134803
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-defconfig (attached as .config)
+compiler: aarch64-linux-gnu-gcc (Debian 7.2.0-11) 7.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # save the attached .config to linux build tree
+        make.cross ARCH=arm64 
 
-> +
-> +	gate = &gates[clk->id];
-> +
-> +	if (gate->reg == 0)
-> +		return -ENOENT;
+All errors (new ones prefixed by >>):
 
-Same here -ENOSYS
+   In file included from arch/arm64/boot/dts/amlogic/meson-axg-s400.dts:9:0:
+>> arch/arm64/boot/dts/amlogic/meson-axg.dtsi:11:10: fatal error: dt-bindings/clock/axg-aoclkc.h: No such file or directory
+    #include <dt-bindings/clock/axg-aoclkc.h>
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
 
-> +
-> +	clrsetbits_le32(priv->addr + gate->reg,
-> +			BIT(gate->bit), on ? BIT(gate->bit) : 0);
-> +	return 0;
-> +}
-> +
-> +static int meson_clk_enable(struct clk *clk)
-> +{
-> +	return meson_set_gate(clk, true);
-> +}
-> +
-> +static int meson_clk_disable(struct clk *clk)
-> +{
-> +	return meson_set_gate(clk, false);
-> +}
-> +
-> +static ulong meson_clk_get_rate(struct clk *clk)
-> +{
-> +	struct meson_clk *priv = dev_get_priv(clk->dev);
-> +
-> +	if (clk->id != CLKID_CLK81) {
-> +		if (clk->id >= ARRAY_SIZE(gates))
-> +			return -ENOENT;
+vim +11 arch/arm64/boot/dts/amlogic/meson-axg.dtsi
 
-Same here -ENOSYS
+  > 11	#include <dt-bindings/clock/axg-aoclkc.h>
+    12	
 
-> +		if (gates[clk->id].reg == 0)
-> +			return -ENOENT;
-
-Same here -ENOSYS
-
-> +	}
-> +
-> +	/* Use cached value if available */
-> +	if (priv->rate)
-> +		return priv->rate;
-> +
-> +	priv->rate = meson_measure_clk_rate(CLK_81);
-> +
-> +	return priv->rate;
-> +}
-> +
-
-[...]
-
-Neil
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: .config.gz
+Type: application/gzip
+Size: 37934 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180329/321d2e53/attachment.gz>
