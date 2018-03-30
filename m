@@ -1,58 +1,43 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 30 Mar 2018 13:09:31 +0200
-Subject: [PATCH 3/3] iio: adc: meson-axg: add saradc driver
-In-Reply-To: <20180326084629.100070-4-yixun.lan@amlogic.com>
-References: <20180326084629.100070-1-yixun.lan@amlogic.com>
- <20180326084629.100070-4-yixun.lan@amlogic.com>
-Message-ID: <CAFBinCCK+Y0QAHcGDXvXvSqChS91XK5C6d5XunkmUVBQa4nn+Q@mail.gmail.com>
+From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
+Date: Fri, 30 Mar 2018 16:27:21 +0200
+Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
+In-Reply-To: <CAPnjgZ0Mf6A2KxSDHcaT2wASOYCfxgh9x=8Y5y2+eSpY-Ws+yQ@mail.gmail.com>
+References: <20171203091713.22029-1-b.galvani@gmail.com>
+ <20171203091713.22029-4-b.galvani@gmail.com>
+ <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
+ <CAPnjgZ176Z7gjh=zvpzFvWEp=XrA6jML4UmgxSzc_WfDqyOJbw@mail.gmail.com>
+ <37e9510f-8150-9c4e-e3b9-3938d637c650@baylibre.com>
+ <CAPnjgZ0Mf6A2KxSDHcaT2wASOYCfxgh9x=8Y5y2+eSpY-Ws+yQ@mail.gmail.com>
+Message-ID: <5695d6af-fbb3-fc16-9a6a-fbd360e4e4f0@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Mar 26, 2018 at 10:46 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
-> From: Xingyu Chen <xingyu.chen@amlogic.com>
->
-> Add the SAR ADC driver for the Amlogic Meson-AXG SoC.
->
-> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-I suggest changing the subject of this patch to:
-iio: adc: meson-saradc: add support for Meson AXG
+Hi guys,
 
-(because "iio: adc: meson-axg" does not point to the "meson-saradc"
-driver and no new driver is added with this patch)
+Am 30.03.2018 um 10:41 schrieb Simon Glass:
+> On 30 March 2018 at 15:53, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> On 30/03/2018 00:41, Simon Glass wrote:
+>>> On 29 March 2018 at 16:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>>> On 03/12/2017 10:17, Beniamino Galvani wrote:
+>>>>> +
+>>>>> +     gate = &gates[clk->id];
+>>>>> +
+>>>>> +     if (gate->reg == 0)
+>>>>> +             return -ENOENT;
+>>>>
+>>>> Same here -ENOSYS
+>>
+>> Here thsi means it's not a gate.
+> 
+> Yes, but the driver still supports the operation. The problem is that
+> its inputs are invalid. So use -ENOENT to mean that.
 
-with that:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Isn't that the definition of -EINVAL?
 
-> ---
->  drivers/iio/adc/meson_saradc.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 799ed929ab99..a5d481a2b4ef 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -935,6 +935,11 @@ static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
->         .name = "meson-gxm-saradc",
->  };
->
-> +static const struct meson_sar_adc_data meson_sar_adc_axg_data = {
-> +       .param = &meson_sar_adc_gxl_param,
-> +       .name = "meson-axg-saradc",
-> +};
-> +
->  static const struct of_device_id meson_sar_adc_of_match[] = {
->         {
->                 .compatible = "amlogic,meson8-saradc",
-> @@ -953,6 +958,9 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
->         }, {
->                 .compatible = "amlogic,meson-gxm-saradc",
->                 .data = &meson_sar_adc_gxm_data,
-> +       }, {
-> +               .compatible = "amlogic,meson-axg-saradc",
-> +               .data = &meson_sar_adc_axg_data,
->         },
->         {},
->  };
-> --
-> 2.15.1
->
+Cheers,
+Andreas
+
+-- 
+SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
+GF: Felix Imend?rffer, Jane Smithard, Graham Norton
+HRB 21284 (AG N?rnberg)
