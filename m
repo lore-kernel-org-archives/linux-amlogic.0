@@ -1,48 +1,130 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 30 Mar 2018 01:00:35 +0200
-Subject: [PATCH net-next v1 2/2] net: stmmac: dwmac-meson8b: Add support for
- the Meson8m2 SoC
-In-Reply-To: <20180329230035.20958-1-martin.blumenstingl@googlemail.com>
-References: <20180329230035.20958-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180329230035.20958-3-martin.blumenstingl@googlemail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 30 Mar 2018 09:53:52 +0200
+Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
+In-Reply-To: <CAPnjgZ176Z7gjh=zvpzFvWEp=XrA6jML4UmgxSzc_WfDqyOJbw@mail.gmail.com>
+References: <20171203091713.22029-1-b.galvani@gmail.com>
+ <20171203091713.22029-4-b.galvani@gmail.com>
+ <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
+ <CAPnjgZ176Z7gjh=zvpzFvWEp=XrA6jML4UmgxSzc_WfDqyOJbw@mail.gmail.com>
+Message-ID: <37e9510f-8150-9c4e-e3b9-3938d637c650@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Meson8m2 SoC uses a similar (potentially even identical) register
-layout as the Meson8b and GXBB SoCs for the dwmac glue.
-Add a new compatible string and update the module description to
-indicate support for these SoCs.
+On 30/03/2018 00:41, Simon Glass wrote:
+> Hi Neil,
+> 
+> On 29 March 2018 at 16:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> Hi Beniamino,
+>>
+>> On 03/12/2017 10:17, Beniamino Galvani wrote:
+>>> Introduce a basic clock driver for Amlogic Meson SoCs which supports
+>>> enabling/disabling clock gates and getting their frequency.
+>>>
+>>> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+>>> ---
+>>>  arch/arm/mach-meson/Kconfig |   2 +
+>>>  drivers/clk/Makefile        |   1 +
+>>>  drivers/clk/clk_meson.c     | 196 ++++++++++++++++++++++++++++++++++++++++++++
+>>>  3 files changed, 199 insertions(+)
+>>>  create mode 100644 drivers/clk/clk_meson.c
+>>>
+>>> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+>>> index d4bd230be3..7acee3bc5c 100644
+>>> --- a/arch/arm/mach-meson/Kconfig
+>>> +++ b/arch/arm/mach-meson/Kconfig
+>>
+>> [...]
+>>> +
+>>> +static int meson_set_gate(struct clk *clk, bool on)
+>>> +{
+>>> +     struct meson_clk *priv = dev_get_priv(clk->dev);
+>>> +     struct meson_gate *gate;
+>>> +
+>>> +     if (clk->id >= ARRAY_SIZE(gates))
+>>> +             return -ENOENT;
+>>
+>> This should be -ENOSYS, otherwise it breaks the ethernet driver since it waits -ENOSYS if clock cannot be enabled.
+> 
+> Perhaps, but this is a genuine error, so it is OK to break the
+> Ethernet driver, isn't it? We don't want errors to be silently
+> ignored.
+> 
+> Not having a device is one thing, but having a device that does not work is bad.
+> 
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+The driver only manages the gates, enabling and disabling them and getting their freq.
+The missing clocks of the ethernet driver in this case are dividers of the PLL, thus
+we don't need to enable them, and for now the driver don't need the freq.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 2d5d4aea3bcb..7cb794094a70 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -1,5 +1,5 @@
- /*
-- * Amlogic Meson8b and GXBB DWMAC glue layer
-+ * Amlogic Meson8b, Meson8m2 and GXBB DWMAC glue layer
-  *
-  * Copyright (C) 2016 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-  *
-@@ -318,6 +318,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 
- static const struct of_device_id meson8b_dwmac_match[] = {
- 	{ .compatible = "amlogic,meson8b-dwmac" },
-+	{ .compatible = "amlogic,meson8m2-dwmac" },
- 	{ .compatible = "amlogic,meson-gxbb-dwmac" },
- 	{ }
- };
-@@ -335,5 +336,5 @@ static struct platform_driver meson8b_dwmac_driver = {
- module_platform_driver(meson8b_dwmac_driver);
- 
- MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
--MODULE_DESCRIPTION("Amlogic Meson8b and GXBB DWMAC glue layer");
-+MODULE_DESCRIPTION("Amlogic Meson8b, Meson8m2 and GXBB DWMAC glue layer");
- MODULE_LICENSE("GPL v2");
--- 
-2.16.3
+> Also I have tried to keep -ENOSYS for cases where the driver does not
+> support the operation. We should be very clear in clk-uclass.h as to
+> what errors are returned. At present I don't see ENOSYS mentioned. At
+> the very least we should update the docs if certain behaviour is
+> expected. I would also expect us to have a sandbox test for it.
+
+In this case, the driver does not support the operation for these clocks, but maybe it would be
+better to add them with reg=0 and return -ENOSYS in the following return :
+
+> 
+>>
+>>> +
+>>> +     gate = &gates[clk->id];
+>>> +
+>>> +     if (gate->reg == 0)
+>>> +             return -ENOENT;
+>>
+>> Same here -ENOSYS
+
+Here thsi means it's not a gate.
+
+>>
+>>> +
+>>> +     clrsetbits_le32(priv->addr + gate->reg,
+>>> +                     BIT(gate->bit), on ? BIT(gate->bit) : 0);
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static int meson_clk_enable(struct clk *clk)
+>>> +{
+>>> +     return meson_set_gate(clk, true);
+>>> +}
+>>> +
+>>> +static int meson_clk_disable(struct clk *clk)
+>>> +{
+>>> +     return meson_set_gate(clk, false);
+>>> +}
+>>> +
+>>> +static ulong meson_clk_get_rate(struct clk *clk)
+>>> +{
+>>> +     struct meson_clk *priv = dev_get_priv(clk->dev);
+>>> +
+>>> +     if (clk->id != CLKID_CLK81) {
+>>> +             if (clk->id >= ARRAY_SIZE(gates))
+>>> +                     return -ENOENT;
+>>
+>> Same here -ENOSYS
+>>
+>>> +             if (gates[clk->id].reg == 0)
+>>> +                     return -ENOENT;
+>>
+>> Same here -ENOSYS
+>>
+>>> +     }
+>>> +
+>>> +     /* Use cached value if available */
+>>> +     if (priv->rate)
+>>> +             return priv->rate;
+>>> +
+>>> +     priv->rate = meson_measure_clk_rate(CLK_81);
+>>> +
+>>> +     return priv->rate;
+>>> +}
+>>> +
+>>
+>> [...]
+>>
+>> Neil
+> 
+> Regards,
+> Simon
+> 
