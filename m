@@ -1,53 +1,54 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 30 Mar 2018 10:53:49 +0200
-Subject: [PATCH u-boot] clk: Add get/enable/disable/release for a bulk of
- clocks
-Message-ID: <1522400029-13321-1-git-send-email-narmstrong@baylibre.com>
+Date: Fri, 30 Mar 2018 10:54:50 +0200
+Subject: [PATCH u-boot] reset: Add get/assert/deassert/release for bulk of
+ reset signals
+Message-ID: <1522400090-13501-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch adds a "bulk" API to the clock API in order to get/enable/disable
-/release a group of clocks associated with a device.
+This patch adds a "bulk" API to the reset API in order to get/deassert/
+assert/release a group of reset signals associated with a device.
 
 This bulk API will avoid adding a copy of the same code to manage
-a group of clocks in drivers.
+a group of reset signals in drivers.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
-This serie and the "reset bulk" serie is necessary and suggested by Marek Vasut
+This serie and the "clk bulk" serie is necessary and suggested by Marek Vasut
 for the "Add USB Support for Amlogic Meson GXL SoCs" to avoid adding the same
 code to manage a bulk of clocks and resets in another driver.
 I will push a RFC code to update the other drivers having a similar
 code pattern when these patches are merged.
 
- drivers/clk/clk-uclass.c | 59 +++++++++++++++++++++++++++++++++++++++
- include/clk.h            | 72 +++++++++++++++++++++++++++++++++++++++++++++++-
- 2 files changed, 130 insertions(+), 1 deletion(-)
+ drivers/reset/reset-uclass.c | 60 +++++++++++++++++++++++++++
+ include/reset.h              | 99 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 159 insertions(+)
 
-diff --git a/drivers/clk/clk-uclass.c b/drivers/clk/clk-uclass.c
-index ad76379..6e99b3b 100644
---- a/drivers/clk/clk-uclass.c
-+++ b/drivers/clk/clk-uclass.c
-@@ -104,6 +104,39 @@ int clk_get_by_index(struct udevice *dev, int index, struct clk *clk)
- 	return clk_get_by_indexed_prop(dev, "clocks", index, clk);
+diff --git a/drivers/reset/reset-uclass.c b/drivers/reset/reset-uclass.c
+index 307a297..9a5c9c9 100644
+--- a/drivers/reset/reset-uclass.c
++++ b/drivers/reset/reset-uclass.c
+@@ -81,6 +81,40 @@ int reset_get_by_index(struct udevice *dev, int index,
+ 	return 0;
  }
  
-+int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
++int reset_get_bulk(struct udevice *dev, struct reset_ctl_bulk *bulk)
 +{
 +	int i, ret, err, count;
 +	
 +	bulk->count = 0;
 +
-+	count = dev_count_phandle_with_args(dev, "clocks", "#clock-cells");
++	count = dev_count_phandle_with_args(dev, "resets", "#reset-cells");
 +	if (!count)
 +		return 0;
 +
-+	bulk->clks = devm_kcalloc(dev, count, sizeof(struct clk), GFP_KERNEL);
-+	if (!bulk->clks)
++	bulk->resets = devm_kcalloc(dev, count, sizeof(struct reset_ctl),
++				    GFP_KERNEL);
++	if (!bulk->resets)
 +		return -ENOMEM;
 +
 +	for (i = 0; i < count; i++) {
-+		ret = clk_get_by_index(dev, i, &bulk->clks[i]);
++		ret = reset_get_by_index(dev, i, &bulk->resets[i]);
 +		if (ret < 0)
 +			goto bulk_get_err;
 +
@@ -57,180 +58,217 @@ index ad76379..6e99b3b 100644
 +	return 0;
 +
 +bulk_get_err:
-+	err = clk_release_all(bulk->clks, bulk->count);
++	err = reset_release_all(bulk->resets, bulk->count);
 +	if (err)
-+		debug("%s: could release all clocks for %p\n",
++		debug("%s: could release all resets for %p\n",
 +		      __func__, dev);
 +
 +	return ret;
 +}
 +
- static int clk_set_default_parents(struct udevice *dev)
+ int reset_get_by_name(struct udevice *dev, const char *name,
+ 		     struct reset_ctl *reset_ctl)
  {
- 	struct clk clk, parent_clk;
-@@ -336,6 +369,19 @@ int clk_enable(struct clk *clk)
- 	return ops->enable(clk);
+@@ -126,6 +160,19 @@ int reset_assert(struct reset_ctl *reset_ctl)
+ 	return ops->rst_assert(reset_ctl);
  }
  
-+int clk_enable_bulk(struct clk_bulk *bulk)
++int reset_assert_bulk(struct reset_ctl_bulk *bulk)
 +{
 +	int i, ret;
 +
 +	for (i = 0; i < bulk->count; i++) {
-+		ret = clk_enable(&bulk->clks[i]);
-+		if (ret < 0 && ret != -ENOSYS)
++		ret = reset_assert(&bulk->resets[i]);
++		if (ret < 0)
 +			return ret;
 +	}
 +
 +	return 0;
 +}
 +
- int clk_disable(struct clk *clk)
+ int reset_deassert(struct reset_ctl *reset_ctl)
  {
- 	const struct clk_ops *ops = clk_dev_ops(clk->dev);
-@@ -348,6 +394,19 @@ int clk_disable(struct clk *clk)
- 	return ops->disable(clk);
+ 	struct reset_ops *ops = reset_dev_ops(reset_ctl->dev);
+@@ -135,6 +182,19 @@ int reset_deassert(struct reset_ctl *reset_ctl)
+ 	return ops->rst_deassert(reset_ctl);
  }
  
-+int clk_disable_bulk(struct clk_bulk *bulk)
++int reset_deassert_bulk(struct reset_ctl_bulk *bulk)
 +{
 +	int i, ret;
 +
 +	for (i = 0; i < bulk->count; i++) {
-+		ret = clk_disable(&bulk->clks[i]);
-+		if (ret < 0 && ret != -ENOSYS)
++		ret = reset_deassert(&bulk->resets[i]);
++		if (ret < 0)
 +			return ret;
 +	}
 +
 +	return 0;
 +}
 +
- UCLASS_DRIVER(clk) = {
- 	.id		= UCLASS_CLK,
- 	.name		= "clk",
-diff --git a/include/clk.h b/include/clk.h
-index a7d95d3..b3a9fce 100644
---- a/include/clk.h
-+++ b/include/clk.h
-@@ -60,6 +60,23 @@ struct clk {
+ int reset_release_all(struct reset_ctl *reset_ctl, int count)
+ {
+ 	int i, ret;
+diff --git a/include/reset.h b/include/reset.h
+index 7185ade..d38f176 100644
+--- a/include/reset.h
++++ b/include/reset.h
+@@ -60,6 +60,24 @@ struct reset_ctl {
  	unsigned long id;
  };
  
 +/**
-+ * struct clk_bulk - A handle to (allowing control of) a bulk of clocks.
++ * struct reset_ctl_bulk - A handle to (allowing control of) a bulk of reset
++ * signals.
 + *
-+ * Clients provide storage for the clock bulk. The content of the structure is
-+ * managed solely by the clock API. A clock bulk struct is
-+ * initialized by "get"ing the clock bulk struct.
-+ * The clock bulk struct is passed to all other bulk clock APIs to apply
-+ * the API to all the clock in the bulk struct.
++ * Clients provide storage for the reset control bulk. The content of the
++ * structure is managed solely by the reset API. A reset control bulk struct is
++ * initialized by "get"ing the reset control bulk struct.
++ * The reset control bulk struct is passed to all other bulk reset APIs to apply
++ * the API to all the reset signals in the bulk struct.
 + *
-+ * @clks: An array of clock handles.
-+ * @count: The number of clock handles in the clks array.
++ * @resets: An array of reset signal handles handles.
++ * @count: The number of reset signal handles in the reset array.
 + */
-+struct clk_bulk {
-+	struct clk *clks;
++struct reset_ctl_bulk {
++	struct reset_ctl *resets;
 +	unsigned int count;
 +};
 +
- #if CONFIG_IS_ENABLED(OF_CONTROL) && CONFIG_IS_ENABLED(CLK)
- struct phandle_1_arg;
- int clk_get_by_index_platdata(struct udevice *dev, int index,
-@@ -83,6 +100,21 @@ int clk_get_by_index_platdata(struct udevice *dev, int index,
- int clk_get_by_index(struct udevice *dev, int index, struct clk *clk);
+ #ifdef CONFIG_DM_RESET
+ /**
+  * reset_get_by_index - Get/request a reset signal by integer index.
+@@ -81,6 +99,22 @@ int reset_get_by_index(struct udevice *dev, int index,
+ 		       struct reset_ctl *reset_ctl);
  
  /**
-+ * clock_get_bulk - Get/request all clocks of a device.
++ * reset_get_bulk - Get/request all reset signals of a device.
 + *
-+ * This looks up and requests all clocks of the client device; each device is
-+ * assumed to have n clocks associated with it somehow, and this function finds
-+ * and requests all of them in a separate structure. The mapping of client
-+ * device clock indices to provider clocks may be via device-tree properties,
-+ * board-provided mapping tables, or some other mechanism.
++ * This looks up and requests all reset signals of the client device; each
++ * device is assumed to have n reset signals associated with it somehow,
++ * and this function finds and requests all of them in a separate structure.
++ * The mapping of client device reset signals indices to provider reset signals
++ * may be via device-tree properties, board-provided mapping tables, or some
++ * other mechanism.
 + *
 + * @dev:	The client device.
-+ * @bulk	A pointer to a clock bulk struct to initialize.
++ * @bulk	A pointer to a reset control bulk struct to initialize.
 + * @return 0 if OK, or a negative error code.
 + */
-+int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk);
++int reset_get_bulk(struct udevice *dev, struct reset_ctl_bulk *bulk);
 +
 +/**
-  * clock_get_by_name - Get/request a clock by name.
+  * reset_get_by_name - Get/request a reset signal by name.
   *
-  * This looks up and requests a clock. The name is relative to the client
-@@ -120,6 +152,11 @@ static inline int clk_get_by_index(struct udevice *dev, int index,
- 	return -ENOSYS;
- }
- 
-+static inline int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
-+{
-+	return -ENOSYS;
-+}
-+
- static inline int clk_get_by_name(struct udevice *dev, const char *name,
- 			   struct clk *clk)
- {
-@@ -130,7 +167,6 @@ static inline int clk_release_all(struct clk *clk, int count)
- {
- 	return -ENOSYS;
- }
--
- #endif
- 
- #if (CONFIG_IS_ENABLED(OF_CONTROL) && !CONFIG_IS_ENABLED(OF_PLATDATA)) && \
-@@ -151,6 +187,22 @@ static inline int clk_set_defaults(struct udevice *dev)
- #endif
+  * This looks up and requests a reset signal. The name is relative to the
+@@ -132,6 +166,21 @@ int reset_free(struct reset_ctl *reset_ctl);
+ int reset_assert(struct reset_ctl *reset_ctl);
  
  /**
-+ * clk_release_bulk() - Disable (turn off)/Free an array of previously
-+ * requested clocks in a clock bulk struct.
++ * reset_assert_bulk - Assert all reset signals in a reset control bulk struct.
 + *
-+ * For each clock contained in the clock bulk struct, this function will check
-+ * if clock has been previously requested and then will disable and free it.
++ * This function will assert the specified reset signals in a reset control
++ * bulk struct, thus resetting the affected HW module(s). Depending on the
++ * reset controller hardware, the reset signals will either stay asserted
++ * until reset_deassert_bulk() is called, or the hardware may autonomously
++ * clear the reset signals itself.
 + *
-+ * @clk:	A clock bulk struct that was previously successfully
-+ *		requested by clk_get_bulk().
-+ * @return zero on success, or -ve error code.
++ * @bulk:	A reset control bulk struct that was previously successfully
++ *		requested by reset_get_bulk().
++ * @return 0 if OK, or a negative error code.
 + */
-+static inline int clk_release_bulk(struct clk_bulk *bulk)
-+{
-+	return clk_release_all(bulk->clks, bulk->count);
-+}
++int reset_assert_bulk(struct reset_ctl_bulk *bulk);
 +
 +/**
-  * clk_request - Request a clock by provider-specific ID.
+  * reset_deassert - Deassert a reset signal.
   *
-  * This requests a clock using a provider-specific ID. Generally, this function
-@@ -215,6 +267,15 @@ int clk_set_parent(struct clk *clk, struct clk *parent);
- int clk_enable(struct clk *clk);
+  * This function will deassert the specified reset signal, thus releasing the
+@@ -145,6 +194,20 @@ int reset_assert(struct reset_ctl *reset_ctl);
+ int reset_deassert(struct reset_ctl *reset_ctl);
  
  /**
-+ * clk_enable_bulk() - Enable (turn on) all clocks in a clock bulk struct.
++ * reset_deassert_bulk - Deassert all reset signals in a reset control bulk
++ * struct.
 + *
-+ * @bulk:	A clock bulk struct that was previously successfully requested
-+ *		by clk_get_bulk().
-+ * @return zero on success, or -ve error code.
++ * This function will deassert the specified reset signals in a reset control
++ * bulk struct, thus releasing the affected HW modules() from reset, and
++ * allowing them to continue normal operation.
++ *
++ * @bulk:	A reset control bulk struct that was previously successfully
++ *		requested by reset_get_bulk().
++ * @return 0 if OK, or a negative error code.
 + */
-+int clk_enable_bulk(struct clk_bulk *bulk);
++int reset_deassert_bulk(struct reset_ctl_bulk *bulk);
 +
 +/**
-  * clk_disable() - Disable (turn off) a clock.
+  * reset_release_all - Assert/Free an array of previously requested resets.
   *
-  * @clk:	A clock struct that was previously successfully requested by
-@@ -223,6 +284,15 @@ int clk_enable(struct clk *clk);
+  * For each reset contained in the reset array, this function will check if
+@@ -156,6 +219,23 @@ int reset_deassert(struct reset_ctl *reset_ctl);
+  * @return 0 if OK, or a negative error code.
   */
- int clk_disable(struct clk *clk);
- 
-+/**
-+ * clk_disable_bulk() - Disable (turn off) all clocks in a clock bulk struct.
-+ *
-+ * @bulk:	A clock bulk struct that was previously successfully requested
-+ *		by clk_get_bulk().
-+ * @return zero on success, or -ve error code.
-+ */
-+int clk_disable_bulk(struct clk_bulk *bulk);
+ int reset_release_all(struct reset_ctl *reset_ctl, int count);
 +
- int soc_clk_dump(void);
++/**
++ * reset_release_bulk - Assert/Free an array of previously requested reset
++ * signals in a reset control bulk struct.
++ *
++ * For each reset contained in the reset control bulk struct, this function
++ * will check if reset has been previously requested and then will assert
++ * and free it.
++ *
++ * @bulk:	A reset control bulk struct that was previously successfully
++ *		requested by reset_get_bulk().
++ * @return 0 if OK, or a negative error code.
++ */
++static inline int reset_release_bulk(struct reset_ctl_bulk *bulk)
++{
++	return reset_release_all(bulk->resets, bulk->count);
++}
+ #else
+ static inline int reset_get_by_index(struct udevice *dev, int index,
+ 				     struct reset_ctl *reset_ctl)
+@@ -163,6 +243,11 @@ static inline int reset_get_by_index(struct udevice *dev, int index,
+ 	return -ENOTSUPP;
+ }
+ 
++static inline int reset_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
++{
++	return -ENOTSUPP;
++}
++
+ static inline int reset_get_by_name(struct udevice *dev, const char *name,
+ 				    struct reset_ctl *reset_ctl)
+ {
+@@ -179,16 +264,30 @@ static inline int reset_assert(struct reset_ctl *reset_ctl)
+ 	return 0;
+ }
+ 
++static inline int reset_assert_bulk(struct reset_ctl_bulk *bulk)
++{
++	return 0;
++}
++
+ static inline int reset_deassert(struct reset_ctl *reset_ctl)
+ {
+ 	return 0;
+ }
+ 
++static inline int reset_deassert_bulk(struct reset_ctl_bulk *bulk)
++{
++	return 0;
++}
++
+ static inline int reset_release_all(struct reset_ctl *reset_ctl, int count)
+ {
+ 	return 0;
+ }
+ 
++static inline int reset_release_bulk(struct clk_bulk *bulk)
++{
++	return 0;
++}
+ #endif
  
  #endif
 -- 
