@@ -1,151 +1,237 @@
-From: sjg@chromium.org (Simon Glass)
-Date: Fri, 30 Mar 2018 16:41:20 +0800
-Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
-In-Reply-To: <37e9510f-8150-9c4e-e3b9-3938d637c650@baylibre.com>
-References: <20171203091713.22029-1-b.galvani@gmail.com>
- <20171203091713.22029-4-b.galvani@gmail.com>
- <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
- <CAPnjgZ176Z7gjh=zvpzFvWEp=XrA6jML4UmgxSzc_WfDqyOJbw@mail.gmail.com>
- <37e9510f-8150-9c4e-e3b9-3938d637c650@baylibre.com>
-Message-ID: <CAPnjgZ0Mf6A2KxSDHcaT2wASOYCfxgh9x=8Y5y2+eSpY-Ws+yQ@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 30 Mar 2018 10:53:49 +0200
+Subject: [PATCH u-boot] clk: Add get/enable/disable/release for a bulk of
+ clocks
+Message-ID: <1522400029-13321-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+This patch adds a "bulk" API to the clock API in order to get/enable/disable
+/release a group of clocks associated with a device.
 
-On 30 March 2018 at 15:53, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> On 30/03/2018 00:41, Simon Glass wrote:
->> Hi Neil,
->>
->> On 29 March 2018 at 16:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>> Hi Beniamino,
->>>
->>> On 03/12/2017 10:17, Beniamino Galvani wrote:
->>>> Introduce a basic clock driver for Amlogic Meson SoCs which supports
->>>> enabling/disabling clock gates and getting their frequency.
->>>>
->>>> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
->>>> ---
->>>>  arch/arm/mach-meson/Kconfig |   2 +
->>>>  drivers/clk/Makefile        |   1 +
->>>>  drivers/clk/clk_meson.c     | 196 ++++++++++++++++++++++++++++++++++++++++++++
->>>>  3 files changed, 199 insertions(+)
->>>>  create mode 100644 drivers/clk/clk_meson.c
->>>>
->>>> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
->>>> index d4bd230be3..7acee3bc5c 100644
->>>> --- a/arch/arm/mach-meson/Kconfig
->>>> +++ b/arch/arm/mach-meson/Kconfig
->>>
->>> [...]
->>>> +
->>>> +static int meson_set_gate(struct clk *clk, bool on)
->>>> +{
->>>> +     struct meson_clk *priv = dev_get_priv(clk->dev);
->>>> +     struct meson_gate *gate;
->>>> +
->>>> +     if (clk->id >= ARRAY_SIZE(gates))
->>>> +             return -ENOENT;
->>>
->>> This should be -ENOSYS, otherwise it breaks the ethernet driver since it waits -ENOSYS if clock cannot be enabled.
->>
->> Perhaps, but this is a genuine error, so it is OK to break the
->> Ethernet driver, isn't it? We don't want errors to be silently
->> ignored.
->>
->> Not having a device is one thing, but having a device that does not work is bad.
->>
->
-> The driver only manages the gates, enabling and disabling them and getting their freq.
-> The missing clocks of the ethernet driver in this case are dividers of the PLL, thus
-> we don't need to enable them, and for now the driver don't need the freq.
+This bulk API will avoid adding a copy of the same code to manage
+a group of clocks in drivers.
 
-Yes but -ENOSYS means that the driver does not support the operation
-at all. Put it another way: you can't return -ENOSYS for some
-parameters and not for others.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+This serie and the "reset bulk" serie is necessary and suggested by Marek Vasut
+for the "Add USB Support for Amlogic Meson GXL SoCs" to avoid adding the same
+code to manage a bulk of clocks and resets in another driver.
+I will push a RFC code to update the other drivers having a similar
+code pattern when these patches are merged.
 
->
->> Also I have tried to keep -ENOSYS for cases where the driver does not
->> support the operation. We should be very clear in clk-uclass.h as to
->> what errors are returned. At present I don't see ENOSYS mentioned. At
->> the very least we should update the docs if certain behaviour is
->> expected. I would also expect us to have a sandbox test for it.
->
-> In this case, the driver does not support the operation for these clocks, but maybe it would be
-> better to add them with reg=0 and return -ENOSYS in the following return :
+ drivers/clk/clk-uclass.c | 59 +++++++++++++++++++++++++++++++++++++++
+ include/clk.h            | 72 +++++++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 130 insertions(+), 1 deletion(-)
 
-I don't like that - ENOENT seems better.
-
->
->>
->>>
->>>> +
->>>> +     gate = &gates[clk->id];
->>>> +
->>>> +     if (gate->reg == 0)
->>>> +             return -ENOENT;
->>>
->>> Same here -ENOSYS
->
-> Here thsi means it's not a gate.
-
-Yes, but the driver still supports the operation. The problem is that
-its inputs are invalid. So use -ENOENT to mean that.
-
->
->>>
->>>> +
->>>> +     clrsetbits_le32(priv->addr + gate->reg,
->>>> +                     BIT(gate->bit), on ? BIT(gate->bit) : 0);
->>>> +     return 0;
->>>> +}
->>>> +
->>>> +static int meson_clk_enable(struct clk *clk)
->>>> +{
->>>> +     return meson_set_gate(clk, true);
->>>> +}
->>>> +
->>>> +static int meson_clk_disable(struct clk *clk)
->>>> +{
->>>> +     return meson_set_gate(clk, false);
->>>> +}
->>>> +
->>>> +static ulong meson_clk_get_rate(struct clk *clk)
->>>> +{
->>>> +     struct meson_clk *priv = dev_get_priv(clk->dev);
->>>> +
->>>> +     if (clk->id != CLKID_CLK81) {
->>>> +             if (clk->id >= ARRAY_SIZE(gates))
->>>> +                     return -ENOENT;
->>>
->>> Same here -ENOSYS
->>>
->>>> +             if (gates[clk->id].reg == 0)
->>>> +                     return -ENOENT;
->>>
->>> Same here -ENOSYS
->>>
->>>> +     }
->>>> +
->>>> +     /* Use cached value if available */
->>>> +     if (priv->rate)
->>>> +             return priv->rate;
->>>> +
->>>> +     priv->rate = meson_measure_clk_rate(CLK_81);
->>>> +
->>>> +     return priv->rate;
->>>> +}
->>>> +
->>>
->>> [...]
->>>
->>> Neil
->>
->> Regards,
->> Simon
->>
->
-
-
-Regards,
-Simon
+diff --git a/drivers/clk/clk-uclass.c b/drivers/clk/clk-uclass.c
+index ad76379..6e99b3b 100644
+--- a/drivers/clk/clk-uclass.c
++++ b/drivers/clk/clk-uclass.c
+@@ -104,6 +104,39 @@ int clk_get_by_index(struct udevice *dev, int index, struct clk *clk)
+ 	return clk_get_by_indexed_prop(dev, "clocks", index, clk);
+ }
+ 
++int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
++{
++	int i, ret, err, count;
++	
++	bulk->count = 0;
++
++	count = dev_count_phandle_with_args(dev, "clocks", "#clock-cells");
++	if (!count)
++		return 0;
++
++	bulk->clks = devm_kcalloc(dev, count, sizeof(struct clk), GFP_KERNEL);
++	if (!bulk->clks)
++		return -ENOMEM;
++
++	for (i = 0; i < count; i++) {
++		ret = clk_get_by_index(dev, i, &bulk->clks[i]);
++		if (ret < 0)
++			goto bulk_get_err;
++
++		++bulk->count;
++	}
++
++	return 0;
++
++bulk_get_err:
++	err = clk_release_all(bulk->clks, bulk->count);
++	if (err)
++		debug("%s: could release all clocks for %p\n",
++		      __func__, dev);
++
++	return ret;
++}
++
+ static int clk_set_default_parents(struct udevice *dev)
+ {
+ 	struct clk clk, parent_clk;
+@@ -336,6 +369,19 @@ int clk_enable(struct clk *clk)
+ 	return ops->enable(clk);
+ }
+ 
++int clk_enable_bulk(struct clk_bulk *bulk)
++{
++	int i, ret;
++
++	for (i = 0; i < bulk->count; i++) {
++		ret = clk_enable(&bulk->clks[i]);
++		if (ret < 0 && ret != -ENOSYS)
++			return ret;
++	}
++
++	return 0;
++}
++
+ int clk_disable(struct clk *clk)
+ {
+ 	const struct clk_ops *ops = clk_dev_ops(clk->dev);
+@@ -348,6 +394,19 @@ int clk_disable(struct clk *clk)
+ 	return ops->disable(clk);
+ }
+ 
++int clk_disable_bulk(struct clk_bulk *bulk)
++{
++	int i, ret;
++
++	for (i = 0; i < bulk->count; i++) {
++		ret = clk_disable(&bulk->clks[i]);
++		if (ret < 0 && ret != -ENOSYS)
++			return ret;
++	}
++
++	return 0;
++}
++
+ UCLASS_DRIVER(clk) = {
+ 	.id		= UCLASS_CLK,
+ 	.name		= "clk",
+diff --git a/include/clk.h b/include/clk.h
+index a7d95d3..b3a9fce 100644
+--- a/include/clk.h
++++ b/include/clk.h
+@@ -60,6 +60,23 @@ struct clk {
+ 	unsigned long id;
+ };
+ 
++/**
++ * struct clk_bulk - A handle to (allowing control of) a bulk of clocks.
++ *
++ * Clients provide storage for the clock bulk. The content of the structure is
++ * managed solely by the clock API. A clock bulk struct is
++ * initialized by "get"ing the clock bulk struct.
++ * The clock bulk struct is passed to all other bulk clock APIs to apply
++ * the API to all the clock in the bulk struct.
++ *
++ * @clks: An array of clock handles.
++ * @count: The number of clock handles in the clks array.
++ */
++struct clk_bulk {
++	struct clk *clks;
++	unsigned int count;
++};
++
+ #if CONFIG_IS_ENABLED(OF_CONTROL) && CONFIG_IS_ENABLED(CLK)
+ struct phandle_1_arg;
+ int clk_get_by_index_platdata(struct udevice *dev, int index,
+@@ -83,6 +100,21 @@ int clk_get_by_index_platdata(struct udevice *dev, int index,
+ int clk_get_by_index(struct udevice *dev, int index, struct clk *clk);
+ 
+ /**
++ * clock_get_bulk - Get/request all clocks of a device.
++ *
++ * This looks up and requests all clocks of the client device; each device is
++ * assumed to have n clocks associated with it somehow, and this function finds
++ * and requests all of them in a separate structure. The mapping of client
++ * device clock indices to provider clocks may be via device-tree properties,
++ * board-provided mapping tables, or some other mechanism.
++ *
++ * @dev:	The client device.
++ * @bulk	A pointer to a clock bulk struct to initialize.
++ * @return 0 if OK, or a negative error code.
++ */
++int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk);
++
++/**
+  * clock_get_by_name - Get/request a clock by name.
+  *
+  * This looks up and requests a clock. The name is relative to the client
+@@ -120,6 +152,11 @@ static inline int clk_get_by_index(struct udevice *dev, int index,
+ 	return -ENOSYS;
+ }
+ 
++static inline int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
++{
++	return -ENOSYS;
++}
++
+ static inline int clk_get_by_name(struct udevice *dev, const char *name,
+ 			   struct clk *clk)
+ {
+@@ -130,7 +167,6 @@ static inline int clk_release_all(struct clk *clk, int count)
+ {
+ 	return -ENOSYS;
+ }
+-
+ #endif
+ 
+ #if (CONFIG_IS_ENABLED(OF_CONTROL) && !CONFIG_IS_ENABLED(OF_PLATDATA)) && \
+@@ -151,6 +187,22 @@ static inline int clk_set_defaults(struct udevice *dev)
+ #endif
+ 
+ /**
++ * clk_release_bulk() - Disable (turn off)/Free an array of previously
++ * requested clocks in a clock bulk struct.
++ *
++ * For each clock contained in the clock bulk struct, this function will check
++ * if clock has been previously requested and then will disable and free it.
++ *
++ * @clk:	A clock bulk struct that was previously successfully
++ *		requested by clk_get_bulk().
++ * @return zero on success, or -ve error code.
++ */
++static inline int clk_release_bulk(struct clk_bulk *bulk)
++{
++	return clk_release_all(bulk->clks, bulk->count);
++}
++
++/**
+  * clk_request - Request a clock by provider-specific ID.
+  *
+  * This requests a clock using a provider-specific ID. Generally, this function
+@@ -215,6 +267,15 @@ int clk_set_parent(struct clk *clk, struct clk *parent);
+ int clk_enable(struct clk *clk);
+ 
+ /**
++ * clk_enable_bulk() - Enable (turn on) all clocks in a clock bulk struct.
++ *
++ * @bulk:	A clock bulk struct that was previously successfully requested
++ *		by clk_get_bulk().
++ * @return zero on success, or -ve error code.
++ */
++int clk_enable_bulk(struct clk_bulk *bulk);
++
++/**
+  * clk_disable() - Disable (turn off) a clock.
+  *
+  * @clk:	A clock struct that was previously successfully requested by
+@@ -223,6 +284,15 @@ int clk_enable(struct clk *clk);
+  */
+ int clk_disable(struct clk *clk);
+ 
++/**
++ * clk_disable_bulk() - Disable (turn off) all clocks in a clock bulk struct.
++ *
++ * @bulk:	A clock bulk struct that was previously successfully requested
++ *		by clk_get_bulk().
++ * @return zero on success, or -ve error code.
++ */
++int clk_disable_bulk(struct clk_bulk *bulk);
++
+ int soc_clk_dump(void);
+ 
+ #endif
+-- 
+2.7.4
