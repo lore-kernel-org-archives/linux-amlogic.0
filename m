@@ -1,48 +1,37 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Sat, 31 Mar 2018 16:44:09 +0800
-Subject: [PATCH 3/4] clk: add Amlogic meson clock driver
-In-Reply-To: <5695d6af-fbb3-fc16-9a6a-fbd360e4e4f0@suse.de>
-References: <20171203091713.22029-1-b.galvani@gmail.com>
- <20171203091713.22029-4-b.galvani@gmail.com>
- <0f77c1b8-845c-9190-5550-a115bad9c926@baylibre.com>
- <CAPnjgZ176Z7gjh=zvpzFvWEp=XrA6jML4UmgxSzc_WfDqyOJbw@mail.gmail.com>
- <37e9510f-8150-9c4e-e3b9-3938d637c650@baylibre.com>
- <CAPnjgZ0Mf6A2KxSDHcaT2wASOYCfxgh9x=8Y5y2+eSpY-Ws+yQ@mail.gmail.com>
- <5695d6af-fbb3-fc16-9a6a-fbd360e4e4f0@suse.de>
-Message-ID: <CAPnjgZ2AdzpR+VcM53UY6Rf7CZJ36P3_2Kht8Mfao-=rUa8Wkg@mail.gmail.com>
+Date: Sat, 31 Mar 2018 16:44:16 +0800
+Subject: [PATCH u-boot] reset: Add get/assert/deassert/release for bulk of
+ reset signals
+In-Reply-To: <1522400090-13501-1-git-send-email-narmstrong@baylibre.com>
+References: <1522400090-13501-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAPnjgZ0o=gz1ZjSxNOV+8rg7mL8ELtHgQaCLxwBS9w7c2y8azA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Andreas,
+Hi Neil,
 
-On 30 March 2018 at 22:27, Andreas F?rber <afaerber@suse.de> wrote:
-> Hi guys,
+On 30 March 2018 at 16:54, Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Am 30.03.2018 um 10:41 schrieb Simon Glass:
->> On 30 March 2018 at 15:53, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>> On 30/03/2018 00:41, Simon Glass wrote:
->>>> On 29 March 2018 at 16:42, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>>> On 03/12/2017 10:17, Beniamino Galvani wrote:
->>>>>> +
->>>>>> +     gate = &gates[clk->id];
->>>>>> +
->>>>>> +     if (gate->reg == 0)
->>>>>> +             return -ENOENT;
->>>>>
->>>>> Same here -ENOSYS
->>>
->>> Here thsi means it's not a gate.
->>
->> Yes, but the driver still supports the operation. The problem is that
->> its inputs are invalid. So use -ENOENT to mean that.
+> This patch adds a "bulk" API to the reset API in order to get/deassert/
+> assert/release a group of reset signals associated with a device.
 >
-> Isn't that the definition of -EINVAL?
+> This bulk API will avoid adding a copy of the same code to manage
+> a group of reset signals in drivers.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+> This serie and the "clk bulk" serie is necessary and suggested by Marek Vasut
+> for the "Add USB Support for Amlogic Meson GXL SoCs" to avoid adding the same
+> code to manage a bulk of clocks and resets in another driver.
+> I will push a RFC code to update the other drivers having a similar
+> code pattern when these patches are merged.
+>
+>  drivers/reset/reset-uclass.c | 60 +++++++++++++++++++++++++++
+>  include/reset.h              | 99 ++++++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 159 insertions(+)
+>
 
-We tend to use that to indicate a failure to read the DT config.
-
-I should probably not have said 'invalid'. The input value is
-reasonable (it isn't -ve, for example) but the selected item does not
-exist.
+This looks good. Please can you add a sandbox test?
 
 Regards,
 Simon
