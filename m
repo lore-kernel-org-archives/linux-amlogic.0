@@ -1,67 +1,34 @@
-From: jic23@kernel.org (Jonathan Cameron)
-Date: Fri, 30 Mar 2018 13:51:13 +0100
-Subject: [PATCH 3/3] iio: adc: meson-axg: add saradc driver
-In-Reply-To: <CAFBinCCK+Y0QAHcGDXvXvSqChS91XK5C6d5XunkmUVBQa4nn+Q@mail.gmail.com>
-References: <20180326084629.100070-1-yixun.lan@amlogic.com>
- <20180326084629.100070-4-yixun.lan@amlogic.com>
- <CAFBinCCK+Y0QAHcGDXvXvSqChS91XK5C6d5XunkmUVBQa4nn+Q@mail.gmail.com>
-Message-ID: <20180330135113.1d64afd1@archlinux>
+From: sjg@chromium.org (Simon Glass)
+Date: Sat, 31 Mar 2018 16:42:08 +0800
+Subject: [PATCH u-boot] clk: Add get/enable/disable/release for a bulk of
+ clocks
+In-Reply-To: <1522400029-13321-1-git-send-email-narmstrong@baylibre.com>
+References: <1522400029-13321-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAPnjgZ2QzaA3gDEi870Q5sGoF77P1sgTAf4pCC+R+6z32Btg7A@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 30 Mar 2018 13:09:31 +0200
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+On 30 March 2018 at 16:53, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> This patch adds a "bulk" API to the clock API in order to get/enable/disable
+> /release a group of clocks associated with a device.
+>
+> This bulk API will avoid adding a copy of the same code to manage
+> a group of clocks in drivers.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+> This serie and the "reset bulk" serie is necessary and suggested by Marek Vasut
+> for the "Add USB Support for Amlogic Meson GXL SoCs" to avoid adding the same
+> code to manage a bulk of clocks and resets in another driver.
+> I will push a RFC code to update the other drivers having a similar
+> code pattern when these patches are merged.
+>
+>  drivers/clk/clk-uclass.c | 59 +++++++++++++++++++++++++++++++++++++++
+>  include/clk.h            | 72 +++++++++++++++++++++++++++++++++++++++++++++++-
+>  2 files changed, 130 insertions(+), 1 deletion(-)
+>
 
-> On Mon, Mar 26, 2018 at 10:46 AM, Yixun Lan <yixun.lan@amlogic.com> wrote:
-> > From: Xingyu Chen <xingyu.chen@amlogic.com>
-> >
-> > Add the SAR ADC driver for the Amlogic Meson-AXG SoC.
-> >
-> > Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>  
-> I suggest changing the subject of this patch to:
-> iio: adc: meson-saradc: add support for Meson AXG
-> 
-Good point - updated.
-> (because "iio: adc: meson-axg" does not point to the "meson-saradc"
-> driver and no new driver is added with this patch)
-> 
-> with that:
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Thanks, acks added to all 3 patches.
+This looks good. Please can you add a sandbox test?
 
-Jonathan
-
-> 
-> > ---
-> >  drivers/iio/adc/meson_saradc.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> > index 799ed929ab99..a5d481a2b4ef 100644
-> > --- a/drivers/iio/adc/meson_saradc.c
-> > +++ b/drivers/iio/adc/meson_saradc.c
-> > @@ -935,6 +935,11 @@ static const struct meson_sar_adc_data meson_sar_adc_gxm_data = {
-> >         .name = "meson-gxm-saradc",
-> >  };
-> >
-> > +static const struct meson_sar_adc_data meson_sar_adc_axg_data = {
-> > +       .param = &meson_sar_adc_gxl_param,
-> > +       .name = "meson-axg-saradc",
-> > +};
-> > +
-> >  static const struct of_device_id meson_sar_adc_of_match[] = {
-> >         {
-> >                 .compatible = "amlogic,meson8-saradc",
-> > @@ -953,6 +958,9 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
-> >         }, {
-> >                 .compatible = "amlogic,meson-gxm-saradc",
-> >                 .data = &meson_sar_adc_gxm_data,
-> > +       }, {
-> > +               .compatible = "amlogic,meson-axg-saradc",
-> > +               .data = &meson_sar_adc_axg_data,
-> >         },
-> >         {},
-> >  };
-> > --
-> > 2.15.1
-> >  
+Regards,
+Simon
