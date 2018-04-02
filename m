@@ -1,73 +1,79 @@
-From: marcus.folkesson@gmail.com (Marcus Folkesson)
-Date: Thu, 1 Mar 2018 08:24:42 +0100
-Subject: [PATCH v4] watchdog: add SPDX identifiers for watchdog subsystem
-In-Reply-To: <786d740d-f29c-8f09-4648-95244c06e59b@gmail.com>
-References: <20180228150209.2525-1-marcus.folkesson@gmail.com>
- <786d740d-f29c-8f09-4648-95244c06e59b@gmail.com>
-Message-ID: <20180301072432.GA8901@gmail.com>
+From: stefan.wahren@i2se.com (Stefan Wahren)
+Date: Mon, 2 Apr 2018 22:27:12 +0200 (CEST)
+Subject: [PATCH] usb: core: phy: Fix usb_phy_roothub_add_phy if
+ GENERIC_PHY=n
+In-Reply-To: <CAFBinCBX-tZpEexdv-muR9cEzFM3aLfFbeUGXo+xx4QYuiyT2A@mail.gmail.com>
+References: <1522524508-4670-1-git-send-email-stefan.wahren@i2se.com>
+ <CAFBinCBX-tZpEexdv-muR9cEzFM3aLfFbeUGXo+xx4QYuiyT2A@mail.gmail.com>
+Message-ID: <1793237046.74634.1522700832210@email.1und1.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Florian,
+Hi Martin,
 
-On Wed, Feb 28, 2018 at 03:45:43PM -0800, Florian Fainelli wrote:
-> On 02/28/2018 07:01 AM, Marcus Folkesson wrote:
-> > - Add SPDX identifier
-> > - Remove boiler plate license text
-> > - If MODULE_LICENSE and boiler plate does not match, go for boiler plate
-> >   license
-> > 
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > Acked-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-> > Acked-by: Baruch Siach <baruch@tkos.co.il>
-> > Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> > Acked-by: Keiji Hayashibara <hayashibara.keiji@socionext.com>
-> > Acked-by: Johannes Thumshirn <jth@kernel.org>
-> > Acked-by: Mans Rullgard <mans@mansr.com>
-> > Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
-> > Acked-by: Michal Simek <michal.simek@xilinx.com>
-> > Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> > Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> > Acked-by: Thierry Reding <treding@nvidia.com>
-> > Acked-by: Tomas Winkler <tomas.winkler@intel.com>
-> > Acked-by: Patrice Chotard <patrice.chotard@st.com>
-> > Acked-by: William Breathitt Gray <vilhelm.gray@gmail.com>
-> > Reviewed-by: Eric Anholt <eric@anholt.net>
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> hat am 31. M?rz 2018 um 22:12 geschrieben:
+> 
+> 
+> Hello Stefan,
+> 
+> On Sat, Mar 31, 2018 at 9:28 PM, Stefan Wahren <stefan.wahren@i2se.com> wrote:
+> > If the generic PHY support is disabled the stub of devm_of_phy_get_by_index
+> > returns ENOSYS. This corner case isn't handled properly by
+> > usb_phy_roothub_add_phy and at least breaks USB support on Raspberry Pi
+> > (bcm2835_defconfig):
+> >
+> >     dwc2 20980000.usb: dwc2_hcd_init() FAILED, returning -38
+> >     dwc2: probe of 20980000.usb failed with error -38
+> thank you for reporting and proposing a fix!
+> 
+> > Fixes: 07dbff0ddbd8 ("usb: core: add a wrapper for the USB PHYs on the HCD")
+> > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 > > ---
-> > 
-> > Notes:
-> >     v4:
-> >     	- Drop coh901327_wdt since it allready is a pending patch
-> >     v3:
-> >     	- Keep license text for ebc-c384_wdt
-> >     v2:
-> >     	- Put back removed copyright texts for meson_gxbb_wdt and coh901327_wdt
-> >     	- Change to BSD-3-Clause for meson_gxbb_wdt
-> >     v1: Please have an extra look at meson_gxbb_wdt.c
-> > 
+> >  drivers/usb/core/phy.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
+> > index 09b7c43..c89e9be 100644
+> > --- a/drivers/usb/core/phy.c
+> > +++ b/drivers/usb/core/phy.c
+> > @@ -39,7 +39,7 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
+> >         struct phy *phy = devm_of_phy_get_by_index(dev, dev->of_node, index);
+> >
+> >         if (IS_ERR_OR_NULL(phy)) {
+> > -               if (!phy || PTR_ERR(phy) == -ENODEV)
+> > +               if (!phy || PTR_ERR(phy) == -ENODEV || PTR_ERR(phy) == -ENOSYS)
+> >                         return 0;
+> >                 else
+> >                         return PTR_ERR(phy);
+> > --
+> > 2.7.4
+> I have three patches pending, one of them (the patch from [1]) touches
+> the same function:
+> - "usb: core: phy: fix return value of usb_phy_roothub_exit()" [0]
+> - "usb: core: split usb_phy_roothub_{init, alloc}" [1]
+> - "usb: core: use phy_exit during suspend if wake up is not supported" [2]
 > 
-> >  drivers/watchdog/ar7_wdt.c             | 14 +---------
+> maybe we should make it more explicit that the whole code is only
+> useful if CONFIG_GENERIC_PHY is enabled
+> what do you think about adding the following two lines at the
+> beginning of usb_phy_roothub_alloc (after patch [1] is applied, before
+> this function was basically called usb_phy_roothub_init)
+>     if (!IS_ENABLED(CONFIG_GENERIC_PHY))
+>         return NULL;
 > 
-> >  drivers/watchdog/bcm2835_wdt.c         |  5 +---
-> >  drivers/watchdog/bcm47xx_wdt.c         |  5 +---
-> >  drivers/watchdog/bcm63xx_wdt.c         |  5 +---
-> >  drivers/watchdog/bcm7038_wdt.c         | 12 ++------
-> >  drivers/watchdog/bcm_kona_wdt.c        |  9 +-----
-> 
-> >  drivers/watchdog/mtx-1_wdt.c           | 11 +-------
-> 
-> For these drivers above:
-> 
-> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
-> 
-> and it looks like you missed rdc321x_wdt.c, is there a specific reason?
+> this should even allow the compiler to optimize away some unused code
 
-Good catch!
-I will fix that, thank you.
+sounds reasonable to me.
 
-> -- 
-> Florian
+Regards
+Stefan
 
-
-Best regards
-Marcus Folkesson
+> 
+> 
+> Regards
+> Martin
+> 
+> 
+> [0] https://patchwork.kernel.org/patch/10306053/
+> [1] https://patchwork.kernel.org/patch/10311701/
+> [2] https://patchwork.kernel.org/patch/10311703/
