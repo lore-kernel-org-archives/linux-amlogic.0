@@ -1,79 +1,56 @@
-From: stefan.wahren@i2se.com (Stefan Wahren)
-Date: Mon, 2 Apr 2018 22:27:12 +0200 (CEST)
-Subject: [PATCH] usb: core: phy: Fix usb_phy_roothub_add_phy if
- GENERIC_PHY=n
-In-Reply-To: <CAFBinCBX-tZpEexdv-muR9cEzFM3aLfFbeUGXo+xx4QYuiyT2A@mail.gmail.com>
-References: <1522524508-4670-1-git-send-email-stefan.wahren@i2se.com>
- <CAFBinCBX-tZpEexdv-muR9cEzFM3aLfFbeUGXo+xx4QYuiyT2A@mail.gmail.com>
-Message-ID: <1793237046.74634.1522700832210@email.1und1.de>
+From: hverkuil@xs4all.nl (Hans Verkuil)
+Date: Tue, 3 Apr 2018 10:27:01 +0200
+Subject: [PATCHv2 1/3] dt-bindings: display: dw_hdmi.txt: add cec-disable
+ property
+In-Reply-To: <20180326072830.iphtbw5mkeciv4kj@rob-hp-laptop>
+References: <20180323125915.13986-1-hverkuil@xs4all.nl>
+ <20180323125915.13986-2-hverkuil@xs4all.nl>
+ <20180326072830.iphtbw5mkeciv4kj@rob-hp-laptop>
+Message-ID: <05e7ade1-89be-0f0f-18a5-88ff0310a70b@xs4all.nl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+On 27/03/18 00:25, Rob Herring wrote:
+> On Fri, Mar 23, 2018 at 01:59:13PM +0100, Hans Verkuil wrote:
+>> From: Hans Verkuil <hans.verkuil@cisco.com>
+>>
+>> Some boards have both a DesignWare and their own CEC controller.
+>> The CEC pin is only hooked up to their own CEC controller and not
+>> to the DW controller.
+>>
+>> Add the cec-disable property to disable the DW CEC controller.
+>>
+>> This particular situation happens on Amlogic boards that have their
+>> own meson CEC controller.
+> 
+> Seems like we could avoid this by describing how the CEC line is hooked 
+> up which could be needed for other reasons.
 
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> hat am 31. M?rz 2018 um 22:12 geschrieben:
-> 
-> 
-> Hello Stefan,
-> 
-> On Sat, Mar 31, 2018 at 9:28 PM, Stefan Wahren <stefan.wahren@i2se.com> wrote:
-> > If the generic PHY support is disabled the stub of devm_of_phy_get_by_index
-> > returns ENOSYS. This corner case isn't handled properly by
-> > usb_phy_roothub_add_phy and at least breaks USB support on Raspberry Pi
-> > (bcm2835_defconfig):
-> >
-> >     dwc2 20980000.usb: dwc2_hcd_init() FAILED, returning -38
-> >     dwc2: probe of 20980000.usb failed with error -38
-> thank you for reporting and proposing a fix!
-> 
-> > Fixes: 07dbff0ddbd8 ("usb: core: add a wrapper for the USB PHYs on the HCD")
-> > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> > ---
-> >  drivers/usb/core/phy.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
-> > index 09b7c43..c89e9be 100644
-> > --- a/drivers/usb/core/phy.c
-> > +++ b/drivers/usb/core/phy.c
-> > @@ -39,7 +39,7 @@ static int usb_phy_roothub_add_phy(struct device *dev, int index,
-> >         struct phy *phy = devm_of_phy_get_by_index(dev, dev->of_node, index);
-> >
-> >         if (IS_ERR_OR_NULL(phy)) {
-> > -               if (!phy || PTR_ERR(phy) == -ENODEV)
-> > +               if (!phy || PTR_ERR(phy) == -ENODEV || PTR_ERR(phy) == -ENOSYS)
-> >                         return 0;
-> >                 else
-> >                         return PTR_ERR(phy);
-> > --
-> > 2.7.4
-> I have three patches pending, one of them (the patch from [1]) touches
-> the same function:
-> - "usb: core: phy: fix return value of usb_phy_roothub_exit()" [0]
-> - "usb: core: split usb_phy_roothub_{init, alloc}" [1]
-> - "usb: core: use phy_exit during suspend if wake up is not supported" [2]
-> 
-> maybe we should make it more explicit that the whole code is only
-> useful if CONFIG_GENERIC_PHY is enabled
-> what do you think about adding the following two lines at the
-> beginning of usb_phy_roothub_alloc (after patch [1] is applied, before
-> this function was basically called usb_phy_roothub_init)
->     if (!IS_ENABLED(CONFIG_GENERIC_PHY))
->         return NULL;
-> 
-> this should even allow the compiler to optimize away some unused code
+So there are three situations:
 
-sounds reasonable to me.
+1) The cec pin is connected to the DW HDMI TX. That's already supported.
+2) The cec pin is not connected at all, but the CEC IP is instantiated.
+   We need the cec-disable property for that. This simply states that the
+   CEC pin is not connected.
+3) The cec pin is connected to an HDMI RX. We do not support this at the
+   moment. If we want to support this, then we need a 'hdmi-rx' phandle
+   that points to the HDMI receiver that the CEC pin is associated with.
+   This will be similar to the already existing 'hdmi-phandle' property
+   used to associate a CEC driver with an HDMI transmitter. In hindsight
+   it would have been better if 'hdmi-phandle' was named 'hdmi-tx' :-(
 
-Regards
-Stefan
+I can make a binding proposal for 3, but I have no hardware to test it,
+so I think it is better to add this only when someone has hardware. It
+will require quite a few changes to the driver and likely also the CEC core.
+
+Regards,
+
+	Hans
 
 > 
-> 
-> Regards
-> Martin
-> 
-> 
-> [0] https://patchwork.kernel.org/patch/10306053/
-> [1] https://patchwork.kernel.org/patch/10311701/
-> [2] https://patchwork.kernel.org/patch/10311703/
+>>
+>> Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
+>> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt | 3 +++
+>>  1 file changed, 3 insertions(+)
