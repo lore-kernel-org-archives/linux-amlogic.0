@@ -1,233 +1,200 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  3 Apr 2018 11:44:18 +0200
-Subject: [PATCH v2 u-boot 1/2] clk: Add get/enable/disable/release for a bulk
- of clocks
+Date: Tue,  3 Apr 2018 11:44:19 +0200
+Subject: [PATCH v2 u-boot 2/2] clk: add sandbox test for bulk API
 In-Reply-To: <1522748659-21622-1-git-send-email-narmstrong@baylibre.com>
 References: <1522748659-21622-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1522748659-21622-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1522748659-21622-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch adds a "bulk" API to the clock API in order to get/enable/disable
-/release a group of clocks associated with a device.
+This patch adds the bulk clock API tests for the sandbox test suite.
 
-This bulk API will avoid adding a copy of the same code to manage
-a group of clocks in drivers.
+It's very similar to the main test but only uses the _bulk() API and
+checks if the clocks are correctly enabled/disabled.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/clk-uclass.c | 59 +++++++++++++++++++++++++++++++++++++++
- include/clk.h            | 72 +++++++++++++++++++++++++++++++++++++++++++++++-
- 2 files changed, 130 insertions(+), 1 deletion(-)
+ arch/sandbox/include/asm/clk.h | 32 ++++++++++++++++++++++++++++++++
+ drivers/clk/clk_sandbox_test.c | 29 +++++++++++++++++++++++++++++
+ test/dm/clk.c                  | 38 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 99 insertions(+)
 
-diff --git a/drivers/clk/clk-uclass.c b/drivers/clk/clk-uclass.c
-index ad76379..6e99b3b 100644
---- a/drivers/clk/clk-uclass.c
-+++ b/drivers/clk/clk-uclass.c
-@@ -104,6 +104,39 @@ int clk_get_by_index(struct udevice *dev, int index, struct clk *clk)
- 	return clk_get_by_indexed_prop(dev, "clocks", index, clk);
- }
+diff --git a/arch/sandbox/include/asm/clk.h b/arch/sandbox/include/asm/clk.h
+index 9dc6c81..01b5ba4 100644
+--- a/arch/sandbox/include/asm/clk.h
++++ b/arch/sandbox/include/asm/clk.h
+@@ -64,6 +64,14 @@ int sandbox_clk_query_enable(struct udevice *dev, int id);
+  */
+ int sandbox_clk_test_get(struct udevice *dev);
+ /**
++ * sandbox_clk_test_get_bulk - Ask the sandbox clock test device to request its
++ * clocks with the bulk clk API.
++ *
++ * @dev:	The sandbox clock test (client) devivce.
++ * @return:	0 if OK, or a negative error code.
++ */
++int sandbox_clk_test_get_bulk(struct udevice *dev);
++/**
+  * sandbox_clk_test_get_rate - Ask the sandbox clock test device to query a
+  * clock's rate.
+  *
+@@ -91,6 +99,14 @@ ulong sandbox_clk_test_set_rate(struct udevice *dev, int id, ulong rate);
+  */
+ int sandbox_clk_test_enable(struct udevice *dev, int id);
+ /**
++ * sandbox_clk_test_enable_bulk - Ask the sandbox clock test device to enable
++ * all clocks in it's clock bulk struct.
++ *
++ * @dev:	The sandbox clock test (client) devivce.
++ * @return:	0 if OK, or a negative error code.
++ */
++int sandbox_clk_test_enable_bulk(struct udevice *dev);
++/**
+  * sandbox_clk_test_disable - Ask the sandbox clock test device to disable a
+  * clock.
+  *
+@@ -100,6 +116,14 @@ int sandbox_clk_test_enable(struct udevice *dev, int id);
+  */
+ int sandbox_clk_test_disable(struct udevice *dev, int id);
+ /**
++ * sandbox_clk_test_disable_bulk - Ask the sandbox clock test device to disable
++ * all clocks in it's clock bulk struct.
++ *
++ * @dev:	The sandbox clock test (client) devivce.
++ * @return:	0 if OK, or a negative error code.
++ */
++int sandbox_clk_test_disable_bulk(struct udevice *dev);
++/**
+  * sandbox_clk_test_free - Ask the sandbox clock test device to free its
+  * clocks.
+  *
+@@ -107,5 +131,13 @@ int sandbox_clk_test_disable(struct udevice *dev, int id);
+  * @return:	0 if OK, or a negative error code.
+  */
+ int sandbox_clk_test_free(struct udevice *dev);
++/**
++ * sandbox_clk_test_release_bulk - Ask the sandbox clock test device to release
++ * all clocks in it's clock bulk struct.
++ *
++ * @dev:	The sandbox clock test (client) devivce.
++ * @return:	0 if OK, or a negative error code.
++ */
++int sandbox_clk_test_release_bulk(struct udevice *dev);
  
-+int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
-+{
-+	int i, ret, err, count;
-+	
-+	bulk->count = 0;
-+
-+	count = dev_count_phandle_with_args(dev, "clocks", "#clock-cells");
-+	if (!count)
-+		return 0;
-+
-+	bulk->clks = devm_kcalloc(dev, count, sizeof(struct clk), GFP_KERNEL);
-+	if (!bulk->clks)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < count; i++) {
-+		ret = clk_get_by_index(dev, i, &bulk->clks[i]);
-+		if (ret < 0)
-+			goto bulk_get_err;
-+
-+		++bulk->count;
-+	}
-+
-+	return 0;
-+
-+bulk_get_err:
-+	err = clk_release_all(bulk->clks, bulk->count);
-+	if (err)
-+		debug("%s: could release all clocks for %p\n",
-+		      __func__, dev);
-+
-+	return ret;
-+}
-+
- static int clk_set_default_parents(struct udevice *dev)
- {
- 	struct clk clk, parent_clk;
-@@ -336,6 +369,19 @@ int clk_enable(struct clk *clk)
- 	return ops->enable(clk);
- }
+ #endif
+diff --git a/drivers/clk/clk_sandbox_test.c b/drivers/clk/clk_sandbox_test.c
+index 999100d..d089881 100644
+--- a/drivers/clk/clk_sandbox_test.c
++++ b/drivers/clk/clk_sandbox_test.c
+@@ -11,6 +11,7 @@
  
-+int clk_enable_bulk(struct clk_bulk *bulk)
-+{
-+	int i, ret;
-+
-+	for (i = 0; i < bulk->count; i++) {
-+		ret = clk_enable(&bulk->clks[i]);
-+		if (ret < 0 && ret != -ENOSYS)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- int clk_disable(struct clk *clk)
- {
- 	const struct clk_ops *ops = clk_dev_ops(clk->dev);
-@@ -348,6 +394,19 @@ int clk_disable(struct clk *clk)
- 	return ops->disable(clk);
- }
- 
-+int clk_disable_bulk(struct clk_bulk *bulk)
-+{
-+	int i, ret;
-+
-+	for (i = 0; i < bulk->count; i++) {
-+		ret = clk_disable(&bulk->clks[i]);
-+		if (ret < 0 && ret != -ENOSYS)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- UCLASS_DRIVER(clk) = {
- 	.id		= UCLASS_CLK,
- 	.name		= "clk",
-diff --git a/include/clk.h b/include/clk.h
-index a7d95d3..b3a9fce 100644
---- a/include/clk.h
-+++ b/include/clk.h
-@@ -60,6 +60,23 @@ struct clk {
- 	unsigned long id;
+ struct sandbox_clk_test {
+ 	struct clk clks[SANDBOX_CLK_TEST_ID_COUNT];
++	struct clk_bulk bulk;
  };
  
-+/**
-+ * struct clk_bulk - A handle to (allowing control of) a bulk of clocks.
-+ *
-+ * Clients provide storage for the clock bulk. The content of the structure is
-+ * managed solely by the clock API. A clock bulk struct is
-+ * initialized by "get"ing the clock bulk struct.
-+ * The clock bulk struct is passed to all other bulk clock APIs to apply
-+ * the API to all the clock in the bulk struct.
-+ *
-+ * @clks: An array of clock handles.
-+ * @count: The number of clock handles in the clks array.
-+ */
-+struct clk_bulk {
-+	struct clk *clks;
-+	unsigned int count;
-+};
-+
- #if CONFIG_IS_ENABLED(OF_CONTROL) && CONFIG_IS_ENABLED(CLK)
- struct phandle_1_arg;
- int clk_get_by_index_platdata(struct udevice *dev, int index,
-@@ -83,6 +100,21 @@ int clk_get_by_index_platdata(struct udevice *dev, int index,
- int clk_get_by_index(struct udevice *dev, int index, struct clk *clk);
- 
- /**
-+ * clock_get_bulk - Get/request all clocks of a device.
-+ *
-+ * This looks up and requests all clocks of the client device; each device is
-+ * assumed to have n clocks associated with it somehow, and this function finds
-+ * and requests all of them in a separate structure. The mapping of client
-+ * device clock indices to provider clocks may be via device-tree properties,
-+ * board-provided mapping tables, or some other mechanism.
-+ *
-+ * @dev:	The client device.
-+ * @bulk	A pointer to a clock bulk struct to initialize.
-+ * @return 0 if OK, or a negative error code.
-+ */
-+int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk);
-+
-+/**
-  * clock_get_by_name - Get/request a clock by name.
-  *
-  * This looks up and requests a clock. The name is relative to the client
-@@ -120,6 +152,11 @@ static inline int clk_get_by_index(struct udevice *dev, int index,
- 	return -ENOSYS;
+ static const char * const sandbox_clk_test_names[] = {
+@@ -34,6 +35,13 @@ int sandbox_clk_test_get(struct udevice *dev)
+ 	return 0;
  }
  
-+static inline int clk_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
++int sandbox_clk_test_get_bulk(struct udevice *dev)
 +{
-+	return -ENOSYS;
++	struct sandbox_clk_test *sbct = dev_get_priv(dev);
++
++	return clk_get_bulk(dev, &sbct->bulk);
 +}
 +
- static inline int clk_get_by_name(struct udevice *dev, const char *name,
- 			   struct clk *clk)
+ ulong sandbox_clk_test_get_rate(struct udevice *dev, int id)
  {
-@@ -130,7 +167,6 @@ static inline int clk_release_all(struct clk *clk, int count)
- {
- 	return -ENOSYS;
+ 	struct sandbox_clk_test *sbct = dev_get_priv(dev);
+@@ -64,6 +72,13 @@ int sandbox_clk_test_enable(struct udevice *dev, int id)
+ 	return clk_enable(&sbct->clks[id]);
  }
--
- #endif
  
- #if (CONFIG_IS_ENABLED(OF_CONTROL) && !CONFIG_IS_ENABLED(OF_PLATDATA)) && \
-@@ -151,6 +187,22 @@ static inline int clk_set_defaults(struct udevice *dev)
- #endif
- 
- /**
-+ * clk_release_bulk() - Disable (turn off)/Free an array of previously
-+ * requested clocks in a clock bulk struct.
-+ *
-+ * For each clock contained in the clock bulk struct, this function will check
-+ * if clock has been previously requested and then will disable and free it.
-+ *
-+ * @clk:	A clock bulk struct that was previously successfully
-+ *		requested by clk_get_bulk().
-+ * @return zero on success, or -ve error code.
-+ */
-+static inline int clk_release_bulk(struct clk_bulk *bulk)
++int sandbox_clk_test_enable_bulk(struct udevice *dev)
 +{
-+	return clk_release_all(bulk->clks, bulk->count);
++	struct sandbox_clk_test *sbct = dev_get_priv(dev);
++
++	return clk_enable_bulk(&sbct->bulk);
 +}
 +
-+/**
-  * clk_request - Request a clock by provider-specific ID.
-  *
-  * This requests a clock using a provider-specific ID. Generally, this function
-@@ -215,6 +267,15 @@ int clk_set_parent(struct clk *clk, struct clk *parent);
- int clk_enable(struct clk *clk);
+ int sandbox_clk_test_disable(struct udevice *dev, int id)
+ {
+ 	struct sandbox_clk_test *sbct = dev_get_priv(dev);
+@@ -74,6 +89,13 @@ int sandbox_clk_test_disable(struct udevice *dev, int id)
+ 	return clk_disable(&sbct->clks[id]);
+ }
  
- /**
-+ * clk_enable_bulk() - Enable (turn on) all clocks in a clock bulk struct.
-+ *
-+ * @bulk:	A clock bulk struct that was previously successfully requested
-+ *		by clk_get_bulk().
-+ * @return zero on success, or -ve error code.
-+ */
-+int clk_enable_bulk(struct clk_bulk *bulk);
++int sandbox_clk_test_disable_bulk(struct udevice *dev)
++{
++	struct sandbox_clk_test *sbct = dev_get_priv(dev);
 +
-+/**
-  * clk_disable() - Disable (turn off) a clock.
-  *
-  * @clk:	A clock struct that was previously successfully requested by
-@@ -223,6 +284,15 @@ int clk_enable(struct clk *clk);
-  */
- int clk_disable(struct clk *clk);
- 
-+/**
-+ * clk_disable_bulk() - Disable (turn off) all clocks in a clock bulk struct.
-+ *
-+ * @bulk:	A clock bulk struct that was previously successfully requested
-+ *		by clk_get_bulk().
-+ * @return zero on success, or -ve error code.
-+ */
-+int clk_disable_bulk(struct clk_bulk *bulk);
++	return clk_disable_bulk(&sbct->bulk);
++}
 +
- int soc_clk_dump(void);
+ int sandbox_clk_test_free(struct udevice *dev)
+ {
+ 	struct sandbox_clk_test *sbct = dev_get_priv(dev);
+@@ -88,6 +110,13 @@ int sandbox_clk_test_free(struct udevice *dev)
+ 	return 0;
+ }
  
- #endif
++int sandbox_clk_test_release_bulk(struct udevice *dev)
++{
++	struct sandbox_clk_test *sbct = dev_get_priv(dev);
++
++	return clk_release_bulk(&sbct->bulk);
++}
++
+ static const struct udevice_id sandbox_clk_test_ids[] = {
+ 	{ .compatible = "sandbox,clk-test" },
+ 	{ }
+diff --git a/test/dm/clk.c b/test/dm/clk.c
+index 712a1e6..95716f8 100644
+--- a/test/dm/clk.c
++++ b/test/dm/clk.c
+@@ -101,3 +101,41 @@ static int dm_test_clk(struct unit_test_state *uts)
+ 	return 0;
+ }
+ DM_TEST(dm_test_clk, DM_TESTF_SCAN_FDT);
++
++static int dm_test_clk_bulk(struct unit_test_state *uts)
++{
++	struct udevice *dev_clk, *dev_test;
++	ulong rate;
++
++	ut_assertok(uclass_get_device_by_name(UCLASS_CLK, "clk-sbox",
++					      &dev_clk));
++	ut_assertok(uclass_get_device_by_name(UCLASS_MISC, "clk-test",
++					      &dev_test));
++	ut_assertok(sandbox_clk_test_get_bulk(dev_test));
++
++	ut_asserteq(0, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_SPI));
++	ut_asserteq(0, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_I2C));
++
++	/* Fixed clock does not support enable, thus should not fail */
++	ut_assertok(sandbox_clk_test_enable_bulk(dev_test));
++	ut_asserteq(1, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_SPI));
++	ut_asserteq(1, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_I2C));
++
++	/* Fixed clock does not support disable, thus should not fail */
++	ut_assertok(sandbox_clk_test_disable_bulk(dev_test));
++	ut_asserteq(0, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_SPI));
++	ut_asserteq(0, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_I2C));
++
++	/* Fixed clock does not support enable, thus should not fail */
++	ut_assertok(sandbox_clk_test_enable_bulk(dev_test));
++	ut_asserteq(1, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_SPI));
++	ut_asserteq(1, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_I2C));
++
++	/* Fixed clock does not support disable, thus should not fail */
++	ut_assertok(sandbox_clk_test_release_bulk(dev_test));
++	ut_asserteq(0, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_SPI));
++	ut_asserteq(0, sandbox_clk_query_enable(dev_clk, SANDBOX_CLK_ID_I2C));
++
++	return 0;
++}
++DM_TEST(dm_test_clk_bulk, DM_TESTF_SCAN_FDT);
 -- 
 2.7.4
