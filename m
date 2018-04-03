@@ -1,24 +1,41 @@
-From: sjg@chromium.org (Simon Glass)
-Date: Wed, 4 Apr 2018 01:54:00 +0800
-Subject: [PATCH v2 u-boot 2/2] clk: add sandbox test for bulk API
-In-Reply-To: <1522748659-21622-3-git-send-email-narmstrong@baylibre.com>
-References: <1522748659-21622-1-git-send-email-narmstrong@baylibre.com>
- <1522748659-21622-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAPnjgZ1bxgpoaxkNxnEQ0Sh7Cg2XrbmjC=Da2fCs1nfbf5VuEg@mail.gmail.com>
+From: lkp@intel.com (kbuild test robot)
+Date: Wed, 4 Apr 2018 02:26:31 +0800
+Subject: [PATCH] ARM64: dts: meson-axg: enable the eMMC controller
+In-Reply-To: <20180403102651.60340-1-yixun.lan@amlogic.com>
+References: <20180403102651.60340-1-yixun.lan@amlogic.com>
+Message-ID: <201804040211.7wh3FnSx%fengguang.wu@intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 3 April 2018 at 17:44, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> This patch adds the bulk clock API tests for the sandbox test suite.
->
-> It's very similar to the main test but only uses the _bulk() API and
-> checks if the clocks are correctly enabled/disabled.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/sandbox/include/asm/clk.h | 32 ++++++++++++++++++++++++++++++++
->  drivers/clk/clk_sandbox_test.c | 29 +++++++++++++++++++++++++++++
->  test/dm/clk.c                  | 38 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 99 insertions(+)
+Hi Nan,
 
-Reviewed-by: Simon Glass <sjg@chromium.org>
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on next-20180403]
+[cannot apply to robh/for-next v4.16 v4.16-rc7 v4.16-rc6 v4.16]
+[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+
+url:    https://github.com/0day-ci/linux/commits/Yixun-Lan/ARM64-dts-meson-axg-enable-the-eMMC-controller/20180403-224314
+config: arm64-allyesconfig (attached as .config)
+compiler: aarch64-linux-gnu-gcc (Debian 7.2.0-11) 7.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # save the attached .config to linux build tree
+        make.cross ARCH=arm64 
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/amlogic/meson-axg-s400.dts:49.24-25 syntax error
+   FATAL ERROR: Unable to parse input tree
+
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: .config.gz
+Type: application/gzip
+Size: 59053 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180404/616760e4/attachment.gz>
