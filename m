@@ -1,59 +1,82 @@
 From: sean@mess.org (Sean Young)
-Date: Sun,  8 Apr 2018 22:19:42 +0100
-Subject: [PATCH v2 7/7] media: rc: mceusb: allow the timeout to be configurable
+Date: Sun,  8 Apr 2018 22:19:40 +0100
+Subject: [PATCH v2 5/7] media: rc: mce_kbd protocol encodes two scancodes
 In-Reply-To: <cover.1523221902.git.sean@mess.org>
 References: <cover.1523221902.git.sean@mess.org>
-Message-ID: <02b5dac3b27169c6e6a4a070a2569b33fef47bbe.1523221902.git.sean@mess.org>
+Message-ID: <83e420c4229770af4a014c0c8034384ab15dde1e.1523221902.git.sean@mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-mceusb devices have a default timeout of 100ms, but this can be changed.
+If two keys are pressed, then both keys are encoded in the scancode. This
+makes the mce keyboard more responsive.
 
 Signed-off-by: Sean Young <sean@mess.org>
 ---
- drivers/media/rc/mceusb.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/media/rc/ir-mce_kbd-decoder.c | 21 ++++++++++++---------
+ drivers/media/rc/rc-main.c            |  2 +-
+ 2 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/media/rc/mceusb.c b/drivers/media/rc/mceusb.c
-index 69ba57372c05..c97cb2eb1c5f 100644
---- a/drivers/media/rc/mceusb.c
-+++ b/drivers/media/rc/mceusb.c
-@@ -982,6 +982,25 @@ static int mceusb_set_tx_carrier(struct rc_dev *dev, u32 carrier)
- 	return 0;
- }
+diff --git a/drivers/media/rc/ir-mce_kbd-decoder.c b/drivers/media/rc/ir-mce_kbd-decoder.c
+index 230b9397aa11..dcdba83290d2 100644
+--- a/drivers/media/rc/ir-mce_kbd-decoder.c
++++ b/drivers/media/rc/ir-mce_kbd-decoder.c
+@@ -147,13 +147,14 @@ static enum mce_kbd_mode mce_kbd_mode(struct mce_kbd_dec *data)
+ static void ir_mce_kbd_process_keyboard_data(struct rc_dev *dev, u32 scancode)
+ {
+ 	struct mce_kbd_dec *data = &dev->raw->mce_kbd;
+-	u8 keydata   = (scancode >> 8) & 0xff;
++	u8 keydata1  = (scancode >> 8) & 0xff;
++	u8 keydata2  = (scancode >> 16) & 0xff;
+ 	u8 shiftmask = scancode & 0xff;
+-	unsigned char keycode, maskcode;
++	unsigned char maskcode;
+ 	int i, keystate;
  
-+static int mceusb_set_timeout(struct rc_dev *dev, unsigned int timeout)
-+{
-+	u8 cmdbuf[4] = { MCE_CMD_PORT_IR, MCE_CMD_SETIRTIMEOUT, 0, 0 };
-+	struct mceusb_dev *ir = dev->priv;
-+	unsigned int units;
+-	dev_dbg(&dev->dev, "keyboard: keydata = 0x%02x, shiftmask = 0x%02x\n",
+-		keydata, shiftmask);
++	dev_dbg(&dev->dev, "keyboard: keydata2 = 0x%02x, keydata1 = 0x%02x, shiftmask = 0x%02x\n",
++		keydata2, keydata1, shiftmask);
+ 
+ 	for (i = 0; i < 7; i++) {
+ 		maskcode = kbd_keycodes[MCIR2_MASK_KEYS_START + i];
+@@ -164,10 +165,12 @@ static void ir_mce_kbd_process_keyboard_data(struct rc_dev *dev, u32 scancode)
+ 		input_report_key(data->idev, maskcode, keystate);
+ 	}
+ 
+-	if (keydata) {
+-		keycode = kbd_keycodes[keydata];
+-		input_report_key(data->idev, keycode, 1);
+-	} else {
++	if (keydata1)
++		input_report_key(data->idev, kbd_keycodes[keydata1], 1);
++	if (keydata2)
++		input_report_key(data->idev, kbd_keycodes[keydata2], 1);
 +
-+	units = DIV_ROUND_CLOSEST(timeout, US_TO_NS(MCE_TIME_UNIT));
-+
-+	cmdbuf[2] = units >> 8;
-+	cmdbuf[3] = units;
-+
-+	mce_async_out(ir, cmdbuf, sizeof(cmdbuf));
-+
-+	/* get receiver timeout value */
-+	mce_async_out(ir, GET_RX_TIMEOUT, sizeof(GET_RX_TIMEOUT));
-+
-+	return 0;
-+}
-+
- /*
-  * Select or deselect the 2nd receiver port.
-  * Second receiver is learning mode, wide-band, short-range receiver.
-@@ -1415,7 +1434,10 @@ static struct rc_dev *mceusb_init_rc_dev(struct mceusb_dev *ir)
- 	rc->dev.parent = dev;
- 	rc->priv = ir;
- 	rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
-+	rc->min_timeout = US_TO_NS(MCE_TIME_UNIT);
- 	rc->timeout = MS_TO_NS(100);
-+	rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
-+	rc->s_timeout = mceusb_set_timeout;
- 	if (!ir->flags.no_tx) {
- 		rc->s_tx_mask = mceusb_set_tx_mask;
- 		rc->s_tx_carrier = mceusb_set_tx_carrier;
++	if (!keydata1 && !keydata2) {
+ 		for (i = 0; i < MCIR2_MASK_KEYS_START; i++)
+ 			input_report_key(data->idev, kbd_keycodes[i], 0);
+ 	}
+@@ -319,7 +322,7 @@ static int ir_mce_kbd_decode(struct rc_dev *dev, struct ir_raw_event ev)
+ 
+ 		switch (data->wanted_bits) {
+ 		case MCIR2_KEYBOARD_NBITS:
+-			scancode = data->body & 0xffff;
++			scancode = data->body & 0xffffff;
+ 			dev_dbg(&dev->dev, "keyboard data 0x%08x\n",
+ 				data->body);
+ 			if (scancode) {
+diff --git a/drivers/media/rc/rc-main.c b/drivers/media/rc/rc-main.c
+index 9f4df60f62e1..b7071bde670a 100644
+--- a/drivers/media/rc/rc-main.c
++++ b/drivers/media/rc/rc-main.c
+@@ -51,7 +51,7 @@ static const struct {
+ 	[RC_PROTO_SANYO] = { .name = "sanyo",
+ 		.scancode_bits = 0x1fffff, .repeat_period = 125 },
+ 	[RC_PROTO_MCIR2_KBD] = { .name = "mcir2-kbd",
+-		.scancode_bits = 0xffff, .repeat_period = 100 },
++		.scancode_bits = 0xffffff, .repeat_period = 100 },
+ 	[RC_PROTO_MCIR2_MSE] = { .name = "mcir2-mse",
+ 		.scancode_bits = 0x1fffff, .repeat_period = 100 },
+ 	[RC_PROTO_RC6_0] = { .name = "rc-6-0",
 -- 
 2.14.3
