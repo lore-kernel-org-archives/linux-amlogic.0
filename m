@@ -1,34 +1,59 @@
 From: sean@mess.org (Sean Young)
-Date: Sun,  8 Apr 2018 22:19:41 +0100
-Subject: [PATCH v2 6/7] media: rc: mce_kbd decoder: fix stuck keys
+Date: Sun,  8 Apr 2018 22:19:42 +0100
+Subject: [PATCH v2 7/7] media: rc: mceusb: allow the timeout to be configurable
 In-Reply-To: <cover.1523221902.git.sean@mess.org>
 References: <cover.1523221902.git.sean@mess.org>
-Message-ID: <6e04a64c9be3f571f4927f0ffada67be5071db88.1523221902.git.sean@mess.org>
+Message-ID: <02b5dac3b27169c6e6a4a070a2569b33fef47bbe.1523221902.git.sean@mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The MCE Remote sends a 0 scancode when keys are released. If this is not
-received or decoded, then keys can get "stuck"; the keyup event is not
-sent since the input_sync() is missing from the timeout handler.
+mceusb devices have a default timeout of 100ms, but this can be changed.
 
-Cc: stable at vger.kernel.org
 Signed-off-by: Sean Young <sean@mess.org>
 ---
- drivers/media/rc/ir-mce_kbd-decoder.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/media/rc/mceusb.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/drivers/media/rc/ir-mce_kbd-decoder.c b/drivers/media/rc/ir-mce_kbd-decoder.c
-index dcdba83290d2..a6adf54461e9 100644
---- a/drivers/media/rc/ir-mce_kbd-decoder.c
-+++ b/drivers/media/rc/ir-mce_kbd-decoder.c
-@@ -130,6 +130,8 @@ static void mce_kbd_rx_timeout(struct timer_list *t)
- 
- 	for (i = 0; i < MCIR2_MASK_KEYS_START; i++)
- 		input_report_key(raw->mce_kbd.idev, kbd_keycodes[i], 0);
-+
-+	input_sync(raw->mce_kbd.idev);
+diff --git a/drivers/media/rc/mceusb.c b/drivers/media/rc/mceusb.c
+index 69ba57372c05..c97cb2eb1c5f 100644
+--- a/drivers/media/rc/mceusb.c
++++ b/drivers/media/rc/mceusb.c
+@@ -982,6 +982,25 @@ static int mceusb_set_tx_carrier(struct rc_dev *dev, u32 carrier)
+ 	return 0;
  }
  
- static enum mce_kbd_mode mce_kbd_mode(struct mce_kbd_dec *data)
++static int mceusb_set_timeout(struct rc_dev *dev, unsigned int timeout)
++{
++	u8 cmdbuf[4] = { MCE_CMD_PORT_IR, MCE_CMD_SETIRTIMEOUT, 0, 0 };
++	struct mceusb_dev *ir = dev->priv;
++	unsigned int units;
++
++	units = DIV_ROUND_CLOSEST(timeout, US_TO_NS(MCE_TIME_UNIT));
++
++	cmdbuf[2] = units >> 8;
++	cmdbuf[3] = units;
++
++	mce_async_out(ir, cmdbuf, sizeof(cmdbuf));
++
++	/* get receiver timeout value */
++	mce_async_out(ir, GET_RX_TIMEOUT, sizeof(GET_RX_TIMEOUT));
++
++	return 0;
++}
++
+ /*
+  * Select or deselect the 2nd receiver port.
+  * Second receiver is learning mode, wide-band, short-range receiver.
+@@ -1415,7 +1434,10 @@ static struct rc_dev *mceusb_init_rc_dev(struct mceusb_dev *ir)
+ 	rc->dev.parent = dev;
+ 	rc->priv = ir;
+ 	rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
++	rc->min_timeout = US_TO_NS(MCE_TIME_UNIT);
+ 	rc->timeout = MS_TO_NS(100);
++	rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
++	rc->s_timeout = mceusb_set_timeout;
+ 	if (!ir->flags.no_tx) {
+ 		rc->s_tx_mask = mceusb_set_tx_mask;
+ 		rc->s_tx_carrier = mceusb_set_tx_carrier;
 -- 
 2.14.3
