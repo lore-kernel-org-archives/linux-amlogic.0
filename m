@@ -1,46 +1,172 @@
-From: sboyd@kernel.org (Stephen Boyd)
-Date: Fri, 06 Apr 2018 13:07:52 -0700
-Subject: [PATCH v3 4/6] clk: meson-axg: Add AO Clock and Reset controller
- driver
-In-Reply-To: <20180328025050.221585-5-yixun.lan@amlogic.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Sun, 8 Apr 2018 11:00:57 +0800
+Subject: [PATCH v3 1/6] clk: meson: aoclk: refactor common code into
+ dedicated file
+In-Reply-To: <152303996277.94378.9360089743935547432@swboyd.mtv.corp.google.com>
 References: <20180328025050.221585-1-yixun.lan@amlogic.com>
- <20180328025050.221585-5-yixun.lan@amlogic.com>
-Message-ID: <152304527293.94378.2019634000949753214@swboyd.mtv.corp.google.com>
+ <20180328025050.221585-2-yixun.lan@amlogic.com>
+ <152303996277.94378.9360089743935547432@swboyd.mtv.corp.google.com>
+Message-ID: <9b56df24-7906-f539-51ec-b9f8b785e020@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Yixun Lan (2018-03-27 19:50:48)
-> +       [CLKID_AO_SAR_ADC_CLK]  = &axg_saradc_gate,
-> +};
-> +
-> +static struct clk_hw_onecell_data axg_aoclk_onecell_data = {
+HI Stephen
+ thanks for the review
 
-const?
+On 04/07/18 02:39, Stephen Boyd wrote:
+> Quoting Yixun Lan (2018-03-27 19:50:45)
+>> diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
+>> index 9ec23ae9a219..5a922639a264 100644
+>> --- a/drivers/clk/meson/gxbb-aoclk.c
+>> +++ b/drivers/clk/meson/gxbb-aoclk.c
+>> @@ -165,38 +135,39 @@ static int gxbb_aoclkc_probe(struct platform_device *pdev)
+>>                 return -ENODEV;
+>>         }
+>>  
+>> -       /* Reset Controller */
+>> -       rstc->regmap = regmap;
+>> -       rstc->data = gxbb_aoclk_reset;
+>> -       rstc->reset.ops = &gxbb_aoclk_reset_ops;
+>> -       rstc->reset.nr_resets = ARRAY_SIZE(gxbb_aoclk_reset);
+>> -       rstc->reset.of_node = dev->of_node;
+>> -       ret = devm_reset_controller_register(dev, &rstc->reset);
+>> -
+>> -       /*
+>> -        * Populate regmap and register all clks
+>> -        */
+>> -       for (clkid = 0; clkid < ARRAY_SIZE(gxbb_aoclk_gate); clkid++) {
+>> -               gxbb_aoclk_gate[clkid]->map = regmap;
+>> -
+>> -               ret = devm_clk_hw_register(dev,
+>> -                                          gxbb_aoclk_onecell_data.hws[clkid]);
+>> -               if (ret)
+>> -                       return ret;
+>> -       }
+>> -
+>>         /* Specific clocks */
+>>         cec_32k_ao.regmap = regmap;
+>>         ret = devm_clk_hw_register(dev, &cec_32k_ao.hw);
+>> -       if (ret)
+>> +       if (ret) {
+>> +               dev_err(&pdev->dev, "clk cec_32k_ao register failed.\n");
+>>                 return ret;
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static struct meson_aoclk_data gxbb_aoclkc_data = {
+> 
+> Can this be const?
+> 
+sure, I'll update at v4
+>> +       .reset_reg      = AO_RTI_GEN_CNTL_REG0,
+>> +       .num_reset      = ARRAY_SIZE(gxbb_aoclk_reset),
+>> +       .reset          = gxbb_aoclk_reset,
+>> +       .num_clks       = ARRAY_SIZE(gxbb_aoclk_gate),
+>> +       .clks           = gxbb_aoclk_gate,
+>> +       .hw_data        = &gxbb_aoclk_onecell_data,
+>> +};
+>> +
+>> diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
+>> new file mode 100644
+>> index 000000000000..36067c801f7b
+>> --- /dev/null
+>> +++ b/drivers/clk/meson/meson-aoclk.c
+>> @@ -0,0 +1,79 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Amlogic Meson-AXG Clock Controller Driver
+>> + *
+>> + * Copyright (c) 2016 BayLibre, SAS.
+>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>> + *
+>> + * Copyright (c) 2018 Amlogic, inc.
+>> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
+>> + * Author: Yixun Lan <yixun.lan@amlogic.com>
+>> + */
+>> +
+>> +#include <linux/platform_device.h>
+>> +#include <linux/reset-controller.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/init.h>
+>> +#include <linux/of_device.h>
+>> +#include "clk-regmap.h"
+>> +#include "meson-aoclk.h"
+>> +
+>> +static int meson_aoclk_do_reset(struct reset_controller_dev *rcdev,
+>> +                              unsigned long id)
+>> +{
+>> +       struct meson_aoclk_reset_controller *rstc =
+>> +               container_of(rcdev, struct meson_aoclk_reset_controller, reset);
+>> +
+>> +       return regmap_write(rstc->regmap, rstc->data->reset_reg,
+>> +                           BIT(rstc->data->reset[id]));
+>> +}
+>> +
+>> +static const struct reset_control_ops meson_aoclk_reset_ops = {
+>> +       .reset = meson_aoclk_do_reset,
+>> +};
+>> +
+>> +int meson_aoclkc_probe(struct platform_device *pdev)
+>> +{
+>> +       struct meson_aoclk_reset_controller *rstc;
+>> +       struct meson_aoclk_data *data;
+>> +       struct device *dev = &pdev->dev;
+>> +       struct regmap *regmap;
+>> +       int ret, clkid;
+>> +
+>> +       data = (struct meson_aoclk_data *)
+>> +               of_device_get_match_data(dev);
+>> +       if (!data)
+>> +               return -ENODEV;
+>> +
+>> +       rstc = devm_kzalloc(dev, sizeof(*rstc), GFP_KERNEL);
+>> +       if (!rstc)
+>> +               return -ENOMEM;
+>> +
+>> +       regmap = syscon_node_to_regmap(of_get_parent(dev->of_node));
+>> +       if (IS_ERR(regmap)) {
+>> +               dev_err(dev, "failed to get regmap\n");
+>> +               return -ENODEV;
+>> +       }
+>> +
+>> +       /* Reset Controller */
+>> +       rstc->data = data;
+>> +       rstc->regmap = regmap;
+>> +       rstc->reset.ops = &meson_aoclk_reset_ops;
+>> +       rstc->reset.nr_resets = data->num_reset,
+>> +       rstc->reset.of_node = dev->of_node;
+>> +       ret = devm_reset_controller_register(dev, &rstc->reset);
+> 
+> Please check the return value here.
+> 
+will do, thanks for pointing out this
 
-> +       .hws = {
-> +               [CLKID_AO_REMOTE]       = &remote_ao.hw,
-> +               [CLKID_AO_I2C_MASTER]   = &i2c_master_ao.hw,
-> +               [CLKID_AO_I2C_SLAVE]    = &i2c_slave_ao.hw,
-> +               [CLKID_AO_UART1]        = &uart1_ao.hw,
-> +               [CLKID_AO_UART2]        = &uart2_ao.hw,
-> +               [CLKID_AO_IR_BLASTER]   = &ir_blaster_ao.hw,
-> +               [CLKID_AO_SAR_ADC]      = &saradc_ao.hw,
-> +               [CLKID_AO_CLK81]        = &ao_clk81.hw,
-> +               [CLKID_AO_SAR_ADC_SEL]  = &axg_saradc_mux.hw,
-> +               [CLKID_AO_SAR_ADC_DIV]  = &axg_saradc_div.hw,
-> +               [CLKID_AO_SAR_ADC_CLK]  = &axg_saradc_gate.hw,
-> +       },
-> +       .num = NR_CLKS,
-> +};
-> +
-> +static struct meson_aoclk_data axg_aoclkc_data = {
+>> +
+>> +       /*
+>> +        * Populate regmap and register all clks
+>> +        */
+>> +       for (clkid = 0; clkid < data->num_clks; clkid++) {
+>> +               data->clks[clkid]->map = regmap;
+>> +
+>> +               ret = devm_clk_hw_register(dev, data->hw_data->hws[clkid]);
+>> +               if (ret)
+>> +                       return ret;
+>> +       }
+>> +
+>> +       return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+>> +               data->hw_data);
+> 
+> Use devm_ variant?
+> 
+sure
+> I suppose because code is moving in this patch that it would be better
+> to make improvements in another patch so that this patch is a pure code
+> movement change instead of a movement + improvement change.
+> 
+I think it's a good idea to fix this in another independent patch
 
-const?
+also I will address the comments you raised in another mail thread
 
-> +       .reset_reg      = AO_RTI_GEN_CNTL_REG0,
-> +       .num_reset      = ARRAY_SIZE(axg_aoclk_reset),
-> +       .reset          = axg_aoclk_reset,
-> +       .num_clks       = ARRAY_SIZE(axg_aoclk_regmap),
-> +       .clks           = axg_aoclk_regmap,
-> +       .hw_data        = &axg_aoclk_onecell_data,
-> +};
+Yixun
