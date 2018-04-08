@@ -1,36 +1,41 @@
 From: sjg@chromium.org (Simon Glass)
-Date: Sun, 8 Apr 2018 09:50:40 -0400
-Subject: [PATCH u-boot 2/2] ARM: meson: Add cpu info display for GX SoCs
-In-Reply-To: <1522230877-21267-3-git-send-email-narmstrong@baylibre.com>
-References: <1522230877-21267-1-git-send-email-narmstrong@baylibre.com>
- <1522230877-21267-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAPnjgZ0w9v6_6Qiw0uzKzFcTOMThtcQ6C6Q0gnKfHnX9ZZihUQ@mail.gmail.com>
+Date: Sun, 8 Apr 2018 09:56:54 -0400
+Subject: [PATCH v2 u-boot 2/2] reset: add sandbox test for bulk API
+In-Reply-To: <15fe8854-324c-fa49-c26e-eac86ab84f85@baylibre.com>
+References: <1522748451-21209-1-git-send-email-narmstrong@baylibre.com>
+ <1522748451-21209-3-git-send-email-narmstrong@baylibre.com>
+ <CAPnjgZ0+M8pXpi+YYZReY+hgeXv+XTCDuooxkYYegaXVT_O38w@mail.gmail.com>
+ <15fe8854-324c-fa49-c26e-eac86ab84f85@baylibre.com>
+Message-ID: <CAPnjgZ3rfvq-j2qPFH0fH3zb40A4_Ocd3+Tc30+yBr8wAGGk0w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+Hi Neil,
 
-On 28 March 2018 at 05:54, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> The Amlogic SoCs have a registers containing the die revision
-> and packaging type to determine the SoC family and package marketing
-> name like S905X for the GXL SoC Family.
-> This code is taken for the Linux meson-gx-socinfo driver and adapted
-> to U-Boot printing.
+On 4 April 2018 at 04:45, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> On 03/04/2018 19:53, Simon Glass wrote:
+>> On 3 April 2018 at 17:40, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>> This patch adds the bulk reset API tests for the sandbox test suite.
+>>>
+>>> Unlike the main test, it also check the "other" reset signal using the bulk API
+>>> and checks if the resets are correctly asserted/deasserted.
+>>>
+>>> To allow the bulk API to work, and avoid changing the DT, the number of resets
+>>> of the sandbox reset controller has been bumped to 101 for the "other" reset
+>>> line to be valid.
+>>
+>> Does it need to be 101, or would, say, 5 be enough?
 >
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/arm/include/asm/arch-meson/gx.h |   1 +
->  arch/arm/mach-meson/Makefile         |   2 +-
->  arch/arm/mach-meson/cpu_info.c       | 105 +++++++++++++++++++++++++++++++++++
->  configs/khadas-vim_defconfig         |   2 +-
->  configs/libretech-cc_defconfig       |   2 +-
->  configs/odroid-c2_defconfig          |   2 +-
->  configs/odroid_defconfig             |   1 +
->  configs/p212_defconfig               |   2 +-
->  8 files changed, 112 insertions(+), 5 deletions(-)
->  create mode 100644 arch/arm/mach-meson/cpu_info.c
+> It could stay at 3, but a dts change should be needed since it declares :
+>
+> resets = <&resetc 100>, <&resetc 2>;
+> reset-names = "other", "test";
 
-Please can you use driver model's CPU interface for this?
+Well that is fine if you want to change test.dts - you just need to
+make sure you keep the intent.
+
+But you've explained the reason, and it's fine to keep this patch as
+is, if you like.
 
 Regards,
 Simon
