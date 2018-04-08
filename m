@@ -1,110 +1,168 @@
 From: sean@mess.org (Sean Young)
-Date: Sun,  8 Apr 2018 22:19:37 +0100
-Subject: [PATCH v2 2/7] media: rc: add ioctl to get the current timeout
+Date: Sun,  8 Apr 2018 22:19:38 +0100
+Subject: [PATCH v2 3/7] media: rc: per-protocol repeat period and minimum
+ keyup timer
 In-Reply-To: <cover.1523221902.git.sean@mess.org>
 References: <cover.1523221902.git.sean@mess.org>
-Message-ID: <d2f593f1e78429702036c0a7647c5057d979b7af.1523221902.git.sean@mess.org>
+Message-ID: <e2fd13000586bb0a4e7a2cc07e69ad08319e3519.1523221902.git.sean@mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Since the kernel now modifies the timeout, make it possible to retrieve
-the current value.
+Each IR protocol has its own repeat period. We can minimise the keyup
+timer to be the protocol period + IR timeout. This makes keys less
+"sticky" and makes IR more reactive and nicer to use.
+
+This feature was previously attempted in commit d57ea877af38 ("media: rc:
+per-protocol repeat period"), but that did not take the IR timeout into
+account, and had to be reverted.
 
 Signed-off-by: Sean Young <sean@mess.org>
 ---
- Documentation/media/uapi/rc/lirc-func.rst            |  1 +
- Documentation/media/uapi/rc/lirc-set-rec-timeout.rst | 14 +++++++++-----
- drivers/media/rc/lirc_dev.c                          |  7 +++++++
- include/uapi/linux/lirc.h                            |  6 ++++++
- 4 files changed, 23 insertions(+), 5 deletions(-)
+ drivers/media/cec/cec-core.c |  2 +-
+ drivers/media/rc/lirc_dev.c  |  2 +-
+ drivers/media/rc/rc-main.c   | 56 +++++++++++++++++++++++---------------------
+ 3 files changed, 31 insertions(+), 29 deletions(-)
 
-diff --git a/Documentation/media/uapi/rc/lirc-func.rst b/Documentation/media/uapi/rc/lirc-func.rst
-index ddb4620de294..9656423a3f28 100644
---- a/Documentation/media/uapi/rc/lirc-func.rst
-+++ b/Documentation/media/uapi/rc/lirc-func.rst
-@@ -17,6 +17,7 @@ LIRC Function Reference
-     lirc-get-rec-resolution
-     lirc-set-send-duty-cycle
-     lirc-get-timeout
-+    lirc-get-rec-timeout
-     lirc-set-rec-timeout
-     lirc-set-rec-carrier
-     lirc-set-rec-carrier-range
-diff --git a/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst b/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst
-index b3e16bbdbc90..a833a6a4c25a 100644
---- a/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst
-+++ b/Documentation/media/uapi/rc/lirc-set-rec-timeout.rst
-@@ -1,19 +1,23 @@
- .. -*- coding: utf-8; mode: rst -*-
- 
- .. _lirc_set_rec_timeout:
-+.. _lirc_get_rec_timeout:
- 
--**************************
--ioctl LIRC_SET_REC_TIMEOUT
--**************************
-+***************************************************
-+ioctl LIRC_GET_REC_TIMEOUT and LIRC_SET_REC_TIMEOUT
-+***************************************************
- 
- Name
- ====
- 
--LIRC_SET_REC_TIMEOUT - sets the integer value for IR inactivity timeout.
-+LIRC_GET_REC_TIMEOUT/LIRC_SET_REC_TIMEOUT - Get/set the integer value for IR inactivity timeout.
- 
- Synopsis
- ========
- 
-+.. c:function:: int ioctl( int fd, LIRC_GET_REC_TIMEOUT, __u32 *timeout )
-+    :name: LIRC_GET_REC_TIMEOUT
-+
- .. c:function:: int ioctl( int fd, LIRC_SET_REC_TIMEOUT, __u32 *timeout )
-     :name: LIRC_SET_REC_TIMEOUT
- 
-@@ -30,7 +34,7 @@ Arguments
- Description
- ===========
- 
--Sets the integer value for IR inactivity timeout.
-+Get and set the integer value for IR inactivity timeout.
- 
- If supported by the hardware, setting it to 0  disables all hardware timeouts
- and data should be reported as soon as possible. If the exact value
+diff --git a/drivers/media/cec/cec-core.c b/drivers/media/cec/cec-core.c
+index b0c87f9ea08f..b278ab90b387 100644
+--- a/drivers/media/cec/cec-core.c
++++ b/drivers/media/cec/cec-core.c
+@@ -322,7 +322,7 @@ struct cec_adapter *cec_allocate_adapter(const struct cec_adap_ops *ops,
+ 	adap->rc->allowed_protocols = RC_PROTO_BIT_CEC;
+ 	adap->rc->priv = adap;
+ 	adap->rc->map_name = RC_MAP_CEC;
+-	adap->rc->timeout = MS_TO_NS(100);
++	adap->rc->timeout = MS_TO_NS(550);
+ #endif
+ 	return adap;
+ }
 diff --git a/drivers/media/rc/lirc_dev.c b/drivers/media/rc/lirc_dev.c
-index 247e6fc3dc0c..6b4755e9fa25 100644
+index 6b4755e9fa25..cc58ed78462f 100644
 --- a/drivers/media/rc/lirc_dev.c
 +++ b/drivers/media/rc/lirc_dev.c
-@@ -575,6 +575,13 @@ static long ir_lirc_ioctl(struct file *file, unsigned int cmd,
- 		}
+@@ -583,7 +583,7 @@ static long ir_lirc_ioctl(struct file *file, unsigned int cmd,
  		break;
  
-+	case LIRC_GET_REC_TIMEOUT:
-+		if (!dev->timeout)
-+			ret = -ENOTTY;
-+		else
-+			val = DIV_ROUND_UP(dev->timeout, 1000);
-+		break;
-+
  	case LIRC_SET_REC_TIMEOUT_REPORTS:
- 		if (!dev->timeout)
+-		if (!dev->timeout)
++		if (dev->driver_type != RC_DRIVER_IR_RAW)
  			ret = -ENOTTY;
-diff --git a/include/uapi/linux/lirc.h b/include/uapi/linux/lirc.h
-index f189931042a7..6b319581882f 100644
---- a/include/uapi/linux/lirc.h
-+++ b/include/uapi/linux/lirc.h
-@@ -133,6 +133,12 @@
+ 		else
+ 			fh->send_timeout_reports = !!val;
+diff --git a/drivers/media/rc/rc-main.c b/drivers/media/rc/rc-main.c
+index 6a720e9c7aa8..9f4df60f62e1 100644
+--- a/drivers/media/rc/rc-main.c
++++ b/drivers/media/rc/rc-main.c
+@@ -26,50 +26,50 @@ static const struct {
+ 	unsigned int repeat_period;
+ 	unsigned int scancode_bits;
+ } protocols[] = {
+-	[RC_PROTO_UNKNOWN] = { .name = "unknown", .repeat_period = 250 },
+-	[RC_PROTO_OTHER] = { .name = "other", .repeat_period = 250 },
++	[RC_PROTO_UNKNOWN] = { .name = "unknown", .repeat_period = 125 },
++	[RC_PROTO_OTHER] = { .name = "other", .repeat_period = 125 },
+ 	[RC_PROTO_RC5] = { .name = "rc-5",
+-		.scancode_bits = 0x1f7f, .repeat_period = 250 },
++		.scancode_bits = 0x1f7f, .repeat_period = 114 },
+ 	[RC_PROTO_RC5X_20] = { .name = "rc-5x-20",
+-		.scancode_bits = 0x1f7f3f, .repeat_period = 250 },
++		.scancode_bits = 0x1f7f3f, .repeat_period = 114 },
+ 	[RC_PROTO_RC5_SZ] = { .name = "rc-5-sz",
+-		.scancode_bits = 0x2fff, .repeat_period = 250 },
++		.scancode_bits = 0x2fff, .repeat_period = 114 },
+ 	[RC_PROTO_JVC] = { .name = "jvc",
+-		.scancode_bits = 0xffff, .repeat_period = 250 },
++		.scancode_bits = 0xffff, .repeat_period = 125 },
+ 	[RC_PROTO_SONY12] = { .name = "sony-12",
+-		.scancode_bits = 0x1f007f, .repeat_period = 250 },
++		.scancode_bits = 0x1f007f, .repeat_period = 100 },
+ 	[RC_PROTO_SONY15] = { .name = "sony-15",
+-		.scancode_bits = 0xff007f, .repeat_period = 250 },
++		.scancode_bits = 0xff007f, .repeat_period = 100 },
+ 	[RC_PROTO_SONY20] = { .name = "sony-20",
+-		.scancode_bits = 0x1fff7f, .repeat_period = 250 },
++		.scancode_bits = 0x1fff7f, .repeat_period = 100 },
+ 	[RC_PROTO_NEC] = { .name = "nec",
+-		.scancode_bits = 0xffff, .repeat_period = 250 },
++		.scancode_bits = 0xffff, .repeat_period = 110 },
+ 	[RC_PROTO_NECX] = { .name = "nec-x",
+-		.scancode_bits = 0xffffff, .repeat_period = 250 },
++		.scancode_bits = 0xffffff, .repeat_period = 110 },
+ 	[RC_PROTO_NEC32] = { .name = "nec-32",
+-		.scancode_bits = 0xffffffff, .repeat_period = 250 },
++		.scancode_bits = 0xffffffff, .repeat_period = 110 },
+ 	[RC_PROTO_SANYO] = { .name = "sanyo",
+-		.scancode_bits = 0x1fffff, .repeat_period = 250 },
++		.scancode_bits = 0x1fffff, .repeat_period = 125 },
+ 	[RC_PROTO_MCIR2_KBD] = { .name = "mcir2-kbd",
+-		.scancode_bits = 0xffff, .repeat_period = 250 },
++		.scancode_bits = 0xffff, .repeat_period = 100 },
+ 	[RC_PROTO_MCIR2_MSE] = { .name = "mcir2-mse",
+-		.scancode_bits = 0x1fffff, .repeat_period = 250 },
++		.scancode_bits = 0x1fffff, .repeat_period = 100 },
+ 	[RC_PROTO_RC6_0] = { .name = "rc-6-0",
+-		.scancode_bits = 0xffff, .repeat_period = 250 },
++		.scancode_bits = 0xffff, .repeat_period = 114 },
+ 	[RC_PROTO_RC6_6A_20] = { .name = "rc-6-6a-20",
+-		.scancode_bits = 0xfffff, .repeat_period = 250 },
++		.scancode_bits = 0xfffff, .repeat_period = 114 },
+ 	[RC_PROTO_RC6_6A_24] = { .name = "rc-6-6a-24",
+-		.scancode_bits = 0xffffff, .repeat_period = 250 },
++		.scancode_bits = 0xffffff, .repeat_period = 114 },
+ 	[RC_PROTO_RC6_6A_32] = { .name = "rc-6-6a-32",
+-		.scancode_bits = 0xffffffff, .repeat_period = 250 },
++		.scancode_bits = 0xffffffff, .repeat_period = 114 },
+ 	[RC_PROTO_RC6_MCE] = { .name = "rc-6-mce",
+-		.scancode_bits = 0xffff7fff, .repeat_period = 250 },
++		.scancode_bits = 0xffff7fff, .repeat_period = 114 },
+ 	[RC_PROTO_SHARP] = { .name = "sharp",
+-		.scancode_bits = 0x1fff, .repeat_period = 250 },
+-	[RC_PROTO_XMP] = { .name = "xmp", .repeat_period = 250 },
+-	[RC_PROTO_CEC] = { .name = "cec", .repeat_period = 550 },
++		.scancode_bits = 0x1fff, .repeat_period = 125 },
++	[RC_PROTO_XMP] = { .name = "xmp", .repeat_period = 125 },
++	[RC_PROTO_CEC] = { .name = "cec", .repeat_period = 0 },
+ 	[RC_PROTO_IMON] = { .name = "imon",
+-		.scancode_bits = 0x7fffffff, .repeat_period = 250 },
++		.scancode_bits = 0x7fffffff, .repeat_period = 114 },
+ };
  
- #define LIRC_SET_WIDEBAND_RECEIVER     _IOW('i', 0x00000023, __u32)
+ /* Used to keep track of known keymaps */
+@@ -690,7 +690,8 @@ static void ir_timer_repeat(struct timer_list *t)
+ void rc_repeat(struct rc_dev *dev)
+ {
+ 	unsigned long flags;
+-	unsigned int timeout = protocols[dev->last_protocol].repeat_period;
++	unsigned int timeout = nsecs_to_jiffies(dev->timeout) +
++		msecs_to_jiffies(protocols[dev->last_protocol].repeat_period);
+ 	struct lirc_scancode sc = {
+ 		.scancode = dev->last_scancode, .rc_proto = dev->last_protocol,
+ 		.keycode = dev->keypressed ? dev->last_keycode : KEY_RESERVED,
+@@ -706,7 +707,7 @@ void rc_repeat(struct rc_dev *dev)
+ 	input_sync(dev->input_dev);
  
-+/*
-+ * Return the recording timeout, which is either set by
-+ * the ioctl LIRC_SET_REC_TIMEOUT or by the kernel after setting the protocols.
-+ */
-+#define LIRC_GET_REC_TIMEOUT	       _IOR('i', 0x00000024, __u32)
-+
- /*
-  * struct lirc_scancode - decoded scancode with protocol for use with
-  *	LIRC_MODE_SCANCODE
+ 	if (dev->keypressed) {
+-		dev->keyup_jiffies = jiffies + msecs_to_jiffies(timeout);
++		dev->keyup_jiffies = jiffies + timeout;
+ 		mod_timer(&dev->timer_keyup, dev->keyup_jiffies);
+ 	}
+ 
+@@ -801,7 +802,7 @@ void rc_keydown(struct rc_dev *dev, enum rc_proto protocol, u32 scancode,
+ 	ir_do_keydown(dev, protocol, scancode, keycode, toggle);
+ 
+ 	if (dev->keypressed) {
+-		dev->keyup_jiffies = jiffies +
++		dev->keyup_jiffies = jiffies + nsecs_to_jiffies(dev->timeout) +
+ 			msecs_to_jiffies(protocols[protocol].repeat_period);
+ 		mod_timer(&dev->timer_keyup, dev->keyup_jiffies);
+ 	}
+@@ -1647,6 +1648,7 @@ struct rc_dev *rc_allocate_device(enum rc_driver_type type)
+ 		dev->input_dev->setkeycode = ir_setkeycode;
+ 		input_set_drvdata(dev->input_dev, dev);
+ 
++		dev->timeout = IR_DEFAULT_TIMEOUT;
+ 		timer_setup(&dev->timer_keyup, ir_timer_keyup, 0);
+ 		timer_setup(&dev->timer_repeat, ir_timer_repeat, 0);
+ 
 -- 
 2.14.3
