@@ -1,168 +1,254 @@
 From: sean@mess.org (Sean Young)
-Date: Sun,  8 Apr 2018 22:19:38 +0100
-Subject: [PATCH v2 3/7] media: rc: per-protocol repeat period and minimum
- keyup timer
+Date: Sun,  8 Apr 2018 22:19:36 +0100
+Subject: [PATCH v2 1/7] media: rc: set timeout to smallest value required by
+ enabled protocols
 In-Reply-To: <cover.1523221902.git.sean@mess.org>
 References: <cover.1523221902.git.sean@mess.org>
-Message-ID: <e2fd13000586bb0a4e7a2cc07e69ad08319e3519.1523221902.git.sean@mess.org>
+Message-ID: <88fe6a3110a122855b5d336d74aee778fd15616f.1523221902.git.sean@mess.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Each IR protocol has its own repeat period. We can minimise the keyup
-timer to be the protocol period + IR timeout. This makes keys less
-"sticky" and makes IR more reactive and nicer to use.
+The longer the IR timeout, the longer the rc device waits until delivering
+the trailing space. So, by reducing this timeout, we reduce the delay for
+the last scancode to be delivered.
 
-This feature was previously attempted in commit d57ea877af38 ("media: rc:
-per-protocol repeat period"), but that did not take the IR timeout into
-account, and had to be reverted.
+Note that the lirc daemon disables all protocols, in which case we revert
+back to the default value.
 
 Signed-off-by: Sean Young <sean@mess.org>
 ---
- drivers/media/cec/cec-core.c |  2 +-
- drivers/media/rc/lirc_dev.c  |  2 +-
- drivers/media/rc/rc-main.c   | 56 +++++++++++++++++++++++---------------------
- 3 files changed, 31 insertions(+), 29 deletions(-)
+ drivers/media/rc/ir-imon-decoder.c    |  1 +
+ drivers/media/rc/ir-jvc-decoder.c     |  1 +
+ drivers/media/rc/ir-mce_kbd-decoder.c |  1 +
+ drivers/media/rc/ir-nec-decoder.c     |  1 +
+ drivers/media/rc/ir-rc5-decoder.c     |  1 +
+ drivers/media/rc/ir-rc6-decoder.c     |  1 +
+ drivers/media/rc/ir-sanyo-decoder.c   |  1 +
+ drivers/media/rc/ir-sharp-decoder.c   |  1 +
+ drivers/media/rc/ir-sony-decoder.c    |  1 +
+ drivers/media/rc/ir-xmp-decoder.c     |  1 +
+ drivers/media/rc/rc-core-priv.h       |  1 +
+ drivers/media/rc/rc-ir-raw.c          | 31 ++++++++++++++++++++++++++++++-
+ drivers/media/rc/rc-main.c            | 12 ++++++------
+ 13 files changed, 47 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/media/cec/cec-core.c b/drivers/media/cec/cec-core.c
-index b0c87f9ea08f..b278ab90b387 100644
---- a/drivers/media/cec/cec-core.c
-+++ b/drivers/media/cec/cec-core.c
-@@ -322,7 +322,7 @@ struct cec_adapter *cec_allocate_adapter(const struct cec_adap_ops *ops,
- 	adap->rc->allowed_protocols = RC_PROTO_BIT_CEC;
- 	adap->rc->priv = adap;
- 	adap->rc->map_name = RC_MAP_CEC;
--	adap->rc->timeout = MS_TO_NS(100);
-+	adap->rc->timeout = MS_TO_NS(550);
- #endif
- 	return adap;
- }
-diff --git a/drivers/media/rc/lirc_dev.c b/drivers/media/rc/lirc_dev.c
-index 6b4755e9fa25..cc58ed78462f 100644
---- a/drivers/media/rc/lirc_dev.c
-+++ b/drivers/media/rc/lirc_dev.c
-@@ -583,7 +583,7 @@ static long ir_lirc_ioctl(struct file *file, unsigned int cmd,
- 		break;
- 
- 	case LIRC_SET_REC_TIMEOUT_REPORTS:
--		if (!dev->timeout)
-+		if (dev->driver_type != RC_DRIVER_IR_RAW)
- 			ret = -ENOTTY;
- 		else
- 			fh->send_timeout_reports = !!val;
-diff --git a/drivers/media/rc/rc-main.c b/drivers/media/rc/rc-main.c
-index 6a720e9c7aa8..9f4df60f62e1 100644
---- a/drivers/media/rc/rc-main.c
-+++ b/drivers/media/rc/rc-main.c
-@@ -26,50 +26,50 @@ static const struct {
- 	unsigned int repeat_period;
- 	unsigned int scancode_bits;
- } protocols[] = {
--	[RC_PROTO_UNKNOWN] = { .name = "unknown", .repeat_period = 250 },
--	[RC_PROTO_OTHER] = { .name = "other", .repeat_period = 250 },
-+	[RC_PROTO_UNKNOWN] = { .name = "unknown", .repeat_period = 125 },
-+	[RC_PROTO_OTHER] = { .name = "other", .repeat_period = 125 },
- 	[RC_PROTO_RC5] = { .name = "rc-5",
--		.scancode_bits = 0x1f7f, .repeat_period = 250 },
-+		.scancode_bits = 0x1f7f, .repeat_period = 114 },
- 	[RC_PROTO_RC5X_20] = { .name = "rc-5x-20",
--		.scancode_bits = 0x1f7f3f, .repeat_period = 250 },
-+		.scancode_bits = 0x1f7f3f, .repeat_period = 114 },
- 	[RC_PROTO_RC5_SZ] = { .name = "rc-5-sz",
--		.scancode_bits = 0x2fff, .repeat_period = 250 },
-+		.scancode_bits = 0x2fff, .repeat_period = 114 },
- 	[RC_PROTO_JVC] = { .name = "jvc",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 125 },
- 	[RC_PROTO_SONY12] = { .name = "sony-12",
--		.scancode_bits = 0x1f007f, .repeat_period = 250 },
-+		.scancode_bits = 0x1f007f, .repeat_period = 100 },
- 	[RC_PROTO_SONY15] = { .name = "sony-15",
--		.scancode_bits = 0xff007f, .repeat_period = 250 },
-+		.scancode_bits = 0xff007f, .repeat_period = 100 },
- 	[RC_PROTO_SONY20] = { .name = "sony-20",
--		.scancode_bits = 0x1fff7f, .repeat_period = 250 },
-+		.scancode_bits = 0x1fff7f, .repeat_period = 100 },
- 	[RC_PROTO_NEC] = { .name = "nec",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 110 },
- 	[RC_PROTO_NECX] = { .name = "nec-x",
--		.scancode_bits = 0xffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffff, .repeat_period = 110 },
- 	[RC_PROTO_NEC32] = { .name = "nec-32",
--		.scancode_bits = 0xffffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffffff, .repeat_period = 110 },
- 	[RC_PROTO_SANYO] = { .name = "sanyo",
--		.scancode_bits = 0x1fffff, .repeat_period = 250 },
-+		.scancode_bits = 0x1fffff, .repeat_period = 125 },
- 	[RC_PROTO_MCIR2_KBD] = { .name = "mcir2-kbd",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 100 },
- 	[RC_PROTO_MCIR2_MSE] = { .name = "mcir2-mse",
--		.scancode_bits = 0x1fffff, .repeat_period = 250 },
-+		.scancode_bits = 0x1fffff, .repeat_period = 100 },
- 	[RC_PROTO_RC6_0] = { .name = "rc-6-0",
--		.scancode_bits = 0xffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_6A_20] = { .name = "rc-6-6a-20",
--		.scancode_bits = 0xfffff, .repeat_period = 250 },
-+		.scancode_bits = 0xfffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_6A_24] = { .name = "rc-6-6a-24",
--		.scancode_bits = 0xffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_6A_32] = { .name = "rc-6-6a-32",
--		.scancode_bits = 0xffffffff, .repeat_period = 250 },
-+		.scancode_bits = 0xffffffff, .repeat_period = 114 },
- 	[RC_PROTO_RC6_MCE] = { .name = "rc-6-mce",
--		.scancode_bits = 0xffff7fff, .repeat_period = 250 },
-+		.scancode_bits = 0xffff7fff, .repeat_period = 114 },
- 	[RC_PROTO_SHARP] = { .name = "sharp",
--		.scancode_bits = 0x1fff, .repeat_period = 250 },
--	[RC_PROTO_XMP] = { .name = "xmp", .repeat_period = 250 },
--	[RC_PROTO_CEC] = { .name = "cec", .repeat_period = 550 },
-+		.scancode_bits = 0x1fff, .repeat_period = 125 },
-+	[RC_PROTO_XMP] = { .name = "xmp", .repeat_period = 125 },
-+	[RC_PROTO_CEC] = { .name = "cec", .repeat_period = 0 },
- 	[RC_PROTO_IMON] = { .name = "imon",
--		.scancode_bits = 0x7fffffff, .repeat_period = 250 },
-+		.scancode_bits = 0x7fffffff, .repeat_period = 114 },
+diff --git a/drivers/media/rc/ir-imon-decoder.c b/drivers/media/rc/ir-imon-decoder.c
+index a1ff06a26542..9024b359e5ee 100644
+--- a/drivers/media/rc/ir-imon-decoder.c
++++ b/drivers/media/rc/ir-imon-decoder.c
+@@ -170,6 +170,7 @@ static struct ir_raw_handler imon_handler = {
+ 	.decode		= ir_imon_decode,
+ 	.encode		= ir_imon_encode,
+ 	.carrier	= 38000,
++	.max_space	= IMON_UNIT * IMON_BITS * 2,
  };
  
- /* Used to keep track of known keymaps */
-@@ -690,7 +690,8 @@ static void ir_timer_repeat(struct timer_list *t)
- void rc_repeat(struct rc_dev *dev)
+ static int __init ir_imon_decode_init(void)
+diff --git a/drivers/media/rc/ir-jvc-decoder.c b/drivers/media/rc/ir-jvc-decoder.c
+index 8cb68ae43282..190c690b14f8 100644
+--- a/drivers/media/rc/ir-jvc-decoder.c
++++ b/drivers/media/rc/ir-jvc-decoder.c
+@@ -213,6 +213,7 @@ static struct ir_raw_handler jvc_handler = {
+ 	.decode		= ir_jvc_decode,
+ 	.encode		= ir_jvc_encode,
+ 	.carrier	= 38000,
++	.max_space	= JVC_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_jvc_decode_init(void)
+diff --git a/drivers/media/rc/ir-mce_kbd-decoder.c b/drivers/media/rc/ir-mce_kbd-decoder.c
+index c110984ca671..ae4b980c4a16 100644
+--- a/drivers/media/rc/ir-mce_kbd-decoder.c
++++ b/drivers/media/rc/ir-mce_kbd-decoder.c
+@@ -475,6 +475,7 @@ static struct ir_raw_handler mce_kbd_handler = {
+ 	.raw_register	= ir_mce_kbd_register,
+ 	.raw_unregister	= ir_mce_kbd_unregister,
+ 	.carrier	= 36000,
++	.max_space	= MCIR2_MAX_LEN,
+ };
+ 
+ static int __init ir_mce_kbd_decode_init(void)
+diff --git a/drivers/media/rc/ir-nec-decoder.c b/drivers/media/rc/ir-nec-decoder.c
+index 21647b809e6f..fac12f867a81 100644
+--- a/drivers/media/rc/ir-nec-decoder.c
++++ b/drivers/media/rc/ir-nec-decoder.c
+@@ -253,6 +253,7 @@ static struct ir_raw_handler nec_handler = {
+ 	.decode		= ir_nec_decode,
+ 	.encode		= ir_nec_encode,
+ 	.carrier	= 38000,
++	.max_space	= NEC_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_nec_decode_init(void)
+diff --git a/drivers/media/rc/ir-rc5-decoder.c b/drivers/media/rc/ir-rc5-decoder.c
+index 74d3b859c3a2..711068c8de90 100644
+--- a/drivers/media/rc/ir-rc5-decoder.c
++++ b/drivers/media/rc/ir-rc5-decoder.c
+@@ -274,6 +274,7 @@ static struct ir_raw_handler rc5_handler = {
+ 	.decode		= ir_rc5_decode,
+ 	.encode		= ir_rc5_encode,
+ 	.carrier	= 36000,
++	.max_space	= RC5_TRAILER,
+ };
+ 
+ static int __init ir_rc5_decode_init(void)
+diff --git a/drivers/media/rc/ir-rc6-decoder.c b/drivers/media/rc/ir-rc6-decoder.c
+index 8314da32453f..9cc4820878c7 100644
+--- a/drivers/media/rc/ir-rc6-decoder.c
++++ b/drivers/media/rc/ir-rc6-decoder.c
+@@ -394,6 +394,7 @@ static struct ir_raw_handler rc6_handler = {
+ 	.decode		= ir_rc6_decode,
+ 	.encode		= ir_rc6_encode,
+ 	.carrier	= 36000,
++	.max_space	= RC6_SUFFIX_SPACE,
+ };
+ 
+ static int __init ir_rc6_decode_init(void)
+diff --git a/drivers/media/rc/ir-sanyo-decoder.c b/drivers/media/rc/ir-sanyo-decoder.c
+index 4efe6db5376a..e72787b446c9 100644
+--- a/drivers/media/rc/ir-sanyo-decoder.c
++++ b/drivers/media/rc/ir-sanyo-decoder.c
+@@ -210,6 +210,7 @@ static struct ir_raw_handler sanyo_handler = {
+ 	.decode		= ir_sanyo_decode,
+ 	.encode		= ir_sanyo_encode,
+ 	.carrier	= 38000,
++	.max_space	= SANYO_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_sanyo_decode_init(void)
+diff --git a/drivers/media/rc/ir-sharp-decoder.c b/drivers/media/rc/ir-sharp-decoder.c
+index 6a38c50566a4..e7e3841a6eb0 100644
+--- a/drivers/media/rc/ir-sharp-decoder.c
++++ b/drivers/media/rc/ir-sharp-decoder.c
+@@ -226,6 +226,7 @@ static struct ir_raw_handler sharp_handler = {
+ 	.decode		= ir_sharp_decode,
+ 	.encode		= ir_sharp_encode,
+ 	.carrier	= 38000,
++	.max_space	= SHARP_ECHO_SPACE,
+ };
+ 
+ static int __init ir_sharp_decode_init(void)
+diff --git a/drivers/media/rc/ir-sony-decoder.c b/drivers/media/rc/ir-sony-decoder.c
+index 6764ec9de646..598bae8d8ffb 100644
+--- a/drivers/media/rc/ir-sony-decoder.c
++++ b/drivers/media/rc/ir-sony-decoder.c
+@@ -224,6 +224,7 @@ static struct ir_raw_handler sony_handler = {
+ 	.decode		= ir_sony_decode,
+ 	.encode		= ir_sony_encode,
+ 	.carrier	= 40000,
++	.max_space	= SONY_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_sony_decode_init(void)
+diff --git a/drivers/media/rc/ir-xmp-decoder.c b/drivers/media/rc/ir-xmp-decoder.c
+index 58b47af1a763..e005a75a86fe 100644
+--- a/drivers/media/rc/ir-xmp-decoder.c
++++ b/drivers/media/rc/ir-xmp-decoder.c
+@@ -199,6 +199,7 @@ static int ir_xmp_decode(struct rc_dev *dev, struct ir_raw_event ev)
+ static struct ir_raw_handler xmp_handler = {
+ 	.protocols	= RC_PROTO_BIT_XMP,
+ 	.decode		= ir_xmp_decode,
++	.max_space	= XMP_TRAILER_SPACE,
+ };
+ 
+ static int __init ir_xmp_decode_init(void)
+diff --git a/drivers/media/rc/rc-core-priv.h b/drivers/media/rc/rc-core-priv.h
+index e0e6a17460f6..8c38941295b8 100644
+--- a/drivers/media/rc/rc-core-priv.h
++++ b/drivers/media/rc/rc-core-priv.h
+@@ -37,6 +37,7 @@ struct ir_raw_handler {
+ 	int (*encode)(enum rc_proto protocol, u32 scancode,
+ 		      struct ir_raw_event *events, unsigned int max);
+ 	u32 carrier;
++	u32 max_space;
+ 
+ 	/* These two should only be used by the mce kbd decoder */
+ 	int (*raw_register)(struct rc_dev *dev);
+diff --git a/drivers/media/rc/rc-ir-raw.c b/drivers/media/rc/rc-ir-raw.c
+index 374f83105a23..1ce008dc7f47 100644
+--- a/drivers/media/rc/rc-ir-raw.c
++++ b/drivers/media/rc/rc-ir-raw.c
+@@ -233,7 +233,36 @@ ir_raw_get_allowed_protocols(void)
+ 
+ static int change_protocol(struct rc_dev *dev, u64 *rc_proto)
  {
- 	unsigned long flags;
--	unsigned int timeout = protocols[dev->last_protocol].repeat_period;
-+	unsigned int timeout = nsecs_to_jiffies(dev->timeout) +
-+		msecs_to_jiffies(protocols[dev->last_protocol].repeat_period);
- 	struct lirc_scancode sc = {
- 		.scancode = dev->last_scancode, .rc_proto = dev->last_protocol,
- 		.keycode = dev->keypressed ? dev->last_keycode : KEY_RESERVED,
-@@ -706,7 +707,7 @@ void rc_repeat(struct rc_dev *dev)
- 	input_sync(dev->input_dev);
+-	/* the caller will update dev->enabled_protocols */
++	struct ir_raw_handler *handler;
++	u32 timeout = 0;
++
++	if (!dev->max_timeout)
++		return 0;
++
++	mutex_lock(&ir_raw_handler_lock);
++	list_for_each_entry(handler, &ir_raw_handler_list, list) {
++		if (handler->protocols & *rc_proto) {
++			if (timeout < handler->max_space)
++				timeout = handler->max_space;
++		}
++	}
++	mutex_unlock(&ir_raw_handler_lock);
++
++	if (timeout == 0)
++		timeout = IR_DEFAULT_TIMEOUT;
++	else
++		timeout += MS_TO_NS(20);
++
++	if (timeout < dev->min_timeout)
++		timeout = dev->min_timeout;
++	else if (timeout > dev->max_timeout)
++		timeout = dev->max_timeout;
++
++	if (dev->s_timeout)
++		dev->s_timeout(dev, timeout);
++	else
++		dev->timeout = timeout;
++
+ 	return 0;
+ }
  
- 	if (dev->keypressed) {
--		dev->keyup_jiffies = jiffies + msecs_to_jiffies(timeout);
-+		dev->keyup_jiffies = jiffies + timeout;
- 		mod_timer(&dev->timer_keyup, dev->keyup_jiffies);
+diff --git a/drivers/media/rc/rc-main.c b/drivers/media/rc/rc-main.c
+index b67be33bd62f..6a720e9c7aa8 100644
+--- a/drivers/media/rc/rc-main.c
++++ b/drivers/media/rc/rc-main.c
+@@ -1241,6 +1241,9 @@ static ssize_t store_protocols(struct device *device,
+ 	if (rc < 0)
+ 		goto out;
+ 
++	if (dev->driver_type == RC_DRIVER_IR_RAW)
++		ir_raw_load_modules(&new_protocols);
++
+ 	rc = dev->change_protocol(dev, &new_protocols);
+ 	if (rc < 0) {
+ 		dev_dbg(&dev->dev, "Error setting protocols to 0x%llx\n",
+@@ -1248,9 +1251,6 @@ static ssize_t store_protocols(struct device *device,
+ 		goto out;
  	}
  
-@@ -801,7 +802,7 @@ void rc_keydown(struct rc_dev *dev, enum rc_proto protocol, u32 scancode,
- 	ir_do_keydown(dev, protocol, scancode, keycode, toggle);
+-	if (dev->driver_type == RC_DRIVER_IR_RAW)
+-		ir_raw_load_modules(&new_protocols);
+-
+ 	if (new_protocols != old_protocols) {
+ 		*current_protocols = new_protocols;
+ 		dev_dbg(&dev->dev, "Protocols changed to 0x%llx\n",
+@@ -1735,6 +1735,9 @@ static int rc_prepare_rx_device(struct rc_dev *dev)
+ 	if (dev->driver_type == RC_DRIVER_SCANCODE && !dev->change_protocol)
+ 		dev->enabled_protocols = dev->allowed_protocols;
  
- 	if (dev->keypressed) {
--		dev->keyup_jiffies = jiffies +
-+		dev->keyup_jiffies = jiffies + nsecs_to_jiffies(dev->timeout) +
- 			msecs_to_jiffies(protocols[protocol].repeat_period);
- 		mod_timer(&dev->timer_keyup, dev->keyup_jiffies);
++	if (dev->driver_type == RC_DRIVER_IR_RAW)
++		ir_raw_load_modules(&rc_proto);
++
+ 	if (dev->change_protocol) {
+ 		rc = dev->change_protocol(dev, &rc_proto);
+ 		if (rc < 0)
+@@ -1742,9 +1745,6 @@ static int rc_prepare_rx_device(struct rc_dev *dev)
+ 		dev->enabled_protocols = rc_proto;
  	}
-@@ -1647,6 +1648,7 @@ struct rc_dev *rc_allocate_device(enum rc_driver_type type)
- 		dev->input_dev->setkeycode = ir_setkeycode;
- 		input_set_drvdata(dev->input_dev, dev);
  
-+		dev->timeout = IR_DEFAULT_TIMEOUT;
- 		timer_setup(&dev->timer_keyup, ir_timer_keyup, 0);
- 		timer_setup(&dev->timer_repeat, ir_timer_repeat, 0);
- 
+-	if (dev->driver_type == RC_DRIVER_IR_RAW)
+-		ir_raw_load_modules(&rc_proto);
+-
+ 	set_bit(EV_KEY, dev->input_dev->evbit);
+ 	set_bit(EV_REP, dev->input_dev->evbit);
+ 	set_bit(EV_MSC, dev->input_dev->evbit);
 -- 
 2.14.3
