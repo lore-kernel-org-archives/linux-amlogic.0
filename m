@@ -1,254 +1,230 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 09 Apr 2018 14:08:55 +0200
-Subject: [PATCH v4 5/7] clk: meson-axg: Add AO Clock and Reset
- controller driver
-In-Reply-To: <20180408031938.153474-6-yixun.lan@amlogic.com>
-References: <20180408031938.153474-1-yixun.lan@amlogic.com>
- <20180408031938.153474-6-yixun.lan@amlogic.com>
-Message-ID: <1523275735.2764.26.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 9 Apr 2018 15:47:46 +0200
+Subject: [PATCH u-boot 2/2] ARM: meson: Add cpu info display for GX SoCs
+In-Reply-To: <20180404204953.GA12368@gmail.com>
+References: <1522230877-21267-1-git-send-email-narmstrong@baylibre.com>
+ <1522230877-21267-3-git-send-email-narmstrong@baylibre.com>
+ <20180404204953.GA12368@gmail.com>
+Message-ID: <492995cc-3679-54a5-cc47-4eed68f11da5@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 2018-04-08 at 11:19 +0800, Yixun Lan wrote:
-> From: Qiufang Dai <qiufang.dai@amlogic.com>
+On 04/04/2018 22:49, Beniamino Galvani wrote:
+> On Wed, Mar 28, 2018 at 11:54:37AM +0200, Neil Armstrong wrote:
+>> The Amlogic SoCs have a registers containing the die revision
+>> and packaging type to determine the SoC family and package marketing
+>> name like S905X for the GXL SoC Family.
+>> This code is taken for the Linux meson-gx-socinfo driver and adapted
+>> to U-Boot printing.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  arch/arm/include/asm/arch-meson/gx.h |   1 +
+>>  arch/arm/mach-meson/Makefile         |   2 +-
+>>  arch/arm/mach-meson/cpu_info.c       | 105 +++++++++++++++++++++++++++++++++++
+>>  configs/khadas-vim_defconfig         |   2 +-
+>>  configs/libretech-cc_defconfig       |   2 +-
+>>  configs/odroid-c2_defconfig          |   2 +-
+>>  configs/odroid_defconfig             |   1 +
+>>  configs/p212_defconfig               |   2 +-
+>>  8 files changed, 112 insertions(+), 5 deletions(-)
+>>  create mode 100644 arch/arm/mach-meson/cpu_info.c
+>>
+>> diff --git a/arch/arm/include/asm/arch-meson/gx.h b/arch/arm/include/asm/arch-meson/gx.h
+>> index 7930efd..6d5b4ea 100644
+>> --- a/arch/arm/include/asm/arch-meson/gx.h
+>> +++ b/arch/arm/include/asm/arch-meson/gx.h
+>> @@ -17,6 +17,7 @@
+>>  /* Always-On Peripherals registers */
+>>  #define GX_AO_ADDR(off)	(GX_AOBUS_BASE + ((off) << 2))
+>>  
+>> +#define GX_AO_SEC_SD_CFG8	GX_AO_ADDR(0x88)
+>>  #define GX_AO_SEC_GP_CFG0	GX_AO_ADDR(0x90)
+>>  #define GX_AO_SEC_GP_CFG3	GX_AO_ADDR(0x93)
+>>  #define GX_AO_SEC_GP_CFG4	GX_AO_ADDR(0x94)
+>> diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
+>> index b4e8dde..5a01ff0 100644
+>> --- a/arch/arm/mach-meson/Makefile
+>> +++ b/arch/arm/mach-meson/Makefile
+>> @@ -4,4 +4,4 @@
+>>  # SPDX-License-Identifier:	GPL-2.0+
+>>  #
+>>  
+>> -obj-y += board.o sm.o eth.o
+>> +obj-y += board.o sm.o eth.o cpu_info.o
+>> diff --git a/arch/arm/mach-meson/cpu_info.c b/arch/arm/mach-meson/cpu_info.c
+>> new file mode 100644
+>> index 0000000..657768f
+>> --- /dev/null
+>> +++ b/arch/arm/mach-meson/cpu_info.c
+>> @@ -0,0 +1,105 @@
+>> +/*
+>> + * Copyright (C) 2018 BayLibre, SAS
+>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>> + *
+>> + * SPDX-License-Identifier:	GPL-2.0+
+>> + */
+>> +
+>> +#include <common.h>
+>> +#include <asm/io.h>
+>> +#include <linux/bitfield.h>
+>> +#include <asm/arch/gx.h>
+>> +
+>> +#ifdef CONFIG_DISPLAY_CPUINFO
+>> +
+>> +#define SOCINFO_MAJOR	GENMASK(31, 24)
+>> +#define SOCINFO_PACK	GENMASK(23, 16)
+>> +#define SOCINFO_MINOR	GENMASK(15, 8)
+>> +#define SOCINFO_MISC	GENMASK(7, 0)
+>> +
+>> +static const struct meson_gx_soc_id {
+>> +	const char *name;
+>> +	unsigned int id;
+>> +} soc_ids[] = {
+>> +	{ "GXBB", 0x1f },
+>> +	{ "GXTVBB", 0x20 },
+>> +	{ "GXL", 0x21 },
+>> +	{ "GXM", 0x22 },
+>> +	{ "TXL", 0x23 },
+>> +};
+>> +
+>> +static const struct meson_gx_package_id {
+>> +	const char *name;
+>> +	unsigned int major_id;
+>> +	unsigned int pack_id;
+>> +} soc_packages[] = {
+>> +	{ "S905", 0x1f, 0 },
+>> +	{ "S905M", 0x1f, 0x20 },
+>> +	{ "S905D", 0x21, 0 },
+>> +	{ "S905X", 0x21, 0x80 },
+>> +	{ "S905L", 0x21, 0xc0 },
+>> +	{ "S905M2", 0x21, 0xe0 },
+>> +	{ "S912", 0x22, 0 },
+>> +};
+>> +
+>> +static inline unsigned int socinfo_to_major(u32 socinfo)
+>> +{
+>> +	return FIELD_GET(SOCINFO_MAJOR, socinfo);
+>> +}
+>> +
+>> +static inline unsigned int socinfo_to_minor(u32 socinfo)
+>> +{
+>> +	return FIELD_GET(SOCINFO_MINOR, socinfo);
+>> +}
+>> +
+>> +static inline unsigned int socinfo_to_pack(u32 socinfo)
+>> +{
+>> +	return FIELD_GET(SOCINFO_PACK, socinfo);
+>> +}
+>> +
+>> +static inline unsigned int socinfo_to_misc(u32 socinfo)
+>> +{
+>> +	return FIELD_GET(SOCINFO_MISC, socinfo);
+>> +}
+>> +
+>> +static const char *socinfo_to_package_id(u32 socinfo)
+>> +{
+>> +	unsigned int pack = socinfo_to_pack(socinfo) & 0xf0;
+>> +	unsigned int major = socinfo_to_major(socinfo);
+>> +	int i;
+>> +
+>> +	for (i = 0 ; i < ARRAY_SIZE(soc_packages) ; ++i) {
+>> +		if (soc_packages[i].major_id == major &&
+>> +		    soc_packages[i].pack_id == pack)
+>> +			return soc_packages[i].name;
+>> +	}
+>> +
+>> +	return "Unknown";
+>> +}
+>> +
+>> +static const char *socinfo_to_soc_id(u32 socinfo)
+>> +{
+>> +	unsigned int id = socinfo_to_major(socinfo);
+>> +	int i;
+>> +
+>> +	for (i = 0 ; i < ARRAY_SIZE(soc_ids) ; ++i) {
+>> +		if (soc_ids[i].id == id)
+>> +			return soc_ids[i].name;
+>> +	}
+>> +
+>> +	return "Unknown";
+>> +}
+>> +
+>> +int print_cpuinfo(void)
+>> +{
+>> +	u32 socinfo = readl(GX_AO_SEC_SD_CFG8);
 > 
-> Adds a Clock and Reset controller driver for the Always-On part
-> of the Amlogic Meson-AXG SoC.
-> 
-> Signed-off-by: Qiufang Dai <qiufang.dai@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  drivers/clk/meson/Makefile    |   2 +-
->  drivers/clk/meson/axg-aoclk.c | 164 ++++++++++++++++++++++++++++++++++++++++++
->  drivers/clk/meson/axg-aoclk.h |  31 ++++++++
->  3 files changed, 196 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/meson/axg-aoclk.c
->  create mode 100644 drivers/clk/meson/axg-aoclk.h
-> 
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 555ab9c6ab64..fa6d1e36cef6 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -5,5 +5,5 @@
->  obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-audio-divider.o
->  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
->  obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o meson-aoclk.o gxbb-aoclk.o gxbb-aoclk-32k.o
-> -obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o
-> +obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o meson-aoclk.o axg-aoclk.o
-                                             ^
-As hinted in patch 1, not ending well =======|
+> Perhaps, add a blank line between declarations and code? checkpatch
+> issues a warning about this.
 
-You are putting this object in 2 modules.
-What you should have done is :
-- Add a Kconfig CONFIG_COMMON_CLK_MESON_AO (same as CONFIG_COMMON_CLK_AMLOGIC)
-selected by GXBB and AXG.
-- Compile meson-aoclk.o according to this new configuration
+Ok
 
->  obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)	+= clk-regmap.o
-> diff --git a/drivers/clk/meson/axg-aoclk.c b/drivers/clk/meson/axg-aoclk.c
-> new file mode 100644
-> index 000000000000..cb56d809d3df
-> --- /dev/null
-> +++ b/drivers/clk/meson/axg-aoclk.c
-> @@ -0,0 +1,164 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Amlogic Meson-AXG Clock Controller Driver
-> + *
-> + * Copyright (c) 2016 Baylibre SAS.
-> + * Author: Michael Turquette <mturquette@baylibre.com>
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-> + */
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/init.h>
-> +#include "clkc.h"
-> +#include "axg-aoclk.h"
-> +
-> +#define AXG_AO_GATE(_name, _bit)					\
-> +static struct clk_regmap _name##_ao = {					\
-> +	.data = &(struct clk_regmap_gate_data) {			\
-> +		.offset = (AO_RTI_GEN_CNTL_REG0),			\
-> +		.bit_idx = (_bit),					\
-> +	},								\
-> +	.hw.init = &(struct clk_init_data) {				\
-> +		.name = #_name "_ao",					\
-> +		.ops = &clk_regmap_gate_ops,				\
-> +		.parent_names = (const char *[]){ "clk81" },		\
-> +		.num_parents = 1,					\
-> +		.flags = CLK_IGNORE_UNUSED,				\
-> +	},								\
-> +}
-> +
-> +AXG_AO_GATE(remote, 0);
-> +AXG_AO_GATE(i2c_master, 1);
-> +AXG_AO_GATE(i2c_slave, 2);
-> +AXG_AO_GATE(uart1, 3);
-> +AXG_AO_GATE(uart2, 5);
-> +AXG_AO_GATE(ir_blaster, 6);
-> +AXG_AO_GATE(saradc, 7);
-> +
-> +static struct clk_regmap ao_clk81 = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = AO_RTI_PWR_CNTL_REG0,
-> +		.mask = 0x1,
-> +		.shift = 8,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "ao_clk81",
-> +		.ops = &clk_regmap_mux_ro_ops,
-> +		.parent_names = (const char *[]){ "clk81", "ao_alt_xtal"},
-> +		.num_parents = 2,
-> +	},
-> +};
-> +
-> +static struct clk_regmap axg_saradc_mux = {
-> +	.data = &(struct clk_regmap_mux_data) {
-> +		.offset = AO_SAR_CLK,
-> +		.mask = 0x3,
-> +		.shift = 9,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "axg_saradc_mux",
-> +		.ops = &clk_regmap_mux_ops,
-> +		.parent_names = (const char *[]){ "xtal", "ao_clk81" },
-> +		.num_parents = 2,
-> +	},
-> +};
-> +
-> +static struct clk_regmap axg_saradc_div = {
-> +	.data = &(struct clk_regmap_div_data) {
-> +		.offset = AO_SAR_CLK,
-> +		.shift = 0,
-> +		.width = 8,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "axg_saradc_div",
-> +		.ops = &clk_regmap_divider_ops,
-> +		.parent_names = (const char *[]){ "axg_saradc_mux" },
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static struct clk_regmap axg_saradc_gate = {
-> +	.data = &(struct clk_regmap_gate_data) {
-> +		.offset = AO_SAR_CLK,
-> +		.bit_idx = 8,
-> +	},
-> +	.hw.init = &(struct clk_init_data){
-> +		.name = "axg_saradc_gate",
-> +		.ops = &clk_regmap_gate_ops,
-> +		.parent_names = (const char *[]){ "axg_saradc_div" },
-> +		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
-> +	},
-> +};
-> +
-> +static const unsigned int axg_aoclk_reset[] = {
-> +	[RESET_AO_REMOTE] = 16,
-> +	[RESET_AO_I2C_MASTER] = 18,
-> +	[RESET_AO_I2C_SLAVE] = 19,
-> +	[RESET_AO_UART1] = 17,
-> +	[RESET_AO_UART2] = 22,
-> +	[RESET_AO_IR_BLASTER] = 23,
-> +};
-> +
-> +static struct clk_regmap *axg_aoclk_regmap[] = {
-> +	[CLKID_AO_REMOTE]	= &remote_ao,
-> +	[CLKID_AO_I2C_MASTER]	= &i2c_master_ao,
-> +	[CLKID_AO_I2C_SLAVE]	= &i2c_slave_ao,
-> +	[CLKID_AO_UART1]	= &uart1_ao,
-> +	[CLKID_AO_UART2]	= &uart2_ao,
-> +	[CLKID_AO_IR_BLASTER]	= &ir_blaster_ao,
-> +	[CLKID_AO_SAR_ADC]	= &saradc_ao,
-> +	[CLKID_AO_CLK81]	= &ao_clk81,
-> +	[CLKID_AO_SAR_ADC_SEL]	= &axg_saradc_mux,
-> +	[CLKID_AO_SAR_ADC_DIV]	= &axg_saradc_div,
-> +	[CLKID_AO_SAR_ADC_CLK]	= &axg_saradc_gate,
-> +};
-> +
-> +static const struct clk_hw_onecell_data axg_aoclk_onecell_data = {
-> +	.hws = {
-> +		[CLKID_AO_REMOTE]	= &remote_ao.hw,
-> +		[CLKID_AO_I2C_MASTER]	= &i2c_master_ao.hw,
-> +		[CLKID_AO_I2C_SLAVE]	= &i2c_slave_ao.hw,
-> +		[CLKID_AO_UART1]	= &uart1_ao.hw,
-> +		[CLKID_AO_UART2]	= &uart2_ao.hw,
-> +		[CLKID_AO_IR_BLASTER]	= &ir_blaster_ao.hw,
-> +		[CLKID_AO_SAR_ADC]	= &saradc_ao.hw,
-> +		[CLKID_AO_CLK81]	= &ao_clk81.hw,
-> +		[CLKID_AO_SAR_ADC_SEL]	= &axg_saradc_mux.hw,
-> +		[CLKID_AO_SAR_ADC_DIV]	= &axg_saradc_div.hw,
-> +		[CLKID_AO_SAR_ADC_CLK]	= &axg_saradc_gate.hw,
-> +	},
-> +	.num = NR_CLKS,
-> +};
-> +
-> +static const struct meson_aoclk_data axg_aoclkc_data = {
-> +	.reset_reg	= AO_RTI_GEN_CNTL_REG0,
-> +	.num_reset	= ARRAY_SIZE(axg_aoclk_reset),
-> +	.reset		= axg_aoclk_reset,
-> +	.num_clks	= ARRAY_SIZE(axg_aoclk_regmap),
-> +	.clks		= axg_aoclk_regmap,
-> +	.hw_data	= &axg_aoclk_onecell_data,
-> +};
-> +
-> +static const struct of_device_id axg_aoclkc_match_table[] = {
-> +	{
-> +		.compatible	= "amlogic,meson-axg-aoclkc",
-> +		.data		= &axg_aoclkc_data,
-> +	},
-> +	{ }
-> +};
-> +
-> +static struct platform_driver axg_aoclkc_driver = {
-> +	.probe		= meson_aoclkc_probe,
-> +	.driver		= {
-> +		.name	= "axg-aoclkc",
-> +		.of_match_table = axg_aoclkc_match_table,
-> +	},
-> +};
-> +
-> +builtin_platform_driver(axg_aoclkc_driver);
-> diff --git a/drivers/clk/meson/axg-aoclk.h b/drivers/clk/meson/axg-aoclk.h
-> new file mode 100644
-> index 000000000000..396cd3023064
-> --- /dev/null
-> +++ b/drivers/clk/meson/axg-aoclk.h
-> @@ -0,0 +1,31 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2017 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-> + */
-> +
-> +#ifndef __AXG_AOCLKC_H
-> +#define __AXG_AOCLKC_H
-> +
-> +#include "meson-aoclk.h"
-> +
-> +#define NR_CLKS	11
-> +/* AO Configuration Clock registers offsets
-> + * Register offsets from the data sheet must be multiplied by 4.
-> + */
-> +#define AO_RTI_PWR_CNTL_REG1	0x0C
-> +#define AO_RTI_PWR_CNTL_REG0	0x10
-> +#define AO_RTI_GEN_CNTL_REG0	0x40
-> +#define AO_OSCIN_CNTL		0x58
-> +#define AO_CRT_CLK_CNTL1	0x68
-> +#define AO_SAR_CLK		0x90
-> +#define AO_RTC_ALT_CLK_CNTL0	0x94
-> +#define AO_RTC_ALT_CLK_CNTL1	0x98
-> +
-> +#include <dt-bindings/clock/axg-aoclkc.h>
-> +#include <dt-bindings/reset/axg-aoclkc.h>
-> +
-> +#endif /* __AXG_AOCLKC_H */
+> 
+>> +	printf("CPU: Amlogic Meson %s (%s) rev %x:%x (%x:%x)\n",
+>> +		socinfo_to_soc_id(socinfo),
+>> +		socinfo_to_package_id(socinfo),
+>> +		socinfo_to_major(socinfo),
+>> +		socinfo_to_minor(socinfo),
+>> +		socinfo_to_pack(socinfo),
+>> +		socinfo_to_misc(socinfo));
+>> +	return 0;
+>> +}
+>> +#endif /* CONFIG_DISPLAY_CPUINFO */
+>> diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
+>> index a0b3f8d..970d373 100644
+>> --- a/configs/khadas-vim_defconfig
+>> +++ b/configs/khadas-vim_defconfig
+>> @@ -7,7 +7,7 @@ CONFIG_IDENT_STRING=" khadas-vim"
+>>  CONFIG_DEFAULT_DEVICE_TREE="meson-gxl-s905x-khadas-vim"
+>>  CONFIG_DEBUG_UART=y
+>>  CONFIG_OF_BOARD_SETUP=y
+>> -# CONFIG_DISPLAY_CPUINFO is not set
+>> +CONFIG_DISPLAY_CPUINFO=y
+>>  # CONFIG_DISPLAY_BOARDINFO is not set
+>>  # CONFIG_CMD_BDI is not set
+>>  # CONFIG_CMD_IMI is not set
+>> diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
+>> index a7177b9..cfbba30 100644
+>> --- a/configs/libretech-cc_defconfig
+>> +++ b/configs/libretech-cc_defconfig
+>> @@ -7,7 +7,7 @@ CONFIG_IDENT_STRING=" libretech-cc"
+>>  CONFIG_DEFAULT_DEVICE_TREE="meson-gxl-s905x-libretech-cc"
+>>  CONFIG_DEBUG_UART=y
+>>  CONFIG_OF_BOARD_SETUP=y
+>> -# CONFIG_DISPLAY_CPUINFO is not set
+>> +CONFIG_DISPLAY_CPUINFO=y
+>>  # CONFIG_DISPLAY_BOARDINFO is not set
+>>  # CONFIG_CMD_BDI is not set
+>>  # CONFIG_CMD_IMI is not set
+>> diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
+>> index 49461aa..657b647 100644
+>> --- a/configs/odroid-c2_defconfig
+>> +++ b/configs/odroid-c2_defconfig
+>> @@ -7,7 +7,7 @@ CONFIG_IDENT_STRING=" odroid-c2"
+>>  CONFIG_DEFAULT_DEVICE_TREE="meson-gxbb-odroidc2"
+>>  CONFIG_DEBUG_UART=y
+>>  CONFIG_OF_BOARD_SETUP=y
+>> -# CONFIG_DISPLAY_CPUINFO is not set
+>> +CONFIG_DISPLAY_CPUINFO=y
+>>  # CONFIG_DISPLAY_BOARDINFO is not set
+>>  # CONFIG_CMD_BDI is not set
+>>  # CONFIG_CMD_IMI is not set
+>> diff --git a/configs/odroid_defconfig b/configs/odroid_defconfig
+>> index 810874d..251bf38 100644
+>> --- a/configs/odroid_defconfig
+>> +++ b/configs/odroid_defconfig
+>> @@ -56,3 +56,4 @@ CONFIG_USB_HOST_ETHER=y
+>>  CONFIG_USB_ETHER_SMSC95XX=y
+>>  CONFIG_LIB_HW_RAND=y
+>>  CONFIG_ERRNO_STR=y
+>> +CONFIG_DISPLAY_CPUINFO=y
+> 
+> Odroid is not an Amlogic board.
+
+Oops, will remove it.
+
+> 
+> With these 2 issues fixed: Reviewed-by: Beniamino Galvani <b.galvani@gmail.com>
+> 
+> Beniamino
+> 
