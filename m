@@ -1,46 +1,37 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun,  8 Apr 2018 23:27:43 +0200
-Subject: [PATCH usb v5 6/6] usb: core: phy: add the SPDX-License-Identifier
- and include guard
-In-Reply-To: <20180408212743.22934-1-martin.blumenstingl@googlemail.com>
-References: <20180408212743.22934-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180408212743.22934-7-martin.blumenstingl@googlemail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 09 Apr 2018 14:03:45 +0200
+Subject: [PATCH v4 2/7] clk: meson: migrate to
+ devm_of_clk_add_hw_provider API
+In-Reply-To: <20180408031938.153474-3-yixun.lan@amlogic.com>
+References: <20180408031938.153474-1-yixun.lan@amlogic.com>
+ <20180408031938.153474-3-yixun.lan@amlogic.com>
+Message-ID: <1523275425.2764.20.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This clarifies the license of the code. While here also add an include
-guard to the header file.
+On Sun, 2018-04-08 at 11:19 +0800, Yixun Lan wrote:
+> There is a protential memory leak, as of_clk_del_provider is
+> never called if of_clk_add_hw_provider has been executed.
+> Fix this by using devm variant API.
+> 
+> Suggested-by: Stephen Boyd <sboyd@kernel.org>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-Fixes: 07dbff0ddbd86c ("usb: core: add a wrapper for the USB PHYs on the HCD")
-Suggested-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/usb/core/phy.h | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Please make this the 1st patch of the series and add the proper fixes tag.
 
-diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
-index bbc969383074..8451a7e88d38 100644
---- a/drivers/usb/core/phy.h
-+++ b/drivers/usb/core/phy.h
-@@ -1,3 +1,13 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * USB roothub wrapper
-+ *
-+ * Copyright (C) 2018 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+ */
-+
-+#ifndef __USB_CORE_PHY_H_
-+#define __USB_CORE_PHY_H_
-+
- struct device;
- struct usb_phy_roothub;
- 
-@@ -13,3 +23,5 @@ int usb_phy_roothub_suspend(struct device *controller_dev,
- 			    struct usb_phy_roothub *phy_roothub);
- int usb_phy_roothub_resume(struct device *controller_dev,
- 			   struct usb_phy_roothub *phy_roothub);
-+
-+#endif /* __USB_CORE_PHY_H_ */
--- 
-2.17.0
+> ---
+>  drivers/clk/meson/meson-aoclk.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
+> index 14862c22e20d..14a1e46a4de6 100644
+> --- a/drivers/clk/meson/meson-aoclk.c
+> +++ b/drivers/clk/meson/meson-aoclk.c
+> @@ -78,6 +78,6 @@ int meson_aoclkc_probe(struct platform_device *pdev)
+>  			return ret;
+>  	}
+>  
+> -	return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>  		(void *) data->hw_data);
+>  }
