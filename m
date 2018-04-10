@@ -1,127 +1,52 @@
-From: j-keerthy@ti.com (Keerthy)
-Date: Tue, 10 Apr 2018 09:36:15 +0530
-Subject: [PATCH usb v5 0/6] usb/core/phy fixes for v4.17
-In-Reply-To: <20180408212743.22934-1-martin.blumenstingl@googlemail.com>
-References: <20180408212743.22934-1-martin.blumenstingl@googlemail.com>
-Message-ID: <84fa5dd7-de41-18b5-d772-095545dc1c63@ti.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 10 Apr 2018 15:51:01 +0200
+Subject: [PATCH u-boot 2/2] ARM: meson: Add cpu info display for GX SoCs
+In-Reply-To: <CAPnjgZ0w9v6_6Qiw0uzKzFcTOMThtcQ6C6Q0gnKfHnX9ZZihUQ@mail.gmail.com>
+References: <1522230877-21267-1-git-send-email-narmstrong@baylibre.com>
+ <1522230877-21267-3-git-send-email-narmstrong@baylibre.com>
+ <CAPnjgZ0w9v6_6Qiw0uzKzFcTOMThtcQ6C6Q0gnKfHnX9ZZihUQ@mail.gmail.com>
+Message-ID: <08220462-5c2e-0858-31bb-c899d8801350@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-
-
-On Monday 09 April 2018 02:57 AM, Martin Blumenstingl wrote:
-> This is a follow-up to my previous series "initialize (multiple) PHYs
-> for a HCD": [0].
+On 08/04/2018 15:50, Simon Glass wrote:
+> Hi,
 > 
-> Roger Quadros reported [1] that it "is breaking low power cases on TI
-> SoCs when USB is in host mode". He further explains that "Not doing the
-> phy_exit() here [when entering suspend] leaves the clocks enabled on
-> our SoC and we're no longer able to reach low power states on system
-> suspend."
-> Chunfeng Yun from Mediatek noted [2] that we cannot unconditionally call
-> phy_exit while entering system suspend, because this would "disconnect
-> plugged devices on MTK platforms, due to re-initialize u2 phys when
-> resume"
+> On 28 March 2018 at 05:54, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> The Amlogic SoCs have a registers containing the die revision
+>> and packaging type to determine the SoC family and package marketing
+>> name like S905X for the GXL SoC Family.
+>> This code is taken for the Linux meson-gx-socinfo driver and adapted
+>> to U-Boot printing.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  arch/arm/include/asm/arch-meson/gx.h |   1 +
+>>  arch/arm/mach-meson/Makefile         |   2 +-
+>>  arch/arm/mach-meson/cpu_info.c       | 105 +++++++++++++++++++++++++++++++++++
+>>  configs/khadas-vim_defconfig         |   2 +-
+>>  configs/libretech-cc_defconfig       |   2 +-
+>>  configs/odroid-c2_defconfig          |   2 +-
+>>  configs/odroid_defconfig             |   1 +
+>>  configs/p212_defconfig               |   2 +-
+>>  8 files changed, 112 insertions(+), 5 deletions(-)
+>>  create mode 100644 arch/arm/mach-meson/cpu_info.c
 > 
-> In the discussion (which followed Roger's bug report: [1]) Roger,
-> Chunfeng and me came to the conclusion that we can fix suspend on the
-> TI SoCs without breaking it on the Mediatek SoCs by extending the
-> suspend and resume code in usb/core/phy.c by checking whether the USB
-> controller can wake up the system (which is the case for the Mediatek
-> MTU3 controller, but now for the dwc3 controller used on the TI SoCs):
-> - if the controller can wake up the system (Mediatek MTU3 use-case) we
->   only call usb_phy_roothub_power_off (which calls phy_power_off) when
->   entering system suspend
-> - if the controller however cannot wake up the system (dwc3 on TI SoCs)
->   we additionally call usb_phy_roothub_exit (which calls phy_exit) when
->   entering system suspend
-> - (we undo the previous steps during system resume)
+> Please can you use driver model's CPU interface for this?
 > 
-> The goal of this series is to fix the issue reported by Roger without
-> breaking suspend/resume on the Mediatek SoCs.
-> Since I neither have a TI nor a Mediatek device I am sending this as
-> RFC. I have tested it on an Amlogic Meson GXM board (Khadas VIM2) which
-> does NOT support suspend/resume yet.
-> 
-> Additionally Stefan Wahren reported [7] that booting on a Raspberry Pi
-> with CONFIG_GENERIC_PHY being disabled (which is the case for
-> bcm2835_defconfig) breaks USB. A fix for this is also included.
+> Regards,
+> Simon
 > 
 
-FWIW
+Hi Simon,
 
-The series fixes suspend/resume on TI AM437X-GP-EVM platform.
+The CPU uclass is designed for the /cpu/* nodes, here we fetch the SoC information
+in some /soc/ subnodes which cannot be used with the current CPU uclass and
+won't be probed before relocation.
 
-Tested-by: Keerthy <j-keerthy@ti.com>
+Either I push is as a MISC driver (with the pre-reloc issue) or we leave this in mach-meson.
 
-Regards,
-Keerthy
-> 
-> changes since v4 at [8]
-> - updated series title since it now includes fixes for other
->   functionality than suspend
-> - rebased on top of f8cf2f16a7c95a from Linus' tree -> I will re-send
->   an updated version once v4.17-rc1 is out, I just sent it early to
->   get some feedback early!
-> - included patch [3] "usb: core: phy: fix return value of
->   usb_phy_roothub_exit()" in this series
-> - fix the logic if CONFIG_GENERIC_PHY is disabled (as reported by
->   Stefan Wahren, new patch #4)
-> - two minor coding style fixes as suggested by Masahiro Yamada (new
->   patches #4 and #5)
-> 
-> changes since RFC v3 at [6]:
-> - added Chunfeng Yun's Tested-by and Roger Quadros' Reviewed-by (thank
->   you!)
-> - dropped RFC prefix
-> 
-> changes since RFC v2 at [5]:
-> - add missing INIT_LIST_HEAD call in usb_phy_roothub_add_phy (affects
->   patch #1 - spotted by Roger Quadros, thank you!)
-> - fixed swapped conditions using device_may_wakeup() in
->   usb_phy_roothub_resume because we need to call usb_phy_roothub_init
->   if the controller cannot wake up the device (affects patch #2, spotted
->   by Chunfeng Yun, thank you!)
-> - simplified the error condition to "undo" usb_phy_roothub_init if
->   usb_phy_roothub_power_on failed in usb_phy_roothub_resume (suggested
->   by Chunfeng Yun)
-> - updated the commit message (using Roger's wording) because (quote from
->   Roger "it doesn't prevent the system from entering suspend but just
->   prevents the system from reaching lowest power levels in the suspend
->   state."
-> 
-> Changes since RFC v1 (blob attachments) at [4]:
-> - use device_may_wakeup instead of device_can_wakeup as suggested by
->   Roger Quadros
-> - use the controller device from hcd->self.controller as suggested by
->   Chunfeng Yun
-> - compile time fixes thanks to Roger Quadros
-> - if usb_phy_roothub_power_on in usb_phy_roothub_resume failes then
->   we now call usb_phy_roothub_exit to keep the PHYs in the correct
->   state if usb_phy_roothub_resume partially failed
-> 
-> 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006599.html
-> [1] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006737.html
-> [2] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006758.html
-> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006819.html
-> [4] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006794.html
-> [5] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006820.html
-> [6] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006847.html
-> [7] https://www.spinics.net/lists/linux-usb/msg167472.html
-> [8] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006882.html
-> 
-> 
-> Martin Blumenstingl (6):
->   usb: core: phy: fix return value of usb_phy_roothub_exit()
->   usb: core: split usb_phy_roothub_{init,alloc}
->   usb: core: use phy_exit during suspend if wake up is not supported
->   usb: core: phy: make it a no-op if CONFIG_GENERIC_PHY is disabled
->   usb: core: phy: add missing forward declaration for "struct device"
->   usb: core: phy: add the SPDX-License-Identifier and include guard
-> 
->  drivers/usb/core/hcd.c | 18 +++++---
->  drivers/usb/core/phy.c | 93 ++++++++++++++++++++++++++++++------------
->  drivers/usb/core/phy.h | 22 +++++++++-
->  3 files changed, 99 insertions(+), 34 deletions(-)
-> 
+What do you think ?
+
+Thanks,
+Neil
