@@ -1,162 +1,127 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon,  9 Apr 2018 16:54:29 +0200
-Subject: [PATCH] pinctrl: meson: axg: add tdm pins
-Message-ID: <20180409145429.16619-1-jbrunet@baylibre.com>
+From: j-keerthy@ti.com (Keerthy)
+Date: Tue, 10 Apr 2018 09:36:15 +0530
+Subject: [PATCH usb v5 0/6] usb/core/phy fixes for v4.17
+In-Reply-To: <20180408212743.22934-1-martin.blumenstingl@googlemail.com>
+References: <20180408212743.22934-1-martin.blumenstingl@googlemail.com>
+Message-ID: <84fa5dd7-de41-18b5-d772-095545dc1c63@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the information related to the tdm pins of the A113D SoC
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/pinctrl/meson/pinctrl-meson-axg.c | 107 ++++++++++++++++++++++++++++++
- 1 file changed, 107 insertions(+)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-index 4b91ff74779b..11dc23fde6d5 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-@@ -312,6 +312,47 @@ static const unsigned int pdm_din1_pins[] = {GPIOA_16};
- static const unsigned int pdm_din2_pins[] = {GPIOA_17};
- static const unsigned int pdm_din3_pins[] = {GPIOA_18};
- 
-+/* mclk */
-+static const unsigned int mclk_c_pins[] = {GPIOA_0};
-+static const unsigned int mclk_b_pins[] = {GPIOA_1};
-+
-+/* tdm */
-+static const unsigned int tdma_sclk_pins[] = {GPIOX_12};
-+static const unsigned int tdma_sclk_slv_pins[] = {GPIOX_12};
-+static const unsigned int tdma_fs_pins[] = {GPIOX_13};
-+static const unsigned int tdma_fs_slv_pins[] = {GPIOX_13};
-+static const unsigned int tdma_din0_pins[] = {GPIOX_14};
-+static const unsigned int tdma_dout0_x14_pins[] = {GPIOX_14};
-+static const unsigned int tdma_dout0_x15_pins[] = {GPIOX_15};
-+static const unsigned int tdma_dout1_pins[] = {GPIOX_15};
-+static const unsigned int tdma_din1_pins[] = {GPIOX_15};
-+
-+static const unsigned int tdmc_sclk_pins[] = {GPIOA_2};
-+static const unsigned int tdmc_sclk_slv_pins[] = {GPIOA_2};
-+static const unsigned int tdmc_fs_pins[] = {GPIOA_3};
-+static const unsigned int tdmc_fs_slv_pins[] = {GPIOA_3};
-+static const unsigned int tdmc_din0_pins[] = {GPIOA_4};
-+static const unsigned int tdmc_dout0_pins[] = {GPIOA_4};
-+static const unsigned int tdmc_din1_pins[] = {GPIOA_5};
-+static const unsigned int tdmc_dout1_pins[] = {GPIOA_5};
-+static const unsigned int tdmc_din2_pins[] = {GPIOA_6};
-+static const unsigned int tdmc_dout2_pins[] = {GPIOA_6};
-+static const unsigned int tdmc_din3_pins[] = {GPIOA_7};
-+static const unsigned int tdmc_dout3_pins[] = {GPIOA_7};
-+
-+static const unsigned int tdmb_sclk_pins[] = {GPIOA_8};
-+static const unsigned int tdmb_sclk_slv_pins[] = {GPIOA_8};
-+static const unsigned int tdmb_fs_pins[] = {GPIOA_9};
-+static const unsigned int tdmb_fs_slv_pins[] = {GPIOA_9};
-+static const unsigned int tdmb_din0_pins[] = {GPIOA_10};
-+static const unsigned int tdmb_dout0_pins[] = {GPIOA_10};
-+static const unsigned int tdmb_din1_pins[] = {GPIOA_11};
-+static const unsigned int tdmb_dout1_pins[] = {GPIOA_11};
-+static const unsigned int tdmb_din2_pins[] = {GPIOA_12};
-+static const unsigned int tdmb_dout2_pins[] = {GPIOA_12};
-+static const unsigned int tdmb_din3_pins[] = {GPIOA_13};
-+static const unsigned int tdmb_dout3_pins[] = {GPIOA_13};
-+
- static struct meson_pmx_group meson_axg_periphs_groups[] = {
- 	GPIO_GROUP(GPIOZ_0),
- 	GPIO_GROUP(GPIOZ_1),
-@@ -495,6 +536,15 @@ static struct meson_pmx_group meson_axg_periphs_groups[] = {
- 	GROUP(eth_rx_dv_x, 4),
- 	GROUP(eth_mdio_x, 4),
- 	GROUP(eth_mdc_x, 4),
-+	GROUP(tdma_sclk, 1),
-+	GROUP(tdma_sclk_slv, 2),
-+	GROUP(tdma_fs, 1),
-+	GROUP(tdma_fs_slv, 2),
-+	GROUP(tdma_din0, 1),
-+	GROUP(tdma_dout0_x14, 2),
-+	GROUP(tdma_dout0_x15, 1),
-+	GROUP(tdma_dout1, 2),
-+	GROUP(tdma_din1, 3),
- 
- 	/* bank GPIOY */
- 	GROUP(eth_txd0_y, 1),
-@@ -544,6 +594,32 @@ static struct meson_pmx_group meson_axg_periphs_groups[] = {
- 	GROUP(pdm_din1, 1),
- 	GROUP(pdm_din2, 1),
- 	GROUP(pdm_din3, 1),
-+	GROUP(mclk_c, 1),
-+	GROUP(mclk_b, 1),
-+	GROUP(tdmc_sclk, 1),
-+	GROUP(tdmc_sclk_slv, 2),
-+	GROUP(tdmc_fs, 1),
-+	GROUP(tdmc_fs_slv, 2),
-+	GROUP(tdmc_din0, 2),
-+	GROUP(tdmc_dout0, 1),
-+	GROUP(tdmc_din1, 2),
-+	GROUP(tdmc_dout1, 1),
-+	GROUP(tdmc_din2, 2),
-+	GROUP(tdmc_dout2, 1),
-+	GROUP(tdmc_din3, 2),
-+	GROUP(tdmc_dout3, 1),
-+	GROUP(tdmb_sclk, 1),
-+	GROUP(tdmb_sclk_slv, 2),
-+	GROUP(tdmb_fs, 1),
-+	GROUP(tdmb_fs_slv, 2),
-+	GROUP(tdmb_din0, 2),
-+	GROUP(tdmb_dout0, 1),
-+	GROUP(tdmb_din1, 2),
-+	GROUP(tdmb_dout1, 1),
-+	GROUP(tdmb_din2, 2),
-+	GROUP(tdmb_dout2, 1),
-+	GROUP(tdmb_din3, 2),
-+	GROUP(tdmb_dout3, 1),
- };
- 
- /* uart_ao_a */
-@@ -845,6 +921,32 @@ static const char * const jtag_ao_groups[] = {
- 	"jtag_ao_tdi", "jtag_ao_tdo", "jtag_ao_clk", "jtag_ao_tms",
- };
- 
-+static const char * const mclk_c_groups[] = {
-+	"mclk_c",
-+};
-+
-+static const char * const mclk_b_groups[] = {
-+	"mclk_b",
-+};
-+
-+static const char * const tdma_groups[] = {
-+	"tdma_sclk", "tdma_sclk_slv", "tdma_fs", "tdma_fs_slv",
-+	"tdma_din0", "tdma_dout0_x14", "tdma_dout0_x15", "tdma_dout1",
-+	"tdma_din1",
-+};
-+
-+static const char * const tdmc_groups[] = {
-+	"tdmc_sclk", "tdmc_sclk_slv", "tdmc_fs", "tdmc_fs_slv",
-+	"tdmc_din0", "tdmc_dout0", "tdmc_din1",	"tdmc_dout1",
-+	"tdmc_din2", "tdmc_dout2", "tdmc_din3",	"tdmc_dout3",
-+};
-+
-+static const char * const tdmb_groups[] = {
-+	"tdmb_sclk", "tdmb_sclk_slv", "tdmb_fs", "tdmb_fs_slv",
-+	"tdmb_din0", "tdmb_dout0", "tdmb_din1",	"tdmb_dout1",
-+	"tdmb_din2", "tdmb_dout2", "tdmb_din3",	"tdmb_dout3",
-+};
-+
- static struct meson_pmx_func meson_axg_periphs_functions[] = {
- 	FUNCTION(gpio_periphs),
- 	FUNCTION(emmc),
-@@ -870,6 +972,11 @@ static struct meson_pmx_func meson_axg_periphs_functions[] = {
- 	FUNCTION(spdif_in),
- 	FUNCTION(jtag_ee),
- 	FUNCTION(pdm),
-+	FUNCTION(mclk_b),
-+	FUNCTION(mclk_c),
-+	FUNCTION(tdma),
-+	FUNCTION(tdmb),
-+	FUNCTION(tdmc),
- };
- 
- static struct meson_pmx_func meson_axg_aobus_functions[] = {
--- 
-2.14.3
+On Monday 09 April 2018 02:57 AM, Martin Blumenstingl wrote:
+> This is a follow-up to my previous series "initialize (multiple) PHYs
+> for a HCD": [0].
+> 
+> Roger Quadros reported [1] that it "is breaking low power cases on TI
+> SoCs when USB is in host mode". He further explains that "Not doing the
+> phy_exit() here [when entering suspend] leaves the clocks enabled on
+> our SoC and we're no longer able to reach low power states on system
+> suspend."
+> Chunfeng Yun from Mediatek noted [2] that we cannot unconditionally call
+> phy_exit while entering system suspend, because this would "disconnect
+> plugged devices on MTK platforms, due to re-initialize u2 phys when
+> resume"
+> 
+> In the discussion (which followed Roger's bug report: [1]) Roger,
+> Chunfeng and me came to the conclusion that we can fix suspend on the
+> TI SoCs without breaking it on the Mediatek SoCs by extending the
+> suspend and resume code in usb/core/phy.c by checking whether the USB
+> controller can wake up the system (which is the case for the Mediatek
+> MTU3 controller, but now for the dwc3 controller used on the TI SoCs):
+> - if the controller can wake up the system (Mediatek MTU3 use-case) we
+>   only call usb_phy_roothub_power_off (which calls phy_power_off) when
+>   entering system suspend
+> - if the controller however cannot wake up the system (dwc3 on TI SoCs)
+>   we additionally call usb_phy_roothub_exit (which calls phy_exit) when
+>   entering system suspend
+> - (we undo the previous steps during system resume)
+> 
+> The goal of this series is to fix the issue reported by Roger without
+> breaking suspend/resume on the Mediatek SoCs.
+> Since I neither have a TI nor a Mediatek device I am sending this as
+> RFC. I have tested it on an Amlogic Meson GXM board (Khadas VIM2) which
+> does NOT support suspend/resume yet.
+> 
+> Additionally Stefan Wahren reported [7] that booting on a Raspberry Pi
+> with CONFIG_GENERIC_PHY being disabled (which is the case for
+> bcm2835_defconfig) breaks USB. A fix for this is also included.
+> 
+
+FWIW
+
+The series fixes suspend/resume on TI AM437X-GP-EVM platform.
+
+Tested-by: Keerthy <j-keerthy@ti.com>
+
+Regards,
+Keerthy
+> 
+> changes since v4 at [8]
+> - updated series title since it now includes fixes for other
+>   functionality than suspend
+> - rebased on top of f8cf2f16a7c95a from Linus' tree -> I will re-send
+>   an updated version once v4.17-rc1 is out, I just sent it early to
+>   get some feedback early!
+> - included patch [3] "usb: core: phy: fix return value of
+>   usb_phy_roothub_exit()" in this series
+> - fix the logic if CONFIG_GENERIC_PHY is disabled (as reported by
+>   Stefan Wahren, new patch #4)
+> - two minor coding style fixes as suggested by Masahiro Yamada (new
+>   patches #4 and #5)
+> 
+> changes since RFC v3 at [6]:
+> - added Chunfeng Yun's Tested-by and Roger Quadros' Reviewed-by (thank
+>   you!)
+> - dropped RFC prefix
+> 
+> changes since RFC v2 at [5]:
+> - add missing INIT_LIST_HEAD call in usb_phy_roothub_add_phy (affects
+>   patch #1 - spotted by Roger Quadros, thank you!)
+> - fixed swapped conditions using device_may_wakeup() in
+>   usb_phy_roothub_resume because we need to call usb_phy_roothub_init
+>   if the controller cannot wake up the device (affects patch #2, spotted
+>   by Chunfeng Yun, thank you!)
+> - simplified the error condition to "undo" usb_phy_roothub_init if
+>   usb_phy_roothub_power_on failed in usb_phy_roothub_resume (suggested
+>   by Chunfeng Yun)
+> - updated the commit message (using Roger's wording) because (quote from
+>   Roger "it doesn't prevent the system from entering suspend but just
+>   prevents the system from reaching lowest power levels in the suspend
+>   state."
+> 
+> Changes since RFC v1 (blob attachments) at [4]:
+> - use device_may_wakeup instead of device_can_wakeup as suggested by
+>   Roger Quadros
+> - use the controller device from hcd->self.controller as suggested by
+>   Chunfeng Yun
+> - compile time fixes thanks to Roger Quadros
+> - if usb_phy_roothub_power_on in usb_phy_roothub_resume failes then
+>   we now call usb_phy_roothub_exit to keep the PHYs in the correct
+>   state if usb_phy_roothub_resume partially failed
+> 
+> 
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006599.html
+> [1] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006737.html
+> [2] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006758.html
+> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006819.html
+> [4] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006794.html
+> [5] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006820.html
+> [6] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006847.html
+> [7] https://www.spinics.net/lists/linux-usb/msg167472.html
+> [8] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006882.html
+> 
+> 
+> Martin Blumenstingl (6):
+>   usb: core: phy: fix return value of usb_phy_roothub_exit()
+>   usb: core: split usb_phy_roothub_{init,alloc}
+>   usb: core: use phy_exit during suspend if wake up is not supported
+>   usb: core: phy: make it a no-op if CONFIG_GENERIC_PHY is disabled
+>   usb: core: phy: add missing forward declaration for "struct device"
+>   usb: core: phy: add the SPDX-License-Identifier and include guard
+> 
+>  drivers/usb/core/hcd.c | 18 +++++---
+>  drivers/usb/core/phy.c | 93 ++++++++++++++++++++++++++++++------------
+>  drivers/usb/core/phy.h | 22 +++++++++-
+>  3 files changed, 99 insertions(+), 34 deletions(-)
+> 
