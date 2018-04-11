@@ -1,189 +1,66 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 11 Apr 2018 16:29:06 +0200
-Subject: [PATCH v2 u-boot 2/3] usb: host: dwc3: Add support for multiple PHYs
-In-Reply-To: <1523456947-4242-1-git-send-email-narmstrong@baylibre.com>
-References: <1523456947-4242-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1523456947-4242-3-git-send-email-narmstrong@baylibre.com>
+Date: Wed, 11 Apr 2018 16:29:04 +0200
+Subject: [PATCH v2 u-boot 0/3] Add USB Support for Amlogic Meson GXL SoCs
+Message-ID: <1523456947-4242-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-DWC3 Ips can have more than 1 PHY for USB2 and 1 PHY for USB3, add support
-for a generic number of PHYs and adapt the code to handle a generic
-number of PHYs.
+This patchset adds support for USB for the Amlogic Meson GXL SoCs following
+the work done for Linux by Martin Blumenstingl at [1] [2] [3].
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/usb/host/xhci-dwc3.c | 113 +++++++++++++++++++++++++------------------
- 1 file changed, 66 insertions(+), 47 deletions(-)
+The support consist of :
+ - A port of dwc3-of-simple from Linux to U-boot
+ - A change to support more than 2 PHYs in the DWC3 DM driver
+ - An USB2 PHY Driver and an USB3 PHY Driver
 
-diff --git a/drivers/usb/host/xhci-dwc3.c b/drivers/usb/host/xhci-dwc3.c
-index 1022dd5..c100735 100644
---- a/drivers/usb/host/xhci-dwc3.c
-+++ b/drivers/usb/host/xhci-dwc3.c
-@@ -22,8 +22,8 @@
- DECLARE_GLOBAL_DATA_PTR;
- 
- struct xhci_dwc3_platdata {
--	struct phy usb_phy;
--	struct phy usb3_phy;
-+	struct phy *usb_phys;
-+	int num_phys;
- };
- 
- void dwc3_set_mode(struct dwc3 *dwc3_reg, u32 mode)
-@@ -113,45 +113,82 @@ void dwc3_set_fladj(struct dwc3 *dwc3_reg, u32 val)
- }
- 
- #ifdef CONFIG_DM_USB
--static int xhci_dwc3_setup_phy(struct udevice *dev, int index, struct phy *phy)
-+static int xhci_dwc3_setup_phy(struct udevice *dev, int count)
- {
--	int ret = 0;
-+	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
-+	int i, ret;
-+
-+	if (!count)
-+		return 0;
- 
--	ret = generic_phy_get_by_index(dev, index, phy);
--	if (ret) {
--		if (ret != -ENOENT) {
--			pr_err("Failed to get USB PHY for %s\n", dev->name);
-+	plat->usb_phys = devm_kcalloc(dev, count, sizeof(struct phy),
-+					GFP_KERNEL);
-+	if (!plat->usb_phys)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < count; i++) {
-+		ret = generic_phy_get_by_index(dev, i, &plat->usb_phys[i]);
-+		if (ret && ret != -ENOENT) {
-+			pr_err("Failed to get USB PHY%d for %s\n",
-+			       i, dev->name);
- 			return ret;
- 		}
--	} else {
--		ret = generic_phy_init(phy);
-+
-+		++plat->num_phys;
-+	}
-+	
-+	for (i = 0; i < plat->num_phys; i++) {
-+		ret = generic_phy_init(&plat->usb_phys[i]);
- 		if (ret) {
--			pr_err("Can't init USB PHY for %s\n", dev->name);
--			return ret;
-+			pr_err("Can't init USB PHY%d for %s\n",
-+			       i, dev->name);
-+			goto phys_init_err;
- 		}
--		ret = generic_phy_power_on(phy);
-+	}
-+	
-+	for (i = 0; i < plat->num_phys; i++) {
-+		ret = generic_phy_power_on(&plat->usb_phys[i]);
- 		if (ret) {
--			pr_err("Can't power on USB PHY for %s\n", dev->name);
--			generic_phy_exit(phy);
--			return ret;
-+			pr_err("Can't power USB PHY%d for %s\n",
-+			       i, dev->name);
-+			goto phys_poweron_err;
- 		}
- 	}
- 
- 	return 0;
-+
-+
-+phys_poweron_err:
-+	for (; i >= 0; i--)
-+		generic_phy_power_off(&plat->usb_phys[i]);
-+
-+	for (i = 0; i < plat->num_phys; i++)
-+		generic_phy_exit(&plat->usb_phys[i]);
-+
-+	return ret;
-+
-+phys_init_err:
-+	for (; i >= 0; i--)
-+		generic_phy_exit(&plat->usb_phys[i]);
-+
-+	return ret;
- }
- 
--static int xhci_dwc3_shutdown_phy(struct phy *phy)
-+static int xhci_dwc3_shutdown_phy(struct udevice *dev)
- {
--	int ret = 0;
-+	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
-+	int i, ret;
- 
--	if (generic_phy_valid(phy)) {
--		ret = generic_phy_power_off(phy);
--		if (ret)
--			return ret;
-+	for (i = 0; i < plat->num_phys; i++) {
-+		if (!generic_phy_valid(&plat->usb_phys[i]))
-+			continue;
- 
--		ret = generic_phy_exit(phy);
--		if (ret)
--			return ret;
-+		ret = generic_phy_power_off(&plat->usb_phys[i]);
-+		ret |= generic_phy_exit(&plat->usb_phys[i]);
-+		if (ret) {
-+			pr_err("Can't shutdown USB PHY%d for %s\n",
-+				i, dev->name);
-+		}
- 	}
- 
- 	return 0;
-@@ -159,7 +196,6 @@ static int xhci_dwc3_shutdown_phy(struct phy *phy)
- 
- static int xhci_dwc3_probe(struct udevice *dev)
- {
--	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
- 	struct xhci_hcor *hcor;
- 	struct xhci_hccr *hccr;
- 	struct dwc3 *dwc3_reg;
-@@ -170,18 +206,10 @@ static int xhci_dwc3_probe(struct udevice *dev)
- 	hcor = (struct xhci_hcor *)((uintptr_t)hccr +
- 			HC_LENGTH(xhci_readl(&(hccr)->cr_capbase)));
- 
--	ret = xhci_dwc3_setup_phy(dev, 0, &plat->usb_phy);
--	if (ret) {
--		pr_err("Failed to setup USB PHY for %s\n", dev->name);
-+	ret = xhci_dwc3_setup_phy(dev, dev_count_phandle_with_args(
-+						dev, "phys", "#phy-cells"));
-+	if (ret)
- 		return ret;
--	}
--
--	ret = xhci_dwc3_setup_phy(dev, 1, &plat->usb3_phy);
--	if (ret) {
--		pr_err("Failed to setup USB3 PHY for %s\n", dev->name);
--		xhci_dwc3_shutdown_phy(&plat->usb_phy);
--		return ret;
--	}
- 
- 	dwc3_reg = (struct dwc3 *)((char *)(hccr) + DWC3_REG_OFFSET);
- 
-@@ -199,16 +227,7 @@ static int xhci_dwc3_probe(struct udevice *dev)
- 
- static int xhci_dwc3_remove(struct udevice *dev)
- {
--	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
--	int ret;
--
--	ret = xhci_dwc3_shutdown_phy(&plat->usb_phy);
--	if (ret)
--		pr_err("Can't shutdown USB PHY for %s\n", dev->name);
--
--	ret = xhci_dwc3_shutdown_phy(&plat->usb3_phy);
--	if (ret)
--		pr_err("Can't shutdown USB3 PHY for %s\n", dev->name);
-+	xhci_dwc3_shutdown_phy(dev);
- 
- 	return xhci_deregister(dev);
- }
+The DWC3 Controller has up to 4 PHYs connected :
+ - 2 USB2 PHYs and an USB3 PHY for GXL SoCs
+ - 3 USB2 PHYs and an USB3 PHY for the GXM SoC Variant
+This is enabled by the "usb: host: dwc3: Add support for multiple PHYs" patch.
+This patch is based on the "xhci-dwc3: Couple of fixes for USB3 support"
+serie from Vignesh R, on the u-boot-usb tree.
+
+The DWC3 Controller glue is generic enough to use the dwc3-of-simple from Linux
+and can be easily ported to U-Boot as a Simple-Bus with Glue-Specific clocks
+and Reset lines setup.
+
+This depends on the recently applied :
+ - clk: Add get/enable/disable/release for a bulk of clocks at [4]
+ - reset: Add get/assert/deassert/release for bulk of reset signals at [5]
+in order to manage the clocks and resets of the Glue in a clean fashion.
+
+The USB PHY driver supports the standard generic PHY interface and supports
+the power-on/off calls and set the Host mode by default.
+They are based on the excellent work from Martin Blumenstingl merged in linux.
+
+Changes since v1:
+ - switch to submitted clk/reset bulk API
+ - splitted dwc3 multiple phy init error between poweroff & exit
+
+[1] https://lkml.kernel.org/r/20180303184700.21480-1-martin.blumenstingl at googlemail.com
+[2] https://lkml.kernel.org/r/20180128202245.25021-1-martin.blumenstingl at googlemail.com
+[3] https://lkml.kernel.org/r/20180303214309.25643-1-martin.blumenstingl at googlemail.com
+[4] http://lists.infradead.org/pipermail/linux-amlogic/2018-April/006952.html
+[5] http://lists.infradead.org/pipermail/linux-amlogic/2018-April/006949.html
+
+Neil Armstrong (3):
+  usb: host: Add simple of glue driver for DWC3 USB Controllers
+    integration
+  usb: host: dwc3: Add support for multiple PHYs
+  phy: Add Amlogic Meson USB2 & USB3 Generic PHY drivers
+
+ drivers/phy/Kconfig               |   8 ++
+ drivers/phy/Makefile              |   1 +
+ drivers/phy/meson-gxl-usb2.c      | 238 ++++++++++++++++++++++++++++++++++++++
+ drivers/phy/meson-gxl-usb3.c      | 201 ++++++++++++++++++++++++++++++++
+ drivers/usb/host/Kconfig          |   7 ++
+ drivers/usb/host/Makefile         |   1 +
+ drivers/usb/host/dwc3-of-simple.c | 123 ++++++++++++++++++++
+ drivers/usb/host/xhci-dwc3.c      | 113 ++++++++++--------
+ 8 files changed, 645 insertions(+), 47 deletions(-)
+ create mode 100644 drivers/phy/meson-gxl-usb2.c
+ create mode 100644 drivers/phy/meson-gxl-usb3.c
+ create mode 100644 drivers/usb/host/dwc3-of-simple.c
+
 -- 
 2.7.4
