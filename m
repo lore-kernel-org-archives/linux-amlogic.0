@@ -1,279 +1,138 @@
-From: jjhiblot@ti.com (Jean-Jacques Hiblot)
-Date: Wed, 11 Apr 2018 17:49:14 +0200
-Subject: [U-Boot] [PATCH v2 u-boot 1/2] reset: Add
- get/assert/deassert/release for bulk of reset signals
-In-Reply-To: <1522748451-21209-2-git-send-email-narmstrong@baylibre.com>
-References: <1522748451-21209-1-git-send-email-narmstrong@baylibre.com>
- <1522748451-21209-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <9998be38-4919-f857-f12e-ac6b77e6e6bf@ti.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 11 Apr 2018 17:40:41 +0200
+Subject: [PATCH u-boot 2/2] pinctrl: meson: Update pinmux with new Linux
+ bindings
+In-Reply-To: <1523461241-30436-1-git-send-email-narmstrong@baylibre.com>
+References: <1523461241-30436-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1523461241-30436-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+The pinctrl bindings has changed for Amlogic Meson SoCs since Linux 4.13,
+update the pinctrl driver to take this in account.
 
-while trying to test your patches on dwc3, I ran into a compilation issue.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 12 ++++++------
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 14 +++++++-------
+ 2 files changed, 13 insertions(+), 13 deletions(-)
 
-On 03/04/2018 11:40, Neil Armstrong wrote:
-> This patch adds a "bulk" API to the reset API in order to get/deassert/
-> assert/release a group of reset signals associated with a device.
->
-> This bulk API will avoid adding a copy of the same code to manage
-> a group of reset signals in drivers.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->   drivers/reset/reset-uclass.c | 60 +++++++++++++++++++++++++++
->   include/reset.h              | 99 ++++++++++++++++++++++++++++++++++++++++++++
->   2 files changed, 159 insertions(+)
->
-> diff --git a/drivers/reset/reset-uclass.c b/drivers/reset/reset-uclass.c
-> index 307a297..9a5c9c9 100644
-> --- a/drivers/reset/reset-uclass.c
-> +++ b/drivers/reset/reset-uclass.c
-> @@ -81,6 +81,40 @@ int reset_get_by_index(struct udevice *dev, int index,
->   	return 0;
->   }
->   
-> +int reset_get_bulk(struct udevice *dev, struct reset_ctl_bulk *bulk)
-> +{
-> +	int i, ret, err, count;
-> +	
-> +	bulk->count = 0;
-> +
-> +	count = dev_count_phandle_with_args(dev, "resets", "#reset-cells");
-> +	if (!count)
-> +		return 0;
-> +
-> +	bulk->resets = devm_kcalloc(dev, count, sizeof(struct reset_ctl),
-> +				    GFP_KERNEL);
-> +	if (!bulk->resets)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < count; i++) {
-> +		ret = reset_get_by_index(dev, i, &bulk->resets[i]);
-> +		if (ret < 0)
-> +			goto bulk_get_err;
-> +
-> +		++bulk->count;
-> +	}
-> +
-> +	return 0;
-> +
-> +bulk_get_err:
-> +	err = reset_release_all(bulk->resets, bulk->count);
-> +	if (err)
-> +		debug("%s: could release all resets for %p\n",
-> +		      __func__, dev);
-> +
-> +	return ret;
-> +}
-> +
->   int reset_get_by_name(struct udevice *dev, const char *name,
->   		     struct reset_ctl *reset_ctl)
->   {
-> @@ -126,6 +160,19 @@ int reset_assert(struct reset_ctl *reset_ctl)
->   	return ops->rst_assert(reset_ctl);
->   }
->   
-> +int reset_assert_bulk(struct reset_ctl_bulk *bulk)
-> +{
-> +	int i, ret;
-> +
-> +	for (i = 0; i < bulk->count; i++) {
-> +		ret = reset_assert(&bulk->resets[i]);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   int reset_deassert(struct reset_ctl *reset_ctl)
->   {
->   	struct reset_ops *ops = reset_dev_ops(reset_ctl->dev);
-> @@ -135,6 +182,19 @@ int reset_deassert(struct reset_ctl *reset_ctl)
->   	return ops->rst_deassert(reset_ctl);
->   }
->   
-> +int reset_deassert_bulk(struct reset_ctl_bulk *bulk)
-> +{
-> +	int i, ret;
-> +
-> +	for (i = 0; i < bulk->count; i++) {
-> +		ret = reset_deassert(&bulk->resets[i]);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   int reset_release_all(struct reset_ctl *reset_ctl, int count)
->   {
->   	int i, ret;
-> diff --git a/include/reset.h b/include/reset.h
-> index 7185ade..d38f176 100644
-> --- a/include/reset.h
-> +++ b/include/reset.h
-> @@ -60,6 +60,24 @@ struct reset_ctl {
->   	unsigned long id;
->   };
->   
-> +/**
-> + * struct reset_ctl_bulk - A handle to (allowing control of) a bulk of reset
-> + * signals.
-> + *
-> + * Clients provide storage for the reset control bulk. The content of the
-> + * structure is managed solely by the reset API. A reset control bulk struct is
-> + * initialized by "get"ing the reset control bulk struct.
-> + * The reset control bulk struct is passed to all other bulk reset APIs to apply
-> + * the API to all the reset signals in the bulk struct.
-> + *
-> + * @resets: An array of reset signal handles handles.
-> + * @count: The number of reset signal handles in the reset array.
-> + */
-> +struct reset_ctl_bulk {
-> +	struct reset_ctl *resets;
-> +	unsigned int count;
-> +};
-> +
->   #ifdef CONFIG_DM_RESET
->   /**
->    * reset_get_by_index - Get/request a reset signal by integer index.
-> @@ -81,6 +99,22 @@ int reset_get_by_index(struct udevice *dev, int index,
->   		       struct reset_ctl *reset_ctl);
->   
->   /**
-> + * reset_get_bulk - Get/request all reset signals of a device.
-> + *
-> + * This looks up and requests all reset signals of the client device; each
-> + * device is assumed to have n reset signals associated with it somehow,
-> + * and this function finds and requests all of them in a separate structure.
-> + * The mapping of client device reset signals indices to provider reset signals
-> + * may be via device-tree properties, board-provided mapping tables, or some
-> + * other mechanism.
-> + *
-> + * @dev:	The client device.
-> + * @bulk	A pointer to a reset control bulk struct to initialize.
-> + * @return 0 if OK, or a negative error code.
-> + */
-> +int reset_get_bulk(struct udevice *dev, struct reset_ctl_bulk *bulk);
-> +
-> +/**
->    * reset_get_by_name - Get/request a reset signal by name.
->    *
->    * This looks up and requests a reset signal. The name is relative to the
-> @@ -132,6 +166,21 @@ int reset_free(struct reset_ctl *reset_ctl);
->   int reset_assert(struct reset_ctl *reset_ctl);
->   
->   /**
-> + * reset_assert_bulk - Assert all reset signals in a reset control bulk struct.
-> + *
-> + * This function will assert the specified reset signals in a reset control
-> + * bulk struct, thus resetting the affected HW module(s). Depending on the
-> + * reset controller hardware, the reset signals will either stay asserted
-> + * until reset_deassert_bulk() is called, or the hardware may autonomously
-> + * clear the reset signals itself.
-> + *
-> + * @bulk:	A reset control bulk struct that was previously successfully
-> + *		requested by reset_get_bulk().
-> + * @return 0 if OK, or a negative error code.
-> + */
-> +int reset_assert_bulk(struct reset_ctl_bulk *bulk);
-> +
-> +/**
->    * reset_deassert - Deassert a reset signal.
->    *
->    * This function will deassert the specified reset signal, thus releasing the
-> @@ -145,6 +194,20 @@ int reset_assert(struct reset_ctl *reset_ctl);
->   int reset_deassert(struct reset_ctl *reset_ctl);
->   
->   /**
-> + * reset_deassert_bulk - Deassert all reset signals in a reset control bulk
-> + * struct.
-> + *
-> + * This function will deassert the specified reset signals in a reset control
-> + * bulk struct, thus releasing the affected HW modules() from reset, and
-> + * allowing them to continue normal operation.
-> + *
-> + * @bulk:	A reset control bulk struct that was previously successfully
-> + *		requested by reset_get_bulk().
-> + * @return 0 if OK, or a negative error code.
-> + */
-> +int reset_deassert_bulk(struct reset_ctl_bulk *bulk);
-> +
-> +/**
->    * reset_release_all - Assert/Free an array of previously requested resets.
->    *
->    * For each reset contained in the reset array, this function will check if
-> @@ -156,6 +219,23 @@ int reset_deassert(struct reset_ctl *reset_ctl);
->    * @return 0 if OK, or a negative error code.
->    */
->   int reset_release_all(struct reset_ctl *reset_ctl, int count);
-> +
-> +/**
-> + * reset_release_bulk - Assert/Free an array of previously requested reset
-> + * signals in a reset control bulk struct.
-> + *
-> + * For each reset contained in the reset control bulk struct, this function
-> + * will check if reset has been previously requested and then will assert
-> + * and free it.
-> + *
-> + * @bulk:	A reset control bulk struct that was previously successfully
-> + *		requested by reset_get_bulk().
-> + * @return 0 if OK, or a negative error code.
-> + */
-> +static inline int reset_release_bulk(struct reset_ctl_bulk *bulk)
-> +{
-> +	return reset_release_all(bulk->resets, bulk->count);
-> +}
->   #else
->   static inline int reset_get_by_index(struct udevice *dev, int index,
->   				     struct reset_ctl *reset_ctl)
-> @@ -163,6 +243,11 @@ static inline int reset_get_by_index(struct udevice *dev, int index,
->   	return -ENOTSUPP;
->   }
->   
-> +static inline int reset_get_bulk(struct udevice *dev, struct clk_bulk *bulk)
-Should be struct reset_ctl_bulk instead of struct clk_bulk
-> +{
-> +	return -ENOTSUPP;
-> +}
-> +
->   static inline int reset_get_by_name(struct udevice *dev, const char *name,
->   				    struct reset_ctl *reset_ctl)
->   {
-> @@ -179,16 +264,30 @@ static inline int reset_assert(struct reset_ctl *reset_ctl)
->   	return 0;
->   }
->   
-> +static inline int reset_assert_bulk(struct reset_ctl_bulk *bulk)
-> +{
-> +	return 0;
-> +}
-> +
->   static inline int reset_deassert(struct reset_ctl *reset_ctl)
->   {
->   	return 0;
->   }
->   
-> +static inline int reset_deassert_bulk(struct reset_ctl_bulk *bulk)
-> +{
-> +	return 0;
-> +}
-> +
->   static inline int reset_release_all(struct reset_ctl *reset_ctl, int count)
->   {
->   	return 0;
->   }
->   
-> +static inline int reset_release_bulk(struct clk_bulk *bulk)
-ditto.
-
-Jean-Jacques
-> +{
-> +	return 0;
-> +}
->   #endif
->   
->   #endif
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index 87c9912..928356f 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -14,7 +14,7 @@
+ 
+ #include "pinctrl-meson.h"
+ 
+-#define EE_OFF	14
++#define EE_OFF	15
+ 
+ static const unsigned int emmc_nand_d07_pins[] = {
+ 	PIN(BOOT_0, EE_OFF), PIN(BOOT_1, EE_OFF), PIN(BOOT_2, EE_OFF),
+@@ -319,8 +319,6 @@ static const char * const gpio_periphs_groups[] = {
+ 	"GPIOX_10", "GPIOX_11", "GPIOX_12", "GPIOX_13", "GPIOX_14",
+ 	"GPIOX_15", "GPIOX_16", "GPIOX_17", "GPIOX_18", "GPIOX_19",
+ 	"GPIOX_20", "GPIOX_21", "GPIOX_22",
+-
+-	"GPIO_TEST_N",
+ };
+ 
+ static const char * const emmc_groups[] = {
+@@ -355,6 +353,8 @@ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+ 	"GPIOAO_10", "GPIOAO_11", "GPIOAO_12", "GPIOAO_13",
++
++	"GPIO_TEST_N",
+ };
+ 
+ static const char * const uart_ao_groups[] = {
+@@ -410,11 +410,11 @@ static struct meson_bank meson_gxbb_aobus_banks[] = {
+ 
+ struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
+ 	.name		= "periphs-banks",
+-	.pin_base	= 14,
++	.pin_base	= 15,
+ 	.groups		= meson_gxbb_periphs_groups,
+ 	.funcs		= meson_gxbb_periphs_functions,
+ 	.banks		= meson_gxbb_periphs_banks,
+-	.num_pins	= 120,
++	.num_pins	= 119,
+ 	.num_groups	= ARRAY_SIZE(meson_gxbb_periphs_groups),
+ 	.num_funcs	= ARRAY_SIZE(meson_gxbb_periphs_functions),
+ 	.num_banks	= ARRAY_SIZE(meson_gxbb_periphs_banks),
+@@ -426,7 +426,7 @@ struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
+ 	.groups		= meson_gxbb_aobus_groups,
+ 	.funcs		= meson_gxbb_aobus_functions,
+ 	.banks		= meson_gxbb_aobus_banks,
+-	.num_pins	= 14,
++	.num_pins	= 15,
+ 	.num_groups	= ARRAY_SIZE(meson_gxbb_aobus_groups),
+ 	.num_funcs	= ARRAY_SIZE(meson_gxbb_aobus_functions),
+ 	.num_banks	= ARRAY_SIZE(meson_gxbb_aobus_banks),
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+index eebfaa9..fdc379b 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+@@ -14,7 +14,7 @@
+ 
+ #include "pinctrl-meson.h"
+ 
+-#define EE_OFF	10
++#define EE_OFF	11
+ 
+ static const unsigned int emmc_nand_d07_pins[] = {
+ 	PIN(BOOT_0, EE_OFF), PIN(BOOT_1, EE_OFF), PIN(BOOT_2, EE_OFF),
+@@ -290,7 +290,7 @@ static struct meson_pmx_group meson_gxl_periphs_groups[] = {
+ 	GPIO_GROUP(GPIOCLK_0, EE_OFF),
+ 	GPIO_GROUP(GPIOCLK_1, EE_OFF),
+ 
+-	GPIO_GROUP(GPIO_TEST_N, EE_OFF),
++	GPIO_GROUP(GPIO_TEST_N, 0),
+ 
+ 	/* Bank X */
+ 	GROUP(sdio_d0,		5,	31),
+@@ -472,8 +472,6 @@ static const char * const gpio_periphs_groups[] = {
+ 	"GPIOX_5", "GPIOX_6", "GPIOX_7", "GPIOX_8", "GPIOX_9",
+ 	"GPIOX_10", "GPIOX_11", "GPIOX_12", "GPIOX_13", "GPIOX_14",
+ 	"GPIOX_15", "GPIOX_16", "GPIOX_17", "GPIOX_18",
+-
+-	"GPIO_TEST_N",
+ };
+ 
+ static const char * const emmc_groups[] = {
+@@ -588,6 +586,8 @@ static const char * const tsin_a_groups[] = {
+ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
++
++	"GPIO_TEST_N",
+ };
+ 
+ static const char * const uart_ao_groups[] = {
+@@ -692,11 +692,11 @@ static struct meson_bank meson_gxl_aobus_banks[] = {
+ 
+ struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data = {
+ 	.name		= "periphs-banks",
+-	.pin_base	= 10,
++	.pin_base	= 11,
+ 	.groups		= meson_gxl_periphs_groups,
+ 	.funcs		= meson_gxl_periphs_functions,
+ 	.banks		= meson_gxl_periphs_banks,
+-	.num_pins	= 101,
++	.num_pins	= 100,
+ 	.num_groups	= ARRAY_SIZE(meson_gxl_periphs_groups),
+ 	.num_funcs	= ARRAY_SIZE(meson_gxl_periphs_functions),
+ 	.num_banks	= ARRAY_SIZE(meson_gxl_periphs_banks),
+@@ -708,7 +708,7 @@ struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data = {
+ 	.groups		= meson_gxl_aobus_groups,
+ 	.funcs		= meson_gxl_aobus_functions,
+ 	.banks		= meson_gxl_aobus_banks,
+-	.num_pins	= 10,
++	.num_pins	= 11,
+ 	.num_groups	= ARRAY_SIZE(meson_gxl_aobus_groups),
+ 	.num_funcs	= ARRAY_SIZE(meson_gxl_aobus_functions),
+ 	.num_banks	= ARRAY_SIZE(meson_gxl_aobus_banks),
+-- 
+2.7.4
