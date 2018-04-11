@@ -1,168 +1,189 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 11 Apr 2018 17:08:00 +0200
-Subject: [PATCH v3 u-boot 1/3] usb: host: Add simple of glue driver for DWC3
- USB Controllers integration
+Date: Wed, 11 Apr 2018 17:08:01 +0200
+Subject: [PATCH v3 u-boot 2/3] usb: host: dwc3: Add support for multiple PHYs
 In-Reply-To: <1523459282-12235-1-git-send-email-narmstrong@baylibre.com>
 References: <1523459282-12235-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1523459282-12235-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1523459282-12235-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This is a port of the dwc3-of-simple driver from Linux to enable/deassert
-clock and resets of a simple DWC3 Controller HW glue.
+DWC3 Ips can have more than 1 PHY for USB2 and 1 PHY for USB3, add support
+for a generic number of PHYs and adapt the code to handle a generic
+number of PHYs.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/usb/host/Kconfig          |   7 +++
- drivers/usb/host/Makefile         |   1 +
- drivers/usb/host/dwc3-of-simple.c | 109 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 117 insertions(+)
- create mode 100644 drivers/usb/host/dwc3-of-simple.c
+ drivers/usb/host/xhci-dwc3.c | 113 +++++++++++++++++++++++++------------------
+ 1 file changed, 66 insertions(+), 47 deletions(-)
 
-diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-index a7249b7..6caa615 100644
---- a/drivers/usb/host/Kconfig
-+++ b/drivers/usb/host/Kconfig
-@@ -21,6 +21,13 @@ config USB_XHCI_DWC3
- 	  Say Y or if your system has a Dual Role SuperSpeed
- 	  USB controller based on the DesignWare USB3 IP Core.
+diff --git a/drivers/usb/host/xhci-dwc3.c b/drivers/usb/host/xhci-dwc3.c
+index 1022dd5..c100735 100644
+--- a/drivers/usb/host/xhci-dwc3.c
++++ b/drivers/usb/host/xhci-dwc3.c
+@@ -22,8 +22,8 @@
+ DECLARE_GLOBAL_DATA_PTR;
  
-+config USB_XHCI_DWC3_OF_SIMPLE
-+	bool "DesignWare USB3 DRD Generic OF Simple Glue Layer"
-+	select MISC
-+	help
-+	  Support USB2/3 functionality in simple SoC integrations with
-+	  USB controller based on the DesignWare USB3 IP Core.
+ struct xhci_dwc3_platdata {
+-	struct phy usb_phy;
+-	struct phy usb3_phy;
++	struct phy *usb_phys;
++	int num_phys;
+ };
+ 
+ void dwc3_set_mode(struct dwc3 *dwc3_reg, u32 mode)
+@@ -113,45 +113,82 @@ void dwc3_set_fladj(struct dwc3 *dwc3_reg, u32 val)
+ }
+ 
+ #ifdef CONFIG_DM_USB
+-static int xhci_dwc3_setup_phy(struct udevice *dev, int index, struct phy *phy)
++static int xhci_dwc3_setup_phy(struct udevice *dev, int count)
+ {
+-	int ret = 0;
++	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
++	int i, ret;
 +
- config USB_XHCI_MVEBU
- 	bool "MVEBU USB 3.0 support"
- 	default y
-diff --git a/drivers/usb/host/Makefile b/drivers/usb/host/Makefile
-index 9819489..abe4f90 100644
---- a/drivers/usb/host/Makefile
-+++ b/drivers/usb/host/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_USB_EHCI_ZYNQ) += ehci-zynq.o
- # xhci
- obj-$(CONFIG_USB_XHCI_HCD) += xhci.o xhci-mem.o xhci-ring.o
- obj-$(CONFIG_USB_XHCI_DWC3) += xhci-dwc3.o
-+obj-$(CONFIG_USB_XHCI_DWC3_OF_SIMPLE) += dwc3-of-simple.o
- obj-$(CONFIG_USB_XHCI_ROCKCHIP) += xhci-rockchip.o
- obj-$(CONFIG_USB_XHCI_ZYNQMP) += xhci-zynqmp.o
- obj-$(CONFIG_USB_XHCI_KEYSTONE) += xhci-keystone.o
-diff --git a/drivers/usb/host/dwc3-of-simple.c b/drivers/usb/host/dwc3-of-simple.c
-new file mode 100644
-index 0000000..54a5f60
---- /dev/null
-+++ b/drivers/usb/host/dwc3-of-simple.c
-@@ -0,0 +1,109 @@
-+/*
-+ * dwc3-of-simple.c - OF glue layer for simple integrations
-+ *
-+ * Copyright (c) 2015 Texas Instruments Incorporated - http://www.ti.com
-+ *
-+ * Author: Felipe Balbi <balbi@ti.com>
-+ *
-+ * Copyright (C) 2018 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstron@baylibre.com>
-+ *
-+ * SPDX-License-Identifier:     GPL-2.0+
-+ */
-+
-+#include <common.h>
-+#include <dm.h>
-+#include <fdtdec.h>
-+#include <reset.h>
-+#include <clk.h>
-+
-+DECLARE_GLOBAL_DATA_PTR;
-+
-+struct dwc3_of_simple {
-+	struct clk_bulk		clks;
-+	struct reset_ctl_bulk	resets;
-+};
-+
-+static int dwc3_of_simple_reset_init(struct udevice *dev,
-+				     struct dwc3_of_simple *simple)
-+{
-+	int ret;
-+
-+	ret = reset_get_bulk(dev, &simple->resets);
-+	if (ret == -ENOTSUPP)
++	if (!count)
 +		return 0;
-+	else if (ret)
-+		return ret;
+ 
+-	ret = generic_phy_get_by_index(dev, index, phy);
+-	if (ret) {
+-		if (ret != -ENOENT) {
+-			pr_err("Failed to get USB PHY for %s\n", dev->name);
++	plat->usb_phys = devm_kcalloc(dev, count, sizeof(struct phy),
++					GFP_KERNEL);
++	if (!plat->usb_phys)
++		return -ENOMEM;
 +
-+	ret = reset_deassert_bulk(&simple->resets);
-+	if (ret) {
-+		reset_release_bulk(&simple->resets);
-+		return ret;
++	for (i = 0; i < count; i++) {
++		ret = generic_phy_get_by_index(dev, i, &plat->usb_phys[i]);
++		if (ret && ret != -ENOENT) {
++			pr_err("Failed to get USB PHY%d for %s\n",
++			       i, dev->name);
+ 			return ret;
+ 		}
+-	} else {
+-		ret = generic_phy_init(phy);
++
++		++plat->num_phys;
 +	}
-+
-+	return 0;
-+}
-+
-+static int dwc3_of_simple_clk_init(struct udevice *dev,
-+				   struct dwc3_of_simple *simple)
-+{
-+	int ret;
-+
-+	ret = clk_get_bulk(dev, &simple->clks);
-+	if (ret == -ENOTSUPP)
-+		return 0;
-+	if (ret)
-+		return ret;
-+
-+#if CONFIG_IS_ENABLED(CLK)
-+	ret = clk_enable_bulk(&simple->clks);
-+	if (ret) {
-+		clk_release_bulk(&simple->clks);
-+		return ret;
++	
++	for (i = 0; i < plat->num_phys; i++) {
++		ret = generic_phy_init(&plat->usb_phys[i]);
+ 		if (ret) {
+-			pr_err("Can't init USB PHY for %s\n", dev->name);
+-			return ret;
++			pr_err("Can't init USB PHY%d for %s\n",
++			       i, dev->name);
++			goto phys_init_err;
+ 		}
+-		ret = generic_phy_power_on(phy);
 +	}
-+#endif
++	
++	for (i = 0; i < plat->num_phys; i++) {
++		ret = generic_phy_power_on(&plat->usb_phys[i]);
+ 		if (ret) {
+-			pr_err("Can't power on USB PHY for %s\n", dev->name);
+-			generic_phy_exit(phy);
+-			return ret;
++			pr_err("Can't power USB PHY%d for %s\n",
++			       i, dev->name);
++			goto phys_poweron_err;
+ 		}
+ 	}
+ 
+ 	return 0;
 +
-+	return 0;
-+}
 +
-+static int dwc3_of_simple_probe(struct udevice *dev)
-+{
-+	struct dwc3_of_simple *simple = dev_get_platdata(dev);
-+	int ret;
++phys_poweron_err:
++	for (; i >= 0; i--)
++		generic_phy_power_off(&plat->usb_phys[i]);
 +
-+	ret = dwc3_of_simple_clk_init(dev, simple);
++	for (i = 0; i < plat->num_phys; i++)
++		generic_phy_exit(&plat->usb_phys[i]);
++
++	return ret;
++
++phys_init_err:
++	for (; i >= 0; i--)
++		generic_phy_exit(&plat->usb_phys[i]);
++
++	return ret;
+ }
+ 
+-static int xhci_dwc3_shutdown_phy(struct phy *phy)
++static int xhci_dwc3_shutdown_phy(struct udevice *dev)
+ {
+-	int ret = 0;
++	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
++	int i, ret;
+ 
+-	if (generic_phy_valid(phy)) {
+-		ret = generic_phy_power_off(phy);
+-		if (ret)
+-			return ret;
++	for (i = 0; i < plat->num_phys; i++) {
++		if (!generic_phy_valid(&plat->usb_phys[i]))
++			continue;
+ 
+-		ret = generic_phy_exit(phy);
+-		if (ret)
+-			return ret;
++		ret = generic_phy_power_off(&plat->usb_phys[i]);
++		ret |= generic_phy_exit(&plat->usb_phys[i]);
++		if (ret) {
++			pr_err("Can't shutdown USB PHY%d for %s\n",
++				i, dev->name);
++		}
+ 	}
+ 
+ 	return 0;
+@@ -159,7 +196,6 @@ static int xhci_dwc3_shutdown_phy(struct phy *phy)
+ 
+ static int xhci_dwc3_probe(struct udevice *dev)
+ {
+-	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
+ 	struct xhci_hcor *hcor;
+ 	struct xhci_hccr *hccr;
+ 	struct dwc3 *dwc3_reg;
+@@ -170,18 +206,10 @@ static int xhci_dwc3_probe(struct udevice *dev)
+ 	hcor = (struct xhci_hcor *)((uintptr_t)hccr +
+ 			HC_LENGTH(xhci_readl(&(hccr)->cr_capbase)));
+ 
+-	ret = xhci_dwc3_setup_phy(dev, 0, &plat->usb_phy);
+-	if (ret) {
+-		pr_err("Failed to setup USB PHY for %s\n", dev->name);
++	ret = xhci_dwc3_setup_phy(dev, dev_count_phandle_with_args(
++						dev, "phys", "#phy-cells"));
 +	if (ret)
-+		return ret;
-+
-+	ret = dwc3_of_simple_reset_init(dev, simple);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int dwc3_of_simple_remove(struct udevice *dev)
-+{
-+	struct dwc3_of_simple *simple = dev_get_platdata(dev);
-+
-+	reset_release_bulk(&simple->resets);
-+
-+	clk_release_bulk(&simple->clks);
-+
-+	return dm_scan_fdt_dev(dev);
-+}
-+
-+static const struct udevice_id dwc3_of_simple_ids[] = {
-+	{ .compatible = "amlogic,meson-gxl-dwc3" },
-+	{ }
-+};
-+
-+U_BOOT_DRIVER(dwc3_of_simple) = {
-+	.name = "dwc3-of-simple",
-+	.id = UCLASS_SIMPLE_BUS,
-+	.of_match = dwc3_of_simple_ids,
-+	.probe = dwc3_of_simple_probe,
-+	.remove = dwc3_of_simple_remove,
-+	.platdata_auto_alloc_size = sizeof(struct dwc3_of_simple),
-+	.flags = DM_FLAG_ALLOC_PRIV_DMA,
-+};
+ 		return ret;
+-	}
+-
+-	ret = xhci_dwc3_setup_phy(dev, 1, &plat->usb3_phy);
+-	if (ret) {
+-		pr_err("Failed to setup USB3 PHY for %s\n", dev->name);
+-		xhci_dwc3_shutdown_phy(&plat->usb_phy);
+-		return ret;
+-	}
+ 
+ 	dwc3_reg = (struct dwc3 *)((char *)(hccr) + DWC3_REG_OFFSET);
+ 
+@@ -199,16 +227,7 @@ static int xhci_dwc3_probe(struct udevice *dev)
+ 
+ static int xhci_dwc3_remove(struct udevice *dev)
+ {
+-	struct xhci_dwc3_platdata *plat = dev_get_platdata(dev);
+-	int ret;
+-
+-	ret = xhci_dwc3_shutdown_phy(&plat->usb_phy);
+-	if (ret)
+-		pr_err("Can't shutdown USB PHY for %s\n", dev->name);
+-
+-	ret = xhci_dwc3_shutdown_phy(&plat->usb3_phy);
+-	if (ret)
+-		pr_err("Can't shutdown USB3 PHY for %s\n", dev->name);
++	xhci_dwc3_shutdown_phy(dev);
+ 
+ 	return xhci_deregister(dev);
+ }
 -- 
 2.7.4
