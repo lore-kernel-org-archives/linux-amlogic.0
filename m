@@ -1,40 +1,29 @@
-From: marex@denx.de (Marek Vasut)
-Date: Thu, 12 Apr 2018 10:47:35 +0200
-Subject: [PATCH] usb: dwc3-of-simple: fix error check of clk_get_bulk when
- disabled
-In-Reply-To: <1523520830-13468-1-git-send-email-narmstrong@baylibre.com>
-References: <1523520830-13468-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <8730a78f-7755-5816-b014-33595f208c0e@denx.de>
+From: sjg@chromium.org (Simon Glass)
+Date: Thu, 12 Apr 2018 10:41:50 -0600
+Subject: [PATCH] reset: fix bulk API when DM_RESET is disabled
+In-Reply-To: <1523520199-12341-1-git-send-email-narmstrong@baylibre.com>
+References: <1523520199-12341-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAPnjgZ3SY1DV4XUz6KZMhngAKkSq82WFzs0f-vubgMap4XOqJQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 04/12/2018 10:13 AM, Neil Armstrong wrote:
-> The disabled clk API returns -ENOSYS unlike the reset API returning -ENOTSUPP.
-> 
-> Fixes: ca7fdc8b1267 ("usb: host: Add simple of glue driver for DWC3 USB Controllers integration")
+On 12 April 2018 at 02:03, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> In the commit "reset: Add get/assert/deassert/release for bulk of reset signals"
+> the disabled reset_release_bulk() and reset_get_bulk() used the wrong
+> struct clk_bulk instead of struct reset_ctl_bulk.
+>
+> Fixes: 0c28233903b5 ("reset: Add get/assert/deassert/release for bulk of reset signals")
 > Reported-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  drivers/usb/host/dwc3-of-simple.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/host/dwc3-of-simple.c b/drivers/usb/host/dwc3-of-simple.c
-> index 54a5f60..1f08208 100644
-> --- a/drivers/usb/host/dwc3-of-simple.c
-> +++ b/drivers/usb/host/dwc3-of-simple.c
-> @@ -50,7 +50,7 @@ static int dwc3_of_simple_clk_init(struct udevice *dev,
->  	int ret;
->  
->  	ret = clk_get_bulk(dev, &simple->clks);
-> -	if (ret == -ENOTSUPP)
-> +	if (ret == -ENOSYS)
->  		return 0;
->  	if (ret)
->  		return ret;
-> 
+>  include/reset.h | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 
-Applied, thanks
+Reviewed-by: Simon Glass <sjg@chromium.org>
 
--- 
-Best regards,
-Marek Vasut
+We don't have build coverage for this at the moment I suppose. It
+would be a bit of pain to add that with sandbox, although I wonder if
+it could be done with some horrible #define hackery in a C file that
+includes this header?
+
+- Simon
