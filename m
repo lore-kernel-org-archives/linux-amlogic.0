@@ -1,21 +1,42 @@
-From: robh@kernel.org (Rob Herring)
-Date: Fri, 13 Apr 2018 12:20:55 -0500
-Subject: [PATCH 2/3] dt-bindings: interrupt-controller: New binding for
- Meson-AXG SoC
-In-Reply-To: <20180408145700.23520-3-yixun.lan@amlogic.com>
-References: <20180408145700.23520-1-yixun.lan@amlogic.com>
- <20180408145700.23520-3-yixun.lan@amlogic.com>
-Message-ID: <20180413172055.waibtio6qbltdv4a@rob-hp-laptop>
+From: khoroshilov@ispras.ru (Alexey Khoroshilov)
+Date: Sat, 14 Apr 2018 00:39:46 +0300
+Subject: [PATCH] spi: meson-axg: Fix error handling in meson_spicc_probe()
+Message-ID: <1523655586-4163-1-git-send-email-khoroshilov@ispras.ru>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Apr 08, 2018 at 02:56:59PM +0000, Yixun Lan wrote:
-> Update the dt-binding documentation to support new compatible string
-> for the GPIO interrupt controller which found in Amlogic's Meson-AXG SoC.
-> 
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  .../devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt | 1 +
->  1 file changed, 1 insertion(+)
+If devm_spi_register_master() fails in meson_spicc_probe(),
+spicc->core is left undisabled. The patch fixes that.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Found by Linux Driver Verification project (linuxtesting.org).
+
+Signed-off-by: Alexey Khoroshilov <khoroshilov@ispras.ru>
+---
+ drivers/spi/spi-meson-spicc.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+index 5c82910e3480..7fe4488ace57 100644
+--- a/drivers/spi/spi-meson-spicc.c
++++ b/drivers/spi/spi-meson-spicc.c
+@@ -574,10 +574,15 @@ static int meson_spicc_probe(struct platform_device *pdev)
+ 		master->max_speed_hz = rate >> 2;
+ 
+ 	ret = devm_spi_register_master(&pdev->dev, master);
+-	if (!ret)
+-		return 0;
++	if (ret) {
++		dev_err(&pdev->dev, "spi master registration failed\n");
++		goto out_clk;
++	}
+ 
+-	dev_err(&pdev->dev, "spi master registration failed\n");
++	return 0;
++
++out_clk:
++	clk_disable_unprepare(spicc->core);
+ 
+ out_master:
+ 	spi_master_put(master);
+-- 
+2.7.4
