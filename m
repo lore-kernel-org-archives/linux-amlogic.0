@@ -1,42 +1,36 @@
-From: khoroshilov@ispras.ru (Alexey Khoroshilov)
-Date: Sat, 14 Apr 2018 00:39:46 +0300
-Subject: [PATCH] spi: meson-axg: Fix error handling in meson_spicc_probe()
-Message-ID: <1523655586-4163-1-git-send-email-khoroshilov@ispras.ru>
+From: marex@denx.de (Marek Vasut)
+Date: Sat, 14 Apr 2018 02:11:38 +0200
+Subject: [U-Boot, v2, u-boot, 1/2] reset: Add get/assert/deassert/release
+ for bulk of reset signals
+In-Reply-To: <20180411140518.GC10996@bill-the-cat.ec.rr.com>
+References: <1522748451-21209-2-git-send-email-narmstrong@baylibre.com>
+ <20180411140518.GC10996@bill-the-cat.ec.rr.com>
+Message-ID: <0c8c73af-7a00-128a-1193-a0d797e708fc@denx.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-If devm_spi_register_master() fails in meson_spicc_probe(),
-spicc->core is left undisabled. The patch fixes that.
+On 04/11/2018 04:05 PM, Tom Rini wrote:
+> On Tue, Apr 03, 2018 at 11:40:50AM +0200, Neil Armstrong wrote:
+> 
+>> This patch adds a "bulk" API to the reset API in order to get/deassert/
+>> assert/release a group of reset signals associated with a device.
+>>
+>> This bulk API will avoid adding a copy of the same code to manage
+>> a group of reset signals in drivers.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Reviewed-by: Simon Glass <sjg@chromium.org>
+> 
+> Applied to u-boot/master, thanks!
 
-Found by Linux Driver Verification project (linuxtesting.org).
+Breaks building of designware_i2c.c and also isn't checkpatch clean.
 
-Signed-off-by: Alexey Khoroshilov <khoroshilov@ispras.ru>
----
- drivers/spi/spi-meson-spicc.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ERROR: trailing whitespace
+#90: FILE: drivers/reset/reset-uclass.c:87:
++^I$
 
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index 5c82910e3480..7fe4488ace57 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -574,10 +574,15 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 		master->max_speed_hz = rate >> 2;
- 
- 	ret = devm_spi_register_master(&pdev->dev, master);
--	if (!ret)
--		return 0;
-+	if (ret) {
-+		dev_err(&pdev->dev, "spi master registration failed\n");
-+		goto out_clk;
-+	}
- 
--	dev_err(&pdev->dev, "spi master registration failed\n");
-+	return 0;
-+
-+out_clk:
-+	clk_disable_unprepare(spicc->core);
- 
- out_master:
- 	spi_master_put(master);
+total: 1 errors, 0 warnings, 0 checks, 229 lines checked
+
 -- 
-2.7.4
+Best regards,
+Marek Vasut
