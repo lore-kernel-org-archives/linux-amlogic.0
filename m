@@ -1,11 +1,11 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 16 Apr 2018 12:38:04 +0200
+Date: Mon, 16 Apr 2018 13:34:50 +0200
 Subject: [PATCH v5 2/7] clk: meson: aoclk: refactor common code into
  dedicated file
 In-Reply-To: <20180409143749.71197-3-yixun.lan@amlogic.com>
 References: <20180409143749.71197-1-yixun.lan@amlogic.com>
  <20180409143749.71197-3-yixun.lan@amlogic.com>
-Message-ID: <1523875084.2601.28.camel@baylibre.com>
+Message-ID: <1523878490.2601.34.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -75,13 +75,21 @@ On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
 > -#include <linux/clk-provider.h>
 > -#include <linux/of_address.h>
 >  #include <linux/platform_device.h>
+
 >  #include <linux/reset-controller.h>
+Not required anymore
+
 >  #include <linux/mfd/syscon.h>
 > -#include <linux/regmap.h>
 >  #include <linux/init.h>
+Not required
+
 > -#include <linux/delay.h>
+
 > -#include <dt-bindings/clock/gxbb-aoclkc.h>
 > -#include <dt-bindings/reset/gxbb-aoclkc.h>
+Please keep these 2 here
+
 >  #include "clk-regmap.h"
 >  #include "gxbb-aoclk.h"
 >  
@@ -223,6 +231,10 @@ On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
 >  #define __GXBB_AOCLKC_H
 >  
 > +#include "meson-aoclk.h"
+
+You are not using any of the structure defined in meson-aoclk.h in here.
+Why do you include this here ?
+
 > +
 > +#define NR_CLKS	7
 > +
@@ -235,6 +247,8 @@ On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
 >  
 > +#include <dt-bindings/clock/gxbb-aoclkc.h>
 > +#include <dt-bindings/reset/gxbb-aoclkc.h>
+Please drop this.
+
 > +
 >  #endif /* __GXBB_AOCLKC_H */
 > diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
@@ -259,6 +273,8 @@ On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
 > +#include <linux/reset-controller.h>
 > +#include <linux/mfd/syscon.h>
 > +#include <linux/init.h>
+Not required
+
 > +#include <linux/of_device.h>
 > +#include "clk-regmap.h"
 > +#include "meson-aoclk.h"
@@ -325,10 +341,6 @@ On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
 > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
 > +		(void *) data->hw_data);
 > +}
-
-Missing new line here. Please run checkpatch and pay attention to git warnings
-about whitespace errors.
-
 > diff --git a/drivers/clk/meson/meson-aoclk.h b/drivers/clk/meson/meson-aoclk.h
 > new file mode 100644
 > index 000000000000..ec59e027dd37
