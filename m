@@ -1,91 +1,40 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 16 Apr 2018 11:59:12 +0200
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Mon, 16 Apr 2018 12:09:10 +0200
 Subject: [PATCH v5 4/7] dt-bindings: clock: reset: Add AXG AO Clock and
  Reset Bindings
-In-Reply-To: <20180409143749.71197-5-yixun.lan@amlogic.com>
+In-Reply-To: <1523872752.2601.26.camel@baylibre.com>
 References: <20180409143749.71197-1-yixun.lan@amlogic.com>
  <20180409143749.71197-5-yixun.lan@amlogic.com>
-Message-ID: <1523872752.2601.26.camel@baylibre.com>
+ <1523872752.2601.26.camel@baylibre.com>
+Message-ID: <1523873350.5918.6.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
-> Add dt-bindings headers for the Meson-AXG's AO clock and
-> reset controller.
+Hi Jerome,
+
+On Mon, 2018-04-16 at 11:59 +0200, Jerome Brunet wrote:
+> On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
+> > Add dt-bindings headers for the Meson-AXG's AO clock and
+> > reset controller.
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> > ---
+> >  include/dt-bindings/clock/axg-aoclkc.h | 26 ++++++++++++++++++++++++++
+> >  include/dt-bindings/reset/axg-aoclkc.h | 20 ++++++++++++++++++++
+> >  2 files changed, 46 insertions(+)
+> >  create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+> >  create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  include/dt-bindings/clock/axg-aoclkc.h | 26 ++++++++++++++++++++++++++
->  include/dt-bindings/reset/axg-aoclkc.h | 20 ++++++++++++++++++++
->  2 files changed, 46 insertions(+)
->  create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
->  create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
-
-Hi Philipp,
-
-Is OK if we take this through clock tree ?
-The related reset controller is actually part of a clock controller driver.
-
-Best Regards
-Jerome
-
+> Hi Philipp,
 > 
-> diff --git a/include/dt-bindings/clock/axg-aoclkc.h b/include/dt-bindings/clock/axg-aoclkc.h
-> new file mode 100644
-> index 000000000000..61955016a55b
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/axg-aoclkc.h
-> @@ -0,0 +1,26 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
-> +/*
-> + * Copyright (c) 2016 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-> + */
-> +
-> +#ifndef DT_BINDINGS_CLOCK_AMLOGIC_MESON_AXG_AOCLK
-> +#define DT_BINDINGS_CLOCK_AMLOGIC_MESON_AXG_AOCLK
-> +
-> +#define CLKID_AO_REMOTE		0
-> +#define CLKID_AO_I2C_MASTER	1
-> +#define CLKID_AO_I2C_SLAVE	2
-> +#define CLKID_AO_UART1		3
-> +#define CLKID_AO_UART2		4
-> +#define CLKID_AO_IR_BLASTER	5
-> +#define CLKID_AO_SAR_ADC	6
-> +#define CLKID_AO_CLK81		7
-> +#define CLKID_AO_SAR_ADC_SEL	8
-> +#define CLKID_AO_SAR_ADC_DIV	9
-> +#define CLKID_AO_SAR_ADC_CLK	10
-> +#define CLKID_AO_ALT_XTAL	11
-> +
-> +#endif
-> diff --git a/include/dt-bindings/reset/axg-aoclkc.h b/include/dt-bindings/reset/axg-aoclkc.h
-> new file mode 100644
-> index 000000000000..d342c0b6b2a7
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/axg-aoclkc.h
-> @@ -0,0 +1,20 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
-> +/*
-> + * Copyright (c) 2016 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-> + */
-> +
-> +#ifndef DT_BINDINGS_RESET_AMLOGIC_MESON_AXG_AOCLK
-> +#define DT_BINDINGS_RESET_AMLOGIC_MESON_AXG_AOCLK
-> +
-> +#define RESET_AO_REMOTE		0
-> +#define RESET_AO_I2C_MASTER	1
-> +#define RESET_AO_I2C_SLAVE	2
-> +#define RESET_AO_UART1		3
-> +#define RESET_AO_UART2		4
-> +#define RESET_AO_IR_BLASTER	5
-> +
-> +#endif
+> Is OK if we take this through clock tree ?
+> The related reset controller is actually part of a clock controller driver.
+
+Absolutely, this should go in together with the driver.
+I see no risk of merge conflicts here.
+
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+regards
+Philipp
