@@ -1,49 +1,91 @@
-From: trini@konsulko.com (Tom Rini)
-Date: Sat, 14 Apr 2018 09:51:10 -0400
-Subject: [U-Boot, v2, u-boot, 1/2] reset: Add get/assert/deassert/release
- for bulk of reset signals
-In-Reply-To: <0c8c73af-7a00-128a-1193-a0d797e708fc@denx.de>
-References: <1522748451-21209-2-git-send-email-narmstrong@baylibre.com>
- <20180411140518.GC10996@bill-the-cat.ec.rr.com>
- <0c8c73af-7a00-128a-1193-a0d797e708fc@denx.de>
-Message-ID: <20180414135110.GA5346@bill-the-cat.ec.rr.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 16 Apr 2018 11:59:12 +0200
+Subject: [PATCH v5 4/7] dt-bindings: clock: reset: Add AXG AO Clock and
+ Reset Bindings
+In-Reply-To: <20180409143749.71197-5-yixun.lan@amlogic.com>
+References: <20180409143749.71197-1-yixun.lan@amlogic.com>
+ <20180409143749.71197-5-yixun.lan@amlogic.com>
+Message-ID: <1523872752.2601.26.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Apr 14, 2018 at 02:11:38AM +0200, Marek Vasut wrote:
-> On 04/11/2018 04:05 PM, Tom Rini wrote:
-> > On Tue, Apr 03, 2018 at 11:40:50AM +0200, Neil Armstrong wrote:
-> > 
-> >> This patch adds a "bulk" API to the reset API in order to get/deassert/
-> >> assert/release a group of reset signals associated with a device.
-> >>
-> >> This bulk API will avoid adding a copy of the same code to manage
-> >> a group of reset signals in drivers.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> Reviewed-by: Simon Glass <sjg@chromium.org>
-> > 
-> > Applied to u-boot/master, thanks!
+On Mon, 2018-04-09 at 22:37 +0800, Yixun Lan wrote:
+> Add dt-bindings headers for the Meson-AXG's AO clock and
+> reset controller.
 > 
-> Breaks building of designware_i2c.c and also isn't checkpatch clean.
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  include/dt-bindings/clock/axg-aoclkc.h | 26 ++++++++++++++++++++++++++
+>  include/dt-bindings/reset/axg-aoclkc.h | 20 ++++++++++++++++++++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+>  create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
 
-For which platform?
+Hi Philipp,
 
-> ERROR: trailing whitespace
-> #90: FILE: drivers/reset/reset-uclass.c:87:
-> +^I$
+Is OK if we take this through clock tree ?
+The related reset controller is actually part of a clock controller driver.
+
+Best Regards
+Jerome
+
 > 
-> total: 1 errors, 0 warnings, 0 checks, 229 lines checked
-
-Yes, I probably ought to see about getting checkpatch to fixup issues
-like that automatically.
-
--- 
-Tom
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180414/c9a79a89/attachment.sig>
+> diff --git a/include/dt-bindings/clock/axg-aoclkc.h b/include/dt-bindings/clock/axg-aoclkc.h
+> new file mode 100644
+> index 000000000000..61955016a55b
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/axg-aoclkc.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+> +/*
+> + * Copyright (c) 2016 BayLibre, SAS
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + *
+> + * Copyright (c) 2018 Amlogic, inc.
+> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
+> + */
+> +
+> +#ifndef DT_BINDINGS_CLOCK_AMLOGIC_MESON_AXG_AOCLK
+> +#define DT_BINDINGS_CLOCK_AMLOGIC_MESON_AXG_AOCLK
+> +
+> +#define CLKID_AO_REMOTE		0
+> +#define CLKID_AO_I2C_MASTER	1
+> +#define CLKID_AO_I2C_SLAVE	2
+> +#define CLKID_AO_UART1		3
+> +#define CLKID_AO_UART2		4
+> +#define CLKID_AO_IR_BLASTER	5
+> +#define CLKID_AO_SAR_ADC	6
+> +#define CLKID_AO_CLK81		7
+> +#define CLKID_AO_SAR_ADC_SEL	8
+> +#define CLKID_AO_SAR_ADC_DIV	9
+> +#define CLKID_AO_SAR_ADC_CLK	10
+> +#define CLKID_AO_ALT_XTAL	11
+> +
+> +#endif
+> diff --git a/include/dt-bindings/reset/axg-aoclkc.h b/include/dt-bindings/reset/axg-aoclkc.h
+> new file mode 100644
+> index 000000000000..d342c0b6b2a7
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/axg-aoclkc.h
+> @@ -0,0 +1,20 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+> +/*
+> + * Copyright (c) 2016 BayLibre, SAS
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + *
+> + * Copyright (c) 2018 Amlogic, inc.
+> + * Author: Qiufang Dai <qiufang.dai@amlogic.com>
+> + */
+> +
+> +#ifndef DT_BINDINGS_RESET_AMLOGIC_MESON_AXG_AOCLK
+> +#define DT_BINDINGS_RESET_AMLOGIC_MESON_AXG_AOCLK
+> +
+> +#define RESET_AO_REMOTE		0
+> +#define RESET_AO_I2C_MASTER	1
+> +#define RESET_AO_I2C_SLAVE	2
+> +#define RESET_AO_UART1		3
+> +#define RESET_AO_UART2		4
+> +#define RESET_AO_IR_BLASTER	5
+> +
+> +#endif
