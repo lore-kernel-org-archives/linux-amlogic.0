@@ -1,36 +1,57 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 17 Apr 2018 09:34:18 +0200
-Subject: [PATCH] reset: fix bulk API when DM_RESET is disabled
-In-Reply-To: <CAPnjgZ3SY1DV4XUz6KZMhngAKkSq82WFzs0f-vubgMap4XOqJQ@mail.gmail.com>
-References: <1523520199-12341-1-git-send-email-narmstrong@baylibre.com>
- <CAPnjgZ3SY1DV4XUz6KZMhngAKkSq82WFzs0f-vubgMap4XOqJQ@mail.gmail.com>
-Message-ID: <c43b9188-2a6d-c433-a977-112cc9c0fb58@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Tue, 17 Apr 2018 16:16:39 +0800
+Subject: [PATCH v5 2/7] clk: meson: aoclk: refactor common code into
+ dedicated file
+In-Reply-To: <1523875084.2601.28.camel@baylibre.com>
+References: <20180409143749.71197-1-yixun.lan@amlogic.com>
+ <20180409143749.71197-3-yixun.lan@amlogic.com>
+ <1523875084.2601.28.camel@baylibre.com>
+Message-ID: <759078f5-fcbf-9ef1-6945-67d9d951d8eb@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 12/04/2018 18:41, Simon Glass wrote:
-> On 12 April 2018 at 02:03, Neil Armstrong <narmstrong@baylibre.com> wrote:
->> In the commit "reset: Add get/assert/deassert/release for bulk of reset signals"
->> the disabled reset_release_bulk() and reset_get_bulk() used the wrong
->> struct clk_bulk instead of struct reset_ctl_bulk.
->>
->> Fixes: 0c28233903b5 ("reset: Add get/assert/deassert/release for bulk of reset signals")
->> Reported-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  include/reset.h | 5 +++--
->>  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> Reviewed-by: Simon Glass <sjg@chromium.org>
-> 
-> We don't have build coverage for this at the moment I suppose. It
-> would be a bit of pain to add that with sandbox, although I wonder if
-> it could be done with some horrible #define hackery in a C file that
-> includes this header?
-> 
-> - Simon
+Hi Jerome
+
+On 04/16/18 18:38, Jerome Brunet wrote:
+>> +	 */
+>> +	for (clkid = 0; clkid < data->num_clks; clkid++) {
+>> +		data->clks[clkid]->map = regmap;
+>> +
+>> +		ret = devm_clk_hw_register(dev, data->hw_data->hws[clkid]);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>> +		(void *) data->hw_data);
+>> +}
+> Missing new line here. Please run checkpatch and pay attention to git warnings
+> about whitespace errors.
 > 
 
-It could but it will be horrible indeed.
 
-Neil
+I think we actually need to avoid this extra new line, or what's the
+benefits with new line?
+
+and besides? I didn't see any complaint from checkpatch.pl ..
+
+ ./scripts/checkpatch.pl
+0002-clk-meson-aoclk-refactor-common-code-into-dedicated-.patch
+WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+#235:
+new file mode 100644
+
+total: 0 errors, 1 warnings, 302 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or
+--fix-inplace.
+
+0002-clk-meson-aoclk-refactor-common-code-into-dedicated-.patch has
+style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.
+
+
+Yixun
