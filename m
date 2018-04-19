@@ -1,47 +1,42 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 19 Apr 2018 21:54:26 +0800
-Subject: [PATCH v6 7/7] clk: meson: drop CLK_IGNORE_UNUSED flag
-In-Reply-To: <20180419135426.155794-1-yixun.lan@amlogic.com>
-References: <20180419135426.155794-1-yixun.lan@amlogic.com>
-Message-ID: <20180419135426.155794-8-yixun.lan@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 19 Apr 2018 16:13:26 +0200
+Subject: [PATCH 0/2] nvmem: meson-efuse: add write support
+In-Reply-To: <20180316150113.9779-1-jbrunet@baylibre.com>
+References: <20180316150113.9779-1-jbrunet@baylibre.com>
+Message-ID: <1524147206.2601.104.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Rely on drivers to request the clock explicitly.
+On Fri, 2018-03-16 at 16:01 +0100, Jerome Brunet wrote:
+> This changeset adds write support to meson efuse driver.
+> The first patch just changes the way the nvmem data are allocated w/o
+> any functional changes. The second patches actually adds write support.
+> 
+> The memory being an OTP, it is safer if it remains read-only by default,
+> which is why I also submitted this DT patch [0].
+> 
+> If a user knows what he is doing, it should be easy to remove the
+> read-only property from the board DT. This can be done in u-boot, before
+> starting linux:
+> 
+>  > fdt rm /efuse read-only
+> 
+> Tested on the gxl libretech-cc
 
-Previous the kernel will leave the clock on while
-bootloader adready initilized the clock, this wasn't
-optimal way, so fix it here.
+Hi Srinivas,
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- drivers/clk/meson/axg-aoclk.c  | 1 -
- drivers/clk/meson/gxbb-aoclk.c | 1 -
- 2 files changed, 2 deletions(-)
+Is this patchset ok with you ? Do you want to me to change something ?
 
-diff --git a/drivers/clk/meson/axg-aoclk.c b/drivers/clk/meson/axg-aoclk.c
-index a5d00ef12268..d68b3e8ef483 100644
---- a/drivers/clk/meson/axg-aoclk.c
-+++ b/drivers/clk/meson/axg-aoclk.c
-@@ -27,7 +27,6 @@ static struct clk_regmap axg_aoclk_##_name = {					\
- 		.ops = &clk_regmap_gate_ops,				\
- 		.parent_names = (const char *[]){ "clk81" },		\
- 		.num_parents = 1,					\
--		.flags = CLK_IGNORE_UNUSED,				\
- 	},								\
- }
- 
-diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
-index e145ebcdef38..c4d6027653a3 100644
---- a/drivers/clk/meson/gxbb-aoclk.c
-+++ b/drivers/clk/meson/gxbb-aoclk.c
-@@ -69,7 +69,6 @@ static struct clk_regmap _name##_ao = {					\
- 		.ops = &clk_regmap_gate_ops,				\
- 		.parent_names = (const char *[]){ "clk81" },		\
- 		.num_parents = 1,					\
--		.flags = CLK_IGNORE_UNUSED,				\
- 	},								\
- }
- 
--- 
-2.15.1
+Regards
+Jerome
+
+> 
+> [0]: https://lkml.kernel.org/r/20180316145021.8517-1-jbrunet at baylibre.com
+> 
+> Jerome Brunet (2):
+>   nvmem: meson-efuse: remove econfig global
+>   nvmem: meson-efuse: add write support
+> 
+>  drivers/nvmem/meson-efuse.c | 37 +++++++++++++++++++++++++++----------
+>  1 file changed, 27 insertions(+), 10 deletions(-)
+> 
