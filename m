@@ -1,30 +1,34 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 19 Apr 2018 10:42:40 -0700
-Subject: [PATCH 0/2] nvmem: meson-efuse: add write support
-In-Reply-To: <20180316150113.9779-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Fri, 16 Mar 2018 16:01:11 +0100")
-References: <20180316150113.9779-1-jbrunet@baylibre.com>
-Message-ID: <7hwox33xf3.fsf@baylibre.com>
+Date: Thu, 19 Apr 2018 10:58:52 -0700
+Subject: [PATCH v2] ARM64: dts: meson-axg: enable the eMMC controller
+In-Reply-To: <20180408113647.13543-1-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Sun, 8 Apr 2018 11:36:47 +0000")
+References: <20180408113647.13543-1-yixun.lan@amlogic.com>
+Message-ID: <7ho9if3wo3.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Yixun Lan <yixun.lan@amlogic.com> writes:
 
-> This changeset adds write support to meson efuse driver.
-> The first patch just changes the way the nvmem data are allocated w/o
-> any functional changes. The second patches actually adds write support.
+> From: Nan Li <nan.li@amlogic.com>
 >
-> The memory being an OTP, it is safer if it remains read-only by default,
-> which is why I also submitted this DT patch [0].
+> The IP of eMMC controller in AXG is similiar to Meson-GX series.
+> Here we add the initial support of the HS200 mode with
+> clock running at 166MHz (to be safe), since we found some eMMC chip
+> fail to run at 200MHz due to tunning phase error.
 >
-> If a user knows what he is doing, it should be easy to remove the
-> read-only property from the board DT. This can be done in u-boot, before
-> starting linux:
->
->  > fdt rm /efuse read-only
->
-> Tested on the gxl libretech-cc
+> Signed-off-by: Nan Li <nan.li@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-For the series,
+Applied to v4.18/dt64
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+> Hi Kevin
+>   Please note this patch actually depend on the eMMC driver here [0].
+>   Still a few problem to solve, to improve the tuning phase driver to make
+> the clock running at 200MHz, and to further support the HS400 mode.
+> Anyway, this patch itself is quite independent.
+
+The driver changes are queued for v4.18 also.  Good!
+
+Kevin
