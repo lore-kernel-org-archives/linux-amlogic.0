@@ -1,49 +1,82 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 19 Apr 2018 10:54:08 +0200
-Subject: [PATCH stable] drm: bridge: dw-hdmi: Fix overflow workaround for
- Amlogic Meson GX SoCs
-Message-ID: <1524128048-11086-1-git-send-email-narmstrong@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Thu, 19 Apr 2018 21:54:19 +0800
+Subject: [PATCH v6 0/7] clk: meson-axg: Add AO Cloclk and Reset driver
+Message-ID: <20180419135426.155794-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-commit 9c305eb442f3b371fc722ade827bbf673514123e upstream
+  This patch try to add AO clock and Reset driver for Amlogic's
+Meson-AXG SoC.
+  Please note that patch 7 need to wait for the DTS changes[3] merged
+into mainline first, otherwise it will break the serial console.
 
-The Amlogic Meson GX SoCs, embedded the v2.01a controller, has been also
-identified needing this workaround.
-This patch adds the corresponding version to enable a single iteration for
-this specific version.
+ patch 2: factor the common code into a dedicated file
+ patch 3-5: add the aoclk driver for AXG SoC
+ patch 6-7: drop unnecessary clock flags
 
-Fixes: be41fc55f1aa ("drm: bridge: dw-hdmi: Handle overflow workaround based on device version")
-Acked-by: Archit Taneja <architt@codeaurora.org>
-[narmstrong: s/identifies/identified and rebased against Jernej's change]
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/1519386277-25902-1-git-send-email-narmstrong at baylibre.com
-[narmstrong: v4.14 to v4.16 backport]
-Cc: <stable@vger.kernel.org> # 4.14.x
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 3 +++
- 1 file changed, 3 insertions(+)
+changes since v5 at [6]: 
+ - drop unnecessary header files
+ - add 'axg_aoclk' prefix to clk driver, make them more consistent
+ - add missing end new line..
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index bf14214..4db31b8 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -1634,6 +1634,8 @@ static void dw_hdmi_clear_overflow(struct dw_hdmi *hdmi)
- 	 * (and possibly on the platform). So far only i.MX6Q (v1.30a) and
- 	 * i.MX6DL (v1.31a) have been identified as needing the workaround, with
- 	 * 4 and 1 iterations respectively.
-+	 * The Amlogic Meson GX SoCs (v2.01a) have been identified as needing
-+	 * the workaround with a single iteration.
- 	 */
+changes since v4 at [5]: 
+ - fix return err
+ - introduce CONFIG_COMMON_CLK_MESON_AO
+ - format/style minor fix
+
+changes since v3 at [4]: 
+ - add 'const' contraint to the read-only data
+ - switch to devm_of_clk_add_hw_provider API
+ - check return value of devm_reset_controller_register
+
+changes since v2 at [2]: 
+ - rework meson_aoclkc_probe() which leverage the of_match_data
+ - merge patch 5-6 into this series
+ - seperate DTS patch, will send to Kevin Hilman independently
  
- 	switch (hdmi->version) {
-@@ -1641,6 +1643,7 @@ static void dw_hdmi_clear_overflow(struct dw_hdmi *hdmi)
- 		count = 4;
- 		break;
- 	case 0x131a:
-+	case 0x201a:
- 		count = 1;
- 		break;
- 	default:
+changes since v1 at [0]: 
+ - rebase to clk-meson's branch 'next/drivers' [1]
+ - fix license, update to BSD-3-Clause
+ - drop un-used include header file
+
+[0] https://lkml.kernel.org/r/20180209070026.193879-1-yixun.lan at amlogic.com
+[1] git://github.com/BayLibre/clk-meson.git branch: next-drivers
+[2] https://lkml.kernel.org/r/20180323143816.200573-1-yixun.lan at amlogic.com
+[3] https://lkml.kernel.org/r/20180326081809.49493-4-yixun.lan at amlogic.com
+[4] https://lkml.kernel.org/r/20180328025050.221585-1-yixun.lan at amlogic.com
+[5] https://lkml.kernel.org/r/20180408031938.153474-1-yixun.lan at amlogic.com
+[6] https://lkml.kernel.org/r/20180409143749.71197-1-yixun.lan at amlogic.com
+
+
+Qiufang Dai (1):
+  clk: meson-axg: Add AO Clock and Reset controller driver
+
+Yixun Lan (6):
+  clk: meson: migrate to devm_of_clk_add_hw_provider API
+  clk: meson: aoclk: refactor common code into dedicated file
+  dt-bindings: clock: axg-aoclkc: New binding for Meson-AXG SoC
+  dt-bindings: clock: reset: Add AXG AO Clock and Reset Bindings
+  clk: meson: drop CLK_SET_RATE_PARENT flag
+  clk: meson: drop CLK_IGNORE_UNUSED flag
+
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |   1 +
+ drivers/clk/meson/Kconfig                          |   8 +
+ drivers/clk/meson/Makefile                         |   3 +-
+ drivers/clk/meson/axg-aoclk.c                      | 164 +++++++++++++++++++++
+ drivers/clk/meson/axg-aoclk.h                      |  30 ++++
+ drivers/clk/meson/gxbb-aoclk.c                     |  96 +++++-------
+ drivers/clk/meson/gxbb-aoclk.h                     |   6 +
+ drivers/clk/meson/meson-aoclk.c                    |  82 +++++++++++
+ drivers/clk/meson/meson-aoclk.h                    |  35 +++++
+ include/dt-bindings/clock/axg-aoclkc.h             |  26 ++++
+ include/dt-bindings/reset/axg-aoclkc.h             |  20 +++
+ 11 files changed, 407 insertions(+), 64 deletions(-)
+ create mode 100644 drivers/clk/meson/axg-aoclk.c
+ create mode 100644 drivers/clk/meson/axg-aoclk.h
+ create mode 100644 drivers/clk/meson/meson-aoclk.c
+ create mode 100644 drivers/clk/meson/meson-aoclk.h
+ create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+ create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
+
 -- 
-2.7.4
+2.15.1
