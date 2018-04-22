@@ -1,43 +1,50 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 22 Apr 2018 12:28:43 +0200
-Subject: [PATCH clk-fixes] clk: meson: meson8b: fix meson8b_fclk_div3_div
- clock name
-Message-ID: <20180422102843.31238-1-martin.blumenstingl@googlemail.com>
+Date: Sun, 22 Apr 2018 12:33:38 +0200
+Subject: [PATCH v3 0/1] add support for the NAND clocks on Meson8b
+Message-ID: <20180422103339.32608-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The names of all fclk divider gate clocks follow the naming schema
-"fclk_divN" and the name of all fclk fixed dividers follow the naming
-schema "fclk_divN_div".
-There's one exception to this rule: meson8b_fclk_div3_div's name is
-"fclk_div_div3". It's child clock meson8b_fclk_div3 however references
-it as "fclk_div3_div" (following the naming schema explained above).
+This adds support for the NAND clocks found in the Meson8, Meson8b
+and Meson8m2 SoCs.
+The clocks consist of a simple gate, a divider and a mux. The mux
+parents are not documented in the public S805 datasheet [0], so I
+had to use a bit of math and take the vendor kernel as reference [1]
+to find the actual parent clocks.
+Some mux parents cannot be divided down without remainder to the
+target clocks (as expected by the vendor NAND driver) these clocks
+have the ROUND_CLOSEST flag set.
 
-Fix the naming of the meson8b_fclk_div3_div clock to follow the naming
-schema. This also fixes serial console on my Meson8m2 board because
-"clk81" uses fclk_div3 as parent. However, since the hierarchy stops at
-meson8b_fclk_div3 there's no known parent clock and the rate of "clk81"
-and all of it's children (UART clock, SDIO MMC controller clock, ...)
-are all 0.
+The new clocks are similar to gxbb_sd_emmc_c_clk0_sel,
+gxbb_sd_emmc_c_clk0_div and gxbb_sd_emmc_c_clk0 on the GX SoCs.
+Actual differences are:
+- mux parents are re-ordered
+- the gate is controlled by bit 8 (instead of bit 7 on GX)
 
-Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v2 at [1]:
+- rebased on top of v4.17-rc1 and updated the clocks to use the new
+  clk_regmap framework (as all other clocks in meson8b.c)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index cc2992493e0b..2c4ff6192852 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -253,7 +253,7 @@ static struct clk_fixed_factor meson8b_fclk_div3_div = {
- 	.mult = 1,
- 	.div = 3,
- 	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div_div3",
-+		.name = "fclk_div3_div",
- 		.ops = &clk_fixed_factor_ops,
- 		.parent_names = (const char *[]){ "fixed_pll" },
- 		.num_parents = 1,
+Changes since v1 at [0]:
+- rebased so it still applies in 2018
+- dropped mux table (since the known parents are values 0..4)
+- replaced CLK_SET_RATE_NO_REPARENT with CLK_SET_RATE_PARENT on the mux
+- added CLK_SET_RATE_PARENT on the divider
+- fixed width of the divider (it's 7 bits wide, ranging from bit 0 to 6
+  while v1 only used a width of 6 bits)
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-April/003237.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/005934.html
+
+
+Martin Blumenstingl (1):
+  clk: meson: meson8b: add support for the NAND clocks
+
+ drivers/clk/meson/meson8b.c              | 54 ++++++++++++++++++++++++
+ drivers/clk/meson/meson8b.h              |  3 +-
+ include/dt-bindings/clock/meson8b-clkc.h |  3 ++
+ 3 files changed, 59 insertions(+), 1 deletion(-)
+
 -- 
 2.17.0
