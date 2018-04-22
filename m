@@ -1,74 +1,34 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 22 Apr 2018 12:45:02 +0200
-Subject: [PATCH 2/2] ARM: dts: meson8b: add the cortex-a5-pmu compatible PMU
-In-Reply-To: <20180422104502.2942-1-martin.blumenstingl@googlemail.com>
-References: <20180422104502.2942-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180422104502.2942-3-martin.blumenstingl@googlemail.com>
+Date: Sun, 22 Apr 2018 12:53:27 +0200
+Subject: [PATCH 0/3] pinctrl: meson: add support for the Meson8m2 SoC
+Message-ID: <20180422105330.4712-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable the performance monitor unit on Meson8b.
+The Meson8m2 SoC is a variant of Meson8 with some updates from Meson8b
+(such as the Gigabit capable DesignWare MAC).
+It is mostly pin compatible with Meson8, only 10 (existing) CBUS pins
+get an additional function. Four of these are Ethernet RXD2, RXD3, TXD2
+and TXD3 (GPIOZ_0..GPIOZ_3) which are required when the board uses an
+RGMII PHY. GPIODV_24 and GPIODV_25 provide "VGA" support on Meson8,
+which doesn't seem to be supported on Meson8m2 anymore.
+The other 4 are GPIOH_9 (reg 3 bit 19), CARD_4 (reg 8 bit 8),
+CARD_5 (reg 8 bit 7) and GPIOY_3 (reg 3 bit 11). Their function is
+currently unknown.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+The AOBUS pins seem to be identical on Meson8 and Meson8m2. However,
+since there's no official documentation I decided to add a new compatible
+string.
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 553b82174604..6cfd7e225cee 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -55,7 +55,7 @@
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		cpu at 200 {
-+		cpu0: cpu at 200 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
-@@ -64,7 +64,7 @@
- 			resets = <&clkc CLKC_RESET_CPU0_SOFT_RESET>;
- 		};
- 
--		cpu at 201 {
-+		cpu1: cpu at 201 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
-@@ -73,7 +73,7 @@
- 			resets = <&clkc CLKC_RESET_CPU1_SOFT_RESET>;
- 		};
- 
--		cpu at 202 {
-+		cpu2: cpu at 202 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
-@@ -82,7 +82,7 @@
- 			resets = <&clkc CLKC_RESET_CPU2_SOFT_RESET>;
- 		};
- 
--		cpu at 203 {
-+		cpu3: cpu at 203 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a5";
- 			next-level-cache = <&L2>;
-@@ -92,6 +92,15 @@
- 		};
- 	};
- 
-+	pmu {
-+		compatible = "arm,cortex-a5-pmu";
-+		interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+
+Martin Blumenstingl (3):
+  dt-bindings: pinctrl: meson: add support for the Meson8m2 SoC
+  pinctrl: meson: meson8: add support for the Meson8m2 SoC
+  pinctrl: meson: meson8: add the RGMII RXD2/RXD3 and TXD2/TXD3 signals
+
+ .../bindings/pinctrl/meson,pinctrl.txt        |  2 ++
+ drivers/pinctrl/meson/pinctrl-meson8.c        | 23 +++++++++++++++++--
+ 2 files changed, 23 insertions(+), 2 deletions(-)
+
 -- 
 2.17.0
