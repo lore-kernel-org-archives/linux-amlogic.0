@@ -1,62 +1,36 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 22 Apr 2018 12:53:30 +0200
-Subject: [PATCH 3/3] pinctrl: meson: meson8: add the RGMII RXD2/RXD3 and
- TXD2/TXD3 signals
-In-Reply-To: <20180422105330.4712-1-martin.blumenstingl@googlemail.com>
-References: <20180422105330.4712-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180422105330.4712-4-martin.blumenstingl@googlemail.com>
+From: gregkh@linuxfoundation.org (Greg KH)
+Date: Sun, 22 Apr 2018 15:01:09 +0200
+Subject: [PATCH usb v6 6/6] usb: core: phy: add the
+ SPDX-License-Identifier and include guard
+In-Reply-To: <20180418193951.17922-7-martin.blumenstingl@googlemail.com>
+References: <20180418193951.17922-1-martin.blumenstingl@googlemail.com>
+ <20180418193951.17922-7-martin.blumenstingl@googlemail.com>
+Message-ID: <20180422130109.GA5781@kroah.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-These are only available on the Meson8m2 SoC (which uses the same
-DesignWare Ethernet MAC as Meson8b).
-The "eth_tx_clk_50m" signal either provides a 50MHz clock for the RMII
-PHYs or the RGMII TX clock (as far as we know the frequency is
-controlled by the PRG_ETHERNET registers in the Ethernet MAC "glue" IP
-block).
+On Wed, Apr 18, 2018 at 09:39:51PM +0200, Martin Blumenstingl wrote:
+> This clarifies the license of the code. While here also add an include
+> guard to the header file.
+> 
+> Fixes: 07dbff0ddbd86c ("usb: core: add a wrapper for the USB PHYs on the HCD")
+> Suggested-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/usb/core/phy.h | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
+> index bbc969383074..88a3c037e9df 100644
+> --- a/drivers/usb/core/phy.h
+> +++ b/drivers/usb/core/phy.h
+> @@ -1,3 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/pinctrl/meson/pinctrl-meson8.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+Do you _really_ mean GPLv2 or anything later?
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
-index 086082aeb796..c6d79315218f 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8.c
-@@ -299,6 +299,10 @@ static const unsigned int spi_mosi_1_pins[]	= { GPIOZ_12 };
- static const unsigned int spi_miso_1_pins[]	= { GPIOZ_13 };
- static const unsigned int spi_ss2_1_pins[]	= { GPIOZ_14 };
- 
-+static const unsigned int eth_txd3_pins[]	= { GPIOZ_0 };
-+static const unsigned int eth_txd2_pins[]	= { GPIOZ_1 };
-+static const unsigned int eth_rxd3_pins[]	= { GPIOZ_2 };
-+static const unsigned int eth_rxd2_pins[]	= { GPIOZ_3 };
- static const unsigned int eth_tx_clk_50m_pins[]	= { GPIOZ_4 };
- static const unsigned int eth_tx_en_pins[]	= { GPIOZ_5 };
- static const unsigned int eth_txd1_pins[]	= { GPIOZ_6 };
-@@ -650,6 +654,12 @@ static struct meson_pmx_group meson8_cbus_groups[] = {
- 	GROUP(eth_mdio,		6,	6),
- 	GROUP(eth_mdc,		6,	5),
- 
-+	/* NOTE: the following four groups are only available on Meson8m2: */
-+	GROUP(eth_rxd2,		6,	3),
-+	GROUP(eth_rxd3,		6,	2),
-+	GROUP(eth_txd2,		6,	1),
-+	GROUP(eth_txd3,		6,	0),
-+
- 	GROUP(i2c_sda_a0,	5,	31),
- 	GROUP(i2c_sck_a0,	5,	30),
- 
-@@ -877,7 +887,8 @@ static const char * const spi_groups[] = {
- static const char * const ethernet_groups[] = {
- 	"eth_tx_clk_50m", "eth_tx_en", "eth_txd1",
- 	"eth_txd0", "eth_rx_clk_in", "eth_rx_dv",
--	"eth_rxd1", "eth_rxd0", "eth_mdio", "eth_mdc"
-+	"eth_rxd1", "eth_rxd0", "eth_mdio", "eth_mdc", "eth_rxd2",
-+	"eth_rxd3", "eth_txd2", "eth_txd3"
- };
- 
- static const char * const i2c_a_groups[] = {
--- 
-2.17.0
+I have to ask...
+
+thanks,
+
+greg k-h
