@@ -1,34 +1,48 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 22 Apr 2018 12:53:27 +0200
-Subject: [PATCH 0/3] pinctrl: meson: add support for the Meson8m2 SoC
-Message-ID: <20180422105330.4712-1-martin.blumenstingl@googlemail.com>
+Date: Sun, 22 Apr 2018 12:53:29 +0200
+Subject: [PATCH 2/3] pinctrl: meson: meson8: add support for the Meson8m2 SoC
+In-Reply-To: <20180422105330.4712-1-martin.blumenstingl@googlemail.com>
+References: <20180422105330.4712-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180422105330.4712-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Meson8m2 SoC is a variant of Meson8 with some updates from Meson8b
-(such as the Gigabit capable DesignWare MAC).
-It is mostly pin compatible with Meson8, only 10 (existing) CBUS pins
-get an additional function. Four of these are Ethernet RXD2, RXD3, TXD2
-and TXD3 (GPIOZ_0..GPIOZ_3) which are required when the board uses an
-RGMII PHY. GPIODV_24 and GPIODV_25 provide "VGA" support on Meson8,
-which doesn't seem to be supported on Meson8m2 anymore.
-The other 4 are GPIOH_9 (reg 3 bit 19), CARD_4 (reg 8 bit 8),
-CARD_5 (reg 8 bit 7) and GPIOY_3 (reg 3 bit 11). Their function is
-currently unknown.
+Add Meson8m2 support to the existing Meson8 pinctrl driver. Since there
+are only very few changes (Meson8m2 has an extra signal on 10 CBUS pins,
+no other differences were found so far).
+Add the new compatible strings for Meson8m2 to the existing Meson8
+driver so we don't have to duplicate the whole driver.
 
-The AOBUS pins seem to be identical on Meson8 and Meson8m2. However,
-since there's no official documentation I decided to add a new compatible
-string.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson8.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-
-Martin Blumenstingl (3):
-  dt-bindings: pinctrl: meson: add support for the Meson8m2 SoC
-  pinctrl: meson: meson8: add support for the Meson8m2 SoC
-  pinctrl: meson: meson8: add the RGMII RXD2/RXD3 and TXD2/TXD3 signals
-
- .../bindings/pinctrl/meson,pinctrl.txt        |  2 ++
- drivers/pinctrl/meson/pinctrl-meson8.c        | 23 +++++++++++++++++--
- 2 files changed, 23 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
+index 49c7ce03547b..086082aeb796 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8.c
+@@ -1,5 +1,5 @@
+ /*
+- * Pin controller and GPIO driver for Amlogic Meson8.
++ * Pin controller and GPIO driver for Amlogic Meson8 and Meson8m2.
+  *
+  * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
+  *
+@@ -1080,6 +1080,14 @@ static const struct of_device_id meson8_pinctrl_dt_match[] = {
+ 		.compatible = "amlogic,meson8-aobus-pinctrl",
+ 		.data = &meson8_aobus_pinctrl_data,
+ 	},
++	{
++		.compatible = "amlogic,meson8m2-cbus-pinctrl",
++		.data = &meson8_cbus_pinctrl_data,
++	},
++	{
++		.compatible = "amlogic,meson8m2-aobus-pinctrl",
++		.data = &meson8_aobus_pinctrl_data,
++	},
+ 	{ },
+ };
+ 
 -- 
 2.17.0
