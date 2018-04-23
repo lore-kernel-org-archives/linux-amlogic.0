@@ -1,40 +1,41 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 23 Apr 2018 14:41:46 +0200
-Subject: [PATCH v2 0/3] nvmem: meson-efuse: add write support
-Message-ID: <20180423124149.3077-1-jbrunet@baylibre.com>
+Date: Mon, 23 Apr 2018 14:41:48 +0200
+Subject: [PATCH v2 2/3] nvmem: meson-efuse: simplify read callback
+In-Reply-To: <20180423124149.3077-1-jbrunet@baylibre.com>
+References: <20180423124149.3077-1-jbrunet@baylibre.com>
+Message-ID: <20180423124149.3077-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This changeset adds write support to meson efuse driver.
-The first patch just changes the way the nvmem data are allocated w/o
-any functional changes. The second patches actually adds write support.
+Most of the code and variables in the read callback is not necessary.
+Keep only what is required.
 
-The memory being an OTP, it is safer if it remains read-only by default,
-which is why I also submitted this DT patch [0]. It has now been merged by
-Kevin.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/nvmem/meson-efuse.c | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-If a user knows what he is doing, it should be easy to remove the
-read-only property from the board DT. This can be done in u-boot, before
-starting linux:
-
- > fdt rm /efuse read-only
-
-Tested on the gxl libretech-cc
-
-Changes since v1 [1]:
- - Remove un-necessary code in callbacks
- - Rebase on v4.17-rc1
-
-[0]: https://lkml.kernel.org/r/20180316145021.8517-1-jbrunet at baylibre.com
-[1]: https://lkml.kernel.org/r/20180316150113.9779-1-jbrunet at baylibre.com
-
-Jerome Brunet (3):
-  nvmem: meson-efuse: remove econfig global
-  nvmem: meson-efuse: simplify read callback
-  nvmem: meson-efuse: add write support
-
- drivers/nvmem/meson-efuse.c | 41 ++++++++++++++++++++++-------------------
- 1 file changed, 22 insertions(+), 19 deletions(-)
-
+diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
+index 2df9b0094f45..4623249dfd87 100644
+--- a/drivers/nvmem/meson-efuse.c
++++ b/drivers/nvmem/meson-efuse.c
+@@ -24,15 +24,8 @@
+ static int meson_efuse_read(void *context, unsigned int offset,
+ 			    void *val, size_t bytes)
+ {
+-	u8 *buf = val;
+-	int ret;
+-
+-	ret = meson_sm_call_read(buf, bytes, SM_EFUSE_READ, offset,
+-				 bytes, 0, 0, 0);
+-	if (ret < 0)
+-		return ret;
+-
+-	return 0;
++	return meson_sm_call_read((u8 *)val, bytes, SM_EFUSE_READ, offset,
++				  bytes, 0, 0, 0);
+ }
+ 
+ static const struct of_device_id meson_efuse_match[] = {
 -- 
 2.14.3
