@@ -1,65 +1,47 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 23 Apr 2018 21:38:03 +0200
-Subject: [PATCH clk-fixes] clk: meson: meson8b: fix
- meson8b_fclk_div3_div clock name
-In-Reply-To: <1524471797.4026.3.camel@baylibre.com>
-References: <20180422102843.31238-1-martin.blumenstingl@googlemail.com>
- <1524471797.4026.3.camel@baylibre.com>
-Message-ID: <1524512283.4026.28.camel@baylibre.com>
+Date: Mon, 23 Apr 2018 21:41:46 +0200
+Subject: [PATCH clk-fixes] clk: meson: meson8b: fix meson8b_cpu_clk
+ parent clock name
+In-Reply-To: <20180423193029.29428-1-martin.blumenstingl@googlemail.com>
+References: <20180423193029.29428-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1524512506.4026.31.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2018-04-23 at 10:23 +0200, Jerome Brunet wrote:
-> On Sun, 2018-04-22 at 12:28 +0200, Martin Blumenstingl wrote:
-> > The names of all fclk divider gate clocks follow the naming schema
-> > "fclk_divN" and the name of all fclk fixed dividers follow the naming
-> > schema "fclk_divN_div".
-> > There's one exception to this rule: meson8b_fclk_div3_div's name is
-> > "fclk_div_div3". It's child clock meson8b_fclk_div3 however references
-> > it as "fclk_div3_div" (following the naming schema explained above).
-> > 
-> > Fix the naming of the meson8b_fclk_div3_div clock to follow the naming
-> > schema. This also fixes serial console on my Meson8m2 board because
-> > "clk81" uses fclk_div3 as parent. However, since the hierarchy stops at
-> > meson8b_fclk_div3 there's no known parent clock and the rate of "clk81"
-> > and all of it's children (UART clock, SDIO MMC controller clock, ...)
-> > are all 0.
-> > 
-> > Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Mon, 2018-04-23 at 21:30 +0200, Martin Blumenstingl wrote:
+> meson8b_cpu_clk has two parent clocks:
+> - meson8b_xtal
+> - meson8b_cpu_scale_out_sel
 > 
-> Oopss ... Thanks for fixing this Martin.
+> The name of the "xtal" clock parent is specified correctly. However,
+> there is a typo in the name of the second parent clock. The
+> meson8b_cpu_scale_out_sel definition uses the name "cpu_scale_out_sel"
+> (which matches the name from the datasheet). However, the mux parent
+> definition uses the name "cpu_out_sel" which does not match any existing
+> clock.
 > 
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
-> Stephen, Do you mind taking this directly for fixes ? I can prepare a PR if you
-> prefer.
+> Fixes: 251b6fd38bcb9c ("clk: meson: rework meson8b cpu clock")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Nevermind, apparently I have another mistake of the same kind, so there is
-another fix coming up.
+Roohhh ... Sorry about that :(
 
-I'?l make a PR 
+I'll take it along with the other typo fix. Thx Martin !
 
+> ---
+>  drivers/clk/meson/meson8b.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Regards
-> Jerome
-> 
-> > ---
-> >  drivers/clk/meson/meson8b.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> > index cc2992493e0b..2c4ff6192852 100644
-> > --- a/drivers/clk/meson/meson8b.c
-> > +++ b/drivers/clk/meson/meson8b.c
-> > @@ -253,7 +253,7 @@ static struct clk_fixed_factor meson8b_fclk_div3_div = {
-> >  	.mult = 1,
-> >  	.div = 3,
-> >  	.hw.init = &(struct clk_init_data){
-> > -		.name = "fclk_div_div3",
-> > +		.name = "fclk_div3_div",
-> >  		.ops = &clk_fixed_factor_ops,
-> >  		.parent_names = (const char *[]){ "fixed_pll" },
-> >  		.num_parents = 1,
-> 
-> 
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index 2c4ff6192852..d0524ec71aad 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -632,7 +632,8 @@ static struct clk_regmap meson8b_cpu_clk = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "cpu_clk",
+>  		.ops = &clk_regmap_mux_ro_ops,
+> -		.parent_names = (const char *[]){ "xtal", "cpu_out_sel" },
+> +		.parent_names = (const char *[]){ "xtal",
+> +						  "cpu_scale_out_sel" },
+>  		.num_parents = 2,
+>  		.flags = (CLK_SET_RATE_PARENT |
+>  			  CLK_SET_RATE_NO_REPARENT),
