@@ -1,46 +1,83 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 22 Apr 2018 21:41:56 +0200
-Subject: [PATCH usb v6 6/6] usb: core: phy: add the SPDX-License-Identifier
- and include guard
-In-Reply-To: <20180422130109.GA5781@kroah.com>
-References: <20180418193951.17922-1-martin.blumenstingl@googlemail.com>
- <20180418193951.17922-7-martin.blumenstingl@googlemail.com>
- <20180422130109.GA5781@kroah.com>
-Message-ID: <CAFBinCBv+zwjjjA_HeDY_e=aZwVpktzqM7wszZ-Ejvid+ZBe-A@mail.gmail.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 23 Apr 2018 14:57:29 +0000
+Subject: [PATCH] ARM64: dts: meson-axg: enable AP6255 wifi module
+Message-ID: <20180423145729.14368-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Greg,
+The Meson-AXG S400 board is shipped with AP6255 wifi module,
+which is actually using the brcmfmac 43455 driver.
 
-On Sun, Apr 22, 2018 at 3:01 PM, Greg KH <gregkh@linuxfoundation.org> wrote:
-> On Wed, Apr 18, 2018 at 09:39:51PM +0200, Martin Blumenstingl wrote:
->> This clarifies the license of the code. While here also add an include
->> guard to the header file.
->>
->> Fixes: 07dbff0ddbd86c ("usb: core: add a wrapper for the USB PHYs on the HCD")
->> Suggested-by: Masahiro Yamada <yamada.masahiro@socionext.com>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  drivers/usb/core/phy.h | 12 ++++++++++++
->>  1 file changed, 12 insertions(+)
->>
->> diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
->> index bbc969383074..88a3c037e9df 100644
->> --- a/drivers/usb/core/phy.h
->> +++ b/drivers/usb/core/phy.h
->> @@ -1,3 +1,13 @@
->> +/* SPDX-License-Identifier: GPL-2.0+ */
->
-> Do you _really_ mean GPLv2 or anything later?
-drivers/usb/core/hcd.c uses the same license identifier
-that code is much more "valuable" than my few lines which manage a
-list of PHYs - so I'm fine with "GPLv2 or anything later"
+Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+---
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 44 ++++++++++++++++++-
+ 1 file changed, 43 insertions(+), 1 deletion(-)
 
-> I have to ask...
-if you see any problems with this (for example that phy.h couldn't be
-used from some special module with another license, ...) then please
-let me know
-
-
-Regards
-Martin
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index f67d4e47e641..b3e1bdca32bb 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -51,7 +51,16 @@
+ 
+ 	sdio_pwrseq: sdio-pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+-		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
++		clocks = <&wifi32k>;
++		clock-names = "ext_clock";
++	};
++
++	wifi32k: wifi32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
+ 	};
+ };
+ 
+@@ -86,6 +95,12 @@
+ 	pinctrl-names = "default";
+ };
+ 
++&pwm_ab {
++	status = "okay";
++	pinctrl-0 = <&pwm_a_x20_pins>;
++	pinctrl-names = "default";
++};
++
+ /* emmc storage */
+ &sd_emmc_c {
+ 	status = "okay";
+@@ -105,3 +120,30 @@
+ 	vmmc-supply = <&vcc_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+ };
++
++/* wifi module */
++&sd_emmc_b {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	pinctrl-0 = <&sdio_pins>;
++	pinctrl-1 = <&sdio_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <100000000>;
++	non-removable;
++	disable-wp;
++
++	mmc-pwrseq = <&sdio_pwrseq>;
++
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddio_boot>;
++
++	brcmf: wifi at 1 {
++		reg = <1>;
++		compatible = "brcm,bcm4329-fmac";
++	};
++};
+-- 
+2.17.0
