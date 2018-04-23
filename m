@@ -1,57 +1,149 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 23 Apr 2018 21:35:07 +0200
-Subject: [PATCH v4 0/2] add support for the NAND clocks on Meson8b
-Message-ID: <20180423193509.30584-1-martin.blumenstingl@googlemail.com>
+Date: Mon, 23 Apr 2018 21:35:09 +0200
+Subject: [PATCH v4 2/2] clk: meson: meson8b: add support for the NAND clocks
+In-Reply-To: <20180423193509.30584-1-martin.blumenstingl@googlemail.com>
+References: <20180423193509.30584-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180423193509.30584-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds support for the NAND clocks found in the Meson8, Meson8b
-and Meson8m2 SoCs.
-The clocks consist of a simple gate, a divider and a mux. The mux
-parents are not documented in the public S805 datasheet [0], so I
-had to use a bit of math and take the vendor kernel as reference [1]
-to find the actual parent clocks.
-Some mux parents cannot be divided down without remainder to the
-target clocks (as expected by the vendor NAND driver) these clocks
-have the ROUND_CLOSEST flag set.
+This adds the NAND clocks (from the HHI_NAND_CLK_CNTL register) to the
+Meson8b clock driver. There are three NAND clocks: a gate which enables
+or disables the NAND clock, a mux and a divider (which divides the mux
+output).
+Unfortunately the public S805 datasheet does not document the mux
+parents. However, the vendor kernel has a few hints for us which allows
+us to make an educated guess about the clock parents. To do this we need
+to have a look at set_nand_core_clk() from the vendor's NAND driver (see
+[0]):
+- XTAL = (4<<9) | (1<<8) | 0
+- 160MHz = (0<<9) | (1<<8) | 3)
+- 182MHz = (3<<9) | (1<<8) | 1)
+- 212MHz = (1<<9) | (1<<8) | 3)
+- 255MHz = (2<<9) | (1<<8) | 1)
 
-The new clocks are similar to gxbb_sd_emmc_c_clk0_sel,
-gxbb_sd_emmc_c_clk0_div and gxbb_sd_emmc_c_clk0 on the GX SoCs.
-Actual differences are:
-- mux parents are re-ordered
-- the gate is controlled by bit 8 (instead of bit 7 on GX)
+While there is a comment for the XTAL parent (which indicates that it
+should only be used for debugging) we have to do a bit of math for the
+other parents: target_freq * divider = rate of parent clock
+Bit 8 above is the enable bit, so we can ignore it here. Bits 11:9 are
+the mux index and bits 6:0 are the 0-based divider (so we need to add
+1). This gives us:
+- mux 0 (160MHz * 4) = fclk_div4 (actual rate = 637.5MHz, off by 2.5MHz)
+- mux 1 (212MHz * 4) = fclk_div3 (actual rate = 850MHz, off by 2MHz)
+- mux 2 (255MHz * 2) = fclk_div5 (matches exactly 510MHz)
+- mux 3 (182MHz * 2) = fclk_div7 (actual rate = 346.3MHz, off by 0.3MHz)
 
-Changes since v3 at [2]:
-- move the dt-bindings change into a separate patch
-- do not export the mux and the divider as we only need to manage the
-  left clock (in our case: the gate - the common clock framework will
-  take care of the rest)
+[0] https://github.com/khadas/linux/blob/9587681285cb/drivers/amlogic/amlnf/dev/amlnf_ctrl.c#L314
 
-Changes since v2 at [1]:
-- rebased on top of v4.17-rc1 and updated the clocks to use the new
-  clk_regmap framework (as all other clocks in meson8b.c)
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/meson8b.c | 54 +++++++++++++++++++++++++++++++++++++
+ drivers/clk/meson/meson8b.h |  5 +++-
+ 2 files changed, 58 insertions(+), 1 deletion(-)
 
-Changes since v1 at [0]:
-- rebased so it still applies in 2018
-- dropped mux table (since the known parents are values 0..4)
-- replaced CLK_SET_RATE_NO_REPARENT with CLK_SET_RATE_PARENT on the mux
-- added CLK_SET_RATE_PARENT on the divider
-- fixed width of the divider (it's 7 bits wide, ranging from bit 0 to 6
-  while v1 only used a width of 6 bits)
-
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2017-April/003237.html
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/005934.html
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2018-April/007134.html
-
-Martin Blumenstingl (2):
-  dt-bindings: clock: meson8b: export the NAND clock
-  clk: meson: meson8b: add support for the NAND clocks
-
- drivers/clk/meson/meson8b.c              | 54 ++++++++++++++++++++++++
- drivers/clk/meson/meson8b.h              |  5 ++-
- include/dt-bindings/clock/meson8b-clkc.h |  1 +
- 3 files changed, 59 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index d0524ec71aad..40068c1b5e80 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -640,6 +640,54 @@ static struct clk_regmap meson8b_cpu_clk = {
+ 	},
+ };
+ 
++static struct clk_regmap meson8b_nand_clk_sel = {
++	.data = &(struct clk_regmap_mux_data){
++		.offset = HHI_NAND_CLK_CNTL,
++		.mask = 0x7,
++		.shift = 9,
++		.flags = CLK_MUX_ROUND_CLOSEST,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "nand_clk_sel",
++		.ops = &clk_regmap_mux_ops,
++		/* FIXME all other parents are unknown: */
++		.parent_names = (const char *[]){ "fclk_div4", "fclk_div3",
++			"fclk_div5", "fclk_div7", "xtal" },
++		.num_parents = 5,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap meson8b_nand_clk_div = {
++	.data = &(struct clk_regmap_div_data){
++		.offset =  HHI_NAND_CLK_CNTL,
++		.shift = 0,
++		.width = 7,
++		.flags = CLK_DIVIDER_ROUND_CLOSEST,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "nand_clk_div",
++		.ops = &clk_regmap_divider_ops,
++		.parent_names = (const char *[]){ "nand_clk_sel" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap meson8b_nand_clk_gate = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_NAND_CLK_CNTL,
++		.bit_idx = 8,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "nand_clk_gate",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "nand_clk_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
+ /* Everything Else (EE) domain gates */
+ 
+ static MESON_GATE(meson8b_ddr, HHI_GCLK_MPEG0, 0);
+@@ -835,6 +883,9 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+ 		[CLKID_FCLK_DIV4_DIV]	    = &meson8b_fclk_div4_div.hw,
+ 		[CLKID_FCLK_DIV5_DIV]	    = &meson8b_fclk_div5_div.hw,
+ 		[CLKID_FCLK_DIV7_DIV]	    = &meson8b_fclk_div7_div.hw,
++		[CLKID_NAND_SEL]	    = &meson8b_nand_clk_sel.hw,
++		[CLKID_NAND_DIV]	    = &meson8b_nand_clk_div.hw,
++		[CLKID_NAND_CLK]	    = &meson8b_nand_clk_gate.hw,
+ 		[CLK_NR_CLKS]		    = NULL,
+ 	},
+ 	.num = CLK_NR_CLKS,
+@@ -940,6 +991,9 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
+ 	&meson8b_fclk_div4,
+ 	&meson8b_fclk_div5,
+ 	&meson8b_fclk_div7,
++	&meson8b_nand_clk_sel,
++	&meson8b_nand_clk_div,
++	&meson8b_nand_clk_gate,
+ };
+ 
+ static const struct meson8b_clk_reset_line {
+diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+index 6e414bd36981..a687dc60b6d0 100644
+--- a/drivers/clk/meson/meson8b.h
++++ b/drivers/clk/meson/meson8b.h
+@@ -40,6 +40,7 @@
+ #define HHI_VID_CLK_CNTL		0x17c /* 0x5f offset in data sheet */
+ #define HHI_VID_DIVIDER_CNTL		0x198 /* 0x66 offset in data sheet */
+ #define HHI_SYS_CPU_CLK_CNTL0		0x19c /* 0x67 offset in data sheet */
++#define HHI_NAND_CLK_CNTL		0x25c /* 0x97 offset in data sheet */
+ #define HHI_MPLL_CNTL			0x280 /* 0xa0 offset in data sheet */
+ #define HHI_SYS_PLL_CNTL		0x300 /* 0xc0 offset in data sheet */
+ #define HHI_VID_PLL_CNTL		0x320 /* 0xc8 offset in data sheet */
+@@ -83,8 +84,10 @@
+ #define CLKID_FCLK_DIV4_DIV	107
+ #define CLKID_FCLK_DIV5_DIV	108
+ #define CLKID_FCLK_DIV7_DIV	109
++#define CLKID_NAND_SEL		110
++#define CLKID_NAND_DIV		111
+ 
+-#define CLK_NR_CLKS		110
++#define CLK_NR_CLKS		113
+ 
+ /*
+  * include the CLKID and RESETID that have
 -- 
 2.17.0
