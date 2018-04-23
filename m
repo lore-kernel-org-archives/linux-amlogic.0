@@ -1,55 +1,45 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 23 Apr 2018 10:23:17 +0200
-Subject: [PATCH clk-fixes] clk: meson: meson8b: fix
- meson8b_fclk_div3_div clock name
-In-Reply-To: <20180422102843.31238-1-martin.blumenstingl@googlemail.com>
-References: <20180422102843.31238-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1524471797.4026.3.camel@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 23 Apr 2018 16:25:12 +0000
+Subject: [PATCH v2] dt-bindings: reset: fix invalid SPDX license identifier
+Message-ID: <20180423162513.4564-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 2018-04-22 at 12:28 +0200, Martin Blumenstingl wrote:
-> The names of all fclk divider gate clocks follow the naming schema
-> "fclk_divN" and the name of all fclk fixed dividers follow the naming
-> schema "fclk_divN_div".
-> There's one exception to this rule: meson8b_fclk_div3_div's name is
-> "fclk_div_div3". It's child clock meson8b_fclk_div3 however references
-> it as "fclk_div3_div" (following the naming schema explained above).
-> 
-> Fix the naming of the meson8b_fclk_div3_div clock to follow the naming
-> schema. This also fixes serial console on my Meson8m2 board because
-> "clk81" uses fclk_div3 as parent. However, since the hierarchy stops at
-> meson8b_fclk_div3 there's no known parent clock and the rate of "clk81"
-> and all of it's children (UART clock, SDIO MMC controller clock, ...)
-> are all 0.
-> 
-> Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+This fix invalid SPDX license indentifier, also move it to
+first top line according to documentation.
 
-Oopss ... Thanks for fixing this Martin.
+Link: https://lkml.kernel.org/r/alpine.DEB.2.21.1804222108120.6136 at nanos.tec.linutronix.de
+Fixes: c16292578ffa ("dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller")
+Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ Change since v1 at [1]:
+  - update the Link URL
+  - add Thomas' Reviewed-by
 
-Stephen, Do you mind taking this directly for fixes ? I can prepare a PR if you
-prefer.
+[1] https://lkml.kernel.org/r/20180423152907.5113-1-yixun.lan at amlogic.com
+---
+ include/dt-bindings/reset/amlogic,meson-axg-reset.h | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Regards
-Jerome
-
-> ---
->  drivers/clk/meson/meson8b.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index cc2992493e0b..2c4ff6192852 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -253,7 +253,7 @@ static struct clk_fixed_factor meson8b_fclk_div3_div = {
->  	.mult = 1,
->  	.div = 3,
->  	.hw.init = &(struct clk_init_data){
-> -		.name = "fclk_div_div3",
-> +		.name = "fclk_div3_div",
->  		.ops = &clk_fixed_factor_ops,
->  		.parent_names = (const char *[]){ "fixed_pll" },
->  		.num_parents = 1,
+diff --git a/include/dt-bindings/reset/amlogic,meson-axg-reset.h b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
+index ad6f55dabd6d..4a8e52f68fb7 100644
+--- a/include/dt-bindings/reset/amlogic,meson-axg-reset.h
++++ b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
+@@ -1,3 +1,4 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+ /*
+  *
+  * Copyright (c) 2016 BayLibre, SAS.
+@@ -5,8 +6,6 @@
+  *
+  * Copyright (c) 2017 Amlogic, inc.
+  * Author: Yixun Lan <yixun.lan@amlogic.com>
+- *
+- * SPDX-License-Identifier: (GPL-2.0+ OR BSD)
+  */
+ 
+ #ifndef _DT_BINDINGS_AMLOGIC_MESON_AXG_RESET_H
+-- 
+2.17.0
