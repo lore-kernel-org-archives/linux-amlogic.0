@@ -1,38 +1,27 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 23 Apr 2018 15:29:07 +0000
-Subject: [PATCH] dt-bindings: reset: fix invalid SPDX license identifier
-Message-ID: <20180423152907.5113-1-yixun.lan@amlogic.com>
+From: geert+renesas@glider.be (Geert Uytterhoeven)
+Date: Mon, 23 Apr 2018 09:32:40 +0200
+Subject: [PATCH] dt-bindings: meson-uart: DT fix s/clocks-names/clock-names/
+Message-ID: <1524468760-22912-1-git-send-email-geert+renesas@glider.be>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This fix invalid SPDX license indentifier, also move it to
-first top line according to documentation.
-
-Link: https://lkml.org/lkml/2018/4/22/713
-Fixes: c16292578ffa ("dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller")
-Reported-by: Thomas Gleixner <tglx@linutronix.de>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- include/dt-bindings/reset/amlogic,meson-axg-reset.h | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/dt-bindings/reset/amlogic,meson-axg-reset.h b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
-index ad6f55dabd6d..4a8e52f68fb7 100644
---- a/include/dt-bindings/reset/amlogic,meson-axg-reset.h
-+++ b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
-@@ -1,3 +1,4 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
- /*
-  *
-  * Copyright (c) 2016 BayLibre, SAS.
-@@ -5,8 +6,6 @@
-  *
-  * Copyright (c) 2017 Amlogic, inc.
-  * Author: Yixun Lan <yixun.lan@amlogic.com>
-- *
-- * SPDX-License-Identifier: (GPL-2.0+ OR BSD)
-  */
- 
- #ifndef _DT_BINDINGS_AMLOGIC_MESON_AXG_RESET_H
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+index 8ff65fa632fdedd7..c06c045126fc9070 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+@@ -21,7 +21,7 @@ Required properties:
+ - interrupts : identifier to the device interrupt
+ - clocks : a list of phandle + clock-specifier pairs, one for each
+ 	   entry in clock names.
+-- clocks-names :
++- clock-names :
+    * "xtal" for external xtal clock identifier
+    * "pclk" for the bus core clock, either the clk81 clock or the gate clock
+    * "baud" for the source of the baudrate generator, can be either the xtal
 -- 
-2.17.0
+2.7.4
