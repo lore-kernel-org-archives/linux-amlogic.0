@@ -1,83 +1,48 @@
 From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 23 Apr 2018 14:57:29 +0000
-Subject: [PATCH] ARM64: dts: meson-axg: enable AP6255 wifi module
-Message-ID: <20180423145729.14368-1-yixun.lan@amlogic.com>
+Date: Mon, 23 Apr 2018 15:21:22 +0800
+Subject: dt-bindings: Invalid SPDX License Identifier
+In-Reply-To: <alpine.DEB.2.21.1804222108120.6136@nanos.tec.linutronix.de>
+References: <alpine.DEB.2.21.1804222108120.6136@nanos.tec.linutronix.de>
+Message-ID: <795a50ff-d627-bcd5-950f-71e98016707e@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Meson-AXG S400 board is shipped with AP6255 wifi module,
-which is actually using the brcmfmac 43455 driver.
+Hi Thomas
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 44 ++++++++++++++++++-
- 1 file changed, 43 insertions(+), 1 deletion(-)
+On 04/23/18 03:14, Thomas Gleixner wrote:
+> Yixun,
+> 
+> commit c16292578ffa437c77e17d5d3da20330a10b8a86
+> Author: Yixun Lan <yixun.lan@amlogic.com>
+> Date:   Fri Nov 10 16:46:49 2017 +0800
+> 
+>     dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller
+>     
+>     Add DT bindings for the Meson-AXG SoC Reset Controller include file,
+>     and also slightly update documentation.
+>     
+>     Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>     Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>     Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
+> 
+> Added the following SPDX-License-Identifier: (GPL-2.0+ OR BSD) in the
+> middle of the top of file comment.
+> 
+> There are two problems with that:
+> 
+> 1) BSD is not a valid SPDX identifier. See https://spdx.org/licenses/
+> 
+>    You need to say which BSD variant you mean.
+> 
+> 2) Please put the License identifier to the place which is defined in
+>    Documentation/process/licenses.rst, i.e. the first line of the dts file
+>    and not to some random place.
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index f67d4e47e641..b3e1bdca32bb 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -51,7 +51,16 @@
- 
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
--		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
- 	};
- };
- 
-@@ -86,6 +95,12 @@
- 	pinctrl-names = "default";
- };
- 
-+&pwm_ab {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_a_x20_pins>;
-+	pinctrl-names = "default";
-+};
-+
- /* emmc storage */
- &sd_emmc_c {
- 	status = "okay";
-@@ -105,3 +120,30 @@
- 	vmmc-supply = <&vcc_3v3>;
- 	vqmmc-supply = <&vddio_boot>;
- };
-+
-+/* wifi module */
-+&sd_emmc_b {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+
-+	brcmf: wifi at 1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
--- 
-2.17.0
+thanks for pointing this out
+
+I will adjust the license to "GPL-2.0+ OR BSD-3-Clause" since this file
+was copied from include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
+and it's a good idea to preserve the old license.
+
+Yixun
