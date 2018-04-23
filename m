@@ -1,49 +1,45 @@
-From: gregkh@linuxfoundation.org (Greg KH)
-Date: Mon, 23 Apr 2018 09:39:35 +0200
-Subject: [PATCH usb v6 6/6] usb: core: phy: add the
- SPDX-License-Identifier and include guard
-In-Reply-To: <CAFBinCBv+zwjjjA_HeDY_e=aZwVpktzqM7wszZ-Ejvid+ZBe-A@mail.gmail.com>
-References: <20180418193951.17922-1-martin.blumenstingl@googlemail.com>
- <20180418193951.17922-7-martin.blumenstingl@googlemail.com>
- <20180422130109.GA5781@kroah.com>
- <CAFBinCBv+zwjjjA_HeDY_e=aZwVpktzqM7wszZ-Ejvid+ZBe-A@mail.gmail.com>
-Message-ID: <20180423073935.GA2484@kroah.com>
+From: tglx@linutronix.de (Thomas Gleixner)
+Date: Mon, 23 Apr 2018 09:45:10 +0200 (CEST)
+Subject: [PATCH] dt-bindings: reset: fix invalid SPDX license
+ identifier
+In-Reply-To: <20180423152907.5113-1-yixun.lan@amlogic.com>
+References: <20180423152907.5113-1-yixun.lan@amlogic.com>
+Message-ID: <alpine.DEB.2.21.1804230939350.6136@nanos.tec.linutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Apr 22, 2018 at 09:41:56PM +0200, Martin Blumenstingl wrote:
-> Hi Greg,
-> 
-> On Sun, Apr 22, 2018 at 3:01 PM, Greg KH <gregkh@linuxfoundation.org> wrote:
-> > On Wed, Apr 18, 2018 at 09:39:51PM +0200, Martin Blumenstingl wrote:
-> >> This clarifies the license of the code. While here also add an include
-> >> guard to the header file.
-> >>
-> >> Fixes: 07dbff0ddbd86c ("usb: core: add a wrapper for the USB PHYs on the HCD")
-> >> Suggested-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >> ---
-> >>  drivers/usb/core/phy.h | 12 ++++++++++++
-> >>  1 file changed, 12 insertions(+)
-> >>
-> >> diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
-> >> index bbc969383074..88a3c037e9df 100644
-> >> --- a/drivers/usb/core/phy.h
-> >> +++ b/drivers/usb/core/phy.h
-> >> @@ -1,3 +1,13 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0+ */
-> >
-> > Do you _really_ mean GPLv2 or anything later?
-> drivers/usb/core/hcd.c uses the same license identifier
-> that code is much more "valuable" than my few lines which manage a
-> list of PHYs - so I'm fine with "GPLv2 or anything later"
-> 
-> > I have to ask...
-> if you see any problems with this (for example that phy.h couldn't be
-> used from some special module with another license, ...) then please
-> let me know
+On Mon, 23 Apr 2018, Yixun Lan wrote:
 
-Nope, that's fine, thanks for the quick response, I'll go apply this
-now.
+> This fix invalid SPDX license indentifier, also move it to
+> first top line according to documentation.
+> 
+> Link: https://lkml.org/lkml/2018/4/22/713
 
-greg k-h
+Please do not use lkml.org links. lkml.org is not always usable. Use;
+
+ https://lkml.kernel.org/r/$MESSAGE-ID
+
+instead. So this would be
+
+ https://lkml.kernel.org/r/alpine.DEB.2.21.1804222108120.6136 at nanos.tec.linutronix.de
+
+The reason is that kernel.org is very likely there as long as the kernel
+exists, but random archives can vanish, change their URL, etc. The above
+address is a redirector to the marc archive, but if that vanishes or stops
+working the redirector can point to some other working archive.
+
+> Fixes: c16292578ffa ("dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller")
+> Reported-by: Thomas Gleixner <tglx@linutronix.de>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  include/dt-bindings/reset/amlogic,meson-axg-reset.h | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/include/dt-bindings/reset/amlogic,meson-axg-reset.h b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
+> index ad6f55dabd6d..4a8e52f68fb7 100644
+> --- a/include/dt-bindings/reset/amlogic,meson-axg-reset.h
+> +++ b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
+> @@ -1,3 +1,4 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+
+Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
