@@ -1,44 +1,110 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 23 Apr 2018 09:41:05 -0700
-Subject: [PATCH v2] ARM64: dts: meson-axg: enable the eMMC controller
-In-Reply-To: <CAPDyKFpcmO7LYuyuNPcYmzeDyq_AXDH5W4Y9dByTL-B+DGZSqg@mail.gmail.com>
-References: <20180408113647.13543-1-yixun.lan@amlogic.com>
- <7ho9if3wo3.fsf@baylibre.com>
- <CAPDyKFpcmO7LYuyuNPcYmzeDyq_AXDH5W4Y9dByTL-B+DGZSqg@mail.gmail.com>
-Message-ID: <CAOi56cUwzrpA1AdRQE3gdW55my-_dqSNnwyEd4poUPjUkpaBag@mail.gmail.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 23 Apr 2018 19:49:42 +0200
+Subject: [PATCH v3 1/1] clk: meson: meson8b: add support for the NAND
+ clocks
+In-Reply-To: <1524472409.4026.10.camel@baylibre.com>
+References: <20180422103339.32608-1-martin.blumenstingl@googlemail.com>
+ <20180422103339.32608-2-martin.blumenstingl@googlemail.com>
+ <1524472409.4026.10.camel@baylibre.com>
+Message-ID: <CAFBinCCKde+42PXzak8nuGEGTxwrvOVV7KDeoD1RkV_DjMdDOA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Apr 19, 2018 at 11:55 PM, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> On 19 April 2018 at 19:58, Kevin Hilman <khilman@baylibre.com> wrote:
->> Yixun Lan <yixun.lan@amlogic.com> writes:
+Hi Jerome,
+
+On Mon, Apr 23, 2018 at 10:33 AM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> On Sun, 2018-04-22 at 12:33 +0200, Martin Blumenstingl wrote:
+>> This adds the NAND clocks (from the HHI_NAND_CLK_CNTL register) to the
+>> Meson8b clock driver. There are three NAND clocks: a gate which enables
+>> or disables the NAND clock, a mux and a divider (which divides the mux
+>> output).
+>> Unfortunately the public S805 datasheet does not document the mux
+>> parents. However, the vendor kernel has a few hints for us which allows
+>> us to make an educated guess about the clock parents. To do this we need
+>> to have a look at set_nand_core_clk() from the vendor's NAND driver (see
+>> [0]):
+>> - XTAL = (4<<9) | (1<<8) | 0
+>> - 160MHz = (0<<9) | (1<<8) | 3)
+>> - 182MHz = (3<<9) | (1<<8) | 1)
+>> - 212MHz = (1<<9) | (1<<8) | 3)
+>> - 255MHz = (2<<9) | (1<<8) | 1)
 >>
->>> From: Nan Li <nan.li@amlogic.com>
->>>
->>> The IP of eMMC controller in AXG is similiar to Meson-GX series.
->>> Here we add the initial support of the HS200 mode with
->>> clock running at 166MHz (to be safe), since we found some eMMC chip
->>> fail to run at 200MHz due to tunning phase error.
->>>
->>> Signed-off-by: Nan Li <nan.li@amlogic.com>
->>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>> While there is a comment for the XTAL parent (which indicates that it
+>> should only be used for debugging) we have to do a bit of math for the
+>> other parents: target_freq * divider = rate of parent clock
+>> Bit 8 above is the enable bit, so we can ignore it here. Bits 11:9 are
+>> the mux index and bits 6:0 are the 0-based divider (so we need to add
+>> 1). This gives us:
+>> - mux 0 (160MHz * 4) = fclk_div4 (actual rate = 637.5MHz, off by 2.5MHz)
+>> - mux 1 (212MHz * 4) = fclk_div3 (actual rate = 850MHz, off by 2MHz)
+>> - mux 2 (255MHz * 2) = fclk_div5 (matches exactly 510MHz)
+>> - mux 3 (182MHz * 2) = fclk_div7 (actual rate = 346.3MHz, off by 0.3MHz)
 >>
->> Applied to v4.18/dt64
+>> [0] https://github.com/khadas/linux/blob/9587681285cb/drivers/amlogic/amlnf/dev/amlnf_ctrl.c#L314
 >>
->>> ---
->>> Hi Kevin
->>>   Please note this patch actually depend on the eMMC driver here [0].
->>>   Still a few problem to solve, to improve the tuning phase driver to make
->>> the clock running at 200MHz, and to further support the HS400 mode.
->>> Anyway, this patch itself is quite independent.
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> ---
+>>  drivers/clk/meson/meson8b.c              | 54 ++++++++++++++++++++++++
+>>  drivers/clk/meson/meson8b.h              |  3 +-
+>>  include/dt-bindings/clock/meson8b-clkc.h |  3 ++
+>>  3 files changed, 59 insertions(+), 1 deletion(-)
 >>
->> The driver changes are queued for v4.18 also.  Good!
+>> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+>> index 2c4ff6192852..3f726ff73261 100644
+>> --- a/drivers/clk/meson/meson8b.c
+>> +++ b/drivers/clk/meson/meson8b.c
+>> @@ -639,6 +639,54 @@ static struct clk_regmap meson8b_cpu_clk = {
+>>       },
+>>  };
+>>
+>> +static struct clk_regmap meson8b_nand_clk_sel = {
+>> +     .data = &(struct clk_regmap_mux_data){
+>> +             .offset = HHI_NAND_CLK_CNTL,
+>> +             .mask = 0x7,
+>> +             .shift = 9,
+>> +             .flags = CLK_MUX_ROUND_CLOSEST,
 >
-> Right, may I consider that as an ack? :-)
+> Maybe you have seen it already, but there was a problem with this flag, it was
+> ignored. Fix should land in this cycle.
+>
+> https://lkml.kernel.org/r/152389589448.51482.15489333464741262913 at swboyd.mtv.cor
+> p.google.com
+yep, I've seen your fix (thank you!) so I decided to re-send this
 
-I thought it was already merged while I was OoO, so I didn't bother to
-reply with an ack, but if it's not too late, then yes:
+>> +     },
+>> +     .hw.init = &(struct clk_init_data){
+>> +             .name = "nand_clk_sel",
+>>
+>
+> [...]
+>
+>>  /*
+>>   * include the CLKID and RESETID that have
+>> diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
+>> index dea9d46d4fa7..434d7ba63801 100644
+>> --- a/include/dt-bindings/clock/meson8b-clkc.h
+>> +++ b/include/dt-bindings/clock/meson8b-clkc.h
+>> @@ -102,5 +102,8 @@
+>>  #define CLKID_MPLL0          93
+>>  #define CLKID_MPLL1          94
+>>  #define CLKID_MPLL2          95
+>> +#define CLKID_NAND_SEL               110
+>> +#define CLKID_NAND_DIV               111
+>
+> Nitpick: Could put the bindings in separate patch ?
+> It makes our life easier if intend to push a DT patch using them in this cycle.
+OK, I'll split the patch (even though it's HIGHLY unlikely that the
+NAND driver will make it anytime soon..)
 
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+> Also, do you need to expose the divider and the mux ?
+I think only the most specific leaf (= gate clock) is needed, I'll
+keep the mux and divider in the private header file
 
-Kevin
+> Apart from this, patch looks good to me.
+>
+> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+thank you!
+
+
+Regards
+Martin
