@@ -1,48 +1,40 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 23 Apr 2018 14:41:49 +0200
-Subject: [PATCH v2 3/3] nvmem: meson-efuse: add write support
-In-Reply-To: <20180423124149.3077-1-jbrunet@baylibre.com>
-References: <20180423124149.3077-1-jbrunet@baylibre.com>
-Message-ID: <20180423124149.3077-4-jbrunet@baylibre.com>
+Date: Mon, 23 Apr 2018 14:41:46 +0200
+Subject: [PATCH v2 0/3] nvmem: meson-efuse: add write support
+Message-ID: <20180423124149.3077-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add write support to the meson-gx efuse driver.
-Beware, this efuse is one time programmable !
+This changeset adds write support to meson efuse driver.
+The first patch just changes the way the nvmem data are allocated w/o
+any functional changes. The second patches actually adds write support.
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/nvmem/meson-efuse.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+The memory being an OTP, it is safer if it remains read-only by default,
+which is why I also submitted this DT patch [0]. It has now been merged by
+Kevin.
 
-diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
-index 4623249dfd87..d769840d1e18 100644
---- a/drivers/nvmem/meson-efuse.c
-+++ b/drivers/nvmem/meson-efuse.c
-@@ -28,6 +28,13 @@ static int meson_efuse_read(void *context, unsigned int offset,
- 				  bytes, 0, 0, 0);
- }
- 
-+static int meson_efuse_write(void *context, unsigned int offset,
-+			     void *val, size_t bytes)
-+{
-+	return meson_sm_call_write((u8 *)val, bytes, SM_EFUSE_WRITE, offset,
-+				   bytes, 0, 0, 0);
-+}
-+
- static const struct of_device_id meson_efuse_match[] = {
- 	{ .compatible = "amlogic,meson-gxbb-efuse", },
- 	{ /* sentinel */ },
-@@ -52,8 +59,8 @@ static int meson_efuse_probe(struct platform_device *pdev)
- 	econfig->name = dev_name(dev);
- 	econfig->stride = 1;
- 	econfig->word_size = 1;
--	econfig->read_only = true;
- 	econfig->reg_read = meson_efuse_read;
-+	econfig->reg_write = meson_efuse_write;
- 	econfig->size = size;
- 
- 	nvmem = devm_nvmem_register(&pdev->dev, econfig);
+If a user knows what he is doing, it should be easy to remove the
+read-only property from the board DT. This can be done in u-boot, before
+starting linux:
+
+ > fdt rm /efuse read-only
+
+Tested on the gxl libretech-cc
+
+Changes since v1 [1]:
+ - Remove un-necessary code in callbacks
+ - Rebase on v4.17-rc1
+
+[0]: https://lkml.kernel.org/r/20180316145021.8517-1-jbrunet at baylibre.com
+[1]: https://lkml.kernel.org/r/20180316150113.9779-1-jbrunet at baylibre.com
+
+Jerome Brunet (3):
+  nvmem: meson-efuse: remove econfig global
+  nvmem: meson-efuse: simplify read callback
+  nvmem: meson-efuse: add write support
+
+ drivers/nvmem/meson-efuse.c | 41 ++++++++++++++++++++++-------------------
+ 1 file changed, 22 insertions(+), 19 deletions(-)
+
 -- 
 2.14.3
