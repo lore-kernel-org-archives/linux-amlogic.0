@@ -1,56 +1,55 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 23 Apr 2018 16:12:29 +0800
-Subject: [PATCH] dt-bindings: reset: fix invalid SPDX license identifier
-In-Reply-To: <alpine.DEB.2.21.1804230939350.6136@nanos.tec.linutronix.de>
-References: <20180423152907.5113-1-yixun.lan@amlogic.com>
- <alpine.DEB.2.21.1804230939350.6136@nanos.tec.linutronix.de>
-Message-ID: <2b97cdb5-6cd3-34fc-17e9-4df8cba82850@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 23 Apr 2018 10:23:17 +0200
+Subject: [PATCH clk-fixes] clk: meson: meson8b: fix
+ meson8b_fclk_div3_div clock name
+In-Reply-To: <20180422102843.31238-1-martin.blumenstingl@googlemail.com>
+References: <20180422102843.31238-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1524471797.4026.3.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Thomas
-	
-On 04/23/18 15:45, Thomas Gleixner wrote:
-> On Mon, 23 Apr 2018, Yixun Lan wrote:
+On Sun, 2018-04-22 at 12:28 +0200, Martin Blumenstingl wrote:
+> The names of all fclk divider gate clocks follow the naming schema
+> "fclk_divN" and the name of all fclk fixed dividers follow the naming
+> schema "fclk_divN_div".
+> There's one exception to this rule: meson8b_fclk_div3_div's name is
+> "fclk_div_div3". It's child clock meson8b_fclk_div3 however references
+> it as "fclk_div3_div" (following the naming schema explained above).
 > 
->> This fix invalid SPDX license indentifier, also move it to
->> first top line according to documentation.
->>
->> Link: https://lkml.org/lkml/2018/4/22/713
+> Fix the naming of the meson8b_fclk_div3_div clock to follow the naming
+> schema. This also fixes serial console on my Meson8m2 board because
+> "clk81" uses fclk_div3 as parent. However, since the hierarchy stops at
+> meson8b_fclk_div3 there's no known parent clock and the rate of "clk81"
+> and all of it's children (UART clock, SDIO MMC controller clock, ...)
+> are all 0.
 > 
-> Please do not use lkml.org links. lkml.org is not always usable. Use;
-> 
->  https://lkml.kernel.org/r/$MESSAGE-ID
-> 
-> instead. So this would be
-> 
->  https://lkml.kernel.org/r/alpine.DEB.2.21.1804222108120.6136 at nanos.tec.linutronix.de
-> 
-> The reason is that kernel.org is very likely there as long as the kernel
-> exists, but random archives can vanish, change their URL, etc. The above
-> address is a redirector to the marc archive, but if that vanishes or stops
-> working the redirector can point to some other working archive.
-> 
-oh, never know the difference, thanks for the info
+> Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
->> Fixes: c16292578ffa ("dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller")
->> Reported-by: Thomas Gleixner <tglx@linutronix.de>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> ---
->>  include/dt-bindings/reset/amlogic,meson-axg-reset.h | 3 +--
->>  1 file changed, 1 insertion(+), 2 deletions(-)
->>
->> diff --git a/include/dt-bindings/reset/amlogic,meson-axg-reset.h b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
->> index ad6f55dabd6d..4a8e52f68fb7 100644
->> --- a/include/dt-bindings/reset/amlogic,meson-axg-reset.h
->> +++ b/include/dt-bindings/reset/amlogic,meson-axg-reset.h
->> @@ -1,3 +1,4 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+Oopss ... Thanks for fixing this Martin.
+
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+
+Stephen, Do you mind taking this directly for fixes ? I can prepare a PR if you
+prefer.
+
+Regards
+Jerome
+
+> ---
+>  drivers/clk/meson/meson8b.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
-> 
-thanks, I'll update
-
-
-
-Yixun
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index cc2992493e0b..2c4ff6192852 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -253,7 +253,7 @@ static struct clk_fixed_factor meson8b_fclk_div3_div = {
+>  	.mult = 1,
+>  	.div = 3,
+>  	.hw.init = &(struct clk_init_data){
+> -		.name = "fclk_div_div3",
+> +		.name = "fclk_div3_div",
+>  		.ops = &clk_fixed_factor_ops,
+>  		.parent_names = (const char *[]){ "fixed_pll" },
+>  		.num_parents = 1,
