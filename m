@@ -1,41 +1,30 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 23 Apr 2018 21:30:29 +0200
-Subject: [PATCH clk-fixes] clk: meson: meson8b: fix meson8b_cpu_clk parent
- clock name
-Message-ID: <20180423193029.29428-1-martin.blumenstingl@googlemail.com>
+Date: Mon, 23 Apr 2018 21:35:08 +0200
+Subject: [PATCH v4 1/2] dt-bindings: clock: meson8b: export the NAND clock
+In-Reply-To: <20180423193509.30584-1-martin.blumenstingl@googlemail.com>
+References: <20180423193509.30584-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180423193509.30584-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-meson8b_cpu_clk has two parent clocks:
-- meson8b_xtal
-- meson8b_cpu_scale_out_sel
+Export the NAND clock to the dt-bindings.
 
-The name of the "xtal" clock parent is specified correctly. However,
-there is a typo in the name of the second parent clock. The
-meson8b_cpu_scale_out_sel definition uses the name "cpu_scale_out_sel"
-(which matches the name from the datasheet). However, the mux parent
-definition uses the name "cpu_out_sel" which does not match any existing
-clock.
-
-Fixes: 251b6fd38bcb9c ("clk: meson: rework meson8b cpu clock")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/meson8b.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ include/dt-bindings/clock/meson8b-clkc.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 2c4ff6192852..d0524ec71aad 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -632,7 +632,8 @@ static struct clk_regmap meson8b_cpu_clk = {
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cpu_clk",
- 		.ops = &clk_regmap_mux_ro_ops,
--		.parent_names = (const char *[]){ "xtal", "cpu_out_sel" },
-+		.parent_names = (const char *[]){ "xtal",
-+						  "cpu_scale_out_sel" },
- 		.num_parents = 2,
- 		.flags = (CLK_SET_RATE_PARENT |
- 			  CLK_SET_RATE_NO_REPARENT),
+diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
+index dea9d46d4fa7..a60f47b49231 100644
+--- a/include/dt-bindings/clock/meson8b-clkc.h
++++ b/include/dt-bindings/clock/meson8b-clkc.h
+@@ -102,5 +102,6 @@
+ #define CLKID_MPLL0		93
+ #define CLKID_MPLL1		94
+ #define CLKID_MPLL2		95
++#define CLKID_NAND_CLK		112
+ 
+ #endif /* __MESON8B_CLKC_H */
 -- 
 2.17.0
