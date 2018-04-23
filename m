@@ -1,27 +1,49 @@
-From: geert+renesas@glider.be (Geert Uytterhoeven)
-Date: Mon, 23 Apr 2018 09:32:40 +0200
-Subject: [PATCH] dt-bindings: meson-uart: DT fix s/clocks-names/clock-names/
-Message-ID: <1524468760-22912-1-git-send-email-geert+renesas@glider.be>
+From: gregkh@linuxfoundation.org (Greg KH)
+Date: Mon, 23 Apr 2018 09:39:35 +0200
+Subject: [PATCH usb v6 6/6] usb: core: phy: add the
+ SPDX-License-Identifier and include guard
+In-Reply-To: <CAFBinCBv+zwjjjA_HeDY_e=aZwVpktzqM7wszZ-Ejvid+ZBe-A@mail.gmail.com>
+References: <20180418193951.17922-1-martin.blumenstingl@googlemail.com>
+ <20180418193951.17922-7-martin.blumenstingl@googlemail.com>
+ <20180422130109.GA5781@kroah.com>
+ <CAFBinCBv+zwjjjA_HeDY_e=aZwVpktzqM7wszZ-Ejvid+ZBe-A@mail.gmail.com>
+Message-ID: <20180423073935.GA2484@kroah.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Sun, Apr 22, 2018 at 09:41:56PM +0200, Martin Blumenstingl wrote:
+> Hi Greg,
+> 
+> On Sun, Apr 22, 2018 at 3:01 PM, Greg KH <gregkh@linuxfoundation.org> wrote:
+> > On Wed, Apr 18, 2018 at 09:39:51PM +0200, Martin Blumenstingl wrote:
+> >> This clarifies the license of the code. While here also add an include
+> >> guard to the header file.
+> >>
+> >> Fixes: 07dbff0ddbd86c ("usb: core: add a wrapper for the USB PHYs on the HCD")
+> >> Suggested-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> >> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> >> ---
+> >>  drivers/usb/core/phy.h | 12 ++++++++++++
+> >>  1 file changed, 12 insertions(+)
+> >>
+> >> diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
+> >> index bbc969383074..88a3c037e9df 100644
+> >> --- a/drivers/usb/core/phy.h
+> >> +++ b/drivers/usb/core/phy.h
+> >> @@ -1,3 +1,13 @@
+> >> +/* SPDX-License-Identifier: GPL-2.0+ */
+> >
+> > Do you _really_ mean GPLv2 or anything later?
+> drivers/usb/core/hcd.c uses the same license identifier
+> that code is much more "valuable" than my few lines which manage a
+> list of PHYs - so I'm fine with "GPLv2 or anything later"
+> 
+> > I have to ask...
+> if you see any problems with this (for example that phy.h couldn't be
+> used from some special module with another license, ...) then please
+> let me know
 
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
-index 8ff65fa632fdedd7..c06c045126fc9070 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
-@@ -21,7 +21,7 @@ Required properties:
- - interrupts : identifier to the device interrupt
- - clocks : a list of phandle + clock-specifier pairs, one for each
- 	   entry in clock names.
--- clocks-names :
-+- clock-names :
-    * "xtal" for external xtal clock identifier
-    * "pclk" for the bus core clock, either the clk81 clock or the gate clock
-    * "baud" for the source of the baudrate generator, can be either the xtal
--- 
-2.7.4
+Nope, that's fine, thanks for the quick response, I'll go apply this
+now.
+
+greg k-h
