@@ -1,104 +1,183 @@
-From: ezequiel@vanguardiasur.com.ar (Ezequiel Garcia)
-Date: Tue, 24 Apr 2018 11:04:25 -0300
-Subject: [PATCH 1/2] clk: honor CLK_MUX_ROUND_CLOSEST in generic clk mux
-In-Reply-To: <20180409135921.5617-2-jbrunet@baylibre.com>
-References: <20180409135921.5617-1-jbrunet@baylibre.com>
- <20180409135921.5617-2-jbrunet@baylibre.com>
-Message-ID: <CAAEAJfDgGYu9WR5+qA-trQUTkb--bam=LLbhH+1N2OdrtBGLzA@mail.gmail.com>
+From: maxi.jourdan@wanadoo.fr (Maxime Jourdan)
+Date: Tue, 24 Apr 2018 20:48:38 +0200
+Subject: [PATCH v2 2/2] clk: meson: gxbb: add the video decoder clocks
+In-Reply-To: <20180424184838.3406-1-maxi.jourdan@wanadoo.fr>
+References: <20180424184838.3406-1-maxi.jourdan@wanadoo.fr>
+Message-ID: <20180424184838.3406-3-maxi.jourdan@wanadoo.fr>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 9 April 2018 at 10:59, Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> CLK_MUX_ROUND_CLOSEST is part of the clk_mux documentation but clk_mux
-> directly calls __clk_mux_determine_rate(), which overrides the flag.
-> As result, if clk_mux is instantiated with CLK_MUX_ROUND_CLOSEST, the
-> flag will be ignored and the clock rounded down.
->
-> To solve this, this patch expose clk_mux_determine_rate_flags() in the
-> clk-provider API and uses it in the determine_rate() callback of clk_mux.
->
-> Fixes: 15a02c1f6dd7 ("clk: Add __clk_mux_determine_rate_closest")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/clk-mux.c        | 10 +++++++++-
->  drivers/clk/clk.c            |  7 ++++---
->  include/linux/clk-provider.h |  3 +++
->  3 files changed, 16 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/clk/clk-mux.c b/drivers/clk/clk-mux.c
-> index ac4a042f8658..1628b93655ed 100644
-> --- a/drivers/clk/clk-mux.c
-> +++ b/drivers/clk/clk-mux.c
-> @@ -112,10 +112,18 @@ static int clk_mux_set_parent(struct clk_hw *hw, u8 index)
->         return 0;
->  }
->
-> +static int clk_mux_determine_rate(struct clk_hw *hw,
-> +                                 struct clk_rate_request *req)
-> +{
-> +       struct clk_mux *mux = to_clk_mux(hw);
-> +
-> +       return clk_mux_determine_rate_flags(hw, req, mux->flags);
-> +}
-> +
->  const struct clk_ops clk_mux_ops = {
->         .get_parent = clk_mux_get_parent,
->         .set_parent = clk_mux_set_parent,
-> -       .determine_rate = __clk_mux_determine_rate,
-> +       .determine_rate = clk_mux_determine_rate,
->  };
->  EXPORT_SYMBOL_GPL(clk_mux_ops);
->
-> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-> index ea67ac81c6f9..7af555f0e60c 100644
-> --- a/drivers/clk/clk.c
-> +++ b/drivers/clk/clk.c
-> @@ -426,9 +426,9 @@ static bool mux_is_better_rate(unsigned long rate, unsigned long now,
->         return now <= rate && now > best;
->  }
->
-> -static int
-> -clk_mux_determine_rate_flags(struct clk_hw *hw, struct clk_rate_request *req,
-> -                            unsigned long flags)
-> +int clk_mux_determine_rate_flags(struct clk_hw *hw,
-> +                                struct clk_rate_request *req,
-> +                                unsigned long flags)
->  {
->         struct clk_core *core = hw->core, *parent, *best_parent = NULL;
->         int i, num_parents, ret;
-> @@ -488,6 +488,7 @@ clk_mux_determine_rate_flags(struct clk_hw *hw, struct clk_rate_request *req,
->
->         return 0;
->  }
-> +EXPORT_SYMBOL_GPL(clk_mux_determine_rate_flags);
->
+Add the SEL/DIV/GATE for VDEC_1 and VDEC_HEVC.
 
-Why do we need to export this?
+Signed-off-by: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
+---
+ drivers/clk/meson/gxbb.c | 114 +++++++++++++++++++++++++++++++++++++++
+ drivers/clk/meson/gxbb.h |   6 ++-
+ 2 files changed, 119 insertions(+), 1 deletion(-)
 
->  struct clk *__clk_lookup(const char *name)
->  {
-> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-> index 210a890008f9..1d25e149c1c5 100644
-> --- a/include/linux/clk-provider.h
-> +++ b/include/linux/clk-provider.h
-> @@ -765,6 +765,9 @@ int __clk_mux_determine_rate(struct clk_hw *hw,
->  int __clk_determine_rate(struct clk_hw *core, struct clk_rate_request *req);
->  int __clk_mux_determine_rate_closest(struct clk_hw *hw,
->                                      struct clk_rate_request *req);
-> +int clk_mux_determine_rate_flags(struct clk_hw *hw,
-> +                                struct clk_rate_request *req,
-> +                                unsigned long flags);
->  void clk_hw_reparent(struct clk_hw *hw, struct clk_hw *new_parent);
->  void clk_hw_set_rate_range(struct clk_hw *hw, unsigned long min_rate,
->                            unsigned long max_rate);
-> --
-> 2.14.3
->
-
-Reviewed-by: Ezequiel Garcia <ezequiel@collabora.com>
-
-Thanks!
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index b1e4d9557610..a893b1edda22 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1543,6 +1543,102 @@ static struct clk_regmap gxbb_vapb = {
+ 	},
+ };
+ 
++/* VDEC clocks */
++
++static const char * const gxbb_vdec_parent_names[] = {
++	"fclk_div4", "fclk_div3", "fclk_div5", "fclk_div7"
++};
++
++static struct clk_regmap gxbb_vdec_1_sel = {
++	.data = &(struct clk_regmap_mux_data){
++		.offset = HHI_VDEC_CLK_CNTL,
++		.mask = 0x3,
++		.shift = 9,
++		.flags = CLK_MUX_ROUND_CLOSEST,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "vdec_1_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_names = gxbb_vdec_parent_names,
++		.num_parents = ARRAY_SIZE(gxbb_vdec_parent_names),
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap gxbb_vdec_1_div = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = HHI_VDEC_CLK_CNTL,
++		.shift = 0,
++		.width = 7,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "vdec_1_div",
++		.ops = &clk_regmap_divider_ops,
++		.parent_names = (const char *[]){ "vdec_1_sel" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap gxbb_vdec_1 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_VDEC_CLK_CNTL,
++		.bit_idx = 8,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vdec_1",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "vdec_1_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap gxbb_vdec_hevc_sel = {
++	.data = &(struct clk_regmap_mux_data){
++		.offset = HHI_VDEC2_CLK_CNTL,
++		.mask = 0x3,
++		.shift = 25,
++		.flags = CLK_MUX_ROUND_CLOSEST,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "vdec_hevc_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_names = gxbb_vdec_parent_names,
++		.num_parents = ARRAY_SIZE(gxbb_vdec_parent_names),
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap gxbb_vdec_hevc_div = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = HHI_VDEC2_CLK_CNTL,
++		.shift = 16,
++		.width = 7,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "vdec_hevc_div",
++		.ops = &clk_regmap_divider_ops,
++		.parent_names = (const char *[]){ "vdec_hevc_sel" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap gxbb_vdec_hevc = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_VDEC2_CLK_CNTL,
++		.bit_idx = 24,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "vdec_hevc",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "vdec_hevc_div" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
+ /* Everything Else (EE) domain gates */
+ static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
+ static MESON_GATE(gxbb_dos, HHI_GCLK_MPEG0, 1);
+@@ -1786,6 +1882,12 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
+ 		[CLKID_FCLK_DIV4_DIV]	    = &gxbb_fclk_div4_div.hw,
+ 		[CLKID_FCLK_DIV5_DIV]	    = &gxbb_fclk_div5_div.hw,
+ 		[CLKID_FCLK_DIV7_DIV]	    = &gxbb_fclk_div7_div.hw,
++		[CLKID_VDEC_1_SEL]	    = &gxbb_vdec_1_sel.hw,
++		[CLKID_VDEC_1_DIV]	    = &gxbb_vdec_1_div.hw,
++		[CLKID_VDEC_1]		    = &gxbb_vdec_1.hw,
++		[CLKID_VDEC_HEVC_SEL]	    = &gxbb_vdec_hevc_sel.hw,
++		[CLKID_VDEC_HEVC_DIV]	    = &gxbb_vdec_hevc_div.hw,
++		[CLKID_VDEC_HEVC]	    = &gxbb_vdec_hevc.hw,
+ 		[NR_CLKS]		    = NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -1942,6 +2044,12 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
+ 		[CLKID_FCLK_DIV4_DIV]	    = &gxbb_fclk_div4_div.hw,
+ 		[CLKID_FCLK_DIV5_DIV]	    = &gxbb_fclk_div5_div.hw,
+ 		[CLKID_FCLK_DIV7_DIV]	    = &gxbb_fclk_div7_div.hw,
++		[CLKID_VDEC_1_SEL]	    = &gxbb_vdec_1_sel.hw,
++		[CLKID_VDEC_1_DIV]	    = &gxbb_vdec_1_div.hw,
++		[CLKID_VDEC_1]		    = &gxbb_vdec_1.hw,
++		[CLKID_VDEC_HEVC_SEL]	    = &gxbb_vdec_hevc_sel.hw,
++		[CLKID_VDEC_HEVC_DIV]	    = &gxbb_vdec_hevc_div.hw,
++		[CLKID_VDEC_HEVC]	    = &gxbb_vdec_hevc.hw,
+ 		[NR_CLKS]		    = NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -2100,6 +2208,12 @@ static struct clk_regmap *const gx_clk_regmaps[] = {
+ 	&gxbb_fclk_div4,
+ 	&gxbb_fclk_div5,
+ 	&gxbb_fclk_div7,
++	&gxbb_vdec_1_sel,
++	&gxbb_vdec_1_div,
++	&gxbb_vdec_1,
++	&gxbb_vdec_hevc_sel,
++	&gxbb_vdec_hevc_div,
++	&gxbb_vdec_hevc,
+ };
+ 
+ struct clkc_data {
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index 9febf3f03739..b3ef54f65a9d 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -204,8 +204,12 @@
+ #define CLKID_FCLK_DIV4_DIV	  148
+ #define CLKID_FCLK_DIV5_DIV	  149
+ #define CLKID_FCLK_DIV7_DIV	  150
++#define CLKID_VDEC_1_SEL	  151
++#define CLKID_VDEC_1_DIV	  152
++#define CLKID_VDEC_HEVC_SEL	  154
++#define CLKID_VDEC_HEVC_DIV	  155
+ 
+-#define NR_CLKS			  151
++#define NR_CLKS			  157
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/gxbb-clkc.h>
 -- 
-Ezequiel Garc?a, VanguardiaSur
-www.vanguardiasur.com.ar
+2.17.0
