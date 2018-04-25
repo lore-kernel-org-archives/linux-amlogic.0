@@ -1,44 +1,22 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 25 Apr 2018 11:52:54 +0200
-Subject: [GIT PULL] Amlogic clock fixes for v4.17-rc
-Message-ID: <1524649974.4026.51.camel@baylibre.com>
+Date: Wed, 25 Apr 2018 11:59:56 +0200
+Subject: [PATCH 1/2] clk: honor CLK_MUX_ROUND_CLOSEST in generic clk mux
+In-Reply-To: <CAAEAJfDgGYu9WR5+qA-trQUTkb--bam=LLbhH+1N2OdrtBGLzA@mail.gmail.com>
+References: <20180409135921.5617-1-jbrunet@baylibre.com>
+ <20180409135921.5617-2-jbrunet@baylibre.com>
+ <CAAEAJfDgGYu9WR5+qA-trQUTkb--bam=LLbhH+1N2OdrtBGLzA@mail.gmail.com>
+Message-ID: <1524650396.4026.55.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear clock maintainers,
+On Tue, 2018-04-24 at 11:04 -0300, Ezequiel Garcia wrote:
+> >   }
+> > +EXPORT_SYMBOL_GPL(clk_mux_determine_rate_flags);
+> > 
+> 
+> Why do we need to export this?
 
-Below is a request to pull amlogic clock fixes for v4.17.
-These changes fixes a few simple mistakes I did while reworking meson clock
-providers in the last cycle.
+Because any driver implementing some type of mux may use this function, and the
+driver could be a module. I have one in the pipe right now.
 
-Cheers
-
-The following changes since commit 60cc43fc888428bb2f18f08997432d426a243338:
-
-  Linux 4.17-rc1 (2018-04-15 18:24:20 -0700)
-
-are available in the Git repository at:
-
-  git://github.com/BayLibre/clk-meson.git tags/meson-clk-fixes-4.17-1
-
-for you to fetch changes up to 5b33139b1a08eabcba7b39d8a4babd7fc2d3b534:
-
-  clk: meson: meson8b: fix meson8b_cpu_clk parent clock name (2018-04-25
-10:23:19 +0200)
-
-----------------------------------------------------------------
-First round of fixes for meson clocks targeted for v4.17
- - fix typos in two meson8 clock names
- - remove unused clock ops declaration
-
-----------------------------------------------------------------
-Martin Blumenstingl (2):
-      clk: meson: meson8b: fix meson8b_fclk_div3_div clock name
-      clk: meson: meson8b: fix meson8b_cpu_clk parent clock name
-
-Yixun Lan (1):
-      clk: meson: drop meson_aoclk_gate_regmap_ops
-
- drivers/clk/meson/gxbb-aoclk.h | 2 --
- drivers/clk/meson/meson8b.c    | 5 +++--
- 2 files changed, 3 insertions(+), 4 deletions(-)
+It is the same as __clk_determine_rate(), __clk_mux_determine_rate_closest()
