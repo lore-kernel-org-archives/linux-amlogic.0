@@ -1,22 +1,21 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 25 Apr 2018 11:59:56 +0200
-Subject: [PATCH 1/2] clk: honor CLK_MUX_ROUND_CLOSEST in generic clk mux
-In-Reply-To: <CAAEAJfDgGYu9WR5+qA-trQUTkb--bam=LLbhH+1N2OdrtBGLzA@mail.gmail.com>
-References: <20180409135921.5617-1-jbrunet@baylibre.com>
- <20180409135921.5617-2-jbrunet@baylibre.com>
- <CAAEAJfDgGYu9WR5+qA-trQUTkb--bam=LLbhH+1N2OdrtBGLzA@mail.gmail.com>
-Message-ID: <1524650396.4026.55.camel@baylibre.com>
+Date: Wed, 25 Apr 2018 12:07:23 +0200
+Subject: [PATCH v4 1/2] dt-bindings: clock: meson8b: export the NAND clock
+In-Reply-To: <20180423193509.30584-2-martin.blumenstingl@googlemail.com>
+References: <20180423193509.30584-1-martin.blumenstingl@googlemail.com>
+ <20180423193509.30584-2-martin.blumenstingl@googlemail.com>
+Message-ID: <1524650843.4026.58.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-04-24 at 11:04 -0300, Ezequiel Garcia wrote:
-> >   }
-> > +EXPORT_SYMBOL_GPL(clk_mux_determine_rate_flags);
-> > 
+On Mon, 2018-04-23 at 21:35 +0200, Martin Blumenstingl wrote:
+> Export the NAND clock to the dt-bindings.
 > 
-> Why do we need to export this?
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  include/dt-bindings/clock/meson8b-clkc.h | 1 +
+>  1 file changed, 1 insertion(+)
 
-Because any driver implementing some type of mux may use this function, and the
-driver could be a module. I have one in the pipe right now.
-
-It is the same as __clk_determine_rate(), __clk_mux_determine_rate_closest()
+applied to next/headers.
+Thx
