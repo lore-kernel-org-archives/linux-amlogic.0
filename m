@@ -1,61 +1,103 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 26 Apr 2018 12:38:17 +0200
-Subject: [PATCH] mmc: meson-gx: add device reset
-Message-ID: <20180426103817.12675-1-jbrunet@baylibre.com>
+Date: Thu, 26 Apr 2018 12:41:19 +0200
+Subject: [PATCH] ARM64: dts: meson: add MMC resets
+Message-ID: <20180426104119.13659-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Trigger the reset line of the mmc controller while probing, if available
-The reset should be optional for now, at least until all related DT node
-have the reset property
+Add reset lines to the mmc controllers of the meson gx and axg SoCs
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt | 2 ++
- drivers/mmc/host/meson-gx-mmc.c                            | 6 ++++++
- 2 files changed, 8 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 3 +++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 3 +++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 5 ++++-
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-index 5add8d7d855f..ba434375e7f2 100644
---- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-+++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
-@@ -20,6 +20,7 @@ Required properties:
- 	"clkin1" - Other parent clock of internal mux
-   The driver has an internal mux clock which switches between clkin0 and clkin1 depending on the
-   clock rate requested by the MMC core.
-+- reset      : phandle of the internal reset line
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 854d5b25effd..56c84afb2802 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/clock/axg-clkc.h>
+ #include <dt-bindings/gpio/meson-axg-gpio.h>
++#include <dt-bindings/reset/amlogic,meson-axg-reset.h>
  
- Example:
+ / {
+ 	compatible = "amlogic,meson-axg";
+@@ -130,6 +131,7 @@
+ 					<&clkc CLKID_SD_EMMC_B_CLK0>,
+ 					<&clkc CLKID_FCLK_DIV2>;
+ 				clock-names = "core", "clkin0", "clkin1";
++				resets = <&reset RESET_SD_EMMC_B>;
+ 			};
  
-@@ -30,4 +31,5 @@ Example:
- 		clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
- 		clock-names = "core", "clkin0", "clkin1";
- 		pinctrl-0 = <&emmc_pins>;
-+		resets = <&reset RESET_SD_EMMC_A>;
- 	};
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 55bbd67177df..9d214622c8cf 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -35,6 +35,7 @@
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- #include <linux/interrupt.h>
- #include <linux/bitfield.h>
- #include <linux/pinctrl/consumer.h>
-@@ -1212,6 +1213,11 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 		goto free_host;
- 	}
+ 			sd_emmc_c: mmc at 7000 {
+@@ -141,6 +143,7 @@
+ 					<&clkc CLKID_SD_EMMC_C_CLK0>,
+ 					<&clkc CLKID_FCLK_DIV2>;
+ 				clock-names = "core", "clkin0", "clkin1";
++				resets = <&reset RESET_SD_EMMC_C>;
+ 			};
+ 		};
  
-+	ret = device_reset_optional(&pdev->dev);
-+	if (ret)
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "device reset failed: %d\n", ret);
-+
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	host->regs = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(host->regs)) {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index c3b8e0d3fbc9..1cbb0829b15d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -715,6 +715,7 @@
+ 		 <&clkc CLKID_SD_EMMC_A_CLK0>,
+ 		 <&clkc CLKID_FCLK_DIV2>;
+ 	clock-names = "core", "clkin0", "clkin1";
++	resets = <&reset RESET_SD_EMMC_A>;
+ };
+ 
+ &sd_emmc_b {
+@@ -722,6 +723,7 @@
+ 		 <&clkc CLKID_SD_EMMC_B_CLK0>,
+ 		 <&clkc CLKID_FCLK_DIV2>;
+ 	clock-names = "core", "clkin0", "clkin1";
++	resets = <&reset RESET_SD_EMMC_B>;
+ };
+ 
+ &sd_emmc_c {
+@@ -729,6 +731,7 @@
+ 		 <&clkc CLKID_SD_EMMC_C_CLK0>,
+ 		 <&clkc CLKID_FCLK_DIV2>;
+ 	clock-names = "core", "clkin0", "clkin1";
++	resets = <&reset RESET_SD_EMMC_C>;
+ };
+ 
+ &spicc {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 00b5bbd0b3e1..6e4a07112ed8 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -724,13 +724,15 @@
+ 		 <&clkc CLKID_SD_EMMC_A_CLK0>,
+ 		 <&clkc CLKID_FCLK_DIV2>;
+ 	clock-names = "core", "clkin0", "clkin1";
++	resets = <&reset RESET_SD_EMMC_A>;
+ };
+ 
+ &sd_emmc_b {
+ 	clocks = <&clkc CLKID_SD_EMMC_B>,
+ 		 <&clkc CLKID_SD_EMMC_B_CLK0>,
+ 		 <&clkc CLKID_FCLK_DIV2>;
+-       clock-names = "core", "clkin0", "clkin1";
++	clock-names = "core", "clkin0", "clkin1";
++	resets = <&reset RESET_SD_EMMC_B>;
+ };
+ 
+ &sd_emmc_c {
+@@ -738,6 +740,7 @@
+ 		 <&clkc CLKID_SD_EMMC_C_CLK0>,
+ 		 <&clkc CLKID_FCLK_DIV2>;
+ 	clock-names = "core", "clkin0", "clkin1";
++	resets = <&reset RESET_SD_EMMC_C>;
+ };
+ 
+ &spicc {
 -- 
 2.14.3
