@@ -1,29 +1,19 @@
-From: greg@kroah.com (Greg KH)
-Date: Thu, 26 Apr 2018 19:45:56 +0200
-Subject: [PATCH stable] drm: bridge: dw-hdmi: Fix overflow workaround for
- Amlogic Meson GX SoCs
-In-Reply-To: <1524128048-11086-1-git-send-email-narmstrong@baylibre.com>
-References: <1524128048-11086-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20180426174556.GB28091@kroah.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 26 Apr 2018 16:35:34 -0700
+Subject: [PATCH] mmc: meson-gx: add device reset
+In-Reply-To: <20180426103817.12675-1-jbrunet@baylibre.com> (Jerome Brunet's
+ message of "Thu, 26 Apr 2018 12:38:17 +0200")
+References: <20180426103817.12675-1-jbrunet@baylibre.com>
+Message-ID: <7ha7tp35ix.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Apr 19, 2018 at 10:54:08AM +0200, Neil Armstrong wrote:
-> commit 9c305eb442f3b371fc722ade827bbf673514123e upstream
-> 
-> The Amlogic Meson GX SoCs, embedded the v2.01a controller, has been also
-> identified needing this workaround.
-> This patch adds the corresponding version to enable a single iteration for
-> this specific version.
-> 
-> Fixes: be41fc55f1aa ("drm: bridge: dw-hdmi: Handle overflow workaround based on device version")
-> Acked-by: Archit Taneja <architt@codeaurora.org>
-> [narmstrong: s/identifies/identified and rebased against Jernej's change]
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Link: https://patchwork.freedesktop.org/patch/msgid/1519386277-25902-1-git-send-email-narmstrong at baylibre.com
-> [narmstrong: v4.14 to v4.16 backport]
-> Cc: <stable@vger.kernel.org> # 4.14.x
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-Now applied, thanks.
+> Trigger the reset line of the mmc controller while probing, if available
+> The reset should be optional for now, at least until all related DT node
+> have the reset property
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-greg k-h
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
