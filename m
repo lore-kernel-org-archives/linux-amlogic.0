@@ -1,166 +1,54 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 26 Apr 2018 10:32:55 +0200
-Subject: [PATCH] pinctrl: meson: axg: add tdm pins
-In-Reply-To: <20180409145429.16619-1-jbrunet@baylibre.com>
-References: <20180409145429.16619-1-jbrunet@baylibre.com>
-Message-ID: <fc4e195e-095a-c04c-8ff8-37fadc22ab21@baylibre.com>
+Date: Thu, 26 Apr 2018 10:35:33 +0200
+Subject: [PATCH] spi: meson-axg: Fix error handling in meson_spicc_probe()
+In-Reply-To: <1523655586-4163-1-git-send-email-khoroshilov@ispras.ru>
+References: <1523655586-4163-1-git-send-email-khoroshilov@ispras.ru>
+Message-ID: <a2a9cde3-5192-ce05-cc5c-d0191f0e811a@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/04/2018 16:54, Jerome Brunet wrote:
-> Add the information related to the tdm pins of the A113D SoC
+Hi Alexey,
+
+
+On 13/04/2018 23:39, Alexey Khoroshilov wrote:
+> If devm_spi_register_master() fails in meson_spicc_probe(),
+> spicc->core is left undisabled. The patch fixes that.
 > 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Found by Linux Driver Verification project (linuxtesting.org).
+> 
+> Signed-off-by: Alexey Khoroshilov <khoroshilov@ispras.ru>
 > ---
->  drivers/pinctrl/meson/pinctrl-meson-axg.c | 107 ++++++++++++++++++++++++++++++
->  1 file changed, 107 insertions(+)
+>  drivers/spi/spi-meson-spicc.c | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> index 4b91ff74779b..11dc23fde6d5 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> @@ -312,6 +312,47 @@ static const unsigned int pdm_din1_pins[] = {GPIOA_16};
->  static const unsigned int pdm_din2_pins[] = {GPIOA_17};
->  static const unsigned int pdm_din3_pins[] = {GPIOA_18};
+> diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+> index 5c82910e3480..7fe4488ace57 100644
+> --- a/drivers/spi/spi-meson-spicc.c
+> +++ b/drivers/spi/spi-meson-spicc.c
+> @@ -574,10 +574,15 @@ static int meson_spicc_probe(struct platform_device *pdev)
+>  		master->max_speed_hz = rate >> 2;
 >  
-> +/* mclk */
-> +static const unsigned int mclk_c_pins[] = {GPIOA_0};
-> +static const unsigned int mclk_b_pins[] = {GPIOA_1};
-> +
-> +/* tdm */
-> +static const unsigned int tdma_sclk_pins[] = {GPIOX_12};
-> +static const unsigned int tdma_sclk_slv_pins[] = {GPIOX_12};
-> +static const unsigned int tdma_fs_pins[] = {GPIOX_13};
-> +static const unsigned int tdma_fs_slv_pins[] = {GPIOX_13};
-> +static const unsigned int tdma_din0_pins[] = {GPIOX_14};
-> +static const unsigned int tdma_dout0_x14_pins[] = {GPIOX_14};
-> +static const unsigned int tdma_dout0_x15_pins[] = {GPIOX_15};
-> +static const unsigned int tdma_dout1_pins[] = {GPIOX_15};
-> +static const unsigned int tdma_din1_pins[] = {GPIOX_15};
-> +
-> +static const unsigned int tdmc_sclk_pins[] = {GPIOA_2};
-> +static const unsigned int tdmc_sclk_slv_pins[] = {GPIOA_2};
-> +static const unsigned int tdmc_fs_pins[] = {GPIOA_3};
-> +static const unsigned int tdmc_fs_slv_pins[] = {GPIOA_3};
-> +static const unsigned int tdmc_din0_pins[] = {GPIOA_4};
-> +static const unsigned int tdmc_dout0_pins[] = {GPIOA_4};
-> +static const unsigned int tdmc_din1_pins[] = {GPIOA_5};
-> +static const unsigned int tdmc_dout1_pins[] = {GPIOA_5};
-> +static const unsigned int tdmc_din2_pins[] = {GPIOA_6};
-> +static const unsigned int tdmc_dout2_pins[] = {GPIOA_6};
-> +static const unsigned int tdmc_din3_pins[] = {GPIOA_7};
-> +static const unsigned int tdmc_dout3_pins[] = {GPIOA_7};
-> +
-> +static const unsigned int tdmb_sclk_pins[] = {GPIOA_8};
-> +static const unsigned int tdmb_sclk_slv_pins[] = {GPIOA_8};
-> +static const unsigned int tdmb_fs_pins[] = {GPIOA_9};
-> +static const unsigned int tdmb_fs_slv_pins[] = {GPIOA_9};
-> +static const unsigned int tdmb_din0_pins[] = {GPIOA_10};
-> +static const unsigned int tdmb_dout0_pins[] = {GPIOA_10};
-> +static const unsigned int tdmb_din1_pins[] = {GPIOA_11};
-> +static const unsigned int tdmb_dout1_pins[] = {GPIOA_11};
-> +static const unsigned int tdmb_din2_pins[] = {GPIOA_12};
-> +static const unsigned int tdmb_dout2_pins[] = {GPIOA_12};
-> +static const unsigned int tdmb_din3_pins[] = {GPIOA_13};
-> +static const unsigned int tdmb_dout3_pins[] = {GPIOA_13};
-> +
->  static struct meson_pmx_group meson_axg_periphs_groups[] = {
->  	GPIO_GROUP(GPIOZ_0),
->  	GPIO_GROUP(GPIOZ_1),
-> @@ -495,6 +536,15 @@ static struct meson_pmx_group meson_axg_periphs_groups[] = {
->  	GROUP(eth_rx_dv_x, 4),
->  	GROUP(eth_mdio_x, 4),
->  	GROUP(eth_mdc_x, 4),
-> +	GROUP(tdma_sclk, 1),
-> +	GROUP(tdma_sclk_slv, 2),
-> +	GROUP(tdma_fs, 1),
-> +	GROUP(tdma_fs_slv, 2),
-> +	GROUP(tdma_din0, 1),
-> +	GROUP(tdma_dout0_x14, 2),
-> +	GROUP(tdma_dout0_x15, 1),
-> +	GROUP(tdma_dout1, 2),
-> +	GROUP(tdma_din1, 3),
+>  	ret = devm_spi_register_master(&pdev->dev, master);
+> -	if (!ret)
+> -		return 0;
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "spi master registration failed\n");
+> +		goto out_clk;
+> +	}
 >  
->  	/* bank GPIOY */
->  	GROUP(eth_txd0_y, 1),
-> @@ -544,6 +594,32 @@ static struct meson_pmx_group meson_axg_periphs_groups[] = {
->  	GROUP(pdm_din1, 1),
->  	GROUP(pdm_din2, 1),
->  	GROUP(pdm_din3, 1),
-> +	GROUP(mclk_c, 1),
-> +	GROUP(mclk_b, 1),
-> +	GROUP(tdmc_sclk, 1),
-> +	GROUP(tdmc_sclk_slv, 2),
-> +	GROUP(tdmc_fs, 1),
-> +	GROUP(tdmc_fs_slv, 2),
-> +	GROUP(tdmc_din0, 2),
-> +	GROUP(tdmc_dout0, 1),
-> +	GROUP(tdmc_din1, 2),
-> +	GROUP(tdmc_dout1, 1),
-> +	GROUP(tdmc_din2, 2),
-> +	GROUP(tdmc_dout2, 1),
-> +	GROUP(tdmc_din3, 2),
-> +	GROUP(tdmc_dout3, 1),
-> +	GROUP(tdmb_sclk, 1),
-> +	GROUP(tdmb_sclk_slv, 2),
-> +	GROUP(tdmb_fs, 1),
-> +	GROUP(tdmb_fs_slv, 2),
-> +	GROUP(tdmb_din0, 2),
-> +	GROUP(tdmb_dout0, 1),
-> +	GROUP(tdmb_din1, 2),
-> +	GROUP(tdmb_dout1, 1),
-> +	GROUP(tdmb_din2, 2),
-> +	GROUP(tdmb_dout2, 1),
-> +	GROUP(tdmb_din3, 2),
-> +	GROUP(tdmb_dout3, 1),
->  };
+> -	dev_err(&pdev->dev, "spi master registration failed\n");
+> +	return 0;
+> +
+> +out_clk:
+> +	clk_disable_unprepare(spicc->core);
 >  
->  /* uart_ao_a */
-> @@ -845,6 +921,32 @@ static const char * const jtag_ao_groups[] = {
->  	"jtag_ao_tdi", "jtag_ao_tdo", "jtag_ao_clk", "jtag_ao_tms",
->  };
->  
-> +static const char * const mclk_c_groups[] = {
-> +	"mclk_c",
-> +};
-> +
-> +static const char * const mclk_b_groups[] = {
-> +	"mclk_b",
-> +};
-> +
-> +static const char * const tdma_groups[] = {
-> +	"tdma_sclk", "tdma_sclk_slv", "tdma_fs", "tdma_fs_slv",
-> +	"tdma_din0", "tdma_dout0_x14", "tdma_dout0_x15", "tdma_dout1",
-> +	"tdma_din1",
-> +};
-> +
-> +static const char * const tdmc_groups[] = {
-> +	"tdmc_sclk", "tdmc_sclk_slv", "tdmc_fs", "tdmc_fs_slv",
-> +	"tdmc_din0", "tdmc_dout0", "tdmc_din1",	"tdmc_dout1",
-> +	"tdmc_din2", "tdmc_dout2", "tdmc_din3",	"tdmc_dout3",
-> +};
-> +
-> +static const char * const tdmb_groups[] = {
-> +	"tdmb_sclk", "tdmb_sclk_slv", "tdmb_fs", "tdmb_fs_slv",
-> +	"tdmb_din0", "tdmb_dout0", "tdmb_din1",	"tdmb_dout1",
-> +	"tdmb_din2", "tdmb_dout2", "tdmb_din3",	"tdmb_dout3",
-> +};
-> +
->  static struct meson_pmx_func meson_axg_periphs_functions[] = {
->  	FUNCTION(gpio_periphs),
->  	FUNCTION(emmc),
-> @@ -870,6 +972,11 @@ static struct meson_pmx_func meson_axg_periphs_functions[] = {
->  	FUNCTION(spdif_in),
->  	FUNCTION(jtag_ee),
->  	FUNCTION(pdm),
-> +	FUNCTION(mclk_b),
-> +	FUNCTION(mclk_c),
-> +	FUNCTION(tdma),
-> +	FUNCTION(tdmb),
-> +	FUNCTION(tdmc),
->  };
->  
->  static struct meson_pmx_func meson_axg_aobus_functions[] = {
+>  out_master:
+>  	spi_master_put(master);
 > 
 
+The correct subject should be "spi: meson-spicc:"
+
+Apart that :
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
