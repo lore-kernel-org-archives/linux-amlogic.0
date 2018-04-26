@@ -1,23 +1,45 @@
-From: p.zabel@pengutronix.de (Philipp Zabel)
-Date: Thu, 26 Apr 2018 10:59:29 +0200
-Subject: [PATCH v7 5/7] clk: meson-axg: Add AO Clock and Reset
- controller driver
-In-Reply-To: <20180426084437.192394-6-yixun.lan@amlogic.com>
-References: <20180426084437.192394-1-yixun.lan@amlogic.com>
- <20180426084437.192394-6-yixun.lan@amlogic.com>
-Message-ID: <1524733169.3408.3.camel@pengutronix.de>
+From: greg@kroah.com (Greg KH)
+Date: Thu, 26 Apr 2018 10:59:44 +0200
+Subject: [PATCH] drm: bridge: dw-hdmi: Fix overflow workaround for
+ Amlogic Meson GX SoCs
+In-Reply-To: <8766c753-bc2c-0e54-0ac0-73acaa0e11d8@baylibre.com>
+References: <1519386277-25902-1-git-send-email-narmstrong@baylibre.com>
+ <3b17d17b-cf3d-be54-2462-191e4f2af653@baylibre.com>
+ <20180419082751.GA23187@kroah.com>
+ <8766c753-bc2c-0e54-0ac0-73acaa0e11d8@baylibre.com>
+Message-ID: <20180426085944.GA17265@kroah.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-04-26 at 16:44 +0800, Yixun Lan wrote:
-> From: Qiufang Dai <qiufang.dai@amlogic.com>
+On Thu, Apr 26, 2018 at 10:38:08AM +0200, Neil Armstrong wrote:
+> Hi Greg,
 > 
-> Adds a Clock and Reset controller driver for the Always-On part
-> of the Amlogic Meson-AXG SoC.
+> On 19/04/2018 10:27, Greg KH wrote:
+> > On Thu, Apr 19, 2018 at 10:18:35AM +0200, Neil Armstrong wrote:
+> >> Hi Greg,
+> >>
+> >> On 23/02/2018 12:44, Neil Armstrong wrote:
+> >>> The Amlogic Meson GX SoCs, embedded the v2.01a controller, has been also
+> >>> identified needing this workaround.
+> >>> This patch adds the corresponding version to enable a single iteration for
+> >>> this specific version.
+> >>>
+> >>> Fixes: be41fc55f1aa ("drm: bridge: dw-hdmi: Handle overflow workaround based on device version")
+> >>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> >>
+> >> This patch is now present in linux master as commit 9c305eb442f3b371fc722ade827bbf673514123e
+> >> Could it be selected for 4.14 ?
+> >> The patch has been reworked to apply for 4.17 as indicated in the commit log, but the original patch will apply over 4.14.
+> > 
+> > I don't have any "original" patch here, I just tried applying it to
+> > 4.16.y and 4.14.y and it did not work.  Can you please provide a working
+> > backport?
 > 
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+> I sent a backported version last week, any news of it ?
+> 
+> Message-Id: <1524128048-11086-1-git-send-email-narmstrong@baylibre.com>
 
-Wrong patch, I have not formed an opinion on this one.
+Ick, for some reason I missed that in my inbox, sorry, I'll queue it up
+for the next round of releases.  Thanks for reminding me.
 
-regards
-Philipp
+greg k-h
