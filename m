@@ -1,191 +1,166 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 26 Apr 2018 16:05:08 +0000
-Subject: [PATCH 2/2] net: stmmac: dwmac-meson: extend phy mode setting
-In-Reply-To: <20180426160508.29380-1-yixun.lan@amlogic.com>
-References: <20180426160508.29380-1-yixun.lan@amlogic.com>
-Message-ID: <20180426160508.29380-3-yixun.lan@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 26 Apr 2018 10:32:55 +0200
+Subject: [PATCH] pinctrl: meson: axg: add tdm pins
+In-Reply-To: <20180409145429.16619-1-jbrunet@baylibre.com>
+References: <20180409145429.16619-1-jbrunet@baylibre.com>
+Message-ID: <fc4e195e-095a-c04c-8ff8-37fadc22ab21@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-  In the Meson-AXG SoC, the phy mode setting of PRG_ETH0 in the glue layer
-is extended from bit[0] to bit[2:0].
-  There is no problem if we configure it to the RGMII 1000M PHY mode,
-since the register setting is coincidentally compatible with previous one,
-but for the RMII 100M PHY mode, the configuration need to be changed to
-value - b100.
-  This patch was verified with a RTL8201F 100M ethernet PHY.
+On 09/04/2018 16:54, Jerome Brunet wrote:
+> Add the information related to the tdm pins of the A113D SoC
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/pinctrl/meson/pinctrl-meson-axg.c | 107 ++++++++++++++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+> 
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+> index 4b91ff74779b..11dc23fde6d5 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+> @@ -312,6 +312,47 @@ static const unsigned int pdm_din1_pins[] = {GPIOA_16};
+>  static const unsigned int pdm_din2_pins[] = {GPIOA_17};
+>  static const unsigned int pdm_din3_pins[] = {GPIOA_18};
+>  
+> +/* mclk */
+> +static const unsigned int mclk_c_pins[] = {GPIOA_0};
+> +static const unsigned int mclk_b_pins[] = {GPIOA_1};
+> +
+> +/* tdm */
+> +static const unsigned int tdma_sclk_pins[] = {GPIOX_12};
+> +static const unsigned int tdma_sclk_slv_pins[] = {GPIOX_12};
+> +static const unsigned int tdma_fs_pins[] = {GPIOX_13};
+> +static const unsigned int tdma_fs_slv_pins[] = {GPIOX_13};
+> +static const unsigned int tdma_din0_pins[] = {GPIOX_14};
+> +static const unsigned int tdma_dout0_x14_pins[] = {GPIOX_14};
+> +static const unsigned int tdma_dout0_x15_pins[] = {GPIOX_15};
+> +static const unsigned int tdma_dout1_pins[] = {GPIOX_15};
+> +static const unsigned int tdma_din1_pins[] = {GPIOX_15};
+> +
+> +static const unsigned int tdmc_sclk_pins[] = {GPIOA_2};
+> +static const unsigned int tdmc_sclk_slv_pins[] = {GPIOA_2};
+> +static const unsigned int tdmc_fs_pins[] = {GPIOA_3};
+> +static const unsigned int tdmc_fs_slv_pins[] = {GPIOA_3};
+> +static const unsigned int tdmc_din0_pins[] = {GPIOA_4};
+> +static const unsigned int tdmc_dout0_pins[] = {GPIOA_4};
+> +static const unsigned int tdmc_din1_pins[] = {GPIOA_5};
+> +static const unsigned int tdmc_dout1_pins[] = {GPIOA_5};
+> +static const unsigned int tdmc_din2_pins[] = {GPIOA_6};
+> +static const unsigned int tdmc_dout2_pins[] = {GPIOA_6};
+> +static const unsigned int tdmc_din3_pins[] = {GPIOA_7};
+> +static const unsigned int tdmc_dout3_pins[] = {GPIOA_7};
+> +
+> +static const unsigned int tdmb_sclk_pins[] = {GPIOA_8};
+> +static const unsigned int tdmb_sclk_slv_pins[] = {GPIOA_8};
+> +static const unsigned int tdmb_fs_pins[] = {GPIOA_9};
+> +static const unsigned int tdmb_fs_slv_pins[] = {GPIOA_9};
+> +static const unsigned int tdmb_din0_pins[] = {GPIOA_10};
+> +static const unsigned int tdmb_dout0_pins[] = {GPIOA_10};
+> +static const unsigned int tdmb_din1_pins[] = {GPIOA_11};
+> +static const unsigned int tdmb_dout1_pins[] = {GPIOA_11};
+> +static const unsigned int tdmb_din2_pins[] = {GPIOA_12};
+> +static const unsigned int tdmb_dout2_pins[] = {GPIOA_12};
+> +static const unsigned int tdmb_din3_pins[] = {GPIOA_13};
+> +static const unsigned int tdmb_dout3_pins[] = {GPIOA_13};
+> +
+>  static struct meson_pmx_group meson_axg_periphs_groups[] = {
+>  	GPIO_GROUP(GPIOZ_0),
+>  	GPIO_GROUP(GPIOZ_1),
+> @@ -495,6 +536,15 @@ static struct meson_pmx_group meson_axg_periphs_groups[] = {
+>  	GROUP(eth_rx_dv_x, 4),
+>  	GROUP(eth_mdio_x, 4),
+>  	GROUP(eth_mdc_x, 4),
+> +	GROUP(tdma_sclk, 1),
+> +	GROUP(tdma_sclk_slv, 2),
+> +	GROUP(tdma_fs, 1),
+> +	GROUP(tdma_fs_slv, 2),
+> +	GROUP(tdma_din0, 1),
+> +	GROUP(tdma_dout0_x14, 2),
+> +	GROUP(tdma_dout0_x15, 1),
+> +	GROUP(tdma_dout1, 2),
+> +	GROUP(tdma_din1, 3),
+>  
+>  	/* bank GPIOY */
+>  	GROUP(eth_txd0_y, 1),
+> @@ -544,6 +594,32 @@ static struct meson_pmx_group meson_axg_periphs_groups[] = {
+>  	GROUP(pdm_din1, 1),
+>  	GROUP(pdm_din2, 1),
+>  	GROUP(pdm_din3, 1),
+> +	GROUP(mclk_c, 1),
+> +	GROUP(mclk_b, 1),
+> +	GROUP(tdmc_sclk, 1),
+> +	GROUP(tdmc_sclk_slv, 2),
+> +	GROUP(tdmc_fs, 1),
+> +	GROUP(tdmc_fs_slv, 2),
+> +	GROUP(tdmc_din0, 2),
+> +	GROUP(tdmc_dout0, 1),
+> +	GROUP(tdmc_din1, 2),
+> +	GROUP(tdmc_dout1, 1),
+> +	GROUP(tdmc_din2, 2),
+> +	GROUP(tdmc_dout2, 1),
+> +	GROUP(tdmc_din3, 2),
+> +	GROUP(tdmc_dout3, 1),
+> +	GROUP(tdmb_sclk, 1),
+> +	GROUP(tdmb_sclk_slv, 2),
+> +	GROUP(tdmb_fs, 1),
+> +	GROUP(tdmb_fs_slv, 2),
+> +	GROUP(tdmb_din0, 2),
+> +	GROUP(tdmb_dout0, 1),
+> +	GROUP(tdmb_din1, 2),
+> +	GROUP(tdmb_dout1, 1),
+> +	GROUP(tdmb_din2, 2),
+> +	GROUP(tdmb_dout2, 1),
+> +	GROUP(tdmb_din3, 2),
+> +	GROUP(tdmb_dout3, 1),
+>  };
+>  
+>  /* uart_ao_a */
+> @@ -845,6 +921,32 @@ static const char * const jtag_ao_groups[] = {
+>  	"jtag_ao_tdi", "jtag_ao_tdo", "jtag_ao_clk", "jtag_ao_tms",
+>  };
+>  
+> +static const char * const mclk_c_groups[] = {
+> +	"mclk_c",
+> +};
+> +
+> +static const char * const mclk_b_groups[] = {
+> +	"mclk_b",
+> +};
+> +
+> +static const char * const tdma_groups[] = {
+> +	"tdma_sclk", "tdma_sclk_slv", "tdma_fs", "tdma_fs_slv",
+> +	"tdma_din0", "tdma_dout0_x14", "tdma_dout0_x15", "tdma_dout1",
+> +	"tdma_din1",
+> +};
+> +
+> +static const char * const tdmc_groups[] = {
+> +	"tdmc_sclk", "tdmc_sclk_slv", "tdmc_fs", "tdmc_fs_slv",
+> +	"tdmc_din0", "tdmc_dout0", "tdmc_din1",	"tdmc_dout1",
+> +	"tdmc_din2", "tdmc_dout2", "tdmc_din3",	"tdmc_dout3",
+> +};
+> +
+> +static const char * const tdmb_groups[] = {
+> +	"tdmb_sclk", "tdmb_sclk_slv", "tdmb_fs", "tdmb_fs_slv",
+> +	"tdmb_din0", "tdmb_dout0", "tdmb_din1",	"tdmb_dout1",
+> +	"tdmb_din2", "tdmb_dout2", "tdmb_din3",	"tdmb_dout3",
+> +};
+> +
+>  static struct meson_pmx_func meson_axg_periphs_functions[] = {
+>  	FUNCTION(gpio_periphs),
+>  	FUNCTION(emmc),
+> @@ -870,6 +972,11 @@ static struct meson_pmx_func meson_axg_periphs_functions[] = {
+>  	FUNCTION(spdif_in),
+>  	FUNCTION(jtag_ee),
+>  	FUNCTION(pdm),
+> +	FUNCTION(mclk_b),
+> +	FUNCTION(mclk_c),
+> +	FUNCTION(tdma),
+> +	FUNCTION(tdmb),
+> +	FUNCTION(tdmc),
+>  };
+>  
+>  static struct meson_pmx_func meson_axg_aobus_functions[] = {
+> 
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 95 ++++++++++++++++---
- 1 file changed, 84 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 7cb794094a70..e3688b6dd87c 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -18,6 +18,7 @@
- #include <linux/io.h>
- #include <linux/ioport.h>
- #include <linux/module.h>
-+#include <linux/of_device.h>
- #include <linux/of_net.h>
- #include <linux/mfd/syscon.h>
- #include <linux/platform_device.h>
-@@ -29,6 +30,10 @@
- 
- #define PRG_ETH0_RGMII_MODE		BIT(0)
- 
-+#define PRG_ETH0_EXT_PHY_MODE_MASK	GENMASK(2, 0)
-+#define PRG_ETH0_EXT_RGMII_MODE		1
-+#define PRG_ETH0_EXT_RMII_MODE		4
-+
- /* mux to choose between fclk_div2 (bit unset) and mpll2 (bit set) */
- #define PRG_ETH0_CLK_M250_SEL_SHIFT	4
- #define PRG_ETH0_CLK_M250_SEL_MASK	GENMASK(4, 4)
-@@ -46,10 +51,16 @@
- #define PRG_ETH0_TX_AND_PHY_REF_CLK	BIT(12)
- 
- #define MUX_CLK_NUM_PARENTS		2
-+struct meson8b_dwmac_data {
-+	bool ext_phy_mode;
-+};
- 
- struct meson8b_dwmac {
- 	struct device		*dev;
- 	void __iomem		*regs;
-+
-+	const struct meson8b_dwmac_data *data;
-+
- 	phy_interface_t		phy_mode;
- 	struct clk		*rgmii_tx_clk;
- 	u32			tx_delay_ns;
-@@ -171,6 +182,46 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
- 	return 0;
- }
- 
-+static int meson8b_init_set_mode(struct meson8b_dwmac *dwmac)
-+{
-+	bool ext_phy_mode = dwmac->data->ext_phy_mode;
-+
-+	switch (dwmac->phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		/* enable RGMII mode */
-+		if (ext_phy_mode)
-+			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+						PRG_ETH0_EXT_PHY_MODE_MASK,
-+						PRG_ETH0_EXT_RGMII_MODE);
-+		else
-+			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+						PRG_ETH0_RGMII_MODE,
-+						PRG_ETH0_RGMII_MODE);
-+
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		/* disable RGMII mode -> enables RMII mode */
-+		if (ext_phy_mode)
-+			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+						PRG_ETH0_EXT_PHY_MODE_MASK,
-+						PRG_ETH0_EXT_RMII_MODE);
-+		else
-+			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+						PRG_ETH0_RGMII_MODE, 0);
-+
-+		break;
-+	default:
-+		dev_err(dwmac->dev, "fail to set phy-mode %s\n",
-+			phy_modes(dwmac->phy_mode));
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- {
- 	int ret;
-@@ -188,10 +239,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 
- 	case PHY_INTERFACE_MODE_RGMII_ID:
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
--		/* enable RGMII mode */
--		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
--					PRG_ETH0_RGMII_MODE);
--
- 		/* only relevant for RMII mode -> disable in RGMII mode */
- 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
- 					PRG_ETH0_INVERTED_RMII_CLK, 0);
-@@ -224,10 +271,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 		break;
- 
- 	case PHY_INTERFACE_MODE_RMII:
--		/* disable RGMII mode -> enables RMII mode */
--		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
--					0);
--
- 		/* invert internal clk_rmii_i to generate 25/2.5 tx_rx_clk */
- 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
- 					PRG_ETH0_INVERTED_RMII_CLK,
-@@ -274,6 +317,11 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 		goto err_remove_config_dt;
- 	}
- 
-+	dwmac->data = (const struct meson8b_dwmac_data *)
-+		of_device_get_match_data(&pdev->dev);
-+	if (!dwmac->data)
-+		return -EINVAL;
-+
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
- 	dwmac->regs = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(dwmac->regs)) {
-@@ -298,6 +346,10 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_remove_config_dt;
- 
-+	ret = meson8b_init_set_mode(dwmac);
-+	if (ret)
-+		goto err_remove_config_dt;
-+
- 	ret = meson8b_init_prg_eth(dwmac);
- 	if (ret)
- 		goto err_remove_config_dt;
-@@ -316,10 +368,31 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
-+static const struct meson8b_dwmac_data meson8b_dwmac_data = {
-+	.ext_phy_mode = false,
-+};
-+
-+static const struct meson8b_dwmac_data meson_axg_dwmac_data = {
-+	.ext_phy_mode = true,
-+};
-+
- static const struct of_device_id meson8b_dwmac_match[] = {
--	{ .compatible = "amlogic,meson8b-dwmac" },
--	{ .compatible = "amlogic,meson8m2-dwmac" },
--	{ .compatible = "amlogic,meson-gxbb-dwmac" },
-+	{
-+		.compatible = "amlogic,meson8b-dwmac",
-+		.data = &meson8b_dwmac_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson8m2-dwmac",
-+		.data = &meson8b_dwmac_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-dwmac",
-+		.data = &meson8b_dwmac_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson-axg-dwmac",
-+		.data = &meson_axg_dwmac_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
--- 
-2.17.0
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
