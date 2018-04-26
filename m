@@ -1,82 +1,70 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 26 Apr 2018 16:44:34 +0800
-Subject: [PATCH v7 4/7] dt-bindings: clock: reset: Add AXG AO Clock and Reset
- Bindings
-In-Reply-To: <20180426084437.192394-1-yixun.lan@amlogic.com>
-References: <20180426084437.192394-1-yixun.lan@amlogic.com>
-Message-ID: <20180426084437.192394-5-yixun.lan@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 26 Apr 2018 10:46:01 +0200
+Subject: [PATCH 1/7] clk: meson: clean-up meson clock configuration
+In-Reply-To: <20180425163304.10852-2-jbrunet@baylibre.com>
+References: <20180425163304.10852-1-jbrunet@baylibre.com>
+ <20180425163304.10852-2-jbrunet@baylibre.com>
+Message-ID: <d643c87a-d364-1587-100d-119f8b417f11@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add dt-bindings headers for the Meson-AXG's AO clock and
-reset controller.
+On 25/04/2018 18:32, Jerome Brunet wrote:
+> Clean the dependencies in meson clock Kconfig.
+> CLK_AMLOGIC should actually select CLK_REGMAP_MESON which it uses. Also,
+> each platform should select CLK_AMLOGIC, so everything is properly turned
+> on when the platform Kconfig enable each configuration flag
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/clk/meson/Kconfig | 11 ++++-------
+>  1 file changed, 4 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index d5cbec522aec..87d69573e172 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -1,7 +1,7 @@
+>  config COMMON_CLK_AMLOGIC
+>  	bool
+> -	depends on OF
+>  	depends on ARCH_MESON || COMPILE_TEST
+> +	select COMMON_CLK_REGMAP_MESON
+>  
+>  config COMMON_CLK_REGMAP_MESON
+>  	bool
+> @@ -9,9 +9,8 @@ config COMMON_CLK_REGMAP_MESON
+>  
+>  config COMMON_CLK_MESON8B
+>  	bool
+> -	depends on COMMON_CLK_AMLOGIC
+> +	select COMMON_CLK_AMLOGIC
+>  	select RESET_CONTROLLER
+> -	select COMMON_CLK_REGMAP_MESON
+>  	help
+>  	  Support for the clock controller on AmLogic S802 (Meson8),
+>  	  S805 (Meson8b) and S812 (Meson8m2) devices. Say Y if you
+> @@ -19,9 +18,8 @@ config COMMON_CLK_MESON8B
+>  
+>  config COMMON_CLK_GXBB
+>  	bool
+> -	depends on COMMON_CLK_AMLOGIC
+> +	select COMMON_CLK_AMLOGIC
+>  	select RESET_CONTROLLER
+> -	select COMMON_CLK_REGMAP_MESON
+>  	select MFD_SYSCON
+>  	help
+>  	  Support for the clock controller on AmLogic S905 devices, aka gxbb.
+> @@ -29,9 +27,8 @@ config COMMON_CLK_GXBB
+>  
+>  config COMMON_CLK_AXG
+>  	bool
+> -	depends on COMMON_CLK_AMLOGIC
+> +	select COMMON_CLK_AMLOGIC
+>  	select RESET_CONTROLLER
+> -	select COMMON_CLK_REGMAP_MESON
+>  	select MFD_SYSCON
+>  	help
+>  	  Support for the clock controller on AmLogic A113D devices, aka axg.
+> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- include/dt-bindings/clock/axg-aoclkc.h | 26 ++++++++++++++++++++++++++
- include/dt-bindings/reset/axg-aoclkc.h | 20 ++++++++++++++++++++
- 2 files changed, 46 insertions(+)
- create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
- create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
-
-diff --git a/include/dt-bindings/clock/axg-aoclkc.h b/include/dt-bindings/clock/axg-aoclkc.h
-new file mode 100644
-index 000000000000..61955016a55b
---- /dev/null
-+++ b/include/dt-bindings/clock/axg-aoclkc.h
-@@ -0,0 +1,26 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
-+/*
-+ * Copyright (c) 2016 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * Copyright (c) 2018 Amlogic, inc.
-+ * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-+ */
-+
-+#ifndef DT_BINDINGS_CLOCK_AMLOGIC_MESON_AXG_AOCLK
-+#define DT_BINDINGS_CLOCK_AMLOGIC_MESON_AXG_AOCLK
-+
-+#define CLKID_AO_REMOTE		0
-+#define CLKID_AO_I2C_MASTER	1
-+#define CLKID_AO_I2C_SLAVE	2
-+#define CLKID_AO_UART1		3
-+#define CLKID_AO_UART2		4
-+#define CLKID_AO_IR_BLASTER	5
-+#define CLKID_AO_SAR_ADC	6
-+#define CLKID_AO_CLK81		7
-+#define CLKID_AO_SAR_ADC_SEL	8
-+#define CLKID_AO_SAR_ADC_DIV	9
-+#define CLKID_AO_SAR_ADC_CLK	10
-+#define CLKID_AO_ALT_XTAL	11
-+
-+#endif
-diff --git a/include/dt-bindings/reset/axg-aoclkc.h b/include/dt-bindings/reset/axg-aoclkc.h
-new file mode 100644
-index 000000000000..d342c0b6b2a7
---- /dev/null
-+++ b/include/dt-bindings/reset/axg-aoclkc.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
-+/*
-+ * Copyright (c) 2016 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * Copyright (c) 2018 Amlogic, inc.
-+ * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-+ */
-+
-+#ifndef DT_BINDINGS_RESET_AMLOGIC_MESON_AXG_AOCLK
-+#define DT_BINDINGS_RESET_AMLOGIC_MESON_AXG_AOCLK
-+
-+#define RESET_AO_REMOTE		0
-+#define RESET_AO_I2C_MASTER	1
-+#define RESET_AO_I2C_SLAVE	2
-+#define RESET_AO_UART1		3
-+#define RESET_AO_UART2		4
-+#define RESET_AO_IR_BLASTER	5
-+
-+#endif
--- 
-2.17.0
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
