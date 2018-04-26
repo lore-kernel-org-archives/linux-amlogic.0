@@ -1,34 +1,61 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 26 Apr 2018 17:05:52 +0800
-Subject: [PATCH v7 4/7] dt-bindings: clock: reset: Add AXG AO Clock and
- Reset Bindings
-In-Reply-To: <1524733179.3408.5.camel@pengutronix.de>
-References: <20180426084437.192394-1-yixun.lan@amlogic.com>
- <20180426084437.192394-5-yixun.lan@amlogic.com>
- <1524733179.3408.5.camel@pengutronix.de>
-Message-ID: <2c7eb0fb-1ddb-728c-0f2c-e807449a4f59@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 26 Apr 2018 12:38:17 +0200
+Subject: [PATCH] mmc: meson-gx: add device reset
+Message-ID: <20180426103817.12675-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Trigger the reset line of the mmc controller while probing, if available
+The reset should be optional for now, at least until all related DT node
+have the reset property
 
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt | 2 ++
+ drivers/mmc/host/meson-gx-mmc.c                            | 6 ++++++
+ 2 files changed, 8 insertions(+)
 
-On 04/26/18 16:59, Philipp Zabel wrote:
-> On Thu, 2018-04-26 at 16:44 +0800, Yixun Lan wrote:
->> Add dt-bindings headers for the Meson-AXG's AO clock and
->> reset controller.
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> 
-> This one is
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> 
-
-Hi Philipp
- My bad, Indeed, I made a mistake..
-
-HI Jerome:
- Could you fix this once apply the patch series?
-or do you want me send another version?
-
-Yixun
+diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+index 5add8d7d855f..ba434375e7f2 100644
+--- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
++++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+@@ -20,6 +20,7 @@ Required properties:
+ 	"clkin1" - Other parent clock of internal mux
+   The driver has an internal mux clock which switches between clkin0 and clkin1 depending on the
+   clock rate requested by the MMC core.
++- reset      : phandle of the internal reset line
+ 
+ Example:
+ 
+@@ -30,4 +31,5 @@ Example:
+ 		clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
+ 		clock-names = "core", "clkin0", "clkin1";
+ 		pinctrl-0 = <&emmc_pins>;
++		resets = <&reset RESET_SD_EMMC_A>;
+ 	};
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 55bbd67177df..9d214622c8cf 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -35,6 +35,7 @@
+ #include <linux/clk.h>
+ #include <linux/clk-provider.h>
+ #include <linux/regulator/consumer.h>
++#include <linux/reset.h>
+ #include <linux/interrupt.h>
+ #include <linux/bitfield.h>
+ #include <linux/pinctrl/consumer.h>
+@@ -1212,6 +1213,11 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 		goto free_host;
+ 	}
+ 
++	ret = device_reset_optional(&pdev->dev);
++	if (ret)
++		if (ret != -EPROBE_DEFER)
++			dev_err(&pdev->dev, "device reset failed: %d\n", ret);
++
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	host->regs = devm_ioremap_resource(&pdev->dev, res);
+ 	if (IS_ERR(host->regs)) {
+-- 
+2.14.3
