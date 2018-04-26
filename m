@@ -1,47 +1,101 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 26 Apr 2018 10:38:08 +0200
-Subject: [PATCH] drm: bridge: dw-hdmi: Fix overflow workaround for Amlogic
- Meson GX SoCs
-In-Reply-To: <20180419082751.GA23187@kroah.com>
-References: <1519386277-25902-1-git-send-email-narmstrong@baylibre.com>
- <3b17d17b-cf3d-be54-2462-191e4f2af653@baylibre.com>
- <20180419082751.GA23187@kroah.com>
-Message-ID: <8766c753-bc2c-0e54-0ac0-73acaa0e11d8@baylibre.com>
+Date: Thu, 26 Apr 2018 10:39:56 +0200
+Subject: [PATCH 1/2] clk: meson: mpll: add round closest support
+In-Reply-To: <20180420095603.29964-2-jbrunet@baylibre.com>
+References: <20180420095603.29964-1-jbrunet@baylibre.com>
+ <20180420095603.29964-2-jbrunet@baylibre.com>
+Message-ID: <f60eb9b0-c9dc-e9bd-1c2d-6df01a583a35@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Greg,
-
-On 19/04/2018 10:27, Greg KH wrote:
-> On Thu, Apr 19, 2018 at 10:18:35AM +0200, Neil Armstrong wrote:
->> Hi Greg,
->>
->> On 23/02/2018 12:44, Neil Armstrong wrote:
->>> The Amlogic Meson GX SoCs, embedded the v2.01a controller, has been also
->>> identified needing this workaround.
->>> This patch adds the corresponding version to enable a single iteration for
->>> this specific version.
->>>
->>> Fixes: be41fc55f1aa ("drm: bridge: dw-hdmi: Handle overflow workaround based on device version")
->>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>
->> This patch is now present in linux master as commit 9c305eb442f3b371fc722ade827bbf673514123e
->> Could it be selected for 4.14 ?
->> The patch has been reworked to apply for 4.17 as indicated in the commit log, but the original patch will apply over 4.14.
+On 20/04/2018 11:56, Jerome Brunet wrote:
+> Allow the mpll driver to round the requested rate up if
+> CLK_MESON_MPLL_ROUND_CLOSEST is set and it provides a rate closer to the
+> requested rate.
 > 
-> I don't have any "original" patch here, I just tried applying it to
-> 4.16.y and 4.14.y and it did not work.  Can you please provide a working
-> backport?
-
-I sent a backported version last week, any news of it ?
-
-Message-Id: <1524128048-11086-1-git-send-email-narmstrong@baylibre.com>
-
-Thanks,
-Neil
-
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/clk/meson/clk-mpll.c | 25 ++++++++++++++++++++-----
+>  drivers/clk/meson/clkc.h     |  3 +++
+>  2 files changed, 23 insertions(+), 5 deletions(-)
 > 
-> thanks,
+> diff --git a/drivers/clk/meson/clk-mpll.c b/drivers/clk/meson/clk-mpll.c
+> index 0df1227b65b3..4e5283eb892a 100644
+> --- a/drivers/clk/meson/clk-mpll.c
+> +++ b/drivers/clk/meson/clk-mpll.c
+> @@ -89,10 +89,23 @@ static long rate_from_params(unsigned long parent_rate,
+>  static void params_from_rate(unsigned long requested_rate,
+>  			     unsigned long parent_rate,
+>  			     unsigned int *sdm,
+> -			     unsigned int *n2)
+> +			     unsigned int *n2,
+> +			     u8 flags)
+>  {
+>  	uint64_t div = parent_rate;
+> -	unsigned long rem = do_div(div, requested_rate);
+> +	uint64_t frac = do_div(div, requested_rate);
+> +	unsigned long rem;
+> +
+> +	frac *= SDM_DEN;
+> +	rem = do_div(frac, requested_rate);
+> +
+> +	/* Should we round up ? */
+> +	if (flags & CLK_MESON_MPLL_ROUND_CLOSEST
+> +	    && rem > (requested_rate / 2)) {
+> +		frac = (frac + 1) % SDM_DEN;
+> +		if (frac == 0)
+> +			div += 1;
+> +	}
+>  
+>  	if (div < N2_MIN) {
+>  		*n2 = N2_MIN;
+> @@ -102,7 +115,7 @@ static void params_from_rate(unsigned long requested_rate,
+>  		*sdm = SDM_DEN - 1;
+>  	} else {
+>  		*n2 = div;
+> -		*sdm = DIV_ROUND_UP_ULL((u64)rem * SDM_DEN, requested_rate);
+> +		*sdm = frac;
+>  	}
+>  }
+>  
+> @@ -125,9 +138,11 @@ static long mpll_round_rate(struct clk_hw *hw,
+>  			    unsigned long rate,
+>  			    unsigned long *parent_rate)
+>  {
+> +	struct clk_regmap *clk = to_clk_regmap(hw);
+> +	struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
+>  	unsigned int sdm, n2;
+>  
+> -	params_from_rate(rate, *parent_rate, &sdm, &n2);
+> +	params_from_rate(rate, *parent_rate, &sdm, &n2, mpll->flags);
+>  	return rate_from_params(*parent_rate, sdm, n2);
+>  }
+>  
+> @@ -140,7 +155,7 @@ static int mpll_set_rate(struct clk_hw *hw,
+>  	unsigned int sdm, n2;
+>  	unsigned long flags = 0;
+>  
+> -	params_from_rate(rate, parent_rate, &sdm, &n2);
+> +	params_from_rate(rate, parent_rate, &sdm, &n2, mpll->flags);
+>  
+>  	if (mpll->lock)
+>  		spin_lock_irqsave(mpll->lock, flags);
+> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
+> index 8fe73c4edca8..8cc265cd3d2b 100644
+> --- a/drivers/clk/meson/clkc.h
+> +++ b/drivers/clk/meson/clkc.h
+> @@ -97,8 +97,11 @@ struct meson_clk_mpll_data {
+>  	struct parm ssen;
+>  	struct parm misc;
+>  	spinlock_t *lock;
+> +	u8 flags;
+>  };
+>  
+> +#define CLK_MESON_MPLL_ROUND_CLOSEST	BIT(0)
+> +
+>  struct meson_clk_audio_div_data {
+>  	struct parm div;
+>  	u8 flags;
 > 
-> greg k-h
-> 
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
