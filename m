@@ -1,42 +1,74 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 26 Apr 2018 12:50:46 +0200
-Subject: [PATCH] ARM64: dts: meson: disable sd-uhs modes on the libretech-cc
-Message-ID: <20180426105046.14817-1-jbrunet@baylibre.com>
+From: ulf.hansson@linaro.org (Ulf Hansson)
+Date: Thu, 26 Apr 2018 15:54:48 +0200
+Subject: [PATCH] mmc: meson-gx: add device reset
+In-Reply-To: <20180426103817.12675-1-jbrunet@baylibre.com>
+References: <20180426103817.12675-1-jbrunet@baylibre.com>
+Message-ID: <CAPDyKFooqSGrgKqKxTTRBYbi6s-199GhRNhQvVD0wzWWK3UG=Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-There is a problem with the sd-uhs mode when doing a soft reboot.
-Switching back from 1.8v to 3.3v messes with the card, which no longer
-respond (timeout errors). According to the specification, we should
-perform a card reset (power cycling the card) but this is something we
-cannot control on this design.
+On 26 April 2018 at 12:38, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> Trigger the reset line of the mmc controller while probing, if available
+> The reset should be optional for now, at least until all related DT node
+> have the reset property
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt | 2 ++
 
-Then the only solution to restore the communication with the card is an
-"unplug-plug" which is not acceptable
+Please move DT doc changes into separate patches. And make the DT
+maintainers are in to field as well.
 
-Until we find a solution, if any, disable the sd-uhs modes on this design.
-For the people using uhs at the moment, there will a performance drop as
-a result.
+Otherwise, this looks good to me.
 
-Fixes: 3cde63ebc85c ("ARM64: dts: meson-gxl: libretech-cc: enable high speed modes")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 3 ---
- 1 file changed, 3 deletions(-)
+Kind regards
+Uffe
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 3e3eb31748a3..f63bceb88caa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -234,9 +234,6 @@
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
--	sd-uhs-sdr12;
--	sd-uhs-sdr25;
--	sd-uhs-sdr50;
- 	max-frequency = <100000000>;
- 	disable-wp;
- 
--- 
-2.14.3
+>  drivers/mmc/host/meson-gx-mmc.c                            | 6 ++++++
+>  2 files changed, 8 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+> index 5add8d7d855f..ba434375e7f2 100644
+> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+> @@ -20,6 +20,7 @@ Required properties:
+>         "clkin1" - Other parent clock of internal mux
+>    The driver has an internal mux clock which switches between clkin0 and clkin1 depending on the
+>    clock rate requested by the MMC core.
+> +- reset      : phandle of the internal reset line
+>
+>  Example:
+>
+> @@ -30,4 +31,5 @@ Example:
+>                 clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
+>                 clock-names = "core", "clkin0", "clkin1";
+>                 pinctrl-0 = <&emmc_pins>;
+> +               resets = <&reset RESET_SD_EMMC_A>;
+>         };
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 55bbd67177df..9d214622c8cf 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -35,6 +35,7 @@
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/reset.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/pinctrl/consumer.h>
+> @@ -1212,6 +1213,11 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>                 goto free_host;
+>         }
+>
+> +       ret = device_reset_optional(&pdev->dev);
+> +       if (ret)
+> +               if (ret != -EPROBE_DEFER)
+> +                       dev_err(&pdev->dev, "device reset failed: %d\n", ret);
+> +
+>         res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>         host->regs = devm_ioremap_resource(&pdev->dev, res);
+>         if (IS_ERR(host->regs)) {
+> --
+> 2.14.3
+>
