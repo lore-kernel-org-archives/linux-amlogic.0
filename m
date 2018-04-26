@@ -1,61 +1,32 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 26 Apr 2018 10:40:04 +0200
-Subject: [PATCH 2/2] clk: meson: axg: let mpll clocks round closest
-In-Reply-To: <20180420095603.29964-3-jbrunet@baylibre.com>
-References: <20180420095603.29964-1-jbrunet@baylibre.com>
- <20180420095603.29964-3-jbrunet@baylibre.com>
-Message-ID: <7c6068d6-299d-698f-dec7-13cdf6b85f6e@baylibre.com>
+Date: Thu, 26 Apr 2018 10:40:56 +0200
+Subject: [PATCH] dt-bindings: meson-uart: DT fix
+ s/clocks-names/clock-names/
+In-Reply-To: <1524468760-22912-1-git-send-email-geert+renesas@glider.be>
+References: <1524468760-22912-1-git-send-email-geert+renesas@glider.be>
+Message-ID: <8ca5eed0-8dd6-b411-32a6-d63c62ff9e04@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 20/04/2018 11:56, Jerome Brunet wrote:
-> Let the mpll dividers achieve the closest rate possible, even if
-> it means rounding the requested rate up.
-> 
-> This is done to improve the accuracy of the rates provided by these
-> plls to the audio subsystem
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+On 23/04/2018 09:32, Geert Uytterhoeven wrote:
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  drivers/clk/meson/axg.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-> index 5f5d468c1efe..bd4dbc696b88 100644
-> --- a/drivers/clk/meson/axg.c
-> +++ b/drivers/clk/meson/axg.c
-> @@ -461,6 +461,7 @@ static struct clk_regmap axg_mpll0_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll0_div",
-> @@ -507,6 +508,7 @@ static struct clk_regmap axg_mpll1_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll1_div",
-> @@ -553,6 +555,7 @@ static struct clk_regmap axg_mpll2_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll2_div",
-> @@ -599,6 +602,7 @@ static struct clk_regmap axg_mpll3_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll3_div",
+> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+> index 8ff65fa632fdedd7..c06c045126fc9070 100644
+> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+> @@ -21,7 +21,7 @@ Required properties:
+>  - interrupts : identifier to the device interrupt
+>  - clocks : a list of phandle + clock-specifier pairs, one for each
+>  	   entry in clock names.
+> -- clocks-names :
+> +- clock-names :
+>     * "xtal" for external xtal clock identifier
+>     * "pclk" for the bus core clock, either the clk81 clock or the gate clock
+>     * "baud" for the source of the baudrate generator, can be either the xtal
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
