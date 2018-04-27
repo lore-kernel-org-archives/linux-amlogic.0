@@ -1,48 +1,27 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 27 Apr 2018 12:03:26 -0700
-Subject: [PATCH v3 2/3] ARM64: dts: meson-axg: add an 32K alt aoclk
-In-Reply-To: <20180328030130.240336-3-yixun.lan@amlogic.com> (Yixun Lan's
- message of "Wed, 28 Mar 2018 11:01:29 +0800")
-References: <20180328030130.240336-1-yixun.lan@amlogic.com>
- <20180328030130.240336-3-yixun.lan@amlogic.com>
-Message-ID: <7hmuxo1ngh.fsf@baylibre.com>
+Date: Fri, 27 Apr 2018 12:06:23 -0700
+Subject: [PATCH 0/2] Amlogic 32-bit multi_v7_defconfig updates
+In-Reply-To: <20180422103805.1324-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 22 Apr 2018 12:38:03 +0200")
+References: <20180422103805.1324-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7hh8nw1nbk.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Yixun Lan <yixun.lan@amlogic.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> The ao_clk81 in AO domain have two clock source,
-> one from a 32K alt crystal we name it as ao_alt_clk,
-> another is the clk81 signal from EE domain.
+> Some boards come with a PMU (system power controller, such as the Ricoh
+> RN5T618). These need CONFIG_I2C_MESON built-in so the regulators can be
+> set up during boot.
 >
-> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> Also enable CONFIG_PWM_MESON (as module) because some boards use it to
+> dim the LED and/or generate the 32.768 kHz clock for the SDIO wifi chip.
+>
+> @Kevin: I assume that you'll take this through your tree, so no immediate
+> action from the arm-soc maintainers needed, right?
 
-As this one is a stanadlone, I've applied it to v4.18/dt64,
+Correct.
 
-Thanks,
+Merged into v4.18/defconfig,
 
 Kevin
-
-> ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index b0eff7d7f771..40ca49fb94a6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -108,6 +108,13 @@
->  		#clock-cells = <0>;
->  	};
->  
-> +	ao_alt_xtal: ao_alt_xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <32000000>;
-> +		clock-output-names = "ao_alt_xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +
->  	soc {
->  		compatible = "simple-bus";
->  		#address-cells = <2>;
