@@ -1,206 +1,99 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Fri, 27 Apr 2018 11:09:59 +0800
-Subject: [PATCH 2/2] net: stmmac: dwmac-meson: extend phy mode setting
-In-Reply-To: <1524732426.4026.84.camel@baylibre.com>
-References: <20180426160508.29380-1-yixun.lan@amlogic.com>
- <20180426160508.29380-3-yixun.lan@amlogic.com>
- <1524732426.4026.84.camel@baylibre.com>
-Message-ID: <daa6e325-ce4d-7b6b-dc43-2a884d485139@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 27 Apr 2018 11:20:41 +0200
+Subject: [PATCH v7 0/7] clk: meson-axg: Add AO Cloclk and Reset driver
+In-Reply-To: <20180426084437.192394-1-yixun.lan@amlogic.com>
+References: <20180426084437.192394-1-yixun.lan@amlogic.com>
+Message-ID: <1524820841.4026.112.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome
-On 04/26/18 16:47, Jerome Brunet wrote:
-> On Thu, 2018-04-26 at 16:05 +0000, Yixun Lan wrote:
->>   In the Meson-AXG SoC, the phy mode setting of PRG_ETH0 in the glue layer
->> is extended from bit[0] to bit[2:0].
->>   There is no problem if we configure it to the RGMII 1000M PHY mode,
->> since the register setting is coincidentally compatible with previous one,
->> but for the RMII 100M PHY mode, the configuration need to be changed to
->> value - b100.
->>   This patch was verified with a RTL8201F 100M ethernet PHY.
->>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> ---
->>  .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 95 ++++++++++++++++---
->>  1 file changed, 84 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
->> index 7cb794094a70..e3688b6dd87c 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
->> @@ -18,6 +18,7 @@
->>  #include <linux/io.h>
->>  #include <linux/ioport.h>
->>  #include <linux/module.h>
->> +#include <linux/of_device.h>
->>  #include <linux/of_net.h>
->>  #include <linux/mfd/syscon.h>
->>  #include <linux/platform_device.h>
->> @@ -29,6 +30,10 @@
->>  
->>  #define PRG_ETH0_RGMII_MODE		BIT(0)
->>  
->> +#define PRG_ETH0_EXT_PHY_MODE_MASK	GENMASK(2, 0)
->> +#define PRG_ETH0_EXT_RGMII_MODE		1
->> +#define PRG_ETH0_EXT_RMII_MODE		4
->> +
->>  /* mux to choose between fclk_div2 (bit unset) and mpll2 (bit set) */
->>  #define PRG_ETH0_CLK_M250_SEL_SHIFT	4
->>  #define PRG_ETH0_CLK_M250_SEL_MASK	GENMASK(4, 4)
->> @@ -46,10 +51,16 @@
->>  #define PRG_ETH0_TX_AND_PHY_REF_CLK	BIT(12)
->>  
->>  #define MUX_CLK_NUM_PARENTS		2
->> +struct meson8b_dwmac_data {
->> +	bool ext_phy_mode;
->> +};
->>  
->>  struct meson8b_dwmac {
->>  	struct device		*dev;
->>  	void __iomem		*regs;
->> +
->> +	const struct meson8b_dwmac_data *data;
->> +
->>  	phy_interface_t		phy_mode;
->>  	struct clk		*rgmii_tx_clk;
->>  	u32			tx_delay_ns;
->> @@ -171,6 +182,46 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
->>  	return 0;
->>  }
->>  
->> +static int meson8b_init_set_mode(struct meson8b_dwmac *dwmac)
->> +{
->> +	bool ext_phy_mode = dwmac->data->ext_phy_mode;
->> +
->> +	switch (dwmac->phy_mode) {
->> +	case PHY_INTERFACE_MODE_RGMII:
->> +	case PHY_INTERFACE_MODE_RGMII_RXID:
->> +	case PHY_INTERFACE_MODE_RGMII_ID:
->> +	case PHY_INTERFACE_MODE_RGMII_TXID:
->> +		/* enable RGMII mode */
->> +		if (ext_phy_mode)
+On Thu, 2018-04-26 at 16:44 +0800, Yixun Lan wrote:
+>   This patch try to add AO clock and Reset driver for Amlogic's
+> Meson-AXG SoC.
+>   Please note that patch 7 need to wait for the DTS changes[3] merged
+> into mainline first, otherwise it will break the serial console.
 > 
-> Looks weird to have this if target at a specific SoC withing a function named
-> after another SoC
+>  patch 2: factor the common code into a dedicated file
+>  patch 3-5: add the aoclk driver for AXG SoC
+>  patch 6-7: drop unnecessary clock flags
 > 
-> Couldn't you make one function per soc type, and pass that function pointer in
-> the match data ?
+> changes since v6 at [7]: 
+>  - fix over 80 chars chechpatch error
+>  - add Philip's Ack on patch 5
+>  - drop extra end of newline
 > 
-sounds good, I can do this
+> changes since v5 at [6]: 
+>  - drop unnecessary header files
+>  - add 'axg_aoclk' prefix to clk driver, make them more consistent
+>  - add missing end new line..
+> 
+> changes since v4 at [5]: 
+>  - fix return err
+>  - introduce CONFIG_COMMON_CLK_MESON_AO
+>  - format/style minor fix
+> 
+> changes since v3 at [4]: 
+>  - add 'const' contraint to the read-only data
+>  - switch to devm_of_clk_add_hw_provider API
+>  - check return value of devm_reset_controller_register
+> 
+> changes since v2 at [2]: 
+>  - rework meson_aoclkc_probe() which leverage the of_match_data
+>  - merge patch 5-6 into this series
+>  - seperate DTS patch, will send to Kevin Hilman independently
+>  
+> changes since v1 at [0]: 
+>  - rebase to clk-meson's branch 'next/drivers' [1]
+>  - fix license, update to BSD-3-Clause
+>  - drop un-used include header file
+> 
+> [0] https://lkml.kernel.org/r/20180209070026.193879-1-yixun.lan at amlogic.com
+> [1] git://github.com/BayLibre/clk-meson.git branch: next-drivers
+> [2] https://lkml.kernel.org/r/20180323143816.200573-1-yixun.lan at amlogic.com
+> [3] https://lkml.kernel.org/r/20180326081809.49493-4-yixun.lan at amlogic.com
+> [4] https://lkml.kernel.org/r/20180328025050.221585-1-yixun.lan at amlogic.com
+> [5] https://lkml.kernel.org/r/20180408031938.153474-1-yixun.lan at amlogic.com
+> [6] https://lkml.kernel.org/r/20180409143749.71197-1-yixun.lan at amlogic.com
+> [7] https://lkml.kernel.org/r/20180419135426.155794-1-yixun.lan at amlogic.com
 
->> +			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->> +						PRG_ETH0_EXT_PHY_MODE_MASK,
->> +						PRG_ETH0_EXT_RGMII_MODE);
->> +		else
->> +			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->> +						PRG_ETH0_RGMII_MODE,
->> +						PRG_ETH0_RGMII_MODE);
->> +
->> +		break;
->> +	case PHY_INTERFACE_MODE_RMII:
->> +		/* disable RGMII mode -> enables RMII mode */
->> +		if (ext_phy_mode)
->> +			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->> +						PRG_ETH0_EXT_PHY_MODE_MASK,
->> +						PRG_ETH0_EXT_RMII_MODE);
->> +		else
->> +			meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->> +						PRG_ETH0_RGMII_MODE, 0);
->> +
->> +		break;
->> +	default:
->> +		dev_err(dwmac->dev, "fail to set phy-mode %s\n",
->> +			phy_modes(dwmac->phy_mode));
->> +		return -EINVAL;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>  static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->>  {
->>  	int ret;
->> @@ -188,10 +239,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->>  
->>  	case PHY_INTERFACE_MODE_RGMII_ID:
->>  	case PHY_INTERFACE_MODE_RGMII_TXID:
->> -		/* enable RGMII mode */
->> -		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
->> -					PRG_ETH0_RGMII_MODE);
->> -
->>  		/* only relevant for RMII mode -> disable in RGMII mode */
->>  		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->>  					PRG_ETH0_INVERTED_RMII_CLK, 0);
->> @@ -224,10 +271,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->>  		break;
->>  
->>  	case PHY_INTERFACE_MODE_RMII:
->> -		/* disable RGMII mode -> enables RMII mode */
->> -		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
->> -					0);
->> -
->>  		/* invert internal clk_rmii_i to generate 25/2.5 tx_rx_clk */
->>  		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->>  					PRG_ETH0_INVERTED_RMII_CLK,
->> @@ -274,6 +317,11 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->>  		goto err_remove_config_dt;
->>  	}
->>  
->> +	dwmac->data = (const struct meson8b_dwmac_data *)
->> +		of_device_get_match_data(&pdev->dev);
->> +	if (!dwmac->data)
->> +		return -EINVAL;
->> +
->>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
->>  	dwmac->regs = devm_ioremap_resource(&pdev->dev, res);
->>  	if (IS_ERR(dwmac->regs)) {
->> @@ -298,6 +346,10 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->>  	if (ret)
->>  		goto err_remove_config_dt;
->>  
->> +	ret = meson8b_init_set_mode(dwmac);
->> +	if (ret)
->> +		goto err_remove_config_dt;
->> +
->>  	ret = meson8b_init_prg_eth(dwmac);
->>  	if (ret)
->>  		goto err_remove_config_dt;
->> @@ -316,10 +368,31 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->>  	return ret;
->>  }
->>  
->> +static const struct meson8b_dwmac_data meson8b_dwmac_data = {
->> +	.ext_phy_mode = false,
->> +};
->> +
->> +static const struct meson8b_dwmac_data meson_axg_dwmac_data = {
->> +	.ext_phy_mode = true,
->> +};
->> +
->>  static const struct of_device_id meson8b_dwmac_match[] = {
->> -	{ .compatible = "amlogic,meson8b-dwmac" },
->> -	{ .compatible = "amlogic,meson8m2-dwmac" },
->> -	{ .compatible = "amlogic,meson-gxbb-dwmac" },
->> +	{
->> +		.compatible = "amlogic,meson8b-dwmac",
->> +		.data = &meson8b_dwmac_data,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson8m2-dwmac",
->> +		.data = &meson8b_dwmac_data,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson-gxbb-dwmac",
->> +		.data = &meson8b_dwmac_data,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson-axg-dwmac",
->> +		.data = &meson_axg_dwmac_data,
->> +	},
->>  	{ }
->>  };
->>  MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
+Yixun,
+
+Your series looks mostly Ok to me, apart from the problem reported by Philipp.
+
+However, once applied, if the clkc ao controller is enabled, both gxl and axg
+fail to complete the boot. Could you please explain how this was tested ??
+
+Not merging it until we get to the bottom of this.
+
 > 
-> .
+> 
+> Qiufang Dai (1):
+>   clk: meson-axg: Add AO Clock and Reset controller driver
+> 
+> Yixun Lan (6):
+>   clk: meson: migrate to devm_of_clk_add_hw_provider API
+>   clk: meson: aoclk: refactor common code into dedicated file
+>   dt-bindings: clock: axg-aoclkc: New binding for Meson-AXG SoC
+>   dt-bindings: clock: reset: Add AXG AO Clock and Reset Bindings
+>   clk: meson: drop CLK_SET_RATE_PARENT flag
+>   clk: meson: drop CLK_IGNORE_UNUSED flag
+> 
+>  .../bindings/clock/amlogic,gxbb-aoclkc.txt    |   1 +
+>  drivers/clk/meson/Kconfig                     |   8 +
+>  drivers/clk/meson/Makefile                    |   3 +-
+>  drivers/clk/meson/axg-aoclk.c                 | 163 ++++++++++++++++++
+>  drivers/clk/meson/axg-aoclk.h                 |  29 ++++
+>  drivers/clk/meson/gxbb-aoclk.c                |  95 ++++------
+>  drivers/clk/meson/gxbb-aoclk.h                |   5 +
+>  drivers/clk/meson/meson-aoclk.c               |  81 +++++++++
+>  drivers/clk/meson/meson-aoclk.h               |  34 ++++
+>  include/dt-bindings/clock/axg-aoclkc.h        |  26 +++
+>  include/dt-bindings/reset/axg-aoclkc.h        |  20 +++
+>  11 files changed, 401 insertions(+), 64 deletions(-)
+>  create mode 100644 drivers/clk/meson/axg-aoclk.c
+>  create mode 100644 drivers/clk/meson/axg-aoclk.h
+>  create mode 100644 drivers/clk/meson/meson-aoclk.c
+>  create mode 100644 drivers/clk/meson/meson-aoclk.h
+>  create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+>  create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
 > 
