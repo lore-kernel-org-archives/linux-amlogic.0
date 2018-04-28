@@ -1,213 +1,55 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Sat, 28 Apr 2018 10:21:11 +0000
-Subject: [PATCH v2 2/2] net: stmmac: dwmac-meson: extend phy mode setting
-In-Reply-To: <20180428102111.18384-1-yixun.lan@amlogic.com>
-References: <20180428102111.18384-1-yixun.lan@amlogic.com>
-Message-ID: <20180428102111.18384-3-yixun.lan@amlogic.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 28 Apr 2018 15:23:16 +0200
+Subject: [PATCH meson-clk-next] clk: meson: meson8b: enable
+ CLK_MESON_MPLL_ROUND_CLOSEST for all MPLLs
+Message-ID: <20180428132316.20108-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-  In the Meson-AXG SoC, the phy mode setting of PRG_ETH0 in the glue layer
-is extended from bit[0] to bit[2:0].
-  There is no problem if we configure it to the RGMII 1000M PHY mode,
-since the register setting is coincidentally compatible with previous one,
-but for the RMII 100M PHY mode, the configuration need to be changed to
-value - b100.
-  This patch was verified with a RTL8201F 100M ethernet PHY.
+Until recently the clk-mpll implementation always used
+DIV_ROUND_UP_ULL(). However, since commit 1b0e500dc606e9 ("clk: meson:
+mpll: add round closest support") the default was changed to round down
+the SDM divisor.
+This broke RGMII Ethernet on Meson8b (which uses MPLL2 as RGMII TX
+clock). With the old implementation the MPLL2 output was 249999701Hz,
+but with "round closest" disabled the output is 212500000Hz.
 
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+Enabling CLK_MESON_MPLL_ROUND_CLOSEST for all MPLL2 clocks on Meson8b
+fixes this because we now get the same 249999701Hz from MPLL2 as before.
+
+Fixes: 1b0e500dc606e9 ("clk: meson: mpll: add round closest support")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 120 +++++++++++++++---
- 1 file changed, 104 insertions(+), 16 deletions(-)
+ drivers/clk/meson/meson8b.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index 7cb794094a70..4ff231df7322 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -18,6 +18,7 @@
- #include <linux/io.h>
- #include <linux/ioport.h>
- #include <linux/module.h>
-+#include <linux/of_device.h>
- #include <linux/of_net.h>
- #include <linux/mfd/syscon.h>
- #include <linux/platform_device.h>
-@@ -29,6 +30,10 @@
- 
- #define PRG_ETH0_RGMII_MODE		BIT(0)
- 
-+#define PRG_ETH0_EXT_PHY_MODE_MASK	GENMASK(2, 0)
-+#define PRG_ETH0_EXT_RGMII_MODE		1
-+#define PRG_ETH0_EXT_RMII_MODE		4
-+
- /* mux to choose between fclk_div2 (bit unset) and mpll2 (bit set) */
- #define PRG_ETH0_CLK_M250_SEL_SHIFT	4
- #define PRG_ETH0_CLK_M250_SEL_MASK	GENMASK(4, 4)
-@@ -47,12 +52,20 @@
- 
- #define MUX_CLK_NUM_PARENTS		2
- 
-+struct meson8b_dwmac;
-+
-+struct meson8b_dwmac_data {
-+	int (*set_phy_mode)(struct meson8b_dwmac *dwmac);
-+};
-+
- struct meson8b_dwmac {
--	struct device		*dev;
--	void __iomem		*regs;
--	phy_interface_t		phy_mode;
--	struct clk		*rgmii_tx_clk;
--	u32			tx_delay_ns;
-+	struct device			*dev;
-+	void __iomem			*regs;
-+
-+	const struct meson8b_dwmac_data	*data;
-+	phy_interface_t			phy_mode;
-+	struct clk			*rgmii_tx_clk;
-+	u32				tx_delay_ns;
- };
- 
- struct meson8b_dwmac_clk_configs {
-@@ -171,6 +184,59 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
- 	return 0;
- }
- 
-+static int meson8b_set_phy_mode(struct meson8b_dwmac *dwmac)
-+{
-+	switch (dwmac->phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		/* enable RGMII mode */
-+		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+					PRG_ETH0_RGMII_MODE,
-+					PRG_ETH0_RGMII_MODE);
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		/* disable RGMII mode -> enables RMII mode */
-+		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+					PRG_ETH0_RGMII_MODE, 0);
-+		break;
-+	default:
-+		dev_err(dwmac->dev, "fail to set phy-mode %s\n",
-+			phy_modes(dwmac->phy_mode));
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int meson_axg_set_phy_mode(struct meson8b_dwmac *dwmac)
-+{
-+	switch (dwmac->phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		/* enable RGMII mode */
-+		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+					PRG_ETH0_EXT_PHY_MODE_MASK,
-+					PRG_ETH0_EXT_RGMII_MODE);
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		/* disable RGMII mode -> enables RMII mode */
-+		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-+					PRG_ETH0_EXT_PHY_MODE_MASK,
-+					PRG_ETH0_EXT_RMII_MODE);
-+		break;
-+	default:
-+		dev_err(dwmac->dev, "fail to set phy-mode %s\n",
-+			phy_modes(dwmac->phy_mode));
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- {
- 	int ret;
-@@ -188,10 +254,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 
- 	case PHY_INTERFACE_MODE_RGMII_ID:
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
--		/* enable RGMII mode */
--		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
--					PRG_ETH0_RGMII_MODE);
--
- 		/* only relevant for RMII mode -> disable in RGMII mode */
- 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
- 					PRG_ETH0_INVERTED_RMII_CLK, 0);
-@@ -224,10 +286,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
- 		break;
- 
- 	case PHY_INTERFACE_MODE_RMII:
--		/* disable RGMII mode -> enables RMII mode */
--		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
--					0);
--
- 		/* invert internal clk_rmii_i to generate 25/2.5 tx_rx_clk */
- 		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
- 					PRG_ETH0_INVERTED_RMII_CLK,
-@@ -274,6 +332,11 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 		goto err_remove_config_dt;
- 	}
- 
-+	dwmac->data = (const struct meson8b_dwmac_data *)
-+		of_device_get_match_data(&pdev->dev);
-+	if (!dwmac->data)
-+		return -EINVAL;
-+
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
- 	dwmac->regs = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(dwmac->regs)) {
-@@ -298,6 +361,10 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_remove_config_dt;
- 
-+	ret = dwmac->data->set_phy_mode(dwmac);
-+	if (ret)
-+		goto err_remove_config_dt;
-+
- 	ret = meson8b_init_prg_eth(dwmac);
- 	if (ret)
- 		goto err_remove_config_dt;
-@@ -316,10 +383,31 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
-+static const struct meson8b_dwmac_data meson8b_dwmac_data = {
-+	.set_phy_mode = meson8b_set_phy_mode,
-+};
-+
-+static const struct meson8b_dwmac_data meson_axg_dwmac_data = {
-+	.set_phy_mode = meson_axg_set_phy_mode,
-+};
-+
- static const struct of_device_id meson8b_dwmac_match[] = {
--	{ .compatible = "amlogic,meson8b-dwmac" },
--	{ .compatible = "amlogic,meson8m2-dwmac" },
--	{ .compatible = "amlogic,meson-gxbb-dwmac" },
-+	{
-+		.compatible = "amlogic,meson8b-dwmac",
-+		.data = &meson8b_dwmac_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson8m2-dwmac",
-+		.data = &meson8b_dwmac_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-dwmac",
-+		.data = &meson8b_dwmac_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson-axg-dwmac",
-+		.data = &meson_axg_dwmac_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index d0524ec71aad..2639a892a5d4 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -382,6 +382,7 @@ static struct clk_regmap meson8b_mpll0_div = {
+ 			.width   = 1,
+ 		},
+ 		.lock = &meson_clk_lock,
++		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll0_div",
+@@ -423,6 +424,7 @@ static struct clk_regmap meson8b_mpll1_div = {
+ 			.width   = 9,
+ 		},
+ 		.lock = &meson_clk_lock,
++		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll1_div",
+@@ -464,6 +466,7 @@ static struct clk_regmap meson8b_mpll2_div = {
+ 			.width   = 9,
+ 		},
+ 		.lock = &meson_clk_lock,
++		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll2_div",
 -- 
 2.17.0
