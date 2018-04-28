@@ -1,62 +1,46 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sat, 28 Apr 2018 17:01:34 +0200
-Subject: [PATCH meson-clk-next] clk: meson: meson8b: enable
- CLK_MESON_MPLL_ROUND_CLOSEST for all MPLLs
-In-Reply-To: <20180428132316.20108-1-martin.blumenstingl@googlemail.com>
-References: <20180428132316.20108-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1524927694.28715.2.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 28 Apr 2018 23:25:21 +0200
+Subject: [PATCH] pwm: meson: fix allocation of meson_pwm_channel array
+Message-ID: <20180428212521.29328-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2018-04-28 at 15:23 +0200, Martin Blumenstingl wrote:
-> Until recently the clk-mpll implementation always used
-> DIV_ROUND_UP_ULL(). However, since commit 1b0e500dc606e9 ("clk: meson:
-> mpll: add round closest support") the default was changed to round down
-> the SDM divisor.
-> This broke RGMII Ethernet on Meson8b (which uses MPLL2 as RGMII TX
-> clock). With the old implementation the MPLL2 output was 249999701Hz,
-> but with "round closest" disabled the output is 212500000Hz.
+Using the pwm-meson driver on the 32-bit SoCs causes memory corruption.
+The result are some hard-to-explain errors, for example
+devm_clk_register crashes with a NULL dereference somewhere deep in the
+common clock framework code.
+In some cases the kernel even refused to boot when any of the PWM
+controllers were enables on Meson8b.
 
-> 
-> Enabling CLK_MESON_MPLL_ROUND_CLOSEST for all MPLL2 clocks on Meson8b
-> fixes this because we now get the same 249999701Hz from MPLL2 as before.
+The root cause seems to be an incorrect memory size in the devm_kcalloc
+call in meson_pwm_probe. The code allocates an array of meson_pwm_channel
+structs, but the size given is the size of the meson_pwm struct (which
+seems like a small copy-and-paste error, as meson_pwm is allocated a few
+lines above).
+Even with this typo the code seemed to work fine on the 64-bit GX SoCs
+(maybe due to the structs having the same size in the compiled result,
+but I haven't checked this further).
 
-It should either be rounding up or down, not down or 'more down'
-I guess I need to revisit this series. In the mean time, I'll drop it.
-Thanks for reporting the issue
+Fixes: 211ed630753d2f ("pwm: Add support for Meson PWM Controller")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/pwm/pwm-meson.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 
-> Fixes: 1b0e500dc606e9 ("clk: meson: mpll: add round closest support")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/clk/meson/meson8b.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index d0524ec71aad..2639a892a5d4 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -382,6 +382,7 @@ static struct clk_regmap meson8b_mpll0_div = {
->  			.width   = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll0_div",
-> @@ -423,6 +424,7 @@ static struct clk_regmap meson8b_mpll1_div = {
->  			.width   = 9,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll1_div",
-> @@ -464,6 +466,7 @@ static struct clk_regmap meson8b_mpll2_div = {
->  			.width   = 9,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll2_div",
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 0767deba8e62..822860b4801a 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -541,8 +541,8 @@ static int meson_pwm_probe(struct platform_device *pdev)
+ 	meson->data = of_device_get_match_data(&pdev->dev);
+ 	meson->inverter_mask = BIT(meson->chip.npwm) - 1;
+ 
+-	channels = devm_kcalloc(&pdev->dev, meson->chip.npwm, sizeof(*meson),
+-				GFP_KERNEL);
++	channels = devm_kcalloc(&pdev->dev, meson->chip.npwm,
++				sizeof(*channels), GFP_KERNEL);
+ 	if (!channels)
+ 		return -ENOMEM;
+ 
+-- 
+2.17.0
