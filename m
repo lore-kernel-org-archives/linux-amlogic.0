@@ -1,46 +1,42 @@
-From: khoroshilov@ispras.ru (Alexey Khoroshilov)
-Date: Sun, 29 Apr 2018 01:46:23 +0300
-Subject: [PATCH v2] spi: meson-spicc: Fix error handling in meson_spicc_probe()
-In-Reply-To: <a2a9cde3-5192-ce05-cc5c-d0191f0e811a@baylibre.com>
-Message-ID: <1524955583-22760-1-git-send-email-khoroshilov@ispras.ru>
+From: thierry.reding@gmail.com (Thierry Reding)
+Date: Mon, 30 Apr 2018 10:34:47 +0200
+Subject: [PATCH] pwm: meson: fix allocation of meson_pwm_channel array
+In-Reply-To: <20180428212521.29328-1-martin.blumenstingl@googlemail.com>
+References: <20180428212521.29328-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180430083447.GJ2484@ulmo>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-If devm_spi_register_master() fails in meson_spicc_probe(),
-spicc->core is left undisabled. The patch fixes that.
+On Sat, Apr 28, 2018 at 11:25:21PM +0200, Martin Blumenstingl wrote:
+> Using the pwm-meson driver on the 32-bit SoCs causes memory corruption.
+> The result are some hard-to-explain errors, for example
+> devm_clk_register crashes with a NULL dereference somewhere deep in the
+> common clock framework code.
+> In some cases the kernel even refused to boot when any of the PWM
+> controllers were enables on Meson8b.
+> 
+> The root cause seems to be an incorrect memory size in the devm_kcalloc
+> call in meson_pwm_probe. The code allocates an array of meson_pwm_channel
+> structs, but the size given is the size of the meson_pwm struct (which
+> seems like a small copy-and-paste error, as meson_pwm is allocated a few
+> lines above).
+> Even with this typo the code seemed to work fine on the 64-bit GX SoCs
+> (maybe due to the structs having the same size in the compiled result,
+> but I haven't checked this further).
+> 
+> Fixes: 211ed630753d2f ("pwm: Add support for Meson PWM Controller")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/pwm/pwm-meson.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-Found by Linux Driver Verification project (linuxtesting.org).
+Applied, thanks.
 
-Signed-off-by: Alexey Khoroshilov <khoroshilov@ispras.ru>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
-v2: Fix subject as Neil Armstrong noted.
-
- drivers/spi/spi-meson-spicc.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-index 5c82910e3480..7fe4488ace57 100644
---- a/drivers/spi/spi-meson-spicc.c
-+++ b/drivers/spi/spi-meson-spicc.c
-@@ -574,10 +574,15 @@ static int meson_spicc_probe(struct platform_device *pdev)
- 		master->max_speed_hz = rate >> 2;
- 
- 	ret = devm_spi_register_master(&pdev->dev, master);
--	if (!ret)
--		return 0;
-+	if (ret) {
-+		dev_err(&pdev->dev, "spi master registration failed\n");
-+		goto out_clk;
-+	}
- 
--	dev_err(&pdev->dev, "spi master registration failed\n");
-+	return 0;
-+
-+out_clk:
-+	clk_disable_unprepare(spicc->core);
- 
- out_master:
- 	spi_master_put(master);
--- 
-2.7.4
+Thierry
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 833 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180430/cdaf4204/attachment.sig>
