@@ -1,39 +1,27 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 1 May 2018 23:55:53 +0200
-Subject: [PATCH] clk: meson: meson8b: mark fclk_div gate clocks as
- CLK_IS_CRITICAL
-In-Reply-To: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
-References: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCBz9ne9qeU3a6SQJpqRFm0ix0Dc0LYvmzWKmKJWVML_UQ@mail.gmail.com>
+Date: Wed,  2 May 2018 00:00:44 +0200
+Subject: [PATCH 0/1] Meson8b RGMII Ethernet pin cleanup
+Message-ID: <20180501220045.2004-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello Yixun,
+Hi Emiliano, Hi Linus,
 
-On Tue, May 1, 2018 at 11:45 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Until commit 05f814402d6174 ("clk: meson: add fdiv clock gates") we
-> relied on the bootloader to enable the fclk_div clock gates. It turns
-> out that our clock tree is incomplete at least on Meson8b (tested with
-> an Odroid-C1, which uses an RGMII PHY) because after the mentioned
-> commit Ethernet is not working anymore (no RX/TX activity can be seen).
-> At the same time Ethernet was still working on Meson8m2 with a RMII PHY.
->
-> It is currently not clear which of the fclk_div gates is required for
-> (RGMII) Ethernet operation on Meson8b and why. Mark the fclk_div gates
-> as CLK_IS_CRITICAL so the common clock framework keeps these gates
-> enabled for us until we know which clock is required for Ethernet on
-> Meson8b and which driver has to claim it.
-based on the public datasheet for Meson8b (S805) I cannot see which
-part of the SoC uses fclk_divX for (RGMII) Ethernet.
-I did some further tests and it seems that Ethernet is not working if
-fclk_div2 is disabled (the other fclk_divX don't seem to affect
-Ethernet operation)
+could you please test the patch from this series on your Odroid-C1?
+I tested it on mine and Ethernet seems to be working fine with it.
 
-could you please check your internal datasheets and let us know how
-fclk_div2 is routed internally and how it can affect Ethernet data
-transfers?
+There should be no functional changes with this patch as it just
+removes an incorrect pad configuration for DIF_2_P and DIF_2_N for
+the TXD0 and TXD1 signal (as these are routed to GPIOH_5 and GPIOH_6
+on Odroid-C1).
 
-(my current speculation is that it may be related to the "Ethernet
-Memory Power Domain" in CBUS HHI_MEM_PD_REG0, but I have no proof for
-that)
+
+Martin Blumenstingl (1):
+  ARM: dts: meson8b: RGMII doesn't use the eth_txd1_1 and eth_txd0_1
+    pins
+
+ arch/arm/boot/dts/meson8b.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
+
+-- 
+2.17.0
