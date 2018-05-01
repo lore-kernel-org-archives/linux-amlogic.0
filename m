@@ -1,23 +1,32 @@
-From: davem@davemloft.net (David Miller)
-Date: Tue, 01 May 2018 11:30:22 -0400 (EDT)
-Subject: [PATCH v2 0/2] net: stmmac: dwmac-meson: 100M phy mode support
- for AXG SoC
-In-Reply-To: <20180428102111.18384-1-yixun.lan@amlogic.com>
-References: <20180428102111.18384-1-yixun.lan@amlogic.com>
-Message-ID: <20180501.113022.616723559128209395.davem@davemloft.net>
+From: linux.amoon@gmail.com (Anand Moon)
+Date: Wed,  2 May 2018 00:29:01 +0530
+Subject: [PATCH 1/2] ARM64: dts: meson-gxbb: odroidc2: enable sdcard UHS modes
+Message-ID: <20180501185902.3556-1-linux.amoon@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Yixun Lan <yixun.lan@amlogic.com>
-Date: Sat, 28 Apr 2018 10:21:09 +0000
+Enable UHS modes for sdcard, on odroidc2.
 
-> Due to the dwmac glue layer register changed, we need to 
-> introduce a new compatible name for the Meson-AXG SoC
-> to support for the RMII 100M ethernet PHY.
-> 
-> Change since v1 at [1]:
->   - implement set_phy_mode() for each SoC
-> 
-> [1] https://lkml.kernel.org/r/20180426160508.29380-1-yixun.lan at amlogic.com
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Series applied, thank you.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 54954b314a45..c90f8b46c60c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -258,6 +258,11 @@
+ 	cap-sd-highspeed;
+ 	max-frequency = <100000000>;
+ 	disable-wp;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	sd-uhs-ddr50;
+ 
+ 	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+ 	cd-inverted;
+-- 
+2.17.0
