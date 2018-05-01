@@ -1,45 +1,42 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed,  2 May 2018 00:00:45 +0200
-Subject: [PATCH 1/1] ARM: dts: meson8b: RGMII doesn't use the eth_txd1_1 and
- eth_txd0_1 pins
+Date: Wed, 2 May 2018 00:03:14 +0200
+Subject: [PATCH 0/1] Meson8b RGMII Ethernet pin cleanup
 In-Reply-To: <20180501220045.2004-1-martin.blumenstingl@googlemail.com>
 References: <20180501220045.2004-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180501220045.2004-2-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCDVbZPU6dfYMwHhvS78LU9Pg5nOfwUfzHgOoOt6QUPw6Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The pin groups eth_txd0_0 and eth_txd0_1 are both connected to the
-Ethernet controller's TXD0 data line. The only difference is that
-eth_txd0_0 is routed to GPIOH_6 while eth_txd0_1 is routed to DIF_2_P.
-eth_txd1_0 and eth_txd1_1 are similar: eth_txd1_0 is routed to GPIOH_5
-and eth_txd1_1 is routed to DIF_2_N.
+On Wed, May 2, 2018 at 12:00 AM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Hi Emiliano, Hi Linus,
+>
+> could you please test the patch from this series on your Odroid-C1?
+> I tested it on mine and Ethernet seems to be working fine with it.
+I forgot to mention: if you want to test this with v4.17-rc3 then you
+need the following patches on top of v4.17-rc3:
+- clk: meson: meson8b: fix meson8b_fclk_div3_div clock name [0]
+- clk: meson: meson8b: fix meson8b_cpu_clk parent clock name [1]
+- clk: meson: meson8b: mark fclk_div gate clocks as CLK_IS_CRITICAL [2]
 
-The schematics of the Odroid-C1+ show that it uses GPIOH_5 and GPIOH_6
-for the TXD0 and TXD1 data lines. Thus we can drop eth_txd0_1 and
-eth_txd1_1 (which are routed to DIF_2_P and DIF_2_N) from the RGMII
-group.
+> There should be no functional changes with this patch as it just
+> removes an incorrect pad configuration for DIF_2_P and DIF_2_N for
+> the TXD0 and TXD1 signal (as these are routed to GPIOH_5 and GPIOH_6
+> on Odroid-C1).
+>
+>
+> Martin Blumenstingl (1):
+>   ARM: dts: meson8b: RGMII doesn't use the eth_txd1_1 and eth_txd0_1
+>     pins
+>
+>  arch/arm/boot/dts/meson8b.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> --
+> 2.17.0
+>
 
-Fixes: b96446541d8390 ("ARM: dts: meson8b: extend ethernet controller description")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Emiliano Ingrassia <ingrassia@epigenesys.com>
-Cc: Linus L?ssing <linus.luessing@c0d3.blue>
----
- arch/arm/boot/dts/meson8b.dtsi | 2 --
- 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 6cfd7e225cee..5deff6819f7d 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -200,9 +200,7 @@
- 				groups = "eth_tx_clk",
- 					 "eth_tx_en",
- 					 "eth_txd1_0",
--					 "eth_txd1_1",
- 					 "eth_txd0_0",
--					 "eth_txd0_1",
- 					 "eth_rx_clk",
- 					 "eth_rx_dv",
- 					 "eth_rxd1",
--- 
-2.17.0
+[0] https://patchwork.kernel.org/patch/10354473/
+[1] https://patchwork.kernel.org/patch/10358009/
+[2] https://patchwork.kernel.org/patch/10374537/
