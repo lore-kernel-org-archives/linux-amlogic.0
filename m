@@ -1,107 +1,41 @@
 From: robh@kernel.org (Rob Herring)
-Date: Tue, 1 May 2018 09:37:15 -0500
-Subject: [PATCH 6/7] clk: meson: axg: document bindings for the audio
- clock controller
-In-Reply-To: <20180425163304.10852-7-jbrunet@baylibre.com>
-References: <20180425163304.10852-1-jbrunet@baylibre.com>
- <20180425163304.10852-7-jbrunet@baylibre.com>
-Message-ID: <20180501143715.GA20023@rob-hp-laptop>
+Date: Tue, 1 May 2018 09:43:58 -0500
+Subject: [PATCH] mmc: meson-gx: add device reset
+In-Reply-To: <20180426103817.12675-1-jbrunet@baylibre.com>
+References: <20180426103817.12675-1-jbrunet@baylibre.com>
+Message-ID: <20180501144358.GA31556@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Apr 25, 2018 at 06:33:03PM +0200, Jerome Brunet wrote:
-> Add documentation for the device tree bindings of the audio clock
-> controller of the A113 based SoCs
+On Thu, Apr 26, 2018 at 12:38:17PM +0200, Jerome Brunet wrote:
+> Trigger the reset line of the mmc controller while probing, if available
+> The reset should be optional for now, at least until all related DT node
+> have the reset property
 > 
-
-The preferred subject prefix for bindings is 'dt/bindings: clock: ...'
-
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  .../bindings/clock/amlogic,axg-audio-clkc.txt      | 56 ++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt | 2 ++
+>  drivers/mmc/host/meson-gx-mmc.c                            | 6 ++++++
+>  2 files changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> new file mode 100644
-> index 000000000000..1b989ceda567
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> @@ -0,0 +1,56 @@
-> +* Amlogic AXG Audio Clock Controllers
-> +
-> +The Amlogic AXG audio clock controller generates and supplies clock to the
-> +other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
-> +devices.
-> +
-> +Required Properties:
-> +
-> +- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D
-> +- reg		: physical base address of the clock controller and length of
-> +		  memory mapped region.
-> +- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
-> +		  in clock-names.
-> +- clock-names	: must contain the following:
-> +		  * "pclk" - Main peripheral bus clock
-> +		  may contain the following:
-> +		  * "mst_in[0-7]" - 8 input plls to generate clock signals
-
-Unless the sources don't exist, then you should always have the clocks. 
-It should not be based on whether you are using them or not.
-
-> +		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
-> +				      components.
-> +		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
-> +				       components.
-
-I'm guessing these may come from pins that aren't connected, so being 
-optional is fine.
-
-> +- reset		: phandle of the internal reset line
+> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+> index 5add8d7d855f..ba434375e7f2 100644
+> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+> @@ -20,6 +20,7 @@ Required properties:
+>  	"clkin1" - Other parent clock of internal mux
+>    The driver has an internal mux clock which switches between clkin0 and clkin1 depending on the
+>    clock rate requested by the MMC core.
+> +- reset      : phandle of the internal reset line
 
 resets
 
-> +- #clock-cells	: should be 1.
-> +
-> +Each clock is assigned an identifier and client nodes can use this identifier
-> +to specify the clock which they consume. All available clocks are defined as
-> +preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
-> +used in device tree sources.
-> +
-> +Example:
-> +
-> +clkc_audio: clock-controller {
-
-Needs a unit address.
-
-> +	compatible = "amlogic,axg-audio-clkc";
-> +	reg = <0x0 0x0 0x0 0xb4>;
-> +	#clock-cells = <1>;
-> +
-> +	clocks = <&clkc CLKID_AUDIO>,
-> +		 <&clkc CLKID_MPLL0>,
-> +		 <&clkc CLKID_MPLL1>,
-> +		 <&clkc CLKID_MPLL2>,
-> +		 <&clkc CLKID_MPLL3>,
-> +		 <&clkc CLKID_HIFI_PLL>,
-> +		 <&clkc CLKID_FCLK_DIV3>,
-> +		 <&clkc CLKID_FCLK_DIV4>,
-> +		 <&clkc CLKID_GP0_PLL>;
-> +	clock-names = "pclk",
-> +		      "mst_in0",
-> +		      "mst_in1",
-> +		      "mst_in2",
-> +		      "mst_in3",
-> +		      "mst_in4",
-> +		      "mst_in5",
-> +		      "mst_in6",
-> +		      "mst_in7";
-> +	resets = <&reset RESET_AUDIO>;
-> +};
-> -- 
-> 2.14.3
-> 
-> --
-> To unsubscribe from this list: send the line "unsubscribe devicetree" in
-> the body of a message to majordomo at vger.kernel.org
-> More majordomo info at  http://vger.kernel.org/majordomo-info.html
+>  
+>  Example:
+>  
+> @@ -30,4 +31,5 @@ Example:
+>  		clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
+>  		clock-names = "core", "clkin0", "clkin1";
+>  		pinctrl-0 = <&emmc_pins>;
+> +		resets = <&reset RESET_SD_EMMC_A>;
+>  	};
