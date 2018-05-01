@@ -1,227 +1,136 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 1 May 2018 15:20:02 +0200
-Subject: [PATCH v2 2/2] net: stmmac: dwmac-meson: extend phy mode setting
-In-Reply-To: <20180428102111.18384-3-yixun.lan@amlogic.com>
-References: <20180428102111.18384-1-yixun.lan@amlogic.com>
- <20180428102111.18384-3-yixun.lan@amlogic.com>
-Message-ID: <CAFBinCA6N=q6ZtuA9nfd=8VJjZMg9v8bdqZabVWiyc2-sGB0Qw@mail.gmail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Tue, 1 May 2018 09:31:15 -0500
+Subject: [PATCH 5/7] clk: meson: axg: export audio clock controller id
+ bindings
+In-Reply-To: <20180425163304.10852-6-jbrunet@baylibre.com>
+References: <20180425163304.10852-1-jbrunet@baylibre.com>
+ <20180425163304.10852-6-jbrunet@baylibre.com>
+Message-ID: <20180501143115.GA17513@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello Yixun,
+On Wed, Apr 25, 2018 at 06:33:02PM +0200, Jerome Brunet wrote:
+> export the clock ids dt-bindings usable by the consumers of the axg
+> audio clock controller
 
-On Sat, Apr 28, 2018 at 12:21 PM, Yixun Lan <yixun.lan@amlogic.com> wrote:
->   In the Meson-AXG SoC, the phy mode setting of PRG_ETH0 in the glue layer
-> is extended from bit[0] to bit[2:0].
->   There is no problem if we configure it to the RGMII 1000M PHY mode,
-> since the register setting is coincidentally compatible with previous one,
-> but for the RMII 100M PHY mode, the configuration need to be changed to
-> value - b100.
->   This patch was verified with a RTL8201F 100M ethernet PHY.
->
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+Capitalization and punctuation would be nice.
+
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 120 +++++++++++++++---
->  1 file changed, 104 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> index 7cb794094a70..4ff231df7322 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> @@ -18,6 +18,7 @@
->  #include <linux/io.h>
->  #include <linux/ioport.h>
->  #include <linux/module.h>
-> +#include <linux/of_device.h>
->  #include <linux/of_net.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/platform_device.h>
-> @@ -29,6 +30,10 @@
->
->  #define PRG_ETH0_RGMII_MODE            BIT(0)
->
-> +#define PRG_ETH0_EXT_PHY_MODE_MASK     GENMASK(2, 0)
-> +#define PRG_ETH0_EXT_RGMII_MODE                1
-> +#define PRG_ETH0_EXT_RMII_MODE         4
-> +
->  /* mux to choose between fclk_div2 (bit unset) and mpll2 (bit set) */
->  #define PRG_ETH0_CLK_M250_SEL_SHIFT    4
->  #define PRG_ETH0_CLK_M250_SEL_MASK     GENMASK(4, 4)
-> @@ -47,12 +52,20 @@
->
->  #define MUX_CLK_NUM_PARENTS            2
->
-> +struct meson8b_dwmac;
-> +
-> +struct meson8b_dwmac_data {
-> +       int (*set_phy_mode)(struct meson8b_dwmac *dwmac);
-> +};
-> +
->  struct meson8b_dwmac {
-> -       struct device           *dev;
-> -       void __iomem            *regs;
-> -       phy_interface_t         phy_mode;
-> -       struct clk              *rgmii_tx_clk;
-> -       u32                     tx_delay_ns;
-> +       struct device                   *dev;
-> +       void __iomem                    *regs;
-> +
-> +       const struct meson8b_dwmac_data *data;
-> +       phy_interface_t                 phy_mode;
-> +       struct clk                      *rgmii_tx_clk;
-> +       u32                             tx_delay_ns;
->  };
->
->  struct meson8b_dwmac_clk_configs {
-> @@ -171,6 +184,59 @@ static int meson8b_init_rgmii_tx_clk(struct meson8b_dwmac *dwmac)
->         return 0;
->  }
->
-> +static int meson8b_set_phy_mode(struct meson8b_dwmac *dwmac)
-> +{
-> +       switch (dwmac->phy_mode) {
-> +       case PHY_INTERFACE_MODE_RGMII:
-> +       case PHY_INTERFACE_MODE_RGMII_RXID:
-> +       case PHY_INTERFACE_MODE_RGMII_ID:
-> +       case PHY_INTERFACE_MODE_RGMII_TXID:
-> +               /* enable RGMII mode */
-> +               meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-> +                                       PRG_ETH0_RGMII_MODE,
-> +                                       PRG_ETH0_RGMII_MODE);
-> +               break;
-> +       case PHY_INTERFACE_MODE_RMII:
-> +               /* disable RGMII mode -> enables RMII mode */
-> +               meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-> +                                       PRG_ETH0_RGMII_MODE, 0);
-> +               break;
-> +       default:
-> +               dev_err(dwmac->dev, "fail to set phy-mode %s\n",
-> +                       phy_modes(dwmac->phy_mode));
-> +               return -EINVAL;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int meson_axg_set_phy_mode(struct meson8b_dwmac *dwmac)
-> +{
-> +       switch (dwmac->phy_mode) {
-> +       case PHY_INTERFACE_MODE_RGMII:
-> +       case PHY_INTERFACE_MODE_RGMII_RXID:
-> +       case PHY_INTERFACE_MODE_RGMII_ID:
-> +       case PHY_INTERFACE_MODE_RGMII_TXID:
-> +               /* enable RGMII mode */
-> +               meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-> +                                       PRG_ETH0_EXT_PHY_MODE_MASK,
-> +                                       PRG_ETH0_EXT_RGMII_MODE);
-> +               break;
-> +       case PHY_INTERFACE_MODE_RMII:
-> +               /* disable RGMII mode -> enables RMII mode */
-if you have to re-send it for whatever reason:
-maybe you could remove the comments from meson_axg_set_phy_mode. the
-"older" register layout requires un-setting RGMII mode to enable RMII
-mode. however, for AXG there seem to be two dedicated values (1 and 4)
-for each mode
+>  include/dt-bindings/clock/axg-audio-clkc.h | 94 ++++++++++++++++++++++++++++++
+>  1 file changed, 94 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/axg-audio-clkc.h
 
-apart from that:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+This can be combined with the next patch. Otherwise,
 
-> +               meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
-> +                                       PRG_ETH0_EXT_PHY_MODE_MASK,
-> +                                       PRG_ETH0_EXT_RMII_MODE);
-> +               break;
-> +       default:
-> +               dev_err(dwmac->dev, "fail to set phy-mode %s\n",
-> +                       phy_modes(dwmac->phy_mode));
-> +               return -EINVAL;
-> +       }
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> 
+> diff --git a/include/dt-bindings/clock/axg-audio-clkc.h b/include/dt-bindings/clock/axg-audio-clkc.h
+> new file mode 100644
+> index 000000000000..4426ae655858
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/axg-audio-clkc.h
+> @@ -0,0 +1,94 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2018 Baylibre SAS.
+> + * Author: Jerome Brunet <jbrunet@baylibre.com>
+> + */
 > +
-> +       return 0;
-> +}
+> +#ifndef __AXG_AUDIO_CLKC_BINDINGS_H
+> +#define __AXG_AUDIO_CLKC_BINDINGS_H
 > +
->  static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->  {
->         int ret;
-> @@ -188,10 +254,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->
->         case PHY_INTERFACE_MODE_RGMII_ID:
->         case PHY_INTERFACE_MODE_RGMII_TXID:
-> -               /* enable RGMII mode */
-> -               meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
-> -                                       PRG_ETH0_RGMII_MODE);
-> -
->                 /* only relevant for RMII mode -> disable in RGMII mode */
->                 meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->                                         PRG_ETH0_INVERTED_RMII_CLK, 0);
-> @@ -224,10 +286,6 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
->                 break;
->
->         case PHY_INTERFACE_MODE_RMII:
-> -               /* disable RGMII mode -> enables RMII mode */
-> -               meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_RGMII_MODE,
-> -                                       0);
-> -
->                 /* invert internal clk_rmii_i to generate 25/2.5 tx_rx_clk */
->                 meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
->                                         PRG_ETH0_INVERTED_RMII_CLK,
-> @@ -274,6 +332,11 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->                 goto err_remove_config_dt;
->         }
->
-> +       dwmac->data = (const struct meson8b_dwmac_data *)
-> +               of_device_get_match_data(&pdev->dev);
-> +       if (!dwmac->data)
-> +               return -EINVAL;
+> +#define AUD_CLKID_SLV_SCLK0		9
+> +#define AUD_CLKID_SLV_SCLK1		10
+> +#define AUD_CLKID_SLV_SCLK2		11
+> +#define AUD_CLKID_SLV_SCLK3		12
+> +#define AUD_CLKID_SLV_SCLK4		13
+> +#define AUD_CLKID_SLV_SCLK5		14
+> +#define AUD_CLKID_SLV_SCLK6		15
+> +#define AUD_CLKID_SLV_SCLK7		16
+> +#define AUD_CLKID_SLV_SCLK8		17
+> +#define AUD_CLKID_SLV_SCLK9		18
+> +#define AUD_CLKID_SLV_LRCLK0		19
+> +#define AUD_CLKID_SLV_LRCLK1		20
+> +#define AUD_CLKID_SLV_LRCLK2		21
+> +#define AUD_CLKID_SLV_LRCLK3		22
+> +#define AUD_CLKID_SLV_LRCLK4		23
+> +#define AUD_CLKID_SLV_LRCLK5		24
+> +#define AUD_CLKID_SLV_LRCLK6		25
+> +#define AUD_CLKID_SLV_LRCLK7		26
+> +#define AUD_CLKID_SLV_LRCLK8		27
+> +#define AUD_CLKID_SLV_LRCLK9		28
+> +#define AUD_CLKID_DDR_ARB		29
+> +#define AUD_CLKID_PDM			30
+> +#define AUD_CLKID_TDMIN_A		31
+> +#define AUD_CLKID_TDMIN_B		32
+> +#define AUD_CLKID_TDMIN_C		33
+> +#define AUD_CLKID_TDMIN_LB		34
+> +#define AUD_CLKID_TDMOUT_A		35
+> +#define AUD_CLKID_TDMOUT_B		36
+> +#define AUD_CLKID_TDMOUT_C		37
+> +#define AUD_CLKID_FRDDR_A		38
+> +#define AUD_CLKID_FRDDR_B		39
+> +#define AUD_CLKID_FRDDR_C		40
+> +#define AUD_CLKID_TODDR_A		41
+> +#define AUD_CLKID_TODDR_B		42
+> +#define AUD_CLKID_TODDR_C		43
+> +#define AUD_CLKID_LOOPBACK		44
+> +#define AUD_CLKID_SPDIFIN		45
+> +#define AUD_CLKID_SPDIFOUT		46
+> +#define AUD_CLKID_RESAMPLE		47
+> +#define AUD_CLKID_POWER_DETECT		48
+> +#define AUD_CLKID_MST_A_MCLK		49
+> +#define AUD_CLKID_MST_B_MCLK		50
+> +#define AUD_CLKID_MST_C_MCLK		51
+> +#define AUD_CLKID_MST_D_MCLK		52
+> +#define AUD_CLKID_MST_E_MCLK		53
+> +#define AUD_CLKID_MST_F_MCLK		54
+> +#define AUD_CLKID_SPDIFOUT_CLK		55
+> +#define AUD_CLKID_SPDIFIN_CLK		56
+> +#define AUD_CLKID_PDM_DCLK		57
+> +#define AUD_CLKID_PDM_SYSCLK		58
+> +#define AUD_CLKID_MST_A_SCLK		79
+> +#define AUD_CLKID_MST_B_SCLK		80
+> +#define AUD_CLKID_MST_C_SCLK		81
+> +#define AUD_CLKID_MST_D_SCLK		82
+> +#define AUD_CLKID_MST_E_SCLK		83
+> +#define AUD_CLKID_MST_F_SCLK		84
+> +#define AUD_CLKID_MST_A_LRCLK		86
+> +#define AUD_CLKID_MST_B_LRCLK		87
+> +#define AUD_CLKID_MST_C_LRCLK		88
+> +#define AUD_CLKID_MST_D_LRCLK		89
+> +#define AUD_CLKID_MST_E_LRCLK		90
+> +#define AUD_CLKID_MST_F_LRCLK		91
+> +#define AUD_CLKID_TDMIN_A_SCLK_SEL	116
+> +#define AUD_CLKID_TDMIN_B_SCLK_SEL	117
+> +#define AUD_CLKID_TDMIN_C_SCLK_SEL	118
+> +#define AUD_CLKID_TDMIN_LB_SCLK_SEL	119
+> +#define AUD_CLKID_TDMOUT_A_SCLK_SEL	120
+> +#define AUD_CLKID_TDMOUT_B_SCLK_SEL	121
+> +#define AUD_CLKID_TDMOUT_C_SCLK_SEL	122
+> +#define AUD_CLKID_TDMIN_A_SCLK		123
+> +#define AUD_CLKID_TDMIN_B_SCLK		124
+> +#define AUD_CLKID_TDMIN_C_SCLK		125
+> +#define AUD_CLKID_TDMIN_LB_SCLK		126
+> +#define AUD_CLKID_TDMOUT_A_SCLK		127
+> +#define AUD_CLKID_TDMOUT_B_SCLK		128
+> +#define AUD_CLKID_TDMOUT_C_SCLK		129
+> +#define AUD_CLKID_TDMIN_A_LRCLK		130
+> +#define AUD_CLKID_TDMIN_B_LRCLK		131
+> +#define AUD_CLKID_TDMIN_C_LRCLK		132
+> +#define AUD_CLKID_TDMIN_LB_LRCLK	133
+> +#define AUD_CLKID_TDMOUT_A_LRCLK	134
+> +#define AUD_CLKID_TDMOUT_B_LRCLK	135
+> +#define AUD_CLKID_TDMOUT_C_LRCLK	136
 > +
->         res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
->         dwmac->regs = devm_ioremap_resource(&pdev->dev, res);
->         if (IS_ERR(dwmac->regs)) {
-> @@ -298,6 +361,10 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->         if (ret)
->                 goto err_remove_config_dt;
->
-> +       ret = dwmac->data->set_phy_mode(dwmac);
-> +       if (ret)
-> +               goto err_remove_config_dt;
-> +
->         ret = meson8b_init_prg_eth(dwmac);
->         if (ret)
->                 goto err_remove_config_dt;
-> @@ -316,10 +383,31 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->         return ret;
->  }
->
-> +static const struct meson8b_dwmac_data meson8b_dwmac_data = {
-> +       .set_phy_mode = meson8b_set_phy_mode,
-> +};
-> +
-> +static const struct meson8b_dwmac_data meson_axg_dwmac_data = {
-> +       .set_phy_mode = meson_axg_set_phy_mode,
-> +};
-> +
->  static const struct of_device_id meson8b_dwmac_match[] = {
-> -       { .compatible = "amlogic,meson8b-dwmac" },
-> -       { .compatible = "amlogic,meson8m2-dwmac" },
-> -       { .compatible = "amlogic,meson-gxbb-dwmac" },
-> +       {
-> +               .compatible = "amlogic,meson8b-dwmac",
-> +               .data = &meson8b_dwmac_data,
-> +       },
-> +       {
-> +               .compatible = "amlogic,meson8m2-dwmac",
-> +               .data = &meson8b_dwmac_data,
-> +       },
-> +       {
-> +               .compatible = "amlogic,meson-gxbb-dwmac",
-> +               .data = &meson8b_dwmac_data,
-> +       },
-> +       {
-> +               .compatible = "amlogic,meson-axg-dwmac",
-> +               .data = &meson_axg_dwmac_data,
-> +       },
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, meson8b_dwmac_match);
+> +#endif /* __AXG_AUDIO_CLKC_BINDINGS_H */
+> -- 
+> 2.14.3
+> 
 > --
-> 2.17.0
->
+> To unsubscribe from this list: send the line "unsubscribe devicetree" in
+> the body of a message to majordomo at vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
