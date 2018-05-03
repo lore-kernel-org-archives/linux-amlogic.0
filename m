@@ -1,382 +1,365 @@
-From: satendra.t@samsung.com (Satendra Singh Thakur)
-Date: Thu,  3 May 2018 14:39:21 +0530
-Subject: [PATCH 07/13] drm/kms/mode/meson-encoder: using helper function
- drm_display_mode_to_videomode for calculating timing parameters
-In-Reply-To: <cover.1525087679.git.satendra.t@samsung.com>
-References: <cover.1525087679.git.satendra.t@samsung.com>
- <CGME20180503090930epcas5p23ef09c1e72c344bf8d879a344d0998cf@epcas5p2.samsung.com>
-Message-ID: <905f0ccf6c9abc97b6d77855b14d3bf8af892372.1525087679.git.satendra.t@samsung.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Thu, 3 May 2018 21:26:20 +0800
+Subject: [PATCH v8 1/5] clk: meson: aoclk: refactor common code into dedicated
+ file
+In-Reply-To: <20180503132624.78453-1-yixun.lan@amlogic.com>
+References: <20180503132624.78453-1-yixun.lan@amlogic.com>
+Message-ID: <20180503132624.78453-2-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
--Duplicate logic for the timing params is avoided
--Arithmatic operator *,/ are replaced by logical >>, << operators
--The flags DRM_MODE_FLAG_* are replaced with DISPLAY_FLAGS_* flags
--Combined similar if statements
+We try to refactor the common code into one dedicated file,
+while preparing to add new Meson-AXG aoclk driver, this would
+help us to better share the code by all aoclk drivers.
 
-Signed-off-by: Satendra Singh Thakur <satendra.t@samsung.com>
-Cc: Madhur Verma <madhur.verma@samsung.com>
-Cc: Hemanshu Srivastava <hemanshu.s@samsung.com>
+Suggested-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 ---
- drivers/gpu/drm/meson/meson_venc.c | 149 ++++++++++++++++---------------------
- 1 file changed, 65 insertions(+), 84 deletions(-)
+ drivers/clk/meson/Kconfig       |  7 +++
+ drivers/clk/meson/Makefile      |  1 +
+ drivers/clk/meson/gxbb-aoclk.c  | 94 +++++++++++----------------------
+ drivers/clk/meson/gxbb-aoclk.h  |  5 ++
+ drivers/clk/meson/meson-aoclk.c | 81 ++++++++++++++++++++++++++++
+ drivers/clk/meson/meson-aoclk.h | 34 ++++++++++++
+ 6 files changed, 160 insertions(+), 62 deletions(-)
+ create mode 100644 drivers/clk/meson/meson-aoclk.c
+ create mode 100644 drivers/clk/meson/meson-aoclk.h
 
-diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-index 6e27013..dddf914 100644
---- a/drivers/gpu/drm/meson/meson_venc.c
-+++ b/drivers/gpu/drm/meson/meson_venc.c
-@@ -25,7 +25,7 @@
- #include "meson_vpp.h"
- #include "meson_vclk.h"
- #include "meson_registers.h"
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index d5cbec522aec..fddc7ec7b820 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -3,6 +3,12 @@ config COMMON_CLK_AMLOGIC
+ 	depends on OF
+ 	depends on ARCH_MESON || COMPILE_TEST
+ 
++config COMMON_CLK_MESON_AO
++	bool
++	depends on OF
++	depends on ARCH_MESON || COMPILE_TEST
++	select COMMON_CLK_REGMAP_MESON
++
+ config COMMON_CLK_REGMAP_MESON
+ 	bool
+ 	select REGMAP
+@@ -21,6 +27,7 @@ config COMMON_CLK_GXBB
+ 	bool
+ 	depends on COMMON_CLK_AMLOGIC
+ 	select RESET_CONTROLLER
++	select COMMON_CLK_MESON_AO
+ 	select COMMON_CLK_REGMAP_MESON
+ 	select MFD_SYSCON
+ 	help
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index ffee82e60b7a..0a8df284f4e7 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -3,6 +3,7 @@
+ #
+ 
+ obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-audio-divider.o
++obj-$(CONFIG_COMMON_CLK_MESON_AO) += meson-aoclk.o
+ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+ obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
+ obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o
+diff --git a/drivers/clk/meson/gxbb-aoclk.c b/drivers/clk/meson/gxbb-aoclk.c
+index eebb580b9e0f..20f73e0d82a4 100644
+--- a/drivers/clk/meson/gxbb-aoclk.c
++++ b/drivers/clk/meson/gxbb-aoclk.c
+@@ -52,39 +52,12 @@
+  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+-#include <linux/clk-provider.h>
+-#include <linux/of_address.h>
+ #include <linux/platform_device.h>
+-#include <linux/reset-controller.h>
+ #include <linux/mfd/syscon.h>
+-#include <linux/regmap.h>
+-#include <linux/init.h>
+-#include <linux/delay.h>
+-#include <dt-bindings/clock/gxbb-aoclkc.h>
+-#include <dt-bindings/reset/gxbb-aoclkc.h>
+ #include "clk-regmap.h"
++#include "meson-aoclk.h"
+ #include "gxbb-aoclk.h"
+ 
+-struct gxbb_aoclk_reset_controller {
+-	struct reset_controller_dev reset;
+-	unsigned int *data;
+-	struct regmap *regmap;
+-};
 -
-+#include <video/videomode.h>
- /**
-  * DOC: Video Encoder
-  *
-@@ -1125,9 +1125,6 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 	bool hdmi_repeat = false;
- 	unsigned int venc_hdmi_latency = 2;
- 	unsigned long total_pixels_venc = 0;
--	unsigned long active_pixels_venc = 0;
--	unsigned long front_porch_venc = 0;
--	unsigned long hsync_pixels_venc = 0;
- 	unsigned long de_h_begin = 0;
- 	unsigned long de_h_end = 0;
- 	unsigned long de_v_begin_even = 0;
-@@ -1143,9 +1140,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 	unsigned long vs_eline_odd = 0;
- 	unsigned long vso_begin_evn = 0;
- 	unsigned long vso_begin_odd = 0;
--	unsigned int eof_lines;
--	unsigned int sof_lines;
--	unsigned int vsync_lines;
-+	struct videomode vm = {};
- 
- 	if (meson_venc_hdmi_supported_vic(vic))
- 		vmode = meson_venc_hdmi_get_vic_vmode(vic);
-@@ -1156,9 +1151,9 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 			DRM_MODE_FMT "\n", __func__, DRM_MODE_ARG(mode));
- 		return;
- 	}
+-static int gxbb_aoclk_do_reset(struct reset_controller_dev *rcdev,
+-			       unsigned long id)
+-{
+-	struct gxbb_aoclk_reset_controller *reset =
+-		container_of(rcdev, struct gxbb_aoclk_reset_controller, reset);
 -
-+	drm_display_mode_to_videomode(mode, &vm);
- 	/* Use VENCI for 480i and 576i and double HDMI pixels */
--	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
-+	if (vm.flags & DISPLAY_FLAGS_DOUBLECLK) {
- 		hdmi_repeat = true;
- 		use_enci = true;
- 		venc_hdmi_latency = 1;
-@@ -1167,40 +1162,25 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 	/* Repeat VENC pixels for 480/576i/p, 720p50/60 and 1080p50/60 */
- 	if (meson_venc_hdmi_venc_repeat(vic))
- 		venc_repeat = true;
+-	return regmap_write(reset->regmap, AO_RTI_GEN_CNTL_REG0,
+-			    BIT(reset->data[id]));
+-}
 -
--	eof_lines = mode->vsync_start - mode->vdisplay;
--	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
--		eof_lines /= 2;
--	sof_lines = mode->vtotal - mode->vsync_end;
--	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
--		sof_lines /= 2;
--	vsync_lines = mode->vsync_end - mode->vsync_start;
--	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
--		vsync_lines /= 2;
-+	if (vm.flags & DISPLAY_FLAGS_INTERLACED) {
-+		vm.vfront_porch >>= 1;
-+		vm.vback_porch >>= 1;
-+		vm.vsync_len >>= 1;
-+	}
- 
- 	total_pixels_venc = mode->htotal;
--	if (hdmi_repeat)
--		total_pixels_venc /= 2;
--	if (venc_repeat)
--		total_pixels_venc *= 2;
+-static const struct reset_control_ops gxbb_aoclk_reset_ops = {
+-	.reset = gxbb_aoclk_do_reset,
+-};
 -
--	active_pixels_venc = mode->hdisplay;
--	if (hdmi_repeat)
--		active_pixels_venc /= 2;
--	if (venc_repeat)
--		active_pixels_venc *= 2;
+ #define GXBB_AO_GATE(_name, _bit)					\
+ static struct clk_regmap _name##_ao = {					\
+ 	.data = &(struct clk_regmap_gate_data) {			\
+@@ -117,7 +90,7 @@ static struct aoclk_cec_32k cec_32k_ao = {
+ 	},
+ };
+ 
+-static unsigned int gxbb_aoclk_reset[] = {
++static const unsigned int gxbb_aoclk_reset[] = {
+ 	[RESET_AO_REMOTE] = 16,
+ 	[RESET_AO_I2C_MASTER] = 18,
+ 	[RESET_AO_I2C_SLAVE] = 19,
+@@ -135,7 +108,7 @@ static struct clk_regmap *gxbb_aoclk_gate[] = {
+ 	[CLKID_AO_IR_BLASTER] = &ir_blaster_ao,
+ };
+ 
+-static struct clk_hw_onecell_data gxbb_aoclk_onecell_data = {
++static const struct clk_hw_onecell_data gxbb_aoclk_onecell_data = {
+ 	.hws = {
+ 		[CLKID_AO_REMOTE] = &remote_ao.hw,
+ 		[CLKID_AO_I2C_MASTER] = &i2c_master_ao.hw,
+@@ -145,58 +118,55 @@ static struct clk_hw_onecell_data gxbb_aoclk_onecell_data = {
+ 		[CLKID_AO_IR_BLASTER] = &ir_blaster_ao.hw,
+ 		[CLKID_AO_CEC_32K] = &cec_32k_ao.hw,
+ 	},
+-	.num = 7,
++	.num = NR_CLKS,
+ };
+ 
+-static int gxbb_aoclkc_probe(struct platform_device *pdev)
++static int gxbb_register_cec_ao_32k(struct platform_device *pdev)
+ {
+-	struct gxbb_aoclk_reset_controller *rstc;
+ 	struct device *dev = &pdev->dev;
+ 	struct regmap *regmap;
+-	int ret, clkid;
 -
--	front_porch_venc = (mode->hsync_start - mode->hdisplay);
--	if (hdmi_repeat)
--		front_porch_venc /= 2;
--	if (venc_repeat)
--		front_porch_venc *= 2;
+-	rstc = devm_kzalloc(dev, sizeof(*rstc), GFP_KERNEL);
+-	if (!rstc)
+-		return -ENOMEM;
++	int ret;
+ 
+ 	regmap = syscon_node_to_regmap(of_get_parent(dev->of_node));
+ 	if (IS_ERR(regmap)) {
+ 		dev_err(dev, "failed to get regmap\n");
+-		return -ENODEV;
+-	}
 -
--	hsync_pixels_venc = (mode->hsync_end - mode->hsync_start);
--	if (hdmi_repeat)
--		hsync_pixels_venc /= 2;
--	if (venc_repeat)
--		hsync_pixels_venc *= 2;
-+	if (hdmi_repeat) {
-+		total_pixels_venc >>= 1;
-+		vm.hactive >>= 1;
-+		vm.hfront_porch >>= 1;
-+		vm.hsync_len >>= 1;
-+	}
-+	if (venc_repeat) {
-+		total_pixels_venc <<= 1;
-+		vm.hactive <<= 1;
-+		vm.hfront_porch <<= 1;
-+		vm.hsync_len <<= 1;
-+	}
- 
- 	/* Disable VDACs */
- 	writel_bits_relaxed(0xff, 0xff,
-@@ -1302,7 +1282,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 					_REG(ENCI_VFIFO2VD_PIXEL_START))
- 					+ venc_hdmi_latency,
- 				    total_pixels_venc);
--		de_h_end  = modulo(de_h_begin + active_pixels_venc,
-+		de_h_end  = modulo(de_h_begin + vm.hactive,
- 				   total_pixels_venc);
- 
- 		writel_relaxed(de_h_begin,
-@@ -1312,10 +1292,10 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 
- 		de_v_begin_even = readl_relaxed(priv->io_base +
- 					_REG(ENCI_VFIFO2VD_LINE_TOP_START));
--		de_v_end_even  = de_v_begin_even + mode->vdisplay;
-+		de_v_end_even  = de_v_begin_even + vm.vactive;
- 		de_v_begin_odd = readl_relaxed(priv->io_base +
- 					_REG(ENCI_VFIFO2VD_LINE_BOT_START));
--		de_v_end_odd = de_v_begin_odd + mode->vdisplay;
-+		de_v_end_odd = de_v_begin_odd + vm.vactive;
- 
- 		writel_relaxed(de_v_begin_even,
- 				priv->io_base + _REG(ENCI_DE_V_BEGIN_EVEN));
-@@ -1327,16 +1307,16 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 				priv->io_base + _REG(ENCI_DE_V_END_ODD));
- 
- 		/* Program Hsync timing */
--		hs_begin = de_h_end + front_porch_venc;
--		if (de_h_end + front_porch_venc >= total_pixels_venc) {
-+		hs_begin = de_h_end + vm.hfront_porch;
-+		if (de_h_end + vm.hfront_porch >= total_pixels_venc) {
- 			hs_begin -= total_pixels_venc;
- 			vs_adjust  = 1;
- 		} else {
--			hs_begin = de_h_end + front_porch_venc;
-+			hs_begin = de_h_end + vm.hfront_porch;
- 			vs_adjust  = 0;
- 		}
- 
--		hs_end = modulo(hs_begin + hsync_pixels_venc,
-+		hs_end = modulo(hs_begin + vm.hsync_len,
- 				total_pixels_venc);
- 		writel_relaxed(hs_begin,
- 				priv->io_base + _REG(ENCI_DVI_HSO_BEGIN));
-@@ -1344,12 +1324,13 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 				priv->io_base + _REG(ENCI_DVI_HSO_END));
- 
- 		/* Program Vsync timing for even field */
--		if (((de_v_end_odd - 1) + eof_lines + vs_adjust) >= lines_f1) {
-+		if (((de_v_end_odd - 1) + vm.vfront_porch + vs_adjust)
-+							>= lines_f1) {
- 			vs_bline_evn = (de_v_end_odd - 1)
--					+ eof_lines
-+					+ vm.vfront_porch
- 					+ vs_adjust
- 					- lines_f1;
--			vs_eline_evn = vs_bline_evn + vsync_lines;
-+			vs_eline_evn = vs_bline_evn + vm.vsync_len;
- 
- 			writel_relaxed(vs_bline_evn,
- 				priv->io_base + _REG(ENCI_DVI_VSO_BLINE_EVN));
-@@ -1363,7 +1344,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 				priv->io_base + _REG(ENCI_DVI_VSO_END_EVN));
- 		} else {
- 			vs_bline_odd = (de_v_end_odd - 1)
--					+ eof_lines
-+					+ vm.vfront_porch
- 					+ vs_adjust;
- 
- 			writel_relaxed(vs_bline_odd,
-@@ -1372,9 +1353,9 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 			writel_relaxed(hs_begin,
- 				priv->io_base + _REG(ENCI_DVI_VSO_BEGIN_ODD));
- 
--			if ((vs_bline_odd + vsync_lines) >= lines_f1) {
-+			if ((vs_bline_odd + vm.vsync_len) >= lines_f1) {
- 				vs_eline_evn = vs_bline_odd
--						+ vsync_lines
-+						+ vm.vsync_len
- 						- lines_f1;
- 
- 				writel_relaxed(vs_eline_evn, priv->io_base
-@@ -1384,7 +1365,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 						+ _REG(ENCI_DVI_VSO_END_EVN));
- 			} else {
- 				vs_eline_odd = vs_bline_odd
--						+ vsync_lines;
-+						+ vm.vsync_len;
- 
- 				writel_relaxed(vs_eline_odd, priv->io_base
- 						+ _REG(ENCI_DVI_VSO_ELINE_ODD));
-@@ -1395,11 +1376,11 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 		}
- 
- 		/* Program Vsync timing for odd field */
--		if (((de_v_end_even - 1) + (eof_lines + 1)) >= lines_f0) {
-+		if (((de_v_end_even - 1) + (vm.vfront_porch + 1)) >= lines_f0) {
- 			vs_bline_odd = (de_v_end_even - 1)
--					+ (eof_lines + 1)
-+					+ (vm.vfront_porch + 1)
- 					- lines_f0;
--			vs_eline_odd = vs_bline_odd + vsync_lines;
-+			vs_eline_odd = vs_bline_odd + vm.vsync_len;
- 
- 			writel_relaxed(vs_bline_odd,
- 				priv->io_base + _REG(ENCI_DVI_VSO_BLINE_ODD));
-@@ -1417,7 +1398,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 				priv->io_base + _REG(ENCI_DVI_VSO_END_ODD));
- 		} else {
- 			vs_bline_evn = (de_v_end_even - 1)
--					+ (eof_lines + 1);
-+					+ (vm.vfront_porch + 1);
- 
- 			writel_relaxed(vs_bline_evn,
- 				priv->io_base + _REG(ENCI_DVI_VSO_BLINE_EVN));
-@@ -1429,9 +1410,9 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 			writel_relaxed(vso_begin_evn, priv->io_base
- 					+ _REG(ENCI_DVI_VSO_BEGIN_EVN));
- 
--			if (vs_bline_evn + vsync_lines >= lines_f0) {
-+			if (vs_bline_evn + vm.vsync_len >= lines_f0) {
- 				vs_eline_odd = vs_bline_evn
--						+ vsync_lines
-+						+ vm.vsync_len
- 						- lines_f0;
- 
- 				writel_relaxed(vs_eline_odd, priv->io_base
-@@ -1440,7 +1421,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 				writel_relaxed(vso_begin_evn, priv->io_base
- 						+ _REG(ENCI_DVI_VSO_END_ODD));
- 			} else {
--				vs_eline_evn = vs_bline_evn + vsync_lines;
-+				vs_eline_evn = vs_bline_evn + vm.vsync_len;
- 
- 				writel_relaxed(vs_eline_evn, priv->io_base
- 						+ _REG(ENCI_DVI_VSO_ELINE_EVN));
-@@ -1548,7 +1529,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 					_REG(ENCP_VIDEO_HAVON_BEGIN))
- 					+ venc_hdmi_latency,
- 				    total_pixels_venc);
--		de_h_end = modulo(de_h_begin + active_pixels_venc,
-+		de_h_end = modulo(de_h_begin + vm.hactive,
- 				  total_pixels_venc);
- 
- 		writel_relaxed(de_h_begin,
-@@ -1559,11 +1540,11 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 		/* Program DE timing for even field */
- 		de_v_begin_even = readl_relaxed(priv->io_base
- 						+ _REG(ENCP_VIDEO_VAVON_BLINE));
--		if (mode->flags & DRM_MODE_FLAG_INTERLACE)
-+		if (vm.flags & DISPLAY_FLAGS_INTERLACED)
- 			de_v_end_even = de_v_begin_even +
--					(mode->vdisplay / 2);
-+					(vm.vactive >> 1);
- 		else
--			de_v_end_even = de_v_begin_even + mode->vdisplay;
-+			de_v_end_even = de_v_begin_even + vm.vactive;
- 
- 		writel_relaxed(de_v_begin_even,
- 				priv->io_base + _REG(ENCP_DE_V_BEGIN_EVEN));
-@@ -1571,14 +1552,14 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 				priv->io_base + _REG(ENCP_DE_V_END_EVEN));
- 
- 		/* Program DE timing for odd field if needed */
--		if (mode->flags & DRM_MODE_FLAG_INTERLACE) {
-+		if (vm.flags & DISPLAY_FLAGS_INTERLACED) {
- 			unsigned int ofld_voav_ofst =
- 				readl_relaxed(priv->io_base +
- 					_REG(ENCP_VIDEO_OFLD_VOAV_OFST));
- 			de_v_begin_odd = to_signed((ofld_voav_ofst & 0xf0) >> 4)
- 						+ de_v_begin_even
- 						+ ((mode->vtotal - 1) / 2);
--			de_v_end_odd = de_v_begin_odd + (mode->vdisplay / 2);
-+			de_v_end_odd = de_v_begin_odd + (vm.vactive >> 1);
- 
- 			writel_relaxed(de_v_begin_odd,
- 				priv->io_base + _REG(ENCP_DE_V_BEGIN_ODD));
-@@ -1587,18 +1568,18 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 		}
- 
- 		/* Program Hsync timing */
--		if ((de_h_end + front_porch_venc) >= total_pixels_venc) {
-+		if ((de_h_end + vm.hfront_porch) >= total_pixels_venc) {
- 			hs_begin = de_h_end
--				   + front_porch_venc
-+				   + vm.hfront_porch
- 				   - total_pixels_venc;
- 			vs_adjust  = 1;
- 		} else {
- 			hs_begin = de_h_end
--				   + front_porch_venc;
-+				   + vm.hfront_porch;
- 			vs_adjust  = 0;
- 		}
- 
--		hs_end = modulo(hs_begin + hsync_pixels_venc,
-+		hs_end = modulo(hs_begin + vm.hsync_len,
- 				total_pixels_venc);
- 
- 		writel_relaxed(hs_begin,
-@@ -1608,19 +1589,19 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 
- 		/* Program Vsync timing for even field */
- 		if (de_v_begin_even >=
--				(sof_lines + vsync_lines + (1 - vs_adjust)))
-+			(vm.vback_porch + vm.vsync_len + (1 - vs_adjust)))
- 			vs_bline_evn = de_v_begin_even
--					- sof_lines
--					- vsync_lines
-+					- vm.vback_porch
-+					- vm.vsync_len
- 					- (1 - vs_adjust);
- 		else
- 			vs_bline_evn = mode->vtotal
- 					+ de_v_begin_even
--					- sof_lines
--					- vsync_lines
-+					- vm.vback_porch
-+					- vm.vsync_len
- 					- (1 - vs_adjust);
- 
--		vs_eline_evn = modulo(vs_bline_evn + vsync_lines,
-+		vs_eline_evn = modulo(vs_bline_evn + vm.vsync_len,
- 					mode->vtotal);
- 
- 		writel_relaxed(vs_bline_evn,
-@@ -1635,12 +1616,12 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 				priv->io_base + _REG(ENCP_DVI_VSO_END_EVN));
- 
- 		/* Program Vsync timing for odd field if needed */
--		if (mode->flags & DRM_MODE_FLAG_INTERLACE) {
-+		if (vm.flags & DISPLAY_FLAGS_INTERLACED) {
- 			vs_bline_odd = (de_v_begin_odd - 1)
--					- sof_lines
--					- vsync_lines;
-+					- vm.vback_porch
-+					- vm.vsync_len;
- 			vs_eline_odd = (de_v_begin_odd - 1)
--					- vsync_lines;
-+					- vm.vsync_len;
- 			vso_begin_odd  = modulo(hs_begin
- 						+ (total_pixels_venc >> 1),
- 						total_pixels_venc);
-@@ -1660,8 +1641,8 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+-	/* Reset Controller */
+-	rstc->regmap = regmap;
+-	rstc->data = gxbb_aoclk_reset;
+-	rstc->reset.ops = &gxbb_aoclk_reset_ops;
+-	rstc->reset.nr_resets = ARRAY_SIZE(gxbb_aoclk_reset);
+-	rstc->reset.of_node = dev->of_node;
+-	ret = devm_reset_controller_register(dev, &rstc->reset);
+-
+-	/*
+-	 * Populate regmap and register all clks
+-	 */
+-	for (clkid = 0; clkid < ARRAY_SIZE(gxbb_aoclk_gate); clkid++) {
+-		gxbb_aoclk_gate[clkid]->map = regmap;
+-
+-		ret = devm_clk_hw_register(dev,
+-					   gxbb_aoclk_onecell_data.hws[clkid]);
+-		if (ret)
+-			return ret;
++		return PTR_ERR(regmap);
  	}
  
- 	writel_relaxed((use_enci ? 1 : 2) |
--		       (mode->flags & DRM_MODE_FLAG_PHSYNC ? 1 << 2 : 0) |
--		       (mode->flags & DRM_MODE_FLAG_PVSYNC ? 1 << 3 : 0) |
-+		       (vm.flags & DISPLAY_FLAGS_HSYNC_HIGH ? 1 << 2 : 0) |
-+		       (vm.flags & DISPLAY_FLAGS_VSYNC_HIGH ? 1 << 3 : 0) |
- 		       4 << 5 |
- 		       (venc_repeat ? 1 << 8 : 0) |
- 		       (hdmi_repeat ? 1 << 12 : 0),
+ 	/* Specific clocks */
+ 	cec_32k_ao.regmap = regmap;
+ 	ret = devm_clk_hw_register(dev, &cec_32k_ao.hw);
++	if (ret) {
++		dev_err(&pdev->dev, "clk cec_32k_ao register failed.\n");
++		return ret;
++	}
++
++	return 0;
++}
++
++static const struct meson_aoclk_data gxbb_aoclkc_data = {
++	.reset_reg	= AO_RTI_GEN_CNTL_REG0,
++	.num_reset	= ARRAY_SIZE(gxbb_aoclk_reset),
++	.reset		= gxbb_aoclk_reset,
++	.num_clks	= ARRAY_SIZE(gxbb_aoclk_gate),
++	.clks		= gxbb_aoclk_gate,
++	.hw_data	= &gxbb_aoclk_onecell_data,
++};
++
++static int gxbb_aoclkc_probe(struct platform_device *pdev)
++{
++	int ret = gxbb_register_cec_ao_32k(pdev);
+ 	if (ret)
+ 		return ret;
+ 
+-	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+-			&gxbb_aoclk_onecell_data);
++	return meson_aoclkc_probe(pdev);
+ }
+ 
+ static const struct of_device_id gxbb_aoclkc_match_table[] = {
+-	{ .compatible = "amlogic,meson-gx-aoclkc" },
++	{
++		.compatible	= "amlogic,meson-gx-aoclkc",
++		.data		= &gxbb_aoclkc_data,
++	},
+ 	{ }
+ };
+ 
+diff --git a/drivers/clk/meson/gxbb-aoclk.h b/drivers/clk/meson/gxbb-aoclk.h
+index badc4c22b4ee..6e7fa4134a00 100644
+--- a/drivers/clk/meson/gxbb-aoclk.h
++++ b/drivers/clk/meson/gxbb-aoclk.h
+@@ -8,6 +8,8 @@
+ #ifndef __GXBB_AOCLKC_H
+ #define __GXBB_AOCLKC_H
+ 
++#define NR_CLKS	7
++
+ /* AO Configuration Clock registers offsets */
+ #define AO_RTI_PWR_CNTL_REG1	0x0c
+ #define AO_RTI_PWR_CNTL_REG0	0x10
+@@ -26,4 +28,7 @@ struct aoclk_cec_32k {
+ 
+ extern const struct clk_ops meson_aoclk_cec_32k_ops;
+ 
++#include <dt-bindings/clock/gxbb-aoclkc.h>
++#include <dt-bindings/reset/gxbb-aoclkc.h>
++
+ #endif /* __GXBB_AOCLKC_H */
+diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
+new file mode 100644
+index 000000000000..f965845917e3
+--- /dev/null
++++ b/drivers/clk/meson/meson-aoclk.c
+@@ -0,0 +1,81 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Amlogic Meson-AXG Clock Controller Driver
++ *
++ * Copyright (c) 2016 BayLibre, SAS.
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ *
++ * Copyright (c) 2018 Amlogic, inc.
++ * Author: Qiufang Dai <qiufang.dai@amlogic.com>
++ * Author: Yixun Lan <yixun.lan@amlogic.com>
++ */
++
++#include <linux/platform_device.h>
++#include <linux/reset-controller.h>
++#include <linux/mfd/syscon.h>
++#include <linux/of_device.h>
++#include "clk-regmap.h"
++#include "meson-aoclk.h"
++
++static int meson_aoclk_do_reset(struct reset_controller_dev *rcdev,
++			       unsigned long id)
++{
++	struct meson_aoclk_reset_controller *rstc =
++		container_of(rcdev, struct meson_aoclk_reset_controller, reset);
++
++	return regmap_write(rstc->regmap, rstc->data->reset_reg,
++			    BIT(rstc->data->reset[id]));
++}
++
++static const struct reset_control_ops meson_aoclk_reset_ops = {
++	.reset = meson_aoclk_do_reset,
++};
++
++int meson_aoclkc_probe(struct platform_device *pdev)
++{
++	struct meson_aoclk_reset_controller *rstc;
++	struct meson_aoclk_data *data;
++	struct device *dev = &pdev->dev;
++	struct regmap *regmap;
++	int ret, clkid;
++
++	data = (struct meson_aoclk_data *) of_device_get_match_data(dev);
++	if (!data)
++		return -ENODEV;
++
++	rstc = devm_kzalloc(dev, sizeof(*rstc), GFP_KERNEL);
++	if (!rstc)
++		return -ENOMEM;
++
++	regmap = syscon_node_to_regmap(of_get_parent(dev->of_node));
++	if (IS_ERR(regmap)) {
++		dev_err(dev, "failed to get regmap\n");
++		return PTR_ERR(regmap);
++	}
++
++	/* Reset Controller */
++	rstc->data = data;
++	rstc->regmap = regmap;
++	rstc->reset.ops = &meson_aoclk_reset_ops;
++	rstc->reset.nr_resets = data->num_reset,
++	rstc->reset.of_node = dev->of_node;
++	ret = devm_reset_controller_register(dev, &rstc->reset);
++	if (ret) {
++		dev_err(dev, "failed to register reset controller\n");
++		return ret;
++	}
++
++	/*
++	 * Populate regmap and register all clks
++	 */
++	for (clkid = 0; clkid < data->num_clks; clkid++) {
++		data->clks[clkid]->map = regmap;
++
++		ret = devm_clk_hw_register(dev, data->hw_data->hws[clkid]);
++		if (ret)
++			return ret;
++	}
++
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++		(void *) data->hw_data);
++}
+diff --git a/drivers/clk/meson/meson-aoclk.h b/drivers/clk/meson/meson-aoclk.h
+new file mode 100644
+index 000000000000..ab2819e88922
+--- /dev/null
++++ b/drivers/clk/meson/meson-aoclk.h
+@@ -0,0 +1,34 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
++/*
++ * Copyright (c) 2017 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ *
++ * Copyright (c) 2018 Amlogic, inc.
++ * Author: Qiufang Dai <qiufang.dai@amlogic.com>
++ * Author: Yixun Lan <yixun.lan@amlogic.com>
++ */
++
++#ifndef __MESON_AOCLK_H__
++#define __MESON_AOCLK_H__
++
++#include <linux/platform_device.h>
++#include <linux/reset-controller.h>
++#include "clk-regmap.h"
++
++struct meson_aoclk_data {
++	const unsigned int			reset_reg;
++	const int				num_reset;
++	const unsigned int			*reset;
++	int					num_clks;
++	struct clk_regmap			**clks;
++	const struct clk_hw_onecell_data	*hw_data;
++};
++
++struct meson_aoclk_reset_controller {
++	struct reset_controller_dev		reset;
++	const struct meson_aoclk_data		*data;
++	struct regmap				*regmap;
++};
++
++int meson_aoclkc_probe(struct platform_device *pdev);
++#endif
 -- 
-2.7.4
+2.17.0
