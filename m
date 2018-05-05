@@ -1,36 +1,26 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 4 May 2018 22:09:37 +0200
-Subject: [PATCH 0/1] Meson8b RGMII Ethernet pin cleanup
-In-Reply-To: <20180503170635.GA1925@ingrassia.epigenesys.com>
-References: <20180501220045.2004-1-martin.blumenstingl@googlemail.com>
- <20180503170635.GA1925@ingrassia.epigenesys.com>
-Message-ID: <CAFBinCAvkOzQOqFLqpdumx2hbQiq9H6MQpJV6DiemEDwwk_GSg@mail.gmail.com>
+From: broonie@kernel.org (Mark Brown)
+Date: Sat, 5 May 2018 09:58:36 +0900
+Subject: [PATCH 1/3] spi: meson-axg: support MAX 80M clock
+In-Reply-To: <6cdee2c8-2ca4-2efb-43ac-c233516c0570@amlogic.com>
+References: <20180503213645.20694-1-yixun.lan@amlogic.com>
+ <20180503213645.20694-2-yixun.lan@amlogic.com>
+ <20180503231305.GC13402@sirena.org.uk>
+ <6cdee2c8-2ca4-2efb-43ac-c233516c0570@amlogic.com>
+Message-ID: <20180505005836.GH13402@sirena.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Emiliano,
+On Fri, May 04, 2018 at 09:56:10AM +0800, Yixun Lan wrote:
 
-On Thu, May 3, 2018 at 7:06 PM, Emiliano Ingrassia
-<ingrassia@epigenesys.com> wrote:
-> Hi Martin,
->
-> the patch seems to work fine but I have two questions.
-thank you for testing this! :)
+> Here I only introduce the dt compatible data to differentiate the
+> old/new controller, the compatible name is not changed, and none of the
+> property is introduced.
 
-> First, should we remove those pins from "ethernet_groups" structure
-> in "drivers/pinctrl/meson/pinctrl-meson8b.c" ?
-I believe that some boards with RMII (100Mbit/s) PHY use TXD0/TXD1 on
-DIF_2_P and DIF_2_N
-so we should keep support for these in the driver
-
-> Second, following the Odroid-C1+ schematics there are two pins,
-> "eth_rxd2" and "eth_rxd3" which are not configured by the pin controller
-> driver, nor included in the pins group in the relative device tree.
-> Should we configure and include them ?
-interesting - good catch. I think we should include them in both, the
-pinctrl driver and meson8b.dtsi
-do you know which pads are used for "eth_rxd2" and "eth_rxd3"?
-
-
-Regards
-Martin
+Right, sorry - this bit is fine.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 488 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180505/a4c8caf9/attachment.sig>
