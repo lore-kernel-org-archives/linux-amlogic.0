@@ -1,52 +1,35 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun,  6 May 2018 11:21:16 +0200
-Subject: [PATCH 3/6] ARM: meson: add support for the Meson8m2 SoCs
+Date: Sun,  6 May 2018 11:21:14 +0200
+Subject: [PATCH 1/6] dt-bindings: arm: amlogic: add support for the Meson8m2
+ SoC
 In-Reply-To: <20180506092119.467-1-martin.blumenstingl@googlemail.com>
 References: <20180506092119.467-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180506092119.467-4-martin.blumenstingl@googlemail.com>
+Message-ID: <20180506092119.467-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add a new Kconfig entry as well as the newly introduced compatible
-string for the Meson8m2 SoC.
-The Kconfig entry selects the same drivers as Meson8b because Meson8m2
-SoC is mostly compatible with Meson8 (both share the same pinctrl
-driver, so they also share the same GPIO IRQ settings. also the same
-Meson6 timer is used on Meson8m2).
+The Meson8m2 SoC is an updated version of the Meson8 SoC. Some of the
+peripherals are updated to be register-compatible with Meson8b.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/mach-meson/Kconfig | 7 +++++++
- arch/arm/mach-meson/meson.c | 1 +
- 2 files changed, 8 insertions(+)
+ Documentation/devicetree/bindings/arm/amlogic.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index d90f61e6254f..44a489889bc1 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -32,4 +32,11 @@ config MACH_MESON8B
- 	select COMMON_CLK_MESON8B
- 	select MESON_IRQ_GPIO
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+index f747f47922c5..6c6642c69de3 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.txt
++++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+@@ -25,6 +25,10 @@ Boards with the Amlogic Meson8b SoC shall have the following properties:
+   Required root node property:
+     compatible: "amlogic,meson8b";
  
-+config MACH_MESON8M2
-+	bool "Amlogic Meson8m2 SoCs support"
-+	default ARCH_MESON
-+	select MESON6_TIMER
-+	select COMMON_CLK_MESON8B
-+	select MESON_IRQ_GPIO
++Boards with the Amlogic Meson8m2 SoC shall have the following properties:
++  Required root node property:
++    compatible: "amlogic,meson8m2";
 +
- endif
-diff --git a/arch/arm/mach-meson/meson.c b/arch/arm/mach-meson/meson.c
-index 4e2357178625..c8d99df32f9b 100644
---- a/arch/arm/mach-meson/meson.c
-+++ b/arch/arm/mach-meson/meson.c
-@@ -20,6 +20,7 @@ static const char * const meson_common_board_compat[] = {
- 	"amlogic,meson6",
- 	"amlogic,meson8",
- 	"amlogic,meson8b",
-+	"amlogic,meson8m2",
- 	NULL,
- };
- 
+ Boards with the Amlogic Meson GXBaby SoC shall have the following properties:
+   Required root node property:
+     compatible: "amlogic,meson-gxbb";
 -- 
 2.17.0
