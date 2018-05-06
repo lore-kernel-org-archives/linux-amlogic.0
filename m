@@ -1,56 +1,115 @@
-From: ingrassia@epigenesys.com (Emiliano Ingrassia)
-Date: Sun, 6 May 2018 23:53:05 +0200
-Subject: [PATCH 0/1] Meson8b RGMII Ethernet pin cleanup
-In-Reply-To: <CAFBinCAvkOzQOqFLqpdumx2hbQiq9H6MQpJV6DiemEDwwk_GSg@mail.gmail.com>
-References: <20180501220045.2004-1-martin.blumenstingl@googlemail.com>
- <20180503170635.GA1925@ingrassia.epigenesys.com>
- <CAFBinCAvkOzQOqFLqpdumx2hbQiq9H6MQpJV6DiemEDwwk_GSg@mail.gmail.com>
-Message-ID: <20180506215305.GA9963@ingrassia.epigenesys.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun,  6 May 2018 22:57:48 +0200
+Subject: [PATCH 1/2] ARM: dts: meson8b: odroid-c1: sort nodes alphabetically
+In-Reply-To: <20180506205749.18719-1-martin.blumenstingl@googlemail.com>
+References: <20180506205749.18719-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180506205749.18719-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+This makes it easier to find existing nodes. No functional changes.
 
-On Fri, May 04, 2018 at 10:09:37PM +0200, Martin Blumenstingl wrote:
-> Hi Emiliano,
-> 
-> On Thu, May 3, 2018 at 7:06 PM, Emiliano Ingrassia
-> <ingrassia@epigenesys.com> wrote:
-> > Hi Martin,
-> >
-> > the patch seems to work fine but I have two questions.
-> thank you for testing this! :)
->
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 68 +++++++++++++-------------
+ 1 file changed, 34 insertions(+), 34 deletions(-)
 
-Thanks for your patch! :)
-
-> > First, should we remove those pins from "ethernet_groups" structure
-> > in "drivers/pinctrl/meson/pinctrl-meson8b.c" ?
-> I believe that some boards with RMII (100Mbit/s) PHY use TXD0/TXD1 on
-> DIF_2_P and DIF_2_N
-> so we should keep support for these in the driver
-> 
-> > Second, following the Odroid-C1+ schematics there are two pins,
-> > "eth_rxd2" and "eth_rxd3" which are not configured by the pin controller
-> > driver, nor included in the pins group in the relative device tree.
-> > Should we configure and include them ?
-> interesting - good catch. I think we should include them in both, the
-> pinctrl driver and meson8b.dtsi
-> do you know which pads are used for "eth_rxd2" and "eth_rxd3"?
->
-
-Following the Odroid-C1+ schematics it seems to me that the differential
-pads used for "eth_rxd2" and "eth_rxd3" are exactly DIF_2_P and DIF_2_N.
-Infact, comparing the ethernet pads on the schematics and the
-"GPIO bank DIF" section on S805 SoC manual, there seems to be
-a strict correspondence in the order of the two list of pins.
-
-What do you think ?
-
-> 
-> Regards
-> Martin
-
-Regards,
-
-Emiliano
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index 3a5603d95b70..7d8ad468a25b 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -103,10 +103,34 @@
+ 	};
+ };
+ 
+-&uart_AO {
++&ethmac {
+ 	status = "okay";
+-	pinctrl-0 = <&uart_ao_a_pins>;
++
++	snps,reset-gpio = <&gpio GPIOH_4 GPIO_ACTIVE_HIGH>;
++	snps,reset-active-low;
++	snps,reset-delays-us = <0 10000 30000>;
++
++	pinctrl-0 = <&eth_rgmii_pins>;
+ 	pinctrl-names = "default";
++
++	phy-mode = "rgmii";
++	phy-handle = <&eth_phy>;
++	amlogic,tx-delay-ns = <4>;
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		/* Realtek RTL8211F (0x001cc916) */
++		eth_phy: ethernet-phy at 0 {
++			reg = <0>;
++			eee-broken-1000t;
++			interrupt-parent = <&gpio_intc>;
++			/* GPIOH_3 */
++			interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
++		};
++	};
+ };
+ 
+ &gpio_ao {
+@@ -124,14 +148,6 @@
+ 	};
+ };
+ 
+-&usb1_phy {
+-	status = "okay";
+-};
+-
+-&usb1 {
+-	status = "okay";
+-};
+-
+ &sdio {
+ 	status = "okay";
+ 
+@@ -158,32 +174,16 @@
+ 	};
+ };
+ 
+-&ethmac {
++&uart_AO {
+ 	status = "okay";
+-
+-	snps,reset-gpio = <&gpio GPIOH_4 GPIO_ACTIVE_HIGH>;
+-	snps,reset-active-low;
+-	snps,reset-delays-us = <0 10000 30000>;
+-
+-	pinctrl-0 = <&eth_rgmii_pins>;
++	pinctrl-0 = <&uart_ao_a_pins>;
+ 	pinctrl-names = "default";
++};
+ 
+-	phy-mode = "rgmii";
+-	phy-handle = <&eth_phy>;
+-	amlogic,tx-delay-ns = <4>;
+-
+-	mdio {
+-		compatible = "snps,dwmac-mdio";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
++&usb1_phy {
++	status = "okay";
++};
+ 
+-		/* Realtek RTL8211F (0x001cc916) */
+-		eth_phy: ethernet-phy at 0 {
+-			reg = <0>;
+-			eee-broken-1000t;
+-			interrupt-parent = <&gpio_intc>;
+-			/* GPIOH_3 */
+-			interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+-		};
+-	};
++&usb1 {
++	status = "okay";
+ };
+-- 
+2.17.0
