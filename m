@@ -1,42 +1,52 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun,  6 May 2018 11:21:13 +0200
-Subject: [PATCH 0/6] Meson8m2 (32-bit ARM) SoC support
-Message-ID: <20180506092119.467-1-martin.blumenstingl@googlemail.com>
+Date: Sun,  6 May 2018 11:21:16 +0200
+Subject: [PATCH 3/6] ARM: meson: add support for the Meson8m2 SoCs
+In-Reply-To: <20180506092119.467-1-martin.blumenstingl@googlemail.com>
+References: <20180506092119.467-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180506092119.467-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series adds support for the Meson8m2 SoC. This SoC is mostly
-compatible with Meson8 while using some peripherals from Meson8b. Patch
-#4 contains a list of (known) differences between the Meson8 and Meson8m2
-SoCs.
+Add a new Kconfig entry as well as the newly introduced compatible
+string for the Meson8m2 SoC.
+The Kconfig entry selects the same drivers as Meson8b because Meson8m2
+SoC is mostly compatible with Meson8 (both share the same pinctrl
+driver, so they also share the same GPIO IRQ settings. also the same
+Meson6 timer is used on Meson8m2).
 
-The first supported board with Meson8m2 SoC is the "Tronsmart MXIII Plus"
-where Oleg contributed the initial .dts and heavily tested it (many
-thanks!). His testing also confirmed that the Meson8m2 SoC uses the same
-register layout for the Ethernet "glue registers (supported by the
-dwmac-meson8b driver) as Meson8b.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/mach-meson/Kconfig | 7 +++++++
+ arch/arm/mach-meson/meson.c | 1 +
+ 2 files changed, 8 insertions(+)
 
-
-Martin Blumenstingl (5):
-  dt-bindings: arm: amlogic: add support for the Meson8m2 SoC
-  dt-bindings: arm: amlogic: add support for the Tronsmart MXIII Plus
-  ARM: meson: add support for the Meson8m2 SoCs
-  ARM: dts: meson: add support for the Meson8m2 SoC
-  ARM: dts: meson8: add the uart_A pins
-
-Oleg Ivanov (1):
-  ARM: dts: meson8m2: add support for the Tronsmart MXIII Plus
-
- .../devicetree/bindings/arm/amlogic.txt       |   6 +
- arch/arm/boot/dts/Makefile                    |   2 +
- arch/arm/boot/dts/meson8.dtsi                 |  16 ++
- arch/arm/boot/dts/meson8m2-mxiii-plus.dts     | 244 ++++++++++++++++++
- arch/arm/boot/dts/meson8m2.dtsi               |  54 ++++
- arch/arm/mach-meson/Kconfig                   |   7 +
- arch/arm/mach-meson/meson.c                   |   1 +
- 7 files changed, 330 insertions(+)
- create mode 100644 arch/arm/boot/dts/meson8m2-mxiii-plus.dts
- create mode 100644 arch/arm/boot/dts/meson8m2.dtsi
-
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index d90f61e6254f..44a489889bc1 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -32,4 +32,11 @@ config MACH_MESON8B
+ 	select COMMON_CLK_MESON8B
+ 	select MESON_IRQ_GPIO
+ 
++config MACH_MESON8M2
++	bool "Amlogic Meson8m2 SoCs support"
++	default ARCH_MESON
++	select MESON6_TIMER
++	select COMMON_CLK_MESON8B
++	select MESON_IRQ_GPIO
++
+ endif
+diff --git a/arch/arm/mach-meson/meson.c b/arch/arm/mach-meson/meson.c
+index 4e2357178625..c8d99df32f9b 100644
+--- a/arch/arm/mach-meson/meson.c
++++ b/arch/arm/mach-meson/meson.c
+@@ -20,6 +20,7 @@ static const char * const meson_common_board_compat[] = {
+ 	"amlogic,meson6",
+ 	"amlogic,meson8",
+ 	"amlogic,meson8b",
++	"amlogic,meson8m2",
+ 	NULL,
+ };
+ 
 -- 
 2.17.0
