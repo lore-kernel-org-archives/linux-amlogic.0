@@ -1,16 +1,16 @@
 From: trini@konsulko.com (Tom Rini)
-Date: Tue, 8 May 2018 13:16:07 -0400
-Subject: [U-Boot,v2,u-boot] ARM: meson: rename GXBB to GX
-In-Reply-To: <1523459625-16446-1-git-send-email-narmstrong@baylibre.com>
-References: <1523459625-16446-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20180508171607.GG12235@bill-the-cat.ec.rr.com>
+Date: Tue, 8 May 2018 13:16:11 -0400
+Subject: [U-Boot, u-boot, 1/2] ARM64: meson: Sync DT and Bindings with
+ Linux 4.16
+In-Reply-To: <1523461241-30436-2-git-send-email-narmstrong@baylibre.com>
+References: <1523461241-30436-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20180508171611.GH12235@bill-the-cat.ec.rr.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Apr 11, 2018 at 05:13:45PM +0200, Neil Armstrong wrote:
+On Wed, Apr 11, 2018 at 05:40:40PM +0200, Neil Armstrong wrote:
 
-> Taking into account the Amlogic Family name starts with GX, including
-> the GXBB, GXL and GXM SoCs.
+> Synchronize the Linux Device Tree for Amlogic Meson GX boards from Linux 4.16.0.
 > 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
@@ -24,4 +24,4 @@ Name: signature.asc
 Type: application/pgp-signature
 Size: 819 bytes
 Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180508/48d927f7/attachment.sig>
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180508/d55fbc04/attachment.sig>
