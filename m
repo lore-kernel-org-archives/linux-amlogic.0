@@ -1,93 +1,51 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 10 May 2018 01:31:26 +0200
-Subject: [PATCH] clk: meson: meson8b: mark fclk_div gate clocks as
- CLK_IS_CRITICAL
-In-Reply-To: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
-References: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCC8Np3Mzq1JP6AT3CGi1kQSCwXuBKVOHne16Wax5wBKUA@mail.gmail.com>
+Date: Thu, 10 May 2018 01:50:33 +0200
+Subject: [PATCH v2 0/4] Meson8m2 (32-bit ARM) SoC support
+Message-ID: <20180509235037.5876-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, May 1, 2018 at 11:45 PM, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-> Until commit 05f814402d6174 ("clk: meson: add fdiv clock gates") we
-> relied on the bootloader to enable the fclk_div clock gates. It turns
-> out that our clock tree is incomplete at least on Meson8b (tested with
-> an Odroid-C1, which uses an RGMII PHY) because after the mentioned
-> commit Ethernet is not working anymore (no RX/TX activity can be seen).
-> At the same time Ethernet was still working on Meson8m2 with a RMII PHY.
->
-> It is currently not clear which of the fclk_div gates is required for
-> (RGMII) Ethernet operation on Meson8b and why. Mark the fclk_div gates
-> as CLK_IS_CRITICAL so the common clock framework keeps these gates
-> enabled for us until we know which clock is required for Ethernet on
-> Meson8b and which driver has to claim it.
->
-> Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
+This series adds support for the Meson8m2 SoC. This SoC is mostly
+compatible with Meson8 while using some peripherals from Meson8b. Patch
+#4 contains a list of (known) differences between the Meson8 and Meson8m2
+SoCs.
 
-quote from the discussion on IRC:
-<khilman> xdarklight: is ethernet on meson8b-odroidc1 working well for
-you on my v4.18/integ branch?
-<khilman> for me, the kernel boots, and can even DHCP when I add
-"ip=dhcp" to the cmdline.
-<khilman> but when I get to a shell (ramdisk), I can't ping anything.
- 100% packet loss
-<xdarklight> that sounds familiar and
-https://patchwork.kernel.org/patch/10374537/ "fixes" it for me
-<khilman> [...] NFSroot working now on odroidc1
-<khilman> I added that to my "depends" branch (included in integ)
-until it gets merged.
+The first supported board with Meson8m2 SoC is the "Tronsmart MXIII Plus"
+where Oleg contributed the initial .dts and heavily tested it (many
+thanks!). His testing also confirmed that the Meson8m2 SoC uses the same
+register layout for the Ethernet "glue registers (supported by the
+dwmac-meson8b driver) as Meson8b.
 
-> ---
->  drivers/clk/meson/meson8b.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> index d0524ec71aad..f3ac099ee22c 100644
-> --- a/drivers/clk/meson/meson8b.c
-> +++ b/drivers/clk/meson/meson8b.c
-> @@ -246,6 +246,7 @@ static struct clk_regmap meson8b_fclk_div2 = {
->                 .ops = &clk_regmap_gate_ops,
->                 .parent_names = (const char *[]){ "fclk_div2_div" },
->                 .num_parents = 1,
-> +               .flags = CLK_IS_CRITICAL,
->         },
->  };
->
-> @@ -270,6 +271,7 @@ static struct clk_regmap meson8b_fclk_div3 = {
->                 .ops = &clk_regmap_gate_ops,
->                 .parent_names = (const char *[]){ "fclk_div3_div" },
->                 .num_parents = 1,
-> +               .flags = CLK_IS_CRITICAL,
->         },
->  };
->
-> @@ -294,6 +296,7 @@ static struct clk_regmap meson8b_fclk_div4 = {
->                 .ops = &clk_regmap_gate_ops,
->                 .parent_names = (const char *[]){ "fclk_div4_div" },
->                 .num_parents = 1,
-> +               .flags = CLK_IS_CRITICAL,
->         },
->  };
->
-> @@ -318,6 +321,7 @@ static struct clk_regmap meson8b_fclk_div5 = {
->                 .ops = &clk_regmap_gate_ops,
->                 .parent_names = (const char *[]){ "fclk_div5_div" },
->                 .num_parents = 1,
-> +               .flags = CLK_IS_CRITICAL,
->         },
->  };
->
-> @@ -342,6 +346,7 @@ static struct clk_regmap meson8b_fclk_div7 = {
->                 .ops = &clk_regmap_gate_ops,
->                 .parent_names = (const char *[]){ "fclk_div7_div" },
->                 .num_parents = 1,
-> +               .flags = CLK_IS_CRITICAL,
->         },
->  };
->
-> --
-> 2.17.0
->
+
+changes since v1 at [0]:
+- do not create a new MACH_MESON8M2 Kconfig entry as suggested by Kevin
+  (MACH_MESON8 is re-used instead). This affects patch #1 (which was
+  patch #3 in v1) and patch #4 (which was patch #6 in v1)
+- dropped patches #1 and #2 from v1 because Kevin already applied these
+  ("dt-bindings: arm: amlogic: add support for the Meson8m2 SoC" and
+  "dt-bindings: arm: amlogic: add support for the Tronsmart MXIII Plus")
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007303.html
+
+
+Martin Blumenstingl (3):
+  ARM: meson: add support for the Meson8m2 SoCs
+  ARM: dts: meson: add support for the Meson8m2 SoC
+  ARM: dts: meson8: add the uart_A pins
+
+Oleg Ivanov (1):
+  ARM: dts: meson8m2: add support for the Tronsmart MXIII Plus
+
+ arch/arm/boot/dts/Makefile                |   3 +-
+ arch/arm/boot/dts/meson8.dtsi             |  16 ++
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 244 ++++++++++++++++++++++
+ arch/arm/boot/dts/meson8m2.dtsi           |  54 +++++
+ arch/arm/mach-meson/Kconfig               |   2 +-
+ arch/arm/mach-meson/meson.c               |   1 +
+ 6 files changed, 318 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm/boot/dts/meson8m2-mxiii-plus.dts
+ create mode 100644 arch/arm/boot/dts/meson8m2.dtsi
+
+-- 
+2.17.0
