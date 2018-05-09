@@ -1,57 +1,93 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 10 May 2018 01:02:32 +0200
-Subject: [PATCH 3/6] ARM: meson: add support for the Meson8m2 SoCs
-In-Reply-To: <7hy3gsxxxp.fsf@baylibre.com>
-References: <20180506092119.467-1-martin.blumenstingl@googlemail.com>
- <20180506092119.467-4-martin.blumenstingl@googlemail.com>
- <7hy3gsxxxp.fsf@baylibre.com>
-Message-ID: <CAFBinCCCo_8TnaYqVrUe7zZbzmA7yEF6=vuqT1K0ZdWuSc4vSg@mail.gmail.com>
+Date: Thu, 10 May 2018 01:31:26 +0200
+Subject: [PATCH] clk: meson: meson8b: mark fclk_div gate clocks as
+ CLK_IS_CRITICAL
+In-Reply-To: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
+References: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCC8Np3Mzq1JP6AT3CGi1kQSCwXuBKVOHne16Wax5wBKUA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin,
+On Tue, May 1, 2018 at 11:45 PM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> Until commit 05f814402d6174 ("clk: meson: add fdiv clock gates") we
+> relied on the bootloader to enable the fclk_div clock gates. It turns
+> out that our clock tree is incomplete at least on Meson8b (tested with
+> an Odroid-C1, which uses an RGMII PHY) because after the mentioned
+> commit Ethernet is not working anymore (no RX/TX activity can be seen).
+> At the same time Ethernet was still working on Meson8m2 with a RMII PHY.
+>
+> It is currently not clear which of the fclk_div gates is required for
+> (RGMII) Ethernet operation on Meson8b and why. Mark the fclk_div gates
+> as CLK_IS_CRITICAL so the common clock framework keeps these gates
+> enabled for us until we know which clock is required for Ethernet on
+> Meson8b and which driver has to claim it.
+>
+> Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
 
-On Thu, May 10, 2018 at 12:32 AM, Kevin Hilman <khilman@baylibre.com> wrote:
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->
->> Add a new Kconfig entry as well as the newly introduced compatible
->> string for the Meson8m2 SoC.
->> The Kconfig entry selects the same drivers as Meson8b because Meson8m2
->> SoC is mostly compatible with Meson8 (both share the same pinctrl
->> driver, so they also share the same GPIO IRQ settings. also the same
->> Meson6 timer is used on Meson8m2).
->>
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  arch/arm/mach-meson/Kconfig | 7 +++++++
->>  arch/arm/mach-meson/meson.c | 1 +
->>  2 files changed, 8 insertions(+)
->>
->> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
->> index d90f61e6254f..44a489889bc1 100644
->> --- a/arch/arm/mach-meson/Kconfig
->> +++ b/arch/arm/mach-meson/Kconfig
->> @@ -32,4 +32,11 @@ config MACH_MESON8B
->>       select COMMON_CLK_MESON8B
->>       select MESON_IRQ_GPIO
->>
->> +config MACH_MESON8M2
->> +     bool "Amlogic Meson8m2 SoCs support"
->> +     default ARCH_MESON
->> +     select MESON6_TIMER
->> +     select COMMON_CLK_MESON8B
->> +     select MESON_IRQ_GPIO
->
-> I'd prefer to stop the proliferation of identical Kconfigs which are
-> only used to select which DTB files to compile.
->
-> Instead, can you drop this new Kconfig as well as MACH_MESON8, and just
-> make all the meson8* DTBs build based on MACH_MESON8?
->
-> I think it better to have fewer Kconfigs. The only cost is building a
-> couple extra DTBs.
-sure, no problem - I'll re-send patches 3-6 in the next few days with this fixes
+quote from the discussion on IRC:
+<khilman> xdarklight: is ethernet on meson8b-odroidc1 working well for
+you on my v4.18/integ branch?
+<khilman> for me, the kernel boots, and can even DHCP when I add
+"ip=dhcp" to the cmdline.
+<khilman> but when I get to a shell (ramdisk), I can't ping anything.
+ 100% packet loss
+<xdarklight> that sounds familiar and
+https://patchwork.kernel.org/patch/10374537/ "fixes" it for me
+<khilman> [...] NFSroot working now on odroidc1
+<khilman> I added that to my "depends" branch (included in integ)
+until it gets merged.
 
-
-Regards
-Martin
+> ---
+>  drivers/clk/meson/meson8b.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index d0524ec71aad..f3ac099ee22c 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -246,6 +246,7 @@ static struct clk_regmap meson8b_fclk_div2 = {
+>                 .ops = &clk_regmap_gate_ops,
+>                 .parent_names = (const char *[]){ "fclk_div2_div" },
+>                 .num_parents = 1,
+> +               .flags = CLK_IS_CRITICAL,
+>         },
+>  };
+>
+> @@ -270,6 +271,7 @@ static struct clk_regmap meson8b_fclk_div3 = {
+>                 .ops = &clk_regmap_gate_ops,
+>                 .parent_names = (const char *[]){ "fclk_div3_div" },
+>                 .num_parents = 1,
+> +               .flags = CLK_IS_CRITICAL,
+>         },
+>  };
+>
+> @@ -294,6 +296,7 @@ static struct clk_regmap meson8b_fclk_div4 = {
+>                 .ops = &clk_regmap_gate_ops,
+>                 .parent_names = (const char *[]){ "fclk_div4_div" },
+>                 .num_parents = 1,
+> +               .flags = CLK_IS_CRITICAL,
+>         },
+>  };
+>
+> @@ -318,6 +321,7 @@ static struct clk_regmap meson8b_fclk_div5 = {
+>                 .ops = &clk_regmap_gate_ops,
+>                 .parent_names = (const char *[]){ "fclk_div5_div" },
+>                 .num_parents = 1,
+> +               .flags = CLK_IS_CRITICAL,
+>         },
+>  };
+>
+> @@ -342,6 +346,7 @@ static struct clk_regmap meson8b_fclk_div7 = {
+>                 .ops = &clk_regmap_gate_ops,
+>                 .parent_names = (const char *[]){ "fclk_div7_div" },
+>                 .num_parents = 1,
+> +               .flags = CLK_IS_CRITICAL,
+>         },
+>  };
+>
+> --
+> 2.17.0
+>
