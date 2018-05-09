@@ -1,36 +1,27 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Wed, 9 May 2018 22:08:27 +0000
-Subject: [PATCH 2/2] pinctrl: nand: meson-gxl: fix missing data pins
-In-Reply-To: <20180509220827.22286-1-yixun.lan@amlogic.com>
-References: <20180509220827.22286-1-yixun.lan@amlogic.com>
-Message-ID: <20180509220827.22286-3-yixun.lan@amlogic.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 09 May 2018 15:17:02 -0700
+Subject: [PATCH v2 0/2] ARM64: dts: meson-axg: enable wifi driver
+In-Reply-To: <20180504094533.15588-1-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Fri, 4 May 2018 09:45:31 +0000")
+References: <20180504094533.15588-1-yixun.lan@amlogic.com>
+Message-ID: <7hlgcszd7l.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The data pin 0-7 of the NAND controller are actually missing from
-the nand pinctrl group, so we fix it here.
+Hi Yixun,
 
-Fixes: 0f15f500ff2c ("pinctrl: meson: Add GXL pinctrl definitions")
-Reported-by: Liang Yang <liang.yang@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
----
- drivers/pinctrl/meson/pinctrl-meson-gxl.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Yixun Lan <yixun.lan@amlogic.com> writes:
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-index b3786cde963d..7dae1d7bf6b0 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-@@ -617,8 +617,8 @@ static const char * const sdio_groups[] = {
- };
- 
- static const char * const nand_groups[] = {
--	"nand_ce0", "nand_ce1", "nand_rb0", "nand_ale", "nand_cle",
--	"nand_wen_clk", "nand_ren_wr", "nand_dqs",
-+	"emmc_nand_d07", "nand_ce0", "nand_ce1", "nand_rb0", "nand_ale",
-+	"nand_cle", "nand_wen_clk", "nand_ren_wr", "nand_dqs",
- };
- 
- static const char * const uart_a_groups[] = {
--- 
-2.17.0
+>  These patches try to enable the WIFI module AP6255 in Meson-AXG S400
+> baord. First patch revert an error which was introduced in early commit.
+>
+> Hi Kevin
+>  Please squash patch 1 into the commit[1] of your v4.18/dt64 branch,
+> which was the error introduced there.
+
+Thanks for the explanation, I've squashed patch 1, and applied patch 2
+to v4.18/dt64.
+
+Thanks,
+
+Kevin
