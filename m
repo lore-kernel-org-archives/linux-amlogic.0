@@ -1,99 +1,50 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 10 May 2018 01:50:35 +0200
-Subject: [PATCH v2 2/4] ARM: dts: meson: add support for the Meson8m2 SoC
+Date: Thu, 10 May 2018 01:50:34 +0200
+Subject: [PATCH v2 1/4] ARM: meson: add support for the Meson8m2 SoCs
 In-Reply-To: <20180509235037.5876-1-martin.blumenstingl@googlemail.com>
 References: <20180509235037.5876-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180509235037.5876-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20180509235037.5876-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds a meson8m2.dtsi which simply inherits meson8.dtsi as both SoCs
-share most peripherals.
-The known differences are:
-- Meson8m2's hardware video decoder additionally supports H.265 decoding
-- Meson8m2 has the same Gigabit MAC as Meson8b (instead of the 10/100M
-  MAC that Meson8 uses)
-- Meson8m2 uses the same watchdog register layout/bits as Meson8b (using
-  the Meson8 watchdog compatible leads to an infinite hang when
-  rebooting the machine)
-- Meson8m2 uses the same SAR ADC register layout/bits as Meson8b.
-  However, it uses the temperature sensor calibration formula (and
-  registers) Meson8b which differ from Meson8. This however is currently
-  not supported by the meson-saradc driver yet.
-- the pin controller is mostly compatible with Meson8, Meson8m2 has
-  an additional function on eight pins and removes the "VGA" function.
-  So there's a total of 10 pins which are slightly changed, which is why
-  there's a separate compatible for the pin controller
-- a separate compatible for the clock controller is used because at
-  least the Mali clock tree (not supported yet) is the same as on GXBB
-  while Meson8 and Meson8b have a reduced/older version of the Mali
-  clock tree.
+Add the newly introduced compatible string for the Meson8m2 SoC.
+The existing Meson8 Kconfig entry is updated to also provide support for
+the Meson8m2 SoCs. The Meson8m2 SoC is mostly identical to the Meson8 SoC
+with just a few peripherals being updated. Both SoCs currently
+share the same pinctrl, clock and GPIO IRQ bindings. Thus the existing
+Kconfig entry is re-used to avoid duplication (the only cost is building
+a few extra DTBs).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8m2.dtsi | 54 +++++++++++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 arch/arm/boot/dts/meson8m2.dtsi
+ arch/arm/mach-meson/Kconfig | 2 +-
+ arch/arm/mach-meson/meson.c | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson8m2.dtsi b/arch/arm/boot/dts/meson8m2.dtsi
-new file mode 100644
-index 000000000000..3e1f92273d7b
---- /dev/null
-+++ b/arch/arm/boot/dts/meson8m2.dtsi
-@@ -0,0 +1,54 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
-+ */
-+
-+#include "meson8.dtsi"
-+
-+/ {
-+	model = "Amlogic Meson8m2 SoC";
-+	compatible = "amlogic,meson8m2";
-+}; /* end of / */
-+
-+&clkc {
-+	compatible = "amlogic,meson8m2-clkc", "amlogic,meson8-clkc";
-+};
-+
-+&ethmac {
-+	compatible = "amlogic,meson8m2-dwmac", "snps,dwmac";
-+	reg = <0xc9410000 0x10000
-+		0xc1108140 0x8>;
-+	clocks = <&clkc CLKID_ETH>,
-+		 <&clkc CLKID_MPLL2>,
-+		 <&clkc CLKID_MPLL2>;
-+	clock-names = "stmmaceth", "clkin0", "clkin1";
-+	resets = <&reset RESET_ETHERNET>;
-+	reset-names = "stmmaceth";
-+};
-+
-+&pinctrl_aobus {
-+	compatible = "amlogic,meson8m2-aobus-pinctrl",
-+		     "amlogic,meson8-aobus-pinctrl";
-+};
-+
-+&pinctrl_cbus {
-+	compatible = "amlogic,meson8m2-cbus-pinctrl",
-+		     "amlogic,meson8-cbus-pinctrl";
-+
-+	eth_rgmii_pins: ethernet {
-+		mux {
-+			groups = "eth_tx_clk_50m", "eth_tx_en",
-+				 "eth_txd3", "eth_txd2",
-+				 "eth_txd1", "eth_txd0",
-+				 "eth_rx_clk_in", "eth_rx_dv",
-+				 "eth_rxd3", "eth_rxd2",
-+				 "eth_rxd1", "eth_rxd0",
-+				 "eth_mdio", "eth_mdc";
-+			function = "ethernet";
-+		};
-+	};
-+};
-+
-+&wdt {
-+	compatible = "amlogic,meson8m2-wdt", "amlogic,meson8b-wdt";
-+};
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index d90f61e6254f..2bc630471beb 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -19,7 +19,7 @@ config MACH_MESON6
+ 	select MESON6_TIMER
+ 
+ config MACH_MESON8
+-	bool "Amlogic Meson8 SoCs support"
++	bool "Amlogic Meson8 and Meson8m2 SoCs support"
+ 	default ARCH_MESON
+ 	select MESON6_TIMER
+ 	select COMMON_CLK_MESON8B
+diff --git a/arch/arm/mach-meson/meson.c b/arch/arm/mach-meson/meson.c
+index 4e2357178625..c8d99df32f9b 100644
+--- a/arch/arm/mach-meson/meson.c
++++ b/arch/arm/mach-meson/meson.c
+@@ -20,6 +20,7 @@ static const char * const meson_common_board_compat[] = {
+ 	"amlogic,meson6",
+ 	"amlogic,meson8",
+ 	"amlogic,meson8b",
++	"amlogic,meson8m2",
+ 	NULL,
+ };
+ 
 -- 
 2.17.0
