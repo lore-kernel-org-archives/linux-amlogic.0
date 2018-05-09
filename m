@@ -1,66 +1,38 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 09 May 2018 15:32:18 -0700
-Subject: [PATCH 3/6] ARM: meson: add support for the Meson8m2 SoCs
-In-Reply-To: <20180506092119.467-4-martin.blumenstingl@googlemail.com> (Martin
- Blumenstingl's message of "Sun, 6 May 2018 11:21:16 +0200")
-References: <20180506092119.467-1-martin.blumenstingl@googlemail.com>
- <20180506092119.467-4-martin.blumenstingl@googlemail.com>
-Message-ID: <7hy3gsxxxp.fsf@baylibre.com>
+Date: Wed, 09 May 2018 15:39:18 -0700
+Subject: [PATCH 0/2] IR remote (input) support for Odroid-C1 and cleanups
+In-Reply-To: <20180506205749.18719-1-martin.blumenstingl@googlemail.com>
+ (Martin Blumenstingl's message of "Sun, 6 May 2018 22:57:47 +0200")
+References: <20180506205749.18719-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7htvrgxxm1.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Add a new Kconfig entry as well as the newly introduced compatible
-> string for the Meson8m2 SoC.
-> The Kconfig entry selects the same drivers as Meson8b because Meson8m2
-> SoC is mostly compatible with Meson8 (both share the same pinctrl
-> driver, so they also share the same GPIO IRQ settings. also the same
-> Meson6 timer is used on Meson8m2).
+> While testing my Odroid-C1 I found that the IR remote receiver was still
+> disabled. While enabling it I saw that the nodes in meson8b-odroidc1.dts
+> were not sorted alphabetically.
 >
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  arch/arm/mach-meson/Kconfig | 7 +++++++
->  arch/arm/mach-meson/meson.c | 1 +
->  2 files changed, 8 insertions(+)
->
-> diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-> index d90f61e6254f..44a489889bc1 100644
-> --- a/arch/arm/mach-meson/Kconfig
-> +++ b/arch/arm/mach-meson/Kconfig
-> @@ -32,4 +32,11 @@ config MACH_MESON8B
->  	select COMMON_CLK_MESON8B
->  	select MESON_IRQ_GPIO
->  
-> +config MACH_MESON8M2
-> +	bool "Amlogic Meson8m2 SoCs support"
-> +	default ARCH_MESON
-> +	select MESON6_TIMER
-> +	select COMMON_CLK_MESON8B
-> +	select MESON_IRQ_GPIO
+> This small series:
+> - first cleans up the sort order of the nodes in meson8b-odroidc1.dts
 
-I'd prefer to stop the proliferation of identical Kconfigs which are
-only used to select which DTB files to compile.
+Nice, thanks!
 
-Instead, can you drop this new Kconfig as well as MACH_MESON8, and just
-make all the meson8* DTBs build based on MACH_MESON8?
+> - then adds the configuration for GPIOAO_7 so it's routed to the SoCs
+>   "IR receiver" and enables that in meson8b-odroidc1.dts
 
-I think it better to have fewer Kconfigs. The only cost is building a
-couple extra DTBs.
+Applied both to v4.17/dt,
 
 Thanks,
 
 Kevin
 
->  endif
-> diff --git a/arch/arm/mach-meson/meson.c b/arch/arm/mach-meson/meson.c
-> index 4e2357178625..c8d99df32f9b 100644
-> --- a/arch/arm/mach-meson/meson.c
-> +++ b/arch/arm/mach-meson/meson.c
-> @@ -20,6 +20,7 @@ static const char * const meson_common_board_compat[] = {
->  	"amlogic,meson6",
->  	"amlogic,meson8",
->  	"amlogic,meson8b",
-> +	"amlogic,meson8m2",
->  	NULL,
->  };
+>
+> Martin Blumenstingl (2):
+>   ARM: dts: meson8b: odroid-c1: sort nodes alphabetically
+>   ARM: dts: meson8b: odroid-c1: enable the IR receiver
+>
+>  arch/arm/boot/dts/meson8b-odroidc1.dts | 68 ++++++++++++++------------
+>  arch/arm/boot/dts/meson8b.dtsi         |  7 +++
+>  2 files changed, 44 insertions(+), 31 deletions(-)
