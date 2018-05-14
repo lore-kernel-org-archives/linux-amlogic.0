@@ -1,123 +1,43 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 14 May 2018 16:16:45 +0200
-Subject: [PATCH 6/7] clk: meson: axg: document bindings for the audio
- clock controller
-In-Reply-To: <20180501143715.GA20023@rob-hp-laptop>
-References: <20180425163304.10852-1-jbrunet@baylibre.com>
- <20180425163304.10852-7-jbrunet@baylibre.com>
- <20180501143715.GA20023@rob-hp-laptop>
-Message-ID: <1526307405.2897.29.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 14 May 2018 22:55:40 +0200
+Subject: [PATCH v2 0/4] Meson8m2 (32-bit ARM) SoC support
+In-Reply-To: <7h603v115k.fsf@baylibre.com>
+References: <20180509235037.5876-1-martin.blumenstingl@googlemail.com>
+ <7h603v115k.fsf@baylibre.com>
+Message-ID: <CAFBinCDcDJXJb8=Ap6gUSOfkFewUf4s7FMFuS37fv5J3Vy_7YA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-05-01 at 09:37 -0500, Rob Herring wrote:
-> On Wed, Apr 25, 2018 at 06:33:03PM +0200, Jerome Brunet wrote:
-> > Add documentation for the device tree bindings of the audio clock
-> > controller of the A113 based SoCs
-> > 
-> 
-> The preferred subject prefix for bindings is 'dt/bindings: clock: ...'
+On Fri, May 11, 2018 at 2:33 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+>> This series adds support for the Meson8m2 SoC. This SoC is mostly
+>> compatible with Meson8 while using some peripherals from Meson8b. Patch
+>> #4 contains a list of (known) differences between the Meson8 and Meson8m2
+>> SoCs.
+>>
+>> The first supported board with Meson8m2 SoC is the "Tronsmart MXIII Plus"
+>> where Oleg contributed the initial .dts and heavily tested it (many
+>> thanks!). His testing also confirmed that the Meson8m2 SoC uses the same
+>> register layout for the Ethernet "glue registers (supported by the
+>> dwmac-meson8b driver) as Meson8b.
+>>
+>> changes since v1 at [0]:
+>> - do not create a new MACH_MESON8M2 Kconfig entry as suggested by Kevin
+>>   (MACH_MESON8 is re-used instead). This affects patch #1 (which was
+>>   patch #3 in v1) and patch #4 (which was patch #6 in v1)
+>> - dropped patches #1 and #2 from v1 because Kevin already applied these
+>>   ("dt-bindings: arm: amlogic: add support for the Meson8m2 SoC" and
+>>   "dt-bindings: arm: amlogic: add support for the Tronsmart MXIII Plus")
+>
+> Applied to v4.18/dt.
+thank you!
 
-Noted, I suppose meant 'dt-bindings: clocks: ..." which seems to used half of
-the times
-The rest use 'clk: {platform}: ...'
+> One more request: Could you send one more patch (on top of my v4.18/dt)
+> that gets rid of the Kconfig for the 8B also?
+I put that on my TODO-list, I'll send a patch before my next batch of
+32-bit dt updates
 
-> 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> >  .../bindings/clock/amlogic,axg-audio-clkc.txt      | 56 ++++++++++++++++++++++
-> >  1 file changed, 56 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> > new file mode 100644
-> > index 000000000000..1b989ceda567
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
-> > @@ -0,0 +1,56 @@
-> > +* Amlogic AXG Audio Clock Controllers
-> > +
-> > +The Amlogic AXG audio clock controller generates and supplies clock to the
-> > +other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
-> > +devices.
-> > +
-> > +Required Properties:
-> > +
-> > +- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D
-> > +- reg		: physical base address of the clock controller and length of
-> > +		  memory mapped region.
-> > +- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
-> > +		  in clock-names.
-> > +- clock-names	: must contain the following:
-> > +		  * "pclk" - Main peripheral bus clock
-> > +		  may contain the following:
-> > +		  * "mst_in[0-7]" - 8 input plls to generate clock signals
-> 
-> Unless the sources don't exist, then you should always have the clocks. 
-> It should not be based on whether you are using them or not.
 
-This is not really the point. The parent controller may or may not provide some
-of the PLL. This was the case during the development of the controller when the
-HIFI pll was not available simply because there was no driver for it.
-
-Whatever the reason for an input clock to be missing, this clock controller may
-continue to serve its purpose even if some input plls are not provided/available
-which is why these are not "mandatory"
-
-> 
-> > +		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
-> > +				      components.
-> > +		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
-> > +				       components.
-> 
-> I'm guessing these may come from pins that aren't connected, so being 
-> optional is fine.
-> 
-> > +- reset		: phandle of the internal reset line
-> 
-> resets
-> 
-> > +- #clock-cells	: should be 1.
-> > +
-> > +Each clock is assigned an identifier and client nodes can use this identifier
-> > +to specify the clock which they consume. All available clocks are defined as
-> > +preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
-> > +used in device tree sources.
-> > +
-> > +Example:
-> > +
-> > +clkc_audio: clock-controller {
-> 
-> Needs a unit address.
-> 
-> > +	compatible = "amlogic,axg-audio-clkc";
-> > +	reg = <0x0 0x0 0x0 0xb4>;
-> > +	#clock-cells = <1>;
-> > +
-> > +	clocks = <&clkc CLKID_AUDIO>,
-> > +		 <&clkc CLKID_MPLL0>,
-> > +		 <&clkc CLKID_MPLL1>,
-> > +		 <&clkc CLKID_MPLL2>,
-> > +		 <&clkc CLKID_MPLL3>,
-> > +		 <&clkc CLKID_HIFI_PLL>,
-> > +		 <&clkc CLKID_FCLK_DIV3>,
-> > +		 <&clkc CLKID_FCLK_DIV4>,
-> > +		 <&clkc CLKID_GP0_PLL>;
-> > +	clock-names = "pclk",
-> > +		      "mst_in0",
-> > +		      "mst_in1",
-> > +		      "mst_in2",
-> > +		      "mst_in3",
-> > +		      "mst_in4",
-> > +		      "mst_in5",
-> > +		      "mst_in6",
-> > +		      "mst_in7";
-> > +	resets = <&reset RESET_AUDIO>;
-> > +};
-> > -- 
-> > 2.14.3
-> > 
-> > --
-> > To unsubscribe from this list: send the line "unsubscribe devicetree" in
-> > the body of a message to majordomo at vger.kernel.org
-> > More majordomo info at  http://vger.kernel.org/majordomo-info.html
+Regards
+Martin
