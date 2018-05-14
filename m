@@ -1,98 +1,123 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 14 May 2018 15:48:13 +0200
-Subject: [PATCH 1/2] ARM64: dts: meson-gxbb: odroidc2: enable sdcard UHS
- modes
-In-Reply-To: <20180501185902.3556-1-linux.amoon@gmail.com>
-References: <20180501185902.3556-1-linux.amoon@gmail.com>
-Message-ID: <1526305693.2897.16.camel@baylibre.com>
+Date: Mon, 14 May 2018 16:16:45 +0200
+Subject: [PATCH 6/7] clk: meson: axg: document bindings for the audio
+ clock controller
+In-Reply-To: <20180501143715.GA20023@rob-hp-laptop>
+References: <20180425163304.10852-1-jbrunet@baylibre.com>
+ <20180425163304.10852-7-jbrunet@baylibre.com>
+ <20180501143715.GA20023@rob-hp-laptop>
+Message-ID: <1526307405.2897.29.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-05-02 at 00:29 +0530, Anand Moon wrote:
-> Enable UHS modes for sdcard, on odroidc2.
+On Tue, 2018-05-01 at 09:37 -0500, Rob Herring wrote:
+> On Wed, Apr 25, 2018 at 06:33:03PM +0200, Jerome Brunet wrote:
+> > Add documentation for the device tree bindings of the audio clock
+> > controller of the A113 based SoCs
+> > 
 > 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 5 +++++
->  1 file changed, 5 insertions(+)
+> The preferred subject prefix for bindings is 'dt/bindings: clock: ...'
+
+Noted, I suppose meant 'dt-bindings: clocks: ..." which seems to used half of
+the times
+The rest use 'clk: {platform}: ...'
+
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index 54954b314a45..c90f8b46c60c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -258,6 +258,11 @@
->  	cap-sd-highspeed;
->  	max-frequency = <100000000>;
->  	disable-wp;
-> +	sd-uhs-sdr12;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +	sd-uhs-sdr104;
-> +	sd-uhs-ddr50;
->  
->  	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
->  	cd-inverted;
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > ---
+> >  .../bindings/clock/amlogic,axg-audio-clkc.txt      | 56 ++++++++++++++++++++++
+> >  1 file changed, 56 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> > new file mode 100644
+> > index 000000000000..1b989ceda567
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+> > @@ -0,0 +1,56 @@
+> > +* Amlogic AXG Audio Clock Controllers
+> > +
+> > +The Amlogic AXG audio clock controller generates and supplies clock to the
+> > +other elements of the audio subsystem, such as fifos, i2s, spdif and pdm
+> > +devices.
+> > +
+> > +Required Properties:
+> > +
+> > +- compatible	: should be "amlogic,axg-audio-clkc" for the A113X and A113D
+> > +- reg		: physical base address of the clock controller and length of
+> > +		  memory mapped region.
+> > +- clocks	: a list of phandle + clock-specifier pairs for the clocks listed
+> > +		  in clock-names.
+> > +- clock-names	: must contain the following:
+> > +		  * "pclk" - Main peripheral bus clock
+> > +		  may contain the following:
+> > +		  * "mst_in[0-7]" - 8 input plls to generate clock signals
+> 
+> Unless the sources don't exist, then you should always have the clocks. 
+> It should not be based on whether you are using them or not.
 
-Hi Anand,
+This is not really the point. The parent controller may or may not provide some
+of the PLL. This was the case during the development of the controller when the
+HIFI pll was not available simply because there was no driver for it.
 
-I tried a few sdcards on the OC2 with your 2 patches.
-Like with the libretech-cc, sdr104 at 200Mhz works "mostly", but, with some
-sdcards, it does not - please see below. The same sdcards appear to be working
-fine on my laptop.
+Whatever the reason for an input clock to be missing, this clock controller may
+continue to serve its purpose even if some input plls are not provided/available
+which is why these are not "mandatory"
 
-This is something I have not been able to crack yet on the libretech-cc.
-
-I'd suggest dropping sdr104 and keeping the max frequency at 100Mhz until we can
-figure out the problem here.
-
-With this changed:
-
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-
-dd if=/dev/mmcblk1 of=/dev/zero bs=4M                                   
-[  446.925817] mmc1: tuning execution failed: -5                               
-[  446.956597] mmc1: tuning execution failed: -5                               
-[  489.957810] print_req_error: I/O error, dev mmcblk1, sector 6654424         
-[  490.141975] print_req_error: I/O error, dev mmcblk1, sector 6656440         
-[  490.148304] print_req_error: I/O error, dev mmcblk1, sector 6656944         
-[  490.349650] print_req_error: I/O error, dev mmcblk1, sector 6658456         
-[  491.804382] print_req_error: I/O error, dev mmcblk1, sector 6747688         
-[  492.281246] print_req_error: I/O error, dev mmcblk1, sector 6784992         
-[  492.419034] print_req_error: I/O error, dev mmcblk1, sector 6785496         
-[  492.865878] print_req_error: I/O error, dev mmcblk1, sector 6791800         
-[  493.023809] print_req_error: I/O error, dev mmcblk1, sector 6792192         
-[  493.024435] Buffer I/O error on dev mmcblk1, logical block 849024, async page
-read                                                                         
-[  493.217751] print_req_error: I/O error, dev mmcblk1, sector 6792808         
-[  494.891779] mmc1: tuning execution failed: -5                               
-[  495.374186] print_req_error: 3 callbacks suppressed                         
-[  495.374193] print_req_error: I/O error, dev mmcblk1, sector 6854576         
-[  495.767498] print_req_error: I/O error, dev mmcblk1, sector 6860000         
-[  496.013104] print_req_error: I/O error, dev mmcblk1, sector 6863024         
-[  496.223042] print_req_error: I/O error, dev mmcblk1, sector 6864032         
-[  496.227003] print_req_error: I/O error, dev mmcblk1, sector 6864536         
-[  496.375175] print_req_error: I/O error, dev mmcblk1, sector 6864176         
-[  496.375806] Buffer I/O error on dev mmcblk1, logical block 858022, async page
-read                                                                         
-[  496.521229] print_req_error: I/O error, dev mmcblk1, sector 6864184         
-[  496.521852] Buffer I/O error on dev mmcblk1, logical block 858023, async page
-read                                                                         
-[  503.596978] print_req_error: I/O error, dev mmcblk1, sector 6983312         
-[  503.597606] Buffer I/O error on dev mmcblk1, logical block 872914, async page
-read                                                                         
-[  505.280621] print_req_error: I/O error, dev mmcblk1, sector 7004536         
-[  505.281249] Buffer I/O error on dev mmcblk1, logical block 875567, async page
-read                                                                         
-[  507.372560] print_req_error: I/O error, dev mmcblk1, sector 7048696         
-[  507.373192] Buffer I/O error on dev mmcblk1, logical block 881087, async page
-read                                                                         
-[  511.355248] print_req_error: I/O error, dev mmcblk1, sector 7131352         
-[  511.355883] Buffer I/O error on dev mmcblk1, logical block 891419, async page
-read                                                                         
-[  511.369076] print_req_error: I/O error, dev mmcblk1, sector 7131352         
-[  511.369694] Buffer I/O error on dev mmcblk1, logical block 891419, async page
-read                                                                         
-dd: error reading '/dev/mmcblk1': Input/output error                           
-868+7 records in                       
-868+7 records out                      
-3651252224 bytes (3.7 GB, 3.4 GiB) copied, 66.7736 s, 54.7 MB/s   
+> 
+> > +		  * "slv_sclk[0-9]" - 10 slave bit clocks provided by external
+> > +				      components.
+> > +		  * "slv_lrclk[0-9]" - 10 slave sample clocks provided by external
+> > +				       components.
+> 
+> I'm guessing these may come from pins that aren't connected, so being 
+> optional is fine.
+> 
+> > +- reset		: phandle of the internal reset line
+> 
+> resets
+> 
+> > +- #clock-cells	: should be 1.
+> > +
+> > +Each clock is assigned an identifier and client nodes can use this identifier
+> > +to specify the clock which they consume. All available clocks are defined as
+> > +preprocessor macros in the dt-bindings/clock/axg-audio-clkc.h header and can be
+> > +used in device tree sources.
+> > +
+> > +Example:
+> > +
+> > +clkc_audio: clock-controller {
+> 
+> Needs a unit address.
+> 
+> > +	compatible = "amlogic,axg-audio-clkc";
+> > +	reg = <0x0 0x0 0x0 0xb4>;
+> > +	#clock-cells = <1>;
+> > +
+> > +	clocks = <&clkc CLKID_AUDIO>,
+> > +		 <&clkc CLKID_MPLL0>,
+> > +		 <&clkc CLKID_MPLL1>,
+> > +		 <&clkc CLKID_MPLL2>,
+> > +		 <&clkc CLKID_MPLL3>,
+> > +		 <&clkc CLKID_HIFI_PLL>,
+> > +		 <&clkc CLKID_FCLK_DIV3>,
+> > +		 <&clkc CLKID_FCLK_DIV4>,
+> > +		 <&clkc CLKID_GP0_PLL>;
+> > +	clock-names = "pclk",
+> > +		      "mst_in0",
+> > +		      "mst_in1",
+> > +		      "mst_in2",
+> > +		      "mst_in3",
+> > +		      "mst_in4",
+> > +		      "mst_in5",
+> > +		      "mst_in6",
+> > +		      "mst_in7";
+> > +	resets = <&reset RESET_AUDIO>;
+> > +};
+> > -- 
+> > 2.14.3
+> > 
+> > --
+> > To unsubscribe from this list: send the line "unsubscribe devicetree" in
+> > the body of a message to majordomo at vger.kernel.org
+> > More majordomo info at  http://vger.kernel.org/majordomo-info.html
