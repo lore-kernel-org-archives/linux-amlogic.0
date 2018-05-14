@@ -1,167 +1,55 @@
-From: daniel@ffwll.ch (Daniel Vetter)
-Date: Sun, 13 May 2018 16:12:18 +0200
-Subject: [PATCH 00/13] drm/kms/mode: using helper func
- drm_display_mode_to/from_videomode for calculating timing parameters
-In-Reply-To: <1525866725-16685-1-git-send-email-satendra.t@samsung.com>
-References: <CGME20180509115224epcas5p1c958418bc36fd224e8d36b9511c5beea@epcas5p1.samsung.com>
- <1525777110-11378-1-git-send-email-satendra.t@samsung.com>
- <1525866725-16685-1-git-send-email-satendra.t@samsung.com>
-Message-ID: <CAKMK7uGb_psf+H4oWqwpWYg6OT6YV3Gm_CrjEpfzk=WtxH3MjQ@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 14 May 2018 12:03:19 +0200
+Subject: [PATCH] clk: meson: meson8b: mark fclk_div gate clocks as
+ CLK_IS_CRITICAL
+In-Reply-To: <CAFBinCBz9ne9qeU3a6SQJpqRFm0ix0Dc0LYvmzWKmKJWVML_UQ@mail.gmail.com>
+References: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
+ <CAFBinCBz9ne9qeU3a6SQJpqRFm0ix0Dc0LYvmzWKmKJWVML_UQ@mail.gmail.com>
+Message-ID: <1526292199.2897.7.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, May 9, 2018 at 1:52 PM, Satendra Singh Thakur
-<satendra.t@samsung.com> wrote:
-> On Thu, May 08, 2018 at 16:28:30 +0530, Satendra Singh Thakur wrote:
->> On Thu, May 07, 2018 at 15:46:02 +0200, Daniel Vetter wrote:
->> > On Thu, May 03, 2018 at 01:53:55PM +0530, Satendra Singh Thakur wrote:
->> > > 1.There is a function in drm-core to calculate display timing parameters:
->> > > horizontal front porch, back porch, sync length,
->> > > vertical front porch, back porch, sync length and
->> > > clock in Hz.
->> > > However, some drivers are still calculating these parameters themselves.
->> > > Therefore, there is a duplication of the code.
->> > > This patch series replaces this redundant code with the function
->> > > drm_display_mode_to_videomode.
->> > > This removes nearly 100 redundant lines from the related drivers.
->> > > 2.For some drivers (sun4i) the reverse helper
->> > > drm_display_mode_from_videomode is used.
->> > > 3.For some drivers it replaces arithmatic operators (*, /) with shifting
->> > > operators (>>, <<).
->> > > 4.For some drivers DRM_MODE_FLAG_* are replaced with DISPLAY_FLAGS_* flags.
->> > > 5.These changes apply to following crtc and encoder drivers:
->> > > atmel-hlcdc
->> > > bridge-tc358767
->> > > exynos-dsi
->> > > fsl-dcu
->> > > gma500-mdfld_dsi_dpi
->> > > hisilicon-kirin_dsi, ade
->> > > meson-encoder
->> > > pl111-display
->> > > sun4i-tv
->> > > ti lcdc
->> > > tegra dc
->> > > mediatek dpi dsi
->> > > bridge-adv7533
->> >
->> > The drm_mode_to_videomode helper is meant for interop between drm and v4l,
->> > which have different internal structures to represent modes.
->> >
->> > For drivers that only use drm I think the better option would be to add
->> > these fields to struct drm_display_mode as another set of crtc_* values
->> > (the computed values are stored in crtc_ prefixed members). And compute
->> > front/back porch in drm_mode_set_crtcinfo.
->> >
->> > Then we can use these new drm_display_mode->crtc_h|vfront|back_porch
->> > fields in all the drivers you're changing. This way you avoid having to
->> > change all the drm drivers to use v4l #defines.
->> >
->> > Thanks,
->> > Daniel
->>
->> Hi Daniel,
->> Thanks for the comments.
->> I will look into it.
->>
->> Thanks
->> -Satendra
->
-> Hi Daniel,
-> Thanks for the comments.
-> Please find below my understanding in this direction.
->
-> 1. Currently struct videomode is being used in 50 drm drivers and 14 fbdev drivers.
->    Since, it's already being used by so many drm drivers, that is the reason
->    these fbdev objects (struct videmode and func drm_display_mode_to_videomode) were used in this patch series.
+On Tue, 2018-05-01 at 23:55 +0200, Martin Blumenstingl wrote:
+> Hello Yixun,
+> 
+> On Tue, May 1, 2018 at 11:45 PM, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> > Until commit 05f814402d6174 ("clk: meson: add fdiv clock gates") we
+> > relied on the bootloader to enable the fclk_div clock gates. It turns
+> > out that our clock tree is incomplete at least on Meson8b (tested with
+> > an Odroid-C1, which uses an RGMII PHY) because after the mentioned
+> > commit Ethernet is not working anymore (no RX/TX activity can be seen).
+> > At the same time Ethernet was still working on Meson8m2 with a RMII PHY.
+> > 
+> > It is currently not clear which of the fclk_div gates is required for
+> > (RGMII) Ethernet operation on Meson8b and why. Mark the fclk_div gates
+> > as CLK_IS_CRITICAL so the common clock framework keeps these gates
+> > enabled for us until we know which clock is required for Ethernet on
+> > Meson8b and which driver has to claim it.
+> 
+> based on the public datasheet for Meson8b (S805) I cannot see which
+> part of the SoC uses fclk_divX for (RGMII) Ethernet.
+> I did some further tests and it seems that Ethernet is not working if
+> fclk_div2 is disabled (the other fclk_divX don't seem to affect
+> Ethernet operation)
+> 
+> could you please check your internal datasheets and let us know how
+> fclk_div2 is routed internally and how it can affect Ethernet data
+> transfers?
 
-The biggest contributor for that seems to be of_get_videomode. We
-should probably have a of_drm_get_display_mode helper, which
-automatically converts the of/dt video description into the drm
-display mode structure.
+Hi Martin,
 
-And I found way less than 50 drm drivers using videomode, much less if
-we ignore of.
+As usual, thanks for your thorough work !
 
-> 2. Anyway, if fbdev related objects (struct/func) are not encouraged in drm drivers, then we may add
->    h/v front/back porches in struct drm_display_mode as adviced by you.
->
-> 3. We can calculate these params in func drm_mode_set_crtcinfo at the end of it.
->    int drm_mode_set_crtcinfo ()
->    {
->    .
->    .
->    crtc_hfront_porch = crtc_hsync_start - crtc_hdisplay;
->    crtc_vfront_porch = crtc_vsync_start - crtc_vdisplay;
->    .
->    .
->    crtc_clock_hz = crtc_clock*1000;
->    };
->
-> 4. Normally mode is programmed in HW in following callbacks of crtc and encoder drivers
->    -mode_set
->    -mode_set_nofb
->    -atomic_enable
->
->
->    Normally drm_mode_set_crtcinfo is used in
->    -mode_fixup callbacks (CBs)
->    of encoder and crtc drivers.
->
->    if mode_fixup CBs are called before mode_set CBs then
->    drm_mode_set_crtcinfo is right place to calculate sync/porch params.
->    We can use crtc_hfront/back_porches directly and program them to HW
->    in above mentioned callbacks.
->
->    int my_mode_set ()
->    {
->         REG_WRITE(crtc_hfront_porch);
->         REG_WRITE(crtc_hback_porch);
->         .
->         .
->    }
+Now that you know which of the fdiv is actually required, I would prefer if we
+could mark only the required clock as critical.
 
-Agreed with your plan up to point 5 here.
+Also, could you please add a short FIXME comment in the code explaining why this
+is necessary. This should a be temporary fix while we get the ethernet driver
+sorted out. If the ethernet of the meson8b requires the fdiv2 it should claim it
+(through other clock if necessary)
 
->  6.  However, if these params are being modified after calling drm_set_crtcinfo as mentioned below:
->
->    bool amdgpu_atombios_encoder_mode_fixup(struct drm_encoder *encoder,
->                                  const struct drm_display_mode *mode,
->                                  struct drm_display_mode *adjusted_mode)
->    {
->         struct amdgpu_encoder *amdgpu_encoder = to_amdgpu_encoder(encoder);
->
->         /* set the active encoder to connector routing */
->         amdgpu_encoder_set_active_device(encoder);
->         ***drm_mode_set_crtcinfo(adjusted_mode, 0);****
->
->         /* hw bug */
->         if ((mode->flags & DRM_MODE_FLAG_INTERLACE)
->             && (mode->crtc_vsync_start < (mode->crtc_vdisplay + 2)))
->                 adjusted_mode->crtc_vsync_start = adjusted_mode->crtc_vdisplay + 2;
->
->   Then we may need to define new func like
->
->   void drm_calc_hv_porches_sync()
->   {
->    crtc_hfront_porch = crtc_hsync_start - crtc_hdisplay;
->    crtc_vfront_porch = crtc_vsync_start - crtc_vdisplay;
->    .
->    .
->    crtc_clock_hz = crtc_clock*1000;
->   }  and call this func in mode_set*, atomic_enable CBS before programming the HW with this mode.
->
->
->   Should I create patches around this idea ?
->   Please let me know your comments.
-
-I'm not sure about point 6. I think we should wait with coming up with
-a solution to this problem once there's a clear need for it. Most
-likely I think drivers who both need to adjust computed timings and
-who need v/hfront/back porch just need to adjust everything on their
-own. And we won't provide any additional helpers.
-
-Cheers, Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+> 
+> (my current speculation is that it may be related to the "Ethernet
+> Memory Power Domain" in CBUS HHI_MEM_PD_REG0, but I have no proof for
+> that)
