@@ -1,59 +1,129 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Mon, 14 May 2018 23:00:15 +0200
-Subject: [PATCH] clk: meson: meson8b: mark fclk_div gate clocks as
- CLK_IS_CRITICAL
-In-Reply-To: <1526292199.2897.7.camel@baylibre.com>
-References: <20180501214555.11476-1-martin.blumenstingl@googlemail.com>
- <CAFBinCBz9ne9qeU3a6SQJpqRFm0ix0Dc0LYvmzWKmKJWVML_UQ@mail.gmail.com>
- <1526292199.2897.7.camel@baylibre.com>
-Message-ID: <CAFBinCB6r5X6-714cBN=eftaA95j7F2RU3X5-kguBt1-5gQmkQ@mail.gmail.com>
+From: linux.amoon@gmail.com (Anand Moon)
+Date: Tue, 15 May 2018 11:04:11 +0530
+Subject: [PATCH 1/2] ARM64: dts: meson-gxbb: odroidc2: enable sdcard UHS
+ modes
+In-Reply-To: <1526305693.2897.16.camel@baylibre.com>
+References: <20180501185902.3556-1-linux.amoon@gmail.com>
+ <1526305693.2897.16.camel@baylibre.com>
+Message-ID: <CANAwSgSMu1q0sLHhyhVmh0WMEOQaUD+cbsvwhQ2ebOO=hju=Og@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, May 14, 2018 at 12:03 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> On Tue, 2018-05-01 at 23:55 +0200, Martin Blumenstingl wrote:
->> Hello Yixun,
->>
->> On Tue, May 1, 2018 at 11:45 PM, Martin Blumenstingl
->> <martin.blumenstingl@googlemail.com> wrote:
->> > Until commit 05f814402d6174 ("clk: meson: add fdiv clock gates") we
->> > relied on the bootloader to enable the fclk_div clock gates. It turns
->> > out that our clock tree is incomplete at least on Meson8b (tested with
->> > an Odroid-C1, which uses an RGMII PHY) because after the mentioned
->> > commit Ethernet is not working anymore (no RX/TX activity can be seen).
->> > At the same time Ethernet was still working on Meson8m2 with a RMII PHY.
->> >
->> > It is currently not clear which of the fclk_div gates is required for
->> > (RGMII) Ethernet operation on Meson8b and why. Mark the fclk_div gates
->> > as CLK_IS_CRITICAL so the common clock framework keeps these gates
->> > enabled for us until we know which clock is required for Ethernet on
->> > Meson8b and which driver has to claim it.
->>
->> based on the public datasheet for Meson8b (S805) I cannot see which
->> part of the SoC uses fclk_divX for (RGMII) Ethernet.
->> I did some further tests and it seems that Ethernet is not working if
->> fclk_div2 is disabled (the other fclk_divX don't seem to affect
->> Ethernet operation)
->>
->> could you please check your internal datasheets and let us know how
->> fclk_div2 is routed internally and how it can affect Ethernet data
->> transfers?
->
-> Hi Martin,
->
-> As usual, thanks for your thorough work !
->
-> Now that you know which of the fdiv is actually required, I would prefer if we
-> could mark only the required clock as critical.
-OK, I'll re-send the patch this weekend
+Hi Jerome
 
-> Also, could you please add a short FIXME comment in the code explaining why this
-> is necessary. This should a be temporary fix while we get the ethernet driver
-> sorted out. If the ethernet of the meson8b requires the fdiv2 it should claim it
-> (through other clock if necessary)
-I'll include the "FIXME" comment
-and I totally agree that this should only be a temporary workaround
+On 14 May 2018 at 19:18, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> On Wed, 2018-05-02 at 00:29 +0530, Anand Moon wrote:
+>> Enable UHS modes for sdcard, on odroidc2.
+>>
+>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> index 54954b314a45..c90f8b46c60c 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+>> @@ -258,6 +258,11 @@
+>>       cap-sd-highspeed;
+>>       max-frequency = <100000000>;
+>>       disable-wp;
+>> +     sd-uhs-sdr12;
+>> +     sd-uhs-sdr25;
+>> +     sd-uhs-sdr50;
+>> +     sd-uhs-sdr104;
+>> +     sd-uhs-ddr50;
+>>
+>>       cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+>>       cd-inverted;
+>
+> Hi Anand,
+>
+> I tried a few sdcards on the OC2 with your 2 patches.
+> Like with the libretech-cc, sdr104 at 200Mhz works "mostly", but, with some
+> sdcards, it does not - please see below. The same sdcards appear to be working
+> fine on my laptop.
+>
+> This is something I have not been able to crack yet on the libretech-cc.
+>
+> I'd suggest dropping sdr104 and keeping the max frequency at 100Mhz until we can
+> figure out the problem here.
+>
+> With this changed:
+>
+> Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+>
+> dd if=/dev/mmcblk1 of=/dev/zero bs=4M
+> [  446.925817] mmc1: tuning execution failed: -5
+> [  446.956597] mmc1: tuning execution failed: -5
+> [  489.957810] print_req_error: I/O error, dev mmcblk1, sector 6654424
+> [  490.141975] print_req_error: I/O error, dev mmcblk1, sector 6656440
+> [  490.148304] print_req_error: I/O error, dev mmcblk1, sector 6656944
+> [  490.349650] print_req_error: I/O error, dev mmcblk1, sector 6658456
+> [  491.804382] print_req_error: I/O error, dev mmcblk1, sector 6747688
+> [  492.281246] print_req_error: I/O error, dev mmcblk1, sector 6784992
+> [  492.419034] print_req_error: I/O error, dev mmcblk1, sector 6785496
+> [  492.865878] print_req_error: I/O error, dev mmcblk1, sector 6791800
+> [  493.023809] print_req_error: I/O error, dev mmcblk1, sector 6792192
+> [  493.024435] Buffer I/O error on dev mmcblk1, logical block 849024, async page
+> read
+> [  493.217751] print_req_error: I/O error, dev mmcblk1, sector 6792808
+> [  494.891779] mmc1: tuning execution failed: -5
+> [  495.374186] print_req_error: 3 callbacks suppressed
+> [  495.374193] print_req_error: I/O error, dev mmcblk1, sector 6854576
+> [  495.767498] print_req_error: I/O error, dev mmcblk1, sector 6860000
+> [  496.013104] print_req_error: I/O error, dev mmcblk1, sector 6863024
+> [  496.223042] print_req_error: I/O error, dev mmcblk1, sector 6864032
+> [  496.227003] print_req_error: I/O error, dev mmcblk1, sector 6864536
+> [  496.375175] print_req_error: I/O error, dev mmcblk1, sector 6864176
+> [  496.375806] Buffer I/O error on dev mmcblk1, logical block 858022, async page
+> read
+> [  496.521229] print_req_error: I/O error, dev mmcblk1, sector 6864184
+> [  496.521852] Buffer I/O error on dev mmcblk1, logical block 858023, async page
+> read
+> [  503.596978] print_req_error: I/O error, dev mmcblk1, sector 6983312
+> [  503.597606] Buffer I/O error on dev mmcblk1, logical block 872914, async page
+> read
+> [  505.280621] print_req_error: I/O error, dev mmcblk1, sector 7004536
+> [  505.281249] Buffer I/O error on dev mmcblk1, logical block 875567, async page
+> read
+> [  507.372560] print_req_error: I/O error, dev mmcblk1, sector 7048696
+> [  507.373192] Buffer I/O error on dev mmcblk1, logical block 881087, async page
+> read
+> [  511.355248] print_req_error: I/O error, dev mmcblk1, sector 7131352
+> [  511.355883] Buffer I/O error on dev mmcblk1, logical block 891419, async page
+> read
+> [  511.369076] print_req_error: I/O error, dev mmcblk1, sector 7131352
+> [  511.369694] Buffer I/O error on dev mmcblk1, logical block 891419, async page
+> read
+> dd: error reading '/dev/mmcblk1': Input/output error
+> 868+7 records in
+> 868+7 records out
+> 3651252224 bytes (3.7 GB, 3.4 GiB) copied, 66.7736 s, 54.7 MB/s
 
 
-Regards
-Martin
+Thank for your testing, I will also do some more testing on all the
+sdcard and share you the result..
+
+Mean while Sandisk Ultra microSDHC UHS-I card @A1 32GB shows.
+
+On my Odroid C2:
+
+[    1.165784] meson-gx-mmc d0074000.mmc: allocated mmc-pwrseq
+[    1.403756] meson-gx-mmc d0072000.mmc: Got CD GPIO
+[    1.456160] Waiting for root device /dev/mmcblk1p2...
+[    1.608180] mmc1: new ultra high speed SDR104 SDHC card at address aaaa
+[    1.610002] mmcblk1: mmc1:aaaa JULIE 29.7 GiB
+[    1.617811]  mmcblk1: p1 p2
+
+Also I did not encounter and read/write failure on the sdcard but I
+will re-test them.
+
+root at odroid64:~#  dd if=/dev/mmcblk1 of=/dev/zero bs=4M
+7609+1 records in
+7609+1 records out
+31914983424 bytes (32 GB, 30 GiB) copied, 368.637 s, 86.6 MB/s
+root at odroid64:~#
+
+Best Regards
+-Anand
