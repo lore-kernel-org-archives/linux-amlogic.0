@@ -1,58 +1,34 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 15 May 2018 18:36:52 +0200
-Subject: [PATCH v2 2/2] clk: meson: axg: let mpll clocks round closest
-In-Reply-To: <20180515163652.19980-1-jbrunet@baylibre.com>
-References: <20180515163652.19980-1-jbrunet@baylibre.com>
-Message-ID: <20180515163652.19980-3-jbrunet@baylibre.com>
+Date: Tue, 15 May 2018 18:36:50 +0200
+Subject: [PATCH v2 0/2] clk: meson: mpll: add round closest support
+Message-ID: <20180515163652.19980-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Let the mpll dividers achieve the closest rate possible, even if
-it means rounding the requested rate up.
+ATM, the mpll driver can only round the requested rate down, even if
+rounding up would have provided a better approximation of the requested
+rate.
 
-This is done to improve the accuracy of the rates provided by these
-plls to the audio subsystem
+This patchset adds a flag to enable rounding to the closest rate possible,
+even if it means rounding up.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/axg.c | 4 ++++
- 1 file changed, 4 insertions(+)
+The flag is then enabled on the axg platform to improve the rates provided
+to the audio subsystem.
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 5f5d468c1efe..bd4dbc696b88 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -461,6 +461,7 @@ static struct clk_regmap axg_mpll0_div = {
- 			.width	 = 1,
- 		},
- 		.lock = &meson_clk_lock,
-+		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll0_div",
-@@ -507,6 +508,7 @@ static struct clk_regmap axg_mpll1_div = {
- 			.width	 = 1,
- 		},
- 		.lock = &meson_clk_lock,
-+		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll1_div",
-@@ -553,6 +555,7 @@ static struct clk_regmap axg_mpll2_div = {
- 			.width	 = 1,
- 		},
- 		.lock = &meson_clk_lock,
-+		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll2_div",
-@@ -599,6 +602,7 @@ static struct clk_regmap axg_mpll3_div = {
- 			.width	 = 1,
- 		},
- 		.lock = &meson_clk_lock,
-+		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "mpll3_div",
+Changes since v1: [0]
+ * Fix an error in calculation while rounding the rate down
+   (Thanks Martin for reporting it)
+
+[0]: https://lkml.kernel.org/r/20180420095603.29964-1-jbrunet at baylibre.com
+
+Jerome Brunet (2):
+  clk: meson: mpll: add round closest support
+  clk: meson: axg: let mpll clocks round closest
+
+ drivers/clk/meson/axg.c      |  4 ++++
+ drivers/clk/meson/clk-mpll.c | 24 +++++++++++++++++++-----
+ drivers/clk/meson/clkc.h     |  3 +++
+ 3 files changed, 26 insertions(+), 5 deletions(-)
+
 -- 
 2.14.3
