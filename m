@@ -1,79 +1,58 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 15 May 2018 16:48:40 +0200
-Subject: [PATCH meson-clk-next] clk: meson: meson8b: enable
- CLK_MESON_MPLL_ROUND_CLOSEST for all MPLLs
-In-Reply-To: <1524927694.28715.2.camel@baylibre.com>
-References: <20180428132316.20108-1-martin.blumenstingl@googlemail.com>
- <1524927694.28715.2.camel@baylibre.com>
-Message-ID: <1526395720.2897.51.camel@baylibre.com>
+Date: Tue, 15 May 2018 18:36:52 +0200
+Subject: [PATCH v2 2/2] clk: meson: axg: let mpll clocks round closest
+In-Reply-To: <20180515163652.19980-1-jbrunet@baylibre.com>
+References: <20180515163652.19980-1-jbrunet@baylibre.com>
+Message-ID: <20180515163652.19980-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2018-04-28 at 17:01 +0200, Jerome Brunet wrote:
-> On Sat, 2018-04-28 at 15:23 +0200, Martin Blumenstingl wrote:
-> > Until recently the clk-mpll implementation always used
-> > DIV_ROUND_UP_ULL(). However, since commit 1b0e500dc606e9 ("clk: meson:
-> > mpll: add round closest support") the default was changed to round down
-> > the SDM divisor.
-> > This broke RGMII Ethernet on Meson8b (which uses MPLL2 as RGMII TX
-> > clock). With the old implementation the MPLL2 output was 249999701Hz,
-> > but with "round closest" disabled the output is 212500000Hz.
-> > 
-> > Enabling CLK_MESON_MPLL_ROUND_CLOSEST for all MPLL2 clocks on Meson8b
-> > fixes this because we now get the same 249999701Hz from MPLL2 as before.
-> 
-> It should either be rounding up or down, not down or 'more down'
-> I guess I need to revisit this series. In the mean time, I'll drop it.
-> Thanks for reporting the issue
+Let the mpll dividers achieve the closest rate possible, even if
+it means rounding the requested rate up.
 
-Hi Martin,
+This is done to improve the accuracy of the rates provided by these
+plls to the audio subsystem
 
-I think I found the problem in the mpll round closest code.
-It does not seem to be a 32bit overflow, as we had before. Apparently, I got
-confused with rounding up and down stuff :(
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/axg.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I'll post a v2 soon. I'll wait for your feedback before applying it this time
-
-Thanks again for reporting the issue.
-
-Cheers
-Jerome
-
-> 
-> > 
-> > Fixes: 1b0e500dc606e9 ("clk: meson: mpll: add round closest support")
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > ---
-> >  drivers/clk/meson/meson8b.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-> > index d0524ec71aad..2639a892a5d4 100644
-> > --- a/drivers/clk/meson/meson8b.c
-> > +++ b/drivers/clk/meson/meson8b.c
-> > @@ -382,6 +382,7 @@ static struct clk_regmap meson8b_mpll0_div = {
-> >  			.width   = 1,
-> >  		},
-> >  		.lock = &meson_clk_lock,
-> > +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
-> >  	},
-> >  	.hw.init = &(struct clk_init_data){
-> >  		.name = "mpll0_div",
-> > @@ -423,6 +424,7 @@ static struct clk_regmap meson8b_mpll1_div = {
-> >  			.width   = 9,
-> >  		},
-> >  		.lock = &meson_clk_lock,
-> > +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
-> >  	},
-> >  	.hw.init = &(struct clk_init_data){
-> >  		.name = "mpll1_div",
-> > @@ -464,6 +466,7 @@ static struct clk_regmap meson8b_mpll2_div = {
-> >  			.width   = 9,
-> >  		},
-> >  		.lock = &meson_clk_lock,
-> > +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
-> >  	},
-> >  	.hw.init = &(struct clk_init_data){
-> >  		.name = "mpll2_div",
-> 
-> 
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 5f5d468c1efe..bd4dbc696b88 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -461,6 +461,7 @@ static struct clk_regmap axg_mpll0_div = {
+ 			.width	 = 1,
+ 		},
+ 		.lock = &meson_clk_lock,
++		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll0_div",
+@@ -507,6 +508,7 @@ static struct clk_regmap axg_mpll1_div = {
+ 			.width	 = 1,
+ 		},
+ 		.lock = &meson_clk_lock,
++		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll1_div",
+@@ -553,6 +555,7 @@ static struct clk_regmap axg_mpll2_div = {
+ 			.width	 = 1,
+ 		},
+ 		.lock = &meson_clk_lock,
++		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll2_div",
+@@ -599,6 +602,7 @@ static struct clk_regmap axg_mpll3_div = {
+ 			.width	 = 1,
+ 		},
+ 		.lock = &meson_clk_lock,
++		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mpll3_div",
+-- 
+2.14.3
