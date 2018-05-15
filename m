@@ -1,27 +1,38 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 15 May 2018 11:57:46 +0200
-Subject: [PATCH 0/2] mmc: meson-gx: add device reset
-Message-ID: <20180515095748.6794-1-jbrunet@baylibre.com>
+Date: Tue, 15 May 2018 11:57:47 +0200
+Subject: [PATCH 1/2] dt-bindings: mmc: meson-gx: add reset
+In-Reply-To: <20180515095748.6794-1-jbrunet@baylibre.com>
+References: <20180515095748.6794-1-jbrunet@baylibre.com>
+Message-ID: <20180515095748.6794-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset adds the optional reset of the meson-gx mmc controller and
-the related documentation.
+Add the reset to the documentation of the meson-gx mmc controller
+bindings.
 
-Changes since v1: [0]
- * Correct typo in the documentation
- * Separate code and documentation patches
- * Error on reset failure.
-
-[0]: https://lkml.kernel.org/r/20180426103817.12675-1-jbrunet at baylibre.com
-
-Jerome Brunet (2):
-  dt-bindings: mmc: meson-gx: add reset
-  mmc: meson-gx: add device reset
-
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
  Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt | 2 ++
- drivers/mmc/host/meson-gx-mmc.c                            | 9 +++++++++
- 2 files changed, 11 insertions(+)
+ 1 file changed, 2 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+index 50bf611a4d2c..2d54a08487f5 100644
+--- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
++++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
+@@ -19,6 +19,7 @@ Required properties:
+ 	"clkin1" - Other parent clock of internal mux
+   The driver has an internal mux clock which switches between clkin0 and clkin1 depending on the
+   clock rate requested by the MMC core.
++- resets     : phandle of the internal reset line
+ 
+ Example:
+ 
+@@ -29,4 +30,5 @@ Example:
+ 		clocks = <&clkc CLKID_SD_EMMC_A>, <&xtal>, <&clkc CLKID_FCLK_DIV2>;
+ 		clock-names = "core", "clkin0", "clkin1";
+ 		pinctrl-0 = <&emmc_pins>;
++		resets = <&reset RESET_SD_EMMC_A>;
+ 	};
 -- 
 2.14.3
