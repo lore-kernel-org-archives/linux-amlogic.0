@@ -1,48 +1,82 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 15 May 2018 11:57:48 +0200
-Subject: [PATCH 2/2] mmc: meson-gx: add device reset
-In-Reply-To: <20180515095748.6794-1-jbrunet@baylibre.com>
-References: <20180515095748.6794-1-jbrunet@baylibre.com>
-Message-ID: <20180515095748.6794-3-jbrunet@baylibre.com>
+Date: Tue, 15 May 2018 14:54:34 +0200
+Subject: [GIT PULL]  clk: meson: updates for v4.18
+Message-ID: <1526388874.2897.44.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Trigger the reset line of the mmc controller while probing, if available.
-The reset should be optional for now, at least until all related DT nodes
-have the reset property.
+Dear clock maintainers,
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Below is a request to pull amlogic clock updates for v4.18. Apart from the usual
+clock additions, there was a rework of the AO clock controller found on the gxbb
+SoC family. This has been done to improve code re-usability before introducing a
+very similar controller for the axg SoC family.
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 4f972b879fe6..9bca359f7936 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -35,6 +35,7 @@
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- #include <linux/interrupt.h>
- #include <linux/bitfield.h>
- #include <linux/pinctrl/consumer.h>
-@@ -1184,6 +1185,14 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 		goto free_host;
- 	}
- 
-+	ret = device_reset_optional(&pdev->dev);
-+	if (ret) {
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "device reset failed: %d\n", ret);
-+
-+		return ret;
-+	}
-+
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	host->regs = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(host->regs)) {
--- 
-2.14.3
+Cheers
+Jerome
+
+The following changes since commit 60cc43fc888428bb2f18f08997432d426a243338:
+
+  Linux 4.17-rc1 (2018-04-15 18:24:20 -0700)
+
+are available in the Git repository at:
+
+  git://github.com/BayLibre/clk-meson.git tags/meson-clk-4.18-1
+
+for you to fetch changes up to 24a2e6796eb23d17d4e32a27f19336248666272c:
+
+  clk: meson: drop CLK_SET_RATE_PARENT flag (2018-05-15 14:19:43 +0200)
+
+----------------------------------------------------------------
+First round of update for meson clocks targeted at v4.18:
+* Add meson8b nand clocks
+* Add gxbb video decoder clocks
+* Rework of gxbb AO clock controller code to allow code reuse
+* Add axg AO clock controller
+
+----------------------------------------------------------------
+Jerome Brunet (1):
+      Merge branch 'next/bindings' into next/drivers
+
+Martin Blumenstingl (2):
+      dt-bindings: clock: meson8b: export the NAND clock
+      clk: meson: meson8b: add support for the NAND clocks
+
+Maxime Jourdan (2):
+      clk: meson: gxbb: expose VDEC_1 and VDEC_HEVC clocks
+      clk: meson: gxbb: add the video decoder clocks
+
+Qiufang Dai (1):
+      clk: meson-axg: Add AO Clock and Reset controller driver
+
+Yixun Lan (5):
+      dt-bindings: clock: axg-aoclkc: New binding for Meson-AXG SoC
+      dt-bindings: clock: reset: Add AXG AO Clock and Reset Bindings
+      clk: meson: migrate to devm_of_clk_add_hw_provider API
+      clk: meson: aoclk: refactor common code into dedicated file
+      clk: meson: drop CLK_SET_RATE_PARENT flag
+
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |   1 +
+ drivers/clk/meson/Kconfig                          |   8 +
+ drivers/clk/meson/Makefile                         |   3 +-
+ drivers/clk/meson/axg-aoclk.c                      | 164 +++++++++++++++++++++
+ drivers/clk/meson/axg-aoclk.h                      |  29 ++++
+ drivers/clk/meson/gxbb-aoclk.c                     |  96 +++++-------
+ drivers/clk/meson/gxbb-aoclk.h                     |   5 +
+ drivers/clk/meson/gxbb.c                           | 114 ++++++++++++++
+ drivers/clk/meson/gxbb.h                           |   6 +-
+ drivers/clk/meson/meson-aoclk.c                    |  81 ++++++++++
+ drivers/clk/meson/meson-aoclk.h                    |  34 +++++
+ drivers/clk/meson/meson8b.c                        |  54 +++++++
+ drivers/clk/meson/meson8b.h                        |   5 +-
+ include/dt-bindings/clock/axg-aoclkc.h             |  26 ++++
+ include/dt-bindings/clock/gxbb-clkc.h              |   2 +
+ include/dt-bindings/clock/meson8b-clkc.h           |   1 +
+ include/dt-bindings/reset/axg-aoclkc.h             |  20 +++
+ 17 files changed, 583 insertions(+), 66 deletions(-)
+ create mode 100644 drivers/clk/meson/axg-aoclk.c
+ create mode 100644 drivers/clk/meson/axg-aoclk.h
+ create mode 100644 drivers/clk/meson/meson-aoclk.c
+ create mode 100644 drivers/clk/meson/meson-aoclk.h
+ create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+ create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
