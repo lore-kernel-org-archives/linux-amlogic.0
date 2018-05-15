@@ -1,94 +1,79 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 15 May 2018 16:40:38 +0200
-Subject: [PATCH v8 0/5] clk: meson-axg: Add AO Cloclk and Reset driver
-In-Reply-To: <20180503132624.78453-1-yixun.lan@amlogic.com>
-References: <20180503132624.78453-1-yixun.lan@amlogic.com>
-Message-ID: <1526395238.2897.45.camel@baylibre.com>
+Date: Tue, 15 May 2018 16:48:40 +0200
+Subject: [PATCH meson-clk-next] clk: meson: meson8b: enable
+ CLK_MESON_MPLL_ROUND_CLOSEST for all MPLLs
+In-Reply-To: <1524927694.28715.2.camel@baylibre.com>
+References: <20180428132316.20108-1-martin.blumenstingl@googlemail.com>
+ <1524927694.28715.2.camel@baylibre.com>
+Message-ID: <1526395720.2897.51.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-05-03 at 21:26 +0800, Yixun Lan wrote:
->   This patch try to add AO clock and Reset driver for Amlogic's
-> Meson-AXG SoC.
+On Sat, 2018-04-28 at 17:01 +0200, Jerome Brunet wrote:
+> On Sat, 2018-04-28 at 15:23 +0200, Martin Blumenstingl wrote:
+> > Until recently the clk-mpll implementation always used
+> > DIV_ROUND_UP_ULL(). However, since commit 1b0e500dc606e9 ("clk: meson:
+> > mpll: add round closest support") the default was changed to round down
+> > the SDM divisor.
+> > This broke RGMII Ethernet on Meson8b (which uses MPLL2 as RGMII TX
+> > clock). With the old implementation the MPLL2 output was 249999701Hz,
+> > but with "round closest" disabled the output is 212500000Hz.
+> > 
+> > Enabling CLK_MESON_MPLL_ROUND_CLOSEST for all MPLL2 clocks on Meson8b
+> > fixes this because we now get the same 249999701Hz from MPLL2 as before.
 > 
->  patch 1: factor the common code into a dedicated file
->  patch 2-4: add the aoclk driver for AXG SoC
->  patch 5: drop unnecessary clock flags
-> 
-> changes since v7 at [8]: 
->  - drop the 'drop CLK_IGNORE_UNUSED flag' patch
->    to avoid circle dependencies
->  - fix Philip's Ack on patch 3
-> 
-> changes since v6 at [7]: 
->  - fix over 80 chars chechpatch error
->  - add Philip's Ack on patch 5
->  - drop extra end of newline
-> 
-> changes since v5 at [6]: 
->  - drop unnecessary header files
->  - add 'axg_aoclk' prefix to clk driver, make them more consistent
->  - add missing end new line..
-> 
-> changes since v4 at [5]: 
->  - fix return err
->  - introduce CONFIG_COMMON_CLK_MESON_AO
->  - format/style minor fix
-> 
-> changes since v3 at [4]: 
->  - add 'const' contraint to the read-only data
->  - switch to devm_of_clk_add_hw_provider API
->  - check return value of devm_reset_controller_register
-> 
-> changes since v2 at [2]: 
->  - rework meson_aoclkc_probe() which leverage the of_match_data
->  - merge patch 5-6 into this series
->  - seperate DTS patch, will send to Kevin Hilman independently
->  
-> changes since v1 at [0]: 
->  - rebase to clk-meson's branch 'next/drivers' [1]
->  - fix license, update to BSD-3-Clause
->  - drop un-used include header file
-> 
-> [0] https://lkml.kernel.org/r/20180209070026.193879-1-yixun.lan at amlogic.com
-> [1] git://github.com/BayLibre/clk-meson.git branch: next-drivers
-> [2] https://lkml.kernel.org/r/20180323143816.200573-1-yixun.lan at amlogic.com
-> [3] https://lkml.kernel.org/r/20180326081809.49493-4-yixun.lan at amlogic.com
-> [4] https://lkml.kernel.org/r/20180328025050.221585-1-yixun.lan at amlogic.com
-> [5] https://lkml.kernel.org/r/20180408031938.153474-1-yixun.lan at amlogic.com
-> [6] https://lkml.kernel.org/r/20180409143749.71197-1-yixun.lan at amlogic.com
-> [7] https://lkml.kernel.org/r/20180419135426.155794-1-yixun.lan at amlogic.com
-> [8] https://lkml.kernel.org/r/20180426084437.192394-1-yixun.lan at amlogic.com
-> 
-> 
-> Qiufang Dai (1):
->   clk: meson-axg: Add AO Clock and Reset controller driver
-> 
-> Yixun Lan (4):
->   clk: meson: aoclk: refactor common code into dedicated file
->   dt-bindings: clock: axg-aoclkc: New binding for Meson-AXG SoC
->   dt-bindings: clock: reset: Add AXG AO Clock and Reset Bindings
->   clk: meson: drop CLK_SET_RATE_PARENT flag
+> It should either be rounding up or down, not down or 'more down'
+> I guess I need to revisit this series. In the mean time, I'll drop it.
+> Thanks for reporting the issue
 
-Applied
+Hi Martin,
+
+I think I found the problem in the mpll round closest code.
+It does not seem to be a 32bit overflow, as we had before. Apparently, I got
+confused with rounding up and down stuff :(
+
+I'll post a v2 soon. I'll wait for your feedback before applying it this time
+
+Thanks again for reporting the issue.
+
+Cheers
+Jerome
 
 > 
->  .../bindings/clock/amlogic,gxbb-aoclkc.txt    |   1 +
->  drivers/clk/meson/Kconfig                     |   8 +
->  drivers/clk/meson/Makefile                    |   3 +-
->  drivers/clk/meson/axg-aoclk.c                 | 164 ++++++++++++++++++
->  drivers/clk/meson/axg-aoclk.h                 |  29 ++++
->  drivers/clk/meson/gxbb-aoclk.c                |  96 ++++------
->  drivers/clk/meson/gxbb-aoclk.h                |   5 +
->  drivers/clk/meson/meson-aoclk.c               |  81 +++++++++
->  drivers/clk/meson/meson-aoclk.h               |  34 ++++
->  include/dt-bindings/clock/axg-aoclkc.h        |  26 +++
->  include/dt-bindings/reset/axg-aoclkc.h        |  20 +++
->  11 files changed, 403 insertions(+), 64 deletions(-)
->  create mode 100644 drivers/clk/meson/axg-aoclk.c
->  create mode 100644 drivers/clk/meson/axg-aoclk.h
->  create mode 100644 drivers/clk/meson/meson-aoclk.c
->  create mode 100644 drivers/clk/meson/meson-aoclk.h
->  create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
->  create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
+> > 
+> > Fixes: 1b0e500dc606e9 ("clk: meson: mpll: add round closest support")
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> >  drivers/clk/meson/meson8b.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> > index d0524ec71aad..2639a892a5d4 100644
+> > --- a/drivers/clk/meson/meson8b.c
+> > +++ b/drivers/clk/meson/meson8b.c
+> > @@ -382,6 +382,7 @@ static struct clk_regmap meson8b_mpll0_div = {
+> >  			.width   = 1,
+> >  		},
+> >  		.lock = &meson_clk_lock,
+> > +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+> >  	},
+> >  	.hw.init = &(struct clk_init_data){
+> >  		.name = "mpll0_div",
+> > @@ -423,6 +424,7 @@ static struct clk_regmap meson8b_mpll1_div = {
+> >  			.width   = 9,
+> >  		},
+> >  		.lock = &meson_clk_lock,
+> > +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+> >  	},
+> >  	.hw.init = &(struct clk_init_data){
+> >  		.name = "mpll1_div",
+> > @@ -464,6 +466,7 @@ static struct clk_regmap meson8b_mpll2_div = {
+> >  			.width   = 9,
+> >  		},
+> >  		.lock = &meson_clk_lock,
+> > +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
+> >  	},
+> >  	.hw.init = &(struct clk_init_data){
+> >  		.name = "mpll2_div",
+> 
 > 
