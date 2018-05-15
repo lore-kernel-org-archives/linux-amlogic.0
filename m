@@ -1,38 +1,59 @@
-From: sboyd@kernel.org (Stephen Boyd)
-Date: Tue, 15 May 2018 10:58:30 -0700
-Subject: [PATCH] clk: meson: use SPDX license identifiers consistently
-In-Reply-To: <20180515164229.4606-1-jbrunet@baylibre.com>
-References: <20180515164229.4606-1-jbrunet@baylibre.com>
-Message-ID: <152640711006.34267.13271626390751114709@swboyd.mtv.corp.google.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 15 May 2018 15:29:46 -0700
+Subject: [GIT PULL] Amlogic 32-bit DT updates for v4.18
+Message-ID: <7hh8n8tuw5.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2018-05-15 09:42:29)
-> diff --git a/drivers/clk/meson/clk-audio-divider.c b/drivers/clk/meson/clk-audio-divider.c
-> index f7ab5b1db342..ac0743cd0f2f 100644
-> --- a/drivers/clk/meson/clk-audio-divider.c
-> +++ b/drivers/clk/meson/clk-audio-divider.c
-> @@ -1,18 +1,7 @@
-> +// SPDX-License-Identifier: GPL-2.0+
+Hi Arnd, Olof,
 
-This is GPL2 or later.
+This is mostly DT, but contains also contains the mach-meson change to
+build the new DT, which might be more appropriate for the 'soc' branch,
+but I left it here because it's just about enabling the new DT.  Let me
+know if you prefer it split out.
 
->  /*
->   * Copyright (c) 2017 AmLogic, Inc.
->   * Author: Jerome Brunet <jbrunet@baylibre.com>
-> - *
-> - * This program is free software; you can redistribute it and/or modify it
-> - * under the terms and conditions of the GNU General Public License,
-> - * version 2, as published by the Free Software Foundation.
-> - *
-> - * This program is distributed in the hope it will be useful, but WITHOUT
-> - * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-> - * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-> - * more details.
-> - *
-> - * You should have received a copy of the GNU General Public License along with
-> - * this program.  If not, see <http://www.gnu.org/licenses/>.
+Kevin
 
-But this looks like GPL2 only because there isn't an "or later" part of
-the text. Is it intentional to relicense to GPL2+ instead of GPL2 only?
-If so, please add that into the commit text.
+
+The following changes since commit 60cc43fc888428bb2f18f08997432d426a243338:
+
+  Linux 4.17-rc1 (2018-04-15 18:24:20 -0700)
+
+are available in the git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt
+
+for you to fetch changes up to 35ee52bea66c74a7c33cebda8692d61b1ed7c6e9:
+
+  ARM: dts: meson8m2: add support for the Tronsmart MXIII Plus (2018-05-10 17:03:28 -0700)
+
+----------------------------------------------------------------
+Amlogic 32-bit DT updates for v4.18
+- add support for meson8m2 SoC
+- new board: Tronsmart MXIII Plus using meson8m2 SoC
+- odroid-c1: add IR
+
+----------------------------------------------------------------
+Martin Blumenstingl (7):
+      ARM: dts: meson8: add the cortex-a9-pmu compatible PMU
+      ARM: dts: meson8b: add the cortex-a5-pmu compatible PMU
+      ARM: dts: meson8b: odroid-c1: sort nodes alphabetically
+      ARM: dts: meson8b: odroid-c1: enable the IR receiver
+      ARM: meson: add support for the Meson8m2 SoCs
+      ARM: dts: meson: add support for the Meson8m2 SoC
+      ARM: dts: meson8: add the uart_A pins
+
+Oleg Ivanov (1):
+      ARM: dts: meson8m2: add support for the Tronsmart MXIII Plus
+
+ arch/arm/boot/dts/Makefile                |   3 +-
+ arch/arm/boot/dts/meson8.dtsi             |  33 +++++++++++--
+ arch/arm/boot/dts/meson8b-odroidc1.dts    |  68 ++++++++++++++------------
+ arch/arm/boot/dts/meson8b.dtsi            |  24 +++++++--
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 244 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/meson8m2.dtsi           |  54 ++++++++++++++++++++
+ arch/arm/mach-meson/Kconfig               |   2 +-
+ arch/arm/mach-meson/meson.c               |   1 +
+ 8 files changed, 388 insertions(+), 41 deletions(-)
+ create mode 100644 arch/arm/boot/dts/meson8m2-mxiii-plus.dts
+ create mode 100644 arch/arm/boot/dts/meson8m2.dtsi
