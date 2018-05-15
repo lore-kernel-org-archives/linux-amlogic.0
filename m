@@ -1,61 +1,29 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 15 May 2018 18:46:02 +0200
-Subject: [PATCH v2 2/2] clk: meson: axg: let mpll clocks round closest
-In-Reply-To: <20180515163652.19980-3-jbrunet@baylibre.com>
-References: <20180515163652.19980-1-jbrunet@baylibre.com>
- <20180515163652.19980-3-jbrunet@baylibre.com>
-Message-ID: <61fa49ae-e73e-957e-e28a-134102f82194@baylibre.com>
+From: festevam@gmail.com (Fabio Estevam)
+Date: Tue, 15 May 2018 14:02:31 -0300
+Subject: [PATCH] clk: meson: use SPDX license identifiers consistently
+In-Reply-To: <20180515164229.4606-1-jbrunet@baylibre.com>
+References: <20180515164229.4606-1-jbrunet@baylibre.com>
+Message-ID: <CAOMZO5A20PRCgajpc7FaaWdGEGi13dV+dO9Z9SLDZEhxfs94Mw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 15/05/2018 18:36, Jerome Brunet wrote:
-> Let the mpll dividers achieve the closest rate possible, even if
-> it means rounding the requested rate up.
-> 
-> This is done to improve the accuracy of the rates provided by these
-> plls to the audio subsystem
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/meson/axg.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-> index 5f5d468c1efe..bd4dbc696b88 100644
-> --- a/drivers/clk/meson/axg.c
-> +++ b/drivers/clk/meson/axg.c
-> @@ -461,6 +461,7 @@ static struct clk_regmap axg_mpll0_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll0_div",
-> @@ -507,6 +508,7 @@ static struct clk_regmap axg_mpll1_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll1_div",
-> @@ -553,6 +555,7 @@ static struct clk_regmap axg_mpll2_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll2_div",
-> @@ -599,6 +602,7 @@ static struct clk_regmap axg_mpll3_div = {
->  			.width	 = 1,
->  		},
->  		.lock = &meson_clk_lock,
-> +		.flags = CLK_MESON_MPLL_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mpll3_div",
-> 
+On Tue, May 15, 2018 at 1:42 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> diff --git a/drivers/clk/meson/clk-audio-divider.c b/drivers/clk/meson/clk-audio-divider.c
+> index f7ab5b1db342..ac0743cd0f2f 100644
+> --- a/drivers/clk/meson/clk-audio-divider.c
+> +++ b/drivers/clk/meson/clk-audio-divider.c
+> @@ -1,18 +1,7 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+
+Here you put GPL2.0+, but it should be GPL2.0 instead
+
+>  /*
+>   * Copyright (c) 2017 AmLogic, Inc.
+>   * Author: Jerome Brunet <jbrunet@baylibre.com>
+> - *
+> - * This program is free software; you can redistribute it and/or modify it
+> - * under the terms and conditions of the GNU General Public License,
+> - * version 2, as published by the Free Software Foundation.
+
+.... according to the original text.
