@@ -1,82 +1,94 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 15 May 2018 14:54:34 +0200
-Subject: [GIT PULL]  clk: meson: updates for v4.18
-Message-ID: <1526388874.2897.44.camel@baylibre.com>
+Date: Tue, 15 May 2018 16:40:38 +0200
+Subject: [PATCH v8 0/5] clk: meson-axg: Add AO Cloclk and Reset driver
+In-Reply-To: <20180503132624.78453-1-yixun.lan@amlogic.com>
+References: <20180503132624.78453-1-yixun.lan@amlogic.com>
+Message-ID: <1526395238.2897.45.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear clock maintainers,
+On Thu, 2018-05-03 at 21:26 +0800, Yixun Lan wrote:
+>   This patch try to add AO clock and Reset driver for Amlogic's
+> Meson-AXG SoC.
+> 
+>  patch 1: factor the common code into a dedicated file
+>  patch 2-4: add the aoclk driver for AXG SoC
+>  patch 5: drop unnecessary clock flags
+> 
+> changes since v7 at [8]: 
+>  - drop the 'drop CLK_IGNORE_UNUSED flag' patch
+>    to avoid circle dependencies
+>  - fix Philip's Ack on patch 3
+> 
+> changes since v6 at [7]: 
+>  - fix over 80 chars chechpatch error
+>  - add Philip's Ack on patch 5
+>  - drop extra end of newline
+> 
+> changes since v5 at [6]: 
+>  - drop unnecessary header files
+>  - add 'axg_aoclk' prefix to clk driver, make them more consistent
+>  - add missing end new line..
+> 
+> changes since v4 at [5]: 
+>  - fix return err
+>  - introduce CONFIG_COMMON_CLK_MESON_AO
+>  - format/style minor fix
+> 
+> changes since v3 at [4]: 
+>  - add 'const' contraint to the read-only data
+>  - switch to devm_of_clk_add_hw_provider API
+>  - check return value of devm_reset_controller_register
+> 
+> changes since v2 at [2]: 
+>  - rework meson_aoclkc_probe() which leverage the of_match_data
+>  - merge patch 5-6 into this series
+>  - seperate DTS patch, will send to Kevin Hilman independently
+>  
+> changes since v1 at [0]: 
+>  - rebase to clk-meson's branch 'next/drivers' [1]
+>  - fix license, update to BSD-3-Clause
+>  - drop un-used include header file
+> 
+> [0] https://lkml.kernel.org/r/20180209070026.193879-1-yixun.lan at amlogic.com
+> [1] git://github.com/BayLibre/clk-meson.git branch: next-drivers
+> [2] https://lkml.kernel.org/r/20180323143816.200573-1-yixun.lan at amlogic.com
+> [3] https://lkml.kernel.org/r/20180326081809.49493-4-yixun.lan at amlogic.com
+> [4] https://lkml.kernel.org/r/20180328025050.221585-1-yixun.lan at amlogic.com
+> [5] https://lkml.kernel.org/r/20180408031938.153474-1-yixun.lan at amlogic.com
+> [6] https://lkml.kernel.org/r/20180409143749.71197-1-yixun.lan at amlogic.com
+> [7] https://lkml.kernel.org/r/20180419135426.155794-1-yixun.lan at amlogic.com
+> [8] https://lkml.kernel.org/r/20180426084437.192394-1-yixun.lan at amlogic.com
+> 
+> 
+> Qiufang Dai (1):
+>   clk: meson-axg: Add AO Clock and Reset controller driver
+> 
+> Yixun Lan (4):
+>   clk: meson: aoclk: refactor common code into dedicated file
+>   dt-bindings: clock: axg-aoclkc: New binding for Meson-AXG SoC
+>   dt-bindings: clock: reset: Add AXG AO Clock and Reset Bindings
+>   clk: meson: drop CLK_SET_RATE_PARENT flag
 
-Below is a request to pull amlogic clock updates for v4.18. Apart from the usual
-clock additions, there was a rework of the AO clock controller found on the gxbb
-SoC family. This has been done to improve code re-usability before introducing a
-very similar controller for the axg SoC family.
+Applied
 
-Cheers
-Jerome
-
-The following changes since commit 60cc43fc888428bb2f18f08997432d426a243338:
-
-  Linux 4.17-rc1 (2018-04-15 18:24:20 -0700)
-
-are available in the Git repository at:
-
-  git://github.com/BayLibre/clk-meson.git tags/meson-clk-4.18-1
-
-for you to fetch changes up to 24a2e6796eb23d17d4e32a27f19336248666272c:
-
-  clk: meson: drop CLK_SET_RATE_PARENT flag (2018-05-15 14:19:43 +0200)
-
-----------------------------------------------------------------
-First round of update for meson clocks targeted at v4.18:
-* Add meson8b nand clocks
-* Add gxbb video decoder clocks
-* Rework of gxbb AO clock controller code to allow code reuse
-* Add axg AO clock controller
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      Merge branch 'next/bindings' into next/drivers
-
-Martin Blumenstingl (2):
-      dt-bindings: clock: meson8b: export the NAND clock
-      clk: meson: meson8b: add support for the NAND clocks
-
-Maxime Jourdan (2):
-      clk: meson: gxbb: expose VDEC_1 and VDEC_HEVC clocks
-      clk: meson: gxbb: add the video decoder clocks
-
-Qiufang Dai (1):
-      clk: meson-axg: Add AO Clock and Reset controller driver
-
-Yixun Lan (5):
-      dt-bindings: clock: axg-aoclkc: New binding for Meson-AXG SoC
-      dt-bindings: clock: reset: Add AXG AO Clock and Reset Bindings
-      clk: meson: migrate to devm_of_clk_add_hw_provider API
-      clk: meson: aoclk: refactor common code into dedicated file
-      clk: meson: drop CLK_SET_RATE_PARENT flag
-
- .../bindings/clock/amlogic,gxbb-aoclkc.txt         |   1 +
- drivers/clk/meson/Kconfig                          |   8 +
- drivers/clk/meson/Makefile                         |   3 +-
- drivers/clk/meson/axg-aoclk.c                      | 164 +++++++++++++++++++++
- drivers/clk/meson/axg-aoclk.h                      |  29 ++++
- drivers/clk/meson/gxbb-aoclk.c                     |  96 +++++-------
- drivers/clk/meson/gxbb-aoclk.h                     |   5 +
- drivers/clk/meson/gxbb.c                           | 114 ++++++++++++++
- drivers/clk/meson/gxbb.h                           |   6 +-
- drivers/clk/meson/meson-aoclk.c                    |  81 ++++++++++
- drivers/clk/meson/meson-aoclk.h                    |  34 +++++
- drivers/clk/meson/meson8b.c                        |  54 +++++++
- drivers/clk/meson/meson8b.h                        |   5 +-
- include/dt-bindings/clock/axg-aoclkc.h             |  26 ++++
- include/dt-bindings/clock/gxbb-clkc.h              |   2 +
- include/dt-bindings/clock/meson8b-clkc.h           |   1 +
- include/dt-bindings/reset/axg-aoclkc.h             |  20 +++
- 17 files changed, 583 insertions(+), 66 deletions(-)
- create mode 100644 drivers/clk/meson/axg-aoclk.c
- create mode 100644 drivers/clk/meson/axg-aoclk.h
- create mode 100644 drivers/clk/meson/meson-aoclk.c
- create mode 100644 drivers/clk/meson/meson-aoclk.h
- create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
- create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
+> 
+>  .../bindings/clock/amlogic,gxbb-aoclkc.txt    |   1 +
+>  drivers/clk/meson/Kconfig                     |   8 +
+>  drivers/clk/meson/Makefile                    |   3 +-
+>  drivers/clk/meson/axg-aoclk.c                 | 164 ++++++++++++++++++
+>  drivers/clk/meson/axg-aoclk.h                 |  29 ++++
+>  drivers/clk/meson/gxbb-aoclk.c                |  96 ++++------
+>  drivers/clk/meson/gxbb-aoclk.h                |   5 +
+>  drivers/clk/meson/meson-aoclk.c               |  81 +++++++++
+>  drivers/clk/meson/meson-aoclk.h               |  34 ++++
+>  include/dt-bindings/clock/axg-aoclkc.h        |  26 +++
+>  include/dt-bindings/reset/axg-aoclkc.h        |  20 +++
+>  11 files changed, 403 insertions(+), 64 deletions(-)
+>  create mode 100644 drivers/clk/meson/axg-aoclk.c
+>  create mode 100644 drivers/clk/meson/axg-aoclk.h
+>  create mode 100644 drivers/clk/meson/meson-aoclk.c
+>  create mode 100644 drivers/clk/meson/meson-aoclk.h
+>  create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+>  create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
+> 
