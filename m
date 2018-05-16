@@ -1,31 +1,58 @@
-From: sboyd@kernel.org (Stephen Boyd)
-Date: Wed, 16 May 2018 10:32:28 -0700
-Subject: [PATCH v2] clk: meson: use SPDX license identifiers consistently
-In-Reply-To: <1526483653.2897.62.camel@baylibre.com>
-References: <20180516085040.6771-1-jbrunet@baylibre.com>
- <152648298576.210890.18097934570675275263@swboyd.mtv.corp.google.com>
- <1526483653.2897.62.camel@baylibre.com>
-Message-ID: <152649194881.210890.1329258497783697194@swboyd.mtv.corp.google.com>
+From: thierry.moreau@connotech.com (Thierry Moreau)
+Date: Wed, 16 May 2018 19:47:53 +0000
+Subject: Suggestion for better HDMI console support
+Message-ID: <5AFC8AE9.1000104@connotech.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2018-05-16 08:14:13)
-> On Wed, 2018-05-16 at 08:03 -0700, Stephen Boyd wrote:
-> > Quoting Jerome Brunet (2018-05-16 01:50:40)
-> > > Replace every license notices in drivers/clk/meson by SPDX license
-> > > identifiers, as described in license-rules.rst
-> > > 
-> > > Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > > ---
-> > 
-> > Acked-by: Stephen Boyd <sboyd@kernel.org>
-> > 
-> > I take it this will come through a PR? Otherwise I can apply it to
-> > clk-meson branch.
-> 
-> We may have a few other patches coming this week. I was planning on making
-> another PR sometime next week, if this is OK with you.
-> 
+Dear kernel developers,
 
-Sounds fine. Thanks.
+I experimented with Odroid C2 Linux installation and I wanted an HDMI 
+display console. I succeeded but I needed a workaround which I report below.
+
+My suggestion today is to implement the workaround logic inside the 
+kernel, which should be (technically at least) easy for some of you.
+
+I noticed that the serial console is often suggested as a highly 
+recommended alternative for Amlogic SOC development. Maybe my suggestion 
+would change this (making the HDMI console working out of the box).
+
+The problem I experienced with the Odroid C2 hdmi console display 
+output: for unknown reason, the kernel initializes the hdmi output in a 
+blank screen state that is exited only if the kernel receives two 
+requests: first to blank the (already blanked) screen and then to 
+unblank the screen. This sequence happens if a connected keyboard is 
+idle for 15 minutes and then touched by the user.
+
+The workaround: I wrote a small C program that makes the two kernel 
+requests without wait.
+
+Here is a snapshot:
+
+#include <sys/ioctl.h>
+#include <linux/vt.h>
+#include <linux/tiocl.h>
+
+static int blank_code=TIOCL_BLANKSCREEN;
+static int unblank_code=TIOCL_UNBLANKSCREEN;
+
+int main(int argc, char *argv[])
+{
+   int td;
+   td=open("/dev/tty0",O_RDWR|O_NOCTTY);
+   if (td>=0) {
+     ioctl(td,TIOCLINUX,&blank_code);
+     ioctl(td,TIOCLINUX,&unblank_code);
+   }
+}
+
+My kernel version is 3.16.56 as customized to Odroid C2 by Hardkernel.
+
+"Hope it helps!"
+
+- Thierry Moreau
+
+P.S. I am chasing installation hints for the Amlogic closed source 
+libraries for X.11 support in an otherwise plain vanilla Linux 
+innstallation (headless and server working fine). Any suggestion as 
+sources of info?
