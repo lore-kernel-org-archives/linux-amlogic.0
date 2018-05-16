@@ -1,32 +1,45 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Wed, 16 May 2018 10:50:24 +0800
-Subject: [PATCH 0/3] irqchip: meson-gpio: add support for Meson-AXG SoCs
-In-Reply-To: <20180408145700.23520-1-yixun.lan@amlogic.com>
-References: <20180408145700.23520-1-yixun.lan@amlogic.com>
-Message-ID: <0c97c61b-c05b-21cf-c880-80cff04ed6f2@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 16 May 2018 10:30:41 +0200
+Subject: [PATCH] clk: meson: use SPDX license identifiers consistently
+In-Reply-To: <152640711006.34267.13271626390751114709@swboyd.mtv.corp.google.com>
+References: <20180515164229.4606-1-jbrunet@baylibre.com>
+ <152640711006.34267.13271626390751114709@swboyd.mtv.corp.google.com>
+Message-ID: <1526459441.2897.54.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Marc (or anyone else)
-
-On 04/08/18 22:56, Yixun Lan wrote:
->   This series try to add GPIO interrupt controller support for Meson-AXG SoCs.
->   The first patch is a trivial typo fix, I can fold the first two patches
-> together if necessary.
+On Tue, 2018-05-15 at 10:58 -0700, Stephen Boyd wrote:
+> Quoting Jerome Brunet (2018-05-15 09:42:29)
+> > diff --git a/drivers/clk/meson/clk-audio-divider.c b/drivers/clk/meson/clk-audio-divider.c
+> > index f7ab5b1db342..ac0743cd0f2f 100644
+> > --- a/drivers/clk/meson/clk-audio-divider.c
+> > +++ b/drivers/clk/meson/clk-audio-divider.c
+> > @@ -1,18 +1,7 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
 > 
-> Yixun Lan (3):
->   dt-bindings: interrupt-controller: fix the double quotes
->   dt-bindings: interrupt-controller: New binding for Meson-AXG SoC
->   irqchip/meson-gpio: add support for Meson-AXG SoCs
+> This is GPL2 or later.
 > 
->  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt | 11 ++++++-----
->  drivers/irqchip/irq-meson-gpio.c                              |  5 +++++
->  2 files changed, 11 insertions(+), 5 deletions(-)
+> >  /*
+> >   * Copyright (c) 2017 AmLogic, Inc.
+> >   * Author: Jerome Brunet <jbrunet@baylibre.com>
+> > - *
+> > - * This program is free software; you can redistribute it and/or modify it
+> > - * under the terms and conditions of the GNU General Public License,
+> > - * version 2, as published by the Free Software Foundation.
+> > - *
+> > - * This program is distributed in the hope it will be useful, but WITHOUT
+> > - * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+> > - * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+> > - * more details.
+> > - *
+> > - * You should have received a copy of the GNU General Public License along with
+> > - * this program.  If not, see <http://www.gnu.org/licenses/>.
 > 
+> But this looks like GPL2 only because there isn't an "or later" part of
+> the text. Is it intentional to relicense to GPL2+ instead of GPL2 only?
 
-please consider this merely a ping..
-will you take this series, or is there anything holding this?
+Nope, no re-licensing intended. Thanks a lot for the explanation.
+I'll recheck the rest of the patch for this error.
 
-thanks
-
-Yixun
+> If so, please add that into the commit text.
+> 
