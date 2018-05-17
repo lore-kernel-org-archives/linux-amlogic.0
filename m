@@ -1,35 +1,25 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 17 May 2018 11:31:00 +0200
-Subject: [PATCH v2 4/4] ARM64: dts: meson-axg: enable i2c AO on the S400 board
-In-Reply-To: <20180517093100.22225-1-jbrunet@baylibre.com>
-References: <20180517093100.22225-1-jbrunet@baylibre.com>
-Message-ID: <20180517093100.22225-5-jbrunet@baylibre.com>
+Date: Thu, 17 May 2018 11:30:56 +0200
+Subject: [PATCH v2 0/4] ARM64: dts: meson-axg: i2c updates
+Message-ID: <20180517093100.22225-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The i2c AO is used for the MIC daughter card of the S400 board
+This patchset fixes a few problems found in the i2c nodes of
+amlogic's meson-axg platform. It also adds the missing pins for
+AO controller so we can use it on the S400
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+This series has been tested on the S400 board.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index b3e1bdca32bb..4b3331fbfe39 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -95,6 +95,12 @@
- 	pinctrl-names = "default";
- };
- 
-+&i2c_AO {
-+	status = "okay";
-+	pinctrl-0 = <&i2c_ao_sck_10_pins>, <&i2c_ao_sda_11_pins>;
-+	pinctrl-names = "default";
-+};
-+
- &pwm_ab {
- 	status = "okay";
- 	pinctrl-0 = <&pwm_a_x20_pins>;
+Jerome Brunet (4):
+  ARM64: dts: meson-axg: clean-up i2c nodes
+  ARM64: dts: meson-axg: correct i2c AO clock
+  ARM64: dts: meson-axg: add i2c AO pins
+  ARM64: dts: meson-axg: enable i2c AO on the S400 board
+
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts |  6 ++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 79 ++++++++++++++++++--------
+ 2 files changed, 62 insertions(+), 23 deletions(-)
+
 -- 
 2.14.3
