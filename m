@@ -1,36 +1,55 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 18 May 2018 12:10:34 +0200
-Subject: [PATCH v2] clk: meson: use SPDX license identifiers consistently
-In-Reply-To: <152649194881.210890.1329258497783697194@swboyd.mtv.corp.google.com>
-References: <20180516085040.6771-1-jbrunet@baylibre.com>
- <152648298576.210890.18097934570675275263@swboyd.mtv.corp.google.com>
- <1526483653.2897.62.camel@baylibre.com>
- <152649194881.210890.1329258497783697194@swboyd.mtv.corp.google.com>
-Message-ID: <1526638234.2897.74.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 20 May 2018 19:16:06 +0200
+Subject: [PATCH v2] clk: meson: meson8b: mark fclk_div2 gate clocks as
+ CLK_IS_CRITICAL
+Message-ID: <20180520171606.4430-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-05-16 at 10:32 -0700, Stephen Boyd wrote:
-> Quoting Jerome Brunet (2018-05-16 08:14:13)
-> > On Wed, 2018-05-16 at 08:03 -0700, Stephen Boyd wrote:
-> > > Quoting Jerome Brunet (2018-05-16 01:50:40)
-> > > > Replace every license notices in drivers/clk/meson by SPDX license
-> > > > identifiers, as described in license-rules.rst
-> > > > 
-> > > > Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> > > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > > > ---
-> > > 
-> > > Acked-by: Stephen Boyd <sboyd@kernel.org>
-> > > 
-> > > I take it this will come through a PR? Otherwise I can apply it to
-> > > clk-meson branch.
-> > 
-> > We may have a few other patches coming this week. I was planning on making
-> > another PR sometime next week, if this is OK with you.
-> > 
-> 
-> Sounds fine. Thanks.
-> 
+Until commit 05f814402d6174 ("clk: meson: add fdiv clock gates") we
+relied on the bootloader to enable the fclk_div clock gates. It turns
+out that our clock tree is incomplete at least on Meson8b (tested with
+an Odroid-C1, which uses an RGMII PHY) because after the mentioned
+commit Ethernet is not working anymore (no RX/TX activity can be seen).
+At the same time Ethernet was still working on Meson8m2 with a RMII PHY.
 
- Applied with Stephen's Ack
+Testing has shown that as soon as "fclk_div2" is disabled Ethernet stops
+working on Odroid-C1. Unfortunately it's currently not clear what the
+Ethernet controller IP block uses the fclk_div2 clock for. Mark the
+clock as CLK_IS_CRITICAL to keep it enabled (as it's already enabled by
+most bootloaders by default, which is why we didn't notice it before).
+
+Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+---
+changes since v1 at [0]:
+- only fclk_div2 has to be kept running (so the commit message and the
+  patch itself are updated)
+- added a FIXME comment to the code
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007272.html
+
+ drivers/clk/meson/meson8b.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 40068c1b5e80..415ba1d8a904 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -246,6 +246,13 @@ static struct clk_regmap meson8b_fclk_div2 = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_names = (const char *[]){ "fclk_div2_div" },
+ 		.num_parents = 1,
++		/*
++		 * FIXME: Ethernet with a RGMII PHYs is not working if
++		 * fclk_div2 is disabled. it is currently unclear why this
++		 * is. keep it enabled until the Ethernet driver knows how
++		 * to manage this clock.
++		 */
++		.flags = CLK_IS_CRITICAL,
+ 	},
+ };
+ 
+-- 
+2.17.0
