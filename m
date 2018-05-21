@@ -1,30 +1,42 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 21 May 2018 10:12:09 +0200
-Subject: [PATCH 0/2] get rid of Kconfig symbol MACH_MESON8B
-In-Reply-To: <20180520172353.19256-1-martin.blumenstingl@googlemail.com>
-References: <20180520172353.19256-1-martin.blumenstingl@googlemail.com>
-Message-ID: <1526890329.2822.0.camel@baylibre.com>
+Date: Mon, 21 May 2018 10:47:17 +0200
+Subject: [PATCH v2] clk: meson: meson8b: mark fclk_div2 gate clocks as
+ CLK_IS_CRITICAL
+In-Reply-To: <20180520171606.4430-1-martin.blumenstingl@googlemail.com>
+References: <20180520171606.4430-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1526892437.2822.2.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 2018-05-20 at 19:23 +0200, Martin Blumenstingl wrote:
-> as noted by Kevin [0] there are two Kconfig symbols which only differ
-> in their Kconfig help text and the list of .dtbs that are being built.
-> the goal of this small series is to get rid of the unnecessary
-> MACH_MESON8B Kconfig symbol by merging it into MACH_MESON8.
+On Sun, 2018-05-20 at 19:16 +0200, Martin Blumenstingl wrote:
+> Until commit 05f814402d6174 ("clk: meson: add fdiv clock gates") we
+> relied on the bootloader to enable the fclk_div clock gates. It turns
+> out that our clock tree is incomplete at least on Meson8b (tested with
+> an Odroid-C1, which uses an RGMII PHY) because after the mentioned
+> commit Ethernet is not working anymore (no RX/TX activity can be seen).
+> At the same time Ethernet was still working on Meson8m2 with a RMII PHY.
 > 
+> Testing has shown that as soon as "fclk_div2" is disabled Ethernet stops
+> working on Odroid-C1. Unfortunately it's currently not clear what the
+> Ethernet controller IP block uses the fclk_div2 clock for. Mark the
+> clock as CLK_IS_CRITICAL to keep it enabled (as it's already enabled by
+> most bootloaders by default, which is why we didn't notice it before).
 > 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007342.html
+> Fixes: 05f814402d6174 ("clk: meson: add fdiv clock gates")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+> changes since v1 at [0]:
+> - only fclk_div2 has to be kept running (so the commit message and the
+>   patch itself are updated)
+> - added a FIXME comment to the code
 > 
-> Martin Blumenstingl (2):
->   ARM: dts: meson: build the Meson8b .dtbs with MACH_MESON8
->   ARM: meson: merge Kconfig symbol MACH_MESON8B into MACH_MESON8
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007272.html
 > 
->  arch/arm/boot/dts/Makefile  | 5 ++---
->  arch/arm/mach-meson/Kconfig | 9 +--------
->  2 files changed, 3 insertions(+), 11 deletions(-)
-> 
+>  drivers/clk/meson/meson8b.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-For the series:
+Added :
+Cc: stable at vger.kernel.org 
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+and applied. Thx Martin
