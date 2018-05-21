@@ -1,36 +1,42 @@
-From: ulf.hansson@linaro.org (Ulf Hansson)
-Date: Mon, 21 May 2018 13:36:29 +0200
-Subject: [PATCH 0/2] mmc: meson-gx: add device reset
-In-Reply-To: <20180515095748.6794-1-jbrunet@baylibre.com>
-References: <20180515095748.6794-1-jbrunet@baylibre.com>
-Message-ID: <CAPDyKFqxaqHZ6D_kY8P53WmXOyL4xj4UGOyfT8Nb2W1pPKxBEg@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 21 May 2018 16:16:17 +0200
+Subject: [PATCH RFC 03/24] arm64/dts: add switch-delay for meson mali
+In-Reply-To: <20180518092815.25280-4-yuq825@gmail.com>
+References: <20180518092815.25280-1-yuq825@gmail.com>
+ <20180518092815.25280-4-yuq825@gmail.com>
+Message-ID: <70ef1af2-beff-04a1-063f-cfe430c4fdf9@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 15 May 2018 at 11:57, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> This patchset adds the optional reset of the meson-gx mmc controller and
-> the related documentation.
->
-> Changes since v1: [0]
->  * Correct typo in the documentation
->  * Separate code and documentation patches
->  * Error on reset failure.
->
-> [0]: https://lkml.kernel.org/r/20180426103817.12675-1-jbrunet at baylibre.com
->
-> Jerome Brunet (2):
->   dt-bindings: mmc: meson-gx: add reset
->   mmc: meson-gx: add device reset
->
->  Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt | 2 ++
->  drivers/mmc/host/meson-gx-mmc.c                            | 9 +++++++++
->  2 files changed, 11 insertions(+)
->
-> --
-> 2.14.3
->
+Hi Yuq,
 
-Thanks, applied for next!
+On 18/05/2018 11:27, Qiang Yu wrote:
+> Meson mali GPU operate in high clock frequency, need
+> this value be high to work in a stable state.
+> 
+> Signed-off-by: Qiang Yu <yuq825@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+> index eb327664a4d8..8bed15267c9c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+> @@ -23,6 +23,7 @@
+>  			"pp2", "ppmmu2";
+>  		clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_MALI>;
+>  		clock-names = "bus", "core";
+> +		switch-delay = <0xffff>;
+>  
+>  		/*
+>  		 * Mali clocking is provided by two identical clock paths
+> 
 
-Kind regards
-Uffe
+Please CC : linux-amlogic at lists.infradead.org
+to have these amlogic DT patches reviewed and applied.
+
+Same for cover-letter to have context.
+
+Thanks,
+Neil
