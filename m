@@ -1,52 +1,55 @@
-From: yuq825@gmail.com (Qiang Yu)
-Date: Tue, 22 May 2018 08:48:43 +0800
-Subject: [PATCH RFC 03/24] arm64/dts: add switch-delay for meson mali
-In-Reply-To: <70ef1af2-beff-04a1-063f-cfe430c4fdf9@baylibre.com>
-References: <20180518092815.25280-1-yuq825@gmail.com>
- <20180518092815.25280-4-yuq825@gmail.com>
- <70ef1af2-beff-04a1-063f-cfe430c4fdf9@baylibre.com>
-Message-ID: <CAKGbVbveF1n=MJrmV2EK7bR+uRAa92rdB=ybHh7xHnwaLM==Xw@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 22 May 2018 18:34:51 +0200
+Subject: [PATCH v2 0/6] clk: meson: axg: add audio clock controller support
+Message-ID: <20180522163457.13834-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+The purpose of this patchset is to add support for the clock controller
+dedicated to the audio subsystem found on A113 based SoCs
 
-OK, I'll resend these patches.
+The series depends on the CLK_MUX_ROUND_CLOSEST fixes [merged in clk-next]
+and the duty cycle support [1] making their way into CCF.
 
-Regards,
-Qiang
+First patch is a clean-up of the meson clk Kconfig.
+Then, there is 3 clock provider drivers for clocks found in the audio
+The last 3 are for the clock controller itself.
 
-On Mon, May 21, 2018 at 10:16 PM, Neil Armstrong
-<narmstrong@baylibre.com> wrote:
-> Hi Yuq,
->
-> On 18/05/2018 11:27, Qiang Yu wrote:
->> Meson mali GPU operate in high clock frequency, need
->> this value be high to work in a stable state.
->>
->> Signed-off-by: Qiang Yu <yuq825@gmail.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
->> index eb327664a4d8..8bed15267c9c 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
->> @@ -23,6 +23,7 @@
->>                       "pp2", "ppmmu2";
->>               clocks = <&clkc CLKID_CLK81>, <&clkc CLKID_MALI>;
->>               clock-names = "bus", "core";
->> +             switch-delay = <0xffff>;
->>
->>               /*
->>                * Mali clocking is provided by two identical clock paths
->>
->
-> Please CC : linux-amlogic at lists.infradead.org
-> to have these amlogic DT patches reviewed and applied.
->
-> Same for cover-letter to have context.
->
-> Thanks,
-> Neil
+Changes since v1: [2]
+ * Rebase clk-meson's next/drivers
+ * Correct typo in documentation and squash DT patches
+
+[1]: https://lkml.kernel.org/r/20180420211141.28929-1-jbrunet at baylibre.com
+[2]: https://lkml.kernel.org/r/20180425163304.10852-1-jbrunet at baylibre.com
+
+Jerome Brunet (6):
+  clk: meson: clean-up meson clock configuration
+  clk: meson: add clk-phase clock driver
+  clk: meson: add triple phase clock driver
+  clk: meson: add axg audio sclk divider driver
+  dt-bindings: clock: add meson axg audio clock controller bindings
+  clk: meson: axg: add the audio clock controller driver
+
+ .../bindings/clock/amlogic,axg-audio-clkc.txt      |  56 ++
+ drivers/clk/meson/Kconfig                          |  28 +-
+ drivers/clk/meson/Makefile                         |   3 +
+ drivers/clk/meson/axg-audio.c                      | 845 +++++++++++++++++++++
+ drivers/clk/meson/axg-audio.h                      | 127 ++++
+ drivers/clk/meson/clk-phase.c                      |  63 ++
+ drivers/clk/meson/clk-triphase.c                   |  68 ++
+ drivers/clk/meson/clkc-audio.h                     |  28 +
+ drivers/clk/meson/clkc.h                           |   8 +
+ drivers/clk/meson/sclk-div.c                       | 243 ++++++
+ include/dt-bindings/clock/axg-audio-clkc.h         |  94 +++
+ 11 files changed, 1554 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+ create mode 100644 drivers/clk/meson/axg-audio.c
+ create mode 100644 drivers/clk/meson/axg-audio.h
+ create mode 100644 drivers/clk/meson/clk-phase.c
+ create mode 100644 drivers/clk/meson/clk-triphase.c
+ create mode 100644 drivers/clk/meson/clkc-audio.h
+ create mode 100644 drivers/clk/meson/sclk-div.c
+ create mode 100644 include/dt-bindings/clock/axg-audio-clkc.h
+
+-- 
+2.14.3
