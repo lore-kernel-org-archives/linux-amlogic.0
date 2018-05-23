@@ -1,38 +1,27 @@
-From: marc.zyngier@arm.com (Marc Zyngier)
-Date: Wed, 23 May 2018 17:29:56 +0100
-Subject: [PATCH 0/3] irqchip: meson-gpio: add support for Meson-AXG SoCs
-In-Reply-To: <0c97c61b-c05b-21cf-c880-80cff04ed6f2@amlogic.com>
-References: <20180408145700.23520-1-yixun.lan@amlogic.com>
- <0c97c61b-c05b-21cf-c880-80cff04ed6f2@amlogic.com>
-Message-ID: <09d70e1f-abba-79d0-4dc3-7130fd0d07a8@arm.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 23 May 2018 10:06:00 -0700
+Subject: [PATCH v2 0/4] ARM64: dts: meson-axg: i2c updates
+In-Reply-To: <20180517093100.22225-1-jbrunet@baylibre.com> (Jerome Brunet's
+ message of "Thu, 17 May 2018 11:30:56 +0200")
+References: <20180517093100.22225-1-jbrunet@baylibre.com>
+Message-ID: <7hd0xms3nr.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 16/05/18 03:50, Yixun Lan wrote:
-> Hi Marc (or anyone else)
-> 
-> On 04/08/18 22:56, Yixun Lan wrote:
->>   This series try to add GPIO interrupt controller support for Meson-AXG SoCs.
->>   The first patch is a trivial typo fix, I can fold the first two patches
->> together if necessary.
->>
->> Yixun Lan (3):
->>   dt-bindings: interrupt-controller: fix the double quotes
->>   dt-bindings: interrupt-controller: New binding for Meson-AXG SoC
->>   irqchip/meson-gpio: add support for Meson-AXG SoCs
->>
->>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt | 11 ++++++-----
->>  drivers/irqchip/irq-meson-gpio.c                              |  5 +++++
->>  2 files changed, 11 insertions(+), 5 deletions(-)
->>
-> 
-> please consider this merely a ping..
-> will you take this series, or is there anything holding this?
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-Sure, I'll queue that for 4.18.
+> This patchset fixes a few problems found in the i2c nodes of
+> amlogic's meson-axg platform. It also adds the missing pins for
+> AO controller so we can use it on the S400
+>
+> This series has been tested on the S400 board.
+>
+> Jerome Brunet (4):
+>   ARM64: dts: meson-axg: clean-up i2c nodes
+>   ARM64: dts: meson-axg: correct i2c AO clock
+>   ARM64: dts: meson-axg: add i2c AO pins
+>   ARM64: dts: meson-axg: enable i2c AO on the S400 board
 
-Thanks,
+Applied to v4.18/dt64,
 
-	M.
--- 
-Jazz is not dead. It just smells funny...
+Kevin
