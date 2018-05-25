@@ -1,43 +1,44 @@
-From: maswabey@purdue.edu (Swabey, Matthew A)
-Date: Fri, 25 May 2018 02:19:46 +0000
-Subject: Odroid-C2 solid green screen on "echo c > /proc/sysrq-trigger" on
- Arch 4.16/4.17rc6
-Message-ID: <84bc747f58f648e1b209bc0005804bc5@wppexc12.purdue.lcl>
+From: viresh.kumar@linaro.org (Viresh Kumar)
+Date: Fri, 25 May 2018 11:10:00 +0530
+Subject: [PATCH 0/6] arm64: dts: Add missing cooling device properties for CPUs
+Message-ID: <cover.1527225682.git.viresh.kumar@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Odroid-C2 solid green screen on echo c > /proc/sysrq-trigger on Arch Linux mainline 4.16/4.17rc6
-Using lightdm on xorg fb. No mali, utgard or odroid specific framebuffers. However it seems to happen on them too.
+Hello,
 
-Steps to reproduce:
-1. Boot
-2. Echo c > /proc/sysrq-trigger with watchdog set. Or trigger the watchdog another way, i.e. watchdogd or system.
-3. Watchdog causes reboot
-4. Boots with screen solid green, see photo here: https://photos.app.goo.gl/9VyiweNAIMD07VSM2
-	a. No error messages visible, see attached log file bundles containing dmesg, journalctl, package list, Xorg.0.log
-	b. Linux-aarch64 is 4.16
-	c. Linux-aarch64-rc is 4.17rc6
-5. Reboot - screen back to normal and working
+This fixes missing cooling device properties for CPUs for the ARM64
+platforms. This is build tested by the zero day testing infrastructure
+as well.
 
-Thought - something about the way to trigger this reset isn't working, or a race condition is present which is being more reliably triggered? Perhaps in the dma controller or the HDMI?
+Individual maintainers can pick the patches to their SoC trees or I will
+ask ARM SoC maintainers to pick them up later.
 
-Any help to track this bug down would be very helpful, or someone else who would be interested? I can't figure out where in the stack the problem is occurring, but I guess it is the bootloader.
+--
+viresh
 
-Thanks,
+Viresh Kumar (6):
+  arm64: dts: amlogic: Add missing cooling device properties for CPUs
+  arm64: dts: freescale: Add missing cooling device properties for CPUs
+  arm64: dts: hisilicon: Add missing cooling device properties for CPUs
+  arm64: dts: mediatek: Add missing cooling device properties for CPUs
+  arm64: dts: rockchip: Add missing cooling device properties for CPUs
+  arm64: dts: socionext: Add missing cooling device properties for CPUs
 
-Matthew
+ .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts     | 24 ++++++++++++++++++++++
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi     |  5 ++++-
+ arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi     |  3 +++
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi     |  6 ++++++
+ arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi     |  4 ++++
+ arch/arm64/boot/dts/freescale/fsl-ls2088a.dtsi     |  4 ++++
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi          | 16 ++++++++++++++-
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi           |  1 +
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi           |  2 ++
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi           |  3 +++
+ arch/arm64/boot/dts/rockchip/rk3368.dtsi           | 12 +++++++++++
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi           |  8 ++++++--
+ arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi   |  2 ++
+ 13 files changed, 86 insertions(+), 4 deletions(-)
 
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: linux-aarch64-rc.tar.bz2
-Type: application/octet-stream
-Size: 103472 bytes
-Desc: linux-aarch64-rc.tar.bz2
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180525/3c7014c1/attachment.obj>
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: linux-aarch64.tar.bz2
-Type: application/octet-stream
-Size: 99947 bytes
-Desc: linux-aarch64.tar.bz2
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180525/3c7014c1/attachment-0001.obj>
+-- 
+2.15.0.194.g9af6a3dea062
