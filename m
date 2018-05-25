@@ -1,50 +1,35 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 25 May 2018 09:53:56 +0200
-Subject: Odroid-C2 solid green screen on "echo c > /proc/sysrq-trigger" on
- Arch 4.16/4.17rc6
-In-Reply-To: <84bc747f58f648e1b209bc0005804bc5@wppexc12.purdue.lcl>
-References: <84bc747f58f648e1b209bc0005804bc5@wppexc12.purdue.lcl>
-Message-ID: <5d1512ae-51eb-7e05-ad8b-b8e851aee90e@baylibre.com>
+Date: Fri, 25 May 2018 09:56:07 +0200
+Subject: armbian amlogic mainline kernel(4.17.0-rc6) on odroid-c2 borad
+In-Reply-To: <CAHPeh9kkMM8etOTZvBRgJ08Pq5-EWEH5rsxgOZqAmU1ZYp8ufQ@mail.gmail.com>
+References: <CAHPeh9kkMM8etOTZvBRgJ08Pq5-EWEH5rsxgOZqAmU1ZYp8ufQ@mail.gmail.com>
+Message-ID: <3d951d3c-132c-d407-a533-1afa572cb76b@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi,
 
-On 25/05/2018 04:19, Swabey, Matthew A wrote:
-> Odroid-C2 solid green screen on echo c > /proc/sysrq-trigger on Arch Linux mainline 4.16/4.17rc6
-> Using lightdm on xorg fb. No mali, utgard or odroid specific framebuffers. However it seems to happen on them too.
+On 25/05/2018 01:20, Michal Lazo wrote:
+> Hello
+> I added support for mainline kernel to armbian for odroid-c2 board
+> Linux version 4.17.0-rc6-odroidc2
+> uboot 2018.03
+> And I found some errors?
+> https://pastebin.com/c3k82Xei
+
+I saw this aswell, it was not present on 4.17-rc1, I will need to bisect what causes this.
+
 > 
-> Steps to reproduce:
-> 1. Boot
-> 2. Echo c > /proc/sysrq-trigger with watchdog set. Or trigger the watchdog another way, i.e. watchdogd or system.
-> 3. Watchdog causes reboot
-> 4. Boots with screen solid green, see photo here: https://photos.app.goo.gl/9VyiweNAIMD07VSM2
-> 	a. No error messages visible, see attached log file bundles containing dmesg, journalctl, package list, Xorg.0.log
-> 	b. Linux-aarch64 is 4.16
-> 	c. Linux-aarch64-rc is 4.17rc6
-> 5. Reboot - screen back to normal and working
-Well, since screen goes back to normal means there is no bug on the kernel side.
+> Are there any known patches for them ?
+> I hoped that most of HDMI stuff should be ok since 4.16
 
-This is caused by Amlogic's U-Boot.
-The HW watchdog does a complete SoC reset, we cannot execute any code from kernel when the watchdog wakes up.
+It should, but the DRM framework evolves.
 
-Please report this to Armbian and ask them to use Mainline U-Boot, this won't happen anymore.
+Can you Cc the linux-amlogic ML for bug reports please ?
 
+Thanks,
 Neil
 
 > 
-> Thought - something about the way to trigger this reset isn't working, or a race condition is present which is being more reliably triggered? Perhaps in the dma controller or the HDMI?
-> 
-> Any help to track this bug down would be very helpful, or someone else who would be interested? I can't figure out where in the stack the problem is occurring, but I guess it is the bootloader.
-> 
-> Thanks,
-> 
-> Matthew
-> 
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+> Best regards
+> Michal Lazo
