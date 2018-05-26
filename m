@@ -1,44 +1,79 @@
-From: olof@lixom.net (Olof Johansson)
-Date: Fri, 25 May 2018 14:49:49 -0700
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.18, round 3
-In-Reply-To: <7hmuwqqk8k.fsf@baylibre.com>
-References: <7hmuwqqk8k.fsf@baylibre.com>
-Message-ID: <20180525214949.cwokqbzvl4f4jqdk@localhost>
+From: maswabey@purdue.edu (Swabey, Matthew A)
+Date: Sat, 26 May 2018 02:36:57 +0000
+Subject: Odroid-C2 solid green screen on "echo c > /proc/sysrq-trigger" on
+ Arch 4.16/4.17rc6
+In-Reply-To: <CAERgokn-JU9JxHibaWF8w9-roz-wVukey2c7RKVNJoSV=Y+Q3g@mail.gmail.com>
+References: <84bc747f58f648e1b209bc0005804bc5@wppexc12.purdue.lcl>
+ <5d1512ae-51eb-7e05-ad8b-b8e851aee90e@baylibre.com>
+ <CAERgokn-JU9JxHibaWF8w9-roz-wVukey2c7RKVNJoSV=Y+Q3g@mail.gmail.com>
+Message-ID: <1a951abcb7be4e93945613afcdcd96f3@wppexc12.purdue.lcl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, May 23, 2018 at 11:50:51AM -0700, Kevin Hilman wrote:
-> Olof, ARnd,
-> 
-> Here's final round of 64-bit DT updates for v4.18 for Amlogic.
-> 
-> I separated this one from round 2 because I've merged a tag from the
-> clock tree where the headers were added that are used by the new clock
-> driver nodes.
-> 
-> That clock dependency branch is already queued by the clock maintainers,
-> but included here so the arm-soc DT branch will continue to build
-> standalone.
-> 
-> Kevin
-> 
-> The following changes since commit ffe2f2a415a5c36c0629c0ac8ea3dda80fbfd4b6:
-> 
->   ARM64: dts: meson-axg: enable i2c AO on the S400 board (2018-05-23 10:05:41 -0700)
-> 
-> are available in the git repository at:
-> 
->   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-3
-> 
-> for you to fetch changes up to 9adda3534faad306c3d5351c5b87d26fea9767be:
-> 
->   ARM64: dts: meson: fix clock source of the pclk for UART_AO (2018-05-23 11:31:54 -0700)
-> 
-> ----------------------------------------------------------------
-> Amlogic 64-bit DT updates, round3
-> - AXG: add new clock driver
+I just had a look at the Arch linux PKGBUILD for the uboot package I am using, and it is mainline 2017.07. So I am using the mainline uboot, just a bit older.
 
-Merged, thanks!
+I?ll give Armbian a try ? is it the distro wit1h the most development so far? (Other than the 3.14.x releases which I would prefer not to use for now).
+
+Matthew
+
+Dr. Matthew Swabey - Director?
+Bechtel Innovation Design Center - Purdue University
+room: BIDC 225? ? ? phone: +1-765-494-8655
+
+From: Tony McKahan [mailto:tonymckahan at gmail.com] 
+Sent: Friday, May 25, 2018 3:46 PM
+To: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Swabey, Matthew A <maswabey@purdue.edu>; linux-amlogic at lists.infradead.org
+Subject: Re: Odroid-C2 solid green screen on "echo c > /proc/sysrq-trigger" on Arch 4.16/4.17rc6
+
+Hello Neil, Matt,
+
+Change to 2018.03 is in Armbian's development branch, just waiting to be rolled into the master.? I don't have this particular board for testing, but it should be updated soon.
+
+On Fri, May 25, 2018, 3:57 AM Neil Armstrong <mailto:narmstrong@baylibre.com> wrote:
+Hi,
+
+On 25/05/2018 04:19, Swabey, Matthew A wrote:
+> Odroid-C2 solid green screen on echo c > /proc/sysrq-trigger on Arch Linux mainline 4.16/4.17rc6
+> Using lightdm on xorg fb. No mali, utgard or odroid specific framebuffers. However it seems to happen on them too.
+> 
+> Steps to reproduce:
+> 1. Boot
+> 2. Echo c > /proc/sysrq-trigger with watchdog set. Or trigger the watchdog another way, i.e. watchdogd or system.
+> 3. Watchdog causes reboot
+> 4. Boots with screen solid green, see photo here: https://photos.app.goo.gl/9VyiweNAIMD07VSM2
+>? ? ? ?a. No error messages visible, see attached log file bundles containing dmesg, journalctl, package list, Xorg.0.log
+>? ? ? ?b. Linux-aarch64 is 4.16
+>? ? ? ?c. Linux-aarch64-rc is 4.17rc6
+> 5. Reboot - screen back to normal and working
+Well, since screen goes back to normal means there is no bug on the kernel side.
+
+This is caused by Amlogic's U-Boot.
+The HW watchdog does a complete SoC reset, we cannot execute any code from kernel when the watchdog wakes up.
+
+Please report this to Armbian and ask them to use Mainline U-Boot, this won't happen anymore.
+
+Neil
+
+> 
+> Thought - something about the way to trigger this reset isn't working, or a race condition is present which is being more reliably triggered? Perhaps in the dma controller or the HDMI?
+> 
+> Any help to track this bug down would be very helpful, or someone else who would be interested? I can't figure out where in the stack the problem is occurring, but I guess it is the bootloader.
+> 
+> Thanks,
+> 
+> Matthew
+> 
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> mailto:linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
 
 
--Olof
+_______________________________________________
+linux-amlogic mailing list
+mailto:linux-amlogic at lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
