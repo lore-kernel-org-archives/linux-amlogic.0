@@ -1,52 +1,56 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 5 Jun 2018 21:09:09 +0200
-Subject: [PATCH] ARM64: dts: meson-gxl-s905x-p212: Add phy-supply for usb0
-In-Reply-To: <1528188743-12798-1-git-send-email-narmstrong@baylibre.com>
-References: <1528188743-12798-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAFBinCCF7v40PrtL3HVf9X-fEVx7P2uOVePa5wQ_y6s7uLKmnw@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 05 Jun 2018 14:56:04 -0700
+Subject: [PATCH] ARM64: dts: meson-axg: fix register ranges for SD/eMMC
+In-Reply-To: <1528185904.10642.52.camel@baylibre.com> (Jerome Brunet's message
+ of "Tue, 05 Jun 2018 10:05:04 +0200")
+References: <20180604222706.36167-1-khilman@baylibre.com>
+ <1528185904.10642.52.camel@baylibre.com>
+Message-ID: <7hlgbskidn.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jun 5, 2018 at 10:52 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> Like LibreTech-CC, the USB0 needs the 5V regulator to be enabled to power the
-> devices on the P212 Reference Design based boards.
->
-> Fixes: b9f07cb4f41f ("ARM64: dts: meson-gxl-s905x-p212: enable the USB controller")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-out of curiosity: I guess you tested this using u-boot?
-if anyone else is interested: the only other way to test this is by
-ensuring that the hdmi_5v regulator is turned off by Linux (by
-removing it from the HDMI nodes) and then plugging in a USB device ->
-if it doesn't get VBUS then the hdmi_5v regulator is the cause (and
-needs to be kept/turned on by the USB code, just like Neil's patch
-does)
+> On Mon, 2018-06-04 at 15:27 -0700, Kevin Hilman wrote:
+>> Based on updated information from Amlogic, correct the register
+>> range for the SD/eMMC blocks to the right size.
+>> 
+>> Reported-by: Yixun Lan <yixun.lan@amlogic.com>
+>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+>
+> Shouldn't we make the same the change on the gx family ?
+>
 
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> index 0cfd701..a1b3101 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> @@ -189,3 +189,10 @@
->  &usb0 {
->         status = "okay";
->  };
-> +
-> +&usb2_phy0 {
-> +       /*
-> +        * HDMI_5V is also used as supply for the USB VBUS.
-> +        */
-> +       phy-supply = <&hdmi_5v>;
-> +};
-> --
-> 2.7.4
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Yes, I was waiting for confirmation from Yixun.  Will spin a v2 with GX
+included.
+
+Kevin
+
+>> ---
+>> Yixun, please test and confirm this still works on AXG boards.
+>> 
+>>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> index fee87737a201..67d7115e4eff 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> @@ -132,7 +132,7 @@
+>>  
+>>  			sd_emmc_b: sd at 5000 {
+>>  				compatible = "amlogic,meson-axg-mmc";
+>> -				reg = <0x0 0x5000 0x0 0x2000>;
+>> +				reg = <0x0 0x5000 0x0 0x800>;
+>>  				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
+>>  				status = "disabled";
+>>  				clocks = <&clkc CLKID_SD_EMMC_B>,
+>> @@ -144,7 +144,7 @@
+>>  
+>>  			sd_emmc_c: mmc at 7000 {
+>>  				compatible = "amlogic,meson-axg-mmc";
+>> -				reg = <0x0 0x7000 0x0 0x2000>;
+>> +				reg = <0x0 0x7000 0x0 0x800>;
+>>  				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
+>>  				status = "disabled";
+>>  				clocks = <&clkc CLKID_SD_EMMC_C>,
