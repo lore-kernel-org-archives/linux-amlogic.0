@@ -1,165 +1,112 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 5 Jun 2018 11:17:03 +0200
-Subject: Odroid-C2 solid green screen on "echo c > /proc/sysrq-trigger" on
- Arch 4.16/4.17rc6
-In-Reply-To: <176f036c3d2f49a4b5bde68bdee68e6a@wppexc12.purdue.lcl>
-References: <84bc747f58f648e1b209bc0005804bc5@wppexc12.purdue.lcl>
- <5d1512ae-51eb-7e05-ad8b-b8e851aee90e@baylibre.com>
- <CAERgokn-JU9JxHibaWF8w9-roz-wVukey2c7RKVNJoSV=Y+Q3g@mail.gmail.com>
- <1a951abcb7be4e93945613afcdcd96f3@wppexc12.purdue.lcl>
- <f9058ba905344938a09e967b039ed857@wppexc12.purdue.lcl>
- <1f8eaec9-e3a2-1b9b-1cef-ed3567a96aa2@baylibre.com>
- <179a8a16-30a9-73fc-7f07-beeab3a981dc@poczta.onet.pl>
- <176f036c3d2f49a4b5bde68bdee68e6a@wppexc12.purdue.lcl>
-Message-ID: <6353008e-35a9-bb3e-f52c-97191ddb60a3@baylibre.com>
+From: p.zabel@pengutronix.de (Philipp Zabel)
+Date: Tue, 05 Jun 2018 11:37:33 +0200
+Subject: [reset-control] How to initialize hardware state with the
+ shared reset line?
+In-Reply-To: <CAK7LNAQ56ND=6=7swD3ioKwNsGJCxN1SibkH==n24xPX6SdBBQ@mail.gmail.com>
+References: <CAK7LNATZgJ4MxOFLUCNARWv3Zz=gpL-jGReDnBnArquiaXRWoQ@mail.gmail.com>
+ <CAFBinCADQsXoc6CUKabH6VX3ZBYb5apo-xBbe1w0BiO8wBAsPw@mail.gmail.com>
+ <CAK7LNAR1b_F_eLEWAdQc3L=daGz=ttKq0mQP78BkjzTOssaXvw@mail.gmail.com>
+ <CAFBinCBTTmPqD0UP8zzMBjsjzP9fJx9_pmhGz0_Vy-V+wmhLXQ@mail.gmail.com>
+ <1526997879.3671.27.camel@pengutronix.de>
+ <CAFBinCBAoRebScz+DTSKSgiU5DjeSHS1F3=2vt8KM-yCv+2A8g@mail.gmail.com>
+ <CAK7LNAQ56ND=6=7swD3ioKwNsGJCxN1SibkH==n24xPX6SdBBQ@mail.gmail.com>
+Message-ID: <1528191453.4074.4.camel@pengutronix.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+Hi Masahiro,
 
-Having the watchdog to reset the board is an exceptional event, why would you bother fixing this ?
+On Wed, 2018-05-30 at 14:57 +0900, Masahiro Yamada wrote:
+> One more thing.
+> 
+> I want to remove reset_control_reset() entirely.
 
-Neil
+reset_control_reset is for those cases where "the reset controller
+knows" how to reset us. There are hardware reset controllers that can
+control a bunch of actual reset signals in the right order and with the
+right timings necessary for the connected IP cores?by triggering a
+single bit.
+In that case it wouldn't make much sense to do assert / delay / deassert
+in the driver, as the information about the delay is contained in the
+reset controller hardware.
 
-On 04/06/2018 23:22, Swabey, Matthew A wrote:
-> Well, as an update.
+> [1] Some reset consumers (e.g. drivers/ata/sata_gemini.c)
+>     use reset_control_reset() to reset the HW.
 > 
-> Using arch linux for arm, modified their PKGBUILD to build u-boot 2018.05 with no patches at all. Signed and wrote to SD-CARD as per usual. 
+> [2] Some reset consumers (e.g. drivers/input/keyboard/tegra-kbc.c)
+>     use the combination of reset_control_assert() and reset_control_deassert()
+>     to reset the HW.
 > 
-> Green screen on echo c > /proc/sysrq-trigger after watchdog reset.
-> No green screen on shutdown -r
+> [1] is the only way if the reset controller only supports the pulse reset.
 > 
-> Temporary solution for me will be to play a "double reboot" game with a fingerprint file to see if it was shutdown cleanly or not.
+> [2] is the only way if the reset controller only supports the level reset.
 > 
-> Best,
+> So, this is another strangeness because
+> the implementation of reset controller
+> affects reset consumers.
 > 
-> Matthew
+> We do not need [1].
 > 
-> Dr. Matthew Swabey - Director?
-> Bechtel Innovation Design Center - Purdue University
-> room: BIDC 225? ? ? phone: +1-765-494-8655
+> [2] is more flexible than [1] because hardware usually specifies
+> how long the reset line should be kept asserted.
+
+This is not always the case.
+
+> For all reset consumers,
+> replace
+>   reset_control_reset();
+> with
+>   reset_control_assert();
+>   reset_control_deassert();
+
+To be honest, it doesn't make sense to me. If the intention in the
+driver is just to reset our internal state,?and we have a system reset
+controller that can reset us by writing a single bit, I'd prefer to call
+a reset function over two assert/deassert functions, one of which ends
+up doing nothing.
+
+How about moving in the other direction, and allowing to replace
+
+	reset_control_assert(rstc);
+	udelay(delay);
+	reset_control_deassert(rstc);
+
+and variants with calls like
+
+	reset_control_reset_udelay(rstc, delay);
+
+? If the reset controller knows better, or can't change the delay in
+hardware, it may ignore the delay parameter.
+
+> and deprecate reset_control_reset().
+>
+> I think this is the right thing to do.
+
+I don't think this helps the API, as with that change we have to remove
+a guarantee it currently makes: This either only works for shared resets
+or we have to accept that reset_control_assert for exclusive resets does
+not guarantee to return with the reset line asserted anymore.
+Also, for drivers that do deassert in probe and assert in remove, we
+would have to issue the reset in deassert and let assert be the no-op,
+instead of the other way around.
+
+> The reset controller side should be implemented like this:
 > 
-> -----Original Message-----
-> From: Micha? Zegan <webczat_200@poczta.onet.pl> 
-> Sent: Saturday, May 26, 2018 4:50 AM
-> To: Neil Armstrong <narmstrong@baylibre.com>; Swabey, Matthew A <maswabey@purdue.edu>; Tony McKahan <tonymckahan@gmail.com>
-> Cc: linux-amlogic at lists.infradead.org
-> Subject: Re: Odroid-C2 solid green screen on "echo c > /proc/sysrq-trigger" on Arch 4.16/4.17rc6
+> If your reset controller only supports the pulse reset,
+>    .deassert hook should be no-op.
+>    .assert hook should pulse the reset
 > 
-> What about the *kernel* resetting at boot?
-> 
-> W dniu 26.05.2018 o?10:33, Neil Armstrong pisze:
->> Hi,
->>
->> I'm sorry to disappoint you, but with the HW watchdog, we *can't* execute any code from Linux when the watchdoog resets the system.
->> We could eventually add some code in U-Boot to disable the HDMI output, but U-boot is not the first code executed, you will still see the green screen.
->> You may need to contact Hardkernel to see if they can update the BL* binaries to include such reset.
->>
->> Neil
->>
->> On 26/05/2018 05:49, Swabey, Matthew A wrote:
->>> Can also confirm green screen on watchdog reboot from "echo c > /proc/sysrq-trigger" for Armbian 5.44 with linux-u-boot-odroidc2-next version 2018.03.
->>>
->>> This is in addition to the Armbian bug where shutdown -r now doesn?t reboot the system, just either freezes or powers down. Supposed to be fixed on 2018.03 but not working for me.
->>>
->>> Matthew
->>>
->>> Dr. Matthew Swabey - Director
->>> Bechtel Innovation Design Center - Purdue University
->>> room: BIDC 225? ? ? phone: +1-765-494-8655
->>>
->>> -----Original Message-----
->>> From: linux-amlogic 
->>> [mailto:linux-amlogic-bounces at lists.infradead.org] On Behalf Of 
->>> Swabey, Matthew A
->>> Sent: Friday, May 25, 2018 10:37 PM
->>> To: Tony McKahan <tonymckahan@gmail.com>; Neil Armstrong 
->>> <narmstrong@baylibre.com>
->>> Cc: linux-amlogic at lists.infradead.org
->>> Subject: RE: Odroid-C2 solid green screen on "echo c > 
->>> /proc/sysrq-trigger" on Arch 4.16/4.17rc6
->>>
->>> I just had a look at the Arch linux PKGBUILD for the uboot package I am using, and it is mainline 2017.07. So I am using the mainline uboot, just a bit older.
->>>
->>> I?ll give Armbian a try ? is it the distro wit1h the most development so far? (Other than the 3.14.x releases which I would prefer not to use for now).
->>>
->>> Matthew
->>>
->>> Dr. Matthew Swabey - Director
->>> Bechtel Innovation Design Center - Purdue University
->>> room: BIDC 225? ? ? phone: +1-765-494-8655
->>>
->>> From: Tony McKahan [mailto:tonymckahan at gmail.com]
->>> Sent: Friday, May 25, 2018 3:46 PM
->>> To: Neil Armstrong <narmstrong@baylibre.com>
->>> Cc: Swabey, Matthew A <maswabey@purdue.edu>; 
->>> linux-amlogic at lists.infradead.org
->>> Subject: Re: Odroid-C2 solid green screen on "echo c > 
->>> /proc/sysrq-trigger" on Arch 4.16/4.17rc6
->>>
->>> Hello Neil, Matt,
->>>
->>> Change to 2018.03 is in Armbian's development branch, just waiting to be rolled into the master.? I don't have this particular board for testing, but it should be updated soon.
->>>
->>> On Fri, May 25, 2018, 3:57 AM Neil Armstrong <mailto:narmstrong@baylibre.com> wrote:
->>> Hi,
->>>
->>> On 25/05/2018 04:19, Swabey, Matthew A wrote:
->>>> Odroid-C2 solid green screen on echo c > /proc/sysrq-trigger on Arch 
->>>> Linux mainline 4.16/4.17rc6 Using lightdm on xorg fb. No mali, utgard or odroid specific framebuffers. However it seems to happen on them too.
->>>>
->>>> Steps to reproduce:
->>>> 1. Boot
->>>> 2. Echo c > /proc/sysrq-trigger with watchdog set. Or trigger the watchdog another way, i.e. watchdogd or system.
->>>> 3. Watchdog causes reboot
->>>> 4. Boots with screen solid green, see photo here: 
->>>> https://photos.app.goo.gl/9VyiweNAIMD07VSM2
->>>> ? ? ? ?a. No error messages visible, see attached log file bundles 
->>>> containing dmesg, journalctl, package list, Xorg.0.log
->>>> ? ? ? ?b. Linux-aarch64 is 4.16
->>>> ? ? ? ?c. Linux-aarch64-rc is 4.17rc6 5. Reboot - screen back to 
->>>> normal and working
->>> Well, since screen goes back to normal means there is no bug on the kernel side.
->>>
->>> This is caused by Amlogic's U-Boot.
->>> The HW watchdog does a complete SoC reset, we cannot execute any code from kernel when the watchdog wakes up.
->>>
->>> Please report this to Armbian and ask them to use Mainline U-Boot, this won't happen anymore.
->>>
->>> Neil
->>>
->>>>
->>>> Thought - something about the way to trigger this reset isn't working, or a race condition is present which is being more reliably triggered? Perhaps in the dma controller or the HDMI?
->>>>
->>>> Any help to track this bug down would be very helpful, or someone else who would be interested? I can't figure out where in the stack the problem is occurring, but I guess it is the bootloader.
->>>>
->>>> Thanks,
->>>>
->>>> Matthew
->>>>
->>>>
->>>>
->>>> _______________________________________________
->>>> linux-amlogic mailing list
->>>> mailto:linux-amlogic at lists.infradead.org
->>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>>>
->>>
->>>
->>> _______________________________________________
->>> linux-amlogic mailing list
->>> mailto:linux-amlogic at lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>> _______________________________________________
->>> linux-amlogic mailing list
->>> linux-amlogic at lists.infradead.org
->>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>>
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic at lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>
-> 
+> Then .reset hook should be removed.
+
+There is hardware where assert, deassert, and reset are three different
+operations. See for example the tegra/reset-bpmp.c driver. Both assert /
+deassert and module reset messages are part of the firmware ABI.
+
+> Or, we can keep the reset drivers as they are.
+> drivers/reset/core.c can take care of the proper fallback logic.
+
+I prefer to keep assert, deassert and reset separate for those cases
+where the hardware actually supports both variants.
+
+regards
+Philipp
