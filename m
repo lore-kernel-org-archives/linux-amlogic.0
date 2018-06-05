@@ -1,20 +1,21 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Tue, 5 Jun 2018 14:56:34 +0800
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 05 Jun 2018 10:05:04 +0200
 Subject: [PATCH] ARM64: dts: meson-axg: fix register ranges for SD/eMMC
 In-Reply-To: <20180604222706.36167-1-khilman@baylibre.com>
 References: <20180604222706.36167-1-khilman@baylibre.com>
-Message-ID: <8b1a25e1-2447-40b7-1394-d10ff200a4ec@amlogic.com>
+Message-ID: <1528185904.10642.52.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kevin
-
-On 06/05/18 06:27, Kevin Hilman wrote:
+On Mon, 2018-06-04 at 15:27 -0700, Kevin Hilman wrote:
 > Based on updated information from Amlogic, correct the register
 > range for the SD/eMMC blocks to the right size.
 > 
 > Reported-by: Yixun Lan <yixun.lan@amlogic.com>
 > Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+
+Shouldn't we make the same the change on the gx family ?
+
 > ---
 > Yixun, please test and confirm this still works on AXG boards.
 > 
@@ -43,14 +44,3 @@ On 06/05/18 06:27, Kevin Hilman wrote:
 >  				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
 >  				status = "disabled";
 >  				clocks = <&clkc CLKID_SD_EMMC_C>,
-> 
-
-Starting from GXBB series, the SD/eMMC register range is changed to
-0x800, so arch/arm64/boot/dts/amlogic/meson-gx.dtsi also need to be adjusted
-
-Also, test passed on boards: GXBB(p200), GXL(p212, p230), AXG(s400)
-
-Thanks for bringing up this, and fix them.
-
-
-Yixun
