@@ -1,59 +1,25 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu,  7 Jun 2018 13:55:14 -0700
-Subject: [PATCH] ARM64: dts: meson-gx: fix ATF reserved memory region
-Message-ID: <20180607205514.36631-1-khilman@baylibre.com>
+Date: Fri, 08 Jun 2018 16:53:40 -0700
+Subject: [PATCH] ARM64: dts: meson-gxl-s905x-p212: Add phy-supply for usb0
+In-Reply-To: <CAFBinCCF7v40PrtL3HVf9X-fEVx7P2uOVePa5wQ_y6s7uLKmnw@mail.gmail.com>
+ (Martin Blumenstingl's message of "Tue, 5 Jun 2018 21:09:09 +0200")
+References: <1528188743-12798-1-git-send-email-narmstrong@baylibre.com>
+ <CAFBinCCF7v40PrtL3HVf9X-fEVx7P2uOVePa5wQ_y6s7uLKmnw@mail.gmail.com>
+Message-ID: <7hsh5wygvv.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Vendor firmware/uboot has different reserved regions depending on
-firmware version, but current codebase reserves the same regions on
-GXL and GXBB, so move the additional reserved memory region to common
-.dtsi.
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-Found when putting a recent vendor u-boot on meson-gxbb-p200.
+> On Tue, Jun 5, 2018 at 10:52 AM, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> Like LibreTech-CC, the USB0 needs the 5V regulator to be enabled to power the
+>> devices on the P212 Reference Design based boards.
+>>
+>> Fixes: b9f07cb4f41f ("ARM64: dts: meson-gxl-s905x-p212: enable the USB controller")
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Recommended-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 6 ++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 8 --------
- 2 files changed, 6 insertions(+), 8 deletions(-)
+Applied to v4.18/fixes (will queue for v4.18-rc).
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index b003f324ca31..b8dc4dbb391b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -35,6 +35,12 @@
- 			no-map;
- 		};
- 
-+		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
-+		secmon_reserved_alt: secmon at 5000000 {
-+			reg = <0x0 0x05000000 0x0 0x300000>;
-+			no-map;
-+		};
-+
- 		linux,cma {
- 			compatible = "shared-dma-pool";
- 			reusable;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 27538eea547b..c87a80e9bcc6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -13,14 +13,6 @@
- / {
- 	compatible = "amlogic,meson-gxl";
- 
--	reserved-memory {
--		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
--		secmon_reserved_alt: secmon at 5000000 {
--			reg = <0x0 0x05000000 0x0 0x300000>;
--			no-map;
--		};
--	};
--
- 	soc {
- 		usb0: usb at c9000000 {
- 			status = "disabled";
--- 
-2.11.0
+Kevin
