@@ -1,71 +1,57 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 08 Jun 2018 16:58:31 -0700
-Subject: [PATCH] ARM64: dts: meson-gx: fix ATF reserved memory region
-In-Reply-To: <20180607205514.36631-1-khilman@baylibre.com> (Kevin Hilman's
- message of "Thu, 7 Jun 2018 13:55:14 -0700")
-References: <20180607205514.36631-1-khilman@baylibre.com>
-Message-ID: <7hefhgygns.fsf@baylibre.com>
+From: st6589@public-files.de (st6589 at public-files.de)
+Date: Mon, 11 Jun 2018 12:01:43 +0200
+Subject: [BUG] Pinning in pinctrl-meson-gxbb.c for uart_C is wrong
+Message-ID: <trinity-5eab4708-85af-4a10-911f-86b9afc2c0cc-1528711303734@3c-app-gmx-bs27>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
 
-> Vendor firmware/uboot has different reserved regions depending on
-> firmware version, but current codebase reserves the same regions on
-> GXL and GXBB, so move the additional reserved memory region to common
-> .dtsi.
->
-> Found when putting a recent vendor u-boot on meson-gxbb-p200.
->
-> Recommended-by: Neil Armstrong <narmstrong@baylibre.com>
-
-oops, this should've been the more common "Suggested-by".  Fixed, and
-then...
-
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-
-...added a Cc:stable and applied to v4.18/fixes.
-
-Kevin
-
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 6 ++++++
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 8 --------
->  2 files changed, 6 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index b003f324ca31..b8dc4dbb391b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -35,6 +35,12 @@
->  			no-map;
->  		};
->  
-> +		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
-> +		secmon_reserved_alt: secmon at 5000000 {
-> +			reg = <0x0 0x05000000 0x0 0x300000>;
-> +			no-map;
-> +		};
-> +
->  		linux,cma {
->  			compatible = "shared-dma-pool";
->  			reusable;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> index 27538eea547b..c87a80e9bcc6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> @@ -13,14 +13,6 @@
->  / {
->  	compatible = "amlogic,meson-gxl";
->  
-> -	reserved-memory {
-> -		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
-> -		secmon_reserved_alt: secmon at 5000000 {
-> -			reg = <0x0 0x05000000 0x0 0x300000>;
-> -			no-map;
-> -		};
-> -	};
-> -
->  	soc {
->  		usb0: usb at c9000000 {
->  			status = "disabled";
+Hello with the actuel Pinning definition in? pinctrl-meson-gxbb.c for the uart_c
+the system crashes when activated. The seams to be a depency with mmc driver for SD cards.
+?
+according to the comment here: https://forum.odroid.com/viewtopic.php?f=137&t=25373#p177855
+the seams to be an error in the amlogic datasheets regarding uart_c
+?
+with the attached patch everything works as it should.
+?
+Best regards
+?
+?
+##
+#    https://forum.odroid.com/viewtopic.php?f=137&t=25373#p177855
+#
+--- linux-next-20180608/drivers/pinctrl/meson/pinctrl-meson-gxbb.c.orig 2018-06-09 12:03:58.921540445 +0200
++++ linux-next-20180608/drivers/pinctrl/meson/pinctrl-meson-gxbb.c      2018-06-10 18:51:52.080665271 +0200
+@@ -198,8 +198,8 @@
+ 
+ static const unsigned int uart_tx_c_pins[]     = { GPIOY_13 };
+ static const unsigned int uart_rx_c_pins[]     = { GPIOY_14 };
+-static const unsigned int uart_cts_c_pins[]    = { GPIOX_11 };
+-static const unsigned int uart_rts_c_pins[]    = { GPIOX_12 };
++static const unsigned int uart_cts_c_pins[]    = { GPIOY_11 };
++static const unsigned int uart_rts_c_pins[]    = { GPIOY_12 };
+ 
+ static const unsigned int i2c_sck_a_pins[]     = { GPIODV_25 };
+ static const unsigned int i2c_sda_a_pins[]     = { GPIODV_24 };
+@@ -443,10 +443,10 @@
+        GROUP(pwm_f_x,          3,      18),
+ 
+        /* Bank Y */
+-       GROUP(uart_cts_c,       1,      19),
+-       GROUP(uart_rts_c,       1,      18),
+-       GROUP(uart_tx_c,        1,      17),
+-       GROUP(uart_rx_c,        1,      16),
++       GROUP(uart_cts_c,       1,      17),
++       GROUP(uart_rts_c,       1,      16),
++       GROUP(uart_tx_c,        1,      19),
++       GROUP(uart_rx_c,        1,      18),
+        GROUP(pwm_a_y,          1,      21),
+        GROUP(pwm_f_y,          1,      20),
+        GROUP(i2s_out_ch23_y,   1,      5),
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: my-diff-4.17-uac-pin.diff
+Type: text/x-patch
+Size: 1160 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180611/1d8bb112/attachment.bin>
