@@ -1,58 +1,20 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 12 Jun 2018 16:34:49 +0200
-Subject: [PATCH] drm/meson: Fix an un-handled error path in
- 'meson_drv_bind_master()'
-In-Reply-To: <20180611165335.24542-1-christophe.jaillet@wanadoo.fr>
-References: <20180611165335.24542-1-christophe.jaillet@wanadoo.fr>
-Message-ID: <b25b05d0-b192-1cf8-0c25-38b8bdb53b92@baylibre.com>
+From: davem@davemloft.net (David Miller)
+Date: Tue, 12 Jun 2018 15:36:40 -0700 (PDT)
+Subject: [PATCH] net: stmmac: dwmac-meson8b: Fix an error handling path
+ in 'meson8b_dwmac_probe()'
+In-Reply-To: <20180611175227.27509-1-christophe.jaillet@wanadoo.fr>
+References: <20180611175227.27509-1-christophe.jaillet@wanadoo.fr>
+Message-ID: <20180612.153640.206354770292248454.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/06/2018 18:53, Christophe JAILLET wrote:
-> If 'platform_get_resource_byname()' fails, we should release some resources
-> before leaving, as already done in the other error handling path of the
-> function.
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Date: Mon, 11 Jun 2018 19:52:27 +0200
+
+> If 'of_device_get_match_data()' fails, we need to release some resources as
+> done in the other error handling path of this function.
 > 
-> Fixes: acaa3f13b8dd ("drm/meson: Fix potential NULL dereference in meson_drv_bind_master()")
+> Fixes: efacb568c962 ("net: stmmac: dwmac-meson: extend phy mode setting")
 > Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> ---
->  drivers/gpu/drm/meson/meson_drv.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 32b1a6cdecfc..d3443125e661 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -197,8 +197,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->  	priv->io_base = regs;
->  
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
-> -	if (!res)
-> -		return -EINVAL;
-> +	if (!res) {
-> +		ret = -EINVAL;
-> +		goto free_drm;
-> +	}
->  	/* Simply ioremap since it may be a shared register zone */
->  	regs = devm_ioremap(dev, res->start, resource_size(res));
->  	if (!regs) {
-> @@ -215,8 +217,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->  	}
->  
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dmc");
-> -	if (!res)
-> -		return -EINVAL;
-> +	if (!res) {
-> +		ret = -EINVAL;
-> +		goto free_drm;
-> +	}
->  	/* Simply ioremap since it may be a shared register zone */
->  	regs = devm_ioremap(dev, res->start, resource_size(res));
->  	if (!regs) {
-> 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-I'll push it when rc1 is tagged.
-
-Neil
+Applied.
