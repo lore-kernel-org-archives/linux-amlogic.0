@@ -1,48 +1,54 @@
-From: lkp@intel.com (kbuild test robot)
-Date: Wed, 13 Jun 2018 17:33:53 +0800
-Subject: [PATCH 2/2] mtd: rawnand: meson: add support for Amlogic NAND
- flash controller
-In-Reply-To: <20180613161314.14894-3-yixun.lan@amlogic.com>
-References: <20180613161314.14894-3-yixun.lan@amlogic.com>
-Message-ID: <201806131738.lVPaDHhQ%fengguang.wu@intel.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 13 Jun 2018 14:20:21 +0200
+Subject: [PATCH] clk: meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL
+Message-ID: <1528892421-12180-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Liang,
+On Amlogic Meson GXBB & GXL platforms, the SCPI Cortex-M4 Co-Processor
+seems to be dependent on the FCLK_DIV2 to be operationnal.
 
-Thank you for the patch! Yet something to improve:
+The issue occured since v4.17-rc1 by freezing the kernel boot when
+the 'schedutil' cpufreq governor was selected as default :
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on v4.17 next-20180613]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+  [   12.071837] scpi_protocol scpi: SCP Protocol 0.0 Firmware 0.0.0 version
+  domain-0 init dvfs: 4
+  [   12.087757] hctosys: unable to open rtc device (rtc0)
+  [   12.087907] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+  [   12.102241] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
 
-url:    https://github.com/0day-ci/linux/commits/Yixun-Lan/mtd-rawnand-meson-add-Amlogic-NAND-driver-support/20180613-161917
-base:   git://git.infradead.org/linux-mtd.git nand/next
-config: i386-allmodconfig (attached as .config)
-compiler: gcc-7 (Debian 7.3.0-16) 7.3.0
-reproduce:
-        # save the attached .config to linux build tree
-        make ARCH=i386 
+But when disabling the MMC driver, the boot finished but cpufreq failed to
+change the CPU frequency :
 
-All errors (new ones prefixed by >>):
+  [   12.153045] cpufreq: __target_index: Failed to change cpu frequency: -5
 
->> drivers/mtd/nand/raw/meson_nand.c:21:10: fatal error: clk-regmap.h: No such file or directory
-    #include "clk-regmap.h"
-             ^~~~~~~~~~~~~~
-   compilation terminated.
+A bisect between v4.16 and v4.16-rc1 gave the 05f814402d61 commit to be
+the first bad commit.
+This commit added support for the missing clock gates before the fixed PLL
+fixed dividers (FCLK_DIVx) and the clock framework basically disabled
+all the unused fixed dividers, thus disabled a critical clock path for
+the SCPI Co-Processor.
 
-vim +21 drivers/mtd/nand/raw/meson_nand.c
+This patch simply sets the FCLK_DIV2 gate as critical to ensure
+nobody can disable it.
 
-  > 21	#include "clk-regmap.h"
-    22	
-
+Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: .config.gz
-Type: application/gzip
-Size: 62787 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180613/043f3907/attachment.gz>
+ drivers/clk/meson/gxbb.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index b1e4d95..0e053c1 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -511,6 +511,7 @@ static struct clk_regmap gxbb_fclk_div2 = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_names = (const char *[]){ "fclk_div2_div" },
+ 		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
+ 	},
+ };
+ 
+-- 
+2.7.4
