@@ -1,59 +1,29 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 13 Jun 2018 14:26:11 +0200
-Subject: [PATCH] clk: meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL
-In-Reply-To: <1528892421-12180-1-git-send-email-narmstrong@baylibre.com>
-References: <1528892421-12180-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1528892771.2292.2.camel@baylibre.com>
+From: trini@konsulko.com (Tom Rini)
+Date: Wed, 13 Jun 2018 11:42:44 -0400
+Subject: [U-Boot,u-boot] ARM64: meson: Sync DT with Linux 4.17
+In-Reply-To: <1528186244-8854-1-git-send-email-narmstrong@baylibre.com>
+References: <1528186244-8854-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20180613154244.GC350@bill-the-cat.ec.rr.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-06-13 at 14:20 +0200, Neil Armstrong wrote:
-> On Amlogic Meson GXBB & GXL platforms, the SCPI Cortex-M4 Co-Processor
-> seems to be dependent on the FCLK_DIV2 to be operationnal.
+On Tue, Jun 05, 2018 at 10:10:44AM +0200, Neil Armstrong wrote:
+
+> Synchronize the Linux Device Tree for Amlogic Meson GX boards from Linux 4.17.0
 > 
-> The issue occured since v4.17-rc1 by freezing the kernel boot when
-> the 'schedutil' cpufreq governor was selected as default :
+> This will enable USB on Amlogic Meson GXL Boards like Khadas VIM, P212 or
+> LibreTech-CC.
 > 
->   [   12.071837] scpi_protocol scpi: SCP Protocol 0.0 Firmware 0.0.0 version
->   domain-0 init dvfs: 4
->   [   12.087757] hctosys: unable to open rtc device (rtc0)
->   [   12.087907] cfg80211: Loading compiled-in X.509 certificates for regulatory database
->   [   12.102241] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
-> 
-> But when disabling the MMC driver, the boot finished but cpufreq failed to
-> change the CPU frequency :
-> 
->   [   12.153045] cpufreq: __target_index: Failed to change cpu frequency: -5
-> 
-> A bisect between v4.16 and v4.16-rc1 gave the 05f814402d61 commit to be
-> the first bad commit.
-> This commit added support for the missing clock gates before the fixed PLL
-> fixed dividers (FCLK_DIVx) and the clock framework basically disabled
-> all the unused fixed dividers, thus disabled a critical clock path for
-> the SCPI Co-Processor.
-> 
-> This patch simply sets the FCLK_DIV2 gate as critical to ensure
-> nobody can disable it.
-> 
-> Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Good catch !
-We'll probably have to check the axg family as well
+Applied to u-boot/master, thanks!
 
-> ---
->  drivers/clk/meson/gxbb.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index b1e4d95..0e053c1 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -511,6 +511,7 @@ static struct clk_regmap gxbb_fclk_div2 = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_names = (const char *[]){ "fclk_div2_div" },
->  		.num_parents = 1,
-> +		.flags = CLK_IS_CRITICAL,
->  	},
->  };
->  
+-- 
+Tom
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180613/3eaade51/attachment.sig>
