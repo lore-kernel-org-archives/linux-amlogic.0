@@ -1,49 +1,31 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 19 Jun 2018 17:29:12 +0200
-Subject: [PATCH] clk: meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL
-In-Reply-To: <1528892771.2292.2.camel@baylibre.com>
-References: <1528892421-12180-1-git-send-email-narmstrong@baylibre.com>
- <1528892771.2292.2.camel@baylibre.com>
-Message-ID: <1529422152.28510.24.camel@baylibre.com>
+Date: Tue, 19 Jun 2018 17:47:53 +0200
+Subject: [PATCH] clk: meson: audio-divider is one based
+Message-ID: <20180619154753.12788-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-06-13 at 14:26 +0200, Jerome Brunet wrote:
-> On Wed, 2018-06-13 at 14:20 +0200, Neil Armstrong wrote:
-> > On Amlogic Meson GXBB & GXL platforms, the SCPI Cortex-M4 Co-Processor
-> > seems to be dependent on the FCLK_DIV2 to be operationnal.
-> > 
-> > The issue occured since v4.17-rc1 by freezing the kernel boot when
-> > the 'schedutil' cpufreq governor was selected as default :
-> > 
-> >    [   12.071837] scpi_protocol scpi: SCP Protocol 0.0 Firmware 0.0.0 version
-> >    domain-0 init dvfs: 4
-> >    [   12.087757] hctosys: unable to open rtc device (rtc0)
-> >    [   12.087907] cfg80211: Loading compiled-in X.509 certificates for regulatory database
-> >    [   12.102241] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
-> > 
-> > But when disabling the MMC driver, the boot finished but cpufreq failed to
-> > change the CPU frequency :
-> > 
-> >    [   12.153045] cpufreq: __target_index: Failed to change cpu frequency: -5
-> > 
-> > A bisect between v4.16 and v4.16-rc1 gave the 05f814402d61 commit to be
-> > the first bad commit.
-> > This commit added support for the missing clock gates before the fixed PLL
-> > fixed dividers (FCLK_DIVx) and the clock framework basically disabled
-> > all the unused fixed dividers, thus disabled a critical clock path for
-> > the SCPI Co-Processor.
-> > 
-> > This patch simply sets the FCLK_DIV2 gate as critical to ensure
-> > nobody can disable it.
-> > 
-> > Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
-> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> Good catch !
-> We'll probably have to check the axg family as well
+The audio divider is one based. This offset was mistakenly dropped from
+recalc_rate() when migrating to clk_regmap.
 
-SCPI is not enabled on AXG at this time. We'll deal with it when the time comes.
+Fixes: 88a4e1283681 ("clk: meson: migrate the audio divider clock to clk_regmap")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/clk-audio-divider.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-patch applied.
-Thx
+diff --git a/drivers/clk/meson/clk-audio-divider.c b/drivers/clk/meson/clk-audio-divider.c
+index 58f546e04807..e4cf96ba704e 100644
+--- a/drivers/clk/meson/clk-audio-divider.c
++++ b/drivers/clk/meson/clk-audio-divider.c
+@@ -51,7 +51,7 @@ static unsigned long audio_divider_recalc_rate(struct clk_hw *hw,
+ 	struct meson_clk_audio_div_data *adiv = meson_clk_audio_div_data(clk);
+ 	unsigned long divider;
+ 
+-	divider = meson_parm_read(clk->map, &adiv->div);
++	divider = meson_parm_read(clk->map, &adiv->div) + 1;
+ 
+ 	return DIV_ROUND_UP_ULL((u64)parent_rate, divider);
+ }
+-- 
+2.14.3
