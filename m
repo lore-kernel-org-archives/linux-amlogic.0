@@ -1,114 +1,49 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 19 Jun 2018 16:09:20 +0200
-Subject: [1/3] media: rc: drivers should produce alternate pulse and
- space timing events
-In-Reply-To: <20180619125755.cd3tyfgsx5yqjohw@gofer.mess.org>
-References: <20180512105531.30482-1-sean@mess.org>
- <1529410092.28510.20.camel@baylibre.com>
- <20180619125755.cd3tyfgsx5yqjohw@gofer.mess.org>
-Message-ID: <1529417360.28510.23.camel@baylibre.com>
+Date: Tue, 19 Jun 2018 17:29:12 +0200
+Subject: [PATCH] clk: meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL
+In-Reply-To: <1528892771.2292.2.camel@baylibre.com>
+References: <1528892421-12180-1-git-send-email-narmstrong@baylibre.com>
+ <1528892771.2292.2.camel@baylibre.com>
+Message-ID: <1529422152.28510.24.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-06-19 at 13:57 +0100, Sean Young wrote:
-> On Tue, Jun 19, 2018 at 02:08:12PM +0200, Jerome Brunet wrote:
-> > On Sat, 2018-05-12 at 11:55 +0100, Sean Young wrote:
-> > > Report an error if this is not the case or any problem with the generated
-> > > raw events.
+On Wed, 2018-06-13 at 14:26 +0200, Jerome Brunet wrote:
+> On Wed, 2018-06-13 at 14:20 +0200, Neil Armstrong wrote:
+> > On Amlogic Meson GXBB & GXL platforms, the SCPI Cortex-M4 Co-Processor
+> > seems to be dependent on the FCLK_DIV2 to be operationnal.
 > > 
-> > Hi,
+> > The issue occured since v4.17-rc1 by freezing the kernel boot when
+> > the 'schedutil' cpufreq governor was selected as default :
 > > 
-> > Since the inclusion of this patch, every 3 to 15 seconds, I get the following
-> > message: 
+> >    [   12.071837] scpi_protocol scpi: SCP Protocol 0.0 Firmware 0.0.0 version
+> >    domain-0 init dvfs: 4
+> >    [   12.087757] hctosys: unable to open rtc device (rtc0)
+> >    [   12.087907] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+> >    [   12.102241] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
 > > 
-> >  "rc rc0: two consecutive events of type space"
+> > But when disabling the MMC driver, the boot finished but cpufreq failed to
+> > change the CPU frequency :
 > > 
-> > on the console of amlogic s400 platform (arch/arm64/boot/dts/amlogic/meson-axg-
-> > s400.dts). I don't know much about ir protocol and surely there is something
-> > worth investigating in the related driver, but ...
+> >    [   12.153045] cpufreq: __target_index: Failed to change cpu frequency: -5
 > > 
-> > > 
-> > > Signed-off-by: Sean Young <sean@mess.org>
-> > > ---
-> > >  drivers/media/rc/rc-ir-raw.c | 19 +++++++++++++++----
-> > >  1 file changed, 15 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/media/rc/rc-ir-raw.c b/drivers/media/rc/rc-ir-raw.c
-> > > index 2e50104ae138..49c56da9bc67 100644
-> > > --- a/drivers/media/rc/rc-ir-raw.c
-> > > +++ b/drivers/media/rc/rc-ir-raw.c
-> > > @@ -22,16 +22,27 @@ static int ir_raw_event_thread(void *data)
-> > >  {
-> > >  	struct ir_raw_event ev;
-> > >  	struct ir_raw_handler *handler;
-> > > -	struct ir_raw_event_ctrl *raw = (struct ir_raw_event_ctrl *)data;
-> > > +	struct ir_raw_event_ctrl *raw = data;
-> > > +	struct rc_dev *dev = raw->dev;
-> > >  
-> > >  	while (1) {
-> > >  		mutex_lock(&ir_raw_handler_lock);
-> > >  		while (kfifo_out(&raw->kfifo, &ev, 1)) {
-> > > +			if (is_timing_event(ev)) {
-> > > +				if (ev.duration == 0)
-> > > +					dev_err(&dev->dev, "nonsensical timing event of duration 0");
-> > > +				if (is_timing_event(raw->prev_ev) &&
-> > > +				    !is_transition(&ev, &raw->prev_ev))
-> > > +					dev_err(&dev->dev, "two consecutive events of type %s",
-> > > +						TO_STR(ev.pulse));
-> > > +				if (raw->prev_ev.reset && ev.pulse == 0)
-> > > +					dev_err(&dev->dev, "timing event after reset should be pulse");
-> > > +			}
+> > A bisect between v4.16 and v4.16-rc1 gave the 05f814402d61 commit to be
+> > the first bad commit.
+> > This commit added support for the missing clock gates before the fixed PLL
+> > fixed dividers (FCLK_DIVx) and the clock framework basically disabled
+> > all the unused fixed dividers, thus disabled a critical clock path for
+> > the SCPI Co-Processor.
 > > 
-> > ... considering that we continue the processing as if nothing happened, is it
-> > really an error ? 
+> > This patch simply sets the FCLK_DIV2 gate as critical to ensure
+> > nobody can disable it.
 > > 
-> > Could we consider something less invasive ? like dev_dbg() or dev_warn_once() ?
+> > Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> Maybe it should be dev_warn(). The fact that it is not dev_warn_once() means
-> that we now know this occurs regularly.
+> Good catch !
+> We'll probably have to check the axg family as well
 
-It seems weird to report this over and over again.
+SCPI is not enabled on AXG at this time. We'll deal with it when the time comes.
 
-> 
-> Would you mind testing the following patch please?
-> 
-> Thanks
-> 
-> Sean
-> 
-> From 6a44fbe4738d230b9cf378777e7e9a93e5fda726 Mon Sep 17 00:00:00 2001
-> From: Sean Young <sean@mess.org>
-> Date: Tue, 19 Jun 2018 13:50:36 +0100
-> Subject: [PATCH] media: rc: meson: rc rc0: two consecutive events of type
->  space
-> 
-> The meson generates one edge per interrupt. The duration is encoded in 12
-> bits of 10 microseconds, so it can only encoding a maximum of 40
-> milliseconds. As a result, it can produce multiple space events.
-> 
-> Signed-off-by: Sean Young <sean@mess.org>
-> ---
->  drivers/media/rc/meson-ir.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-> index f449b35d25e7..9747426719b2 100644
-> --- a/drivers/media/rc/meson-ir.c
-> +++ b/drivers/media/rc/meson-ir.c
-> @@ -97,7 +97,8 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
->  	status = readl_relaxed(ir->reg + IR_DEC_STATUS);
->  	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
->  
-> -	ir_raw_event_store_with_timeout(ir->rc, &rawir);
-> +	if (ir_raw_event_store_with_filter(ir->rc, &rawir))
-> +		ir_raw_event_handle(ir->rc);
->  
->  	spin_unlock(&ir->lock);
->  
-
-Solve the problem on meson. Thx
-Feel free to add this submitting the patch
-
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-
-Cheers
+patch applied.
+Thx
