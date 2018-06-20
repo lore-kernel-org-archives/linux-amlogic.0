@@ -1,34 +1,47 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 20 Jun 2018 10:31:45 +0200
-Subject: [PATCH] clk: meson: audio-divider is one based
-In-Reply-To: <20180619154753.12788-1-jbrunet@baylibre.com>
-References: <20180619154753.12788-1-jbrunet@baylibre.com>
-Message-ID: <e8898e54-24b1-ec77-1b08-390607640747@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 20 Jun 2018 12:06:08 +0200
+Subject: [PATCH 0/2] clk: meson: drop clk-audio-divider
+Message-ID: <20180620100610.29010-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 19/06/2018 17:47, Jerome Brunet wrote:
-> The audio divider is one based. This offset was mistakenly dropped from
-> recalc_rate() when migrating to clk_regmap.
-> 
-> Fixes: 88a4e1283681 ("clk: meson: migrate the audio divider clock to clk_regmap")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/clk/meson/clk-audio-divider.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/meson/clk-audio-divider.c b/drivers/clk/meson/clk-audio-divider.c
-> index 58f546e04807..e4cf96ba704e 100644
-> --- a/drivers/clk/meson/clk-audio-divider.c
-> +++ b/drivers/clk/meson/clk-audio-divider.c
-> @@ -51,7 +51,7 @@ static unsigned long audio_divider_recalc_rate(struct clk_hw *hw,
->  	struct meson_clk_audio_div_data *adiv = meson_clk_audio_div_data(clk);
->  	unsigned long divider;
->  
-> -	divider = meson_parm_read(clk->map, &adiv->div);
-> +	divider = meson_parm_read(clk->map, &adiv->div) + 1;
->  
->  	return DIV_ROUND_UP_ULL((u64)parent_rate, divider);
->  }
-> 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+As explained in the commit descriptions, clk-audio-divider was a poor
+solution to make sure PLL rates would be high enough while using CCF
+rate propagation to determine audio clock rates.
+
+Stopping rate propagation before the PLLs is actually simpler and provides
+better results. It also allow to get rid of clk-audio-divider.
+
+Off tree sound cards using these clocks should add the following to the
+sound card DT to properly setup the PLLs:
+
+	assigned-clocks = <&clkc CLKID_MPLL2>,
+	                  <&clkc CLKID_MPLL0>,
+	                  <&clkc CLKID_MPLL1>;
+	assigned-clock-parents = <0>, <0>, <0>;
+	assigned-clock-rates = <294912000>,
+	                       <270950400>,
+	                       <393216000>;
+
+* MPLL2: 294912000Hz: 192Khz * 32 * 24 * 2
+  used 24, 48, 96, 192Khz
+
+* MPLL0: 270950400Hz: 176.4Khz * 32 * 24 * 2
+  used for 5.512, 10.025, 20.05, 44.1, 88.2 and 176,4Khz
+
+* MPLL1: 393216000Hz: 64Khz * 32 * 24 * 8
+  used for 8, 16, 32 and 64Khz
+
+Jerome Brunet (2):
+  clk: meson: stop rate propagation for audio clocks
+  clk: meson: remove unused clk-audio-divider driver
+
+ drivers/clk/meson/Makefile            |   2 +-
+ drivers/clk/meson/clk-audio-divider.c | 110 ----------------------------------
+ drivers/clk/meson/clkc.h              |   7 ---
+ drivers/clk/meson/gxbb.c              |  16 +++--
+ 4 files changed, 8 insertions(+), 127 deletions(-)
+ delete mode 100644 drivers/clk/meson/clk-audio-divider.c
+
+-- 
+2.14.3
