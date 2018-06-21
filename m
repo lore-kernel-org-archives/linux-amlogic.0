@@ -1,174 +1,236 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 20 Jun 2018 12:06:10 +0200
-Subject: [PATCH 2/2] clk: meson: remove unused clk-audio-divider driver
-In-Reply-To: <20180620100610.29010-1-jbrunet@baylibre.com>
-References: <20180620100610.29010-1-jbrunet@baylibre.com>
-Message-ID: <20180620100610.29010-3-jbrunet@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Thu, 21 Jun 2018 12:26:20 +0000
+Subject: [PATCH] clk: meson-axg: add clocks required by pcie driver
+Message-ID: <20180621122620.13195-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-clk-audio-divider is no longer used, we can remove it.
+Adding clocks for pcie driver, due to the ASIC design,
+the pcie controller re-use part of the mipi clock logic,
+so the mipi clock is also required.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Tested-by: Jianxin Qin <jianxin.qin@amlogic.com>
+Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 ---
- drivers/clk/meson/Makefile            |   2 +-
- drivers/clk/meson/clk-audio-divider.c | 110 ----------------------------------
- drivers/clk/meson/clkc.h              |   7 ---
- 3 files changed, 1 insertion(+), 118 deletions(-)
- delete mode 100644 drivers/clk/meson/clk-audio-divider.c
+ drivers/clk/meson/axg.c              | 145 +++++++++++++++++++++++++++
+ drivers/clk/meson/axg.h              |   6 +-
+ include/dt-bindings/clock/axg-clkc.h |   3 +
+ 3 files changed, 153 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index d0d13aeb369a..e40fea96069b 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -2,7 +2,7 @@
- # Makefile for Meson specific clk
- #
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index bd4dbc696b88..f1dc5433b69d 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -626,6 +626,137 @@ static struct clk_regmap axg_mpll3 = {
+ 	},
+ };
  
--obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-audio-divider.o
-+obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o
- obj-$(CONFIG_COMMON_CLK_MESON_AO) += meson-aoclk.o
- obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
- obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
-diff --git a/drivers/clk/meson/clk-audio-divider.c b/drivers/clk/meson/clk-audio-divider.c
-deleted file mode 100644
-index e4cf96ba704e..000000000000
---- a/drivers/clk/meson/clk-audio-divider.c
-+++ /dev/null
-@@ -1,110 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0
--/*
-- * Copyright (c) 2017 AmLogic, Inc.
-- * Author: Jerome Brunet <jbrunet@baylibre.com>
-- */
--
--/*
-- * i2s master clock divider: The algorithm of the generic clk-divider used with
-- * a very precise clock parent such as the mpll tends to select a low divider
-- * factor. This gives poor results with this particular divider, especially with
-- * high frequencies (> 100 MHz)
-- *
-- * This driver try to select the maximum possible divider with the rate the
-- * upstream clock can provide.
-- */
--
--#include <linux/clk-provider.h>
--#include "clkc.h"
--
--static inline struct meson_clk_audio_div_data *
--meson_clk_audio_div_data(struct clk_regmap *clk)
--{
--	return (struct meson_clk_audio_div_data *)clk->data;
--}
--
--static int _div_round(unsigned long parent_rate, unsigned long rate,
--		      unsigned long flags)
--{
--	if (flags & CLK_DIVIDER_ROUND_CLOSEST)
--		return DIV_ROUND_CLOSEST_ULL((u64)parent_rate, rate);
--
--	return DIV_ROUND_UP_ULL((u64)parent_rate, rate);
--}
--
--static int _get_val(unsigned long parent_rate, unsigned long rate)
--{
--	return DIV_ROUND_UP_ULL((u64)parent_rate, rate) - 1;
--}
--
--static int _valid_divider(unsigned int width, int divider)
--{
--	int max_divider = 1 << width;
--
--	return clamp(divider, 1, max_divider);
--}
--
--static unsigned long audio_divider_recalc_rate(struct clk_hw *hw,
--					       unsigned long parent_rate)
--{
--	struct clk_regmap *clk = to_clk_regmap(hw);
--	struct meson_clk_audio_div_data *adiv = meson_clk_audio_div_data(clk);
--	unsigned long divider;
--
--	divider = meson_parm_read(clk->map, &adiv->div) + 1;
--
--	return DIV_ROUND_UP_ULL((u64)parent_rate, divider);
--}
--
--static long audio_divider_round_rate(struct clk_hw *hw,
--				     unsigned long rate,
--				     unsigned long *parent_rate)
--{
--	struct clk_regmap *clk = to_clk_regmap(hw);
--	struct meson_clk_audio_div_data *adiv = meson_clk_audio_div_data(clk);
--	unsigned long max_prate;
--	int divider;
--
--	if (!(clk_hw_get_flags(hw) & CLK_SET_RATE_PARENT)) {
--		divider = _div_round(*parent_rate, rate, adiv->flags);
--		divider = _valid_divider(adiv->div.width, divider);
--		return DIV_ROUND_UP_ULL((u64)*parent_rate, divider);
--	}
--
--	/* Get the maximum parent rate */
--	max_prate = clk_hw_round_rate(clk_hw_get_parent(hw), ULONG_MAX);
--
--	/* Get the corresponding rounded down divider */
--	divider = max_prate / rate;
--	divider = _valid_divider(adiv->div.width, divider);
--
--	/* Get actual rate of the parent */
--	*parent_rate = clk_hw_round_rate(clk_hw_get_parent(hw),
--					 divider * rate);
--
--	return DIV_ROUND_UP_ULL((u64)*parent_rate, divider);
--}
--
--static int audio_divider_set_rate(struct clk_hw *hw,
--				  unsigned long rate,
--				  unsigned long parent_rate)
--{
--	struct clk_regmap *clk = to_clk_regmap(hw);
--	struct meson_clk_audio_div_data *adiv = meson_clk_audio_div_data(clk);
--	int val = _get_val(parent_rate, rate);
--
--	meson_parm_write(clk->map, &adiv->div, val);
--
--	return 0;
--}
--
--const struct clk_ops meson_clk_audio_divider_ro_ops = {
--	.recalc_rate	= audio_divider_recalc_rate,
--	.round_rate	= audio_divider_round_rate,
--};
--
--const struct clk_ops meson_clk_audio_divider_ops = {
--	.recalc_rate	= audio_divider_recalc_rate,
--	.round_rate	= audio_divider_round_rate,
--	.set_rate	= audio_divider_set_rate,
--};
-diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 2fb084330ee9..48db02424f02 100644
---- a/drivers/clk/meson/clkc.h
-+++ b/drivers/clk/meson/clkc.h
-@@ -91,11 +91,6 @@ struct meson_clk_mpll_data {
++static const struct pll_rate_table axg_pcie_pll_rate_table[] = {
++	{
++		.rate	= 100000000,
++		.m	= 200,
++		.n	= 3,
++		.od	= 1,
++		.od2	= 3,
++	},
++	{ /* sentinel */ },
++};
++
++static const struct reg_sequence axg_pcie_init_regs[] = {
++	{ .reg = HHI_PCIE_PLL_CNTL,	.def = 0x400106c8 },
++	{ .reg = HHI_PCIE_PLL_CNTL1,	.def = 0x0084a2aa },
++	{ .reg = HHI_PCIE_PLL_CNTL2,	.def = 0xb75020be },
++	{ .reg = HHI_PCIE_PLL_CNTL3,	.def = 0x0a47488e },
++	{ .reg = HHI_PCIE_PLL_CNTL4,	.def = 0xc000004d },
++	{ .reg = HHI_PCIE_PLL_CNTL5,	.def = 0x00078000 },
++	{ .reg = HHI_PCIE_PLL_CNTL6,	.def = 0x002323c6 },
++};
++
++static struct clk_regmap axg_pcie_pll = {
++	.data = &(struct meson_clk_pll_data){
++		.m = {
++			.reg_off = HHI_PCIE_PLL_CNTL,
++			.shift   = 0,
++			.width   = 9,
++		},
++		.n = {
++			.reg_off = HHI_PCIE_PLL_CNTL,
++			.shift   = 9,
++			.width   = 5,
++		},
++		.od = {
++			.reg_off = HHI_PCIE_PLL_CNTL,
++			.shift   = 16,
++			.width   = 2,
++		},
++		.od2 = {
++			.reg_off = HHI_PCIE_PLL_CNTL6,
++			.shift   = 6,
++			.width   = 2,
++		},
++		.frac = {
++			.reg_off = HHI_PCIE_PLL_CNTL1,
++			.shift   = 0,
++			.width   = 12,
++		},
++		.l = {
++			.reg_off = HHI_PCIE_PLL_CNTL,
++			.shift   = 31,
++			.width   = 1,
++		},
++		.rst = {
++			.reg_off = HHI_PCIE_PLL_CNTL,
++			.shift   = 29,
++			.width   = 1,
++		},
++		.table = axg_pcie_pll_rate_table,
++		.init_regs = axg_pcie_init_regs,
++		.init_count = ARRAY_SIZE(axg_pcie_init_regs),
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "pcie_pll",
++		.ops = &meson_clk_pll_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap axg_pcie_mux = {
++	.data = &(struct clk_regmap_mux_data){
++		.offset = HHI_PCIE_PLL_CNTL6,
++		.mask = 0x1,
++		.shift = 2,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "pcie_mux",
++		.ops = &clk_regmap_mux_ops,
++		.parent_names = (const char *[]){ "mpll3", "pcie_pll" },
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap axg_pcie_ref = {
++	.data = &(struct clk_regmap_mux_data){
++		.offset = HHI_PCIE_PLL_CNTL6,
++		.mask = 0x1,
++		.shift = 1,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "pcie_ref",
++		.ops = &clk_regmap_mux_ops,
++		/* do not select the first partent, debug only */
++		.parent_names = (const char *[]){ "",
++			"pcie_mux" },
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap axg_pcie_cml_en0 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_PCIE_PLL_CNTL6,
++		.bit_idx = 4,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "pcie_cml_en0",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "pcie_ref" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++
++	},
++};
++
++static struct clk_regmap axg_pcie_cml_en1 = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_PCIE_PLL_CNTL6,
++		.bit_idx = 3,
++	},
++	.hw.init = &(struct clk_init_data) {
++		.name = "pcie_cml_en1",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "pcie_ref" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
+ static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
+ static const char * const clk81_parent_names[] = {
+ 	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
+@@ -821,6 +952,7 @@ static MESON_GATE(axg_mmc_pclk, HHI_GCLK_MPEG2, 11);
+ static MESON_GATE(axg_vpu_intr, HHI_GCLK_MPEG2, 25);
+ static MESON_GATE(axg_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
+ static MESON_GATE(axg_gic, HHI_GCLK_MPEG2, 30);
++static MESON_GATE(axg_mipi_enable, HHI_MIPI_CNTL0, 29);
  
- #define CLK_MESON_MPLL_ROUND_CLOSEST	BIT(0)
+ /* Always On (AO) domain gates */
  
--struct meson_clk_audio_div_data {
--	struct parm div;
--	u8 flags;
--};
--
- #define MESON_GATE(_name, _reg, _bit)					\
- struct clk_regmap _name = {						\
- 	.data = &(struct clk_regmap_gate_data){				\
-@@ -117,7 +112,5 @@ extern const struct clk_ops meson_clk_pll_ops;
- extern const struct clk_ops meson_clk_cpu_ops;
- extern const struct clk_ops meson_clk_mpll_ro_ops;
- extern const struct clk_ops meson_clk_mpll_ops;
--extern const struct clk_ops meson_clk_audio_divider_ro_ops;
--extern const struct clk_ops meson_clk_audio_divider_ops;
+@@ -910,6 +1042,13 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
+ 		[CLKID_FCLK_DIV4_DIV]		= &axg_fclk_div4_div.hw,
+ 		[CLKID_FCLK_DIV5_DIV]		= &axg_fclk_div5_div.hw,
+ 		[CLKID_FCLK_DIV7_DIV]		= &axg_fclk_div7_div.hw,
++		[CLKID_PCIE_PLL]		= &axg_pcie_pll.hw,
++		[CLKID_PCIE_MUX]		= &axg_pcie_mux.hw,
++		[CLKID_PCIE_REF]		= &axg_pcie_ref.hw,
++		[CLKID_PCIE_CML_EN0]		= &axg_pcie_cml_en0.hw,
++		[CLKID_PCIE_CML_EN1]		= &axg_pcie_cml_en1.hw,
++		[CLKID_MIPI_ENABLE]		= &axg_mipi_enable.hw,
++
+ 		[NR_CLKS]			= NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -988,6 +1127,12 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
+ 	&axg_fclk_div4,
+ 	&axg_fclk_div5,
+ 	&axg_fclk_div7,
++	&axg_pcie_pll,
++	&axg_pcie_mux,
++	&axg_pcie_ref,
++	&axg_pcie_cml_en0,
++	&axg_pcie_cml_en1,
++	&axg_mipi_enable,
+ };
  
- #endif /* __CLKC_H */
+ static const struct of_device_id clkc_match_table[] = {
+diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
+index b421df6a7ea0..6e55ebd6c77d 100644
+--- a/drivers/clk/meson/axg.h
++++ b/drivers/clk/meson/axg.h
+@@ -16,6 +16,7 @@
+  * Register offsets from the data sheet must be multiplied by 4 before
+  * adding them to the base address to get the right value.
+  */
++#define HHI_MIPI_CNTL0			0x00
+ #define HHI_GP0_PLL_CNTL		0x40
+ #define HHI_GP0_PLL_CNTL2		0x44
+ #define HHI_GP0_PLL_CNTL3		0x48
+@@ -127,8 +128,11 @@
+ #define CLKID_FCLK_DIV4_DIV			73
+ #define CLKID_FCLK_DIV5_DIV			74
+ #define CLKID_FCLK_DIV7_DIV			75
++#define CLKID_PCIE_PLL				76
++#define CLKID_PCIE_MUX				77
++#define CLKID_PCIE_REF				78
+ 
+-#define NR_CLKS					76
++#define NR_CLKS					82
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/axg-clkc.h>
+diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
+index 555937a25504..70371228b7e0 100644
+--- a/include/dt-bindings/clock/axg-clkc.h
++++ b/include/dt-bindings/clock/axg-clkc.h
+@@ -68,5 +68,8 @@
+ #define CLKID_SD_EMMC_B_CLK0			59
+ #define CLKID_SD_EMMC_C_CLK0			60
+ #define CLKID_HIFI_PLL				69
++#define CLKID_PCIE_CML_EN0			79
++#define CLKID_PCIE_CML_EN1			80
++#define CLKID_MIPI_ENABLE			81
+ 
+ #endif /* __AXG_CLKC_H */
 -- 
-2.14.3
+2.17.1
