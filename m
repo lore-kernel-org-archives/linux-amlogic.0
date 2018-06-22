@@ -1,29 +1,36 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 22 Jun 2018 12:42:10 +0200
-Subject: [PATCH] clk: meson: remove obsolete register access
-In-Reply-To: <0e57617b-0ece-3c6d-f124-6197ef82b1c7@baylibre.com>
-References: <20180619160050.26958-1-jbrunet@baylibre.com>
- <0e57617b-0ece-3c6d-f124-6197ef82b1c7@baylibre.com>
-Message-ID: <1529664130.2900.5.camel@baylibre.com>
+Date: Fri, 22 Jun 2018 13:34:06 +0200
+Subject: [PATCH v2 0/6] clk: meson: axg: add audio clock controller support
+In-Reply-To: <20180522163457.13834-1-jbrunet@baylibre.com>
+References: <20180522163457.13834-1-jbrunet@baylibre.com>
+Message-ID: <1529667246.2900.6.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-06-20 at 10:31 +0200, Neil Armstrong wrote:
-> On 19/06/2018 18:00, Jerome Brunet wrote:
-> > The legacy method to access the hhi register space is not longer used.
-> > We can safely drop it now.
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> >  drivers/clk/meson/axg.c  | 37 ++-----------------------------------
-> >  drivers/clk/meson/gxbb.c | 36 ++----------------------------------
-> >  2 files changed, 4 insertions(+), 69 deletions(-)
-> > 
-> > 
-
-[...]
-
+On Tue, 2018-05-22 at 18:34 +0200, Jerome Brunet wrote:
+> The purpose of this patchset is to add support for the clock controller
+> dedicated to the audio subsystem found on A113 based SoCs
 > 
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> The series depends on the CLK_MUX_ROUND_CLOSEST fixes [merged in clk-next]
+> and the duty cycle support [1] making their way into CCF.
+> 
+> First patch is a clean-up of the meson clk Kconfig.
+> Then, there is 3 clock provider drivers for clocks found in the audio
+> The last 3 are for the clock controller itself.
+> 
+> Changes since v1: [2]
+>  * Rebase clk-meson's next/drivers
+>  * Correct typo in documentation and squash DT patches
+> 
+> [1]: https://lkml.kernel.org/r/20180420211141.28929-1-jbrunet at baylibre.com
+> [2]: https://lkml.kernel.org/r/20180425163304.10852-1-jbrunet at baylibre.com
+> 
+> Jerome Brunet (6):
+>   clk: meson: clean-up meson clock configuration
+>   clk: meson: add clk-phase clock driver
+>   clk: meson: add triple phase clock driver
+>   clk: meson: add axg audio sclk divider driver
+>   dt-bindings: clock: add meson axg audio clock controller bindings
+>   clk: meson: axg: add the audio clock controller driver
 
-Applied for next
+Applied for next on top of mike's clk-core-duty-cycle branch.
