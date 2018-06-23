@@ -1,34 +1,35 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 23 Jun 2018 17:00:56 +0200
-Subject: [PATCH] ARM64: dts: meson-gxl: fix Mali GPU compatible string
-Message-ID: <20180623150056.1442-1-martin.blumenstingl@googlemail.com>
+Date: Sat, 23 Jun 2018 21:38:27 +0200
+Subject: [PATCH 0/1] move wifi node out of meson-gx-p23x-q20x.dtsi
+Message-ID: <20180623193828.6047-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-meson-gxl-mali.dtsi is only used on GXL SoCs. Thus it should use the GXL
-specific compatible string instead of the GXBB one.
-For now this is purely cosmetic since the (out-of-tree) lima driver for
-this GPU currently uses the "arm,mali-450" match instead of the SoC
-specific one. However, update the .dts to match the documentation since
-this driver behavior might change in the future.
+while working on support for the S905W SoC I had a look at
+meson-gx-p23x-q20x.dtsi. this defines that the board uses a Broadcom
+SDIO wifi chip.
+I discovered that NEXBOX A1 includes that .dtsi, but it comes with a
+QCA9377 SDIO wifi chip (thus not Broadcom based).
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-index eb327664a4d8..6aaafff674f9 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
-@@ -6,7 +6,7 @@
- 
- &apb {
- 	mali: gpu at c0000 {
--		compatible = "amlogic,meson-gxbb-mali", "arm,mali-450";
-+		compatible = "amlogic,meson-gxl-mali", "arm,mali-450";
- 		reg = <0x0 0xc0000 0x0 0x40000>;
- 		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
+
+This patch is based on my patch ([0]) from the series "enable the
+SAR ADC for all boards based on P23x and Q20x"
+
+
+[0] https://patchwork.kernel.org/patch/10483679/
+
+
+Martin Blumenstingl (1):
+  ARM64: dts: meson-gx-p23x-q20x: move the wifi node to each board's
+    .dts
+
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  | 5 -----
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 7 +++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts | 7 +++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 7 +++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts       | 7 +++++++
+ 5 files changed, 28 insertions(+), 5 deletions(-)
+
 -- 
 2.18.0
