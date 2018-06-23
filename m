@@ -1,119 +1,140 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 23 Jun 2018 21:38:28 +0200
-Subject: [PATCH 1/1] ARM64: dts: meson-gx-p23x-q20x: move the wifi node to
- each board's .dts
-In-Reply-To: <20180623193828.6047-1-martin.blumenstingl@googlemail.com>
-References: <20180623193828.6047-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180623193828.6047-2-martin.blumenstingl@googlemail.com>
+Date: Sun, 24 Jun 2018 00:46:59 +0200
+Subject: [PATCH 1/2] dt-bindings: nand: meson: add Amlogic NAND controller
+ driver
+In-Reply-To: <20180613161314.14894-2-yixun.lan@amlogic.com>
+References: <20180613161314.14894-1-yixun.lan@amlogic.com>
+ <20180613161314.14894-2-yixun.lan@amlogic.com>
+Message-ID: <CAFBinCBeyXf6LNaZzAw6WnsxzDAv8E=Yp2eem0xCPWMEUi6pnQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-meson-gx-p23x-q20x.dtsi is currently used by five boards:
-- Amlogic P230 and P231 (which should be identical, apart from the
-  external RGMII PHY on P230 whereas P231 can only use the internal PHY)
-- Amlogic Q200 (identical to P230 but with an S912 GXM SoC instead of a
-  GXL S905D SoC) and Q201 (identical to P231 but with an S912 GXM SoC
-  instead of a GXL S905D SoC)
-- NEXBOX A1 (based on the S912 GXM SoC)
+Hello Yixun, Hello Liang,
 
-The Amlogic P230 board uses a Broadcom BCM4356 SDIO wifi chip. Since the
-other Amlogic reference design boards are very similar it's safe to
-assume that these also use a Broadcom based SDIO wifi chip (which is
-also how it was configured in meson-gx-p23x-q20x.dtsi).
+I have a few small comments inline below
+additionally I tried to explain the reason behind
+"amlogic,mmc-syscon", clkin0 and clkin1 so Rob (or the devicetree
+maintainers in general) can give feedback. feel free to correct me
+wherever I'm wrong or provide additional notes in case I missed
+something!
 
-However, NEXBOX A1 comes with a "longsys LTM8830" SDIO wifi module,
-which is based on the "Qualcomm Atheros QCA9377-3(QCA1023-0)" chipset.
+On Wed, Jun 13, 2018 at 10:17 AM Yixun Lan <yixun.lan@amlogic.com> wrote:
+>
+> From: Liang Yang <liang.yang@amlogic.com>
+>
+> Add Amlogic NAND controller dt-bindings for Meson SoC,
+> Current this driver support GXBB/GXL/AXG platform.
+>
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  .../bindings/mtd/amlogic,meson-nand.txt       | 118 ++++++++++++++++++
+>  1 file changed, 118 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>
+> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> new file mode 100644
+> index 000000000000..eac9f9433d5d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> @@ -0,0 +1,118 @@
+> +Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+> +
+> +This file documents the properties in addition to those available in
+> +the MTD NAND bindings.
+> +
+> +Required properties:
+> +- compatible : contains one of:
+> +  - "amlogic,meson-gxl-nfc"
+> +  - "amlogic,meson-axg-nfc"
+the patch description states that GXBB/GXL/AXG are supported
+shouldn't you add a compatible string for GXBB as well?
 
-Thus move the wifi node from meson-gx-p23x-q20x.dtsi to each of the
-four Amlogic reference board's .dts files.
-There are no devicetree bindings for the QCA9377 SDIO wifi module yet,
-so nothing is added to meson-gxm-nexbox-a1.dts.
+> +- clocks     :
+> +       A list of phandle + clock-specifier pairs for the clocks listed
+> +       in clock-names.
+> +
+> +- clock-names: Should contain the following:
+> +       "core" - NFC module gate clock
+> +       "clkin0" - Parent clock of internal mux
+> +       "clkin1" - Other parent clock of internal mux
+to give the devicetree maintainers some context on clkin0 and clkin1:
 
-Fixes: f51b454549b812 ("ARM64: dts: meson-gxm: Add support for the Nexbox A1")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  | 5 -----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 7 +++++++
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts | 7 +++++++
- arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 7 +++++++
- arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts       | 7 +++++++
- 5 files changed, 28 insertions(+), 5 deletions(-)
+older SoCs (Meson8, Meson8b - not supported by this binding/driver
+yet) had a dedicated NAND clock. there neither clkin0 or clkin1 would
+be used, instead we just had a "nand" or "interface" clock (I'm not
+aware of the actual naming in Amlogic's internal datasheets)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-index 01616982af0d..765247bc4f24 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
-@@ -172,11 +172,6 @@
- 
- 	vmmc-supply = <&vddao_3v3>;
- 	vqmmc-supply = <&vddio_boot>;
--
--	brcmf: wifi at 1 {
--		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
--	};
- };
- 
- /* SD card */
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-index 9c5be060fd5e..15014faa2ab2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-@@ -100,3 +100,10 @@
- 		remote-endpoint = <&hdmi_connector_in>;
- 	};
- };
-+
-+&sd_emmc_a {
-+	brcmf: wifi at 1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-index 80a231476b80..92c425d0259c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-@@ -19,3 +19,10 @@
- 	phy-mode = "rmii";
- 	phy-handle = <&internal_phy>;
- };
-+
-+&sd_emmc_a {
-+	brcmf: wifi at 1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-index 432f7a435fba..73d656e4aade 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-@@ -71,3 +71,10 @@
- 		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
- 	};
- };
-+
-+&sd_emmc_a {
-+	brcmf: wifi at 1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
-index 8d132b17514a..d02b80d77378 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
-@@ -19,3 +19,10 @@
- 	phy-mode = "rmii";
- 	phy-handle = <&internal_phy>;
- };
-+
-+&sd_emmc_a {
-+	brcmf: wifi at 1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
--- 
-2.18.0
+newer SoCs do NOT have a dedicated NAND "interface" clock anymore.
+instead they are sharing the clock with the "sd_emmc_c" controller (I
+*believe* the reason for this is because sd_emmc_c and the NAND
+controller use the same pads on the SoC, pinctrl muxing controls where
+these pads are routed -> NAND and sd_emmc_c cannot be used at the same
+time, so SoC designers probably decided to re-use the clock)
+
+unfortunately the sd_emmc_c clock is not provided by the "main" clock
+controller on these newer SoCs
+instead the clock is part of the MMC controller's register space (see
+the SD_EMMC_CLOCK register in drivers/mmc/host/meson-gx-mmc.c)
+even worse: the SD_EMMC_CLOCK contains more than just clock settings
+(bit 25 enables the SDIO interrupt, which is currently not supported
+by the meson-gx-mmc driver though)
+
+the SD_EMMC_CLOCK register has a mux (CLK_SRC_MASK) to choose from
+clkin0 and clkin1 which are passed here
+the "amlogic,mmc-syscon" property is used to get a phandle to the
+sd_emmc_c syscon register space
+thus there is a bit of code duplication in the MMC and NAND drivers
+with this binding (because both need to configure the SD_EMMC_CLOCK
+register)
+
+> +
+> +- pins     : Select pins which NFC need.
+> +- nand_pins: Detail NAND pins information.
+> +               nand_pins: nand {
+> +                       mux {
+> +                               groups = "emmc_nand_d0",
+> +                                       "emmc_nand_d1",
+> +                                       "emmc_nand_d2",
+> +                                       "emmc_nand_d3",
+> +                                       "emmc_nand_d4",
+> +                                       "emmc_nand_d5",
+> +                                       "emmc_nand_d6",
+> +                                       "emmc_nand_d7",
+> +                                       "nand_ce0",
+> +                                       "nand_rb0",
+> +                                       "nand_ale",
+> +                                       "nand_cle",
+> +                                       "nand_wen_clk",
+> +                                       "nand_ren_wr";
+> +                               function = "nand";
+> +                       };
+> +               };
+> +
+> +- amlogic,mmc-syscon   : Required for NAND clocks, it's shared with SD/eMMC
+> +                               controller port C
+> +
+> +Optional children nodes:
+> +Children nodes represent the available nand chips.
+> +
+> +Optional properties:
+> +- meson-nand-user-mode :
+> +       only set 2 or 16 which mean the way of reading OOB bytes by NFC.
+as far as I know vendor specific properties should follow the naming
+schema "vendor,purpose"
+in this case this would be "amlogic,nand-user-mode"
+
+maybe Rob can comment on this?
+
+> +- meson-nand-ran-mode :
+> +       setting 0 or 1, means disable/enable scrambler which keeps the balence
+> +       of 0 and 1
+I assume 0 and 1 are the only possible values.
+to use of_property_read_bool in the driver the property would be either:
+- (absent) = scrambler is disabled
+- amlogic,nand-enable-scrambler (without any value - also same comment
+as above for the value) = scrambler is enabled
+
+
+Regards
+Martin
