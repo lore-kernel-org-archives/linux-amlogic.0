@@ -1,36 +1,25 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 22 Jun 2018 13:34:06 +0200
-Subject: [PATCH v2 0/6] clk: meson: axg: add audio clock controller support
-In-Reply-To: <20180522163457.13834-1-jbrunet@baylibre.com>
-References: <20180522163457.13834-1-jbrunet@baylibre.com>
-Message-ID: <1529667246.2900.6.camel@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 23 Jun 2018 16:59:58 +0200
+Subject: [PATCH 0/1] enable the SAR ADC for all boards based on P23x and Q20x
+Message-ID: <20180623145959.445-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-05-22 at 18:34 +0200, Jerome Brunet wrote:
-> The purpose of this patchset is to add support for the clock controller
-> dedicated to the audio subsystem found on A113 based SoCs
-> 
-> The series depends on the CLK_MUX_ROUND_CLOSEST fixes [merged in clk-next]
-> and the duty cycle support [1] making their way into CCF.
-> 
-> First patch is a clean-up of the meson clk Kconfig.
-> Then, there is 3 clock provider drivers for clocks found in the audio
-> The last 3 are for the clock controller itself.
-> 
-> Changes since v1: [2]
->  * Rebase clk-meson's next/drivers
->  * Correct typo in documentation and squash DT patches
-> 
-> [1]: https://lkml.kernel.org/r/20180420211141.28929-1-jbrunet at baylibre.com
-> [2]: https://lkml.kernel.org/r/20180425163304.10852-1-jbrunet at baylibre.com
-> 
-> Jerome Brunet (6):
->   clk: meson: clean-up meson clock configuration
->   clk: meson: add clk-phase clock driver
->   clk: meson: add triple phase clock driver
->   clk: meson: add axg audio sclk divider driver
->   dt-bindings: clock: add meson axg audio clock controller bindings
->   clk: meson: axg: add the audio clock controller driver
+This is compile-tested only - the goal is to remove some duplicate code
+between the P230 and Q200 boards.
+As a positive side-effect we also enable the SAR ADC on the P231 and Q201
+boards (the only difference to the P230 and Q200 boards seems to be that
+P230 and Q200 use an external RGMII Ethernet PHY, while P231 and Q201 use
+the internal PHY).
 
-Applied for next on top of mike's clk-core-duty-cycle branch.
+
+Martin Blumenstingl (1):
+  ARM64: dts: meson: enable the saradc node in meson-gx-p23x-q20x.dtsi
+
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  | 12 ++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 12 ------------
+ arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 12 ------------
+ 3 files changed, 12 insertions(+), 24 deletions(-)
+
+-- 
+2.18.0
