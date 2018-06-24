@@ -1,182 +1,84 @@
-From: boris.brezillon@bootlin.com (Boris Brezillon)
-Date: Sun, 24 Jun 2018 15:57:27 +0200
-Subject: [PATCH 1/2] dt-bindings: nand: meson: add Amlogic NAND
- controller driver
-In-Reply-To: <20180613161314.14894-2-yixun.lan@amlogic.com>
-References: <20180613161314.14894-1-yixun.lan@amlogic.com>
- <20180613161314.14894-2-yixun.lan@amlogic.com>
-Message-ID: <20180624155727.322c02b2@bbrezillon>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 24 Jun 2018 20:28:14 +0200
+Subject: [RfC v1 5/5] ARM64: dts: meson-gxl: add support for the Oranth Tanix
+ TX3 Mini
+In-Reply-To: <20180624182814.31691-1-martin.blumenstingl@googlemail.com>
+References: <20180624182814.31691-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180624182814.31691-6-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yixun,
+The Tanix TX3 Mini is a TV box based on the Amlogic S905W chipset.
+There are two variants:
+- 1 GiB or 2 GiB of DDR3 memory
+- 8 GB or 16 GB eMMC flash
 
-On Wed, 13 Jun 2018 16:13:13 +0000
-Yixun Lan <yixun.lan@amlogic.com> wrote:
+Both variants come with:
+- 802.11 b/g/n wifi (Silicon Valley Microelectronics SSV6051, does not
+  support Bluetooth)
+- an LED 7 segment display with an FD628 controller
+- HDMI and AV (CVBS) output
+- 2x USB (utilizing both USB ports provided by the SoC)
+- micro SD card slot
+- serial console (uart_AO) has to be soldered after opening the case
 
-> From: Liang Yang <liang.yang@amlogic.com>
-> 
-> Add Amlogic NAND controller dt-bindings for Meson SoC,
-> Current this driver support GXBB/GXL/AXG platform.
-> 
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  .../bindings/mtd/amlogic,meson-nand.txt       | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> new file mode 100644
-> index 000000000000..eac9f9433d5d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> @@ -0,0 +1,118 @@
-> +Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
-> +
-> +This file documents the properties in addition to those available in
-> +the MTD NAND bindings.
-> +
-> +Required properties:
-> +- compatible : contains one of:
-> +  - "amlogic,meson-gxl-nfc"
-> +  - "amlogic,meson-axg-nfc"
-> +- clocks     :
-> +	A list of phandle + clock-specifier pairs for the clocks listed
-> +	in clock-names.
-> +
-> +- clock-names: Should contain the following:
-> +	"core" - NFC module gate clock
-> +	"clkin0" - Parent clock of internal mux
-> +	"clkin1" - Other parent clock of internal mux
-> +
-> +- pins     : Select pins which NFC need.
-> +- nand_pins: Detail NAND pins information.
-> +		nand_pins: nand {
-> +			mux {
-> +				groups = "emmc_nand_d0",
-> +					"emmc_nand_d1",
-> +					"emmc_nand_d2",
-> +					"emmc_nand_d3",
-> +					"emmc_nand_d4",
-> +					"emmc_nand_d5",
-> +					"emmc_nand_d6",
-> +					"emmc_nand_d7",
-> +					"nand_ce0",
-> +					"nand_rb0",
-> +					"nand_ale",
-> +					"nand_cle",
-> +					"nand_wen_clk",
-> +					"nand_ren_wr";
-> +				function = "nand";
-> +			};
-> +		};
+The board seems to be very similar to the P23x and Q20x reference
+boards, which is why it includes meson-gx-p23x-q20x.dtsi:
+- eMMC reset routed to BOOT_9
+- the SDIO wifi chip's reset line is routed to GPIOX_6 and the reference
+  clock is 32.768KHz on PWM_E
+- SD card detection is routed to CARD_6
+- vqmmc of all MMC controllers is hard-wired to 1.8V (VDDIO_BOOT)
+- uart_AO can be accessed after opening the case and soldering RX, TX
+  and GND lines onto the exposed solder points (marked with RX, TX and
+  GND)
 
-Not sure, but I think you can drop the pinmux description.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  | 22 +++++++++++++++++++
+ 2 files changed, 23 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
 
-> +
-> +- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
-> +				controller port C
-> +
-> +Optional children nodes:
-> +Children nodes represent the available nand chips.
-> +
-> +Optional properties:
-> +- meson-nand-user-mode :
-> +	only set 2 or 16 which mean the way of reading OOB bytes by NFC.
-
-I haven't checked the driver but this prop looks like a reg field value
-you're directly copying in the reg at init time. We usually avoid
-exposing such details in the DT. I'm not even sure you should have a
-property to select how you want to read OOB (need to check the driver
-before giving a definitive answer on this aspect).
-
-> +- meson-nand-ran-mode :
-> +	setting 0 or 1, means disable/enable scrambler which keeps the balence
-> +	of 0 and 1
-
-You don't need that one. The NAND chip will tell you whether it requires
-scrambling or not (see NAND_NEED_SCRAMBLING [1]).
-
-> +
-> +Other properties:
-> +see Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
-> +
-> +Example demonstrate on AXG SoC:
-> +
-> +	sd_emmc_c: mmc at 7000 {
-> +		compatible = "simple-bus", "syscon";
-> +		reg = <0x0 0x7000 0x0 0x800>;
-> +		status = "okay";
-> +	};
-> +
-> +	nand: nfc at 7800 {
-> +		compatible = "amlogic,meson-axg-nfc";
-> +		reg = <0x0 0x7800 0x0 0x100>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
-> +		status = "disabled";
-> +		clocks = <&clkc CLKID_SD_EMMC_C>,
-> +				<&clkc CLKID_SD_EMMC_C_CLK0>,
-> +				<&clkc CLKID_FCLK_DIV2>;
-> +		clock-names = "core", "clkin0", "clkin1";
-> +		amlogic,mmc-syscon = <&sd_mmc_c>;
-> +
-> +		status = "okay";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&nand_pins>;
-> +
-> +		nand at 0 {
-> +			reg = <0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			nand-on-flash-bbt;
-> +			nand-ecc-mode = "hw";
-> +			nand-ecc-strength = <8>;
-> +			nand-ecc-step-size = <1024>;
-> +
-> +			meson-nand-user-mode = <2>;
-> +			meson-nand-ran-mode = <1>;
-> +
-> +			partition at 0 {
-> +				label = "boot";
-> +				reg = <0x00000000 0x00200000>;
-> +				read-only;
-> +			};
-> +			partition at 200000 {
-> +				label = "env";
-> +				reg = <0x00200000 0x00400000>;
-> +			};
-> +			partition at 600000 {
-> +				label = "system";
-> +				reg = <0x00600000 0x00a00000>;
-> +			};
-> +			partition at 1000000 {
-> +				label = "rootfs";
-> +				reg = <0x01000000 0x03000000>;
-> +			};
-> +			partition at 4000000 {
-> +				label = "media";
-> +				reg = <0x04000000 0x8000000>;
-> +			};
-
-Partitions should be places in a "partitions" subnode:
-
-			partitions {
-				compatible = "fixed-partitions";
-
-				...
-			};
-
-Also, I'm not sure you need to put that in your example.
-
-> +		};
-> +	};
-
-
-Regards,
-
-Boris
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 6de2e7f5a9cc..1b46affd376d 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
+new file mode 100644
+index 000000000000..08aca8346b72
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
+@@ -0,0 +1,22 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2018 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
++ * Based on meson-gxl-s905d-p231.dts:
++ * - Copyright (c) 2016 Endless Computers, Inc.
++ *   Author: Carlo Caione <carlo@endlessm.com>
++ */
++
++/dts-v1/;
++
++#include "meson-gxl-s905w.dtsi"
++#include "meson-gx-p23x-q20x.dtsi"
++
++/ {
++	compatible = "oranth,tx3-mini", "amlogic,s905w", "amlogic,meson-gxl";
++	model = "Oranth Tanix TX3 Mini";
++
++	memory at 0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>; /* 1 GiB or 2 GiB */
++	};
++};
+-- 
+2.18.0
