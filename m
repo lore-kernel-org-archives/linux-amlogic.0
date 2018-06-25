@@ -1,316 +1,369 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 25 Jun 2018 21:59:13 +0800
-Subject: [PATCH] clk: meson-axg: add clocks required by pcie driver
-In-Reply-To: <1529919130.2900.22.camel@baylibre.com>
-References: <20180621122620.13195-1-yixun.lan@amlogic.com>
- <1529919130.2900.22.camel@baylibre.com>
-Message-ID: <19816376-c4c8-8373-1d32-152447b743d9@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 25 Jun 2018 16:50:17 +0200
+Subject: [PATCH u-boot 2/2] boards: amlogic: Add FriendlyElec NanoPi K2 board
+ support
+In-Reply-To: <1529938217-4196-1-git-send-email-narmstrong@baylibre.com>
+References: <1529938217-4196-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1529938217-4196-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome
+From: Thomas McKahan <tonymckahan@gmail.com>
 
-see my comments below
+This adds platform code for the FriendlyElec NanoPi K2 board based on a
+Meson GXBB (S905) SoC with the Meson GXBB configuration.
 
-On 06/25/2018 05:32 PM, Jerome Brunet wrote:
-> On Thu, 2018-06-21 at 12:26 +0000, Yixun Lan wrote:
->> Adding clocks for pcie driver, due to the ASIC design,
-> Adding clocks for the pcie driver. Due to the ASIC design,
-> 
-Ok, I will adjust these in v2
+This initial submission only supports:
+- UART
+- MMC/SDCard
+- Ethernet
+- Reset Controller
+- Clock controller
 
->> the pcie controller re-use part of the mipi clock logic,
->> so the mipi clock is also required.
->>
->> Tested-by: Jianxin Qin <jianxin.qin@amlogic.com>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> ---
->>  drivers/clk/meson/axg.c              | 145 +++++++++++++++++++++++++++
->>  drivers/clk/meson/axg.h              |   6 +-
->>  include/dt-bindings/clock/axg-clkc.h |   3 +
->>  3 files changed, 153 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
->> index bd4dbc696b88..f1dc5433b69d 100644
->> --- a/drivers/clk/meson/axg.c
->> +++ b/drivers/clk/meson/axg.c
->> @@ -626,6 +626,137 @@ static struct clk_regmap axg_mpll3 = {
->>  	},
->>  };
->>  
->> +static const struct pll_rate_table axg_pcie_pll_rate_table[] = {
->> +	{
->> +		.rate	= 100000000,
->> +		.m	= 200,
->> +		.n	= 3,
->> +		.od	= 1,
->> +		.od2	= 3,
->> +	},
->> +	{ /* sentinel */ },
->> +};
->> +
->> +static const struct reg_sequence axg_pcie_init_regs[] = {
->> +	{ .reg = HHI_PCIE_PLL_CNTL,	.def = 0x400106c8 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL1,	.def = 0x0084a2aa },
->> +	{ .reg = HHI_PCIE_PLL_CNTL2,	.def = 0xb75020be },
->> +	{ .reg = HHI_PCIE_PLL_CNTL3,	.def = 0x0a47488e },
->> +	{ .reg = HHI_PCIE_PLL_CNTL4,	.def = 0xc000004d },
->> +	{ .reg = HHI_PCIE_PLL_CNTL5,	.def = 0x00078000 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL6,	.def = 0x002323c6 },
->> +};
->> +
->> +static struct clk_regmap axg_pcie_pll = {
->> +	.data = &(struct meson_clk_pll_data){
->> +		.m = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL,
->> +			.shift   = 0,
->> +			.width   = 9,
->> +		},
->> +		.n = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL,
->> +			.shift   = 9,
->> +			.width   = 5,
->> +		},
->> +		.od = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL,
->> +			.shift   = 16,
->> +			.width   = 2,
->> +		},
->> +		.od2 = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL6,
->> +			.shift   = 6,
->> +			.width   = 2,
->> +		},
->> +		.frac = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL1,
->> +			.shift   = 0,
->> +			.width   = 12,
->> +		},
->> +		.l = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL,
->> +			.shift   = 31,
->> +			.width   = 1,
->> +		},
->> +		.rst = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL,
->> +			.shift   = 29,
->> +			.width   = 1,
->> +		},
->> +		.table = axg_pcie_pll_rate_table,
->> +		.init_regs = axg_pcie_init_regs,
->> +		.init_count = ARRAY_SIZE(axg_pcie_init_regs),
->> +	},
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pcie_pll",
->> +		.ops = &meson_clk_pll_ops,
->> +		.parent_names = (const char *[]){ "xtal" },
->> +		.num_parents = 1,
->> +	},
->> +};
->> +
->> +static struct clk_regmap axg_pcie_mux = {
->> +	.data = &(struct clk_regmap_mux_data){
->> +		.offset = HHI_PCIE_PLL_CNTL6,
->> +		.mask = 0x1,
->> +		.shift = 2,
->> +	},
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pcie_mux",
->> +		.ops = &clk_regmap_mux_ops,
->> +		.parent_names = (const char *[]){ "mpll3", "pcie_pll" },
->> +		.num_parents = 2,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
->> +static struct clk_regmap axg_pcie_ref = {
->> +	.data = &(struct clk_regmap_mux_data){
->> +		.offset = HHI_PCIE_PLL_CNTL6,
->> +		.mask = 0x1,
->> +		.shift = 1,
->> +	},
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pcie_ref",
->> +		.ops = &clk_regmap_mux_ops,
->> +		/* do not select the first partent, debug only */
->> +		.parent_names = (const char *[]){ "",
->> +			"pcie_mux" },
-> 
-> A) No declaring a clock name "" is not the way to do it.
-> 
-> Either declare a mux with just one parent and provide a table with the index of
-> the said parent (have a look around, other clocks mux are using table), OR just
-> declare what parent 0 is.
-> 
-Ok, in this case, I will go as the first way - using table with only one
-parent
+Cc: Yuefei Tan <yftan@friendlyarm.com>
+Signed-off-by: Thomas McKahan <tonymckahan@gmail.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm/dts/Makefile               |  1 +
+ arch/arm/mach-meson/Kconfig         |  8 +++
+ board/amlogic/nanopi-k2/Kconfig     | 12 +++++
+ board/amlogic/nanopi-k2/MAINTAINERS |  6 +++
+ board/amlogic/nanopi-k2/Makefile    |  7 +++
+ board/amlogic/nanopi-k2/README      | 99 +++++++++++++++++++++++++++++++++++++
+ board/amlogic/nanopi-k2/nanopi-k2.c | 61 +++++++++++++++++++++++
+ configs/nanopi-k2_defconfig         | 40 +++++++++++++++
+ include/configs/nanopi-k2.h         | 18 +++++++
+ 9 files changed, 252 insertions(+)
+ create mode 100644 board/amlogic/nanopi-k2/Kconfig
+ create mode 100644 board/amlogic/nanopi-k2/MAINTAINERS
+ create mode 100644 board/amlogic/nanopi-k2/Makefile
+ create mode 100644 board/amlogic/nanopi-k2/README
+ create mode 100644 board/amlogic/nanopi-k2/nanopi-k2.c
+ create mode 100644 configs/nanopi-k2_defconfig
+ create mode 100644 include/configs/nanopi-k2.h
 
-the parent 0 is a debug clock which should been feed directly from
-outside (via crystal or somthing), and in the normal cases we don't do this.
-
-> Looking at your clock, the pcie driver will have to call
-> clk_set_rate(clk, 100000000) to make sure everything is setup properly,
-> including this mux - otherwise you are relying on the setting provided by the
-> bootloader, which should be avoided whenever possible.
-> 
-yes, we will call clk_set_rate(clk, 100000000), and let CCF propagate
-upside.. we definitely want to avoid relying on bootloader to setup this
-clock.
-
-> In this case, CCF should pick the right parent anyway, so there should be no
-> harm describing what your clock tree is.
-if we want to describe debug clock (the parent 0), which I think the
-debug clock should be also 100MHz, then it will be equal to parent 1,
-then no difference between these two clocks, the pcie driver may wrongly
-choose the parent 0 which doesn't exist in the real case if let CCF
-choose freely.
-
-to fix this, one solution come to my mind that is to manually select
-parent of the mux clock -  but it's kind of tedious/un-necessary ..
-
-> 
-> B) Please fix the indentation.
-> 
-> C) This mux deal with bit "CML_INPUT_SEL0". there is also a "CML_INPUT_SEL1"
-> which seems to hint that there is a mux each CML_EN clock. Are you sure your
-> description of the tree is accurate ?
-> 
-we already describe these two mux, see
-
-"CML_INPUT_SEL1" -> bit[2]
-static struct clk_regmap axg_pcie_mux
-
-"CML_INPUT_SEL0" -> bit[1]
-static struct clk_regmap axg_pcie_ref
-
-
-
-the clock map is something like this:
-
-
-                        "debug" ->|            | -> pcie_cml_en0
-xtal -> pcie_pll ->|              | pcie_ref ->|
-                   | pcie_mux   ->|            | -> pcie_cml_en1
-                   |
-        mpll3    ->|
-		
-
-
->> +		.num_parents = 2,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
->> +static struct clk_regmap axg_pcie_cml_en0 = {
->> +	.data = &(struct clk_regmap_gate_data){
->> +		.offset = HHI_PCIE_PLL_CNTL6,
->> +		.bit_idx = 4,
->> +	},
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "pcie_cml_en0",
->> +		.ops = &clk_regmap_gate_ops,
->> +		.parent_names = (const char *[]){ "pcie_ref" },
->> +		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +
->> +	},
->> +};
->> +
->> +static struct clk_regmap axg_pcie_cml_en1 = {
->> +	.data = &(struct clk_regmap_gate_data){
->> +		.offset = HHI_PCIE_PLL_CNTL6,
->> +		.bit_idx = 3,
->> +	},
->> +	.hw.init = &(struct clk_init_data) {
->> +		.name = "pcie_cml_en1",
->> +		.ops = &clk_regmap_gate_ops,
->> +		.parent_names = (const char *[]){ "pcie_ref" },
->> +		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
->>  static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
->>  static const char * const clk81_parent_names[] = {
->>  	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
->> @@ -821,6 +952,7 @@ static MESON_GATE(axg_mmc_pclk, HHI_GCLK_MPEG2, 11);
->>  static MESON_GATE(axg_vpu_intr, HHI_GCLK_MPEG2, 25);
->>  static MESON_GATE(axg_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
->>  static MESON_GATE(axg_gic, HHI_GCLK_MPEG2, 30);
->> +static MESON_GATE(axg_mipi_enable, HHI_MIPI_CNTL0, 29);
->>  
->>  /* Always On (AO) domain gates */
->>  
->> @@ -910,6 +1042,13 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
->>  		[CLKID_FCLK_DIV4_DIV]		= &axg_fclk_div4_div.hw,
->>  		[CLKID_FCLK_DIV5_DIV]		= &axg_fclk_div5_div.hw,
->>  		[CLKID_FCLK_DIV7_DIV]		= &axg_fclk_div7_div.hw,
->> +		[CLKID_PCIE_PLL]		= &axg_pcie_pll.hw,
->> +		[CLKID_PCIE_MUX]		= &axg_pcie_mux.hw,
->> +		[CLKID_PCIE_REF]		= &axg_pcie_ref.hw,
->> +		[CLKID_PCIE_CML_EN0]		= &axg_pcie_cml_en0.hw,
->> +		[CLKID_PCIE_CML_EN1]		= &axg_pcie_cml_en1.hw,
->> +		[CLKID_MIPI_ENABLE]		= &axg_mipi_enable.hw,
->> +
->>  		[NR_CLKS]			= NULL,
->>  	},
->>  	.num = NR_CLKS,
->> @@ -988,6 +1127,12 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
->>  	&axg_fclk_div4,
->>  	&axg_fclk_div5,
->>  	&axg_fclk_div7,
->> +	&axg_pcie_pll,
->> +	&axg_pcie_mux,
->> +	&axg_pcie_ref,
->> +	&axg_pcie_cml_en0,
->> +	&axg_pcie_cml_en1,
->> +	&axg_mipi_enable,
->>  };
->>  
->>  static const struct of_device_id clkc_match_table[] = {
->> diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
->> index b421df6a7ea0..6e55ebd6c77d 100644
->> --- a/drivers/clk/meson/axg.h
->> +++ b/drivers/clk/meson/axg.h
->> @@ -16,6 +16,7 @@
->>   * Register offsets from the data sheet must be multiplied by 4 before
->>   * adding them to the base address to get the right value.
->>   */
->> +#define HHI_MIPI_CNTL0			0x00
->>  #define HHI_GP0_PLL_CNTL		0x40
->>  #define HHI_GP0_PLL_CNTL2		0x44
->>  #define HHI_GP0_PLL_CNTL3		0x48
->> @@ -127,8 +128,11 @@
->>  #define CLKID_FCLK_DIV4_DIV			73
->>  #define CLKID_FCLK_DIV5_DIV			74
->>  #define CLKID_FCLK_DIV7_DIV			75
->> +#define CLKID_PCIE_PLL				76
->> +#define CLKID_PCIE_MUX				77
->> +#define CLKID_PCIE_REF				78
->>  
->> -#define NR_CLKS					76
->> +#define NR_CLKS					82
->>  
->>  /* include the CLKIDs that have been made part of the DT binding */
->>  #include <dt-bindings/clock/axg-clkc.h>
->> diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
->> index 555937a25504..70371228b7e0 100644
->> --- a/include/dt-bindings/clock/axg-clkc.h
->> +++ b/include/dt-bindings/clock/axg-clkc.h
-> 
-> As usual, please put dt bindings changes in a separate patch.
-> 
-ok, will do
-
->> @@ -68,5 +68,8 @@
->>  #define CLKID_SD_EMMC_B_CLK0			59
->>  #define CLKID_SD_EMMC_C_CLK0			60
->>  #define CLKID_HIFI_PLL				69
->> +#define CLKID_PCIE_CML_EN0			79
->> +#define CLKID_PCIE_CML_EN1			80
->> +#define CLKID_MIPI_ENABLE			81
->>  
->>  #endif /* __AXG_CLKC_H */
-> 
-> .
-> 
+diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+index bcbaae2..62fc442 100644
+--- a/arch/arm/dts/Makefile
++++ b/arch/arm/dts/Makefile
+@@ -55,6 +55,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
+ dtb-$(CONFIG_ARCH_MESON) += \
+ 	meson-gxbb-nanopi-k2.dtb \
+ 	meson-gxbb-odroidc2.dtb \
++	meson-gxbb-nanopi-k2.dtb \
+ 	meson-gxl-s905x-p212.dtb \
+ 	meson-gxl-s905x-libretech-cc.dtb \
+ 	meson-gxl-s905x-khadas-vim.dtb
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index 9a06ccc..cc3383a 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -29,6 +29,12 @@ config TARGET_ODROID_C2
+ 	  with 2 GiB of RAM, Gigabit Ethernet, HDMI, 4 USB, micro-SD
+ 	  slot, eMMC, IR receiver and a 40-pin GPIO header.
+ 
++config TARGET_NANOPI_K2
++	bool "NANOPI_K2"
++	help
++	  NANOPI_K2 is a single board computer based on Meson GXBaby
++	  with 2 GiB of RAM, Gigabit Ethernet,AP6212 Wifi, HDMI, 4 USB,
++	  micro-SD slot, eMMC, IR receiver and a 40-pin GPIO header.
+ endif
+ 
+ if MESON_GXL
+@@ -64,6 +70,8 @@ config SYS_MALLOC_F_LEN
+ 
+ source "board/amlogic/odroid-c2/Kconfig"
+ 
++source "board/amlogic/nanopi-k2/Kconfig"
++
+ source "board/amlogic/p212/Kconfig"
+ 
+ source "board/amlogic/libretech-cc/Kconfig"
+diff --git a/board/amlogic/nanopi-k2/Kconfig b/board/amlogic/nanopi-k2/Kconfig
+new file mode 100644
+index 0000000..374bda2
+--- /dev/null
++++ b/board/amlogic/nanopi-k2/Kconfig
+@@ -0,0 +1,12 @@
++if TARGET_NANOPI_K2
++
++config SYS_BOARD
++	default "nanopi-k2"
++
++config SYS_VENDOR
++	default "amlogic"
++
++config SYS_CONFIG_NAME
++	default "nanopi-k2"
++
++endif
+diff --git a/board/amlogic/nanopi-k2/MAINTAINERS b/board/amlogic/nanopi-k2/MAINTAINERS
+new file mode 100644
+index 0000000..0452bd1
+--- /dev/null
++++ b/board/amlogic/nanopi-k2/MAINTAINERS
+@@ -0,0 +1,6 @@
++NANOPI-K2
++M:	Neil Armstrong <narmstrong@baylibre.com>
++S:	Maintained
++F:	board/amlogic/nanopi-k2/
++F:	include/configs/nanopi-k2.h
++F:	configs/nanopi-k2_defconfig
+diff --git a/board/amlogic/nanopi-k2/Makefile b/board/amlogic/nanopi-k2/Makefile
+new file mode 100644
+index 0000000..7d9b666
+--- /dev/null
++++ b/board/amlogic/nanopi-k2/Makefile
+@@ -0,0 +1,7 @@
++#
++# (C) Copyright 2018 Thomas McKahan
++#
++# SPDX-License-Identifier:	GPL-2.0+
++#
++
++obj-y	:= nanopi-k2.o
+diff --git a/board/amlogic/nanopi-k2/README b/board/amlogic/nanopi-k2/README
+new file mode 100644
+index 0000000..d450d3c
+--- /dev/null
++++ b/board/amlogic/nanopi-k2/README
+@@ -0,0 +1,99 @@
++U-Boot for NanoPi-K2
++====================
++
++NanoPi-K2 is a single board computer manufactured by FriendlyElec
++with the following specifications:
++
++ - Amlogic S905 ARM Cortex-A53 quad-core SoC @ 1.5GHz
++ - ARM Mali 450 GPU
++ - 2GB DDR3 SDRAM
++ - Gigabit Ethernet
++ - HDMI 2.0 4K/60Hz display
++ - 40-pin GPIO header
++ - 4 x USB 2.0 Host, 1 x USB OTG
++ - eMMC, microSD
++ - Infrared receiver
++
++Schematics are available on the manufacturer website.
++
++Currently the u-boot port supports the following devices:
++ - serial
++ - eMMC, microSD
++ - Ethernet
++
++u-boot compilation
++==================
++
++ > export ARCH=arm
++ > export CROSS_COMPILE=aarch64-none-elf-
++ > make nanopi-k2_defconfig
++ > make
++
++Image creation
++==============
++
++Amlogic doesn't provide sources for the firmware and for tools needed
++to create the bootloader image, so it is necessary to obtain them from
++the git tree published by the board vendor:
++
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
++ > git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
++ > git clone https://github.com/friendlyarm/u-boot.git -b nanopi-k2-v2015.01 amlogic-u-boot
++ > cd amlogic-u-boot
++ > sed -i 's/aarch64-linux-gnu-/aarch64-none-elf-/' Makefile
++ > sed -i 's/arm-linux-/arm-none-eabi-/' arch/arm/cpu/armv8/gxb/firmware/scp_task/Makefile
++ > make nanopi-k2_defconfig
++ > make
++ > export FIPDIR=$PWD/fip
++
++Go back to mainline U-Boot source tree then :
++ > mkdir fip
++
++ > cp $FIPDIR/gxb/bl2.bin fip/
++ > cp $FIPDIR/gxb/acs.bin fip/
++ > cp $FIPDIR/gxb/bl21.bin fip/
++ > cp $FIPDIR/gxb/bl30.bin fip/
++ > cp $FIPDIR/gxb/bl301.bin fip/
++ > cp $FIPDIR/gxb/bl31.img fip/
++ > cp u-boot.bin fip/bl33.bin
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl30.bin \
++	fip/zero_tmp \
++	fip/bl30_zero.bin \
++	fip/bl301.bin \
++	fip/bl301_zero.bin \
++	fip/bl30_new.bin \
++	bl30
++
++ > $FIPDIR/fip_create \
++	 --bl30 fip/bl30_new.bin \
++	 --bl31 fip/bl31.img \
++	 --bl33 fip/bl33.bin \
++	 fip/fip.bin
++
++ > python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl2_acs.bin \
++	fip/zero_tmp \
++	fip/bl2_zero.bin \
++	fip/bl21.bin \
++	fip/bl21_zero.bin \
++	fip/bl2_new.bin \
++	bl2
++
++ > cat fip/bl2_new.bin fip/fip.bin > fip/boot_new.bin
++
++ > $FIPDIR/gxb/aml_encrypt_gxb --bootsig \
++		--input fip/boot_new.bin
++		--output fip/u-boot.bin
++
++and then write the image to SD with:
++
++ > DEV=/dev/your_sd_device
++ > dd if=fip/u-boot.bin of=$DEV conv=fsync,notrunc bs=512 seek=1
+diff --git a/board/amlogic/nanopi-k2/nanopi-k2.c b/board/amlogic/nanopi-k2/nanopi-k2.c
+new file mode 100644
+index 0000000..339dbb8
+--- /dev/null
++++ b/board/amlogic/nanopi-k2/nanopi-k2.c
+@@ -0,0 +1,61 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * (C) Copyright 2018 Thomas McKahan
++ */
++
++#include <common.h>
++#include <dm.h>
++#include <environment.h>
++#include <asm/io.h>
++#include <asm/arch/gx.h>
++#include <asm/arch/sm.h>
++#include <asm/arch/eth.h>
++#include <asm/arch/mem.h>
++
++#define EFUSE_SN_OFFSET		20
++#define EFUSE_SN_SIZE		16
++#define EFUSE_MAC_OFFSET	52
++#define EFUSE_MAC_SIZE		6
++
++int board_init(void)
++{
++	return 0;
++}
++
++int misc_init_r(void)
++{
++	u8 mac_addr[EFUSE_MAC_SIZE];
++	char serial[EFUSE_SN_SIZE];
++	ssize_t len;
++
++	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
++
++	/* Reset PHY on GPIOZ_14 */
++	clrbits_le32(GX_GPIO_EN(3), BIT(14));
++	clrbits_le32(GX_GPIO_OUT(3), BIT(14));
++	mdelay(10);
++	setbits_le32(GX_GPIO_OUT(3), BIT(14));
++
++	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
++		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
++					  mac_addr, EFUSE_MAC_SIZE);
++		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
++			eth_env_set_enetaddr("ethaddr", mac_addr);
++	}
++
++	if (!env_get("serial#")) {
++		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
++			EFUSE_SN_SIZE);
++		if (len == EFUSE_SN_SIZE)
++			env_set("serial#", serial);
++	}
++
++	return 0;
++}
++
++int ft_board_setup(void *blob, bd_t *bd)
++{
++	meson_gx_init_reserved_memory(blob);
++
++	return 0;
++}
+diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
+new file mode 100644
+index 0000000..8a0dbf0
+--- /dev/null
++++ b/configs/nanopi-k2_defconfig
+@@ -0,0 +1,40 @@
++CONFIG_ARM=y
++CONFIG_ARCH_MESON=y
++CONFIG_SYS_TEXT_BASE=0x01000000
++CONFIG_MESON_GXBB=y
++CONFIG_TARGET_NANOPI_K2=y
++CONFIG_DEBUG_UART_BASE=0xc81004c0
++CONFIG_DEBUG_UART_CLOCK=24000000
++CONFIG_IDENT_STRING=" nanopi-k2"
++CONFIG_DEFAULT_DEVICE_TREE="meson-gxbb-nanopi-k2"
++CONFIG_DEBUG_UART=y
++CONFIG_OF_BOARD_SETUP=y
++# CONFIG_DISPLAY_CPUINFO is not set
++# CONFIG_DISPLAY_BOARDINFO is not set
++# CONFIG_CMD_BDI is not set
++# CONFIG_CMD_IMI is not set
++CONFIG_CMD_GPIO=y
++CONFIG_CMD_I2C=y
++# CONFIG_CMD_LOADS is not set
++CONFIG_CMD_MMC=y
++# CONFIG_CMD_SETEXPR is not set
++CONFIG_CMD_REGULATOR=y
++CONFIG_OF_CONTROL=y
++CONFIG_NET_RANDOM_ETHADDR=y
++CONFIG_DM_GPIO=y
++CONFIG_DM_I2C=y
++CONFIG_SYS_I2C_MESON=y
++CONFIG_DM_REGULATOR=y
++CONFIG_DM_REGULATOR_FIXED=y
++CONFIG_DM_RESET=y
++CONFIG_DM_MMC=y
++CONFIG_MMC_MESON_GX=y
++CONFIG_DM_ETH=y
++CONFIG_ETH_DESIGNWARE=y
++CONFIG_PINCTRL=y
++CONFIG_PINCTRL_MESON_GXBB=y
++CONFIG_DEBUG_UART_MESON=y
++CONFIG_DEBUG_UART_ANNOUNCE=y
++CONFIG_DEBUG_UART_SKIP_INIT=y
++CONFIG_MESON_SERIAL=y
++CONFIG_OF_LIBFDT_OVERLAY=y
+diff --git a/include/configs/nanopi-k2.h b/include/configs/nanopi-k2.h
+new file mode 100644
+index 0000000..f7ecb7b
+--- /dev/null
++++ b/include/configs/nanopi-k2.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++/*
++ * Configuration for NANOPI-K2
++ * (C) Copyright 2018 Thomas McKahan
++ */
++
++#ifndef __CONFIG_H
++#define __CONFIG_H
++
++#define CONFIG_MISC_INIT_R
++
++/* Serial setup */
++
++#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxbb-nanopi-k2.dtb\0"
++
++#include <configs/meson-gx-common.h>
++
++#endif /* __CONFIG_H */
+-- 
+2.7.4
