@@ -1,369 +1,361 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 25 Jun 2018 16:50:17 +0200
-Subject: [PATCH u-boot 2/2] boards: amlogic: Add FriendlyElec NanoPi K2 board
- support
+Date: Mon, 25 Jun 2018 16:50:16 +0200
+Subject: [PATCH u-boot 1/2] ARM: dts: sync meson-gxbb-nanopi-k2 from Linux 4.17
 In-Reply-To: <1529938217-4196-1-git-send-email-narmstrong@baylibre.com>
 References: <1529938217-4196-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1529938217-4196-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1529938217-4196-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Thomas McKahan <tonymckahan@gmail.com>
+Get the meson-gxbb-nanopi-k2.dts file from Linux 4.17.
 
-This adds platform code for the FriendlyElec NanoPi K2 board based on a
-Meson GXBB (S905) SoC with the Meson GXBB configuration.
-
-This initial submission only supports:
-- UART
-- MMC/SDCard
-- Ethernet
-- Reset Controller
-- Clock controller
-
-Cc: Yuefei Tan <yftan@friendlyarm.com>
-Signed-off-by: Thomas McKahan <tonymckahan@gmail.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/dts/Makefile               |  1 +
- arch/arm/mach-meson/Kconfig         |  8 +++
- board/amlogic/nanopi-k2/Kconfig     | 12 +++++
- board/amlogic/nanopi-k2/MAINTAINERS |  6 +++
- board/amlogic/nanopi-k2/Makefile    |  7 +++
- board/amlogic/nanopi-k2/README      | 99 +++++++++++++++++++++++++++++++++++++
- board/amlogic/nanopi-k2/nanopi-k2.c | 61 +++++++++++++++++++++++
- configs/nanopi-k2_defconfig         | 40 +++++++++++++++
- include/configs/nanopi-k2.h         | 18 +++++++
- 9 files changed, 252 insertions(+)
- create mode 100644 board/amlogic/nanopi-k2/Kconfig
- create mode 100644 board/amlogic/nanopi-k2/MAINTAINERS
- create mode 100644 board/amlogic/nanopi-k2/Makefile
- create mode 100644 board/amlogic/nanopi-k2/README
- create mode 100644 board/amlogic/nanopi-k2/nanopi-k2.c
- create mode 100644 configs/nanopi-k2_defconfig
- create mode 100644 include/configs/nanopi-k2.h
+ arch/arm/dts/Makefile                 |   1 +
+ arch/arm/dts/meson-gxbb-nanopi-k2.dts | 323 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 324 insertions(+)
+ create mode 100644 arch/arm/dts/meson-gxbb-nanopi-k2.dts
 
 diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
-index bcbaae2..62fc442 100644
+index 493652e..bcbaae2 100644
 --- a/arch/arm/dts/Makefile
 +++ b/arch/arm/dts/Makefile
-@@ -55,6 +55,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
+@@ -53,6 +53,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
+ 	rk3399-puma-ddr1866.dtb \
+ 	rv1108-evb.dtb
  dtb-$(CONFIG_ARCH_MESON) += \
- 	meson-gxbb-nanopi-k2.dtb \
- 	meson-gxbb-odroidc2.dtb \
 +	meson-gxbb-nanopi-k2.dtb \
+ 	meson-gxbb-odroidc2.dtb \
  	meson-gxl-s905x-p212.dtb \
  	meson-gxl-s905x-libretech-cc.dtb \
- 	meson-gxl-s905x-khadas-vim.dtb
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index 9a06ccc..cc3383a 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -29,6 +29,12 @@ config TARGET_ODROID_C2
- 	  with 2 GiB of RAM, Gigabit Ethernet, HDMI, 4 USB, micro-SD
- 	  slot, eMMC, IR receiver and a 40-pin GPIO header.
- 
-+config TARGET_NANOPI_K2
-+	bool "NANOPI_K2"
-+	help
-+	  NANOPI_K2 is a single board computer based on Meson GXBaby
-+	  with 2 GiB of RAM, Gigabit Ethernet,AP6212 Wifi, HDMI, 4 USB,
-+	  micro-SD slot, eMMC, IR receiver and a 40-pin GPIO header.
- endif
- 
- if MESON_GXL
-@@ -64,6 +70,8 @@ config SYS_MALLOC_F_LEN
- 
- source "board/amlogic/odroid-c2/Kconfig"
- 
-+source "board/amlogic/nanopi-k2/Kconfig"
-+
- source "board/amlogic/p212/Kconfig"
- 
- source "board/amlogic/libretech-cc/Kconfig"
-diff --git a/board/amlogic/nanopi-k2/Kconfig b/board/amlogic/nanopi-k2/Kconfig
+diff --git a/arch/arm/dts/meson-gxbb-nanopi-k2.dts b/arch/arm/dts/meson-gxbb-nanopi-k2.dts
 new file mode 100644
-index 0000000..374bda2
+index 0000000..7d5709c
 --- /dev/null
-+++ b/board/amlogic/nanopi-k2/Kconfig
-@@ -0,0 +1,12 @@
-+if TARGET_NANOPI_K2
-+
-+config SYS_BOARD
-+	default "nanopi-k2"
-+
-+config SYS_VENDOR
-+	default "amlogic"
-+
-+config SYS_CONFIG_NAME
-+	default "nanopi-k2"
-+
-+endif
-diff --git a/board/amlogic/nanopi-k2/MAINTAINERS b/board/amlogic/nanopi-k2/MAINTAINERS
-new file mode 100644
-index 0000000..0452bd1
---- /dev/null
-+++ b/board/amlogic/nanopi-k2/MAINTAINERS
-@@ -0,0 +1,6 @@
-+NANOPI-K2
-+M:	Neil Armstrong <narmstrong@baylibre.com>
-+S:	Maintained
-+F:	board/amlogic/nanopi-k2/
-+F:	include/configs/nanopi-k2.h
-+F:	configs/nanopi-k2_defconfig
-diff --git a/board/amlogic/nanopi-k2/Makefile b/board/amlogic/nanopi-k2/Makefile
-new file mode 100644
-index 0000000..7d9b666
---- /dev/null
-+++ b/board/amlogic/nanopi-k2/Makefile
-@@ -0,0 +1,7 @@
-+#
-+# (C) Copyright 2018 Thomas McKahan
-+#
-+# SPDX-License-Identifier:	GPL-2.0+
-+#
-+
-+obj-y	:= nanopi-k2.o
-diff --git a/board/amlogic/nanopi-k2/README b/board/amlogic/nanopi-k2/README
-new file mode 100644
-index 0000000..d450d3c
---- /dev/null
-+++ b/board/amlogic/nanopi-k2/README
-@@ -0,0 +1,99 @@
-+U-Boot for NanoPi-K2
-+====================
-+
-+NanoPi-K2 is a single board computer manufactured by FriendlyElec
-+with the following specifications:
-+
-+ - Amlogic S905 ARM Cortex-A53 quad-core SoC @ 1.5GHz
-+ - ARM Mali 450 GPU
-+ - 2GB DDR3 SDRAM
-+ - Gigabit Ethernet
-+ - HDMI 2.0 4K/60Hz display
-+ - 40-pin GPIO header
-+ - 4 x USB 2.0 Host, 1 x USB OTG
-+ - eMMC, microSD
-+ - Infrared receiver
-+
-+Schematics are available on the manufacturer website.
-+
-+Currently the u-boot port supports the following devices:
-+ - serial
-+ - eMMC, microSD
-+ - Ethernet
-+
-+u-boot compilation
-+==================
-+
-+ > export ARCH=arm
-+ > export CROSS_COMPILE=aarch64-none-elf-
-+ > make nanopi-k2_defconfig
-+ > make
-+
-+Image creation
-+==============
-+
-+Amlogic doesn't provide sources for the firmware and for tools needed
-+to create the bootloader image, so it is necessary to obtain them from
-+the git tree published by the board vendor:
-+
-+ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-+ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-+ > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
-+ > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
-+ > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
-+ > git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
-+ > git clone https://github.com/friendlyarm/u-boot.git -b nanopi-k2-v2015.01 amlogic-u-boot
-+ > cd amlogic-u-boot
-+ > sed -i 's/aarch64-linux-gnu-/aarch64-none-elf-/' Makefile
-+ > sed -i 's/arm-linux-/arm-none-eabi-/' arch/arm/cpu/armv8/gxb/firmware/scp_task/Makefile
-+ > make nanopi-k2_defconfig
-+ > make
-+ > export FIPDIR=$PWD/fip
-+
-+Go back to mainline U-Boot source tree then :
-+ > mkdir fip
-+
-+ > cp $FIPDIR/gxb/bl2.bin fip/
-+ > cp $FIPDIR/gxb/acs.bin fip/
-+ > cp $FIPDIR/gxb/bl21.bin fip/
-+ > cp $FIPDIR/gxb/bl30.bin fip/
-+ > cp $FIPDIR/gxb/bl301.bin fip/
-+ > cp $FIPDIR/gxb/bl31.img fip/
-+ > cp u-boot.bin fip/bl33.bin
-+
-+ > $FIPDIR/blx_fix.sh \
-+	fip/bl30.bin \
-+	fip/zero_tmp \
-+	fip/bl30_zero.bin \
-+	fip/bl301.bin \
-+	fip/bl301_zero.bin \
-+	fip/bl30_new.bin \
-+	bl30
-+
-+ > $FIPDIR/fip_create \
-+	 --bl30 fip/bl30_new.bin \
-+	 --bl31 fip/bl31.img \
-+	 --bl33 fip/bl33.bin \
-+	 fip/fip.bin
-+
-+ > python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
-+
-+ > $FIPDIR/blx_fix.sh \
-+	fip/bl2_acs.bin \
-+	fip/zero_tmp \
-+	fip/bl2_zero.bin \
-+	fip/bl21.bin \
-+	fip/bl21_zero.bin \
-+	fip/bl2_new.bin \
-+	bl2
-+
-+ > cat fip/bl2_new.bin fip/fip.bin > fip/boot_new.bin
-+
-+ > $FIPDIR/gxb/aml_encrypt_gxb --bootsig \
-+		--input fip/boot_new.bin
-+		--output fip/u-boot.bin
-+
-+and then write the image to SD with:
-+
-+ > DEV=/dev/your_sd_device
-+ > dd if=fip/u-boot.bin of=$DEV conv=fsync,notrunc bs=512 seek=1
-diff --git a/board/amlogic/nanopi-k2/nanopi-k2.c b/board/amlogic/nanopi-k2/nanopi-k2.c
-new file mode 100644
-index 0000000..339dbb8
---- /dev/null
-+++ b/board/amlogic/nanopi-k2/nanopi-k2.c
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: GPL-2.0+
++++ b/arch/arm/dts/meson-gxbb-nanopi-k2.dts
+@@ -0,0 +1,323 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
-+ * (C) Copyright 2018 Thomas McKahan
++ * Copyright (c) 2017 Andreas F?rber
 + */
 +
-+#include <common.h>
-+#include <dm.h>
-+#include <environment.h>
-+#include <asm/io.h>
-+#include <asm/arch/gx.h>
-+#include <asm/arch/sm.h>
-+#include <asm/arch/eth.h>
-+#include <asm/arch/mem.h>
++/dts-v1/;
 +
-+#define EFUSE_SN_OFFSET		20
-+#define EFUSE_SN_SIZE		16
-+#define EFUSE_MAC_OFFSET	52
-+#define EFUSE_MAC_SIZE		6
++#include "meson-gxbb.dtsi"
++#include <dt-bindings/gpio/gpio.h>
 +
-+int board_init(void)
-+{
-+	return 0;
-+}
++/ {
++	compatible = "friendlyarm,nanopi-k2", "amlogic,meson-gxbb";
 +
-+int misc_init_r(void)
-+{
-+	u8 mac_addr[EFUSE_MAC_SIZE];
-+	char serial[EFUSE_SN_SIZE];
-+	ssize_t len;
++	aliases {
++		serial0 = &uart_AO;
++		ethernet0 = &ethmac;
++	};
 +
-+	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
 +
-+	/* Reset PHY on GPIOZ_14 */
-+	clrbits_le32(GX_GPIO_EN(3), BIT(14));
-+	clrbits_le32(GX_GPIO_OUT(3), BIT(14));
-+	mdelay(10);
-+	setbits_le32(GX_GPIO_OUT(3), BIT(14));
++	memory at 0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++	};
 +
-+	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
-+		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
-+					  mac_addr, EFUSE_MAC_SIZE);
-+		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
-+			eth_env_set_enetaddr("ethaddr", mac_addr);
-+	}
++	leds {
++		compatible = "gpio-leds";
 +
-+	if (!env_get("serial#")) {
-+		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
-+			EFUSE_SN_SIZE);
-+		if (len == EFUSE_SN_SIZE)
-+			env_set("serial#", serial);
-+	}
++		stat {
++			label = "nanopi-k2:blue:stat";
++			gpios = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++			panic-indicator;
++		};
++	};
 +
-+	return 0;
-+}
++	vdd_5v: regulator-vdd-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VDD_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
 +
-+int ft_board_setup(void *blob, bd_t *bd)
-+{
-+	meson_gx_init_reserved_memory(blob);
++	vddio_ao18: regulator-vddio-ao18 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO18";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
 +
-+	return 0;
-+}
-diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
-new file mode 100644
-index 0000000..8a0dbf0
---- /dev/null
-+++ b/configs/nanopi-k2_defconfig
-@@ -0,0 +1,40 @@
-+CONFIG_ARM=y
-+CONFIG_ARCH_MESON=y
-+CONFIG_SYS_TEXT_BASE=0x01000000
-+CONFIG_MESON_GXBB=y
-+CONFIG_TARGET_NANOPI_K2=y
-+CONFIG_DEBUG_UART_BASE=0xc81004c0
-+CONFIG_DEBUG_UART_CLOCK=24000000
-+CONFIG_IDENT_STRING=" nanopi-k2"
-+CONFIG_DEFAULT_DEVICE_TREE="meson-gxbb-nanopi-k2"
-+CONFIG_DEBUG_UART=y
-+CONFIG_OF_BOARD_SETUP=y
-+# CONFIG_DISPLAY_CPUINFO is not set
-+# CONFIG_DISPLAY_BOARDINFO is not set
-+# CONFIG_CMD_BDI is not set
-+# CONFIG_CMD_IMI is not set
-+CONFIG_CMD_GPIO=y
-+CONFIG_CMD_I2C=y
-+# CONFIG_CMD_LOADS is not set
-+CONFIG_CMD_MMC=y
-+# CONFIG_CMD_SETEXPR is not set
-+CONFIG_CMD_REGULATOR=y
-+CONFIG_OF_CONTROL=y
-+CONFIG_NET_RANDOM_ETHADDR=y
-+CONFIG_DM_GPIO=y
-+CONFIG_DM_I2C=y
-+CONFIG_SYS_I2C_MESON=y
-+CONFIG_DM_REGULATOR=y
-+CONFIG_DM_REGULATOR_FIXED=y
-+CONFIG_DM_RESET=y
-+CONFIG_DM_MMC=y
-+CONFIG_MMC_MESON_GX=y
-+CONFIG_DM_ETH=y
-+CONFIG_ETH_DESIGNWARE=y
-+CONFIG_PINCTRL=y
-+CONFIG_PINCTRL_MESON_GXBB=y
-+CONFIG_DEBUG_UART_MESON=y
-+CONFIG_DEBUG_UART_ANNOUNCE=y
-+CONFIG_DEBUG_UART_SKIP_INIT=y
-+CONFIG_MESON_SERIAL=y
-+CONFIG_OF_LIBFDT_OVERLAY=y
-diff --git a/include/configs/nanopi-k2.h b/include/configs/nanopi-k2.h
-new file mode 100644
-index 0000000..f7ecb7b
---- /dev/null
-+++ b/include/configs/nanopi-k2.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Configuration for NANOPI-K2
-+ * (C) Copyright 2018 Thomas McKahan
-+ */
++	vddio_ao3v3: regulator-vddio-ao3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO3.3V";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
 +
-+#ifndef __CONFIG_H
-+#define __CONFIG_H
++	vddio_tf: regulator-vddio-tf {
++		compatible = "regulator-gpio";
 +
-+#define CONFIG_MISC_INIT_R
++		regulator-name = "VDDIO_TF";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
 +
-+/* Serial setup */
++		gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
++		gpios-states = <0>;
 +
-+#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxbb-nanopi-k2.dtb\0"
++		states = <3300000 0>,
++		         <1800000 1>;
 +
-+#include <configs/meson-gx-common.h>
++		regulator-settling-time-up-us = <100>;
++		regulator-settling-time-down-us = <5000>;
++	};
 +
-+#endif /* __CONFIG_H */
++	wifi_32k: wifi-32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
++	};
++
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
++		clocks = <&wifi_32k>;
++		clock-names = "ext_clock";
++	};
++
++	vcc1v8: regulator-vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC1.8V";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	vcc3v3: regulator-vcc3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC3.3V";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
++};
++
++&ethmac {
++	status = "okay";
++	pinctrl-0 = <&eth_rgmii_pins>;
++	pinctrl-names = "default";
++
++	phy-handle = <&eth_phy0>;
++	phy-mode = "rgmii";
++
++	amlogic,tx-delay-ns = <2>;
++
++	snps,reset-gpio = <&gpio GPIOZ_14 0>;
++	snps,reset-delays-us = <0 10000 1000000>;
++	snps,reset-active-low;
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		eth_phy0: ethernet-phy at 0 {
++			/* Realtek RTL8211F (0x001cc916) */
++			reg = <0>;
++			interrupt-parent = <&gpio_intc>;
++			/* MAC_INTR on GPIOZ_15 */
++			interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
++		};
++	};
++};
++
++&ir {
++	status = "okay";
++	pinctrl-0 = <&remote_input_ao_pins>;
++	pinctrl-names = "default";
++};
++
++&pinctrl_aobus {
++	gpio-line-names = "UART TX", "UART RX", "Power Control", "Power Key In",
++			  "VCCK En", "CON1 Header Pin31",
++			  "I2S Header Pin6", "IR In", "I2S Header Pin7",
++			  "I2S Header Pin3", "I2S Header Pin4",
++			  "I2S Header Pin5", "HDMI CEC", "SYS LED",
++			  /* GPIO_TEST_N */
++			  "";
++};
++
++&pinctrl_periphs {
++	gpio-line-names = /* Bank GPIOZ */
++			  "Eth MDIO", "Eth MDC", "Eth RGMII RX Clk",
++			  "Eth RX DV", "Eth RX D0", "Eth RX D1", "Eth RX D2",
++			  "Eth RX D3", "Eth RGMII TX Clk", "Eth TX En",
++			  "Eth TX D0", "Eth TX D1", "Eth TX D2", "Eth TX D3",
++			  "Eth PHY nRESET", "Eth PHY Intc",
++			  /* Bank GPIOH */
++			  "HDMI HPD", "HDMI DDC SDA", "HDMI DDC SCL",
++			  "CON1 Header Pin33",
++			  /* Bank BOOT */
++			  "eMMC D0", "eMMC D1", "eMMC D2", "eMMC D3", "eMMC D4",
++			  "eMMC D5", "eMMC D6", "eMMC D7", "eMMC Clk",
++			  "eMMC Reset", "eMMC CMD",
++			  "", "", "", "", "eMMC DS",
++			  "", "",
++			  /* Bank CARD */
++			  "SDCard D1", "SDCard D0", "SDCard CLK", "SDCard CMD",
++			  "SDCard D3", "SDCard D2", "SDCard Det",
++			  /* Bank GPIODV */
++			  "", "", "", "", "", "", "", "", "", "", "", "", "",
++			  "", "", "", "", "", "", "", "", "", "", "",
++			  "I2C A SDA", "I2C A SCK", "I2C B SDA", "I2C B SCK",
++			  "VDDEE Regulator", "VCCK Regulator",
++			  /* Bank GPIOY */
++			  "CON1 Header Pin7", "CON1 Header Pin11",
++			  "CON1 Header Pin13", "CON1 Header Pin15",
++			  "CON1 Header Pin18", "CON1 Header Pin19",
++			  "CON1 Header Pin22", "CON1 Header Pin21",
++			  "CON1 Header Pin24", "CON1 Header Pin23",
++			  "CON1 Header Pin26", "CON1 Header Pin29",
++			  "CON1 Header Pin32", "CON1 Header Pin8",
++			  "CON1 Header Pin10", "CON1 Header Pin16",
++			  "CON1 Header Pin12",
++			  /* Bank GPIOX */
++			  "WIFI SDIO D0", "WIFI SDIO D1", "WIFI SDIO D2",
++			  "WIFI SDIO D3", "WIFI SDIO CLK", "WIFI SDIO CMD",
++			  "WIFI Power Enable", "WIFI WAKE HOST",
++			  "Bluetooth PCM DOUT", "Bluetooth PCM DIN",
++			  "Bluetooth PCM SYNC", "Bluetooth PCM CLK",
++			  "Bluetooth UART TX", "Bluetooth UART RX",
++			  "Bluetooth UART CTS", "Bluetooth UART RTS",
++			  "", "", "", "WIFI 32K", "Bluetooth Enable",
++			  "Bluetooth WAKE HOST", "",
++			  /* Bank GPIOCLK */
++			  "", "CON1 Header Pin35", "", "";
++};
++
++&pwm_ef {
++	status = "okay";
++	pinctrl-0 = <&pwm_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&clkc CLKID_FCLK_DIV4>;
++	clock-names = "clkin0";
++};
++
++&saradc {
++	status = "okay";
++	vref-supply = <&vddio_ao18>;
++};
++
++/* SDIO */
++&sd_emmc_a {
++	status = "okay";
++	pinctrl-0 = <&sdio_pins>, <&sdio_irq_pins>;
++	pinctrl-1 = <&sdio_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <200000000>;
++
++	non-removable;
++	disable-wp;
++
++	mmc-pwrseq = <&sdio_pwrseq>;
++
++	vmmc-supply = <&vddio_ao3v3>;
++	vqmmc-supply = <&vddio_ao18>;
++
++	brcmf: wifi at 1 {
++		compatible = "brcm,bcm4329-fmac";
++		reg = <1>;
++	};
++};
++
++/* SD */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <4>;
++	cap-sd-highspeed;
++	sd-uhs-sdr12;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	sd-uhs-sdr104;
++	max-frequency = <200000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
++	cd-inverted;
++
++	vmmc-supply = <&vddio_ao3v3>;
++	vqmmc-supply = <&vddio_tf>;
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "disabled";
++	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vcc3v3>;
++	vqmmc-supply = <&vcc1v8>;
++};
++
++/* DBG_UART */
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
++};
++
++/* Bluetooth on AP6212 */
++&uart_A {
++	status = "disabled";
++	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
++	pinctrl-names = "default";
++};
++
++/* 40-pin CON1 */
++&uart_C {
++	status = "disabled";
++	pinctrl-0 = <&uart_c_pins>;
++	pinctrl-names = "default";
++};
++
++&usb0_phy {
++	status = "okay";
++	phy-supply = <&vdd_5v>;
++};
++
++&usb1_phy {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++};
++
++&usb1 {
++	status = "okay";
++};
 -- 
 2.7.4
