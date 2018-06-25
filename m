@@ -1,47 +1,40 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 25 Jun 2018 16:50:15 +0200
-Subject: [PATCH u-boot 0/2] Add support for the FriendlyElec NanoPi K2 board
-Message-ID: <1529938217-4196-1-git-send-email-narmstrong@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 25 Jun 2018 19:25:59 +0200
+Subject: [RfC v1 4/5] ARM64: dts: meson-gxl: add support for the S905W SoC
+ and the P281 board - WiP
+In-Reply-To: <fb3bfe0c-2cfc-5e92-5271-e2159f20b019@baylibre.com>
+References: <20180624182814.31691-1-martin.blumenstingl@googlemail.com>
+ <20180624182814.31691-5-martin.blumenstingl@googlemail.com>
+ <fb3bfe0c-2cfc-5e92-5271-e2159f20b019@baylibre.com>
+Message-ID: <CAFBinCChoyoqc7f09JDLg7xJ3bGu3bJrCk88ekHO2Yfmr6AZow@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This adds platform code for the FriendlyElec NanoPi K2 board based on a
-Meson GXBB (S905) SoC with the Meson GXBB configuration.
+Hi Neil,
 
-This initial submission only supports:
-- UART
-- MMC/SDCard
-- Ethernet
-- Reset Controller
-- Clock controller
+On Mon, Jun 25, 2018 at 2:51 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> Hi Martin, Kevin, Carlo, Jerome,
+>
+> I would like to discuss how we should handle all the GXl variants, since from linux PoV, S905x, S905W and S805X are the same (S905W and S805X only has ledd IO balls, less IO available but same pinctrl interface).
+>
+> At some point, meson-gxl-s905w.dtsi and meson-gxl-s805x.dtsi will be exactly the same as meson-gxl-s905x.dtsi, and maybe the same for S905Z in the Fire TV.
+like you mentioned, most things (all using the internal PHY, same GPU,
+same pinctrl interface, ...) are going to be identical, but what about
+the differences?
+- available HDMI modes are different for S905X (max. 4k60), S905W
+(max. 4k30) and S805X (max. 1080p)
+- video encoders / decoders are different for S905X (max. 4k60), S905W
+(max. 4k30) and S805X (max. 1080p)
+- CPU frequency changes are probably a no-op for us since it's handled
+by the SCPI firmware: 1.5GHz for S905X, 1.2GHz for S905W and S805X
+- according to lvrp16 the S805X SoC itself measures 11mm x 11mm
+whereas the S905X SoC measures 14mm x 14mm
+- what else did I miss?
 
-A sync with Linux 4.17 to get the device tree is also necessary.
+at least the first two may require SoC/package specific compatible
+strings for the HDMI controller and video decoder (if these IP blocks
+don't come with a way to auto-detect the max supported resolutions)
 
-Neil Armstrong (1):
-  ARM: dts: sync meson-gxbb-nanopi-k2 from Linux 4.17
 
-Thomas McKahan (1):
-  boards: amlogic: Add FriendlyElec NanoPi K2 board support
-
- arch/arm/dts/Makefile                 |   2 +
- arch/arm/dts/meson-gxbb-nanopi-k2.dts | 323 ++++++++++++++++++++++++++++++++++
- arch/arm/mach-meson/Kconfig           |   8 +
- board/amlogic/nanopi-k2/Kconfig       |  12 ++
- board/amlogic/nanopi-k2/MAINTAINERS   |   6 +
- board/amlogic/nanopi-k2/Makefile      |   7 +
- board/amlogic/nanopi-k2/README        |  99 +++++++++++
- board/amlogic/nanopi-k2/nanopi-k2.c   |  61 +++++++
- configs/nanopi-k2_defconfig           |  40 +++++
- include/configs/nanopi-k2.h           |  18 ++
- 10 files changed, 576 insertions(+)
- create mode 100644 arch/arm/dts/meson-gxbb-nanopi-k2.dts
- create mode 100644 board/amlogic/nanopi-k2/Kconfig
- create mode 100644 board/amlogic/nanopi-k2/MAINTAINERS
- create mode 100644 board/amlogic/nanopi-k2/Makefile
- create mode 100644 board/amlogic/nanopi-k2/README
- create mode 100644 board/amlogic/nanopi-k2/nanopi-k2.c
- create mode 100644 configs/nanopi-k2_defconfig
- create mode 100644 include/configs/nanopi-k2.h
-
--- 
-2.7.4
+Regards
+Martin
