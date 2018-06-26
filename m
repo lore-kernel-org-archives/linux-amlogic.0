@@ -1,180 +1,153 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 26 Jun 2018 18:46:23 +0200
-Subject: [1/3] media: rc: drivers should produce alternate pulse and
- space timing events
-In-Reply-To: <20180626163316.pl4hxncyfz4t2j2s@gofer.mess.org>
-References: <20180512105531.30482-1-sean@mess.org>
- <1529410092.28510.20.camel@baylibre.com>
- <20180619125755.cd3tyfgsx5yqjohw@gofer.mess.org>
- <1529417360.28510.23.camel@baylibre.com>
- <20180626143710.v5v4sqbxlknlhxx7@gofer.mess.org>
- <1530023991.2900.52.camel@baylibre.com>
- <20180626163316.pl4hxncyfz4t2j2s@gofer.mess.org>
-Message-ID: <1530031583.2900.55.camel@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Tue, 26 Jun 2018 12:30:03 -0600
+Subject: [PATCH 1/2] dt-bindings: nand: meson: add Amlogic NAND
+ controller driver
+In-Reply-To: <CAFBinCBeyXf6LNaZzAw6WnsxzDAv8E=Yp2eem0xCPWMEUi6pnQ@mail.gmail.com>
+References: <20180613161314.14894-1-yixun.lan@amlogic.com>
+ <20180613161314.14894-2-yixun.lan@amlogic.com>
+ <CAFBinCBeyXf6LNaZzAw6WnsxzDAv8E=Yp2eem0xCPWMEUi6pnQ@mail.gmail.com>
+Message-ID: <20180626183003.GA3019@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-06-26 at 17:33 +0100, Sean Young wrote:
-> On Tue, Jun 26, 2018 at 04:39:51PM +0200, Jerome Brunet wrote:
-> > On Tue, 2018-06-26 at 15:37 +0100, Sean Young wrote:
-> > > On Tue, Jun 19, 2018 at 04:09:20PM +0200, Jerome Brunet wrote:
-> > > > On Tue, 2018-06-19 at 13:57 +0100, Sean Young wrote:
-> > > > > On Tue, Jun 19, 2018 at 02:08:12PM +0200, Jerome Brunet wrote:
-> > > > > > On Sat, 2018-05-12 at 11:55 +0100, Sean Young wrote:
-> > > > > > > Report an error if this is not the case or any problem with the generated
-> > > > > > > raw events.
-> > > > > > 
-> > > > > > Hi,
-> > > > > > 
-> > > > > > Since the inclusion of this patch, every 3 to 15 seconds, I get the following
-> > > > > > message: 
-> > > > > > 
-> > > > > >  "rc rc0: two consecutive events of type space"
-> > > > > > 
-> > > > > > on the console of amlogic s400 platform (arch/arm64/boot/dts/amlogic/meson-axg-
-> > > > > > s400.dts). I don't know much about ir protocol and surely there is something
-> > > > > > worth investigating in the related driver, but ...
-> > > > > > 
-> > > > > > > 
-> > > > > > > Signed-off-by: Sean Young <sean@mess.org>
-> > > > > > > ---
-> > > > > > >  drivers/media/rc/rc-ir-raw.c | 19 +++++++++++++++----
-> > > > > > >  1 file changed, 15 insertions(+), 4 deletions(-)
-> > > > > > > 
-> > > > > > > diff --git a/drivers/media/rc/rc-ir-raw.c b/drivers/media/rc/rc-ir-raw.c
-> > > > > > > index 2e50104ae138..49c56da9bc67 100644
-> > > > > > > --- a/drivers/media/rc/rc-ir-raw.c
-> > > > > > > +++ b/drivers/media/rc/rc-ir-raw.c
-> > > > > > > @@ -22,16 +22,27 @@ static int ir_raw_event_thread(void *data)
-> > > > > > >  {
-> > > > > > >  	struct ir_raw_event ev;
-> > > > > > >  	struct ir_raw_handler *handler;
-> > > > > > > -	struct ir_raw_event_ctrl *raw = (struct ir_raw_event_ctrl *)data;
-> > > > > > > +	struct ir_raw_event_ctrl *raw = data;
-> > > > > > > +	struct rc_dev *dev = raw->dev;
-> > > > > > >  
-> > > > > > >  	while (1) {
-> > > > > > >  		mutex_lock(&ir_raw_handler_lock);
-> > > > > > >  		while (kfifo_out(&raw->kfifo, &ev, 1)) {
-> > > > > > > +			if (is_timing_event(ev)) {
-> > > > > > > +				if (ev.duration == 0)
-> > > > > > > +					dev_err(&dev->dev, "nonsensical timing event of duration 0");
-> > > > > > > +				if (is_timing_event(raw->prev_ev) &&
-> > > > > > > +				    !is_transition(&ev, &raw->prev_ev))
-> > > > > > > +					dev_err(&dev->dev, "two consecutive events of type %s",
-> > > > > > > +						TO_STR(ev.pulse));
-> > > > > > > +				if (raw->prev_ev.reset && ev.pulse == 0)
-> > > > > > > +					dev_err(&dev->dev, "timing event after reset should be pulse");
-> > > > > > > +			}
-> > > > > > 
-> > > > > > ... considering that we continue the processing as if nothing happened, is it
-> > > > > > really an error ? 
-> > > > > > 
-> > > > > > Could we consider something less invasive ? like dev_dbg() or dev_warn_once() ?
-> > > > > 
-> > > > > Maybe it should be dev_warn(). The fact that it is not dev_warn_once() means
-> > > > > that we now know this occurs regularly.
-> > > > 
-> > > > It seems weird to report this over and over again.
-> > > > 
-> > > > > 
-> > > > > Would you mind testing the following patch please?
-> > > > > 
-> > > > > Thanks
-> > > > > 
-> > > > > Sean
-> > > > > 
-> > > > > From 6a44fbe4738d230b9cf378777e7e9a93e5fda726 Mon Sep 17 00:00:00 2001
-> > > > > From: Sean Young <sean@mess.org>
-> > > > > Date: Tue, 19 Jun 2018 13:50:36 +0100
-> > > > > Subject: [PATCH] media: rc: meson: rc rc0: two consecutive events of type
-> > > > >  space
-> > > > > 
-> > > > > The meson generates one edge per interrupt. The duration is encoded in 12
-> > > > > bits of 10 microseconds, so it can only encoding a maximum of 40
-> > > > > milliseconds. As a result, it can produce multiple space events.
-> > > > > 
-> > > > > Signed-off-by: Sean Young <sean@mess.org>
-> > > > > ---
-> > > > >  drivers/media/rc/meson-ir.c | 3 ++-
-> > > > >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
-> > > > > index f449b35d25e7..9747426719b2 100644
-> > > > > --- a/drivers/media/rc/meson-ir.c
-> > > > > +++ b/drivers/media/rc/meson-ir.c
-> > > > > @@ -97,7 +97,8 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
-> > > > >  	status = readl_relaxed(ir->reg + IR_DEC_STATUS);
-> > > > >  	rawir.pulse = !!(status & STATUS_IR_DEC_IN);
-> > > > >  
-> > > > > -	ir_raw_event_store_with_timeout(ir->rc, &rawir);
-> > > > > +	if (ir_raw_event_store_with_filter(ir->rc, &rawir))
-> > > > > +		ir_raw_event_handle(ir->rc);
-> > > > >  
-> > > > >  	spin_unlock(&ir->lock);
-> > > > >  
-> > > > 
-> > > > Solve the problem on meson. Thx
-> > > > Feel free to add this submitting the patch
-> > > 
-> > > Actually this patch is broken. ir_raw_event_store_with_timeout() generates
-> > > IR timeouts, but ir_raw_event_store_with_filter() does not.
-> > > 
-> > > So this will need some rethinking. I think we need a 
-> > > ir_raw_event_store_with_timeout_with_filter() but that is getting silly now.
-> > > 
-> > > Maybe filter should be a boolean property of an rc device and happen
-> > > transparently. I'll write something like that when I get some time.
-> > > 
-> > 
-> > would you still object to use dev_warn_once() in the meantime ?
-> > Console flooding is quite annoying.
+On Sun, Jun 24, 2018 at 12:46:59AM +0200, Martin Blumenstingl wrote:
+> Hello Yixun, Hello Liang,
 > 
-> Yes, as much as I dislike it, I think that is the right solution for now.
+> I have a few small comments inline below
+> additionally I tried to explain the reason behind
+> "amlogic,mmc-syscon", clkin0 and clkin1 so Rob (or the devicetree
+> maintainers in general) can give feedback. feel free to correct me
+> wherever I'm wrong or provide additional notes in case I missed
+> something!
 > 
-> Thanks,
+> On Wed, Jun 13, 2018 at 10:17 AM Yixun Lan <yixun.lan@amlogic.com> wrote:
+> >
+> > From: Liang Yang <liang.yang@amlogic.com>
+> >
+> > Add Amlogic NAND controller dt-bindings for Meson SoC,
+> > Current this driver support GXBB/GXL/AXG platform.
+> >
+> > Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> > ---
+> >  .../bindings/mtd/amlogic,meson-nand.txt       | 118 ++++++++++++++++++
+> >  1 file changed, 118 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> > new file mode 100644
+> > index 000000000000..eac9f9433d5d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> > @@ -0,0 +1,118 @@
+> > +Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+> > +
+> > +This file documents the properties in addition to those available in
+> > +the MTD NAND bindings.
+> > +
+> > +Required properties:
+> > +- compatible : contains one of:
+> > +  - "amlogic,meson-gxl-nfc"
+> > +  - "amlogic,meson-axg-nfc"
+> the patch description states that GXBB/GXL/AXG are supported
+> shouldn't you add a compatible string for GXBB as well?
 > 
-> Sean
+> > +- clocks     :
+> > +       A list of phandle + clock-specifier pairs for the clocks listed
+> > +       in clock-names.
+> > +
+> > +- clock-names: Should contain the following:
+> > +       "core" - NFC module gate clock
+> > +       "clkin0" - Parent clock of internal mux
+> > +       "clkin1" - Other parent clock of internal mux
+> to give the devicetree maintainers some context on clkin0 and clkin1:
 > 
-> From 2f61a8b6e850e34def282f1cbd1bfee0f5ab66c5 Mon Sep 17 00:00:00 2001
-> From: Sean Young <sean@mess.org>
-> Date: Tue, 26 Jun 2018 16:03:18 +0100
-> Subject: [PATCH] media: rc: be less noisy when driver misbehaves
+> older SoCs (Meson8, Meson8b - not supported by this binding/driver
+> yet) had a dedicated NAND clock. there neither clkin0 or clkin1 would
+> be used, instead we just had a "nand" or "interface" clock (I'm not
+> aware of the actual naming in Amlogic's internal datasheets)
 > 
-> Since commit 48231f289e52 ("media: rc: drivers should produce alternate
-> pulse and space timing events"), on meson-ir we are regularly producing
-> errors. Reduce to warning level and only warn once to avoid flooding
-> the log.
+> newer SoCs do NOT have a dedicated NAND "interface" clock anymore.
+> instead they are sharing the clock with the "sd_emmc_c" controller (I
+> *believe* the reason for this is because sd_emmc_c and the NAND
+> controller use the same pads on the SoC, pinctrl muxing controls where
+> these pads are routed -> NAND and sd_emmc_c cannot be used at the same
+> time, so SoC designers probably decided to re-use the clock)
 > 
-> A proper fix for meson-ir is going to be too large for v4.18.
+> unfortunately the sd_emmc_c clock is not provided by the "main" clock
+> controller on these newer SoCs
+> instead the clock is part of the MMC controller's register space (see
+> the SD_EMMC_CLOCK register in drivers/mmc/host/meson-gx-mmc.c)
+> even worse: the SD_EMMC_CLOCK contains more than just clock settings
+> (bit 25 enables the SDIO interrupt, which is currently not supported
+> by the meson-gx-mmc driver though)
 > 
-> Signed-off-by: Sean Young <sean@mess.org>
+> the SD_EMMC_CLOCK register has a mux (CLK_SRC_MASK) to choose from
+> clkin0 and clkin1 which are passed here
+> the "amlogic,mmc-syscon" property is used to get a phandle to the
+> sd_emmc_c syscon register space
+> thus there is a bit of code duplication in the MMC and NAND drivers
+> with this binding (because both need to configure the SD_EMMC_CLOCK
+> register)
 
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+Well, that's ugly. Really, the SD controller should be modeled as a 
+clock provider. But then you would have to always have a driver 
+instantiated for it. Maybe you need that anyway if accessing this 
+register is dependent on some other clock or reset to the module being 
+enabled (which you may not hit if you only access the reg during boot)?
 
-> ---
->  drivers/media/rc/rc-ir-raw.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+But if you really want to do it this way, I guess that is fine.
+
+> > +
+> > +- pins     : Select pins which NFC need.
+> > +- nand_pins: Detail NAND pins information.
+> > +               nand_pins: nand {
+> > +                       mux {
+> > +                               groups = "emmc_nand_d0",
+> > +                                       "emmc_nand_d1",
+> > +                                       "emmc_nand_d2",
+> > +                                       "emmc_nand_d3",
+> > +                                       "emmc_nand_d4",
+> > +                                       "emmc_nand_d5",
+> > +                                       "emmc_nand_d6",
+> > +                                       "emmc_nand_d7",
+> > +                                       "nand_ce0",
+> > +                                       "nand_rb0",
+> > +                                       "nand_ale",
+> > +                                       "nand_cle",
+> > +                                       "nand_wen_clk",
+> > +                                       "nand_ren_wr";
+> > +                               function = "nand";
+> > +                       };
+> > +               };
+> > +
+> > +- amlogic,mmc-syscon   : Required for NAND clocks, it's shared with SD/eMMC
+> > +                               controller port C
+> > +
+> > +Optional children nodes:
+> > +Children nodes represent the available nand chips.
+> > +
+> > +Optional properties:
+> > +- meson-nand-user-mode :
+> > +       only set 2 or 16 which mean the way of reading OOB bytes by NFC.
+> as far as I know vendor specific properties should follow the naming
+> schema "vendor,purpose"
+> in this case this would be "amlogic,nand-user-mode"
 > 
-> diff --git a/drivers/media/rc/rc-ir-raw.c b/drivers/media/rc/rc-ir-raw.c
-> index 2e0066b1a31c..e7948908e78c 100644
-> --- a/drivers/media/rc/rc-ir-raw.c
-> +++ b/drivers/media/rc/rc-ir-raw.c
-> @@ -30,13 +30,13 @@ static int ir_raw_event_thread(void *data)
->  		while (kfifo_out(&raw->kfifo, &ev, 1)) {
->  			if (is_timing_event(ev)) {
->  				if (ev.duration == 0)
-> -					dev_err(&dev->dev, "nonsensical timing event of duration 0");
-> +					dev_warn_once(&dev->dev, "nonsensical timing event of duration 0");
->  				if (is_timing_event(raw->prev_ev) &&
->  				    !is_transition(&ev, &raw->prev_ev))
-> -					dev_err(&dev->dev, "two consecutive events of type %s",
-> -						TO_STR(ev.pulse));
-> +					dev_warn_once(&dev->dev, "two consecutive events of type %s",
-> +						      TO_STR(ev.pulse));
->  				if (raw->prev_ev.reset && ev.pulse == 0)
-> -					dev_err(&dev->dev, "timing event after reset should be pulse");
-> +					dev_warn_once(&dev->dev, "timing event after reset should be pulse");
->  			}
->  			list_for_each_entry(handler, &ir_raw_handler_list, list)
->  				if (dev->enabled_protocols &
+> maybe Rob can comment on this?
+
+Yes.
+
+> 
+> > +- meson-nand-ran-mode :
+> > +       setting 0 or 1, means disable/enable scrambler which keeps the balence
+> > +       of 0 and 1
+> I assume 0 and 1 are the only possible values.
+> to use of_property_read_bool in the driver the property would be either:
+> - (absent) = scrambler is disabled
+> - amlogic,nand-enable-scrambler (without any value - also same comment
+> as above for the value) = scrambler is enabled
+> 
+> 
+> Regards
+> Martin
