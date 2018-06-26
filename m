@@ -1,41 +1,84 @@
-From: robh@kernel.org (Rob Herring)
-Date: Mon, 25 Jun 2018 15:03:57 -0600
-Subject: [RfC v1 3/5] dt-bindings: arm: amlogic: Add support for the
- Oranth Tanix TX3 Mini
-In-Reply-To: <20180624182814.31691-4-martin.blumenstingl@googlemail.com>
-References: <20180624182814.31691-1-martin.blumenstingl@googlemail.com>
- <20180624182814.31691-4-martin.blumenstingl@googlemail.com>
-Message-ID: <20180625210357.GA6694@rob-hp-laptop>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 26 Jun 2018 09:40:55 +0200
+Subject: [PATCH] ARM64: dts: meson-gxbb-nanopi-k2: Add HDMI, CEC and CVBS nodes
+Message-ID: <1529998855-8098-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, Jun 24, 2018 at 08:28:12PM +0200, Martin Blumenstingl wrote:
-> The Tanix TX3 Mini is a TV box based on the Amlogic S905W chipset. It
-> comes with:
-> - 1 GiB or 2 GiB of DDR3 memory depending on the model
-> - 8 GB or 16 GB eMMC flash depending on the model
-> - 802.11 b/g/n wifi (Silicon Valley Microelectronics SSV6051, does not
->   support Bluetooth, not supported by any mailine driver)
-> - an LED 7 segment display with an FD628 controller (not supported by
->   any mainline driver)
-> - HDMI and AV (CVBS) output
-> - 2x USB (utilizing both USB ports provided by the SoC)
-> - micro SD card slot
-> 
-> The board seems to be very similar to the P23x and Q20x reference
-> boards:
-> - eMMC reset routed to BOOT_9
-> - the SDIO wifi chip's reset line is routed to GPIOX_6 and the reference
->   clock is 32.768KHz on PWM_E
-> - SD card detection is routed to CARD_6
-> - vqmmc of all MMC controllers is hard-wired to 1.8V (VDDIO_BOOT)
-> - uart_AO can be accessed after opening the case and soldering RX, TX
->   and GND lines onto the exposed solder points (marked with RX, TX and
->   GND)
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
->  1 file changed, 1 insertion(+)
+The Amlogic Meson GXBB based Nanopi-K2 board has an HDMI connector
+with CEC and CVBS available on the 40pin header.
+This patch adds the nodes to enable HDMI, CEC and CVBS functionnalities.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 48 ++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index 7d5709c..cbe99bd 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -106,6 +106,42 @@
+ 		compatible = "mmc-pwrseq-emmc";
+ 		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+ 	};
++
++	/* CVBS is available on CON1 pin 36, disabled by default */
++	cvbs-connector {
++		compatible = "composite-video-connector";
++		status = "disabled";
++
++		port {
++			cvbs_connector_in: endpoint {
++				remote-endpoint = <&cvbs_vdac_out>;
++			};
++		};
++	};
++
++	hdmi-connector {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi_tx_tmds_out>;
++			};
++		};
++	};
++};
++
++&cec_AO {
++	status = "okay";
++	pinctrl-0 = <&ao_cec_pins>;
++	pinctrl-names = "default";
++	hdmi-phandle = <&hdmi_tx>;
++};
++
++&cvbs_vdac_port {
++	cvbs_vdac_out: endpoint {
++		remote-endpoint = <&cvbs_connector_in>;
++	};
+ };
+ 
+ &ethmac {
+@@ -137,6 +173,18 @@
+ 	};
+ };
+ 
++&hdmi_tx {
++	status = "okay";
++	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
++	pinctrl-names = "default";
++};
++
++&hdmi_tx_tmds_port {
++	hdmi_tx_tmds_out: endpoint {
++		remote-endpoint = <&hdmi_connector_in>;
++	};
++};
++
+ &ir {
+ 	status = "okay";
+ 	pinctrl-0 = <&remote_input_ao_pins>;
+-- 
+2.7.4
