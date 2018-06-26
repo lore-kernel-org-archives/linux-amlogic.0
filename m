@@ -1,84 +1,33 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 26 Jun 2018 09:40:55 +0200
-Subject: [PATCH] ARM64: dts: meson-gxbb-nanopi-k2: Add HDMI, CEC and CVBS nodes
-Message-ID: <1529998855-8098-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue, 26 Jun 2018 10:06:38 +0200
+Subject: [PATCH 1/1] ARM64: dts: meson: enable the saradc node in
+ meson-gx-p23x-q20x.dtsi
+In-Reply-To: <20180623145959.445-2-martin.blumenstingl@googlemail.com>
+References: <20180623145959.445-1-martin.blumenstingl@googlemail.com>
+ <20180623145959.445-2-martin.blumenstingl@googlemail.com>
+Message-ID: <eaa16e60-12af-bfd7-308f-af8e32747a69@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson GXBB based Nanopi-K2 board has an HDMI connector
-with CEC and CVBS available on the 40pin header.
-This patch adds the nodes to enable HDMI, CEC and CVBS functionnalities.
+On 23/06/2018 16:59, Martin Blumenstingl wrote:
+> meson-gxl-s905d-p230.dts and meson-gxm-q200.dts enable the saradc node
+> (and configure it's vref-supply "VDDIO_AO18") in their corresponding
+> .dts file.
+> Move both (the saradc node as well as the VDDIO_AO18 regulator) to
+> remove some duplicate code.
+> 
+> As a positive side-effect this enables the saradc also for the P231 (GXL
+> S905D) and Q201 (GXM S912) development boards which are similar to the
+> P230/Q200 boards (P231 and Q201 use the internal 100Mbit/s PHY, while
+> P230 and Q200 have an external RGMII PHY).
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  | 12 ++++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 12 ------------
+>  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 12 ------------
+>  3 files changed, 12 insertions(+), 24 deletions(-)
+> 
+[...]
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts      | 48 ++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-index 7d5709c..cbe99bd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
-@@ -106,6 +106,42 @@
- 		compatible = "mmc-pwrseq-emmc";
- 		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
- 	};
-+
-+	/* CVBS is available on CON1 pin 36, disabled by default */
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+		status = "disabled";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
- };
- 
- &ethmac {
-@@ -137,6 +173,18 @@
- 	};
- };
- 
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
- &ir {
- 	status = "okay";
- 	pinctrl-0 = <&remote_input_ao_pins>;
--- 
-2.7.4
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
