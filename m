@@ -1,29 +1,23 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 26 Jun 2018 10:07:26 +0200
-Subject: [PATCH] ARM64: dts: meson-axg: fix ethernet stability issue
-In-Reply-To: <20180625125653.3404-1-jbrunet@baylibre.com>
-References: <20180625125653.3404-1-jbrunet@baylibre.com>
-Message-ID: <d59a60d1-d5fc-6d89-f89b-148c8e3f3521@baylibre.com>
+Date: Tue, 26 Jun 2018 10:09:12 +0200
+Subject: [PATCH 2/2] clk: meson: remove unused clk-audio-divider driver
+In-Reply-To: <20180620100610.29010-3-jbrunet@baylibre.com>
+References: <20180620100610.29010-1-jbrunet@baylibre.com>
+ <20180620100610.29010-3-jbrunet@baylibre.com>
+Message-ID: <2cdbc56d-a1e5-62f7-c3d5-9d5f37544118@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 25/06/2018 14:56, Jerome Brunet wrote:
-> Like the odroid-c2 and wetek, the s400 uses the RTL8211F and seems to
-> suffer from the kind of stability issue.
+On 20/06/2018 12:06, Jerome Brunet wrote:
+> clk-audio-divider is no longer used, we can remove it.
 > 
-> Doing an iperf3 download test, we can see a significant number of LPI
-> interrupts on the tx path. After a short while (5 to 15 seconds), the
-> network connection dies. If using rootfs over NFS, the connection may
-> also break during the boot sequence.
-> 
-> We still don't have a real explanation for this problem so let's disable
-> EEE once again.
-> 
-> Fixes: f6f6ac914b82 ("ARM64: dts: meson-axg: enable ethernet for A113D S400 board")
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
+>  drivers/clk/meson/Makefile            |   2 +-
+>  drivers/clk/meson/clk-audio-divider.c | 110 ----------------------------------
+>  drivers/clk/meson/clkc.h              |   7 ---
+>  3 files changed, 1 insertion(+), 118 deletions(-)
+>  delete mode 100644 drivers/clk/meson/clk-audio-divider.c
 > 
 [...]
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
