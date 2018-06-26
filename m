@@ -1,31 +1,57 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 26 Jun 2018 10:08:59 +0200
-Subject: [PATCH 1/2] clk: meson: stop rate propagation for audio clocks
-In-Reply-To: <20180620100610.29010-2-jbrunet@baylibre.com>
-References: <20180620100610.29010-1-jbrunet@baylibre.com>
- <20180620100610.29010-2-jbrunet@baylibre.com>
-Message-ID: <76edc9c1-8fd2-de0a-ea88-ebb037a4775c@baylibre.com>
+Date: Tue, 26 Jun 2018 10:26:19 +0200
+Subject: [PATCH] drm/meson: Fix an un-handled error path in
+ 'meson_drv_bind_master()'
+In-Reply-To: <20180611165335.24542-1-christophe.jaillet@wanadoo.fr>
+References: <20180611165335.24542-1-christophe.jaillet@wanadoo.fr>
+Message-ID: <e24fbd8f-e280-8376-7f05-43390df7340c@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 20/06/2018 12:06, Jerome Brunet wrote:
-> It is actually a lot easier to setup the PLL with carefully chosen rates
-> than relying on CCF clock propagation for this audio use case.
-> This way, we can make sure we will always be able to provide the common
-> audio clock rates, while having the PLL in the optimal operating range.
+On 11/06/2018 18:53, Christophe JAILLET wrote:
+> If 'platform_get_resource_byname()' fails, we should release some resources
+> before leaving, as already done in the other error handling path of the
+> function.
 > 
-> For this, we stop the rate propagation at the mux picking the
-> PLL and let it round to the closest matching PLL.
-> 
-> Doing so, we can use the generic divider for the i2s clock.
-> clk-audio-divider is no longer required. It was a (poor) attempt
-> to use CCF rate propagation while making sure the PLL rate would
-> be high enough to work with audio use cases.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Fixes: acaa3f13b8dd ("drm/meson: Fix potential NULL dereference in meson_drv_bind_master()")
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 > ---
->  drivers/clk/meson/gxbb.c | 16 +++++++---------
->  1 file changed, 7 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/meson/meson_drv.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 > 
-[...]
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 32b1a6cdecfc..d3443125e661 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -197,8 +197,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  	priv->io_base = regs;
+>  
+>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
+> -	if (!res)
+> -		return -EINVAL;
+> +	if (!res) {
+> +		ret = -EINVAL;
+> +		goto free_drm;
+> +	}
+>  	/* Simply ioremap since it may be a shared register zone */
+>  	regs = devm_ioremap(dev, res->start, resource_size(res));
+>  	if (!regs) {
+> @@ -215,8 +217,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  	}
+>  
+>  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dmc");
+> -	if (!res)
+> -		return -EINVAL;
+> +	if (!res) {
+> +		ret = -EINVAL;
+> +		goto free_drm;
+> +	}
+>  	/* Simply ioremap since it may be a shared register zone */
+>  	regs = devm_ioremap(dev, res->start, resource_size(res));
+>  	if (!regs) {
+> 
+
+Applied to drm-misc-fixes
+
+Thanks,
+Neil
