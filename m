@@ -1,57 +1,50 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 26 Jun 2018 10:26:19 +0200
-Subject: [PATCH] drm/meson: Fix an un-handled error path in
- 'meson_drv_bind_master()'
-In-Reply-To: <20180611165335.24542-1-christophe.jaillet@wanadoo.fr>
-References: <20180611165335.24542-1-christophe.jaillet@wanadoo.fr>
-Message-ID: <e24fbd8f-e280-8376-7f05-43390df7340c@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 26 Jun 2018 13:19:45 +0200
+Subject: [PATCH 0/2] clk: meson: drop clk-audio-divider
+In-Reply-To: <20180620100610.29010-1-jbrunet@baylibre.com>
+References: <20180620100610.29010-1-jbrunet@baylibre.com>
+Message-ID: <1530011985.2900.45.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 11/06/2018 18:53, Christophe JAILLET wrote:
-> If 'platform_get_resource_byname()' fails, we should release some resources
-> before leaving, as already done in the other error handling path of the
-> function.
+On Wed, 2018-06-20 at 12:06 +0200, Jerome Brunet wrote:
+> As explained in the commit descriptions, clk-audio-divider was a poor
+> solution to make sure PLL rates would be high enough while using CCF
+> rate propagation to determine audio clock rates.
 > 
-> Fixes: acaa3f13b8dd ("drm/meson: Fix potential NULL dereference in meson_drv_bind_master()")
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> ---
->  drivers/gpu/drm/meson/meson_drv.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
+> Stopping rate propagation before the PLLs is actually simpler and provides
+> better results. It also allow to get rid of clk-audio-divider.
 > 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 32b1a6cdecfc..d3443125e661 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -197,8 +197,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->  	priv->io_base = regs;
->  
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hhi");
-> -	if (!res)
-> -		return -EINVAL;
-> +	if (!res) {
-> +		ret = -EINVAL;
-> +		goto free_drm;
-> +	}
->  	/* Simply ioremap since it may be a shared register zone */
->  	regs = devm_ioremap(dev, res->start, resource_size(res));
->  	if (!regs) {
-> @@ -215,8 +217,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->  	}
->  
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dmc");
-> -	if (!res)
-> -		return -EINVAL;
-> +	if (!res) {
-> +		ret = -EINVAL;
-> +		goto free_drm;
-> +	}
->  	/* Simply ioremap since it may be a shared register zone */
->  	regs = devm_ioremap(dev, res->start, resource_size(res));
->  	if (!regs) {
+> Off tree sound cards using these clocks should add the following to the
+> sound card DT to properly setup the PLLs:
+> 
+> 	assigned-clocks = <&clkc CLKID_MPLL2>,
+> 	                  <&clkc CLKID_MPLL0>,
+> 	                  <&clkc CLKID_MPLL1>;
+> 	assigned-clock-parents = <0>, <0>, <0>;
+> 	assigned-clock-rates = <294912000>,
+> 	                       <270950400>,
+> 	                       <393216000>;
+> 
+> * MPLL2: 294912000Hz: 192Khz * 32 * 24 * 2
+>   used 24, 48, 96, 192Khz
+> 
+> * MPLL0: 270950400Hz: 176.4Khz * 32 * 24 * 2
+>   used for 5.512, 10.025, 20.05, 44.1, 88.2 and 176,4Khz
+> 
+> * MPLL1: 393216000Hz: 64Khz * 32 * 24 * 8
+>   used for 8, 16, 32 and 64Khz
+> 
+> Jerome Brunet (2):
+>   clk: meson: stop rate propagation for audio clocks
+>   clk: meson: remove unused clk-audio-divider driver
+> 
+>  drivers/clk/meson/Makefile            |   2 +-
+>  drivers/clk/meson/clk-audio-divider.c | 110 ----------------------------------
+>  drivers/clk/meson/clkc.h              |   7 ---
+>  drivers/clk/meson/gxbb.c              |  16 +++--
+>  4 files changed, 8 insertions(+), 127 deletions(-)
+>  delete mode 100644 drivers/clk/meson/clk-audio-divider.c
 > 
 
-Applied to drm-misc-fixes
-
-Thanks,
-Neil
+Rebased and applied with Neil's ack.
