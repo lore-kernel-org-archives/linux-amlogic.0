@@ -1,33 +1,38 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 26 Jun 2018 10:06:38 +0200
-Subject: [PATCH 1/1] ARM64: dts: meson: enable the saradc node in
- meson-gx-p23x-q20x.dtsi
-In-Reply-To: <20180623145959.445-2-martin.blumenstingl@googlemail.com>
-References: <20180623145959.445-1-martin.blumenstingl@googlemail.com>
- <20180623145959.445-2-martin.blumenstingl@googlemail.com>
-Message-ID: <eaa16e60-12af-bfd7-308f-af8e32747a69@baylibre.com>
+Date: Tue, 26 Jun 2018 10:06:50 +0200
+Subject: [PATCH] ARM64: dts: meson-gxl: fix Mali GPU compatible string
+In-Reply-To: <20180623150056.1442-1-martin.blumenstingl@googlemail.com>
+References: <20180623150056.1442-1-martin.blumenstingl@googlemail.com>
+Message-ID: <ea6f70c0-d4f0-f89d-9fc6-e71869488a5f@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 23/06/2018 16:59, Martin Blumenstingl wrote:
-> meson-gxl-s905d-p230.dts and meson-gxm-q200.dts enable the saradc node
-> (and configure it's vref-supply "VDDIO_AO18") in their corresponding
-> .dts file.
-> Move both (the saradc node as well as the VDDIO_AO18 regulator) to
-> remove some duplicate code.
-> 
-> As a positive side-effect this enables the saradc also for the P231 (GXL
-> S905D) and Q201 (GXM S912) development boards which are similar to the
-> P230/Q200 boards (P231 and Q201 use the internal 100Mbit/s PHY, while
-> P230 and Q200 have an external RGMII PHY).
+On 23/06/2018 17:00, Martin Blumenstingl wrote:
+> meson-gxl-mali.dtsi is only used on GXL SoCs. Thus it should use the GXL
+> specific compatible string instead of the GXBB one.
+> For now this is purely cosmetic since the (out-of-tree) lima driver for
+> this GPU currently uses the "arm,mali-450" match instead of the SoC
+> specific one. However, update the .dts to match the documentation since
+> this driver behavior might change in the future.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi  | 12 ++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts | 12 ------------
->  arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts       | 12 ------------
->  3 files changed, 12 insertions(+), 24 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+> index eb327664a4d8..6aaafff674f9 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
+> @@ -6,7 +6,7 @@
+>  
+>  &apb {
+>  	mali: gpu at c0000 {
+> -		compatible = "amlogic,meson-gxbb-mali", "arm,mali-450";
+> +		compatible = "amlogic,meson-gxl-mali", "arm,mali-450";
+>  		reg = <0x0 0xc0000 0x0 0x40000>;
+>  		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+>  			     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
 > 
 [...]
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
