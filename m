@@ -1,46 +1,46 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 27 Jun 2018 16:42:26 -0700
-Subject: [PATCH] ARM64: dts: meson-gxl: fix Mali GPU compatible string
-In-Reply-To: <ea6f70c0-d4f0-f89d-9fc6-e71869488a5f@baylibre.com> (Neil
- Armstrong's message of "Tue, 26 Jun 2018 10:06:50 +0200")
-References: <20180623150056.1442-1-martin.blumenstingl@googlemail.com>
- <ea6f70c0-d4f0-f89d-9fc6-e71869488a5f@baylibre.com>
-Message-ID: <7hpo0bhk4d.fsf@baylibre.com>
+Date: Wed, 27 Jun 2018 16:55:30 -0700
+Subject: [GIT PULL] Amlogic fixes for v4.18-rc
+Message-ID: <7hk1qjhjil.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+The following changes since commit ce397d215ccd07b8ae3f71db689aedb85d56ab40:
 
-> On 23/06/2018 17:00, Martin Blumenstingl wrote:
->> meson-gxl-mali.dtsi is only used on GXL SoCs. Thus it should use the GXL
->> specific compatible string instead of the GXBB one.
->> For now this is purely cosmetic since the (out-of-tree) lima driver for
->> this GPU currently uses the "arm,mali-450" match instead of the SoC
->> specific one. However, update the .dts to match the documentation since
->> this driver behavior might change in the future.
->> 
->> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
->> index eb327664a4d8..6aaafff674f9 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi
->> @@ -6,7 +6,7 @@
->>  
->>  &apb {
->>  	mali: gpu at c0000 {
->> -		compatible = "amlogic,meson-gxbb-mali", "arm,mali-450";
->> +		compatible = "amlogic,meson-gxl-mali", "arm,mali-450";
->>  		reg = <0x0 0xc0000 0x0 0x40000>;
->>  		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
->>  			     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
->> 
-> [...]
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+  Linux 4.18-rc1 (2018-06-17 08:04:49 +0900)
 
-Applied to v4.18/fixes (which I'll be submitting today.)
+are available in the git repository at:
 
-Kevin
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
+
+for you to fetch changes up to 1c38f4afd5d40234b67635b3c608a4093be04b96:
+
+  ARM64: dts: meson-gxl: fix Mali GPU compatible string (2018-06-27 16:48:25 -0700)
+
+----------------------------------------------------------------
+Amlogic fixes for v4.18-rc
+- minor 64-bit DT fixes
+
+----------------------------------------------------------------
+Jerome Brunet (2):
+      ARM64: dts: meson: disable sd-uhs modes on the libretech-cc
+      ARM64: dts: meson-axg: fix ethernet stability issue
+
+Kevin Hilman (2):
+      ARM64: dts: meson: fix register ranges for SD/eMMC
+      ARM64: dts: meson-gx: fix ATF reserved memory region
+
+Martin Blumenstingl (1):
+      ARM64: dts: meson-gxl: fix Mali GPU compatible string
+
+Neil Armstrong (1):
+      ARM64: dts: meson-gxl-s905x-p212: Add phy-supply for usb0
+
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts               | 15 ++++++++++++++-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi                   |  4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi                    | 12 +++++++++---
+ arch/arm64/boot/dts/amlogic/meson-gxl-mali.dtsi              |  2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts |  3 ---
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi        |  7 +++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                   |  8 --------
+ 7 files changed, 33 insertions(+), 18 deletions(-)
