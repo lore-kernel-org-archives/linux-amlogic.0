@@ -1,91 +1,242 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 29 Jun 2018 14:53:02 -0700
-Subject: [RfC v1 5/5] ARM64: dts: meson-gxl: add support for the Oranth
- Tanix TX3 Mini
-In-Reply-To: <20180624182814.31691-6-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Sun, 24 Jun 2018 20:28:14 +0200")
-References: <20180624182814.31691-1-martin.blumenstingl@googlemail.com>
- <20180624182814.31691-6-martin.blumenstingl@googlemail.com>
-Message-ID: <7hin61cla9.fsf@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 2 Jul 2018 15:17:36 +0800
+Subject: [PATCH 2/2] mtd: rawnand: meson: add support for Amlogic NAND
+ flash controller
+In-Reply-To: <7hr2kqfpam.fsf@baylibre.com>
+References: <20180613161314.14894-1-yixun.lan@amlogic.com>
+ <20180613161314.14894-3-yixun.lan@amlogic.com>
+ <20180624213844.2207ca6f@bbrezillon> <7ha7rfiz3c.fsf@baylibre.com>
+ <20180628090034.0637a062@xps13> <7hr2kqfpam.fsf@baylibre.com>
+Message-ID: <3afe2a61-d15d-63e8-ef59-b36d891dbfb7@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+HI Kevin
 
-> The Tanix TX3 Mini is a TV box based on the Amlogic S905W chipset.
-> There are two variants:
-> - 1 GiB or 2 GiB of DDR3 memory
-> - 8 GB or 16 GB eMMC flash
->
-> Both variants come with:
-> - 802.11 b/g/n wifi (Silicon Valley Microelectronics SSV6051, does not
->   support Bluetooth)
-> - an LED 7 segment display with an FD628 controller
-> - HDMI and AV (CVBS) output
-> - 2x USB (utilizing both USB ports provided by the SoC)
-> - micro SD card slot
-> - serial console (uart_AO) has to be soldered after opening the case
->
-> The board seems to be very similar to the P23x and Q20x reference
-> boards, which is why it includes meson-gx-p23x-q20x.dtsi:
-> - eMMC reset routed to BOOT_9
-> - the SDIO wifi chip's reset line is routed to GPIOX_6 and the reference
->   clock is 32.768KHz on PWM_E
-> - SD card detection is routed to CARD_6
-> - vqmmc of all MMC controllers is hard-wired to 1.8V (VDDIO_BOOT)
-> - uart_AO can be accessed after opening the case and soldering RX, TX
->   and GND lines onto the exposed solder points (marked with RX, TX and
->   GND)
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->  .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  | 22 +++++++++++++++++++
->  2 files changed, 23 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
->
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 6de2e7f5a9cc..1b46affd376d 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -18,6 +18,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-> new file mode 100644
-> index 000000000000..08aca8346b72
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-> @@ -0,0 +1,22 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2018 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
-> + * Based on meson-gxl-s905d-p231.dts:
-> + * - Copyright (c) 2016 Endless Computers, Inc.
-> + *   Author: Carlo Caione <carlo@endlessm.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-gxl-s905w.dtsi"
+On 06/29/18 07:45, Kevin Hilman wrote:
+> Hi Miquel,
+> 
+> Miquel Raynal <miquel.raynal@bootlin.com> writes:
+> 
+>> On Wed, 27 Jun 2018 16:33:43 -0700, Kevin Hilman <khilman@baylibre.com>
+>> wrote:
+>>
+>>> Hi Boris,
+>>>
+>>> Boris Brezillon <boris.brezillon@bootlin.com> writes:
+>>>
+>>>> Hi Yixun,
+>>>>
+>>>> On Wed, 13 Jun 2018 16:13:14 +0000
+>>>> Yixun Lan <yixun.lan@amlogic.com> wrote:
+>>>>  
+>>>>> From: Liang Yang <liang.yang@amlogic.com>
+>>>>>
+>>>>> Add initial support for the Amlogic NAND flash controller which found
+>>>>> in the Meson-GXBB/GXL/AXG SoCs.
+>>>>>
+>>>>> Singed-off-by: Liang Yang <liang.yang@amlogic.com>
+>>>>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>>>>> ---
+>>>>>  drivers/mtd/nand/raw/Kconfig      |    8 +
+>>>>>  drivers/mtd/nand/raw/Makefile     |    3 +
+>>>>>  drivers/mtd/nand/raw/meson_nand.c | 1422 +++++++++++++++++++++++++++++
+>>>>>  3 files changed, 1433 insertions(+)
+>>>>>  create mode 100644 drivers/mtd/nand/raw/meson_nand.c  
+>>>>
+>>>> Can you run checkpatch.pl --strict and fix the coding style issues?
+>>>>  
+>>>>>
+>>>>> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
+>>>>> index 19a2b283fbbe..b3c17a3ca8f4 100644
+>>>>> --- a/drivers/mtd/nand/raw/Kconfig
+>>>>> +++ b/drivers/mtd/nand/raw/Kconfig
+>>>>> @@ -534,4 +534,12 @@ config MTD_NAND_MTK
+>>>>>  	  Enables support for NAND controller on MTK SoCs.
+>>>>>  	  This controller is found on mt27xx, mt81xx, mt65xx SoCs.
+>>>>>  
+>>>>> +config MTD_NAND_MESON
+>>>>> +	tristate "Support for NAND flash controller on Amlogic's Meson SoCs"
+>>>>> +	depends on ARCH_MESON || COMPILE_TEST
+>>>>> +	select COMMON_CLK_REGMAP_MESON
+>>>>> +	select MFD_SYSCON
+>>>>> +	help
+>>>>> +	  Enables support for NAND controller on Amlogic's Meson SoCs.
+>>>>> +
+>>>>>  endif # MTD_NAND
+>>>>> diff --git a/drivers/mtd/nand/raw/Makefile b/drivers/mtd/nand/raw/Makefile
+>>>>> index 165b7ef9e9a1..cdf6162f38c3 100644
+>>>>> --- a/drivers/mtd/nand/raw/Makefile
+>>>>> +++ b/drivers/mtd/nand/raw/Makefile
+>>>>> @@ -1,5 +1,7 @@
+>>>>>  # SPDX-License-Identifier: GPL-2.0
+>>>>>  
+>>>>> +ccflags-$(CONFIG_MTD_NAND_MESON) += -I$(srctree)/drivers/clk/meson  
+>>>>
+>>>> Please don't do that. If you need to expose common regs, put them
+>>>> in include/linux/soc/meson/. I'm also not sure why you need to access
+>>>> the clk regs directly. Why can't you expose the MMC/NAND clk as a clk
+>>>> provider whose driver would be placed in drivers/clk and which would use
+>>>> the mmc syscon. This way the same clk driver could be used for both
+>>>> MMC and NAND clk indifferently, and the NAND driver would be much
+>>>> simpler.  
+>>>
+>>> [...]
+>>>
+>>>>> +
+>>>>> +	return 0;
+>>>>> +}
+>>>>> +
+>>>>> +static const char * sd_emmc_ext_clk0_parent_names[MUX_CLK_NUM_PARENTS];
+>>>>> +
+>>>>> +static struct clk_regmap sd_emmc_c_ext_clk0_sel = {
+>>>>> +	.data = &(struct clk_regmap_mux_data){
+>>>>> +		.offset = SD_EMMC_CLOCK,
+>>>>> +		.mask = 0x3,
+>>>>> +		.shift = 6,
+>>>>> +	},
+>>>>> +	.hw.init = &(struct clk_init_data) {
+>>>>> +		.name = "sd_emmc_c_nand_clk_mux",
+>>>>> +		.ops = &clk_regmap_mux_ops,
+>>>>> +		.parent_names = sd_emmc_ext_clk0_parent_names,
+>>>>> +		.num_parents = ARRAY_SIZE(sd_emmc_ext_clk0_parent_names),
+>>>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>>> +	},
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_regmap sd_emmc_c_ext_clk0_div = {
+>>>>> +	.data = &(struct clk_regmap_div_data){
+>>>>> +		.offset = SD_EMMC_CLOCK,
+>>>>> +		.shift = 0,
+>>>>> +		.width = 6,
+>>>>> +		.flags = CLK_DIVIDER_ROUND_CLOSEST | CLK_DIVIDER_ONE_BASED,
+>>>>> +	},
+>>>>> +	.hw.init = &(struct clk_init_data) {
+>>>>> +		.name = "sd_emmc_c_nand_clk_div",
+>>>>> +		.ops = &clk_regmap_divider_ops,
+>>>>> +		.parent_names = (const char *[]){ "sd_emmc_c_nand_clk_mux" },
+>>>>> +		.num_parents = 1,
+>>>>> +		.flags = CLK_SET_RATE_PARENT,
+>>>>> +	},
+>>>>> +};
+>>>>> +
+>>>>> +static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>>>> +{
+>>>>> +	struct clk_regmap *mux = &sd_emmc_c_ext_clk0_sel;
+>>>>> +	struct clk_regmap *div = &sd_emmc_c_ext_clk0_div;
+>>>>> +	struct clk *clk;
+>>>>> +	int i, ret;
+>>>>> +
+>>>>> +	/* request core clock */
+>>>>> +	nfc->core_clk = devm_clk_get(nfc->dev, "core");
+>>>>> +	if (IS_ERR(nfc->core_clk)) {
+>>>>> +		dev_err(nfc->dev, "failed to get core clk\n");
+>>>>> +		return PTR_ERR(nfc->core_clk);
+>>>>> +	}
+>>>>> +
+>>>>> +	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+>>>>> +	regmap_update_bits(nfc->reg_clk, 0,
+>>>>> +			CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK,
+>>>>> +			CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK);
+>>>>> +
+>>>>> +	/* get the mux parents */
+>>>>> +	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
+>>>>> +		char name[16];
+>>>>> +
+>>>>> +		snprintf(name, sizeof(name), "clkin%d", i);
+>>>>> +		clk = devm_clk_get(nfc->dev, name);
+>>>>> +		if (IS_ERR(clk)) {
+>>>>> +			if (clk != ERR_PTR(-EPROBE_DEFER))
+>>>>> +				dev_err(nfc->dev, "Missing clock %s\n", name);
+>>>>> +			return PTR_ERR(clk);
+>>>>> +		}
+>>>>> +
+>>>>> +		sd_emmc_ext_clk0_parent_names[i] = __clk_get_name(clk);
+>>>>> +	}
+>>>>> +
+>>>>> +	mux->map = nfc->reg_clk;
+>>>>> +	clk = devm_clk_register(nfc->dev, &mux->hw);
+>>>>> +	if (WARN_ON(IS_ERR(clk)))
+>>>>> +		return PTR_ERR(clk);
+>>>>> +
+>>>>> +	div->map = nfc->reg_clk;
+>>>>> +	nfc->device_clk = devm_clk_register(nfc->dev, &div->hw);
+>>>>> +	if (WARN_ON(IS_ERR(nfc->device_clk)))
+>>>>> +		return PTR_ERR(nfc->device_clk);
+>>>>> +
+>>>>> +	ret = clk_prepare_enable(nfc->core_clk);
+>>>>> +	if (ret) {
+>>>>> +		dev_err(nfc->dev, "failed to enable core clk\n");
+>>>>> +		return ret;
+>>>>> +	}
+>>>>> +
+>>>>> +	ret = clk_prepare_enable(nfc->device_clk);
+>>>>> +	if (ret) {
+>>>>> +		dev_err(nfc->dev, "failed to enable device clk\n");
+>>>>> +		clk_disable_unprepare(nfc->core_clk);
+>>>>> +		return ret;
+>>>>> +	}
+>>>>> +
+>>>>> +	return 0;
+>>>>> +}  
+>>>>
+>>>>
+>>>> As said above, I don't like having a clk driver here, especially since
+>>>> the registers you're accessing are not part of the NAND controller
+>>>> registers. Please try to create a driver in drivers/clk/ for that.  
+>>>
+>>> We went back and forth on this one on some off-list reviews.
+>>>
+>>> Had we known that the NAND controller was (re)using the clock registers
+>>> internal to the MMC IP block from the beginning, we would have written a
+>>> clock provider in drivers/clk for this, and shared it.
+>>>
+>>> However, when I wrote the MMC driver[1] (already upstream) along with
+>>> the bindings[2], we did not fathom that the internal mux and divider
+>>> would be "borrowed" by another device. :(
+>>>
+>>> We only recently found out that the NAND controller "borrows" one of the
+>>> MMC clocks, whose registers are inside the MMC range.  Taking the clock
+>>> out of the MMC driver and into its own clock-provider implies redoing
+>>> the MMC driver, as well as its bindings, which we wanted to avoid
+>>> (especially the binding changes.)
+>>>
+>>> We (I can take the blame) decided that since the MMC and NAND are
+>>> mutually exclusive (they also share pins), that allowing NAND to reuse
+>>> the MMC range would be a good compromise.  The DT still accurately
+>>> describes the hardware, but we don't have to throw a large wrench into
+>>> the DT bindings just for a newly discovered shared clock.
+>>>
+>>> I agree, it's not the prettiest thing, but when we cannot know the full
+>>> details of the hardware when we start, sometimes we end up in a bit of a
+>>> mess that requires some compromise.
+>>
+>> I totally understand your situation but as MMC and NAND are mutually
+>> exclusive, how is this a problem to have a dedicated clock driver used
+>> only by the NAND controller (as maybe a first step)? I mean, if you
+>> don't change the MMC bindings, then the MMC driver will still use its
+>> own 'local' clock driver, right?
+> 
+> Yeah, I think you're right.  That would work too.
+> 
+>> I don't know if you can have two nodes reserving the same address
+>> range though.
+> 
+> You can, but it's a race who gets to claim the region.
+> 
+> You'd have to have the new clock-controler disabled by default, and have
+> any boards that use the NAND disable the MMC and enable the clock
+> controller node.
+> 
+> But I think that should work.
+> 
+> Yixun, can you give this approach a try?
+Yes, It actually works here, I'll send out the clock patches later for
+review.
 
-Just use meson-gxl-s905x.dtsi
-
-Kevin
-
-> +#include "meson-gx-p23x-q20x.dtsi"
-> +
-> +/ {
-> +	compatible = "oranth,tx3-mini", "amlogic,s905w", "amlogic,meson-gxl";
-> +	model = "Oranth Tanix TX3 Mini";
-> +
-> +	memory at 0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>; /* 1 GiB or 2 GiB */
-> +	};
-> +};
+Thanks everyone for the suggestion
+> 
+> Kevin
+> 
+> .
+> 
