@@ -1,95 +1,29 @@
-From: hverkuil@xs4all.nl (Hans Verkuil)
-Date: Mon, 2 Jul 2018 11:02:48 +0200
-Subject: [PATCHv2 1/3] dt-bindings: display: dw_hdmi.txt: add cec-disable
- property
-In-Reply-To: <714ee0ef-25c4-e065-8120-aebc27a1add7@baylibre.com>
-References: <20180323125915.13986-1-hverkuil@xs4all.nl>
- <20180323125915.13986-2-hverkuil@xs4all.nl>
- <20180326072830.iphtbw5mkeciv4kj@rob-hp-laptop>
- <05e7ade1-89be-0f0f-18a5-88ff0310a70b@xs4all.nl>
- <714ee0ef-25c4-e065-8120-aebc27a1add7@baylibre.com>
-Message-ID: <19324e94-59a1-2d64-3a83-6ca6d00dff3c@xs4all.nl>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Mon, 2 Jul 2018 21:31:16 +0000
+Subject: [PATCH v2 0/2] clk: meson-axg: add pcie related clocks
+Message-ID: <20180702213118.19222-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 29/06/18 09:17, Neil Armstrong wrote:
-> Hi Hans,
-> 
-> On 03/04/2018 10:27, Hans Verkuil wrote:
->> On 27/03/18 00:25, Rob Herring wrote:
->>> On Fri, Mar 23, 2018 at 01:59:13PM +0100, Hans Verkuil wrote:
->>>> From: Hans Verkuil <hans.verkuil@cisco.com>
->>>>
->>>> Some boards have both a DesignWare and their own CEC controller.
->>>> The CEC pin is only hooked up to their own CEC controller and not
->>>> to the DW controller.
->>>>
->>>> Add the cec-disable property to disable the DW CEC controller.
->>>>
->>>> This particular situation happens on Amlogic boards that have their
->>>> own meson CEC controller.
->>>
->>> Seems like we could avoid this by describing how the CEC line is hooked 
->>> up which could be needed for other reasons.
->>
->> So there are three situations:
->>
->> 1) The cec pin is connected to the DW HDMI TX. That's already supported.
->> 2) The cec pin is not connected at all, but the CEC IP is instantiated.
->>    We need the cec-disable property for that. This simply states that the
->>    CEC pin is not connected.
->> 3) The cec pin is connected to an HDMI RX. We do not support this at the
->>    moment. If we want to support this, then we need a 'hdmi-rx' phandle
->>    that points to the HDMI receiver that the CEC pin is associated with.
->>    This will be similar to the already existing 'hdmi-phandle' property
->>    used to associate a CEC driver with an HDMI transmitter. In hindsight
->>    it would have been better if 'hdmi-phandle' was named 'hdmi-tx' :-(
->>
->> I can make a binding proposal for 3, but I have no hardware to test it,
->> so I think it is better to add this only when someone has hardware. It
->> will require quite a few changes to the driver and likely also the CEC core.
-> 
-> Can't we simply add a property to override the HW config fields in this case ?
-> It will be then usable with any feature the is enabled by reading the config
-> bits like AHB Audio, I2c, CEC, ... and maybe many more in the future.
+This patch series try to add clocks for the pcie driver,
+Due to ASIC desigin, the mipi clock is also required by the pcie
+controller, so we also added in this patch series.
 
-Yes, we can do that as well. But is that a proper description of the hardware?
-The HW *does* support CEC, but in this case the CEC line is just not hooked
-up to anything. So overriding the HW config field doesn't really sound right
-to me.
 
-I still believe that the cec-disable property in order to describe situation
-2 in the list above is the right approach.
+Changes since v1 at [1]:
+  -- Separate dt-binding header files
+  -- use table to exclude unwanted clock parent
 
-Perhaps giving it a different name (cec-not-connected?) helps overcome Rob's
-objections? Rob?
+[1] https://lkml.kernel.org/r/20180621122620.13195-1-yixun.lan at amlogic.com
 
-Sorry for not following up on this earlier.
+Yixun Lan (2):
+  clk: meson-axg: add pcie and mipi clock bindings
+  clk: meson-axg: add clocks required by pcie driver
 
-Regards,
+ drivers/clk/meson/axg.c              | 148 +++++++++++++++++++++++++++
+ drivers/clk/meson/axg.h              |   6 +-
+ include/dt-bindings/clock/axg-clkc.h |   3 +
+ 3 files changed, 156 insertions(+), 1 deletion(-)
 
-	Hans
-
-> 
-> Neil
-> 
->>
->> Regards,
->>
->> 	Hans
->>
->>>
->>>>
->>>> Signed-off-by: Hans Verkuil <hans.verkuil@cisco.com>
->>>> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/display/bridge/dw_hdmi.txt | 3 +++
->>>>  1 file changed, 3 insertions(+)
->>
-> 
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel at lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> 
+-- 
+2.18.0
