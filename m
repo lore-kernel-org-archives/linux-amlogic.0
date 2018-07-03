@@ -1,19 +1,41 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 03 Jul 2018 13:01:12 +0200
-Subject: [PATCH v2 2/2] clk: meson-axg: add clocks required by pcie driver
-In-Reply-To: <7c8b47a9-67bc-b685-8c90-084299631fb0@amlogic.com>
-References: <20180702213118.19222-1-yixun.lan@amlogic.com>
- <20180702213118.19222-3-yixun.lan@amlogic.com>
- <1530609862.2900.187.camel@baylibre.com>
- <7c8b47a9-67bc-b685-8c90-084299631fb0@amlogic.com>
-Message-ID: <1530615672.2900.205.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  3 Jul 2018 15:21:49 +0200
+Subject: [PATCH 2/3] dt-bindings: amlogic: Add Internal Clock Measurer bindings
+In-Reply-To: <1530624110-4687-1-git-send-email-narmstrong@baylibre.com>
+References: <1530624110-4687-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1530624110-4687-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 2018-07-03 at 18:17 +0800, Yixun Lan wrote:
-> I'm seeing you already applied this patch, so would you like to
-> fix/amend the patch for me, or want me send another patch version?
-> 
-> thanks
+The Amlogic Meson GX SoCs embeds a clock measurer IP to measure the internal
+clock paths frequencies.
 
-It means that I amended your patch before applying it.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../devicetree/bindings/soc/amlogic/clk-measure.txt       | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
+
+diff --git a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
+new file mode 100644
+index 0000000..ba9183a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
+@@ -0,0 +1,15 @@
++Amlogic Internal Clock Measurer
++===============================
++
++The Amlogic SoCs contains an IP to measure the internal clocks.
++The precision is multiple of MHz, useful to debug the clock states.
++
++Required properties:
++- compatible: Shall contain "amlogic,meson-gx-clk-measure"
++- reg: base address and size of the Clock Measurer register space.
++
++Example:
++	clock-measure at 8758 {
++		compatible = "amlogic,meson-gx-clk-measure";
++		reg = <0x0 0x8758 0x0 0x10>;
++	};
+-- 
+2.7.4
