@@ -1,555 +1,247 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Tue, 3 Jul 2018 21:18:14 +0200
-Subject: [PATCH 1/3] soc: amlogic: Add Meson GX Clock Measure driver
-In-Reply-To: <1530624110-4687-2-git-send-email-narmstrong@baylibre.com>
-References: <1530624110-4687-1-git-send-email-narmstrong@baylibre.com>
- <1530624110-4687-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAFBinCDBEbVSEzhM2WOhxNX1DZLiSrkeo7GWdxGzBpOUH3PKQw@mail.gmail.com>
+Date: Tue, 3 Jul 2018 23:38:47 +0200
+Subject: dwc2 (on Meson8b) doesn't detect "hot-plugged" USB devices
+In-Reply-To: <CAFBinCCr-_H1ZJBn3pfmcEHBNVv8hiobttywP18VOUvS__WMeA@mail.gmail.com>
+References: <CAFBinCBEWb_2d7ypgS2uC2EXq_XSw67=zyPPqdRFZWi32aWPmA@mail.gmail.com>
+ <410670D7E743164D87FA6160E7907A560113AFA2F2@am04wembxb.internal.synopsys.com>
+ <CAFBinCCr-_H1ZJBn3pfmcEHBNVv8hiobttywP18VOUvS__WMeA@mail.gmail.com>
+Message-ID: <CAFBinCDVCdBDpZoLi=Kq5-f_oBVo3w=Jp5jQc1DuSPceXk5K+w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Hello Minas,
 
-On Tue, Jul 3, 2018 at 3:23 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Thu, May 10, 2018 at 11:44 AM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> The Amlogic Meson GX SoCs embeds a clock measurer IP to measure the internal
-> clock paths frequencies.
-> The precision is in the order of the MHz.
+> Hello Minas,
 >
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/soc/amlogic/Kconfig                |   8 ++
->  drivers/soc/amlogic/Makefile               |   1 +
->  drivers/soc/amlogic/meson-gx-clk-measure.c | 224 +++++++++++++++++++++++++++++
->  3 files changed, 233 insertions(+)
->  create mode 100644 drivers/soc/amlogic/meson-gx-clk-measure.c
+> On Mon, May 7, 2018 at 3:27 PM, Minas Harutyunyan
+> <Minas.Harutyunyan@synopsys.com> wrote:
+> > Hi Martin,
+> >
+> > On 5/7/2018 12:28 AM, Martin Blumenstingl wrote:
+> >> Hello,
+> >>
+> >> I was a bit surprised to see that hot-plugging USB devices on Amlogic
+> >> Meson8b (for example: Odroid-C1) is broken.
+> >> to be fair: I *think* it worked before, but I cannot guarantee it nor
+> >> can I say when it broke
+> >>
+> >> all examples below are from an Odroid-C1 board with Amlogic Meson8b (S805) SoC.
+> >> this connects a (fixed, soldered down) 4-port USB hub to the dwc2
+> >> controller (which is in "host" mode)
+> >>
+> >> during boot I see:
+> >> [    1.651687] dwc2 c90c0000.usb: c90c0000.usb supply vusb_d not
+> >> found, using dummy regulator
+> >> [    1.654434] dwc2 c90c0000.usb: c90c0000.usb supply vusb_a not
+> >> found, using dummy regulator
+> >> [    1.732374] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter lpm=1
+> >> [    1.733526] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter
+> >> lpm_clock_gating=1
+> >> [    1.741427] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter besl=1
+> >> [    1.748305] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter
+> >> hird_threshold_en=1
+> >> [    1.756491] dwc2 c90c0000.usb: DWC OTG Controller
+> >> [    1.760993] dwc2 c90c0000.usb: new USB bus registered, assigned bus number 1
+> >> [    1.768046] dwc2 c90c0000.usb: irq 24, io mem 0xc90c0000
+> >> [    1.773947] hub 1-0:1.0: USB hub found
+> >> [    1.777063] hub 1-0:1.0: 1 port detected
+> >> ...
+> >> [    2.212432] usb 1-1: new high-speed USB device number 2 using dwc2
+> >> [    2.464742] hub 1-1:1.0: USB hub found
+> >> [    2.465118] hub 1-1:1.0: 4 ports detected
+> >>
+> >> if a USB device is plugged into one of the four USB ports during boot
+> >> then it is detected automatically.
+> >> if I plug in devices later they are not detected automatically (I have
+> >> to run "lsusb -v" due to some reason, then hot-plugged devices are
+> >> being detected)
+> >> un-plugging USB devices is recognized instantly (no "lsusb" trickery
+> >> is required)
+> >>
+> >> is this a known issue? how can I help debugging?
+> >> any help is appreciated!
+> >>
+> >> below is the output of all dwc2 debugfs files.
+> >>
+> >>
+> >> Regards
+> >> Martin
+> >>
+> >>
+> >> [rootodroidc1 c90c0000.usb]# cat dr_mode
+> >> host
+> >> [rootodroidc1 c90c0000.usb]# cat fifo
+> >> Non-periodic FIFOs:
+> >> RXFIFO: Size 0
+> >> NPTXFIFO: Size 0, Start 0x00000000
+> >>
+> >> Periodic TXFIFOs:
+> >> [rootodroidc1 c90c0000.usb]# cat hw_params
+> >> op_mode                       : 5
+> >> arch                          : 2
+> >> dma_desc_enable               : 1
+> >> enable_dynamic_fifo           : 1
+> >> en_multiple_tx_fifo           : 0
+> >> rx_fifo_size                  : 2048
+> >> host_nperio_tx_fifo_size      : 2048
+> >> dev_nperio_tx_fifo_size       : 0
+> >> host_perio_tx_fifo_size       : 2048
+> >> nperio_tx_q_depth             : 4
+> >> host_perio_tx_q_depth         : 4
+> >> dev_token_q_depth             : 8
+> >> max_transfer_size             : 524287
+> >> max_packet_count              : 1023
+> >> host_channels                 : 16
+> >> hs_phy_type                   : 1
+> >> fs_phy_type                   : 0
+> >> i2c_enable                    : 0
+> >> num_dev_ep                    : 2
+> >> num_dev_perio_in_ep           : 0
+> >> total_fifo_size               : 1984
+> >> power_optimized               : 1
+> >> utmi_phy_data_width           : 1
+> >> snpsid                        : 0x4f54310a
+> >> dev_ep_dirs                   : 0x0
+> >> [rootodroidc1 c90c0000.usb]# cat params
+> >> otg_cap                       : 2
+> >> dma_desc_enable               : 0
+> >> dma_desc_fs_enable            : 0
+> >> speed                         : 0
+> >> enable_dynamic_fifo           : 1
+> >> en_multiple_tx_fifo           : 0
+> >> host_rx_fifo_size             : 512
+> >> host_nperio_tx_fifo_size      : 500
+> >> host_perio_tx_fifo_size       : 500
+> >> max_transfer_size             : 524287
+> >> max_packet_count              : 1023
+> >> host_channels                 : 16
+> >> phy_type                      : 1
+> >> phy_utmi_width                : 16
+> >> phy_ulpi_ddr                  : 0
+> >> phy_ulpi_ext_vbus             : 0
+> >> i2c_enable                    : 0
+> >> ulpi_fs_ls                    : 0
+> >> host_support_fs_ls_low_power  : 0
+> >> host_ls_low_power_phy_clk     : 0
+> >> ts_dline                      : 0
+> >> reload_ctl                    : 1
+> >> ahbcfg                        : 0xa
+> >> uframe_sched                  : 0
+> >> external_id_pin_ctl           : 0
+> >> power_down                    : 1
+> >> lpm                           : 0
+> >> lpm_clock_gating              : 0
+> >> besl                          : 0
+> >> hird_threshold_en             : 0
+> >> hird_threshold                : 4
+> >> host_dma                      : 1
+> >> g_dma                         : 0
+> >> g_dma_desc                    : 0
+> >> g_rx_fifo_size                : 0
+> >> g_np_tx_fifo_size             : 0
+> >> g_tx_fifo_size[0]             : 0
+> >> g_tx_fifo_size[1]             : 0
+> >> g_tx_fifo_size[2]             : 0
+> >> g_tx_fifo_size[3]             : 0
+> >> g_tx_fifo_size[4]             : 0
+> >> g_tx_fifo_size[5]             : 0
+> >> g_tx_fifo_size[6]             : 0
+> >> g_tx_fifo_size[7]             : 0
+> >> g_tx_fifo_size[8]             : 0
+> >> g_tx_fifo_size[9]             : 0
+> >> g_tx_fifo_size[10]            : 0
+> >> g_tx_fifo_size[11]            : 0
+> >> g_tx_fifo_size[12]            : 0
+> >> g_tx_fifo_size[13]            : 0
+> >> g_tx_fifo_size[14]            : 0
+> >> g_tx_fifo_size[15]            : 0
+> >> [rootodroidc1 c90c0000.usb]# cat state
+> >> DCFG=0x00000000, DCTL=0x00000000, DSTS=0x00000000
+> >> DIEPMSK=0x00000000, DOEPMASK=0x00000000
+> >> GINTMSK=0xf0000000, GINTSTS=0x00000001
+> >> DAINTMSK=0x00000000, DAINT=0x00000000
+> >> GNPTXSTS=0x00000000, GRXSTSR=00000000
+> >>
+> >> Endpoint status:
+> >> [rootodroidc1 c90c0000.usb]# cat testmode
+> >> no test
+> >> [rootodroidc1 c90c0000.usb]# cat regdump
+> >> <system hangs>
+> >>
+> >
+> > Your core configured for SRP capable host only mode "op_mode: 5", but
+> > USBCFG programmed for "otg_cap = 2" which mean
+> > "DWC2_CAP_PARAM_NO_HNP_SRP_CAPABLE", i.e. no SRP.
+> > 1. Please try to set "p->otg_cap = DWC2_CAP_PARAM_SRP_ONLY_CAPABLE;"
+> this results in the (soldered down) USB hub not even being detected anymore
+> # dmesg | grep c90c0000
+> [    1.771610] dwc2 c90c0000.usb: c90c0000.usb supply vusb_d not
+> found, using dummy regulator
+> [    1.779262] dwc2 c90c0000.usb: c90c0000.usb supply vusb_a not
+> found, using dummy regulator
+> [    1.852346] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter lpm=1
+> [    1.853496] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter
+> lpm_clock_gating=1
+> [    1.861397] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter besl=1
+> [    1.868274] dwc2 c90c0000.usb: dwc2_check_params: Invalid parameter
+> hird_threshold_en=1
+> [    1.876357] dwc2 c90c0000.usb: DWC OTG Controller
+> [    1.880954] dwc2 c90c0000.usb: new USB bus registered, assigned bus number 2
+> [    1.888010] dwc2 c90c0000.usb: irq 25, io mem 0xc90c0000
+> [    2.002455] dwc2 c90c0000.usb: Overcurrent change detected
+> [    2.132721] dwc2 c90c0000.usb: Overcurrent change detected
+> [    2.252442] dwc2 c90c0000.usb: Overcurrent change detected
+> <lsusb -v here>
+> [   47.682374] dwc2 c90c0000.usb: Overcurrent change detected
 >
-> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
-> index b04f6e4..4a3217d 100644
-> --- a/drivers/soc/amlogic/Kconfig
-> +++ b/drivers/soc/amlogic/Kconfig
-> @@ -1,5 +1,13 @@
->  menu "Amlogic SoC drivers"
+> (this is with "host only" mode being configured and DRD mode being
+> disabled in the driver)
 >
-> +config MESON_GX_CLK_MEASURE
-> +       bool "Amlogic Meson GX SoC Clock Measure driver"
-> +       depends on ARCH_MESON || COMPILE_TEST
-> +       default ARCH_MESON
-> +       help
-> +         Say yes to support of Measuring a set of internal SoC clocks
-> +         from the debugfs interface.
-> +
->  config MESON_GX_SOCINFO
->         bool "Amlogic Meson GX SoC Information driver"
->         depends on ARCH_MESON || COMPILE_TEST
-> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
-> index 8fa3218..a0ad966 100644
-> --- a/drivers/soc/amlogic/Makefile
-> +++ b/drivers/soc/amlogic/Makefile
-> @@ -1,3 +1,4 @@
-> +obj-$(CONFIG_MESON_GX_CLK_MEASURE) += meson-gx-clk-measure.o
->  obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
->  obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
->  obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
-> diff --git a/drivers/soc/amlogic/meson-gx-clk-measure.c b/drivers/soc/amlogic/meson-gx-clk-measure.c
-> new file mode 100644
-> index 0000000..434d9f3
-> --- /dev/null
-> +++ b/drivers/soc/amlogic/meson-gx-clk-measure.c
-> @@ -0,0 +1,224 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (c) 2017 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + */
-> +
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/seq_file.h>
-> +#include <linux/debugfs.h>
-> +#include <linux/regmap.h>
-> +
-> +#define MSR_CLK_DUTY           0x0
-> +#define MSR_CLK_REG0           0x4
-> +#define MSR_CLK_REG1           0x8
-> +#define MSR_CLK_REG2           0xc
-> +
-> +#define MSR_CLK_DIV            GENMASK(15, 0)
-> +#define MSR_ENABLE             BIT(16)
-> +#define MSR_CONT               BIT(17) /* continuous measurement */
-> +#define MSR_INTR               BIT(18) /* interrupts */
-> +#define MSR_RUN                        BIT(19)
-> +#define MSR_CLK_SRC            GENMASK(26, 20)
-> +#define MSR_BUSY               BIT(31)
-> +
-> +#define MSR_VAL_MASK           GENMASK(15, 0)
-> +
-> +#define DIV_50US               64
-> +
-> +#define CLK_MSR_MAX            128
-> +
-> +struct meson_gx_msr {
-> +       struct regmap *regmap;
-> +};
-> +
-> +struct meson_gx_msr_id {
-> +       struct meson_gx_msr *priv;
-> +       unsigned int id;
-> +       const char *name;
-> +};
-> +
-> +#define CLK_MSR_ID(__id, __name) \
-> +       [__id] = {.id = __id, .name = __name,}
-> +
-> +static struct meson_gx_msr_id clk_msr[CLK_MSR_MAX] = {
-> +       CLK_MSR_ID(0, "ring_osc_out_ee_0"),
-> +       CLK_MSR_ID(1, "ring_osc_out_ee_1"),
-> +       CLK_MSR_ID(2, "ring_osc_out_ee_2"),
-> +       CLK_MSR_ID(3, "a53_ring_osc"),
-> +       CLK_MSR_ID(4, "gp0_pll"),
-> +       CLK_MSR_ID(6, "enci"),
-> +       CLK_MSR_ID(7, "clk81"),
-> +       CLK_MSR_ID(8, "encp"),
-> +       CLK_MSR_ID(9, "encl"),
-> +       CLK_MSR_ID(10, "vdac"),
-> +       CLK_MSR_ID(11, "rgmii_tx"),
-> +       CLK_MSR_ID(12, "pdm"),
-> +       CLK_MSR_ID(13, "amclk"),
-> +       CLK_MSR_ID(14, "fec_0"),
-> +       CLK_MSR_ID(15, "fec_1"),
-> +       CLK_MSR_ID(16, "fec_2"),
-> +       CLK_MSR_ID(17, "sys_pll_div16"),
-> +       CLK_MSR_ID(18, "sys_cpu_div16"),
-> +       CLK_MSR_ID(19, "hdmitx_sys"),
-> +       CLK_MSR_ID(20, "rtc_osc_out"),
-> +       CLK_MSR_ID(21, "i2s_in_src0"),
-> +       CLK_MSR_ID(22, "eth_phy_ref"),
-> +       CLK_MSR_ID(23, "hdmi_todig"),
-> +       CLK_MSR_ID(26, "sc_int"),
-> +       CLK_MSR_ID(28, "sar_adc"),
-> +       CLK_MSR_ID(31, "mpll_test_out"),
-> +       CLK_MSR_ID(32, "vdec"),
-> +       CLK_MSR_ID(35, "mali"),
-> +       CLK_MSR_ID(36, "hdmi_tx_pixel"),
-> +       CLK_MSR_ID(37, "i958"),
-> +       CLK_MSR_ID(38, "vdin_meas"),
-> +       CLK_MSR_ID(39, "pcm_sclk"),
-> +       CLK_MSR_ID(40, "pcm_mclk"),
-> +       CLK_MSR_ID(41, "eth_rx_or_rmii"),
-> +       CLK_MSR_ID(42, "mp0_out"),
-> +       CLK_MSR_ID(43, "fclk_div5"),
-> +       CLK_MSR_ID(44, "pwm_b"),
-> +       CLK_MSR_ID(45, "pwm_a"),
-> +       CLK_MSR_ID(46, "vpu"),
-> +       CLK_MSR_ID(47, "ddr_dpll_pt"),
-> +       CLK_MSR_ID(48, "mp1_out"),
-> +       CLK_MSR_ID(49, "mp2_out"),
-> +       CLK_MSR_ID(50, "mp3_out"),
-> +       CLK_MSR_ID(51, "nand_core"),
-> +       CLK_MSR_ID(52, "sd_emmc_b"),
-> +       CLK_MSR_ID(53, "sd_emmc_a"),
-> +       CLK_MSR_ID(55, "vid_pll_div_out"),
-> +       CLK_MSR_ID(56, "cci"),
-> +       CLK_MSR_ID(57, "wave420l_c"),
-> +       CLK_MSR_ID(58, "wave420l_b"),
-AFAIK the Chips&Media WAVE420L video codec is only available on GXM (S912)
-I assume reading this on GXBB or GXL simply reads 0?
+> > 2. Looks like your driver configured for DRD mode. Change it to "HOST
+> > only" mode.
+> Amlogic Meson8, Meson8b, Meson8m2 and GXBB SoCs come with two dwc2 controllers:
+> - a host-only one (which is the one I'm seeing problems with)
+> - an "OTG capable" one (where the dwc2's OTG detection IRQ/detection
+> *may* not be routed dwc2)
+>
+> this is why my driver was configured for DRD mode
+> but let's focus on the host-only core for now
+>
+> the only documentation about the USB implementation in these SoCs is
+> in the public S805 (Meson8b) and S905 (GXBB) datasheets.
+> the following sections are from these datasheets (both use an
+> indentical description):
+>
+> The OTG controller features:
+> * Support for the following speeds: High-Speed (HS,
+> 480-Mbps),Full-Speed (FS, 12-Mbps) and Low-Speed (LS, 1.5-Mbps) modes
+> * Multiple DMA/non DMA mode access support on the application side
+> * Supports up to 16 bidirectional endpoints, including control endpoint 0.
+> * Supports Session Request Protocol (SRP) and Host Negotiation Protocol (HNP)
+> * Supports up to 16 host channels.
+>
+> The Host controller features:
+> * Support for the following speeds: High-Speed (HS,
+> 480-Mbps),Full-Speed (FS, 12-Mbps) and Low-Speed (LS, 1.5-Mbps) modes
+> * Multiple DMA/non DMA mode access support on the application side
+> * Supports up to 16 host  channels.
+>
+> > 2. Please send us verbose debug log when device not recognized and after
+> > lsusb when device recognized.
+> do you want to see the dev_dbg() and dwc2_sch_dbg() output from the
+> dwc2 driver or is there some other way?
+gentle ping, did you have time to look into my questions so I can give
+you everything you need?
 
-> +       CLK_MSR_ID(59, "hcodec"),
-> +       CLK_MSR_ID(60, "alt_32k"),
-> +       CLK_MSR_ID(61, "gpio_msr"),
-> +       CLK_MSR_ID(62, "hevc"),
-> +       CLK_MSR_ID(66, "vid_lock"),
-> +       CLK_MSR_ID(70, "pwm_f"),
-> +       CLK_MSR_ID(71, "pwm_e"),
-> +       CLK_MSR_ID(72, "pwm_d"),
-> +       CLK_MSR_ID(73, "pwm_C"),
-should this be pwm_c (instead of pwm_C)?
-
-> +       CLK_MSR_ID(75, "aoclkx2_int"),
-> +       CLK_MSR_ID(76, "aoclk_int"),
-> +       CLK_MSR_ID(77, "rng_ring_osc_0"),
-> +       CLK_MSR_ID(78, "rng_ring_osc_1"),
-> +       CLK_MSR_ID(79, "rng_ring_osc_2"),
-> +       CLK_MSR_ID(80, "rng_ring_osc_3"),
-> +       CLK_MSR_ID(81, "vapb"),
-> +       CLK_MSR_ID(82, "ge2d"),
-> +};
-I did a quick check whether the clock IDs are really the same for all GX SoCs:
-apart from clocks missing on older SoCs (see for example the WAVE420L
-clocks above) there were only minor renames but no conflicts!
-
-> +
-> +static int meson_gx_measure_id(struct meson_gx_msr *priv, unsigned int id)
-> +{
-> +       unsigned int val;
-> +       int ret;
-> +
-> +       regmap_write(priv->regmap, MSR_CLK_REG0, 0);
-> +
-> +       /* Set measurement gate to 50uS */
-> +       regmap_update_bits(priv->regmap, MSR_CLK_REG0, MSR_CLK_DIV,
-> +                          FIELD_PREP(MSR_CLK_DIV, DIV_50US));
-> +
-> +       /* Set ID */
-> +       regmap_update_bits(priv->regmap, MSR_CLK_REG0, MSR_CLK_SRC,
-> +                          FIELD_PREP(MSR_CLK_SRC, id));
-> +
-> +       /* Enable & Start */
-> +       regmap_update_bits(priv->regmap, MSR_CLK_REG0,
-> +                          MSR_RUN | MSR_ENABLE,
-> +                          MSR_RUN | MSR_ENABLE);
-> +
-> +       ret = regmap_read_poll_timeout(priv->regmap, MSR_CLK_REG0,
-> +                                      val, !(val & MSR_BUSY), 10, 1000);
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* Disable */
-> +       regmap_update_bits(priv->regmap, MSR_CLK_REG0, MSR_ENABLE, 0);
-> +
-> +       /* Get the value in MHz*64 */
-> +       regmap_read(priv->regmap, MSR_CLK_REG2, &val);
-> +
-> +       return (((val + 31) & MSR_VAL_MASK) / 64) * 1000000;
-> +}
-> +
-> +static int clk_msr_show(struct seq_file *s, void *data)
-> +{
-> +       struct meson_gx_msr_id *clk_msr_id = s->private;
-> +       int val;
-> +
-> +       val = meson_gx_measure_id(clk_msr_id->priv, clk_msr_id->id);
-> +       if (val < 0)
-> +               return val;
-> +
-> +       seq_printf(s, "%d\n", val);
-> +
-> +       return 0;
-> +}
-> +DEFINE_SHOW_ATTRIBUTE(clk_msr);
-have you considered modelling this as clock driver instead?
-
-> +
-> +static const struct regmap_config clk_msr_regmap_config = {
-> +       .reg_bits = 32,
-> +       .val_bits = 32,
-> +       .reg_stride = 4,
-> +       .max_register = MSR_CLK_REG2,
-> +};
-> +
-> +static int meson_gx_msr_probe(struct platform_device *pdev)
-> +{
-> +       struct meson_gx_msr *priv;
-> +       struct resource *res;
-> +       struct dentry *root;
-> +       void __iomem *base;
-> +       int i;
-> +
-> +       priv = devm_kzalloc(&pdev->dev, sizeof(struct meson_gx_msr),
-> +                           GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       base = devm_ioremap_resource(&pdev->dev, res);
-> +       if (IS_ERR(base)) {
-> +               dev_err(&pdev->dev, "io resource mapping failed\n");
-> +               return PTR_ERR(base);
-> +       }
-> +
-> +       priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
-> +                                             &clk_msr_regmap_config);
-> +       if (IS_ERR(priv->regmap))
-> +               return PTR_ERR(priv->regmap);
-> +
-> +       root = debugfs_create_dir("meson-clk-msr", NULL);
-> +
-> +       for (i = 0 ; i < CLK_MSR_MAX ; ++i) {
-> +               if (!clk_msr[i].name)
-> +                       continue;
-> +
-> +               clk_msr[i].priv = priv;
-> +
-> +               debugfs_create_file(clk_msr[i].name, 0444, root,
-> +                                   &clk_msr[i], &clk_msr_fops);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id meson_gx_msr_match_table[] = {
-> +       { .compatible = "amlogic,meson-gx-clk-measure" },
-maybe pass the meson_gx_msr_id table here because it seems easy to add
-support for AXG and Meson8/Meson8b/Meson8m2 later on
+PS: it seems that this problem is not limited to the 32-bit Meson SoCs
+(Meson8, Meson8b, Meson8m2) but also appears on the 64-bit GXBB
+platform as confirmed by "rtp" on IRC today
+I guess this is because the SoCs from Meson8 to GXBB share the same
+USB controller and PHY design
 
 
 Regards
 Martin
--------------- next part --------------
-		[82] = "Cts_ge2d_clk       ",
-		[81] = "Cts_vapbclk        ",
-		[80] = "Rng_ring_osc_clk[3]",
-		[79] = "Rng_ring_osc_clk[2]",
-		[78] = "Rng_ring_osc_clk[1]",
-		[77] = "Rng_ring_osc_clk[0]",
-		[76] = "cts_aoclk_int      ",
-		[75] = "cts_aoclkx2_int    ",
-		[74] = "0                  ",
-		[73] = "cts_pwm_C_clk      ",
-		[72] = "cts_pwm_D_clk      ",
-		[71] = "cts_pwm_E_clk      ",
-		[70] = "cts_pwm_F_clk      ",
-		[69] = "0                  ",
-		[68] = "0                  ",
-		[67] = "0                  ",
-		[66] = "cts_vid_lock_clk   ",
-		[65] = "0                  ",
-		[64] = "0                  ",
-		[63] = "0                  ",
-		[62] = "cts_hevc_clk       ",
-		[61] = "gpio_clk_msr       ",
-		[60] = "alt_32k_clk        ",
-		[59] = "cts_hcodec_clk     ",
-		[58] = "0                  ",
-		[57] = "0					",
-		[56] = "0					",
-		[55] = "vid_pll_div_clk_out	",
-		[54] = "0					",
-		[53] = "Sd_emmc_clk_A		",
-		[52] = "Sd_emmc_clk_B		",
-		[51] = "Cts_nand_core_clk	",
-		[50] = "Mp3_clk_out			",
-		[49] = "mp2_clk_out			",
-		[48] = "mp1_clk_out			",
-		[47] = "ddr_dpll_pt_clk		",
-		[46] = "cts_vpu_clk			",
-		[45] = "cts_pwm_A_clk		",
-		[44] = "cts_pwm_B_clk		",
-		[43] = "fclk_div5			",
-		[42] = "mp0_clk_out			",
-		[41] = "eth_rx_clk_or_clk_rmii",
-		[40] = "cts_pcm_mclk			",
-		[39] = "cts_pcm_sclk			",
-		[38] = "cts_vdin_meas_clk			",
-		[37] = "cts_clk_i958			",
-		[36] = "cts_hdmi_tx_pixel_clk ",
-		[35] = "cts_mali_clk			",
-		[34] = "0					",
-		[33] = "0					",
-		[32] = "cts_vdec_clk			",
-		[31] = "MPLL_CLK_TEST_OUT	",
-		[30] = "0					",
-		[29] = "0					",
-		[28] = "cts_sar_adc_clk					   ",
-		[27] = "0					   ",
-		[26] = "sc_clk_int			   ",
-		[25] = "0					   ",
-		[24] = "0					   ",
-		[23] = "HDMI_CLK_TODIG		   ",
-		[22] = "eth_phy_ref_clk		   ",
-		[21] = "i2s_clk_in_src0		   ",
-		[20] = "rtc_osc_clk_out		   ",
-		[19] = "cts_hdmitx_sys_clk	   ",
-		[18] = "sys_cpu_clk_div16		   ",
-		[17] = "sys_pll_div16					   ",
-		[16] = "cts_FEC_CLK_2		   ",
-		[15] = "cts_FEC_CLK_1		   ",
-		[14] = "cts_FEC_CLK_0		   ",
-		[13] = "cts_amclk			   ",
-		[12] = "Cts_pdm_clk			   ",
-		[11] = "rgmii_tx_clk_to_phy	   ",
-		[10] = "cts_vdac_clk			   ",
-		[9] = "cts_encl_clk			  ",
-		[8] = "cts_encp_clk			  ",
-		[7] = "clk81					  ",
-		[6] = "cts_enci_clk			  ",
-		[5] = "0						  ",
-		[4] = "gp0_pll_clk			  ",
-		[3] = "A53_ring_osc_clk		  ",
-		[2] = "am_ring_osc_clk_out_ee[2]",
-		[1] = "am_ring_osc_clk_out_ee[1]",
-		[0] = "am_ring_osc_clk_out_ee[0]",
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: gxbb-to-gxl.diff
-Type: text/x-patch
-Size: 937 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180703/9e904351/attachment.bin>
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: gxl-to-gxm.diff
-Type: text/x-patch
-Size: 1012 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180703/9e904351/attachment-0001.bin>
--------------- next part --------------
-		[82] = "Cts_ge2d_clk       ",
-		[81] = "Cts_vapbclk        ",
-		[80] = "Rng_ring_osc_clk[3]",
-		[79] = "Rng_ring_osc_clk[2]",
-		[78] = "Rng_ring_osc_clk[1]",
-		[77] = "Rng_ring_osc_clk[0]",
-		[76] = "cts_aoclk_int      ",
-		[75] = "cts_aoclkx2_int    ",
-		[74] = "0                  ",
-		[73] = "cts_pwm_C_clk      ",
-		[72] = "cts_pwm_D_clk      ",
-		[71] = "cts_pwm_E_clk      ",
-		[70] = "cts_pwm_F_clk      ",
-		[69] = "0                  ",
-		[68] = "0                  ",
-		[67] = "0                  ",
-		[66] = "cts_vid_lock_clk   ",
-		[65] = "0                  ",
-		[64] = "0                  ",
-		[63] = "0                  ",
-		[62] = "cts_hevc_clk       ",
-		[61] = "gpio_clk_msr       ",
-		[60] = "alt_32k_clk        ",
-		[59] = "cts_hcodec_clk     ",
-		[58] = "cts_wave420l_bclk                  ",
-		[57] = "cts_wave420l_cclk	",
-		[56] = "cts_cci_clk			",
-		[55] = "vid_pll_div_clk_out	",
-		[54] = "0					",
-		[53] = "Sd_emmc_clk_A		",
-		[52] = "Sd_emmc_clk_B		",
-		[51] = "Cts_nand_core_clk	",
-		[50] = "Mp3_clk_out			",
-		[49] = "mp2_clk_out			",
-		[48] = "mp1_clk_out			",
-		[47] = "ddr_dpll_pt_clk		",
-		[46] = "cts_vpu_clk			",
-		[45] = "cts_pwm_A_clk		",
-		[44] = "cts_pwm_B_clk		",
-		[43] = "fclk_div5			",
-		[42] = "mp0_clk_out			",
-		[41] = "eth_rx_clk_or_clk_rmii",
-		[40] = "cts_pcm_mclk			",
-		[39] = "cts_pcm_sclk			",
-		[38] = "cts_vdin_meas_clk			",
-		[37] = "cts_clk_i958			",
-		[36] = "cts_hdmi_tx_pixel_clk ",
-		[35] = "cts_mali_clk			",
-		[34] = "0					",
-		[33] = "0					",
-		[32] = "cts_vdec_clk			",
-		[31] = "MPLL_CLK_TEST_OUT	",
-		[30] = "0					",
-		[29] = "0					",
-		[28] = "cts_sar_adc_clk					   ",
-		[27] = "0					   ",
-		[26] = "sc_clk_int			   ",
-		[25] = "0					   ",
-		[24] = "sys_cpu1_clk_div16			",
-		[23] = "HDMI_CLK_TODIG		   ",
-		[22] = "eth_phy_ref_clk		   ",
-		[21] = "i2s_clk_in_src0		   ",
-		[20] = "rtc_osc_clk_out		   ",
-		[19] = "cts_hdmitx_sys_clk	   ",
-		[18] = "sys_cpu_clk_div16		   ",
-		[17] = "sys_pll_div16					   ",
-		[16] = "cts_FEC_CLK_2		   ",
-		[15] = "cts_FEC_CLK_1		   ",
-		[14] = "cts_FEC_CLK_0		   ",
-		[13] = "cts_amclk			   ",
-		[12] = "Cts_pdm_clk			   ",
-		[11] = "mac_eth_tx_clk	   ",
-		[10] = "cts_vdac_clk			   ",
-		[9] = "cts_encl_clk			  ",
-		[8] = "cts_encp_clk			  ",
-		[7] = "clk81					  ",
-		[6] = "cts_enci_clk			  ",
-		[5] = "0						  ",
-		[4] = "gp0_pll_clk			  ",
-		[3] = "A53_ring_osc_clk		  ",
-		[2] = "am_ring_osc_clk_out_ee[2]",
-		[1] = "am_ring_osc_clk_out_ee[1]",
-		[0] = "am_ring_osc_clk_out_ee[0]",
--------------- next part --------------
-		[82] = "Cts_ge2d_clk       ",
-		[81] = "Cts_vapbclk        ",
-		[80] = "Rng_ring_osc_clk[3]",
-		[79] = "Rng_ring_osc_clk[2]",
-		[78] = "Rng_ring_osc_clk[1]",
-		[77] = "Rng_ring_osc_clk[0]",
-		[76] = "cts_aoclk_int      ",
-		[75] = "cts_aoclkx2_int    ",
-		[74] = "0                  ",
-		[73] = "cts_pwm_C_clk      ",
-		[72] = "cts_pwm_D_clk      ",
-		[71] = "cts_pwm_E_clk      ",
-		[70] = "cts_pwm_F_clk      ",
-		[69] = "0                  ",
-		[68] = "0                  ",
-		[67] = "0                  ",
-		[66] = "cts_vid_lock_clk   ",
-		[65] = "0                  ",
-		[64] = "0                  ",
-		[63] = "0                  ",
-		[62] = "cts_hevc_clk       ",
-		[61] = "gpio_clk_msr       ",
-		[60] = "alt_32k_clk        ",
-		[59] = "cts_hcodec_clk     ",
-		[58] = "0                  ",
-		[57] = "0					",
-		[56] = "0					",
-		[55] = "vid_pll_div_clk_out	",
-		[54] = "0					",
-		[53] = "Sd_emmc_clk_A		",
-		[52] = "Sd_emmc_clk_B		",
-		[51] = "Cts_nand_core_clk	",
-		[50] = "Mp3_clk_out			",
-		[49] = "mp2_clk_out			",
-		[48] = "mp1_clk_out			",
-		[47] = "ddr_dpll_pt_clk		",
-		[46] = "cts_vpu_clk			",
-		[45] = "cts_pwm_A_clk		",
-		[44] = "cts_pwm_B_clk		",
-		[43] = "fclk_div5			",
-		[42] = "mp0_clk_out			",
-		[41] = "eth_rx_clk_or_clk_rmii",
-		[40] = "cts_pcm_mclk			",
-		[39] = "cts_pcm_sclk			",
-		[38] = "0					",
-		[37] = "cts_clk_i958			",
-		[36] = "cts_hdmi_tx_pixel_clk ",
-		[35] = "cts_mali_clk			",
-		[34] = "0					",
-		[33] = "0					",
-		[32] = "cts_vdec_clk			",
-		[31] = "MPLL_CLK_TEST_OUT	",
-		[30] = "0					",
-		[29] = "0					",
-		[28] = "0					   ",
-		[27] = "0					   ",
-		[26] = "sc_clk_int			   ",
-		[25] = "0					   ",
-		[24] = "0					   ",
-		[23] = "HDMI_CLK_TODIG		   ",
-		[22] = "eth_phy_ref_clk		   ",
-		[21] = "i2s_clk_in_src0		   ",
-		[20] = "rtc_osc_clk_out		   ",
-		[19] = "cts_hdmitx_sys_clk	   ",
-		[18] = "A53_clk_div16		   ",
-		[17] = "0					   ",
-		[16] = "cts_FEC_CLK_2		   ",
-		[15] = "cts_FEC_CLK_1		   ",
-		[14] = "cts_FEC_CLK_0		   ",
-		[13] = "cts_amclk			   ",
-		[12] = "Cts_pdm_clk			   ",
-		[11] = "rgmii_tx_clk_to_phy	   ",
-		[10] = "cts_vdac_clk			   ",
-		[9] = "cts_encl_clk			  " ,
-		[8] = "cts_encp_clk			  " ,
-		[7] = "clk81					  " ,
-		[6] = "cts_enci_clk			  " ,
-		[5] = "0						  " ,
-		[4] = "gp0_pll_clk			  " ,
-		[3] = "A53_ring_osc_clk		  " ,
-		[2] = "am_ring_osc_clk_out_ee[2]" ,
-		[1] = "am_ring_osc_clk_out_ee[1]" ,
-		[0] = "am_ring_osc_clk_out_ee[0]" ,
