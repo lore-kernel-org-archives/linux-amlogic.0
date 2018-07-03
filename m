@@ -1,38 +1,47 @@
 From: boris.brezillon@bootlin.com (Boris Brezillon)
-Date: Tue, 3 Jul 2018 09:17:11 +0200
-Subject: [PATCH 0/3] clk: meson: add a sub EMMC clock controller support
-In-Reply-To: <20180703145716.31860-1-yixun.lan@amlogic.com>
+Date: Tue, 3 Jul 2018 09:21:07 +0200
+Subject: [PATCH 2/3] clk: meson: add sub EMMC clock dt-bindings IDs
+In-Reply-To: <20180703145716.31860-3-yixun.lan@amlogic.com>
 References: <20180703145716.31860-1-yixun.lan@amlogic.com>
-Message-ID: <20180703091711.1d52c278@bbrezillon>
+ <20180703145716.31860-3-yixun.lan@amlogic.com>
+Message-ID: <20180703092107.51497a8f@bbrezillon>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 3 Jul 2018 14:57:13 +0000
+On Tue, 3 Jul 2018 14:57:15 +0000
 Yixun Lan <yixun.lan@amlogic.com> wrote:
 
-> This driver will add a EMMC clock controller driver support.
-> The original idea about adding a clock controller is during the
-> discussion in the NAND driver mainline effort[1].
+> Add two clock bindings IDs which provided by the EMMC clock controller,
+> These two clocks will be used by EMMC or NAND driver.
 > 
-> I've tested this in the S400 board (AXG platform) by using NAND driver.
-> 
-> [1] https://lkml.kernel.org/r/20180628090034.0637a062 at xps13
-
-This is much better :-).
-
-> 
-> Yixun Lan (3):
->   clk: meson: add DT documentation for emmc clock controller
->   clk: meson: add sub EMMC clock dt-bindings IDs
->   clk: meson: add sub EMMC clock controller driver
-> 
->  .../bindings/clock/amlogic,emmc-clkc.txt      |  45 ++++++
->  drivers/clk/meson/Kconfig                     |   9 ++
->  drivers/clk/meson/Makefile                    |   1 +
->  drivers/clk/meson/emmc-clkc.c                 | 136 ++++++++++++++++++
->  include/dt-bindings/clock/emmc-clkc.h         |  14 ++
->  5 files changed, 205 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,emmc-clkc.txt
->  create mode 100644 drivers/clk/meson/emmc-clkc.c
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  include/dt-bindings/clock/emmc-clkc.h | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 >  create mode 100644 include/dt-bindings/clock/emmc-clkc.h
 > 
+> diff --git a/include/dt-bindings/clock/emmc-clkc.h b/include/dt-bindings/clock/emmc-clkc.h
+> new file mode 100644
+> index 000000000000..d9972c400e58
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/emmc-clkc.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Meson EMMC sub clock tree IDs
+> + *
+> + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __EMMC_CLKC_H
+> +#define __EMMC_CLKC_H
+> +
+> +#define CLKID_EMMC_C_MUX				0
+
+Looks like the MUX clk is the parent of the DIV one, and I guess the clk
+driver is able to select the best parent+div pair for a requested rate.
+Do you really need to expose the MUX to users?
+
+> +#define CLKID_EMMC_C_DIV				1
+> +
+> +#endif
