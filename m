@@ -1,45 +1,90 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 03 Jul 2018 10:01:52 +0200
-Subject: [GIT PULL] Amlogic clock fixes for v4.18-rc
-Message-ID: <1530604912.2900.152.camel@baylibre.com>
+Date: Tue, 03 Jul 2018 10:09:33 +0200
+Subject: [PATCH 2/3] clk: meson: add sub EMMC clock dt-bindings IDs
+In-Reply-To: <4b88c509-27ea-2605-023b-de208921e157@amlogic.com>
+References: <20180703145716.31860-1-yixun.lan@amlogic.com>
+ <20180703145716.31860-3-yixun.lan@amlogic.com>
+ <20180703092107.51497a8f@bbrezillon>
+ <4b88c509-27ea-2605-023b-de208921e157@amlogic.com>
+Message-ID: <1530605373.2900.158.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear clock maintainers,
+On Tue, 2018-07-03 at 15:36 +0800, Yixun Lan wrote:
+> Hi Broris
+> 
+>  thanks for your quick response, and see my comments below
+> 
+> On 07/03/18 15:21, Boris Brezillon wrote:
+> > On Tue, 3 Jul 2018 14:57:15 +0000
+> > Yixun Lan <yixun.lan@amlogic.com> wrote:
+> > 
+> > > Add two clock bindings IDs which provided by the EMMC clock controller,
+> > > These two clocks will be used by EMMC or NAND driver.
+> > > 
+> > > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> > > ---
+> > >  include/dt-bindings/clock/emmc-clkc.h | 14 ++++++++++++++
+> > >  1 file changed, 14 insertions(+)
+> > >  create mode 100644 include/dt-bindings/clock/emmc-clkc.h
+> > > 
+> > > diff --git a/include/dt-bindings/clock/emmc-clkc.h b/include/dt-bindings/clock/emmc-clkc.h
+> > > new file mode 100644
+> > > index 000000000000..d9972c400e58
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/clock/emmc-clkc.h
+> > > @@ -0,0 +1,14 @@
+> > > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> > > +/*
+> > > + * Meson EMMC sub clock tree IDs
+> > > + *
+> > > + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+> > > + */
+> > > +
+> > > +#ifndef __EMMC_CLKC_H
+> > > +#define __EMMC_CLKC_H
+> > > +
+> > > +#define CLKID_EMMC_C_MUX				0
+> > 
+> > Looks like the MUX clk is the parent of the DIV one, and I guess the clk
+> > driver is able to select the best parent+div pair for a requested rate.
+> > Do you really need to expose the MUX to users?
+> > 
+> 
+> Yes, It's true, the mux is parent of the div clock.
+> 
+> while testing for the NAND driver, I find it's kind of loose about the
+> parent of the clock, so selecting the div (and let CCF decide freely) is
+> actually works fine
+> 
+> but for the EMMC driver, especially when running at high clock, it's
+> kind of picky about the parent of the clock, 
 
-Below is a request to pull amlogic clock fixes for v4.18.
+It would be nice to get an explanation about this behavior.
+it seems that even of the rate provided by CLKID_SD_EMMC_X_CLK0 (main clock
+controller) is correct, the eMMC cannot reliably tune with it.
 
-These are two simple fixes, yet the first one is quite important as it solves
-boots hangs we've been having when FDIV2 gets disabled. This did not show up
-before because this particular clock is heavily used and only gets disabled for
-a very short period of time before modules (such as ethernet or emmc) probe.
+Could you elaborate on this ?
 
-Cheers
-Jerome
+> so the driver may want to
+> manually choose the parent of the mux clock (example fclk_div2 here).
+> That's why I'm exporting this clock ID.
 
-The following changes since commit ce397d215ccd07b8ae3f71db689aedb85d56ab40:
+ATM the EMMC driver will not use this provider. If this is the only reason, it
+could be done later.
 
-  Linux 4.18-rc1 (2018-06-17 08:04:49 +0900)
+Is the NAND driver "picky" as well ?
 
-are available in the Git repository at:
-
-  git://github.com/BayLibre/clk-meson.git tags/meson-clk-fixes-4.18-1
-
-for you to fetch changes up to 7813c14c9475dbebcd7f41bd498426d01255acf9:
-
-  clk: meson: audio-divider is one based (2018-06-21 10:10:50 +0200)
-
-----------------------------------------------------------------
-- fix boot issue with gxbb and gxl platforms
-- fix racalculation error in the clk_audio_divider
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      clk: meson: audio-divider is one based
-
-Neil Armstrong (1):
-      clk: meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL
-
- drivers/clk/meson/clk-audio-divider.c | 2 +-
- drivers/clk/meson/gxbb.c              | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+> 
+> 
+> > > +#define CLKID_EMMC_C_DIV				1
+> > > +
+> > > +#endif
+> > 
+> > .
+> > 
+> 
+> --
+> To unsubscribe from this list: send the line "unsubscribe linux-clk" in
+> the body of a message to majordomo at vger.kernel.org
+> More majordomo info at  http://vger.kernel.org/majordomo-info.html
