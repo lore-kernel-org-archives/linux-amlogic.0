@@ -1,242 +1,100 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed,  4 Jul 2018 18:54:58 +0200
-Subject: [PATCH 3/3] clk: meson: add gen_clk
-In-Reply-To: <20180704165458.24149-1-jbrunet@baylibre.com>
-References: <20180704165458.24149-1-jbrunet@baylibre.com>
-Message-ID: <20180704165458.24149-4-jbrunet@baylibre.com>
+Date: Wed,  4 Jul 2018 18:57:24 +0200
+Subject: [PATCH] pinctrl: meson: add gen_clk pins
+Message-ID: <20180704165724.3387-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-GEN_CLK is able to route several internal clocks to one of the SoC
-pads. In the future, even more clocks could be made accessible using
-cts_msr_clk - the clock measure block.
+Add the pinctrl configuration for gen_clk on gxbb and axg.
+gen_clk allows to output and devide several internal clocks of SoC,
+including most of the plls.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg.c  | 64 +++++++++++++++++++++++++++++++++++++++++++++-
- drivers/clk/meson/axg.h  |  4 ++-
- drivers/clk/meson/gxbb.c | 66 ++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/gxbb.h |  4 ++-
- 4 files changed, 135 insertions(+), 3 deletions(-)
+ drivers/pinctrl/meson/pinctrl-meson-axg.c  | 9 +++++++++
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 8 ++++++++
+ 2 files changed, 17 insertions(+)
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 2d458092884a..00ce62ad6416 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -909,6 +909,63 @@ static struct clk_regmap axg_sd_emmc_c_clk0 = {
- 	},
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+index 46a0918bd284..ad502eda4afa 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+@@ -672,6 +672,9 @@ static const unsigned int jtag_ao_tdo_pins[] = {GPIOAO_4};
+ static const unsigned int jtag_ao_clk_pins[] = {GPIOAO_5};
+ static const unsigned int jtag_ao_tms_pins[] = {GPIOAO_7};
+ 
++/* gen_clk */
++static const unsigned int gen_clk_ee_pins[] = {GPIOAO_13};
++
+ static struct meson_pmx_group meson_axg_aobus_groups[] = {
+ 	GPIO_GROUP(GPIOAO_0),
+ 	GPIO_GROUP(GPIOAO_1),
+@@ -718,6 +721,7 @@ static struct meson_pmx_group meson_axg_aobus_groups[] = {
+ 	GROUP(jtag_ao_tdo, 4),
+ 	GROUP(jtag_ao_clk, 4),
+ 	GROUP(jtag_ao_tms, 4),
++	GROUP(gen_clk_ee, 4),
  };
  
-+static u32 mux_table_gen_clk[]	= { 0, 4, 5, 6, 7, 8,
-+				    9, 10, 11, 13, 14, };
-+static const char * const gen_clk_parent_names[] = {
-+	"xtal", "hifi_pll", "mpll0", "mpll1", "mpll2", "mpll3",
-+	"fclk_div4", "fclk_div3", "fclk_div5", "fclk_div7", "gp0_pll",
-+};
-+
-+static struct clk_regmap axg_gen_clk_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_GEN_CLK_CNTL,
-+		.mask = 0xf,
-+		.shift = 12,
-+		.table = mux_table_gen_clk,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_clk_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		/*
-+		 * bits 15:12 selects from 14 possible parents:
-+		 * xtal, [rtc_oscin_i], [sys_cpu_div16], [ddr_dpll_pt],
-+		 * hifi_pll, mpll0, mpll1, mpll2, mpll3, fdiv4,
-+		 * fdiv3, fdiv5, [cts_msr_clk], fdiv7, gp0_pll
-+		 */
-+		.parent_names = gen_clk_parent_names,
-+		.num_parents = ARRAY_SIZE(gen_clk_parent_names),
-+	},
-+};
-+
-+static struct clk_regmap axg_gen_clk_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_GEN_CLK_CNTL,
-+		.shift = 0,
-+		.width = 11,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_clk_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "gen_clk_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap axg_gen_clk = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_GEN_CLK_CNTL,
-+		.bit_idx = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_clk",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "gen_clk_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- /* Everything Else (EE) domain gates */
- static MESON_GATE(axg_ddr, HHI_GCLK_MPEG0, 0);
- static MESON_GATE(axg_audio_locker, HHI_GCLK_MPEG0, 2);
-@@ -1047,7 +1104,9 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
- 		[CLKID_PCIE_CML_EN0]		= &axg_pcie_cml_en0.hw,
- 		[CLKID_PCIE_CML_EN1]		= &axg_pcie_cml_en1.hw,
- 		[CLKID_MIPI_ENABLE]		= &axg_mipi_enable.hw,
--
-+		[CLKID_GEN_CLK_SEL]		= &axg_gen_clk_sel.hw,
-+		[CLKID_GEN_CLK_DIV]		= &axg_gen_clk_div.hw,
-+		[CLKID_GEN_CLK]			= &axg_gen_clk.hw,
- 		[NR_CLKS]			= NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -1132,6 +1191,9 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
- 	&axg_pcie_cml_en0,
- 	&axg_pcie_cml_en1,
- 	&axg_mipi_enable,
-+	&axg_gen_clk_sel,
-+	&axg_gen_clk_div,
-+	&axg_gen_clk,
+ static const char * const gpio_periphs_groups[] = {
+@@ -947,6 +951,10 @@ static const char * const tdmb_groups[] = {
+ 	"tdmb_din2", "tdmb_dout2", "tdmb_din3",	"tdmb_dout3",
  };
  
- static const struct of_device_id clkc_match_table[] = {
-diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
-index 6e55ebd6c77d..1d04144a1b2c 100644
---- a/drivers/clk/meson/axg.h
-+++ b/drivers/clk/meson/axg.h
-@@ -131,8 +131,10 @@
- #define CLKID_PCIE_PLL				76
- #define CLKID_PCIE_MUX				77
- #define CLKID_PCIE_REF				78
-+#define CLKID_GEN_CLK_SEL			82
-+#define CLKID_GEN_CLK_DIV			83
- 
--#define NR_CLKS					82
-+#define NR_CLKS					85
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/axg-clkc.h>
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 894a6adaa17a..86d3ae58e84c 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -1624,6 +1624,63 @@ static struct clk_regmap gxbb_vdec_hevc = {
- 	},
++static const char * const gen_clk_ee_groups[] = {
++	"gen_clk_ee",
++};
++
+ static struct meson_pmx_func meson_axg_periphs_functions[] = {
+ 	FUNCTION(gpio_periphs),
+ 	FUNCTION(emmc),
+@@ -992,6 +1000,7 @@ static struct meson_pmx_func meson_axg_aobus_functions[] = {
+ 	FUNCTION(pwm_ao_c),
+ 	FUNCTION(pwm_ao_d),
+ 	FUNCTION(jtag_ao),
++	FUNCTION(gen_clk_ee),
  };
  
-+static u32 mux_table_gen_clk[]	= { 0, 4, 5, 6, 7, 8,
-+				    9, 10, 11, 13, 14, };
-+static const char * const gen_clk_parent_names[] = {
-+	"xtal", "vdec_1", "vdec_hevc", "mpll0", "mpll1", "mpll2",
-+	"fclk_div4", "fclk_div3", "fclk_div5", "fclk_div7", "gp0_pll",
-+};
+ static struct meson_bank meson_axg_periphs_banks[] = {
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index 2c97a2e07a5f..4ceb06f8a33c 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -243,6 +243,8 @@ static const unsigned int i2s_out_ch67_y_pins[]	= { GPIOY_10 };
+ 
+ static const unsigned int spdif_out_y_pins[]	= { GPIOY_12 };
+ 
++static const unsigned int gen_clk_out_pins[]	= { GPIOY_15 };
 +
-+static struct clk_regmap gxbb_gen_clk_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_GEN_CLK_CNTL,
-+		.mask = 0xf,
-+		.shift = 12,
-+		.table = mux_table_gen_clk,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_clk_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		/*
-+		 * bits 15:12 selects from 14 possible parents:
-+		 * xtal, [rtc_oscin_i], [sys_cpu_div16], [ddr_dpll_pt],
-+		 * vid_pll, vid2_pll (hevc), mpll0, mpll1, mpll2, fdiv4,
-+		 * fdiv3, fdiv5, [cts_msr_clk], fdiv7, gp0_pll
-+		 */
-+		.parent_names = gen_clk_parent_names,
-+		.num_parents = ARRAY_SIZE(gen_clk_parent_names),
-+	},
-+};
-+
-+static struct clk_regmap gxbb_gen_clk_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_GEN_CLK_CNTL,
-+		.shift = 0,
-+		.width = 11,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_clk_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "gen_clk_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap gxbb_gen_clk = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_GEN_CLK_CNTL,
-+		.bit_idx = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gen_clk",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "gen_clk_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- /* Everything Else (EE) domain gates */
- static MESON_GATE(gxbb_ddr, HHI_GCLK_MPEG0, 0);
- static MESON_GATE(gxbb_dos, HHI_GCLK_MPEG0, 1);
-@@ -1873,6 +1930,9 @@ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
- 		[CLKID_VDEC_HEVC_SEL]	    = &gxbb_vdec_hevc_sel.hw,
- 		[CLKID_VDEC_HEVC_DIV]	    = &gxbb_vdec_hevc_div.hw,
- 		[CLKID_VDEC_HEVC]	    = &gxbb_vdec_hevc.hw,
-+		[CLKID_GEN_CLK_SEL]	    = &gxbb_gen_clk_sel.hw,
-+		[CLKID_GEN_CLK_DIV]	    = &gxbb_gen_clk_div.hw,
-+		[CLKID_GEN_CLK]		    = &gxbb_gen_clk.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -2035,6 +2095,9 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
- 		[CLKID_VDEC_HEVC_SEL]	    = &gxbb_vdec_hevc_sel.hw,
- 		[CLKID_VDEC_HEVC_DIV]	    = &gxbb_vdec_hevc_div.hw,
- 		[CLKID_VDEC_HEVC]	    = &gxbb_vdec_hevc.hw,
-+		[CLKID_GEN_CLK_SEL]	    = &gxbb_gen_clk_sel.hw,
-+		[CLKID_GEN_CLK_DIV]	    = &gxbb_gen_clk_div.hw,
-+		[CLKID_GEN_CLK]		    = &gxbb_gen_clk.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -2199,6 +2262,9 @@ static struct clk_regmap *const gx_clk_regmaps[] = {
- 	&gxbb_vdec_hevc_sel,
- 	&gxbb_vdec_hevc_div,
- 	&gxbb_vdec_hevc,
-+	&gxbb_gen_clk_sel,
-+	&gxbb_gen_clk_div,
-+	&gxbb_gen_clk,
+ static const struct pinctrl_pin_desc meson_gxbb_aobus_pins[] = {
+ 	MESON_PIN(GPIOAO_0),
+ 	MESON_PIN(GPIOAO_1),
+@@ -453,6 +455,7 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
+ 	GROUP(i2s_out_ch45_y,	1,	6),
+ 	GROUP(i2s_out_ch67_y,	1,	7),
+ 	GROUP(spdif_out_y,	1,	9),
++	GROUP(gen_clk_out,	6,	15),
+ 
+ 	/* Bank Z */
+ 	GROUP(eth_mdio,		6,	1),
+@@ -706,6 +709,10 @@ static const char * const spdif_out_groups[] = {
+ 	"spdif_out_y",
  };
  
- struct clkc_data {
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index df6c21d368c6..20dfb1daf5b8 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -157,8 +157,10 @@
- #define CLKID_VDEC_1_DIV	  152
- #define CLKID_VDEC_HEVC_SEL	  154
- #define CLKID_VDEC_HEVC_DIV	  155
-+#define CLKID_GEN_CLK_SEL	  157
-+#define CLKID_GEN_CLK_DIV	  158
++static const char * const gen_clk_out_groups[] = {
++	"gen_clk_out",
++};
++
+ static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
+ 	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
+@@ -790,6 +797,7 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
+ 	FUNCTION(hdmi_i2c),
+ 	FUNCTION(i2s_out),
+ 	FUNCTION(spdif_out),
++	FUNCTION(gen_clk_out),
+ };
  
--#define NR_CLKS			  157
-+#define NR_CLKS			  160
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/gxbb-clkc.h>
+ static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
 -- 
 2.14.4
