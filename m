@@ -1,32 +1,41 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed,  4 Jul 2018 18:54:56 +0200
-Subject: [PATCH 1/3] clk: meson: gxbb: remove HHI_GEN_CLK_CTNL duplicate
- definition
+Date: Wed,  4 Jul 2018 18:54:57 +0200
+Subject: [PATCH 2/3] clk: meson: expose GEN_CLK clkid
 In-Reply-To: <20180704165458.24149-1-jbrunet@baylibre.com>
 References: <20180704165458.24149-1-jbrunet@baylibre.com>
-Message-ID: <20180704165458.24149-2-jbrunet@baylibre.com>
+Message-ID: <20180704165458.24149-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-HHI_GEN_CLK_CTNL is defined twice, just remove the duplicate definition
+Expose GEN_CLK clock id
 
-Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/gxbb.h | 1 -
- 1 file changed, 1 deletion(-)
+ include/dt-bindings/clock/axg-clkc.h  | 1 +
+ include/dt-bindings/clock/gxbb-clkc.h | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index ec1a812bf1fd..df6c21d368c6 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -66,7 +66,6 @@
- #define HHI_USB_CLK_CNTL		0x220 /* 0x88 offset in data sheet */
- #define HHI_32K_CLK_CNTL		0x224 /* 0x89 offset in data sheet */
- #define HHI_GEN_CLK_CNTL		0x228 /* 0x8a offset in data sheet */
--#define HHI_GEN_CLK_CNTL		0x228 /* 0x8a offset in data sheet */
+diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
+index 70371228b7e0..fd1f938c38d1 100644
+--- a/include/dt-bindings/clock/axg-clkc.h
++++ b/include/dt-bindings/clock/axg-clkc.h
+@@ -71,5 +71,6 @@
+ #define CLKID_PCIE_CML_EN0			79
+ #define CLKID_PCIE_CML_EN1			80
+ #define CLKID_MIPI_ENABLE			81
++#define CLKID_GEN_CLK				84
  
- #define HHI_PCM_CLK_CNTL		0x258 /* 0x96 offset in data sheet */
- #define HHI_NAND_CLK_CNTL		0x25C /* 0x97 offset in data sheet */
+ #endif /* __AXG_CLKC_H */
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index 7a892be90549..3979d48c025f 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -127,5 +127,6 @@
+ #define CLKID_VAPB		140
+ #define CLKID_VDEC_1		153
+ #define CLKID_VDEC_HEVC		156
++#define CLKID_GEN_CLK		159
+ 
+ #endif /* __GXBB_CLKC_H */
 -- 
 2.14.4
