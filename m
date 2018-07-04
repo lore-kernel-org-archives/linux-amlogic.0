@@ -1,40 +1,28 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 4 Jul 2018 16:57:20 +0200
-Subject: [PATCH 0/3] pinctrl: meson-g12a: add pinctrl driver support
-In-Reply-To: <20180704224511.29350-1-yixun.lan@amlogic.com>
-References: <20180704224511.29350-1-yixun.lan@amlogic.com>
-Message-ID: <78da7e13-e80b-d714-86d0-7c5f6fc0d9f5@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed,  4 Jul 2018 18:54:55 +0200
+Subject: [PATCH 0/3] clk: meson: add gen_clk
+Message-ID: <20180704165458.24149-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yixun,
+This patch adds GEN_CLK, which a very useful clock for debugging.
+It allows to output most of the SoC plls through one of the SoC pad.
 
-On 05/07/2018 00:45, Yixun Lan wrote:
-> This patch series try to add pinctrl driver support for
-> the Meson-G12A SoC.
+In the future, we could even use clk_measure with it to access the
+vast majority of the SoC clocks.
 
-Thanks for submitting these patches.
+Jerome Brunet (3):
+  clk: meson: gxbb: remove HHI_GEN_CLK_CTNL duplicate definition
+  clk: meson: expose GEN_CLK clkid
+  clk: meson: add gen_clk
 
-Can you explicit this patchset with more details on the G12A SoC family ?
-It's relationship with AXG and the differences in term of pinmuxing with the other SoC families ?
+ drivers/clk/meson/axg.c               | 64 ++++++++++++++++++++++++++++++++-
+ drivers/clk/meson/axg.h               |  4 ++-
+ drivers/clk/meson/gxbb.c              | 66 +++++++++++++++++++++++++++++++++++
+ drivers/clk/meson/gxbb.h              |  5 +--
+ include/dt-bindings/clock/axg-clkc.h  |  1 +
+ include/dt-bindings/clock/gxbb-clkc.h |  1 +
+ 6 files changed, 137 insertions(+), 4 deletions(-)
 
-Why is there a GPIOE bank within the AO controller ?
-
-Thanks,
-Neil
-
-> 
-> Yixun Lan (3):
->   documentation: Add compatibles for Amlogic Meson G12A pin controllers
->   dt-bindings: pinctrl: meson-g12a: document pin name
->   pinctrl: meson-g12a: add pinctrl driver support
-> 
->  .../bindings/pinctrl/meson,pinctrl.txt        |    2 +
->  drivers/pinctrl/meson/Kconfig                 |    6 +
->  drivers/pinctrl/meson/Makefile                |    1 +
->  drivers/pinctrl/meson/pinctrl-meson-g12a.c    | 1432 +++++++++++++++++
->  include/dt-bindings/gpio/meson-g12a-gpio.h    |  114 ++
->  5 files changed, 1555 insertions(+)
->  create mode 100644 drivers/pinctrl/meson/pinctrl-meson-g12a.c
->  create mode 100644 include/dt-bindings/gpio/meson-g12a-gpio.h
-> 
+-- 
+2.14.4
