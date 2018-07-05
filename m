@@ -1,84 +1,57 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Thu, 5 Jul 2018 10:52:12 +0800
-Subject: [PATCH 0/3] pinctrl: meson-g12a: add pinctrl driver support
-In-Reply-To: <78da7e13-e80b-d714-86d0-7c5f6fc0d9f5@baylibre.com>
-References: <20180704224511.29350-1-yixun.lan@amlogic.com>
- <78da7e13-e80b-d714-86d0-7c5f6fc0d9f5@baylibre.com>
-Message-ID: <886462fa-1833-a99a-a2fa-5b7dd58341fd@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu,  5 Jul 2018 11:50:42 +0200
+Subject: [PATCH 1/2] dt-bindings: amlogic: Add support for GXL S805X and the
+ P241 board
+In-Reply-To: <1530784243-20823-1-git-send-email-narmstrong@baylibre.com>
+References: <1530784243-20823-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1530784243-20823-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-HI Neil
+The S805X is a variant of the Amlogic Meson GXL SoC family with the
+following physical limitations :
+- No SDCard interface
+- No GPIOCLK pins
+- No USB OTG ID pin (but Gadget feature can stil be forced)
+- No 5V regulator
+- Reduced ADC inputs (only ADC0 and ADC1)
+- GPIODV_26, GPIOAO_3, GPIOAO_4, GPIOAO_5, GPIOAO_6, GPIOX_14,
+  GPIOX_15, GPIOH_3 are no more exposed on the package
 
-On 07/04/18 22:57, Neil Armstrong wrote:
-> Hi Yixun,
-> 
-> On 05/07/2018 00:45, Yixun Lan wrote:
->> This patch series try to add pinctrl driver support for
->> the Meson-G12A SoC.
-> 
-> Thanks for submitting these patches.
-> 
-> Can you explicit this patchset with more details on the G12A SoC family ?
-> It's relationship with AXG and the differences in term of pinmuxing with the other SoC families ?
-> 
-I thought this was already discussed while we doing pinctrl driver for
-Meson-AXG SoC.
+Amlogic exposes the following SW limitations :
+- HDMI max resolution should be 1080p60, VPU clock should be downgraded
+- Video Decoding should be limited to 1080p60, VDEC clock should be downgraded
+- CPU speed should be limited by SCPI OPP table to 1.2GHz
+- DRAM interface is limited to DDR4 16bit up to 1GiB
 
-Anyway, here it is:
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Starting from Meson-AXG SoC, the pinctrl controller block using 4
-continues bit to specific pin mux function, while comparing to old
-generation SoC which kind of using various length bits for the pin mux
-definition. The new design would greatly simplify the software model..
-
-for detail example, one 32bit register can describe 8 pins, and each of
-them has 0-7 value to set, start from value 0 to 7.
-
-partition the register into 8 parts:
-bit[3:0]
-bit[7:4]
-bit[11:8]
-bit[15:12]
-bit[19:16]
-bit[23:20]
-bit[27:24]
-bit[31:28]
-
-
-for each value:
-value == 0, means the pin is GPIO
-value = {1, 2, ... 7 } is one of specific PIN function
-
-I could put this info into cover-letter or commit message?
-
-> Why is there a GPIOE bank within the AO controller ?
-> 
-
-It actually sit in the AO domain, although it's sounds strange from the
-naming..
-
-I'm not sure if it's good idea to append a AO suffix? since the
-documentation just use the plain GPIOE
-
-> Thanks,
-> Neil
-> 
->>
->> Yixun Lan (3):
->>   documentation: Add compatibles for Amlogic Meson G12A pin controllers
->>   dt-bindings: pinctrl: meson-g12a: document pin name
->>   pinctrl: meson-g12a: add pinctrl driver support
->>
->>  .../bindings/pinctrl/meson,pinctrl.txt        |    2 +
->>  drivers/pinctrl/meson/Kconfig                 |    6 +
->>  drivers/pinctrl/meson/Makefile                |    1 +
->>  drivers/pinctrl/meson/pinctrl-meson-g12a.c    | 1432 +++++++++++++++++
->>  include/dt-bindings/gpio/meson-g12a-gpio.h    |  114 ++
->>  5 files changed, 1555 insertions(+)
->>  create mode 100644 drivers/pinctrl/meson/pinctrl-meson-g12a.c
->>  create mode 100644 include/dt-bindings/gpio/meson-g12a-gpio.h
->>
-> 
-> .
-> 
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+index 6988056..849834c 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.txt
++++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+@@ -41,6 +41,10 @@ Boards with the Amlogic Meson GXL S905D SoC shall have the following properties:
+   Required root node property:
+     compatible: "amlogic,s905d", "amlogic,meson-gxl";
+ 
++Boards with the Amlogic Meson GXL S805X SoC shall have the following properties:
++  Required root node property:
++    compatible: "amlogic,s805x", "amlogic,meson-gxl";
++
+ Boards with the Amlogic Meson GXM S912 SoC shall have the following properties:
+   Required root node property:
+     compatible: "amlogic,s912", "amlogic,meson-gxm";
+@@ -79,6 +83,8 @@ Board compatible values (alphabetically, grouped by SoC):
+   - "amlogic,p230" (Meson gxl s905d)
+   - "amlogic,p231" (Meson gxl s905d)
+ 
++  - "amlogic,p241" (Meson gxl s805x)
++
+   - "amlogic,q200" (Meson gxm s912)
+   - "amlogic,q201" (Meson gxm s912)
+   - "khadas,vim2" (Meson gxm s912)
+-- 
+2.7.4
