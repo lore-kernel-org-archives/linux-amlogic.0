@@ -1,269 +1,87 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu,  5 Jul 2018 11:50:43 +0200
-Subject: [PATCH 2/2] ARM64: dts: add S805X based P241 board
-In-Reply-To: <1530784243-20823-1-git-send-email-narmstrong@baylibre.com>
-References: <1530784243-20823-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1530784243-20823-3-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu,  5 Jul 2018 13:37:13 +0200
+Subject: [PATCH] ARM64: dts: meson-axg: add the audio clock controller
+Message-ID: <20180705113713.15267-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic P241 board is the Reference Design board for the S805X
-variant of the Amlogic Meson GXL SoC family.
+Add the audio clock controller which is part of the audio bus
+This controller takes 8 input plls, and the usual clock gate, from the
+main clock controller. It provides for the all the devices of the audio
+subsystem, such as tdms, spdif, pdm, etc.
 
-The P241 board has the following features :
-- 1GiB DDR4 Memory
-- HDMI Connector with CEC
-- A/V jack with Stereo Audio and CVBS
-- 10/100 Ethernet
-- 2x USB2.0 Type-A
-- On-board WiFi SDIO Module
-- On-board eMMC storage
-- Infraread Received
-- Factory Reset button
-- UART connector
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/meson-gxl-s805x-p241.dts      | 218 +++++++++++++++++++++
- 2 files changed, 219 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 34dd0e9..4dcffb0 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -17,6 +17,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-new file mode 100644
-index 0000000..70433e0
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-@@ -0,0 +1,218 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 BayLibre, SAS.
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
+Kevin,
+
+Please note that this change depends on the axg audio clock bindings [0].
+It will be part of our PR to clock in this cycle.
+
+As usual, I've prepared a topic branch with the DT changes for you.
+Please, let me know when you need a tag on it.
+
+Cheers
+Jerome
+
+[0]: https://lkml.kernel.org/r/20180522163457.13834-6-jbrunet at baylibre.com
+
+arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 36 ++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index aa1a42407466..56d334be9f85 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/clock/axg-audio-clkc.h>
+ #include <dt-bindings/clock/axg-clkc.h>
+ #include <dt-bindings/clock/axg-aoclkc.h>
+ #include <dt-bindings/gpio/meson-axg-gpio.h>
+@@ -155,6 +156,41 @@
+ 			};
+ 		};
+ 
++		audio: bus at ff642000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xff642000 0x0 0x2000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xff642000 0x0 0x2000>;
 +
-+/dts-v1/;
++			clkc_audio: clock-controller at 0 {
++				compatible = "amlogic,axg-audio-clkc";
++				reg = <0x0 0x0 0x0 0xb4>;
++				#clock-cells = <1>;
 +
-+#include <dt-bindings/input/input.h>
++				clocks = <&clkc CLKID_AUDIO>,
++					 <&clkc CLKID_MPLL0>,
++					 <&clkc CLKID_MPLL1>,
++					 <&clkc CLKID_MPLL2>,
++					 <&clkc CLKID_MPLL3>,
++					 <&clkc CLKID_HIFI_PLL>,
++					 <&clkc CLKID_FCLK_DIV3>,
++					 <&clkc CLKID_FCLK_DIV4>,
++					 <&clkc CLKID_GP0_PLL>;
++				clock-names = "pclk",
++					      "mst_in0",
++					      "mst_in1",
++					      "mst_in2",
++					      "mst_in3",
++					      "mst_in4",
++					      "mst_in5",
++					      "mst_in6",
++					      "mst_in7";
 +
-+#include "meson-gxl-s905x.dtsi"
-+
-+/ {
-+	compatible = "amlogic,p241", "amlogic,s805x", "amlogic,meson-gxl";
-+	model = "Amlogic Meson GXL (S805X) P241 Development Board";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		serial1 = &uart_A;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
++				resets = <&reset RESET_AUDIO>;
 +			};
 +		};
-+	};
 +
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	memory at 0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x20000000>;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+};
-+
-+&cec_AO {
-+	status = "okay";
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+};
-+
-+&internal_phy {
-+	pinctrl-0 = <&eth_link_led_pins>, <&eth_act_led_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao18>;
-+};
-+
-+/* Wireless SDIO Module */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
-+};
-+
-+/* This is connected to the Bluetooth module: */
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
+ 		cbus: bus at ffd00000 {
+ 			compatible = "simple-bus";
+ 			reg = <0x0 0xffd00000 0x0 0x25000>;
 -- 
-2.7.4
+2.14.4
