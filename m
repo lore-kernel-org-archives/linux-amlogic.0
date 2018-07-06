@@ -1,226 +1,89 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  6 Jul 2018 16:31:22 +0200
-Subject: [PATCH 2/2] reset: meson: add meson audio arb driver
-In-Reply-To: <20180706143122.7612-1-jbrunet@baylibre.com>
-References: <20180706143122.7612-1-jbrunet@baylibre.com>
-Message-ID: <20180706143122.7612-3-jbrunet@baylibre.com>
+Date: Fri,  6 Jul 2018 16:43:05 +0200
+Subject: [PATCH RESEND] ARM64: dts: meson-axg: add the audio clock controller
+Message-ID: <20180706144305.30116-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Audio ARB is a simple device which enables or
-disables the access of Audio FIFOs to DDR on AXG based SoC.
+Add the audio clock controller which is part of the audio bus
+This controller takes 8 input plls, and the usual clock gate, from the
+main clock controller. It provides the clocs for the all the devices of
+the audio subsystem, such as tdms, spdif, pdm, etc.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/reset/Kconfig                 |   7 ++
- drivers/reset/Makefile                |   1 +
- drivers/reset/reset-meson-audio-arb.c | 168 ++++++++++++++++++++++++++++++++++
- 3 files changed, 176 insertions(+)
- create mode 100644 drivers/reset/reset-meson-audio-arb.c
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index c0b292be1b72..c62c915167c4 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -73,6 +73,13 @@ config RESET_MESON
- 	help
- 	  This enables the reset driver for Amlogic Meson SoCs.
+Resend to fix typo reported by Martin in the commit description.
+(Thx Martin !)
+
+Kevin,
+
+Please note that this change depends on the axg audio clock bindings [0].
+It explains the problem reported by kbuild robot
+It will be part of our PR to clock in this cycle.
+
+As usual, I've prepared a topic branch with the DT changes for you.
+Please, let me know when you need a tag on it.
+
+Cheers
+Jerome
+
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 36 ++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index aa1a42407466..56d334be9f85 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -6,6 +6,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/clock/axg-audio-clkc.h>
+ #include <dt-bindings/clock/axg-clkc.h>
+ #include <dt-bindings/clock/axg-aoclkc.h>
+ #include <dt-bindings/gpio/meson-axg-gpio.h>
+@@ -155,6 +156,41 @@
+ 			};
+ 		};
  
-+config RESET_MESON_AUDIO_ARB
-+	tristate "Meson Audio Memory Arbitror Reset Driver"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	help
-+	  This enables the reset driver for Audio Memory Arbitror of
-+	  Amlogic's A113 based SoCs
++		audio: bus at ff642000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xff642000 0x0 0x2000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xff642000 0x0 0x2000>;
 +
- config RESET_OXNAS
- 	bool
- 
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index c1261dcfe9ad..aca2240b48aa 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
- obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
- obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
- obj-$(CONFIG_RESET_MESON) += reset-meson.o
-+obj-$(CONFIG_RESET_MESON_AUDIO_ARB) += reset-meson-audio-arb.o
- obj-$(CONFIG_RESET_OXNAS) += reset-oxnas.o
- obj-$(CONFIG_RESET_PISTACHIO) += reset-pistachio.o
- obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
-diff --git a/drivers/reset/reset-meson-audio-arb.c b/drivers/reset/reset-meson-audio-arb.c
-new file mode 100644
-index 000000000000..c3eec178972e
---- /dev/null
-+++ b/drivers/reset/reset-meson-audio-arb.c
-@@ -0,0 +1,168 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+// Copyright (c) 2018 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
++			clkc_audio: clock-controller at 0 {
++				compatible = "amlogic,axg-audio-clkc";
++				reg = <0x0 0x0 0x0 0xb4>;
++				#clock-cells = <1>;
 +
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/reset-controller.h>
-+#include <linux/spinlock.h>
++				clocks = <&clkc CLKID_AUDIO>,
++					 <&clkc CLKID_MPLL0>,
++					 <&clkc CLKID_MPLL1>,
++					 <&clkc CLKID_MPLL2>,
++					 <&clkc CLKID_MPLL3>,
++					 <&clkc CLKID_HIFI_PLL>,
++					 <&clkc CLKID_FCLK_DIV3>,
++					 <&clkc CLKID_FCLK_DIV4>,
++					 <&clkc CLKID_GP0_PLL>;
++				clock-names = "pclk",
++					      "mst_in0",
++					      "mst_in1",
++					      "mst_in2",
++					      "mst_in3",
++					      "mst_in4",
++					      "mst_in5",
++					      "mst_in6",
++					      "mst_in7";
 +
-+#include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
++				resets = <&reset RESET_AUDIO>;
++			};
++		};
 +
-+struct meson_audio_arb_data {
-+	struct reset_controller_dev rstc;
-+	void __iomem *regs;
-+	struct clk *clk;
-+	const unsigned int *reset_bits;
-+	spinlock_t lock;
-+};
-+
-+#define ARB_GENERAL_BIT	31
-+
-+static const unsigned int axg_audio_arb_reset_bits[] = {
-+	[AXG_ARB_TODDR_A]	= 0,
-+	[AXG_ARB_TODDR_B]	= 1,
-+	[AXG_ARB_TODDR_C]	= 2,
-+	[AXG_ARB_FRDDR_A]	= 4,
-+	[AXG_ARB_FRDDR_B]	= 5,
-+	[AXG_ARB_FRDDR_C]	= 6,
-+};
-+
-+static int meson_audio_arb_update(struct reset_controller_dev *rcdev,
-+				  unsigned long id, bool assert)
-+{
-+	u32 val;
-+	struct meson_audio_arb_data *arb =
-+		container_of(rcdev, struct meson_audio_arb_data, rstc);
-+
-+	spin_lock(&arb->lock);
-+	val = readl(arb->regs);
-+
-+	if (assert)
-+		val &= ~BIT(arb->reset_bits[id]);
-+	else
-+		val |= BIT(arb->reset_bits[id]);
-+
-+	writel(val, arb->regs);
-+	spin_unlock(&arb->lock);
-+
-+	return 0;
-+}
-+
-+static int meson_audio_arb_status(struct reset_controller_dev *rcdev,
-+				  unsigned long id)
-+{
-+	u32 val;
-+	struct meson_audio_arb_data *arb =
-+		container_of(rcdev, struct meson_audio_arb_data, rstc);
-+
-+	val = readl(arb->regs);
-+
-+	return !(val & BIT(arb->reset_bits[id]));
-+}
-+
-+static int meson_audio_arb_assert(struct reset_controller_dev *rcdev,
-+				  unsigned long id)
-+{
-+	return meson_audio_arb_update(rcdev, id, true);
-+}
-+
-+static int meson_audio_arb_deassert(struct reset_controller_dev *rcdev,
-+				    unsigned long id)
-+{
-+	return meson_audio_arb_update(rcdev, id, false);
-+}
-+
-+static const struct reset_control_ops meson_audio_arb_rstc_ops = {
-+	.assert = meson_audio_arb_assert,
-+	.deassert = meson_audio_arb_deassert,
-+	.status = meson_audio_arb_status,
-+};
-+
-+static const struct of_device_id meson_audio_arb_of_match[] = {
-+	{ .compatible = "amlogic,meson-axg-audio-arb", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, meson_audio_arb_of_match);
-+
-+static int meson_audio_arb_remove(struct platform_device *pdev)
-+{
-+	struct meson_audio_arb_data *arb = platform_get_drvdata(pdev);
-+
-+	/* Disable all access */
-+	spin_lock(&arb->lock);
-+	writel(0, arb->regs);
-+	spin_unlock(&arb->lock);
-+
-+	clk_disable_unprepare(arb->clk);
-+
-+	return 0;
-+}
-+
-+static int meson_audio_arb_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct meson_audio_arb_data *arb;
-+	struct resource *res;
-+	int ret;
-+
-+	arb = devm_kzalloc(dev, sizeof(*arb), GFP_KERNEL);
-+	if (!arb)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, arb);
-+
-+	arb->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(arb->clk)) {
-+		if (PTR_ERR(arb->clk) != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get clock\n");
-+		return PTR_ERR(arb->clk);
-+	}
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	arb->regs = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(arb->regs))
-+		return PTR_ERR(arb->regs);
-+
-+	spin_lock_init(&arb->lock);
-+	arb->reset_bits = axg_audio_arb_reset_bits;
-+	arb->rstc.nr_resets = ARRAY_SIZE(axg_audio_arb_reset_bits);
-+	arb->rstc.ops = &meson_audio_arb_rstc_ops;
-+	arb->rstc.of_node = dev->of_node;
-+
-+	/*
-+	 * Enable general :
-+	 * In the initial state, all memory interfaces are disabled
-+	 * and the general bit is on
-+	 */
-+	ret = clk_prepare_enable(arb->clk);
-+	if (ret) {
-+		dev_err(dev, "failed to enable arb clock\n");
-+		return ret;
-+	}
-+	writel(BIT(ARB_GENERAL_BIT), arb->regs);
-+
-+	/* Register reset controller */
-+	ret = devm_reset_controller_register(dev, &arb->rstc);
-+	if (ret) {
-+		dev_err(dev, "failed to register arb reset controller\n");
-+		meson_audio_arb_remove(pdev);
-+	}
-+
-+	return ret;
-+}
-+
-+static struct platform_driver meson_audio_arb_pdrv = {
-+	.probe = meson_audio_arb_probe,
-+	.remove = meson_audio_arb_remove,
-+	.driver = {
-+		.name = "meson-audio-arb-reset",
-+		.of_match_table = meson_audio_arb_of_match,
-+	},
-+};
-+module_platform_driver(meson_audio_arb_pdrv);
-+
-+MODULE_DESCRIPTION("Amlogic A113 Audio Memory Arbitror");
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL v2");
+ 		cbus: bus at ffd00000 {
+ 			compatible = "simple-bus";
+ 			reg = <0x0 0xffd00000 0x0 0x25000>;
 -- 
 2.14.4
