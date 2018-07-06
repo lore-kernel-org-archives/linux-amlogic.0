@@ -1,59 +1,42 @@
 From: geert+renesas@glider.be (Geert Uytterhoeven)
-Date: Fri,  6 Jul 2018 10:32:45 +0200
-Subject: [PATCH v5 0/4] DT: Fix spelling of standard properties
-Message-ID: <20180706083249.25399-1-geert+renesas@glider.be>
+Date: Fri,  6 Jul 2018 10:32:48 +0200
+Subject: [PATCH v5 3/4] dt-bindings: display: amlogic: DT fix
+ s/resets-names/reset-names/
+In-Reply-To: <20180706083249.25399-1-geert+renesas@glider.be>
+References: <20180706083249.25399-1-geert+renesas@glider.be>
+Message-ID: <20180706083249.25399-4-geert+renesas@glider.be>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-	Hi all,
-
-This patch series fixes misspellings of various standard DT properties
-in DT binding documentation, DTS files, and examples.
-While most of these are harmless, some of them may cause hard-to-debug
-failures.
-
-Changes compared to v5:
-  - Add Acked-by.
-
-Changes compared to v4:
-  - Drop patches that have been applied already,
-  - Add Acked-by.
-
-Changes compared to v3:
-  - Drop patches that have been applied already,
+Fixes: 8cceda5349377e30 ("dt-bindings: Add bindings for the Amlogic Meson dw-hdmi extension")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+v5:
   - Add Acked-by,
-  - Add new patches 5 and 6.
 
-Changes compared to v2:
-  - Drop patches that have been applied already,
-  - Add Rob Herring's Acked-by,
-  - Add new patch "[PATCH v2 3/6] arm64: dts: lg1313: DT fix
-    s/#interrupts-cells/#interrupt-cells/".
+v4:
+  - Add Acked-by,
 
-Thanks for applying!
-
-Geert Uytterhoeven (4):
-  arm64: dts: lg1312: DT fix s/#interrupts-cells/#interrupt-cells/
-  arm64: dts: lg1313: DT fix s/#interrupts-cells/#interrupt-cells/
-  dt-bindings: display: amlogic: DT fix s/resets-names/reset-names/
-  dt-bindings: net: btusb: DT fix s/interrupt-name/interrupt-names/
-
+v3:
+  - New.
+---
  .../devicetree/bindings/display/amlogic,meson-dw-hdmi.txt       | 2 +-
- Documentation/devicetree/bindings/net/btusb.txt                 | 2 +-
- arch/arm64/boot/dts/lg/lg1312.dtsi                              | 2 +-
- arch/arm64/boot/dts/lg/lg1313.dtsi                              | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+index bf4a18047309a5f8..d8f6268849f43621 100644
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+@@ -43,7 +43,7 @@ Required properties:
+   and the Amlogic Meson venci clocks as described in
+   Documentation/devicetree/bindings/clock/clock-bindings.txt,
+   the clocks are soc specific, the clock-names should be "iahb", "isfr", "venci"
+-- resets, resets-names: must have the phandles to the HDMI apb, glue and phy
++- resets, reset-names: must have the phandles to the HDMI apb, glue and phy
+   resets as described in :
+   Documentation/devicetree/bindings/reset/reset.txt,
+   the reset-names should be "hdmitx_apb", "hdmitx", "hdmitx_phy"
 -- 
 2.17.1
-
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert at linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
