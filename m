@@ -1,24 +1,21 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 06 Jul 2018 16:46:40 +0200
-Subject: [PATCH 0/2] Add support for S805X based P241 Reference Design
- board
-In-Reply-To: <1530784243-20823-1-git-send-email-narmstrong@baylibre.com>
-References: <1530784243-20823-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1530888400.3023.10.camel@baylibre.com>
+From: sboyd@kernel.org (Stephen Boyd)
+Date: Fri, 06 Jul 2018 10:58:25 -0700
+Subject: [GIT PULL] Amlogic clock fixes for v4.18-rc
+In-Reply-To: <1530604912.2900.152.camel@baylibre.com>
+References: <1530604912.2900.152.camel@baylibre.com>
+Message-ID: <153089990511.143105.13825086493199733880@swboyd.mtv.corp.google.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-07-05 at 11:50 +0200, Neil Armstrong wrote:
-> Neil Armstrong (2):
->   dt-bindings: amlogic: Add support for GXL S805X and the P241 board
->   ARM64: dts: add S805X based P241 board
+Quoting Jerome Brunet (2018-07-03 01:01:52)
+> Dear clock maintainers,
 > 
->  Documentation/devicetree/bindings/arm/amlogic.txt  |   6 +
->  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
->  .../boot/dts/amlogic/meson-gxl-s805x-p241.dts      | 218 +++++++++++++++++++++
->  3 files changed, 225 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
+> Below is a request to pull amlogic clock fixes for v4.18.
+> 
+> These are two simple fixes, yet the first one is quite important as it solves
+> boots hangs we've been having when FDIV2 gets disabled. This did not show up
+> before because this particular clock is heavily used and only gets disabled for
+> a very short period of time before modules (such as ethernet or emmc) probe.
+> 
 
-Looks good to me
-
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+Thanks. Pulled into clk-fixes.
