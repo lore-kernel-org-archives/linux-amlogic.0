@@ -1,31 +1,29 @@
 From: geert+renesas@glider.be (Geert Uytterhoeven)
-Date: Fri,  6 Jul 2018 10:32:46 +0200
-Subject: [PATCH v5 1/4] arm64: dts: lg1312: DT fix
+Date: Fri,  6 Jul 2018 10:32:47 +0200
+Subject: [PATCH v5 2/4] arm64: dts: lg1313: DT fix
  s/#interrupts-cells/#interrupt-cells/
 In-Reply-To: <20180706083249.25399-1-geert+renesas@glider.be>
 References: <20180706083249.25399-1-geert+renesas@glider.be>
-Message-ID: <20180706083249.25399-2-geert+renesas@glider.be>
+Message-ID: <20180706083249.25399-3-geert+renesas@glider.be>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Rob Herring <robh@kernel.org>
 Acked-by: Chanho Min <chanho.min@lge.com>
 ---
 v3:
   - Add Acked-by,
 
 v2:
-  - Add Acked-by,
-  - Rebased.
+  - New.
 ---
- arch/arm64/boot/dts/lg/lg1312.dtsi | 2 +-
+ arch/arm64/boot/dts/lg/lg1313.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi b/arch/arm64/boot/dts/lg/lg1312.dtsi
-index 860c8fb10795011f..052c8a1906ae737e 100644
---- a/arch/arm64/boot/dts/lg/lg1312.dtsi
-+++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
+diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/lg1313.dtsi
+index 1887af654a7db966..fb1f5252977da967 100644
+--- a/arch/arm64/boot/dts/lg/lg1313.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
 @@ -124,7 +124,7 @@
  	amba {
  		#address-cells = <2>;
