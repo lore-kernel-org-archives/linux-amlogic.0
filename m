@@ -1,27 +1,59 @@
-From: greg@kroah.com (Greg KH)
-Date: Thu, 5 Jul 2018 19:05:49 +0200
-Subject: [PATCH] ARM64: dts: meson-gxl-s905x-p212: Add phy-supply for usb0
-In-Reply-To: <817c589d-25e4-e2d0-cd46-99a2ae59b014@baylibre.com>
-References: <1528188743-12798-1-git-send-email-narmstrong@baylibre.com>
- <817c589d-25e4-e2d0-cd46-99a2ae59b014@baylibre.com>
-Message-ID: <20180705170549.GF4349@kroah.com>
+From: geert+renesas@glider.be (Geert Uytterhoeven)
+Date: Fri,  6 Jul 2018 10:32:45 +0200
+Subject: [PATCH v5 0/4] DT: Fix spelling of standard properties
+Message-ID: <20180706083249.25399-1-geert+renesas@glider.be>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Jul 02, 2018 at 10:43:19AM +0200, Neil Armstrong wrote:
-> Hi Stable Maintainers,
-> 
-> On 05/06/2018 10:52, Neil Armstrong wrote:
-> > Like LibreTech-CC, the USB0 needs the 5V regulator to be enabled to power the
-> > devices on the P212 Reference Design based boards.
-> > 
-> > Fixes: b9f07cb4f41f ("ARM64: dts: meson-gxl-s905x-p212: enable the USB controller")
-> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> > ---
-> 
-> This commit hit Linus master with commit sha d511b3e4087eedbe11c7496c396432b8b7c2d7d9
-> Can this fix be applied to 4.17 stable kernel ?
+	Hi all,
 
-Now applied, thanks.
+This patch series fixes misspellings of various standard DT properties
+in DT binding documentation, DTS files, and examples.
+While most of these are harmless, some of them may cause hard-to-debug
+failures.
 
-greg k-h
+Changes compared to v5:
+  - Add Acked-by.
+
+Changes compared to v4:
+  - Drop patches that have been applied already,
+  - Add Acked-by.
+
+Changes compared to v3:
+  - Drop patches that have been applied already,
+  - Add Acked-by,
+  - Add new patches 5 and 6.
+
+Changes compared to v2:
+  - Drop patches that have been applied already,
+  - Add Rob Herring's Acked-by,
+  - Add new patch "[PATCH v2 3/6] arm64: dts: lg1313: DT fix
+    s/#interrupts-cells/#interrupt-cells/".
+
+Thanks for applying!
+
+Geert Uytterhoeven (4):
+  arm64: dts: lg1312: DT fix s/#interrupts-cells/#interrupt-cells/
+  arm64: dts: lg1313: DT fix s/#interrupts-cells/#interrupt-cells/
+  dt-bindings: display: amlogic: DT fix s/resets-names/reset-names/
+  dt-bindings: net: btusb: DT fix s/interrupt-name/interrupt-names/
+
+ .../devicetree/bindings/display/amlogic,meson-dw-hdmi.txt       | 2 +-
+ Documentation/devicetree/bindings/net/btusb.txt                 | 2 +-
+ arch/arm64/boot/dts/lg/lg1312.dtsi                              | 2 +-
+ arch/arm64/boot/dts/lg/lg1313.dtsi                              | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert at linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
