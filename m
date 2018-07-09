@@ -1,41 +1,58 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 9 Jul 2018 20:14:45 +0200
-Subject: [PATCH v2 2/2] configs: Update Meson GX configs
-In-Reply-To: <20180709153407.29138-3-ldevulder@suse.de>
+From: ldevulder@suse.de (Loic Devulder)
+Date: Mon, 9 Jul 2018 21:56:18 +0200
+Subject: [PATCH v2 1/2] ARM64: meson: Add 'usb2_phy0' in P212 DT file
+In-Reply-To: <f195db8b-555a-9b51-7dc6-14575f3b96df@baylibre.com>
 References: <20180709153407.29138-1-ldevulder@suse.de>
- <20180709153407.29138-3-ldevulder@suse.de>
-Message-ID: <edb5646a-6f7e-7e93-93ea-107c628920fc@baylibre.com>
+ <20180709153407.29138-2-ldevulder@suse.de>
+ <f195db8b-555a-9b51-7dc6-14575f3b96df@baylibre.com>
+Message-ID: <84790e14-f1b8-51cd-3f2c-3a4b1b466585@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/07/2018 17:34, Loic Devulder wrote:
-> Enable ADC support on the Khadas VIM board.
+Hi Neil,
+
+Sure, I did not see you'd done the change on Linux DTS :)
+
+On 07/09/2018 08:14 PM, Neil Armstrong wrote:
+> Hi Loic,
 > 
-> Signed-off-by: Loic Devulder <ldevulder@suse.de>
-> ---
->  configs/khadas-vim_defconfig | 3 +++
->  1 file changed, 3 insertions(+)
+> On 09/07/2018 17:34, Loic Devulder wrote:
+>> Enable power supply for USB Amlogic Meson GXL P212 based boards.
+>>
+>> Signed-off-by: Loic Devulder <ldevulder@suse.de>
 > 
-> diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-> index 1eb13df4b4..fd1ec8157b 100644
-> --- a/configs/khadas-vim_defconfig
-> +++ b/configs/khadas-vim_defconfig
-> @@ -13,12 +13,15 @@ CONFIG_OF_BOARD_SETUP=y
->  # CONFIG_DISPLAY_BOARDINFO is not set
->  # CONFIG_CMD_BDI is not set
->  # CONFIG_CMD_IMI is not set
-> +CONFIG_CMD_ADC=y
->  CONFIG_CMD_GPIO=y
->  # CONFIG_CMD_LOADS is not set
->  CONFIG_CMD_MMC=y
->  CONFIG_CMD_USB=y
->  # CONFIG_CMD_SETEXPR is not set
->  CONFIG_CMD_REGULATOR=y
-> +CONFIG_ADC=y
-> +CONFIG_SARADC_MESON=y
->  CONFIG_OF_CONTROL=y
->  CONFIG_NET_RANDOM_ETHADDR=y
->  CONFIG_DM_GPIO=y
+> We like to keep the u-boot and linux DTS synced, this changed was backported on Linux v4.17.5,
+> can you instead precise you backported the last fix from the 4.17 stable branch ?
+> 
+> Thanks,
+> Neil
+> 
+>> ---
+>>  arch/arm/dts/meson-gxl-s905x-p212.dtsi | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm/dts/meson-gxl-s905x-p212.dtsi b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
+>> index 0cfd701809..4e61ec8f5b 100644
+>> --- a/arch/arm/dts/meson-gxl-s905x-p212.dtsi
+>> +++ b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
+>> @@ -189,3 +189,11 @@
+>>  &usb0 {
+>>  	status = "okay";
+>>  };
+>> +
+>> +&usb2_phy0 {
+>> +        /*
+>> +         * even though the schematics don't show it:
+>> +         * HDMI_5V is also used as supply for the USB VBUS.
+>> +         */
+>> +        phy-supply = <&hdmi_5v>;
+>> +};
+>>
 > 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+-- 
+Loic Devulder - Senior QA Engineer
+Container & Storage Solutions Quality Assurance team (qa-css)
+SUSE LINUX GmbH, Maxfeldstr. 5, 90409 Nuernberg, Germany
+GF: F. Imend?rffer, J. Smithard, J. Guild, D. Upmanyu, G. Norton HRB,
+21284 (AG Nuernberg)
