@@ -1,38 +1,22 @@
-From: ldevulder@suse.de (Loic Devulder)
-Date: Mon,  9 Jul 2018 17:34:07 +0200
-Subject: [PATCH v2 2/2] configs: Update Meson GX configs
-In-Reply-To: <20180709153407.29138-1-ldevulder@suse.de>
-References: <20180709153407.29138-1-ldevulder@suse.de>
-Message-ID: <20180709153407.29138-3-ldevulder@suse.de>
+From: sboyd@kernel.org (Stephen Boyd)
+Date: Mon, 09 Jul 2018 09:54:41 -0700
+Subject: [GIT PULL]  clk: meson: updates for v4.19
+In-Reply-To: <1531140923.2708.19.camel@baylibre.com>
+References: <1531140923.2708.19.camel@baylibre.com>
+Message-ID: <153115528186.143105.10978033720652183122@swboyd.mtv.corp.google.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable ADC support on the Khadas VIM board.
+Quoting Jerome Brunet (2018-07-09 05:55:23)
+> Dear clock maintainers,
+> 
+> Below is a request to pull a first round of Amlogic  clock updates for
+> v4.19. It is based on our previous fixes PR (meson-clk-fixes-4.18-1) to
+> avoid conflicts while removing the audio divider driver.
+> 
+> Also, we had to pull your 'clk-core-duty-cycle' branch because the audio
+> sclk divider driver implements duty cycle operation. This explains the
+> changes reported in CCF core files in the summary below. 
+> 
 
-Signed-off-by: Loic Devulder <ldevulder@suse.de>
----
- configs/khadas-vim_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-index 1eb13df4b4..fd1ec8157b 100644
---- a/configs/khadas-vim_defconfig
-+++ b/configs/khadas-vim_defconfig
-@@ -13,12 +13,15 @@ CONFIG_OF_BOARD_SETUP=y
- # CONFIG_DISPLAY_BOARDINFO is not set
- # CONFIG_CMD_BDI is not set
- # CONFIG_CMD_IMI is not set
-+CONFIG_CMD_ADC=y
- CONFIG_CMD_GPIO=y
- # CONFIG_CMD_LOADS is not set
- CONFIG_CMD_MMC=y
- CONFIG_CMD_USB=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_CMD_REGULATOR=y
-+CONFIG_ADC=y
-+CONFIG_SARADC_MESON=y
- CONFIG_OF_CONTROL=y
- CONFIG_NET_RANDOM_ETHADDR=y
- CONFIG_DM_GPIO=y
--- 
-2.13.7
+Thanks. Pulled into clk-next.
