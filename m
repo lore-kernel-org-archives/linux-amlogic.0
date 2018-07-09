@@ -1,31 +1,38 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 09 Jul 2018 14:47:31 -0700
-Subject: [PATCH v2] ARM64: dts: meson-axg: add saradc support
-In-Reply-To: <20180702222515.13924-1-yixun.lan@amlogic.com> (Yixun Lan's
- message of "Mon, 2 Jul 2018 22:25:15 +0000")
-References: <20180702222515.13924-1-yixun.lan@amlogic.com>
-Message-ID: <7hmuv0nkss.fsf@baylibre.com>
+Date: Mon, 09 Jul 2018 14:53:13 -0700
+Subject: [PATCH RESEND] ARM64: dts: meson-axg: add the audio clock
+ controller
+In-Reply-To: <20180706144305.30116-1-jbrunet@baylibre.com> (Jerome Brunet's
+ message of "Fri, 6 Jul 2018 16:43:05 +0200")
+References: <20180706144305.30116-1-jbrunet@baylibre.com>
+Message-ID: <7h7em4nkja.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Yixun Lan <yixun.lan@amlogic.com> writes:
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> From: Xingyu Chen <xingyu.chen@amlogic.com>
+> Add the audio clock controller which is part of the audio bus
+> This controller takes 8 input plls, and the usual clock gate, from the
+> main clock controller. It provides the clocs for the all the devices of
+> the audio subsystem, such as tdms, spdif, pdm, etc.
 >
-> Add the DT info for SAR ADC of the Amlogic's Meson-AXG SoC.
->
-> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
-> Hi kevin
->   I just re-send this patch which rebased to your khilman/v4.18/integ branch
->   Thanks
-> Yixun
 >
-> nothing changed since patch v1 [1]:
+> Resend to fix typo reported by Martin in the commit description.
+> (Thx Martin !)
+>
+> Kevin,
+>
+> Please note that this change depends on the axg audio clock bindings [0].
+>
+> It explains the problem reported by kbuild robot
+> It will be part of our PR to clock in this cycle.
+>
+> As usual, I've prepared a topic branch with the DT changes for you.
+> Please, let me know when you need a tag on it.
 
-Applied to v4.19/dt64,
-
-Thanks,
+Unless you're expecting some more dependencies for the v4.19 cycle,
+please tag it now, then I will queue it up.
 
 Kevin
