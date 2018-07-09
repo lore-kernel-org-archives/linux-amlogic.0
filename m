@@ -1,46 +1,18 @@
-From: ldevulder@suse.de (Loic Devulder)
-Date: Mon,  9 Jul 2018 16:45:53 +0200
-Subject: [PATCH 2/2] configs: Update Meson GX configs
-In-Reply-To: <20180709144553.26161-1-ldevulder@suse.de>
-References: <20180709144553.26161-1-ldevulder@suse.de>
-Message-ID: <20180709144553.26161-3-ldevulder@suse.de>
+From: sboyd@kernel.org (Stephen Boyd)
+Date: Mon, 09 Jul 2018 07:58:42 -0700
+Subject: [PATCH 3/3] clk: meson-g12a: Add EE Clock controller driver
+In-Reply-To: <1531134767-29927-4-git-send-email-jian.hu@amlogic.com>
+References: <1531134767-29927-1-git-send-email-jian.hu@amlogic.com>
+ <1531134767-29927-4-git-send-email-jian.hu@amlogic.com>
+Message-ID: <153114832204.143105.10370402875563713577@swboyd.mtv.corp.google.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable ADC support on the Khadas VIM board.
+Quoting Jian Hu (2018-07-09 04:12:47)
+> Add a Clock driver for the Everyting-Else part
 
-Signed-off-by: Loic Devulder <ldevulder@suse.de>
----
- configs/khadas-vim_defconfig | 5 +++++
- 1 file changed, 5 insertions(+)
+Everything instead of Everyting?
 
-diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-index 1eb13df4b4..116acb5507 100644
---- a/configs/khadas-vim_defconfig
-+++ b/configs/khadas-vim_defconfig
-@@ -13,18 +13,23 @@ CONFIG_OF_BOARD_SETUP=y
- # CONFIG_DISPLAY_BOARDINFO is not set
- # CONFIG_CMD_BDI is not set
- # CONFIG_CMD_IMI is not set
-+CONFIG_CMD_ADC=y
- CONFIG_CMD_GPIO=y
- # CONFIG_CMD_LOADS is not set
- CONFIG_CMD_MMC=y
- CONFIG_CMD_USB=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_CMD_REGULATOR=y
-+CONFIG_ADC=y
-+CONFIG_SARADC_MESON=y
- CONFIG_OF_CONTROL=y
- CONFIG_NET_RANDOM_ETHADDR=y
- CONFIG_DM_GPIO=y
- CONFIG_DM_REGULATOR=y
- CONFIG_DM_REGULATOR_FIXED=y
- CONFIG_DM_RESET=y
-+CONFIG_ADC=y
-++CONFIG_SARADC_MESON=y
- CONFIG_DM_MMC=y
- CONFIG_MMC_MESON_GX=y
- CONFIG_PHY_ADDR_ENABLE=y
--- 
-2.13.7
+> of the Amlogic Meson-G12A SoC.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
