@@ -1,21 +1,28 @@
-From: sboyd@kernel.org (Stephen Boyd)
-Date: Fri, 06 Jul 2018 10:58:25 -0700
-Subject: [GIT PULL] Amlogic clock fixes for v4.18-rc
-In-Reply-To: <1530604912.2900.152.camel@baylibre.com>
-References: <1530604912.2900.152.camel@baylibre.com>
-Message-ID: <153089990511.143105.13825086493199733880@swboyd.mtv.corp.google.com>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Mon, 9 Jul 2018 19:12:44 +0800
+Subject: [PATCH 0/3] clk: meson-g12a: Add EE clock controller driver
+Message-ID: <1531134767-29927-1-git-send-email-jian.hu@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2018-07-03 01:01:52)
-> Dear clock maintainers,
-> 
-> Below is a request to pull amlogic clock fixes for v4.18.
-> 
-> These are two simple fixes, yet the first one is quite important as it solves
-> boots hangs we've been having when FDIV2 gets disabled. This did not show up
-> before because this particular clock is heavily used and only gets disabled for
-> a very short period of time before modules (such as ethernet or emmc) probe.
-> 
+Add a Clock driver for the Everyting-Else part of
+the Amlogic Meson-G12A SoC.
 
-Thanks. Pulled into clk-fixes.
+Jian Hu (3):
+  dt-bindings: clk: g12a: New binding for Meson-G12A SoC
+  dt-bindings: clk: meson-g12a: Add G12A EE Clock Bindings
+  clk: meson-g12a: Add EE Clock controller driver
+
+ .../bindings/clock/amlogic,gxbb-clkc.txt           |   1 +
+ drivers/clk/meson/Kconfig                          |  10 +
+ drivers/clk/meson/Makefile                         |   1 +
+ drivers/clk/meson/g12a.c                           | 992 +++++++++++++++++++++
+ drivers/clk/meson/g12a.h                           | 123 +++
+ include/dt-bindings/clock/g12a-clkc.h              |  93 ++
+ 6 files changed, 1220 insertions(+)
+ create mode 100644 drivers/clk/meson/g12a.c
+ create mode 100644 drivers/clk/meson/g12a.h
+ create mode 100644 include/dt-bindings/clock/g12a-clkc.h
+
+-- 
+1.9.1
