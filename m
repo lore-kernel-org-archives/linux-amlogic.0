@@ -1,25 +1,31 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Mon, 09 Jul 2018 14:46:07 -0700
-Subject: [PATCH 0/3] ARM64: dts: meson-axg: first round of daughter card
- updates
-In-Reply-To: <20180628095054.13433-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Thu, 28 Jun 2018 11:50:51 +0200")
-References: <20180628095054.13433-1-jbrunet@baylibre.com>
-Message-ID: <7hsh4snkv4.fsf@baylibre.com>
+Date: Mon, 09 Jul 2018 14:47:31 -0700
+Subject: [PATCH v2] ARM64: dts: meson-axg: add saradc support
+In-Reply-To: <20180702222515.13924-1-yixun.lan@amlogic.com> (Yixun Lan's
+ message of "Mon, 2 Jul 2018 22:25:15 +0000")
+References: <20180702222515.13924-1-yixun.lan@amlogic.com>
+Message-ID: <7hmuv0nkss.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Yixun Lan <yixun.lan@amlogic.com> writes:
 
-> This patchset adds a speaker amplifier and some leds present on daughter
-> cards which are connected to the s400 board.
+> From: Xingyu Chen <xingyu.chen@amlogic.com>
 >
-> Kevin, please note that the bindings documentation update for the tas5707
-> has been queued for next in Mark Brown's ASoC tree. Not having it won't
-> break anything but you may get checkpatch warning.
+> Add the DT info for SAR ADC of the Amlogic's Meson-AXG SoC.
+>
+> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+> Hi kevin
+>   I just re-send this patch which rebased to your khilman/v4.18/integ branch
+>   Thanks
+> Yixun
+>
+> nothing changed since patch v1 [1]:
 
-Thanks for the warning.
+Applied to v4.19/dt64,
 
-Series applied to v4.19/dt64,
+Thanks,
 
 Kevin
