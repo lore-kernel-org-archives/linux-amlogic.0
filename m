@@ -1,39 +1,36 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 10 Jul 2018 15:44:04 +0200
-Subject: [[PATCH v3] 1/2] ARM64: meson: Sync DT with Linux 4.17.5
-In-Reply-To: <20180710075445.9274-2-ldevulder@suse.de>
-References: <20180710075445.9274-1-ldevulder@suse.de>
- <20180710075445.9274-2-ldevulder@suse.de>
-Message-ID: <4871c86a-f39c-a15b-d972-a9fa24d73053@baylibre.com>
+Date: Tue, 10 Jul 2018 15:44:57 +0200
+Subject: [PATCH] media: platform: meson-ao-cec: make busy TX warning silent
+Message-ID: <1531230297-30921-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/07/2018 09:54, Loic Devulder wrote:
-> Synchronize the Linux Device Tree for Amlogic Meson GX boards from Linux 4.17.5
-> (Linux commit 54fb3c180d05e9dfda892a93413514e99f0cbb19).
-> 
-> This will enable HDMI_5V for USB Amlogic Meson GXL P212 based boards.
-> 
-> Signed-off-by: Loic Devulder <ldevulder@suse.de>
-> ---
->  arch/arm/dts/meson-gxl-s905x-p212.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm/dts/meson-gxl-s905x-p212.dtsi b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
-> index 0cfd701809..3bd405079b 100644
-> --- a/arch/arm/dts/meson-gxl-s905x-p212.dtsi
-> +++ b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
-> @@ -189,3 +189,10 @@
->  &usb0 {
->  	status = "okay";
->  };
-> +
-> +&usb2_phy0 {
-> +        /*
-> +         * HDMI_5V is also used as supply for the USB VBUS.
-> +         */
-> +        phy-supply = <&hdmi_5v>;
-> +};
-> 
+Switch to dev_dbg for the busy TX message to avoid having a flood of:
+[  228.064570] meson-ao-cec c8100100.cec: meson_ao_cec_transmit: busy TX: aborting
+[  230.368489] meson-ao-cec c8100100.cec: meson_ao_cec_transmit: busy TX: aborting
+[  234.208655] meson-ao-cec c8100100.cec: meson_ao_cec_transmit: busy TX: aborting
+[  236.512558] meson-ao-cec c8100100.cec: meson_ao_cec_transmit: busy TX: aborting
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+This message is only a debug hint and not an error.
+
+Fixes: 7ec2c0f72cb1 ("media: platform: Add Amlogic Meson AO CEC Controller driver")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/media/platform/meson/ao-cec.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/media/platform/meson/ao-cec.c b/drivers/media/platform/meson/ao-cec.c
+index 8040a62..cd4be38 100644
+--- a/drivers/media/platform/meson/ao-cec.c
++++ b/drivers/media/platform/meson/ao-cec.c
+@@ -524,7 +524,7 @@ static int meson_ao_cec_transmit(struct cec_adapter *adap, u8 attempts,
+ 		return ret;
+ 
+ 	if (reg == TX_BUSY) {
+-		dev_err(&ao_cec->pdev->dev, "%s: busy TX: aborting\n",
++		dev_dbg(&ao_cec->pdev->dev, "%s: busy TX: aborting\n",
+ 			__func__);
+ 		meson_ao_cec_write(ao_cec, CEC_TX_MSG_CMD, TX_ABORT, &ret);
+ 	}
+-- 
+2.7.4
