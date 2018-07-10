@@ -1,62 +1,126 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Tue, 10 Jul 2018 17:19:32 +0800
-Subject: [PATCH 0/3] pinctrl: meson-g12a: add pinctrl driver support
-In-Reply-To: <CAFBinCAVSGTWFzW6nikbnC+K9n5KRYjun9bnEp7YsKbGRHJorg@mail.gmail.com>
-References: <20180704224511.29350-1-yixun.lan@amlogic.com>
- <CACRpkdauMRnLpfiARG-BWkuJfArri68e9BYx56SCUxJaYWsYYA@mail.gmail.com>
- <CAFBinCAVSGTWFzW6nikbnC+K9n5KRYjun9bnEp7YsKbGRHJorg@mail.gmail.com>
-Message-ID: <eafc9b41-597e-fa0f-5e30-95ce0b75f6fd@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 10 Jul 2018 11:26:14 +0200
+Subject: [PATCH 2/3] dt-bindings: clk: meson-g12a: Add G12A EE Clock
+ Bindings
+In-Reply-To: <CAFBinCB6LS=PT1cw-j-LZ+vWo-RFe81qVZ6uLeGfWKtKfHz7ag@mail.gmail.com>
+References: <1531134767-29927-1-git-send-email-jian.hu@amlogic.com>
+ <1531134767-29927-3-git-send-email-jian.hu@amlogic.com>
+ <CAFBinCB6LS=PT1cw-j-LZ+vWo-RFe81qVZ6uLeGfWKtKfHz7ag@mail.gmail.com>
+Message-ID: <1531214774.2708.49.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-HI Martin
-
-On 07/10/18 06:07, Martin Blumenstingl wrote:
-> Hi Linus,
+On Tue, 2018-07-10 at 00:13 +0200, Martin Blumenstingl wrote:
+> On Mon, Jul 9, 2018 at 1:13 PM Jian Hu <jian.hu@amlogic.com> wrote:
+> > 
+> > Add dt-bindings headers for the Meson-G12A's Everything-Else
+> > part clock controller.
 > 
-> On Mon, Jul 9, 2018 at 3:35 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->>
->> On Wed, Jul 4, 2018 at 4:48 PM Yixun Lan <yixun.lan@amlogic.com> wrote:
->>>
->>> This patch series try to add pinctrl driver support for
->>> the Meson-G12A SoC.
->>>
->>>
->>> Yixun Lan (3):
->>>   documentation: Add compatibles for Amlogic Meson G12A pin controllers
->>>   dt-bindings: pinctrl: meson-g12a: document pin name
->>>   pinctrl: meson-g12a: add pinctrl driver support
->>
->> Overall this looks good to me, could we get some review or ACKs
->> from Beniamino, Martin and/or Carlo as an indication that everything
->> seems all right before I apply the series?
-> I do not have any documentation for this hardware (I'm not even sure
-> if this is the successor to AXG/"the Audio SoCs" or rather a successor
-> of GXL or GXM/"the OTT/STB SoCs" - I assume it's their new OTT/STB
-> SoCs since G12A is mentioned here and it seems to have a GPU: [0])
+> I wonder if this should be folded into patch #1 along with an update
+> to Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt so
+> it's clear which header has to be used for G12A
 > 
-yes, it's more like a new generation of OTT/STB SoCs..
 
-> I will try to have a look in the next few days and see if I can spot
-> anything obvious
+Yes, please squash patch 1 and 2.
 
-generally the pinctrl IP hasn't changed, so only pinctrl data need to be
-updated (the pin mux IP is same as AXG SoC which already explain in
-another thread).
+> > 
+> > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> > ---
+> >  include/dt-bindings/clock/g12a-clkc.h | 93 +++++++++++++++++++++++++++++++++++
+> >  1 file changed, 93 insertions(+)
+> >  create mode 100644 include/dt-bindings/clock/g12a-clkc.h
+> > 
+> > diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
+> > new file mode 100644
+> > index 0000000..1473225
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/g12a-clkc.h
+> > @@ -0,0 +1,93 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> > +/*
+> > + * Meson-G12A clock tree IDs
+> > + *
+> > + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+> > + */
+> > +
+> > +#ifndef __G12A_CLKC_H
+> > +#define __G12A_CLKC_H
+> > +
+> > +#define CLKID_SYS_PLL                          0
+> > +#define CLKID_FIXED_PLL                                1
+> > +#define CLKID_FCLK_DIV2                                2
+> > +#define CLKID_FCLK_DIV3                                3
+> > +#define CLKID_FCLK_DIV4                                4
+> > +#define CLKID_FCLK_DIV5                                5
+> > +#define CLKID_FCLK_DIV7                                6
+> > +#define CLKID_GP0_PLL                          7
 
-> not sure if Neil or Kevin have access to the documentation, so it'd be
-> great if they could give feedback as well
+Please fix the alignement.
+
+> > +#define CLKID_CLK81                                    10
+> > +#define CLKID_MPLL0                                    11
+> > +#define CLKID_MPLL1                                    12
+> > +#define CLKID_MPLL2                                    13
+> > +#define CLKID_MPLL3                                    14
+> > +#define CLKID_DDR                                      15
+> > +#define CLKID_DOS                                      16
+> > +#define CLKID_AUDIO_LOCKER                     17
+> > +#define CLKID_MIPI_DSI_HOST                    18
+> > +#define CLKID_ETH_PHY                          19
+> > +#define CLKID_ISA                                      20
+> > +#define CLKID_PL301                                    21
+> > +#define CLKID_PERIPHS                          22
+> > +#define CLKID_SPICC0                           23
+> > +#define CLKID_I2C                                      24
+> > +#define CLKID_SANA                                     25
+> > +#define CLKID_SD                                       26
+> > +#define CLKID_RNG0                                     27
+> > +#define CLKID_UART0                                    28
+> > +#define CLKID_SPICC1                           29
+> > +#define CLKID_HIU_IFACE                                30
+> > +#define CLKID_MIPI_DSI_PHY                     31
+> > +#define CLKID_ASSIST_MISC                      32
+> > +#define CLKID_SD_EMMC_A                                33
+> > +#define CLKID_SD_EMMC_B                                34
+> > +#define CLKID_SD_EMMC_C                                35
+> > +#define CLKID_AUDIO_CODEC                      36
+> > +#define CLKID_AUDIO                                    37
+> > +#define CLKID_ETH                                      38
+> > +#define CLKID_DEMUX                                    39
+> > +#define CLKID_AUDIO_IFIFO                      40
+> > +#define CLKID_ADC                                      41
+> > +#define CLKID_UART1                                    42
+> > +#define CLKID_G2D                                      43
+> > +#define CLKID_RESET                                    44
+> > +#define CLKID_PCIE_COMB                                45
+> > +#define CLKID_PARSER                           46
+> > +#define CLKID_USB                                      47
+> > +#define CLKID_PCIE_PHY                         48
+> > +#define CLKID_AHB_ARB0                         49
+> > +#define CLKID_AHB_DATA_BUS                     50
+> > +#define CLKID_AHB_CTRL_BUS                     51
+> > +#define CLKID_HTX_HDCP22                       52
+> > +#define CLKID_HTX_PCLK                         53
+> > +#define CLKID_BT656                                    54
+> > +#define CLKID_USB1_DDR_BRIDGE          55
+> > +#define CLKID_MMC_PCLK                         56
+> > +#define CLKID_UART2                                    57
+> > +#define CLKID_VPU_INTR                         58
+> > +#define CLKID_GIC                                      59
+> > +#define CLKID_SD_EMMC_B_CLK0           60
+> > +#define CLKID_SD_EMMC_C_CLK0           61
+> > +#define CLKID_HIFI_PLL                         71
+> > +
 > 
-we are preparing documention to baylibre guys..
+> is this empty line here on purpose? a comment would be great if
+> there's a reason behind it (there's already a gap in the numbering
+> between CLKID_GP0_PLL and CLKID_CLK81, but there's no empty line there
+> - either way is fine, please just keep it consistent)
 
-I think there is not many boards available in the public?
+Please drop the empty line.
+Otherwise, looks good.
 
+> 
 > 
 > Regards
 > Martin
-> 
-> 
-> [0] http://openlinux.amlogic.com:8000/download/doc/Linux_BSP_Kernel4.9_Buildroot_OpenLinux_Release_Notes_V20180330.pdf
-> 
-> .
-> 
