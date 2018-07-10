@@ -1,34 +1,36 @@
 From: ldevulder@suse.de (Loic Devulder)
-Date: Tue, 10 Jul 2018 10:01:06 +0200
-Subject: [PATCH v4 0/2] Fix USB and enable ADC on Khadas VIM
-Message-ID: <20180710080108.9976-1-ldevulder@suse.de>
+Date: Tue, 10 Jul 2018 10:01:07 +0200
+Subject: [PATCH v4 1/2] ARM64: meson: Sync DT with Linux 4.17.5
+In-Reply-To: <20180710080108.9976-1-ldevulder@suse.de>
+References: <20180710080108.9976-1-ldevulder@suse.de>
+Message-ID: <20180710080108.9976-2-ldevulder@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch series add power supply entry for P212 like meson-gx boards.
-It also enable ADC support for Khadas VIM board.
+Synchronize the Linux Device Tree for Amlogic Meson GX boards from Linux 4.17.5
+(Linux commit 54fb3c180d05e9dfda892a93413514e99f0cbb19).
 
-Based on the Neil Armstrong's patches.
+This will enable HDMI_5V for USB Amlogic Meson GXL P212 based boards.
 
-Note: it's my first (small!) patch for U-Boot,
-I tried to add all needed and useful informations :-)
+Signed-off-by: Loic Devulder <ldevulder@suse.de>
+---
+ arch/arm/dts/meson-gxl-s905x-p212.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Changes since v3:
- - fix in Subject... sorry!
-
-Changes since v2:
- - change commit message for DTS backport
-
-Changes since v1:
- - remove duplicated lines in configs/khadas-vim_defconfig
-
-Loic Devulder (2):
-  ARM64: meson: Add 'usb2_phy0' in P212 DT file
-  configs: Update Meson GX configs
-
- arch/arm/dts/meson-gxl-s905x-p212.dtsi | 7 ++++++++
- configs/khadas-vim_defconfig           | 3 +++
- 2 files changed, 10 insertions(+)
-
+diff --git a/arch/arm/dts/meson-gxl-s905x-p212.dtsi b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
+index 0cfd701809..3bd405079b 100644
+--- a/arch/arm/dts/meson-gxl-s905x-p212.dtsi
++++ b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
+@@ -189,3 +189,10 @@
+ &usb0 {
+ 	status = "okay";
+ };
++
++&usb2_phy0 {
++        /*
++         * HDMI_5V is also used as supply for the USB VBUS.
++         */
++        phy-supply = <&hdmi_5v>;
++};
 -- 
 2.13.7
