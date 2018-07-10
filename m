@@ -1,39 +1,39 @@
-From: ldevulder@suse.de (Loic Devulder)
-Date: Tue, 10 Jul 2018 10:01:08 +0200
-Subject: [PATCH v4 2/2] configs: Update Meson GX configs
-In-Reply-To: <20180710080108.9976-1-ldevulder@suse.de>
-References: <20180710080108.9976-1-ldevulder@suse.de>
-Message-ID: <20180710080108.9976-3-ldevulder@suse.de>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Tue, 10 Jul 2018 16:36:55 +0000
+Subject: [PATCH v2 0/3] clk: meson: add a sub EMMC clock controller support
+Message-ID: <20180710163658.6175-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable ADC support on the Khadas VIM board.
+This driver will add a MMC clock controller driver support.
+The original idea about adding a clock controller is during the
+discussion in the NAND driver mainline effort[1].
 
-Signed-off-by: Loic Devulder <ldevulder@suse.de>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
----
- configs/khadas-vim_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+I've tested this in the S400 board (AXG platform) by using NAND driver.
 
-diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-index 1eb13df4b4..fd1ec8157b 100644
---- a/configs/khadas-vim_defconfig
-+++ b/configs/khadas-vim_defconfig
-@@ -13,12 +13,15 @@ CONFIG_OF_BOARD_SETUP=y
- # CONFIG_DISPLAY_BOARDINFO is not set
- # CONFIG_CMD_BDI is not set
- # CONFIG_CMD_IMI is not set
-+CONFIG_CMD_ADC=y
- CONFIG_CMD_GPIO=y
- # CONFIG_CMD_LOADS is not set
- CONFIG_CMD_MMC=y
- CONFIG_CMD_USB=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_CMD_REGULATOR=y
-+CONFIG_ADC=y
-+CONFIG_SARADC_MESON=y
- CONFIG_OF_CONTROL=y
- CONFIG_NET_RANDOM_ETHADDR=y
- CONFIG_DM_GPIO=y
+Changes since v1 [2]:
+ - implement phase clock
+ - update compatible name
+ - adjust file name
+ - divider probe() into small functions, and re-use them
+
+[1] https://lkml.kernel.org/r/20180628090034.0637a062 at xps13
+[2] https://lkml.kernel.org/r/20180703145716.31860-1-yixun.lan at amlogic.com
+
+Yixun Lan (3):
+  clk: meson: add DT documentation for emmc clock controller
+  clk: meson: add sub MMC clock dt-bindings IDs
+  clk: meson: add sub MMC clock controller driver
+
+ .../bindings/clock/amlogic,mmc-clkc.txt       |  31 ++
+ drivers/clk/meson/Kconfig                     |   9 +
+ drivers/clk/meson/Makefile                    |   1 +
+ drivers/clk/meson/mmc-clkc.c                  | 419 ++++++++++++++++++
+ .../clock/amlogic,meson-mmc-clkc.h            |  16 +
+ 5 files changed, 476 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+ create mode 100644 drivers/clk/meson/mmc-clkc.c
+ create mode 100644 include/dt-bindings/clock/amlogic,meson-mmc-clkc.h
+
 -- 
-2.13.7
+2.18.0
