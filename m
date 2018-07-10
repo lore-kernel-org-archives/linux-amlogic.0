@@ -1,42 +1,34 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 10 Jul 2018 09:58:43 +0200
-Subject: [PATCH RESEND] ARM64: dts: meson-axg: add the audio clock
- controller
-In-Reply-To: <7h7em4nkja.fsf@baylibre.com>
-References: <20180706144305.30116-1-jbrunet@baylibre.com>
- <7h7em4nkja.fsf@baylibre.com>
-Message-ID: <1531209523.2708.46.camel@baylibre.com>
+From: ldevulder@suse.de (Loic Devulder)
+Date: Tue, 10 Jul 2018 10:01:06 +0200
+Subject: [PATCH v4 0/2] Fix USB and enable ADC on Khadas VIM
+Message-ID: <20180710080108.9976-1-ldevulder@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, 2018-07-09 at 14:53 -0700, Kevin Hilman wrote:
-> Jerome Brunet <jbrunet@baylibre.com> writes:
-> 
-> > Add the audio clock controller which is part of the audio bus
-> > This controller takes 8 input plls, and the usual clock gate, from the
-> > main clock controller. It provides the clocs for the all the devices of
-> > the audio subsystem, such as tdms, spdif, pdm, etc.
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> > 
-> > Resend to fix typo reported by Martin in the commit description.
-> > (Thx Martin !)
-> > 
-> > Kevin,
-> > 
-> > Please note that this change depends on the axg audio clock bindings [0].
-> > 
-> > It explains the problem reported by kbuild robot
-> > It will be part of our PR to clock in this cycle.
-> > 
-> > As usual, I've prepared a topic branch with the DT changes for you.
-> > Please, let me know when you need a tag on it.
-> 
-> Unless you're expecting some more dependencies for the v4.19 cycle,
-> please tag it now, then I will queue it up.
+This patch series add power supply entry for P212 like meson-gx boards.
+It also enable ADC support for Khadas VIM board.
 
-Done : meson-clk-dt-for-v4.19
+Based on the Neil Armstrong's patches.
 
-> 
-> Kevin
+Note: it's my first (small!) patch for U-Boot,
+I tried to add all needed and useful informations :-)
+
+Changes since v3:
+ - fix in Subject... sorry!
+
+Changes since v2:
+ - change commit message for DTS backport
+
+Changes since v1:
+ - remove duplicated lines in configs/khadas-vim_defconfig
+
+Loic Devulder (2):
+  ARM64: meson: Add 'usb2_phy0' in P212 DT file
+  configs: Update Meson GX configs
+
+ arch/arm/dts/meson-gxl-s905x-p212.dtsi | 7 ++++++++
+ configs/khadas-vim_defconfig           | 3 +++
+ 2 files changed, 10 insertions(+)
+
+-- 
+2.13.7
