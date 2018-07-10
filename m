@@ -1,39 +1,42 @@
-From: ldevulder@suse.de (Loic Devulder)
-Date: Tue, 10 Jul 2018 09:54:45 +0200
-Subject: [[PATCH v3] 2/2] configs: Update Meson GX configs
-In-Reply-To: <20180710075445.9274-1-ldevulder@suse.de>
-References: <20180710075445.9274-1-ldevulder@suse.de>
-Message-ID: <20180710075445.9274-3-ldevulder@suse.de>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 10 Jul 2018 09:58:43 +0200
+Subject: [PATCH RESEND] ARM64: dts: meson-axg: add the audio clock
+ controller
+In-Reply-To: <7h7em4nkja.fsf@baylibre.com>
+References: <20180706144305.30116-1-jbrunet@baylibre.com>
+ <7h7em4nkja.fsf@baylibre.com>
+Message-ID: <1531209523.2708.46.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Enable ADC support on the Khadas VIM board.
+On Mon, 2018-07-09 at 14:53 -0700, Kevin Hilman wrote:
+> Jerome Brunet <jbrunet@baylibre.com> writes:
+> 
+> > Add the audio clock controller which is part of the audio bus
+> > This controller takes 8 input plls, and the usual clock gate, from the
+> > main clock controller. It provides the clocs for the all the devices of
+> > the audio subsystem, such as tdms, spdif, pdm, etc.
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > ---
+> > 
+> > Resend to fix typo reported by Martin in the commit description.
+> > (Thx Martin !)
+> > 
+> > Kevin,
+> > 
+> > Please note that this change depends on the axg audio clock bindings [0].
+> > 
+> > It explains the problem reported by kbuild robot
+> > It will be part of our PR to clock in this cycle.
+> > 
+> > As usual, I've prepared a topic branch with the DT changes for you.
+> > Please, let me know when you need a tag on it.
+> 
+> Unless you're expecting some more dependencies for the v4.19 cycle,
+> please tag it now, then I will queue it up.
 
-Signed-off-by: Loic Devulder <ldevulder@suse.de>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
----
- configs/khadas-vim_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Done : meson-clk-dt-for-v4.19
 
-diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-index 1eb13df4b4..fd1ec8157b 100644
---- a/configs/khadas-vim_defconfig
-+++ b/configs/khadas-vim_defconfig
-@@ -13,12 +13,15 @@ CONFIG_OF_BOARD_SETUP=y
- # CONFIG_DISPLAY_BOARDINFO is not set
- # CONFIG_CMD_BDI is not set
- # CONFIG_CMD_IMI is not set
-+CONFIG_CMD_ADC=y
- CONFIG_CMD_GPIO=y
- # CONFIG_CMD_LOADS is not set
- CONFIG_CMD_MMC=y
- CONFIG_CMD_USB=y
- # CONFIG_CMD_SETEXPR is not set
- CONFIG_CMD_REGULATOR=y
-+CONFIG_ADC=y
-+CONFIG_SARADC_MESON=y
- CONFIG_OF_CONTROL=y
- CONFIG_NET_RANDOM_ETHADDR=y
- CONFIG_DM_GPIO=y
--- 
-2.13.7
+> 
+> Kevin
