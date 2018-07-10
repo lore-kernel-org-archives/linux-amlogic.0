@@ -1,36 +1,39 @@
 From: ldevulder@suse.de (Loic Devulder)
-Date: Tue, 10 Jul 2018 09:54:44 +0200
-Subject: [[PATCH v3] 1/2] ARM64: meson: Sync DT with Linux 4.17.5
+Date: Tue, 10 Jul 2018 09:54:45 +0200
+Subject: [[PATCH v3] 2/2] configs: Update Meson GX configs
 In-Reply-To: <20180710075445.9274-1-ldevulder@suse.de>
 References: <20180710075445.9274-1-ldevulder@suse.de>
-Message-ID: <20180710075445.9274-2-ldevulder@suse.de>
+Message-ID: <20180710075445.9274-3-ldevulder@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Synchronize the Linux Device Tree for Amlogic Meson GX boards from Linux 4.17.5
-(Linux commit 54fb3c180d05e9dfda892a93413514e99f0cbb19).
-
-This will enable HDMI_5V for USB Amlogic Meson GXL P212 based boards.
+Enable ADC support on the Khadas VIM board.
 
 Signed-off-by: Loic Devulder <ldevulder@suse.de>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/dts/meson-gxl-s905x-p212.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ configs/khadas-vim_defconfig | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/dts/meson-gxl-s905x-p212.dtsi b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
-index 0cfd701809..3bd405079b 100644
---- a/arch/arm/dts/meson-gxl-s905x-p212.dtsi
-+++ b/arch/arm/dts/meson-gxl-s905x-p212.dtsi
-@@ -189,3 +189,10 @@
- &usb0 {
- 	status = "okay";
- };
-+
-+&usb2_phy0 {
-+        /*
-+         * HDMI_5V is also used as supply for the USB VBUS.
-+         */
-+        phy-supply = <&hdmi_5v>;
-+};
+diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
+index 1eb13df4b4..fd1ec8157b 100644
+--- a/configs/khadas-vim_defconfig
++++ b/configs/khadas-vim_defconfig
+@@ -13,12 +13,15 @@ CONFIG_OF_BOARD_SETUP=y
+ # CONFIG_DISPLAY_BOARDINFO is not set
+ # CONFIG_CMD_BDI is not set
+ # CONFIG_CMD_IMI is not set
++CONFIG_CMD_ADC=y
+ CONFIG_CMD_GPIO=y
+ # CONFIG_CMD_LOADS is not set
+ CONFIG_CMD_MMC=y
+ CONFIG_CMD_USB=y
+ # CONFIG_CMD_SETEXPR is not set
+ CONFIG_CMD_REGULATOR=y
++CONFIG_ADC=y
++CONFIG_SARADC_MESON=y
+ CONFIG_OF_CONTROL=y
+ CONFIG_NET_RANDOM_ETHADDR=y
+ CONFIG_DM_GPIO=y
 -- 
 2.13.7
