@@ -1,32 +1,50 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 13 Jul 2018 11:42:42 +0200
-Subject: [PATCH v2 1/1] Fix README for Khadas VIM board
-In-Reply-To: <20180713093607.26121-2-ldevulder@suse.de>
-References: <20180713093607.26121-1-ldevulder@suse.de>
- <20180713093607.26121-2-ldevulder@suse.de>
-Message-ID: <72f5fa52-08f1-b131-4e04-ff5b53fadc4f@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 13 Jul 2018 13:49:57 +0200
+Subject: [PATCH] ARM64: dts: meson-axg: remove vddio_ao18 from SoC dtsi
+Message-ID: <20180713114957.32361-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 13/07/2018 11:36, Loic Devulder wrote:
-> Explicitly add 'python' call for 'acs_tool.pyc', to avoid failed
-> execution on some OSes.
-> 
-> Signed-off-by: Loic Devulder <ldevulder@suse.de>
-> 
-> diff --git a/board/amlogic/khadas-vim/README b/board/amlogic/khadas-vim/README
-> index 7eaca724f8..2f30831436 100644
-> --- a/board/amlogic/khadas-vim/README
-> +++ b/board/amlogic/khadas-vim/README
-> @@ -67,7 +67,7 @@ Go back to mainline U-Boot source tree then :
->  	fip/bl30_new.bin \
->  	bl30
->  
-> - > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
-> + > python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
->  
->   > $FIPDIR/blx_fix.sh \
->  	fip/bl2_acs.bin \
-> 
+Regulator should not be defined inside the SoC dtsi file.
+vddio_ao18 is already defined in the S400 board dts anyway.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+
+Kevin,
+
+This patch fixes a problem in a patch [0] you have applied recently.
+I did not put a Fixes tag because the branch on which you've applied it
+is not public yet (unknown sha1)
+
+If you decide to pick this patch, could you please add the Fixes tag?
+You could also squash the two patches together, if you prefer.
+
+Cheers
+Jerome
+
+[0] https://lkml.kernel.org/r/7hmuv0nkss.fsf at baylibre.com
+
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index a936d6535ce7..d4dc87ae72a4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -92,13 +92,6 @@
+ 		method = "smc";
+ 	};
+ 
+-	vddio_ao18: regulator-vddio_ao18 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "VDDIO_AO18";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-	};
+-
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 		interrupts = <GIC_PPI 13
+-- 
+2.14.4
