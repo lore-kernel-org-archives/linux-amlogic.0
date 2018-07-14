@@ -1,76 +1,34 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 13 Jul 2018 13:54:47 +0200
-Subject: [PATCH] ARM64: dts: meson-axg: add adc buttons the S400
-Message-ID: <20180713115447.2868-1-jbrunet@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat, 14 Jul 2018 16:30:40 +0200
+Subject: [PATCH 1/3] dt-bindings: clk: g12a: New binding for Meson-G12A SoC
+In-Reply-To: <f6f387ff-271b-9b4b-5b6e-072b4e56d840@amlogic.com>
+References: <1531134767-29927-1-git-send-email-jian.hu@amlogic.com>
+ <1531134767-29927-2-git-send-email-jian.hu@amlogic.com>
+ <1531214976.2708.52.camel@baylibre.com>
+ <f6f387ff-271b-9b4b-5b6e-072b4e56d840@amlogic.com>
+Message-ID: <CAFBinCDW_Z-Ku+x8YsaM0CuTP6KD4PQ2uf94m3DZn5kCmvK9GA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the 6 adc buttons of the amlogic S400
+On Wed, Jul 11, 2018 at 3:06 PM Jian Hu <jian.hu@amlogic.com> wrote:
+>
+>
+>
+> On 2018/7/10 17:29, Jerome Brunet wrote:
+> > On Mon, 2018-07-09 at 19:12 +0800, Jian Hu wrote:
+> >> Add new binding for Meson-G12A SoC Everything-Else part
+> >
+> > nitpick: I would prefer if the words 'clock' and 'controller' was somewhere in
+> > the description.
+> >
+> > Maybe "add new clock controller compatible for the EE domain of the g12a SoC" ?
+>
+> Patch 1 and 2 have squashed, the commit message focuse which one?
+I would use the information from both commit messages (for example you
+could use the what Jerome already suggested and extend it with "and
+add a header file which contains preprocessor macros to identify the
+clocks provided by this clock controller")
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 44 ++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index f389f84be2e2..fd90fa4a282c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -6,11 +6,55 @@
- /dts-v1/;
- 
- #include "meson-axg.dtsi"
-+#include <dt-bindings/input/input.h>
- 
- / {
- 	compatible = "amlogic,s400", "amlogic,a113d", "amlogic,meson-axg";
- 	model = "Amlogic Meson AXG S400 Development Board";
- 
-+	adc_keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+
-+		button-next {
-+			label = "Next";
-+			linux,code = <KEY_NEXT>;
-+			press-threshold-microvolt = <1116000>; /* 62% */
-+		};
-+
-+		button-prev {
-+			label = "Previous";
-+			linux,code = <KEY_PREVIOUS>;
-+			press-threshold-microvolt = <900000>; /* 50% */
-+		};
-+
-+		button-wifi {
-+			label = "Wifi";
-+			linux,code = <KEY_WLAN>;
-+			press-threshold-microvolt = <684000>; /* 38% */
-+		};
-+
-+		button-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			press-threshold-microvolt = <468000>; /* 26% */
-+		};
-+
-+		button-down {
-+			label = "Volume Down";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			press-threshold-microvolt = <252000>; /* 14% */
-+		};
-+
-+		button-voice {
-+			label = "Voice";
-+			linux,code = <KEY_VOICECOMMAND>;
-+			press-threshold-microvolt = <0>; /* 0% */
-+		};
-+	};
-+
- 	aliases {
- 		serial0 = &uart_AO;
- 		serial1 = &uart_A;
--- 
-2.14.4
+Regards
+Martin
