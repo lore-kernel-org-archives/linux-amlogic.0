@@ -1,1178 +1,1334 @@
-From: jian.hu@amlogic.com (Jian Hu)
-Date: Mon, 16 Jul 2018 14:37:49 +0800
-Subject: [PATCH 2/2] clk: meson-g12a: Add EE Clock controller driver
-Message-ID: <1531723069-134835-1-git-send-email-jian.hu@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 16 Jul 2018 09:40:14 +0200
+Subject: [PATCH RESEND] drm/meson: Make DMT timings parameters and pixel clock
+ generic
+Message-ID: <1531726814-14638-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Adds a Clock driver for the Everything-Else part
-of the Amlogic Meson-G12A SoC.
+Remove the modes timings tables for DMT modes and calculate the HW
+paremeters from the modes timings.
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+Switch the DMT modes pixel clock calculation out of the static frequency
+list to a generic calculation from a range of possible PLL dividers.
+
+This patch is an intermediate step towards usage of the Common Clock
+Framwework for PLL setup, by reworking the code to have common
+sel_pll() function called by the CEA (HDMI) freq setup and the generic
+DMT frequencies setup, we should be able to simply call clk_set_rate()
+on the PLL clock handle in a near future.
+
+The CEA (HDMI) and CVBS modes needs very specific clock paths that CCF will
+never be able to determine by itself, so there is still some work to do for
+a full handoff to CCF handling the clocks.
+
+This setup permits setting non-CEA modes like :
+- 1600x900-60Hz
+- 1280x1024-75Hz
+- 1280x1024-60Hz
+- 1440x900-60Hz
+- 1366x768-60Hz
+- 1280x800-60Hz
+- 1152x864-75Hz
+- 1024x768-75Hz
+- 1024x768-70Hz
+- 1024x768-60Hz
+- 832x624-75Hz
+- 800x600-75Hz
+- 800x600-72Hz
+- 800x600-60Hz
+- 640x480-75Hz
+- 640x480-73Hz
+- 640x480-67Hz
+
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/meson/Kconfig  |  10 +
- drivers/clk/meson/Makefile |   1 +
- drivers/clk/meson/g12a.c   | 994 +++++++++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/g12a.h   | 122 ++++++
- 4 files changed, 1127 insertions(+)
- create mode 100644 drivers/clk/meson/g12a.c
- create mode 100644 drivers/clk/meson/g12a.h
+ drivers/gpu/drm/meson/meson_dw_hdmi.c |  22 +-
+ drivers/gpu/drm/meson/meson_vclk.c    | 672 +++++++++++++++-------------------
+ drivers/gpu/drm/meson/meson_vclk.h    |   4 +
+ drivers/gpu/drm/meson/meson_venc.c    | 377 +++----------------
+ drivers/gpu/drm/meson/meson_venc.h    |   3 +-
+ 5 files changed, 358 insertions(+), 720 deletions(-)
 
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index efaa70f..16edad8 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -54,3 +54,13 @@ config COMMON_CLK_AXG_AUDIO
- 	help
- 	  Support for the audio clock controller on AmLogic A113D devices,
- 	  aka axg, Say Y if you want audio subsystem to work.
-+
-+config COMMON_CLK_G12A
-+	bool
-+	depends on COMMON_CLK_AMLOGIC
-+	select RESET_CONTROLLER
-+	select COMMON_CLK_REGMAP_MESON
-+	select MFD_SYSCON
-+	help
-+	  Support for the clock controller on Amlogic S905D2 devices, aka g12a.
-+	  Say Y if you want peripherals and CPU frequency scaling to work.
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 72ec8c4..2b1a562 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -9,4 +9,5 @@ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
- obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
- obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o axg-aoclk.o
- obj-$(CONFIG_COMMON_CLK_AXG_AUDIO)	+= axg-audio.o
-+obj-$(CONFIG_COMMON_CLK_G12A)	 += g12a.o
- obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)	+= clk-regmap.o
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-new file mode 100644
-index 0000000..c0285ec
---- /dev/null
-+++ b/drivers/clk/meson/g12a.c
-@@ -0,0 +1,994 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Amlogic Meson-G12A Clock Controller Driver
-+ *
-+ * Copyright (c) 2016 Baylibre SAS.
-+ * Author: Michael Turquette <mturquette@baylibre.com>
-+ *
-+ * Copyright (c) 2018 Amlogic, inc.
-+ * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-+ * Author: Jian Hu <jian.hu@amlogic.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/init.h>
-+#include <linux/of_device.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#include "clkc.h"
-+#include "g12a.h"
-+
-+static DEFINE_SPINLOCK(meson_clk_lock);
-+
-+static struct clk_regmap g12a_fixed_pll = {
-+	.data = &(struct meson_clk_pll_data){
-+		.m = {
-+			.reg_off = HHI_FIX_PLL_CNTL0,
-+			.shift   = 0,
-+			.width   = 8,
-+		},
-+		.n = {
-+			.reg_off = HHI_FIX_PLL_CNTL0,
-+			.shift   = 10,
-+			.width   = 5,
-+		},
-+		.od = {
-+			.reg_off = HHI_FIX_PLL_CNTL0,
-+			.shift   = 16,
-+			.width   = 2,
-+		},
-+		.frac = {
-+			.reg_off = HHI_FIX_PLL_CNTL1,
-+			.shift   = 0,
-+			.width   = 19,
-+		},
-+		.l = {
-+			.reg_off = HHI_FIX_PLL_CNTL0,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = HHI_FIX_PLL_CNTL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fixed_pll",
-+		.ops = &meson_clk_pll_ro_ops,
-+		.parent_names = (const char *[]){ "xtal" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static const struct reg_sequence g12a_sys_init_regs[] = {
-+	{ .reg = HHI_SYS_PLL_CNTL1,	.def = 0x00000000 },
-+	{ .reg = HHI_SYS_PLL_CNTL2,	.def = 0x00000000 },
-+	{ .reg = HHI_SYS_PLL_CNTL3,	.def = 0x48681c00 },
-+	{ .reg = HHI_SYS_PLL_CNTL4,	.def = 0x88770290 },
-+	{ .reg = HHI_SYS_PLL_CNTL5,	.def = 0x39272000 },
-+	{ .reg = HHI_SYS_PLL_CNTL6,	.def = 0x56540000 },
-+};
-+
-+static struct clk_regmap g12a_sys_pll = {
-+	.data = &(struct meson_clk_pll_data){
-+		.m = {
-+			.reg_off = HHI_SYS_PLL_CNTL0,
-+			.shift   = 0,
-+			.width   = 8,
-+		},
-+		.n = {
-+			.reg_off = HHI_SYS_PLL_CNTL0,
-+			.shift   = 10,
-+			.width   = 5,
-+		},
-+		.od = {
-+			.reg_off = HHI_SYS_PLL_CNTL0,
-+			.shift   = 16,
-+			.width   = 3,
-+		},
-+		.l = {
-+			.reg_off = HHI_SYS_PLL_CNTL0,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = HHI_SYS_PLL_CNTL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+		.init_regs = g12a_sys_init_regs,
-+		.init_count = ARRAY_SIZE(g12a_sys_init_regs),
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sys_pll",
-+		.ops = &meson_clk_pll_ro_ops,
-+		.parent_names = (const char *[]){ "xtal" },
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
-+static const struct pll_rate_table g12a_gp0_pll_rate_table[] = {
-+	PLL_RATE(24000000,  128, 1, 7),
-+	PLL_RATE(48000000,  128, 1, 6),
-+	PLL_RATE(96000000,  128, 1, 5),
-+	PLL_RATE(192000000,  128, 1, 4),
-+	PLL_RATE(312000000,  208, 1, 4),
-+	PLL_RATE(408000000,  136, 1, 3),
-+	PLL_RATE(600000000,  200, 1, 3),
-+	PLL_RATE(696000000,  232, 1, 3),
-+	PLL_RATE(792000000,  132, 1, 2),
-+	PLL_RATE(846000000,  141, 1, 2),
-+	PLL_RATE(912000000,  152, 1, 2),
-+	PLL_RATE(1008000000, 168, 1, 2),
-+	PLL_RATE(1104000000, 184, 1, 2),
-+	PLL_RATE(1200000000, 200, 1, 2),
-+	PLL_RATE(1296000000, 216, 1, 2),
-+	PLL_RATE(1398000000, 233, 1, 2),
-+	PLL_RATE(1494000000, 249, 1, 2),
-+	PLL_RATE(1512000000, 126, 1, 1),
-+	PLL_RATE(1608000000, 134, 1, 1),
-+	PLL_RATE(1704000000, 142, 1, 1),
-+	PLL_RATE(1800000000, 150, 1, 1),
-+	PLL_RATE(1896000000, 158, 1, 1),
-+	PLL_RATE(1908000000, 159, 1, 1),
-+	PLL_RATE(1920000000, 160, 1, 1),
-+	PLL_RATE(2016000000, 168, 1, 1),
-+	PLL_RATE(2100000000, 175, 1, 1),
-+	PLL_RATE(2196000000, 183, 1, 1),
-+	PLL_RATE(2292000000, 191, 1, 1),
-+	PLL_RATE(2400000000, 200, 1, 1),
-+	PLL_RATE(2496000000, 208, 1, 1),
-+	PLL_RATE(2592000000, 216, 1, 1),
-+	PLL_RATE(2700000000, 225, 1, 1),
-+	PLL_RATE(2796000000, 233, 1, 1),
-+	PLL_RATE(2892000000, 241, 1, 1),
-+	PLL_RATE(3000000000, 125, 1, 0),
-+	PLL_RATE(3096000000, 129, 1, 0),
-+	PLL_RATE(3192000000, 133, 1, 0),
-+	PLL_RATE(3288000000, 137, 1, 0),
-+	PLL_RATE(3408000000, 142, 1, 0),
-+	PLL_RATE(3504000000, 146, 1, 0),
-+	PLL_RATE(3600000000, 150, 1, 0),
-+	PLL_RATE(3696000000, 154, 1, 0),
-+	PLL_RATE(3792000000, 158, 1, 0),
-+	PLL_RATE(3888000000, 162, 1, 0),
-+	PLL_RATE(4008000000, 167, 1, 0),
-+	PLL_RATE(4104000000, 171, 1, 0),
-+	PLL_RATE(4200000000, 175, 1, 0),
-+	PLL_RATE(4296000000, 179, 1, 0),
-+	PLL_RATE(4392000000, 183, 1, 0),
-+	PLL_RATE(4488000000, 187, 1, 0),
-+	PLL_RATE(4608000000, 192, 1, 0),
-+	PLL_RATE(4704000000, 196, 1, 0),
-+	PLL_RATE(4800000000, 200, 1, 0),
-+	PLL_RATE(4896000000, 204, 1, 0),
-+	PLL_RATE(4992000000, 208, 1, 0),
-+	PLL_RATE(5088000000, 212, 1, 0),
-+	PLL_RATE(5208000000, 217, 1, 0),
-+	PLL_RATE(5304000000, 221, 1, 0),
-+	PLL_RATE(5400000000, 225, 1, 0),
-+	PLL_RATE(5496000000, 229, 1, 0),
-+	PLL_RATE(5592000000, 233, 1, 0),
-+	PLL_RATE(5688000000, 237, 1, 0),
-+	PLL_RATE(5808000000, 242, 1, 0),
-+	PLL_RATE(5904000000, 246, 1, 0),
-+	PLL_RATE(6000000000, 250, 1, 0),
-+	{ /* sentinel */ },
-+};
-+
-+static const struct reg_sequence g12a_gp0_init_regs[] = {
-+	{ .reg = HHI_GP0_PLL_CNTL1,	.def = 0x00000000 },
-+	{ .reg = HHI_GP0_PLL_CNTL2,	.def = 0x00000000 },
-+	{ .reg = HHI_GP0_PLL_CNTL3,	.def = 0x48681c00 },
-+	{ .reg = HHI_GP0_PLL_CNTL4,	.def = 0x33771290 },
-+	{ .reg = HHI_GP0_PLL_CNTL5,	.def = 0x39272000 },
-+	{ .reg = HHI_GP0_PLL_CNTL6,	.def = 0x56540000 },
-+};
-+
-+static struct clk_regmap g12a_gp0_pll = {
-+	.data = &(struct meson_clk_pll_data){
-+		.m = {
-+			.reg_off = HHI_GP0_PLL_CNTL0,
-+			.shift   = 0,
-+			.width   = 8,
-+		},
-+		.n = {
-+			.reg_off = HHI_GP0_PLL_CNTL0,
-+			.shift   = 10,
-+			.width   = 5,
-+		},
-+		.od = {
-+			.reg_off = HHI_GP0_PLL_CNTL0,
-+			.shift   = 16,
-+			.width   = 3,
-+		},
-+		.frac = {
-+			.reg_off = HHI_GP0_PLL_CNTL1,
-+			.shift   = 0,
-+			.width   = 19,
-+		},
-+		.l = {
-+			.reg_off = HHI_GP0_PLL_CNTL0,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = HHI_GP0_PLL_CNTL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+		.table = g12a_gp0_pll_rate_table,
-+		.init_regs = g12a_gp0_init_regs,
-+		.init_count = ARRAY_SIZE(g12a_gp0_init_regs),
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "gp0_pll",
-+		.ops = &meson_clk_pll_ops,
-+		.parent_names = (const char *[]){ "xtal" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static const struct reg_sequence g12a_hifi_init_regs[] = {
-+	{ .reg = HHI_HIFI_PLL_CNTL1,	.def = 0x00000000 },
-+	{ .reg = HHI_HIFI_PLL_CNTL2,	.def = 0x00000000 },
-+	{ .reg = HHI_HIFI_PLL_CNTL3,	.def = 0x6a285c00 },
-+	{ .reg = HHI_HIFI_PLL_CNTL4,	.def = 0x65771290 },
-+	{ .reg = HHI_HIFI_PLL_CNTL5,	.def = 0x39272000 },
-+	{ .reg = HHI_HIFI_PLL_CNTL6,	.def = 0x56540000 },
-+};
-+
-+static struct clk_regmap g12a_hifi_pll = {
-+	.data = &(struct meson_clk_pll_data){
-+		.m = {
-+			.reg_off = HHI_HIFI_PLL_CNTL0,
-+			.shift   = 0,
-+			.width   = 8,
-+		},
-+		.n = {
-+			.reg_off = HHI_HIFI_PLL_CNTL0,
-+			.shift   = 10,
-+			.width   = 5,
-+		},
-+		.od = {
-+			.reg_off = HHI_HIFI_PLL_CNTL0,
-+			.shift   = 16,
-+			.width   = 2,
-+		},
-+		.frac = {
-+			.reg_off = HHI_HIFI_PLL_CNTL1,
-+			.shift   = 0,
-+			.width   = 19,
-+		},
-+		.l = {
-+			.reg_off = HHI_HIFI_PLL_CNTL0,
-+			.shift   = 31,
-+			.width   = 1,
-+		},
-+		.rst = {
-+			.reg_off = HHI_HIFI_PLL_CNTL0,
-+			.shift   = 29,
-+			.width   = 1,
-+		},
-+		.table = g12a_gp0_pll_rate_table,
-+		.init_regs = g12a_hifi_init_regs,
-+		.init_count = ARRAY_SIZE(g12a_hifi_init_regs),
-+		.flags = CLK_MESON_PLL_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "hifi_pll",
-+		.ops = &meson_clk_pll_ops,
-+		.parent_names = (const char *[]){ "xtal" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor g12a_fclk_div2 = {
-+	.mult = 1,
-+	.div = 2,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor g12a_fclk_div3 = {
-+	.mult = 1,
-+	.div = 3,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div3",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor g12a_fclk_div4 = {
-+	.mult = 1,
-+	.div = 4,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div4",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor g12a_fclk_div5 = {
-+	.mult = 1,
-+	.div = 5,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div5",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor g12a_fclk_div7 = {
-+	.mult = 1,
-+	.div = 7,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div7",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll0_div = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL1,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL1,
-+			.shift   = 30,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL1,
-+			.shift   = 20,
-+			.width   = 9,
-+		},
-+		.ssen = {
-+			.reg_off = HHI_MPLL_CNTL1,
-+			.shift   = 29,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll0_div",
-+		.ops = &meson_clk_mpll_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll0 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL1,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll0",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "mpll0_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll1_div = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL3,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL3,
-+			.shift   = 30,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL3,
-+			.shift   = 20,
-+			.width   = 9,
-+		},
-+		.ssen = {
-+			.reg_off = HHI_MPLL_CNTL3,
-+			.shift   = 29,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll1_div",
-+		.ops = &meson_clk_mpll_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll1 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL3,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll1",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "mpll1_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll2_div = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL5,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL5,
-+			.shift   = 30,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL5,
-+			.shift   = 20,
-+			.width   = 9,
-+		},
-+		.ssen = {
-+			.reg_off = HHI_MPLL_CNTL5,
-+			.shift   = 29,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll2_div",
-+		.ops = &meson_clk_mpll_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll2 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL5,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll2",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "mpll2_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll3_div = {
-+	.data = &(struct meson_clk_mpll_data){
-+		.sdm = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 0,
-+			.width   = 14,
-+		},
-+		.sdm_en = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 30,
-+			.width	 = 1,
-+		},
-+		.n2 = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 20,
-+			.width   = 9,
-+		},
-+		.ssen = {
-+			.reg_off = HHI_MPLL_CNTL7,
-+			.shift   = 29,
-+			.width	 = 1,
-+		},
-+		.lock = &meson_clk_lock,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll3_div",
-+		.ops = &meson_clk_mpll_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpll3 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPLL_CNTL7,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpll3",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "mpll3_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static u32 mux_table_clk81[]	= { 0, 2, 3, 4, 5, 6, 7 };
-+static const char * const clk81_parent_names[] = {
-+	"xtal", "fclk_div7", "mpll1", "mpll2", "fclk_div4",
-+	"fclk_div3", "fclk_div5"
-+};
-+
-+static struct clk_regmap g12a_mpeg_clk_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_MPEG_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 12,
-+		.table = mux_table_clk81,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpeg_clk_sel",
-+		.ops = &clk_regmap_mux_ro_ops,
-+		.parent_names = clk81_parent_names,
-+		.num_parents = ARRAY_SIZE(clk81_parent_names),
-+	},
-+};
-+
-+static struct clk_regmap g12a_mpeg_clk_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_MPEG_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "mpeg_clk_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "mpeg_clk_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_clk81 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_MPEG_CLK_CNTL,
-+		.bit_idx = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "clk81",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "mpeg_clk_div" },
-+		.num_parents = 1,
-+		.flags = (CLK_SET_RATE_PARENT | CLK_IS_CRITICAL),
-+	},
-+};
-+
-+static const char * const g12a_sd_emmc_clk0_parent_names[] = {
-+	"xtal", "fclk_div2", "fclk_div3", "fclk_div5", "fclk_div7",
-+
-+	/*
-+	 * Following these parent clocks, we should also have had mpll2, mpll3
-+	 * and gp0_pll but these clocks are too precious to be used here. All
-+	 * the necessary rates for MMC and NAND operation can be acheived using
-+	 * xtal or fclk_div clocks
-+	 */
-+};
-+
-+/* SDcard clock */
-+static struct clk_regmap g12a_sd_emmc_b_clk0_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_SD_EMMC_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 25,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_b_clk0_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = g12a_sd_emmc_clk0_parent_names,
-+		.num_parents = ARRAY_SIZE(g12a_sd_emmc_clk0_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_sd_emmc_b_clk0_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_SD_EMMC_CLK_CNTL,
-+		.shift = 16,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_b_clk0_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_b_clk0_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_sd_emmc_b_clk0 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_SD_EMMC_CLK_CNTL,
-+		.bit_idx = 23,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_b_clk0",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_b_clk0_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+/* EMMC/NAND clock */
-+static struct clk_regmap g12a_sd_emmc_c_clk0_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_NAND_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 9,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_c_clk0_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = g12a_sd_emmc_clk0_parent_names,
-+		.num_parents = ARRAY_SIZE(g12a_sd_emmc_clk0_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_sd_emmc_c_clk0_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_NAND_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "sd_emmc_c_clk0_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_c_clk0_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_sd_emmc_c_clk0 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_NAND_CLK_CNTL,
-+		.bit_idx = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "sd_emmc_c_clk0",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "sd_emmc_c_clk0_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+/* Everything Else (EE) domain gates */
-+static MESON_GATE(g12a_ddr, HHI_GCLK_MPEG0, 0);
-+static MESON_GATE(g12a_dos, HHI_GCLK_MPEG0, 1);
-+static MESON_GATE(g12a_audio_locker, HHI_GCLK_MPEG0, 2);
-+static MESON_GATE(g12a_mipi_dsi_host, HHI_GCLK_MPEG0, 3);
-+static MESON_GATE(g12a_eth_phy, HHI_GCLK_MPEG0, 4);
-+static MESON_GATE(g12a_isa, HHI_GCLK_MPEG0, 5);
-+static MESON_GATE(g12a_pl301, HHI_GCLK_MPEG0, 6);
-+static MESON_GATE(g12a_periphs, HHI_GCLK_MPEG0, 7);
-+static MESON_GATE(g12a_spicc_0, HHI_GCLK_MPEG0, 8);
-+static MESON_GATE(g12a_i2c, HHI_GCLK_MPEG0, 9);
-+static MESON_GATE(g12a_sana, HHI_GCLK_MPEG0, 10);
-+static MESON_GATE(g12a_sd, HHI_GCLK_MPEG0, 11);
-+static MESON_GATE(g12a_rng0, HHI_GCLK_MPEG0, 12);
-+static MESON_GATE(g12a_uart0, HHI_GCLK_MPEG0, 13);
-+static MESON_GATE(g12a_spicc_1, HHI_GCLK_MPEG0, 14);
-+static MESON_GATE(g12a_hiu_reg, HHI_GCLK_MPEG0, 19);
-+static MESON_GATE(g12a_mipi_dsi_phy, HHI_GCLK_MPEG0, 20);
-+static MESON_GATE(g12a_assist_misc, HHI_GCLK_MPEG0, 23);
-+static MESON_GATE(g12a_emmc_a, HHI_GCLK_MPEG0, 24);
-+static MESON_GATE(g12a_emmc_b, HHI_GCLK_MPEG0, 25);
-+static MESON_GATE(g12a_emmc_c, HHI_GCLK_MPEG0, 26);
-+static MESON_GATE(g12a_audio_codec, HHI_GCLK_MPEG0, 28);
-+
-+static MESON_GATE(g12a_audio, HHI_GCLK_MPEG1, 0);
-+static MESON_GATE(g12a_eth_core, HHI_GCLK_MPEG1, 3);
-+static MESON_GATE(g12a_demux, HHI_GCLK_MPEG1, 4);
-+static MESON_GATE(g12a_audio_ififo, HHI_GCLK_MPEG1, 11);
-+static MESON_GATE(g12a_adc, HHI_GCLK_MPEG1, 13);
-+static MESON_GATE(g12a_uart1, HHI_GCLK_MPEG1, 16);
-+static MESON_GATE(g12a_g2d, HHI_GCLK_MPEG1, 20);
-+static MESON_GATE(g12a_reset, HHI_GCLK_MPEG1, 23);
-+static MESON_GATE(g12a_pcie_comb, HHI_GCLK_MPEG1, 24);
-+static MESON_GATE(g12a_parser, HHI_GCLK_MPEG1, 25);
-+static MESON_GATE(g12a_usb_general, HHI_GCLK_MPEG1, 26);
-+static MESON_GATE(g12a_pcie_phy, HHI_GCLK_MPEG1, 27);
-+static MESON_GATE(g12a_ahb_arb0, HHI_GCLK_MPEG1, 29);
-+
-+static MESON_GATE(g12a_ahb_data_bus, HHI_GCLK_MPEG2, 1);
-+static MESON_GATE(g12a_ahb_ctrl_bus, HHI_GCLK_MPEG2, 2);
-+static MESON_GATE(g12a_htx_hdcp22, HHI_GCLK_MPEG2, 3);
-+static MESON_GATE(g12a_htx_pclk, HHI_GCLK_MPEG2, 4);
-+static MESON_GATE(g12a_bt656, HHI_GCLK_MPEG2, 6);
-+static MESON_GATE(g12a_usb1_to_ddr, HHI_GCLK_MPEG2, 8);
-+static MESON_GATE(g12a_mmc_pclk, HHI_GCLK_MPEG2, 11);
-+static MESON_GATE(g12a_uart2, HHI_GCLK_MPEG2, 15);
-+static MESON_GATE(g12a_vpu_intr, HHI_GCLK_MPEG2, 25);
-+static MESON_GATE(g12a_gic, HHI_GCLK_MPEG2, 30);
-+
-+static MESON_GATE(g12a_vclk2_venci0, HHI_GCLK_OTHER, 1);
-+static MESON_GATE(g12a_vclk2_venci1, HHI_GCLK_OTHER, 2);
-+static MESON_GATE(g12a_vclk2_vencp0, HHI_GCLK_OTHER, 3);
-+static MESON_GATE(g12a_vclk2_vencp1, HHI_GCLK_OTHER, 4);
-+static MESON_GATE(g12a_vclk2_venct0, HHI_GCLK_OTHER, 5);
-+static MESON_GATE(g12a_vclk2_venct1, HHI_GCLK_OTHER, 6);
-+static MESON_GATE(g12a_vclk2_other, HHI_GCLK_OTHER, 7);
-+static MESON_GATE(g12a_vclk2_enci, HHI_GCLK_OTHER, 8);
-+static MESON_GATE(g12a_vclk2_encp, HHI_GCLK_OTHER, 9);
-+static MESON_GATE(g12a_dac_clk, HHI_GCLK_OTHER, 10);
-+static MESON_GATE(g12a_aoclk_gate, HHI_GCLK_OTHER, 14);
-+static MESON_GATE(g12a_iec958_gate, HHI_GCLK_OTHER, 16);
-+static MESON_GATE(g12a_enc480p, HHI_GCLK_OTHER, 20);
-+static MESON_GATE(g12a_rng1, HHI_GCLK_OTHER, 21);
-+static MESON_GATE(g12a_vclk2_enct, HHI_GCLK_OTHER, 22);
-+static MESON_GATE(g12a_vclk2_encl, HHI_GCLK_OTHER, 23);
-+static MESON_GATE(g12a_vclk2_venclmmc, HHI_GCLK_OTHER, 24);
-+static MESON_GATE(g12a_vclk2_vencl, HHI_GCLK_OTHER, 25);
-+static MESON_GATE(g12a_vclk2_other1, HHI_GCLK_OTHER, 26);
-+
-+/* Array of all clocks provided by this provider */
-+
-+static struct clk_hw_onecell_data g12a_hw_onecell_data = {
-+	.hws = {
-+		[CLKID_SYS_PLL]			= &g12a_sys_pll.hw,
-+		[CLKID_FIXED_PLL]		= &g12a_fixed_pll.hw,
-+		[CLKID_FCLK_DIV2]		= &g12a_fclk_div2.hw,
-+		[CLKID_FCLK_DIV3]		= &g12a_fclk_div3.hw,
-+		[CLKID_FCLK_DIV4]		= &g12a_fclk_div4.hw,
-+		[CLKID_FCLK_DIV5]		= &g12a_fclk_div5.hw,
-+		[CLKID_FCLK_DIV7]		= &g12a_fclk_div7.hw,
-+		[CLKID_GP0_PLL]			= &g12a_gp0_pll.hw,
-+		[CLKID_MPEG_SEL]		= &g12a_mpeg_clk_sel.hw,
-+		[CLKID_MPEG_DIV]		= &g12a_mpeg_clk_div.hw,
-+		[CLKID_CLK81]			= &g12a_clk81.hw,
-+		[CLKID_MPLL0]			= &g12a_mpll0.hw,
-+		[CLKID_MPLL1]			= &g12a_mpll1.hw,
-+		[CLKID_MPLL2]			= &g12a_mpll2.hw,
-+		[CLKID_MPLL3]			= &g12a_mpll3.hw,
-+		[CLKID_DDR]			= &g12a_ddr.hw,
-+		[CLKID_DOS]			= &g12a_dos.hw,
-+		[CLKID_AUDIO_LOCKER]		= &g12a_audio_locker.hw,
-+		[CLKID_MIPI_DSI_HOST]		= &g12a_mipi_dsi_host.hw,
-+		[CLKID_ETH_PHY]			= &g12a_eth_phy.hw,
-+		[CLKID_ISA]			= &g12a_isa.hw,
-+		[CLKID_PL301]			= &g12a_pl301.hw,
-+		[CLKID_PERIPHS]			= &g12a_periphs.hw,
-+		[CLKID_SPICC0]			= &g12a_spicc_0.hw,
-+		[CLKID_I2C]			= &g12a_i2c.hw,
-+		[CLKID_SANA]			= &g12a_sana.hw,
-+		[CLKID_SD]			= &g12a_sd.hw,
-+		[CLKID_RNG0]			= &g12a_rng0.hw,
-+		[CLKID_UART0]			= &g12a_uart0.hw,
-+		[CLKID_SPICC1]			= &g12a_spicc_1.hw,
-+		[CLKID_HIU_IFACE]		= &g12a_hiu_reg.hw,
-+		[CLKID_MIPI_DSI_PHY]		= &g12a_mipi_dsi_phy.hw,
-+		[CLKID_ASSIST_MISC]		= &g12a_assist_misc.hw,
-+		[CLKID_SD_EMMC_A]		= &g12a_emmc_a.hw,
-+		[CLKID_SD_EMMC_B]		= &g12a_emmc_b.hw,
-+		[CLKID_SD_EMMC_C]		= &g12a_emmc_c.hw,
-+		[CLKID_AUDIO_CODEC]		= &g12a_audio_codec.hw,
-+		[CLKID_AUDIO]			= &g12a_audio.hw,
-+		[CLKID_ETH]			= &g12a_eth_core.hw,
-+		[CLKID_DEMUX]			= &g12a_demux.hw,
-+		[CLKID_AUDIO_IFIFO]		= &g12a_audio_ififo.hw,
-+		[CLKID_ADC]			= &g12a_adc.hw,
-+		[CLKID_UART1]			= &g12a_uart1.hw,
-+		[CLKID_G2D]			= &g12a_g2d.hw,
-+		[CLKID_RESET]			= &g12a_reset.hw,
-+		[CLKID_PCIE_COMB]		= &g12a_pcie_comb.hw,
-+		[CLKID_PARSER]			= &g12a_parser.hw,
-+		[CLKID_USB]			= &g12a_usb_general.hw,
-+		[CLKID_PCIE_PHY]		= &g12a_pcie_phy.hw,
-+		[CLKID_AHB_ARB0]		= &g12a_ahb_arb0.hw,
-+		[CLKID_AHB_DATA_BUS]		= &g12a_ahb_data_bus.hw,
-+		[CLKID_AHB_CTRL_BUS]		= &g12a_ahb_ctrl_bus.hw,
-+		[CLKID_HTX_HDCP22]		= &g12a_htx_hdcp22.hw,
-+		[CLKID_HTX_PCLK]		= &g12a_htx_pclk.hw,
-+		[CLKID_BT656]			= &g12a_bt656.hw,
-+		[CLKID_USB1_DDR_BRIDGE]		= &g12a_usb1_to_ddr.hw,
-+		[CLKID_MMC_PCLK]		= &g12a_mmc_pclk.hw,
-+		[CLKID_UART2]			= &g12a_uart2.hw,
-+		[CLKID_VPU_INTR]		= &g12a_vpu_intr.hw,
-+		[CLKID_GIC]			= &g12a_gic.hw,
-+		[CLKID_SD_EMMC_B_CLK0_SEL]	= &g12a_sd_emmc_b_clk0_sel.hw,
-+		[CLKID_SD_EMMC_B_CLK0_DIV]	= &g12a_sd_emmc_b_clk0_div.hw,
-+		[CLKID_SD_EMMC_B_CLK0]		= &g12a_sd_emmc_b_clk0.hw,
-+		[CLKID_SD_EMMC_C_CLK0_SEL]	= &g12a_sd_emmc_c_clk0_sel.hw,
-+		[CLKID_SD_EMMC_C_CLK0_DIV]	= &g12a_sd_emmc_c_clk0_div.hw,
-+		[CLKID_SD_EMMC_C_CLK0]		= &g12a_sd_emmc_c_clk0.hw,
-+		[CLKID_MPLL0_DIV]		= &g12a_mpll0_div.hw,
-+		[CLKID_MPLL1_DIV]		= &g12a_mpll1_div.hw,
-+		[CLKID_MPLL2_DIV]		= &g12a_mpll2_div.hw,
-+		[CLKID_MPLL3_DIV]		= &g12a_mpll3_div.hw,
-+		[CLKID_HIFI_PLL]		= &g12a_hifi_pll.hw,
-+		[CLKID_VCLK2_VENCI0]		= &g12a_vclk2_venci0.hw,
-+		[CLKID_VCLK2_VENCI1]		= &g12a_vclk2_venci1.hw,
-+		[CLKID_VCLK2_VENCP0]		= &g12a_vclk2_vencp0.hw,
-+		[CLKID_VCLK2_VENCP1]		= &g12a_vclk2_vencp1.hw,
-+		[CLKID_VCLK2_VENCT0]		= &g12a_vclk2_venct0.hw,
-+		[CLKID_VCLK2_VENCT1]		= &g12a_vclk2_venct1.hw,
-+		[CLKID_VCLK2_OTHER]		= &g12a_vclk2_other.hw,
-+		[CLKID_VCLK2_ENCI]		= &g12a_vclk2_enci.hw,
-+		[CLKID_VCLK2_ENCP]		= &g12a_vclk2_encp.hw,
-+		[CLKID_DAC_CLK]			= &g12a_dac_clk.hw,
-+		[CLKID_AOCLK]			= &g12a_aoclk_gate.hw,
-+		[CLKID_IEC958]			= &g12a_iec958_gate.hw,
-+		[CLKID_ENC480P]			= &g12a_enc480p.hw,
-+		[CLKID_RNG1]			= &g12a_rng1.hw,
-+		[CLKID_VCLK2_ENCT]		= &g12a_vclk2_enct.hw,
-+		[CLKID_VCLK2_ENCL]		= &g12a_vclk2_encl.hw,
-+		[CLKID_VCLK2_VENCLMMC]		= &g12a_vclk2_venclmmc.hw,
-+		[CLKID_VCLK2_VENCL]		= &g12a_vclk2_vencl.hw,
-+		[CLKID_VCLK2_OTHER1]		= &g12a_vclk2_other1.hw,
-+		[NR_CLKS]			= NULL,
-+	},
-+	.num = NR_CLKS,
-+};
-+
-+/* Convenience table to populate regmap in .probe */
-+static struct clk_regmap *const g12a_clk_regmaps[] = {
-+	&g12a_clk81,
-+	&g12a_dos,
-+	&g12a_ddr,
-+	&g12a_audio_locker,
-+	&g12a_mipi_dsi_host,
-+	&g12a_eth_phy,
-+	&g12a_isa,
-+	&g12a_pl301,
-+	&g12a_periphs,
-+	&g12a_spicc_0,
-+	&g12a_i2c,
-+	&g12a_sana,
-+	&g12a_sd,
-+	&g12a_rng0,
-+	&g12a_uart0,
-+	&g12a_spicc_1,
-+	&g12a_hiu_reg,
-+	&g12a_mipi_dsi_phy,
-+	&g12a_assist_misc,
-+	&g12a_emmc_a,
-+	&g12a_emmc_b,
-+	&g12a_emmc_c,
-+	&g12a_audio_codec,
-+	&g12a_audio,
-+	&g12a_eth_core,
-+	&g12a_demux,
-+	&g12a_audio_ififo,
-+	&g12a_adc,
-+	&g12a_uart1,
-+	&g12a_g2d,
-+	&g12a_reset,
-+	&g12a_pcie_comb,
-+	&g12a_parser,
-+	&g12a_usb_general,
-+	&g12a_pcie_phy,
-+	&g12a_ahb_arb0,
-+	&g12a_ahb_data_bus,
-+	&g12a_ahb_ctrl_bus,
-+	&g12a_htx_hdcp22,
-+	&g12a_htx_pclk,
-+	&g12a_bt656,
-+	&g12a_usb1_to_ddr,
-+	&g12a_mmc_pclk,
-+	&g12a_vpu_intr,
-+	&g12a_gic,
-+	&g12a_sd_emmc_b_clk0,
-+	&g12a_sd_emmc_c_clk0,
-+	&g12a_mpeg_clk_div,
-+	&g12a_sd_emmc_b_clk0_div,
-+	&g12a_sd_emmc_c_clk0_div,
-+	&g12a_mpeg_clk_sel,
-+	&g12a_sd_emmc_b_clk0_sel,
-+	&g12a_sd_emmc_c_clk0_sel,
-+	&g12a_mpll0,
-+	&g12a_mpll1,
-+	&g12a_mpll2,
-+	&g12a_mpll3,
-+	&g12a_mpll0_div,
-+	&g12a_mpll1_div,
-+	&g12a_mpll2_div,
-+	&g12a_mpll3_div,
-+	&g12a_fixed_pll,
-+	&g12a_sys_pll,
-+	&g12a_gp0_pll,
-+	&g12a_hifi_pll,
-+	&g12a_vclk2_venci0,
-+	&g12a_vclk2_venci1,
-+	&g12a_vclk2_vencp0,
-+	&g12a_vclk2_vencp1,
-+	&g12a_vclk2_venct0,
-+	&g12a_vclk2_venct1,
-+	&g12a_vclk2_other,
-+	&g12a_vclk2_enci,
-+	&g12a_vclk2_encp,
-+	&g12a_dac_clk,
-+	&g12a_aoclk_gate,
-+	&g12a_iec958_gate,
-+	&g12a_enc480p,
-+	&g12a_rng1,
-+	&g12a_vclk2_enct,
-+	&g12a_vclk2_encl,
-+	&g12a_vclk2_venclmmc,
-+	&g12a_vclk2_vencl,
-+	&g12a_vclk2_other1,
-+};
-+
-+static const struct of_device_id clkc_match_table[] = {
-+	{ .compatible = "amlogic,g12a-clkc" },
-+	{}
-+};
-+
-+static const struct regmap_config clkc_regmap_config = {
-+	.reg_bits       = 32,
-+	.val_bits       = 32,
-+	.reg_stride     = 4,
-+};
-+
-+static int g12a_clkc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct regmap *map;
-+	int ret, i;
-+
-+	/* Get the hhi system controller node if available */
-+	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
-+	if (IS_ERR(map)) {
-+		dev_err(dev,
-+			"failed to get HHI regmap\n");
-+		return PTR_ERR(map);
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index c9ad456..df7247c 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -329,6 +329,12 @@ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
+ 
+ 	vclk_freq = mode->clock;
+ 
++	if (!vic) {
++		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, vclk_freq,
++				 vclk_freq, vclk_freq, false);
++		return;
 +	}
 +
-+	/* Populate regmap for the regmap backed clocks */
-+	for (i = 0; i < ARRAY_SIZE(g12a_clk_regmaps); i++)
-+		g12a_clk_regmaps[i]->map = map;
+ 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+ 		vclk_freq *= 2;
+ 
+@@ -542,10 +548,12 @@ static enum drm_mode_status
+ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 		   const struct drm_display_mode *mode)
+ {
++	struct meson_drm *priv = connector->dev->dev_private;
+ 	unsigned int vclk_freq;
+ 	unsigned int venc_freq;
+ 	unsigned int hdmi_freq;
+ 	int vic = drm_match_cea_mode(mode);
++	enum drm_mode_status status;
+ 
+ 	DRM_DEBUG_DRIVER("Modeline %d:\"%s\" %d %d %d %d %d %d %d %d %d %d 0x%x 0x%x\n",
+ 		mode->base.id, mode->name, mode->vrefresh, mode->clock,
+@@ -556,8 +564,11 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 
+ 	/* Check against non-VIC supported modes */
+ 	if (!vic) {
+-		if (!meson_venc_hdmi_supported_mode(mode))
+-			return MODE_BAD;
++		status = meson_venc_hdmi_supported_mode(mode);
++		if (status != MODE_OK)
++			return status;
 +
-+	for (i = 0; i < g12a_hw_onecell_data.num; i++) {
-+		/* array might be sparse */
-+		if (!g12a_hw_onecell_data.hws[i])
-+			continue;
-+
-+		ret = devm_clk_hw_register(dev, g12a_hw_onecell_data.hws[i]);
-+		if (ret) {
-+			dev_err(dev, "Clock registration failed\n");
-+			return ret;
-+		}
++		return meson_vclk_dmt_supported_freq(priv, mode->clock);
+ 	/* Check against supported VIC modes */
+ 	} else if (!meson_venc_hdmi_supported_vic(vic))
+ 		return MODE_BAD;
+@@ -583,16 +594,11 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 	dev_dbg(connector->dev->dev, "%s: vclk:%d venc=%d hdmi=%d\n", __func__,
+ 		vclk_freq, venc_freq, hdmi_freq);
+ 
+-	/* Finally filter by configurable vclk frequencies */
++	/* Finally filter by configurable vclk frequencies for VIC modes */
+ 	switch (vclk_freq) {
+-	case 25175:
+-	case 40000:
+ 	case 54000:
+-	case 65000:
+ 	case 74250:
+-	case 108000:
+ 	case 148500:
+-	case 162000:
+ 	case 297000:
+ 	case 594000:
+ 		return MODE_OK;
+diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+index f051122..0b17788 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.c
++++ b/drivers/gpu/drm/meson/meson_vclk.c
+@@ -320,32 +320,23 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
+ 				CTS_VDAC_EN, CTS_VDAC_EN);
+ }
+ 
+-
++enum {
+ /* PLL	O1 O2 O3 VP DV     EN TX */
+ /* 4320 /4 /4 /1 /5 /1  => /2 /2 */
+-#define MESON_VCLK_HDMI_ENCI_54000	1
++	MESON_VCLK_HDMI_ENCI_54000 = 1,
+ /* 4320 /4 /4 /1 /5 /1  => /1 /2 */
+-#define MESON_VCLK_HDMI_DDR_54000	2
++	MESON_VCLK_HDMI_DDR_54000,
+ /* 2970 /4 /1 /1 /5 /1  => /1 /2 */
+-#define MESON_VCLK_HDMI_DDR_148500	3
+-/* 4028 /4 /4 /1 /5 /2  => /1 /1 */
+-#define MESON_VCLK_HDMI_25175		4
+-/* 3200 /4 /2 /1 /5 /2  => /1 /1 */
+-#define MESON_VCLK_HDMI_40000		5
+-/* 5200 /4 /2 /1 /5 /2  => /1 /1 */
+-#define MESON_VCLK_HDMI_65000		6
++	MESON_VCLK_HDMI_DDR_148500,
+ /* 2970 /2 /2 /2 /5 /1  => /1 /1 */
+-#define MESON_VCLK_HDMI_74250		7
+-/* 4320 /4 /1 /1 /5 /2  => /1 /1 */
+-#define MESON_VCLK_HDMI_108000		8
++	MESON_VCLK_HDMI_74250,
+ /* 2970 /1 /2 /2 /5 /1  => /1 /1 */
+-#define MESON_VCLK_HDMI_148500		9
+-/* 3240 /2 /1 /1 /5 /2  => /1 /1 */
+-#define MESON_VCLK_HDMI_162000		10
++	MESON_VCLK_HDMI_148500,
+ /* 2970 /1 /1 /1 /5 /2  => /1 /1 */
+-#define MESON_VCLK_HDMI_297000		11
++	MESON_VCLK_HDMI_297000,
+ /* 5940 /1 /1 /2 /5 /1  => /1 /1 */
+-#define MESON_VCLK_HDMI_594000		12
++	MESON_VCLK_HDMI_594000
++};
+ 
+ struct meson_vclk_params {
+ 	unsigned int pll_base_freq;
+@@ -411,46 +402,6 @@ struct meson_vclk_params {
+ 		.vid_pll_div = VID_PLL_DIV_5,
+ 		.vclk_div = 1,
+ 	},
+-	[MESON_VCLK_HDMI_25175] = {
+-		.pll_base_freq = 4028000,
+-		.pll_od1 = 4,
+-		.pll_od2 = 4,
+-		.pll_od3 = 1,
+-		.vid_pll_div = VID_PLL_DIV_5,
+-		.vclk_div = 2,
+-	},
+-	[MESON_VCLK_HDMI_40000] = {
+-		.pll_base_freq = 3200000,
+-		.pll_od1 = 4,
+-		.pll_od2 = 2,
+-		.pll_od3 = 1,
+-		.vid_pll_div = VID_PLL_DIV_5,
+-		.vclk_div = 2,
+-	},
+-	[MESON_VCLK_HDMI_65000] = {
+-		.pll_base_freq = 5200000,
+-		.pll_od1 = 4,
+-		.pll_od2 = 2,
+-		.pll_od3 = 1,
+-		.vid_pll_div = VID_PLL_DIV_5,
+-		.vclk_div = 2,
+-	},
+-	[MESON_VCLK_HDMI_108000] = {
+-		.pll_base_freq = 4320000,
+-		.pll_od1 = 4,
+-		.pll_od2 = 1,
+-		.pll_od3 = 1,
+-		.vid_pll_div = VID_PLL_DIV_5,
+-		.vclk_div = 2,
+-	},
+-	[MESON_VCLK_HDMI_162000] = {
+-		.pll_base_freq = 3240000,
+-		.pll_od1 = 2,
+-		.pll_od2 = 1,
+-		.pll_od3 = 1,
+-		.vid_pll_div = VID_PLL_DIV_5,
+-		.vclk_div = 2,
+-	},
+ };
+ 
+ static inline unsigned int pll_od_to_reg(unsigned int od)
+@@ -470,358 +421,217 @@ static inline unsigned int pll_od_to_reg(unsigned int od)
+ 	return 0;
+ }
+ 
+-void meson_hdmi_pll_set(struct meson_drm *priv,
+-			unsigned int base,
+-			unsigned int od1,
+-			unsigned int od2,
+-			unsigned int od3)
++void meson_hdmi_pll_set_params(struct meson_drm *priv, unsigned int m,
++			       unsigned int frac, unsigned int od1,
++			       unsigned int od2, unsigned int od3)
+ {
+ 	unsigned int val;
+ 
+ 	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
+-		switch (base) {
+-		case 2970000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800023d);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x58000200 | m);
++		if (frac)
++			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2,
++				     0x00004000 | frac);
++		else
++			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2,
++				     0x00000000);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+ 
+-			/* Enable and unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						0x7 << 28, 0x4 << 28);
++		/* Enable and unreset */
++		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
++				0x7 << 28, 0x4 << 28);
+ 
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-
+-			/* div_frac */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-						0xFFFF,  0x4e00);
+-			break;
+-
+-		case 3200000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x58000242);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+-
+-			/* unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						BIT(28), 0);
+-
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-
+-			/* div_frac */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-						0xFFFF,  0x4aab);
+-			break;
+-
+-		case 3240000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x58000243);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+-
+-			/* unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						BIT(28), 0);
+-
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-
+-			/* div_frac */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-						0xFFFF,  0x4800);
+-			break;
+-
+-		case 3865000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x58000250);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+-
+-			/* unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						BIT(28), 0);
+-
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-
+-			/* div_frac */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-						0xFFFF,  0x4855);
+-			break;
+-
+-		case 4028000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x58000253);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+-
+-			/* unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						BIT(28), 0);
+-
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-
+-			/* div_frac */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-						0xFFFF,  0x4eab);
+-			break;
+-
+-		case 4320000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800025a);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+-
+-			/* unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						BIT(28), 0);
+-
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-			break;
+-
+-		case 5940000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800027b);
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-						0xFFFF,  0x4c00);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x135c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+-
+-			/* unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						BIT(28), 0);
+-
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-			break;
+-
+-		case 5200000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800026c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00000000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x135c5091);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x801da72c);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
+-
+-			/* unreset */
+-			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-						BIT(28), 0);
+-
+-			/* Poll for lock bit */
+-			regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					val, (val & HDMI_PLL_LOCK), 10, 0);
+-			break;
+-		};
++		/* Poll for lock bit */
++		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
++				val, (val & HDMI_PLL_LOCK), 10, 0);
+ 	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+-		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
+-		switch (base) {
+-		case 2970000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x4000027b);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb300);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		case 3200000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x40000285);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb155);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		case 3240000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x40000287);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		case 3865000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x400002a1);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb02b);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		case 4028000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x400002a7);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb355);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		case 4320000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x400002b4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		case 5940000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x400002f7);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb200);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		case 5200000:
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x400002d8);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb2ab);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
+-			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+-			break;
+-
+-		};
++			meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x40000200 | m);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb000 | frac);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0c8e0000);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x001fa729);
++		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x01a31500);
+ 
+ 		/* Reset PLL */
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					HDMI_PLL_RESET, HDMI_PLL_RESET);
++				HDMI_PLL_RESET, HDMI_PLL_RESET);
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+-					HDMI_PLL_RESET, 0);
++				HDMI_PLL_RESET, 0);
+ 
+ 		/* Poll for lock bit */
+ 		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
+ 				(val & HDMI_PLL_LOCK), 10, 0);
+-	};
 +	}
+ 
+ 	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-				   3 << 16, pll_od_to_reg(od1) << 16);
++				3 << 16, pll_od_to_reg(od1) << 16);
+ 	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+-		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
++			meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
+-				   3 << 21, pll_od_to_reg(od1) << 21);
++				3 << 21, pll_od_to_reg(od1) << 21);
+ 
+ 	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-				   3 << 22, pll_od_to_reg(od2) << 22);
++				3 << 22, pll_od_to_reg(od2) << 22);
+ 	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+-		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
++			meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
+-				   3 << 23, pll_od_to_reg(od2) << 23);
++				3 << 23, pll_od_to_reg(od2) << 23);
+ 
+ 	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+-				   3 << 18, pll_od_to_reg(od3) << 18);
++				3 << 18, pll_od_to_reg(od3) << 18);
+ 	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+-		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
++			meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+ 		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
+-				   3 << 19, pll_od_to_reg(od3) << 19);
++				3 << 19, pll_od_to_reg(od3) << 19);
 +
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+					   &g12a_hw_onecell_data);
+ }
+ 
+-void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+-		      unsigned int vclk_freq, unsigned int venc_freq,
+-		      unsigned int dac_freq, bool hdmi_use_enci)
++#define XTAL_FREQ 24000
++
++static unsigned int meson_hdmi_pll_get_m(struct meson_drm *priv,
++					 unsigned int pll_freq)
+ {
+-	unsigned int freq;
+-	unsigned int hdmi_tx_div;
+-	unsigned int venc_div;
++	/* The GXBB PLL has a /2 pre-multiplier */
++	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
++		pll_freq /= 2;
++
++	return pll_freq / XTAL_FREQ;
 +}
 +
-+static struct platform_driver g12a_driver = {
-+	.probe		= g12a_clkc_probe,
-+	.driver		= {
-+		.name	= "g12a-clkc",
-+		.of_match_table = clkc_match_table,
-+	},
-+};
++#define HDMI_FRAC_MAX_GXBB	4096
++#define HDMI_FRAC_MAX_GXL	1024
 +
-+builtin_platform_driver(g12a_driver);
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-new file mode 100644
-index 0000000..a284b06
---- /dev/null
-+++ b/drivers/clk/meson/g12a.h
-@@ -0,0 +1,122 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2016 Amlogic, Inc.
-+ * Author: Michael Turquette <mturquette@baylibre.com>
-+ *
-+ * Copyright (c) 2018 Amlogic, inc.
-+ * Author: Qiufang Dai <qiufang.dai@amlogic.com>
-+ * Author: Jian Hu <jian.hu@amlogic.com>
-+ *
-+ */
-+#ifndef __G12A_H
-+#define __G12A_H
++static unsigned int meson_hdmi_pll_get_frac(struct meson_drm *priv,
++					    unsigned int m,
++					    unsigned int pll_freq)
++{
++	unsigned int parent_freq = XTAL_FREQ;
++	unsigned int frac_max = HDMI_FRAC_MAX_GXL;
++	unsigned int frac_m;
++	unsigned int frac;
 +
-+/*
-+ * Clock controller register offsets
-+ *
-+ * Register offsets from the data sheet must be multiplied by 4 before
-+ * adding them to the base address to get the right value.
-+ */
-+#define HHI_MIPI_CNTL0			0x000
-+#define HHI_MIPI_CNTL1			0x004
-+#define HHI_MIPI_CNTL2			0x008
-+#define HHI_MIPI_STS			0x00C
-+#define HHI_GP0_PLL_CNTL0		0x040
-+#define HHI_GP0_PLL_CNTL1		0x044
-+#define HHI_GP0_PLL_CNTL2		0x048
-+#define HHI_GP0_PLL_CNTL3		0x04C
-+#define HHI_GP0_PLL_CNTL4		0x050
-+#define HHI_GP0_PLL_CNTL5		0x054
-+#define HHI_GP0_PLL_CNTL6		0x058
-+#define HHI_GP0_PLL_STS			0x05C
-+#define HHI_PCIE_PLL_CNTL0		0x098
-+#define HHI_PCIE_PLL_CNTL1		0x09C
-+#define HHI_PCIE_PLL_CNTL2		0x0A0
-+#define HHI_PCIE_PLL_CNTL3		0x0A4
-+#define HHI_PCIE_PLL_CNTL4		0x0A8
-+#define HHI_PCIE_PLL_CNTL5		0x0AC
-+#define HHI_PCIE_PLL_STS		0x0B8
-+#define HHI_HIFI_PLL_CNTL0		0x0D8
-+#define HHI_HIFI_PLL_CNTL1		0x0DC
-+#define HHI_HIFI_PLL_CNTL2		0x0E0
-+#define HHI_HIFI_PLL_CNTL3		0x0E4
-+#define HHI_HIFI_PLL_CNTL4		0x0E8
-+#define HHI_HIFI_PLL_CNTL5		0x0EC
-+#define HHI_HIFI_PLL_CNTL6		0x0F0
-+#define HHI_GCLK_MPEG0			0x140
-+#define HHI_GCLK_MPEG1			0x144
-+#define HHI_GCLK_MPEG2			0x148
-+#define HHI_GCLK_OTHER			0x150
-+#define HHI_MPEG_CLK_CNTL		0x174
-+#define HHI_AUD_CLK_CNTL		0x178
-+#define HHI_VID_CLK_CNTL		0x17c
-+#define HHI_TS_CLK_CNTL			0x190
-+#define HHI_VID_CLK_CNTL2		0x194
-+#define HHI_SYS_CPU_CLK_CNTL0	0x19c
-+#define HHI_MALI_CLK_CNTL		0x1b0
-+#define HHI_VPU_CLKC_CNTL		0x1b4
-+#define HHI_VPU_CLK_CNTL		0x1bC
-+#define HHI_HDMI_CLK_CNTL		0x1CC
-+#define HHI_VDEC_CLK_CNTL		0x1E0
-+#define HHI_VDEC2_CLK_CNTL		0x1E4
-+#define HHI_VDEC3_CLK_CNTL		0x1E8
-+#define HHI_VDEC4_CLK_CNTL		0x1EC
-+#define HHI_HDCP22_CLK_CNTL		0x1F0
-+#define HHI_VAPBCLK_CNTL		0x1F4
-+#define HHI_VPU_CLKB_CNTL		0x20C
-+#define HHI_GEN_CLK_CNTL		0x228
-+#define HHI_VDIN_MEAS_CLK_CNTL	0x250
-+#define HHI_MIPIDSI_PHY_CLK_CNTL	0x254
-+#define HHI_NAND_CLK_CNTL		0x25C
-+#define HHI_SD_EMMC_CLK_CNTL	0x264
-+#define HHI_MPLL_CNTL0			0x278
-+#define HHI_MPLL_CNTL1			0x27C
-+#define HHI_MPLL_CNTL2			0x280
-+#define HHI_MPLL_CNTL3			0x284
-+#define HHI_MPLL_CNTL4			0x288
-+#define HHI_MPLL_CNTL5			0x28c
-+#define HHI_MPLL_CNTL6			0x290
-+#define HHI_MPLL_CNTL7			0x294
-+#define HHI_MPLL_CNTL8			0x298
-+#define HHI_FIX_PLL_CNTL0		0x2A0
-+#define HHI_FIX_PLL_CNTL1		0x2A4
-+#define HHI_SYS_PLL_CNTL0		0x2f4
-+#define HHI_SYS_PLL_CNTL1		0x2f8
-+#define HHI_SYS_PLL_CNTL2		0x2fc
-+#define HHI_SYS_PLL_CNTL3		0x300
-+#define HHI_SYS_PLL_CNTL4		0x304
-+#define HHI_SYS_PLL_CNTL5		0x308
-+#define HHI_SYS_PLL_CNTL6		0x30c
-+#define HHI_SPICC_CLK_CNTL		0x3dc
++	/* The GXBB PLL has a /2 pre-multiplier and a larger FRAC width */
++	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
++		frac_max = HDMI_FRAC_MAX_GXBB;
++		parent_freq *= 2;
++	}
 +
-+/*
-+ * CLKID index values
-+ *
-+ * These indices are entirely contrived and do not map onto the hardware.
-+ * It has now been decided to expose everything by default in the DT header:
-+ * include/dt-bindings/clock/g12a-clkc.h. Only the clocks ids we don't want
-+ * to expose, such as the internal muxes and dividers of composite clocks,
-+ * will remain defined here.
-+ */
-+#define CLKID_MPEG_SEL				8
-+#define CLKID_MPEG_DIV				9
-+#define CLKID_SD_EMMC_B_CLK0_SEL	62
-+#define CLKID_SD_EMMC_B_CLK0_DIV	63
-+#define CLKID_SD_EMMC_C_CLK0_SEL	64
-+#define CLKID_SD_EMMC_C_CLK0_DIV	65
-+#define CLKID_MPLL0_DIV				66
-+#define CLKID_MPLL1_DIV				67
-+#define CLKID_MPLL2_DIV				68
-+#define CLKID_MPLL3_DIV				69
-+#define CLKID_MPLL_PREDIV			70
-+#define CLKID_FCLK_DIV2_DIV			72
-+#define CLKID_FCLK_DIV3_DIV			73
-+#define CLKID_FCLK_DIV4_DIV			74
-+#define CLKID_FCLK_DIV5_DIV			75
-+#define CLKID_FCLK_DIV7_DIV			76
-+#define NR_CLKS						96
++	/* We can have a perfect match !*/
++	if (pll_freq / m == parent_freq &&
++	    pll_freq % m == 0)
++		return 0;
 +
-+/* include the CLKIDs that have been made part of the DT binding */
-+#include <dt-bindings/clock/g12a-clkc.h>
++	frac = div_u64((u64)pll_freq * (u64)frac_max, parent_freq);
++	frac_m = m * frac_max;
++	if (frac_m > frac)
++		return frac_max;
++	frac -= frac_m;
 +
-+#endif /* __G12A_H */
++	return min((u16)frac, (u16)(frac_max - 1));
++}
++
++static bool meson_hdmi_pll_validate_params(struct meson_drm *priv,
++					   unsigned int m,
++					   unsigned int frac)
++{
++	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
++		/* Empiric supported min/max dividers */
++		if (m < 53 || m > 123)
++			return false;
++		if (frac >= HDMI_FRAC_MAX_GXBB)
++			return false;
++	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
++		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
++		/* Empiric supported min/max dividers */
++		if (m < 106 || m > 247)
++			return false;
++		if (frac >= HDMI_FRAC_MAX_GXL)
++			return false;
++	}
++
++	return true;
++}
++
++static bool meson_hdmi_pll_find_params(struct meson_drm *priv,
++				       unsigned int freq,
++				       unsigned int *m,
++				       unsigned int *frac,
++				       unsigned int *od)
++{
++	/* Cycle from /16 to /2 */
++	for (*od = 16 ; *od > 1 ; *od >>= 1) {
++		*m = meson_hdmi_pll_get_m(priv, freq * *od);
++		if (!*m)
++			continue;
++		*frac = meson_hdmi_pll_get_frac(priv, *m, freq * *od);
++
++		DRM_DEBUG_DRIVER("PLL params for %dkHz: m=%x frac=%x od=%d\n",
++				 freq, *m, *frac, *od);
++
++		if (meson_hdmi_pll_validate_params(priv, *m, *frac))
++			return true;
++	}
++
++	return false;
++}
++
++/* pll_freq is the frequency after the OD dividers */
++enum drm_mode_status
++meson_vclk_dmt_supported_freq(struct meson_drm *priv, unsigned int freq)
++{
++	unsigned int od, m, frac;
++
++	/* In DMT mode, path after PLL is always /10 */
++	freq *= 10;
++
++	if (meson_hdmi_pll_find_params(priv, freq, &m, &frac, &od))
++		return MODE_OK;
++
++	return MODE_CLOCK_RANGE;
++}
++EXPORT_SYMBOL_GPL(meson_vclk_dmt_supported_freq);
++
++/* pll_freq is the frequency after the OD dividers */
++static void meson_hdmi_pll_generic_set(struct meson_drm *priv,
++				       unsigned int pll_freq)
++{
++	unsigned int od, m, frac, od1, od2, od3;
++
++	if (meson_hdmi_pll_find_params(priv, pll_freq, &m, &frac, &od)) {
++		od3 = 1;
++		if (od < 4) {
++			od1 = 2;
++			od2 = 1;
++		} else {
++			od2 = od / 4;
++			od1 = od / od2;
++		}
++
++		DRM_DEBUG_DRIVER("PLL params for %dkHz: m=%x frac=%x od=%d/%d/%d\n",
++				 pll_freq, m, frac, od1, od2, od3);
++
++		meson_hdmi_pll_set_params(priv, m, frac, od1, od2, od3);
+ 
+-	if (target == MESON_VCLK_TARGET_CVBS) {
+-		meson_venci_cvbs_clock_config(priv);
+ 		return;
+ 	}
+ 
+-	hdmi_tx_div = vclk_freq / dac_freq;
+-
+-	if (hdmi_tx_div == 0) {
+-		pr_err("Fatal Error, invalid HDMI-TX freq %d\n",
+-				dac_freq);
+-		return;
+-	}
+-
+-	venc_div = vclk_freq / venc_freq;
+-
+-	if (venc_div == 0) {
+-		pr_err("Fatal Error, invalid HDMI venc freq %d\n",
+-				venc_freq);
+-		return;
+-	}
+-
+-	switch (vclk_freq) {
+-	case 54000:
+-		if (hdmi_use_enci)
+-			freq = MESON_VCLK_HDMI_ENCI_54000;
+-		else
+-			freq = MESON_VCLK_HDMI_DDR_54000;
+-		break;
+-	case 25175:
+-		freq = MESON_VCLK_HDMI_25175;
+-		break;
+-	case 40000:
+-		freq = MESON_VCLK_HDMI_40000;
+-		break;
+-	case 65000:
+-		freq = MESON_VCLK_HDMI_65000;
+-		break;
+-	case 74250:
+-		freq = MESON_VCLK_HDMI_74250;
+-		break;
+-	case 108000:
+-		freq = MESON_VCLK_HDMI_108000;
+-		break;
+-	case 148500:
+-		if (dac_freq != 148500)
+-			freq = MESON_VCLK_HDMI_DDR_148500;
+-		else
+-			freq = MESON_VCLK_HDMI_148500;
+-		break;
+-	case 162000:
+-		freq = MESON_VCLK_HDMI_162000;
+-		break;
+-	case 297000:
+-		freq = MESON_VCLK_HDMI_297000;
+-		break;
+-	case 594000:
+-		freq = MESON_VCLK_HDMI_594000;
+-		break;
+-	default:
+-		pr_err("Fatal Error, invalid HDMI vclk freq %d\n",
+-			vclk_freq);
+-		return;
+-	}
++	DRM_ERROR("Fatal, unable to find parameters for PLL freq %d\n",
++		  pll_freq);
++}
+ 
++static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
++			   unsigned int od1, unsigned int od2, unsigned int od3,
++			   unsigned int vid_pll_div, unsigned int vclk_div,
++			   unsigned int hdmi_tx_div, unsigned int venc_div,
++			   bool hdmi_use_enci)
++{
+ 	/* Set HDMI-TX sys clock */
+ 	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL,
+ 			   CTS_HDMI_SYS_SEL_MASK, 0);
+@@ -831,19 +641,49 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 			   CTS_HDMI_SYS_EN, CTS_HDMI_SYS_EN);
+ 
+ 	/* Set HDMI PLL rate */
+-	meson_hdmi_pll_set(priv, params[freq].pll_base_freq,
+-			   params[freq].pll_od1,
+-			   params[freq].pll_od2,
+-			   params[freq].pll_od3);
++	if (!od1 && !od2 && !od3)
++		meson_hdmi_pll_generic_set(priv, pll_base_freq);
++	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
++		switch (pll_base_freq) {
++		case 2970000:
++			meson_hdmi_pll_set_params(priv, 0x3d, 0xe00,
++						  od1, od2, od3);
++			break;
++		case 4320000:
++			meson_hdmi_pll_set_params(priv, 0x5a, 0,
++						  od1, od2, od3);
++			break;
++		case 5940000:
++			meson_hdmi_pll_set_params(priv, 0x7b, 0xc00,
++						  od1, od2, od3);
++			break;
++		}
++	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
++		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
++		switch (pll_base_freq) {
++		case 2970000:
++			meson_hdmi_pll_set_params(priv, 0x7b, 0x300,
++						  od1, od2, od3);
++			break;
++		case 4320000:
++			meson_hdmi_pll_set_params(priv, 0xb4, 0,
++						  od1, od2, od3);
++			break;
++		case 5940000:
++			meson_hdmi_pll_set_params(priv, 0xf7, 0x200,
++						  od1, od2, od3);
++			break;
++		}
++	}
+ 
+ 	/* Setup vid_pll divider */
+-	meson_vid_pll_set(priv, params[freq].vid_pll_div);
++	meson_vid_pll_set(priv, vid_pll_div);
+ 
+ 	/* Set VCLK div */
+ 	regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL,
+ 			   VCLK_SEL_MASK, 0);
+ 	regmap_update_bits(priv->hhi, HHI_VID_CLK_DIV,
+-			   VCLK_DIV_MASK, params[freq].vclk_div - 1);
++			   VCLK_DIV_MASK, vclk_div - 1);
+ 
+ 	/* Set HDMI-TX source */
+ 	switch (hdmi_tx_div) {
+@@ -981,4 +821,80 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 
+ 	regmap_update_bits(priv->hhi, HHI_VID_CLK_CNTL, VCLK_EN, VCLK_EN);
+ }
++
++void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
++		      unsigned int vclk_freq, unsigned int venc_freq,
++		      unsigned int dac_freq, bool hdmi_use_enci)
++{
++	unsigned int freq;
++	unsigned int hdmi_tx_div;
++	unsigned int venc_div;
++
++	if (target == MESON_VCLK_TARGET_CVBS) {
++		meson_venci_cvbs_clock_config(priv);
++		return;
++	} else if (target == MESON_VCLK_TARGET_DMT) {
++		/* The DMT clock path is fixed after the PLL:
++		 * - automatic PLL freq + OD management
++		 * - vid_pll_div = VID_PLL_DIV_5
++		 * - vclk_div = 2
++		 * - hdmi_tx_div = 1
++		 * - venc_div = 1
++		 * - encp encoder
++		 */
++		meson_vclk_set(priv, vclk_freq * 10, 0, 0, 0,
++			       VID_PLL_DIV_5, 2, 1, 1, false);
++		return;
++	}
++
++	hdmi_tx_div = vclk_freq / dac_freq;
++
++	if (hdmi_tx_div == 0) {
++		pr_err("Fatal Error, invalid HDMI-TX freq %d\n",
++				dac_freq);
++		return;
++	}
++
++	venc_div = vclk_freq / venc_freq;
++
++	if (venc_div == 0) {
++		pr_err("Fatal Error, invalid HDMI venc freq %d\n",
++				venc_freq);
++		return;
++	}
++
++	switch (vclk_freq) {
++	case 54000:
++		if (hdmi_use_enci)
++			freq = MESON_VCLK_HDMI_ENCI_54000;
++		else
++			freq = MESON_VCLK_HDMI_DDR_54000;
++		break;
++	case 74250:
++		freq = MESON_VCLK_HDMI_74250;
++		break;
++	case 148500:
++		if (dac_freq != 148500)
++			freq = MESON_VCLK_HDMI_DDR_148500;
++		else
++			freq = MESON_VCLK_HDMI_148500;
++		break;
++	case 297000:
++		freq = MESON_VCLK_HDMI_297000;
++		break;
++	case 594000:
++		freq = MESON_VCLK_HDMI_594000;
++		break;
++	default:
++		pr_err("Fatal Error, invalid HDMI vclk freq %d\n",
++			vclk_freq);
++		return;
++	}
++
++	meson_vclk_set(priv, params[freq].pll_base_freq,
++		       params[freq].pll_od1, params[freq].pll_od2,
++		       params[freq].pll_od3, params[freq].vid_pll_div,
++		       params[freq].vclk_div, hdmi_tx_div, venc_div,
++		       hdmi_use_enci);
++}
+ EXPORT_SYMBOL_GPL(meson_vclk_setup);
+diff --git a/drivers/gpu/drm/meson/meson_vclk.h b/drivers/gpu/drm/meson/meson_vclk.h
+index 0401b52..869fa3a 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.h
++++ b/drivers/gpu/drm/meson/meson_vclk.h
+@@ -24,11 +24,15 @@
+ enum {
+ 	MESON_VCLK_TARGET_CVBS = 0,
+ 	MESON_VCLK_TARGET_HDMI = 1,
++	MESON_VCLK_TARGET_DMT = 2,
+ };
+ 
+ /* 27MHz is the CVBS Pixel Clock */
+ #define MESON_VCLK_CVBS			27000
+ 
++enum drm_mode_status
++meson_vclk_dmt_supported_freq(struct meson_drm *priv, unsigned int freq);
++
+ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 		      unsigned int vclk_freq, unsigned int venc_freq,
+ 		      unsigned int dac_freq, bool hdmi_use_enci);
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index 6e27013..d9f33b0 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -697,314 +697,6 @@ union meson_hdmi_venc_mode meson_hdmi_encp_mode_1080p60 = {
+ 	},
+ };
+ 
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_640x480_60 = {
+-	.encp = {
+-		.dvi_settings = 0x21,
+-		.video_mode = 0x4040,
+-		.video_mode_adv = 0x18,
+-		/* video_prog_mode */
+-		/* video_sync_mode */
+-		/* video_yc_dly */
+-		/* video_rgb_ctrl */
+-		/* video_filt_ctrl */
+-		/* video_ofld_voav_ofst */
+-		/* yfp1_htime */
+-		/* yfp2_htime */
+-		.max_pxcnt = 0x31f,
+-		/* hspuls_begin */
+-		/* hspuls_end */
+-		/* hspuls_switch */
+-		/* vspuls_begin */
+-		/* vspuls_end */
+-		/* vspuls_bline */
+-		/* vspuls_eline */
+-		.havon_begin = 0x90,
+-		.havon_end = 0x30f,
+-		.vavon_bline = 0x23,
+-		.vavon_eline = 0x202,
+-		/* eqpuls_begin */
+-		/* eqpuls_end */
+-		/* eqpuls_bline */
+-		/* eqpuls_eline */
+-		.hso_begin = 0,
+-		.hso_end = 0x60,
+-		.vso_begin = 0x1e,
+-		.vso_end = 0x32,
+-		.vso_bline = 0,
+-		.vso_eline = 2,
+-		.vso_eline_present = true,
+-		/* sy_val */
+-		/* sy2_val */
+-		.max_lncnt = 0x20c,
+-	},
+-};
+-
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_800x600_60 = {
+-	.encp = {
+-		.dvi_settings = 0x21,
+-		.video_mode = 0x4040,
+-		.video_mode_adv = 0x18,
+-		/* video_prog_mode */
+-		/* video_sync_mode */
+-		/* video_yc_dly */
+-		/* video_rgb_ctrl */
+-		/* video_filt_ctrl */
+-		/* video_ofld_voav_ofst */
+-		/* yfp1_htime */
+-		/* yfp2_htime */
+-		.max_pxcnt = 0x41f,
+-		/* hspuls_begin */
+-		/* hspuls_end */
+-		/* hspuls_switch */
+-		/* vspuls_begin */
+-		/* vspuls_end */
+-		/* vspuls_bline */
+-		/* vspuls_eline */
+-		.havon_begin = 0xD8,
+-		.havon_end = 0x3f7,
+-		.vavon_bline = 0x1b,
+-		.vavon_eline = 0x272,
+-		/* eqpuls_begin */
+-		/* eqpuls_end */
+-		/* eqpuls_bline */
+-		/* eqpuls_eline */
+-		.hso_begin = 0,
+-		.hso_end = 0x80,
+-		.vso_begin = 0x1e,
+-		.vso_end = 0x32,
+-		.vso_bline = 0,
+-		.vso_eline = 4,
+-		.vso_eline_present = true,
+-		/* sy_val */
+-		/* sy2_val */
+-		.max_lncnt = 0x273,
+-	},
+-};
+-
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1024x768_60 = {
+-	.encp = {
+-		.dvi_settings = 0x21,
+-		.video_mode = 0x4040,
+-		.video_mode_adv = 0x18,
+-		/* video_prog_mode */
+-		/* video_sync_mode */
+-		/* video_yc_dly */
+-		/* video_rgb_ctrl */
+-		/* video_filt_ctrl */
+-		/* video_ofld_voav_ofst */
+-		/* yfp1_htime */
+-		/* yfp2_htime */
+-		.max_pxcnt = 1343,
+-		/* hspuls_begin */
+-		/* hspuls_end */
+-		/* hspuls_switch */
+-		/* vspuls_begin */
+-		/* vspuls_end */
+-		/* vspuls_bline */
+-		/* vspuls_eline */
+-		.havon_begin = 296,
+-		.havon_end = 1319,
+-		.vavon_bline = 35,
+-		.vavon_eline = 802,
+-		/* eqpuls_begin */
+-		/* eqpuls_end */
+-		/* eqpuls_bline */
+-		/* eqpuls_eline */
+-		.hso_begin = 0,
+-		.hso_end = 136,
+-		.vso_begin = 30,
+-		.vso_end = 50,
+-		.vso_bline = 0,
+-		.vso_eline = 6,
+-		.vso_eline_present = true,
+-		/* sy_val */
+-		/* sy2_val */
+-		.max_lncnt = 805,
+-	},
+-};
+-
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1152x864_75 = {
+-	.encp = {
+-		.dvi_settings = 0x21,
+-		.video_mode = 0x4040,
+-		.video_mode_adv = 0x18,
+-		/* video_prog_mode */
+-		/* video_sync_mode */
+-		/* video_yc_dly */
+-		/* video_rgb_ctrl */
+-		/* video_filt_ctrl */
+-		/* video_ofld_voav_ofst */
+-		/* yfp1_htime */
+-		/* yfp2_htime */
+-		.max_pxcnt = 0x63f,
+-		/* hspuls_begin */
+-		/* hspuls_end */
+-		/* hspuls_switch */
+-		/* vspuls_begin */
+-		/* vspuls_end */
+-		/* vspuls_bline */
+-		/* vspuls_eline */
+-		.havon_begin = 0x180,
+-		.havon_end = 0x5ff,
+-		.vavon_bline = 0x23,
+-		.vavon_eline = 0x382,
+-		/* eqpuls_begin */
+-		/* eqpuls_end */
+-		/* eqpuls_bline */
+-		/* eqpuls_eline */
+-		.hso_begin = 0,
+-		.hso_end = 0x80,
+-		.vso_begin = 0x1e,
+-		.vso_end = 0x32,
+-		.vso_bline = 0,
+-		.vso_eline = 3,
+-		.vso_eline_present = true,
+-		/* sy_val */
+-		/* sy2_val */
+-		.max_lncnt = 0x383,
+-	},
+-};
+-
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1280x1024_60 = {
+-	.encp = {
+-		.dvi_settings = 0x21,
+-		.video_mode = 0x4040,
+-		.video_mode_adv = 0x18,
+-		/* video_prog_mode */
+-		/* video_sync_mode */
+-		/* video_yc_dly */
+-		/* video_rgb_ctrl */
+-		/* video_filt_ctrl */
+-		/* video_ofld_voav_ofst */
+-		/* yfp1_htime */
+-		/* yfp2_htime */
+-		.max_pxcnt = 0x697,
+-		/* hspuls_begin */
+-		/* hspuls_end */
+-		/* hspuls_switch */
+-		/* vspuls_begin */
+-		/* vspuls_end */
+-		/* vspuls_bline */
+-		/* vspuls_eline */
+-		.havon_begin = 0x168,
+-		.havon_end = 0x667,
+-		.vavon_bline = 0x29,
+-		.vavon_eline = 0x428,
+-		/* eqpuls_begin */
+-		/* eqpuls_end */
+-		/* eqpuls_bline */
+-		/* eqpuls_eline */
+-		.hso_begin = 0,
+-		.hso_end = 0x70,
+-		.vso_begin = 0x1e,
+-		.vso_end = 0x32,
+-		.vso_bline = 0,
+-		.vso_eline = 3,
+-		.vso_eline_present = true,
+-		/* sy_val */
+-		/* sy2_val */
+-		.max_lncnt = 0x429,
+-	},
+-};
+-
+-union meson_hdmi_venc_mode meson_hdmi_encp_mode_1600x1200_60 = {
+-	.encp = {
+-		.dvi_settings = 0x21,
+-		.video_mode = 0x4040,
+-		.video_mode_adv = 0x18,
+-		/* video_prog_mode */
+-		/* video_sync_mode */
+-		/* video_yc_dly */
+-		/* video_rgb_ctrl */
+-		/* video_filt_ctrl */
+-		/* video_ofld_voav_ofst */
+-		/* yfp1_htime */
+-		/* yfp2_htime */
+-		.max_pxcnt = 0x86f,
+-		/* hspuls_begin */
+-		/* hspuls_end */
+-		/* hspuls_switch */
+-		/* vspuls_begin */
+-		/* vspuls_end */
+-		/* vspuls_bline */
+-		/* vspuls_eline */
+-		.havon_begin = 0x1f0,
+-		.havon_end = 0x82f,
+-		.vavon_bline = 0x31,
+-		.vavon_eline = 0x4e0,
+-		/* eqpuls_begin */
+-		/* eqpuls_end */
+-		/* eqpuls_bline */
+-		/* eqpuls_eline */
+-		.hso_begin = 0,
+-		.hso_end = 0xc0,
+-		.vso_begin = 0x1e,
+-		.vso_end = 0x32,
+-		.vso_bline = 0,
+-		.vso_eline = 3,
+-		.vso_eline_present = true,
+-		/* sy_val */
+-		/* sy2_val */
+-		.max_lncnt = 0x4e1,
+-	},
+-};
+-
+-struct meson_hdmi_venc_dmt_mode {
+-	struct drm_display_mode drm_mode;
+-	union meson_hdmi_venc_mode *mode;
+-} meson_hdmi_venc_dmt_modes[] = {
+-	/* 640x480 at 60Hz */
+-	{
+-		{ DRM_MODE("640x480", DRM_MODE_TYPE_DRIVER, 25175, 640, 656,
+-		  752, 800, 0, 480, 490, 492, 525, 0,
+-		  DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC) },
+-		&meson_hdmi_encp_mode_640x480_60,
+-	},
+-	/* 800x600 at 60Hz */
+-	{
+-		{ DRM_MODE("800x600", DRM_MODE_TYPE_DRIVER, 40000, 800, 840,
+-		  968, 1056, 0, 600, 601, 605, 628, 0,
+-		  DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
+-		&meson_hdmi_encp_mode_800x600_60,
+-	},
+-	/* 1024x768 at 60Hz */
+-	{
+-		{ DRM_MODE("1024x768", DRM_MODE_TYPE_DRIVER, 65000, 1024,
+-		  1048, 1184, 1344, 0, 768, 771, 777, 806, 0,
+-		  DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC) },
+-		&meson_hdmi_encp_mode_1024x768_60,
+-	},
+-	/* 1152x864 at 75Hz */
+-	{
+-		{ DRM_MODE("1152x864", DRM_MODE_TYPE_DRIVER, 108000, 1152,
+-		  1216, 1344, 1600, 0, 864, 865, 868, 900, 0,
+-		  DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
+-		&meson_hdmi_encp_mode_1152x864_75,
+-	},
+-	/* 1280x1024 at 60Hz */
+-	{
+-		{ DRM_MODE("1280x1024", DRM_MODE_TYPE_DRIVER, 108000, 1280,
+-		  1328, 1440, 1688, 0, 1024, 1025, 1028, 1066, 0,
+-		  DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
+-		&meson_hdmi_encp_mode_1280x1024_60,
+-	},
+-	/* 1600x1200 at 60Hz */
+-	{
+-		{ DRM_MODE("1600x1200", DRM_MODE_TYPE_DRIVER, 162000, 1600,
+-		  1664, 1856, 2160, 0, 1200, 1201, 1204, 1250, 0,
+-		  DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC) },
+-		&meson_hdmi_encp_mode_1600x1200_60,
+-	},
+-	/* 1920x1080 at 60Hz */
+-	{
+-		{ DRM_MODE("1920x1080", DRM_MODE_TYPE_DRIVER, 148500, 1920,
+-		  2008, 2052, 2200, 0, 1080, 1084, 1089, 1125, 0,
+-		  DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC) },
+-		&meson_hdmi_encp_mode_1080p60
+-	},
+-	{ }, /* sentinel */
+-};
+-
+ struct meson_hdmi_venc_vic_mode {
+ 	unsigned int vic;
+ 	union meson_hdmi_venc_mode *mode;
+@@ -1044,17 +736,20 @@ static unsigned long modulo(unsigned long a, unsigned long b)
+ 		return a;
+ }
+ 
+-bool meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode)
++enum drm_mode_status
++meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode)
+ {
+-	struct meson_hdmi_venc_dmt_mode *vmode = meson_hdmi_venc_dmt_modes;
++	if (mode->flags & ~(DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_NHSYNC |
++			    DRM_MODE_FLAG_PVSYNC | DRM_MODE_FLAG_NVSYNC))
++		return MODE_BAD;
+ 
+-	while (vmode->mode) {
+-		if (drm_mode_equal(&vmode->drm_mode, mode))
+-			return true;
+-		vmode++;
+-	}
++	if (mode->hdisplay < 640 || mode->hdisplay > 1920)
++		return MODE_BAD_HVALUE;
+ 
+-	return false;
++	if (mode->vdisplay < 480 || mode->vdisplay > 1200)
++		return MODE_BAD_VVALUE;
++
++	return MODE_OK;
+ }
+ EXPORT_SYMBOL_GPL(meson_venc_hdmi_supported_mode);
+ 
+@@ -1072,18 +767,29 @@ bool meson_venc_hdmi_supported_vic(int vic)
+ }
+ EXPORT_SYMBOL_GPL(meson_venc_hdmi_supported_vic);
+ 
+-static union meson_hdmi_venc_mode
+-*meson_venc_hdmi_get_dmt_vmode(const struct drm_display_mode *mode)
++void meson_venc_hdmi_get_dmt_vmode(const struct drm_display_mode *mode,
++				   union meson_hdmi_venc_mode *dmt_mode)
+ {
+-	struct meson_hdmi_venc_dmt_mode *vmode = meson_hdmi_venc_dmt_modes;
++	memset(dmt_mode, 0, sizeof(*dmt_mode));
+ 
+-	while (vmode->mode) {
+-		if (drm_mode_equal(&vmode->drm_mode, mode))
+-			return vmode->mode;
+-		vmode++;
+-	}
+-
+-	return NULL;
++	dmt_mode->encp.dvi_settings = 0x21;
++	dmt_mode->encp.video_mode = 0x4040;
++	dmt_mode->encp.video_mode_adv = 0x18;
++	dmt_mode->encp.max_pxcnt = mode->htotal - 1;
++	dmt_mode->encp.havon_begin = mode->htotal - mode->hsync_start;
++	dmt_mode->encp.havon_end = dmt_mode->encp.havon_begin +
++				   mode->hdisplay - 1;
++	dmt_mode->encp.vavon_bline = mode->vtotal - mode->vsync_start;
++	dmt_mode->encp.vavon_eline = dmt_mode->encp.vavon_bline +
++				     mode->vdisplay - 1;
++	dmt_mode->encp.hso_begin = 0;
++	dmt_mode->encp.hso_end = mode->hsync_end - mode->hsync_start;
++	dmt_mode->encp.vso_begin = 30;
++	dmt_mode->encp.vso_end = 50;
++	dmt_mode->encp.vso_bline = 0;
++	dmt_mode->encp.vso_eline = mode->vsync_end - mode->vsync_start;
++	dmt_mode->encp.vso_eline_present = true;
++	dmt_mode->encp.max_lncnt = mode->vtotal - 1;
+ }
+ 
+ static union meson_hdmi_venc_mode *meson_venc_hdmi_get_vic_vmode(int vic)
+@@ -1120,6 +826,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+ 			      struct drm_display_mode *mode)
+ {
+ 	union meson_hdmi_venc_mode *vmode = NULL;
++	union meson_hdmi_venc_mode vmode_dmt;
+ 	bool use_enci = false;
+ 	bool venc_repeat = false;
+ 	bool hdmi_repeat = false;
+@@ -1147,14 +854,18 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+ 	unsigned int sof_lines;
+ 	unsigned int vsync_lines;
+ 
+-	if (meson_venc_hdmi_supported_vic(vic))
++	if (meson_venc_hdmi_supported_vic(vic)) {
+ 		vmode = meson_venc_hdmi_get_vic_vmode(vic);
+-	else
+-		vmode = meson_venc_hdmi_get_dmt_vmode(mode);
+-	if (!vmode) {
+-		dev_err(priv->dev, "%s: Fatal Error, unsupported mode "
+-			DRM_MODE_FMT "\n", __func__, DRM_MODE_ARG(mode));
+-		return;
++		if (!vmode) {
++			dev_err(priv->dev, "%s: Fatal Error, unsupported mode "
++				DRM_MODE_FMT "\n", __func__,
++				DRM_MODE_ARG(mode));
++			return;
++		}
++	}
++	else {
++		meson_venc_hdmi_get_dmt_vmode(mode, &vmode_dmt);
++		vmode = &vmode_dmt;
+ 	}
+ 
+ 	/* Use VENCI for 480i and 576i and double HDMI pixels */
+diff --git a/drivers/gpu/drm/meson/meson_venc.h b/drivers/gpu/drm/meson/meson_venc.h
+index 7c18a36..97eaebb 100644
+--- a/drivers/gpu/drm/meson/meson_venc.h
++++ b/drivers/gpu/drm/meson/meson_venc.h
+@@ -58,7 +58,8 @@ struct meson_cvbs_enci_mode {
+ };
+ 
+ /* HDMI Clock parameters */
+-bool meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode);
++enum drm_mode_status
++meson_venc_hdmi_supported_mode(const struct drm_display_mode *mode);
+ bool meson_venc_hdmi_supported_vic(int vic);
+ bool meson_venc_hdmi_venc_repeat(int vic);
+ 
 -- 
-1.9.1
+2.7.4
