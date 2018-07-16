@@ -1,38 +1,64 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Mon, 16 Jul 2018 12:11:46 +0200
-Subject: [PATCH 1/6] ARM64: dts: meson-axg: remove vddio_ao18 from SoC dtsi
+Date: Mon, 16 Jul 2018 12:11:49 +0200
+Subject: [PATCH 4/6] ARM64: dts: meson-axg: add spdif input pins
 In-Reply-To: <20180716101151.31109-1-jbrunet@baylibre.com>
 References: <20180716101151.31109-1-jbrunet@baylibre.com>
-Message-ID: <20180716101151.31109-2-jbrunet@baylibre.com>
+Message-ID: <20180716101151.31109-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Regulator should not be defined inside the SoC dtsi file.
-vddio_ao18 is already defined in the S400 board dts anyway.
+Add spdif input pin definitions to meson AXG
 
-Fixes: e1969df34357 ("ARM64: dts: meson-axg: add saradc support")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 -------
- 1 file changed, 7 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 35 ++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index c87bafc4b101..08e5f431c025 100644
+index cc908c9b5306..277958ff516a 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -91,13 +91,6 @@
- 		method = "smc";
- 	};
+@@ -561,6 +561,41 @@
+ 					};
+ 				};
  
--	vddio_ao18: regulator-vddio_ao18 {
--		compatible = "regulator-fixed";
--		regulator-name = "VDDIO_AO18";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--	};
--
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
++				spdif_in_z_pins: spdif_in_z {
++					mux {
++						groups = "spdif_in_z";
++						function = "spdif_in";
++					};
++				};
++
++				spdif_in_a1_pins: spdif_in_a1 {
++					mux {
++						groups = "spdif_in_a1";
++						function = "spdif_in";
++					};
++				};
++
++				spdif_in_a7_pins: spdif_in_a7 {
++					mux {
++						groups = "spdif_in_a7";
++						function = "spdif_in";
++					};
++				};
++
++				spdif_in_a19_pins: spdif_in_a19 {
++					mux {
++						groups = "spdif_in_a19";
++						function = "spdif_in";
++					};
++				};
++
++				spdif_in_a20_pins: spdif_in_a20 {
++					mux {
++						groups = "spdif_in_a20";
++						function = "spdif_in";
++					};
++				};
++
+ 				spdif_out_z_pins: spdif_out_z {
+ 					mux {
+ 						groups = "spdif_out_z";
 -- 
 2.14.4
