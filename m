@@ -1,517 +1,513 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 17 Jul 2018 17:42:51 +0200
-Subject: [PATCH RESEND 02/15] ASoC: meson: add axg fifo base driver
+Date: Tue, 17 Jul 2018 17:42:55 +0200
+Subject: [PATCH RESEND 06/15] ASoC: meson: add axg spdif output
 In-Reply-To: <20180717154304.9973-1-jbrunet@baylibre.com>
 References: <20180717154304.9973-1-jbrunet@baylibre.com>
-Message-ID: <20180717154304.9973-3-jbrunet@baylibre.com>
+Message-ID: <20180717154304.9973-7-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Amlogic's axg SoCs have two types of fifos which are the memory
-interfaces of the audio subsystem. FRDDR provides the playback
-interface while TODDR provides the capture interface.
-
-The way these fifos operate is very similar. Only a few settings
-are specific to each.
-
-They implement the same pcm driver here and the specifics of each
-will be dealt with the related DAI driver.
+Add support for the spdif output serializer of the axg SoC family
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/Kconfig          |   1 +
- sound/soc/Makefile         |   1 +
- sound/soc/meson/Kconfig    |   8 ++
- sound/soc/meson/Makefile   |   5 +
- sound/soc/meson/axg-fifo.c | 341 +++++++++++++++++++++++++++++++++++++++++++++
- sound/soc/meson/axg-fifo.h |  80 +++++++++++
- 6 files changed, 436 insertions(+)
- create mode 100644 sound/soc/meson/Kconfig
- create mode 100644 sound/soc/meson/Makefile
- create mode 100644 sound/soc/meson/axg-fifo.c
- create mode 100644 sound/soc/meson/axg-fifo.h
+ sound/soc/meson/Kconfig        |   7 +
+ sound/soc/meson/Makefile       |   2 +
+ sound/soc/meson/axg-spdifout.c | 456 +++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 465 insertions(+)
+ create mode 100644 sound/soc/meson/axg-spdifout.c
 
-diff --git a/sound/soc/Kconfig b/sound/soc/Kconfig
-index 41af6b9cc350..1cf11cf51e1d 100644
---- a/sound/soc/Kconfig
-+++ b/sound/soc/Kconfig
-@@ -57,6 +57,7 @@ source "sound/soc/kirkwood/Kconfig"
- source "sound/soc/img/Kconfig"
- source "sound/soc/intel/Kconfig"
- source "sound/soc/mediatek/Kconfig"
-+source "sound/soc/meson/Kconfig"
- source "sound/soc/mxs/Kconfig"
- source "sound/soc/pxa/Kconfig"
- source "sound/soc/qcom/Kconfig"
-diff --git a/sound/soc/Makefile b/sound/soc/Makefile
-index 06389a5385d7..62a5f87c3cfc 100644
---- a/sound/soc/Makefile
-+++ b/sound/soc/Makefile
-@@ -38,6 +38,7 @@ obj-$(CONFIG_SND_SOC)	+= jz4740/
- obj-$(CONFIG_SND_SOC)	+= img/
- obj-$(CONFIG_SND_SOC)	+= intel/
- obj-$(CONFIG_SND_SOC)	+= mediatek/
-+obj-$(CONFIG_SND_SOC)	+= meson/
- obj-$(CONFIG_SND_SOC)	+= mxs/
- obj-$(CONFIG_SND_SOC)	+= nuc900/
- obj-$(CONFIG_SND_SOC)	+= omap/
 diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-new file mode 100644
-index 000000000000..c3eb5e050308
---- /dev/null
+index 3916060edcae..9408214b5854 100644
+--- a/sound/soc/meson/Kconfig
 +++ b/sound/soc/meson/Kconfig
-@@ -0,0 +1,8 @@
-+menu "ASoC support for Amlogic platforms"
-+	depends on ARCH_MESON || COMPILE_TEST
+@@ -19,4 +19,11 @@ config SND_MESON_AXG_TODDR
+ 	  Select Y or M to add support for the frontend capture interfaces
+ 	  embedded in the Amlogic AXG SoC family
+ 
++config SND_MESON_AXG_SPDIFOUT
++	tristate "Amlogic AXG SPDIF Output Support"
++	imply SND_SOC_SPDIF
++	help
++	  Select Y or M to add support for SPDIF output serializer embedded
++	  in the Amlogic AXG SoC family
 +
-+config SND_MESON_AXG_FIFO
-+	tristate
-+	select REGMAP_MMIO
-+
-+endmenu
+ endmenu
 diff --git a/sound/soc/meson/Makefile b/sound/soc/meson/Makefile
-new file mode 100644
-index 000000000000..75289b6b3ade
---- /dev/null
+index 12edf2db2a24..d51ae045ef08 100644
+--- a/sound/soc/meson/Makefile
 +++ b/sound/soc/meson/Makefile
-@@ -0,0 +1,5 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+
-+snd-soc-meson-axg-fifo-objs := axg-fifo.o
-+
-+obj-$(CONFIG_SND_MESON_AXG_FIFO) += snd-soc-meson-axg-fifo.o
-diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
+@@ -3,7 +3,9 @@
+ snd-soc-meson-axg-fifo-objs := axg-fifo.o
+ snd-soc-meson-axg-frddr-objs := axg-frddr.o
+ snd-soc-meson-axg-toddr-objs := axg-toddr.o
++snd-soc-meson-axg-spdifout-objs := axg-spdifout.o
+ 
+ obj-$(CONFIG_SND_MESON_AXG_FIFO) += snd-soc-meson-axg-fifo.o
+ obj-$(CONFIG_SND_MESON_AXG_FRDDR) += snd-soc-meson-axg-frddr.o
+ obj-$(CONFIG_SND_MESON_AXG_TODDR) += snd-soc-meson-axg-toddr.o
++obj-$(CONFIG_SND_MESON_AXG_SPDIFOUT) += snd-soc-meson-axg-spdifout.o
+diff --git a/sound/soc/meson/axg-spdifout.c b/sound/soc/meson/axg-spdifout.c
 new file mode 100644
-index 000000000000..db367d85290f
+index 000000000000..9dea528053ad
 --- /dev/null
-+++ b/sound/soc/meson/axg-fifo.c
-@@ -0,0 +1,341 @@
++++ b/sound/soc/meson/axg-spdifout.c
+@@ -0,0 +1,456 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 +//
 +// Copyright (c) 2018 BayLibre, SAS.
 +// Author: Jerome Brunet <jbrunet@baylibre.com>
 +
 +#include <linux/clk.h>
-+#include <linux/of_irq.h>
-+#include <linux/of_platform.h>
 +#include <linux/module.h>
++#include <linux/of_platform.h>
 +#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include <sound/pcm_params.h>
 +#include <sound/soc.h>
 +#include <sound/soc-dai.h>
-+
-+#include "axg-fifo.h"
++#include <sound/pcm_params.h>
++#include <sound/pcm_iec958.h>
 +
 +/*
-+ * This file implements the platform operations common to the playback and
-+ * capture frontend DAI. The logic behind this two types of fifo is very
-+ * similar but some difference exist.
-+ * These differences the respective DAI drivers
++ * NOTE:
++ * The meaning of bits SPDIFOUT_CTRL0_XXX_SEL is actually the opposite
++ * of what the documentation says. Manual control on V, U and C bits is
++ * applied when the related sel bits are cleared
 + */
 +
-+static struct snd_pcm_hardware axg_fifo_hw = {
-+	.info = (SNDRV_PCM_INFO_INTERLEAVED |
-+		 SNDRV_PCM_INFO_MMAP |
-+		 SNDRV_PCM_INFO_MMAP_VALID |
-+		 SNDRV_PCM_INFO_BLOCK_TRANSFER |
-+		 SNDRV_PCM_INFO_PAUSE),
++#define SPDIFOUT_STAT			0x00
++#define SPDIFOUT_GAIN0			0x04
++#define SPDIFOUT_GAIN1			0x08
++#define SPDIFOUT_CTRL0			0x0c
++#define  SPDIFOUT_CTRL0_EN		BIT(31)
++#define  SPDIFOUT_CTRL0_RST_OUT		BIT(29)
++#define  SPDIFOUT_CTRL0_RST_IN		BIT(28)
++#define  SPDIFOUT_CTRL0_USEL		BIT(26)
++#define  SPDIFOUT_CTRL0_USET		BIT(25)
++#define  SPDIFOUT_CTRL0_CHSTS_SEL	BIT(24)
++#define  SPDIFOUT_CTRL0_DATA_SEL	BIT(20)
++#define  SPDIFOUT_CTRL0_MSB_FIRST	BIT(19)
++#define  SPDIFOUT_CTRL0_VSEL		BIT(18)
++#define  SPDIFOUT_CTRL0_VSET		BIT(17)
++#define  SPDIFOUT_CTRL0_MASK_MASK	GENMASK(11, 4)
++#define  SPDIFOUT_CTRL0_MASK(x)		((x) << 4)
++#define SPDIFOUT_CTRL1			0x10
++#define  SPDIFOUT_CTRL1_MSB_POS_MASK	GENMASK(12, 8)
++#define  SPDIFOUT_CTRL1_MSB_POS(x)	((x) << 8)
++#define  SPDIFOUT_CTRL1_TYPE_MASK	GENMASK(6, 4)
++#define  SPDIFOUT_CTRL1_TYPE(x)		((x) << 4)
++#define SPDIFOUT_PREAMB			0x14
++#define SPDIFOUT_SWAP			0x18
++#define SPDIFOUT_CHSTS0			0x1c
++#define SPDIFOUT_CHSTS1			0x20
++#define SPDIFOUT_CHSTS2			0x24
++#define SPDIFOUT_CHSTS3			0x28
++#define SPDIFOUT_CHSTS4			0x2c
++#define SPDIFOUT_CHSTS5			0x30
++#define SPDIFOUT_CHSTS6			0x34
++#define SPDIFOUT_CHSTS7			0x38
++#define SPDIFOUT_CHSTS8			0x3c
++#define SPDIFOUT_CHSTS9			0x40
++#define SPDIFOUT_CHSTSA			0x44
++#define SPDIFOUT_CHSTSB			0x48
++#define SPDIFOUT_MUTE_VAL		0x4c
 +
-+	.formats = AXG_FIFO_FORMATS,
-+	.rate_min = 5512,
-+	.rate_max = 192000,
-+	.channels_min = 1,
-+	.channels_max = AXG_FIFO_CH_MAX,
-+	.period_bytes_min = AXG_FIFO_MIN_DEPTH,
-+	.period_bytes_max = UINT_MAX,
-+	.periods_min = 2,
-+	.periods_max = UINT_MAX,
-+
-+	/* No real justification for this */
-+	.buffer_bytes_max = 1 * 1024 * 1024,
++struct axg_spdifout {
++	struct regmap *map;
++	struct clk *mclk;
++	struct clk *pclk;
 +};
 +
-+static struct snd_soc_dai *axg_fifo_dai(struct snd_pcm_substream *ss)
++static void axg_spdifout_enable(struct regmap *map)
 +{
-+	struct snd_soc_pcm_runtime *rtd = ss->private_data;
++	/* Apply both reset */
++	regmap_update_bits(map, SPDIFOUT_CTRL0,
++			   SPDIFOUT_CTRL0_RST_OUT | SPDIFOUT_CTRL0_RST_IN,
++			   0);
 +
-+	return rtd->cpu_dai;
++	/* Clear out reset before in reset */
++	regmap_update_bits(map, SPDIFOUT_CTRL0,
++			   SPDIFOUT_CTRL0_RST_OUT, SPDIFOUT_CTRL0_RST_OUT);
++	regmap_update_bits(map, SPDIFOUT_CTRL0,
++			   SPDIFOUT_CTRL0_RST_IN,  SPDIFOUT_CTRL0_RST_IN);
++
++	/* Enable spdifout */
++	regmap_update_bits(map, SPDIFOUT_CTRL0, SPDIFOUT_CTRL0_EN,
++			   SPDIFOUT_CTRL0_EN);
 +}
 +
-+static struct axg_fifo *axg_fifo_data(struct snd_pcm_substream *ss)
++static void axg_spdifout_disable(struct regmap *map)
 +{
-+	struct snd_soc_dai *dai = axg_fifo_dai(ss);
-+
-+	return snd_soc_dai_get_drvdata(dai);
++	regmap_update_bits(map, SPDIFOUT_CTRL0, SPDIFOUT_CTRL0_EN, 0);
 +}
 +
-+static struct device *axg_fifo_dev(struct snd_pcm_substream *ss)
++static int axg_spdifout_trigger(struct snd_pcm_substream *substream, int cmd,
++				struct snd_soc_dai *dai)
 +{
-+	struct snd_soc_dai *dai = axg_fifo_dai(ss);
-+
-+	return dai->dev;
-+}
-+
-+static void __dma_enable(struct axg_fifo *fifo,  bool enable)
-+{
-+	regmap_update_bits(fifo->map, FIFO_CTRL0, CTRL0_DMA_EN,
-+			   enable ? CTRL0_DMA_EN : 0);
-+}
-+
-+static int axg_fifo_pcm_trigger(struct snd_pcm_substream *ss, int cmd)
-+{
-+	struct axg_fifo *fifo = axg_fifo_data(ss);
++	struct axg_spdifout *priv = snd_soc_dai_get_drvdata(dai);
 +
 +	switch (cmd) {
 +	case SNDRV_PCM_TRIGGER_START:
 +	case SNDRV_PCM_TRIGGER_RESUME:
 +	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		__dma_enable(fifo, true);
-+		break;
++		axg_spdifout_enable(priv->map);
++		return 0;
++
++	case SNDRV_PCM_TRIGGER_STOP:
 +	case SNDRV_PCM_TRIGGER_SUSPEND:
 +	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-+	case SNDRV_PCM_TRIGGER_STOP:
-+		__dma_enable(fifo, false);
-+		break;
++		axg_spdifout_disable(priv->map);
++		return 0;
++
 +	default:
 +		return -EINVAL;
 +	}
++}
++
++static int axg_spdifout_digital_mute(struct snd_soc_dai *dai, int mute)
++{
++	struct axg_spdifout *priv = snd_soc_dai_get_drvdata(dai);
++
++	/* Use spdif valid bit to perform digital mute */
++	regmap_update_bits(priv->map, SPDIFOUT_CTRL0, SPDIFOUT_CTRL0_VSET,
++			   mute ? SPDIFOUT_CTRL0_VSET : 0);
 +
 +	return 0;
 +}
 +
-+static snd_pcm_uframes_t axg_fifo_pcm_pointer(struct snd_pcm_substream *ss)
++static int axg_spdifout_sample_fmt(struct snd_pcm_hw_params *params,
++				   struct snd_soc_dai *dai)
 +{
-+	struct axg_fifo *fifo = axg_fifo_data(ss);
-+	struct snd_pcm_runtime *runtime = ss->runtime;
-+	unsigned int addr;
++	struct axg_spdifout *priv = snd_soc_dai_get_drvdata(dai);
++	unsigned int val;
 +
-+	regmap_read(fifo->map, FIFO_STATUS2, &addr);
++	/* Set the samples spdifout will pull from the FIFO */
++	switch (params_channels(params)) {
++	case 1:
++		val = SPDIFOUT_CTRL0_MASK(0x1);
++		break;
++	case 2:
++		val = SPDIFOUT_CTRL0_MASK(0x3);
++		break;
++	default:
++		dev_err(dai->dev, "too many channels for spdif dai: %u\n",
++			params_channels(params));
++		return -EINVAL;
++	}
 +
-+	return bytes_to_frames(runtime, addr - (unsigned int)runtime->dma_addr);
-+}
++	regmap_update_bits(priv->map, SPDIFOUT_CTRL0,
++			   SPDIFOUT_CTRL0_MASK_MASK, val);
 +
-+static int axg_fifo_pcm_hw_params(struct snd_pcm_substream *ss,
-+				  struct snd_pcm_hw_params *params)
-+{
-+	struct snd_pcm_runtime *runtime = ss->runtime;
-+	struct axg_fifo *fifo = axg_fifo_data(ss);
-+	dma_addr_t end_ptr;
-+	unsigned int burst_num;
-+	int ret;
++	/* FIFO data are arranged in chunks of 64bits */
++	switch (params_physical_width(params)) {
++	case 8:
++		/* 8 samples of 8 bits */
++		val = SPDIFOUT_CTRL1_TYPE(0);
++		break;
++	case 16:
++		/* 4 samples of 16 bits - right justified */
++		val = SPDIFOUT_CTRL1_TYPE(2);
++		break;
++	case 32:
++		/* 2 samples of 32 bits - right justified */
++		val = SPDIFOUT_CTRL1_TYPE(4);
++		break;
++	default:
++		dev_err(dai->dev, "Unsupported physical width: %u\n",
++			params_physical_width(params));
++		return -EINVAL;
++	}
 +
-+	ret = snd_pcm_lib_malloc_pages(ss, params_buffer_bytes(params));
-+	if (ret < 0)
-+		return ret;
++	/* Position of the MSB in FIFO samples */
++	val |= SPDIFOUT_CTRL1_MSB_POS(params_width(params) - 1);
 +
-+	/* Setup dma memory pointers */
-+	end_ptr = runtime->dma_addr + runtime->dma_bytes - AXG_FIFO_BURST;
-+	regmap_write(fifo->map, FIFO_START_ADDR, runtime->dma_addr);
-+	regmap_write(fifo->map, FIFO_FINISH_ADDR, end_ptr);
++	regmap_update_bits(priv->map, SPDIFOUT_CTRL1,
++			   SPDIFOUT_CTRL1_MSB_POS_MASK |
++			   SPDIFOUT_CTRL1_TYPE_MASK, val);
 +
-+	/* Setup interrupt periodicity */
-+	burst_num = params_period_bytes(params) / AXG_FIFO_BURST;
-+	regmap_write(fifo->map, FIFO_INT_ADDR, burst_num);
-+
-+	/* Enable block count irq */
-+	regmap_update_bits(fifo->map, FIFO_CTRL0,
-+			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT),
-+			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT));
-+
-+	return 0;
-+}
-+
-+static int axg_fifo_pcm_hw_free(struct snd_pcm_substream *ss)
-+{
-+	struct axg_fifo *fifo = axg_fifo_data(ss);
-+
-+	/* Disable the block count irq */
-+	regmap_update_bits(fifo->map, FIFO_CTRL0,
-+			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT), 0);
-+
-+	return snd_pcm_lib_free_pages(ss);
-+}
-+
-+static void axg_fifo_ack_irq(struct axg_fifo *fifo, u8 mask)
-+{
-+	regmap_update_bits(fifo->map, FIFO_CTRL1,
-+			   CTRL1_INT_CLR(FIFO_INT_MASK),
-+			   CTRL1_INT_CLR(mask));
-+
-+	/* Clear must also be cleared */
-+	regmap_update_bits(fifo->map, FIFO_CTRL1,
-+			   CTRL1_INT_CLR(FIFO_INT_MASK),
++	regmap_update_bits(priv->map, SPDIFOUT_CTRL0,
++			   SPDIFOUT_CTRL0_MSB_FIRST | SPDIFOUT_CTRL0_DATA_SEL,
 +			   0);
++
++	return 0;
 +}
 +
-+static irqreturn_t axg_fifo_pcm_irq_block(int irq, void *dev_id)
++static int axg_spdifout_set_chsts(struct snd_pcm_hw_params *params,
++				  struct snd_soc_dai *dai)
 +{
-+	struct snd_pcm_substream *ss = dev_id;
-+	struct axg_fifo *fifo = axg_fifo_data(ss);
-+	unsigned int status;
++	struct axg_spdifout *priv = snd_soc_dai_get_drvdata(dai);
++	unsigned int offset;
++	int ret;
++	u8 cs[4];
++	u32 val;
 +
-+	regmap_read(fifo->map, FIFO_STATUS1, &status);
++	ret = snd_pcm_create_iec958_consumer_hw_params(params, cs, 4);
++	if (ret < 0) {
++		dev_err(dai->dev, "Creating IEC958 channel status failed %d\n",
++			ret);
++		return ret;
++	}
++	val = cs[0] | cs[1] << 8 | cs[2] << 16 | cs[3] << 24;
 +
-+	status = STATUS1_INT_STS(status) & FIFO_INT_MASK;
-+	if (status & FIFO_INT_COUNT_REPEAT)
-+		snd_pcm_period_elapsed(ss);
-+	else
-+		dev_dbg(axg_fifo_dev(ss), "unexpected irq - STS 0x%02x\n",
-+			status);
++	/* Setup channel status A bits [31 - 0]*/
++	regmap_write(priv->map, SPDIFOUT_CHSTS0, val);
 +
-+	/* Ack irqs */
-+	axg_fifo_ack_irq(fifo, status);
++	/* Clear channel status A bits [191 - 32] */
++	for (offset = SPDIFOUT_CHSTS1; offset <= SPDIFOUT_CHSTS5;
++	     offset += regmap_get_reg_stride(priv->map))
++		regmap_write(priv->map, offset, 0);
 +
-+	return !status ? IRQ_NONE : IRQ_HANDLED;
++	/* Setup channel status B bits [31 - 0]*/
++	regmap_write(priv->map, SPDIFOUT_CHSTS6, val);
++
++	/* Clear channel status B bits [191 - 32] */
++	for (offset = SPDIFOUT_CHSTS7; offset <= SPDIFOUT_CHSTSB;
++	     offset += regmap_get_reg_stride(priv->map))
++		regmap_write(priv->map, offset, 0);
++
++	return 0;
 +}
 +
-+static int axg_fifo_pcm_open(struct snd_pcm_substream *ss)
++static int axg_spdifout_hw_params(struct snd_pcm_substream *substream,
++				  struct snd_pcm_hw_params *params,
++				  struct snd_soc_dai *dai)
 +{
-+	struct axg_fifo *fifo = axg_fifo_data(ss);
-+	struct device *dev = axg_fifo_dev(ss);
++	struct axg_spdifout *priv = snd_soc_dai_get_drvdata(dai);
++	unsigned int rate = params_rate(params);
 +	int ret;
 +
-+	snd_soc_set_runtime_hwparams(ss, &axg_fifo_hw);
-+
-+	/*
-+	 * Make sure the buffer and period size are multiple of the FIFO
-+	 * minimum depth size
-+	 */
-+	ret = snd_pcm_hw_constraint_step(ss->runtime, 0,
-+					 SNDRV_PCM_HW_PARAM_BUFFER_BYTES,
-+					 AXG_FIFO_MIN_DEPTH);
-+	if (ret)
++	/* 2 * 32bits per subframe * 2 channels = 128 */
++	ret = clk_set_rate(priv->mclk, rate * 128);
++	if (ret) {
++		dev_err(dai->dev, "failed to set spdif clock\n");
 +		return ret;
++	}
 +
-+	ret = snd_pcm_hw_constraint_step(ss->runtime, 0,
-+					 SNDRV_PCM_HW_PARAM_PERIOD_BYTES,
-+					 AXG_FIFO_MIN_DEPTH);
-+	if (ret)
++	ret = axg_spdifout_sample_fmt(params, dai);
++	if (ret) {
++		dev_err(dai->dev, "failed to setup sample format\n");
 +		return ret;
++	}
 +
-+	ret = request_irq(fifo->irq, axg_fifo_pcm_irq_block, 0,
-+			  dev_name(dev), ss);
-+
-+	/* Enable pclk to access registers and clock the fifo ip */
-+	ret = clk_prepare_enable(fifo->pclk);
-+	if (ret)
++	ret = axg_spdifout_set_chsts(params, dai);
++	if (ret) {
++		dev_err(dai->dev, "failed to setup channel status words\n");
 +		return ret;
++	}
 +
-+	/* Setup status2 so it reports the memory pointer */
-+	regmap_update_bits(fifo->map, FIFO_CTRL1,
-+			   CTRL1_STATUS2_SEL_MASK,
-+			   CTRL1_STATUS2_SEL(STATUS2_SEL_DDR_READ));
-+
-+	/* Make sure the dma is initially disabled */
-+	__dma_enable(fifo, false);
-+
-+	/* Disable irqs until params are ready */
-+	regmap_update_bits(fifo->map, FIFO_CTRL0,
-+			   CTRL0_INT_EN(FIFO_INT_MASK), 0);
-+
-+	/* Clear any pending interrupt */
-+	axg_fifo_ack_irq(fifo, FIFO_INT_MASK);
-+
-+	/* Take memory arbitror out of reset */
-+	ret = reset_control_deassert(fifo->arb);
-+	if (ret)
-+		clk_disable_unprepare(fifo->pclk);
-+
-+	return ret;
++	return 0;
 +}
 +
-+static int axg_fifo_pcm_close(struct snd_pcm_substream *ss)
++static int axg_spdifout_startup(struct snd_pcm_substream *substream,
++				struct snd_soc_dai *dai)
 +{
-+	struct axg_fifo *fifo = axg_fifo_data(ss);
++	struct axg_spdifout *priv = snd_soc_dai_get_drvdata(dai);
 +	int ret;
 +
-+	/* Put the memory arbitror back in reset */
-+	ret = reset_control_assert(fifo->arb);
++	/* Clock the spdif output block */
++	ret = clk_prepare_enable(priv->pclk);
++	if (ret) {
++		dev_err(dai->dev, "failed to enable pclk\n");
++		return ret;
++	}
 +
-+	/* Disable fifo ip and register access */
-+	clk_disable_unprepare(fifo->pclk);
++	/* Make sure the block is initially stopped */
++	axg_spdifout_disable(priv->map);
 +
-+	/* remove IRQ */
-+	free_irq(fifo->irq, ss);
++	/* Insert data from bit 27 lsb first */
++	regmap_update_bits(priv->map, SPDIFOUT_CTRL0,
++			   SPDIFOUT_CTRL0_MSB_FIRST | SPDIFOUT_CTRL0_DATA_SEL,
++			   0);
 +
-+	return ret;
++	/* Manual control of V, C and U, U = 0 */
++	regmap_update_bits(priv->map, SPDIFOUT_CTRL0,
++			   SPDIFOUT_CTRL0_CHSTS_SEL | SPDIFOUT_CTRL0_VSEL |
++			   SPDIFOUT_CTRL0_USEL | SPDIFOUT_CTRL0_USET,
++			   0);
++
++	/* Static SWAP configuration ATM */
++	regmap_write(priv->map, SPDIFOUT_SWAP, 0x10);
++
++	return 0;
 +}
 +
-+const struct snd_pcm_ops axg_fifo_pcm_ops = {
-+	.open =		axg_fifo_pcm_open,
-+	.close =        axg_fifo_pcm_close,
-+	.ioctl =	snd_pcm_lib_ioctl,
-+	.hw_params =	axg_fifo_pcm_hw_params,
-+	.hw_free =      axg_fifo_pcm_hw_free,
-+	.pointer =	axg_fifo_pcm_pointer,
-+	.trigger =	axg_fifo_pcm_trigger,
++static void axg_spdifout_shutdown(struct snd_pcm_substream *substream,
++				  struct snd_soc_dai *dai)
++{
++	struct axg_spdifout *priv = snd_soc_dai_get_drvdata(dai);
++
++	clk_disable_unprepare(priv->pclk);
++}
++
++static const struct snd_soc_dai_ops axg_spdifout_ops = {
++	.trigger	= axg_spdifout_trigger,
++	.digital_mute	= axg_spdifout_digital_mute,
++	.hw_params	= axg_spdifout_hw_params,
++	.startup	= axg_spdifout_startup,
++	.shutdown	= axg_spdifout_shutdown,
 +};
-+EXPORT_SYMBOL_GPL(axg_fifo_pcm_ops);
 +
-+int axg_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd, unsigned int type)
++static struct snd_soc_dai_driver axg_spdifout_dai_drv[] = {
++	{
++		.name = "SPDIF Output",
++		.playback = {
++			.stream_name	= "Playback",
++			.channels_min	= 1,
++			.channels_max	= 2,
++			.rates		= (SNDRV_PCM_RATE_32000  |
++					   SNDRV_PCM_RATE_44100  |
++					   SNDRV_PCM_RATE_48000  |
++					   SNDRV_PCM_RATE_88200  |
++					   SNDRV_PCM_RATE_96000  |
++					   SNDRV_PCM_RATE_176400 |
++					   SNDRV_PCM_RATE_192000),
++			.formats	= (SNDRV_PCM_FMTBIT_S8     |
++					   SNDRV_PCM_FMTBIT_S16_LE |
++					   SNDRV_PCM_FMTBIT_S20_LE |
++					   SNDRV_PCM_FMTBIT_S24_LE),
++		},
++		.ops = &axg_spdifout_ops,
++	},
++};
++
++static const char * const spdifout_sel_texts[] = {
++	"IN 0", "IN 1", "IN 2",
++};
++
++static SOC_ENUM_SINGLE_DECL(axg_spdifout_sel_enum, SPDIFOUT_CTRL1, 24,
++			    spdifout_sel_texts);
++
++static const struct snd_kcontrol_new axg_spdifout_in_mux =
++	SOC_DAPM_ENUM("Input Source", axg_spdifout_sel_enum);
++
++static const struct snd_soc_dapm_widget axg_spdifout_dapm_widgets[] = {
++	SND_SOC_DAPM_AIF_IN("IN 0", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 1", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 2", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_MUX("SRC SEL", SND_SOC_NOPM, 0, 0, &axg_spdifout_in_mux),
++};
++
++static const struct snd_soc_dapm_route axg_spdifout_dapm_routes[] = {
++	{ "SRC SEL", "IN 0", "IN 0" },
++	{ "SRC SEL", "IN 1", "IN 1" },
++	{ "SRC SEL", "IN 2", "IN 2" },
++	{ "Playback", NULL, "SRC SEL" },
++};
++
++static const struct snd_kcontrol_new axg_spdifout_controls[] = {
++	SOC_DOUBLE("Playback Volume", SPDIFOUT_GAIN0,  0,  8, 255, 0),
++	SOC_DOUBLE("Playback Switch", SPDIFOUT_CTRL0, 22, 21, 1, 1),
++	SOC_SINGLE("Playback Gain Enable Switch",
++		   SPDIFOUT_CTRL1, 26, 1, 0),
++	SOC_SINGLE("Playback Channels Mix Switch",
++		   SPDIFOUT_CTRL0, 23, 1, 0),
++};
++
++static int axg_spdifout_set_bias_level(struct snd_soc_component *component,
++				       enum snd_soc_bias_level level)
 +{
-+	struct snd_card *card = rtd->card->snd_card;
-+	size_t size = axg_fifo_hw.buffer_bytes_max;
++	struct axg_spdifout *priv = snd_soc_component_get_drvdata(component);
++	enum snd_soc_bias_level now =
++		snd_soc_component_get_bias_level(component);
++	int ret = 0;
 +
-+	return snd_pcm_lib_preallocate_pages(rtd->pcm->streams[type].substream,
-+					     SNDRV_DMA_TYPE_DEV, card->dev,
-+					     size, size);
++	switch (level) {
++	case SND_SOC_BIAS_PREPARE:
++		if (now == SND_SOC_BIAS_STANDBY)
++			ret = clk_prepare_enable(priv->mclk);
++		break;
++
++	case SND_SOC_BIAS_STANDBY:
++		if (now == SND_SOC_BIAS_PREPARE)
++			clk_disable_unprepare(priv->mclk);
++		break;
++
++	case SND_SOC_BIAS_OFF:
++	case SND_SOC_BIAS_ON:
++		break;
++	}
++
++	return ret;
 +}
-+EXPORT_SYMBOL_GPL(axg_fifo_pcm_new);
 +
-+static const struct regmap_config axg_fifo_regmap_cfg = {
++static const struct snd_soc_component_driver axg_spdifout_component_drv = {
++	.controls		= axg_spdifout_controls,
++	.num_controls		= ARRAY_SIZE(axg_spdifout_controls),
++	.dapm_widgets		= axg_spdifout_dapm_widgets,
++	.num_dapm_widgets	= ARRAY_SIZE(axg_spdifout_dapm_widgets),
++	.dapm_routes		= axg_spdifout_dapm_routes,
++	.num_dapm_routes	= ARRAY_SIZE(axg_spdifout_dapm_routes),
++	.set_bias_level		= axg_spdifout_set_bias_level,
++};
++
++static const struct regmap_config axg_spdifout_regmap_cfg = {
 +	.reg_bits	= 32,
 +	.val_bits	= 32,
 +	.reg_stride	= 4,
-+	.max_register	= FIFO_STATUS2,
++	.max_register	= SPDIFOUT_MUTE_VAL,
 +};
 +
-+int axg_fifo_probe(struct platform_device *pdev)
++static const struct of_device_id axg_spdifout_of_match[] = {
++	{ .compatible = "amlogic,axg-spdifout", },
++	{}
++};
++MODULE_DEVICE_TABLE(of, axg_spdifout_of_match);
++
++static int axg_spdifout_probe(struct platform_device *pdev)
 +{
 +	struct device *dev = &pdev->dev;
-+	const struct axg_fifo_match_data *data;
-+	struct axg_fifo *fifo;
++	struct axg_spdifout *priv;
 +	struct resource *res;
 +	void __iomem *regs;
++	int ret;
 +
-+	data = of_device_get_match_data(dev);
-+	if (!data) {
-+		dev_err(dev, "failed to match device\n");
-+		return -ENODEV;
-+	}
-+
-+	fifo = devm_kzalloc(dev, sizeof(*fifo), GFP_KERNEL);
-+	if (!fifo)
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
 +		return -ENOMEM;
-+	platform_set_drvdata(pdev, fifo);
++	platform_set_drvdata(pdev, priv);
 +
 +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 +	regs = devm_ioremap_resource(dev, res);
 +	if (IS_ERR(regs))
 +		return PTR_ERR(regs);
 +
-+	fifo->map = devm_regmap_init_mmio(dev, regs, &axg_fifo_regmap_cfg);
-+	if (IS_ERR(fifo->map)) {
++	priv->map = devm_regmap_init_mmio(dev, regs, &axg_spdifout_regmap_cfg);
++	if (IS_ERR(priv->map)) {
 +		dev_err(dev, "failed to init regmap: %ld\n",
-+			PTR_ERR(fifo->map));
-+		return PTR_ERR(fifo->map);
++			PTR_ERR(priv->map));
++		return PTR_ERR(priv->map);
 +	}
 +
-+	fifo->pclk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(fifo->pclk)) {
-+		if (PTR_ERR(fifo->pclk) != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get pclk: %ld\n",
-+				PTR_ERR(fifo->pclk));
-+		return PTR_ERR(fifo->pclk);
++	priv->pclk = devm_clk_get(dev, "pclk");
++	if (IS_ERR(priv->pclk)) {
++		ret = PTR_ERR(priv->pclk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(dev, "failed to get pclk: %d\n", ret);
++		return ret;
 +	}
 +
-+	fifo->arb = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(fifo->arb)) {
-+		if (PTR_ERR(fifo->arb) != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get arb reset: %ld\n",
-+				PTR_ERR(fifo->arb));
-+		return PTR_ERR(fifo->arb);
++	priv->mclk = devm_clk_get(dev, "mclk");
++	if (IS_ERR(priv->mclk)) {
++		ret = PTR_ERR(priv->mclk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(dev, "failed to get mclk: %d\n", ret);
++		return ret;
 +	}
 +
-+	fifo->irq = of_irq_get(dev->of_node, 0);
-+	if (fifo->irq <= 0) {
-+		dev_err(dev, "failed to get irq: %d\n", fifo->irq);
-+		return fifo->irq;
-+	}
-+
-+	return devm_snd_soc_register_component(dev, data->component_drv,
-+					       data->dai_drv, 1);
++	return devm_snd_soc_register_component(dev, &axg_spdifout_component_drv,
++			axg_spdifout_dai_drv, ARRAY_SIZE(axg_spdifout_dai_drv));
 +}
-+EXPORT_SYMBOL_GPL(axg_fifo_probe);
 +
-+MODULE_DESCRIPTION("Amlogic AXG fifo driver");
++static struct platform_driver axg_spdifout_pdrv = {
++	.probe = axg_spdifout_probe,
++	.driver = {
++		.name = "axg-spdifout",
++		.of_match_table = axg_spdifout_of_match,
++	},
++};
++module_platform_driver(axg_spdifout_pdrv);
++
++MODULE_DESCRIPTION("Amlogic AXG SPDIF Output driver");
 +MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
 +MODULE_LICENSE("GPL v2");
-diff --git a/sound/soc/meson/axg-fifo.h b/sound/soc/meson/axg-fifo.h
-new file mode 100644
-index 000000000000..cb6c4013ca33
---- /dev/null
-+++ b/sound/soc/meson/axg-fifo.h
-@@ -0,0 +1,80 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ * Copyright (c) 2018 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#ifndef _MESON_AXG_FIFO_H
-+#define _MESON_AXG_FIFO_H
-+
-+struct clk;
-+struct platform_device;
-+struct regmap;
-+struct reset_control;
-+
-+struct snd_soc_component_driver;
-+struct snd_soc_dai;
-+struct snd_soc_dai_driver;
-+struct snd_pcm_ops;
-+struct snd_soc_pcm_runtime;
-+
-+#define AXG_FIFO_CH_MAX			128
-+#define AXG_FIFO_RATES			(SNDRV_PCM_RATE_5512 |		\
-+					 SNDRV_PCM_RATE_8000_192000)
-+#define AXG_FIFO_FORMATS		(SNDRV_PCM_FMTBIT_S8 |		\
-+					 SNDRV_PCM_FMTBIT_S16_LE |	\
-+					 SNDRV_PCM_FMTBIT_S20_LE |	\
-+					 SNDRV_PCM_FMTBIT_S24_LE |	\
-+					 SNDRV_PCM_FMTBIT_S32_LE)
-+
-+#define AXG_FIFO_BURST			8
-+#define AXG_FIFO_MIN_CNT		64
-+#define AXG_FIFO_MIN_DEPTH		(AXG_FIFO_BURST * AXG_FIFO_MIN_CNT)
-+
-+#define FIFO_INT_ADDR_FINISH		BIT(0)
-+#define FIFO_INT_ADDR_INT		BIT(1)
-+#define FIFO_INT_COUNT_REPEAT		BIT(2)
-+#define FIFO_INT_COUNT_ONCE		BIT(3)
-+#define FIFO_INT_FIFO_ZERO		BIT(4)
-+#define FIFO_INT_FIFO_DEPTH		BIT(5)
-+#define FIFO_INT_MASK			GENMASK(7, 0)
-+
-+#define FIFO_CTRL0			0x00
-+#define  CTRL0_DMA_EN			BIT(31)
-+#define  CTRL0_INT_EN(x)		((x) << 16)
-+#define  CTRL0_SEL_MASK			GENMASK(2, 0)
-+#define  CTRL0_SEL_SHIFT		0
-+#define FIFO_CTRL1			0x04
-+#define  CTRL1_INT_CLR(x)		((x) << 0)
-+#define  CTRL1_STATUS2_SEL_MASK		GENMASK(11, 8)
-+#define  CTRL1_STATUS2_SEL(x)		((x) << 8)
-+#define   STATUS2_SEL_DDR_READ		0
-+#define  CTRL1_THRESHOLD_MASK		GENMASK(23, 16)
-+#define  CTRL1_THRESHOLD(x)		((x) << 16)
-+#define  CTRL1_FRDDR_DEPTH_MASK		GENMASK(31, 24)
-+#define  CTRL1_FRDDR_DEPTH(x)		((x) << 24)
-+#define FIFO_START_ADDR			0x08
-+#define FIFO_FINISH_ADDR		0x0c
-+#define FIFO_INT_ADDR			0x10
-+#define FIFO_STATUS1			0x14
-+#define  STATUS1_INT_STS(x)		((x) << 0)
-+#define FIFO_STATUS2			0x18
-+
-+struct axg_fifo {
-+	struct regmap *map;
-+	struct clk *pclk;
-+	struct reset_control *arb;
-+	int irq;
-+};
-+
-+struct axg_fifo_match_data {
-+	const struct snd_soc_component_driver *component_drv;
-+	struct snd_soc_dai_driver *dai_drv;
-+};
-+
-+extern const struct snd_pcm_ops axg_fifo_pcm_ops;
-+
-+int axg_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd, unsigned int type);
-+int axg_fifo_probe(struct platform_device *pdev);
-+
-+#endif /* _MESON_AXG_FIFO_H */
 -- 
 2.14.4
