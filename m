@@ -1,87 +1,87 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 17 Jul 2018 10:28:11 -0500
-Subject: [PATCH v2] ARM64: dts: meson-axg: add saradc support
-In-Reply-To: <7h7elvmgnv.fsf@baylibre.com> (Kevin Hilman's message of "Mon, 16
- Jul 2018 08:52:36 -0500")
-References: <20180702222515.13924-1-yixun.lan@amlogic.com>
- <1531326349.2708.136.camel@baylibre.com> <7h7elvmgnv.fsf@baylibre.com>
-Message-ID: <7h4lgxop9w.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 17 Jul 2018 17:36:24 +0200
+Subject: [PATCH 00/15] ASoC: meson: add axg audio subsystem support
+Message-ID: <20180717153643.8806-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
+This patchset adds support for the audio subsystem found on Amlogic's
+axg SoC family. The first SoC of this family is the A113D/X targeted
+at smart speaker application. The G12a SoC family, Amlogic next-gen
+STB chipset, will reuse this audio subsystem with a few changes.
 
-> Jerome Brunet <jbrunet@baylibre.com> writes:
->
->> On Mon, 2018-07-02 at 22:25 +0000, Yixun Lan wrote:
->>> From: Xingyu Chen <xingyu.chen@amlogic.com>
->>> 
->>> Add the DT info for SAR ADC of the Amlogic's Meson-AXG SoC.
->>> 
->>> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
->>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->>> ---
->>> Hi kevin
->>>   I just re-send this patch which rebased to your khilman/v4.18/integ branch
->>>   Thanks
->>> Yixun
->>> 
->>> nothing changed since patch v1 [1]:
->>>  -
->>> 
->>> [1] https://lkml.kernel.org/r/20180326092117.208416-1-yixun.lan at amlogic.com
->>> 
->>> ---
->>>  .../arm64/boot/dts/amlogic/meson-axg-s400.dts |  5 +++++
->>>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 21 +++++++++++++++++++
->>>  2 files changed, 26 insertions(+)
->>> 
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
->>> index 4b3331fbfe39..6041f68b32ae 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
->>> @@ -153,3 +153,8 @@
->>>  		compatible = "brcm,bcm4329-fmac";
->>>  	};
->>>  };
->>> +
->>> +&saradc {
->>> +	status = "okay";
->>> +	vref-supply = <&vddio_ao18>;
->>> +};
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->>> index 67d7115e4eff..52678a69dbf8 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->>> @@ -91,6 +91,13 @@
->>>  		method = "smc";
->>>  	};
->>>  
->>> +	vddio_ao18: regulator-vddio_ao18 {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "VDDIO_AO18";
->>> +		regulator-min-microvolt = <1800000>;
->>> +		regulator-max-microvolt = <1800000>;
->>> +	};
->>
->> Kevin, Yixun,
->>
->> I find odd that we are adding a regulator to SoC device tree file.
->> Those regulator are usually part of board file
->>
->> Unless the regulator is actually inside the SoC, this is not the place for it.
->>
->> Sorry for not catching this earlier.
->
-> You're right, I should've noticed this earlier also.
->
-> Yixun, can you resend this with the regulators in the board file please?
->
-> In the mean time, I've dropped this from v4.19/dt64 branch,
+This patchset implements the DPCM machine driver and the different
+components it made of. Several components are still missing, such
+spdif input and pdm, and will submitted later on.
 
-Nevermind, Jerome fixed this up already in a series of DT updates for
-AXG, so I'll keep it as is.
+The fancier part of this patchset is probably around the TDM. Properly
+modeling the SoC architecture and its capatilities made things a little
+more complex than usual (details in the related commit descriptions)
 
-Thanks Jerome!
+If necessary, this patchset could broken into smaller series. For the
+intial submission, I wanted to give a global view of the subsystem.
+Hopefully, it will make it a bit easier to understand.
 
-Kevin
+Jerome Brunet (15):
+  ASoC: meson: add axg fifos DT binding documentation
+  ASoC: meson: add axg fifo base driver
+  ASoC: meson: add axg frddr driver
+  ASoC: meson: add axg toddr driver
+  ASoC: meson: add axg spdif output DT bindings documentation
+  ASoC: meson: add axg spdif output
+  ASoC: meson: add axg tdm formatters DT bindings documentation
+  ASoC: meson: add axg tdm interface DT bindings documentation
+  ASoC: meson: add tdm formatter base driver
+  ASoC: meson: add tdm interface driver
+  ASoC: meson: add tdm output driver
+  ASoC: meson: add tdm input driver
+  ASoC: export snd_soc_of_get_slot_mask
+  ASoC: meson: add axg sound card DT bindings documentation
+  ASoC: meson: add axg sound card support
+
+ .../devicetree/bindings/sound/amlogic,axg-fifo.txt |  23 +
+ .../bindings/sound/amlogic,axg-sound-card.txt      | 124 ++++
+ .../bindings/sound/amlogic,axg-spdifout.txt        |  20 +
+ .../bindings/sound/amlogic,axg-tdm-formatters.txt  |  28 +
+ .../bindings/sound/amlogic,axg-tdm-iface.txt       |  22 +
+ include/sound/soc.h                                |   3 +
+ sound/soc/Kconfig                                  |   1 +
+ sound/soc/Makefile                                 |   1 +
+ sound/soc/meson/Kconfig                            |  64 ++
+ sound/soc/meson/Makefile                           |  21 +
+ sound/soc/meson/axg-card.c                         | 671 +++++++++++++++++++++
+ sound/soc/meson/axg-fifo.c                         | 341 +++++++++++
+ sound/soc/meson/axg-fifo.h                         |  80 +++
+ sound/soc/meson/axg-frddr.c                        | 141 +++++
+ sound/soc/meson/axg-spdifout.c                     | 456 ++++++++++++++
+ sound/soc/meson/axg-tdm-formatter.c                | 381 ++++++++++++
+ sound/soc/meson/axg-tdm-formatter.h                |  39 ++
+ sound/soc/meson/axg-tdm-interface.c                | 542 +++++++++++++++++
+ sound/soc/meson/axg-tdm.h                          |  78 +++
+ sound/soc/meson/axg-tdmin.c                        | 229 +++++++
+ sound/soc/meson/axg-tdmout.c                       | 259 ++++++++
+ sound/soc/meson/axg-toddr.c                        | 199 ++++++
+ sound/soc/soc-core.c                               |   7 +-
+ 23 files changed, 3727 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
+ create mode 100644 sound/soc/meson/Kconfig
+ create mode 100644 sound/soc/meson/Makefile
+ create mode 100644 sound/soc/meson/axg-card.c
+ create mode 100644 sound/soc/meson/axg-fifo.c
+ create mode 100644 sound/soc/meson/axg-fifo.h
+ create mode 100644 sound/soc/meson/axg-frddr.c
+ create mode 100644 sound/soc/meson/axg-spdifout.c
+ create mode 100644 sound/soc/meson/axg-tdm-formatter.c
+ create mode 100644 sound/soc/meson/axg-tdm-formatter.h
+ create mode 100644 sound/soc/meson/axg-tdm-interface.c
+ create mode 100644 sound/soc/meson/axg-tdm.h
+ create mode 100644 sound/soc/meson/axg-tdmin.c
+ create mode 100644 sound/soc/meson/axg-tdmout.c
+ create mode 100644 sound/soc/meson/axg-toddr.c
+
+-- 
+2.14.4
