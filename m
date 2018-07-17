@@ -1,14 +1,14 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 17 Jul 2018 17:36:32 +0200
-Subject: [PATCH 07/15] ASoC: meson: add axg tdm formatters DT binding
+Date: Tue, 17 Jul 2018 17:36:33 +0200
+Subject: [PATCH 07/15] ASoC: meson: add axg tdm formatters DT bindings
  documentation
 In-Reply-To: <20180717153643.8806-1-jbrunet@baylibre.com>
 References: <20180717153643.8806-1-jbrunet@baylibre.com>
-Message-ID: <20180717153643.8806-9-jbrunet@baylibre.com>
+Message-ID: <20180717153643.8806-10-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the DT binding documentation for axg's TDM formatters: TDMIN
+Add the DT bindings documentation for axg's TDM formatters: TDMIN
 and TDMOUT.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
