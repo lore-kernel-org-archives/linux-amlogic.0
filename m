@@ -1,150 +1,68 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 17 Jul 2018 17:43:03 +0200
-Subject: [PATCH RESEND 14/15] ASoC: meson: add axg sound card DT bindings
- documentation
-In-Reply-To: <20180717154304.9973-1-jbrunet@baylibre.com>
-References: <20180717154304.9973-1-jbrunet@baylibre.com>
-Message-ID: <20180717154304.9973-15-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 17 Jul 2018 10:51:00 -0500
+Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.19
+Message-ID: <7hva9dn9nf.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the DT bindings documentation for axg sound card
+The following changes since commit ce397d215ccd07b8ae3f71db689aedb85d56ab40:
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../bindings/sound/amlogic,axg-sound-card.txt      | 124 +++++++++++++++++++++
- 1 file changed, 124 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
+  Linux 4.18-rc1 (2018-06-17 08:04:49 +0900)
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
-new file mode 100644
-index 000000000000..39e005da0407
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-sound-card.txt
-@@ -0,0 +1,124 @@
-+Amlogic AXG sound card:
-+
-+Required properties:
-+
-+- compatible: "amlogic,axg-sound-card"
-+- amlogic,name : User specified audio sound card name, one string
-+
-+Optional properties:
-+
-+- amlogic,aux-devs : List of phandles pointing to auxiliary devices
-+- amlogic,widgets : Please refer to widgets.txt.
-+- amlogic,routing : A list of the connections between audio components.
-+
-+Subnodes:
-+
-+- amlogic,dai-link: Container for dai-link level properties and the
-+		    CODEC sub-nodes. There should be at least one (and
-+		    probably) subnode of this type.
-+
-+Required dai-link properties:
-+
-+- sound-dai: phandle and port of the CPU DAI.
-+
-+Required TDM Backend dai-link properties:
-+- dai-format : CPU/CODEC common audio format
-+
-+Optional TDM Backend dai-link properties:
-+- dai-tdm-slot-rx-mask-{0,1,2,3}: Receive direction slot masks
-+- dai-tdm-slot-tx-mask-{0,1,2,3}: Transmit direction slot masks
-+				  When omitted, mask is assumed to have to no
-+				  slots. A valid must have at one slot, so at
-+				  least one these mask should be provided with
-+				  an enabled slot.
-+- dai-tdm-slot-num : Please refer to tdm-slot.txt.
-+		     If omitted, slot number is set to accommodate the largest
-+		     mask provided.
-+- dai-tdm-slot-width : Please refer to tdm-slot.txt. default to 32 if omitted.
-+- mclk-fs : Multiplication factor between stream rate and mclk
-+
-+Backend dai-link subnodes:
-+
-+- codec: dai-link representing backend links should have at least one subnode.
-+	 One subnode for each codec of the dai-link.
-+	 dai-link representing frontend links have no codec, therefore have no
-+	 subnodes
-+
-+Required codec subnodes properties:
-+
-+- sound-dai: phandle and port of the CODEC DAI.
-+
-+Optional codec subnodes properties:
-+
-+- dai-tdm-slot-tx-mask : Please refer to tdm-slot.txt.
-+- dai-tdm-slot-rx-mask : Please refer to tdm-slot.txt.
-+
-+Example:
-+
-+sound {
-+	compatible = "amlogic,axg-sound-card";
-+	amlogic,name = "AXG-S420";
-+	amlogic,aux-devs = <&tdmin_a>, <&tdmout_c>;
-+	amlogic,widgets = "Line", "Lineout",
-+			  "Line", "Linein",
-+			  "Speaker", "Speaker1 Left",
-+			  "Speaker", "Speaker1 Right";
-+			  "Speaker", "Speaker2 Left",
-+			  "Speaker", "Speaker2 Right";
-+	amlogic,routing = "TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+			  "SPDIFOUT IN 0", "FRDDR_A OUT 3",
-+			  "TDM_C Playback", "TDMOUT_C OUT",
-+			  "TDMIN_A IN 2", "TDM_C Capture",
-+			  "TDMIN_A IN 5", "TDM_C Loopback",
-+			  "TODDR_A IN 0", "TDMIN_A OUT",
-+			  "Lineout", "Lineout AOUTL",
-+			  "Lineout", "Lineout AOUTR",
-+			  "Speaker1 Left", "SPK1 OUT_A",
-+			  "Speaker2 Left", "SPK2 OUT_A",
-+			  "Speaker1 Right", "SPK1 OUT_B",
-+			  "Speaker2 Right", "SPK2 OUT_B",
-+			  "Linein AINL", "Linein",
-+			  "Linein AINR", "Linein";
-+
-+	amlogic,dai-link at 0 {
-+		sound-dai = <&frddr_a>;
-+	};
-+
-+	amlogic,dai-link at 1 {
-+		sound-dai = <&toddr_a>;
-+	};
-+
-+	amlogic,dai-link at 2 {
-+		sound-dai = <&tdmif_c>;
-+		dai-format = "i2s";
-+		dai-tdm-slot-tx-mask-2 = <1 1>;
-+		dai-tdm-slot-tx-mask-3 = <1 1>;
-+		dai-tdm-slot-rx-mask-1 = <1 1>;
-+		mclk-fs = <256>;
-+
-+		codec at 0 {
-+			sound-dai = <&lineout>;
-+		};
-+
-+		codec at 1 {
-+			sound-dai = <&speaker_amp1>;
-+		};
-+
-+		codec at 2 {
-+			sound-dai = <&speaker_amp2>;
-+		};
-+
-+		codec at 3 {
-+			sound-dai = <&linein>;
-+		};
-+
-+	};
-+
-+	amlogic,dai-link at 4 {
-+		sound-dai = <&spdifout>;
-+
-+		codec {
-+			sound-dai = <&spdif_dit>;
-+		};
-+	};
-+};
--- 
-2.14.4
+are available in the git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64
+
+for you to fetch changes up to 6a4c2246a2ecb84ce578d23752fa9f8fc7f832fd:
+
+  ARM64: dts: meson-axg: add pdm pins (2018-07-17 08:32:12 -0700)
+
+----------------------------------------------------------------
+Amlogic 64-bit DT updates for v4.19
+- new SoC: S805x
+- new board: S805x-based P241 board from Amlogic
+- AXG: add ADC support w/buttons, add pins for PDM, SPDIF
+- AXG: s400 board: preliminary support for audio
+- GX: nanopi-k2: add HDMI, CEC, CVBS support
+
+----------------------------------------------------------------
+Jerome Brunet (9):
+      ARM64: dts: meson-axg: add s400 microphone card leds
+      ARM64: dts: meson-axg: add s400 main 12v supply
+      ARM64: dts: meson-axg: add s400 speaker amplifier
+      ARM64: dts: meson-axg: add spdif output pins
+      ARM64: dts: meson-axg: remove vddio_ao18 from SoC dtsi
+      ARM64: dts: meson-axg: add adc buttons the S400
+      ARM64: dts: meson-axg: remove spdif out from gpio a7
+      ARM64: dts: meson-axg: add spdif input pins
+      ARM64: dts: meson-axg: add pdm pins
+
+Martin Blumenstingl (2):
+      ARM64: dts: meson: enable the saradc node in meson-gx-p23x-q20x.dtsi
+      ARM64: dts: meson-gx-p23x-q20x: move the wifi node to each board's .dts
+
+Neil Armstrong (3):
+      ARM64: dts: meson-gxbb-nanopi-k2: Add HDMI, CEC and CVBS nodes
+      dt-bindings: amlogic: Add support for GXL S805X and the P241 board
+      ARM64: dts: add S805X based P241 board
+
+Viresh Kumar (1):
+      ARM64: dts: amlogic: Add missing cooling device properties for CPUs
+
+Xingyu Chen (1):
+      ARM64: dts: meson-axg: add saradc support
+
+ Documentation/devicetree/bindings/arm/amlogic.txt     |   6 ++++
+ arch/arm64/boot/dts/amlogic/Makefile                  |   1 +
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts        | 111 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi            | 126 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi   |  17 ++++++---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts  |  48 ++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts  | 218 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts  |  15 +++-----
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts  |   7 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts |  24 +++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts        |  15 +++-----
+ arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts        |   7 ++++
+ 12 files changed, 570 insertions(+), 25 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
