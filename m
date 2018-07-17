@@ -1,68 +1,55 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 17 Jul 2018 13:30:38 +0200
-Subject: [PATCH 2/3] dt-bindings: amlogic: Add Internal Clock Measurer
- bindings
-In-Reply-To: <20180716214516.GA31738@rob-hp-laptop>
-References: <1530624110-4687-1-git-send-email-narmstrong@baylibre.com>
- <1530624110-4687-3-git-send-email-narmstrong@baylibre.com>
- <20180716214516.GA31738@rob-hp-laptop>
-Message-ID: <964512dd-fddb-4919-446a-96db7cc22a8b@baylibre.com>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Tue, 17 Jul 2018 20:20:48 +0800
+Subject: [RESEND PATCH v2 2/2] clk: meson-g12a: Add EE Clock controller
+ driver
+In-Reply-To: <1531738834.12853.64.camel@baylibre.com>
+References: <1531728707-192230-1-git-send-email-jian.hu@amlogic.com>
+ <1531728707-192230-3-git-send-email-jian.hu@amlogic.com>
+ <1531738834.12853.64.camel@baylibre.com>
+Message-ID: <8db634aa-fc1a-1145-d761-89423aa839d8@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Rob,
 
-On 16/07/2018 23:45, Rob Herring wrote:
-> On Tue, Jul 03, 2018 at 03:21:49PM +0200, Neil Armstrong wrote:
->> The Amlogic Meson GX SoCs embeds a clock measurer IP to measure the internal
->> clock paths frequencies.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  .../devicetree/bindings/soc/amlogic/clk-measure.txt       | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
->>
->> diff --git a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
->> new file mode 100644
->> index 0000000..ba9183a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
->> @@ -0,0 +1,15 @@
->> +Amlogic Internal Clock Measurer
->> +===============================
->> +
->> +The Amlogic SoCs contains an IP to measure the internal clocks.
->> +The precision is multiple of MHz, useful to debug the clock states.
-> 
-> What a simple yet useful debug tool.
-> 
->> +
->> +Required properties:
->> +- compatible: Shall contain "amlogic,meson-gx-clk-measure"
->> +- reg: base address and size of the Clock Measurer register space.
->> +
->> +Example:
->> +	clock-measure at 8758 {
->> +		compatible = "amlogic,meson-gx-clk-measure";
->> +		reg = <0x0 0x8758 0x0 0x10>;
-> 
-> This doesn't really look like its own block though. Can't the parent 
-> device instantiate the driver for this?
 
-As weird as it seems, on the GX family the registers are not on a aligned boundary, but yes it's its own block.
-On newer SoCs, they have a more aligned register address, with the exact same register set.
-
-Neil
-
+On 2018/7/16 19:00, Jerome Brunet wrote:
+> On Mon, 2018-07-16 at 16:11 +0800, Jian Hu wrote:
+>> Add a Clock driver for the Everything-Else part
+>> of the Amlogic Meson-G12A SoC.
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> 
+> Point raised about fdiv gates remains un-answered.
+> Please address all the point raised before reposting your patches.
 > 
 > 
->> +	};
->> -- 
->> 2.7.4
->>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel at lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+> .
+> 
+
+So sorry, I have missed the question of fixed div gates.
+
+You are right, g12a has gates in front of these fdivX clock, And they 
+are controlled by bit 20 to 25 in HHI_FIX_PLL_CNTL1 register. The 
+details are in the attachment which I have marked.
+
+clock gate     control bit
+
+fclk_div2      24
+fclk_div3      20
+fclk_div4      21
+fclk_div5      22
+fclk_div7      23
+fclk_div2p5    25
+
+Maybe it is not clear in your datasheet.
+
+I will update the code for this.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: Mpll diagram .png
+Type: image/png
+Size: 201707 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180717/6ccb09dc/attachment.png>
