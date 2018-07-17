@@ -1,31 +1,46 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Tue, 17 Jul 2018 10:41:35 -0500
-Subject: [PATCH 0/6] ARM64: dts: meson-axg: updates
-In-Reply-To: <20180716101151.31109-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Mon, 16 Jul 2018 12:11:45 +0200")
-References: <20180716101151.31109-1-jbrunet@baylibre.com>
-Message-ID: <7hzhypna34.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 17 Jul 2018 17:42:54 +0200
+Subject: [PATCH RESEND 05/15] ASoC: meson: add axg spdif output DT bindings
+ documentation
+In-Reply-To: <20180717154304.9973-1-jbrunet@baylibre.com>
+References: <20180717154304.9973-1-jbrunet@baylibre.com>
+Message-ID: <20180717154304.9973-6-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Add the DT bindings documentation for axg's SPDIF output.
 
-> This patchset groups several updates targeted on amlogic's AXG
-> device tree. Patch 1, 2 and 6 had been posted previously but I thought
-> it would be more convenient for Kevin to get them as a single series.
->
-> Jerome Brunet (6):
->   ARM64: dts: meson-axg: remove vddio_ao18 from SoC dtsi
->   ARM64: dts: meson-axg: add adc buttons the S400
->   ARM64: dts: meson-axg: remove spdif out from gpio a7
->   ARM64: dts: meson-axg: add spdif input pins
->   ARM64: dts: meson-axg: add pdm pins
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../bindings/sound/amlogic,axg-spdifout.txt          | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
 
-Applied to v4.19/dt64, queued for the first DT64 pull to arm-soc.
-
->   ARM64: dts: meson-axg: add the audio clock controller
-
-I'll queue this for a follow-up pull with the dependency tag from the
-clock tree.
-
-Kevin
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+new file mode 100644
+index 000000000000..521c38ad89e7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
+@@ -0,0 +1,20 @@
++* Amlogic Audio SPDIF Output
++
++Required properties:
++- compatible: 'amlogic,axg-spdifout'
++- clocks: list of clock phandle, one for each entry clock-names.
++- clock-names: should contain the following:
++  * "pclk" : peripheral clock.
++  * "mclk" : master clock
++- #sound-dai-cells: must be 0.
++
++Example on the A113 SoC:
++
++spdifout: audio-controller at 480 {
++	compatible = "amlogic,axg-spdifout";
++	reg = <0x0 0x480 0x0 0x50>;
++	#sound-dai-cells = <0>;
++	clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
++		 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
++	clock-names = "pclk", "mclk";
++};
+-- 
+2.14.4
