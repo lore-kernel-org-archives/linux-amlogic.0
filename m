@@ -1,55 +1,87 @@
-From: jian.hu@amlogic.com (Jian Hu)
-Date: Tue, 17 Jul 2018 20:20:48 +0800
-Subject: [RESEND PATCH v2 2/2] clk: meson-g12a: Add EE Clock controller
- driver
-In-Reply-To: <1531738834.12853.64.camel@baylibre.com>
-References: <1531728707-192230-1-git-send-email-jian.hu@amlogic.com>
- <1531728707-192230-3-git-send-email-jian.hu@amlogic.com>
- <1531738834.12853.64.camel@baylibre.com>
-Message-ID: <8db634aa-fc1a-1145-d761-89423aa839d8@amlogic.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Tue, 17 Jul 2018 10:28:11 -0500
+Subject: [PATCH v2] ARM64: dts: meson-axg: add saradc support
+In-Reply-To: <7h7elvmgnv.fsf@baylibre.com> (Kevin Hilman's message of "Mon, 16
+ Jul 2018 08:52:36 -0500")
+References: <20180702222515.13924-1-yixun.lan@amlogic.com>
+ <1531326349.2708.136.camel@baylibre.com> <7h7elvmgnv.fsf@baylibre.com>
+Message-ID: <7h4lgxop9w.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Kevin Hilman <khilman@baylibre.com> writes:
 
-
-On 2018/7/16 19:00, Jerome Brunet wrote:
-> On Mon, 2018-07-16 at 16:11 +0800, Jian Hu wrote:
->> Add a Clock driver for the Everything-Else part
->> of the Amlogic Meson-G12A SoC.
+> Jerome Brunet <jbrunet@baylibre.com> writes:
+>
+>> On Mon, 2018-07-02 at 22:25 +0000, Yixun Lan wrote:
+>>> From: Xingyu Chen <xingyu.chen@amlogic.com>
+>>> 
+>>> Add the DT info for SAR ADC of the Amlogic's Meson-AXG SoC.
+>>> 
+>>> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+>>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>>> ---
+>>> Hi kevin
+>>>   I just re-send this patch which rebased to your khilman/v4.18/integ branch
+>>>   Thanks
+>>> Yixun
+>>> 
+>>> nothing changed since patch v1 [1]:
+>>>  -
+>>> 
+>>> [1] https://lkml.kernel.org/r/20180326092117.208416-1-yixun.lan at amlogic.com
+>>> 
+>>> ---
+>>>  .../arm64/boot/dts/amlogic/meson-axg-s400.dts |  5 +++++
+>>>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 21 +++++++++++++++++++
+>>>  2 files changed, 26 insertions(+)
+>>> 
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+>>> index 4b3331fbfe39..6041f68b32ae 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+>>> @@ -153,3 +153,8 @@
+>>>  		compatible = "brcm,bcm4329-fmac";
+>>>  	};
+>>>  };
+>>> +
+>>> +&saradc {
+>>> +	status = "okay";
+>>> +	vref-supply = <&vddio_ao18>;
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>>> index 67d7115e4eff..52678a69dbf8 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>>> @@ -91,6 +91,13 @@
+>>>  		method = "smc";
+>>>  	};
+>>>  
+>>> +	vddio_ao18: regulator-vddio_ao18 {
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "VDDIO_AO18";
+>>> +		regulator-min-microvolt = <1800000>;
+>>> +		regulator-max-microvolt = <1800000>;
+>>> +	};
 >>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> 
-> Point raised about fdiv gates remains un-answered.
-> Please address all the point raised before reposting your patches.
-> 
-> 
-> 
-> .
-> 
+>> Kevin, Yixun,
+>>
+>> I find odd that we are adding a regulator to SoC device tree file.
+>> Those regulator are usually part of board file
+>>
+>> Unless the regulator is actually inside the SoC, this is not the place for it.
+>>
+>> Sorry for not catching this earlier.
+>
+> You're right, I should've noticed this earlier also.
+>
+> Yixun, can you resend this with the regulators in the board file please?
+>
+> In the mean time, I've dropped this from v4.19/dt64 branch,
 
-So sorry, I have missed the question of fixed div gates.
+Nevermind, Jerome fixed this up already in a series of DT updates for
+AXG, so I'll keep it as is.
 
-You are right, g12a has gates in front of these fdivX clock, And they 
-are controlled by bit 20 to 25 in HHI_FIX_PLL_CNTL1 register. The 
-details are in the attachment which I have marked.
+Thanks Jerome!
 
-clock gate     control bit
-
-fclk_div2      24
-fclk_div3      20
-fclk_div4      21
-fclk_div5      22
-fclk_div7      23
-fclk_div2p5    25
-
-Maybe it is not clear in your datasheet.
-
-I will update the code for this.
-
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: Mpll diagram .png
-Type: image/png
-Size: 201707 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180717/6ccb09dc/attachment.png>
+Kevin
