@@ -1,23 +1,87 @@
 From: broonie@kernel.org (Mark Brown)
-Date: Wed, 18 Jul 2018 12:50:54 +0100
-Subject: [PATCH RESEND 02/15] ASoC: meson: add axg fifo base driver
-In-Reply-To: <20180717154304.9973-3-jbrunet@baylibre.com>
-References: <20180717154304.9973-1-jbrunet@baylibre.com>
- <20180717154304.9973-3-jbrunet@baylibre.com>
-Message-ID: <20180718115054.GI5700@sirena.org.uk>
+Date: Wed, 18 Jul 2018 13:25:10 +0100
+Subject: Applied "ASoC: meson: add axg tdm formatters DT bindings
+ documentation" to the asoc tree
+In-Reply-To: <20180717153643.8806-9-jbrunet@baylibre.com>
+Message-ID: <E1fflW2-000788-CV@debutante>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Jul 17, 2018 at 05:42:51PM +0200, Jerome Brunet wrote:
+The patch
 
-> +	return !status ? IRQ_NONE : IRQ_HANDLED;
+   ASoC: meson: add axg tdm formatters DT bindings documentation
 
-Please just write normal conditional statements, it makes things a lot
-easier to read (the ! isn't helping either here).
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 488 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180718/88f02bc3/attachment.sig>
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+>From 7713a70034f2cb54168d134ac523fdfcdda92a13 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Tue, 17 Jul 2018 17:42:56 +0200
+Subject: [PATCH] ASoC: meson: add axg tdm formatters DT bindings documentation
+
+Add the DT bindings documentation for axg's TDM formatters: TDMIN
+and TDMOUT.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ .../sound/amlogic,axg-tdm-formatters.txt      | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+new file mode 100644
+index 000000000000..1c1b7490554e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+@@ -0,0 +1,28 @@
++* Amlogic Audio TDM formatters
++
++Required properties:
++- compatible: 'amlogic,axg-tdmin' or
++	      'amlogic,axg-tdmout'
++- reg: physical base address of the controller and length of memory
++       mapped region.
++- clocks: list of clock phandle, one for each entry clock-names.
++- clock-names: should contain the following:
++  * "pclk"     : peripheral clock.
++  * "sclk"     : bit clock.
++  * "sclk_sel" : bit clock input multiplexer.
++  * "lrclk"    : sample clock
++  * "lrclk_sel": sample clock input multiplexer
++
++Example of TDMOUT_A on the A113 SoC:
++
++tdmout_a: audio-controller at 500 {
++	compatible = "amlogic,axg-tdmout";
++	reg = <0x0 0x500 0x0 0x40>;
++	clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
++		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
++		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
++		 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
++		 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
++	clock-names = "pclk", "sclk", "sclk_sel",
++		      "lrclk", "lrclk_sel";
++};
+-- 
+2.18.0
