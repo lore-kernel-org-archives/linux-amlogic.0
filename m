@@ -1,81 +1,26 @@
-From: broonie@kernel.org (Mark Brown)
-Date: Wed, 18 Jul 2018 13:27:06 +0100
-Subject: Applied "ASoC: meson: add axg fifos DT binding documentation" to the
- asoc tree
-In-Reply-To: <20180717153643.8806-2-jbrunet@baylibre.com>
-Message-ID: <E1fflXu-0007H0-JJ@debutante>
+From: tiwai@suse.de (Takashi Iwai)
+Date: Wed, 18 Jul 2018 17:39:11 +0200
+Subject: [alsa-devel] [PATCH RESEND 02/15] ASoC: meson: add axg fifo	base
+ driver
+In-Reply-To: <20180718115054.GI5700@sirena.org.uk>
+References: <20180717154304.9973-1-jbrunet@baylibre.com>
+ <20180717154304.9973-3-jbrunet@baylibre.com>
+ <20180718115054.GI5700@sirena.org.uk>
+Message-ID: <s5ha7qoblk0.wl-tiwai@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patch
+On Wed, 18 Jul 2018 13:50:54 +0200,
+Mark Brown wrote:
+> 
+> On Tue, Jul 17, 2018 at 05:42:51PM +0200, Jerome Brunet wrote:
+> 
+> > +	return !status ? IRQ_NONE : IRQ_HANDLED;
+> 
+> Please just write normal conditional statements, it makes things a lot
+> easier to read (the ! isn't helping either here).
 
-   ASoC: meson: add axg fifos DT binding documentation
+... and there is the standard IRQ_RETVAL() macro for this purpose.
 
-has been applied to the asoc tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
->From e32d99af6830c9a8f37b4f2637ef0cdc60fa79fb Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 17 Jul 2018 17:42:50 +0200
-Subject: [PATCH] ASoC: meson: add axg fifos DT binding documentation
-
-Add the DT bindings documentation for axg's FIFOs: TODDR and FRDDR.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../bindings/sound/amlogic,axg-fifo.txt       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-new file mode 100644
-index 000000000000..3dfc2515e5c6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-@@ -0,0 +1,23 @@
-+* Amlogic Audio FIFO controllers
-+
-+Required properties:
-+- compatible: 'amlogic,axg-toddr' or
-+	      'amlogic,axg-frddr'
-+- reg: physical base address of the controller and length of memory
-+       mapped region.
-+- interrupts: interrupt specifier for the fifo.
-+- clocks: phandle to the fifo peripheral clock provided by the audio
-+	  clock controller.
-+- resets: phandle to memory ARB line provided by the arb reset controller.
-+- #sound-dai-cells: must be 0.
-+
-+Example of FRDDR A on the A113 SoC:
-+
-+frddr_a: audio-controller at 1c0 {
-+	compatible = "amlogic,axg-frddr";
-+	reg = <0x0 0x1c0 0x0 0x1c>;
-+	#sound-dai-cells = <0>;
-+	interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
-+	clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
-+	resets = <&arb AXG_ARB_FRDDR_A>;
-+};
--- 
-2.18.0
+Takashi
