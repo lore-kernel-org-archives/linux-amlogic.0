@@ -1,28 +1,52 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 19 Jul 2018 10:59:05 +0200
-Subject: [PATCH 3/3] clk: meson: clk-pll: drop hard-coded rates from pll
- tables
-In-Reply-To: <d4e5e35a-39e0-fe27-8d27-387c5312ca32@baylibre.com>
-References: <20180717095617.12240-1-jbrunet@baylibre.com>
- <20180717095617.12240-4-jbrunet@baylibre.com>
- <d4e5e35a-39e0-fe27-8d27-387c5312ca32@baylibre.com>
-Message-ID: <1531990745.26720.34.camel@baylibre.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Thu, 19 Jul 2018 17:46:10 +0800
+Subject: [RFC PATCH v2 0/2] mtd: rawnand: meson: add Amlogic NAND driver
+ support
+Message-ID: <20180719094612.5833-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-07-19 at 10:44 +0200, Neil Armstrong wrote:
-> We could even add ranges instead of table when we know the PLL supports a well-known continuous dividers range.
+  These two patches try to add initial NAND driver support for Amlogic Meson
+SoCs, current it has been tested on GXL(p212) and AXG(s400) platform.
 
-I was thinking about this too.
-I did not went for it because it would mean yet another rework of the pll
-driver, which I did not had time to do now.
+  Note this patch series actually depend on the eMMC clkc patch[2] which
+still not merged.
 
-I suspect that the min and max value of 'm' the pll can lock on might depend on
-the input rate of the DCO, so past the 'n' prediv.
+Changes since v1 at [1]:
+   - adopt property amlogic,nand-enable-scrambler - thanks Martin
+   - drop nand pins in DT
+   - convert clk access to emmc clkc model 
+   - fix regiser field definition alignment
+   - convert devm_kmalloc to kmalloc API
+   - drop nand-user-mode 
+   - parse cs id from DT
+   - rework n2m, m2n function
+   - explain why insert two "IDLE" command
+   - implement exec_op()
+   - drop meson_nfc_get_nand_chip_dts()
+   - release resource once error occur in meson_nfc_nand_chips_init(), 
+   - call nand_cleanup(nand) once mtd_device_register fail
 
-So, to replace the tuple (m, n) table with ranges, I think it would be best to
-take the predivider 'n' out first and try to clarify the contraints on the input
-rate of the DCO with amlogic ... we can also try and see ;)
+Items not addressed in this version:
+   - convert to ECC conf helper() 
+   - how to construct mtd->name
 
-> 
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+[1] https://lkml.kernel.org/r/20180613161314.14894-1-yixun.lan at amlogic.com
+[2] https://lkml.kernel.org/r/20180712211244.11428-1-yixun.lan at amlogic.com
+
+Liang Yang (1):
+  dt-bindings: nand: meson: add Amlogic NAND controller driver
+
+Yixun Lan (1):
+  mtd: rawnand: meson: add support for Amlogic NAND flash controller
+
+ .../bindings/mtd/amlogic,meson-nand.txt       |   95 ++
+ drivers/mtd/nand/raw/Kconfig                  |   10 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ drivers/mtd/nand/raw/meson_nand.c             | 1333 +++++++++++++++++
+ 4 files changed, 1439 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ create mode 100644 drivers/mtd/nand/raw/meson_nand.c
+
+-- 
+2.18.0
