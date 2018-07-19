@@ -1,116 +1,69 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 19 Jul 2018 10:45:37 +0200
-Subject: [PATCH 2/3] clk: meson: clk-pll: remove od parameters
-In-Reply-To: <fa95a61b-3fde-1401-e2bc-f3465e5f4417@baylibre.com>
-References: <20180717095617.12240-1-jbrunet@baylibre.com>
- <20180717095617.12240-3-jbrunet@baylibre.com>
- <fa95a61b-3fde-1401-e2bc-f3465e5f4417@baylibre.com>
-Message-ID: <1531989937.26720.22.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 19 Jul 2018 10:21:21 +0200
+Subject: [PATCH v2 2/5] dt-bindings: arm: amlogic: Add support for GXL
+ S905W and the P281 board
+In-Reply-To: <20180714193725.17837-3-martin.blumenstingl@googlemail.com>
+References: <20180714193725.17837-1-martin.blumenstingl@googlemail.com>
+ <20180714193725.17837-3-martin.blumenstingl@googlemail.com>
+Message-ID: <d265652f-2d49-35af-1ac8-ff9231dcf332@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-07-19 at 10:42 +0200, Neil Armstrong wrote:
-> > +static struct clk_regmap gxl_hdmi_pll_od = {
-> > +     .data = &(struct clk_regmap_div_data){
-> > +             .offset = HHI_HDMI_PLL_CNTL + 8,
-> > +             .shift = 16,
-> > +             .width = 2,
-> > +             .flags = CLK_DIVIDER_POWER_OF_TWO,
-> > +     },
-> > +     .hw.init = &(struct clk_init_data){
-> > +             .name = "hdmi_pll_od",
-> > +             .ops = &clk_regmap_divider_ro_ops,
-> > +             .parent_names = (const char *[]){ "hdmi_pll_dco" },
-> > +             .num_parents = 1,
-> > +             .flags = CLK_GET_RATE_NOCACHE,
-> > +     },
-> > +};
-> 
-> In my code, the GXL OD1 is at bit 21
-> 
-> > +
-> > +static struct clk_regmap gxl_hdmi_pll_od2 = {
-> > +     .data = &(struct clk_regmap_div_data){
-> > +             .offset = HHI_HDMI_PLL_CNTL + 8,
-> > +             .shift = 22,
-> > +             .width = 2,
-> > +             .flags = CLK_DIVIDER_POWER_OF_TWO,
-> > +     },
-> > +     .hw.init = &(struct clk_init_data){
-> > +             .name = "hdmi_pll_od2",
-> > +             .ops = &clk_regmap_divider_ro_ops,
-> > +             .parent_names = (const char *[]){ "hdmi_pll_od" },
-> > +             .num_parents = 1,
-> > +             .flags = CLK_GET_RATE_NOCACHE,
-> > +     },
-> > +};
-> 
-> 
-> In my code, the GXL OD3 is at bit 23
-> 
-> > +
-> >   static struct clk_regmap gxl_hdmi_pll = {
-> > -     .data = &(struct meson_clk_pll_data){
-> > -             .en = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL,
-> > -                     .shift   = 30,
-> > -                     .width   = 1,
-> > -             },
-> > -             .m = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL,
-> > -                     .shift   = 0,
-> > -                     .width   = 9,
-> > -             },
-> > -             .n = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL,
-> > -                     .shift   = 9,
-> > -                     .width   = 5,
-> > -             },
-> > -             .frac = {
-> > -                     /*
-> > -                      * On gxl, there is a register shift due to
-> > -                      * HHI_HDMI_PLL_CNTL1 which does not exist on gxbb,
-> > -                      * so we compute the register offset based on the PLL
-> > -                      * base to get it right
-> > -                      */
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL + 4,
-> > -                     .shift   = 0,
-> > -                     .width   = 12,
-> > -             },
-> > -             .od = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL + 8,
-> > -                     .shift   = 21,
-> > -                     .width   = 2,
-> > -             },
-> > -             .od2 = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL + 8,
-> > -                     .shift   = 23,
-> > -                     .width   = 2,
-> > -             },
-> > -             .od3 = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL + 8,
-> > -                     .shift   = 19,
-> > -                     .width   = 2,
-> > -             },
-> > -             .l = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL,
-> > -                     .shift   = 31,
-> > -                     .width   = 1,
-> > -             },
-> > -             .rst = {
-> > -                     .reg_off = HHI_HDMI_PLL_CNTL,
-> > -                     .shift   = 29,
-> > -                     .width   = 1,
-> > -             },
-> > +     .data = &(struct clk_regmap_div_data){
-> > +             .offset = HHI_HDMI_PLL_CNTL + 8,
-> > +             .shift = 18,
-> > +             .width = 2,
-> > +             .flags = CLK_DIVIDER_POWER_OF_TWO,
-> 
-> 
-> In my code, the GXL OD3 is at bit 19
-> 
-> It's only a copy/paste error, the original code had the correct shifts.
+Hi Martin,
 
-Absolutely. Good catch. 
+On 14/07/2018 21:37, Martin Blumenstingl wrote:
+> S905W SoC is another SoC from the GXL family. It is a cost-reduced
+> version of the S905X SoC. The following differences are known:
+> - S905W supports HDMI resolutions up to 4k at 30fps (while S905X support
+>   resolutions up to 4k at 60fps)
+> - the built-in video decoders of S905W decode up to 4k at 30fps (while
+>   S905X supports decoding up to 4k at 60fps)
+> - CPU speed on S905W is limited to 1.2GHz (compared to 1.5GHz on S905X,
+>   this is handled in the SCPI firmware)
+> - the DRAM interface on S905W is limited to 16-bit (GXL supports both,
+>   16-bit and 32-bit)
+> 
+> Notes based on Amlogic's GPL kernel sources:
+> - the P281 is a development board from Amlogic which uses the S905W SoC.
+>   Amlogic's GPL kernel sources indicate that it uses the same PCB layout
+>   as the "P231" board (and simply replaces the S905D from the original
+>   P231 board with a S905W SoC).
+> - it is assumed that the S905W SoC is pin-compatible with the S905X SoC
+>   since Amlogic's GPL kernel sources use the same driver for both SoCs.
+> - gxl_p281_1g.dts contains a comment which mentions that "max gp pll for
+>   gpu is 650M, temporarily disabled". However, it seems to boot fine
+>   with 744MHz (as used on GXBB and the other GXL SoCs).
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.txt | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+> index 849834cb1766..8178da8742c3 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+> @@ -45,6 +45,10 @@ Boards with the Amlogic Meson GXL S805X SoC shall have the following properties:
+>    Required root node property:
+>      compatible: "amlogic,s805x", "amlogic,meson-gxl";
+>  
+> +Boards with the Amlogic Meson GXL S905W SoC shall have the following properties:
+> +  Required root node property:
+> +    compatible: "amlogic,s905w", "amlogic,meson-gxl";
+> +
+>  Boards with the Amlogic Meson GXM S912 SoC shall have the following properties:
+>    Required root node property:
+>      compatible: "amlogic,s912", "amlogic,meson-gxm";
+> @@ -85,6 +89,8 @@ Board compatible values (alphabetically, grouped by SoC):
+>  
+>    - "amlogic,p241" (Meson gxl s805x)
+>  
+> +  - "amlogic,p281" (Meson gxl s905w)
+> +
+>    - "amlogic,q200" (Meson gxm s912)
+>    - "amlogic,q201" (Meson gxm s912)
+>    - "khadas,vim2" (Meson gxm s912)
+> 
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
