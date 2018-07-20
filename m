@@ -1,80 +1,99 @@
-From: broonie@kernel.org (Mark Brown)
-Date: Fri, 20 Jul 2018 17:45:12 +0100
-Subject: Applied "ASoC: meson: add axg tdm interface DT bindings
- documentation" to the asoc tree
-In-Reply-To: <20180717153643.8806-11-jbrunet@baylibre.com>
-Message-ID: <E1fgYWm-00010r-J8@debutante>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Fri, 20 Jul 2018 19:19:30 +0200
+Subject: [PATCH v2 5/5] ARM64: dts: meson-gxl: add support for the Oranth
+ Tanix TX3 Mini
+In-Reply-To: <0c92a375-d764-2fcc-c339-7bf33534b9f1@baylibre.com>
+References: <20180714193725.17837-1-martin.blumenstingl@googlemail.com>
+ <20180714193725.17837-6-martin.blumenstingl@googlemail.com>
+ <0c92a375-d764-2fcc-c339-7bf33534b9f1@baylibre.com>
+Message-ID: <CAFBinCBfXvSVkt7k-hxwaHhjDo0jdsVWFvqhBDWkwrKjfZ94pA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The patch
+On Thu, Jul 19, 2018 at 10:29 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 14/07/2018 21:37, Martin Blumenstingl wrote:
+> > The Tanix TX3 Mini is a TV box based on the Amlogic S905W chipset.
+> > There are two variants:
+> > - 1 GiB or 2 GiB of DDR3 memory
+> > - 8 GB or 16 GB eMMC flash
+> >
+> > Both variants come with:
+> > - 802.11 b/g/n wifi (Silicon Valley Microelectronics SSV6051, does not
+> >   support Bluetooth)
+> > - an LED 7 segment display with an FD628 controller
+> > - HDMI and AV (CVBS) output
+> > - 2x USB (utilizing both USB ports provided by the SoC)
+> > - micro SD card slot
+> > - serial console (uart_AO) has to be soldered after opening the case
+>
+> So it's 10/100 ethernet ? Only to confirm !
+yes, 10/100 Ethernet (using the internal PHY) is available as well
 
-   ASoC: meson: add axg tdm interface DT bindings documentation
+> >
+> > The board seems to be very similar to the P23x and Q20x reference
+> > boards, which is why it includes meson-gx-p23x-q20x.dtsi:
+> > - eMMC reset routed to BOOT_9
+> > - the SDIO wifi chip's reset line is routed to GPIOX_6 and the reference
+> >   clock is 32.768KHz on PWM_E
+> > - SD card detection is routed to CARD_6
+> > - vqmmc of all MMC controllers is hard-wired to 1.8V (VDDIO_BOOT)
+> > - uart_AO can be accessed after opening the case and soldering RX, TX
+> >   and GND lines onto the exposed solder points (marked with RX, TX and
+> >   GND)
+> >
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> >  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+> >  .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  | 22 +++++++++++++++++++
+> >  2 files changed, 23 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> > index e55156dec237..a97c0e2d7bc6 100644
+> > --- a/arch/arm64/boot/dts/amlogic/Makefile
+> > +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> > @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+> >  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
+> >  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
+> >  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
+> > +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
+> >  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
+> >  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
+> >  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
+> > new file mode 100644
+> > index 000000000000..789c819c99c4
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
+> > @@ -0,0 +1,22 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (c) 2018 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
+> > + * Based on meson-gxl-s905d-p231.dts:
+> > + * - Copyright (c) 2016 Endless Computers, Inc.
+> > + *   Author: Carlo Caione <carlo@endlessm.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "meson-gxl-s905x.dtsi"
+> > +#include "meson-gx-p23x-q20x.dtsi"
+> > +
+> > +/ {
+> > +     compatible = "oranth,tx3-mini", "amlogic,s905w", "amlogic,meson-gxl";
+> > +     model = "Oranth Tanix TX3 Mini";
+> > +
+> > +     memory at 0 {
+> > +             device_type = "memory";
+> > +             reg = <0x0 0x0 0x0 0x40000000>; /* 1 GiB or 2 GiB */
+> > +     };
+> > +};
+> >
+>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+thank you for reviewing the whole series!
 
-has been applied to the asoc tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
->From 9e960c0298b5811e5a2c1ebceea6aa3b7bbc61c6 Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 17 Jul 2018 17:42:57 +0200
-Subject: [PATCH] ASoC: meson: add axg tdm interface DT bindings documentation
-
-Add the DT bindings documentation for axg's TDM interfaces
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../bindings/sound/amlogic,axg-tdm-iface.txt  | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
-new file mode 100644
-index 000000000000..cabfb26a5f22
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-iface.txt
-@@ -0,0 +1,22 @@
-+* Amlogic Audio TDM Interfaces
-+
-+Required properties:
-+- compatible: 'amlogic,axg-tdm-iface'
-+- clocks: list of clock phandle, one for each entry clock-names.
-+- clock-names: should contain the following:
-+  * "sclk" : bit clock.
-+  * "lrclk": sample clock
-+  * "mclk" : master clock
-+	     -> optional if the interface is in clock slave mode.
-+- #sound-dai-cells: must be 0.
-+
-+Example of TDM_A on the A113 SoC:
-+
-+tdmif_a: audio-controller at 0 {
-+	compatible = "amlogic,axg-tdm-iface";
-+	#sound-dai-cells = <0>;
-+	clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
-+		 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-+		 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
-+	clock-names = "mclk", "sclk", "lrclk";
-+};
--- 
-2.18.0
+Regards
+Martin
