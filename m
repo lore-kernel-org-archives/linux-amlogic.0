@@ -1,55 +1,38 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 20 Jul 2018 14:59:48 +0200
-Subject: [U-Boot, u-boot, 2/2] boards: amlogic: Add FriendlyElec NanoPi K2
- board support
-In-Reply-To: <20180720123526.GJ11755@bill-the-cat>
-References: <1529938217-4196-3-git-send-email-narmstrong@baylibre.com>
- <20180720123526.GJ11755@bill-the-cat>
-Message-ID: <f82de347-9aa2-189c-721d-7ea1f9a8ca5b@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Fri, 20 Jul 2018 07:52:15 -0600
+Subject: [PATCH 1/2] reset: meson: add dt-bindings for meson-axg audio arb
+In-Reply-To: <20180706143122.7612-2-jbrunet@baylibre.com>
+References: <20180706143122.7612-1-jbrunet@baylibre.com>
+ <20180706143122.7612-2-jbrunet@baylibre.com>
+Message-ID: <20180720135215.GA31492@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Tom,
+On Fri, Jul 06, 2018 at 04:31:21PM +0200, Jerome Brunet wrote:
+> Add dt-bindings for the audio memory arbitror found on Amlogic's
+> A113 based SoCs
 
-On 20/07/2018 14:35, Tom Rini wrote:
-> On Mon, Jun 25, 2018 at 04:50:17PM +0200, Neil Armstrong wrote:
+s/arbitror/arbiter/
+
 > 
->> From: Thomas McKahan <tonymckahan@gmail.com>
->>
->> This adds platform code for the FriendlyElec NanoPi K2 board based on a
->> Meson GXBB (S905) SoC with the Meson GXBB configuration.
->>
->> This initial submission only supports:
->> - UART
->> - MMC/SDCard
->> - Ethernet
->> - Reset Controller
->> - Clock controller
->>
->> Cc: Yuefei Tan <yftan@friendlyarm.com>
->> Signed-off-by: Thomas McKahan <tonymckahan@gmail.com>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../bindings/reset/amlogic,meson-axg-audio-arb.txt  | 21 +++++++++++++++++++++
+>  .../dt-bindings/reset/amlogic,meson-axg-audio-arb.h | 17 +++++++++++++++++
+>  2 files changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
 > 
-> Applied to u-boot/master, thanks!  But please note:
-> CHECK: Alignment should match open parenthesis
-> #277: FILE: board/amlogic/nanopi-k2/nanopi-k2.c:48:
-> +               len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
-> +                       EFUSE_SN_SIZE);
-> 
-> A follow-up when you're in these files next would be appreciated,
-> thanks!
-> 
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+> new file mode 100644
+> index 000000000000..e29b3463f2e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+> @@ -0,0 +1,21 @@
+> +* Amlogic audio memory arbitror controller
 
+s/arbitror/arbiter/
 
-Ok, I need to do a cleanup of all these boards anyway, will fix this in the same time.
+With that,
 
-thanks,
-Neil
-
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: OpenPGP digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180720/0bb6223c/attachment.sig>
+Reviewed-by: Rob Herring <robh@kernel.org>
