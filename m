@@ -1,38 +1,73 @@
-From: robh@kernel.org (Rob Herring)
-Date: Fri, 20 Jul 2018 07:52:15 -0600
-Subject: [PATCH 1/2] reset: meson: add dt-bindings for meson-axg audio arb
-In-Reply-To: <20180706143122.7612-2-jbrunet@baylibre.com>
-References: <20180706143122.7612-1-jbrunet@baylibre.com>
- <20180706143122.7612-2-jbrunet@baylibre.com>
-Message-ID: <20180720135215.GA31492@rob-hp-laptop>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 20 Jul 2018 17:26:32 +0200
+Subject: [PATCH v2 1/2] reset: meson: add dt-bindings for meson-axg audio arb
+In-Reply-To: <20180720152633.6227-1-jbrunet@baylibre.com>
+References: <20180720152633.6227-1-jbrunet@baylibre.com>
+Message-ID: <20180720152633.6227-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Jul 06, 2018 at 04:31:21PM +0200, Jerome Brunet wrote:
-> Add dt-bindings for the audio memory arbitror found on Amlogic's
-> A113 based SoCs
-
-s/arbitror/arbiter/
-
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../bindings/reset/amlogic,meson-axg-audio-arb.txt  | 21 +++++++++++++++++++++
->  .../dt-bindings/reset/amlogic,meson-axg-audio-arb.h | 17 +++++++++++++++++
->  2 files changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
-> new file mode 100644
-> index 000000000000..e29b3463f2e1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
-> @@ -0,0 +1,21 @@
-> +* Amlogic audio memory arbitror controller
-
-s/arbitror/arbiter/
-
-With that,
+Add dt-bindings for the audio memory arbiter found on Amlogic's
+A113 based SoCs
 
 Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../bindings/reset/amlogic,meson-axg-audio-arb.txt  | 21 +++++++++++++++++++++
+ .../dt-bindings/reset/amlogic,meson-axg-audio-arb.h | 17 +++++++++++++++++
+ 2 files changed, 38 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
+
+diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+new file mode 100644
+index 000000000000..26e542eb96df
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+@@ -0,0 +1,21 @@
++* Amlogic audio memory arbiter controller
++
++The Amlogic Audio ARB is a simple device which enables or
++disables the access of Audio FIFOs to DDR on AXG based SoC.
++
++Required properties:
++- compatible: 'amlogic,meson-axg-audio-arb'
++- reg: physical base address of the controller and length of memory
++       mapped region.
++- clocks: phandle to the fifo peripheral clock provided by the audio
++	  clock controller.
++- #reset-cells: must be 1.
++
++Example on the A113 SoC:
++
++arb: reset-controller at 280 {
++	compatible = "amlogic,meson-axg-audio-arb";
++	reg = <0x0 0x280 0x0 0x4>;
++	#reset-cells = <1>;
++	clocks = <&clkc_audio AUD_CLKID_DDR_ARB>;
++};
+diff --git a/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h b/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
+new file mode 100644
+index 000000000000..05c36367875c
+--- /dev/null
++++ b/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT)
++ *
++ * Copyright (c) 2018 Baylibre SAS.
++ * Author: Jerome Brunet <jbrunet@baylibre.com>
++ */
++
++#ifndef _DT_BINDINGS_AMLOGIC_MESON_AXG_AUDIO_ARB_H
++#define _DT_BINDINGS_AMLOGIC_MESON_AXG_AUDIO_ARB_H
++
++#define AXG_ARB_TODDR_A	0
++#define AXG_ARB_TODDR_B	1
++#define AXG_ARB_TODDR_C	2
++#define AXG_ARB_FRDDR_A	3
++#define AXG_ARB_FRDDR_B	4
++#define AXG_ARB_FRDDR_C	5
++
++#endif /* _DT_BINDINGS_AMLOGIC_MESON_AXG_AUDIO_ARB_H */
+-- 
+2.14.4
