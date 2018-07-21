@@ -1,40 +1,36 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 21:05:52 +0200
-Subject: [PATCH 1/2] ARM: dts: meson8: fix the clock controller register size
-In-Reply-To: <20180721190553.13940-1-martin.blumenstingl@googlemail.com>
-References: <20180721190553.13940-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180721190553.13940-2-martin.blumenstingl@googlemail.com>
+Date: Sat, 21 Jul 2018 21:13:58 +0200
+Subject: [PATCH 0/2] meson8b: register the clock controller early
+Message-ID: <20180721191400.15558-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock controller registers are not 0x460 wide because the reset
-controller starts at CBUS 0x4404. This currently overlaps with the
-clock controller (which is at CBUS 0x4000).
+Some parts of the SoC are initialized early in the boot process, such
+as the SRAM and the TWD timer. This means that the corresponding
+drivers need to access the clock controller early as well.
 
-There is no public documentation available on the actual size of the
-clock controller's register area (also called "HHI"). However, in
-Amlogic's GPL kernel sources the last "HHI" register is
-HHI_HDMI_PHY_CNTL2 at CBUS + 0x43a8. 0x400 was chosen because that size
-doesn't seem unlikely.
+Before this series the clock controller was registered as platform
+driver, which is too late for the TWD timer (just as an example).
+The reset controller (built into the clock controller driver) was
+already registered early, basically for the same reason (the reset
+lines are used to start the secondary CPUs, which is done very early
+in the boot process).
 
-Fixes: 2c323c43a3d619 ("ARM: dts: meson8: add and use the real clock controller")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Register the clock controller early enough so we're able to use the
+TWD timer (as we need to pass a clock which is provided by this
+clock controller) in a second step.
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index d77dcf890cfc..7162e0ca05b0 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -194,7 +194,7 @@
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
- 		compatible = "amlogic,meson8-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x460>;
-+		reg = <0x8000 0x4>, <0x4000 0x400>;
- 	};
- 
- 	reset: reset-controller at 4404 {
+The second patch simplifies the reset controller (built into the clock
+controller driver) because the regmap is already available early and
+thus can be used by the reset controller driver as well.
+
+
+Martin Blumenstingl (2):
+  clk: meson: meson8b: register the clock controller early
+  clk: meson: meson8b: use the regmap in the internal reset controller
+
+ drivers/clk/meson/meson8b.c | 107 ++++++++++++++----------------------
+ 1 file changed, 40 insertions(+), 67 deletions(-)
+
 -- 
 2.18.0
