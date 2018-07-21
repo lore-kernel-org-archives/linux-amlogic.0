@@ -1,47 +1,43 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sat, 21 Jul 2018 22:42:25 +0200
-Subject: [PATCH 2/3] clk: meson: clk-pll: remove od parameters
-In-Reply-To: <CAFBinCAcqwhJUoLF3XkhOR2gnNk3cjEgh=ChTDybeRPLHgzeSg@mail.gmail.com>
+Date: Sat, 21 Jul 2018 22:46:50 +0200
+Subject: [PATCH 3/3] clk: meson: clk-pll: drop hard-coded rates from pll
+ tables
+In-Reply-To: <CAFBinCBc_cFD2ACiSHVuRrXaqSyDnkJb2rem1_k2jwved=QXVw@mail.gmail.com>
 References: <20180717095617.12240-1-jbrunet@baylibre.com>
- <20180717095617.12240-3-jbrunet@baylibre.com>
- <CAFBinCAcqwhJUoLF3XkhOR2gnNk3cjEgh=ChTDybeRPLHgzeSg@mail.gmail.com>
-Message-ID: <1532205745.26720.81.camel@baylibre.com>
+ <20180717095617.12240-4-jbrunet@baylibre.com>
+ <d4e5e35a-39e0-fe27-8d27-387c5312ca32@baylibre.com>
+ <CAFBinCBc_cFD2ACiSHVuRrXaqSyDnkJb2rem1_k2jwved=QXVw@mail.gmail.com>
+Message-ID: <1532206010.26720.84.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2018-07-21 at 22:01 +0200, Martin Blumenstingl wrote:
-> > +static struct clk_regmap gxbb_hdmi_pll_od = {
-> > +       .data = &(struct clk_regmap_div_data){
-> > +               .offset = HHI_HDMI_PLL_CNTL2,
-> > +               .shift = 16,
-> > +               .width = 2,
-> > +               .flags = CLK_DIVIDER_POWER_OF_TWO,
-> > +       },
-> > +       .hw.init = &(struct clk_init_data){
-> > +               .name = "hdmi_pll_od",
-> > +               .ops = &clk_regmap_divider_ro_ops,
-> > +               .parent_names = (const char *[]){ "hdmi_pll_dco" },
-> > +               .num_parents = 1,
-> > +               .flags = CLK_GET_RATE_NOCACHE,
+On Sat, 2018-07-21 at 22:16 +0200, Martin Blumenstingl wrote:
+> > We could even add ranges instead of table when we know the PLL supports a well-known continuous dividers range.
 > 
-> why do we need CLK_GET_RATE_NOCACHE here?
-> also, shouldn't all _od clocks use CLK_SET_RATE_PARENT?
-> (this applies to all new _od clocks, not just this one)
+> I had a look at the sys_pll settings on Meson8b, here's what
+> Meson8/Meson8b/Meson8m2 support for sys_pll:
+> - 50..74
+> - 76
+> - 78
+> - 80
+> - 82
+> - 84
+> - 86
+> - 88
+> - 90
+> - 92
+> - 94
+> - 96
+> - 98
 
-The goal was to retain the original behavior of the clock.
-The pll has CLK_GET_RATE_NOCACHE, which is why I put it again in the od
-dividers. Same goes for ro_ops
+Are those values with the same predivider (n) value ?
+I suspect the ability of the DCO to lock might depends on its input rate and an
+m range
 
-For the particular case of the HDMI PLL, the display driver still set the pll
-parameters m, n and ods directly which justify CLK_GET_RATE_NOCACHE for now.
-Of course, the goal is to remove this flag someday. I think there has been some
-good progress in the DRM driver to reach this goal.
+So if n change, it might possible that the m range will be different.
 
-If we think the use CLK_GET_RATE_NOCACHE is not justified for some other plls, I
-would prefer if it was addressed in another patchset.
+... at least, that's my guess :)
 
-Regarding SET_RATE_PARENT, with the pll set with ro_ops, it does not change
-anything but, I agree, it would be better to set flag for the future.
-
-Cheers
-Jerome
+> 
+> (I'm providing this info because it may help finding a decision
+> whether ranges are good or not. I have no preference)
