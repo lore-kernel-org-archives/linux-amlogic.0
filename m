@@ -1,32 +1,47 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Sat, 21 Jul 2018 22:26:59 +0200
-Subject: [PATCH 1/3] clk: meson: clk-pll: add enable bit
-In-Reply-To: <CAFBinCCDGKu5U1xY1WG2BHF28YEWd1HbKdDeTCc9fEV_YjSNew@mail.gmail.com>
+Date: Sat, 21 Jul 2018 22:42:25 +0200
+Subject: [PATCH 2/3] clk: meson: clk-pll: remove od parameters
+In-Reply-To: <CAFBinCAcqwhJUoLF3XkhOR2gnNk3cjEgh=ChTDybeRPLHgzeSg@mail.gmail.com>
 References: <20180717095617.12240-1-jbrunet@baylibre.com>
- <20180717095617.12240-2-jbrunet@baylibre.com>
- <CAFBinCCDGKu5U1xY1WG2BHF28YEWd1HbKdDeTCc9fEV_YjSNew@mail.gmail.com>
-Message-ID: <1532204819.26720.68.camel@baylibre.com>
+ <20180717095617.12240-3-jbrunet@baylibre.com>
+ <CAFBinCAcqwhJUoLF3XkhOR2gnNk3cjEgh=ChTDybeRPLHgzeSg@mail.gmail.com>
+Message-ID: <1532205745.26720.81.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2018-07-21 at 21:48 +0200, Martin Blumenstingl wrote:
-> > @@ -250,11 +264,15 @@ static const struct reg_sequence axg_hifi_init_regs[] = {
-> >          { .reg = HHI_HIFI_PLL_CNTL3,    .def = 0x0a6a3a88 },
-> >          { .reg = HHI_HIFI_PLL_CNTL4,    .def = 0xc000004d },
-> >          { .reg = HHI_HIFI_PLL_CNTL5,    .def = 0x00058000 },
-> > -       { .reg = HHI_HIFI_PLL_CNTL,     .def = 0x40010250 },
+On Sat, 2018-07-21 at 22:01 +0200, Martin Blumenstingl wrote:
+> > +static struct clk_regmap gxbb_hdmi_pll_od = {
+> > +       .data = &(struct clk_regmap_div_data){
+> > +               .offset = HHI_HDMI_PLL_CNTL2,
+> > +               .shift = 16,
+> > +               .width = 2,
+> > +               .flags = CLK_DIVIDER_POWER_OF_TWO,
+> > +       },
+> > +       .hw.init = &(struct clk_init_data){
+> > +               .name = "hdmi_pll_od",
+> > +               .ops = &clk_regmap_divider_ro_ops,
+> > +               .parent_names = (const char *[]){ "hdmi_pll_dco" },
+> > +               .num_parents = 1,
+> > +               .flags = CLK_GET_RATE_NOCACHE,
 > 
-> is this change on purpose? this line set en, m, n, l and od before
-> maybe you can document it in the commit message
+> why do we need CLK_GET_RATE_NOCACHE here?
+> also, shouldn't all _od clocks use CLK_SET_RATE_PARENT?
+> (this applies to all new _od clocks, not just this one)
 
-Yes the change is on purpose, but as you pointed out it is worth a comment
+The goal was to retain the original behavior of the clock.
+The pll has CLK_GET_RATE_NOCACHE, which is why I put it again in the od
+dividers. Same goes for ro_ops
 
-Actually, when taking od out of the pll driver, I remembered this 'initial
-setting' and it kinda bothered me
+For the particular case of the HDMI PLL, the display driver still set the pll
+parameters m, n and ods directly which justify CLK_GET_RATE_NOCACHE for now.
+Of course, the goal is to remove this flag someday. I think there has been some
+good progress in the DRM driver to reach this goal.
 
-If the od divider registers after the DCO, the value could have changed with it,
-which is why I wanted to remove the write on this register
+If we think the use CLK_GET_RATE_NOCACHE is not justified for some other plls, I
+would prefer if it was addressed in another patchset.
 
-As you pointed out, in this register, we find m, n, od ... and enable. In a way,
-removing this register setting was the reason why I wanted to add the enable bit
-to begin with :)
+Regarding SET_RATE_PARENT, with the pll set with ro_ops, it does not change
+anything but, I agree, it would be better to set flag for the future.
+
+Cheers
+Jerome
