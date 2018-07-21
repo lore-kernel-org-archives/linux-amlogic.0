@@ -1,51 +1,38 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 20:58:32 +0200
-Subject: [PATCH 0/3] Meson8/Meson8b: add the ARM TWD timer
-In-Reply-To: <20180721173721.31361-1-martin.blumenstingl@googlemail.com>
-References: <20180721173721.31361-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCBRp1V6DSNNj6pB7OqeD5WFAYAhR6Sbw5kcLi4k2y9TOA@mail.gmail.com>
+Date: Sat, 21 Jul 2018 21:05:51 +0200
+Subject: [PATCH 0/2] fix clock controller register size on Meson8/Meson8b
+Message-ID: <20180721190553.13940-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, Jul 21, 2018 at 7:37 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Carlo sent a .dts patch for the ARM TWD (timer watchdog) a long time
-> ago: [0]
-> This patch was never applied. While resurrecting it I found out (by
-> trial and error) that the TWD clock is derived from the CPU clock by
-> dividing the existing CPU clock by 16. Additionally I found out that
-> the interrupt is defined incorrectly, leading to an error message
-> during boot: "GIC: PPI13 is secure or misconfigured".
->
-> Amlogic's GPL kernel does not use the TWD timer. However, it seems to
-> work fine for me and it fixes the following warnings during boot:
->   Clockevents: could not switch to one-shot mode:
->   Clockevents: could not switch to one-shot mode:
->   Clockevents: could not switch to one-shot mode:
->   Clockevents: could not switch to one-shot mode:
->    dummy_timer is not functional.
->    dummy_timer is not functional.
->    dummy_timer is not functional.
->    dummy_timer is not functional.
->   Could not switch to high resolution mode on CPU 0
->   Could not switch to high resolution mode on CPU 2
->   Could not switch to high resolution mode on CPU 3
->   Could not switch to high resolution mode on CPU 1
->
-> I chose not to split the interrupt line at 80 chars to make it easier
-> to read (in my opinion, other .dts are not splitting it either).
->
-> NOTE: This series depends on the following clock driver changes: [1]
-Kevin, please ignore this series
+While working on some clock controller changes I found that the
+register size cannot be correct as it overlaps with the reset
+controller.
+Amlogic's GPL kernel sources confirm this, as well as a discussion
+I had (privately) with Yixun Lan a while ago:
+> I think 0x460 is too big, and we could narrow it down (to a small
+> size) but I haven't looked at the meson8 datasheet for what the
+> exact size of this
 
-I just realized that it depends on a clock controller change I have in
-my local tree which is not upstream yet
-the TWD timer driver needs to load early in the boot process where the
-clock controller driver is (currently) not loaded yet
-I'll send patches for the clock controller driver and re-send this
-afterwards - sorry for the noise
+The clock controller itself doesn't have a dedicated size because
+(just like on GXBB/GXL/GXM) the clock controller is part of a
+register area called "HHI". On GXBB this is 0x400 wide, which
+matches Meson8/Meson8b/Meson8m2 because the reset controller
+begins at CBUS + 0x4404 (0x4400 is some kind of version register),
+so "HHI" starting at 0x4000 and ending at 0x4400 sounds reasonable.
+
+I will follow up with more patches which also introduce the HHI
+register area on Meson8 and Meson8b (due to the same reasons it
+exists on GXBB/GXL/GXM).
 
 
-Regards
-Martin
+Martin Blumenstingl (2):
+  ARM: dts: meson8: fix the clock controller register size
+  ARM: dts: meson8b: fix the clock controller register size
+
+ arch/arm/boot/dts/meson8.dtsi  | 2 +-
+ arch/arm/boot/dts/meson8b.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+2.18.0
