@@ -1,36 +1,70 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 21:13:58 +0200
-Subject: [PATCH 0/2] meson8b: register the clock controller early
-Message-ID: <20180721191400.15558-1-martin.blumenstingl@googlemail.com>
+Date: Sat, 21 Jul 2018 21:14:00 +0200
+Subject: [PATCH 2/2] clk: meson: meson8b: use the regmap in the internal reset
+ controller
+In-Reply-To: <20180721191400.15558-1-martin.blumenstingl@googlemail.com>
+References: <20180721191400.15558-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180721191400.15558-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Some parts of the SoC are initialized early in the boot process, such
-as the SRAM and the TWD timer. This means that the corresponding
-drivers need to access the clock controller early as well.
+For now the reset controller was using raw register access because the
+early init did not initialize the regmap. However, now that clocks are
+initialized early we can simply use the regmap also for the reset
+controller.
+No functional changes.
 
-Before this series the clock controller was registered as platform
-driver, which is too late for the TWD timer (just as an example).
-The reset controller (built into the clock controller driver) was
-already registered early, basically for the same reason (the reset
-lines are used to start the secondary CPUs, which is done very early
-in the boot process).
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/meson8b.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-Register the clock controller early enough so we're able to use the
-TWD timer (as we need to pass a clock which is provided by this
-clock controller) in a second step.
-
-The second patch simplifies the reset controller (built into the clock
-controller driver) because the regmap is already available early and
-thus can be used by the reset controller driver as well.
-
-
-Martin Blumenstingl (2):
-  clk: meson: meson8b: register the clock controller early
-  clk: meson: meson8b: use the regmap in the internal reset controller
-
- drivers/clk/meson/meson8b.c | 107 ++++++++++++++----------------------
- 1 file changed, 40 insertions(+), 67 deletions(-)
-
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 1caaa780201b..e961ee9fec20 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -23,7 +23,7 @@ static DEFINE_SPINLOCK(meson_clk_lock);
+ 
+ struct meson8b_clk_reset {
+ 	struct reset_controller_dev reset;
+-	void __iomem *base;
++	struct regmap *regmap;
+ };
+ 
+ static const struct pll_rate_table sys_pll_rate_table[] = {
+@@ -1059,7 +1059,6 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
+ 		container_of(rcdev, struct meson8b_clk_reset, reset);
+ 	unsigned long flags;
+ 	const struct meson8b_clk_reset_line *reset;
+-	u32 val;
+ 
+ 	if (id >= ARRAY_SIZE(meson8b_clk_reset_bits))
+ 		return -EINVAL;
+@@ -1068,12 +1067,12 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
+ 
+ 	spin_lock_irqsave(&meson_clk_lock, flags);
+ 
+-	val = readl(meson8b_clk_reset->base + reset->reg);
+ 	if (assert)
+-		val |= BIT(reset->bit_idx);
++		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
++				   BIT(reset->bit_idx), BIT(reset->bit_idx));
+ 	else
+-		val &= ~BIT(reset->bit_idx);
+-	writel(val, meson8b_clk_reset->base + reset->reg);
++		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
++				   BIT(reset->bit_idx), 0);
+ 
+ 	spin_unlock_irqrestore(&meson_clk_lock, flags);
+ 
+@@ -1126,7 +1125,7 @@ static void __init meson8b_clkc_init(struct device_node *np)
+ 		return;
+ 
+ 	/* Reset Controller */
+-	rstc->base = clk_base;
++	rstc->regmap = map;
+ 	rstc->reset.ops = &meson8b_clk_reset_ops;
+ 	rstc->reset.nr_resets = ARRAY_SIZE(meson8b_clk_reset_bits);
+ 	rstc->reset.of_node = np;
 -- 
 2.18.0
