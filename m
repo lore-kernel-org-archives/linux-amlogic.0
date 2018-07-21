@@ -1,32 +1,32 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 22:17:25 +0200
-Subject: [PATCH 0/3] clk: meson: clk-pll driver update
-In-Reply-To: <20180717095617.12240-1-jbrunet@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Sat, 21 Jul 2018 22:26:59 +0200
+Subject: [PATCH 1/3] clk: meson: clk-pll: add enable bit
+In-Reply-To: <CAFBinCCDGKu5U1xY1WG2BHF28YEWd1HbKdDeTCc9fEV_YjSNew@mail.gmail.com>
 References: <20180717095617.12240-1-jbrunet@baylibre.com>
-Message-ID: <CAFBinCC4CO_C_f9LLTnLmzVJ6-C-w8J0JQ0e6F9Jh_h61bGEKQ@mail.gmail.com>
+ <20180717095617.12240-2-jbrunet@baylibre.com>
+ <CAFBinCCDGKu5U1xY1WG2BHF28YEWd1HbKdDeTCc9fEV_YjSNew@mail.gmail.com>
+Message-ID: <1532204819.26720.68.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+On Sat, 2018-07-21 at 21:48 +0200, Martin Blumenstingl wrote:
+> > @@ -250,11 +264,15 @@ static const struct reg_sequence axg_hifi_init_regs[] = {
+> >          { .reg = HHI_HIFI_PLL_CNTL3,    .def = 0x0a6a3a88 },
+> >          { .reg = HHI_HIFI_PLL_CNTL4,    .def = 0xc000004d },
+> >          { .reg = HHI_HIFI_PLL_CNTL5,    .def = 0x00058000 },
+> > -       { .reg = HHI_HIFI_PLL_CNTL,     .def = 0x40010250 },
+> 
+> is this change on purpose? this line set en, m, n, l and od before
+> maybe you can document it in the commit message
 
-On Tue, Jul 17, 2018 at 11:56 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> This patchset is yet another round of update to the amlogic pll driver.
->
->  1) Enable bit is added so we don't rely on the bootloader or the init
->     value to enable to pll device.
->  2) OD post dividers are removed from the pll driver. This simplify the
->     driver and let us provide the clocks which exist between those
->     dividera. Some device are actually using these clocks.
->  3) The rates hard coded in parameter tables are remove. Instead, we
->     only rely on the parent rate and the parameters to calculate the
->     output rate, which is a lot better.
->
-> This series has been tested on the gxl libretech cc and axg s400.
-> I did not test it on meson8b yet.
-I had some comments on patch #2
-once that is fixed I can help testing on Meson8b (if you give me a few days...)
+Yes the change is on purpose, but as you pointed out it is worth a comment
 
+Actually, when taking od out of the pll driver, I remembered this 'initial
+setting' and it kinda bothered me
 
-Regards
-Martin
+If the od divider registers after the DCO, the value could have changed with it,
+which is why I wanted to remove the write on this register
+
+As you pointed out, in this register, we find m, n, od ... and enable. In a way,
+removing this register setting was the reason why I wanted to add the enable bit
+to begin with :)
