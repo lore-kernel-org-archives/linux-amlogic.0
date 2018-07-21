@@ -1,63 +1,45 @@
 From: olof@lixom.net (Olof Johansson)
-Date: Sat, 21 Jul 2018 14:52:24 -0700
-Subject: [GIT PULL] Amlogic 64-bit DT changes for v4.19 (redo)
-In-Reply-To: <7ha7ql6goi.fsf@baylibre.com>
-References: <7ha7ql6goi.fsf@baylibre.com>
-Message-ID: <20180721215224.oa2rqhg2zexgo7uq@localhost>
+Date: Sat, 21 Jul 2018 14:54:22 -0700
+Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.19, round 2
+In-Reply-To: <7hr2jx50q0.fsf@baylibre.com>
+References: <7hr2jx50q0.fsf@baylibre.com>
+Message-ID: <20180721215422.vsd34udhkhs7lh3h@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Jul 20, 2018 at 11:00:13AM -0500, Kevin Hilman wrote:
-> Olof,
+On Fri, Jul 20, 2018 at 11:30:15AM -0500, Kevin Hilman wrote:
+> Olof, Arnd,
 > 
-> Here's the re-do of the pull that was missing Signed-off-by tags,
-> pointed out by Stephen Rothwell.
+> A second round of DT updates for Amlogic, directly on top of the redo of
+> the first one.
+> 
+> This includes a merge of a branch already queued in the clk tree because
+> of the dependency on clock headers used in the DT changes here..
 > 
 > Kevin
 > 
 > 
-> 
-> The following changes since commit ce397d215ccd07b8ae3f71db689aedb85d56ab40:
-> 
->   Linux 4.18-rc1 (2018-06-17 08:04:49 +0900)
-> 
-> are available in the git repository at:
-> 
->   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-1
-> 
-> for you to fetch changes up to 89803e8b26569bdf5798f8745a4c708bf9360ee6:
+> The following changes since commit 89803e8b26569bdf5798f8745a4c708bf9360ee6:
 > 
 >   ARM64: dts: meson-axg: add pdm pins (2018-07-20 08:18:37 -0700)
 > 
-> ----------------------------------------------------------------
-> Amlogic 64-bit DT updates for v4.19
-> - new SoC: S805x
-> - new board: S805x-based P241 board from Amlogic
-> - AXG: add ADC support w/buttons, add pins for PDM, SPDIF
-> - AXG: s400 board: preliminary support for audio
-> - GX: nanopi-k2: add HDMI, CEC, CVBS support
+> are available in the git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
+> 
+> for you to fetch changes up to fcf775a1e6717b7157b1ea626028b7e039b3c989:
+> 
+>   Merge branch 'v4.19/dt64' into tmp/aml-rebuild (2018-07-20 09:05:11 -0700)
 > 
 > ----------------------------------------------------------------
-> Jerome Brunet (9):
->       ARM64: dts: meson-axg: add s400 microphone card leds
->       ARM64: dts: meson-axg: add s400 main 12v supply
->       ARM64: dts: meson-axg: add s400 speaker amplifier
->       ARM64: dts: meson-axg: add spdif output pins
->       ARM64: dts: meson-axg: remove vddio_ao18 from SoC dtsi
->       ARM64: dts: meson-axg: add adc buttons the S400
->       ARM64: dts: meson-axg: remove spdif out from gpio a7
->       ARM64: dts: meson-axg: add spdif input pins
->       ARM64: dts: meson-axg: add pdm pins
+> Amlogic 64-bit DT changes for v4.19, round 2
+> - new SoC: S905W
+> - new boards: based on S905W: Amlogic P281, Oranth Tanix TX3 Mini
+> - AXG: add DT for new audio clock controller
+> 
+> ----------------------------------------------------------------
 
-I've started being a little grumpy with others to keep it consistent, and
-you're consistent internally but not against other platforms: We use "arm64" or
-ARM" as prefixes, not ARM64/arm.
-
-I think it's time for a checkpatch rule for this, it's a bit silly to have to
-point it out all the time since people seem to get it wrong so often.
-
-I'll merge this for now and look at adding the rules.
-
+Something happened to your diffstat here. It's also based on -rc5?
 
 
 -Olof
