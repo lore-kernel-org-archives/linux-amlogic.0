@@ -1,112 +1,32 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 21:28:46 +0200
-Subject: [PATCH 3/3] ARM: dts: meson: switch the clock controller to the HHI
- register area
-In-Reply-To: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
-References: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180721192846.18811-4-martin.blumenstingl@googlemail.com>
+Date: Sat, 21 Jul 2018 21:40:48 +0200
+Subject: [PATCH 1/2] dt-bindings: iio: adc: add Meson8m2 support
+In-Reply-To: <20180721194049.23265-1-martin.blumenstingl@googlemail.com>
+References: <20180721194049.23265-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180721194049.23265-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock controller on Meson8/Meson8m2 and Meson8b is part of a
-register region called "HHI". This register area contains more
-functionality than just a clock controller:
-- the clock controller
-- some reset controller bits
-- temperature sensor calibration data (on Meson8b and Meson8m2 only)
-- HDMI controller
-
-Allow access to this HHI register area as "system controller". Also
-migrate the Meson8 and Meson8b clock controllers to this new node.
+The Amlogic Meson SAR ADC implementation on the Meson8m2 SoC is
+identical to the Meson8b variant. Add a compatible string to indicate
+that we support the SAR ADC on the Meson8m2 SoC.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson.dtsi   |  5 +++++
- arch/arm/boot/dts/meson8.dtsi  | 15 ++++++++-------
- arch/arm/boot/dts/meson8b.dtsi | 15 ++++++++-------
- 3 files changed, 21 insertions(+), 14 deletions(-)
+ .../devicetree/bindings/iio/adc/amlogic,meson-saradc.txt         | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index 0d9faf1a51ea..dc0cbdbcca54 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -80,6 +80,11 @@
- 			#size-cells = <1>;
- 			ranges = <0x0 0xc1100000 0x200000>;
- 
-+			hhi: system-controller at 4000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x4000 0x400>;
-+			};
-+
- 			assist: assist at 7c00 {
- 				compatible = "amlogic,meson-mx-assist", "syscon";
- 				reg = <0x7c00 0x200>;
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 7162e0ca05b0..3e3d9c54cddc 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -190,13 +190,6 @@
- };
- 
- &cbus {
--	clkc: clock-controller at 4000 {
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--		compatible = "amlogic,meson8-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x400>;
--	};
--
- 	reset: reset-controller at 4404 {
- 		compatible = "amlogic,meson8b-reset";
- 		reg = <0x4404 0x9c>;
-@@ -323,6 +316,14 @@
- 	status = "okay";
- };
- 
-+&hhi {
-+	clkc: clock-controller {
-+		compatible = "amlogic,meson8-clkc";
-+		#clock-cells = <1>;
-+		#reset-cells = <1>;
-+	};
-+};
-+
- &hwrng {
- 	compatible = "amlogic,meson8-rng", "amlogic,meson-rng";
- 	clocks = <&clkc CLKID_RNG0>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index f77e419c1c65..accb77ba3931 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -159,13 +159,6 @@
- };
- 
- &cbus {
--	clkc: clock-controller at 4000 {
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--		compatible = "amlogic,meson8b-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x400>;
--	};
--
- 	reset: reset-controller at 4404 {
- 		compatible = "amlogic,meson8b-reset";
- 		reg = <0x4404 0x9c>;
-@@ -268,6 +261,14 @@
- 	status = "okay";
- };
- 
-+&hhi {
-+	clkc: clock-controller {
-+		compatible = "amlogic,meson8-clkc";
-+		#clock-cells = <1>;
-+		#reset-cells = <1>;
-+	};
-+};
-+
- &hwrng {
- 	compatible = "amlogic,meson8b-rng", "amlogic,meson-rng";
- 	clocks = <&clkc CLKID_RNG0>;
+diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+index d1acd5ea2737..54b823f3a453 100644
+--- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
++++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+@@ -4,6 +4,7 @@ Required properties:
+ - compatible:	depending on the SoC this should be one of:
+ 			- "amlogic,meson8-saradc" for Meson8
+ 			- "amlogic,meson8b-saradc" for Meson8b
++			- "amlogic,meson8m2-saradc" for Meson8m2
+ 			- "amlogic,meson-gxbb-saradc" for GXBB
+ 			- "amlogic,meson-gxl-saradc" for GXL
+ 			- "amlogic,meson-gxm-saradc" for GXM
 -- 
 2.18.0
