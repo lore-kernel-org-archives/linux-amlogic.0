@@ -1,64 +1,51 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 19:25:37 +0200
-Subject: [PATCH 2/2] clk: meson: meson8b: add the CPU_DIV16 clock
-In-Reply-To: <20180721172537.15639-1-martin.blumenstingl@googlemail.com>
-References: <20180721172537.15639-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180721172537.15639-3-martin.blumenstingl@googlemail.com>
+Date: Sat, 21 Jul 2018 19:37:18 +0200
+Subject: [PATCH 0/3] Meson8/Meson8b: add the ARM TWD timer
+Message-ID: <20180721173721.31361-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The TWD (timer and watchdog) of the Cortex-A9 (on Meson8 and Meson8m2)
-and Cortex-A9 (on Meson8b) cores is clocked by the CPU clock divided by
-16. Add this new clock so the TWD timer can be added.
+Carlo sent a .dts patch for the ARM TWD (timer watchdog) a long time
+ago: [0]
+This patch was never applied. While resurrecting it I found out (by
+trial and error) that the TWD clock is derived from the CPU clock by
+dividing the existing CPU clock by 16. Additionally I found out that
+the interrupt is defined incorrectly, leading to an error message
+during boot: "GIC: PPI13 is secure or misconfigured".
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c | 12 ++++++++++++
- drivers/clk/meson/meson8b.h |  2 +-
- 2 files changed, 13 insertions(+), 1 deletion(-)
+Amlogic's GPL kernel does not use the TWD timer. However, it seems to
+work fine for me and it fixes the following warnings during boot:
+  Clockevents: could not switch to one-shot mode:
+  Clockevents: could not switch to one-shot mode:
+  Clockevents: could not switch to one-shot mode:
+  Clockevents: could not switch to one-shot mode:
+   dummy_timer is not functional.
+   dummy_timer is not functional.
+   dummy_timer is not functional.
+   dummy_timer is not functional.
+  Could not switch to high resolution mode on CPU 0
+  Could not switch to high resolution mode on CPU 2
+  Could not switch to high resolution mode on CPU 3
+  Could not switch to high resolution mode on CPU 1
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 7447d96a265f..17f56f600e09 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -633,6 +633,17 @@ static struct clk_regmap meson8b_cpu_clk = {
- 	},
- };
- 
-+static struct clk_fixed_factor meson8b_cpu_div16_div = {
-+	.mult = 1,
-+	.div = 16,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cpu_div16_div",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "cpu_clk" },
-+		.num_parents = 1,
-+	},
-+};
-+
- static struct clk_regmap meson8b_nand_clk_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_NAND_CLK_CNTL,
-@@ -879,6 +890,7 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_NAND_SEL]	    = &meson8b_nand_clk_sel.hw,
- 		[CLKID_NAND_DIV]	    = &meson8b_nand_clk_div.hw,
- 		[CLKID_NAND_CLK]	    = &meson8b_nand_clk_gate.hw,
-+		[CLKID_CPU_DIV16]	    = &meson8b_cpu_div16_div.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index 5d09412b5084..d790991d5055 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -76,7 +76,7 @@
- #define CLKID_NAND_SEL		110
- #define CLKID_NAND_DIV		111
- 
--#define CLK_NR_CLKS		113
-+#define CLK_NR_CLKS		114
- 
- /*
-  * include the CLKID and RESETID that have
+I chose not to split the interrupt line at 80 chars to make it easier
+to read (in my opinion, other .dts are not splitting it either).
+
+NOTE: This series depends on the following clock driver changes: [1]
+
+
+[0] http://lists.infradead.org/pipermail/linux-arm-kernel/2015-December/391928.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007890.html
+
+Martin Blumenstingl (3):
+  ARM: meson: select HAVE_ARM_TWD when SMP support is enabled
+  ARM: dts: meson8: add the ARM TWD timer
+  ARM: dts: meson8b: add the ARM TWD timer
+
+ arch/arm/boot/dts/meson8.dtsi  | 7 +++++++
+ arch/arm/boot/dts/meson8b.dtsi | 7 +++++++
+ arch/arm/mach-meson/Kconfig    | 1 +
+ 3 files changed, 15 insertions(+)
+
 -- 
 2.18.0
