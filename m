@@ -1,59 +1,63 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 23:37:54 +0200
-Subject: [PATCH 2/3] clk: meson: clk-pll: remove od parameters
-In-Reply-To: <1532205745.26720.81.camel@baylibre.com>
-References: <20180717095617.12240-1-jbrunet@baylibre.com>
- <20180717095617.12240-3-jbrunet@baylibre.com>
- <CAFBinCAcqwhJUoLF3XkhOR2gnNk3cjEgh=ChTDybeRPLHgzeSg@mail.gmail.com>
- <1532205745.26720.81.camel@baylibre.com>
-Message-ID: <CAFBinCAOssTAfearSER=95siRem-ZP8yU48xgoG4epRN76fgAA@mail.gmail.com>
+From: olof@lixom.net (Olof Johansson)
+Date: Sat, 21 Jul 2018 14:52:24 -0700
+Subject: [GIT PULL] Amlogic 64-bit DT changes for v4.19 (redo)
+In-Reply-To: <7ha7ql6goi.fsf@baylibre.com>
+References: <7ha7ql6goi.fsf@baylibre.com>
+Message-ID: <20180721215224.oa2rqhg2zexgo7uq@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+On Fri, Jul 20, 2018 at 11:00:13AM -0500, Kevin Hilman wrote:
+> Olof,
+> 
+> Here's the re-do of the pull that was missing Signed-off-by tags,
+> pointed out by Stephen Rothwell.
+> 
+> Kevin
+> 
+> 
+> 
+> The following changes since commit ce397d215ccd07b8ae3f71db689aedb85d56ab40:
+> 
+>   Linux 4.18-rc1 (2018-06-17 08:04:49 +0900)
+> 
+> are available in the git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-1
+> 
+> for you to fetch changes up to 89803e8b26569bdf5798f8745a4c708bf9360ee6:
+> 
+>   ARM64: dts: meson-axg: add pdm pins (2018-07-20 08:18:37 -0700)
+> 
+> ----------------------------------------------------------------
+> Amlogic 64-bit DT updates for v4.19
+> - new SoC: S805x
+> - new board: S805x-based P241 board from Amlogic
+> - AXG: add ADC support w/buttons, add pins for PDM, SPDIF
+> - AXG: s400 board: preliminary support for audio
+> - GX: nanopi-k2: add HDMI, CEC, CVBS support
+> 
+> ----------------------------------------------------------------
+> Jerome Brunet (9):
+>       ARM64: dts: meson-axg: add s400 microphone card leds
+>       ARM64: dts: meson-axg: add s400 main 12v supply
+>       ARM64: dts: meson-axg: add s400 speaker amplifier
+>       ARM64: dts: meson-axg: add spdif output pins
+>       ARM64: dts: meson-axg: remove vddio_ao18 from SoC dtsi
+>       ARM64: dts: meson-axg: add adc buttons the S400
+>       ARM64: dts: meson-axg: remove spdif out from gpio a7
+>       ARM64: dts: meson-axg: add spdif input pins
+>       ARM64: dts: meson-axg: add pdm pins
 
-On Sat, Jul 21, 2018 at 10:42 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> On Sat, 2018-07-21 at 22:01 +0200, Martin Blumenstingl wrote:
-> > > +static struct clk_regmap gxbb_hdmi_pll_od = {
-> > > +       .data = &(struct clk_regmap_div_data){
-> > > +               .offset = HHI_HDMI_PLL_CNTL2,
-> > > +               .shift = 16,
-> > > +               .width = 2,
-> > > +               .flags = CLK_DIVIDER_POWER_OF_TWO,
-> > > +       },
-> > > +       .hw.init = &(struct clk_init_data){
-> > > +               .name = "hdmi_pll_od",
-> > > +               .ops = &clk_regmap_divider_ro_ops,
-> > > +               .parent_names = (const char *[]){ "hdmi_pll_dco" },
-> > > +               .num_parents = 1,
-> > > +               .flags = CLK_GET_RATE_NOCACHE,
-> >
-> > why do we need CLK_GET_RATE_NOCACHE here?
-> > also, shouldn't all _od clocks use CLK_SET_RATE_PARENT?
-> > (this applies to all new _od clocks, not just this one)
->
-> The goal was to retain the original behavior of the clock.
-> The pll has CLK_GET_RATE_NOCACHE, which is why I put it again in the od
-> dividers. Same goes for ro_ops
-I missed that - thanks for the explanation!
+I've started being a little grumpy with others to keep it consistent, and
+you're consistent internally but not against other platforms: We use "arm64" or
+ARM" as prefixes, not ARM64/arm.
 
-> For the particular case of the HDMI PLL, the display driver still set the pll
-> parameters m, n and ods directly which justify CLK_GET_RATE_NOCACHE for now.
-> Of course, the goal is to remove this flag someday. I think there has been some
-> good progress in the DRM driver to reach this goal.
->
-> If we think the use CLK_GET_RATE_NOCACHE is not justified for some other plls, I
-> would prefer if it was addressed in another patchset.
-now that the reason is clear to me: I fully agree!
+I think it's time for a checkpatch rule for this, it's a bit silly to have to
+point it out all the time since people seem to get it wrong so often.
 
-> Regarding SET_RATE_PARENT, with the pll set with ro_ops, it does not change
-> anything but, I agree, it would be better to set flag for the future.
-I see
-adding SET_RATE_PARENT will probably save a bit of headache later on
-when enabling the write operation of the PLL and then wondering why
-the frequency is not changed
+I'll merge this for now and look at adding the rules.
 
 
-Regards
-Martin
+
+-Olof
