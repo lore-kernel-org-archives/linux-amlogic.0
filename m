@@ -1,9 +1,9 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 21:05:53 +0200
-Subject: [PATCH 2/2] ARM: dts: meson8b: fix the clock controller register size
+Date: Sat, 21 Jul 2018 21:05:52 +0200
+Subject: [PATCH 1/2] ARM: dts: meson8: fix the clock controller register size
 In-Reply-To: <20180721190553.13940-1-martin.blumenstingl@googlemail.com>
 References: <20180721190553.13940-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180721190553.13940-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20180721190553.13940-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -17,20 +17,20 @@ Amlogic's GPL kernel sources the last "HHI" register is
 HHI_HDMI_PHY_CNTL2 at CBUS + 0x43a8. 0x400 was chosen because that size
 doesn't seem unlikely.
 
-Fixes: 4a69fcd3a10803 ("ARM: meson: Add DTS for Odroid-C1 and Tronfy MXQ boards")
+Fixes: 2c323c43a3d619 ("ARM: dts: meson8: add and use the real clock controller")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 2 +-
+ arch/arm/boot/dts/meson8.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 08f7f6be7254..f77e419c1c65 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -163,7 +163,7 @@
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index d77dcf890cfc..7162e0ca05b0 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -194,7 +194,7 @@
  		#clock-cells = <1>;
  		#reset-cells = <1>;
- 		compatible = "amlogic,meson8b-clkc";
+ 		compatible = "amlogic,meson8-clkc";
 -		reg = <0x8000 0x4>, <0x4000 0x460>;
 +		reg = <0x8000 0x4>, <0x4000 0x400>;
  	};
