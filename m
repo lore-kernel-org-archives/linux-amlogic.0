@@ -1,27 +1,48 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat, 21 Jul 2018 21:40:47 +0200
-Subject: [PATCH 0/2] meson-saradc: add support for the Meson8m2 SoC
-Message-ID: <20180721194049.23265-1-martin.blumenstingl@googlemail.com>
+Date: Sat, 21 Jul 2018 21:40:49 +0200
+Subject: [PATCH 2/2] iio: adc: meson-saradc: add support for the Meson8m2 SoCs
+In-Reply-To: <20180721194049.23265-1-martin.blumenstingl@googlemail.com>
+References: <20180721194049.23265-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180721194049.23265-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This is a trivial series which adds Meson8m2 support to the Meson
-SAR ADC driver.
-A separate compatible string is required because typically Meson8m2
-inherits all IP blocks from Meson8. The ADC part of the SAR ADC is
-indeed compatible, but the temperature calibration logic (not
-supported yet, but I am working on this) is incompatible with
-the Meson8 implementation (instead it uses the same variant as
-Meson8m2).
+The SAR ADC on Meson8m2 behaves identical to the one found in the
+Meson8b SoCs. Add a separate compatible string because the temperature
+sensor logic (not supported yet) differs between Meson8 and Meson8m2
+(however, it's the same for Meson8b and Meson8m2).
 
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/iio/adc/meson_saradc.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Martin Blumenstingl (2):
-  dt-bindings: iio: adc: add Meson8m2 support
-  iio: adc: meson-saradc: add support for the Meson8m2 SoCs
-
- .../devicetree/bindings/iio/adc/amlogic,meson-saradc.txt | 1 +
- drivers/iio/adc/meson_saradc.c                           | 9 +++++++++
- 2 files changed, 10 insertions(+)
-
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 2948909f3ee3..da2d16dfa63e 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -922,6 +922,11 @@ static const struct meson_sar_adc_data meson_sar_adc_meson8b_data = {
+ 	.name = "meson-meson8b-saradc",
+ };
+ 
++static const struct meson_sar_adc_data meson_sar_adc_meson8m2_data = {
++	.param = &meson_sar_adc_meson8_param,
++	.name = "meson-meson8m2-saradc",
++};
++
+ static const struct meson_sar_adc_data meson_sar_adc_gxbb_data = {
+ 	.param = &meson_sar_adc_gxbb_param,
+ 	.name = "meson-gxbb-saradc",
+@@ -951,6 +956,10 @@ static const struct of_device_id meson_sar_adc_of_match[] = {
+ 		.compatible = "amlogic,meson8b-saradc",
+ 		.data = &meson_sar_adc_meson8b_data,
+ 	},
++	{
++		.compatible = "amlogic,meson8m2-saradc",
++		.data = &meson_sar_adc_meson8m2_data,
++	},
+ 	{
+ 		.compatible = "amlogic,meson-gxbb-saradc",
+ 		.data = &meson_sar_adc_gxbb_data,
 -- 
 2.18.0
