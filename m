@@ -1,45 +1,41 @@
-From: olof@lixom.net (Olof Johansson)
-Date: Sat, 21 Jul 2018 14:54:22 -0700
-Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.19, round 2
-In-Reply-To: <7hr2jx50q0.fsf@baylibre.com>
-References: <7hr2jx50q0.fsf@baylibre.com>
-Message-ID: <20180721215422.vsd34udhkhs7lh3h@localhost>
+From: jic23@kernel.org (Jonathan Cameron)
+Date: Sun, 22 Jul 2018 09:18:09 +0100
+Subject: [PATCH 1/2] dt-bindings: iio: adc: add Meson8m2 support
+In-Reply-To: <20180721194049.23265-2-martin.blumenstingl@googlemail.com>
+References: <20180721194049.23265-1-martin.blumenstingl@googlemail.com>
+ <20180721194049.23265-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20180722091809.59d442b0@archlinux>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Jul 20, 2018 at 11:30:15AM -0500, Kevin Hilman wrote:
-> Olof, Arnd,
-> 
-> A second round of DT updates for Amlogic, directly on top of the redo of
-> the first one.
-> 
-> This includes a merge of a branch already queued in the clk tree because
-> of the dependency on clock headers used in the DT changes here..
-> 
-> Kevin
-> 
-> 
-> The following changes since commit 89803e8b26569bdf5798f8745a4c708bf9360ee6:
-> 
->   ARM64: dts: meson-axg: add pdm pins (2018-07-20 08:18:37 -0700)
-> 
-> are available in the git repository at:
-> 
->   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
-> 
-> for you to fetch changes up to fcf775a1e6717b7157b1ea626028b7e039b3c989:
-> 
->   Merge branch 'v4.19/dt64' into tmp/aml-rebuild (2018-07-20 09:05:11 -0700)
-> 
-> ----------------------------------------------------------------
-> Amlogic 64-bit DT changes for v4.19, round 2
-> - new SoC: S905W
-> - new boards: based on S905W: Amlogic P281, Oranth Tanix TX3 Mini
-> - AXG: add DT for new audio clock controller
-> 
-> ----------------------------------------------------------------
+On Sat, 21 Jul 2018 21:40:48 +0200
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-Something happened to your diffstat here. It's also based on -rc5?
+> The Amlogic Meson SAR ADC implementation on the Meson8m2 SoC is
+> identical to the Meson8b variant. Add a compatible string to indicate
+> that we support the SAR ADC on the Meson8m2 SoC.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Applied to the togreg branch of iio.git and pushed out as testing for the
+autobuilder to ignore it.
 
+Thanks,
 
--Olof
+Jonathan
+
+> ---
+>  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.txt         | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+> index d1acd5ea2737..54b823f3a453 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+> @@ -4,6 +4,7 @@ Required properties:
+>  - compatible:	depending on the SoC this should be one of:
+>  			- "amlogic,meson8-saradc" for Meson8
+>  			- "amlogic,meson8b-saradc" for Meson8b
+> +			- "amlogic,meson8m2-saradc" for Meson8m2
+>  			- "amlogic,meson-gxbb-saradc" for GXBB
+>  			- "amlogic,meson-gxl-saradc" for GXL
+>  			- "amlogic,meson-gxm-saradc" for GXM
