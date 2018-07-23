@@ -1,74 +1,59 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Mon, 23 Jul 2018 22:28:36 +0800
-Subject: [PATCH v2 1/3] clk: meson: add DT documentation for emmc clock
- controller
-In-Reply-To: <7hbmay3ut6.fsf@baylibre.com>
-References: <20180710163658.6175-1-yixun.lan@amlogic.com>
- <20180710163658.6175-2-yixun.lan@amlogic.com>
- <20180711194346.GA32414@rob-hp-laptop>
- <f2eb8632-1113-3bb8-506f-ac0d4e838fd4@amlogic.com>
- <CABGGisw64MpYx7Pvp+XGt6gfZzie6EKeHdchqS6CPDjmAHBuVA@mail.gmail.com>
- <5442a2e8-eb49-2aa8-e53e-8db88cd0bd58@amlogic.com>
- <CAL_Jsq+r+7BaJAPBn3L26sdxATVyDiuC=V3xE+yz0-27q0RJhA@mail.gmail.com>
- <8bf565d3-dbfd-e06d-7076-ba78d7a2e766@amlogic.com>
- <7hbmay3ut6.fsf@baylibre.com>
-Message-ID: <405ff057-a14e-f9eb-19e0-8d467dda35a1@amlogic.com>
+From: olof@lixom.net (Olof Johansson)
+Date: Mon, 23 Jul 2018 09:17:39 -0700
+Subject: [GIT PULL] Amlogic 64-bit DT updates for v4.19, round 2
+In-Reply-To: <7hk1pm3ym6.fsf@baylibre.com>
+References: <7hr2jx50q0.fsf@baylibre.com>
+ <20180721215422.vsd34udhkhs7lh3h@localhost>
+ <7hk1pm3ym6.fsf@baylibre.com>
+Message-ID: <CAOesGMg5iPtWaP2XOm7+J46kOQfczoc7HstcyM=pAVcMQbCubQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-HI Kevin
-
-On 07/23/2018 10:12 PM, Kevin Hilman wrote:
-> Yixun Lan <yixun.lan@amlogic.com> writes:
-> 
-> [...]
-> 
+On Mon, Jul 23, 2018 at 5:50 AM, Kevin Hilman <khilman@baylibre.com> wrote:
+> Olof Johansson <olof@lixom.net> writes:
+>
+>> On Fri, Jul 20, 2018 at 11:30:15AM -0500, Kevin Hilman wrote:
+>>> Olof, Arnd,
 >>>
->>>> Second, we might like to convert eMMC driver to also use mmc-clkc model.
+>>> A second round of DT updates for Amlogic, directly on top of the redo of
+>>> the first one.
 >>>
->>> IMO, this should be done as part of merging this series. Otherwise, we
->>> have duplicated code for the same thing.
+>>> This includes a merge of a branch already queued in the clk tree because
+>>> of the dependency on clock headers used in the DT changes here..
+>>>
+>>> Kevin
+>>>
+>>>
+>>> The following changes since commit 89803e8b26569bdf5798f8745a4c708bf9360ee6:
+>>>
+>>>   ARM64: dts: meson-axg: add pdm pins (2018-07-20 08:18:37 -0700)
+>>>
+>>> are available in the git repository at:
+>>>
+>>>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
+>>>
+>>> for you to fetch changes up to fcf775a1e6717b7157b1ea626028b7e039b3c989:
+>>>
+>>>   Merge branch 'v4.19/dt64' into tmp/aml-rebuild (2018-07-20 09:05:11 -0700)
+>>>
+>>> ----------------------------------------------------------------
+>>> Amlogic 64-bit DT changes for v4.19, round 2
+>>> - new SoC: S905W
+>>> - new boards: based on S905W: Amlogic P281, Oranth Tanix TX3 Mini
+>>> - AXG: add DT for new audio clock controller
+>>>
+>>> ----------------------------------------------------------------
 >>
->> IMO, I'd leave this out of this series, since this patch series is quite
->> complete as itself. Although, the downside is code duplication.
->>
->> Still, I need to hear Jerome, or Kevin's option, to see if or how we
->> should proceed the eMMC's clock conversion.
->>
->> I could think of three option myself
->> 1) don't do the conversion, downside is code duplication, upside is NO
->> DT change, no compatibility issue
->> 2) add a syscon node into eMMC DT node, then only convert clock part
->> into this mmc-clkc model, while still leave other eMMC register access
->> as the usual iomap way (still no race condition)
->> 3) convert all eMMC register access by using regmap interface.
->>
->> both 2) and 3) need to update the DT.
->>
->> and probably 2) is a compromise way, and 1) is also OK, 3) is probably
->> the worst way due to dramatically change (I think this was already
->> rejected in the previous discussion)
-> 
-> Because the devices (NAND and eMMC_C) are mutually exclusive, taking the
-> step-by-step approach is fine (and preferred) by me.
-> 
-> Phase 1:
-> - add new mmc-clk provider
-> - add NAND driver using new mmc-clk provider
-> - boards using NAND should ensure emmc_c is disabled in DT
-> 
-> This allows us to not touch the MMC driver or existing upstream
-> bindings.  Yes, this means there is duplicate code in the MMC driver and
-> the new mmc-clk provider, but that can be removed in the next phase.
-> 
-Great, the approach to address this issue is reasonable.
-We'd like to focus on phase 1 first, thanks
+>> Something happened to your diffstat here. It's also based on -rc5?
+>
+> My branch is/was based on -rc1 but the dependency branch from the clock
+> tree is based on -rc5.  That made the diffstat include -rc5, which was
+> too noisy, so I removed it but then forgot to add the simplified
+> version.
 
-> Phase 2:
-> - convert MMC driver to use new mmc-clk provider
-> - update MMC users in DT and bindings
-> 
-Ok.
+Ah, thanks. It's unfortunate that this brings in a new -rc but not the
+end of the world. Will merge later today or tomorrow depending on
+travel progress.
 
 
-Yixun
+-Olof
