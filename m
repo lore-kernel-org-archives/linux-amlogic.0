@@ -1,60 +1,39 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 23 Jul 2018 09:55:25 +0200
-Subject: [PATCH 0/3] Meson8/Meson8b: introduce a HHI syscon node
-In-Reply-To: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
-References: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
-Message-ID: <833b569b-3e25-feac-6110-a837c0b13bfa@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 23 Jul 2018 11:11:41 +0200
+Subject: [PATCH 0/2] meson8b: add the CPU_DIV16 clock for the ARM TWD
+In-Reply-To: <20180721172537.15639-1-martin.blumenstingl@googlemail.com>
+References: <20180721172537.15639-1-martin.blumenstingl@googlemail.com>
+Message-ID: <1532337101.26720.89.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 21/07/2018 21:28, Martin Blumenstingl wrote:
-> The Meson8/Meson8b/Meson8m2 SoCs are suffering from a similar problem
-> as the GXBB/GXL/GXM SoCs (see the GX series from Jerome: [0]):
-> There is a register area called "HHI" which is used for multiple IP
-> blocks of the SoC:
-> - the system clock controller
-> - a few reset lines (there is a separate reset controller, these reset
->   lines are not part of the other reset controller). this reset
->   controller is currently implemented in the clock controller driver
-> - a HDMI controller
-> - temperature sensor calibration data (by "data" I really mean data,
->   the ADC driver has four bits for the TSC data in it's own register
->   space, however on Meson8b and Meson8m2 there is a fifth TSC bit which
->   is stored in the HHI register area)
+On Sat, 2018-07-21 at 19:25 +0200, Martin Blumenstingl wrote:
+> Carlo sent a .dts patch for the ARM TWD (timer watchdog) a long time
+> ago: [0]
+> This patch was never applied. While resurrecting it I found out (by
+> trial and error) that the TWD clock is derived from the CPU clock by
+> dividing the existing CPU clock by 16.
+> An additional hint was also given by Neil's clock measurer patch [1]
+> as the GX SoCs explicitly define a "sys_cpu_div16" clock with ID 18,
+> however old u-boot seems to call that CTS_LED_PLL_CLK. The rate of
+> this clock also matches CPU clock divided by 16 on my boards.
 > 
-> The first three could be implemented with a single node (either in one
-> big driver, or using a MFD driver which would register function-
-> specific drivers).
-> However, the TSC data is a big problem, because the ADC has it's own
-> set of registers but needs to write one bit in the HHI register area.
-> 
-> NOTE: this series has multiple dependencies:
-> - the clock controller changes depend "meson8b: add the CPU_DIV16 clock
->   for the ARM TWD" as well as "meson8b: register the clock controller
->   early" [2]
-> - the dts changes depend on "fix clock controller register size on
->   Meson8/Meson8b" [3]
+> It's not clear if there is an additional gate for this clock. If there
+> is then it's not documented anywhere.
 > 
 > 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006733.html
-> [1] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007890.html
-> [2] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007900.html
-> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007897.html
+> [0] http://lists.infradead.org/pipermail/linux-arm-kernel/2015-December/391928.html
+> [1] https://patchwork.kernel.org/patch/10504083/
 > 
+> Martin Blumenstingl (2):
+>   dt-bindings: clock: meson8b: export the CPU_DIV16 clock
+>   clk: meson: meson8b: add the CPU_DIV16 clock
 > 
-> Martin Blumenstingl (3):
->   dt-bindings: clock: meson8b: use the registers from the HHI syscon
->   clk: meson: meson8b: use the HHI syscon if available
->   ARM: dts: meson: switch the clock controller to the HHI register area
-> 
->  .../bindings/clock/amlogic,meson8b-clkc.txt   | 13 ++++------
->  arch/arm/boot/dts/meson.dtsi                  |  5 ++++
->  arch/arm/boot/dts/meson8.dtsi                 | 15 ++++++------
->  arch/arm/boot/dts/meson8b.dtsi                | 15 ++++++------
->  drivers/clk/meson/meson8b.c                   | 24 ++++++++++++-------
->  5 files changed, 41 insertions(+), 31 deletions(-)
+>  drivers/clk/meson/meson8b.c              | 12 ++++++++++++
+>  drivers/clk/meson/meson8b.h              |  2 +-
+>  include/dt-bindings/clock/meson8b-clkc.h |  1 +
+>  3 files changed, 14 insertions(+), 1 deletion(-)
 > 
 
-For the whole serie, it follow the same switch as GX so :
-
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Queued for 4.20
+Thx
