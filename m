@@ -1,41 +1,36 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 24 Jul 2018 14:52:27 +0200
-Subject: [PATCH 03/14] arm64: dts: meson-axg: add usb power regulator
+Date: Tue, 24 Jul 2018 14:52:36 +0200
+Subject: [PATCH 12/14] arm64: dts: meson-axg: add spdif-dit codec
 In-Reply-To: <20180724125238.14567-1-jbrunet@baylibre.com>
 References: <20180724125238.14567-1-jbrunet@baylibre.com>
-Message-ID: <20180724125238.14567-4-jbrunet@baylibre.com>
+Message-ID: <20180724125238.14567-13-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The usb power regulator is supplied by the vcc 5v regulator and
-controlled by a GPIO. This will be needed to enable usb.
+Add the SPDIF playback codec to the axg s400 board
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index 5937d8c3a6ed..7489b88f27d7 100644
+index d318647c86a7..d5c01427a5ca 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
 +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -115,6 +115,17 @@
- 		enable-active-high;
+@@ -197,6 +197,13 @@
+ 		status = "okay";
+ 		sound-name-prefix = "Lineout";
  	};
- 
-+	usb_pwr: regulator-usb_pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
 +
-+		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
++	spdif_dit: audio-codec at 2 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
 +	};
-+
- 	emmc_pwrseq: emmc-pwrseq {
- 		compatible = "mmc-pwrseq-emmc";
- 		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+ };
+ 
+ &ethmac {
 -- 
 2.17.1
