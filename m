@@ -1,52 +1,75 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 25 Jul 2018 21:18:27 +0200
-Subject: [PATCH 10/14] arm64: dts: meson-axg: add linein codec
-In-Reply-To: <20180724125238.14567-11-jbrunet@baylibre.com>
-References: <20180724125238.14567-1-jbrunet@baylibre.com>
- <20180724125238.14567-11-jbrunet@baylibre.com>
-Message-ID: <CAFBinCAgMhVOpCipV2D_UPqX7z0bcT=qnfRXTWpO7zigzS_TAQ@mail.gmail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Wed, 25 Jul 2018 14:07:55 -0600
+Subject: [PATCH 1/3] dt-bindings: clock: meson8b: use the registers from
+ the HHI syscon
+In-Reply-To: <20180721192846.18811-2-martin.blumenstingl@googlemail.com>
+References: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
+ <20180721192846.18811-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20180725200755.GA24555@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+On Sat, Jul 21, 2018 at 09:28:44PM +0200, Martin Blumenstingl wrote:
+> The clock controller on Meson8/Meson8m2 and Meson8b is part of a
+> register region called "HHI". This register area contains more
+> functionality than just a clock controller:
+> - the clock controller
+> - some reset controller bits
+> - temperature sensor calibration data (on Meson8b and Meson8m2 only)
+> - HDMI controller
+> 
+> The HHI register area may be accessed concurrently. Allow this by using
+> a "system controller" as parent node.
 
-On Tue, Jul 24, 2018 at 3:09 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> Add the es7241 analog to digital converter which is fed by the
-> lienin jack of the s400
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Why? A single node can be a provider of multiple things. Maybe the HDMI 
+should be a child since it will involve graph nodes, but the rest can be 
+one node. There should be numerous examples of blocks that are clock and 
+reset controllers.
+
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> index 7489b88f27d7..fb101a1c6660 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> @@ -178,6 +178,16 @@
->                         gpios = <&gpio_speaker 2 0>;
->                 };
->         };
+>  .../bindings/clock/amlogic,meson8b-clkc.txt         | 13 +++++--------
+>  1 file changed, 5 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
+> index b455c5aa9139..38fb979210d3 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
+> @@ -9,15 +9,13 @@ Required Properties:
+>  	- "amlogic,meson8-clkc" for Meson8 (S802) SoCs
+>  	- "amlogic,meson8b-clkc" for Meson8 (S805) SoCs
+>  	- "amlogic,meson8m2-clkc" for Meson8m2 (S812) SoCs
+> -- reg: it must be composed by two tuples:
+> -	0) physical base address of the xtal register and length of memory
+> -	   mapped region.
+> -	1) physical base address of the clock controller and length of memory
+> -	   mapped region.
+> -
+>  - #clock-cells: should be 1.
+>  - #reset-cells: should be 1.
+>  
+> +Parent node should have the following properties :
+> +- compatible: "syscon", "simple-mfd"
+
+These 2 compatibles alone are not valid.
+
+> +- reg: base address and size of the HHI system control register space.
 > +
-> +       linein: audio-codec at 0 {
-there is a unit-address but no reg property - I am wondering if this is allowed?
-for the regulators we're using regulator-<unique-name> instead of
-regulator@<unique number>
-
-(this applies to other patches in this series as well)
-
-> +               #sound-dai-cells = <0>;
-> +               compatible = "everest,es7241";
-> +               VDDA-supply = <&vcc_3v3>;
-> +               VDDP-supply = <&vcc_3v3>;
-> +               VDDD-supply = <&vcc_3v3>;
-> +               status = "okay";
-> +               sound-name-prefix = "Linein";
-SPDIF output uses capital letters "SPDIFOUT"
-I am not familiar with the sound subsystem (thus I'm not sure where
-this shows up) so I am wondering if the naming should be consistent?
-
-
-Regards
-Martin
+>  Each clock is assigned an identifier and client nodes can use this identifier
+>  to specify the clock which they consume. All available clocks are defined as
+>  preprocessor macros in the dt-bindings/clock/meson8b-clkc.h header and can be
+> @@ -30,9 +28,8 @@ device tree sources).
+>  
+>  Example: Clock controller node:
+>  
+> -	clkc: clock-controller at c1104000 {
+> +	clkc: clock-controller {
+>  		compatible = "amlogic,meson8b-clkc";
+> -		reg = <0xc1108000 0x4>, <0xc1104000 0x460>;
+>  		#clock-cells = <1>;
+>  		#reset-cells = <1>;
+>  	};
+> -- 
+> 2.18.0
+> 
