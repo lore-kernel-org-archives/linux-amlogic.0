@@ -1,89 +1,21 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 25 Jul 2018 23:16:24 +0200
-Subject: [PATCH 1/3] dt-bindings: clock: meson8b: use the registers from
- the HHI syscon
-In-Reply-To: <20180725200755.GA24555@rob-hp-laptop>
-References: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
- <20180721192846.18811-2-martin.blumenstingl@googlemail.com>
- <20180725200755.GA24555@rob-hp-laptop>
-Message-ID: <CAFBinCAdsC-VisufKu9jm0vZER6JjFq4O5WAfsMoXdQfzNFcfg@mail.gmail.com>
+From: jbrunet@baylibre.com (jbrunet at baylibre.com)
+Date: Wed, 25 Jul 2018 23:19:05 +0200
+Subject: [PATCH 00/14] arm64: dts: meson-axg: add audio support
+In-Reply-To: <CAFBinCBh-b=ie4hBMWdHG8KoLQ7qiRfo8vXfJ1PRcN4UPtg+uA@mail.gmail.com>
+References: <20180724125238.14567-1-jbrunet@baylibre.com>
+ <CAFBinCBh-b=ie4hBMWdHG8KoLQ7qiRfo8vXfJ1PRcN4UPtg+uA@mail.gmail.com>
+Message-ID: <705e31bf0d978b7d356b2f077179ab0e3db6f092.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Rob,
+On Wed, 2018-07-25 at 21:11 +0200, Martin Blumenstingl wrote:
+> nit-pick: one patch uses "arm64: dts: meson-axg: s400" in the subject
+> while other patches that are touching the s400 board aren't
+> if you have to re-send this series: can you please use the "arm64:
+> dts: meson-axg: s400:" prefix for all patches touching the s400 board?
 
-On Wed, Jul 25, 2018 at 10:07 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Sat, Jul 21, 2018 at 09:28:44PM +0200, Martin Blumenstingl wrote:
-> > The clock controller on Meson8/Meson8m2 and Meson8b is part of a
-> > register region called "HHI". This register area contains more
-> > functionality than just a clock controller:
-> > - the clock controller
-> > - some reset controller bits
-> > - temperature sensor calibration data (on Meson8b and Meson8m2 only)
-> > - HDMI controller
-> >
-> > The HHI register area may be accessed concurrently. Allow this by using
-> > a "system controller" as parent node.
->
-> Why? A single node can be a provider of multiple things. Maybe the HDMI
-> should be a child since it will involve graph nodes, but the rest can be
-> one node. There should be numerous examples of blocks that are clock and
-> reset controllers.
-I understand that a node can provide multiple "things" - currently
-it's a clock controller and a reset controller
-the HDMI controller could also be integrated in a similar way
+hum, do we really have such rule, or do you think we should add one ?
+Kevin, do you have opinion ?
 
-however, I do not know how to access the temperature sensor calibration data
-there is an ADC - one of it's channel has access to a temperature sensor
-this ADC is located at CBUS offset 0x8680 and we already have a driver
-for it (meson-saradc)
-my problem is that the temperature sensor has to be calibrated - this
-is done by:
-- read data from efuse
-- write 4 bits of calibration data to some register in the ADC's register space
-- write a 5th bit of calibration data to a (seemingly random) register
-in the HHI register space
-(if one of the 5 bits is not written to it's correct location then the
-temperature sensor reads bogus values)
-
-I am not sure how to handle this without passing the HHI region to the
-meson-saradc driver and letting that initialize all the temperature
-calibration data bits (in it's own register space as well as the HHI
-register space)
-do you have any suggestion here?
-
-> >
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > ---
-> >  .../bindings/clock/amlogic,meson8b-clkc.txt         | 13 +++++--------
-> >  1 file changed, 5 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-> > index b455c5aa9139..38fb979210d3 100644
-> > --- a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-> > +++ b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-> > @@ -9,15 +9,13 @@ Required Properties:
-> >       - "amlogic,meson8-clkc" for Meson8 (S802) SoCs
-> >       - "amlogic,meson8b-clkc" for Meson8 (S805) SoCs
-> >       - "amlogic,meson8m2-clkc" for Meson8m2 (S812) SoCs
-> > -- reg: it must be composed by two tuples:
-> > -     0) physical base address of the xtal register and length of memory
-> > -        mapped region.
-> > -     1) physical base address of the clock controller and length of memory
-> > -        mapped region.
-> > -
-> >  - #clock-cells: should be 1.
-> >  - #reset-cells: should be 1.
-> >
-> > +Parent node should have the following properties :
-> > +- compatible: "syscon", "simple-mfd"
->
-> These 2 compatibles alone are not valid.
-so I should add (for example) "amlogic,meson8b-hhi-sysctrl" as first compatible?
-so the result would be: compatible = "amlogic,meson8b-hhi-sysctrl",
-"syscon", "simple-mfd";
-
-
-Regards
-Martin
+Not that I really mind either way, but prefixes rules are usually there to help
+maintainer filter the patches. Will such rule help in any way ?
