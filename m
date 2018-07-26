@@ -1,104 +1,99 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 26 Jul 2018 16:50:46 +0200
-Subject: [PATCH] arm64: dts: meson: Switch simple-mfd and syscon order
-In-Reply-To: <494ff778-1888-7743-3a91-62364431d82e@amlogic.com>
-References: <1532614438-7207-1-git-send-email-narmstrong@baylibre.com>
- <494ff778-1888-7743-3a91-62364431d82e@amlogic.com>
-Message-ID: <c1d08bc7-b868-7781-e69a-0e6bacde5b40@baylibre.com>
+From: broonie@kernel.org (Mark Brown)
+Date: Thu, 26 Jul 2018 16:01:39 +0100 (BST)
+Subject: Applied "ASoC: meson: align axg card driver with DT bindings
+ documentation" to the asoc tree
+In-Reply-To: <20180726124544.14740-4-jbrunet@baylibre.com>
+Message-ID: <20180726150139.F013E440078@finisterre.ee.mobilebroadband>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+The patch
 
-On 26/07/2018 16:41, Yixun Lan wrote:
-> HI Neil
-> 
-> On 07/26/2018 10:13 PM, Neil Armstrong wrote:
->> The order between "syscon" and "simple-mfd" is important because in these
->> particular cases, the node needs to be first a "simple-mfd" to expose
->> it's sub-nodes, and later on a "syscon" to permit other nodes to access
->> this register space through the "syscon" mechanism.
->>
-> 
-> could you explain a bit which specific case that it need compatible
-> "simple-mfd" come first? is this a problem in kernel side? because I see
-> you have a comment below about problem in U-Boot..
+   ASoC: meson: align axg card driver with DT bindings documentation
 
-It's not a problem for Linux, but Linux is just an implementation, the device tree
-should work on multiple OSs like U-Boot or BSD kernels. We should base ourselves on
-the bindings documentation and the Device tree specification to specify the HW.
+has been applied to the asoc tree at
 
-In this case, we need to switch the order to specify it correctly.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
 
-> 
-> 
-> also while Rob review the mmc-clkc patch, he raise a suggestion to  drop
-> "syscon" in drivers/mfd/syscon.c, see [1], will that solve or affect
-> your problem?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
-Rob wants us to drop the "syscon" because he wants us to move all nodes
-depending of HHI as subnode, which is impossible for HDMI and the VPU power controller,
-they are only "syscon" clients, their own registers are not in HHI.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Neil
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-> 
-> [1]
-> https://lkml.kernel.org/r/CAL_Jsq+r+7BaJAPBn3L26sdxATVyDiuC=V3xE+yz0-27q0RJhA at mail.gmail.com
-> 
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->> This also has a consequence for U-Boot since the U-Boot DM is much simpler
->> and can only associate a single device to a node, thus here we want these
->> nodes to be an mfd bus to be able to probe the sub-nodes.
->>
->>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
->>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 4 ++--
->>  2 files changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> index 6adc8d3..3f0de9d 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
->> @@ -342,7 +342,7 @@
->>  			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
->>  
->>  			sysctrl: system-controller at 0 {
->> -				compatible = "amlogic,meson-axg-hhi-sysctrl", "syscon", "simple-mfd";
->> +				compatible = "amlogic,meson-axg-hhi-sysctrl", "simple-mfd", "syscon";
->>  				reg = <0 0 0 0x400>;
->>  
->>  				clkc: clock-controller {
->> @@ -1180,7 +1180,7 @@
->>  			ranges = <0x0 0x0 0x0 0xff800000 0x0 0x100000>;
->>  
->>  			sysctrl_AO: sys-ctrl at 0 {
->> -				compatible = "amlogic,meson-axg-ao-sysctrl", "syscon", "simple-mfd";
->> +				compatible = "amlogic,meson-axg-ao-sysctrl", "simple-mfd", "syscon";
->>  				reg =  <0x0 0x0 0x0 0x100>;
->>  
->>  				clkc_AO: clock-controller {
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> index b8dc4db..d88699f 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->> @@ -344,7 +344,7 @@
->>  			ranges = <0x0 0x0 0x0 0xc8100000 0x0 0x100000>;
->>  
->>  			sysctrl_AO: sys-ctrl at 0 {
->> -				compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
->> +				compatible = "amlogic,meson-gx-ao-sysctrl", "simple-mfd", "syscon";
->>  				reg =  <0x0 0x0 0x0 0x100>;
->>  
->>  				pwrc_vpu: power-controller-vpu {
->> @@ -431,7 +431,7 @@
->>  			ranges = <0x0 0x0 0x0 0xc883c000 0x0 0x2000>;
->>  
->>  			sysctrl: system-controller at 0 {
->> -				compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
->> +				compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
->>  				reg = <0 0 0 0x400>;
->>  			};
->>  
->>
-> 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+>From 435857e015dc7b337c5f21d195ac2e4ffd694283 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 26 Jul 2018 14:45:44 +0200
+Subject: [PATCH] ASoC: meson: align axg card driver with DT bindings
+ documentation
+
+Drop amlogic prefix in front of the generic DT properties and change
+property "name" to "model".
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/meson/axg-card.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
+index d6d1081d94ad..2914ba0d965b 100644
+--- a/sound/soc/meson/axg-card.c
++++ b/sound/soc/meson/axg-card.c
+@@ -123,7 +123,7 @@ static int axg_card_add_aux_devices(struct snd_soc_card *card)
+ 	struct snd_soc_aux_dev *aux;
+ 	int num, i;
+ 
+-	num = of_count_phandle_with_args(node, PREFIX "aux-devs", NULL);
++	num = of_count_phandle_with_args(node, "audio-aux-devs", NULL);
+ 	if (num == -ENOENT) {
+ 		/*
+ 		 * It is ok to have no auxiliary devices but for this card it
+@@ -144,8 +144,8 @@ static int axg_card_add_aux_devices(struct snd_soc_card *card)
+ 	card->num_aux_devs = num;
+ 
+ 	for (i = 0; i < card->num_aux_devs; i++, aux++) {
+-		aux->codec_of_node = of_parse_phandle(node,
+-						      PREFIX "aux-devs", i);
++		aux->codec_of_node =
++			of_parse_phandle(node, "audio-aux-devs", i);
+ 		if (!aux->codec_of_node)
+ 			return -EINVAL;
+ 	}
+@@ -610,18 +610,18 @@ static int axg_card_probe(struct platform_device *pdev)
+ 	priv->card.owner = THIS_MODULE;
+ 	priv->card.dev = dev;
+ 
+-	ret = snd_soc_of_parse_card_name(&priv->card, PREFIX "name");
++	ret = snd_soc_of_parse_card_name(&priv->card, "model");
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	ret = axg_card_parse_of_optional(&priv->card, PREFIX "routing",
++	ret = axg_card_parse_of_optional(&priv->card, "audio-routing",
+ 					 snd_soc_of_parse_audio_routing);
+ 	if (ret) {
+ 		dev_err(dev, "error while parsing routing\n");
+ 		return ret;
+ 	}
+ 
+-	ret = axg_card_parse_of_optional(&priv->card, PREFIX "widgets",
++	ret = axg_card_parse_of_optional(&priv->card, "audio-widgets",
+ 					 snd_soc_of_parse_audio_simple_widgets);
+ 	if (ret) {
+ 		dev_err(dev, "error while parsing widgets\n");
+-- 
+2.18.0
