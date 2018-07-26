@@ -1,87 +1,45 @@
-From: jbrunet@baylibre.com (jbrunet at baylibre.com)
-Date: Thu, 26 Jul 2018 00:07:21 +0200
-Subject: [PATCH 10/14] arm64: dts: meson-axg: add linein codec
-In-Reply-To: <CAFBinCAgMhVOpCipV2D_UPqX7z0bcT=qnfRXTWpO7zigzS_TAQ@mail.gmail.com>
-References: <20180724125238.14567-1-jbrunet@baylibre.com>
- <20180724125238.14567-11-jbrunet@baylibre.com>
- <CAFBinCAgMhVOpCipV2D_UPqX7z0bcT=qnfRXTWpO7zigzS_TAQ@mail.gmail.com>
-Message-ID: <90780f5a6b974ee9a4f9f9f2580fc83ef6bdd805.camel@baylibre.com>
+From: olof@lixom.net (Olof Johansson)
+Date: Wed, 25 Jul 2018 23:53:53 -0700
+Subject: [Amlogic 64-bit DT updates for v4.19, round 2 (redo)
+In-Reply-To: <7hy3e13mqx.fsf@baylibre.com>
+References: <7hy3e13mqx.fsf@baylibre.com>
+Message-ID: <20180726065353.5jn42f5m73g6hmrx@localhost>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-07-25 at 21:18 +0200, Martin Blumenstingl wrote:
-> Hi Jerome,
+On Mon, Jul 23, 2018 at 12:06:30PM -0500, Kevin Hilman wrote:
+> [ fixes the original round 2 by removing the unnecessary (and wrong)
+>   merge of v4.18-rc5.]
 > 
-> On Tue, Jul 24, 2018 at 3:09 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> > 
-> > Add the es7241 analog to digital converter which is fed by the
-> > lienin jack of the s400
-> > 
-> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > ---
-> >  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > index 7489b88f27d7..fb101a1c6660 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > @@ -178,6 +178,16 @@
-> >                         gpios = <&gpio_speaker 2 0>;
-> >                 };
-> >         };
-> > +
-> > +       linein: audio-codec at 0 {
+> Olof, Arnd,
 > 
-> there is a unit-address but no reg property - I am wondering if this is allowed?
-> for the regulators we're using regulator-<unique-name> instead of
-> regulator@<unique number>
+> A second round of DT updates for Amlogic, directly on top of the redo of
+> the first one.
 > 
-> (this applies to other patches in this series as well)
-
-I did that because I tried to keep node-name generic as described in the DT
-spec. The idea of numbering the nodes (without a reg property) in such a way
-came from :
-Documentation/devicetree/bindings/sound/simple-card.txt:
-=> look at the multi dai link example. I'm doing exactly the same on the axg
-card's dai-links. Nothing new here.
-
-that being said, section 2.2.1 of the DT specs says:
-
-" If the node has no reg property, the @unit-address must be omitted and the
-node-name alone differentiates the node from other nodes at the same level in
-the tree "
-
-So apparently, this is used but not ok ?
-I could make 'linein' the node-name instead of the label but that wouldn't be
-very generic.
-We could also have dai-link-2 instead dai-link at 2 (audio-codec-3 instead of 
-audio-codec at 3). I seems to be OK with the spec, but it also looks weird ...
-
-Rob, do you have opinion on this ? 
-
+> This includes a merge of a branch already queued in the clk tree because
+> of the dependency on clock headers used in the DT changes here..
 > 
-> > +               #sound-dai-cells = <0>;
-> > +               compatible = "everest,es7241";
-> > +               VDDA-supply = <&vcc_3v3>;
-> > +               VDDP-supply = <&vcc_3v3>;
-> > +               VDDD-supply = <&vcc_3v3>;
-> > +               status = "okay";
-> > +               sound-name-prefix = "Linein";
+> Kevin
 > 
-> SPDIF output uses capital letters "SPDIFOUT"
-> I am not familiar with the sound subsystem (thus I'm not sure where
-> this shows up) so I am wondering if the naming should be consistent?
-
-This string is used to prefix the name of the different widgets and controls
-provided. It is useful when several devices provides component and control with
-the same names. It happens when several instances of a component are used but
-also with classic names, such as "Playback"
-
-I don't think there is a rule regarding capitalization.
-Some name are all capital in ASoC, some just have the first letter in upper
-case. It doesn't change anything technically, and I personally don't care.
-
+> The following changes since commit 89803e8b26569bdf5798f8745a4c708bf9360ee6:
 > 
-> Regards
-> Martin
+>   ARM64: dts: meson-axg: add pdm pins (2018-07-20 08:18:37 -0700)
+> 
+> are available in the git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2-1
+> 
+> for you to fetch changes up to aaa080fa7e0f01f7cd8eb22a7385a4d8106c7478:
+> 
+>   ARM64: dts: meson-gxl: add support for the Oranth Tanix TX3 Mini (2018-07-20 09:02:22 -0700)
+> 
+> ----------------------------------------------------------------
+> Amlogic 64-bit DT changes for v4.19, round 2
+> - new SoC: S905W
+> - new boards: based on S905W: Amlogic P281, Oranth Tanix TX3 Mini
+> - AXG: add DT for new audio clock controller
+
+Merged, thanks!
+
+
+-Olof
