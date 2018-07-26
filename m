@@ -1,23 +1,46 @@
 From: jbrunet@baylibre.com (jbrunet at baylibre.com)
-Date: Thu, 26 Jul 2018 09:40:02 +0200
-Subject: [PATCH 14/15] ASoC: meson: add axg sound card DT binding
- documentation
-In-Reply-To: <20180725190619.GA20234@rob-hp-laptop>
-References: <20180717153643.8806-1-jbrunet@baylibre.com>
- <20180717153643.8806-18-jbrunet@baylibre.com>
- <20180725190619.GA20234@rob-hp-laptop>
-Message-ID: <9a71a5644b5257d48436a4d28972d4142a96b0eb.camel@baylibre.com>
+Date: Thu, 26 Jul 2018 10:48:12 +0200
+Subject: [PATCH 3/3] clk: meson: clk-pll: drop hard-coded rates from pll
+ tables
+In-Reply-To: <CAFBinCD3i5pRzSp4Sx5349p_2XQfdCNguxU-gU1tD_asFu6YjA@mail.gmail.com>
+References: <20180717095617.12240-1-jbrunet@baylibre.com>
+ <20180717095617.12240-4-jbrunet@baylibre.com>
+ <d4e5e35a-39e0-fe27-8d27-387c5312ca32@baylibre.com>
+ <CAFBinCBc_cFD2ACiSHVuRrXaqSyDnkJb2rem1_k2jwved=QXVw@mail.gmail.com>
+ <1532206010.26720.84.camel@baylibre.com>
+ <CAFBinCD3i5pRzSp4Sx5349p_2XQfdCNguxU-gU1tD_asFu6YjA@mail.gmail.com>
+Message-ID: <190f2749c6e65fddcd2fd17ebdb45be5a434b869.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-07-25 at 13:06 -0600, Rob Herring wrote:
-> > +- amlogic,aux-devs : List of phandles pointing to auxiliary devices
-> > +- amlogic,widgets : Please refer to widgets.txt.
-> > +- amlogic,routing : A list of the connections between audio components.
+On Sat, 2018-07-21 at 23:34 +0200, Martin Blumenstingl wrote:
+> On Sat, Jul 21, 2018 at 10:46 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+> > 
+> > On Sat, 2018-07-21 at 22:16 +0200, Martin Blumenstingl wrote:
+> > > > We could even add ranges instead of table when we know the PLL supports a well-known continuous dividers range.
+> > > 
+> > > I had a look at the sys_pll settings on Meson8b, here's what
+> > > Meson8/Meson8b/Meson8m2 support for sys_pll:
+> > > - 50..74
+> > > - 76
+> > > - 78
+> > > - 80
+> > > - 82
+> > > - 84
+> > > - 86
+> > > - 88
+> > > - 90
+> > > - 92
+> > > - 94
+> > > - 96
+> > > - 98
+> > 
+> > Are those values with the same predivider (n) value ?
 > 
-> audio-routing IIRC
+> yes, all are using n = 1
 
-Wouldn't it make sense to do the same for widgets and aux-devs then ?
+The table proposed in this patch keeps things the way they were before the
+change. We could extend the table with these values in a follow up patch.
 
-audio-widgets ?
-audio-aux-devs ?
+If those value are with n=1, then I would guess that odd values from 75 to 97
+work as well. 
