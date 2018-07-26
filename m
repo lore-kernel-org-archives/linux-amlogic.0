@@ -1,121 +1,68 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 26 Jul 2018 15:59:16 +0200
-Subject: [PATCH] firmware: meson_sm: Add serial number sysfs entry
-Message-ID: <1532613556-5398-1-git-send-email-narmstrong@baylibre.com>
+Date: Thu, 26 Jul 2018 16:13:58 +0200
+Subject: [PATCH] arm64: dts: meson: Switch simple-mfd and syscon order
+Message-ID: <1532614438-7207-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson SoC Secure Monitor implements a call to retrieve an unique
-SoC ID starting from the GX Family and all new families.
-
-The serial number is simply exposed as a sysfs entry under the firmware
-sysfs directory.
+The order between "syscon" and "simple-mfd" is important because in these
+particular cases, the node needs to be first a "simple-mfd" to expose
+it's sub-nodes, and later on a "syscon" to permit other nodes to access
+this register space through the "syscon" mechanism.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/firmware/meson/meson_sm.c       | 56 +++++++++++++++++++++++++++++++++
- include/linux/firmware/meson/meson_sm.h |  1 +
- 2 files changed, 57 insertions(+)
+This also has a consequence for U-Boot since the U-Boot DM is much simpler
+and can only associate a single device to a node, thus here we want these
+nodes to be an mfd bus to be able to probe the sub-nodes.
 
-diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-index 0ec2ca8..29fbc81 100644
---- a/drivers/firmware/meson/meson_sm.c
-+++ b/drivers/firmware/meson/meson_sm.c
-@@ -24,6 +24,7 @@
- #include <linux/printk.h>
- #include <linux/types.h>
- #include <linux/sizes.h>
-+ #include <linux/slab.h>
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 6adc8d3..3f0de9d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -342,7 +342,7 @@
+ 			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
  
- #include <linux/firmware/meson/meson_sm.h>
+ 			sysctrl: system-controller at 0 {
+-				compatible = "amlogic,meson-axg-hhi-sysctrl", "syscon", "simple-mfd";
++				compatible = "amlogic,meson-axg-hhi-sysctrl", "simple-mfd", "syscon";
+ 				reg = <0 0 0 0x400>;
  
-@@ -48,6 +49,7 @@ struct meson_sm_chip gxbb_chip = {
- 		CMD(SM_EFUSE_READ,	0x82000030),
- 		CMD(SM_EFUSE_WRITE,	0x82000031),
- 		CMD(SM_EFUSE_USER_MAX,	0x82000033),
-+		CMD(SM_GET_CHIP_ID,	0x82000044),
- 		{ /* sentinel */ },
- 	},
- };
-@@ -214,6 +216,57 @@ int meson_sm_call_write(void *buffer, unsigned int size, unsigned int cmd_index,
- }
- EXPORT_SYMBOL(meson_sm_call_write);
+ 				clkc: clock-controller {
+@@ -1180,7 +1180,7 @@
+ 			ranges = <0x0 0x0 0x0 0xff800000 0x0 0x100000>;
  
-+#define SM_CHIP_ID_LENGTH	119
-+#define SM_CHIP_ID_OFFSET	4
-+#define SM_CHIP_ID_SIZE		12
-+
-+static ssize_t serial_show(struct device *dev, struct device_attribute *attr,
-+			 char *buf)
-+{
-+	uint8_t *id_buf;
-+	int ret;
-+
-+	id_buf = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
-+	if (!id_buf)
-+		return -ENOMEM;
-+
-+	ret = meson_sm_call_read(id_buf, SM_CHIP_ID_LENGTH, SM_GET_CHIP_ID,
-+				 0, 0, 0, 0, 0);
-+	if (ret < 0) {
-+		kfree(id_buf);
-+		return ret;
-+	}
-+
-+	ret = sprintf(buf, "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x\n",
-+			id_buf[SM_CHIP_ID_OFFSET + 0],
-+			id_buf[SM_CHIP_ID_OFFSET + 1],
-+			id_buf[SM_CHIP_ID_OFFSET + 2],
-+			id_buf[SM_CHIP_ID_OFFSET + 3],
-+			id_buf[SM_CHIP_ID_OFFSET + 4],
-+			id_buf[SM_CHIP_ID_OFFSET + 5],
-+			id_buf[SM_CHIP_ID_OFFSET + 6],
-+			id_buf[SM_CHIP_ID_OFFSET + 7],
-+			id_buf[SM_CHIP_ID_OFFSET + 8],
-+			id_buf[SM_CHIP_ID_OFFSET + 9],
-+			id_buf[SM_CHIP_ID_OFFSET + 10],
-+			id_buf[SM_CHIP_ID_OFFSET + 11]);
-+
-+	kfree(id_buf);
-+
-+	return ret;
-+}
-+
-+static DEVICE_ATTR_RO(serial);
-+
-+static struct attribute *meson_sm_sysfs_attributes[] = {
-+	&dev_attr_serial.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group meson_sm_sysfs_attr_group = {
-+	.attrs = meson_sm_sysfs_attributes,
-+};
-+
- static const struct of_device_id meson_sm_ids[] = {
- 	{ .compatible = "amlogic,meson-gxbb-sm", .data = &gxbb_chip },
- 	{ /* sentinel */ },
-@@ -242,6 +295,9 @@ static int __init meson_sm_probe(struct platform_device *pdev)
- 	fw.chip = chip;
- 	pr_info("secure-monitor enabled\n");
+ 			sysctrl_AO: sys-ctrl at 0 {
+-				compatible = "amlogic,meson-axg-ao-sysctrl", "syscon", "simple-mfd";
++				compatible = "amlogic,meson-axg-ao-sysctrl", "simple-mfd", "syscon";
+ 				reg =  <0x0 0x0 0x0 0x100>;
  
-+	if (sysfs_create_group(&pdev->dev.kobj, &meson_sm_sysfs_attr_group))
-+		goto out_in_base;
-+
- 	return 0;
+ 				clkc_AO: clock-controller {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index b8dc4db..d88699f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -344,7 +344,7 @@
+ 			ranges = <0x0 0x0 0x0 0xc8100000 0x0 0x100000>;
  
- out_in_base:
-diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-index 37a5eae..f98c20d 100644
---- a/include/linux/firmware/meson/meson_sm.h
-+++ b/include/linux/firmware/meson/meson_sm.h
-@@ -17,6 +17,7 @@ enum {
- 	SM_EFUSE_READ,
- 	SM_EFUSE_WRITE,
- 	SM_EFUSE_USER_MAX,
-+	SM_GET_CHIP_ID,
- };
+ 			sysctrl_AO: sys-ctrl at 0 {
+-				compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
++				compatible = "amlogic,meson-gx-ao-sysctrl", "simple-mfd", "syscon";
+ 				reg =  <0x0 0x0 0x0 0x100>;
  
- struct meson_sm_firmware;
+ 				pwrc_vpu: power-controller-vpu {
+@@ -431,7 +431,7 @@
+ 			ranges = <0x0 0x0 0x0 0xc883c000 0x0 0x2000>;
+ 
+ 			sysctrl: system-controller at 0 {
+-				compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
++				compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
+ 				reg = <0 0 0 0x400>;
+ 			};
+ 
 -- 
 2.7.4
