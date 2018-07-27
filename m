@@ -1,48 +1,45 @@
-From: lee.jones@linaro.org (Lee Jones)
-Date: Fri, 27 Jul 2018 07:03:54 +0100
-Subject: [PATCH] arm64: dts: meson: Switch simple-mfd and syscon order
-In-Reply-To: <1532614438-7207-1-git-send-email-narmstrong@baylibre.com>
-References: <1532614438-7207-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20180727060354.GA4628@dell>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Fri, 27 Jul 2018 22:14:28 +0800
+Subject: [PATCH v3 1/2] clk: meson: add DT documentation for emmc clock
+ controller
+In-Reply-To: <20180724232917.GA27041@rob-hp-laptop>
+References: <20180712211244.11428-1-yixun.lan@amlogic.com>
+ <20180712211244.11428-2-yixun.lan@amlogic.com>
+ <20180724232917.GA27041@rob-hp-laptop>
+Message-ID: <e797412b-55db-6678-82ba-3a10ac99db9f@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 26 Jul 2018, Neil Armstrong wrote:
 
-> The order between "syscon" and "simple-mfd" is important because in these
-> particular cases, the node needs to be first a "simple-mfd" to expose
-> it's sub-nodes, and later on a "syscon" to permit other nodes to access
-> this register space through the "syscon" mechanism.
+HI Rob
+
+On 07/25/2018 07:29 AM, Rob Herring wrote:
+> On Thu, Jul 12, 2018 at 09:12:43PM +0000, Yixun Lan wrote:
+>> Document the MMC sub clock controller driver, the potential consumer
+>> of this driver is MMC or NAND. Also add three clock bindings IDs which
+>> provided by this driver.
+>>
+>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>> ---
+>>  .../bindings/clock/amlogic,mmc-clkc.txt       | 31 +++++++++++++++++++
+>>  .../clock/amlogic,meson-mmc-clkc.h            | 16 ++++++++++
+>>  2 files changed, 47 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+>>  create mode 100644 include/dt-bindings/clock/amlogic,meson-mmc-clkc.h
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
-> This also has a consequence for U-Boot since the U-Boot DM is much simpler
-> and can only associate a single device to a node, thus here we want these
-> nodes to be an mfd bus to be able to probe the sub-nodes.
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index 6adc8d3..3f0de9d 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -342,7 +342,7 @@
->  			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
->  
->  			sysctrl: system-controller at 0 {
-> -				compatible = "amlogic,meson-axg-hhi-sysctrl", "syscon", "simple-mfd";
-> +				compatible = "amlogic,meson-axg-hhi-sysctrl", "simple-mfd", "syscon";
 
-I must profess, I haven't looked at the code recently so can't really
-comment on the semantics - I'll leave that to Rob et. al.
+Thanks for the review!
 
-However, if the ordering is important, you should add a comment to
-prevent anyone re-jigging it or reverting the patch for some reason.
+There is a discussion about dropping "meson-" prefix in the compatible
+string[1]
 
--- 
-Lee Jones [???]
-Linaro Services Technical Lead
-Linaro.org ? Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+So, I will send another version with the new compatible name adjusted
+from "amlogic,meson-axg-mmc-clkc" to "amlogic,axg-mmc-clkc"..
+probably also rename the dt-bindings header file to amlogc,mmc-clkc.h
+
+[1]  https://lkml.kernel.org/r/7hk1prmg4w.fsf at baylibre.com
+
+
+Yixun
