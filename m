@@ -1,49 +1,48 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 26 Jul 2018 16:38:10 -0500
-Subject: [PATCH 00/14] arm64: dts: meson-axg: add audio support
-In-Reply-To: <CAFBinCB_fULnmrpyzNwnfAiL9QGco_6QW957Wroj8o6ZhNwmWA@mail.gmail.com>
- (Martin Blumenstingl's message of "Wed, 25 Jul 2018 23:26:27 +0200")
-References: <20180724125238.14567-1-jbrunet@baylibre.com>
- <CAFBinCBh-b=ie4hBMWdHG8KoLQ7qiRfo8vXfJ1PRcN4UPtg+uA@mail.gmail.com>
- <705e31bf0d978b7d356b2f077179ab0e3db6f092.camel@baylibre.com>
- <CAFBinCB_fULnmrpyzNwnfAiL9QGco_6QW957Wroj8o6ZhNwmWA@mail.gmail.com>
-Message-ID: <7hfu051xvh.fsf@baylibre.com>
+From: lee.jones@linaro.org (Lee Jones)
+Date: Fri, 27 Jul 2018 07:03:54 +0100
+Subject: [PATCH] arm64: dts: meson: Switch simple-mfd and syscon order
+In-Reply-To: <1532614438-7207-1-git-send-email-narmstrong@baylibre.com>
+References: <1532614438-7207-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <20180727060354.GA4628@dell>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+On Thu, 26 Jul 2018, Neil Armstrong wrote:
 
-> Hi Jerome,
->
-> On Wed, Jul 25, 2018 at 11:19 PM <jbrunet@baylibre.com> wrote:
->>
->> On Wed, 2018-07-25 at 21:11 +0200, Martin Blumenstingl wrote:
->> > nit-pick: one patch uses "arm64: dts: meson-axg: s400" in the subject
->> > while other patches that are touching the s400 board aren't
->> > if you have to re-send this series: can you please use the "arm64:
->> > dts: meson-axg: s400:" prefix for all patches touching the s400 board?
->>
->> hum, do we really have such rule, or do you think we should add one ?
-> looking at the git history in arch/arm64/boot/dts/amlogic: it seems
-> that we don't have a rule yet, even though some (some of
-> your's/Neil's/my) patches were using that naming schema in the past
->
->> Kevin, do you have opinion ?
->>
->> Not that I really mind either way, but prefixes rules are usually there to help
->> maintainer filter the patches. Will such rule help in any way ?
-> maybe it's just a problem of a false initial impression
-> I read "arm64: dts: meson-axg: add usb power regulator" in the
-> cover-letter and came to the conclusion that this patch must be wrong
-> since meson-axg.dtsi should not have any regulators (unless they're
-> built into the SoC). only when looking at the patch itself I realized
-> that it's fine because it patches the s400.dts
+> The order between "syscon" and "simple-mfd" is important because in these
+> particular cases, the node needs to be first a "simple-mfd" to expose
+> it's sub-nodes, and later on a "syscon" to permit other nodes to access
+> this register space through the "syscon" mechanism.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+> This also has a consequence for U-Boot since the U-Boot DM is much simpler
+> and can only associate a single device to a node, thus here we want these
+> nodes to be an mfd bus to be able to probe the sub-nodes.
+> 
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 6adc8d3..3f0de9d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -342,7 +342,7 @@
+>  			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+>  
+>  			sysctrl: system-controller at 0 {
+> -				compatible = "amlogic,meson-axg-hhi-sysctrl", "syscon", "simple-mfd";
+> +				compatible = "amlogic,meson-axg-hhi-sysctrl", "simple-mfd", "syscon";
 
-I actually had the same first impression problem.  At first glance, it
-looks like all the patches are AXG-generic, and only the 2 that mention
-s400 apply to the board.
+I must profess, I haven't looked at the code recently so can't really
+comment on the semantics - I'll leave that to Rob et. al.
 
-So, if this needs a respin, I'd prefer the board name where appropriate,
-but it's not something I'm going to be picky about.
+However, if the ordering is important, you should add a comment to
+prevent anyone re-jigging it or reverting the patch for some reason.
 
-Kevin
+-- 
+Lee Jones [???]
+Linaro Services Technical Lead
+Linaro.org ? Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
