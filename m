@@ -1,138 +1,31 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 31 Jul 2018 10:39:03 +0200
+From: broonie@kernel.org (Mark Brown)
+Date: Tue, 31 Jul 2018 15:02:22 +0100
 Subject: [asoc:for-4.19 199/204]
  sound/soc//meson/axg-tdm-interface.c:225:8: error: implicit declaration of
  function 'clk_set_duty_cycle'; did you mean 'clk_set_rate'?
-In-Reply-To: <1532112058.26720.62.camel@baylibre.com>
+In-Reply-To: <1c2a42498ea90428fb6504414154fe3663258ed6.camel@baylibre.com>
 References: <201807210204.l9GJCtSI%fengguang.wu@intel.com>
  <1532112058.26720.62.camel@baylibre.com>
-Message-ID: <1c2a42498ea90428fb6504414154fe3663258ed6.camel@baylibre.com>
+ <1c2a42498ea90428fb6504414154fe3663258ed6.camel@baylibre.com>
+Message-ID: <20180731140222.GE5719@sirena.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2018-07-20 at 20:40 +0200, Jerome Brunet wrote:
-> On Sat, 2018-07-21 at 02:12 +0800, kbuild test robot wrote:
-> > tree:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-4.19
-> > head:   a8e43c21a8a32a3af4abc605b6ebcab039f28e00
-> > commit: c41c2a355b86368608377eaf3df442ec0f342f1e [199/204] ASoC: meson: add tdm output driver
-> > config: m68k-allyesconfig (attached as .config)
-> > compiler: m68k-linux-gnu-gcc (Debian 7.2.0-11) 7.2.0
-> > reproduce:
-> >         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-> >         chmod +x ~/bin/make.cross
-> >         git checkout c41c2a355b86368608377eaf3df442ec0f342f1e
-> >         # save the attached .config to linux build tree
-> >         GCC_VERSION=7.2.0 make.cross ARCH=m68k 
-> > 
-> > All errors (new ones prefixed by >>):
-> > 
-> >    sound/soc//meson/axg-tdm-interface.c: In function 'axg_tdm_iface_set_lrclk':
-> > > > sound/soc//meson/axg-tdm-interface.c:225:8: error: implicit declaration of function 'clk_set_duty_cycle'; did you mean 'clk_set_rate'? [-Werror=implicit-function-declaration]
-> > 
-> >      ret = clk_set_duty_cycle(iface->lrclk, ratio_num, 2);
-> 
-> Hi Mark,
-> 
-> I'm really sorry about this. I completely forgot this dependency.
-> It has been accepted in clk early in this cycle and it should be sent to Linus
-> during the next merge window. Mike and Stephen have topic branch with related
-> change:
-> 
-> git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-core-duty-cycle
-> 
-> commit:
-> 9fba738a53dd ("clk: add duty cycle support") 
-> 
-> Again, sorry about this.
-> Regards
-> Jerome
+On Tue, Jul 31, 2018 at 10:39:03AM +0200, Jerome Brunet wrote:
 
-Hi Mark,
+> The commit adding the duty-cycle feature in CCF is directly based on v4.18-rc1
+> Do you plan on pulling this in your branch ? or wait for dependency to be sorted
+> out during the merge window maybe ?
 
-I see that kbuild-robot pick up this problem again this morning. I was wondering
-if you were expecting anything else from me on this ?
-
-The commit adding the duty-cycle feature in CCF is directly based on v4.18-rc1
-Do you plan on pulling this in your branch ? or wait for dependency to be sorted
-out during the merge window maybe ?
-
-If there is anything I can do to help, please let me know.
-
-Best Regards
-Jerome
-
-> 
-> >            ^~~~~~~~~~~~~~~~~~
-> >            clk_set_rate
-> >    cc1: some warnings being treated as errors
-> > 
-> > vim +225 sound/soc//meson/axg-tdm-interface.c
-> > 
-> > d60e4f1e Jerome Brunet 2018-07-17  188  
-> > d60e4f1e Jerome Brunet 2018-07-17  189  static int axg_tdm_iface_set_lrclk(struct snd_soc_dai *dai,
-> > d60e4f1e Jerome Brunet 2018-07-17  190  				   struct snd_pcm_hw_params *params)
-> > d60e4f1e Jerome Brunet 2018-07-17  191  {
-> > d60e4f1e Jerome Brunet 2018-07-17  192  	struct axg_tdm_iface *iface = snd_soc_dai_get_drvdata(dai);
-> > d60e4f1e Jerome Brunet 2018-07-17  193  	unsigned int ratio_num;
-> > d60e4f1e Jerome Brunet 2018-07-17  194  	int ret;
-> > d60e4f1e Jerome Brunet 2018-07-17  195  
-> > d60e4f1e Jerome Brunet 2018-07-17  196  	ret = clk_set_rate(iface->lrclk, params_rate(params));
-> > d60e4f1e Jerome Brunet 2018-07-17  197  	if (ret) {
-> > d60e4f1e Jerome Brunet 2018-07-17  198  		dev_err(dai->dev, "setting sample clock failed: %d\n", ret);
-> > d60e4f1e Jerome Brunet 2018-07-17  199  		return ret;
-> > d60e4f1e Jerome Brunet 2018-07-17  200  	}
-> > d60e4f1e Jerome Brunet 2018-07-17  201  
-> > d60e4f1e Jerome Brunet 2018-07-17  202  	switch (iface->fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-> > d60e4f1e Jerome Brunet 2018-07-17  203  	case SND_SOC_DAIFMT_I2S:
-> > d60e4f1e Jerome Brunet 2018-07-17  204  	case SND_SOC_DAIFMT_LEFT_J:
-> > d60e4f1e Jerome Brunet 2018-07-17  205  	case SND_SOC_DAIFMT_RIGHT_J:
-> > d60e4f1e Jerome Brunet 2018-07-17  206  		/* 50% duty cycle ratio */
-> > d60e4f1e Jerome Brunet 2018-07-17  207  		ratio_num = 1;
-> > d60e4f1e Jerome Brunet 2018-07-17  208  		break;
-> > d60e4f1e Jerome Brunet 2018-07-17  209  
-> > d60e4f1e Jerome Brunet 2018-07-17  210  	case SND_SOC_DAIFMT_DSP_A:
-> > d60e4f1e Jerome Brunet 2018-07-17  211  	case SND_SOC_DAIFMT_DSP_B:
-> > d60e4f1e Jerome Brunet 2018-07-17  212  		/*
-> > d60e4f1e Jerome Brunet 2018-07-17  213  		 * A zero duty cycle ratio will result in setting the mininum
-> > d60e4f1e Jerome Brunet 2018-07-17  214  		 * ratio possible which, for this clock, is 1 cycle of the
-> > d60e4f1e Jerome Brunet 2018-07-17  215  		 * parent bclk clock high and the rest low, This is exactly
-> > d60e4f1e Jerome Brunet 2018-07-17  216  		 * what we want here.
-> > d60e4f1e Jerome Brunet 2018-07-17  217  		 */
-> > d60e4f1e Jerome Brunet 2018-07-17  218  		ratio_num = 0;
-> > d60e4f1e Jerome Brunet 2018-07-17  219  		break;
-> > d60e4f1e Jerome Brunet 2018-07-17  220  
-> > d60e4f1e Jerome Brunet 2018-07-17  221  	default:
-> > d60e4f1e Jerome Brunet 2018-07-17  222  		return -EINVAL;
-> > d60e4f1e Jerome Brunet 2018-07-17  223  	}
-> > d60e4f1e Jerome Brunet 2018-07-17  224  
-> > d60e4f1e Jerome Brunet 2018-07-17 @225  	ret = clk_set_duty_cycle(iface->lrclk, ratio_num, 2);
-> > d60e4f1e Jerome Brunet 2018-07-17  226  	if (ret) {
-> > d60e4f1e Jerome Brunet 2018-07-17  227  		dev_err(dai->dev,
-> > d60e4f1e Jerome Brunet 2018-07-17  228  			"setting sample clock duty cycle failed: %d\n", ret);
-> > d60e4f1e Jerome Brunet 2018-07-17  229  		return ret;
-> > d60e4f1e Jerome Brunet 2018-07-17  230  	}
-> > d60e4f1e Jerome Brunet 2018-07-17  231  
-> > d60e4f1e Jerome Brunet 2018-07-17  232  	/* Set sample clock inversion */
-> > d60e4f1e Jerome Brunet 2018-07-17  233  	ret = clk_set_phase(iface->lrclk,
-> > d60e4f1e Jerome Brunet 2018-07-17  234  			    axg_tdm_lrclk_invert(iface->fmt) ? 180 : 0);
-> > d60e4f1e Jerome Brunet 2018-07-17  235  	if (ret) {
-> > d60e4f1e Jerome Brunet 2018-07-17  236  		dev_err(dai->dev,
-> > d60e4f1e Jerome Brunet 2018-07-17  237  			"setting sample clock phase failed: %d\n", ret);
-> > d60e4f1e Jerome Brunet 2018-07-17  238  		return ret;
-> > d60e4f1e Jerome Brunet 2018-07-17  239  	}
-> > d60e4f1e Jerome Brunet 2018-07-17  240  
-> > d60e4f1e Jerome Brunet 2018-07-17  241  	return 0;
-> > d60e4f1e Jerome Brunet 2018-07-17  242  }
-> > d60e4f1e Jerome Brunet 2018-07-17  243  
-> > 
-> > :::::: The code at line 225 was first introduced by commit
-> > :::::: d60e4f1e4be5e2dfb55fb084b119aed094227a35 ASoC: meson: add tdm interface driver
-> > 
-> > :::::: TO: Jerome Brunet <jbrunet@baylibre.com>
-> > :::::: CC: Mark Brown <broonie@kernel.org>
-> > 
-> > ---
-> > 0-DAY kernel test infrastructure                Open Source Technology Center
-> > https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
-> 
-> 
+I'd like to but I'd rather have an explicit ack from the clock
+maintainers that that's OK and ideally a signed tag.  Though it's taken
+so long that at this point it's not going to be much worse than just
+hoping it gets sorted out in mainline given the lack of branches, it's
+not affecting common platforms.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 488 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180731/894b30e5/attachment.sig>
