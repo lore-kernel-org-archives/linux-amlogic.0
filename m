@@ -1,47 +1,124 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed,  1 Aug 2018 16:00:49 +0200
-Subject: [PATCH v2 0/4] clk: meson: clk-pll driver update
-Message-ID: <20180801140053.25899-1-jbrunet@baylibre.com>
+Date: Wed,  1 Aug 2018 16:00:51 +0200
+Subject: [PATCH v2 2/4] clk: meson: clk-pll: drop CLK_GET_RATE_NOCACHE where
+ unnecessary
+In-Reply-To: <20180801140053.25899-1-jbrunet@baylibre.com>
+References: <20180801140053.25899-1-jbrunet@baylibre.com>
+Message-ID: <20180801140053.25899-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset is yet another round of update to the amlogic pll driver.
+CLK_GET_RATE_NOCACHE should only be necessary when the registers
+controlling the rate of clock may change outside of CCF. On Amlogic,
+it should only be the case for the hdmi pll which is directly controlled
+by the display driver (WIP to fix this).
 
- 1) Enable bit is added so we don't rely on the bootloader or the init
-    value to enable to pll device.
- 2) Remove unnecessary CLK_GET_RATE_NOCACHE flags.
- 3) OD post dividers are removed from the pll driver. This simplify the
-    driver and let us provide the clocks which exist between those
-    dividers. Some device are actually using these clocks.
- 4) The rates hard coded in parameter tables are remove. Instead, we
-    only rely on the parent rate and the parameters to calculate the
-    output rate, which is a lot better.
+The other plls should not require this flag.
 
-This series has been tested on the gxl libretech cc and axg s400.
-I did not test it on meson8b yet.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/axg.c     |  1 -
+ drivers/clk/meson/gxbb.c    | 12 ++++++++----
+ drivers/clk/meson/meson8b.c |  3 ---
+ 3 files changed, 8 insertions(+), 8 deletions(-)
 
-Changes since v1: [0]
- - improve commit description of patch 1
- - remove unnecessary CLK_GET_RATE_NOCACHE flags.
- - add missing CLK_SET_RATE_PARENT.
-
-[0]: https://lkml.kernel.org/r/20180717095617.12240-1-jbrunet at baylibre.com
-
-Jerome Brunet (4):
-  clk: meson: clk-pll: add enable bit
-  clk: meson: clk-pll: drop CLK_GET_RATE_NOCACHE where unnecessary
-  clk: meson: clk-pll: remove od parameters
-  clk: meson: clk-pll: drop hard-coded rates from pll tables
-
- drivers/clk/meson/axg.c     | 326 +++++++++++++----------
- drivers/clk/meson/axg.h     |   8 +-
- drivers/clk/meson/clk-pll.c | 156 +++++++----
- drivers/clk/meson/clkc.h    |  16 +-
- drivers/clk/meson/gxbb.c    | 518 ++++++++++++++++++------------------
- drivers/clk/meson/gxbb.h    |  10 +-
- drivers/clk/meson/meson8b.c | 173 ++++++------
- drivers/clk/meson/meson8b.h |   5 +-
- 8 files changed, 665 insertions(+), 547 deletions(-)
-
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index 6d8976554656..991fa511c05a 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -106,7 +106,6 @@ static struct clk_regmap axg_sys_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 5ed34566917c..01e3f80e88cc 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -218,7 +218,6 @@ static struct clk_regmap gxbb_fixed_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
+@@ -286,6 +285,10 @@ static struct clk_regmap gxbb_hdmi_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "hdmi_pll_pre_mult" },
+ 		.num_parents = 1,
++		/*
++		 * Display directly handle hdmi pll registers ATM, we need
++		 * NOCACHE to keep our view of the clock as accurate as possible
++		 */
+ 		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+@@ -349,6 +352,10 @@ static struct clk_regmap gxl_hdmi_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
++		/*
++		 * Display directly handle hdmi pll registers ATM, we need
++		 * NOCACHE to keep our view of the clock as accurate as possible
++		 */
+ 		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+@@ -391,7 +398,6 @@ static struct clk_regmap gxbb_sys_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
+@@ -442,7 +448,6 @@ static struct clk_regmap gxbb_gp0_pll = {
+ 		.ops = &meson_clk_pll_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
+@@ -500,7 +505,6 @@ static struct clk_regmap gxl_gp0_pll = {
+ 		.ops = &meson_clk_pll_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index fd4c414893f5..ec1f97725b9f 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -137,7 +137,6 @@ static struct clk_regmap meson8b_fixed_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
+@@ -179,7 +178,6 @@ static struct clk_regmap meson8b_vid_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
+@@ -222,7 +220,6 @@ static struct clk_regmap meson8b_sys_pll = {
+ 		.ops = &meson_clk_pll_ro_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+-		.flags = CLK_GET_RATE_NOCACHE,
+ 	},
+ };
+ 
 -- 
 2.17.1
