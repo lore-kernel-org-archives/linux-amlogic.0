@@ -1,51 +1,41 @@
-From: yixun.lan@amlogic.com (Yixun Lan)
-Date: Wed, 1 Aug 2018 12:16:24 +0000
-Subject: [PATCH] clk: meson-axg: pcie: drop the mpll3 clock parent
-Message-ID: <20180801121625.9488-1-yixun.lan@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed,  1 Aug 2018 12:00:23 +0200
+Subject: [PATCH 5/5] meson: pinctrl-axg: add support for TEST_N pin
+In-Reply-To: <1533117623-27856-1-git-send-email-narmstrong@baylibre.com>
+References: <1533117623-27856-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1533117623-27856-6-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-We found the PCIe driver doesn't really work with
-the mpll3 clock which is actually reserved for debug,
-So drop it from the mux list.
+The Amlogic Meson AXG SoCs needs a Secure Monitor call to set the TEST_N
+direction, add a special bank to support this pin.
 
-Fixes: 33b89db68236 ("clk: meson-axg: add clocks required by pcie driver")
-Tested-by: Jianxin Qin <jianxin.qin@amlogic.com>
-Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
-hi Jerome:
-  I'm sorry we found this during latest PCIe driver test.
+ drivers/pinctrl/meson/pinctrl-meson-axg.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-  I'm fine with either pull this as a fixup for 4.18 or
-queued for next 4.19, since the PCIe driver is not merged yet,
-just do as you feel what's fit best, thanks.
-
-Yixun
----
- drivers/clk/meson/axg.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 2d458092884a..246c23df64a8 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -700,12 +700,14 @@ static struct clk_regmap axg_pcie_mux = {
- 		.offset = HHI_PCIE_PLL_CNTL6,
- 		.mask = 0x1,
- 		.shift = 2,
-+		/* skip the parent mpll3, reserved for debug */
-+		.table = (u32[]){ 1 },
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "pcie_mux",
- 		.ops = &clk_regmap_mux_ops,
--		.parent_names = (const char *[]){ "mpll3", "pcie_pll" },
--		.num_parents = 2,
-+		.parent_names = (const char *[]){ "pcie_pll" },
-+		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+index 46a0918..12615d8 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+@@ -10,6 +10,7 @@
+ #include <dt-bindings/gpio/meson-axg-gpio.h>
+ #include "pinctrl-meson.h"
+ #include "pinctrl-meson-axg-pmx.h"
++#include <linux/firmware/meson/meson_sm.h>
+ 
+ static const struct pinctrl_pin_desc meson_axg_periphs_pins[] = {
+ 	MESON_PIN(GPIOZ_0),
+@@ -1006,6 +1007,9 @@ static struct meson_bank meson_axg_periphs_banks[] = {
+ static struct meson_bank meson_axg_aobus_banks[] = {
+ 	/*   name    first      last      irq	pullen  pull    dir     out     in  */
+ 	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0, 13, 0,  16,  0, 0,  0,  0,  0, 16,  1,  0),
++	/* This PIN Direction must be set using a SMC call, so dir reg offset is the sm call */
++	BANK_SMC("TEST", GPIO_TEST_N, GPIO_TEST_N,
++					 -1, -1, 0, 30,  0, 14, SM_TEST_N_DIR, 1, 0, 31, 1, 31),
  };
+ 
+ static struct meson_pmx_bank meson_axg_periphs_pmx_banks[] = {
 -- 
-2.18.0
+2.7.4
