@@ -1,44 +1,49 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  1 Aug 2018 12:04:08 +0200
-Subject: [PATCH 1/5] meson_sm: add TEST_N pin direction call
-In-Reply-To: <1533117623-27856-1-git-send-email-narmstrong@baylibre.com>
-References: <1533117623-27856-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1533117848-28194-1-git-send-email-narmstrong@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed,  1 Aug 2018 12:57:20 +0200
+Subject: [PATCH] pwm: meson: fix mux clock names
+Message-ID: <20180801105720.23999-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson GX and AXG has a Secure Monitor call to change the
-TEST_N pin gpio direction, add it in the supported call list.
+Current clock name looks like this:
+/soc/bus at ffd00000/pwm at 1b000#mux0
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+This is bad because CCF uses the clock to create a directory in clk debugfs.
+With such name, the directory creation (silently) fails and the debugfs
+entry end up being created at the debugfs root.
+
+With this change, the clock name will now be:
+ffd1b000.pwm#mux0
+
+This matches the clock naming scheme used in the ethernet and mmc driver.
+It also fixes the problem with debugfs.
+
+Fixes: 36af66a79056 ("pwm: Convert to using %pOF instead of full_name")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/firmware/meson/meson_sm.c       | 1 +
- include/linux/firmware/meson/meson_sm.h | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/pwm/pwm-meson.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-index 0ec2ca8..f407001 100644
---- a/drivers/firmware/meson/meson_sm.c
-+++ b/drivers/firmware/meson/meson_sm.c
-@@ -48,6 +48,7 @@ struct meson_sm_chip gxbb_chip = {
- 		CMD(SM_EFUSE_READ,	0x82000030),
- 		CMD(SM_EFUSE_WRITE,	0x82000031),
- 		CMD(SM_EFUSE_USER_MAX,	0x82000033),
-+		CMD(SM_TEST_N_DIR,	0x82000046),
- 		{ /* sentinel */ },
- 	},
- };
-diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-index 37a5eae..133b1c3 100644
---- a/include/linux/firmware/meson/meson_sm.h
-+++ b/include/linux/firmware/meson/meson_sm.h
-@@ -17,6 +17,7 @@ enum {
- 	SM_EFUSE_READ,
- 	SM_EFUSE_WRITE,
- 	SM_EFUSE_USER_MAX,
-+	SM_TEST_N_DIR,
- };
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index 822860b4801a..c1ed641b3e26 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -458,7 +458,6 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
+ 				   struct meson_pwm_channel *channels)
+ {
+ 	struct device *dev = meson->chip.dev;
+-	struct device_node *np = dev->of_node;
+ 	struct clk_init_data init;
+ 	unsigned int i;
+ 	char name[255];
+@@ -467,7 +466,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
+ 	for (i = 0; i < meson->chip.npwm; i++) {
+ 		struct meson_pwm_channel *channel = &channels[i];
  
- struct meson_sm_firmware;
+-		snprintf(name, sizeof(name), "%pOF#mux%u", np, i);
++		snprintf(name, sizeof(name), "%s#mux%u", dev_name(dev), i);
+ 
+ 		init.name = name;
+ 		init.ops = &clk_mux_ops;
 -- 
-2.7.4
+2.17.1
