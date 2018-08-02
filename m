@@ -1,35 +1,63 @@
 From: maxi.jourdan@wanadoo.fr (Maxime Jourdan)
-Date: Thu, 2 Aug 2018 14:34:44 +0200
-Subject: [PATCH 4/4] drm/meson: convert to the new canvas module
-In-Reply-To: <744700e43aed3880807f86abde0caf3df1127e60.camel@baylibre.com>
-References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
- <20180801185128.23440-5-maxi.jourdan@wanadoo.fr>
- <744700e43aed3880807f86abde0caf3df1127e60.camel@baylibre.com>
-Message-ID: <CAHStOZ6B-R7=5utGqb49OsFBsUsMVsn=WMrzNK8Wk-zcgbnPuA@mail.gmail.com>
+Date: Thu, 2 Aug 2018 14:48:43 +0200
+Subject: [RFC 4/4] dt-bindings: media: add Amlogic Meson Video Decoder
+ Bindings
+In-Reply-To: <a5c8d552eaf567a09ba9d3cbc50771c5128cd805.camel@baylibre.com>
+References: <20180801193320.25313-1-maxi.jourdan@wanadoo.fr>
+ <20180801193320.25313-5-maxi.jourdan@wanadoo.fr>
+ <a5c8d552eaf567a09ba9d3cbc50771c5128cd805.camel@baylibre.com>
+Message-ID: <CAHStOZ6Buk2JbT5A-sJsrJTTHLNb6omGpVCeYEZ6bpqSxqsZAQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+Hi Martin & Jerome,
 
-2018-08-02 10:39 GMT+02:00 Jerome Brunet <jbrunet@baylibre.com>:
-> I looks like the consumer of your 'canvas' devices must know how the canvas
-> device is organized internally. Maybe something better can be done ?
+2018-08-02 12:33 GMT+02:00 Jerome Brunet <jbrunet@baylibre.com>:
+> Maxime, when formatting your patchset, remember to put the bindings
+> documentation before actually using them. This patch could be the first one of
+> your series.
+
+Noted, thanks.
+
+2018-08-01 22:13 GMT+02:00 Martin Blumenstingl
+<martin.blumenstingl@googlemail.com>:
+>> +- VDEC_2 is used as a helper for corner cases like H.264 4K on older SoCs.
+>> +It is not handled by this driver.
+> is it currently not handled or will it never be?
+
+I don't think it will ever be, at least from me. This VDEC unit is
+rarely used and only for a few corner cases on SoCs like meson8b, and
+I have no intention of supporting them for now as there are other
+limitations.
+
+> any reason why you are not using the DMC syscon (as added in your
+> patch "dt-bindings: soc: amlogic: add meson-canvas documentation")
+> instead of mapping the DMC region again?
+
+To answer you and Jerome, I didn't use it because I wanted to keep
+both patchsets separate in case of testing. In hindsight though, I
+should have used the canvas module in the vdec in the RFC.
+So yeah, this will definitely be used by the final product.
+
+>> +- interrupts: should contain the vdec and esparser IRQs.
+> are these two IRQs the "currently supported" ones or are there more
+> for the whole IP block (but just not implemented yet)?
+
+There are more IRQs within the VDEC but they are not used at the
+moment. Some are for the demuxer, VDEC_2, etc..
+
+> AFAIK the "correct" format is (just like you've done for the clocks below):
+>        reg = <0x0 0xc8820000 0x0 0x10000>,
+>                  <0x0 0xc110a580 0x0 0xe4>,
+>                  <0x0 0xc8838000 0x0 0x60>;
 >
-> Your canvas driver could provide a consumer API, for example:
-> meson_canvas_get(): to translate for struct device_node to whatever abstract
-> pointer you would need.
-> meson_canvas_alloc(), setup(), etc ...
+
+> AFAIK the "correct" format is (just like you've done for the clocks below):
+>        interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
+>                            <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
 >
-> ... This is just adding a bit of indirection but it would help hide the plumbing
-> of your canvas driver from the consumers (and repeat this code in each). This
-> might be usefull if you ever to make this canvas driver evolve.
 
-Overall the inner workings are hidden as there is an ops struct
-instead of public functions.
+>> +       amlogic,ao-sysctrl = <&sysctrl_AO>;
+> this is not documented above - is it needed?
 
-I agree that the "fetch the node" boilerplate code could be put behind
-a helper, but at the same time this code helps remind the developer
-that there needs to be a canvas node in the dts, and that it has to be
-linked in your own device node.
-
-I would like to keep it that way if that is okay with you.
+Duly noted, thanks.
