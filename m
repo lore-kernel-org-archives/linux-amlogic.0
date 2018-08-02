@@ -1,689 +1,199 @@
-From: boris.brezillon@bootlin.com (Boris Brezillon)
-Date: Wed, 1 Aug 2018 23:50:45 +0200
-Subject: [RFC PATCH v2 2/2] mtd: rawnand: meson: add support for Amlogic
- NAND flash controller
-In-Reply-To: <20180719094612.5833-3-yixun.lan@amlogic.com>
-References: <20180719094612.5833-1-yixun.lan@amlogic.com>
- <20180719094612.5833-3-yixun.lan@amlogic.com>
-Message-ID: <20180801235045.5b4d8211@bbrezillon>
+From: hverkuil@xs4all.nl (Hans Verkuil)
+Date: Thu, 2 Aug 2018 08:59:27 +0200
+Subject: [RFC 0/4] media: meson: add video decoder driver
+In-Reply-To: <20180801193320.25313-1-maxi.jourdan@wanadoo.fr>
+References: <20180801193320.25313-1-maxi.jourdan@wanadoo.fr>
+Message-ID: <1afbec16-1dd0-d614-d6b3-7b57488d5510@xs4all.nl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yixun,
+Hi Maxime!
 
-On Thu, 19 Jul 2018 17:46:12 +0800
-Yixun Lan <yixun.lan@amlogic.com> wrote:
+Thanks for working on this, much appreciated.
 
-I haven't finished reviewing the driver yet (I'll try to do that later
-this week), but I already pointed a few things to fix/improve.
+Some high-level comments below:
 
-> +
-> +static int meson_nfc_exec_op(struct nand_chip *chip,
-> +			     const struct nand_operation *op, bool check_only)
-> +{
-> +	struct mtd_info *mtd = nand_to_mtd(chip);
-> +	struct meson_nfc *nfc = nand_get_controller_data(chip);
-> +	const struct nand_op_instr *instr = NULL;
-> +	int ret = 0, cmd;
-> +	unsigned int op_id;
-> +	int i;
-> +
-> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
-> +		instr = &op->instrs[op_id];
-> +		switch (instr->type) {
-> +		case NAND_OP_CMD_INSTR:
-> +			cmd = nfc->param.chip_select | NFC_CMD_CLE;
-> +			cmd |= instr->ctx.cmd.opcode & 0xff;
-> +			writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> +			meson_nfc_cmd_idle(nfc, NAND_TWB_TIME_CYCLE);
+On 08/01/2018 09:33 PM, Maxime Jourdan wrote:
+> This is a Request for Comments for the amlogic (meson) video decoder driver.
+> It is written around the V4L2 M2M framework without using the Request
+> API as there are a hardware bitstream parser and firmwares.
+> 
+> It features decoding for:
+> - MPEG 1/2/4, H.263, H.264, MJPEG, HEVC 8-bit (partial)
+> 
+> Even though they are supported in hardware, it doesn't leverage support for:
+> - HEVC 10-bit, VP9, VC1 (all those are in TODOs)
+> 
+> The output is multiplanar NV12 (V4L2_PIX_FMT_NV12M).
+> Supported SoCs are: GXBB (S905), GXL (S905X/W/D), GXM (S912)
+> It was tested primarily with FFmpeg, GStreamer and kodi.
+> 
+> The file hierarchy can be boiled down to:
+> 
+> 			| codec_h264.c
+> 			| codec_mjpeg.c
+> 			| codec_mpeg4.c
+>           | vdec_1.c -->| codec_mpeg12.c
+> vdec.c -->| vdec_hevc.c -->| codec_hevc.c
+> 	  | esparser.c
+> 
+> The V4L2 code is handled mostly in vdec.c.
+> Each VDEC and CODEC unit is accessed via ops structs to facilitate the code.
+> 
+> The arrangement between vdecs and codecs can be seen in vdec_platform.c
+> This file also declares things like pixfmts, min/max buffers and firmware paths
+> for each SoC.
+> 
+> Specific questions about the code:
+> 
+> - While I do use the platform's general clks and resets tied to the vdec in
+> a nice way (dts + clock/reset controller with clk/reset frameworks),
+> there are some subclocks and resets that I use in the driver by writing
+> directly to registers. e.g:
+> 
+> 	- writel_relaxed((1<<7) | (1<<6), core->dos_base + DOS_SW_RESET0);
+> 	- writel_relaxed(0x3ff, core->dos_base + DOS_GCLK_EN0);
+> 
+> and a few other instances where that happens.
+> 
+> Is it okay to not create specific controllers for those ? The main issue is
+> the lack of documentation so I don't know which resets/clocks are impacted by
+> those writes.
+> The only thing I'm certain of is that they only apply to the vdec/esparser.
+> 
+> - I tend to call vdec_* functions from the codec handlers.
+> 
+> For instance, codec_h264 will call vdec_dst_buf_done_idx to DONE
+> a capture buffer. vdec_dst_buf_done_idx is as such a public symbol.
+> 
+> Should I use an ops struct for those instead, so that the codec handlers
+> don't depend directly on the vdec general code ?
+> 
+> - Naming: my public symbols either start with vdec_* or esparser_*
+> 
+> Should I change that to something meson/amlogic specific ?
 
-This is not necessarily TWB you have to wait after a CMD cycle. It can
-be tWHR. And you should definitely not hardcode the value, since,
-AFAIR, it depends on the selected SDR timings. Probably something you
-should calculate in ->setup_data_interface().
+Yes please.
 
-> +			meson_nfc_drain_cmd(nfc);
+> 
+> - I have a _lot_ of writel_relaxed calls.
+> 
+> Can I leave them be or is there a nicer way to do it ?
+> 
+> - Since the decoder is single instance, I only allow one _open at a time.
+> 
+> However the v4l2 compliance suite complains about this.
+> How should I safely make it single instance ? Not allowing multiple start_streaming ?
 
-I don't know exactly how the NAND controller works, but it's usually
-not a good idea to execute the operation right away, especially if you
-have address/cmd/data cycles following this cmd and those can be
-packed in the same controller operation. 
+The vb2 queue_setup operation is a good place for that: let it return EBUSY
+if there is a decoder active already. This op is called when allocating buffers
+and that's what locks things in place.
 
-> +			break;
-> +
-> +		case NAND_OP_ADDR_INSTR:
-> +			for (i = 0; i < instr->ctx.addr.naddrs; i++) {
-> +				cmd = nfc->param.chip_select | NFC_CMD_ALE;
-> +				cmd |= instr->ctx.addr.addrs[i] & 0xff;
-> +				writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> +			}
-> +			break;
-> +
-> +		case NAND_OP_DATA_IN_INSTR:
-> +			meson_nfc_read_buf(mtd, instr->ctx.data.buf.in,
-> +					   instr->ctx.data.len);
-> +			break;
-> +
-> +		case NAND_OP_DATA_OUT_INSTR:
-> +			meson_nfc_write_buf(mtd, instr->ctx.data.buf.out,
-> +					    instr->ctx.data.len);
+Just be aware that it can be called multiple times if the user calls VIDIOC_CREATE_BUFS,
+so you need to keep track of the struct file that is currently 'owning' the decoder.
 
-Well, I'm not entirely sure what happens when you call
-read/write_buf(), but it seems you're doing that one byte at a time,
-and that sounds not so efficient given the operation you do for each
-byte read/written. Don't you have a way to tell the engine that you
-want to read/write X bytes?
+> 
+> - I am getting these 2 fails, but unsure what they are about:
+> 
+> Buffer ioctls:
+> 	fail: ../../../v4l-utils-1.12.3/utils/v4l2-compliance/v4l2-test-buffers.cpp(428): node->node2 == NULL
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: FAIL
 
-> +			break;
-> +
-> +		case NAND_OP_WAITRDY_INSTR:
-> +			mdelay(instr->ctx.waitrdy.timeout_ms);
-> +			ret = nand_soft_waitrdy(chip,
-> +						instr->ctx.waitrdy.timeout_ms);
+This is since you only allow one open.
 
-Hm, i'd be surprised if the controller does not have a way to optimize
-waits on R/B transitions.
+> 	fail: ../../../v4l-utils-1.12.3/utils/v4l2-compliance/v4l2-test-buffers.cpp(571): q.has_expbuf(node)
+> 	test VIDIOC_EXPBUF: FAIL
 
-> +			break;
-> +		}
-> +	}
-> +	return ret;
-> +}
-> +
-> +static int meson_ooblayout_ecc(struct mtd_info *mtd, int section,
-> +			       struct mtd_oob_region *oobregion)
-> +{
-> +	struct nand_chip *chip = mtd_to_nand(mtd);
-> +	int free_oob;
-> +
-> +	if (section >= chip->ecc.steps)
-> +		return -ERANGE;
-> +
-> +	free_oob = (section + 1) * 2;
-> +	oobregion->offset = section * chip->ecc.bytes + free_oob;
+Not sure, might well be a knock-on result of the 'one open' problem.
 
-Hm, this offset calculation looks weird. Are you sure it's correct?
-I'd bet on something like:
+BTW, always get the latest code from the v4l-utils git repo, don't use a released
+version for v4l2-compliance: it's always evolving and you don't want to use an
+old version. Also for the next version of this patch series add the output of
+v4l2-compliance to this cover letter, I want to see it.
 
-	oobregion->offset = 2 + (section * (chip->ecc.bytes + 4));
+Finally, are you aware of the work Tomasz Figa on specifying the codec behavior?
 
-> +	oobregion->length = chip->ecc.bytes;
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_ooblayout_free(struct mtd_info *mtd, int section,
-> +				struct mtd_oob_region *oobregion)
-> +{
-> +	struct nand_chip *chip = mtd_to_nand(mtd);
-> +
-> +	if (section >= chip->ecc.steps)
-> +		return -ERANGE;
-> +
-> +	oobregion->offset = section * (2 + chip->ecc.bytes);
-> +	oobregion->length = 2;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
-> +	.ecc = meson_ooblayout_ecc,
-> +	.free = meson_ooblayout_free,
-> +};
-> +
-> +static int meson_nfc_ecc_init(struct device *dev, struct mtd_info *mtd)
-> +{
-> +	struct nand_chip *nand = mtd_to_nand(mtd);
-> +	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
-> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
-> +	const struct meson_nand_ecc *meson_ecc = nfc->data->ecc;
-> +	int num = nfc->data->ecc_num;
-> +	int nsectors, i, bytes;
-> +
-> +	/* support only ecc hw mode */
-> +	if (nand->ecc.mode != NAND_ECC_HW) {
-> +		dev_err(dev, "ecc.mode not supported\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!nand->ecc.size || !nand->ecc.strength) {
-> +		/* use datasheet requirements */
-> +		nand->ecc.strength = nand->ecc_strength_ds;
-> +		nand->ecc.size = nand->ecc_step_ds;
-> +	}
-> +
-> +	if (nand->ecc.options & NAND_ECC_MAXIMIZE) {
-> +		nand->ecc.size = 1024;
-> +		nsectors = mtd->writesize / nand->ecc.size;
-> +		bytes = mtd->oobsize - 2 * nsectors;
-> +		bytes /= nsectors;
-> +
-> +		/* and bytes has to be even. */
-> +		if (bytes % 2)
-> +			bytes--;
-> +
-> +		nand->ecc.strength = bytes * 8 / fls(8 * nand->ecc.size);
-> +	} else {
-> +		if (nand->ecc.strength > meson_ecc[num - 1].strength) {
-> +			dev_err(dev, "not support ecc strength\n");
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < num; i++) {
-> +		if (meson_ecc[i].strength == 0xff ||
-> +		    nand->ecc.strength < meson_ecc[i].strength)
-> +			break;
-> +	}
+https://lkml.org/lkml/2018/7/24/539
 
-I'd suggest that you look at nand_match_ecc_req(). It's likely that the
-selection logic you have here can be replaced by the generic function.
-
-> +
-> +	nand->ecc.strength = meson_ecc[i - 1].strength;
-> +	nand->ecc.bytes = meson_ecc[i - 1].parity;
-> +
-> +	meson_chip->bch_mode = meson_ecc[i - 1].bch;
-> +
-> +	if (nand->ecc.size != 512 && nand->ecc.size != 1024)
-> +		return -EINVAL;
-> +
-> +	nsectors = mtd->writesize / nand->ecc.size;
-> +	bytes = nsectors * 2;
-> +
-> +	if (mtd->oobsize < (nand->ecc.bytes * nsectors + bytes))
-> +		return -EINVAL;
-> +
-> +	mtd_set_ooblayout(mtd, &meson_ooblayout_ops);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_nfc_clk_init(struct meson_nfc *nfc)
-> +{
-> +	int ret;
-> +
-> +	/* request core clock */
-> +	nfc->core_clk = devm_clk_get(nfc->dev, "core");
-> +	if (IS_ERR(nfc->core_clk)) {
-> +		dev_err(nfc->dev, "failed to get core clk\n");
-> +		return PTR_ERR(nfc->core_clk);
-> +	}
-> +
-> +	nfc->device_clk = devm_clk_get(nfc->dev, "device");
-> +	if (IS_ERR(nfc->device_clk)) {
-> +		dev_err(nfc->dev, "failed to get device clk\n");
-> +		return PTR_ERR(nfc->device_clk);
-> +	}
-> +
-> +	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
-> +	regmap_update_bits(nfc->reg_clk, 0,
-> +			   CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK,
-> +			   CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK);
-> +
-> +	ret = clk_prepare_enable(nfc->core_clk);
-> +	if (ret) {
-> +		dev_err(nfc->dev, "failed to enable core clk\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(nfc->device_clk);
-> +	if (ret) {
-> +		dev_err(nfc->dev, "failed to enable device clk\n");
-> +		clk_disable_unprepare(nfc->core_clk);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void meson_nfc_disable_clk(struct meson_nfc *nfc)
-> +{
-> +	clk_disable_unprepare(nfc->device_clk);
-> +	clk_disable_unprepare(nfc->core_clk);
-> +}
-> +
-> +static int meson_nfc_buffer_init(struct mtd_info *mtd)
-> +{
-> +	struct nand_chip *nand = mtd_to_nand(mtd);
-> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
-> +	int info_bytes, page_bytes;
-> +	int nsectors;
-> +
-> +	nsectors = mtd->writesize / nand->ecc.size;
-> +	info_bytes = nsectors * PER_INFO_BYTE;
-> +	page_bytes = mtd->writesize + mtd->oobsize;
-> +
-> +	if (nfc->data_buf && nfc->info_buf)
-> +		return 0;
-> +
-> +	nfc->data_buf = kmalloc(page_bytes, GFP_KERNEL);
-
-I'm pretty sure that does not work if you have several chips. Either
-you have one buffer tied to the NFC, and it has to be large enough to
-handle the NAND with the largest page, or you have one buffer per chip.
-
-> +	if (!nfc->data_buf)
-> +		return -ENOMEM;
-> +
-> +	nfc->info_buf = kmalloc(info_bytes, GFP_KERNEL);
-> +	if (!nfc->info_buf) {
-> +		kfree(nfc->data_buf);
-> +		return -ENOMEM;
-> +	}
-> +
-
-Those buffers are not removed in the cleanup/error path.
-
-> +	return 0;
-> +}
-> +
-> +static int meson_nfc_calc_set_timing(struct meson_nfc *nfc,
-> +				     int rc_min, int rea_max, int rhoh_min)
-> +{
-> +	int div, bt_min, bt_max, bus_timing;
-> +	int ret;
-> +
-> +	div = DIV_ROUND_UP((rc_min / 1000), NFC_CLK_CYCLE);
-> +	ret = clk_set_rate(nfc->device_clk, 1000000000 / div);
-> +	if (ret) {
-> +		dev_err(nfc->dev, "failed to set nand clock rate\n");
-> +		return ret;
-> +	}
-> +
-> +	bt_min = (rea_max + NFC_DEFAULT_DELAY) / div;
-> +	bt_max = (NFC_DEFAULT_DELAY + rhoh_min + rc_min / 2) / div;
-> +
-> +	bt_min = DIV_ROUND_UP(bt_min, 1000);
-> +	bt_max = DIV_ROUND_UP(bt_max, 1000);
-> +
-> +	if (bt_max < bt_min)
-> +		return -EINVAL;
-> +
-> +	bus_timing = (bt_min + bt_max) / 2 + 1;
-> +
-> +	writel((1 << 21), nfc->reg_base + NFC_REG_CFG);
-> +	writel((NFC_CLK_CYCLE - 1) | (bus_timing << 5),
-> +	       nfc->reg_base + NFC_REG_CFG);
-> +
-> +	writel((1 << 31), nfc->reg_base + NFC_REG_CMD);
-
-Nothing special to setup when operating in EDO mode (tRC < 20ns)?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +meson_nfc_setup_data_interface(struct mtd_info *mtd, int csline,
-> +			       const struct nand_data_interface *conf)
-> +{
-> +	struct nand_chip *nand = mtd_to_nand(mtd);
-> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
-> +	const struct nand_sdr_timings *timings;
-> +
-> +	timings = nand_get_sdr_timings(conf);
-> +	if (IS_ERR(timings))
-> +		return -ENOTSUPP;
-> +
-> +	if (csline == NAND_DATA_IFACE_CHECK_ONLY)
-> +		return 0;
-
-Are you sure you support all SDR timing modes, even EDO ones (tRC <
-20ns)?
-
-> +
-> +	meson_nfc_calc_set_timing(nfc, timings->tRC_min,
-> +				  timings->tREA_max, timings->tRHOH_min);
-> +	return 0;
-> +}
-> +
-> +static int
-> +meson_nfc_nand_chip_init(struct device *dev,
-> +			 struct meson_nfc *nfc, struct device_node *np)
-> +{
-> +	struct meson_nfc_nand_chip *chip;
-> +	struct nand_chip *nand;
-> +	struct mtd_info *mtd;
-> +	int ret, nsels, i, len = 0;
-> +	char cs_id[16];
-> +	u32 tmp;
-> +
-> +	if (!of_get_property(np, "reg", &nsels))
-> +		return -EINVAL;
-> +
-> +	nsels /= sizeof(u32);
-> +	if (!nsels || nsels > MAX_CE_NUM) {
-> +		dev_err(dev, "invalid reg property size\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	chip = devm_kzalloc(dev, sizeof(*chip) + (nsels * sizeof(u8)),
-> +			    GFP_KERNEL);
-> +	if (!chip)
-> +		return -ENOMEM;
-> +
-> +	chip->nsels = nsels;
-> +
-> +	for (i = 0; i < nsels; i++) {
-> +		ret = of_property_read_u32_index(np, "reg", i, &tmp);
-> +		if (ret) {
-> +			dev_err(dev, "could not retrieve reg property: %d\n",
-> +				ret);
-> +			return ret;
-> +		}
-> +		chip->sels[i] = tmp;
-
-You should probably keep track of all the already assigned CS lines, to
-prevent situations where the same controller-CS is used twice
-(copy&paste error when writing the DT).
-
-> +		len += snprintf(cs_id + len, 16, "%s%d", i ? "-" : ".", tmp);
-
-Hm, do we really need to be that accurate? I'd suggest using the first
-CS only.
-
-> +	}
-> +
-> +	chip->is_scramble =
-> +		of_property_read_bool(np, "amlogic,nand-enable-scrambler");
-
-I think I already complained about that :P. If you think this is still
-needed (meaning that the autodetection + NAND_NEED_SCRAMBLING flag are
-not enough), I'll need a detailed explanation ;-).
-
-> +
-> +	nand = &chip->nand;
-> +	nand_set_flash_node(nand, np);
-> +	nand_set_controller_data(nand, nfc);
-> +
-> +	nand->options |= NAND_USE_BOUNCE_BUFFER;
-> +	nand->select_chip = meson_nfc_select_chip;
-> +	nand->exec_op = meson_nfc_exec_op;
-> +	nand->setup_data_interface = meson_nfc_setup_data_interface;
-> +
-> +	nand->ecc.mode = NAND_ECC_HW;
-> +
-> +	nand->ecc.write_page_raw = meson_nfc_write_page_raw;
-> +	nand->ecc.write_page = meson_nfc_write_page_hwecc;
-> +	nand->ecc.write_oob_raw = nand_write_oob_std;
-> +	nand->ecc.write_oob = nand_write_oob_std;
-> +
-> +	nand->ecc.read_page_raw = meson_nfc_read_page_raw;
-> +	nand->ecc.read_page = meson_nfc_read_page_hwecc;
-> +	nand->ecc.read_oob_raw = meson_nfc_read_oob_raw;
-> +	nand->ecc.read_oob = meson_nfc_read_oob;
-
-We usually setup the ECC fields after the identification phase. This
-way, if you ever want/need to support SW ECC, the code is already
-properly placed.
-
-> +
-> +	mtd = nand_to_mtd(nand);
-> +	mtd->owner = THIS_MODULE;
-> +	mtd->dev.parent = dev;
-> +
-> +	ret = nand_scan_ident(mtd, 1, NULL);
-> +	if (ret) {
-> +		dev_err(dev, "failed to can ident\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	mtd->name = devm_kasprintf(nfc->dev, GFP_KERNEL, "%s:nand%s",
-> +				   dev_name(dev), cs_id);
-
-So, if you follow my suggestion, it should be:
-
-
-You should make that conditional, because the core might have retrieved
-a user-friendly from the DT (label prop defined to the NAND chip node).
-
-So, if you follow my suggestion to just use the first CS for the nand
-id, that gives:
-
-	if (!mtd->name) {
-		mtd->name = devm_kasprintf(nfc->dev, GFP_KERNEL,
-					   "%s:nand%d",
-					   dev_name(dev),
-					   chip->sels[i]);
-		if (!mtd->name)
-			return -ENOMEM;
-	}
-> +
-> +	/* store bbt magic in page, cause OOB is not protected */
-> +	if (nand->bbt_options & NAND_BBT_USE_FLASH)
-> +		nand->bbt_options |= NAND_BBT_NO_OOB;
-> +
-> +	nand->options |= NAND_NO_SUBPAGE_WRITE;
-> +
-> +	ret = meson_nfc_ecc_init(dev, mtd);
-> +	if (ret) {
-> +		dev_err(dev, "failed to ecc init\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (nand->options & NAND_BUSWIDTH_16) {
-> +		dev_err(dev, "16bits buswidth not supported");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = meson_nfc_buffer_init(mtd);
-> +	if (ret)
-> +		return -ENOMEM;
-> +
-> +	ret = nand_scan_tail(mtd);
-
-Miquel has reworked the nand_scan() infrastructure recently. Now you
-have to use nand_scan() and define ->attach_chip() hook to do all the
-init that happens between nand_scan_ident() and nand_scan_tail() in
-your code. And of course, all resources allocated in the
-->attach_chip() hook should be freed in ->detach_chip().
-
-> +	if (ret)
-> +		return -ENODEV;
-> +
-> +	ret = mtd_device_register(mtd, NULL, 0);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register mtd device: %d\n", ret);
-> +		nand_cleanup(nand);
-> +		return ret;
-> +	}
-> +
-> +	list_add_tail(&chip->node, &nfc->chips);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_nfc_nand_chip_cleanup(struct meson_nfc *nfc)
-
-			     ^ chips
-
-> +{
-> +	struct meson_nfc_nand_chip *chip;
-> +	struct mtd_info *mtd;
-> +	int ret;
-> +
-> +	while (!list_empty(&nfc->chips)) {
-> +		chip = list_first_entry(&nfc->chips, struct meson_nfc_nand_chip,
-> +					node);
-> +		mtd = nand_to_mtd(&chip->nand);
-> +		ret = mtd_device_unregister(mtd);
-> +		if (ret)
-> +			return ret;
-> +
-> +		nand_cleanup(&chip->nand);
-> +		list_del(&chip->node);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_nfc_nand_chips_init(struct device *dev, struct meson_nfc *nfc)
-> +{
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *nand_np;
-> +	int ret;
-> +
-> +	for_each_child_of_node(np, nand_np) {
-> +		ret = meson_nfc_nand_chip_init(dev, nfc, nand_np);
-> +		if (ret) {
-> +			meson_nfc_nand_chip_cleanup(nfc);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t meson_nfc_irq(int irq, void *id)
-> +{
-> +	struct meson_nfc *nfc = id;
-> +	u32 cfg;
-> +
-> +	cfg = readl(nfc->reg_base + NFC_REG_CFG);
-> +	cfg |= (1 << 21);
-> +	writel(cfg, nfc->reg_base + NFC_REG_CFG);
-> +
-> +	complete(&nfc->completion);
-> +	return IRQ_HANDLED;
-
-Can you check if at least one event has been generated, and if not
-return IRQ_NONE?
-
-> +}
-> +
-> +static const struct meson_nfc_data meson_gxl_data = {
-> +	.short_bch	= NFC_ECC_BCH60_1K,
-> +	.ecc		= meson_gxl_ecc,
-> +	.ecc_num	= ARRAY_SIZE(meson_gxl_ecc),
-> +};
-> +
-> +static const struct meson_nfc_data meson_axg_data = {
-> +	.short_bch	= NFC_ECC_BCH8_1K,
-> +	.ecc		= meson_axg_ecc,
-> +	.ecc_num	= ARRAY_SIZE(meson_axg_ecc),
-> +};
-> +
-> +static const struct of_device_id meson_nfc_id_table[] = {
-> +	{
-> +		.compatible = "amlogic,meson-gxl-nfc",
-> +		.data = &meson_gxl_data,
-> +	}, {
-> +		.compatible = "amlogic,meson-axg-nfc",
-> +		.data = &meson_axg_data,
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_nfc_id_table);
-> +
-> +static int meson_nfc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct meson_nfc *nfc;
-> +	struct resource *res;
-> +	int ret, irq;
-> +
-> +	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
-> +	if (!nfc)
-> +		return -ENOMEM;
-> +
-> +	nfc->data =
-> +		(struct meson_nfc_data *)of_device_get_match_data(&pdev->dev);
-
-You don't need the cast if you declare nfc->data as const in the struct
-def.
-
-> +	if (!nfc->data)
-> +		return -ENODEV;
-> +
-> +	spin_lock_init(&nfc->controller.lock);
-> +	init_waitqueue_head(&nfc->controller.wq);
-
-There's a helper for that (nand_controller_init()).
-
-> +	INIT_LIST_HEAD(&nfc->chips);
-> +
-> +	nfc->dev = dev;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!res) {
-> +		dev_err(dev, "Failed to nfc reg resource\n");
-> +		return -EINVAL;
-> +	}
-
-No need to do this check, just pass res to devm_ioremap_resource() and
-it will do the check for you.
-
-> +
-> +	nfc->reg_base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(nfc->reg_base)) {
-> +		dev_err(dev, "Failed to lookup nfi reg base\n");
-
-This error message is not needed, devm_ioremap_resource() complains
-already.
-
-Just do:
-
-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-	nfc->reg_base = devm_ioremap_resource(dev, res);
-	if (IS_ERR(nfc->reg_base))
-		return PTR_ERR(nfc->reg_base);
-
-> +		return PTR_ERR(nfc->reg_base);
-> +	}
-> +
-> +	nfc->reg_clk =
-> +		syscon_regmap_lookup_by_phandle(dev->of_node,
-> +						"amlogic,mmc-syscon");
-> +	if (IS_ERR(nfc->reg_clk)) {
-> +		dev_err(dev, "Failed to lookup clock base\n");
-> +		return PTR_ERR(nfc->reg_clk);
-> +	}
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0) {
-> +		dev_err(dev, "no nfi irq resource\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = meson_nfc_clk_init(nfc);
-> +	if (ret) {
-> +		dev_err(dev, "failed to initialize nand clk\n");
-> +		goto err_clk;
-> +	}
-> +
-> +	ret = devm_request_irq(dev, irq, meson_nfc_irq, 0, dev_name(dev), nfc);
-
-You should make sure all irqs are masked/cleared before setting up your
-irq handler.
-
-> +	if (ret) {
-> +		dev_err(dev, "failed to request nfi irq\n");
-> +		ret = -EINVAL;
-> +		goto err_clk;
-> +	}
-> +
-> +	ret = dma_set_mask(dev, DMA_BIT_MASK(32));
-> +	if (ret) {
-> +		dev_err(dev, "failed to set dma mask\n");
-> +		goto err_clk;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, nfc);
-> +
-> +	ret = meson_nfc_nand_chips_init(dev, nfc);
-> +	if (ret) {
-> +		dev_err(dev, "failed to init nand chips\n");
-> +		goto err_clk;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_clk:
-> +	meson_nfc_disable_clk(nfc);
-> +	return ret;
-> +}
+The final version will be close to what was posted there.
 
 Regards,
 
-Boris
+	Hans
+
+> 
+> 
+> 
+> And of course, I will gladly accept any kind of other feedback you would have.
+> 
+> Thanks!
+> 
+> 
+> Maxime Jourdan (4):
+>   media: meson: add v4l2 m2m video decoder driver
+>   ARM64: dts: meson-gx: add vdec entry
+>   ARM64: dts: meson: add vdec entries
+>   dt-bindings: media: add Amlogic Meson Video Decoder Bindings
+> 
+>  .../bindings/media/amlogic,meson-vdec.txt     |   60 +
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   14 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   |    8 +
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |    8 +
+>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    |    4 +
+>  drivers/media/platform/Kconfig                |   10 +
+>  drivers/media/platform/meson/Makefile         |    1 +
+>  drivers/media/platform/meson/vdec/Makefile    |    7 +
+>  drivers/media/platform/meson/vdec/canvas.c    |   69 +
+>  drivers/media/platform/meson/vdec/canvas.h    |   42 +
+>  .../media/platform/meson/vdec/codec_h264.c    |  376 +++++
+>  .../media/platform/meson/vdec/codec_h264.h    |   13 +
+>  .../media/platform/meson/vdec/codec_helpers.c |   45 +
+>  .../media/platform/meson/vdec/codec_helpers.h |    8 +
+>  .../media/platform/meson/vdec/codec_hevc.c    | 1383 +++++++++++++++++
+>  .../media/platform/meson/vdec/codec_hevc.h    |   13 +
+>  .../media/platform/meson/vdec/codec_mjpeg.c   |  203 +++
+>  .../media/platform/meson/vdec/codec_mjpeg.h   |   13 +
+>  .../media/platform/meson/vdec/codec_mpeg12.c  |  183 +++
+>  .../media/platform/meson/vdec/codec_mpeg12.h  |   13 +
+>  .../media/platform/meson/vdec/codec_mpeg4.c   |  213 +++
+>  .../media/platform/meson/vdec/codec_mpeg4.h   |   13 +
+>  drivers/media/platform/meson/vdec/esparser.c  |  320 ++++
+>  drivers/media/platform/meson/vdec/esparser.h  |   16 +
+>  drivers/media/platform/meson/vdec/hevc_regs.h |  742 +++++++++
+>  drivers/media/platform/meson/vdec/vdec.c      | 1009 ++++++++++++
+>  drivers/media/platform/meson/vdec/vdec.h      |  152 ++
+>  drivers/media/platform/meson/vdec/vdec_1.c    |  266 ++++
+>  drivers/media/platform/meson/vdec/vdec_1.h    |   13 +
+>  drivers/media/platform/meson/vdec/vdec_hevc.c |  188 +++
+>  drivers/media/platform/meson/vdec/vdec_hevc.h |   22 +
+>  .../media/platform/meson/vdec/vdec_platform.c |  273 ++++
+>  .../media/platform/meson/vdec/vdec_platform.h |   29 +
+>  33 files changed, 5729 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-vdec.txt
+>  create mode 100644 drivers/media/platform/meson/vdec/Makefile
+>  create mode 100644 drivers/media/platform/meson/vdec/canvas.c
+>  create mode 100644 drivers/media/platform/meson/vdec/canvas.h
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_h264.c
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_h264.h
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_helpers.c
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_helpers.h
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_hevc.c
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_hevc.h
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_mjpeg.c
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_mjpeg.h
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.c
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.h
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg4.c
+>  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg4.h
+>  create mode 100644 drivers/media/platform/meson/vdec/esparser.c
+>  create mode 100644 drivers/media/platform/meson/vdec/esparser.h
+>  create mode 100644 drivers/media/platform/meson/vdec/hevc_regs.h
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec.c
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec.h
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec_1.c
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec_1.h
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec_hevc.c
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec_hevc.h
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.c
+>  create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.h
+> 
