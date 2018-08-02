@@ -1,13 +1,13 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 2 Aug 2018 10:54:33 +0200
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 02 Aug 2018 11:14:55 +0200
 Subject: [RFC 0/4] media: meson: add video decoder driver
 In-Reply-To: <20180801193320.25313-1-maxi.jourdan@wanadoo.fr>
 References: <20180801193320.25313-1-maxi.jourdan@wanadoo.fr>
-Message-ID: <7502893f-da68-8712-a616-b4eb5b4d67a8@baylibre.com>
+Message-ID: <80eb63eee4ad1927a617ce526e7aba2342ac66f8.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 01/08/2018 21:33, Maxime Jourdan wrote:
+On Wed, 2018-08-01 at 21:33 +0200, Maxime Jourdan wrote:
 > This is a Request for Comments for the amlogic (meson) video decoder driver.
 > It is written around the V4L2 M2M framework without using the Request
 > API as there are a hardware bitstream parser and firmwares.
@@ -46,22 +46,36 @@ On 01/08/2018 21:33, Maxime Jourdan wrote:
 > directly to registers. e.g:
 > 
 > 	- writel_relaxed((1<<7) | (1<<6), core->dos_base + DOS_SW_RESET0);
-
-This seems to be internal resets
-
 > 	- writel_relaxed(0x3ff, core->dos_base + DOS_GCLK_EN0);
 
-This seems to be internal gates
+Answering for the clocks here:
+- There is no obligation to use the clock framework to model your clocks. It is
+just very convenient when we need to handle clk parenting (rate, enable) because
+you don't need to worry about setting the whole tree (It is not the only reason
+to use CCF of course) ... but this is assuming you have been able to model this
+tree in CCF.
 
-If it's in the VDEC/DO registers space, you can keep this internaly, no need to use
-the clk or reset framework.
-
-Neil
+If you know nothing about the clock and you just know that you need to flip this
+bit to 'make it work' then don't bother with CCF for now.
 
 > 
 > and a few other instances where that happens.
 > 
-> Is it okay to not create specific controllers for those ? The main issue is
+> Is it okay to not create specific controllers for those ?
+
+It depends what you mean by controller:
+
+- Any device may add a clk to CCF (call clk(_hw)_register()). the clk pointer
+will just be available to the related driver. As described above, this might be
+useful to propagate your changes to the rest of the tree.
+
+- A device may also be a provider. After registering, it may call
+of_clk_add_hw_provider() (or any similar function). Other devices will then be
+able to request the clocks this device has registered. This is useful when the
+clock is in region by one device and used by another device.
+
+
+> The main issue is
 > the lack of documentation so I don't know which resets/clocks are impacted by
 > those writes.
 > The only thing I'm certain of is that they only apply to the vdec/esparser.
@@ -77,6 +91,15 @@ Neil
 > - Naming: my public symbols either start with vdec_* or esparser_*
 > 
 > Should I change that to something meson/amlogic specific ?
+
+That what we tend to do yes.
+
+If the symbol is not static, you should probably have a prefix like 'meson_gx_'
+... maybe 'meson_gx_vdec'. Another (amlogic) platform may come along someday,
+with another 'type' of vdec.
+
+If the symbol is static, then maybe vdec_ is enough.
+
 > 
 > - I have a _lot_ of writel_relaxed calls.
 > 
