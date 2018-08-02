@@ -1,34 +1,57 @@
-From: maxi.jourdan@wanadoo.fr (Maxime Jourdan)
-Date: Thu, 2 Aug 2018 14:56:22 +0200
-Subject: [RFC 0/4] media: meson: add video decoder driver
-In-Reply-To: <80eb63eee4ad1927a617ce526e7aba2342ac66f8.camel@baylibre.com>
-References: <20180801193320.25313-1-maxi.jourdan@wanadoo.fr>
- <80eb63eee4ad1927a617ce526e7aba2342ac66f8.camel@baylibre.com>
-Message-ID: <CAHStOZ4pt4ECYcLkv8mXZkB5JvUm0NVp9sD6mfQofDLgpUHMiA@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 02 Aug 2018 15:01:41 +0200
+Subject: [PATCH 4/4] drm/meson: convert to the new canvas module
+In-Reply-To: <CAHStOZ6B-R7=5utGqb49OsFBsUsMVsn=WMrzNK8Wk-zcgbnPuA@mail.gmail.com>
+References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
+ <20180801185128.23440-5-maxi.jourdan@wanadoo.fr>
+ <744700e43aed3880807f86abde0caf3df1127e60.camel@baylibre.com>
+ <CAHStOZ6B-R7=5utGqb49OsFBsUsMVsn=WMrzNK8Wk-zcgbnPuA@mail.gmail.com>
+Message-ID: <843e41de9fa7d5f87309ff4e0db2ed84a1153a4c.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome, Neil, Hans,
+On Thu, 2018-08-02 at 14:34 +0200, Maxime Jourdan wrote:
+> Hi Jerome,
+> 
+> 2018-08-02 10:39 GMT+02:00 Jerome Brunet <jbrunet@baylibre.com>:
+> > I looks like the consumer of your 'canvas' devices must know how the canvas
+> > device is organized internally. Maybe something better can be done ?
+> > 
+> > Your canvas driver could provide a consumer API, for example:
+> > meson_canvas_get(): to translate for struct device_node to whatever abstract
+> > pointer you would need.
+> > meson_canvas_alloc(), setup(), etc ...
+> > 
+> > ... This is just adding a bit of indirection but it would help hide the plumbing
+> > of your canvas driver from the consumers (and repeat this code in each). This
+> > might be usefull if you ever to make this canvas driver evolve.
+> 
+> Overall the inner workings are hidden as there is an ops struct
+> instead of public functions.
 
-Thanks a lot for all the insights.
+What I don't like is precisely that you need to expose this 'struct ops' to the
+consumer. I would prefer an API for this (it can be a 1:1 mapping). The canvas
+should remain some abstract object you get from DT.
 
-2018-08-02 8:59 GMT+02:00 Hans Verkuil <hverkuil@xs4all.nl>:
->>       fail: ../../../v4l-utils-1.12.3/utils/v4l2-compliance/v4l2-test-buffers.cpp(571): q.has_expbuf(node)
->>       test VIDIOC_EXPBUF: FAIL
->
-> Not sure, might well be a knock-on result of the 'one open' problem.
->
-> BTW, always get the latest code from the v4l-utils git repo, don't use a released
-> version for v4l2-compliance: it's always evolving and you don't want to use an
-> old version. Also for the next version of this patch series add the output of
-> v4l2-compliance to this cover letter, I want to see it.
+IMO, this is the same as a reset, a syscon or whatever other phandle you get
+from DT. The consumer should not have to 'care' how it works (how data are
+organized), it should just use it.
 
-Will do.
+Whatever you need to do to deal with your canvas phandle should (IMO) reside in
+your soc/amlogic/meson-canvas.c, and not be spread in the consumers.
 
-> Finally, are you aware of the work Tomasz Figa on specifying the codec behavior?
->
-> https://lkml.org/lkml/2018/7/24/539
->
-> The final version will be close to what was posted there.
+> 
+> I agree that the "fetch the node" boilerplate code could be put behind
+> a helper, but at the same time this code helps remind the developer
+> that there needs to be a canvas node in the dts, and that it has to be
+> linked in your own device node.
 
-I wasn't, thanks for pointing it out.
+This is why we have a DT documentation.
+
+And, as far as I understand amlogic's display and decoder stuff, you won't get
+very far w/o a canvas, so 'the developer' will be reminded fairly quickly ;)
+
+> 
+> I would like to keep it that way if that is okay with you.
+
+It's just my opinion, I'm not the one merging it ... :P
