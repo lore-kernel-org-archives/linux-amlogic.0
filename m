@@ -1,63 +1,34 @@
 From: maxi.jourdan@wanadoo.fr (Maxime Jourdan)
-Date: Thu, 2 Aug 2018 14:48:43 +0200
-Subject: [RFC 4/4] dt-bindings: media: add Amlogic Meson Video Decoder
- Bindings
-In-Reply-To: <a5c8d552eaf567a09ba9d3cbc50771c5128cd805.camel@baylibre.com>
+Date: Thu, 2 Aug 2018 14:56:22 +0200
+Subject: [RFC 0/4] media: meson: add video decoder driver
+In-Reply-To: <80eb63eee4ad1927a617ce526e7aba2342ac66f8.camel@baylibre.com>
 References: <20180801193320.25313-1-maxi.jourdan@wanadoo.fr>
- <20180801193320.25313-5-maxi.jourdan@wanadoo.fr>
- <a5c8d552eaf567a09ba9d3cbc50771c5128cd805.camel@baylibre.com>
-Message-ID: <CAHStOZ6Buk2JbT5A-sJsrJTTHLNb6omGpVCeYEZ6bpqSxqsZAQ@mail.gmail.com>
+ <80eb63eee4ad1927a617ce526e7aba2342ac66f8.camel@baylibre.com>
+Message-ID: <CAHStOZ4pt4ECYcLkv8mXZkB5JvUm0NVp9sD6mfQofDLgpUHMiA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin & Jerome,
+Hi Jerome, Neil, Hans,
 
-2018-08-02 12:33 GMT+02:00 Jerome Brunet <jbrunet@baylibre.com>:
-> Maxime, when formatting your patchset, remember to put the bindings
-> documentation before actually using them. This patch could be the first one of
-> your series.
+Thanks a lot for all the insights.
 
-Noted, thanks.
-
-2018-08-01 22:13 GMT+02:00 Martin Blumenstingl
-<martin.blumenstingl@googlemail.com>:
->> +- VDEC_2 is used as a helper for corner cases like H.264 4K on older SoCs.
->> +It is not handled by this driver.
-> is it currently not handled or will it never be?
-
-I don't think it will ever be, at least from me. This VDEC unit is
-rarely used and only for a few corner cases on SoCs like meson8b, and
-I have no intention of supporting them for now as there are other
-limitations.
-
-> any reason why you are not using the DMC syscon (as added in your
-> patch "dt-bindings: soc: amlogic: add meson-canvas documentation")
-> instead of mapping the DMC region again?
-
-To answer you and Jerome, I didn't use it because I wanted to keep
-both patchsets separate in case of testing. In hindsight though, I
-should have used the canvas module in the vdec in the RFC.
-So yeah, this will definitely be used by the final product.
-
->> +- interrupts: should contain the vdec and esparser IRQs.
-> are these two IRQs the "currently supported" ones or are there more
-> for the whole IP block (but just not implemented yet)?
-
-There are more IRQs within the VDEC but they are not used at the
-moment. Some are for the demuxer, VDEC_2, etc..
-
-> AFAIK the "correct" format is (just like you've done for the clocks below):
->        reg = <0x0 0xc8820000 0x0 0x10000>,
->                  <0x0 0xc110a580 0x0 0xe4>,
->                  <0x0 0xc8838000 0x0 0x60>;
+2018-08-02 8:59 GMT+02:00 Hans Verkuil <hverkuil@xs4all.nl>:
+>>       fail: ../../../v4l-utils-1.12.3/utils/v4l2-compliance/v4l2-test-buffers.cpp(571): q.has_expbuf(node)
+>>       test VIDIOC_EXPBUF: FAIL
 >
-
-> AFAIK the "correct" format is (just like you've done for the clocks below):
->        interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
->                            <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
+> Not sure, might well be a knock-on result of the 'one open' problem.
 >
+> BTW, always get the latest code from the v4l-utils git repo, don't use a released
+> version for v4l2-compliance: it's always evolving and you don't want to use an
+> old version. Also for the next version of this patch series add the output of
+> v4l2-compliance to this cover letter, I want to see it.
 
->> +       amlogic,ao-sysctrl = <&sysctrl_AO>;
-> this is not documented above - is it needed?
+Will do.
 
-Duly noted, thanks.
+> Finally, are you aware of the work Tomasz Figa on specifying the codec behavior?
+>
+> https://lkml.org/lkml/2018/7/24/539
+>
+> The final version will be close to what was posted there.
+
+I wasn't, thanks for pointing it out.
