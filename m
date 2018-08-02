@@ -1,44 +1,43 @@
 From: maxi.jourdan@wanadoo.fr (Maxime Jourdan)
-Date: Thu, 2 Aug 2018 15:09:03 +0200
-Subject: [PATCH 4/4] drm/meson: convert to the new canvas module
-In-Reply-To: <843e41de9fa7d5f87309ff4e0db2ed84a1153a4c.camel@baylibre.com>
+Date: Thu, 2 Aug 2018 15:14:30 +0200
+Subject: [PATCH 1/4] soc: amlogic: add meson-canvas driver
+In-Reply-To: <36fcadd3-074d-7c11-6ca5-b44aecaa3639@baylibre.com>
 References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
- <20180801185128.23440-5-maxi.jourdan@wanadoo.fr>
- <744700e43aed3880807f86abde0caf3df1127e60.camel@baylibre.com>
- <CAHStOZ6B-R7=5utGqb49OsFBsUsMVsn=WMrzNK8Wk-zcgbnPuA@mail.gmail.com>
- <843e41de9fa7d5f87309ff4e0db2ed84a1153a4c.camel@baylibre.com>
-Message-ID: <CAHStOZ6v1CAJ-7UVo6V3H0Eu3cYd8x7xSAx33EbO6Eptj0vgdw@mail.gmail.com>
+ <20180801185128.23440-2-maxi.jourdan@wanadoo.fr>
+ <36fcadd3-074d-7c11-6ca5-b44aecaa3639@baylibre.com>
+Message-ID: <CAHStOZ4DV8FbAgzMKhnbLOOPj7Gm8+5=KxMSGL6J1D00Ejk42g@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-2018-08-02 15:01 GMT+02:00 Jerome Brunet <jbrunet@baylibre.com>:
-> What I don't like is precisely that you need to expose this 'struct ops' to the
-> consumer. I would prefer an API for this (it can be a 1:1 mapping). The canvas
-> should remain some abstract object you get from DT.
->
-> IMO, this is the same as a reset, a syscon or whatever other phandle you get
-> from DT. The consumer should not have to 'care' how it works (how data are
-> organized), it should just use it.
->
-> Whatever you need to do to deal with your canvas phandle should (IMO) reside in
-> your soc/amlogic/meson-canvas.c, and not be spread in the consumers.
->
->>
->> I agree that the "fetch the node" boilerplate code could be put behind
->> a helper, but at the same time this code helps remind the developer
->> that there needs to be a canvas node in the dts, and that it has to be
->> linked in your own device node.
->
-> This is why we have a DT documentation.
->
-> And, as far as I understand amlogic's display and decoder stuff, you won't get
-> very far w/o a canvas, so 'the developer' will be reminded fairly quickly ;)
->
->>
->> I would like to keep it that way if that is okay with you.
->
-> It's just my opinion, I'm not the one merging it ... :P
->
->
+Hi Neil,
 
-Fair enough, I'll see to API-ize the module in v2 :).
+2018-08-02 10:38 GMT+02:00 Neil Armstrong <narmstrong@baylibre.com>:
+> Please switch to the spdx header format here and in the .h.
+
+> In the DRM driver these are updated in IRQ context, we should make sure we don't sleep
+> in interrupt context if IRQ occurs when the VDEC updates it's canvases.
+>
+> Could you switch to spin_lock_irqsave() instead ?
+
+Will do.
+
+> Can you add the endian defines ?
+>
+> #define MESON_CANVAS_ENDIAN_SWAP16      0x1
+> #define MESON_CANVAS_ENDIAN_SWAP32      0x3
+> #define MESON_CANVAS_ENDIAN_SWAP64      0x7
+> #define MESON_CANVAS_ENDIAN_SWAP128     0xf
+>
+> the SWAP64 is the one used in the VDEC and DRM Overlays.
+
+Sure. Maybe I should push the flags (0x1, 0x2, 0x4, 0x8) rather than
+the combinations?
+Or both, since the combinations are more likely to be used in practice
+more than the single flags.
+
+> I rebased my DRM Overlay patch on top of this and :
+> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+>
+> You can keep this tag on future versions.
+
+Thanks!
