@@ -1,72 +1,66 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 3 Aug 2018 10:10:09 +0200
-Subject: [PATCH 2/5] pinctrl: meson: Add support to set direction with a
- secure monitor call
-In-Reply-To: <CAFBinCAAcqiJAwBMr2_7V90beFwq9xkPBnBdKB8oPsMKXU_-HA@mail.gmail.com>
-References: <1533117623-27856-1-git-send-email-narmstrong@baylibre.com>
- <1533117623-27856-3-git-send-email-narmstrong@baylibre.com>
- <CAFBinCBcUijFGdLoQwkzioX7MF0H_gH1rbcvxG+UWc1rA2pRiQ@mail.gmail.com>
- <d319d871-ba93-ab1d-dae4-b44916161e85@baylibre.com>
- <acab5d8ab9eb871c616171c00814d1fec93af1e7.camel@baylibre.com>
- <CAFBinCAAcqiJAwBMr2_7V90beFwq9xkPBnBdKB8oPsMKXU_-HA@mail.gmail.com>
-Message-ID: <ff6d516d-5d3b-c80f-941b-fed41a3a9ead@baylibre.com>
+From: yixun.lan@gmail.com (Yixun Lan)
+Date: Fri, 3 Aug 2018 21:50:25 +0800
+Subject: [PATCH 3/4] ARM64: dts: meson-gx: add dmcbus and canvas nodes.
+In-Reply-To: <20180801185128.23440-4-maxi.jourdan@wanadoo.fr>
+References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
+ <20180801185128.23440-4-maxi.jourdan@wanadoo.fr>
+Message-ID: <CALecT5hgk+Wuh4-UWY29NNoEz-47Fx3pSjve8raCd3hRMzXE5w@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 02/08/2018 22:42, Martin Blumenstingl wrote:
-> On Thu, Aug 2, 2018 at 1:21 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->>
->> On Thu, 2018-08-02 at 09:52 +0200, Neil Armstrong wrote:
->>> On 01/08/2018 22:23, Martin Blumenstingl wrote:
->>>> Hi Neil,
->>>>
->>>> On Wed, Aug 1, 2018 at 12:05 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>>>
->>>>> The Amlogic Meson GX and AXG SoCs needs to do a Secure Monitor call to
->>>>> set the TEST_N pin direction.
->>>>> This patch adds a "smc" boolean to the bank structure to differentiate
->>>>> the TEST_N bank and call the Secure Monitor in the _input/_output functions.
->>>>>
->>>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>>>> ---
->>>>>  drivers/pinctrl/meson/Kconfig         |  1 +
->>>>>  drivers/pinctrl/meson/pinctrl-meson.c | 31 ++++++++++++++++++++++++++-----
->>>>>  drivers/pinctrl/meson/pinctrl-meson.h | 10 +++++++++-
->>>>>  3 files changed, 36 insertions(+), 6 deletions(-)
->>>>>
->>>>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
->>>>> index c80951d..1b90470 100644
->>>>> --- a/drivers/pinctrl/meson/Kconfig
->>>>> +++ b/drivers/pinctrl/meson/Kconfig
->>>>> @@ -8,6 +8,7 @@ menuconfig PINCTRL_MESON
->>>>>         select GPIOLIB
->>>>>         select OF_GPIO
->>>>>         select REGMAP_MMIO
->>>>> +       select MESON_SM
->>>>
->>>> I wonder why PINCTRL_MESON has to select MESON_SM - shouldn't
->>>> PINCTRL_MESON_GXBB, PINCTRL_MESON_GXL and PINCTRL_MESON_AXG select it
->>>> instead?
->>>> selecting MESON_SM is probably no-op on Meson8 and Meson8b (which
->>>> don't have the GX secure monitor), but I haven't tested it yet
->>
->> I'm not so sure about that. meson_sm_call() symbol is used in the common pinctrl
->> code, so it should be selected when compiled even if meson8b is not going to use
->> it in the end.
-> unfortunately MESON_SM depends on ARM64_4K_PAGES so it can't be
-> enabled for the 32-bit SoCs
-> any ideas how to solve this?
+Hi Maxime
 
-I think I'll need to wrap the meson_sm calls around a
-#if IS_ENABLED(MESON_SM)
+great job! thanks for contributing the patches..
 
-and
-select MESON_SM if ARM64
+On Thu, Aug 2, 2018 at 2:51 AM, Maxime Jourdan <maxi.jourdan@wanadoo.fr> wrote:
+> Wrap the canvas node in a syscon node.
+>
+> Signed-off-by: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index b8dc4dbb391b..d104b9e111fb 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -423,6 +423,23 @@
+>                         };
+>                 };
+>
+> +               dmcbus: bus at c8838000 {
+> +                       compatible = "simple-bus";
+> +                       reg = <0x0 0xc8838000 0x0 0x1000>;
+> +                       #address-cells = <2>;
+> +                       #size-cells = <2>;
+> +                       ranges = <0x0 0x0 0x0 0xc8838000 0x0 0x1000>;
+> +
+> +                       sysctrl_DMC: system-controller at 0 {
+> +                               compatible = "amlogic,meson-gx-dmc-sysctrl", "syscon", "simple-mfd";
 
-in Kconfig
+we'd like to drop 'meson-' prefix, so better using "amlogic,gx-dmc-sysctrl",
+please take a look at the discussion here [1]
 
-> 
-> 
-> Regards
-> Martin
-> 
+[1] https://lkml.kernel.org/r/7hk1prmg4w.fsf at baylibre.com
+
+> +                               reg = <0x0 0x0 0x0 0x1000>;
+> +
+> +                               canvas: canvas-provider at 0 {
+> +                                       compatible = "amlogic,meson-canvas";
+ditto
+
+> +                               };
+> +                       };
+> +               };
+> +
+>                 hiubus: bus at c883c000 {
+>                         compatible = "simple-bus";
+>                         reg = <0x0 0xc883c000 0x0 0x2000>;
+> --
+> 2.17.1
+>
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
