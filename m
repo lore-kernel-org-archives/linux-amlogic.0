@@ -1,29 +1,21 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Fri, 3 Aug 2018 19:10:22 +0200
-Subject: [PATCH 0/5] pinctrl: meson: Add support for TEST_N gpio
-In-Reply-To: <1533117623-27856-1-git-send-email-narmstrong@baylibre.com>
-References: <1533117623-27856-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CACRpkdbSE0ThGpEo2YnVQ7wW85QbAeOwmFpLczHwL3Q2W3ZF6Q@mail.gmail.com>
+From: maxi.jourdan@wanadoo.fr (Maxime Jourdan)
+Date: Fri, 3 Aug 2018 23:47:51 +0200
+Subject: [PATCH 1/4] soc: amlogic: add meson-canvas driver
+In-Reply-To: <CALecT5i1mnkvi4WuL701cA+UnRL9CKmj=CMqLEWN=fpbxfi7ZQ@mail.gmail.com>
+References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
+ <20180801185128.23440-2-maxi.jourdan@wanadoo.fr>
+ <CALecT5i1mnkvi4WuL701cA+UnRL9CKmj=CMqLEWN=fpbxfi7ZQ@mail.gmail.com>
+Message-ID: <CAHStOZ5W+jJRox3=Nnem+Z1zopFOUenpmT-QkUzd5hrmKXfX5A@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, Aug 1, 2018 at 12:00 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+Hi Yixun, thanks for the review
 
-> The Amlogic Meson GX and AXG SoCs needs to do a Secure Monitor call to
-> set the TEST_N pin direction.
-> This patchset :
-> - adds the Secure Monitor call
-> - adds support int the pinctrl-meson common code
-> - adds support for GXBB, GXL and AGX SoCs
+2018-08-03 16:14 GMT+02:00 Yixun Lan <yixun.lan@gmail.com>:
+>> +config MESON_CANVAS
+>> +       bool "Amlogic Meson Canvas driver"
+> shouldn't this a 'tristate'? since you'd make the driver a kernel module..
 
-A lot of trouble to access a single GPIO pin (I guess _N means "active low"?)
+Yep it should!
 
-Is this line used for something especially important? Would be nice to
-include in some commit message like patch 1/5 why we invest so much
-energy to accessing this pin.
-
-Just curious. If you're just aiming for feature completion, that is a good
-reason as well :D
-
-Yours,
-Linus Walleij
+I well noted your other feedback and v2 will have fixes for them :) .
