@@ -1,61 +1,310 @@
 From: yixun.lan@gmail.com (Yixun Lan)
-Date: Fri, 3 Aug 2018 21:50:25 +0800
-Subject: [PATCH 3/4] ARM64: dts: meson-gx: add dmcbus and canvas nodes.
-In-Reply-To: <20180801185128.23440-4-maxi.jourdan@wanadoo.fr>
+Date: Fri, 3 Aug 2018 22:14:19 +0800
+Subject: [PATCH 1/4] soc: amlogic: add meson-canvas driver
+In-Reply-To: <20180801185128.23440-2-maxi.jourdan@wanadoo.fr>
 References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
- <20180801185128.23440-4-maxi.jourdan@wanadoo.fr>
-Message-ID: <CALecT5hgk+Wuh4-UWY29NNoEz-47Fx3pSjve8raCd3hRMzXE5w@mail.gmail.com>
+ <20180801185128.23440-2-maxi.jourdan@wanadoo.fr>
+Message-ID: <CALecT5i1mnkvi4WuL701cA+UnRL9CKmj=CMqLEWN=fpbxfi7ZQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Maxime
+HI Maxime
 
-great job! thanks for contributing the patches..
+thanks for contributing the patches ;-)
 
 On Thu, Aug 2, 2018 at 2:51 AM, Maxime Jourdan <maxi.jourdan@wanadoo.fr> wrote:
-> Wrap the canvas node in a syscon node.
+> Amlogic SoCs have a repository of 256 canvas which they use to
+> describe pixel buffers.
+>
+> They contain metadata like width, height, block mode, endianness [..]
+>
+> Many IPs within those SoCs like vdec/vpu rely on those canvas to read/write
+> pixels.
 >
 > Signed-off-by: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+>  drivers/soc/amlogic/Kconfig              |   7 +
+>  drivers/soc/amlogic/Makefile             |   1 +
+>  drivers/soc/amlogic/meson-canvas.c       | 182 +++++++++++++++++++++++
+>  include/linux/soc/amlogic/meson-canvas.h |  37 +++++
+>  4 files changed, 227 insertions(+)
+>  create mode 100644 drivers/soc/amlogic/meson-canvas.c
+>  create mode 100644 include/linux/soc/amlogic/meson-canvas.h
 >
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index b8dc4dbb391b..d104b9e111fb 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -423,6 +423,23 @@
->                         };
->                 };
+> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
+> index b04f6e4aedbc..5bd049899d88 100644
+> --- a/drivers/soc/amlogic/Kconfig
+> +++ b/drivers/soc/amlogic/Kconfig
+> @@ -1,5 +1,12 @@
+>  menu "Amlogic SoC drivers"
 >
-> +               dmcbus: bus at c8838000 {
-> +                       compatible = "simple-bus";
-> +                       reg = <0x0 0xc8838000 0x0 0x1000>;
-> +                       #address-cells = <2>;
-> +                       #size-cells = <2>;
-> +                       ranges = <0x0 0x0 0x0 0xc8838000 0x0 0x1000>;
+> +config MESON_CANVAS
+> +       bool "Amlogic Meson Canvas driver"
+shouldn't this a 'tristate'? since you'd make the driver a kernel module..
+
+> +       depends on ARCH_MESON || COMPILE_TEST
+> +       default ARCH_MESON
+> +       help
+> +         Say yes to support the canvas IP within Amlogic Meson Soc family.
 > +
-> +                       sysctrl_DMC: system-controller at 0 {
-> +                               compatible = "amlogic,meson-gx-dmc-sysctrl", "syscon", "simple-mfd";
+>  config MESON_GX_SOCINFO
+>         bool "Amlogic Meson GX SoC Information driver"
+>         depends on ARCH_MESON || COMPILE_TEST
+> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
+> index 8fa321893928..0ab16d35ac36 100644
+> --- a/drivers/soc/amlogic/Makefile
+> +++ b/drivers/soc/amlogic/Makefile
+> @@ -1,3 +1,4 @@
+> +obj-$(CONFIG_MESON_CANVAS) += meson-canvas.o
+>  obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
+>  obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+>  obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
+> diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
+> new file mode 100644
+> index 000000000000..671eb89c8904
+> --- /dev/null
+> +++ b/drivers/soc/amlogic/meson-canvas.c
+> @@ -0,0 +1,182 @@
+> +/*
+> + * Copyright (C) 2018 Maxime Jourdan
+> + * Copyright (C) 2016 BayLibre, SAS
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
+> + * Copyright (C) 2014 Endless Mobile
+> + *
+> + * This program is free software; you can redistribute it and/or
+> + * modify it under the terms of the GNU General Public License as
+> + * published by the Free Software Foundation; either version 2 of the
+> + * License, or (at your option) any later version.
+> + *
+> + * This program is distributed in the hope that it will be useful, but
+> + * WITHOUT ANY WARRANTY; without even the implied warranty of
+> + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+> + * General Public License for more details.
+> + *
+> + * You should have received a copy of the GNU General Public License
+> + * along with this program; if not, see <http://www.gnu.org/licenses/>.
+> + */
+use SPDX license header as Neil already mentioned
+check doc: Documentation/process/license-rules.rst
 
-we'd like to drop 'meson-' prefix, so better using "amlogic,gx-dmc-sysctrl",
-please take a look at the discussion here [1]
-
-[1] https://lkml.kernel.org/r/7hk1prmg4w.fsf at baylibre.com
-
-> +                               reg = <0x0 0x0 0x0 0x1000>;
 > +
-> +                               canvas: canvas-provider at 0 {
-> +                                       compatible = "amlogic,meson-canvas";
-ditto
-
-> +                               };
-> +                       };
-> +               };
+> +#include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/soc/amlogic/meson-canvas.h>
+> +#include <asm/io.h>
 > +
->                 hiubus: bus at c883c000 {
->                         compatible = "simple-bus";
->                         reg = <0x0 0xc883c000 0x0 0x2000>;
+> +#define NUM_CANVAS 256
+> +
+> +/* DMC Registers */
+> +#define DMC_CAV_LUT_DATAL      0x48 /* 0x12 offset in data sheet */
+> +       #define CANVAS_WIDTH_LBIT       29
+> +       #define CANVAS_WIDTH_LWID       3
+> +#define DMC_CAV_LUT_DATAH      0x4c /* 0x13 offset in data sheet */
+> +       #define CANVAS_WIDTH_HBIT       0
+> +       #define CANVAS_HEIGHT_BIT       9
+> +       #define CANVAS_BLKMODE_BIT      24
+> +#define DMC_CAV_LUT_ADDR       0x50 /* 0x14 offset in data sheet */
+> +       #define CANVAS_LUT_WR_EN        (0x2 << 8)
+> +       #define CANVAS_LUT_RD_EN        (0x1 << 8)
+> +
+> +struct meson_canvas {
+> +       struct device *dev;
+> +       struct regmap *regmap_dmc;
+> +       struct mutex lock;
+> +       u8 used[NUM_CANVAS];
+> +};
+> +
+> +static struct meson_canvas canvas = { 0 };
+> +
+> +static int meson_canvas_setup(uint8_t canvas_index, uint32_t addr,
+> +                       uint32_t stride, uint32_t height,
+> +                       unsigned int wrap,
+> +                       unsigned int blkmode,
+> +                       unsigned int endian)
+use "./scripts/checkpatch.pl --strict" to check
+you will get a few complaints..
+
+> +{
+> +       struct regmap *regmap = canvas.regmap_dmc;
+> +       u32 val;
+> +
+> +       mutex_lock(&canvas.lock);
+> +
+> +       if (!canvas.used[canvas_index]) {
+> +               dev_err(canvas.dev,
+> +                       "Trying to setup non allocated canvas %u\n",
+> +                       canvas_index);
+> +               mutex_unlock(&canvas.lock);
+> +               return -EINVAL;
+> +       }
+> +
+> +       regmap_write(regmap, DMC_CAV_LUT_DATAL,
+> +               ((addr + 7) >> 3) |
+> +               (((stride + 7) >> 3) << CANVAS_WIDTH_LBIT));
+> +
+> +       regmap_write(regmap, DMC_CAV_LUT_DATAH,
+> +               ((((stride + 7) >> 3) >> CANVAS_WIDTH_LWID) <<
+> +                                               CANVAS_WIDTH_HBIT) |
+> +               (height << CANVAS_HEIGHT_BIT) |
+> +               (wrap << 22) |
+> +               (blkmode << CANVAS_BLKMODE_BIT) |
+> +               (endian << 26));
+> +
+> +       regmap_write(regmap, DMC_CAV_LUT_ADDR,
+> +               CANVAS_LUT_WR_EN | canvas_index);
+> +
+> +       /* Force a read-back to make sure everything is flushed. */
+> +       regmap_read(regmap, DMC_CAV_LUT_DATAH, &val);
+> +       mutex_unlock(&canvas.lock);
+> +
+> +       return 0;
+> +}
+> +
+> +static int meson_canvas_alloc(uint8_t *canvas_index)
+> +{
+> +       int i;
+> +
+> +       mutex_lock(&canvas.lock);
+> +       for (i = 0; i < NUM_CANVAS; ++i) {
+> +               if (!canvas.used[i]) {
+> +                       canvas.used[i] = 1;
+> +                       mutex_unlock(&canvas.lock);
+> +                       *canvas_index = i;
+> +                       return 0;
+> +               }
+> +       }
+> +       mutex_unlock(&canvas.lock);
+> +       dev_err(canvas.dev, "No more canvas available\n");
+> +
+> +       return -ENODEV;
+> +}
+> +
+> +static int meson_canvas_free(uint8_t canvas_index)
+> +{
+> +       mutex_lock(&canvas.lock);
+> +       if (!canvas.used[canvas_index]) {
+> +               dev_err(canvas.dev,
+> +                       "Trying to free unused canvas %u\n", canvas_index);
+> +               mutex_unlock(&canvas.lock);
+> +               return -EINVAL;
+> +       }
+> +       canvas.used[canvas_index] = 0;
+> +       mutex_unlock(&canvas.lock);
+> +
+> +       return 0;
+> +}
+> +
+> +static struct meson_canvas_platform_data canvas_platform_data = {
+> +       .alloc = meson_canvas_alloc,
+> +       .free = meson_canvas_free,
+> +       .setup = meson_canvas_setup,
+> +};
+> +
+> +static int meson_canvas_probe(struct platform_device *pdev)
+> +{
+> +       struct regmap *regmap_dmc;
+> +       struct device *dev;
+> +
+> +       dev = &pdev->dev;
+you could fold into one if you like(may save a few lines), so something like:
+
+struct device *dev = &pdev->dev;
+
+> +
+> +       regmap_dmc = syscon_node_to_regmap(of_get_parent(dev->of_node));
+> +       if (IS_ERR(regmap_dmc)) {
+> +               dev_err(&pdev->dev, "failed to get DMC regmap\n");
+> +               return PTR_ERR(regmap_dmc);
+> +       }
+> +
+> +       canvas.dev = dev;
+> +       canvas.regmap_dmc = regmap_dmc;
+> +       mutex_init(&canvas.lock);
+> +
+> +       dev->platform_data = &canvas_platform_data;
+> +
+> +       return 0;
+> +}
+> +
+> +static int meson_canvas_remove(struct platform_device *pdev)
+> +{
+> +       mutex_destroy(&canvas.lock);
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id canvas_dt_match[] = {
+> +       { .compatible = "amlogic,meson-canvas" },
+drop "meson-" prefix, already comment in another thread
+
+> +       {}
+> +};
+> +MODULE_DEVICE_TABLE(of, canvas_dt_match);
+> +
+> +static struct platform_driver meson_canvas_driver = {
+> +       .probe = meson_canvas_probe,
+> +       .remove = meson_canvas_remove,
+> +       .driver = {
+> +               .name = "meson-canvas",
+> +               .of_match_table = canvas_dt_match,
+> +       },
+> +};
+> +module_platform_driver(meson_canvas_driver);
+> +
+> +MODULE_ALIAS("platform:meson-canvas");
+> +MODULE_DESCRIPTION("AMLogic Meson Canvas driver");
+Jerome complained several times about the camel expression,
+so just use "Amlogic" ;-)
+
+> +MODULE_AUTHOR("Maxime Jourdan <maxi.jourdan@wanadoo.fr>");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/include/linux/soc/amlogic/meson-canvas.h b/include/linux/soc/amlogic/meson-canvas.h
+> new file mode 100644
+> index 000000000000..af9e2415056a
+> --- /dev/null
+> +++ b/include/linux/soc/amlogic/meson-canvas.h
+> @@ -0,0 +1,37 @@
+> +/*
+> + * Copyright (c) 2018 Maxime Jourdan
+> + * Author: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
+> + *
+> + * This program is free software; you can redistribute it and/or modify
+> + * it under the terms of the GNU General Public License version 2 as
+> + * published by the Free Software Foundation.
+> + *
+> + * This program is distributed in the hope that it will be useful,
+> + * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> + * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + * GNU General Public License for more details.
+> + */
+> +#ifndef MESON_CANVAS_H
+> +#define MESON_CANVAS_H
+> +
+> +#include <linux/kernel.h>
+> +
+> +#define MESON_CANVAS_WRAP_NONE 0x00
+> +#define MESON_CANVAS_WRAP_X    0x01
+> +#define MESON_CANVAS_WRAP_Y    0x02
+> +
+> +#define MESON_CANVAS_BLKMODE_LINEAR    0x00
+> +#define MESON_CANVAS_BLKMODE_32x32     0x01
+> +#define MESON_CANVAS_BLKMODE_64x64     0x02
+> +
+> +struct meson_canvas_platform_data {
+> +       int (*alloc)(uint8_t *canvas_index);
+> +       int (*free) (uint8_t canvas_index);
+> +       int (*setup)(uint8_t canvas_index, uint32_t addr,
+> +                       uint32_t stride, uint32_t height,
+> +                       unsigned int wrap,
+> +                       unsigned int blkmode,
+> +                       unsigned int endian);
+> +};
+> +
+> +#endif
 > --
 > 2.17.1
 >
