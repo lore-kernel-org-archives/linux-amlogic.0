@@ -1,66 +1,50 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 6 Aug 2018 09:58:50 +0200
-Subject: [U-Boot, u-boot, 2/2] clk: clk_meson: Add mux and div support for
- reparent and rate setting
-In-Reply-To: <20180804233929.GQ32145@bill-the-cat>
-References: <1532613244-4585-3-git-send-email-narmstrong@baylibre.com>
- <20180804233929.GQ32145@bill-the-cat>
-Message-ID: <d1719262-b9a2-7a9e-fa95-c42a9b9838fd@baylibre.com>
+Date: Mon, 6 Aug 2018 14:48:51 +0200
+Subject: [PATCH u-boot 1/2] power: domain: Add the VPU Power Domain driver
+In-Reply-To: <CAPnjgZ0OfdRkkoFCQChiUoYHSoG7agJEPMfeOWVSr-D04_jNiw@mail.gmail.com>
+References: <1532613244-4585-1-git-send-email-narmstrong@baylibre.com>
+ <1532613244-4585-2-git-send-email-narmstrong@baylibre.com>
+ <CAPnjgZ0OfdRkkoFCQChiUoYHSoG7agJEPMfeOWVSr-D04_jNiw@mail.gmail.com>
+Message-ID: <534cec1e-fa4c-e4a2-790b-167a50d2871e@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Tom,
-
-On 05/08/2018 01:39, Tom Rini wrote:
-> On Thu, Jul 26, 2018 at 03:54:04PM +0200, Neil Armstrong wrote:
+On 02/08/2018 22:36, Simon Glass wrote:
+> Hi Neil,
 > 
->> This patch adds support for :
->> - Rate calculation through muxes and generic dividers
->> - Basic gate setting propagation
->> - Reparenting for muxes
->> - Clock rate setting through generic dividers without reparenting
+> On 26 July 2018 at 07:54, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> The Amlogic Meson SoCs embeds a specific Power Domain dedicated to the
+>> Video Processing Unit.
+>> This patch implements support for this power domain in preparation of the
+>> future support for the Video display support in U-Boot.
 >>
->> Support is only added to the Composite VPU and VAPB clocks in order
->> to support the Video Processing Unit Power Domain clock setup.
+>> This driver will depend on changes in the clock driver to handle the setup
+>> of the VPU and VAPB clocks configured from DT using assigned-clocks entries.
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> Reviewed-by: Simon Glass <sjg@chromium.org>
+>> ---
+>>  drivers/power/domain/Kconfig             |   7 ++
+>>  drivers/power/domain/Makefile            |   1 +
+>>  drivers/power/domain/meson-gx-pwrc-vpu.c | 198 +++++++++++++++++++++++++++++++
+>>  3 files changed, 206 insertions(+)
+>>  create mode 100644 drivers/power/domain/meson-gx-pwrc-vpu.c
+>>
 > 
-> I get:
-> Building current source for 1 boards (1 thread, 16 jobs per thread)
->    aarch64:  +   khadas-vim
-> +(khadas-vim) In file included from include/linux/bug.h:7:0,
-> +(khadas-vim)                  from include/common.h:25,
-> +(khadas-vim)                  from drivers/clk/clk_meson.c:8:
-> +(khadas-vim)   debug("%s: %sabling %d\n", __func__, on ? "en" : "dis", id);
-> +(khadas-vim)         ^
-> +(khadas-vim) include/linux/printk.h:37:21: note: in definition of macro 'pr_fmt'
-> +(khadas-vim)  #define pr_fmt(fmt) fmt
-> +(khadas-vim)                      ^~~
-> +(khadas-vim) include/log.h:141:2: note: in expansion of macro 'debug_cond'
-> +(khadas-vim)   debug_cond(_DEBUG, fmt, ##args)
-> +(khadas-vim)   ^~~~~~~~~~
-> +(khadas-vim) drivers/clk/clk_meson.c:198:2: note: in expansion of macro 'debug'
-> +(khadas-vim)   ^~~~~
-> +(khadas-vim)   debug("%s: really %sabling %d\n", __func__, on ? "en" : "dis", id);
-> +(khadas-vim) drivers/clk/clk_meson.c:218:2: note: in expansion of macro 'debug'
-> +(khadas-vim) arch/arm/dts/meson-gxl-s905x-khadas-vim.dtb: Warning (avoid_unnecessary_addr_size): /gpio-keys-polled: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
-> w+(khadas-vim) drivers/clk/clk_meson.c: In function 'meson_set_gate_by_id':
-> w+(khadas-vim) drivers/clk/clk_meson.c:198:8: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long unsigned int' [-Wformat=]
-> w+(khadas-vim) drivers/clk/clk_meson.c:218:8: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long unsigned int' [-Wformat=]
->  
+> Reviewed-by: Simon Glass <sjg@chromium.org>
+> 
+> Are the delays documented in a datasheet? I suggest adding a comment
+> about them. People will otherwise forever wonder how the values were
+> chosen.
 
-Thanks for pointing me these, I missed these...
+These delays are taken from the vendor source code and are the same in the linux
+driver, I would have loved to have some documentation about it....
 
-I'll repost a fixed version ASAP.
+> 
+> Also it seems odd that you can't power everything up at once.
 
-Neil
+Yeah, it's quite a huge power domain.
 
-
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 819 bytes
-Desc: OpenPGP digital signature
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180806/0a4873fc/attachment.sig>
+> 
+> Regards,
+> Simon
+> 
