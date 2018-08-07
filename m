@@ -1,37 +1,46 @@
-From: yixun.lan@gmail.com (Yixun Lan)
-Date: Tue, 7 Aug 2018 09:29:59 +0800
-Subject: [PATCH 3/4] ARM64: dts: meson-gx: add dmcbus and canvas nodes.
-In-Reply-To: <CAHStOZ5VaOiOQhi7vG0Q9R7gF+LHvZim1qsEUJanZkFoXqgwDA@mail.gmail.com>
-References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
- <20180801185128.23440-4-maxi.jourdan@wanadoo.fr>
- <CALecT5hgk+Wuh4-UWY29NNoEz-47Fx3pSjve8raCd3hRMzXE5w@mail.gmail.com>
- <CAHStOZ5VaOiOQhi7vG0Q9R7gF+LHvZim1qsEUJanZkFoXqgwDA@mail.gmail.com>
-Message-ID: <CALecT5jp2Z9A8=ZciXQW5AD29TQY_6A-GW92swRiYx-sCV-LhA@mail.gmail.com>
+From: yixun.lan@amlogic.com (Yixun Lan)
+Date: Tue, 7 Aug 2018 10:06:32 +0800
+Subject: [PATCH v3 0/2] pinctrl: meson-g12a: add pinctrl driver support
+Message-ID: <20180807020634.18182-1-yixun.lan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-hi Maxime:
+  This patch series try to add pinctrl driver support for
+the Meson-G12A SoC.
 
-On Sun, Aug 5, 2018 at 4:02 AM, Maxime Jourdan <maxi.jourdan@wanadoo.fr> wrote:
->>> +                       sysctrl_DMC: system-controller at 0 {
->>> +                               compatible = "amlogic,meson-gx-dmc-sysctrl", "syscon", "simple-mfd";
->>
->> we'd like to drop 'meson-' prefix, so better using "amlogic,gx-dmc-sysctrl",
->> please take a look at the discussion here [1]
->>
->> [1] https://lkml.kernel.org/r/7hk1prmg4w.fsf at baylibre.com
->>
->
-> On that subject, should I remove the meson keyword from dts only, or
-> from everything ?
->
-remove the 'meson-' from dts is enough..
+  The pinctrl driver for Meson-G12A SoC share the similar IP as
+the previous Meson-AXG SoC, both use same pinmux ops (register layout).
+But, a new driver is needed here due to the differences in the pins.
 
-> e.g use amlogic_canvas_* symbols instead of meson_canvas_*, name the
-> source file "amlogic-canvas.c", etc. ?
->
-Actually, I'd suggest to keep using meson_canvas_* in the code for the
-consistency,
-unless Kevin or Jerome/Neil has something to say?
+Changes since v2 at [2]
+ - use ${FUNCTION}_${DOMAIN}_${PORT}_${PINFUNC}_${BANK}${PINNUM}
+   to rename some pins
+ - fix tdm groups
+ - explain the similarity of pinmux between AXG and G12A - thanks Martin 
+ - collect Rob's Reviewed-by
 
-Yixun
+Changes since v1 at [1]
+ - add Martin's Ack, Xingyu's Signed-off
+ - squash patch 1,2 (documentation & header file)
+ - explain pinctrl IP
+ - notice GPIOE located in AO bank
+
+[1] https://lkml.kernel.org/r/20180704224511.29350-1-yixun.lan at amlogic.com
+[2] https://lkml.kernel.org/r/20180714232754.5402-1-yixun.lan at amlogic.com
+
+Yixun Lan (2):
+  documentation: pinctrl: Add compatibles for Amlogic Meson G12A pin
+    controllers
+  pinctrl: meson-g12a: add pinctrl driver support
+
+ .../bindings/pinctrl/meson,pinctrl.txt        |    2 +
+ drivers/pinctrl/meson/Kconfig                 |    6 +
+ drivers/pinctrl/meson/Makefile                |    1 +
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c    | 1404 +++++++++++++++++
+ include/dt-bindings/gpio/meson-g12a-gpio.h    |  114 ++
+ 5 files changed, 1527 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-g12a.c
+ create mode 100644 include/dt-bindings/gpio/meson-g12a-gpio.h
+
+-- 
+2.18.0
