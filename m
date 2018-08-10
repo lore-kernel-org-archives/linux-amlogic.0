@@ -1,353 +1,272 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 10 Aug 2018 14:47:59 +0200
-Subject: [PATCH v4 3/3] clk: meson: add sub MMC clock controller driver
-In-Reply-To: <20180809070724.11935-4-yixun.lan@amlogic.com>
-References: <20180809070724.11935-1-yixun.lan@amlogic.com>
- <20180809070724.11935-4-yixun.lan@amlogic.com>
-Message-ID: <bc425f1926ddc1b426be5902bf3595ff556670d3.camel@baylibre.com>
+From: jianxin.pan@amlogic.com (Jianxin Pan)
+Date: Sat, 11 Aug 2018 02:07:54 +0800
+Subject: [PATCH 2/2] arm64: dts: meson-g12a: add initial g12a s905d2 SoC
+ DT support
+In-Reply-To: <f21f60423cbc43797e2465f1a734f715795c30b6.camel@baylibre.com>
+References: <1533802951-49919-1-git-send-email-jianxin.pan@amlogic.com>
+ <1533802951-49919-3-git-send-email-jianxin.pan@amlogic.com>
+ <f21f60423cbc43797e2465f1a734f715795c30b6.camel@baylibre.com>
+Message-ID: <ae4a9444-9946-578f-0eed-8b235eaa6b4a@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-08-09 at 15:07 +0800, Yixun Lan wrote:
-> The patch will add a MMC clock controller driver which used by MMC or NAND,
-> It provide a mux and divider clock, and three phase clocks - core, tx, tx.
+On 8/10/2018 7:58 PM, Jerome Brunet wrote:
+> On Thu, 2018-08-09 at 16:22 +0800, Jianxin Pan wrote:
+>> Try to add basic DT support for the Amlogic's Meson-G12A S905D2 SoC,
+>> which describe components as follows: Reserve Memory, CPU, GIC, IRQ,
+>> Timer, UART. It's capable of booting up into the serial console.
+>>
+>> Signed-off-by: Jianxin <jianxin.pan@amlogic.com>
 > 
-> Two clocks are provided as the parent of MMC clock controller from
-> upper layer clock controller - eg "amlogic,axg-clkc" in AXG platform.
+> Could please fix your signoff here ? Your last name went missing
 > 
-> To specify which clock the MMC or NAND driver may consume,
-> the preprocessor macros in the dt-bindings/clock/amlogic,mmc-clkc.h header
-> can be used in the device tree sources.
+OK, I will fix this mistake. Thank you for your review.
+
+>> ---
+>>  arch/arm64/boot/dts/amlogic/Makefile            |   1 +
+>>  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts |  22 +++
+>>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi     | 174 ++++++++++++++++++++++++
+>>  3 files changed, 197 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+>>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>> index a97c0e2..c31f29d6 100644
+>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>> @@ -1,5 +1,6 @@
+>>  # SPDX-License-Identifier: GPL-2.0
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
+>> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
+>>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+>> new file mode 100644
+>> index 0000000..d267a37
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+>> @@ -0,0 +1,22 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "meson-g12a.dtsi"
+>> +
+>> +/ {
+>> +	compatible = "amlogic,u200", "amlogic,g12a";
+>> +	model = "Amlogic Meson G12A U200 Development Board";
+>> +
+>> +	aliases {
+>> +		serial0 = &uart_AO;
+>> +	};
+>> +};
+>> +
+>> +&uart_AO {
+>> +	status = "okay";
+>> +};
+>> +
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> new file mode 100644
+>> index 0000000..64a0f2e
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> @@ -0,0 +1,174 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +/ {
 > 
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  drivers/clk/meson/Kconfig    |  10 ++
->  drivers/clk/meson/Makefile   |   1 +
->  drivers/clk/meson/mmc-clkc.c | 275 +++++++++++++++++++++++++++++++++++
->  3 files changed, 286 insertions(+)
->  create mode 100644 drivers/clk/meson/mmc-clkc.c
+> Could you please order the subnodes alphabetically ?
 > 
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index efaa70f682b4..8b8ccbcfed1d 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -15,6 +15,16 @@ config COMMON_CLK_MESON_AO
->  	select COMMON_CLK_REGMAP_MESON
->  	select RESET_CONTROLLER
->  
-> +config COMMON_CLK_MMC_MESON
-> +	tristate "Meson MMC Sub Clock Controller Driver"
-> +	depends on COMMON_CLK_AMLOGIC
-> +	select MFD_SYSCON
-> +	select REGMAP
-> +	help
-> +	  Support for the MMC sub clock controller on Amlogic Meson Platform,
-> +	  which include S905 (GXBB, GXL), A113D/X (AXG) devices.
-> +	  Say Y if you want this clock enabled.
-> +
->  config COMMON_CLK_REGMAP_MESON
->  	bool
->  	select REGMAP
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 39ce5661b654..31c16d524a4b 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -9,4 +9,5 @@ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
->  obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
->  obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o axg-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO)	+= axg-audio.o
-> +obj-$(CONFIG_COMMON_CLK_MMC_MESON) 	+= mmc-clkc.o
->  obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)	+= clk-regmap.o
-> diff --git a/drivers/clk/meson/mmc-clkc.c b/drivers/clk/meson/mmc-clkc.c
-> new file mode 100644
-> index 000000000000..6aa055f7e62c
-> --- /dev/null
-> +++ b/drivers/clk/meson/mmc-clkc.c
-> @@ -0,0 +1,275 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Amlogic Meson MMC Sub Clock Controller Driver
-> + *
-> + * Copyright (c) 2017 Baylibre SAS.
-> + * Author: Jerome Brunet <jbrunet@baylibre.com>
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Yixun Lan <yixun.lan@amlogic.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +#include <linux/of_device.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/platform_device.h>
-> +#include <dt-bindings/clock/amlogic,mmc-clkc.h>
-> +
-> +#include "clkc.h"
-> +
-> +/* clock ID used by internal driver */
-> +#define CLKID_MMC_MUX			0
-> +
-> +#define SD_EMMC_CLOCK			0
-> +#define   CLK_DIV_MASK			GENMASK(5, 0)
-> +#define   CLK_SRC_MASK			GENMASK(7, 6)
-> +#define   CLK_CORE_PHASE_MASK		GENMASK(9, 8)
-> +#define   CLK_TX_PHASE_MASK		GENMASK(11, 10)
-> +#define   CLK_RX_PHASE_MASK		GENMASK(13, 12)
-> +#define   CLK_V2_TX_DELAY_MASK		GENMASK(19, 16)
-> +#define   CLK_V2_RX_DELAY_MASK		GENMASK(23, 20)
-> +#define   CLK_V2_ALWAYS_ON		BIT(24)
-> +
-> +#define   CLK_V3_TX_DELAY_MASK		GENMASK(21, 16)
-> +#define   CLK_V3_RX_DELAY_MASK		GENMASK(27, 22)
-> +#define   CLK_V3_ALWAYS_ON		BIT(28)
-> +
-> +#define   CLK_DELAY_STEP_PS		200
-> +#define   CLK_PHASE_STEP		30
-> +#define   CLK_PHASE_POINT_NUM		(360 / CLK_PHASE_STEP)
-> +
-> +#define MUX_CLK_NUM_PARENTS		2
-> +#define MMC_MAX_CLKS			5
-> +
-> +struct mmc_clkc_data {
-> +	struct meson_clk_phase_delay_data	tx;
-> +	struct meson_clk_phase_delay_data	rx;
-> +};
-> +
-> +static struct clk_regmap_mux_data mmc_clkc_mux_data = {
-> +	.offset		= SD_EMMC_CLOCK,
-> +	.mask		= 0x3,
-> +	.shift		= 6,
-> +	.flags		= CLK_DIVIDER_ROUND_CLOSEST,
-> +};
-> +
-> +static struct clk_regmap_div_data mmc_clkc_div_data = {
-> +	.offset		= SD_EMMC_CLOCK,
-> +	.shift		= 0,
-> +	.width		= 6,
-> +	.flags		= CLK_DIVIDER_ROUND_CLOSEST | CLK_DIVIDER_ONE_BASED,
-> +};
-> +
-> +static struct meson_clk_phase_delay_data mmc_clkc_core_phase_delay = {
-> +	.phase_mask	= CLK_CORE_PHASE_MASK,
-> +};
-> +
-> +static const struct mmc_clkc_data mmc_clkc_gx_data = {
-> +	{
-> +		.phase_mask	= CLK_TX_PHASE_MASK,
-> +		.delay_mask	= CLK_V2_TX_DELAY_MASK,
-> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
-> +	},
-> +	{
-> +		.phase_mask	= CLK_RX_PHASE_MASK,
-> +		.delay_mask	= CLK_V2_RX_DELAY_MASK,
-> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
-> +	},
-> +};
-> +
-> +static const struct mmc_clkc_data mmc_clkc_axg_data = {
-> +	{
-> +		.phase_mask	= CLK_TX_PHASE_MASK,
-> +		.delay_mask	= CLK_V3_TX_DELAY_MASK,
-> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
-> +	},
-> +	{
-> +		.phase_mask	= CLK_RX_PHASE_MASK,
-> +		.delay_mask	= CLK_V3_RX_DELAY_MASK,
-> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
-> +	},
-> +};
-> +
-> +static const struct of_device_id mmc_clkc_match_table[] = {
-> +	{
-> +		.compatible	= "amlogic,gx-mmc-clkc",
-> +		.data		= &mmc_clkc_gx_data
-> +	},
-> +	{
-> +		.compatible	= "amlogic,axg-mmc-clkc",
-> +		.data		= &mmc_clkc_axg_data
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mmc_clkc_match_table);
-> +
-> +static struct clk_regmap *
-> +mmc_clkc_register_clk(struct device *dev, struct regmap *map,
-> +		      struct clk_init_data *init,
-> +		      const char *suffix, void *data)
-> +{
-> +	struct clk_regmap *clk;
-> +	char *name;
-> +	int ret;
-> +
-> +	clk = devm_kzalloc(dev, sizeof(*clk), GFP_KERNEL);
-> +	if (!clk)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	name = kasprintf(GFP_KERNEL, "%s#%s", dev_name(dev), suffix);
-> +	if (!name)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	init->name = name;
-> +
-> +	clk->map = map;
-> +	clk->data = data;
-> +	clk->hw.init = init;
-> +
-> +	ret = devm_clk_hw_register(dev, &clk->hw);
-> +	if (ret)
-> +		clk = ERR_PTR(ret);
-> +
-> +	kfree(name);
-> +	return clk;
-> +}
-> +
-> +static struct clk_regmap *mmc_clkc_register_mux(struct device *dev,
-> +						struct regmap *map)
-> +{
-> +	const char *parent_names[MUX_CLK_NUM_PARENTS];
-> +	struct clk_init_data init;
-> +	struct clk_regmap *mux;
-> +	struct clk *clk;
-> +	int i;
-> +
-> +	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
-> +		char name[8];
-> +
-> +		snprintf(name, sizeof(name), "clkin%d", i);
-> +		clk = devm_clk_get(dev, name);
-> +		if (IS_ERR(clk)) {
-> +			if (clk != ERR_PTR(-EPROBE_DEFER))
-> +				dev_err(dev, "Missing clock %s\n", name);
-> +			return ERR_PTR((long)clk);
-> +		}
-> +
-> +		parent_names[i] = __clk_get_name(clk);
-> +	}
-> +
-> +	init.ops = &clk_regmap_mux_ops;
-> +	init.flags = CLK_SET_RATE_PARENT;
-> +	init.parent_names = parent_names;
-> +	init.num_parents = MUX_CLK_NUM_PARENTS;
-> +
-> +	mux = mmc_clkc_register_clk(dev, map, &init, "mux", &mmc_clkc_mux_data);
-> +	if (IS_ERR(mux))
-> +		dev_err(dev, "Mux clock registration failed\n");
-> +
-> +	return mux;
-> +}
-> +
-> +static struct clk_regmap *
-> +mmc_clkc_register_other_clk(struct device *dev, struct regmap *map,
-
-This is a poor name. It does not help understand what the function does.
-mmc_clkc_register_clk_with_parent or whatever helps understand what's going on
-
-> +			    char *suffix, char *parent_suffix,
-
-You should not have to rebuild the parent name once again.
-Pass the clk_hw* of the parent and get the name from it.
-
-> +			    unsigned long flags,
-> +			    const struct clk_ops *ops, void *data)
-> +{
-> +	struct clk_init_data init;
-> +	struct clk_regmap *clk;
-> +	char *parent;
-> +
-> +	parent = kasprintf(GFP_KERNEL, "%s#%s", dev_name(dev), parent_suffix);
-> +	if (!parent)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	init.ops = ops;
-> +	init.flags = flags;
-> +	init.parent_names = (const char* const []){ parent, };
-> +	init.num_parents = 1;
-> +
-> +	clk = mmc_clkc_register_clk(dev, map, &init, suffix, data);
-> +	if (IS_ERR(clk))
-> +		dev_err(dev, "Core %s clock registration failed\n", suffix);
-> +
-> +	kfree(parent);
-> +	return clk;
-> +}
-> +
-> +static int mmc_clkc_probe(struct platform_device *pdev)
-> +{
-> +	struct clk_hw_onecell_data *onecell_data;
-> +	struct device *dev = &pdev->dev;
-> +	struct mmc_clkc_data *data;
-> +	struct regmap *map;
-> +	struct clk_regmap *mux, *div, *core, *rx, *tx;
-
-Do you really need all this ? or could store them in your onecell_data->hws
-table as you go ?
-
-> +
-> +	data = (struct mmc_clkc_data *)of_device_get_match_data(dev);
-> +	if (!data)
-> +		return -ENODEV;
-> +
-> +	map = syscon_node_to_regmap(dev->of_node);
-> +	if (IS_ERR(map)) {
-> +		dev_err(dev, "could not find mmc clock controller\n");
-> +		return PTR_ERR(map);
-> +	}
-> +
-> +	onecell_data = devm_kzalloc(dev, sizeof(*onecell_data) +
-> +				    sizeof(*onecell_data->hws) * MMC_MAX_CLKS,
-> +				    GFP_KERNEL);
-> +	if (!onecell_data)
-> +		return -ENOMEM;
-> +
-> +	mux = mmc_clkc_register_mux(dev, map);
-> +	if (IS_ERR(mux))
-> +		return PTR_ERR(mux);
-> +
-> +	div = mmc_clkc_register_other_clk(dev, map, "div", "mux",
-> +					  CLK_SET_RATE_PARENT,
-> +					  &clk_regmap_divider_ops,
-> +					  &mmc_clkc_div_data);
-> +	if (IS_ERR(div))
-> +		return PTR_ERR(div);
-> +
-> +	core = mmc_clkc_register_other_clk(dev, map, "core", "div",
-> +					   CLK_SET_RATE_PARENT,
-> +					   &meson_clk_phase_delay_ops,
-> +					   &mmc_clkc_core_phase_delay);
-> +	if (IS_ERR(core))
-> +		return PTR_ERR(core);
-> +
-> +	rx = mmc_clkc_register_other_clk(dev, map, "rx", "core", 0,
-> +					 &meson_clk_phase_delay_ops,
-> +					 &data->rx);
-> +	if (IS_ERR(rx))
-> +		return PTR_ERR(rx);
-> +
-> +	tx = mmc_clkc_register_other_clk(dev, map, "tx", "core", 0,
-> +					 &meson_clk_phase_delay_ops,
-> +					 &data->tx);
-> +	if (IS_ERR(tx))
-> +		return PTR_ERR(tx);
-> +
-> +	onecell_data->hws[CLKID_MMC_MUX]		= &mux->hw,
-> +	onecell_data->hws[CLKID_MMC_DIV]		= &div->hw,
-> +	onecell_data->hws[CLKID_MMC_PHASE_CORE]		= &core->hw,
-> +	onecell_data->hws[CLKID_MMC_PHASE_RX]		= &rx->hw,
-> +	onecell_data->hws[CLKID_MMC_PHASE_TX]		= &tx->hw,
-> +	onecell_data->num				= MMC_MAX_CLKS;
-> +
-> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> +					   onecell_data);
-> +}
-> +
-> +static struct platform_driver mmc_clkc_driver = {
-> +	.probe		= mmc_clkc_probe,
-> +	.driver		= {
-> +		.name	= "meson-mmc-clkc",
-> +		.of_match_table = of_match_ptr(mmc_clkc_match_table),
-> +	},
-> +};
-> +
-> +module_platform_driver(mmc_clkc_driver);
+> In general, we should try to order nodes by addresses when there is one and
+> alphabetically when there is none. This is something we have to fix for the AXG
+> as well.
+> 
+> 
+OK, I will fix this in g12a first.>> +	compatible = "amlogic,g12a";
+>> +
+>> +	interrupt-parent = <&gic>;
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +
+>> +	reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
+> 
+> It's the only one (for now at least) so it's not really an alternate, isn't it ?
+> 
+Yes, the reserved memory for BL31 is a must. I will remove 'Alternate' in V2. 
+>> +		secmon_reserved: secmon at 5000000 {
+>> +			reg = <0x0 0x05000000 0x0 0x300000>;
+>> +			no-map;
+>> +		};
+>> +	};
+>> +
+>> +	cpus {
+>> +		#address-cells = <0x2>;
+>> +		#size-cells = <0x0>;
+>> +
+>> +		cpu0: cpu at 0 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53", "arm,armv8";
+>> +			reg = <0x0 0x0>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&l2>;
+>> +		};
+>> +
+>> +		cpu1: cpu at 1 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53", "arm,armv8";
+>> +			reg = <0x0 0x1>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&l2>;
+>> +		};
+>> +
+>> +		cpu2: cpu at 2 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53", "arm,armv8";
+>> +			reg = <0x0 0x2>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&l2>;
+>> +		};
+>> +
+>> +		cpu3: cpu at 3 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a53", "arm,armv8";
+>> +			reg = <0x0 0x3>;
+>> +			enable-method = "psci";
+>> +			next-level-cache = <&l2>;
+>> +		};
+>> +
+>> +		l2: l2-cache0 {
+>> +			compatible = "cache";
+>> +		};
+>> +	};
+>> +
+>> +	psci {
+>> +		compatible = "arm,psci-1.0";
+>> +		method = "smc";
+>> +	};
+>> +
+>> +	timer {
+>> +		compatible = "arm,armv8-timer";
+>> +		interrupts = <GIC_PPI 13
+>> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+>> +			     <GIC_PPI 14
+>> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+>> +			     <GIC_PPI 11
+>> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+>> +			     <GIC_PPI 10
+>> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
+>> +	};
+>> +
+>> +	xtal: xtal-clk {
+>> +		compatible = "fixed-clock";
+>> +		clock-frequency = <24000000>;
+>> +		clock-output-names = "xtal";
+>> +		#clock-cells = <0>;
+>> +	};
+>> +
+>> +	soc {
+>> +		compatible = "simple-bus";
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+> 
+> Could you please order the different bus by ascending addresses ?
+> 
+> 
+OK, I will change it in v2. Thank you.
+>> +
+>> +		apb: apb at ffe00000 {
+>> +			compatible = "simple-bus";
+>> +			reg = <0x0 0xffe00000 0x0 0x200000>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x200000>;
+>> +		};
+>> +
+>> +		cbus: bus at ffd00000 {
+>> +			compatible = "simple-bus";
+>> +			reg = <0x0 0xffd00000 0x0 0x25000>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x25000>;
+>> +
+>> +		};
+>> +
+>> +		gic: interrupt-controller at ffc01000 {
+>> +			compatible = "arm,gic-400";
+>> +			reg = <0x0 0xffc01000 0 0x1000>,
+>> +			      <0x0 0xffc02000 0 0x2000>,
+>> +			      <0x0 0xffc04000 0 0x2000>,
+>> +			      <0x0 0xffc06000 0 0x2000>;
+>> +			interrupt-controller;
+>> +			interrupts = <GIC_PPI 9
+>> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+>> +			#interrupt-cells = <3>;
+>> +			#address-cells = <0>;
+>> +		};
+>> +
+>> +		hiubus: bus at ff63c000 {
+>> +			compatible = "simple-bus";
+>> +			reg = <0x0 0xff63c000 0x0 0x1c00>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+>> +
+>> +		};
+>> +
+>> +		periphs: periphs at ff634000 {
+>> +			compatible = "simple-bus";
+>> +			reg = <0x0 0xff634000 0x0 0x2000>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges = <0x0 0x0 0x0 0xff634000 0x0 0x2000>;
+>> +		};
+>> +
+>> +		aobus: bus at ff800000 {
+>> +			compatible = "simple-bus";
+>> +			reg = <0x0 0xff800000 0x0 0x100000>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges = <0x0 0x0 0x0 0xff800000 0x0 0x100000>;
+>> +
+>> +			uart_AO: serial at 3000 {
+>> +				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+>> +				reg = <0x0 0x3000 0x0 0x18>;
+>> +				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
+>> +				clocks = <&xtal>, <&xtal>, <&xtal>;
+>> +				clock-names = "xtal", "pclk", "baud";
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			uart_AO_B: serial at 4000 {
+>> +				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+>> +				reg = <0x0 0x4000 0x0 0x18>;
+>> +				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+>> +				clocks = <&xtal>, <&xtal>, <&xtal>;
+>> +				clock-names = "xtal", "pclk", "baud";
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +		};
+>> +	};
+>> +};
+> 
+> 
+> .
+> 
