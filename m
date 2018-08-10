@@ -1,65 +1,47 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 10 Aug 2018 09:49:16 +0200
-Subject: [PATCH 4/4] drm/meson: convert to the new canvas module
-In-Reply-To: <CAHStOZ6oemCwYWb7dW6SS_ZaWEiVWSfrF=dB_G6CkVb6KS96nA@mail.gmail.com>
-References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
- <20180801185128.23440-5-maxi.jourdan@wanadoo.fr>
- <5b6cc316.1c69fb81.682d3.1216@mx.google.com>
- <CAHStOZ6oemCwYWb7dW6SS_ZaWEiVWSfrF=dB_G6CkVb6KS96nA@mail.gmail.com>
-Message-ID: <e95fe817-ef12-9d06-e7c3-af2a959a2443@baylibre.com>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Fri, 10 Aug 2018 16:47:36 +0800
+Subject: [PATCH v3 0/2] clk: meson-g12a: Add EE clock controller driver
+Message-ID: <1533890858-113020-1-git-send-email-jian.hu@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 10/08/2018 08:35, Maxime Jourdan wrote:
-> 2018-08-10 0:41 GMT+02:00 Rob Herring <robh@kernel.org>:
->> Hi, this is an automated email from Rob's (experimental) review bot. I
->> found a couple of common problems with your patch. Please see below.
->>
->> On Wed,  1 Aug 2018 20:51:28 +0200, Maxime Jourdan wrote:
->>> This removes the meson_canvas files within the meson/drm layer
->>> and makes use of the new canvas module that is referenced in the dts.
->>>
->>> Canvases can be used by different IPs and modules, and it is as such
->>> preferable to rely on a module that can safely dispatch canvases on
->>> demand.
->>>
->>> Signed-off-by: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
->>
->> The preferred subject prefix is "dt-bindings: <binding dir>: ...".
->>
->>> ---
->>>  .../bindings/display/amlogic,meson-vpu.txt    |  9 +--
->>>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  7 +-
->>>  drivers/gpu/drm/meson/Kconfig                 |  1 +
->>>  drivers/gpu/drm/meson/Makefile                |  2 +-
->>>  drivers/gpu/drm/meson/meson_canvas.c          | 70 -------------------
->>>  drivers/gpu/drm/meson/meson_canvas.h          | 42 -----------
->>>  drivers/gpu/drm/meson/meson_crtc.c            |  5 +-
->>>  drivers/gpu/drm/meson/meson_drv.c             | 35 ++++++----
->>>  drivers/gpu/drm/meson/meson_drv.h             |  5 +-
->>>  drivers/gpu/drm/meson/meson_plane.c           |  3 +-
->>>  drivers/gpu/drm/meson/meson_viu.c             |  1 -
->>>  11 files changed, 39 insertions(+), 141 deletions(-)
->>>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.c
->>>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.h
->>>
->>
->> DT bindings (including binding headers) should be a separate patch. See
->> Documentation/devicetree/bindings/submitting-patches.txt.
->>
-> 
-> Hi, What's the standard procedure here ? The reason I kept
-> devicetree+drm changes together is because I didn't want to have
-> floating commits that would break the drm module.
-> 
-> Should I split the changes anyway ?
-> 
-> Maxime
-> 
+Add a Clock driver for the Everything-Else part of
+the Amlogic Meson-G12A SoC.
 
-Yep, split the dt-bindings and the code change.
+Changes since v2 at[2]
+-fix fixed clocks's descriptions
+-fix aligment
+-add enable bit for plls base on [3] patches
+-add fix clock gate bit
 
-In a non-perfect work, it could be great to keep the "old" canvas until
-everything is merged, except if Kevin let me merge everything (including DT) in drm-misc.
+Changes since v1 at[1]
+-fix typo of 'Everything'.
+-change the word 'AmLogic' to 'Amlogic'
+-squash patch 1 and 2.
+-delete usless message of "Trying obsolete regs".
+-delete the empty line in include/dt-bindings/clock/g12a-clkc.h.
+-rebase on top of the "next/drivers" branch, and add g12a clock patch.
+-add CLK_MUX_ROUND_CLOSEST for g12a_sd_emmc_b_clk0_sel and
+ g12a_sd_emmc_c_clk0_sel.
 
-Neil
+[1]https://lkml.kernel.org/r/1531133549-25806-2-git-send-email-jian.hu at amlogic.com
+[2]https://lkml.kernel.org/r/1531728707-192230-2-git-send-email-jian.hu at amlogic.com
+[3]https://lkml.kernel.org/r/20180717095617.12240-1-jbrunet at baylibre.com
+
+Jian Hu (2):
+  dt-bindings: clk: meson-g12a: Add G12A EE Clock Bindings
+  clk: meson-g12a: Add EE Clock controller driver
+
+ .../bindings/clock/amlogic,gxbb-clkc.txt           |    1 +
+ drivers/clk/meson/Kconfig                          |   10 +
+ drivers/clk/meson/Makefile                         |    1 +
+ drivers/clk/meson/g12a.c                           | 1128 ++++++++++++++++++++
+ drivers/clk/meson/g12a.h                           |  128 +++
+ include/dt-bindings/clock/g12a-clkc.h              |   93 ++
+ 6 files changed, 1361 insertions(+)
+ create mode 100644 drivers/clk/meson/g12a.c
+ create mode 100644 drivers/clk/meson/g12a.h
+ create mode 100644 include/dt-bindings/clock/g12a-clkc.h
+
+-- 
+1.9.1
