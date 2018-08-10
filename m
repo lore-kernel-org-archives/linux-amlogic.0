@@ -1,92 +1,65 @@
-From: maxi.jourdan@wanadoo.fr (Maxime Jourdan)
-Date: Fri, 10 Aug 2018 08:42:58 +0200
-Subject: [PATCH v2 3/4] ARM64: dts: meson-gx: add dmcbus and canvas nodes.
-In-Reply-To: <fcbfff13-aec5-c571-3a5e-a3d571505342@baylibre.com>
-References: <20180807220011.24436-1-maxi.jourdan@wanadoo.fr>
- <20180807220011.24436-4-maxi.jourdan@wanadoo.fr>
- <3221c65f87f8fd3541e0188186cb0259327cb671.camel@baylibre.com>
- <fcbfff13-aec5-c571-3a5e-a3d571505342@baylibre.com>
-Message-ID: <CAHStOZ5RrB_=vhHwN22ajcbmWW_F04RdJTiE1ZLSDqhvwT5Zkg@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 10 Aug 2018 09:49:16 +0200
+Subject: [PATCH 4/4] drm/meson: convert to the new canvas module
+In-Reply-To: <CAHStOZ6oemCwYWb7dW6SS_ZaWEiVWSfrF=dB_G6CkVb6KS96nA@mail.gmail.com>
+References: <20180801185128.23440-1-maxi.jourdan@wanadoo.fr>
+ <20180801185128.23440-5-maxi.jourdan@wanadoo.fr>
+ <5b6cc316.1c69fb81.682d3.1216@mx.google.com>
+ <CAHStOZ6oemCwYWb7dW6SS_ZaWEiVWSfrF=dB_G6CkVb6KS96nA@mail.gmail.com>
+Message-ID: <e95fe817-ef12-9d06-e7c3-af2a959a2443@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-2018-08-09 9:53 GMT+02:00 Neil Armstrong <narmstrong@baylibre.com>:
-> On 08/08/2018 10:41, Jerome Brunet wrote:
->> On Wed, 2018-08-08 at 00:00 +0200, Maxime Jourdan wrote:
->>> Wrap the canvas node in a syscon node.
+On 10/08/2018 08:35, Maxime Jourdan wrote:
+> 2018-08-10 0:41 GMT+02:00 Rob Herring <robh@kernel.org>:
+>> Hi, this is an automated email from Rob's (experimental) review bot. I
+>> found a couple of common problems with your patch. Please see below.
+>>
+>> On Wed,  1 Aug 2018 20:51:28 +0200, Maxime Jourdan wrote:
+>>> This removes the meson_canvas files within the meson/drm layer
+>>> and makes use of the new canvas module that is referenced in the dts.
+>>>
+>>> Canvases can be used by different IPs and modules, and it is as such
+>>> preferable to rely on a module that can safely dispatch canvases on
+>>> demand.
 >>>
 >>> Signed-off-by: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
+>>
+>> The preferred subject prefix is "dt-bindings: <binding dir>: ...".
+>>
 >>> ---
->>>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 17 +++++++++++++++++
->>>  1 file changed, 17 insertions(+)
+>>>  .../bindings/display/amlogic,meson-vpu.txt    |  9 +--
+>>>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  7 +-
+>>>  drivers/gpu/drm/meson/Kconfig                 |  1 +
+>>>  drivers/gpu/drm/meson/Makefile                |  2 +-
+>>>  drivers/gpu/drm/meson/meson_canvas.c          | 70 -------------------
+>>>  drivers/gpu/drm/meson/meson_canvas.h          | 42 -----------
+>>>  drivers/gpu/drm/meson/meson_crtc.c            |  5 +-
+>>>  drivers/gpu/drm/meson/meson_drv.c             | 35 ++++++----
+>>>  drivers/gpu/drm/meson/meson_drv.h             |  5 +-
+>>>  drivers/gpu/drm/meson/meson_plane.c           |  3 +-
+>>>  drivers/gpu/drm/meson/meson_viu.c             |  1 -
+>>>  11 files changed, 39 insertions(+), 141 deletions(-)
+>>>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.c
+>>>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.h
 >>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->>> index b8dc4dbb391b..c98198662ae2 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
->>> @@ -423,6 +423,23 @@
->>>                      };
->>>              };
->>>
->>> +            dmcbus: bus at c8838000 {
->>> +                    compatible = "simple-bus";
->>> +                    reg = <0x0 0xc8838000 0x0 0x1000>;
->>> +                    #address-cells = <2>;
->>> +                    #size-cells = <2>;
->>> +                    ranges = <0x0 0x0 0x0 0xc8838000 0x0 0x1000>;
->>> +
->>> +                    sysctrl_DMC: system-controller at 0 {
->>> +                            compatible = "amlogic,gx-dmc-sysctrl", "syscon", "simple-mfd";
->>> +                            reg = <0x0 0x0 0x0 0x1000>;
->>> +
->>> +                            canvas: canvas-provider at 0 {
->>> +                                    compatible = "amlogic,canvas";
 >>
->> If there is only one canvas provider under "sysctrl_DMC" and it has no reg
->> property , you should not put a unit-address (@0) here. (same for the
->> documentation patch)
+>> DT bindings (including binding headers) should be a separate patch. See
+>> Documentation/devicetree/bindings/submitting-patches.txt.
 >>
->> You may have seen unit-address without a reg property used elsewhere (ASoC
->> simple-card, my recent axg-sound-card), when there is multiple node with the
->> same node-name (ex: dai-link).
+> 
+> Hi, What's the standard procedure here ? The reason I kept
+> devicetree+drm changes together is because I didn't want to have
+> floating commits that would break the drm module.
+> 
+> Should I split the changes anyway ?
+> 
+> Maxime
+> 
 
-Ack.
+Yep, split the dt-bindings and the code change.
 
->> As Martin pointed out, the DT spec says we should not use unit-address unless
->> there is a reg property. We did not get Rob's view on this and we might have to
->> update this later on. In your case, unless I missed something, you should
->> definitely not have it
->>
->> nitpick regarding the node-name (canvas-provider). If appropriate, we should try
->> to stick to one of the generic names proposed in the spec. I wonder if the
->> canvas provider could be viewed as a "memory" or "memory-controller"
->
-> It's not really a memory or memory-controller, it's a Lookup Table on top of the memory controller,
-> nothing really matches here...
+In a non-perfect work, it could be great to keep the "old" canvas until
+everything is merged, except if Kevin let me merge everything (including DT) in drm-misc.
 
-Thanks for the comments. It will be "video-lut" as suggested.
-
->>
->> So, what about this ? Just a proposition, feel free to comment ;)
->>
->>       sysctrl_DMC: system-controller at 0 {                                                      compatib
->> le = "amlogic,gx-dmc-sysctrl", "syscon", "simple-mfd";>               reg =
->> <0x0 0x0 0x0 0x1000>;
->>
->>               canvas: memory-controller {
->>                       compatible = "amlogic,canvas";
->>               }
->>
->> [...]
->>
->>
->>> +                            };
->>> +                    };
->>> +            };
->>> +
->>>              hiubus: bus at c883c000 {
->>>                      compatible = "simple-bus";
->>>                      reg = <0x0 0xc883c000 0x0 0x2000>;
->>
->>
->
+Neil
