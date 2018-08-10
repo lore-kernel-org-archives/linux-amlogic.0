@@ -1,252 +1,262 @@
-From: jian.hu@amlogic.com (Jian Hu)
-Date: Fri, 10 Aug 2018 17:54:28 +0800
-Subject: [PATCH 2/2] clk: meson-g12a: Add AO Clock controller driver
-In-Reply-To: <1533894868-85815-1-git-send-email-jian.hu@amlogic.com>
-References: <1533894868-85815-1-git-send-email-jian.hu@amlogic.com>
-Message-ID: <1533894868-85815-3-git-send-email-jian.hu@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 10 Aug 2018 13:58:34 +0200
+Subject: [PATCH 2/2] arm64: dts: meson-g12a: add initial g12a s905d2 SoC
+ DT support
+In-Reply-To: <1533802951-49919-3-git-send-email-jianxin.pan@amlogic.com>
+References: <1533802951-49919-1-git-send-email-jianxin.pan@amlogic.com>
+ <1533802951-49919-3-git-send-email-jianxin.pan@amlogic.com>
+Message-ID: <f21f60423cbc43797e2465f1a734f715795c30b6.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add a Clock driver for the ALways-On part
-of the Amlogic Meson-G12A SoC.
+On Thu, 2018-08-09 at 16:22 +0800, Jianxin Pan wrote:
+> Try to add basic DT support for the Amlogic's Meson-G12A S905D2 SoC,
+> which describe components as follows: Reserve Memory, CPU, GIC, IRQ,
+> Timer, UART. It's capable of booting up into the serial console.
+> 
+> Signed-off-by: Jianxin <jianxin.pan@amlogic.com>
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
- drivers/clk/meson/Makefile     |   2 +-
- drivers/clk/meson/g12a-aoclk.c | 170 +++++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/g12a-aoclk.h |  36 +++++++++
- 3 files changed, 207 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/meson/g12a-aoclk.c
- create mode 100644 drivers/clk/meson/g12a-aoclk.h
+Could please fix your signoff here ? Your last name went missing
 
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 2b1a562..d5c2dcd 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -9,5 +9,5 @@ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
- obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
- obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o axg-aoclk.o
- obj-$(CONFIG_COMMON_CLK_AXG_AUDIO)	+= axg-audio.o
--obj-$(CONFIG_COMMON_CLK_G12A)	 += g12a.o
-+obj-$(CONFIG_COMMON_CLK_G12A)	 += g12a.o g12a-aoclk.c
- obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)	+= clk-regmap.o
-diff --git a/drivers/clk/meson/g12a-aoclk.c b/drivers/clk/meson/g12a-aoclk.c
-new file mode 100644
-index 0000000..a5cd95c
---- /dev/null
-+++ b/drivers/clk/meson/g12a-aoclk.c
-@@ -0,0 +1,170 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Amlogic Meson-G12A Clock Controller Driver
-+ *
-+ * Copyright (c) 2016 Baylibre SAS.
-+ * Author: Michael Turquette <mturquette@baylibre.com>
-+ *
-+ * Copyright (c) 2018 Amlogic, inc.
-+ * Author: Jian Hu <jian.hu@amlogic.com>
-+ */
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/init.h>
-+#include "clkc.h"
-+#include "g12a-aoclk.h"
-+
-+#define G12A_AO_GATE0(_name, _bit)					\
-+static struct clk_regmap _name##_ao = {					\
-+	.data = &(struct clk_regmap_gate_data) {			\
-+		.offset = (AO_CLK_GATE0),			\
-+		.bit_idx = (_bit),					\
-+	},								\
-+	.hw.init = &(struct clk_init_data) {				\
-+		.name = #_name "_ao",					\
-+		.ops = &clk_regmap_gate_ops,				\
-+		.parent_names = (const char *[]){ "clk81" },		\
-+		.num_parents = 1,					\
-+	},								\
-+}
-+
-+G12A_AO_GATE0(ahb_bus,		0);
-+G12A_AO_GATE0(remote,		1);
-+G12A_AO_GATE0(i2c_master,	2);
-+G12A_AO_GATE0(i2c_slave,	3);
-+G12A_AO_GATE0(uart1,		4);
-+G12A_AO_GATE0(prod_i2c,		5);
-+G12A_AO_GATE0(uart2,		6);
-+G12A_AO_GATE0(ir_blaster,	7);
-+G12A_AO_GATE0(saradc,		8);
-+
-+static struct clk_regmap ao_clk81 = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTI_PWR_CNTL_REG0,
-+		.mask = 0x1,
-+		.shift = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "ao_clk81",
-+		.ops = &clk_regmap_mux_ro_ops,
-+		.parent_names = (const char *[]){ "clk81", "ao_alt_xtal"},
-+		.num_parents = 2,
-+	},
-+};
-+
-+static struct clk_regmap g12a_saradc_mux = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_SAR_CLK,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_saradc_mux",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = (const char *[]){ "xtal", "ao_clk81" },
-+		.num_parents = 2,
-+	},
-+};
-+
-+static struct clk_regmap g12a_saradc_div = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = AO_SAR_CLK,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_saradc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "g12a_saradc_mux" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_saradc_gate = {
-+	.data = &(struct clk_regmap_gate_data) {
-+		.offset = AO_SAR_CLK,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_saradc_gate",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "g12a_saradc_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static unsigned int g12a_aoclk_reset[] = {
-+	[RESET_AO_REMOTE] =	16,
-+	[RESET_AO_UART1] =	17,
-+	[RESET_AO_I2C_MASTER] = 18,
-+	[RESET_AO_I2C_SLAVE] =	19,
-+	[RESET_AO_SARADC] =	20,
-+	[RESET_AO_UART2] =	22,
-+	[RESET_AO_IR_BLASTER] = 23,
-+};
-+
-+static struct clk_regmap *g12a_aoclk_regmap[] = {
-+	[CLKID_AO_AHB_BUS]	= &ahb_bus_ao,
-+	[CLKID_AO_REMOTE]	= &remote_ao,
-+	[CLKID_AO_I2C_MASTER]	= &i2c_master_ao,
-+	[CLKID_AO_I2C_SLAVE]	= &i2c_slave_ao,
-+	[CLKID_AO_UART1]	= &uart1_ao,
-+	[CLKID_AO_PROD_I2C]	= &prod_i2c_ao,
-+	[CLKID_AO_UART2]	= &uart2_ao,
-+	[CLKID_AO_IR_BLASTER]	= &ir_blaster_ao,
-+	[CLKID_AO_SAR_ADC]	= &saradc_ao,
-+	[CLKID_AO_CLK81]	= &ao_clk81,
-+	[CLKID_AO_SAR_ADC_SEL]	= &g12a_saradc_mux,
-+	[CLKID_AO_SAR_ADC_DIV]	= &g12a_saradc_div,
-+	[CLKID_AO_SAR_ADC_CLK]	= &g12a_saradc_gate,
-+};
-+
-+static struct clk_hw_onecell_data g12a_aoclk_onecell_data = {
-+	.hws = {
-+		[CLKID_AO_AHB_BUS]	= &ahb_bus_ao.hw,
-+		[CLKID_AO_REMOTE]	= &remote_ao.hw,
-+		[CLKID_AO_I2C_MASTER]	= &i2c_master_ao.hw,
-+		[CLKID_AO_I2C_SLAVE]	= &i2c_slave_ao.hw,
-+		[CLKID_AO_UART1]	= &uart1_ao.hw,
-+		[CLKID_AO_PROD_I2C]	= &prod_i2c_ao.hw,
-+		[CLKID_AO_UART2]	= &uart2_ao.hw,
-+		[CLKID_AO_IR_BLASTER]	= &ir_blaster_ao.hw,
-+		[CLKID_AO_SAR_ADC]	= &saradc_ao.hw,
-+		[CLKID_AO_CLK81]	= &ao_clk81.hw,
-+		[CLKID_AO_SAR_ADC_SEL]	= &g12a_saradc_mux.hw,
-+		[CLKID_AO_SAR_ADC_DIV]	= &g12a_saradc_div.hw,
-+		[CLKID_AO_SAR_ADC_CLK]	= &g12a_saradc_gate.hw,
-+	},
-+	.num = NR_CLKS,
-+};
-+
-+static struct meson_aoclk_data g12a_aoclkc_data = {
-+	.reset_reg	= AO_RTI_GEN_CNTL_REG0,
-+	.num_reset	= ARRAY_SIZE(g12a_aoclk_reset),
-+	.reset		= g12a_aoclk_reset,
-+	.num_clks	= ARRAY_SIZE(g12a_aoclk_regmap),
-+	.clks		= g12a_aoclk_regmap,
-+	.hw_data	= &g12a_aoclk_onecell_data,
-+};
-+
-+static const struct of_device_id g12a_aoclkc_match_table[] = {
-+	{
-+		.compatible	= "amlogic,g12a-aoclkc",
-+		.data		= &g12a_aoclkc_data,
-+	},
-+	{ }
-+};
-+
-+static struct platform_driver g12a_aoclkc_driver = {
-+	.probe		= meson_aoclkc_probe,
-+	.driver		= {
-+		.name	= "g12a-aoclkc",
-+		.of_match_table = g12a_aoclkc_match_table,
-+	},
-+};
-+
-+builtin_platform_driver(g12a_aoclkc_driver);
-diff --git a/drivers/clk/meson/g12a-aoclk.h b/drivers/clk/meson/g12a-aoclk.h
-new file mode 100644
-index 0000000..007183e
---- /dev/null
-+++ b/drivers/clk/meson/g12a-aoclk.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2017 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * Copyright (c) 2018 Amlogic, inc.
-+ * Author: Jian Hu <Jian.Hu@amlogic.com>
-+ */
-+
-+#ifndef __G12A_AOCLKC_H
-+#define __G12A_AOCLKC_H
-+
-+//#include "meson-aoclk.h"
-+
-+#define NR_CLKS				14
-+
-+/* AO Configuration Clock registers offsets
-+ * Register offsets from the data sheet must be multiplied by 4.
-+ */
-+#define AO_RTI_PWR_CNTL_REG0		0x10
-+#define AO_RTI_GEN_CNTL_REG0		0x40
-+#define AO_OSCIN_CNTL			0x58
-+#define AO_CRT_CLK_CNTL1		0x68
-+#define AO_SAR_CLK			0x90
-+#define AO_RTC_ALT_CLK_CNTL0		0x94
-+#define AO_RTC_ALT_CLK_CNTL1		0x98
-+
-+/*
-+ *AO CLK81 gate clocks
-+ */
-+#define AO_CLK_GATE0			0x4c
-+
-+#include <dt-bindings/clock/g12a-aoclkc.h>
-+#include <dt-bindings/reset/g12a-aoclkc.h>
-+
-+#endif /* __G12A_AOCLKC_H */
--- 
-1.9.1
+> ---
+>  arch/arm64/boot/dts/amlogic/Makefile            |   1 +
+>  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts |  22 +++
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi     | 174 ++++++++++++++++++++++++
+>  3 files changed, 197 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index a97c0e2..c31f29d6 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> new file mode 100644
+> index 0000000..d267a37
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-g12a.dtsi"
+> +
+> +/ {
+> +	compatible = "amlogic,u200", "amlogic,g12a";
+> +	model = "Amlogic Meson G12A U200 Development Board";
+> +
+> +	aliases {
+> +		serial0 = &uart_AO;
+> +	};
+> +};
+> +
+> +&uart_AO {
+> +	status = "okay";
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> new file mode 100644
+> index 0000000..64a0f2e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -0,0 +1,174 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+
+Could you please order the subnodes alphabetically ?
+
+In general, we should try to order nodes by addresses when there is one and
+alphabetically when there is none. This is something we have to fix for the AXG
+as well.
+
+
+> +	compatible = "amlogic,g12a";
+> +
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
+
+It's the only one (for now at least) so it's not really an alternate, isn't it ?
+
+> +		secmon_reserved: secmon at 5000000 {
+> +			reg = <0x0 0x05000000 0x0 0x300000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <0x2>;
+> +		#size-cells = <0x0>;
+> +
+> +		cpu0: cpu at 0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53", "arm,armv8";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu1: cpu at 1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53", "arm,armv8";
+> +			reg = <0x0 0x1>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu2: cpu at 2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53", "arm,armv8";
+> +			reg = <0x0 0x2>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu3: cpu at 3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53", "arm,armv8";
+> +			reg = <0x0 0x3>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		l2: l2-cache0 {
+> +			compatible = "cache";
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13
+> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14
+> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11
+> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10
+> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +
+> +	xtal: xtal-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xtal";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+
+Could you please order the different bus by ascending addresses ?
+
+
+> +
+> +		apb: apb at ffe00000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xffe00000 0x0 0x200000>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x200000>;
+> +		};
+> +
+> +		cbus: bus at ffd00000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xffd00000 0x0 0x25000>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x25000>;
+> +
+> +		};
+> +
+> +		gic: interrupt-controller at ffc01000 {
+> +			compatible = "arm,gic-400";
+> +			reg = <0x0 0xffc01000 0 0x1000>,
+> +			      <0x0 0xffc02000 0 0x2000>,
+> +			      <0x0 0xffc04000 0 0x2000>,
+> +			      <0x0 0xffc06000 0 0x2000>;
+> +			interrupt-controller;
+> +			interrupts = <GIC_PPI 9
+> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <0>;
+> +		};
+> +
+> +		hiubus: bus at ff63c000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xff63c000 0x0 0x1c00>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+> +
+> +		};
+> +
+> +		periphs: periphs at ff634000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xff634000 0x0 0x2000>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xff634000 0x0 0x2000>;
+> +		};
+> +
+> +		aobus: bus at ff800000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xff800000 0x0 0x100000>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xff800000 0x0 0x100000>;
+> +
+> +			uart_AO: serial at 3000 {
+> +				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+> +				reg = <0x0 0x3000 0x0 0x18>;
+> +				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
+> +				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clock-names = "xtal", "pclk", "baud";
+> +				status = "disabled";
+> +			};
+> +
+> +			uart_AO_B: serial at 4000 {
+> +				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+> +				reg = <0x0 0x4000 0x0 0x18>;
+> +				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+> +				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clock-names = "xtal", "pclk", "baud";
+> +				status = "disabled";
+> +			};
+> +
+> +		};
+> +	};
+> +};
