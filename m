@@ -1,44 +1,69 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 10 Aug 2018 14:27:21 +0200
-Subject: [PATCH v4 1/3] clk: meson: add emmc sub clock phase delay driver
-In-Reply-To: <20180809070724.11935-2-yixun.lan@amlogic.com>
+Date: Fri, 10 Aug 2018 14:47:59 +0200
+Subject: [PATCH v4 3/3] clk: meson: add sub MMC clock controller driver
+In-Reply-To: <20180809070724.11935-4-yixun.lan@amlogic.com>
 References: <20180809070724.11935-1-yixun.lan@amlogic.com>
- <20180809070724.11935-2-yixun.lan@amlogic.com>
-Message-ID: <8ba84364847ae800fcfcab34573a25996d8724fd.camel@baylibre.com>
+ <20180809070724.11935-4-yixun.lan@amlogic.com>
+Message-ID: <bc425f1926ddc1b426be5902bf3595ff556670d3.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 On Thu, 2018-08-09 at 15:07 +0800, Yixun Lan wrote:
-> Export the emmc sub clock phase delay ops which will be used
-> by the emmc sub clock driver itself.
+> The patch will add a MMC clock controller driver which used by MMC or NAND,
+> It provide a mux and divider clock, and three phase clocks - core, tx, tx.
+> 
+> Two clocks are provided as the parent of MMC clock controller from
+> upper layer clock controller - eg "amlogic,axg-clkc" in AXG platform.
+> 
+> To specify which clock the MMC or NAND driver may consume,
+> the preprocessor macros in the dt-bindings/clock/amlogic,mmc-clkc.h header
+> can be used in the device tree sources.
 > 
 > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 > ---
->  drivers/clk/meson/Makefile          |  2 +-
->  drivers/clk/meson/clk-phase-delay.c | 96 +++++++++++++++++++++++++++++
->  drivers/clk/meson/clkc.h            | 13 ++++
->  3 files changed, 110 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/clk/meson/clk-phase-delay.c
+>  drivers/clk/meson/Kconfig    |  10 ++
+>  drivers/clk/meson/Makefile   |   1 +
+>  drivers/clk/meson/mmc-clkc.c | 275 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 286 insertions(+)
+>  create mode 100644 drivers/clk/meson/mmc-clkc.c
 > 
+> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+> index efaa70f682b4..8b8ccbcfed1d 100644
+> --- a/drivers/clk/meson/Kconfig
+> +++ b/drivers/clk/meson/Kconfig
+> @@ -15,6 +15,16 @@ config COMMON_CLK_MESON_AO
+>  	select COMMON_CLK_REGMAP_MESON
+>  	select RESET_CONTROLLER
+>  
+> +config COMMON_CLK_MMC_MESON
+> +	tristate "Meson MMC Sub Clock Controller Driver"
+> +	depends on COMMON_CLK_AMLOGIC
+> +	select MFD_SYSCON
+> +	select REGMAP
+> +	help
+> +	  Support for the MMC sub clock controller on Amlogic Meson Platform,
+> +	  which include S905 (GXBB, GXL), A113D/X (AXG) devices.
+> +	  Say Y if you want this clock enabled.
+> +
+>  config COMMON_CLK_REGMAP_MESON
+>  	bool
+>  	select REGMAP
 > diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 72ec8c40d848..39ce5661b654 100644
+> index 39ce5661b654..31c16d524a4b 100644
 > --- a/drivers/clk/meson/Makefile
 > +++ b/drivers/clk/meson/Makefile
-> @@ -2,7 +2,7 @@
->  # Makefile for Meson specific clk
->  #
->  
-> -obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-phase.o
-> +obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-phase.o clk-phase-delay.o
->  obj-$(CONFIG_COMMON_CLK_AMLOGIC_AUDIO)	+= clk-triphase.o sclk-div.o
->  obj-$(CONFIG_COMMON_CLK_MESON_AO) += meson-aoclk.o
->  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
-> diff --git a/drivers/clk/meson/clk-phase-delay.c b/drivers/clk/meson/clk-phase-delay.c
+> @@ -9,4 +9,5 @@ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
+>  obj-$(CONFIG_COMMON_CLK_GXBB)	 += gxbb.o gxbb-aoclk.o gxbb-aoclk-32k.o
+>  obj-$(CONFIG_COMMON_CLK_AXG)	 += axg.o axg-aoclk.o
+>  obj-$(CONFIG_COMMON_CLK_AXG_AUDIO)	+= axg-audio.o
+> +obj-$(CONFIG_COMMON_CLK_MMC_MESON) 	+= mmc-clkc.o
+>  obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)	+= clk-regmap.o
+> diff --git a/drivers/clk/meson/mmc-clkc.c b/drivers/clk/meson/mmc-clkc.c
 > new file mode 100644
-> index 000000000000..6f226814cfec
+> index 000000000000..6aa055f7e62c
 > --- /dev/null
-> +++ b/drivers/clk/meson/clk-phase-delay.c
-> @@ -0,0 +1,96 @@
+> +++ b/drivers/clk/meson/mmc-clkc.c
+> @@ -0,0 +1,275 @@
 > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +/*
 > + * Amlogic Meson MMC Sub Clock Controller Driver
@@ -50,132 +75,279 @@ On Thu, 2018-08-09 at 15:07 +0800, Yixun Lan wrote:
 > + * Author: Yixun Lan <yixun.lan@amlogic.com>
 > + */
 > +
-> +#include <linux/clk-provider.h>
+> +#include <linux/clk.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
+> +#include <linux/of_device.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/clock/amlogic,mmc-clkc.h>
+> +
 > +#include "clkc.h"
 > +
+> +/* clock ID used by internal driver */
+> +#define CLKID_MMC_MUX			0
+> +
 > +#define SD_EMMC_CLOCK			0
-
-Drop this and use struct parm please.
-
+> +#define   CLK_DIV_MASK			GENMASK(5, 0)
+> +#define   CLK_SRC_MASK			GENMASK(7, 6)
+> +#define   CLK_CORE_PHASE_MASK		GENMASK(9, 8)
+> +#define   CLK_TX_PHASE_MASK		GENMASK(11, 10)
+> +#define   CLK_RX_PHASE_MASK		GENMASK(13, 12)
+> +#define   CLK_V2_TX_DELAY_MASK		GENMASK(19, 16)
+> +#define   CLK_V2_RX_DELAY_MASK		GENMASK(23, 20)
+> +#define   CLK_V2_ALWAYS_ON		BIT(24)
 > +
-> +static int meson_clk_phase_delay_get_phase(struct clk_hw *hw)
-> +{
-> +	struct clk_regmap *clk = to_clk_regmap(hw);
-> +	struct meson_clk_phase_delay_data *ph =
-> +		meson_clk_get_phase_delay_data(clk);
-> +	unsigned int phase_num = 1 <<  hweight_long(ph->phase_mask);
-> +	unsigned long period_ps, p, d;
-> +	int degrees;
-> +	u32 val;
+> +#define   CLK_V3_TX_DELAY_MASK		GENMASK(21, 16)
+> +#define   CLK_V3_RX_DELAY_MASK		GENMASK(27, 22)
+> +#define   CLK_V3_ALWAYS_ON		BIT(28)
 > +
-> +	regmap_read(clk->map, SD_EMMC_CLOCK, &val);
-> +	p = (val & ph->phase_mask) >> __ffs(ph->phase_mask);
-> +	degrees = p * 360 / phase_num;
+> +#define   CLK_DELAY_STEP_PS		200
+> +#define   CLK_PHASE_STEP		30
+> +#define   CLK_PHASE_POINT_NUM		(360 / CLK_PHASE_STEP)
 > +
-> +	if (ph->delay_mask) {
-> +		period_ps = DIV_ROUND_UP((unsigned long)NSEC_PER_SEC * 1000,
-> +					 clk_hw_get_rate(hw));
-> +		d = (val & ph->delay_mask) >> __ffs(ph->delay_mask);
-> +		degrees += d * ph->delay_step_ps * 360 / period_ps;
-> +		degrees %= 360;
-> +	}
+> +#define MUX_CLK_NUM_PARENTS		2
+> +#define MMC_MAX_CLKS			5
 > +
-> +	return degrees;
-> +}
-> +
-> +static void meson_clk_apply_phase_delay(struct clk_regmap *clk,
-> +					unsigned int phase,
-> +					unsigned int delay)
-> +{
-> +	struct meson_clk_phase_delay_data *ph = clk->data;
-> +	u32 val;
-> +
-> +	regmap_read(clk->map, SD_EMMC_CLOCK, &val);
-> +
-> +	val &= ~ph->phase_mask;
-> +	val |= phase << __ffs(ph->phase_mask);
-> +
-> +	if (ph->delay_mask) {
-
-This imply that delay is delay is optional. In such case, it would be a regular
-"phase" and we already have a  driver for this. Please remove all the related
-code and make this parameter required for this clock type.
-
-In the future, maybe we'll merge the 2 drivers.
-
-> +		val &= ~ph->delay_mask;
-> +		val |= delay << __ffs(ph->delay_mask);
-> +	}
-> +
-> +	regmap_write(clk->map, SD_EMMC_CLOCK, val);
-> +}
-> +
-> +static int meson_clk_phase_delay_set_phase(struct clk_hw *hw, int degrees)
-> +{
-> +	struct clk_regmap *clk = to_clk_regmap(hw);
-> +	struct meson_clk_phase_delay_data *ph =
-> +		meson_clk_get_phase_delay_data(clk);
-> +	unsigned int phase_num = 1 <<  hweight_long(ph->phase_mask);
-> +	unsigned long period_ps, d = 0, r;
-> +	u64 p;
-> +
-> +	p = degrees % 360;
-> +
-> +	if (!ph->delay_mask) {
-> +		p = DIV_ROUND_CLOSEST_ULL(p, 360 / phase_num);
-> +	} else {
-> +		period_ps = DIV_ROUND_UP((unsigned long)NSEC_PER_SEC * 1000,
-> +					 clk_hw_get_rate(hw));
-> +
-> +		/* First compute the phase index (p), the remainder (r) is the
-> +		 * part we'll try to acheive using the delays (d).
-> +		 */
-> +		r = do_div(p, 360 / phase_num);
-> +		d = DIV_ROUND_CLOSEST(r * period_ps,
-> +				      360 * ph->delay_step_ps);
-> +		d = min(d, ph->delay_mask >> __ffs(ph->delay_mask));
-> +	}
-> +
-> +	meson_clk_apply_phase_delay(clk, p, d);
-> +	return 0;
-> +}
-> +
-> +const struct clk_ops meson_clk_phase_delay_ops = {
-> +	.get_phase = meson_clk_phase_delay_get_phase,
-> +	.set_phase = meson_clk_phase_delay_set_phase,
-> +};
-> +EXPORT_SYMBOL_GPL(meson_clk_phase_delay_ops);
-> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-> index 24cec16b6038..499834dd34f2 100644
-> --- a/drivers/clk/meson/clkc.h
-> +++ b/drivers/clk/meson/clkc.h
-> @@ -113,6 +113,18 @@ struct clk_regmap _name = {						\
->  	},								\
->  };
->  
-> +struct meson_clk_phase_delay_data {
-> +	unsigned long			phase_mask;
-> +	unsigned long			delay_mask;
-
-Like every other clock drivers in the amlogic directory, please use struct parm
-to decribe the fields.
-
-> +	unsigned int			delay_step_ps;
+> +struct mmc_clkc_data {
+> +	struct meson_clk_phase_delay_data	tx;
+> +	struct meson_clk_phase_delay_data	rx;
 > +};
 > +
-> +static inline struct meson_clk_phase_delay_data *
-> +meson_clk_get_phase_delay_data(struct clk_regmap *clk)
+> +static struct clk_regmap_mux_data mmc_clkc_mux_data = {
+> +	.offset		= SD_EMMC_CLOCK,
+> +	.mask		= 0x3,
+> +	.shift		= 6,
+> +	.flags		= CLK_DIVIDER_ROUND_CLOSEST,
+> +};
+> +
+> +static struct clk_regmap_div_data mmc_clkc_div_data = {
+> +	.offset		= SD_EMMC_CLOCK,
+> +	.shift		= 0,
+> +	.width		= 6,
+> +	.flags		= CLK_DIVIDER_ROUND_CLOSEST | CLK_DIVIDER_ONE_BASED,
+> +};
+> +
+> +static struct meson_clk_phase_delay_data mmc_clkc_core_phase_delay = {
+> +	.phase_mask	= CLK_CORE_PHASE_MASK,
+> +};
+> +
+> +static const struct mmc_clkc_data mmc_clkc_gx_data = {
+> +	{
+> +		.phase_mask	= CLK_TX_PHASE_MASK,
+> +		.delay_mask	= CLK_V2_TX_DELAY_MASK,
+> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
+> +	},
+> +	{
+> +		.phase_mask	= CLK_RX_PHASE_MASK,
+> +		.delay_mask	= CLK_V2_RX_DELAY_MASK,
+> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
+> +	},
+> +};
+> +
+> +static const struct mmc_clkc_data mmc_clkc_axg_data = {
+> +	{
+> +		.phase_mask	= CLK_TX_PHASE_MASK,
+> +		.delay_mask	= CLK_V3_TX_DELAY_MASK,
+> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
+> +	},
+> +	{
+> +		.phase_mask	= CLK_RX_PHASE_MASK,
+> +		.delay_mask	= CLK_V3_RX_DELAY_MASK,
+> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
+> +	},
+> +};
+> +
+> +static const struct of_device_id mmc_clkc_match_table[] = {
+> +	{
+> +		.compatible	= "amlogic,gx-mmc-clkc",
+> +		.data		= &mmc_clkc_gx_data
+> +	},
+> +	{
+> +		.compatible	= "amlogic,axg-mmc-clkc",
+> +		.data		= &mmc_clkc_axg_data
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, mmc_clkc_match_table);
+> +
+> +static struct clk_regmap *
+> +mmc_clkc_register_clk(struct device *dev, struct regmap *map,
+> +		      struct clk_init_data *init,
+> +		      const char *suffix, void *data)
 > +{
-> +	return (struct meson_clk_phase_delay_data *)clk->data;
+> +	struct clk_regmap *clk;
+> +	char *name;
+> +	int ret;
+> +
+> +	clk = devm_kzalloc(dev, sizeof(*clk), GFP_KERNEL);
+> +	if (!clk)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	name = kasprintf(GFP_KERNEL, "%s#%s", dev_name(dev), suffix);
+> +	if (!name)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	init->name = name;
+> +
+> +	clk->map = map;
+> +	clk->data = data;
+> +	clk->hw.init = init;
+> +
+> +	ret = devm_clk_hw_register(dev, &clk->hw);
+> +	if (ret)
+> +		clk = ERR_PTR(ret);
+> +
+> +	kfree(name);
+> +	return clk;
 > +}
 > +
->  /* clk_ops */
->  extern const struct clk_ops meson_clk_pll_ro_ops;
->  extern const struct clk_ops meson_clk_pll_ops;
-> @@ -120,5 +132,6 @@ extern const struct clk_ops meson_clk_cpu_ops;
->  extern const struct clk_ops meson_clk_mpll_ro_ops;
->  extern const struct clk_ops meson_clk_mpll_ops;
->  extern const struct clk_ops meson_clk_phase_ops;
-> +extern const struct clk_ops meson_clk_phase_delay_ops;
->  
->  #endif /* __CLKC_H */
+> +static struct clk_regmap *mmc_clkc_register_mux(struct device *dev,
+> +						struct regmap *map)
+> +{
+> +	const char *parent_names[MUX_CLK_NUM_PARENTS];
+> +	struct clk_init_data init;
+> +	struct clk_regmap *mux;
+> +	struct clk *clk;
+> +	int i;
+> +
+> +	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
+> +		char name[8];
+> +
+> +		snprintf(name, sizeof(name), "clkin%d", i);
+> +		clk = devm_clk_get(dev, name);
+> +		if (IS_ERR(clk)) {
+> +			if (clk != ERR_PTR(-EPROBE_DEFER))
+> +				dev_err(dev, "Missing clock %s\n", name);
+> +			return ERR_PTR((long)clk);
+> +		}
+> +
+> +		parent_names[i] = __clk_get_name(clk);
+> +	}
+> +
+> +	init.ops = &clk_regmap_mux_ops;
+> +	init.flags = CLK_SET_RATE_PARENT;
+> +	init.parent_names = parent_names;
+> +	init.num_parents = MUX_CLK_NUM_PARENTS;
+> +
+> +	mux = mmc_clkc_register_clk(dev, map, &init, "mux", &mmc_clkc_mux_data);
+> +	if (IS_ERR(mux))
+> +		dev_err(dev, "Mux clock registration failed\n");
+> +
+> +	return mux;
+> +}
+> +
+> +static struct clk_regmap *
+> +mmc_clkc_register_other_clk(struct device *dev, struct regmap *map,
+
+This is a poor name. It does not help understand what the function does.
+mmc_clkc_register_clk_with_parent or whatever helps understand what's going on
+
+> +			    char *suffix, char *parent_suffix,
+
+You should not have to rebuild the parent name once again.
+Pass the clk_hw* of the parent and get the name from it.
+
+> +			    unsigned long flags,
+> +			    const struct clk_ops *ops, void *data)
+> +{
+> +	struct clk_init_data init;
+> +	struct clk_regmap *clk;
+> +	char *parent;
+> +
+> +	parent = kasprintf(GFP_KERNEL, "%s#%s", dev_name(dev), parent_suffix);
+> +	if (!parent)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	init.ops = ops;
+> +	init.flags = flags;
+> +	init.parent_names = (const char* const []){ parent, };
+> +	init.num_parents = 1;
+> +
+> +	clk = mmc_clkc_register_clk(dev, map, &init, suffix, data);
+> +	if (IS_ERR(clk))
+> +		dev_err(dev, "Core %s clock registration failed\n", suffix);
+> +
+> +	kfree(parent);
+> +	return clk;
+> +}
+> +
+> +static int mmc_clkc_probe(struct platform_device *pdev)
+> +{
+> +	struct clk_hw_onecell_data *onecell_data;
+> +	struct device *dev = &pdev->dev;
+> +	struct mmc_clkc_data *data;
+> +	struct regmap *map;
+> +	struct clk_regmap *mux, *div, *core, *rx, *tx;
+
+Do you really need all this ? or could store them in your onecell_data->hws
+table as you go ?
+
+> +
+> +	data = (struct mmc_clkc_data *)of_device_get_match_data(dev);
+> +	if (!data)
+> +		return -ENODEV;
+> +
+> +	map = syscon_node_to_regmap(dev->of_node);
+> +	if (IS_ERR(map)) {
+> +		dev_err(dev, "could not find mmc clock controller\n");
+> +		return PTR_ERR(map);
+> +	}
+> +
+> +	onecell_data = devm_kzalloc(dev, sizeof(*onecell_data) +
+> +				    sizeof(*onecell_data->hws) * MMC_MAX_CLKS,
+> +				    GFP_KERNEL);
+> +	if (!onecell_data)
+> +		return -ENOMEM;
+> +
+> +	mux = mmc_clkc_register_mux(dev, map);
+> +	if (IS_ERR(mux))
+> +		return PTR_ERR(mux);
+> +
+> +	div = mmc_clkc_register_other_clk(dev, map, "div", "mux",
+> +					  CLK_SET_RATE_PARENT,
+> +					  &clk_regmap_divider_ops,
+> +					  &mmc_clkc_div_data);
+> +	if (IS_ERR(div))
+> +		return PTR_ERR(div);
+> +
+> +	core = mmc_clkc_register_other_clk(dev, map, "core", "div",
+> +					   CLK_SET_RATE_PARENT,
+> +					   &meson_clk_phase_delay_ops,
+> +					   &mmc_clkc_core_phase_delay);
+> +	if (IS_ERR(core))
+> +		return PTR_ERR(core);
+> +
+> +	rx = mmc_clkc_register_other_clk(dev, map, "rx", "core", 0,
+> +					 &meson_clk_phase_delay_ops,
+> +					 &data->rx);
+> +	if (IS_ERR(rx))
+> +		return PTR_ERR(rx);
+> +
+> +	tx = mmc_clkc_register_other_clk(dev, map, "tx", "core", 0,
+> +					 &meson_clk_phase_delay_ops,
+> +					 &data->tx);
+> +	if (IS_ERR(tx))
+> +		return PTR_ERR(tx);
+> +
+> +	onecell_data->hws[CLKID_MMC_MUX]		= &mux->hw,
+> +	onecell_data->hws[CLKID_MMC_DIV]		= &div->hw,
+> +	onecell_data->hws[CLKID_MMC_PHASE_CORE]		= &core->hw,
+> +	onecell_data->hws[CLKID_MMC_PHASE_RX]		= &rx->hw,
+> +	onecell_data->hws[CLKID_MMC_PHASE_TX]		= &tx->hw,
+> +	onecell_data->num				= MMC_MAX_CLKS;
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   onecell_data);
+> +}
+> +
+> +static struct platform_driver mmc_clkc_driver = {
+> +	.probe		= mmc_clkc_probe,
+> +	.driver		= {
+> +		.name	= "meson-mmc-clkc",
+> +		.of_match_table = of_match_ptr(mmc_clkc_match_table),
+> +	},
+> +};
+> +
+> +module_platform_driver(mmc_clkc_driver);
