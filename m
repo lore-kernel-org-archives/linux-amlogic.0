@@ -1,39 +1,50 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 12 Aug 2018 20:07:14 +0200
-Subject: [PATCH 1/2] clk: meson: meson8b: register the clock controller
- early
-In-Reply-To: <48cd5097-1567-2af4-55e9-ce9e2a103da1@baylibre.com>
-References: <20180721191400.15558-1-martin.blumenstingl@googlemail.com>
- <20180721191400.15558-2-martin.blumenstingl@googlemail.com>
- <48cd5097-1567-2af4-55e9-ce9e2a103da1@baylibre.com>
-Message-ID: <CAFBinCCXTW1jVusMET6_v_o8WsDJjEB=EGZ64_4ss3uUfr4aCA@mail.gmail.com>
+Date: Sun, 12 Aug 2018 20:26:53 +0200
+Subject: [PATCH v2 0/4] clk: meson: clk-pll driver update
+In-Reply-To: <20180801140053.25899-1-jbrunet@baylibre.com>
+References: <20180801140053.25899-1-jbrunet@baylibre.com>
+Message-ID: <CAFBinCCNY3=yo42hQUqJJzeSetLni+whtWaBZCL-MV63DDYQow@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+Hi Jerome,
 
-On Mon, Jul 23, 2018 at 9:54 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-[snip]
-> >  CLK_OF_DECLARE_DRIVER(meson8_clkc, "amlogic,meson8-clkc",
-> > -                   meson8b_clkc_reset_init);
-> > +                   meson8b_clkc_init);
-> >  CLK_OF_DECLARE_DRIVER(meson8b_clkc, "amlogic,meson8b-clkc",
-> > -                   meson8b_clkc_reset_init);
-> > +                   meson8b_clkc_init);
-> >  CLK_OF_DECLARE_DRIVER(meson8m2_clkc, "amlogic,meson8m2-clkc",
-> > -                   meson8b_clkc_reset_init);
-> > +                   meson8b_clkc_init);
-> >
+On Wed, Aug 1, 2018 at 4:00 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> Hi Martin,
+> This patchset is yet another round of update to the amlogic pll driver.
 >
-> Yes this will register early, but the CCF maintainers want to get rid of this and switch
-> new drivers to actual drivers, the solution is to switch to core_initcall/postcore_initcall/subsys_initcall
-> depending on when the SRAM and TWD are registered.
-the CLK_OF_DECLARE_DRIVER has been there before
-I can replace it with core_initcall/postcore_initcall/subsys_initcall
-but I would like to do that in a separate patch (which can be part of
-this series). would that be OK?
+>  1) Enable bit is added so we don't rely on the bootloader or the init
+>     value to enable to pll device.
+>  2) Remove unnecessary CLK_GET_RATE_NOCACHE flags.
+>  3) OD post dividers are removed from the pll driver. This simplify the
+>     driver and let us provide the clocks which exist between those
+>     dividers. Some device are actually using these clocks.
+>  4) The rates hard coded in parameter tables are remove. Instead, we
+>     only rely on the parent rate and the parameters to calculate the
+>     output rate, which is a lot better.
+>
+> This series has been tested on the gxl libretech cc and axg s400.
+> I did not test it on meson8b yet.
+>
+> Changes since v1: [0]
+>  - improve commit description of patch 1
+>  - remove unnecessary CLK_GET_RATE_NOCACHE flags.
+>  - add missing CLK_SET_RATE_PARENT.
+>
+> [0]: https://lkml.kernel.org/r/20180717095617.12240-1-jbrunet at baylibre.com
+>
+> Jerome Brunet (4):
+>   clk: meson: clk-pll: add enable bit
+>   clk: meson: clk-pll: drop CLK_GET_RATE_NOCACHE where unnecessary
+>   clk: meson: clk-pll: remove od parameters
+>   clk: meson: clk-pll: drop hard-coded rates from pll tables
+for the whole series:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+as well as:
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+(tested on Meson8b / Odroid-C1, even CPU frequency scaling still works
+with my out-of-tree patches)
 
 
 Regards
