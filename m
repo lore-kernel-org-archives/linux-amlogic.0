@@ -1,338 +1,74 @@
-From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Tue, 14 Aug 2018 15:07:53 +0200
-Subject: [PATCH u-boot 2/3] boards: amlogic: use common function for
- environment initialization
-In-Reply-To: <20180814130754.19294-1-b.galvani@gmail.com>
-References: <20180814130754.19294-1-b.galvani@gmail.com>
-Message-ID: <20180814130754.19294-3-b.galvani@gmail.com>
+From: robh@kernel.org (Rob Herring)
+Date: Tue, 14 Aug 2018 08:39:00 -0600
+Subject: [PATCH v2 2/4] dt-bindings: soc: amlogic: add meson-canvas
+ documentation
+In-Reply-To: <CAHStOZ5i_SzamBsWk-b+X2n_gxdNJUPCHL1U0M-d6rdJgXkzrg@mail.gmail.com>
+References: <20180807220011.24436-1-maxi.jourdan@wanadoo.fr>
+ <20180807220011.24436-3-maxi.jourdan@wanadoo.fr>
+ <20180813190721.GA27621@rob-hp-laptop>
+ <CAHStOZ5i_SzamBsWk-b+X2n_gxdNJUPCHL1U0M-d6rdJgXkzrg@mail.gmail.com>
+Message-ID: <CAL_JsqJFmhKpcSKGfym+YtVAP24sPi1VLkM5EuRoJ-rkBG6EsA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Clean up board files by moving the duplicate environment
-initialization to arch code.
+On Mon, Aug 13, 2018 at 8:42 PM Maxime Jourdan <maxi.jourdan@wanadoo.fr> wrote:
+>
+> 2018-08-13 21:07 GMT+02:00 Rob Herring <robh@kernel.org>:
+> > On Wed, Aug 08, 2018 at 12:00:09AM +0200, Maxime Jourdan wrote:
+> >> DT bindings doc for amlogic,meson-canvas
+> >>
+> >> Signed-off-by: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
+> >> ---
+> >>  .../soc/amlogic/amlogic,meson-canvas.txt      | 36 +++++++++++++++++++
+> >>  1 file changed, 36 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt
+> >> new file mode 100644
+> >> index 000000000000..5f0351717bee
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt
+> >> @@ -0,0 +1,36 @@
+> >> +Amlogic Canvas
+> >> +================================
+> >> +
+> >> +A canvas is a collection of metadata that describes a pixel buffer.
+> >> +Those metadata include: width, height, phyaddr, wrapping, block mode
+> >> +and endianness.
+> >> +
+> >> +Many IPs within Amlogic SoCs rely on canvas indexes to read/write pixel data
+> >> +rather than use the phy addresses directly. For instance, this is the case for
+> >> +the video decoders and the display.
+> >> +
+> >> +Amlogic SoCs have 256 canvas.
+> >> +
+> >> +Device Tree Bindings:
+> >> +---------------------
+> >> +
+> >> +Canvas Provider
+> >> +--------------------------
+> >> +
+> >> +Required properties:
+> >> +- compatible: "amlogic,canvas"
+> >> +
+> >> +Parent node should have the following properties :
+> >> +- compatible: "amlogic,gx-dmc-sysctrl", "syscon", "simple-mfd"
+> >
+> > Is this documented somewhere? One child function is not a reason for an
+> > MFD and child nodes. And child nodes like this with no resources are
+> > unnecessary.
+> >
+>
+> Hi Rob, this was done to follow the same path as other buses on the
+> platform that have sysctrls in order to provide regmaps to the
+> devices.
+>
+> I can see how it's not really necessary here though, would it be okay
+> with you if I turned "canvas" into a simple bus subnode, using __iomem
+> in the device ?
 
-Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
----
- arch/arm/include/asm/arch-meson/sm.h      |  1 +
- arch/arm/mach-meson/sm.c                  | 27 +++++++++++++++++++++++
- board/amlogic/khadas-vim/khadas-vim.c     | 25 +--------------------
- board/amlogic/libretech-cc/libretech-cc.c | 25 +--------------------
- board/amlogic/nanopi-k2/nanopi-k2.c       | 25 +--------------------
- board/amlogic/odroid-c2/odroid-c2.c       | 25 +--------------------
- board/amlogic/p212/p212.c                 | 25 +--------------------
- 7 files changed, 33 insertions(+), 120 deletions(-)
+That's a driver issue that has little to do with the binding. You can
+create a regmap for any node, "syscon" just does that automagically
+for you.
 
-diff --git a/arch/arm/include/asm/arch-meson/sm.h b/arch/arm/include/asm/arch-meson/sm.h
-index 83d6441803..db2be38fc5 100644
---- a/arch/arm/include/asm/arch-meson/sm.h
-+++ b/arch/arm/include/asm/arch-meson/sm.h
-@@ -7,5 +7,6 @@
- #define __MESON_SM_H__
- 
- ssize_t meson_sm_read_efuse(uintptr_t offset, void *buffer, size_t size);
-+void meson_init_env_from_efuse(void);
- 
- #endif /* __MESON_SM_H__ */
-diff --git a/arch/arm/mach-meson/sm.c b/arch/arm/mach-meson/sm.c
-index 0bba5e4a07..2628591fe6 100644
---- a/arch/arm/mach-meson/sm.c
-+++ b/arch/arm/mach-meson/sm.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <common.h>
-+#include <environment.h>
- #include <asm/arch/gx.h>
- #include <linux/kernel.h>
- 
-@@ -14,6 +15,11 @@
- #define FN_EFUSE_READ			0x82000030
- #define FN_EFUSE_WRITE			0x82000031
- 
-+#define EFUSE_SN_OFFSET		20
-+#define EFUSE_SN_SIZE		16
-+#define EFUSE_MAC_OFFSET	52
-+#define EFUSE_MAC_SIZE		6
-+
- static void *shmem_input;
- static void *shmem_output;
- 
-@@ -54,3 +60,24 @@ ssize_t meson_sm_read_efuse(uintptr_t offset, void *buffer, size_t size)
- 
- 	return regs.regs[0];
- }
-+
-+void meson_init_env_from_efuse(void)
-+{
-+	static u8 mac[EFUSE_MAC_SIZE];
-+	char serial[EFUSE_SN_SIZE];
-+	ssize_t len;
-+
-+	if (!eth_env_get_enetaddr("ethaddr", mac)) {
-+		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
-+					  mac, EFUSE_MAC_SIZE);
-+		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac))
-+			eth_env_set_enetaddr("ethaddr", mac);
-+	}
-+
-+	if (!env_get("serial#")) {
-+		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
-+					  EFUSE_SN_SIZE);
-+		if (len == EFUSE_SN_SIZE)
-+			env_set("serial#", serial);
-+	}
-+}
-diff --git a/board/amlogic/khadas-vim/khadas-vim.c b/board/amlogic/khadas-vim/khadas-vim.c
-index 692bf2add3..4483a96761 100644
---- a/board/amlogic/khadas-vim/khadas-vim.c
-+++ b/board/amlogic/khadas-vim/khadas-vim.c
-@@ -6,18 +6,12 @@
- 
- #include <common.h>
- #include <dm.h>
--#include <environment.h>
- #include <asm/io.h>
- #include <asm/arch/gx.h>
- #include <asm/arch/mem.h>
- #include <asm/arch/sm.h>
- #include <asm/arch/eth.h>
- 
--#define EFUSE_SN_OFFSET		20
--#define EFUSE_SN_SIZE		16
--#define EFUSE_MAC_OFFSET	52
--#define EFUSE_MAC_SIZE		6
--
- int board_init(void)
- {
- 	return 0;
-@@ -25,26 +19,9 @@ int board_init(void)
- 
- int misc_init_r(void)
- {
--	u8 mac_addr[EFUSE_MAC_SIZE];
--	char serial[EFUSE_SN_SIZE];
--	ssize_t len;
--
- 	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII,
- 			  MESON_GXL_USE_INTERNAL_RMII_PHY);
--
--	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
--		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
--					  mac_addr, EFUSE_MAC_SIZE);
--		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
--			eth_env_set_enetaddr("ethaddr", mac_addr);
--	}
--
--	if (!env_get("serial#")) {
--		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
--					  EFUSE_SN_SIZE);
--		if (len == EFUSE_SN_SIZE)
--			env_set("serial#", serial);
--	}
-+	meson_init_env_from_efuse();
- 
- 	return 0;
- }
-diff --git a/board/amlogic/libretech-cc/libretech-cc.c b/board/amlogic/libretech-cc/libretech-cc.c
-index ccab1272c5..86b1d213ff 100644
---- a/board/amlogic/libretech-cc/libretech-cc.c
-+++ b/board/amlogic/libretech-cc/libretech-cc.c
-@@ -6,18 +6,12 @@
- 
- #include <common.h>
- #include <dm.h>
--#include <environment.h>
- #include <asm/io.h>
- #include <asm/arch/gx.h>
- #include <asm/arch/sm.h>
- #include <asm/arch/eth.h>
- #include <asm/arch/mem.h>
- 
--#define EFUSE_SN_OFFSET		20
--#define EFUSE_SN_SIZE		16
--#define EFUSE_MAC_OFFSET	52
--#define EFUSE_MAC_SIZE		6
--
- int board_init(void)
- {
- 	return 0;
-@@ -25,26 +19,9 @@ int board_init(void)
- 
- int misc_init_r(void)
- {
--	u8 mac_addr[EFUSE_MAC_SIZE];
--	char serial[EFUSE_SN_SIZE];
--	ssize_t len;
--
- 	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII,
- 			  MESON_GXL_USE_INTERNAL_RMII_PHY);
--
--	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
--		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
--					  mac_addr, EFUSE_MAC_SIZE);
--		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
--			eth_env_set_enetaddr("ethaddr", mac_addr);
--	}
--
--	if (!env_get("serial#")) {
--		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
--					  EFUSE_SN_SIZE);
--		if (len == EFUSE_SN_SIZE)
--			env_set("serial#", serial);
--	}
-+	meson_init_env_from_efuse();
- 
- 	return 0;
- }
-diff --git a/board/amlogic/nanopi-k2/nanopi-k2.c b/board/amlogic/nanopi-k2/nanopi-k2.c
-index ae29dd6fa4..e61c23f8c6 100644
---- a/board/amlogic/nanopi-k2/nanopi-k2.c
-+++ b/board/amlogic/nanopi-k2/nanopi-k2.c
-@@ -5,18 +5,12 @@
- 
- #include <common.h>
- #include <dm.h>
--#include <environment.h>
- #include <asm/io.h>
- #include <asm/arch/gx.h>
- #include <asm/arch/sm.h>
- #include <asm/arch/eth.h>
- #include <asm/arch/mem.h>
- 
--#define EFUSE_SN_OFFSET		20
--#define EFUSE_SN_SIZE		16
--#define EFUSE_MAC_OFFSET	52
--#define EFUSE_MAC_SIZE		6
--
- int board_init(void)
- {
- 	return 0;
-@@ -24,25 +18,8 @@ int board_init(void)
- 
- int misc_init_r(void)
- {
--	u8 mac_addr[EFUSE_MAC_SIZE];
--	char serial[EFUSE_SN_SIZE];
--	ssize_t len;
--
- 	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
--
--	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
--		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
--					  mac_addr, EFUSE_MAC_SIZE);
--		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
--			eth_env_set_enetaddr("ethaddr", mac_addr);
--	}
--
--	if (!env_get("serial#")) {
--		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
--			EFUSE_SN_SIZE);
--		if (len == EFUSE_SN_SIZE)
--			env_set("serial#", serial);
--	}
-+	meson_init_env_from_efuse();
- 
- 	return 0;
- }
-diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
-index 2a2755c387..fffd225485 100644
---- a/board/amlogic/odroid-c2/odroid-c2.c
-+++ b/board/amlogic/odroid-c2/odroid-c2.c
-@@ -5,18 +5,12 @@
- 
- #include <common.h>
- #include <dm.h>
--#include <environment.h>
- #include <asm/io.h>
- #include <asm/arch/gx.h>
- #include <asm/arch/sm.h>
- #include <asm/arch/eth.h>
- #include <asm/arch/mem.h>
- 
--#define EFUSE_SN_OFFSET		20
--#define EFUSE_SN_SIZE		16
--#define EFUSE_MAC_OFFSET	52
--#define EFUSE_MAC_SIZE		6
--
- int board_init(void)
- {
- 	return 0;
-@@ -24,25 +18,8 @@ int board_init(void)
- 
- int misc_init_r(void)
- {
--	u8 mac_addr[EFUSE_MAC_SIZE];
--	char serial[EFUSE_SN_SIZE];
--	ssize_t len;
--
- 	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
--
--	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
--		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
--					  mac_addr, EFUSE_MAC_SIZE);
--		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
--			eth_env_set_enetaddr("ethaddr", mac_addr);
--	}
--
--	if (!env_get("serial#")) {
--		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
--			EFUSE_SN_SIZE);
--		if (len == EFUSE_SN_SIZE) 
--			env_set("serial#", serial);
--	}
-+	meson_init_env_from_efuse();
- 
- 	return 0;
- }
-diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
-index 06c2eaee47..57f776f404 100644
---- a/board/amlogic/p212/p212.c
-+++ b/board/amlogic/p212/p212.c
-@@ -6,18 +6,12 @@
- 
- #include <common.h>
- #include <dm.h>
--#include <environment.h>
- #include <asm/io.h>
- #include <asm/arch/gx.h>
- #include <asm/arch/sm.h>
- #include <asm/arch/eth.h>
- #include <asm/arch/mem.h>
- 
--#define EFUSE_SN_OFFSET		20
--#define EFUSE_SN_SIZE		16
--#define EFUSE_MAC_OFFSET	52
--#define EFUSE_MAC_SIZE		6
--
- int board_init(void)
- {
- 	return 0;
-@@ -25,25 +19,8 @@ int board_init(void)
- 
- int misc_init_r(void)
- {
--	u8 mac_addr[EFUSE_MAC_SIZE];
--	char serial[EFUSE_SN_SIZE];
--	ssize_t len;
--
- 	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII, 0);
--
--	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
--		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
--					  mac_addr, EFUSE_MAC_SIZE);
--		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
--			eth_env_set_enetaddr("ethaddr", mac_addr);
--	}
--
--	if (!env_get("serial#")) {
--		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
--			EFUSE_SN_SIZE);
--		if (len == EFUSE_SN_SIZE)
--			env_set("serial#", serial);
--	}
-+	meson_init_env_from_efuse();
- 
- 	return 0;
- }
--- 
-2.17.1
+Rob
