@@ -1,74 +1,74 @@
 From: robh@kernel.org (Rob Herring)
-Date: Tue, 14 Aug 2018 08:39:00 -0600
-Subject: [PATCH v2 2/4] dt-bindings: soc: amlogic: add meson-canvas
- documentation
-In-Reply-To: <CAHStOZ5i_SzamBsWk-b+X2n_gxdNJUPCHL1U0M-d6rdJgXkzrg@mail.gmail.com>
-References: <20180807220011.24436-1-maxi.jourdan@wanadoo.fr>
- <20180807220011.24436-3-maxi.jourdan@wanadoo.fr>
- <20180813190721.GA27621@rob-hp-laptop>
- <CAHStOZ5i_SzamBsWk-b+X2n_gxdNJUPCHL1U0M-d6rdJgXkzrg@mail.gmail.com>
-Message-ID: <CAL_JsqJFmhKpcSKGfym+YtVAP24sPi1VLkM5EuRoJ-rkBG6EsA@mail.gmail.com>
+Date: Tue, 14 Aug 2018 14:48:01 -0600
+Subject: [PATCH 1/2] dt-bindings: clk: meson-g12a: Add G12A AO Clock
+ Bindings
+In-Reply-To: <1533894868-85815-2-git-send-email-jian.hu@amlogic.com>
+References: <1533894868-85815-1-git-send-email-jian.hu@amlogic.com>
+ <1533894868-85815-2-git-send-email-jian.hu@amlogic.com>
+Message-ID: <20180814204801.GA9362@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Aug 13, 2018 at 8:42 PM Maxime Jourdan <maxi.jourdan@wanadoo.fr> wrote:
->
-> 2018-08-13 21:07 GMT+02:00 Rob Herring <robh@kernel.org>:
-> > On Wed, Aug 08, 2018 at 12:00:09AM +0200, Maxime Jourdan wrote:
-> >> DT bindings doc for amlogic,meson-canvas
-> >>
-> >> Signed-off-by: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
-> >> ---
-> >>  .../soc/amlogic/amlogic,meson-canvas.txt      | 36 +++++++++++++++++++
-> >>  1 file changed, 36 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt
-> >> new file mode 100644
-> >> index 000000000000..5f0351717bee
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-canvas.txt
-> >> @@ -0,0 +1,36 @@
-> >> +Amlogic Canvas
-> >> +================================
-> >> +
-> >> +A canvas is a collection of metadata that describes a pixel buffer.
-> >> +Those metadata include: width, height, phyaddr, wrapping, block mode
-> >> +and endianness.
-> >> +
-> >> +Many IPs within Amlogic SoCs rely on canvas indexes to read/write pixel data
-> >> +rather than use the phy addresses directly. For instance, this is the case for
-> >> +the video decoders and the display.
-> >> +
-> >> +Amlogic SoCs have 256 canvas.
-> >> +
-> >> +Device Tree Bindings:
-> >> +---------------------
-> >> +
-> >> +Canvas Provider
-> >> +--------------------------
-> >> +
-> >> +Required properties:
-> >> +- compatible: "amlogic,canvas"
-> >> +
-> >> +Parent node should have the following properties :
-> >> +- compatible: "amlogic,gx-dmc-sysctrl", "syscon", "simple-mfd"
-> >
-> > Is this documented somewhere? One child function is not a reason for an
-> > MFD and child nodes. And child nodes like this with no resources are
-> > unnecessary.
-> >
->
-> Hi Rob, this was done to follow the same path as other buses on the
-> platform that have sysctrls in order to provide regmaps to the
-> devices.
->
-> I can see how it's not really necessary here though, would it be okay
-> with you if I turned "canvas" into a simple bus subnode, using __iomem
-> in the device ?
+On Fri, Aug 10, 2018 at 05:54:27PM +0800, Jian Hu wrote:
+> Add new clock controller compatible and dt-bingdings headers
+> for the Always-On domain of the g12a SoC
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  1 +
+>  include/dt-bindings/clock/g12a-aoclkc.h            | 28 ++++++++++++++++++++++
+>  2 files changed, 29 insertions(+)
+>  create mode 100755 include/dt-bindings/clock/g12a-aoclkc.h
 
-That's a driver issue that has little to do with the binding. You can
-create a regmap for any node, "syscon" just does that automagically
-for you.
+checkpatch says wrong mode.
 
-Rob
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+> index 3a88052..6f02288 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+> @@ -10,6 +10,7 @@ Required Properties:
+>  	- GXL (S905X, S905D) : "amlogic,meson-gxl-aoclkc"
+>  	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
+>  	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
+> +	- G12A (S905D2, S905X2) : "amlogic,g12a-aoclkc"
+>  	followed by the common "amlogic,meson-gx-aoclkc"
+>  
+>  - #clock-cells: should be 1.
+> diff --git a/include/dt-bindings/clock/g12a-aoclkc.h b/include/dt-bindings/clock/g12a-aoclkc.h
+> new file mode 100755
+> index 0000000..6b3f921
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/g12a-aoclkc.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+> +/*
+> + * Copyright (c) 2016 BayLibre, SAS
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + *
+> + * Copyright (c) 2018 Amlogic, inc.
+> + * Author: Jian Hu<jian.hu@amlogic.com>
+> + */
+> +
+> +#ifndef DT_BINDINGS_CLOCK_AMLOGIC_MESON_G12A_AOCLK
+> +#define DT_BINDINGS_CLOCK_AMLOGIC_MESON_G12A_AOCLK
+> +
+> +#define CLKID_AO_AHB_BUS		0
+> +#define CLKID_AO_REMOTE			1
+> +#define CLKID_AO_I2C_MASTER		2
+> +#define CLKID_AO_I2C_SLAVE		3
+> +#define CLKID_AO_UART1			4
+> +#define CLKID_AO_PROD_I2C		5
+> +#define CLKID_AO_UART2			6
+> +#define CLKID_AO_IR_BLASTER		7
+> +#define CLKID_AO_SAR_ADC		8
+> +#define CLKID_AO_CLK81			9
+> +#define CLKID_AO_SAR_ADC_SEL		10
+> +#define CLKID_AO_SAR_ADC_DIV		11
+> +#define CLKID_AO_SAR_ADC_CLK		12
+> +#define CLKID_AO_ALT_XTAL		13
+> +
+> +#endif
+> -- 
+> 1.9.1
+> 
