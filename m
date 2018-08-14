@@ -1,74 +1,77 @@
 From: robh@kernel.org (Rob Herring)
-Date: Tue, 14 Aug 2018 14:48:01 -0600
-Subject: [PATCH 1/2] dt-bindings: clk: meson-g12a: Add G12A AO Clock
- Bindings
-In-Reply-To: <1533894868-85815-2-git-send-email-jian.hu@amlogic.com>
-References: <1533894868-85815-1-git-send-email-jian.hu@amlogic.com>
- <1533894868-85815-2-git-send-email-jian.hu@amlogic.com>
-Message-ID: <20180814204801.GA9362@rob-hp-laptop>
+Date: Tue, 14 Aug 2018 16:50:12 -0600
+Subject: [PATCH 1/2] dt-bindings: PCI: meson: add DT bindings for Amlogic
+ Meson PCIe Phy controller
+In-Reply-To: <1534227134-151584-2-git-send-email-hanjie.lin@amlogic.com>
+References: <1534227134-151584-1-git-send-email-hanjie.lin@amlogic.com>
+ <1534227134-151584-2-git-send-email-hanjie.lin@amlogic.com>
+Message-ID: <20180814225012.GA19305@rob-hp-laptop>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Aug 10, 2018 at 05:54:27PM +0800, Jian Hu wrote:
-> Add new clock controller compatible and dt-bingdings headers
-> for the Always-On domain of the g12a SoC
+On Tue, Aug 14, 2018 at 02:12:13AM -0400, Hanjie Lin wrote:
+> From: Yue Wang <yue.wang@amlogic.com>
+
+Subject should be "dt-bindings: phy: ..."
+
+> The Meson-PCIE-PHY controller supports the 5-Gbps data rate
+> of the PCI Express Gen 2 specification and is backwardcompatible
+
+space                                                   ^
+
+> with the 2.5-Gbps Gen 1.1 specification with only
+> inferred idle detection supported on AMLOGIC SoCs.
+
+AMLOGIC or Amlogic? 
+
 > 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 > ---
->  .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  1 +
->  include/dt-bindings/clock/g12a-aoclkc.h            | 28 ++++++++++++++++++++++
->  2 files changed, 29 insertions(+)
->  create mode 100755 include/dt-bindings/clock/g12a-aoclkc.h
-
-checkpatch says wrong mode.
-
+>  .../bindings/phy/amlogic,meson-pcie-phy.txt        | 31 ++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-> index 3a88052..6f02288 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-> @@ -10,6 +10,7 @@ Required Properties:
->  	- GXL (S905X, S905D) : "amlogic,meson-gxl-aoclkc"
->  	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
->  	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
-> +	- G12A (S905D2, S905X2) : "amlogic,g12a-aoclkc"
->  	followed by the common "amlogic,meson-gx-aoclkc"
->  
->  - #clock-cells: should be 1.
-> diff --git a/include/dt-bindings/clock/g12a-aoclkc.h b/include/dt-bindings/clock/g12a-aoclkc.h
-> new file mode 100755
-> index 0000000..6b3f921
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt b/Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt
+> new file mode 100644
+> index 0000000..db99085
 > --- /dev/null
-> +++ b/include/dt-bindings/clock/g12a-aoclkc.h
-> @@ -0,0 +1,28 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
-> +/*
-> + * Copyright (c) 2016 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Jian Hu<jian.hu@amlogic.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt
+> @@ -0,0 +1,31 @@
+> +* Amlogic Meson AXG PCIE PHY binding
 > +
-> +#ifndef DT_BINDINGS_CLOCK_AMLOGIC_MESON_G12A_AOCLK
-> +#define DT_BINDINGS_CLOCK_AMLOGIC_MESON_G12A_AOCLK
+> +Required properties:
+> +- compatible:	Should be
+> +	- "amlogic,axg-pcie-phy"
+> +- #phys-cells:	must be 0 (see phy-bindings.txt in this directory)
+
+You don't need to distinguish port A and B?
+
+> +- reg:		The base address and length of the registers
+> +- resets:	phandle to the reset lines
+> +- reset-names:	must contain "phy" and "peripheral"
+> +	- "port_a" Port A reset
+> +	- "port_b" Port B reset
+> +	- "phy"	PHY reset
+> +	- "apb"	APB reset
+> +Optional properties:
+> +- phy-supply:	see phy-bindings.txt in this directory
 > +
-> +#define CLKID_AO_AHB_BUS		0
-> +#define CLKID_AO_REMOTE			1
-> +#define CLKID_AO_I2C_MASTER		2
-> +#define CLKID_AO_I2C_SLAVE		3
-> +#define CLKID_AO_UART1			4
-> +#define CLKID_AO_PROD_I2C		5
-> +#define CLKID_AO_UART2			6
-> +#define CLKID_AO_IR_BLASTER		7
-> +#define CLKID_AO_SAR_ADC		8
-> +#define CLKID_AO_CLK81			9
-> +#define CLKID_AO_SAR_ADC_SEL		10
-> +#define CLKID_AO_SAR_ADC_DIV		11
-> +#define CLKID_AO_SAR_ADC_CLK		12
-> +#define CLKID_AO_ALT_XTAL		13
-> +
-> +#endif
+> +Example:
+> +	pcie_phy: pcie-phy at ff644000 {
+> +		#phy-cells = <0>;
+> +		compatible = "amlogic,axg-pcie-phy";
+> +		reg = <0x0 0xff644000 0x0 0x2000>;
+> +		resets = <&reset RESET_PCIE_A>,
+> +				<&reset RESET_PCIE_B>,
+> +				<&reset RESET_PCIE_PHY>,
+> +				<&reset RESET_PCIE_APB>;
+> +		reset-names =
+> +				"port_a",
+> +				"port_b",
+> +				"phy",
+> +				"apb";
+> +	};
 > -- 
-> 1.9.1
+> 2.7.4
 > 
