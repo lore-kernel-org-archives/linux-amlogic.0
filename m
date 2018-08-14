@@ -1,55 +1,43 @@
 From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Tue, 14 Aug 2018 15:07:52 +0200
-Subject: [PATCH u-boot 1/3] boards: amlogic: remove ethernet gpio reset code
- from boards
+Date: Tue, 14 Aug 2018 15:07:54 +0200
+Subject: [PATCH u-boot 3/3] arm: meson: null-terminate the serial number
 In-Reply-To: <20180814130754.19294-1-b.galvani@gmail.com>
 References: <20180814130754.19294-1-b.galvani@gmail.com>
-Message-ID: <20180814130754.19294-2-b.galvani@gmail.com>
+Message-ID: <20180814130754.19294-4-b.galvani@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The reset is already handled by the designware driver using
-information from device tree.
+Terminate the serial number variable with null to avoid printing
+trailing garbage.
 
 Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
 ---
- board/amlogic/nanopi-k2/nanopi-k2.c | 6 ------
- board/amlogic/odroid-c2/odroid-c2.c | 6 ------
- 2 files changed, 12 deletions(-)
+ arch/arm/mach-meson/sm.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/board/amlogic/nanopi-k2/nanopi-k2.c b/board/amlogic/nanopi-k2/nanopi-k2.c
-index 339dbb81db..ae29dd6fa4 100644
---- a/board/amlogic/nanopi-k2/nanopi-k2.c
-+++ b/board/amlogic/nanopi-k2/nanopi-k2.c
-@@ -30,12 +30,6 @@ int misc_init_r(void)
+diff --git a/arch/arm/mach-meson/sm.c b/arch/arm/mach-meson/sm.c
+index 2628591fe6..23eafe87b4 100644
+--- a/arch/arm/mach-meson/sm.c
++++ b/arch/arm/mach-meson/sm.c
+@@ -64,7 +64,7 @@ ssize_t meson_sm_read_efuse(uintptr_t offset, void *buffer, size_t size)
+ void meson_init_env_from_efuse(void)
+ {
+ 	static u8 mac[EFUSE_MAC_SIZE];
+-	char serial[EFUSE_SN_SIZE];
++	char serial[EFUSE_SN_SIZE + 1];
+ 	ssize_t len;
  
- 	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
- 
--	/* Reset PHY on GPIOZ_14 */
--	clrbits_le32(GX_GPIO_EN(3), BIT(14));
--	clrbits_le32(GX_GPIO_OUT(3), BIT(14));
--	mdelay(10);
--	setbits_le32(GX_GPIO_OUT(3), BIT(14));
--
- 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
- 		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
- 					  mac_addr, EFUSE_MAC_SIZE);
-diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
-index c47b9ce9cb..2a2755c387 100644
---- a/board/amlogic/odroid-c2/odroid-c2.c
-+++ b/board/amlogic/odroid-c2/odroid-c2.c
-@@ -30,12 +30,6 @@ int misc_init_r(void)
- 
- 	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
- 
--	/* Reset PHY on GPIOZ_14 */
--	clrbits_le32(GX_GPIO_EN(3), BIT(14));
--	clrbits_le32(GX_GPIO_OUT(3), BIT(14));
--	mdelay(10);
--	setbits_le32(GX_GPIO_OUT(3), BIT(14));
--
- 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
- 		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
- 					  mac_addr, EFUSE_MAC_SIZE);
+ 	if (!eth_env_get_enetaddr("ethaddr", mac)) {
+@@ -77,7 +77,9 @@ void meson_init_env_from_efuse(void)
+ 	if (!env_get("serial#")) {
+ 		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
+ 					  EFUSE_SN_SIZE);
+-		if (len == EFUSE_SN_SIZE)
++		if (len == EFUSE_SN_SIZE) {
++			serial[EFUSE_SN_SIZE] = '\0';
+ 			env_set("serial#", serial);
++		}
+ 	}
+ }
 -- 
 2.17.1
