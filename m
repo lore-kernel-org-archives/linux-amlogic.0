@@ -1,100 +1,83 @@
-From: robh@kernel.org (Rob Herring)
-Date: Tue, 14 Aug 2018 16:53:40 -0600
-Subject: [PATCH 1/2] dt-bindings: PCI: meson: add DT bindings for Amlogic
- Meson PCIe controller
-In-Reply-To: <1534227522-186798-2-git-send-email-hanjie.lin@amlogic.com>
-References: <1534227522-186798-1-git-send-email-hanjie.lin@amlogic.com>
- <1534227522-186798-2-git-send-email-hanjie.lin@amlogic.com>
-Message-ID: <20180814225340.GA25470@rob-hp-laptop>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Wed, 15 Aug 2018 13:35:08 +0800
+Subject: [PATCH 1/2] dt-bindings: clk: meson-g12a: Add G12A AO Clock
+ Bindings
+In-Reply-To: <20180814204801.GA9362@rob-hp-laptop>
+References: <1533894868-85815-1-git-send-email-jian.hu@amlogic.com>
+ <1533894868-85815-2-git-send-email-jian.hu@amlogic.com>
+ <20180814204801.GA9362@rob-hp-laptop>
+Message-ID: <486c8771-ccbe-2f9b-e1e6-1ac9549432f0@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 14, 2018 at 02:18:41AM -0400, Hanjie Lin wrote:
-> From: Yue Wang <yue.wang@amlogic.com>
+
+
+On 2018/8/15 4:48, Rob Herring wrote:
+> On Fri, Aug 10, 2018 at 05:54:27PM +0800, Jian Hu wrote:
+>> Add new clock controller compatible and dt-bingdings headers
+>> for the Always-On domain of the g12a SoC
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> ---
+>>   .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  1 +
+>>   include/dt-bindings/clock/g12a-aoclkc.h            | 28 ++++++++++++++++++++++
+>>   2 files changed, 29 insertions(+)
+>>   create mode 100755 include/dt-bindings/clock/g12a-aoclkc.h
 > 
-> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
-> PCI core. This patch adds documentation for the DT bindings in Meson PCIe
-> controller.
+> checkpatch says wrong mode.
+Yes, I have checked the g12a-aoclk.h file,It is wrong mode. I will chmod 
+a-x for it.Thank you for review.
 > 
-> Signed-off-by: Yue Wang <hanjie.lin@amlogic.com>
-> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-> ---
->  .../devicetree/bindings/pci/amlogic,meson-pcie.txt | 57 ++++++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+>> index 3a88052..6f02288 100644
+>> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+>> @@ -10,6 +10,7 @@ Required Properties:
+>>   	- GXL (S905X, S905D) : "amlogic,meson-gxl-aoclkc"
+>>   	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
+>>   	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
+>> +	- G12A (S905D2, S905X2) : "amlogic,g12a-aoclkc"
+>>   	followed by the common "amlogic,meson-gx-aoclkc"
+>>   
+>>   - #clock-cells: should be 1.
+>> diff --git a/include/dt-bindings/clock/g12a-aoclkc.h b/include/dt-bindings/clock/g12a-aoclkc.h
+>> new file mode 100755
+>> index 0000000..6b3f921
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/g12a-aoclkc.h
+>> @@ -0,0 +1,28 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause) */
+>> +/*
+>> + * Copyright (c) 2016 BayLibre, SAS
+>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>> + *
+>> + * Copyright (c) 2018 Amlogic, inc.
+>> + * Author: Jian Hu<jian.hu@amlogic.com>
+>> + */
+>> +
+>> +#ifndef DT_BINDINGS_CLOCK_AMLOGIC_MESON_G12A_AOCLK
+>> +#define DT_BINDINGS_CLOCK_AMLOGIC_MESON_G12A_AOCLK
+>> +
+>> +#define CLKID_AO_AHB_BUS		0
+>> +#define CLKID_AO_REMOTE			1
+>> +#define CLKID_AO_I2C_MASTER		2
+>> +#define CLKID_AO_I2C_SLAVE		3
+>> +#define CLKID_AO_UART1			4
+>> +#define CLKID_AO_PROD_I2C		5
+>> +#define CLKID_AO_UART2			6
+>> +#define CLKID_AO_IR_BLASTER		7
+>> +#define CLKID_AO_SAR_ADC		8
+>> +#define CLKID_AO_CLK81			9
+>> +#define CLKID_AO_SAR_ADC_SEL		10
+>> +#define CLKID_AO_SAR_ADC_DIV		11
+>> +#define CLKID_AO_SAR_ADC_CLK		12
+>> +#define CLKID_AO_ALT_XTAL		13
+>> +
+>> +#endif
+>> -- 
+>> 1.9.1
+>>
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> new file mode 100644
-> index 0000000..48233e4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> @@ -0,0 +1,57 @@
-> +Amlogic Meson AXG DWC PCIE SoC controller
-> +
-> +Amlogic Meson PCIe host controller is based on the Synopsys DesignWare PCI core.
-> +It shares common functions with the PCIe DesignWare core driver and
-> +inherits common properties defined in
-> +Documentation/devicetree/bindings/pci/designware-pci.txt.
-> +
-> +Additional properties are described here:
-> +
-> +Required properties:
-> +- compatible:
-> +	should contain "amlogic,axg-pcie" to identify the core.
-> +- reg:
-> +	Should contain the configuration address space.
-> +- reg-names: Must be
-> +	- "elbi"	External local bus interface registers
-> +	- "cfg"		Meson specific registers
-> +	- "config"	PCIe configuration space
-> +- clocks: Must contain an entry for each entry in clock-names.
-> +- clock-names: Must include the following entries:
-> +	- "pcie"
-> +	- "pcie_bus"
-> +	- "pcie_general"
-> +	- "pcie_mipi_en"
-> +
-> +Example configuration:
-> +
-> +	pcie: pcie at dffff000 {
-
-Unit-address is wrong.
-
-> +			compatible = "amlogic,axg-pcie", "snps,dw-pcie";
-> +			reg = <0x0 0xf9800000 0x0 0x400000
-> +					0x0 0xff646000 0x0 0x2000
-> +					0x0 0xf9f00000 0x0 0x100000>;
-> +			reg-names = "elbi", "cfg", "config";
-> +			reset-gpio = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-
-Not documented and should be reset-gpios.
-
-> +			interrupts = <0 177 IRQ_TYPE_EDGE_RISING>;
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0>;
-> +			interrupt-map = <0 0 0 0 &gic GIC_SPI 179 IRQ_TYPE_EDGE_RISING>;
-> +			bus-range = <0x0 0xff>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			device_type = "pci";
-> +			phys = <&pcie_phy>;
-> +			ranges = <0x82000000 0 0 0x0 0xf9c00000 0 0x00300000>;
-> +			num-lanes = <1>;
-> +			pcie-num = <1>;
-
-Not documented. What's this?
-
-> +
-> +			clocks = <&clkc CLKID_USB
-> +					&clkc CLKID_MIPI_ENABLE
-> +					&clkc CLKID_PCIE_A
-> +					&clkc CLKID_PCIE_CML_EN0>;
-> +			clock-names = "pcie_general",
-> +					"pcie_refpll",
-> +					"pcie_mipi_en",
-> +					"pcie",
-> +					"port";
-> +	};
-> -- 
-> 2.7.4
+> .
 > 
