@@ -1,47 +1,52 @@
-From: b.galvani@gmail.com (Beniamino Galvani)
-Date: Thu, 16 Aug 2018 10:15:05 +0200
-Subject: [PATCH v2 u-boot 1/2] power: domain: Add the VPU Power Domain
- driver
-In-Reply-To: <1533559760-32136-2-git-send-email-narmstrong@baylibre.com>
-References: <1533559760-32136-1-git-send-email-narmstrong@baylibre.com>
- <1533559760-32136-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <20180816081505.GA9347@gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 16 Aug 2018 10:33:39 +0200
+Subject: [PATCH 2/2] PCI: meson: add the Amlogic Meson PCIe phy driver
+In-Reply-To: <2b87e834-41e3-e418-95f0-c6d695cd8b3f@amlogic.com>
+References: <1534227134-151584-1-git-send-email-hanjie.lin@amlogic.com>
+ <1534227134-151584-3-git-send-email-hanjie.lin@amlogic.com>
+ <486e8ab477cc22ff231d2e18d7de22efba2c5abd.camel@baylibre.com>
+ <2b87e834-41e3-e418-95f0-c6d695cd8b3f@amlogic.com>
+Message-ID: <e5d9d89e79f8ec37b6337e54912f49a0b0856874.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Aug 06, 2018 at 02:49:19PM +0200, Neil Armstrong wrote:
-> The Amlogic Meson SoCs embeds a specific Power Domain dedicated to the
-> Video Processing Unit.
-> This patch implements support for this power domain in preparation of the
-> future support for the Video display support in U-Boot.
+On Thu, 2018-08-16 at 11:05 +0800, Hanjie Lin wrote:
 > 
-> This driver will depend on changes in the clock driver to handle the setup
-> of the VPU and VAPB clocks configured from DT using assigned-clocks entries.
+> On 2018/8/14 18:41, Jerome Brunet wrote:
+> > On Tue, 2018-08-14 at 02:12 -0400, Hanjie Lin wrote:
+> > > From: Yue Wang <yue.wang@amlogic.com>
+> > > 
+> > > The Meson-PCIE-PHY controller supports the 5-Gbps data rate
+> > > of the PCI Express Gen 2 specification and is backwardcompatible
+> > > with the 2.5-Gbps Gen 1.1 specification with only
+> > > inferred idle detection supported on AMLOGIC SoCs.
+> > 
+> > It looks like the sole purpose of this driver is to provide the reset lines to
+> > pcie driver.
+> > 
+> > I wonder why we need this ? Can't the pcie driver claim the reset lines itself.
+> > 
+> > Also, an init of this phy will always reset both port. What will happen if the
+> > first port is in use and the 2nd port comes up ?? 
+> > 
+> > Looks the the pcie driver should claim 'apb' and 'phy' reset lines as "shared"
+> > reset and the required 'port' as 'exclusive'
+> > 
 > 
-> Reviewed-by: Simon Glass <sjg@chromium.org>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/power/domain/Kconfig             |   7 ++
->  drivers/power/domain/Makefile            |   1 +
->  drivers/power/domain/meson-gx-pwrc-vpu.c | 198 +++++++++++++++++++++++++++++++
->  3 files changed, 206 insertions(+)
->  create mode 100644 drivers/power/domain/meson-gx-pwrc-vpu.c
+> Thank you for your response.
 > 
-> diff --git a/drivers/power/domain/Kconfig b/drivers/power/domain/Kconfig
-> index 7cfa761..4618847 100644
-> --- a/drivers/power/domain/Kconfig
-> +++ b/drivers/power/domain/Kconfig
-> @@ -16,6 +16,13 @@ config BCM6328_POWER_DOMAIN
->  	  Enable support for manipulating BCM6345 power domains via MMIO
->  	  mapped registers.
->  
-> +config MESON_GX_VPU_POWER_DOMAIN
-> +	bool "Enable Amlogic Meson GX VPU power domain driver"
-> +	depends on ARCH_MESON
+> Yes, 'apb' and 'phy' reset lines are shared, and ?port' reset line is exclusive.
+> If we handle all reset lines during the first port initial sequence, 
+> and when the second port comes up, we will do nothing about the rest lines, 
+> and don't need a extra API to do ?port' reset;
 
-Hi,
+With which other driver are your control shared ?
 
-since the driver uses syscon_node_to_regmap() I think the Kconfig
-entry should also 'select SYSCON'.
+Looks it is the answer is none since this phy driver will reset both port
+already, even if one is used.
 
-Beniamino
+In this case the fact that you are using shared control is just abusing the
+framework to reset once.
+
+As far as I can tell, this driver makes no sense. The appropriate reset lines
+should be given directly to your pcie driver. 
