@@ -1,102 +1,207 @@
-From: hanjie.lin@amlogic.com (Hanjie Lin)
-Date: Fri, 17 Aug 2018 19:17:09 +0800
-Subject: [PATCH 2/2] PCI: meson: add the Amlogic Meson PCIe phy driver
-In-Reply-To: <8eb76c5b173a8e8f8f90b9d2204c1b3b0de06c51.camel@baylibre.com>
-References: <1534227134-151584-1-git-send-email-hanjie.lin@amlogic.com>
- <1534227134-151584-3-git-send-email-hanjie.lin@amlogic.com>
- <486e8ab477cc22ff231d2e18d7de22efba2c5abd.camel@baylibre.com>
- <2b87e834-41e3-e418-95f0-c6d695cd8b3f@amlogic.com>
- <e5d9d89e79f8ec37b6337e54912f49a0b0856874.camel@baylibre.com>
- <91658f21-6934-6085-8deb-b85a1f6b7815@amlogic.com>
- <8eb76c5b173a8e8f8f90b9d2204c1b3b0de06c51.camel@baylibre.com>
-Message-ID: <d6f7e1bf-bbfa-01a0-e86b-d7d8e27c097c@amlogic.com>
+From: liang.yang@amlogic.com (Liang Yang)
+Date: Fri, 17 Aug 2018 21:03:59 +0800
+Subject: [RFC PATCH v2 2/2] mtd: rawnand: meson: add support for Amlogic
+ NAND flash controller
+In-Reply-To: <20180801235045.5b4d8211@bbrezillon>
+References: <20180719094612.5833-1-yixun.lan@amlogic.com>
+ <20180719094612.5833-3-yixun.lan@amlogic.com>
+ <20180801235045.5b4d8211@bbrezillon>
+Message-ID: <42877a0d-9830-0626-3f64-e49a326eaa3c@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Boris,
+On 2018/8/2 5:50, Boris Brezillon wrote:
 
+> Hi Yixun,
+>
+> On Thu, 19 Jul 2018 17:46:12 +0800
+> Yixun Lan <yixun.lan@amlogic.com> wrote:
+>
+> I haven't finished reviewing the driver yet (I'll try to do that later
+> this week), but I already pointed a few things to fix/improve.
+>
+>> +
+>> +static int meson_nfc_exec_op(struct nand_chip *chip,
+>> +			     const struct nand_operation *op, bool check_only)
+>> +{
+>> +	struct mtd_info *mtd = nand_to_mtd(chip);
+>> +	struct meson_nfc *nfc = nand_get_controller_data(chip);
+>> +	const struct nand_op_instr *instr = NULL;
+>> +	int ret = 0, cmd;
+>> +	unsigned int op_id;
+>> +	int i;
+>> +
+>> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
+>> +		instr = &op->instrs[op_id];
+>> +		switch (instr->type) {
+>> +		case NAND_OP_CMD_INSTR:
+>> +			cmd = nfc->param.chip_select | NFC_CMD_CLE;
+>> +			cmd |= instr->ctx.cmd.opcode & 0xff;
+>> +			writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>> +			meson_nfc_cmd_idle(nfc, NAND_TWB_TIME_CYCLE);
+> This is not necessarily TWB you have to wait after a CMD cycle. It can
+> be tWHR. And you should definitely not hardcode the value, since,
+> AFAIR, it depends on the selected SDR timings. Probably something you
+> should calculate in ->setup_data_interface().
 
-On 2018/8/17 16:09, Jerome Brunet wrote:
-> On Fri, 2018-08-17 at 14:12 +0800, Hanjie Lin wrote:
->>
->> On 2018/8/16 16:33, Jerome Brunet wrote:
->>> On Thu, 2018-08-16 at 11:05 +0800, Hanjie Lin wrote:
->>>>
->>>> On 2018/8/14 18:41, Jerome Brunet wrote:
->>>>> On Tue, 2018-08-14 at 02:12 -0400, Hanjie Lin wrote:
->>>>>> From: Yue Wang <yue.wang@amlogic.com>
->>>>>>
->>>>>> The Meson-PCIE-PHY controller supports the 5-Gbps data rate
->>>>>> of the PCI Express Gen 2 specification and is backwardcompatible
->>>>>> with the 2.5-Gbps Gen 1.1 specification with only
->>>>>> inferred idle detection supported on AMLOGIC SoCs.
->>>>>
->>>>> It looks like the sole purpose of this driver is to provide the reset lines to
->>>>> pcie driver.
->>>>>
->>>>> I wonder why we need this ? Can't the pcie driver claim the reset lines itself.
->>>>>
->>>>> Also, an init of this phy will always reset both port. What will happen if the
->>>>> first port is in use and the 2nd port comes up ?? 
->>>>>
->>>>> Looks the the pcie driver should claim 'apb' and 'phy' reset lines as "shared"
->>>>> reset and the required 'port' as 'exclusive'
->>>>>
->>>>
->>>> Thank you for your response.
->>>>
->>>> Yes, 'apb' and 'phy' reset lines are shared, and ?port' reset line is exclusive.
->>>> If we handle all reset lines during the first port initial sequence, 
->>>> and when the second port comes up, we will do nothing about the rest lines, 
->>>> and don't need a extra API to do ?port' reset;
->>>
->>> With which other driver are your control shared ?
->>>
->>> Looks it is the answer is none since this phy driver will reset both port
->>> already, even if one is used.
->>>
->>> In this case the fact that you are using shared control is just abusing the
->>> framework to reset once.
->>>
->>> As far as I can tell, this driver makes no sense. The appropriate reset lines
->>> should be given directly to your pcie driver. 
->>>
->>>
->>>
->>> .
->>>
->>
->> Amlogic AXG SOC includes two pcie controllers and pipes when only one pcie phy: 
->>
->>                                     (port_a reset)
->>                       |PCIE_RC_A---->PCIE_PIPE_A------| 
->>     (apb_reset)       |                               |  (phy reset)
->>     APB BUS--->       |                               |   PCIE_PHY
->>                       |                               |
->>                       |             (port_b_reset)    |
->>                       |PCIE_RC_B---->PCIE_PIPE_B------|
->>
->> The phy_reset affect the PCIE_PHY.
->> The port_a_reset affect the PCIE_PIPE_A, port_b_reset affect the PCIE_PIPE_B. 
->>
->> As your suggestion we will move the 'port' reset to controller driver,
->> and keeping the phy driver to process the 'apb' and 'phy' reset or any
->> more changes of the phy in future.
-> 
-> As far as I can tell from this diagram, It would only make sense for the "phy"
-> reset line to be controlled by your phy driver.
-> 
-> The apb and port is obviously related to the pcie device/driver itself, not the
-> PHY. And whether you 1 or 2 reset lines in it, IMO it is overkill and
-> unnecessary to make a phy driver for this. 
-> 
+Indeed. TWB is not necessarily. And tWHR will be promised by NFC.
+so I will delete it.
 
-Yeah, that makes sense.
-We will move 'apb' reset to controller driver in next version too.
+>> +			meson_nfc_drain_cmd(nfc);
+> I don't know exactly how the NAND controller works, but it's usually
+> not a good idea to execute the operation right away, especially if you
+> have address/cmd/data cycles following this cmd and those can be
+> packed in the same controller operation.
 
-Thanks.
+it doesn't need meson_nfc_drain_cmd(nfc) here. i will delete it next version
 
->>
-> 
-> 
-> .
-> 
+>> +			break;
+>> +
+>> +		case NAND_OP_ADDR_INSTR:
+>> +			for (i = 0; i < instr->ctx.addr.naddrs; i++) {
+>> +				cmd = nfc->param.chip_select | NFC_CMD_ALE;
+>> +				cmd |= instr->ctx.addr.addrs[i] & 0xff;
+>> +				writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>> +			}
+>> +			break;
+>> +
+>> +		case NAND_OP_DATA_IN_INSTR:
+>> +			meson_nfc_read_buf(mtd, instr->ctx.data.buf.in,
+>> +					   instr->ctx.data.len);
+>> +			break;
+>> +
+>> +		case NAND_OP_DATA_OUT_INSTR:
+>> +			meson_nfc_write_buf(mtd, instr->ctx.data.buf.out,
+>> +					    instr->ctx.data.len);
+> Well, I'm not entirely sure what happens when you call
+> read/write_buf(), but it seems you're doing that one byte at a time,
+> and that sounds not so efficient given the operation you do for each
+> byte read/written. Don't you have a way to tell the engine that you
+> want to read/write X bytes?
+
+As i known, there is no way to read/write X bytes once.
+
+>> +			break;
+>> +
+>> +		case NAND_OP_WAITRDY_INSTR:
+>> +			mdelay(instr->ctx.waitrdy.timeout_ms);
+>> +			ret = nand_soft_waitrdy(chip,
+>> +						instr->ctx.waitrdy.timeout_ms);
+> Hm, i'd be surprised if the controller does not have a way to optimize
+> waits on R/B transitions.
+
+When i delete the delay here, erasing operation will be failed.
+Does it mean NFC send 0x70 to nand device when rb is busy(low)?
+If so, i will ask our NFC designer for comfirmation or grasping the waveform.
+
+>> +			break;
+>> +		}
+>> +	}
+>> +	return ret;
+>> +}
+>> +
+>> +static int meson_ooblayout_ecc(struct mtd_info *mtd, int section,
+>> +			       struct mtd_oob_region *oobregion)
+>> +{
+>> +	struct nand_chip *chip = mtd_to_nand(mtd);
+>> +	int free_oob;
+>> +
+>> +	if (section >= chip->ecc.steps)
+>> +		return -ERANGE;
+>> +
+>> +	free_oob = (section + 1) * 2;
+>> +	oobregion->offset = section * chip->ecc.bytes + free_oob;
+> Hm, this offset calculation looks weird. Are you sure it's correct?
+> I'd bet on something like:
+>
+> 	oobregion->offset = 2 + (section * (chip->ecc.bytes + 4));
+
+Each ecc page have 2 user bytes. Assume one 2KB+64B page size nand
+flash using ECC8/1KB which ecc parity bytes is 14B.
+     _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+    |             |  |      |             |  |     |  not  |
+    |	1KB      |2B| 14B  |     1KB     |2B| 14B | used  |  (layout on nand)
+    |_ _ _ _ _ _ _|_ |_ _ _ | _ _ _ _ _ _ |_ |_ _ _|_ _ _ _|
+		    (2KB + 64B)
+when reading from nand, I will format the page as follow:
+     _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _
+    |             |             |  |     |  |      |  not  |
+    |	1KB      |    1KB      |2B| 14B |2B|  14B | used  |(layout on ddr)
+    |_ _ _ _ _ _ _|_ _ _ _ _ _ _|_ |_ _ _|_ |_ _ _ |_ _ _ _|
+		    (2KB + 64B)
+So i get "oobregion->offset = section * chip->ecc.bytes + free_oob".
+Maybe i don't get what does 'section' mean. i think it means the ecc page number.
+
+>> +	oobregion->length = chip->ecc.bytes;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int meson_ooblayout_free(struct mtd_info *mtd, int section,
+>> +				struct mtd_oob_region *oobregion)
+>> +{
+>> +	struct nand_chip *chip = mtd_to_nand(mtd);
+>> +
+>> +	if (section >= chip->ecc.steps)
+>> +		return -ERANGE;
+>> +
+>> +	oobregion->offset = section * (2 + chip->ecc.bytes);
+>> +	oobregion->length = 2;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
+>> +	.ecc = meson_ooblayout_ecc,
+>> +	.free = meson_ooblayout_free,
+>> +};
+>> +
+>> +static int meson_nfc_ecc_init(struct device *dev, struct mtd_info *mtd)
+>> +{
+>> +	struct nand_chip *nand = mtd_to_nand(mtd);
+>> +	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+>> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
+>> +	const struct meson_nand_ecc *meson_ecc = nfc->data->ecc;
+>> +	int num = nfc->data->ecc_num;
+>> +	int nsectors, i, bytes;
+>> +
+>> +	/* support only ecc hw mode */
+>> +	if (nand->ecc.mode != NAND_ECC_HW) {
+>> +		dev_err(dev, "ecc.mode not supported\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	if (!nand->ecc.size || !nand->ecc.strength) {
+>> +		/* use datasheet requirements */
+>> +		nand->ecc.strength = nand->ecc_strength_ds;
+>> +		nand->ecc.size = nand->ecc_step_ds;
+>> +	}
+>> +
+>> +	if (nand->ecc.options & NAND_ECC_MAXIMIZE) {
+>> +		nand->ecc.size = 1024;
+>> +		nsectors = mtd->writesize / nand->ecc.size;
+>> +		bytes = mtd->oobsize - 2 * nsectors;
+>> +		bytes /= nsectors;
+>> +
+>> +		/* and bytes has to be even. */
+>> +		if (bytes % 2)
+>> +			bytes--;
+>> +
+>> +		nand->ecc.strength = bytes * 8 / fls(8 * nand->ecc.size);
+>> +	} else {
+>> +		if (nand->ecc.strength > meson_ecc[num - 1].strength) {
+>> +			dev_err(dev, "not support ecc strength\n");
+>> +			return -EINVAL;
+>> +		}
+>> +	}
+>> +
+>> +	for (i = 0; i < num; i++) {
+>> +		if (meson_ecc[i].strength == 0xff ||
+>> +		    nand->ecc.strength < meson_ecc[i].strength)
+>> +			break;
+>> +	}
+> I'd suggest that you look at nand_match_ecc_req(). It's likely that the
+> selection logic you have here can be replaced by the generic function.
+
+em, I will try it next version.
