@@ -1,53 +1,59 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 20 Aug 2018 10:36:15 +0200
-Subject: [PATCH v2 u-boot 1/2] power: domain: Add the VPU Power Domain
- driver
-In-Reply-To: <20180816081505.GA9347@gmail.com>
-References: <1533559760-32136-1-git-send-email-narmstrong@baylibre.com>
- <1533559760-32136-2-git-send-email-narmstrong@baylibre.com>
- <20180816081505.GA9347@gmail.com>
-Message-ID: <b14290f0-660e-93b1-6414-ca7ffcf77741@baylibre.com>
+Date: Mon, 20 Aug 2018 10:36:55 +0200
+Subject: [PATCH u-boot 1/3] boards: amlogic: remove ethernet gpio reset
+ code from boards
+In-Reply-To: <20180814130754.19294-2-b.galvani@gmail.com>
+References: <20180814130754.19294-1-b.galvani@gmail.com>
+ <20180814130754.19294-2-b.galvani@gmail.com>
+Message-ID: <a8358bc8-70e4-6f53-facd-29b3ceea715e@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 16/08/2018 10:15, Beniamino Galvani wrote:
-> On Mon, Aug 06, 2018 at 02:49:19PM +0200, Neil Armstrong wrote:
->> The Amlogic Meson SoCs embeds a specific Power Domain dedicated to the
->> Video Processing Unit.
->> This patch implements support for this power domain in preparation of the
->> future support for the Video display support in U-Boot.
->>
->> This driver will depend on changes in the clock driver to handle the setup
->> of the VPU and VAPB clocks configured from DT using assigned-clocks entries.
->>
->> Reviewed-by: Simon Glass <sjg@chromium.org>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/power/domain/Kconfig             |   7 ++
->>  drivers/power/domain/Makefile            |   1 +
->>  drivers/power/domain/meson-gx-pwrc-vpu.c | 198 +++++++++++++++++++++++++++++++
->>  3 files changed, 206 insertions(+)
->>  create mode 100644 drivers/power/domain/meson-gx-pwrc-vpu.c
->>
->> diff --git a/drivers/power/domain/Kconfig b/drivers/power/domain/Kconfig
->> index 7cfa761..4618847 100644
->> --- a/drivers/power/domain/Kconfig
->> +++ b/drivers/power/domain/Kconfig
->> @@ -16,6 +16,13 @@ config BCM6328_POWER_DOMAIN
->>  	  Enable support for manipulating BCM6345 power domains via MMIO
->>  	  mapped registers.
->>  
->> +config MESON_GX_VPU_POWER_DOMAIN
->> +	bool "Enable Amlogic Meson GX VPU power domain driver"
->> +	depends on ARCH_MESON
+On 14/08/2018 15:07, Beniamino Galvani wrote:
+> The reset is already handled by the designware driver using
+> information from device tree.
 > 
-> Hi,
+> Signed-off-by: Beniamino Galvani <b.galvani@gmail.com>
+> ---
+>  board/amlogic/nanopi-k2/nanopi-k2.c | 6 ------
+>  board/amlogic/odroid-c2/odroid-c2.c | 6 ------
+>  2 files changed, 12 deletions(-)
 > 
-> since the driver uses syscon_node_to_regmap() I think the Kconfig
-> entry should also 'select SYSCON'.
+> diff --git a/board/amlogic/nanopi-k2/nanopi-k2.c b/board/amlogic/nanopi-k2/nanopi-k2.c
+> index 339dbb81db..ae29dd6fa4 100644
+> --- a/board/amlogic/nanopi-k2/nanopi-k2.c
+> +++ b/board/amlogic/nanopi-k2/nanopi-k2.c
+> @@ -30,12 +30,6 @@ int misc_init_r(void)
+>  
+>  	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
+>  
+> -	/* Reset PHY on GPIOZ_14 */
+> -	clrbits_le32(GX_GPIO_EN(3), BIT(14));
+> -	clrbits_le32(GX_GPIO_OUT(3), BIT(14));
+> -	mdelay(10);
+> -	setbits_le32(GX_GPIO_OUT(3), BIT(14));
+> -
+>  	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+>  		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+>  					  mac_addr, EFUSE_MAC_SIZE);
+> diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
+> index c47b9ce9cb..2a2755c387 100644
+> --- a/board/amlogic/odroid-c2/odroid-c2.c
+> +++ b/board/amlogic/odroid-c2/odroid-c2.c
+> @@ -30,12 +30,6 @@ int misc_init_r(void)
+>  
+>  	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
+>  
+> -	/* Reset PHY on GPIOZ_14 */
+> -	clrbits_le32(GX_GPIO_EN(3), BIT(14));
+> -	clrbits_le32(GX_GPIO_OUT(3), BIT(14));
+> -	mdelay(10);
+> -	setbits_le32(GX_GPIO_OUT(3), BIT(14));
+> -
+>  	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+>  		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+>  					  mac_addr, EFUSE_MAC_SIZE);
+> 
 
-Exact
 
-> 
-> Beniamino
-> 
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
