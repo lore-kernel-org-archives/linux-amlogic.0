@@ -1,5 +1,5 @@
 From: liang.yang@amlogic.com (Liang Yang)
-Date: Tue, 21 Aug 2018 11:33:21 +0800
+Date: Wed, 22 Aug 2018 22:08:42 +0800
 Subject: [RFC PATCH v2 2/2] mtd: rawnand: meson: add support for Amlogic
  NAND flash controller
 In-Reply-To: <20180817155608.5929b37a@bbrezillon>
@@ -8,11 +8,15 @@ References: <20180719094612.5833-1-yixun.lan@amlogic.com>
  <20180801235045.5b4d8211@bbrezillon>
  <42877a0d-9830-0626-3f64-e49a326eaa3c@amlogic.com>
  <20180817155608.5929b37a@bbrezillon>
-Message-ID: <e4d4d237-1f63-467e-d55c-b8cfba150767@amlogic.com>
+Message-ID: <96e538a5-1232-11f2-8b9e-5ddb09dcc2de@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Boris,
+
+There is a question below. please see my comments.
+
+Thanks.
 
 On 8/17/2018 9:56 PM, Boris Brezillon wrote:
 > On Fri, 17 Aug 2018 21:03:59 +0800
@@ -48,42 +52,9 @@ On 8/17/2018 9:56 PM, Boris Brezillon wrote:
 >>>> +			cmd |= instr->ctx.cmd.opcode & 0xff;
 >>>> +			writel(cmd, nfc->reg_base + NFC_REG_CMD);
 >>>> +			meson_nfc_cmd_idle(nfc, NAND_TWB_TIME_CYCLE);
->>> This is not necessarily TWB you have to wait after a CMD cycle. It can
->>> be tWHR. And you should definitely not hardcode the value, since,
->>> AFAIR, it depends on the selected SDR timings. Probably something you
->>> should calculate in ->setup_data_interface().
->>
->> Indeed. TWB is not necessarily. And tWHR will be promised by NFC.
->> so I will delete it.
-> 
-> Are you sure the engine always applies a tWHR delay, even when tWB is
-> expected? tWB should be applied everytime you are about to wait for a
-> R/B transition. tWHR is about switching IO pins from input to output on
-> the NAND chip side.
-> 
-
-it seems work well even do not add tWHR, but software needs to promise 
-tWHR, also the same as TWB. I will check the code and add them.
-
 >>
 >>>> +			meson_nfc_drain_cmd(nfc);
 >>> I don't know exactly how the NAND controller works, but it's usually
->>> not a good idea to execute the operation right away, especially if you
->>> have address/cmd/data cycles following this cmd and those can be
->>> packed in the same controller operation.
->>
->> it doesn't need meson_nfc_drain_cmd(nfc) here. i will delete it next version
-> 
-> What's the CMD queue depth? I think you'll have to ensure the requested
-> op fits in the CMD FIFO and split things in several sub-ops if it does
-> not.
-> 
-
-there are maximum 32 commands.
-I think it should be enough to promise ONE maximum number of 
-operations(cmd - addr - dma - 2 ilde commands).
-
->>
 >>>> +			break;
 >>>> +
 >>>> +		case NAND_OP_ADDR_INSTR:
@@ -102,17 +73,6 @@ operations(cmd - addr - dma - 2 ilde commands).
 >>>> +		case NAND_OP_DATA_OUT_INSTR:
 >>>> +			meson_nfc_write_buf(mtd, instr->ctx.data.buf.out,
 >>>> +					    instr->ctx.data.len);
->>> Well, I'm not entirely sure what happens when you call
->>> read/write_buf(), but it seems you're doing that one byte at a time,
->>> and that sounds not so efficient given the operation you do for each
->>> byte read/written. Don't you have a way to tell the engine that you
->>> want to read/write X bytes?
->>
->> As i known, there is no way to read/write X bytes once.
-> 
-> Okay, then maybe you can queue several byte read/write reqs before
-> flushing the queue (meson_nfc_drain_cmd() +
-> meson_nfc_wait_cmd_finish()).
 > 
 >>
 >>>> +			break;
@@ -141,58 +101,14 @@ operations(cmd - addr - dma - 2 ilde commands).
 > 
 > You have to wait tWB, that's for sure.
 > 
-
-Indeed.
-
+we have a maximum 32 commands fifo. when command is written into 
+NFC_REG_CMD, it doesn't mean that command is executing right now, maybe 
+it is buffering on the queue.Assume one ERASE operation, when 2nd 
+command(0xd0) is written into NFC_REG_CMD and then come into 
+NAND_OP_WAITRDY_INSTR, if I read the RB status by register, it may be 
+wrong because 0xd0 may not being executed. it is unusual unless 
+buffering two many command.
+so it seems that i still need to use nand_soft_waitrdy or wait cmd is 
+executed somewhere.
 >>
->>>> +			break;
->>>> +		}
->>>> +	}
->>>> +	return ret;
->>>> +}
->>>> +
->>>> +static int meson_ooblayout_ecc(struct mtd_info *mtd, int section,
->>>> +			       struct mtd_oob_region *oobregion)
->>>> +{
->>>> +	struct nand_chip *chip = mtd_to_nand(mtd);
->>>> +	int free_oob;
->>>> +
->>>> +	if (section >= chip->ecc.steps)
->>>> +		return -ERANGE;
->>>> +
->>>> +	free_oob = (section + 1) * 2;
->>>> +	oobregion->offset = section * chip->ecc.bytes + free_oob;
->>> Hm, this offset calculation looks weird. Are you sure it's correct?
->>> I'd bet on something like:
->>>
->>> 	oobregion->offset = 2 + (section * (chip->ecc.bytes + 4));
->>
->> Each ecc page have 2 user bytes. Assume one 2KB+64B page size nand
->> flash using ECC8/1KB which ecc parity bytes is 14B.
->>       _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
->>      |             |  |      |             |  |     |  not  |
->>      |	1KB      |2B| 14B  |     1KB     |2B| 14B | used  |  (layout on nand)
->>      |_ _ _ _ _ _ _|_ |_ _ _ | _ _ _ _ _ _ |_ |_ _ _|_ _ _ _|
->> 		    (2KB + 64B)
->> when reading from nand, I will format the page as follow:
->>       _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _  _ _ _ _
->>      |             |             |  |     |  |      |  not  |
->>      |	1KB      |    1KB      |2B| 14B |2B|  14B | used  |(layout on ddr)
->>      |_ _ _ _ _ _ _|_ _ _ _ _ _ _|_ |_ _ _|_ |_ _ _ |_ _ _ _|
->> 		    (2KB + 64B)
->> So i get "oobregion->offset = section * chip->ecc.bytes + free_oob".
-> 
-> Okay, but I prefer when it's written like that:
-> 
-> 	oobregion->offset = 2 + (section * (2 + chip->ecc.bytes));
-
-em, I prefer too. it looks better.
-> >> Maybe i don't get what does 'section' mean. i think it means the ecc 
-page number.
-> 
-> Section is just the free OOB or ECC section number. It starts at 0 and
-> goes up to N - 1, where N usually is the number of ECC steps you have in
-> a page.
-> 
-> .
 > 
