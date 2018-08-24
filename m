@@ -1,53 +1,73 @@
-From: hanjie.lin@amlogic.com (Hanjie Lin)
-Date: Fri, 24 Aug 2018 15:33:25 +0800
-Subject: [PATCH v2 1/2] dt-bindings: phy: add DT bindings for Amlogic Meson
- PCIe Phy controller
-In-Reply-To: <1535096006-152091-1-git-send-email-hanjie.lin@amlogic.com>
-References: <1535096006-152091-1-git-send-email-hanjie.lin@amlogic.com>
-Message-ID: <1535096006-152091-2-git-send-email-hanjie.lin@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 24 Aug 2018 11:04:40 +0200
+Subject: [PATCH] Revert "net: stmmac: Do not keep rearming the coalesce timer
+ in stmmac_xmit"
+Message-ID: <20180824090440.13411-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Yue Wang <yue.wang@amlogic.com>
+This reverts commit 4ae0169fd1b3c792b66be58995b7e6b629919ecf.
 
-The Meson-PCIE-PHY controller supports the 5-Gbps data rate
-of the PCI Express Gen 2 specification and is backward compatible
-with the 2.5-Gbps Gen 1.1 specification with only
-inferred idle detection supported on Amlogic SoCs.
+This change in the handling of the coalesce timer is causing regression on
+(at least) amlogic platforms.
 
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+Network will break down very quickly (a few seconds) after starting
+a download. This can easily be reproduced using iperf3 for example.
+
+The problem has been reported on the S805, S905, S912 and A113 SoCs
+(Realtek and Micrel PHYs) and it is likely impacting all Amlogics
+platforms using Gbit ethernet
+
+No problem was seen with the platform using 10/100 only PHYs (GXL internal)
+
+Reverting change brings things back to normal and allows to use network
+again until we better understand the problem with the coalesce timer.
+
+Cc: Jose Abreu <joabreu@synopsys.com>
+Cc: Joao Pinto <jpinto@synopsys.com>
+Cc: Vitor Soares <soares@synopsys.com>
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: Alexandre Torgue <alexandre.torgue@st.com>
+Cc: Corentin Labbe <clabbe@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../bindings/phy/amlogic,meson-pcie-phy.txt         | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h      | 1 -
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 5 +----
+ 2 files changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt b/Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt
-new file mode 100644
-index 0000000..e2f0a27
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt
-@@ -0,0 +1,21 @@
-+* Amlogic Meson AXG PCIE PHY binding
-+
-+Required properties:
-+- compatible:	Should be
-+	- "amlogic,axg-pcie-phy"
-+- #phys-cells:	must be 0 (see phy-bindings.txt in this directory)
-+- reg:		The base address and length of the registers
-+- resets:	phandle to the reset lines
-+- reset-names:	must contain "phy" and "peripheral"
-+	- "phy"	PHY reset
-+Optional properties:
-+- phy-supply:	see phy-bindings.txt in this directory
-+
-+Example:
-+	pcie_phy: pcie-phy at ff644000 {
-+		#phy-cells = <0>;
-+		compatible = "amlogic,axg-pcie-phy";
-+		reg = <0x0 0xff644000 0x0 0x2000>;
-+		resets = <&reset RESET_PCIE_PHY>;
-+		reset-names = "phy";
-+	};
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+index 76649adf8fb0..c0a855b7ab3b 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+@@ -112,7 +112,6 @@ struct stmmac_priv {
+ 	u32 tx_count_frames;
+ 	u32 tx_coal_frames;
+ 	u32 tx_coal_timer;
+-	bool tx_timer_armed;
+ 
+ 	int tx_coalesce;
+ 	int hwts_tx_en;
+diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+index ff1ffb46198a..9f458bb16f2a 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
++++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+@@ -3147,16 +3147,13 @@ static netdev_tx_t stmmac_xmit(struct sk_buff *skb, struct net_device *dev)
+ 	 * element in case of no SG.
+ 	 */
+ 	priv->tx_count_frames += nfrags + 1;
+-	if (likely(priv->tx_coal_frames > priv->tx_count_frames) &&
+-	    !priv->tx_timer_armed) {
++	if (likely(priv->tx_coal_frames > priv->tx_count_frames)) {
+ 		mod_timer(&priv->txtimer,
+ 			  STMMAC_COAL_TIMER(priv->tx_coal_timer));
+-		priv->tx_timer_armed = true;
+ 	} else {
+ 		priv->tx_count_frames = 0;
+ 		stmmac_set_tx_ic(priv, desc);
+ 		priv->xstats.tx_set_ic_bit++;
+-		priv->tx_timer_armed = false;
+ 	}
+ 
+ 	skb_tx_timestamp(skb);
 -- 
-2.7.4
+2.17.1
