@@ -1,73 +1,37 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri, 24 Aug 2018 11:04:40 +0200
-Subject: [PATCH] Revert "net: stmmac: Do not keep rearming the coalesce timer
- in stmmac_xmit"
-Message-ID: <20180824090440.13411-1-jbrunet@baylibre.com>
+From: boris.brezillon@bootlin.com (Boris Brezillon)
+Date: Fri, 24 Aug 2018 14:48:10 +0200
+Subject: [RFC PATCH v2 2/2] mtd: rawnand: meson: add support for Amlogic
+ NAND flash controller
+In-Reply-To: <96e538a5-1232-11f2-8b9e-5ddb09dcc2de@amlogic.com>
+References: <20180719094612.5833-1-yixun.lan@amlogic.com>
+ <20180719094612.5833-3-yixun.lan@amlogic.com>
+ <20180801235045.5b4d8211@bbrezillon>
+ <42877a0d-9830-0626-3f64-e49a326eaa3c@amlogic.com>
+ <20180817155608.5929b37a@bbrezillon>
+ <96e538a5-1232-11f2-8b9e-5ddb09dcc2de@amlogic.com>
+Message-ID: <20180824144810.31c929a5@bbrezillon>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This reverts commit 4ae0169fd1b3c792b66be58995b7e6b629919ecf.
+On Wed, 22 Aug 2018 22:08:42 +0800
+Liang Yang <liang.yang@amlogic.com> wrote:
 
-This change in the handling of the coalesce timer is causing regression on
-(at least) amlogic platforms.
+> > You have to wait tWB, that's for sure.
+> >   
+> we have a maximum 32 commands fifo. when command is written into 
+> NFC_REG_CMD, it doesn't mean that command is executing right now, maybe 
+> it is buffering on the queue.Assume one ERASE operation, when 2nd 
+> command(0xd0) is written into NFC_REG_CMD and then come into 
+> NAND_OP_WAITRDY_INSTR, if I read the RB status by register, it may be 
+> wrong because 0xd0 may not being executed. it is unusual unless 
+> buffering two many command.
 
-Network will break down very quickly (a few seconds) after starting
-a download. This can easily be reproduced using iperf3 for example.
+You should flush the queue and wait for it to empty at the end of
+->exec_op().
 
-The problem has been reported on the S805, S905, S912 and A113 SoCs
-(Realtek and Micrel PHYs) and it is likely impacting all Amlogics
-platforms using Gbit ethernet
+> so it seems that i still need to use nand_soft_waitrdy or wait cmd is 
+> executed somewhere.
 
-No problem was seen with the platform using 10/100 only PHYs (GXL internal)
-
-Reverting change brings things back to normal and allows to use network
-again until we better understand the problem with the coalesce timer.
-
-Cc: Jose Abreu <joabreu@synopsys.com>
-Cc: Joao Pinto <jpinto@synopsys.com>
-Cc: Vitor Soares <soares@synopsys.com>
-Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>
-Cc: Corentin Labbe <clabbe@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/net/ethernet/stmicro/stmmac/stmmac.h      | 1 -
- drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 5 +----
- 2 files changed, 1 insertion(+), 5 deletions(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-index 76649adf8fb0..c0a855b7ab3b 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
-@@ -112,7 +112,6 @@ struct stmmac_priv {
- 	u32 tx_count_frames;
- 	u32 tx_coal_frames;
- 	u32 tx_coal_timer;
--	bool tx_timer_armed;
- 
- 	int tx_coalesce;
- 	int hwts_tx_en;
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-index ff1ffb46198a..9f458bb16f2a 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-@@ -3147,16 +3147,13 @@ static netdev_tx_t stmmac_xmit(struct sk_buff *skb, struct net_device *dev)
- 	 * element in case of no SG.
- 	 */
- 	priv->tx_count_frames += nfrags + 1;
--	if (likely(priv->tx_coal_frames > priv->tx_count_frames) &&
--	    !priv->tx_timer_armed) {
-+	if (likely(priv->tx_coal_frames > priv->tx_count_frames)) {
- 		mod_timer(&priv->txtimer,
- 			  STMMAC_COAL_TIMER(priv->tx_coal_timer));
--		priv->tx_timer_armed = true;
- 	} else {
- 		priv->tx_count_frames = 0;
- 		stmmac_set_tx_ic(priv, desc);
- 		priv->xstats.tx_set_ic_bit++;
--		priv->tx_timer_armed = false;
- 	}
- 
- 	skb_tx_timestamp(skb);
--- 
-2.17.1
+Don't you have a WAIT_FOR_RB instruction? What is NFC_CMD_RB for? Also,
+NFC_CMD_IDLE seems to allow you to add an arbitrary delay, and that's
+probably what you should use for tWB.
