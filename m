@@ -1,15 +1,15 @@
 From: broonie@kernel.org (Mark Brown)
-Date: Tue, 28 Aug 2018 21:47:29 +0100 (BST)
-Subject: Applied "ASoC: meson: axg-fifo: report interrupt request failure" to
- the asoc tree
-In-Reply-To: <20180827141529.6497-1-jbrunet@baylibre.com>
-Message-ID: <20180828204729.2BCB144007A@finisterre.ee.mobilebroadband>
+Date: Tue, 28 Aug 2018 21:48:19 +0100 (BST)
+Subject: Applied "ASoC: meson: imply clock and reset controllers" to the asoc
+ tree
+In-Reply-To: <20180828121721.26488-1-jbrunet@baylibre.com>
+Message-ID: <20180828204820.015EB44007A@finisterre.ee.mobilebroadband>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 The patch
 
-   ASoC: meson: axg-fifo: report interrupt request failure
+   ASoC: meson: imply clock and reset controllers
 
 has been applied to the asoc tree at
 
@@ -34,33 +34,48 @@ to this mail.
 Thanks,
 Mark
 
->From dadfab7272b13ca441efdb9aa9117bc669680b05 Mon Sep 17 00:00:00 2001
+>From ac16df938e5107a1e08cf0f52818fa6a5f7bba94 Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Mon, 27 Aug 2018 16:15:29 +0200
-Subject: [PATCH] ASoC: meson: axg-fifo: report interrupt request failure
+Date: Tue, 28 Aug 2018 14:17:21 +0200
+Subject: [PATCH] ASoC: meson: imply clock and reset controllers
 
-Return value of request_irq() was irgnored. Fix this and report
-the failure if any
+Add audio clock controller and ARB reset controller module
+implication for the device using them
 
-Fixes: 6dc4fa179fb8 ("ASoC: meson: add axg fifo base driver")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/meson/axg-fifo.c | 2 ++
- 1 file changed, 2 insertions(+)
+ sound/soc/meson/Kconfig | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
-index 30262550e37b..0e4f65e654c4 100644
---- a/sound/soc/meson/axg-fifo.c
-+++ b/sound/soc/meson/axg-fifo.c
-@@ -203,6 +203,8 @@ static int axg_fifo_pcm_open(struct snd_pcm_substream *ss)
+diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
+index 8af8bc358a90..2ccbadc387de 100644
+--- a/sound/soc/meson/Kconfig
++++ b/sound/soc/meson/Kconfig
+@@ -4,6 +4,8 @@ menu "ASoC support for Amlogic platforms"
+ config SND_MESON_AXG_FIFO
+ 	tristate
+ 	select REGMAP_MMIO
++	imply COMMON_CLK_AXG_AUDIO
++	imply RESET_MESON_AUDIO_ARB
  
- 	ret = request_irq(fifo->irq, axg_fifo_pcm_irq_block, 0,
- 			  dev_name(dev), ss);
-+	if (ret)
-+		return ret;
+ config SND_MESON_AXG_FRDDR
+ 	tristate "Amlogic AXG Playback FIFO support"
+@@ -22,6 +24,7 @@ config SND_MESON_AXG_TODDR
+ config SND_MESON_AXG_TDM_FORMATTER
+ 	tristate
+ 	select REGMAP_MMIO
++	imply COMMON_CLK_AXG_AUDIO
  
- 	/* Enable pclk to access registers and clock the fifo ip */
- 	ret = clk_prepare_enable(fifo->pclk);
+ config SND_MESON_AXG_TDM_INTERFACE
+ 	tristate
+@@ -58,6 +61,7 @@ config SND_MESON_AXG_SPDIFOUT
+ 	tristate "Amlogic AXG SPDIF Output Support"
+ 	select SND_PCM_IEC958
+ 	imply SND_SOC_SPDIF
++	imply COMMON_CLK_AXG_AUDIO
+ 	help
+ 	  Select Y or M to add support for SPDIF output serializer embedded
+ 	  in the Amlogic AXG SoC family
 -- 
 2.18.0
