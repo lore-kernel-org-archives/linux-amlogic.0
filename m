@@ -1,83 +1,58 @@
-From: aisheng.dong@nxp.com (A.s. Dong)
-Date: Tue, 28 Aug 2018 01:57:46 +0000
-Subject: [PATCH] pinctrl: Convert to using %pOFn instead of
- device_node.name
-In-Reply-To: <20180828015252.28511-40-robh@kernel.org>
-References: <20180828015252.28511-1-robh@kernel.org>
- <20180828015252.28511-40-robh@kernel.org>
-Message-ID: <AM0PR04MB4211652B5C4C4CD91EA17297800A0@AM0PR04MB4211.eurprd04.prod.outlook.com>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Tue, 28 Aug 2018 11:35:32 +0800
+Subject: [PATCH 2/2] clk: meson-g12a: Add AO Clock controller driver
+In-Reply-To: <89b058a7bba26058fab95dea01155221dbb642ce.camel@baylibre.com>
+References: <1533894868-85815-1-git-send-email-jian.hu@amlogic.com>
+ <1533894868-85815-3-git-send-email-jian.hu@amlogic.com>
+ <6c855dc62fe6ed1a01216bd708d401a280f8762c.camel@baylibre.com>
+ <fff1f982-c9f3-8aa4-b108-6c0998827e79@amlogic.com>
+ <89b058a7bba26058fab95dea01155221dbb642ce.camel@baylibre.com>
+Message-ID: <977d8010-6d82-5eac-5da5-6dbe0f73971a@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-> -----Original Message-----
-> From: Rob Herring [mailto:robh at kernel.org]
-> Sent: Tuesday, August 28, 2018 9:53 AM
-> To: linux-kernel at vger.kernel.org
-> Cc: Linus Walleij <linus.walleij@linaro.org>; A.s. Dong
-> <aisheng.dong@nxp.com>; Fabio Estevam <festevam@gmail.com>; Shawn
-> Guo <shawnguo@kernel.org>; Stefan Agner <stefan@agner.ch>; Pengutronix
-> Kernel Team <kernel@pengutronix.de>; Sean Wang
-> <sean.wang@mediatek.com>; Matthias Brugger <matthias.bgg@gmail.com>;
-> Carlo Caione <carlo@caione.org>; Kevin Hilman <khilman@baylibre.com>;
-> Jason Cooper <jason@lakedaemon.net>; Andrew Lunn <andrew@lunn.ch>;
-> Gregory Clement <gregory.clement@bootlin.com>; Sebastian Hesselbarth
-> <sebastian.hesselbarth@gmail.com>; Jean-Christophe Plagniol-Villard
-> <plagnioj@jcrosoft.com>; Nicolas Ferre <nicolas.ferre@microchip.com>;
-> Alexandre Belloni <alexandre.belloni@bootlin.com>; Heiko Stuebner
-> <heiko@sntech.de>; Tony Lindgren <tony@atomide.com>; Haojian Zhuang
-> <haojian.zhuang@linaro.org>; Patrice Chotard <patrice.chotard@st.com>;
-> Barry Song <baohua@kernel.org>; Maxime Coquelin
-> <mcoquelin.stm32@gmail.com>; Alexandre Torgue
-> <alexandre.torgue@st.com>; Maxime Ripard <maxime.ripard@bootlin.com>;
-> Chen-Yu Tsai <wens@csie.org>; linux-gpio at vger.kernel.org;
-> linux-mediatek at lists.infradead.org; linux-arm-kernel at lists.infradead.org;
-> linux-amlogic at lists.infradead.org; linux-rockchip at lists.infradead.org;
-> linux-omap at vger.kernel.org
-> Subject: [PATCH] pinctrl: Convert to using %pOFn instead of device_node.name
-> 
-> In preparation to remove the node name pointer from struct device_node,
-> convert printf users to use the %pOFn format specifier.
-> 
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Dong Aisheng <aisheng.dong@nxp.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stefan Agner <stefan@agner.ch>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Sean Wang <sean.wang@mediatek.com>
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Jason Cooper <jason@lakedaemon.net>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Gregory Clement <gregory.clement@bootlin.com>
-> Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-> Cc: Jean-Christophe Plagniol-Villard <plagnioj@jcrosoft.com>
-> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Heiko Stuebner <heiko@sntech.de>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Haojian Zhuang <haojian.zhuang@linaro.org>
-> Cc: Patrice Chotard <patrice.chotard@st.com>
-> Cc: Barry Song <baohua@kernel.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Alexandre Torgue <alexandre.torgue@st.com>
-> Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: linux-gpio at vger.kernel.org
-> Cc: linux-mediatek at lists.infradead.org
-> Cc: linux-arm-kernel at lists.infradead.org
-> Cc: linux-amlogic at lists.infradead.org
-> Cc: linux-rockchip at lists.infradead.org
-> Cc: linux-omap at vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  drivers/pinctrl/berlin/berlin.c               |  6 ++--
->  drivers/pinctrl/freescale/pinctrl-imx.c       |  7 ++--
->  drivers/pinctrl/freescale/pinctrl-imx1-core.c | 12 +++----
+Hi: Jerome
 
-For i.MX,
-Acked-by: Dong Aisheng <aisheng.dong@nxp.com>
+On 2018/8/27 21:07, Jerome Brunet wrote:
+> On Fri, 2018-08-24 at 21:34 +0800, Jian Hu wrote:
+>>>
+>>
+>> I am confued about aoclk81's parent clocks.
+>>
+>> I can not get the example of axg audio clock driver, Could you provide
+>> the link? Had it merged into clk-meson.git?
+> 
+> Yes and mainline as well : drivers/clk/meson/axg-audio.c
+> 
+> Basically this driver is creating bypass input clocks (audio_pclk, mst_in[0-9],
+> etc...) .
+> 
+> This allows to collect input clocks from DT (like any consumer should) will
+> keeping constant in the controller clock tree.
+> 
+>>From what I've seen of your controller drivers, the EE controller should have
+> one input, the AO should have 3.
+> 
+> 
+> 
+> .
+> 
+I still can not get the example meaning in axg audio driver.
 
-Regards
-Dong Aisheng
+In 26 page of A113D_Datasheet V0.7 20170725-Baylibre.pdf,We can see the 
+aoclk81 has two parents. clk81 and ao_slow_clk. I can not get 3 parents.
+
+                          clk81|\
+                        -------| \        aoclk81
+src0 |\                       |  |-------------------
+-----| \     ao_slow_clk      |  |
+      |  |---------------------| /
+-----| /                      |/
+  src1|/
+
+
+src0 is from xtal, if can generate 32k clock, but it is never used.
+src1 is from gpio clock, It is never used. If necessary? the ao_slow_clk 
+maybe described.
+
+So why aoclk81 has 3 parents?
