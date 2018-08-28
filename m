@@ -1,46 +1,39 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 28 Aug 2018 14:17:21 +0200
-Subject: [PATCH] ASoC: meson: imply clock and reset controllers
-Message-ID: <20180828121721.26488-1-jbrunet@baylibre.com>
+Date: Tue, 28 Aug 2018 14:27:35 +0200
+Subject: [PATCH] arm64: defconfig: enable modules for amlogic s400 sound card
+Message-ID: <20180828122735.28919-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add audio clock controller and ARB reset controller module
-implication for the device using them
+Compile the necessary drivers as modules, including codecs, for the
+s400 sound card.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/Kconfig | 4 ++++
+ arch/arm64/configs/defconfig | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index 8af8bc358a90..2ccbadc387de 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -4,6 +4,8 @@ menu "ASoC support for Amlogic platforms"
- config SND_MESON_AXG_FIFO
- 	tristate
- 	select REGMAP_MMIO
-+	imply COMMON_CLK_AXG_AUDIO
-+	imply RESET_MESON_AUDIO_ARB
- 
- config SND_MESON_AXG_FRDDR
- 	tristate "Amlogic AXG Playback FIFO support"
-@@ -22,6 +24,7 @@ config SND_MESON_AXG_TODDR
- config SND_MESON_AXG_TDM_FORMATTER
- 	tristate
- 	select REGMAP_MMIO
-+	imply COMMON_CLK_AXG_AUDIO
- 
- config SND_MESON_AXG_TDM_INTERFACE
- 	tristate
-@@ -58,6 +61,7 @@ config SND_MESON_AXG_SPDIFOUT
- 	tristate "Amlogic AXG SPDIF Output Support"
- 	select SND_PCM_IEC958
- 	imply SND_SOC_SPDIF
-+	imply COMMON_CLK_AXG_AUDIO
- 	help
- 	  Select Y or M to add support for SPDIF output serializer embedded
- 	  in the Amlogic AXG SoC family
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index f67e8d5e93ad..6b1daea53bd3 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -464,6 +464,7 @@ CONFIG_SND_SOC_ROCKCHIP_I2S=m
+ CONFIG_SND_SOC_ROCKCHIP_SPDIF=m
+ CONFIG_SND_SOC_ROCKCHIP_RT5645=m
+ CONFIG_SND_SOC_RK3399_GRU_SOUND=m
++CONFIG_SND_MESON_AXG_SOUND_CARD=m
+ CONFIG_SND_SOC_SAMSUNG=y
+ CONFIG_SND_SOC_RCAR=m
+ CONFIG_SND_SOC_AK4613=m
+@@ -475,6 +476,9 @@ CONFIG_SND_SOC_RT5514_SPI=m
+ CONFIG_SND_SOC_RT5645=m
+ CONFIG_SND_SIMPLE_CARD=m
+ CONFIG_SND_AUDIO_GRAPH_CARD=m
++CONFIG_SND_SOC_ES7134=m
++CONFIG_SND_SOC_ES7241=m
++CONFIG_SND_SOC_TAS571X=m
+ CONFIG_I2C_HID=m
+ CONFIG_USB=y
+ CONFIG_USB_OTG=y
 -- 
 2.17.1
