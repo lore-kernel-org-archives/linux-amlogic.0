@@ -1,24 +1,133 @@
 From: broonie@kernel.org (Mark Brown)
-Date: Tue, 28 Aug 2018 19:03:35 +0100
-Subject: [PATCH v2] ASoC: Convert to using %pOFn instead of
- device_node.name
-In-Reply-To: <20180828154433.5693-2-robh@kernel.org>
-References: <20180828154433.5693-1-robh@kernel.org>
- <20180828154433.5693-2-robh@kernel.org>
-Message-ID: <20180828180335.GG2414@sirena.org.uk>
+Date: Tue, 28 Aug 2018 21:47:03 +0100 (BST)
+Subject: Applied "ASoC: meson: axg-tdm: restrict formats depending on slot
+ width" to the asoc tree
+In-Reply-To: <20180827142107.8153-1-jbrunet@baylibre.com>
+Message-ID: <20180828204703.F3EC244007A@finisterre.ee.mobilebroadband>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 28, 2018 at 10:44:28AM -0500, Rob Herring wrote:
-> In preparation to remove the node name pointer from struct device_node,
-> convert printf users to use the %pOFn format specifier.
+The patch
 
-Please don't send new patches in reply to existing threads, it makes it
-harder to follow what the current versions of things are.
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: signature.asc
-Type: application/pgp-signature
-Size: 488 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180828/5f34695f/attachment.sig>
+   ASoC: meson: axg-tdm: restrict formats depending on slot width
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+>From 302df2694b97e6a56f7956c1105630809b141ea0 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Mon, 27 Aug 2018 16:21:07 +0200
+Subject: [PATCH] ASoC: meson: axg-tdm: restrict formats depending on slot
+ width
+
+Restrict the formats possible on the TDM interface depending on the width
+of the TDM slot and let dpcm merging do the rest.
+
+Fixes: d60e4f1e4be5 ("ASoC: meson: add tdm interface driver")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/meson/axg-tdm-interface.c | 50 +++++++++++++++++------------
+ 1 file changed, 29 insertions(+), 21 deletions(-)
+
+diff --git a/sound/soc/meson/axg-tdm-interface.c b/sound/soc/meson/axg-tdm-interface.c
+index 7b8baf46d968..585ce030b79b 100644
+--- a/sound/soc/meson/axg-tdm-interface.c
++++ b/sound/soc/meson/axg-tdm-interface.c
+@@ -42,6 +42,7 @@ int axg_tdm_set_tdm_slots(struct snd_soc_dai *dai, u32 *tx_mask,
+ 	struct axg_tdm_stream *rx = (struct axg_tdm_stream *)
+ 		dai->capture_dma_data;
+ 	unsigned int tx_slots, rx_slots;
++	unsigned int fmt = 0;
+ 
+ 	tx_slots = axg_tdm_slots_total(tx_mask);
+ 	rx_slots = axg_tdm_slots_total(rx_mask);
+@@ -52,38 +53,45 @@ int axg_tdm_set_tdm_slots(struct snd_soc_dai *dai, u32 *tx_mask,
+ 		return -EINVAL;
+ 	}
+ 
+-	/*
+-	 * Amend the dai driver channel number and let dpcm channel merge do
+-	 * its job
+-	 */
+-	if (tx) {
+-		tx->mask = tx_mask;
+-		dai->driver->playback.channels_max = tx_slots;
+-	}
+-
+-	if (rx) {
+-		rx->mask = rx_mask;
+-		dai->driver->capture.channels_max = rx_slots;
+-	}
+-
+ 	iface->slots = slots;
+ 
+ 	switch (slot_width) {
+ 	case 0:
+-		/* defaults width to 32 if not provided */
+-		iface->slot_width = 32;
+-		break;
+-	case 8:
+-	case 16:
+-	case 24:
++		slot_width = 32;
++		/* Fall-through */
+ 	case 32:
+-		iface->slot_width = slot_width;
++		fmt |= SNDRV_PCM_FMTBIT_S32_LE;
++		/* Fall-through */
++	case 24:
++		fmt |= SNDRV_PCM_FMTBIT_S24_LE;
++		fmt |= SNDRV_PCM_FMTBIT_S20_LE;
++		/* Fall-through */
++	case 16:
++		fmt |= SNDRV_PCM_FMTBIT_S16_LE;
++		/* Fall-through */
++	case 8:
++		fmt |= SNDRV_PCM_FMTBIT_S8;
+ 		break;
+ 	default:
+ 		dev_err(dai->dev, "unsupported slot width: %d\n", slot_width);
+ 		return -EINVAL;
+ 	}
+ 
++	iface->slot_width = slot_width;
++
++	/* Amend the dai driver and let dpcm merge do its job */
++	if (tx) {
++		tx->mask = tx_mask;
++		dai->driver->playback.channels_max = tx_slots;
++		dai->driver->playback.formats = fmt;
++	}
++
++	if (rx) {
++		rx->mask = rx_mask;
++		dai->driver->capture.channels_max = rx_slots;
++		dai->driver->capture.formats = fmt;
++	}
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(axg_tdm_set_tdm_slots);
+-- 
+2.18.0
