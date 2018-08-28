@@ -1,39 +1,50 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 28 Aug 2018 14:27:35 +0200
-Subject: [PATCH] arm64: defconfig: enable modules for amlogic s400 sound card
-Message-ID: <20180828122735.28919-1-jbrunet@baylibre.com>
+From: liang.yang@amlogic.com (Liang Yang)
+Date: Tue, 28 Aug 2018 21:21:48 +0800
+Subject: [RFC PATCH v2 2/2] mtd: rawnand: meson: add support for Amlogic
+ NAND flash controller
+In-Reply-To: <20180824144810.31c929a5@bbrezillon>
+References: <20180719094612.5833-1-yixun.lan@amlogic.com>
+ <20180719094612.5833-3-yixun.lan@amlogic.com>
+ <20180801235045.5b4d8211@bbrezillon>
+ <42877a0d-9830-0626-3f64-e49a326eaa3c@amlogic.com>
+ <20180817155608.5929b37a@bbrezillon>
+ <96e538a5-1232-11f2-8b9e-5ddb09dcc2de@amlogic.com>
+ <20180824144810.31c929a5@bbrezillon>
+Message-ID: <fdea2d54-7a68-64ec-8bb4-4a94677a3293@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Compile the necessary drivers as modules, including codecs, for the
-s400 sound card.
+Hi Boris,
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index f67e8d5e93ad..6b1daea53bd3 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -464,6 +464,7 @@ CONFIG_SND_SOC_ROCKCHIP_I2S=m
- CONFIG_SND_SOC_ROCKCHIP_SPDIF=m
- CONFIG_SND_SOC_ROCKCHIP_RT5645=m
- CONFIG_SND_SOC_RK3399_GRU_SOUND=m
-+CONFIG_SND_MESON_AXG_SOUND_CARD=m
- CONFIG_SND_SOC_SAMSUNG=y
- CONFIG_SND_SOC_RCAR=m
- CONFIG_SND_SOC_AK4613=m
-@@ -475,6 +476,9 @@ CONFIG_SND_SOC_RT5514_SPI=m
- CONFIG_SND_SOC_RT5645=m
- CONFIG_SND_SIMPLE_CARD=m
- CONFIG_SND_AUDIO_GRAPH_CARD=m
-+CONFIG_SND_SOC_ES7134=m
-+CONFIG_SND_SOC_ES7241=m
-+CONFIG_SND_SOC_TAS571X=m
- CONFIG_I2C_HID=m
- CONFIG_USB=y
- CONFIG_USB_OTG=y
--- 
-2.17.1
+On 8/24/2018 8:48 PM, Boris Brezillon wrote:
+> On Wed, 22 Aug 2018 22:08:42 +0800
+> Liang Yang <liang.yang@amlogic.com> wrote:
+> 
+>>> You have to wait tWB, that's for sure.
+>>>    
+>> we have a maximum 32 commands fifo. when command is written into
+>> NFC_REG_CMD, it doesn't mean that command is executing right now, maybe
+>> it is buffering on the queue.Assume one ERASE operation, when 2nd
+>> command(0xd0) is written into NFC_REG_CMD and then come into
+>> NAND_OP_WAITRDY_INSTR, if I read the RB status by register, it may be
+>> wrong because 0xd0 may not being executed. it is unusual unless
+>> buffering two many command.
+> 
+> You should flush the queue and wait for it to empty at the end of
+> ->exec_op().
+> 
+>> so it seems that i still need to use nand_soft_waitrdy or wait cmd is
+>> executed somewhere.
+> 
+> Don't you have a WAIT_FOR_RB instruction? What is NFC_CMD_RB for? Also,
+> NFC_CMD_IDLE seems to allow you to add an arbitrary delay, and that's
+> probably what you should use for tWB.
+> 
+> em, I can wait for RB by reading the status from register now. but when 
+calling nand_soft_waitrdy, i really met a problem. One *jiffies* is 
+about 4ms. When programming, it pass 1ms to 
+instr->ctx.waitrdy.timeout_ms and nand_soft_waitrdy will be only one 
+*jiffies* to reach timeout. And then calling nand_soft_waitrdy maybe at 
+the tail of 4ms interval, it may only wait 100us and next jiffies 
+arrive. Is it correct?
+> 
