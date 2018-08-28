@@ -1,45 +1,46 @@
-From: Jose.Abreu@synopsys.com (Jose Abreu)
-Date: Tue, 28 Aug 2018 09:12:33 +0100
-Subject: [PATCH] Revert "net: stmmac: Do not keep rearming the coalesce
- timer in stmmac_xmit"
-In-Reply-To: <20180824090440.13411-1-jbrunet@baylibre.com>
-References: <20180824090440.13411-1-jbrunet@baylibre.com>
-Message-ID: <d3858ef0-97c7-28b5-db4a-4ac71af52ba5@synopsys.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 28 Aug 2018 14:17:21 +0200
+Subject: [PATCH] ASoC: meson: imply clock and reset controllers
+Message-ID: <20180828121721.26488-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+Add audio clock controller and ARB reset controller module
+implication for the device using them
 
-On 24-08-2018 10:04, Jerome Brunet wrote:
-> This reverts commit 4ae0169fd1b3c792b66be58995b7e6b629919ecf.
->
-> This change in the handling of the coalesce timer is causing regression on
-> (at least) amlogic platforms.
->
-> Network will break down very quickly (a few seconds) after starting
-> a download. This can easily be reproduced using iperf3 for example.
->
-> The problem has been reported on the S805, S905, S912 and A113 SoCs
-> (Realtek and Micrel PHYs) and it is likely impacting all Amlogics
-> platforms using Gbit ethernet
->
-> No problem was seen with the platform using 10/100 only PHYs (GXL internal)
->
-> Reverting change brings things back to normal and allows to use network
-> again until we better understand the problem with the coalesce timer.
->
->
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/meson/Kconfig | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Apologies for the delayed answer but I was in FTO.
-
-I'm not sure what can be causing this but I have some questions
-for you:
-    - What do you mean by "network will break down"? Do you see
-queue timeout?
-    - What do you see in ethtool/ifconfig stats? Can you send me
-the stats before and after network break?
-    - Is your setup multi-queue/channel?
-    - Can you point me to the DT bindings of your setup?
-
-Thanks and Best Regards,
-Jose Miguel Abreu
+diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
+index 8af8bc358a90..2ccbadc387de 100644
+--- a/sound/soc/meson/Kconfig
++++ b/sound/soc/meson/Kconfig
+@@ -4,6 +4,8 @@ menu "ASoC support for Amlogic platforms"
+ config SND_MESON_AXG_FIFO
+ 	tristate
+ 	select REGMAP_MMIO
++	imply COMMON_CLK_AXG_AUDIO
++	imply RESET_MESON_AUDIO_ARB
+ 
+ config SND_MESON_AXG_FRDDR
+ 	tristate "Amlogic AXG Playback FIFO support"
+@@ -22,6 +24,7 @@ config SND_MESON_AXG_TODDR
+ config SND_MESON_AXG_TDM_FORMATTER
+ 	tristate
+ 	select REGMAP_MMIO
++	imply COMMON_CLK_AXG_AUDIO
+ 
+ config SND_MESON_AXG_TDM_INTERFACE
+ 	tristate
+@@ -58,6 +61,7 @@ config SND_MESON_AXG_SPDIFOUT
+ 	tristate "Amlogic AXG SPDIF Output Support"
+ 	select SND_PCM_IEC958
+ 	imply SND_SOC_SPDIF
++	imply COMMON_CLK_AXG_AUDIO
+ 	help
+ 	  Select Y or M to add support for SPDIF output serializer embedded
+ 	  in the Amlogic AXG SoC family
+-- 
+2.17.1
