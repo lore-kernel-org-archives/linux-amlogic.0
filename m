@@ -1,122 +1,24 @@
-From: robh@kernel.org (Rob Herring)
-Date: Tue, 28 Aug 2018 10:44:28 -0500
-Subject: [PATCH v2] ASoC: Convert to using %pOFn instead of device_node.name
-In-Reply-To: <20180828154433.5693-1-robh@kernel.org>
+From: broonie@kernel.org (Mark Brown)
+Date: Tue, 28 Aug 2018 19:03:35 +0100
+Subject: [PATCH v2] ASoC: Convert to using %pOFn instead of
+ device_node.name
+In-Reply-To: <20180828154433.5693-2-robh@kernel.org>
 References: <20180828154433.5693-1-robh@kernel.org>
-Message-ID: <20180828154433.5693-2-robh@kernel.org>
+ <20180828154433.5693-2-robh@kernel.org>
+Message-ID: <20180828180335.GG2414@sirena.org.uk>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In preparation to remove the node name pointer from struct device_node,
-convert printf users to use the %pOFn format specifier.
+On Tue, Aug 28, 2018 at 10:44:28AM -0500, Rob Herring wrote:
+> In preparation to remove the node name pointer from struct device_node,
+> convert printf users to use the %pOFn format specifier.
 
-Cc: Timur Tabi <timur@kernel.org>
-Cc: Nicolin Chen <nicoleotsuka@gmail.com>
-Cc: Xiubo Li <Xiubo.Lee@gmail.com>
-Cc: Fabio Estevam <fabio.estevam@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Jaroslav Kysela <perex@perex.cz>
-Cc: Takashi Iwai <tiwai@suse.com>
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Olivier Moysan <olivier.moysan@st.com>
-Cc: Arnaud Pouliquen <arnaud.pouliquen@st.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>
-Cc: alsa-devel at alsa-project.org
-Cc: linuxppc-dev at lists.ozlabs.org
-Cc: linux-arm-kernel at lists.infradead.org
-Cc: linux-amlogic at lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
-- stm32_sai_sub: Unwrap now shorter line
-
- sound/soc/fsl/fsl_esai.c      | 2 +-
- sound/soc/fsl/fsl_utils.c     | 4 ++--
- sound/soc/meson/axg-card.c    | 2 +-
- sound/soc/stm/stm32_sai.c     | 2 +-
- sound/soc/stm/stm32_sai_sub.c | 7 +++----
- 5 files changed, 8 insertions(+), 9 deletions(-)
-
-diff --git a/sound/soc/fsl/fsl_esai.c b/sound/soc/fsl/fsl_esai.c
-index c1d1d06783e5..57b484768a58 100644
---- a/sound/soc/fsl/fsl_esai.c
-+++ b/sound/soc/fsl/fsl_esai.c
-@@ -807,7 +807,7 @@ static int fsl_esai_probe(struct platform_device *pdev)
- 		return -ENOMEM;
-
- 	esai_priv->pdev = pdev;
--	strncpy(esai_priv->name, np->name, sizeof(esai_priv->name) - 1);
-+	snprintf(esai_priv->name, sizeof(esai_priv->name), "%pOFn", np);
-
- 	/* Get the addresses and IRQ */
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-diff --git a/sound/soc/fsl/fsl_utils.c b/sound/soc/fsl/fsl_utils.c
-index 7f0fa4b52223..9981668ab590 100644
---- a/sound/soc/fsl/fsl_utils.c
-+++ b/sound/soc/fsl/fsl_utils.c
-@@ -57,8 +57,8 @@ int fsl_asoc_get_dma_channel(struct device_node *ssi_np,
- 		of_node_put(dma_channel_np);
- 		return ret;
- 	}
--	snprintf((char *)dai->platform_name, DAI_NAME_SIZE, "%llx.%s",
--		 (unsigned long long) res.start, dma_channel_np->name);
-+	snprintf((char *)dai->platform_name, DAI_NAME_SIZE, "%llx.%pOFn",
-+		 (unsigned long long) res.start, dma_channel_np);
-
- 	iprop = of_get_property(dma_channel_np, "cell-index", NULL);
- 	if (!iprop) {
-diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
-index 2914ba0d965b..b76a5f4f1785 100644
---- a/sound/soc/meson/axg-card.c
-+++ b/sound/soc/meson/axg-card.c
-@@ -478,7 +478,7 @@ static int axg_card_set_be_link(struct snd_soc_card *card,
-
- 	ret = axg_card_set_link_name(card, link, "be");
- 	if (ret)
--		dev_err(card->dev, "error setting %s link name\n", np->name);
-+		dev_err(card->dev, "error setting %pOFn link name\n", np);
-
- 	return ret;
- }
-diff --git a/sound/soc/stm/stm32_sai.c b/sound/soc/stm/stm32_sai.c
-index f22654253c43..d597eba61992 100644
---- a/sound/soc/stm/stm32_sai.c
-+++ b/sound/soc/stm/stm32_sai.c
-@@ -104,7 +104,7 @@ static int stm32_sai_set_sync(struct stm32_sai_data *sai_client,
-
- 	if (!pdev) {
- 		dev_err(&sai_client->pdev->dev,
--			"Device not found for node %s\n", np_provider->name);
-+			"Device not found for node %pOFn\n", np_provider);
- 		return -ENODEV;
- 	}
-
-diff --git a/sound/soc/stm/stm32_sai_sub.c b/sound/soc/stm/stm32_sai_sub.c
-index 06fba9650ac4..56a227e0bd71 100644
---- a/sound/soc/stm/stm32_sai_sub.c
-+++ b/sound/soc/stm/stm32_sai_sub.c
-@@ -1124,16 +1124,15 @@ static int stm32_sai_sub_parse_of(struct platform_device *pdev,
- 	sai->sync = SAI_SYNC_NONE;
- 	if (args.np) {
- 		if (args.np == np) {
--			dev_err(&pdev->dev, "%s sync own reference\n",
--				np->name);
-+			dev_err(&pdev->dev, "%pOFn sync own reference\n", np);
- 			of_node_put(args.np);
- 			return -EINVAL;
- 		}
-
- 		sai->np_sync_provider  = of_get_parent(args.np);
- 		if (!sai->np_sync_provider) {
--			dev_err(&pdev->dev, "%s parent node not found\n",
--				np->name);
-+			dev_err(&pdev->dev, "%pOFn parent node not found\n",
-+				np);
- 			of_node_put(args.np);
- 			return -ENODEV;
- 		}
---
-2.17.1
+Please don't send new patches in reply to existing threads, it makes it
+harder to follow what the current versions of things are.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 488 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180828/5f34695f/attachment.sig>
