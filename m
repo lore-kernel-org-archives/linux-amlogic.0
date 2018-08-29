@@ -1,36 +1,65 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 29 Aug 2018 10:33:22 +0200
-Subject: [PATCH v3 2/2] pinctrl: meson-g12a: add pinctrl driver support
-In-Reply-To: <20180807020634.18182-3-yixun.lan@amlogic.com>
-References: <20180807020634.18182-1-yixun.lan@amlogic.com>
- <20180807020634.18182-3-yixun.lan@amlogic.com>
-Message-ID: <CACRpkdZtzNhdY0OsT3M3YmMfHFkk5frrnf+dn=d5KfvXahRo6w@mail.gmail.com>
+From: liang.yang@amlogic.com (Liang Yang)
+Date: Wed, 29 Aug 2018 18:08:05 +0800
+Subject: [RFC PATCH v2 2/2] mtd: rawnand: meson: add support for Amlogic
+ NAND flash controller
+In-Reply-To: <20180828152645.457dab5c@bbrezillon>
+References: <20180719094612.5833-1-yixun.lan@amlogic.com>
+ <20180719094612.5833-3-yixun.lan@amlogic.com>
+ <20180801235045.5b4d8211@bbrezillon>
+ <42877a0d-9830-0626-3f64-e49a326eaa3c@amlogic.com>
+ <20180817155608.5929b37a@bbrezillon>
+ <96e538a5-1232-11f2-8b9e-5ddb09dcc2de@amlogic.com>
+ <20180824144810.31c929a5@bbrezillon>
+ <fdea2d54-7a68-64ec-8bb4-4a94677a3293@amlogic.com>
+ <20180828152645.457dab5c@bbrezillon>
+Message-ID: <9abf0461-159b-db45-9ded-3d6cb2cc64db@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Aug 7, 2018 at 4:07 AM Yixun Lan <yixun.lan@amlogic.com> wrote:
 
-> Add the pinctrl driver for Meson-G12A SoC which share the similar IP as
-> the previous Meson-AXG SoC, both use same pinmux ops (register layout).
-> A new driver is needed here due to the differences in the pins.
->
-> Starting from Meson-AXG SoC, the pinctrl controller block use 4
-> continues register bits to specific the pin mux function, while comparing
-> to old generation SoC which using variable length register bits for
-> the pin mux definition. The new design greatly simplify the software model.
->
-> For the detail example, one 32bit register can be divided into 8 parts,
-> each has 4 bits whose value start from 0 - 7, each can describe one pin,
-> the value 0 is always devoted to GPIO function, while 1 - 7 devoted to
-> the mux pin function.
->
-> Please note, the GPIOE is actually located at AO (always on) bank.
->
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-
-Patch applied for v4.20.
-
-Yours,
-Linus Walleij
+On 8/28/2018 9:26 PM, Boris Brezillon wrote:
+> On Tue, 28 Aug 2018 21:21:48 +0800
+> Liang Yang <liang.yang@amlogic.com> wrote:
+> 
+>> Hi Boris,
+>>
+>> On 8/24/2018 8:48 PM, Boris Brezillon wrote:
+>>> On Wed, 22 Aug 2018 22:08:42 +0800
+>>> Liang Yang <liang.yang@amlogic.com> wrote:
+>>>    
+>>>>> You have to wait tWB, that's for sure.
+>>>>>       
+>>>> we have a maximum 32 commands fifo. when command is written into
+>>>> NFC_REG_CMD, it doesn't mean that command is executing right now, maybe
+>>>> it is buffering on the queue.Assume one ERASE operation, when 2nd
+>>>> command(0xd0) is written into NFC_REG_CMD and then come into
+>>>> NAND_OP_WAITRDY_INSTR, if I read the RB status by register, it may be
+>>>> wrong because 0xd0 may not being executed. it is unusual unless
+>>>> buffering two many command.
+>>>
+>>> You should flush the queue and wait for it to empty at the end of
+>>> ->exec_op().
+>>>    
+>>>> so it seems that i still need to use nand_soft_waitrdy or wait cmd is
+>>>> executed somewhere.
+>>>
+>>> Don't you have a WAIT_FOR_RB instruction? What is NFC_CMD_RB for? Also,
+>>> NFC_CMD_IDLE seems to allow you to add an arbitrary delay, and that's
+>>> probably what you should use for tWB.
+>>>
+>>> em, I can wait for RB by reading the status from register now. but when
+>> calling nand_soft_waitrdy, i really met a problem. One *jiffies* is
+>> about 4ms. When programming, it pass 1ms to
+>> instr->ctx.waitrdy.timeout_ms and nand_soft_waitrdy will be only one
+>> *jiffies* to reach timeout. And then calling nand_soft_waitrdy maybe at
+>> the tail of 4ms interval, it may only wait 100us and next jiffies
+>> arrive. Is it correct?
+> 
+> Hm, no. If you initialize the time you compare to (using time_before()
+> or time_after()) correctly it should not happen. Anyway, I keep thinking
+> this is not how it should be done. Did you try NFC_CMD_RB? Did you ask
+> HW designers what it was created for?
+> 
+I am using NFC_CMD_RB and checking with irq. it is ok now.
+> .
+> 
