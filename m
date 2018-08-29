@@ -1,19 +1,25 @@
-From: heiko@sntech.de (Heiko =?ISO-8859-1?Q?St=FCbner?=)
-Date: Wed, 29 Aug 2018 10:31:51 +0200
-Subject: [PATCH] pinctrl: Convert to using %pOFn instead of
- device_node.name
-In-Reply-To: <20180828015252.28511-40-robh@kernel.org>
-References: <20180828015252.28511-1-robh@kernel.org>
- <20180828015252.28511-40-robh@kernel.org>
-Message-ID: <4627271.TU6sX7boZt@diego>
+From: linus.walleij@linaro.org (Linus Walleij)
+Date: Wed, 29 Aug 2018 10:34:30 +0200
+Subject: [PATCH v3 1/2] documentation: pinctrl: Add compatibles for
+ Amlogic Meson G12A pin controllers
+In-Reply-To: <20180807020634.18182-2-yixun.lan@amlogic.com>
+References: <20180807020634.18182-1-yixun.lan@amlogic.com>
+ <20180807020634.18182-2-yixun.lan@amlogic.com>
+Message-ID: <CACRpkdY+FRs0xbyrK1szAFLsLKz4uDRUJs-1U=brs8M92NJTUg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am Dienstag, 28. August 2018, 03:52:41 CEST schrieb Rob Herring:
-> In preparation to remove the node name pointer from struct device_node,
-> convert printf users to use the %pOFn format specifier.
+On Tue, Aug 7, 2018 at 4:07 AM Yixun Lan <yixun.lan@amlogic.com> wrote:
 
->  drivers/pinctrl/pinctrl-rockchip.c            |  8 ++---
+> Add new compatible name for Amlogic's Meson-G12A pin controllers,
+> add a dt-binding header file which document the detail pin names.
+>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 
-For the Rockchip-part
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Patch applied for v4.20.
+
+Yours,
+Linus Walleij
