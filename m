@@ -1,723 +1,2534 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 29 Aug 2018 17:00:51 +0200
-Subject: [PATCH 4/4] ASoC: meson: add axg pdm input
-In-Reply-To: <20180829150051.18190-1-jbrunet@baylibre.com>
-References: <20180829150051.18190-1-jbrunet@baylibre.com>
-Message-ID: <20180829150051.18190-5-jbrunet@baylibre.com>
+Date: Wed, 29 Aug 2018 17:45:51 +0200
+Subject: [PATCH] arm64: dts: meson-axg: sort nodes consistently
+Message-ID: <20180829154551.26729-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add pdm input driver for the device found on the amlogic AXG SoC family
+Sort DT nodes by address when possible, by node node name otherwise.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/Kconfig   |   9 +
- sound/soc/meson/Makefile  |   2 +
- sound/soc/meson/axg-pdm.c | 654 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 665 insertions(+)
- create mode 100644 sound/soc/meson/axg-pdm.c
 
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index 2ccbadc387de..8b8426ed2363 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -54,6 +54,7 @@ config SND_MESON_AXG_SOUND_CARD
- 	imply SND_MESON_AXG_TDMIN
- 	imply SND_MESON_AXG_TDMOUT
- 	imply SND_MESON_AXG_SPDIFOUT
-+	imply SND_MESON_AXG_PDM
- 	help
- 	  Select Y or M to add support for the AXG SoC sound card
+Hi Kevin,
+
+This patch is same kind of clean-up we already did on gxbb and gxl some
+time ago. In the same fashion, it ends up being and ugly and almost unreadable
+patch, sorry about that :( I don't think there was a way to avoid it.
+
+The patch applies on top v4.19-rc1 + 3 DT audio patches which are in your
+v4.19/dt64 branch [0]
+
+There should be no functional change after applying this patch.
+I've tested it in on the s400 and so far, so good.
+
+[0]: https://lkml.kernel.org/r/20180801134033.21739-1-jbrunet at baylibre.com
+
+---
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts |  212 +-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 1758 ++++++++---------
+ 2 files changed, 985 insertions(+), 985 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index d399078d1f0c..ff64c429d432 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -60,6 +60,37 @@
+ 		serial1 = &uart_A;
+ 	};
  
-@@ -66,4 +67,12 @@ config SND_MESON_AXG_SPDIFOUT
- 	  Select Y or M to add support for SPDIF output serializer embedded
- 	  in the Amlogic AXG SoC family
++	linein: audio-codec at 0 {
++		#sound-dai-cells = <0>;
++		compatible = "everest,es7241";
++		VDDA-supply = <&vcc_3v3>;
++		VDDP-supply = <&vcc_3v3>;
++		VDDD-supply = <&vcc_3v3>;
++		status = "okay";
++		sound-name-prefix = "Linein";
++	};
++
++	lineout: audio-codec at 1 {
++		#sound-dai-cells = <0>;
++		compatible = "everest,es7154";
++		VDD-supply = <&vcc_3v3>;
++		PVDD-supply = <&vcc_5v>;
++		status = "okay";
++		sound-name-prefix = "Lineout";
++	};
++
++	spdif_dit: audio-codec at 2 {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++		status = "okay";
++		sound-name-prefix = "DIT";
++	};
++
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
++	};
++
+ 	main_12v: regulator-main_12v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "12V";
+@@ -68,15 +99,26 @@
+ 		regulator-always-on;
+ 	};
  
-+config SND_MESON_AXG_PDM
-+	tristate "Amlogic AXG PDM Input Support"
-+	imply SND_SOC_DMIC
-+	imply COMMON_CLK_AXG_AUDIO
-+	help
-+	  Select Y or M to add support for PDM input embedded
-+	  in the Amlogic AXG SoC family
-+
- endmenu
-diff --git a/sound/soc/meson/Makefile b/sound/soc/meson/Makefile
-index c5e003b093db..4cd25104029d 100644
---- a/sound/soc/meson/Makefile
-+++ b/sound/soc/meson/Makefile
-@@ -9,6 +9,7 @@ snd-soc-meson-axg-tdmin-objs := axg-tdmin.o
- snd-soc-meson-axg-tdmout-objs := axg-tdmout.o
- snd-soc-meson-axg-sound-card-objs := axg-card.o
- snd-soc-meson-axg-spdifout-objs := axg-spdifout.o
-+snd-soc-meson-axg-pdm-objs := axg-pdm.o
+-	vddio_boot: regulator-vddio_boot {
++	vcc_3v3: regulator-vcc_3v3 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "VDDIO_BOOT";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
+ 		vin-supply = <&vddao_3v3>;
+ 		regulator-always-on;
+ 	};
  
- obj-$(CONFIG_SND_MESON_AXG_FIFO) += snd-soc-meson-axg-fifo.o
- obj-$(CONFIG_SND_MESON_AXG_FRDDR) += snd-soc-meson-axg-frddr.o
-@@ -19,3 +20,4 @@ obj-$(CONFIG_SND_MESON_AXG_TDMIN) += snd-soc-meson-axg-tdmin.o
- obj-$(CONFIG_SND_MESON_AXG_TDMOUT) += snd-soc-meson-axg-tdmout.o
- obj-$(CONFIG_SND_MESON_AXG_SOUND_CARD) += snd-soc-meson-axg-sound-card.o
- obj-$(CONFIG_SND_MESON_AXG_SPDIFOUT) += snd-soc-meson-axg-spdifout.o
-+obj-$(CONFIG_SND_MESON_AXG_PDM) += snd-soc-meson-axg-pdm.o
-diff --git a/sound/soc/meson/axg-pdm.c b/sound/soc/meson/axg-pdm.c
-new file mode 100644
-index 000000000000..9d5684493ffc
---- /dev/null
-+++ b/sound/soc/meson/axg-pdm.c
-@@ -0,0 +1,654 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+//
-+// Copyright (c) 2018 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
++	vcc_5v: regulator-vcc_5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&main_12v>;
 +
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/of_irq.h>
-+#include <linux/of_platform.h>
-+#include <linux/regmap.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+#include <sound/pcm_params.h>
++		gpio = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
 +
-+#define PDM_CTRL			0x00
-+#define  PDM_CTRL_EN			BIT(31)
-+#define  PDM_CTRL_OUT_MODE		BIT(29)
-+#define  PDM_CTRL_BYPASS_MODE		BIT(28)
-+#define  PDM_CTRL_RST_FIFO		BIT(16)
-+#define  PDM_CTRL_CHAN_RSTN_MASK	GENMASK(15, 8)
-+#define  PDM_CTRL_CHAN_RSTN(x)		((x) << 8)
-+#define  PDM_CTRL_CHAN_EN_MASK		GENMASK(7, 0)
-+#define  PDM_CTRL_CHAN_EN(x)		((x) << 0)
-+#define PDM_HCIC_CTRL1			0x04
-+#define  PDM_FILTER_EN			BIT(31)
-+#define  PDM_HCIC_CTRL1_GAIN_SFT_MASK	GENMASK(29, 24)
-+#define  PDM_HCIC_CTRL1_GAIN_SFT(x)	((x) << 24)
-+#define  PDM_HCIC_CTRL1_GAIN_MULT_MASK	GENMASK(23, 16)
-+#define  PDM_HCIC_CTRL1_GAIN_MULT(x)	((x) << 16)
-+#define  PDM_HCIC_CTRL1_DSR_MASK	GENMASK(8, 4)
-+#define  PDM_HCIC_CTRL1_DSR(x)		((x) << 4)
-+#define  PDM_HCIC_CTRL1_STAGE_NUM_MASK	GENMASK(3, 0)
-+#define  PDM_HCIC_CTRL1_STAGE_NUM(x)	((x) << 0)
-+#define PDM_HCIC_CTRL2			0x08
-+#define PDM_F1_CTRL			0x0c
-+#define  PDM_LPF_ROUND_MODE_MASK	GENMASK(17, 16)
-+#define  PDM_LPF_ROUND_MODE(x)		((x) << 16)
-+#define  PDM_LPF_DSR_MASK		GENMASK(15, 12)
-+#define  PDM_LPF_DSR(x)			((x) << 12)
-+#define  PDM_LPF_STAGE_NUM_MASK		GENMASK(8, 0)
-+#define  PDM_LPF_STAGE_NUM(x)		((x) << 0)
-+#define  PDM_LPF_MAX_STAGE		336
-+#define  PDM_LPF_NUM			3
-+#define PDM_F2_CTRL			0x10
-+#define PDM_F3_CTRL			0x14
-+#define PDM_HPF_CTRL			0x18
-+#define  PDM_HPF_SFT_STEPS_MASK		GENMASK(20, 16)
-+#define  PDM_HPF_SFT_STEPS(x)		((x) << 16)
-+#define  PDM_HPF_OUT_FACTOR_MASK	GENMASK(15, 0)
-+#define  PDM_HPF_OUT_FACTOR(x)		((x) << 0)
-+#define PDM_CHAN_CTRL			0x1c
-+#define  PDM_CHAN_CTRL_POINTER_WIDTH	8
-+#define  PDM_CHAN_CTRL_POINTER_MAX	((1 << PDM_CHAN_CTRL_POINTER_WIDTH) - 1)
-+#define  PDM_CHAN_CTRL_NUM		4
-+#define PDM_CHAN_CTRL1			0x20
-+#define PDM_COEFF_ADDR			0x24
-+#define PDM_COEFF_DATA			0x28
-+#define PDM_CLKG_CTRL			0x2c
-+#define PDM_STS				0x30
+ 	vddao_3v3: regulator-vddao_3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VDDAO_3V3";
+@@ -95,26 +137,15 @@
+ 		regulator-always-on;
+ 	};
+ 
+-	vcc_3v3: regulator-vcc_3v3 {
++	vddio_boot: regulator-vddio_boot {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "VCC_3V3";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
++		regulator-name = "VDDIO_BOOT";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
+ 		vin-supply = <&vddao_3v3>;
+ 		regulator-always-on;
+ 	};
+ 
+-	vcc_5v: regulator-vcc_5v {
+-		compatible = "regulator-fixed";
+-		regulator-name = "VCC5V";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		vin-supply = <&main_12v>;
+-
+-		gpio = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-	};
+-
+ 	usb_pwr: regulator-usb_pwr {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "USB_PWR";
+@@ -126,11 +157,6 @@
+ 		enable-active-high;
+ 	};
+ 
+-	emmc_pwrseq: emmc-pwrseq {
+-		compatible = "mmc-pwrseq-emmc";
+-		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+-	};
+-
+ 	sdio_pwrseq: sdio-pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		reset-gpios = <&gpio GPIOX_7 GPIO_ACTIVE_LOW>;
+@@ -138,13 +164,6 @@
+ 		clock-names = "ext_clock";
+ 	};
+ 
+-	wifi32k: wifi32k {
+-		compatible = "pwm-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <32768>;
+-		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
+-	};
+-
+ 	speaker-leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -179,32 +198,6 @@
+ 		};
+ 	};
+ 
+-	linein: audio-codec at 0 {
+-		#sound-dai-cells = <0>;
+-		compatible = "everest,es7241";
+-		VDDA-supply = <&vcc_3v3>;
+-		VDDP-supply = <&vcc_3v3>;
+-		VDDD-supply = <&vcc_3v3>;
+-		status = "okay";
+-		sound-name-prefix = "Linein";
+-	};
+-
+-	lineout: audio-codec at 1 {
+-		#sound-dai-cells = <0>;
+-		compatible = "everest,es7154";
+-		VDD-supply = <&vcc_3v3>;
+-		PVDD-supply = <&vcc_5v>;
+-		status = "okay";
+-		sound-name-prefix = "Lineout";
+-	};
+-
+-	spdif_dit: audio-codec at 2 {
+-		#sound-dai-cells = <0>;
+-		compatible = "linux,spdif-dit";
+-		status = "okay";
+-		sound-name-prefix = "DIT";
+-	};
+-
+ 	sound {
+ 		compatible = "amlogic,axg-sound-card";
+ 		model = "AXG-S400";
+@@ -311,6 +304,13 @@
+ 			};
+ 		};
+ 	};
 +
-+struct axg_pdm_lpf {
-+	unsigned int ds;
-+	unsigned int round_mode;
-+	const unsigned int *tap;
-+	unsigned int tap_num;
++	wifi32k: wifi32k {
++		compatible = "pwm-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		pwms = <&pwm_ab 0 30518 0>; /* PWM_A at 32.768KHz */
++	};
+ };
+ 
+ &ethmac {
+@@ -345,18 +345,6 @@
+ 	status = "okay";
+ };
+ 
+-&uart_A {
+-	status = "okay";
+-	pinctrl-0 = <&uart_a_pins>;
+-	pinctrl-names = "default";
+-};
+-
+-&uart_AO {
+-	status = "okay";
+-	pinctrl-0 = <&uart_ao_a_pins>;
+-	pinctrl-names = "default";
+-};
+-
+ &ir {
+ 	status = "okay";
+ 	pinctrl-0 = <&remote_input_ao_pins>;
+@@ -403,24 +391,9 @@
+ 	pinctrl-names = "default";
+ };
+ 
+-/* emmc storage */
+-&sd_emmc_c {
++&saradc {
+ 	status = "okay";
+-	pinctrl-0 = <&emmc_pins>;
+-	pinctrl-1 = <&emmc_clk_gate_pins>;
+-	pinctrl-names = "default", "clk-gate";
+-
+-	bus-width = <8>;
+-	cap-sd-highspeed;
+-	cap-mmc-highspeed;
+-	max-frequency = <180000000>;
+-	non-removable;
+-	disable-wp;
+-	mmc-ddr-1_8v;
+-	mmc-hs200-1_8v;
+-
+-	vmmc-supply = <&vcc_3v3>;
+-	vqmmc-supply = <&vddio_boot>;
++	vref-supply = <&vddio_ao18>;
+ };
+ 
+ /* wifi module */
+@@ -450,9 +423,24 @@
+ 	};
+ };
+ 
+-&saradc {
++/* emmc storage */
++&sd_emmc_c {
+ 	status = "okay";
+-	vref-supply = <&vddio_ao18>;
++	pinctrl-0 = <&emmc_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	cap-sd-highspeed;
++	cap-mmc-highspeed;
++	max-frequency = <180000000>;
++	non-removable;
++	disable-wp;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&vddio_boot>;
+ };
+ 
+ &spdifout {
+@@ -461,45 +449,45 @@
+ 	status = "okay";
+ };
+ 
+-&tdmin_a {
++&tdmif_a {
++	pinctrl-0 = <&tdma_sclk_pins>, <&tdma_fs_pins>,
++		    <&tdma_din0_pins>, <&tdma_dout0_x15_pins>;
++	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+-&tdmin_b {
++&tdmif_b {
++	pinctrl-0 = <&tdmb_sclk_pins>, <&tdmb_fs_pins>,
++		    <&tdmb_din3_pins>, <&mclk_b_pins>;
++	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+-&tdmin_c {
++&tdmif_c {
++	pinctrl-0 = <&tdmc_sclk_pins>, <&tdmc_fs_pins>,
++		    <&tdmc_din1_pins>, <&tdmc_dout2_pins>,
++		    <&mclk_c_pins>;
++	pinctrl-names = "default";
+ 	status = "okay";
+ };
+ 
+-&tdmin_lb {
++&tdmin_a {
+ 	status = "okay";
+ };
+ 
+-&tdmout_c {
++&tdmin_b {
+ 	status = "okay";
+ };
+ 
+-&tdmif_a {
+-	pinctrl-0 = <&tdma_sclk_pins>, <&tdma_fs_pins>,
+-		    <&tdma_din0_pins>, <&tdma_dout0_x15_pins>;
+-	pinctrl-names = "default";
++&tdmin_c {
+ 	status = "okay";
+ };
+ 
+-&tdmif_b {
+-	pinctrl-0 = <&tdmb_sclk_pins>, <&tdmb_fs_pins>,
+-		    <&tdmb_din3_pins>, <&mclk_b_pins>;
+-	pinctrl-names = "default";
++&tdmin_lb {
+ 	status = "okay";
+ };
+ 
+-&tdmif_c {
+-	pinctrl-0 = <&tdmc_sclk_pins>, <&tdmc_fs_pins>,
+-		    <&tdmc_din1_pins>, <&tdmc_dout2_pins>,
+-		    <&mclk_c_pins>;
+-	pinctrl-names = "default";
++&tdmout_c {
+ 	status = "okay";
+ };
+ 
+@@ -514,3 +502,15 @@
+ &toddr_c {
+ 	status = "okay";
+ };
++
++&uart_A {
++	status = "okay";
++	pinctrl-0 = <&uart_a_pins>;
++	pinctrl-names = "default";
 +};
 +
-+struct axg_pdm_hcic {
-+	unsigned int shift;
-+	unsigned int mult;
-+	unsigned int steps;
-+	unsigned int ds;
++&uart_AO {
++	status = "okay";
++	pinctrl-0 = <&uart_ao_a_pins>;
++	pinctrl-names = "default";
 +};
-+
-+struct axg_pdm_hpf {
-+	unsigned int out_factor;
-+	unsigned int steps;
-+};
-+
-+struct axg_pdm_filters {
-+	struct axg_pdm_hcic hcic;
-+	struct axg_pdm_hpf hpf;
-+	struct axg_pdm_lpf lpf[PDM_LPF_NUM];
-+};
-+
-+struct axg_pdm_cfg {
-+	const struct axg_pdm_filters *filters;
-+	unsigned int sys_rate;
-+};
-+
-+struct axg_pdm {
-+	const struct axg_pdm_cfg *cfg;
-+	struct regmap *map;
-+	struct clk *dclk;
-+	struct clk *sysclk;
-+	struct clk *pclk;
-+};
-+
-+static void axg_pdm_enable(struct regmap *map)
-+{
-+	/* Reset AFIFO */
-+	regmap_update_bits(map, PDM_CTRL, PDM_CTRL_RST_FIFO, PDM_CTRL_RST_FIFO);
-+	regmap_update_bits(map, PDM_CTRL, PDM_CTRL_RST_FIFO, 0);
-+
-+	/* Enable PDM */
-+	regmap_update_bits(map, PDM_CTRL, PDM_CTRL_EN, PDM_CTRL_EN);
-+}
-+
-+static void axg_pdm_disable(struct regmap *map)
-+{
-+	regmap_update_bits(map, PDM_CTRL, PDM_CTRL_EN, 0);
-+}
-+
-+static void axg_pdm_filters_enable(struct regmap *map, bool enable)
-+{
-+	unsigned int val = enable ? PDM_FILTER_EN : 0;
-+
-+	regmap_update_bits(map, PDM_HCIC_CTRL1, PDM_FILTER_EN, val);
-+	regmap_update_bits(map, PDM_F1_CTRL, PDM_FILTER_EN, val);
-+	regmap_update_bits(map, PDM_F2_CTRL, PDM_FILTER_EN, val);
-+	regmap_update_bits(map, PDM_F3_CTRL, PDM_FILTER_EN, val);
-+	regmap_update_bits(map, PDM_HPF_CTRL, PDM_FILTER_EN, val);
-+}
-+
-+static int axg_pdm_trigger(struct snd_pcm_substream *substream, int cmd,
-+			   struct snd_soc_dai *dai)
-+{
-+	struct axg_pdm *priv = snd_soc_dai_get_drvdata(dai);
-+
-+	switch (cmd) {
-+	case SNDRV_PCM_TRIGGER_START:
-+	case SNDRV_PCM_TRIGGER_RESUME:
-+	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-+		axg_pdm_enable(priv->map);
-+		return 0;
-+
-+	case SNDRV_PCM_TRIGGER_STOP:
-+	case SNDRV_PCM_TRIGGER_SUSPEND:
-+	case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-+		axg_pdm_disable(priv->map);
-+		return 0;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static unsigned int axg_pdm_get_os(struct axg_pdm *priv)
-+{
-+	const struct axg_pdm_filters *filters = priv->cfg->filters;
-+	unsigned int os = filters->hcic.ds;
-+	int i;
-+
-+	/*
-+	 * The global oversampling factor is defined by the down sampling
-+	 * factor applied by each filter (HCIC and LPFs)
-+	 */
-+
-+	for (i = 0; i < PDM_LPF_NUM; i++)
-+		os *= filters->lpf[i].ds;
-+
-+	return os;
-+}
-+
-+static int axg_pdm_set_sysclk(struct axg_pdm *priv, unsigned int os,
-+			      unsigned int rate)
-+{
-+	unsigned int sys_rate = os * 2 * rate * PDM_CHAN_CTRL_POINTER_MAX;
-+
-+	/*
-+	 * Set the default system clock rate unless it is too fast for
-+	 * for the requested sample rate. In this case, the sample pointer
-+	 * counter could overflow so set a lower system clock rate
-+	 */
-+	if (sys_rate < priv->cfg->sys_rate)
-+		return clk_set_rate(priv->sysclk, sys_rate);
-+
-+	return clk_set_rate(priv->sysclk, priv->cfg->sys_rate);
-+}
-+
-+static int axg_pdm_set_sample_pointer(struct axg_pdm *priv)
-+{
-+	unsigned int spmax, sp, val;
-+	int i;
-+
-+	/* Max sample counter value per half period of dclk */
-+	spmax = DIV_ROUND_UP_ULL((u64)clk_get_rate(priv->sysclk),
-+				 clk_get_rate(priv->dclk) * 2);
-+
-+	/* Check if sysclk is not too fast - should not happen */
-+	if (WARN_ON(spmax > PDM_CHAN_CTRL_POINTER_MAX))
-+		return -EINVAL;
-+
-+	/* Capture the data when we are at 75% of the half period */
-+	sp = spmax * 3 / 4;
-+
-+	for (i = 0, val = 0; i < PDM_CHAN_CTRL_NUM; i++)
-+		val |= sp << (PDM_CHAN_CTRL_POINTER_WIDTH * i);
-+
-+	regmap_write(priv->map, PDM_CHAN_CTRL, val);
-+	regmap_write(priv->map, PDM_CHAN_CTRL1, val);
-+
-+	return 0;
-+}
-+
-+static void axg_pdm_set_channel_mask(struct axg_pdm *priv,
-+				     unsigned int channels)
-+{
-+	unsigned int mask = GENMASK(channels - 1, 0);
-+
-+	/* Put all channel in reset */
-+	regmap_update_bits(priv->map, PDM_CTRL,
-+			   PDM_CTRL_CHAN_RSTN_MASK, 0);
-+
-+	/* Take the necessary channels out of reset and enable them */
-+	regmap_update_bits(priv->map, PDM_CTRL,
-+			   PDM_CTRL_CHAN_RSTN_MASK |
-+			   PDM_CTRL_CHAN_EN_MASK,
-+			   PDM_CTRL_CHAN_RSTN(mask) |
-+			   PDM_CTRL_CHAN_EN(mask));
-+}
-+
-+static int axg_pdm_hw_params(struct snd_pcm_substream *substream,
-+			     struct snd_pcm_hw_params *params,
-+			     struct snd_soc_dai *dai)
-+{
-+	struct axg_pdm *priv = snd_soc_dai_get_drvdata(dai);
-+	unsigned int os = axg_pdm_get_os(priv);
-+	unsigned int rate = params_rate(params);
-+	unsigned int val;
-+	int ret;
-+
-+	switch (params_width(params)) {
-+	case 24:
-+		val = PDM_CTRL_OUT_MODE;
-+		break;
-+	case 32:
-+		val = 0;
-+		break;
-+	default:
-+		dev_err(dai->dev, "unsupported sample width\n");
-+		return -EINVAL;
-+	}
-+
-+	regmap_update_bits(priv->map, PDM_CTRL, PDM_CTRL_OUT_MODE, val);
-+
-+	ret = axg_pdm_set_sysclk(priv, os, rate);
-+	if (ret) {
-+		dev_err(dai->dev, "failed to set system clock\n");
-+		return ret;
-+	}
-+
-+	ret = clk_set_rate(priv->dclk, rate * os);
-+	if (ret) {
-+		dev_err(dai->dev, "failed to set dclk\n");
-+		return ret;
-+	}
-+
-+	ret = axg_pdm_set_sample_pointer(priv);
-+	if (ret) {
-+		dev_err(dai->dev, "invalid clock setting\n");
-+		return ret;
-+	}
-+
-+	axg_pdm_set_channel_mask(priv, params_channels(params));
-+
-+	return 0;
-+}
-+
-+static int axg_pdm_startup(struct snd_pcm_substream *substream,
-+			   struct snd_soc_dai *dai)
-+{
-+	struct axg_pdm *priv = snd_soc_dai_get_drvdata(dai);
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->dclk);
-+	if (ret) {
-+		dev_err(dai->dev, "enabling dclk failed\n");
-+		return ret;
-+	}
-+
-+	/* Enable the filters */
-+	axg_pdm_filters_enable(priv->map, true);
-+
-+	return ret;
-+}
-+
-+static void axg_pdm_shutdown(struct snd_pcm_substream *substream,
-+			     struct snd_soc_dai *dai)
-+{
-+	struct axg_pdm *priv = snd_soc_dai_get_drvdata(dai);
-+
-+	axg_pdm_filters_enable(priv->map, false);
-+	clk_disable_unprepare(priv->dclk);
-+}
-+
-+static const struct snd_soc_dai_ops axg_pdm_dai_ops = {
-+	.trigger	= axg_pdm_trigger,
-+	.hw_params	= axg_pdm_hw_params,
-+	.startup	= axg_pdm_startup,
-+	.shutdown	= axg_pdm_shutdown,
-+};
-+
-+static void axg_pdm_set_hcic_ctrl(struct axg_pdm *priv)
-+{
-+	const struct axg_pdm_hcic *hcic = &priv->cfg->filters->hcic;
-+	unsigned int val;
-+
-+	val = PDM_HCIC_CTRL1_STAGE_NUM(hcic->steps);
-+	val |= PDM_HCIC_CTRL1_DSR(hcic->ds);
-+	val |= PDM_HCIC_CTRL1_GAIN_MULT(hcic->mult);
-+	val |= PDM_HCIC_CTRL1_GAIN_SFT(hcic->shift);
-+
-+	regmap_update_bits(priv->map, PDM_HCIC_CTRL1,
-+			   PDM_HCIC_CTRL1_STAGE_NUM_MASK |
-+			   PDM_HCIC_CTRL1_DSR_MASK |
-+			   PDM_HCIC_CTRL1_GAIN_MULT_MASK |
-+			   PDM_HCIC_CTRL1_GAIN_SFT_MASK,
-+			   val);
-+}
-+
-+static void axg_pdm_set_lpf_ctrl(struct axg_pdm *priv, unsigned int index)
-+{
-+	const struct axg_pdm_lpf *lpf = &priv->cfg->filters->lpf[index];
-+	unsigned int offset = index * regmap_get_reg_stride(priv->map)
-+		+ PDM_F1_CTRL;
-+	unsigned int val;
-+
-+	val = PDM_LPF_STAGE_NUM(lpf->tap_num);
-+	val |= PDM_LPF_DSR(lpf->ds);
-+	val |= PDM_LPF_ROUND_MODE(lpf->round_mode);
-+
-+	regmap_update_bits(priv->map, offset,
-+			   PDM_LPF_STAGE_NUM_MASK |
-+			   PDM_LPF_DSR_MASK |
-+			   PDM_LPF_ROUND_MODE_MASK,
-+			   val);
-+}
-+
-+static void axg_pdm_set_hpf_ctrl(struct axg_pdm *priv)
-+{
-+	const struct axg_pdm_hpf *hpf = &priv->cfg->filters->hpf;
-+	unsigned int val;
-+
-+	val = PDM_HPF_OUT_FACTOR(hpf->out_factor);
-+	val |= PDM_HPF_SFT_STEPS(hpf->steps);
-+
-+	regmap_update_bits(priv->map, PDM_HPF_CTRL,
-+			   PDM_HPF_OUT_FACTOR_MASK |
-+			   PDM_HPF_SFT_STEPS_MASK,
-+			   val);
-+}
-+
-+static int axg_pdm_set_lpf_filters(struct axg_pdm *priv)
-+{
-+	const struct axg_pdm_lpf *lpf = priv->cfg->filters->lpf;
-+	unsigned int count = 0;
-+	int i, j;
-+
-+	for (i = 0; i < PDM_LPF_NUM; i++)
-+		count += lpf[i].tap_num;
-+
-+	/* Make sure the coeffs fit in the memory */
-+	if (count >= PDM_LPF_MAX_STAGE)
-+		return -EINVAL;
-+
-+	/* Set the initial APB bus register address */
-+	regmap_write(priv->map, PDM_COEFF_ADDR, 0);
-+
-+	/* Set the tap filter values of all 3 filters */
-+	for (i = 0; i < PDM_LPF_NUM; i++) {
-+		axg_pdm_set_lpf_ctrl(priv, i);
-+
-+		for (j = 0; j < lpf[i].tap_num; j++)
-+			regmap_write(priv->map, PDM_COEFF_DATA, lpf[i].tap[j]);
-+	}
-+
-+	return 0;
-+}
-+
-+static int axg_pdm_dai_probe(struct snd_soc_dai *dai)
-+{
-+	struct axg_pdm *priv = snd_soc_dai_get_drvdata(dai);
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->pclk);
-+	if (ret) {
-+		dev_err(dai->dev, "enabling pclk failed\n");
-+		return ret;
-+	}
-+
-+	/*
-+	 * sysclk must be set and enabled as well to access the pdm registers
-+	 * Accessing the register w/o it will give a bus error.
-+	 */
-+	ret = clk_set_rate(priv->sysclk, priv->cfg->sys_rate);
-+	if (ret) {
-+		dev_err(dai->dev, "setting sysclk failed\n");
-+		goto err_pclk;
-+	}
-+
-+	ret = clk_prepare_enable(priv->sysclk);
-+	if (ret) {
-+		dev_err(dai->dev, "enabling sysclk failed\n");
-+		goto err_pclk;
-+	}
-+
-+	/* Make sure the device is initially disabled */
-+	axg_pdm_disable(priv->map);
-+
-+	/* Make sure filter bypass is disabled */
-+	regmap_update_bits(priv->map, PDM_CTRL, PDM_CTRL_BYPASS_MODE, 0);
-+
-+	/* Load filter settings */
-+	axg_pdm_set_hcic_ctrl(priv);
-+	axg_pdm_set_hpf_ctrl(priv);
-+
-+	ret = axg_pdm_set_lpf_filters(priv);
-+	if (ret) {
-+		dev_err(dai->dev, "invalid filter configuration\n");
-+		goto err_sysclk;
-+	}
-+
-+	return 0;
-+
-+err_sysclk:
-+	clk_disable_unprepare(priv->sysclk);
-+err_pclk:
-+	clk_disable_unprepare(priv->pclk);
-+	return ret;
-+}
-+
-+static int axg_pdm_dai_remove(struct snd_soc_dai *dai)
-+{
-+	struct axg_pdm *priv = snd_soc_dai_get_drvdata(dai);
-+
-+	clk_disable_unprepare(priv->sysclk);
-+	clk_disable_unprepare(priv->pclk);
-+
-+	return 0;
-+}
-+
-+static struct snd_soc_dai_driver axg_pdm_dai_drv = {
-+	.name = "PDM",
-+	.capture = {
-+		.stream_name	= "Capture",
-+		.channels_min	= 1,
-+		.channels_max	= 8,
-+		.rates		= SNDRV_PCM_RATE_CONTINUOUS,
-+		.rate_min	= 5512,
-+		.rate_max	= 48000,
-+		.formats	= (SNDRV_PCM_FMTBIT_S24_LE |
-+				   SNDRV_PCM_FMTBIT_S32_LE),
-+	},
-+	.ops		= &axg_pdm_dai_ops,
-+	.probe		= axg_pdm_dai_probe,
-+	.remove		= axg_pdm_dai_remove,
-+};
-+
-+static const struct snd_soc_component_driver axg_pdm_component_drv = {};
-+
-+static const struct regmap_config axg_pdm_regmap_cfg = {
-+	.reg_bits	= 32,
-+	.val_bits	= 32,
-+	.reg_stride	= 4,
-+	.max_register	= PDM_STS,
-+};
-+
-+static const unsigned int lpf1_default_tap[] = {
-+	0x000014, 0xffffb2, 0xfffed9, 0xfffdce, 0xfffd45,
-+	0xfffe32, 0x000147, 0x000645, 0x000b86, 0x000e21,
-+	0x000ae3, 0x000000, 0xffeece, 0xffdca8, 0xffd212,
-+	0xffd7d1, 0xfff2a7, 0x001f4c, 0x0050c2, 0x0072aa,
-+	0x006ff1, 0x003c32, 0xffdc4e, 0xff6a18, 0xff0fef,
-+	0xfefbaf, 0xff4c40, 0x000000, 0x00ebc8, 0x01c077,
-+	0x02209e, 0x01c1a4, 0x008e60, 0xfebe52, 0xfcd690,
-+	0xfb8fa5, 0xfba498, 0xfd9812, 0x0181ce, 0x06f5f3,
-+	0x0d112f, 0x12a958, 0x169686, 0x18000e, 0x169686,
-+	0x12a958, 0x0d112f, 0x06f5f3, 0x0181ce, 0xfd9812,
-+	0xfba498, 0xfb8fa5, 0xfcd690, 0xfebe52, 0x008e60,
-+	0x01c1a4, 0x02209e, 0x01c077, 0x00ebc8, 0x000000,
-+	0xff4c40, 0xfefbaf, 0xff0fef, 0xff6a18, 0xffdc4e,
-+	0x003c32, 0x006ff1, 0x0072aa, 0x0050c2, 0x001f4c,
-+	0xfff2a7, 0xffd7d1, 0xffd212, 0xffdca8, 0xffeece,
-+	0x000000, 0x000ae3, 0x000e21, 0x000b86, 0x000645,
-+	0x000147, 0xfffe32, 0xfffd45, 0xfffdce, 0xfffed9,
-+	0xffffb2, 0x000014,
-+};
-+
-+static const unsigned int lpf2_default_tap[] = {
-+	0x00050a, 0xfff004, 0x0002c1, 0x003c12, 0xffa818,
-+	0xffc87d, 0x010aef, 0xff5223, 0xfebd93, 0x028f41,
-+	0xff5c0e, 0xfc63f8, 0x055f81, 0x000000, 0xf478a0,
-+	0x11c5e3, 0x2ea74d, 0x11c5e3, 0xf478a0, 0x000000,
-+	0x055f81, 0xfc63f8, 0xff5c0e, 0x028f41, 0xfebd93,
-+	0xff5223, 0x010aef, 0xffc87d, 0xffa818, 0x003c12,
-+	0x0002c1, 0xfff004, 0x00050a,
-+};
-+
-+static const unsigned int lpf3_default_tap[] = {
-+	0x000000, 0x000081, 0x000000, 0xfffedb, 0x000000,
-+	0x00022d, 0x000000, 0xfffc46, 0x000000, 0x0005f7,
-+	0x000000, 0xfff6eb, 0x000000, 0x000d4e, 0x000000,
-+	0xffed1e, 0x000000, 0x001a1c, 0x000000, 0xffdcb0,
-+	0x000000, 0x002ede, 0x000000, 0xffc2d1, 0x000000,
-+	0x004ebe, 0x000000, 0xff9beb, 0x000000, 0x007dd7,
-+	0x000000, 0xff633a, 0x000000, 0x00c1d2, 0x000000,
-+	0xff11d5, 0x000000, 0x012368, 0x000000, 0xfe9c45,
-+	0x000000, 0x01b252, 0x000000, 0xfdebf6, 0x000000,
-+	0x0290b8, 0x000000, 0xfcca0d, 0x000000, 0x041d7c,
-+	0x000000, 0xfa8152, 0x000000, 0x07e9c6, 0x000000,
-+	0xf28fb5, 0x000000, 0x28b216, 0x3fffde, 0x28b216,
-+	0x000000, 0xf28fb5, 0x000000, 0x07e9c6, 0x000000,
-+	0xfa8152, 0x000000, 0x041d7c, 0x000000, 0xfcca0d,
-+	0x000000, 0x0290b8, 0x000000, 0xfdebf6, 0x000000,
-+	0x01b252, 0x000000, 0xfe9c45, 0x000000, 0x012368,
-+	0x000000, 0xff11d5, 0x000000, 0x00c1d2, 0x000000,
-+	0xff633a, 0x000000, 0x007dd7, 0x000000, 0xff9beb,
-+	0x000000, 0x004ebe, 0x000000, 0xffc2d1, 0x000000,
-+	0x002ede, 0x000000, 0xffdcb0, 0x000000, 0x001a1c,
-+	0x000000, 0xffed1e, 0x000000, 0x000d4e, 0x000000,
-+	0xfff6eb, 0x000000, 0x0005f7, 0x000000, 0xfffc46,
-+	0x000000, 0x00022d, 0x000000, 0xfffedb, 0x000000,
-+	0x000081, 0x000000,
-+};
-+
-+/*
-+ * These values are sane defaults for the axg platform:
-+ * - OS = 64
-+ * - Latency = 38700 (?)
-+ *
-+ * TODO: There is a lot of different HCIC, LPFs and HPF configurations possible.
-+ *       the configuration may depend on the dmic used by the platform, the
-+ *       expected tradeoff between latency and quality, etc ... If/When other
-+ *       settings are required, we should add a fw interface to this driver to
-+ *       load new filter settings.
-+ */
-+static const struct axg_pdm_filters axg_default_filters = {
-+	.hcic = {
-+		.shift = 0x15,
-+		.mult = 0x80,
-+		.steps = 7,
-+		.ds = 8,
-+	},
-+	.hpf = {
-+		.out_factor = 0x8000,
-+		.steps = 13,
-+	},
-+	.lpf = {
-+		[0] = {
-+			.ds = 2,
-+			.round_mode = 1,
-+			.tap = lpf1_default_tap,
-+			.tap_num = ARRAY_SIZE(lpf1_default_tap),
-+		},
-+		[1] = {
-+			.ds = 2,
-+			.round_mode = 0,
-+			.tap = lpf2_default_tap,
-+			.tap_num = ARRAY_SIZE(lpf2_default_tap),
-+		},
-+		[2] = {
-+			.ds = 2,
-+			.round_mode = 1,
-+			.tap = lpf3_default_tap,
-+			.tap_num = ARRAY_SIZE(lpf3_default_tap)
-+		},
-+	},
-+};
-+
-+static const struct axg_pdm_cfg axg_pdm_config = {
-+	.filters = &axg_default_filters,
-+	.sys_rate = 250000000,
-+};
-+
-+static const struct of_device_id axg_pdm_of_match[] = {
-+	{
-+		.compatible = "amlogic,axg-pdm",
-+		.data = &axg_pdm_config,
-+	}, {}
-+};
-+MODULE_DEVICE_TABLE(of, axg_pdm_of_match);
-+
-+static int axg_pdm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct axg_pdm *priv;
-+	struct resource *res;
-+	void __iomem *regs;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, priv);
-+
-+	priv->cfg = of_device_get_match_data(dev);
-+	if (!priv->cfg) {
-+		dev_err(dev, "failed to match device\n");
-+		return -ENODEV;
-+	}
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	regs = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	priv->map = devm_regmap_init_mmio(dev, regs, &axg_pdm_regmap_cfg);
-+	if (IS_ERR(priv->map)) {
-+		dev_err(dev, "failed to init regmap: %ld\n",
-+			PTR_ERR(priv->map));
-+		return PTR_ERR(priv->map);
-+	}
-+
-+	priv->pclk = devm_clk_get(dev, "pclk");
-+	if (IS_ERR(priv->pclk)) {
-+		ret = PTR_ERR(priv->pclk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		return ret;
-+	}
-+
-+	priv->dclk = devm_clk_get(dev, "dclk");
-+	if (IS_ERR(priv->dclk)) {
-+		ret = PTR_ERR(priv->dclk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get dclk: %d\n", ret);
-+		return ret;
-+	}
-+
-+	priv->sysclk = devm_clk_get(dev, "sysclk");
-+	if (IS_ERR(priv->sysclk)) {
-+		ret = PTR_ERR(priv->sysclk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get dclk: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return devm_snd_soc_register_component(dev, &axg_pdm_component_drv,
-+					       &axg_pdm_dai_drv, 1);
-+}
-+
-+static struct platform_driver axg_pdm_pdrv = {
-+	.probe = axg_pdm_probe,
-+	.driver = {
-+		.name = "axg-pdm",
-+		.of_match_table = axg_pdm_of_match,
-+	},
-+};
-+module_platform_driver(axg_pdm_pdrv);
-+
-+MODULE_DESCRIPTION("Amlogic AXG PDM Input driver");
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL v2");
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 32f6dcacc2bc..36be63d69e7f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -3,15 +3,15 @@
+  * Copyright (c) 2017 Amlogic, Inc. All rights reserved.
+  */
+ 
+-#include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/interrupt-controller/irq.h>
+-#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/clock/axg-aoclkc.h>
+ #include <dt-bindings/clock/axg-audio-clkc.h>
+ #include <dt-bindings/clock/axg-clkc.h>
+-#include <dt-bindings/clock/axg-aoclkc.h>
++#include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/gpio/meson-axg-gpio.h>
+-#include <dt-bindings/reset/amlogic,meson-axg-reset.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
++#include <dt-bindings/reset/amlogic,meson-axg-reset.h>
+ 
+ / {
+ 	compatible = "amlogic,meson-axg";
+@@ -20,22 +20,53 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	reserved-memory {
+-		#address-cells = <2>;
+-		#size-cells = <2>;
+-		ranges;
++	tdmif_a: audio-controller at 0 {
++		compatible = "amlogic,axg-tdm-iface";
++		#sound-dai-cells = <0>;
++		sound-name-prefix = "TDM_A";
++		clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
++			 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
++			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
++		clock-names = "mclk", "sclk", "lrclk";
++		status = "disabled";
++	};
+ 
+-		/* 16 MiB reserved for Hardware ROM Firmware */
+-		hwrom_reserved: hwrom at 0 {
+-			reg = <0x0 0x0 0x0 0x1000000>;
+-			no-map;
+-		};
++	tdmif_b: audio-controller at 1 {
++		compatible = "amlogic,axg-tdm-iface";
++		#sound-dai-cells = <0>;
++		sound-name-prefix = "TDM_B";
++		clocks = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
++			 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
++			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
++		clock-names = "mclk", "sclk", "lrclk";
++		status = "disabled";
++	};
+ 
+-		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
+-		secmon_reserved: secmon at 5000000 {
+-			reg = <0x0 0x05000000 0x0 0x300000>;
+-			no-map;
+-		};
++	tdmif_c: audio-controller at 2 {
++		compatible = "amlogic,axg-tdm-iface";
++		#sound-dai-cells = <0>;
++		sound-name-prefix = "TDM_C";
++		clocks = <&clkc_audio AUD_CLKID_MST_C_MCLK>,
++			 <&clkc_audio AUD_CLKID_MST_C_SCLK>,
++			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>;
++		clock-names = "mclk", "sclk", "lrclk";
++		status = "disabled";
++	};
++
++	ao_alt_xtal: ao_alt_xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <32000000>;
++		clock-output-names = "ao_alt_xtal";
++		#clock-cells = <0>;
++	};
++
++	arm-pmu {
++		compatible = "arm,cortex-a53-pmu";
++		interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+ 	};
+ 
+ 	cpus {
+@@ -79,77 +110,27 @@
+ 		};
+ 	};
+ 
+-	arm-pmu {
+-		compatible = "arm,cortex-a53-pmu";
+-		interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
+-			     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+-	};
+-
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
+ 	};
+ 
+-	tdmif_a: audio-controller at 0 {
+-		compatible = "amlogic,axg-tdm-iface";
+-		#sound-dai-cells = <0>;
+-		sound-name-prefix = "TDM_A";
+-		clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
+-			 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
+-			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
+-		clock-names = "mclk", "sclk", "lrclk";
+-		status = "disabled";
+-	};
+-
+-	tdmif_b: audio-controller at 1 {
+-		compatible = "amlogic,axg-tdm-iface";
+-		#sound-dai-cells = <0>;
+-		sound-name-prefix = "TDM_B";
+-		clocks = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
+-			 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
+-			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
+-		clock-names = "mclk", "sclk", "lrclk";
+-		status = "disabled";
+-	};
+-
+-	tdmif_c: audio-controller at 2 {
+-		compatible = "amlogic,axg-tdm-iface";
+-		#sound-dai-cells = <0>;
+-		sound-name-prefix = "TDM_C";
+-		clocks = <&clkc_audio AUD_CLKID_MST_C_MCLK>,
+-			 <&clkc_audio AUD_CLKID_MST_C_SCLK>,
+-			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>;
+-		clock-names = "mclk", "sclk", "lrclk";
+-		status = "disabled";
+-	};
+-
+-	timer {
+-		compatible = "arm,armv8-timer";
+-		interrupts = <GIC_PPI 13
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 14
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 11
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 10
+-			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
+-	};
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
+ 
+-	xtal: xtal-clk {
+-		compatible = "fixed-clock";
+-		clock-frequency = <24000000>;
+-		clock-output-names = "xtal";
+-		#clock-cells = <0>;
+-	};
++		/* 16 MiB reserved for Hardware ROM Firmware */
++		hwrom_reserved: hwrom at 0 {
++			reg = <0x0 0x0 0x0 0x1000000>;
++			no-map;
++		};
+ 
+-	ao_alt_xtal: ao_alt_xtal-clk {
+-		compatible = "fixed-clock";
+-		clock-frequency = <32000000>;
+-		clock-output-names = "ao_alt_xtal";
+-		#clock-cells = <0>;
++		/* Alternate 3 MiB reserved for ARM Trusted Firmware (BL31) */
++		secmon_reserved: secmon at 5000000 {
++			reg = <0x0 0x05000000 0x0 0x300000>;
++			no-map;
++		};
+ 	};
+ 
+ 	soc {
+@@ -158,469 +139,127 @@
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		apb: apb at ffe00000 {
++		ethmac: ethernet at ff3f0000 {
++			compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
++			reg = <0x0 0xff3f0000 0x0 0x10000
++			       0x0 0xff634540 0x0 0x8>;
++			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "macirq";
++			clocks = <&clkc CLKID_ETH>,
++				 <&clkc CLKID_FCLK_DIV2>,
++				 <&clkc CLKID_MPLL2>;
++			clock-names = "stmmaceth", "clkin0", "clkin1";
++			status = "disabled";
++		};
++
++		periphs: bus at ff634000 {
+ 			compatible = "simple-bus";
+-			reg = <0x0 0xffe00000 0x0 0x200000>;
++			reg = <0x0 0xff634000 0x0 0x2000>;
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+-			ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x200000>;
++			ranges = <0x0 0x0 0x0 0xff634000 0x0 0x2000>;
+ 
+-			sd_emmc_b: sd at 5000 {
+-				compatible = "amlogic,meson-axg-mmc";
+-				reg = <0x0 0x5000 0x0 0x800>;
+-				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
+-				status = "disabled";
+-				clocks = <&clkc CLKID_SD_EMMC_B>,
+-					<&clkc CLKID_SD_EMMC_B_CLK0>,
+-					<&clkc CLKID_FCLK_DIV2>;
+-				clock-names = "core", "clkin0", "clkin1";
+-				resets = <&reset RESET_SD_EMMC_B>;
++			hwrng: rng at 18 {
++				compatible = "amlogic,meson-rng";
++				reg = <0x0 0x18 0x0 0x4>;
++				clocks = <&clkc CLKID_RNG0>;
++				clock-names = "core";
+ 			};
+ 
+-			sd_emmc_c: mmc at 7000 {
+-				compatible = "amlogic,meson-axg-mmc";
+-				reg = <0x0 0x7000 0x0 0x800>;
+-				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
+-				status = "disabled";
+-				clocks = <&clkc CLKID_SD_EMMC_C>,
+-					<&clkc CLKID_SD_EMMC_C_CLK0>,
+-					<&clkc CLKID_FCLK_DIV2>;
+-				clock-names = "core", "clkin0", "clkin1";
+-				resets = <&reset RESET_SD_EMMC_C>;
+-			};
+-		};
++			pinctrl_periphs: pinctrl at 480 {
++				compatible = "amlogic,meson-axg-periphs-pinctrl";
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges;
+ 
+-		audio: bus at ff642000 {
+-			compatible = "simple-bus";
+-			reg = <0x0 0xff642000 0x0 0x2000>;
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges = <0x0 0x0 0x0 0xff642000 0x0 0x2000>;
++				gpio: bank at 480 {
++					reg = <0x0 0x00480 0x0 0x40>,
++					      <0x0 0x004e8 0x0 0x14>,
++					      <0x0 0x00520 0x0 0x14>,
++					      <0x0 0x00430 0x0 0x3c>;
++					reg-names = "mux", "pull", "pull-enable", "gpio";
++					gpio-controller;
++					#gpio-cells = <2>;
++					gpio-ranges = <&pinctrl_periphs 0 0 86>;
++				};
+ 
+-			clkc_audio: clock-controller at 0 {
+-				compatible = "amlogic,axg-audio-clkc";
+-				reg = <0x0 0x0 0x0 0xb4>;
+-				#clock-cells = <1>;
++				i2c0_pins: i2c0 {
++					mux {
++						groups = "i2c0_sck",
++							 "i2c0_sda";
++						function = "i2c0";
++					};
++				};
+ 
+-				clocks = <&clkc CLKID_AUDIO>,
+-					 <&clkc CLKID_MPLL0>,
+-					 <&clkc CLKID_MPLL1>,
+-					 <&clkc CLKID_MPLL2>,
+-					 <&clkc CLKID_MPLL3>,
+-					 <&clkc CLKID_HIFI_PLL>,
+-					 <&clkc CLKID_FCLK_DIV3>,
+-					 <&clkc CLKID_FCLK_DIV4>,
+-					 <&clkc CLKID_GP0_PLL>;
+-				clock-names = "pclk",
+-					      "mst_in0",
+-					      "mst_in1",
+-					      "mst_in2",
+-					      "mst_in3",
+-					      "mst_in4",
+-					      "mst_in5",
+-					      "mst_in6",
+-					      "mst_in7";
++				i2c1_x_pins: i2c1_x {
++					mux {
++						groups = "i2c1_sck_x",
++							 "i2c1_sda_x";
++						function = "i2c1";
++					};
++				};
+ 
+-				resets = <&reset RESET_AUDIO>;
+-			};
++				i2c1_z_pins: i2c1_z {
++					mux {
++						groups = "i2c1_sck_z",
++							 "i2c1_sda_z";
++						function = "i2c1";
++					};
++				};
+ 
+-			toddr_a: audio-controller at 100 {
+-				compatible = "amlogic,axg-toddr";
+-				reg = <0x0 0x100 0x0 0x1c>;
+-				#sound-dai-cells = <0>;
+-				sound-name-prefix = "TODDR_A";
+-				interrupts = <GIC_SPI 84 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
+-				resets = <&arb AXG_ARB_TODDR_A>;
+-				status = "disabled";
+-			};
+-
+-			toddr_b: audio-controller at 140 {
+-				compatible = "amlogic,axg-toddr";
+-				reg = <0x0 0x140 0x0 0x1c>;
+-				#sound-dai-cells = <0>;
+-				sound-name-prefix = "TODDR_B";
+-				interrupts = <GIC_SPI 85 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
+-				resets = <&arb AXG_ARB_TODDR_B>;
+-				status = "disabled";
+-			};
+-
+-			toddr_c: audio-controller at 180 {
+-				compatible = "amlogic,axg-toddr";
+-				reg = <0x0 0x180 0x0 0x1c>;
+-				#sound-dai-cells = <0>;
+-				sound-name-prefix = "TODDR_C";
+-				interrupts = <GIC_SPI 86 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
+-				resets = <&arb AXG_ARB_TODDR_C>;
+-				status = "disabled";
+-			};
+-
+-			frddr_a: audio-controller at 1c0 {
+-				compatible = "amlogic,axg-frddr";
+-				reg = <0x0 0x1c0 0x0 0x1c>;
+-				#sound-dai-cells = <0>;
+-				sound-name-prefix = "FRDDR_A";
+-				interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
+-				resets = <&arb AXG_ARB_FRDDR_A>;
+-				status = "disabled";
+-			};
+-
+-			frddr_b: audio-controller at 200 {
+-				compatible = "amlogic,axg-frddr";
+-				reg = <0x0 0x200 0x0 0x1c>;
+-				#sound-dai-cells = <0>;
+-				sound-name-prefix = "FRDDR_B";
+-				interrupts = <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
+-				resets = <&arb AXG_ARB_FRDDR_B>;
+-				status = "disabled";
+-			};
+-
+-			frddr_c: audio-controller at 240 {
+-				compatible = "amlogic,axg-frddr";
+-				reg = <0x0 0x240 0x0 0x1c>;
+-				#sound-dai-cells = <0>;
+-				sound-name-prefix = "FRDDR_C";
+-				interrupts = <GIC_SPI 90 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
+-				resets = <&arb AXG_ARB_FRDDR_C>;
+-				status = "disabled";
+-			};
+-
+-			arb: reset-controller at 280 {
+-				compatible = "amlogic,meson-axg-audio-arb";
+-				reg = <0x0 0x280 0x0 0x4>;
+-				#reset-cells = <1>;
+-				clocks = <&clkc_audio AUD_CLKID_DDR_ARB>;
+-			};
+-
+-			tdmin_a: audio-controller at 300 {
+-				compatible = "amlogic,axg-tdmin";
+-				reg = <0x0 0x300 0x0 0x40>;
+-				sound-name-prefix = "TDMIN_A";
+-				clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>;
+-				clock-names = "pclk", "sclk", "sclk_sel",
+-					      "lrclk", "lrclk_sel";
+-				status = "disabled";
+-			};
+-
+-			tdmin_b: audio-controller at 340 {
+-				compatible = "amlogic,axg-tdmin";
+-				reg = <0x0 0x340 0x0 0x40>;
+-				sound-name-prefix = "TDMIN_B";
+-				clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>;
+-				clock-names = "pclk", "sclk", "sclk_sel",
+-					      "lrclk", "lrclk_sel";
+-				status = "disabled";
+-			};
+-
+-			tdmin_c: audio-controller at 380 {
+-				compatible = "amlogic,axg-tdmin";
+-				reg = <0x0 0x380 0x0 0x40>;
+-				sound-name-prefix = "TDMIN_C";
+-				clocks = <&clkc_audio AUD_CLKID_TDMIN_C>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK_SEL>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>;
+-				clock-names = "pclk", "sclk", "sclk_sel",
+-					      "lrclk", "lrclk_sel";
+-				status = "disabled";
+-			};
+-
+-			tdmin_lb: audio-controller at 3c0 {
+-				compatible = "amlogic,axg-tdmin";
+-				reg = <0x0 0x3c0 0x0 0x40>;
+-				sound-name-prefix = "TDMIN_LB";
+-				clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>;
+-				clock-names = "pclk", "sclk", "sclk_sel",
+-					      "lrclk", "lrclk_sel";
+-				status = "disabled";
+-			};
+-
+-			spdifout: audio-controller at 480 {
+-				compatible = "amlogic,axg-spdifout";
+-				reg = <0x0 0x480 0x0 0x50>;
+-				#sound-dai-cells = <0>;
+-				sound-name-prefix = "SPDIFOUT";
+-				clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
+-					 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
+-				clock-names = "pclk", "mclk";
+-				status = "disabled";
+-			};
+-
+-			tdmout_a: audio-controller at 500 {
+-				compatible = "amlogic,axg-tdmout";
+-				reg = <0x0 0x500 0x0 0x40>;
+-				sound-name-prefix = "TDMOUT_A";
+-				clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
+-				clock-names = "pclk", "sclk", "sclk_sel",
+-					      "lrclk", "lrclk_sel";
+-				status = "disabled";
+-			};
+-
+-			tdmout_b: audio-controller at 540 {
+-				compatible = "amlogic,axg-tdmout";
+-				reg = <0x0 0x540 0x0 0x40>;
+-				sound-name-prefix = "TDMOUT_B";
+-				clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>;
+-				clock-names = "pclk", "sclk", "sclk_sel",
+-					      "lrclk", "lrclk_sel";
+-				status = "disabled";
+-			};
+-
+-			tdmout_c: audio-controller at 580 {
+-				compatible = "amlogic,axg-tdmout";
+-				reg = <0x0 0x580 0x0 0x40>;
+-				sound-name-prefix = "TDMOUT_C";
+-				clocks = <&clkc_audio AUD_CLKID_TDMOUT_C>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK_SEL>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>,
+-					 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>;
+-				clock-names = "pclk", "sclk", "sclk_sel",
+-					      "lrclk", "lrclk_sel";
+-				status = "disabled";
+-			};
+-		};
+-
+-		cbus: bus at ffd00000 {
+-			compatible = "simple-bus";
+-			reg = <0x0 0xffd00000 0x0 0x25000>;
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x25000>;
+-
+-			gpio_intc: interrupt-controller at f080 {
+-				compatible = "amlogic,meson-gpio-intc";
+-				reg = <0x0 0xf080 0x0 0x10>;
+-				interrupt-controller;
+-				#interrupt-cells = <2>;
+-				amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
+-				status = "disabled";
+-			};
+-
+-			pwm_ab: pwm at 1b000 {
+-				compatible = "amlogic,meson-axg-ee-pwm";
+-				reg = <0x0 0x1b000 0x0 0x20>;
+-				#pwm-cells = <3>;
+-				status = "disabled";
+-			};
+-
+-			pwm_cd: pwm at 1a000 {
+-				compatible = "amlogic,meson-axg-ee-pwm";
+-				reg = <0x0 0x1a000 0x0 0x20>;
+-				#pwm-cells = <3>;
+-				status = "disabled";
+-			};
+-
+-			reset: reset-controller at 1004 {
+-				compatible = "amlogic,meson-axg-reset";
+-				reg = <0x0 0x01004 0x0 0x9c>;
+-				#reset-cells = <1>;
+-			};
+-
+-			spicc0: spi at 13000 {
+-				compatible = "amlogic,meson-axg-spicc";
+-				reg = <0x0 0x13000 0x0 0x3c>;
+-				interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clkc CLKID_SPICC0>;
+-				clock-names = "core";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "disabled";
+-			};
+-
+-			spicc1: spi at 15000 {
+-				compatible = "amlogic,meson-axg-spicc";
+-				reg = <0x0 0x15000 0x0 0x3c>;
+-				interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clkc CLKID_SPICC1>;
+-				clock-names = "core";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "disabled";
+-			};
+-
+-			i2c0: i2c at 1f000 {
+-				compatible = "amlogic,meson-axg-i2c";
+-				reg = <0x0 0x1f000 0x0 0x20>;
+-				interrupts = <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc CLKID_I2C>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "disabled";
+-			};
+-
+-			i2c1: i2c at 1e000 {
+-				compatible = "amlogic,meson-axg-i2c";
+-				reg = <0x0 0x1e000 0x0 0x20>;
+-				interrupts = <GIC_SPI 214 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc CLKID_I2C>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "disabled";
+-			};
+-
+-			i2c2: i2c at 1d000 {
+-				compatible = "amlogic,meson-axg-i2c";
+-				reg = <0x0 0x1d000 0x0 0x20>;
+-				interrupts = <GIC_SPI 215 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc CLKID_I2C>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "disabled";
+-			};
+-
+-			i2c3: i2c at 1c000 {
+-				compatible = "amlogic,meson-axg-i2c";
+-				reg = <0x0 0x1c000 0x0 0x20>;
+-				interrupts = <GIC_SPI 39 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc CLKID_I2C>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "disabled";
+-			};
+-
+-			uart_A: serial at 24000 {
+-				compatible = "amlogic,meson-gx-uart";
+-				reg = <0x0 0x24000 0x0 0x18>;
+-				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
+-				status = "disabled";
+-				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
+-				clock-names = "xtal", "pclk", "baud";
+-			};
+-
+-			uart_B: serial at 23000 {
+-				compatible = "amlogic,meson-gx-uart";
+-				reg = <0x0 0x23000 0x0 0x18>;
+-				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
+-				status = "disabled";
+-				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
+-				clock-names = "xtal", "pclk", "baud";
+-			};
+-		};
+-
+-		ethmac: ethernet at ff3f0000 {
+-			compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
+-			reg = <0x0 0xff3f0000 0x0 0x10000
+-				0x0 0xff634540 0x0 0x8>;
+-			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
+-			interrupt-names = "macirq";
+-			clocks = <&clkc CLKID_ETH>,
+-				 <&clkc CLKID_FCLK_DIV2>,
+-				 <&clkc CLKID_MPLL2>;
+-			clock-names = "stmmaceth", "clkin0", "clkin1";
+-			status = "disabled";
+-		};
+-
+-		gic: interrupt-controller at ffc01000 {
+-			compatible = "arm,gic-400";
+-			reg = <0x0 0xffc01000 0 0x1000>,
+-			      <0x0 0xffc02000 0 0x2000>,
+-			      <0x0 0xffc04000 0 0x2000>,
+-			      <0x0 0xffc06000 0 0x2000>;
+-			interrupt-controller;
+-			interrupts = <GIC_PPI 9
+-				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+-			#interrupt-cells = <3>;
+-			#address-cells = <0>;
+-		};
+-
+-		hiubus: bus at ff63c000 {
+-			compatible = "simple-bus";
+-			reg = <0x0 0xff63c000 0x0 0x1c00>;
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+-
+-			sysctrl: system-controller at 0 {
+-				compatible = "amlogic,meson-axg-hhi-sysctrl", "syscon", "simple-mfd";
+-				reg = <0 0 0 0x400>;
+-
+-				clkc: clock-controller {
+-					compatible = "amlogic,axg-clkc";
+-					#clock-cells = <1>;
++				i2c2_a_pins: i2c2_a {
++					mux {
++						groups = "i2c2_sck_a",
++							 "i2c2_sda_a";
++						function = "i2c2";
++					};
+ 				};
+-			};
+-		};
+-
+-		mailbox: mailbox at ff63dc00 {
+-			compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
+-			reg = <0 0xff63dc00 0 0x400>;
+-			interrupts = <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
+-				     <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
+-				     <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>;
+-			#mbox-cells = <1>;
+-		};
+ 
+-		periphs: periphs at ff634000 {
+-			compatible = "simple-bus";
+-			reg = <0x0 0xff634000 0x0 0x2000>;
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges = <0x0 0x0 0x0 0xff634000 0x0 0x2000>;
++				i2c2_x_pins: i2c2_x {
++					mux {
++						groups = "i2c2_sck_x",
++							 "i2c2_sda_x";
++						function = "i2c2";
++					};
++				};
+ 
+-			hwrng: rng {
+-				compatible = "amlogic,meson-rng";
+-				reg = <0x0 0x18 0x0 0x4>;
+-				clocks = <&clkc CLKID_RNG0>;
+-				clock-names = "core";
+-			};
++				i2c3_a6_pins: i2c3_a6 {
++					mux {
++						groups = "i2c3_sda_a6",
++							 "i2c3_sck_a7";
++						function = "i2c3";
++					};
++				};
+ 
+-			pinctrl_periphs: pinctrl at 480 {
+-				compatible = "amlogic,meson-axg-periphs-pinctrl";
+-				#address-cells = <2>;
+-				#size-cells = <2>;
+-				ranges;
++				i2c3_a12_pins: i2c3_a12 {
++					mux {
++						groups = "i2c3_sda_a12",
++							 "i2c3_sck_a13";
++						function = "i2c3";
++					};
++				};
+ 
+-				gpio: bank at 480 {
+-					reg = <0x0 0x00480 0x0 0x40>,
+-						<0x0 0x004e8 0x0 0x14>,
+-						<0x0 0x00520 0x0 0x14>,
+-						<0x0 0x00430 0x0 0x3c>;
+-					reg-names = "mux", "pull", "pull-enable", "gpio";
+-					gpio-controller;
+-					#gpio-cells = <2>;
+-					gpio-ranges = <&pinctrl_periphs 0 0 86>;
++				i2c3_a19_pins: i2c3_a19 {
++					mux {
++						groups = "i2c3_sda_a19",
++							 "i2c3_sck_a20";
++						function = "i2c3";
++					};
+ 				};
+ 
+ 				emmc_pins: emmc {
+ 					mux {
+ 						groups = "emmc_nand_d0",
+-							"emmc_nand_d1",
+-							"emmc_nand_d2",
+-							"emmc_nand_d3",
+-							"emmc_nand_d4",
+-							"emmc_nand_d5",
+-							"emmc_nand_d6",
+-							"emmc_nand_d7",
+-							"emmc_clk",
+-							"emmc_cmd",
+-							"emmc_ds";
++							 "emmc_nand_d1",
++							 "emmc_nand_d2",
++							 "emmc_nand_d3",
++							 "emmc_nand_d4",
++							 "emmc_nand_d5",
++							 "emmc_nand_d6",
++							 "emmc_nand_d7",
++							 "emmc_clk",
++							 "emmc_cmd",
++							 "emmc_ds";
+ 						function = "emmc";
+ 					};
+ 				};
+@@ -636,40 +275,57 @@
+ 					};
+ 				};
+ 
+-				sdio_pins: sdio {
++				eth_rgmii_x_pins: eth-x-rgmii {
+ 					mux {
+-						groups = "sdio_d0",
+-							"sdio_d1",
+-							"sdio_d2",
+-							"sdio_d3",
+-							"sdio_cmd",
+-							"sdio_clk";
+-						function = "sdio";
++						groups = "eth_mdio_x",
++							 "eth_mdc_x",
++							 "eth_rgmii_rx_clk_x",
++							 "eth_rx_dv_x",
++							 "eth_rxd0_x",
++							 "eth_rxd1_x",
++							 "eth_rxd2_rgmii",
++							 "eth_rxd3_rgmii",
++							 "eth_rgmii_tx_clk",
++							 "eth_txen_x",
++							 "eth_txd0_x",
++							 "eth_txd1_x",
++							 "eth_txd2_rgmii",
++							 "eth_txd3_rgmii";
++						function = "eth";
+ 					};
+ 				};
+ 
+-				sdio_clk_gate_pins: sdio_clk_gate {
++				eth_rgmii_y_pins: eth-y-rgmii {
+ 					mux {
+-						groups = "GPIOX_4";
+-						function = "gpio_periphs";
+-					};
+-					cfg-pull-down {
+-						pins = "GPIOX_4";
+-						bias-pull-down;
++						groups = "eth_mdio_y",
++							 "eth_mdc_y",
++							 "eth_rgmii_rx_clk_y",
++							 "eth_rx_dv_y",
++							 "eth_rxd0_y",
++							 "eth_rxd1_y",
++							 "eth_rxd2_rgmii",
++							 "eth_rxd3_rgmii",
++							 "eth_rgmii_tx_clk",
++							 "eth_txen_y",
++							 "eth_txd0_y",
++							 "eth_txd1_y",
++							 "eth_txd2_rgmii",
++							 "eth_txd3_rgmii";
++						function = "eth";
+ 					};
+ 				};
+ 
+ 				eth_rmii_x_pins: eth-x-rmii {
+ 					mux {
+ 						groups = "eth_mdio_x",
+-						       "eth_mdc_x",
+-						       "eth_rgmii_rx_clk_x",
+-						       "eth_rx_dv_x",
+-						       "eth_rxd0_x",
+-						       "eth_rxd1_x",
+-						       "eth_txen_x",
+-						       "eth_txd0_x",
+-						       "eth_txd1_x";
++							 "eth_mdc_x",
++							 "eth_rgmii_rx_clk_x",
++							 "eth_rx_dv_x",
++							 "eth_rxd0_x",
++							 "eth_rxd1_x",
++							 "eth_txen_x",
++							 "eth_txd0_x",
++							 "eth_txd1_x";
+ 						function = "eth";
+ 					};
+ 				};
+@@ -677,55 +333,29 @@
+ 				eth_rmii_y_pins: eth-y-rmii {
+ 					mux {
+ 						groups = "eth_mdio_y",
+-						       "eth_mdc_y",
+-						       "eth_rgmii_rx_clk_y",
+-						       "eth_rx_dv_y",
+-						       "eth_rxd0_y",
+-						       "eth_rxd1_y",
+-						       "eth_txen_y",
+-						       "eth_txd0_y",
+-						       "eth_txd1_y";
++							 "eth_mdc_y",
++							 "eth_rgmii_rx_clk_y",
++							 "eth_rx_dv_y",
++							 "eth_rxd0_y",
++							 "eth_rxd1_y",
++							 "eth_txen_y",
++							 "eth_txd0_y",
++							 "eth_txd1_y";
+ 						function = "eth";
+ 					};
+ 				};
+ 
+-				eth_rgmii_x_pins: eth-x-rgmii {
++				mclk_b_pins: mclk_b {
+ 					mux {
+-						groups = "eth_mdio_x",
+-						       "eth_mdc_x",
+-						       "eth_rgmii_rx_clk_x",
+-						       "eth_rx_dv_x",
+-						       "eth_rxd0_x",
+-						       "eth_rxd1_x",
+-						       "eth_rxd2_rgmii",
+-						       "eth_rxd3_rgmii",
+-						       "eth_rgmii_tx_clk",
+-						       "eth_txen_x",
+-						       "eth_txd0_x",
+-						       "eth_txd1_x",
+-						       "eth_txd2_rgmii",
+-						       "eth_txd3_rgmii";
+-						function = "eth";
++						groups = "mclk_b";
++						function = "mclk_b";
+ 					};
+ 				};
+ 
+-				eth_rgmii_y_pins: eth-y-rgmii {
++				mclk_c_pins: mclk_c {
+ 					mux {
+-						groups = "eth_mdio_y",
+-						       "eth_mdc_y",
+-						       "eth_rgmii_rx_clk_y",
+-						       "eth_rx_dv_y",
+-						       "eth_rxd0_y",
+-						       "eth_rxd1_y",
+-						       "eth_rxd2_rgmii",
+-						       "eth_rxd3_rgmii",
+-						       "eth_rgmii_tx_clk",
+-						       "eth_txen_y",
+-						       "eth_txd0_y",
+-						       "eth_txd1_y",
+-						       "eth_txd2_rgmii",
+-						       "eth_txd3_rgmii";
+-						function = "eth";
++						groups = "mclk_c";
++						function = "mclk_c";
+ 					};
+ 				};
+ 
+@@ -855,298 +485,199 @@
+ 					};
+ 				};
+ 
+-				spdif_in_z_pins: spdif_in_z {
++				sdio_pins: sdio {
+ 					mux {
+-						groups = "spdif_in_z";
+-						function = "spdif_in";
++						groups = "sdio_d0",
++							 "sdio_d1",
++							 "sdio_d2",
++							 "sdio_d3",
++							 "sdio_cmd",
++							 "sdio_clk";
++						function = "sdio";
+ 					};
+ 				};
+ 
+-				spdif_in_a1_pins: spdif_in_a1 {
++				sdio_clk_gate_pins: sdio_clk_gate {
+ 					mux {
+-						groups = "spdif_in_a1";
+-						function = "spdif_in";
++						groups = "GPIOX_4";
++						function = "gpio_periphs";
+ 					};
+-				};
+-
+-				spdif_in_a7_pins: spdif_in_a7 {
+-					mux {
+-						groups = "spdif_in_a7";
+-						function = "spdif_in";
++					cfg-pull-down {
++						pins = "GPIOX_4";
++						bias-pull-down;
+ 					};
+ 				};
+ 
+-				spdif_in_a19_pins: spdif_in_a19 {
++				spdif_in_z_pins: spdif_in_z {
+ 					mux {
+-						groups = "spdif_in_a19";
++						groups = "spdif_in_z";
+ 						function = "spdif_in";
+ 					};
+ 				};
+ 
+-				spdif_in_a20_pins: spdif_in_a20 {
++				spdif_in_a1_pins: spdif_in_a1 {
+ 					mux {
+-						groups = "spdif_in_a20";
++						groups = "spdif_in_a1";
+ 						function = "spdif_in";
+ 					};
+ 				};
+ 
+-				spdif_out_z_pins: spdif_out_z {
+-					mux {
+-						groups = "spdif_out_z";
+-						function = "spdif_out";
+-					};
+-				};
+-
+-				spdif_out_a1_pins: spdif_out_a1 {
+-					mux {
+-						groups = "spdif_out_a1";
+-						function = "spdif_out";
+-					};
+-				};
+-
+-				spdif_out_a11_pins: spdif_out_a11 {
+-					mux {
+-						groups = "spdif_out_a11";
+-						function = "spdif_out";
+-					};
+-				};
+-
+-				spdif_out_a19_pins: spdif_out_a19 {
+-					mux {
+-						groups = "spdif_out_a19";
+-						function = "spdif_out";
+-					};
+-				};
+-
+-				spdif_out_a20_pins: spdif_out_a20 {
+-					mux {
+-						groups = "spdif_out_a20";
+-						function = "spdif_out";
+-					};
+-				};
+-
+-				spi0_pins: spi0 {
+-					mux {
+-						groups = "spi0_miso",
+-							"spi0_mosi",
+-							"spi0_clk";
+-						function = "spi0";
+-					};
+-				};
+-
+-				spi0_ss0_pins: spi0_ss0 {
+-					mux {
+-						groups = "spi0_ss0";
+-						function = "spi0";
+-					};
+-				};
+-
+-				spi0_ss1_pins: spi0_ss1 {
+-					mux {
+-						groups = "spi0_ss1";
+-						function = "spi0";
+-					};
+-				};
+-
+-				spi0_ss2_pins: spi0_ss2 {
+-					mux {
+-						groups = "spi0_ss2";
+-						function = "spi0";
+-					};
+-				};
+-
+-
+-				spi1_a_pins: spi1_a {
+-					mux {
+-						groups = "spi1_miso_a",
+-							"spi1_mosi_a",
+-							"spi1_clk_a";
+-						function = "spi1";
+-					};
+-				};
+-
+-				spi1_ss0_a_pins: spi1_ss0_a {
+-					mux {
+-						groups = "spi1_ss0_a";
+-						function = "spi1";
+-					};
+-				};
+-
+-				spi1_ss1_pins: spi1_ss1 {
+-					mux {
+-						groups = "spi1_ss1";
+-						function = "spi1";
+-					};
+-				};
+-
+-				spi1_x_pins: spi1_x {
++				spdif_in_a7_pins: spdif_in_a7 {
+ 					mux {
+-						groups = "spi1_miso_x",
+-							"spi1_mosi_x",
+-							"spi1_clk_x";
+-						function = "spi1";
++						groups = "spdif_in_a7";
++						function = "spdif_in";
+ 					};
+ 				};
+ 
+-				spi1_ss0_x_pins: spi1_ss0_x {
++				spdif_in_a19_pins: spdif_in_a19 {
+ 					mux {
+-						groups = "spi1_ss0_x";
+-						function = "spi1";
++						groups = "spdif_in_a19";
++						function = "spdif_in";
+ 					};
+ 				};
+ 
+-				i2c0_pins: i2c0 {
++				spdif_in_a20_pins: spdif_in_a20 {
+ 					mux {
+-						groups = "i2c0_sck",
+-							"i2c0_sda";
+-						function = "i2c0";
++						groups = "spdif_in_a20";
++						function = "spdif_in";
+ 					};
+ 				};
+ 
+-				i2c1_z_pins: i2c1_z {
++				spdif_out_a1_pins: spdif_out_a1 {
+ 					mux {
+-						groups = "i2c1_sck_z",
+-							"i2c1_sda_z";
+-						function = "i2c1";
++						groups = "spdif_out_a1";
++						function = "spdif_out";
+ 					};
+ 				};
+ 
+-				i2c1_x_pins: i2c1_x {
++				spdif_out_a11_pins: spdif_out_a11 {
+ 					mux {
+-						groups = "i2c1_sck_x",
+-							"i2c1_sda_x";
+-						function = "i2c1";
++						groups = "spdif_out_a11";
++						function = "spdif_out";
+ 					};
+ 				};
+ 
+-				i2c2_x_pins: i2c2_x {
++				spdif_out_a19_pins: spdif_out_a19 {
+ 					mux {
+-						groups = "i2c2_sck_x",
+-							"i2c2_sda_x";
+-						function = "i2c2";
++						groups = "spdif_out_a19";
++						function = "spdif_out";
+ 					};
+ 				};
+ 
+-				i2c2_a_pins: i2c2_a {
++				spdif_out_a20_pins: spdif_out_a20 {
+ 					mux {
+-						groups = "i2c2_sck_a",
+-							"i2c2_sda_a";
+-						function = "i2c2";
++						groups = "spdif_out_a20";
++						function = "spdif_out";
+ 					};
+ 				};
+ 
+-				i2c3_a6_pins: i2c3_a6 {
++				spdif_out_z_pins: spdif_out_z {
+ 					mux {
+-						groups = "i2c3_sda_a6",
+-							"i2c3_sck_a7";
+-						function = "i2c3";
++						groups = "spdif_out_z";
++						function = "spdif_out";
+ 					};
+ 				};
+ 
+-				i2c3_a12_pins: i2c3_a12 {
++				spi0_pins: spi0 {
+ 					mux {
+-						groups = "i2c3_sda_a12",
+-							"i2c3_sck_a13";
+-						function = "i2c3";
++						groups = "spi0_miso",
++							 "spi0_mosi",
++							 "spi0_clk";
++						function = "spi0";
+ 					};
+ 				};
+ 
+-				i2c3_a19_pins: i2c3_a19 {
++				spi0_ss0_pins: spi0_ss0 {
+ 					mux {
+-						groups = "i2c3_sda_a19",
+-							"i2c3_sck_a20";
+-						function = "i2c3";
++						groups = "spi0_ss0";
++						function = "spi0";
+ 					};
+ 				};
+ 
+-				uart_a_pins: uart_a {
++				spi0_ss1_pins: spi0_ss1 {
+ 					mux {
+-						groups = "uart_tx_a",
+-							"uart_rx_a";
+-						function = "uart_a";
++						groups = "spi0_ss1";
++						function = "spi0";
+ 					};
+ 				};
+ 
+-				uart_a_cts_rts_pins: uart_a_cts_rts {
++				spi0_ss2_pins: spi0_ss2 {
+ 					mux {
+-						groups = "uart_cts_a",
+-							"uart_rts_a";
+-						function = "uart_a";
++						groups = "spi0_ss2";
++						function = "spi0";
+ 					};
+ 				};
+ 
+-				uart_b_x_pins: uart_b_x {
++				spi1_a_pins: spi1_a {
+ 					mux {
+-						groups = "uart_tx_b_x",
+-							"uart_rx_b_x";
+-						function = "uart_b";
++						groups = "spi1_miso_a",
++							 "spi1_mosi_a",
++							 "spi1_clk_a";
++						function = "spi1";
+ 					};
+ 				};
+ 
+-				uart_b_x_cts_rts_pins: uart_b_x_cts_rts {
++				spi1_ss0_a_pins: spi1_ss0_a {
+ 					mux {
+-						groups = "uart_cts_b_x",
+-							"uart_rts_b_x";
+-						function = "uart_b";
++						groups = "spi1_ss0_a";
++						function = "spi1";
+ 					};
+ 				};
+ 
+-				uart_b_z_pins: uart_b_z {
++				spi1_ss1_pins: spi1_ss1 {
+ 					mux {
+-						groups = "uart_tx_b_z",
+-							"uart_rx_b_z";
+-						function = "uart_b";
++						groups = "spi1_ss1";
++						function = "spi1";
+ 					};
+ 				};
+ 
+-				uart_b_z_cts_rts_pins: uart_b_z_cts_rts {
++				spi1_x_pins: spi1_x {
+ 					mux {
+-						groups = "uart_cts_b_z",
+-							"uart_rts_b_z";
+-						function = "uart_b";
++						groups = "spi1_miso_x",
++							 "spi1_mosi_x",
++							 "spi1_clk_x";
++						function = "spi1";
+ 					};
+ 				};
+ 
+-				uart_ao_b_z_pins: uart_ao_b_z {
++				spi1_ss0_x_pins: spi1_ss0_x {
+ 					mux {
+-						groups = "uart_ao_tx_b_z",
+-							"uart_ao_rx_b_z";
+-						function = "uart_ao_b_z";
++						groups = "spi1_ss0_x";
++						function = "spi1";
+ 					};
+ 				};
+ 
+-				uart_ao_b_z_cts_rts_pins: uart_ao_b_z_cts_rts {
++				tdma_din0_pins: tdma_din0 {
+ 					mux {
+-						groups = "uart_ao_cts_b_z",
+-							"uart_ao_rts_b_z";
+-						function = "uart_ao_b_z";
++						groups = "tdma_din0";
++						function = "tdma";
+ 					};
+ 				};
+ 
+-				mclk_b_pins: mclk_b {
++				tdma_dout0_x14_pins: tdma_dout0_x14 {
+ 					mux {
+-						groups = "mclk_b";
+-						function = "mclk_b";
++						groups = "tdma_dout0_x14";
++						function = "tdma";
+ 					};
+ 				};
+ 
+-				mclk_c_pins: mclk_c {
++				tdma_dout0_x15_pins: tdma_dout0_x15 {
+ 					mux {
+-						groups = "mclk_c";
+-						function = "mclk_c";
++						groups = "tdma_dout0_x15";
++						function = "tdma";
+ 					};
+ 				};
+ 
+-				tdma_sclk_pins: tdma_sclk {
++				tdma_dout1_pins: tdma_dout1 {
+ 					mux {
+-						groups = "tdma_sclk";
++						groups = "tdma_dout1";
+ 						function = "tdma";
+ 					};
+ 				};
+ 
+-				tdma_sclk_slv_pins: tdma_sclk_slv {
++				tdma_din1_pins: tdma_din1 {
+ 					mux {
+-						groups = "tdma_sclk_slv";
++						groups = "tdma_din1";
+ 						function = "tdma";
+ 					};
+ 				};
+@@ -1165,122 +696,115 @@
+ 					};
+ 				};
+ 
+-				tdma_din0_pins: tdma_din0 {
+-					mux {
+-						groups = "tdma_din0";
+-						function = "tdma";
+-					};
+-				};
+-
+-				tdma_dout0_x14_pins: tdma_dout0_x14 {
++				tdma_sclk_pins: tdma_sclk {
+ 					mux {
+-						groups = "tdma_dout0_x14";
++						groups = "tdma_sclk";
+ 						function = "tdma";
+ 					};
+ 				};
+ 
+-				tdma_dout0_x15_pins: tdma_dout0_x15 {
++				tdma_sclk_slv_pins: tdma_sclk_slv {
+ 					mux {
+-						groups = "tdma_dout0_x15";
++						groups = "tdma_sclk_slv";
+ 						function = "tdma";
+ 					};
+ 				};
+ 
+-				tdma_dout1_pins: tdma_dout1 {
++				tdmb_din0_pins: tdmb_din0 {
+ 					mux {
+-						groups = "tdma_dout1";
+-						function = "tdma";
++						groups = "tdmb_din0";
++						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdma_din1_pins: tdma_din1 {
++				tdmb_din1_pins: tdmb_din1 {
+ 					mux {
+-						groups = "tdma_din1";
+-						function = "tdma";
++						groups = "tdmb_din1";
++						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_sclk_pins: tdmb_sclk {
++				tdmb_din2_pins: tdmb_din2 {
+ 					mux {
+-						groups = "tdmb_sclk";
++						groups = "tdmb_din2";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_sclk_slv_pins: tdmb_sclk_slv {
++				tdmb_din3_pins: tdmb_din3 {
+ 					mux {
+-						groups = "tdmb_sclk_slv";
++						groups = "tdmb_din3";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_fs_pins: tdmb_fs {
++				tdmb_dout0_pins: tdmb_dout0 {
+ 					mux {
+-						groups = "tdmb_fs";
++						groups = "tdmb_dout0";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_fs_slv_pins: tdmb_fs_slv {
++				tdmb_dout1_pins: tdmb_dout1 {
+ 					mux {
+-						groups = "tdmb_fs_slv";
++						groups = "tdmb_dout1";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_din0_pins: tdmb_din0 {
++				tdmb_dout2_pins: tdmb_dout2 {
+ 					mux {
+-						groups = "tdmb_din0";
++						groups = "tdmb_dout2";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_dout0_pins: tdmb_dout0 {
++				tdmb_dout3_pins: tdmb_dout3 {
+ 					mux {
+-						groups = "tdmb_dout0";
++						groups = "tdmb_dout3";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_din1_pins: tdmb_din1 {
++				tdmb_fs_pins: tdmb_fs {
+ 					mux {
+-						groups = "tdmb_din1";
++						groups = "tdmb_fs";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_dout1_pins: tdmb_dout1 {
++				tdmb_fs_slv_pins: tdmb_fs_slv {
+ 					mux {
+-						groups = "tdmb_dout1";
++						groups = "tdmb_fs_slv";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_din2_pins: tdmb_din2 {
++				tdmb_sclk_pins: tdmb_sclk {
+ 					mux {
+-						groups = "tdmb_din2";
++						groups = "tdmb_sclk";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_dout2_pins: tdmb_dout2 {
++				tdmb_sclk_slv_pins: tdmb_sclk_slv {
+ 					mux {
+-						groups = "tdmb_dout2";
++						groups = "tdmb_sclk_slv";
+ 						function = "tdmb";
+ 					};
+ 				};
+ 
+-				tdmb_din3_pins: tdmb_din3 {
++				tdmc_fs_pins: tdmc_fs {
+ 					mux {
+-						groups = "tdmb_din3";
+-						function = "tdmb";
++						groups = "tdmc_fs";
++						function = "tdmc";
+ 					};
+ 				};
+ 
+-				tdmb_dout3_pins: tdmb_dout3 {
++				tdmc_fs_slv_pins: tdmc_fs_slv {
+ 					mux {
+-						groups = "tdmb_dout3";
+-						function = "tdmb";
++						groups = "tdmc_fs_slv";
++						function = "tdmc";
+ 					};
+ 				};
+ 
+@@ -1298,23 +822,30 @@
+ 					};
+ 				};
+ 
+-				tdmc_fs_pins: tdmc_fs {
++				tdmc_din0_pins: tdmc_din0 {
+ 					mux {
+-						groups = "tdmc_fs";
++						groups = "tdmc_din0";
+ 						function = "tdmc";
+ 					};
+ 				};
+ 
+-				tdmc_fs_slv_pins: tdmc_fs_slv {
++				tdmc_din1_pins: tdmc_din1 {
+ 					mux {
+-						groups = "tdmc_fs_slv";
++						groups = "tdmc_din1";
+ 						function = "tdmc";
+ 					};
+ 				};
+ 
+-				tdmc_din0_pins: tdmc_din0 {
++				tdmc_din2_pins: tdmc_din2 {
+ 					mux {
+-						groups = "tdmc_din0";
++						groups = "tdmc_din2";
++						function = "tdmc";
++					};
++				};
++
++				tdmc_din3_pins: tdmc_din3 {
++					mux {
++						groups = "tdmc_din3";
+ 						function = "tdmc";
+ 					};
+ 				};
+@@ -1326,65 +857,335 @@
+ 					};
+ 				};
+ 
+-				tdmc_din1_pins: tdmc_din1 {
++				tdmc_dout1_pins: tdmc_dout1 {
+ 					mux {
+-						groups = "tdmc_din1";
++						groups = "tdmc_dout1";
++						function = "tdmc";
++					};
++				};
++
++				tdmc_dout2_pins: tdmc_dout2 {
++					mux {
++						groups = "tdmc_dout2";
++						function = "tdmc";
++					};
++				};
++
++				tdmc_dout3_pins: tdmc_dout3 {
++					mux {
++						groups = "tdmc_dout3";
+ 						function = "tdmc";
+ 					};
+ 				};
+ 
+-				tdmc_dout1_pins: tdmc_dout1 {
++				uart_a_pins: uart_a {
++					mux {
++						groups = "uart_tx_a",
++							 "uart_rx_a";
++						function = "uart_a";
++					};
++				};
++
++				uart_a_cts_rts_pins: uart_a_cts_rts {
++					mux {
++						groups = "uart_cts_a",
++							 "uart_rts_a";
++						function = "uart_a";
++					};
++				};
++
++				uart_b_x_pins: uart_b_x {
++					mux {
++						groups = "uart_tx_b_x",
++							 "uart_rx_b_x";
++						function = "uart_b";
++					};
++				};
++
++				uart_b_x_cts_rts_pins: uart_b_x_cts_rts {
+ 					mux {
+-						groups = "tdmc_dout1";
+-						function = "tdmc";
++						groups = "uart_cts_b_x",
++							 "uart_rts_b_x";
++						function = "uart_b";
+ 					};
+ 				};
+ 
+-				tdmc_din2_pins: tdmc_din2 {
++				uart_b_z_pins: uart_b_z {
+ 					mux {
+-						groups = "tdmc_din2";
+-						function = "tdmc";
++						groups = "uart_tx_b_z",
++							 "uart_rx_b_z";
++						function = "uart_b";
+ 					};
+ 				};
+ 
+-				tdmc_dout2_pins: tdmc_dout2 {
++				uart_b_z_cts_rts_pins: uart_b_z_cts_rts {
+ 					mux {
+-						groups = "tdmc_dout2";
+-						function = "tdmc";
++						groups = "uart_cts_b_z",
++							 "uart_rts_b_z";
++						function = "uart_b";
+ 					};
+ 				};
+ 
+-				tdmc_din3_pins: tdmc_din3 {
++				uart_ao_b_z_pins: uart_ao_b_z {
+ 					mux {
+-						groups = "tdmc_din3";
+-						function = "tdmc";
++						groups = "uart_ao_tx_b_z",
++							 "uart_ao_rx_b_z";
++						function = "uart_ao_b_z";
+ 					};
+ 				};
+ 
+-				tdmc_dout3_pins: tdmc_dout3 {
++				uart_ao_b_z_cts_rts_pins: uart_ao_b_z_cts_rts {
+ 					mux {
+-						groups = "tdmc_dout3";
+-						function = "tdmc";
++						groups = "uart_ao_cts_b_z",
++							 "uart_ao_rts_b_z";
++						function = "uart_ao_b_z";
+ 					};
+ 				};
+ 			};
+ 		};
+ 
+-		sram: sram at fffc0000 {
+-			compatible = "amlogic,meson-axg-sram", "mmio-sram";
+-			reg = <0x0 0xfffc0000 0x0 0x20000>;
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-			ranges = <0 0x0 0xfffc0000 0x20000>;
++		hiubus: bus at ff63c000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xff63c000 0x0 0x1c00>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+ 
+-			cpu_scp_lpri: scp-shmem at 0 {
+-				compatible = "amlogic,meson-axg-scp-shmem";
+-				reg = <0x13000 0x400>;
++			sysctrl: system-controller at 0 {
++				compatible = "amlogic,meson-axg-hhi-sysctrl",
++					     "syscon", "simple-mfd";
++				reg = <0 0 0 0x400>;
++
++				clkc: clock-controller {
++					compatible = "amlogic,axg-clkc";
++					#clock-cells = <1>;
++				};
++			};
++		};
++
++		mailbox: mailbox at ff63dc00 {
++			compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
++			reg = <0 0xff63dc00 0 0x400>;
++			interrupts = <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>;
++			#mbox-cells = <1>;
++		};
++
++		audio: bus at ff642000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xff642000 0x0 0x2000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xff642000 0x0 0x2000>;
++
++			clkc_audio: clock-controller at 0 {
++				compatible = "amlogic,axg-audio-clkc";
++				reg = <0x0 0x0 0x0 0xb4>;
++				#clock-cells = <1>;
++
++				clocks = <&clkc CLKID_AUDIO>,
++					 <&clkc CLKID_MPLL0>,
++					 <&clkc CLKID_MPLL1>,
++					 <&clkc CLKID_MPLL2>,
++					 <&clkc CLKID_MPLL3>,
++					 <&clkc CLKID_HIFI_PLL>,
++					 <&clkc CLKID_FCLK_DIV3>,
++					 <&clkc CLKID_FCLK_DIV4>,
++					 <&clkc CLKID_GP0_PLL>;
++				clock-names = "pclk",
++					      "mst_in0",
++					      "mst_in1",
++					      "mst_in2",
++					      "mst_in3",
++					      "mst_in4",
++					      "mst_in5",
++					      "mst_in6",
++					      "mst_in7";
++
++				resets = <&reset RESET_AUDIO>;
++			};
++
++			toddr_a: audio-controller at 100 {
++				compatible = "amlogic,axg-toddr";
++				reg = <0x0 0x100 0x0 0x1c>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "TODDR_A";
++				interrupts = <GIC_SPI 84 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
++				resets = <&arb AXG_ARB_TODDR_A>;
++				status = "disabled";
++			};
++
++			toddr_b: audio-controller at 140 {
++				compatible = "amlogic,axg-toddr";
++				reg = <0x0 0x140 0x0 0x1c>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "TODDR_B";
++				interrupts = <GIC_SPI 85 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
++				resets = <&arb AXG_ARB_TODDR_B>;
++				status = "disabled";
++			};
++
++			toddr_c: audio-controller at 180 {
++				compatible = "amlogic,axg-toddr";
++				reg = <0x0 0x180 0x0 0x1c>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "TODDR_C";
++				interrupts = <GIC_SPI 86 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
++				resets = <&arb AXG_ARB_TODDR_C>;
++				status = "disabled";
++			};
++
++			frddr_a: audio-controller at 1c0 {
++				compatible = "amlogic,axg-frddr";
++				reg = <0x0 0x1c0 0x0 0x1c>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "FRDDR_A";
++				interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
++				resets = <&arb AXG_ARB_FRDDR_A>;
++				status = "disabled";
++			};
++
++			frddr_b: audio-controller at 200 {
++				compatible = "amlogic,axg-frddr";
++				reg = <0x0 0x200 0x0 0x1c>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "FRDDR_B";
++				interrupts = <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
++				resets = <&arb AXG_ARB_FRDDR_B>;
++				status = "disabled";
++			};
++
++			frddr_c: audio-controller at 240 {
++				compatible = "amlogic,axg-frddr";
++				reg = <0x0 0x240 0x0 0x1c>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "FRDDR_C";
++				interrupts = <GIC_SPI 90 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
++				resets = <&arb AXG_ARB_FRDDR_C>;
++				status = "disabled";
++			};
++
++			arb: reset-controller at 280 {
++				compatible = "amlogic,meson-axg-audio-arb";
++				reg = <0x0 0x280 0x0 0x4>;
++				#reset-cells = <1>;
++				clocks = <&clkc_audio AUD_CLKID_DDR_ARB>;
++			};
++
++			tdmin_a: audio-controller at 300 {
++				compatible = "amlogic,axg-tdmin";
++				reg = <0x0 0x300 0x0 0x40>;
++				sound-name-prefix = "TDMIN_A";
++				clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
++					 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
++					 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>;
++				clock-names = "pclk", "sclk", "sclk_sel",
++					      "lrclk", "lrclk_sel";
++				status = "disabled";
++			};
++
++			tdmin_b: audio-controller at 340 {
++				compatible = "amlogic,axg-tdmin";
++				reg = <0x0 0x340 0x0 0x40>;
++				sound-name-prefix = "TDMIN_B";
++				clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
++					 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
++					 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>;
++				clock-names = "pclk", "sclk", "sclk_sel",
++					      "lrclk", "lrclk_sel";
++				status = "disabled";
++			};
++
++			tdmin_c: audio-controller at 380 {
++				compatible = "amlogic,axg-tdmin";
++				reg = <0x0 0x380 0x0 0x40>;
++				sound-name-prefix = "TDMIN_C";
++				clocks = <&clkc_audio AUD_CLKID_TDMIN_C>,
++					 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK_SEL>,
++					 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>;
++				clock-names = "pclk", "sclk", "sclk_sel",
++					      "lrclk", "lrclk_sel";
++				status = "disabled";
++			};
++
++			tdmin_lb: audio-controller at 3c0 {
++				compatible = "amlogic,axg-tdmin";
++				reg = <0x0 0x3c0 0x0 0x40>;
++				sound-name-prefix = "TDMIN_LB";
++				clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
++					 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
++					 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>,
++					 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>;
++				clock-names = "pclk", "sclk", "sclk_sel",
++					      "lrclk", "lrclk_sel";
++				status = "disabled";
++			};
++
++			spdifout: audio-controller at 480 {
++				compatible = "amlogic,axg-spdifout";
++				reg = <0x0 0x480 0x0 0x50>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "SPDIFOUT";
++				clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
++					 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
++				clock-names = "pclk", "mclk";
++				status = "disabled";
++			};
++
++			tdmout_a: audio-controller at 500 {
++				compatible = "amlogic,axg-tdmout";
++				reg = <0x0 0x500 0x0 0x40>;
++				sound-name-prefix = "TDMOUT_A";
++				clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
++				clock-names = "pclk", "sclk", "sclk_sel",
++					      "lrclk", "lrclk_sel";
++				status = "disabled";
++			};
++
++			tdmout_b: audio-controller at 540 {
++				compatible = "amlogic,axg-tdmout";
++				reg = <0x0 0x540 0x0 0x40>;
++				sound-name-prefix = "TDMOUT_B";
++				clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>;
++				clock-names = "pclk", "sclk", "sclk_sel",
++					      "lrclk", "lrclk_sel";
++				status = "disabled";
+ 			};
+ 
+-			cpu_scp_hpri: scp-shmem at 200 {
+-				compatible = "amlogic,meson-axg-scp-shmem";
+-				reg = <0x13400 0x400>;
++			tdmout_c: audio-controller at 580 {
++				compatible = "amlogic,axg-tdmout";
++				reg = <0x0 0x580 0x0 0x40>;
++				sound-name-prefix = "TDMOUT_C";
++				clocks = <&clkc_audio AUD_CLKID_TDMOUT_C>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK_SEL>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>,
++					 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>;
++				clock-names = "pclk", "sclk", "sclk_sel",
++					      "lrclk", "lrclk_sel";
++				status = "disabled";
+ 			};
+ 		};
+ 
+@@ -1414,8 +1215,8 @@
+ 
+ 				gpio_ao: bank at 14 {
+ 					reg = <0x0 0x00014 0x0 0x8>,
+-						<0x0 0x0002c 0x0 0x4>,
+-						<0x0 0x00024 0x0 0x8>;
++					      <0x0 0x0002c 0x0 0x4>,
++					      <0x0 0x00024 0x0 0x8>;
+ 					reg-names = "mux", "pull", "gpio";
+ 					gpio-controller;
+ 					#gpio-cells = <2>;
+@@ -1474,7 +1275,7 @@
+ 				uart_ao_a_pins: uart_ao_a {
+ 					mux {
+ 						groups = "uart_ao_tx_a",
+-							"uart_ao_rx_a";
++							 "uart_ao_rx_a";
+ 						function = "uart_ao_a";
+ 					};
+ 				};
+@@ -1482,7 +1283,7 @@
+ 				uart_ao_a_cts_rts_pins: uart_ao_a_cts_rts {
+ 					mux {
+ 						groups = "uart_ao_cts_a",
+-							"uart_ao_rts_a";
++							 "uart_ao_rts_a";
+ 						function = "uart_ao_a";
+ 					};
+ 				};
+@@ -1490,7 +1291,7 @@
+ 				uart_ao_b_pins: uart_ao_b {
+ 					mux {
+ 						groups = "uart_ao_tx_b",
+-							"uart_ao_rx_b";
++							 "uart_ao_rx_b";
+ 						function = "uart_ao_b";
+ 					};
+ 				};
+@@ -1498,7 +1299,7 @@
+ 				uart_ao_b_cts_rts_pins: uart_ao_b_cts_rts {
+ 					mux {
+ 						groups = "uart_ao_cts_b",
+-							"uart_ao_rts_b";
++							 "uart_ao_rts_b";
+ 						function = "uart_ao_b";
+ 					};
+ 				};
+@@ -1510,13 +1311,6 @@
+ 				amlogic,has-chip-id;
+ 			};
+ 
+-			pwm_AO_ab: pwm at 7000 {
+-				compatible = "amlogic,meson-axg-ao-pwm";
+-				reg = <0x0 0x07000 0x0 0x20>;
+-				#pwm-cells = <3>;
+-				status = "disabled";
+-			};
+-
+ 			pwm_AO_cd: pwm at 2000 {
+ 				compatible = "amlogic,meson-axg-ao-pwm";
+ 				reg = <0x0 0x02000  0x0 0x20>;
+@@ -1524,16 +1318,6 @@
+ 				status = "disabled";
+ 			};
+ 
+-			i2c_AO: i2c at 5000 {
+-				compatible = "amlogic,meson-axg-i2c";
+-				reg = <0x0 0x05000 0x0 0x20>;
+-				interrupts = <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>;
+-				clocks = <&clkc CLKID_AO_I2C>;
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				status = "disabled";
+-			};
+-
+ 			uart_AO: serial at 3000 {
+ 				compatible = "amlogic,meson-gx-uart", "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x3000 0x0 0x18>;
+@@ -1552,6 +1336,23 @@
+ 				status = "disabled";
+ 			};
+ 
++			i2c_AO: i2c at 5000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x05000 0x0 0x20>;
++				interrupts = <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_AO_I2C>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			pwm_AO_ab: pwm at 7000 {
++				compatible = "amlogic,meson-axg-ao-pwm";
++				reg = <0x0 0x07000 0x0 0x20>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
++
+ 			ir: ir at 8000 {
+ 				compatible = "amlogic,meson-gxbb-ir";
+ 				reg = <0x0 0x8000 0x0 0x20>;
+@@ -1566,12 +1367,211 @@
+ 				#io-channel-cells = <1>;
+ 				interrupts = <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&xtal>,
+-					<&clkc_AO CLKID_AO_SAR_ADC>,
+-					<&clkc_AO CLKID_AO_SAR_ADC_CLK>,
+-					<&clkc_AO CLKID_AO_SAR_ADC_SEL>;
++					 <&clkc_AO CLKID_AO_SAR_ADC>,
++					 <&clkc_AO CLKID_AO_SAR_ADC_CLK>,
++					 <&clkc_AO CLKID_AO_SAR_ADC_SEL>;
+ 				clock-names = "clkin", "core", "adc_clk", "adc_sel";
+ 				status = "disabled";
+ 			};
+ 		};
++
++		gic: interrupt-controller at ffc01000 {
++			compatible = "arm,gic-400";
++			reg = <0x0 0xffc01000 0 0x1000>,
++			      <0x0 0xffc02000 0 0x2000>,
++			      <0x0 0xffc04000 0 0x2000>,
++			      <0x0 0xffc06000 0 0x2000>;
++			interrupt-controller;
++			interrupts = <GIC_PPI 9
++				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++		};
++
++		cbus: bus at ffd00000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xffd00000 0x0 0x25000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x25000>;
++
++			reset: reset-controller at 1004 {
++				compatible = "amlogic,meson-axg-reset";
++				reg = <0x0 0x01004 0x0 0x9c>;
++				#reset-cells = <1>;
++			};
++
++			gpio_intc: interrupt-controller at f080 {
++				compatible = "amlogic,meson-gpio-intc";
++				reg = <0x0 0xf080 0x0 0x10>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts = <64 65 66 67 68 69 70 71>;
++				status = "disabled";
++			};
++
++			pwm_ab: pwm at 1b000 {
++				compatible = "amlogic,meson-axg-ee-pwm";
++				reg = <0x0 0x1b000 0x0 0x20>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
++
++			pwm_cd: pwm at 1a000 {
++				compatible = "amlogic,meson-axg-ee-pwm";
++				reg = <0x0 0x1a000 0x0 0x20>;
++				#pwm-cells = <3>;
++				status = "disabled";
++			};
++
++			spicc0: spi at 13000 {
++				compatible = "amlogic,meson-axg-spicc";
++				reg = <0x0 0x13000 0x0 0x3c>;
++				interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc CLKID_SPICC0>;
++				clock-names = "core";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			spicc1: spi at 15000 {
++				compatible = "amlogic,meson-axg-spicc";
++				reg = <0x0 0x15000 0x0 0x3c>;
++				interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clkc CLKID_SPICC1>;
++				clock-names = "core";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c3: i2c at 1c000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x1c000 0x0 0x20>;
++				interrupts = <GIC_SPI 39 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_I2C>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c2: i2c at 1d000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x1d000 0x0 0x20>;
++				interrupts = <GIC_SPI 215 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_I2C>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c1: i2c at 1e000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x1e000 0x0 0x20>;
++				interrupts = <GIC_SPI 214 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_I2C>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			i2c0: i2c at 1f000 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x1f000 0x0 0x20>;
++				interrupts = <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_I2C>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++			};
++
++			uart_B: serial at 23000 {
++				compatible = "amlogic,meson-gx-uart";
++				reg = <0x0 0x23000 0x0 0x18>;
++				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++			};
++
++			uart_A: serial at 24000 {
++				compatible = "amlogic,meson-gx-uart";
++				reg = <0x0 0x24000 0x0 0x18>;
++				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++			};
++		};
++
++		apb: bus at ffe00000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xffe00000 0x0 0x200000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xffe00000 0x0 0x200000>;
++
++			sd_emmc_b: sd at 5000 {
++				compatible = "amlogic,meson-axg-mmc";
++				reg = <0x0 0x5000 0x0 0x800>;
++				interrupts = <GIC_SPI 217 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&clkc CLKID_SD_EMMC_B>,
++					<&clkc CLKID_SD_EMMC_B_CLK0>,
++					<&clkc CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				resets = <&reset RESET_SD_EMMC_B>;
++			};
++
++			sd_emmc_c: mmc at 7000 {
++				compatible = "amlogic,meson-axg-mmc";
++				reg = <0x0 0x7000 0x0 0x800>;
++				interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&clkc CLKID_SD_EMMC_C>,
++					<&clkc CLKID_SD_EMMC_C_CLK0>,
++					<&clkc CLKID_FCLK_DIV2>;
++				clock-names = "core", "clkin0", "clkin1";
++				resets = <&reset RESET_SD_EMMC_C>;
++			};
++		};
++
++		sram: sram at fffc0000 {
++			compatible = "amlogic,meson-axg-sram", "mmio-sram";
++			reg = <0x0 0xfffc0000 0x0 0x20000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0 0x0 0xfffc0000 0x20000>;
++
++			cpu_scp_lpri: scp-shmem at 0 {
++				compatible = "amlogic,meson-axg-scp-shmem";
++				reg = <0x13000 0x400>;
++			};
++
++			cpu_scp_hpri: scp-shmem at 200 {
++				compatible = "amlogic,meson-axg-scp-shmem";
++				reg = <0x13400 0x400>;
++			};
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13
++			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14
++			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11
++			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10
++			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	xtal: xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal";
++		#clock-cells = <0>;
+ 	};
+ };
 -- 
 2.17.1
