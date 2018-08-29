@@ -1,49 +1,40 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 29 Aug 2018 17:00:50 +0200
-Subject: [PATCH 3/4] ASoC: meson: add axg pdm input DT binding documentation
+Date: Wed, 29 Aug 2018 17:00:49 +0200
+Subject: [PATCH 2/4] ASoC: dmic: add DT module alias
 In-Reply-To: <20180829150051.18190-1-jbrunet@baylibre.com>
 References: <20180829150051.18190-1-jbrunet@baylibre.com>
-Message-ID: <20180829150051.18190-4-jbrunet@baylibre.com>
+Message-ID: <20180829150051.18190-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the DT binding documentation for axg's PDM input
+Before this patch the only alias provided by the dmic module is:
+alias:          platform:dmic-codec
+
+Device instantiated from DT will not probe automatically with this
+
+After this patch, here is the new alias list:
+alias:          platform:dmic-codec
+alias:          of:N*T*Cdmic-codecC*
+alias:          of:N*T*Cdmic-codec
+
+Now the dmic codec probes automatically when instantiated from DT.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../bindings/sound/amlogic,axg-pdm.txt        | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
+ sound/soc/codecs/dmic.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-new file mode 100644
-index 000000000000..5672d0bc5b16
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-@@ -0,0 +1,24 @@
-+* Amlogic Audio PDM input
-+
-+Required properties:
-+- compatible: 'amlogic,axg-pdm'
-+- reg: physical base address of the controller and length of memory
-+       mapped region.
-+- clocks: list of clock phandle, one for each entry clock-names.
-+- clock-names: should contain the following:
-+  * "pclk"   : peripheral clock.
-+  * "dclk"   : pdm digital clock
-+  * "sysclk" : dsp system clock
-+- #sound-dai-cells: must be 0.
-+
-+Example of PDM on the A113 SoC:
-+
-+pdm: audio-controller at ff632000 {
-+	compatible = "amlogic,axg-pdm";
-+	reg = <0x0 0xff632000 0x0 0x34>;
-+	#sound-dai-cells = <0>;
-+	clocks = <&clkc_audio AUD_CLKID_PDM>,
-+		 <&clkc_audio AUD_CLKID_PDM_DCLK>,
-+		 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
-+	clock-names = "pclk", "dclk", "sysclk";
-+};
+diff --git a/sound/soc/codecs/dmic.c b/sound/soc/codecs/dmic.c
+index 8c4926df9286..71322e0410ee 100644
+--- a/sound/soc/codecs/dmic.c
++++ b/sound/soc/codecs/dmic.c
+@@ -148,6 +148,7 @@ static const struct of_device_id dmic_dev_match[] = {
+ 	{.compatible = "dmic-codec"},
+ 	{}
+ };
++MODULE_DEVICE_TABLE(of, dmic_dev_match);
+ 
+ static struct platform_driver dmic_driver = {
+ 	.driver = {
 -- 
 2.17.1
