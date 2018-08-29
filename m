@@ -1,49 +1,75 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 29 Aug 2018 08:50:03 -0700
-Subject: [GIT PULL] Amlogic fixes for v4.19-rc
-Message-ID: <7hk1o9895g.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Wed, 29 Aug 2018 17:57:43 +0200
+Subject: [PATCH v2 2/2] PCI: meson: add the Amlogic Meson PCIe phy driver
+In-Reply-To: <1535096006-152091-3-git-send-email-hanjie.lin@amlogic.com>
+References: <1535096006-152091-1-git-send-email-hanjie.lin@amlogic.com>
+ <1535096006-152091-3-git-send-email-hanjie.lin@amlogic.com>
+Message-ID: <c21a2e25c934d19f913f625542f505cf45754f23.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Olof, Arnd,
+On Fri, 2018-08-24 at 15:33 +0800, Hanjie Lin wrote:
+> +static int meson_pcie_phy_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct meson_pcie_phy *mphy;
+> +       struct meson_pcie_reset *mrst;
+> +       struct phy *generic_phy;
+> +       struct phy_provider *phy_provider;
+> +       struct resource *res;
+> +       const struct meson_pcie_phy_data *data;
+> +
+> +       data = of_device_get_match_data(dev);
+> +       if (!data)
+> +               return -ENODEV;
+> +
+> +       mphy = devm_kzalloc(dev, sizeof(*mphy), GFP_KERNEL);
+> +       if (!mphy)
+> +               return -ENOMEM;
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       mphy->phy_base = devm_ioremap_resource(dev, res);
+> +       if (IS_ERR(mphy->phy_base))
+> +               return PTR_ERR(mphy->phy_base);
+> +
+> +       mrst = &mphy->reset;
+> +
+> +       mrst->phy = devm_reset_control_get_shared(dev, "phy");
 
-A round of DT fixes for Amlogic SoCs for v4.19-rc.
+I thought you said there was only phy on this platform.
+If that's the case, what is this reset shared with ?
 
-The are all platform-specific DT, 2 are simple fixes, and the 3
-meson-axg patches are to enable audio devices that were fully enabled by
-reset changes in the late PR recently sent and merged.
+> +       if (IS_ERR(mrst->phy)) {
+> +               if (PTR_ERR(mrst->phy) != -EPROBE_DEFER)
+> +                       dev_err(dev, "couldn't get phy reset\n");
+> +
+> +               return PTR_ERR(mrst->phy);
+> +       }
+> +
+> +       reset_control_deassert(mrst->phy);
 
-Kevin
+Is it really necessary before init() is called by the consumer ?
 
-The following changes since commit 5b394b2ddf0347bef56e50c69a58773c94343ff3:
-
-  Linux 4.19-rc1 (2018-08-26 14:11:59 -0700)
-
-are available in the git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
-
-for you to fetch changes up to 1caa378e092f22d02e8a46216cbf1c8e8101163a:
-
-  ARM: dts: meson8b: fix the clock controller register size (2018-08-29 08:38:21 -0700)
-
-----------------------------------------------------------------
-Amlogic DT fixes for v4.19-rc
-- meson8b: fix clock controller register sizes
-- AXG/s400: enable audio devices
-
-----------------------------------------------------------------
-Jerome Brunet (3):
-      arm64: dts: meson-axg: add audio fifos
-      arm64: dts: meson-axg: s400: enable audio devices
-      arm64: dts: meson-axg: s400: add sound card
-
-Martin Blumenstingl (2):
-      ARM: dts: meson8: fix the clock controller register size
-      ARM: dts: meson8b: fix the clock controller register size
-
- arch/arm/boot/dts/meson8.dtsi                  |   2 +-
- arch/arm/boot/dts/meson8b.dtsi                 |   2 +-
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 180 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi     |  67 ++++++++++++++++++++++++++
- 4 files changed, 249 insertions(+), 2 deletions(-)
+> +
+> +       mphy->data = data;
+> +
+> +       generic_phy = devm_phy_create(dev, dev->of_node, mphy->data->ops);
+> +       if (IS_ERR(generic_phy)) {
+> +               if (PTR_ERR(generic_phy) != -EPROBE_DEFER)
+> +                       dev_err(dev, "failed to create PHY\n");
+> +
+> +               return PTR_ERR(generic_phy);
+> +       }
+> +
+> +       phy_set_drvdata(generic_phy, mphy);
+> +       phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +
+> +       return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static struct platform_driver meson_pcie_phy_driver = {
+> +       .probe  = meson_pcie_phy_probe,
+> +       .driver = {
+> +               .of_match_table = meson_pcie_phy_match,
+> +               .name           = "meson-pcie-phy",
+> +       }
+> +};
