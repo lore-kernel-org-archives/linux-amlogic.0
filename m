@@ -1,23 +1,28 @@
 From: robh@kernel.org (Rob Herring)
-Date: Tue, 28 Aug 2018 17:39:13 -0500
-Subject: [PATCH v3 1/3] dt-bindings: soc: amlogic: add meson-canvas
- documentation
-In-Reply-To: <20180823114954.30704-2-mjourdan@baylibre.com>
-References: <20180823114954.30704-1-mjourdan@baylibre.com>
- <20180823114954.30704-2-mjourdan@baylibre.com>
-Message-ID: <20180828223913.GA24233@bogus>
+Date: Tue, 28 Aug 2018 19:37:22 -0500
+Subject: [PATCH v2 1/2] dt-bindings: phy: add DT bindings for Amlogic
+ Meson PCIe Phy controller
+In-Reply-To: <1535096006-152091-2-git-send-email-hanjie.lin@amlogic.com>
+References: <1535096006-152091-1-git-send-email-hanjie.lin@amlogic.com>
+ <1535096006-152091-2-git-send-email-hanjie.lin@amlogic.com>
+Message-ID: <20180829003722.GA25763@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 23 Aug 2018 13:49:52 +0200, Maxime Jourdan wrote:
-> DT bindings doc for amlogic,meson-canvas
+On Fri, 24 Aug 2018 15:33:25 +0800, Hanjie Lin wrote:
+> From: Yue Wang <yue.wang@amlogic.com>
 > 
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> The Meson-PCIE-PHY controller supports the 5-Gbps data rate
+> of the PCI Express Gen 2 specification and is backward compatible
+> with the 2.5-Gbps Gen 1.1 specification with only
+> inferred idle detection supported on Amlogic SoCs.
+> 
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 > ---
->  .../bindings/soc/amlogic/amlogic,canvas.txt   | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.txt
+>  .../bindings/phy/amlogic,meson-pcie-phy.txt         | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-pcie-phy.txt
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
