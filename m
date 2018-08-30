@@ -1,110 +1,41 @@
 From: hanjie.lin@amlogic.com (Hanjie Lin)
-Date: Thu, 30 Aug 2018 16:02:53 +0800
-Subject: [PATCH v2 2/2] PCI: meson: add the Amlogic Meson PCIe phy driver
-In-Reply-To: <c21a2e25c934d19f913f625542f505cf45754f23.camel@baylibre.com>
-References: <1535096006-152091-1-git-send-email-hanjie.lin@amlogic.com>
- <1535096006-152091-3-git-send-email-hanjie.lin@amlogic.com>
- <c21a2e25c934d19f913f625542f505cf45754f23.camel@baylibre.com>
-Message-ID: <b8deb2ef-5e73-b508-616e-b0303a0adc78@amlogic.com>
+Date: Thu, 30 Aug 2018 16:13:47 +0800
+Subject: [PATCH v3 0/2] add the Amlogic Meson PCIe controller driver
+Message-ID: <1535616829-167936-1-git-send-email-hanjie.lin@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+PCI core. This patchset add the driver and dt-bindings of the controller.
 
+Till patch v2, we have a dedicated phy driver which only process reset job.
+It's too overkill so we integrate phy driver into the controller.
 
-On 2018/8/29 23:57, Jerome Brunet wrote:
-> On Fri, 2018-08-24 at 15:33 +0800, Hanjie Lin wrote:
->> +static int meson_pcie_phy_probe(struct platform_device *pdev)
->> +{
->> +       struct device *dev = &pdev->dev;
->> +       struct meson_pcie_phy *mphy;
->> +       struct meson_pcie_reset *mrst;
->> +       struct phy *generic_phy;
->> +       struct phy_provider *phy_provider;
->> +       struct resource *res;
->> +       const struct meson_pcie_phy_data *data;
->> +
->> +       data = of_device_get_match_data(dev);
->> +       if (!data)
->> +               return -ENODEV;
->> +
->> +       mphy = devm_kzalloc(dev, sizeof(*mphy), GFP_KERNEL);
->> +       if (!mphy)
->> +               return -ENOMEM;
->> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +       mphy->phy_base = devm_ioremap_resource(dev, res);
->> +       if (IS_ERR(mphy->phy_base))
->> +               return PTR_ERR(mphy->phy_base);
->> +
->> +       mrst = &mphy->reset;
->> +
->> +       mrst->phy = devm_reset_control_get_shared(dev, "phy");
-> 
-> I thought you said there was only phy on this platform.
-> If that's the case, what is this reset shared with ?
+Changes since v2: [1]
+ - abandon phy driver, move reset to the controller
+ - use devm_add_action_or_reset() to use clock res
+ - format correcting
 
-Amlogic axg soc includes two pcie controllers and they share the same pcie phy.
-Because of two pcie controllers, meson_pcie_phy_probe() will be called two times.
-So, the phy reset must be shared.
+Changes since v1: [0]
+ - use gpio lib instead open code 
+ - move 'apb' and 'port' reset from phy driver
+ - format correcting
 
-> 
->> +       if (IS_ERR(mrst->phy)) {
->> +               if (PTR_ERR(mrst->phy) != -EPROBE_DEFER)
->> +                       dev_err(dev, "couldn't get phy reset\n");
->> +
->> +               return PTR_ERR(mrst->phy);
->> +       }
->> +
->> +       reset_control_deassert(mrst->phy);
-> 
-> Is it really necessary before init() is called by the consumer ?
-> 
+[0] :  https://lkml.kernel.org/r/1534227522-186798-1-git-send-email-hanjie.lin at amlogic.com
+[1] :  https://lkml.kernel.org/r/1535096165-45827-1-git-send-email-hanjie.lin at amlogic.com 
 
-For shared reset we must deassert first before do assert,
-currently if we don't do this deassert, we will get the below warning when
-controller driver do the share reset.
+Yue Wang (2):
+  dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe
+    controller
+  PCI: meson: add the Amlogic Meson PCIe controller driver
 
-int reset_control_assert(struct reset_control *rstc)
-{
-...
-	if (rstc->shared) {
-		if (WARN_ON(atomic_read(&rstc->deassert_count) == 0))
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 +++
+ drivers/pci/controller/dwc/Kconfig                 |  12 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pci-meson.c             | 617 +++++++++++++++++++++
+ 4 files changed, 700 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+ create mode 100644 drivers/pci/controller/dwc/pci-meson.c
 
-
-
-
->> +
->> +       mphy->data = data;
->> +
->> +       generic_phy = devm_phy_create(dev, dev->of_node, mphy->data->ops);
->> +       if (IS_ERR(generic_phy)) {
->> +               if (PTR_ERR(generic_phy) != -EPROBE_DEFER)
->> +                       dev_err(dev, "failed to create PHY\n");
->> +
->> +               return PTR_ERR(generic_phy);
->> +       }
->> +
->> +       phy_set_drvdata(generic_phy, mphy);
->> +       phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
->> +
->> +       return PTR_ERR_OR_ZERO(phy_provider);
->> +}
->> +
->> +static struct platform_driver meson_pcie_phy_driver = {
->> +       .probe  = meson_pcie_phy_probe,
->> +       .driver = {
->> +               .of_match_table = meson_pcie_phy_match,
->> +               .name           = "meson-pcie-phy",
->> +       }
->> +};
-> 
-> 
-> .
-> 
-
-Thanks for the review.
-
-As described during the discussion [0], we consider it's too overkill to
-have a dedicated phy driver which only process reset line. So we will abandon phy driver 
-and integrate phy reset into the controller driver int the next version. 
-
-[0] https://lkml.kernel.org/r/1535096165-45827-1-git-send-email-hanjie.lin at amlogic.
+-- 
+2.7.4
