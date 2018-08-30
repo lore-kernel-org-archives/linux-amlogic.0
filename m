@@ -1,54 +1,91 @@
-From: davem@davemloft.net (David Miller)
-Date: Wed, 29 Aug 2018 18:03:51 -0700 (PDT)
-Subject: [PATCH] Revert "net: stmmac: Do not keep rearming the coalesce
- timer in stmmac_xmit"
-In-Reply-To: <20180824090440.13411-1-jbrunet@baylibre.com>
-References: <20180824090440.13411-1-jbrunet@baylibre.com>
-Message-ID: <20180829.180351.2286550022392793882.davem@davemloft.net>
+From: hanjie.lin@amlogic.com (Hanjie Lin)
+Date: Thu, 30 Aug 2018 15:37:30 +0800
+Subject: [PATCH v2 1/2] dt-bindings: PCI: meson: add DT bindings for
+ Amlogic Meson PCIe controller
+In-Reply-To: <20180829004122.GA25928@bogus>
+References: <1535096165-45827-1-git-send-email-hanjie.lin@amlogic.com>
+ <1535096165-45827-2-git-send-email-hanjie.lin@amlogic.com>
+ <8c48964151d24758298ba935da336c0829e2b287.camel@baylibre.com>
+ <11d7547b-feb4-6ecb-cef3-db46ce8ee2ef@amlogic.com>
+ <20180829004122.GA25928@bogus>
+Message-ID: <84d5399c-67d4-f8a4-3613-00d91f21292f@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Fri, 24 Aug 2018 11:04:40 +0200
 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index ff1ffb46198a..9f458bb16f2a 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -3147,16 +3147,13 @@ static netdev_tx_t stmmac_xmit(struct sk_buff *skb, struct net_device *dev)
->  	 * element in case of no SG.
->  	 */
->  	priv->tx_count_frames += nfrags + 1;
-> -	if (likely(priv->tx_coal_frames > priv->tx_count_frames) &&
-> -	    !priv->tx_timer_armed) {
-> +	if (likely(priv->tx_coal_frames > priv->tx_count_frames)) {
->  		mod_timer(&priv->txtimer,
->  			  STMMAC_COAL_TIMER(priv->tx_coal_timer));
-> -		priv->tx_timer_armed = true;
->  	} else {
->  		priv->tx_count_frames = 0;
->  		stmmac_set_tx_ic(priv, desc);
->  		priv->xstats.tx_set_ic_bit++;
-> -		priv->tx_timer_armed = false;
->  	}
->  
 
-I think we should definitely revert this because it is racey on so many
-different levels.
+On 2018/8/29 8:41, Rob Herring wrote:
+> On Mon, Aug 27, 2018 at 04:55:20PM +0800, Hanjie Lin wrote:
+>>
+>>
+>> On 2018/8/24 16:22, Jerome Brunet wrote:
+>>> On Fri, 2018-08-24 at 15:36 +0800, Hanjie Lin wrote:
+>>>> From: Yue Wang <yue.wang@amlogic.com>
+>>>>
+>>>> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+>>>> PCI core. This patch adds documentation for the DT bindings in Meson PCIe
+>>>> controller.
+>>>>
+>>>> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+>>>> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+>>>> ---
+>>>>  .../devicetree/bindings/pci/amlogic,meson-pcie.txt | 63 ++++++++++++++++++++++
+>>>>  1 file changed, 63 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+>>>> new file mode 100644
+>>>> index 0000000..8a831d1
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+>>>> @@ -0,0 +1,63 @@
+>>>> +Amlogic Meson AXG DWC PCIE SoC controller
+>>>> +
+>>>> +Amlogic Meson PCIe host controller is based on the Synopsys DesignWare PCI core.
+>>>> +It shares common functions with the PCIe DesignWare core driver and
+>>>> +inherits common properties defined in
+>>>> +Documentation/devicetree/bindings/pci/designware-pci.txt.
+>>>> +
+>>>> +Additional properties are described here:
+>>>> +
+>>>> +Required properties:
+>>>> +- compatible:
+>>>> +	should contain "amlogic,axg-pcie" to identify the core.
+>>>> +- reg:
+>>>> +	Should contain the configuration address space.
+>>>> +- reg-names: Must be
+>>>> +	- "elbi"	External local bus interface registers
+>>>> +	- "cfg"		Meson specific registers
+>>>> +	- "config"	PCIe configuration space
+>>>> +- reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
+>>>> +- clocks: Must contain an entry for each entry in clock-names.
+>>>> +- clock-names: Must include the following entries:
+>>>> +	- "pclk"       PCIe GEN 100M PLL clock
+>>>> +	- "port"       PCIe_x(A or B) RC clock gate
+>>>> +	- "general"    PCIe Phy clock
+>>>> +	- "mipi"       PCIe_x(A or B) 100M ref clock gate
+>>>> +- resets: phandle to the reset lines.
+>>>> +- reset-names: must contain "phy" and "peripheral"
+>>>> +       - "port" Port A or B reset
+>>>> +       - "apb" APB reset
+>>>
+>>> The above description is not coherent (phy <=> port)
+>>>
+>>
+>> Yes, this should be port and apb here.
+>> We'll integrate phy driver into ctrl driver, and move phy reset to here also.
+> 
+> Why? That's the wrong thing to do if they are separate h/w blocks. You 
+> can do whatever you like in the drivers, but the DT should reflect the 
+> h/w.
+> 
+> Rob
+> 
+> .
+> 
 
-Yes, the scheduling of the timer only occurs here and it thus protected
-by the ->xmit lock.
+We have the dedicated phy driver which only process reset job,
+and we consider that it's too overkill to do just these things .
+So we will integrate phy reset job into the controller driver int the next version.  
 
-However, the timer itself runs and ends asynchronously to this piece
-of code here.  This kind of logic only works if you tightly synchronize
-the full execution of the timer with the same long, _AND_ you make the
-timer resample the parameters to see if there is work still to do.
-
-The TSO xmit code doesn't have the tx_timer_armed logic.
-
-And finally, yes, this thing locks assuming a single queue.  This code
-is seriously faulty on multi-queue and will access the TX ring of an
-arbitrary queue only holding netif_tx_lock().
-
-This stuff is really broken, so I'm reverting.  Someone has to fix the
-per-queue locking in stmmac_tx_timer() too.
+thanks. 
