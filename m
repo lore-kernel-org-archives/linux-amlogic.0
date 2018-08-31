@@ -1,116 +1,88 @@
-From: hanjie.lin@amlogic.com (Hanjie Lin)
-Date: Fri, 31 Aug 2018 09:47:09 +0800
-Subject: [PATCH v2 1/2] dt-bindings: PCI: meson: add DT bindings for
- Amlogic Meson PCIe controller
-In-Reply-To: <CAL_JsqJPzfp1OimYXa26tEqTexyiuKMeKszveobHN3rKP8+RYQ@mail.gmail.com>
-References: <1535096165-45827-1-git-send-email-hanjie.lin@amlogic.com>
- <1535096165-45827-2-git-send-email-hanjie.lin@amlogic.com>
- <8c48964151d24758298ba935da336c0829e2b287.camel@baylibre.com>
- <11d7547b-feb4-6ecb-cef3-db46ce8ee2ef@amlogic.com>
- <20180829004122.GA25928@bogus>
- <84d5399c-67d4-f8a4-3613-00d91f21292f@amlogic.com>
- <CAL_JsqJPzfp1OimYXa26tEqTexyiuKMeKszveobHN3rKP8+RYQ@mail.gmail.com>
-Message-ID: <12ce60a8-accc-3c8f-4d38-9bf31346b775@amlogic.com>
+From: mjourdan@baylibre.com (Maxime Jourdan)
+Date: Fri, 31 Aug 2018 10:52:02 +0200
+Subject: [PATCH 1/4] dt-bindings: media: add Amlogic Video Decoder Bindings
+In-Reply-To: <20180831085205.14760-1-mjourdan@baylibre.com>
+References: <20180831085205.14760-1-mjourdan@baylibre.com>
+Message-ID: <20180831085205.14760-2-mjourdan@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Add documentation for the meson vdec dts node.
 
+Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+---
+ .../bindings/media/amlogic,vdec.txt           | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
 
-On 2018/8/30 21:59, Rob Herring wrote:
-> On Thu, Aug 30, 2018 at 2:37 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
->>
->>
->>
->> On 2018/8/29 8:41, Rob Herring wrote:
->>> On Mon, Aug 27, 2018 at 04:55:20PM +0800, Hanjie Lin wrote:
->>>>
->>>>
->>>> On 2018/8/24 16:22, Jerome Brunet wrote:
->>>>> On Fri, 2018-08-24 at 15:36 +0800, Hanjie Lin wrote:
->>>>>> From: Yue Wang <yue.wang@amlogic.com>
->>>>>>
->>>>>> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
->>>>>> PCI core. This patch adds documentation for the DT bindings in Meson PCIe
->>>>>> controller.
->>>>>>
->>>>>> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
->>>>>> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
->>>>>> ---
->>>>>>  .../devicetree/bindings/pci/amlogic,meson-pcie.txt | 63 ++++++++++++++++++++++
->>>>>>  1 file changed, 63 insertions(+)
->>>>>>  create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
->>>>>> new file mode 100644
->>>>>> index 0000000..8a831d1
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
->>>>>> @@ -0,0 +1,63 @@
->>>>>> +Amlogic Meson AXG DWC PCIE SoC controller
->>>>>> +
->>>>>> +Amlogic Meson PCIe host controller is based on the Synopsys DesignWare PCI core.
->>>>>> +It shares common functions with the PCIe DesignWare core driver and
->>>>>> +inherits common properties defined in
->>>>>> +Documentation/devicetree/bindings/pci/designware-pci.txt.
->>>>>> +
->>>>>> +Additional properties are described here:
->>>>>> +
->>>>>> +Required properties:
->>>>>> +- compatible:
->>>>>> +  should contain "amlogic,axg-pcie" to identify the core.
->>>>>> +- reg:
->>>>>> +  Should contain the configuration address space.
->>>>>> +- reg-names: Must be
->>>>>> +  - "elbi"        External local bus interface registers
->>>>>> +  - "cfg"         Meson specific registers
->>>>>> +  - "config"      PCIe configuration space
->>>>>> +- reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
->>>>>> +- clocks: Must contain an entry for each entry in clock-names.
->>>>>> +- clock-names: Must include the following entries:
->>>>>> +  - "pclk"       PCIe GEN 100M PLL clock
->>>>>> +  - "port"       PCIe_x(A or B) RC clock gate
->>>>>> +  - "general"    PCIe Phy clock
->>>>>> +  - "mipi"       PCIe_x(A or B) 100M ref clock gate
->>>>>> +- resets: phandle to the reset lines.
->>>>>> +- reset-names: must contain "phy" and "peripheral"
->>>>>> +       - "port" Port A or B reset
->>>>>> +       - "apb" APB reset
->>>>>
->>>>> The above description is not coherent (phy <=> port)
->>>>>
->>>>
->>>> Yes, this should be port and apb here.
->>>> We'll integrate phy driver into ctrl driver, and move phy reset to here also.
->>>
->>> Why? That's the wrong thing to do if they are separate h/w blocks. You
->>> can do whatever you like in the drivers, but the DT should reflect the
->>> h/w.
->>>
->>> Rob
->>>
->>> .
->>>
->>
->> We have the dedicated phy driver which only process reset job,
->> and we consider that it's too overkill to do just these things .
->> So we will integrate phy reset job into the controller driver int the next version.
-> 
-> What's in the separate register space you had for the phy?
-> 
-> Rob
-> 
-> .
-> 
-
-As described with 'phy' reg in ctrl patch v3 thread [0]
-
-- reg-names: Must be
-	- "elbi"	External local bus interface registers
-	- "cfg"		Meson specific registers
-	- "phy"		Meson PCIE PHY registers
-	- "config"	PCIe configuration space
-
-When each controller driver probe, we powerup phy by write phy register like below: 
-writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
-
-[0] https://lkml.kernel.org/r/1535616829-167936-1-git-send-email-hanjie.lin at amlogic.com
+diff --git a/Documentation/devicetree/bindings/media/amlogic,vdec.txt b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
+new file mode 100644
+index 000000000000..c6450f2e7f28
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
+@@ -0,0 +1,63 @@
++Amlogic Video Decoder
++================================
++
++The VDEC IP is composed of the following blocks :
++
++- ESPARSER is a bitstream parser that outputs to a VIFIFO. Further VDEC blocks
++then feed from this VIFIFO.
++- VDEC_1 can decode MPEG-1, MPEG-2, MPEG-4 part 2, H.263, H.264.
++- VDEC_2 is used as a helper for corner cases like H.264 4K on older SoCs.
++It is not handled by this driver.
++- VDEC_HCODEC is the H.264 encoding block. It is not handled by this driver.
++- VDEC_HEVC can decode HEVC and VP9.
++
++Device Tree Bindings:
++---------------------
++
++VDEC: Video Decoder
++--------------------------
++
++Required properties:
++- compatible: value should be different for each SoC family as :
++	- GXBB (S905) : "amlogic,gxbb-vdec"
++	- GXL (S905X, S905D) : "amlogic,gxl-vdec"
++	- GXM (S912) : "amlogic,gxm-vdec"
++- reg: base address and size of he following memory-mapped regions :
++	- dos
++	- esparser
++- reg-names: should contain the names of the previous memory regions
++- interrupts: should contain the vdec and esparser IRQs.
++- amlogic,ao-sysctrl: should point to the AOBUS sysctrl node
++- amlogic,canvas: should point to a canvas provider node
++- clocks: should contain the following clocks :
++	- dos_parser
++	- dos
++	- vdec_1
++	- vdec_hevc
++- clock-names: should contain the names of the previous clocks
++- resets: should contain the parser reset.
++- reset-names: should be "esparser".
++
++Example:
++
++vdec: video-decoder at c8820000 {
++	compatible = "amlogic,gxbb-vdec";
++	reg = <0x0 0xc8820000 0x0 0x10000>,
++	      <0x0 0xc110a580 0x0 0xe4>;
++	reg-names = "dos", "esparser";
++
++	interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
++		     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
++
++	amlogic,ao-sysctrl = <&sysctrl_AO>;
++	amlogic,canvas = <&canvas>;
++
++	clocks = <&clkc CLKID_DOS_PARSER>,
++		 <&clkc CLKID_DOS>,
++		 <&clkc CLKID_VDEC_1>,
++		 <&clkc CLKID_VDEC_HEVC>;
++	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
++
++	resets = <&reset RESET_PARSER>;
++	reset-names = "esparser";
++};
+-- 
+2.18.0
