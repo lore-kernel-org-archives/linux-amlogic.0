@@ -1,135 +1,55 @@
-From: jic23@kernel.org (Jonathan Cameron)
-Date: Sat, 29 Sep 2018 12:51:32 +0100
-Subject: [PATCH 2/2] iio: adc: meson-saradc: use the address attribute
- from iio_chan_spec
-In-Reply-To: <20180924221326.2871-3-martin.blumenstingl@googlemail.com>
-References: <20180924221326.2871-1-martin.blumenstingl@googlemail.com>
- <20180924221326.2871-3-martin.blumenstingl@googlemail.com>
-Message-ID: <20180929125132.3f7e83e9@archlinux>
+From: lkp@intel.com (kbuild test robot)
+Date: Sat, 1 Sep 2018 06:37:34 +0800
+Subject: [PATCH 2/4] media: meson: add v4l2 m2m video decoder driver
+In-Reply-To: <20180831085205.14760-3-mjourdan@baylibre.com>
+References: <20180831085205.14760-3-mjourdan@baylibre.com>
+Message-ID: <201809010545.xve78pjt%fengguang.wu@intel.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, 25 Sep 2018 00:13:26 +0200
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Hi Maxime,
 
-> Until now the "channel" number is identical to how the channel is
-> identified inside the (FIFO) registers. In our case we have eight
-> channels and the hardware also has eight inputs.
-> 
-> However, there are two special inputs:
-> - channel 6 can select between the SAR_ADC_CH6 pad and the chip's
->   internal temperature sensor
-> - channel 7 can select between SAR_ADC_CH7 and VSS, VDD / 4, VDD / 2,
->   VDD * 3 / 4 and VDD.
-> 
-> When programming the registers to read for example the temperature
-> sensor we have to select FIFO channel 6, set the correct bit which muxes
-> channel 6 to the temperature sensor and then start the ADC measurement
-> for channel 6 as usual.
-> 
-> When we add support for the temperature sensor the driver has to know
-> about that it has to use FIFO channel 6 to measure using the chip's
-> internal temperature sensor. However, in that case the iio_chan_spec
-> channel will not be 6 because this is already used for the SAR_ADC_CH6
-> pad input. Thus we use iio_chan_spec's address field to store the FIFO
-> channel number for each channel.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Again, clearly 'correct' so applied to the togreg branch of iio.git
-and pushed out as testing for the autobuilders to play with it.
+Thank you for the patch! Yet something to improve:
 
-Thanks,
+[auto build test ERROR on linuxtv-media/master]
+[also build test ERROR on v4.19-rc1 next-20180831]
+[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
 
-Jonathan
+url:    https://github.com/0day-ci/linux/commits/Maxime-Jourdan/Add-Amlogic-video-decoder-driver/20180901-033653
+base:   git://linuxtv.org/media_tree.git master
+config: i386-allmodconfig (attached as .config)
+compiler: gcc-7 (Debian 7.3.0-16) 7.3.0
+reproduce:
+        # save the attached .config to linux build tree
+        make ARCH=i386 
 
-> ---
->  drivers/iio/adc/meson_saradc.c | 29 +++++++++++++++--------------
->  1 file changed, 15 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 809d1230be34..028ccd218f82 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -172,6 +172,7 @@
->  	.type = IIO_VOLTAGE,						\
->  	.indexed = 1,							\
->  	.channel = _chan,						\
-> +	.address = _chan,						\
->  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
->  				BIT(IIO_CHAN_INFO_AVERAGE_RAW),		\
->  	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |		\
-> @@ -323,10 +324,10 @@ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
->  
->  	regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, &regval);
->  	fifo_chan = FIELD_GET(MESON_SAR_ADC_FIFO_RD_CHAN_ID_MASK, regval);
-> -	if (fifo_chan != chan->channel) {
-> +	if (fifo_chan != chan->address) {
->  		dev_err(&indio_dev->dev,
-> -			"ADC FIFO entry belongs to channel %d instead of %d\n",
-> -			fifo_chan, chan->channel);
-> +			"ADC FIFO entry belongs to channel %d instead of %lu\n",
-> +			fifo_chan, chan->address);
->  		return -EINVAL;
->  	}
->  
-> @@ -343,16 +344,16 @@ static void meson_sar_adc_set_averaging(struct iio_dev *indio_dev,
->  					enum meson_sar_adc_num_samples samples)
->  {
->  	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
-> -	int val, channel = chan->channel;
-> +	int val, address = chan->address;
->  
-> -	val = samples << MESON_SAR_ADC_AVG_CNTL_NUM_SAMPLES_SHIFT(channel);
-> +	val = samples << MESON_SAR_ADC_AVG_CNTL_NUM_SAMPLES_SHIFT(address);
->  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_AVG_CNTL,
-> -			   MESON_SAR_ADC_AVG_CNTL_NUM_SAMPLES_MASK(channel),
-> +			   MESON_SAR_ADC_AVG_CNTL_NUM_SAMPLES_MASK(address),
->  			   val);
->  
-> -	val = mode << MESON_SAR_ADC_AVG_CNTL_AVG_MODE_SHIFT(channel);
-> +	val = mode << MESON_SAR_ADC_AVG_CNTL_AVG_MODE_SHIFT(address);
->  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_AVG_CNTL,
-> -			   MESON_SAR_ADC_AVG_CNTL_AVG_MODE_MASK(channel), val);
-> +			   MESON_SAR_ADC_AVG_CNTL_AVG_MODE_MASK(address), val);
->  }
->  
->  static void meson_sar_adc_enable_channel(struct iio_dev *indio_dev,
-> @@ -372,23 +373,23 @@ static void meson_sar_adc_enable_channel(struct iio_dev *indio_dev,
->  
->  	/* map channel index 0 to the channel which we want to read */
->  	regval = FIELD_PREP(MESON_SAR_ADC_CHAN_LIST_ENTRY_MASK(0),
-> -			    chan->channel);
-> +			    chan->address);
->  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_CHAN_LIST,
->  			   MESON_SAR_ADC_CHAN_LIST_ENTRY_MASK(0), regval);
->  
->  	regval = FIELD_PREP(MESON_SAR_ADC_DETECT_IDLE_SW_DETECT_MUX_MASK,
-> -			    chan->channel);
-> +			    chan->address);
->  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DETECT_IDLE_SW,
->  			   MESON_SAR_ADC_DETECT_IDLE_SW_DETECT_MUX_MASK,
->  			   regval);
->  
->  	regval = FIELD_PREP(MESON_SAR_ADC_DETECT_IDLE_SW_IDLE_MUX_SEL_MASK,
-> -			    chan->channel);
-> +			    chan->address);
->  	regmap_update_bits(priv->regmap, MESON_SAR_ADC_DETECT_IDLE_SW,
->  			   MESON_SAR_ADC_DETECT_IDLE_SW_IDLE_MUX_SEL_MASK,
->  			   regval);
->  
-> -	if (chan->channel == 6)
-> +	if (chan->address == 6)
->  		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELTA_10,
->  				   MESON_SAR_ADC_DELTA_10_TEMP_SEL, 0);
->  }
-> @@ -526,8 +527,8 @@ static int meson_sar_adc_get_sample(struct iio_dev *indio_dev,
->  
->  	if (ret) {
->  		dev_warn(indio_dev->dev.parent,
-> -			 "failed to read sample for channel %d: %d\n",
-> -			 chan->channel, ret);
-> +			 "failed to read sample for channel %lu: %d\n",
-> +			 chan->address, ret);
->  		return ret;
->  	}
->  
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/media/platform/meson/vdec/esparser.h:10:0,
+                    from drivers/media/platform/meson/vdec/esparser.c:21:
+>> drivers/media/platform/meson/vdec/vdec.h:18:10: fatal error: linux/soc/amlogic/meson-canvas.h: No such file or directory
+    #include <linux/soc/amlogic/meson-canvas.h>
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+vim +18 drivers/media/platform/meson/vdec/vdec.h
+
+    12	
+    13	#include <linux/regmap.h>
+    14	#include <linux/list.h>
+    15	#include <media/videobuf2-v4l2.h>
+    16	#include <media/v4l2-ctrls.h>
+    17	#include <media/v4l2-device.h>
+  > 18	#include <linux/soc/amlogic/meson-canvas.h>
+    19	
+
+---
+0-DAY kernel test infrastructure                Open Source Technology Center
+https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: .config.gz
+Type: application/gzip
+Size: 65146 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20180901/69109668/attachment.gz>
