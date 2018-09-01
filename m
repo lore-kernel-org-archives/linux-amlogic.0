@@ -1,55 +1,168 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  1 Sep 2018 18:21:44 +0200
-Subject: [PATCH v2 0/2] meson8b: register the clock controller early
-Message-ID: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
+Date: Sat,  1 Sep 2018 18:21:45 +0200
+Subject: [PATCH v2 1/2] clk: meson: meson8b: register the clock controller
+ early
+In-Reply-To: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
+References: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180901162146.5656-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Some parts of the SoC are initialized early in the boot process, such
-as the SRAM and the TWD timer. This means that the corresponding
-drivers need to access the clock controller early as well.
+Until now only the reset controller (part of the clock controller
+register space) was registered early in the boot process, while the
+clock controller itself was registered later on.
+However, some parts of the SoC are initialized early in the boot process,
+such as the SRAM and the TWD timer. The bootloader already enables these
+clocks so we didn't see any issues so far.
 
-Before this series the clock controller was registered as platform
-driver, which is too late for the TWD timer (just as an example).
-The reset controller (built into the clock controller driver) was
-already registered early, basically for the same reason (the reset
-lines are used to start the secondary CPUs, which is done very early
-in the boot process).
+Register the clock controller early so other drivers (such as the SRAM
+and TWD timer) can use the clocks early in the boot process. Now that we
+don't have a "split" initialization process anymore we can also switch
+from CLK_OF_DECLARE_DRIVER (which allows registering a part of the clock
+controller early, an another part as platform device) to CLK_OF_DECLARE
+(which only supports early initialization).
 
-Register the clock controller early enough so we're able to use the
-TWD timer (as we need to pass a clock which is provided by this
-clock controller) in a second step.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/meson8b.c | 97 +++++++++++++------------------------
+ 1 file changed, 34 insertions(+), 63 deletions(-)
 
-NOTE: Neil suggested in v1 to switch to one of core_initcall,
-postcore_initcall, subsys_initcall but I couldn't find any driver
-that I could use as "reference" which registers it's clock controller
-before the device model (platform_device) is ready. this is why I'm
-still using CLK_OF_DECLARE - but I'm open to suggestions.
-
-The second patch simplifies the reset controller (built into the clock
-controller driver) because the regmap is already available early and
-thus can be used by the reset controller driver as well.
-
-
-Changes since v1 at [0]:
-- switch from CLK_OF_DECLARE_DRIVER to CLK_OF_DECLARE because with
-  this series there is only one initialization function for the clock
-  controller driver (unlike before: where the reset controller was
-  registered early and the clock controller was registered as platform
-  device)
-- rebased on top of clk-meson, commit:
-  684b97b13b175a ("clk: meson-axg: pcie: drop the mpll3 clock parent")
-
-
-[0] https://patchwork.kernel.org/cover/10538971/
-
-
-Martin Blumenstingl (2):
-  clk: meson: meson8b: register the clock controller early
-  clk: meson: meson8b: use the regmap in the internal reset controller
-
- drivers/clk/meson/meson8b.c | 110 +++++++++++++-----------------------
- 1 file changed, 40 insertions(+), 70 deletions(-)
-
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 045d72e408f8..abdcfe54f6a0 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -11,7 +11,6 @@
+ #include <linux/clk-provider.h>
+ #include <linux/init.h>
+ #include <linux/of_address.h>
+-#include <linux/platform_device.h>
+ #include <linux/reset-controller.h>
+ #include <linux/slab.h>
+ #include <linux/regmap.h>
+@@ -22,8 +21,6 @@
+ 
+ static DEFINE_SPINLOCK(meson_clk_lock);
+ 
+-static void __iomem *clk_base;
+-
+ struct meson8b_clk_reset {
+ 	struct reset_controller_dev reset;
+ 	void __iomem *base;
+@@ -1123,62 +1120,12 @@ static const struct regmap_config clkc_regmap_config = {
+ 	.reg_stride     = 4,
+ };
+ 
+-static int meson8b_clkc_probe(struct platform_device *pdev)
+-{
+-	int ret, i;
+-	struct device *dev = &pdev->dev;
+-	struct regmap *map;
+-
+-	if (!clk_base)
+-		return -ENXIO;
+-
+-	map = devm_regmap_init_mmio(dev, clk_base, &clkc_regmap_config);
+-	if (IS_ERR(map))
+-		return PTR_ERR(map);
+-
+-	/* Populate regmap for the regmap backed clocks */
+-	for (i = 0; i < ARRAY_SIZE(meson8b_clk_regmaps); i++)
+-		meson8b_clk_regmaps[i]->map = map;
+-
+-	/*
+-	 * register all clks
+-	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
+-	 */
+-	for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
+-		/* array might be sparse */
+-		if (!meson8b_hw_onecell_data.hws[i])
+-			continue;
+-
+-		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[i]);
+-		if (ret)
+-			return ret;
+-	}
+-
+-	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+-					   &meson8b_hw_onecell_data);
+-}
+-
+-static const struct of_device_id meson8b_clkc_match_table[] = {
+-	{ .compatible = "amlogic,meson8-clkc" },
+-	{ .compatible = "amlogic,meson8b-clkc" },
+-	{ .compatible = "amlogic,meson8m2-clkc" },
+-	{ }
+-};
+-
+-static struct platform_driver meson8b_driver = {
+-	.probe		= meson8b_clkc_probe,
+-	.driver		= {
+-		.name	= "meson8b-clkc",
+-		.of_match_table = meson8b_clkc_match_table,
+-	},
+-};
+-
+-builtin_platform_driver(meson8b_driver);
+-
+-static void __init meson8b_clkc_reset_init(struct device_node *np)
++static void __init meson8b_clkc_init(struct device_node *np)
+ {
+ 	struct meson8b_clk_reset *rstc;
+-	int ret;
++	void __iomem *clk_base;
++	struct regmap *map;
++	int i, ret;
+ 
+ 	/* Generic clocks, PLLs and some of the reset-bits */
+ 	clk_base = of_iomap(np, 1);
+@@ -1187,6 +1134,10 @@ static void __init meson8b_clkc_reset_init(struct device_node *np)
+ 		return;
+ 	}
+ 
++	map = regmap_init_mmio(NULL, clk_base, &clkc_regmap_config);
++	if (IS_ERR(map))
++		return;
++
+ 	rstc = kzalloc(sizeof(*rstc), GFP_KERNEL);
+ 	if (!rstc)
+ 		return;
+@@ -1202,11 +1153,31 @@ static void __init meson8b_clkc_reset_init(struct device_node *np)
+ 		       __func__, ret);
+ 		return;
+ 	}
++
++	/* Populate regmap for the regmap backed clocks */
++	for (i = 0; i < ARRAY_SIZE(meson8b_clk_regmaps); i++)
++		meson8b_clk_regmaps[i]->map = map;
++
++	/*
++	 * register all clks
++	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
++	 */
++	for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
++		/* array might be sparse */
++		if (!meson8b_hw_onecell_data.hws[i])
++			continue;
++
++		ret = clk_hw_register(NULL, meson8b_hw_onecell_data.hws[i]);
++		if (ret)
++			return;
++	}
++
++	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get,
++				     &meson8b_hw_onecell_data);
++	if (ret)
++		pr_err("%s: failed to register clock provider\n", __func__);
+ }
+ 
+-CLK_OF_DECLARE_DRIVER(meson8_clkc, "amlogic,meson8-clkc",
+-		      meson8b_clkc_reset_init);
+-CLK_OF_DECLARE_DRIVER(meson8b_clkc, "amlogic,meson8b-clkc",
+-		      meson8b_clkc_reset_init);
+-CLK_OF_DECLARE_DRIVER(meson8m2_clkc, "amlogic,meson8m2-clkc",
+-		      meson8b_clkc_reset_init);
++CLK_OF_DECLARE(meson8_clkc, "amlogic,meson8-clkc", meson8b_clkc_init);
++CLK_OF_DECLARE(meson8b_clkc, "amlogic,meson8b-clkc", meson8b_clkc_init);
++CLK_OF_DECLARE(meson8m2_clkc, "amlogic,meson8m2-clkc", meson8b_clkc_init);
 -- 
 2.18.0
