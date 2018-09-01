@@ -1,87 +1,70 @@
-From: sboyd@kernel.org (Stephen Boyd)
-Date: Fri, 31 Aug 2018 10:39:00 -0700
-Subject: [PATCH 1/3] dt-bindings: clock: meson8b: use the registers from
- the HHI syscon
-In-Reply-To: <CAFBinCDLWqXCcB3b3SAOxxkq+EbQazGmMVLbVLyTjWCD4wTarA@mail.gmail.com>
-References: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
- <20180721192846.18811-2-martin.blumenstingl@googlemail.com>
- <20180725200755.GA24555@rob-hp-laptop>
- <CAFBinCAdsC-VisufKu9jm0vZER6JjFq4O5WAfsMoXdQfzNFcfg@mail.gmail.com>
- <18543f2e-0162-9201-571c-73ce8d707e50@baylibre.com>
- <CAFBinCDLWqXCcB3b3SAOxxkq+EbQazGmMVLbVLyTjWCD4wTarA@mail.gmail.com>
-Message-ID: <153573714081.93865.1632567834341845994@swboyd.mtv.corp.google.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sat,  1 Sep 2018 18:21:46 +0200
+Subject: [PATCH v2 2/2] clk: meson: meson8b: use the regmap in the internal
+ reset controller
+In-Reply-To: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
+References: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180901162146.5656-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Martin Blumenstingl (2018-08-12 11:35:17)
-> Hi Rob,
-> 
-> On Thu, Jul 26, 2018 at 9:32 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >
-> > Hi Rob, Martin,
-> >
-> > On 25/07/2018 23:16, Martin Blumenstingl wrote:
-> > > Hi Rob,
-> > >
-> > > On Wed, Jul 25, 2018 at 10:07 PM Rob Herring <robh@kernel.org> wrote:
-> > >>
-> > >> On Sat, Jul 21, 2018 at 09:28:44PM +0200, Martin Blumenstingl wrote:
-> > >>> The clock controller on Meson8/Meson8m2 and Meson8b is part of a
-> > >>> register region called "HHI". This register area contains more
-> > >>> functionality than just a clock controller:
-> > >>> - the clock controller
-> > >>> - some reset controller bits
-> > >>> - temperature sensor calibration data (on Meson8b and Meson8m2 only)
-> > >>> - HDMI controller
-> > >>>
-> > >>> The HHI register area may be accessed concurrently. Allow this by using
-> > >>> a "system controller" as parent node.
-> > >>
-> > >> Why? A single node can be a provider of multiple things. Maybe the HDMI
-> > >> should be a child since it will involve graph nodes, but the rest can be
-> > >> one node. There should be numerous examples of blocks that are clock and
-> > >> reset controllers.
-> > > I understand that a node can provide multiple "things" - currently
-> > > it's a clock controller and a reset controller
-> > > the HDMI controller could also be integrated in a similar way
-> > >
-> > > however, I do not know how to access the temperature sensor calibration data
-> > > there is an ADC - one of it's channel has access to a temperature sensor
-> > > this ADC is located at CBUS offset 0x8680 and we already have a driver
-> > > for it (meson-saradc)
-> > > my problem is that the temperature sensor has to be calibrated - this
-> > > is done by:
-> > > - read data from efuse
-> > > - write 4 bits of calibration data to some register in the ADC's register space
-> > > - write a 5th bit of calibration data to a (seemingly random) register
-> > > in the HHI register space
-> > > (if one of the 5 bits is not written to it's correct location then the
-> > > temperature sensor reads bogus values)
-> > >
-> > > I am not sure how to handle this without passing the HHI region to the
-> > > meson-saradc driver and letting that initialize all the temperature
-> > > calibration data bits (in it's own register space as well as the HHI
-> > > register space)
-> > > do you have any suggestion here?
-> >
-> > The clock controller node was badly represented from the beginning, the
-> > HHI register zone *is* a "system control" zone with a lot of different
-> > registers controller the system, including all the EE clocks, *some* HDMI
-> > PHY settings, *some* Video DAC settings, *some* memory power control...
-> >
-> > Thus, the clock controller *is* entirely in the HHI registers space, but
-> > the HHI register space should be used by other nodes for control some
-> > part of the SoCs. This is why we decided to model the HHI zone as a
-> > "syscon" to permit other node to have access to these registers and
-> > "simple-mfd" to expose the *big* feature of the HHI : the clock controller.
-> does our (Neil's and mine) explanation make sense to you?
-> I understand your point that a DT node can provide multiple "things".
-> this is the case on the Meson HHI region, but in addition to that the
-> HHI region contains additional bits for other IP blocks. so my
-> understanding is that using a syscon here is fine
-> 
+For now the reset controller was using raw register access because the
+early init did not initialize the regmap. However, now that clocks are
+initialized early we can simply use the regmap also for the reset
+controller.
+No functional changes.
 
-I'm dropping this from my review queue because nobody has replied in
-many weeks. I think Rob wants people to move away from syscon so if you
-can't do that then we need good reasons. I recommend putting those
-reasons in the commit text and resending this series.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/meson8b.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index abdcfe54f6a0..ed1de34fee0e 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -23,7 +23,7 @@ static DEFINE_SPINLOCK(meson_clk_lock);
+ 
+ struct meson8b_clk_reset {
+ 	struct reset_controller_dev reset;
+-	void __iomem *base;
++	struct regmap *regmap;
+ };
+ 
+ static const struct pll_params_table sys_pll_params_table[] = {
+@@ -1076,7 +1076,6 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
+ 		container_of(rcdev, struct meson8b_clk_reset, reset);
+ 	unsigned long flags;
+ 	const struct meson8b_clk_reset_line *reset;
+-	u32 val;
+ 
+ 	if (id >= ARRAY_SIZE(meson8b_clk_reset_bits))
+ 		return -EINVAL;
+@@ -1085,12 +1084,12 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
+ 
+ 	spin_lock_irqsave(&meson_clk_lock, flags);
+ 
+-	val = readl(meson8b_clk_reset->base + reset->reg);
+ 	if (assert)
+-		val |= BIT(reset->bit_idx);
++		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
++				   BIT(reset->bit_idx), BIT(reset->bit_idx));
+ 	else
+-		val &= ~BIT(reset->bit_idx);
+-	writel(val, meson8b_clk_reset->base + reset->reg);
++		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
++				   BIT(reset->bit_idx), 0);
+ 
+ 	spin_unlock_irqrestore(&meson_clk_lock, flags);
+ 
+@@ -1143,7 +1142,7 @@ static void __init meson8b_clkc_init(struct device_node *np)
+ 		return;
+ 
+ 	/* Reset Controller */
+-	rstc->base = clk_base;
++	rstc->regmap = map;
+ 	rstc->reset.ops = &meson8b_clk_reset_ops;
+ 	rstc->reset.nr_resets = ARRAY_SIZE(meson8b_clk_reset_bits);
+ 	rstc->reset.of_node = np;
+-- 
+2.18.0
