@@ -1,70 +1,55 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  1 Sep 2018 18:21:46 +0200
-Subject: [PATCH v2 2/2] clk: meson: meson8b: use the regmap in the internal
- reset controller
-In-Reply-To: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
-References: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180901162146.5656-3-martin.blumenstingl@googlemail.com>
+Date: Sat,  1 Sep 2018 18:21:44 +0200
+Subject: [PATCH v2 0/2] meson8b: register the clock controller early
+Message-ID: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-For now the reset controller was using raw register access because the
-early init did not initialize the regmap. However, now that clocks are
-initialized early we can simply use the regmap also for the reset
-controller.
-No functional changes.
+Some parts of the SoC are initialized early in the boot process, such
+as the SRAM and the TWD timer. This means that the corresponding
+drivers need to access the clock controller early as well.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+Before this series the clock controller was registered as platform
+driver, which is too late for the TWD timer (just as an example).
+The reset controller (built into the clock controller driver) was
+already registered early, basically for the same reason (the reset
+lines are used to start the secondary CPUs, which is done very early
+in the boot process).
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index abdcfe54f6a0..ed1de34fee0e 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -23,7 +23,7 @@ static DEFINE_SPINLOCK(meson_clk_lock);
- 
- struct meson8b_clk_reset {
- 	struct reset_controller_dev reset;
--	void __iomem *base;
-+	struct regmap *regmap;
- };
- 
- static const struct pll_params_table sys_pll_params_table[] = {
-@@ -1076,7 +1076,6 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
- 		container_of(rcdev, struct meson8b_clk_reset, reset);
- 	unsigned long flags;
- 	const struct meson8b_clk_reset_line *reset;
--	u32 val;
- 
- 	if (id >= ARRAY_SIZE(meson8b_clk_reset_bits))
- 		return -EINVAL;
-@@ -1085,12 +1084,12 @@ static int meson8b_clk_reset_update(struct reset_controller_dev *rcdev,
- 
- 	spin_lock_irqsave(&meson_clk_lock, flags);
- 
--	val = readl(meson8b_clk_reset->base + reset->reg);
- 	if (assert)
--		val |= BIT(reset->bit_idx);
-+		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
-+				   BIT(reset->bit_idx), BIT(reset->bit_idx));
- 	else
--		val &= ~BIT(reset->bit_idx);
--	writel(val, meson8b_clk_reset->base + reset->reg);
-+		regmap_update_bits(meson8b_clk_reset->regmap, reset->reg,
-+				   BIT(reset->bit_idx), 0);
- 
- 	spin_unlock_irqrestore(&meson_clk_lock, flags);
- 
-@@ -1143,7 +1142,7 @@ static void __init meson8b_clkc_init(struct device_node *np)
- 		return;
- 
- 	/* Reset Controller */
--	rstc->base = clk_base;
-+	rstc->regmap = map;
- 	rstc->reset.ops = &meson8b_clk_reset_ops;
- 	rstc->reset.nr_resets = ARRAY_SIZE(meson8b_clk_reset_bits);
- 	rstc->reset.of_node = np;
+Register the clock controller early enough so we're able to use the
+TWD timer (as we need to pass a clock which is provided by this
+clock controller) in a second step.
+
+NOTE: Neil suggested in v1 to switch to one of core_initcall,
+postcore_initcall, subsys_initcall but I couldn't find any driver
+that I could use as "reference" which registers it's clock controller
+before the device model (platform_device) is ready. this is why I'm
+still using CLK_OF_DECLARE - but I'm open to suggestions.
+
+The second patch simplifies the reset controller (built into the clock
+controller driver) because the regmap is already available early and
+thus can be used by the reset controller driver as well.
+
+
+Changes since v1 at [0]:
+- switch from CLK_OF_DECLARE_DRIVER to CLK_OF_DECLARE because with
+  this series there is only one initialization function for the clock
+  controller driver (unlike before: where the reset controller was
+  registered early and the clock controller was registered as platform
+  device)
+- rebased on top of clk-meson, commit:
+  684b97b13b175a ("clk: meson-axg: pcie: drop the mpll3 clock parent")
+
+
+[0] https://patchwork.kernel.org/cover/10538971/
+
+
+Martin Blumenstingl (2):
+  clk: meson: meson8b: register the clock controller early
+  clk: meson: meson8b: use the regmap in the internal reset controller
+
+ drivers/clk/meson/meson8b.c | 110 +++++++++++++-----------------------
+ 1 file changed, 40 insertions(+), 70 deletions(-)
+
 -- 
 2.18.0
