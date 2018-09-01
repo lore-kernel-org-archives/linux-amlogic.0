@@ -1,168 +1,34 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sat,  1 Sep 2018 18:21:45 +0200
-Subject: [PATCH v2 1/2] clk: meson: meson8b: register the clock controller
- early
-In-Reply-To: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
-References: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180901162146.5656-2-martin.blumenstingl@googlemail.com>
+From: festevam@gmail.com (Fabio Estevam)
+Date: Sat, 1 Sep 2018 18:24:38 -0300
+Subject: [PATCH 2/3] arm64: dts: meson-axg: s400: add dmic codec
+In-Reply-To: <20180831150218.8307-3-jbrunet@baylibre.com>
+References: <20180831150218.8307-1-jbrunet@baylibre.com>
+ <20180831150218.8307-3-jbrunet@baylibre.com>
+Message-ID: <CAOMZO5BOMOB6LaRs1fnmm-Ghu7pMkXW=sH_NOEWK3pqHAbUMCg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Until now only the reset controller (part of the clock controller
-register space) was registered early in the boot process, while the
-clock controller itself was registered later on.
-However, some parts of the SoC are initialized early in the boot process,
-such as the SRAM and the TWD timer. The bootloader already enables these
-clocks so we didn't see any issues so far.
+Hi Jerome,
 
-Register the clock controller early so other drivers (such as the SRAM
-and TWD timer) can use the clocks early in the boot process. Now that we
-don't have a "split" initialization process anymore we can also switch
-from CLK_OF_DECLARE_DRIVER (which allows registering a part of the clock
-controller early, an another part as platform device) to CLK_OF_DECLARE
-(which only supports early initialization).
+On Fri, Aug 31, 2018 at 12:02 PM, Jerome Brunet <jbrunet@baylibre.com> wrote:
+> There are 7 digital mics on the MIC daughter board attached
+> to the s400 board, so add the digital microphone codec to
+> its DTS
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> index ff64c429d432..f3e16cbbc61e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> @@ -86,6 +86,15 @@
+>                 sound-name-prefix = "DIT";
+>         };
+>
+> +       dmics: audio-codec at 3 {
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c | 97 +++++++++++++------------------------
- 1 file changed, 34 insertions(+), 63 deletions(-)
-
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 045d72e408f8..abdcfe54f6a0 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -11,7 +11,6 @@
- #include <linux/clk-provider.h>
- #include <linux/init.h>
- #include <linux/of_address.h>
--#include <linux/platform_device.h>
- #include <linux/reset-controller.h>
- #include <linux/slab.h>
- #include <linux/regmap.h>
-@@ -22,8 +21,6 @@
- 
- static DEFINE_SPINLOCK(meson_clk_lock);
- 
--static void __iomem *clk_base;
--
- struct meson8b_clk_reset {
- 	struct reset_controller_dev reset;
- 	void __iomem *base;
-@@ -1123,62 +1120,12 @@ static const struct regmap_config clkc_regmap_config = {
- 	.reg_stride     = 4,
- };
- 
--static int meson8b_clkc_probe(struct platform_device *pdev)
--{
--	int ret, i;
--	struct device *dev = &pdev->dev;
--	struct regmap *map;
--
--	if (!clk_base)
--		return -ENXIO;
--
--	map = devm_regmap_init_mmio(dev, clk_base, &clkc_regmap_config);
--	if (IS_ERR(map))
--		return PTR_ERR(map);
--
--	/* Populate regmap for the regmap backed clocks */
--	for (i = 0; i < ARRAY_SIZE(meson8b_clk_regmaps); i++)
--		meson8b_clk_regmaps[i]->map = map;
--
--	/*
--	 * register all clks
--	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
--	 */
--	for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
--		/* array might be sparse */
--		if (!meson8b_hw_onecell_data.hws[i])
--			continue;
--
--		ret = devm_clk_hw_register(dev, meson8b_hw_onecell_data.hws[i]);
--		if (ret)
--			return ret;
--	}
--
--	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
--					   &meson8b_hw_onecell_data);
--}
--
--static const struct of_device_id meson8b_clkc_match_table[] = {
--	{ .compatible = "amlogic,meson8-clkc" },
--	{ .compatible = "amlogic,meson8b-clkc" },
--	{ .compatible = "amlogic,meson8m2-clkc" },
--	{ }
--};
--
--static struct platform_driver meson8b_driver = {
--	.probe		= meson8b_clkc_probe,
--	.driver		= {
--		.name	= "meson8b-clkc",
--		.of_match_table = meson8b_clkc_match_table,
--	},
--};
--
--builtin_platform_driver(meson8b_driver);
--
--static void __init meson8b_clkc_reset_init(struct device_node *np)
-+static void __init meson8b_clkc_init(struct device_node *np)
- {
- 	struct meson8b_clk_reset *rstc;
--	int ret;
-+	void __iomem *clk_base;
-+	struct regmap *map;
-+	int i, ret;
- 
- 	/* Generic clocks, PLLs and some of the reset-bits */
- 	clk_base = of_iomap(np, 1);
-@@ -1187,6 +1134,10 @@ static void __init meson8b_clkc_reset_init(struct device_node *np)
- 		return;
- 	}
- 
-+	map = regmap_init_mmio(NULL, clk_base, &clkc_regmap_config);
-+	if (IS_ERR(map))
-+		return;
-+
- 	rstc = kzalloc(sizeof(*rstc), GFP_KERNEL);
- 	if (!rstc)
- 		return;
-@@ -1202,11 +1153,31 @@ static void __init meson8b_clkc_reset_init(struct device_node *np)
- 		       __func__, ret);
- 		return;
- 	}
-+
-+	/* Populate regmap for the regmap backed clocks */
-+	for (i = 0; i < ARRAY_SIZE(meson8b_clk_regmaps); i++)
-+		meson8b_clk_regmaps[i]->map = map;
-+
-+	/*
-+	 * register all clks
-+	 * CLKID_UNUSED = 0, so skip it and start with CLKID_XTAL = 1
-+	 */
-+	for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
-+		/* array might be sparse */
-+		if (!meson8b_hw_onecell_data.hws[i])
-+			continue;
-+
-+		ret = clk_hw_register(NULL, meson8b_hw_onecell_data.hws[i]);
-+		if (ret)
-+			return;
-+	}
-+
-+	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get,
-+				     &meson8b_hw_onecell_data);
-+	if (ret)
-+		pr_err("%s: failed to register clock provider\n", __func__);
- }
- 
--CLK_OF_DECLARE_DRIVER(meson8_clkc, "amlogic,meson8-clkc",
--		      meson8b_clkc_reset_init);
--CLK_OF_DECLARE_DRIVER(meson8b_clkc, "amlogic,meson8b-clkc",
--		      meson8b_clkc_reset_init);
--CLK_OF_DECLARE_DRIVER(meson8m2_clkc, "amlogic,meson8m2-clkc",
--		      meson8b_clkc_reset_init);
-+CLK_OF_DECLARE(meson8_clkc, "amlogic,meson8-clkc", meson8b_clkc_init);
-+CLK_OF_DECLARE(meson8b_clkc, "amlogic,meson8b-clkc", meson8b_clkc_init);
-+CLK_OF_DECLARE(meson8m2_clkc, "amlogic,meson8m2-clkc", meson8b_clkc_init);
--- 
-2.18.0
+You pass @3 without a corresponding reg = <3>, which causes dtc
+warnings with W=1.
