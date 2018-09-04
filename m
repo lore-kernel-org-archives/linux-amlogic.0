@@ -1,95 +1,43 @@
-From: robh@kernel.org (Rob Herring)
-Date: Mon, 3 Sep 2018 20:30:01 -0500
-Subject: [PATCH 1/4] dt-bindings: media: add Amlogic Video Decoder Bindings
-In-Reply-To: <20180831085205.14760-2-mjourdan@baylibre.com>
-References: <20180831085205.14760-1-mjourdan@baylibre.com>
- <20180831085205.14760-2-mjourdan@baylibre.com>
-Message-ID: <20180904012958.GA14387@bogus>
+From: christianshewitt@gmail.com (chewitt)
+Date: Tue,  4 Sep 2018 18:44:50 +0400
+Subject: [PATCH] ARM64: dts: meson-gxbb-wetek: add ttyAML1 uart for Bluetooth
+Message-ID: <1536072290-28015-1-git-send-email-christianshewitt@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Aug 31, 2018 at 10:52:02AM +0200, Maxime Jourdan wrote:
-> Add documentation for the meson vdec dts node.
-> 
-> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
-> ---
->  .../bindings/media/amlogic,vdec.txt           | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,vdec.txt b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-> new file mode 100644
-> index 000000000000..c6450f2e7f28
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-> @@ -0,0 +1,63 @@
-> +Amlogic Video Decoder
-> +================================
-> +
-> +The VDEC IP is composed of the following blocks :
-> +
-> +- ESPARSER is a bitstream parser that outputs to a VIFIFO. Further VDEC blocks
-> +then feed from this VIFIFO.
-> +- VDEC_1 can decode MPEG-1, MPEG-2, MPEG-4 part 2, H.263, H.264.
-> +- VDEC_2 is used as a helper for corner cases like H.264 4K on older SoCs.
-> +It is not handled by this driver.
+This change adds the ttyAML1 uart used by the brmcfmac sdio module in
+the WeTek Hub and WeTek Play 2 devices.
 
-Bindings should be complete, not a reflection of what a particular 
-driver supports.
+Signed-off-by: chewitt <christianshewitt@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-> +- VDEC_HCODEC is the H.264 encoding block. It is not handled by this driver.
-> +- VDEC_HEVC can decode HEVC and VP9.
-> +
-> +Device Tree Bindings:
-> +---------------------
-> +
-> +VDEC: Video Decoder
-> +--------------------------
-> +
-> +Required properties:
-> +- compatible: value should be different for each SoC family as :
-> +	- GXBB (S905) : "amlogic,gxbb-vdec"
-> +	- GXL (S905X, S905D) : "amlogic,gxl-vdec"
-> +	- GXM (S912) : "amlogic,gxm-vdec"
-> +- reg: base address and size of he following memory-mapped regions :
-> +	- dos
-> +	- esparser
-> +- reg-names: should contain the names of the previous memory regions
-> +- interrupts: should contain the vdec and esparser IRQs.
-> +- amlogic,ao-sysctrl: should point to the AOBUS sysctrl node
-> +- amlogic,canvas: should point to a canvas provider node
-> +- clocks: should contain the following clocks :
-> +	- dos_parser
-> +	- dos
-> +	- vdec_1
-> +	- vdec_hevc
-> +- clock-names: should contain the names of the previous clocks
-> +- resets: should contain the parser reset.
-> +- reset-names: should be "esparser".
-> +
-> +Example:
-> +
-> +vdec: video-decoder at c8820000 {
-> +	compatible = "amlogic,gxbb-vdec";
-> +	reg = <0x0 0xc8820000 0x0 0x10000>,
-> +	      <0x0 0xc110a580 0x0 0xe4>;
-> +	reg-names = "dos", "esparser";
-> +
-> +	interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
-> +		     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-> +
-> +	amlogic,ao-sysctrl = <&sysctrl_AO>;
-> +	amlogic,canvas = <&canvas>;
-> +
-> +	clocks = <&clkc CLKID_DOS_PARSER>,
-> +		 <&clkc CLKID_DOS>,
-> +		 <&clkc CLKID_VDEC_1>,
-> +		 <&clkc CLKID_VDEC_HEVC>;
-> +	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
-> +
-> +	resets = <&reset RESET_PARSER>;
-> +	reset-names = "esparser";
-> +};
-> -- 
-> 2.18.0
-> 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
+index 70325b2..9476868 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
+@@ -10,6 +10,7 @@
+ / {
+ 	aliases {
+ 		serial0 = &uart_AO;
++		serial1 = &uart_A;
+ 		ethernet0 = &ethmac;
+ 	};
+ 
+@@ -239,6 +240,13 @@
+ 	vqmmc-supply = <&vddio_boot>;
+ };
+ 
++/* This is connected to the Bluetooth module: */
++&uart_A {
++	status = "okay";
++	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
++	pinctrl-names = "default";
++};
++
+ /* This UART is brought out to the DB9 connector */
+ &uart_AO {
+ 	status = "okay";
+-- 
+2.7.4
