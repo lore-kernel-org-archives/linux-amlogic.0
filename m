@@ -1,62 +1,95 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 04 Sep 2018 14:08:53 +0200
-Subject: [PATCH 1/3] dt-bindings: clock: meson8b: use the registers from
- the HHI syscon
-In-Reply-To: <153573714081.93865.1632567834341845994@swboyd.mtv.corp.google.com>
-References: <20180721192846.18811-1-martin.blumenstingl@googlemail.com>
- <20180721192846.18811-2-martin.blumenstingl@googlemail.com>
- <20180725200755.GA24555@rob-hp-laptop>
- <CAFBinCAdsC-VisufKu9jm0vZER6JjFq4O5WAfsMoXdQfzNFcfg@mail.gmail.com>
- <18543f2e-0162-9201-571c-73ce8d707e50@baylibre.com>
- <CAFBinCDLWqXCcB3b3SAOxxkq+EbQazGmMVLbVLyTjWCD4wTarA@mail.gmail.com>
- <153573714081.93865.1632567834341845994@swboyd.mtv.corp.google.com>
-Message-ID: <31463c95ba928534c8329c4665f92f6153b1840b.camel@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 3 Sep 2018 20:30:01 -0500
+Subject: [PATCH 1/4] dt-bindings: media: add Amlogic Video Decoder Bindings
+In-Reply-To: <20180831085205.14760-2-mjourdan@baylibre.com>
+References: <20180831085205.14760-1-mjourdan@baylibre.com>
+ <20180831085205.14760-2-mjourdan@baylibre.com>
+Message-ID: <20180904012958.GA14387@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 2018-08-31 at 10:39 -0700, Stephen Boyd wrote:
-> > > The clock controller node was badly represented from the beginning, the
-> > > HHI register zone *is* a "system control" zone with a lot of different
-> > > registers controller the system, including all the EE clocks, *some* HDMI
-> > > PHY settings, *some* Video DAC settings, *some* memory power control...
-> > > 
-> > > Thus, the clock controller *is* entirely in the HHI registers space, but
-> > > the HHI register space should be used by other nodes for control some
-> > > part of the SoCs. This is why we decided to model the HHI zone as a
-> > > "syscon" to permit other node to have access to these registers and
-> > > "simple-mfd" to expose the *big* feature of the HHI : the clock controller.
-> > 
-> > does our (Neil's and mine) explanation make sense to you?
-> > I understand your point that a DT node can provide multiple "things".
-> > this is the case on the Meson HHI region, but in addition to that the
-> > HHI region contains additional bits for other IP blocks. so my
-> > understanding is that using a syscon here is fine
-> > 
+On Fri, Aug 31, 2018 at 10:52:02AM +0200, Maxime Jourdan wrote:
+> Add documentation for the meson vdec dts node.
 > 
-> I'm dropping this from my review queue because nobody has replied in
-> many weeks. I think Rob wants people to move away from syscon so if you
-> can't do that then we need good reasons. I recommend putting those
-> reasons in the commit text and resending this series.
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> ---
+>  .../bindings/media/amlogic,vdec.txt           | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/amlogic,vdec.txt b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
+> new file mode 100644
+> index 000000000000..c6450f2e7f28
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
+> @@ -0,0 +1,63 @@
+> +Amlogic Video Decoder
+> +================================
+> +
+> +The VDEC IP is composed of the following blocks :
+> +
+> +- ESPARSER is a bitstream parser that outputs to a VIFIFO. Further VDEC blocks
+> +then feed from this VIFIFO.
+> +- VDEC_1 can decode MPEG-1, MPEG-2, MPEG-4 part 2, H.263, H.264.
+> +- VDEC_2 is used as a helper for corner cases like H.264 4K on older SoCs.
+> +It is not handled by this driver.
 
-Doubling down on what Neil and Martin already reported:
+Bindings should be complete, not a reflection of what a particular 
+driver supports.
 
-When this clock controller what initially added, It was thought that the HHI
-register space only contained clocks and resets, which we know how to handle in
-a single driver and does not mandate a 'syscon'
-
-Since then, we learn that HHI has more than just clocks and reset. This is the
-case on every amlogic platform, which is why we already moved gxbb/gxl to
-syscon. axg arrived later and used this model directly. Meson8 did not mandate
-the change so far. We tried to avoid this mess as long as it was not absolutely
-necessary.
-
-This particular platform (meson8) has an ADC block with is own registers space.
-The ADC comes with temperature sensor which has a few compensation values. 4 of
-these compensation values are in the ADC register space, the 5th is apparently
-in the HHI... HW is what it is ...
-
-Bottom line is, HHI is a typical system controller which need to be access by
-several devices. We are not particularly fond of syscon either but there are
-still some situations were this is cleanest solution, AFAIK.
-
-Jerome
+> +- VDEC_HCODEC is the H.264 encoding block. It is not handled by this driver.
+> +- VDEC_HEVC can decode HEVC and VP9.
+> +
+> +Device Tree Bindings:
+> +---------------------
+> +
+> +VDEC: Video Decoder
+> +--------------------------
+> +
+> +Required properties:
+> +- compatible: value should be different for each SoC family as :
+> +	- GXBB (S905) : "amlogic,gxbb-vdec"
+> +	- GXL (S905X, S905D) : "amlogic,gxl-vdec"
+> +	- GXM (S912) : "amlogic,gxm-vdec"
+> +- reg: base address and size of he following memory-mapped regions :
+> +	- dos
+> +	- esparser
+> +- reg-names: should contain the names of the previous memory regions
+> +- interrupts: should contain the vdec and esparser IRQs.
+> +- amlogic,ao-sysctrl: should point to the AOBUS sysctrl node
+> +- amlogic,canvas: should point to a canvas provider node
+> +- clocks: should contain the following clocks :
+> +	- dos_parser
+> +	- dos
+> +	- vdec_1
+> +	- vdec_hevc
+> +- clock-names: should contain the names of the previous clocks
+> +- resets: should contain the parser reset.
+> +- reset-names: should be "esparser".
+> +
+> +Example:
+> +
+> +vdec: video-decoder at c8820000 {
+> +	compatible = "amlogic,gxbb-vdec";
+> +	reg = <0x0 0xc8820000 0x0 0x10000>,
+> +	      <0x0 0xc110a580 0x0 0xe4>;
+> +	reg-names = "dos", "esparser";
+> +
+> +	interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
+> +		     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
+> +
+> +	amlogic,ao-sysctrl = <&sysctrl_AO>;
+> +	amlogic,canvas = <&canvas>;
+> +
+> +	clocks = <&clkc CLKID_DOS_PARSER>,
+> +		 <&clkc CLKID_DOS>,
+> +		 <&clkc CLKID_VDEC_1>,
+> +		 <&clkc CLKID_VDEC_HEVC>;
+> +	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
+> +
+> +	resets = <&reset RESET_PARSER>;
+> +	reset-names = "esparser";
+> +};
+> -- 
+> 2.18.0
+> 
