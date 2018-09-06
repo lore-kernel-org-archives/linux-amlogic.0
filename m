@@ -1,18 +1,18 @@
 From: mjourdan@baylibre.com (Maxime Jourdan)
-Date: Thu, 6 Sep 2018 10:21:26 +0200
-Subject: [PATCH v3 3/3] ARM64: dts: meson-gx: add dmcbus and canvas nodes.
-In-Reply-To: <20180823114954.30704-4-mjourdan@baylibre.com>
+Date: Thu, 6 Sep 2018 10:31:25 +0200
+Subject: [PATCH v3 2/3] soc: amlogic: add meson-canvas driver
+In-Reply-To: <20180823114954.30704-3-mjourdan@baylibre.com>
 References: <20180823114954.30704-1-mjourdan@baylibre.com>
- <20180823114954.30704-4-mjourdan@baylibre.com>
-Message-ID: <CAMO6nayiONr5Z5P35jhSY7i52+7Sfn_GLU=syFVV-cS8Bhxeiw@mail.gmail.com>
+ <20180823114954.30704-3-mjourdan@baylibre.com>
+Message-ID: <CAMO6naxHjK7cZAEpGPfPz5c8ZjGC5aPz8+yTAxoFpCc_gP24FA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Hi Kevin,
 
-If you don't mind, please change the title from "ARM64" to "arm64" if
-this gets merged.
+Please create an immutable tag for this patch, as this is a hard
+dependency for the video decoder patches. This will make it easier for
+Mauro.
 
-Thanks!
-
+Thanks,
 Maxime
