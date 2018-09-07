@@ -1,144 +1,101 @@
-From: boris.brezillon@bootlin.com (Boris Brezillon)
-Date: Fri, 7 Sep 2018 14:19:44 +0200
-Subject: [RFC PATCH v3 1/2] dt-bindings: nand: meson: add Amlogic NAND
- controller driver
-In-Reply-To: <1536317831-58056-2-git-send-email-jianxin.pan@amlogic.com>
-References: <1536317831-58056-1-git-send-email-jianxin.pan@amlogic.com>
- <1536317831-58056-2-git-send-email-jianxin.pan@amlogic.com>
-Message-ID: <20180907141944.4dd4406b@bbrezillon>
+From: clabbe@baylibre.com (Corentin Labbe)
+Date: Fri,  7 Sep 2018 19:41:42 +0000
+Subject: [PATCH 0/5] introduce
+ setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64 functions
+Message-ID: <1536349307-20714-1-git-send-email-clabbe@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, 7 Sep 2018 18:57:10 +0800
-Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+Hello
 
-> From: Liang Yang <liang.yang@amlogic.com>
-> 
-> Add Amlogic NAND controller dt-bindings for Meson SoC,
-> Current this driver support GXBB/GXL/AXG platform.
-> 
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
-> ---
->  .../devicetree/bindings/mtd/amlogic,meson-nand.txt | 91 ++++++++++++++++++++++
->  1 file changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> new file mode 100644
-> index 0000000..655a778
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-> @@ -0,0 +1,91 @@
-> +Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
-> +
-> +This file documents the properties in addition to those available in
-> +the MTD NAND bindings.
-> +
-> +Required properties:
-> +- compatible : contains one of:
-> +  - "amlogic,meson-gxl-nfc"
-> +  - "amlogic,meson-axg-nfc"
-> +- clocks     :
-> +	A list of phandle + clock-specifier pairs for the clocks listed
-> +	in clock-names.
-> +
-> +- clock-names: Should contain the following:
-> +	"core" - NFC module gate clock
-> +	"device" - device clock from eMMC sub clock controller
-> +
-> +- pins     : Select pins which NFC need.
-> +- nand_pins: Detail NAND pins information.
+This patchset adds a new set of functions which are open-coded in lot of
+place.
+Basicly the pattern is always the same, "read, modify a bit, write"
+some driver already have thoses pattern them as functions. (like ahci_sunxi.c or dwmac-meson8b)
 
-You mean pinctrl-names and pinctrl-0, right? Not sure it's necessary to
-document that, but if you do, please use the correct DT prop names.
+The first patch rename some powerpc funtions which already use the same name (xxxbits32)
+but with only bigendian values.
 
-> +- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
-> +				controller port C
-> +
-> +Optional children nodes:
-> +Children nodes represent the available nand chips.
-> +
-> +
-> +
+The second patch adds the header.
+The third patch is an ugly try to implement a coccinelle semantic patch to
+find all place where xxxbits function could be used.
+Probably this spatch could be better written and I didnt found an easy way to add the "linux/setbits" header.
 
-One too many blank lines here.
+The two last patch are example of convertion of two drivers.
+Thoses patchs give an example of the reduction of code won by using xxxbits32.
 
-> +Other properties:
-> +see Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
-> +
-> +Example demonstrate on AXG SoC:
-> +
-> +	sd_emmc_c_clkc: mmc at 7000 {
-> +		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
-> +		reg = <0x0 0x7000 0x0 0x800>;
-> +		status = "okay";
-> +	};
-> +
-> +	nand: nfc at 7800 {
-> +		compatible = "amlogic,meson-axg-nfc";
-> +		reg = <0x0 0x7800 0x0 0x100>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
-> +		status = "disabled";
-> +
-> +		clocks = <&clkc CLKID_SD_EMMC_C>,
-> +			<&sd_emmc_c_clkc CLKID_MMC_DIV>;
-> +		clock-names = "core", "device";
-> +		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
-> +
-> +		status = "okay";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&nand_pins>;
-> +
-> +		nand at 0 {
-> +			reg = <0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			nand-on-flash-bbt;
-> +			nand-ecc-mode = "hw";
-> +			nand-ecc-strength = <8>;
-> +			nand-ecc-step-size = <1024>;
+This patchset is tested with the ahci_sunxi and dwmac-sun8i drivers.
 
-Drop nand-ecc- props. I guess you have a sensible default value and I
-prefer when ECC requirements are directly extracted during chip
-detection. Defining that in the DT is a bad habit. The only one that
-could make sense (assuming you support it) is nand-ecc-maximize.
+Regards
 
-> +
-> +			amlogic,nand-enable-scrambler;
+Corentin Labbe (5):
+  powerpc: rename setbits32/clrbits32 to setbits32_be/clrbits32_be
+  include: add
+    setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64 in
+    linux/setbits.h
+  coccinelle: add xxxsetbitsXX converting spatch
+  net: ethernet: stmmac: use xxxsetbits32
+  ata: ahci_sunxi: use xxxsetbits32 functions
 
-Please drop this property (it's not longer documented).
+ arch/powerpc/include/asm/fsl_lbc.h                 |   2 +-
+ arch/powerpc/include/asm/io.h                      |   5 +-
+ arch/powerpc/platforms/44x/canyonlands.c           |   4 +-
+ arch/powerpc/platforms/4xx/gpio.c                  |  28 +-
+ arch/powerpc/platforms/512x/pdm360ng.c             |   6 +-
+ arch/powerpc/platforms/52xx/mpc52xx_common.c       |   6 +-
+ arch/powerpc/platforms/52xx/mpc52xx_gpt.c          |  10 +-
+ arch/powerpc/platforms/82xx/ep8248e.c              |   2 +-
+ arch/powerpc/platforms/82xx/km82xx.c               |   6 +-
+ arch/powerpc/platforms/82xx/mpc8272_ads.c          |  10 +-
+ arch/powerpc/platforms/82xx/pq2.c                  |   2 +-
+ arch/powerpc/platforms/82xx/pq2ads-pci-pic.c       |   4 +-
+ arch/powerpc/platforms/82xx/pq2fads.c              |  10 +-
+ arch/powerpc/platforms/83xx/km83xx.c               |   6 +-
+ arch/powerpc/platforms/83xx/mpc836x_mds.c          |   2 +-
+ arch/powerpc/platforms/85xx/mpc85xx_mds.c          |   2 +-
+ arch/powerpc/platforms/85xx/mpc85xx_pm_ops.c       |   4 +-
+ arch/powerpc/platforms/85xx/mpc85xx_rdb.c          |   2 +-
+ arch/powerpc/platforms/85xx/p1022_ds.c             |   4 +-
+ arch/powerpc/platforms/85xx/p1022_rdk.c            |   4 +-
+ arch/powerpc/platforms/85xx/t1042rdb_diu.c         |   4 +-
+ arch/powerpc/platforms/85xx/twr_p102x.c            |   2 +-
+ arch/powerpc/platforms/86xx/mpc8610_hpcd.c         |   4 +-
+ arch/powerpc/platforms/8xx/adder875.c              |   2 +-
+ arch/powerpc/platforms/8xx/m8xx_setup.c            |   4 +-
+ arch/powerpc/platforms/8xx/mpc86xads_setup.c       |   4 +-
+ arch/powerpc/platforms/8xx/mpc885ads_setup.c       |  28 +-
+ arch/powerpc/platforms/embedded6xx/flipper-pic.c   |   6 +-
+ arch/powerpc/platforms/embedded6xx/hlwd-pic.c      |   8 +-
+ arch/powerpc/platforms/embedded6xx/wii.c           |  10 +-
+ arch/powerpc/sysdev/cpm1.c                         |  26 +-
+ arch/powerpc/sysdev/cpm2.c                         |  16 +-
+ arch/powerpc/sysdev/cpm_common.c                   |   4 +-
+ arch/powerpc/sysdev/fsl_85xx_l2ctlr.c              |   8 +-
+ arch/powerpc/sysdev/fsl_lbc.c                      |   2 +-
+ arch/powerpc/sysdev/fsl_pci.c                      |   8 +-
+ arch/powerpc/sysdev/fsl_pmc.c                      |   2 +-
+ arch/powerpc/sysdev/fsl_rcpm.c                     |  74 ++--
+ arch/powerpc/sysdev/fsl_rio.c                      |   4 +-
+ arch/powerpc/sysdev/fsl_rmu.c                      |   8 +-
+ arch/powerpc/sysdev/mpic_timer.c                   |  12 +-
+ drivers/ata/ahci_sunxi.c                           |  51 +--
+ .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    |  54 +--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c  |  55 +--
+ .../net/ethernet/stmicro/stmmac/dwmac1000_core.c   |  21 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c  |  51 +--
+ drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c   |  13 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac4_lib.c   |  42 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac5.c       |  11 +-
+ drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c    |  17 +-
+ .../net/ethernet/stmicro/stmmac/dwxgmac2_core.c    |  30 +-
+ drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c |  69 +---
+ .../net/ethernet/stmicro/stmmac/stmmac_hwtstamp.c  |  11 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c  |   7 +-
+ include/linux/setbits.h                            |  55 +++
+ scripts/coccinelle/misc/setbits.cocci              | 423 +++++++++++++++++++++
+ 56 files changed, 776 insertions(+), 489 deletions(-)
+ create mode 100644 include/linux/setbits.h
+ create mode 100644 scripts/coccinelle/misc/setbits.cocci
 
-> +
-> +			partition at 0 {
-> +				label = "boot";
-> +				reg = <0x00000000 0x00200000>;
-> +				read-only;
-> +			};
-> +			partition at 200000 {
-> +				label = "env";
-> +				reg = <0x00200000 0x00400000>;
-> +			};
-> +			partition at 600000 {
-> +				label = "system";
-> +				reg = <0x00600000 0x00a00000>;
-> +			};
-> +			partition at 1000000 {
-> +				label = "rootfs";
-> +				reg = <0x01000000 0x03000000>;
-> +			};
-> +			partition at 4000000 {
-> +				label = "media";
-> +				reg = <0x04000000 0x8000000>;
-> +			};
-
-No need to define the partitions in your example, especially since they
-should be placed in a partitions subnode with a "fixed-partitions"
-compat.
-
-> +		};
-> +	};
+-- 
+2.16.4
