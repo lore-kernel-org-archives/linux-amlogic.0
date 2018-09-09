@@ -1,50 +1,82 @@
-From: mohammad.rasim96@gmail.com (MOHAMMAD RASIM)
-Date: Sat, 8 Sep 2018 19:48:39 +0300
-Subject: Regression in drm: drm/fbdev doesn't initialize if set to triple
- buffer
-Message-ID: <d104b771-2999-d56b-ec4e-b792211d55d1@gmail.com>
+From: elfring@users.sourceforge.net (SF Markus Elfring)
+Date: Sun, 9 Sep 2018 13:13:25 +0200
+Subject: [PATCH RFC 3/5] coccinelle: add xxxsetbitsXX converting spatch
+In-Reply-To: <1536349307-20714-4-git-send-email-clabbe@baylibre.com>
+References: <1536349307-20714-4-git-send-email-clabbe@baylibre.com>
+Message-ID: <463dbbdc-7afc-bee8-8da1-bbe70b4aec26@users.sourceforge.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+How do you think about to add any more meta-data for this semantic patch script?
 
-I've an issue where the drm_meson driver doesn't work, it used to work 
-in earlier 4.18 release and stopped working after about 4.18-rc3.
+* SPDX identifier
+* Copyright information
+* Confidence level
 
-My board is videostrong k2 pro (S905 SoC), I use the meson-gxbb-p201 
-device tree.
+https://bottest.wiki.kernel.org/coccicheck
 
-on the latest 4.19 tree the board boots fine but the drm driver doesn't 
-work, and spits the following error in dmesg
 
-[??? 2.489825] meson-drm d0100000.vpu: Queued 3 outputs on vpu
-[??? 2.494685] meson-drm d0100000.vpu: Failed to create d0100000.vpu 
-debugfs directory
-[??? 2.502051] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[??? 2.508668] [drm] No driver support for vblank timestamp query.
-[??? 2.573756] meson-drm d0100000.vpu: bound c883a000.hdmi-tx (ops 
-meson_dw_hdmi_ops)
-[??? 2.695917] meson-drm d0100000.vpu: [drm:drm_fb_helper_fbdev_setup] 
-*ERROR* Failed to set fbdev configuration
-[??? 2.700310] meson-drm d0100000.vpu: master bind failed: -22
-[??? 2.705747] meson-drm: probe of d0100000.vpu failed with error -22
+> +virtual context
 
-Digging deeper into the problem revealed that the problem is related to 
-the CONFIG_DRM_FBDEV_OVERALLOC option, If I set it to 100 or 200 it 
-works fine and the drm driver works ( or by passing 
-drm_kms_helper.drm_fbdev_overalloc=200 in the bootargs). The problem 
-reappears when setting it to 300.
+Further variables will be needed if you would like to use corresponding
+operation modes (besides ?patch?).
 
-Bisecting shows that the first bad commit that introduced this 
-regression is this: 244007ecb6bb94fa4e9b9a969fa86f2ad86ec543
 
-Another problem that I face and might be related is that the sometimes 
-the boot get stuck on the following lines:
+> +expression reg;
+> +expression set;
+> +expression clear;
 
-[??? 2.501539] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[??? 2.508158] [drm] No driver support for vblank timestamp query.
+I propose once more to avoid the repetition of (unnecessary) SmPL code.
+This part could be written like the following instead.
 
-This problem is random and can't always reproduced, sometimes it takes a 
-few reboots to get the board to boot pass those lines.
++expression clear, set, reg;
 
-Regards
+
+If you would increase the usage of SmPL disjunctions, the specification
+of duplicate SmPL code could be reduced considerably.
+
+* Would you like to merge SmPL rules based on the distinction between
+  the data types ?u32? and ?u64??
+
+* Did you identify any optional code in this transformation approach?
+
+
+> +@@
+> +expression base;
+> +expression offset;
+> +expression value;
+> +@@
+> +
+> +- mtu3_setbits(base, offset, value);
+> ++ setbits32(base + offset, value);
+> +
+> +@@
+> +expression base;
+> +expression offset;
+> +expression mask;
+> +@@
+> +
+> +- mtu3_clrbits(base, offset, mask);
+> ++ clrbits32(base + offset, mask);
+
+Another update suggestion:
+
++ at replacement@
++expression base, offset;
++@@
++(
++-mtu3_clrbits
+++clrbits32
++|
++-mtu3_setbits
+++setbits32
++)(base
++-     ,
+++ +
++  offset, ...);
+
+
+Would you like to try further software fine-tuning out?
+
+Regards,
+Markus
