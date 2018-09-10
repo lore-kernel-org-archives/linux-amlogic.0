@@ -1,115 +1,59 @@
-From: christophe.leroy@c-s.fr (Christophe LEROY)
-Date: Mon, 10 Sep 2018 07:24:16 +0200
-Subject: [PATCH 0/5] introduce
- setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64 functions
-In-Reply-To: <1536349307-20714-1-git-send-email-clabbe@baylibre.com>
-References: <1536349307-20714-1-git-send-email-clabbe@baylibre.com>
-Message-ID: <93f879d1-ddae-9a7c-e629-ee34f97686c6@c-s.fr>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Mon, 10 Sep 2018 15:54:53 +0200
+Subject: Regression in drm: drm/fbdev doesn't initialize if set to triple
+ buffer
+In-Reply-To: <d104b771-2999-d56b-ec4e-b792211d55d1@gmail.com>
+References: <d104b771-2999-d56b-ec4e-b792211d55d1@gmail.com>
+Message-ID: <2bca95ba-90d3-ec32-8600-aa48d32c8314@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi,
 
+Thanks for reporting this issue.
 
-Le 07/09/2018 ? 21:41, Corentin Labbe a ?crit?:
-> Hello
+On 08/09/2018 18:48, MOHAMMAD RASIM wrote:
+> Hi,
 > 
-> This patchset adds a new set of functions which are open-coded in lot of
-> place.
-> Basicly the pattern is always the same, "read, modify a bit, write"
-> some driver already have thoses pattern them as functions. (like ahci_sunxi.c or dwmac-meson8b)
+> I've an issue where the drm_meson driver doesn't work, it used to work in earlier 4.18 release and stopped working after about 4.18-rc3.
 > 
-> The first patch rename some powerpc funtions which already use the same name (xxxbits32)
-> but with only bigendian values.
+> My board is videostrong k2 pro (S905 SoC), I use the meson-gxbb-p201 device tree.
+> 
+> on the latest 4.19 tree the board boots fine but the drm driver doesn't work, and spits the following error in dmesg
+> 
+> [??? 2.489825] meson-drm d0100000.vpu: Queued 3 outputs on vpu
+> [??? 2.494685] meson-drm d0100000.vpu: Failed to create d0100000.vpu debugfs directory
+> [??? 2.502051] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+> [??? 2.508668] [drm] No driver support for vblank timestamp query.
+> [??? 2.573756] meson-drm d0100000.vpu: bound c883a000.hdmi-tx (ops meson_dw_hdmi_ops)
+> [??? 2.695917] meson-drm d0100000.vpu: [drm:drm_fb_helper_fbdev_setup] *ERROR* Failed to set fbdev configuration
+> [??? 2.700310] meson-drm d0100000.vpu: master bind failed: -22
+> [??? 2.705747] meson-drm: probe of d0100000.vpu failed with error -22
+> 
+> Digging deeper into the problem revealed that the problem is related to the CONFIG_DRM_FBDEV_OVERALLOC option, If I set it to 100 or 200 it works fine and the drm driver works ( or by passing drm_kms_helper.drm_fbdev_overalloc=200 in the bootargs). The problem reappears when setting it to 300.
+> 
+> Bisecting shows that the first bad commit that introduced this regression is this: 244007ecb6bb94fa4e9b9a969fa86f2ad86ec543
 
-The same name as what ?
+This commit points when the DRM driver has been switched to the generic fbdev emulation.
+
+Do you use the CONFIG_DRM_FBDEV_OVERALLOC to use the fbdev libMali ?
+
+if yes, it won't work anymore since the generic fbdev emulation does not export the fbdev smem physical address anymore.
+
+The solution is to switch to the GBM libMali and drop any fbdev legacy code.
 
 > 
-> The second patch adds the header.
-
-But the second patch adds functions with the same name as the powerpc 
-ones but doing something different. Why consider that setbits32() should 
-be LE and not BE ?
-
-Christophe
-
-
-> The third patch is an ugly try to implement a coccinelle semantic patch to
-> find all place where xxxbits function could be used.
-> Probably this spatch could be better written and I didnt found an easy way to add the "linux/setbits" header.
+> Another problem that I face and might be related is that the sometimes the boot get stuck on the following lines:
 > 
-> The two last patch are example of convertion of two drivers.
-> Thoses patchs give an example of the reduction of code won by using xxxbits32.
+> [??? 2.501539] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+> [??? 2.508158] [drm] No driver support for vblank timestamp query.
 > 
-> This patchset is tested with the ahci_sunxi and dwmac-sun8i drivers.
+> This problem is random and can't always reproduced, sometimes it takes a few reboots to get the board to boot pass those lines.
+
+Weird, can you elaborate on you complete linux version, patches and HW ?
+
 > 
 > Regards
 > 
-> Corentin Labbe (5):
->    powerpc: rename setbits32/clrbits32 to setbits32_be/clrbits32_be
->    include: add
->      setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64 in
->      linux/setbits.h
->    coccinelle: add xxxsetbitsXX converting spatch
->    net: ethernet: stmmac: use xxxsetbits32
->    ata: ahci_sunxi: use xxxsetbits32 functions
-> 
->   arch/powerpc/include/asm/fsl_lbc.h                 |   2 +-
->   arch/powerpc/include/asm/io.h                      |   5 +-
->   arch/powerpc/platforms/44x/canyonlands.c           |   4 +-
->   arch/powerpc/platforms/4xx/gpio.c                  |  28 +-
->   arch/powerpc/platforms/512x/pdm360ng.c             |   6 +-
->   arch/powerpc/platforms/52xx/mpc52xx_common.c       |   6 +-
->   arch/powerpc/platforms/52xx/mpc52xx_gpt.c          |  10 +-
->   arch/powerpc/platforms/82xx/ep8248e.c              |   2 +-
->   arch/powerpc/platforms/82xx/km82xx.c               |   6 +-
->   arch/powerpc/platforms/82xx/mpc8272_ads.c          |  10 +-
->   arch/powerpc/platforms/82xx/pq2.c                  |   2 +-
->   arch/powerpc/platforms/82xx/pq2ads-pci-pic.c       |   4 +-
->   arch/powerpc/platforms/82xx/pq2fads.c              |  10 +-
->   arch/powerpc/platforms/83xx/km83xx.c               |   6 +-
->   arch/powerpc/platforms/83xx/mpc836x_mds.c          |   2 +-
->   arch/powerpc/platforms/85xx/mpc85xx_mds.c          |   2 +-
->   arch/powerpc/platforms/85xx/mpc85xx_pm_ops.c       |   4 +-
->   arch/powerpc/platforms/85xx/mpc85xx_rdb.c          |   2 +-
->   arch/powerpc/platforms/85xx/p1022_ds.c             |   4 +-
->   arch/powerpc/platforms/85xx/p1022_rdk.c            |   4 +-
->   arch/powerpc/platforms/85xx/t1042rdb_diu.c         |   4 +-
->   arch/powerpc/platforms/85xx/twr_p102x.c            |   2 +-
->   arch/powerpc/platforms/86xx/mpc8610_hpcd.c         |   4 +-
->   arch/powerpc/platforms/8xx/adder875.c              |   2 +-
->   arch/powerpc/platforms/8xx/m8xx_setup.c            |   4 +-
->   arch/powerpc/platforms/8xx/mpc86xads_setup.c       |   4 +-
->   arch/powerpc/platforms/8xx/mpc885ads_setup.c       |  28 +-
->   arch/powerpc/platforms/embedded6xx/flipper-pic.c   |   6 +-
->   arch/powerpc/platforms/embedded6xx/hlwd-pic.c      |   8 +-
->   arch/powerpc/platforms/embedded6xx/wii.c           |  10 +-
->   arch/powerpc/sysdev/cpm1.c                         |  26 +-
->   arch/powerpc/sysdev/cpm2.c                         |  16 +-
->   arch/powerpc/sysdev/cpm_common.c                   |   4 +-
->   arch/powerpc/sysdev/fsl_85xx_l2ctlr.c              |   8 +-
->   arch/powerpc/sysdev/fsl_lbc.c                      |   2 +-
->   arch/powerpc/sysdev/fsl_pci.c                      |   8 +-
->   arch/powerpc/sysdev/fsl_pmc.c                      |   2 +-
->   arch/powerpc/sysdev/fsl_rcpm.c                     |  74 ++--
->   arch/powerpc/sysdev/fsl_rio.c                      |   4 +-
->   arch/powerpc/sysdev/fsl_rmu.c                      |   8 +-
->   arch/powerpc/sysdev/mpic_timer.c                   |  12 +-
->   drivers/ata/ahci_sunxi.c                           |  51 +--
->   .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    |  54 +--
->   drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c  |  55 +--
->   .../net/ethernet/stmicro/stmmac/dwmac1000_core.c   |  21 +-
->   drivers/net/ethernet/stmicro/stmmac/dwmac4_core.c  |  51 +--
->   drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c   |  13 +-
->   drivers/net/ethernet/stmicro/stmmac/dwmac4_lib.c   |  42 +-
->   drivers/net/ethernet/stmicro/stmmac/dwmac5.c       |  11 +-
->   drivers/net/ethernet/stmicro/stmmac/dwmac_lib.c    |  17 +-
->   .../net/ethernet/stmicro/stmmac/dwxgmac2_core.c    |  30 +-
->   drivers/net/ethernet/stmicro/stmmac/dwxgmac2_dma.c |  69 +---
->   .../net/ethernet/stmicro/stmmac/stmmac_hwtstamp.c  |  11 +-
->   drivers/net/ethernet/stmicro/stmmac/stmmac_mdio.c  |   7 +-
->   include/linux/setbits.h                            |  55 +++
->   scripts/coccinelle/misc/setbits.cocci              | 423 +++++++++++++++++++++
->   56 files changed, 776 insertions(+), 489 deletions(-)
->   create mode 100644 include/linux/setbits.h
->   create mode 100644 scripts/coccinelle/misc/setbits.cocci
-> 
+
+Neil
