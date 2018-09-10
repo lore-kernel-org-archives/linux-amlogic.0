@@ -1,82 +1,167 @@
-From: elfring@users.sourceforge.net (SF Markus Elfring)
-Date: Sun, 9 Sep 2018 13:13:25 +0200
-Subject: [PATCH RFC 3/5] coccinelle: add xxxsetbitsXX converting spatch
-In-Reply-To: <1536349307-20714-4-git-send-email-clabbe@baylibre.com>
-References: <1536349307-20714-4-git-send-email-clabbe@baylibre.com>
-Message-ID: <463dbbdc-7afc-bee8-8da1-bbe70b4aec26@users.sourceforge.net>
+From: liang.yang@amlogic.com (Liang Yang)
+Date: Mon, 10 Sep 2018 12:46:44 +0800
+Subject: [RFC PATCH v3 1/2] dt-bindings: nand: meson: add Amlogic NAND
+ controller driver
+In-Reply-To: <20180907141944.4dd4406b@bbrezillon>
+References: <1536317831-58056-1-git-send-email-jianxin.pan@amlogic.com>
+ <1536317831-58056-2-git-send-email-jianxin.pan@amlogic.com>
+ <20180907141944.4dd4406b@bbrezillon>
+Message-ID: <824dd234-30d6-d47d-8abd-352578b232f6@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-How do you think about to add any more meta-data for this semantic patch script?
+Hi boric,
 
-* SPDX identifier
-* Copyright information
-* Confidence level
+Thanks for your quick reply.
 
-https://bottest.wiki.kernel.org/coccicheck
+On 9/7/2018 8:19 PM, Boris Brezillon wrote:
+> On Fri, 7 Sep 2018 18:57:10 +0800
+> Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+> 
+>> From: Liang Yang <liang.yang@amlogic.com>
+>>
+>> Add Amlogic NAND controller dt-bindings for Meson SoC,
+>> Current this driver support GXBB/GXL/AXG platform.
+>>
+>> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>> ---
+>>   .../devicetree/bindings/mtd/amlogic,meson-nand.txt | 91 ++++++++++++++++++++++
+>>   1 file changed, 91 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>> new file mode 100644
+>> index 0000000..655a778
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+>> @@ -0,0 +1,91 @@
+>> +Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+>> +
+>> +This file documents the properties in addition to those available in
+>> +the MTD NAND bindings.
+>> +
+>> +Required properties:
+>> +- compatible : contains one of:
+>> +  - "amlogic,meson-gxl-nfc"
+>> +  - "amlogic,meson-axg-nfc"
+>> +- clocks     :
+>> +	A list of phandle + clock-specifier pairs for the clocks listed
+>> +	in clock-names.
+>> +
+>> +- clock-names: Should contain the following:
+>> +	"core" - NFC module gate clock
+>> +	"device" - device clock from eMMC sub clock controller
+>> +
+>> +- pins     : Select pins which NFC need.
+>> +- nand_pins: Detail NAND pins information.
+> 
+> You mean pinctrl-names and pinctrl-0, right? Not sure it's necessary to
+> document that, but if you do, please use the correct DT prop names.
+> 
 
+I find no documentation for that in other xx_nand.txt; I will consider 
+to remove it.
 
-> +virtual context
+>> +- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
+>> +				controller port C
+>> +
+>> +Optional children nodes:
+>> +Children nodes represent the available nand chips.
+>> +
+>> +
+>> +
+> 
+> One too many blank lines here.
+> 
+ok, i will remove it.
 
-Further variables will be needed if you would like to use corresponding
-operation modes (besides ?patch?).
+>> +Other properties:
+>> +see Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
+>> +
+>> +Example demonstrate on AXG SoC:
+>> +
+>> +	sd_emmc_c_clkc: mmc at 7000 {
+>> +		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
+>> +		reg = <0x0 0x7000 0x0 0x800>;
+>> +		status = "okay";
+>> +	};
+>> +
+>> +	nand: nfc at 7800 {
+>> +		compatible = "amlogic,meson-axg-nfc";
+>> +		reg = <0x0 0x7800 0x0 0x100>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+>> +		status = "disabled";
+>> +
+>> +		clocks = <&clkc CLKID_SD_EMMC_C>,
+>> +			<&sd_emmc_c_clkc CLKID_MMC_DIV>;
+>> +		clock-names = "core", "device";
+>> +		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
+>> +
+>> +		status = "okay";
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&nand_pins>;
+>> +
+>> +		nand at 0 {
+>> +			reg = <0>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +
+>> +			nand-on-flash-bbt;
+>> +			nand-ecc-mode = "hw";
+>> +			nand-ecc-strength = <8>;
+>> +			nand-ecc-step-size = <1024>;
+> 
+> Drop nand-ecc- props. I guess you have a sensible default value and I
+> prefer when ECC requirements are directly extracted during chip
+> detection. Defining that in the DT is a bad habit. The only one that
+> could make sense (assuming you support it) is nand-ecc-maximize.
+> 
+ok, i will drop them.
+we adopt auto detection during init stage, it works too.
 
+>> +
+>> +			amlogic,nand-enable-scrambler;
+> 
+> Please drop this property (it's not longer documented).
+> 
+em, we should have removed it when nfc driver never use it.
 
-> +expression reg;
-> +expression set;
-> +expression clear;
+>> +
+>> +			partition at 0 {
+>> +				label = "boot";
+>> +				reg = <0x00000000 0x00200000>;
+>> +				read-only;
+>> +			};
+>> +			partition at 200000 {
+>> +				label = "env";
+>> +				reg = <0x00200000 0x00400000>;
+>> +			};
+>> +			partition at 600000 {
+>> +				label = "system";
+>> +				reg = <0x00600000 0x00a00000>;
+>> +			};
+>> +			partition at 1000000 {
+>> +				label = "rootfs";
+>> +				reg = <0x01000000 0x03000000>;
+>> +			};
+>> +			partition at 4000000 {
+>> +				label = "media";
+>> +				reg = <0x04000000 0x8000000>;
+>> +			};
+> 
+> No need to define the partitions in your example, especially since they
+> should be placed in a partitions subnode with a "fixed-partitions"
+> compat.
+>
 
-I propose once more to avoid the repetition of (unnecessary) SmPL code.
-This part could be written like the following instead.
+ok, i will remove it.
 
-+expression clear, set, reg;
-
-
-If you would increase the usage of SmPL disjunctions, the specification
-of duplicate SmPL code could be reduced considerably.
-
-* Would you like to merge SmPL rules based on the distinction between
-  the data types ?u32? and ?u64??
-
-* Did you identify any optional code in this transformation approach?
-
-
-> +@@
-> +expression base;
-> +expression offset;
-> +expression value;
-> +@@
-> +
-> +- mtu3_setbits(base, offset, value);
-> ++ setbits32(base + offset, value);
-> +
-> +@@
-> +expression base;
-> +expression offset;
-> +expression mask;
-> +@@
-> +
-> +- mtu3_clrbits(base, offset, mask);
-> ++ clrbits32(base + offset, mask);
-
-Another update suggestion:
-
-+ at replacement@
-+expression base, offset;
-+@@
-+(
-+-mtu3_clrbits
-++clrbits32
-+|
-+-mtu3_setbits
-++setbits32
-+)(base
-+-     ,
-++ +
-+  offset, ...);
-
-
-Would you like to try further software fine-tuning out?
-
-Regards,
-Markus
+>> +		};
+>> +	};
+> 
+> .
+> 
