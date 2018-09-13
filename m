@@ -1,46 +1,71 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 13 Sep 2018 22:22:02 +0200
-Subject: [PATCH 4/5] ARM: dts: meson8b: add the RMII pins
+Date: Thu, 13 Sep 2018 22:22:01 +0200
+Subject: [PATCH 3/5] ARM: dts: meson8b: add the I2C_A, PWM_C and UART_B pins
 In-Reply-To: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
 References: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180913202203.19636-5-martin.blumenstingl@googlemail.com>
+Message-ID: <20180913202203.19636-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Some boards use an RMII Ethernet PHY which requires fewer pins than the
-RGMII PHYs. Add a separate eth_rmii_pins node which does not include the
-pins which are only required for RGMII (but not for RMII) PHYs.
+These are used for example on the Endless Mini (EC-100):
+- I2C_A is connected to the Realtek RT5640 audio codec
+- PWM_C (GPIODV_9) is connected to a PWM regulator which is used for
+  VCCK (CPU voltage supply)
+- UART_B is connected to the Bluetooth module (of the RTL8723BS SDIO
+  wifi and Bluetooth combo chip)
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ arch/arm/boot/dts/meson8b.dtsi | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
 diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 4bbbbc6bea83..cd1ca9dda126 100644
+index f77e419c1c65..4bbbbc6bea83 100644
 --- a/arch/arm/boot/dts/meson8b.dtsi
 +++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -223,6 +223,21 @@
+@@ -223,6 +223,13 @@
  			};
  		};
  
-+		eth_rmii_pins: eth-rmii {
++		i2c_a_pins: i2c-a {
 +			mux {
-+				groups = "eth_tx_en",
-+					 "eth_txd1_0",
-+					 "eth_txd0_0",
-+					 "eth_rx_clk",
-+					 "eth_rx_dv",
-+					 "eth_rxd1",
-+					 "eth_rxd0",
-+					 "eth_mdio_en",
-+					 "eth_mdc";
-+				function = "ethernet";
++				groups = "i2c_sda_a", "i2c_sck_a";
++				function = "i2c_a";
 +			};
 +		};
 +
- 		i2c_a_pins: i2c-a {
+ 		sd_b_pins: sd-b {
  			mux {
- 				groups = "i2c_sda_a", "i2c_sck_a";
+ 				groups = "sd_d0_b", "sd_d1_b", "sd_d2_b",
+@@ -230,6 +237,29 @@
+ 				function = "sd_b";
+ 			};
+ 		};
++
++		pwm_c1_pins: pwm-c1 {
++			mux {
++				groups = "pwm_c1";
++				function = "pwm_c";
++			};
++		};
++
++		uart_b0_pins: uart-b0 {
++			mux {
++				groups = "uart_tx_b0",
++				       "uart_rx_b0";
++				function = "uart_b";
++			};
++		};
++
++		uart_b0_cts_rts_pins: uart-b0-cts-rts {
++			mux {
++				groups = "uart_cts_b0",
++				       "uart_rts_b0";
++				function = "uart_b";
++			};
++		};
+ 	};
+ };
+ 
 -- 
 2.19.0
