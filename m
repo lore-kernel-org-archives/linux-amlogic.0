@@ -1,22 +1,128 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 12 Sep 2018 20:59:54 -0700
-Subject: [PATCH] ARM64: dts: meson-gx: increase default shared CMA pool
- size
-In-Reply-To: <1536085844-29328-1-git-send-email-christianshewitt@gmail.com>
- (Christian Hewitt's message of "Tue, 4 Sep 2018 22:30:43 +0400")
-References: <1536085844-29328-1-git-send-email-christianshewitt@gmail.com>
-Message-ID: <7hd0tixd1h.fsf@baylibre.com>
+From: wens@csie.org (Chen-Yu Tsai)
+Date: Thu, 13 Sep 2018 12:07:22 +0800
+Subject: [PATCH] arm64: dts: meson: Switch simple-mfd and syscon order
+In-Reply-To: <c1d08bc7-b868-7781-e69a-0e6bacde5b40@baylibre.com>
+References: <1532614438-7207-1-git-send-email-narmstrong@baylibre.com>
+ <494ff778-1888-7743-3a91-62364431d82e@amlogic.com>
+ <c1d08bc7-b868-7781-e69a-0e6bacde5b40@baylibre.com>
+Message-ID: <CAGb2v67ybV=U2yKARQYrXnvg3N4ARuXg3wi3cWYo7-1cMJ=McQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
-
-> Devices using the new V4L2 mem2mem vdec require a larger CMA pool. As
-> nearly all GX* devices are video/media focused and will use it, set a
-> larger (256MB) default value.
+On Thu, Jul 26, 2018 at 10:51 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Hi,
+>
+> On 26/07/2018 16:41, Yixun Lan wrote:
+> > HI Neil
+> >
+> > On 07/26/2018 10:13 PM, Neil Armstrong wrote:
+> >> The order between "syscon" and "simple-mfd" is important because in these
+> >> particular cases, the node needs to be first a "simple-mfd" to expose
+> >> it's sub-nodes, and later on a "syscon" to permit other nodes to access
+> >> this register space through the "syscon" mechanism.
+> >>
+> >
+> > could you explain a bit which specific case that it need compatible
+> > "simple-mfd" come first? is this a problem in kernel side? because I see
+> > you have a comment below about problem in U-Boot..
+>
+> It's not a problem for Linux, but Linux is just an implementation, the device tree
+> should work on multiple OSs like U-Boot or BSD kernels. We should base ourselves on
+> the bindings documentation and the Device tree specification to specify the HW.
+>
+> In this case, we need to switch the order to specify it correctly.
 
-Applied to v4.20/dt64,
+syscon on Linux works because syscon is not a full blown device driver in
+the driver model. It is just a set of APIs wrapping regmap.
 
-Kevin
+> >
+> >
+> > also while Rob review the mmc-clkc patch, he raise a suggestion to  drop
+> > "syscon" in drivers/mfd/syscon.c, see [1], will that solve or affect
+> > your problem?
+>
+> Rob wants us to drop the "syscon" because he wants us to move all nodes
+> depending of HHI as subnode, which is impossible for HDMI and the VPU power controller,
+> they are only "syscon" clients, their own registers are not in HHI.
+
+You can have whatever device driver this is bound to export regmaps for clients
+to consume. This gives you finer control over what registers can be accessed.
+
+See the following example.
+
+Provider: https://elixir.bootlin.com/linux/v4.19-rc3/source/drivers/clk/sunxi-ng/ccu-sun8i-r40.c#L1315
+Client: https://elixir.bootlin.com/linux/v4.19-rc3/source/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c#L1035
+
+Hope this helps.
+
+ChenYu
+
+> Neil
+>
+> >
+> > [1]
+> > https://lkml.kernel.org/r/CAL_Jsq+r+7BaJAPBn3L26sdxATVyDiuC=V3xE+yz0-27q0RJhA at mail.gmail.com
+> >
+> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> >> ---
+> >> This also has a consequence for U-Boot since the U-Boot DM is much simpler
+> >> and can only associate a single device to a node, thus here we want these
+> >> nodes to be an mfd bus to be able to probe the sub-nodes.
+> >>
+> >>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
+> >>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 4 ++--
+> >>  2 files changed, 4 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> index 6adc8d3..3f0de9d 100644
+> >> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> >> @@ -342,7 +342,7 @@
+> >>                      ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+> >>
+> >>                      sysctrl: system-controller at 0 {
+> >> -                            compatible = "amlogic,meson-axg-hhi-sysctrl", "syscon", "simple-mfd";
+> >> +                            compatible = "amlogic,meson-axg-hhi-sysctrl", "simple-mfd", "syscon";
+> >>                              reg = <0 0 0 0x400>;
+> >>
+> >>                              clkc: clock-controller {
+> >> @@ -1180,7 +1180,7 @@
+> >>                      ranges = <0x0 0x0 0x0 0xff800000 0x0 0x100000>;
+> >>
+> >>                      sysctrl_AO: sys-ctrl at 0 {
+> >> -                            compatible = "amlogic,meson-axg-ao-sysctrl", "syscon", "simple-mfd";
+> >> +                            compatible = "amlogic,meson-axg-ao-sysctrl", "simple-mfd", "syscon";
+> >>                              reg =  <0x0 0x0 0x0 0x100>;
+> >>
+> >>                              clkc_AO: clock-controller {
+> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> >> index b8dc4db..d88699f 100644
+> >> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> >> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> >> @@ -344,7 +344,7 @@
+> >>                      ranges = <0x0 0x0 0x0 0xc8100000 0x0 0x100000>;
+> >>
+> >>                      sysctrl_AO: sys-ctrl at 0 {
+> >> -                            compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
+> >> +                            compatible = "amlogic,meson-gx-ao-sysctrl", "simple-mfd", "syscon";
+> >>                              reg =  <0x0 0x0 0x0 0x100>;
+> >>
+> >>                              pwrc_vpu: power-controller-vpu {
+> >> @@ -431,7 +431,7 @@
+> >>                      ranges = <0x0 0x0 0x0 0xc883c000 0x0 0x2000>;
+> >>
+> >>                      sysctrl: system-controller at 0 {
+> >> -                            compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
+> >> +                            compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
+> >>                              reg = <0 0 0 0x400>;
+> >>                      };
+> >>
+> >>
+> >
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
