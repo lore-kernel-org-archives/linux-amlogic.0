@@ -1,43 +1,53 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 13 Sep 2018 11:08:56 -0700
-Subject: [GIT PULL] Amlogic driver updates for v4.20
-Message-ID: <7hpnxhuv5z.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 13 Sep 2018 13:12:41 -0500
+Subject: [PATCH] arm64: dts: meson: Fix erroneous SPI bus warnings
+Message-ID: <20180913181245.25484-17-robh@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The following changes since commit 5b394b2ddf0347bef56e50c69a58773c94343ff3:
+dtc has new checks for SPI buses. The meson dts files have a node named
+spi' which causes false positive warnings. As the node is a pinctrl child
+node, change the node name to be 'spi-pins' to fix the warnings.
 
-  Linux 4.19-rc1 (2018-08-26 14:11:59 -0700)
+arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: Warning (spi_bus_bridge): /soc/periphs at c8834000/pinctrl at 4b0/spi: incorrect #address-cells for SPI bus
 
-are available in the git repository at:
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic at lists.infradead.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Please apply to the sub-arch tree. The dtc changes haven't landed, but 
+will for 4.20.
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-for you to fetch changes up to d4983983d98710e4927fdb8de8e987c303b3fba3:
-
-  soc: amlogic: add meson-canvas driver (2018-09-12 21:38:45 -0700)
-
-----------------------------------------------------------------
-Amlogic ARM64 driver updates for v4.20
-- add meson-canvas driver and bindings
-- firmware: Add serial number sysfs entry
-
-----------------------------------------------------------------
-Maxime Jourdan (2):
-      dt-bindings: soc: amlogic: add meson-canvas documentation
-      soc: amlogic: add meson-canvas driver
-
-Neil Armstrong (1):
-      firmware: meson_sm: Add serial number sysfs entry
-
- Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.txt |  29 +++++++++
- drivers/firmware/meson/meson_sm.c                                |  56 ++++++++++++++++++
- drivers/soc/amlogic/Kconfig                                      |   7 +++
- drivers/soc/amlogic/Makefile                                     |   1 +
- drivers/soc/amlogic/meson-canvas.c                               | 185 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- include/linux/firmware/meson/meson_sm.h                          |   1 +
- include/linux/soc/amlogic/meson-canvas.h                         |  65 +++++++++++++++++++++
- 7 files changed, 344 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.txt
- create mode 100644 drivers/soc/amlogic/meson-canvas.c
- create mode 100644 include/linux/soc/amlogic/meson-canvas.h
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 98cbba6809ca..1ade7e486828 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -390,7 +390,7 @@
+ 			};
+ 		};
+ 
+-		spi_pins: spi {
++		spi_pins: spi-pins {
+ 			mux {
+ 				groups = "spi_miso",
+ 					"spi_mosi",
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index c87a80e9bcc6..8f0bb3c44bd6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -337,7 +337,7 @@
+ 			};
+ 		};
+ 
+-		spi_pins: spi {
++		spi_pins: spi-pins {
+ 			mux {
+ 				groups = "spi_miso",
+ 					"spi_mosi",
+-- 
+2.17.1
