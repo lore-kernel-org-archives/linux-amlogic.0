@@ -1,7 +1,7 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 13 Sep 2018 11:06:26 -0700
-Subject: [GIT PULL] Amlogic ARM64 DT updates for v4.20
-Message-ID: <7hva79uva5.fsf@baylibre.com>
+Date: Thu, 13 Sep 2018 11:08:56 -0700
+Subject: [GIT PULL] Amlogic driver updates for v4.20
+Message-ID: <7hpnxhuv5z.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -11,43 +11,33 @@ The following changes since commit 5b394b2ddf0347bef56e50c69a58773c94343ff3:
 
 are available in the git repository at:
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
 
-for you to fetch changes up to 445f2bda3501508b801b3571baee33de0ac44e1f:
+for you to fetch changes up to d4983983d98710e4927fdb8de8e987c303b3fba3:
 
-  arm64: dts: meson: Switch simple-mfd and syscon order (2018-09-13 09:16:36 -0700)
-
-----------------------------------------------------------------
-Amlogic ARM64 DT updates for v4.20
-- AXG: cleanup/reorder nodes
-- AXG: add audio PDM support for s400 board
-- GX: increase CMA memory size
-- GX: new canvas driver
+  soc: amlogic: add meson-canvas driver (2018-09-12 21:38:45 -0700)
 
 ----------------------------------------------------------------
-Christian Hewitt (1):
-      arm64: dts: meson-gx: increase default shared CMA pool size
+Amlogic ARM64 driver updates for v4.20
+- add meson-canvas driver and bindings
+- firmware: Add serial number sysfs entry
 
-Jerome Brunet (8):
-      arm64: dts: meson-axg: add audio fifos
-      arm64: dts: meson-axg: s400: enable audio devices
-      arm64: dts: meson-axg: s400: add sound card
-      arm64: dts: meson-axg: sort nodes consistently
-      arm64: dts: meson: libretech: update board model
-      arm64: dts: meson-axg: add pdm
-      arm64: dts: meson-axg: s400: add dmic codec
-      arm64: dts: meson-axg: s400: add pdm to the sound card
+----------------------------------------------------------------
+Maxime Jourdan (2):
+      dt-bindings: soc: amlogic: add meson-canvas documentation
+      soc: amlogic: add meson-canvas driver
 
-Maxime Jourdan (1):
-      arm64: dts: meson-gx: add dmcbus and canvas nodes.
+Neil Armstrong (1):
+      firmware: meson_sm: Add serial number sysfs entry
 
-Neil Armstrong (3):
-      arm64: dts: meson-axg: use the proper compatible for ethmac
-      arm64: dts: meson-axg-s400: Add chosen and memory nodes
-      arm64: dts: meson: Switch simple-mfd and syscon order
-
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts               |  368 +++++++++++---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi                   | 1615 ++++++++++++++++++++++++++++++++-----------------------------
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                    |   19 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts |    2 +-
- 4 files changed, 1156 insertions(+), 848 deletions(-)
+ Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.txt |  29 +++++++++
+ drivers/firmware/meson/meson_sm.c                                |  56 ++++++++++++++++++
+ drivers/soc/amlogic/Kconfig                                      |   7 +++
+ drivers/soc/amlogic/Makefile                                     |   1 +
+ drivers/soc/amlogic/meson-canvas.c                               | 185 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/firmware/meson/meson_sm.h                          |   1 +
+ include/linux/soc/amlogic/meson-canvas.h                         |  65 +++++++++++++++++++++
+ 7 files changed, 344 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/amlogic/amlogic,canvas.txt
+ create mode 100644 drivers/soc/amlogic/meson-canvas.c
+ create mode 100644 include/linux/soc/amlogic/meson-canvas.h
