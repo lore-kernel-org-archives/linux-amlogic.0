@@ -1,314 +1,156 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 13 Sep 2018 22:22:03 +0200
-Subject: [PATCH 5/5] ARM: dts: meson8b: Add support for the Endless Mini
- (EC-100)
-In-Reply-To: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
-References: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180913202203.19636-6-martin.blumenstingl@googlemail.com>
+Date: Thu, 13 Sep 2018 22:29:17 +0200
+Subject: [PATCH 2/4] ARM: dts: meson8b: odroidc1: add the fixed voltage
+ regulators
+In-Reply-To: <20180913202919.20927-1-martin.blumenstingl@googlemail.com>
+References: <20180913202919.20927-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180913202919.20927-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Endless Mini (EC-100) is a grapefruit-sized computer based on the
-Amlogic Meson8b (S805) SoC which comes in two variants.
+There are multiple fixed regulators on the Odroid-C1 board. Add them so
+they can be used when we add the devices that need them (SAR ADC needs
+the 1.8V IOREF, RTC needs VDD_RTC).
+These are:
+- P5V0 is the main 5V power input
+- VCC3V3 / VDDIO_AO3V3 / VDD3V3: fixed regulator with 3.3V output which
+  is supplied by P5V0
+- IOREF_1V8 / VCC1V8 / VDD1V8: fixed regulator with 1.8V output which is
+  supplied by P5V0
+- VDD_RTC: fixed voltage regulator with 0.9V output which is supplied by
+  VDDIO_AO3V3
+- DDR_VDDC / DDR3_1V5: fixed voltage regulator with 1.5V output which is
+  supplied by P5V0
+- the existing TF_IO and RFLASH_VDD_EN regulators are supplied by
+  VDDIO_AO3V3
+- the existing VCCK regulator is supplied by P5V0
 
-Both variants have in common:
-- Amlogic Meson8b (S805) SoC
-- two USB 2.0 ports on the rear, one one the front (connected to the SoC
-  through an internal hub)
-- 3.5mm Stereo out and MIC combo port
-- HDMI and CVBS output
-- 5V power supply (rated at 3A / 15W)
-- an internal embedded micro-controller (called "EC") which implements a
-  "breathing" effect for the LED and allows shutting down (powering off)
-  the whole device
-- 10/100 Mbit/s Ethernet using an IC Plus IP101A/G PHY (note: the website
-  incorrectly lists a Gigabit Ethernet port)
-- the CPU voltage is regulated using a PWM regulator. The GPL sources of
-  the EC-100 are using a PWM value of 0x1c0000 for 0.86V and a PWM value
-  of 0x00001c for 1.14V. When using the XTAL (24MHz) as input this
-  translates into a PWM period of 1148ns with 0.86V using a duty cycle of
-  100% and 1.14V using a duty cycle of 0%.
-
-The main differences are:
-- the main indicator for the variant is the RAM size: the "cheaper"
-  variant has 1 GB of RAM, while the more expensive one comes with 2GB
-- the storage size differs: 24 GB vs 32 GB
-- the "1 GB RAM" variant has Ethernet connectivity only, while the "2 GB"
-  variant has a Realtek RTL8723BS SDIO chip which adds 802.11b/g/n wifi
-  and Bluetooth 4.0 support
+This does not add the missing VDDEE regulator (controlled by PWM_D)
+because it's not clear yet how to configure the voltage of that
+regulator.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/Makefile          |   1 +
- arch/arm/boot/dts/meson8b-ec100.dts | 248 ++++++++++++++++++++++++++++
- 2 files changed, 249 insertions(+)
- create mode 100644 arch/arm/boot/dts/meson8b-ec100.dts
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 73 ++++++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index b5bd3de87c33..856ebc036cc4 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -321,6 +321,7 @@ dtb-$(CONFIG_MACH_MESON6) += \
- 	meson6-atv1200.dtb
- dtb-$(CONFIG_MACH_MESON8) += \
- 	meson8-minix-neo-x8.dtb \
-+	meson8b-ec100.dtb \
- 	meson8b-mxq.dtb \
- 	meson8b-odroidc1.dtb \
- 	meson8m2-mxiii-plus.dtb
-diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/meson8b-ec100.dts
-new file mode 100644
-index 000000000000..a71043c0ddea
---- /dev/null
-+++ b/arch/arm/boot/dts/meson8b-ec100.dts
-@@ -0,0 +1,248 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 Martin Blumenstingl <martin.blumenstingl@googlemail.com>.
-+ */
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index 0557823cdd64..a08dccccdb5e 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -71,6 +71,14 @@
+ 		};
+ 	};
+ 
++	p5v0: regulator-p5v0 {
++		compatible = "regulator-fixed";
 +
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+#include "meson8b.dtsi"
-+
-+/ {
-+	model = "Endless Computers Endless Mini";
-+	compatible = "endless,ec-100", "amlogic,meson8b";
-+
-+	aliases {
-+		serial0 = &uart_AO;
++		regulator-name = "P5V0";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
 +	};
 +
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
+ 	tflash_vdd: regulator-tflash_vdd {
+ 		/*
+ 		 * signal name from schematics: TFLASH_VDD_EN
+@@ -81,6 +89,8 @@
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 
++		vin-supply = <&vcc_3v3>;
 +
-+	memory {
-+		reg = <0x40000000 0x40000000>;
-+	};
+ 		gpio = <&gpio GPIOY_12 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 	};
+@@ -92,6 +102,8 @@
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <3300000>;
+ 
++		vin-supply = <&vcc_3v3>;
 +
-+	gpio-keys {
-+		compatible = "gpio-keys-polled";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		poll-interval = <100>;
-+
-+		pal-switch {
-+			label = "pal";
-+			linux,input-type = <EV_SW>;
-+			linux,code = <KEY_SWITCHVIDEOMODE>;
-+			gpios = <&gpio GPIOH_7 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		ntsc-switch {
-+			label = "ntsc";
-+			linux,input-type = <EV_SW>;
-+			linux,code = <KEY_SWITCHVIDEOMODE>;
-+			gpios = <&gpio GPIOH_8 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		power-button {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio GPIOH_9 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	gpio-poweroff {
-+		compatible = "gpio-poweroff";
+ 		/*
+ 		 * signal name from schematics: TF_3V3N_1V8_EN
+ 		 */
+@@ -102,6 +114,36 @@
+ 			  1800000 1>;
+ 	};
+ 
++	vcc_1v8: regulator-vcc-1v8 {
 +		/*
-+		 * shutdown is managed by the EC (embedded micro-controller)
-+		 * which is configured through GPIOAO_2 (poweroff GPIO) and
-+		 * GPIOAO_7 (power LED, which has to go LOW as well).
++		 * RICHTEK RT9179 configured for a fixed output voltage of
++		 * 1.8V. This supplies not only VCC1V8 but also IOREF_1V8 and
++		 * VDD1V8 according to the schematics.
 +		 */
-+		gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
-+		timeout-ms = <20000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		power {
-+			label = "ec100:red:power";
-+			/*
-+			 * Needs to go LOW (together with the poweroff GPIO)
-+			 * during shutdown to allow the EC (embedded
-+			 * micro-controller) to shutdown the system. Setting
-+			 * the output to LOW signals the EC to start a
-+			 * "breathing"/pulsing effect until the power is fully
-+			 * turned off.
-+			 */
-+			gpios = <&gpio_ao GPIOAO_7 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	usb_vbus: regulator-usb-vbus {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "USB_VBUS";
-+
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vcc_5v: regulator-vcc5v {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VCC5V";
-+
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		gpio = <&gpio GPIODV_29 GPIO_ACTIVE_LOW>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcck: regulator-vcck {
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VCCK";
-+		regulator-min-microvolt = <860000>;
-+		regulator-max-microvolt = <1140000>;
-+
-+		pwms = <&pwm_cd 0 1148 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vcc_1v8: regulator-vcc1v8 {
 +		compatible = "regulator-fixed";
 +
 +		regulator-name = "VCC1V8";
 +		regulator-min-microvolt = <1800000>;
 +		regulator-max-microvolt = <1800000>;
++
++		vin-supply = <&p5v0>;
 +	};
 +
-+	vcc_3v3: regulator-vcc3v3 {
++	vcc_3v3: regulator-vcc-3v3 {
++		/*
++		 * Monolithic Power Systems MP2161 configured for a fixed
++		 * output voltage of 3.3V. This supplies not only VCC3V3 but
++		 * also VDD3V3 and VDDIO_AO3V3 according to the schematics.
++		 */
 +		compatible = "regulator-fixed";
 +
 +		regulator-name = "VCC3V3";
 +		regulator-min-microvolt = <3300000>;
 +		regulator-max-microvolt = <3300000>;
++
++		vin-supply = <&p5v0>;
 +	};
-+};
 +
-+&cpu0 {
-+	cpu-supply = <&vcck>;
-+};
+ 	vcck: regulator-vcck {
+ 		/* Monolithic Power Systems MP2161 */
+ 		compatible = "pwm-regulator";
+@@ -110,12 +152,43 @@
+ 		regulator-min-microvolt = <860000>;
+ 		regulator-max-microvolt = <1140000>;
+ 
++		vin-supply = <&p5v0>;
 +
-+&ethmac {
-+	status = "okay";
+ 		pwms = <&pwm_cd 0 12218 0>;
+ 		pwm-dutycycle-range = <91 0>;
+ 
+ 		regulator-boot-on;
+ 		regulator-always-on;
+ 	};
 +
-+	pinctrl-0 = <&eth_rmii_pins>;
-+	pinctrl-names = "default";
++	vddc_ddr: regulator-vddc-ddr {
++		/*
++		 * Monolithic Power Systems MP2161 configured for a fixed
++		 * output voltage of 1.5V. This supplies not only DDR_VDDC but
++		 * also DDR3_1V5 according to the schematics.
++		 */
++		compatible = "regulator-fixed";
 +
-+	phy-handle = <&eth_phy0>;
-+	phy-mode = "rmii";
++		regulator-name = "DDR_VDDC";
++		regulator-min-microvolt = <1500000>;
++		regulator-max-microvolt = <1500000>;
 +
-+	snps,reset-gpio = <&gpio GPIOH_4 0>;
-+	snps,reset-delays-us = <0 10000 1000000>;
-+	snps,reset-active-low;
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		eth_phy0: ethernet-phy at 0 {
-+			/* IC Plus IP101A/G (0x02430c54) */
-+			reg = <0>;
-+		};
++		vin-supply = <&p5v0>;
 +	};
-+};
 +
-+&i2c_A {
-+	status = "okay";
-+	pinctrl-0 = <&i2c_a_pins>;
-+	pinctrl-names = "default";
++	vdd_rtc: regulator-vdd-rtc {
++		/*
++		 * Torex Semiconductor XC6215 configured for a fixed output of
++		 * 0.9V.
++		 */
++		compatible = "regulator-fixed";
 +
-+	rt5640: codec at 1c {
-+		compatible = "realtek,rt5640";
-+		reg = <0x1c>;
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <13 IRQ_TYPE_EDGE_BOTH>; /* GPIOAO_13 */
-+		realtek,in1-differential;
++		regulator-name = "VDD_RTC";
++		regulator-min-microvolt = <900000>;
++		regulator-max-microvolt = <900000>;
++
++		vin-supply = <&vcc_3v3>;
 +	};
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vcc_1v8>;
-+};
-+
-+&sdio {
-+	status = "okay";
-+
-+	pinctrl-0 = <&sd_b_pins>;
-+	pinctrl-names = "default";
-+
-+	/* SD card */
-+	sd_card_slot: slot at 1 {
-+		compatible = "mmc-slot";
-+		reg = <1>;
-+		status = "okay";
-+
-+		bus-width = <4>;
-+		no-sdio;
-+		cap-mmc-highspeed;
-+		cap-sd-highspeed;
-+		disable-wp;
-+
-+		cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
-+		cd-inverted;
-+
-+		vmmc-supply = <&vcc_3v3>;
-+	};
-+};
-+
-+&pwm_cd {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_c1_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_XTAL>;
-+	clock-names = "clkin0";
-+};
-+
-+/* exposed through the pin headers labeled "URDUG1" on the top of the PCB */
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/*
-+ * connected to the Bluetooth part of the RTL8723BS SDIO wifi / Bluetooth
-+ * combo chip. This is only available on the variant with 2GB RAM.
-+ */
-+&uart_B {
-+	status = "okay";
-+	pinctrl-0 = <&uart_b0_pins>, <&uart_b0_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+};
-+
-+&usb1 {
-+	status = "okay";
-+	vbus-supply = <&usb_vbus>;
-+};
-+
-+&usb1_phy {
-+	status = "okay";
-+};
+ };
+ 
+ &cpu0 {
 -- 
 2.19.0
