@@ -1,53 +1,30 @@
-From: robh@kernel.org (Rob Herring)
-Date: Thu, 13 Sep 2018 13:12:41 -0500
-Subject: [PATCH] arm64: dts: meson: Fix erroneous SPI bus warnings
-Message-ID: <20180913181245.25484-17-robh@kernel.org>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Thu, 13 Sep 2018 22:21:59 +0200
+Subject: [PATCH 1/5] dt-bindings: add vendor prefix for "Endless Mobile, Inc."
+In-Reply-To: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
+References: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180913202203.19636-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-dtc has new checks for SPI buses. The meson dts files have a node named
-spi' which causes false positive warnings. As the node is a pinctrl child
-node, change the node name to be 'spi-pins' to fix the warnings.
+Endless Mobile, Inc. started selling (small) computers in 2015.
 
-arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: Warning (spi_bus_bridge): /soc/periphs at c8834000/pinctrl at 4b0/spi: incorrect #address-cells for SPI bus
-
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: linux-amlogic at lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
-Please apply to the sub-arch tree. The dtc changes haven't landed, but 
-will for 4.20.
+ Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 98cbba6809ca..1ade7e486828 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -390,7 +390,7 @@
- 			};
- 		};
- 
--		spi_pins: spi {
-+		spi_pins: spi-pins {
- 			mux {
- 				groups = "spi_miso",
- 					"spi_mosi",
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index c87a80e9bcc6..8f0bb3c44bd6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -337,7 +337,7 @@
- 			};
- 		};
- 
--		spi_pins: spi {
-+		spi_pins: spi-pins {
- 			mux {
- 				groups = "spi_miso",
- 					"spi_mosi",
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+index 2c3fc512e746..1c63d2c2d48f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.txt
++++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
+@@ -114,6 +114,7 @@ elan	Elan Microelectronic Corp.
+ embest	Shenzhen Embest Technology Co., Ltd.
+ emmicro	EM Microelectronic
+ emtrion	emtrion GmbH
++endless	Endless Mobile, Inc.
+ energymicro	Silicon Laboratories (formerly Energy Micro AS)
+ engicam	Engicam S.r.l.
+ epcos	EPCOS AG
 -- 
-2.17.1
+2.19.0
