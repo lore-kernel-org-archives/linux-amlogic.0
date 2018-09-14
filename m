@@ -1,41 +1,29 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 13 Sep 2018 22:29:15 +0200
-Subject: [PATCH 0/4] Meson8b: Odroid-C1 improvements
-Message-ID: <20180913202919.20927-1-martin.blumenstingl@googlemail.com>
+From: drake@endlessm.com (Daniel Drake)
+Date: Fri, 14 Sep 2018 14:24:02 +0800
+Subject: [PATCH 5/5] ARM: dts: meson8b: Add support for the Endless Mini
+ (EC-100)
+In-Reply-To: <20180913202203.19636-6-martin.blumenstingl@googlemail.com>
+References: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
+ <20180913202203.19636-6-martin.blumenstingl@googlemail.com>
+Message-ID: <CAD8Lp47sSFrv9QopqPn6Ohv-2aupeGbX_Bb2dBXubUzFqjK=-Q@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This is a small collection of improvements for the Odroid-C1 board.
-My main goal is to prepare the CPU voltage regulator as I'm using
-the Odroid-C1 to test my changes which will enable CPU frequency
-scaling on Meson8/Meson8b/Meson8m2.
+Hi Martin,
 
-While I was going through the schematics anyways I added more
-regulators, enabled the SAR ADC and added the /chosen/stdout-path
-property to make debugging with "earlycon" easier.
+On Fri, Sep 14, 2018 at 4:22 AM, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+> The Endless Mini (EC-100) is a grapefruit-sized computer based on the
+> Amlogic Meson8b (S805) SoC which comes in two variants.
 
-schematics for the board are published by Hardkernel and can be found
-here: [0]
+Thanks for your work here, really happy to see this go by!
 
-NOTE: This series depends on my patch "ARM: dts: meson8b: add the
-I2C_A, PWM_C and UART_B pins" [1] from my other series called
-"Meson8b: add support for the Endless Mini EC-100" as this defines
-the "pwm_c1_pins" for the CPU voltage regulator (which is controlled
-via PWM).
+Would it be possible to adjust the compatible string to
+"endless,ec100" without the hyphen to match what we've already been
+shipping?
 
+Just curious, is there now working USB and HDMI support in mainline on
+this platform?
 
-[0] https://dn.odroid.com/S805/Schematics/odroid-c1+_rev0.4_20150615.pdf
-[1] https://patchwork.kernel.org/patch/10600043/
-[2] https://patchwork.kernel.org/cover/10600031/
-
-Martin Blumenstingl (4):
-  ARM: dts: meson8b: odroidc1: add the CPU voltage regulator
-  ARM: dts: meson8b: odroidc1: add the fixed voltage regulators
-  ARM: dts: meson8b: odroidc1: enable the SAR ADC
-  ARM: dts: meson8b: odroidc1: add stdout-path property
-
- arch/arm/boot/dts/meson8b-odroidc1.dts | 109 +++++++++++++++++++++++++
- 1 file changed, 109 insertions(+)
-
--- 
-2.19.0
+Thanks!
+Daniel
