@@ -1,46 +1,29 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 14 Sep 2018 19:22:03 +0200
-Subject: [PATCH 5/5] ARM: dts: meson8b: Add support for the Endless Mini
- (EC-100)
-In-Reply-To: <CAD8Lp47sSFrv9QopqPn6Ohv-2aupeGbX_Bb2dBXubUzFqjK=-Q@mail.gmail.com>
-References: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
- <20180913202203.19636-6-martin.blumenstingl@googlemail.com>
- <CAD8Lp47sSFrv9QopqPn6Ohv-2aupeGbX_Bb2dBXubUzFqjK=-Q@mail.gmail.com>
-Message-ID: <CAFBinCCU566Ki+fqNL_LdK_BhihWmM158fp-V4MJE6rjX9WD7w@mail.gmail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Fri, 14 Sep 2018 12:39:47 -0700
+Subject: [PATCH] arm64: dts: meson: Fix erroneous SPI bus warnings
+In-Reply-To: <20180913181245.25484-17-robh@kernel.org> (Rob Herring's message
+ of "Thu, 13 Sep 2018 13:12:41 -0500")
+References: <20180913181245.25484-17-robh@kernel.org>
+Message-ID: <7hk1nnuav0.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Daniel,
+Rob Herring <robh@kernel.org> writes:
 
-On Fri, Sep 14, 2018 at 8:24 AM Daniel Drake <drake@endlessm.com> wrote:
+> dtc has new checks for SPI buses. The meson dts files have a node named
+> spi' which causes false positive warnings. As the node is a pinctrl child
+> node, change the node name to be 'spi-pins' to fix the warnings.
 >
-> Hi Martin,
+> arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: Warning (spi_bus_bridge): /soc/periphs at c8834000/pinctrl at 4b0/spi: incorrect #address-cells for SPI bus
 >
-> On Fri, Sep 14, 2018 at 4:22 AM, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> > The Endless Mini (EC-100) is a grapefruit-sized computer based on the
-> > Amlogic Meson8b (S805) SoC which comes in two variants.
->
-> Thanks for your work here, really happy to see this go by!
-you're welcome - actually having a EC-100 helped a lot! :)
+> Cc: Carlo Caione <carlo@caione.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: linux-amlogic at lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Please apply to the sub-arch tree. The dtc changes haven't landed, but 
+> will for 4.20.
 
-> Would it be possible to adjust the compatible string to
-> "endless,ec100" without the hyphen to match what we've already been
-> shipping?
-sure, I'll wait a few days if more questions come up then I'll send a v2
+Applied, will queue for v4.20.
 
-> Just curious, is there now working USB and HDMI support in mainline on
-> this platform?
-USB is working fine - you just need d9707490077bee "usb: dwc2: Fix
-call location of dwc2_check_core_endianness" (which hit mainline
-today) or test this against linux-next
-HDMI is not supported
-
-other topics I'm working on:
-- CPU frequency scaling
-- temperature sensor support in the SAR ADC driver
-- ...whatever attracts my attention / interest ;)
-
-
-Regards
-Martin
+Kevin
