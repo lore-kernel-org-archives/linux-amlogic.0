@@ -1,29 +1,22 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Fri, 14 Sep 2018 12:39:47 -0700
-Subject: [PATCH] arm64: dts: meson: Fix erroneous SPI bus warnings
-In-Reply-To: <20180913181245.25484-17-robh@kernel.org> (Rob Herring's message
- of "Thu, 13 Sep 2018 13:12:41 -0500")
-References: <20180913181245.25484-17-robh@kernel.org>
-Message-ID: <7hk1nnuav0.fsf@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 17 Sep 2018 01:45:51 -0400
+Subject: [PATCH 2/5] dt-bindings: arm: amlogic: Add the Endless Mobile
+ Endless Mini (EC-100)
+In-Reply-To: <20180913202203.19636-3-martin.blumenstingl@googlemail.com>
+References: <20180913202203.19636-1-martin.blumenstingl@googlemail.com>
+ <20180913202203.19636-3-martin.blumenstingl@googlemail.com>
+Message-ID: <5b9f3f90.1c69fb81.ebaa.cb5f@mx.google.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Rob Herring <robh@kernel.org> writes:
-
-> dtc has new checks for SPI buses. The meson dts files have a node named
-> spi' which causes false positive warnings. As the node is a pinctrl child
-> node, change the node name to be 'spi-pins' to fix the warnings.
->
-> arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: Warning (spi_bus_bridge): /soc/periphs at c8834000/pinctrl at 4b0/spi: incorrect #address-cells for SPI bus
->
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: linux-amlogic at lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Thu, 13 Sep 2018 22:22:00 +0200, Martin Blumenstingl wrote:
+> Add bindings documentation for the Endless Mini (EC-100) from Endless
+> Mobile.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
-> Please apply to the sub-arch tree. The dtc changes haven't landed, but 
-> will for 4.20.
+>  Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Applied, will queue for v4.20.
-
-Kevin
+Reviewed-by: Rob Herring <robh@kernel.org>
