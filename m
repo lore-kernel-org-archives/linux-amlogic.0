@@ -1,52 +1,91 @@
-From: mjourdan@baylibre.com (Maxime Jourdan)
-Date: Mon, 17 Sep 2018 18:36:33 +0200
-Subject: [PATCH v2 0/3] Add Amlogic video decoder driver
-In-Reply-To: <9c33c57e-2ce2-8752-b851-f85c03a7d761@xs4all.nl>
-References: <20180911150938.3844-1-mjourdan@baylibre.com>
- <9c33c57e-2ce2-8752-b851-f85c03a7d761@xs4all.nl>
-Message-ID: <CAMO6nay7u4nMZcND6+g-GJAFsFcGrp_GDKBhVjeXVzpjF0ND4Q@mail.gmail.com>
+From: joe.e.foster@googlemail.com (Joe Foster)
+Date: Mon, 17 Sep 2018 13:19:07 +0100
+Subject: Fwd: Possible ROOTFS issue?
+In-Reply-To: <CAPzmcFtKaoyE+Ox3bWTX01wFe4SYvYqvMifgsor7UgyFxWEB0g@mail.gmail.com>
+References: <CAPzmcFtKaoyE+Ox3bWTX01wFe4SYvYqvMifgsor7UgyFxWEB0g@mail.gmail.com>
+Message-ID: <CAPzmcFsdgfBLNv51hi0DGG1Cm-Sb4iSSE=U9CtOS=jb_ZWAVeQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-2018-09-17 16:51 GMT+02:00 Hans Verkuil <hverkuil@xs4all.nl>:
-> On 09/11/2018 05:09 PM, Maxime Jourdan wrote:
->>  - Moved the single instance check (returning -EBUSY) to start/stop streaming
->>  The check was previously in queue_setup but there was no great location to
->>  clear it except for .close().
->
-> Actually, you can clear it by called VIDIOC_REQBUFS with count set to 0. That
-> freed all buffers and clears this.
->
-> Now, the difference between queue_setup and start/stop streaming is that if you
-> do this in queue_setup you'll know early on that the device is busy. It is
-> reasonable to assume that you only allocate buffers when you also want to start
-> streaming, so that it a good place to know this quickly.
->
-> Whereas with start_streaming you won't know until you call STREAMON, or even later
-> if you start streaming with no buffers queued, since start_streaming won't
-> be called until you have at least 'min_buffers_needed' buffers queued (1 for this
-> driver). So in that case EBUSY won't be returned until the first VIDIOC_QBUF.
->
-> My preference is to check this in queue_setup, but it is up to you to decide.
-> Just be aware of the difference between the two options.
->
-> Regards,
->
->         Hans
+Good morning,
 
-I could for instance keep track of which queue(s) have been called
-with queue_setup, catch calls to VIDIOC_REQBUFS with count set to 0,
-and clear the current session once both queues have been reset ?
+I have come from an OpenWRT background and am currently trying to
+compile Linux for an S905x A95x unit (the tidy little Nexbox unit) due
+to its exception tech spec vs its cost.
 
-You leverage another issue with min_buffers_needed. It's indeed set to
-1 but this value is wrong for the CAPTURE queue. The problem is that
-this value changes depending on the codec and the amount of CAPTURE
-buffers requested by userspace.
-Ultimately I want it set to the total amount of CAPTURE buffers,
-because the hardware needs the full buffer list before starting a
-decode job.
-Am I free to change this queue parameter later, or is m2m_queue_init
-the only place to do it ?
+I have compile the kernel as per instructions and via a UART
+connection I am getting the below output.
+Is this normal as their is no Root File Structure native to the kernel
+compile, especially no BusyBox which would permit something /
+anything. I have also compiled a rootfs from
+(http://openlinux.amlogic.com:8000/download/ARM/filesystem/) and put
+on a second ext4 partition on the same USB stick.
 
-Thanks,
-Maxime
+It seems to only be reaching half way.
+
+######################## SERIAL OUTPUT ######################
+gxl_p212_v1#usb start
+
+(Re)start USB...
+USB0:   USB3.0 XHCI init start
+Register 2000140 NbrPorts 2
+Starting the controller
+USB XHCI 1.00
+scanning bus 0 for devices... 2 USB Device(s) found
+       scanning usb for storage devices... init_part() 278: PART_TYPE_DOS
+1 Storage Device(s) found
+gxl_p212_v1#fatload usb 0:1 0x01080000 uImage
+
+reading uImage
+18424384 bytes read in 1697 ms (10.4 MiB/s)
+gxl_p212_v1#fatload usb 0:1 $dtb_mem_addr dtb
+
+reading dtb
+22401 bytes read in 26 ms (840.8 KiB/s)
+gxl_p212_v1#bootm 0x1080000 - $dtb_mem_addr
+
+ee_gate_off ...
+## Booting kernel from Legacy Image at 01080000 ...
+   Image Name:   linux-next
+   Image Type:   AArch64 Linux Kernel Image (uncompressed)
+   Data Size:    18424320 Bytes = 17.6 MiB
+   Load Address: 01080000
+   Entry Point:  01080000
+   Verifying Checksum ... OK
+load dtb from 0x1000000 ......
+      Amlogic multi-dtb tool
+      Single dtb detected
+## Flattened Device Tree blob at 01000000
+   Booting using the fdt blob at 0x1000000
+   Loading Kernel Image(COMP_NONE) ... OK
+   kernel loaded at 0x01080000, end = 0x02212200
+libfdt fdt_path_offset() returned FDT_ERR_NOTFOUND
+[rsvmem] fdt get prop fail.
+   Loading Device Tree to 000000001fff7000, end 000000001ffff780 ... OK
+fdt_instaboot: no instaboot image
+
+Starting kernel ...
+
+uboot time: 86193017 us
+
+################ OUTPUT END #################################
+
+
+I downloaded the source from:
+https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git
+
+Also as this stems from the original Amlogic linux code, is has anyone
+else experienced the problem below:
+
+[    0.000000 at 0] Call trace:
+[    0.000000 at 0] [<ffffff8009fa2f0c>] setup_arch+0xec/0x544
+[    0.000000 at 0] [<ffffff8009fa082c>] start_kernel+0x64/0x378
+[    0.000000 at 0] [<ffffff8009fa01e0>] __primary_switched+0x5c/0x64
+[    0.000000 at 0] Code: 913ec040 94003324 97fff61c d50344ff (d5384100)
+[    0.000000 at 0] ---[ end trace 0000000000000000 ]---
+[    0.000000 at 0] Kernel panic - not syncing: Attempted to kill the idle task!
+[    0.000000 at 0] ---[ end Kernel panic - not syncing: Attempted to
+kill the idle task!
+
+Yes I have googled this and applied the node begin / end patch. Still
+ouccouring.
