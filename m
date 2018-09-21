@@ -1,61 +1,71 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 21 Sep 2018 10:38:04 +0200
-Subject: [PATCH v5 0/2] arm64: dts: meson-g12a: Introduce new DT files for
- Meson-G12A SoC
-In-Reply-To: <1537518881-53137-1-git-send-email-jianxin.pan@amlogic.com>
-References: <1537518881-53137-1-git-send-email-jianxin.pan@amlogic.com>
-Message-ID: <33ef5ede-63f4-c58f-4057-0841f0d2aca5@baylibre.com>
+From: hverkuil@xs4all.nl (Hans Verkuil)
+Date: Fri, 21 Sep 2018 12:51:51 +0200
+Subject: [PATCH v2 0/3] Add Amlogic video decoder driver
+In-Reply-To: <CAMO6nay7u4nMZcND6+g-GJAFsFcGrp_GDKBhVjeXVzpjF0ND4Q@mail.gmail.com>
+References: <20180911150938.3844-1-mjourdan@baylibre.com>
+ <9c33c57e-2ce2-8752-b851-f85c03a7d761@xs4all.nl>
+ <CAMO6nay7u4nMZcND6+g-GJAFsFcGrp_GDKBhVjeXVzpjF0ND4Q@mail.gmail.com>
+Message-ID: <8b8af340-8bd7-092a-4203-fd01fd0cc5c6@xs4all.nl>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jianxin,
+On 09/17/18 18:36, Maxime Jourdan wrote:
+> 2018-09-17 16:51 GMT+02:00 Hans Verkuil <hverkuil@xs4all.nl>:
+>> On 09/11/2018 05:09 PM, Maxime Jourdan wrote:
+>>>  - Moved the single instance check (returning -EBUSY) to start/stop streaming
+>>>  The check was previously in queue_setup but there was no great location to
+>>>  clear it except for .close().
+>>
+>> Actually, you can clear it by called VIDIOC_REQBUFS with count set to 0. That
+>> freed all buffers and clears this.
+>>
+>> Now, the difference between queue_setup and start/stop streaming is that if you
+>> do this in queue_setup you'll know early on that the device is busy. It is
+>> reasonable to assume that you only allocate buffers when you also want to start
+>> streaming, so that it a good place to know this quickly.
+>>
+>> Whereas with start_streaming you won't know until you call STREAMON, or even later
+>> if you start streaming with no buffers queued, since start_streaming won't
+>> be called until you have at least 'min_buffers_needed' buffers queued (1 for this
+>> driver). So in that case EBUSY won't be returned until the first VIDIOC_QBUF.
+>>
+>> My preference is to check this in queue_setup, but it is up to you to decide.
+>> Just be aware of the difference between the two options.
+>>
+>> Regards,
+>>
+>>         Hans
+> 
+> I could for instance keep track of which queue(s) have been called
+> with queue_setup, catch calls to VIDIOC_REQBUFS with count set to 0,
+> and clear the current session once both queues have been reset ?
 
-On 21/09/2018 10:34, Jianxin Pan wrote:
-> This attempt will try to add new DT files to support Meson-G12A SoC.
-> 
-> 1) first, Please notice that, in this patch series, the DT node about 16M reserved
-> memory for hwrom is removed, since it's not needed by G12A SoC.
-> 2) second, the pclk for uart_AO need to be fixed once G12A clock_ao driver is
-> merged. In this version, it rely on bootloader to enable the pclk gate which 
-> belong to AO clock domain. Please add clk_ignore_unused to bootargs.
-> 
-> Changes since v4 [3]:
->  - add chosen and memory node
-> 
-> Changes since v3 [2]:
->  - collect Rob's Reviewed-by
->  - test on latest v4.20/integ
-> 
-> Changes since v2 [1]:
->  - reorder subnodes
->  - collect Rob's Reviewed-by
-> 
-> Changes since v1 [0]:
->  - fix signoff typo
->  - order subnodes by addresses when there is one and alphabetically when there is none
-> 
-> 
-> [0] https://lore.kernel.org/lkml/1533802951-49919-2-git-send-email-jianxin.pan at amlogic.com
-> [1] https://lore.kernel.org/lkml/1534160901-22889-1-git-send-email-jianxin.pan at amlogic.com
-> [2] https://lore.kernel.org/lkml/1534243121-33589-1-git-send-email-jianxin.pan at amlogic.com
-> [3] https://lore.kernel.org/lkml/1537427368-11104-1-git-send-email-jianxin.pan at amlogic.com
-> 
+I see your point, this is rather awkward. The real problem here is that
+we don't have a 'queue_free' callback. If we'd had that this would be
+a lot easier.
 
-For the whole serie :
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+In any case, I am dropping my objections to doing this in start/stop_streaming.
 
-Thanks,
-Neil
+> You leverage another issue with min_buffers_needed. It's indeed set to
+> 1 but this value is wrong for the CAPTURE queue. The problem is that
+> this value changes depending on the codec and the amount of CAPTURE
+> buffers requested by userspace.
+> Ultimately I want it set to the total amount of CAPTURE buffers,
+> because the hardware needs the full buffer list before starting a
+> decode job.
+> Am I free to change this queue parameter later, or is m2m_queue_init
+> the only place to do it ?
 
-> Jianxin Pan (2):
->   dt-bindings: arm: amlogic: Add Meson G12A binding
->   arm64: dts: meson-g12a: add initial g12a s905d2 SoC DT support
-> 
->  Documentation/devicetree/bindings/arm/amlogic.txt |   6 +
->  arch/arm64/boot/dts/amlogic/Makefile              |   1 +
->  arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts   |  29 ++++
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi       | 172 ++++++++++++++++++++++
->  4 files changed, 208 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> 
+It has to be set before the VIDIOC_STREAMON. After that you cannot
+change it anymore.
+
+But I don't think this is all that relevant, since this is something
+that the job_ready() callback should take care of. min_buffers_needed
+is really for hardware where the DMA engine cannot start unless that
+many buffers are queued. But in that case the DMA runs continuously
+capturing video, whereas here these are jobs and the DMA is only
+started when you can actually execute a job.
+
+Regards,
+
+	Hans
