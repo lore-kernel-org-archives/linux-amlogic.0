@@ -1,46 +1,51 @@
-From: hanjie.lin@amlogic.com (Hanjie Lin)
-Date: Fri, 21 Sep 2018 14:03:38 +0800
-Subject: [RESEND PATCH v3 0/2] add the Amlogic Meson PCIe controller driver
-Message-ID: <1537509820-52040-1-git-send-email-hanjie.lin@amlogic.com>
+From: jianxin.pan@amlogic.com (Jianxin Pan)
+Date: Fri, 21 Sep 2018 16:34:39 +0800
+Subject: [PATCH v5 0/2] arm64: dts: meson-g12a: Introduce new DT files for
+ Meson-G12A SoC
+Message-ID: <1537518881-53137-1-git-send-email-jianxin.pan@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This is v3 post RESEND: [2] 
- - add Rob's Reviewed-by to patch 1/2
- - add more to&cc list suggested by get_maintainer.pl
+This attempt will try to add new DT files to support Meson-G12A SoC.
 
-The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
-PCI core. This patchset add the driver and dt-bindings of the controller.
+1) first, Please notice that, in this patch series, the DT node about 16M reserved
+memory for hwrom is removed, since it's not needed by G12A SoC.
+2) second, the pclk for uart_AO need to be fixed once G12A clock_ao driver is
+merged. In this version, it rely on bootloader to enable the pclk gate which 
+belong to AO clock domain. Please add clk_ignore_unused to bootargs.
 
-Till patch v2, we have a dedicated phy driver which only process reset job.
-It's too overkill so we integrate phy driver into the controller.
+Changes since v4 [3]:
+ - add chosen and memory node
 
-Changes since v2: [1]
- - abandon phy driver, move reset to the controller
- - use devm_add_action_or_reset() to use clock res
- - format correcting
+Changes since v3 [2]:
+ - collect Rob's Reviewed-by
+ - test on latest v4.20/integ
 
-Changes since v1: [0]
- - use gpio lib instead open code 
- - move 'apb' and 'port' reset from phy driver
- - format correcting
+Changes since v2 [1]:
+ - reorder subnodes
+ - collect Rob's Reviewed-by
 
-[0] : https://lkml.kernel.org/r/1534227522-186798-1-git-send-email-hanjie.lin at amlogic.com
-[1] : https://lkml.kernel.org/r/1535096165-45827-1-git-send-email-hanjie.lin at amlogic.com 
-[2] : https://lkml.kernel.org/r/1535616829-167936-1-git-send-email-hanjie.lin at amlogic.com 
+Changes since v1 [0]:
+ - fix signoff typo
+ - order subnodes by addresses when there is one and alphabetically when there is none
 
-Yue Wang (2):
-  dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe
-    controller
-  PCI: meson: add the Amlogic Meson PCIe controller driver
 
- .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 +++
- drivers/pci/controller/dwc/Kconfig                 |  12 +
- drivers/pci/controller/dwc/Makefile                |   1 +
- drivers/pci/controller/dwc/pci-meson.c             | 617 +++++++++++++++++++++
- 4 files changed, 700 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
- create mode 100644 drivers/pci/controller/dwc/pci-meson.c
+[0] https://lore.kernel.org/lkml/1533802951-49919-2-git-send-email-jianxin.pan at amlogic.com
+[1] https://lore.kernel.org/lkml/1534160901-22889-1-git-send-email-jianxin.pan at amlogic.com
+[2] https://lore.kernel.org/lkml/1534243121-33589-1-git-send-email-jianxin.pan at amlogic.com
+[3] https://lore.kernel.org/lkml/1537427368-11104-1-git-send-email-jianxin.pan at amlogic.com
+
+Jianxin Pan (2):
+  dt-bindings: arm: amlogic: Add Meson G12A binding
+  arm64: dts: meson-g12a: add initial g12a s905d2 SoC DT support
+
+ Documentation/devicetree/bindings/arm/amlogic.txt |   6 +
+ arch/arm64/boot/dts/amlogic/Makefile              |   1 +
+ arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts   |  29 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi       | 172 ++++++++++++++++++++++
+ 4 files changed, 208 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
 
 -- 
-2.7.4
+1.9.1
