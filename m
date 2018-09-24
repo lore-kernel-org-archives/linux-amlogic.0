@@ -1,53 +1,43 @@
-From: f.fainelli@gmail.com (Florian Fainelli)
-Date: Mon, 24 Sep 2018 12:17:04 -0700
-Subject: [PATCH v2 7/7] net: stmmac: dwmac-meson8b: use xxxsetbits32
-In-Reply-To: <1537815856-31728-8-git-send-email-clabbe@baylibre.com>
-References: <1537815856-31728-1-git-send-email-clabbe@baylibre.com>
- <1537815856-31728-8-git-send-email-clabbe@baylibre.com>
-Message-ID: <a8d06d0a-b13b-384c-ade6-b0a3b0ee61f6@gmail.com>
+From: jic23@kernel.org (Jonathan Cameron)
+Date: Mon, 24 Sep 2018 21:13:31 +0100
+Subject: [PATCH 1/3] iio: adc: meson-saradc: remove #define
+ MESON_SAR_ADC_DELTA_10_TS_C_SHIFT
+In-Reply-To: <20180922222102.12023-2-martin.blumenstingl@googlemail.com>
+References: <20180922222102.12023-1-martin.blumenstingl@googlemail.com>
+ <20180922222102.12023-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20180924211331.29fdcd6a@archlinux>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09/24/2018 12:04 PM, Corentin Labbe wrote:
-> This patch convert meson stmmac glue driver to use all xxxsetbits32 functions.
-> 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    | 56 +++++++++-------------
->  1 file changed, 22 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> index c5979569fd60..abcf65588576 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> @@ -23,6 +23,7 @@
->  #include <linux/mfd/syscon.h>
->  #include <linux/platform_device.h>
->  #include <linux/stmmac.h>
-> +#include <linux/setbits.h>
->  
->  #include "stmmac_platform.h"
->  
-> @@ -75,18 +76,6 @@ struct meson8b_dwmac_clk_configs {
->  	struct clk_gate		rgmii_tx_en;
->  };
->  
-> -static void meson8b_dwmac_mask_bits(struct meson8b_dwmac *dwmac, u32 reg,
-> -				    u32 mask, u32 value)
-> -{
-> -	u32 data;
-> -
-> -	data = readl(dwmac->regs + reg);
-> -	data &= ~mask;
-> -	data |= (value & mask);
-> -
-> -	writel(data, dwmac->regs + reg);
-> -}
+On Sun, 23 Sep 2018 00:21:00 +0200
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-Why not make mseon8b_dwmac_mask_bits() a wrapper around
-clrsetbits_le32() whose purpose is only to dereference dwmac->regs and
-pass it to clrsetbits_le32()? That would be far less changes to review
-and audit for correctness, same goes with every other patch in this
-series touching the meson drivers.
--- 
-Florian
+> This define is of no use because the driver is avoiding shifting bits
+> by itself but using FIELD_GET/FIELD_PREP (which are using bit masks)
+> instead. There is already a MESON_SAR_ADC_DELTA_10_TS_C_MASK bit mask so
+> MESON_SAR_ADC_DELTA_10_TS_C_SHIFT was redundant.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Applied to the togreg branch of iio.git and pushed out as testing for the
+autobuilders to play with it.
+
+Thanks,
+
+Jonathan
+
+> ---
+>  drivers/iio/adc/meson_saradc.c | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> index da2d16dfa63e..b97b06bf7713 100644
+> --- a/drivers/iio/adc/meson_saradc.c
+> +++ b/drivers/iio/adc/meson_saradc.c
+> @@ -148,7 +148,6 @@
+>  	#define MESON_SAR_ADC_DELTA_10_TS_REVE1			BIT(26)
+>  	#define MESON_SAR_ADC_DELTA_10_CHAN1_DELTA_VALUE_MASK	GENMASK(25, 16)
+>  	#define MESON_SAR_ADC_DELTA_10_TS_REVE0			BIT(15)
+> -	#define MESON_SAR_ADC_DELTA_10_TS_C_SHIFT		11
+>  	#define MESON_SAR_ADC_DELTA_10_TS_C_MASK		GENMASK(14, 11)
+>  	#define MESON_SAR_ADC_DELTA_10_TS_VBG_EN		BIT(10)
+>  	#define MESON_SAR_ADC_DELTA_10_CHAN0_DELTA_VALUE_MASK	GENMASK(9, 0)
