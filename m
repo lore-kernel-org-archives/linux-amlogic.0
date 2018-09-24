@@ -1,57 +1,117 @@
-From: thierry.reding@gmail.com (Thierry Reding)
-Date: Mon, 24 Sep 2018 11:45:23 +0200
-Subject: [PATCH] arm64: amlogic: Rename spi pinmux group
-Message-ID: <20180924094523.20573-1-thierry.reding@gmail.com>
+From: clabbe@baylibre.com (Corentin Labbe)
+Date: Mon, 24 Sep 2018 19:04:09 +0000
+Subject: [PATCH v2 0/7] include: add
+ setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64
+Message-ID: <1537815856-31728-1-git-send-email-clabbe@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Thierry Reding <treding@nvidia.com>
+Hello
 
-The name "spi" is reserved for nodes representing an SPI controller.
-Rename the "spi" pinmux group to "spi-miso" to avoid the issue and for
-consistency with other pinmux groups.
+This patchset adds a new set of functions which are open-coded in lot of
+place.
+Basicly the pattern is always the same, "read, modify a bit, write"
+some driver and the powerpc arch already have thoses pattern them as functions. (like ahci_sunxi.c or dwmac-meson8b)
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Rob,
+The first patch rename some powerpc funtions for being consistent with
+the new name convention.
 
-do you think perhaps DTC is being a little too strict here? Seems to me
-like the check could be limited to nodes that have a name and a unit
-address, the assumption being that an SPI controller would always have
-some sort of register space that requires a reg property and therefore
-also a unit address.
+The second patch adds the header with all setbits functions.
 
-Thierry
+The third patch is a try to implement a coccinelle semantic patch to
+find all place where xxxbits function could be used.
+It should not be merged since it is un-finalized.
+For the moment, the "add setbits.h header" is not working and need a future
+coccinelle version.
 
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+The four last patch are example of some drivers convertion.
+Thoses patchs give an example of the reduction of code won by using xxxbits32.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 98cbba6809ca..3cd4475ca027 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -390,7 +390,7 @@
- 			};
- 		};
- 
--		spi_pins: spi {
-+		spi_pins: spi-miso {
- 			mux {
- 				groups = "spi_miso",
- 					"spi_mosi",
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index c87a80e9bcc6..911fd3412788 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -337,7 +337,7 @@
- 			};
- 		};
- 
--		spi_pins: spi {
-+		spi_pins: spi-miso {
- 			mux {
- 				groups = "spi_miso",
- 					"spi_mosi",
+I would like to thanks Julia Lawall for her help on the coccinelle
+patch.
+
+Regards
+
+Changes since v1:
+- renamed LE functions to _leXX
+- updated coccinnelle patch with JLawall's comments
+
+Corentin Labbe (7):
+  powerpc: rename setbits32/clrbits32 to setbits32_be/clrbits32_be
+  include: add
+    setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64 in
+    linux/setbits.h
+  coccinelle: add xxxsetbitsXX converting spatch
+  ata: ahci_sunxi: use xxxsetbits32 functions
+  net: ethernet: stmmac: dwmac-sun8i: use xxxsetbits32
+  drm: meson: use xxxsetbits32
+  net: stmmac: dwmac-meson8b: use xxxsetbits32
+
+ arch/powerpc/include/asm/fsl_lbc.h                 |   2 +-
+ arch/powerpc/include/asm/io.h                      |   5 +-
+ arch/powerpc/platforms/44x/canyonlands.c           |   4 +-
+ arch/powerpc/platforms/4xx/gpio.c                  |  28 +-
+ arch/powerpc/platforms/512x/pdm360ng.c             |   6 +-
+ arch/powerpc/platforms/52xx/mpc52xx_common.c       |   6 +-
+ arch/powerpc/platforms/52xx/mpc52xx_gpt.c          |  10 +-
+ arch/powerpc/platforms/82xx/ep8248e.c              |   2 +-
+ arch/powerpc/platforms/82xx/km82xx.c               |   6 +-
+ arch/powerpc/platforms/82xx/mpc8272_ads.c          |  10 +-
+ arch/powerpc/platforms/82xx/pq2.c                  |   2 +-
+ arch/powerpc/platforms/82xx/pq2ads-pci-pic.c       |   4 +-
+ arch/powerpc/platforms/82xx/pq2fads.c              |  10 +-
+ arch/powerpc/platforms/83xx/km83xx.c               |   6 +-
+ arch/powerpc/platforms/83xx/mpc836x_mds.c          |   2 +-
+ arch/powerpc/platforms/85xx/mpc85xx_mds.c          |   2 +-
+ arch/powerpc/platforms/85xx/mpc85xx_pm_ops.c       |   4 +-
+ arch/powerpc/platforms/85xx/mpc85xx_rdb.c          |   2 +-
+ arch/powerpc/platforms/85xx/p1022_ds.c             |   4 +-
+ arch/powerpc/platforms/85xx/p1022_rdk.c            |   4 +-
+ arch/powerpc/platforms/85xx/t1042rdb_diu.c         |   4 +-
+ arch/powerpc/platforms/85xx/twr_p102x.c            |   2 +-
+ arch/powerpc/platforms/86xx/mpc8610_hpcd.c         |   4 +-
+ arch/powerpc/platforms/8xx/adder875.c              |   2 +-
+ arch/powerpc/platforms/8xx/m8xx_setup.c            |   4 +-
+ arch/powerpc/platforms/8xx/mpc86xads_setup.c       |   4 +-
+ arch/powerpc/platforms/8xx/mpc885ads_setup.c       |  28 +-
+ arch/powerpc/platforms/embedded6xx/flipper-pic.c   |   6 +-
+ arch/powerpc/platforms/embedded6xx/hlwd-pic.c      |   8 +-
+ arch/powerpc/platforms/embedded6xx/wii.c           |  10 +-
+ arch/powerpc/sysdev/cpm1.c                         |  26 +-
+ arch/powerpc/sysdev/cpm2.c                         |  16 +-
+ arch/powerpc/sysdev/cpm_common.c                   |   4 +-
+ arch/powerpc/sysdev/fsl_85xx_l2ctlr.c              |   8 +-
+ arch/powerpc/sysdev/fsl_lbc.c                      |   2 +-
+ arch/powerpc/sysdev/fsl_pci.c                      |   8 +-
+ arch/powerpc/sysdev/fsl_pmc.c                      |   2 +-
+ arch/powerpc/sysdev/fsl_rcpm.c                     |  74 ++--
+ arch/powerpc/sysdev/fsl_rio.c                      |   4 +-
+ arch/powerpc/sysdev/fsl_rmu.c                      |   8 +-
+ arch/powerpc/sysdev/mpic_timer.c                   |  12 +-
+ drivers/ata/ahci_sunxi.c                           |  51 +--
+ drivers/gpu/drm/meson/meson_crtc.c                 |  14 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              |  33 +-
+ drivers/gpu/drm/meson/meson_plane.c                |  13 +-
+ drivers/gpu/drm/meson/meson_registers.h            |   3 -
+ drivers/gpu/drm/meson/meson_venc.c                 |  13 +-
+ drivers/gpu/drm/meson/meson_venc_cvbs.c            |   4 +-
+ drivers/gpu/drm/meson/meson_viu.c                  |  65 +--
+ drivers/gpu/drm/meson/meson_vpp.c                  |  22 +-
+ .../net/ethernet/stmicro/stmmac/dwmac-meson8b.c    |  56 +--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c  |  62 +--
+ include/linux/setbits.h                            |  88 ++++
+ scripts/add_new_include_in_source.py               |  61 +++
+ scripts/coccinelle/misc/setbits32.cocci            | 487 +++++++++++++++++++++
+ scripts/coccinelle/misc/setbits32_relaxed.cocci    | 487 +++++++++++++++++++++
+ scripts/coccinelle/misc/setbits64.cocci            | 487 +++++++++++++++++++++
+ scripts/coccinelle/misc/setbits_dev.cocci          | 235 ++++++++++
+ 58 files changed, 2159 insertions(+), 377 deletions(-)
+ create mode 100644 include/linux/setbits.h
+ create mode 100755 scripts/add_new_include_in_source.py
+ create mode 100644 scripts/coccinelle/misc/setbits32.cocci
+ create mode 100644 scripts/coccinelle/misc/setbits32_relaxed.cocci
+ create mode 100644 scripts/coccinelle/misc/setbits64.cocci
+ create mode 100644 scripts/coccinelle/misc/setbits_dev.cocci
+
 -- 
-2.19.0
+2.16.4
