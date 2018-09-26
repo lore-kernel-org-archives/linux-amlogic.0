@@ -1,66 +1,21 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 26 Sep 2018 11:57:58 +0200
-Subject: [PATCH v2 0/2] meson8b: register the clock controller early
-In-Reply-To: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
-References: <20180901162146.5656-1-martin.blumenstingl@googlemail.com>
-Message-ID: <712835e0336389d9d8c360bf3dec608a44ef84d0.camel@baylibre.com>
+Date: Wed, 26 Sep 2018 11:59:32 +0200
+Subject: [PATCH 0/2] meson8b: add the CPU_DIV16 clock for the ARM TWD
+In-Reply-To: <CAFBinCAxB7MLK_dypQMkKD7=GeFSCN-L47Yoz3PqRssD88bZsw@mail.gmail.com>
+References: <20180721172537.15639-1-martin.blumenstingl@googlemail.com>
+ <1532337101.26720.89.camel@baylibre.com>
+ <CAFBinCAxB7MLK_dypQMkKD7=GeFSCN-L47Yoz3PqRssD88bZsw@mail.gmail.com>
+Message-ID: <2868cb9dc7536d8c3b94a83ce14694f93643d555.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sat, 2018-09-01 at 18:21 +0200, Martin Blumenstingl wrote:
-> Some parts of the SoC are initialized early in the boot process, such
-> as the SRAM and the TWD timer. This means that the corresponding
-> drivers need to access the clock controller early as well.
+On Wed, 2018-09-26 at 11:56 +0200, Martin Blumenstingl wrote:
+> > Queued for 4.20
 > 
-> Before this series the clock controller was registered as platform
-> driver, which is too late for the TWD timer (just as an example).
-> The reset controller (built into the clock controller driver) was
-> already registered early, basically for the same reason (the reset
-> lines are used to start the secondary CPUs, which is done very early
-> in the boot process).
-> 
-> Register the clock controller early enough so we're able to use the
-> TWD timer (as we need to pass a clock which is provided by this
-> clock controller) in a second step.
-> 
-> NOTE: Neil suggested in v1 to switch to one of core_initcall,
-> postcore_initcall, subsys_initcall but I couldn't find any driver
-> that I could use as "reference" which registers it's clock controller
-> before the device model (platform_device) is ready. this is why I'm
-> still using CLK_OF_DECLARE - but I'm open to suggestions.
-> 
-> The second patch simplifies the reset controller (built into the clock
-> controller driver) because the regmap is already available early and
-> thus can be used by the reset controller driver as well.
-> 
-> 
-> Changes since v1 at [0]:
-> - switch from CLK_OF_DECLARE_DRIVER to CLK_OF_DECLARE because with
->   this series there is only one initialization function for the clock
->   controller driver (unlike before: where the reset controller was
->   registered early and the clock controller was registered as platform
->   device)
-> - rebased on top of clk-meson, commit:
->   684b97b13b175a ("clk: meson-axg: pcie: drop the mpll3 clock parent")
-> 
-> 
-> [0] https://patchwork.kernel.org/cover/10538971/
+> sorry, but I found out that this doesn't work.
+> I'm not sure why I assumed that this has to be a CPU_DIV16 clock but
+> it's most likely a "divide by 4" (more details below).
+> so please feel free to revert this / drop the patches until I have
+> more information
 
-As explained earlier, the clock framework is trying to avoid CLK_OF_DECLARE*
-In this case, I don't see a away around it yet so:
-
-Rebased and Applied
-
-but should keep trying to remove this is future, when possible.
-
-Thx
-
-> 
-> 
-> Martin Blumenstingl (2):
->   clk: meson: meson8b: register the clock controller early
->   clk: meson: meson8b: use the regmap in the internal reset controller
-> 
->  drivers/clk/meson/meson8b.c | 110 +++++++++++++-----------------------
->  1 file changed, 40 insertions(+), 70 deletions(-)
-> 
+Dropped for now, feel free to send it again when things get more clear ;)
