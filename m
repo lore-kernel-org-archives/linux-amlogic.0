@@ -1,21 +1,59 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Wed, 26 Sep 2018 11:59:32 +0200
-Subject: [PATCH 0/2] meson8b: add the CPU_DIV16 clock for the ARM TWD
-In-Reply-To: <CAFBinCAxB7MLK_dypQMkKD7=GeFSCN-L47Yoz3PqRssD88bZsw@mail.gmail.com>
-References: <20180721172537.15639-1-martin.blumenstingl@googlemail.com>
- <1532337101.26720.89.camel@baylibre.com>
- <CAFBinCAxB7MLK_dypQMkKD7=GeFSCN-L47Yoz3PqRssD88bZsw@mail.gmail.com>
-Message-ID: <2868cb9dc7536d8c3b94a83ce14694f93643d555.camel@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 26 Sep 2018 17:11:06 +0200
+Subject: [U-Boot] [PATCH v2 1/1] ARM: meson: Extend mem_map to support
+ 3GiB of RAM
+In-Reply-To: <20180925143035.20621-1-ldevulder@suse.de>
+References: <20180925143035.20621-1-ldevulder@suse.de>
+Message-ID: <a0c52f5a-2e47-224c-7dd1-1f7d5c0206c0@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 2018-09-26 at 11:56 +0200, Martin Blumenstingl wrote:
-> > Queued for 4.20
-> 
-> sorry, but I found out that this doesn't work.
-> I'm not sure why I assumed that this has to be a CPU_DIV16 clock but
-> it's most likely a "divide by 4" (more details below).
-> so please feel free to revert this / drop the patches until I have
-> more information
+Hi Loic,
 
-Dropped for now, feel free to send it again when things get more clear ;)
+On 25/09/2018 16:30, Loic Devulder wrote:
+> The current mem_map definition for Meson SoCs has support for up
+> to 2GiB of RAM. According to S905, S905X, S912 and S805X datasheets
+> the DDR region is set from 0x00000000 to 0xBFFFFFFF, so mem_map's
+> definition should be changed accordingly.
+> 
+> It is also needed to be able to boot Khadas VIM2 board with S912
+> SoC.
+> 
+> Signed-off-by: Loic Devulder <ldevulder@suse.de>
+> ---
+> v2: set the correct size for devices memory map
+> 
+>  arch/arm/mach-meson/board.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm/mach-meson/board.c b/arch/arm/mach-meson/board.c
+> index 1ef7e5a6d1..48096ca7cf 100644
+> --- a/arch/arm/mach-meson/board.c
+> +++ b/arch/arm/mach-meson/board.c
+> @@ -111,13 +111,13 @@ static struct mm_region gx_mem_map[] = {
+>  	{
+>  		.virt = 0x0UL,
+>  		.phys = 0x0UL,
+> -		.size = 0x80000000UL,
+> +		.size = 0xc0000000UL,
+>  		.attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) |
+>  			 PTE_BLOCK_INNER_SHARE
+>  	}, {
+> -		.virt = 0x80000000UL,
+> -		.phys = 0x80000000UL,
+> -		.size = 0x80000000UL,
+> +		.virt = 0xc0000000UL,
+> +		.phys = 0xc0000000UL,
+> +		.size = 0x30000000UL,
+>  		.attrs = PTE_BLOCK_MEMTYPE(MT_DEVICE_NGNRNE) |
+>  			 PTE_BLOCK_NON_SHARE |
+>  			 PTE_BLOCK_PXN | PTE_BLOCK_UXN
+> 
+
+You were faster than me, and already reviewed physically by Marek and Alexander !!
+
+This will fix support for upcoming 3GiB capable boards !
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
