@@ -1,35 +1,24 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 26 Sep 2018 10:52:00 +0200
-Subject: [PATCH 0/4] Meson8b: Odroid-C1 improvements
-In-Reply-To: <20180913202919.20927-1-martin.blumenstingl@googlemail.com>
- (Martin Blumenstingl's message of "Thu, 13 Sep 2018 22:29:15 +0200")
-References: <20180913202919.20927-1-martin.blumenstingl@googlemail.com>
-Message-ID: <7h8t3o63pr.fsf@baylibre.com>
+Date: Wed, 26 Sep 2018 11:08:18 +0200
+Subject: [PATCH v5 0/2] arm64: dts: meson-g12a: Introduce new DT files for
+ Meson-G12A SoC
+In-Reply-To: <1537518881-53137-1-git-send-email-jianxin.pan@amlogic.com>
+ (Jianxin Pan's message of "Fri, 21 Sep 2018 16:34:39 +0800")
+References: <1537518881-53137-1-git-send-email-jianxin.pan@amlogic.com>
+Message-ID: <7hzhw44oe5.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Jianxin Pan <jianxin.pan@amlogic.com> writes:
 
-> This is a small collection of improvements for the Odroid-C1 board.
-> My main goal is to prepare the CPU voltage regulator as I'm using
-> the Odroid-C1 to test my changes which will enable CPU frequency
-> scaling on Meson8/Meson8b/Meson8m2.
+> This attempt will try to add new DT files to support Meson-G12A SoC.
 >
-> While I was going through the schematics anyways I added more
-> regulators, enabled the SAR ADC and added the /chosen/stdout-path
-> property to make debugging with "earlycon" easier.
->
-> schematics for the board are published by Hardkernel and can be found
-> here: [0]
->
-> NOTE: This series depends on my patch "ARM: dts: meson8b: add the
-> I2C_A, PWM_C and UART_B pins" [1] from my other series called
-> "Meson8b: add support for the Endless Mini EC-100" as this defines
-> the "pwm_c1_pins" for the CPU voltage regulator (which is controlled
-> via PWM).
+> 1) first, Please notice that, in this patch series, the DT node about 16M reserved
+> memory for hwrom is removed, since it's not needed by G12A SoC.
+> 2) second, the pclk for uart_AO need to be fixed once G12A clock_ao driver is
+> merged. In this version, it rely on bootloader to enable the pclk gate which 
+> belong to AO clock domain. Please add clk_ignore_unused to bootargs.
 
-Applied to v4.20/dt (on top of the Endless series)
-
-Thanks for pointing out the dependencies,
+Applied to v4.20/dt64, added Neils' Reviewed-by tag.
 
 Kevin
