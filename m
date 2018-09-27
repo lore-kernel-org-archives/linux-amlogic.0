@@ -1,67 +1,99 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 27 Sep 2018 16:45:02 +0200
-Subject: [GIT PULL] clk: meson: updates for v4.20
-Message-ID: <ee3c1d81101e3e42218c696f663fb8716dfd53a7.camel@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 27 Sep 2018 13:16:53 -0500
+Subject: [PATCH v4 1/2] dt-bindings: nand: meson: add Amlogic NAND
+ controller driver
+In-Reply-To: <1537433449-65213-2-git-send-email-jianxin.pan@amlogic.com>
+References: <1537433449-65213-1-git-send-email-jianxin.pan@amlogic.com>
+ <1537433449-65213-2-git-send-email-jianxin.pan@amlogic.com>
+Message-ID: <20180927181653.GA22153@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Dear clock maintainers,
+On Thu, Sep 20, 2018 at 04:50:48PM +0800, Jianxin Pan wrote:
+> From: Liang Yang <liang.yang@amlogic.com>
+> 
+> Add Amlogic NAND controller dt-bindings for Meson SoC,
+> Current this driver support GXBB/GXL/AXG platform.
+> 
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> ---
+>  .../devicetree/bindings/mtd/amlogic,meson-nand.txt | 60 ++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> new file mode 100644
+> index 0000000..803df2a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> @@ -0,0 +1,60 @@
+> +Amlogic NAND Flash Controller (NFC) for GXBB/GXL/AXG family SoCs
+> +
+> +This file documents the properties in addition to those available in
+> +the MTD NAND bindings.
+> +
+> +Required properties:
+> +- compatible : contains one of:
+> +  - "amlogic,meson-gxl-nfc"
+> +  - "amlogic,meson-axg-nfc"
+> +- clocks     :
+> +	A list of phandle + clock-specifier pairs for the clocks listed
+> +	in clock-names.
+> +
+> +- clock-names: Should contain the following:
+> +	"core" - NFC module gate clock
+> +	"device" - device clock from eMMC sub clock controller
+> +
+> +- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
+> +				controller port C
+> +
+> +Optional children nodes:
+> +Children nodes represent the available nand chips.
+> +
+> +Other properties:
+> +see Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
+> +
+> +Example demonstrate on AXG SoC:
+> +
+> +	sd_emmc_c_clkc: mmc at 7000 {
+> +		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
+> +		reg = <0x0 0x7000 0x0 0x800>;
+> +		status = "okay";
+> +	};
+> +
+> +	nand: nfc at 7800 {
 
-Below is a request to pull updates for Amlogic clocks.
-There is not much out of the ordinary there, except:
-- Even if we don't like it, the entire meson8b is now using
-  CLK_OF_DECLARE_DRIVER(). Previously, only the reset controller
-  part used this but it seems there is no way around it (yet) to
-  handle certain things on this SoC, such as the TWD timer.
-- We are a bit late compared to the usual schedule, sorry about that.
+nand-controller at 7800
 
-Thanks for pulling
+> +		compatible = "amlogic,meson-axg-nfc";
+> +		reg = <0x0 0x7800 0x0 0x100>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+> +		status = "disabled";
+> +
+> +		clocks = <&clkc CLKID_SD_EMMC_C>,
+> +			<&sd_emmc_c_clkc CLKID_MMC_DIV>;
+> +		clock-names = "core", "device";
+> +		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
+> +
+> +		status = "okay";
 
-Cheers
-Jerome
+Don't show status in examples, plus you have it twice.
 
-The following changes since commit 5b394b2ddf0347bef56e50c69a58773c94343ff3:
-
-  Linux 4.19-rc1 (2018-08-26 14:11:59 -0700)
-
-are available in the Git repository at:
-
-  git://github.com/BayLibre/clk-meson.git tags/meson-clk-4.20-1
-
-for you to fetch changes up to 93c873d686461652921fe18b137ac28002dfe166:
-
-  clk: meson: meson8b: use the regmap in the internal reset controller (2018-09-26 12:02:00 +0200)
-
-----------------------------------------------------------------
-Update for meson clocks targeted at v4.20
-
-- clk-pll driver improvements and updates
-- add axg audio controller system clocks
-- drop mpll3 from the possible pcie clock parent of the axg
-- register meson8b clock controller early
-
-----------------------------------------------------------------
-Jerome Brunet (5):
-      clk: meson: clk-pll: add enable bit
-      clk: meson: clk-pll: drop CLK_GET_RATE_NOCACHE where unnecessary
-      clk: meson: clk-pll: remove od parameters
-      clk: meson: clk-pll: drop hard-coded rates from pll tables
-      clk: meson: axg: round audio system master clocks down
-
-Martin Blumenstingl (2):
-      clk: meson: meson8b: register the clock controller early
-      clk: meson: meson8b: use the regmap in the internal reset controller
-
-Yixun Lan (1):
-      clk: meson-axg: pcie: drop the mpll3 clock parent
-
- drivers/clk/meson/axg-audio.c |  34 ++-
- drivers/clk/meson/axg.c       | 332 +++++++++++++++------------
- drivers/clk/meson/axg.h       |   8 +-
- drivers/clk/meson/clk-pll.c   | 156 ++++++++-----
- drivers/clk/meson/clkc.h      |  16 +-
- drivers/clk/meson/gxbb.c      | 518 +++++++++++++++++++++---------------------
- drivers/clk/meson/gxbb.h      |  10 +-
- drivers/clk/meson/meson8b.c   | 280 +++++++++++------------
- drivers/clk/meson/meson8b.h   |   5 +-
- 9 files changed, 732 insertions(+), 627 deletions(-)
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&nand_pins>;
+> +
+> +		nand at 0 {
+> +			reg = <0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			nand-on-flash-bbt;
+> +		};
+> +	};
+> -- 
+> 1.9.1
+> 
