@@ -1,106 +1,120 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 27 Sep 2018 10:59:20 +0200
-Subject: [PATCH 1/2] clk: meson: meson8b: fix incorrect divider mapping in
- cpu_scale_table
-In-Reply-To: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
-References: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180927085921.24627-2-martin.blumenstingl@googlemail.com>
+Date: Thu, 27 Sep 2018 11:12:32 +0200
+Subject: [PATCH v4 2/2] mtd: rawnand: meson: add support for Amlogic NAND
+ flash controller
+In-Reply-To: <f75b6f23-6d58-2145-30f3-b23e4b69966b@amlogic.com>
+References: <1537433449-65213-1-git-send-email-jianxin.pan@amlogic.com>
+ <1537433449-65213-3-git-send-email-jianxin.pan@amlogic.com>
+ <CAFBinCAaphyifUNyDQr7th2Mt=A+UQnzai0edKLCPNbxhh2w+Q@mail.gmail.com>
+ <f75b6f23-6d58-2145-30f3-b23e4b69966b@amlogic.com>
+Message-ID: <CAFBinCBLfoqnLK_hu6fufO4MXKKoRDPDuJgLasCNYWeuL6tCKw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The public S805 datasheet only mentions that
-HHI_SYS_CPU_CLK_CNTL1[20:29] contains a divider called "cpu_scale_div".
-Unfortunately it does not mention how to use the register contents.
+Hello Liang,
 
-The Amlogic 3.10 GPL kernel sources are using the following code to
-calculate the CPU clock based on that register (taken from
-arch/arm/mach-meson8/clock.c in the 3.10 Amlogic kernel, shortened to
-make it easier to read):
-N = (aml_read_reg32(P_HHI_SYS_CPU_CLK_CNTL1) >> 20) & 0x3FF;
-if (sel == 3) /* use cpu_scale_div */
-  div = 2 * N;
-else
-  div = ... /* not relevant for this example */
-cpu_clk = parent_clk / div;
+On Thu, Sep 27, 2018 at 10:19 AM Liang Yang <liang.yang@amlogic.com> wrote:
+>
+> Hello Martin,
+>
+> On 9/22/2018 11:32 PM, Martin Blumenstingl wrote:
+> > Hello,
+> >
+> > On Thu, Sep 20, 2018 at 10:51 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+> > [snip]
+> >> +static int meson_nfc_clk_init(struct meson_nfc *nfc)
+> >> +{
+> >> +       int ret;
+> >> +
+> >> +       /* request core clock */
+> >> +       nfc->core_clk = devm_clk_get(nfc->dev, "core");
+> >> +       if (IS_ERR(nfc->core_clk)) {
+> >> +               dev_err(nfc->dev, "failed to get core clk\n");
+> >> +               return PTR_ERR(nfc->core_clk);
+> >> +       }
+> >> +
+> >> +       nfc->device_clk = devm_clk_get(nfc->dev, "device");
+> >> +       if (IS_ERR(nfc->device_clk)) {
+> >> +               dev_err(nfc->dev, "failed to get device clk\n");
+> >> +               return PTR_ERR(nfc->device_clk);
+> >> +       }
+> >> +
+> >> +       nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
+> >> +       if (IS_ERR(nfc->phase_tx)) {
+> >> +               dev_err(nfc->dev, "failed to get tx clk\n");
+> >> +               return PTR_ERR(nfc->phase_tx);
+> >> +       }
+> >> +
+> >> +       nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
+> >> +       if (IS_ERR(nfc->phase_rx)) {
+> >> +               dev_err(nfc->dev, "failed to get rx clk\n");
+> >> +               return PTR_ERR(nfc->phase_rx);
+> >> +       }
+> > neither the "rx" nor the "tx" clock are documented in the dt-bindings patch
+> >
+>
+> ok, i will add them later.
+>
+> >> +       /* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+> >> +       regmap_update_bits(nfc->reg_clk, 0,
+> >> +                          CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK,
+> >> +                          CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK);
+> > clk_set_rate also works for clocks that are not enabled yet (except if
+> > they have the flag CLK_SET_RATE_UNGATE)
+> > this should help you to remove CLK_DIV_MASK here
+> >
+>
+> if not set clk_div_mask here, the value 0x00 of divider means nand clock
+> off, even read/write nand register is forbidden.
+ah, now I see the pattern here.
+Jerome has written a "sclk-div" driver (which is currently only used
+for the audio clocks on AXG). based on reading the code it seems that
+switching the driver of the divider clock to sclk-div would allow you
+to remove setting CLK_DIV_MASK here:
+- the  "hi" parameter in struct meson_sclk_div_data is optional ->
+then the sclk-div clock won't try to change the duty cycle
+- sclk_div_init reads the divider at initialization time - if it's 0
+it takes the maximum possible divider value
+- sclk_div_enable (which you're going to call anyways, through
+clk_prepare_enable) will then set the divider to the greatest possible
+value
 
-This suggests that the formula is: parent_rate / 2 * register_value
-However, running perf (which can measure the CPU clock rate thanks to
-the ARM PMU) shows that this formula is not correct.
-This can be reproduced with the following steps:
-1. boot into u-boot
-2. let the CPU clock run off the XTAL clock:
-   mw.l 0xC110419C 0x30 1
-3. set the cpu_scale_div register:
-   to value 0x1: mw.l 0xC110415C 0x801016A2 1
-   to value 0x2: mw.l 0xC110415C 0x802016A2 1
-   to value 0x5: mw.l 0xC110415C 0x805016A2 1
-4. let the CPU clock run off cpu_scale_div:
-   mw.l 0xC110419C 0xbd 1
-5. boot Linux
-6. run: perf stat -aB stress --cpu 4 --timeout 10
-7. check the "cycles" value
+> > is CLK_SELECT_NAND a bit that switches the clock output from the sdmmc
+> > controller to the NAND controller?
+> > if so: can this be modeled as a mux clock?
+> >
+>
+> it seems to like a gate. 1: nand is selected; 0: emmc is selected.
+> Is it suitable for making it as a mux clock?
+my understanding of a gate is:
+- register value X = OFF, value Y = ON
 
-I get the following results depending on the cpu_scale_div value:
-- (cpu_in_sel - this is the input clock for cpu_scale_div - runs at
-   1.2GHz)
-- 0x1 = 300MHz
-- 0x2 = 200MHz
-- 0x5 = 100MHz
+but in your case it's:
+- 0 = eMMC is ON but NAND is OFF
+- 1 = eMMC is OFF but NAND is ON
+(so both values mean "on", just for different contexts)
 
-This means that the actual formula to calculate the output of the
-cpu_scale_div clock is: parent_rate / 2 * (register value + 1).
+I believe you need to set this value for eMMC as well:
+what if the bootloader (or hardware defaults, etc.) incorrectly sets
+the value to 1 but the Linux .dts is configured to use eMMC?
 
-The register value 0x0 is reserved. When letting the CPU clock run off
-the cpu_scale_div while the value is 0x0 the whole board hangs (even in
-u-boot).
+> > the public S905 datasheet doesn't mention CLK_ALWAYS_ON at bit 28 but
+> > uses bit 24 instead. the description from the datasheet:
+> > Cfg_always_on:
+> > 1: Keep clock always on
+> > 0: Clock on/off controlled by activities.
+> >      Any APB3 access or descriptor execution will turn clock on.
+> > Recommended value: 0
+> >
+> > can you please explain what CLK_ALWAYS_ON does and why it has to be 1?
+> >
+>
+> em , it is the same as bit 24 in S905 datasheet, only moves to bit 28.
+> it means keeping internal clock on whether nand wroks or not.
+> it doesn't have to be 1; i have tried 0 successfully on AXG platform.
+my preference would be to use the recommended value from the datasheet
+unless there's a good argument why it has to be different
 
-I also verified this with the TWD timer: when adding this to the .dts
-without specifying it's clock it will auto-detect the PERIPH (which is
-the input clock of the TWD) clock rate (and the result is shown in the
-kernel log). On Meson8, Meson8b and Meson8m2 the PERIPH clock is CPUCLK
-divided by 4. This also matched for all three test-cases from above (in
-all cases the TWD timer clock rate was approx. one fourth of the CPU
-clock rate).
 
-A small note regarding the "fixes" tag: the original issue seems to
-exist virtually since forever. Even commit 28b9fcd016126e ("clk:
-meson8b: Add support for Meson8b clocks") seems to handle this wrong. I
-still decided to use commit 251b6fd38bcb9c ("clk: meson: rework meson8b
-cpu clock") because this is the first commit which gets the CPU hiearchy
-correct and thus it's the first commit where the cpu_scale_div register
-is used correctly (apart from the bug in the cpu_scale_table).
-
-Fixes: 251b6fd38bcb9c ("clk: meson: rework meson8b cpu clock")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index e7fe66f61d7b..d3f4e11d106d 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -579,13 +579,14 @@ static struct clk_fixed_factor meson8b_cpu_div3 = {
- };
- 
- static const struct clk_div_table cpu_scale_table[] = {
--	{ .val = 2, .div = 4 },
--	{ .val = 3, .div = 6 },
--	{ .val = 4, .div = 8 },
--	{ .val = 5, .div = 10 },
--	{ .val = 6, .div = 12 },
--	{ .val = 7, .div = 14 },
--	{ .val = 8, .div = 16 },
-+	{ .val = 1, .div = 4 },
-+	{ .val = 2, .div = 6 },
-+	{ .val = 3, .div = 8 },
-+	{ .val = 4, .div = 10 },
-+	{ .val = 5, .div = 12 },
-+	{ .val = 6, .div = 14 },
-+	{ .val = 7, .div = 16 },
-+	{ .val = 8, .div = 18 },
- 	{ /* sentinel */ },
- };
- 
--- 
-2.19.0
+Regards
+Martin
