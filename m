@@ -1,106 +1,93 @@
-From: clabbe@baylibre.com (LABBE Corentin)
-Date: Thu, 27 Sep 2018 07:35:08 +0200
-Subject: [PATCH v2 2/7] include: add
- setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64 in
- linux/setbits.h
-In-Reply-To: <4a63152f-9eca-f7d9-8fe6-59caaab33666@c-s.fr>
-References: <1537815856-31728-1-git-send-email-clabbe@baylibre.com>
- <1537815856-31728-3-git-send-email-clabbe@baylibre.com>
- <4a63152f-9eca-f7d9-8fe6-59caaab33666@c-s.fr>
-Message-ID: <20180927053508.GB27637@Red>
+From: liang.yang@amlogic.com (Liang Yang)
+Date: Thu, 27 Sep 2018 16:16:31 +0800
+Subject: [PATCH v4 2/2] mtd: rawnand: meson: add support for Amlogic NAND
+ flash controller
+In-Reply-To: <CAFBinCAaphyifUNyDQr7th2Mt=A+UQnzai0edKLCPNbxhh2w+Q@mail.gmail.com>
+References: <1537433449-65213-1-git-send-email-jianxin.pan@amlogic.com>
+ <1537433449-65213-3-git-send-email-jianxin.pan@amlogic.com>
+ <CAFBinCAaphyifUNyDQr7th2Mt=A+UQnzai0edKLCPNbxhh2w+Q@mail.gmail.com>
+Message-ID: <f75b6f23-6d58-2145-30f3-b23e4b69966b@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Sep 25, 2018 at 07:05:00AM +0200, Christophe LEROY wrote:
+Hello Martin,
+
+On 9/22/2018 11:32 PM, Martin Blumenstingl wrote:
+> Hello,
 > 
-> 
-> Le 24/09/2018 ? 21:04, Corentin Labbe a ?crit?:
-> > This patch adds setbits32/clrbits32/clrsetbits32 and
-> > setbits64/clrbits64/clrsetbits64 in linux/setbits.h header.
-> 
-> Fix the patch subject and description.
-> 
-> > 
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> > ---
-> >   include/linux/setbits.h | 88 +++++++++++++++++++++++++++++++++++++++++++++++++
-> >   1 file changed, 88 insertions(+)
-> >   create mode 100644 include/linux/setbits.h
-> > 
-> > diff --git a/include/linux/setbits.h b/include/linux/setbits.h
-> > new file mode 100644
-> > index 000000000000..6e7e257134ae
-> > --- /dev/null
-> > +++ b/include/linux/setbits.h
-> > @@ -0,0 +1,88 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef __LINUX_SETBITS_H
-> > +#define __LINUX_SETBITS_H
-> > +
-> > +#include <linux/io.h>
-> > +
-> > +#define __setbits(readfunction, writefunction, addr, set) \
-> > +	writefunction((readfunction(addr) | (set)), addr)
-> 
-> You don't need so long names for parameters in a 2 lines macro (See 
-> Linux Kernel Codying style ?4 Naming).
-> 
-> A single line macro would be feasible with only 3 chars names:
-> 
-> #define __setbits(rfn, wfn, addr, set) wfn((rfn(addr) | (set)), addr)
+> On Thu, Sep 20, 2018 at 10:51 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+> [snip]
+>> +static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>> +{
+>> +       int ret;
+>> +
+>> +       /* request core clock */
+>> +       nfc->core_clk = devm_clk_get(nfc->dev, "core");
+>> +       if (IS_ERR(nfc->core_clk)) {
+>> +               dev_err(nfc->dev, "failed to get core clk\n");
+>> +               return PTR_ERR(nfc->core_clk);
+>> +       }
+>> +
+>> +       nfc->device_clk = devm_clk_get(nfc->dev, "device");
+>> +       if (IS_ERR(nfc->device_clk)) {
+>> +               dev_err(nfc->dev, "failed to get device clk\n");
+>> +               return PTR_ERR(nfc->device_clk);
+>> +       }
+>> +
+>> +       nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
+>> +       if (IS_ERR(nfc->phase_tx)) {
+>> +               dev_err(nfc->dev, "failed to get tx clk\n");
+>> +               return PTR_ERR(nfc->phase_tx);
+>> +       }
+>> +
+>> +       nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
+>> +       if (IS_ERR(nfc->phase_rx)) {
+>> +               dev_err(nfc->dev, "failed to get rx clk\n");
+>> +               return PTR_ERR(nfc->phase_rx);
+>> +       }
+> neither the "rx" nor the "tx" clock are documented in the dt-bindings patch
 > 
 
-Thanks I will fix all reported problem.
+ok, i will add them later.
 
-> > +#define __clrbits(readfunction, writefunction, addr, mask) \
-> > +	writefunction((readfunction(addr) & ~(mask)), addr)
-> > +#define __clrsetbits(readfunction, writefunction, addr, mask, set) \
-> > +	writefunction(((readfunction(addr) & ~(mask)) | (set)), addr)
-> > +#define __setclrbits(readfunction, writefunction, addr, mask, set) \
-> > +	writefunction(((readfunction(addr) | (set)) & ~(mask)), addr)
-> > +
-> > +#ifndef setbits_le32
-> > +#define setbits_le32(addr, set) __setbits(readl, writel, addr, set)
-> > +#endif
-> > +#ifndef setbits_le32_relaxed
-> > +#define setbits_le32_relaxed(addr, set) __setbits(readl_relaxed, writel_relaxed, \
-> > +					       addr, set)
-> > +#endif
-> > +
-> > +#ifndef clrbits_le32
-> > +#define clrbits_le32(addr, mask) __clrbits(readl, writel, addr, mask)
-> > +#endif
-> > +#ifndef clrbits_le32_relaxed
-> > +#define clrbits_le32_relaxed(addr, mask) __clrbits(readl_relaxed, writel_relaxed, \
-> > +						addr, mask)
-> > +#endif
-> > +
-> > +#ifndef clrsetbits_le32
-> > +#define clrsetbits_le32(addr, mask, set) __clrsetbits(readl, writel, addr, mask, set)
-> > +#endif
-> > +#ifndef clrsetbits_le32_relaxed
-> > +#define clrsetbits_le32_relaxed(addr, mask, set) __clrsetbits(readl_relaxed, \
-> > +							   writel_relaxed, \
-> > +							   addr, mask, set)
-> > +#endif
-> > +
-> > +#ifndef setclrbits_le32
-> > +#define setclrbits_le32(addr, mask, set) __setclrbits(readl, writel, addr, mask, set)
-> > +#endif
-> > +#ifndef setclrbits_le32_relaxed
-> > +#define setclrbits_le32_relaxed(addr, mask, set) __setclrbits(readl_relaxed, \
-> > +							   writel_relaxed, \
-> > +							   addr, mask, set)
-> > +#endif
-> > +
-> > +/* We cannot use CONFIG_64BIT as some x86 drivers use non-atomicwriteq() */
-> > +#if defined(writeq) && defined(readq)
+>> +       /* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+>> +       regmap_update_bits(nfc->reg_clk, 0,
+>> +                          CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK,
+>> +                          CLK_SELECT_NAND | CLK_ALWAYS_ON | CLK_DIV_MASK);
+> clk_set_rate also works for clocks that are not enabled yet (except if
+> they have the flag CLK_SET_RATE_UNGATE)
+> this should help you to remove CLK_DIV_MASK here
 > 
-> Take care. At least Alpha Arch defines it as a static inline without
-> redefining it as a #define. (see arch/alpha/kernel/io.c)
 
-In fact, it does in arch/alpha/include/asm/io.h along with a gentle comment.
-But fixing their comment will be another interesting patch serie.
+if not set clk_div_mask here, the value 0x00 of divider means nand clock 
+off, even read/write nand register is forbidden.
 
-Regards
-Corentin Labbe
+> is CLK_SELECT_NAND a bit that switches the clock output from the sdmmc
+> controller to the NAND controller?
+> if so: can this be modeled as a mux clock?
+> 
+
+it seems to like a gate. 1: nand is selected; 0: emmc is selected.
+Is it suitable for making it as a mux clock?
+
+> the public S905 datasheet doesn't mention CLK_ALWAYS_ON at bit 28 but
+> uses bit 24 instead. the description from the datasheet:
+> Cfg_always_on:
+> 1: Keep clock always on
+> 0: Clock on/off controlled by activities.
+>      Any APB3 access or descriptor execution will turn clock on.
+> Recommended value: 0
+> 
+> can you please explain what CLK_ALWAYS_ON does and why it has to be 1?
+> 
+
+em , it is the same as bit 24 in S905 datasheet, only moves to bit 28.
+it means keeping internal clock on whether nand wroks or not.
+it doesn't have to be 1; i have tried 0 successfully on AXG platform.
+
+> 
+> Regards
+> Martin
+> 
+> .
+> 
