@@ -1,42 +1,67 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 27 Sep 2018 12:05:24 +0200
-Subject: [GIT PULL] arm64: dts: Amlogic updates for v4.20, round 2
-Message-ID: <7h4leb45nf.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 27 Sep 2018 16:45:02 +0200
+Subject: [GIT PULL] clk: meson: updates for v4.20
+Message-ID: <ee3c1d81101e3e42218c696f663fb8716dfd53a7.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The following changes since commit 445f2bda3501508b801b3571baee33de0ac44e1f:
+Dear clock maintainers,
 
-  arm64: dts: meson: Switch simple-mfd and syscon order (2018-09-13 09:16:36 -0700)
+Below is a request to pull updates for Amlogic clocks.
+There is not much out of the ordinary there, except:
+- Even if we don't like it, the entire meson8b is now using
+  CLK_OF_DECLARE_DRIVER(). Previously, only the reset controller
+  part used this but it seems there is no way around it (yet) to
+  handle certain things on this SoC, such as the TWD timer.
+- We are a bit late compared to the usual schedule, sorry about that.
 
-are available in the git repository at:
+Thanks for pulling
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
+Cheers
+Jerome
 
-for you to fetch changes up to 9c8c52f7cb4f3b604bb9836947dadfbb255f465f:
+The following changes since commit 5b394b2ddf0347bef56e50c69a58773c94343ff3:
 
-  arm64: dts: meson-g12a: add initial g12a s905d2 SoC DT support (2018-09-26 02:04:58 -0700)
+  Linux 4.19-rc1 (2018-08-26 14:11:59 -0700)
+
+are available in the Git repository at:
+
+  git://github.com/BayLibre/clk-meson.git tags/meson-clk-4.20-1
+
+for you to fetch changes up to 93c873d686461652921fe18b137ac28002dfe166:
+
+  clk: meson: meson8b: use the regmap in the internal reset controller (2018-09-26 12:02:00 +0200)
 
 ----------------------------------------------------------------
-Amlogic ARM64 DT updates for v4.20, round 2
-- new SoC support: basic support for G12A family
-- new board: Amlogic U200 board, using G12A SoC
-- fix SPI bus warnings from new dtc updates
+Update for meson clocks targeted at v4.20
+
+- clk-pll driver improvements and updates
+- add axg audio controller system clocks
+- drop mpll3 from the possible pcie clock parent of the axg
+- register meson8b clock controller early
 
 ----------------------------------------------------------------
-Jianxin Pan (2):
-      dt-bindings: arm: amlogic: Add Meson G12A binding
-      arm64: dts: meson-g12a: add initial g12a s905d2 SoC DT support
+Jerome Brunet (5):
+      clk: meson: clk-pll: add enable bit
+      clk: meson: clk-pll: drop CLK_GET_RATE_NOCACHE where unnecessary
+      clk: meson: clk-pll: remove od parameters
+      clk: meson: clk-pll: drop hard-coded rates from pll tables
+      clk: meson: axg: round audio system master clocks down
 
-Rob Herring (1):
-      arm64: dts: meson: Fix erroneous SPI bus warnings
+Martin Blumenstingl (2):
+      clk: meson: meson8b: register the clock controller early
+      clk: meson: meson8b: use the regmap in the internal reset controller
 
- Documentation/devicetree/bindings/arm/amlogic.txt |   6 +++
- arch/arm64/boot/dts/amlogic/Makefile              |   1 +
- arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts   |  29 +++++++++++++
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi       | 172 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi       |   2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi        |   2 +-
- 6 files changed, 210 insertions(+), 2 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+Yixun Lan (1):
+      clk: meson-axg: pcie: drop the mpll3 clock parent
+
+ drivers/clk/meson/axg-audio.c |  34 ++-
+ drivers/clk/meson/axg.c       | 332 +++++++++++++++------------
+ drivers/clk/meson/axg.h       |   8 +-
+ drivers/clk/meson/clk-pll.c   | 156 ++++++++-----
+ drivers/clk/meson/clkc.h      |  16 +-
+ drivers/clk/meson/gxbb.c      | 518 +++++++++++++++++++++---------------------
+ drivers/clk/meson/gxbb.h      |  10 +-
+ drivers/clk/meson/meson8b.c   | 280 +++++++++++------------
+ drivers/clk/meson/meson8b.h   |   5 +-
+ 9 files changed, 732 insertions(+), 627 deletions(-)
