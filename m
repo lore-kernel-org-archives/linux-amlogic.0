@@ -1,47 +1,106 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 27 Sep 2018 10:59:21 +0200
-Subject: [PATCH 2/2] clk: meson: meson8b: fix the width of the cpu_scale_div
- clock
+Date: Thu, 27 Sep 2018 10:59:20 +0200
+Subject: [PATCH 1/2] clk: meson: meson8b: fix incorrect divider mapping in
+ cpu_scale_table
 In-Reply-To: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
 References: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20180927085921.24627-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20180927085921.24627-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-According to the public S805 datasheet HHI_SYS_CPU_CLK_CNTL1[29:20] is
-the register for the CPU scale_div clock. This matches the code in
-Amlogic's 3.10 GPL kernel sources:
+The public S805 datasheet only mentions that
+HHI_SYS_CPU_CLK_CNTL1[20:29] contains a divider called "cpu_scale_div".
+Unfortunately it does not mention how to use the register contents.
+
+The Amlogic 3.10 GPL kernel sources are using the following code to
+calculate the CPU clock based on that register (taken from
+arch/arm/mach-meson8/clock.c in the 3.10 Amlogic kernel, shortened to
+make it easier to read):
 N = (aml_read_reg32(P_HHI_SYS_CPU_CLK_CNTL1) >> 20) & 0x3FF;
+if (sel == 3) /* use cpu_scale_div */
+  div = 2 * N;
+else
+  div = ... /* not relevant for this example */
+cpu_clk = parent_clk / div;
 
-This means that the divider register is 10 bit wide instead of 9 bits.
-So far this is not a problem since all u-boot versions I have seen are
-not using the cpu_scale_div clock at all (instead they are configuring
-the CPU clock to run off cpu_in_sel directly).
+This suggests that the formula is: parent_rate / 2 * register_value
+However, running perf (which can measure the CPU clock rate thanks to
+the ARM PMU) shows that this formula is not correct.
+This can be reproduced with the following steps:
+1. boot into u-boot
+2. let the CPU clock run off the XTAL clock:
+   mw.l 0xC110419C 0x30 1
+3. set the cpu_scale_div register:
+   to value 0x1: mw.l 0xC110415C 0x801016A2 1
+   to value 0x2: mw.l 0xC110415C 0x802016A2 1
+   to value 0x5: mw.l 0xC110415C 0x805016A2 1
+4. let the CPU clock run off cpu_scale_div:
+   mw.l 0xC110419C 0xbd 1
+5. boot Linux
+6. run: perf stat -aB stress --cpu 4 --timeout 10
+7. check the "cycles" value
 
-The fixes tag points to the latest rework of the CPU clocks. However,
-even before the rework it was wrong. Commit 7a29a869434e8b ("clk: meson:
-Add support for Meson clock controller") defines MESON_N_WIDTH as 9 (in
-drivers/clk/meson/clk-cpu.c). But since the old clk-cpu implementation
-this only carries the fixes tag for the CPU clock rewordk.
+I get the following results depending on the cpu_scale_div value:
+- (cpu_in_sel - this is the input clock for cpu_scale_div - runs at
+   1.2GHz)
+- 0x1 = 300MHz
+- 0x2 = 200MHz
+- 0x5 = 100MHz
+
+This means that the actual formula to calculate the output of the
+cpu_scale_div clock is: parent_rate / 2 * (register value + 1).
+
+The register value 0x0 is reserved. When letting the CPU clock run off
+the cpu_scale_div while the value is 0x0 the whole board hangs (even in
+u-boot).
+
+I also verified this with the TWD timer: when adding this to the .dts
+without specifying it's clock it will auto-detect the PERIPH (which is
+the input clock of the TWD) clock rate (and the result is shown in the
+kernel log). On Meson8, Meson8b and Meson8m2 the PERIPH clock is CPUCLK
+divided by 4. This also matched for all three test-cases from above (in
+all cases the TWD timer clock rate was approx. one fourth of the CPU
+clock rate).
+
+A small note regarding the "fixes" tag: the original issue seems to
+exist virtually since forever. Even commit 28b9fcd016126e ("clk:
+meson8b: Add support for Meson8b clocks") seems to handle this wrong. I
+still decided to use commit 251b6fd38bcb9c ("clk: meson: rework meson8b
+cpu clock") because this is the first commit which gets the CPU hiearchy
+correct and thus it's the first commit where the cpu_scale_div register
+is used correctly (apart from the bug in the cpu_scale_table).
 
 Fixes: 251b6fd38bcb9c ("clk: meson: rework meson8b cpu clock")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/clk/meson/meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/meson/meson8b.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index d3f4e11d106d..8658a662b10e 100644
+index e7fe66f61d7b..d3f4e11d106d 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -594,7 +594,7 @@ static struct clk_regmap meson8b_cpu_scale_div = {
- 	.data = &(struct clk_regmap_div_data){
- 		.offset =  HHI_SYS_CPU_CLK_CNTL1,
- 		.shift = 20,
--		.width = 9,
-+		.width = 10,
- 		.table = cpu_scale_table,
- 		.flags = CLK_DIVIDER_ALLOW_ZERO,
- 	},
+@@ -579,13 +579,14 @@ static struct clk_fixed_factor meson8b_cpu_div3 = {
+ };
+ 
+ static const struct clk_div_table cpu_scale_table[] = {
+-	{ .val = 2, .div = 4 },
+-	{ .val = 3, .div = 6 },
+-	{ .val = 4, .div = 8 },
+-	{ .val = 5, .div = 10 },
+-	{ .val = 6, .div = 12 },
+-	{ .val = 7, .div = 14 },
+-	{ .val = 8, .div = 16 },
++	{ .val = 1, .div = 4 },
++	{ .val = 2, .div = 6 },
++	{ .val = 3, .div = 8 },
++	{ .val = 4, .div = 10 },
++	{ .val = 5, .div = 12 },
++	{ .val = 6, .div = 14 },
++	{ .val = 7, .div = 16 },
++	{ .val = 8, .div = 18 },
+ 	{ /* sentinel */ },
+ };
+ 
 -- 
 2.19.0
