@@ -1,37 +1,47 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 27 Sep 2018 10:59:19 +0200
-Subject: [PATCH 0/2] Meson8b: fixes for the cpu_scale_div clock
-Message-ID: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
+Date: Thu, 27 Sep 2018 10:59:21 +0200
+Subject: [PATCH 2/2] clk: meson: meson8b: fix the width of the cpu_scale_div
+ clock
+In-Reply-To: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
+References: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20180927085921.24627-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-While trying to add support for the TWD timer I found that our CPU clock
-calculation (when running off the "cpu_scale_div clock) is incorrect.
+According to the public S805 datasheet HHI_SYS_CPU_CLK_CNTL1[29:20] is
+the register for the CPU scale_div clock. This matches the code in
+Amlogic's 3.10 GPL kernel sources:
+N = (aml_read_reg32(P_HHI_SYS_CPU_CLK_CNTL1) >> 20) & 0x3FF;
 
-The main problem was the cpu_scale_div clock:
-it's divider table has an off-by-one error. the old formula was:
-  parent_rate / 2 * register_value
-however, testing shows that the correct formula is:
-  parent_rate / 2 * (register value + 1)
-See the commit message of patch #1 for a complete description of the
-problem and it's history.
+This means that the divider register is 10 bit wide instead of 9 bits.
+So far this is not a problem since all u-boot versions I have seen are
+not using the cpu_scale_div clock at all (instead they are configuring
+the CPU clock to run off cpu_in_sel directly).
 
-While looking at the "cpu_scale_div" clock I also found that it's
-register width was also off-by-one, so this is fixed in a separate patch
-as well.
+The fixes tag points to the latest rework of the CPU clocks. However,
+even before the rework it was wrong. Commit 7a29a869434e8b ("clk: meson:
+Add support for Meson clock controller") defines MESON_N_WIDTH as 9 (in
+drivers/clk/meson/clk-cpu.c). But since the old clk-cpu implementation
+this only carries the fixes tag for the CPU clock rewordk.
 
-Both patches are not critical because I haven't seen a case where u-boot
-uses cpu_scale_div for the CPU clock. It's only a problem when playing
-with the CPU clock in u-boot (by writing registers manually) or as soon
-as we support CPU frequency scaling.
+Fixes: 251b6fd38bcb9c ("clk: meson: rework meson8b cpu clock")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/meson8b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-Martin Blumenstingl (2):
-  clk: meson: meson8b: fix incorrect divider mapping in cpu_scale_table
-  clk: meson: meson8b: fix the width of the cpu_scale_div clock
-
- drivers/clk/meson/meson8b.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
-
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index d3f4e11d106d..8658a662b10e 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -594,7 +594,7 @@ static struct clk_regmap meson8b_cpu_scale_div = {
+ 	.data = &(struct clk_regmap_div_data){
+ 		.offset =  HHI_SYS_CPU_CLK_CNTL1,
+ 		.shift = 20,
+-		.width = 9,
++		.width = 10,
+ 		.table = cpu_scale_table,
+ 		.flags = CLK_DIVIDER_ALLOW_ZERO,
+ 	},
 -- 
 2.19.0
