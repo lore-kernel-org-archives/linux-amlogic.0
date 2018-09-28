@@ -1,32 +1,96 @@
-From: arnd@arndb.de (Arnd Bergmann)
-Date: Fri, 28 Sep 2018 12:47:51 +0200
-Subject: [GIT PULL] ARM: dts: Amlogic updates for v4.20
-In-Reply-To: <7ha7o345ta.fsf@baylibre.com>
-References: <7ha7o345ta.fsf@baylibre.com>
-Message-ID: <CAK8P3a3wRy08X4r=7ob-sD9H=ykQJXTk86XFw5+0a9gcKZbPbA@mail.gmail.com>
+From: mjourdan@baylibre.com (Maxime Jourdan)
+Date: Fri, 28 Sep 2018 16:28:14 +0200
+Subject: [PATCH v3 1/3] dt-bindings: media: add Amlogic Video Decoder Bindings
+In-Reply-To: <20180928142816.4311-1-mjourdan@baylibre.com>
+References: <20180928142816.4311-1-mjourdan@baylibre.com>
+Message-ID: <20180928142816.4311-2-mjourdan@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Sep 27, 2018 at 12:02 PM Kevin Hilman <khilman@baylibre.com> wrote:
->
-> The following changes since commit 5b394b2ddf0347bef56e50c69a58773c94343ff3:
->
->   Linux 4.19-rc1 (2018-08-26 14:11:59 -0700)
->
-> are available in the git repository at:
->
->   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt
->
-> for you to fetch changes up to 54ef8539f5a3c3da0a415c4afa41556547c973fd:
->
->   ARM: dts: meson8b: odroidc1: add stdout-path property (2018-09-26 01:49:49 -0700)
->
-> ----------------------------------------------------------------
-> ARM: dts: Amlogic updates for v4.20
-> - fix clock controller register sizes
-> - new board: Endless Mini (EC-100) by Endless Mobile
-> - add voltage regulators
+Add documentation for the meson vdec dts node.
 
-Pulled, thanks!
+Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+---
+ .../bindings/media/amlogic,vdec.txt           | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
 
-      Arnd
+diff --git a/Documentation/devicetree/bindings/media/amlogic,vdec.txt b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
+new file mode 100644
+index 000000000000..aabdd01bcf32
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
+@@ -0,0 +1,71 @@
++Amlogic Video Decoder
++================================
++
++The video decoding IP lies within the DOS memory region,
++except for the hardware bitstream parser that makes use of an undocumented
++region.
++
++It makes use of the following blocks:
++
++- ESPARSER is a bitstream parser that outputs to a VIFIFO. Further VDEC blocks
++then feed from this VIFIFO.
++- VDEC_1 can decode MPEG-1, MPEG-2, MPEG-4 part 2, MJPEG, H.263, H.264, VC-1.
++- VDEC_HEVC can decode HEVC and VP9.
++
++Both VDEC_1 and VDEC_HEVC share the "vdec" IRQ and as such cannot run
++concurrently.
++
++Device Tree Bindings:
++---------------------
++
++VDEC: Video Decoder
++--------------------------
++
++Required properties:
++- compatible: value should be different for each SoC family as :
++	- GXBB (S905) : "amlogic,gxbb-vdec"
++	- GXL (S905X, S905D) : "amlogic,gxl-vdec"
++	- GXM (S912) : "amlogic,gxm-vdec"
++- reg: base address and size of he following memory-mapped regions :
++	- dos
++	- esparser
++- reg-names: should contain the names of the previous memory regions
++- interrupts: should contain the following IRQs:
++	- vdec
++	- esparser
++- interrupt-names: should contain the names of the previous interrupts
++- amlogic,ao-sysctrl: should point to the AOBUS sysctrl node
++- amlogic,canvas: should point to a canvas provider node
++- clocks: should contain the following clocks :
++	- dos_parser
++	- dos
++	- vdec_1
++	- vdec_hevc
++- clock-names: should contain the names of the previous clocks
++- resets: should contain the parser reset
++- reset-names: should be "esparser"
++
++Example:
++
++vdec: video-decoder at c8820000 {
++	compatible = "amlogic,gxbb-vdec";
++	reg = <0x0 0xc8820000 0x0 0x10000>,
++	      <0x0 0xc110a580 0x0 0xe4>;
++	reg-names = "dos", "esparser";
++
++	interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
++		     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
++	interrupt-names = "vdec", "esparser";
++
++	amlogic,ao-sysctrl = <&sysctrl_AO>;
++	amlogic,canvas = <&canvas>;
++
++	clocks = <&clkc CLKID_DOS_PARSER>,
++		 <&clkc CLKID_DOS>,
++		 <&clkc CLKID_VDEC_1>,
++		 <&clkc CLKID_VDEC_HEVC>;
++	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
++
++	resets = <&reset RESET_PARSER>;
++	reset-names = "esparser";
++};
+-- 
+2.19.0
