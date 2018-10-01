@@ -1,61 +1,23 @@
-From: mjourdan@baylibre.com (Maxime Jourdan)
-Date: Mon,  1 Oct 2018 17:26:49 +0200
-Subject: [linux-firmware] [GIT PULL] amlogic: add video decoder firmwares
-Message-ID: <20181001152649.15975-1-mjourdan@baylibre.com>
+From: sboyd@kernel.org (Stephen Boyd)
+Date: Mon, 01 Oct 2018 10:55:45 -0700
+Subject: [GIT PULL] clk: meson: updates for v4.20
+In-Reply-To: <ee3c1d81101e3e42218c696f663fb8716dfd53a7.camel@baylibre.com>
+References: <ee3c1d81101e3e42218c696f663fb8716dfd53a7.camel@baylibre.com>
+Message-ID: <153841654593.119890.11490720497943121631@swboyd.mtv.corp.google.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello,
+Quoting Jerome Brunet (2018-09-27 07:45:02)
+> Dear clock maintainers,
+> 
+> Below is a request to pull updates for Amlogic clocks.
+> There is not much out of the ordinary there, except:
+> - Even if we don't like it, the entire meson8b is now using
+>   CLK_OF_DECLARE_DRIVER(). Previously, only the reset controller
+>   part used this but it seems there is no way around it (yet) to
+>   handle certain things on this SoC, such as the TWD timer.
+> - We are a bit late compared to the usual schedule, sorry about that.
 
-Below is a pull request to add the firmwares required by the Amlogic video
-decoder.
+No worries. I'm also late this time.
 
-The firmwares were dumped from GPLv2+ in-kernel source files from Amlogic's
-vendor kernel, in their buildroot package
-"buildroot_openlinux_kernel_4.9_wayland_20180316"
-
-You can find an example of such a file in an older kernel here:
-https://github.com/hardkernel/linux/blob/odroidc2-3.14.y/drivers/amlogic/amports/arch/ucode/mpeg12/vmpeg12_mc.c
-
-The corresponding driver is currently being upstreamed:
-https://lore.kernel.org/patchwork/cover/993093/
-
-Regards,
-Maxime
-
-The following changes since commit 7c81f23ad903f72e87e2102d8f52408305c0f7a2:
-
-  ti-connectivity: add firmware for CC2560(A) Bluetooth (2018-10-01 10:08:30 -0400)
-
-are available in the Git repository at:
-
-  https://github.com/Elyotna/linux-firmware.git 
-
-for you to fetch changes up to b99cf8dcfb6e7a3dd00bdb6aa4f6c71cb6b42e58:
-
-  amlogic: add video decoder firmwares (2018-10-01 17:06:18 +0200)
-
-----------------------------------------------------------------
-Maxime Jourdan (1):
-      amlogic: add video decoder firmwares
-
- WHENCE                  |  16 ++++++++++++++++
- amlogic/gx/h263_mc      | Bin 0 -> 16384 bytes
- amlogic/gx/vh265_mc     | Bin 0 -> 16384 bytes
- amlogic/gx/vh265_mc_mmu | Bin 0 -> 16384 bytes
- amlogic/gx/vmjpeg_mc    | Bin 0 -> 16384 bytes
- amlogic/gx/vmpeg12_mc   | Bin 0 -> 16384 bytes
- amlogic/gx/vmpeg4_mc_5  | Bin 0 -> 16384 bytes
- amlogic/gxbb/vh264_mc   | Bin 0 -> 36864 bytes
- amlogic/gxl/vh264_mc    | Bin 0 -> 36864 bytes
- amlogic/gxm/vh264_mc    | Bin 0 -> 36864 bytes
- 10 files changed, 16 insertions(+)
- create mode 100644 amlogic/gx/h263_mc
- create mode 100644 amlogic/gx/vh265_mc
- create mode 100644 amlogic/gx/vh265_mc_mmu
- create mode 100644 amlogic/gx/vmjpeg_mc
- create mode 100644 amlogic/gx/vmpeg12_mc
- create mode 100644 amlogic/gx/vmpeg4_mc_5
- create mode 100644 amlogic/gxbb/vh264_mc
- create mode 100644 amlogic/gxl/vh264_mc
- create mode 100644 amlogic/gxm/vh264_mc
+Pulled into clk-next. Thanks.
