@@ -1,33 +1,37 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue,  2 Oct 2018 10:43:40 +0200
-Subject: [PATCH 1/2] arm64: dts: meson-axg: s400: add missing emmc pwrseq
-In-Reply-To: <20181002084341.5487-1-jbrunet@baylibre.com>
-References: <20181002084341.5487-1-jbrunet@baylibre.com>
-Message-ID: <20181002084341.5487-2-jbrunet@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu,  4 Oct 2018 10:42:43 +0200
+Subject: [PATCH] drm/meson: fix max mode_config height/width
+Message-ID: <1538642563-22465-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-eMMC pwrseq is defined in the s400 dts but not used in the emmc node.
-This is probably just a copy/paste error
+The mode_config max_width/max_height determines the maximum framebuffer
+size the pixel reader can handle. But the values were set thinking they
+were determining the maximum screen dimensions.
 
-Fixes: 221cf34bac54 ("ARM64: dts: meson-axg: enable the eMMC controller")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+This patch changes the values to the maximum height/width the CANVAS block
+can handle rounded to some coherent values.
+
+Fixes: a41e82e6c457 ("drm/meson: Add support for components")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/meson/meson_drv.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index d6467ac333ec..166ab598395e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -493,6 +493,8 @@
- 	mmc-ddr-1_8v;
- 	mmc-hs200-1_8v;
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index d344312..2e29968 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -243,8 +243,8 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 		goto free_drm;
  
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+
- 	vmmc-supply = <&vcc_3v3>;
- 	vqmmc-supply = <&vddio_boot>;
- };
+ 	drm_mode_config_init(drm);
+-	drm->mode_config.max_width = 3840;
+-	drm->mode_config.max_height = 2160;
++	drm->mode_config.max_width = 16384;
++	drm->mode_config.max_height = 8192;
+ 	drm->mode_config.funcs = &meson_mode_config_funcs;
+ 
+ 	/* Hardware Initialization */
 -- 
-2.17.1
+2.7.4
