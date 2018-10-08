@@ -1,35 +1,54 @@
-From: gustavo@embeddedor.com (Gustavo A. R. Silva)
-Date: Fri, 5 Oct 2018 23:20:07 +0200
-Subject: [PATCH] mmc: meson-mx-sdio: mark expected switch fall-through
-In-Reply-To: <CAFBinCDWUO74R_GKBJCmGRNSz=b75zxj4XB8LnYuQjdW9ecGLA@mail.gmail.com>
-References: <20181005100903.GA32057@embeddedor.com>
- <CAFBinCDWUO74R_GKBJCmGRNSz=b75zxj4XB8LnYuQjdW9ecGLA@mail.gmail.com>
-Message-ID: <1768f2bf-4253-e071-a93a-6ec2e19fc256@embeddedor.com>
+From: hanjie.lin@amlogic.com (Hanjie Lin)
+Date: Mon, 8 Oct 2018 19:57:11 +0800
+Subject: [PATCH v4 0/2] add the Amlogic Meson PCIe controller driver
+Message-ID: <1538999834-156423-1-git-send-email-hanjie.lin@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+PCI core. This patchset add the driver and dt-bindings of the controller.
 
-On 10/5/18 11:10 PM, Martin Blumenstingl wrote:
-> On Fri, Oct 5, 2018 at 12:15 PM Gustavo A. R. Silva
-> <gustavo@embeddedor.com> wrote:
->>
->> In preparation to enabling -Wimplicit-fallthrough, mark switch cases
->> where we are expecting to fall through.
->>
->> Notice that in this particular case, I replaced the "fall-through:"
->> comment with a proper "fall through", which is what GCC is
->> expecting to find.
->>
->> Addresses-Coverity-ID: 1373880 ("Missing break in switch")
->> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> thank you for taking care of this!
-> 
+Changes since v3: [2]
+ - modify subject format
+ - update Kconfig
+ - update MAINTAINER file
+ - add comment and error handle for meson_pcie_get_mem_shared() 
+ - drop useless initialization code
+ - add comment for meson_size_to_payload()
+ - optimize meson_pcie_establish_link() return code
+ - optimize meson_pcie_enable_interrupts() redundant function
+ - drop device_attch related code
+ - drop dw_pcie_ops read_dbi and write_dbi function
+ - add error handle for meson_add_pcie_port() when probe
 
-Glad to help. :)
+Changes since v2: [1]
+ - abandon phy driver, move reset to the controller
+ - use devm_add_action_or_reset() to use clock res
+ - format correcting
 
-Thanks
---
-Gustavo
+Changes since v1: [0]
+ - use gpio lib instead open code
+ - move 'apb' and 'port' reset from phy driver
+ - format correcting
+
+[0] : https://lkml.kernel.org/r/1534227522-186798-1-git-send-email-hanjie.lin at amlogic.com
+[1] : https://lkml.kernel.org/r/1535096165-45827-1-git-send-email-hanjie.lin at amlogic.com
+[2] : https://lkml.kernel.org/r/1537509820-52040-1-git-send-email-hanjie.lin at amlogic.com
+
+
+Yue Wang (2):
+  dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe
+    controller
+  PCI: amlogic: Add the Amlogic Meson PCIe controller driver
+
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 +++
+ MAINTAINERS                                        |   7 +
+ drivers/pci/controller/dwc/Kconfig                 |  10 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pci-meson.c             | 593 +++++++++++++++++++++
+ 5 files changed, 681 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+ create mode 100644 drivers/pci/controller/dwc/pci-meson.c
+
+-- 
+2.7.4
