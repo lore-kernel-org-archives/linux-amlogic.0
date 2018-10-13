@@ -1,87 +1,72 @@
-From: jmkrzyszt@gmail.com (Janusz Krzysztofik)
-Date: Fri, 12 Oct 2018 21:09:01 +0200
-Subject: [RFT PATCH] mmc: pwrseq_simple: Fix incorrect handling of GPIO bitmap
-In-Reply-To: <20180925192433.1377-1-jmkrzyszt@gmail.com>
-References: <20180925192433.1377-1-jmkrzyszt@gmail.com>
-Message-ID: <20181012190901.1243-1-jmkrzyszt@gmail.com>
+From: yangxuan8282@gmail.com (yangxuan8282 at gmail.com)
+Date: Sat, 13 Oct 2018 17:45:02 +0800
+Subject: [PATCH] arm64: dts: meson-gxl: add support for phicomm n1
+Message-ID: <20181013094502.7563-1-yangxuan8282@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Commit b9762bebc633 ("gpiolib: Pass bitmaps, not integer arrays, to
-get/set array") changed the way GPIO values are passed to
-gpiod_get/set_array_value() and friends.  The new code introduced into
-mmc_pwrseq_simple_set_gpios_value() incorrectly interpretes the 'value'
-argument as a bitmap of GPIO values and assigns it directly to the
-'values' bitmap variable passed to gpiod_set_array_value_cansleep()
-instead of filling that bitmap with bits equal to the 'value' argument.
-As a result, only member 0 of the array is handled correctly.
+From: He Yangxuan <yangxuan8282@gmail.com>
 
-Moreover, wrong assumption is taken about the 'values' bitmap size not
-exceding the number of bits of the 'value' argument type.
+This patch adds support for the Phicomm N1. This device based on P230 reference design.
+The phy is RTL8211F, need to disable Energy Efficient Ethernet (EEE) to make it stable.
+And this box doesn't have cvbs, so disable related section in device tree.
 
-Fix it.
-
-Signed-off-by: Janusz Krzysztofik <jmkrzyszt@gmail.com>
+Signed-off-by: He Yangxuan <yangxuan8282@gmail.com>
 ---
-Hi,
+ arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+ .../dts/amlogic/meson-gxl-s905d-phicomm-n1.dts     | 32 ++++++++++++++++++++++
+ 2 files changed, 33 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
 
-I think that patch has been missed while we were resolving issues 
-related to GPIO fast bitmap processing.  Since all issues other than the 
-one addreessed by this patch have been been hopefully identified and 
-fixed, GPIO tree seems now to be in good shape in regard to that. 
-However, I believe pwrseq_simple is still broken.  Hence, I'm 
-resubmitting this patch to Ulf for inclusion in MMC tree, Cc: many other 
-people who are kindly requested to test it if possible.
-
-I've identified the following DT files representing devices which may be 
-affected (have more than one GPIO assigned to pwrseq_simple):
-- arch/arm/boot/dts/imx6qdl-sr-som-brcm.dtsi
-- arch/arm/boot/dts/exynos5250-snow-common.dtsi
-- arch/arm/boot/dts/imx6sl-warp.dts
-- arch/arm/boot/dts/omap3-igep0030.dts
-- arch/arm/boot/dts/omap3-igep0020.dts
-- arch/arm/boot/dts/rk3036-kylin.dts
-- arch/arm64/boot/dts/rockchip/rk3368-r88.dts
-- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-
-Please start with checking if pwrseq_simple from linux-next works for 
-you and if not, please test if this patch fixes the issue.
-
-Thanks,
-Janusz
-
-
- drivers/mmc/core/pwrseq_simple.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/mmc/core/pwrseq_simple.c b/drivers/mmc/core/pwrseq_simple.c
-index 7f882a2bb872..ece34c734693 100644
---- a/drivers/mmc/core/pwrseq_simple.c
-+++ b/drivers/mmc/core/pwrseq_simple.c
-@@ -40,13 +40,22 @@ static void mmc_pwrseq_simple_set_gpios_value(struct mmc_pwrseq_simple *pwrseq,
- 	struct gpio_descs *reset_gpios = pwrseq->reset_gpios;
- 
- 	if (!IS_ERR(reset_gpios)) {
--		DECLARE_BITMAP(values, BITS_PER_TYPE(value));
-+		unsigned long *values;
- 		int nvalues = reset_gpios->ndescs;
- 
--		values[0] = value;
-+		values = bitmap_alloc(nvalues, GFP_KERNEL);
-+		if (!values)
-+			return;
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index a97c0e2d7..ebd96da2c 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -17,6 +17,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+new file mode 100644
+index 000000000..1daf58df0
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+@@ -0,0 +1,32 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2018 He Yangxuan
++ */
 +
-+		if (value)
-+			bitmap_fill(values, nvalues);
-+		else
-+			bitmap_zero(values, nvalues);
- 
- 		gpiod_set_array_value_cansleep(nvalues, reset_gpios->desc,
- 					       reset_gpios->info, values);
++/dts-v1/;
 +
-+		kfree(values);
- 	}
- }
- 
++#include "meson-gxl-s905d-p230.dts"
++
++/ {
++	compatible = "phicomm,n1", "amlogic,s905d", "amlogic,meson-gxl";
++	model = "Phicomm N1";
++
++	cvbs-connector {
++		status = "disabled";
++	};
++};
++
++&cvbs_vdac_port {
++	status = "disabled";
++};
++
++&external_mdio {
++	external_phy: ethernet-phy at 0 {
++		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
++		eee-broken-1000t;
++		max-speed = <1000>;
++		interrupt-parent = <&gpio_intc>;
++		interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
++	};
++};
 -- 
-2.16.4
+2.11.0
