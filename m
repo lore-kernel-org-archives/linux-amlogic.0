@@ -1,72 +1,45 @@
-From: yangxuan8282@gmail.com (yangxuan8282 at gmail.com)
-Date: Sat, 13 Oct 2018 17:45:02 +0800
-Subject: [PATCH] arm64: dts: meson-gxl: add support for phicomm n1
-Message-ID: <20181013094502.7563-1-yangxuan8282@gmail.com>
+From: christianshewitt@gmail.com (Christian Hewitt)
+Date: Sat, 13 Oct 2018 14:04:46 +0400
+Subject: [PATCH] clk: meson-gxbb: set fclk_div3 as CLK_IS_CRITICAL
+Message-ID: <1539425086-10997-1-git-send-email-christianshewitt@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: He Yangxuan <yangxuan8282@gmail.com>
+On the Khadas VIM2 (GXM) and LePotato (GXL) board there are problems
+with reboot; e.g. a ~60 second delay between issuing reboot and the
+board power cycling (and in some OS configurations reboot will fail
+and require manual power cycling).
 
-This patch adds support for the Phicomm N1. This device based on P230 reference design.
-The phy is RTL8211F, need to disable Energy Efficient Ethernet (EEE) to make it stable.
-And this box doesn't have cvbs, so disable related section in device tree.
+Similar to 'commit c987ac6f1f088663b6dad39281071aeb31d450a8 ("clk:
+meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL")' the SCPI Cortex-M4
+Co-Processor seems to depend on FCLK_DIV3 being operational.
 
-Signed-off-by: He Yangxuan <yangxuan8282@gmail.com>
+Bisect gives 'commit 05f814402d6174369b3b29832cbb5eb5ed287059 ("clk:
+meson: add fdiv clock gates") between 4.16 and 4.16-rc1 as the first
+bad commit. This added support for the missing clock gates before the
+fixed PLL fixed dividers (FCLK_DIVx) and the clock framework which
+disabled all the unused fixed dividers, thus it disabled a critical
+clock path for the SCPI Co-Processor.
+
+This change simply sets the FCLK_DIV3 gate as critical to ensure
+nothing can disable it.
+
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/Makefile               |  1 +
- .../dts/amlogic/meson-gxl-s905d-phicomm-n1.dts     | 32 ++++++++++++++++++++++
- 2 files changed, 33 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+ drivers/clk/meson/gxbb.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index a97c0e2d7..ebd96da2c 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -17,6 +17,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-new file mode 100644
-index 000000000..1daf58df0
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 He Yangxuan
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905d-p230.dts"
-+
-+/ {
-+	compatible = "phicomm,n1", "amlogic,s905d", "amlogic,meson-gxl";
-+	model = "Phicomm N1";
-+
-+	cvbs-connector {
-+		status = "disabled";
-+	};
-+};
-+
-+&cvbs_vdac_port {
-+	status = "disabled";
-+};
-+
-+&external_mdio {
-+	external_phy: ethernet-phy at 0 {
-+		compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+		eee-broken-1000t;
-+		max-speed = <1000>;
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 86d3ae5..4c8925d 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -509,6 +509,7 @@ static struct clk_fixed_factor gxbb_fclk_div3_div = {
+ 		.ops = &clk_fixed_factor_ops,
+ 		.parent_names = (const char *[]){ "fixed_pll" },
+ 		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
+ 	},
+ };
+ 
 -- 
-2.11.0
+2.7.4
