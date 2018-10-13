@@ -1,42 +1,67 @@
-From: christianshewitt@gmail.com (Christian Hewitt)
-Date: Sat, 13 Oct 2018 16:07:06 +0400
-Subject: [PATCH] ARM64: dts: meson-gxl-s905x-khadas-vim enable Bluetooth
-Message-ID: <1539432427-11779-1-git-send-email-christianshewitt@gmail.com>
+From: mturquette@baylibre.com (Michael Turquette)
+Date: Sat, 13 Oct 2018 18:08:10 +0200
+Subject: [PATCH] clk: meson-gxbb: set fclk_div3 as CLK_IS_CRITICAL
+In-Reply-To: <1539425086-10997-1-git-send-email-christianshewitt@gmail.com>
+References: <1539425086-10997-1-git-send-email-christianshewitt@gmail.com>
+Message-ID: <20181013160810.88481.14237@resonance>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This enables Bluetooth support for the following models:
+Quoting Christian Hewitt (2018-10-13 12:04:46)
+> On the Khadas VIM2 (GXM) and LePotato (GXL) board there are problems
+> with reboot; e.g. a ~60 second delay between issuing reboot and the
+> board power cycling (and in some OS configurations reboot will fail
+> and require manual power cycling).
+> 
+> Similar to 'commit c987ac6f1f088663b6dad39281071aeb31d450a8 ("clk:
+> meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL")' the SCPI Cortex-M4
+> Co-Processor seems to depend on FCLK_DIV3 being operational.
+> 
+> Bisect gives 'commit 05f814402d6174369b3b29832cbb5eb5ed287059 ("clk:
+> meson: add fdiv clock gates") between 4.16 and 4.16-rc1 as the first
+> bad commit. This added support for the missing clock gates before the
+> fixed PLL fixed dividers (FCLK_DIVx) and the clock framework which
+> disabled all the unused fixed dividers, thus it disabled a critical
+> clock path for the SCPI Co-Processor.
+> 
+> This change simply sets the FCLK_DIV3 gate as critical to ensure
+> nothing can disable it.
 
-- Khadas VIM basic (AP6212) using firmware BCM43438A1.hcd
-- Khadas VIM pro (AP6255) using firmware BCM4345C0.hcd
+I'm a bit skeptical of this. If FCLK_DIV3 is gated at run-time, there is
+no side effect other than long and/or failed reboot?
 
-The AP6212 module used on the VIM basic has an ID clash with another
-device. To get Bluetooth working you either need to apply a kernel
-patch to drivers/bluetooth/btbcm.c so 0x2209 loads BCM43438A1 or the
-BCM43438A1.hcd firmware must be renamed to BCM43430A1.hcd.
+Seems like someone should be managing this clock, and simply leaving it
+on all the time isn't necessarily the right approach. Any chance that
+you can dig into this behavior to better understand it?
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+It's easy to solve issues by leaving clocks on all the time, but this
+becomes a problem later on when trying to tune a device for power.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index d32cf38..7e0717d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -187,6 +187,13 @@
- 	};
- };
- 
-+&uart_A {
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
- /* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
- &uart_AO {
- 	status = "okay";
--- 
-2.7.4
+Also, if this commit really is the right fix, it should include a
+comment for FCLK_DIV3 stating why the CLK_IS_CRITICAL flag was set,
+which may be helpful later on to know if it is safe to remove it. Same
+is true for FCLK_DIV2 in c987ac6f1f088663b6dad39281071aeb31d450a8.
+
+Regards,
+Mike
+
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  drivers/clk/meson/gxbb.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index 86d3ae5..4c8925d 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -509,6 +509,7 @@ static struct clk_fixed_factor gxbb_fclk_div3_div = {
+>                 .ops = &clk_fixed_factor_ops,
+>                 .parent_names = (const char *[]){ "fixed_pll" },
+>                 .num_parents = 1,
+> +               .flags = CLK_IS_CRITICAL,
+>         },
+>  };
+>  
+> -- 
+> 2.7.4
