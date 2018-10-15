@@ -1,33 +1,35 @@
-From: linus.walleij@linaro.org (Linus Walleij)
-Date: Mon, 15 Oct 2018 16:27:10 +0200
-Subject: [RFT PATCH] mmc: pwrseq_simple: Fix incorrect handling of GPIO
- bitmap
-In-Reply-To: <20181012190901.1243-1-jmkrzyszt@gmail.com>
-References: <20180925192433.1377-1-jmkrzyszt@gmail.com>
- <20181012190901.1243-1-jmkrzyszt@gmail.com>
-Message-ID: <CACRpkdYB1Wz8VC3aDpB_4KQcdbE-_Fy48zF_idKDM0pqiOEnXg@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 15 Oct 2018 18:28:33 +0200
+Subject: [PATCH 2/2] arm64: dts: meson-axg: drop FW reserved memory
+In-Reply-To: <20181015162833.7544-1-jbrunet@baylibre.com>
+References: <20181015162833.7544-1-jbrunet@baylibre.com>
+Message-ID: <20181015162833.7544-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Oct 12, 2018 at 9:07 PM Janusz Krzysztofik <jmkrzyszt@gmail.com> wrote:
+The axg does not require the FW memory region for all we know.
+This seems to be something we carried for the gx family for no
+reason.
 
-> Commit b9762bebc633 ("gpiolib: Pass bitmaps, not integer arrays, to
-> get/set array") changed the way GPIO values are passed to
-> gpiod_get/set_array_value() and friends.  The new code introduced into
-> mmc_pwrseq_simple_set_gpios_value() incorrectly interpretes the 'value'
-> argument as a bitmap of GPIO values and assigns it directly to the
-> 'values' bitmap variable passed to gpiod_set_array_value_cansleep()
-> instead of filling that bitmap with bits equal to the 'value' argument.
-> As a result, only member 0 of the array is handled correctly.
->
-> Moreover, wrong assumption is taken about the 'values' bitmap size not
-> exceding the number of bits of the 'value' argument type.
->
-> Fix it.
->
-> Signed-off-by: Janusz Krzysztofik <jmkrzyszt@gmail.com>
+Fixes: 9d59b708500f ("arm64: dts: meson-axg: add initial A113D SoC DT support")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
-Patch applied with Ulf's and Marek's tags!
-
-Yours,
-Linus Walleij
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 06a06f11f114..d1beedc4fb0e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -13,9 +13,6 @@
+ #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+ #include <dt-bindings/reset/amlogic,meson-axg-reset.h>
+ 
+-/* 16 MiB reserved for Hardware ROM Firmware */
+-/memreserve/ 0x0 0x1000000;
+-
+ /* 3 MiB reserved for ARM Trusted Firmware (BL31) */
+ /memreserve/ 0x05000000 0x300000;
+ 
+-- 
+2.17.2
