@@ -1,67 +1,103 @@
-From: mturquette@baylibre.com (Michael Turquette)
-Date: Sat, 13 Oct 2018 18:08:10 +0200
-Subject: [PATCH] clk: meson-gxbb: set fclk_div3 as CLK_IS_CRITICAL
-In-Reply-To: <1539425086-10997-1-git-send-email-christianshewitt@gmail.com>
-References: <1539425086-10997-1-git-send-email-christianshewitt@gmail.com>
-Message-ID: <20181013160810.88481.14237@resonance>
+From: m.szyprowski@samsung.com (Marek Szyprowski)
+Date: Mon, 15 Oct 2018 10:32:08 +0200
+Subject: [RFT PATCH] mmc: pwrseq_simple: Fix incorrect handling of GPIO
+ bitmap
+In-Reply-To: <20181012190901.1243-1-jmkrzyszt@gmail.com>
+References: <20180925192433.1377-1-jmkrzyszt@gmail.com>
+ <CGME20181012190748epcas5p3dc41f6d0f9c69f22351209b2e7ea66f3@epcas5p3.samsung.com>
+ <20181012190901.1243-1-jmkrzyszt@gmail.com>
+Message-ID: <20181015083209eucas1p2fb3d1961745fdb3007dec317c6441142~duxEkRvmp2005320053eucas1p2D@eucas1p2.samsung.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Christian Hewitt (2018-10-13 12:04:46)
-> On the Khadas VIM2 (GXM) and LePotato (GXL) board there are problems
-> with reboot; e.g. a ~60 second delay between issuing reboot and the
-> board power cycling (and in some OS configurations reboot will fail
-> and require manual power cycling).
-> 
-> Similar to 'commit c987ac6f1f088663b6dad39281071aeb31d450a8 ("clk:
-> meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL")' the SCPI Cortex-M4
-> Co-Processor seems to depend on FCLK_DIV3 being operational.
-> 
-> Bisect gives 'commit 05f814402d6174369b3b29832cbb5eb5ed287059 ("clk:
-> meson: add fdiv clock gates") between 4.16 and 4.16-rc1 as the first
-> bad commit. This added support for the missing clock gates before the
-> fixed PLL fixed dividers (FCLK_DIVx) and the clock framework which
-> disabled all the unused fixed dividers, thus it disabled a critical
-> clock path for the SCPI Co-Processor.
-> 
-> This change simply sets the FCLK_DIV3 gate as critical to ensure
-> nothing can disable it.
+Hi Janusz,
 
-I'm a bit skeptical of this. If FCLK_DIV3 is gated at run-time, there is
-no side effect other than long and/or failed reboot?
-
-Seems like someone should be managing this clock, and simply leaving it
-on all the time isn't necessarily the right approach. Any chance that
-you can dig into this behavior to better understand it?
-
-It's easy to solve issues by leaving clocks on all the time, but this
-becomes a problem later on when trying to tune a device for power.
-
-Also, if this commit really is the right fix, it should include a
-comment for FCLK_DIV3 stating why the CLK_IS_CRITICAL flag was set,
-which may be helpful later on to know if it is safe to remove it. Same
-is true for FCLK_DIV2 in c987ac6f1f088663b6dad39281071aeb31d450a8.
-
-Regards,
-Mike
-
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+On 2018-10-12 21:09, Janusz Krzysztofik wrote:
+> Commit b9762bebc633 ("gpiolib: Pass bitmaps, not integer arrays, to
+> get/set array") changed the way GPIO values are passed to
+> gpiod_get/set_array_value() and friends.  The new code introduced into
+> mmc_pwrseq_simple_set_gpios_value() incorrectly interpretes the 'value'
+> argument as a bitmap of GPIO values and assigns it directly to the
+> 'values' bitmap variable passed to gpiod_set_array_value_cansleep()
+> instead of filling that bitmap with bits equal to the 'value' argument.
+> As a result, only member 0 of the array is handled correctly.
+>
+> Moreover, wrong assumption is taken about the 'values' bitmap size not
+> exceding the number of bits of the 'value' argument type.
+>
+> Fix it.
+>
+> Signed-off-by: Janusz Krzysztofik <jmkrzyszt@gmail.com>
 > ---
->  drivers/clk/meson/gxbb.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 86d3ae5..4c8925d 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -509,6 +509,7 @@ static struct clk_fixed_factor gxbb_fclk_div3_div = {
->                 .ops = &clk_fixed_factor_ops,
->                 .parent_names = (const char *[]){ "fixed_pll" },
->                 .num_parents = 1,
-> +               .flags = CLK_IS_CRITICAL,
->         },
->  };
+> Hi,
+>
+> I think that patch has been missed while we were resolving issues 
+> related to GPIO fast bitmap processing.  Since all issues other than the 
+> one addreessed by this patch have been been hopefully identified and 
+> fixed, GPIO tree seems now to be in good shape in regard to that. 
+> However, I believe pwrseq_simple is still broken.  Hence, I'm 
+> resubmitting this patch to Ulf for inclusion in MMC tree, Cc: many other 
+> people who are kindly requested to test it if possible.
+>
+> I've identified the following DT files representing devices which may be 
+> affected (have more than one GPIO assigned to pwrseq_simple):
+> - arch/arm/boot/dts/imx6qdl-sr-som-brcm.dtsi
+> - arch/arm/boot/dts/exynos5250-snow-common.dtsi
+
+On Samsung Snow Chromebook it doesn't change anything. Board boots and
+detects WiFi SDIO card before and after applying it on top on Linux
+next-20181012.
+
+Tested-by: Marek Szyprowski <m.szyprowski
+
+> - arch/arm/boot/dts/imx6sl-warp.dts
+> - arch/arm/boot/dts/omap3-igep0030.dts
+> - arch/arm/boot/dts/omap3-igep0020.dts
+> - arch/arm/boot/dts/rk3036-kylin.dts
+> - arch/arm64/boot/dts/rockchip/rk3368-r88.dts
+> - arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+>
+> Please start with checking if pwrseq_simple from linux-next works for 
+> you and if not, please test if this patch fixes the issue.
+>
+> Thanks,
+> Janusz
+>
+>
+>  drivers/mmc/core/pwrseq_simple.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/mmc/core/pwrseq_simple.c b/drivers/mmc/core/pwrseq_simple.c
+> index 7f882a2bb872..ece34c734693 100644
+> --- a/drivers/mmc/core/pwrseq_simple.c
+> +++ b/drivers/mmc/core/pwrseq_simple.c
+> @@ -40,13 +40,22 @@ static void mmc_pwrseq_simple_set_gpios_value(struct mmc_pwrseq_simple *pwrseq,
+>  	struct gpio_descs *reset_gpios = pwrseq->reset_gpios;
 >  
-> -- 
-> 2.7.4
+>  	if (!IS_ERR(reset_gpios)) {
+> -		DECLARE_BITMAP(values, BITS_PER_TYPE(value));
+> +		unsigned long *values;
+>  		int nvalues = reset_gpios->ndescs;
+>  
+> -		values[0] = value;
+> +		values = bitmap_alloc(nvalues, GFP_KERNEL);
+> +		if (!values)
+> +			return;
+> +
+> +		if (value)
+> +			bitmap_fill(values, nvalues);
+> +		else
+> +			bitmap_zero(values, nvalues);
+>  
+>  		gpiod_set_array_value_cansleep(nvalues, reset_gpios->desc,
+>  					       reset_gpios->info, values);
+> +
+> +		kfree(values);
+>  	}
+>  }
+>  
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
