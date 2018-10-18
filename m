@@ -1,37 +1,27 @@
-From: sboyd@kernel.org (Stephen Boyd)
-Date: Thu, 18 Oct 2018 10:14:31 -0700
-Subject: [PATCH v5 1/3] clk: meson: add emmc sub clock phase delay driver
-In-Reply-To: <1539839245-13793-2-git-send-email-jianxin.pan@amlogic.com>
-References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
- <1539839245-13793-2-git-send-email-jianxin.pan@amlogic.com>
-Message-ID: <153988287137.5275.1146335138540290297@swboyd.mtv.corp.google.com>
+From: robh@kernel.org (Rob Herring)
+Date: Thu, 18 Oct 2018 11:48:02 -0500
+Subject: [PATCH v5 1/2] dt-bindings: nand: meson: add Amlogic NAND
+ controller driver
+In-Reply-To: <1539839345-14021-2-git-send-email-jianxin.pan@amlogic.com>
+References: <1539839345-14021-1-git-send-email-jianxin.pan@amlogic.com>
+ <1539839345-14021-2-git-send-email-jianxin.pan@amlogic.com>
+Message-ID: <20181018164802.GA11264@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jianxin Pan (2018-10-17 22:07:23)
-> diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-> index 6b96d55..3309d78 100644
-> --- a/drivers/clk/meson/clkc.h
-> +++ b/drivers/clk/meson/clkc.h
-> @@ -105,6 +105,18 @@ struct clk_regmap _name = {                                                \
->         },                                                              \
->  };
->  
-> +struct meson_clk_phase_delay_data {
-> +       struct parm                     phase;
-> +       struct parm                     delay;
-> +       unsigned int                    delay_step_ps;
-> +};
-> +
-> +static inline struct meson_clk_phase_delay_data *
-> +meson_clk_get_phase_delay_data(struct clk_regmap *clk)
-> +{
-> +       return (struct meson_clk_phase_delay_data *)clk->data;
+On Thu, 18 Oct 2018 13:09:04 +0800, Jianxin Pan wrote:
+> From: Liang Yang <liang.yang@amlogic.com>
+> 
+> Add Amlogic NAND controller dt-bindings for Meson SoC,
+> Current this driver support GXBB/GXL/AXG platform.
+> 
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  .../devicetree/bindings/mtd/amlogic,meson-nand.txt | 60 ++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+> 
 
-Is data a void *? If so, please drop the useless cast.
-
-> +}
-> +
->  /* clk_ops */
->  extern const struct clk_ops meson_clk_pll_ro_ops;
->  extern const struct clk_ops meson_clk_pll_ops;
+Reviewed-by: Rob Herring <robh@kernel.org>
