@@ -1,97 +1,62 @@
-From: liang.yang@amlogic.com (Liang Yang)
-Date: Fri, 19 Oct 2018 16:04:09 +0800
-Subject: [PATCH v5 2/2] mtd: rawnand: meson: add support for Amlogic NAND
- flash controller
-In-Reply-To: <20181018223943.145e5497@bbrezillon>
+From: boris.brezillon@bootlin.com (Boris Brezillon)
+Date: Fri, 19 Oct 2018 10:10:33 +0200
+Subject: [PATCH v5 2/2] mtd: rawnand: meson: add support for Amlogic
+ NAND flash controller
+In-Reply-To: <09f76f17-05c4-d9e0-0167-f68e224f00c4@amlogic.com>
 References: <1539839345-14021-1-git-send-email-jianxin.pan@amlogic.com>
  <1539839345-14021-3-git-send-email-jianxin.pan@amlogic.com>
- <20181018223943.145e5497@bbrezillon>
-Message-ID: <b80f2e72-7ad5-9f37-a059-87b1d8344e7b@amlogic.com>
+ <20181018213308.3f8a5279@bbrezillon>
+ <09f76f17-05c4-d9e0-0167-f68e224f00c4@amlogic.com>
+Message-ID: <20181019101033.0a160506@bbrezillon>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+On Fri, 19 Oct 2018 15:29:05 +0800
+Liang Yang <liang.yang@amlogic.com> wrote:
 
+> > How about defining that the HW returns an array of __le64 instead and then
+> > define the following macros which you can use after converting in the
+> > CPU endianness
+> > 
+> > #define ECC_GET_PROTECTED_OOB_BYTE(x, y)	(((x) >> (8 * (1 + y)) & GENMASK(7, 0))
+> > #define ECC_COMPLETE			BIT(31)
+> > #define ECC_ERR_CNT(x)			(((x) >> 24) & GENMASK(5, 0))
+> > 
+> > (I'm not entirely sure the field positions are correct, but I'll let you
+> > check that).
+> >   
+> ok. i think it should be:
+> 
+> #define ECC_GET_PROTECTED_OOB_BYTE(x, y)	(((x) >> (8 * y) &
+> GENMASK(7, 0))
+> 
+> if x represents the u64 and y represents the index of the u64.
 
-On 2018/10/19 4:39, Boris Brezillon wrote:
-> On Thu, 18 Oct 2018 13:09:05 +0800
-> Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> 
->> +static int meson_nfc_calc_set_timing(struct meson_nfc *nfc,
->> +				     const struct nand_sdr_timings *timings)
->> +{
->> +	struct nand_timing *timing = &nfc->timing;
->> +	int div, bt_min, bt_max, bus_timing;
->> +	int ret;
->> +
->> +	div = DIV_ROUND_UP((timings->tRC_min / 1000), NFC_CLK_CYCLE);
->> +	ret = clk_set_rate(nfc->device_clk, 1000000000 / div);
->> +	if (ret) {
->> +		dev_err(nfc->dev, "failed to set nand clock rate\n");
->> +		return ret;
->> +	}
->> +
->> +	timing->twb = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tWB_max),
->> +				   div * NFC_CLK_CYCLE);
->> +	timing->tadl = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tADL_min),
->> +				    div * NFC_CLK_CYCLE);
->> +	timing->twhr = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tWHR_min),
->> +				    div * NFC_CLK_CYCLE);
->> +
->> +	bt_min = (timings->tREA_max + NFC_DEFAULT_DELAY) / div;
->> +	bt_max = (NFC_DEFAULT_DELAY + timings->tRHOH_min
->> +			+ timings->tRC_min / 2) / div;
->> +
->> +	bt_min = DIV_ROUND_UP(bt_min, 1000);
->> +	bt_max = DIV_ROUND_UP(bt_max, 1000);
->> +
->> +	if (bt_max < bt_min)
->> +		return -EINVAL;
->> +
->> +	bus_timing = (bt_min + bt_max) / 2 + 1;
->> +
->> +	writel((1 << 21), nfc->reg_base + NFC_REG_CFG);
->> +	writel((NFC_CLK_CYCLE - 1) | (bus_timing << 5),
->> +	       nfc->reg_base + NFC_REG_CFG);
->> +
->> +	writel((1 << 31), nfc->reg_base + NFC_REG_CMD);
->> +
->> +	return 0;
->> +}
->> +
->> +static int
->> +meson_nfc_setup_data_interface(struct nand_chip *nand, int csline,
->> +			       const struct nand_data_interface *conf)
->> +{
->> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
->> +	const struct nand_sdr_timings *timings;
->> +
->> +	timings = nand_get_sdr_timings(conf);
->> +	if (IS_ERR(timings))
->> +		return -ENOTSUPP;
->> +
->> +	if (csline == NAND_DATA_IFACE_CHECK_ONLY)
->> +		return 0;
-> 
-> Hm, before saying you supporting the requested timing, you should make
-> sure they are actually supported. I'd recommend splitting this in 2
-> steps:
-> 
-> 1/ calc timings
-> 2/ store the timings in the chip priv struct so that they can be
-> applied next time ->select_chip() is called.
-> 
-ok, i will try to split.
+Absolutely.
 
->> +
->> +	meson_nfc_calc_set_timing(nfc, timings);
-> > You should not set the timing from ->setup_data_interface(), just
-> calculate them, make sure they are supported and store the state in the
-> private chip struct. Applying those timings should be done in
-> ->select_chip(), so that you can support 2 chips with different timings.
 > 
-em, i will fix it.
->> +	return 0;
->> +}
 > 
-> .
 > 
+> >> +
+> >> +#define PER_INFO_BYTE	(sizeof(struct meson_nfc_info_format))
+> >> +
+> >> +struct meson_nfc_nand_chip {
+> >> +	struct list_head node;
+> >> +	struct nand_chip nand;
+> >> +	bool is_scramble;  
+> > 
+> > I think I already mentioned the NAND_NEED_SCRAMBLING flag []. Please
+> > drop this field and test (chip->flags & NAND_NEED_SCRAMBLING) instead.
+> >   
+> em, i use NAND_NEED_SCRAMBLING and is_scramble is set:
+> static int meson_nand_attach_chip(struct nand_chip *nand)
+> {
+> 	......
+> 	meson_chip->is_scramble =
+> 		(nand->options & NAND_NEED_SCRAMBLING) ? 1 : 0;
+> 	......
+> }
+
+Why do you need to add a new field then? Just test
+nand->options & NAND_NEED_SCRAMBLING directly or provide a helper
+function that does that.
