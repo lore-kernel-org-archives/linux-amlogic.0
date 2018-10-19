@@ -1,77 +1,96 @@
 From: liang.yang@amlogic.com (Liang Yang)
-Date: Fri, 19 Oct 2018 15:29:13 +0800
+Date: Fri, 19 Oct 2018 16:04:09 +0800
 Subject: [PATCH v5 2/2] mtd: rawnand: meson: add support for Amlogic NAND
  flash controller
-In-Reply-To: <20181018162449.3fe433e7@bbrezillon>
+In-Reply-To: <20181018223943.145e5497@bbrezillon>
 References: <1539839345-14021-1-git-send-email-jianxin.pan@amlogic.com>
  <1539839345-14021-3-git-send-email-jianxin.pan@amlogic.com>
- <20181018162449.3fe433e7@bbrezillon>
-Message-ID: <30ceed2f-03a2-8e4c-b267-df14d052f13d@amlogic.com>
+ <20181018223943.145e5497@bbrezillon>
+Message-ID: <b80f2e72-7ad5-9f37-a059-87b1d8344e7b@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
 
-On 2018/10/18 22:24, Boris Brezillon wrote:
+On 2018/10/19 4:39, Boris Brezillon wrote:
 > On Thu, 18 Oct 2018 13:09:05 +0800
 > Jianxin Pan <jianxin.pan@amlogic.com> wrote:
 > 
->> +static int meson_nfc_exec_op(struct nand_chip *chip,
->> +			     const struct nand_operation *op, bool check_only)
+>> +static int meson_nfc_calc_set_timing(struct meson_nfc *nfc,
+>> +				     const struct nand_sdr_timings *timings)
 >> +{
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	struct meson_nfc *nfc = nand_get_controller_data(chip);
->> +	const struct nand_op_instr *instr = NULL;
->> +	int ret = 0, cmd;
->> +	unsigned int op_id;
->> +	int i;
+>> +	struct nand_timing *timing = &nfc->timing;
+>> +	int div, bt_min, bt_max, bus_timing;
+>> +	int ret;
 >> +
->> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
->> +		instr = &op->instrs[op_id];
->> +		switch (instr->type) {
->> +		case NAND_OP_CMD_INSTR:
->> +			if (instr->ctx.cmd.opcode == NAND_CMD_STATUS)
->> +				meson_nfc_cmd_idle(nfc, nfc->timing.twb);
-> 
-> Hm, I don't want drivers to base their decisions on the opcode value.
-> There's a ->delay_ns field in the instruction object, can't you use
-> that one instead? Also, I don't understand why this is only needed for
-> the STATUS command. It should normally be applied to all instructions.
-> 
-em, it should be applied to all instructions.
-i will fix it and use instr->delay_ns instead.
-
->> +			cmd = nfc->param.chip_select | NFC_CMD_CLE;
->> +			cmd |= instr->ctx.cmd.opcode & 0xff;
->> +			writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +			if (instr->ctx.cmd.opcode == NAND_CMD_STATUS)
->> +				meson_nfc_cmd_idle(nfc, nfc->timing.twhr);
->> +			break;
->> +
->> +		case NAND_OP_ADDR_INSTR:
->> +			for (i = 0; i < instr->ctx.addr.naddrs; i++) {
->> +				cmd = nfc->param.chip_select | NFC_CMD_ALE;
->> +				cmd |= instr->ctx.addr.addrs[i] & 0xff;
->> +				writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +			}
->> +			break;
->> +
->> +		case NAND_OP_DATA_IN_INSTR:
->> +			meson_nfc_read_buf(mtd, instr->ctx.data.buf.in,
->> +					   instr->ctx.data.len);
->> +			break;
->> +
->> +		case NAND_OP_DATA_OUT_INSTR:
->> +			meson_nfc_write_buf(mtd, instr->ctx.data.buf.out,
->> +					    instr->ctx.data.len);
->> +			break;
->> +
->> +		case NAND_OP_WAITRDY_INSTR:
->> +			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms);
->> +			break;
->> +		}
+>> +	div = DIV_ROUND_UP((timings->tRC_min / 1000), NFC_CLK_CYCLE);
+>> +	ret = clk_set_rate(nfc->device_clk, 1000000000 / div);
+>> +	if (ret) {
+>> +		dev_err(nfc->dev, "failed to set nand clock rate\n");
+>> +		return ret;
 >> +	}
->> +	return ret;
+>> +
+>> +	timing->twb = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tWB_max),
+>> +				   div * NFC_CLK_CYCLE);
+>> +	timing->tadl = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tADL_min),
+>> +				    div * NFC_CLK_CYCLE);
+>> +	timing->twhr = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tWHR_min),
+>> +				    div * NFC_CLK_CYCLE);
+>> +
+>> +	bt_min = (timings->tREA_max + NFC_DEFAULT_DELAY) / div;
+>> +	bt_max = (NFC_DEFAULT_DELAY + timings->tRHOH_min
+>> +			+ timings->tRC_min / 2) / div;
+>> +
+>> +	bt_min = DIV_ROUND_UP(bt_min, 1000);
+>> +	bt_max = DIV_ROUND_UP(bt_max, 1000);
+>> +
+>> +	if (bt_max < bt_min)
+>> +		return -EINVAL;
+>> +
+>> +	bus_timing = (bt_min + bt_max) / 2 + 1;
+>> +
+>> +	writel((1 << 21), nfc->reg_base + NFC_REG_CFG);
+>> +	writel((NFC_CLK_CYCLE - 1) | (bus_timing << 5),
+>> +	       nfc->reg_base + NFC_REG_CFG);
+>> +
+>> +	writel((1 << 31), nfc->reg_base + NFC_REG_CMD);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int
+>> +meson_nfc_setup_data_interface(struct nand_chip *nand, int csline,
+>> +			       const struct nand_data_interface *conf)
+>> +{
+>> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
+>> +	const struct nand_sdr_timings *timings;
+>> +
+>> +	timings = nand_get_sdr_timings(conf);
+>> +	if (IS_ERR(timings))
+>> +		return -ENOTSUPP;
+>> +
+>> +	if (csline == NAND_DATA_IFACE_CHECK_ONLY)
+>> +		return 0;
+> 
+> Hm, before saying you supporting the requested timing, you should make
+> sure they are actually supported. I'd recommend splitting this in 2
+> steps:
+> 
+> 1/ calc timings
+> 2/ store the timings in the chip priv struct so that they can be
+> applied next time ->select_chip() is called.
+> 
+ok, i will try to split.
+
+>> +
+>> +	meson_nfc_calc_set_timing(nfc, timings);
+> > You should not set the timing from ->setup_data_interface(), just
+> calculate them, make sure they are supported and store the state in the
+> private chip struct. Applying those timings should be done in
+> ->select_chip(), so that you can support 2 chips with different timings.
+> 
+em, i will fix it.
+>> +	return 0;
 >> +}
 > 
 > .
