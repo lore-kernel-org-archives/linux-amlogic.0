@@ -1,61 +1,70 @@
 From: jianxin.pan@amlogic.com (Jianxin Pan)
-Date: Mon, 22 Oct 2018 13:59:18 +0800
-Subject: [PATCH v5 3/3] clk: meson: add sub MMC clock controller driver
-In-Reply-To: <153997220960.53599.2059896905852359614@swboyd.mtv.corp.google.com>
+Date: Mon, 22 Oct 2018 14:05:48 +0800
+Subject: [PATCH v5 2/3] clk: meson: add DT documentation for emmc clock
+ controller
+In-Reply-To: <153997224756.53599.3138050846693192599@swboyd.mtv.corp.google.com>
 References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
- <1539839245-13793-4-git-send-email-jianxin.pan@amlogic.com>
- <153988282130.5275.17528969137837015544@swboyd.mtv.corp.google.com>
- <01d07c83-b17e-70b5-6e9b-8150ee3aedf2@amlogic.com>
- <153997220960.53599.2059896905852359614@swboyd.mtv.corp.google.com>
-Message-ID: <9ddb0f0f-994c-b743-99cd-05ec094a6afc@amlogic.com>
+ <1539839245-13793-3-git-send-email-jianxin.pan@amlogic.com>
+ <153988248599.5275.8444799485095155762@swboyd.mtv.corp.google.com>
+ <efc5b030-f344-80ce-f57e-582207f436fe@amlogic.com>
+ <153997224756.53599.3138050846693192599@swboyd.mtv.corp.google.com>
+Message-ID: <2a3890e2-10a7-ef0a-637d-af980d495606@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 2018/10/20 2:03, Stephen Boyd wrote:
-> Quoting Jianxin Pan (2018-10-19 09:12:53)
->> On 2018/10/19 1:13, Stephen Boyd wrote:
->>> Quoting Jianxin Pan (2018-10-17 22:07:25)
->>>> diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
->>>> index 305ee30..f96314d 100644
->>>> --- a/drivers/clk/meson/clk-regmap.c
->>>> +++ b/drivers/clk/meson/clk-regmap.c
->>>> @@ -113,8 +113,25 @@ static int clk_regmap_div_set_rate(struct clk_hw *hw, unsigned long rate,
->>>>                                   clk_div_mask(div->width) << div->shift, val);
->>>>  };
->>>>  
->>>> -/* Would prefer clk_regmap_div_ro_ops but clashes with qcom */
->>>> +static void clk_regmap_div_init(struct clk_hw *hw)
->>>> +{
->>>> +       struct clk_regmap *clk = to_clk_regmap(hw);
->>>> +       struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
->>>> +       unsigned int val;
->>>> +       int ret;
+Hi Stephen,
+
+Thanks for the fully review, we really appreciate your time.
+
+Please see my comments below. 
+
+On 2018/10/20 2:04, Stephen Boyd wrote:
+> Quoting Jianxin Pan (2018-10-19 08:50:08)
+>> On 2018/10/19 1:08, Stephen Boyd wrote:
+>>> Quoting Jianxin Pan (2018-10-17 22:07:24)
+>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+>>>> new file mode 100644
+>>>> index 0000000..9e6d343
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+>>>> @@ -0,0 +1,31 @@
+>>>> +* Amlogic MMC Sub Clock Controller Driver
 >>>> +
->>>> +       ret = regmap_read(clk->map, div->offset, &val);
->>>> +       if (ret)
->>>> +               return;
->>>>  
->>>> +       val &= (clk_div_mask(div->width) << div->shift);
->>>> +       if (!val)
->>>> +               regmap_update_bits(clk->map, div->offset,
->>>> +                                  clk_div_mask(div->width) << div->shift,
->>>> +                                  clk_div_mask(div->width));
->>>> +}
+>>>> +The Amlogic MMC clock controller generates and supplies clock to support
+>>>> +MMC and NAND controller
 >>>> +
->>>> +/* Would prefer clk_regmap_div_ro_ops but clashes with qcom */
+>>>> +Required Properties:
+>>>> +
+>>>> +- compatible: should be:
+>>>> +               "amlogic,gx-mmc-clkc"
+>>>> +               "amlogic,axg-mmc-clkc"
+>>>> +
+>>>> +- #clock-cells: should be 1.
+>>>> +- clocks: phandles to clocks corresponding to the clock-names property
+>>>> +- clock-names: list of parent clock names
+>>>> +       - "clkin0", "clkin1"
+>>>> +
+>>>> +Parent node should have the following properties :
 >>>
->>> We should add a patch to rename the symbol for qcom, i.e.
->>> qcom_clk_regmap_div_ro_ops, and then any symbols in this directory
->>> should be meson_clk_regmap_div_ro_ops.
->> "/* Would prefer clk_regmap_div_ro_ops but clashes with qcom */"
->> This comment is not introduced in this patch.
->> I followed the naming style in this file and add clk_regmap_divider_with_init_ops.
->>
->> @Jerome? What's your suggestion about this?
+>>> The example only has one node. Can you add two nodes?
+>> OK. This clock is used by nand and emmc. I will add a new example for emmc too.
+>> Thank you for your review.
 > 
-> Yes you don't need to fix anything in this series. Just saying that in
-> the future we should work on cleaning this up.
+> Maybe I misunderstand. I thought the clk controller was two nodes, but
+> it isn't? This wording is trying to explain what a consumer should look
+> like?
 > 
-OK. Thank you!
+Yes.There is another clk controller.  I will add it in the next version.
+sd_emmc_b_clkc: clock-controller at 5000 {                  
+         compatible = "amlogic,axg-mmc-clkc", "syscon";   
+         reg = <0x0 0x5000 0x0 0x4>;                      
+         #clock-cells = <1>;                              
+                                                          
+         clock-names = "clkin0", "clkin1";                
+         clocks = <&clkc CLKID_SD_EMMC_B_CLK0>,           
+                 <&clkc CLKID_FCLK_DIV2>;                 
+};
+sd_emmc_c_clkc is for nadn and mmc portC.
+sd_emmc_b_clkc is for mmc portB.
 > .
 > 
