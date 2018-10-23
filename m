@@ -1,70 +1,35 @@
-From: jianxin.pan@amlogic.com (Jianxin Pan)
-Date: Mon, 22 Oct 2018 14:05:48 +0800
-Subject: [PATCH v5 2/3] clk: meson: add DT documentation for emmc clock
- controller
-In-Reply-To: <153997224756.53599.3138050846693192599@swboyd.mtv.corp.google.com>
-References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
- <1539839245-13793-3-git-send-email-jianxin.pan@amlogic.com>
- <153988248599.5275.8444799485095155762@swboyd.mtv.corp.google.com>
- <efc5b030-f344-80ce-f57e-582207f436fe@amlogic.com>
- <153997224756.53599.3138050846693192599@swboyd.mtv.corp.google.com>
-Message-ID: <2a3890e2-10a7-ef0a-637d-af980d495606@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 23 Oct 2018 18:03:19 +0200
+Subject: [PATCH] pinctrl: meson: fix pinconf bias disable
+Message-ID: <20181023160319.27003-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Stephen,
+If a bias is enabled on a pin of an Amlogic SoC, calling .pin_config_set()
+with PIN_CONFIG_BIAS_DISABLE will not disable the bias. Instead it will
+force a pull-down bias on the pin.
 
-Thanks for the fully review, we really appreciate your time.
+Instead of the pull type register bank, the driver should access the pull
+enable register bank.
 
-Please see my comments below. 
+Fixes: 6ac730951104 ("pinctrl: add driver for Amlogic Meson SoCs")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 2018/10/20 2:04, Stephen Boyd wrote:
-> Quoting Jianxin Pan (2018-10-19 08:50:08)
->> On 2018/10/19 1:08, Stephen Boyd wrote:
->>> Quoting Jianxin Pan (2018-10-17 22:07:24)
->>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
->>>> new file mode 100644
->>>> index 0000000..9e6d343
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
->>>> @@ -0,0 +1,31 @@
->>>> +* Amlogic MMC Sub Clock Controller Driver
->>>> +
->>>> +The Amlogic MMC clock controller generates and supplies clock to support
->>>> +MMC and NAND controller
->>>> +
->>>> +Required Properties:
->>>> +
->>>> +- compatible: should be:
->>>> +               "amlogic,gx-mmc-clkc"
->>>> +               "amlogic,axg-mmc-clkc"
->>>> +
->>>> +- #clock-cells: should be 1.
->>>> +- clocks: phandles to clocks corresponding to the clock-names property
->>>> +- clock-names: list of parent clock names
->>>> +       - "clkin0", "clkin1"
->>>> +
->>>> +Parent node should have the following properties :
->>>
->>> The example only has one node. Can you add two nodes?
->> OK. This clock is used by nand and emmc. I will add a new example for emmc too.
->> Thank you for your review.
-> 
-> Maybe I misunderstand. I thought the clk controller was two nodes, but
-> it isn't? This wording is trying to explain what a consumer should look
-> like?
-> 
-Yes.There is another clk controller.  I will add it in the next version.
-sd_emmc_b_clkc: clock-controller at 5000 {                  
-         compatible = "amlogic,axg-mmc-clkc", "syscon";   
-         reg = <0x0 0x5000 0x0 0x4>;                      
-         #clock-cells = <1>;                              
-                                                          
-         clock-names = "clkin0", "clkin1";                
-         clocks = <&clkc CLKID_SD_EMMC_B_CLK0>,           
-                 <&clkc CLKID_FCLK_DIV2>;                 
-};
-sd_emmc_c_clkc is for nadn and mmc portC.
-sd_emmc_b_clkc is for mmc portB.
-> .
-> 
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index 29a458da78db..4f3ab18636a3 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -192,7 +192,7 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+ 			dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
+ 
+ 			meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
+-			ret = regmap_update_bits(pc->reg_pull, reg,
++			ret = regmap_update_bits(pc->reg_pullen, reg,
+ 						 BIT(bit), 0);
+ 			if (ret)
+ 				return ret;
+-- 
+2.17.2
