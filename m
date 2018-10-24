@@ -1,22 +1,137 @@
-From: sergei.shtylyov@cogentembedded.com (Sergei Shtylyov)
-Date: Wed, 24 Oct 2018 10:57:49 +0300
-Subject: [PATCH v3 4/7] ata: ahci_sunxi: use xxxsetbitsi_le32 functions
-In-Reply-To: <1540366553-18541-5-git-send-email-clabbe@baylibre.com>
+From: clabbe@baylibre.com (Corentin Labbe)
+Date: Wed, 24 Oct 2018 07:35:53 +0000
+Subject: [PATCH v3 7/7] net: stmmac: dwmac-meson8b: use xxxsetbits_le32
+In-Reply-To: <1540366553-18541-1-git-send-email-clabbe@baylibre.com>
 References: <1540366553-18541-1-git-send-email-clabbe@baylibre.com>
- <1540366553-18541-5-git-send-email-clabbe@baylibre.com>
-Message-ID: <83472722-c7e7-820f-b97f-37016ff32893@cogentembedded.com>
+Message-ID: <1540366553-18541-8-git-send-email-clabbe@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hello!
+This patch convert meson stmmac glue driver to use all xxxsetbits_le32 functions.
 
-    Typo in the subject: s/xxxsetbitsi/xxxsetbits/.
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 56 ++++++++-----------
+ 1 file changed, 22 insertions(+), 34 deletions(-)
 
-On 24.10.2018 10:35, Corentin Labbe wrote:
-
-> This patch converts ahci_sunxi to use xxxsetbits_le32 functions
->
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-[...]
-
-MBR, Sergei
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+index c5979569fd60..abcf65588576 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
+@@ -23,6 +23,7 @@
+ #include <linux/mfd/syscon.h>
+ #include <linux/platform_device.h>
+ #include <linux/stmmac.h>
++#include <linux/setbits.h>
+ 
+ #include "stmmac_platform.h"
+ 
+@@ -75,18 +76,6 @@ struct meson8b_dwmac_clk_configs {
+ 	struct clk_gate		rgmii_tx_en;
+ };
+ 
+-static void meson8b_dwmac_mask_bits(struct meson8b_dwmac *dwmac, u32 reg,
+-				    u32 mask, u32 value)
+-{
+-	u32 data;
+-
+-	data = readl(dwmac->regs + reg);
+-	data &= ~mask;
+-	data |= (value & mask);
+-
+-	writel(data, dwmac->regs + reg);
+-}
+-
+ static struct clk *meson8b_dwmac_register_clk(struct meson8b_dwmac *dwmac,
+ 					      const char *name_suffix,
+ 					      const char **parent_names,
+@@ -192,14 +181,13 @@ static int meson8b_set_phy_mode(struct meson8b_dwmac *dwmac)
+ 	case PHY_INTERFACE_MODE_RGMII_ID:
+ 	case PHY_INTERFACE_MODE_RGMII_TXID:
+ 		/* enable RGMII mode */
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+-					PRG_ETH0_RGMII_MODE,
+-					PRG_ETH0_RGMII_MODE);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0, PRG_ETH0_RGMII_MODE,
++				PRG_ETH0_RGMII_MODE);
+ 		break;
+ 	case PHY_INTERFACE_MODE_RMII:
+ 		/* disable RGMII mode -> enables RMII mode */
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+-					PRG_ETH0_RGMII_MODE, 0);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0, PRG_ETH0_RGMII_MODE,
++				0);
+ 		break;
+ 	default:
+ 		dev_err(dwmac->dev, "fail to set phy-mode %s\n",
+@@ -218,15 +206,15 @@ static int meson_axg_set_phy_mode(struct meson8b_dwmac *dwmac)
+ 	case PHY_INTERFACE_MODE_RGMII_ID:
+ 	case PHY_INTERFACE_MODE_RGMII_TXID:
+ 		/* enable RGMII mode */
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+-					PRG_ETH0_EXT_PHY_MODE_MASK,
+-					PRG_ETH0_EXT_RGMII_MODE);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0,
++				PRG_ETH0_EXT_PHY_MODE_MASK,
++				PRG_ETH0_EXT_RGMII_MODE);
+ 		break;
+ 	case PHY_INTERFACE_MODE_RMII:
+ 		/* disable RGMII mode -> enables RMII mode */
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+-					PRG_ETH0_EXT_PHY_MODE_MASK,
+-					PRG_ETH0_EXT_RMII_MODE);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0,
++				PRG_ETH0_EXT_PHY_MODE_MASK,
++				PRG_ETH0_EXT_RMII_MODE);
+ 		break;
+ 	default:
+ 		dev_err(dwmac->dev, "fail to set phy-mode %s\n",
+@@ -255,11 +243,11 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 	case PHY_INTERFACE_MODE_RGMII_ID:
+ 	case PHY_INTERFACE_MODE_RGMII_TXID:
+ 		/* only relevant for RMII mode -> disable in RGMII mode */
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+-					PRG_ETH0_INVERTED_RMII_CLK, 0);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0,
++				PRG_ETH0_INVERTED_RMII_CLK, 0);
+ 
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
+-					tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0, PRG_ETH0_TXDLY_MASK,
++				tx_dly_val << PRG_ETH0_TXDLY_SHIFT);
+ 
+ 		/* Configure the 125MHz RGMII TX clock, the IP block changes
+ 		 * the output automatically (= without us having to configure
+@@ -287,13 +275,13 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 
+ 	case PHY_INTERFACE_MODE_RMII:
+ 		/* invert internal clk_rmii_i to generate 25/2.5 tx_rx_clk */
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0,
+-					PRG_ETH0_INVERTED_RMII_CLK,
+-					PRG_ETH0_INVERTED_RMII_CLK);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0,
++				PRG_ETH0_INVERTED_RMII_CLK,
++				PRG_ETH0_INVERTED_RMII_CLK);
+ 
+ 		/* TX clock delay cannot be configured in RMII mode */
+-		meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TXDLY_MASK,
+-					0);
++		clrsetbits_le32(dwmac->regs + PRG_ETH0, PRG_ETH0_TXDLY_MASK,
++				0);
+ 
+ 		break;
+ 
+@@ -304,8 +292,8 @@ static int meson8b_init_prg_eth(struct meson8b_dwmac *dwmac)
+ 	}
+ 
+ 	/* enable TX_CLK and PHY_REF_CLK generator */
+-	meson8b_dwmac_mask_bits(dwmac, PRG_ETH0, PRG_ETH0_TX_AND_PHY_REF_CLK,
+-				PRG_ETH0_TX_AND_PHY_REF_CLK);
++	clrsetbits_le32(dwmac->regs + PRG_ETH0, PRG_ETH0_TX_AND_PHY_REF_CLK,
++			PRG_ETH0_TX_AND_PHY_REF_CLK);
+ 
+ 	return 0;
+ }
+-- 
+2.18.1
