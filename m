@@ -1,43 +1,114 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 24 Oct 2018 15:25:06 +0200
-Subject: [PATCH] pinctrl: meson: fix pinconf bias disable
-In-Reply-To: <20181023160319.27003-1-jbrunet@baylibre.com>
-References: <20181023160319.27003-1-jbrunet@baylibre.com>
-Message-ID: <e59dce0c-e26c-1918-724c-8508fd841678@baylibre.com>
+From: jakub.kicinski@netronome.com (Jakub Kicinski)
+Date: Wed, 24 Oct 2018 15:46:13 -0700
+Subject: [PATCH v3 2/7] include: add
+ setbits_leXX/clrbits_leXX/clrsetbits_leXX in linux/setbits.h
+In-Reply-To: <1540366553-18541-3-git-send-email-clabbe@baylibre.com>
+References: <1540366553-18541-1-git-send-email-clabbe@baylibre.com>
+ <1540366553-18541-3-git-send-email-clabbe@baylibre.com>
+Message-ID: <20181024154613.3ecc96dc@cakuba.netronome.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 23/10/2018 18:03, Jerome Brunet wrote:
-> If a bias is enabled on a pin of an Amlogic SoC, calling .pin_config_set()
-> with PIN_CONFIG_BIAS_DISABLE will not disable the bias. Instead it will
-> force a pull-down bias on the pin.
+On Wed, 24 Oct 2018 07:35:48 +0000, Corentin Labbe wrote:
+> This patch adds setbits_le32/clrbits_le32/clrsetbits_le32 and
+> setbits_le64/clrbits_le64/clrsetbits_le64 in linux/setbits.h header.
 > 
-> Instead of the pull type register bank, the driver should access the pull
-> enable register bank.
-> 
-> Fixes: 6ac730951104 ("pinctrl: add driver for Amlogic Meson SoCs")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/pinctrl/meson/pinctrl-meson.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index 29a458da78db..4f3ab18636a3 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -192,7 +192,7 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
->  			dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
->  
->  			meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
-> -			ret = regmap_update_bits(pc->reg_pull, reg,
-> +			ret = regmap_update_bits(pc->reg_pullen, reg,
->  						 BIT(bit), 0);
->  			if (ret)
->  				return ret;
-> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Did you have a look at all the functions defined in bitfield.h?
+(including the magic macro-generated ones?)  Perhaps those could be
+used here?
 
-Nice catch !
+I also share the concerns about the non-atomic RMW.  Obviously correct
+beats short IMHO.
 
-Neil
+> diff --git a/include/linux/setbits.h b/include/linux/setbits.h
+> new file mode 100644
+> index 000000000000..c82faf8d7fe4
+> --- /dev/null
+> +++ b/include/linux/setbits.h
+> @@ -0,0 +1,84 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __LINUX_SETBITS_H
+> +#define __LINUX_SETBITS_H
+> +
+> +#include <linux/io.h>
+> +
+> +#define __setbits(rfn, wfn, addr, set) wfn((rfn(addr) | (set)), addr)
+> +#define __clrbits(rfn, wfn, addr, mask) wfn((rfn(addr) & ~(mask)), addr)
+> +#define __clrsetbits(rfn, wfn, addr, mask, set) wfn(((rfn(addr) & ~(mask)) | (set)), addr)
+> +#define __setclrbits(rfn, wfn, addr, mask, set) wfn(((rfn(addr) | (set)) & ~(mask)), addr)
+> +
+> +#ifndef setbits_le32
+> +#define setbits_le32(addr, set) __setbits(readl, writel, addr, set)
+> +#endif
+> +#ifndef setbits_le32_relaxed
+> +#define setbits_le32_relaxed(addr, set) __setbits(readl_relaxed, writel_relaxed, \
+> +					       addr, set)
+> +#endif
+> +
+> +#ifndef clrbits_le32
+> +#define clrbits_le32(addr, mask) __clrbits(readl, writel, addr, mask)
+> +#endif
+> +#ifndef clrbits_le32_relaxed
+> +#define clrbits_le32_relaxed(addr, mask) __clrbits(readl_relaxed, writel_relaxed, \
+> +						addr, mask)
+> +#endif
+> +
+> +#ifndef clrsetbits_le32
+> +#define clrsetbits_le32(addr, mask, set) __clrsetbits(readl, writel, addr, mask, set)
+> +#endif
+> +#ifndef clrsetbits_le32_relaxed
+> +#define clrsetbits_le32_relaxed(addr, mask, set) __clrsetbits(readl_relaxed, \
+> +							   writel_relaxed, \
+> +							   addr, mask, set)
+> +#endif
+> +
+> +#ifndef setclrbits_le32
+> +#define setclrbits_le32(addr, mask, set) __setclrbits(readl, writel, addr, mask, set)
+> +#endif
+> +#ifndef setclrbits_le32_relaxed
+> +#define setclrbits_le32_relaxed(addr, mask, set) __setclrbits(readl_relaxed, \
+> +							   writel_relaxed, \
+> +							   addr, mask, set)
+> +#endif
+> +
+> +/* We cannot use CONFIG_64BIT as some x86 drivers use non-atomicwriteq() */
+> +#if defined(writeq) && defined(readq)
+> +#ifndef setbits_le64
+> +#define setbits_le64(addr, set) __setbits(readq, writeq, addr, set)
+> +#endif
+> +#ifndef setbits_le64_relaxed
+> +#define setbits_le64_relaxed(addr, set) __setbits(readq_relaxed, writeq_relaxed, \
+> +					       addr, set)
+> +#endif
+> +
+> +#ifndef clrbits_le64
+> +#define clrbits_le64(addr, mask) __clrbits(readq, writeq, addr, mask)
+> +#endif
+> +#ifndef clrbits_le64_relaxed
+> +#define clrbits_le64_relaxed(addr, mask) __clrbits(readq_relaxed, writeq_relaxed, \
+> +						addr, mask)
+> +#endif
+> +
+> +#ifndef clrsetbits_le64
+> +#define clrsetbits_le64(addr, mask, set) __clrsetbits(readq, writeq, addr, mask, set)
+> +#endif
+> +#ifndef clrsetbits_le64_relaxed
+> +#define clrsetbits_le64_relaxed(addr, mask, set) __clrsetbits(readq_relaxed, \
+> +							   writeq_relaxed, \
+> +							   addr, mask, set)
+> +#endif
+> +
+> +#ifndef setclrbits_le64
+> +#define setclrbits_le64(addr, mask, set) __setclrbits(readq, writeq, addr, mask, set)
+> +#endif
+> +#ifndef setclrbits_le64_relaxed
+> +#define setclrbits_le64_relaxed(addr, mask, set) __setclrbits(readq_relaxed, \
+> +							   writeq_relaxed, \
+> +							   addr, mask, set)
+> +#endif
+> +
+> +#endif /* writeq/readq */
+> +
+> +#endif /* __LINUX_SETBITS_H */
