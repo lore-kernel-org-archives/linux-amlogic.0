@@ -1,114 +1,136 @@
-From: jakub.kicinski@netronome.com (Jakub Kicinski)
-Date: Wed, 24 Oct 2018 15:46:13 -0700
-Subject: [PATCH v3 2/7] include: add
- setbits_leXX/clrbits_leXX/clrsetbits_leXX in linux/setbits.h
-In-Reply-To: <1540366553-18541-3-git-send-email-clabbe@baylibre.com>
-References: <1540366553-18541-1-git-send-email-clabbe@baylibre.com>
- <1540366553-18541-3-git-send-email-clabbe@baylibre.com>
-Message-ID: <20181024154613.3ecc96dc@cakuba.netronome.com>
+From: dlan@gentoo.org (Yixun Lan)
+Date: Thu, 25 Oct 2018 15:29:15 +0800
+Subject: [PATCH v5 2/3] clk: meson: add DT documentation for emmc clock
+ controller
+In-Reply-To: <ca95948abd58876a23b2eb3e52b96124e9eed793.camel@baylibre.com>
+References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
+ <1539839245-13793-3-git-send-email-jianxin.pan@amlogic.com>
+ <ca95948abd58876a23b2eb3e52b96124e9eed793.camel@baylibre.com>
+Message-ID: <20181024145513.GA6647@ofant>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Wed, 24 Oct 2018 07:35:48 +0000, Corentin Labbe wrote:
-> This patch adds setbits_le32/clrbits_le32/clrsetbits_le32 and
-> setbits_le64/clrbits_le64/clrsetbits_le64 in linux/setbits.h header.
+Hi Jerome, Jianxin:
+
+see my comments
+
+On 10:58 Wed 24 Oct     , Jerome Brunet wrote:
+> On Thu, 2018-10-18 at 13:07 +0800, Jianxin Pan wrote:
+> > From: Yixun Lan <yixun.lan@amlogic.com>
+> > 
+> > Document the MMC sub clock controller driver, the potential consumer
+> > of this driver is MMC or NAND. Also add four clock bindings IDs which
+> > provided by this driver.
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> > Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> > ---
+> >  .../devicetree/bindings/clock/amlogic,mmc-clkc.txt | 31 ++++++++++++++++++++++
+> >  include/dt-bindings/clock/amlogic,mmc-clkc.h       | 17 ++++++++++++
+> >  2 files changed, 48 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+> >  create mode 100644 include/dt-bindings/clock/amlogic,mmc-clkc.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+> > new file mode 100644
+> > index 0000000..9e6d343
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+> > @@ -0,0 +1,31 @@
+> > +* Amlogic MMC Sub Clock Controller Driver
+> > +
+> > +The Amlogic MMC clock controller generates and supplies clock to support
+> > +MMC and NAND controller
+> > +
+> > +Required Properties:
+> > +
+> > +- compatible: should be:
+> > +		"amlogic,gx-mmc-clkc"
+> > +		"amlogic,axg-mmc-clkc"
+> > +
+> > +- #clock-cells: should be 1.
+> > +- clocks: phandles to clocks corresponding to the clock-names property
+> > +- clock-names: list of parent clock names
+> > +	- "clkin0", "clkin1"
+> > +
+> > +Parent node should have the following properties :
+> > +- compatible: "amlogic,axg-mmc-clkc", "syscon".
+> > +- reg: base address and size of the MMC control register space.
 > 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> I get why Stephen is confused by your description, I am too. The example
+> contradict the documentation.
+> 
+> The  documentation above says that the parent node should be a syscon with the
+> mmc register space.
+> 
+> But your example shows this in the node itself.
+> 
 
-Did you have a look at all the functions defined in bitfield.h?
-(including the magic macro-generated ones?)  Perhaps those could be
-used here?
+yes, I think the documentation need to be fixed
 
-I also share the concerns about the non-atomic RMW.  Obviously correct
-beats short IMHO.
+for the final solution, we decide to make 'mmc-clkc' an independent node
+instead of being a sub-node of 'mmc', so both of them may exist in parallel..
 
-> diff --git a/include/linux/setbits.h b/include/linux/setbits.h
-> new file mode 100644
-> index 000000000000..c82faf8d7fe4
-> --- /dev/null
-> +++ b/include/linux/setbits.h
-> @@ -0,0 +1,84 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef __LINUX_SETBITS_H
-> +#define __LINUX_SETBITS_H
-> +
-> +#include <linux/io.h>
-> +
-> +#define __setbits(rfn, wfn, addr, set) wfn((rfn(addr) | (set)), addr)
-> +#define __clrbits(rfn, wfn, addr, mask) wfn((rfn(addr) & ~(mask)), addr)
-> +#define __clrsetbits(rfn, wfn, addr, mask, set) wfn(((rfn(addr) & ~(mask)) | (set)), addr)
-> +#define __setclrbits(rfn, wfn, addr, mask, set) wfn(((rfn(addr) | (set)) & ~(mask)), addr)
-> +
-> +#ifndef setbits_le32
-> +#define setbits_le32(addr, set) __setbits(readl, writel, addr, set)
-> +#endif
-> +#ifndef setbits_le32_relaxed
-> +#define setbits_le32_relaxed(addr, set) __setbits(readl_relaxed, writel_relaxed, \
-> +					       addr, set)
-> +#endif
-> +
-> +#ifndef clrbits_le32
-> +#define clrbits_le32(addr, mask) __clrbits(readl, writel, addr, mask)
-> +#endif
-> +#ifndef clrbits_le32_relaxed
-> +#define clrbits_le32_relaxed(addr, mask) __clrbits(readl_relaxed, writel_relaxed, \
-> +						addr, mask)
-> +#endif
-> +
-> +#ifndef clrsetbits_le32
-> +#define clrsetbits_le32(addr, mask, set) __clrsetbits(readl, writel, addr, mask, set)
-> +#endif
-> +#ifndef clrsetbits_le32_relaxed
-> +#define clrsetbits_le32_relaxed(addr, mask, set) __clrsetbits(readl_relaxed, \
-> +							   writel_relaxed, \
-> +							   addr, mask, set)
-> +#endif
-> +
-> +#ifndef setclrbits_le32
-> +#define setclrbits_le32(addr, mask, set) __setclrbits(readl, writel, addr, mask, set)
-> +#endif
-> +#ifndef setclrbits_le32_relaxed
-> +#define setclrbits_le32_relaxed(addr, mask, set) __setclrbits(readl_relaxed, \
-> +							   writel_relaxed, \
-> +							   addr, mask, set)
-> +#endif
-> +
-> +/* We cannot use CONFIG_64BIT as some x86 drivers use non-atomicwriteq() */
-> +#if defined(writeq) && defined(readq)
-> +#ifndef setbits_le64
-> +#define setbits_le64(addr, set) __setbits(readq, writeq, addr, set)
-> +#endif
-> +#ifndef setbits_le64_relaxed
-> +#define setbits_le64_relaxed(addr, set) __setbits(readq_relaxed, writeq_relaxed, \
-> +					       addr, set)
-> +#endif
-> +
-> +#ifndef clrbits_le64
-> +#define clrbits_le64(addr, mask) __clrbits(readq, writeq, addr, mask)
-> +#endif
-> +#ifndef clrbits_le64_relaxed
-> +#define clrbits_le64_relaxed(addr, mask) __clrbits(readq_relaxed, writeq_relaxed, \
-> +						addr, mask)
-> +#endif
-> +
-> +#ifndef clrsetbits_le64
-> +#define clrsetbits_le64(addr, mask, set) __clrsetbits(readq, writeq, addr, mask, set)
-> +#endif
-> +#ifndef clrsetbits_le64_relaxed
-> +#define clrsetbits_le64_relaxed(addr, mask, set) __clrsetbits(readq_relaxed, \
-> +							   writeq_relaxed, \
-> +							   addr, mask, set)
-> +#endif
-> +
-> +#ifndef setclrbits_le64
-> +#define setclrbits_le64(addr, mask, set) __setclrbits(readq, writeq, addr, mask, set)
-> +#endif
-> +#ifndef setclrbits_le64_relaxed
-> +#define setclrbits_le64_relaxed(addr, mask, set) __setclrbits(readq_relaxed, \
-> +							   writeq_relaxed, \
-> +							   addr, mask, set)
-> +#endif
-> +
-> +#endif /* writeq/readq */
-> +
-> +#endif /* __LINUX_SETBITS_H */
+the DT part may like this:
+
+			sd_emmc_c_clkc: clock-controller at 7000 {
+				compatible = "amlogic,axg-mmc-clkc", "syscon";
+				reg = <0x0 0x7000 0x0 0x4>;
+				...
+			};
+
+			sd_emmc_c: mmc at 7000 {
+				compatible = "amlogic,axg-mmc";
+				reg = <0x0 0x7000 0x0 0x800>;
+				...
+			};
+
+
+> > +
+> > +Example: Clock controller node:
+> > +
+> > +sd_mmc_c_clkc: clock-controller at 7000 {
+> > +	compatible = "amlogic,axg-mmc-clkc", "syscon";
+> > +	reg = <0x0 0x7000 0x0 0x4>;
+> > +	#clock-cells = <1>;
+> > +
+> > +	clock-names = "clkin0", "clkin1";
+> > +	clocks = <&clkc CLKID_SD_MMC_C_CLK0>,
+> > +		 <&clkc CLKID_FCLK_DIV2>;
+> > +};
+> > diff --git a/include/dt-bindings/clock/amlogic,mmc-clkc.h b/include/dt-bindings/clock/amlogic,mmc-clkc.h
+> > new file mode 100644
+> > index 0000000..162b949
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/amlogic,mmc-clkc.h
+> > @@ -0,0 +1,17 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> > +/*
+> > + * Meson MMC sub clock tree IDs
+> > + *
+> > + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+> > + * Author: Yixun Lan <yixun.lan@amlogic.com>
+> > + */
+> > +
+> > +#ifndef __MMC_CLKC_H
+> > +#define __MMC_CLKC_H
+> > +
+> > +#define CLKID_MMC_DIV				1
+> > +#define CLKID_MMC_PHASE_CORE			2
+> > +#define CLKID_MMC_PHASE_TX			3
+> > +#define CLKID_MMC_PHASE_RX			4
+> > +
+> > +#endif
+> 
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
