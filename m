@@ -1,82 +1,115 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Oct 2018 13:08:58 +0100
-Subject: [PATCH v2 2/3] clk: meson: meson8b: use the HHI syscon if available
+Date: Sun, 28 Oct 2018 13:08:59 +0100
+Subject: [PATCH v2 3/3] ARM: dts: meson: switch the clock controller to the
+ HHI register area
 In-Reply-To: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
 References: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181028120859.5735-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20181028120859.5735-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock controller is located in a register range (called "HHI") which
-contains more than just registers for the clock controller. Known
-consumers of the HHI register range are:
+The clock controller on Meson8/Meson8m2 and Meson8b is part of a
+register region called "HHI". This register area contains more
+functionality than just a clock controller:
 - the clock controller
-- a reset controller
-- temperature sensor calibration coefficient (TSC) (only on Meson8b and
-  Meson8m2)
+- some reset controller bits
+- temperature sensor calibration data (on Meson8b and Meson8m2 only)
 - HDMI controller
 
-The main reason for using a syscon is the "temperature sensor
-calibration coefficient" which has to be set for the built-in temperature
-sensor to work correctly. Four TSC bits are located in the SAR ADC's
-register space. However on Meson8b and Meson8m2 there is a fifth TSC bit
-which is unfortunately located in the HHI register space. To be more
-precise, bit 9 of the HHI_DPLL_TOP_0 register (which sits right between
-the HHI_SYS_PLL and HHI_VID_PLL registers).
-
-Get the regmap from the parent (HHI syscon) node to support all
-functionality of the HHI register range. Backwards compatibility with
-old .dtbs is ensured by falling back to parsing the registers just like
-before this change.
+Allow access to this HHI register area as "system controller". Also
+migrate the Meson8 and Meson8b clock controllers to this new node.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/meson/meson8b.c | 24 +++++++++++++++---------
- 1 file changed, 15 insertions(+), 9 deletions(-)
+ arch/arm/boot/dts/meson.dtsi   |  7 +++++++
+ arch/arm/boot/dts/meson8.dtsi  | 15 ++++++++-------
+ arch/arm/boot/dts/meson8b.dtsi | 15 ++++++++-------
+ 3 files changed, 23 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 1e02ca4be2fc..9bd5920da0ff 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -10,6 +10,7 @@
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/init.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/of_address.h>
- #include <linux/reset-controller.h>
- #include <linux/slab.h>
-@@ -1115,16 +1116,21 @@ static void __init meson8b_clkc_init(struct device_node *np)
- 	struct regmap *map;
- 	int i, ret;
+diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
+index 0d9faf1a51ea..ad903d1a2cb6 100644
+--- a/arch/arm/boot/dts/meson.dtsi
++++ b/arch/arm/boot/dts/meson.dtsi
+@@ -80,6 +80,13 @@
+ 			#size-cells = <1>;
+ 			ranges = <0x0 0xc1100000 0x200000>;
  
--	/* Generic clocks, PLLs and some of the reset-bits */
--	clk_base = of_iomap(np, 1);
--	if (!clk_base) {
--		pr_err("%s: Unable to map clk base\n", __func__);
--		return;
--	}
-+	map = syscon_node_to_regmap(of_get_parent(np));
-+	if (IS_ERR(map)) {
-+		pr_info("failed to get HHI regmap - Trying obsolete regs\n");
- 
--	map = regmap_init_mmio(NULL, clk_base, &clkc_regmap_config);
--	if (IS_ERR(map))
--		return;
-+		/* Generic clocks, PLLs and some of the reset-bits */
-+		clk_base = of_iomap(np, 1);
-+		if (!clk_base) {
-+			pr_err("%s: Unable to map clk base\n", __func__);
-+			return;
-+		}
++			hhi: system-controller at 4000 {
++				compatible = "amlogic,meson-hhi-sysctrl",
++					     "simple-mfd",
++					     "syscon";
++				reg = <0x4000 0x400>;
++			};
 +
-+		map = regmap_init_mmio(NULL, clk_base, &clkc_regmap_config);
-+		if (IS_ERR(map))
-+			return;
-+	}
+ 			assist: assist at 7c00 {
+ 				compatible = "amlogic,meson-mx-assist", "syscon";
+ 				reg = <0x7c00 0x200>;
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index 7162e0ca05b0..3e3d9c54cddc 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -190,13 +190,6 @@
+ };
  
- 	rstc = kzalloc(sizeof(*rstc), GFP_KERNEL);
- 	if (!rstc)
+ &cbus {
+-	clkc: clock-controller at 4000 {
+-		#clock-cells = <1>;
+-		#reset-cells = <1>;
+-		compatible = "amlogic,meson8-clkc";
+-		reg = <0x8000 0x4>, <0x4000 0x400>;
+-	};
+-
+ 	reset: reset-controller at 4404 {
+ 		compatible = "amlogic,meson8b-reset";
+ 		reg = <0x4404 0x9c>;
+@@ -323,6 +316,14 @@
+ 	status = "okay";
+ };
+ 
++&hhi {
++	clkc: clock-controller {
++		compatible = "amlogic,meson8-clkc";
++		#clock-cells = <1>;
++		#reset-cells = <1>;
++	};
++};
++
+ &hwrng {
+ 	compatible = "amlogic,meson8-rng", "amlogic,meson-rng";
+ 	clocks = <&clkc CLKID_RNG0>;
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index cd1ca9dda126..f92aab0aa247 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -159,13 +159,6 @@
+ };
+ 
+ &cbus {
+-	clkc: clock-controller at 4000 {
+-		#clock-cells = <1>;
+-		#reset-cells = <1>;
+-		compatible = "amlogic,meson8b-clkc";
+-		reg = <0x8000 0x4>, <0x4000 0x400>;
+-	};
+-
+ 	reset: reset-controller at 4404 {
+ 		compatible = "amlogic,meson8b-reset";
+ 		reg = <0x4404 0x9c>;
+@@ -313,6 +306,14 @@
+ 	status = "okay";
+ };
+ 
++&hhi {
++	clkc: clock-controller {
++		compatible = "amlogic,meson8-clkc";
++		#clock-cells = <1>;
++		#reset-cells = <1>;
++	};
++};
++
+ &hwrng {
+ 	compatible = "amlogic,meson8b-rng", "amlogic,meson-rng";
+ 	clocks = <&clkc CLKID_RNG0>;
 -- 
 2.19.1
