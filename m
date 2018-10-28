@@ -1,36 +1,49 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Oct 2018 13:26:27 +0100
-Subject: [PATCH 5/7] ARM: dts: meson8b: ec100: add iio-hwmon for the chip
- temperature
+Date: Sun, 28 Oct 2018 13:26:23 +0100
+Subject: [PATCH 1/7] dt-bindings: iio: adc: meson-saradc: add temperature
+ sensor support
 In-Reply-To: <20181028122629.10144-1-martin.blumenstingl@googlemail.com>
 References: <20181028122629.10144-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181028122629.10144-6-martin.blumenstingl@googlemail.com>
+Message-ID: <20181028122629.10144-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-SAR ADC enabled channel 8 can be used to measure the chip temperature.
-This can be made available to the hwmon subsystem by using iio-hwmon.
+The 32-bit Meson SoCs Meson8, Meson8b and Meson8m2 can use the SAR ADC
+to read the chip temperature. This requires a few new, optional
+properties:
+- nvmem-cells and nvmem-cell-names are needed because the temperature
+  sensor requires calibration to work correctly. The calibration data is
+  stored in the eFuse.
+- amlogic,hhi-sysctrl is needed on Meson8b and Meson8m2 because the 5th
+  bit of the TSC (temperature sensor calibration coefficient) is stored
+  in the HHI register region (in the scratch register HHI_DPLL_TOP_0 at
+  offset 0x318).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8b-ec100.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../bindings/iio/adc/amlogic,meson-saradc.txt          | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/meson8b-ec100.dts
-index 0872f6e3abf5..0cebe849a920 100644
---- a/arch/arm/boot/dts/meson8b-ec100.dts
-+++ b/arch/arm/boot/dts/meson8b-ec100.dts
-@@ -64,6 +64,11 @@
- 		timeout-ms = <20000>;
- 	};
+diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+index 54b823f3a453..75c775954102 100644
+--- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
++++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+@@ -22,6 +22,16 @@ Required properties:
+ - vref-supply:	the regulator supply for the ADC reference voltage
+ - #io-channel-cells: must be 1, see ../iio-bindings.txt
  
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&saradc 8>;
-+	};
++Optional properties:
++- amlogic,hhi-sysctrl:	phandle to the syscon which contains the 5th bit
++			of the TSC (temperature sensor coefficient) on
++			Meson8b and Meson8m2 (which used to calibrate the
++			temperature sensor)
++- nvmem-cells:		phandle to the temperature_calib eFuse cells
++- nvmem-cell-names:	if present (to enable the temperature sensor
++			calibration) this must contain "temperature_calib"
 +
- 	leds {
- 		compatible = "gpio-leds";
- 
++
+ Example:
+ 	saradc: adc at 8680 {
+ 		compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
 -- 
 2.19.1
