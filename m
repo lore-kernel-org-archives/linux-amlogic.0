@@ -1,115 +1,62 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Oct 2018 13:08:59 +0100
-Subject: [PATCH v2 3/3] ARM: dts: meson: switch the clock controller to the
- HHI register area
-In-Reply-To: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
-References: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181028120859.5735-4-martin.blumenstingl@googlemail.com>
+Date: Sun, 28 Oct 2018 13:26:22 +0100
+Subject: [PATCH 0/7] meson-saradc: add chip temperature support
+Message-ID: <20181028122629.10144-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock controller on Meson8/Meson8m2 and Meson8b is part of a
-register region called "HHI". This register area contains more
-functionality than just a clock controller:
-- the clock controller
-- some reset controller bits
-- temperature sensor calibration data (on Meson8b and Meson8m2 only)
-- HDMI controller
+The meson-saradc allows switching the input of channel #6 between an
+actual ADC pad and the SoC's internal temperature sensor.
 
-Allow access to this HHI register area as "system controller". Also
-migrate the Meson8 and Meson8b clock controllers to this new node.
+On the 64-bit SoCs the SCPI firmware reads the chip temperature using
+the SAR ADC. Thus the 64-bit SoCs simply expose the temperature through
+the "arm,scpi-sensors" interface (and so Linux doesn't have to program
+the SAR ADC for temperature readings).
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm/boot/dts/meson.dtsi   |  7 +++++++
- arch/arm/boot/dts/meson8.dtsi  | 15 ++++++++-------
- arch/arm/boot/dts/meson8b.dtsi | 15 ++++++++-------
- 3 files changed, 23 insertions(+), 14 deletions(-)
+The 32-bit SoCs however don't have any SCPI firmware. Thus we need to
+configure the SAR ADC in Linux to get the chip temperature. To make it
+work we need two changes to the existing dt-bindings:
+- we have to get the TSC (temperature sensor calibration coefficient)
+  from the eFuse (where it has been programmed to the correct value in
+  the manufacturing process). the SAR ADC needs the TSC value, otherwise
+  it returns only garbage readings
+- we need to get a phandle to the new HHI syscon region because on
+  Meson8b and Meson8m2 the TSC is five bits wide (on Meson8 it's only
+  four bits wide) but only four bits are stored inside the SAR ADC's
+  memory region. The upper most bit (not all five bits, only one out of
+  five) is stored at a seemingly random register HHI_DPLL_TOP_0) in the
+  HHI register area.
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index 0d9faf1a51ea..ad903d1a2cb6 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -80,6 +80,13 @@
- 			#size-cells = <1>;
- 			ranges = <0x0 0xc1100000 0x200000>;
- 
-+			hhi: system-controller at 4000 {
-+				compatible = "amlogic,meson-hhi-sysctrl",
-+					     "simple-mfd",
-+					     "syscon";
-+				reg = <0x4000 0x400>;
-+			};
-+
- 			assist: assist at 7c00 {
- 				compatible = "amlogic,meson-mx-assist", "syscon";
- 				reg = <0x7c00 0x200>;
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 7162e0ca05b0..3e3d9c54cddc 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -190,13 +190,6 @@
- };
- 
- &cbus {
--	clkc: clock-controller at 4000 {
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--		compatible = "amlogic,meson8-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x400>;
--	};
--
- 	reset: reset-controller at 4404 {
- 		compatible = "amlogic,meson8b-reset";
- 		reg = <0x4404 0x9c>;
-@@ -323,6 +316,14 @@
- 	status = "okay";
- };
- 
-+&hhi {
-+	clkc: clock-controller {
-+		compatible = "amlogic,meson8-clkc";
-+		#clock-cells = <1>;
-+		#reset-cells = <1>;
-+	};
-+};
-+
- &hwrng {
- 	compatible = "amlogic,meson8-rng", "amlogic,meson-rng";
- 	clocks = <&clkc CLKID_RNG0>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index cd1ca9dda126..f92aab0aa247 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -159,13 +159,6 @@
- };
- 
- &cbus {
--	clkc: clock-controller at 4000 {
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--		compatible = "amlogic,meson8b-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x400>;
--	};
--
- 	reset: reset-controller at 4404 {
- 		compatible = "amlogic,meson8b-reset";
- 		reg = <0x4404 0x9c>;
-@@ -313,6 +306,14 @@
- 	status = "okay";
- };
- 
-+&hhi {
-+	clkc: clock-controller {
-+		compatible = "amlogic,meson8-clkc";
-+		#clock-cells = <1>;
-+		#reset-cells = <1>;
-+	};
-+};
-+
- &hwrng {
- 	compatible = "amlogic,meson8b-rng", "amlogic,meson-rng";
- 	clocks = <&clkc CLKID_RNG0>;
+Dependencies: The SAR ADC changes are completely independent from
+anything else. However, the arch/arm/boot/dts changes from this series
+depend on my other series "Meson8/Meson8b: introduce a HHI syscon node"
+from [0]. I decided to send them all together to give a better overview
+how the end result looks like - I can split the dts changes into a
+separate series when requested (in any case I would like Kevin to take
+them through his linux-amlogic tree).
+
+
+[0] https://patchwork.kernel.org/cover/10658527/
+
+
+Martin Blumenstingl (7):
+  dt-bindings: iio: adc: meson-saradc: add temperature sensor support
+  iio: adc: meson-saradc: add support for the chip's temperature sensor
+  ARM: dts: meson8: add the temperature calibration data for the SAR ADC
+  ARM: dts: meson8b: add the temperature calibration data for the SAR
+    ADC
+  ARM: dts: meson8b: ec100: add iio-hwmon for the chip temperature
+  ARM: dts: meson8b: odroidc1: add iio-hwmon for the chip temperature
+  ARM: dts: meson8m2: mxiii-plus: add iio-hwmon for the chip temperature
+
+ .../bindings/iio/adc/amlogic,meson-saradc.txt |  10 +
+ arch/arm/boot/dts/meson8.dtsi                 |   8 +
+ arch/arm/boot/dts/meson8b-ec100.dts           |   5 +
+ arch/arm/boot/dts/meson8b-odroidc1.dts        |   5 +
+ arch/arm/boot/dts/meson8b.dtsi                |   8 +
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts     |   5 +
+ drivers/iio/adc/meson_saradc.c                | 274 ++++++++++++++++--
+ 7 files changed, 289 insertions(+), 26 deletions(-)
+
 -- 
 2.19.1
