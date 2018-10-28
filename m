@@ -1,106 +1,65 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Oct 2018 12:32:14 +0100
-Subject: [PATCH] arm64: dts: meson-gxl: add support for phicomm n1
-In-Reply-To: <20181013094502.7563-1-yangxuan8282@gmail.com>
-References: <20181013094502.7563-1-yangxuan8282@gmail.com>
-Message-ID: <CAFBinCDTmieGS94ihvhUGbZMZjL0PwDJdQVEU8M_5r14x3ayjg@mail.gmail.com>
+Date: Sun, 28 Oct 2018 13:08:56 +0100
+Subject: [PATCH v2 0/3] Meson8/Meson8b: introduce a HHI syscon node
+Message-ID: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi,
+The Meson8/Meson8b/Meson8m2 SoCs are suffering from a similar problem
+as the GXBB/GXL/GXM SoCs (see the GX series from Jerome: [0]):
+There is a register area called "HHI" which is used for multiple IP
+blocks of the SoC:
+- the system clock controller
+- a few reset lines (there is a separate reset controller, these reset
+  lines are not part of the other reset controller). this reset
+  controller is currently implemented in the clock controller driver
+- a HDMI controller
+- temperature sensor calibration data (by "data" I really mean data,
+  the ADC driver has four bits for the TSC data in it's own register
+  space, however on Meson8b and Meson8m2 there is a fifth TSC bit which
+  is stored in the HHI register area)
 
-many thanks for your patch!
+The first three could be implemented with a single node (either in one
+big driver, or using a MFD driver which would register function-
+specific drivers).
+However, the TSC data is a big problem, because the ADC has it's own
+set of registers but needs to write one bit in the HHI register area.
 
-On Sat, Oct 13, 2018 at 11:45 AM <yangxuan8282@gmail.com> wrote:
->
-> From: He Yangxuan <yangxuan8282@gmail.com>
->
-> This patch adds support for the Phicomm N1. This device based on P230 reference design.
-> The phy is RTL8211F, need to disable Energy Efficient Ethernet (EEE) to make it stable.
-> And this box doesn't have cvbs, so disable related section in device tree.
-do you have any hint how to connect the serial console on the PCB?
-
-> Signed-off-by: He Yangxuan <yangxuan8282@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->  .../dts/amlogic/meson-gxl-s905d-phicomm-n1.dts     | 32 ++++++++++++++++++++++
->  2 files changed, 33 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
->
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index a97c0e2d7..ebd96da2c 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -17,6 +17,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p230.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-p231.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-> new file mode 100644
-> index 000000000..1daf58df0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-> @@ -0,0 +1,32 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2018 He Yangxuan
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-gxl-s905d-p230.dts"
-> +
-> +/ {
-> +       compatible = "phicomm,n1", "amlogic,s905d", "amlogic,meson-gxl";
-the "phicomm" vendor-prefix should be documented in
-devicetree/bindings/vendor-prefixes.txt (in a separate pach)
-additionally "phicomm,n1" should be documented in
-Documentation/devicetree/bindings/arm/amlogic.txt (in a separate patch
-as well)
-
-> +       model = "Phicomm N1";
-> +
-> +       cvbs-connector {
-> +               status = "disabled";
-> +       };
-> +};
-> +
-> +&cvbs_vdac_port {
-> +       status = "disabled";
-> +};
-> +
-> +&external_mdio {
-> +       external_phy: ethernet-phy at 0 {
-> +               compatible = "ethernet-phy-id001c.c916", "ethernet-phy-ieee802.3-c22";
-please don't use a "ethernet-phy-id..." compatible
-see commit 7630ea4bda18df "Documentation: net: phy: improve
-explanation when to specify the PHY ID" for the reason why (when the
-documentation was updated we already used "ethernet-phy-id..." for
-some boards)
-
-> +               reg = <0>;
-> +               eee-broken-1000t;
-> +               max-speed = <1000>;
-> +               interrupt-parent = <&gpio_intc>;
-please add a comment here stating to which GPIO IRQ 29 belongs to (see
-meson-gxm-khadas-vim2.dts for an example)
-
-> +               interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
-> +       };
-> +};
-> --
-> 2.11.0
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic at lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+NOTE: this series has multiple dependencies:
+- the clock controller changes depend "meson8b: add the CPU_DIV16 clock
+  for the ARM TWD" as well as "meson8b: register the clock controller
+  early" [2]
+- the dts changes depend on "fix clock controller register size on
+  Meson8/Meson8b" [3]
 
 
-Regards
-Martin
+Changes since v1 at [4]:
+- added a "amlogic,meson-hhi-sysctrl" compatible to the syscon node
+  (which is the parent of the clock controller) in patch #1 and #3
+- added Neil's Acked-by
+- rebased on top of clk-meson's meson-clk-4.20-1 tag and my other
+  series "Meson8b: fixes for the cpu_scale_div clock" from [5]
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-March/006733.html
+[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007890.html
+[2] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007900.html
+[3] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007897.html
+[4] https://patchwork.kernel.org/cover/10539051/
+[5] https://patchwork.kernel.org/cover/10617617/
+
+
+Martin Blumenstingl (3):
+  dt-bindings: clock: meson8b: use the registers from the HHI syscon
+  clk: meson: meson8b: use the HHI syscon if available
+  ARM: dts: meson: switch the clock controller to the HHI register area
+
+ .../bindings/clock/amlogic,meson8b-clkc.txt   | 13 ++++------
+ arch/arm/boot/dts/meson.dtsi                  |  7 ++++++
+ arch/arm/boot/dts/meson8.dtsi                 | 15 ++++++------
+ arch/arm/boot/dts/meson8b.dtsi                | 15 ++++++------
+ drivers/clk/meson/meson8b.c                   | 24 ++++++++++++-------
+ 5 files changed, 43 insertions(+), 31 deletions(-)
+
+-- 
+2.19.1
