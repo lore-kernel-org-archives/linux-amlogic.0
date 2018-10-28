@@ -1,49 +1,38 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Oct 2018 13:35:14 +0100
-Subject: [PATCH 2/2] dt-bindings: timer: meson6_timer: document the clock
- inputs
-In-Reply-To: <20181028123514.12660-1-martin.blumenstingl@googlemail.com>
-References: <20181028123514.12660-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181028123514.12660-3-martin.blumenstingl@googlemail.com>
+Date: Sun, 28 Oct 2018 13:54:59 +0100
+Subject: [PATCH 0/2] clocksource/meson6_timer: implement ARM delay timer
+Message-ID: <20181028125501.17336-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Meson Timer IP has two clock inputs:
-- pclk which is used as "system clock" timebase of Timer E
-- xtal which is used for the 1us, 10us, 100us and 1ms timebases of Timer
-  A, B, C, D and E
+While trying to add support for the ARM TWD Timer and the ARM Global
+Timer on Meson8, Meson8b and Meson8m2 (ARM Cortex-A5 and Cortex-A9 SoCs)
+I did a review of the existing driver.
+Unfortunately I found it hard to review because the pre-processor
+#defines did not match the names from the public S805 datasheet. Thus
+patch #1 adjusts these. No functional changes here, this is just
+preparation work for patch #2.
 
-The IP block has four internal dividers (XTAL is running at 24MHz):
-- "xtal div 24" for 1us resolution
-- "xtal div 240" for 10us resolution
-- "xtal div 2400" for 100us resolution
-- "xtal div 24000" for 1ms resolution
+Using the ARM Global Timer (drivers/clocksource/arm_global_timer.c)
+would have given us a timer-based delay implementation (so udelay() and
+friends would use the timer instead of using a loop-based delay
+implementation). Unfortunately we can't use the ARM Global Timer yet
+because it's input clock is derived from the CPU clock (which can change
+once we enable CPU frequency scaling on these SoCs, for which I will be
+sending patches in the near future).
+Amlogic's 3.10 kernel uses Timer E as delay timer which (with the
+current configuration) has a resolution of 1us. So patch #2 uses
+register_current_timer_delay() to register Timer E as ARM delay timer
+(which will be especially useful as we have to use udelay() when
+changing the CPU clocks during DVFS).
 
-Suggested-by: Jianxin Pan <jianxin.pan@amlogic.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- .../devicetree/bindings/timer/amlogic,meson6-timer.txt        | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt b/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt
-index dbdda92cffb7..a9da22bda912 100644
---- a/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt
-+++ b/Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt
-@@ -5,6 +5,8 @@ Required properties:
- - compatible : should be "amlogic,meson6-timer"
- - reg : Specifies base physical address and size of the registers.
- - interrupts : The four interrupts, one for each timer event
-+- clocks : phandles to the pclk (system clock) and XTAL clocks
-+- clock-names : must contain "pclk" and "xtal"
- 
- Example:
- 
-@@ -15,4 +17,6 @@ timer at c1109940 {
- 		     <GIC_SPI 11 IRQ_TYPE_EDGE_RISING>,
- 		     <GIC_SPI 6 IRQ_TYPE_EDGE_RISING>,
- 		     <GIC_SPI 29 IRQ_TYPE_EDGE_RISING>;
-+	clocks = <&xtal>, <&clk81>;
-+	clock-names = "xtal", "pclk";
- };
+Martin Blumenstingl (2):
+  clocksource: meson6_timer: use register names from the datasheet
+  clocksource: meson6_timer: implement ARM delay timer
+
+ drivers/clocksource/meson6_timer.c | 130 ++++++++++++++++++++---------
+ 1 file changed, 89 insertions(+), 41 deletions(-)
+
 -- 
 2.19.1
