@@ -1,49 +1,57 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Oct 2018 13:26:23 +0100
-Subject: [PATCH 1/7] dt-bindings: iio: adc: meson-saradc: add temperature
- sensor support
+Date: Sun, 28 Oct 2018 13:26:25 +0100
+Subject: [PATCH 3/7] ARM: dts: meson8: add the temperature calibration data
+ for the SAR ADC
 In-Reply-To: <20181028122629.10144-1-martin.blumenstingl@googlemail.com>
 References: <20181028122629.10144-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181028122629.10144-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20181028122629.10144-4-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The 32-bit Meson SoCs Meson8, Meson8b and Meson8m2 can use the SAR ADC
-to read the chip temperature. This requires a few new, optional
-properties:
-- nvmem-cells and nvmem-cell-names are needed because the temperature
-  sensor requires calibration to work correctly. The calibration data is
-  stored in the eFuse.
-- amlogic,hhi-sysctrl is needed on Meson8b and Meson8m2 because the 5th
-  bit of the TSC (temperature sensor calibration coefficient) is stored
-  in the HHI register region (in the scratch register HHI_DPLL_TOP_0 at
-  offset 0x318).
+The SAR ADC can measure the chip temperature of the SoC. This only
+works if the chip is calibrated and if the calibration data is written
+to the correct registers. The calibration data is stored in the upper
+two bytes of eFuse offset 0x1f4.
+
+This adds the eFuse cell for the temperature calibration data and
+passes it to the SAR ADC. We also need to pass the HHI sysctrl node to
+the SAR ADC because the 4th TSC (temperature sensor calibration
+coefficient) bit is stored in the HHI region (unlike bits [3:0] which
+are stored directly inside the SAR ADC's register area).
+
+On boards that have the SAR ADC enabled channel 8 can be used to
+measure the chip temperature.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- .../bindings/iio/adc/amlogic,meson-saradc.txt          | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/meson8.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
-index 54b823f3a453..75c775954102 100644
---- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
-+++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
-@@ -22,6 +22,16 @@ Required properties:
- - vref-supply:	the regulator supply for the ADC reference voltage
- - #io-channel-cells: must be 1, see ../iio-bindings.txt
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index 3e3d9c54cddc..30d4406f63b3 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -304,6 +304,11 @@
+ 	compatible = "amlogic,meson8-efuse";
+ 	clocks = <&clkc CLKID_EFUSE>;
+ 	clock-names = "core";
++
++	temperature_calib: calib at 1f4 {
++		/* only the upper two bytes are relevant */
++		reg = <0x1f4 0x4>;
++	};
+ };
  
-+Optional properties:
-+- amlogic,hhi-sysctrl:	phandle to the syscon which contains the 5th bit
-+			of the TSC (temperature sensor coefficient) on
-+			Meson8b and Meson8m2 (which used to calibrate the
-+			temperature sensor)
-+- nvmem-cells:		phandle to the temperature_calib eFuse cells
-+- nvmem-cell-names:	if present (to enable the temperature sensor
-+			calibration) this must contain "temperature_calib"
-+
-+
- Example:
- 	saradc: adc at 8680 {
- 		compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
+ &ethmac {
+@@ -364,6 +369,9 @@
+ 	clocks = <&clkc CLKID_XTAL>,
+ 		<&clkc CLKID_SAR_ADC>;
+ 	clock-names = "clkin", "core";
++	amlogic,hhi-sysctrl = <&hhi>;
++	nvmem-cells = <&temperature_calib>;
++	nvmem-cell-names = "temperature_calib";
+ };
+ 
+ &sdio {
 -- 
 2.19.1
