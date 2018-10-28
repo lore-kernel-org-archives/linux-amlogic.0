@@ -1,66 +1,82 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 28 Oct 2018 13:08:57 +0100
-Subject: [PATCH v2 1/3] dt-bindings: clock: meson8b: use the registers from
- the HHI syscon
+Date: Sun, 28 Oct 2018 13:08:58 +0100
+Subject: [PATCH v2 2/3] clk: meson: meson8b: use the HHI syscon if available
 In-Reply-To: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
 References: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181028120859.5735-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20181028120859.5735-3-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The clock controller on Meson8/Meson8m2 and Meson8b is part of a
-register region called "HHI". This register area contains more
-functionality than just a clock controller:
+The clock controller is located in a register range (called "HHI") which
+contains more than just registers for the clock controller. Known
+consumers of the HHI register range are:
 - the clock controller
-- some reset controller bits
-- temperature sensor calibration coefficient (only on Meson8b and
-  Meson8m2 - one one out of five TSC bits is stored in the HHI
-  registers)
+- a reset controller
+- temperature sensor calibration coefficient (TSC) (only on Meson8b and
+  Meson8m2)
 - HDMI controller
 
-The HHI register area may be accessed concurrently. Allow this by using
-a "system controller" as parent node.
+The main reason for using a syscon is the "temperature sensor
+calibration coefficient" which has to be set for the built-in temperature
+sensor to work correctly. Four TSC bits are located in the SAR ADC's
+register space. However on Meson8b and Meson8m2 there is a fifth TSC bit
+which is unfortunately located in the HHI register space. To be more
+precise, bit 9 of the HHI_DPLL_TOP_0 register (which sits right between
+the HHI_SYS_PLL and HHI_VID_PLL registers).
+
+Get the regmap from the parent (HHI syscon) node to support all
+functionality of the HHI register range. Backwards compatibility with
+old .dtbs is ensured by falling back to parsing the registers just like
+before this change.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../bindings/clock/amlogic,meson8b-clkc.txt         | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ drivers/clk/meson/meson8b.c | 24 +++++++++++++++---------
+ 1 file changed, 15 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-index b455c5aa9139..4d94091c1d2d 100644
---- a/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-+++ b/Documentation/devicetree/bindings/clock/amlogic,meson8b-clkc.txt
-@@ -9,15 +9,13 @@ Required Properties:
- 	- "amlogic,meson8-clkc" for Meson8 (S802) SoCs
- 	- "amlogic,meson8b-clkc" for Meson8 (S805) SoCs
- 	- "amlogic,meson8m2-clkc" for Meson8m2 (S812) SoCs
--- reg: it must be composed by two tuples:
--	0) physical base address of the xtal register and length of memory
--	   mapped region.
--	1) physical base address of the clock controller and length of memory
--	   mapped region.
--
- - #clock-cells: should be 1.
- - #reset-cells: should be 1.
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 1e02ca4be2fc..9bd5920da0ff 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -10,6 +10,7 @@
+ #include <linux/clk.h>
+ #include <linux/clk-provider.h>
+ #include <linux/init.h>
++#include <linux/mfd/syscon.h>
+ #include <linux/of_address.h>
+ #include <linux/reset-controller.h>
+ #include <linux/slab.h>
+@@ -1115,16 +1116,21 @@ static void __init meson8b_clkc_init(struct device_node *np)
+ 	struct regmap *map;
+ 	int i, ret;
  
-+Parent node should have the following properties :
-+- compatible: "amlogic,meson-hhi-sysctrl", "simple-mfd", "syscon"
-+- reg: base address and size of the HHI system control register space.
+-	/* Generic clocks, PLLs and some of the reset-bits */
+-	clk_base = of_iomap(np, 1);
+-	if (!clk_base) {
+-		pr_err("%s: Unable to map clk base\n", __func__);
+-		return;
+-	}
++	map = syscon_node_to_regmap(of_get_parent(np));
++	if (IS_ERR(map)) {
++		pr_info("failed to get HHI regmap - Trying obsolete regs\n");
+ 
+-	map = regmap_init_mmio(NULL, clk_base, &clkc_regmap_config);
+-	if (IS_ERR(map))
+-		return;
++		/* Generic clocks, PLLs and some of the reset-bits */
++		clk_base = of_iomap(np, 1);
++		if (!clk_base) {
++			pr_err("%s: Unable to map clk base\n", __func__);
++			return;
++		}
 +
- Each clock is assigned an identifier and client nodes can use this identifier
- to specify the clock which they consume. All available clocks are defined as
- preprocessor macros in the dt-bindings/clock/meson8b-clkc.h header and can be
-@@ -30,9 +28,8 @@ device tree sources).
++		map = regmap_init_mmio(NULL, clk_base, &clkc_regmap_config);
++		if (IS_ERR(map))
++			return;
++	}
  
- Example: Clock controller node:
- 
--	clkc: clock-controller at c1104000 {
-+	clkc: clock-controller {
- 		compatible = "amlogic,meson8b-clkc";
--		reg = <0xc1108000 0x4>, <0xc1104000 0x460>;
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
- 	};
+ 	rstc = kzalloc(sizeof(*rstc), GFP_KERNEL);
+ 	if (!rstc)
 -- 
 2.19.1
