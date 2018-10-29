@@ -1,46 +1,37 @@
-From: jianxin.pan@amlogic.com (Jianxin Pan)
-Date: Mon, 29 Oct 2018 19:09:20 +0800
-Subject: [PATCH v4 2/2] mtd: rawnand: meson: add support for Amlogic NAND
- flash controller
-In-Reply-To: <20181029104701.1bcdfbf3@xps13>
-References: <1537433449-65213-1-git-send-email-jianxin.pan@amlogic.com>
- <1537433449-65213-3-git-send-email-jianxin.pan@amlogic.com>
- <20181029104701.1bcdfbf3@xps13>
-Message-ID: <746f2741-ecce-2242-3711-7c8d56058da9@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Mon, 29 Oct 2018 16:13:36 +0100
+Subject: [PATCH 0/4] pinctrl: meson: fix pull bits
+Message-ID: <20181029151340.9087-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Miquel,
+This patchset fixes the inversion between pull (up/down) and pull enable
+bits on the GPIO AO bank of all amlogic when have, except the axg family.
 
-On 2018/10/29 17:47, Miquel Raynal wrote:
-> Hi Jianxin,
-> 
-> Jianxin Pan <jianxin.pan@amlogic.com> wrote
-> on Thu, 20 Sep 2018 16:50:49 +0800:
-> 
->> From: Liang Yang <liang.yang@amlogic.com>
->>
->> Add initial support for the Amlogic NAND flash controller which found
->> in the Meson-GXBB/GXL/AXG SoCs.
->>
->> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
-> 
-> I lost track of what's ongoing there, can you remind me the status of
-> the whole clk/nand series?
-> 
-> If the clock driver is ready, can you resend the NAND controller driver
-> please? IIRC it was in a pretty good shape already.
->
-We got some suggestions about the clock driver, and we are preparing for the next version.
-I will resend it soon.
-Thank you.
- 
+The problem has been found while testing bias setting on the libretech
+aml-s905x-cc on GPIO_AO 5. Unfortunately the bias register of this bank is
+not described in the public datasheet of the s905x, but it is in the
+one of the A113D, which gave a clue.
 
-> Thanks,
-> Miqu?l
-> 
-> .
-> 
+This was tested on gxl libretech aml-s905x-cc. Since all Amlogic we have
+got so far derive from each other, there is no reason for things to be
+any different on the meson8(b).
+
+I would have preferred to make a single patch to fix this but the commit
+introducing the mistake the is different for each SoC, so a single patch
+could be more difficult/annoying to backport.
+
+Jerome Brunet (4):
+  pinctrl: meson: fix gxbb ao pull register bits
+  pinctrl: meson: fix gxl ao pull register bits
+  pinctrl: meson: fix meson8 ao pull register bits
+  pinctrl: meson: fix meson8b ao pull register bits
+
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 2 +-
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 2 +-
+ drivers/pinctrl/meson/pinctrl-meson8.c     | 2 +-
+ drivers/pinctrl/meson/pinctrl-meson8b.c    | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+-- 
+2.17.2
