@@ -1,168 +1,106 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 30 Oct 2018 16:06:14 +0100
-Subject: [PATCH] arm64: dts: meson-axg: fix dtc warning about unit address
-Message-ID: <20181030150614.19461-1-jbrunet@baylibre.com>
+From: jianxin.pan@amlogic.com (Jianxin Pan)
+Date: Tue, 30 Oct 2018 21:41:31 +0800
+Subject: [PATCH v5 3/3] clk: meson: add sub MMC clock controller driver
+In-Reply-To: <3723695d951e0d30e8a0117d336d8f268269a030.camel@baylibre.com>
+References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
+ <1539839245-13793-4-git-send-email-jianxin.pan@amlogic.com>
+ <a8d359208edfdc75cb5c6de378796f76e0572a0f.camel@baylibre.com>
+ <eda2faf2-cf06-902d-36ff-48ceafcb4a4b@amlogic.com>
+ <f4d239df2f1333b005680f9bfdd2eba93e7f86e5.camel@baylibre.com>
+ <CAFBinCCuqUmVNdwUm7WbkHy1eWvOA5oQ5FcOuytbYNbgGcXnRQ@mail.gmail.com>
+ <3723695d951e0d30e8a0117d336d8f268269a030.camel@baylibre.com>
+Message-ID: <79e2e947-ea85-5f39-13b0-f5c67aff5949@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-section 2.2.1 of the DT specs says: " If the node has no reg property,
-the @unit-address must be omitted and the node-name alone differentiates
-the node from other nodes at the same level in the tree"
+Hi Jerome,
 
-Simply replace the '@' with a '-' to fix this warning.
+On 2018/10/29 3:16, Jerome Brunet wrote:
+> On Thu, 2018-10-25 at 22:58 +0200, Martin Blumenstingl wrote:
+>> Hi Jerome,
+>>
+>> On Thu, Oct 25, 2018 at 2:54 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>> [snip]
+>>>>>> +static void clk_regmap_div_init(struct clk_hw *hw)
+>>>>>> +{
+>>>>>> + struct clk_regmap *clk = to_clk_regmap(hw);
+>>>>>> + struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
+>>>>>> + unsigned int val;
+>>>>>> + int ret;
+>>>>>> +
+>>>>>> + ret = regmap_read(clk->map, div->offset, &val);
+>>>>>> + if (ret)
+>>>>>> +         return;
+>>>>>>
+>>>>>> + val &= (clk_div_mask(div->width) << div->shift);
+>>>>>> + if (!val)
+>>>>>> +         regmap_update_bits(clk->map, div->offset,
+>>>>>> +                            clk_div_mask(div->width) << div->shift,
+>>>>>> +                            clk_div_mask(div->width));
+>>>>>
+>>>>> This is wrong for several reasons:
+>>>>> * You should hard code the initial value in the driver.
+>>>>> * If shift is not 0, I doubt this will give the expected result.
+>>>>
+>>>> The value 0x00 of divider means nand clock off then read/write nand register is forbidden.
+>>>
+>>> That is not entirely true, you can access the clock register or you'd be in a
+>>> chicken and egg situation.
+>>>
+>>>> Should we set the initial value in nand driver, or in sub emmc clk driver?
+>>>
+>>> In the nand driver, which is the consumer of the clock. see my previous comments
+>>> about it.
+>>
+>> an old version of this series had the code still in the NAND driver
+>> (by writing to the registers directly instead of using the clk API).
+>> this looks pretty much like a "sclk-div" to me (as I commented in v3
+>> of this series: [0]):
+>> - value 0 means disabled
+>> - positive divider values
+>> - (probably no duty control, but that's optional as far as I
+>> understand sclk-div)
+>> - uses max divider value when enabling the clock
+>>
+>> if switching to sclk-div works then we can get rid of some duplicate code
+> 
+> It is possible:
+> There is a couple of things to note though:
+> 
+> * sclk does not 'uses max divider value when enabling the clock': Since this
+> divider can gate, it needs to save the divider value when disabling, since the
+> divider value is no longer stored in the register,
+> On init, this cached value is  saved as it is. If the divider is initially
+> disabled, we have to set the cached value to something that makes sense, in case
+> the clock is enabled without a prior call to clk_set_rate().
+> 
+> So in sclk, the clock setting is not changed nor hard coded in init, and this is
+> a very important difference.
+>  
+> * Even if sclk zero value means gated, it is still a zero based divider, while
+> eMMC/Nand divider is one based. It this controller was to sclk, then something
+> needs to be done for this.
+> 
+> * Since sclk caches a value in its data, and there can multiple instance of eMMC
+> /NAND clock controller, some care must be taken when registering the data.
+> 
+> Both the generic divider and sclk could work here ... it's up to you Jianxin.
+Thank you for the detailed explanation.
+I will use sclk here.
 
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 30 +++++++++----------
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  6 ++--
- 2 files changed, 18 insertions(+), 18 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index c74ff1efebb8..be6df3cc1b98 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -60,7 +60,7 @@
- 		serial1 = &uart_A;
- 	};
- 
--	linein: audio-codec at 0 {
-+	linein: audio-codec-0 {
- 		#sound-dai-cells = <0>;
- 		compatible = "everest,es7241";
- 		VDDA-supply = <&vcc_3v3>;
-@@ -70,7 +70,7 @@
- 		sound-name-prefix = "Linein";
- 	};
- 
--	lineout: audio-codec at 1 {
-+	lineout: audio-codec-1 {
- 		#sound-dai-cells = <0>;
- 		compatible = "everest,es7154";
- 		VDD-supply = <&vcc_3v3>;
-@@ -79,14 +79,14 @@
- 		sound-name-prefix = "Lineout";
- 	};
- 
--	spdif_dit: audio-codec at 2 {
-+	spdif_dit: audio-codec-2 {
- 		#sound-dai-cells = <0>;
- 		compatible = "linux,spdif-dit";
- 		status = "okay";
- 		sound-name-prefix = "DIT";
- 	};
- 
--	dmics: audio-codec at 3 {
-+	dmics: audio-codec-3 {
- 		#sound-dai-cells = <0>;
- 		compatible = "dmic-codec";
- 		num-channels = <7>;
-@@ -95,7 +95,7 @@
- 		sound-name-prefix = "MIC";
- 	};
- 
--	spdif_dir: audio-codec at 4 {
-+	spdif_dir: audio-codec-4 {
- 		#sound-dai-cells = <0>;
- 		compatible = "linux,spdif-dir";
- 		status = "okay";
-@@ -282,31 +282,31 @@
- 				       <393216000>;
- 		status = "okay";
- 
--		dai-link at 0 {
-+		dai-link-0 {
- 			sound-dai = <&frddr_a>;
- 		};
- 
--		dai-link at 1 {
-+		dai-link-1 {
- 			sound-dai = <&frddr_b>;
- 		};
- 
--		dai-link at 2 {
-+		dai-link-2 {
- 			sound-dai = <&frddr_c>;
- 		};
- 
--		dai-link at 3 {
-+		dai-link-3 {
- 			sound-dai = <&toddr_a>;
- 		};
- 
--		dai-link at 4 {
-+		dai-link-4 {
- 			sound-dai = <&toddr_b>;
- 		};
- 
--		dai-link at 5 {
-+		dai-link-5 {
- 			sound-dai = <&toddr_c>;
- 		};
- 
--		dai-link at 6 {
-+		dai-link-6 {
- 			sound-dai = <&tdmif_c>;
- 			dai-format = "i2s";
- 			dai-tdm-slot-tx-mask-2 = <1 1>;
-@@ -327,7 +327,7 @@
- 
- 		};
- 
--		dai-link at 7 {
-+		dai-link-7 {
- 			sound-dai = <&spdifout>;
- 
- 			codec {
-@@ -335,7 +335,7 @@
- 			};
- 		};
- 
--		dai-link at 8 {
-+		dai-link-8 {
- 			sound-dai = <&spdifin>;
- 
- 			codec {
-@@ -343,7 +343,7 @@
- 			};
- 		};
- 
--		dai-link at 9 {
-+		dai-link-9 {
- 			sound-dai = <&pdm>;
- 
- 			codec {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 8746433c71be..7ab1a627951f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -23,7 +23,7 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
--	tdmif_a: audio-controller at 0 {
-+	tdmif_a: audio-controller-0 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_A";
-@@ -34,7 +34,7 @@
- 		status = "disabled";
- 	};
- 
--	tdmif_b: audio-controller at 1 {
-+	tdmif_b: audio-controller-1 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_B";
-@@ -45,7 +45,7 @@
- 		status = "disabled";
- 	};
- 
--	tdmif_c: audio-controller at 2 {
-+	tdmif_c: audio-controller-2 {
- 		compatible = "amlogic,axg-tdm-iface";
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TDM_C";
--- 
-2.17.2
+With generic divider, there is a WARNING in divider_recalc_rate() durning clk_register():
+[    0.918238] ffe05000.clock-controller#div: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set
+[    0.925581] WARNING: CPU: 3 PID: 1 at drivers/clk/clk-divider.c:127 divider_recalc_rate+0x88/0x90
+Then I still need to hard code the initual value, or add CLK_DIVIDER_ALLOW_ZERO flags.
+> 
+>>
+>>
+>> Regards
+>> Martin
+>>
+>>
+>> [0] https://patchwork.kernel.org/patch/10607157/#22238243
+> 
+> 
+> .
+> 
