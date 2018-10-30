@@ -1,34 +1,49 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 30 Oct 2018 11:22:28 +0100
-Subject: [PATCH 1/4] nvmem: meson-efuse: add error message on user_max failure.
+Date: Tue, 30 Oct 2018 11:22:30 +0100
+Subject: [PATCH 3/4] arm64: dts: meson-gx: add efuse pclk
 In-Reply-To: <20181030102231.4851-1-jbrunet@baylibre.com>
 References: <20181030102231.4851-1-jbrunet@baylibre.com>
-Message-ID: <20181030102231.4851-2-jbrunet@baylibre.com>
+Message-ID: <20181030102231.4851-4-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add an explicit error message when SM_EFUSE_USER_MAX command fails
+Add the required peripheral clock for the efuse device.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/nvmem/meson-efuse.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
-index d769840d1e18..40b9df1d030d 100644
---- a/drivers/nvmem/meson-efuse.c
-+++ b/drivers/nvmem/meson-efuse.c
-@@ -48,8 +48,10 @@ static int meson_efuse_probe(struct platform_device *pdev)
- 	struct nvmem_config *econfig;
- 	unsigned int size;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 1ade7e486828..524f533e41d4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -282,6 +282,10 @@
+ 	compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
+ };
  
--	if (meson_sm_call(SM_EFUSE_USER_MAX, &size, 0, 0, 0, 0, 0) < 0)
-+	if (meson_sm_call(SM_EFUSE_USER_MAX, &size, 0, 0, 0, 0, 0) < 0) {
-+		dev_err(dev, "failed to get max user");
- 		return -EINVAL;
-+	}
++&efuse {
++	clocks = <&clkc CLKID_EFUSE>;
++};
++
+ &ethmac {
+ 	clocks = <&clkc CLKID_ETH>,
+ 		 <&clkc CLKID_FCLK_DIV2>,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 8f0bb3c44bd6..8ccab9a1ebcc 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -75,6 +75,10 @@
+ 	};
+ };
  
- 	econfig = devm_kzalloc(dev, sizeof(*econfig), GFP_KERNEL);
- 	if (!econfig)
++&efuse {
++	clocks = <&clkc CLKID_EFUSE>;
++};
++
+ &ethmac {
+ 	reg = <0x0 0xc9410000 0x0 0x10000
+ 	       0x0 0xc8834540 0x0 0x4>;
 -- 
 2.17.2
