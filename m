@@ -1,64 +1,43 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Tue, 30 Oct 2018 11:22:31 +0100
-Subject: [PATCH 4/4] nvmem: meson-efuse: add peripheral clock
-In-Reply-To: <20181030102231.4851-1-jbrunet@baylibre.com>
-References: <20181030102231.4851-1-jbrunet@baylibre.com>
-Message-ID: <20181030102231.4851-5-jbrunet@baylibre.com>
+Date: Tue, 30 Oct 2018 11:22:27 +0100
+Subject: [PATCH 0/4] nvmem: meson: efuse updates
+Message-ID: <20181030102231.4851-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Get and enable the peripheral clock required by the efuse device.
-The driver has been handle to work without it so far because the
-clock was left enabled by default but it won't be the case soon.
+The first change of this patchset just adds add error message in case
+of failure. If there is problem with the secure monitor, the
+SM_EFUSE_USER_MAX call will be first one to fail so it is better if it
+give us a clue to help debugging, instead af silently failing.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/nvmem/meson-efuse.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Next this series adds the peripheral clock missing in this driver.
+Like many other device in amlogic's SoC, the efuse requires a
+peripheral clock to operate. ATM, the clock controller has
+CLK_IGNORE_UNUSED on this clock and we have been lucky enough that the
+bootloader left the clock enabled
 
-diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
-index 40b9df1d030d..99372768446b 100644
---- a/drivers/nvmem/meson-efuse.c
-+++ b/drivers/nvmem/meson-efuse.c
-@@ -14,6 +14,7 @@
-  * more details.
-  */
- 
-+#include <linux/clk.h>
- #include <linux/module.h>
- #include <linux/nvmem-provider.h>
- #include <linux/of.h>
-@@ -46,7 +47,31 @@ static int meson_efuse_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct nvmem_device *nvmem;
- 	struct nvmem_config *econfig;
-+	struct clk *clk;
- 	unsigned int size;
-+	int ret;
-+
-+	clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(clk)) {
-+		ret = PTR_ERR(clk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get efuse gate");
-+		return ret;
-+	}
-+
-+	ret = clk_prepare_enable(clk);
-+	if (ret) {
-+		dev_err(dev, "failed to enable gate");
-+		return ret;
-+	}
-+
-+	ret = devm_add_action_or_reset(dev,
-+				       (void(*)(void *))clk_disable_unprepare,
-+				       clk);
-+	if (ret) {
-+		dev_err(dev, "failed to add disable callback");
-+		return ret;
-+	}
- 
- 	if (meson_sm_call(SM_EFUSE_USER_MAX, &size, 0, 0, 0, 0, 0) < 0) {
- 		dev_err(dev, "failed to get max user");
+At some point, we would like to remove those CLK_IGNORE_UNUSED, so if a
+driver needs a clock, it needs to properly claim it.
+
+Srinivas, Kevin,
+The dts change needs to land before the actual driver change, to avoid
+breaking the efuse on our users. If there an agreement on this series,
+Kevin could you provide a tag to Srinivas ?
+
+Cheers
+Jerome
+
+Jerome Brunet (4):
+  nvmem: meson-efuse: add error message on user_max failure.
+  nvmem: meson-efuse: bindings: add peripheral clock
+  arm64: dts: meson-gx: add efuse pclk
+  nvmem: meson-efuse: add peripheral clock
+
+ .../bindings/nvmem/amlogic-efuse.txt          |  3 ++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi   |  4 +++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |  4 +++
+ drivers/nvmem/meson-efuse.c                   | 29 ++++++++++++++++++-
+ 4 files changed, 39 insertions(+), 1 deletion(-)
+
 -- 
 2.17.2
