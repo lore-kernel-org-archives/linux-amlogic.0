@@ -1,106 +1,64 @@
-From: jianxin.pan@amlogic.com (Jianxin Pan)
-Date: Tue, 30 Oct 2018 21:41:31 +0800
-Subject: [PATCH v5 3/3] clk: meson: add sub MMC clock controller driver
-In-Reply-To: <3723695d951e0d30e8a0117d336d8f268269a030.camel@baylibre.com>
-References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
- <1539839245-13793-4-git-send-email-jianxin.pan@amlogic.com>
- <a8d359208edfdc75cb5c6de378796f76e0572a0f.camel@baylibre.com>
- <eda2faf2-cf06-902d-36ff-48ceafcb4a4b@amlogic.com>
- <f4d239df2f1333b005680f9bfdd2eba93e7f86e5.camel@baylibre.com>
- <CAFBinCCuqUmVNdwUm7WbkHy1eWvOA5oQ5FcOuytbYNbgGcXnRQ@mail.gmail.com>
- <3723695d951e0d30e8a0117d336d8f268269a030.camel@baylibre.com>
-Message-ID: <79e2e947-ea85-5f39-13b0-f5c67aff5949@amlogic.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 30 Oct 2018 11:22:31 +0100
+Subject: [PATCH 4/4] nvmem: meson-efuse: add peripheral clock
+In-Reply-To: <20181030102231.4851-1-jbrunet@baylibre.com>
+References: <20181030102231.4851-1-jbrunet@baylibre.com>
+Message-ID: <20181030102231.4851-5-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+Get and enable the peripheral clock required by the efuse device.
+The driver has been handle to work without it so far because the
+clock was left enabled by default but it won't be the case soon.
 
-On 2018/10/29 3:16, Jerome Brunet wrote:
-> On Thu, 2018-10-25 at 22:58 +0200, Martin Blumenstingl wrote:
->> Hi Jerome,
->>
->> On Thu, Oct 25, 2018 at 2:54 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->> [snip]
->>>>>> +static void clk_regmap_div_init(struct clk_hw *hw)
->>>>>> +{
->>>>>> + struct clk_regmap *clk = to_clk_regmap(hw);
->>>>>> + struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
->>>>>> + unsigned int val;
->>>>>> + int ret;
->>>>>> +
->>>>>> + ret = regmap_read(clk->map, div->offset, &val);
->>>>>> + if (ret)
->>>>>> +         return;
->>>>>>
->>>>>> + val &= (clk_div_mask(div->width) << div->shift);
->>>>>> + if (!val)
->>>>>> +         regmap_update_bits(clk->map, div->offset,
->>>>>> +                            clk_div_mask(div->width) << div->shift,
->>>>>> +                            clk_div_mask(div->width));
->>>>>
->>>>> This is wrong for several reasons:
->>>>> * You should hard code the initial value in the driver.
->>>>> * If shift is not 0, I doubt this will give the expected result.
->>>>
->>>> The value 0x00 of divider means nand clock off then read/write nand register is forbidden.
->>>
->>> That is not entirely true, you can access the clock register or you'd be in a
->>> chicken and egg situation.
->>>
->>>> Should we set the initial value in nand driver, or in sub emmc clk driver?
->>>
->>> In the nand driver, which is the consumer of the clock. see my previous comments
->>> about it.
->>
->> an old version of this series had the code still in the NAND driver
->> (by writing to the registers directly instead of using the clk API).
->> this looks pretty much like a "sclk-div" to me (as I commented in v3
->> of this series: [0]):
->> - value 0 means disabled
->> - positive divider values
->> - (probably no duty control, but that's optional as far as I
->> understand sclk-div)
->> - uses max divider value when enabling the clock
->>
->> if switching to sclk-div works then we can get rid of some duplicate code
-> 
-> It is possible:
-> There is a couple of things to note though:
-> 
-> * sclk does not 'uses max divider value when enabling the clock': Since this
-> divider can gate, it needs to save the divider value when disabling, since the
-> divider value is no longer stored in the register,
-> On init, this cached value is  saved as it is. If the divider is initially
-> disabled, we have to set the cached value to something that makes sense, in case
-> the clock is enabled without a prior call to clk_set_rate().
-> 
-> So in sclk, the clock setting is not changed nor hard coded in init, and this is
-> a very important difference.
->  
-> * Even if sclk zero value means gated, it is still a zero based divider, while
-> eMMC/Nand divider is one based. It this controller was to sclk, then something
-> needs to be done for this.
-> 
-> * Since sclk caches a value in its data, and there can multiple instance of eMMC
-> /NAND clock controller, some care must be taken when registering the data.
-> 
-> Both the generic divider and sclk could work here ... it's up to you Jianxin.
-Thank you for the detailed explanation.
-I will use sclk here.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/nvmem/meson-efuse.c | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-With generic divider, there is a WARNING in divider_recalc_rate() durning clk_register():
-[    0.918238] ffe05000.clock-controller#div: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set
-[    0.925581] WARNING: CPU: 3 PID: 1 at drivers/clk/clk-divider.c:127 divider_recalc_rate+0x88/0x90
-Then I still need to hard code the initual value, or add CLK_DIVIDER_ALLOW_ZERO flags.
-> 
->>
->>
->> Regards
->> Martin
->>
->>
->> [0] https://patchwork.kernel.org/patch/10607157/#22238243
-> 
-> 
-> .
-> 
+diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
+index 40b9df1d030d..99372768446b 100644
+--- a/drivers/nvmem/meson-efuse.c
++++ b/drivers/nvmem/meson-efuse.c
+@@ -14,6 +14,7 @@
+  * more details.
+  */
+ 
++#include <linux/clk.h>
+ #include <linux/module.h>
+ #include <linux/nvmem-provider.h>
+ #include <linux/of.h>
+@@ -46,7 +47,31 @@ static int meson_efuse_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct nvmem_device *nvmem;
+ 	struct nvmem_config *econfig;
++	struct clk *clk;
+ 	unsigned int size;
++	int ret;
++
++	clk = devm_clk_get(dev, NULL);
++	if (IS_ERR(clk)) {
++		ret = PTR_ERR(clk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(dev, "failed to get efuse gate");
++		return ret;
++	}
++
++	ret = clk_prepare_enable(clk);
++	if (ret) {
++		dev_err(dev, "failed to enable gate");
++		return ret;
++	}
++
++	ret = devm_add_action_or_reset(dev,
++				       (void(*)(void *))clk_disable_unprepare,
++				       clk);
++	if (ret) {
++		dev_err(dev, "failed to add disable callback");
++		return ret;
++	}
+ 
+ 	if (meson_sm_call(SM_EFUSE_USER_MAX, &size, 0, 0, 0, 0, 0) < 0) {
+ 		dev_err(dev, "failed to get max user");
+-- 
+2.17.2
