@@ -1,57 +1,168 @@
-From: robh+dt@kernel.org (Rob Herring)
-Date: Mon, 29 Oct 2018 18:26:00 -0500
-Subject: [PATCH 0/2] meson6_timer: dt-bindings updates
-In-Reply-To: <CAFBinCATZhuNn8aTEPS1zEYX_1PjRyuEpzqyzu6bpVCwNvUbqQ@mail.gmail.com>
-References: <20181028123514.12660-1-martin.blumenstingl@googlemail.com>
- <CAL_Jsq+q4NX+19zuD2LErdFbZ-WJKdXhrGM3AXVoeWOuiDDhSg@mail.gmail.com>
- <CAFBinCATZhuNn8aTEPS1zEYX_1PjRyuEpzqyzu6bpVCwNvUbqQ@mail.gmail.com>
-Message-ID: <CAL_JsqK_jE9+tFXYb3BZbGmpVtiqPZir9ak_yn5u+3aBqCj8qQ@mail.gmail.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Tue, 30 Oct 2018 16:06:14 +0100
+Subject: [PATCH] arm64: dts: meson-axg: fix dtc warning about unit address
+Message-ID: <20181030150614.19461-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon, Oct 29, 2018 at 4:23 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Rob,
->
-> On Mon, Oct 29, 2018 at 9:09 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Sun, Oct 28, 2018 at 7:35 AM Martin Blumenstingl
-> > <martin.blumenstingl@googlemail.com> wrote:
-> > >
-> > > The dt-bindings don't match the actual IP block implementation:
-> > > - each timer has four IRQ lines (Timer A, B, C and D)
-> > > - the IP block has internal dividers which use XTAL as parent clock.
-> > >   the result can then be used as timebase for Timers A, B, C, D and E.
-> > >   internal dividers are (XTAL is running at 24MHz): 24 for 1us, 240 for
-> > >   10us, 2400 for 100us and 24000 for 1ms.
-> > > - Timer E can use the "system clock" (clk81) as timebase
-> > >
-> > > I'm not sure whether these patches will go through tip.git or Kevin's
-> > > linux-amlogic tree. Daniel, Thomas: please let Kevin know if he should
-> > > take these through his drivers branch
-> >
-> > Normally would be the subsystem tree, but I'm happy to take binding
-> > only changes thru the DT tree. We just can't have them go thru a
-> > mixture of trees if you have further changes.
-> >
-> > Are these fixes to reflect what the dts files and timers already
-> > expect? If so, they should be applied for 4.20. If not, you should
-> > have one series with all the updates.
-> both the meson6_timer driver and the .dts currently only specify one
-> interrupt and nothing else
->
-> I have .dts patches in my tree which add the missing interrupts and the clocks
-> however, I prefer to send the .dts patches later as I have two other
-> pending patch series which are modifying the same .dts files
-> thus I'd like to re-send the two patches from this series (with your
-> Reviewed-by) together with the .dts changes
->
-> can you please confirm that Kevin can take everything through his
-> linux-amlogic tree (dt-bindings patches probably in his drivers
-> branch, .dts patches in his dt branch) if the clocksource maintainers
-> don't care either?
+section 2.2.1 of the DT specs says: " If the node has no reg property,
+the @unit-address must be omitted and the node-name alone differentiates
+the node from other nodes at the same level in the tree"
 
-Yeah, that should be fine.
+Simply replace the '@' with a '-' to fix this warning.
 
-Rob
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 30 +++++++++----------
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  6 ++--
+ 2 files changed, 18 insertions(+), 18 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index c74ff1efebb8..be6df3cc1b98 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -60,7 +60,7 @@
+ 		serial1 = &uart_A;
+ 	};
+ 
+-	linein: audio-codec at 0 {
++	linein: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "everest,es7241";
+ 		VDDA-supply = <&vcc_3v3>;
+@@ -70,7 +70,7 @@
+ 		sound-name-prefix = "Linein";
+ 	};
+ 
+-	lineout: audio-codec at 1 {
++	lineout: audio-codec-1 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "everest,es7154";
+ 		VDD-supply = <&vcc_3v3>;
+@@ -79,14 +79,14 @@
+ 		sound-name-prefix = "Lineout";
+ 	};
+ 
+-	spdif_dit: audio-codec at 2 {
++	spdif_dit: audio-codec-2 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+ 		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+-	dmics: audio-codec at 3 {
++	dmics: audio-codec-3 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "dmic-codec";
+ 		num-channels = <7>;
+@@ -95,7 +95,7 @@
+ 		sound-name-prefix = "MIC";
+ 	};
+ 
+-	spdif_dir: audio-codec at 4 {
++	spdif_dir: audio-codec-4 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dir";
+ 		status = "okay";
+@@ -282,31 +282,31 @@
+ 				       <393216000>;
+ 		status = "okay";
+ 
+-		dai-link at 0 {
++		dai-link-0 {
+ 			sound-dai = <&frddr_a>;
+ 		};
+ 
+-		dai-link at 1 {
++		dai-link-1 {
+ 			sound-dai = <&frddr_b>;
+ 		};
+ 
+-		dai-link at 2 {
++		dai-link-2 {
+ 			sound-dai = <&frddr_c>;
+ 		};
+ 
+-		dai-link at 3 {
++		dai-link-3 {
+ 			sound-dai = <&toddr_a>;
+ 		};
+ 
+-		dai-link at 4 {
++		dai-link-4 {
+ 			sound-dai = <&toddr_b>;
+ 		};
+ 
+-		dai-link at 5 {
++		dai-link-5 {
+ 			sound-dai = <&toddr_c>;
+ 		};
+ 
+-		dai-link at 6 {
++		dai-link-6 {
+ 			sound-dai = <&tdmif_c>;
+ 			dai-format = "i2s";
+ 			dai-tdm-slot-tx-mask-2 = <1 1>;
+@@ -327,7 +327,7 @@
+ 
+ 		};
+ 
+-		dai-link at 7 {
++		dai-link-7 {
+ 			sound-dai = <&spdifout>;
+ 
+ 			codec {
+@@ -335,7 +335,7 @@
+ 			};
+ 		};
+ 
+-		dai-link at 8 {
++		dai-link-8 {
+ 			sound-dai = <&spdifin>;
+ 
+ 			codec {
+@@ -343,7 +343,7 @@
+ 			};
+ 		};
+ 
+-		dai-link at 9 {
++		dai-link-9 {
+ 			sound-dai = <&pdm>;
+ 
+ 			codec {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 8746433c71be..7ab1a627951f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -23,7 +23,7 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	tdmif_a: audio-controller at 0 {
++	tdmif_a: audio-controller-0 {
+ 		compatible = "amlogic,axg-tdm-iface";
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TDM_A";
+@@ -34,7 +34,7 @@
+ 		status = "disabled";
+ 	};
+ 
+-	tdmif_b: audio-controller at 1 {
++	tdmif_b: audio-controller-1 {
+ 		compatible = "amlogic,axg-tdm-iface";
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TDM_B";
+@@ -45,7 +45,7 @@
+ 		status = "disabled";
+ 	};
+ 
+-	tdmif_c: audio-controller at 2 {
++	tdmif_c: audio-controller-2 {
+ 		compatible = "amlogic,axg-tdm-iface";
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TDM_C";
+-- 
+2.17.2
