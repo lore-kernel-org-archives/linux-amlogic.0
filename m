@@ -1,25 +1,32 @@
 From: linus.walleij@linaro.org (Linus Walleij)
-Date: Wed, 31 Oct 2018 10:45:44 +0100
-Subject: [PATCH] pinctrl: meson: fix pinconf bias disable
-In-Reply-To: <20181023160319.27003-1-jbrunet@baylibre.com>
-References: <20181023160319.27003-1-jbrunet@baylibre.com>
-Message-ID: <CACRpkdbXP2s7gEUUaJ8cUgS1V_8SejWUVTkjPdZDZ7W9Vw7tqQ@mail.gmail.com>
+Date: Wed, 31 Oct 2018 15:05:16 +0100
+Subject: [PATCH 0/4] pinctrl: meson: fix pull bits
+In-Reply-To: <20181029151340.9087-1-jbrunet@baylibre.com>
+References: <20181029151340.9087-1-jbrunet@baylibre.com>
+Message-ID: <CACRpkdYJW34oRmm0ZBivwsa7mMXhrj8hxz+ovXNwnOETs3xrog@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Oct 23, 2018 at 6:03 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Mon, Oct 29, 2018 at 4:13 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 
-> If a bias is enabled on a pin of an Amlogic SoC, calling .pin_config_set()
-> with PIN_CONFIG_BIAS_DISABLE will not disable the bias. Instead it will
-> force a pull-down bias on the pin.
+> This patchset fixes the inversion between pull (up/down) and pull enable
+> bits on the GPIO AO bank of all amlogic when have, except the axg family.
 >
-> Instead of the pull type register bank, the driver should access the pull
-> enable register bank.
+> The problem has been found while testing bias setting on the libretech
+> aml-s905x-cc on GPIO_AO 5. Unfortunately the bias register of this bank is
+> not described in the public datasheet of the s905x, but it is in the
+> one of the A113D, which gave a clue.
 >
-> Fixes: 6ac730951104 ("pinctrl: add driver for Amlogic Meson SoCs")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> This was tested on gxl libretech aml-s905x-cc. Since all Amlogic we have
+> got so far derive from each other, there is no reason for things to be
+> any different on the meson8(b).
+>
+> I would have preferred to make a single patch to fix this but the commit
+> introducing the mistake the is different for each SoC, so a single patch
+> could be more difficult/annoying to backport.
 
-Patch applied for fixes with Neil's ACK.
+All patches applied for fixes.
+Thanks for drilling into this!
 
 Yours,
 Linus Walleij
