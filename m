@@ -1,131 +1,71 @@
-From: jianxin.pan@amlogic.com (Jianxin Pan)
-Date: Sun, 4 Nov 2018 02:01:32 +0800
-Subject: [PATCH v5 3/3] clk: meson: add sub MMC clock controller driver
-In-Reply-To: <3723695d951e0d30e8a0117d336d8f268269a030.camel@baylibre.com>
-References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
- <1539839245-13793-4-git-send-email-jianxin.pan@amlogic.com>
- <a8d359208edfdc75cb5c6de378796f76e0572a0f.camel@baylibre.com>
- <eda2faf2-cf06-902d-36ff-48ceafcb4a4b@amlogic.com>
- <f4d239df2f1333b005680f9bfdd2eba93e7f86e5.camel@baylibre.com>
- <CAFBinCCuqUmVNdwUm7WbkHy1eWvOA5oQ5FcOuytbYNbgGcXnRQ@mail.gmail.com>
- <3723695d951e0d30e8a0117d336d8f268269a030.camel@baylibre.com>
-Message-ID: <66c2915a-4ecd-8a6e-6493-4318ae7bb620@amlogic.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun,  4 Nov 2018 00:10:22 +0100
+Subject: [PATCH v2 0/2] meson-saradc: add chip temperature support
+Message-ID: <20181103231024.659-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jerome,
+The meson-saradc allows switching the input of channel #6 between an
+actual ADC pad and the SoC's internal temperature sensor.
 
-Thanks for the review, we really appreciate your time.
+On the 64-bit SoCs the SCPI firmware reads the chip temperature using
+the SAR ADC. Thus the 64-bit SoCs simply expose the temperature through
+the "arm,scpi-sensors" interface (and so Linux doesn't have to program
+the SAR ADC for temperature readings).
 
-I'm very sorry maybe I don't catch all your meaning very well. 
+The 32-bit SoCs however don't have any SCPI firmware. Thus we need to
+configure the SAR ADC in Linux to get the chip temperature. To make it
+work we need two changes to the existing dt-bindings:
+- we have to get the TSC (temperature sensor calibration coefficient)
+  from the eFuse (where it has been programmed to the correct value in
+  the manufacturing process). the SAR ADC needs the TSC value, otherwise
+  it returns only garbage readings
+- we need to get a phandle to the new HHI syscon region because on
+  Meson8b and Meson8m2 the TSC is five bits wide (on Meson8 it's only
+  four bits wide) but only four bits are stored inside the SAR ADC's
+  memory region. The upper most bit (not all five bits, only one out of
+  five) is stored at a seemingly random register HHI_DPLL_TOP_0) in the
+  HHI register area.
+  This also requires changes to the clock controller where we don't have
+  a solution where everyone's happy with the dt-bindings (see the
+  discussion in [0]) - so this will be added in a future series.
 
-Please see my comments below.
 
-On 2018/10/29 3:16, Jerome Brunet wrote:
-> On Thu, 2018-10-25 at 22:58 +0200, Martin Blumenstingl wrote:
->> Hi Jerome,
->>
->> On Thu, Oct 25, 2018 at 2:54 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->> [snip]
->>>>>> +static void clk_regmap_div_init(struct clk_hw *hw)
->>>>>> +{
->>>>>> + struct clk_regmap *clk = to_clk_regmap(hw);
->>>>>> + struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
->>>>>> + unsigned int val;
->>>>>> + int ret;
->>>>>> +
->>>>>> + ret = regmap_read(clk->map, div->offset, &val);
->>>>>> + if (ret)
->>>>>> +         return;
->>>>>>
->>>>>> + val &= (clk_div_mask(div->width) << div->shift);
->>>>>> + if (!val)
->>>>>> +         regmap_update_bits(clk->map, div->offset,
->>>>>> +                            clk_div_mask(div->width) << div->shift,
->>>>>> +                            clk_div_mask(div->width));
->>>>>
->>>>> This is wrong for several reasons:
->>>>> * You should hard code the initial value in the driver.
->>>>> * If shift is not 0, I doubt this will give the expected result.
->>>>
->>>> The value 0x00 of divider means nand clock off then read/write nand register is forbidden.
->>>
->>> That is not entirely true, you can access the clock register or you'd be in a
->>> chicken and egg situation.
->>>
->>>> Should we set the initial value in nand driver, or in sub emmc clk driver?
->>>
->>> In the nand driver, which is the consumer of the clock. see my previous comments
->>> about it.
->>
->> an old version of this series had the code still in the NAND driver
->> (by writing to the registers directly instead of using the clk API).
->> this looks pretty much like a "sclk-div" to me (as I commented in v3
->> of this series: [0]):
->> - value 0 means disabled
->> - positive divider values
->> - (probably no duty control, but that's optional as far as I
->> understand sclk-div)
->> - uses max divider value when enabling the clock
->>
->> if switching to sclk-div works then we can get rid of some duplicate code
-> 
-> It is possible:
-> There is a couple of things to note though:
-> 
-> * sclk does not 'uses max divider value when enabling the clock': Since this
-> divider can gate, it needs to save the divider value when disabling, since the
-> divider value is no longer stored in the register,
-> On init, this cached value is  saved as it is. If the divider is initially
-> disabled, we have to set the cached value to something that makes sense, in case
-> the clock is enabled without a prior call to clk_set_rate().
->> So in sclk, the clock setting is not changed nor hard coded in init, and this is
-> a very important difference.
->
-I think It's ok for the latest sub mmc clock and nand driver now:
-1. in mmc_clkc_register_clk_with_parent("div", ...) from mmc_clkc_probe():
-   cached_div is set to div_max durning clk register?but is not set to div hw register.
+changes since v1 at [1]:
+- (many thanks to Peter Meerwald-Stadler and Jonathan Cameron for taking
+  the time to review my patches)
+- use "MESON_SAR_ADC_" as naming schema for two new #defines
+- remove .indexed = 0 (because it's already the default) from
+  MESON_SAR_ADC_TEMP_CHAN
+- simplify setting MESON_SAR_ADC_DELTA_10_TEMP_SEL in
+  meson_sar_adc_enable_channel
+- remove IIO_CHAN_INFO_ENABLE (abuse) from MESON_SAR_ADC_TEMP_CHAN
+- register the channel set depending on whether the temperature sensor
+  can be used or not (instead of exposing the info whether it can be
+  used through the "ENABLE" element)
+- shorten check for MESON_SAR_ADC_EFUSE_BYTE3_IS_CALIBRATED
+- dropped Meson8b and Meson8m2 support for now (see the HHI register
+  discussion mentioned above). I still plan to add support for these
+  SoCs, but I don't want to add any code to the SAR ADC driver before
+  we have a decision on the dt-bindings of the clock driver (where we
+  need to write one bit from the SAR ADC driver for the temperature
+  sensor calibration coefficient).
+- dropped the .dts changes for now since the useful part was adding
+  iio-hwmon on Meson8b and Meson8m2 boards. now that support for these
+  two SoCs is postponed we can wait with the .dts changes as well.
 
-2. In meson nand driver v6: 	https://lore.kernel.org/lkml/1541090542-19618-3-git-send-email-jianxin.pan at amlogic.com
-1) In meson_nfc_clk_init() from probe:   get clock handle, then prepare_enable and set default rate.
-   nfc->device_clk = devm_clk_get(nfc->dev, "device");
-   ret = clk_prepare_enable(nfc->device_clk);			//Here div hw register changed from 0 -> cached_div.
-   default_clk_rate = clk_round_rate(nfc->device_clk, 24000000);
-   ret = clk_set_rate(nfc->device_clk, default_clk_rate);	//Then register and cached_div are both updated to the default 24M.
-2) In meson_nfc_select_chip(), set the actual frequency
-  ret = clk_set_rate(nfc->device_clk, meson_chip->clk_rate);	//Here register and cached_div are changed again.
-3) if clk_disable() is called, set div hw register to zero, and cached_div  keep unchagned.
-   if clk_disable() is called again,  cached_div is restored to div hw register.
 
-When enabling the clock, divider register does not need to be div_max.  
-Any value is OK except ZERO, the cached_div from init or set_rate is ok
->  
-> * Even if sclk zero value means gated, it is still a zero based divider, while
-> eMMC/Nand divider is one based. It this controller was to sclk, then something
-> needs to be done for this.
-Could I add another patch to this patchset for sclk to support CLK_DIVIDER_ONE_BASED ?
-> 
-> * Since sclk caches a value in its data, and there can multiple instance of eMMC
-> /NAND clock controller, some care must be taken when registering the data.
-OK, I will fix it and alloc mmc_clkc_div_data danymicly durning probe.
-Thank you. 
-> 
-> Both the generic divider and sclk could work here ... it's up to you Jianxin.
-> 
-== Why use meson_sclk_div_ops instead of clk_regmap_divider_ops?
-The default divider hw register vaule is 0 when system power on.
-Then there is a WARNING in divider_recalc_rate() durning clk_hw_register():
-[    0.918238] ffe05000.clock-controller#div: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set
-[    0.925581] WARNING: CPU: 3 PID: 1 at drivers/clk/clk-divider.c:127 divider_recalc_rate+0x88/0x90
-Then I still need to hard code the initual value to nand driver without CLK_DIVIDER_ALLOW_ZERO flags.
->>
->>
->> Regards
->> Martin
->>
->>
->> [0] https://patchwork.kernel.org/patch/10607157/#22238243
-> 
-> 
-> .
-> 
+[0] https://patchwork.kernel.org/cover/10658527/
+[1] https://patchwork.kernel.org/cover/10658551/
+
+
+Martin Blumenstingl (2):
+  dt-bindings: iio: adc: meson-saradc: add temperature sensor support
+  iio: adc: meson-saradc: add support for the chip's temperature sensor
+
+ .../bindings/iio/adc/amlogic,meson-saradc.txt |   6 +
+ drivers/iio/adc/meson_saradc.c                | 229 ++++++++++++++++--
+ 2 files changed, 209 insertions(+), 26 deletions(-)
+
+-- 
+2.19.1
