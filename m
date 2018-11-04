@@ -1,26 +1,52 @@
-From: yangxuan8282@gmail.com (He Yangxuan)
-Date: Mon, 5 Nov 2018 00:55:23 +0800
-Subject: [PATCH v2 3/3] dt-bindings: arm: amlogic: Add Phicomm N1
-Message-ID: <20181104165523.n5dmi23m4rm3omty@raspberrypi>
+From: jic23@kernel.org (Jonathan Cameron)
+Date: Sun, 4 Nov 2018 16:58:45 +0000
+Subject: [PATCH v2 1/2] dt-bindings: iio: adc: meson-saradc: add
+ temperature sensor support
+In-Reply-To: <20181103231024.659-2-martin.blumenstingl@googlemail.com>
+References: <20181103231024.659-1-martin.blumenstingl@googlemail.com>
+ <20181103231024.659-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20181104165845.0497ce84@archlinux>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Signed-off-by: He Yangxuan <yangxuan8282@gmail.com>
----
- Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
- 1 file changed, 1 insertion(+)
+On Sun,  4 Nov 2018 00:10:23 +0100
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index 4498292b8..93177f38e 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -91,6 +91,7 @@ Board compatible values (alphabetically, grouped by SoC):
- 
-   - "amlogic,p230" (Meson gxl s905d)
-   - "amlogic,p231" (Meson gxl s905d)
-+  - "phicomm,n1" (Meson gxl s905d)
- 
-   - "amlogic,p241" (Meson gxl s805x)
- 
--- 
-2.11.0
+> The 32-bit Meson8 SoC can use the SAR ADC to read the chip temperature.
+> This requires setting the correct TSC (temperature sensor coefficient),
+> which is programmed into the eFuse during the manufacturing process.
+> Meson8b and Meson8m2 are not supported yet because they have a 5-bit TSC
+> and only the first four bits are stored inside the SAR ADC registers.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+This 'seems' uncontroversial, but if I've missed something and the DT
+maintainers want to comment that is of course great!
+
+Applied to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to play with it.
+
+Thanks,
+
+Jonathan
+> ---
+>  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.txt    | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+> index 54b823f3a453..325090e43ce6 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+> +++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+> @@ -22,6 +22,12 @@ Required properties:
+>  - vref-supply:	the regulator supply for the ADC reference voltage
+>  - #io-channel-cells: must be 1, see ../iio-bindings.txt
+>  
+> +Optional properties:
+> +- nvmem-cells:		phandle to the temperature_calib eFuse cells
+> +- nvmem-cell-names:	if present (to enable the temperature sensor
+> +			calibration) this must contain "temperature_calib"
+> +
+> +
+>  Example:
+>  	saradc: adc at 8680 {
+>  		compatible = "amlogic,meson-gxl-saradc", "amlogic,meson-saradc";
