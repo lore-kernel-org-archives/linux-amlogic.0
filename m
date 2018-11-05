@@ -1,68 +1,170 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 4 Nov 2018 23:36:10 +0100
-Subject: [PATCH v2 2/2] iio: adc: meson-saradc: add support for the chip's
- temperature sensor
-In-Reply-To: <20181104170041.1fcc4932@archlinux>
-References: <20181103231024.659-1-martin.blumenstingl@googlemail.com>
- <20181103231024.659-3-martin.blumenstingl@googlemail.com>
- <20181104170041.1fcc4932@archlinux>
-Message-ID: <CAFBinCB4bByOqXbUJEv2-fMKWDett-ym++7=x87tDWD4BTQ7QA@mail.gmail.com>
+From: jbrunet@baylibre.com (jbrunet at baylibre.com)
+Date: Mon, 05 Nov 2018 10:46:36 +0100
+Subject: [PATCH v5 3/3] clk: meson: add sub MMC clock controller driver
+In-Reply-To: <66c2915a-4ecd-8a6e-6493-4318ae7bb620@amlogic.com>
+References: <1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com>
+ <1539839245-13793-4-git-send-email-jianxin.pan@amlogic.com>
+ <a8d359208edfdc75cb5c6de378796f76e0572a0f.camel@baylibre.com>
+ <eda2faf2-cf06-902d-36ff-48ceafcb4a4b@amlogic.com>
+ <f4d239df2f1333b005680f9bfdd2eba93e7f86e5.camel@baylibre.com>
+ <CAFBinCCuqUmVNdwUm7WbkHy1eWvOA5oQ5FcOuytbYNbgGcXnRQ@mail.gmail.com>
+ <3723695d951e0d30e8a0117d336d8f268269a030.camel@baylibre.com>
+ <66c2915a-4ecd-8a6e-6493-4318ae7bb620@amlogic.com>
+Message-ID: <bba47660e7d48c391caad8214570e81527624662.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jonathan,
+On Sun, 2018-11-04 at 02:01 +0800, Jianxin Pan wrote:
+> Hi Jerome,
+> 
+> Thanks for the review, we really appreciate your time.
+> 
+> I'm very sorry maybe I don't catch all your meaning very well. 
+> 
+> Please see my comments below.
+> 
+> On 2018/10/29 3:16, Jerome Brunet wrote:
+> > On Thu, 2018-10-25 at 22:58 +0200, Martin Blumenstingl wrote:
+> > > Hi Jerome,
+> > > 
+> > > On Thu, Oct 25, 2018 at 2:54 PM Jerome Brunet <jbrunet@baylibre.com>
+> > > wrote:
+> > > [snip]
+> > > > > > > +static void clk_regmap_div_init(struct clk_hw *hw)
+> > > > > > > +{
+> > > > > > > + struct clk_regmap *clk = to_clk_regmap(hw);
+> > > > > > > + struct clk_regmap_div_data *div =
+> > > > > > > clk_get_regmap_div_data(clk);
+> > > > > > > + unsigned int val;
+> > > > > > > + int ret;
+> > > > > > > +
+> > > > > > > + ret = regmap_read(clk->map, div->offset, &val);
+> > > > > > > + if (ret)
+> > > > > > > +         return;
+> > > > > > > 
+> > > > > > > + val &= (clk_div_mask(div->width) << div->shift);
+> > > > > > > + if (!val)
+> > > > > > > +         regmap_update_bits(clk->map, div->offset,
+> > > > > > > +                            clk_div_mask(div->width) << div-
+> > > > > > > >shift,
+> > > > > > > +                            clk_div_mask(div->width));
+> > > > > > 
+> > > > > > This is wrong for several reasons:
+> > > > > > * You should hard code the initial value in the driver.
+> > > > > > * If shift is not 0, I doubt this will give the expected result.
+> > > > > 
+> > > > > The value 0x00 of divider means nand clock off then read/write nand
+> > > > > register is forbidden.
+> > > > 
+> > > > That is not entirely true, you can access the clock register or you'd
+> > > > be in a
+> > > > chicken and egg situation.
+> > > > 
+> > > > > Should we set the initial value in nand driver, or in sub emmc clk
+> > > > > driver?
+> > > > 
+> > > > In the nand driver, which is the consumer of the clock. see my
+> > > > previous comments
+> > > > about it.
+> > > 
+> > > an old version of this series had the code still in the NAND driver
+> > > (by writing to the registers directly instead of using the clk API).
+> > > this looks pretty much like a "sclk-div" to me (as I commented in v3
+> > > of this series: [0]):
+> > > - value 0 means disabled
+> > > - positive divider values
+> > > - (probably no duty control, but that's optional as far as I
+> > > understand sclk-div)
+> > > - uses max divider value when enabling the clock
+> > > 
+> > > if switching to sclk-div works then we can get rid of some duplicate
+> > > code
+> > 
+> > It is possible:
+> > There is a couple of things to note though:
+> > 
+> > * sclk does not 'uses max divider value when enabling the clock': Since
+> > this
+> > divider can gate, it needs to save the divider value when disabling, since
+> > the
+> > divider value is no longer stored in the register,
+> > On init, this cached value is  saved as it is. If the divider is initially
+> > disabled, we have to set the cached value to something that makes sense,
+> > in case
+> > the clock is enabled without a prior call to clk_set_rate().
+> > > So in sclk, the clock setting is not changed nor hard coded in init, and
+> > > this is
+> > a very important difference.
+> > 
+> I think It's ok for the latest sub mmc clock and nand driver now:
+> 1. in mmc_clkc_register_clk_with_parent("div", ...) from mmc_clkc_probe():
+>    cached_div is set to div_max durning clk register?but is not set to div
+> hw register.
+> 
+> 2. In meson nand driver v6: 	
+> https://lore.kernel.org/lkml/1541090542-19618-3-git-send-email-jianxin.pan at amlogic.com
+> 1) In meson_nfc_clk_init() from probe:   get clock handle, then
+> prepare_enable and set default rate.
+>    nfc->device_clk = devm_clk_get(nfc->dev, "device");
+>    ret = clk_prepare_enable(nfc->device_clk);			//Here div hw
+> register changed from 0 -> cached_div.
+>    default_clk_rate = clk_round_rate(nfc->device_clk, 24000000);
+>    ret = clk_set_rate(nfc->device_clk, default_clk_rate);	//Then
+> register and cached_div are both updated to the default 24M.
+> 2) In meson_nfc_select_chip(), set the actual frequency
+>   ret = clk_set_rate(nfc->device_clk, meson_chip->clk_rate);	//Here
+> register and cached_div are changed again.
+> 3) if clk_disable() is called, set div hw register to zero, and
+> cached_div  keep unchagned.
+>    if clk_disable() is called again,  cached_div is restored to div hw
+> register.
 
-On Sun, Nov 4, 2018 at 6:00 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Sun,  4 Nov 2018 00:10:24 +0100
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->
-> > Channel 6 of the SAR ADC can be switched between two inputs:
-> > SAR_ADC_CH6 input (an actual pad on the SoC) and the signal from the
-> > temperature sensor inside the SoC.
-> >
-> > To get usable results from the temperature sensor we need to read the
-> > corresponding calibration data from the eFuse and pass it to the SAR ADC
-> > registers. If the temperature sensor is not calibrated (the eFuse data
-> > contains a bit for this) then the driver will only register the
-> > iio_chan_spec's for voltage measurements.
-> >
-> > (bits [3:0]) and (on Meson8b and Meson8m2) to a scratch register in the
-> > HHI region.
-I missed this "fragment" (I wouldn't call it a sentence) when I sent the patch.
-the next paragraph already contains an explanation about the TSC on
-Meson8b and Meson8m2 as well as the HHI register area.
-so this paragraph doesn't make any sense and should be removed. do you
-want me to re-send this patch (or even the whole series) or can you
-remove it? everything else is fine (I double-checked this time...)
+You don't need to do all this in your NAND driver: enable - round - set_rate -
+disable is a waste of time. 
 
-> > This only enables the temperature sensor for the Meson8 SoC. Meson8b and
-> > Meson8m2 SoCs can be supported in the future as well but we first need
-> > a way to pass the fifth TSC (temperature sensor coefficient) bit to the
-> > HHI register area (apart from that the infrastructure as already
-> > implemented for Meson8 can be used). On the 64-bit SoCs (GXBB, GXL and
-> > GXM) the temperature sensor inside SAR ADC is firmware-controlled (by
-> > BL30, we can simply use the SCPI hwmon driver to get the chip
-> > temperature).
-> >
-> > To keep the devicetree interface backwards compatible we simply skip the
-> > temperature sensor initialization if no eFuse nvmem cell is passed via
-> > devicetree.
-> >
-> > The public documentation for the SAR ADC IP block does not explain how
-> > to use the registers to read the temperature. The logic from this patch
-> > is based on reading and understanding Amlogic's GPL kernel sources.
-> >
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Good detailed explanation.  Thanks.
-you're welcome!
-please see my comment above where I have to admit that not all of the
-description is "good".
+Directly calling set_rate(24000000), with the clock still off, will have the
+same result. Then if your HW needs this clock to be ON to access registers
+(like you told us) you should probably turn it on.
 
-> Applied to the togreg branch of iio.git and pushed out as testing for
-> the autobuilders to play with it.
-that was quick - thank you!
+> 
+> When enabling the clock, divider register does not need to be div_max.  
+> Any value is OK except ZERO, the cached_div from init or set_rate is ok
+> >  
+> > * Even if sclk zero value means gated, it is still a zero based divider,
+> > while
+> > eMMC/Nand divider is one based. It this controller was to sclk, then
+> > something
+> > needs to be done for this.
+> Could I add another patch to this patchset for sclk to support
+> CLK_DIVIDER_ONE_BASED ?
 
+Yes, you should otherwise the calculation are just wrong for your clock.
 
-Regards
-Martin
+> > * Since sclk caches a value in its data, and there can multiple instance
+> > of eMMC
+> > /NAND clock controller, some care must be taken when registering the data.
+> OK, I will fix it and alloc mmc_clkc_div_data danymicly durning probe.
+> Thank you. 
+> > Both the generic divider and sclk could work here ... it's up to you
+> > Jianxin.
+> > 
+> == Why use meson_sclk_div_ops instead of clk_regmap_divider_ops?
+> The default divider hw register vaule is 0 when system power on.
+> Then there is a WARNING in divider_recalc_rate() durning clk_hw_register():
+> [    0.918238] ffe05000.clock-controller#div: Zero divisor and
+> CLK_DIVIDER_ALLOW_ZERO not set
+> [    0.925581] WARNING: CPU: 3 PID: 1 at drivers/clk/clk-divider.c:127
+> divider_recalc_rate+0x88/0x90
+> Then I still need to hard code the initual value to nand driver without
+> CLK_DIVIDER_ALLOW_ZERO flags.
+> > > 
+> > > Regards
+> > > Martin
+> > > 
+> > > 
+> > > [0] https://patchwork.kernel.org/patch/10607157/#22238243
+> > 
+> > .
+> > 
+> 
+> 
