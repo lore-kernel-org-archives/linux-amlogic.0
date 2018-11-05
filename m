@@ -1,28 +1,25 @@
-From: yangxuan8282@gmail.com (He Yangxuan)
-Date: Tue, 6 Nov 2018 01:30:40 +0800
-Subject: [PATCH v3 3/3] dt-bindings: arm: amlogic: Add Phicomm N1
-Message-ID: <20181105173040.h2xy4fdmfo6g2hk4@raspberrypi>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 5 Nov 2018 16:16:15 -0600
+Subject: [PATCH v2 1/2] dt-bindings: iio: adc: meson-saradc: add
+ temperature sensor support
+In-Reply-To: <20181103231024.659-2-martin.blumenstingl@googlemail.com>
+References: <20181103231024.659-1-martin.blumenstingl@googlemail.com>
+ <20181103231024.659-2-martin.blumenstingl@googlemail.com>
+Message-ID: <20181105221615.GA5718@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add bindings documentation for the Phicomm N1.
+On Sun,  4 Nov 2018 00:10:23 +0100, Martin Blumenstingl wrote:
+> The 32-bit Meson8 SoC can use the SAR ADC to read the chip temperature.
+> This requires setting the correct TSC (temperature sensor coefficient),
+> which is programmed into the eFuse during the manufacturing process.
+> Meson8b and Meson8m2 are not supported yet because they have a 5-bit TSC
+> and only the first four bits are stored inside the SAR ADC registers.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.txt    | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-Signed-off-by: He Yangxuan <yangxuan8282@gmail.com>
----
- Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index 4498292b8..93177f38e 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -91,6 +91,7 @@ Board compatible values (alphabetically, grouped by SoC):
- 
-   - "amlogic,p230" (Meson gxl s905d)
-   - "amlogic,p231" (Meson gxl s905d)
-+  - "phicomm,n1" (Meson gxl s905d)
- 
-   - "amlogic,p241" (Meson gxl s805x)
- 
--- 
-2.11.0
+Reviewed-by: Rob Herring <robh@kernel.org>
