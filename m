@@ -1,612 +1,426 @@
-From: liang.yang@amlogic.com (Liang Yang)
-Date: Tue, 6 Nov 2018 17:08:00 +0800
-Subject: [PATCH v6 2/2] mtd: rawnand: meson: add support for Amlogic NAND
- flash controller
-In-Reply-To: <20181105165321.7ea2b45f@bbrezillon>
-References: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
- <1541090542-19618-3-git-send-email-jianxin.pan@amlogic.com>
- <20181105165321.7ea2b45f@bbrezillon>
-Message-ID: <a571904e-6296-bf62-e1fe-e25bf90040bb@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue,  6 Nov 2018 10:25:59 +0100
+Subject: [PATCH u-boot] spi: Add Amlogic Meson SPI Flash Controller driver
+Message-ID: <1541496359-18064-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 2018/11/5 23:53, Boris Brezillon wrote:
-> On Fri, 2 Nov 2018 00:42:21 +0800
-> Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> 
->> +#define NFC_REG_CMD		0x00
->> +#define NFC_CMD_DRD		(0x8 << 14)
->> +#define NFC_CMD_IDLE		(0xc << 14)
->> +#define NFC_CMD_DWR		(0x4 << 14)
->> +#define NFC_CMD_CLE		(0x5 << 14)
->> +#define NFC_CMD_ALE		(0x6 << 14)
->> +#define NFC_CMD_ADL		((0 << 16) | (3 << 20))
->> +#define NFC_CMD_ADH		((1 << 16) | (3 << 20))
->> +#define NFC_CMD_AIL		((2 << 16) | (3 << 20))
->> +#define NFC_CMD_AIH		((3 << 16) | (3 << 20))
->> +#define NFC_CMD_SEED		((8 << 16) | (3 << 20))
->> +#define NFC_CMD_M2N		((0 << 17) | (2 << 20))
->> +#define NFC_CMD_N2M		((1 << 17) | (2 << 20))
->> +#define NFC_CMD_RB		BIT(20)
->> +#define NFC_CMD_IO6		((0xb << 10) | (1 << 18))
->> +#define NFC_CMD_SCRAMBLER_ENABLE	BIT(19)
->> +#define NFC_CMD_RB_INT		BIT(14)
->> +
->> +#define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
->> +#define NFC_CMD_RB_TIMEOUT	0x18
-> 
-> Where does this value come from? Is it the typical timeout value,
-> and if it is, what's the value in milli/microseconds?
-> 
-it is about 5.2ms when one nand cycle is 20ns and calculate it with the 
-max erase time of toshiba slc flash.i think it should be taken from the 
-sdr_timings.
->> +
->> +#define NFC_REG_CFG		0x04
->> +#define NFC_REG_DADR		0x08
->> +#define NFC_REG_IADR		0x0c
->> +#define NFC_REG_BUF		0x10
->> +#define NFC_REG_INFO		0x14
->> +#define NFC_REG_DC		0x18
->> +#define NFC_REG_ADR		0x1c
->> +#define NFC_REG_DL		0x20
->> +#define NFC_REG_DH		0x24
->> +#define NFC_REG_CADR		0x28
->> +#define NFC_REG_SADR		0x2c
->> +#define NFC_REG_PINS		0x30
->> +#define NFC_REG_VER		0x38
->> +
->> +#define NFC_RB_IRQ_EN		BIT(21)
->> +#define NFC_INT_MASK		(3 << 20)
->> +
->> +#define CMDRWGEN(cmd_dir, ran, bch, short_mode, page_size, pages)	\
->> +	(								\
->> +		(cmd_dir)			|			\
->> +		((ran) << 19)			|			\
->> +		((bch) << 14)			|			\
->> +		((short_mode) << 13)		|			\
->> +		(((page_size) & 0x7f) << 6)	|			\
->> +		((pages) & 0x3f)					\
->> +	)
->> +
->> +#define GENCMDDADDRL(adl, addr)		((adl) | ((addr) & 0xffff))
->> +#define GENCMDDADDRH(adh, addr)		((adh) | (((addr) >> 16) & 0xffff))
->> +#define GENCMDIADDRL(ail, addr)		((ail) | ((addr) & 0xffff))
->> +#define GENCMDIADDRH(aih, addr)		((aih) | (((addr) >> 16) & 0xffff))
->> +
->> +#define RB_STA(x)		(1 << (26 + (x)))
->> +#define DMA_DIR(dir)		((dir) ? NFC_CMD_N2M : NFC_CMD_M2N)
->> +
->> +#define ECC_CHECK_RETURN_FF	(-1)
->> +
->> +#define NAND_CE0		(0xe << 10)
->> +#define NAND_CE1		(0xd << 10)
->> +
->> +#define DMA_BUSY_TIMEOUT	0x100000
->> +#define CMD_FIFO_EMPTY_TIMEOUT	1000
->> +
->> +#define MAX_CE_NUM		2
->> +
->> +/* eMMC clock register, misc control */
->> +#define SD_EMMC_CLOCK		0x00
->> +#define CLK_ALWAYS_ON		BIT(28)
->> +#define CLK_SELECT_NAND		BIT(31)
->> +#define CLK_DIV_MASK		GENMASK(5, 0)
->> +
->> +#define NFC_CLK_CYCLE		6
->> +
->> +/* nand flash controller delay 3 ns */
->> +#define NFC_DEFAULT_DELAY	3000
->> +
->> +#define MAX_ECC_INDEX		10
->> +
->> +#define MUX_CLK_NUM_PARENTS	2
->> +
->> +#define ROW_ADDER(page, index)	(((page) >> (8 * (index))) & 0xff)
->> +#define MAX_CYCLE_ROW_ADDRS	3
->> +#define MAX_CYCLE_COLUMN_ADDRS	2
->> +#define DIRREAD			1
->> +#define DIRWRITE		0
->> +
->> +#define ECC_PARITY_BCH8_512B	14
->> +
->> +#define PER_INFO_BYTE		8
->> +#define ECC_GET_PROTECTED_OOB_BYTE(x, y)			\
->> +		((x) >> (8 * (y)) & GENMASK(7, 0))
-> 
-> 		(le64_to_cpu(x) >> (8 * (y)) & GENMASK(7, 0))
-> 
->> +
->> +#define ECC_SET_PROTECTED_OOB_BYTE(x, y, z)			\
->> +	{							\
->> +		(x) &= (~((__le64)(0xff) << (8 * (y))));	\
-> 
-> It's probably better to memset(0) the info_buf so that you can drop
-> this masking step.
-> 
-ok.
+The Amlogic Meson SoCs embeds a Flash oriented SPI Controller name SPIFC.
+This driver, ported from the Linux meson-spi-spifc driver, add support
+for this controller on the Amlogic Meson GX SoCs in U-Boot.
 
->> +		(x) |= ((__le64)(z) << (8 * (y)));		\
-> 
-> 		    |= cpu_to_le64((u64)z << (8 * (y)));
-> 
->> +	}
->> +
->> +#define ECC_COMPLETE            BIT(31)
->> +#define ECC_ERR_CNT(x)		(((x) >> 24) & GENMASK(5, 0))
->> +#define ECC_ZERO_CNT(x)		(((x) >> 16) & GENMASK(5, 0))
->> +
->> +struct meson_nfc_nand_chip {
->> +	struct list_head node;
->> +	struct nand_chip nand;
->> +	int clk_rate;
->> +	int level1_divider;
->> +	int bus_timing;
->> +	int twb;
->> +	int tadl;
->> +
->> +	int bch_mode;
->> +	u8 *data_buf;
->> +	__le64 *info_buf;
->> +	int nsels;
->> +	u8 sels[0];
->> +};
-> 
-> Please use unsigned integers where having a negative value is not
-> possible. I'm pretty sure this is the case of all int fields in this
-> struct. The same applies to the other structs.
-> 
-ok.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/spi/Kconfig       |   8 +
+ drivers/spi/Makefile      |   1 +
+ drivers/spi/meson_spifc.c | 368 ++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 377 insertions(+)
+ create mode 100644 drivers/spi/meson_spifc.c
 
-> [...]
-> 
->> +
->> +static int meson_nfc_wait_cmd_finish(struct meson_nfc *nfc,
->> +				     unsigned int timeout_ms)
->> +{
->> +	u32 cmd_size = 0;
->> +	int ret;
->> +
->> +	/* wait cmd fifo is empty */
->> +	ret = readl_poll_timeout(nfc->reg_base + NFC_REG_CMD, cmd_size,
->> +				 !NFC_CMD_GET_SIZE(cmd_size),
->> +				 10, timeout_ms * 1000);
-> 
-> I guess you could use the relaxed version here.
-> 
-ok.
-
->> +	if (ret)
->> +		dev_err(nfc->dev, "wait for empty cmd FIFO time out\n");
->> +
->> +	return ret;
->> +}
->> +
->> +static int meson_nfc_wait_dma_finish(struct meson_nfc *nfc)
->> +{
->> +	meson_nfc_drain_cmd(nfc);
->> +
->> +	return meson_nfc_wait_cmd_finish(nfc, DMA_BUSY_TIMEOUT);
->> +}
->> +
->> +static inline __le64 nfc_info_ptr(struct nand_chip *nand, int index)
-> 
-> Drop inline specifiers for things that are defined in .c files. The
-> compiler should be smart enough to determine when inlining is
-> appropriate.
-> 
-ok.
-
->> +{
->> +	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
->> +
->> +	return le64_to_cpu(meson_chip->info_buf[index]);
-> 
-> According to the function prototype, you should return
-> meson_chip->info_buf[index] directly, but I'm not even sure why you
-> need this helper. Just access meson_chip->info_buf[] directly.
-> 
-ok. i will drop this helper.
-
->> +}
->> +
-> 
-> [...]
-> 
->> +
->> +static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
->> +{
->> +	u32 cmd, cfg;
->> +	int ret = 0;
->> +
->> +	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
->> +	meson_nfc_drain_cmd(nfc);
->> +	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
->> +
->> +	cfg = readl(nfc->reg_base + NFC_REG_CFG);
->> +	cfg |= (1 << 21);
->> +	writel(cfg, nfc->reg_base + NFC_REG_CFG);
->> +
->> +	init_completion(&nfc->completion);
->> +
->> +	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
->> +		| nfc->param.chip_select | NFC_CMD_RB_TIMEOUT;
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +
->> +	ret = wait_for_completion_timeout(&nfc->completion,
->> +					  msecs_to_jiffies(timeout_ms));
->> +	if (ret == 0) {
->> +		dev_err(nfc->dev, "wait nand irq timeout\n");
->> +		ret = -1;
->> +	}
->> +	return ret;
->> +}
->> +
->> +static void meson_nfc_set_user_byte(struct nand_chip *nand, u8 *oob_buf)
-> 
-> 	       ^ meson_nfc_set_protected_oob_bytes()
-> 
->> +{
->> +	__le64 info;
->> +	int i, count;
->> +
->> +	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += 2) {
->> +		info = nfc_info_ptr(nand, i);
->> +		ECC_SET_PROTECTED_OOB_BYTE(info, 0, oob_buf[count]);
->> +		ECC_SET_PROTECTED_OOB_BYTE(info, 1, oob_buf[count + 1]);
-> 
-> This is a NOOP: info is a local variable, so, anything you put in there
-> is just lost. It could work if nfc_info_ptr() was returning a pointer
-> and the local info var was also a pointer, but that's not the case
-> here.
-> 
-wow! i made a mistake. previously i used __le64 *info here, but i don't 
-know when i changed it carelessly.
-thank you for pointing out it, i will fix it.
-
-> BTW, maybe you don't need the ECC_SET/GET_PROTECTED_OOB_BYTE() macros.
-> Just do the conversion in the meson_nfc_get/set_protected_oob_bytes()
-> functions.
-> 
-ok.
-
-
->> +	}
->> +}
->> +
->> +static void meson_nfc_get_user_byte(struct nand_chip *nand, u8 *oob_buf)
-> 
-> 	       ^ meson_nfc_get_protected_oob_bytes()
-> 
->> +{
->> +	__le64 info;
->> +	int i, count;
->> +
->> +	for (i = 0, count = 0; i < nand->ecc.steps; i++, count += 2) {
->> +		info = nfc_info_ptr(nand, i);
->> +		oob_buf[count] = ECC_GET_PROTECTED_OOB_BYTE(info, 0);
->> +		oob_buf[count + 1] = ECC_GET_PROTECTED_OOB_BYTE(info, 1);
->> +	}
->> +}
->> +
->> +static int meson_nfc_ecc_correct(struct nand_chip *nand)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(nand);
->> +	__le64 info;
->> +	u32 bitflips = 0, i;
->> +	int scramble;
->> +	u8 zero_cnt;
->> +
->> +	scramble = (nand->options & NAND_NEED_SCRAMBLING) ? 1 : 0;
->> +
->> +	for (i = 0; i < nand->ecc.steps; i++) {
->> +		info = nfc_info_ptr(nand, i);
->> +		if (ECC_ERR_CNT(info) == 0x3f) {
->> +			zero_cnt = ECC_ZERO_CNT(info);
->> +			if (scramble && zero_cnt < nand->ecc.strength)
->> +				return ECC_CHECK_RETURN_FF;
->> +			mtd->ecc_stats.failed++;
->> +			continue;
->> +		}
->> +		mtd->ecc_stats.corrected += ECC_ERR_CNT(info);
->> +		bitflips = max_t(u32, bitflips, ECC_ERR_CNT(info));
->> +	}
->> +
->> +	return bitflips;
->> +}
->> +
->> +static inline u8 meson_nfc_read_byte(struct mtd_info *mtd)
->> +{
->> +	struct nand_chip *nand = mtd_to_nand(mtd);
->> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
->> +	u32 cmd;
->> +
->> +	cmd = nfc->param.chip_select | NFC_CMD_DRD | 0;
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +
->> +	meson_nfc_drain_cmd(nfc);
-> 
-> You probably don't want to drain the FIFO every time you read a byte on
-> the bus, and I guess the INPUT FIFO is at least as big as the CMD
-> FIFO, right? If that's the case, you should queue as much DRD cmd as
-> possible and only sync when the user explicitly requests it or when
-> the INPUT/READ FIFO is full.
-> 
-Register 'NFC_REG_BUF' can holds only 4 bytes, also DRD sends only one 
-nand cycle to read one byte and covers the 1st byte every time reading. 
-i think nfc controller is faster than nand cycle, but really it is not 
-high efficiency when reading so many bytes once.
-Or use dma command here like read_page and read_page_raw.
-
->> +
->> +	meson_nfc_wait_cmd_finish(nfc, 1000);
->> +
->> +	return readb(nfc->reg_base + NFC_REG_BUF);
->> +}
->> +
->> +static void meson_nfc_read_buf(struct mtd_info *mtd, u8 *buf, int len)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < len; i++)
->> +		buf[i] = meson_nfc_read_byte(mtd);
->> +}
->> +
->> +static void meson_nfc_write_byte(struct mtd_info *mtd, u8 byte)
->> +{
->> +	struct meson_nfc *nfc = nand_get_controller_data(mtd_to_nand(mtd));
->> +	u32 cmd;
->> +
->> +	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
->> +
->> +	cmd = nfc->param.chip_select | NFC_CMD_DWR | (byte & 0xff);
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +
->> +	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
-> 
-> Nope, tWB is not needed between 2 data-write cycles. It's only needed
-> when a wait-RB is requested after a write.
-> 
-ok, i will remove it.
-
->> +	meson_nfc_cmd_idle(nfc, 0);
-> 
-> Why do you need that one?
-> 
-em, it doesn't need here.
-
->> +
->> +	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-> 
-> As for the read_byte() implementation, I don't think you should force a
-> sync here.
-> 
-ok, it can send 30 bytes (command fifo size subtract 2 idle command ) 
-once with a sync. Or use dma command.
-
->> +}
->> +
->> +static void meson_nfc_write_buf(struct mtd_info *mtd,
->> +				const u8 *buf, int len)
->> +{
->> +	int i;
->> +
->> +	for (i = 0; i < len; i++)
->> +		meson_nfc_write_byte(mtd, buf[i]);
->> +}
->> +
->> +static int meson_nfc_rw_cmd_prepare_and_execute(struct nand_chip *nand,
->> +						int page, bool in)
->> +{
->> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
->> +	const struct nand_sdr_timings *sdr =
->> +		nand_get_sdr_timings(&nand->data_interface);
->> +	int cs = nfc->param.chip_select;
->> +	int i, cmd0, cmd_num;
->> +	int ret = 0;
->> +
->> +	cmd0 = in ? NAND_CMD_READ0 : NAND_CMD_SEQIN;
->> +	cmd_num = sizeof(struct nand_rw_cmd) / sizeof(int);
->> +	if (!in)
->> +		cmd_num--;
->> +
->> +	nfc->cmdfifo.rw.cmd0 = cs | NFC_CMD_CLE | cmd0;
->> +	for (i = 0; i < MAX_CYCLE_COLUMN_ADDRS; i++)
->> +		nfc->cmdfifo.rw.col[i] = cs | NFC_CMD_ALE | 0;
->> +
->> +	for (i = 0; i < MAX_CYCLE_ROW_ADDRS; i++)
->> +		nfc->cmdfifo.rw.row[i] = cs | NFC_CMD_ALE | ROW_ADDER(page, i);
->> +
->> +	nfc->cmdfifo.rw.cmd1 = cs | NFC_CMD_CLE | NAND_CMD_READSTART;
-> 
-> Having a fixed size array for the column and row address cycles does
-> not sound like a good idea to me (depending on the NAND chip you
-> connect, the number of cycles for the row and column differ), which
-> makes me realize the nand_rw_cmd struct is not such a good thing...
-> 
-em , i will fix it by adding the size of the column and row address.
-is that ok?
-
->> +
->> +	for (i = 0; i < cmd_num; i++)
->> +		writel(nfc->cmdfifo.cmd[i], nfc->reg_base + NFC_REG_CMD);
-> 
-> ... why not write directly to the CMD reg?
-> 
-
-it seems that too many writel(xxx, nfc->reg_base + NFC_REG_CMD) in one 
-function; so I want to cache all the commands and write it in a loop.
-
->> +
->> +	if (in)
->> +		meson_nfc_queue_rb(nfc, sdr->tR_max);
->> +	else
->> +		meson_nfc_cmd_idle(nfc, nfc->timing.tadl);
->> +
->> +	return ret;
->> +}
->> +
->> +static int meson_nfc_write_page_sub(struct nand_chip *nand, const u8 *buf,
->> +				    int page, int raw)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(nand);
->> +	const struct nand_sdr_timings *sdr =
->> +		nand_get_sdr_timings(&nand->data_interface);
->> +	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
->> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
->> +	dma_addr_t daddr, iaddr;
->> +	u32 cmd;
->> +	int ret;
->> +
->> +	daddr = dma_map_single(nfc->dev, (void *)meson_chip->data_buf,
->> +			       mtd->writesize + mtd->oobsize,
->> +			       DMA_TO_DEVICE);
->> +	ret = dma_mapping_error(nfc->dev, daddr);
->> +	if (ret) {
->> +		dev_err(nfc->dev, "dma mapping error\n");
->> +		goto err;
->> +	}
->> +
->> +	iaddr = dma_map_single(nfc->dev, (void *)meson_chip->info_buf,
->> +			       nand->ecc.steps * PER_INFO_BYTE,
->> +			       DMA_TO_DEVICE);
->> +	ret = dma_mapping_error(nfc->dev, iaddr);
->> +	if (ret) {
->> +		dev_err(nfc->dev, "dma mapping error\n");
->> +		goto err_map_daddr;
->> +	}
->> +
->> +	ret = meson_nfc_rw_cmd_prepare_and_execute(nand, page, DIRWRITE);
->> +	if (ret)
->> +		goto err_map_iaddr;
->> +
->> +	cmd = GENCMDDADDRL(NFC_CMD_ADL, daddr);
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +
->> +	cmd = GENCMDDADDRH(NFC_CMD_ADH, daddr);
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +
->> +	cmd = GENCMDIADDRL(NFC_CMD_AIL, iaddr);
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +
->> +	cmd = GENCMDIADDRH(NFC_CMD_AIH, iaddr);
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +
->> +	meson_nfc_cmd_seed(nfc, page);
->> +
->> +	meson_nfc_cmd_access(nand, raw, DIRWRITE);
->> +
->> +	ret = meson_nfc_wait_dma_finish(nfc);
->> +	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_PAGEPROG;
->> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +	meson_nfc_queue_rb(nfc, sdr->tPROG_max);
-> 
-> Don't you have a way to queue the PAGEPROG and WAIT_RB instructions
-> before the DMA finishes?
-> 
-
-it runs:
-1) dma transfer ddr data to nand page cache.
-2) wait dma finish
-3) send the PAGEPROG command
-4) wait rb finish
-
-meson_nfc_wait_dma_finish(nfc) waits command fifo empty. Maybe it is 
-difficult or uncessary to queue the PAGEPROG command and WAIT_RB between 
-1) and 2).
-
-is that right?
-
-
->> +
->> +err_map_iaddr:
->> +	dma_unmap_single(nfc->dev, iaddr,
->> +			 nand->ecc.steps * PER_INFO_BYTE, DMA_TO_DEVICE);
->> +err_map_daddr:
->> +	dma_unmap_single(nfc->dev, daddr,
->> +			 mtd->writesize + mtd->oobsize, DMA_TO_DEVICE);
->> +err:
->> +	return ret;
->> +}
->> +
-> 
-> [...]
-> 
->> +static int meson_nfc_exec_op(struct nand_chip *nand,
->> +			     const struct nand_operation *op, bool check_only)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(nand);
->> +	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
->> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
->> +	const struct nand_op_instr *instr = NULL;
->> +	int ret = 0, cmd;
->> +	unsigned int op_id;
->> +	int i, delay_idle;
->> +
->> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
->> +		instr = &op->instrs[op_id];
->> +		delay_idle = DIV_ROUND_UP(PSEC_TO_NSEC(instr->delay_ns),
->> +					  meson_chip->level1_divider
->> +					  * NFC_CLK_CYCLE);
-> 
-> On multi-line operations, put the operator on the previous line:
-> 
-ok, i will fix it.
-
-> 					  meson_chip->level1_divider *
-> 					  NFC_CLK_CYCLE);
-> 
-> 
->> +		switch (instr->type) {
->> +		case NAND_OP_CMD_INSTR:
->> +			cmd = nfc->param.chip_select | NFC_CMD_CLE;
->> +			cmd |= instr->ctx.cmd.opcode & 0xff;
->> +			writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +			meson_nfc_cmd_idle(nfc, delay_idle);
->> +			break;
->> +
->> +		case NAND_OP_ADDR_INSTR:
->> +			for (i = 0; i < instr->ctx.addr.naddrs; i++) {
->> +				cmd = nfc->param.chip_select | NFC_CMD_ALE;
->> +				cmd |= instr->ctx.addr.addrs[i] & 0xff;
->> +				writel(cmd, nfc->reg_base + NFC_REG_CMD);
->> +			}
->> +			meson_nfc_cmd_idle(nfc, delay_idle);
->> +			break;
->> +
->> +		case NAND_OP_DATA_IN_INSTR:
->> +			meson_nfc_read_buf(mtd, instr->ctx.data.buf.in,
->> +					   instr->ctx.data.len);
->> +			break;
->> +
->> +		case NAND_OP_DATA_OUT_INSTR:
->> +			meson_nfc_write_buf(mtd, instr->ctx.data.buf.out,
->> +					    instr->ctx.data.len);
->> +			break;
->> +
->> +		case NAND_OP_WAITRDY_INSTR:
->> +			meson_nfc_queue_rb(nfc, instr->ctx.waitrdy.timeout_ms);
->> +			meson_nfc_cmd_idle(nfc, delay_idle);
->> +			break;
->> +		}
-> 
-> I think you could move the meson_nfc_cmd_idle() call here, and only add
-> it when instr->delay_ns != 0:
-> > 		if (instr->delay_ns)
-> 			meson_nfc_cmd_idle(nfc, delay_idle);
-> 
-ok, thank you.
-
->> +	}
-> 
-> Don't you need a call to meson_nfc_wait_cmd_finish() here?
-> 
-it will be called in queue_rb, read_buf and write_buf. but i have no 
-idea whether it still needs to be called corresponding to 
-CMD_INSTR/ADDR_INSTR.To be strict, it should be called.
-
->> +	return ret;
->> +}
-> 
-> .
-> 
+diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+index 516188e..838a007 100644
+--- a/drivers/spi/Kconfig
++++ b/drivers/spi/Kconfig
+@@ -116,6 +116,14 @@ config ICH_SPI
+ 	  access the SPI NOR flash on platforms embedding this Intel
+ 	  ICH IP core.
+ 
++config MESON_SPIFC
++	bool "Amlogic Meson SPI Flash Controller driver"
++	depends on ARCH_MESON
++	help
++	  Enable the Amlogic Meson SPI Flash Controller SPIFC) driver.
++	  This driver can be used to access the SPI NOR flash chips on 
++	  Amlogic Meson SoCs.
++
+ config MT7621_SPI
+ 	bool "MediaTek MT7621 SPI driver"
+ 	depends on ARCH_MT7620
+diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+index 7242ea7..67b42da 100644
+--- a/drivers/spi/Makefile
++++ b/drivers/spi/Makefile
+@@ -31,6 +31,7 @@ obj-$(CONFIG_FSL_QSPI) += fsl_qspi.o
+ obj-$(CONFIG_ICH_SPI) +=  ich.o
+ obj-$(CONFIG_KIRKWOOD_SPI) += kirkwood_spi.o
+ obj-$(CONFIG_LPC32XX_SSP) += lpc32xx_ssp.o
++obj-$(CONFIG_MESON_SPIFC) += meson_spifc.o
+ obj-$(CONFIG_MPC8XX_SPI) += mpc8xx_spi.o
+ obj-$(CONFIG_MPC8XXX_SPI) += mpc8xxx_spi.o
+ obj-$(CONFIG_MT7621_SPI) += mt7621_spi.o
+diff --git a/drivers/spi/meson_spifc.c b/drivers/spi/meson_spifc.c
+new file mode 100644
+index 0000000..6fd3d1a
+--- /dev/null
++++ b/drivers/spi/meson_spifc.c
+@@ -0,0 +1,368 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
++ * Copyright (C) 2018 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ *
++ * Amlogic Meson SPI Flash Controller driver
++ */
++
++#include <common.h>
++#include <spi.h>
++#include <clk.h>
++#include <dm.h>
++#include <regmap.h>
++#include <errno.h>
++#include <asm/io.h>
++#include <linux/bitfield.h>
++
++/* register map */
++#define REG_CMD			0x00
++#define REG_ADDR		0x04
++#define REG_CTRL		0x08
++#define REG_CTRL1		0x0c
++#define REG_STATUS		0x10
++#define REG_CTRL2		0x14
++#define REG_CLOCK		0x18
++#define REG_USER		0x1c
++#define REG_USER1		0x20
++#define REG_USER2		0x24
++#define REG_USER3		0x28
++#define REG_USER4		0x2c
++#define REG_SLAVE		0x30
++#define REG_SLAVE1		0x34
++#define REG_SLAVE2		0x38
++#define REG_SLAVE3		0x3c
++#define REG_C0			0x40
++#define REG_B8			0x60
++#define REG_MAX			0x7c
++
++/* register fields */
++#define CMD_USER		BIT(18)
++#define CTRL_ENABLE_AHB		BIT(17)
++#define CLOCK_SOURCE		BIT(31)
++#define CLOCK_DIV_SHIFT		12
++#define CLOCK_DIV_MASK		(0x3f << CLOCK_DIV_SHIFT)
++#define CLOCK_CNT_HIGH_SHIFT	6
++#define CLOCK_CNT_HIGH_MASK	(0x3f << CLOCK_CNT_HIGH_SHIFT)
++#define CLOCK_CNT_LOW_SHIFT	0
++#define CLOCK_CNT_LOW_MASK	(0x3f << CLOCK_CNT_LOW_SHIFT)
++#define USER_DIN_EN_MS		BIT(0)
++#define USER_CMP_MODE		BIT(2)
++#define USER_CLK_NOT_INV	BIT(7)
++#define USER_UC_DOUT_SEL	BIT(27)
++#define USER_UC_DIN_SEL		BIT(28)
++#define USER_UC_MASK		((BIT(5) - 1) << 27)
++#define USER1_BN_UC_DOUT_SHIFT	17
++#define USER1_BN_UC_DOUT_MASK	(0xff << 16)
++#define USER1_BN_UC_DIN_SHIFT	8
++#define USER1_BN_UC_DIN_MASK	(0xff << 8)
++#define USER4_CS_POL_HIGH	BIT(23)
++#define USER4_IDLE_CLK_HIGH	BIT(29)
++#define USER4_CS_ACT		BIT(30)
++#define SLAVE_TRST_DONE		BIT(4)
++#define SLAVE_OP_MODE		BIT(30)
++#define SLAVE_SW_RST		BIT(31)
++
++#define SPIFC_BUFFER_SIZE	64
++
++struct meson_spifc_priv {
++	struct regmap			*regmap;
++	struct clk			clk;
++};
++
++/**
++ * meson_spifc_wait_ready() - wait for the current operation to terminate
++ * @spifc:	the Meson SPI device
++ * Return:	0 on success, a negative value on error
++ */
++static int meson_spifc_wait_ready(struct meson_spifc_priv *spifc)
++{
++	u32 data;
++	ulong tbase = get_timer(0);
++
++	do {
++		regmap_read(spifc->regmap, REG_SLAVE, &data);
++		if (data & SLAVE_TRST_DONE)
++			return 0;
++	} while (get_timer(tbase) < 5 * CONFIG_SYS_HZ);
++
++	return -ETIMEDOUT;
++}
++
++/**
++ * meson_spifc_drain_buffer() - copy data from device buffer to memory
++ * @spifc:	the Meson SPI device
++ * @buf:	the destination buffer
++ * @len:	number of bytes to copy
++ */
++static void meson_spifc_drain_buffer(struct meson_spifc_priv *spifc,
++				     u8 *buf, int len)
++{
++	u32 data;
++	int i = 0;
++
++	while (i < len) {
++		regmap_read(spifc->regmap, REG_C0 + i, &data);
++
++		if (len - i >= 4) {
++			*((u32 *)buf) = data;
++			buf += 4;
++		} else {
++			memcpy(buf, &data, len - i);
++			break;
++		}
++		i += 4;
++	}
++}
++
++/**
++ * meson_spifc_fill_buffer() - copy data from memory to device buffer
++ * @spifc:	the Meson SPI device
++ * @buf:	the source buffer
++ * @len:	number of bytes to copy
++ */
++static void meson_spifc_fill_buffer(struct meson_spifc_priv *spifc,
++				    const u8 *buf, int len)
++{
++	u32 data = 0;
++	int i = 0;
++
++	while (i < len) {
++		if (len - i >= 4)
++			data = *(u32 *)buf;
++		else
++			memcpy(&data, buf, len - i);
++
++		regmap_write(spifc->regmap, REG_C0 + i, data);
++
++		buf += 4;
++		i += 4;
++	}
++}
++
++/**
++ * meson_spifc_txrx() - transfer a chunk of data
++ * @spifc:	the Meson SPI device
++ * @dout:	data buffer for TX
++ * @din:	data buffer for RX
++ * @offset:	offset of the data to transfer
++ * @len:	length of the data to transfer
++ * @last_xfer:	whether this is the last transfer of the message
++ * @last_chunk:	whether this is the last chunk of the transfer
++ * Return:	0 on success, a negative value on error
++ */
++static int meson_spifc_txrx(struct meson_spifc_priv *spifc,
++			    const u8 *dout, u8 *din, int offset,
++			    int len, bool last_xfer, bool last_chunk)
++{
++	bool keep_cs = true;
++	int ret;
++
++	if (dout)
++		meson_spifc_fill_buffer(spifc, dout + offset, len);
++
++	/* enable DOUT stage */
++	regmap_update_bits(spifc->regmap, REG_USER, USER_UC_MASK,
++			   USER_UC_DOUT_SEL);
++	regmap_write(spifc->regmap, REG_USER1,
++		     (8 * len - 1) << USER1_BN_UC_DOUT_SHIFT);
++
++	/* enable data input during DOUT */
++	regmap_update_bits(spifc->regmap, REG_USER, USER_DIN_EN_MS,
++			   USER_DIN_EN_MS);
++
++	if (last_chunk && last_xfer)
++		keep_cs = false;
++
++	regmap_update_bits(spifc->regmap, REG_USER4, USER4_CS_ACT,
++			   keep_cs ? USER4_CS_ACT : 0);
++
++	/* clear transition done bit */
++	regmap_update_bits(spifc->regmap, REG_SLAVE, SLAVE_TRST_DONE, 0);
++	/* start transfer */
++	regmap_update_bits(spifc->regmap, REG_CMD, CMD_USER, CMD_USER);
++
++	ret = meson_spifc_wait_ready(spifc);
++
++	if (!ret && din)
++		meson_spifc_drain_buffer(spifc, din + offset, len);
++
++	return ret;
++}
++
++/**
++ * meson_spifc_claim_bus() - claim the SPI bus
++ * @dev:	the SPI controller device
++ */
++static int meson_spifc_claim_bus(struct udevice *slave)
++{
++	struct meson_spifc_priv *spifc = dev_get_priv(slave->parent);
++	int ret;
++
++	ret = clk_enable(&spifc->clk);
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
++/**
++ * meson_spifc_release_bus() - release the SPI bus
++ * @dev:	the SPI controller device
++ */
++static int meson_spifc_release_bus(struct udevice *slave)
++{
++	struct meson_spifc_priv *spifc = dev_get_priv(slave->parent);
++
++	return clk_disable(&spifc->clk);
++}
++
++/**
++ * meson_spifc_xfer() - perform a single transfer
++ * @dev:	the SPI controller device
++ * @bitlen:	length of the transfer
++ * @dout:	data buffer for TX
++ * @din:	data buffer for RX
++ * @flags:	transfer flags
++ * Return:	0 on success, a negative value on error
++ */
++static int meson_spifc_xfer(struct udevice *slave, unsigned int bitlen,
++			    const void *dout, void *din, unsigned long flags)
++{
++	struct meson_spifc_priv *spifc = dev_get_priv(slave->parent);
++	int blen = bitlen / 8;
++	int len, done = 0, ret = 0;
++
++	if (bitlen % 8)
++		return -EINVAL;
++
++	debug("xfer len %d (%d) dout %p din %p\n", bitlen, blen, dout, din);
++
++	regmap_update_bits(spifc->regmap, REG_CTRL, CTRL_ENABLE_AHB, 0);
++
++	while (done < blen && !ret) {
++		len = min_t(int, blen - done, SPIFC_BUFFER_SIZE);
++		ret = meson_spifc_txrx(spifc, dout, din, done, len,
++				       flags & SPI_XFER_END,
++				       done + len >= blen);
++		done += len;
++	}
++
++	regmap_update_bits(spifc->regmap, REG_CTRL, CTRL_ENABLE_AHB,
++			   CTRL_ENABLE_AHB);
++
++	return ret;
++}
++
++/**
++ * meson_spifc_set_speed() - program the clock divider
++ * @dev:	the SPI controller device
++ * @speed:	desired speed in Hz
++ */
++static int meson_spifc_set_speed(struct udevice *dev, uint speed)
++{
++	struct meson_spifc_priv *spifc = dev_get_priv(dev);
++	unsigned long parent, value;
++	int n;
++
++	parent = clk_get_rate(&spifc->clk);
++	n = max_t(int, parent / speed - 1, 1);
++
++	debug("parent %lu, speed %u, n %d\n", parent, speed, n);
++
++	value = (n << CLOCK_DIV_SHIFT) & CLOCK_DIV_MASK;
++	value |= (n << CLOCK_CNT_LOW_SHIFT) & CLOCK_CNT_LOW_MASK;
++	value |= (((n + 1) / 2 - 1) << CLOCK_CNT_HIGH_SHIFT) &
++		CLOCK_CNT_HIGH_MASK;
++
++	regmap_write(spifc->regmap, REG_CLOCK, value);
++
++	return 0;
++}
++
++/**
++ * meson_spifc_set_mode() - setups the SPI bus mode
++ * @dev:	the SPI controller device
++ * @mode:	desired mode bitfield
++ * Return:	0 on success, -ENODEV on error
++ */
++static int meson_spifc_set_mode(struct udevice *dev, uint mode)
++{
++	struct meson_spifc_priv *spifc = dev_get_priv(dev);
++
++	if (mode & (SPI_CPHA | SPI_RX_QUAD | SPI_RX_DUAL |
++		    SPI_TX_QUAD | SPI_TX_DUAL))
++		return -ENODEV;
++
++	regmap_update_bits(spifc->regmap, REG_USER, USER_CLK_NOT_INV,
++			   mode & SPI_CPOL ? USER_CLK_NOT_INV : 0);
++
++	regmap_update_bits(spifc->regmap, REG_USER4, USER4_CS_POL_HIGH,
++			   mode & SPI_CS_HIGH ? USER4_CS_POL_HIGH : 0);
++
++	return 0;
++}
++
++/**
++ * meson_spifc_hw_init() - reset and initialize the SPI controller
++ * @spifc:	the Meson SPI device
++ */
++static void meson_spifc_hw_init(struct meson_spifc_priv *spifc)
++{
++	/* reset device */
++	regmap_update_bits(spifc->regmap, REG_SLAVE, SLAVE_SW_RST,
++			   SLAVE_SW_RST);
++	/* disable compatible mode */
++	regmap_update_bits(spifc->regmap, REG_USER, USER_CMP_MODE, 0);
++	/* set master mode */
++	regmap_update_bits(spifc->regmap, REG_SLAVE, SLAVE_OP_MODE, 0);
++}
++
++static const struct dm_spi_ops meson_spifc_ops = {
++	.claim_bus	= meson_spifc_claim_bus,
++	.release_bus	= meson_spifc_release_bus,
++	.xfer		= meson_spifc_xfer,
++	.set_speed	= meson_spifc_set_speed,
++	.set_mode	= meson_spifc_set_mode,
++};
++
++static int meson_spifc_probe(struct udevice *dev)
++{
++	struct meson_spifc_priv *priv = dev_get_priv(dev);
++	int ret;
++
++	ret = regmap_init_mem(dev_ofnode(dev), &priv->regmap);
++	if (ret)
++		return ret;
++
++	ret = clk_get_by_index(dev, 0, &priv->clk);
++	if (ret)
++		return ret;
++
++	ret = clk_enable(&priv->clk);
++	if (ret)
++		return ret;
++
++	meson_spifc_hw_init(priv);
++
++	ret = clk_disable(&priv->clk);
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
++static const struct udevice_id meson_spifc_ids[] = {
++	{ .compatible = "amlogic,meson-gxbb-spifc", },
++	{ }
++};
++
++U_BOOT_DRIVER(meson_spifc) = {
++	.name		= "meson_spifc",
++	.id		= UCLASS_SPI,
++	.of_match	= meson_spifc_ids,
++	.ops		= &meson_spifc_ops,
++	.probe		= meson_spifc_probe,
++	.priv_auto_alloc_size = sizeof(struct meson_spifc_priv),
++};
+-- 
+2.7.4
