@@ -1,56 +1,85 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue,  6 Nov 2018 15:57:33 +0100
-Subject: [PATCH v2 0/4] clk: meson: Add video clocks path
-Message-ID: <1541516257-16157-1-git-send-email-narmstrong@baylibre.com>
+Date: Tue,  6 Nov 2018 15:57:36 +0100
+Subject: [PATCH v2 3/4] dt-bindings: clk: meson-gxbb: Add Video clock bindings
+In-Reply-To: <1541516257-16157-1-git-send-email-narmstrong@baylibre.com>
+References: <1541516257-16157-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541516257-16157-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset is an attempt to handle the Amlogic Meson GX Video clock
-in the Common Clock Framework in order to move the video pipeline and
-HDMI controller clock management out of the Meson DRM Driver.
+Add the video clock bindings covering all the video graphics pipeline
+and the HDMI controller.
 
-In order :
-- Add support the VID_PLL fully programmable divider used right after the
-  HDMI PLL clock source.
-- Fix the GXL HDMI PLL DCO
-- Add the video clock bindings covering all the video graphics pipeline
-  and the HDMI controller.
-- Add the clocks entries used in the video clock path
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/clk/meson/gxbb.h              | 26 ++++++++++++++++++++++++--
+ include/dt-bindings/clock/gxbb-clkc.h | 18 ++++++++++++++++++
+ 2 files changed, 42 insertions(+), 2 deletions(-)
 
-The vid_pll programmable divider is introduced in its R/O form right now,
-but will be extended to be R/W in a next iteration.
-
-All dividers are flagged with CLK_GET_RATE_NOCACHE, and all gates are flagged
-with CLK_IGNORE_UNUSED since they are currently directly handled by the
-Meson DRM Driver.
-
-Once the DRM Driver is fully migrated to using the Common Clock Framework
-to handle the video clock tree, the CLK_GET_RATE_NOCACHE and CLK_IGNORE_UNUSED
-will be dropped.
-
-Changes since v1 at [1]:
- - Fixed comments from Martin
- - Fixed GXL HDMI PLL DCO
- - Added the missing HDMI controller clock
- - Moved bindings to a separate patch
- - Updated the commit logs
-
-[1] https://lkml.kernel.org/r/1532079581-978-1-git-send-email-narmstrong at baylibre.com
-
-Neil Armstrong (4):
-  clk: meson: Add vid_pll divider driver
-  clk: meson-gxbb: Fix HDMI PLL for GXL SoCs
-  dt-bindings: clk: meson-gxbb: Add Video clock bindings
-  clk: meson-gxbb: Add video clocks
-
- drivers/clk/meson/Makefile            |   2 +-
- drivers/clk/meson/clkc.h              |   6 +
- drivers/clk/meson/gxbb.c              | 773 +++++++++++++++++++++++++++++++++-
- drivers/clk/meson/gxbb.h              |  26 +-
- drivers/clk/meson/vid-pll-div.c       |  91 ++++
- include/dt-bindings/clock/gxbb-clkc.h |  18 +
- 6 files changed, 911 insertions(+), 5 deletions(-)
- create mode 100644 drivers/clk/meson/vid-pll-div.c
-
+diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
+index 72bc077..b53584f 100644
+--- a/drivers/clk/meson/gxbb.h
++++ b/drivers/clk/meson/gxbb.h
+@@ -165,8 +165,30 @@
+ #define CLKID_HDMI_PLL_OD2	  163
+ #define CLKID_SYS_PLL_DCO	  164
+ #define CLKID_GP0_PLL_DCO	  165
+-
+-#define NR_CLKS			  166
++#define CLKID_VID_PLL_SEL	  167
++#define CLKID_VID_PLL_DIV	  168
++#define CLKID_VCLK_SEL		  169
++#define CLKID_VCLK2_SEL		  170
++#define CLKID_VCLK_INPUT	  171
++#define CLKID_VCLK2_INPUT	  172
++#define CLKID_VCLK_DIV		  173
++#define CLKID_VCLK2_DIV		  174
++#define CLKID_VCLK_DIV2_EN	  177
++#define CLKID_VCLK_DIV4_EN	  178
++#define CLKID_VCLK_DIV6_EN	  179
++#define CLKID_VCLK_DIV12_EN	  180
++#define CLKID_VCLK2_DIV2_EN	  181
++#define CLKID_VCLK2_DIV4_EN	  182
++#define CLKID_VCLK2_DIV6_EN	  183
++#define CLKID_VCLK2_DIV12_EN	  184
++#define CLKID_CTS_ENCI_SEL	  195
++#define CLKID_CTS_ENCP_SEL	  196
++#define CLKID_CTS_VDAC_SEL	  197
++#define CLKID_HDMI_TX_SEL	  198
++#define CLKID_HDMI_SEL		  203
++#define CLKID_HDMI_DIV		  204
++
++#define NR_CLKS			  206
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/gxbb-clkc.h>
+diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+index 3979d48c..db0763e 100644
+--- a/include/dt-bindings/clock/gxbb-clkc.h
++++ b/include/dt-bindings/clock/gxbb-clkc.h
+@@ -128,5 +128,23 @@
+ #define CLKID_VDEC_1		153
+ #define CLKID_VDEC_HEVC		156
+ #define CLKID_GEN_CLK		159
++#define CLKID_VID_PLL		166
++#define CLKID_VCLK		175
++#define CLKID_VCLK2		176
++#define CLKID_VCLK_DIV1		185
++#define CLKID_VCLK_DIV2		186
++#define CLKID_VCLK_DIV4		187
++#define CLKID_VCLK_DIV6		188
++#define CLKID_VCLK_DIV12	189
++#define CLKID_VCLK2_DIV1	190
++#define CLKID_VCLK2_DIV2	191
++#define CLKID_VCLK2_DIV4	192
++#define CLKID_VCLK2_DIV6	193
++#define CLKID_VCLK2_DIV12	194
++#define CLKID_CTS_ENCI		199
++#define CLKID_CTS_ENCP		200
++#define CLKID_CTS_VDAC		201
++#define CLKID_HDMI_TX		202
++#define CLKID_HDMI		205
+ 
+ #endif /* __GXBB_CLKC_H */
 -- 
 2.7.4
