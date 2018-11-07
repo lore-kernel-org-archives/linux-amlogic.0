@@ -1,26 +1,43 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  7 Nov 2018 11:45:46 +0100
-Subject: [PATCH 0/4] arm64: dts: meson-gx: fix GPIO lines names
-Message-ID: <1541587550-17842-1-git-send-email-narmstrong@baylibre.com>
+Date: Wed,  7 Nov 2018 11:45:48 +0100
+Subject: [PATCH 2/4] arm64: dts: meson-gxbb-nanopi-k2: fix GPIO lines names
+In-Reply-To: <1541587550-17842-1-git-send-email-narmstrong@baylibre.com>
+References: <1541587550-17842-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541587550-17842-3-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 The gpio line names were set in the pinctrl node instead of the gpio node,
 at the time it was merged, it worked, but was obviously wrong.
-This patches moves the properties to the gpio nodes for the board DT having
-the GPIO lines names.
+This patch moves the properties to the gpio nodes.
 
-Neil Armstrong (4):
-  arm64: dts: meson-gxl-libretech-cc: fix GPIO lines names
-  arm64: dts: meson-gxbb-nanopi-k2: fix GPIO lines names
-  arm64: dts: meson-gxbb-odroidc2: fix GPIO lines names
-  arm64: dts: meson-gxl-khadas-vim: fix GPIO lines names
+Fixes: 12ada0513d7a ("ARM64: dts: meson-gxbb-nanopi-k2: Add GPIO lines names")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts         | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts          | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts   | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 4 ++--
- 4 files changed, 8 insertions(+), 8 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index cbe99bd..8cd50b7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -191,7 +191,7 @@
+ 	pinctrl-names = "default";
+ };
+ 
+-&pinctrl_aobus {
++&gpio_ao {
+ 	gpio-line-names = "UART TX", "UART RX", "Power Control", "Power Key In",
+ 			  "VCCK En", "CON1 Header Pin31",
+ 			  "I2S Header Pin6", "IR In", "I2S Header Pin7",
+@@ -201,7 +201,7 @@
+ 			  "";
+ };
+ 
+-&pinctrl_periphs {
++&gpio {
+ 	gpio-line-names = /* Bank GPIOZ */
+ 			  "Eth MDIO", "Eth MDC", "Eth RGMII RX Clk",
+ 			  "Eth RX DV", "Eth RX D0", "Eth RX D1", "Eth RX D2",
 -- 
 2.7.4
