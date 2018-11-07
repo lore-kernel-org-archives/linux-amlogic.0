@@ -1,61 +1,59 @@
-From: mjourdan@baylibre.com (Maxime Jourdan)
-Date: Wed, 7 Nov 2018 10:41:27 +0100
-Subject: [PATCH 1/3] drm/meson: Support Overlay plane for video rendering
-In-Reply-To: <1541497202-20570-2-git-send-email-narmstrong@baylibre.com>
-References: <1541497202-20570-1-git-send-email-narmstrong@baylibre.com>
- <1541497202-20570-2-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAMO6nay=te3W67b83LKv35tXL8+09rvE9EaFwLDrRBhwpEgMvQ@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed,  7 Nov 2018 11:42:38 +0100
+Subject: [PATCH] pinctrl: meson-gxl: remove invalid GPIOX tsin_a pins
+Message-ID: <1541587358-17654-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Tue, Nov 6, 2018 at 10:40 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> The Amlogic Meson GX SoCs support an Overlay plane behind the primary
-> plane for video rendering.
->
-> This Overlay plane support various YUV layouts :
-> - YUYV
-> - NV12 / NV21
-> - YUV444 / 422 / 420 / 411 / 410
->
-> The scaler supports a wide range of scaling ratios, but for simplicity,
-> plane atomic check limits the scaling from x5 to /5 in vertical and
-> horizontal scaling.
->
-> The z-order is fixed and always behind the primary plane and cannot be changed.
->
-> The scaling parameter algorithm was taken from the Amlogic vendor kernel
-> code and rewritten to match the atomic universal plane requirements.
->
-> The video rendering using this overlay plane support has been tested using
-> the new Kodi DRM-KMS Prime rendering path along the in-review V4L2 Mem2Mem
-> Hardware Video Decoder up to 3840x2160 NV12 frames on various display modes.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/gpu/drm/meson/Makefile          |   2 +-
->  drivers/gpu/drm/meson/meson_canvas.c    |   7 +-
->  drivers/gpu/drm/meson/meson_canvas.h    |  11 +-
->  drivers/gpu/drm/meson/meson_crtc.c      | 216 +++++++++++-
->  drivers/gpu/drm/meson/meson_drv.c       |  29 +-
->  drivers/gpu/drm/meson/meson_drv.h       |  52 +++
->  drivers/gpu/drm/meson/meson_overlay.c   | 586 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/meson/meson_overlay.h   |  14 +
->  drivers/gpu/drm/meson/meson_registers.h |   3 +
->  drivers/gpu/drm/meson/meson_viu.c       |  15 +
->  drivers/gpu/drm/meson/meson_vpp.c       |  44 ++-
->  11 files changed, 971 insertions(+), 8 deletions(-)
->  create mode 100644 drivers/gpu/drm/meson/meson_overlay.c
->  create mode 100644 drivers/gpu/drm/meson/meson_overlay.h
->
+The GPIOX tsin_a pins wrongly uses the SDCard pinctrl bits, this
+patch completely removes these pins entries until we find out what
+are the correct bits and registers to be used instead.
 
-Tested by rendering video with:
- - gstreamer 1.14.4 using kmssink
- - ffmpeg-drm (https://github.com/Elyotna/ffmpeg-drm),
-by applying this patch on top of the video decoder patch series.
+Fixes: 5a6ae9b80139 ("pinctrl: meson-gxl: add tsin_a pins")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
 
-Used different resolutions and pixel aspect ratios.
-
-Tested-by: Maxime Jourdan <mjourdan@baylibre.com>
-
-[snip]
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+index 7dae1d7..3277d17 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+@@ -239,13 +239,9 @@ static const unsigned int eth_link_led_pins[]	= { GPIOZ_14 };
+ static const unsigned int eth_act_led_pins[]	= { GPIOZ_15 };
+ 
+ static const unsigned int tsin_a_d0_pins[]	= { GPIODV_0 };
+-static const unsigned int tsin_a_d0_x_pins[]	= { GPIOX_10 };
+ static const unsigned int tsin_a_clk_pins[]	= { GPIODV_8 };
+-static const unsigned int tsin_a_clk_x_pins[]	= { GPIOX_11 };
+ static const unsigned int tsin_a_sop_pins[]	= { GPIODV_9 };
+-static const unsigned int tsin_a_sop_x_pins[]	= { GPIOX_8 };
+ static const unsigned int tsin_a_d_valid_pins[] = { GPIODV_10 };
+-static const unsigned int tsin_a_d_valid_x_pins[] = { GPIOX_9 };
+ static const unsigned int tsin_a_fail_pins[]	= { GPIODV_11 };
+ static const unsigned int tsin_a_dp_pins[] = {
+ 	GPIODV_1, GPIODV_2, GPIODV_3, GPIODV_4, GPIODV_5, GPIODV_6, GPIODV_7,
+@@ -432,10 +428,6 @@ static struct meson_pmx_group meson_gxl_periphs_groups[] = {
+ 	GROUP(spi_miso,		5,	2),
+ 	GROUP(spi_ss0,		5,	1),
+ 	GROUP(spi_sclk,		5,	0),
+-	GROUP(tsin_a_sop_x,	6,	3),
+-	GROUP(tsin_a_d_valid_x,	6,	2),
+-	GROUP(tsin_a_d0_x,	6,	1),
+-	GROUP(tsin_a_clk_x,	6,	0),
+ 
+ 	/* Bank Z */
+ 	GROUP(eth_mdio,		4,	23),
+@@ -698,8 +690,8 @@ static const char * const eth_led_groups[] = {
+ };
+ 
+ static const char * const tsin_a_groups[] = {
+-	"tsin_a_clk", "tsin_a_clk_x", "tsin_a_sop", "tsin_a_sop_x",
+-	"tsin_a_d_valid", "tsin_a_d_valid_x", "tsin_a_d0", "tsin_a_d0_x",
++	"tsin_a_clk", "tsin_a_sop",
++	"tsin_a_d_valid", "tsin_a_d0",
+ 	"tsin_a_dp", "tsin_a_fail",
+ };
+ 
+-- 
+2.7.4
