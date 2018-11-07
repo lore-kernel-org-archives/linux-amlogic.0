@@ -1,9 +1,9 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed,  7 Nov 2018 11:45:47 +0100
-Subject: [PATCH 1/4] arm64: dts: meson-gxl-libretech-cc: fix GPIO lines names
+Date: Wed,  7 Nov 2018 11:45:49 +0100
+Subject: [PATCH 3/4] arm64: dts: meson-gxbb-odroidc2: fix GPIO lines names
 In-Reply-To: <1541587550-17842-1-git-send-email-narmstrong@baylibre.com>
 References: <1541587550-17842-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541587550-17842-2-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541587550-17842-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -11,33 +11,33 @@ The gpio line names were set in the pinctrl node instead of the gpio node,
 at the time it was merged, it worked, but was obviously wrong.
 This patch moves the properties to the gpio nodes.
 
-Fixes: 47884c5c746e ("ARM64: dts: meson-gxl-libretech-cc: Add GPIO lines names")
+Fixes: b03c7d6438bb ("ARM64: dts: meson-gxbb-odroidc2: Add GPIO lines names")
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 90a56af..b4dfb9a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -163,7 +163,7 @@
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 54954b3..00f7be6 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -187,7 +187,7 @@
+ 	pinctrl-names = "default";
  };
  
 -&pinctrl_aobus {
 +&gpio_ao {
- 	gpio-line-names = "UART TX",
- 			  "UART RX",
- 			  "Blue LED",
-@@ -178,7 +178,7 @@
- 			  "7J1 Header Pin15";
+ 	gpio-line-names = "UART TX", "UART RX", "VCCK En", "TF 3V3/1V8 En",
+ 			  "USB HUB nRESET", "USB OTG Power En",
+ 			  "J7 Header Pin2", "IR In", "J7 Header Pin4",
+@@ -197,7 +197,7 @@
+ 			  "";
  };
  
 -&pinctrl_periphs {
 +&gpio {
  	gpio-line-names = /* Bank GPIOZ */
- 			  "", "", "", "", "", "", "",
- 			  "", "", "", "", "", "", "",
+ 			  "Eth MDIO", "Eth MDC", "Eth RGMII RX Clk",
+ 			  "Eth RX DV", "Eth RX D0", "Eth RX D1", "Eth RX D2",
 -- 
 2.7.4
