@@ -1,36 +1,23 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Nov 2018 14:53:51 +0100
-Subject: [PATCH 3/4] Documentation: bindings: Add missing Amlogic SCPI sensor
- bindings
-In-Reply-To: <20181108135352.8459-1-jbrunet@baylibre.com>
-References: <20181108135352.8459-1-jbrunet@baylibre.com>
-Message-ID: <20181108135352.8459-4-jbrunet@baylibre.com>
+Date: Thu,  8 Nov 2018 14:53:48 +0100
+Subject: [PATCH 0/4] arm64: dts: meson-axg: enable SCPI
+Message-ID: <20181108135352.8459-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-amlogic,meson-gxbb-scpi-sensors is both the driver and DT but is not
-documented. Just add it to amlogic's scpi documentation
+The goal of this patchset is to enable SCPI (dvfs and hwmon) the axg
+platform. The first patches in this series fix a few issues to acheive
+this.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- Documentation/devicetree/bindings/arm/amlogic,scpi.txt | 7 +++++++
- 1 file changed, 7 insertions(+)
+Jerome Brunet (4):
+  arm64: dts: meson-axg: fix mailbox address
+  arm64: dts: meson-axg: correct sram shared mem unit-address
+  Documentation: bindings: Add missing Amlogic SCPI sensor bindings
+  arm64: dts: meson-axg: enable SCPI
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic,scpi.txt b/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
-index 7b9a861e9306..5ab59da052df 100644
---- a/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
-@@ -17,4 +17,11 @@ Required sub-node properties:
- - compatible : should be "amlogic,meson-gxbb-scp-shmem" for SRAM based shared
- 		memory on Amlogic GXBB SoC.
- 
-+Sensor bindings for the sensors based on SCPI Message Protocol
-+--------------------------------------------------------------
-+SCPI provides an API to access the various sensors on the SoC.
-+
-+Required properties:
-+- compatible : should be "amlogic,meson-gxbb-scpi-sensors".
-+
- [0] Documentation/devicetree/bindings/arm/arm,scpi.txt
+ .../devicetree/bindings/arm/amlogic,scpi.txt  |  7 ++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    | 34 ++++++++++++++++---
+ 2 files changed, 37 insertions(+), 4 deletions(-)
+
 -- 
 2.19.1
