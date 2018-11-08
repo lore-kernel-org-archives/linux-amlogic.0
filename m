@@ -1,51 +1,64 @@
-From: sboyd@kernel.org (Stephen Boyd)
-Date: Thu, 08 Nov 2018 10:12:43 -0800
-Subject: [PATCH v2] clk: meson-gxbb: set fclk_div3 as CLK_IS_CRITICAL
-In-Reply-To: <72269086b0ce0be5517c7ffb2bc979c4d17d5cc3.camel@baylibre.com>
-References: <20181105230820.3562-1-jbrunet@baylibre.com>
- <154152980131.88331.14307558394241579493@swboyd.mtv.corp.google.com>
- <72269086b0ce0be5517c7ffb2bc979c4d17d5cc3.camel@baylibre.com>
-Message-ID: <154170076313.88331.10224163811765573746@swboyd.mtv.corp.google.com>
+From: grygorii.strashko@ti.com (Grygorii Strashko)
+Date: Thu, 8 Nov 2018 12:12:15 -0600
+Subject: [PATCH 2/5] phy: core: add PHY_MODE_ETHERNET
+In-Reply-To: <20181108004200.GW30658@n2100.armlinux.org.uk>
+References: <20181108003617.10334-1-grygorii.strashko@ti.com>
+ <20181108003617.10334-3-grygorii.strashko@ti.com>
+ <20181108004200.GW30658@n2100.armlinux.org.uk>
+Message-ID: <fbb63ce7-4a5f-738a-c398-4c28abd3cb60@ti.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting jbrunet at baylibre.com (2018-11-06 10:49:21)
-> On Tue, 2018-11-06 at 10:43 -0800, Stephen Boyd wrote:
-> > Quoting Jerome Brunet (2018-11-05 15:08:20)
-> > > From: Christian Hewitt <christianshewitt@gmail.com>
-> > > 
-> > > On the Khadas VIM2 (GXM) and LePotato (GXL) board there are problems
-> > > with reboot; e.g. a ~60 second delay between issuing reboot and the
-> > > board power cycling (and in some OS configurations reboot will fail
-> > > and require manual power cycling).
-> > > 
-> > > Similar to 'commit c987ac6f1f088663b6dad39281071aeb31d450a8 ("clk:
-> > > meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL")' the SCPI Cortex-M4
-> > > Co-Processor seems to depend on FCLK_DIV3 being operational.
-> > > 
-> > > Until commit 05f814402d6174369b3b29832cbb5eb5ed287059 ("clk:
-> > > meson: add fdiv clock gates"), this clock was modeled and left on by
-> > > the bootloader.
-> > > 
-> > > We don't have precise documentation about the SCPI Co-Processor and
-> > > its clock requirement so we are learning things the hard way.
-> > > 
-> > > Marking this clock as critical solves the problem but it should not
-> > > be viewed as final solution. Ideally, the SCPI driver should claim
-> > > these clocks. We also depends on some clock hand-off mechanism
-> > > making its way to CCF, to make sure the clock stays on between its
-> > > registration and the SCPI driver probe.
-> > > 
-> > > Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
-> > > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > > ---
-> > 
-> > I can toss this into clk-fixes?
-> > 
+hi Russell,
+
+On 11/7/18 6:42 PM, Russell King - ARM Linux wrote:
+> On Wed, Nov 07, 2018 at 06:36:14PM -0600, Grygorii Strashko wrote:
+>> Add new PHY's mode to be used by Ethernet PHY interface drivers or
+>> multipurpose PHYs like serdes. It will be reused in further changes.
+>>
+>> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+>> ---
+>>   include/linux/phy/phy.h | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+>> index b17e770..02c9ef0 100644
+>> --- a/include/linux/phy/phy.h
+>> +++ b/include/linux/phy/phy.h
+>> @@ -42,6 +42,7 @@ enum phy_mode {
+>>   	PHY_MODE_UFS_HS_A,
+>>   	PHY_MODE_UFS_HS_B,
+>>   	PHY_MODE_PCIE,
+>> +	PHY_MODE_ETHERNET,
 > 
-> Sure, it would be great. Thx Stephen.
+> Are you sure about this - we already have a bunch of "ethernet" modes
+> that are more specific, like PHY_MODE_SGMII, PHY_MODE_2500SGMII and
+> PHY_MODE_10GKR which require PHYs to be configured differently.  Having
+> a very generic "ethernet" mode brings up questions about when it should
+> be used vs the more specific modes.
+
+yes. the idea of this series is to split PHY mode on - PHY mode (generic)
+and PHY submode (subsystem specific), so multi-functional PHY like serdes will do
+(for example):
+
+  phy_set_mode_ext(port->comphy, PHY_MODE_ETHERNET, PHY_INTERFACE_MODE_SGMII);
+  where PHY_INTERFACE_MODE_SGMII is defined by phy_interface_t enum.
+
+instead of
+
+  phy_set_mode(port->comphy, PHY_MODE_SGMII);
+
+In patches 3-5 I've converted users of existing PHY "ethernet" modes to use
+this approach and, finally, in patch 5 removed
+    PHY_MODE_SGMII/2500SGMII/QSGMII/10GKR
+
 > 
+> (I've already mentioned that the SGMII modes are mis-named, since
+> they also apply to 1000base-X and 2500base-X - the only difference
+> is how one 16-bit word in the data stream is used which has no effect
+> on the PHY.)
 > 
 
-Awesome, thanks! Applied to clk-fixes.
+-- 
+regards,
+-grygorii
