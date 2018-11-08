@@ -1,116 +1,32 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Nov 2018 11:44:24 +0100
-Subject: [PATCH 2/4] arm64: dts: meson: disable pad bias for mmc pinmuxes
-In-Reply-To: <20181108104426.1877-1-jbrunet@baylibre.com>
-References: <20181108104426.1877-1-jbrunet@baylibre.com>
-Message-ID: <20181108104426.1877-3-jbrunet@baylibre.com>
+Date: Thu,  8 Nov 2018 14:07:44 +0100
+Subject: [PATCH] arm64: dts: meson-axg: add secure monitor
+Message-ID: <20181108130744.32323-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In some cases (such as a boot from SPI) the bootloader or the ROM code may
-leave a bias pull-down on the mmc pins. If so the MMC will fail during the
-initialisation.
-
-Explicitly disabling the pinmux solves the problem.
+Add the secure monitor device to the axg platform.
+With this, we can read the SoC serial number.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++++
- 3 files changed, 10 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index e86f5f721f8f..bc427b9d3e13 100644
+index e0139f174726..3cc0044d3468 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -273,6 +273,7 @@
- 							 "emmc_cmd",
- 							 "emmc_ds";
- 						function = "emmc";
-+						bias-disable;
- 					};
- 				};
- 
-@@ -503,6 +504,7 @@
- 							 "sdio_cmd",
- 							 "sdio_clk";
- 						function = "sdio";
-+						bias-disable;
- 					};
- 				};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 1cb8e7e0d0da..32ef82321340 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -363,6 +363,7 @@
- 				       "emmc_cmd",
- 				       "emmc_clk";
- 				function = "emmc";
-+				bias-disable;
- 			};
+@@ -110,6 +110,10 @@
  		};
+ 	};
  
-@@ -370,6 +371,7 @@
- 			mux {
- 				groups = "emmc_ds";
- 				function = "emmc";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -416,6 +418,7 @@
- 				       "sdcard_cmd",
- 				       "sdcard_clk";
- 				function = "sdcard";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -436,6 +439,7 @@
- 				       "sdio_cmd",
- 				       "sdio_clk";
- 				function = "sdio";
-+				bias-disable;
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 7cfee40d89e9..cfeec5579726 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -310,6 +310,7 @@
- 				       "emmc_cmd",
- 				       "emmc_clk";
- 				function = "emmc";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -317,6 +318,7 @@
- 			mux {
- 				groups = "emmc_ds";
- 				function = "emmc";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -363,6 +365,7 @@
- 				       "sdcard_cmd",
- 				       "sdcard_clk";
- 				function = "sdcard";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -383,6 +386,7 @@
- 				       "sdio_cmd",
- 				       "sdio_clk";
- 				function = "sdio";
-+				bias-disable;
- 			};
- 		};
- 
++	sm: secure-monitor {
++		compatible = "amlogic,meson-gxbb-sm";
++	};
++
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
 -- 
 2.19.1
