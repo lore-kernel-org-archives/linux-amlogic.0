@@ -1,32 +1,115 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Nov 2018 10:56:40 +0100
-Subject: [PATCH] arm64: dts: meson-axg: s400: add cts-rts to the bluetooth uart
-Message-ID: <20181108095640.27876-1-jbrunet@baylibre.com>
+Date: Thu,  8 Nov 2018 11:44:23 +0100
+Subject: [PATCH 1/4] arm64: dts: meson: remove extra subnode in mmc clk_gate
+ pinmux
+In-Reply-To: <20181108104426.1877-1-jbrunet@baylibre.com>
+References: <20181108104426.1877-1-jbrunet@baylibre.com>
+Message-ID: <20181108104426.1877-2-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The uart used with bluetooth chipset on the s400 has flow control
-available. Let's enable it.
+In the pinmux of the mmc clk_gate nodes, we define 2 subnodes. One for
+the function definition, the other for the bias. This is not necessary
+since we can define the function and the bias in the same subnode.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 6 ------
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 9 ---------
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 9 ---------
+ 3 files changed, 24 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index ba44b0419404..29ccb8ad0de6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -543,8 +543,9 @@
- 
- &uart_A {
- 	status = "okay";
--	pinctrl-0 = <&uart_a_pins>;
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
- 	pinctrl-names = "default";
-+	uart-has-rtscts;
- };
- 
- &uart_AO {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index eb46db001ce0..e86f5f721f8f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -280,9 +280,6 @@
+ 					mux {
+ 						groups = "BOOT_8";
+ 						function = "gpio_periphs";
+-					};
+-					cfg-pull-down {
+-						pins = "BOOT_8";
+ 						bias-pull-down;
+ 					};
+ 				};
+@@ -513,9 +510,6 @@
+ 					mux {
+ 						groups = "GPIOX_4";
+ 						function = "gpio_periphs";
+-					};
+-					cfg-pull-down {
+-						pins = "GPIOX_4";
+ 						bias-pull-down;
+ 					};
+ 				};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 524f533e41d4..1cb8e7e0d0da 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -377,9 +377,6 @@
+ 			mux {
+ 				groups = "BOOT_8";
+ 				function = "gpio_periphs";
+-			};
+-			cfg-pull-down {
+-				pins = "BOOT_8";
+ 				bias-pull-down;
+ 			};
+ 		};
+@@ -426,9 +423,6 @@
+ 			mux {
+ 				groups = "CARD_2";
+ 				function = "gpio_periphs";
+-			};
+-			cfg-pull-down {
+-				pins = "CARD_2";
+ 				bias-pull-down;
+ 			};
+ 		};
+@@ -449,9 +443,6 @@
+ 			mux {
+ 				groups = "GPIOX_4";
+ 				function = "gpio_periphs";
+-			};
+-			cfg-pull-down {
+-				pins = "GPIOX_4";
+ 				bias-pull-down;
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index 8ccab9a1ebcc..7cfee40d89e9 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -324,9 +324,6 @@
+ 			mux {
+ 				groups = "BOOT_8";
+ 				function = "gpio_periphs";
+-			};
+-			cfg-pull-down {
+-				pins = "BOOT_8";
+ 				bias-pull-down;
+ 			};
+ 		};
+@@ -373,9 +370,6 @@
+ 			mux {
+ 				groups = "CARD_2";
+ 				function = "gpio_periphs";
+-			};
+-			cfg-pull-down {
+-				pins = "CARD_2";
+ 				bias-pull-down;
+ 			};
+ 		};
+@@ -396,9 +390,6 @@
+ 			mux {
+ 				groups = "GPIOX_4";
+ 				function = "gpio_periphs";
+-			};
+-			cfg-pull-down {
+-				pins = "GPIOX_4";
+ 				bias-pull-down;
+ 			};
+ 		};
 -- 
 2.19.1
