@@ -1,67 +1,165 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Nov 2018 10:31:23 +0100
-Subject: [PATCH] clk: meson: axg: mark fdiv2 and fdiv3 as critical
-Message-ID: <20181108093123.21498-1-jbrunet@baylibre.com>
+Date: Thu,  8 Nov 2018 10:51:56 +0100
+Subject: [PATCH RESEND] arm64: dts: meson-axg: fix dtc warning about unit
+ address
+In-Reply-To: <20181030150614.19461-1-jbrunet@baylibre.com>
+References: <20181030150614.19461-1-jbrunet@baylibre.com>
+Message-ID: <20181108095156.26810-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Similar to gxbb and gxl platforms, axg SCPI Cortex-M co-processor
-uses the fdiv2 and fdiv3 to, among other things, provide the cpu
-clock.
+section 2.2.1 of the DT specs says: " If the node has no reg property,
+the @unit-address must be omitted and the node-name alone differentiates
+the node from other nodes at the same level in the tree"
 
-Until clock hand-off mechanism makes its way to CCF and the generic
-SCPI claims platform specific clocks, these clocks must be marked as
-critical to make sure they are never disabled when needed by the
-co-processor.
+Simply replace the '@' with a '-' to fix this warning.
 
-Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
 
-Hi Stephen,
+Hi Kevin,
 
-If you can put this one in clk-fixes as well, it would be awesome.
-It is basically the same thing as the change you took this Tuesday.
+I'm resending this change because I noticed the previous patch I sent had
+references to spdif input which has not been merged yet. This would have
+triggered a conflict in your tree.
 
-Since then, we had reports the same problem with SCPI was happening
-on the axg, calling for the same fixup.
+Hopefully, this new version will apply correctly
 
 Cheers
 Jerome
 
- drivers/clk/meson/axg.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 26 +++++++++----------
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  6 ++---
+ 2 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index c981159b02c0..792735d7e46e 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -325,6 +325,7 @@ static struct clk_regmap axg_fclk_div2 = {
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_names = (const char *[]){ "fclk_div2_div" },
- 		.num_parents = 1,
-+		.flags = CLK_IS_CRITICAL,
- 	},
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+index 18778ada7bd3..ba44b0419404 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+@@ -60,7 +60,7 @@
+ 		serial1 = &uart_A;
+ 	};
  
-@@ -349,6 +350,18 @@ static struct clk_regmap axg_fclk_div3 = {
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_names = (const char *[]){ "fclk_div3_div" },
- 		.num_parents = 1,
-+		/*
-+		 * FIXME:
-+		 * This clock, as fdiv2, is used by the SCPI FW and is required
-+		 * by the platform to operate correctly.
-+		 * Until the following condition are met, we need this clock to
-+		 * be marked as critical:
-+		 * a) The SCPI generic driver claims and enable all the clocks
-+		 *    it needs
-+		 * b) CCF has a clock hand-off mechanism to make the sure the
-+		 *    clock stays on until the proper driver comes along
-+		 */
-+		.flags = CLK_IS_CRITICAL,
- 	},
- };
+-	linein: audio-codec at 0 {
++	linein: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "everest,es7241";
+ 		VDDA-supply = <&vcc_3v3>;
+@@ -70,7 +70,7 @@
+ 		sound-name-prefix = "Linein";
+ 	};
  
+-	lineout: audio-codec at 1 {
++	lineout: audio-codec-1 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "everest,es7154";
+ 		VDD-supply = <&vcc_3v3>;
+@@ -79,14 +79,14 @@
+ 		sound-name-prefix = "Lineout";
+ 	};
+ 
+-	spdif_dit: audio-codec at 2 {
++	spdif_dit: audio-codec-2 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "linux,spdif-dit";
+ 		status = "okay";
+ 		sound-name-prefix = "DIT";
+ 	};
+ 
+-	dmics: audio-codec at 3 {
++	dmics: audio-codec-3 {
+ 		#sound-dai-cells = <0>;
+ 		compatible = "dmic-codec";
+ 		num-channels = <7>;
+@@ -272,31 +272,31 @@
+ 				       <393216000>;
+ 		status = "okay";
+ 
+-		dai-link at 0 {
++		dai-link-0 {
+ 			sound-dai = <&frddr_a>;
+ 		};
+ 
+-		dai-link at 1 {
++		dai-link-1 {
+ 			sound-dai = <&frddr_b>;
+ 		};
+ 
+-		dai-link at 2 {
++		dai-link-2 {
+ 			sound-dai = <&frddr_c>;
+ 		};
+ 
+-		dai-link at 3 {
++		dai-link-3 {
+ 			sound-dai = <&toddr_a>;
+ 		};
+ 
+-		dai-link at 4 {
++		dai-link-4 {
+ 			sound-dai = <&toddr_b>;
+ 		};
+ 
+-		dai-link at 5 {
++		dai-link-5 {
+ 			sound-dai = <&toddr_c>;
+ 		};
+ 
+-		dai-link at 6 {
++		dai-link-6 {
+ 			sound-dai = <&tdmif_c>;
+ 			dai-format = "i2s";
+ 			dai-tdm-slot-tx-mask-2 = <1 1>;
+@@ -317,7 +317,7 @@
+ 
+ 		};
+ 
+-		dai-link at 7 {
++		dai-link-7 {
+ 			sound-dai = <&spdifout>;
+ 
+ 			codec {
+@@ -325,7 +325,7 @@
+ 			};
+ 		};
+ 
+-		dai-link at 8 {
++		dai-link-8 {
+ 			sound-dai = <&pdm>;
+ 
+ 			codec {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index df017dbd2e57..eb46db001ce0 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -20,7 +20,7 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
+-	tdmif_a: audio-controller at 0 {
++	tdmif_a: audio-controller-0 {
+ 		compatible = "amlogic,axg-tdm-iface";
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TDM_A";
+@@ -31,7 +31,7 @@
+ 		status = "disabled";
+ 	};
+ 
+-	tdmif_b: audio-controller at 1 {
++	tdmif_b: audio-controller-1 {
+ 		compatible = "amlogic,axg-tdm-iface";
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TDM_B";
+@@ -42,7 +42,7 @@
+ 		status = "disabled";
+ 	};
+ 
+-	tdmif_c: audio-controller at 2 {
++	tdmif_c: audio-controller-2 {
+ 		compatible = "amlogic,axg-tdm-iface";
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TDM_C";
 -- 
 2.19.1
