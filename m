@@ -1,36 +1,86 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 8 Nov 2018 15:40:46 +0100
-Subject: [PATCH] arm64: dts: meson-axg: add secure monitor
-In-Reply-To: <20181108130744.32323-1-jbrunet@baylibre.com>
-References: <20181108130744.32323-1-jbrunet@baylibre.com>
-Message-ID: <a9e865ff-aa8f-4224-66bc-3ebc94dd1ceb@baylibre.com>
+Date: Thu, 8 Nov 2018 15:42:30 +0100
+Subject: [PATCH v2 0/3] Meson8/Meson8b: introduce a HHI syscon node
+In-Reply-To: <CAGb2v65L4Sq1Fxqyffq16Zpamv=WosgvCaXdVYH6ooLLmHW0SQ@mail.gmail.com>
+References: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
+ <20181030221310.GA22640@bogus>
+ <CAFBinCDnB5GiX530eLR5fa6JEZP9GtYDhJq6S7sKMXEtMP5FHQ@mail.gmail.com>
+ <CAGb2v65L4Sq1Fxqyffq16Zpamv=WosgvCaXdVYH6ooLLmHW0SQ@mail.gmail.com>
+Message-ID: <5440e173-3bd1-9ce2-ea9e-cc95b909d4a8@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/11/2018 14:07, Jerome Brunet wrote:
-> Add the secure monitor device to the axg platform.
-> With this, we can read the SoC serial number.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index e0139f174726..3cc0044d3468 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -110,6 +110,10 @@
->  		};
->  	};
->  
-> +	sm: secure-monitor {
-> +		compatible = "amlogic,meson-gxbb-sm";
-> +	};
-> +
->  	psci {
->  		compatible = "arm,psci-1.0";
->  		method = "smc";
-> 
+On 01/11/2018 11:20, Chen-Yu Tsai wrote:
+> On Thu, Nov 1, 2018 at 6:10 PM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On Tue, Oct 30, 2018 at 11:13 PM Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Sun, Oct 28, 2018 at 01:08:56PM +0100, Martin Blumenstingl wrote:
+>>>> The Meson8/Meson8b/Meson8m2 SoCs are suffering from a similar problem
+>>>> as the GXBB/GXL/GXM SoCs (see the GX series from Jerome: [0]):
+>>>> There is a register area called "HHI" which is used for multiple IP
+>>>> blocks of the SoC:
+>>>> - the system clock controller
+>>>> - a few reset lines (there is a separate reset controller, these reset
+>>>>   lines are not part of the other reset controller). this reset
+>>>>   controller is currently implemented in the clock controller driver
+>>>> - a HDMI controller
+>>>
+>>> Does this have it's own clocks, resets or other resources?
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+[...]
+
+>>>>
+>>>> The first three could be implemented with a single node (either in one
+>>>> big driver, or using a MFD driver which would register function-
+>>>> specific drivers).
+>>>> However, the TSC data is a big problem, because the ADC has it's own
+>>>> set of registers but needs to write one bit in the HHI register area.
+>>>
+>>> Generally, that would be solved with a phandle to the HHI and maybe an
+>>> offset cell in the ADC node. I don't see why that's a big problem.
+>> this is what I'm trying to do, see my dt-bindings patch for the SAR
+>> ADC (which is used to read the temperature sensor): [0]
+>> my understanding was that I should go through syscon to avoid double
+>> ioremap() of the same register set (the clock controller and SAR ADC
+>> would have to do it).
+>> which APIs (other than syscon) would you suggest for this case?
+> 
+> I would suggest avoiding the syscon API when you have other drivers going
+> through the same register space. You can do a syscon like approach by
+> having the HHI driver register one or multiple regmaps, with appropriate
+> access controls, which other drivers can fetch using dev_get_regmap() (via
+> a phandle to the HHI device). I don't know much about simple-mfd though.
+> If the registers are neatly grouped together by function it would be easier
+> to deal with. Or you could just have one device node with appropriate cell
+> properties and have a big driver register all the functions. That driver
+> would likely live under drivers/soc/.
+
+Well, it's the role of simple-mfd, when you only have plaform-tied sub drivers,
+and it's over-engineered to write an MFD driver for this.
+
+At some point, we should move forward with this since it's a "system controller"
+specific mapping, and "syscon" was designed specifically to solve this kind
+of mapping in DT.
+
+The other SoCs (GX, AXG and G12A) uses this exact DT architecture to solve this
+issue, and we should use this same schema for other Amlogic SoCs even if it's
+not the most perfect way to solve it.
+
+Neil
+
+> 
+> ChenYu
+> 
+>>
+>> Regards
+>> Martin
+>>
+>>
+>> [0] https://patchwork.kernel.org/patch/10658557/
+>> [1] https://github.com/endlessm/linux-meson/blob/3a749cb45a381fb977bae0bee36c6c1cbee32ac1/arch/arm/mach-meson8b/hdmi_tx_hw/hdmi_tx_hw.c
+>> [2] https://github.com/endlessm/linux-meson/blob/3a749cb45a381fb977bae0bee36c6c1cbee32ac1/arch/arm/mach-meson8b/hdmi_tx_hw/hdmi_tx_reg.c
+>> [3] https://github.com/endlessm/linux-meson/blob/3a749cb45a381fb977bae0bee36c6c1cbee32ac1/arch/arm/mach-meson8b/include/mach/register.h
