@@ -1,53 +1,51 @@
-From: afaerber@suse.de (=?UTF-8?Q?Andreas_F=c3=a4rber?=)
-Date: Thu, 8 Nov 2018 18:07:13 +0100
-Subject: [PATCH v2 1/3] dt-bindings: Add vendor prefix for Smartlabs
-In-Reply-To: <1541696475-27454-2-git-send-email-christianshewitt@gmail.com>
-References: <1541691207-24768-1-git-send-email-christianshewitt@gmail.com>
- <1541696475-27454-1-git-send-email-christianshewitt@gmail.com>
- <1541696475-27454-2-git-send-email-christianshewitt@gmail.com>
-Message-ID: <c3c6ecbb-13c3-79ac-7587-c41b1d49bc42@suse.de>
+From: sboyd@kernel.org (Stephen Boyd)
+Date: Thu, 08 Nov 2018 10:12:43 -0800
+Subject: [PATCH v2] clk: meson-gxbb: set fclk_div3 as CLK_IS_CRITICAL
+In-Reply-To: <72269086b0ce0be5517c7ffb2bc979c4d17d5cc3.camel@baylibre.com>
+References: <20181105230820.3562-1-jbrunet@baylibre.com>
+ <154152980131.88331.14307558394241579493@swboyd.mtv.corp.google.com>
+ <72269086b0ce0be5517c7ffb2bc979c4d17d5cc3.camel@baylibre.com>
+Message-ID: <154170076313.88331.10224163811765573746@swboyd.mtv.corp.google.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am 08.11.18 um 18:01 schrieb Christian Hewitt:
-> Smartlabs are a professional integrator of Interactive TV solutions
-> and IPTV/VOD devices.
+Quoting jbrunet at baylibre.com (2018-11-06 10:49:21)
+> On Tue, 2018-11-06 at 10:43 -0800, Stephen Boyd wrote:
+> > Quoting Jerome Brunet (2018-11-05 15:08:20)
+> > > From: Christian Hewitt <christianshewitt@gmail.com>
+> > > 
+> > > On the Khadas VIM2 (GXM) and LePotato (GXL) board there are problems
+> > > with reboot; e.g. a ~60 second delay between issuing reboot and the
+> > > board power cycling (and in some OS configurations reboot will fail
+> > > and require manual power cycling).
+> > > 
+> > > Similar to 'commit c987ac6f1f088663b6dad39281071aeb31d450a8 ("clk:
+> > > meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL")' the SCPI Cortex-M4
+> > > Co-Processor seems to depend on FCLK_DIV3 being operational.
+> > > 
+> > > Until commit 05f814402d6174369b3b29832cbb5eb5ed287059 ("clk:
+> > > meson: add fdiv clock gates"), this clock was modeled and left on by
+> > > the bootloader.
+> > > 
+> > > We don't have precise documentation about the SCPI Co-Processor and
+> > > its clock requirement so we are learning things the hard way.
+> > > 
+> > > Marking this clock as critical solves the problem but it should not
+> > > be viewed as final solution. Ideally, the SCPI driver should claim
+> > > these clocks. We also depends on some clock hand-off mechanism
+> > > making its way to CCF, to make sure the clock stays on between its
+> > > registration and the SCPI driver probe.
+> > > 
+> > > Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
+> > > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > > ---
+> > 
+> > I can toss this into clk-fixes?
+> > 
 > 
-> [1] (https://www.smartlabs.tv/en/about/)
-
-"[1]" is not referenced anywhere, so you could just as well use a plain
-link?
-
+> Sure, it would be great. Thx Stephen.
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
-> index 4b1a2a8..4e087f9 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
-> @@ -357,6 +357,7 @@ sirf	SiRF Technology, Inc.
->  sis	Silicon Integrated Systems Corp.
->  sitronix	Sitronix Technology Corporation
->  skyworks	Skyworks Solutions, Inc.
-> +smartlabs	Smartlabs
-
-"SmartLabs LLC" according to your link above!
-
-Otherwise looks okay.
-
-Regards,
-Andreas
-
->  smsc	Standard Microsystems Corporation
->  snps	Synopsys, Inc.
->  socionext	Socionext Inc.
 > 
 
-
--- 
-SUSE Linux GmbH, Maxfeldstr. 5, 90409 N?rnberg, Germany
-GF: Felix Imend?rffer, Jane Smithard, Graham Norton
-HRB 21284 (AG N?rnberg)
+Awesome, thanks! Applied to clk-fixes.
