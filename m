@@ -1,36 +1,42 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu,  8 Nov 2018 14:53:49 +0100
-Subject: [PATCH 1/4] arm64: dts: meson-axg: fix mailbox address
-In-Reply-To: <20181108135352.8459-1-jbrunet@baylibre.com>
-References: <20181108135352.8459-1-jbrunet@baylibre.com>
-Message-ID: <20181108135352.8459-2-jbrunet@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Thu, 8 Nov 2018 15:16:51 +0100
+Subject: [PATCH 0/2] Meson8b: fixes for the cpu_scale_div clock
+In-Reply-To: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
+References: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
+Message-ID: <a8798132-4544-ce91-7321-1489948c4429@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-MHU mailbox address is wrong. Fixing it enables the mailboxes on the A113.
-These mailboxes are needed for SCPI
+On 27/09/2018 10:59, Martin Blumenstingl wrote:
+> While trying to add support for the TWD timer I found that our CPU clock
+> calculation (when running off the "cpu_scale_div clock) is incorrect.
+> 
+> The main problem was the cpu_scale_div clock:
+> it's divider table has an off-by-one error. the old formula was:
+>   parent_rate / 2 * register_value
+> however, testing shows that the correct formula is:
+>   parent_rate / 2 * (register value + 1)
+> See the commit message of patch #1 for a complete description of the
+> problem and it's history.
+> 
+> While looking at the "cpu_scale_div" clock I also found that it's
+> register width was also off-by-one, so this is fixed in a separate patch
+> as well.
+> 
+> Both patches are not critical because I haven't seen a case where u-boot
+> uses cpu_scale_div for the CPU clock. It's only a problem when playing
+> with the CPU clock in u-boot (by writing registers manually) or as soon
+> as we support CPU frequency scaling.
+> 
+> 
+> Martin Blumenstingl (2):
+>   clk: meson: meson8b: fix incorrect divider mapping in cpu_scale_table
+>   clk: meson: meson8b: fix the width of the cpu_scale_div clock
+> 
+>  drivers/clk/meson/meson8b.c | 17 +++++++++--------
+>  1 file changed, 9 insertions(+), 8 deletions(-)
+> 
 
-Fixes: 9d59b708500f ("arm64: dts: meson-axg: add initial A113D SoC DT support")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Pushed to fixes/drivers for 4.20
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 3cc0044d3468..ff8b3406aff6 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -1067,9 +1067,9 @@
- 			};
- 		};
- 
--		mailbox: mailbox at ff63dc00 {
-+		mailbox: mailbox at ff63c404 {
- 			compatible = "amlogic,meson-gx-mhu", "amlogic,meson-gxbb-mhu";
--			reg = <0 0xff63dc00 0 0x400>;
-+			reg = <0 0xff63c404 0 0x4c>;
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>;
--- 
-2.19.1
+Neil
