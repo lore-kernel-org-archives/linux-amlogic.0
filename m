@@ -1,46 +1,61 @@
-From: christianshewitt@gmail.com (Christian Hewitt)
-Date: Thu,  8 Nov 2018 19:33:21 +0400
-Subject: [PATCH 2/3] dt-bindings: arm: amlogic: Add support for the Smartlabs
- SML-5442TW
-In-Reply-To: <1541691207-24768-1-git-send-email-christianshewitt@gmail.com>
+From: jbrunet@baylibre.com (jbrunet at baylibre.com)
+Date: Thu, 08 Nov 2018 16:56:40 +0100
+Subject: [PATCH 3/3] ARM64: dts: meson-gxl: Add support for the
+ Smartlabs SML-5442TW
+In-Reply-To: <1541691207-24768-3-git-send-email-christianshewitt@gmail.com>
 References: <1541691207-24768-1-git-send-email-christianshewitt@gmail.com>
-Message-ID: <1541691207-24768-2-git-send-email-christianshewitt@gmail.com>
+ <1541691207-24768-3-git-send-email-christianshewitt@gmail.com>
+Message-ID: <bafa32609200e57d8efe9843247429a46916bbef.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The SML-5442TW is an STB for O2 Czech IPTV/VOD and DVB-S based on the
-Amlogic P231 reference design using the S905D chipset. Specs:
+On Thu, 2018-11-08 at 19:33 +0400, Christian Hewitt wrote:
+> 
+> +&audio {
+> +	status = "okay";
+> +};
+> +
+> +&aiu_i2s_dma {
+> +	status = "okay";
+> +};
+> +
+> +&i2s_dai {
+> +	status = "okay";
+> +};
 
-2GB DDR3 RAM
-8GB eMMC storage
-10/100 Base-T Ethernet
-802.11 a/b/g/n/ac + BT 4.1 HS sdio wireless module (QCA9377)
-2x single colour and 1x dual colour LEDs on the front panel
-1x reset button on the front panel
-HDMI 2.0 (4k at 60p) video
-Composite video + 2-channel audio output on 3.5mm jack
-S/PDIF audio output
-Single DVB-S tuner (AVL6762/MxL608)
-2x USB 2.0 ports
-1x micro SD card slot
-UART pins (internal)
+The audio stuff has not made it's way upstream (yet) please drop this
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
- 1 file changed, 1 insertion(+)
+> +
+> +&cvbs_vdac_port {
+> +	cvbs_vdac_out: endpoint {
+> +		remote-endpoint = <&cvbs_connector_in>;
+> +	};
+> +};
+> +
+> 
+[ ... ]
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index 4498292..ad79f2d 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -91,6 +91,7 @@ Board compatible values (alphabetically, grouped by SoC):
- 
-   - "amlogic,p230" (Meson gxl s905d)
-   - "amlogic,p231" (Meson gxl s905d)
-+  - "smartlabs,sml5442tw" (Meson gxl s905d)
- 
-   - "amlogic,p241" (Meson gxl s805x)
- 
--- 
-2.7.4
+> +
+> +/* This is connected to the Bluetooth module: */
+> +&uart_A {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+> +	pinctrl-names = "default";
+
+Did you forget to put 'uart-has-rtscts;' here ?
+
+> +};
+> +
+> +/* This UART is brought out to the debug header */
+> +&uart_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
+> +};
+
+Also, you sent a multipatch series. Such patchset should start with a cover
+letter describing the general intent ... even if it is obvious.
