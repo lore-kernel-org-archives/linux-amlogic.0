@@ -1,58 +1,40 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 8 Nov 2018 14:28:22 +0100
-Subject: [PATCH RESEND] arm64: dts: meson-axg: fix dtc warning about unit
- address
-In-Reply-To: <20181108095156.26810-1-jbrunet@baylibre.com>
-References: <20181030150614.19461-1-jbrunet@baylibre.com>
- <20181108095156.26810-1-jbrunet@baylibre.com>
-Message-ID: <1a0aa100-1d44-b2d1-178d-059e95debda1@baylibre.com>
+Date: Thu, 8 Nov 2018 14:30:03 +0100
+Subject: [PATCH 1/3] ARM: dts: meson6: atv1200: add the
+ /chosen/stdout-path property
+In-Reply-To: <20181028140343.1071-2-martin.blumenstingl@googlemail.com>
+References: <20181028140343.1071-1-martin.blumenstingl@googlemail.com>
+ <20181028140343.1071-2-martin.blumenstingl@googlemail.com>
+Message-ID: <cbd44905-7af2-e0bf-5fee-dbe76ce4f02f@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/11/2018 10:51, Jerome Brunet wrote:
-> section 2.2.1 of the DT specs says: " If the node has no reg property,
-> the @unit-address must be omitted and the node-name alone differentiates
-> the node from other nodes at the same level in the tree"
+On 28/10/2018 15:03, Martin Blumenstingl wrote:
+> Support for Meson6 SoCs is currently very limited. It's often unclear
+> why such a device does not boot. To debug this the "earlycon" kernel
+> parameter can be used (without any arguments). However, this requires
+> the board to define a /chosen/stdout-path property in it's .dts.
 > 
-> Simply replace the '@' with a '-' to fix this warning.
-> 
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
+>  arch/arm/boot/dts/meson6-atv1200.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Hi Kevin,
-> 
-> I'm resending this change because I noticed the previous patch I sent had
-> references to spdif input which has not been merged yet. This would have
-> triggered a conflict in your tree.
-> 
-> Hopefully, this new version will apply correctly
-> 
-> Cheers
-> Jerome
-> 
->  .../arm64/boot/dts/amlogic/meson-axg-s400.dts | 26 +++++++++----------
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  6 ++---
->  2 files changed, 16 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> index 18778ada7bd3..ba44b0419404 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> @@ -60,7 +60,7 @@
->  		serial1 = &uart_A;
+> diff --git a/arch/arm/boot/dts/meson6-atv1200.dts b/arch/arm/boot/dts/meson6-atv1200.dts
+> index 9444b0d9628f..fc48cff71ddf 100644
+> --- a/arch/arm/boot/dts/meson6-atv1200.dts
+> +++ b/arch/arm/boot/dts/meson6-atv1200.dts
+> @@ -56,6 +56,10 @@
+>  		serial0 = &uart_AO;
 >  	};
 >  
-
-[...]
-
->  
-> -	tdmif_c: audio-controller at 2 {
-> +	tdmif_c: audio-controller-2 {
->  		compatible = "amlogic,axg-tdm-iface";
->  		#sound-dai-cells = <0>;
->  		sound-name-prefix = "TDM_C";
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+>  	memory {
+>  		reg = <0x40000000 0x80000000>;
+>  	};
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
