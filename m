@@ -1,61 +1,44 @@
-From: jbrunet@baylibre.com (jbrunet at baylibre.com)
-Date: Thu, 08 Nov 2018 16:56:40 +0100
-Subject: [PATCH 3/3] ARM64: dts: meson-gxl: Add support for the
- Smartlabs SML-5442TW
-In-Reply-To: <1541691207-24768-3-git-send-email-christianshewitt@gmail.com>
-References: <1541691207-24768-1-git-send-email-christianshewitt@gmail.com>
- <1541691207-24768-3-git-send-email-christianshewitt@gmail.com>
-Message-ID: <bafa32609200e57d8efe9843247429a46916bbef.camel@baylibre.com>
+From: sudeep.holla@arm.com (Sudeep Holla)
+Date: Thu, 8 Nov 2018 16:04:57 +0000
+Subject: [PATCH 3/4] Documentation: bindings: Add missing Amlogic SCPI
+ sensor bindings
+In-Reply-To: <20181108135352.8459-4-jbrunet@baylibre.com>
+References: <20181108135352.8459-1-jbrunet@baylibre.com>
+ <20181108135352.8459-4-jbrunet@baylibre.com>
+Message-ID: <20181108160457.GA10953@e107155-lin>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, 2018-11-08 at 19:33 +0400, Christian Hewitt wrote:
+On Thu, Nov 08, 2018 at 02:53:51PM +0100, Jerome Brunet wrote:
+> amlogic,meson-gxbb-scpi-sensors is both the driver and DT but is not
+> documented. Just add it to amlogic's scpi documentation
 > 
-> +&audio {
-> +	status = "okay";
-> +};
-> +
-> +&aiu_i2s_dma {
-> +	status = "okay";
-> +};
-> +
-> +&i2s_dai {
-> +	status = "okay";
-> +};
-
-The audio stuff has not made it's way upstream (yet) please drop this
-
-> +
-> +&cvbs_vdac_port {
-> +	cvbs_vdac_out: endpoint {
-> +		remote-endpoint = <&cvbs_connector_in>;
-> +	};
-> +};
-> +
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic,scpi.txt | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-[ ... ]
-
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic,scpi.txt b/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
+> index 7b9a861e9306..5ab59da052df 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
+> +++ b/Documentation/devicetree/bindings/arm/amlogic,scpi.txt
+> @@ -17,4 +17,11 @@ Required sub-node properties:
+>  - compatible : should be "amlogic,meson-gxbb-scp-shmem" for SRAM based shared
+>  		memory on Amlogic GXBB SoC.
+>  
+> +Sensor bindings for the sensors based on SCPI Message Protocol
+> +--------------------------------------------------------------
+> +SCPI provides an API to access the various sensors on the SoC.
 > +
-> +/* This is connected to the Bluetooth module: */
-> +&uart_A {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-> +	pinctrl-names = "default";
-
-Did you forget to put 'uart-has-rtscts;' here ?
-
-> +};
+> +Required properties:
+> +- compatible : should be "amlogic,meson-gxbb-scpi-sensors".
 > +
-> +/* This UART is brought out to the debug header */
-> +&uart_AO {
-> +	status = "okay";
-> +	pinctrl-0 = <&uart_ao_a_pins>;
-> +	pinctrl-names = "default";
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +};
 
-Also, you sent a multipatch series. Such patchset should start with a cover
-letter describing the general intent ... even if it is obvious.
+Not sure if it's worth mentioning the reason for being able to identify
+amlogic,meson-gxbb sensors from generic scpi ones. IIRC it was for the
+unit values of these sensors are different ? But I will leave that to
+DT or platform maintainers' taste.
+
+--
+Regards,
+Sudeep
