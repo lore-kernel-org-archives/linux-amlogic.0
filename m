@@ -1,565 +1,523 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 16:26:47 +0100
-Subject: [PATCH u-boot 08/19] pinctrl: meson: rework gx pmx function
+Date: Fri,  9 Nov 2018 16:26:45 +0100
+Subject: [PATCH u-boot 06/19] ARM: rework amlogic configuration
 In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
 References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541777218-472-9-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541777218-472-7-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
-In preparation of supporting the new Amlogix AGX SoCs, we need to move
-the Amlogic GX pinmux functions out of the common code to be able to
-add a different set of SoC specific pinmux functions for AXG.
+Rework the board SYS_BOARD, SYS_VENDOR and SYS_CONFIG_NAME setup by moving
+the board Kconfig into the mach-meson Kconfig to make it easier to add
+new boards for a SoC architecture and add a custom config header or custom
+board handler for a platform.
+
+This drops the board CONFIGs and the duplicate boards configs headers in
+favor of a single meson64.h config header.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/meson/Kconfig                |   8 +-
- drivers/pinctrl/meson/Makefile               |   1 +
- drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c |  97 ++++++++++++++++++++++++
- drivers/pinctrl/meson/pinctrl-meson-gx.h     |  48 ++++++++++++
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c   |   6 +-
- drivers/pinctrl/meson/pinctrl-meson-gxl.c    |   6 +-
- drivers/pinctrl/meson/pinctrl-meson.c        | 109 ++++-----------------------
- drivers/pinctrl/meson/pinctrl-meson.h        |  37 +++++----
- 8 files changed, 191 insertions(+), 121 deletions(-)
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx.h
+ arch/arm/mach-meson/Kconfig       | 75 +++++++++++++++++++--------------------
+ board/amlogic/odroid-c2/Kconfig   | 12 -------
+ board/amlogic/p212/Kconfig        | 12 -------
+ board/amlogic/q200/Kconfig        | 12 -------
+ configs/khadas-vim2_defconfig     |  1 -
+ configs/khadas-vim_defconfig      |  1 -
+ configs/libretech-cc_defconfig    |  1 -
+ configs/nanopi-k2_defconfig       |  2 --
+ configs/odroid-c2_defconfig       |  1 -
+ configs/p212_defconfig            |  1 -
+ include/configs/khadas-vim.h      | 14 --------
+ include/configs/libretech-cc.h    | 14 --------
+ include/configs/meson-gx-common.h | 52 ---------------------------
+ include/configs/meson64.h         | 55 ++++++++++++++++++++++++++++
+ include/configs/nanopi-k2.h       | 12 -------
+ include/configs/odroid-c2.h       | 12 -------
+ include/configs/p212.h            | 14 --------
+ include/configs/q200.h            | 18 ----------
+ 18 files changed, 92 insertions(+), 217 deletions(-)
+ delete mode 100644 board/amlogic/odroid-c2/Kconfig
+ delete mode 100644 board/amlogic/p212/Kconfig
+ delete mode 100644 board/amlogic/q200/Kconfig
+ delete mode 100644 include/configs/khadas-vim.h
+ delete mode 100644 include/configs/libretech-cc.h
+ delete mode 100644 include/configs/meson-gx-common.h
+ create mode 100644 include/configs/meson64.h
+ delete mode 100644 include/configs/nanopi-k2.h
+ delete mode 100644 include/configs/odroid-c2.h
+ delete mode 100644 include/configs/p212.h
+ delete mode 100644 include/configs/q200.h
 
-diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-index 27ba890..15a8d9c 100644
---- a/drivers/pinctrl/meson/Kconfig
-+++ b/drivers/pinctrl/meson/Kconfig
-@@ -4,12 +4,16 @@ config PINCTRL_MESON
- 	depends on PINCTRL_GENERIC
- 	bool
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index d86b1be..6f60167 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -8,49 +8,27 @@ config MESON64_COMMON
+ 	select DM_SERIAL
+ 	imply CMD_DM
  
-+config PINCTRL_MESON_GX_PMX
-+	select PINCTRL_MESON
-+	bool
-+
- config PINCTRL_MESON_GXBB
- 	bool "Amlogic Meson GXBB SoC pinctrl driver"
--	select PINCTRL_MESON
-+	select PINCTRL_MESON_GX_PMX
+-config MESON_GXBB
+-	bool
+-	select MESON64_COMMON
+-
+-config MESON_GXL
+-	bool
+-	select MESON64_COMMON
+-
+-config MESON_GXM
+-	bool
+-	select MESON64_COMMON
+-
+ choice
+ 	prompt "Platform select"
+-	default TARGET_ODROID_C2
++	default MESON_GXBB
  
- config PINCTRL_MESON_GXL
- 	bool "Amlogic Meson GXL SoC pinctrl driver"
--	select PINCTRL_MESON
-+	select PINCTRL_MESON_GX_PMX
+-config TARGET_ODROID_C2
+-	bool "ODROID-C2"
+-	select MESON_GXBB
++config MESON_GXBB
++	bool "GXBB"
++	select MESON64_COMMON
+ 	help
+-	  ODROID-C2 is a single board computer based on Meson GXBaby
+-	  with 2 GiB of RAM, Gigabit Ethernet, HDMI, 4 USB, micro-SD
+-	  slot, eMMC, IR receiver and a 40-pin GPIO header.
+-	  You should also select this TARGET if you have an nanopi-k2
++	  Select this if your SoC is an S905
+ 
+-config TARGET_P212
+-	bool "P212"
+-	select MESON_GXL
++config MESON_GXL
++	bool "GXL"
++	select MESON64_COMMON
+ 	help
+-	  P212 is a reference dessign board based on Meson GXL S905X SoC
+-	  with 2 GiB of RAM, Ethernet, HDMI, 2 USB, micro-SD slot,
+-	  eMMC, IR receiver, CVBS+Audio jack and a SDIO WiFi module.
+-	  You should also select this TARGET if you have Khadas Vim or
+-	  a libretech aml-s905x-cc
++	  Select this if your SoC is an S905X/D or S805X
+ 
+-config TARGET_Q200
+-	bool "KHADAS-VIM2"
+-	select MESON_GXM
++config MESON_GXM
++	bool "GXM"
++	select MESON64_COMMON
+ 	help
+-	  Q200 is a reference dessign board based on Meson GXM
+-	  with 2/3 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
+-	  eMMC, IR receiver.
+-	  You should also select this TARGET if you have Khadas Vim2.
++	  Select this if your SoC is an S912
+ 
+ endchoice
+ 
+@@ -60,10 +38,31 @@ config SYS_SOC
+ config SYS_MALLOC_F_LEN
+ 	default 0x1000
+ 
+-source "board/amlogic/odroid-c2/Kconfig"
++config SYS_VENDOR
++	string "Vendor name"
++	default "amlogic"
++	help
++	  This option contains information about board name.
++	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
++	  be used.
+ 
+-source "board/amlogic/p212/Kconfig"
++config SYS_BOARD
++	string "Board name"
++	default "odroid-c2" if MESON_GXBB
++	default "p212" if MESON_GXL
++	default "q200" if MESON_GXM
++	default ""
++	help
++	  This option contains information about board name.
++	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
++	  be used.
+ 
+-source "board/amlogic/q200/Kconfig"
++config SYS_CONFIG_NAME
++	string "Board configuration name"
++	default "meson64"
++	help
++	  This option contains information about board configuration name.
++	  Based on this option include/configs/<CONFIG_SYS_CONFIG_NAME>.h header
++	  will be used for board configuration.
  
  endif
-diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
-index 965092c..30b6875 100644
---- a/drivers/pinctrl/meson/Makefile
-+++ b/drivers/pinctrl/meson/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0+
- 
- obj-y					+= pinctrl-meson.o
-+obj-$(CONFIG_PINCTRL_MESON_GX_PMX)	+= pinctrl-meson-gx-pmx.o
- obj-$(CONFIG_PINCTRL_MESON_GXBB)	+= pinctrl-meson-gxbb.o
- obj-$(CONFIG_PINCTRL_MESON_GXL)		+= pinctrl-meson-gxl.o
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c b/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
+diff --git a/board/amlogic/odroid-c2/Kconfig b/board/amlogic/odroid-c2/Kconfig
+deleted file mode 100644
+index 2b16889..0000000
+--- a/board/amlogic/odroid-c2/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_ODROID_C2
+-
+-config SYS_BOARD
+-	default "odroid-c2"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "odroid-c2"
+-
+-endif
+diff --git a/board/amlogic/p212/Kconfig b/board/amlogic/p212/Kconfig
+deleted file mode 100644
+index 720c92b..0000000
+--- a/board/amlogic/p212/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_P212
+-
+-config SYS_BOARD
+-	default "p212"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "p212"
+-
+-endif
+diff --git a/board/amlogic/q200/Kconfig b/board/amlogic/q200/Kconfig
+deleted file mode 100644
+index cfaf379..0000000
+--- a/board/amlogic/q200/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_Q200
+-
+-config SYS_BOARD
+-	default "q200"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "q200"
+-
+-endif
+diff --git a/configs/khadas-vim2_defconfig b/configs/khadas-vim2_defconfig
+index 387d7da..40e7cac 100644
+--- a/configs/khadas-vim2_defconfig
++++ b/configs/khadas-vim2_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXM=y
+-CONFIG_TARGET_Q200=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" khadas-vim2"
+diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
+index af30113..6e855dd 100644
+--- a/configs/khadas-vim_defconfig
++++ b/configs/khadas-vim_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" khadas-vim"
+diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
+index 7526516..c2f985f 100644
+--- a/configs/libretech-cc_defconfig
++++ b/configs/libretech-cc_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" libretech-cc"
+diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
+index 01196d6..8bbf48f 100644
+--- a/configs/nanopi-k2_defconfig
++++ b/configs/nanopi-k2_defconfig
+@@ -1,8 +1,6 @@
+ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+-CONFIG_MESON_GXBB=y
+-CONFIG_TARGET_ODROID_C2=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" nanopi-k2"
+diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
+index 19196b3..68554ba 100644
+--- a/configs/odroid-c2_defconfig
++++ b/configs/odroid-c2_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXBB=y
+-CONFIG_TARGET_ODROID_C2=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" odroid-c2"
+diff --git a/configs/p212_defconfig b/configs/p212_defconfig
+index 9e3b1d6..a15064d 100644
+--- a/configs/p212_defconfig
++++ b/configs/p212_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" p212"
+diff --git a/include/configs/khadas-vim.h b/include/configs/khadas-vim.h
+deleted file mode 100644
+index ff87c02..0000000
+--- a/include/configs/khadas-vim.h
++++ /dev/null
+@@ -1,14 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for Khadas VIM
+- *
+- * Copyright (C) 2017 Baylibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/libretech-cc.h b/include/configs/libretech-cc.h
+deleted file mode 100644
+index 95e0f34..0000000
+--- a/include/configs/libretech-cc.h
++++ /dev/null
+@@ -1,14 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for LibreTech CC
+- *
+- * Copyright (C) 2017 Baylibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/meson-gx-common.h b/include/configs/meson-gx-common.h
+deleted file mode 100644
+index c436976..0000000
+--- a/include/configs/meson-gx-common.h
++++ /dev/null
+@@ -1,52 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for Amlogic Meson GX SoCs
+- * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
+- */
+-
+-#ifndef __MESON_GX_COMMON_CONFIG_H
+-#define __MESON_GX_COMMON_CONFIG_H
+-
+-#define CONFIG_CPU_ARMV8
+-#define CONFIG_REMAKE_ELF
+-#define CONFIG_ENV_SIZE			0x2000
+-#define CONFIG_SYS_MAXARGS		32
+-#define CONFIG_SYS_MALLOC_LEN		(32 << 20)
+-#define CONFIG_SYS_CBSIZE		1024
+-
+-#define CONFIG_SYS_SDRAM_BASE		0
+-#define CONFIG_SYS_INIT_SP_ADDR		0x20000000
+-#define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
+-
+-/* Generic Interrupt Controller Definitions */
+-#define GICD_BASE			0xc4301000
+-#define GICC_BASE			0xc4302000
+-
+-#ifdef CONFIG_CMD_USB
+-#define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
+-#else
+-#define BOOT_TARGET_DEVICES_USB(func)
+-#endif
+-
+-#define BOOT_TARGET_DEVICES(func) \
+-	func(MMC, mmc, 0) \
+-	func(MMC, mmc, 1) \
+-	func(MMC, mmc, 2) \
+-	BOOT_TARGET_DEVICES_USB(func) \
+-	func(PXE, pxe, na) \
+-	func(DHCP, dhcp, na)
+-
+-#include <config_distro_bootcmd.h>
+-
+-#define CONFIG_EXTRA_ENV_SETTINGS \
+-	"fdt_addr_r=0x01000000\0" \
+-	"scriptaddr=0x1f000000\0" \
+-	"kernel_addr_r=0x01080000\0" \
+-	"pxefile_addr_r=0x01080000\0" \
+-	"ramdisk_addr_r=0x13000000\0" \
+-	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
+-	BOOTENV
+-
+-#define CONFIG_SYS_BOOTM_LEN    (64 << 20)      /* 64 MiB */
+-
+-#endif /* __MESON_GX_COMMON_CONFIG_H */
+diff --git a/include/configs/meson64.h b/include/configs/meson64.h
 new file mode 100644
-index 0000000..fc1538e
+index 0000000..1929a3e
 --- /dev/null
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * (C) Copyright 2016 - Beniamino Galvani <b.galvani@gmail.com>
-+ */
-+
-+#include <asm/gpio.h>
-+#include <common.h>
-+#include <dm.h>
-+#include <dm/pinctrl.h>
-+#include <linux/io.h>
-+#include "pinctrl-meson-gx.h"
-+
-+static void meson_gx_pinmux_disable_other_groups(struct meson_pinctrl *priv,
-+						 unsigned int pin,
-+						 int sel_group)
-+{
-+	struct meson_pmx_group *group;
-+	struct meson_gx_pmx_data *pmx_data;
-+	void __iomem *addr;
-+	int i, j;
-+
-+	for (i = 0; i < priv->data->num_groups; i++) {
-+		group = &priv->data->groups[i];
-+		pmx_data = (struct meson_gx_pmx_data *)group->data;
-+		if (pmx_data->is_gpio || i == sel_group)
-+			continue;
-+
-+		for (j = 0; j < group->num_pins; j++) {
-+			if (group->pins[j] == pin) {
-+				/* We have found a group using the pin */
-+				debug("pinmux: disabling %s\n", group->name);
-+				addr = priv->reg_mux + pmx_data->reg * 4;
-+				writel(readl(addr) & ~BIT(pmx_data->bit), addr);
-+			}
-+		}
-+	}
-+}
-+
-+static int meson_gx_pinmux_group_set(struct udevice *dev,
-+				     unsigned int group_selector,
-+				     unsigned int func_selector)
-+{
-+	struct meson_pinctrl *priv = dev_get_priv(dev);
-+	const struct meson_pmx_group *group;
-+	const struct meson_pmx_func *func;
-+	struct meson_gx_pmx_data *pmx_data;
-+	void __iomem *addr;
-+	int i;
-+
-+	group = &priv->data->groups[group_selector];
-+	pmx_data = (struct meson_gx_pmx_data *)group->data;
-+	func = &priv->data->funcs[func_selector];
-+
-+	debug("pinmux: set group %s func %s\n", group->name, func->name);
-+
-+	/*
-+	 * Disable groups using the same pins.
-+	 * The selected group is not disabled to avoid glitches.
-+	 */
-+	for (i = 0; i < group->num_pins; i++) {
-+		meson_gx_pinmux_disable_other_groups(priv,
-+						     group->pins[i],
-+						     group_selector);
-+	}
-+
-+	/* Function 0 (GPIO) doesn't need any additional setting */
-+	if (func_selector) {
-+		addr = priv->reg_mux + pmx_data->reg * 4;
-+		writel(readl(addr) | BIT(pmx_data->bit), addr);
-+	}
-+
-+	return 0;
-+}
-+
-+const struct pinctrl_ops meson_gx_pinctrl_ops = {
-+	.get_groups_count = meson_pinctrl_get_groups_count,
-+	.get_group_name = meson_pinctrl_get_group_name,
-+	.get_functions_count = meson_pinmux_get_functions_count,
-+	.get_function_name = meson_pinmux_get_function_name,
-+	.pinmux_group_set = meson_gx_pinmux_group_set,
-+	.set_state = pinctrl_generic_set_state,
-+};
-+
-+static const struct dm_gpio_ops meson_gx_gpio_ops = {
-+	.set_value = meson_gpio_set,
-+	.get_value = meson_gpio_get,
-+	.get_function = meson_gpio_get_direction,
-+	.direction_input = meson_gpio_direction_input,
-+	.direction_output = meson_gpio_direction_output,
-+};
-+
-+const struct driver meson_gx_gpio_driver = {
-+	.name	= "meson-gx-gpio",
-+	.id	= UCLASS_GPIO,
-+	.probe	= meson_gpio_probe,
-+	.ops	= &meson_gx_gpio_ops,
-+};
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gx.h b/drivers/pinctrl/meson/pinctrl-meson-gx.h
-new file mode 100644
-index 0000000..4c1aa1a
---- /dev/null
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gx.h
-@@ -0,0 +1,48 @@
++++ b/include/configs/meson64.h
+@@ -0,0 +1,55 @@
 +/* SPDX-License-Identifier: GPL-2.0+ */
 +/*
-+ * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
-+ * Copyright (C) 2017 Jerome Brunet  <jbrunet@baylibre.com>
++ * Configuration for Amlogic Meson 64bits SoCs
++ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
 + */
 +
-+#ifndef __PINCTRL_MESON_GX_H__
-+#define __PINCTRL_MESON_GX_H__
++#ifndef __MESON64_CONFIG_H
++#define __MESON64_CONFIG_H
 +
-+#include "pinctrl-meson.h"
++/* Generic Interrupt Controller Definitions */
++#define GICD_BASE			0xc4301000
++#define GICC_BASE			0xc4302000
 +
-+struct meson_gx_pmx_data {
-+	bool is_gpio;
-+	unsigned int reg;
-+	unsigned int bit;
-+};
++#define CONFIG_CPU_ARMV8
++#define CONFIG_REMAKE_ELF
++#define CONFIG_ENV_SIZE			0x2000
++#define CONFIG_SYS_MAXARGS		32
++#define CONFIG_SYS_MALLOC_LEN		(32 << 20)
++#define CONFIG_SYS_CBSIZE		1024
 +
-+#define PMX_DATA(r, b, g)						\
-+	{								\
-+		.reg = r,						\
-+		.bit = b,						\
-+		.is_gpio = g,						\
-+	}
++#define CONFIG_SYS_SDRAM_BASE		0
++#define CONFIG_SYS_INIT_SP_ADDR		0x20000000
++#define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
++#define CONFIG_SYS_BOOTM_LEN		(64 << 20) /* 64 MiB */
 +
-+#define GROUP(grp, r, b)						\
-+	{								\
-+		.name = #grp,						\
-+		.pins = grp ## _pins,					\
-+		.num_pins = ARRAY_SIZE(grp ## _pins),			\
-+			.data = (const struct meson_gx_pmx_data[]){	\
-+			PMX_DATA(r, b, false),				\
-+		},							\
-+	}
++#ifdef CONFIG_CMD_USB
++#define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
++#else
++#define BOOT_TARGET_DEVICES_USB(func)
++#endif
 +
-+#define GPIO_GROUP(gpio, b)						\
-+	{								\
-+		.name = #gpio,						\
-+		.pins = (const unsigned int[]){ PIN(gpio, b) },		\
-+		.num_pins = 1,						\
-+		.data = (const struct meson_gx_pmx_data[]){		\
-+			PMX_DATA(0, 0, true),				\
-+		},							\
-+	}
++#ifndef BOOT_TARGET_DEVICES
++#define BOOT_TARGET_DEVICES(func) \
++	func(MMC, mmc, 0) \
++	func(MMC, mmc, 1) \
++	func(MMC, mmc, 2) \
++	BOOT_TARGET_DEVICES_USB(func) \
++	func(PXE, pxe, na) \
++	func(DHCP, dhcp, na)
++#endif
 +
-+extern const struct pinctrl_ops meson_gx_pinctrl_ops;
-+extern const struct driver meson_gx_gpio_driver;
++#ifndef CONFIG_EXTRA_ENV_SETTINGS
++#define CONFIG_EXTRA_ENV_SETTINGS \
++	"fdt_addr_r=0x01000000\0" \
++	"scriptaddr=0x1f000000\0" \
++	"kernel_addr_r=0x01080000\0" \
++	"pxefile_addr_r=0x01080000\0" \
++	"ramdisk_addr_r=0x13000000\0" \
++	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
++	BOOTENV
++#endif
 +
-+#endif /* __PINCTRL_MESON_GX_H__ */
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index a8e47e3..22e8b05 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -11,7 +11,7 @@
- #include <dm/pinctrl.h>
- #include <dt-bindings/gpio/meson-gxbb-gpio.h>
- 
--#include "pinctrl-meson.h"
-+#include "pinctrl-meson-gx.h"
- 
- #define EE_OFF	15
- 
-@@ -417,6 +417,7 @@ struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxbb_periphs_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxbb_periphs_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxbb_periphs_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
-@@ -429,6 +430,7 @@ struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxbb_aobus_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxbb_aobus_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxbb_aobus_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- static const struct udevice_id meson_gxbb_pinctrl_match[] = {
-@@ -449,5 +451,5 @@ U_BOOT_DRIVER(meson_gxbb_pinctrl) = {
- 	.of_match = of_match_ptr(meson_gxbb_pinctrl_match),
- 	.probe = meson_pinctrl_probe,
- 	.priv_auto_alloc_size = sizeof(struct meson_pinctrl),
--	.ops = &meson_pinctrl_ops,
-+	.ops = &meson_gx_pinctrl_ops,
- };
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-index ba6e353..1819eee 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-@@ -11,7 +11,7 @@
- #include <dm/pinctrl.h>
- #include <dt-bindings/gpio/meson-gxl-gpio.h>
- 
--#include "pinctrl-meson.h"
-+#include "pinctrl-meson-gx.h"
- 
- #define EE_OFF	11
- 
-@@ -699,6 +699,7 @@ struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxl_periphs_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxl_periphs_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxl_periphs_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data = {
-@@ -711,6 +712,7 @@ struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxl_aobus_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxl_aobus_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxl_aobus_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- static const struct udevice_id meson_gxl_pinctrl_match[] = {
-@@ -731,5 +733,5 @@ U_BOOT_DRIVER(meson_gxl_pinctrl) = {
- 	.of_match = of_match_ptr(meson_gxl_pinctrl_match),
- 	.probe = meson_pinctrl_probe,
- 	.priv_auto_alloc_size = sizeof(struct meson_pinctrl),
--	.ops = &meson_pinctrl_ops,
-+	.ops = &meson_gx_pinctrl_ops,
- };
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 387c241..0bd6152 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -20,15 +20,15 @@ DECLARE_GLOBAL_DATA_PTR;
- 
- static const char *meson_pinctrl_dummy_name = "_dummy";
- 
--static int meson_pinctrl_get_groups_count(struct udevice *dev)
-+int meson_pinctrl_get_groups_count(struct udevice *dev)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
- 	return priv->data->num_groups;
- }
- 
--static const char *meson_pinctrl_get_group_name(struct udevice *dev,
--						unsigned selector)
-+const char *meson_pinctrl_get_group_name(struct udevice *dev,
-+					 unsigned int selector)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
-@@ -38,87 +38,21 @@ static const char *meson_pinctrl_get_group_name(struct udevice *dev,
- 	return priv->data->groups[selector].name;
- }
- 
--static int meson_pinmux_get_functions_count(struct udevice *dev)
-+int meson_pinmux_get_functions_count(struct udevice *dev)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
- 	return priv->data->num_funcs;
- }
- 
--static const char *meson_pinmux_get_function_name(struct udevice *dev,
--						  unsigned selector)
-+const char *meson_pinmux_get_function_name(struct udevice *dev,
-+					   unsigned int selector)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
- 	return priv->data->funcs[selector].name;
- }
- 
--static void meson_pinmux_disable_other_groups(struct meson_pinctrl *priv,
--					      unsigned int pin, int sel_group)
--{
--	struct meson_pmx_group *group;
--	void __iomem *addr;
--	int i, j;
--
--	for (i = 0; i < priv->data->num_groups; i++) {
--		group = &priv->data->groups[i];
--		if (group->is_gpio || i == sel_group)
--			continue;
--
--		for (j = 0; j < group->num_pins; j++) {
--			if (group->pins[j] == pin) {
--				/* We have found a group using the pin */
--				debug("pinmux: disabling %s\n", group->name);
--				addr = priv->reg_mux + group->reg * 4;
--				writel(readl(addr) & ~BIT(group->bit), addr);
--			}
--		}
--	}
--}
--
--static int meson_pinmux_group_set(struct udevice *dev,
--				  unsigned group_selector,
--				  unsigned func_selector)
--{
--	struct meson_pinctrl *priv = dev_get_priv(dev);
--	const struct meson_pmx_group *group;
--	const struct meson_pmx_func *func;
--	void __iomem *addr;
--	int i;
--
--	group = &priv->data->groups[group_selector];
--	func = &priv->data->funcs[func_selector];
--
--	debug("pinmux: set group %s func %s\n", group->name, func->name);
--
--	/*
--	 * Disable groups using the same pins.
--	 * The selected group is not disabled to avoid glitches.
--	 */
--	for (i = 0; i < group->num_pins; i++) {
--		meson_pinmux_disable_other_groups(priv,
--						  group->pins[i],
--						  group_selector);
--	}
--
--	/* Function 0 (GPIO) doesn't need any additional setting */
--	if (func_selector) {
--		addr = priv->reg_mux + group->reg * 4;
--		writel(readl(addr) | BIT(group->bit), addr);
--	}
--
--	return 0;
--}
--
--const struct pinctrl_ops meson_pinctrl_ops = {
--	.get_groups_count = meson_pinctrl_get_groups_count,
--	.get_group_name = meson_pinctrl_get_group_name,
--	.get_functions_count = meson_pinmux_get_functions_count,
--	.get_function_name = meson_pinmux_get_function_name,
--	.pinmux_group_set = meson_pinmux_group_set,
--	.set_state = pinctrl_generic_set_state,
--};
--
- static int meson_gpio_calc_reg_and_bit(struct udevice *dev, unsigned int offset,
- 				       enum meson_reg_type reg_type,
- 				       unsigned int *reg, unsigned int *bit)
-@@ -149,7 +83,7 @@ static int meson_gpio_calc_reg_and_bit(struct udevice *dev, unsigned int offset,
- 	return 0;
- }
- 
--static int meson_gpio_get(struct udevice *dev, unsigned int offset)
-+int meson_gpio_get(struct udevice *dev, unsigned int offset)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -162,7 +96,7 @@ static int meson_gpio_get(struct udevice *dev, unsigned int offset)
- 	return !!(readl(priv->reg_gpio + reg) & BIT(bit));
- }
- 
--static int meson_gpio_set(struct udevice *dev, unsigned int offset, int value)
-+int meson_gpio_set(struct udevice *dev, unsigned int offset, int value)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -177,7 +111,7 @@ static int meson_gpio_set(struct udevice *dev, unsigned int offset, int value)
- 	return 0;
- }
- 
--static int meson_gpio_get_direction(struct udevice *dev, unsigned int offset)
-+int meson_gpio_get_direction(struct udevice *dev, unsigned int offset)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit, val;
-@@ -192,7 +126,7 @@ static int meson_gpio_get_direction(struct udevice *dev, unsigned int offset)
- 	return (val & BIT(bit)) ? GPIOF_INPUT : GPIOF_OUTPUT;
- }
- 
--static int meson_gpio_direction_input(struct udevice *dev, unsigned int offset)
-+int meson_gpio_direction_input(struct udevice *dev, unsigned int offset)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -207,8 +141,8 @@ static int meson_gpio_direction_input(struct udevice *dev, unsigned int offset)
- 	return 0;
- }
- 
--static int meson_gpio_direction_output(struct udevice *dev,
--				       unsigned int offset, int value)
-+int meson_gpio_direction_output(struct udevice *dev,
-+				unsigned int offset, int value)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -229,7 +163,7 @@ static int meson_gpio_direction_output(struct udevice *dev,
- 	return 0;
- }
- 
--static int meson_gpio_probe(struct udevice *dev)
-+int meson_gpio_probe(struct udevice *dev)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	struct gpio_dev_priv *uc_priv;
-@@ -241,21 +175,6 @@ static int meson_gpio_probe(struct udevice *dev)
- 	return 0;
- }
- 
--static const struct dm_gpio_ops meson_gpio_ops = {
--	.set_value = meson_gpio_set,
--	.get_value = meson_gpio_get,
--	.get_function = meson_gpio_get_direction,
--	.direction_input = meson_gpio_direction_input,
--	.direction_output = meson_gpio_direction_output,
--};
--
--static struct driver meson_gpio_driver = {
--	.name	= "meson-gpio",
--	.id	= UCLASS_GPIO,
--	.probe	= meson_gpio_probe,
--	.ops	= &meson_gpio_ops,
--};
--
- static fdt_addr_t parse_address(int offset, const char *name, int na, int ns)
- {
- 	int index, len = 0;
-@@ -334,7 +253,7 @@ int meson_pinctrl_probe(struct udevice *dev)
- 	sprintf(name, "meson-gpio");
- 
- 	/* Create child device UCLASS_GPIO and bind it */
--	device_bind(dev, &meson_gpio_driver, name, NULL, gpio, &gpio_dev);
-+	device_bind(dev, priv->data->gpio_driver, name, NULL, gpio, &gpio_dev);
- 	dev_set_of_offset(gpio_dev, gpio);
- 
- 	return 0;
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-index 6ec89ba..bdee721 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.h
-+++ b/drivers/pinctrl/meson/pinctrl-meson.h
-@@ -12,9 +12,7 @@ struct meson_pmx_group {
- 	const char *name;
- 	const unsigned int *pins;
- 	unsigned int num_pins;
--	bool is_gpio;
--	unsigned int reg;
--	unsigned int bit;
-+	const void *data;
- };
- 
- struct meson_pmx_func {
-@@ -33,6 +31,8 @@ struct meson_pinctrl_data {
- 	unsigned int num_groups;
- 	unsigned int num_funcs;
- 	unsigned int num_banks;
-+	const struct driver *gpio_driver;
-+	void *pmx_data;
- };
- 
- struct meson_pinctrl {
-@@ -89,23 +89,6 @@ struct meson_bank {
- 
- #define PIN(x, b)	(b + x)
- 
--#define GROUP(grp, r, b)						\
--	{								\
--		.name = #grp,						\
--		.pins = grp ## _pins,					\
--		.num_pins = ARRAY_SIZE(grp ## _pins),			\
--		.reg = r,						\
--		.bit = b,						\
--	 }
--
--#define GPIO_GROUP(gpio, b)						\
--	{								\
--		.name = #gpio,						\
--		.pins = (const unsigned int[]){ PIN(gpio, b) },		\
--		.num_pins = 1,						\
--		.is_gpio = true,					\
--	 }
--
- #define FUNCTION(fn)							\
- 	{								\
- 		.name = #fn,						\
-@@ -131,6 +114,20 @@ struct meson_bank {
- 
- extern const struct pinctrl_ops meson_pinctrl_ops;
- 
-+int meson_pinctrl_get_groups_count(struct udevice *dev);
-+const char *meson_pinctrl_get_group_name(struct udevice *dev,
-+					 unsigned int selector);
-+int meson_pinmux_get_functions_count(struct udevice *dev);
-+const char *meson_pinmux_get_function_name(struct udevice *dev,
-+					   unsigned int selector);
- int meson_pinctrl_probe(struct udevice *dev);
- 
-+int meson_gpio_get(struct udevice *dev, unsigned int offset);
-+int meson_gpio_set(struct udevice *dev, unsigned int offset, int value);
-+int meson_gpio_get_direction(struct udevice *dev, unsigned int offset);
-+int meson_gpio_direction_input(struct udevice *dev, unsigned int offset);
-+int meson_gpio_direction_output(struct udevice *dev, unsigned int offset,
-+				int value);
-+int meson_gpio_probe(struct udevice *dev);
++#include <config_distro_bootcmd.h>
 +
- #endif /* __PINCTRL_MESON_H__ */
++#endif /* __MESON64_CONFIG_H */
+diff --git a/include/configs/nanopi-k2.h b/include/configs/nanopi-k2.h
+deleted file mode 100644
+index 3fd6e8f..0000000
+--- a/include/configs/nanopi-k2.h
++++ /dev/null
+@@ -1,12 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for NANOPI-K2
+- * (C) Copyright 2018 Thomas McKahan
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/odroid-c2.h b/include/configs/odroid-c2.h
+deleted file mode 100644
+index 87e3ddb..0000000
+--- a/include/configs/odroid-c2.h
++++ /dev/null
+@@ -1,12 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for ODROID-C2
+- * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/p212.h b/include/configs/p212.h
+deleted file mode 100644
+index 4414293..0000000
+--- a/include/configs/p212.h
++++ /dev/null
+@@ -1,14 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for Amlogic P212
+- *
+- * Copyright (C) 2017 Baylibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/q200.h b/include/configs/q200.h
+deleted file mode 100644
+index 7ef8f42..0000000
+--- a/include/configs/q200.h
++++ /dev/null
+@@ -1,18 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for Khadas VIM2
+- *
+- * Copyright (C) 2017 Baylibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#define CONFIG_MISC_INIT_R
+-
+-#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxm-khadas-vim2.dtb\0"
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
 -- 
 2.7.4
