@@ -1,45 +1,37 @@
-From: lkp@intel.com (kbuild test robot)
-Date: Fri, 9 Nov 2018 09:31:15 +0800
-Subject: [PATCH 3/3] ARM64: dts: meson-gxl: Add support for the Smartlabs
- SML-5442TW
-In-Reply-To: <1541691207-24768-3-git-send-email-christianshewitt@gmail.com>
-References: <1541691207-24768-3-git-send-email-christianshewitt@gmail.com>
-Message-ID: <201811090923.kiVN8vPL%fengguang.wu@intel.com>
+From: davem@davemloft.net (David Miller)
+Date: Thu, 08 Nov 2018 19:20:23 -0800 (PST)
+Subject: [PATCH 0/5] hy: core: rework phy_set_mode to accept phy mode
+ and submode
+In-Reply-To: <20181108003617.10334-1-grygorii.strashko@ti.com>
+References: <20181108003617.10334-1-grygorii.strashko@ti.com>
+Message-ID: <20181108.192023.2260722462634716993.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Christian,
+From: Grygorii Strashko <grygorii.strashko@ti.com>
+Date: Wed, 7 Nov 2018 18:36:12 -0600
 
-Thank you for the patch! Yet something to improve:
+> As was discussed in [1] I'm posting series which introduces rework of
+> phy_set_mode to accept phy mode and submode. I've dropped TI specific patches as
+> this change is pretty big by itself.
+> 
+> Patch 1 is cumulative change which refactors PHY framework code to
+> support dual level PHYs mode configuration - PHY mode and PHY submode. It
+> extends .set_mode() callback to support additional parameter "int submode"
+> and converts all corresponding PHY drivers to support new .set_mode()
+> callback declaration.
+> The new extended PHY API
+>  int phy_set_mode_ext(struct phy *phy, enum phy_mode mode, int submode)
+> is introduced to support dual level PHYs mode configuration and existing
+> phy_set_mode() API is converted to macros, so PHY framework consumers do
+> not need to be changed (~21 matches).
+> 
+> Patches 2-4: Add new PHY's mode to be used by Ethernet PHY interface drivers or
+> multipurpose PHYs like serdes and convert ocelot-serdes and mvebu-cp110-comphy
+> PHY drivers to use recently introduced PHY_MODE_ETHERNET and phy_set_mode_ext().
+> 
+> Patch 5 - removes unused, ethernet specific phy modes from enum phy_mode.
+> 
+> [1] https://lkml.org/lkml/2018/10/25/366
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on v4.20-rc1 next-20181108]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
-
-url:    https://github.com/0day-ci/linux/commits/Christian-Hewitt/dt-bindings-Add-vendor-prefix-for-Smartlabs/20181109-010512
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-allyesconfig (attached as .config)
-compiler: aarch64-linux-gnu-gcc (Debian 7.2.0-11) 7.2.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # save the attached .config to linux build tree
-        GCC_VERSION=7.2.0 make.cross ARCH=arm64 
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts:172.1-7 Label or path audio not found
->> Error: arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts:176.1-13 Label or path aiu_i2s_dma not found
->> Error: arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts:180.1-9 Label or path i2s_dai not found
-   FATAL ERROR: Syntax error parsing input tree
-
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
--------------- next part --------------
-A non-text attachment was scrubbed...
-Name: .config.gz
-Type: application/gzip
-Size: 61776 bytes
-Desc: not available
-URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20181109/ef520d27/attachment.gz>
+I guess this will go via Kishon's tree.
