@@ -1,252 +1,468 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 16:26:58 +0100
-Subject: [PATCH u-boot 19/19] ARM: meson: Add boot device discovery
+Date: Fri,  9 Nov 2018 16:26:55 +0100
+Subject: [PATCH u-boot 16/19] clk: Add clock driver for AXG
 In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
 References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541777218-472-20-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541777218-472-17-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson SoCs ROM supports a boot over USB with a custom protocol.
+This patch adds a minimal clock driver for the Amlogic AXG SoC to handle
+the basic gates and PLLs.
 
-When no other boot medium are available (or by forcing the USB mode), the
-ROM sets the primary USB port as device mode and waits for a Host to
-enumerate.
-
-When enumerated, a custom protocol described at [1] permits writing to
-memory and execution some specific FIP init code to run the loaded
-Arm Trusted Firmware BL2 and BL3 staged before running the BL33 stage.
-
-In this mode, we can load different binaries that can be used by U-boot
-like a script image file.
-
-This adds support for a custom USB boot stage only available when the
-boot mode is USB and the script file at a pre-defined address is valid.
-This support was heavily copied from the Sunxi Allwinner FEL U-Boot support.
-
-The tool pyamlboot described at [2], permits using this boot mode on boards
-exposing the first USB port, either as OTG or Host port.
-
-[1] https://github.com/superna9999/pyamlboot/blob/master/PROTOCOL.md
-[2] https://github.com/superna9999/pyamlboot/blob/master/README.md
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/include/asm/arch-meson/axg.h  |  1 +
- arch/arm/include/asm/arch-meson/boot.h | 20 +++++++++++++++
- arch/arm/include/asm/arch-meson/gx.h   |  1 +
- arch/arm/mach-meson/Kconfig            |  1 +
- arch/arm/mach-meson/board-axg.c        |  6 +++++
- arch/arm/mach-meson/board-common.c     | 45 ++++++++++++++++++++++++++++++++++
- arch/arm/mach-meson/board-gx.c         |  6 +++++
- include/configs/meson64.h              | 13 ++++++++++
- 8 files changed, 93 insertions(+)
- create mode 100644 arch/arm/include/asm/arch-meson/boot.h
+ arch/arm/include/asm/arch-meson/clock-axg.h | 104 +++++++++
+ drivers/clk/Makefile                        |   2 +-
+ drivers/clk/clk_meson_axg.c                 | 316 ++++++++++++++++++++++++++++
+ 3 files changed, 421 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/include/asm/arch-meson/clock-axg.h
+ create mode 100644 drivers/clk/clk_meson_axg.c
 
-diff --git a/arch/arm/include/asm/arch-meson/axg.h b/arch/arm/include/asm/arch-meson/axg.h
-index 28a38b7..d293f2a 100644
---- a/arch/arm/include/asm/arch-meson/axg.h
-+++ b/arch/arm/include/asm/arch-meson/axg.h
-@@ -20,6 +20,7 @@
- #define AXG_AO_SEC_GP_CFG4	AXG_AO_ADDR(0x94)
- #define AXG_AO_SEC_GP_CFG5	AXG_AO_ADDR(0x95)
- 
-+#define AXG_AO_BOOT_DEVICE	0xF
- #define AXG_AO_MEM_SIZE_MASK	0xFFFF0000
- #define AXG_AO_MEM_SIZE_SHIFT	16
- #define AXG_AO_BL31_RSVMEM_SIZE_MASK	0xFFFF0000
-diff --git a/arch/arm/include/asm/arch-meson/boot.h b/arch/arm/include/asm/arch-meson/boot.h
+diff --git a/arch/arm/include/asm/arch-meson/clock-axg.h b/arch/arm/include/asm/arch-meson/clock-axg.h
 new file mode 100644
-index 0000000..a90fe55
+index 0000000..1ef88e4
 --- /dev/null
-+++ b/arch/arm/include/asm/arch-meson/boot.h
-@@ -0,0 +1,20 @@
++++ b/arch/arm/include/asm/arch-meson/clock-axg.h
+@@ -0,0 +1,104 @@
 +/* SPDX-License-Identifier: GPL-2.0+ */
 +/*
-+ * Copyright (C) 2016 BayLibre, SAS
++ * Copyright 2016 - AmLogic, Inc.
++ * Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
++ * Copyright 2018 - BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++#ifndef _ARCH_MESON_CLOCK_AXG_H_
++#define _ARCH_MESON_CLOCK_AXG_H_
++
++/*
++ * Clock controller register offsets
++ *
++ * Register offsets from the data sheet are listed in comment blocks below.
++ * Those offsets must be multiplied by 4 before adding them to the base address
++ * to get the right value
++ */
++#define HHI_GP0_PLL_CNTL		0x40
++#define HHI_GP0_PLL_CNTL2		0x44
++#define HHI_GP0_PLL_CNTL3		0x48
++#define HHI_GP0_PLL_CNTL4		0x4c
++#define HHI_GP0_PLL_CNTL5		0x50
++#define HHI_GP0_PLL_STS			0x54
++#define HHI_GP0_PLL_CNTL1		0x58
++#define HHI_HIFI_PLL_CNTL		0x80
++#define HHI_HIFI_PLL_CNTL2		0x84
++#define HHI_HIFI_PLL_CNTL3		0x88
++#define HHI_HIFI_PLL_CNTL4		0x8C
++#define HHI_HIFI_PLL_CNTL5		0x90
++#define HHI_HIFI_PLL_STS		0x94
++#define HHI_HIFI_PLL_CNTL1		0x98
++
++#define HHI_XTAL_DIVN_CNTL		0xbc
++#define HHI_GCLK2_MPEG0			0xc0
++#define HHI_GCLK2_MPEG1			0xc4
++#define HHI_GCLK2_MPEG2			0xc8
++#define HHI_GCLK2_OTHER			0xd0
++#define HHI_GCLK2_AO			0xd4
++#define HHI_PCIE_PLL_CNTL		0xd8
++#define HHI_PCIE_PLL_CNTL1		0xdC
++#define HHI_PCIE_PLL_CNTL2		0xe0
++#define HHI_PCIE_PLL_CNTL3		0xe4
++#define HHI_PCIE_PLL_CNTL4		0xe8
++#define HHI_PCIE_PLL_CNTL5		0xec
++#define HHI_PCIE_PLL_CNTL6		0xf0
++#define HHI_PCIE_PLL_STS		0xf4
++
++#define HHI_MEM_PD_REG0			0x100
++#define HHI_VPU_MEM_PD_REG0		0x104
++#define HHI_VIID_CLK_DIV		0x128
++#define HHI_VIID_CLK_CNTL		0x12c
++
++#define HHI_GCLK_MPEG0			0x140
++#define HHI_GCLK_MPEG1			0x144
++#define HHI_GCLK_MPEG2			0x148
++#define HHI_GCLK_OTHER			0x150
++#define HHI_GCLK_AO			0x154
++#define HHI_SYS_CPU_CLK_CNTL1		0x15c
++#define HHI_SYS_CPU_RESET_CNTL		0x160
++#define HHI_VID_CLK_DIV			0x164
++#define HHI_SPICC_HCLK_CNTL		0x168
++
++#define HHI_MPEG_CLK_CNTL		0x174
++#define HHI_VID_CLK_CNTL		0x17c
++#define HHI_TS_CLK_CNTL			0x190
++#define HHI_VID_CLK_CNTL2		0x194
++#define HHI_SYS_CPU_CLK_CNTL0		0x19c
++#define HHI_VID_PLL_CLK_DIV		0x1a0
++#define HHI_VPU_CLK_CNTL		0x1bC
++
++#define HHI_VAPBCLK_CNTL		0x1F4
++
++#define HHI_GEN_CLK_CNTL		0x228
++
++#define HHI_VDIN_MEAS_CLK_CNTL		0x250
++#define HHI_NAND_CLK_CNTL		0x25C
++#define HHI_SD_EMMC_CLK_CNTL		0x264
++
++#define HHI_MPLL_CNTL			0x280
++#define HHI_MPLL_CNTL2			0x284
++#define HHI_MPLL_CNTL3			0x288
++#define HHI_MPLL_CNTL4			0x28C
++#define HHI_MPLL_CNTL5			0x290
++#define HHI_MPLL_CNTL6			0x294
++#define HHI_MPLL_CNTL7			0x298
++#define HHI_MPLL_CNTL8			0x29C
++#define HHI_MPLL_CNTL9			0x2A0
++#define HHI_MPLL_CNTL10			0x2A4
++
++#define HHI_MPLL3_CNTL0			0x2E0
++#define HHI_MPLL3_CNTL1			0x2E4
++#define HHI_PLL_TOP_MISC		0x2E8
++
++#define HHI_SYS_PLL_CNTL1		0x2FC
++#define HHI_SYS_PLL_CNTL		0x300
++#define HHI_SYS_PLL_CNTL2		0x304
++#define HHI_SYS_PLL_CNTL3		0x308
++#define HHI_SYS_PLL_CNTL4		0x30c
++#define HHI_SYS_PLL_CNTL5		0x310
++#define HHI_SYS_PLL_STS			0x314
++#define HHI_DPLL_TOP_I			0x318
++#define HHI_DPLL_TOP2_I			0x31C
++
++#endif
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+index 821b586..a696245 100644
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -9,7 +9,7 @@ obj-$(CONFIG_$(SPL_TPL_)CLK) += clk-uclass.o clk_fixed_rate.o
+ obj-y += imx/
+ obj-y += tegra/
+ obj-$(CONFIG_ARCH_ASPEED) += aspeed/
+-obj-$(CONFIG_ARCH_MESON) += clk_meson.o
++obj-$(CONFIG_ARCH_MESON) += clk_meson.o clk_meson_axg.o
+ obj-$(CONFIG_ARCH_ROCKCHIP) += rockchip/
+ obj-$(CONFIG_ARCH_SOCFPGA) += altera/
+ obj-$(CONFIG_CLK_AT91) += at91/
+diff --git a/drivers/clk/clk_meson_axg.c b/drivers/clk/clk_meson_axg.c
+new file mode 100644
+index 0000000..32cbf75
+--- /dev/null
++++ b/drivers/clk/clk_meson_axg.c
+@@ -0,0 +1,316 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * (C) Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
++ * (C) Copyright 2018 - BayLibre, SAS
 + * Author: Neil Armstrong <narmstrong@baylibre.com>
 + */
 +
-+#ifndef __MESON_BOOT_H__
-+#define __MESON_BOOT_H__
++#include <common.h>
++#include <asm/arch/clock-axg.h>
++#include <asm/io.h>
++#include <clk-uclass.h>
++#include <dm.h>
++#include <regmap.h>
++#include <syscon.h>
++#include <div64.h>
++#include <dt-bindings/clock/axg-clkc.h>
++#include "clk_meson.h"
 +
-+/* Boot device */
-+#define BOOT_DEVICE_RESERVED    0
-+#define BOOT_DEVICE_EMMC        1
-+#define BOOT_DEVICE_NAND        2
-+#define BOOT_DEVICE_SPI         3
-+#define BOOT_DEVICE_SD          4
-+#define BOOT_DEVICE_USB         5
++#define XTAL_RATE 24000000
 +
-+int meson_get_boot_device(void);
++struct meson_clk {
++	struct regmap *map;
++};
 +
-+#endif /* __MESON_BOOT_H__ */
-diff --git a/arch/arm/include/asm/arch-meson/gx.h b/arch/arm/include/asm/arch-meson/gx.h
-index 4bc9475..b781ba9 100644
---- a/arch/arm/include/asm/arch-meson/gx.h
-+++ b/arch/arm/include/asm/arch-meson/gx.h
-@@ -21,6 +21,7 @@
- #define GX_AO_SEC_GP_CFG4	GX_AO_ADDR(0x94)
- #define GX_AO_SEC_GP_CFG5	GX_AO_ADDR(0x95)
- 
-+#define GX_AO_BOOT_DEVICE	0xF
- #define GX_AO_MEM_SIZE_MASK	0xFFFF0000
- #define GX_AO_MEM_SIZE_SHIFT	16
- #define GX_AO_BL31_RSVMEM_SIZE_MASK	0xFFFF0000
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index deddcc5..11077bc 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -8,6 +8,7 @@ config MESON64_COMMON
- 	select DM_SERIAL
- 	select SYSCON
- 	select REGMAP
-+	select BOARD_LATE_INIT
- 	imply CMD_DM
- 
- config MESON_GX
-diff --git a/arch/arm/mach-meson/board-axg.c b/arch/arm/mach-meson/board-axg.c
-index 014b25d..173905e 100644
---- a/arch/arm/mach-meson/board-axg.c
-+++ b/arch/arm/mach-meson/board-axg.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <common.h>
-+#include <asm/arch/boot.h>
- #include <asm/arch/eth.h>
- #include <asm/arch/axg.h>
- #include <asm/arch/mem.h>
-@@ -15,6 +16,11 @@
- 
- DECLARE_GLOBAL_DATA_PTR;
- 
-+int meson_get_boot_device(void)
++static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id);
++
++static struct meson_gate gates[] = {
++	/* Everything Else (EE) domain gates */
++	MESON_GATE(CLKID_SPICC0, HHI_GCLK_MPEG0, 8),
++	MESON_GATE(CLKID_I2C, HHI_GCLK_MPEG0, 9),
++	MESON_GATE(CLKID_UART0, HHI_GCLK_MPEG0, 13),
++	MESON_GATE(CLKID_SPICC1, HHI_GCLK_MPEG0, 15),
++	MESON_GATE(CLKID_SD_EMMC_B, HHI_GCLK_MPEG0, 25),
++	MESON_GATE(CLKID_SD_EMMC_C, HHI_GCLK_MPEG0, 26),
++	MESON_GATE(CLKID_ETH, HHI_GCLK_MPEG1, 3),
++	MESON_GATE(CLKID_UART1, HHI_GCLK_MPEG1, 16),
++
++	/* Always On (AO) domain gates */
++	MESON_GATE(CLKID_AO_I2C, HHI_GCLK_AO, 4),
++
++	/* PLL Gates */
++	/* CLKID_FCLK_DIV2 is critical for the SCPI Processor */
++	MESON_GATE(CLKID_MPLL2, HHI_MPLL_CNTL9, 14),
++	/* CLKID_CLK81 is critical for the system */
++
++	/* Peripheral Gates */
++	MESON_GATE(CLKID_SD_EMMC_B_CLK0, HHI_SD_EMMC_CLK_CNTL, 23),
++	MESON_GATE(CLKID_SD_EMMC_C_CLK0, HHI_NAND_CLK_CNTL, 7),
++};
++
++static int meson_set_gate(struct clk *clk, bool on)
 +{
-+	return readl(AXG_AO_SEC_GP_CFG0) & AXG_AO_BOOT_DEVICE;
-+}
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	struct meson_gate *gate;
 +
- /* Configure the reserved memory zones exported by the secure registers
-  * into EFI and DTB reserved memory entries.
-  */
-diff --git a/arch/arm/mach-meson/board-common.c b/arch/arm/mach-meson/board-common.c
-index 249e0d9..996bd28 100644
---- a/arch/arm/mach-meson/board-common.c
-+++ b/arch/arm/mach-meson/board-common.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <common.h>
-+#include <asm/arch/boot.h>
- #include <linux/libfdt.h>
- #include <linux/err.h>
- #include <asm/arch/mem.h>
-@@ -66,6 +67,50 @@ void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size)
- 	}
- }
- 
-+static void meson_set_boot_source(void)
-+{
-+	const char *source;
++	if (clk->id >= ARRAY_SIZE(gates))
++		return -ENOENT;
 +
-+	switch (meson_get_boot_device()) {
-+	case BOOT_DEVICE_EMMC:
-+		source = "emmc";
-+		break;
++	gate = &gates[clk->id];
 +
-+	case BOOT_DEVICE_NAND:
-+		source = "nand";
-+		break;
++	if (gate->reg == 0)
++		return 0;
 +
-+	case BOOT_DEVICE_SPI:
-+		source = "spi";
-+		break;
++	regmap_update_bits(priv->map, gate->reg,
++			   BIT(gate->bit), on ? BIT(gate->bit) : 0);
 +
-+	case BOOT_DEVICE_SD:
-+		source = "sd";
-+		break;
-+
-+	case BOOT_DEVICE_USB:
-+		source = "usb";
-+		break;
-+
-+	default:
-+		source = "unknown";
-+	}
-+
-+	env_set("boot_source", source);
-+}
-+
-+__weak int meson_board_late_init(void)
-+{
 +	return 0;
 +}
 +
-+int board_late_init(void)
++static int meson_clk_enable(struct clk *clk)
 +{
-+	meson_set_boot_source();
-+
-+	return meson_board_late_init();
++	return meson_set_gate(clk, true);
 +}
 +
- void reset_cpu(ulong addr)
- {
- 	psci_system_reset();
-diff --git a/arch/arm/mach-meson/board-gx.c b/arch/arm/mach-meson/board-gx.c
-index f1397f8..e41552d 100644
---- a/arch/arm/mach-meson/board-gx.c
-+++ b/arch/arm/mach-meson/board-gx.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <common.h>
-+#include <asm/arch/boot.h>
- #include <asm/arch/eth.h>
- #include <asm/arch/gx.h>
- #include <asm/arch/mem.h>
-@@ -15,6 +16,11 @@
- 
- DECLARE_GLOBAL_DATA_PTR;
- 
-+int meson_get_boot_device(void)
++static int meson_clk_disable(struct clk *clk)
 +{
-+	return readl(GX_AO_SEC_GP_CFG0) & GX_AO_BOOT_DEVICE;
++	return meson_set_gate(clk, false);
 +}
 +
- /* Configure the reserved memory zones exported by the secure registers
-  * into EFI and DTB reserved memory entries.
-  */
-diff --git a/include/configs/meson64.h b/include/configs/meson64.h
-index f961f43..40ac079 100644
---- a/include/configs/meson64.h
-+++ b/include/configs/meson64.h
-@@ -28,6 +28,18 @@
- #define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
- #define CONFIG_SYS_BOOTM_LEN		(64 << 20) /* 64 MiB */
- 
-+/* ROM USB boot support, auto-execute boot.scr@scriptaddr */
-+#define BOOTENV_DEV_ROMUSB(devtypeu, devtypel, instance) \
-+	"bootcmd_romusb=" \
-+		"if test \"${boot_source}\" = \"usb\" && " \
-+				"test -n \"${scriptaddr}\"; then " \
-+			"echo '(ROM USB boot)'; " \
-+			"source ${scriptaddr}; " \
-+		"fi\0"
++static unsigned long meson_clk81_get_rate(struct clk *clk)
++{
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	unsigned long parent_rate;
++	uint reg;
++	int parents[] = {
++		-1,
++		-1,
++		CLKID_FCLK_DIV7,
++		CLKID_MPLL1,
++		CLKID_MPLL2,
++		CLKID_FCLK_DIV4,
++		CLKID_FCLK_DIV3,
++		CLKID_FCLK_DIV5
++	};
 +
-+#define BOOTENV_DEV_NAME_ROMUSB(devtypeu, devtypel, instance)	\
-+		"romusb "
++	/* mux */
++	regmap_read(priv->map, HHI_MPEG_CLK_CNTL, &reg);
++	reg = (reg >> 12) & 7;
 +
- #ifdef CONFIG_CMD_USB
- #define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
- #else
-@@ -36,6 +48,7 @@
- 
- #ifndef BOOT_TARGET_DEVICES
- #define BOOT_TARGET_DEVICES(func) \
-+	func(ROMUSB, romusb, na)  \
- 	func(MMC, mmc, 0) \
- 	func(MMC, mmc, 1) \
- 	func(MMC, mmc, 2) \
++	switch (reg) {
++	case 0:
++		parent_rate = XTAL_RATE;
++		break;
++	case 1:
++		return -ENOENT;
++	default:
++		parent_rate = meson_clk_get_rate_by_id(clk, parents[reg]);
++	}
++
++	/* divider */
++	regmap_read(priv->map, HHI_MPEG_CLK_CNTL, &reg);
++	reg = reg & ((1 << 7) - 1);
++
++	return parent_rate / reg;
++}
++
++static long mpll_rate_from_params(unsigned long parent_rate,
++				  unsigned long sdm,
++				  unsigned long n2)
++{
++	unsigned long divisor = (SDM_DEN * n2) + sdm;
++
++	if (n2 < N2_MIN)
++		return -EINVAL;
++
++	return DIV_ROUND_UP_ULL((u64)parent_rate * SDM_DEN, divisor);
++}
++
++static struct parm meson_mpll0_parm[3] = {
++	{HHI_MPLL_CNTL7, 0, 14}, /* psdm */
++	{HHI_MPLL_CNTL7, 16, 9}, /* pn2 */
++};
++
++static struct parm meson_mpll1_parm[3] = {
++	{HHI_MPLL_CNTL8, 0, 14}, /* psdm */
++	{HHI_MPLL_CNTL8, 16, 9}, /* pn2 */
++};
++
++static struct parm meson_mpll2_parm[3] = {
++	{HHI_MPLL_CNTL9, 0, 14}, /* psdm */
++	{HHI_MPLL_CNTL9, 16, 9}, /* pn2 */
++};
++
++/*
++ * MultiPhase Locked Loops are outputs from a PLL with additional frequency
++ * scaling capabilities. MPLL rates are calculated as:
++ *
++ * f(N2_integer, SDM_IN ) = 2.0G/(N2_integer + SDM_IN/16384)
++ */
++static ulong meson_mpll_get_rate(struct clk *clk, unsigned long id)
++{
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	struct parm *psdm, *pn2;
++	unsigned long sdm, n2;
++	unsigned long parent_rate;
++	uint reg;
++
++	switch (id) {
++	case CLKID_MPLL0:
++		psdm = &meson_mpll0_parm[0];
++		pn2 = &meson_mpll0_parm[1];
++		break;
++	case CLKID_MPLL1:
++		psdm = &meson_mpll1_parm[0];
++		pn2 = &meson_mpll1_parm[1];
++		break;
++	case CLKID_MPLL2:
++		psdm = &meson_mpll2_parm[0];
++		pn2 = &meson_mpll2_parm[1];
++		break;
++	default:
++		return -ENOENT;
++	}
++
++	parent_rate = meson_clk_get_rate_by_id(clk, CLKID_FIXED_PLL);
++	if (IS_ERR_VALUE(parent_rate))
++		return parent_rate;
++
++	regmap_read(priv->map, psdm->reg_off, &reg);
++	sdm = PARM_GET(psdm->width, psdm->shift, reg);
++
++	regmap_read(priv->map, pn2->reg_off, &reg);
++	n2 = PARM_GET(pn2->width, pn2->shift, reg);
++
++	return mpll_rate_from_params(parent_rate, sdm, n2);
++}
++
++static struct parm meson_fixed_pll_parm[3] = {
++	{HHI_MPLL_CNTL, 0, 9}, /* pm */
++	{HHI_MPLL_CNTL, 9, 5}, /* pn */
++	{HHI_MPLL_CNTL, 16, 2}, /* pod */
++};
++
++static struct parm meson_sys_pll_parm[3] = {
++	{HHI_SYS_PLL_CNTL, 0, 9}, /* pm */
++	{HHI_SYS_PLL_CNTL, 9, 5}, /* pn */
++	{HHI_SYS_PLL_CNTL, 16, 2}, /* pod */
++};
++
++static ulong meson_pll_get_rate(struct clk *clk, unsigned long id)
++{
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	struct parm *pm, *pn, *pod;
++	unsigned long parent_rate_mhz = XTAL_RATE / 1000000;
++	u16 n, m, od;
++	uint reg;
++
++	switch (id) {
++	case CLKID_FIXED_PLL:
++		pm = &meson_fixed_pll_parm[0];
++		pn = &meson_fixed_pll_parm[1];
++		pod = &meson_fixed_pll_parm[2];
++		break;
++	case CLKID_SYS_PLL:
++		pm = &meson_sys_pll_parm[0];
++		pn = &meson_sys_pll_parm[1];
++		pod = &meson_sys_pll_parm[2];
++		break;
++	default:
++		return -ENOENT;
++	}
++
++	regmap_read(priv->map, pn->reg_off, &reg);
++	n = PARM_GET(pn->width, pn->shift, reg);
++
++	regmap_read(priv->map, pm->reg_off, &reg);
++	m = PARM_GET(pm->width, pm->shift, reg);
++
++	regmap_read(priv->map, pod->reg_off, &reg);
++	od = PARM_GET(pod->width, pod->shift, reg);
++
++	return ((parent_rate_mhz * m / n) >> od) * 1000000;
++}
++
++static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id)
++{
++	ulong rate;
++
++	switch (id) {
++	case CLKID_FIXED_PLL:
++	case CLKID_SYS_PLL:
++		rate = meson_pll_get_rate(clk, id);
++		break;
++	case CLKID_FCLK_DIV2:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 2;
++		break;
++	case CLKID_FCLK_DIV3:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 3;
++		break;
++	case CLKID_FCLK_DIV4:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 4;
++		break;
++	case CLKID_FCLK_DIV5:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 5;
++		break;
++	case CLKID_FCLK_DIV7:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 7;
++		break;
++	case CLKID_MPLL0:
++	case CLKID_MPLL1:
++	case CLKID_MPLL2:
++		rate = meson_mpll_get_rate(clk, id);
++		break;
++	case CLKID_CLK81:
++		rate = meson_clk81_get_rate(clk);
++		break;
++	default:
++		if (gates[id].reg != 0) {
++			/* a clock gate */
++			rate = meson_clk81_get_rate(clk);
++			break;
++		}
++		return -ENOENT;
++	}
++
++	debug("clock %lu has rate %lu\n", id, rate);
++	return rate;
++}
++
++static ulong meson_clk_get_rate(struct clk *clk)
++{
++	return meson_clk_get_rate_by_id(clk, clk->id);
++}
++
++static int meson_clk_probe(struct udevice *dev)
++{
++	struct meson_clk *priv = dev_get_priv(dev);
++
++	priv->map = syscon_node_to_regmap(dev_get_parent(dev)->node);
++	if (IS_ERR(priv->map))
++		return PTR_ERR(priv->map);
++
++	debug("meson-clk-axg: probed\n");
++
++	return 0;
++}
++
++static struct clk_ops meson_clk_ops = {
++	.disable	= meson_clk_disable,
++	.enable		= meson_clk_enable,
++	.get_rate	= meson_clk_get_rate,
++};
++
++static const struct udevice_id meson_clk_ids[] = {
++	{ .compatible = "amlogic,axg-clkc" },
++	{ }
++};
++
++U_BOOT_DRIVER(meson_clk_axg) = {
++	.name		= "meson_clk_axg",
++	.id		= UCLASS_CLK,
++	.of_match	= meson_clk_ids,
++	.priv_auto_alloc_size = sizeof(struct meson_clk),
++	.ops		= &meson_clk_ops,
++	.probe		= meson_clk_probe,
++};
 -- 
 2.7.4
