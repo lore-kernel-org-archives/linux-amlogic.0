@@ -1,30 +1,35 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 15:21:00 +0100
-Subject: [PATCH u-boot 2/2] net: designware: add meson meson axg compatible
-In-Reply-To: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
-References: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541773260-16197-3-git-send-email-narmstrong@baylibre.com>
+Date: Fri,  9 Nov 2018 16:26:48 +0100
+Subject: [PATCH u-boot 09/19] pinctrl: meson: select generic pinctrl
+In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
+References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541777218-472-10-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the compatible string for the upcoming Amlogic AXG SoC family.
+From: Jerome Brunet <jbrunet@baylibre.com>
 
+Meson pinctrl needs generic pinctrl, rather than depending on it
+select it
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/net/designware.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/pinctrl/meson/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/net/designware.c b/drivers/net/designware.c
-index cdcc03f..4fa26ab 100644
---- a/drivers/net/designware.c
-+++ b/drivers/net/designware.c
-@@ -839,6 +839,7 @@ static const struct udevice_id designware_eth_ids[] = {
- 	{ .compatible = "amlogic,meson6-dwmac" },
- 	{ .compatible = "amlogic,meson-gx-dwmac" },
- 	{ .compatible = "amlogic,meson-gxbb-dwmac" },
-+	{ .compatible = "amlogic,meson-axg-dwmac" },
- 	{ .compatible = "st,stm32-dwmac" },
- 	{ }
- };
+diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+index 15a8d9c..fc51b43 100644
+--- a/drivers/pinctrl/meson/Kconfig
++++ b/drivers/pinctrl/meson/Kconfig
+@@ -1,7 +1,7 @@
+ if ARCH_MESON
+ 
+ config PINCTRL_MESON
+-	depends on PINCTRL_GENERIC
++	select PINCTRL_GENERIC
+ 	bool
+ 
+ config PINCTRL_MESON_GX_PMX
 -- 
 2.7.4
