@@ -1,226 +1,983 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 16:26:39 +0100
-Subject: [PATCH u-boot 00/19] Amlogic Meson cleanup for AXG SoC support
-Message-ID: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
+Date: Fri,  9 Nov 2018 16:26:42 +0100
+Subject: [PATCH u-boot 03/19] board: amlogic: remove p212 derivatives
+In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
+References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541777218-472-4-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patchset will refactor the Amlogic Meson SoC support in order to
-easily add support for the Amlogic AXg SoC family, and later the G12x SoCs.
+From: Jerome Brunet <jbrunet@baylibre.com>
 
-In order :
-- Cleanup the mach-meson configs
-- Move board support to reference design common boards
-- Move board Kconfig into mach-meson
-- Add AXG pinctrl & clock support
-- Add AXG device tree and mach-meson support
-- Add support for S400 reference design
-- Do a final factorization of the code
-- Add USB boot support in U-boot
+The Khadas vim and the libretech aml-s905x-cc (aka Potato) derive
+from amlogic s905x reference design (P212).
 
-At the end of the patches, the board code is lighter and we maintain
-only the reference designs, where each board will differ in the defconfig.
+All the code in these board is a copy/paste from the p212, which is
+tedious to maintain. This change use p212 u-boot board for all these
+boards, while keeping a dedicated defconfig to customize the names
+and device tree.
 
-It will be simpler to add custom board support for future boards with
-more changes against the reference designs.
-
-The complete AXG support depends on the :
-- mmc: meson-gx: Add AXG compatible
-- net: designware: add meson meson axg compatible
-patches submitted to the U-Boot mailing list.
-
-Jerome Brunet (12):
-  ARM: meson: clean-up platform selection
-  configs: meson: remove unnecessary MESON_FDTFILE_SETTING
-  board: amlogic: remove p212 derivatives
-  board: amlogic: factorise gxbb boards
-  ARM: rework amlogic configuration
-  configs: meson: change default load addresses
-  pinctrl: meson: rework gx pmx function
-  pinctrl: meson: select generic pinctrl
-  pinctrl: meson: add axg support
-  clk: meson: silence debug print
-  ARM: meson: rework soc arch file to prepare for new SoC
-  ARM: meson: factorize common code out amlogic's boards
-
-Neil Armstrong (7):
-  board: amlogic: move khadas-vim2 as q200 ref board
-  clk: meson: add static to meson_gates table
-  ARM: meson: Add support for AXG family
-  ARM: dts: Sync Amlogic Meson AXG DT from Linux 4.20-rc1
-  clk: Add clock driver for AXG
-  board: amlogic: add support for S400 board
-  ARM: meson: Add boot device discovery
-
- arch/arm/dts/Makefile                              |    3 +-
- arch/arm/dts/meson-axg-s400.dts                    |  554 +++++++
- arch/arm/dts/meson-axg.dtsi                        | 1589 ++++++++++++++++++++
- arch/arm/include/asm/arch-meson/axg.h              |   52 +
- arch/arm/include/asm/arch-meson/boot.h             |   20 +
- arch/arm/include/asm/arch-meson/clock-axg.h        |  104 ++
- arch/arm/include/asm/arch-meson/clock-gx.h         |  117 ++
- arch/arm/include/asm/arch-meson/clock.h            |  117 --
- arch/arm/include/asm/arch-meson/eth.h              |    6 +-
- arch/arm/include/asm/arch-meson/gx.h               |    1 +
- arch/arm/include/asm/arch-meson/mem.h              |    3 +-
- arch/arm/mach-meson/Kconfig                        |  132 +-
- arch/arm/mach-meson/Makefile                       |    4 +-
- arch/arm/mach-meson/board-axg.c                    |  118 ++
- arch/arm/mach-meson/board-common.c                 |  118 ++
- arch/arm/mach-meson/board-gx.c                     |  138 ++
- arch/arm/mach-meson/board.c                        |  130 --
- arch/arm/mach-meson/eth.c                          |   53 -
- arch/arm/mach-meson/sm.c                           |    1 -
- board/amlogic/khadas-vim/Kconfig                   |   12 -
- board/amlogic/khadas-vim/MAINTAINERS               |    6 -
- board/amlogic/khadas-vim/Makefile                  |    6 -
- board/amlogic/khadas-vim/README                    |  102 --
- board/amlogic/khadas-vim/khadas-vim.c              |   57 -
- board/amlogic/khadas-vim2/Kconfig                  |   12 -
- board/amlogic/khadas-vim2/MAINTAINERS              |    6 -
- board/amlogic/khadas-vim2/Makefile                 |    6 -
- board/amlogic/khadas-vim2/README                   |  103 --
- board/amlogic/khadas-vim2/khadas-vim2.c            |   62 -
- board/amlogic/libretech-cc/Kconfig                 |   12 -
- board/amlogic/libretech-cc/MAINTAINERS             |    6 -
- board/amlogic/libretech-cc/Makefile                |    6 -
- board/amlogic/libretech-cc/README                  |  102 --
- board/amlogic/libretech-cc/libretech-cc.c          |   57 -
- board/amlogic/nanopi-k2/Kconfig                    |   12 -
- board/amlogic/nanopi-k2/MAINTAINERS                |    6 -
- board/amlogic/nanopi-k2/Makefile                   |    7 -
- board/amlogic/nanopi-k2/README                     |   99 --
- board/amlogic/nanopi-k2/nanopi-k2.c                |   55 -
- board/amlogic/odroid-c2/Kconfig                    |   12 -
- board/amlogic/odroid-c2/MAINTAINERS                |    1 +
- board/amlogic/odroid-c2/README                     |   66 -
- board/amlogic/odroid-c2/README.nanopi-k2           |   99 ++
- board/amlogic/odroid-c2/README.odroid-c2           |   66 +
- board/amlogic/odroid-c2/odroid-c2.c                |   16 +-
- board/amlogic/p212/Kconfig                         |   12 -
- board/amlogic/p212/README                          |  103 --
- board/amlogic/p212/README.khadas-vim               |  102 ++
- board/amlogic/p212/README.libretech-cc             |  102 ++
- board/amlogic/p212/README.p212                     |  103 ++
- board/amlogic/p212/p212.c                          |   16 +-
- board/amlogic/q200/MAINTAINERS                     |    6 +
- board/amlogic/q200/Makefile                        |    6 +
- board/amlogic/q200/README.khadas-vim2              |  103 ++
- board/amlogic/q200/README.q200                     |  102 ++
- board/amlogic/q200/q200.c                          |   50 +
- board/amlogic/s400/MAINTAINERS                     |    6 +
- board/amlogic/s400/Makefile                        |    6 +
- board/amlogic/s400/README                          |  110 ++
- board/amlogic/s400/s400.c                          |   21 +
- configs/khadas-vim2_defconfig                      |    1 -
- configs/khadas-vim_defconfig                       |    1 -
- configs/libretech-cc_defconfig                     |    1 -
- configs/nanopi-k2_defconfig                        |    2 -
- configs/odroid-c2_defconfig                        |    1 -
- configs/p212_defconfig                             |    1 -
- configs/s400_defconfig                             |   38 +
- drivers/clk/Makefile                               |    2 +-
- drivers/clk/clk_meson.c                            |    6 +-
- drivers/clk/clk_meson_axg.c                        |  316 ++++
- drivers/pinctrl/meson/Kconfig                      |   18 +-
- drivers/pinctrl/meson/Makefile                     |    3 +
- drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c      |  125 ++
- drivers/pinctrl/meson/pinctrl-meson-axg.c          |  979 ++++++++++++
- drivers/pinctrl/meson/pinctrl-meson-axg.h          |   66 +
- drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c       |   97 ++
- drivers/pinctrl/meson/pinctrl-meson-gx.h           |   48 +
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c         |    6 +-
- drivers/pinctrl/meson/pinctrl-meson-gxl.c          |    6 +-
- drivers/pinctrl/meson/pinctrl-meson.c              |  109 +-
- drivers/pinctrl/meson/pinctrl-meson.h              |   37 +-
- include/configs/khadas-vim.h                       |   16 -
- include/configs/khadas-vim2.h                      |   18 -
- include/configs/libretech-cc.h                     |   16 -
- include/configs/meson-gx-common.h                  |   52 -
- include/configs/meson64.h                          |   73 +
- include/configs/nanopi-k2.h                        |   16 -
- include/configs/odroid-c2.h                        |   16 -
- include/configs/p212.h                             |   18 -
- include/dt-bindings/clock/axg-aoclkc.h             |   26 +
- include/dt-bindings/clock/axg-audio-clkc.h         |   94 ++
- include/dt-bindings/clock/axg-clkc.h               |   76 +
- include/dt-bindings/gpio/meson-axg-gpio.h          |  116 ++
- .../reset/amlogic,meson-axg-audio-arb.h            |   17 +
- .../dt-bindings/reset/amlogic,meson-axg-reset.h    |  124 ++
- include/dt-bindings/reset/axg-aoclkc.h             |   20 +
- 96 files changed, 6038 insertions(+), 1625 deletions(-)
- create mode 100644 arch/arm/dts/meson-axg-s400.dts
- create mode 100644 arch/arm/dts/meson-axg.dtsi
- create mode 100644 arch/arm/include/asm/arch-meson/axg.h
- create mode 100644 arch/arm/include/asm/arch-meson/boot.h
- create mode 100644 arch/arm/include/asm/arch-meson/clock-axg.h
- create mode 100644 arch/arm/include/asm/arch-meson/clock-gx.h
- delete mode 100644 arch/arm/include/asm/arch-meson/clock.h
- create mode 100644 arch/arm/mach-meson/board-axg.c
- create mode 100644 arch/arm/mach-meson/board-common.c
- create mode 100644 arch/arm/mach-meson/board-gx.c
- delete mode 100644 arch/arm/mach-meson/board.c
- delete mode 100644 arch/arm/mach-meson/eth.c
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm/mach-meson/Kconfig               |  22 +------
+ board/amlogic/khadas-vim/Kconfig          |  12 ----
+ board/amlogic/khadas-vim/MAINTAINERS      |   6 --
+ board/amlogic/khadas-vim/Makefile         |   6 --
+ board/amlogic/khadas-vim/README           | 102 -----------------------------
+ board/amlogic/khadas-vim/khadas-vim.c     |  57 -----------------
+ board/amlogic/libretech-cc/Kconfig        |  12 ----
+ board/amlogic/libretech-cc/MAINTAINERS    |   6 --
+ board/amlogic/libretech-cc/Makefile       |   6 --
+ board/amlogic/libretech-cc/README         | 102 -----------------------------
+ board/amlogic/libretech-cc/libretech-cc.c |  57 -----------------
+ board/amlogic/p212/README                 | 103 ------------------------------
+ board/amlogic/p212/README.khadas-vim      | 102 +++++++++++++++++++++++++++++
+ board/amlogic/p212/README.libretech-cc    | 102 +++++++++++++++++++++++++++++
+ board/amlogic/p212/README.p212            | 103 ++++++++++++++++++++++++++++++
+ configs/khadas-vim_defconfig              |   2 +-
+ configs/libretech-cc_defconfig            |   2 +-
+ 17 files changed, 311 insertions(+), 491 deletions(-)
  delete mode 100644 board/amlogic/khadas-vim/Kconfig
  delete mode 100644 board/amlogic/khadas-vim/MAINTAINERS
  delete mode 100644 board/amlogic/khadas-vim/Makefile
  delete mode 100644 board/amlogic/khadas-vim/README
  delete mode 100644 board/amlogic/khadas-vim/khadas-vim.c
- delete mode 100644 board/amlogic/khadas-vim2/Kconfig
- delete mode 100644 board/amlogic/khadas-vim2/MAINTAINERS
- delete mode 100644 board/amlogic/khadas-vim2/Makefile
- delete mode 100644 board/amlogic/khadas-vim2/README
- delete mode 100644 board/amlogic/khadas-vim2/khadas-vim2.c
  delete mode 100644 board/amlogic/libretech-cc/Kconfig
  delete mode 100644 board/amlogic/libretech-cc/MAINTAINERS
  delete mode 100644 board/amlogic/libretech-cc/Makefile
  delete mode 100644 board/amlogic/libretech-cc/README
  delete mode 100644 board/amlogic/libretech-cc/libretech-cc.c
- delete mode 100644 board/amlogic/nanopi-k2/Kconfig
- delete mode 100644 board/amlogic/nanopi-k2/MAINTAINERS
- delete mode 100644 board/amlogic/nanopi-k2/Makefile
- delete mode 100644 board/amlogic/nanopi-k2/README
- delete mode 100644 board/amlogic/nanopi-k2/nanopi-k2.c
- delete mode 100644 board/amlogic/odroid-c2/Kconfig
- delete mode 100644 board/amlogic/odroid-c2/README
- create mode 100644 board/amlogic/odroid-c2/README.nanopi-k2
- create mode 100644 board/amlogic/odroid-c2/README.odroid-c2
- delete mode 100644 board/amlogic/p212/Kconfig
  delete mode 100644 board/amlogic/p212/README
  create mode 100644 board/amlogic/p212/README.khadas-vim
  create mode 100644 board/amlogic/p212/README.libretech-cc
  create mode 100644 board/amlogic/p212/README.p212
- create mode 100644 board/amlogic/q200/MAINTAINERS
- create mode 100644 board/amlogic/q200/Makefile
- create mode 100644 board/amlogic/q200/README.khadas-vim2
- create mode 100644 board/amlogic/q200/README.q200
- create mode 100644 board/amlogic/q200/q200.c
- create mode 100644 board/amlogic/s400/MAINTAINERS
- create mode 100644 board/amlogic/s400/Makefile
- create mode 100644 board/amlogic/s400/README
- create mode 100644 board/amlogic/s400/s400.c
- create mode 100644 configs/s400_defconfig
- create mode 100644 drivers/clk/clk_meson_axg.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.h
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx.h
- delete mode 100644 include/configs/khadas-vim.h
- delete mode 100644 include/configs/khadas-vim2.h
- delete mode 100644 include/configs/libretech-cc.h
- delete mode 100644 include/configs/meson-gx-common.h
- create mode 100644 include/configs/meson64.h
- delete mode 100644 include/configs/nanopi-k2.h
- delete mode 100644 include/configs/odroid-c2.h
- delete mode 100644 include/configs/p212.h
- create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
- create mode 100644 include/dt-bindings/clock/axg-audio-clkc.h
- create mode 100644 include/dt-bindings/clock/axg-clkc.h
- create mode 100644 include/dt-bindings/gpio/meson-axg-gpio.h
- create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
- create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-reset.h
- create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
 
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index bc0f6a1..e0b2812 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -47,22 +47,8 @@ config TARGET_P212
+ 	  P212 is a reference dessign board based on Meson GXL S905X SoC
+ 	  with 2 GiB of RAM, Ethernet, HDMI, 2 USB, micro-SD slot,
+ 	  eMMC, IR receiver, CVBS+Audio jack and a SDIO WiFi module.
+-
+-config TARGET_LIBRETECH_CC
+-	bool "LIBRETECH-CC"
+-	select MESON_GXL
+-	help
+-	  LibreTech CC is a single board computer based on Meson GXL
+-	  with 2 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
+-	  eMMC, IR receiver and a 40-pin GPIO header.
+-
+-config TARGET_KHADAS_VIM
+-	bool "KHADAS-VIM"
+-	select MESON_GXL
+-	help
+-	  Khadas VIM is a single board computer based on Meson GXL
+-	  with 2 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
+-	  eMMC, IR receiver and a 40-pin GPIO header.
++	  You should also select this TARGET if you have Khadas Vim or
++	  a libretech aml-s905x-cc
+ 
+ config TARGET_KHADAS_VIM2
+ 	bool "KHADAS-VIM2"
+@@ -86,10 +72,6 @@ source "board/amlogic/nanopi-k2/Kconfig"
+ 
+ source "board/amlogic/p212/Kconfig"
+ 
+-source "board/amlogic/libretech-cc/Kconfig"
+-
+-source "board/amlogic/khadas-vim/Kconfig"
+-
+ source "board/amlogic/khadas-vim2/Kconfig"
+ 
+ endif
+diff --git a/board/amlogic/khadas-vim/Kconfig b/board/amlogic/khadas-vim/Kconfig
+deleted file mode 100644
+index 0fa8db9..0000000
+--- a/board/amlogic/khadas-vim/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_KHADAS_VIM
+-
+-config SYS_BOARD
+-	default "khadas-vim"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "khadas-vim"
+-
+-endif
+diff --git a/board/amlogic/khadas-vim/MAINTAINERS b/board/amlogic/khadas-vim/MAINTAINERS
+deleted file mode 100644
+index 024220a..0000000
+--- a/board/amlogic/khadas-vim/MAINTAINERS
++++ /dev/null
+@@ -1,6 +0,0 @@
+-KHADAS-VIM
+-M:	Neil Armstrong <narmstrong@baylibre.com>
+-S:	Maintained
+-F:	board/amlogic/khadas-vim/
+-F:	include/configs/khadas-vim.h
+-F:	configs/khadas-vim_defconfig
+diff --git a/board/amlogic/khadas-vim/Makefile b/board/amlogic/khadas-vim/Makefile
+deleted file mode 100644
+index 558c076..0000000
+--- a/board/amlogic/khadas-vim/Makefile
++++ /dev/null
+@@ -1,6 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0+
+-#
+-# (C) Copyright 2016 BayLibre, SAS
+-# Author: Neil Armstrong <narmstrong@baylibre.com>
+-
+-obj-y	:= khadas-vim.o
+diff --git a/board/amlogic/khadas-vim/README b/board/amlogic/khadas-vim/README
+deleted file mode 100644
+index b194236..0000000
+--- a/board/amlogic/khadas-vim/README
++++ /dev/null
+@@ -1,102 +0,0 @@
+-U-Boot for Khadas VIM
+-=======================
+-
+-Khadas VIM is an Open Source DIY Box manufactured by Shenzhen Wesion
+-Technology Co., Ltd with the following specifications:
+-
+- - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 1.5GHz
+- - ARM Mali 450 GPU
+- - 2GB DDR3 SDRAM
+- - 10/100 Ethernet
+- - HDMI 2.0 4K/60Hz display
+- - 40-pin GPIO header
+- - 2 x USB 2.0 Host, 1 x USB 2.0 Type-C OTG
+- - 8GB/16GBeMMC
+- - microSD
+- - SDIO Wifi Module, Bluetooth
+- - Two channels IR receiver
+-
+-Currently the u-boot port supports the following devices:
+- - serial
+- - eMMC, microSD
+- - Ethernet
+- - I2C
+- - Regulators
+- - Reset controller
+- - Clock controller
+- - USB Host
+- - ADC
+-
+-U-Boot compilation
+-==================
+-
+- > export ARCH=arm
+- > export CROSS_COMPILE=aarch64-none-elf-
+- > make khadas-vim_defconfig
+- > make
+-
+-Image creation
+-==============
+-
+-Amlogic doesn't provide sources for the firmware and for tools needed
+-to create the bootloader image, so it is necessary to obtain them from
+-the git tree published by the board vendor:
+-
+- > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+- > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+- > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+- > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+- > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
+- > git clone https://github.com/khadas/u-boot -b Vim vim-u-boot
+- > cd vim-u-boot
+- > make kvim_defconfig
+- > make
+- > export FIPDIR=$PWD/fip
+-
+-Go back to mainline U-Boot source tree then :
+- > mkdir fip
+-
+- > cp $FIPDIR/gxl/bl2.bin fip/
+- > cp $FIPDIR/gxl/acs.bin fip/
+- > cp $FIPDIR/gxl/bl21.bin fip/
+- > cp $FIPDIR/gxl/bl30.bin fip/
+- > cp $FIPDIR/gxl/bl301.bin fip/
+- > cp $FIPDIR/gxl/bl31.img fip/
+- > cp u-boot.bin fip/bl33.bin
+-
+- > $FIPDIR/blx_fix.sh \
+-	fip/bl30.bin \
+-	fip/zero_tmp \
+-	fip/bl30_zero.bin \
+-	fip/bl301.bin \
+-	fip/bl301_zero.bin \
+-	fip/bl30_new.bin \
+-	bl30
+-
+- > python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
+-
+- > $FIPDIR/blx_fix.sh \
+-	fip/bl2_acs.bin \
+-	fip/zero_tmp \
+-	fip/bl2_zero.bin \
+-	fip/bl21.bin \
+-	fip/bl21_zero.bin \
+-	fip/bl2_new.bin \
+-	bl2
+-
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
+- > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
+-		--output fip/u-boot.bin \
+-		--bl2 fip/bl2.n.bin.sig \
+-		--bl30 fip/bl30_new.bin.enc \
+-		--bl31 fip/bl31.img.enc \
+-		--bl33 fip/bl33.bin.enc
+-
+-and then write the image to SD with:
+-
+- > DEV=/dev/your_sd_device
+- > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+- > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+diff --git a/board/amlogic/khadas-vim/khadas-vim.c b/board/amlogic/khadas-vim/khadas-vim.c
+deleted file mode 100644
+index 692bf2a..0000000
+--- a/board/amlogic/khadas-vim/khadas-vim.c
++++ /dev/null
+@@ -1,57 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0+
+-/*
+- * Copyright (C) 2016 BayLibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#include <common.h>
+-#include <dm.h>
+-#include <environment.h>
+-#include <asm/io.h>
+-#include <asm/arch/gx.h>
+-#include <asm/arch/mem.h>
+-#include <asm/arch/sm.h>
+-#include <asm/arch/eth.h>
+-
+-#define EFUSE_SN_OFFSET		20
+-#define EFUSE_SN_SIZE		16
+-#define EFUSE_MAC_OFFSET	52
+-#define EFUSE_MAC_SIZE		6
+-
+-int board_init(void)
+-{
+-	return 0;
+-}
+-
+-int misc_init_r(void)
+-{
+-	u8 mac_addr[EFUSE_MAC_SIZE];
+-	char serial[EFUSE_SN_SIZE];
+-	ssize_t len;
+-
+-	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII,
+-			  MESON_GXL_USE_INTERNAL_RMII_PHY);
+-
+-	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+-		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+-					  mac_addr, EFUSE_MAC_SIZE);
+-		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
+-			eth_env_set_enetaddr("ethaddr", mac_addr);
+-	}
+-
+-	if (!env_get("serial#")) {
+-		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
+-					  EFUSE_SN_SIZE);
+-		if (len == EFUSE_SN_SIZE)
+-			env_set("serial#", serial);
+-	}
+-
+-	return 0;
+-}
+-
+-int ft_board_setup(void *blob, bd_t *bd)
+-{
+-	meson_gx_init_reserved_memory(blob);
+-
+-	return 0;
+-}
+diff --git a/board/amlogic/libretech-cc/Kconfig b/board/amlogic/libretech-cc/Kconfig
+deleted file mode 100644
+index 7a6f916..0000000
+--- a/board/amlogic/libretech-cc/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_LIBRETECH_CC
+-
+-config SYS_BOARD
+-	default "libretech-cc"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "libretech-cc"
+-
+-endif
+diff --git a/board/amlogic/libretech-cc/MAINTAINERS b/board/amlogic/libretech-cc/MAINTAINERS
+deleted file mode 100644
+index 398ce57..0000000
+--- a/board/amlogic/libretech-cc/MAINTAINERS
++++ /dev/null
+@@ -1,6 +0,0 @@
+-LIBRETECH-CC
+-M:	Neil Armstrong <narmstrong@baylibre.com>
+-S:	Maintained
+-F:	board/amlogic/libretech-cc/
+-F:	include/configs/libretech-cc.h
+-F:	configs/libretech-cc_defconfig
+diff --git a/board/amlogic/libretech-cc/Makefile b/board/amlogic/libretech-cc/Makefile
+deleted file mode 100644
+index 3b0adf8..0000000
+--- a/board/amlogic/libretech-cc/Makefile
++++ /dev/null
+@@ -1,6 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0+
+-#
+-# (C) Copyright 2016 BayLibre, SAS
+-# Author: Neil Armstrong <narmstrong@baylibre.com>
+-
+-obj-y	:= libretech-cc.o
+diff --git a/board/amlogic/libretech-cc/README b/board/amlogic/libretech-cc/README
+deleted file mode 100644
+index d007f58..0000000
+--- a/board/amlogic/libretech-cc/README
++++ /dev/null
+@@ -1,102 +0,0 @@
+-U-Boot for LibreTech CC
+-=======================
+-
+-LibreTech CC is a single board computer manufactured by Libre Technology
+-with the following specifications:
+-
+- - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 1.5GHz
+- - ARM Mali 450 GPU
+- - 2GB DDR3 SDRAM
+- - 10/100 Ethernet
+- - HDMI 2.0 4K/60Hz display
+- - 40-pin GPIO header
+- - 4 x USB 2.0 Host
+- - eMMC, microSD
+- - Infrared receiver
+-
+-Schematics are available on the manufacturer website.
+-
+-Currently the U-Boot port supports the following devices:
+- - serial
+- - eMMC, microSD
+- - Ethernet
+- - I2C
+- - Regulators
+- - Reset controller
+- - Clock controller
+- - USB Host
+- - ADC
+-
+-U-Boot compilation
+-==================
+-
+- > export ARCH=arm
+- > export CROSS_COMPILE=aarch64-none-elf-
+- > make libretech-cc_defconfig
+- > make
+-
+-Image creation
+-==============
+-
+-Amlogic doesn't provide sources for the firmware and for tools needed
+-to create the bootloader image, so it is necessary to obtain them from
+-the git tree published by the board vendor:
+-
+- > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+- > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+- > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+- > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+- > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
+- > git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
+- > cd amlogic-u-boot
+- > make libretech_cc_defconfig
+- > make
+- > export FIPDIR=$PWD/fip
+-
+-Go back to mainline U-Boot source tree then :
+- > mkdir fip
+-
+- > cp $FIPDIR/gxl/bl2.bin fip/
+- > cp $FIPDIR/gxl/acs.bin fip/
+- > cp $FIPDIR/gxl/bl21.bin fip/
+- > cp $FIPDIR/gxl/bl30.bin fip/
+- > cp $FIPDIR/gxl/bl301.bin fip/
+- > cp $FIPDIR/gxl/bl31.img fip/
+- > cp u-boot.bin fip/bl33.bin
+-
+- > $FIPDIR/blx_fix.sh \
+-	fip/bl30.bin \
+-	fip/zero_tmp \
+-	fip/bl30_zero.bin \
+-	fip/bl301.bin \
+-	fip/bl301_zero.bin \
+-	fip/bl30_new.bin \
+-	bl30
+-
+- > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
+-
+- > $FIPDIR/blx_fix.sh \
+-	fip/bl2_acs.bin \
+-	fip/zero_tmp \
+-	fip/bl2_zero.bin \
+-	fip/bl21.bin \
+-	fip/bl21_zero.bin \
+-	fip/bl2_new.bin \
+-	bl2
+-
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
+- > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
+-		--output fip/u-boot.bin \
+-		--bl2 fip/bl2.n.bin.sig \
+-		--bl30 fip/bl30_new.bin.enc \
+-		--bl31 fip/bl31.img.enc \
+-		--bl33 fip/bl33.bin.enc
+-
+-and then write the image to SD with:
+-
+- > DEV=/dev/your_sd_device
+- > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+- > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+diff --git a/board/amlogic/libretech-cc/libretech-cc.c b/board/amlogic/libretech-cc/libretech-cc.c
+deleted file mode 100644
+index ccab127..0000000
+--- a/board/amlogic/libretech-cc/libretech-cc.c
++++ /dev/null
+@@ -1,57 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0+
+-/*
+- * Copyright (C) 2016 BayLibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#include <common.h>
+-#include <dm.h>
+-#include <environment.h>
+-#include <asm/io.h>
+-#include <asm/arch/gx.h>
+-#include <asm/arch/sm.h>
+-#include <asm/arch/eth.h>
+-#include <asm/arch/mem.h>
+-
+-#define EFUSE_SN_OFFSET		20
+-#define EFUSE_SN_SIZE		16
+-#define EFUSE_MAC_OFFSET	52
+-#define EFUSE_MAC_SIZE		6
+-
+-int board_init(void)
+-{
+-	return 0;
+-}
+-
+-int misc_init_r(void)
+-{
+-	u8 mac_addr[EFUSE_MAC_SIZE];
+-	char serial[EFUSE_SN_SIZE];
+-	ssize_t len;
+-
+-	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII,
+-			  MESON_GXL_USE_INTERNAL_RMII_PHY);
+-
+-	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+-		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+-					  mac_addr, EFUSE_MAC_SIZE);
+-		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
+-			eth_env_set_enetaddr("ethaddr", mac_addr);
+-	}
+-
+-	if (!env_get("serial#")) {
+-		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
+-					  EFUSE_SN_SIZE);
+-		if (len == EFUSE_SN_SIZE)
+-			env_set("serial#", serial);
+-	}
+-
+-	return 0;
+-}
+-
+-int ft_board_setup(void *blob, bd_t *bd)
+-{
+-	meson_gx_init_reserved_memory(blob);
+-
+-	return 0;
+-}
+diff --git a/board/amlogic/p212/README b/board/amlogic/p212/README
+deleted file mode 100644
+index ef5370c..0000000
+--- a/board/amlogic/p212/README
++++ /dev/null
+@@ -1,103 +0,0 @@
+-U-Boot for Amlogic P212
+-=======================
+-
+-P212 is a reference board manufactured by Amlogic with the following
+-specifications:
+-
+- - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 1.5GHz
+- - ARM Mali 450 GPU
+- - 2GB DDR3 SDRAM
+- - 10/100 Ethernet
+- - HDMI 2.0 4K/60Hz display
+- - 2 x USB 2.0 Host
+- - eMMC, microSD
+- - Infrared receiver
+- - SDIO WiFi Module
+- - CVBS+Stereo Audio Jack
+-
+-Schematics are available from Amlogic on demand.
+-
+-Currently the u-boot port supports the following devices:
+- - serial
+- - eMMC, microSD
+- - Ethernet
+- - I2C
+- - Regulators
+- - Reset controller
+- - Clock controller
+- - USB Host
+- - ADC
+-
+-u-boot compilation
+-==================
+-
+- > export ARCH=arm
+- > export CROSS_COMPILE=aarch64-none-elf-
+- > make p212_defconfig
+- > make
+-
+-Image creation
+-==============
+-
+-Amlogic doesn't provide sources for the firmware and for tools needed
+-to create the bootloader image, so it is necessary to obtain them from
+-the git tree published by the board vendor:
+-
+- > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+- > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+- > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
+- > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
+- > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
+- > git clone https://github.com/BayLibre/u-boot.git -b n-amlogic-openlinux-20170606 amlogic-u-boot
+- > cd amlogic-u-boot
+- > make gxl_p212_v1_defconfig
+- > make
+- > export FIPDIR=$PWD/fip
+-
+-Go back to mainline U-boot source tree then :
+- > mkdir fip
+-
+- > cp $FIPDIR/gxl/bl2.bin fip/
+- > cp $FIPDIR/gxl/acs.bin fip/
+- > cp $FIPDIR/gxl/bl21.bin fip/
+- > cp $FIPDIR/gxl/bl30.bin fip/
+- > cp $FIPDIR/gxl/bl301.bin fip/
+- > cp $FIPDIR/gxl/bl31.img fip/
+- > cp u-boot.bin fip/bl33.bin
+-
+- > $FIPDIR/blx_fix.sh \
+-	fip/bl30.bin \
+-	fip/zero_tmp \
+-	fip/bl30_zero.bin \
+-	fip/bl301.bin \
+-	fip/bl301_zero.bin \
+-	fip/bl30_new.bin \
+-	bl30
+-
+- > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
+-
+- > $FIPDIR/blx_fix.sh \
+-	fip/bl2_acs.bin \
+-	fip/zero_tmp \
+-	fip/bl2_zero.bin \
+-	fip/bl21.bin \
+-	fip/bl21_zero.bin \
+-	fip/bl2_new.bin \
+-	bl2
+-
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
+- > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
+- > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
+-		--output fip/u-boot.bin \
+-		--bl2 fip/bl2.n.bin.sig \
+-		--bl30 fip/bl30_new.bin.enc \
+-		--bl31 fip/bl31.img.enc \
+-		--bl33 fip/bl33.bin.enc
+-
+-and then write the image to SD with:
+-
+- > DEV=/dev/your_sd_device
+- > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
+- > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+diff --git a/board/amlogic/p212/README.khadas-vim b/board/amlogic/p212/README.khadas-vim
+new file mode 100644
+index 0000000..b194236
+--- /dev/null
++++ b/board/amlogic/p212/README.khadas-vim
+@@ -0,0 +1,102 @@
++U-Boot for Khadas VIM
++=======================
++
++Khadas VIM is an Open Source DIY Box manufactured by Shenzhen Wesion
++Technology Co., Ltd with the following specifications:
++
++ - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 1.5GHz
++ - ARM Mali 450 GPU
++ - 2GB DDR3 SDRAM
++ - 10/100 Ethernet
++ - HDMI 2.0 4K/60Hz display
++ - 40-pin GPIO header
++ - 2 x USB 2.0 Host, 1 x USB 2.0 Type-C OTG
++ - 8GB/16GBeMMC
++ - microSD
++ - SDIO Wifi Module, Bluetooth
++ - Two channels IR receiver
++
++Currently the u-boot port supports the following devices:
++ - serial
++ - eMMC, microSD
++ - Ethernet
++ - I2C
++ - Regulators
++ - Reset controller
++ - Clock controller
++ - USB Host
++ - ADC
++
++U-Boot compilation
++==================
++
++ > export ARCH=arm
++ > export CROSS_COMPILE=aarch64-none-elf-
++ > make khadas-vim_defconfig
++ > make
++
++Image creation
++==============
++
++Amlogic doesn't provide sources for the firmware and for tools needed
++to create the bootloader image, so it is necessary to obtain them from
++the git tree published by the board vendor:
++
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
++ > git clone https://github.com/khadas/u-boot -b Vim vim-u-boot
++ > cd vim-u-boot
++ > make kvim_defconfig
++ > make
++ > export FIPDIR=$PWD/fip
++
++Go back to mainline U-Boot source tree then :
++ > mkdir fip
++
++ > cp $FIPDIR/gxl/bl2.bin fip/
++ > cp $FIPDIR/gxl/acs.bin fip/
++ > cp $FIPDIR/gxl/bl21.bin fip/
++ > cp $FIPDIR/gxl/bl30.bin fip/
++ > cp $FIPDIR/gxl/bl301.bin fip/
++ > cp $FIPDIR/gxl/bl31.img fip/
++ > cp u-boot.bin fip/bl33.bin
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl30.bin \
++	fip/zero_tmp \
++	fip/bl30_zero.bin \
++	fip/bl301.bin \
++	fip/bl301_zero.bin \
++	fip/bl30_new.bin \
++	bl30
++
++ > python $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl2_acs.bin \
++	fip/zero_tmp \
++	fip/bl2_zero.bin \
++	fip/bl21.bin \
++	fip/bl21_zero.bin \
++	fip/bl2_new.bin \
++	bl2
++
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
++ > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
++		--output fip/u-boot.bin \
++		--bl2 fip/bl2.n.bin.sig \
++		--bl30 fip/bl30_new.bin.enc \
++		--bl31 fip/bl31.img.enc \
++		--bl33 fip/bl33.bin.enc
++
++and then write the image to SD with:
++
++ > DEV=/dev/your_sd_device
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+diff --git a/board/amlogic/p212/README.libretech-cc b/board/amlogic/p212/README.libretech-cc
+new file mode 100644
+index 0000000..d007f58
+--- /dev/null
++++ b/board/amlogic/p212/README.libretech-cc
+@@ -0,0 +1,102 @@
++U-Boot for LibreTech CC
++=======================
++
++LibreTech CC is a single board computer manufactured by Libre Technology
++with the following specifications:
++
++ - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 1.5GHz
++ - ARM Mali 450 GPU
++ - 2GB DDR3 SDRAM
++ - 10/100 Ethernet
++ - HDMI 2.0 4K/60Hz display
++ - 40-pin GPIO header
++ - 4 x USB 2.0 Host
++ - eMMC, microSD
++ - Infrared receiver
++
++Schematics are available on the manufacturer website.
++
++Currently the U-Boot port supports the following devices:
++ - serial
++ - eMMC, microSD
++ - Ethernet
++ - I2C
++ - Regulators
++ - Reset controller
++ - Clock controller
++ - USB Host
++ - ADC
++
++U-Boot compilation
++==================
++
++ > export ARCH=arm
++ > export CROSS_COMPILE=aarch64-none-elf-
++ > make libretech-cc_defconfig
++ > make
++
++Image creation
++==============
++
++Amlogic doesn't provide sources for the firmware and for tools needed
++to create the bootloader image, so it is necessary to obtain them from
++the git tree published by the board vendor:
++
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
++ > git clone https://github.com/BayLibre/u-boot.git -b libretech-cc amlogic-u-boot
++ > cd amlogic-u-boot
++ > make libretech_cc_defconfig
++ > make
++ > export FIPDIR=$PWD/fip
++
++Go back to mainline U-Boot source tree then :
++ > mkdir fip
++
++ > cp $FIPDIR/gxl/bl2.bin fip/
++ > cp $FIPDIR/gxl/acs.bin fip/
++ > cp $FIPDIR/gxl/bl21.bin fip/
++ > cp $FIPDIR/gxl/bl30.bin fip/
++ > cp $FIPDIR/gxl/bl301.bin fip/
++ > cp $FIPDIR/gxl/bl31.img fip/
++ > cp u-boot.bin fip/bl33.bin
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl30.bin \
++	fip/zero_tmp \
++	fip/bl30_zero.bin \
++	fip/bl301.bin \
++	fip/bl301_zero.bin \
++	fip/bl30_new.bin \
++	bl30
++
++ > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl2_acs.bin \
++	fip/zero_tmp \
++	fip/bl2_zero.bin \
++	fip/bl21.bin \
++	fip/bl21_zero.bin \
++	fip/bl2_new.bin \
++	bl2
++
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
++ > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
++		--output fip/u-boot.bin \
++		--bl2 fip/bl2.n.bin.sig \
++		--bl30 fip/bl30_new.bin.enc \
++		--bl31 fip/bl31.img.enc \
++		--bl33 fip/bl33.bin.enc
++
++and then write the image to SD with:
++
++ > DEV=/dev/your_sd_device
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+diff --git a/board/amlogic/p212/README.p212 b/board/amlogic/p212/README.p212
+new file mode 100644
+index 0000000..ef5370c
+--- /dev/null
++++ b/board/amlogic/p212/README.p212
+@@ -0,0 +1,103 @@
++U-Boot for Amlogic P212
++=======================
++
++P212 is a reference board manufactured by Amlogic with the following
++specifications:
++
++ - Amlogic S905X ARM Cortex-A53 quad-core SoC @ 1.5GHz
++ - ARM Mali 450 GPU
++ - 2GB DDR3 SDRAM
++ - 10/100 Ethernet
++ - HDMI 2.0 4K/60Hz display
++ - 2 x USB 2.0 Host
++ - eMMC, microSD
++ - Infrared receiver
++ - SDIO WiFi Module
++ - CVBS+Stereo Audio Jack
++
++Schematics are available from Amlogic on demand.
++
++Currently the u-boot port supports the following devices:
++ - serial
++ - eMMC, microSD
++ - Ethernet
++ - I2C
++ - Regulators
++ - Reset controller
++ - Clock controller
++ - USB Host
++ - ADC
++
++u-boot compilation
++==================
++
++ > export ARCH=arm
++ > export CROSS_COMPILE=aarch64-none-elf-
++ > make p212_defconfig
++ > make
++
++Image creation
++==============
++
++Amlogic doesn't provide sources for the firmware and for tools needed
++to create the bootloader image, so it is necessary to obtain them from
++the git tree published by the board vendor:
++
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
++ > git clone https://github.com/BayLibre/u-boot.git -b n-amlogic-openlinux-20170606 amlogic-u-boot
++ > cd amlogic-u-boot
++ > make gxl_p212_v1_defconfig
++ > make
++ > export FIPDIR=$PWD/fip
++
++Go back to mainline U-boot source tree then :
++ > mkdir fip
++
++ > cp $FIPDIR/gxl/bl2.bin fip/
++ > cp $FIPDIR/gxl/acs.bin fip/
++ > cp $FIPDIR/gxl/bl21.bin fip/
++ > cp $FIPDIR/gxl/bl30.bin fip/
++ > cp $FIPDIR/gxl/bl301.bin fip/
++ > cp $FIPDIR/gxl/bl31.img fip/
++ > cp u-boot.bin fip/bl33.bin
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl30.bin \
++	fip/zero_tmp \
++	fip/bl30_zero.bin \
++	fip/bl301.bin \
++	fip/bl301_zero.bin \
++	fip/bl30_new.bin \
++	bl30
++
++ > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl2_acs.bin \
++	fip/zero_tmp \
++	fip/bl2_zero.bin \
++	fip/bl21.bin \
++	fip/bl21_zero.bin \
++	fip/bl2_new.bin \
++	bl2
++
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl30_new.bin
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl31.img
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl3enc --input fip/bl33.bin
++ > $FIPDIR/gxl/aml_encrypt_gxl --bl2sig --input fip/bl2_new.bin --output fip/bl2.n.bin.sig
++ > $FIPDIR/gxl/aml_encrypt_gxl --bootmk \
++		--output fip/u-boot.bin \
++		--bl2 fip/bl2.n.bin.sig \
++		--bl30 fip/bl30_new.bin.enc \
++		--bl31 fip/bl31.img.enc \
++		--bl33 fip/bl33.bin.enc
++
++and then write the image to SD with:
++
++ > DEV=/dev/your_sd_device
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
+index 0c89d9a..af30113 100644
+--- a/configs/khadas-vim_defconfig
++++ b/configs/khadas-vim_defconfig
+@@ -2,7 +2,7 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_KHADAS_VIM=y
++CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" khadas-vim"
+diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
+index 36d117c..7526516 100644
+--- a/configs/libretech-cc_defconfig
++++ b/configs/libretech-cc_defconfig
+@@ -2,7 +2,7 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_LIBRETECH_CC=y
++CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" libretech-cc"
 -- 
 2.7.4
