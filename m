@@ -1,1253 +1,869 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 16:26:49 +0100
-Subject: [PATCH u-boot 10/19] pinctrl: meson: add axg support
+Date: Fri,  9 Nov 2018 16:26:52 +0100
+Subject: [PATCH u-boot 13/19] ARM: meson: rework soc arch file to prepare for
+ new SoC
 In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
 References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541777218-472-11-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541777218-472-14-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
-This adds support for the Amlogic AXG SoC pinctrl and GPIO controller
-using a specific set of pinctrl functions which differs from the GX SoCs.
+We are about to add support for the Amlogic AXG SoC. While very close to
+the Gx SoC family, we will need to handle a few thing which are different
+in this SoC. Rework the meson arch directory to prepare for this.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/meson/Kconfig                 |   8 +
- drivers/pinctrl/meson/Makefile                |   2 +
- drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c | 125 ++++
- drivers/pinctrl/meson/pinctrl-meson-axg.c     | 979 ++++++++++++++++++++++++++
- drivers/pinctrl/meson/pinctrl-meson-axg.h     |  66 ++
- 5 files changed, 1180 insertions(+)
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.h
+ arch/arm/include/asm/arch-meson/clock-gx.h | 117 +++++++++++++++++++++++++
+ arch/arm/include/asm/arch-meson/clock.h    | 117 -------------------------
+ arch/arm/include/asm/arch-meson/eth.h      |   6 +-
+ arch/arm/include/asm/arch-meson/mem.h      |   3 +-
+ arch/arm/mach-meson/Kconfig                |  10 ++-
+ arch/arm/mach-meson/Makefile               |   3 +-
+ arch/arm/mach-meson/board-common.c         |  56 ++++++++++++
+ arch/arm/mach-meson/board-gx.c             | 132 +++++++++++++++++++++++++++++
+ arch/arm/mach-meson/board.c                | 130 ----------------------------
+ arch/arm/mach-meson/eth.c                  |  53 ------------
+ arch/arm/mach-meson/sm.c                   |   1 -
+ board/amlogic/odroid-c2/odroid-c2.c        |   6 +-
+ board/amlogic/p212/p212.c                  |   6 +-
+ board/amlogic/q200/q200.c                  |   4 +-
+ drivers/clk/clk_meson.c                    |   2 +-
+ 15 files changed, 328 insertions(+), 318 deletions(-)
+ create mode 100644 arch/arm/include/asm/arch-meson/clock-gx.h
+ delete mode 100644 arch/arm/include/asm/arch-meson/clock.h
+ create mode 100644 arch/arm/mach-meson/board-common.c
+ create mode 100644 arch/arm/mach-meson/board-gx.c
+ delete mode 100644 arch/arm/mach-meson/board.c
+ delete mode 100644 arch/arm/mach-meson/eth.c
 
-diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-index fc51b43..ee820a5 100644
---- a/drivers/pinctrl/meson/Kconfig
-+++ b/drivers/pinctrl/meson/Kconfig
-@@ -8,6 +8,10 @@ config PINCTRL_MESON_GX_PMX
- 	select PINCTRL_MESON
- 	bool
- 
-+config PINCTRL_MESON_AXG_PMX
-+	select PINCTRL_MESON
-+	bool
-+
- config PINCTRL_MESON_GXBB
- 	bool "Amlogic Meson GXBB SoC pinctrl driver"
- 	select PINCTRL_MESON_GX_PMX
-@@ -16,4 +20,8 @@ config PINCTRL_MESON_GXL
- 	bool "Amlogic Meson GXL SoC pinctrl driver"
- 	select PINCTRL_MESON_GX_PMX
- 
-+config PINCTRL_MESON_AXG
-+	bool "Amlogic Meson AXG SoC pinctrl driver"
-+	select PINCTRL_MESON_AXG_PMX
-+
- endif
-diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
-index 30b6875..707287c 100644
---- a/drivers/pinctrl/meson/Makefile
-+++ b/drivers/pinctrl/meson/Makefile
-@@ -2,5 +2,7 @@
- 
- obj-y					+= pinctrl-meson.o
- obj-$(CONFIG_PINCTRL_MESON_GX_PMX)	+= pinctrl-meson-gx-pmx.o
-+obj-$(CONFIG_PINCTRL_MESON_AXG_PMX)	+= pinctrl-meson-axg-pmx.o
- obj-$(CONFIG_PINCTRL_MESON_GXBB)	+= pinctrl-meson-gxbb.o
- obj-$(CONFIG_PINCTRL_MESON_GXL)		+= pinctrl-meson-gxl.o
-+obj-$(CONFIG_PINCTRL_MESON_AXG)		+= pinctrl-meson-axg.o
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
+diff --git a/arch/arm/include/asm/arch-meson/clock-gx.h b/arch/arm/include/asm/arch-meson/clock-gx.h
 new file mode 100644
-index 0000000..9c751ee
+index 0000000..13a2e76
 --- /dev/null
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
-@@ -0,0 +1,125 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2018 Jerome Brunet  <jbrunet@baylibre.com>
-+ * Copyright (C) 2017 Xingyu Chen <xingyu.chen@amlogic.com>
-+ */
-+
-+#include <asm/gpio.h>
-+#include <common.h>
-+#include <dm.h>
-+#include <dm/pinctrl.h>
-+#include <linux/io.h>
-+#include "pinctrl-meson-axg.h"
-+
-+static int meson_axg_pmx_get_bank(struct udevice *dev, unsigned int pin,
-+				  struct meson_pmx_bank **bank)
-+{
-+	int i;
-+	struct meson_pinctrl *priv = dev_get_priv(dev);
-+	struct meson_axg_pmx_data *pmx = priv->data->pmx_data;
-+
-+	for (i = 0; i < pmx->num_pmx_banks; i++)
-+		if (pin >= pmx->pmx_banks[i].first &&
-+		    pin <= pmx->pmx_banks[i].last) {
-+			*bank = &pmx->pmx_banks[i];
-+			return 0;
-+		}
-+
-+	return -EINVAL;
-+}
-+
-+static int meson_axg_pmx_calc_reg_and_offset(struct meson_pmx_bank *bank,
-+					     unsigned int pin,
-+					     unsigned int *reg,
-+					     unsigned int *offset)
-+{
-+	int shift;
-+
-+	shift = pin - bank->first;
-+
-+	*reg = bank->reg + (bank->offset + (shift << 2)) / 32;
-+	*offset = (bank->offset + (shift << 2)) % 32;
-+
-+	return 0;
-+}
-+
-+static int meson_axg_pmx_update_function(struct udevice *dev,
-+					 unsigned int pin, unsigned int func)
-+{
-+	struct meson_pinctrl *priv = dev_get_priv(dev);
-+	struct meson_pmx_bank *bank;
-+	unsigned int offset;
-+	unsigned int reg;
-+	unsigned int tmp;
-+	int ret;
-+
-+	ret = meson_axg_pmx_get_bank(dev, pin, &bank);
-+	if (ret)
-+		return ret;
-+
-+	meson_axg_pmx_calc_reg_and_offset(bank, pin, &reg, &offset);
-+
-+	tmp = readl(priv->reg_mux + (reg << 2));
-+	tmp &= ~(0xf << offset);
-+	tmp |= (func & 0xf) << offset;
-+	writel(tmp, priv->reg_mux + (reg << 2));
-+
-+	return ret;
-+}
-+
-+static int meson_axg_pinmux_group_set(struct udevice *dev,
-+				      unsigned int group_selector,
-+				      unsigned int func_selector)
-+{
-+	struct meson_pinctrl *priv = dev_get_priv(dev);
-+	const struct meson_pmx_group *group;
-+	const struct meson_pmx_func *func;
-+	struct meson_pmx_axg_data *pmx_data;
-+	int i, ret;
-+
-+	group = &priv->data->groups[group_selector];
-+	pmx_data = (struct meson_pmx_axg_data *)group->data;
-+	func = &priv->data->funcs[func_selector];
-+
-+	debug("pinmux: set group %s func %s\n", group->name, func->name);
-+
-+	for (i = 0; i < group->num_pins; i++) {
-+		ret = meson_axg_pmx_update_function(dev, group->pins[i],
-+						    pmx_data->func);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+const struct pinctrl_ops meson_axg_pinctrl_ops = {
-+	.get_groups_count = meson_pinctrl_get_groups_count,
-+	.get_group_name = meson_pinctrl_get_group_name,
-+	.get_functions_count = meson_pinmux_get_functions_count,
-+	.get_function_name = meson_pinmux_get_function_name,
-+	.pinmux_group_set = meson_axg_pinmux_group_set,
-+	.set_state = pinctrl_generic_set_state,
-+};
-+
-+static int meson_axg_gpio_request(struct udevice *dev,
-+				  unsigned int offset, const char *label)
-+{
-+	return meson_axg_pmx_update_function(dev, offset, 0);
-+}
-+
-+static const struct dm_gpio_ops meson_axg_gpio_ops = {
-+	.request = meson_axg_gpio_request,
-+	.set_value = meson_gpio_set,
-+	.get_value = meson_gpio_get,
-+	.get_function = meson_gpio_get_direction,
-+	.direction_input = meson_gpio_direction_input,
-+	.direction_output = meson_gpio_direction_output,
-+};
-+
-+const struct driver meson_axg_gpio_driver = {
-+	.name	= "meson-axg-gpio",
-+	.id	= UCLASS_GPIO,
-+	.probe	= meson_gpio_probe,
-+	.ops	= &meson_axg_gpio_ops,
-+};
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-new file mode 100644
-index 0000000..ab51652
---- /dev/null
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-@@ -0,0 +1,979 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * (C) Copyright (C) 2018 Neil Armstrong <narmstrong@baylibre.com>
-+ *
-+ * Based on code from Linux kernel:
-+ *  Copyright (c) 2017 Amlogic, Inc. All rights reserved.
-+ *  Author: Xingyu Chen <xingyu.chen@amlogic.com>
-+ */
-+
-+#include <common.h>
-+#include <dm.h>
-+#include <dm/pinctrl.h>
-+#include <dt-bindings/gpio/meson-axg-gpio.h>
-+
-+#include "pinctrl-meson-axg.h"
-+
-+#define EE_OFF	14
-+
-+/* emmc */
-+static const unsigned int emmc_nand_d0_pins[] = {BOOT_0};
-+static const unsigned int emmc_nand_d1_pins[] = {BOOT_1};
-+static const unsigned int emmc_nand_d2_pins[] = {BOOT_2};
-+static const unsigned int emmc_nand_d3_pins[] = {BOOT_3};
-+static const unsigned int emmc_nand_d4_pins[] = {BOOT_4};
-+static const unsigned int emmc_nand_d5_pins[] = {BOOT_5};
-+static const unsigned int emmc_nand_d6_pins[] = {BOOT_6};
-+static const unsigned int emmc_nand_d7_pins[] = {BOOT_7};
-+
-+static const unsigned int emmc_clk_pins[] = {BOOT_8};
-+static const unsigned int emmc_cmd_pins[] = {BOOT_10};
-+static const unsigned int emmc_ds_pins[]  = {BOOT_13};
-+
-+/* nand */
-+static const unsigned int nand_ce0_pins[] = {BOOT_8};
-+static const unsigned int nand_ale_pins[] = {BOOT_9};
-+static const unsigned int nand_cle_pins[] = {BOOT_10};
-+static const unsigned int nand_wen_clk_pins[] = {BOOT_11};
-+static const unsigned int nand_ren_wr_pins[] = {BOOT_12};
-+static const unsigned int nand_rb0_pins[] = {BOOT_13};
-+
-+/* nor */
-+static const unsigned int nor_hold_pins[] = {BOOT_3};
-+static const unsigned int nor_d_pins[] = {BOOT_4};
-+static const unsigned int nor_q_pins[] = {BOOT_5};
-+static const unsigned int nor_c_pins[] = {BOOT_6};
-+static const unsigned int nor_wp_pins[] = {BOOT_9};
-+static const unsigned int nor_cs_pins[] = {BOOT_14};
-+
-+/* sdio */
-+static const unsigned int sdio_d0_pins[] = {GPIOX_0};
-+static const unsigned int sdio_d1_pins[] = {GPIOX_1};
-+static const unsigned int sdio_d2_pins[] = {GPIOX_2};
-+static const unsigned int sdio_d3_pins[] = {GPIOX_3};
-+static const unsigned int sdio_clk_pins[] = {GPIOX_4};
-+static const unsigned int sdio_cmd_pins[] = {GPIOX_5};
-+
-+/* spi0 */
-+static const unsigned int spi0_clk_pins[] = {GPIOZ_0};
-+static const unsigned int spi0_mosi_pins[] = {GPIOZ_1};
-+static const unsigned int spi0_miso_pins[] = {GPIOZ_2};
-+static const unsigned int spi0_ss0_pins[] = {GPIOZ_3};
-+static const unsigned int spi0_ss1_pins[] = {GPIOZ_4};
-+static const unsigned int spi0_ss2_pins[] = {GPIOZ_5};
-+
-+/* spi1 */
-+static const unsigned int spi1_clk_x_pins[] = {GPIOX_19};
-+static const unsigned int spi1_mosi_x_pins[] = {GPIOX_17};
-+static const unsigned int spi1_miso_x_pins[] = {GPIOX_18};
-+static const unsigned int spi1_ss0_x_pins[] = {GPIOX_16};
-+
-+static const unsigned int spi1_clk_a_pins[] = {GPIOA_4};
-+static const unsigned int spi1_mosi_a_pins[] = {GPIOA_2};
-+static const unsigned int spi1_miso_a_pins[] = {GPIOA_3};
-+static const unsigned int spi1_ss0_a_pins[] = {GPIOA_5};
-+static const unsigned int spi1_ss1_pins[] = {GPIOA_6};
-+
-+/* i2c0 */
-+static const unsigned int i2c0_sck_pins[] = {GPIOZ_6};
-+static const unsigned int i2c0_sda_pins[] = {GPIOZ_7};
-+
-+/* i2c1 */
-+static const unsigned int i2c1_sck_z_pins[] = {GPIOZ_8};
-+static const unsigned int i2c1_sda_z_pins[] = {GPIOZ_9};
-+
-+static const unsigned int i2c1_sck_x_pins[] = {GPIOX_16};
-+static const unsigned int i2c1_sda_x_pins[] = {GPIOX_17};
-+
-+/* i2c2 */
-+static const unsigned int i2c2_sck_x_pins[] = {GPIOX_18};
-+static const unsigned int i2c2_sda_x_pins[] = {GPIOX_19};
-+
-+static const unsigned int i2c2_sda_a_pins[] = {GPIOA_17};
-+static const unsigned int i2c2_sck_a_pins[] = {GPIOA_18};
-+
-+/* i2c3 */
-+static const unsigned int i2c3_sda_a6_pins[] = {GPIOA_6};
-+static const unsigned int i2c3_sck_a7_pins[] = {GPIOA_7};
-+
-+static const unsigned int i2c3_sda_a12_pins[] = {GPIOA_12};
-+static const unsigned int i2c3_sck_a13_pins[] = {GPIOA_13};
-+
-+static const unsigned int i2c3_sda_a19_pins[] = {GPIOA_19};
-+static const unsigned int i2c3_sck_a20_pins[] = {GPIOA_20};
-+
-+/* uart_a */
-+static const unsigned int uart_rts_a_pins[] = {GPIOX_11};
-+static const unsigned int uart_cts_a_pins[] = {GPIOX_10};
-+static const unsigned int uart_tx_a_pins[] = {GPIOX_8};
-+static const unsigned int uart_rx_a_pins[] = {GPIOX_9};
-+
-+/* uart_b */
-+static const unsigned int uart_rts_b_z_pins[] = {GPIOZ_0};
-+static const unsigned int uart_cts_b_z_pins[] = {GPIOZ_1};
-+static const unsigned int uart_tx_b_z_pins[] = {GPIOZ_2};
-+static const unsigned int uart_rx_b_z_pins[] = {GPIOZ_3};
-+
-+static const unsigned int uart_rts_b_x_pins[] = {GPIOX_18};
-+static const unsigned int uart_cts_b_x_pins[] = {GPIOX_19};
-+static const unsigned int uart_tx_b_x_pins[] = {GPIOX_16};
-+static const unsigned int uart_rx_b_x_pins[] = {GPIOX_17};
-+
-+/* uart_ao_b */
-+static const unsigned int uart_ao_tx_b_z_pins[] = {GPIOZ_8};
-+static const unsigned int uart_ao_rx_b_z_pins[] = {GPIOZ_9};
-+static const unsigned int uart_ao_cts_b_z_pins[] = {GPIOZ_6};
-+static const unsigned int uart_ao_rts_b_z_pins[] = {GPIOZ_7};
-+
-+/* pwm_a */
-+static const unsigned int pwm_a_z_pins[] = {GPIOZ_5};
-+
-+static const unsigned int pwm_a_x18_pins[] = {GPIOX_18};
-+static const unsigned int pwm_a_x20_pins[] = {GPIOX_20};
-+
-+static const unsigned int pwm_a_a_pins[] = {GPIOA_14};
-+
-+/* pwm_b */
-+static const unsigned int pwm_b_z_pins[] = {GPIOZ_4};
-+
-+static const unsigned int pwm_b_x_pins[] = {GPIOX_19};
-+
-+static const unsigned int pwm_b_a_pins[] = {GPIOA_15};
-+
-+/* pwm_c */
-+static const unsigned int pwm_c_x10_pins[] = {GPIOX_10};
-+static const unsigned int pwm_c_x17_pins[] = {GPIOX_17};
-+
-+static const unsigned int pwm_c_a_pins[] = {GPIOA_16};
-+
-+/* pwm_d */
-+static const unsigned int pwm_d_x11_pins[] = {GPIOX_11};
-+static const unsigned int pwm_d_x16_pins[] = {GPIOX_16};
-+
-+/* pwm_vs */
-+static const unsigned int pwm_vs_pins[] = {GPIOA_0};
-+
-+/* spdif_in */
-+static const unsigned int spdif_in_z_pins[] = {GPIOZ_4};
-+
-+static const unsigned int spdif_in_a1_pins[] = {GPIOA_1};
-+static const unsigned int spdif_in_a7_pins[] = {GPIOA_7};
-+static const unsigned int spdif_in_a19_pins[] = {GPIOA_19};
-+static const unsigned int spdif_in_a20_pins[] = {GPIOA_20};
-+
-+/* spdif_out */
-+static const unsigned int spdif_out_z_pins[] = {GPIOZ_5};
-+
-+static const unsigned int spdif_out_a1_pins[] = {GPIOA_1};
-+static const unsigned int spdif_out_a11_pins[] = {GPIOA_11};
-+static const unsigned int spdif_out_a19_pins[] = {GPIOA_19};
-+static const unsigned int spdif_out_a20_pins[] = {GPIOA_20};
-+
-+/* jtag_ee */
-+static const unsigned int jtag_tdo_x_pins[] = {GPIOX_0};
-+static const unsigned int jtag_tdi_x_pins[] = {GPIOX_1};
-+static const unsigned int jtag_clk_x_pins[] = {GPIOX_4};
-+static const unsigned int jtag_tms_x_pins[] = {GPIOX_5};
-+
-+/* eth */
-+static const unsigned int eth_txd0_x_pins[] = {GPIOX_8};
-+static const unsigned int eth_txd1_x_pins[] = {GPIOX_9};
-+static const unsigned int eth_txen_x_pins[] = {GPIOX_10};
-+static const unsigned int eth_rgmii_rx_clk_x_pins[] = {GPIOX_12};
-+static const unsigned int eth_rxd0_x_pins[] = {GPIOX_13};
-+static const unsigned int eth_rxd1_x_pins[] = {GPIOX_14};
-+static const unsigned int eth_rx_dv_x_pins[] = {GPIOX_15};
-+static const unsigned int eth_mdio_x_pins[] = {GPIOX_21};
-+static const unsigned int eth_mdc_x_pins[] = {GPIOX_22};
-+
-+static const unsigned int eth_txd0_y_pins[] = {GPIOY_10};
-+static const unsigned int eth_txd1_y_pins[] = {GPIOY_11};
-+static const unsigned int eth_txen_y_pins[] = {GPIOY_9};
-+static const unsigned int eth_rgmii_rx_clk_y_pins[] = {GPIOY_2};
-+static const unsigned int eth_rxd0_y_pins[] = {GPIOY_4};
-+static const unsigned int eth_rxd1_y_pins[] = {GPIOY_5};
-+static const unsigned int eth_rx_dv_y_pins[] = {GPIOY_3};
-+static const unsigned int eth_mdio_y_pins[] = {GPIOY_0};
-+static const unsigned int eth_mdc_y_pins[] = {GPIOY_1};
-+
-+static const unsigned int eth_rxd2_rgmii_pins[] = {GPIOY_6};
-+static const unsigned int eth_rxd3_rgmii_pins[] = {GPIOY_7};
-+static const unsigned int eth_rgmii_tx_clk_pins[] = {GPIOY_8};
-+static const unsigned int eth_txd2_rgmii_pins[] = {GPIOY_12};
-+static const unsigned int eth_txd3_rgmii_pins[] = {GPIOY_13};
-+
-+/* pdm */
-+static const unsigned int pdm_dclk_a14_pins[] = {GPIOA_14};
-+static const unsigned int pdm_dclk_a19_pins[] = {GPIOA_19};
-+static const unsigned int pdm_din0_pins[] = {GPIOA_15};
-+static const unsigned int pdm_din1_pins[] = {GPIOA_16};
-+static const unsigned int pdm_din2_pins[] = {GPIOA_17};
-+static const unsigned int pdm_din3_pins[] = {GPIOA_18};
-+
-+/* mclk */
-+static const unsigned int mclk_c_pins[] = {GPIOA_0};
-+static const unsigned int mclk_b_pins[] = {GPIOA_1};
-+
-+/* tdm */
-+static const unsigned int tdma_sclk_pins[] = {GPIOX_12};
-+static const unsigned int tdma_sclk_slv_pins[] = {GPIOX_12};
-+static const unsigned int tdma_fs_pins[] = {GPIOX_13};
-+static const unsigned int tdma_fs_slv_pins[] = {GPIOX_13};
-+static const unsigned int tdma_din0_pins[] = {GPIOX_14};
-+static const unsigned int tdma_dout0_x14_pins[] = {GPIOX_14};
-+static const unsigned int tdma_dout0_x15_pins[] = {GPIOX_15};
-+static const unsigned int tdma_dout1_pins[] = {GPIOX_15};
-+static const unsigned int tdma_din1_pins[] = {GPIOX_15};
-+
-+static const unsigned int tdmc_sclk_pins[] = {GPIOA_2};
-+static const unsigned int tdmc_sclk_slv_pins[] = {GPIOA_2};
-+static const unsigned int tdmc_fs_pins[] = {GPIOA_3};
-+static const unsigned int tdmc_fs_slv_pins[] = {GPIOA_3};
-+static const unsigned int tdmc_din0_pins[] = {GPIOA_4};
-+static const unsigned int tdmc_dout0_pins[] = {GPIOA_4};
-+static const unsigned int tdmc_din1_pins[] = {GPIOA_5};
-+static const unsigned int tdmc_dout1_pins[] = {GPIOA_5};
-+static const unsigned int tdmc_din2_pins[] = {GPIOA_6};
-+static const unsigned int tdmc_dout2_pins[] = {GPIOA_6};
-+static const unsigned int tdmc_din3_pins[] = {GPIOA_7};
-+static const unsigned int tdmc_dout3_pins[] = {GPIOA_7};
-+
-+static const unsigned int tdmb_sclk_pins[] = {GPIOA_8};
-+static const unsigned int tdmb_sclk_slv_pins[] = {GPIOA_8};
-+static const unsigned int tdmb_fs_pins[] = {GPIOA_9};
-+static const unsigned int tdmb_fs_slv_pins[] = {GPIOA_9};
-+static const unsigned int tdmb_din0_pins[] = {GPIOA_10};
-+static const unsigned int tdmb_dout0_pins[] = {GPIOA_10};
-+static const unsigned int tdmb_din1_pins[] = {GPIOA_11};
-+static const unsigned int tdmb_dout1_pins[] = {GPIOA_11};
-+static const unsigned int tdmb_din2_pins[] = {GPIOA_12};
-+static const unsigned int tdmb_dout2_pins[] = {GPIOA_12};
-+static const unsigned int tdmb_din3_pins[] = {GPIOA_13};
-+static const unsigned int tdmb_dout3_pins[] = {GPIOA_13};
-+
-+static struct meson_pmx_group meson_axg_periphs_groups[] = {
-+	GPIO_GROUP(GPIOZ_0, EE_OFF),
-+	GPIO_GROUP(GPIOZ_1, EE_OFF),
-+	GPIO_GROUP(GPIOZ_2, EE_OFF),
-+	GPIO_GROUP(GPIOZ_3, EE_OFF),
-+	GPIO_GROUP(GPIOZ_4, EE_OFF),
-+	GPIO_GROUP(GPIOZ_5, EE_OFF),
-+	GPIO_GROUP(GPIOZ_6, EE_OFF),
-+	GPIO_GROUP(GPIOZ_7, EE_OFF),
-+	GPIO_GROUP(GPIOZ_8, EE_OFF),
-+	GPIO_GROUP(GPIOZ_9, EE_OFF),
-+	GPIO_GROUP(GPIOZ_10, EE_OFF),
-+
-+	GPIO_GROUP(BOOT_0, EE_OFF),
-+	GPIO_GROUP(BOOT_1, EE_OFF),
-+	GPIO_GROUP(BOOT_2, EE_OFF),
-+	GPIO_GROUP(BOOT_3, EE_OFF),
-+	GPIO_GROUP(BOOT_4, EE_OFF),
-+	GPIO_GROUP(BOOT_5, EE_OFF),
-+	GPIO_GROUP(BOOT_6, EE_OFF),
-+	GPIO_GROUP(BOOT_7, EE_OFF),
-+	GPIO_GROUP(BOOT_8, EE_OFF),
-+	GPIO_GROUP(BOOT_9, EE_OFF),
-+	GPIO_GROUP(BOOT_10, EE_OFF),
-+	GPIO_GROUP(BOOT_11, EE_OFF),
-+	GPIO_GROUP(BOOT_12, EE_OFF),
-+	GPIO_GROUP(BOOT_13, EE_OFF),
-+	GPIO_GROUP(BOOT_14, EE_OFF),
-+
-+	GPIO_GROUP(GPIOA_0, EE_OFF),
-+	GPIO_GROUP(GPIOA_1, EE_OFF),
-+	GPIO_GROUP(GPIOA_2, EE_OFF),
-+	GPIO_GROUP(GPIOA_3, EE_OFF),
-+	GPIO_GROUP(GPIOA_4, EE_OFF),
-+	GPIO_GROUP(GPIOA_5, EE_OFF),
-+	GPIO_GROUP(GPIOA_6, EE_OFF),
-+	GPIO_GROUP(GPIOA_7, EE_OFF),
-+	GPIO_GROUP(GPIOA_8, EE_OFF),
-+	GPIO_GROUP(GPIOA_9, EE_OFF),
-+	GPIO_GROUP(GPIOA_10, EE_OFF),
-+	GPIO_GROUP(GPIOA_11, EE_OFF),
-+	GPIO_GROUP(GPIOA_12, EE_OFF),
-+	GPIO_GROUP(GPIOA_13, EE_OFF),
-+	GPIO_GROUP(GPIOA_14, EE_OFF),
-+	GPIO_GROUP(GPIOA_15, EE_OFF),
-+	GPIO_GROUP(GPIOA_16, EE_OFF),
-+	GPIO_GROUP(GPIOA_17, EE_OFF),
-+	GPIO_GROUP(GPIOA_19, EE_OFF),
-+	GPIO_GROUP(GPIOA_20, EE_OFF),
-+
-+	GPIO_GROUP(GPIOX_0, EE_OFF),
-+	GPIO_GROUP(GPIOX_1, EE_OFF),
-+	GPIO_GROUP(GPIOX_2, EE_OFF),
-+	GPIO_GROUP(GPIOX_3, EE_OFF),
-+	GPIO_GROUP(GPIOX_4, EE_OFF),
-+	GPIO_GROUP(GPIOX_5, EE_OFF),
-+	GPIO_GROUP(GPIOX_6, EE_OFF),
-+	GPIO_GROUP(GPIOX_7, EE_OFF),
-+	GPIO_GROUP(GPIOX_8, EE_OFF),
-+	GPIO_GROUP(GPIOX_9, EE_OFF),
-+	GPIO_GROUP(GPIOX_10, EE_OFF),
-+	GPIO_GROUP(GPIOX_11, EE_OFF),
-+	GPIO_GROUP(GPIOX_12, EE_OFF),
-+	GPIO_GROUP(GPIOX_13, EE_OFF),
-+	GPIO_GROUP(GPIOX_14, EE_OFF),
-+	GPIO_GROUP(GPIOX_15, EE_OFF),
-+	GPIO_GROUP(GPIOX_16, EE_OFF),
-+	GPIO_GROUP(GPIOX_17, EE_OFF),
-+	GPIO_GROUP(GPIOX_18, EE_OFF),
-+	GPIO_GROUP(GPIOX_19, EE_OFF),
-+	GPIO_GROUP(GPIOX_20, EE_OFF),
-+	GPIO_GROUP(GPIOX_21, EE_OFF),
-+	GPIO_GROUP(GPIOX_22, EE_OFF),
-+
-+	GPIO_GROUP(GPIOY_0, EE_OFF),
-+	GPIO_GROUP(GPIOY_1, EE_OFF),
-+	GPIO_GROUP(GPIOY_2, EE_OFF),
-+	GPIO_GROUP(GPIOY_3, EE_OFF),
-+	GPIO_GROUP(GPIOY_4, EE_OFF),
-+	GPIO_GROUP(GPIOY_5, EE_OFF),
-+	GPIO_GROUP(GPIOY_6, EE_OFF),
-+	GPIO_GROUP(GPIOY_7, EE_OFF),
-+	GPIO_GROUP(GPIOY_8, EE_OFF),
-+	GPIO_GROUP(GPIOY_9, EE_OFF),
-+	GPIO_GROUP(GPIOY_10, EE_OFF),
-+	GPIO_GROUP(GPIOY_11, EE_OFF),
-+	GPIO_GROUP(GPIOY_12, EE_OFF),
-+	GPIO_GROUP(GPIOY_13, EE_OFF),
-+	GPIO_GROUP(GPIOY_14, EE_OFF),
-+	GPIO_GROUP(GPIOY_15, EE_OFF),
-+
-+	/* bank BOOT */
-+	GROUP(emmc_nand_d0, 1),
-+	GROUP(emmc_nand_d1, 1),
-+	GROUP(emmc_nand_d2, 1),
-+	GROUP(emmc_nand_d3, 1),
-+	GROUP(emmc_nand_d4, 1),
-+	GROUP(emmc_nand_d5, 1),
-+	GROUP(emmc_nand_d6, 1),
-+	GROUP(emmc_nand_d7, 1),
-+	GROUP(emmc_clk, 1),
-+	GROUP(emmc_cmd, 1),
-+	GROUP(emmc_ds, 1),
-+	GROUP(nand_ce0, 2),
-+	GROUP(nand_ale, 2),
-+	GROUP(nand_cle, 2),
-+	GROUP(nand_wen_clk, 2),
-+	GROUP(nand_ren_wr, 2),
-+	GROUP(nand_rb0, 2),
-+	GROUP(nor_hold, 3),
-+	GROUP(nor_d, 3),
-+	GROUP(nor_q, 3),
-+	GROUP(nor_c, 3),
-+	GROUP(nor_wp, 3),
-+	GROUP(nor_cs, 3),
-+
-+	/* bank GPIOZ */
-+	GROUP(spi0_clk, 1),
-+	GROUP(spi0_mosi, 1),
-+	GROUP(spi0_miso, 1),
-+	GROUP(spi0_ss0, 1),
-+	GROUP(spi0_ss1, 1),
-+	GROUP(spi0_ss2, 1),
-+	GROUP(i2c0_sck, 1),
-+	GROUP(i2c0_sda, 1),
-+	GROUP(i2c1_sck_z, 1),
-+	GROUP(i2c1_sda_z, 1),
-+	GROUP(uart_rts_b_z, 2),
-+	GROUP(uart_cts_b_z, 2),
-+	GROUP(uart_tx_b_z, 2),
-+	GROUP(uart_rx_b_z, 2),
-+	GROUP(pwm_a_z, 2),
-+	GROUP(pwm_b_z, 2),
-+	GROUP(spdif_in_z, 3),
-+	GROUP(spdif_out_z, 3),
-+	GROUP(uart_ao_tx_b_z, 2),
-+	GROUP(uart_ao_rx_b_z, 2),
-+	GROUP(uart_ao_cts_b_z, 2),
-+	GROUP(uart_ao_rts_b_z, 2),
-+
-+	/* bank GPIOX */
-+	GROUP(sdio_d0, 1),
-+	GROUP(sdio_d1, 1),
-+	GROUP(sdio_d2, 1),
-+	GROUP(sdio_d3, 1),
-+	GROUP(sdio_clk, 1),
-+	GROUP(sdio_cmd, 1),
-+	GROUP(i2c1_sck_x, 1),
-+	GROUP(i2c1_sda_x, 1),
-+	GROUP(i2c2_sck_x, 1),
-+	GROUP(i2c2_sda_x, 1),
-+	GROUP(uart_rts_a, 1),
-+	GROUP(uart_cts_a, 1),
-+	GROUP(uart_tx_a, 1),
-+	GROUP(uart_rx_a, 1),
-+	GROUP(uart_rts_b_x, 2),
-+	GROUP(uart_cts_b_x, 2),
-+	GROUP(uart_tx_b_x, 2),
-+	GROUP(uart_rx_b_x, 2),
-+	GROUP(jtag_tdo_x, 2),
-+	GROUP(jtag_tdi_x, 2),
-+	GROUP(jtag_clk_x, 2),
-+	GROUP(jtag_tms_x, 2),
-+	GROUP(spi1_clk_x, 4),
-+	GROUP(spi1_mosi_x, 4),
-+	GROUP(spi1_miso_x, 4),
-+	GROUP(spi1_ss0_x, 4),
-+	GROUP(pwm_a_x18, 3),
-+	GROUP(pwm_a_x20, 1),
-+	GROUP(pwm_b_x, 3),
-+	GROUP(pwm_c_x10, 3),
-+	GROUP(pwm_c_x17, 3),
-+	GROUP(pwm_d_x11, 3),
-+	GROUP(pwm_d_x16, 3),
-+	GROUP(eth_txd0_x, 4),
-+	GROUP(eth_txd1_x, 4),
-+	GROUP(eth_txen_x, 4),
-+	GROUP(eth_rgmii_rx_clk_x, 4),
-+	GROUP(eth_rxd0_x, 4),
-+	GROUP(eth_rxd1_x, 4),
-+	GROUP(eth_rx_dv_x, 4),
-+	GROUP(eth_mdio_x, 4),
-+	GROUP(eth_mdc_x, 4),
-+	GROUP(tdma_sclk, 1),
-+	GROUP(tdma_sclk_slv, 2),
-+	GROUP(tdma_fs, 1),
-+	GROUP(tdma_fs_slv, 2),
-+	GROUP(tdma_din0, 1),
-+	GROUP(tdma_dout0_x14, 2),
-+	GROUP(tdma_dout0_x15, 1),
-+	GROUP(tdma_dout1, 2),
-+	GROUP(tdma_din1, 3),
-+
-+	/* bank GPIOY */
-+	GROUP(eth_txd0_y, 1),
-+	GROUP(eth_txd1_y, 1),
-+	GROUP(eth_txen_y, 1),
-+	GROUP(eth_rgmii_rx_clk_y, 1),
-+	GROUP(eth_rxd0_y, 1),
-+	GROUP(eth_rxd1_y, 1),
-+	GROUP(eth_rx_dv_y, 1),
-+	GROUP(eth_mdio_y, 1),
-+	GROUP(eth_mdc_y, 1),
-+	GROUP(eth_rxd2_rgmii, 1),
-+	GROUP(eth_rxd3_rgmii, 1),
-+	GROUP(eth_rgmii_tx_clk, 1),
-+	GROUP(eth_txd2_rgmii, 1),
-+	GROUP(eth_txd3_rgmii, 1),
-+
-+	/* bank GPIOA */
-+	GROUP(spdif_out_a1, 4),
-+	GROUP(spdif_out_a11, 3),
-+	GROUP(spdif_out_a19, 2),
-+	GROUP(spdif_out_a20, 1),
-+	GROUP(spdif_in_a1, 3),
-+	GROUP(spdif_in_a7, 3),
-+	GROUP(spdif_in_a19, 1),
-+	GROUP(spdif_in_a20, 2),
-+	GROUP(spi1_clk_a, 3),
-+	GROUP(spi1_mosi_a, 3),
-+	GROUP(spi1_miso_a, 3),
-+	GROUP(spi1_ss0_a, 3),
-+	GROUP(spi1_ss1, 3),
-+	GROUP(pwm_a_a, 3),
-+	GROUP(pwm_b_a, 3),
-+	GROUP(pwm_c_a, 3),
-+	GROUP(pwm_vs, 2),
-+	GROUP(i2c2_sda_a, 3),
-+	GROUP(i2c2_sck_a, 3),
-+	GROUP(i2c3_sda_a6, 4),
-+	GROUP(i2c3_sck_a7, 4),
-+	GROUP(i2c3_sda_a12, 4),
-+	GROUP(i2c3_sck_a13, 4),
-+	GROUP(i2c3_sda_a19, 4),
-+	GROUP(i2c3_sck_a20, 4),
-+	GROUP(pdm_dclk_a14, 1),
-+	GROUP(pdm_dclk_a19, 3),
-+	GROUP(pdm_din0, 1),
-+	GROUP(pdm_din1, 1),
-+	GROUP(pdm_din2, 1),
-+	GROUP(pdm_din3, 1),
-+	GROUP(mclk_c, 1),
-+	GROUP(mclk_b, 1),
-+	GROUP(tdmc_sclk, 1),
-+	GROUP(tdmc_sclk_slv, 2),
-+	GROUP(tdmc_fs, 1),
-+	GROUP(tdmc_fs_slv, 2),
-+	GROUP(tdmc_din0, 2),
-+	GROUP(tdmc_dout0, 1),
-+	GROUP(tdmc_din1, 2),
-+	GROUP(tdmc_dout1, 1),
-+	GROUP(tdmc_din2, 2),
-+	GROUP(tdmc_dout2, 1),
-+	GROUP(tdmc_din3, 2),
-+	GROUP(tdmc_dout3, 1),
-+	GROUP(tdmb_sclk, 1),
-+	GROUP(tdmb_sclk_slv, 2),
-+	GROUP(tdmb_fs, 1),
-+	GROUP(tdmb_fs_slv, 2),
-+	GROUP(tdmb_din0, 2),
-+	GROUP(tdmb_dout0, 1),
-+	GROUP(tdmb_din1, 2),
-+	GROUP(tdmb_dout1, 1),
-+	GROUP(tdmb_din2, 2),
-+	GROUP(tdmb_dout2, 1),
-+	GROUP(tdmb_din3, 2),
-+	GROUP(tdmb_dout3, 1),
-+};
-+
-+/* uart_ao_a */
-+static const unsigned int uart_ao_tx_a_pins[] = {GPIOAO_0};
-+static const unsigned int uart_ao_rx_a_pins[] = {GPIOAO_1};
-+static const unsigned int uart_ao_cts_a_pins[] = {GPIOAO_2};
-+static const unsigned int uart_ao_rts_a_pins[] = {GPIOAO_3};
-+
-+/* uart_ao_b */
-+static const unsigned int uart_ao_tx_b_pins[] = {GPIOAO_4};
-+static const unsigned int uart_ao_rx_b_pins[] = {GPIOAO_5};
-+static const unsigned int uart_ao_cts_b_pins[] = {GPIOAO_2};
-+static const unsigned int uart_ao_rts_b_pins[] = {GPIOAO_3};
-+
-+/* i2c_ao */
-+static const unsigned int i2c_ao_sck_4_pins[] = {GPIOAO_4};
-+static const unsigned int i2c_ao_sda_5_pins[] = {GPIOAO_5};
-+static const unsigned int i2c_ao_sck_8_pins[] = {GPIOAO_8};
-+static const unsigned int i2c_ao_sda_9_pins[] = {GPIOAO_9};
-+static const unsigned int i2c_ao_sck_10_pins[] = {GPIOAO_10};
-+static const unsigned int i2c_ao_sda_11_pins[] = {GPIOAO_11};
-+
-+/* i2c_ao_slave */
-+static const unsigned int i2c_ao_slave_sck_pins[] = {GPIOAO_10};
-+static const unsigned int i2c_ao_slave_sda_pins[] = {GPIOAO_11};
-+
-+/* ir_in */
-+static const unsigned int remote_input_ao_pins[] = {GPIOAO_6};
-+
-+/* ir_out */
-+static const unsigned int remote_out_ao_pins[] = {GPIOAO_7};
-+
-+/* pwm_ao_a */
-+static const unsigned int pwm_ao_a_pins[] = {GPIOAO_3};
-+
-+/* pwm_ao_b */
-+static const unsigned int pwm_ao_b_ao2_pins[] = {GPIOAO_2};
-+static const unsigned int pwm_ao_b_ao12_pins[] = {GPIOAO_12};
-+
-+/* pwm_ao_c */
-+static const unsigned int pwm_ao_c_ao8_pins[] = {GPIOAO_8};
-+static const unsigned int pwm_ao_c_ao13_pins[] = {GPIOAO_13};
-+
-+/* pwm_ao_d */
-+static const unsigned int pwm_ao_d_pins[] = {GPIOAO_9};
-+
-+/* jtag_ao */
-+static const unsigned int jtag_ao_tdi_pins[] = {GPIOAO_3};
-+static const unsigned int jtag_ao_tdo_pins[] = {GPIOAO_4};
-+static const unsigned int jtag_ao_clk_pins[] = {GPIOAO_5};
-+static const unsigned int jtag_ao_tms_pins[] = {GPIOAO_7};
-+
-+static struct meson_pmx_group meson_axg_aobus_groups[] = {
-+	GPIO_GROUP(GPIOAO_0, 0),
-+	GPIO_GROUP(GPIOAO_1, 0),
-+	GPIO_GROUP(GPIOAO_2, 0),
-+	GPIO_GROUP(GPIOAO_3, 0),
-+	GPIO_GROUP(GPIOAO_4, 0),
-+	GPIO_GROUP(GPIOAO_5, 0),
-+	GPIO_GROUP(GPIOAO_6, 0),
-+	GPIO_GROUP(GPIOAO_7, 0),
-+	GPIO_GROUP(GPIOAO_8, 0),
-+	GPIO_GROUP(GPIOAO_9, 0),
-+	GPIO_GROUP(GPIOAO_10, 0),
-+	GPIO_GROUP(GPIOAO_11, 0),
-+	GPIO_GROUP(GPIOAO_12, 0),
-+	GPIO_GROUP(GPIOAO_13, 0),
-+	GPIO_GROUP(GPIO_TEST_N, 0),
-+
-+	/* bank AO */
-+	GROUP(uart_ao_tx_a, 1),
-+	GROUP(uart_ao_rx_a, 1),
-+	GROUP(uart_ao_cts_a, 2),
-+	GROUP(uart_ao_rts_a, 2),
-+	GROUP(uart_ao_tx_b, 1),
-+	GROUP(uart_ao_rx_b, 1),
-+	GROUP(uart_ao_cts_b, 1),
-+	GROUP(uart_ao_rts_b, 1),
-+	GROUP(i2c_ao_sck_4, 2),
-+	GROUP(i2c_ao_sda_5, 2),
-+	GROUP(i2c_ao_sck_8, 2),
-+	GROUP(i2c_ao_sda_9, 2),
-+	GROUP(i2c_ao_sck_10, 2),
-+	GROUP(i2c_ao_sda_11, 2),
-+	GROUP(i2c_ao_slave_sck, 1),
-+	GROUP(i2c_ao_slave_sda, 1),
-+	GROUP(remote_input_ao, 1),
-+	GROUP(remote_out_ao, 1),
-+	GROUP(pwm_ao_a, 3),
-+	GROUP(pwm_ao_b_ao2, 3),
-+	GROUP(pwm_ao_b_ao12, 3),
-+	GROUP(pwm_ao_c_ao8, 3),
-+	GROUP(pwm_ao_c_ao13, 3),
-+	GROUP(pwm_ao_d, 3),
-+	GROUP(jtag_ao_tdi, 4),
-+	GROUP(jtag_ao_tdo, 4),
-+	GROUP(jtag_ao_clk, 4),
-+	GROUP(jtag_ao_tms, 4),
-+};
-+
-+static const char * const gpio_periphs_groups[] = {
-+	"GPIOZ_0", "GPIOZ_1", "GPIOZ_2", "GPIOZ_3", "GPIOZ_4",
-+	"GPIOZ_5", "GPIOZ_6", "GPIOZ_7", "GPIOZ_8", "GPIOZ_9",
-+	"GPIOZ_10",
-+
-+	"BOOT_0", "BOOT_1", "BOOT_2", "BOOT_3", "BOOT_4",
-+	"BOOT_5", "BOOT_6", "BOOT_7", "BOOT_8", "BOOT_9",
-+	"BOOT_10", "BOOT_11", "BOOT_12", "BOOT_13", "BOOT_14",
-+
-+	"GPIOA_0", "GPIOA_1", "GPIOA_2", "GPIOA_3", "GPIOA_4",
-+	"GPIOA_5", "GPIOA_6", "GPIOA_7", "GPIOA_8", "GPIOA_9",
-+	"GPIOA_10", "GPIOA_11", "GPIOA_12", "GPIOA_13", "GPIOA_14",
-+	"GPIOA_15", "GPIOA_16", "GPIOA_17", "GPIOA_18", "GPIOA_19",
-+	"GPIOA_20",
-+
-+	"GPIOX_0", "GPIOX_1", "GPIOX_2", "GPIOX_3", "GPIOX_4",
-+	"GPIOX_5", "GPIOX_6", "GPIOX_7", "GPIOX_8", "GPIOX_9",
-+	"GPIOX_10", "GPIOX_11", "GPIOX_12", "GPIOX_13", "GPIOX_14",
-+	"GPIOX_15", "GPIOX_16", "GPIOX_17", "GPIOX_18", "GPIOX_19",
-+	"GPIOX_20", "GPIOX_21", "GPIOX_22",
-+
-+	"GPIOY_0", "GPIOY_1", "GPIOY_2", "GPIOY_3", "GPIOY_4",
-+	"GPIOY_5", "GPIOY_6", "GPIOY_7", "GPIOY_8", "GPIOY_9",
-+	"GPIOY_10", "GPIOY_11", "GPIOY_12", "GPIOY_13", "GPIOY_14",
-+	"GPIOY_15",
-+};
-+
-+static const char * const emmc_groups[] = {
-+	"emmc_nand_d0", "emmc_nand_d1", "emmc_nand_d2",
-+	"emmc_nand_d3", "emmc_nand_d4", "emmc_nand_d5",
-+	"emmc_nand_d6", "emmc_nand_d7",
-+	"emmc_clk", "emmc_cmd", "emmc_ds",
-+};
-+
-+static const char * const nand_groups[] = {
-+	"emmc_nand_d0", "emmc_nand_d1", "emmc_nand_d2",
-+	"emmc_nand_d3", "emmc_nand_d4", "emmc_nand_d5",
-+	"emmc_nand_d6", "emmc_nand_d7",
-+	"nand_ce0", "nand_ale", "nand_cle",
-+	"nand_wen_clk", "nand_ren_wr", "nand_rb0",
-+};
-+
-+static const char * const nor_groups[] = {
-+	"nor_d", "nor_q", "nor_c", "nor_cs",
-+	"nor_hold", "nor_wp",
-+};
-+
-+static const char * const sdio_groups[] = {
-+	"sdio_d0", "sdio_d1", "sdio_d2", "sdio_d3",
-+	"sdio_cmd", "sdio_clk",
-+};
-+
-+static const char * const spi0_groups[] = {
-+	"spi0_clk", "spi0_mosi", "spi0_miso", "spi0_ss0",
-+	"spi0_ss1", "spi0_ss2"
-+};
-+
-+static const char * const spi1_groups[] = {
-+	"spi1_clk_x", "spi1_mosi_x", "spi1_miso_x", "spi1_ss0_x",
-+	"spi1_clk_a", "spi1_mosi_a", "spi1_miso_a", "spi1_ss0_a",
-+	"spi1_ss1"
-+};
-+
-+static const char * const uart_a_groups[] = {
-+	"uart_tx_a", "uart_rx_a", "uart_cts_a", "uart_rts_a",
-+};
-+
-+static const char * const uart_b_groups[] = {
-+	"uart_tx_b_z", "uart_rx_b_z", "uart_cts_b_z", "uart_rts_b_z",
-+	"uart_tx_b_x", "uart_rx_b_x", "uart_cts_b_x", "uart_rts_b_x",
-+};
-+
-+static const char * const uart_ao_b_z_groups[] = {
-+	"uart_ao_tx_b_z", "uart_ao_rx_b_z",
-+	"uart_ao_cts_b_z", "uart_ao_rts_b_z",
-+};
-+
-+static const char * const i2c0_groups[] = {
-+	"i2c0_sck", "i2c0_sda",
-+};
-+
-+static const char * const i2c1_groups[] = {
-+	"i2c1_sck_z", "i2c1_sda_z",
-+	"i2c1_sck_x", "i2c1_sda_x",
-+};
-+
-+static const char * const i2c2_groups[] = {
-+	"i2c2_sck_x", "i2c2_sda_x",
-+	"i2c2_sda_a", "i2c2_sck_a",
-+};
-+
-+static const char * const i2c3_groups[] = {
-+	"i2c3_sda_a6", "i2c3_sck_a7",
-+	"i2c3_sda_a12", "i2c3_sck_a13",
-+	"i2c3_sda_a19", "i2c3_sck_a20",
-+};
-+
-+static const char * const eth_groups[] = {
-+	"eth_rxd2_rgmii", "eth_rxd3_rgmii", "eth_rgmii_tx_clk",
-+	"eth_txd2_rgmii", "eth_txd3_rgmii",
-+	"eth_txd0_x", "eth_txd1_x", "eth_txen_x", "eth_rgmii_rx_clk_x",
-+	"eth_rxd0_x", "eth_rxd1_x", "eth_rx_dv_x", "eth_mdio_x",
-+	"eth_mdc_x",
-+	"eth_txd0_y", "eth_txd1_y", "eth_txen_y", "eth_rgmii_rx_clk_y",
-+	"eth_rxd0_y", "eth_rxd1_y", "eth_rx_dv_y", "eth_mdio_y",
-+	"eth_mdc_y",
-+};
-+
-+static const char * const pwm_a_groups[] = {
-+	"pwm_a_z", "pwm_a_x18", "pwm_a_x20", "pwm_a_a",
-+};
-+
-+static const char * const pwm_b_groups[] = {
-+	"pwm_b_z", "pwm_b_x", "pwm_b_a",
-+};
-+
-+static const char * const pwm_c_groups[] = {
-+	"pwm_c_x10", "pwm_c_x17", "pwm_c_a",
-+};
-+
-+static const char * const pwm_d_groups[] = {
-+	"pwm_d_x11", "pwm_d_x16",
-+};
-+
-+static const char * const pwm_vs_groups[] = {
-+	"pwm_vs",
-+};
-+
-+static const char * const spdif_out_groups[] = {
-+	"spdif_out_z", "spdif_out_a1", "spdif_out_a11",
-+	"spdif_out_a19", "spdif_out_a20",
-+};
-+
-+static const char * const spdif_in_groups[] = {
-+	"spdif_in_z", "spdif_in_a1", "spdif_in_a7",
-+	"spdif_in_a19", "spdif_in_a20",
-+};
-+
-+static const char * const jtag_ee_groups[] = {
-+	"jtag_tdo_x", "jtag_tdi_x", "jtag_clk_x",
-+	"jtag_tms_x",
-+};
-+
-+static const char * const pdm_groups[] = {
-+	"pdm_din0", "pdm_din1", "pdm_din2", "pdm_din3",
-+	"pdm_dclk_a14", "pdm_dclk_a19",
-+};
-+
-+static const char * const gpio_aobus_groups[] = {
-+	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
-+	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
-+	"GPIOAO_10", "GPIOAO_11", "GPIOAO_12", "GPIOAO_13",
-+	"GPIO_TEST_N",
-+};
-+
-+static const char * const uart_ao_a_groups[] = {
-+	"uart_ao_tx_a", "uart_ao_rx_a", "uart_ao_cts_a", "uart_ao_rts_a",
-+};
-+
-+static const char * const uart_ao_b_groups[] = {
-+	"uart_ao_tx_b", "uart_ao_rx_b", "uart_ao_cts_b", "uart_ao_rts_b",
-+};
-+
-+static const char * const i2c_ao_groups[] = {
-+	"i2c_ao_sck_4", "i2c_ao_sda_5",
-+	"i2c_ao_sck_8", "i2c_ao_sda_9",
-+	"i2c_ao_sck_10", "i2c_ao_sda_11",
-+};
-+
-+static const char * const i2c_ao_slave_groups[] = {
-+	"i2c_ao_slave_sck", "i2c_ao_slave_sda",
-+};
-+
-+static const char * const remote_input_ao_groups[] = {
-+	"remote_input_ao",
-+};
-+
-+static const char * const remote_out_ao_groups[] = {
-+	"remote_out_ao",
-+};
-+
-+static const char * const pwm_ao_a_groups[] = {
-+	"pwm_ao_a",
-+};
-+
-+static const char * const pwm_ao_b_groups[] = {
-+	"pwm_ao_b_ao2", "pwm_ao_b_ao12",
-+};
-+
-+static const char * const pwm_ao_c_groups[] = {
-+	"pwm_ao_c_ao8", "pwm_ao_c_ao13",
-+};
-+
-+static const char * const pwm_ao_d_groups[] = {
-+	"pwm_ao_d",
-+};
-+
-+static const char * const jtag_ao_groups[] = {
-+	"jtag_ao_tdi", "jtag_ao_tdo", "jtag_ao_clk", "jtag_ao_tms",
-+};
-+
-+static const char * const mclk_c_groups[] = {
-+	"mclk_c",
-+};
-+
-+static const char * const mclk_b_groups[] = {
-+	"mclk_b",
-+};
-+
-+static const char * const tdma_groups[] = {
-+	"tdma_sclk", "tdma_sclk_slv", "tdma_fs", "tdma_fs_slv",
-+	"tdma_din0", "tdma_dout0_x14", "tdma_dout0_x15", "tdma_dout1",
-+	"tdma_din1",
-+};
-+
-+static const char * const tdmc_groups[] = {
-+	"tdmc_sclk", "tdmc_sclk_slv", "tdmc_fs", "tdmc_fs_slv",
-+	"tdmc_din0", "tdmc_dout0", "tdmc_din1",	"tdmc_dout1",
-+	"tdmc_din2", "tdmc_dout2", "tdmc_din3",	"tdmc_dout3",
-+};
-+
-+static const char * const tdmb_groups[] = {
-+	"tdmb_sclk", "tdmb_sclk_slv", "tdmb_fs", "tdmb_fs_slv",
-+	"tdmb_din0", "tdmb_dout0", "tdmb_din1",	"tdmb_dout1",
-+	"tdmb_din2", "tdmb_dout2", "tdmb_din3",	"tdmb_dout3",
-+};
-+
-+static struct meson_pmx_func meson_axg_periphs_functions[] = {
-+	FUNCTION(gpio_periphs),
-+	FUNCTION(emmc),
-+	FUNCTION(nor),
-+	FUNCTION(spi0),
-+	FUNCTION(spi1),
-+	FUNCTION(sdio),
-+	FUNCTION(nand),
-+	FUNCTION(uart_a),
-+	FUNCTION(uart_b),
-+	FUNCTION(uart_ao_b_z),
-+	FUNCTION(i2c0),
-+	FUNCTION(i2c1),
-+	FUNCTION(i2c2),
-+	FUNCTION(i2c3),
-+	FUNCTION(eth),
-+	FUNCTION(pwm_a),
-+	FUNCTION(pwm_b),
-+	FUNCTION(pwm_c),
-+	FUNCTION(pwm_d),
-+	FUNCTION(pwm_vs),
-+	FUNCTION(spdif_out),
-+	FUNCTION(spdif_in),
-+	FUNCTION(jtag_ee),
-+	FUNCTION(pdm),
-+	FUNCTION(mclk_b),
-+	FUNCTION(mclk_c),
-+	FUNCTION(tdma),
-+	FUNCTION(tdmb),
-+	FUNCTION(tdmc),
-+};
-+
-+static struct meson_pmx_func meson_axg_aobus_functions[] = {
-+	FUNCTION(gpio_aobus),
-+	FUNCTION(uart_ao_a),
-+	FUNCTION(uart_ao_b),
-+	FUNCTION(i2c_ao),
-+	FUNCTION(i2c_ao_slave),
-+	FUNCTION(remote_input_ao),
-+	FUNCTION(remote_out_ao),
-+	FUNCTION(pwm_ao_a),
-+	FUNCTION(pwm_ao_b),
-+	FUNCTION(pwm_ao_c),
-+	FUNCTION(pwm_ao_d),
-+	FUNCTION(jtag_ao),
-+};
-+
-+static struct meson_bank meson_axg_periphs_banks[] = {
-+	/*   name    first      last      pullen  pull    dir     out     in  */
-+	BANK("Z",    GPIOZ_0,	GPIOZ_10, 3,  0,  3,  0,  9,  0,  10, 0,  11, 0),
-+	BANK("BOOT", BOOT_0,	BOOT_14,  4,  0,  4,  0,  12, 0,  13, 0,  14, 0),
-+	BANK("A",    GPIOA_0,	GPIOA_20, 0,  0,  0,  0,  0,  0,  1,  0,  2,  0),
-+	BANK("X",    GPIOX_0,	GPIOX_22, 2,  0,  2,  0,  6,  0,  7,  0,  8,  0),
-+	BANK("Y",    GPIOY_0,	GPIOY_15, 1,  0,  1,  0,  3,  0,  4,  0,  5,  0),
-+};
-+
-+static struct meson_bank meson_axg_aobus_banks[] = {
-+	/*   name    first      last       pullen  pull    dir     out     in  */
-+	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0,  16,  0, 0,  0,  0,  0, 16,  1,  0),
-+};
-+
-+static struct meson_pmx_bank meson_axg_periphs_pmx_banks[] = {
-+	/*	 name	 first		lask	   reg	offset  */
-+	BANK_PMX("Z",	 GPIOZ_0, GPIOZ_10, 0x2, 0),
-+	BANK_PMX("BOOT", BOOT_0,  BOOT_14,  0x0, 0),
-+	BANK_PMX("A",	 GPIOA_0, GPIOA_20, 0xb, 0),
-+	BANK_PMX("X",	 GPIOX_0, GPIOX_22, 0x4, 0),
-+	BANK_PMX("Y",	 GPIOY_0, GPIOY_15, 0x8, 0),
-+};
-+
-+static struct meson_axg_pmx_data meson_axg_periphs_pmx_banks_data = {
-+	.pmx_banks	= meson_axg_periphs_pmx_banks,
-+	.num_pmx_banks = ARRAY_SIZE(meson_axg_periphs_pmx_banks),
-+};
-+
-+static struct meson_pmx_bank meson_axg_aobus_pmx_banks[] = {
-+	BANK_PMX("AO", GPIOAO_0, GPIOAO_13, 0x0, 0),
-+};
-+
-+static struct meson_axg_pmx_data meson_axg_aobus_pmx_banks_data = {
-+	.pmx_banks	= meson_axg_aobus_pmx_banks,
-+	.num_pmx_banks = ARRAY_SIZE(meson_axg_aobus_pmx_banks),
-+};
-+
-+struct meson_pinctrl_data meson_axg_periphs_pinctrl_data = {
-+	.name		= "periphs-banks",
-+	.pin_base	= 11,
-+	.groups		= meson_axg_periphs_groups,
-+	.funcs		= meson_axg_periphs_functions,
-+	.banks		= meson_axg_periphs_banks,
-+	.num_pins	= 100,
-+	.num_groups	= ARRAY_SIZE(meson_axg_periphs_groups),
-+	.num_funcs	= ARRAY_SIZE(meson_axg_periphs_functions),
-+	.num_banks	= ARRAY_SIZE(meson_axg_periphs_banks),
-+	.gpio_driver	= &meson_axg_gpio_driver,
-+	.pmx_data	= &meson_axg_periphs_pmx_banks_data,
-+};
-+
-+struct meson_pinctrl_data meson_axg_aobus_pinctrl_data = {
-+	.name		= "aobus-banks",
-+	.pin_base	= 0,
-+	.groups		= meson_axg_aobus_groups,
-+	.funcs		= meson_axg_aobus_functions,
-+	.banks		= meson_axg_aobus_banks,
-+	.num_pins	= 11,
-+	.num_groups	= ARRAY_SIZE(meson_axg_aobus_groups),
-+	.num_funcs	= ARRAY_SIZE(meson_axg_aobus_functions),
-+	.num_banks	= ARRAY_SIZE(meson_axg_aobus_banks),
-+	.gpio_driver	= &meson_axg_gpio_driver,
-+	.pmx_data	= &meson_axg_aobus_pmx_banks_data,
-+};
-+
-+static const struct udevice_id meson_axg_pinctrl_match[] = {
-+	{
-+		.compatible = "amlogic,meson-axg-periphs-pinctrl",
-+		.data = (ulong)&meson_axg_periphs_pinctrl_data,
-+	},
-+	{
-+		.compatible = "amlogic,meson-axg-aobus-pinctrl",
-+		.data = (ulong)&meson_axg_aobus_pinctrl_data,
-+	},
-+	{ /* sentinel */ }
-+};
-+
-+U_BOOT_DRIVER(meson_axg_pinctrl) = {
-+	.name = "meson-axg-pinctrl",
-+	.id = UCLASS_PINCTRL,
-+	.of_match = of_match_ptr(meson_axg_pinctrl_match),
-+	.probe = meson_pinctrl_probe,
-+	.priv_auto_alloc_size = sizeof(struct meson_pinctrl),
-+	.ops = &meson_axg_pinctrl_ops,
-+};
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.h b/drivers/pinctrl/meson/pinctrl-meson-axg.h
-new file mode 100644
-index 0000000..c8d2b3a
---- /dev/null
-+++ b/drivers/pinctrl/meson/pinctrl-meson-axg.h
-@@ -0,0 +1,66 @@
++++ b/arch/arm/include/asm/arch-meson/clock-gx.h
+@@ -0,0 +1,117 @@
 +/* SPDX-License-Identifier: GPL-2.0+ */
 +/*
-+ * Copyright (C) 2017 Jerome Brunet  <jbrunet@baylibre.com>
-+ * Copyright (C) 2017 Xingyu Chen <xingyu.chen@amlogic.com>
++ * Copyright 2016 - AmLogic, Inc.
++ * Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
++ */
++#ifndef _ARCH_MESON_CLOCK_GX_H_
++#define _ARCH_MESON_CLOCK_GX_H_
++
++/*
++ * Clock controller register offsets
++ *
++ * Register offsets from the data sheet are listed in comment blocks below.
++ * Those offsets must be multiplied by 4 before adding them to the base address
++ * to get the right value
++ */
++#define SCR				0x2C /* 0x0b offset in data sheet */
++#define TIMEOUT_VALUE			0x3c /* 0x0f offset in data sheet */
++
++#define HHI_GP0_PLL_CNTL		0x40 /* 0x10 offset in data sheet */
++#define HHI_GP0_PLL_CNTL2		0x44 /* 0x11 offset in data sheet */
++#define HHI_GP0_PLL_CNTL3		0x48 /* 0x12 offset in data sheet */
++#define HHI_GP0_PLL_CNTL4		0x4c /* 0x13 offset in data sheet */
++#define	HHI_GP0_PLL_CNTL5		0x50 /* 0x14 offset in data sheet */
++#define	HHI_GP0_PLL_CNTL1		0x58 /* 0x16 offset in data sheet */
++
++#define	HHI_XTAL_DIVN_CNTL		0xbc /* 0x2f offset in data sheet */
++#define	HHI_TIMER90K			0xec /* 0x3b offset in data sheet */
++
++#define	HHI_MEM_PD_REG0			0x100 /* 0x40 offset in data sheet */
++#define	HHI_MEM_PD_REG1			0x104 /* 0x41 offset in data sheet */
++#define	HHI_VPU_MEM_PD_REG1		0x108 /* 0x42 offset in data sheet */
++#define	HHI_VIID_CLK_DIV		0x128 /* 0x4a offset in data sheet */
++#define	HHI_VIID_CLK_CNTL		0x12c /* 0x4b offset in data sheet */
++
++#define HHI_GCLK_MPEG0			0x140 /* 0x50 offset in data sheet */
++#define HHI_GCLK_MPEG1			0x144 /* 0x51 offset in data sheet */
++#define HHI_GCLK_MPEG2			0x148 /* 0x52 offset in data sheet */
++#define HHI_GCLK_OTHER			0x150 /* 0x54 offset in data sheet */
++#define HHI_GCLK_AO			0x154 /* 0x55 offset in data sheet */
++#define HHI_SYS_OSCIN_CNTL		0x158 /* 0x56 offset in data sheet */
++#define HHI_SYS_CPU_CLK_CNTL1		0x15c /* 0x57 offset in data sheet */
++#define HHI_SYS_CPU_RESET_CNTL		0x160 /* 0x58 offset in data sheet */
++#define HHI_VID_CLK_DIV			0x164 /* 0x59 offset in data sheet */
++
++#define HHI_MPEG_CLK_CNTL		0x174 /* 0x5d offset in data sheet */
++#define HHI_AUD_CLK_CNTL		0x178 /* 0x5e offset in data sheet */
++#define HHI_VID_CLK_CNTL		0x17c /* 0x5f offset in data sheet */
++#define HHI_AUD_CLK_CNTL2		0x190 /* 0x64 offset in data sheet */
++#define HHI_VID_CLK_CNTL2		0x194 /* 0x65 offset in data sheet */
++#define HHI_SYS_CPU_CLK_CNTL0		0x19c /* 0x67 offset in data sheet */
++#define HHI_VID_PLL_CLK_DIV		0x1a0 /* 0x68 offset in data sheet */
++#define HHI_AUD_CLK_CNTL3		0x1a4 /* 0x69 offset in data sheet */
++#define HHI_MALI_CLK_CNTL		0x1b0 /* 0x6c offset in data sheet */
++#define HHI_VPU_CLK_CNTL		0x1bC /* 0x6f offset in data sheet */
++
++#define HHI_HDMI_CLK_CNTL		0x1CC /* 0x73 offset in data sheet */
++#define HHI_VDEC_CLK_CNTL		0x1E0 /* 0x78 offset in data sheet */
++#define HHI_VDEC2_CLK_CNTL		0x1E4 /* 0x79 offset in data sheet */
++#define HHI_VDEC3_CLK_CNTL		0x1E8 /* 0x7a offset in data sheet */
++#define HHI_VDEC4_CLK_CNTL		0x1EC /* 0x7b offset in data sheet */
++#define HHI_HDCP22_CLK_CNTL		0x1F0 /* 0x7c offset in data sheet */
++#define HHI_VAPBCLK_CNTL		0x1F4 /* 0x7d offset in data sheet */
++
++#define HHI_VPU_CLKB_CNTL		0x20C /* 0x83 offset in data sheet */
++#define HHI_USB_CLK_CNTL		0x220 /* 0x88 offset in data sheet */
++#define HHI_32K_CLK_CNTL		0x224 /* 0x89 offset in data sheet */
++#define HHI_GEN_CLK_CNTL		0x228 /* 0x8a offset in data sheet */
++#define HHI_GEN_CLK_CNTL		0x228 /* 0x8a offset in data sheet */
++
++#define HHI_PCM_CLK_CNTL		0x258 /* 0x96 offset in data sheet */
++#define HHI_NAND_CLK_CNTL		0x25C /* 0x97 offset in data sheet */
++#define HHI_SD_EMMC_CLK_CNTL		0x264 /* 0x99 offset in data sheet */
++
++#define HHI_MPLL_CNTL			0x280 /* 0xa0 offset in data sheet */
++#define HHI_MPLL_CNTL2			0x284 /* 0xa1 offset in data sheet */
++#define HHI_MPLL_CNTL3			0x288 /* 0xa2 offset in data sheet */
++#define HHI_MPLL_CNTL4			0x28C /* 0xa3 offset in data sheet */
++#define HHI_MPLL_CNTL5			0x290 /* 0xa4 offset in data sheet */
++#define HHI_MPLL_CNTL6			0x294 /* 0xa5 offset in data sheet */
++#define HHI_MPLL_CNTL7			0x298 /* 0xa6 offset in data sheet */
++#define HHI_MPLL_CNTL8			0x29C /* 0xa7 offset in data sheet */
++#define HHI_MPLL_CNTL9			0x2A0 /* 0xa8 offset in data sheet */
++#define HHI_MPLL_CNTL10			0x2A4 /* 0xa9 offset in data sheet */
++
++#define HHI_MPLL3_CNTL0			0x2E0 /* 0xb8 offset in data sheet */
++#define HHI_MPLL3_CNTL1			0x2E4 /* 0xb9 offset in data sheet */
++#define HHI_VDAC_CNTL0			0x2F4 /* 0xbd offset in data sheet */
++#define HHI_VDAC_CNTL1			0x2F8 /* 0xbe offset in data sheet */
++
++#define HHI_SYS_PLL_CNTL		0x300 /* 0xc0 offset in data sheet */
++#define HHI_SYS_PLL_CNTL2		0x304 /* 0xc1 offset in data sheet */
++#define HHI_SYS_PLL_CNTL3		0x308 /* 0xc2 offset in data sheet */
++#define HHI_SYS_PLL_CNTL4		0x30c /* 0xc3 offset in data sheet */
++#define HHI_SYS_PLL_CNTL5		0x310 /* 0xc4 offset in data sheet */
++#define HHI_DPLL_TOP_I			0x318 /* 0xc6 offset in data sheet */
++#define HHI_DPLL_TOP2_I			0x31C /* 0xc7 offset in data sheet */
++#define HHI_HDMI_PLL_CNTL		0x320 /* 0xc8 offset in data sheet */
++#define HHI_HDMI_PLL_CNTL2		0x324 /* 0xc9 offset in data sheet */
++#define HHI_HDMI_PLL_CNTL3		0x328 /* 0xca offset in data sheet */
++#define HHI_HDMI_PLL_CNTL4		0x32C /* 0xcb offset in data sheet */
++#define HHI_HDMI_PLL_CNTL5		0x330 /* 0xcc offset in data sheet */
++#define HHI_HDMI_PLL_CNTL6		0x334 /* 0xcd offset in data sheet */
++#define HHI_HDMI_PLL_CNTL_I		0x338 /* 0xce offset in data sheet */
++#define HHI_HDMI_PLL_CNTL7		0x33C /* 0xcf offset in data sheet */
++
++#define HHI_HDMI_PHY_CNTL0		0x3A0 /* 0xe8 offset in data sheet */
++#define HHI_HDMI_PHY_CNTL1		0x3A4 /* 0xe9 offset in data sheet */
++#define HHI_HDMI_PHY_CNTL2		0x3A8 /* 0xea offset in data sheet */
++#define HHI_HDMI_PHY_CNTL3		0x3AC /* 0xeb offset in data sheet */
++
++#define HHI_VID_LOCK_CLK_CNTL		0x3C8 /* 0xf2 offset in data sheet */
++#define HHI_BT656_CLK_CNTL		0x3D4 /* 0xf5 offset in data sheet */
++#define HHI_SAR_CLK_CNTL		0x3D8 /* 0xf6 offset in data sheet */
++
++ulong meson_measure_clk_rate(unsigned int clk);
++
++#endif
+diff --git a/arch/arm/include/asm/arch-meson/clock.h b/arch/arm/include/asm/arch-meson/clock.h
+deleted file mode 100644
+index c0ff00f..0000000
+--- a/arch/arm/include/asm/arch-meson/clock.h
++++ /dev/null
+@@ -1,117 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Copyright 2016 - AmLogic, Inc.
+- * Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
+- */
+-#ifndef _ARCH_MESON_CLOCK_H_
+-#define _ARCH_MESON_CLOCK_H_
+-
+-/*
+- * Clock controller register offsets
+- *
+- * Register offsets from the data sheet are listed in comment blocks below.
+- * Those offsets must be multiplied by 4 before adding them to the base address
+- * to get the right value
+- */
+-#define SCR				0x2C /* 0x0b offset in data sheet */
+-#define TIMEOUT_VALUE			0x3c /* 0x0f offset in data sheet */
+-
+-#define HHI_GP0_PLL_CNTL		0x40 /* 0x10 offset in data sheet */
+-#define HHI_GP0_PLL_CNTL2		0x44 /* 0x11 offset in data sheet */
+-#define HHI_GP0_PLL_CNTL3		0x48 /* 0x12 offset in data sheet */
+-#define HHI_GP0_PLL_CNTL4		0x4c /* 0x13 offset in data sheet */
+-#define	HHI_GP0_PLL_CNTL5		0x50 /* 0x14 offset in data sheet */
+-#define	HHI_GP0_PLL_CNTL1		0x58 /* 0x16 offset in data sheet */
+-
+-#define	HHI_XTAL_DIVN_CNTL		0xbc /* 0x2f offset in data sheet */
+-#define	HHI_TIMER90K			0xec /* 0x3b offset in data sheet */
+-
+-#define	HHI_MEM_PD_REG0			0x100 /* 0x40 offset in data sheet */
+-#define	HHI_MEM_PD_REG1			0x104 /* 0x41 offset in data sheet */
+-#define	HHI_VPU_MEM_PD_REG1		0x108 /* 0x42 offset in data sheet */
+-#define	HHI_VIID_CLK_DIV		0x128 /* 0x4a offset in data sheet */
+-#define	HHI_VIID_CLK_CNTL		0x12c /* 0x4b offset in data sheet */
+-
+-#define HHI_GCLK_MPEG0			0x140 /* 0x50 offset in data sheet */
+-#define HHI_GCLK_MPEG1			0x144 /* 0x51 offset in data sheet */
+-#define HHI_GCLK_MPEG2			0x148 /* 0x52 offset in data sheet */
+-#define HHI_GCLK_OTHER			0x150 /* 0x54 offset in data sheet */
+-#define HHI_GCLK_AO			0x154 /* 0x55 offset in data sheet */
+-#define HHI_SYS_OSCIN_CNTL		0x158 /* 0x56 offset in data sheet */
+-#define HHI_SYS_CPU_CLK_CNTL1		0x15c /* 0x57 offset in data sheet */
+-#define HHI_SYS_CPU_RESET_CNTL		0x160 /* 0x58 offset in data sheet */
+-#define HHI_VID_CLK_DIV			0x164 /* 0x59 offset in data sheet */
+-
+-#define HHI_MPEG_CLK_CNTL		0x174 /* 0x5d offset in data sheet */
+-#define HHI_AUD_CLK_CNTL		0x178 /* 0x5e offset in data sheet */
+-#define HHI_VID_CLK_CNTL		0x17c /* 0x5f offset in data sheet */
+-#define HHI_AUD_CLK_CNTL2		0x190 /* 0x64 offset in data sheet */
+-#define HHI_VID_CLK_CNTL2		0x194 /* 0x65 offset in data sheet */
+-#define HHI_SYS_CPU_CLK_CNTL0		0x19c /* 0x67 offset in data sheet */
+-#define HHI_VID_PLL_CLK_DIV		0x1a0 /* 0x68 offset in data sheet */
+-#define HHI_AUD_CLK_CNTL3		0x1a4 /* 0x69 offset in data sheet */
+-#define HHI_MALI_CLK_CNTL		0x1b0 /* 0x6c offset in data sheet */
+-#define HHI_VPU_CLK_CNTL		0x1bC /* 0x6f offset in data sheet */
+-
+-#define HHI_HDMI_CLK_CNTL		0x1CC /* 0x73 offset in data sheet */
+-#define HHI_VDEC_CLK_CNTL		0x1E0 /* 0x78 offset in data sheet */
+-#define HHI_VDEC2_CLK_CNTL		0x1E4 /* 0x79 offset in data sheet */
+-#define HHI_VDEC3_CLK_CNTL		0x1E8 /* 0x7a offset in data sheet */
+-#define HHI_VDEC4_CLK_CNTL		0x1EC /* 0x7b offset in data sheet */
+-#define HHI_HDCP22_CLK_CNTL		0x1F0 /* 0x7c offset in data sheet */
+-#define HHI_VAPBCLK_CNTL		0x1F4 /* 0x7d offset in data sheet */
+-
+-#define HHI_VPU_CLKB_CNTL		0x20C /* 0x83 offset in data sheet */
+-#define HHI_USB_CLK_CNTL		0x220 /* 0x88 offset in data sheet */
+-#define HHI_32K_CLK_CNTL		0x224 /* 0x89 offset in data sheet */
+-#define HHI_GEN_CLK_CNTL		0x228 /* 0x8a offset in data sheet */
+-#define HHI_GEN_CLK_CNTL		0x228 /* 0x8a offset in data sheet */
+-
+-#define HHI_PCM_CLK_CNTL		0x258 /* 0x96 offset in data sheet */
+-#define HHI_NAND_CLK_CNTL		0x25C /* 0x97 offset in data sheet */
+-#define HHI_SD_EMMC_CLK_CNTL		0x264 /* 0x99 offset in data sheet */
+-
+-#define HHI_MPLL_CNTL			0x280 /* 0xa0 offset in data sheet */
+-#define HHI_MPLL_CNTL2			0x284 /* 0xa1 offset in data sheet */
+-#define HHI_MPLL_CNTL3			0x288 /* 0xa2 offset in data sheet */
+-#define HHI_MPLL_CNTL4			0x28C /* 0xa3 offset in data sheet */
+-#define HHI_MPLL_CNTL5			0x290 /* 0xa4 offset in data sheet */
+-#define HHI_MPLL_CNTL6			0x294 /* 0xa5 offset in data sheet */
+-#define HHI_MPLL_CNTL7			0x298 /* 0xa6 offset in data sheet */
+-#define HHI_MPLL_CNTL8			0x29C /* 0xa7 offset in data sheet */
+-#define HHI_MPLL_CNTL9			0x2A0 /* 0xa8 offset in data sheet */
+-#define HHI_MPLL_CNTL10			0x2A4 /* 0xa9 offset in data sheet */
+-
+-#define HHI_MPLL3_CNTL0			0x2E0 /* 0xb8 offset in data sheet */
+-#define HHI_MPLL3_CNTL1			0x2E4 /* 0xb9 offset in data sheet */
+-#define HHI_VDAC_CNTL0			0x2F4 /* 0xbd offset in data sheet */
+-#define HHI_VDAC_CNTL1			0x2F8 /* 0xbe offset in data sheet */
+-
+-#define HHI_SYS_PLL_CNTL		0x300 /* 0xc0 offset in data sheet */
+-#define HHI_SYS_PLL_CNTL2		0x304 /* 0xc1 offset in data sheet */
+-#define HHI_SYS_PLL_CNTL3		0x308 /* 0xc2 offset in data sheet */
+-#define HHI_SYS_PLL_CNTL4		0x30c /* 0xc3 offset in data sheet */
+-#define HHI_SYS_PLL_CNTL5		0x310 /* 0xc4 offset in data sheet */
+-#define HHI_DPLL_TOP_I			0x318 /* 0xc6 offset in data sheet */
+-#define HHI_DPLL_TOP2_I			0x31C /* 0xc7 offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL		0x320 /* 0xc8 offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL2		0x324 /* 0xc9 offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL3		0x328 /* 0xca offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL4		0x32C /* 0xcb offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL5		0x330 /* 0xcc offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL6		0x334 /* 0xcd offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL_I		0x338 /* 0xce offset in data sheet */
+-#define HHI_HDMI_PLL_CNTL7		0x33C /* 0xcf offset in data sheet */
+-
+-#define HHI_HDMI_PHY_CNTL0		0x3A0 /* 0xe8 offset in data sheet */
+-#define HHI_HDMI_PHY_CNTL1		0x3A4 /* 0xe9 offset in data sheet */
+-#define HHI_HDMI_PHY_CNTL2		0x3A8 /* 0xea offset in data sheet */
+-#define HHI_HDMI_PHY_CNTL3		0x3AC /* 0xeb offset in data sheet */
+-
+-#define HHI_VID_LOCK_CLK_CNTL		0x3C8 /* 0xf2 offset in data sheet */
+-#define HHI_BT656_CLK_CNTL		0x3D4 /* 0xf5 offset in data sheet */
+-#define HHI_SAR_CLK_CNTL		0x3D8 /* 0xf6 offset in data sheet */
+-
+-ulong meson_measure_clk_rate(unsigned int clk);
+-
+-#endif
+diff --git a/arch/arm/include/asm/arch-meson/eth.h b/arch/arm/include/asm/arch-meson/eth.h
+index 1aa0872..08acc5c 100644
+--- a/arch/arm/include/asm/arch-meson/eth.h
++++ b/arch/arm/include/asm/arch-meson/eth.h
+@@ -10,13 +10,13 @@
+ #include <phy.h>
+ 
+ enum {
+-	/* Use GXL Internal RMII PHY */
+-	MESON_GXL_USE_INTERNAL_RMII_PHY = 1,
++	/* Use Internal RMII PHY */
++	MESON_USE_INTERNAL_RMII_PHY = 1,
+ };
+ 
+ /* Configure the Ethernet MAC with the requested interface mode
+  * with some optional flags.
+  */
+-void meson_gx_eth_init(phy_interface_t mode, unsigned int flags);
++void meson_eth_init(phy_interface_t mode, unsigned int flags);
+ 
+ #endif /* __MESON_ETH_H__ */
+diff --git a/arch/arm/include/asm/arch-meson/mem.h b/arch/arm/include/asm/arch-meson/mem.h
+index 6281833..a65100a 100644
+--- a/arch/arm/include/asm/arch-meson/mem.h
++++ b/arch/arm/include/asm/arch-meson/mem.h
+@@ -10,6 +10,7 @@
+ /* Configure the reserved memory zones exported by the secure registers
+  * into EFI and DTB reserved memory entries.
+  */
+-void meson_gx_init_reserved_memory(void *fdt);
++void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size);
++void meson_init_reserved_memory(void *fdt);
+ 
+ #endif /* __MESON_MEM_H__ */
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index 6f60167..6225417 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -8,25 +8,29 @@ config MESON64_COMMON
+ 	select DM_SERIAL
+ 	imply CMD_DM
+ 
++config MESON_GX
++	bool
++	select MESON64_COMMON
++
+ choice
+ 	prompt "Platform select"
+ 	default MESON_GXBB
+ 
+ config MESON_GXBB
+ 	bool "GXBB"
+-	select MESON64_COMMON
++	select MESON_GX
+ 	help
+ 	  Select this if your SoC is an S905
+ 
+ config MESON_GXL
+ 	bool "GXL"
+-	select MESON64_COMMON
++	select MESON_GX
+ 	help
+ 	  Select this if your SoC is an S905X/D or S805X
+ 
+ config MESON_GXM
+ 	bool "GXM"
+-	select MESON64_COMMON
++	select MESON_GX
+ 	help
+ 	  Select this if your SoC is an S912
+ 
+diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
+index 8ad9b3e..78345b4 100644
+--- a/arch/arm/mach-meson/Makefile
++++ b/arch/arm/mach-meson/Makefile
+@@ -2,4 +2,5 @@
+ #
+ # Copyright (c) 2016 Beniamino Galvani <b.galvani@gmail.com>
+ 
+-obj-y += board.o sm.o eth.o
++obj-y += board-common.o sm.o
++obj-$(CONFIG_MESON_GX) += board-gx.o
+diff --git a/arch/arm/mach-meson/board-common.c b/arch/arm/mach-meson/board-common.c
+new file mode 100644
+index 0000000..0446507
+--- /dev/null
++++ b/arch/arm/mach-meson/board-common.c
+@@ -0,0 +1,56 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
 + */
 +
-+#ifndef __PINCTRL_MESON_AXG_H__
-+#define __PINCTRL_MESON_AXG_H__
++#include <common.h>
++#include <linux/libfdt.h>
++#include <linux/err.h>
++#include <asm/arch/mem.h>
++#include <asm/arch/sm.h>
++#include <asm/armv8/mmu.h>
++#include <asm/unaligned.h>
++#include <efi_loader.h>
 +
-+#include "pinctrl-meson.h"
++DECLARE_GLOBAL_DATA_PTR;
 +
-+struct meson_pmx_bank {
-+	const char *name;
-+	unsigned int first;
-+	unsigned int last;
-+	unsigned int reg;
-+	unsigned int offset;
++int dram_init(void)
++{
++	const fdt64_t *val;
++	int offset;
++	int len;
++
++	offset = fdt_path_offset(gd->fdt_blob, "/memory");
++	if (offset < 0)
++		return -EINVAL;
++
++	val = fdt_getprop(gd->fdt_blob, offset, "reg", &len);
++	if (len < sizeof(*val) * 2)
++		return -EINVAL;
++
++	/* Use unaligned access since cache is still disabled */
++	gd->ram_size = get_unaligned_be64(&val[1]);
++
++	return 0;
++}
++
++void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size)
++{
++	int ret;
++
++	ret = fdt_add_mem_rsv(fdt, start, size);
++	if (ret)
++		printf("Could not reserve zone @ 0x%llx\n", start);
++
++	if (IS_ENABLED(CONFIG_EFI_LOADER)) {
++		efi_add_memory_map(start,
++				   ALIGN(size, EFI_PAGE_SIZE) >> EFI_PAGE_SHIFT,
++				   EFI_RESERVED_MEMORY_TYPE, false);
++	}
++}
++
++void reset_cpu(ulong addr)
++{
++	psci_system_reset();
++}
++
+diff --git a/arch/arm/mach-meson/board-gx.c b/arch/arm/mach-meson/board-gx.c
+new file mode 100644
+index 0000000..f1397f8
+--- /dev/null
++++ b/arch/arm/mach-meson/board-gx.c
+@@ -0,0 +1,132 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
++ * (C) Copyright 2018 Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#include <common.h>
++#include <asm/arch/eth.h>
++#include <asm/arch/gx.h>
++#include <asm/arch/mem.h>
++#include <asm/io.h>
++#include <asm/armv8/mmu.h>
++#include <linux/sizes.h>
++#include <phy.h>
++
++DECLARE_GLOBAL_DATA_PTR;
++
++/* Configure the reserved memory zones exported by the secure registers
++ * into EFI and DTB reserved memory entries.
++ */
++void meson_init_reserved_memory(void *fdt)
++{
++	u64 bl31_size, bl31_start;
++	u64 bl32_size, bl32_start;
++	u32 reg;
++
++	/*
++	 * Get ARM Trusted Firmware reserved memory zones in :
++	 * - AO_SEC_GP_CFG3: bl32 & bl31 size in KiB, can be 0
++	 * - AO_SEC_GP_CFG5: bl31 physical start address, can be NULL
++	 * - AO_SEC_GP_CFG4: bl32 physical start address, can be NULL
++	 */
++	reg = readl(GX_AO_SEC_GP_CFG3);
++
++	bl31_size = ((reg & GX_AO_BL31_RSVMEM_SIZE_MASK)
++			>> GX_AO_BL31_RSVMEM_SIZE_SHIFT) * SZ_1K;
++	bl32_size = (reg & GX_AO_BL32_RSVMEM_SIZE_MASK) * SZ_1K;
++
++	bl31_start = readl(GX_AO_SEC_GP_CFG5);
++	bl32_start = readl(GX_AO_SEC_GP_CFG4);
++
++	/*
++	 * Early Meson GX Firmware revisions did not provide the reserved
++	 * memory zones in the registers, keep fixed memory zone handling.
++	 */
++	if (IS_ENABLED(CONFIG_MESON_GX) &&
++	    !reg && !bl31_start && !bl32_start) {
++		bl31_start = 0x10000000;
++		bl31_size = 0x200000;
++	}
++
++	/* Add first 16MiB reserved zone */
++	meson_board_add_reserved_memory(fdt, 0, GX_FIRMWARE_MEM_SIZE);
++
++	/* Add BL31 reserved zone */
++	if (bl31_start && bl31_size)
++		meson_board_add_reserved_memory(fdt, bl31_start, bl31_size);
++
++	/* Add BL32 reserved zone */
++	if (bl32_start && bl32_size)
++		meson_board_add_reserved_memory(fdt, bl32_start, bl32_size);
++}
++
++phys_size_t get_effective_memsize(void)
++{
++	/* Size is reported in MiB, convert it in bytes */
++	return ((readl(GX_AO_SEC_GP_CFG0) & GX_AO_MEM_SIZE_MASK)
++			>> GX_AO_MEM_SIZE_SHIFT) * SZ_1M;
++}
++
++static struct mm_region gx_mem_map[] = {
++	{
++		.virt = 0x0UL,
++		.phys = 0x0UL,
++		.size = 0xc0000000UL,
++		.attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) |
++			 PTE_BLOCK_INNER_SHARE
++	}, {
++		.virt = 0xc0000000UL,
++		.phys = 0xc0000000UL,
++		.size = 0x30000000UL,
++		.attrs = PTE_BLOCK_MEMTYPE(MT_DEVICE_NGNRNE) |
++			 PTE_BLOCK_NON_SHARE |
++			 PTE_BLOCK_PXN | PTE_BLOCK_UXN
++	}, {
++		/* List terminator */
++		0,
++	}
 +};
 +
-+struct meson_axg_pmx_data {
-+	struct meson_pmx_bank *pmx_banks;
-+	unsigned int num_pmx_banks;
-+};
++struct mm_region *mem_map = gx_mem_map;
 +
-+#define BANK_PMX(n, f, l, r, o)				\
-+	{							\
-+		.name   = n,					\
-+		.first	= f,					\
-+		.last	= l,					\
-+		.reg	= r,					\
-+		.offset = o,					\
++/* Configure the Ethernet MAC with the requested interface mode
++ * with some optional flags.
++ */
++void meson_eth_init(phy_interface_t mode, unsigned int flags)
++{
++	switch (mode) {
++	case PHY_INTERFACE_MODE_RGMII:
++	case PHY_INTERFACE_MODE_RGMII_ID:
++	case PHY_INTERFACE_MODE_RGMII_RXID:
++	case PHY_INTERFACE_MODE_RGMII_TXID:
++		/* Set RGMII mode */
++		setbits_le32(GX_ETH_REG_0, GX_ETH_REG_0_PHY_INTF |
++			     GX_ETH_REG_0_TX_PHASE(1) |
++			     GX_ETH_REG_0_TX_RATIO(4) |
++			     GX_ETH_REG_0_PHY_CLK_EN |
++			     GX_ETH_REG_0_CLK_EN);
++		break;
++
++	case PHY_INTERFACE_MODE_RMII:
++		/* Set RMII mode */
++		out_le32(GX_ETH_REG_0, GX_ETH_REG_0_INVERT_RMII_CLK |
++					 GX_ETH_REG_0_CLK_EN);
++
++		/* Use GXL RMII Internal PHY */
++		if (IS_ENABLED(CONFIG_MESON_GXL) &&
++		    (flags & MESON_USE_INTERNAL_RMII_PHY)) {
++			writel(0x10110181, GX_ETH_REG_2);
++			writel(0xe40908ff, GX_ETH_REG_3);
++		}
++
++		break;
++
++	default:
++		printf("Invalid Ethernet interface mode\n");
++		return;
 +	}
 +
-+struct meson_pmx_axg_data {
-+	unsigned int func;
-+};
-+
-+#define PMX_DATA(f)							\
-+	{								\
-+		.func = f,						\
-+	}
-+
-+#define GROUP(grp, f)							\
-+	{								\
-+		.name = #grp,						\
-+		.pins = grp ## _pins,                                   \
-+		.num_pins = ARRAY_SIZE(grp ## _pins),			\
-+		.data = (const struct meson_pmx_axg_data[]){		\
-+			PMX_DATA(f),					\
-+		},							\
-+	}
-+
-+#define GPIO_GROUP(gpio, b)						\
-+	{								\
-+		.name = #gpio,						\
-+		.pins = (const unsigned int[]){ PIN(gpio, b) },		\
-+		.num_pins = 1,						\
-+		.data = (const struct meson_pmx_axg_data[]){		\
-+			PMX_DATA(0),					\
-+		},							\
-+	}
-+
-+extern const struct pinctrl_ops meson_axg_pinctrl_ops;
-+extern const struct driver meson_axg_gpio_driver;
-+
-+#endif /* __PINCTRL_MESON_AXG_H__ */
++	/* Enable power gate */
++	clrbits_le32(GX_MEM_PD_REG_0, GX_MEM_PD_REG_0_ETH_MASK);
++}
+diff --git a/arch/arm/mach-meson/board.c b/arch/arm/mach-meson/board.c
+deleted file mode 100644
+index d6c6253..0000000
+--- a/arch/arm/mach-meson/board.c
++++ /dev/null
+@@ -1,130 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0+
+-/*
+- * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
+- */
+-
+-#include <common.h>
+-#include <linux/libfdt.h>
+-#include <linux/err.h>
+-#include <asm/arch/gx.h>
+-#include <asm/arch/sm.h>
+-#include <asm/armv8/mmu.h>
+-#include <asm/unaligned.h>
+-#include <linux/sizes.h>
+-#include <efi_loader.h>
+-#include <asm/io.h>
+-
+-DECLARE_GLOBAL_DATA_PTR;
+-
+-int dram_init(void)
+-{
+-	const fdt64_t *val;
+-	int offset;
+-	int len;
+-
+-	offset = fdt_path_offset(gd->fdt_blob, "/memory");
+-	if (offset < 0)
+-		return -EINVAL;
+-
+-	val = fdt_getprop(gd->fdt_blob, offset, "reg", &len);
+-	if (len < sizeof(*val) * 2)
+-		return -EINVAL;
+-
+-	/* Use unaligned access since cache is still disabled */
+-	gd->ram_size = get_unaligned_be64(&val[1]);
+-
+-	return 0;
+-}
+-
+-phys_size_t get_effective_memsize(void)
+-{
+-	/* Size is reported in MiB, convert it in bytes */
+-	return ((readl(GX_AO_SEC_GP_CFG0) & GX_AO_MEM_SIZE_MASK)
+-			>> GX_AO_MEM_SIZE_SHIFT) * SZ_1M;
+-}
+-
+-static void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size)
+-{
+-	int ret;
+-
+-	ret = fdt_add_mem_rsv(fdt, start, size);
+-	if (ret)
+-		printf("Could not reserve zone @ 0x%llx\n", start);
+-
+-	if (IS_ENABLED(CONFIG_EFI_LOADER)) {
+-		efi_add_memory_map(start,
+-				   ALIGN(size, EFI_PAGE_SIZE) >> EFI_PAGE_SHIFT,
+-				   EFI_RESERVED_MEMORY_TYPE, false);
+-	}
+-}
+-
+-void meson_gx_init_reserved_memory(void *fdt)
+-{
+-	u64 bl31_size, bl31_start;
+-	u64 bl32_size, bl32_start;
+-	u32 reg;
+-
+-	/*
+-	 * Get ARM Trusted Firmware reserved memory zones in :
+-	 * - AO_SEC_GP_CFG3: bl32 & bl31 size in KiB, can be 0
+-	 * - AO_SEC_GP_CFG5: bl31 physical start address, can be NULL
+-	 * - AO_SEC_GP_CFG4: bl32 physical start address, can be NULL
+-	 */
+-
+-	reg = readl(GX_AO_SEC_GP_CFG3);
+-
+-	bl31_size = ((reg & GX_AO_BL31_RSVMEM_SIZE_MASK)
+-			>> GX_AO_BL31_RSVMEM_SIZE_SHIFT) * SZ_1K;
+-	bl32_size = (reg & GX_AO_BL32_RSVMEM_SIZE_MASK) * SZ_1K;
+-
+-	bl31_start = readl(GX_AO_SEC_GP_CFG5);
+-	bl32_start = readl(GX_AO_SEC_GP_CFG4);
+-
+-	/*
+-	 * Early Meson GX Firmware revisions did not provide the reserved
+-	 * memory zones in the registers, keep fixed memory zone handling.
+-	 */
+-	if (IS_ENABLED(CONFIG_MESON_GX) &&
+-	    !reg && !bl31_start && !bl32_start) {
+-		bl31_start = 0x10000000;
+-		bl31_size = 0x200000;
+-	}
+-
+-	/* Add first 16MiB reserved zone */
+-	meson_board_add_reserved_memory(fdt, 0, GX_FIRMWARE_MEM_SIZE);
+-
+-	/* Add BL31 reserved zone */
+-	if (bl31_start && bl31_size)
+-		meson_board_add_reserved_memory(fdt, bl31_start, bl31_size);
+-
+-	/* Add BL32 reserved zone */
+-	if (bl32_start && bl32_size)
+-		meson_board_add_reserved_memory(fdt, bl32_start, bl32_size);
+-}
+-
+-void reset_cpu(ulong addr)
+-{
+-	psci_system_reset();
+-}
+-
+-static struct mm_region gx_mem_map[] = {
+-	{
+-		.virt = 0x0UL,
+-		.phys = 0x0UL,
+-		.size = 0xc0000000UL,
+-		.attrs = PTE_BLOCK_MEMTYPE(MT_NORMAL) |
+-			 PTE_BLOCK_INNER_SHARE
+-	}, {
+-		.virt = 0xc0000000UL,
+-		.phys = 0xc0000000UL,
+-		.size = 0x30000000UL,
+-		.attrs = PTE_BLOCK_MEMTYPE(MT_DEVICE_NGNRNE) |
+-			 PTE_BLOCK_NON_SHARE |
+-			 PTE_BLOCK_PXN | PTE_BLOCK_UXN
+-	}, {
+-		/* List terminator */
+-		0,
+-	}
+-};
+-
+-struct mm_region *mem_map = gx_mem_map;
+diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
+deleted file mode 100644
+index 8b28bc8..0000000
+--- a/arch/arm/mach-meson/eth.c
++++ /dev/null
+@@ -1,53 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0+
+-/*
+- * Copyright (C) 2016 BayLibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#include <common.h>
+-#include <dm.h>
+-#include <asm/io.h>
+-#include <asm/arch/gx.h>
+-#include <asm/arch/eth.h>
+-#include <phy.h>
+-
+-/* Configure the Ethernet MAC with the requested interface mode
+- * with some optional flags.
+- */
+-void meson_gx_eth_init(phy_interface_t mode, unsigned int flags)
+-{
+-	switch (mode) {
+-	case PHY_INTERFACE_MODE_RGMII:
+-	case PHY_INTERFACE_MODE_RGMII_ID:
+-	case PHY_INTERFACE_MODE_RGMII_RXID:
+-	case PHY_INTERFACE_MODE_RGMII_TXID:
+-		/* Set RGMII mode */
+-		setbits_le32(GX_ETH_REG_0, GX_ETH_REG_0_PHY_INTF |
+-			     GX_ETH_REG_0_TX_PHASE(1) |
+-			     GX_ETH_REG_0_TX_RATIO(4) |
+-			     GX_ETH_REG_0_PHY_CLK_EN |
+-			     GX_ETH_REG_0_CLK_EN);
+-		break;
+-
+-	case PHY_INTERFACE_MODE_RMII:
+-		/* Set RMII mode */
+-		out_le32(GX_ETH_REG_0, GX_ETH_REG_0_INVERT_RMII_CLK |
+-					 GX_ETH_REG_0_CLK_EN);
+-
+-		/* Use GXL RMII Internal PHY */
+-		if (IS_ENABLED(CONFIG_MESON_GXL) &&
+-		    (flags & MESON_GXL_USE_INTERNAL_RMII_PHY)) {
+-			writel(0x10110181, GX_ETH_REG_2);
+-			writel(0xe40908ff, GX_ETH_REG_3);
+-		}
+-
+-		break;
+-
+-	default:
+-		printf("Invalid Ethernet interface mode\n");
+-		return;
+-	}
+-
+-	/* Enable power gate */
+-	clrbits_le32(GX_MEM_PD_REG_0, GX_MEM_PD_REG_0_ETH_MASK);
+-}
+diff --git a/arch/arm/mach-meson/sm.c b/arch/arm/mach-meson/sm.c
+index 0bba5e4..a07b468 100644
+--- a/arch/arm/mach-meson/sm.c
++++ b/arch/arm/mach-meson/sm.c
+@@ -6,7 +6,6 @@
+  */
+ 
+ #include <common.h>
+-#include <asm/arch/gx.h>
+ #include <linux/kernel.h>
+ 
+ #define FN_GET_SHARE_MEM_INPUT_BASE	0x82000020
+diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
+index 2a2755c..d784d6b 100644
+--- a/board/amlogic/odroid-c2/odroid-c2.c
++++ b/board/amlogic/odroid-c2/odroid-c2.c
+@@ -28,7 +28,7 @@ int misc_init_r(void)
+ 	char serial[EFUSE_SN_SIZE];
+ 	ssize_t len;
+ 
+-	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
++	meson_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
+ 
+ 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+ 		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+@@ -40,7 +40,7 @@ int misc_init_r(void)
+ 	if (!env_get("serial#")) {
+ 		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
+ 			EFUSE_SN_SIZE);
+-		if (len == EFUSE_SN_SIZE) 
++		if (len == EFUSE_SN_SIZE)
+ 			env_set("serial#", serial);
+ 	}
+ 
+@@ -49,7 +49,7 @@ int misc_init_r(void)
+ 
+ int ft_board_setup(void *blob, bd_t *bd)
+ {
+-	meson_gx_init_reserved_memory(blob);
++	meson_init_reserved_memory(blob);
+ 
+ 	return 0;
+ }
+diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
+index 00e07d7..33992a2 100644
+--- a/board/amlogic/p212/p212.c
++++ b/board/amlogic/p212/p212.c
+@@ -29,8 +29,8 @@ int misc_init_r(void)
+ 	char serial[EFUSE_SN_SIZE];
+ 	ssize_t len;
+ 
+-	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII,
+-			  MESON_GXL_USE_INTERNAL_RMII_PHY);
++	meson_eth_init(PHY_INTERFACE_MODE_RMII,
++		       MESON_USE_INTERNAL_RMII_PHY);
+ 
+ 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+ 		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+@@ -51,7 +51,7 @@ int misc_init_r(void)
+ 
+ int ft_board_setup(void *blob, bd_t *bd)
+ {
+-	meson_gx_init_reserved_memory(blob);
++	meson_init_reserved_memory(blob);
+ 
+ 	return 0;
+ }
+diff --git a/board/amlogic/q200/q200.c b/board/amlogic/q200/q200.c
+index ff56569..b59c11b 100644
+--- a/board/amlogic/q200/q200.c
++++ b/board/amlogic/q200/q200.c
+@@ -29,7 +29,7 @@ int misc_init_r(void)
+ 	char serial[EFUSE_SN_SIZE];
+ 	ssize_t len;
+ 
+-	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
++	meson_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
+ 
+ 	/* Reset PHY on GPIOZ_14 */
+ 	clrbits_le32(GX_GPIO_EN(3), BIT(14));
+@@ -56,7 +56,7 @@ int misc_init_r(void)
+ 
+ int ft_board_setup(void *blob, bd_t *bd)
+ {
+-	meson_gx_init_reserved_memory(blob);
++	meson_init_reserved_memory(blob);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/clk/clk_meson.c b/drivers/clk/clk_meson.c
+index 87e959e..978f646 100644
+--- a/drivers/clk/clk_meson.c
++++ b/drivers/clk/clk_meson.c
+@@ -6,7 +6,7 @@
+  */
+ 
+ #include <common.h>
+-#include <asm/arch/clock.h>
++#include <asm/arch/clock-gx.h>
+ #include <asm/io.h>
+ #include <clk-uclass.h>
+ #include <div64.h>
 -- 
 2.7.4
