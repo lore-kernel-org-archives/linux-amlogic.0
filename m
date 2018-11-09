@@ -1,28 +1,30 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 15:17:07 +0100
-Subject: [PATCH u-boot] mmc: meson-gx: Add AXG compatible
-Message-ID: <1541773027-15546-1-git-send-email-narmstrong@baylibre.com>
+Date: Fri,  9 Nov 2018 15:20:59 +0100
+Subject: [PATCH u-boot 1/2] net: designware: add meson meson gxbb compatible
+In-Reply-To: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
+References: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541773260-16197-2-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the compatible string for the upcoming Amlogic AXG SoC family.
+Add the compatible string for the Amlogic GXBB SoC family.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/mmc/meson_gx_mmc.c | 1 +
+ drivers/net/designware.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mmc/meson_gx_mmc.c b/drivers/mmc/meson_gx_mmc.c
-index 332f1e1..767dfff 100644
---- a/drivers/mmc/meson_gx_mmc.c
-+++ b/drivers/mmc/meson_gx_mmc.c
-@@ -278,6 +278,7 @@ int meson_mmc_bind(struct udevice *dev)
- 
- static const struct udevice_id meson_mmc_match[] = {
- 	{ .compatible = "amlogic,meson-gx-mmc" },
-+	{ .compatible = "amlogic,meson-axg-mmc" },
- 	{ /* sentinel */ }
+diff --git a/drivers/net/designware.c b/drivers/net/designware.c
+index 19db0a8..cdcc03f 100644
+--- a/drivers/net/designware.c
++++ b/drivers/net/designware.c
+@@ -838,6 +838,7 @@ static const struct udevice_id designware_eth_ids[] = {
+ 	{ .compatible = "altr,socfpga-stmmac" },
+ 	{ .compatible = "amlogic,meson6-dwmac" },
+ 	{ .compatible = "amlogic,meson-gx-dwmac" },
++	{ .compatible = "amlogic,meson-gxbb-dwmac" },
+ 	{ .compatible = "st,stm32-dwmac" },
+ 	{ }
  };
- 
 -- 
 2.7.4
