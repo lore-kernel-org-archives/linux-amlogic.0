@@ -1,468 +1,274 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 16:26:55 +0100
-Subject: [PATCH u-boot 16/19] clk: Add clock driver for AXG
+Date: Fri,  9 Nov 2018 16:26:56 +0100
+Subject: [PATCH u-boot 17/19] board: amlogic: add support for S400 board
 In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
 References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541777218-472-17-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541777218-472-18-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch adds a minimal clock driver for the Amlogic AXG SoC to handle
-the basic gates and PLLs.
+The S400 board is the Amlogic AXG SoC reference board including :
+ - Amlogic A113DX ARM Cortex-A53 quad-core SoC @ 1.2GHz
+ - 1GB DDR4 SDRAM
+ - 10/100 Ethernet
+ - 2 x USB 2.0 Host
+ - eMMC
+ - Infrared receiver
+ - SDIO WiFi Module
+ - MIPI DSI Connector
+ - Audio HAT Connector
+ - PCI-E M.2 Connectors
 
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/include/asm/arch-meson/clock-axg.h | 104 +++++++++
- drivers/clk/Makefile                        |   2 +-
- drivers/clk/clk_meson_axg.c                 | 316 ++++++++++++++++++++++++++++
- 3 files changed, 421 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/include/asm/arch-meson/clock-axg.h
- create mode 100644 drivers/clk/clk_meson_axg.c
+ arch/arm/mach-meson/Kconfig    |   1 +
+ board/amlogic/s400/MAINTAINERS |   6 +++
+ board/amlogic/s400/Makefile    |   6 +++
+ board/amlogic/s400/README      | 110 +++++++++++++++++++++++++++++++++++++++++
+ board/amlogic/s400/s400.c      |  33 +++++++++++++
+ configs/s400_defconfig         |  38 ++++++++++++++
+ 6 files changed, 194 insertions(+)
+ create mode 100644 board/amlogic/s400/MAINTAINERS
+ create mode 100644 board/amlogic/s400/Makefile
+ create mode 100644 board/amlogic/s400/README
+ create mode 100644 board/amlogic/s400/s400.c
+ create mode 100644 configs/s400_defconfig
 
-diff --git a/arch/arm/include/asm/arch-meson/clock-axg.h b/arch/arm/include/asm/arch-meson/clock-axg.h
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index 7f217fa..deddcc5 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -63,6 +63,7 @@ config SYS_BOARD
+ 	default "odroid-c2" if MESON_GXBB
+ 	default "p212" if MESON_GXL
+ 	default "q200" if MESON_GXM
++	default "s400" if MESON_AXG
+ 	default ""
+ 	help
+ 	  This option contains information about board name.
+diff --git a/board/amlogic/s400/MAINTAINERS b/board/amlogic/s400/MAINTAINERS
 new file mode 100644
-index 0000000..1ef88e4
+index 0000000..9ca9836
 --- /dev/null
-+++ b/arch/arm/include/asm/arch-meson/clock-axg.h
-@@ -0,0 +1,104 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Copyright 2016 - AmLogic, Inc.
-+ * Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
-+ * Copyright 2018 - BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+#ifndef _ARCH_MESON_CLOCK_AXG_H_
-+#define _ARCH_MESON_CLOCK_AXG_H_
-+
-+/*
-+ * Clock controller register offsets
-+ *
-+ * Register offsets from the data sheet are listed in comment blocks below.
-+ * Those offsets must be multiplied by 4 before adding them to the base address
-+ * to get the right value
-+ */
-+#define HHI_GP0_PLL_CNTL		0x40
-+#define HHI_GP0_PLL_CNTL2		0x44
-+#define HHI_GP0_PLL_CNTL3		0x48
-+#define HHI_GP0_PLL_CNTL4		0x4c
-+#define HHI_GP0_PLL_CNTL5		0x50
-+#define HHI_GP0_PLL_STS			0x54
-+#define HHI_GP0_PLL_CNTL1		0x58
-+#define HHI_HIFI_PLL_CNTL		0x80
-+#define HHI_HIFI_PLL_CNTL2		0x84
-+#define HHI_HIFI_PLL_CNTL3		0x88
-+#define HHI_HIFI_PLL_CNTL4		0x8C
-+#define HHI_HIFI_PLL_CNTL5		0x90
-+#define HHI_HIFI_PLL_STS		0x94
-+#define HHI_HIFI_PLL_CNTL1		0x98
-+
-+#define HHI_XTAL_DIVN_CNTL		0xbc
-+#define HHI_GCLK2_MPEG0			0xc0
-+#define HHI_GCLK2_MPEG1			0xc4
-+#define HHI_GCLK2_MPEG2			0xc8
-+#define HHI_GCLK2_OTHER			0xd0
-+#define HHI_GCLK2_AO			0xd4
-+#define HHI_PCIE_PLL_CNTL		0xd8
-+#define HHI_PCIE_PLL_CNTL1		0xdC
-+#define HHI_PCIE_PLL_CNTL2		0xe0
-+#define HHI_PCIE_PLL_CNTL3		0xe4
-+#define HHI_PCIE_PLL_CNTL4		0xe8
-+#define HHI_PCIE_PLL_CNTL5		0xec
-+#define HHI_PCIE_PLL_CNTL6		0xf0
-+#define HHI_PCIE_PLL_STS		0xf4
-+
-+#define HHI_MEM_PD_REG0			0x100
-+#define HHI_VPU_MEM_PD_REG0		0x104
-+#define HHI_VIID_CLK_DIV		0x128
-+#define HHI_VIID_CLK_CNTL		0x12c
-+
-+#define HHI_GCLK_MPEG0			0x140
-+#define HHI_GCLK_MPEG1			0x144
-+#define HHI_GCLK_MPEG2			0x148
-+#define HHI_GCLK_OTHER			0x150
-+#define HHI_GCLK_AO			0x154
-+#define HHI_SYS_CPU_CLK_CNTL1		0x15c
-+#define HHI_SYS_CPU_RESET_CNTL		0x160
-+#define HHI_VID_CLK_DIV			0x164
-+#define HHI_SPICC_HCLK_CNTL		0x168
-+
-+#define HHI_MPEG_CLK_CNTL		0x174
-+#define HHI_VID_CLK_CNTL		0x17c
-+#define HHI_TS_CLK_CNTL			0x190
-+#define HHI_VID_CLK_CNTL2		0x194
-+#define HHI_SYS_CPU_CLK_CNTL0		0x19c
-+#define HHI_VID_PLL_CLK_DIV		0x1a0
-+#define HHI_VPU_CLK_CNTL		0x1bC
-+
-+#define HHI_VAPBCLK_CNTL		0x1F4
-+
-+#define HHI_GEN_CLK_CNTL		0x228
-+
-+#define HHI_VDIN_MEAS_CLK_CNTL		0x250
-+#define HHI_NAND_CLK_CNTL		0x25C
-+#define HHI_SD_EMMC_CLK_CNTL		0x264
-+
-+#define HHI_MPLL_CNTL			0x280
-+#define HHI_MPLL_CNTL2			0x284
-+#define HHI_MPLL_CNTL3			0x288
-+#define HHI_MPLL_CNTL4			0x28C
-+#define HHI_MPLL_CNTL5			0x290
-+#define HHI_MPLL_CNTL6			0x294
-+#define HHI_MPLL_CNTL7			0x298
-+#define HHI_MPLL_CNTL8			0x29C
-+#define HHI_MPLL_CNTL9			0x2A0
-+#define HHI_MPLL_CNTL10			0x2A4
-+
-+#define HHI_MPLL3_CNTL0			0x2E0
-+#define HHI_MPLL3_CNTL1			0x2E4
-+#define HHI_PLL_TOP_MISC		0x2E8
-+
-+#define HHI_SYS_PLL_CNTL1		0x2FC
-+#define HHI_SYS_PLL_CNTL		0x300
-+#define HHI_SYS_PLL_CNTL2		0x304
-+#define HHI_SYS_PLL_CNTL3		0x308
-+#define HHI_SYS_PLL_CNTL4		0x30c
-+#define HHI_SYS_PLL_CNTL5		0x310
-+#define HHI_SYS_PLL_STS			0x314
-+#define HHI_DPLL_TOP_I			0x318
-+#define HHI_DPLL_TOP2_I			0x31C
-+
-+#endif
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 821b586..a696245 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -9,7 +9,7 @@ obj-$(CONFIG_$(SPL_TPL_)CLK) += clk-uclass.o clk_fixed_rate.o
- obj-y += imx/
- obj-y += tegra/
- obj-$(CONFIG_ARCH_ASPEED) += aspeed/
--obj-$(CONFIG_ARCH_MESON) += clk_meson.o
-+obj-$(CONFIG_ARCH_MESON) += clk_meson.o clk_meson_axg.o
- obj-$(CONFIG_ARCH_ROCKCHIP) += rockchip/
- obj-$(CONFIG_ARCH_SOCFPGA) += altera/
- obj-$(CONFIG_CLK_AT91) += at91/
-diff --git a/drivers/clk/clk_meson_axg.c b/drivers/clk/clk_meson_axg.c
++++ b/board/amlogic/s400/MAINTAINERS
+@@ -0,0 +1,6 @@
++S400
++M:	Neil Armstrong <narmstrong@baylibre.com>
++S:	Maintained
++F:	board/amlogic/s400/
++F:	include/configs/s400.h
++F:	configs/s400_defconfig
+diff --git a/board/amlogic/s400/Makefile b/board/amlogic/s400/Makefile
 new file mode 100644
-index 0000000..32cbf75
+index 0000000..bf03862
 --- /dev/null
-+++ b/drivers/clk/clk_meson_axg.c
-@@ -0,0 +1,316 @@
++++ b/board/amlogic/s400/Makefile
+@@ -0,0 +1,6 @@
++# SPDX-License-Identifier: GPL-2.0+
++#
++# (C) Copyright 2016 BayLibre, SAS
++# Author: Neil Armstrong <narmstrong@baylibre.com>
++
++obj-y	:= s400.o
+diff --git a/board/amlogic/s400/README b/board/amlogic/s400/README
+new file mode 100644
+index 0000000..29ccf2d
+--- /dev/null
++++ b/board/amlogic/s400/README
+@@ -0,0 +1,110 @@
++U-Boot for Amlogic S400
++=======================
++
++S400 is a reference board manufactured by Amlogic with the following
++specifications:
++
++ - Amlogic A113DX ARM Cortex-A53 quad-core SoC @ 1.2GHz
++ - 1GB DDR4 SDRAM
++ - 10/100 Ethernet
++ - 2 x USB 2.0 Host
++ - eMMC
++ - Infrared receiver
++ - SDIO WiFi Module
++ - MIPI DSI Connector
++ - Audio HAT Connector
++ - PCI-E M.2 Connectors
++
++Schematics are available from Amlogic on demand.
++
++Currently the u-boot port supports the following devices:
++ - serial
++ - eMMC
++ - Ethernet
++ - I2C
++ - Regulators
++ - Reset controller
++ - Clock controller
++ - USB Host
++ - ADC
++
++u-boot compilation
++==================
++
++ > export ARCH=arm
++ > export CROSS_COMPILE=aarch64-none-elf-
++ > make s400_defconfig
++ > make
++
++Image creation
++==============
++
++Amlogic doesn't provide sources for the firmware and for tools needed
++to create the bootloader image, so it is necessary to obtain them from
++the git tree published by the board vendor:
++
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > wget https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz
++ > tar xvfJ gcc-linaro-arm-none-eabi-4.8-2013.11_linux.tar.xz
++ > export PATH=$PWD/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:$PWD/gcc-linaro-arm-none-eabi-4.8-2013.11_linux/bin:$PATH
++ > git clone https://github.com/BayLibre/u-boot.git -b n-amlogic-openlinux-20170606 amlogic-u-boot
++ > cd amlogic-u-boot
++ > make axg_s400_v1_defconfig
++ > make
++ > export FIPDIR=$PWD/fip
++
++Go back to mainline U-boot source tree then :
++ > mkdir fip
++
++ > cp $FIPDIR/axg/bl2.bin fip/
++ > cp $FIPDIR/axg/acs.bin fip/
++ > cp $FIPDIR/axg/bl21.bin fip/
++ > cp $FIPDIR/axg/bl30.bin fip/
++ > cp $FIPDIR/axg/bl301.bin fip/
++ > cp $FIPDIR/axg/bl31.img fip/
++ > cp u-boot.bin fip/bl33.bin
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl30.bin \
++	fip/zero_tmp \
++	fip/bl30_zero.bin \
++	fip/bl301.bin \
++	fip/bl301_zero.bin \
++	fip/bl30_new.bin \
++	bl30
++
++ > $FIPDIR/acs_tool.pyc fip/bl2.bin fip/bl2_acs.bin fip/acs.bin 0
++
++ > $FIPDIR/blx_fix.sh \
++	fip/bl2_acs.bin \
++	fip/zero_tmp \
++	fip/bl2_zero.bin \
++	fip/bl21.bin \
++	fip/bl21_zero.bin \
++	fip/bl2_new.bin \
++	bl2
++
++ > $FIPDIR/axg/aml_encrypt_axg --bl3sig --input fip/bl30_new.bin \
++	 				--output fip/bl30_new.bin.enc \
++					--level v3 --type bl30
++ > $FIPDIR/axg/aml_encrypt_axg --bl3sig --input fip/bl31.img \
++	 				--output fip/bl31.img.enc \
++					--level v3 --type bl31
++ > $FIPDIR/axg/aml_encrypt_axg --bl3sig --input fip/bl33.bin --compress lz4 \
++	 				--output fip/bl33.bin.enc \
++					--level v3 --type bl33
++ > $FIPDIR/axg/aml_encrypt_axg --bl2sig --input fip/bl2_new.bin \
++	 				--output fip/bl2.n.bin.sig
++ > $FIPDIR/axg/aml_encrypt_axg --bootmk \
++		--output fip/u-boot.bin \
++		--bl2 fip/bl2.n.bin.sig \
++		--bl30 fip/bl30_new.bin.enc \
++		--bl31 fip/bl31.img.enc \
++		--bl33 fip/bl33.bin.enc --level v3
++
++and then write the image to SD with:
++
++ > DEV=/dev/your_sd_device
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=512 skip=1 seek=1
++ > dd if=fip/u-boot.bin.sd.bin of=$DEV conv=fsync,notrunc bs=1 count=444
+diff --git a/board/amlogic/s400/s400.c b/board/amlogic/s400/s400.c
+new file mode 100644
+index 0000000..c2b50f6
+--- /dev/null
++++ b/board/amlogic/s400/s400.c
+@@ -0,0 +1,33 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
-+ * (C) Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
-+ * (C) Copyright 2018 - BayLibre, SAS
++ * Copyright (C) 2016 BayLibre, SAS
 + * Author: Neil Armstrong <narmstrong@baylibre.com>
 + */
 +
 +#include <common.h>
-+#include <asm/arch/clock-axg.h>
-+#include <asm/io.h>
-+#include <clk-uclass.h>
 +#include <dm.h>
-+#include <regmap.h>
-+#include <syscon.h>
-+#include <div64.h>
-+#include <dt-bindings/clock/axg-clkc.h>
-+#include "clk_meson.h"
++#include <environment.h>
++#include <asm/io.h>
++#include <asm/arch/axg.h>
++#include <asm/arch/sm.h>
++#include <asm/arch/eth.h>
++#include <asm/arch/mem.h>
 +
-+#define XTAL_RATE 24000000
-+
-+struct meson_clk {
-+	struct regmap *map;
-+};
-+
-+static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id);
-+
-+static struct meson_gate gates[] = {
-+	/* Everything Else (EE) domain gates */
-+	MESON_GATE(CLKID_SPICC0, HHI_GCLK_MPEG0, 8),
-+	MESON_GATE(CLKID_I2C, HHI_GCLK_MPEG0, 9),
-+	MESON_GATE(CLKID_UART0, HHI_GCLK_MPEG0, 13),
-+	MESON_GATE(CLKID_SPICC1, HHI_GCLK_MPEG0, 15),
-+	MESON_GATE(CLKID_SD_EMMC_B, HHI_GCLK_MPEG0, 25),
-+	MESON_GATE(CLKID_SD_EMMC_C, HHI_GCLK_MPEG0, 26),
-+	MESON_GATE(CLKID_ETH, HHI_GCLK_MPEG1, 3),
-+	MESON_GATE(CLKID_UART1, HHI_GCLK_MPEG1, 16),
-+
-+	/* Always On (AO) domain gates */
-+	MESON_GATE(CLKID_AO_I2C, HHI_GCLK_AO, 4),
-+
-+	/* PLL Gates */
-+	/* CLKID_FCLK_DIV2 is critical for the SCPI Processor */
-+	MESON_GATE(CLKID_MPLL2, HHI_MPLL_CNTL9, 14),
-+	/* CLKID_CLK81 is critical for the system */
-+
-+	/* Peripheral Gates */
-+	MESON_GATE(CLKID_SD_EMMC_B_CLK0, HHI_SD_EMMC_CLK_CNTL, 23),
-+	MESON_GATE(CLKID_SD_EMMC_C_CLK0, HHI_NAND_CLK_CNTL, 7),
-+};
-+
-+static int meson_set_gate(struct clk *clk, bool on)
++int board_init(void)
 +{
-+	struct meson_clk *priv = dev_get_priv(clk->dev);
-+	struct meson_gate *gate;
++	return 0;
++}
 +
-+	if (clk->id >= ARRAY_SIZE(gates))
-+		return -ENOENT;
-+
-+	gate = &gates[clk->id];
-+
-+	if (gate->reg == 0)
-+		return 0;
-+
-+	regmap_update_bits(priv->map, gate->reg,
-+			   BIT(gate->bit), on ? BIT(gate->bit) : 0);
++int misc_init_r(void)
++{
++	meson_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
 +
 +	return 0;
 +}
 +
-+static int meson_clk_enable(struct clk *clk)
++int ft_board_setup(void *blob, bd_t *bd)
 +{
-+	return meson_set_gate(clk, true);
-+}
-+
-+static int meson_clk_disable(struct clk *clk)
-+{
-+	return meson_set_gate(clk, false);
-+}
-+
-+static unsigned long meson_clk81_get_rate(struct clk *clk)
-+{
-+	struct meson_clk *priv = dev_get_priv(clk->dev);
-+	unsigned long parent_rate;
-+	uint reg;
-+	int parents[] = {
-+		-1,
-+		-1,
-+		CLKID_FCLK_DIV7,
-+		CLKID_MPLL1,
-+		CLKID_MPLL2,
-+		CLKID_FCLK_DIV4,
-+		CLKID_FCLK_DIV3,
-+		CLKID_FCLK_DIV5
-+	};
-+
-+	/* mux */
-+	regmap_read(priv->map, HHI_MPEG_CLK_CNTL, &reg);
-+	reg = (reg >> 12) & 7;
-+
-+	switch (reg) {
-+	case 0:
-+		parent_rate = XTAL_RATE;
-+		break;
-+	case 1:
-+		return -ENOENT;
-+	default:
-+		parent_rate = meson_clk_get_rate_by_id(clk, parents[reg]);
-+	}
-+
-+	/* divider */
-+	regmap_read(priv->map, HHI_MPEG_CLK_CNTL, &reg);
-+	reg = reg & ((1 << 7) - 1);
-+
-+	return parent_rate / reg;
-+}
-+
-+static long mpll_rate_from_params(unsigned long parent_rate,
-+				  unsigned long sdm,
-+				  unsigned long n2)
-+{
-+	unsigned long divisor = (SDM_DEN * n2) + sdm;
-+
-+	if (n2 < N2_MIN)
-+		return -EINVAL;
-+
-+	return DIV_ROUND_UP_ULL((u64)parent_rate * SDM_DEN, divisor);
-+}
-+
-+static struct parm meson_mpll0_parm[3] = {
-+	{HHI_MPLL_CNTL7, 0, 14}, /* psdm */
-+	{HHI_MPLL_CNTL7, 16, 9}, /* pn2 */
-+};
-+
-+static struct parm meson_mpll1_parm[3] = {
-+	{HHI_MPLL_CNTL8, 0, 14}, /* psdm */
-+	{HHI_MPLL_CNTL8, 16, 9}, /* pn2 */
-+};
-+
-+static struct parm meson_mpll2_parm[3] = {
-+	{HHI_MPLL_CNTL9, 0, 14}, /* psdm */
-+	{HHI_MPLL_CNTL9, 16, 9}, /* pn2 */
-+};
-+
-+/*
-+ * MultiPhase Locked Loops are outputs from a PLL with additional frequency
-+ * scaling capabilities. MPLL rates are calculated as:
-+ *
-+ * f(N2_integer, SDM_IN ) = 2.0G/(N2_integer + SDM_IN/16384)
-+ */
-+static ulong meson_mpll_get_rate(struct clk *clk, unsigned long id)
-+{
-+	struct meson_clk *priv = dev_get_priv(clk->dev);
-+	struct parm *psdm, *pn2;
-+	unsigned long sdm, n2;
-+	unsigned long parent_rate;
-+	uint reg;
-+
-+	switch (id) {
-+	case CLKID_MPLL0:
-+		psdm = &meson_mpll0_parm[0];
-+		pn2 = &meson_mpll0_parm[1];
-+		break;
-+	case CLKID_MPLL1:
-+		psdm = &meson_mpll1_parm[0];
-+		pn2 = &meson_mpll1_parm[1];
-+		break;
-+	case CLKID_MPLL2:
-+		psdm = &meson_mpll2_parm[0];
-+		pn2 = &meson_mpll2_parm[1];
-+		break;
-+	default:
-+		return -ENOENT;
-+	}
-+
-+	parent_rate = meson_clk_get_rate_by_id(clk, CLKID_FIXED_PLL);
-+	if (IS_ERR_VALUE(parent_rate))
-+		return parent_rate;
-+
-+	regmap_read(priv->map, psdm->reg_off, &reg);
-+	sdm = PARM_GET(psdm->width, psdm->shift, reg);
-+
-+	regmap_read(priv->map, pn2->reg_off, &reg);
-+	n2 = PARM_GET(pn2->width, pn2->shift, reg);
-+
-+	return mpll_rate_from_params(parent_rate, sdm, n2);
-+}
-+
-+static struct parm meson_fixed_pll_parm[3] = {
-+	{HHI_MPLL_CNTL, 0, 9}, /* pm */
-+	{HHI_MPLL_CNTL, 9, 5}, /* pn */
-+	{HHI_MPLL_CNTL, 16, 2}, /* pod */
-+};
-+
-+static struct parm meson_sys_pll_parm[3] = {
-+	{HHI_SYS_PLL_CNTL, 0, 9}, /* pm */
-+	{HHI_SYS_PLL_CNTL, 9, 5}, /* pn */
-+	{HHI_SYS_PLL_CNTL, 16, 2}, /* pod */
-+};
-+
-+static ulong meson_pll_get_rate(struct clk *clk, unsigned long id)
-+{
-+	struct meson_clk *priv = dev_get_priv(clk->dev);
-+	struct parm *pm, *pn, *pod;
-+	unsigned long parent_rate_mhz = XTAL_RATE / 1000000;
-+	u16 n, m, od;
-+	uint reg;
-+
-+	switch (id) {
-+	case CLKID_FIXED_PLL:
-+		pm = &meson_fixed_pll_parm[0];
-+		pn = &meson_fixed_pll_parm[1];
-+		pod = &meson_fixed_pll_parm[2];
-+		break;
-+	case CLKID_SYS_PLL:
-+		pm = &meson_sys_pll_parm[0];
-+		pn = &meson_sys_pll_parm[1];
-+		pod = &meson_sys_pll_parm[2];
-+		break;
-+	default:
-+		return -ENOENT;
-+	}
-+
-+	regmap_read(priv->map, pn->reg_off, &reg);
-+	n = PARM_GET(pn->width, pn->shift, reg);
-+
-+	regmap_read(priv->map, pm->reg_off, &reg);
-+	m = PARM_GET(pm->width, pm->shift, reg);
-+
-+	regmap_read(priv->map, pod->reg_off, &reg);
-+	od = PARM_GET(pod->width, pod->shift, reg);
-+
-+	return ((parent_rate_mhz * m / n) >> od) * 1000000;
-+}
-+
-+static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id)
-+{
-+	ulong rate;
-+
-+	switch (id) {
-+	case CLKID_FIXED_PLL:
-+	case CLKID_SYS_PLL:
-+		rate = meson_pll_get_rate(clk, id);
-+		break;
-+	case CLKID_FCLK_DIV2:
-+		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 2;
-+		break;
-+	case CLKID_FCLK_DIV3:
-+		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 3;
-+		break;
-+	case CLKID_FCLK_DIV4:
-+		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 4;
-+		break;
-+	case CLKID_FCLK_DIV5:
-+		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 5;
-+		break;
-+	case CLKID_FCLK_DIV7:
-+		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 7;
-+		break;
-+	case CLKID_MPLL0:
-+	case CLKID_MPLL1:
-+	case CLKID_MPLL2:
-+		rate = meson_mpll_get_rate(clk, id);
-+		break;
-+	case CLKID_CLK81:
-+		rate = meson_clk81_get_rate(clk);
-+		break;
-+	default:
-+		if (gates[id].reg != 0) {
-+			/* a clock gate */
-+			rate = meson_clk81_get_rate(clk);
-+			break;
-+		}
-+		return -ENOENT;
-+	}
-+
-+	debug("clock %lu has rate %lu\n", id, rate);
-+	return rate;
-+}
-+
-+static ulong meson_clk_get_rate(struct clk *clk)
-+{
-+	return meson_clk_get_rate_by_id(clk, clk->id);
-+}
-+
-+static int meson_clk_probe(struct udevice *dev)
-+{
-+	struct meson_clk *priv = dev_get_priv(dev);
-+
-+	priv->map = syscon_node_to_regmap(dev_get_parent(dev)->node);
-+	if (IS_ERR(priv->map))
-+		return PTR_ERR(priv->map);
-+
-+	debug("meson-clk-axg: probed\n");
++	meson_init_reserved_memory(blob);
 +
 +	return 0;
 +}
-+
-+static struct clk_ops meson_clk_ops = {
-+	.disable	= meson_clk_disable,
-+	.enable		= meson_clk_enable,
-+	.get_rate	= meson_clk_get_rate,
-+};
-+
-+static const struct udevice_id meson_clk_ids[] = {
-+	{ .compatible = "amlogic,axg-clkc" },
-+	{ }
-+};
-+
-+U_BOOT_DRIVER(meson_clk_axg) = {
-+	.name		= "meson_clk_axg",
-+	.id		= UCLASS_CLK,
-+	.of_match	= meson_clk_ids,
-+	.priv_auto_alloc_size = sizeof(struct meson_clk),
-+	.ops		= &meson_clk_ops,
-+	.probe		= meson_clk_probe,
-+};
+diff --git a/configs/s400_defconfig b/configs/s400_defconfig
+new file mode 100644
+index 0000000..1bd4b71
+--- /dev/null
++++ b/configs/s400_defconfig
+@@ -0,0 +1,38 @@
++CONFIG_ARM=y
++CONFIG_ARCH_MESON=y
++CONFIG_SYS_TEXT_BASE=0x01000000
++CONFIG_MESON_AXG=y
++CONFIG_DEBUG_UART_BASE=0xff803000
++CONFIG_DEBUG_UART_CLOCK=24000000
++CONFIG_IDENT_STRING=" s400"
++CONFIG_DEBUG_UART=y
++CONFIG_NR_DRAM_BANKS=1
++CONFIG_OF_BOARD_SETUP=y
++CONFIG_MISC_INIT_R=y
++# CONFIG_DISPLAY_CPUINFO is not set
++# CONFIG_DISPLAY_BOARDINFO is not set
++# CONFIG_CMD_BDI is not set
++# CONFIG_CMD_IMI is not set
++CONFIG_CMD_GPIO=y
++# CONFIG_CMD_LOADS is not set
++CONFIG_CMD_MMC=y
++# CONFIG_CMD_SETEXPR is not set
++CONFIG_CMD_REGULATOR=y
++CONFIG_OF_CONTROL=y
++CONFIG_DEFAULT_DEVICE_TREE="meson-axg-s400"
++CONFIG_NET_RANDOM_ETHADDR=y
++CONFIG_DM_GPIO=y
++CONFIG_DM_MMC=y
++CONFIG_MMC_MESON_GX=y
++CONFIG_DM_ETH=y
++CONFIG_ETH_DESIGNWARE=y
++CONFIG_PINCTRL=y
++CONFIG_PINCTRL_MESON_AXG=y
++CONFIG_DM_REGULATOR=y
++CONFIG_DM_REGULATOR_FIXED=y
++CONFIG_DM_RESET=y
++CONFIG_DEBUG_UART_MESON=y
++CONFIG_DEBUG_UART_ANNOUNCE=y
++CONFIG_DEBUG_UART_SKIP_INIT=y
++CONFIG_MESON_SERIAL=y
++CONFIG_OF_LIBFDT_OVERLAY=y
 -- 
 2.7.4
