@@ -1,523 +1,226 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 16:26:45 +0100
-Subject: [PATCH u-boot 06/19] ARM: rework amlogic configuration
-In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
-References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541777218-472-7-git-send-email-narmstrong@baylibre.com>
+Date: Fri,  9 Nov 2018 16:26:39 +0100
+Subject: [PATCH u-boot 00/19] Amlogic Meson cleanup for AXG SoC support
+Message-ID: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+This patchset will refactor the Amlogic Meson SoC support in order to
+easily add support for the Amlogic AXg SoC family, and later the G12x SoCs.
 
-Rework the board SYS_BOARD, SYS_VENDOR and SYS_CONFIG_NAME setup by moving
-the board Kconfig into the mach-meson Kconfig to make it easier to add
-new boards for a SoC architecture and add a custom config header or custom
-board handler for a platform.
+In order :
+- Cleanup the mach-meson configs
+- Move board support to reference design common boards
+- Move board Kconfig into mach-meson
+- Add AXG pinctrl & clock support
+- Add AXG device tree and mach-meson support
+- Add support for S400 reference design
+- Do a final factorization of the code
+- Add USB boot support in U-boot
 
-This drops the board CONFIGs and the duplicate boards configs headers in
-favor of a single meson64.h config header.
+At the end of the patches, the board code is lighter and we maintain
+only the reference designs, where each board will differ in the defconfig.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm/mach-meson/Kconfig       | 75 +++++++++++++++++++--------------------
- board/amlogic/odroid-c2/Kconfig   | 12 -------
- board/amlogic/p212/Kconfig        | 12 -------
- board/amlogic/q200/Kconfig        | 12 -------
- configs/khadas-vim2_defconfig     |  1 -
- configs/khadas-vim_defconfig      |  1 -
- configs/libretech-cc_defconfig    |  1 -
- configs/nanopi-k2_defconfig       |  2 --
- configs/odroid-c2_defconfig       |  1 -
- configs/p212_defconfig            |  1 -
- include/configs/khadas-vim.h      | 14 --------
- include/configs/libretech-cc.h    | 14 --------
- include/configs/meson-gx-common.h | 52 ---------------------------
- include/configs/meson64.h         | 55 ++++++++++++++++++++++++++++
- include/configs/nanopi-k2.h       | 12 -------
- include/configs/odroid-c2.h       | 12 -------
- include/configs/p212.h            | 14 --------
- include/configs/q200.h            | 18 ----------
- 18 files changed, 92 insertions(+), 217 deletions(-)
+It will be simpler to add custom board support for future boards with
+more changes against the reference designs.
+
+The complete AXG support depends on the :
+- mmc: meson-gx: Add AXG compatible
+- net: designware: add meson meson axg compatible
+patches submitted to the U-Boot mailing list.
+
+Jerome Brunet (12):
+  ARM: meson: clean-up platform selection
+  configs: meson: remove unnecessary MESON_FDTFILE_SETTING
+  board: amlogic: remove p212 derivatives
+  board: amlogic: factorise gxbb boards
+  ARM: rework amlogic configuration
+  configs: meson: change default load addresses
+  pinctrl: meson: rework gx pmx function
+  pinctrl: meson: select generic pinctrl
+  pinctrl: meson: add axg support
+  clk: meson: silence debug print
+  ARM: meson: rework soc arch file to prepare for new SoC
+  ARM: meson: factorize common code out amlogic's boards
+
+Neil Armstrong (7):
+  board: amlogic: move khadas-vim2 as q200 ref board
+  clk: meson: add static to meson_gates table
+  ARM: meson: Add support for AXG family
+  ARM: dts: Sync Amlogic Meson AXG DT from Linux 4.20-rc1
+  clk: Add clock driver for AXG
+  board: amlogic: add support for S400 board
+  ARM: meson: Add boot device discovery
+
+ arch/arm/dts/Makefile                              |    3 +-
+ arch/arm/dts/meson-axg-s400.dts                    |  554 +++++++
+ arch/arm/dts/meson-axg.dtsi                        | 1589 ++++++++++++++++++++
+ arch/arm/include/asm/arch-meson/axg.h              |   52 +
+ arch/arm/include/asm/arch-meson/boot.h             |   20 +
+ arch/arm/include/asm/arch-meson/clock-axg.h        |  104 ++
+ arch/arm/include/asm/arch-meson/clock-gx.h         |  117 ++
+ arch/arm/include/asm/arch-meson/clock.h            |  117 --
+ arch/arm/include/asm/arch-meson/eth.h              |    6 +-
+ arch/arm/include/asm/arch-meson/gx.h               |    1 +
+ arch/arm/include/asm/arch-meson/mem.h              |    3 +-
+ arch/arm/mach-meson/Kconfig                        |  132 +-
+ arch/arm/mach-meson/Makefile                       |    4 +-
+ arch/arm/mach-meson/board-axg.c                    |  118 ++
+ arch/arm/mach-meson/board-common.c                 |  118 ++
+ arch/arm/mach-meson/board-gx.c                     |  138 ++
+ arch/arm/mach-meson/board.c                        |  130 --
+ arch/arm/mach-meson/eth.c                          |   53 -
+ arch/arm/mach-meson/sm.c                           |    1 -
+ board/amlogic/khadas-vim/Kconfig                   |   12 -
+ board/amlogic/khadas-vim/MAINTAINERS               |    6 -
+ board/amlogic/khadas-vim/Makefile                  |    6 -
+ board/amlogic/khadas-vim/README                    |  102 --
+ board/amlogic/khadas-vim/khadas-vim.c              |   57 -
+ board/amlogic/khadas-vim2/Kconfig                  |   12 -
+ board/amlogic/khadas-vim2/MAINTAINERS              |    6 -
+ board/amlogic/khadas-vim2/Makefile                 |    6 -
+ board/amlogic/khadas-vim2/README                   |  103 --
+ board/amlogic/khadas-vim2/khadas-vim2.c            |   62 -
+ board/amlogic/libretech-cc/Kconfig                 |   12 -
+ board/amlogic/libretech-cc/MAINTAINERS             |    6 -
+ board/amlogic/libretech-cc/Makefile                |    6 -
+ board/amlogic/libretech-cc/README                  |  102 --
+ board/amlogic/libretech-cc/libretech-cc.c          |   57 -
+ board/amlogic/nanopi-k2/Kconfig                    |   12 -
+ board/amlogic/nanopi-k2/MAINTAINERS                |    6 -
+ board/amlogic/nanopi-k2/Makefile                   |    7 -
+ board/amlogic/nanopi-k2/README                     |   99 --
+ board/amlogic/nanopi-k2/nanopi-k2.c                |   55 -
+ board/amlogic/odroid-c2/Kconfig                    |   12 -
+ board/amlogic/odroid-c2/MAINTAINERS                |    1 +
+ board/amlogic/odroid-c2/README                     |   66 -
+ board/amlogic/odroid-c2/README.nanopi-k2           |   99 ++
+ board/amlogic/odroid-c2/README.odroid-c2           |   66 +
+ board/amlogic/odroid-c2/odroid-c2.c                |   16 +-
+ board/amlogic/p212/Kconfig                         |   12 -
+ board/amlogic/p212/README                          |  103 --
+ board/amlogic/p212/README.khadas-vim               |  102 ++
+ board/amlogic/p212/README.libretech-cc             |  102 ++
+ board/amlogic/p212/README.p212                     |  103 ++
+ board/amlogic/p212/p212.c                          |   16 +-
+ board/amlogic/q200/MAINTAINERS                     |    6 +
+ board/amlogic/q200/Makefile                        |    6 +
+ board/amlogic/q200/README.khadas-vim2              |  103 ++
+ board/amlogic/q200/README.q200                     |  102 ++
+ board/amlogic/q200/q200.c                          |   50 +
+ board/amlogic/s400/MAINTAINERS                     |    6 +
+ board/amlogic/s400/Makefile                        |    6 +
+ board/amlogic/s400/README                          |  110 ++
+ board/amlogic/s400/s400.c                          |   21 +
+ configs/khadas-vim2_defconfig                      |    1 -
+ configs/khadas-vim_defconfig                       |    1 -
+ configs/libretech-cc_defconfig                     |    1 -
+ configs/nanopi-k2_defconfig                        |    2 -
+ configs/odroid-c2_defconfig                        |    1 -
+ configs/p212_defconfig                             |    1 -
+ configs/s400_defconfig                             |   38 +
+ drivers/clk/Makefile                               |    2 +-
+ drivers/clk/clk_meson.c                            |    6 +-
+ drivers/clk/clk_meson_axg.c                        |  316 ++++
+ drivers/pinctrl/meson/Kconfig                      |   18 +-
+ drivers/pinctrl/meson/Makefile                     |    3 +
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c      |  125 ++
+ drivers/pinctrl/meson/pinctrl-meson-axg.c          |  979 ++++++++++++
+ drivers/pinctrl/meson/pinctrl-meson-axg.h          |   66 +
+ drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c       |   97 ++
+ drivers/pinctrl/meson/pinctrl-meson-gx.h           |   48 +
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c         |    6 +-
+ drivers/pinctrl/meson/pinctrl-meson-gxl.c          |    6 +-
+ drivers/pinctrl/meson/pinctrl-meson.c              |  109 +-
+ drivers/pinctrl/meson/pinctrl-meson.h              |   37 +-
+ include/configs/khadas-vim.h                       |   16 -
+ include/configs/khadas-vim2.h                      |   18 -
+ include/configs/libretech-cc.h                     |   16 -
+ include/configs/meson-gx-common.h                  |   52 -
+ include/configs/meson64.h                          |   73 +
+ include/configs/nanopi-k2.h                        |   16 -
+ include/configs/odroid-c2.h                        |   16 -
+ include/configs/p212.h                             |   18 -
+ include/dt-bindings/clock/axg-aoclkc.h             |   26 +
+ include/dt-bindings/clock/axg-audio-clkc.h         |   94 ++
+ include/dt-bindings/clock/axg-clkc.h               |   76 +
+ include/dt-bindings/gpio/meson-axg-gpio.h          |  116 ++
+ .../reset/amlogic,meson-axg-audio-arb.h            |   17 +
+ .../dt-bindings/reset/amlogic,meson-axg-reset.h    |  124 ++
+ include/dt-bindings/reset/axg-aoclkc.h             |   20 +
+ 96 files changed, 6038 insertions(+), 1625 deletions(-)
+ create mode 100644 arch/arm/dts/meson-axg-s400.dts
+ create mode 100644 arch/arm/dts/meson-axg.dtsi
+ create mode 100644 arch/arm/include/asm/arch-meson/axg.h
+ create mode 100644 arch/arm/include/asm/arch-meson/boot.h
+ create mode 100644 arch/arm/include/asm/arch-meson/clock-axg.h
+ create mode 100644 arch/arm/include/asm/arch-meson/clock-gx.h
+ delete mode 100644 arch/arm/include/asm/arch-meson/clock.h
+ create mode 100644 arch/arm/mach-meson/board-axg.c
+ create mode 100644 arch/arm/mach-meson/board-common.c
+ create mode 100644 arch/arm/mach-meson/board-gx.c
+ delete mode 100644 arch/arm/mach-meson/board.c
+ delete mode 100644 arch/arm/mach-meson/eth.c
+ delete mode 100644 board/amlogic/khadas-vim/Kconfig
+ delete mode 100644 board/amlogic/khadas-vim/MAINTAINERS
+ delete mode 100644 board/amlogic/khadas-vim/Makefile
+ delete mode 100644 board/amlogic/khadas-vim/README
+ delete mode 100644 board/amlogic/khadas-vim/khadas-vim.c
+ delete mode 100644 board/amlogic/khadas-vim2/Kconfig
+ delete mode 100644 board/amlogic/khadas-vim2/MAINTAINERS
+ delete mode 100644 board/amlogic/khadas-vim2/Makefile
+ delete mode 100644 board/amlogic/khadas-vim2/README
+ delete mode 100644 board/amlogic/khadas-vim2/khadas-vim2.c
+ delete mode 100644 board/amlogic/libretech-cc/Kconfig
+ delete mode 100644 board/amlogic/libretech-cc/MAINTAINERS
+ delete mode 100644 board/amlogic/libretech-cc/Makefile
+ delete mode 100644 board/amlogic/libretech-cc/README
+ delete mode 100644 board/amlogic/libretech-cc/libretech-cc.c
+ delete mode 100644 board/amlogic/nanopi-k2/Kconfig
+ delete mode 100644 board/amlogic/nanopi-k2/MAINTAINERS
+ delete mode 100644 board/amlogic/nanopi-k2/Makefile
+ delete mode 100644 board/amlogic/nanopi-k2/README
+ delete mode 100644 board/amlogic/nanopi-k2/nanopi-k2.c
  delete mode 100644 board/amlogic/odroid-c2/Kconfig
+ delete mode 100644 board/amlogic/odroid-c2/README
+ create mode 100644 board/amlogic/odroid-c2/README.nanopi-k2
+ create mode 100644 board/amlogic/odroid-c2/README.odroid-c2
  delete mode 100644 board/amlogic/p212/Kconfig
- delete mode 100644 board/amlogic/q200/Kconfig
+ delete mode 100644 board/amlogic/p212/README
+ create mode 100644 board/amlogic/p212/README.khadas-vim
+ create mode 100644 board/amlogic/p212/README.libretech-cc
+ create mode 100644 board/amlogic/p212/README.p212
+ create mode 100644 board/amlogic/q200/MAINTAINERS
+ create mode 100644 board/amlogic/q200/Makefile
+ create mode 100644 board/amlogic/q200/README.khadas-vim2
+ create mode 100644 board/amlogic/q200/README.q200
+ create mode 100644 board/amlogic/q200/q200.c
+ create mode 100644 board/amlogic/s400/MAINTAINERS
+ create mode 100644 board/amlogic/s400/Makefile
+ create mode 100644 board/amlogic/s400/README
+ create mode 100644 board/amlogic/s400/s400.c
+ create mode 100644 configs/s400_defconfig
+ create mode 100644 drivers/clk/clk_meson_axg.c
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.c
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-axg.h
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx.h
  delete mode 100644 include/configs/khadas-vim.h
+ delete mode 100644 include/configs/khadas-vim2.h
  delete mode 100644 include/configs/libretech-cc.h
  delete mode 100644 include/configs/meson-gx-common.h
  create mode 100644 include/configs/meson64.h
  delete mode 100644 include/configs/nanopi-k2.h
  delete mode 100644 include/configs/odroid-c2.h
  delete mode 100644 include/configs/p212.h
- delete mode 100644 include/configs/q200.h
+ create mode 100644 include/dt-bindings/clock/axg-aoclkc.h
+ create mode 100644 include/dt-bindings/clock/axg-audio-clkc.h
+ create mode 100644 include/dt-bindings/clock/axg-clkc.h
+ create mode 100644 include/dt-bindings/gpio/meson-axg-gpio.h
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-axg-reset.h
+ create mode 100644 include/dt-bindings/reset/axg-aoclkc.h
 
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index d86b1be..6f60167 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -8,49 +8,27 @@ config MESON64_COMMON
- 	select DM_SERIAL
- 	imply CMD_DM
- 
--config MESON_GXBB
--	bool
--	select MESON64_COMMON
--
--config MESON_GXL
--	bool
--	select MESON64_COMMON
--
--config MESON_GXM
--	bool
--	select MESON64_COMMON
--
- choice
- 	prompt "Platform select"
--	default TARGET_ODROID_C2
-+	default MESON_GXBB
- 
--config TARGET_ODROID_C2
--	bool "ODROID-C2"
--	select MESON_GXBB
-+config MESON_GXBB
-+	bool "GXBB"
-+	select MESON64_COMMON
- 	help
--	  ODROID-C2 is a single board computer based on Meson GXBaby
--	  with 2 GiB of RAM, Gigabit Ethernet, HDMI, 4 USB, micro-SD
--	  slot, eMMC, IR receiver and a 40-pin GPIO header.
--	  You should also select this TARGET if you have an nanopi-k2
-+	  Select this if your SoC is an S905
- 
--config TARGET_P212
--	bool "P212"
--	select MESON_GXL
-+config MESON_GXL
-+	bool "GXL"
-+	select MESON64_COMMON
- 	help
--	  P212 is a reference dessign board based on Meson GXL S905X SoC
--	  with 2 GiB of RAM, Ethernet, HDMI, 2 USB, micro-SD slot,
--	  eMMC, IR receiver, CVBS+Audio jack and a SDIO WiFi module.
--	  You should also select this TARGET if you have Khadas Vim or
--	  a libretech aml-s905x-cc
-+	  Select this if your SoC is an S905X/D or S805X
- 
--config TARGET_Q200
--	bool "KHADAS-VIM2"
--	select MESON_GXM
-+config MESON_GXM
-+	bool "GXM"
-+	select MESON64_COMMON
- 	help
--	  Q200 is a reference dessign board based on Meson GXM
--	  with 2/3 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
--	  eMMC, IR receiver.
--	  You should also select this TARGET if you have Khadas Vim2.
-+	  Select this if your SoC is an S912
- 
- endchoice
- 
-@@ -60,10 +38,31 @@ config SYS_SOC
- config SYS_MALLOC_F_LEN
- 	default 0x1000
- 
--source "board/amlogic/odroid-c2/Kconfig"
-+config SYS_VENDOR
-+	string "Vendor name"
-+	default "amlogic"
-+	help
-+	  This option contains information about board name.
-+	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
-+	  be used.
- 
--source "board/amlogic/p212/Kconfig"
-+config SYS_BOARD
-+	string "Board name"
-+	default "odroid-c2" if MESON_GXBB
-+	default "p212" if MESON_GXL
-+	default "q200" if MESON_GXM
-+	default ""
-+	help
-+	  This option contains information about board name.
-+	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
-+	  be used.
- 
--source "board/amlogic/q200/Kconfig"
-+config SYS_CONFIG_NAME
-+	string "Board configuration name"
-+	default "meson64"
-+	help
-+	  This option contains information about board configuration name.
-+	  Based on this option include/configs/<CONFIG_SYS_CONFIG_NAME>.h header
-+	  will be used for board configuration.
- 
- endif
-diff --git a/board/amlogic/odroid-c2/Kconfig b/board/amlogic/odroid-c2/Kconfig
-deleted file mode 100644
-index 2b16889..0000000
---- a/board/amlogic/odroid-c2/Kconfig
-+++ /dev/null
-@@ -1,12 +0,0 @@
--if TARGET_ODROID_C2
--
--config SYS_BOARD
--	default "odroid-c2"
--
--config SYS_VENDOR
--	default "amlogic"
--
--config SYS_CONFIG_NAME
--	default "odroid-c2"
--
--endif
-diff --git a/board/amlogic/p212/Kconfig b/board/amlogic/p212/Kconfig
-deleted file mode 100644
-index 720c92b..0000000
---- a/board/amlogic/p212/Kconfig
-+++ /dev/null
-@@ -1,12 +0,0 @@
--if TARGET_P212
--
--config SYS_BOARD
--	default "p212"
--
--config SYS_VENDOR
--	default "amlogic"
--
--config SYS_CONFIG_NAME
--	default "p212"
--
--endif
-diff --git a/board/amlogic/q200/Kconfig b/board/amlogic/q200/Kconfig
-deleted file mode 100644
-index cfaf379..0000000
---- a/board/amlogic/q200/Kconfig
-+++ /dev/null
-@@ -1,12 +0,0 @@
--if TARGET_Q200
--
--config SYS_BOARD
--	default "q200"
--
--config SYS_VENDOR
--	default "amlogic"
--
--config SYS_CONFIG_NAME
--	default "q200"
--
--endif
-diff --git a/configs/khadas-vim2_defconfig b/configs/khadas-vim2_defconfig
-index 387d7da..40e7cac 100644
---- a/configs/khadas-vim2_defconfig
-+++ b/configs/khadas-vim2_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXM=y
--CONFIG_TARGET_Q200=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" khadas-vim2"
-diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-index af30113..6e855dd 100644
---- a/configs/khadas-vim_defconfig
-+++ b/configs/khadas-vim_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXL=y
--CONFIG_TARGET_P212=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" khadas-vim"
-diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
-index 7526516..c2f985f 100644
---- a/configs/libretech-cc_defconfig
-+++ b/configs/libretech-cc_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXL=y
--CONFIG_TARGET_P212=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" libretech-cc"
-diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
-index 01196d6..8bbf48f 100644
---- a/configs/nanopi-k2_defconfig
-+++ b/configs/nanopi-k2_defconfig
-@@ -1,8 +1,6 @@
- CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
--CONFIG_MESON_GXBB=y
--CONFIG_TARGET_ODROID_C2=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" nanopi-k2"
-diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
-index 19196b3..68554ba 100644
---- a/configs/odroid-c2_defconfig
-+++ b/configs/odroid-c2_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXBB=y
--CONFIG_TARGET_ODROID_C2=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" odroid-c2"
-diff --git a/configs/p212_defconfig b/configs/p212_defconfig
-index 9e3b1d6..a15064d 100644
---- a/configs/p212_defconfig
-+++ b/configs/p212_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXL=y
--CONFIG_TARGET_P212=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" p212"
-diff --git a/include/configs/khadas-vim.h b/include/configs/khadas-vim.h
-deleted file mode 100644
-index ff87c02..0000000
---- a/include/configs/khadas-vim.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for Khadas VIM
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/libretech-cc.h b/include/configs/libretech-cc.h
-deleted file mode 100644
-index 95e0f34..0000000
---- a/include/configs/libretech-cc.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for LibreTech CC
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/meson-gx-common.h b/include/configs/meson-gx-common.h
-deleted file mode 100644
-index c436976..0000000
---- a/include/configs/meson-gx-common.h
-+++ /dev/null
-@@ -1,52 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for Amlogic Meson GX SoCs
-- * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-- */
--
--#ifndef __MESON_GX_COMMON_CONFIG_H
--#define __MESON_GX_COMMON_CONFIG_H
--
--#define CONFIG_CPU_ARMV8
--#define CONFIG_REMAKE_ELF
--#define CONFIG_ENV_SIZE			0x2000
--#define CONFIG_SYS_MAXARGS		32
--#define CONFIG_SYS_MALLOC_LEN		(32 << 20)
--#define CONFIG_SYS_CBSIZE		1024
--
--#define CONFIG_SYS_SDRAM_BASE		0
--#define CONFIG_SYS_INIT_SP_ADDR		0x20000000
--#define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
--
--/* Generic Interrupt Controller Definitions */
--#define GICD_BASE			0xc4301000
--#define GICC_BASE			0xc4302000
--
--#ifdef CONFIG_CMD_USB
--#define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
--#else
--#define BOOT_TARGET_DEVICES_USB(func)
--#endif
--
--#define BOOT_TARGET_DEVICES(func) \
--	func(MMC, mmc, 0) \
--	func(MMC, mmc, 1) \
--	func(MMC, mmc, 2) \
--	BOOT_TARGET_DEVICES_USB(func) \
--	func(PXE, pxe, na) \
--	func(DHCP, dhcp, na)
--
--#include <config_distro_bootcmd.h>
--
--#define CONFIG_EXTRA_ENV_SETTINGS \
--	"fdt_addr_r=0x01000000\0" \
--	"scriptaddr=0x1f000000\0" \
--	"kernel_addr_r=0x01080000\0" \
--	"pxefile_addr_r=0x01080000\0" \
--	"ramdisk_addr_r=0x13000000\0" \
--	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
--	BOOTENV
--
--#define CONFIG_SYS_BOOTM_LEN    (64 << 20)      /* 64 MiB */
--
--#endif /* __MESON_GX_COMMON_CONFIG_H */
-diff --git a/include/configs/meson64.h b/include/configs/meson64.h
-new file mode 100644
-index 0000000..1929a3e
---- /dev/null
-+++ b/include/configs/meson64.h
-@@ -0,0 +1,55 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Configuration for Amlogic Meson 64bits SoCs
-+ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-+ */
-+
-+#ifndef __MESON64_CONFIG_H
-+#define __MESON64_CONFIG_H
-+
-+/* Generic Interrupt Controller Definitions */
-+#define GICD_BASE			0xc4301000
-+#define GICC_BASE			0xc4302000
-+
-+#define CONFIG_CPU_ARMV8
-+#define CONFIG_REMAKE_ELF
-+#define CONFIG_ENV_SIZE			0x2000
-+#define CONFIG_SYS_MAXARGS		32
-+#define CONFIG_SYS_MALLOC_LEN		(32 << 20)
-+#define CONFIG_SYS_CBSIZE		1024
-+
-+#define CONFIG_SYS_SDRAM_BASE		0
-+#define CONFIG_SYS_INIT_SP_ADDR		0x20000000
-+#define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
-+#define CONFIG_SYS_BOOTM_LEN		(64 << 20) /* 64 MiB */
-+
-+#ifdef CONFIG_CMD_USB
-+#define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
-+#else
-+#define BOOT_TARGET_DEVICES_USB(func)
-+#endif
-+
-+#ifndef BOOT_TARGET_DEVICES
-+#define BOOT_TARGET_DEVICES(func) \
-+	func(MMC, mmc, 0) \
-+	func(MMC, mmc, 1) \
-+	func(MMC, mmc, 2) \
-+	BOOT_TARGET_DEVICES_USB(func) \
-+	func(PXE, pxe, na) \
-+	func(DHCP, dhcp, na)
-+#endif
-+
-+#ifndef CONFIG_EXTRA_ENV_SETTINGS
-+#define CONFIG_EXTRA_ENV_SETTINGS \
-+	"fdt_addr_r=0x01000000\0" \
-+	"scriptaddr=0x1f000000\0" \
-+	"kernel_addr_r=0x01080000\0" \
-+	"pxefile_addr_r=0x01080000\0" \
-+	"ramdisk_addr_r=0x13000000\0" \
-+	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
-+	BOOTENV
-+#endif
-+
-+#include <config_distro_bootcmd.h>
-+
-+#endif /* __MESON64_CONFIG_H */
-diff --git a/include/configs/nanopi-k2.h b/include/configs/nanopi-k2.h
-deleted file mode 100644
-index 3fd6e8f..0000000
---- a/include/configs/nanopi-k2.h
-+++ /dev/null
-@@ -1,12 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for NANOPI-K2
-- * (C) Copyright 2018 Thomas McKahan
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/odroid-c2.h b/include/configs/odroid-c2.h
-deleted file mode 100644
-index 87e3ddb..0000000
---- a/include/configs/odroid-c2.h
-+++ /dev/null
-@@ -1,12 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for ODROID-C2
-- * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/p212.h b/include/configs/p212.h
-deleted file mode 100644
-index 4414293..0000000
---- a/include/configs/p212.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for Amlogic P212
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/q200.h b/include/configs/q200.h
-deleted file mode 100644
-index 7ef8f42..0000000
---- a/include/configs/q200.h
-+++ /dev/null
-@@ -1,18 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for Khadas VIM2
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#define CONFIG_MISC_INIT_R
--
--#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxm-khadas-vim2.dtb\0"
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
 -- 
 2.7.4
