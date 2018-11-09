@@ -1,116 +1,28 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  9 Nov 2018 15:04:43 +0100
-Subject: [PATCH v2 2/4] arm64: dts: meson: disable pad bias for mmc pinmuxes
-In-Reply-To: <20181109140445.17795-1-jbrunet@baylibre.com>
-References: <20181109140445.17795-1-jbrunet@baylibre.com>
-Message-ID: <20181109140445.17795-3-jbrunet@baylibre.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri,  9 Nov 2018 15:17:07 +0100
+Subject: [PATCH u-boot] mmc: meson-gx: Add AXG compatible
+Message-ID: <1541773027-15546-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In some cases (such as a boot from SPI) the bootloader or the ROM code may
-leave a bias pull-down on the mmc pins. If so the MMC will fail during the
-initialisation.
+Add the compatible string for the upcoming Amlogic AXG SoC family.
 
-Explicitly disabling the pinmux solves the problem.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 2 ++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 4 ++++
- 3 files changed, 10 insertions(+)
+ drivers/mmc/meson_gx_mmc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index e86f5f721f8f..bc427b9d3e13 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -273,6 +273,7 @@
- 							 "emmc_cmd",
- 							 "emmc_ds";
- 						function = "emmc";
-+						bias-disable;
- 					};
- 				};
+diff --git a/drivers/mmc/meson_gx_mmc.c b/drivers/mmc/meson_gx_mmc.c
+index 332f1e1..767dfff 100644
+--- a/drivers/mmc/meson_gx_mmc.c
++++ b/drivers/mmc/meson_gx_mmc.c
+@@ -278,6 +278,7 @@ int meson_mmc_bind(struct udevice *dev)
  
-@@ -503,6 +504,7 @@
- 							 "sdio_cmd",
- 							 "sdio_clk";
- 						function = "sdio";
-+						bias-disable;
- 					};
- 				};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index 1cb8e7e0d0da..32ef82321340 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -363,6 +363,7 @@
- 				       "emmc_cmd",
- 				       "emmc_clk";
- 				function = "emmc";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -370,6 +371,7 @@
- 			mux {
- 				groups = "emmc_ds";
- 				function = "emmc";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -416,6 +418,7 @@
- 				       "sdcard_cmd",
- 				       "sdcard_clk";
- 				function = "sdcard";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -436,6 +439,7 @@
- 				       "sdio_cmd",
- 				       "sdio_clk";
- 				function = "sdio";
-+				bias-disable;
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index 7cfee40d89e9..cfeec5579726 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -310,6 +310,7 @@
- 				       "emmc_cmd",
- 				       "emmc_clk";
- 				function = "emmc";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -317,6 +318,7 @@
- 			mux {
- 				groups = "emmc_ds";
- 				function = "emmc";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -363,6 +365,7 @@
- 				       "sdcard_cmd",
- 				       "sdcard_clk";
- 				function = "sdcard";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -383,6 +386,7 @@
- 				       "sdio_cmd",
- 				       "sdio_clk";
- 				function = "sdio";
-+				bias-disable;
- 			};
- 		};
+ static const struct udevice_id meson_mmc_match[] = {
+ 	{ .compatible = "amlogic,meson-gx-mmc" },
++	{ .compatible = "amlogic,meson-axg-mmc" },
+ 	{ /* sentinel */ }
+ };
  
 -- 
-2.19.1
+2.7.4
