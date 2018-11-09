@@ -1,37 +1,119 @@
-From: davem@davemloft.net (David Miller)
-Date: Thu, 08 Nov 2018 19:20:23 -0800 (PST)
-Subject: [PATCH 0/5] hy: core: rework phy_set_mode to accept phy mode
- and submode
-In-Reply-To: <20181108003617.10334-1-grygorii.strashko@ti.com>
-References: <20181108003617.10334-1-grygorii.strashko@ti.com>
-Message-ID: <20181108.192023.2260722462634716993.davem@davemloft.net>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Fri, 9 Nov 2018 15:51:01 +0800
+Subject: [PATCH v4 0/2] clk: meson-g12a: Add EE clock controller driver
+In-Reply-To: <1157f0a9419eea01c099d8dc08d7757593720286.camel@baylibre.com>
+References: <1541682912-120480-1-git-send-email-jian.hu@amlogic.com>
+ <1157f0a9419eea01c099d8dc08d7757593720286.camel@baylibre.com>
+Message-ID: <dae47e53-2ea2-5cfc-e69c-48585b1c4644@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Grygorii Strashko <grygorii.strashko@ti.com>
-Date: Wed, 7 Nov 2018 18:36:12 -0600
+Hi Jerome
 
-> As was discussed in [1] I'm posting series which introduces rework of
-> phy_set_mode to accept phy mode and submode. I've dropped TI specific patches as
-> this change is pretty big by itself.
+On 2018/11/8 21:34, jbrunet at baylibre.com wrote:
+> On Thu, 2018-11-08 at 21:15 +0800, Jian Hu wrote:
+>> Changes since v3 at[4]
+>> -add fixed clocks clk_regmap definition
 > 
-> Patch 1 is cumulative change which refactors PHY framework code to
-> support dual level PHYs mode configuration - PHY mode and PHY submode. It
-> extends .set_mode() callback to support additional parameter "int submode"
-> and converts all corresponding PHY drivers to support new .set_mode()
-> callback declaration.
-> The new extended PHY API
->  int phy_set_mode_ext(struct phy *phy, enum phy_mode mode, int submode)
-> is introduced to support dual level PHYs mode configuration and existing
-> phy_set_mode() API is converted to macros, so PHY framework consumers do
-> not need to be changed (~21 matches).
+> Jian,
 > 
-> Patches 2-4: Add new PHY's mode to be used by Ethernet PHY interface drivers or
-> multipurpose PHYs like serdes and convert ocelot-serdes and mvebu-cp110-comphy
-> PHY drivers to use recently introduced PHY_MODE_ETHERNET and phy_set_mode_ext().
+> When replying to the v1 of your clk_ao patchset :
+> https://patchwork.kernel.org/patch/10562563/#22177627
 > 
-> Patch 5 - removes unused, ethernet specific phy modes from enum phy_mode.
+> I have explained that I would like to stop taking clock (such as xtal) from
+> nowhere. Clocks (even the xtal) should be properly claimed through DT.
+> I have specifically asked this to be taken into account for the EE controller.
 > 
-> [1] https://lkml.org/lkml/2018/10/25/366
+> If you need an exemple on how to get the input clock from DT to your
+> controller, please have look at the axg audio clock controller.
+> 
+> This comment does not appear to be addressed in this version.
+> Please make sure you have addressed all the comments of past reviews before
+> reposting
+> 
+> Thx
+> 
 
-I guess this will go via Kishon's tree.
+Thanks, I will resolve it, I want make sure for it.
+
+I should take the "periphs_xtal" clock in ee g12a clock controller 
+driver through DT , And then I can get its clock name "xtal" by property
+of clock-output-names. Is that right?
+
+ee g12a clock dts:
+
+		hiubus: bus at ff63c000 {
+			compatible = "simple-bus";
+			reg = <0x0 0xff63c000 0x0 0x1c00>;
+			#address-cells = <2>;
+			#size-cells = <2>;
+			ranges = <0x0 0x0 0x0 0xff63c000 0x0 0x1c00>;
+
+			sysctrl: syscon at 0 {
+                                compatible = 
+"amlogic,meson-g12a-hhi-sysctrl", "simple-mfd", "syscon";
+				reg = <0x0 0x0 0x0 0x400>;
+
+				clkc: clock-controller {
+					compatible = "amlogic,g12a-clkc";
+					#clock-cells = <1>;
+					clocks = <&xtal>;
+					clock-name = "periphs_xtal";
+				};
+			};
+		};
+
+
+		xtal: xtal-clk {
+			compatible = "fixed-clock";
+			clock-frequency = <24000000>;
+			clock-output-names = "xtal"; 
+ 
+
+			#clock-cells = <0>;
+		};
+>>
+>> Changes since v2 at[2]
+>> -fix fixed clocks's descriptions
+>> -fix aligment
+>> -add enable bit for plls base on [3] patches
+>> -add fixed clock gate bit
+>>
+>> Changes since v1 at[1]
+>> -fix typo of 'Everything'.
+>> -change the word 'AmLogic' to 'Amlogic'
+>> -squash patch 1 and 2.
+>> -delete usless message of "Trying obsolete regs".
+>> -delete the empty line in include/dt-bindings/clock/g12a-clkc.h.
+>> -rebase on top of the "next/drivers" branch, and add g12a clock patch.
+>> -add CLK_MUX_ROUND_CLOSEST for g12a_sd_emmc_b_clk0_sel and
+>>   g12a_sd_emmc_c_clk0_sel.
+>>
+>> [1]
+>> https://lkml.kernel.org/r/1531133549-25806-2-git-send-email-jian.hu at amlogic.com
+>> [2]
+>> https://lkml.kernel.org/r/1531728707-192230-2-git-send-email-jian.hu at amlogic.com
+>> [3]https://lkml.kernel.org/r/20180717095617.12240-1-jbrunet at baylibre.com
+>> [4]
+>> https://lkml.kernel.org/r/1533890858-113020-1-git-send-email-jian.hu at amlogic.com
+>>
+>> Jian Hu (2):
+>>    dt-bindings: clk: meson-g12a: Add G12A EE Clock Bindings
+>>    clk: meson-g12a: Add EE Clock controller driver
+>>
+>>   .../bindings/clock/amlogic,gxbb-clkc.txt           |    1 +
+>>   drivers/clk/meson/Kconfig                          |   10 +
+>>   drivers/clk/meson/Makefile                         |    1 +
+>>   drivers/clk/meson/g12a.c                           | 1134
+>> ++++++++++++++++++++
+>>   drivers/clk/meson/g12a.h                           |  128 +++
+>>   include/dt-bindings/clock/g12a-clkc.h              |   93 ++
+>>   6 files changed, 1367 insertions(+)
+>>   create mode 100644 drivers/clk/meson/g12a.c
+>>   create mode 100644 drivers/clk/meson/g12a.h
+>>   create mode 100644 include/dt-bindings/clock/g12a-clkc.h
+>>
+> 
+> 
+> .
+> 
