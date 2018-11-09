@@ -1,30 +1,20 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 15:20:59 +0100
-Subject: [PATCH u-boot 1/2] net: designware: add meson meson gxbb compatible
-In-Reply-To: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
-References: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541773260-16197-2-git-send-email-narmstrong@baylibre.com>
+Date: Fri,  9 Nov 2018 15:20:58 +0100
+Subject: [PATCH u-boot 0/2] net: designware: add meson meson compatibles
+Message-ID: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the compatible string for the Amlogic GXBB SoC family.
+Add the compatible strings in the Synopsys DWMAC driver for :
+- The Amlogic GXBB (and other GX) SoC
+- The Amlogic AXG (and other GX) SoC
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/net/designware.c | 1 +
- 1 file changed, 1 insertion(+)
+Neil Armstrong (2):
+  net: designware: add meson meson gxbb comptatible
+  net: designware: add meson meson axg compatible
 
-diff --git a/drivers/net/designware.c b/drivers/net/designware.c
-index 19db0a8..cdcc03f 100644
---- a/drivers/net/designware.c
-+++ b/drivers/net/designware.c
-@@ -838,6 +838,7 @@ static const struct udevice_id designware_eth_ids[] = {
- 	{ .compatible = "altr,socfpga-stmmac" },
- 	{ .compatible = "amlogic,meson6-dwmac" },
- 	{ .compatible = "amlogic,meson-gx-dwmac" },
-+	{ .compatible = "amlogic,meson-gxbb-dwmac" },
- 	{ .compatible = "st,stm32-dwmac" },
- 	{ }
- };
+ drivers/net/designware.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
 -- 
 2.7.4
