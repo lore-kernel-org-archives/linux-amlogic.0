@@ -1,43 +1,31 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri,  9 Nov 2018 16:26:46 +0100
-Subject: [PATCH u-boot 07/19] configs: meson: change default load addresses
+Date: Fri,  9 Nov 2018 16:26:50 +0100
+Subject: [PATCH u-boot 11/19] clk: meson: add static to meson_gates table
 In-Reply-To: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
 References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <1541777218-472-8-git-send-email-narmstrong@baylibre.com>
+Message-ID: <1541777218-472-12-git-send-email-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+The meson_gates table should be set static in the clk_meson driver.
 
-The original chosen addresses conflict with the BL2 initialisation.
-So far there was no issue with them but if we preload binaries in
-RAM (ROMUSB boot) before running the BL2 they get corrupted by the
-execution of BL2 init.
-
-If we load them around 0x08000000, there is no such issue.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/configs/meson64.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/clk/clk_meson.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/configs/meson64.h b/include/configs/meson64.h
-index 1929a3e..80c883e 100644
---- a/include/configs/meson64.h
-+++ b/include/configs/meson64.h
-@@ -41,9 +41,9 @@
+diff --git a/drivers/clk/clk_meson.c b/drivers/clk/clk_meson.c
+index 236d734..509872b 100644
+--- a/drivers/clk/clk_meson.c
++++ b/drivers/clk/clk_meson.c
+@@ -79,7 +79,7 @@ static ulong meson_clk_set_rate_by_id(struct clk *clk, unsigned long id,
+ static ulong meson_mux_get_parent(struct clk *clk, unsigned long id);
+ static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id);
  
- #ifndef CONFIG_EXTRA_ENV_SETTINGS
- #define CONFIG_EXTRA_ENV_SETTINGS \
--	"fdt_addr_r=0x01000000\0" \
--	"scriptaddr=0x1f000000\0" \
--	"kernel_addr_r=0x01080000\0" \
-+	"fdt_addr_r=0x08008000\0" \
-+	"scriptaddr=0x08000000\0" \
-+	"kernel_addr_r=0x08080000\0" \
- 	"pxefile_addr_r=0x01080000\0" \
- 	"ramdisk_addr_r=0x13000000\0" \
- 	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
+-struct meson_gate gates[] = {
++static struct meson_gate gates[] = {
+ 	/* Everything Else (EE) domain gates */
+ 	MESON_GATE(CLKID_DDR, HHI_GCLK_MPEG0, 0),
+ 	MESON_GATE(CLKID_DOS, HHI_GCLK_MPEG0, 1),
 -- 
 2.7.4
