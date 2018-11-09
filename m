@@ -1,55 +1,49 @@
-From: hkallweit1@gmail.com (Heiner Kallweit)
-Date: Fri, 9 Nov 2018 21:56:10 +0100
-Subject: [PATCH net-next v3 1/2] net: phy: replace PHY_HAS_INTERRUPT with
- a check for config_intr and ack_interrupt
-In-Reply-To: <4330cb5b-b1a5-5004-af51-39199943639d@gmail.com>
-References: <203c4d9e-f39a-7a08-46c3-4ee6e61f181e@gmail.com>
- <fd9674b3-4033-95c6-a93e-10c8b5ba2e6a@gmail.com>
- <20181109201307.GV5259@lunn.ch>
- <44b503b8-9f2a-50ac-c4c9-d25258d98ef5@gmail.com>
- <4330cb5b-b1a5-5004-af51-39199943639d@gmail.com>
-Message-ID: <c067d321-c69e-706d-304a-04e1e477b47c@gmail.com>
+From: nicolas@ndufresne.ca (Nicolas Dufresne)
+Date: Fri, 09 Nov 2018 16:21:35 -0500
+Subject: [PATCH v4 2/3] media: meson: add v4l2 m2m video decoder driver
+In-Reply-To: <2f88a17d-76f8-ec70-c18f-aa0d688249be@xs4all.nl>
+References: <20181106075926.19269-1-mjourdan@baylibre.com>
+ <20181106075926.19269-3-mjourdan@baylibre.com>
+ <2f88a17d-76f8-ec70-c18f-aa0d688249be@xs4all.nl>
+Message-ID: <0841fd86ea9bf52057e2a4622a7b9719662cc484.camel@ndufresne.ca>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 09.11.2018 21:33, Florian Fainelli wrote:
-> On 11/9/18 12:22 PM, Heiner Kallweit wrote:
->> On 09.11.2018 21:13, Andrew Lunn wrote:
->>> Hi Heiner
->>>
->>>> +static bool phy_drv_supports_irq(struct phy_driver *phydrv)
->>>> +{
->>>> +	return phydrv->config_intr || phydrv->ack_interrupt;
->>>> +}
->>>
->>> Should this be && not || ? I thought both needed to be provided for
->>> interrupts to work. 
->>>
->>> 	   Andrew
->>>
->> I've seen at least one driver which configures interrupts in
->> config_init and doesn't define a config_intr callback
->> (ack_interrupt callback is there)
+Le jeudi 08 novembre 2018 ? 09:42 +0100, Hans Verkuil a ?crit :
+> > +static int vdec_queue_setup(struct vb2_queue *q,
+> > +             unsigned int *num_buffers, unsigned int *num_planes,
+> > +             unsigned int sizes[], struct device *alloc_devs[])
+> > +{
+> > +     struct amvdec_session *sess = vb2_get_drv_priv(q);
+> > +     const struct amvdec_format *fmt_out = sess->fmt_out;
+> > +     u32 output_size = amvdec_get_output_size(sess);
+> > +     u32 buffers_total;
+> > +
+> > +     if (*num_planes) {
 > 
-> That driver should probably be fixed, while it most likely does not make
-> any significant difference during probe/connect, since config_init() and
-> config_intr() are virtually happening at the same time, this is not
-> necessarily true when disconnecting from the PHY where we really want
-> config_intr() to effectively disable the interrupts and not leaving
-> something enabled that would now become unmaskable, because no more
-> driver attached.
+> If you are not supporting create_bufs, then you can drop this part.
+> Without create_bufs you can assume that *num_planes == 0 and
+> q->num_buffers == 0.
 > 
-Found the driver: It's the IP101A/G in icplus.c
-It should be easy to fix the behavior and move the interrupt config
-to a config_intr callback. But the last real changes to the driver
-have been done 6 years ago, so I'm not sure there's anybody out
-there who can test.
+> You should add a comment here mentioning that create_bufs isn't
+> supported by this driver and explain why it isn't supported.
+> 
+> I understand it is due to gstreamer problems, but the explanation
+> in your cover letter didn't say why it is a problem with this driver
+> but not other drivers (apparently).
 
->> Intention of this check is not to ensure that the driver defines
->> everything to make interrupts work. All it states:
->> If at least one of the irq-related callbacks is defined, then
->> we interpret this as indicator that the PHY supports interrupts.
-> 
-> I agree with Andrew here, that this should be an AND here, both
-> callbacks must be implemented for interrupts to work correctly.
-> 
+There is problems in GStreamer with this, but it was disabled because
+the firmware does not really allow adding buffers at run-time. Worst,
+we would often seen kernel crash when this was enabled.
+
+No decoder before this one implements CREATE_BUFS from what I'm aware,
+which explain why I never catched the GStreamer issues before.
+
+Nicolas
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 195 bytes
+Desc: This is a digitally signed message part
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20181109/aa1c319e/attachment.sig>
