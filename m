@@ -1,9 +1,7 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Fri,  9 Nov 2018 15:04:45 +0100
-Subject: [PATCH v2 4/4] ARM: dts: meson: consistently disable pin bias
-In-Reply-To: <20181109140445.17795-1-jbrunet@baylibre.com>
-References: <20181109140445.17795-1-jbrunet@baylibre.com>
-Message-ID: <20181109140445.17795-5-jbrunet@baylibre.com>
+Date: Fri,  9 Nov 2018 15:04:41 +0100
+Subject: [PATCH v2 0/4] ARM: dts: meson: set pinmux bias
+Message-ID: <20181109140445.17795-1-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -12,214 +10,55 @@ itself, not only the GPIO function. This means that even when we change
 the function of the pad from GPIO to anything else, the bias previously
 set still applies.
 
-As we have seen with the eMMC, depending on the bias type and the function,
-it may trigger problems.
+While trying to boot from SPI, I noticed the eMMC was not working anymore.
+Even if the related eMMC pad are not used by the SPI, the ROM code sets a
+pull-down on the eMMC pad and leaves it that way. This breaks the eMMC
+later on, in both u-boot and Linux.
 
 The underlying issue is that we inherit whatever was left by previous user
 of the pad (pinconf, u-boot or the ROM code). As a consequence, the actual
-setup we will get is undefined.
+setup we get is undefined.
 
 There is nothing mentioned in the documentation about pad bias and pinmux
 function, however leaving it undefined is not an option.
 
-This change consistently disable the pad bias for every pinmux functions.
+This patchset consistently disable the pad bias for every pinmux functions.
 It seems to work well, we can only assume that the necessary bias (if any)
 is already provided by the pin function itself.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm/boot/dts/meson8.dtsi   | 12 ++++++++++++
- arch/arm/boot/dts/meson8b.dtsi  |  9 +++++++++
- arch/arm/boot/dts/meson8m2.dtsi |  1 +
- 3 files changed, 22 insertions(+)
+I can't really test every pinmux configuration and it is fairly possible
+I missed something so it would be nice if more people could confirm if
+nothing (new) is broken after applying this series.
 
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 7162e0ca05b0..08c54cf5420a 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -163,6 +163,7 @@
- 			mux {
- 				groups = "uart_tx_ao_a", "uart_rx_ao_a";
- 				function = "uart_ao";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -170,6 +171,7 @@
- 			mux {
- 				groups = "i2c_mst_sck_ao", "i2c_mst_sda_ao";
- 				function = "i2c_mst_ao";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -177,6 +179,7 @@
- 			mux {
- 				groups = "remote_input";
- 				function = "remote";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -184,6 +187,7 @@
- 			mux {
- 				groups = "pwm_f_ao";
- 				function = "pwm_f_ao";
-+				bias-disable;
- 			};
- 		};
- 	};
-@@ -238,6 +242,7 @@
- 				groups = "sd_d0_a", "sd_d1_a", "sd_d2_a",
- 					"sd_d3_a", "sd_clk_a", "sd_cmd_a";
- 				function = "sd_a";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -246,6 +251,7 @@
- 				groups = "sd_d0_b", "sd_d1_b", "sd_d2_b",
- 					"sd_d3_b", "sd_clk_b", "sd_cmd_b";
- 				function = "sd_b";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -254,6 +260,7 @@
- 				groups = "sd_d0_c", "sd_d1_c", "sd_d2_c",
- 					"sd_d3_c", "sd_clk_c", "sd_cmd_c";
- 				function = "sd_c";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -261,6 +268,7 @@
- 			mux {
- 				groups = "nor_d", "nor_q", "nor_c", "nor_cs";
- 				function = "nor";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -272,6 +280,7 @@
- 					 "eth_rxd1", "eth_rxd0", "eth_mdio",
- 					 "eth_mdc";
- 				function = "ethernet";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -279,6 +288,7 @@
- 			mux {
- 				groups = "pwm_e";
- 				function = "pwm_e";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -287,6 +297,7 @@
- 				groups = "uart_tx_a1",
- 				       "uart_rx_a1";
- 				function = "uart_a";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -295,6 +306,7 @@
- 				groups = "uart_cts_a1",
- 				       "uart_rts_a1";
- 				function = "uart_a";
-+				bias-disable;
- 			};
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index cd1ca9dda126..46b3564a6536 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -146,6 +146,7 @@
- 			mux {
- 				groups = "uart_tx_ao_a", "uart_rx_ao_a";
- 				function = "uart_ao";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -153,6 +154,7 @@
- 			mux {
- 				groups = "remote_input";
- 				function = "remote";
-+				bias-disable;
- 			};
- 		};
- 	};
-@@ -220,6 +222,7 @@
- 					 "eth_txd2",
- 					 "eth_txd3";
- 				function = "ethernet";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -235,6 +238,7 @@
- 					 "eth_mdio_en",
- 					 "eth_mdc";
- 				function = "ethernet";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -242,6 +246,7 @@
- 			mux {
- 				groups = "i2c_sda_a", "i2c_sck_a";
- 				function = "i2c_a";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -250,6 +255,7 @@
- 				groups = "sd_d0_b", "sd_d1_b", "sd_d2_b",
- 					"sd_d3_b", "sd_clk_b", "sd_cmd_b";
- 				function = "sd_b";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -257,6 +263,7 @@
- 			mux {
- 				groups = "pwm_c1";
- 				function = "pwm_c";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -265,6 +272,7 @@
- 				groups = "uart_tx_b0",
- 				       "uart_rx_b0";
- 				function = "uart_b";
-+				bias-disable;
- 			};
- 		};
- 
-@@ -273,6 +281,7 @@
- 				groups = "uart_cts_b0",
- 				       "uart_rts_b0";
- 				function = "uart_b";
-+				bias-disable;
- 			};
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/meson8m2.dtsi b/arch/arm/boot/dts/meson8m2.dtsi
-index 3e1f92273d7b..d1a28c2adac5 100644
---- a/arch/arm/boot/dts/meson8m2.dtsi
-+++ b/arch/arm/boot/dts/meson8m2.dtsi
-@@ -45,6 +45,7 @@
- 				 "eth_rxd1", "eth_rxd0",
- 				 "eth_mdio", "eth_mdc";
- 			function = "ethernet";
-+			bias-disable;
- 		};
- 	};
- };
+One things could be the i2c. Usually the i2c pull-ups are physically
+present on the board but, if they are missing on platform, we may define
+a special pinmux setting with pull-up enabled.
+
+One last gotcha, I recently posted fixups around bias setting to pinctrl
+which have been merged: [0] [1]. These must be applied before applying this
+series, otherwise when requesting 'bias-disable' you'll probably get a
+pull-down instead.
+
+Changes since v1 [2]:
+ * Fix wrongly placed bias-disable on meson8
+
+[0]: https://lkml.kernel.org/r/20181023160319.27003-1-jbrunet at baylibre.com
+[1]: https://lkml.kernel.org/r/20181029151340.9087-1-jbrunet at baylibre.com
+[2]: https://lkml.kernel.org/r/20181108104426.1877-1-jbrunet at baylibre.com
+
+Jerome Brunet (4):
+  arm64: dts: meson: remove extra subnode in mmc clk_gate pinmux
+  arm64: dts: meson: disable pad bias for mmc pinmuxes
+  arm64: dts: meson: consistently disable pin bias
+  ARM: dts: meson: consistently disable pin bias
+
+ arch/arm/boot/dts/meson8.dtsi               |  12 +++
+ arch/arm/boot/dts/meson8b.dtsi              |   9 ++
+ arch/arm/boot/dts/meson8m2.dtsi             |   1 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 111 ++++++++++++++++++--
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  60 +++++++++--
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  |  62 +++++++++--
+ 6 files changed, 231 insertions(+), 24 deletions(-)
+
 -- 
 2.19.1
