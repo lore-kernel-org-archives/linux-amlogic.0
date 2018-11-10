@@ -1,71 +1,35 @@
-From: grygorii.strashko@ti.com (Grygorii Strashko)
-Date: Fri, 9 Nov 2018 17:47:50 -0600
-Subject: [PATCH v2 0/5] phy: core: rework phy_set_mode to accept phy mode and
- submode
-Message-ID: <20181109234755.21687-1-grygorii.strashko@ti.com>
+From: yangxuan8282@gmail.com (He Yangxuan)
+Date: Sat, 10 Nov 2018 11:01:00 +0800
+Subject: [PATCH v4 0/3] arm64: dts: meson-gxl: add support for phicomm n1
+Message-ID: <20181110030103.4091-1-yangxuan8282@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Kishon, All,
+This patch adds support for the Phicomm N1. This device based on P230 reference design.
+The phy is RTL8211F, need to disable Energy Efficient Ethernet (EEE) to make it stable.
+And this box doesn't have cvbs, so disable related section in device tree.
 
-As was discussed in [1] I'm posting series which introduces rework of
-phy_set_mode to accept phy mode and submode. I've dropped TI specific patches as
-this change is pretty big by itself.
+Changes since v3:
+ - remove external phy from device tree, will disable EEE in meson-gxl-s905d-p230.dts
 
-Patch 1 is cumulative change which refactors PHY framework code to
-support dual level PHYs mode configuration - PHY mode and PHY submode. It
-extends .set_mode() callback to support additional parameter "int submode"
-and converts all corresponding PHY drivers to support new .set_mode()
-callback declaration.
-The new extended PHY API
- int phy_set_mode_ext(struct phy *phy, enum phy_mode mode, int submode)
-is introduced to support dual level PHYs mode configuration and existing
-phy_set_mode() API is converted to macros, so PHY framework consumers do
-not need to be changed (~21 matches).
+Changes since v2:
+ - remove changes section in commit message
+ - add commit message for patch of vendor prefix and bindings documentation
 
-Patches 2-4: Add new PHY's mode to be used by Ethernet PHY interface drivers or
-multipurpose PHYs like serdes and convert ocelot-serdes and mvebu-cp110-comphy
-PHY drivers to use recently introduced PHY_MODE_ETHERNET and phy_set_mode_ext().
+Changes since v1:
+ - rewrite external phy section
+ - add phicomm vendor prefix
+ - add phicomm n1 in Documentation/devicetree/bindings/arm/amlogic.txt
 
-Patch 5 - removes unused, ethernet specific phy modes from enum phy_mode.
+He Yangxuan (3):
+  arm64: dts: meson-gxl: add support for phicomm n1
+  dt-bindings: Add vendor prefix for PHICOMM Co., Ltd.
+  dt-bindings: arm: amlogic: Add Phicomm N1
 
-Testing:
- - series tested on TI am335x/am437x/am5(dra7) paltforms.
- - other driver build tested.
-
-changes in v2:
-- marvell PHY and net drivers updated as recommended by Russell King
-
-v1: https://lkml.org/lkml/2018/11/8/260
-
-[1] https://lkml.org/lkml/2018/10/25/366
-
-Grygorii Strashko (5):
-  phy: core: rework phy_set_mode to accept phy mode and submode
-  phy: core: add PHY_MODE_ETHERNET
-  phy: ocelot-serdes: convert to use eth phy mode and submode
-  phy: mvebu-cp110-comphy: convert to use eth phy mode and submode
-  phy: core: clean up unused ethernet specific phy modes
-
- drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 19 +-----
- drivers/net/ethernet/mscc/ocelot.c              |  9 +--
- drivers/phy/allwinner/phy-sun4i-usb.c           |  3 +-
- drivers/phy/amlogic/phy-meson-gxl-usb2.c        |  5 +-
- drivers/phy/amlogic/phy-meson-gxl-usb3.c        |  5 +-
- drivers/phy/marvell/phy-mvebu-cp110-comphy.c    | 86 ++++++++++++++-----------
- drivers/phy/mediatek/phy-mtk-tphy.c             |  2 +-
- drivers/phy/mediatek/phy-mtk-xsphy.c            |  2 +-
- drivers/phy/mscc/phy-ocelot-serdes.c            | 16 +++--
- drivers/phy/phy-core.c                          |  6 +-
- drivers/phy/qualcomm/phy-qcom-qmp.c             |  3 +-
- drivers/phy/qualcomm/phy-qcom-qusb2.c           |  3 +-
- drivers/phy/qualcomm/phy-qcom-ufs-qmp-14nm.c    |  3 +-
- drivers/phy/qualcomm/phy-qcom-ufs-qmp-20nm.c    |  3 +-
- drivers/phy/qualcomm/phy-qcom-usb-hs.c          |  3 +-
- drivers/phy/ti/phy-da8xx-usb.c                  |  3 +-
- drivers/phy/ti/phy-tusb1210.c                   |  2 +-
- include/linux/phy/phy.h                         | 18 ++++--
- 18 files changed, 100 insertions(+), 91 deletions(-)
+ Documentation/devicetree/bindings/arm/amlogic.txt     | 1 +
+ Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+ arch/arm64/boot/dts/amlogic/Makefile                  | 1 +
+ 3 files changed, 3 insertions(+)
 
 -- 
-2.10.5
+2.11.0
