@@ -1,30 +1,78 @@
-From: yangxuan8282@gmail.com (He Yangxuan)
-Date: Sat, 10 Nov 2018 11:39:04 +0800
-Subject: [PATCH v5 3/3] dt-bindings: arm: amlogic: Add Phicomm N1
-In-Reply-To: <20181110033904.4207-1-yangxuan8282@gmail.com>
-References: <20181110033904.4207-1-yangxuan8282@gmail.com>
-Message-ID: <20181110033904.4207-4-yangxuan8282@gmail.com>
+From: jic23@kernel.org (Jonathan Cameron)
+Date: Sun, 11 Nov 2018 15:04:45 +0000
+Subject: [PATCH v2 2/2] iio: adc: meson-saradc: add support for the
+ chip's temperature sensor
+In-Reply-To: <CAFBinCB4bByOqXbUJEv2-fMKWDett-ym++7=x87tDWD4BTQ7QA@mail.gmail.com>
+References: <20181103231024.659-1-martin.blumenstingl@googlemail.com>
+ <20181103231024.659-3-martin.blumenstingl@googlemail.com>
+ <20181104170041.1fcc4932@archlinux>
+ <CAFBinCB4bByOqXbUJEv2-fMKWDett-ym++7=x87tDWD4BTQ7QA@mail.gmail.com>
+Message-ID: <20181111150445.4e2110ea@archlinux>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add bindings documentation for the Phicomm N1.
+On Sun, 4 Nov 2018 23:36:10 +0100
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-Signed-off-by: He Yangxuan <yangxuan8282@gmail.com>
----
- Documentation/devicetree/bindings/arm/amlogic.txt | 1 +
- 1 file changed, 1 insertion(+)
+> Hi Jonathan,
+> 
+> On Sun, Nov 4, 2018 at 6:00 PM Jonathan Cameron <jic23@kernel.org> wrote:
+> >
+> > On Sun,  4 Nov 2018 00:10:24 +0100
+> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+> >  
+> > > Channel 6 of the SAR ADC can be switched between two inputs:
+> > > SAR_ADC_CH6 input (an actual pad on the SoC) and the signal from the
+> > > temperature sensor inside the SoC.
+> > >
+> > > To get usable results from the temperature sensor we need to read the
+> > > corresponding calibration data from the eFuse and pass it to the SAR ADC
+> > > registers. If the temperature sensor is not calibrated (the eFuse data
+> > > contains a bit for this) then the driver will only register the
+> > > iio_chan_spec's for voltage measurements.
+> > >
+> > > (bits [3:0]) and (on Meson8b and Meson8m2) to a scratch register in the
+> > > HHI region.  
+> I missed this "fragment" (I wouldn't call it a sentence) when I sent the patch.
+> the next paragraph already contains an explanation about the TSC on
+> Meson8b and Meson8m2 as well as the HHI register area.
+> so this paragraph doesn't make any sense and should be removed. do you
+> want me to re-send this patch (or even the whole series) or can you
+> remove it? everything else is fine (I double-checked this time...)
+fixed up.
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index 4498292b8..93177f38e 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -91,6 +91,7 @@ Board compatible values (alphabetically, grouped by SoC):
- 
-   - "amlogic,p230" (Meson gxl s905d)
-   - "amlogic,p231" (Meson gxl s905d)
-+  - "phicomm,n1" (Meson gxl s905d)
- 
-   - "amlogic,p241" (Meson gxl s805x)
- 
--- 
-2.11.0
+Thanks,
+
+Jonathan
+
+> 
+> > > This only enables the temperature sensor for the Meson8 SoC. Meson8b and
+> > > Meson8m2 SoCs can be supported in the future as well but we first need
+> > > a way to pass the fifth TSC (temperature sensor coefficient) bit to the
+> > > HHI register area (apart from that the infrastructure as already
+> > > implemented for Meson8 can be used). On the 64-bit SoCs (GXBB, GXL and
+> > > GXM) the temperature sensor inside SAR ADC is firmware-controlled (by
+> > > BL30, we can simply use the SCPI hwmon driver to get the chip
+> > > temperature).
+> > >
+> > > To keep the devicetree interface backwards compatible we simply skip the
+> > > temperature sensor initialization if no eFuse nvmem cell is passed via
+> > > devicetree.
+> > >
+> > > The public documentation for the SAR ADC IP block does not explain how
+> > > to use the registers to read the temperature. The logic from this patch
+> > > is based on reading and understanding Amlogic's GPL kernel sources.
+> > >
+> > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>  
+> > Good detailed explanation.  Thanks.  
+> you're welcome!
+> please see my comment above where I have to admit that not all of the
+> description is "good".
+> 
+> > Applied to the togreg branch of iio.git and pushed out as testing for
+> > the autobuilders to play with it.  
+> that was quick - thank you!
+> 
+> 
+> Regards
+> Martin
