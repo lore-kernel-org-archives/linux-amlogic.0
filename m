@@ -1,31 +1,25 @@
-From: davem@davemloft.net (David Miller)
-Date: Sun, 11 Nov 2018 09:38:03 -0800 (PST)
-Subject: [PATCH net-next v3 0/2] net: phy: replace PHY_HAS_INTERRUPT
- with a check for config_intr and ack_interrupt
-In-Reply-To: <203c4d9e-f39a-7a08-46c3-4ee6e61f181e@gmail.com>
-References: <203c4d9e-f39a-7a08-46c3-4ee6e61f181e@gmail.com>
-Message-ID: <20181111.093803.1220111720420778659.davem@davemloft.net>
+From: miquel.raynal@bootlin.com (Miquel Raynal)
+Date: Sun, 11 Nov 2018 21:57:45 +0100
+Subject: [PATCH v6 0/2] mtd: rawnand: meson: add Amlogic NAND driver
+ support
+In-Reply-To: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
+References: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
+Message-ID: <20181111215745.07448b12@xps13>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Date: Fri, 9 Nov 2018 18:15:31 +0100
+Hi Jianxin,
 
-> Flag PHY_HAS_INTERRUPT is used only here for this small check. I think
-> using interrupts isn't possible if a driver defines neither
-> config_intr nor ack_interrupts callback. So we can replace checking
-> flag PHY_HAS_INTERRUPT with checking for these callbacks.
-> This allows to remove this flag from all driver configs.
+Jianxin Pan <jianxin.pan@amlogic.com> wrote on Fri, 2 Nov 2018 00:42:19
++0800:
+
+> These two patches try to add initial NAND driver support for Amlogic Meson
+> SoCs, current it has been tested on GXL(p212) and AXG(s400) platform.
 > 
-> v2:
-> - add helper for check in patch 1
-> - remove PHY_HAS_INTERRUPT from all drivers, not only Realtek
-> - remove flag PHY_HAS_INTERRUPT completely
-> 
-> v3:
-> - rebase patch 2
 
-Series applied, but please sort out that one driver which is preventing
-us requiring both config_intr && ack_interrupt.
+Would you mind Cc:'ing me when you send NAND related patches? Otherwise
+there is a chance that it will take ages before I notice your series
+in the middle of the MTD patches flow.
 
-Thanks.
+Thanks,
+Miqu?l
