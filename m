@@ -1,25 +1,22 @@
-From: miquel.raynal@bootlin.com (Miquel Raynal)
-Date: Sun, 11 Nov 2018 21:57:45 +0100
-Subject: [PATCH v6 0/2] mtd: rawnand: meson: add Amlogic NAND driver
- support
-In-Reply-To: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
-References: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
-Message-ID: <20181111215745.07448b12@xps13>
+From: robh@kernel.org (Rob Herring)
+Date: Sun, 11 Nov 2018 16:40:54 -0600
+Subject: [PATCH v5 2/3] dt-bindings: Add vendor prefix for PHICOMM Co.,
+ Ltd.
+In-Reply-To: <20181110033904.4207-3-yangxuan8282@gmail.com>
+References: <20181110033904.4207-1-yangxuan8282@gmail.com>
+ <20181110033904.4207-3-yangxuan8282@gmail.com>
+Message-ID: <20181111224054.GA3950@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Jianxin,
-
-Jianxin Pan <jianxin.pan@amlogic.com> wrote on Fri, 2 Nov 2018 00:42:19
-+0800:
-
-> These two patches try to add initial NAND driver support for Amlogic Meson
-> SoCs, current it has been tested on GXL(p212) and AXG(s400) platform.
+On Sat, 10 Nov 2018 11:39:03 +0800, He Yangxuan wrote:
+> PHICOMM Co., Ltd. is a hardware provider headquartered in Shanghai, it's
+> product includes router and smart devices.
+> 
+> Signed-off-by: He Yangxuan <yangxuan8282@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Would you mind Cc:'ing me when you send NAND related patches? Otherwise
-there is a chance that it will take ages before I notice your series
-in the middle of the MTD patches flow.
-
-Thanks,
-Miqu?l
+Reviewed-by: Rob Herring <robh@kernel.org>
