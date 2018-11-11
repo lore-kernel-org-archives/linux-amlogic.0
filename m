@@ -1,78 +1,31 @@
-From: jic23@kernel.org (Jonathan Cameron)
-Date: Sun, 11 Nov 2018 15:04:45 +0000
-Subject: [PATCH v2 2/2] iio: adc: meson-saradc: add support for the
- chip's temperature sensor
-In-Reply-To: <CAFBinCB4bByOqXbUJEv2-fMKWDett-ym++7=x87tDWD4BTQ7QA@mail.gmail.com>
-References: <20181103231024.659-1-martin.blumenstingl@googlemail.com>
- <20181103231024.659-3-martin.blumenstingl@googlemail.com>
- <20181104170041.1fcc4932@archlinux>
- <CAFBinCB4bByOqXbUJEv2-fMKWDett-ym++7=x87tDWD4BTQ7QA@mail.gmail.com>
-Message-ID: <20181111150445.4e2110ea@archlinux>
+From: davem@davemloft.net (David Miller)
+Date: Sun, 11 Nov 2018 09:38:03 -0800 (PST)
+Subject: [PATCH net-next v3 0/2] net: phy: replace PHY_HAS_INTERRUPT
+ with a check for config_intr and ack_interrupt
+In-Reply-To: <203c4d9e-f39a-7a08-46c3-4ee6e61f181e@gmail.com>
+References: <203c4d9e-f39a-7a08-46c3-4ee6e61f181e@gmail.com>
+Message-ID: <20181111.093803.1220111720420778659.davem@davemloft.net>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Sun, 4 Nov 2018 23:36:10 +0100
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Date: Fri, 9 Nov 2018 18:15:31 +0100
 
-> Hi Jonathan,
+> Flag PHY_HAS_INTERRUPT is used only here for this small check. I think
+> using interrupts isn't possible if a driver defines neither
+> config_intr nor ack_interrupts callback. So we can replace checking
+> flag PHY_HAS_INTERRUPT with checking for these callbacks.
+> This allows to remove this flag from all driver configs.
 > 
-> On Sun, Nov 4, 2018 at 6:00 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> >
-> > On Sun,  4 Nov 2018 00:10:24 +0100
-> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
-> >  
-> > > Channel 6 of the SAR ADC can be switched between two inputs:
-> > > SAR_ADC_CH6 input (an actual pad on the SoC) and the signal from the
-> > > temperature sensor inside the SoC.
-> > >
-> > > To get usable results from the temperature sensor we need to read the
-> > > corresponding calibration data from the eFuse and pass it to the SAR ADC
-> > > registers. If the temperature sensor is not calibrated (the eFuse data
-> > > contains a bit for this) then the driver will only register the
-> > > iio_chan_spec's for voltage measurements.
-> > >
-> > > (bits [3:0]) and (on Meson8b and Meson8m2) to a scratch register in the
-> > > HHI region.  
-> I missed this "fragment" (I wouldn't call it a sentence) when I sent the patch.
-> the next paragraph already contains an explanation about the TSC on
-> Meson8b and Meson8m2 as well as the HHI register area.
-> so this paragraph doesn't make any sense and should be removed. do you
-> want me to re-send this patch (or even the whole series) or can you
-> remove it? everything else is fine (I double-checked this time...)
-fixed up.
+> v2:
+> - add helper for check in patch 1
+> - remove PHY_HAS_INTERRUPT from all drivers, not only Realtek
+> - remove flag PHY_HAS_INTERRUPT completely
+> 
+> v3:
+> - rebase patch 2
 
-Thanks,
+Series applied, but please sort out that one driver which is preventing
+us requiring both config_intr && ack_interrupt.
 
-Jonathan
-
-> 
-> > > This only enables the temperature sensor for the Meson8 SoC. Meson8b and
-> > > Meson8m2 SoCs can be supported in the future as well but we first need
-> > > a way to pass the fifth TSC (temperature sensor coefficient) bit to the
-> > > HHI register area (apart from that the infrastructure as already
-> > > implemented for Meson8 can be used). On the 64-bit SoCs (GXBB, GXL and
-> > > GXM) the temperature sensor inside SAR ADC is firmware-controlled (by
-> > > BL30, we can simply use the SCPI hwmon driver to get the chip
-> > > temperature).
-> > >
-> > > To keep the devicetree interface backwards compatible we simply skip the
-> > > temperature sensor initialization if no eFuse nvmem cell is passed via
-> > > devicetree.
-> > >
-> > > The public documentation for the SAR ADC IP block does not explain how
-> > > to use the registers to read the temperature. The logic from this patch
-> > > is based on reading and understanding Amlogic's GPL kernel sources.
-> > >
-> > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>  
-> > Good detailed explanation.  Thanks.  
-> you're welcome!
-> please see my comment above where I have to admit that not all of the
-> description is "good".
-> 
-> > Applied to the togreg branch of iio.git and pushed out as testing for
-> > the autobuilders to play with it.  
-> that was quick - thank you!
-> 
-> 
-> Regards
-> Martin
+Thanks.
