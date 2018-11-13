@@ -1,10 +1,10 @@
 From: sashal@kernel.org (Sasha Levin)
-Date: Tue, 13 Nov 2018 00:49:39 -0500
-Subject: [PATCH AUTOSEL 4.19 33/44] clk: meson: clk-pll: drop
+Date: Tue, 13 Nov 2018 00:50:44 -0500
+Subject: [PATCH AUTOSEL 4.18 30/39] clk: meson: clk-pll: drop
  CLK_GET_RATE_NOCACHE where unnecessary
-In-Reply-To: <20181113054950.77898-1-sashal@kernel.org>
-References: <20181113054950.77898-1-sashal@kernel.org>
-Message-ID: <20181113054950.77898-33-sashal@kernel.org>
+In-Reply-To: <20181113055053.78352-1-sashal@kernel.org>
+References: <20181113055053.78352-1-sashal@kernel.org>
+Message-ID: <20181113055053.78352-30-sashal@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -30,10 +30,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  3 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index a95152071087..f24d38c12e09 100644
+index bd4dbc696b88..00e7ebc65a43 100644
 --- a/drivers/clk/meson/axg.c
 +++ b/drivers/clk/meson/axg.c
-@@ -96,7 +96,6 @@ static struct clk_regmap axg_sys_pll = {
+@@ -97,7 +97,6 @@ static struct clk_regmap axg_sys_pll = {
  		.ops = &meson_clk_pll_ro_ops,
  		.parent_names = (const char *[]){ "xtal" },
  		.num_parents = 1,
@@ -42,10 +42,10 @@ index a95152071087..f24d38c12e09 100644
  };
  
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 86d3ae58e84c..58e4b66bfc55 100644
+index 177fffb9ebef..46ede408c993 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -213,7 +213,6 @@ static struct clk_regmap gxbb_fixed_pll = {
+@@ -214,7 +214,6 @@ static struct clk_regmap gxbb_fixed_pll = {
  		.ops = &meson_clk_pll_ro_ops,
  		.parent_names = (const char *[]){ "xtal" },
  		.num_parents = 1,
@@ -53,7 +53,7 @@ index 86d3ae58e84c..58e4b66bfc55 100644
  	},
  };
  
-@@ -276,6 +275,10 @@ static struct clk_regmap gxbb_hdmi_pll = {
+@@ -277,6 +276,10 @@ static struct clk_regmap gxbb_hdmi_pll = {
  		.ops = &meson_clk_pll_ro_ops,
  		.parent_names = (const char *[]){ "hdmi_pll_pre_mult" },
  		.num_parents = 1,
@@ -64,7 +64,7 @@ index 86d3ae58e84c..58e4b66bfc55 100644
  		.flags = CLK_GET_RATE_NOCACHE,
  	},
  };
-@@ -334,6 +337,10 @@ static struct clk_regmap gxl_hdmi_pll = {
+@@ -335,6 +338,10 @@ static struct clk_regmap gxl_hdmi_pll = {
  		.ops = &meson_clk_pll_ro_ops,
  		.parent_names = (const char *[]){ "xtal" },
  		.num_parents = 1,
@@ -75,7 +75,7 @@ index 86d3ae58e84c..58e4b66bfc55 100644
  		.flags = CLK_GET_RATE_NOCACHE,
  	},
  };
-@@ -371,7 +378,6 @@ static struct clk_regmap gxbb_sys_pll = {
+@@ -372,7 +379,6 @@ static struct clk_regmap gxbb_sys_pll = {
  		.ops = &meson_clk_pll_ro_ops,
  		.parent_names = (const char *[]){ "xtal" },
  		.num_parents = 1,
@@ -83,7 +83,7 @@ index 86d3ae58e84c..58e4b66bfc55 100644
  	},
  };
  
-@@ -418,7 +424,6 @@ static struct clk_regmap gxbb_gp0_pll = {
+@@ -419,7 +425,6 @@ static struct clk_regmap gxbb_gp0_pll = {
  		.ops = &meson_clk_pll_ops,
  		.parent_names = (const char *[]){ "xtal" },
  		.num_parents = 1,
@@ -91,7 +91,7 @@ index 86d3ae58e84c..58e4b66bfc55 100644
  	},
  };
  
-@@ -472,7 +477,6 @@ static struct clk_regmap gxl_gp0_pll = {
+@@ -473,7 +478,6 @@ static struct clk_regmap gxl_gp0_pll = {
  		.ops = &meson_clk_pll_ops,
  		.parent_names = (const char *[]){ "xtal" },
  		.num_parents = 1,
