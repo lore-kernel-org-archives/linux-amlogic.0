@@ -1,61 +1,27 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 13 Nov 2018 09:35:04 +0100
-Subject: [PATCH] drm/meson: venc: dmt mode must use encp
-In-Reply-To: <1542048069-22603-1-git-send-email-jramirez@baylibre.com>
-References: <1542048069-22603-1-git-send-email-jramirez@baylibre.com>
-Message-ID: <9f20e9d1-2e15-c087-db52-674300d7581d@baylibre.com>
+From: srinivas.kandagatla@linaro.org (Srinivas Kandagatla)
+Date: Tue, 13 Nov 2018 09:05:57 +0000
+Subject: [PATCH 2/4] nvmem: meson-efuse: bindings: add peripheral clock
+In-Reply-To: <20181030102231.4851-3-jbrunet@baylibre.com>
+References: <20181030102231.4851-1-jbrunet@baylibre.com>
+ <20181030102231.4851-3-jbrunet@baylibre.com>
+Message-ID: <60b49b47-67d6-ef78-0e0b-78d28da1be6e@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 12/11/2018 19:41, Jorge Ramirez-Ortiz wrote:
-> From: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
+
+
+On 30/10/18 10:22, Jerome Brunet wrote:
+> The efuse found in gx SoC requires a peripheral clock to properly operate.
+> We have been able to work without it until now because the clock was on by
+> default, and left on by the CCF. Soon, it will not be the case anymore, so
+> the device needs to claim the clock it needs
 > 
-> The video mode for DMT is only populated to support encp.
-> 
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
+> Signed-off-by: Jerome Brunet<jbrunet@baylibre.com>
 > ---
->  drivers/gpu/drm/meson/meson_venc.c | 15 ++++++++-------
->  1 file changed, 8 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-> index 514245e..acbbad3 100644
-> --- a/drivers/gpu/drm/meson/meson_venc.c
-> +++ b/drivers/gpu/drm/meson/meson_venc.c
-> @@ -854,6 +854,13 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
->  	unsigned int sof_lines;
->  	unsigned int vsync_lines;
->  
-> +	/* Use VENCI for 480i and 576i and double HDMI pixels */
-> +	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
-> +		hdmi_repeat = true;
-> +		use_enci = true;
-> +		venc_hdmi_latency = 1;
-> +	}
-> +
->  	if (meson_venc_hdmi_supported_vic(vic)) {
->  		vmode = meson_venc_hdmi_get_vic_vmode(vic);
->  		if (!vmode) {
-> @@ -865,13 +872,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
->  	} else {
->  		meson_venc_hdmi_get_dmt_vmode(mode, &vmode_dmt);
->  		vmode = &vmode_dmt;
-> -	}
-> -
-> -	/* Use VENCI for 480i and 576i and double HDMI pixels */
-> -	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
-> -		hdmi_repeat = true;
-> -		use_enci = true;
-> -		venc_hdmi_latency = 1;
-> +		use_enci = false;
->  	}
->  
->  	/* Repeat VENC pixels for 480/576i/p, 720p50/60 and 1080p50/60 */
-> 
+>   Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 3 +++
+>   1 file changed, 3 insertions(+)
 
-Thanks !
+Applied, thanks,
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-I'll apply to drm-misc-fixes !
-
-Neil
+--
+Srini
