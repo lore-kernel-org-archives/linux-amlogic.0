@@ -1,21 +1,24 @@
 From: robh@kernel.org (Rob Herring)
-Date: Mon, 12 Nov 2018 17:37:12 -0600
-Subject: [PATCH 1/2] dt-bindings: display: amlogic,
- meson-vpu: Add optional canvas provider node
-In-Reply-To: <20181105104508.23090-2-mjourdan@baylibre.com>
-References: <20181105104508.23090-1-mjourdan@baylibre.com>
- <20181105104508.23090-2-mjourdan@baylibre.com>
-Message-ID: <5bea0eaa.1c69fb81.74dd1.04b5@mx.google.com>
+Date: Mon, 12 Nov 2018 18:24:04 -0600
+Subject: [PATCH v4 1/2] dt-bindings: clk: meson-g12a: Add G12A EE Clock
+ Bindings
+In-Reply-To: <1541682912-120480-2-git-send-email-jian.hu@amlogic.com>
+References: <1541682912-120480-1-git-send-email-jian.hu@amlogic.com>
+ <1541682912-120480-2-git-send-email-jian.hu@amlogic.com>
+Message-ID: <20181113002404.GA31672@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Mon,  5 Nov 2018 11:45:07 +0100, Maxime Jourdan wrote:
-> Allows using the new canvas provider module if present.
+On Thu, 8 Nov 2018 21:15:10 +0800, Jian Hu wrote:
+> Add new clock controller compatible and dt-bingdings headers
+> for the Everything-Else domain of the g12a SoC
 > 
-> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/clock/amlogic,gxbb-clkc.txt           |  1 +
+>  include/dt-bindings/clock/g12a-clkc.h              | 93 ++++++++++++++++++++++
+>  2 files changed, 94 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/g12a-clkc.h
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
