@@ -1,44 +1,65 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 13 Nov 2018 14:34:08 +0100
-Subject: [PATCH] pinctrl: meson: fix pull enable register calculation
-In-Reply-To: <20181113105536.6459-1-jbrunet@baylibre.com>
-References: <20181113105536.6459-1-jbrunet@baylibre.com>
-Message-ID: <cee83bac-a55a-0c60-e410-9c1ce4c6b60d@baylibre.com>
+From: jbrunet@baylibre.com (jbrunet at baylibre.com)
+Date: Tue, 13 Nov 2018 15:18:55 +0100
+Subject: [PATCH v2 0/4] clk: meson: Add video clocks path
+In-Reply-To: <1541516257-16157-1-git-send-email-narmstrong@baylibre.com>
+References: <1541516257-16157-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <f7679f4c93aca9a11b9078611b6c4952e83c9a9e.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 13/11/2018 11:55, Jerome Brunet wrote:
-> We just changed the code so we apply bias disable on the correct
-> register but forgot to align the register calculation. The result
-> is that we apply the change on the correct register, but possibly
-> at the incorrect offset/bit
+On Tue, 2018-11-06 at 15:57 +0100, Neil Armstrong wrote:
+> This patchset is an attempt to handle the Amlogic Meson GX Video clock
+> in the Common Clock Framework in order to move the video pipeline and
+> HDMI controller clock management out of the Meson DRM Driver.
 > 
-> This went undetected because offsets tends to be the same between
-> REG_PULL and REG_PULLEN for a given pin the EE controller. This
-> is not true for the AO controller.
+> In order :
+> - Add support the VID_PLL fully programmable divider used right after the
+>   HDMI PLL clock source.
+> - Fix the GXL HDMI PLL DCO
+> - Add the video clock bindings covering all the video graphics pipeline
+>   and the HDMI controller.
+> - Add the clocks entries used in the video clock path
 > 
-> Fixes: e39f9dd8206a ("pinctrl: meson: fix pinconf bias disable")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/pinctrl/meson/pinctrl-meson.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> The vid_pll programmable divider is introduced in its R/O form right now,
+> but will be extended to be R/W in a next iteration.
 > 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index 53d449076dee..ea87d739f534 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -191,7 +191,8 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
->  		case PIN_CONFIG_BIAS_DISABLE:
->  			dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
->  
-> -			meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
-> +			meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg,
-> +					       &bit);
->  			ret = regmap_update_bits(pc->reg_pullen, reg,
->  						 BIT(bit), 0);
->  			if (ret)
+> All dividers are flagged with CLK_GET_RATE_NOCACHE, and all gates are
+> flagged
+> with CLK_IGNORE_UNUSED since they are currently directly handled by the
+> Meson DRM Driver.
+> 
+> Once the DRM Driver is fully migrated to using the Common Clock Framework
+> to handle the video clock tree, the CLK_GET_RATE_NOCACHE and
+> CLK_IGNORE_UNUSED
+> will be dropped.
+> 
+> Changes since v1 at [1]:
+>  - Fixed comments from Martin
+>  - Fixed GXL HDMI PLL DCO
+>  - Added the missing HDMI controller clock
+>  - Moved bindings to a separate patch
+>  - Updated the commit logs
+> 
+> [1] 
+> https://lkml.kernel.org/r/1532079581-978-1-git-send-email-narmstrong at baylibre.com
+> 
+> Neil Armstrong (4):
+>   clk: meson: Add vid_pll divider driver
+>   clk: meson-gxbb: Fix HDMI PLL for GXL SoCs
+>   dt-bindings: clk: meson-gxbb: Add Video clock bindings
+>   clk: meson-gxbb: Add video clocks
+> 
+>  drivers/clk/meson/Makefile            |   2 +-
+>  drivers/clk/meson/clkc.h              |   6 +
+>  drivers/clk/meson/gxbb.c              | 773
+> +++++++++++++++++++++++++++++++++-
+>  drivers/clk/meson/gxbb.h              |  26 +-
+>  drivers/clk/meson/vid-pll-div.c       |  91 ++++
+>  include/dt-bindings/clock/gxbb-clkc.h |  18 +
+>  6 files changed, 911 insertions(+), 5 deletions(-)
+>  create mode 100644 drivers/clk/meson/vid-pll-div.c
 > 
 
-I saw it aswell,
+Looks sane enough ;)
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
