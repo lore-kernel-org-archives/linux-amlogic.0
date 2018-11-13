@@ -1,26 +1,34 @@
-From: srinivas.kandagatla@linaro.org (Srinivas Kandagatla)
-Date: Tue, 13 Nov 2018 09:06:19 +0000
-Subject: [PATCH 4/4] nvmem: meson-efuse: add peripheral clock
-In-Reply-To: <20181030102231.4851-5-jbrunet@baylibre.com>
-References: <20181030102231.4851-1-jbrunet@baylibre.com>
- <20181030102231.4851-5-jbrunet@baylibre.com>
-Message-ID: <256195a8-db8b-0945-090f-a63e5e665b15@linaro.org>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 13 Nov 2018 11:38:38 +0100
+Subject: [PATCH u-boot] clk: meson: fix clk81 divider calculation
+Message-ID: <20181113103838.7167-1-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+From: Jerome Brunet <jbrunet@baylibre.com>
 
+clk81 divider is 0 based (meaning that 0 value in the register means
+divide by 1). Fix clk81 rate calculation for this.
 
-On 30/10/18 10:22, Jerome Brunet wrote:
-> Get and enable the peripheral clock required by the efuse device.
-> The driver has been handle to work without it so far because the
-> clock was left enabled by default but it won't be the case soon.
-> 
-> Signed-off-by: Jerome Brunet<jbrunet@baylibre.com>
-> ---
->   drivers/nvmem/meson-efuse.c | 25 +++++++++++++++++++++++++
->   1 file changed, 25 insertions(+)
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/clk/clk_meson.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Applied, thanks,
-
---
-Srini
+diff --git a/drivers/clk/clk_meson.c b/drivers/clk/clk_meson.c
+index 236d7342b7..c44858822d 100644
+--- a/drivers/clk/clk_meson.c
++++ b/drivers/clk/clk_meson.c
+@@ -600,7 +600,8 @@ static unsigned long meson_clk81_get_rate(struct clk *clk)
+ 	reg = readl(priv->addr + HHI_MPEG_CLK_CNTL);
+ 	reg = reg & ((1 << 7) - 1);
+ 
+-	return parent_rate / reg;
++	/* clk81 divider is zero based */
++	return parent_rate / (reg + 1);
+ }
+ 
+ static long mpll_rate_from_params(unsigned long parent_rate,
+-- 
+2.19.1
