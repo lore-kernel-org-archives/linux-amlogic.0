@@ -1,68 +1,44 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 13 Nov 2018 14:32:36 +0100
-Subject: [PATCH 0/2] drm/meson: Allow using optional canvas provider
-In-Reply-To: <CAMO6nax_Q4kbDkeBmYQezo9dpMztD4DMFh+1dewax4p6d_S7mw@mail.gmail.com>
-References: <20181105104508.23090-1-mjourdan@baylibre.com>
- <1a3d3b7a-5050-7b4c-bda6-8ef532403d01@baylibre.com>
- <CAMO6nax_Q4kbDkeBmYQezo9dpMztD4DMFh+1dewax4p6d_S7mw@mail.gmail.com>
-Message-ID: <ec49e7c1-8ca6-b442-10dc-1f15a15917bc@baylibre.com>
+Date: Tue, 13 Nov 2018 14:33:09 +0100
+Subject: [PATCH 0/3] drm/meson: Add support for Overlay and OSD Plane
+ scaling
+In-Reply-To: <1541497202-20570-1-git-send-email-narmstrong@baylibre.com>
+References: <1541497202-20570-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <66e1a959-3809-8ee1-9eab-d4409b340a85@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 05/11/2018 15:02, Maxime Jourdan wrote:
-> Hi Neil,
+On 06/11/2018 10:39, Neil Armstrong wrote:
+> This serie adds support for :
+> - Overlay Plane blended with the primary plane, we can describe as "behind"
+> - Primary Plane up-scaling up to 5x factor to support the OSD plane being
+>   upscaled from 1920x1080 when the display mode is set as 3840x2160.
 > 
-> On Mon, Nov 5, 2018 at 1:51 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Hi Maxime,
->>
->> On 05/11/2018 11:45, Maxime Jourdan wrote:
->>> The meson DRM driver currently uses constant, static canvas indexes.
->>>
->>> This is not optimal and could conflict with other drivers also using
->>> canvases.
->>
->> Indeed, it's now time to use the canvas provider merged in 4.20-rc1 !
->>
->>>
->>> This patch series allows the driver to optionnally use a canvas provider
->>> module that is able to dispatch canvases, on demand and free of conflict.
->>>
->>> In the future, the current way of doing things will be deprecated.
->>
->> Do you confirm you will send a patch to remove the legacy canvas code when
->> everything is merged (including DT changes) ?
->>
->> I'll wait until the bindings are reviewed, then I'll push the serie to drm-misc-next.
->>
+> These patches depends on the "drm/meson: Allow using optional canvas provider"
+> patchset from Maxime Jourdan at [1]
 > 
-> Yes, ultimately it will be removed.
+> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=38355
 > 
-> The plan is:
+> Neil Armstrong (3):
+>   drm/meson: Support Overlay plane for video rendering
+>   drm/meson: move OSD scaler management into plane atomic update
+>   drm/meson: Add primary plane scaling
 > 
-> 4.21: allow using both modes, add the "amlogic,canvas" property to the dts files
-> 4.22: remove the old way and change the amlogic,canvas property to mandatory
+>  drivers/gpu/drm/meson/Makefile          |   2 +-
+>  drivers/gpu/drm/meson/meson_canvas.c    |   7 +-
+>  drivers/gpu/drm/meson/meson_canvas.h    |  11 +-
+>  drivers/gpu/drm/meson/meson_crtc.c      | 251 +++++++++++++-
+>  drivers/gpu/drm/meson/meson_drv.c       |  29 +-
+>  drivers/gpu/drm/meson/meson_drv.h       |  62 ++++
+>  drivers/gpu/drm/meson/meson_overlay.c   | 586 ++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/meson/meson_overlay.h   |  14 +
+>  drivers/gpu/drm/meson/meson_plane.c     | 177 ++++++++--
+>  drivers/gpu/drm/meson/meson_registers.h |   3 +
+>  drivers/gpu/drm/meson/meson_viu.c       |  15 +
+>  drivers/gpu/drm/meson/meson_vpp.c       |  90 +++--
+>  12 files changed, 1156 insertions(+), 91 deletions(-)
+>  create mode 100644 drivers/gpu/drm/meson/meson_overlay.c
+>  create mode 100644 drivers/gpu/drm/meson/meson_overlay.h
 > 
-> This should allow for a nice transition.
-> 
-> Maxime
-> 
->> Thanks,
->> Neil
->>
->>>
->>> Maxime Jourdan (2):
->>>   dt-bindings: display: amlogic, meson-vpu: Add optional canvas provider
->>>     node
->>>   drm/meson: Use optional canvas provider
->>>
->>>  .../bindings/display/amlogic,meson-vpu.txt    |  2 +
->>>  drivers/gpu/drm/meson/Kconfig                 |  1 +
->>>  drivers/gpu/drm/meson/meson_crtc.c            | 14 ++++--
->>>  drivers/gpu/drm/meson/meson_drv.c             | 46 ++++++++++++-------
->>>  drivers/gpu/drm/meson/meson_drv.h             |  4 ++
->>>  drivers/gpu/drm/meson/meson_plane.c           |  8 +++-
->>>  6 files changed, 53 insertions(+), 22 deletions(-)
->>>
 
 Applied
