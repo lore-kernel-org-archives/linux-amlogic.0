@@ -1,44 +1,44 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Tue, 13 Nov 2018 14:33:09 +0100
-Subject: [PATCH 0/3] drm/meson: Add support for Overlay and OSD Plane
- scaling
-In-Reply-To: <1541497202-20570-1-git-send-email-narmstrong@baylibre.com>
-References: <1541497202-20570-1-git-send-email-narmstrong@baylibre.com>
-Message-ID: <66e1a959-3809-8ee1-9eab-d4409b340a85@baylibre.com>
+Date: Tue, 13 Nov 2018 14:34:08 +0100
+Subject: [PATCH] pinctrl: meson: fix pull enable register calculation
+In-Reply-To: <20181113105536.6459-1-jbrunet@baylibre.com>
+References: <20181113105536.6459-1-jbrunet@baylibre.com>
+Message-ID: <cee83bac-a55a-0c60-e410-9c1ce4c6b60d@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 06/11/2018 10:39, Neil Armstrong wrote:
-> This serie adds support for :
-> - Overlay Plane blended with the primary plane, we can describe as "behind"
-> - Primary Plane up-scaling up to 5x factor to support the OSD plane being
->   upscaled from 1920x1080 when the display mode is set as 3840x2160.
+On 13/11/2018 11:55, Jerome Brunet wrote:
+> We just changed the code so we apply bias disable on the correct
+> register but forgot to align the register calculation. The result
+> is that we apply the change on the correct register, but possibly
+> at the incorrect offset/bit
 > 
-> These patches depends on the "drm/meson: Allow using optional canvas provider"
-> patchset from Maxime Jourdan at [1]
+> This went undetected because offsets tends to be the same between
+> REG_PULL and REG_PULLEN for a given pin the EE controller. This
+> is not true for the AO controller.
 > 
-> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=38355
+> Fixes: e39f9dd8206a ("pinctrl: meson: fix pinconf bias disable")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/pinctrl/meson/pinctrl-meson.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Neil Armstrong (3):
->   drm/meson: Support Overlay plane for video rendering
->   drm/meson: move OSD scaler management into plane atomic update
->   drm/meson: Add primary plane scaling
-> 
->  drivers/gpu/drm/meson/Makefile          |   2 +-
->  drivers/gpu/drm/meson/meson_canvas.c    |   7 +-
->  drivers/gpu/drm/meson/meson_canvas.h    |  11 +-
->  drivers/gpu/drm/meson/meson_crtc.c      | 251 +++++++++++++-
->  drivers/gpu/drm/meson/meson_drv.c       |  29 +-
->  drivers/gpu/drm/meson/meson_drv.h       |  62 ++++
->  drivers/gpu/drm/meson/meson_overlay.c   | 586 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/meson/meson_overlay.h   |  14 +
->  drivers/gpu/drm/meson/meson_plane.c     | 177 ++++++++--
->  drivers/gpu/drm/meson/meson_registers.h |   3 +
->  drivers/gpu/drm/meson/meson_viu.c       |  15 +
->  drivers/gpu/drm/meson/meson_vpp.c       |  90 +++--
->  12 files changed, 1156 insertions(+), 91 deletions(-)
->  create mode 100644 drivers/gpu/drm/meson/meson_overlay.c
->  create mode 100644 drivers/gpu/drm/meson/meson_overlay.h
+> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+> index 53d449076dee..ea87d739f534 100644
+> --- a/drivers/pinctrl/meson/pinctrl-meson.c
+> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
+> @@ -191,7 +191,8 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+>  		case PIN_CONFIG_BIAS_DISABLE:
+>  			dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
+>  
+> -			meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
+> +			meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg,
+> +					       &bit);
+>  			ret = regmap_update_bits(pc->reg_pullen, reg,
+>  						 BIT(bit), 0);
+>  			if (ret)
 > 
 
-Applied
+I saw it aswell,
+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
