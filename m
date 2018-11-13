@@ -1,131 +1,61 @@
-From: sashal@kernel.org (Sasha Levin)
-Date: Tue, 13 Nov 2018 00:50:44 -0500
-Subject: [PATCH AUTOSEL 4.18 30/39] clk: meson: clk-pll: drop
- CLK_GET_RATE_NOCACHE where unnecessary
-In-Reply-To: <20181113055053.78352-1-sashal@kernel.org>
-References: <20181113055053.78352-1-sashal@kernel.org>
-Message-ID: <20181113055053.78352-30-sashal@kernel.org>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Tue, 13 Nov 2018 09:35:04 +0100
+Subject: [PATCH] drm/meson: venc: dmt mode must use encp
+In-Reply-To: <1542048069-22603-1-git-send-email-jramirez@baylibre.com>
+References: <1542048069-22603-1-git-send-email-jramirez@baylibre.com>
+Message-ID: <9f20e9d1-2e15-c087-db52-674300d7581d@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+On 12/11/2018 19:41, Jorge Ramirez-Ortiz wrote:
+> From: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
+> 
+> The video mode for DMT is only populated to support encp.
+> 
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
+> ---
+>  drivers/gpu/drm/meson/meson_venc.c | 15 ++++++++-------
+>  1 file changed, 8 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+> index 514245e..acbbad3 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.c
+> +++ b/drivers/gpu/drm/meson/meson_venc.c
+> @@ -854,6 +854,13 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+>  	unsigned int sof_lines;
+>  	unsigned int vsync_lines;
+>  
+> +	/* Use VENCI for 480i and 576i and double HDMI pixels */
+> +	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
+> +		hdmi_repeat = true;
+> +		use_enci = true;
+> +		venc_hdmi_latency = 1;
+> +	}
+> +
+>  	if (meson_venc_hdmi_supported_vic(vic)) {
+>  		vmode = meson_venc_hdmi_get_vic_vmode(vic);
+>  		if (!vmode) {
+> @@ -865,13 +872,7 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
+>  	} else {
+>  		meson_venc_hdmi_get_dmt_vmode(mode, &vmode_dmt);
+>  		vmode = &vmode_dmt;
+> -	}
+> -
+> -	/* Use VENCI for 480i and 576i and double HDMI pixels */
+> -	if (mode->flags & DRM_MODE_FLAG_DBLCLK) {
+> -		hdmi_repeat = true;
+> -		use_enci = true;
+> -		venc_hdmi_latency = 1;
+> +		use_enci = false;
+>  	}
+>  
+>  	/* Repeat VENC pixels for 480/576i/p, 720p50/60 and 1080p50/60 */
+> 
 
-[ Upstream commit 2303a9ca693e585a558497ad737728fec97e2b8a ]
+Thanks !
 
-CLK_GET_RATE_NOCACHE should only be necessary when the registers
-controlling the rate of clock may change outside of CCF. On Amlogic,
-it should only be the case for the hdmi pll which is directly controlled
-by the display driver (WIP to fix this).
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
-The other plls should not require this flag.
+I'll apply to drm-misc-fixes !
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/clk/meson/axg.c     |  1 -
- drivers/clk/meson/gxbb.c    | 12 ++++++++----
- drivers/clk/meson/meson8b.c |  3 ---
- 3 files changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index bd4dbc696b88..00e7ebc65a43 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -97,7 +97,6 @@ static struct clk_regmap axg_sys_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 177fffb9ebef..46ede408c993 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -214,7 +214,6 @@ static struct clk_regmap gxbb_fixed_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
-@@ -277,6 +276,10 @@ static struct clk_regmap gxbb_hdmi_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "hdmi_pll_pre_mult" },
- 		.num_parents = 1,
-+		/*
-+		 * Display directly handle hdmi pll registers ATM, we need
-+		 * NOCACHE to keep our view of the clock as accurate as possible
-+		 */
- 		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
-@@ -335,6 +338,10 @@ static struct clk_regmap gxl_hdmi_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
-+		/*
-+		 * Display directly handle hdmi pll registers ATM, we need
-+		 * NOCACHE to keep our view of the clock as accurate as possible
-+		 */
- 		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
-@@ -372,7 +379,6 @@ static struct clk_regmap gxbb_sys_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
-@@ -419,7 +425,6 @@ static struct clk_regmap gxbb_gp0_pll = {
- 		.ops = &meson_clk_pll_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
-@@ -473,7 +478,6 @@ static struct clk_regmap gxl_gp0_pll = {
- 		.ops = &meson_clk_pll_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 7447d96a265f..74697e145dde 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -132,7 +132,6 @@ static struct clk_regmap meson8b_fixed_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
-@@ -169,7 +168,6 @@ static struct clk_regmap meson8b_vid_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
-@@ -207,7 +205,6 @@ static struct clk_regmap meson8b_sys_pll = {
- 		.ops = &meson_clk_pll_ro_ops,
- 		.parent_names = (const char *[]){ "xtal" },
- 		.num_parents = 1,
--		.flags = CLK_GET_RATE_NOCACHE,
- 	},
- };
- 
--- 
-2.17.1
+Neil
