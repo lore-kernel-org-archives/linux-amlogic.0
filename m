@@ -1,34 +1,26 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 15 Nov 2018 00:05:54 +0100
-Subject: [PATCH] ARM: multi_v7_defconfig: switch CONFIG_PWM_MESON to built-in
-Message-ID: <20181114230554.4968-1-martin.blumenstingl@googlemail.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Wed, 14 Nov 2018 15:23:48 -0800
+Subject: [PATCH] ARM64: dts: meson-gxl-s905x-khadas-vim enable Bluetooth
+In-Reply-To: <1539432427-11779-1-git-send-email-christianshewitt@gmail.com>
+References: <1539432427-11779-1-git-send-email-christianshewitt@gmail.com>
+Message-ID: <7hpnv7gs57.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Some Meson8b boards (Odroid-C1, EC-100) use a PWM regulator which is the
-voltage supply of the CPU cores (this regulator is typically called
-"VCCK").
-Now that we are preparing support for CPU frequency scaling on Meson8,
-Meson8b and Meson8m2 we should build the pwm-meson driver into the
-kernel so we can configure the CPU voltage early in the boot process.
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/configs/multi_v7_defconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> This enables Bluetooth support for the following models:
+>
+> - Khadas VIM basic (AP6212) using firmware BCM43438A1.hcd
+> - Khadas VIM pro (AP6255) using firmware BCM4345C0.hcd
+>
+> The AP6212 module used on the VIM basic has an ID clash with another
+> device. To get Bluetooth working you either need to apply a kernel
+> patch to drivers/bluetooth/btbcm.c so 0x2209 loads BCM43438A1 or the
+> BCM43438A1.hcd firmware must be renamed to BCM43430A1.hcd.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 63af6234c1b6..525316285570 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -928,7 +928,7 @@ CONFIG_PWM_ATMEL_TCB=m
- CONFIG_PWM_BCM2835=y
- CONFIG_PWM_BRCMSTB=m
- CONFIG_PWM_FSL_FTM=m
--CONFIG_PWM_MESON=m
-+CONFIG_PWM_MESON=y
- CONFIG_PWM_RCAR=m
- CONFIG_PWM_RENESAS_TPU=y
- CONFIG_PWM_ROCKCHIP=m
--- 
-2.19.1
+Queued for v4.21 (applied to v4.21/dt64 branch),
+
+Kevin
