@@ -1,46 +1,59 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 14 Nov 2018 23:33:52 +0100
-Subject: [PATCH 0/2] clocksource/meson6_timer: implement ARM delay timer
-In-Reply-To: <20181028125501.17336-1-martin.blumenstingl@googlemail.com>
-References: <20181028125501.17336-1-martin.blumenstingl@googlemail.com>
-Message-ID: <CAFBinCDUYwDn8e4wOKzRCeKMgE0Ey8e_RhmPKim60sbrHBq_Xw@mail.gmail.com>
+Date: Wed, 14 Nov 2018 23:57:18 +0100
+Subject: [RFC v1 0/7] Meson8b: make the CPU clock mutable
+Message-ID: <20181114225725.2821-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Daniel, Hi Thomas,
+This allows changing the CPU clock on the 32-bit Amlogic Meson SoCs
+(Meson8, Meson8b and Meson8m2).
+CPU frequency scaling will be enabled with a separate series by adding
+the CPU clock and the OPP tables to meson8.dtsi and meson8b.dtsi.
 
-On Sun, Oct 28, 2018 at 1:55 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> While trying to add support for the ARM TWD Timer and the ARM Global
-> Timer on Meson8, Meson8b and Meson8m2 (ARM Cortex-A5 and Cortex-A9 SoCs)
-> I did a review of the existing driver.
-> Unfortunately I found it hard to review because the pre-processor
-> #defines did not match the names from the public S805 datasheet. Thus
-> patch #1 adjusts these. No functional changes here, this is just
-> preparation work for patch #2.
->
-> Using the ARM Global Timer (drivers/clocksource/arm_global_timer.c)
-> would have given us a timer-based delay implementation (so udelay() and
-> friends would use the timer instead of using a loop-based delay
-> implementation). Unfortunately we can't use the ARM Global Timer yet
-> because it's input clock is derived from the CPU clock (which can change
-> once we enable CPU frequency scaling on these SoCs, for which I will be
-> sending patches in the near future).
-> Amlogic's 3.10 kernel uses Timer E as delay timer which (with the
-> current configuration) has a resolution of 1us. So patch #2 uses
-> register_current_timer_delay() to register Timer E as ARM delay timer
-> (which will be especially useful as we have to use udelay() when
-> changing the CPU clocks during DVFS).
->
->
-> Martin Blumenstingl (2):
->   clocksource: meson6_timer: use register names from the datasheet
->   clocksource: meson6_timer: implement ARM delay timer
-(gentle ping) can you please queue these two patches for v4.21?
-if not: please let me know what I can improve, then I'll fix that and send a v2
+While changing the CPU frequency (sys_pll or any of it's post-dividers)
+we need to run the CPU clock off the XTAL clock. Otherwise the system
+will lock up because we need to disable the sys_pll to change it's
+rate.
+
+This also makes the clk-pll's .enable hook a no-op if the clock is
+already enabled. Otherwise we're getting lockups when calling the
+first clk_{prepare_}enable on the sys_pll or any of it's children (as
+the CCF propagates the enable event up to the sys_pll). This is because
+the .enable hook unconditionally disables and enables the clock.
+However, we can't disable that clock (not even temporarily) if the CPU
+is running off sys_pll.
+
+Additionally this adds support for more M/N combinations in sys_pll to
+achieve all of the OPPs on Meson8b and all OPPs <= 1608 MHz on Meson8
+and Meson8m2.
+
+Compared to Amlogic's 3.10 kernel there's one notable difference: we
+are actually allowing changes to the sys_pll. Amlogic's kernel sets
+sys_pll to a fixed rate during boot and then uses a timer generate a
+"virtual clock rate" by toggling between various dividers (for example:
+sys_pll is set to 1536MHz. to achieve 1008MHz they are toggling every
+2500us between 1536MHZ and 768MHz so the average over <period, for
+example one second> is 1008MHz).
+I could reproduce any situation where changing sys_pll failed (for
+example due to high temperature). To prove that I ran "stress --cpu 4"
+for multiple hours and then cycled through all available CPU
+frequencies (while keeping "stress" running in the background). This
+worked fine on my Meson8b Odroid-C1 and EC-100 boards as well as my
+Meson8m2 board.
 
 
-thank you!
-Regards
-Martin
+Martin Blumenstingl (7):
+  clk: meson: meson8b: run from the XTAL when changing the CPU frequency
+  clk: meson: meson8b: do not use cpu_div3 for cpu_scale_out_sel
+  clk: meson: clk-pll: check if the clock is already enabled
+  clk: meson: clk-pll: add the is_enabled function in the clk_ops
+  clk: meson: meson8b: mark the CPU clock as CLK_IS_CRITICAL
+  clk: meson: meson8b: add support for more M/N values in sys_pll
+  clk: meson: meson8b: allow changing the CPU clock tree
+
+ drivers/clk/meson/clk-pll.c | 23 +++++++++
+ drivers/clk/meson/meson8b.c | 94 +++++++++++++++++++++++++++++++++----
+ 2 files changed, 108 insertions(+), 9 deletions(-)
+
+-- 
+2.19.1
