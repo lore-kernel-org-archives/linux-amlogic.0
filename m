@@ -1,62 +1,49 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Wed, 14 Nov 2018 23:57:20 +0100
-Subject: [RFC v1 2/7] clk: meson: meson8b: do not use cpu_div3 for
- cpu_scale_out_sel
+Date: Wed, 14 Nov 2018 23:57:23 +0100
+Subject: [RFC v1 5/7] clk: meson: meson8b: mark the CPU clock as
+ CLK_IS_CRITICAL
 In-Reply-To: <20181114225725.2821-1-martin.blumenstingl@googlemail.com>
 References: <20181114225725.2821-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181114225725.2821-3-martin.blumenstingl@googlemail.com>
+Message-ID: <20181114225725.2821-6-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The cpu_div3 clock (cpu_in divided by 3) generates a signal with a duty
-cycle of 33%. The CPU clock however requires a clock signal with a duty
-cycle of 50% to run stable.
-cpu_div3 was observed to be problematic when cycling through all
-available CPU frequencies (with additional patches on top of this one)
-while running "stress --cpu 4" in the background. This caused sporadic
-hangs where the whole system would fully lock up.
+We don't want the common clock framework to disable the "cpu_clk" if
+it's not used by any device. The cpufreq-dt driver does not enable the
+CPU clocks. However, even if it would we would still want the CPU clock
+to be enabled at all times because the CPU clock is also required even
+if we disable CPU frequency scaling on a specific board.
 
-Amlogic's 3.10 kernel code also does not use the cpu_div3 clock either
-when changing the CPU clock.
+The reason why we want the CPU clock to be enabled is a clock further up
+in the tree:
+Since commit 6f888e7bc7bd58 ("clk: meson: clk-pll: add enable bit") the
+sys_pll can be disabled. However, since the CPU clock is derived from
+sys_pll we don't want sys_pll to get disabled. The common clock
+framework takes care of that for us by enabling all parent clocks of our
+CPU clock when we mark the CPU clock with CLK_IS_CRITICAL.
+
+Until now this is not a problem yet because all clocks in the CPU
+clock's tree (including sys_pll) are read-only. However, once we allow
+modifications to the clocks in that tree we will need this.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/clk/meson/meson8b.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/clk/meson/meson8b.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 40e77fe4ba7c..8a3c346e110d 100644
+index 8a3c346e110d..d566dd5bc567 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -608,20 +608,27 @@ static struct clk_regmap meson8b_cpu_scale_div = {
+@@ -646,7 +646,8 @@ static struct clk_regmap meson8b_cpu_clk = {
+ 						  "cpu_scale_out_sel" },
+ 		.num_parents = 2,
+ 		.flags = (CLK_SET_RATE_PARENT |
+-			  CLK_SET_RATE_NO_REPARENT),
++			  CLK_SET_RATE_NO_REPARENT |
++			  CLK_IS_CRITICAL),
  	},
  };
  
-+static u32 mux_table_cpu_scale_out_sel[] = { 0, 1, 3 };
- static struct clk_regmap meson8b_cpu_scale_out_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL0,
- 		.mask = 0x3,
- 		.shift = 2,
-+		.table = mux_table_cpu_scale_out_sel,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "cpu_scale_out_sel",
- 		.ops = &clk_regmap_mux_ro_ops,
-+		/*
-+		 * NOTE: We are skipping the parent with value 0x2 (which is
-+		 * "cpu_div3") because it results in a duty cycle of 33% which
-+		 * makes the system unstable and can result in a lockup of the
-+		 * whole system.
-+		 */
- 		.parent_names = (const char *[]) { "cpu_in_sel",
- 						   "cpu_div2",
--						   "cpu_div3",
- 						   "cpu_scale_div" },
--		.num_parents = 4,
-+		.num_parents = 3,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
- };
 -- 
 2.19.1
