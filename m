@@ -1,48 +1,53 @@
 From: sashal@kernel.org (Sasha Levin)
-Date: Wed, 14 Nov 2018 17:23:09 -0500
-Subject: [PATCH AUTOSEL 4.18 37/59] clk: meson: axg: mark fdiv2 and fdiv3 as
- critical
+Date: Wed, 14 Nov 2018 17:23:08 -0500
+Subject: [PATCH AUTOSEL 4.18 36/59] clk: meson-gxbb: set fclk_div3 as
+ CLK_IS_CRITICAL
 In-Reply-To: <20181114222335.99339-1-sashal@kernel.org>
 References: <20181114222335.99339-1-sashal@kernel.org>
-Message-ID: <20181114222335.99339-37-sashal@kernel.org>
+Message-ID: <20181114222335.99339-36-sashal@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+From: Christian Hewitt <christianshewitt@gmail.com>
 
-[ Upstream commit d6ee1e7e9004d3d246cdfa14196989e0a9466c16 ]
+[ Upstream commit e2576c8bdfd462c34b8a46c0084e7c30b0851bf4 ]
 
-Similar to gxbb and gxl platforms, axg SCPI Cortex-M co-processor
-uses the fdiv2 and fdiv3 to, among other things, provide the cpu
-clock.
+On the Khadas VIM2 (GXM) and LePotato (GXL) board there are problems
+with reboot; e.g. a ~60 second delay between issuing reboot and the
+board power cycling (and in some OS configurations reboot will fail
+and require manual power cycling).
 
-Until clock hand-off mechanism makes its way to CCF and the generic
-SCPI claims platform specific clocks, these clocks must be marked as
-critical to make sure they are never disabled when needed by the
-co-processor.
+Similar to 'commit c987ac6f1f088663b6dad39281071aeb31d450a8 ("clk:
+meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL")' the SCPI Cortex-M4
+Co-Processor seems to depend on FCLK_DIV3 being operational.
+
+Until commit 05f814402d6174369b3b29832cbb5eb5ed287059 ("clk:
+meson: add fdiv clock gates"), this clock was modeled and left on by
+the bootloader.
+
+We don't have precise documentation about the SCPI Co-Processor and
+its clock requirement so we are learning things the hard way.
+
+Marking this clock as critical solves the problem but it should not
+be viewed as final solution. Ideally, the SCPI driver should claim
+these clocks. We also depends on some clock hand-off mechanism
+making its way to CCF, to make sure the clock stays on between its
+registration and the SCPI driver probe.
 
 Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Stephen Boyd <sboyd@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/clk/meson/axg.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/clk/meson/gxbb.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index bd4dbc696b88..cfd26fd7e404 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -320,6 +320,7 @@ static struct clk_regmap axg_fclk_div2 = {
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_names = (const char *[]){ "fclk_div2_div" },
- 		.num_parents = 1,
-+		.flags = CLK_IS_CRITICAL,
- 	},
- };
- 
-@@ -344,6 +345,18 @@ static struct clk_regmap axg_fclk_div3 = {
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 177fffb9ebef..902c63209785 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -523,6 +523,18 @@ static struct clk_regmap gxbb_fclk_div3 = {
  		.ops = &clk_regmap_gate_ops,
  		.parent_names = (const char *[]){ "fclk_div3_div" },
  		.num_parents = 1,
