@@ -1,27 +1,54 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 14 Nov 2018 11:25:17 +0100
-Subject: [PATCH u-boot v3 0/3] Add Amlogic Meson SPI Flash Controller driver
-Message-ID: <20181114102520.25346-1-narmstrong@baylibre.com>
+Date: Wed, 14 Nov 2018 11:25:19 +0100
+Subject: [PATCH u-boot v3 2/3] test: regmap: add regmap_read_poll_timeout test
+In-Reply-To: <20181114102520.25346-1-narmstrong@baylibre.com>
+References: <20181114102520.25346-1-narmstrong@baylibre.com>
+Message-ID: <20181114102520.25346-3-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson SoCs embeds a Flash oriented SPI Controller name SPIFC.
+Add test to regmap_read_poll_timeout() helper to check the timeout works
+properly but cannot test proper condition matching since read/write calls
+are not executed in sandbox.
 
-This patchset add the driver ported from linux, but also import the regmap
-regmap_read_poll_timeout() to implify the register polling in the driver.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ test/dm/regmap.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-Neil Armstrong (3):
-  regmap: add regmap_read_poll_timeout() helper
-  test: regmap: add regmap_read_poll_timeout test
-  spi: Add Amlogic Meson SPI Flash Controller driver
-
- drivers/spi/Kconfig       |   8 +
- drivers/spi/Makefile      |   1 +
- drivers/spi/meson_spifc.c | 330 ++++++++++++++++++++++++++++++++++++++
- include/regmap.h          |  38 +++++
- test/dm/regmap.c          |  26 +++
- 5 files changed, 403 insertions(+)
- create mode 100644 drivers/spi/meson_spifc.c
-
+diff --git a/test/dm/regmap.c b/test/dm/regmap.c
+index d4b86b3b03..00d61fe38c 100644
+--- a/test/dm/regmap.c
++++ b/test/dm/regmap.c
+@@ -116,3 +116,29 @@ static int dm_test_regmap_rw(struct unit_test_state *uts)
+ }
+ 
+ DM_TEST(dm_test_regmap_rw, DM_TESTF_SCAN_PDATA | DM_TESTF_SCAN_FDT);
++
++/* Read polling test */
++static int dm_test_regmap_poll(struct unit_test_state *uts)
++{
++	struct udevice *dev;
++	struct regmap *map;
++	uint reg;
++	unsigned long start;
++
++	ut_assertok(uclass_get_device(UCLASS_SYSCON, 0, &dev));
++	map = syscon_get_regmap(dev);
++	ut_assertok_ptr(map);
++
++	start = get_timer(0);
++
++	ut_asserteq(-ETIMEDOUT,
++		    regmap_read_poll_timeout(map, 0, reg,
++					     (reg == 0xcacafafa),
++					     1, 5 * CONFIG_SYS_HZ));
++
++	ut_assert(get_timer(start) > (5 * CONFIG_SYS_HZ));
++
++	return 0;
++}
++
++DM_TEST(dm_test_regmap_poll, DM_TESTF_SCAN_PDATA | DM_TESTF_SCAN_FDT);
 -- 
 2.19.1
