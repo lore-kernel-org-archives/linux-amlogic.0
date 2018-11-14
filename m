@@ -1,70 +1,46 @@
-From: sashal@kernel.org (Sasha Levin)
-Date: Wed, 14 Nov 2018 17:23:08 -0500
-Subject: [PATCH AUTOSEL 4.18 36/59] clk: meson-gxbb: set fclk_div3 as
- CLK_IS_CRITICAL
-In-Reply-To: <20181114222335.99339-1-sashal@kernel.org>
-References: <20181114222335.99339-1-sashal@kernel.org>
-Message-ID: <20181114222335.99339-36-sashal@kernel.org>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Wed, 14 Nov 2018 23:33:52 +0100
+Subject: [PATCH 0/2] clocksource/meson6_timer: implement ARM delay timer
+In-Reply-To: <20181028125501.17336-1-martin.blumenstingl@googlemail.com>
+References: <20181028125501.17336-1-martin.blumenstingl@googlemail.com>
+Message-ID: <CAFBinCDUYwDn8e4wOKzRCeKMgE0Ey8e_RhmPKim60sbrHBq_Xw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Christian Hewitt <christianshewitt@gmail.com>
+Hi Daniel, Hi Thomas,
 
-[ Upstream commit e2576c8bdfd462c34b8a46c0084e7c30b0851bf4 ]
+On Sun, Oct 28, 2018 at 1:55 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> While trying to add support for the ARM TWD Timer and the ARM Global
+> Timer on Meson8, Meson8b and Meson8m2 (ARM Cortex-A5 and Cortex-A9 SoCs)
+> I did a review of the existing driver.
+> Unfortunately I found it hard to review because the pre-processor
+> #defines did not match the names from the public S805 datasheet. Thus
+> patch #1 adjusts these. No functional changes here, this is just
+> preparation work for patch #2.
+>
+> Using the ARM Global Timer (drivers/clocksource/arm_global_timer.c)
+> would have given us a timer-based delay implementation (so udelay() and
+> friends would use the timer instead of using a loop-based delay
+> implementation). Unfortunately we can't use the ARM Global Timer yet
+> because it's input clock is derived from the CPU clock (which can change
+> once we enable CPU frequency scaling on these SoCs, for which I will be
+> sending patches in the near future).
+> Amlogic's 3.10 kernel uses Timer E as delay timer which (with the
+> current configuration) has a resolution of 1us. So patch #2 uses
+> register_current_timer_delay() to register Timer E as ARM delay timer
+> (which will be especially useful as we have to use udelay() when
+> changing the CPU clocks during DVFS).
+>
+>
+> Martin Blumenstingl (2):
+>   clocksource: meson6_timer: use register names from the datasheet
+>   clocksource: meson6_timer: implement ARM delay timer
+(gentle ping) can you please queue these two patches for v4.21?
+if not: please let me know what I can improve, then I'll fix that and send a v2
 
-On the Khadas VIM2 (GXM) and LePotato (GXL) board there are problems
-with reboot; e.g. a ~60 second delay between issuing reboot and the
-board power cycling (and in some OS configurations reboot will fail
-and require manual power cycling).
 
-Similar to 'commit c987ac6f1f088663b6dad39281071aeb31d450a8 ("clk:
-meson-gxbb: set fclk_div2 as CLK_IS_CRITICAL")' the SCPI Cortex-M4
-Co-Processor seems to depend on FCLK_DIV3 being operational.
-
-Until commit 05f814402d6174369b3b29832cbb5eb5ed287059 ("clk:
-meson: add fdiv clock gates"), this clock was modeled and left on by
-the bootloader.
-
-We don't have precise documentation about the SCPI Co-Processor and
-its clock requirement so we are learning things the hard way.
-
-Marking this clock as critical solves the problem but it should not
-be viewed as final solution. Ideally, the SCPI driver should claim
-these clocks. We also depends on some clock hand-off mechanism
-making its way to CCF, to make sure the clock stays on between its
-registration and the SCPI driver probe.
-
-Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/clk/meson/gxbb.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 177fffb9ebef..902c63209785 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -523,6 +523,18 @@ static struct clk_regmap gxbb_fclk_div3 = {
- 		.ops = &clk_regmap_gate_ops,
- 		.parent_names = (const char *[]){ "fclk_div3_div" },
- 		.num_parents = 1,
-+		/*
-+		 * FIXME:
-+		 * This clock, as fdiv2, is used by the SCPI FW and is required
-+		 * by the platform to operate correctly.
-+		 * Until the following condition are met, we need this clock to
-+		 * be marked as critical:
-+		 * a) The SCPI generic driver claims and enable all the clocks
-+		 *    it needs
-+		 * b) CCF has a clock hand-off mechanism to make the sure the
-+		 *    clock stays on until the proper driver comes along
-+		 */
-+		.flags = CLK_IS_CRITICAL,
- 	},
- };
- 
--- 
-2.17.1
+thank you!
+Regards
+Martin
