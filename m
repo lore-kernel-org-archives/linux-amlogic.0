@@ -1,69 +1,65 @@
-From: peter@korsgaard.com (Peter Korsgaard)
-Date: Wed, 14 Nov 2018 15:37:25 +0100
-Subject: [PATCH RESEND 2/2] arm64: dts: meson: add libretech aml-s805x-ac
- board
-In-Reply-To: <20181114103855.14571-1-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Wed, 14 Nov 2018 11:38:55 +0100")
-References: <20181114101925.10526-3-jbrunet@baylibre.com>
- <20181114103855.14571-1-jbrunet@baylibre.com>
-Message-ID: <87a7mbvi6y.fsf@dell.be.48ers.dk>
+From: sashal@kernel.org (Sasha Levin)
+Date: Wed, 14 Nov 2018 17:23:09 -0500
+Subject: [PATCH AUTOSEL 4.18 37/59] clk: meson: axg: mark fdiv2 and fdiv3 as
+ critical
+In-Reply-To: <20181114222335.99339-1-sashal@kernel.org>
+References: <20181114222335.99339-1-sashal@kernel.org>
+Message-ID: <20181114222335.99339-37-sashal@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
->>>>> "Jerome" == Jerome Brunet <jbrunet@baylibre.com> writes:
+From: Jerome Brunet <jbrunet@baylibre.com>
 
- > From: Neil Armstrong <narmstrong@baylibre.com>
- > Add Libretech aml-s805x-ac board (aka 'La Frite') support
+[ Upstream commit d6ee1e7e9004d3d246cdfa14196989e0a9466c16 ]
 
- > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
- > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
- > ---
+Similar to gxbb and gxl platforms, axg SCPI Cortex-M co-processor
+uses the fdiv2 and fdiv3 to, among other things, provide the cpu
+clock.
 
-..
+Until clock hand-off mechanism makes its way to CCF and the generic
+SCPI claims platform specific clocks, these clocks must be marked as
+critical to make sure they are never disabled when needed by the
+co-processor.
 
- > +#include "meson-gxl-s905x.dtsi"
- > +
- > +/ {
- > +	compatible = "libretech,aml-s805x-ac", "amlogic,s805x",
- > +		     "amlogic,meson-gxl";
- > +	model = "Libre Computer Board AML-S805X-AC";
+Fixes: 05f814402d61 ("clk: meson: add fdiv clock gates")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/clk/meson/axg.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-No mention of 'La Frite'?
-
- > +	memory at 0 {
- > +		device_type = "memory";
- > +		reg = <0x0 0x0 0x0 0x20000000>;
- > +	};
-
-Maybe add a comment that there's 1GB variants as well?
-
-> +
- > +	vcck: regulator-vcck {
- > +		compatible = "regulator-fixed";
- > +		regulator-name = "VCCK";
- > +		regulator-min-microvolt = <3300000>;
- > +		regulator-max-microvolt = <3300000>;
- > +		vin-supply = <&dc_5v>;
- > +
- > +		/*
- > +		 * This is controlled by GPIOAO_9 we reserve this but
- > +		 * claiming it as done bellow reset the board anyway
-
-s/bellow/below/
-
- > +&spifc {
- > +	status = "okay";
- > +	pinctrl-0 = <&nor_pins>;
- > +	pinctrl-names = "default";
- > +
- > +	w25q32: spi-flash at 0 {
- > +		#address-cells = <1>;
- > +		#size-cells = <1>;
- > +		compatible = "jedec,spi-nor";
- > +		reg = <0>;
- > +		spi-max-frequency = <3000000>;
-
-Is this 3MHz a limitation of the flash, board layout or SPI controller?
-
+diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
+index bd4dbc696b88..cfd26fd7e404 100644
+--- a/drivers/clk/meson/axg.c
++++ b/drivers/clk/meson/axg.c
+@@ -320,6 +320,7 @@ static struct clk_regmap axg_fclk_div2 = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_names = (const char *[]){ "fclk_div2_div" },
+ 		.num_parents = 1,
++		.flags = CLK_IS_CRITICAL,
+ 	},
+ };
+ 
+@@ -344,6 +345,18 @@ static struct clk_regmap axg_fclk_div3 = {
+ 		.ops = &clk_regmap_gate_ops,
+ 		.parent_names = (const char *[]){ "fclk_div3_div" },
+ 		.num_parents = 1,
++		/*
++		 * FIXME:
++		 * This clock, as fdiv2, is used by the SCPI FW and is required
++		 * by the platform to operate correctly.
++		 * Until the following condition are met, we need this clock to
++		 * be marked as critical:
++		 * a) The SCPI generic driver claims and enable all the clocks
++		 *    it needs
++		 * b) CCF has a clock hand-off mechanism to make the sure the
++		 *    clock stays on until the proper driver comes along
++		 */
++		.flags = CLK_IS_CRITICAL,
+ 	},
+ };
+ 
 -- 
-Bye, Peter Korsgaard
+2.17.1
