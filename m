@@ -1,46 +1,33 @@
-From: miquel.raynal@bootlin.com (Miquel Raynal)
-Date: Thu, 15 Nov 2018 14:04:00 +0100
-Subject: [PATCH v6 2/2] mtd: rawnand: meson: add support for Amlogic
- NAND flash controller
-In-Reply-To: <27769252-ac5e-e787-6792-d6a06e7af0e4@amlogic.com>
-References: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
- <1541090542-19618-3-git-send-email-jianxin.pan@amlogic.com>
- <20181105165321.7ea2b45f@bbrezillon>
- <a571904e-6296-bf62-e1fe-e25bf90040bb@amlogic.com>
- <20181106102851.61deb97a@bbrezillon>
- <ff02373e-c97b-182d-5b43-83d1e8f6d51a@amlogic.com>
- <20181106112206.65a70a81@bbrezillon>
- <20181112171351.4ac3506b@xps13>
- <20181112175416.247e3203@bbrezillon>
- <20181112184518.6c02ac6d@bbrezillon>
- <27769252-ac5e-e787-6792-d6a06e7af0e4@amlogic.com>
-Message-ID: <20181115140400.3934effe@xps13>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 15 Nov 2018 16:41:47 +0100
+Subject: [PATCH u-boot v3 0/3] Add Amlogic Meson SPI Flash Controller
+ driver
+In-Reply-To: <20181114102520.25346-1-narmstrong@baylibre.com>
+References: <20181114102520.25346-1-narmstrong@baylibre.com>
+Message-ID: <b27129c3dea56c172c28f71a94fc98c7164af5db.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Liang,
-
-Liang Yang <liang.yang@amlogic.com> wrote on Thu, 15 Nov 2018 19:25:07
-+0800:
-
-> Hi Boris,
+On Wed, 2018-11-14 at 11:25 +0100, Neil Armstrong wrote:
+> The Amlogic Meson SoCs embeds a Flash oriented SPI Controller name SPIFC.
 > 
-> I have implemented dma access base on these helpers you provided below.
-> we prepare to send v7 version now, so when will these helpers be pushed?
+> This patchset add the driver ported from linux, but also import the regmap
+> regmap_read_poll_timeout() to implify the register polling in the driver.
+> 
+> Neil Armstrong (3):
+>   regmap: add regmap_read_poll_timeout() helper
+>   test: regmap: add regmap_read_poll_timeout test
+>   spi: Add Amlogic Meson SPI Flash Controller driver
+> 
+>  drivers/spi/Kconfig       |   8 +
+>  drivers/spi/Makefile      |   1 +
+>  drivers/spi/meson_spifc.c | 330 ++++++++++++++++++++++++++++++++++++++
+>  include/regmap.h          |  38 +++++
+>  test/dm/regmap.c          |  26 +++
+>  5 files changed, 403 insertions(+)
+>  create mode 100644 drivers/spi/meson_spifc.c
+> 
 
-Thanks for your work. You can send the v7 so we will have a look at the
-overall driver; but since we raised the DMA buffers issue we had a
-discussion with Boris about how to handle them and I think we are going
-to adopt the same solution as Wolfram in the I2C subsystem: manual
-flagging. Sadly, this is probably the best we can do to ensure proper
-DMA support.
+Tested-by: Jerome Brunet <jbrunet@baylibre.com>
 
-There is nothing set is stone yet but I started a small rework to
-handle MTD operations differently (and add a DMA_SAFE flag), you can
-have a look there [1]. Don't base your work on it for now as it is just
-a preliminary version, subject to big changes.
-
-[1] https://github.com/miquelraynal/linux/commits/dma-safe-buffers
-
-Thanks,
-Miqu?l
+... on the libretech aml-s805x-ac which should be submitted soon.
