@@ -1,19 +1,21 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 15 Nov 2018 11:58:34 -0800
-Subject: [PATCH] arm64: dts: meson-axg: add secure monitor
-In-Reply-To: <20181108130744.32323-1-jbrunet@baylibre.com>
-References: <20181108130744.32323-1-jbrunet@baylibre.com>
-Message-ID: <7hr2fmdset.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
+Date: Thu, 15 Nov 2018 12:00:41 -0800
+Subject: [PATCH RESEND] arm64: dts: meson-gx: Add hdmi_5v regulator as
+ hdmi tx supply
+In-Reply-To: <1541683478-5173-1-git-send-email-narmstrong@baylibre.com>
+References: <1541683478-5173-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7hmuqadsba.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> Add the secure monitor device to the axg platform.
-> With this, we can read the SoC serial number.
+> The hdmi_5v regulator must be enabled to provide power to the physical HDMI
+> PHY and enables the HDMI 5V presence loopback for the monitor.
 >
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Fixes: b409f625a6d5 ("ARM64: dts: meson-gx: Add HDMI_5V regulator on selected boards")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Queued for v4.21 with Neil's tag (branch: v4.21/dt64)
+Queued for v4.21 (branch v4.21/dt64)
 
 Kevin
