@@ -1,37 +1,19 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 15 Nov 2018 11:49:14 -0800
-Subject: [PATCH RESEND] arm64: dts: meson-axg: fix dtc warning about unit
- address
-In-Reply-To: <20181108095156.26810-1-jbrunet@baylibre.com>
-References: <20181030150614.19461-1-jbrunet@baylibre.com>
- <20181108095156.26810-1-jbrunet@baylibre.com>
-Message-ID: <7hzhuadsud.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
+Date: Thu, 15 Nov 2018 11:54:05 -0800
+Subject: [PATCH 0/4] arm64: dts: meson-gx: fix GPIO lines names
+In-Reply-To: <1541587550-17842-1-git-send-email-narmstrong@baylibre.com>
+References: <1541587550-17842-1-git-send-email-narmstrong@baylibre.com>
+Message-ID: <7hwopedsma.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> section 2.2.1 of the DT specs says: " If the node has no reg property,
-> the @unit-address must be omitted and the node-name alone differentiates
-> the node from other nodes at the same level in the tree"
->
-> Simply replace the '@' with a '-' to fix this warning.
->
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->
-> Hi Kevin,
->
-> I'm resending this change because I noticed the previous patch I sent had
-> references to spdif input which has not been merged yet. This would have
-> triggered a conflict in your tree.
->
-> Hopefully, this new version will apply correctly
+> The gpio line names were set in the pinctrl node instead of the gpio node,
+> at the time it was merged, it worked, but was obviously wrong.
+> This patches moves the properties to the gpio nodes for the board DT having
+> the GPIO lines names.
 
-Thanks for the resend, this version applies (and builds) cleanly.
-
-Queued for v4.21 with Neil's tag (branch: v4.21/dt64)
+Queued for v4.21 (branch: v4.21/dt64)
 
 Kevin
