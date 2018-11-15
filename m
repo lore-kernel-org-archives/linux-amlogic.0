@@ -1,83 +1,79 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 15 Nov 2018 10:13:28 +0100
-Subject: [PATCH RESEND 2/2] arm64: dts: meson: add libretech aml-s805x-ac
- board
-In-Reply-To: <87a7mbvi6y.fsf@dell.be.48ers.dk>
-References: <20181114101925.10526-3-jbrunet@baylibre.com>
- <20181114103855.14571-1-jbrunet@baylibre.com>
- <87a7mbvi6y.fsf@dell.be.48ers.dk>
-Message-ID: <4c2aae46-e34e-aeb4-339d-00a4f4cbf3e7@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 15 Nov 2018 10:14:13 +0100
+Subject: [RFC v1 3/7] clk: meson: clk-pll: check if the clock is already
+ enabled
+In-Reply-To: <20181114225725.2821-4-martin.blumenstingl@googlemail.com>
+References: <20181114225725.2821-1-martin.blumenstingl@googlemail.com>
+ <20181114225725.2821-4-martin.blumenstingl@googlemail.com>
+Message-ID: <b1d223c2d2a9229cfb27275c948a7ff4b3aef93d.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 14/11/2018 15:37, Peter Korsgaard wrote:
->>>>>> "Jerome" == Jerome Brunet <jbrunet@baylibre.com> writes:
+On Wed, 2018-11-14 at 23:57 +0100, Martin Blumenstingl wrote:
+> Since commit 6f888e7bc7bd58 ("clk: meson: clk-pll: add enable bit") our
+> PLLs also support the "enable" bit. Currently meson_clk_pll_enable
+> unconditionally resets the PLL, enables it, takes it out of reset and
+> waits until it is locked.
 > 
->  > From: Neil Armstrong <narmstrong@baylibre.com>
->  > Add Libretech aml-s805x-ac board (aka 'La Frite') support
+> This works fine for our current clock trees. However, there will be a
+> problem once we allow modifications to sys_pll on Meson8, Meson8b and
+> Meson8m2 (which will be required for CPU frequency scaling):
+> the CPU clock is derived from the sys_pll clock. Once clk_enable is
+> called on the CPU clock this will be propagated by the common clock
+> framework up until the sys_pll clock. If we reset the PLL
+> unconditionally in meson_clk_pll_enable the CPU will be stopped (on
+> Meson8, Meson8b and Meson8m2).
+> To prevent this we simply check if the PLL is already enabled and do
+> reset the PLL if it's already enabled and locked.
 > 
->  > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->  > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->  > ---
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/clk/meson/clk-pll.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 > 
-> ..
-> 
->  > +#include "meson-gxl-s905x.dtsi"
->  > +
->  > +/ {
->  > +	compatible = "libretech,aml-s805x-ac", "amlogic,s805x",
->  > +		     "amlogic,meson-gxl";
->  > +	model = "Libre Computer Board AML-S805X-AC";
-> 
-> No mention of 'La Frite'?
+> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> index f5b5b3fabe3c..b46cca953f4f 100644
+> --- a/drivers/clk/meson/clk-pll.c
+> +++ b/drivers/clk/meson/clk-pll.c
+> @@ -200,11 +200,32 @@ static void meson_clk_pll_init(struct clk_hw *hw)
+>  	}
+>  }
+>  
+> +static int meson_clk_pll_is_enabled(struct clk_hw *hw)
+> +{
+> +	struct clk_regmap *clk = to_clk_regmap(hw);
+> +	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+> +
+> +	if (meson_parm_read(clk->map, &pll->rst))
+> +		return 0;
+> +
+> +	if (!meson_parm_read(clk->map, &pll->en))
+> +		return 0;
+> +
+> +	if (!meson_parm_read(clk->map, &pll->l))
+> +		return 0;
 
-It's a codename, the actual product name is AML-S805X-AC
+Could you use an OR instead of these 3 seperate checks ?
 
+> +
+> +	return 1;
+> +}
+> +
+>  static int meson_clk_pll_enable(struct clk_hw *hw)
+>  {
+>  	struct clk_regmap *clk = to_clk_regmap(hw);
+>  	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+>  
+> +	/* do nothing if the PLL is already enabled */
+> +	if (meson_clk_pll_is_enabled(hw))
+> +		return 0;
+> +
+>  	/* Make sure the pll is in reset */
+>  	meson_parm_write(clk->map, &pll->rst, 1);
 > 
->  > +	memory at 0 {
->  > +		device_type = "memory";
->  > +		reg = <0x0 0x0 0x0 0x20000000>;
->  > +	};
-> 
-> Maybe add a comment that there's 1GB variants as well?
+>  
 
-Like other board, we set the minimal encountered memory size in DT,
-the bootloader will update it to the actual memory size.
+With the small comment above taken care of, it makes perfect sense
+and it will be valuable to other PLLs, Thx Martin !
 
-> 
->> +
->  > +	vcck: regulator-vcck {
->  > +		compatible = "regulator-fixed";
->  > +		regulator-name = "VCCK";
->  > +		regulator-min-microvolt = <3300000>;
->  > +		regulator-max-microvolt = <3300000>;
->  > +		vin-supply = <&dc_5v>;
->  > +
->  > +		/*
->  > +		 * This is controlled by GPIOAO_9 we reserve this but
->  > +		 * claiming it as done bellow reset the board anyway
-> 
-> s/bellow/below/
-
-Good catch !
-
-> 
->  > +&spifc {
->  > +	status = "okay";
->  > +	pinctrl-0 = <&nor_pins>;
->  > +	pinctrl-names = "default";
->  > +
->  > +	w25q32: spi-flash at 0 {
->  > +		#address-cells = <1>;
->  > +		#size-cells = <1>;
->  > +		compatible = "jedec,spi-nor";
->  > +		reg = <0>;
->  > +		spi-max-frequency = <3000000>;
-> 
-> Is this 3MHz a limitation of the flash, board layout or SPI controller?
-> 
-
-It's the stable clock frequency used by amlogic to access to SPI flash,
-we prefer using a safe freq, because we don't need fast access here.
-
-Neil
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
