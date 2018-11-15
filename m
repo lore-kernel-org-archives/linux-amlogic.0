@@ -1,25 +1,37 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 15 Nov 2018 11:43:47 -0800
-Subject: [PATCH 0/3] 32-bit Meson: add missing /chosen/stdout-path
-In-Reply-To: <20181028140343.1071-1-martin.blumenstingl@googlemail.com>
-References: <20181028140343.1071-1-martin.blumenstingl@googlemail.com>
-Message-ID: <7h4lcif7nw.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
+Date: Thu, 15 Nov 2018 11:49:14 -0800
+Subject: [PATCH RESEND] arm64: dts: meson-axg: fix dtc warning about unit
+ address
+In-Reply-To: <20181108095156.26810-1-jbrunet@baylibre.com>
+References: <20181030150614.19461-1-jbrunet@baylibre.com>
+ <20181108095156.26810-1-jbrunet@baylibre.com>
+Message-ID: <7hzhuadsud.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> Some boards don't have the /chosen/stdout-path property yet. Support
-> for these boards is far from being complete and I don't have any of
-> those for testing. Whenever someone reports an issue with one of these
-> boards I would like an output with the "earlycon" kernel argument.
-> However, this only works when the board sets the /chosen/stdout-path
-> property.
+> section 2.2.1 of the DT specs says: " If the node has no reg property,
+> the @unit-address must be omitted and the node-name alone differentiates
+> the node from other nodes at the same level in the tree"
 >
-> None of these were tested manually, but since it's the same for all
-> existing (32-bit and 64-bit) boards it's safe to assume that this will
-> work.
+> Simply replace the '@' with a '-' to fix this warning.
+>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>
+> Hi Kevin,
+>
+> I'm resending this change because I noticed the previous patch I sent had
+> references to spdif input which has not been merged yet. This would have
+> triggered a conflict in your tree.
+>
+> Hopefully, this new version will apply correctly
 
-Queued for v4.21, with Neil's acks (branch: v4.21/dt)
+Thanks for the resend, this version applies (and builds) cleanly.
+
+Queued for v4.21 with Neil's tag (branch: v4.21/dt64)
 
 Kevin
