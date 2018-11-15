@@ -1,70 +1,193 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 15 Nov 2018 11:08:43 +0100
-Subject: [RFC v1 0/7] Meson8b: make the CPU clock mutable
-In-Reply-To: <20181114225725.2821-1-martin.blumenstingl@googlemail.com>
-References: <20181114225725.2821-1-martin.blumenstingl@googlemail.com>
-Message-ID: <ae3ede9e-ecc7-ad47-bd2c-9b760480ad85@baylibre.com>
+From: liang.yang@amlogic.com (Liang Yang)
+Date: Thu, 15 Nov 2018 19:25:07 +0800
+Subject: [PATCH v6 2/2] mtd: rawnand: meson: add support for Amlogic NAND
+ flash controller
+In-Reply-To: <20181112184518.6c02ac6d@bbrezillon>
+References: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
+ <1541090542-19618-3-git-send-email-jianxin.pan@amlogic.com>
+ <20181105165321.7ea2b45f@bbrezillon>
+ <a571904e-6296-bf62-e1fe-e25bf90040bb@amlogic.com>
+ <20181106102851.61deb97a@bbrezillon>
+ <ff02373e-c97b-182d-5b43-83d1e8f6d51a@amlogic.com>
+ <20181106112206.65a70a81@bbrezillon> <20181112171351.4ac3506b@xps13>
+ <20181112175416.247e3203@bbrezillon> <20181112184518.6c02ac6d@bbrezillon>
+Message-ID: <27769252-ac5e-e787-6792-d6a06e7af0e4@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+Hi Boris,
 
-On 14/11/2018 23:57, Martin Blumenstingl wrote:
-> This allows changing the CPU clock on the 32-bit Amlogic Meson SoCs
-> (Meson8, Meson8b and Meson8m2).
-> CPU frequency scaling will be enabled with a separate series by adding
-> the CPU clock and the OPP tables to meson8.dtsi and meson8b.dtsi.
-> 
-> While changing the CPU frequency (sys_pll or any of it's post-dividers)
-> we need to run the CPU clock off the XTAL clock. Otherwise the system
-> will lock up because we need to disable the sys_pll to change it's
-> rate.
-> 
-> This also makes the clk-pll's .enable hook a no-op if the clock is
-> already enabled. Otherwise we're getting lockups when calling the
-> first clk_{prepare_}enable on the sys_pll or any of it's children (as
-> the CCF propagates the enable event up to the sys_pll). This is because
-> the .enable hook unconditionally disables and enables the clock.
-> However, we can't disable that clock (not even temporarily) if the CPU
-> is running off sys_pll.
-> 
-> Additionally this adds support for more M/N combinations in sys_pll to
-> achieve all of the OPPs on Meson8b and all OPPs <= 1608 MHz on Meson8
-> and Meson8m2.
-> 
-> Compared to Amlogic's 3.10 kernel there's one notable difference: we
-> are actually allowing changes to the sys_pll. Amlogic's kernel sets
-> sys_pll to a fixed rate during boot and then uses a timer generate a
-> "virtual clock rate" by toggling between various dividers (for example:
-> sys_pll is set to 1536MHz. to achieve 1008MHz they are toggling every
-> 2500us between 1536MHZ and 768MHz so the average over <period, for
-> example one second> is 1008MHz).
-> I could reproduce any situation where changing sys_pll failed (for
-> example due to high temperature). To prove that I ran "stress --cpu 4"
-> for multiple hours and then cycled through all available CPU
-> frequencies (while keeping "stress" running in the background). This
-> worked fine on my Meson8b Odroid-C1 and EC-100 boards as well as my
-> Meson8m2 board.
-> 
-> 
-> Martin Blumenstingl (7):
->   clk: meson: meson8b: run from the XTAL when changing the CPU frequency
->   clk: meson: meson8b: do not use cpu_div3 for cpu_scale_out_sel
->   clk: meson: clk-pll: check if the clock is already enabled
->   clk: meson: clk-pll: add the is_enabled function in the clk_ops
->   clk: meson: meson8b: mark the CPU clock as CLK_IS_CRITICAL
->   clk: meson: meson8b: add support for more M/N values in sys_pll
->   clk: meson: meson8b: allow changing the CPU clock tree
-> 
->  drivers/clk/meson/clk-pll.c | 23 +++++++++
->  drivers/clk/meson/meson8b.c | 94 +++++++++++++++++++++++++++++++++----
->  2 files changed, 108 insertions(+), 9 deletions(-)
-> 
+I have implemented dma access base on these helpers you provided below.
+we prepare to send v7 version now, so when will these helpers be pushed?
 
-I suppose it depends on the fixes you sent earlier ?
-
-Anyway, resend it without RFC and by squashing patch 4 in 3 and
-address the small comment issue and I'll take it for 4.21 !
-
-Thanks,
-Neil
+On 2018/11/13 1:45, Boris Brezillon wrote:
+> On Mon, 12 Nov 2018 17:54:16 +0100
+> Boris Brezillon <boris.brezillon@bootlin.com> wrote:
+> 
+>> +Wolfram to give some inputs on the DMA issue.
+>>
+>> On Mon, 12 Nov 2018 17:13:51 +0100
+>> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+>>
+>>> Hello,
+>>>
+>>> Boris Brezillon <boris.brezillon@bootlin.com> wrote on Tue, 6 Nov 2018
+>>> 11:22:06 +0100:
+>>>    
+>>>> On Tue, 6 Nov 2018 18:00:37 +0800
+>>>> Liang Yang <liang.yang@amlogic.com> wrote:
+>>>>      
+>>>>> On 2018/11/6 17:28, Boris Brezillon wrote:
+>>>>>> On Tue, 6 Nov 2018 17:08:00 +0800
+>>>>>> Liang Yang <liang.yang@amlogic.com> wrote:
+>>>>>>          
+>>>>>>> On 2018/11/5 23:53, Boris Brezillon wrote:
+>>>>>>>> On Fri, 2 Nov 2018 00:42:21 +0800
+>>>>>>>> Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+>>>>>>>>             
+>>>>>>>>> +
+>>>>>>>>> +static inline u8 meson_nfc_read_byte(struct mtd_info *mtd)
+>>>>>>>>> +{
+>>>>>>>>> +	struct nand_chip *nand = mtd_to_nand(mtd);
+>>>>>>>>> +	struct meson_nfc *nfc = nand_get_controller_data(nand);
+>>>>>>>>> +	u32 cmd;
+>>>>>>>>> +
+>>>>>>>>> +	cmd = nfc->param.chip_select | NFC_CMD_DRD | 0;
+>>>>>>>>> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>>>>>>>>> +
+>>>>>>>>> +	meson_nfc_drain_cmd(nfc);
+>>>>>>>>
+>>>>>>>> You probably don't want to drain the FIFO every time you read a byte on
+>>>>>>>> the bus, and I guess the INPUT FIFO is at least as big as the CMD
+>>>>>>>> FIFO, right? If that's the case, you should queue as much DRD cmd as
+>>>>>>>> possible and only sync when the user explicitly requests it or when
+>>>>>>>> the INPUT/READ FIFO is full.
+>>>>>>>>             
+>>>>>>> Register 'NFC_REG_BUF' can holds only 4 bytes, also DRD sends only one
+>>>>>>> nand cycle to read one byte and covers the 1st byte every time reading.
+>>>>>>> i think nfc controller is faster than nand cycle, but really it is not
+>>>>>>> high efficiency when reading so many bytes once.
+>>>>>>> Or use dma command here like read_page and read_page_raw.
+>>>>>>
+>>>>>> Yep, that's also an alternative, though you'll have to make sure the
+>>>>>> buffer passed through the nand_op_inst is DMA-safe, and use a bounce
+>>>>>> buffer when that's not the case.
+>>>>>>          
+>>>>> ok, i will try dma here.
+>>>>
+>>>> We should probably expose the bounce buf handling as generic helpers at
+>>>> the rawnand level:
+>>>>
+>>>> void *nand_op_get_dma_safe_input_buf(struct nand_op_instr *instr)
+>>>> {
+>>>> 	void *buf;
+>>>>
+>>>> 	if (WARN_ON(instr->type != NAND_OP_DATA_IN_INSTR))
+>>>> 		return NULL;
+>>>>
+>>>> 	if (virt_addr_valid(instr->data.in) &&
+>>>> 	    !object_is_on_stack(instr->data.buf.in))
+>>>> 		return instr->data.buf.in;
+>>>>
+>>>> 	return kzalloc(instr->data.len, GFP_KERNEL);
+>>>> }
+>>>>
+>>>> void nand_op_put_dma_safe_input_buf(struct nand_op_instr *instr,
+>>>> 				    void *buf)
+>>>> {
+>>>> 	if (WARN_ON(instr->type != NAND_OP_DATA_IN_INSTR) ||
+>>>> 	    WARN_ON(!buf))
+>>>> 		return;
+>>>>
+>>>> 	if (buf == instr->data.buf.in)
+>>>> 		return;
+>>>>
+>>>> 	memcpy(instr->data.buf.in, buf, instr->data.len);
+>>>> 	kfree(buf);
+>>>> }
+>>>>
+>>>> const void *nand_op_get_dma_safe_output_buf(struct nand_op_instr *instr)
+>>>> {
+>>>> 	void *buf;
+>>>>
+>>>> 	if (WARN_ON(instr->type != NAND_OP_DATA_OUT_INSTR))
+>>>> 		return NULL;
+>>>>
+>>>> 	if (virt_addr_valid(instr->data.out) &&
+>>>> 	    !object_is_on_stack(instr->data.buf.out))
+>>>> 		return instr->data.buf.out;
+>>>>
+>>>> 	return kmemdup(instr->data.buf.out, GFP_KERNEL);
+>>>> }
+>>>>
+>>>> void nand_op_put_dma_safe_output_buf(struct nand_op_instr *instr,
+>>>> 				    void *buf)
+>>>> {
+>>>> 	if (WARN_ON(instr->type != NAND_OP_DATA_OUT_INSTR) ||
+>>>> 	    WARN_ON(!buf))
+>>>> 		return;
+>>>>
+>>>> 	if (buf != instr->data.buf.out)
+>>>> 		kfree(buf);
+>>>> }
+>>>
+>>> Not that I am against such function, but maybe they should come with
+>>> comments stating that there is no reliable way to find if a buffer is
+>>> DMA-able at runtime and these are just sanity checks (ie. required, but
+>>> probably not enough).
+>>
+>> It's not 100% reliable, but it should cover most cases. Note that the
+>> NAND framework already uses virt_addr_valid() to decide when to use its
+>> internal bounce buffer, so this should be fixed too if we want a fully
+>> reliable solution.
+>>
+>>> This is my understanding of Wolfram's recent talk
+>>> at ELCE [1].
+>>
+>> Yes, you're right, but the NAND framework does not provide any guarantee
+>> on the buf passed to ->exec_op() simply because the MTD layer does not
+>> provide such a guarantee. Reworking that to match how the i2c framework
+>> handles it is possible (with a flag set when the buffer is known to be
+>> DMA-safe), but it requires rewriting all MTD users if we want to keep
+>> decent perfs (the amount of data transfered to a flash is an order of
+>> magnitude bigger than what you usually receive/send from/to an I2C
+>> device). Also, I'm not even sure the DMA_SAFE flag covers all weird
+>> cases like the "DMA engine embedded in the controller is not able to
+>> access the whole physical memory range" one.
+> 
+> I forgot that this problem was handled at dma_map time (a bounce
+> buffer is allocated if needed, and this decision is based on
+> dev->dma_mask).
+> 
+>> So ideally we should have
+>> something that checks if a pointer is DMA-safe at the device level and
+>> then at the arch level.
+>>
+>> A temporary solution would be to add a hook at the nand_controller
+>> level:
+>>
+>> 	bool (*buf_is_dma_safe)(struct nand_chip *chip, void *buf,
+>> 				size_t len);
+>>
+>> And then fallback to the default implementation when it's not
+>> implemented:
+>>
+>> static bool nand_buf_is_dma_safe(struct nand_chip *chip, void *buf,
+>> 				 size_t len)
+>> {
+>> 	if (chip->controller->ops && chip->controller->ops->is_dma_safe)
+>> 		return chip->controller->ops->is_dma_safe(chip, buf,
+>> 							  len);
+>>
+>> 	return virt_addr_valid(buf) && !object_is_on_stack(buf);
+>> }
+>>
+>>> I suppose using the CONFIG_DMA_API_DEBUG option could help
+>>> more reliably to find such issues.
+>>
+>> Actually, the problem is not only about detecting offenders but being
+>> able to detect when a buffer is not DMA-safe at runtime in order to
+>> allocate/use a bounce buffer.
+> 
+> .
+> 
