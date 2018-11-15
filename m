@@ -1,44 +1,71 @@
-From: linux@armlinux.org.uk (Russell King - ARM Linux)
-Date: Thu, 15 Nov 2018 09:33:48 +0000
-Subject: [PATCH v3 0/7] include: add
- setbits32/clrbits32/clrsetbits32/setbits64/clrbits64/clrsetbits64
-In-Reply-To: <20181115093034.GB23965@Red>
-References: <1540366553-18541-1-git-send-email-clabbe@baylibre.com>
- <20181024085700.GR30658@n2100.armlinux.org.uk>
- <20181115093034.GB23965@Red>
-Message-ID: <20181115093348.GV30658@n2100.armlinux.org.uk>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Thu, 15 Nov 2018 10:41:55 +0100
+Subject: [RFC v1 6/7] clk: meson: meson8b: add support for more M/N
+ values in sys_pll
+In-Reply-To: <20181114225725.2821-7-martin.blumenstingl@googlemail.com>
+References: <20181114225725.2821-1-martin.blumenstingl@googlemail.com>
+ <20181114225725.2821-7-martin.blumenstingl@googlemail.com>
+Message-ID: <4afb7269e3dbb6ac376643a70719736e336ad739.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Nov 15, 2018 at 10:30:34AM +0100, LABBE Corentin wrote:
-> On Wed, Oct 24, 2018 at 09:57:00AM +0100, Russell King - ARM Linux wrote:
-> > On Wed, Oct 24, 2018 at 07:35:46AM +0000, Corentin Labbe wrote:
-> > > This patchset adds a new set of functions which are open-coded in lot of
-> > > place.
-> > > Basicly the pattern is always the same, "read, modify a bit, write"
-> > > some driver and the powerpc arch already have thoses pattern them as functions. (like ahci_sunxi.c or dwmac-meson8b)
-> > 
-> > The advantage of them being open-coded is that it's _obvious_ to the
-> > reviewer that there is a read-modify-write going on which, in a multi-
-> > threaded environment, may need some locking (so it should trigger a
-> > review of the locking around that code.)
-> > 
-> > With it hidden inside a helper which has no locking itself, it becomes
-> > much easier to pass over in review, which means that races are much
-> > more likely to go unspotted - and that is bad news.
-> > 
+On Wed, 2018-11-14 at 23:57 +0100, Martin Blumenstingl wrote:
+> The sys_pll on the EC-100 board is configured to 1584MHz at boot
+> (either by u-boot, firmware or chip defaults). This is achieved by using
+> M = 66, N = 1 (24MHz * 66 / 1).
+> At boot the CPU clock is running off sys_pll divided by 2 which results
+> in 792MHz. Thus M = 66 is considered to be a "safe" value for Meson8b.
 > 
-> Hello
+> To achieve 1608MHz (one of the CPU OPPs on Meson8 and Meson8m2) we need
+> M = 67, N = 1. I ran "stress --cpu 4" while infinitely cycling through
+> all available frequencies on my Meson8m2 board and could not spot any
+> issues with this setting (after ~12 hours of running this).
 > 
-> I understand your fear, but I think the benefit overhaul thoses.
-> Furthermore, drivers which I have converted does not need such locking.
+> On Meson8, Meson8b and Meson8m2 we also want to be able to use 408MHz
+> and 816MHz CPU frequencies. These can be achieved by dividing sys_pll by
+> 4 (for 408MHz) or 2 (for 816MHz). That means that sys_pll has to run at
+> 1632MHz which can be generated using M = 68, N = 1.
+> Similarily we also want to be able to use 1008MHz as CPU frequency. This
+> means that sys_pll has to run either at 1008MHz or 2016MHz. The former
+> would result in an M value of 42, which is lower than the smallest value
+> used by the 3.10 GPL kernel sources from Amlogic (50 is the lower limit
+> there). Thus we need to run sys_pll at 2016MHz which can ge generated
+> using M = 84, N = 1.
+> I tested M = 68 and M = 84 on my Meson8b Odroid-C1 and my Meson8m2 board
+> by running "stress --cpu 4" while infinitely cycling thorugh all
+> available frequencies. I could not spot any issues after ~12 hours of
+> running this.
 > 
-> If you want I can rename the header to linux/setbits-non-atomic.h for making obvious the lack of locking.
+> Amlogic's 3.10 GPL kernel sources have more M/N combinations. I did not
+> add them yet because M = 74 (to achieve close to 1800MHz on Meson8) and
+> M = 82 (to achieve close to 1992MHz on Meson8 as well) caused my
+> Meson8m2 board to hang randomly. It's not clear why this is (for example
+> because the board's voltage regulator design is bad, some missing bits
+> for these values in our clk-pll driver, etc.). Thus the following M
+> values from the Amlogic 3.10 GPL kernel sources are skipped as of now:
+> 69, 70, 71, 72, 73, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/clk/meson/meson8b.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index d566dd5bc567..c06a1a7faa4c 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -43,6 +43,11 @@ static const struct pll_params_table
+> sys_pll_params_table[] = {
+>  	PLL_PARAMS(62, 1),
+>  	PLL_PARAMS(63, 1),
+>  	PLL_PARAMS(64, 1),
+> +	PLL_PARAMS(65, 1),
+> +	PLL_PARAMS(66, 1),
+> +	PLL_PARAMS(67, 1),
+> +	PLL_PARAMS(68, 1),
+> +	PLL_PARAMS(84, 1),
+>  	{ /* sentinel */ },
+>  };
+>  
 
-It'd probably be better in the function name - it then doesn't get
-"lost" that it's non-atomic when it's included via other headers.
-
--- 
-RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
