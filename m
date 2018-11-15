@@ -1,62 +1,85 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 14 Nov 2018 17:20:45 -0800
-Subject: [PATCH 0/2] meson6_timer: dt-bindings updates
-In-Reply-To: <CAL_JsqK_jE9+tFXYb3BZbGmpVtiqPZir9ak_yn5u+3aBqCj8qQ@mail.gmail.com>
-References: <20181028123514.12660-1-martin.blumenstingl@googlemail.com>
- <CAL_Jsq+q4NX+19zuD2LErdFbZ-WJKdXhrGM3AXVoeWOuiDDhSg@mail.gmail.com>
- <CAFBinCATZhuNn8aTEPS1zEYX_1PjRyuEpzqyzu6bpVCwNvUbqQ@mail.gmail.com>
- <CAL_JsqK_jE9+tFXYb3BZbGmpVtiqPZir9ak_yn5u+3aBqCj8qQ@mail.gmail.com>
-Message-ID: <7h4lcjgmqa.fsf@eze.i-did-not-set--mail-host-address--so-tickle-me>
+From: daniel.lezcano@linaro.org (Daniel Lezcano)
+Date: Thu, 15 Nov 2018 02:35:56 +0100
+Subject: [PATCH 1/2] clocksource: meson6_timer: use register names from
+ the datasheet
+In-Reply-To: <20181028125501.17336-2-martin.blumenstingl@googlemail.com>
+References: <20181028125501.17336-1-martin.blumenstingl@googlemail.com>
+ <20181028125501.17336-2-martin.blumenstingl@googlemail.com>
+Message-ID: <6793aba9-87fc-6cf8-cada-f1fa6a1e0040@linaro.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Rob Herring <robh+dt@kernel.org> writes:
+On 28/10/2018 13:55, Martin Blumenstingl wrote:
+> This makes the driver use the names from S805 datasheet for the
+> preprocessor #defines. This makes it easier to spot that the driver
+> currently only supports Timer A (as clockevent with interrupt support)
+> and Timer E (as clocksource without interrupts). Timer B, C and D (which
+> are similar to Timer A) are currently not supported by the driver.
+> 
+> While here, this also removes the internal "CED_ID" and "CSD_ID" defines
+> which are used to identify the timer. These IDs are not described in the
+> datasheet and thus make it harder to compare the code to what's written
+> in the datasheet.
+> 
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/clocksource/meson6_timer.c | 110 ++++++++++++++++++-----------
+>  1 file changed, 68 insertions(+), 42 deletions(-)
+> 
+> diff --git a/drivers/clocksource/meson6_timer.c b/drivers/clocksource/meson6_timer.c
+> index 92f20991a937..c622135bee9d 100644
+> --- a/drivers/clocksource/meson6_timer.c
+> +++ b/drivers/clocksource/meson6_timer.c
+> @@ -10,6 +10,8 @@
+>   * warranty of any kind, whether express or implied.
+>   */
+>  
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+>  #include <linux/clk.h>
+>  #include <linux/clockchips.h>
+>  #include <linux/interrupt.h>
+> @@ -20,80 +22,102 @@
+>  #include <linux/of_address.h>
+>  #include <linux/of_irq.h>
+>  
+> -#define CED_ID			0
+> -#define CSD_ID			4
+> -
+> -#define TIMER_ISA_MUX		0
+> -#define TIMER_ISA_VAL(t)	(((t) + 1) << 2)
+> -
+> -#define TIMER_INPUT_BIT(t)	(2 * (t))
+> -#define TIMER_ENABLE_BIT(t)	(16 + (t))
+> -#define TIMER_PERIODIC_BIT(t)	(12 + (t))
+> +enum meson6_timera_input_clock {
+> +	MESON_TIMERA_CLOCK_1US = 0x0,
+> +	MESON_TIMERA_CLOCK_10US = 0x1,
+> +	MESON_TIMERA_CLOCK_100US = 0x2,
+> +	MESON_TIMERA_CLOCK_1MS = 0x3,
+> +};
+>  
+> -#define TIMER_CED_INPUT_MASK	(3UL << TIMER_INPUT_BIT(CED_ID))
+> -#define TIMER_CSD_INPUT_MASK	(7UL << TIMER_INPUT_BIT(CSD_ID))
+> +enum meson6_timere_input_clock {
+> +	MESON_TIMERE_CLOCK_SYSTEM_CLOCK = 0x0,
+> +	MESON_TIMERE_CLOCK_1US = 0x1,
+> +	MESON_TIMERE_CLOCK_10US = 0x2,
+> +	MESON_TIMERE_CLOCK_100US = 0x3,
+> +	MESON_TIMERE_CLOCK_1MS = 0x4,
+> +};
 
-> On Mon, Oct 29, 2018 at 4:23 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->>
->> Hi Rob,
->>
->> On Mon, Oct 29, 2018 at 9:09 PM Rob Herring <robh+dt@kernel.org> wrote:
->> >
->> > On Sun, Oct 28, 2018 at 7:35 AM Martin Blumenstingl
->> > <martin.blumenstingl@googlemail.com> wrote:
->> > >
->> > > The dt-bindings don't match the actual IP block implementation:
->> > > - each timer has four IRQ lines (Timer A, B, C and D)
->> > > - the IP block has internal dividers which use XTAL as parent clock.
->> > >   the result can then be used as timebase for Timers A, B, C, D and E.
->> > >   internal dividers are (XTAL is running at 24MHz): 24 for 1us, 240 for
->> > >   10us, 2400 for 100us and 24000 for 1ms.
->> > > - Timer E can use the "system clock" (clk81) as timebase
->> > >
->> > > I'm not sure whether these patches will go through tip.git or Kevin's
->> > > linux-amlogic tree. Daniel, Thomas: please let Kevin know if he should
->> > > take these through his drivers branch
->> >
->> > Normally would be the subsystem tree, but I'm happy to take binding
->> > only changes thru the DT tree. We just can't have them go thru a
->> > mixture of trees if you have further changes.
->> >
->> > Are these fixes to reflect what the dts files and timers already
->> > expect? If so, they should be applied for 4.20. If not, you should
->> > have one series with all the updates.
->> both the meson6_timer driver and the .dts currently only specify one
->> interrupt and nothing else
->>
->> I have .dts patches in my tree which add the missing interrupts and the clocks
->> however, I prefer to send the .dts patches later as I have two other
->> pending patch series which are modifying the same .dts files
->> thus I'd like to re-send the two patches from this series (with your
->> Reviewed-by) together with the .dts changes
->>
->> can you please confirm that Kevin can take everything through his
->> linux-amlogic tree (dt-bindings patches probably in his drivers
->> branch, .dts patches in his dt branch) if the clocksource maintainers
->> don't care either?
->
-> Yeah, that should be fine.
+It is not required to specify the values. The standard defines the
+default first value is zero, and each enum has the value which is +1 of
+the previous one.
 
-Queued for v4.21 (in branch v4.21/dt)
+Other than that, the changes look ok.
 
-Kevin
+
+
+-- 
+ <http://www.linaro.org/> Linaro.org ? Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
