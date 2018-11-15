@@ -1,69 +1,83 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 15 Nov 2018 23:40:46 +0100
-Subject: [PATCH v2 4/6] clk: meson: meson8b: add support for more M/N values
- in sys_pll
+Date: Thu, 15 Nov 2018 23:40:48 +0100
+Subject: [PATCH v2 6/6] clk: meson: meson8b: allow changing the CPU clock tree
 In-Reply-To: <20181115224048.13511-1-martin.blumenstingl@googlemail.com>
 References: <20181115224048.13511-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181115224048.13511-5-martin.blumenstingl@googlemail.com>
+Message-ID: <20181115224048.13511-7-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The sys_pll on the EC-100 board is configured to 1584MHz at boot
-(either by u-boot, firmware or chip defaults). This is achieved by using
-M = 66, N = 1 (24MHz * 66 / 1).
-At boot the CPU clock is running off sys_pll divided by 2 which results
-in 792MHz. Thus M = 66 is considered to be a "safe" value for Meson8b.
-
-To achieve 1608MHz (one of the CPU OPPs on Meson8 and Meson8m2) we need
-M = 67, N = 1. I ran "stress --cpu 4" while infinitely cycling through
-all available frequencies on my Meson8m2 board and could not spot any
-issues with this setting (after ~12 hours of running this).
-
-On Meson8, Meson8b and Meson8m2 we also want to be able to use 408MHz
-and 816MHz CPU frequencies. These can be achieved by dividing sys_pll by
-4 (for 408MHz) or 2 (for 816MHz). That means that sys_pll has to run at
-1632MHz which can be generated using M = 68, N = 1.
-Similarily we also want to be able to use 1008MHz as CPU frequency. This
-means that sys_pll has to run either at 1008MHz or 2016MHz. The former
-would result in an M value of 42, which is lower than the smallest value
-used by the 3.10 GPL kernel sources from Amlogic (50 is the lower limit
-there). Thus we need to run sys_pll at 2016MHz which can ge generated
-using M = 84, N = 1.
-I tested M = 68 and M = 84 on my Meson8b Odroid-C1 and my Meson8m2 board
-by running "stress --cpu 4" while infinitely cycling thorugh all
-available frequencies. I could not spot any issues after ~12 hours of
-running this.
-
-Amlogic's 3.10 GPL kernel sources have more M/N combinations. I did not
-add them yet because M = 74 (to achieve close to 1800MHz on Meson8) and
-M = 82 (to achieve close to 1992MHz on Meson8 as well) caused my
-Meson8m2 board to hang randomly. It's not clear why this is (for example
-because the board's voltage regulator design is bad, some missing bits
-for these values in our clk-pll driver, etc.). Thus the following M
-values from the Amlogic 3.10 GPL kernel sources are skipped as of now:
-69, 70, 71, 72, 73, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98
+Currently all clocks in the CPU clock tree are marked as read-only
+(using the corresponding _ro_ clk_ops). This was correct since changing
+the clock tree could cause the system to lock up.
+Switch all clocks to their corresponding clk_ops variant which is not
+read-only to allow changing the CPU clock tree since the bug which
+locked up the system is now fixed (by switching the CPU clock temporary
+to run off XTAL while changing the CPU clock tree).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/meson8b.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/clk/meson/meson8b.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 41a5025364f9..b07a92ed7de3 100644
+index c06a1a7faa4c..b3bdc7e05441 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -43,6 +43,11 @@ static const struct pll_params_table sys_pll_params_table[] = {
- 	PLL_PARAMS(62, 1),
- 	PLL_PARAMS(63, 1),
- 	PLL_PARAMS(64, 1),
-+	PLL_PARAMS(65, 1),
-+	PLL_PARAMS(66, 1),
-+	PLL_PARAMS(67, 1),
-+	PLL_PARAMS(68, 1),
-+	PLL_PARAMS(84, 1),
- 	{ /* sentinel */ },
- };
- 
+@@ -203,7 +203,7 @@ static struct clk_regmap meson8b_sys_pll_dco = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sys_pll_dco",
+-		.ops = &meson_clk_pll_ro_ops,
++		.ops = &meson_clk_pll_ops,
+ 		.parent_names = (const char *[]){ "xtal" },
+ 		.num_parents = 1,
+ 	},
+@@ -218,7 +218,7 @@ static struct clk_regmap meson8b_sys_pll = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sys_pll",
+-		.ops = &clk_regmap_divider_ro_ops,
++		.ops = &clk_regmap_divider_ops,
+ 		.parent_names = (const char *[]){ "sys_pll_dco" },
+ 		.num_parents = 1,
+ 		.flags = CLK_SET_RATE_PARENT,
+@@ -552,7 +552,7 @@ static struct clk_regmap meson8b_cpu_in_sel = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_in_sel",
+-		.ops = &clk_regmap_mux_ro_ops,
++		.ops = &clk_regmap_mux_ops,
+ 		.parent_names = (const char *[]){ "xtal", "sys_pll" },
+ 		.num_parents = 2,
+ 		.flags = (CLK_SET_RATE_PARENT |
+@@ -606,7 +606,7 @@ static struct clk_regmap meson8b_cpu_scale_div = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_scale_div",
+-		.ops = &clk_regmap_divider_ro_ops,
++		.ops = &clk_regmap_divider_ops,
+ 		.parent_names = (const char *[]){ "cpu_in_sel" },
+ 		.num_parents = 1,
+ 		.flags = CLK_SET_RATE_PARENT,
+@@ -623,7 +623,7 @@ static struct clk_regmap meson8b_cpu_scale_out_sel = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_scale_out_sel",
+-		.ops = &clk_regmap_mux_ro_ops,
++		.ops = &clk_regmap_mux_ops,
+ 		/*
+ 		 * NOTE: We are skipping the parent with value 0x2 (which is
+ 		 * "cpu_div3") because it results in a duty cycle of 33% which
+@@ -646,7 +646,7 @@ static struct clk_regmap meson8b_cpu_clk = {
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk",
+-		.ops = &clk_regmap_mux_ro_ops,
++		.ops = &clk_regmap_mux_ops,
+ 		.parent_names = (const char *[]){ "xtal",
+ 						  "cpu_scale_out_sel" },
+ 		.num_parents = 2,
 -- 
 2.19.1
