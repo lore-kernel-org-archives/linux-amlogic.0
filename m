@@ -1,115 +1,48 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 15 Nov 2018 23:40:47 +0100
-Subject: [PATCH v2 5/6] clk: meson: meson8b: run from the XTAL when changing
- the CPU frequency
-In-Reply-To: <20181115224048.13511-1-martin.blumenstingl@googlemail.com>
-References: <20181115224048.13511-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181115224048.13511-6-martin.blumenstingl@googlemail.com>
+Date: Thu, 15 Nov 2018 23:46:55 +0100
+Subject: [PATCH v2 0/2] clocksource/meson6_timer: implement ARM delay timer
+Message-ID: <20181115224657.14736-1-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Changing the CPU clock requires changing various clocks including the
-SYS PLL. The existing meson clk-pll and clk-regmap drivers can change
-all of the relevant clocks already.
-However, changing for exampe the SYS PLL is problematic because as long
-as the CPU is running off a clock derived from SYS PLL changing the
-latter results in a full system lockup.
-Fix this system lockup by switching the CPU clock to run off the XTAL
-while we are changing the any of the clocks in the CPU clock tree.
+While trying to add support for the ARM TWD Timer and the ARM Global
+Timer on Meson8, Meson8b and Meson8m2 (ARM Cortex-A5 and Cortex-A9 SoCs)
+I did a review of the existing driver.
+Unfortunately I found it hard to review because the pre-processor
+#defines did not match the names from the public S805 datasheet. Thus
+patch #1 adjusts these. No functional changes here, this is just
+preparation work for patch #2.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/meson8b.c | 63 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+Using the ARM Global Timer (drivers/clocksource/arm_global_timer.c)
+would have given us a timer-based delay implementation (so udelay() and
+friends would use the timer instead of using a loop-based delay
+implementation). Unfortunately we can't use the ARM Global Timer yet
+because it's input clock is derived from the CPU clock (which can change
+once we enable CPU frequency scaling on these SoCs, for which I will be
+sending patches in the near future).
+Amlogic's 3.10 kernel uses Timer E as delay timer which (with the
+current configuration) has a resolution of 1us. So patch #2 uses
+register_current_timer_delay() to register Timer E as ARM delay timer
+(which will be especially useful as we have to use udelay() when
+changing the CPU clocks during DVFS).
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index b07a92ed7de3..c06a1a7faa4c 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -1116,6 +1116,53 @@ static const struct reset_control_ops meson8b_clk_reset_ops = {
- 	.deassert = meson8b_clk_reset_deassert,
- };
- 
-+struct meson8b_nb_data {
-+	struct notifier_block nb;
-+	struct clk_hw_onecell_data *onecell_data;
-+};
-+
-+static int meson8b_cpu_clk_notifier_cb(struct notifier_block *nb,
-+				       unsigned long event, void *data)
-+{
-+	struct meson8b_nb_data *nb_data =
-+		container_of(nb, struct meson8b_nb_data, nb);
-+	struct clk_hw **hws = nb_data->onecell_data->hws;
-+	struct clk_hw *cpu_clk_hw, *parent_clk_hw;
-+	struct clk *cpu_clk, *parent_clk;
-+	int ret;
-+
-+	switch (event) {
-+	case PRE_RATE_CHANGE:
-+		parent_clk_hw = hws[CLKID_XTAL];
-+		break;
-+
-+	case POST_RATE_CHANGE:
-+		parent_clk_hw = hws[CLKID_CPU_SCALE_OUT_SEL];
-+		break;
-+
-+	default:
-+		return NOTIFY_DONE;
-+	}
-+
-+	cpu_clk_hw = hws[CLKID_CPUCLK];
-+	cpu_clk = __clk_lookup(clk_hw_get_name(cpu_clk_hw));
-+
-+	parent_clk = __clk_lookup(clk_hw_get_name(parent_clk_hw));
-+
-+	ret = clk_set_parent(cpu_clk, parent_clk);
-+	if (ret)
-+		return notifier_from_errno(ret);
-+
-+	udelay(100);
-+
-+	return NOTIFY_OK;
-+}
-+
-+static struct meson8b_nb_data meson8b_cpu_nb_data = {
-+	.nb.notifier_call = meson8b_cpu_clk_notifier_cb,
-+	.onecell_data = &meson8b_hw_onecell_data,
-+};
-+
- static const struct regmap_config clkc_regmap_config = {
- 	.reg_bits       = 32,
- 	.val_bits       = 32,
-@@ -1125,6 +1172,8 @@ static const struct regmap_config clkc_regmap_config = {
- static void __init meson8b_clkc_init(struct device_node *np)
- {
- 	struct meson8b_clk_reset *rstc;
-+	const char *notifier_clk_name;
-+	struct clk *notifier_clk;
- 	void __iomem *clk_base;
- 	struct regmap *map;
- 	int i, ret;
-@@ -1179,6 +1228,20 @@ static void __init meson8b_clkc_init(struct device_node *np)
- 			return;
- 	}
- 
-+	/*
-+	 * FIXME we shouldn't program the muxes in notifier handlers. The
-+	 * tricky programming sequence will be handled by the forthcoming
-+	 * coordinated clock rates mechanism once that feature is released.
-+	 */
-+	notifier_clk_name = clk_hw_get_name(&meson8b_cpu_scale_out_sel.hw);
-+	notifier_clk = __clk_lookup(notifier_clk_name);
-+	ret = clk_notifier_register(notifier_clk, &meson8b_cpu_nb_data.nb);
-+	if (ret) {
-+		pr_err("%s: failed to register the CPU clock notifier\n",
-+		       __func__);
-+		return;
-+	}
-+
- 	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get,
- 				     &meson8b_hw_onecell_data);
- 	if (ret)
+
+Changes since v1 at [0]:
+- convert the enums for the input clock (meson6_timera_input_clock and
+  meson6_timere_input_clock) to simple #defines as these are register
+  values and not something driver-internal. All other register values
+  are #defines so it makes sense that these are #defines as well.
+
+
+[0] https://patchwork.kernel.org/cover/10658591/
+
+
+Martin Blumenstingl (2):
+  clocksource: meson6_timer: use register names from the datasheet
+  clocksource: meson6_timer: implement ARM delay timer
+
+ drivers/clocksource/meson6_timer.c | 128 +++++++++++++++++++----------
+ 1 file changed, 85 insertions(+), 43 deletions(-)
+
 -- 
 2.19.1
