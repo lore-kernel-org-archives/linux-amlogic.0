@@ -1,55 +1,48 @@
-From: liang.yang@amlogic.com (Liang Yang)
-Date: Fri, 16 Nov 2018 16:29:07 +0800
-Subject: [PATCH v6 2/2] mtd: rawnand: meson: add support for Amlogic NAND
- flash controller
-In-Reply-To: <20181115140905.40011b4b@bbrezillon>
-References: <1541090542-19618-1-git-send-email-jianxin.pan@amlogic.com>
- <1541090542-19618-3-git-send-email-jianxin.pan@amlogic.com>
- <20181105165321.7ea2b45f@bbrezillon>
- <a571904e-6296-bf62-e1fe-e25bf90040bb@amlogic.com>
- <20181106102851.61deb97a@bbrezillon>
- <ff02373e-c97b-182d-5b43-83d1e8f6d51a@amlogic.com>
- <20181106112206.65a70a81@bbrezillon> <20181112171351.4ac3506b@xps13>
- <20181112175416.247e3203@bbrezillon> <20181112184518.6c02ac6d@bbrezillon>
- <27769252-ac5e-e787-6792-d6a06e7af0e4@amlogic.com>
- <20181115140400.3934effe@xps13> <20181115140905.40011b4b@bbrezillon>
-Message-ID: <7e36bf4c-69a1-a570-f086-75f8ad53d518@amlogic.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 16 Nov 2018 09:30:46 +0100
+Subject: [PATCH 0/2] Meson8b: fixes for the cpu_scale_div clock
+In-Reply-To: <a8798132-4544-ce91-7321-1489948c4429@baylibre.com>
+References: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
+ <a8798132-4544-ce91-7321-1489948c4429@baylibre.com>
+Message-ID: <88485943-55a8-e045-b633-e33d7c352626@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Boris and Miquel,
+On 08/11/2018 15:16, Neil Armstrong wrote:
+> On 27/09/2018 10:59, Martin Blumenstingl wrote:
+>> While trying to add support for the TWD timer I found that our CPU clock
+>> calculation (when running off the "cpu_scale_div clock) is incorrect.
+>>
+>> The main problem was the cpu_scale_div clock:
+>> it's divider table has an off-by-one error. the old formula was:
+>>   parent_rate / 2 * register_value
+>> however, testing shows that the correct formula is:
+>>   parent_rate / 2 * (register value + 1)
+>> See the commit message of patch #1 for a complete description of the
+>> problem and it's history.
+>>
+>> While looking at the "cpu_scale_div" clock I also found that it's
+>> register width was also off-by-one, so this is fixed in a separate patch
+>> as well.
+>>
+>> Both patches are not critical because I haven't seen a case where u-boot
+>> uses cpu_scale_div for the CPU clock. It's only a problem when playing
+>> with the CPU clock in u-boot (by writing registers manually) or as soon
+>> as we support CPU frequency scaling.
+>>
+>>
+>> Martin Blumenstingl (2):
+>>   clk: meson: meson8b: fix incorrect divider mapping in cpu_scale_table
+>>   clk: meson: meson8b: fix the width of the cpu_scale_div clock
+>>
+>>  drivers/clk/meson/meson8b.c | 17 +++++++++--------
+>>  1 file changed, 9 insertions(+), 8 deletions(-)
+>>
+> 
+> Pushed to fixes/drivers for 4.20
+> 
+> Neil
+> 
 
-understand. i will move helpers into nfc driver to avoid some errors 
-when sending the patch.
-
-On 2018/11/15 21:09, Boris Brezillon wrote:
-> On Thu, 15 Nov 2018 14:04:00 +0100
-> Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> 
->> Hi Liang,
->>
->> Liang Yang <liang.yang@amlogic.com> wrote on Thu, 15 Nov 2018 19:25:07
->> +0800:
->>
->>> Hi Boris,
->>>
->>> I have implemented dma access base on these helpers you provided below.
->>> we prepare to send v7 version now, so when will these helpers be pushed?
->>
->> Thanks for your work. You can send the v7 so we will have a look at the
->> overall driver; but since we raised the DMA buffers issue we had a
->> discussion with Boris about how to handle them and I think we are going
->> to adopt the same solution as Wolfram in the I2C subsystem: manual
->> flagging. Sadly, this is probably the best we can do to ensure proper
->> DMA support.
->>
->> There is nothing set is stone yet but I started a small rework to
->> handle MTD operations differently (and add a DMA_SAFE flag), you can
->> have a look there [1]. Don't base your work on it for now as it is just
->> a preliminary version, subject to big changes.
-> 
-> In order to not block the driver, I'd suggest that you move the helper
-> I proposed directly into your driver and prefix them with 'meson_'.
-> 
-> .
-> 
+Finally, pushed to next/drivers to since these are not critical and to
+satisfy the dependencies of "Meson8b: make the CPU clock mutable" patchset.
