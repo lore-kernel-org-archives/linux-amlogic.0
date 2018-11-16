@@ -1,48 +1,89 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 16 Nov 2018 09:30:46 +0100
-Subject: [PATCH 0/2] Meson8b: fixes for the cpu_scale_div clock
-In-Reply-To: <a8798132-4544-ce91-7321-1489948c4429@baylibre.com>
-References: <20180927085921.24627-1-martin.blumenstingl@googlemail.com>
- <a8798132-4544-ce91-7321-1489948c4429@baylibre.com>
-Message-ID: <88485943-55a8-e045-b633-e33d7c352626@baylibre.com>
+Date: Fri, 16 Nov 2018 09:49:18 +0100
+Subject: [PATCH v2 0/6] Meson8b: make the CPU clock mutable
+In-Reply-To: <20181115224048.13511-1-martin.blumenstingl@googlemail.com>
+References: <20181115224048.13511-1-martin.blumenstingl@googlemail.com>
+Message-ID: <a942be34-9a17-13b1-5ceb-19777bebe335@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 08/11/2018 15:16, Neil Armstrong wrote:
-> On 27/09/2018 10:59, Martin Blumenstingl wrote:
->> While trying to add support for the TWD timer I found that our CPU clock
->> calculation (when running off the "cpu_scale_div clock) is incorrect.
->>
->> The main problem was the cpu_scale_div clock:
->> it's divider table has an off-by-one error. the old formula was:
->>   parent_rate / 2 * register_value
->> however, testing shows that the correct formula is:
->>   parent_rate / 2 * (register value + 1)
->> See the commit message of patch #1 for a complete description of the
->> problem and it's history.
->>
->> While looking at the "cpu_scale_div" clock I also found that it's
->> register width was also off-by-one, so this is fixed in a separate patch
->> as well.
->>
->> Both patches are not critical because I haven't seen a case where u-boot
->> uses cpu_scale_div for the CPU clock. It's only a problem when playing
->> with the CPU clock in u-boot (by writing registers manually) or as soon
->> as we support CPU frequency scaling.
->>
->>
->> Martin Blumenstingl (2):
->>   clk: meson: meson8b: fix incorrect divider mapping in cpu_scale_table
->>   clk: meson: meson8b: fix the width of the cpu_scale_div clock
->>
->>  drivers/clk/meson/meson8b.c | 17 +++++++++--------
->>  1 file changed, 9 insertions(+), 8 deletions(-)
->>
+On 15/11/2018 23:40, Martin Blumenstingl wrote:
+> This allows changing the CPU clock on the 32-bit Amlogic Meson SoCs
+> (Meson8, Meson8b and Meson8m2).
+> CPU frequency scaling will be enabled with a separate series by adding
+> the CPU clock and the OPP tables to meson8.dtsi and meson8b.dtsi.
 > 
-> Pushed to fixes/drivers for 4.20
+> While changing the CPU frequency (sys_pll or any of it's post-dividers)
+> we need to run the CPU clock off the XTAL clock. Otherwise the system
+> will lock up because we need to disable the sys_pll to change it's
+> rate.
 > 
-> Neil
+> This also makes the clk-pll's .enable hook a no-op if the clock is
+> already enabled. Otherwise we're getting lockups when calling the
+> first clk_{prepare_}enable on the sys_pll or any of it's children (as
+> the CCF propagates the enable event up to the sys_pll). This is because
+> the .enable hook unconditionally disables and enables the clock.
+> However, we can't disable that clock (not even temporarily) if the CPU
+> is running off sys_pll.
+> 
+> Additionally this adds support for more M/N combinations in sys_pll to
+> achieve all of the OPPs on Meson8b and all OPPs <= 1608 MHz on Meson8
+> and Meson8m2.
+> 
+> Compared to Amlogic's 3.10 kernel there's one notable difference: we
+> are actually allowing changes to the sys_pll. Amlogic's kernel sets
+> sys_pll to a fixed rate during boot and then uses a timer generate a
+> "virtual clock rate" by toggling between various dividers (for example:
+> sys_pll is set to 1536MHz. to achieve 1008MHz they are toggling every
+> 2500us between 1536MHZ and 768MHz so the average over <period, for
+> example one second> is 1008MHz).
+> I could reproduce any situation where changing sys_pll failed (for
+> example due to high temperature). To prove that I ran "stress --cpu 4"
+> for multiple hours and then cycled through all available CPU
+> frequencies (while keeping "stress" running in the background). This
+> worked fine on my Meson8b Odroid-C1 and EC-100 boards as well as my
+> Meson8m2 board.
+> 
+> 
+> Dependencies:
+> This series is built on top of the latest clk-meson.git tree and the
+> patches from my other series [1] "Meson8b: fixes for the cpu_scale_div
+> clock".
+> 
+> 
+> Changes since v1 at [0]:
+> - re-ordered patches as suggested by Jerome: keep all fixes first, then
+>   the new "features"
+> - squashed patches "clk-pll: check if the clock is already enabled" and
+>   "clk-pll: add the is_enabled function in the clk_ops". This also
+>   allows calling clk_hw_is_enabled() from meson_clk_pll_enable()
+>   instead of calling meson_clk_pll_is_enabled() directly (this matches
+>   the implementation of sclk-div.c)
+> - documented the dependencies of this series in the cover-letter
+> - dropped "RFC" prefix
+> - collected Jerome's Acked-/Reviewed-by's (thanks for the quick
+>   response!)
+> 
+> 
+> [0] https://patchwork.kernel.org/cover/10683317/
+> [1] https://patchwork.kernel.org/cover/10617617/
+> 
+> 
+> Martin Blumenstingl (6):
+>   clk: meson: clk-pll: check if the clock is already enabled
+>   clk: meson: meson8b: do not use cpu_div3 for cpu_scale_out_sel
+>   clk: meson: meson8b: mark the CPU clock as CLK_IS_CRITICAL
+>   clk: meson: meson8b: add support for more M/N values in sys_pll
+>   clk: meson: meson8b: run from the XTAL when changing the CPU frequency
+>   clk: meson: meson8b: allow changing the CPU clock tree
+> 
+>  drivers/clk/meson/clk-pll.c | 19 ++++++++
+>  drivers/clk/meson/meson8b.c | 94 +++++++++++++++++++++++++++++++++----
+>  2 files changed, 104 insertions(+), 9 deletions(-)
 > 
 
-Finally, pushed to next/drivers to since these are not critical and to
-satisfy the dependencies of "Meson8b: make the CPU clock mutable" patchset.
+Applied to next/drivers !
+
+Thanks for your work on meson8* SoCs !
+
+Neil
