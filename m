@@ -1,66 +1,110 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 16 Nov 2018 11:07:20 +0100
-Subject: [PATCH 01/10] ARM64: dts: amlogic: Add all CPUs in cooling maps
-In-Reply-To: <2778d0d4813cc56be851719846afecbab5f2e657.1542362530.git.viresh.kumar@linaro.org>
-References: <cover.1542362530.git.viresh.kumar@linaro.org>
- <2778d0d4813cc56be851719846afecbab5f2e657.1542362530.git.viresh.kumar@linaro.org>
-Message-ID: <c63cc837-218a-5b53-d7a9-4610bfbd0796@baylibre.com>
+From: quentin.schulz@bootlin.com (Quentin Schulz)
+Date: Fri, 16 Nov 2018 12:15:31 +0100
+Subject: [PATCH v2 3/5] phy: ocelot-serdes: convert to use eth phy mode
+ and submode
+In-Reply-To: <20181109234755.21687-4-grygorii.strashko@ti.com>
+References: <20181109234755.21687-1-grygorii.strashko@ti.com>
+ <20181109234755.21687-4-grygorii.strashko@ti.com>
+Message-ID: <20181116111530.iqqcchtcnmlssvdp@qschulz>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 16/11/2018 11:04, Viresh Kumar wrote:
-> Each CPU can (and does) participate in cooling down the system but the
-> DT only captures a handful of them, normally CPU0, in the cooling maps.
-> Things work by chance currently as under normal circumstances its the
-> first CPU of each cluster which is used by the operating systems to
-> probe the cooling devices. But as soon as this CPU ordering changes and
-> any other CPU is used to bring up the cooling device, we will start
-> seeing failures.
-> 
-> Also the DT is rather incomplete when we list only one CPU in the
-> cooling maps, as the hardware doesn't have any such limitations.
-> 
-> Update cooling maps to include all devices affected by individual trip
-> points.
-> 
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
-> ---
->  .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 22 ++++++++-----------
->  1 file changed, 9 insertions(+), 13 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index 313f88f8759e..cfc92d06a28f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -132,19 +132,15 @@
->  
->  				map1 {
->  					trip = <&cpu_alert1>;
-> -					cooling-device = <&gpio_fan 2 THERMAL_NO_LIMIT>;
-> -				};
-> -
-> -				map2 {
-> -					trip = <&cpu_alert1>;
-> -					cooling-device =
-> -						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> -				};
-> -
-> -				map3 {
-> -					trip = <&cpu_alert1>;
-> -					cooling-device =
-> -						<&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +					cooling-device = <&gpio_fan 2 THERMAL_NO_LIMIT>,
-> +							 <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->  				};
->  			};
->  		};
+Hi Grygorii,
+
+On Fri, Nov 09, 2018 at 05:47:53PM -0600, Grygorii Strashko wrote:
+> Convert ocelot-serdes PHY driver to use recently introduced
+> PHY_MODE_ETHERNET and phy_set_mode_ext().
 > 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Thanks for the patch, it's annoying to have to map PHY_MODE_SGMII and
+PHY_INTERFACE_MODE_SGMII :)
+
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> ---
+>  drivers/net/ethernet/mscc/ocelot.c   |  9 ++-------
+>  drivers/phy/mscc/phy-ocelot-serdes.c | 14 ++++++++++----
+>  2 files changed, 12 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/mscc/ocelot.c b/drivers/net/ethernet/mscc/ocelot.c
+> index 3238b9e..3edb608 100644
+> --- a/drivers/net/ethernet/mscc/ocelot.c
+> +++ b/drivers/net/ethernet/mscc/ocelot.c
+> @@ -472,7 +472,6 @@ static int ocelot_port_open(struct net_device *dev)
+>  {
+>  	struct ocelot_port *port = netdev_priv(dev);
+>  	struct ocelot *ocelot = port->ocelot;
+> -	enum phy_mode phy_mode;
+>  	int err;
+>  
+>  	/* Enable receiving frames on the port, and activate auto-learning of
+> @@ -484,12 +483,8 @@ static int ocelot_port_open(struct net_device *dev)
+>  			 ANA_PORT_PORT_CFG, port->chip_port);
+>  
+>  	if (port->serdes) {
+> -		if (port->phy_mode == PHY_INTERFACE_MODE_SGMII)
+> -			phy_mode = PHY_MODE_SGMII;
+> -		else
+> -			phy_mode = PHY_MODE_QSGMII;
+> -
+> -		err = phy_set_mode(port->serdes, phy_mode);
+> +		err = phy_set_mode_ext(port->serdes, PHY_MODE_ETHERNET,
+> +				       port->phy_mode);
+>  		if (err) {
+>  			netdev_err(dev, "Could not set mode of SerDes\n");
+>  			return err;
+> diff --git a/drivers/phy/mscc/phy-ocelot-serdes.c b/drivers/phy/mscc/phy-ocelot-serdes.c
+> index c61a9890..f525a21 100644
+> --- a/drivers/phy/mscc/phy-ocelot-serdes.c
+> +++ b/drivers/phy/mscc/phy-ocelot-serdes.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_platform.h>
+> +#include <linux/phy.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> @@ -116,8 +117,10 @@ struct serdes_mux {
+>  	.mux = _mux,						\
+>  }
+>  
+> -#define SERDES_MUX_SGMII(i, p, m, c) SERDES_MUX(i, p, PHY_MODE_SGMII, m, c)
+> -#define SERDES_MUX_QSGMII(i, p, m, c) SERDES_MUX(i, p, PHY_MODE_QSGMII, m, c)
+> +#define SERDES_MUX_SGMII(i, p, m, c) \
+> +	SERDES_MUX(i, p, PHY_INTERFACE_MODE_SGMII, m, c)
+> +#define SERDES_MUX_QSGMII(i, p, m, c) \
+> +	SERDES_MUX(i, p, PHY_INTERFACE_MODE_QSGMII, m, c)
+>  
+>  static const struct serdes_mux ocelot_serdes_muxes[] = {
+>  	SERDES_MUX_SGMII(SERDES1G(0), 0, 0, 0),
+> @@ -164,12 +167,15 @@ static int serdes_set_mode(struct phy *phy, enum phy_mode mode, int submode)
+>  	unsigned int i;
+>  	int ret;
+>  
+> +	if (mode != PHY_MODE_ETHERNET)
+> +		return -EINVAL;
+> +
+
+This works for now because we only support Ethernet muxes for now but
+this IP also supports PHY_MODE_PCIE.
+
+It seems weird to me that the day we'll add support for PCIE muxing we
+will have in ocelot_serdes_muxes[i].mode either a PHY_INTERFACE_MODE_*
+or a PHY_MODE_PCIE. This is not an issue for now since you do the mode
+!= PHY_MODE_ETHERNET just above but once we get rid of this, we only
+test for submode != ocelot_serdes_muxes[i].mode and both
+PHY_INTERFACE_MODE_1000BASEX and PHY_MODE_PCIE will have the same index
+thus might be confused.
+
+Should we add a submode to the SERDES_MUX macro, move PHY_MODE_*MII to
+this submode and have PHY_MODE_ETHERNET/PCIE in the mode field?
+
+Thanks,
+Quentin
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 833 bytes
+Desc: not available
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20181116/c7e612a6/attachment.sig>
