@@ -1,24 +1,30 @@
-From: peter@korsgaard.com (Peter Korsgaard)
-Date: Fri, 16 Nov 2018 16:30:04 +0100
-Subject: [PATCH RESEND v2 2/2] arm64: dts: meson: add libretech
- aml-s805x-ac board
-In-Reply-To: <20181116151539.18501-3-jbrunet@baylibre.com> (Jerome Brunet's
- message of "Fri, 16 Nov 2018 16:15:39 +0100")
-References: <20181116151539.18501-1-jbrunet@baylibre.com>
- <20181116151539.18501-3-jbrunet@baylibre.com>
-Message-ID: <87y39trqf7.fsf@dell.be.48ers.dk>
+From: maxime.chevallier@bootlin.com (Maxime Chevallier)
+Date: Fri, 16 Nov 2018 17:05:21 +0100
+Subject: [PATCH 4/5] phy: mvebu-cp110-comphy: convert to use eth phy
+ mode and submode
+In-Reply-To: <20181108003617.10334-5-grygorii.strashko@ti.com>
+References: <20181108003617.10334-1-grygorii.strashko@ti.com>
+ <20181108003617.10334-5-grygorii.strashko@ti.com>
+Message-ID: <20181116170521.11ee68e9@bootlin.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
->>>>> "Jerome" == Jerome Brunet <jbrunet@baylibre.com> writes:
+Hello Grygorii,
 
- > From: Neil Armstrong <narmstrong@baylibre.com>
- > Add Libretech aml-s805x-ac board (aka 'La Frite') support
+On Wed, 7 Nov 2018 18:36:16 -0600
+Grygorii Strashko <grygorii.strashko@ti.com> wrote:
 
- > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
- > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>Convert mvebu-cp110-comphy PHY driver to use recently introduced
+>PHY_MODE_ETHERNET and phy_set_mode_ext().
 
-Reviewed-by: Peter Korsgaard <peter@korsgaard.com>
+I gave it a quick test on MacchiatoBin, it works fine and the automatic
+mode switching in the comphy happens as expected, so :
+
+Tested-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
+>Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
 
 -- 
-Bye, Peter Korsgaard
+Maxime Chevallier, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
