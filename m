@@ -1,35 +1,36 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Sun, 18 Nov 2018 13:48:37 +0100
-Subject: [PATCH v2 2/4] clk: meson-gxbb: Fix HDMI PLL for GXL SoCs
-In-Reply-To: <1541516257-16157-3-git-send-email-narmstrong@baylibre.com>
-References: <1541516257-16157-1-git-send-email-narmstrong@baylibre.com>
- <1541516257-16157-3-git-send-email-narmstrong@baylibre.com>
-Message-ID: <CAFBinCDQ0G-yt8a6rwpVDa6FJHr1f=VEkAX3LT95ZR+9bWAekw@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Sun, 18 Nov 2018 14:50:24 +0100
+Subject: [PATCH v3 3/3] ARM64: dts: meson-gx: Add Internal Clock Measurer node
+In-Reply-To: <20181118135024.30720-1-narmstrong@baylibre.com>
+References: <20181118135024.30720-1-narmstrong@baylibre.com>
+Message-ID: <20181118135024.30720-4-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Neil,
+The Amlogic Meson GX SoCs embeds a clock measurer IP to measure the internal
+clock paths frequencies.
+This patch adds the node in the top-level meson-gx dtsi.
 
-On Tue, Nov 6, 2018 at 3:59 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> In an attempt to better describe the HDMI PLL, a single DCO clock was
-> left for GXBB and GXL, but the GXL DCO does not have a pre-multiplier.
->
-> This patch adds back a GXL specific HDMI PLL DCO with xtal as parent.
-according to the public S905X datasheet (from Khadas)
-HHI_HDMI_PLL_CNTL2[31:30] describe the OD_FB
-the 32-bit SoCs probably have an OD_FB as well and it seems that the
-formula for the PLL with OD_FB is:
-  in * m / n >> od << od_fb
-(however, I must admit that I'm not sure where od_fb fits in best:
-before the PLL DCO - like OD is after the PLL DCO, or part of the PLL
-DCO)
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-so this is more of a question than a suggestion/feedback:
-do you know whether the datasheet is correct and there's really a
-programmable multiplier (called OD_FB)?
-do you have more details on that topic?
-
-
-Regards
-Martin
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index f1e5cdbade5e..ed336c7a98a7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -262,6 +262,11 @@
+ 				status = "disabled";
+ 			};
+ 
++			clock-measure at 8758 {
++				compatible = "amlogic,meson-gx-clk-measure";
++				reg = <0x0 0x8758 0x0 0x10>;
++			};
++
+ 			i2c_B: i2c at 87c0 {
+ 				compatible = "amlogic,meson-gx-i2c", "amlogic,meson-gxbb-i2c";
+ 				reg = <0x0 0x087c0 0x0 0x20>;
+-- 
+2.19.1
