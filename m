@@ -1,124 +1,35 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Sun, 18 Nov 2018 10:32:51 +0100
-Subject: [PATCH v2 0/3] Add Amlogic Meson GX SoC Clock Measure Driver
-In-Reply-To: <75ca31ca-82f4-c9e9-0d73-29fde405c47c@baylibre.com>
-References: <20181114131627.17766-1-narmstrong@baylibre.com>
- <75ca31ca-82f4-c9e9-0d73-29fde405c47c@baylibre.com>
-Message-ID: <5BF131C3.9040808@baylibre.com>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Sun, 18 Nov 2018 13:48:37 +0100
+Subject: [PATCH v2 2/4] clk: meson-gxbb: Fix HDMI PLL for GXL SoCs
+In-Reply-To: <1541516257-16157-3-git-send-email-narmstrong@baylibre.com>
+References: <1541516257-16157-1-git-send-email-narmstrong@baylibre.com>
+ <1541516257-16157-3-git-send-email-narmstrong@baylibre.com>
+Message-ID: <CAFBinCDQ0G-yt8a6rwpVDa6FJHr1f=VEkAX3LT95ZR+9bWAekw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Le 14/11/2018 14:17, Neil Armstrong a ?crit :
-> On 14/11/2018 14:16, Neil Armstrong wrote:
->> The Amlogic Meson GX SoCs embeds a clock measurer IP to measure the internal
->> clocks frequencyies.
->> The precision is determined by stepping into the divider until the counter
->> overflows.
->> The debugfs slows a pretty summary and each clock can be measured
->> individually aswell.
->>
->> Thsi patchset includes the dt-bindings, driver and the DT node added to the
->> meson-gx dtsi.
+Hi Neil,
 
-I'll respin a v3 with the comments from Martin and Meson8 & Meson8b support !
+On Tue, Nov 6, 2018 at 3:59 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> In an attempt to better describe the HDMI PLL, a single DCO clock was
+> left for GXBB and GXL, but the GXL DCO does not have a pre-multiplier.
+>
+> This patch adds back a GXL specific HDMI PLL DCO with xtal as parent.
+according to the public S905X datasheet (from Khadas)
+HHI_HDMI_PLL_CNTL2[31:30] describe the OD_FB
+the 32-bit SoCs probably have an OD_FB as well and it seems that the
+formula for the PLL with OD_FB is:
+  in * m / n >> od << od_fb
+(however, I must admit that I'm not sure where od_fb fits in best:
+before the PLL DCO - like OD is after the PLL DCO, or part of the PLL
+DCO)
 
-Neil
+so this is more of a question than a suggestion/feedback:
+do you know whether the datasheet is correct and there's really a
+programmable multiplier (called OD_FB)?
+do you have more details on that topic?
 
->>
->> Changes since v1 at [1]:
->> - fixed clock names
->> - added summary in debugfs and moved indivudual clocks into a subdirectory
->> - added the GX table to the match data
->>
->> Neil Armstrong (3):
->>   dt-bindings: amlogic: Add Internal Clock Measurer bindings
->>   soc: amlogic: Add Meson GX Clock Measure driver
->>   ARM64: dts: meson-gx: Add Internal Clock Measurer node
->>
->>  .../bindings/soc/amlogic/clk-measure.txt      |  15 +
->>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   5 +
->>  drivers/soc/amlogic/Kconfig                   |   8 +
->>  drivers/soc/amlogic/Makefile                  |   1 +
->>  drivers/soc/amlogic/meson-gx-clk-measure.c    | 293 ++++++++++++++++++
->>  5 files changed, 322 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
->>  create mode 100644 drivers/soc/amlogic/meson-gx-clk-measure.c
->>
-> 
-> For example, the debugfs summary looks like :
-> 
-> # cat /sys/kernel/debug/meson-clk-msr/measure_summary
->   clock                     rate    precision
-> ---------------------------------------------
->  ring_osc_out_ee_0             0    +/-3125Hz
->  ring_osc_out_ee_1             0    +/-3125Hz
->  ring_osc_out_ee_2             0    +/-3125Hz
->  a53_ring_osc                  0    +/-3125Hz
->  gp0_pll                       0    +/-3125Hz
->  enci                   26998438    +/-3125Hz
->  clk81                 166661458    +/-5208Hz
->  encp                          0    +/-3125Hz
->  encl                          0    +/-3125Hz
->  vdac                   26998438    +/-3125Hz
->  rgmii_tx                      0    +/-3125Hz
->  pdm                           0    +/-3125Hz
->  amclk                         0    +/-3125Hz
->  fec_0                         0    +/-3125Hz
->  fec_1                         0    +/-3125Hz
->  fec_2                         0    +/-3125Hz
->  sys_pll_div16                 0    +/-3125Hz
->  sys_cpu_div16                 0    +/-3125Hz
->  hdmitx_sys             24000000    +/-3125Hz
->  rtc_osc_out               32813    +/-3125Hz
->  i2s_in_src0                   0    +/-3125Hz
->  eth_phy_ref                   0    +/-3125Hz
->  hdmi_todig                    0    +/-3125Hz
->  sc_int                        0    +/-3125Hz
->  sar_adc                 1195313    +/-3125Hz
->  mpll_test_out                 0    +/-3125Hz
->  vdec                          0    +/-3125Hz
->  mali                          0    +/-3125Hz
->  hdmi_tx_pixel                 0    +/-3125Hz
->  i958                          0    +/-3125Hz
->  vdin_meas            1484656250    +/-62500Hz
->  pcm_sclk                      0    +/-3125Hz
->  pcm_mclk                      0    +/-3125Hz
->  eth_rx_or_rmii         50000000    +/-3125Hz
->  mp0_out                       0    +/-3125Hz
->  fclk_div5                     0    +/-3125Hz
->  pwm_b                  24000000    +/-3125Hz
->  pwm_a                         0    +/-3125Hz
->  vpu                   666625000    +/-20833Hz
->  ddr_dpll_pt                   0    +/-3125Hz
->  mp1_out                       0    +/-3125Hz
->  mp2_out                       0    +/-3125Hz
->  mp3_out                       0    +/-3125Hz
->  nand_core              24000000    +/-3125Hz
->  sd_emmc_b                     0    +/-3125Hz
->  sd_emmc_a                     0    +/-3125Hz
->  vid_pll_div_out      1484843750    +/-62500Hz
->  cci                           0    +/-3125Hz
->  wave420l_c                    0    +/-3125Hz
->  wave420l_b                    0    +/-3125Hz
->  hcodec                        0    +/-3125Hz
->  alt_32k                       0    +/-3125Hz
->  gpio_msr                      0    +/-3125Hz
->  hevc                          0    +/-3125Hz
->  vid_lock                      0    +/-3125Hz
->  pwm_f                         0    +/-3125Hz
->  pwm_e                         0    +/-3125Hz
->  pwm_d                  23984375    +/-3125Hz
->  pwm_c                         0    +/-3125Hz
->  aoclkx2_int                   0    +/-3125Hz
->  aoclk_int                     0    +/-3125Hz
->  rng_ring_osc_0         66746875    +/-3125Hz
->  rng_ring_osc_1         58442188    +/-3125Hz
->  rng_ring_osc_2         52098438    +/-3125Hz
->  rng_ring_osc_3         46662500    +/-3125Hz
->  vapb                  249996094    +/-7812Hz
->  ge2d                  249992188    +/-7812Hz
-> 
-> On the AML-S905X-CC board.
-> 
-> Neil
-> 
+
+Regards
+Martin
