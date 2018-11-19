@@ -1,139 +1,96 @@
-From: linux@armlinux.org.uk (Russell King - ARM Linux)
-Date: Mon, 19 Nov 2018 17:07:32 +0000
-Subject: [PATCH v2 4/5] phy: mvebu-cp110-comphy: convert to use eth phy
- mode and submode
-In-Reply-To: <20181109234755.21687-5-grygorii.strashko@ti.com>
-References: <20181109234755.21687-1-grygorii.strashko@ti.com>
- <20181109234755.21687-5-grygorii.strashko@ti.com>
-Message-ID: <20181119170732.GB30658@n2100.armlinux.org.uk>
+From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
+Date: Mon, 19 Nov 2018 21:12:26 +0100
+Subject: [PATCH v5 1/2] dt-bindings: PCI: meson: add DT bindings for
+ Amlogic Meson PCIe controller
+In-Reply-To: <1539049990-30810-2-git-send-email-hanjie.lin@amlogic.com>
+References: <1539049990-30810-1-git-send-email-hanjie.lin@amlogic.com>
+ <1539049990-30810-2-git-send-email-hanjie.lin@amlogic.com>
+Message-ID: <CAFBinCCChD-phwyb3hSzAjBmy09g35ijQa_chJX5HufuVnPjaw@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Fri, Nov 09, 2018 at 05:47:54PM -0600, Grygorii Strashko wrote:
-> Convert mvebu-cp110-comphy PHY driver to use recently introduced
-> PHY_MODE_ETHERNET and phy_set_mode_ext().
-> 
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Hello Hanjie, Hello Yue,
+
+sorry for being late with my comment
+
+On Tue, Oct 9, 2018 at 3:53 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
+>
+> From: Yue Wang <yue.wang@amlogic.com>
+>
+> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+> PCI core. This patch adds documentation for the DT bindings in Meson PCIe
+> controller.
+>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 19 +-----
->  drivers/phy/marvell/phy-mvebu-cp110-comphy.c    | 83 ++++++++++++++-----------
->  2 files changed, 48 insertions(+), 54 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> index 7a37a37..731793a 100644
-> --- a/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> +++ b/drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c
-> @@ -1165,28 +1165,13 @@ static void mvpp22_gop_setup_irq(struct mvpp2_port *port)
->   */
->  static int mvpp22_comphy_init(struct mvpp2_port *port)
->  {
-> -	enum phy_mode mode;
->  	int ret;
->  
->  	if (!port->comphy)
->  		return 0;
->  
-> -	switch (port->phy_interface) {
-> -	case PHY_INTERFACE_MODE_SGMII:
-> -	case PHY_INTERFACE_MODE_1000BASEX:
-> -		mode = PHY_MODE_SGMII;
-> -		break;
-> -	case PHY_INTERFACE_MODE_2500BASEX:
-> -		mode = PHY_MODE_2500SGMII;
-> -		break;
-> -	case PHY_INTERFACE_MODE_10GKR:
-> -		mode = PHY_MODE_10GKR;
-> -		break;
-> -	default:
-> -		return -EINVAL;
-> -	}
-> -
-> -	ret = phy_set_mode(port->comphy, mode);
-> +	ret = phy_set_mode_ext(port->comphy, PHY_MODE_ETHERNET,
-> +			       port->phy_interface);
->  	if (ret)
->  		return ret;
->  
-> diff --git a/drivers/phy/marvell/phy-mvebu-cp110-comphy.c b/drivers/phy/marvell/phy-mvebu-cp110-comphy.c
-> index 79b52c3..7dee72b 100644
-> --- a/drivers/phy/marvell/phy-mvebu-cp110-comphy.c
-> +++ b/drivers/phy/marvell/phy-mvebu-cp110-comphy.c
-> @@ -9,6 +9,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
-> +#include <linux/phy.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
-> @@ -131,26 +132,26 @@ struct mvebu_comhy_conf {
->  
->  static const struct mvebu_comhy_conf mvebu_comphy_cp110_modes[] = {
->  	/* lane 0 */
-> -	MVEBU_COMPHY_CONF(0, 1, PHY_MODE_SGMII, 0x1),
-> -	MVEBU_COMPHY_CONF(0, 1, PHY_MODE_2500SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(0, 1, PHY_INTERFACE_MODE_SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(0, 1, PHY_INTERFACE_MODE_2500BASEX, 0x1),
->  	/* lane 1 */
-> -	MVEBU_COMPHY_CONF(1, 2, PHY_MODE_SGMII, 0x1),
-> -	MVEBU_COMPHY_CONF(1, 2, PHY_MODE_2500SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(1, 2, PHY_INTERFACE_MODE_SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(1, 2, PHY_INTERFACE_MODE_2500BASEX, 0x1),
->  	/* lane 2 */
-> -	MVEBU_COMPHY_CONF(2, 0, PHY_MODE_SGMII, 0x1),
-> -	MVEBU_COMPHY_CONF(2, 0, PHY_MODE_2500SGMII, 0x1),
-> -	MVEBU_COMPHY_CONF(2, 0, PHY_MODE_10GKR, 0x1),
-> +	MVEBU_COMPHY_CONF(2, 0, PHY_INTERFACE_MODE_SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(2, 0, PHY_INTERFACE_MODE_2500BASEX, 0x1),
-> +	MVEBU_COMPHY_CONF(2, 0, PHY_INTERFACE_MODE_10GKR, 0x1),
->  	/* lane 3 */
-> -	MVEBU_COMPHY_CONF(3, 1, PHY_MODE_SGMII, 0x2),
-> -	MVEBU_COMPHY_CONF(3, 1, PHY_MODE_2500SGMII, 0x2),
-> +	MVEBU_COMPHY_CONF(3, 1, PHY_INTERFACE_MODE_SGMII, 0x2),
-> +	MVEBU_COMPHY_CONF(3, 1, PHY_INTERFACE_MODE_2500BASEX, 0x2),
->  	/* lane 4 */
-> -	MVEBU_COMPHY_CONF(4, 0, PHY_MODE_SGMII, 0x2),
-> -	MVEBU_COMPHY_CONF(4, 0, PHY_MODE_2500SGMII, 0x2),
-> -	MVEBU_COMPHY_CONF(4, 0, PHY_MODE_10GKR, 0x2),
-> -	MVEBU_COMPHY_CONF(4, 1, PHY_MODE_SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(4, 0, PHY_INTERFACE_MODE_SGMII, 0x2),
-> +	MVEBU_COMPHY_CONF(4, 0, PHY_INTERFACE_MODE_2500BASEX, 0x2),
-> +	MVEBU_COMPHY_CONF(4, 0, PHY_INTERFACE_MODE_10GKR, 0x2),
-> +	MVEBU_COMPHY_CONF(4, 1, PHY_INTERFACE_MODE_SGMII, 0x1),
->  	/* lane 5 */
-> -	MVEBU_COMPHY_CONF(5, 2, PHY_MODE_SGMII, 0x1),
-> -	MVEBU_COMPHY_CONF(5, 2, PHY_MODE_2500SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(5, 2, PHY_INTERFACE_MODE_SGMII, 0x1),
-> +	MVEBU_COMPHY_CONF(5, 2, PHY_INTERFACE_MODE_2500BASEX, 0x1),
->  };
->  
->  struct mvebu_comphy_priv {
-> @@ -163,10 +164,12 @@ struct mvebu_comphy_lane {
->  	struct mvebu_comphy_priv *priv;
->  	unsigned id;
->  	enum phy_mode mode;
-> +	int submode;
->  	int port;
->  };
->  
-> -static int mvebu_comphy_get_mux(int lane, int port, enum phy_mode mode)
-> +static int mvebu_comphy_get_mux(int lane, int port,
-> +				enum phy_mode mode, int submode)
->  {
->  	int i, n = ARRAY_SIZE(mvebu_comphy_cp110_modes);
->  
-> @@ -177,7 +180,7 @@ static int mvebu_comphy_get_mux(int lane, int port, enum phy_mode mode)
->  	for (i = 0; i < n; i++) {
->  		if (mvebu_comphy_cp110_modes[i].lane == lane &&
->  		    mvebu_comphy_cp110_modes[i].port == port &&
-> -		    mvebu_comphy_cp110_modes[i].mode == mode)
-> +		    mvebu_comphy_cp110_modes[i].mode == submode)
+>  .../devicetree/bindings/pci/amlogic,meson-pcie.txt | 70 ++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+>
+> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+> new file mode 100644
+> index 0000000..12b18f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+> @@ -0,0 +1,70 @@
+> +Amlogic Meson AXG DWC PCIE SoC controller
+> +
+> +Amlogic Meson PCIe host controller is based on the Synopsys DesignWare PCI core.
+> +It shares common functions with the PCIe DesignWare core driver and
+> +inherits common properties defined in
+> +Documentation/devicetree/bindings/pci/designware-pci.txt.
+> +
+> +Additional properties are described here:
+> +
+> +Required properties:
+> +- compatible:
+> +       should contain "amlogic,axg-pcie" to identify the core.
+> +- reg:
+> +       should contain the configuration address space.
+> +- reg-names: Must be
+> +       - "elbi"        External local bus interface registers
+> +       - "cfg"         Meson specific registers
+> +       - "phy"         Meson PCIE PHY registers
+is this only the PCIe PHY registers or is it the registers of the PHY
+which supports USB3.0 and PCIe?
+buildroot_openlinux_kernel_4.9_fbdev_20180706 uses the following
+registers in the pcie_A node for the "phy" registers:
+0x0 0xff646000 0x0 0x2000
+while the usb3_phy_v2 node uses:
+phy-reg = <0xff646000>;
 
-This looks like it could be a future source of problems, since we
-have both a "mode" and a "submode".  Is there any reason not to
-rename mvebu_comphy_cp110_modes's .mode member to be .submode ?
+> +       - "config"      PCIe configuration space
+> +- reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
+> +- clocks: Must contain an entry for each entry in clock-names.
+> +- clock-names: Must include the following entries:
+> +       - "pclk"       PCIe GEN 100M PLL clock
+> +       - "port"       PCIe_x(A or B) RC clock gate
+> +       - "general"    PCIe Phy clock
+> +       - "mipi"       PCIe_x(A or B) 100M ref clock gate
+> +- resets: phandle to the reset lines.
+> +- reset-names: must contain "phy" "port" and "apb"
+> +       - "phy"         Share PHY reset
+> +       - "port"        Port A or B reset
+> +       - "apb"         Share APB reset
+> +- device_type:
+> +       should be "pci". As specified in designware-pcie.txt
+> +
+> +
+> +Example configuration:
+> +
+> +       pcie: pcie at f9800000 {
+> +                       compatible = "amlogic,axg-pcie", "snps,dw-pcie";
+> +                       reg = <0x0 0xf9800000 0x0 0x400000
+> +                                       0x0 0xff646000 0x0 0x2000
+> +                                       0x0 0xff644000 0x0 0x2000
+> +                                       0x0 0xf9f00000 0x0 0x100000>;
+> +                       reg-names = "elbi", "cfg", "phy", "config";
+is the order of the reg-names correct?
+buildroot_openlinux_kernel_4.9_fbdev_20180706 uses 0xff646000 for the
+PHY (instead of 0xff646000) in mesong12a.dtsi and mesong12b.dtsi
 
--- 
-RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+
+Regards
+Martin
