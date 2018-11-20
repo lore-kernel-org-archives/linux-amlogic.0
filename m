@@ -1,51 +1,78 @@
 From: ldevulder@suse.de (Loic Devulder)
-Date: Wed, 21 Nov 2018 00:50:17 +0100
-Subject: [PATCH v2 0/3] ARM: meson: Use syscon/regmap for clock driver
-Message-ID: <20181120235020.14812-1-ldevulder@suse.de>
+Date: Wed, 21 Nov 2018 00:50:19 +0100
+Subject: [PATCH v2 2/3] ARM: meson: Enable syscon on all supported boards
+In-Reply-To: <20181120235020.14812-1-ldevulder@suse.de>
+References: <20181120235020.14812-1-ldevulder@suse.de>
+Message-ID: <20181120235020.14812-3-ldevulder@suse.de>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This patch series modifies the meson clock driver to use syscon/regmap
-like the Linux kernel does. It is needed if we want to share the same
-DTS files with the Linux kernel, as last changes in clock-controller
-break U-Boot.
+This patch enable CONFIG_SYSCON option on all supported meson boards, as
+this is need for the new clock driver to work.
 
-These patches also update all meson DTS files to last versions from
-Linux kernel v4.19.
+Signed-off-by: Loic Devulder <ldevulder@suse.de>
+---
+ configs/khadas-vim2_defconfig  | 1 +
+ configs/khadas-vim_defconfig   | 1 +
+ configs/libretech-cc_defconfig | 1 +
+ configs/nanopi-k2_defconfig    | 1 +
+ configs/odroid-c2_defconfig    | 1 +
+ configs/p212_defconfig         | 1 +
+ 6 files changed, 6 insertions(+)
 
-It was successfully tested on kvim, kvim2 and libretech-cc, both with
-the old and new DTS files. I don't have any p212, nanopi-k2 nor odroid-c2
-boards to test with. As kvim and libretech-cc boards share a lot with
-p212 I don't expect any issue with that board, but if someone is able to
-test on nanopo-k2 and odroid-c2 it could be great :-)
-
-I opened this patch series as a RFC, as it's not a tricky part (for
-me!) and pretty new to me, so any feedback are welcome and wanted!
-
-Changes since v1:
-- rebased on the "Amlogic Meson cleanup for AXG SoC support" patchset from Neil
-
-Loic Devulder (3):
-  ARM: meson: Add regmap support for clock driver
-  ARM: meson: Enable syscon on all supported boards
-  ARM: dts: meson: Update dts files from Linux v4.19
-
- arch/arm/dts/meson-gx.dtsi                    | 31 +++++++++++++----
- arch/arm/dts/meson-gxbb-nanopi-k2.dts         | 48 ++++++++++++++++++++++++++
- arch/arm/dts/meson-gxbb.dtsi                  | 14 ++++----
- arch/arm/dts/meson-gxl-mali.dtsi              |  2 +-
- arch/arm/dts/meson-gxl-s905x-libretech-cc.dts |  5 +--
- arch/arm/dts/meson-gxl-s905x-p212.dtsi        |  8 ++---
- arch/arm/dts/meson-gxl.dtsi                   | 26 ++++++--------
- arch/arm/dts/meson-gxm-khadas-vim2.dts        | 24 +++++++++++++
- configs/khadas-vim2_defconfig                 |  1 +
- configs/khadas-vim_defconfig                  |  1 +
- configs/libretech-cc_defconfig                |  1 +
- configs/nanopi-k2_defconfig                   |  1 +
- configs/odroid-c2_defconfig                   |  1 +
- configs/p212_defconfig                        |  1 +
- drivers/clk/clk_meson.c                       | 61 ++++++++++++++-------------
- 15 files changed, 158 insertions(+), 67 deletions(-)
-
+diff --git a/configs/khadas-vim2_defconfig b/configs/khadas-vim2_defconfig
+index f21e3a8ddf..c5f2b3f111 100644
+--- a/configs/khadas-vim2_defconfig
++++ b/configs/khadas-vim2_defconfig
+@@ -49,3 +49,4 @@ CONFIG_USB_STORAGE=y
+ CONFIG_USB_DWC3=y
+ CONFIG_USB_STORAGE=y
+ CONFIG_OF_LIBFDT_OVERLAY=y
++CONFIG_SYSCON=y
+diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
+index 0c89d9a22c..6815c7bebf 100644
+--- a/configs/khadas-vim_defconfig
++++ b/configs/khadas-vim_defconfig
+@@ -51,3 +51,4 @@ CONFIG_USB_XHCI_DWC3_OF_SIMPLE=y
+ CONFIG_USB_DWC3=y
+ CONFIG_USB_STORAGE=y
+ CONFIG_OF_LIBFDT_OVERLAY=y
++CONFIG_SYSCON=y
+diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
+index 36d117c4ab..4267d75931 100644
+--- a/configs/libretech-cc_defconfig
++++ b/configs/libretech-cc_defconfig
+@@ -51,3 +51,4 @@ CONFIG_USB_XHCI_DWC3_OF_SIMPLE=y
+ CONFIG_USB_DWC3=y
+ CONFIG_USB_STORAGE=y
+ CONFIG_OF_LIBFDT_OVERLAY=y
++CONFIG_SYSCON=y
+diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
+index 5c8c747bf3..7222419e84 100644
+--- a/configs/nanopi-k2_defconfig
++++ b/configs/nanopi-k2_defconfig
+@@ -40,3 +40,4 @@ CONFIG_DEBUG_UART_ANNOUNCE=y
+ CONFIG_DEBUG_UART_SKIP_INIT=y
+ CONFIG_MESON_SERIAL=y
+ CONFIG_OF_LIBFDT_OVERLAY=y
++CONFIG_SYSCON=y
+diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
+index 19196b3585..3ad4f73a85 100644
+--- a/configs/odroid-c2_defconfig
++++ b/configs/odroid-c2_defconfig
+@@ -40,3 +40,4 @@ CONFIG_DEBUG_UART_ANNOUNCE=y
+ CONFIG_DEBUG_UART_SKIP_INIT=y
+ CONFIG_MESON_SERIAL=y
+ CONFIG_OF_LIBFDT_OVERLAY=y
++CONFIG_SYSCON=y
+diff --git a/configs/p212_defconfig b/configs/p212_defconfig
+index 9e3b1d6bfb..9bbe67ac61 100644
+--- a/configs/p212_defconfig
++++ b/configs/p212_defconfig
+@@ -50,3 +50,4 @@ CONFIG_USB_XHCI_DWC3_OF_SIMPLE=y
+ CONFIG_USB_DWC3=y
+ CONFIG_USB_STORAGE=y
+ CONFIG_OF_LIBFDT_OVERLAY=y
++CONFIG_SYSCON=y
 -- 
 2.16.4
