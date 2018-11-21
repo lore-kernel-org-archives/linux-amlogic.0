@@ -1,87 +1,81 @@
-From: kishon@ti.com (Kishon Vijay Abraham I)
-Date: Wed, 21 Nov 2018 14:25:04 +0530
-Subject: [PATCH v3 0/5] phy: core: rework phy_set_mode to accept phy mode
- and submode
-In-Reply-To: <20181120012424.11802-1-grygorii.strashko@ti.com>
-References: <20181120012424.11802-1-grygorii.strashko@ti.com>
-Message-ID: <6418b7c3-7345-76e8-90c0-9a77769f6f87@ti.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Wed, 21 Nov 2018 10:32:34 +0100
+Subject: [U-Boot] [PATCH u-boot 17/19] board: amlogic: add support for
+ S400 board
+In-Reply-To: <9e6017fc-3d51-5f81-c475-0b95d8be7204@suse.de>
+References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
+ <1541777218-472-18-git-send-email-narmstrong@baylibre.com>
+ <9e6017fc-3d51-5f81-c475-0b95d8be7204@suse.de>
+Message-ID: <ff17e112-5861-dd01-f0db-4173475138b0@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Loic,
 
+On 20/11/2018 22:08, Loic Devulder wrote:
+> Hi Neil,
+> 
+> On 11/9/18 4:26 PM, Neil Armstrong wrote:
+>> The S400 board is the Amlogic AXG SoC reference board including :
+>>  - Amlogic A113DX ARM Cortex-A53 quad-core SoC @ 1.2GHz
+>>  - 1GB DDR4 SDRAM
+>>  - 10/100 Ethernet
+>>  - 2 x USB 2.0 Host
+>>  - eMMC
+>>  - Infrared receiver
+>>  - SDIO WiFi Module
+>>  - MIPI DSI Connector
+>>  - Audio HAT Connector
+>>  - PCI-E M.2 Connectors
+>>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
 
-On 20/11/18 6:54 AM, Grygorii Strashko wrote:
-> Hi Kishon, All,
-> 
-> Thank you for your review.
-> I've not added "Tested-by"/"Acked-by" tags due to code changes in v3.
+[...]
 
-merged after adding the required ACKs.
+>> +
+>> + > $FIPDIR/axg/aml_encrypt_axg --bl3sig --input fip/bl30_new.bin \
+>> +	 				--output fip/bl30_new.bin.enc \
+> 
+> I have a git warning because there is a white space between two tabs in
+> that line.
+> 
+>> +					--level v3 --type bl30
+>> + > $FIPDIR/axg/aml_encrypt_axg --bl3sig --input fip/bl31.img \
+>> +	 				--output fip/bl31.img.enc \
+> 
+> Same here :)
+> 
+>> +					--level v3 --type bl31
+>> + > $FIPDIR/axg/aml_encrypt_axg --bl3sig --input fip/bl33.bin --compress lz4 \
+>> +	 				--output fip/bl33.bin.enc \
+> 
+> Same here :)
+>> +					--level v3 --type bl33
+>> + > $FIPDIR/axg/aml_encrypt_axg --bl2sig --input fip/bl2_new.bin \
+>> +	 				--output fip/bl2.n.bin.sig
+> 
+> And same here :) (the last!)
+> 
+>> + > $FIPDIR/axg/aml_encrypt_axg --bootmk \
+>> +		--output fip/u-boot.bin \
+>> +		--bl2 fip/bl2.n.bin.sig \
+>> +		--bl30 fip/bl30_new.bin.enc \
+>> +		--bl31 fip/bl31.img.enc \
+>> +		--bl33 fip/bl33.bin.enc --level v3
+>> +
 
-Thanks
-Kishon
-> 
-> As was discussed in [1] I'm posting series which introduces rework of
-> phy_set_mode to accept phy mode and submode. I've dropped TI specific patches as
-> this change is pretty big by itself.
-> 
-> Patch 1 is cumulative change which refactors PHY framework code to
-> support dual level PHYs mode configuration - PHY mode and PHY submode. It
-> extends .set_mode() callback to support additional parameter "int submode"
-> and converts all corresponding PHY drivers to support new .set_mode()
-> callback declaration.
-> The new extended PHY API
->  int phy_set_mode_ext(struct phy *phy, enum phy_mode mode, int submode)
-> is introduced to support dual level PHYs mode configuration and existing
-> phy_set_mode() API is converted to macros, so PHY framework consumers do
-> not need to be changed (~21 matches).
-> 
-> Patches 2-4: Add new PHY's mode to be used by Ethernet PHY interface drivers or
-> multipurpose PHYs like serdes and convert ocelot-serdes and mvebu-cp110-comphy
-> PHY drivers to use recently introduced PHY_MODE_ETHERNET and phy_set_mode_ext().
-> 
-> Patch 5 - removes unused, ethernet specific phy modes from enum phy_mode.
-> 
-> Testing:
->  - series tested on TI am335x/am437x/am5(dra7) paltforms.
->  - other driver build tested.
-> 
-> changes in v3:
-> - mux tables for PHY ocelot-serdes driver updated to store PHY mode and submode
-> - mux tables for PHY mvebu-cp110-comphy driver updated to store PHY mode
->   and submode
-> changes in v2:
-> - marvell PHY and net drivers updated as recommended by Russell King
-> 
-> v2: https://lkml.org/lkml/2018/11/10/220
-> v1: https://lkml.org/lkml/2018/11/8/260
-> 
-> [1] https://lkml.org/lkml/2018/10/25/366
-> 
-> Grygorii Strashko (5):
->   phy: core: rework phy_set_mode to accept phy mode and submode
->   phy: core: add PHY_MODE_ETHERNET
->   phy: ocelot-serdes: convert to use eth phy mode and submode
->   phy: mvebu-cp110-comphy: convert to use eth phy mode and submode
->   phy: core: clean up unused ethernet specific phy modes
-> 
->  drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c | 19 +----
->  drivers/net/ethernet/mscc/ocelot.c              |  9 +--
->  drivers/phy/allwinner/phy-sun4i-usb.c           |  3 +-
->  drivers/phy/amlogic/phy-meson-gxl-usb2.c        |  5 +-
->  drivers/phy/amlogic/phy-meson-gxl-usb3.c        |  5 +-
->  drivers/phy/marvell/phy-mvebu-cp110-comphy.c    | 93 ++++++++++++++-----------
->  drivers/phy/mediatek/phy-mtk-tphy.c             |  2 +-
->  drivers/phy/mediatek/phy-mtk-xsphy.c            |  2 +-
->  drivers/phy/mscc/phy-ocelot-serdes.c            | 24 +++++--
->  drivers/phy/phy-core.c                          |  6 +-
->  drivers/phy/qualcomm/phy-qcom-qmp.c             |  3 +-
->  drivers/phy/qualcomm/phy-qcom-qusb2.c           |  3 +-
->  drivers/phy/qualcomm/phy-qcom-ufs-qmp-14nm.c    |  3 +-
->  drivers/phy/qualcomm/phy-qcom-ufs-qmp-20nm.c    |  3 +-
->  drivers/phy/qualcomm/phy-qcom-usb-hs.c          |  3 +-
->  drivers/phy/ti/phy-da8xx-usb.c                  |  3 +-
->  drivers/phy/ti/phy-tusb1210.c                   |  2 +-
->  include/linux/phy/phy.h                         | 18 +++--
->  18 files changed, 111 insertions(+), 95 deletions(-)
-> 
+[...]
+
+Will fix all these, thanks !
+
+Neil
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 819 bytes
+Desc: OpenPGP digital signature
+URL: <http://lists.infradead.org/pipermail/linux-amlogic/attachments/20181121/8f8a260a/attachment.sig>
