@@ -1,43 +1,28 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 21 Nov 2018 10:34:34 +0100
-Subject: [PATCH u-boot 10/19] pinctrl: meson: add axg support
-In-Reply-To: <788453170c72385ccdbe2240a335561d237506cc.camel@baylibre.com>
-References: <1541777218-472-1-git-send-email-narmstrong@baylibre.com>
- <1541777218-472-11-git-send-email-narmstrong@baylibre.com>
- <788453170c72385ccdbe2240a335561d237506cc.camel@baylibre.com>
-Message-ID: <26df8723-32e0-23ed-4ec6-04e306b97e0f@baylibre.com>
+From: christianshewitt@gmail.com (Christian Hewitt)
+Date: Wed, 21 Nov 2018 13:39:29 +0400
+Subject: [PATCH] drm/meson: add support for 1080p25 mode
+Message-ID: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Carlo,
+This essential mode for PAL users is missing, so add it.
 
-On 20/11/2018 15:47, Carlo Caione wrote:
-> On Fri, 2018-11-09 at 16:26 +0100, Neil Armstrong wrote:
->> From: Jerome Brunet <jbrunet@baylibre.com>
->>
->> This adds support for the Amlogic AXG SoC pinctrl and GPIO controller
->> using a specific set of pinctrl functions which differs from the GX
->> SoCs.
->>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> /cut
->> +struct meson_pinctrl_data meson_axg_aobus_pinctrl_data = {
->> +	.name		= "aobus-banks",
->> +	.pin_base	= 0,
->> +	.groups		= meson_axg_aobus_groups,
->> +	.funcs		= meson_axg_aobus_functions,
->> +	.banks		= meson_axg_aobus_banks,
->> +	.num_pins	= 11,
-> 
-> Should this be 14?
-> 
-> --
-> Carlo Caione
-> 
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ drivers/gpu/drm/meson/meson_venc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Will fix both errors,
-
-Thanks,
-Neil
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index acbbad3..ab16046 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
+ 	{ 5, &meson_hdmi_encp_mode_1080i60 },
+ 	{ 20, &meson_hdmi_encp_mode_1080i50 },
+ 	{ 32, &meson_hdmi_encp_mode_1080p24 },
++	{ 33, &meson_hdmi_encp_mode_1080p50 },
+ 	{ 34, &meson_hdmi_encp_mode_1080p30 },
+ 	{ 31, &meson_hdmi_encp_mode_1080p50 },
+ 	{ 16, &meson_hdmi_encp_mode_1080p60 },
+-- 
+2.7.4
