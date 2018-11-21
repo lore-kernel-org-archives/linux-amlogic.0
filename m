@@ -1,42 +1,31 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 21 Nov 2018 10:47:10 +0100
-Subject: [PATCH] drm/meson: add support for 1080p25 mode
-In-Reply-To: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
-References: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
-Message-ID: <2a9d9fa9-c9ba-c624-28da-dd3804faf438@baylibre.com>
+Date: Wed, 21 Nov 2018 12:19:22 +0100
+Subject: [PATCH] clk: meson: Fix GXL HDMI PLL fractional bits width
+Message-ID: <20181121111922.1277-1-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 21/11/2018 10:39, Christian Hewitt wrote:
-> This essential mode for PAL users is missing, so add it.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  drivers/gpu/drm/meson/meson_venc.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-> index acbbad3..ab16046 100644
-> --- a/drivers/gpu/drm/meson/meson_venc.c
-> +++ b/drivers/gpu/drm/meson/meson_venc.c
-> @@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
->  	{ 5, &meson_hdmi_encp_mode_1080i60 },
->  	{ 20, &meson_hdmi_encp_mode_1080i50 },
->  	{ 32, &meson_hdmi_encp_mode_1080p24 },
-> +	{ 33, &meson_hdmi_encp_mode_1080p50 },
->  	{ 34, &meson_hdmi_encp_mode_1080p30 },
->  	{ 31, &meson_hdmi_encp_mode_1080p50 },
->  	{ 16, &meson_hdmi_encp_mode_1080p60 },
-> 
+The GXL Documentation specifies 12 bits for the Fractional bit field,
+bit the last bits have a different purpose that we cannot handle right
+now, so update the bitwidth to have correct fractional calculations.
 
-Exact, I forgot this mode...
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/clk/meson/gxbb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks for the change !
-
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-I'll add :
-Fixes: 335e3713afb87 ("drm/meson: Add support for HDMI venc modes and settings")
-when applying to drm-misc-fixes.
-
-Neil
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 30fbf8f1f190..aba59aa64d2b 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -219,7 +219,7 @@ static struct clk_regmap gxl_hdmi_pll_dco = {
+ 		.frac = {
+ 			.reg_off = HHI_HDMI_PLL_CNTL2,
+ 			.shift   = 0,
+-			.width   = 12,
++			.width   = 10,
+ 		},
+ 		.l = {
+ 			.reg_off = HHI_HDMI_PLL_CNTL,
+-- 
+2.19.1
