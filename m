@@ -1,86 +1,42 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Wed, 21 Nov 2018 10:44:44 +0100
-Subject: [PATCH v2 2/3] ARM: meson: Enable syscon on all supported boards
-In-Reply-To: <20181120235020.14812-3-ldevulder@suse.de>
-References: <20181120235020.14812-1-ldevulder@suse.de>
- <20181120235020.14812-3-ldevulder@suse.de>
-Message-ID: <e3fbb5b1-5021-7104-fb58-222eaaa4d728@baylibre.com>
+Date: Wed, 21 Nov 2018 10:47:10 +0100
+Subject: [PATCH] drm/meson: add support for 1080p25 mode
+In-Reply-To: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
+References: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
+Message-ID: <2a9d9fa9-c9ba-c624-28da-dd3804faf438@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 21/11/2018 00:50, Loic Devulder wrote:
-> This patch enable CONFIG_SYSCON option on all supported meson boards, as
-> this is need for the new clock driver to work.
+On 21/11/2018 10:39, Christian Hewitt wrote:
+> This essential mode for PAL users is missing, so add it.
 > 
-> Signed-off-by: Loic Devulder <ldevulder@suse.de>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  configs/khadas-vim2_defconfig  | 1 +
->  configs/khadas-vim_defconfig   | 1 +
->  configs/libretech-cc_defconfig | 1 +
->  configs/nanopi-k2_defconfig    | 1 +
->  configs/odroid-c2_defconfig    | 1 +
->  configs/p212_defconfig         | 1 +
->  6 files changed, 6 insertions(+)
+>  drivers/gpu/drm/meson/meson_venc.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/configs/khadas-vim2_defconfig b/configs/khadas-vim2_defconfig
-> index f21e3a8ddf..c5f2b3f111 100644
-> --- a/configs/khadas-vim2_defconfig
-> +++ b/configs/khadas-vim2_defconfig
-> @@ -49,3 +49,4 @@ CONFIG_USB_STORAGE=y
->  CONFIG_USB_DWC3=y
->  CONFIG_USB_STORAGE=y
->  CONFIG_OF_LIBFDT_OVERLAY=y
-> +CONFIG_SYSCON=y
-> diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-> index 0c89d9a22c..6815c7bebf 100644
-> --- a/configs/khadas-vim_defconfig
-> +++ b/configs/khadas-vim_defconfig
-> @@ -51,3 +51,4 @@ CONFIG_USB_XHCI_DWC3_OF_SIMPLE=y
->  CONFIG_USB_DWC3=y
->  CONFIG_USB_STORAGE=y
->  CONFIG_OF_LIBFDT_OVERLAY=y
-> +CONFIG_SYSCON=y
-> diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
-> index 36d117c4ab..4267d75931 100644
-> --- a/configs/libretech-cc_defconfig
-> +++ b/configs/libretech-cc_defconfig
-> @@ -51,3 +51,4 @@ CONFIG_USB_XHCI_DWC3_OF_SIMPLE=y
->  CONFIG_USB_DWC3=y
->  CONFIG_USB_STORAGE=y
->  CONFIG_OF_LIBFDT_OVERLAY=y
-> +CONFIG_SYSCON=y
-> diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
-> index 5c8c747bf3..7222419e84 100644
-> --- a/configs/nanopi-k2_defconfig
-> +++ b/configs/nanopi-k2_defconfig
-> @@ -40,3 +40,4 @@ CONFIG_DEBUG_UART_ANNOUNCE=y
->  CONFIG_DEBUG_UART_SKIP_INIT=y
->  CONFIG_MESON_SERIAL=y
->  CONFIG_OF_LIBFDT_OVERLAY=y
-> +CONFIG_SYSCON=y
-> diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
-> index 19196b3585..3ad4f73a85 100644
-> --- a/configs/odroid-c2_defconfig
-> +++ b/configs/odroid-c2_defconfig
-> @@ -40,3 +40,4 @@ CONFIG_DEBUG_UART_ANNOUNCE=y
->  CONFIG_DEBUG_UART_SKIP_INIT=y
->  CONFIG_MESON_SERIAL=y
->  CONFIG_OF_LIBFDT_OVERLAY=y
-> +CONFIG_SYSCON=y
-> diff --git a/configs/p212_defconfig b/configs/p212_defconfig
-> index 9e3b1d6bfb..9bbe67ac61 100644
-> --- a/configs/p212_defconfig
-> +++ b/configs/p212_defconfig
-> @@ -50,3 +50,4 @@ CONFIG_USB_XHCI_DWC3_OF_SIMPLE=y
->  CONFIG_USB_DWC3=y
->  CONFIG_USB_STORAGE=y
->  CONFIG_OF_LIBFDT_OVERLAY=y
-> +CONFIG_SYSCON=y
+> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+> index acbbad3..ab16046 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.c
+> +++ b/drivers/gpu/drm/meson/meson_venc.c
+> @@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
+>  	{ 5, &meson_hdmi_encp_mode_1080i60 },
+>  	{ 20, &meson_hdmi_encp_mode_1080i50 },
+>  	{ 32, &meson_hdmi_encp_mode_1080p24 },
+> +	{ 33, &meson_hdmi_encp_mode_1080p50 },
+>  	{ 34, &meson_hdmi_encp_mode_1080p30 },
+>  	{ 31, &meson_hdmi_encp_mode_1080p50 },
+>  	{ 16, &meson_hdmi_encp_mode_1080p60 },
 > 
 
+Exact, I forgot this mode...
 
-As I said in patch 1, please add a fixed dependency in the MESON64_COMMON option in arch/arm/mach-meson/Kconfig
+Thanks for the change !
 
-Thanks !
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+I'll add :
+Fixes: 335e3713afb87 ("drm/meson: Add support for HDMI venc modes and settings")
+when applying to drm-misc-fixes.
 
 Neil
