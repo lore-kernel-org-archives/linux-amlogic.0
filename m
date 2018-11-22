@@ -1,41 +1,41 @@
 From: sashal@kernel.org (Sasha Levin)
-Date: Thu, 22 Nov 2018 14:52:09 -0500
-Subject: [PATCH AUTOSEL 4.19 05/36] pinctrl: meson: fix meson8b ao pull
- register bits
+Date: Thu, 22 Nov 2018 14:52:06 -0500
+Subject: [PATCH AUTOSEL 4.19 02/36] pinctrl: meson: fix gxbb ao pull register
+ bits
 In-Reply-To: <20181122195240.13123-1-sashal@kernel.org>
 References: <20181122195240.13123-1-sashal@kernel.org>
-Message-ID: <20181122195240.13123-5-sashal@kernel.org>
+Message-ID: <20181122195240.13123-2-sashal@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
-[ Upstream commit a1705f02704cd8a24d434bfd0141ee8142ad277a ]
+[ Upstream commit 4bc51e1e350cd4707ce6e551a93eae26d40b9889 ]
 
 AO pull register definition is inverted between pull (up/down) and
 pull enable. Fixing this allows to properly apply bias setting
 through pinconf
 
-Fixes: 0fefcb6876d0 ("pinctrl: Add support for Meson8b")
+Fixes: 468c234f9ed7 ("pinctrl: amlogic: Add support for Amlogic Meson GXBB SoC")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/pinctrl/meson/pinctrl-meson8b.c | 2 +-
+ drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
-index bb2a30964fc6..647ad15d5c3c 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8b.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
-@@ -906,7 +906,7 @@ static struct meson_bank meson8b_cbus_banks[] = {
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+index 4ceb06f8a33c..4edeb4cae72a 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+@@ -830,7 +830,7 @@ static struct meson_bank meson_gxbb_periphs_banks[] = {
  
- static struct meson_bank meson8b_aobus_banks[] = {
- 	/*   name    first     lastc        irq    pullen  pull    dir     out     in  */
--	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
-+	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0,  16, 0, 0,  0,  0,  0, 16,  1,  0),
+ static struct meson_bank meson_gxbb_aobus_banks[] = {
+ 	/*   name    first      last       irq    pullen  pull    dir     out     in  */
+-	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0, 13, 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
++	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0, 13, 0,  16, 0, 0,   0,  0,  0, 16,  1,  0),
  };
  
- static struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
+ static struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
 -- 
 2.17.1
