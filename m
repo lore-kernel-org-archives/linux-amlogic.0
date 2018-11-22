@@ -1,565 +1,252 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 10:07:29 +0100
-Subject: [PATCH u-boot v2 08/19] pinctrl: meson: rework gx pmx function
+Date: Thu, 22 Nov 2018 10:07:40 +0100
+Subject: [PATCH u-boot v2 19/19] ARM: meson: Add boot device discovery
 In-Reply-To: <20181122090740.29739-1-narmstrong@baylibre.com>
 References: <20181122090740.29739-1-narmstrong@baylibre.com>
-Message-ID: <20181122090740.29739-9-narmstrong@baylibre.com>
+Message-ID: <20181122090740.29739-20-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+The Amlogic Meson SoCs ROM supports a boot over USB with a custom protocol.
 
-In preparation of supporting the new Amlogix AGX SoCs, we need to move
-the Amlogic GX pinmux functions out of the common code to be able to
-add a different set of SoC specific pinmux functions for AXG.
+When no other boot medium are available (or by forcing the USB mode), the
+ROM sets the primary USB port as device mode and waits for a Host to
+enumerate.
+
+When enumerated, a custom protocol described at [1] permits writing to
+memory and execute some specific FIP init code to run the loaded
+Arm Trusted Firmware BL2 and BL3 stages before running the BL33 stage.
+
+In this mode, we can load different binaries that can be used by U-boot
+like a script image file.
+
+This adds support for a custom USB boot stage only available when the
+boot mode is USB and the script file at a pre-defined address is valid.
+This support was heavily copied from the Sunxi Allwinner FEL U-Boot support.
+
+The tool pyamlboot described at [2], permits using this boot mode on boards
+exposing the first USB port, either as OTG or Host port.
+
+[1] https://github.com/superna9999/pyamlboot/blob/master/PROTOCOL.md
+[2] https://github.com/superna9999/pyamlboot/blob/master/README.md
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pinctrl/meson/Kconfig                |   8 +-
- drivers/pinctrl/meson/Makefile               |   1 +
- drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c |  97 +++++++++++++++++
- drivers/pinctrl/meson/pinctrl-meson-gx.h     |  48 ++++++++
- drivers/pinctrl/meson/pinctrl-meson-gxbb.c   |   6 +-
- drivers/pinctrl/meson/pinctrl-meson-gxl.c    |   6 +-
- drivers/pinctrl/meson/pinctrl-meson.c        | 109 +++----------------
- drivers/pinctrl/meson/pinctrl-meson.h        |  37 +++----
- 8 files changed, 191 insertions(+), 121 deletions(-)
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
- create mode 100644 drivers/pinctrl/meson/pinctrl-meson-gx.h
+ arch/arm/include/asm/arch-meson/axg.h  |  1 +
+ arch/arm/include/asm/arch-meson/boot.h | 20 ++++++++++++
+ arch/arm/include/asm/arch-meson/gx.h   |  1 +
+ arch/arm/mach-meson/Kconfig            |  1 +
+ arch/arm/mach-meson/board-axg.c        |  6 ++++
+ arch/arm/mach-meson/board-common.c     | 45 ++++++++++++++++++++++++++
+ arch/arm/mach-meson/board-gx.c         |  6 ++++
+ include/configs/meson64.h              | 13 ++++++++
+ 8 files changed, 93 insertions(+)
+ create mode 100644 arch/arm/include/asm/arch-meson/boot.h
 
-diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-index 27ba8909d7..15a8d9c704 100644
---- a/drivers/pinctrl/meson/Kconfig
-+++ b/drivers/pinctrl/meson/Kconfig
-@@ -4,12 +4,16 @@ config PINCTRL_MESON
- 	depends on PINCTRL_GENERIC
- 	bool
+diff --git a/arch/arm/include/asm/arch-meson/axg.h b/arch/arm/include/asm/arch-meson/axg.h
+index 28a38b791d..d293f2a839 100644
+--- a/arch/arm/include/asm/arch-meson/axg.h
++++ b/arch/arm/include/asm/arch-meson/axg.h
+@@ -20,6 +20,7 @@
+ #define AXG_AO_SEC_GP_CFG4	AXG_AO_ADDR(0x94)
+ #define AXG_AO_SEC_GP_CFG5	AXG_AO_ADDR(0x95)
  
-+config PINCTRL_MESON_GX_PMX
-+	select PINCTRL_MESON
-+	bool
-+
- config PINCTRL_MESON_GXBB
- 	bool "Amlogic Meson GXBB SoC pinctrl driver"
--	select PINCTRL_MESON
-+	select PINCTRL_MESON_GX_PMX
- 
- config PINCTRL_MESON_GXL
- 	bool "Amlogic Meson GXL SoC pinctrl driver"
--	select PINCTRL_MESON
-+	select PINCTRL_MESON_GX_PMX
- 
- endif
-diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
-index 965092cd81..30b6875b88 100644
---- a/drivers/pinctrl/meson/Makefile
-+++ b/drivers/pinctrl/meson/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0+
- 
- obj-y					+= pinctrl-meson.o
-+obj-$(CONFIG_PINCTRL_MESON_GX_PMX)	+= pinctrl-meson-gx-pmx.o
- obj-$(CONFIG_PINCTRL_MESON_GXBB)	+= pinctrl-meson-gxbb.o
- obj-$(CONFIG_PINCTRL_MESON_GXL)		+= pinctrl-meson-gxl.o
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c b/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
++#define AXG_AO_BOOT_DEVICE	0xF
+ #define AXG_AO_MEM_SIZE_MASK	0xFFFF0000
+ #define AXG_AO_MEM_SIZE_SHIFT	16
+ #define AXG_AO_BL31_RSVMEM_SIZE_MASK	0xFFFF0000
+diff --git a/arch/arm/include/asm/arch-meson/boot.h b/arch/arm/include/asm/arch-meson/boot.h
 new file mode 100644
-index 0000000000..fc1538ea71
+index 0000000000..a90fe55081
 --- /dev/null
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: GPL-2.0+
++++ b/arch/arm/include/asm/arch-meson/boot.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
 +/*
-+ * (C) Copyright 2016 - Beniamino Galvani <b.galvani@gmail.com>
++ * Copyright (C) 2016 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
 + */
 +
-+#include <asm/gpio.h>
-+#include <common.h>
-+#include <dm.h>
-+#include <dm/pinctrl.h>
-+#include <linux/io.h>
-+#include "pinctrl-meson-gx.h"
++#ifndef __MESON_BOOT_H__
++#define __MESON_BOOT_H__
 +
-+static void meson_gx_pinmux_disable_other_groups(struct meson_pinctrl *priv,
-+						 unsigned int pin,
-+						 int sel_group)
++/* Boot device */
++#define BOOT_DEVICE_RESERVED    0
++#define BOOT_DEVICE_EMMC        1
++#define BOOT_DEVICE_NAND        2
++#define BOOT_DEVICE_SPI         3
++#define BOOT_DEVICE_SD          4
++#define BOOT_DEVICE_USB         5
++
++int meson_get_boot_device(void);
++
++#endif /* __MESON_BOOT_H__ */
+diff --git a/arch/arm/include/asm/arch-meson/gx.h b/arch/arm/include/asm/arch-meson/gx.h
+index 4bc9475d35..b781ba9475 100644
+--- a/arch/arm/include/asm/arch-meson/gx.h
++++ b/arch/arm/include/asm/arch-meson/gx.h
+@@ -21,6 +21,7 @@
+ #define GX_AO_SEC_GP_CFG4	GX_AO_ADDR(0x94)
+ #define GX_AO_SEC_GP_CFG5	GX_AO_ADDR(0x95)
+ 
++#define GX_AO_BOOT_DEVICE	0xF
+ #define GX_AO_MEM_SIZE_MASK	0xFFFF0000
+ #define GX_AO_MEM_SIZE_SHIFT	16
+ #define GX_AO_BL31_RSVMEM_SIZE_MASK	0xFFFF0000
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index deddcc5ab0..11077bc6cc 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -8,6 +8,7 @@ config MESON64_COMMON
+ 	select DM_SERIAL
+ 	select SYSCON
+ 	select REGMAP
++	select BOARD_LATE_INIT
+ 	imply CMD_DM
+ 
+ config MESON_GX
+diff --git a/arch/arm/mach-meson/board-axg.c b/arch/arm/mach-meson/board-axg.c
+index 014b25d61a..173905e762 100644
+--- a/arch/arm/mach-meson/board-axg.c
++++ b/arch/arm/mach-meson/board-axg.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <common.h>
++#include <asm/arch/boot.h>
+ #include <asm/arch/eth.h>
+ #include <asm/arch/axg.h>
+ #include <asm/arch/mem.h>
+@@ -15,6 +16,11 @@
+ 
+ DECLARE_GLOBAL_DATA_PTR;
+ 
++int meson_get_boot_device(void)
 +{
-+	struct meson_pmx_group *group;
-+	struct meson_gx_pmx_data *pmx_data;
-+	void __iomem *addr;
-+	int i, j;
-+
-+	for (i = 0; i < priv->data->num_groups; i++) {
-+		group = &priv->data->groups[i];
-+		pmx_data = (struct meson_gx_pmx_data *)group->data;
-+		if (pmx_data->is_gpio || i == sel_group)
-+			continue;
-+
-+		for (j = 0; j < group->num_pins; j++) {
-+			if (group->pins[j] == pin) {
-+				/* We have found a group using the pin */
-+				debug("pinmux: disabling %s\n", group->name);
-+				addr = priv->reg_mux + pmx_data->reg * 4;
-+				writel(readl(addr) & ~BIT(pmx_data->bit), addr);
-+			}
-+		}
-+	}
++	return readl(AXG_AO_SEC_GP_CFG0) & AXG_AO_BOOT_DEVICE;
 +}
 +
-+static int meson_gx_pinmux_group_set(struct udevice *dev,
-+				     unsigned int group_selector,
-+				     unsigned int func_selector)
+ /* Configure the reserved memory zones exported by the secure registers
+  * into EFI and DTB reserved memory entries.
+  */
+diff --git a/arch/arm/mach-meson/board-common.c b/arch/arm/mach-meson/board-common.c
+index 8c4f3074fb..8c41301674 100644
+--- a/arch/arm/mach-meson/board-common.c
++++ b/arch/arm/mach-meson/board-common.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <common.h>
++#include <asm/arch/boot.h>
+ #include <linux/libfdt.h>
+ #include <linux/err.h>
+ #include <asm/arch/mem.h>
+@@ -66,6 +67,50 @@ void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size)
+ 	}
+ }
+ 
++static void meson_set_boot_source(void)
 +{
-+	struct meson_pinctrl *priv = dev_get_priv(dev);
-+	const struct meson_pmx_group *group;
-+	const struct meson_pmx_func *func;
-+	struct meson_gx_pmx_data *pmx_data;
-+	void __iomem *addr;
-+	int i;
++	const char *source;
 +
-+	group = &priv->data->groups[group_selector];
-+	pmx_data = (struct meson_gx_pmx_data *)group->data;
-+	func = &priv->data->funcs[func_selector];
++	switch (meson_get_boot_device()) {
++	case BOOT_DEVICE_EMMC:
++		source = "emmc";
++		break;
 +
-+	debug("pinmux: set group %s func %s\n", group->name, func->name);
++	case BOOT_DEVICE_NAND:
++		source = "nand";
++		break;
 +
-+	/*
-+	 * Disable groups using the same pins.
-+	 * The selected group is not disabled to avoid glitches.
-+	 */
-+	for (i = 0; i < group->num_pins; i++) {
-+		meson_gx_pinmux_disable_other_groups(priv,
-+						     group->pins[i],
-+						     group_selector);
++	case BOOT_DEVICE_SPI:
++		source = "spi";
++		break;
++
++	case BOOT_DEVICE_SD:
++		source = "sd";
++		break;
++
++	case BOOT_DEVICE_USB:
++		source = "usb";
++		break;
++
++	default:
++		source = "unknown";
 +	}
 +
-+	/* Function 0 (GPIO) doesn't need any additional setting */
-+	if (func_selector) {
-+		addr = priv->reg_mux + pmx_data->reg * 4;
-+		writel(readl(addr) | BIT(pmx_data->bit), addr);
-+	}
++	env_set("boot_source", source);
++}
 +
++__weak int meson_board_late_init(void)
++{
 +	return 0;
 +}
 +
-+const struct pinctrl_ops meson_gx_pinctrl_ops = {
-+	.get_groups_count = meson_pinctrl_get_groups_count,
-+	.get_group_name = meson_pinctrl_get_group_name,
-+	.get_functions_count = meson_pinmux_get_functions_count,
-+	.get_function_name = meson_pinmux_get_function_name,
-+	.pinmux_group_set = meson_gx_pinmux_group_set,
-+	.set_state = pinctrl_generic_set_state,
-+};
++int board_late_init(void)
++{
++	meson_set_boot_source();
 +
-+static const struct dm_gpio_ops meson_gx_gpio_ops = {
-+	.set_value = meson_gpio_set,
-+	.get_value = meson_gpio_get,
-+	.get_function = meson_gpio_get_direction,
-+	.direction_input = meson_gpio_direction_input,
-+	.direction_output = meson_gpio_direction_output,
-+};
++	return meson_board_late_init();
++}
 +
-+const struct driver meson_gx_gpio_driver = {
-+	.name	= "meson-gx-gpio",
-+	.id	= UCLASS_GPIO,
-+	.probe	= meson_gpio_probe,
-+	.ops	= &meson_gx_gpio_ops,
-+};
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gx.h b/drivers/pinctrl/meson/pinctrl-meson-gx.h
-new file mode 100644
-index 0000000000..4c1aa1a300
---- /dev/null
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gx.h
-@@ -0,0 +1,48 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
-+ * Copyright (C) 2017 Jerome Brunet  <jbrunet@baylibre.com>
-+ */
+ void reset_cpu(ulong addr)
+ {
+ 	psci_system_reset();
+diff --git a/arch/arm/mach-meson/board-gx.c b/arch/arm/mach-meson/board-gx.c
+index f1397f87c5..e41552db52 100644
+--- a/arch/arm/mach-meson/board-gx.c
++++ b/arch/arm/mach-meson/board-gx.c
+@@ -5,6 +5,7 @@
+  */
+ 
+ #include <common.h>
++#include <asm/arch/boot.h>
+ #include <asm/arch/eth.h>
+ #include <asm/arch/gx.h>
+ #include <asm/arch/mem.h>
+@@ -15,6 +16,11 @@
+ 
+ DECLARE_GLOBAL_DATA_PTR;
+ 
++int meson_get_boot_device(void)
++{
++	return readl(GX_AO_SEC_GP_CFG0) & GX_AO_BOOT_DEVICE;
++}
 +
-+#ifndef __PINCTRL_MESON_GX_H__
-+#define __PINCTRL_MESON_GX_H__
+ /* Configure the reserved memory zones exported by the secure registers
+  * into EFI and DTB reserved memory entries.
+  */
+diff --git a/include/configs/meson64.h b/include/configs/meson64.h
+index f961f43871..40ac079dfc 100644
+--- a/include/configs/meson64.h
++++ b/include/configs/meson64.h
+@@ -28,6 +28,18 @@
+ #define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
+ #define CONFIG_SYS_BOOTM_LEN		(64 << 20) /* 64 MiB */
+ 
++/* ROM USB boot support, auto-execute boot.scr@scriptaddr */
++#define BOOTENV_DEV_ROMUSB(devtypeu, devtypel, instance) \
++	"bootcmd_romusb=" \
++		"if test \"${boot_source}\" = \"usb\" && " \
++				"test -n \"${scriptaddr}\"; then " \
++			"echo '(ROM USB boot)'; " \
++			"source ${scriptaddr}; " \
++		"fi\0"
 +
-+#include "pinctrl-meson.h"
++#define BOOTENV_DEV_NAME_ROMUSB(devtypeu, devtypel, instance)	\
++		"romusb "
 +
-+struct meson_gx_pmx_data {
-+	bool is_gpio;
-+	unsigned int reg;
-+	unsigned int bit;
-+};
-+
-+#define PMX_DATA(r, b, g)						\
-+	{								\
-+		.reg = r,						\
-+		.bit = b,						\
-+		.is_gpio = g,						\
-+	}
-+
-+#define GROUP(grp, r, b)						\
-+	{								\
-+		.name = #grp,						\
-+		.pins = grp ## _pins,					\
-+		.num_pins = ARRAY_SIZE(grp ## _pins),			\
-+			.data = (const struct meson_gx_pmx_data[]){	\
-+			PMX_DATA(r, b, false),				\
-+		},							\
-+	}
-+
-+#define GPIO_GROUP(gpio, b)						\
-+	{								\
-+		.name = #gpio,						\
-+		.pins = (const unsigned int[]){ PIN(gpio, b) },		\
-+		.num_pins = 1,						\
-+		.data = (const struct meson_gx_pmx_data[]){		\
-+			PMX_DATA(0, 0, true),				\
-+		},							\
-+	}
-+
-+extern const struct pinctrl_ops meson_gx_pinctrl_ops;
-+extern const struct driver meson_gx_gpio_driver;
-+
-+#endif /* __PINCTRL_MESON_GX_H__ */
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-index a8e47e3c4e..22e8b055d7 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-@@ -11,7 +11,7 @@
- #include <dm/pinctrl.h>
- #include <dt-bindings/gpio/meson-gxbb-gpio.h>
+ #ifdef CONFIG_CMD_USB
+ #define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
+ #else
+@@ -36,6 +48,7 @@
  
--#include "pinctrl-meson.h"
-+#include "pinctrl-meson-gx.h"
- 
- #define EE_OFF	15
- 
-@@ -417,6 +417,7 @@ struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxbb_periphs_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxbb_periphs_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxbb_periphs_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
-@@ -429,6 +430,7 @@ struct meson_pinctrl_data meson_gxbb_aobus_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxbb_aobus_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxbb_aobus_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxbb_aobus_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- static const struct udevice_id meson_gxbb_pinctrl_match[] = {
-@@ -449,5 +451,5 @@ U_BOOT_DRIVER(meson_gxbb_pinctrl) = {
- 	.of_match = of_match_ptr(meson_gxbb_pinctrl_match),
- 	.probe = meson_pinctrl_probe,
- 	.priv_auto_alloc_size = sizeof(struct meson_pinctrl),
--	.ops = &meson_pinctrl_ops,
-+	.ops = &meson_gx_pinctrl_ops,
- };
-diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-index ba6e3531d9..1819eee4d0 100644
---- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-@@ -11,7 +11,7 @@
- #include <dm/pinctrl.h>
- #include <dt-bindings/gpio/meson-gxl-gpio.h>
- 
--#include "pinctrl-meson.h"
-+#include "pinctrl-meson-gx.h"
- 
- #define EE_OFF	11
- 
-@@ -699,6 +699,7 @@ struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxl_periphs_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxl_periphs_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxl_periphs_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data = {
-@@ -711,6 +712,7 @@ struct meson_pinctrl_data meson_gxl_aobus_pinctrl_data = {
- 	.num_groups	= ARRAY_SIZE(meson_gxl_aobus_groups),
- 	.num_funcs	= ARRAY_SIZE(meson_gxl_aobus_functions),
- 	.num_banks	= ARRAY_SIZE(meson_gxl_aobus_banks),
-+	.gpio_driver	= &meson_gx_gpio_driver,
- };
- 
- static const struct udevice_id meson_gxl_pinctrl_match[] = {
-@@ -731,5 +733,5 @@ U_BOOT_DRIVER(meson_gxl_pinctrl) = {
- 	.of_match = of_match_ptr(meson_gxl_pinctrl_match),
- 	.probe = meson_pinctrl_probe,
- 	.priv_auto_alloc_size = sizeof(struct meson_pinctrl),
--	.ops = &meson_pinctrl_ops,
-+	.ops = &meson_gx_pinctrl_ops,
- };
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 387c241d12..0bd6152803 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -20,15 +20,15 @@ DECLARE_GLOBAL_DATA_PTR;
- 
- static const char *meson_pinctrl_dummy_name = "_dummy";
- 
--static int meson_pinctrl_get_groups_count(struct udevice *dev)
-+int meson_pinctrl_get_groups_count(struct udevice *dev)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
- 	return priv->data->num_groups;
- }
- 
--static const char *meson_pinctrl_get_group_name(struct udevice *dev,
--						unsigned selector)
-+const char *meson_pinctrl_get_group_name(struct udevice *dev,
-+					 unsigned int selector)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
-@@ -38,87 +38,21 @@ static const char *meson_pinctrl_get_group_name(struct udevice *dev,
- 	return priv->data->groups[selector].name;
- }
- 
--static int meson_pinmux_get_functions_count(struct udevice *dev)
-+int meson_pinmux_get_functions_count(struct udevice *dev)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
- 	return priv->data->num_funcs;
- }
- 
--static const char *meson_pinmux_get_function_name(struct udevice *dev,
--						  unsigned selector)
-+const char *meson_pinmux_get_function_name(struct udevice *dev,
-+					   unsigned int selector)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev);
- 
- 	return priv->data->funcs[selector].name;
- }
- 
--static void meson_pinmux_disable_other_groups(struct meson_pinctrl *priv,
--					      unsigned int pin, int sel_group)
--{
--	struct meson_pmx_group *group;
--	void __iomem *addr;
--	int i, j;
--
--	for (i = 0; i < priv->data->num_groups; i++) {
--		group = &priv->data->groups[i];
--		if (group->is_gpio || i == sel_group)
--			continue;
--
--		for (j = 0; j < group->num_pins; j++) {
--			if (group->pins[j] == pin) {
--				/* We have found a group using the pin */
--				debug("pinmux: disabling %s\n", group->name);
--				addr = priv->reg_mux + group->reg * 4;
--				writel(readl(addr) & ~BIT(group->bit), addr);
--			}
--		}
--	}
--}
--
--static int meson_pinmux_group_set(struct udevice *dev,
--				  unsigned group_selector,
--				  unsigned func_selector)
--{
--	struct meson_pinctrl *priv = dev_get_priv(dev);
--	const struct meson_pmx_group *group;
--	const struct meson_pmx_func *func;
--	void __iomem *addr;
--	int i;
--
--	group = &priv->data->groups[group_selector];
--	func = &priv->data->funcs[func_selector];
--
--	debug("pinmux: set group %s func %s\n", group->name, func->name);
--
--	/*
--	 * Disable groups using the same pins.
--	 * The selected group is not disabled to avoid glitches.
--	 */
--	for (i = 0; i < group->num_pins; i++) {
--		meson_pinmux_disable_other_groups(priv,
--						  group->pins[i],
--						  group_selector);
--	}
--
--	/* Function 0 (GPIO) doesn't need any additional setting */
--	if (func_selector) {
--		addr = priv->reg_mux + group->reg * 4;
--		writel(readl(addr) | BIT(group->bit), addr);
--	}
--
--	return 0;
--}
--
--const struct pinctrl_ops meson_pinctrl_ops = {
--	.get_groups_count = meson_pinctrl_get_groups_count,
--	.get_group_name = meson_pinctrl_get_group_name,
--	.get_functions_count = meson_pinmux_get_functions_count,
--	.get_function_name = meson_pinmux_get_function_name,
--	.pinmux_group_set = meson_pinmux_group_set,
--	.set_state = pinctrl_generic_set_state,
--};
--
- static int meson_gpio_calc_reg_and_bit(struct udevice *dev, unsigned int offset,
- 				       enum meson_reg_type reg_type,
- 				       unsigned int *reg, unsigned int *bit)
-@@ -149,7 +83,7 @@ static int meson_gpio_calc_reg_and_bit(struct udevice *dev, unsigned int offset,
- 	return 0;
- }
- 
--static int meson_gpio_get(struct udevice *dev, unsigned int offset)
-+int meson_gpio_get(struct udevice *dev, unsigned int offset)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -162,7 +96,7 @@ static int meson_gpio_get(struct udevice *dev, unsigned int offset)
- 	return !!(readl(priv->reg_gpio + reg) & BIT(bit));
- }
- 
--static int meson_gpio_set(struct udevice *dev, unsigned int offset, int value)
-+int meson_gpio_set(struct udevice *dev, unsigned int offset, int value)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -177,7 +111,7 @@ static int meson_gpio_set(struct udevice *dev, unsigned int offset, int value)
- 	return 0;
- }
- 
--static int meson_gpio_get_direction(struct udevice *dev, unsigned int offset)
-+int meson_gpio_get_direction(struct udevice *dev, unsigned int offset)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit, val;
-@@ -192,7 +126,7 @@ static int meson_gpio_get_direction(struct udevice *dev, unsigned int offset)
- 	return (val & BIT(bit)) ? GPIOF_INPUT : GPIOF_OUTPUT;
- }
- 
--static int meson_gpio_direction_input(struct udevice *dev, unsigned int offset)
-+int meson_gpio_direction_input(struct udevice *dev, unsigned int offset)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -207,8 +141,8 @@ static int meson_gpio_direction_input(struct udevice *dev, unsigned int offset)
- 	return 0;
- }
- 
--static int meson_gpio_direction_output(struct udevice *dev,
--				       unsigned int offset, int value)
-+int meson_gpio_direction_output(struct udevice *dev,
-+				unsigned int offset, int value)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	unsigned int reg, bit;
-@@ -229,7 +163,7 @@ static int meson_gpio_direction_output(struct udevice *dev,
- 	return 0;
- }
- 
--static int meson_gpio_probe(struct udevice *dev)
-+int meson_gpio_probe(struct udevice *dev)
- {
- 	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
- 	struct gpio_dev_priv *uc_priv;
-@@ -241,21 +175,6 @@ static int meson_gpio_probe(struct udevice *dev)
- 	return 0;
- }
- 
--static const struct dm_gpio_ops meson_gpio_ops = {
--	.set_value = meson_gpio_set,
--	.get_value = meson_gpio_get,
--	.get_function = meson_gpio_get_direction,
--	.direction_input = meson_gpio_direction_input,
--	.direction_output = meson_gpio_direction_output,
--};
--
--static struct driver meson_gpio_driver = {
--	.name	= "meson-gpio",
--	.id	= UCLASS_GPIO,
--	.probe	= meson_gpio_probe,
--	.ops	= &meson_gpio_ops,
--};
--
- static fdt_addr_t parse_address(int offset, const char *name, int na, int ns)
- {
- 	int index, len = 0;
-@@ -334,7 +253,7 @@ int meson_pinctrl_probe(struct udevice *dev)
- 	sprintf(name, "meson-gpio");
- 
- 	/* Create child device UCLASS_GPIO and bind it */
--	device_bind(dev, &meson_gpio_driver, name, NULL, gpio, &gpio_dev);
-+	device_bind(dev, priv->data->gpio_driver, name, NULL, gpio, &gpio_dev);
- 	dev_set_of_offset(gpio_dev, gpio);
- 
- 	return 0;
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-index 6ec89ba117..bdee721fc0 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.h
-+++ b/drivers/pinctrl/meson/pinctrl-meson.h
-@@ -12,9 +12,7 @@ struct meson_pmx_group {
- 	const char *name;
- 	const unsigned int *pins;
- 	unsigned int num_pins;
--	bool is_gpio;
--	unsigned int reg;
--	unsigned int bit;
-+	const void *data;
- };
- 
- struct meson_pmx_func {
-@@ -33,6 +31,8 @@ struct meson_pinctrl_data {
- 	unsigned int num_groups;
- 	unsigned int num_funcs;
- 	unsigned int num_banks;
-+	const struct driver *gpio_driver;
-+	void *pmx_data;
- };
- 
- struct meson_pinctrl {
-@@ -89,23 +89,6 @@ struct meson_bank {
- 
- #define PIN(x, b)	(b + x)
- 
--#define GROUP(grp, r, b)						\
--	{								\
--		.name = #grp,						\
--		.pins = grp ## _pins,					\
--		.num_pins = ARRAY_SIZE(grp ## _pins),			\
--		.reg = r,						\
--		.bit = b,						\
--	 }
--
--#define GPIO_GROUP(gpio, b)						\
--	{								\
--		.name = #gpio,						\
--		.pins = (const unsigned int[]){ PIN(gpio, b) },		\
--		.num_pins = 1,						\
--		.is_gpio = true,					\
--	 }
--
- #define FUNCTION(fn)							\
- 	{								\
- 		.name = #fn,						\
-@@ -131,6 +114,20 @@ struct meson_bank {
- 
- extern const struct pinctrl_ops meson_pinctrl_ops;
- 
-+int meson_pinctrl_get_groups_count(struct udevice *dev);
-+const char *meson_pinctrl_get_group_name(struct udevice *dev,
-+					 unsigned int selector);
-+int meson_pinmux_get_functions_count(struct udevice *dev);
-+const char *meson_pinmux_get_function_name(struct udevice *dev,
-+					   unsigned int selector);
- int meson_pinctrl_probe(struct udevice *dev);
- 
-+int meson_gpio_get(struct udevice *dev, unsigned int offset);
-+int meson_gpio_set(struct udevice *dev, unsigned int offset, int value);
-+int meson_gpio_get_direction(struct udevice *dev, unsigned int offset);
-+int meson_gpio_direction_input(struct udevice *dev, unsigned int offset);
-+int meson_gpio_direction_output(struct udevice *dev, unsigned int offset,
-+				int value);
-+int meson_gpio_probe(struct udevice *dev);
-+
- #endif /* __PINCTRL_MESON_H__ */
+ #ifndef BOOT_TARGET_DEVICES
+ #define BOOT_TARGET_DEVICES(func) \
++	func(ROMUSB, romusb, na)  \
+ 	func(MMC, mmc, 0) \
+ 	func(MMC, mmc, 1) \
+ 	func(MMC, mmc, 2) \
 -- 
 2.19.1
