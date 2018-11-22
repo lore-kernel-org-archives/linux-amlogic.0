@@ -1,34 +1,43 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 10:07:33 +0100
-Subject: [PATCH u-boot v2 12/19] clk: meson: silence debug print
+Date: Thu, 22 Nov 2018 10:07:28 +0100
+Subject: [PATCH u-boot v2 07/19] configs: meson: change default load addresses
 In-Reply-To: <20181122090740.29739-1-narmstrong@baylibre.com>
 References: <20181122090740.29739-1-narmstrong@baylibre.com>
-Message-ID: <20181122090740.29739-13-narmstrong@baylibre.com>
+Message-ID: <20181122090740.29739-8-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
-This debug print was not designed to be active in non-debug mode.
+The original chosen addresses conflict with the BL2 initialisation.
+So far there was no issue with them but if we preload binaries in
+RAM (ROMUSB boot) before running the BL2 they get corrupted by the
+execution of BL2 init.
+
+If we load them around 0x08000000, there is no such issue.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/clk_meson.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/configs/meson64.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/clk/clk_meson.c b/drivers/clk/clk_meson.c
-index a096a3582c..f34f376057 100644
---- a/drivers/clk/clk_meson.c
-+++ b/drivers/clk/clk_meson.c
-@@ -791,7 +791,7 @@ static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id)
- 		return -ENOENT;
- 	}
+diff --git a/include/configs/meson64.h b/include/configs/meson64.h
+index 1929a3e406..80c883e3f4 100644
+--- a/include/configs/meson64.h
++++ b/include/configs/meson64.h
+@@ -41,9 +41,9 @@
  
--	printf("clock %lu has rate %lu\n", id, rate);
-+	debug("clock %lu has rate %lu\n", id, rate);
- 	return rate;
- }
- 
+ #ifndef CONFIG_EXTRA_ENV_SETTINGS
+ #define CONFIG_EXTRA_ENV_SETTINGS \
+-	"fdt_addr_r=0x01000000\0" \
+-	"scriptaddr=0x1f000000\0" \
+-	"kernel_addr_r=0x01080000\0" \
++	"fdt_addr_r=0x08008000\0" \
++	"scriptaddr=0x08000000\0" \
++	"kernel_addr_r=0x08080000\0" \
+ 	"pxefile_addr_r=0x01080000\0" \
+ 	"ramdisk_addr_r=0x13000000\0" \
+ 	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
 -- 
 2.19.1
