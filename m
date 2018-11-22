@@ -1,470 +1,468 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 10:07:27 +0100
-Subject: [PATCH u-boot v2 06/19] ARM: rework amlogic configuration
+Date: Thu, 22 Nov 2018 10:07:37 +0100
+Subject: [PATCH u-boot v2 16/19] clk: Add clock driver for AXG
 In-Reply-To: <20181122090740.29739-1-narmstrong@baylibre.com>
 References: <20181122090740.29739-1-narmstrong@baylibre.com>
-Message-ID: <20181122090740.29739-7-narmstrong@baylibre.com>
+Message-ID: <20181122090740.29739-17-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+This patch adds a minimal clock driver for the Amlogic AXG SoC to handle
+the basic gates and PLLs.
 
-Rework the board SYS_BOARD, SYS_VENDOR and SYS_CONFIG_NAME setup by moving
-the board Kconfig into the mach-meson Kconfig to make it easier to add
-new boards for a SoC architecture and add a custom config header or custom
-board handler for a platform.
-
-This drops the board CONFIGs and the duplicate boards configs headers in
-favor of a single meson64.h config header.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/mach-meson/Kconfig                   | 73 +++++++++----------
- board/amlogic/odroid-c2/Kconfig               | 12 ---
- board/amlogic/p212/Kconfig                    | 12 ---
- board/amlogic/q200/Kconfig                    | 12 ---
- configs/khadas-vim2_defconfig                 |  1 -
- configs/khadas-vim_defconfig                  |  1 -
- configs/libretech-cc_defconfig                |  1 -
- configs/nanopi-k2_defconfig                   |  2 -
- configs/odroid-c2_defconfig                   |  1 -
- configs/p212_defconfig                        |  1 -
- include/configs/khadas-vim.h                  | 14 ----
- include/configs/libretech-cc.h                | 14 ----
- .../configs/{meson-gx-common.h => meson64.h}  | 25 ++++---
- include/configs/nanopi-k2.h                   | 12 ---
- include/configs/odroid-c2.h                   | 12 ---
- include/configs/p212.h                        | 14 ----
- include/configs/q200.h                        | 18 -----
- 17 files changed, 50 insertions(+), 175 deletions(-)
- delete mode 100644 board/amlogic/odroid-c2/Kconfig
- delete mode 100644 board/amlogic/p212/Kconfig
- delete mode 100644 board/amlogic/q200/Kconfig
- delete mode 100644 include/configs/khadas-vim.h
- delete mode 100644 include/configs/libretech-cc.h
- rename include/configs/{meson-gx-common.h => meson64.h} (81%)
- delete mode 100644 include/configs/nanopi-k2.h
- delete mode 100644 include/configs/odroid-c2.h
- delete mode 100644 include/configs/p212.h
- delete mode 100644 include/configs/q200.h
+ arch/arm/include/asm/arch-meson/clock-axg.h | 104 +++++++
+ drivers/clk/Makefile                        |   2 +-
+ drivers/clk/clk_meson_axg.c                 | 316 ++++++++++++++++++++
+ 3 files changed, 421 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/include/asm/arch-meson/clock-axg.h
+ create mode 100644 drivers/clk/clk_meson_axg.c
 
-diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index d86b1bed78..6f60167c8c 100644
---- a/arch/arm/mach-meson/Kconfig
-+++ b/arch/arm/mach-meson/Kconfig
-@@ -8,49 +8,27 @@ config MESON64_COMMON
- 	select DM_SERIAL
- 	imply CMD_DM
- 
-+choice
-+	prompt "Platform select"
-+	default MESON_GXBB
+diff --git a/arch/arm/include/asm/arch-meson/clock-axg.h b/arch/arm/include/asm/arch-meson/clock-axg.h
+new file mode 100644
+index 0000000000..1ef88e4fad
+--- /dev/null
++++ b/arch/arm/include/asm/arch-meson/clock-axg.h
+@@ -0,0 +1,104 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++/*
++ * Copyright 2016 - AmLogic, Inc.
++ * Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
++ * Copyright 2018 - BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++#ifndef _ARCH_MESON_CLOCK_AXG_H_
++#define _ARCH_MESON_CLOCK_AXG_H_
 +
- config MESON_GXBB
--	bool
-+	bool "GXBB"
- 	select MESON64_COMMON
-+	help
-+	  Select this if your SoC is an S905
- 
- config MESON_GXL
--	bool
-+	bool "GXL"
- 	select MESON64_COMMON
-+	help
-+	  Select this if your SoC is an S905X/D or S805X
- 
- config MESON_GXM
--	bool
-+	bool "GXM"
- 	select MESON64_COMMON
--
--choice
--	prompt "Platform select"
--	default TARGET_ODROID_C2
--
--config TARGET_ODROID_C2
--	bool "ODROID-C2"
--	select MESON_GXBB
- 	help
--	  ODROID-C2 is a single board computer based on Meson GXBaby
--	  with 2 GiB of RAM, Gigabit Ethernet, HDMI, 4 USB, micro-SD
--	  slot, eMMC, IR receiver and a 40-pin GPIO header.
--	  You should also select this TARGET if you have an nanopi-k2
--
--config TARGET_P212
--	bool "P212"
--	select MESON_GXL
--	help
--	  P212 is a reference dessign board based on Meson GXL S905X SoC
--	  with 2 GiB of RAM, Ethernet, HDMI, 2 USB, micro-SD slot,
--	  eMMC, IR receiver, CVBS+Audio jack and a SDIO WiFi module.
--	  You should also select this TARGET if you have Khadas Vim or
--	  a libretech aml-s905x-cc
--
--config TARGET_Q200
--	bool "KHADAS-VIM2"
--	select MESON_GXM
--	help
--	  Q200 is a reference dessign board based on Meson GXM
--	  with 2/3 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
--	  eMMC, IR receiver.
--	  You should also select this TARGET if you have Khadas Vim2.
-+	  Select this if your SoC is an S912
- 
- endchoice
- 
-@@ -60,10 +38,31 @@ config SYS_SOC
- config SYS_MALLOC_F_LEN
- 	default 0x1000
- 
--source "board/amlogic/odroid-c2/Kconfig"
-+config SYS_VENDOR
-+	string "Vendor name"
-+	default "amlogic"
-+	help
-+	  This option contains information about board name.
-+	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
-+	  be used.
- 
--source "board/amlogic/p212/Kconfig"
-+config SYS_BOARD
-+	string "Board name"
-+	default "odroid-c2" if MESON_GXBB
-+	default "p212" if MESON_GXL
-+	default "q200" if MESON_GXM
-+	default ""
-+	help
-+	  This option contains information about board name.
-+	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
-+	  be used.
- 
--source "board/amlogic/q200/Kconfig"
-+config SYS_CONFIG_NAME
-+	string "Board configuration name"
-+	default "meson64"
-+	help
-+	  This option contains information about board configuration name.
-+	  Based on this option include/configs/<CONFIG_SYS_CONFIG_NAME>.h header
-+	  will be used for board configuration.
- 
- endif
-diff --git a/board/amlogic/odroid-c2/Kconfig b/board/amlogic/odroid-c2/Kconfig
-deleted file mode 100644
-index 2b16889b07..0000000000
---- a/board/amlogic/odroid-c2/Kconfig
-+++ /dev/null
-@@ -1,12 +0,0 @@
--if TARGET_ODROID_C2
--
--config SYS_BOARD
--	default "odroid-c2"
--
--config SYS_VENDOR
--	default "amlogic"
--
--config SYS_CONFIG_NAME
--	default "odroid-c2"
--
--endif
-diff --git a/board/amlogic/p212/Kconfig b/board/amlogic/p212/Kconfig
-deleted file mode 100644
-index 720c92b1ee..0000000000
---- a/board/amlogic/p212/Kconfig
-+++ /dev/null
-@@ -1,12 +0,0 @@
--if TARGET_P212
--
--config SYS_BOARD
--	default "p212"
--
--config SYS_VENDOR
--	default "amlogic"
--
--config SYS_CONFIG_NAME
--	default "p212"
--
--endif
-diff --git a/board/amlogic/q200/Kconfig b/board/amlogic/q200/Kconfig
-deleted file mode 100644
-index cfaf3797ac..0000000000
---- a/board/amlogic/q200/Kconfig
-+++ /dev/null
-@@ -1,12 +0,0 @@
--if TARGET_Q200
--
--config SYS_BOARD
--	default "q200"
--
--config SYS_VENDOR
--	default "amlogic"
--
--config SYS_CONFIG_NAME
--	default "q200"
--
--endif
-diff --git a/configs/khadas-vim2_defconfig b/configs/khadas-vim2_defconfig
-index 49b8104960..6fe861c0e5 100644
---- a/configs/khadas-vim2_defconfig
-+++ b/configs/khadas-vim2_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXM=y
--CONFIG_TARGET_Q200=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" khadas-vim2"
-diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
-index af30113760..6e855dd6eb 100644
---- a/configs/khadas-vim_defconfig
-+++ b/configs/khadas-vim_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXL=y
--CONFIG_TARGET_P212=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" khadas-vim"
-diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
-index 7526516060..c2f985fcfb 100644
---- a/configs/libretech-cc_defconfig
-+++ b/configs/libretech-cc_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXL=y
--CONFIG_TARGET_P212=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" libretech-cc"
-diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
-index 01196d6655..8bbf48f41f 100644
---- a/configs/nanopi-k2_defconfig
-+++ b/configs/nanopi-k2_defconfig
-@@ -1,8 +1,6 @@
- CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
--CONFIG_MESON_GXBB=y
--CONFIG_TARGET_ODROID_C2=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" nanopi-k2"
-diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
-index 19196b3585..68554ba745 100644
---- a/configs/odroid-c2_defconfig
-+++ b/configs/odroid-c2_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXBB=y
--CONFIG_TARGET_ODROID_C2=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" odroid-c2"
-diff --git a/configs/p212_defconfig b/configs/p212_defconfig
-index 9e3b1d6bfb..a15064da81 100644
---- a/configs/p212_defconfig
-+++ b/configs/p212_defconfig
-@@ -2,7 +2,6 @@ CONFIG_ARM=y
- CONFIG_ARCH_MESON=y
- CONFIG_SYS_TEXT_BASE=0x01000000
- CONFIG_MESON_GXL=y
--CONFIG_TARGET_P212=y
- CONFIG_DEBUG_UART_BASE=0xc81004c0
- CONFIG_DEBUG_UART_CLOCK=24000000
- CONFIG_IDENT_STRING=" p212"
-diff --git a/include/configs/khadas-vim.h b/include/configs/khadas-vim.h
-deleted file mode 100644
-index ff87c02820..0000000000
---- a/include/configs/khadas-vim.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for Khadas VIM
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/libretech-cc.h b/include/configs/libretech-cc.h
-deleted file mode 100644
-index 95e0f346fd..0000000000
---- a/include/configs/libretech-cc.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for LibreTech CC
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/meson-gx-common.h b/include/configs/meson64.h
-similarity index 81%
-rename from include/configs/meson-gx-common.h
-rename to include/configs/meson64.h
-index c43697665d..1929a3e406 100644
---- a/include/configs/meson-gx-common.h
-+++ b/include/configs/meson64.h
-@@ -1,11 +1,15 @@
- /* SPDX-License-Identifier: GPL-2.0+ */
- /*
-- * Configuration for Amlogic Meson GX SoCs
-+ * Configuration for Amlogic Meson 64bits SoCs
-  * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-  */
- 
--#ifndef __MESON_GX_COMMON_CONFIG_H
--#define __MESON_GX_COMMON_CONFIG_H
-+#ifndef __MESON64_CONFIG_H
-+#define __MESON64_CONFIG_H
++/*
++ * Clock controller register offsets
++ *
++ * Register offsets from the data sheet are listed in comment blocks below.
++ * Those offsets must be multiplied by 4 before adding them to the base address
++ * to get the right value
++ */
++#define HHI_GP0_PLL_CNTL		0x40
++#define HHI_GP0_PLL_CNTL2		0x44
++#define HHI_GP0_PLL_CNTL3		0x48
++#define HHI_GP0_PLL_CNTL4		0x4c
++#define HHI_GP0_PLL_CNTL5		0x50
++#define HHI_GP0_PLL_STS			0x54
++#define HHI_GP0_PLL_CNTL1		0x58
++#define HHI_HIFI_PLL_CNTL		0x80
++#define HHI_HIFI_PLL_CNTL2		0x84
++#define HHI_HIFI_PLL_CNTL3		0x88
++#define HHI_HIFI_PLL_CNTL4		0x8C
++#define HHI_HIFI_PLL_CNTL5		0x90
++#define HHI_HIFI_PLL_STS		0x94
++#define HHI_HIFI_PLL_CNTL1		0x98
 +
-+/* Generic Interrupt Controller Definitions */
-+#define GICD_BASE			0xc4301000
-+#define GICC_BASE			0xc4302000
- 
- #define CONFIG_CPU_ARMV8
- #define CONFIG_REMAKE_ELF
-@@ -17,10 +21,7 @@
- #define CONFIG_SYS_SDRAM_BASE		0
- #define CONFIG_SYS_INIT_SP_ADDR		0x20000000
- #define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
--
--/* Generic Interrupt Controller Definitions */
--#define GICD_BASE			0xc4301000
--#define GICC_BASE			0xc4302000
-+#define CONFIG_SYS_BOOTM_LEN		(64 << 20) /* 64 MiB */
- 
- #ifdef CONFIG_CMD_USB
- #define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
-@@ -28,6 +29,7 @@
- #define BOOT_TARGET_DEVICES_USB(func)
- #endif
- 
-+#ifndef BOOT_TARGET_DEVICES
- #define BOOT_TARGET_DEVICES(func) \
- 	func(MMC, mmc, 0) \
- 	func(MMC, mmc, 1) \
-@@ -35,9 +37,9 @@
- 	BOOT_TARGET_DEVICES_USB(func) \
- 	func(PXE, pxe, na) \
- 	func(DHCP, dhcp, na)
++#define HHI_XTAL_DIVN_CNTL		0xbc
++#define HHI_GCLK2_MPEG0			0xc0
++#define HHI_GCLK2_MPEG1			0xc4
++#define HHI_GCLK2_MPEG2			0xc8
++#define HHI_GCLK2_OTHER			0xd0
++#define HHI_GCLK2_AO			0xd4
++#define HHI_PCIE_PLL_CNTL		0xd8
++#define HHI_PCIE_PLL_CNTL1		0xdC
++#define HHI_PCIE_PLL_CNTL2		0xe0
++#define HHI_PCIE_PLL_CNTL3		0xe4
++#define HHI_PCIE_PLL_CNTL4		0xe8
++#define HHI_PCIE_PLL_CNTL5		0xec
++#define HHI_PCIE_PLL_CNTL6		0xf0
++#define HHI_PCIE_PLL_STS		0xf4
++
++#define HHI_MEM_PD_REG0			0x100
++#define HHI_VPU_MEM_PD_REG0		0x104
++#define HHI_VIID_CLK_DIV		0x128
++#define HHI_VIID_CLK_CNTL		0x12c
++
++#define HHI_GCLK_MPEG0			0x140
++#define HHI_GCLK_MPEG1			0x144
++#define HHI_GCLK_MPEG2			0x148
++#define HHI_GCLK_OTHER			0x150
++#define HHI_GCLK_AO			0x154
++#define HHI_SYS_CPU_CLK_CNTL1		0x15c
++#define HHI_SYS_CPU_RESET_CNTL		0x160
++#define HHI_VID_CLK_DIV			0x164
++#define HHI_SPICC_HCLK_CNTL		0x168
++
++#define HHI_MPEG_CLK_CNTL		0x174
++#define HHI_VID_CLK_CNTL		0x17c
++#define HHI_TS_CLK_CNTL			0x190
++#define HHI_VID_CLK_CNTL2		0x194
++#define HHI_SYS_CPU_CLK_CNTL0		0x19c
++#define HHI_VID_PLL_CLK_DIV		0x1a0
++#define HHI_VPU_CLK_CNTL		0x1bC
++
++#define HHI_VAPBCLK_CNTL		0x1F4
++
++#define HHI_GEN_CLK_CNTL		0x228
++
++#define HHI_VDIN_MEAS_CLK_CNTL		0x250
++#define HHI_NAND_CLK_CNTL		0x25C
++#define HHI_SD_EMMC_CLK_CNTL		0x264
++
++#define HHI_MPLL_CNTL			0x280
++#define HHI_MPLL_CNTL2			0x284
++#define HHI_MPLL_CNTL3			0x288
++#define HHI_MPLL_CNTL4			0x28C
++#define HHI_MPLL_CNTL5			0x290
++#define HHI_MPLL_CNTL6			0x294
++#define HHI_MPLL_CNTL7			0x298
++#define HHI_MPLL_CNTL8			0x29C
++#define HHI_MPLL_CNTL9			0x2A0
++#define HHI_MPLL_CNTL10			0x2A4
++
++#define HHI_MPLL3_CNTL0			0x2E0
++#define HHI_MPLL3_CNTL1			0x2E4
++#define HHI_PLL_TOP_MISC		0x2E8
++
++#define HHI_SYS_PLL_CNTL1		0x2FC
++#define HHI_SYS_PLL_CNTL		0x300
++#define HHI_SYS_PLL_CNTL2		0x304
++#define HHI_SYS_PLL_CNTL3		0x308
++#define HHI_SYS_PLL_CNTL4		0x30c
++#define HHI_SYS_PLL_CNTL5		0x310
++#define HHI_SYS_PLL_STS			0x314
++#define HHI_DPLL_TOP_I			0x318
++#define HHI_DPLL_TOP2_I			0x31C
++
 +#endif
- 
--#include <config_distro_bootcmd.h>
--
-+#ifndef CONFIG_EXTRA_ENV_SETTINGS
- #define CONFIG_EXTRA_ENV_SETTINGS \
- 	"fdt_addr_r=0x01000000\0" \
- 	"scriptaddr=0x1f000000\0" \
-@@ -46,7 +48,8 @@
- 	"ramdisk_addr_r=0x13000000\0" \
- 	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
- 	BOOTENV
-+#endif
- 
--#define CONFIG_SYS_BOOTM_LEN    (64 << 20)      /* 64 MiB */
-+#include <config_distro_bootcmd.h>
- 
--#endif /* __MESON_GX_COMMON_CONFIG_H */
-+#endif /* __MESON64_CONFIG_H */
-diff --git a/include/configs/nanopi-k2.h b/include/configs/nanopi-k2.h
-deleted file mode 100644
-index 3fd6e8fba4..0000000000
---- a/include/configs/nanopi-k2.h
-+++ /dev/null
-@@ -1,12 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for NANOPI-K2
-- * (C) Copyright 2018 Thomas McKahan
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/odroid-c2.h b/include/configs/odroid-c2.h
-deleted file mode 100644
-index 87e3ddb342..0000000000
---- a/include/configs/odroid-c2.h
-+++ /dev/null
-@@ -1,12 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for ODROID-C2
-- * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/p212.h b/include/configs/p212.h
-deleted file mode 100644
-index 4414293479..0000000000
---- a/include/configs/p212.h
-+++ /dev/null
-@@ -1,14 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for Amlogic P212
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
-diff --git a/include/configs/q200.h b/include/configs/q200.h
-deleted file mode 100644
-index 7ef8f42bd2..0000000000
---- a/include/configs/q200.h
-+++ /dev/null
-@@ -1,18 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0+ */
--/*
-- * Configuration for Khadas VIM2
-- *
-- * Copyright (C) 2017 Baylibre, SAS
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- */
--
--#ifndef __CONFIG_H
--#define __CONFIG_H
--
--#define CONFIG_MISC_INIT_R
--
--#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxm-khadas-vim2.dtb\0"
--
--#include <configs/meson-gx-common.h>
--
--#endif /* __CONFIG_H */
+diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+index 821b5867e8..a6962453a1 100644
+--- a/drivers/clk/Makefile
++++ b/drivers/clk/Makefile
+@@ -9,7 +9,7 @@ obj-$(CONFIG_$(SPL_TPL_)CLK) += clk-uclass.o clk_fixed_rate.o
+ obj-y += imx/
+ obj-y += tegra/
+ obj-$(CONFIG_ARCH_ASPEED) += aspeed/
+-obj-$(CONFIG_ARCH_MESON) += clk_meson.o
++obj-$(CONFIG_ARCH_MESON) += clk_meson.o clk_meson_axg.o
+ obj-$(CONFIG_ARCH_ROCKCHIP) += rockchip/
+ obj-$(CONFIG_ARCH_SOCFPGA) += altera/
+ obj-$(CONFIG_CLK_AT91) += at91/
+diff --git a/drivers/clk/clk_meson_axg.c b/drivers/clk/clk_meson_axg.c
+new file mode 100644
+index 0000000000..32cbf752ae
+--- /dev/null
++++ b/drivers/clk/clk_meson_axg.c
+@@ -0,0 +1,316 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * (C) Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
++ * (C) Copyright 2018 - BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#include <common.h>
++#include <asm/arch/clock-axg.h>
++#include <asm/io.h>
++#include <clk-uclass.h>
++#include <dm.h>
++#include <regmap.h>
++#include <syscon.h>
++#include <div64.h>
++#include <dt-bindings/clock/axg-clkc.h>
++#include "clk_meson.h"
++
++#define XTAL_RATE 24000000
++
++struct meson_clk {
++	struct regmap *map;
++};
++
++static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id);
++
++static struct meson_gate gates[] = {
++	/* Everything Else (EE) domain gates */
++	MESON_GATE(CLKID_SPICC0, HHI_GCLK_MPEG0, 8),
++	MESON_GATE(CLKID_I2C, HHI_GCLK_MPEG0, 9),
++	MESON_GATE(CLKID_UART0, HHI_GCLK_MPEG0, 13),
++	MESON_GATE(CLKID_SPICC1, HHI_GCLK_MPEG0, 15),
++	MESON_GATE(CLKID_SD_EMMC_B, HHI_GCLK_MPEG0, 25),
++	MESON_GATE(CLKID_SD_EMMC_C, HHI_GCLK_MPEG0, 26),
++	MESON_GATE(CLKID_ETH, HHI_GCLK_MPEG1, 3),
++	MESON_GATE(CLKID_UART1, HHI_GCLK_MPEG1, 16),
++
++	/* Always On (AO) domain gates */
++	MESON_GATE(CLKID_AO_I2C, HHI_GCLK_AO, 4),
++
++	/* PLL Gates */
++	/* CLKID_FCLK_DIV2 is critical for the SCPI Processor */
++	MESON_GATE(CLKID_MPLL2, HHI_MPLL_CNTL9, 14),
++	/* CLKID_CLK81 is critical for the system */
++
++	/* Peripheral Gates */
++	MESON_GATE(CLKID_SD_EMMC_B_CLK0, HHI_SD_EMMC_CLK_CNTL, 23),
++	MESON_GATE(CLKID_SD_EMMC_C_CLK0, HHI_NAND_CLK_CNTL, 7),
++};
++
++static int meson_set_gate(struct clk *clk, bool on)
++{
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	struct meson_gate *gate;
++
++	if (clk->id >= ARRAY_SIZE(gates))
++		return -ENOENT;
++
++	gate = &gates[clk->id];
++
++	if (gate->reg == 0)
++		return 0;
++
++	regmap_update_bits(priv->map, gate->reg,
++			   BIT(gate->bit), on ? BIT(gate->bit) : 0);
++
++	return 0;
++}
++
++static int meson_clk_enable(struct clk *clk)
++{
++	return meson_set_gate(clk, true);
++}
++
++static int meson_clk_disable(struct clk *clk)
++{
++	return meson_set_gate(clk, false);
++}
++
++static unsigned long meson_clk81_get_rate(struct clk *clk)
++{
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	unsigned long parent_rate;
++	uint reg;
++	int parents[] = {
++		-1,
++		-1,
++		CLKID_FCLK_DIV7,
++		CLKID_MPLL1,
++		CLKID_MPLL2,
++		CLKID_FCLK_DIV4,
++		CLKID_FCLK_DIV3,
++		CLKID_FCLK_DIV5
++	};
++
++	/* mux */
++	regmap_read(priv->map, HHI_MPEG_CLK_CNTL, &reg);
++	reg = (reg >> 12) & 7;
++
++	switch (reg) {
++	case 0:
++		parent_rate = XTAL_RATE;
++		break;
++	case 1:
++		return -ENOENT;
++	default:
++		parent_rate = meson_clk_get_rate_by_id(clk, parents[reg]);
++	}
++
++	/* divider */
++	regmap_read(priv->map, HHI_MPEG_CLK_CNTL, &reg);
++	reg = reg & ((1 << 7) - 1);
++
++	return parent_rate / reg;
++}
++
++static long mpll_rate_from_params(unsigned long parent_rate,
++				  unsigned long sdm,
++				  unsigned long n2)
++{
++	unsigned long divisor = (SDM_DEN * n2) + sdm;
++
++	if (n2 < N2_MIN)
++		return -EINVAL;
++
++	return DIV_ROUND_UP_ULL((u64)parent_rate * SDM_DEN, divisor);
++}
++
++static struct parm meson_mpll0_parm[3] = {
++	{HHI_MPLL_CNTL7, 0, 14}, /* psdm */
++	{HHI_MPLL_CNTL7, 16, 9}, /* pn2 */
++};
++
++static struct parm meson_mpll1_parm[3] = {
++	{HHI_MPLL_CNTL8, 0, 14}, /* psdm */
++	{HHI_MPLL_CNTL8, 16, 9}, /* pn2 */
++};
++
++static struct parm meson_mpll2_parm[3] = {
++	{HHI_MPLL_CNTL9, 0, 14}, /* psdm */
++	{HHI_MPLL_CNTL9, 16, 9}, /* pn2 */
++};
++
++/*
++ * MultiPhase Locked Loops are outputs from a PLL with additional frequency
++ * scaling capabilities. MPLL rates are calculated as:
++ *
++ * f(N2_integer, SDM_IN ) = 2.0G/(N2_integer + SDM_IN/16384)
++ */
++static ulong meson_mpll_get_rate(struct clk *clk, unsigned long id)
++{
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	struct parm *psdm, *pn2;
++	unsigned long sdm, n2;
++	unsigned long parent_rate;
++	uint reg;
++
++	switch (id) {
++	case CLKID_MPLL0:
++		psdm = &meson_mpll0_parm[0];
++		pn2 = &meson_mpll0_parm[1];
++		break;
++	case CLKID_MPLL1:
++		psdm = &meson_mpll1_parm[0];
++		pn2 = &meson_mpll1_parm[1];
++		break;
++	case CLKID_MPLL2:
++		psdm = &meson_mpll2_parm[0];
++		pn2 = &meson_mpll2_parm[1];
++		break;
++	default:
++		return -ENOENT;
++	}
++
++	parent_rate = meson_clk_get_rate_by_id(clk, CLKID_FIXED_PLL);
++	if (IS_ERR_VALUE(parent_rate))
++		return parent_rate;
++
++	regmap_read(priv->map, psdm->reg_off, &reg);
++	sdm = PARM_GET(psdm->width, psdm->shift, reg);
++
++	regmap_read(priv->map, pn2->reg_off, &reg);
++	n2 = PARM_GET(pn2->width, pn2->shift, reg);
++
++	return mpll_rate_from_params(parent_rate, sdm, n2);
++}
++
++static struct parm meson_fixed_pll_parm[3] = {
++	{HHI_MPLL_CNTL, 0, 9}, /* pm */
++	{HHI_MPLL_CNTL, 9, 5}, /* pn */
++	{HHI_MPLL_CNTL, 16, 2}, /* pod */
++};
++
++static struct parm meson_sys_pll_parm[3] = {
++	{HHI_SYS_PLL_CNTL, 0, 9}, /* pm */
++	{HHI_SYS_PLL_CNTL, 9, 5}, /* pn */
++	{HHI_SYS_PLL_CNTL, 16, 2}, /* pod */
++};
++
++static ulong meson_pll_get_rate(struct clk *clk, unsigned long id)
++{
++	struct meson_clk *priv = dev_get_priv(clk->dev);
++	struct parm *pm, *pn, *pod;
++	unsigned long parent_rate_mhz = XTAL_RATE / 1000000;
++	u16 n, m, od;
++	uint reg;
++
++	switch (id) {
++	case CLKID_FIXED_PLL:
++		pm = &meson_fixed_pll_parm[0];
++		pn = &meson_fixed_pll_parm[1];
++		pod = &meson_fixed_pll_parm[2];
++		break;
++	case CLKID_SYS_PLL:
++		pm = &meson_sys_pll_parm[0];
++		pn = &meson_sys_pll_parm[1];
++		pod = &meson_sys_pll_parm[2];
++		break;
++	default:
++		return -ENOENT;
++	}
++
++	regmap_read(priv->map, pn->reg_off, &reg);
++	n = PARM_GET(pn->width, pn->shift, reg);
++
++	regmap_read(priv->map, pm->reg_off, &reg);
++	m = PARM_GET(pm->width, pm->shift, reg);
++
++	regmap_read(priv->map, pod->reg_off, &reg);
++	od = PARM_GET(pod->width, pod->shift, reg);
++
++	return ((parent_rate_mhz * m / n) >> od) * 1000000;
++}
++
++static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id)
++{
++	ulong rate;
++
++	switch (id) {
++	case CLKID_FIXED_PLL:
++	case CLKID_SYS_PLL:
++		rate = meson_pll_get_rate(clk, id);
++		break;
++	case CLKID_FCLK_DIV2:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 2;
++		break;
++	case CLKID_FCLK_DIV3:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 3;
++		break;
++	case CLKID_FCLK_DIV4:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 4;
++		break;
++	case CLKID_FCLK_DIV5:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 5;
++		break;
++	case CLKID_FCLK_DIV7:
++		rate = meson_pll_get_rate(clk, CLKID_FIXED_PLL) / 7;
++		break;
++	case CLKID_MPLL0:
++	case CLKID_MPLL1:
++	case CLKID_MPLL2:
++		rate = meson_mpll_get_rate(clk, id);
++		break;
++	case CLKID_CLK81:
++		rate = meson_clk81_get_rate(clk);
++		break;
++	default:
++		if (gates[id].reg != 0) {
++			/* a clock gate */
++			rate = meson_clk81_get_rate(clk);
++			break;
++		}
++		return -ENOENT;
++	}
++
++	debug("clock %lu has rate %lu\n", id, rate);
++	return rate;
++}
++
++static ulong meson_clk_get_rate(struct clk *clk)
++{
++	return meson_clk_get_rate_by_id(clk, clk->id);
++}
++
++static int meson_clk_probe(struct udevice *dev)
++{
++	struct meson_clk *priv = dev_get_priv(dev);
++
++	priv->map = syscon_node_to_regmap(dev_get_parent(dev)->node);
++	if (IS_ERR(priv->map))
++		return PTR_ERR(priv->map);
++
++	debug("meson-clk-axg: probed\n");
++
++	return 0;
++}
++
++static struct clk_ops meson_clk_ops = {
++	.disable	= meson_clk_disable,
++	.enable		= meson_clk_enable,
++	.get_rate	= meson_clk_get_rate,
++};
++
++static const struct udevice_id meson_clk_ids[] = {
++	{ .compatible = "amlogic,axg-clkc" },
++	{ }
++};
++
++U_BOOT_DRIVER(meson_clk_axg) = {
++	.name		= "meson_clk_axg",
++	.id		= UCLASS_CLK,
++	.of_match	= meson_clk_ids,
++	.priv_auto_alloc_size = sizeof(struct meson_clk),
++	.ops		= &meson_clk_ops,
++	.probe		= meson_clk_probe,
++};
 -- 
 2.19.1
