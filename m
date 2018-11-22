@@ -1,41 +1,42 @@
 From: sashal@kernel.org (Sasha Levin)
-Date: Thu, 22 Nov 2018 14:52:08 -0500
-Subject: [PATCH AUTOSEL 4.19 04/36] pinctrl: meson: fix meson8 ao pull
- register bits
-In-Reply-To: <20181122195240.13123-1-sashal@kernel.org>
-References: <20181122195240.13123-1-sashal@kernel.org>
-Message-ID: <20181122195240.13123-4-sashal@kernel.org>
+Date: Thu, 22 Nov 2018 14:52:05 -0500
+Subject: [PATCH AUTOSEL 4.19 01/36] pinctrl: meson: fix pinconf bias disable
+Message-ID: <20181122195240.13123-1-sashal@kernel.org>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
-[ Upstream commit e91b162d2868672d06010f34aa83d408db13d3c6 ]
+[ Upstream commit e39f9dd8206ad66992ac0e6218ef1ba746f2cce9 ]
 
-AO pull register definition is inverted between pull (up/down) and
-pull enable. Fixing this allows to properly apply bias setting
-through pinconf
+If a bias is enabled on a pin of an Amlogic SoC, calling .pin_config_set()
+with PIN_CONFIG_BIAS_DISABLE will not disable the bias. Instead it will
+force a pull-down bias on the pin.
+
+Instead of the pull type register bank, the driver should access the pull
+enable register bank.
 
 Fixes: 6ac730951104 ("pinctrl: add driver for Amlogic Meson SoCs")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/pinctrl/meson/pinctrl-meson8.c | 2 +-
+ drivers/pinctrl/meson/pinctrl-meson.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
-index c6d79315218f..86466173114d 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8.c
-@@ -1053,7 +1053,7 @@ static struct meson_bank meson8_cbus_banks[] = {
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index 29a458da78db..4f3ab18636a3 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -192,7 +192,7 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+ 			dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
  
- static struct meson_bank meson8_aobus_banks[] = {
- 	/*   name    first     last         irq    pullen  pull    dir     out     in  */
--	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0,  0,  0, 16,  0,  0,  0, 16,  1,  0),
-+	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0, 16,  0,  0,  0,  0,  0, 16,  1,  0),
- };
- 
- static struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
+ 			meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
+-			ret = regmap_update_bits(pc->reg_pull, reg,
++			ret = regmap_update_bits(pc->reg_pullen, reg,
+ 						 BIT(bit), 0);
+ 			if (ret)
+ 				return ret;
 -- 
 2.17.1
