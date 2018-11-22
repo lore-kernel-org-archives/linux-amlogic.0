@@ -1,43 +1,203 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 10:07:28 +0100
-Subject: [PATCH u-boot v2 07/19] configs: meson: change default load addresses
+Date: Thu, 22 Nov 2018 10:07:26 +0100
+Subject: [PATCH u-boot v2 05/19] board: amlogic: factorise gxbb boards
 In-Reply-To: <20181122090740.29739-1-narmstrong@baylibre.com>
 References: <20181122090740.29739-1-narmstrong@baylibre.com>
-Message-ID: <20181122090740.29739-8-narmstrong@baylibre.com>
+Message-ID: <20181122090740.29739-6-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
-The original chosen addresses conflict with the BL2 initialisation.
-So far there was no issue with them but if we preload binaries in
-RAM (ROMUSB boot) before running the BL2 they get corrupted by the
-execution of BL2 init.
-
-If we load them around 0x08000000, there is no such issue.
+The nanopi-k2 and the odroid-c2 are similar enough to be supported
+by the same u-boot board. This change use odroid-c2 u-boot board
+for the nanopi-k2 as well. Dedicated defconfig are kept to customize
+the names and device tree.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/configs/meson64.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/mach-meson/Kconfig                   | 11 +---
+ board/amlogic/nanopi-k2/Kconfig               | 12 ----
+ board/amlogic/nanopi-k2/MAINTAINERS           |  6 --
+ board/amlogic/nanopi-k2/Makefile              |  7 ---
+ board/amlogic/nanopi-k2/nanopi-k2.c           | 55 -------------------
+ board/amlogic/odroid-c2/MAINTAINERS           |  1 +
+ .../README => odroid-c2/README.nanopi-k2}     |  0
+ .../odroid-c2/{README => README.odroid-c2}    |  0
+ configs/nanopi-k2_defconfig                   |  2 +-
+ 9 files changed, 3 insertions(+), 91 deletions(-)
+ delete mode 100644 board/amlogic/nanopi-k2/Kconfig
+ delete mode 100644 board/amlogic/nanopi-k2/MAINTAINERS
+ delete mode 100644 board/amlogic/nanopi-k2/Makefile
+ delete mode 100644 board/amlogic/nanopi-k2/nanopi-k2.c
+ rename board/amlogic/{nanopi-k2/README => odroid-c2/README.nanopi-k2} (100%)
+ rename board/amlogic/odroid-c2/{README => README.odroid-c2} (100%)
 
-diff --git a/include/configs/meson64.h b/include/configs/meson64.h
-index 1929a3e406..80c883e3f4 100644
---- a/include/configs/meson64.h
-+++ b/include/configs/meson64.h
-@@ -41,9 +41,9 @@
+diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
+index 98303dbda1..d86b1bed78 100644
+--- a/arch/arm/mach-meson/Kconfig
++++ b/arch/arm/mach-meson/Kconfig
+@@ -31,14 +31,7 @@ config TARGET_ODROID_C2
+ 	  ODROID-C2 is a single board computer based on Meson GXBaby
+ 	  with 2 GiB of RAM, Gigabit Ethernet, HDMI, 4 USB, micro-SD
+ 	  slot, eMMC, IR receiver and a 40-pin GPIO header.
+-
+-config TARGET_NANOPI_K2
+-	bool "NANOPI_K2"
+-	select MESON_GXBB
+-	help
+-	  NANOPI_K2 is a single board computer based on Meson GXBaby
+-	  with 2 GiB of RAM, Gigabit Ethernet,AP6212 Wifi, HDMI, 4 USB,
+-	  micro-SD slot, eMMC, IR receiver and a 40-pin GPIO header.
++	  You should also select this TARGET if you have an nanopi-k2
  
- #ifndef CONFIG_EXTRA_ENV_SETTINGS
- #define CONFIG_EXTRA_ENV_SETTINGS \
--	"fdt_addr_r=0x01000000\0" \
--	"scriptaddr=0x1f000000\0" \
--	"kernel_addr_r=0x01080000\0" \
-+	"fdt_addr_r=0x08008000\0" \
-+	"scriptaddr=0x08000000\0" \
-+	"kernel_addr_r=0x08080000\0" \
- 	"pxefile_addr_r=0x01080000\0" \
- 	"ramdisk_addr_r=0x13000000\0" \
- 	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
+ config TARGET_P212
+ 	bool "P212"
+@@ -69,8 +62,6 @@ config SYS_MALLOC_F_LEN
+ 
+ source "board/amlogic/odroid-c2/Kconfig"
+ 
+-source "board/amlogic/nanopi-k2/Kconfig"
+-
+ source "board/amlogic/p212/Kconfig"
+ 
+ source "board/amlogic/q200/Kconfig"
+diff --git a/board/amlogic/nanopi-k2/Kconfig b/board/amlogic/nanopi-k2/Kconfig
+deleted file mode 100644
+index 374bda200c..0000000000
+--- a/board/amlogic/nanopi-k2/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_NANOPI_K2
+-
+-config SYS_BOARD
+-	default "nanopi-k2"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "nanopi-k2"
+-
+-endif
+diff --git a/board/amlogic/nanopi-k2/MAINTAINERS b/board/amlogic/nanopi-k2/MAINTAINERS
+deleted file mode 100644
+index 0452bd1fa1..0000000000
+--- a/board/amlogic/nanopi-k2/MAINTAINERS
++++ /dev/null
+@@ -1,6 +0,0 @@
+-NANOPI-K2
+-M:	Neil Armstrong <narmstrong@baylibre.com>
+-S:	Maintained
+-F:	board/amlogic/nanopi-k2/
+-F:	include/configs/nanopi-k2.h
+-F:	configs/nanopi-k2_defconfig
+diff --git a/board/amlogic/nanopi-k2/Makefile b/board/amlogic/nanopi-k2/Makefile
+deleted file mode 100644
+index 7d9b666e76..0000000000
+--- a/board/amlogic/nanopi-k2/Makefile
++++ /dev/null
+@@ -1,7 +0,0 @@
+-#
+-# (C) Copyright 2018 Thomas McKahan
+-#
+-# SPDX-License-Identifier:	GPL-2.0+
+-#
+-
+-obj-y	:= nanopi-k2.o
+diff --git a/board/amlogic/nanopi-k2/nanopi-k2.c b/board/amlogic/nanopi-k2/nanopi-k2.c
+deleted file mode 100644
+index ae29dd6fa4..0000000000
+--- a/board/amlogic/nanopi-k2/nanopi-k2.c
++++ /dev/null
+@@ -1,55 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0+
+-/*
+- * (C) Copyright 2018 Thomas McKahan
+- */
+-
+-#include <common.h>
+-#include <dm.h>
+-#include <environment.h>
+-#include <asm/io.h>
+-#include <asm/arch/gx.h>
+-#include <asm/arch/sm.h>
+-#include <asm/arch/eth.h>
+-#include <asm/arch/mem.h>
+-
+-#define EFUSE_SN_OFFSET		20
+-#define EFUSE_SN_SIZE		16
+-#define EFUSE_MAC_OFFSET	52
+-#define EFUSE_MAC_SIZE		6
+-
+-int board_init(void)
+-{
+-	return 0;
+-}
+-
+-int misc_init_r(void)
+-{
+-	u8 mac_addr[EFUSE_MAC_SIZE];
+-	char serial[EFUSE_SN_SIZE];
+-	ssize_t len;
+-
+-	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
+-
+-	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
+-		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
+-					  mac_addr, EFUSE_MAC_SIZE);
+-		if (len == EFUSE_MAC_SIZE && is_valid_ethaddr(mac_addr))
+-			eth_env_set_enetaddr("ethaddr", mac_addr);
+-	}
+-
+-	if (!env_get("serial#")) {
+-		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
+-			EFUSE_SN_SIZE);
+-		if (len == EFUSE_SN_SIZE)
+-			env_set("serial#", serial);
+-	}
+-
+-	return 0;
+-}
+-
+-int ft_board_setup(void *blob, bd_t *bd)
+-{
+-	meson_gx_init_reserved_memory(blob);
+-
+-	return 0;
+-}
+diff --git a/board/amlogic/odroid-c2/MAINTAINERS b/board/amlogic/odroid-c2/MAINTAINERS
+index 699850fd0c..fd74d53bfe 100644
+--- a/board/amlogic/odroid-c2/MAINTAINERS
++++ b/board/amlogic/odroid-c2/MAINTAINERS
+@@ -1,5 +1,6 @@
+ ODROID-C2
+ M:	Beniamino Galvani <b.galvani@gmail.com>
++M:	Neil Armstrong <narmstrong@baylibre.com>
+ S:	Maintained
+ F:	board/amlogic/odroid-c2/
+ F:	include/configs/odroid-c2.h
+diff --git a/board/amlogic/nanopi-k2/README b/board/amlogic/odroid-c2/README.nanopi-k2
+similarity index 100%
+rename from board/amlogic/nanopi-k2/README
+rename to board/amlogic/odroid-c2/README.nanopi-k2
+diff --git a/board/amlogic/odroid-c2/README b/board/amlogic/odroid-c2/README.odroid-c2
+similarity index 100%
+rename from board/amlogic/odroid-c2/README
+rename to board/amlogic/odroid-c2/README.odroid-c2
+diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
+index 5c8c747bf3..01196d6655 100644
+--- a/configs/nanopi-k2_defconfig
++++ b/configs/nanopi-k2_defconfig
+@@ -2,7 +2,7 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXBB=y
+-CONFIG_TARGET_NANOPI_K2=y
++CONFIG_TARGET_ODROID_C2=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" nanopi-k2"
 -- 
 2.19.1
