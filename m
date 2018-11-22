@@ -1,69 +1,55 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 11:01:03 +0100
-Subject: [PATCH u-boot v3 1/3] regmap: add regmap_read_poll_timeout() helper
+Date: Thu, 22 Nov 2018 11:01:04 +0100
+Subject: [PATCH u-boot v3 2/3] test: regmap: add regmap_read_poll_timeout test
 In-Reply-To: <20181122100105.14829-1-narmstrong@baylibre.com>
 References: <20181122100105.14829-1-narmstrong@baylibre.com>
-Message-ID: <20181122100105.14829-2-narmstrong@baylibre.com>
+Message-ID: <20181122100105.14829-3-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the regmap_read_poll_timeout() macro based on the Linux implementation
-to simplify register polling with configurable timeout and sleep.
+Add test to regmap_read_poll_timeout() helper to check the timeout works
+properly but cannot test proper condition matching since read/write calls
+are not executed in sandbox.
 
 Acked-by: Jagan Teki <jagan@openedev.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/regmap.h | 38 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ test/dm/regmap.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/include/regmap.h b/include/regmap.h
-index b2b733fda6..a3afb72df5 100644
---- a/include/regmap.h
-+++ b/include/regmap.h
-@@ -239,6 +239,44 @@ int regmap_raw_read_range(struct regmap *map, uint range_num, uint offset,
- #define regmap_get(map, type, member, valp) \
- 	regmap_range_get(map, 0, type, member, valp)
+diff --git a/test/dm/regmap.c b/test/dm/regmap.c
+index a8d7e6829e..9a70c159dd 100644
+--- a/test/dm/regmap.c
++++ b/test/dm/regmap.c
+@@ -144,3 +144,29 @@ static int dm_test_regmap_getset(struct unit_test_state *uts)
+ }
  
-+/**
-+ * regmap_read_poll_timeout - Poll until a condition is met or a timeout occurs
-+ *
-+ * @map:	Regmap to read from
-+ * @addr:	Offset to poll
-+ * @val:	Unsigned integer variable to read the value into
-+ * @cond:	Break condition (usually involving @val)
-+ * @sleep_us:	Maximum time to sleep between reads in us (0 tight-loops).
-+ * @timeout_ms:	Timeout in ms, 0 means never timeout
-+ *
-+ * Returns 0 on success and -ETIMEDOUT upon a timeout or the regmap_read
-+ * error return value in case of a error read. In the two former cases,
-+ * the last read value at @addr is stored in @val. Must not be called
-+ * from atomic context if sleep_us or timeout_us are used.
-+ *
-+ * This is modelled after the regmap_read_poll_timeout macros in linux but
-+ * with millisecond timeout.
-+ */
-+#define regmap_read_poll_timeout(map, addr, val, cond, sleep_us, timeout_ms) \
-+({ \
-+	unsigned long __start = get_timer(0); \
-+	int __ret; \
-+	for (;;) { \
-+		__ret = regmap_read((map), (addr), &(val)); \
-+		if (__ret) \
-+			break; \
-+		if (cond) \
-+			break; \
-+		if ((timeout_ms) && get_timer(__start) > (timeout_ms)) { \
-+			__ret = regmap_read((map), (addr), &(val)); \
-+			break; \
-+		} \
-+		if ((sleep_us)) \
-+			udelay((sleep_us)); \
-+	} \
-+	__ret ?: ((cond) ? 0 : -ETIMEDOUT); \
-+})
+ DM_TEST(dm_test_regmap_getset, DM_TESTF_SCAN_PDATA | DM_TESTF_SCAN_FDT);
 +
- /**
-  * regmap_update_bits() - Perform a read/modify/write using a mask
-  *
++/* Read polling test */
++static int dm_test_regmap_poll(struct unit_test_state *uts)
++{
++	struct udevice *dev;
++	struct regmap *map;
++	uint reg;
++	unsigned long start;
++
++	ut_assertok(uclass_get_device(UCLASS_SYSCON, 0, &dev));
++	map = syscon_get_regmap(dev);
++	ut_assertok_ptr(map);
++
++	start = get_timer(0);
++
++	ut_asserteq(-ETIMEDOUT,
++		    regmap_read_poll_timeout(map, 0, reg,
++					     (reg == 0xcacafafa),
++					     1, 5 * CONFIG_SYS_HZ));
++
++	ut_assert(get_timer(start) > (5 * CONFIG_SYS_HZ));
++
++	return 0;
++}
++
++DM_TEST(dm_test_regmap_poll, DM_TESTF_SCAN_PDATA | DM_TESTF_SCAN_FDT);
 -- 
 2.19.1
