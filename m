@@ -1,55 +1,41 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 11:01:04 +0100
-Subject: [PATCH u-boot v3 2/3] test: regmap: add regmap_read_poll_timeout test
-In-Reply-To: <20181122100105.14829-1-narmstrong@baylibre.com>
-References: <20181122100105.14829-1-narmstrong@baylibre.com>
-Message-ID: <20181122100105.14829-3-narmstrong@baylibre.com>
+Date: Thu, 22 Nov 2018 11:15:21 +0100
+Subject: [PATCH] drm/meson: Fixes for drm_crtc_vblank_on/off support
+In-Reply-To: <20181121171525.6593-1-narmstrong@baylibre.com>
+References: <20181121171525.6593-1-narmstrong@baylibre.com>
+Message-ID: <f8cd32d4-6475-ae07-edf8-9f458279d0e0@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add test to regmap_read_poll_timeout() helper to check the timeout works
-properly but cannot test proper condition matching since read/write calls
-are not executed in sandbox.
+On 21/11/2018 18:15, Neil Armstrong wrote:
+> Since Linux 4.17, calls to drm_crtc_vblank_on/off are mandatory, and we get
+> a warning when ctrc is disabled :
+> " driver forgot to call drm_crtc_vblank_off()"
+> 
+> But, the vsync IRQ was not totally disabled due the transient hardware
+> state and specific interrupt line thus adding proper IRQ masking from
+> the HHI system control registers.
+> 
+> Finally, due to changed in the atomic_disable code path with the updated
+> fbdev emulation, checking the crct state with an atomic_disable call
+> leads to warning in further atomic_begin() with a leftover event not cleared.
+> 
+> To Summarize :
+> - Make sure that the CRTC code will call the enable/disable_vblank hooks.
+> - *Really* mask the Vsync IRQ
+> - Allways consume the state event in atomic_disable()
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/meson/meson_crtc.c | 6 +++++-
+>  drivers/gpu/drm/meson/meson_venc.c | 3 +++
+>  2 files changed, 8 insertions(+), 1 deletion(-)
+> 
 
-Acked-by: Jagan Teki <jagan@openedev.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- test/dm/regmap.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+[...]
 
-diff --git a/test/dm/regmap.c b/test/dm/regmap.c
-index a8d7e6829e..9a70c159dd 100644
---- a/test/dm/regmap.c
-+++ b/test/dm/regmap.c
-@@ -144,3 +144,29 @@ static int dm_test_regmap_getset(struct unit_test_state *uts)
- }
- 
- DM_TEST(dm_test_regmap_getset, DM_TESTF_SCAN_PDATA | DM_TESTF_SCAN_FDT);
-+
-+/* Read polling test */
-+static int dm_test_regmap_poll(struct unit_test_state *uts)
-+{
-+	struct udevice *dev;
-+	struct regmap *map;
-+	uint reg;
-+	unsigned long start;
-+
-+	ut_assertok(uclass_get_device(UCLASS_SYSCON, 0, &dev));
-+	map = syscon_get_regmap(dev);
-+	ut_assertok_ptr(map);
-+
-+	start = get_timer(0);
-+
-+	ut_asserteq(-ETIMEDOUT,
-+		    regmap_read_poll_timeout(map, 0, reg,
-+					     (reg == 0xcacafafa),
-+					     1, 5 * CONFIG_SYS_HZ));
-+
-+	ut_assert(get_timer(start) > (5 * CONFIG_SYS_HZ));
-+
-+	return 0;
-+}
-+
-+DM_TEST(dm_test_regmap_poll, DM_TESTF_SCAN_PDATA | DM_TESTF_SCAN_FDT);
--- 
-2.19.1
+Well it doesn't totally solve the issue....
+
+Will resend a fixed version..
+
+Neil
