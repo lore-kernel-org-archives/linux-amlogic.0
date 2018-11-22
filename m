@@ -1,58 +1,26 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 22 Nov 2018 22:40:15 +0100
-Subject: [PATCH v2 2/4] clk: meson: clk-regmap: add read-only gate ops
-In-Reply-To: <20181122214017.25643-1-martin.blumenstingl@googlemail.com>
-References: <20181122214017.25643-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181122214017.25643-3-martin.blumenstingl@googlemail.com>
+Date: Thu, 22 Nov 2018 22:44:55 +0100
+Subject: [PATCH] iio: adc: meson-saradc: check for devm_kasprintf failure
+In-Reply-To: <1542872803-29060-1-git-send-email-hofrat@osadl.org>
+References: <1542872803-29060-1-git-send-email-hofrat@osadl.org>
+Message-ID: <CAFBinCAXt1GPFMptVXrGYi-TsgSxSyNqeWFuz=B=vWV3c1+zwA@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Some of the gate clocks are described as "just in case" bits in the
-datasheet. Examples are the ABP, PERIPH, AXI and L2 DRAM clocks on
-Meson8b.
-The datasheet suggests that these bits are not touched. The full
-explanation is:
-"Set to 1 to manually disable the [...] clock when changing the mux
-selection. Typically this bit is set to 0 since the clock muxes can
-switch without glitches.".
+On Thu, Nov 22, 2018 at 8:52 AM Nicholas Mc Guire <hofrat@osadl.org> wrote:
+>
+> devm_kasprintf() may return NULL on failure of internal allocation thus
+> the assignments to  init.name  are not safe if not checked. On error
+> meson_sar_adc_clk_init() returns negative values so -ENOMEM in the
+> (unlikely) failure case of devm_kasprintf() should be fine here.
+>
+> Signed-off-by: Nicholas Mc Guire <hofrat@osadl.org>
+> Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-This adds new read-only ops for gate clocks so we can describe these
-clocks in our clock controller drivers while ensuring that we can't
-accidentally modify the registers.
+thank you for the patch!
+I tested the non-error case on my Odroid-C1 and it still works fine.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/clk-regmap.c | 5 +++++
- drivers/clk/meson/clk-regmap.h | 1 +
- 2 files changed, 6 insertions(+)
 
-diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
-index 305ee307c003..c515f67322a3 100644
---- a/drivers/clk/meson/clk-regmap.c
-+++ b/drivers/clk/meson/clk-regmap.c
-@@ -50,6 +50,11 @@ const struct clk_ops clk_regmap_gate_ops = {
- };
- EXPORT_SYMBOL_GPL(clk_regmap_gate_ops);
- 
-+const struct clk_ops clk_regmap_gate_ro_ops = {
-+	.is_enabled = clk_regmap_gate_is_enabled,
-+};
-+EXPORT_SYMBOL_GPL(clk_regmap_gate_ro_ops);
-+
- static unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
- 						unsigned long prate)
- {
-diff --git a/drivers/clk/meson/clk-regmap.h b/drivers/clk/meson/clk-regmap.h
-index ed2d4348dbe2..e9c5728d40eb 100644
---- a/drivers/clk/meson/clk-regmap.h
-+++ b/drivers/clk/meson/clk-regmap.h
-@@ -51,6 +51,7 @@ clk_get_regmap_gate_data(struct clk_regmap *clk)
- }
- 
- extern const struct clk_ops clk_regmap_gate_ops;
-+extern const struct clk_ops clk_regmap_gate_ro_ops;
- 
- /**
-  * struct clk_regmap_div_data - regmap backed adjustable divider specific data
--- 
-2.19.1
+Regards
+Martin
