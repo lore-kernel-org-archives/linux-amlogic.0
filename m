@@ -1,27 +1,69 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 11:01:02 +0100
-Subject: [PATCH u-boot v3 0/3] Add Amlogic Meson SPI Flash Controller driver
-Message-ID: <20181122100105.14829-1-narmstrong@baylibre.com>
+Date: Thu, 22 Nov 2018 11:01:03 +0100
+Subject: [PATCH u-boot v3 1/3] regmap: add regmap_read_poll_timeout() helper
+In-Reply-To: <20181122100105.14829-1-narmstrong@baylibre.com>
+References: <20181122100105.14829-1-narmstrong@baylibre.com>
+Message-ID: <20181122100105.14829-2-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Amlogic Meson SoCs embeds a Flash oriented SPI Controller name SPIFC.
+Add the regmap_read_poll_timeout() macro based on the Linux implementation
+to simplify register polling with configurable timeout and sleep.
 
-This patchset add the driver ported from linux, but also import the regmap
-regmap_read_poll_timeout() to implify the register polling in the driver.
+Acked-by: Jagan Teki <jagan@openedev.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ include/regmap.h | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-Neil Armstrong (3):
-  regmap: add regmap_read_poll_timeout() helper
-  test: regmap: add regmap_read_poll_timeout test
-  spi: Add Amlogic Meson SPI Flash Controller driver
-
- drivers/spi/Kconfig       |   8 +
- drivers/spi/Makefile      |   1 +
- drivers/spi/meson_spifc.c | 320 ++++++++++++++++++++++++++++++++++++++
- include/regmap.h          |  38 +++++
- test/dm/regmap.c          |  26 ++++
- 5 files changed, 393 insertions(+)
- create mode 100644 drivers/spi/meson_spifc.c
-
+diff --git a/include/regmap.h b/include/regmap.h
+index b2b733fda6..a3afb72df5 100644
+--- a/include/regmap.h
++++ b/include/regmap.h
+@@ -239,6 +239,44 @@ int regmap_raw_read_range(struct regmap *map, uint range_num, uint offset,
+ #define regmap_get(map, type, member, valp) \
+ 	regmap_range_get(map, 0, type, member, valp)
+ 
++/**
++ * regmap_read_poll_timeout - Poll until a condition is met or a timeout occurs
++ *
++ * @map:	Regmap to read from
++ * @addr:	Offset to poll
++ * @val:	Unsigned integer variable to read the value into
++ * @cond:	Break condition (usually involving @val)
++ * @sleep_us:	Maximum time to sleep between reads in us (0 tight-loops).
++ * @timeout_ms:	Timeout in ms, 0 means never timeout
++ *
++ * Returns 0 on success and -ETIMEDOUT upon a timeout or the regmap_read
++ * error return value in case of a error read. In the two former cases,
++ * the last read value at @addr is stored in @val. Must not be called
++ * from atomic context if sleep_us or timeout_us are used.
++ *
++ * This is modelled after the regmap_read_poll_timeout macros in linux but
++ * with millisecond timeout.
++ */
++#define regmap_read_poll_timeout(map, addr, val, cond, sleep_us, timeout_ms) \
++({ \
++	unsigned long __start = get_timer(0); \
++	int __ret; \
++	for (;;) { \
++		__ret = regmap_read((map), (addr), &(val)); \
++		if (__ret) \
++			break; \
++		if (cond) \
++			break; \
++		if ((timeout_ms) && get_timer(__start) > (timeout_ms)) { \
++			__ret = regmap_read((map), (addr), &(val)); \
++			break; \
++		} \
++		if ((sleep_us)) \
++			udelay((sleep_us)); \
++	} \
++	__ret ?: ((cond) ? 0 : -ETIMEDOUT); \
++})
++
+ /**
+  * regmap_update_bits() - Perform a read/modify/write using a mask
+  *
 -- 
 2.19.1
