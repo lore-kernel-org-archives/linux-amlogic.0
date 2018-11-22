@@ -1,31 +1,35 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 10:07:32 +0100
-Subject: [PATCH u-boot v2 11/19] clk: meson: add static to meson_gates table
+Date: Thu, 22 Nov 2018 10:07:30 +0100
+Subject: [PATCH u-boot v2 09/19] pinctrl: meson: select generic pinctrl
 In-Reply-To: <20181122090740.29739-1-narmstrong@baylibre.com>
 References: <20181122090740.29739-1-narmstrong@baylibre.com>
-Message-ID: <20181122090740.29739-12-narmstrong@baylibre.com>
+Message-ID: <20181122090740.29739-10-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The meson_gates table should be set static in the clk_meson driver.
+From: Jerome Brunet <jbrunet@baylibre.com>
 
+Meson pinctrl needs generic pinctrl, rather than depending on it
+select it
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/clk_meson.c | 2 +-
+ drivers/pinctrl/meson/Kconfig | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/clk_meson.c b/drivers/clk/clk_meson.c
-index c44858822d..a096a3582c 100644
---- a/drivers/clk/clk_meson.c
-+++ b/drivers/clk/clk_meson.c
-@@ -79,7 +79,7 @@ static ulong meson_clk_set_rate_by_id(struct clk *clk, unsigned long id,
- static ulong meson_mux_get_parent(struct clk *clk, unsigned long id);
- static ulong meson_clk_get_rate_by_id(struct clk *clk, unsigned long id);
+diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+index 15a8d9c704..fc51b4361a 100644
+--- a/drivers/pinctrl/meson/Kconfig
++++ b/drivers/pinctrl/meson/Kconfig
+@@ -1,7 +1,7 @@
+ if ARCH_MESON
  
--struct meson_gate gates[] = {
-+static struct meson_gate gates[] = {
- 	/* Everything Else (EE) domain gates */
- 	MESON_GATE(CLKID_DDR, HHI_GCLK_MPEG0, 0),
- 	MESON_GATE(CLKID_DOS, HHI_GCLK_MPEG0, 1),
+ config PINCTRL_MESON
+-	depends on PINCTRL_GENERIC
++	select PINCTRL_GENERIC
+ 	bool
+ 
+ config PINCTRL_MESON_GX_PMX
 -- 
 2.19.1
