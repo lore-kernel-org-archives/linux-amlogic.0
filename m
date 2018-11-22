@@ -1,510 +1,470 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 10:07:34 +0100
-Subject: [PATCH u-boot v2 13/19] ARM: meson: rework soc arch file to prepare
- for new SoC
+Date: Thu, 22 Nov 2018 10:07:27 +0100
+Subject: [PATCH u-boot v2 06/19] ARM: rework amlogic configuration
 In-Reply-To: <20181122090740.29739-1-narmstrong@baylibre.com>
 References: <20181122090740.29739-1-narmstrong@baylibre.com>
-Message-ID: <20181122090740.29739-14-narmstrong@baylibre.com>
+Message-ID: <20181122090740.29739-7-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
-We are about to add support for the Amlogic AXG SoC. While very close to
-the Gx SoC family, we will need to handle a few thing which are different
-in this SoC. Rework the meson arch directory to prepare for this.
+Rework the board SYS_BOARD, SYS_VENDOR and SYS_CONFIG_NAME setup by moving
+the board Kconfig into the mach-meson Kconfig to make it easier to add
+new boards for a SoC architecture and add a custom config header or custom
+board handler for a platform.
+
+This drops the board CONFIGs and the duplicate boards configs headers in
+favor of a single meson64.h config header.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../asm/arch-meson/{clock.h => clock-gx.h}    |   4 +-
- arch/arm/include/asm/arch-meson/eth.h         |   6 +-
- arch/arm/include/asm/arch-meson/mem.h         |   3 +-
- arch/arm/mach-meson/Kconfig                   |  10 +-
- arch/arm/mach-meson/Makefile                  |   3 +-
- arch/arm/mach-meson/board-common.c            |  55 +++++++++
- arch/arm/mach-meson/{board.c => board-gx.c}   | 106 +++++++++---------
- arch/arm/mach-meson/eth.c                     |  53 ---------
- arch/arm/mach-meson/sm.c                      |   1 -
- board/amlogic/odroid-c2/odroid-c2.c           |   6 +-
- board/amlogic/p212/p212.c                     |   6 +-
- board/amlogic/q200/q200.c                     |   4 +-
- drivers/clk/clk_meson.c                       |   2 +-
- 13 files changed, 134 insertions(+), 125 deletions(-)
- rename arch/arm/include/asm/arch-meson/{clock.h => clock-gx.h} (98%)
- create mode 100644 arch/arm/mach-meson/board-common.c
- rename arch/arm/mach-meson/{board.c => board-gx.c} (61%)
- delete mode 100644 arch/arm/mach-meson/eth.c
+ arch/arm/mach-meson/Kconfig                   | 73 +++++++++----------
+ board/amlogic/odroid-c2/Kconfig               | 12 ---
+ board/amlogic/p212/Kconfig                    | 12 ---
+ board/amlogic/q200/Kconfig                    | 12 ---
+ configs/khadas-vim2_defconfig                 |  1 -
+ configs/khadas-vim_defconfig                  |  1 -
+ configs/libretech-cc_defconfig                |  1 -
+ configs/nanopi-k2_defconfig                   |  2 -
+ configs/odroid-c2_defconfig                   |  1 -
+ configs/p212_defconfig                        |  1 -
+ include/configs/khadas-vim.h                  | 14 ----
+ include/configs/libretech-cc.h                | 14 ----
+ .../configs/{meson-gx-common.h => meson64.h}  | 25 ++++---
+ include/configs/nanopi-k2.h                   | 12 ---
+ include/configs/odroid-c2.h                   | 12 ---
+ include/configs/p212.h                        | 14 ----
+ include/configs/q200.h                        | 18 -----
+ 17 files changed, 50 insertions(+), 175 deletions(-)
+ delete mode 100644 board/amlogic/odroid-c2/Kconfig
+ delete mode 100644 board/amlogic/p212/Kconfig
+ delete mode 100644 board/amlogic/q200/Kconfig
+ delete mode 100644 include/configs/khadas-vim.h
+ delete mode 100644 include/configs/libretech-cc.h
+ rename include/configs/{meson-gx-common.h => meson64.h} (81%)
+ delete mode 100644 include/configs/nanopi-k2.h
+ delete mode 100644 include/configs/odroid-c2.h
+ delete mode 100644 include/configs/p212.h
+ delete mode 100644 include/configs/q200.h
 
-diff --git a/arch/arm/include/asm/arch-meson/clock.h b/arch/arm/include/asm/arch-meson/clock-gx.h
-similarity index 98%
-rename from arch/arm/include/asm/arch-meson/clock.h
-rename to arch/arm/include/asm/arch-meson/clock-gx.h
-index c0ff00fc9a..13a2e7688f 100644
---- a/arch/arm/include/asm/arch-meson/clock.h
-+++ b/arch/arm/include/asm/arch-meson/clock-gx.h
-@@ -3,8 +3,8 @@
-  * Copyright 2016 - AmLogic, Inc.
-  * Copyright 2018 - Beniamino Galvani <b.galvani@gmail.com>
-  */
--#ifndef _ARCH_MESON_CLOCK_H_
--#define _ARCH_MESON_CLOCK_H_
-+#ifndef _ARCH_MESON_CLOCK_GX_H_
-+#define _ARCH_MESON_CLOCK_GX_H_
- 
- /*
-  * Clock controller register offsets
-diff --git a/arch/arm/include/asm/arch-meson/eth.h b/arch/arm/include/asm/arch-meson/eth.h
-index 1aa0872d53..08acc5cbf7 100644
---- a/arch/arm/include/asm/arch-meson/eth.h
-+++ b/arch/arm/include/asm/arch-meson/eth.h
-@@ -10,13 +10,13 @@
- #include <phy.h>
- 
- enum {
--	/* Use GXL Internal RMII PHY */
--	MESON_GXL_USE_INTERNAL_RMII_PHY = 1,
-+	/* Use Internal RMII PHY */
-+	MESON_USE_INTERNAL_RMII_PHY = 1,
- };
- 
- /* Configure the Ethernet MAC with the requested interface mode
-  * with some optional flags.
-  */
--void meson_gx_eth_init(phy_interface_t mode, unsigned int flags);
-+void meson_eth_init(phy_interface_t mode, unsigned int flags);
- 
- #endif /* __MESON_ETH_H__ */
-diff --git a/arch/arm/include/asm/arch-meson/mem.h b/arch/arm/include/asm/arch-meson/mem.h
-index 62818335d9..a65100aeb7 100644
---- a/arch/arm/include/asm/arch-meson/mem.h
-+++ b/arch/arm/include/asm/arch-meson/mem.h
-@@ -10,6 +10,7 @@
- /* Configure the reserved memory zones exported by the secure registers
-  * into EFI and DTB reserved memory entries.
-  */
--void meson_gx_init_reserved_memory(void *fdt);
-+void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size);
-+void meson_init_reserved_memory(void *fdt);
- 
- #endif /* __MESON_MEM_H__ */
 diff --git a/arch/arm/mach-meson/Kconfig b/arch/arm/mach-meson/Kconfig
-index 6f60167c8c..6225417a56 100644
+index d86b1bed78..6f60167c8c 100644
 --- a/arch/arm/mach-meson/Kconfig
 +++ b/arch/arm/mach-meson/Kconfig
-@@ -8,25 +8,29 @@ config MESON64_COMMON
+@@ -8,49 +8,27 @@ config MESON64_COMMON
  	select DM_SERIAL
  	imply CMD_DM
  
-+config MESON_GX
-+	bool
-+	select MESON64_COMMON
++choice
++	prompt "Platform select"
++	default MESON_GXBB
 +
- choice
- 	prompt "Platform select"
- 	default MESON_GXBB
- 
  config MESON_GXBB
- 	bool "GXBB"
--	select MESON64_COMMON
-+	select MESON_GX
- 	help
- 	  Select this if your SoC is an S905
+-	bool
++	bool "GXBB"
+ 	select MESON64_COMMON
++	help
++	  Select this if your SoC is an S905
  
  config MESON_GXL
- 	bool "GXL"
--	select MESON64_COMMON
-+	select MESON_GX
- 	help
- 	  Select this if your SoC is an S905X/D or S805X
+-	bool
++	bool "GXL"
+ 	select MESON64_COMMON
++	help
++	  Select this if your SoC is an S905X/D or S805X
  
  config MESON_GXM
- 	bool "GXM"
--	select MESON64_COMMON
-+	select MESON_GX
+-	bool
++	bool "GXM"
+ 	select MESON64_COMMON
+-
+-choice
+-	prompt "Platform select"
+-	default TARGET_ODROID_C2
+-
+-config TARGET_ODROID_C2
+-	bool "ODROID-C2"
+-	select MESON_GXBB
  	help
- 	  Select this if your SoC is an S912
+-	  ODROID-C2 is a single board computer based on Meson GXBaby
+-	  with 2 GiB of RAM, Gigabit Ethernet, HDMI, 4 USB, micro-SD
+-	  slot, eMMC, IR receiver and a 40-pin GPIO header.
+-	  You should also select this TARGET if you have an nanopi-k2
+-
+-config TARGET_P212
+-	bool "P212"
+-	select MESON_GXL
+-	help
+-	  P212 is a reference dessign board based on Meson GXL S905X SoC
+-	  with 2 GiB of RAM, Ethernet, HDMI, 2 USB, micro-SD slot,
+-	  eMMC, IR receiver, CVBS+Audio jack and a SDIO WiFi module.
+-	  You should also select this TARGET if you have Khadas Vim or
+-	  a libretech aml-s905x-cc
+-
+-config TARGET_Q200
+-	bool "KHADAS-VIM2"
+-	select MESON_GXM
+-	help
+-	  Q200 is a reference dessign board based on Meson GXM
+-	  with 2/3 GiB of RAM, Ethernet, HDMI, 4 USB, micro-SD slot,
+-	  eMMC, IR receiver.
+-	  You should also select this TARGET if you have Khadas Vim2.
++	  Select this if your SoC is an S912
  
-diff --git a/arch/arm/mach-meson/Makefile b/arch/arm/mach-meson/Makefile
-index 8ad9b3e575..78345b47f2 100644
---- a/arch/arm/mach-meson/Makefile
-+++ b/arch/arm/mach-meson/Makefile
-@@ -2,4 +2,5 @@
- #
- # Copyright (c) 2016 Beniamino Galvani <b.galvani@gmail.com>
+ endchoice
  
--obj-y += board.o sm.o eth.o
-+obj-y += board-common.o sm.o
-+obj-$(CONFIG_MESON_GX) += board-gx.o
-diff --git a/arch/arm/mach-meson/board-common.c b/arch/arm/mach-meson/board-common.c
-new file mode 100644
-index 0000000000..6340445053
---- /dev/null
-+++ b/arch/arm/mach-meson/board-common.c
-@@ -0,0 +1,55 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-+ */
-+
-+#include <common.h>
-+#include <linux/libfdt.h>
-+#include <linux/err.h>
-+#include <asm/arch/mem.h>
-+#include <asm/arch/sm.h>
-+#include <asm/armv8/mmu.h>
-+#include <asm/unaligned.h>
-+#include <efi_loader.h>
-+
-+DECLARE_GLOBAL_DATA_PTR;
-+
-+int dram_init(void)
-+{
-+	const fdt64_t *val;
-+	int offset;
-+	int len;
-+
-+	offset = fdt_path_offset(gd->fdt_blob, "/memory");
-+	if (offset < 0)
-+		return -EINVAL;
-+
-+	val = fdt_getprop(gd->fdt_blob, offset, "reg", &len);
-+	if (len < sizeof(*val) * 2)
-+		return -EINVAL;
-+
-+	/* Use unaligned access since cache is still disabled */
-+	gd->ram_size = get_unaligned_be64(&val[1]);
-+
-+	return 0;
-+}
-+
-+void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size)
-+{
-+	int ret;
-+
-+	ret = fdt_add_mem_rsv(fdt, start, size);
-+	if (ret)
-+		printf("Could not reserve zone @ 0x%llx\n", start);
-+
-+	if (IS_ENABLED(CONFIG_EFI_LOADER)) {
-+		efi_add_memory_map(start,
-+				   ALIGN(size, EFI_PAGE_SIZE) >> EFI_PAGE_SHIFT,
-+				   EFI_RESERVED_MEMORY_TYPE, false);
-+	}
-+}
-+
-+void reset_cpu(ulong addr)
-+{
-+	psci_system_reset();
-+}
-diff --git a/arch/arm/mach-meson/board.c b/arch/arm/mach-meson/board-gx.c
-similarity index 61%
-rename from arch/arm/mach-meson/board.c
-rename to arch/arm/mach-meson/board-gx.c
-index d6c6253152..f1397f87c5 100644
---- a/arch/arm/mach-meson/board.c
-+++ b/arch/arm/mach-meson/board-gx.c
-@@ -1,64 +1,24 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-  * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
-+ * (C) Copyright 2018 Neil Armstrong <narmstrong@baylibre.com>
-  */
+@@ -60,10 +38,31 @@ config SYS_SOC
+ config SYS_MALLOC_F_LEN
+ 	default 0x1000
  
- #include <common.h>
--#include <linux/libfdt.h>
--#include <linux/err.h>
-+#include <asm/arch/eth.h>
- #include <asm/arch/gx.h>
--#include <asm/arch/sm.h>
-+#include <asm/arch/mem.h>
-+#include <asm/io.h>
- #include <asm/armv8/mmu.h>
--#include <asm/unaligned.h>
- #include <linux/sizes.h>
--#include <efi_loader.h>
--#include <asm/io.h>
-+#include <phy.h>
+-source "board/amlogic/odroid-c2/Kconfig"
++config SYS_VENDOR
++	string "Vendor name"
++	default "amlogic"
++	help
++	  This option contains information about board name.
++	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
++	  be used.
  
- DECLARE_GLOBAL_DATA_PTR;
+-source "board/amlogic/p212/Kconfig"
++config SYS_BOARD
++	string "Board name"
++	default "odroid-c2" if MESON_GXBB
++	default "p212" if MESON_GXL
++	default "q200" if MESON_GXM
++	default ""
++	help
++	  This option contains information about board name.
++	  Based on this option board/<CONFIG_SYS_VENDOR>/<CONFIG_SYS_BOARD> will
++	  be used.
  
--int dram_init(void)
--{
--	const fdt64_t *val;
--	int offset;
--	int len;
--
--	offset = fdt_path_offset(gd->fdt_blob, "/memory");
--	if (offset < 0)
--		return -EINVAL;
--
--	val = fdt_getprop(gd->fdt_blob, offset, "reg", &len);
--	if (len < sizeof(*val) * 2)
--		return -EINVAL;
--
--	/* Use unaligned access since cache is still disabled */
--	gd->ram_size = get_unaligned_be64(&val[1]);
--
--	return 0;
--}
--
--phys_size_t get_effective_memsize(void)
--{
--	/* Size is reported in MiB, convert it in bytes */
--	return ((readl(GX_AO_SEC_GP_CFG0) & GX_AO_MEM_SIZE_MASK)
--			>> GX_AO_MEM_SIZE_SHIFT) * SZ_1M;
--}
--
--static void meson_board_add_reserved_memory(void *fdt, u64 start, u64 size)
--{
--	int ret;
--
--	ret = fdt_add_mem_rsv(fdt, start, size);
--	if (ret)
--		printf("Could not reserve zone @ 0x%llx\n", start);
--
--	if (IS_ENABLED(CONFIG_EFI_LOADER)) {
--		efi_add_memory_map(start,
--				   ALIGN(size, EFI_PAGE_SIZE) >> EFI_PAGE_SHIFT,
--				   EFI_RESERVED_MEMORY_TYPE, false);
--	}
--}
--
--void meson_gx_init_reserved_memory(void *fdt)
-+/* Configure the reserved memory zones exported by the secure registers
-+ * into EFI and DTB reserved memory entries.
-+ */
-+void meson_init_reserved_memory(void *fdt)
- {
- 	u64 bl31_size, bl31_start;
- 	u64 bl32_size, bl32_start;
-@@ -70,7 +30,6 @@ void meson_gx_init_reserved_memory(void *fdt)
- 	 * - AO_SEC_GP_CFG5: bl31 physical start address, can be NULL
- 	 * - AO_SEC_GP_CFG4: bl32 physical start address, can be NULL
- 	 */
--
- 	reg = readl(GX_AO_SEC_GP_CFG3);
+-source "board/amlogic/q200/Kconfig"
++config SYS_CONFIG_NAME
++	string "Board configuration name"
++	default "meson64"
++	help
++	  This option contains information about board configuration name.
++	  Based on this option include/configs/<CONFIG_SYS_CONFIG_NAME>.h header
++	  will be used for board configuration.
  
- 	bl31_size = ((reg & GX_AO_BL31_RSVMEM_SIZE_MASK)
-@@ -102,9 +61,11 @@ void meson_gx_init_reserved_memory(void *fdt)
- 		meson_board_add_reserved_memory(fdt, bl32_start, bl32_size);
- }
- 
--void reset_cpu(ulong addr)
-+phys_size_t get_effective_memsize(void)
- {
--	psci_system_reset();
-+	/* Size is reported in MiB, convert it in bytes */
-+	return ((readl(GX_AO_SEC_GP_CFG0) & GX_AO_MEM_SIZE_MASK)
-+			>> GX_AO_MEM_SIZE_SHIFT) * SZ_1M;
- }
- 
- static struct mm_region gx_mem_map[] = {
-@@ -128,3 +89,44 @@ static struct mm_region gx_mem_map[] = {
- };
- 
- struct mm_region *mem_map = gx_mem_map;
-+
-+/* Configure the Ethernet MAC with the requested interface mode
-+ * with some optional flags.
-+ */
-+void meson_eth_init(phy_interface_t mode, unsigned int flags)
-+{
-+	switch (mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		/* Set RGMII mode */
-+		setbits_le32(GX_ETH_REG_0, GX_ETH_REG_0_PHY_INTF |
-+			     GX_ETH_REG_0_TX_PHASE(1) |
-+			     GX_ETH_REG_0_TX_RATIO(4) |
-+			     GX_ETH_REG_0_PHY_CLK_EN |
-+			     GX_ETH_REG_0_CLK_EN);
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RMII:
-+		/* Set RMII mode */
-+		out_le32(GX_ETH_REG_0, GX_ETH_REG_0_INVERT_RMII_CLK |
-+					 GX_ETH_REG_0_CLK_EN);
-+
-+		/* Use GXL RMII Internal PHY */
-+		if (IS_ENABLED(CONFIG_MESON_GXL) &&
-+		    (flags & MESON_USE_INTERNAL_RMII_PHY)) {
-+			writel(0x10110181, GX_ETH_REG_2);
-+			writel(0xe40908ff, GX_ETH_REG_3);
-+		}
-+
-+		break;
-+
-+	default:
-+		printf("Invalid Ethernet interface mode\n");
-+		return;
-+	}
-+
-+	/* Enable power gate */
-+	clrbits_le32(GX_MEM_PD_REG_0, GX_MEM_PD_REG_0_ETH_MASK);
-+}
-diff --git a/arch/arm/mach-meson/eth.c b/arch/arm/mach-meson/eth.c
+ endif
+diff --git a/board/amlogic/odroid-c2/Kconfig b/board/amlogic/odroid-c2/Kconfig
 deleted file mode 100644
-index 8b28bc8531..0000000000
---- a/arch/arm/mach-meson/eth.c
+index 2b16889b07..0000000000
+--- a/board/amlogic/odroid-c2/Kconfig
 +++ /dev/null
-@@ -1,53 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0+
+@@ -1,12 +0,0 @@
+-if TARGET_ODROID_C2
+-
+-config SYS_BOARD
+-	default "odroid-c2"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "odroid-c2"
+-
+-endif
+diff --git a/board/amlogic/p212/Kconfig b/board/amlogic/p212/Kconfig
+deleted file mode 100644
+index 720c92b1ee..0000000000
+--- a/board/amlogic/p212/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_P212
+-
+-config SYS_BOARD
+-	default "p212"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "p212"
+-
+-endif
+diff --git a/board/amlogic/q200/Kconfig b/board/amlogic/q200/Kconfig
+deleted file mode 100644
+index cfaf3797ac..0000000000
+--- a/board/amlogic/q200/Kconfig
++++ /dev/null
+@@ -1,12 +0,0 @@
+-if TARGET_Q200
+-
+-config SYS_BOARD
+-	default "q200"
+-
+-config SYS_VENDOR
+-	default "amlogic"
+-
+-config SYS_CONFIG_NAME
+-	default "q200"
+-
+-endif
+diff --git a/configs/khadas-vim2_defconfig b/configs/khadas-vim2_defconfig
+index 49b8104960..6fe861c0e5 100644
+--- a/configs/khadas-vim2_defconfig
++++ b/configs/khadas-vim2_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXM=y
+-CONFIG_TARGET_Q200=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" khadas-vim2"
+diff --git a/configs/khadas-vim_defconfig b/configs/khadas-vim_defconfig
+index af30113760..6e855dd6eb 100644
+--- a/configs/khadas-vim_defconfig
++++ b/configs/khadas-vim_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" khadas-vim"
+diff --git a/configs/libretech-cc_defconfig b/configs/libretech-cc_defconfig
+index 7526516060..c2f985fcfb 100644
+--- a/configs/libretech-cc_defconfig
++++ b/configs/libretech-cc_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" libretech-cc"
+diff --git a/configs/nanopi-k2_defconfig b/configs/nanopi-k2_defconfig
+index 01196d6655..8bbf48f41f 100644
+--- a/configs/nanopi-k2_defconfig
++++ b/configs/nanopi-k2_defconfig
+@@ -1,8 +1,6 @@
+ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+-CONFIG_MESON_GXBB=y
+-CONFIG_TARGET_ODROID_C2=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" nanopi-k2"
+diff --git a/configs/odroid-c2_defconfig b/configs/odroid-c2_defconfig
+index 19196b3585..68554ba745 100644
+--- a/configs/odroid-c2_defconfig
++++ b/configs/odroid-c2_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXBB=y
+-CONFIG_TARGET_ODROID_C2=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" odroid-c2"
+diff --git a/configs/p212_defconfig b/configs/p212_defconfig
+index 9e3b1d6bfb..a15064da81 100644
+--- a/configs/p212_defconfig
++++ b/configs/p212_defconfig
+@@ -2,7 +2,6 @@ CONFIG_ARM=y
+ CONFIG_ARCH_MESON=y
+ CONFIG_SYS_TEXT_BASE=0x01000000
+ CONFIG_MESON_GXL=y
+-CONFIG_TARGET_P212=y
+ CONFIG_DEBUG_UART_BASE=0xc81004c0
+ CONFIG_DEBUG_UART_CLOCK=24000000
+ CONFIG_IDENT_STRING=" p212"
+diff --git a/include/configs/khadas-vim.h b/include/configs/khadas-vim.h
+deleted file mode 100644
+index ff87c02820..0000000000
+--- a/include/configs/khadas-vim.h
++++ /dev/null
+@@ -1,14 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
 -/*
-- * Copyright (C) 2016 BayLibre, SAS
+- * Configuration for Khadas VIM
+- *
+- * Copyright (C) 2017 Baylibre, SAS
 - * Author: Neil Armstrong <narmstrong@baylibre.com>
 - */
 -
--#include <common.h>
--#include <dm.h>
--#include <asm/io.h>
--#include <asm/arch/gx.h>
--#include <asm/arch/eth.h>
--#include <phy.h>
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
 -
--/* Configure the Ethernet MAC with the requested interface mode
-- * with some optional flags.
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/libretech-cc.h b/include/configs/libretech-cc.h
+deleted file mode 100644
+index 95e0f346fd..0000000000
+--- a/include/configs/libretech-cc.h
++++ /dev/null
+@@ -1,14 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for LibreTech CC
+- *
+- * Copyright (C) 2017 Baylibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
 - */
--void meson_gx_eth_init(phy_interface_t mode, unsigned int flags)
--{
--	switch (mode) {
--	case PHY_INTERFACE_MODE_RGMII:
--	case PHY_INTERFACE_MODE_RGMII_ID:
--	case PHY_INTERFACE_MODE_RGMII_RXID:
--	case PHY_INTERFACE_MODE_RGMII_TXID:
--		/* Set RGMII mode */
--		setbits_le32(GX_ETH_REG_0, GX_ETH_REG_0_PHY_INTF |
--			     GX_ETH_REG_0_TX_PHASE(1) |
--			     GX_ETH_REG_0_TX_RATIO(4) |
--			     GX_ETH_REG_0_PHY_CLK_EN |
--			     GX_ETH_REG_0_CLK_EN);
--		break;
 -
--	case PHY_INTERFACE_MODE_RMII:
--		/* Set RMII mode */
--		out_le32(GX_ETH_REG_0, GX_ETH_REG_0_INVERT_RMII_CLK |
--					 GX_ETH_REG_0_CLK_EN);
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
 -
--		/* Use GXL RMII Internal PHY */
--		if (IS_ENABLED(CONFIG_MESON_GXL) &&
--		    (flags & MESON_GXL_USE_INTERNAL_RMII_PHY)) {
--			writel(0x10110181, GX_ETH_REG_2);
--			writel(0xe40908ff, GX_ETH_REG_3);
--		}
+-#include <configs/meson-gx-common.h>
 -
--		break;
--
--	default:
--		printf("Invalid Ethernet interface mode\n");
--		return;
--	}
--
--	/* Enable power gate */
--	clrbits_le32(GX_MEM_PD_REG_0, GX_MEM_PD_REG_0_ETH_MASK);
--}
-diff --git a/arch/arm/mach-meson/sm.c b/arch/arm/mach-meson/sm.c
-index 0bba5e4a07..a07b46895d 100644
---- a/arch/arm/mach-meson/sm.c
-+++ b/arch/arm/mach-meson/sm.c
-@@ -6,7 +6,6 @@
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/meson-gx-common.h b/include/configs/meson64.h
+similarity index 81%
+rename from include/configs/meson-gx-common.h
+rename to include/configs/meson64.h
+index c43697665d..1929a3e406 100644
+--- a/include/configs/meson-gx-common.h
++++ b/include/configs/meson64.h
+@@ -1,11 +1,15 @@
+ /* SPDX-License-Identifier: GPL-2.0+ */
+ /*
+- * Configuration for Amlogic Meson GX SoCs
++ * Configuration for Amlogic Meson 64bits SoCs
+  * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
   */
  
- #include <common.h>
--#include <asm/arch/gx.h>
- #include <linux/kernel.h>
+-#ifndef __MESON_GX_COMMON_CONFIG_H
+-#define __MESON_GX_COMMON_CONFIG_H
++#ifndef __MESON64_CONFIG_H
++#define __MESON64_CONFIG_H
++
++/* Generic Interrupt Controller Definitions */
++#define GICD_BASE			0xc4301000
++#define GICC_BASE			0xc4302000
  
- #define FN_GET_SHARE_MEM_INPUT_BASE	0x82000020
-diff --git a/board/amlogic/odroid-c2/odroid-c2.c b/board/amlogic/odroid-c2/odroid-c2.c
-index 2a2755c387..d784d6bd09 100644
---- a/board/amlogic/odroid-c2/odroid-c2.c
-+++ b/board/amlogic/odroid-c2/odroid-c2.c
-@@ -28,7 +28,7 @@ int misc_init_r(void)
- 	char serial[EFUSE_SN_SIZE];
- 	ssize_t len;
+ #define CONFIG_CPU_ARMV8
+ #define CONFIG_REMAKE_ELF
+@@ -17,10 +21,7 @@
+ #define CONFIG_SYS_SDRAM_BASE		0
+ #define CONFIG_SYS_INIT_SP_ADDR		0x20000000
+ #define CONFIG_SYS_LOAD_ADDR		CONFIG_SYS_TEXT_BASE
+-
+-/* Generic Interrupt Controller Definitions */
+-#define GICD_BASE			0xc4301000
+-#define GICC_BASE			0xc4302000
++#define CONFIG_SYS_BOOTM_LEN		(64 << 20) /* 64 MiB */
  
--	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
-+	meson_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
+ #ifdef CONFIG_CMD_USB
+ #define BOOT_TARGET_DEVICES_USB(func) func(USB, usb, 0)
+@@ -28,6 +29,7 @@
+ #define BOOT_TARGET_DEVICES_USB(func)
+ #endif
  
- 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
- 		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
-@@ -40,7 +40,7 @@ int misc_init_r(void)
- 	if (!env_get("serial#")) {
- 		len = meson_sm_read_efuse(EFUSE_SN_OFFSET, serial,
- 			EFUSE_SN_SIZE);
--		if (len == EFUSE_SN_SIZE) 
-+		if (len == EFUSE_SN_SIZE)
- 			env_set("serial#", serial);
- 	}
++#ifndef BOOT_TARGET_DEVICES
+ #define BOOT_TARGET_DEVICES(func) \
+ 	func(MMC, mmc, 0) \
+ 	func(MMC, mmc, 1) \
+@@ -35,9 +37,9 @@
+ 	BOOT_TARGET_DEVICES_USB(func) \
+ 	func(PXE, pxe, na) \
+ 	func(DHCP, dhcp, na)
++#endif
  
-@@ -49,7 +49,7 @@ int misc_init_r(void)
+-#include <config_distro_bootcmd.h>
+-
++#ifndef CONFIG_EXTRA_ENV_SETTINGS
+ #define CONFIG_EXTRA_ENV_SETTINGS \
+ 	"fdt_addr_r=0x01000000\0" \
+ 	"scriptaddr=0x1f000000\0" \
+@@ -46,7 +48,8 @@
+ 	"ramdisk_addr_r=0x13000000\0" \
+ 	"fdtfile=amlogic/" CONFIG_DEFAULT_DEVICE_TREE ".dtb\0" \
+ 	BOOTENV
++#endif
  
- int ft_board_setup(void *blob, bd_t *bd)
- {
--	meson_gx_init_reserved_memory(blob);
-+	meson_init_reserved_memory(blob);
+-#define CONFIG_SYS_BOOTM_LEN    (64 << 20)      /* 64 MiB */
++#include <config_distro_bootcmd.h>
  
- 	return 0;
- }
-diff --git a/board/amlogic/p212/p212.c b/board/amlogic/p212/p212.c
-index 00e07d77ad..33992a2279 100644
---- a/board/amlogic/p212/p212.c
-+++ b/board/amlogic/p212/p212.c
-@@ -29,8 +29,8 @@ int misc_init_r(void)
- 	char serial[EFUSE_SN_SIZE];
- 	ssize_t len;
- 
--	meson_gx_eth_init(PHY_INTERFACE_MODE_RMII,
--			  MESON_GXL_USE_INTERNAL_RMII_PHY);
-+	meson_eth_init(PHY_INTERFACE_MODE_RMII,
-+		       MESON_USE_INTERNAL_RMII_PHY);
- 
- 	if (!eth_env_get_enetaddr("ethaddr", mac_addr)) {
- 		len = meson_sm_read_efuse(EFUSE_MAC_OFFSET,
-@@ -51,7 +51,7 @@ int misc_init_r(void)
- 
- int ft_board_setup(void *blob, bd_t *bd)
- {
--	meson_gx_init_reserved_memory(blob);
-+	meson_init_reserved_memory(blob);
- 
- 	return 0;
- }
-diff --git a/board/amlogic/q200/q200.c b/board/amlogic/q200/q200.c
-index ff56569f17..b59c11bd35 100644
---- a/board/amlogic/q200/q200.c
-+++ b/board/amlogic/q200/q200.c
-@@ -29,7 +29,7 @@ int misc_init_r(void)
- 	char serial[EFUSE_SN_SIZE];
- 	ssize_t len;
- 
--	meson_gx_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
-+	meson_eth_init(PHY_INTERFACE_MODE_RGMII, 0);
- 
- 	/* Reset PHY on GPIOZ_14 */
- 	clrbits_le32(GX_GPIO_EN(3), BIT(14));
-@@ -56,7 +56,7 @@ int misc_init_r(void)
- 
- int ft_board_setup(void *blob, bd_t *bd)
- {
--	meson_gx_init_reserved_memory(blob);
-+	meson_init_reserved_memory(blob);
- 
- 	return 0;
- }
-diff --git a/drivers/clk/clk_meson.c b/drivers/clk/clk_meson.c
-index f34f376057..0df8b91d42 100644
---- a/drivers/clk/clk_meson.c
-+++ b/drivers/clk/clk_meson.c
-@@ -6,7 +6,7 @@
-  */
- 
- #include <common.h>
--#include <asm/arch/clock.h>
-+#include <asm/arch/clock-gx.h>
- #include <asm/io.h>
- #include <clk-uclass.h>
- #include <div64.h>
+-#endif /* __MESON_GX_COMMON_CONFIG_H */
++#endif /* __MESON64_CONFIG_H */
+diff --git a/include/configs/nanopi-k2.h b/include/configs/nanopi-k2.h
+deleted file mode 100644
+index 3fd6e8fba4..0000000000
+--- a/include/configs/nanopi-k2.h
++++ /dev/null
+@@ -1,12 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for NANOPI-K2
+- * (C) Copyright 2018 Thomas McKahan
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/odroid-c2.h b/include/configs/odroid-c2.h
+deleted file mode 100644
+index 87e3ddb342..0000000000
+--- a/include/configs/odroid-c2.h
++++ /dev/null
+@@ -1,12 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for ODROID-C2
+- * (C) Copyright 2016 Beniamino Galvani <b.galvani@gmail.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/p212.h b/include/configs/p212.h
+deleted file mode 100644
+index 4414293479..0000000000
+--- a/include/configs/p212.h
++++ /dev/null
+@@ -1,14 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for Amlogic P212
+- *
+- * Copyright (C) 2017 Baylibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
+diff --git a/include/configs/q200.h b/include/configs/q200.h
+deleted file mode 100644
+index 7ef8f42bd2..0000000000
+--- a/include/configs/q200.h
++++ /dev/null
+@@ -1,18 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0+ */
+-/*
+- * Configuration for Khadas VIM2
+- *
+- * Copyright (C) 2017 Baylibre, SAS
+- * Author: Neil Armstrong <narmstrong@baylibre.com>
+- */
+-
+-#ifndef __CONFIG_H
+-#define __CONFIG_H
+-
+-#define CONFIG_MISC_INIT_R
+-
+-#define MESON_FDTFILE_SETTING "fdtfile=amlogic/meson-gxm-khadas-vim2.dtb\0"
+-
+-#include <configs/meson-gx-common.h>
+-
+-#endif /* __CONFIG_H */
 -- 
 2.19.1
