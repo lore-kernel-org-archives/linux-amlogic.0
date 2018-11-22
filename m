@@ -1,51 +1,64 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Thu, 22 Nov 2018 09:26:21 +0100
-Subject: [PATCH] clk: meson: Fix GXL HDMI PLL fractional bits width
-In-Reply-To: <CAFBinCDkXYH9bCf_aaVptqcgZabreuZxLoAW3-o2qBHgcbm8Xw@mail.gmail.com>
-References: <20181121111922.1277-1-narmstrong@baylibre.com>
- <CAFBinCDkXYH9bCf_aaVptqcgZabreuZxLoAW3-o2qBHgcbm8Xw@mail.gmail.com>
-Message-ID: <5e87ffda-4a38-f45b-00c4-6b73dc721656@baylibre.com>
+From: hanjie.lin@amlogic.com (Hanjie Lin)
+Date: Thu, 22 Nov 2018 16:53:52 +0800
+Subject: [PATCH v6 0/2] add the Amlogic Meson PCIe controller driver
+Message-ID: <1542876836-191355-1-git-send-email-hanjie.lin@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Martin,
+The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+PCI core. This patchset add the driver and dt-bindings of the controller.
+Changes since v5: [4]
+ - update MAINTAINER file in alphabetical order
+ - remove meaningless comment
+ - use ERR_PTR function instead of (void *) cast
+ - use is_power_of_2(size) instead of size & (size - 1)
+ - add comment for PCI_CLASS_REVISION register operation
+ 
+Changes since v4: [3]
+ - fix kbuild test robot and compile warnings
 
-On 21/11/2018 22:53, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Wed, Nov 21, 2018 at 12:19 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> The GXL Documentation specifies 12 bits for the Fractional bit field,
->> bit the last bits have a different purpose that we cannot handle right
->> now, so update the bitwidth to have correct fractional calculations.
-> I assume you have more accurate documentation than what's available publicly:
-> - the S805 datasheet doesn't have any documentation for this register at all
-> - the S905 datasheet states that HHI_HDMI_PLL_CNTL2[11:0] are DIV_FRAC
-> - the S905X and S912 datasheets state that SDMNC_POWER is at
-> HHI_HDMI_PLL_CNTL2[6:0], SDMNC_ULMS is at HHI_HDMI_PLL_CNTL2[9:7] and
-> SSC_DEP_SEL is at HHI_HDMI_PLL_CNTL2[13:10]
-> - the S905X and S912 datasheets state that HHI_HDMI_PLL_CNTL1[11:0] are DIV_FRAC
+Changes since v3: [2]
+ - modify subject format
+ - update Kconfig
+ - update MAINTAINER file
+ - add comment and error handle for meson_pcie_get_mem_shared()
+ - drop useless initialization code
+ - add comment for meson_size_to_payload()
+ - optimize meson_pcie_establish_link() return code
+ - optimize meson_pcie_enable_interrupts() redundant function
+ - drop device_attch related code
+ - drop dw_pcie_ops read_dbi and write_dbi function
+ - add error handle for meson_add_pcie_port() when probe
 
-On S905, the HHI_HDMI_PLL_CNTL2 is at address 0xc9 << 2, but on S905X/S905D/S912 the
-equivalent register@same address is named HHI_HDMI_PLL_CNTL1.
+Changes since v2: [1]
+ - abandon phy driver, move reset to the controller
+ - use devm_add_action_or_reset() to use clock res
+ - format correcting
 
-They changed the numbering of registers between these 2 SoCs, but the register
-content and addresses are similar for m/n/frac/reset.
+Changes since v1: [0]
+ - use gpio lib instead open code
+ - move 'apb' and 'port' reset from phy driver
+ - format correcting
 
-> 
-> can you confirm that the public S905X and S912 documentation is wrong
-> and that the .frac field is really part of HHI_HDMI_PLL_CNTL2 instead
-> of HHI_HDMI_PLL_CNTL1?
+[0] : https://lkml.kernel.org/r/1534227522-186798-1-git-send-email-hanjie.lin at amlogic.com
+[1] : https://lkml.kernel.org/r/1535096165-45827-1-git-send-email-hanjie.lin at amlogic.com
+[2] : https://lkml.kernel.org/r/1537509820-52040-1-git-send-email-hanjie.lin at amlogic.com 
+[3] : https://lkml.kernel.org/r/1538999834-156423-3-git-send-email-hanjie.lin at amlogic.com
+[4] : https://lkml.kernel.org/r/1539049990-30810-1-git-send-email-hanjie.lin at amlogic.com
 
-Is is part of HHI_HDMI_PLL_CNTL1 but at address of S905 HHI_HDMI_PLL_CNTL2.
+Yue Wang (2):
+  dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe
+    controller
+  PCI: amlogic: Add the Amlogic Meson PCIe controller driver
 
-When jerome pushed the PLL support earlier, he added a comment.
-I simply forgot to put it back when I added back the GXL HDMI PLL DCO.
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 +++
+ MAINTAINERS                                        |   7 +
+ drivers/pci/controller/dwc/Kconfig                 |  10 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pci-meson.c             | 597 +++++++++++++++++++++
+ 5 files changed, 685 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+ create mode 100644 drivers/pci/controller/dwc/pci-meson.c
 
-Neil
-
-> 
-> 
-> Regards
-> Martin
-> 
+-- 
+2.7.4
