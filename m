@@ -1,153 +1,60 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 23 Nov 2018 15:02:14 +0100
-Subject: [PATCH RFC 1/8] drm/bridge: dw-hdmi: Add SCDC and TMDS Scrambling
- support
-In-Reply-To: <20181123140221.15700-1-narmstrong@baylibre.com>
-References: <20181123140221.15700-1-narmstrong@baylibre.com>
-Message-ID: <20181123140221.15700-2-narmstrong@baylibre.com>
+Date: Fri, 23 Nov 2018 15:02:13 +0100
+Subject: [PATCH RFC 0/8] drm/meson: Add support for HDMI2.0 4k60
+Message-ID: <20181123140221.15700-1-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add support for SCDC Setup for TMDS Clock > 3.4GHz and enable TMDS
-Scrambling when supported or mandatory.
+This patchset aims to add support for the following HDMI2.0 4k60 modes:
+- 594Mhz TMDS frequency needing TMDS Scramling and 1/40 rate for RGB/YUV4:4:4
+- 297MHz TMDS frequency with YUV4:2:0 encoding
 
-This patch also adds an helper to setup the control bit to support
-the hight TMDS Bit Period/TMDS Clock-Period Ratio as required with
-TMDS Clock > 3.4GHz for HDMI2.0 3840x2160 at 60/50 modes.
+The first mode uses the SCDC helpers introduced by intel to :
+- discover where the monitor support SCDC
+- setup the SCDC parameters
+This is implemented in the dw-hdmi bridge driver by handling scrambling
+support during the bridge setup and by exporting an helper for the PHY
+setup to setup the SCDC configuration for the 1/40 TMDS rate.
+This code will only be active if the encoder support a TMDS rate > 340MHz.
 
-These changes were based on work done by Huicong Xu <xhc@rock-chips.com>
-and Nickey Yang <nickey.yang@rock-chips.com> to support HDMI2.0 modes
-on the Rockchip 4.4 BSP kernel at [1]
+The second mode is implemented by added the missing 4:2:0 bypass handling
+in the dw-hdmi bridge driver and adding a "mtmdsclock" separating the
+pixel clock from the tmds clock in the mode setup phase.
+We also enable support for these modes in the connector only if the platform
+glue code explicits the support.
 
-[1] https://github.com/rockchip-linux/kernel/tree/release-4.4
+The remaining patches adds support for :
+- 1/40 TMDS rate aka DIV40 in the dw-hdmi meson PHY setup
+- 4:2:0 output and clock setup
 
-Cc: Nickey Yang <nickey.yang@rock-chips.com>
-Cc: Huicong Xu <xhc@rock-chips.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 45 +++++++++++++++++++++--
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.h |  1 +
- include/drm/bridge/dw_hdmi.h              |  1 +
- 3 files changed, 44 insertions(+), 3 deletions(-)
+The dw-hdmi support re-uses the support done by Rockchip engineers on the
+Linux 4.4 BSP kernel.
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 5971976284bf..523508af70b0 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -28,6 +28,7 @@
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_encoder_slave.h>
-+#include <drm/drm_scdc_helper.h>
- #include <drm/bridge/dw_hdmi.h>
- 
- #include <uapi/linux/media-bus-format.h>
-@@ -1015,6 +1016,20 @@ void dw_hdmi_phy_i2c_write(struct dw_hdmi *hdmi, unsigned short data,
- }
- EXPORT_SYMBOL_GPL(dw_hdmi_phy_i2c_write);
- 
-+void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi)
-+{
-+	unsigned long mtmdsclock = hdmi->hdmi_data.video_mode.mpixelclock;
-+
-+	/* Control for TMDS Bit Period/TMDS Clock-Period Ratio */
-+	if (hdmi->connector.display_info.hdmi.scdc.supported) {
-+		if (mtmdsclock > 340000000)
-+			drm_scdc_set_high_tmds_clock_ratio(hdmi->ddc, 1);
-+		else
-+			drm_scdc_set_high_tmds_clock_ratio(hdmi->ddc, 0);
-+	}
-+}
-+EXPORT_SYMBOL_GPL(dw_hdmi_set_high_tmds_clock_ratio);
-+
- static void dw_hdmi_phy_enable_powerdown(struct dw_hdmi *hdmi, bool enable)
- {
- 	hdmi_mask_writeb(hdmi, !enable, HDMI_PHY_CONF0,
-@@ -1340,11 +1355,12 @@ static void hdmi_tx_hdcp_config(struct dw_hdmi *hdmi)
- 
- static void hdmi_config_AVI(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- {
-+	bool is_hdmi2_sink = hdmi->connector.display_info.hdmi.scdc.supported;
- 	struct hdmi_avi_infoframe frame;
- 	u8 val;
- 
- 	/* Initialise info frame from DRM mode */
--	drm_hdmi_avi_infoframe_from_display_mode(&frame, mode, false);
-+	drm_hdmi_avi_infoframe_from_display_mode(&frame, mode, is_hdmi2_sink);
- 
- 	if (hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format))
- 		frame.colorspace = HDMI_COLORSPACE_YUV444;
-@@ -1503,7 +1519,8 @@ static void hdmi_config_vendor_specific_infoframe(struct dw_hdmi *hdmi,
- static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 			     const struct drm_display_mode *mode)
- {
--	u8 inv_val;
-+	u8 inv_val, bytes;
-+	struct drm_hdmi_info *hdmi_info = &hdmi->connector.display_info.hdmi;
- 	struct hdmi_vmode *vmode = &hdmi->hdmi_data.video_mode;
- 	int hblank, vblank, h_de_hs, v_de_vs, hsync_len, vsync_len;
- 	unsigned int vdisplay;
-@@ -1513,7 +1530,9 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 	dev_dbg(hdmi->dev, "final pixclk = %d\n", vmode->mpixelclock);
- 
- 	/* Set up HDMI_FC_INVIDCONF */
--	inv_val = (hdmi->hdmi_data.hdcp_enable ?
-+	inv_val = (hdmi->hdmi_data.hdcp_enable ||
-+		   vmode->mpixelclock > 340000000 ||
-+		   hdmi_info->scdc.scrambling.low_rates ?
- 		HDMI_FC_INVIDCONF_HDCP_KEEPOUT_ACTIVE :
- 		HDMI_FC_INVIDCONF_HDCP_KEEPOUT_INACTIVE);
- 
-@@ -1562,6 +1581,26 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 		vsync_len /= 2;
- 	}
- 
-+	/* Scrambling Control */
-+	if (hdmi_info->scdc.supported) {
-+		if (vmode->mpixelclock > 340000000 ||
-+		    hdmi_info->scdc.scrambling.low_rates) {
-+			drm_scdc_readb(&hdmi->i2c->adap, SCDC_SINK_VERSION,
-+				       &bytes);
-+			drm_scdc_writeb(&hdmi->i2c->adap, SCDC_SOURCE_VERSION,
-+					bytes);
-+			drm_scdc_set_scrambling(&hdmi->i2c->adap, 1);
-+			hdmi_writeb(hdmi, (u8)~HDMI_MC_SWRSTZ_TMDSSWRST_REQ,
-+				    HDMI_MC_SWRSTZ);
-+			hdmi_writeb(hdmi, 1, HDMI_FC_SCRAMBLER_CTRL);
-+		} else {
-+			hdmi_writeb(hdmi, 0, HDMI_FC_SCRAMBLER_CTRL);
-+			hdmi_writeb(hdmi, (u8)~HDMI_MC_SWRSTZ_TMDSSWRST_REQ,
-+				    HDMI_MC_SWRSTZ);
-+			drm_scdc_set_scrambling(&hdmi->i2c->adap, 0);
-+		}
-+	}
-+
- 	/* Set up horizontal active pixel width */
- 	hdmi_writeb(hdmi, mode->hdisplay >> 8, HDMI_FC_INHACTV1);
- 	hdmi_writeb(hdmi, mode->hdisplay, HDMI_FC_INHACTV0);
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h
-index 9d90eb9c46e5..3f3c616eba97 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h
-@@ -255,6 +255,7 @@
- #define HDMI_FC_MASK2                           0x10DA
- #define HDMI_FC_POL2                            0x10DB
- #define HDMI_FC_PRCONF                          0x10E0
-+#define HDMI_FC_SCRAMBLER_CTRL                  0x10E1
- 
- #define HDMI_FC_GMD_STAT                        0x1100
- #define HDMI_FC_GMD_EN                          0x1101
-diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-index ccb5aa8468e0..d7cc5d094270 100644
---- a/include/drm/bridge/dw_hdmi.h
-+++ b/include/drm/bridge/dw_hdmi.h
-@@ -156,6 +156,7 @@ void dw_hdmi_setup_rx_sense(struct dw_hdmi *hdmi, bool hpd, bool rx_sense);
- void dw_hdmi_set_sample_rate(struct dw_hdmi *hdmi, unsigned int rate);
- void dw_hdmi_audio_enable(struct dw_hdmi *hdmi);
- void dw_hdmi_audio_disable(struct dw_hdmi *hdmi);
-+void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi);
- 
- /* PHY configuration */
- void dw_hdmi_phy_i2c_set_addr(struct dw_hdmi *hdmi, u8 address);
+These modes has been validated using a MuxLab HDMI Signal Analyser in
+addition to different UHD TVs supporting full 4k60 or the 4:2:0 variant.
+
+Neil Armstrong (7):
+  drm/bridge: dw-hdmi: Add SCDC and TMDS Scrambling support
+  drm/meson: add HDMI div40 TMDS mode
+  drm/meson: add support for HDMI2.0 2160p modes
+  drm/bridge: dw-hdmi: add support for YUV420 output
+  drm/bridge: dw-hdmi: allow ycbcr420 modes for >= 0x200a
+  drm/meson: Add YUV420 output support
+  drm/meson: Output in YUV444 if sink supports it
+
+Zheng Yang (1):
+  drm/bridge: dw-hdmi: support dynamically get input/out color info
+
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 136 ++++++++++++++++++----
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.h |   1 +
+ drivers/gpu/drm/meson/meson_dw_hdmi.c     | 129 +++++++++++++++++---
+ drivers/gpu/drm/meson/meson_vclk.c        |  95 +++++++++++----
+ drivers/gpu/drm/meson/meson_vclk.h        |   7 +-
+ drivers/gpu/drm/meson/meson_venc.c        |   8 +-
+ drivers/gpu/drm/meson/meson_venc.h        |  11 ++
+ drivers/gpu/drm/meson/meson_venc_cvbs.c   |   3 +-
+ include/drm/bridge/dw_hdmi.h              |   7 ++
+ 9 files changed, 330 insertions(+), 67 deletions(-)
+
 -- 
 2.19.1
