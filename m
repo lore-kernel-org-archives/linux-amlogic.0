@@ -1,69 +1,23 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Thu, 22 Nov 2018 23:12:08 +0100
-Subject: [PATCH v2 0/2] clocksource/meson6_timer: implement ARM delay timer
-In-Reply-To: <5ff1a888-cce2-8fd8-a98e-14c3d7c33acf@linaro.org>
-References: <20181115224657.14736-1-martin.blumenstingl@googlemail.com>
- <5ff1a888-cce2-8fd8-a98e-14c3d7c33acf@linaro.org>
-Message-ID: <CAFBinCDSLEAzJVVgFxKhN3LCUwgC3Rrr=4ZhtHCdvqEPBLWbJA@mail.gmail.com>
+From: jagan@amarulasolutions.com (Jagan Teki)
+Date: Fri, 23 Nov 2018 11:09:24 +0530
+Subject: [U-Boot] [PATCH u-boot v3 0/3] Add Amlogic Meson SPI Flash
+ Controller driver
+In-Reply-To: <20181122100105.14829-1-narmstrong@baylibre.com>
+References: <20181122100105.14829-1-narmstrong@baylibre.com>
+Message-ID: <CAMty3ZDuffrA5bZvY=iGTzi=dv3P92gT_PyWRKoM8KLA3kumOQ@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Daniel,
-
-On Sun, Nov 18, 2018 at 2:27 AM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
+On Thu, Nov 22, 2018 at 3:31 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> On 15/11/2018 23:46, Martin Blumenstingl wrote:
-> > While trying to add support for the ARM TWD Timer and the ARM Global
-> > Timer on Meson8, Meson8b and Meson8m2 (ARM Cortex-A5 and Cortex-A9 SoCs)
-> > I did a review of the existing driver.
-> > Unfortunately I found it hard to review because the pre-processor
-> > #defines did not match the names from the public S805 datasheet. Thus
-> > patch #1 adjusts these. No functional changes here, this is just
-> > preparation work for patch #2.
-> >
-> > Using the ARM Global Timer (drivers/clocksource/arm_global_timer.c)
-> > would have given us a timer-based delay implementation (so udelay() and
-> > friends would use the timer instead of using a loop-based delay
-> > implementation). Unfortunately we can't use the ARM Global Timer yet
-> > because it's input clock is derived from the CPU clock (which can change
-> > once we enable CPU frequency scaling on these SoCs, for which I will be
-> > sending patches in the near future).
-> > Amlogic's 3.10 kernel uses Timer E as delay timer which (with the
-> > current configuration) has a resolution of 1us. So patch #2 uses
-> > register_current_timer_delay() to register Timer E as ARM delay timer
-> > (which will be especially useful as we have to use udelay() when
-> > changing the CPU clocks during DVFS).
-> >
-> >
-> > Changes since v1 at [0]:
-> > - convert the enums for the input clock (meson6_timera_input_clock and
-> >   meson6_timere_input_clock) to simple #defines as these are register
-> >   values and not something driver-internal. All other register values
-> >   are #defines so it makes sense that these are #defines as well.
-> >
-> >
-> > [0] https://patchwork.kernel.org/cover/10658591/
-> >
-> >
-> > Martin Blumenstingl (2):
-> >   clocksource: meson6_timer: use register names from the datasheet
-> >   clocksource: meson6_timer: implement ARM delay timer
-> >
-> >  drivers/clocksource/meson6_timer.c | 128 +++++++++++++++++++----------
-> >  1 file changed, 85 insertions(+), 43 deletions(-)
+> The Amlogic Meson SoCs embeds a Flash oriented SPI Controller name SPIFC.
 >
-> Both applied, thanks!
-thank you for taking my patches
+> This patchset add the driver ported from linux, but also import the regmap
+> regmap_read_poll_timeout() to implify the register polling in the driver.
+>
+> Neil Armstrong (3):
+>   regmap: add regmap_read_poll_timeout() helper
+>   test: regmap: add regmap_read_poll_timeout test
+>   spi: Add Amlogic Meson SPI Flash Controller driver
 
-I have one question more: can you please push these patches to a
-repository/branch which is included in -next?
-I'm asking because I'd like to send patches that enable CPU frequency
-scaling on Meson8, Meson8b and Meson8m2. The code to change the CPU
-clock calls udelay(), which (in this special case) needs a delay timer
-to work properly (we can't use jiffies as we're using udelay() *while*
-changing the CPU clock).
-
-
-Regards
-Martin
+Applied to u-boot-spi/master
