@@ -1,109 +1,52 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 23 Nov 2018 15:02:18 +0100
-Subject: [PATCH RFC 5/8] drm/bridge: dw-hdmi: support dynamically get
- input/out color info
+Date: Fri, 23 Nov 2018 15:02:19 +0100
+Subject: [PATCH RFC 6/8] drm/bridge: dw-hdmi: allow ycbcr420 modes for >=
+ 0x200a
 In-Reply-To: <20181123140221.15700-1-narmstrong@baylibre.com>
 References: <20181123140221.15700-1-narmstrong@baylibre.com>
-Message-ID: <20181123140221.15700-6-narmstrong@baylibre.com>
+Message-ID: <20181123140221.15700-7-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-From: Zheng Yang <zhengyang@rock-chips.com>
+Now the DW-HDMI Controller supports the HDMI2.0 modes, enable support
+for these modes in the connector if the platform supports them.
+We limit these modes to DW-HDMI IP version >= 0x200a which
+are designed to support HDMI2.0 display modes.
 
-To get input/output bus_format/enc_format dynamically, this patch
-introduce following funstion in plat_data:
-	- get_input_bus_format
-	- get_output_bus_format
-	- get_enc_in_encoding
-	- get_enc_out_encoding
-
-Signed-off-by: Zheng Yang <zhengyang@rock-chips.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 28 +++++++++++++++++------
- include/drm/bridge/dw_hdmi.h              |  5 ++++
- 2 files changed, 26 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 ++++++
+ include/drm/bridge/dw_hdmi.h              | 1 +
+ 2 files changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 0b07bda73ffd..b38ec1d775aa 100644
+index b38ec1d775aa..9b0b157dc5ab 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -1763,6 +1763,7 @@ static void hdmi_disable_overflow_interrupts(struct dw_hdmi *hdmi)
- static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- {
- 	int ret;
-+	void *data = hdmi->plat_data->phy_data;
+@@ -2564,6 +2564,12 @@ __dw_hdmi_probe(struct platform_device *pdev,
+ 	if (hdmi->phy.ops->setup_hpd)
+ 		hdmi->phy.ops->setup_hpd(hdmi, hdmi->phy.data);
  
- 	hdmi_disable_overflow_interrupts(hdmi);
- 
-@@ -1774,10 +1775,13 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 		dev_dbg(hdmi->dev, "CEA mode used vic=%d\n", hdmi->vic);
- 	}
- 
--	if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
--	    (hdmi->vic == 21) || (hdmi->vic == 22) ||
--	    (hdmi->vic == 2) || (hdmi->vic == 3) ||
--	    (hdmi->vic == 17) || (hdmi->vic == 18))
-+	if (hdmi->plat_data->get_enc_out_encoding)
-+		hdmi->hdmi_data.enc_out_encoding =
-+			hdmi->plat_data->get_enc_out_encoding(data);
-+	else if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
-+		 (hdmi->vic == 21) || (hdmi->vic == 22) ||
-+		 (hdmi->vic == 2) || (hdmi->vic == 3) ||
-+		 (hdmi->vic == 17) || (hdmi->vic == 18))
- 		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_601;
- 	else
- 		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_709;
-@@ -1786,21 +1790,31 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
- 
- 	/* TOFIX: Get input format from plat data or fallback to RGB888 */
--	if (hdmi->plat_data->input_bus_format)
-+	if (hdmi->plat_data->get_input_bus_format)
-+		hdmi->hdmi_data.enc_in_bus_format =
-+			hdmi->plat_data->get_input_bus_format(data);
-+	else if (hdmi->plat_data->input_bus_format)
- 		hdmi->hdmi_data.enc_in_bus_format =
- 			hdmi->plat_data->input_bus_format;
- 	else
- 		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
- 
- 	/* TOFIX: Get input encoding from plat data or fallback to none */
--	if (hdmi->plat_data->input_bus_encoding)
-+	if (hdmi->plat_data->get_enc_in_encoding)
-+		hdmi->hdmi_data.enc_in_encoding =
-+			hdmi->plat_data->get_enc_in_encoding(data);
-+	else if (hdmi->plat_data->input_bus_encoding)
- 		hdmi->hdmi_data.enc_in_encoding =
- 			hdmi->plat_data->input_bus_encoding;
- 	else
- 		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
- 
- 	/* TOFIX: Default to RGB888 output format */
--	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+	if (hdmi->plat_data->get_output_bus_format)
-+		hdmi->hdmi_data.enc_out_bus_format =
-+			hdmi->plat_data->get_output_bus_format(data);
++	if (hdmi->version >= 0x200a)
++		hdmi->connector.ycbcr_420_allowed =
++			hdmi->plat_data->ycbcr_420_allowed;
 +	else
-+		hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
- 
- 	hdmi->hdmi_data.pix_repet_factor = 0;
- 	hdmi->hdmi_data.hdcp_enable = 0;
++		hdmi->connector.ycbcr_420_allowed = false;
++
+ 	memset(&pdevinfo, 0, sizeof(pdevinfo));
+ 	pdevinfo.parent = dev;
+ 	pdevinfo.id = PLATFORM_DEVID_AUTO;
 diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-index d7cc5d094270..27f9cce66b6a 100644
+index 27f9cce66b6a..c04f497a919b 100644
 --- a/include/drm/bridge/dw_hdmi.h
 +++ b/include/drm/bridge/dw_hdmi.h
-@@ -141,6 +141,11 @@ struct dw_hdmi_plat_data {
- 	int (*configure_phy)(struct dw_hdmi *hdmi,
- 			     const struct dw_hdmi_plat_data *pdata,
- 			     unsigned long mpixelclock);
-+
-+	unsigned long (*get_input_bus_format)(void *data);
-+	unsigned long (*get_output_bus_format)(void *data);
-+	unsigned long (*get_enc_in_encoding)(void *data);
-+	unsigned long (*get_enc_out_encoding)(void *data);
- };
+@@ -128,6 +128,7 @@ struct dw_hdmi_plat_data {
+ 					   const struct drm_display_mode *mode);
+ 	unsigned long input_bus_format;
+ 	unsigned long input_bus_encoding;
++	bool ycbcr_420_allowed;
  
- struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
+ 	/* Vendor PHY support */
+ 	const struct dw_hdmi_phy_ops *phy_ops;
 -- 
 2.19.1
