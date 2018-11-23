@@ -1,203 +1,109 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 23 Nov 2018 15:02:17 +0100
-Subject: [PATCH RFC 4/8] drm/bridge: dw-hdmi: add support for YUV420 output
+Date: Fri, 23 Nov 2018 15:02:18 +0100
+Subject: [PATCH RFC 5/8] drm/bridge: dw-hdmi: support dynamically get
+ input/out color info
 In-Reply-To: <20181123140221.15700-1-narmstrong@baylibre.com>
 References: <20181123140221.15700-1-narmstrong@baylibre.com>
-Message-ID: <20181123140221.15700-5-narmstrong@baylibre.com>
+Message-ID: <20181123140221.15700-6-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-In order to support the HDMI2.0 YUV420 display modes, this patch
-adds support for the YUV420 TMDS Clock divided by 2 and the controller
-passthrough mode.
+From: Zheng Yang <zhengyang@rock-chips.com>
 
-This patch is based on work from Zheng Yang <zhengyang@rock-chips.com> in
-the Rockchip Linux 4.4 BSP at [1]
+To get input/output bus_format/enc_format dynamically, this patch
+introduce following funstion in plat_data:
+	- get_input_bus_format
+	- get_output_bus_format
+	- get_enc_in_encoding
+	- get_enc_out_encoding
 
-[1] https://github.com/rockchip-linux/kernel/tree/release-4.4
-
-Cc: Zheng Yang <zhengyang@rock-chips.com>
+Signed-off-by: Zheng Yang <zhengyang@rock-chips.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 63 ++++++++++++++++++-----
- 1 file changed, 50 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 28 +++++++++++++++++------
+ include/drm/bridge/dw_hdmi.h              |  5 ++++
+ 2 files changed, 26 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index 523508af70b0..0b07bda73ffd 100644
+index 0b07bda73ffd..b38ec1d775aa 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -94,6 +94,7 @@ struct hdmi_vmode {
- 	unsigned int mpixelclock;
- 	unsigned int mpixelrepetitioninput;
- 	unsigned int mpixelrepetitionoutput;
-+	unsigned int mtmdsclock;
+@@ -1763,6 +1763,7 @@ static void hdmi_disable_overflow_interrupts(struct dw_hdmi *hdmi)
+ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ {
+ 	int ret;
++	void *data = hdmi->plat_data->phy_data;
+ 
+ 	hdmi_disable_overflow_interrupts(hdmi);
+ 
+@@ -1774,10 +1775,13 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 		dev_dbg(hdmi->dev, "CEA mode used vic=%d\n", hdmi->vic);
+ 	}
+ 
+-	if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
+-	    (hdmi->vic == 21) || (hdmi->vic == 22) ||
+-	    (hdmi->vic == 2) || (hdmi->vic == 3) ||
+-	    (hdmi->vic == 17) || (hdmi->vic == 18))
++	if (hdmi->plat_data->get_enc_out_encoding)
++		hdmi->hdmi_data.enc_out_encoding =
++			hdmi->plat_data->get_enc_out_encoding(data);
++	else if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
++		 (hdmi->vic == 21) || (hdmi->vic == 22) ||
++		 (hdmi->vic == 2) || (hdmi->vic == 3) ||
++		 (hdmi->vic == 17) || (hdmi->vic == 18))
+ 		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_601;
+ 	else
+ 		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_709;
+@@ -1786,21 +1790,31 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
+ 
+ 	/* TOFIX: Get input format from plat data or fallback to RGB888 */
+-	if (hdmi->plat_data->input_bus_format)
++	if (hdmi->plat_data->get_input_bus_format)
++		hdmi->hdmi_data.enc_in_bus_format =
++			hdmi->plat_data->get_input_bus_format(data);
++	else if (hdmi->plat_data->input_bus_format)
+ 		hdmi->hdmi_data.enc_in_bus_format =
+ 			hdmi->plat_data->input_bus_format;
+ 	else
+ 		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+ 
+ 	/* TOFIX: Get input encoding from plat data or fallback to none */
+-	if (hdmi->plat_data->input_bus_encoding)
++	if (hdmi->plat_data->get_enc_in_encoding)
++		hdmi->hdmi_data.enc_in_encoding =
++			hdmi->plat_data->get_enc_in_encoding(data);
++	else if (hdmi->plat_data->input_bus_encoding)
+ 		hdmi->hdmi_data.enc_in_encoding =
+ 			hdmi->plat_data->input_bus_encoding;
+ 	else
+ 		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
+ 
+ 	/* TOFIX: Default to RGB888 output format */
+-	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
++	if (hdmi->plat_data->get_output_bus_format)
++		hdmi->hdmi_data.enc_out_bus_format =
++			hdmi->plat_data->get_output_bus_format(data);
++	else
++		hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+ 
+ 	hdmi->hdmi_data.pix_repet_factor = 0;
+ 	hdmi->hdmi_data.hdcp_enable = 0;
+diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+index d7cc5d094270..27f9cce66b6a 100644
+--- a/include/drm/bridge/dw_hdmi.h
++++ b/include/drm/bridge/dw_hdmi.h
+@@ -141,6 +141,11 @@ struct dw_hdmi_plat_data {
+ 	int (*configure_phy)(struct dw_hdmi *hdmi,
+ 			     const struct dw_hdmi_plat_data *pdata,
+ 			     unsigned long mpixelclock);
++
++	unsigned long (*get_input_bus_format)(void *data);
++	unsigned long (*get_output_bus_format)(void *data);
++	unsigned long (*get_enc_in_encoding)(void *data);
++	unsigned long (*get_enc_out_encoding)(void *data);
  };
  
- struct hdmi_data_info {
-@@ -538,7 +539,7 @@ static void hdmi_init_clk_regenerator(struct dw_hdmi *hdmi)
- static void hdmi_clk_regenerator_update_pixel_clock(struct dw_hdmi *hdmi)
- {
- 	mutex_lock(&hdmi->audio_mutex);
--	hdmi_set_clk_regenerator(hdmi, hdmi->hdmi_data.video_mode.mpixelclock,
-+	hdmi_set_clk_regenerator(hdmi, hdmi->hdmi_data.video_mode.mtmdsclock,
- 				 hdmi->sample_rate);
- 	mutex_unlock(&hdmi->audio_mutex);
- }
-@@ -547,7 +548,7 @@ void dw_hdmi_set_sample_rate(struct dw_hdmi *hdmi, unsigned int rate)
- {
- 	mutex_lock(&hdmi->audio_mutex);
- 	hdmi->sample_rate = rate;
--	hdmi_set_clk_regenerator(hdmi, hdmi->hdmi_data.video_mode.mpixelclock,
-+	hdmi_set_clk_regenerator(hdmi, hdmi->hdmi_data.video_mode.mtmdsclock,
- 				 hdmi->sample_rate);
- 	mutex_unlock(&hdmi->audio_mutex);
- }
-@@ -648,6 +649,20 @@ static bool hdmi_bus_fmt_is_yuv422(unsigned int bus_format)
- 	}
- }
- 
-+static bool hdmi_bus_fmt_is_yuv420(unsigned int bus_format)
-+{
-+	switch (bus_format) {
-+	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-+	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-+	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-+	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-+		return true;
-+
-+	default:
-+		return false;
-+	}
-+}
-+
- static int hdmi_bus_fmt_color_depth(unsigned int bus_format)
- {
- 	switch (bus_format) {
-@@ -877,7 +892,8 @@ static void hdmi_video_packetize(struct dw_hdmi *hdmi)
- 	u8 val, vp_conf;
- 
- 	if (hdmi_bus_fmt_is_rgb(hdmi->hdmi_data.enc_out_bus_format) ||
--	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format)) {
-+	    hdmi_bus_fmt_is_yuv444(hdmi->hdmi_data.enc_out_bus_format) ||
-+	    hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format)) {
- 		switch (hdmi_bus_fmt_color_depth(
- 					hdmi->hdmi_data.enc_out_bus_format)) {
- 		case 8:
-@@ -1018,7 +1034,7 @@ EXPORT_SYMBOL_GPL(dw_hdmi_phy_i2c_write);
- 
- void dw_hdmi_set_high_tmds_clock_ratio(struct dw_hdmi *hdmi)
- {
--	unsigned long mtmdsclock = hdmi->hdmi_data.video_mode.mpixelclock;
-+	unsigned long mtmdsclock = hdmi->hdmi_data.video_mode.mtmdsclock;
- 
- 	/* Control for TMDS Bit Period/TMDS Clock-Period Ratio */
- 	if (hdmi->connector.display_info.hdmi.scdc.supported) {
-@@ -1359,6 +1375,9 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 	struct hdmi_avi_infoframe frame;
- 	u8 val;
- 
-+	if (hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format))
-+		is_hdmi2_sink = true;
-+
- 	/* Initialise info frame from DRM mode */
- 	drm_hdmi_avi_infoframe_from_display_mode(&frame, mode, is_hdmi2_sink);
- 
-@@ -1366,6 +1385,8 @@ static void hdmi_config_AVI(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 		frame.colorspace = HDMI_COLORSPACE_YUV444;
- 	else if (hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format))
- 		frame.colorspace = HDMI_COLORSPACE_YUV422;
-+	else if (hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format))
-+		frame.colorspace = HDMI_COLORSPACE_YUV420;
- 	else
- 		frame.colorspace = HDMI_COLORSPACE_RGB;
- 
-@@ -1523,15 +1544,18 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 	struct drm_hdmi_info *hdmi_info = &hdmi->connector.display_info.hdmi;
- 	struct hdmi_vmode *vmode = &hdmi->hdmi_data.video_mode;
- 	int hblank, vblank, h_de_hs, v_de_vs, hsync_len, vsync_len;
--	unsigned int vdisplay;
-+	unsigned int vdisplay, hdisplay;
- 
--	vmode->mpixelclock = mode->clock * 1000;
-+	vmode->mtmdsclock = vmode->mpixelclock = mode->clock * 1000;
- 
- 	dev_dbg(hdmi->dev, "final pixclk = %d\n", vmode->mpixelclock);
- 
-+	if (hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format))
-+		vmode->mtmdsclock /= 2;
-+
- 	/* Set up HDMI_FC_INVIDCONF */
- 	inv_val = (hdmi->hdmi_data.hdcp_enable ||
--		   vmode->mpixelclock > 340000000 ||
-+		   vmode->mtmdsclock > 340000000 ||
- 		   hdmi_info->scdc.scrambling.low_rates ?
- 		HDMI_FC_INVIDCONF_HDCP_KEEPOUT_ACTIVE :
- 		HDMI_FC_INVIDCONF_HDCP_KEEPOUT_INACTIVE);
-@@ -1565,6 +1589,22 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 
- 	hdmi_writeb(hdmi, inv_val, HDMI_FC_INVIDCONF);
- 
-+	hdisplay = mode->hdisplay;
-+	hblank = mode->htotal - mode->hdisplay;
-+	h_de_hs = mode->hsync_start - mode->hdisplay;
-+	hsync_len = mode->hsync_end - mode->hsync_start;
-+
-+	/*
-+	 * When we're setting a YCbCr420 mode, we need
-+	 * to adjust the horizontal timing to suit.
-+	 */
-+	if (hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format)) {
-+		hdisplay /= 2;
-+		hblank /= 2;
-+		h_de_hs /= 2;
-+		hsync_len /= 2;
-+	}
-+
- 	vdisplay = mode->vdisplay;
- 	vblank = mode->vtotal - mode->vdisplay;
- 	v_de_vs = mode->vsync_start - mode->vdisplay;
-@@ -1583,7 +1623,7 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 
- 	/* Scrambling Control */
- 	if (hdmi_info->scdc.supported) {
--		if (vmode->mpixelclock > 340000000 ||
-+		if (vmode->mtmdsclock > 340000000 ||
- 		    hdmi_info->scdc.scrambling.low_rates) {
- 			drm_scdc_readb(&hdmi->i2c->adap, SCDC_SINK_VERSION,
- 				       &bytes);
-@@ -1602,15 +1642,14 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 	}
- 
- 	/* Set up horizontal active pixel width */
--	hdmi_writeb(hdmi, mode->hdisplay >> 8, HDMI_FC_INHACTV1);
--	hdmi_writeb(hdmi, mode->hdisplay, HDMI_FC_INHACTV0);
-+	hdmi_writeb(hdmi, hdisplay >> 8, HDMI_FC_INHACTV1);
-+	hdmi_writeb(hdmi, hdisplay, HDMI_FC_INHACTV0);
- 
- 	/* Set up vertical active lines */
- 	hdmi_writeb(hdmi, vdisplay >> 8, HDMI_FC_INVACTV1);
- 	hdmi_writeb(hdmi, vdisplay, HDMI_FC_INVACTV0);
- 
- 	/* Set up horizontal blanking pixel region width */
--	hblank = mode->htotal - mode->hdisplay;
- 	hdmi_writeb(hdmi, hblank >> 8, HDMI_FC_INHBLANK1);
- 	hdmi_writeb(hdmi, hblank, HDMI_FC_INHBLANK0);
- 
-@@ -1618,7 +1657,6 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 	hdmi_writeb(hdmi, vblank, HDMI_FC_INVBLANK);
- 
- 	/* Set up HSYNC active edge delay width (in pixel clks) */
--	h_de_hs = mode->hsync_start - mode->hdisplay;
- 	hdmi_writeb(hdmi, h_de_hs >> 8, HDMI_FC_HSYNCINDELAY1);
- 	hdmi_writeb(hdmi, h_de_hs, HDMI_FC_HSYNCINDELAY0);
- 
-@@ -1626,7 +1664,6 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
- 	hdmi_writeb(hdmi, v_de_vs, HDMI_FC_VSYNCINDELAY);
- 
- 	/* Set up HSYNC active pulse width (in pixel clks) */
--	hsync_len = mode->hsync_end - mode->hsync_start;
- 	hdmi_writeb(hdmi, hsync_len >> 8, HDMI_FC_HSYNCINWIDTH1);
- 	hdmi_writeb(hdmi, hsync_len, HDMI_FC_HSYNCINWIDTH0);
- 
+ struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
 -- 
 2.19.1
