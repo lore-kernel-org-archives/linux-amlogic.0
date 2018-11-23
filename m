@@ -1,50 +1,19 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 23 Nov 2018 16:20:16 +0100
-Subject: [PATCH v2 1/4] dt-bindings: clock: meson8b: export the CPU post
- dividers
-In-Reply-To: <20181122214017.25643-2-martin.blumenstingl@googlemail.com>
-References: <20181122214017.25643-1-martin.blumenstingl@googlemail.com>
- <20181122214017.25643-2-martin.blumenstingl@googlemail.com>
-Message-ID: <4e82df94-dcb0-57ca-c751-074012d054dd@baylibre.com>
+Date: Fri, 23 Nov 2018 16:23:33 +0100
+Subject: [GIT PULL] clk: meson: updates for v4.21
+Message-ID: <8b905b7b-d72a-010f-bb2c-3cadeca603ed@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 22/11/2018 22:40, Martin Blumenstingl wrote:
-> There are four CPU clock post dividers:
-> - ABP
-> - PERIPH (used as input for the ARM global timer and ARM TWD timer)
-> - AXI
-> - L2 DRAM
-> 
-> Export these so we can use them in .dts files.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  include/dt-bindings/clock/meson8b-clkc.h | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/include/dt-bindings/clock/meson8b-clkc.h b/include/dt-bindings/clock/meson8b-clkc.h
-> index a60f47b49231..5fe2923382d0 100644
-> --- a/include/dt-bindings/clock/meson8b-clkc.h
-> +++ b/include/dt-bindings/clock/meson8b-clkc.h
-> @@ -103,5 +103,9 @@
->  #define CLKID_MPLL1		94
->  #define CLKID_MPLL2		95
->  #define CLKID_NAND_CLK		112
-> +#define CLKID_ABP		124
-> +#define CLKID_PERIPH		126
-> +#define CLKID_AXI		128
-> +#define CLKID_L2_DRAM		130
->  
->  #endif /* __MESON8B_CLKC_H */
-> 
+Dear clock maintainers,
 
-Kevin,
+Below is a request to pull updates for Amlogic clocks.
 
-Martin asked my a tag for this patch since he has a dependency on it.
+It covers essentially Meson GX Video clocks, Meson8b CPU clocks
+and 2 bindings changes.
 
-You can find it here :
+Thanks,
+Neil
 
 The following changes since commit 651022382c7f8da46cb4872a545ee1da6d097d2a:
 
@@ -52,21 +21,55 @@ The following changes since commit 651022382c7f8da46cb4872a545ee1da6d097d2a:
 
 are available in the Git repository at:
 
-  git://github.com/BayLibre/clk-meson.git tags/meson-clk-headers-4.21-1
+  git://github.com/BayLibre/clk-meson.git tags/meson-clk-4.21-1
 
-for you to fetch changes up to 8e1dd17c8b0e3f8c66ed2a3f88a440d36135e589:
+for you to fetch changes up to a7d19b05ce817d60ae672c4c112e77892978dc3c:
 
-  dt-bindings: clock: meson8b: export the CPU post dividers (2018-11-23 15:11:55 +0100)
-
-----------------------------------------------------------------
-Update for meson clocks bindings targeted at v4.21:
-- Export Meson8b CPU post dividers
+  clk: meson: meson8b: add the CPU clock post divider clocks (2018-11-23 15:11:58 +0100)
 
 ----------------------------------------------------------------
-Martin Blumenstingl (1):
+Update for meson clocks targeted at v4.21
+- Add GX video clocks
+- Switch to HHI syscon for meson8b
+- Fix meson8b cpu clock
+- Add support for meson8b CPU scaling
+- Add Meson8b CPU post-dividers clocks
+
+----------------------------------------------------------------
+Martin Blumenstingl (14):
       dt-bindings: clock: meson8b: export the CPU post dividers
+      dt-bindings: clock: meson8b: use the registers from the HHI syscon
+      clk: meson: meson8b: use the HHI syscon if available
+      clk: meson: meson8b: fix incorrect divider mapping in cpu_scale_table
+      clk: meson: meson8b: fix the width of the cpu_scale_div clock
+      clk: meson: clk-pll: check if the clock is already enabled
+      clk: meson: meson8b: do not use cpu_div3 for cpu_scale_out_sel
+      clk: meson: meson8b: mark the CPU clock as CLK_IS_CRITICAL
+      clk: meson: meson8b: add support for more M/N values in sys_pll
+      clk: meson: meson8b: run from the XTAL when changing the CPU frequency
+      clk: meson: meson8b: allow changing the CPU clock tree
+      clk: meson: clk-regmap: add read-only gate ops
+      clk: meson: meson8b: rename cpu_div2/cpu_div3 to cpu_in_div2/cpu_in_div3
+      clk: meson: meson8b: add the CPU clock post divider clocks
 
- include/dt-bindings/clock/meson8b-clkc.h | 4 ++++
- 1 file changed, 4 insertions(+)
+Neil Armstrong (4):
+      clk: meson: Add vid_pll divider driver
+      clk: meson-gxbb: Fix HDMI PLL for GXL SoCs
+      dt-bindings: clk: meson-gxbb: Add Video clock bindings
+      clk: meson-gxbb: Add video clocks
 
-Neil
+ .../bindings/clock/amlogic,meson8b-clkc.txt        |  13 +-
+ drivers/clk/meson/Makefile                         |   2 +-
+ drivers/clk/meson/clk-pll.c                        |  19 +
+ drivers/clk/meson/clk-regmap.c                     |   5 +
+ drivers/clk/meson/clk-regmap.h                     |   1 +
+ drivers/clk/meson/clkc.h                           |   6 +
+ drivers/clk/meson/gxbb.c                           | 773 ++++++++++++++++++++-
+ drivers/clk/meson/gxbb.h                           |  26 +-
+ drivers/clk/meson/meson8b.c                        | 393 ++++++++++-
+ drivers/clk/meson/meson8b.h                        |  17 +-
+ drivers/clk/meson/vid-pll-div.c                    |  91 +++
+ include/dt-bindings/clock/gxbb-clkc.h              |  18 +
+ include/dt-bindings/clock/meson8b-clkc.h           |   4 +
+ 13 files changed, 1319 insertions(+), 49 deletions(-)
+ create mode 100644 drivers/clk/meson/vid-pll-div.c
