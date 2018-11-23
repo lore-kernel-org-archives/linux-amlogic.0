@@ -1,52 +1,38 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 23 Nov 2018 15:02:19 +0100
-Subject: [PATCH RFC 6/8] drm/bridge: dw-hdmi: allow ycbcr420 modes for >=
- 0x200a
+Date: Fri, 23 Nov 2018 15:02:21 +0100
+Subject: [PATCH RFC 8/8] drm/meson: Output in YUV444 if sink supports it
 In-Reply-To: <20181123140221.15700-1-narmstrong@baylibre.com>
 References: <20181123140221.15700-1-narmstrong@baylibre.com>
-Message-ID: <20181123140221.15700-7-narmstrong@baylibre.com>
+Message-ID: <20181123140221.15700-9-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Now the DW-HDMI Controller supports the HDMI2.0 modes, enable support
-for these modes in the connector if the platform supports them.
-We limit these modes to DW-HDMI IP version >= 0x200a which
-are designed to support HDMI2.0 display modes.
+With the YUV420 handling, we can dynamically setup the HDMI output
+pixel format depending on the mode and connector info.
+So now, we can output in YUV444, which is the native video pipeline
+format, directly to the HDMI Sink if it's supported without
+necessarily involving the HDMI Controller CSC.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 ++++++
- include/drm/bridge/dw_hdmi.h              | 1 +
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index b38ec1d775aa..9b0b157dc5ab 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2564,6 +2564,12 @@ __dw_hdmi_probe(struct platform_device *pdev,
- 	if (hdmi->phy.ops->setup_hpd)
- 		hdmi->phy.ops->setup_hpd(hdmi, hdmi->phy.data);
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 0b9ecbfe65b4..6df124c1bba5 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -670,7 +670,10 @@ static int meson_venc_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
+ 		dw_hdmi->output_bus_format = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
+ 	} else {
+ 		dw_hdmi->input_bus_format = MEDIA_BUS_FMT_YUV8_1X24;
+-		dw_hdmi->output_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
++		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444)
++			dw_hdmi->output_bus_format = MEDIA_BUS_FMT_YUV8_1X24;
++		else
++			dw_hdmi->output_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+ 	}
  
-+	if (hdmi->version >= 0x200a)
-+		hdmi->connector.ycbcr_420_allowed =
-+			hdmi->plat_data->ycbcr_420_allowed;
-+	else
-+		hdmi->connector.ycbcr_420_allowed = false;
-+
- 	memset(&pdevinfo, 0, sizeof(pdevinfo));
- 	pdevinfo.parent = dev;
- 	pdevinfo.id = PLATFORM_DEVID_AUTO;
-diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-index 27f9cce66b6a..c04f497a919b 100644
---- a/include/drm/bridge/dw_hdmi.h
-+++ b/include/drm/bridge/dw_hdmi.h
-@@ -128,6 +128,7 @@ struct dw_hdmi_plat_data {
- 					   const struct drm_display_mode *mode);
- 	unsigned long input_bus_format;
- 	unsigned long input_bus_encoding;
-+	bool ycbcr_420_allowed;
- 
- 	/* Vendor PHY support */
- 	const struct dw_hdmi_phy_ops *phy_ops;
+ 	return 0;
 -- 
 2.19.1
