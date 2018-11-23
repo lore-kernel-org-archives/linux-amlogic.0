@@ -1,94 +1,69 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 23 Nov 2018 11:54:17 +0100
-Subject: [PATCH] drm/meson: Fix an Alpha Primary Plane bug on Meson GXL/GXM
- SoCs
-Message-ID: <20181123105417.18948-1-narmstrong@baylibre.com>
+From: michal.lazo@mdragon.org (Michal Lazo)
+Date: Fri, 23 Nov 2018 13:57:00 +0100
+Subject: [PATCH] drm/meson: add support for 1080p25 mode
+In-Reply-To: <2a9d9fa9-c9ba-c624-28da-dd3804faf438@baylibre.com>
+References: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
+ <2a9d9fa9-c9ba-c624-28da-dd3804faf438@baylibre.com>
+Message-ID: <CAFW1BFzC0wzwmjvpSqb90ipY4mzdWPMc3buXjkwvi4X5e8wGJg@mail.gmail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On the Amlogic GXL & GXM SoCs, a bug occurs on the OSD1 primaty plane when
-alpha is used where the alpha is not aligned with the pixel content.
+I would suggest same aproach as for
+"meson_hdmi_encp_mode_1080p30"
+and "meson_hdmi_encp_mode_1080p60"
 
-The woraround Amlogic implemented is to reset the OSD1 plane hardware
-block each time the plane is updated, solving the issue.
+so duplicate "meson_hdmi_encp_mode_1080p50"
+with name "meson_hdmi_encp_mode_1080p25"
 
-In the reset, we still need to save the content of 2 registers which
-depends on the status of the plane, in addition to reload the scaler
-conversion matrix at the same time.
+now the code looks really like common copy paste problem
+Michal Lazo
+On Wed, Nov 21, 2018 at 10:47 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 21/11/2018 10:39, Christian Hewitt wrote:
+> > This essential mode for PAL users is missing, so add it.
+> >
+> > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> > ---
+> >  drivers/gpu/drm/meson/meson_venc.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+> > index acbbad3..ab16046 100644
+> > --- a/drivers/gpu/drm/meson/meson_venc.c
+> > +++ b/drivers/gpu/drm/meson/meson_venc.c
+> > @@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
+> >       { 5, &meson_hdmi_encp_mode_1080i60 },
+> >       { 20, &meson_hdmi_encp_mode_1080i50 },
+> >       { 32, &meson_hdmi_encp_mode_1080p24 },
+> > +     { 33, &meson_hdmi_encp_mode_1080p50 },
+> >       { 34, &meson_hdmi_encp_mode_1080p30 },
+> >       { 31, &meson_hdmi_encp_mode_1080p50 },
+> >       { 16, &meson_hdmi_encp_mode_1080p60 },
+> >
+>
+> Exact, I forgot this mode...
+>
+> Thanks for the change !
+>
+> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+>
+> I'll add :
+> Fixes: 335e3713afb87 ("drm/meson: Add support for HDMI venc modes and settings")
+> when applying to drm-misc-fixes.
+>
+> Neil
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic at lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_crtc.c |  6 ++++++
- drivers/gpu/drm/meson/meson_viu.c  | 27 +++++++++++++++++++++++++++
- drivers/gpu/drm/meson/meson_viu.h  |  1 +
- 3 files changed, 34 insertions(+)
 
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index 75d97f1b2e8f..2f9dfb1d408f 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -200,6 +200,12 @@ void meson_crtc_irq(struct meson_drm *priv)
- 
- 	/* Update the OSD registers */
- 	if (priv->viu.osd1_enabled && priv->viu.osd1_commit) {
-+
-+		/* Reset OSD1 at updates on GXL+ SoCs */
-+		if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-+		    meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
-+			meson_viu_reset(priv);
-+
- 		writel_relaxed(priv->viu.osd1_ctrl_stat,
- 				priv->io_base + _REG(VIU_OSD1_CTRL_STAT));
- 		writel_relaxed(priv->viu.osd1_blk0_cfg[0],
-diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
-index 2dffb987ec65..a41dd6cc343e 100644
---- a/drivers/gpu/drm/meson/meson_viu.c
-+++ b/drivers/gpu/drm/meson/meson_viu.c
-@@ -296,6 +296,33 @@ static void meson_viu_load_matrix(struct meson_drm *priv)
- 				 true);
- }
- 
-+/* VIU OSD1 Reset as workaround for GXL+ Alpha OSD Bug */
-+void meson_viu_reset(struct meson_drm *priv)
-+{
-+	uint32_t osd1_fifo_ctrl_stat, osd1_ctrl_stat2;
-+
-+	/* Save these 2 registers state */
-+	osd1_fifo_ctrl_stat = readl_relaxed(
-+				priv->io_base + _REG(VIU_OSD1_FIFO_CTRL_STAT));
-+	osd1_ctrl_stat2 = readl_relaxed(
-+				priv->io_base + _REG(VIU_OSD1_CTRL_STAT2));
-+
-+	/* Reset OSD1 */
-+	writel_bits_relaxed(BIT(0), BIT(0),
-+			    priv->io_base + _REG(VIU_SW_RESET));
-+	writel_bits_relaxed(BIT(0), 0,
-+			    priv->io_base + _REG(VIU_SW_RESET));
-+
-+	/* Rewrite these registers state lost in the reset */
-+	writel_relaxed(osd1_fifo_ctrl_stat,
-+		       priv->io_base + _REG(VIU_OSD1_FIFO_CTRL_STAT));
-+	writel_relaxed(osd1_ctrl_stat2,
-+		       priv->io_base + _REG(VIU_OSD1_CTRL_STAT2));
-+
-+	/* Reload the conversion matrix */
-+	meson_viu_load_matrix(priv);
-+}
-+
- void meson_viu_init(struct meson_drm *priv)
- {
- 	uint32_t reg;
-diff --git a/drivers/gpu/drm/meson/meson_viu.h b/drivers/gpu/drm/meson/meson_viu.h
-index 073b1910bd1b..e4a6e2fba8fb 100644
---- a/drivers/gpu/drm/meson/meson_viu.h
-+++ b/drivers/gpu/drm/meson/meson_viu.h
-@@ -59,6 +59,7 @@
- #define OSD_REPLACE_EN		BIT(14)
- #define OSD_REPLACE_SHIFT	6
- 
-+void meson_viu_reset(struct meson_drm *priv);
- void meson_viu_init(struct meson_drm *priv);
- 
- #endif /* __MESON_VIU_H */
+
 -- 
-2.19.1
+Best Regards
+
+Michal Lazo
+Senior developer engineer
+mdragon.org
+Slovakia
