@@ -1,65 +1,32 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 23 Nov 2018 15:40:55 +0100
-Subject: [PATCH v2 0/4] Meson8b: add the CPU clock post-dividers
-In-Reply-To: <20181122214017.25643-1-martin.blumenstingl@googlemail.com>
-References: <20181122214017.25643-1-martin.blumenstingl@googlemail.com>
-Message-ID: <4859b354-ade4-8172-eeb5-7a4a42045589@baylibre.com>
+From: ccaione@baylibre.com (Carlo Caione)
+Date: Fri, 23 Nov 2018 14:43:03 +0000
+Subject: [PATCH] arm64: dts: meson-axg: Enable watchdog on Meson AXG SoCs
+In-Reply-To: <20181123140552.5420-1-ccaione@baylibre.com>
+References: <20181123140552.5420-1-ccaione@baylibre.com>
+Message-ID: <5f648387-18db-fd36-a79a-2d6146e4e40c@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 22/11/2018 22:40, Martin Blumenstingl wrote:
-> This is the successor to my previous series "meson8b: add the CPU_DIV16
-> clock for the ARM TWD" from [0]. I decided to not send this as v2 of
-> the original series because the PERIPH clock is not the CPU_DIV16 clock.
-> It's not clear whether a CPU_DIV16 clock exists.
+On 23/11/2018 14:05, Carlo Caione wrote:
+> Add the watchdog node also on the AXG platforms.
 > 
-> With this series we get all the CPU_CLK post-dividers as listed in the
-> public S805 datasheet [1] on pages 31 and 32:
-> - ABP
-> - PERIPH (used as input for the ARM global timer and ARM TWD timer)
-> - AXI
-> - L2 DRAM
+> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
+>   1 file changed, 6 insertions(+)
 > 
-> Each of these clocks has a register called "..._CLK_DIS" which is
-> documented as a "just in case" bit:
-> "Set to 1 to manually disable the [...] clock when changing the mux
-> selection. Typically this bit is set to 0 since the clock muxes can
-> switch without glitches."
-> Since we're not supposed to touch that register we're using the new
-> read-only gate clk_ops to ensure that nothing accidentally modifies
-> these bits.
-> 
-> The result of this is that we can use the PERIPH clock which clocks
-> the ARM TWD timer. I will send a separate series to add the TWD timer.
-> 
-> 
-> changes since v1 at [2]:
-> - added new patch 2 "clk: meson: clk-regmap: add read-only gate ops"
-> - switched from CLK_IS_CRITICAL to the new clk_regmap_gate_ro_ops
->   so we're consistent with all other read-only clocks
-> - collected Jerome's Acked-by tags (thanks!)
-> 
-> 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-July/007890.html
-> [1] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-> [2] https://patchwork.kernel.org/cover/10687023/
-> 
-> 
-> Martin Blumenstingl (4):
->   dt-bindings: clock: meson8b: export the CPU post dividers
->   clk: meson: clk-regmap: add read-only gate ops
->   clk: meson: meson8b: rename cpu_div2/cpu_div3 to
->     cpu_in_div2/cpu_in_div3
->   clk: meson: meson8b: add the CPU clock post divider clocks
-> 
->  drivers/clk/meson/clk-regmap.c           |   5 +
->  drivers/clk/meson/clk-regmap.h           |   1 +
->  drivers/clk/meson/meson8b.c              | 264 ++++++++++++++++++++++-
->  drivers/clk/meson/meson8b.h              |  17 +-
->  include/dt-bindings/clock/meson8b-clkc.h |   4 +
->  5 files changed, 278 insertions(+), 13 deletions(-)
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index df017dbd2e57..e8cd580665bc 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -1422,6 +1422,12 @@
+>   				status = "disabled";
+>   			};
+>   
+> +			watchdog at f0d0 {
+> +				compatible = "amlogic,meson-axg-wdt", "amlogic,meson-gxbb-wdt";
 
+The axg compatible is actually not needed. Preparing a v2.
 
-Applied, with the bindings on next/headers
-
-Neil
+--
+Carlo Caione
