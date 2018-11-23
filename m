@@ -1,95 +1,74 @@
-From: michal.lazo@mdragon.org (Michal Lazo)
-Date: Fri, 23 Nov 2018 14:23:30 +0100
-Subject: [PATCH] drm/meson: add support for 1080p25 mode
-In-Reply-To: <ea9d3fd1-068f-7bec-4166-9399d0aea02f@baylibre.com>
-References: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
- <2a9d9fa9-c9ba-c624-28da-dd3804faf438@baylibre.com>
- <CAFW1BFzC0wzwmjvpSqb90ipY4mzdWPMc3buXjkwvi4X5e8wGJg@mail.gmail.com>
- <ea9d3fd1-068f-7bec-4166-9399d0aea02f@baylibre.com>
-Message-ID: <CAFW1BFwocpL3brp8h66gaAiMgcCvsr1t=tU2+oNVFNOG4DMYPQ@mail.gmail.com>
+From: narmstrong@baylibre.com (Neil Armstrong)
+Date: Fri, 23 Nov 2018 15:02:15 +0100
+Subject: [PATCH RFC 2/8] drm/meson: add HDMI div40 TMDS mode
+In-Reply-To: <20181123140221.15700-1-narmstrong@baylibre.com>
+References: <20181123140221.15700-1-narmstrong@baylibre.com>
+Message-ID: <20181123140221.15700-3-narmstrong@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-I checked 1080p30/1080p60 and values are same
-I didn't check others
-so clean duplicates
-or make duplicates :)
+Add support for TMDS Clock > 3.4GHz for HDMI2.0 display modes.
 
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 24 ++++++++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
-On Fri, Nov 23, 2018 at 2:15 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi Michal,
->
-> On 23/11/2018 13:57, Michal Lazo wrote:
-> > I would suggest same aproach as for
-> > "meson_hdmi_encp_mode_1080p30"
-> > and "meson_hdmi_encp_mode_1080p60"
-> >
-> > so duplicate "meson_hdmi_encp_mode_1080p50"
-> > with name "meson_hdmi_encp_mode_1080p25"
->
-> The configs are litterally the same for 1080p25 and 1080p60 unlike 1080p30/1080p60,
-> so I don't see the point about duplicating a same table for the sake of naming.
->
-> We will the exact same thing to support the 2160p50/2160p60 modes by reusing the
-> same config are 2160p25/2160p50, and I don't see the point of duplication the
-> tables here aswell.
->
-> Neil
->
-> >
-> > now the code looks really like common copy paste problem
-> > Michal Lazo
-> > On Wed, Nov 21, 2018 at 10:47 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >>
-> >> On 21/11/2018 10:39, Christian Hewitt wrote:
-> >>> This essential mode for PAL users is missing, so add it.
-> >>>
-> >>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> >>> ---
-> >>>  drivers/gpu/drm/meson/meson_venc.c | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-> >>> index acbbad3..ab16046 100644
-> >>> --- a/drivers/gpu/drm/meson/meson_venc.c
-> >>> +++ b/drivers/gpu/drm/meson/meson_venc.c
-> >>> @@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
-> >>>       { 5, &meson_hdmi_encp_mode_1080i60 },
-> >>>       { 20, &meson_hdmi_encp_mode_1080i50 },
-> >>>       { 32, &meson_hdmi_encp_mode_1080p24 },
-> >>> +     { 33, &meson_hdmi_encp_mode_1080p50 },
-> >>>       { 34, &meson_hdmi_encp_mode_1080p30 },
-> >>>       { 31, &meson_hdmi_encp_mode_1080p50 },
-> >>>       { 16, &meson_hdmi_encp_mode_1080p60 },
-> >>>
-> >>
-> >> Exact, I forgot this mode...
-> >>
-> >> Thanks for the change !
-> >>
-> >> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> >>
-> >> I'll add :
-> >> Fixes: 335e3713afb87 ("drm/meson: Add support for HDMI venc modes and settings")
-> >> when applying to drm-misc-fixes.
-> >>
-> >> Neil
-> >>
-> >> _______________________________________________
-> >> linux-amlogic mailing list
-> >> linux-amlogic at lists.infradead.org
-> >> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> >
-> >
-> >
->
-
-
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index d8c5cc34e22e..118c49e054b0 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -365,7 +365,8 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+ 	unsigned int wr_clk =
+ 		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
+ 
+-	DRM_DEBUG_DRIVER("%d:\"%s\"\n", mode->base.id, mode->name);
++	DRM_DEBUG_DRIVER("%d:\"%s\" div%d\n", mode->base.id, mode->name,
++			 mode->clock > 340000 ? 40 : 10);
+ 
+ 	/* Enable clocks */
+ 	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+@@ -385,9 +386,17 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+ 	/* Enable normal output to PHY */
+ 	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
+ 
+-	/* TMDS pattern setup (TOFIX pattern for 4k2k scrambling) */
+-	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01, 0x001f001f);
+-	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23, 0x001f001f);
++	/* TMDS pattern setup (TOFIX Handle the YUV420 case) */
++	if (mode->clock > 340000) {
++		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01, 0);
++		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
++				  0x03ff03ff);
++	} else {
++		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
++				  0x001f001f);
++		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
++				  0x001f001f);
++	}
+ 
+ 	/* Load TMDS pattern */
+ 	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x1);
+@@ -413,6 +422,8 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+ 	/* Disable clock, fifo, fifo_wr */
+ 	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0);
+ 
++	dw_hdmi_set_high_tmds_clock_ratio(hdmi);
++
+ 	msleep(100);
+ 
+ 	/* Reset PHY 3 times in a row */
+@@ -562,6 +573,11 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 		mode->vdisplay, mode->vsync_start,
+ 		mode->vsync_end, mode->vtotal, mode->type, mode->flags);
+ 
++	/* If sink max TMDS clock < 340MHz, we reject the HDMI2.0 modes */
++	if (mode->clock > 340000 &&
++	    connector->display_info.max_tmds_clock < 340000)
++		return MODE_BAD;
++
+ 	/* Check against non-VIC supported modes */
+ 	if (!vic) {
+ 		status = meson_venc_hdmi_supported_mode(mode);
 -- 
-Best Regards
-
-Michal Lazo
-Senior developer engineer
-mdragon.org
-Slovakia
+2.19.1
