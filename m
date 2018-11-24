@@ -1,48 +1,205 @@
-From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 23 Nov 2018 20:53:11 +0100
-Subject: [PATCH 6/6] ARM: dts: meson8b: add the Cortex-A5 global timer
-In-Reply-To: <20181123195311.4578-1-martin.blumenstingl@googlemail.com>
-References: <20181123195311.4578-1-martin.blumenstingl@googlemail.com>
-Message-ID: <20181123195311.4578-7-martin.blumenstingl@googlemail.com>
+From: lyude@redhat.com (Lyude Paul)
+Date: Sat, 24 Nov 2018 12:06:27 -0500
+Subject: [PATCH v2] drm/meson: Fixes for drm_crtc_vblank_on/off support
+In-Reply-To: <20181122160103.10993-1-narmstrong@baylibre.com>
+References: <20181122160103.10993-1-narmstrong@baylibre.com>
+Message-ID: <75e9fc92d43fc8ddbb787763581d1d7b9b7ed980.camel@redhat.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-The Meson8b SoC is using four Cortex-A5 cores. These come with an ARM
-global timer.
-This adds the Cortex-A5 global timer but keeps it disabled for now. The
-timer is clocked by the "PERIPH" clock whose rate can change during
-runtime (when changing the frequency of the CPU clock). Unfortunately
-the arm_global_timer driver does not handle changes to the clock rate
-yet.
+There are some typos according to dim checkpatch:
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+  6421619a1655 (HEAD) drm/meson: Fixes for drm_crtc_vblank_on/off support
+  -:48: WARNING:TYPO_SPELLING: 'occurence' may be misspelled - perhaps
+  'occurrence'?
+  #48:
+  The issue is that vblank need to be enabled in any occurence of :
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index a3a5649e32fa..a38d187d3d6e 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -350,6 +350,19 @@
- 		reg = <0x0 0x100>;
- 	};
- 
-+	timer at 200 {
-+		compatible = "arm,cortex-a5-global-timer";
-+		reg = <0x200 0x20>;
-+		interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
-+		clocks = <&clkc CLKID_PERIPH>;
-+
-+		/*
-+		 * the arm_global_timer driver currently does not handle clock
-+		 * rate changes. Keep it disabled for now.
-+		 */
-+		status = "disabled";
-+	};
-+
- 	timer at 600 {
- 		compatible = "arm,cortex-a5-twd-timer";
- 		reg = <0x600 0x20>;
--- 
-2.19.2
+  -:53: WARNING:TYPO_SPELLING: 'occurence' may be misspelled - perhaps
+  'occurrence'?
+  #53:
+  of these occurence solves this race condition and makes sure vblank
+
+  -:60: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description
+  (prefer a maximum 75 chars per line)
+  #60:
+  - Initialize and enable vblank at the first _atomic_begin()/_atomic_enable()
+
+  total: 0 errors, 3 warnings, 0 checks, 82 lines checked
+
+But I don't mind correcting those myself. Other then that, looks good
+
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+
+Will push to drm-misc-fixes in just a moment with the typo fixes/cc to
+stable
+
+On Thu, 2018-11-22 at 17:01 +0100, Neil Armstrong wrote:
+> Since Linux 4.17, calls to drm_crtc_vblank_on/off are mandatory, and we get
+> a warning when ctrc is disabled :
+> " driver forgot to call drm_crtc_vblank_off()"
+>
+> But, the vsync IRQ was not totally disabled due the transient hardware
+> state and specific interrupt line, thus adding proper IRQ masking from
+> the HHI system control registers.
+>
+> The last change fixes a race condition introduced by calling the added
+> drm_crtc_vblank_on/off when an HPD event occurs from the HDMI connector,
+> triggering a WARN_ON() in the _atomic_begin() callback when the CRTC
+> is disabled, thus also triggering a WARN_ON() in drm_vblank_put() :
+>
+> WARNING: CPU: 0 PID: 1185 at drivers/gpu/drm/meson/meson_crtc.c:157
+> meson_crtc_atomic_begin+0x78/0x80
+> [...]
+> Call trace:
+>   meson_crtc_atomic_begin+0x78/0x80
+>   drm_atomic_helper_commit_planes+0x140/0x218
+>   drm_atomic_helper_commit_tail+0x38/0x80
+>   commit_tail+0x7c/0x80
+>   drm_atomic_helper_commit+0xdc/0x150
+>   drm_atomic_commit+0x54/0x60
+>   restore_fbdev_mode_atomic+0x198/0x238
+>   restore_fbdev_mode+0x6c/0x1c0
+>   drm_fb_helper_restore_fbdev_mode_unlocked+0x7c/0xf0
+>   drm_fb_helper_set_par+0x34/0x60
+>   drm_fb_helper_hotplug_event.part.28+0xb8/0xc8
+>   drm_fbdev_client_hotplug+0xa4/0xe0
+>   drm_client_dev_hotplug+0x90/0xe0
+>   drm_kms_helper_hotplug_event+0x3c/0x48
+>   drm_helper_hpd_irq_event+0x134/0x168
+>   dw_hdmi_top_thread_irq+0x3c/0x50
+> [...]
+> WARNING: CPU: 0 PID: 1185 at drivers/gpu/drm/drm_vblank.c:1026
+> drm_vblank_put+0xb4/0xc8
+> [...]
+>  Call trace:
+>   drm_vblank_put+0xb4/0xc8
+>   drm_crtc_vblank_put+0x24/0x30
+>   drm_atomic_helper_wait_for_vblanks.part.9+0x130/0x2b8
+>   drm_atomic_helper_commit_tail+0x68/0x80
+> [...]
+>
+> The issue is that vblank need to be enabled in any occurence of :
+> - atomic_enable()
+> - atomic_begin() and state->enable == true, which was not the case
+>
+> Moving the CRTC enable code to a common function and calling in one
+> of these occurence solves this race condition and makes sure vblank
+> is enabled in each call to _atomic_begin() from the HPD event leading
+> to drm_atomic_helper_commit_planes().
+>
+> To Summarize :
+> - Make sure that the CRTC code will call the drm_crtc_vblank_on()/off()
+> - *Really* mask the Vsync IRQ
+> - Initialize and enable vblank at the first _atomic_begin()/_atomic_enable()
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/meson/meson_crtc.c | 27 +++++++++++++++++++++++++--
+>  drivers/gpu/drm/meson/meson_venc.c |  3 +++
+>  2 files changed, 28 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/meson/meson_crtc.c
+> b/drivers/gpu/drm/meson/meson_crtc.c
+> index d78168f979db..75d97f1b2e8f 100644
+> --- a/drivers/gpu/drm/meson/meson_crtc.c
+> +++ b/drivers/gpu/drm/meson/meson_crtc.c
+> @@ -46,6 +46,7 @@ struct meson_crtc {
+>  	struct drm_crtc base;
+>  	struct drm_pending_vblank_event *event;
+>  	struct meson_drm *priv;
+> +	bool enabled;
+>  };
+>  #define to_meson_crtc(x) container_of(x, struct meson_crtc, base)
+>
+> @@ -81,8 +82,7 @@ static const struct drm_crtc_funcs meson_crtc_funcs = {
+>
+>  };
+>
+> -static void meson_crtc_atomic_enable(struct drm_crtc *crtc,
+> -				     struct drm_crtc_state *old_state)
+> +static void meson_crtc_enable(struct drm_crtc *crtc)
+>  {
+>  	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
+>  	struct drm_crtc_state *crtc_state = crtc->state;
+> @@ -106,6 +106,22 @@ static void meson_crtc_atomic_enable(struct drm_crtc
+> *crtc,
+>  	writel_bits_relaxed(VPP_POSTBLEND_ENABLE, VPP_POSTBLEND_ENABLE,
+>  			    priv->io_base + _REG(VPP_MISC));
+>
+> +	drm_crtc_vblank_on(crtc);
+> +
+> +	meson_crtc->enabled = true;
+> +}
+> +
+> +static void meson_crtc_atomic_enable(struct drm_crtc *crtc,
+> +				     struct drm_crtc_state *old_state)
+> +{
+> +	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
+> +	struct meson_drm *priv = meson_crtc->priv;
+> +
+> +	DRM_DEBUG_DRIVER("\n");
+> +
+> +	if (!meson_crtc->enabled)
+> +		meson_crtc_enable(crtc);
+> +
+>  	priv->viu.osd1_enabled = true;
+>  }
+>
+> @@ -117,6 +133,8 @@ static void meson_crtc_atomic_disable(struct drm_crtc
+> *crtc,
+>
+>  	DRM_DEBUG_DRIVER("\n");
+>
+> +	drm_crtc_vblank_off(crtc);
+> +
+>  	priv->viu.osd1_enabled = false;
+>  	priv->viu.osd1_commit = false;
+>
+> @@ -135,6 +153,8 @@ static void meson_crtc_atomic_disable(struct drm_crtc
+> *crtc,
+>
+>  		crtc->state->event = NULL;
+>  	}
+> +
+> +	meson_crtc->enabled = false;
+>  }
+>
+>  static void meson_crtc_atomic_begin(struct drm_crtc *crtc,
+> @@ -143,6 +163,9 @@ static void meson_crtc_atomic_begin(struct drm_crtc *crtc,
+>  	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
+>  	unsigned long flags;
+>
+> +	if (crtc->state->enable && !meson_crtc->enabled)
+> +		meson_crtc_enable(crtc);
+> +
+>  	if (crtc->state->event) {
+>  		WARN_ON(drm_crtc_vblank_get(crtc) != 0);
+>
+> diff --git a/drivers/gpu/drm/meson/meson_venc.c
+> b/drivers/gpu/drm/meson/meson_venc.c
+> index 9be0376e0329..ab72ddda242d 100644
+> --- a/drivers/gpu/drm/meson/meson_venc.c
+> +++ b/drivers/gpu/drm/meson/meson_venc.c
+> @@ -71,6 +71,7 @@
+>   */
+>
+>  /* HHI Registers */
+> +#define HHI_GCLK_MPEG2		0x148 /* 0x52 offset in data sheet */
+>  #define HHI_VDAC_CNTL0		0x2F4 /* 0xbd offset in data sheet */
+>  #define HHI_VDAC_CNTL1		0x2F8 /* 0xbe offset in data sheet */
+>  #define HHI_HDMI_PHY_CNTL0	0x3a0 /* 0xe8 offset in data sheet */
+> @@ -1663,10 +1664,12 @@ unsigned int meson_venci_get_field(struct meson_drm
+> *priv)
+>  void meson_venc_enable_vsync(struct meson_drm *priv)
+>  {
+>  	writel_relaxed(2, priv->io_base + _REG(VENC_INTCTRL));
+> +	regmap_update_bits(priv->hhi, HHI_GCLK_MPEG2, BIT(25), BIT(25));
+>  }
+>
+>  void meson_venc_disable_vsync(struct meson_drm *priv)
+>  {
+> +	regmap_update_bits(priv->hhi, HHI_GCLK_MPEG2, BIT(25), 0);
+>  	writel_relaxed(0, priv->io_base + _REG(VENC_INTCTRL));
+>  }
+>
