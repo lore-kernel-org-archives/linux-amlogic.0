@@ -1,41 +1,32 @@
-From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 26 Nov 2018 16:14:19 +0100
-Subject: [PATCH v2] arm64: dts: meson-axg: Enable watchdog on Meson AXG
- SoCs
-In-Reply-To: <20181123144541.15114-1-ccaione@baylibre.com>
-References: <20181123144541.15114-1-ccaione@baylibre.com>
-Message-ID: <289f3009-528a-f4d6-5d33-69728d5b214d@baylibre.com>
+From: robh@kernel.org (Rob Herring)
+Date: Mon, 26 Nov 2018 10:05:59 -0600
+Subject: [PATCH v3 1/3] dt-bindings: amlogic: Add Internal Clock Measurer
+ bindings
+In-Reply-To: <20181118135310.31458-1-narmstrong@baylibre.com>
+References: <20181118135024.30720-1-narmstrong@baylibre.com>
+ <20181118135310.31458-1-narmstrong@baylibre.com>
+Message-ID: <20181126160559.GA8094@bogus>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 23/11/2018 15:45, Carlo Caione wrote:
-> Add the watchdog node also on the AXG platforms.
+On Sun, Nov 18, 2018 at 02:53:10PM +0100, Neil Armstrong wrote:
+> The Amlogic Meson SoCs embeds a clock measurer IP to measure the internal
+> clock paths frequencies.
 > 
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
-> V2:
->  - Remove amlogic,meson-axg-wdt compatible
-> ---
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Rob,
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index df017dbd2e57..27d73d831a13 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -1422,6 +1422,12 @@
->  				status = "disabled";
->  			};
->  
-> +			watchdog at f0d0 {
-> +				compatible = "amlogic,meson-gxbb-wdt";
-> +				reg = <0x0 0xf0d0 0x0 0x10>;
-> +				clocks = <&xtal>;
-> +			};
-> +
->  			pwm_ab: pwm at 1b000 {
->  				compatible = "amlogic,meson-axg-ee-pwm";
->  				reg = <0x0 0x1b000 0x0 0x20>;
-> 
+> I didn't take your v2 Reviewed-by since I changed the compatible list,
+> tell me if i can still keep the tag.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+>  
+> Thanks,
+> Neil
+> 
+>  .../bindings/soc/amlogic/clk-measure.txt       | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
