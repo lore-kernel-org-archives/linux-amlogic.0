@@ -1,146 +1,100 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Mon, 26 Nov 2018 09:50:56 +0100
-Subject: [PATCH] drm/meson: Fix OOB memory accesses in
- meson_viu_set_osd_lut()
-In-Reply-To: <20181125012117.31915-1-lyude@redhat.com>
-References: <20181125012117.31915-1-lyude@redhat.com>
-Message-ID: <59b50c1c-bef2-630f-a9e1-1c7348375df2@baylibre.com>
+Date: Mon, 26 Nov 2018 09:52:16 +0100
+Subject: [PATCH] drm/meson: add support for 1080p25 mode
+In-Reply-To: <CAFW1BFwocpL3brp8h66gaAiMgcCvsr1t=tU2+oNVFNOG4DMYPQ@mail.gmail.com>
+References: <1542793169-13008-1-git-send-email-christianshewitt@gmail.com>
+ <2a9d9fa9-c9ba-c624-28da-dd3804faf438@baylibre.com>
+ <CAFW1BFzC0wzwmjvpSqb90ipY4mzdWPMc3buXjkwvi4X5e8wGJg@mail.gmail.com>
+ <ea9d3fd1-068f-7bec-4166-9399d0aea02f@baylibre.com>
+ <CAFW1BFwocpL3brp8h66gaAiMgcCvsr1t=tU2+oNVFNOG4DMYPQ@mail.gmail.com>
+Message-ID: <47e37691-b3b1-c6e2-8359-0d0d5d521a2c@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 25/11/2018 02:21, Lyude Paul wrote:
-> Currently on driver bringup with KASAN enabled, meson triggers an OOB
-> memory access as shown below:
-> 
-> [  117.904528] ==================================================================
-> [  117.904560] BUG: KASAN: global-out-of-bounds in meson_viu_set_osd_lut+0x7a0/0x890
-> [  117.904588] Read of size 4 at addr ffff20000a63ce24 by task systemd-udevd/498
-> [  117.904601]
-> [  118.083372] CPU: 4 PID: 498 Comm: systemd-udevd Not tainted 4.20.0-rc3Lyude-Test+ #20
-> [  118.091143] Hardware name: amlogic khadas-vim2/khadas-vim2, BIOS 2018.07-rc2-armbian 09/11/2018
-> [  118.099768] Call trace:
-> [  118.102181]  dump_backtrace+0x0/0x3e8
-> [  118.105796]  show_stack+0x14/0x20
-> [  118.109083]  dump_stack+0x130/0x1c4
-> [  118.112539]  print_address_description+0x60/0x25c
-> [  118.117214]  kasan_report+0x1b4/0x368
-> [  118.120851]  __asan_report_load4_noabort+0x18/0x20
-> [  118.125566]  meson_viu_set_osd_lut+0x7a0/0x890
-> [  118.129953]  meson_viu_init+0x10c/0x290
-> [  118.133741]  meson_drv_bind_master+0x474/0x748
-> [  118.138141]  meson_drv_bind+0x10/0x18
-> [  118.141760]  try_to_bring_up_master+0x3d8/0x768
-> [  118.146249]  component_add+0x214/0x570
-> [  118.149978]  meson_dw_hdmi_probe+0x18/0x20 [meson_dw_hdmi]
-> [  118.155404]  platform_drv_probe+0x98/0x138
-> [  118.159455]  really_probe+0x2a0/0xa70
-> [  118.163070]  driver_probe_device+0x1b4/0x2d8
-> [  118.167299]  __driver_attach+0x200/0x280
-> [  118.171189]  bus_for_each_dev+0x10c/0x1a8
-> [  118.175144]  driver_attach+0x38/0x50
-> [  118.178681]  bus_add_driver+0x330/0x608
-> [  118.182471]  driver_register+0x140/0x388
-> [  118.186361]  __platform_driver_register+0xc8/0x108
-> [  118.191117]  meson_dw_hdmi_platform_driver_init+0x1c/0x1000 [meson_dw_hdmi]
-> [  118.198022]  do_one_initcall+0x12c/0x3bc
-> [  118.201883]  do_init_module+0x1fc/0x638
-> [  118.205673]  load_module+0x4b4c/0x6808
-> [  118.209387]  __se_sys_init_module+0x2e8/0x3c0
-> [  118.213699]  __arm64_sys_init_module+0x68/0x98
-> [  118.218100]  el0_svc_common+0x104/0x210
-> [  118.221893]  el0_svc_handler+0x48/0xb8
-> [  118.225594]  el0_svc+0x8/0xc
-> [  118.228429]
-> [  118.229887] The buggy address belongs to the variable:
-> [  118.235007]  eotf_33_linear_mapping+0x84/0xc0
-> [  118.239301]
-> [  118.240752] Memory state around the buggy address:
-> [  118.245522]  ffff20000a63cd00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-> [  118.252695]  ffff20000a63cd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-> [  118.259850] >ffff20000a63ce00: 00 00 00 00 04 fa fa fa fa fa fa fa 00 00 00 00
-> [  118.267000]                                ^
-> [  118.271222]  ffff20000a63ce80: 00 fa fa fa fa fa fa fa 00 00 00 00 00 00 00 00
-> [  118.278393]  ffff20000a63cf00: 00 00 00 00 00 00 00 00 00 00 00 00 04 fa fa fa
-> [  118.285542] ==================================================================
-> [  118.292699] Disabling lock debugging due to kernel taint
-> 
-> It seems that when looping through the OSD EOTF LUT maps, we use the
-> same max iterator for OETF: 20. This is wrong though, since 20*2 is 40,
-> which means that we'll stop out of bounds on the EOTF maps.
-> 
-> But, this whole thing is already confusing enough to read through as-is,
-> so let's just replace all of the hardcoded sizes with
-> OSD_(OETF/EOTF)_LUT_SIZE / 2.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: dri-devel at lists.freedesktop.org
-> Cc: linux-amlogic at lists.infradead.org
-> Cc: linux-arm-kernel at lists.infradead.org
-> Cc: <stable@vger.kernel.org> # v4.10+
-> ---
->  drivers/gpu/drm/meson/meson_viu.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
-> index 6bcfa527c180..26a0857878bf 100644
-> --- a/drivers/gpu/drm/meson/meson_viu.c
-> +++ b/drivers/gpu/drm/meson/meson_viu.c
-> @@ -184,18 +184,18 @@ void meson_viu_set_osd_lut(struct meson_drm *priv, enum viu_lut_sel_e lut_sel,
->  	if (lut_sel == VIU_LUT_OSD_OETF) {
->  		writel(0, priv->io_base + _REG(addr_port));
->  
-> -		for (i = 0; i < 20; i++)
-> +		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
->  			writel(r_map[i * 2] | (r_map[i * 2 + 1] << 16),
->  				priv->io_base + _REG(data_port));
->  
->  		writel(r_map[OSD_OETF_LUT_SIZE - 1] | (g_map[0] << 16),
->  			priv->io_base + _REG(data_port));
->  
-> -		for (i = 0; i < 20; i++)
-> +		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
->  			writel(g_map[i * 2 + 1] | (g_map[i * 2 + 2] << 16),
->  				priv->io_base + _REG(data_port));
->  
-> -		for (i = 0; i < 20; i++)
-> +		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
->  			writel(b_map[i * 2] | (b_map[i * 2 + 1] << 16),
->  				priv->io_base + _REG(data_port));
->  
-> @@ -211,18 +211,18 @@ void meson_viu_set_osd_lut(struct meson_drm *priv, enum viu_lut_sel_e lut_sel,
->  	} else if (lut_sel == VIU_LUT_OSD_EOTF) {
->  		writel(0, priv->io_base + _REG(addr_port));
->  
-> -		for (i = 0; i < 20; i++)
-> +		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
->  			writel(r_map[i * 2] | (r_map[i * 2 + 1] << 16),
->  				priv->io_base + _REG(data_port));
->  
->  		writel(r_map[OSD_EOTF_LUT_SIZE - 1] | (g_map[0] << 16),
->  			priv->io_base + _REG(data_port));
->  
-> -		for (i = 0; i < 20; i++)
-> +		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
->  			writel(g_map[i * 2 + 1] | (g_map[i * 2 + 2] << 16),
->  				priv->io_base + _REG(data_port));
->  
-> -		for (i = 0; i < 20; i++)
-> +		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
->  			writel(b_map[i * 2] | (b_map[i * 2 + 1] << 16),
->  				priv->io_base + _REG(data_port));
->  
-> 
+Hi Michal,
 
-Good catch !
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+On 23/11/2018 14:23, Michal Lazo wrote:
 
+Please do not top-post !
 
-Applying to drm-misc-fixes
+> I checked 1080p30/1080p60 and values are same
+> I didn't check others
+> so clean duplicates
+> or make duplicates :)
 
-Thanks,
+I'll be happy to apply your patches !
+
 Neil
+
+> 
+> 
+> On Fri, Nov 23, 2018 at 2:15 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> Hi Michal,
+>>
+>> On 23/11/2018 13:57, Michal Lazo wrote:
+>>> I would suggest same aproach as for
+>>> "meson_hdmi_encp_mode_1080p30"
+>>> and "meson_hdmi_encp_mode_1080p60"
+>>>
+>>> so duplicate "meson_hdmi_encp_mode_1080p50"
+>>> with name "meson_hdmi_encp_mode_1080p25"
+>>
+>> The configs are litterally the same for 1080p25 and 1080p60 unlike 1080p30/1080p60,
+>> so I don't see the point about duplicating a same table for the sake of naming.
+>>
+>> We will the exact same thing to support the 2160p50/2160p60 modes by reusing the
+>> same config are 2160p25/2160p50, and I don't see the point of duplication the
+>> tables here aswell.
+>>
+>> Neil
+>>
+>>>
+>>> now the code looks really like common copy paste problem
+>>> Michal Lazo
+>>> On Wed, Nov 21, 2018 at 10:47 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>>>
+>>>> On 21/11/2018 10:39, Christian Hewitt wrote:
+>>>>> This essential mode for PAL users is missing, so add it.
+>>>>>
+>>>>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+>>>>> ---
+>>>>>  drivers/gpu/drm/meson/meson_venc.c | 1 +
+>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+>>>>> index acbbad3..ab16046 100644
+>>>>> --- a/drivers/gpu/drm/meson/meson_venc.c
+>>>>> +++ b/drivers/gpu/drm/meson/meson_venc.c
+>>>>> @@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
+>>>>>       { 5, &meson_hdmi_encp_mode_1080i60 },
+>>>>>       { 20, &meson_hdmi_encp_mode_1080i50 },
+>>>>>       { 32, &meson_hdmi_encp_mode_1080p24 },
+>>>>> +     { 33, &meson_hdmi_encp_mode_1080p50 },
+>>>>>       { 34, &meson_hdmi_encp_mode_1080p30 },
+>>>>>       { 31, &meson_hdmi_encp_mode_1080p50 },
+>>>>>       { 16, &meson_hdmi_encp_mode_1080p60 },
+>>>>>
+>>>>
+>>>> Exact, I forgot this mode...
+>>>>
+>>>> Thanks for the change !
+>>>>
+>>>> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+>>>>
+>>>> I'll add :
+>>>> Fixes: 335e3713afb87 ("drm/meson: Add support for HDMI venc modes and settings")
+>>>> when applying to drm-misc-fixes.
+>>>>
+>>>> Neil
+>>>>
+>>>> _______________________________________________
+>>>> linux-amlogic mailing list
+>>>> linux-amlogic at lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>>>
+>>>
+>>>
+>>
+> 
+> 
