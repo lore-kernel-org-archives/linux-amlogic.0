@@ -1,45 +1,60 @@
-From: heiko@sntech.de (Heiko Stuebner)
-Date: Thu, 29 Nov 2018 14:18:03 +0100
-Subject: [PATCH] iio: adc: Replace license text w/ SPDX identifier
-In-Reply-To: <20181128175312.9634-1-matheus.bernardino@usp.br>
-References: <20181128175312.9634-1-matheus.bernardino@usp.br>
-Message-ID: <3999722.Y4omgby9AG@phil>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Thu, 29 Nov 2018 21:41:55 +0800
+Subject: [PATCH v5 0/2] clk: meson-g12a: Add EE clock controller driver
+Message-ID: <1543498917-98605-1-git-send-email-jian.hu@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Am Mittwoch, 28. November 2018, 18:53:12 CET schrieb Matheus Tavares:
-> From: Lucas Santos <ilucas.ms@gmail.com>
-> 
-> This patch removes all license boilerplate texts from the .c and .h
-> files at drivers/iio/adc/ and, instead, adds the proper SPDX license
-> identifiers.
-> 
-> Signed-off-by: Lucas Santos <ilucas.ms@gmail.com>
-> Signed-off-by: Matheus Tavares <matheus.bernardino@usp.br>
-> ---
+Changes since v4 at[5]
+-add bypass clock "g12a_ee_core" from DT
+-fix Kconfig description
+-change g12a_mpll0_div/g12a_mpll1_div/g12a_mpll2_div/g12a_mpll3_div 
+ clock's parent name as fixed_pll_dco
+-drop CLK_SET_RATE_PARENT flag for pll clock
+-drop CLK_GET_RATE_NOCACHE flag for pll_dco clock
+-delete usless note
+-enable G12A clock driver
 
-> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-> index 1f98566d5b3c..234c6df348ce 100644
-> --- a/drivers/iio/adc/rockchip_saradc.c
-> +++ b/drivers/iio/adc/rockchip_saradc.c
-> @@ -1,16 +1,7 @@
-> +// SPDX-License-Identifier: GPL-2.0+
->  /*
->   * Rockchip Successive Approximation Register (SAR) A/D Converter
->   * Copyright (C) 2014 ROCKCHIP, Inc.
-> - *
-> - * This program is free software; you can redistribute it and/or modify
-> - * it under the terms of the GNU General Public License as published by
-> - * the Free Software Foundation; either version 2 of the License, or
-> - * (at your option) any later version.
-> - *
-> - * This program is distributed in the hope that it will be useful,
-> - * but WITHOUT ANY WARRANTY; without even the implied warranty of
-> - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - * GNU General Public License for more details.
->   */
->  
->  #include <linux/module.h>
+Changes since v3 at[4]
+-add fixed clocks clk_regmap definition
 
-For the Rockchip-part
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Changes since v2 at[2]
+-fix fixed clocks's descriptions
+-fix alignment
+-add enable bit for plls base on [3] patches
+-add fixed clock gate bit
+
+Changes since v1 at[1]
+-fix typo of 'Everything'.
+-change the word 'AmLogic' to 'Amlogic'
+-squash patch 1 and 2.
+-delete usless message of "Trying obsolete regs".
+-delete the empty line in include/dt-bindings/clock/g12a-clkc.h.
+-rebase on top of the "next/drivers" branch, and add g12a clock patch.
+-add CLK_MUX_ROUND_CLOSEST for g12a_sd_emmc_b_clk0_sel and
+ g12a_sd_emmc_c_clk0_sel.
+
+[1]https://lkml.kernel.org/r/1531133549-25806-2-git-send-email-jian.hu at amlogic.com
+[2]https://lkml.kernel.org/r/1531728707-192230-2-git-send-email-jian.hu at amlogic.com
+[3]https://lkml.kernel.org/r/20180717095617.12240-1-jbrunet at baylibre.com
+[4]https://lkml.kernel.org/r/1533890858-113020-1-git-send-email-jian.hu at amlogic.com
+[5]https://lkml.kernel.org/r/1541511349-121152-1-git-send-email-jian.hu at amlogic.com
+
+Jian Hu (2):
+  dt-bindings: clk: meson-g12a: Add G12A EE Clock Bindings
+  clk: meson-g12a: Add EE Clock controller driver
+
+ .../bindings/clock/amlogic,gxbb-clkc.txt           |    1 +
+ arch/arm64/Kconfig.platforms                       |    1 +
+ drivers/clk/meson/Kconfig                          |    8 +
+ drivers/clk/meson/Makefile                         |    1 +
+ drivers/clk/meson/g12a.c                           | 1185 ++++++++++++++++++++
+ drivers/clk/meson/g12a.h                           |  130 +++
+ include/dt-bindings/clock/g12a-clkc.h              |   93 ++
+ 7 files changed, 1419 insertions(+)
+ create mode 100644 drivers/clk/meson/g12a.c
+ create mode 100644 drivers/clk/meson/g12a.h
+ create mode 100644 include/dt-bindings/clock/g12a-clkc.h
+
+-- 
+1.9.1
