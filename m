@@ -1,7 +1,7 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 29 Nov 2018 12:47:33 -0800
-Subject: [GIT PULL] Amlogic SoC drivers for v4.21
-Message-ID: <7hwoov8vbu.fsf@baylibre.com>
+Date: Thu, 29 Nov 2018 12:49:24 -0800
+Subject: [GIT PULL] ARM: dts: Amlogic updates for v4.21
+Message-ID: <7hr2f38v8r.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
@@ -11,30 +11,37 @@ The following changes since commit 651022382c7f8da46cb4872a545ee1da6d097d2a:
 
 are available in the git repository at:
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt
 
-for you to fetch changes up to 2b45ebef39a2caad409f70b22b4a2a41df9815b6:
+for you to fetch changes up to 7b141abe4aa137f362d7324de5a49fd3105f570f:
 
-  soc: amlogic: Add Meson Clock Measure driver (2018-11-28 16:55:35 -0800)
-
-----------------------------------------------------------------
-Amlogic SoC drivers for v4.21
-- new clock measurement driver and bindings
-- COMPILE_TEST fix
+  ARM: dts: meson: add the clock inputs for the Meson timer (2018-11-28 16:49:03 -0800)
 
 ----------------------------------------------------------------
-Maxime Jourdan (1):
-      drivers: soc: Allow building the amlogic drivers without ARCH_MESON
+Amlogic 32-bit DT updates for v4.21
+- support more timers on meson8
+- add the stdout-path property on several boards
 
-Neil Armstrong (2):
-      dt-bindings: amlogic: Add Internal Clock Measurer bindings
-      soc: amlogic: Add Meson Clock Measure driver
+----------------------------------------------------------------
+Jerome Brunet (1):
+      ARM: dts: meson: consistently disable pin bias
 
- Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt |  18 ++++++
- drivers/soc/Makefile                                          |   2 +-
- drivers/soc/amlogic/Kconfig                                   |   8 +++
- drivers/soc/amlogic/Makefile                                  |   1 +
- drivers/soc/amlogic/meson-clk-measure.c                       | 350 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 5 files changed, 378 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
- create mode 100644 drivers/soc/amlogic/meson-clk-measure.c
+Martin Blumenstingl (7):
+      dt-bindings: timer: meson6_timer: document all interrupts
+      dt-bindings: timer: meson6_timer: document the clock inputs
+      ARM: dts: meson6: atv1200: add the /chosen/stdout-path property
+      ARM: dts: meson8: minix-neo-x8: add the /chosen/stdout-path property
+      ARM: dts: meson8b: mxq: add the /chosen/stdout-path property
+      ARM: dts: meson: add the TIMER B/C/D interrupts
+      ARM: dts: meson: add the clock inputs for the Meson timer
+
+ Documentation/devicetree/bindings/timer/amlogic,meson6-timer.txt | 11 +++++++++--
+ arch/arm/boot/dts/meson.dtsi                                     |  7 +++++--
+ arch/arm/boot/dts/meson6-atv1200.dts                             |  4 ++++
+ arch/arm/boot/dts/meson6.dtsi                                    |  5 +++++
+ arch/arm/boot/dts/meson8-minix-neo-x8.dts                        |  4 ++++
+ arch/arm/boot/dts/meson8.dtsi                                    | 17 +++++++++++++++++
+ arch/arm/boot/dts/meson8b-mxq.dts                                |  4 ++++
+ arch/arm/boot/dts/meson8b.dtsi                                   | 14 ++++++++++++++
+ arch/arm/boot/dts/meson8m2.dtsi                                  |  1 +
+ 9 files changed, 63 insertions(+), 4 deletions(-)
