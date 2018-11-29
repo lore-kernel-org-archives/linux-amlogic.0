@@ -1,22 +1,45 @@
-From: dan.carpenter@oracle.com (Dan Carpenter)
-Date: Thu, 29 Nov 2018 15:20:32 +0300
-Subject: [PATCH v6 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
- controller driver
-In-Reply-To: <6da0ecdc-47e6-960e-c84e-2eb30632c317@amlogic.com>
-References: <20181129090340.GO3073@unbuntlaptop>
- <6da0ecdc-47e6-960e-c84e-2eb30632c317@amlogic.com>
-Message-ID: <20181129122032.GS3073@unbuntlaptop>
+From: heiko@sntech.de (Heiko Stuebner)
+Date: Thu, 29 Nov 2018 14:18:03 +0100
+Subject: [PATCH] iio: adc: Replace license text w/ SPDX identifier
+In-Reply-To: <20181128175312.9634-1-matheus.bernardino@usp.br>
+References: <20181128175312.9634-1-matheus.bernardino@usp.br>
+Message-ID: <3999722.Y4omgby9AG@phil>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On Thu, Nov 29, 2018 at 08:08:57PM +0800, Hanjie Lin wrote:
-> Yes, it's really a silly mistake. 
+Am Mittwoch, 28. November 2018, 18:53:12 CET schrieb Matheus Tavares:
+> From: Lucas Santos <ilucas.ms@gmail.com>
+> 
+> This patch removes all license boilerplate texts from the .c and .h
+> files at drivers/iio/adc/ and, instead, adds the proper SPDX license
+> identifiers.
+> 
+> Signed-off-by: Lucas Santos <ilucas.ms@gmail.com>
+> Signed-off-by: Matheus Tavares <matheus.bernardino@usp.br>
+> ---
 
-No one gets annoyed about typos.  We're all human and we make mistakes.
+> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
+> index 1f98566d5b3c..234c6df348ce 100644
+> --- a/drivers/iio/adc/rockchip_saradc.c
+> +++ b/drivers/iio/adc/rockchip_saradc.c
+> @@ -1,16 +1,7 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+>  /*
+>   * Rockchip Successive Approximation Register (SAR) A/D Converter
+>   * Copyright (C) 2014 ROCKCHIP, Inc.
+> - *
+> - * This program is free software; you can redistribute it and/or modify
+> - * it under the terms of the GNU General Public License as published by
+> - * the Free Software Foundation; either version 2 of the License, or
+> - * (at your option) any later version.
+> - *
+> - * This program is distributed in the hope that it will be useful,
+> - * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> - * GNU General Public License for more details.
+>   */
+>  
+>  #include <linux/module.h>
 
-(This was going to an uplifting email, but then I had to mention that
-what does make people annoyed is OS abstraction layers.  People try to
-use the same driver on both linux and windows.  Absolute madness!)
-
-regards,
-dan carpenter
+For the Rockchip-part
+Acked-by: Heiko Stuebner <heiko@sntech.de>
