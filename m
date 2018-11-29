@@ -1,40 +1,40 @@
-From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 29 Nov 2018 17:54:51 +0100
-Subject: [PATCH] arm64: dts: meson-axg: remove alternate xtal
-Message-ID: <20181129165451.21446-1-jbrunet@baylibre.com>
+From: khilman@baylibre.com (Kevin Hilman)
+Date: Thu, 29 Nov 2018 12:47:33 -0800
+Subject: [GIT PULL] Amlogic SoC drivers for v4.21
+Message-ID: <7hwoov8vbu.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-There is actually no alternate xtal on any of the axg board I have
-seen so far. The 32k is actually generated internally, deriving from
-the 24MHz main xtal.
+The following changes since commit 651022382c7f8da46cb4872a545ee1da6d097d2a:
 
-Amlogic SoC also have the option to provide the 32k reference externally,
-through one of the AO pads, but no platform is using this ATM.
+  Linux 4.20-rc1 (2018-11-04 15:37:52 -0800)
 
-Fixes: 5e395e146667 ("ARM64: dts: meson-axg: add an 32K alt aoclk")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 -------
- 1 file changed, 7 deletions(-)
+are available in the git repository at:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index f2e9fbfff4ea..63adf54b00c5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -53,13 +53,6 @@
- 		status = "disabled";
- 	};
- 
--	ao_alt_xtal: ao_alt_xtal-clk {
--		compatible = "fixed-clock";
--		clock-frequency = <32000000>;
--		clock-output-names = "ao_alt_xtal";
--		#clock-cells = <0>;
--	};
--
- 	arm-pmu {
- 		compatible = "arm,cortex-a53-pmu";
- 		interrupts = <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.19.1
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+
+for you to fetch changes up to 2b45ebef39a2caad409f70b22b4a2a41df9815b6:
+
+  soc: amlogic: Add Meson Clock Measure driver (2018-11-28 16:55:35 -0800)
+
+----------------------------------------------------------------
+Amlogic SoC drivers for v4.21
+- new clock measurement driver and bindings
+- COMPILE_TEST fix
+
+----------------------------------------------------------------
+Maxime Jourdan (1):
+      drivers: soc: Allow building the amlogic drivers without ARCH_MESON
+
+Neil Armstrong (2):
+      dt-bindings: amlogic: Add Internal Clock Measurer bindings
+      soc: amlogic: Add Meson Clock Measure driver
+
+ Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt |  18 ++++++
+ drivers/soc/Makefile                                          |   2 +-
+ drivers/soc/amlogic/Kconfig                                   |   8 +++
+ drivers/soc/amlogic/Makefile                                  |   1 +
+ drivers/soc/amlogic/meson-clk-measure.c                       | 350 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 378 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
+ create mode 100644 drivers/soc/amlogic/meson-clk-measure.c
