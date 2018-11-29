@@ -1,45 +1,39 @@
 From: jbrunet@baylibre.com (Jerome Brunet)
-Date: Thu, 29 Nov 2018 17:45:22 +0100
-Subject: [PATCH 1/3] dt-bindings: clk: meson: add ao controller clock inputs
+Date: Thu, 29 Nov 2018 17:45:23 +0100
+Subject: [PATCH 2/3] dt-bindings: clk: meson: add main controller clock input
 In-Reply-To: <20181129164524.18670-1-jbrunet@baylibre.com>
 References: <20181129164524.18670-1-jbrunet@baylibre.com>
-Message-ID: <20181129164524.18670-2-jbrunet@baylibre.com>
+Message-ID: <20181129164524.18670-3-jbrunet@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Add the clock inputs of amlogic AO clock controller
+Add the clock input of the main clock controller
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt     | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-index 3a880528030e..c480db8f4793 100644
---- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-+++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-@@ -11,6 +11,11 @@ Required Properties:
- 	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
- 	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
- 	followed by the common "amlogic,meson-gx-aoclkc"
-+- clocks: list of clock phandle, one for each entry clock-names.
-+- clock-names: should contain the following:
-+  * "xtal"     : the platform xtal
-+  * "mpeg-clk" : the main clock controller mother clock (aka clk81)
-+  * "ext-32k"  : external 32kHz reference if any (optional)
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+index e950599566a9..79454869f96d 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+@@ -9,6 +9,8 @@ Required Properties:
+ 		"amlogic,gxbb-clkc" for GXBB SoC,
+ 		"amlogic,gxl-clkc" for GXL and GXM SoC,
+ 		"amlogic,axg-clkc" for AXG SoC.
++- clocks: phandle to the input clock of the controller, presumably the
++	  platform xtal.
  
  - #clock-cells: should be 1.
  
-@@ -40,8 +45,9 @@ ao_sysctrl: sys-ctrl at 0 {
- 		compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
+@@ -31,6 +33,7 @@ sysctrl: system-controller at 0 {
+ 	clkc: clock-controller {
  		#clock-cells = <1>;
- 		#reset-cells = <1>;
-+		clocks = <&xtal>, <&clkc CLKID_CLK81>;
-+		clock-names = "xtal", "mpeg-clk";
+ 		compatible = "amlogic,gxbb-clkc";
++		clocks = <&xtal>
  	};
--};
+ };
  
- Example: UART controller node that consumes the clock and reset generated
-   by the clock controller:
 -- 
 2.19.1
