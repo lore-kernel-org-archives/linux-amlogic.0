@@ -1,59 +1,59 @@
-From: hanjie.lin@amlogic.com (Hanjie Lin)
-Date: Thu, 29 Nov 2018 20:08:57 +0800
-Subject: [PATCH v6 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
- controller driver
-In-Reply-To: <20181129090340.GO3073@unbuntlaptop>
-References: <20181129090340.GO3073@unbuntlaptop>
-Message-ID: <6da0ecdc-47e6-960e-c84e-2eb30632c317@amlogic.com>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Thu, 29 Nov 2018 20:18:03 +0800
+Subject: [PATCH 2/2] i2c: meson: add support for Meson G12A SoC I2C
+ controller
+In-Reply-To: <865b607c-8419-9c9e-0a00-018e87adf8de@baylibre.com>
+References: <1543489197-183181-1-git-send-email-jian.hu@amlogic.com>
+ <1543489197-183181-3-git-send-email-jian.hu@amlogic.com>
+ <865b607c-8419-9c9e-0a00-018e87adf8de@baylibre.com>
+Message-ID: <c6dc485a-1399-62ef-36c0-a062fbd311fd@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
+Hi Neil,
 
-
-On 2018/11/29 17:03, Dan Carpenter wrote:
-> Hi Yue,
+On 2018/11/29 19:26, Neil Armstrong wrote:
+> On 29/11/2018 11:59, Jian Hu wrote:
+>> Add compatible and data for G12A I2C controller.
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> ---
+>>   drivers/i2c/busses/i2c-meson.c | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
+>> index 90f5d04..b86eed7 100644
+>> --- a/drivers/i2c/busses/i2c-meson.c
+>> +++ b/drivers/i2c/busses/i2c-meson.c
+>> @@ -462,10 +462,15 @@ static int meson_i2c_remove(struct platform_device *pdev)
+>>   	.div_factor = 3,
+>>   };
+>>   
+>> +static const struct meson_i2c_data i2c_g12a_data = {
+>> +	.div_factor = 3,
 > 
-> url:    https://github.com/0day-ci/linux/commits/Hanjie-Lin/dt-bindings-PCI-meson-add-DT-bindings-for-Amlogic-Meson-PCIe-controller/20181122-225955
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git next
+> Especially if the div_factor is the same as AXG.
 > 
-> smatch warnings:
-> drivers/pci/controller/dwc/pci-meson.c:171 meson_pcie_get_mem_shared() error: passing non negative 6 to ERR_PTR
+> If you have some other fixes for G12a in the pipe, you will add the new compatible and meson_i2c_data later,
+> for the div_factor, simply use the axg struct and compatible.
 > 
-> # https://github.com/0day-ci/linux/commit/c882cdc75e49b6de65cd3d95ebf688272af6b5f9
-> git remote add linux-review https://github.com/0day-ci/linux
-> git remote update linux-review
-> git checkout c882cdc75e49b6de65cd3d95ebf688272af6b5f9
-> vim +171 drivers/pci/controller/dwc/pci-meson.c
+> Neil
 > 
-> c882cdc75 Yue Wang 2018-11-22  160  
-> c882cdc75 Yue Wang 2018-11-22  161  static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
-> c882cdc75 Yue Wang 2018-11-22  162  					       struct meson_pcie *mp,
-> c882cdc75 Yue Wang 2018-11-22  163  					       const char *id)
-> c882cdc75 Yue Wang 2018-11-22  164  {
-> c882cdc75 Yue Wang 2018-11-22  165  	struct device *dev = mp->pci.dev;
-> c882cdc75 Yue Wang 2018-11-22  166  	struct resource *res;
-> c882cdc75 Yue Wang 2018-11-22  167  
-> c882cdc75 Yue Wang 2018-11-22  168  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
-> c882cdc75 Yue Wang 2018-11-22  169  	if (!res) {
-> c882cdc75 Yue Wang 2018-11-22  170  		dev_err(dev, "No REG resource %s\n", id);
-> c882cdc75 Yue Wang 2018-11-22 @171  		return ERR_PTR(ENXIO);
->                                                                ^^^^^
->                                                                -ENXIO
-> 
-> c882cdc75 Yue Wang 2018-11-22  172  	}
-> c882cdc75 Yue Wang 2018-11-22  173  
-> c882cdc75 Yue Wang 2018-11-22  174  	return devm_ioremap(dev, res->start, resource_size(res));
-> c882cdc75 Yue Wang 2018-11-22  175  }
-> c882cdc75 Yue Wang 2018-11-22  176  
-> 
-> ---
-> 0-DAY kernel test infrastructure                Open Source Technology Center
-> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+For axg and g12a SoC, the div_factor is the same, and I have confirmed 
+that they share the same IP. I prefer g12a uses axg's compatible and 
+data if it is reasonable. I will just submit the i2c controller node in 
+meson-g12a.dtsi.
+>> +};
+>> +
+>>   static const struct of_device_id meson_i2c_match[] = {
+>>   	{ .compatible = "amlogic,meson6-i2c", .data = &i2c_meson6_data },
+>>   	{ .compatible = "amlogic,meson-gxbb-i2c", .data = &i2c_gxbb_data },
+>>   	{ .compatible = "amlogic,meson-axg-i2c", .data = &i2c_axg_data },
+>> +	{ .compatible = "amlogic,meson-g12a-i2c", .data = &i2c_g12a_data },
+>>   	{},
+>>   };
+>>   
+>>
 > 
 > .
 > 
-
-Yes, it's really a silly mistake. 
-I'll fix it.
-
-thanks.
