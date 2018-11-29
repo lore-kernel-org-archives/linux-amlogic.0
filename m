@@ -1,47 +1,20 @@
-From: dan.carpenter@oracle.com (Dan Carpenter)
-Date: Thu, 29 Nov 2018 12:03:40 +0300
-Subject: [PATCH v6 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
- controller driver
-In-Reply-To: <1542876836-191355-3-git-send-email-hanjie.lin@amlogic.com>
-Message-ID: <20181129090340.GO3073@unbuntlaptop>
+From: jian.hu@amlogic.com (Jian Hu)
+Date: Thu, 29 Nov 2018 18:59:54 +0800
+Subject: [PATCH 0/2] i2c: meson: add support for Meson G12A SoC i2c controller
+Message-ID: <1543489197-183181-1-git-send-email-jian.hu@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Hi Yue,
+1)Add G12A SoC i2c compatible string in dt-bindings.
+2)Add compatible and data for G12A I2C controller driver.
 
-url:    https://github.com/0day-ci/linux/commits/Hanjie-Lin/dt-bindings-PCI-meson-add-DT-bindings-for-Amlogic-Meson-PCIe-controller/20181122-225955
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git next
+Jian Hu (2):
+  dt-bindings: i2c: meson: add Meson G12A SoC i2c compatible string
+  i2c: meson: add support for Meson G12A SoC I2C controller
 
-smatch warnings:
-drivers/pci/controller/dwc/pci-meson.c:171 meson_pcie_get_mem_shared() error: passing non negative 6 to ERR_PTR
+ Documentation/devicetree/bindings/i2c/i2c-meson.txt | 1 +
+ drivers/i2c/busses/i2c-meson.c                      | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-# https://github.com/0day-ci/linux/commit/c882cdc75e49b6de65cd3d95ebf688272af6b5f9
-git remote add linux-review https://github.com/0day-ci/linux
-git remote update linux-review
-git checkout c882cdc75e49b6de65cd3d95ebf688272af6b5f9
-vim +171 drivers/pci/controller/dwc/pci-meson.c
-
-c882cdc75 Yue Wang 2018-11-22  160  
-c882cdc75 Yue Wang 2018-11-22  161  static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
-c882cdc75 Yue Wang 2018-11-22  162  					       struct meson_pcie *mp,
-c882cdc75 Yue Wang 2018-11-22  163  					       const char *id)
-c882cdc75 Yue Wang 2018-11-22  164  {
-c882cdc75 Yue Wang 2018-11-22  165  	struct device *dev = mp->pci.dev;
-c882cdc75 Yue Wang 2018-11-22  166  	struct resource *res;
-c882cdc75 Yue Wang 2018-11-22  167  
-c882cdc75 Yue Wang 2018-11-22  168  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
-c882cdc75 Yue Wang 2018-11-22  169  	if (!res) {
-c882cdc75 Yue Wang 2018-11-22  170  		dev_err(dev, "No REG resource %s\n", id);
-c882cdc75 Yue Wang 2018-11-22 @171  		return ERR_PTR(ENXIO);
-                                                               ^^^^^
-                                                               -ENXIO
-
-c882cdc75 Yue Wang 2018-11-22  172  	}
-c882cdc75 Yue Wang 2018-11-22  173  
-c882cdc75 Yue Wang 2018-11-22  174  	return devm_ioremap(dev, res->start, resource_size(res));
-c882cdc75 Yue Wang 2018-11-22  175  }
-c882cdc75 Yue Wang 2018-11-22  176  
-
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+-- 
+1.9.1
