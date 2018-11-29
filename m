@@ -1,69 +1,131 @@
 From: martin.blumenstingl@googlemail.com (Martin Blumenstingl)
-Date: Fri, 30 Nov 2018 00:00:42 +0100
-Subject: [PATCH 0/2] ARM: dts: enable CPU frequency scaling on Meson8/Meson8b
-Message-ID: <20181129230044.21358-1-martin.blumenstingl@googlemail.com>
+Date: Fri, 30 Nov 2018 00:00:43 +0100
+Subject: [PATCH 1/2] ARM: dts: meson: meson8: add the CPU OPP table
+In-Reply-To: <20181129230044.21358-1-martin.blumenstingl@googlemail.com>
+References: <20181129230044.21358-1-martin.blumenstingl@googlemail.com>
+Message-ID: <20181129230044.21358-2-martin.blumenstingl@googlemail.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-This series enables CPU frequency scaling on Meson8 and Meson8b. On
-these SoCs all CPU cores are using the same clock, so all cores will
-always run at the same frequency.
+The values are taken from Amlogic's 3.10 kernel sources. Their sources
+have a "meson8m2_n200_2G.dtd" which defines a different voltage table:
+- 0.86V for 96MHz
+- (values in between omitted)
+- 1.14V for 1.992GHz
 
-On Meson8b this is pretty straight-forward by taking the frequency and
-voltage table from Amlogic's 3.10 vendor kernel and converting it to
-"operating-points-v2".
+The reason for this is simply the hardware design because the voltage
+regulator on this board is has a minimum output of 0.86V and a maximum
+output of 1.14V. The recommended settings are added with this patch
+instead of using the values that are only valid for one board.
 
-Meson8 (which is inherited by Meson8m2) is not so straight forward:
-The 3.10 vendor kernel contains two frequency and voltage tables with
-different voltages for the same frequency. It turns out that this is
-due to the design of a specific reference board where the output
-voltage of the regulator is limited. This has nothing to do with the
-recommended voltages of the chip so this adds the "operating-points-v2"
-which are used by all boards in the vendor kernel except the special
-case.
-The two fastest (clock rates: 1.8GHz and 1.992GHz) operating points are
-causing my Meson8m2 "M8S" (not upstream yet) board to lock up hard with
-instruction errors. I'm not sure if this is due to the poor design of
-the PCB (the LED is getting darker when I switch to 1.8GHz and soon
-after that it will crash). Thus I decided to play safe and disabled
-these two frequencies for now.
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson8.dtsi | 72 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 72 insertions(+)
 
-Special thanks to Jianxin from Amlogic who patiently replied to all of
-my questions about the CPU clocks (without his hints I would still be
-looking at why I'm seeing random lockups when running the CPU off
-cpu_in_div3 or why the udelay is not working properly)!
-
-This is successfully tested on:
-- Meson8b: Odroid-C1 and EC-100
-- Meson8m2: MXIII-Plus and my "M8S" board (the latter is not upstream
-  yet) with frequencies up to 1.608GHz
-
-Dependencies of this series:
-- these patches are based on my other series: [0] "32-bit Meson: add
-  the ARM TWD and Global Timers"
-- when not running linux-next this requires the the clock driver
-  patches which are queued for v4.21: [1] "[GIT PULL] clk: meson:
-  updates for v4.21"
-- when not running linux-next there is a runtime dependency on the
-  meson6_timer from [2] "clocksource/meson6_timer: implement ARM
-  delay timer" because changing the CPU clock requires a small udelay
-  which only works properly when using a timer as clocksource (instead
-  of running a jiffies based delay loop where the timing changes with
-  the CPU frequency)
-
-
-[0] https://patchwork.kernel.org/cover/10696327/
-[1] http://lists.infradead.org/pipermail/linux-amlogic/2018-November/009137.html
-[2] https://patchwork.kernel.org/cover/10685241/
-
-
-Martin Blumenstingl (2):
-  ARM: dts: meson: meson8: add the CPU OPP table
-  ARM: dts: meson: meson8b: add the CPU OPP tables
-
- arch/arm/boot/dts/meson8.dtsi  | 72 ++++++++++++++++++++++++++++++++++
- arch/arm/boot/dts/meson8b.dtsi | 66 +++++++++++++++++++++++++++++++
- 2 files changed, 138 insertions(+)
-
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index 2575a5835567..e5cd325d7ea8 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -64,6 +64,8 @@
+ 			reg = <0x200>;
+ 			enable-method = "amlogic,meson8-smp";
+ 			resets = <&clkc CLKC_RESET_CPU0_SOFT_RESET>;
++			operating-points-v2 = <&cpu_opp_table>;
++			clocks = <&clkc CLKID_CPUCLK>;
+ 		};
+ 
+ 		cpu1: cpu at 201 {
+@@ -73,6 +75,8 @@
+ 			reg = <0x201>;
+ 			enable-method = "amlogic,meson8-smp";
+ 			resets = <&clkc CLKC_RESET_CPU1_SOFT_RESET>;
++			operating-points-v2 = <&cpu_opp_table>;
++			clocks = <&clkc CLKID_CPUCLK>;
+ 		};
+ 
+ 		cpu2: cpu at 202 {
+@@ -82,6 +86,8 @@
+ 			reg = <0x202>;
+ 			enable-method = "amlogic,meson8-smp";
+ 			resets = <&clkc CLKC_RESET_CPU2_SOFT_RESET>;
++			operating-points-v2 = <&cpu_opp_table>;
++			clocks = <&clkc CLKID_CPUCLK>;
+ 		};
+ 
+ 		cpu3: cpu at 203 {
+@@ -91,6 +97,72 @@
+ 			reg = <0x203>;
+ 			enable-method = "amlogic,meson8-smp";
+ 			resets = <&clkc CLKC_RESET_CPU3_SOFT_RESET>;
++			operating-points-v2 = <&cpu_opp_table>;
++			clocks = <&clkc CLKID_CPUCLK>;
++		};
++	};
++
++	cpu_opp_table: opp-table {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-96000000 {
++			opp-hz = /bits/ 64 <96000000>;
++			opp-microvolt = <825000>;
++		};
++		opp-192000000 {
++			opp-hz = /bits/ 64 <192000000>;
++			opp-microvolt = <825000>;
++		};
++		opp-312000000 {
++			opp-hz = /bits/ 64 <312000000>;
++			opp-microvolt = <825000>;
++		};
++		opp-408000000 {
++			opp-hz = /bits/ 64 <408000000>;
++			opp-microvolt = <825000>;
++		};
++		opp-504000000 {
++			opp-hz = /bits/ 64 <504000000>;
++			opp-microvolt = <825000>;
++		};
++		opp-600000000 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-microvolt = <850000>;
++		};
++		opp-720000000 {
++			opp-hz = /bits/ 64 <720000000>;
++			opp-microvolt = <850000>;
++		};
++		opp-816000000 {
++			opp-hz = /bits/ 64 <816000000>;
++			opp-microvolt = <875000>;
++		};
++		opp-1008000000 {
++			opp-hz = /bits/ 64 <1008000000>;
++			opp-microvolt = <925000>;
++		};
++		opp-1200000000 {
++			opp-hz = /bits/ 64 <1200000000>;
++			opp-microvolt = <975000>;
++		};
++		opp-1416000000 {
++			opp-hz = /bits/ 64 <1416000000>;
++			opp-microvolt = <1025000>;
++		};
++		opp-1608000000 {
++			opp-hz = /bits/ 64 <1608000000>;
++			opp-microvolt = <1100000>;
++		};
++		opp-1800000000 {
++			status = "disabled";
++			opp-hz = /bits/ 64 <1800000000>;
++			opp-microvolt = <1125000>;
++		};
++		opp-1992000000 {
++			status = "disabled";
++			opp-hz = /bits/ 64 <1992000000>;
++			opp-microvolt = <1150000>;
+ 		};
+ 	};
+ 
 -- 
 2.19.2
