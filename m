@@ -1,49 +1,27 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 28 Nov 2018 16:44:40 -0800
-Subject: [PATCH v2 4/4] ARM: dts: meson: consistently disable pin bias
-In-Reply-To: <CAFBinCCDMUem0AJ56jrW2ZQf06Q=O690aRwWY4Ua79np0J+g+w@mail.gmail.com>
-References: <20181109140445.17795-1-jbrunet@baylibre.com>
- <20181109140445.17795-5-jbrunet@baylibre.com>
- <CAFBinCCDMUem0AJ56jrW2ZQf06Q=O690aRwWY4Ua79np0J+g+w@mail.gmail.com>
-Message-ID: <7h7egwd85j.fsf@baylibre.com>
+Date: Wed, 28 Nov 2018 16:49:46 -0800
+Subject: [PATCH 0/2] ARM: dts: meson: add the timer interrupts and clocks
+In-Reply-To: <20181116204235.3925-1-martin.blumenstingl@googlemail.com>
+References: <20181116204235.3925-1-martin.blumenstingl@googlemail.com>
+Message-ID: <7hzhtsbtcl.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> On Fri, Nov 9, 2018 at 3:05 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->>
->> On Amlogic chipsets, the bias set through pinconf applies to the pad
->> itself, not only the GPIO function. This means that even when we change
->> the function of the pad from GPIO to anything else, the bias previously
->> set still applies.
->>
->> As we have seen with the eMMC, depending on the bias type and the function,
->> it may trigger problems.
->>
->> The underlying issue is that we inherit whatever was left by previous user
->> of the pad (pinconf, u-boot or the ROM code). As a consequence, the actual
->> setup we will get is undefined.
->>
->> There is nothing mentioned in the documentation about pad bias and pinmux
->> function, however leaving it undefined is not an option.
->>
->> This change consistently disable the pad bias for every pinmux functions.
->> It seems to work well, we can only assume that the necessary bias (if any)
->> is already provided by the pin function itself.
->>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> Acked-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
+> This is a follow-up of my series "meson6_timer: dt-bindings updates"
+> from [0].
+> We were missing the interrupts for timer B, C and D. This is harmless
+> so far because the meson6_timer driver only implements timer A. Timer
+> E doesn't have any interrupt.
 >
-> my Odroid-C1 still boots fine from SD card and Ethernet (ping) also still works
+> Additionally the timer IP block has two clock inputs. This also adds
+> them.
 >
-> Kevin, can you please move this patch from your v4.21/dt64 branch to
-> the v4.21/dt (32-bit) branch?
-> all other patches from this series are for the 64-bit SoCs, so only
-> this single patch has to be moved
+> NOTE: the alias "timer_abcde" was chosen because there's a second
+> timer instance (F..I which are similar to A..D and J which is
+> similar to E).
 
-Thanks for catching it.
-
-I moved it to the 32-bit branch, and added your ack.
+Queued for v4.21 (branch: v4.21/dt)
 
 Kevin
