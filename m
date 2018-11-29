@@ -1,51 +1,59 @@
-From: jian.hu@amlogic.com (Jian Hu)
-Date: Thu, 29 Nov 2018 19:55:43 +0800
-Subject: [PATCH 0/2] i2c: meson: add support for Meson G12A SoC i2c
- controller
-In-Reply-To: <8a6a204b28523e5a181f9e85dda18fade76a26a3.camel@baylibre.com>
-References: <1543489197-183181-1-git-send-email-jian.hu@amlogic.com>
- <8a6a204b28523e5a181f9e85dda18fade76a26a3.camel@baylibre.com>
-Message-ID: <b2bceaf4-92ce-92a4-c382-713d29ae3b70@amlogic.com>
+From: hanjie.lin@amlogic.com (Hanjie Lin)
+Date: Thu, 29 Nov 2018 20:08:57 +0800
+Subject: [PATCH v6 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
+ controller driver
+In-Reply-To: <20181129090340.GO3073@unbuntlaptop>
+References: <20181129090340.GO3073@unbuntlaptop>
+Message-ID: <6da0ecdc-47e6-960e-c84e-2eb30632c317@amlogic.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
 
 
-On 2018/11/29 19:02, Jerome Brunet wrote:
-> On Thu, 2018-11-29 at 18:59 +0800, Jian Hu wrote:
->> 1)Add G12A SoC i2c compatible string in dt-bindings.
->> 2)Add compatible and data for G12A I2C controller driver.
->>
->> Jian Hu (2):
->>    dt-bindings: i2c: meson: add Meson G12A SoC i2c compatible string
->>    i2c: meson: add support for Meson G12A SoC I2C controller
+On 2018/11/29 17:03, Dan Carpenter wrote:
+> Hi Yue,
 > 
-> Looks to me that the g12a is compatible with the axg. What is the point of
-> adding this new compatible string ?
+> url:    https://github.com/0day-ci/linux/commits/Hanjie-Lin/dt-bindings-PCI-meson-add-DT-bindings-for-Amlogic-Meson-PCIe-controller/20181122-225955
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git next
 > 
-
-I am okay if it is reasonable below in file 
-arch/arm64/boot/dts/amlogic/meson-g12a.dtsi. I2c controller node just 
-uses axg's compatible.
-
-			i2c0: i2c at 1f000 {
-				compatible = "amlogic,meson-axg-i2c";
-				reg = <0x0 0x1f000 0x0 0x20>;
-				interrupts = <GIC_SPI 21 		   IRQ_TYPE_EDGE_RISING>;
-				clocks = <&clkc CLKID_I2C>;
-				#address-cells = <1>;
-				#size-cells = <0>;
-				status = "disabled";
-			};
-
-If it is, I just submit the i2c controller node in meson-g12a.dtsi.
-
->>
->>   Documentation/devicetree/bindings/i2c/i2c-meson.txt | 1 +
->>   drivers/i2c/busses/i2c-meson.c                      | 5 +++++
->>   2 files changed, 6 insertions(+)
->>
+> smatch warnings:
+> drivers/pci/controller/dwc/pci-meson.c:171 meson_pcie_get_mem_shared() error: passing non negative 6 to ERR_PTR
 > 
+> # https://github.com/0day-ci/linux/commit/c882cdc75e49b6de65cd3d95ebf688272af6b5f9
+> git remote add linux-review https://github.com/0day-ci/linux
+> git remote update linux-review
+> git checkout c882cdc75e49b6de65cd3d95ebf688272af6b5f9
+> vim +171 drivers/pci/controller/dwc/pci-meson.c
+> 
+> c882cdc75 Yue Wang 2018-11-22  160  
+> c882cdc75 Yue Wang 2018-11-22  161  static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
+> c882cdc75 Yue Wang 2018-11-22  162  					       struct meson_pcie *mp,
+> c882cdc75 Yue Wang 2018-11-22  163  					       const char *id)
+> c882cdc75 Yue Wang 2018-11-22  164  {
+> c882cdc75 Yue Wang 2018-11-22  165  	struct device *dev = mp->pci.dev;
+> c882cdc75 Yue Wang 2018-11-22  166  	struct resource *res;
+> c882cdc75 Yue Wang 2018-11-22  167  
+> c882cdc75 Yue Wang 2018-11-22  168  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
+> c882cdc75 Yue Wang 2018-11-22  169  	if (!res) {
+> c882cdc75 Yue Wang 2018-11-22  170  		dev_err(dev, "No REG resource %s\n", id);
+> c882cdc75 Yue Wang 2018-11-22 @171  		return ERR_PTR(ENXIO);
+>                                                                ^^^^^
+>                                                                -ENXIO
+> 
+> c882cdc75 Yue Wang 2018-11-22  172  	}
+> c882cdc75 Yue Wang 2018-11-22  173  
+> c882cdc75 Yue Wang 2018-11-22  174  	return devm_ioremap(dev, res->start, resource_size(res));
+> c882cdc75 Yue Wang 2018-11-22  175  }
+> c882cdc75 Yue Wang 2018-11-22  176  
+> 
+> ---
+> 0-DAY kernel test infrastructure                Open Source Technology Center
+> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
 > 
 > .
 > 
+
+Yes, it's really a silly mistake. 
+I'll fix it.
+
+thanks.
