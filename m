@@ -1,33 +1,49 @@
 From: khilman@baylibre.com (Kevin Hilman)
-Date: Wed, 28 Nov 2018 16:35:03 -0800
-Subject: [PATCH 01/10] ARM64: dts: amlogic: Add all CPUs in cooling maps
-In-Reply-To: <2778d0d4813cc56be851719846afecbab5f2e657.1542362530.git.viresh.kumar@linaro.org>
-References: <cover.1542362530.git.viresh.kumar@linaro.org>
- <2778d0d4813cc56be851719846afecbab5f2e657.1542362530.git.viresh.kumar@linaro.org>
-Message-ID: <7hd0qod8lk.fsf@baylibre.com>
+Date: Wed, 28 Nov 2018 16:44:40 -0800
+Subject: [PATCH v2 4/4] ARM: dts: meson: consistently disable pin bias
+In-Reply-To: <CAFBinCCDMUem0AJ56jrW2ZQf06Q=O690aRwWY4Ua79np0J+g+w@mail.gmail.com>
+References: <20181109140445.17795-1-jbrunet@baylibre.com>
+ <20181109140445.17795-5-jbrunet@baylibre.com>
+ <CAFBinCCDMUem0AJ56jrW2ZQf06Q=O690aRwWY4Ua79np0J+g+w@mail.gmail.com>
+Message-ID: <7h7egwd85j.fsf@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Viresh Kumar <viresh.kumar@linaro.org> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> Each CPU can (and does) participate in cooling down the system but the
-> DT only captures a handful of them, normally CPU0, in the cooling maps.
-> Things work by chance currently as under normal circumstances its the
-> first CPU of each cluster which is used by the operating systems to
-> probe the cooling devices. But as soon as this CPU ordering changes and
-> any other CPU is used to bring up the cooling device, we will start
-> seeing failures.
+> On Fri, Nov 9, 2018 at 3:05 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>>
+>> On Amlogic chipsets, the bias set through pinconf applies to the pad
+>> itself, not only the GPIO function. This means that even when we change
+>> the function of the pad from GPIO to anything else, the bias previously
+>> set still applies.
+>>
+>> As we have seen with the eMMC, depending on the bias type and the function,
+>> it may trigger problems.
+>>
+>> The underlying issue is that we inherit whatever was left by previous user
+>> of the pad (pinconf, u-boot or the ROM code). As a consequence, the actual
+>> setup we will get is undefined.
+>>
+>> There is nothing mentioned in the documentation about pad bias and pinmux
+>> function, however leaving it undefined is not an option.
+>>
+>> This change consistently disable the pad bias for every pinmux functions.
+>> It seems to work well, we can only assume that the necessary bias (if any)
+>> is already provided by the pin function itself.
+>>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Acked-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
 >
-> Also the DT is rather incomplete when we list only one CPU in the
-> cooling maps, as the hardware doesn't have any such limitations.
+> my Odroid-C1 still boots fine from SD card and Ethernet (ping) also still works
 >
-> Update cooling maps to include all devices affected by individual trip
-> points.
->
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+> Kevin, can you please move this patch from your v4.21/dt64 branch to
+> the v4.21/dt (32-bit) branch?
+> all other patches from this series are for the 64-bit SoCs, so only
+> this single patch has to be moved
 
-Queued for v4.21,
+Thanks for catching it.
 
-Thanks!
+I moved it to the 32-bit branch, and added your ack.
 
 Kevin
