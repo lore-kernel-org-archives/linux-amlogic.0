@@ -1,18 +1,39 @@
 From: sboyd@kernel.org (Stephen Boyd)
-Date: Thu, 29 Nov 2018 15:43:32 -0800
-Subject: [PATCH 1/3] dt-bindings: clk: meson: add ao controller clock
- inputs
-In-Reply-To: <20181129164524.18670-2-jbrunet@baylibre.com>
+Date: Thu, 29 Nov 2018 15:43:26 -0800
+Subject: [PATCH 2/3] dt-bindings: clk: meson: add main controller clock
+ input
+In-Reply-To: <20181129164524.18670-3-jbrunet@baylibre.com>
 References: <20181129164524.18670-1-jbrunet@baylibre.com>
- <20181129164524.18670-2-jbrunet@baylibre.com>
-Message-ID: <154353501265.88331.14514779271643690989@swboyd.mtv.corp.google.com>
+ <20181129164524.18670-3-jbrunet@baylibre.com>
+Message-ID: <154353500665.88331.5525788751558555940@swboyd.mtv.corp.google.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Quoting Jerome Brunet (2018-11-29 08:45:22)
-> Add the clock inputs of amlogic AO clock controller
+Quoting Jerome Brunet (2018-11-29 08:45:23)
+> Add the clock input of the main clock controller
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
+>  Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> index e950599566a9..79454869f96d 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> @@ -9,6 +9,8 @@ Required Properties:
+>                 "amlogic,gxbb-clkc" for GXBB SoC,
+>                 "amlogic,gxl-clkc" for GXL and GXM SoC,
+>                 "amlogic,axg-clkc" for AXG SoC.
+> +- clocks: phandle to the input clock of the controller, presumably the
+> +         platform xtal.
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Any reason to not have clock-names? I'd prefer to have them because then
+we can easily hook up providers with their parents based on strings. I
+suppose we'll have to support both modes of strings and numbers for
+connections, but that may be more for legacy reasons that could be
+avoided here if a clock-names property existed.
+
+>  
+>  - #clock-cells: should be 1.
+>  
