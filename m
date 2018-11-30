@@ -1,9 +1,11 @@
-From: ccaione@baylibre.com (Carlo Caione)
-Date: Fri, 30 Nov 2018 11:17:15 +0000
-Subject: addition of linux-amlogic to lore
-In-Reply-To: <7h36rj8pqe.fsf@baylibre.com>
-References: <7h36rj8pqe.fsf@baylibre.com>
-Message-ID: <7ce98875db89035b921151a9768387031c6cb7da.camel@baylibre.com>
+From: kernel-helpdesk@rt.linuxfoundation.org (Carlo Caione via RT)
+Date: Fri, 30 Nov 2018 06:17:25 -0500
+Subject: [Kernel.org Helpdesk #64693] [linuxfoundation.org #64693] Re:
+ addition of linux-amlogic to lore
+In-Reply-To: <7ce98875db89035b921151a9768387031c6cb7da.camel@baylibre.com>
+References: <RT-Ticket-64693@linuxfoundation> <7h36rj8pqe.fsf@baylibre.com>
+ <7ce98875db89035b921151a9768387031c6cb7da.camel@baylibre.com>
+Message-ID: <rt-4.4.0-6779-1543576645-294.64693-6-0@linuxfoundation>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
