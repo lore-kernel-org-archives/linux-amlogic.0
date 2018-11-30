@@ -1,57 +1,55 @@
 From: narmstrong@baylibre.com (Neil Armstrong)
-Date: Fri, 30 Nov 2018 11:18:05 +0100
-Subject: [PATCH v2 3/3] ARM: dts: meson: switch the clock controller to
- the HHI register area
-In-Reply-To: <20181028120859.5735-4-martin.blumenstingl@googlemail.com>
-References: <20181028120859.5735-1-martin.blumenstingl@googlemail.com>
- <20181028120859.5735-4-martin.blumenstingl@googlemail.com>
-Message-ID: <6720a94f-ee87-937c-e360-87c2e37d29aa@baylibre.com>
+Date: Fri, 30 Nov 2018 11:26:41 +0100
+Subject: [PATCH v3] ARM: meson: Add regmap support for clock driver
+In-Reply-To: <20181127164118.20715-1-ldevulder@suse.de>
+References: <20181127164118.20715-1-ldevulder@suse.de>
+Message-ID: <a796c3df-0e92-68ce-e263-54dc968f0837@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-On 28/10/2018 13:08, Martin Blumenstingl wrote:
-> The clock controller on Meson8/Meson8m2 and Meson8b is part of a
-> register region called "HHI". This register area contains more
-> functionality than just a clock controller:
-> - the clock controller
-> - some reset controller bits
-> - temperature sensor calibration data (on Meson8b and Meson8m2 only)
-> - HDMI controller
+Hi Loic,
+
+On 27/11/2018 17:41, Loic Devulder wrote:
+> This patch modifies the meson clock driver to use syscon/regmap like
+> the Linux kernel does, as it is needed if we want to share the same
+> DTS files.
 > 
-> Allow access to this HHI register area as "system controller". Also
-> migrate the Meson8 and Meson8b clock controllers to this new node.
+> DTS files are synchronized from Linux 4.19.
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Loic Devulder <ldevulder@suse.de>
 > Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  arch/arm/boot/dts/meson.dtsi   |  7 +++++++
->  arch/arm/boot/dts/meson8.dtsi  | 15 ++++++++-------
->  arch/arm/boot/dts/meson8b.dtsi | 15 ++++++++-------
->  3 files changed, 23 insertions(+), 14 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index 0d9faf1a51ea..ad903d1a2cb6 100644
-> --- a/arch/arm/boot/dts/meson.dtsi
-> +++ b/arch/arm/boot/dts/meson.dtsi
+> Note: this patch needs to be merged *after* the whole
+> 'u-boot-amlogic-20181126' changes!
+> 
+> Successfully tested on khadas-vim, khadas-vim2 and libretech-cc (Le
+> Potato) boards.
+> 
+> Changes in v3:
+> - SYSCON is already set in MESON64_COMMON by the big Amlogic patchset
+> from Neil
+> - merged clock and DTS update commits, as these changes need to be done
+> at the same time
+> Changes in v2:
+> - rebased on the "Amlogic Meson cleanup for AXG SoC support" patchset
+> from Neil
+> 
+>  arch/arm/dts/meson-gx.dtsi                    | 31 +++++++++++---
+>  arch/arm/dts/meson-gxbb-nanopi-k2.dts         | 48 ++++++++++++++++++++++
+>  arch/arm/dts/meson-gxbb.dtsi                  | 14 ++++---
+>  arch/arm/dts/meson-gxl-mali.dtsi              |  2 +-
+>  arch/arm/dts/meson-gxl-s905x-libretech-cc.dts |  5 +--
+>  arch/arm/dts/meson-gxl-s905x-p212.dtsi        |  8 ++--
+>  arch/arm/dts/meson-gxl.dtsi                   | 26 +++++-------
+>  arch/arm/dts/meson-gxm-khadas-vim2.dts        | 24 +++++++++++
+>  drivers/clk/clk_meson.c                       | 59 ++++++++++++++-------------
+>  9 files changed, 151 insertions(+), 66 deletions(-)
+> 
 
 [...]
+Applied,
 
->  
-> +&hhi {
-> +	clkc: clock-controller {
-> +		compatible = "amlogic,meson8-clkc";
-> +		#clock-cells = <1>;
-> +		#reset-cells = <1>;
-> +	};
-> +};
-> +
->  &hwrng {
->  	compatible = "amlogic,meson8b-rng", "amlogic,meson-rng";
->  	clocks = <&clkc CLKID_RNG0>;
-> 
-
-Kevin,
-
-I didn't apply this one, but it can wait another cycle I think.
+thanks !
 
 Neil
