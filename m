@@ -1,75 +1,47 @@
-From: khilman@baylibre.com (Kevin Hilman)
-Date: Thu, 29 Nov 2018 16:51:10 -0800
-Subject: [PATCH] ARM: multi_v7_defconfig: switch CONFIG_PWM_MESON to
- built-in
-In-Reply-To: <CAFBinCB8r+5tGKxfsPMapayxmDuWOi=WihvvdxS=UxcnpeYqdQ@mail.gmail.com>
-References: <20181114230554.4968-1-martin.blumenstingl@googlemail.com>
- <7hh8g0d8tg.fsf@baylibre.com>
- <CAFBinCBViZgRrZO16FsRKSGNriSw2_D9+_6ri99_zf++_SuuKg@mail.gmail.com>
- <7hk1kv79at.fsf@baylibre.com>
- <CAFBinCB8r+5tGKxfsPMapayxmDuWOi=WihvvdxS=UxcnpeYqdQ@mail.gmail.com>
-Message-ID: <7hefb375hd.fsf@baylibre.com>
+From: jbrunet@baylibre.com (Jerome Brunet)
+Date: Fri, 30 Nov 2018 09:21:05 +0100
+Subject: [PATCH 2/3] dt-bindings: clk: meson: add main controller clock
+ input
+In-Reply-To: <154353500665.88331.5525788751558555940@swboyd.mtv.corp.google.com>
+References: <20181129164524.18670-1-jbrunet@baylibre.com>
+ <20181129164524.18670-3-jbrunet@baylibre.com>
+ <154353500665.88331.5525788751558555940@swboyd.mtv.corp.google.com>
+Message-ID: <42372fe968835e59dae6aa1ce726b694f8a16a39.camel@baylibre.com>
 To: linus-amlogic@lists.infradead.org
 List-Id: linus-amlogic.lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+On Thu, 2018-11-29 at 15:43 -0800, Stephen Boyd wrote:
+> Quoting Jerome Brunet (2018-11-29 08:45:23)
+> > Add the clock input of the main clock controller
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> > ---
+> >  Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt 
+> > b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> > index e950599566a9..79454869f96d 100644
+> > --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> > +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> > @@ -9,6 +9,8 @@ Required Properties:
+> >                 "amlogic,gxbb-clkc" for GXBB SoC,
+> >                 "amlogic,gxl-clkc" for GXL and GXM SoC,
+> >                 "amlogic,axg-clkc" for AXG SoC.
+> > +- clocks: phandle to the input clock of the controller, presumably the
+> > +         platform xtal.
+> 
+> Any reason to not have clock-names? 
 
-> Hi Kevin,
->
-> On Fri, Nov 30, 2018 at 12:28 AM Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->>
->> > Hi Kevin,
->> >
->> > On Thu, Nov 29, 2018 at 1:30 AM Kevin Hilman <khilman@baylibre.com> wrote:
->> >>
->> >> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->> >>
->> >> > Some Meson8b boards (Odroid-C1, EC-100) use a PWM regulator which is the
->> >> > voltage supply of the CPU cores (this regulator is typically called
->> >> > "VCCK").
->> >> > Now that we are preparing support for CPU frequency scaling on Meson8,
->> >> > Meson8b and Meson8m2 we should build the pwm-meson driver into the
->> >> > kernel so we can configure the CPU voltage early in the boot process.
->> >>
->> >> Can you explain a little more why the configuration of CPU voltage
->> >> cannot wait a bit so this could be properly probed?
->> >
->> > I was under the impression that cpufreq-dt would still initialize even
->> > if the regulator is not ready yet. however (after reading the code
->> > again) this is clearly NOT the case.
->>
->> Hmm, a quick look at cpufreq-dt suggests that it should -EPROBE_DEFER if
->> the regulator isn't ready yet.  Why doesn't that work?
-> sorry for not being clear:
-> I was under the impression that cpufreq-dt wouldn't handle -EPROBE_DEFER.
-> I'm not sure why I assumed that. As you already said: deferred probing
-> of the regulator works fine.
->
->> > there's still a benefit with this change: your Odroid-C1 in your
->> > KernelCI lab would also be able to change the CPU frequency (so in
->> > case something breaks we could spot it there).
->> > will you accept this patch after I updated the description to mention
->> > that it's for KernelCI test coverage?
->>
->> Possibly, but I'd still rather see the dependencies worked out correctly
->> so that this can be module, and cpufreq-dt would defer until it's ready.
-> KernelCI shows multiple "pwm-regulator regulator-vcck: Failed to get
-> PWM: -517" messages on Odroid-C1.
-> however, what I failed to notice so far is that there's a
-> "pwm-regulator: supplied by regulator-dummy" at the end of the boot
-> process. does this mean that the Odroid-C1 in your KernelCI lab can
-> load kernel modules? in that case this patch can be ignored.
+Not really, I did not bother because there was only one input clock.
+I can easily fix this
 
-All boards in my lab can load modules.  The boot with a minimal
-buildroot-based ramdisk that uses eudev, so any drivers that are present
-in DT will be loaded (if they're modules) or probed.
-
-> (I will still send a PWM regulator related patch: that "Failed to get
-> PWM: -517" message is very noisy and we typically suppress that in
-> other drivers)
-
-Sure, no objections to that one.
-
-Kevin
+> I'd prefer to have them because then
+> we can easily hook up providers with their parents based on strings. I
+> suppose we'll have to support both modes of strings and numbers for
+> connections, but that may be more for legacy reasons that could be
+> avoided here if a clock-names property existed.
+> 
+> >  
+> >  - #clock-cells: should be 1.
+> >  
