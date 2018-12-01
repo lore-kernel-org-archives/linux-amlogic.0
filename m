@@ -2,21 +2,21 @@ Return-Path: <SRS0=/4qX=OK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BE27C04EB9
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:55:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C82CFC04EB9
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:57:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0A73920834
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:55:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9A2FA20834
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:57:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ak2MOdBi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=usp-br.20150623.gappssmtp.com header.i=@usp-br.20150623.gappssmtp.com header.b="wTfUF4r7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A73920834
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oXeHMkV4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=usp-br.20150623.gappssmtp.com header.i=@usp-br.20150623.gappssmtp.com header.b="sLqH76PD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9A2FA20834
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=usp.br
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,60 +25,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aN6NrihDgNMgW8Pkm1WIoawINe817k4484Bzxj7bgII=; b=ak2MOdBiCoaa0z
-	sd/zS+tYDSeNH/Ior7hYSALr0aO3oRIfE+MsIwZTJ6xRLzMj0GwilWJ2Al+iE3bx2O2kWlDJGuTy+
-	ODCG+s+pdstiKPSLrproX280WbJe0r1HIeZC7P1jGB5Fiwo75M+O5GI95kuWGRtmElPpAkjgGio5r
-	ihTXUkwIVEqO+jAKyYFtyeaL0XjbFmPy0zUoUypE+wQC4wtit4XPELtSrmLOsVvAm7qzFYBQFPJBa
-	QENrrb/fk8Q8g212mAEED94C6V7q2OTstep7U7v0xtOUfmIJlbCcOeRGx1tsA3rrhU9yOSOEqhds0
-	47PSMFN5H76xtqDmMlzA==;
+	List-Owner; bh=8ls+5mSwO/jW2fFtF60hTl8hAIp+bS0LvAZpa5sAiI8=; b=oXeHMkV4mIvWQF
+	Zs+jAoP2nMXmAcHUWV5McReQLB3sN8HugRkSCRgcq6Ri25qBQEfe9HS4xCdZFnGKUZjZJP3IBhxdy
+	ICEi6HVnEgMlNGI1JMtZdm2JLYWd0AiyqYkTv3PnIdtD7Xc5AuGGJDGpNcPsFCFFL78pfv8seeLTB
+	1QmdPjXhvREkKHnruOAVmesL25YlJDMySH9iXTwKOJaW8we+ZKBWHnmDHjcJK7wcB8JX08HAHFxpX
+	cfhdVtVM4DvWkh42vDLTSVPn8hDsGU5+6qcp7mzb5zN849CIfafrMG/tSQnMS7McyfMvuoQah9tX6
+	HjXW5F7VhZf9RjTZtnYg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gT7by-0007T8-0a; Sat, 01 Dec 2018 15:55:18 +0000
-Received: from mail-it1-x142.google.com ([2607:f8b0:4864:20::142])
+	id 1gT7e6-0007pc-7a; Sat, 01 Dec 2018 15:57:30 +0000
+Received: from mail-it1-x144.google.com ([2607:f8b0:4864:20::144])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gT7bj-0005zY-Rh
- for linux-amlogic@lists.infradead.org; Sat, 01 Dec 2018 15:55:06 +0000
-Received: by mail-it1-x142.google.com with SMTP id i7so3112907iti.2
- for <linux-amlogic@lists.infradead.org>; Sat, 01 Dec 2018 07:54:51 -0800 (PST)
+ id 1gT7dv-0007et-2Q
+ for linux-amlogic@lists.infradead.org; Sat, 01 Dec 2018 15:57:21 +0000
+Received: by mail-it1-x144.google.com with SMTP id b5so2808978iti.2
+ for <linux-amlogic@lists.infradead.org>; Sat, 01 Dec 2018 07:57:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=usp-br.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=q7ipvgREb/bsWNDedDd9AUPVcpHP5ldxyaEwOuXGuaM=;
- b=wTfUF4r7Maar/MJ7lXWUEsaL6pei+kfos6g4uq00AEL6Mb+v+obWXRFP1JQIJ9S+7p
- 51cqbi86FGqfolIBwZ9gtOJtz0U9ELrIOuCT21Z3Z8g5nOF3ZIrX2D4Aln6rh3OVuEhM
- cvi6BKOTSxiqM9i3IKNjEanlVrJvyPIJKfku81XEyNtVZWxt4FolfdMQ9+zQxHMNJES1
- KbwwerAS0eOXu7Yzt2poRM+o4OVvTPw5TncAg5J09tFsm+ioLKGR/I2nyjmlGUx1xtA+
- mrrSIL1ctmDDy+Bg/xowU/EmN95oOjMbpkDyhA+U+S7Y5eOGNNJ44r7DzO+Uvo+h0DRO
- tqyA==
+ :cc; bh=41+3VCJ4ZSFEMCnJ05n6tH7/QnAaCqx2XlEKnbLFX9A=;
+ b=sLqH76PDwUa0k9fHHpWj/Y0t0tx81YBCvJVNEPx3Jnk1LRrmvJuqNOYpTUpVmnEsCz
+ 9bz4xqL9Ge31Fpda2Rp0mYKVIUiShHhUduZeduI0bgXDKpuGKbO6mxVxVvdaeLcNHPpy
+ HMuIQcXsmjhTlnfrl6GGgw3k+aJA8WzN088sZ+14NfEslyhvTepZH2qVOmWwIl4mafEF
+ f86waR3j3gD3i+TFYoeRT7Ti0/25NTxm2NtU3J2LujZ1UyQySSXk899ufh0Iz7OPZRhB
+ Y8tFKkWH8Ft5XPM/eUZXEuuIGV9DFQAinviIkKWe+ZxgOrVe6SMPOCE2dzGA6tml5PQU
+ DlLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=q7ipvgREb/bsWNDedDd9AUPVcpHP5ldxyaEwOuXGuaM=;
- b=gxHvnjAq0efv+LIGqFMMlImPc3hb/xLSQOFPfOUanzqQaAmDPHthnP8OpnPT1IEwcf
- Um6a/Uck0J/qkwB3dDUxBfiJcylBMQbSrcJ/8PZXID1d9QuPKHmgVBz3zjSdHo7zlHfv
- GbVJwMk1dw4cemk78WD+GqjEnydy5o5Mu9qT6FDOv/wA0Ra1eld2iEHbD1nnVe5OwsuP
- tQICUF4jljTM2FwrTDygbWC3S6lXJW5qsHWyqs2hro5gfI5NXDQh3Au15+NoevroBgy1
- IWHCMXdsJTDGj+5L+VhYhOFb8uUJDrOrUAkqnOOTx4KTH9nNOcZJEKG0C7kSS5gBw7/S
- gSoQ==
-X-Gm-Message-State: AA+aEWZRce4yU3DSHvsdWkNnJRNpkuzvIgbBO1r4agMaCQSOzXgbZ+Kr
- TkhP6MZZfTlJENGpSC6Ps5gSDoXTze/u+7fZJHVFIw==
-X-Google-Smtp-Source: AFSGD/UQclRV0BOwdmycvVJftTgGd/PLpTz6YZMy2SjvqjVCA68kMCMCUKTq5d9bIMferzTmmwP0H4oxuB/tyRItqe8=
-X-Received: by 2002:a02:b015:: with SMTP id p21mr9221044jah.17.1543679690935; 
- Sat, 01 Dec 2018 07:54:50 -0800 (PST)
+ bh=41+3VCJ4ZSFEMCnJ05n6tH7/QnAaCqx2XlEKnbLFX9A=;
+ b=Vb91gUvrY86i9XMEEkpjN/M2YThPP1goBV3pd3Ewp+IgTS7d3Yg9kPgyBunBUy5BJQ
+ oIPoiyI/KQOYoACb5M/uWxUYCFzWvmvMhzU6pCigyzfd/UWY8cxuvdd66XZlagcWEz1p
+ 02fmptE+ifojQZg9EGWlkRfjFpM+iBd42tkLaV6yKDU1zxCIwo8T15nfbrM2Q019xcwb
+ w6xXfJKEemOSDyu8uymS7JWoRR5PPwU5YU64Cwfj21+G/5FUSoEhZ8S1UtMEJiH6nFSs
+ PSZgA3hedA75UZ+33BNRUp01Nv9P/hz4/H4onP1VTlB9+uAqTEi62Gr4ZOVwhjV2UO2Z
+ vvyQ==
+X-Gm-Message-State: AA+aEWbJynwynYry4u38MwjCH1GEK0Hcx33PVXn6TRpIu5hkB7MM1fmi
+ oNLqFNKB7DWAJppC1wZDTNJB0x9NuUn3FyGEkHG8Ww==
+X-Google-Smtp-Source: AFSGD/WOULCqe6a03vpxSEF3Gl5gt19ghssY/tXc0uwSVsuQ5sHpKh4touYOF1/N10i9+Og6jKn8XjORba/X7me+cvI=
+X-Received: by 2002:a24:22c6:: with SMTP id o189mr2376954ito.86.1543679827575; 
+ Sat, 01 Dec 2018 07:57:07 -0800 (PST)
 MIME-Version: 1.0
 References: <20181128175312.9634-1-matheus.bernardino@usp.br>
- <9ea19805-de34-9286-e540-98b75e49f574@broadcom.com>
-In-Reply-To: <9ea19805-de34-9286-e540-98b75e49f574@broadcom.com>
+ <20181128192901.GG8952@piout.net>
+In-Reply-To: <20181128192901.GG8952@piout.net>
 From: Matheus Tavares Bernardino <matheus.bernardino@usp.br>
-Date: Sat, 1 Dec 2018 13:54:39 -0200
-Message-ID: <CAHd-oW4XyMkJaRaQcO+7+qRf1Lm+D2aQ54-YRqSE-TFump8q7A@mail.gmail.com>
+Date: Sat, 1 Dec 2018 13:56:55 -0200
+Message-ID: <CAHd-oW4umU7-BnLHYsokA3JhNbQ0TRU+WM2U0HCgqSz0Ebk3Xw@mail.gmail.com>
 Subject: Re: [PATCH] iio: adc: Replace license text w/ SPDX identifier
-To: scott.branden@broadcom.com
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181201_075503_902857_E7B61F12 
-X-CRM114-Status: UNSURE (   9.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181201_075719_117659_FE567027 
+X-CRM114-Status: GOOD (  23.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,10 +89,8 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Milo Kim <milo.kim@ti.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-aspeed@lists.ozlabs.org,
- Maxime Ripard <maxime.ripard@bootlin.com>,
+Cc: Milo Kim <milo.kim@ti.com>, Heiko Stuebner <heiko@sntech.de>,
+ linux-aspeed@lists.ozlabs.org, Maxime Ripard <maxime.ripard@bootlin.com>,
  Michal Simek <michal.simek@xilinx.com>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>, kernel-usp@googlegroups.com,
  Lars-Peter Clausen <lars@metafoo.de>, linux-rockchip@lists.infradead.org,
@@ -120,28 +117,100 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 28, 2018 at 4:54 PM Scott Branden
-<scott.branden@broadcom.com> wrote:
->>
->>
->> On 2018-11-28 9:53 a.m., Matheus Tavares wrote:
->>
->> From: Lucas Santos <ilucas.ms@gmail.com>
->>
->> This patch removes all license boilerplate texts from the .c and .h
->>
-> I know other people don't follow the patch guidelines,
->
-> but more info on proper commit message format in link.
->
-> (Don't say "this patch" or "this commit" or "I changed") - use imperative present tense.
->
-> https://www.kernel.org/doc/html/latest/process/submitting-patches.html
->
-
-Ok, thanks for the review. I'll correct that in v2.
+Thanks for the review! I will fix those places.
 
 Matheus
+
+On Wed, Nov 28, 2018 at 5:29 PM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
+>
+> Hello,
+>
+> On 28/11/2018 15:53:12-0200, Matheus Tavares wrote:
+> > diff --git a/drivers/iio/adc/exynos_adc.c b/drivers/iio/adc/exynos_adc.c
+> > index f10443f92e4c..9f9c186e2135 100644
+> > --- a/drivers/iio/adc/exynos_adc.c
+> > +++ b/drivers/iio/adc/exynos_adc.c
+> > @@ -1,3 +1,4 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> >  /*
+> >   *  exynos_adc.c - Support for ADC in EXYNOS SoCs
+> >   *
+> > @@ -5,16 +6,6 @@
+> >   *
+> >   *  Copyright (C) 2013 Naveen Krishna Chatradhi <ch.naveen@samsung.com>
+> >   *
+> > - *  This program is free software; you can redistribute it and/or modify
+> > - *  it under the terms of the GNU General Public License as published by
+> > - *  the Free Software Foundation; either version 2 of the License, or
+> > - *  (at your option) any later version.
+> > - *
+> > - *  This program is distributed in the hope that it will be useful,
+> > - *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+> > - *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> > - *  GNU General Public License for more details.
+> > - *
+> >   *  You should have received a copy of the GNU General Public License
+> >   *  along with this program; if not, write to the Free Software
+> >   *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+>
+> You forgot to remove some of the boilerplate here.
+>
+> > diff --git a/drivers/iio/adc/hx711.c b/drivers/iio/adc/hx711.c
+> > index 36b59d8957fb..894d49843854 100644
+> > --- a/drivers/iio/adc/hx711.c
+> > +++ b/drivers/iio/adc/hx711.c
+> > @@ -1,13 +1,9 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> >  /*
+> >   * HX711: analog to digital converter for weight sensor module
+> >   *
+> >   * Copyright (c) 2016 Andreas Klinger <ak@it-klinger.de>
+> >   *
+> > - * This program is free software; you can redistribute it and/or modify
+> > - * it under the terms of the GNU General Public License as published by
+> > - * the Free Software Foundation; either version 2 of the License, or
+> > - * (at your option) any later version.
+> > - *
+> >   * This program is distributed in the hope that it will be useful,
+> >   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+> >   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+>
+> and here
+>
+> > diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+> > index 729becb2d3d9..f5299c9bdbde 100644
+> > --- a/drivers/iio/adc/meson_saradc.c
+> > +++ b/drivers/iio/adc/meson_saradc.c
+> > @@ -1,12 +1,9 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> >  /*
+> >   * Amlogic Meson Successive Approximation Register (SAR) A/D Converter
+> >   *
+> >   * Copyright (C) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> >   *
+> > - * This program is free software; you can redistribute it and/or modify
+> > - * it under the terms of the GNU General Public License version 2 as
+> > - * published by the Free Software Foundation.
+> > - *
+> >   * You should have received a copy of the GNU General Public License
+> >   * along with this program. If not, see <http://www.gnu.org/licenses/>.
+>
+> and here.
+>
+> >   */
+>
+> --
+> Alexandre Belloni, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>
+> --
+> You received this message because you are subscribed to the Google Groups "Kernel USP" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to kernel-usp+unsubscribe@googlegroups.com.
+> To post to this group, send email to kernel-usp@googlegroups.com.
+> To view this discussion on the web visit https://groups.google.com/d/msgid/kernel-usp/20181128192901.GG8952%40piout.net.
+> For more options, visit https://groups.google.com/d/optout.
 
 _______________________________________________
 linux-amlogic mailing list
