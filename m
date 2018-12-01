@@ -2,90 +2,83 @@ Return-Path: <SRS0=/4qX=OK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E6C9C04EB9
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:31:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BE27C04EB9
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:55:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 649BE2081D
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:31:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0A73920834
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 15:55:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C47D7KcB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ITw8dhDM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 649BE2081D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ak2MOdBi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=usp-br.20150623.gappssmtp.com header.i=@usp-br.20150623.gappssmtp.com header.b="wTfUF4r7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0A73920834
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=usp.br
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ObvTp132LoyoksPCHfxcCRk12q7MA/TkO8eDwgZmivg=; b=C47D7KcBFCUvBs
-	DWWtoiT//kcX8ulj0oUgHX7JOXNzVbqp+2hofEzgjUeAjVzKYJXKxXFZGEf4Hs8WPYZB2ulqLPeTI
-	vFLdkX0iMMCUcw0Yey2/6AaxlIiv7CjSKrLZk8zwYZzuhW6Lpdn7dymfMqN5a+/NaX92FTdaURd4M
-	/aF+2YmJHipCeo0y+qNySLPCz1RKC+hsjE2kMOetTqZeR3QuxORWJIvVRTa5WcC/BejuXFKwKPc5b
-	wr1GhRrYvWo4TGchD+Bkia1Ij6dH3q/Z1echG6T5vDql1pY5oVbnDHZNZ7gyduOrqoWC1zRpQOZtR
-	t+bOQCIr0hU7MdKEWx9w==;
+	List-Owner; bh=aN6NrihDgNMgW8Pkm1WIoawINe817k4484Bzxj7bgII=; b=ak2MOdBiCoaa0z
+	sd/zS+tYDSeNH/Ior7hYSALr0aO3oRIfE+MsIwZTJ6xRLzMj0GwilWJ2Al+iE3bx2O2kWlDJGuTy+
+	ODCG+s+pdstiKPSLrproX280WbJe0r1HIeZC7P1jGB5Fiwo75M+O5GI95kuWGRtmElPpAkjgGio5r
+	ihTXUkwIVEqO+jAKyYFtyeaL0XjbFmPy0zUoUypE+wQC4wtit4XPELtSrmLOsVvAm7qzFYBQFPJBa
+	QENrrb/fk8Q8g212mAEED94C6V7q2OTstep7U7v0xtOUfmIJlbCcOeRGx1tsA3rrhU9yOSOEqhds0
+	47PSMFN5H76xtqDmMlzA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gT7Eo-0007ZP-Aa; Sat, 01 Dec 2018 15:31:22 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1gT7by-0007T8-0a; Sat, 01 Dec 2018 15:55:18 +0000
+Received: from mail-it1-x142.google.com ([2607:f8b0:4864:20::142])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gT7Ek-0007Yc-83
- for linux-amlogic@lists.infradead.org; Sat, 01 Dec 2018 15:31:20 +0000
-Received: by mail-wm1-x342.google.com with SMTP id 125so1733598wmh.0
- for <linux-amlogic@lists.infradead.org>; Sat, 01 Dec 2018 07:31:07 -0800 (PST)
+ id 1gT7bj-0005zY-Rh
+ for linux-amlogic@lists.infradead.org; Sat, 01 Dec 2018 15:55:06 +0000
+Received: by mail-it1-x142.google.com with SMTP id i7so3112907iti.2
+ for <linux-amlogic@lists.infradead.org>; Sat, 01 Dec 2018 07:54:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=dOfptwxehh2BOlowhmD9nkQSUoiLytGVrcCDN0HYOOM=;
- b=ITw8dhDMrfouRs6GR+si7FyYtqrVucZJ89XmfH4dTNTDZ6dRflCBnopc1Sm3Fl5hIx
- zp3BVYzeQ/6/sXpJJKPSzDACeOdTQu4EPqJOXUpNEXASySCqYwckJTLRXm6BAJquoB0M
- kljkMkC2UBch4GnRCDLFhcrY3UTbqOD2LhtsSF0MtzYJ+zXUUXCWVLk7BNtTzYBDtSjH
- ja99lAwEda2/5VBwKHWZI/8BZeLJkHHeKAOZUSu4jeCyWUZrHGaEkSi6boakMUcIZsGo
- K0P7ikAfVxcoQe//0wlmV6g+VMN2ojFLLMI4pp7cs0CI9cZmPXZ0ik2b61KkWqbi2MxW
- ngNg==
+ d=usp-br.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=q7ipvgREb/bsWNDedDd9AUPVcpHP5ldxyaEwOuXGuaM=;
+ b=wTfUF4r7Maar/MJ7lXWUEsaL6pei+kfos6g4uq00AEL6Mb+v+obWXRFP1JQIJ9S+7p
+ 51cqbi86FGqfolIBwZ9gtOJtz0U9ELrIOuCT21Z3Z8g5nOF3ZIrX2D4Aln6rh3OVuEhM
+ cvi6BKOTSxiqM9i3IKNjEanlVrJvyPIJKfku81XEyNtVZWxt4FolfdMQ9+zQxHMNJES1
+ KbwwerAS0eOXu7Yzt2poRM+o4OVvTPw5TncAg5J09tFsm+ioLKGR/I2nyjmlGUx1xtA+
+ mrrSIL1ctmDDy+Bg/xowU/EmN95oOjMbpkDyhA+U+S7Y5eOGNNJ44r7DzO+Uvo+h0DRO
+ tqyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=dOfptwxehh2BOlowhmD9nkQSUoiLytGVrcCDN0HYOOM=;
- b=gIhixL8kZvSp6eG+x7VO/j6Z3ztpVOuYeHlfvHSiddwpNryNg+STcCEUbxSoD9CV+E
- 8rcOPYEamn7eQC3WRKFb1NfazJkjuR9xlhLaZ4yw8zWoFvCIEc16XI7EuTRHUSpJcbaL
- gj/EI/o7N2mO/hPrEULChGK45c32JQgDIz+vZv5Z2lvbKLAJuLetm+EASBgIzHhG94Fo
- aaXkxgicX44dM5YGo+7ZYftnBb/Qd8QGBYP4eVwhOjb6Tld69ZjYP/e0FVBGsJeJlcCv
- iCLrW15IFYy9P+LcerCKvNtHqPa1epvFc0A/gXmJGfmHUDniDJ+Y0FHmOODa9IVTA8tS
- LP+A==
-X-Gm-Message-State: AA+aEWadtZA9tlkjMlXmKrrkkIeFr7LVrYNQGciT69R61tgIhfIGRiHd
- 0lz2d6E1u3s4aCqJXBPNY96NNOOjzzEMLH35
-X-Google-Smtp-Source: AFSGD/WQu4mPt9uK0fYXAEi4QB2eSLELDMgvXraGgspOKe1yANjqG/0u69cF47+MmfDAyd+9hsC7wg==
-X-Received: by 2002:a1c:9855:: with SMTP id a82mr2433058wme.20.1543678266540; 
- Sat, 01 Dec 2018 07:31:06 -0800 (PST)
-Received: from xps ([104.207.76.73])
- by smtp.gmail.com with ESMTPSA id x14sm5918692wrm.65.2018.12.01.07.31.05
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sat, 01 Dec 2018 07:31:05 -0800 (PST)
-Message-ID: <b0f979de8ab9bf347b3a13048d9aa6237109b511.camel@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: meson-axg: Fix and enable GPIO interrupt
- controller
-From: Carlo Caione <ccaione@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 01 Dec 2018 15:31:04 +0000
-In-Reply-To: <CAFBinCDEJK-tJJJCd7wPLJHRCV0DegnSGO21XH3EXU7s7Om=Bw@mail.gmail.com>
-References: <20181201145614.5381-1-ccaione@baylibre.com>
- <CAFBinCDEJK-tJJJCd7wPLJHRCV0DegnSGO21XH3EXU7s7Om=Bw@mail.gmail.com>
-User-Agent: Evolution 3.30.1-1build1 
-Mime-Version: 1.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=q7ipvgREb/bsWNDedDd9AUPVcpHP5ldxyaEwOuXGuaM=;
+ b=gxHvnjAq0efv+LIGqFMMlImPc3hb/xLSQOFPfOUanzqQaAmDPHthnP8OpnPT1IEwcf
+ Um6a/Uck0J/qkwB3dDUxBfiJcylBMQbSrcJ/8PZXID1d9QuPKHmgVBz3zjSdHo7zlHfv
+ GbVJwMk1dw4cemk78WD+GqjEnydy5o5Mu9qT6FDOv/wA0Ra1eld2iEHbD1nnVe5OwsuP
+ tQICUF4jljTM2FwrTDygbWC3S6lXJW5qsHWyqs2hro5gfI5NXDQh3Au15+NoevroBgy1
+ IWHCMXdsJTDGj+5L+VhYhOFb8uUJDrOrUAkqnOOTx4KTH9nNOcZJEKG0C7kSS5gBw7/S
+ gSoQ==
+X-Gm-Message-State: AA+aEWZRce4yU3DSHvsdWkNnJRNpkuzvIgbBO1r4agMaCQSOzXgbZ+Kr
+ TkhP6MZZfTlJENGpSC6Ps5gSDoXTze/u+7fZJHVFIw==
+X-Google-Smtp-Source: AFSGD/UQclRV0BOwdmycvVJftTgGd/PLpTz6YZMy2SjvqjVCA68kMCMCUKTq5d9bIMferzTmmwP0H4oxuB/tyRItqe8=
+X-Received: by 2002:a02:b015:: with SMTP id p21mr9221044jah.17.1543679690935; 
+ Sat, 01 Dec 2018 07:54:50 -0800 (PST)
+MIME-Version: 1.0
+References: <20181128175312.9634-1-matheus.bernardino@usp.br>
+ <9ea19805-de34-9286-e540-98b75e49f574@broadcom.com>
+In-Reply-To: <9ea19805-de34-9286-e540-98b75e49f574@broadcom.com>
+From: Matheus Tavares Bernardino <matheus.bernardino@usp.br>
+Date: Sat, 1 Dec 2018 13:54:39 -0200
+Message-ID: <CAHd-oW4XyMkJaRaQcO+7+qRf1Lm+D2aQ54-YRqSE-TFump8q7A@mail.gmail.com>
+Subject: Re: [PATCH] iio: adc: Replace license text w/ SPDX identifier
+To: scott.branden@broadcom.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181201_073118_293417_364CADE3 
-X-CRM114-Status: GOOD (  19.39  )
+X-CRM114-CacheID: sfid-20181201_075503_902857_E7B61F12 
+X-CRM114-Status: UNSURE (   9.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,92 +90,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, khilman@baylibre.com,
- robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: Milo Kim <milo.kim@ti.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-aspeed@lists.ozlabs.org,
+ Maxime Ripard <maxime.ripard@bootlin.com>,
+ Michal Simek <michal.simek@xilinx.com>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>, kernel-usp@googlegroups.com,
+ Lars-Peter Clausen <lars@metafoo.de>, linux-rockchip@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>, Chen-Yu Tsai <wens@csie.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ Kukjin Kim <kgene@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
+ Joel Stanley <joel@jms.id.au>, Sylvain Lemieux <slemieux.tyco@gmail.com>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jon Mason <jonmason@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ William Breathitt Gray <vilhelm.gray@gmail.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>,
+ linux-samsung-soc@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>,
+ linux-amlogic@lists.infradead.org, Lucas Santos <ilucas.ms@gmail.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Support Opensource <support.opensource@diasemi.com>,
+ Scott Branden <sbranden@broadcom.com>, Andrew Jeffery <andrew@aj.id.au>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>, linux-kernel@vger.kernel.org,
+ Hartmut Knaack <knaack.h@gmx.de>, Carlo Caione <carlo@caione.org>,
+ Eugen Hristev <eugen.hristev@microchip.com>,
+ Jonathan Cameron <jic23@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 2018-12-01 at 16:20 +0100, Martin Blumenstingl wrote:
-> Hi Carlo,
+On Wed, Nov 28, 2018 at 4:54 PM Scott Branden
+<scott.branden@broadcom.com> wrote:
+>>
+>>
+>> On 2018-11-28 9:53 a.m., Matheus Tavares wrote:
+>>
+>> From: Lucas Santos <ilucas.ms@gmail.com>
+>>
+>> This patch removes all license boilerplate texts from the .c and .h
+>>
+> I know other people don't follow the patch guidelines,
+>
+> but more info on proper commit message format in link.
+>
+> (Don't say "this patch" or "this commit" or "I changed") - use imperative present tense.
+>
+> https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+>
 
-Hi Martin,
+Ok, thanks for the review. I'll correct that in v2.
 
-> On Sat, Dec 1, 2018 at 3:56 PM Carlo Caione <ccaione@baylibre.com>
-> wrote:
-> > The GPIO interrupt controller registers are mapped to the wrong
-> > offset in the DTSI. Fix the offset in the DTSI and enable the
-> > interrupt
-> > controller in the DTS of the only AXG board enabled.
-> > 
-> > Signed-off-by: Carlo Caione <ccaione@baylibre.com>
-> > ---
-> >  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 6 ++++++
-> >  arch/arm64/boot/dts/amlogic/meson-axg.dtsi     | 2 +-
-> >  2 files changed, 7 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > index 18778ada7bd3..c3e4aac75782 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-> > @@ -374,6 +374,12 @@
-> >         status = "okay";
-> >  };
-> > 
-> > +&gpio_intc {
-> > +       compatible = "amlogic,meson-gpio-intc",
-> > +                    "amlogic,meson-axg-gpio-intc";
-> multiple compatible strings should be ordered:
-> - use the most specific compatible (the AXG one) first
-> - the the less specific ones
-
-mindlessly copied and pasted from the GXL.
-
-> also why did you add the AXG compatible string in the s400 board .dts
-> instead of meson-axg.dtsi (which makes it available for all AXG
-> boards)?
-
-good point.
-
-> > +       status = "okay";
-> > +};
-> > +
-> >  &ir {
-> >         status = "okay";
-> >         pinctrl-0 = <&remote_input_ao_pins>;
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> > b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> > index df017dbd2e57..f1affc12e3e6 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> > @@ -1415,7 +1415,7 @@
-> > 
-> >                         gpio_intc: interrupt-controller@f080 {
-> unit-address should match the reg property: ...@9880
-> 
-> >                                 compatible = "amlogic,meson-gpio-
-> > intc";
-> > -                               reg = <0x0 0xf080 0x0 0x10>;
-> > +                               reg = <0x0 0x9880 0x0 0x10>;
-> Amlogic's patched 4.9 buildroot kernel uses 0xf080 - can you add a
-> short sentence to the description on which board you have tested this
-> (I assume you used the s400)
-
-The datasheet reports a different offset. But I tested again on 0xf080
-and it looks like 0xf080 is actually the correct one? Need to test this
-better.
-
-I'll follow this up with v2.
-
-Cheers,
-
---
-Carlo Caione
-
-
+Matheus
 
 _______________________________________________
 linux-amlogic mailing list
