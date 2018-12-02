@@ -2,81 +2,92 @@ Return-Path: <SRS0=phzD=OL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7E6EC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 21:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3260C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 21:43:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 755D120881
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 21:13:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7E8D32081C
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 21:43:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HYXr1dPO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="OvcAGoAr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 755D120881
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MaVOwMnt";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ibV/6RgB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E8D32081C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bpMfjLB9ou6vFPd5vhqlGWf+b/kF0q50aJ8a0jVOkIg=; b=HYXr1dPOvb8iuN
-	+xfE4ET54JXWg3a20i+UPSXdPz7R42aDXLJ74MruU8z2U5SmUNtbu8bJMbx5fe2s+BLNmT3i0c2c6
-	3zXXCX3coSYAbgrvIvldsD4XSgDJ7tLJ5to3oZPAIKcBiYj8Ox1eVkIViTURgDjJI8QffNb6/mLVE
-	vvy0hTrvrJts0fXHqpUjTlDQEP0DVPswGoDhoxgXDHVuNY2VME7sLev5i12D51wtGJUwcC/W6teWY
-	IB8zu1FmnCECMNm2l0dYt4KKgh0jVbRgvTFKyLTgaJ2h1c/COns9/MIRjwvXAKKqGun9Knt59TkLj
-	K1X2UrXpca0tC7hjlZuQ==;
+	List-Owner; bh=HcANqXeq5PtmieW1+gkiEegWiR/y2k2USaKZQ2jsYBk=; b=MaVOwMntDs7JGU
+	2B4FvXAbzsbtk8qWOwvlCDbq8VknQx7vDG4eNrrz7PVotMGTvrAbC/7XlPlJ+mYnYSV5+cvP28ic/
+	227eQqR/26itE2isawUFXO71/qToQYHz5QKVVz/o9E/WeCHJH8rXT+8PpfBoO59caVShaWpUpERTW
+	ccxNlTLv8e2ahGDzObhFUrh9q8NN+i594GFv3DefBpE4YO/tAUxL8z7/FLz7ptBglIXtq5CQb966U
+	w2z8s4i1/FSyhhKjIQ6DqsGAbhDGBcu0OBABL0+t4a3Vg9CUzDPjHQt65CmzOaUuKueAiwtwrXnKP
+	PuBqyaAmapQlZmliu0uQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTZ2t-0005da-3l; Sun, 02 Dec 2018 21:12:55 +0000
-Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
+	id 1gTZWM-0004nO-OO; Sun, 02 Dec 2018 21:43:22 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTZ2i-0005WX-3A; Sun, 02 Dec 2018 21:12:46 +0000
-Received: by mail-oi1-x244.google.com with SMTP id h25so9217842oig.1;
- Sun, 02 Dec 2018 13:12:33 -0800 (PST)
+ id 1gTZVq-0003y9-97; Sun, 02 Dec 2018 21:42:55 +0000
+Received: by mail-wm1-x341.google.com with SMTP id y1so3796946wmi.3;
+ Sun, 02 Dec 2018 13:42:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YNC6UybqQt8UI6xiJE2xLki3zzn88E5tXcT+MtLKe68=;
- b=OvcAGoArXMu1YS4lVnY9aw1AMOyip7+gv37XNXPayMniRpD22xvLImQy8R2ojzU409
- DfZD4aWYzEn3z4Zmx2nKBYIknhbJe160FgTVOS2UDSBNkDp2mp25VXr0uheUcSH5KGik
- jv46htjH2kgB27JniIAvwHEM0YFg00fBOpgHpDBam5JWbU4ZYBg3hUBFbuISZOOj5GCQ
- Gp53cAiZLgYsfYUufBmw4Pd4TAuUqb6z8SH+7/FvMR/3oFEVXricX2ksJcrVPGqK3IsX
- K3EAzkPDooI8Xrp71nqr4Zh0IeO1DbTCsPaP+Sh/jPV3xC4K+SPfPvMpJW8AuVfIOaMy
- Nq0Q==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=pqOVMr4edQpgQLfHsL+QrU5eXVARfT4qWY4Nu0+S58o=;
+ b=ibV/6RgBPygN9/wXDAsvGRvQCXxJjyebVpu90yF+z5InzkKNsTtOAsM+H5YQhrWop1
+ wAj8nuuM+Utxx3YmXZFIUN8DTm3UFQIfYF3BCXEyE9XrujjWWelb9lviIJm0+zdN4ZXK
+ 2rrPaP37b2dIzu2CkYrCm9HcKLFYxS02X6R7GEWllc+QcpAhA9SYmXA28SgYRSbhk+6P
+ 9QlkTBAlfyPt6pXH+khTxEa91dpzynKHRjmP8/nu4EbpWjou7umYjIv7vhnLntEbdm1U
+ QXtTsJJbYK5NtJGpMiClhPiui14GDMUzTFoBtLykrwRBsY6Yz41CFS5ADVUQW3+5bDnN
+ Jl/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YNC6UybqQt8UI6xiJE2xLki3zzn88E5tXcT+MtLKe68=;
- b=VY6voB12w93l7KTqvcak9w9E+gm3SEn3SbpW1DjIqQmnOKwGfEDdZ6aPnY88TTB7U2
- gxm51PyH250CaZvDlHF4+48BUZ+RBNjni/PY+SMMN8hHgEnRiKfPYGhv4yrdlr32aeFa
- bpXm4x7zlluMWWA81ZSTp9u3mON49HLCz9M56fuNZNqpVxgBw98pqyY0zdxFmE2X4tS+
- OsRVqtBd1MYffb3NMKIuI3PRUPEikRyiojvgUOsBKMqgugktALlTJNCcBN6mtd4OKeT4
- T6tr9OcGfPPq2u9rIDZXuWf/a6A4fQDcHyZo1c33NUAv6fs/Pl/mQ7sj7z4kcaNn7IkE
- zUlA==
-X-Gm-Message-State: AA+aEWYrVVKdkeK+P2ktgtV9grOkAEmirM+qZOpUiCfRJmDppU/H27Ex
- sKUDOXBwqn7FMcpbFIdIM5/ssxjGnsKeYn/hK94=
-X-Google-Smtp-Source: AFSGD/Vl3zKkeQK3n/q92OMoPK0sdOEfpj9yvzmrF/gMXAir7g7yGiQNM4aM2dY/hAyCy3yvaTVmLp4zmp796DecV1Y=
-X-Received: by 2002:aca:f0f:: with SMTP id 15mr8898641oip.47.1543785152265;
- Sun, 02 Dec 2018 13:12:32 -0800 (PST)
-MIME-Version: 1.0
-References: <20181123195311.4578-1-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20181123195311.4578-1-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=pqOVMr4edQpgQLfHsL+QrU5eXVARfT4qWY4Nu0+S58o=;
+ b=ATza1P+vLygyALYxGB7F6F+SqU1Cnxs3RQPW7ssbcbu9uY197t0iOVTpyAEEvfcQC5
+ 7RwwIC3A2lKaoZsHC/c5pdmmg2YYUtjnlWwEo0LbS60exE2hJk07wmcrn2+E9R/v8HPB
+ ZajMwFXmOXkHJ9Ey2ALUTgDP0VeZKLmsVahHlLdL/iIeCn7D/7AHzW8fTuLv7ZUAfZ2c
+ g4ga50pSvC43baqU6s+VhQhXCLfDpYT7jOL14gr9ZRI5eGEhrcBv50UsbX4GPnta6f+a
+ Ur1dBnDDXjvMyVJR/pWL4E4lM81nEyCuWmsxa5+e4Mf1ZOo/GRqr3Gn2CpMhMdGnEyen
+ A6uQ==
+X-Gm-Message-State: AA+aEWZwGAk3ttQqtZiiRZtziicnJKKBiBFOKolBOYhtiBGdMp5Lu8oo
+ YOx70qsR1MM1J/f98MMLR9PTE1ai
+X-Google-Smtp-Source: AFSGD/XBimG4vkhBniAZKy3FRKlJ+JfrRtZcqFT2MEtHh6ro+wDxb/bHOOPuNHUbuOKPPWo/a37ZrQ==
+X-Received: by 2002:a1c:bd82:: with SMTP id n124mr5818622wmf.105.1543786958180; 
+ Sun, 02 Dec 2018 13:42:38 -0800 (PST)
+Received: from blackbox.darklights.net
+ (p200300DCD73FBA00B1CC0EB38CD20A4E.dip0.t-ipconnect.de.
+ [2003:dc:d73f:ba00:b1cc:eb3:8cd2:a4e])
+ by smtp.googlemail.com with ESMTPSA id a18sm13073110wrp.13.2018.12.02.13.42.37
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 02 Dec 2018 13:42:37 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 2 Dec 2018 22:12:21 +0100
-Message-ID: <CAFBinCDg2tbaJMYusLyH-q1=n1Mb8ng4BhGOa8=vc0QoAFMzFA@mail.gmail.com>
-Subject: Re: [PATCH 0/6] 32-bit Meson: add the ARM TWD and Global Timers
-To: khilman@baylibre.com
+To: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+ narmstrong@baylibre.com
+Subject: [PATCH 1/3] clk: meson: meson8b: fix the offset of vid_pll_dco's N
+ value
+Date: Sun,  2 Dec 2018 22:42:18 +0100
+Message-Id: <20181202214220.7715-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.19.2
+In-Reply-To: <20181202214220.7715-1-martin.blumenstingl@googlemail.com>
+References: <20181202214220.7715-1-martin.blumenstingl@googlemail.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181202_131244_154322_CC244166 
-X-CRM114-Status: GOOD (  19.05  )
+X-CRM114-CacheID: sfid-20181202_134250_819588_31F428C7 
+X-CRM114-Status: GOOD (  13.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,94 +99,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: carlo@caione.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-kernel@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin,
+Unlike the other PLLs on Meson8b the N value "vid_pll_dco" (a better
+name would be hdmi_pll_dco or - as the datasheet calls it - HPLL) is
+located at HHI_VID_PLL_CNTL[14:10] instead of [13:9].
+This results in an incorrect calculation of the rate of this PLL because
+the value seen by the kernel is double the actual N (divider) value.
+Update the offset of the N value to fix the calculation of the PLL rate.
 
-On Fri, Nov 23, 2018 at 8:53 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> The 32-bit Meson SoCs use Cortex-A9 or Cortex-A5 cores. These come
-> with the ARM TWD ("Timer Watchdog") which contains a timer and a
-> watchdog as well as the ARM Global Timer.
->
-> This enables the corresponding configs for the 32-bit Meson target.
-> Additionally this adds and enables the ARM TWD timer. The Global
-> Timer is added but currently disabled because it's clock input is
-> the PERIPH clock which is derived from the CPU clock. Thus the rate
-> of the PERIPH clock will change when changing the CPU frequency.
-> Unfortunately the Global Timer driver doesn't handle clocks with
-> changing rates yet (unlike the TWD timer), thus we keep it disabled
-> for now.
->
-> The whole series is inspired by an almost 3 year old patch from
-> Carlo: [0]
->
->
-> Dependencies:
-> - I build this on top of my other series "ARM: dts: meson: add the
->   timer interrupts and clocks" from [1]
-this is already merged into your v4.21/dt branch
+Fixes: 28b9fcd016126e ("clk: meson8b: Add support for Meson8b clocks")
+Reported-by: Jianxin Pan <jianxin.pan@amlogic.com>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/meson8b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> - CLKID_PERIPH requires updated clock driver headers. Neil provided
->   a tag which includes the updated headers: [2]
-this is still a dependency which you could easily pull in
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index f906a9f0eefd..a4ae9c957fde 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -134,7 +134,7 @@ static struct clk_regmap meson8b_vid_pll_dco = {
+ 		},
+ 		.n = {
+ 			.reg_off = HHI_VID_PLL_CNTL,
+-			.shift   = 9,
++			.shift   = 10,
+ 			.width   = 5,
+ 		},
+ 		.l = {
+-- 
+2.19.2
 
-> - There is no runtime dependency on the PERIPH clock as we don't
->   have CPU frequency scaling support enabled yet. In case the TWD
->   timer driver can't find the clock it falls back to auto-detecting
->   the clock rate at boot time. This is safe as long as we don't have
->   .dts patches in place which allow changing the CPU clock rate. Once
->   we enable CPU frequency scaling support for the PERIPH clock becomes
->   mandatory so the TWD timer driver knows about changes to the PERIPH
->   clock (which is derived from the CPU clock).
-and there's still not a hard runtime dependency until you apply [3]
-"ARM: dts: enable CPU frequency scaling on Meson8/Meson8b"
-
-> Martin Blumenstingl (6):
->   ARM: meson: select HAVE_ARM_TWD and ARM_GLOBAL_TIMER
->   ARM: dts: meson: group the Cortex-A5 / Cortex-A9 peripherals
->   ARM: dts: meson8: add the ARM TWD timer
->   ARM: dts: meson8: add the Cortex-A9 global timer
->   ARM: dts: meson8b: add the ARM TWD timer
->   ARM: dts: meson8b: add the Cortex-A5 global timer
->
->  arch/arm/boot/dts/meson.dtsi   | 24 ++++++++++++++++--------
->  arch/arm/boot/dts/meson8.dtsi  | 32 +++++++++++++++++++++++++++-----
->  arch/arm/boot/dts/meson8b.dtsi | 32 +++++++++++++++++++++++++++-----
->  arch/arm/mach-meson/Kconfig    |  2 ++
->  4 files changed, 72 insertions(+), 18 deletions(-)
-if you plan to send another pull-request to the arm-soc tree then
-please consider including this series.
-it fixes some harmless (but still noisy) warnings during boot which
-also also seen by Odroid-C1 in your KernelCI lab:
-  Clockevents: could not switch to one-shot mode:
-   dummy_timer is not functional.
-  Clockevents: could not switch to one-shot mode:
-   dummy_timer is not functional.
-  Clockevents: could not switch to one-shot mode:
-   dummy_timer is not functional.
-  Clockevents: could not switch to one-shot mode:
-   dummy_timer is not functional.
-  Could not switch to high resolution mode on CPU 3
-  Could not switch to high resolution mode on CPU 2
-  Could not switch to high resolution mode on CPU 0
-  Could not switch to high resolution mode on CPU 1
-
-
-Regards
-Martin
-
-
-[0] https://patchwork.kernel.org/patch/7797581/
-[1] https://patchwork.kernel.org/cover/10687005/
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2018-November/009136.html
-[3] https://patchwork.kernel.org/cover/10705475/
 
 _______________________________________________
 linux-amlogic mailing list
