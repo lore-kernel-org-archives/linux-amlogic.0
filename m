@@ -1,67 +1,136 @@
-Return-Path: <SRS0=/4qX=OK=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=phzD=OL=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIM_INVALID,DKIM_SIGNED,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB645C04EB9
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 16:56:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DBF6BC04EB8
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 19:46:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AD9C42082F
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Dec 2018 16:56:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9F71420851
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 19:46:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZECKqcpa";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="qbX8xwn7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD9C42082F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GOE8WvkZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="njY/FBXb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F71420851
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cbhzsRZoSEcWgDFyX269tF+q1mblHAyf1EimT+cK4hA=; b=ZECKqcpazHz0Jk
-	1dPcwBInvkJsYC0UDjB/OJ/eFIZEDAEdDCVzCMvbJTlaKvAnjeRaQi9H0pj17h3K3TG2J7ank7Blu
-	71tJ33fG23EzMLDLFe72rBrbEYJxJuUJAL2mMeETWtFTtJxNx8UQS4qujr0bUyD/96bsRLeRH+k9P
-	5ib+tKJ2XoZoewRyc+qyXPXVIc4qSVoueXp7uoHJlsV8ueJpLF075x6sb7jouJLKYWgUq0L927L6F
-	YcLbiWFnH11yoA9/Cnox/8irEPg7hFC7cO7M56OcuIzTdxBaPqeIn5nXk29KF17hGjK9YyJPA0loG
-	rSSeIfJePpogFABJ7oQw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BdTHYZajPjZdAAq3FsihPe/kCbMWZq35FNIqcqxFrCE=; b=GOE8WvkZ5tpSnn
+	FT8rjg5NElPDki0meiT985s0dQqJhWxCVxZ6GhcXvgS3QLET3IzI94nv6E5e8x9IdlD/WraZr5krp
+	w6MzbJM24O0/0QnfplQXw9oUAIqXnUxX9tHCs4KtMvJtuIp2hN9Ffv1yTQfKFMW3B5irIvPp75+FQ
+	FgpcAqpmwXSQSjSNUND0nFaREIVUcOYgE/uuCqotJA45Req6BQiXLu1kbrz6pVUyeet8K6joGczsO
+	P3ZOJDyPQbpcYVyQRKyInOXEh9+x5pHfJdBxRp5bjUpNxLDOI8btfjwv2WovJ9K8LoVlhWQw+a9jU
+	K0pUs8I76IfnPoThh4dA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gT8Yw-0003NR-Ki; Sat, 01 Dec 2018 16:56:14 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gTXhZ-0004Ts-Us; Sun, 02 Dec 2018 19:46:49 +0000
+Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gT8Ys-0003Md-W0; Sat, 01 Dec 2018 16:56:12 +0000
-Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net
- [81.96.234.148])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 847092082F;
- Sat,  1 Dec 2018 16:55:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1543683359;
- bh=GeoKvgjVymGufq/iewqE4t+0sAMIfjmrLMLh3VjTi4k=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=qbX8xwn7ffyiQLIxQisaOVAdzVc18Lx/NRoZe+e87RZv9lF6eEEsZiWMDqmKlKNsL
- YrKUvj+VijMa9mYZkkKtUM1lSuQfo9jHS95TZ2VCfYh/9tppFbd+npK+469VEoZw5t
- uTgAr/wlTOVShSlw1QKQOgfnQaw8CU8OpZdMuCMs=
-Date: Sat, 1 Dec 2018 16:55:50 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matheus Tavares <matheus.bernardino@usp.br>
-Subject: Re: [PATCH] iio: adc: Replace license text w/ SPDX identifier
-Message-ID: <20181201165550.51a78366@archlinux>
-In-Reply-To: <20181128175312.9634-1-matheus.bernardino@usp.br>
-References: <20181128175312.9634-1-matheus.bernardino@usp.br>
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ id 1gTXhV-0004T1-Fm; Sun, 02 Dec 2018 19:46:46 +0000
+Received: by mail-ed1-x541.google.com with SMTP id d3so8931419edx.7;
+ Sun, 02 Dec 2018 11:46:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=LAvdWhXDPlQUrYQL9AENTo/vbCPGbNO/arEEJxmWFnI=;
+ b=njY/FBXb8AF2vJrbUti/eTBfpteqES/2XPf89RrGqRxSGJxUQ7vc7DXKpAclKbHIa+
+ Bn2Yo4LD0XC3RMyj6tJQLpchJF3dw9xz/21xSzMjzGJY/dqmaxRqk00kUnUgoCSQx84c
+ I/cLRIuNTvEUFMrKiAoFMiukGsN9e5yglnVDwuH9rh46voGUbIxfpHKFRDo+J30K8XHD
+ E3CrmsnfZysDmwWOdPQ0J+zikFQPLOeivf6RLxOOv7NARkcxenJuonv1jyy9AEr1nsfF
+ uYC2c2lTzpwZCaJFcQBOxeeyxKhsu+HUkXDfbS6khsrOK54fq1X/vspM8F+lRnQ84uME
+ v3RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=LAvdWhXDPlQUrYQL9AENTo/vbCPGbNO/arEEJxmWFnI=;
+ b=EBV6eNTzPVmEAzvlOUEwh0Y/l3JrwkLdMwExRcklGIZKvAZidjSzzeWcE8k6piCtfw
+ r9zVkaH5rbPkFxLDNoVNpc2DgxhjY4vcMzN4BXwcItQkZLFuBQAagvA05DoY3PiUDAVU
+ 2TPxGEQlu8fYPJMeMN8A7jZFq/0VmMNOSOWrt3P2CoYW57qKOGIRlNZ00vzx86WyxCKM
+ 4B+AKY8HeXc97htjmn5ak19T/Za51VwRcEEqt97POSLRVESu9vMYuaOFW5jEqK/OCPxH
+ 6xB95M79q6F8T2HewQLBLiyVwqzPns/1q8QVHJu/J0IqzukThqX+q4rnvmEeoU8mgYih
+ 94nA==
+X-Gm-Message-State: AA+aEWbGxrPsiA9f7IWjqy2I3/1GcmM3OHo8aCoKitam/r7ZIoouJb9S
+ zwqN6f8C67+VKT1P0mVwkt0=
+X-Google-Smtp-Source: AFSGD/W5+KB2D7Gao/Zpfq3zqkRmDLw/gXhpceZ3jR2Mp1hqKO/enH90tWYiX7jRua/hMnBtLoeKQw==
+X-Received: by 2002:a17:906:3193:: with SMTP id
+ 19-v6mr11010439ejy.134.1543779991028; 
+ Sun, 02 Dec 2018 11:46:31 -0800 (PST)
+Received: from ziggy.stardust ([93.176.147.153])
+ by smtp.gmail.com with ESMTPSA id s3sm3289310eda.69.2018.12.02.11.46.27
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 02 Dec 2018 11:46:30 -0800 (PST)
+Subject: Re: [PATCH] ARM: dts: Kill off skeleton{64}.dtsi
+To: Rob Herring <robh@kernel.org>, arm@kernel.org
+References: <20181130170634.9467-1-robh@kernel.org>
+From: Matthias Brugger <matthias.bgg@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ UXI+r2JwH1CJjrHWeQEI2ucSKsNa8FllDmG/fQ==
+Message-ID: <e819a81d-e1b2-df99-6fc6-19a3eb4d47c4@gmail.com>
+Date: Sun, 2 Dec 2018 20:44:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.0
 MIME-Version: 1.0
+In-Reply-To: <20181130170634.9467-1-robh@kernel.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181201_085611_064658_1442024D 
-X-CRM114-Status: GOOD (  20.56  )
+X-CRM114-CacheID: sfid-20181202_114645_555170_2BEA2A27 
+X-CRM114-Status: GOOD (  21.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -73,226 +142,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Milo Kim <milo.kim@ti.com>,
+Cc: Andrew Lunn <andrew@lunn.ch>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-aspeed@lists.ozlabs.org,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Maxime Ripard <maxime.ripard@bootlin.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Michal Simek <michal.simek@xilinx.com>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>, kernel-usp@googlegroups.com,
- Lars-Peter Clausen <lars@metafoo.de>, linux-rockchip@lists.infradead.org,
- Kevin Hilman <khilman@baylibre.com>, Chen-Yu Tsai <wens@csie.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org,
+ Linus Walleij <linus.walleij@linaro.org>, Baruch Siach <baruch@tkos.co.il>,
+ David Brown <david.brown@linaro.org>, Jamie Iles <jamie@jamieiles.com>,
+ Robert Jarzmik <robert.jarzmik@free.fr>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@axis.com,
+ Jon Mason <jonmason@broadcom.com>,
  Ludovic Desroches <ludovic.desroches@microchip.com>,
- Kukjin Kim <kgene@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
- Joel Stanley <joel@jms.id.au>, Sylvain Lemieux <slemieux.tyco@gmail.com>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jon Mason <jonmason@broadcom.com>, Ray Jui <rjui@broadcom.com>,
- William Breathitt Gray <vilhelm.gray@gmail.com>,
- Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>,
- linux-samsung-soc@vger.kernel.org, Andreas Klinger <ak@it-klinger.de>,
- linux-amlogic@lists.infradead.org, Lucas Santos <ilucas.ms@gmail.com>,
- linux-arm-kernel@lists.infradead.org,
- Support Opensource <support.opensource@diasemi.com>,
- Scott Branden <sbranden@broadcom.com>, Andrew Jeffery <andrew@aj.id.au>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, linux-kernel@vger.kernel.org,
- Hartmut Knaack <knaack.h@gmx.de>, Carlo Caione <carlo@caione.org>,
- Eugen Hristev <eugen.hristev@microchip.com>
+ bcm-kernel-feedback-list@broadcom.com, Hauke Mehrtens <hauke@hauke-m.de>,
+ Andy Gross <andy.gross@linaro.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ Jason Cooper <jason@lakedaemon.net>,
+ Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
+ Sylvain Lemieux <slemieux.tyco@gmail.com>,
+ Haojian Zhuang <haojian.zhuang@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>,
+ linux-mediatek@lists.infradead.org, Lars Persson <lars.persson@axis.com>,
+ Gregory Fong <gregory.0xf0@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Barry Song <baohua@kernel.org>, linux-oxnas@groups.io,
+ Eric Miao <eric.y.miao@gmail.com>, Scott Branden <sbranden@broadcom.com>,
+ Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>, Li Yang <leoyang.li@nxp.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
+ Carlo Caione <carlo@caione.org>, Jun Nie <jun.nie@linaro.org>,
+ Brian Norris <computersforpeace@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+ Tsahee Zidenberg <tsahee@annapurnalabs.com>, Daniel Mack <daniel@zonque.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 28 Nov 2018 15:53:12 -0200
-Matheus Tavares <matheus.bernardino@usp.br> wrote:
 
-> From: Lucas Santos <ilucas.ms@gmail.com>
+
+On 30/11/2018 18:06, Rob Herring wrote:
+> Remove the usage of skeleton.dtsi in the remaining dts files. It was
+> deprecated since commit 9c0da3cc61f1 ("ARM: dts: explicitly mark
+> skeleton.dtsi as deprecated"). This will make adding a unit-address to
+> memory nodes easier.
 > 
-> This patch removes all license boilerplate texts from the .c and .h
-> files at drivers/iio/adc/ and, instead, adds the proper SPDX license
-> identifiers.
+> The main tricky part to removing skeleton.dtsi is we could end up with
+> no /memory node at all when a bootloader depends on one being present. I
+> hacked up dtc to check for this condition.
 > 
-> Signed-off-by: Lucas Santos <ilucas.ms@gmail.com>
-> Signed-off-by: Matheus Tavares <matheus.bernardino@usp.br>
-Hi Lucas, Matheus,
-
-Doing this as a large all at once patch may seem like a good idea, but...
-
-Whilst it is now kernel policy (sort of) to use SPDX, that doesn't
-correspond to converting all code without input from the original
-authors.
-
-As such, I am normally only happy to apply SPDX patches with an
-ack from either the original author, or at least someone from the
-company who holds the copyright.
-
-I have expressed before that I actually consider these mostly
-noise and so am not keen at all unless there is other work
-being done on a particular driver.
-
-So please split this up into at least separate patches
-for each of the copyright holders, so they can provide an ACK
-if they are happy with this change.
-
-Some companies will for example want their legal departments to
-do a review of whether SPDX is acceptable for their past contributions.
-(lots won't care btw - but the potential is there).
-
-+CC Linus Walleij as one of his files doesn't have a license...
-
-A few other comments inline...
-
-Thanks,
-
-Jonathan
-
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  drivers/iio/adc/ad7266.c             |  3 +--
->  drivers/iio/adc/ad7291.c             |  3 +--
->  drivers/iio/adc/ad7298.c             |  3 +--
->  drivers/iio/adc/ad7766.c             |  3 +--
->  drivers/iio/adc/ad7791.c             |  3 +--
->  drivers/iio/adc/ad7793.c             |  3 +--
->  drivers/iio/adc/ad7887.c             |  3 +--
->  drivers/iio/adc/ad7923.c             |  3 +--
->  drivers/iio/adc/ad799x.c             |  5 +----
->  drivers/iio/adc/ad_sigma_delta.c     |  3 +--
->  drivers/iio/adc/aspeed_adc.c         |  6 +-----
->  drivers/iio/adc/at91-sama5d2_adc.c   | 10 +---------
->  drivers/iio/adc/at91_adc.c           |  3 +--
->  drivers/iio/adc/axp20x_adc.c         |  5 +----
->  drivers/iio/adc/axp288_adc.c         | 13 +------------
->  drivers/iio/adc/bcm_iproc_adc.c      | 13 +------------
->  drivers/iio/adc/berlin2-adc.c        |  5 +----
->  drivers/iio/adc/cc10001_adc.c        |  6 +-----
->  drivers/iio/adc/cpcap-adc.c          | 10 +---------
->  drivers/iio/adc/da9150-gpadc.c       |  6 +-----
->  drivers/iio/adc/dln2-adc.c           |  5 +----
->  drivers/iio/adc/ep93xx_adc.c         |  5 +----
->  drivers/iio/adc/exynos_adc.c         | 11 +----------
->  drivers/iio/adc/fsl-imx25-gcq.c      |  5 +----
->  drivers/iio/adc/hi8435.c             |  6 +-----
->  drivers/iio/adc/hx711.c              |  6 +-----
->  drivers/iio/adc/imx7d_adc.c          |  6 +-----
->  drivers/iio/adc/ina2xx-adc.c         |  7 +------
->  drivers/iio/adc/lp8788_adc.c         |  5 +----
->  drivers/iio/adc/lpc18xx_adc.c        |  5 +----
->  drivers/iio/adc/lpc32xx_adc.c        | 15 +--------------
->  drivers/iio/adc/ltc2471.c            |  3 +--
->  drivers/iio/adc/ltc2485.c            |  5 +----
->  drivers/iio/adc/ltc2497.c            |  3 +--
->  drivers/iio/adc/max1027.c            |  5 +----
->  drivers/iio/adc/max1118.c            |  5 +----
->  drivers/iio/adc/max1363.c            |  5 +----
->  drivers/iio/adc/mcp320x.c            |  5 +----
->  drivers/iio/adc/mcp3422.c            |  6 +-----
->  drivers/iio/adc/men_z188_adc.c       |  5 +----
->  drivers/iio/adc/meson_saradc.c       |  5 +----
->  drivers/iio/adc/mt6577_auxadc.c      | 10 +---------
->  drivers/iio/adc/mxs-lradc-adc.c      | 11 +----------
->  drivers/iio/adc/nau7802.c            |  3 +--
->  drivers/iio/adc/palmas_gpadc.c       |  5 +----
->  drivers/iio/adc/qcom-pm8xxx-xoadc.c  |  1 +
->  drivers/iio/adc/qcom-spmi-iadc.c     | 10 +---------
->  drivers/iio/adc/qcom-spmi-vadc.c     | 10 +---------
->  drivers/iio/adc/rockchip_saradc.c    | 11 +----------
->  drivers/iio/adc/spear_adc.c          |  3 +--
->  drivers/iio/adc/stx104.c             | 10 +---------
->  drivers/iio/adc/sun4i-gpadc-iio.c    |  5 +----
->  drivers/iio/adc/ti-adc081c.c         |  5 +----
->  drivers/iio/adc/ti-adc0832.c         |  5 +----
->  drivers/iio/adc/ti-adc084s021.c      |  5 +----
->  drivers/iio/adc/ti-adc108s102.c      | 10 +---------
->  drivers/iio/adc/ti-adc12138.c        |  5 +----
->  drivers/iio/adc/ti-ads1015.c         |  5 +----
->  drivers/iio/adc/ti-ads8688.c         |  5 +----
->  drivers/iio/adc/ti-tlc4541.c         |  5 +----
->  drivers/iio/adc/ti_am335x_adc.c      | 10 +---------
->  drivers/iio/adc/twl4030-madc.c       | 16 +---------------
->  drivers/iio/adc/twl6030-gpadc.c      | 16 +---------------
->  drivers/iio/adc/vf610_adc.c          | 15 +--------------
->  drivers/iio/adc/viperboard_adc.c     |  7 +------
->  drivers/iio/adc/xilinx-xadc-core.c   |  3 +--
->  drivers/iio/adc/xilinx-xadc-events.c |  3 +--
->  drivers/iio/adc/xilinx-xadc.h        |  3 +--
->  68 files changed, 68 insertions(+), 361 deletions(-)
+> Yes, I'm being lazy and not splitting this up into dozens of sub-arch 
+> patches. I don't think this should conflict nor should we be getting new 
+> dependencies on skeleton.dtsi. So please apply directly to arm-soc.
 > 
-...
+> Rob
+> 
+>  arch/arm/boot/dts/alphascale-asm9260.dtsi      |  3 ++-
+[...]
+>  arch/arm/boot/dts/mt2701-evb.dts               |  1 +
+>  arch/arm/boot/dts/mt2701.dtsi                  |  3 ++-
+>  arch/arm/boot/dts/mt6580-evbp1.dts             |  1 +
+>  arch/arm/boot/dts/mt6580.dtsi                  |  1 -
+>  arch/arm/boot/dts/mt6589-aquaris5.dts          |  1 +
+>  arch/arm/boot/dts/mt6589.dtsi                  |  3 ++-
+>  arch/arm/boot/dts/mt6592-evb.dts               |  2 +-
+>  arch/arm/boot/dts/mt6592.dtsi                  |  3 ++-
+>  arch/arm/boot/dts/mt8127-moose.dts             |  1 +
+>  arch/arm/boot/dts/mt8127.dtsi                  |  3 ++-
+>  arch/arm/boot/dts/mt8135-evbp1.dts             |  1 +
+>  arch/arm/boot/dts/mt8135.dtsi                  |  3 ++-
 
-> diff --git a/drivers/iio/adc/ina2xx-adc.c b/drivers/iio/adc/ina2xx-adc.c
-> index bdd7cba6f6b0..9bbcca9df401 100644
-> --- a/drivers/iio/adc/ina2xx-adc.c
-> +++ b/drivers/iio/adc/ina2xx-adc.c
-> @@ -1,20 +1,15 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-Oh great, contradictory license text.   The first
-part would normally imply GPL-2.0 and the second
-is clearly GPL-2.0+
-
-I'd leave this one be unless you can get input from the various
-authors.
-
->  /*
->   * INA2XX Current and Power Monitors
->   *
->   * Copyright 2015 Baylibre SAS.
->   *
-> - * This program is free software; you can redistribute it and/or modify
-> - * it under the terms of the GNU General Public License version 2 as
-> - * published by the Free Software Foundation.
-> - *
->   * Based on linux/drivers/iio/adc/ad7291.c
->   * Copyright 2010-2011 Analog Devices Inc.
->   *
->   * Based on linux/drivers/hwmon/ina2xx.c
->   * Copyright 2012 Lothar Felten <l-felten@ti.com>
->   *
-> - * Licensed under the GPL-2 or later.
-> - *
->   * IIO driver for INA219-220-226-230-231
->   *
->   * Configurable 7-bit I2C slave address from 0x40 to 0x4F
-
-
-...
-
-> diff --git a/drivers/iio/adc/max1363.c b/drivers/iio/adc/max1363.c
-> index a8d35aebee80..6d191ffc4c7e 100644
-> --- a/drivers/iio/adc/max1363.c
-> +++ b/drivers/iio/adc/max1363.c
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: GPL-2.0
->   /*
->    * iio/adc/max1363.c
->    * Copyright (C) 2008-2010 Jonathan Cameron
-> @@ -9,10 +10,6 @@
->    * Copyright (C) 2000 Russell King
->    *
->    * Driver for max1363 and similar chips.
-> -  *
-> -  * This program is free software; you can redistribute it and/or modify
-> -  * it under the terms of the GNU General Public License version 2 as
-> -  * published by the Free Software Foundation.
->    */
-
-This one's mine so in a separate patch you can add.
-
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
-> diff --git a/drivers/iio/adc/qcom-pm8xxx-xoadc.c b/drivers/iio/adc/qcom-pm8xxx-xoadc.c
-> index c30c002f1fef..648136ed1f85 100644
-> --- a/drivers/iio/adc/qcom-pm8xxx-xoadc.c
-> +++ b/drivers/iio/adc/qcom-pm8xxx-xoadc.c
-> @@ -1,3 +1,4 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-Oh goody.  A file with out a license.  oops.
-Thankfully an author we can easily get hold of!
-Linus, what should it be?
-
->  /*
->   * Qualcomm PM8xxx PMIC XOADC driver
->   *
+For the MediaTek part:
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 _______________________________________________
 linux-amlogic mailing list
