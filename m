@@ -2,22 +2,22 @@ Return-Path: <SRS0=phzD=OL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-2.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1177DC64EB4
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 21:55:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 586E0C64EB4
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 22:09:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D518D20881
-	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 21:55:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0BA5220834
+	for <linux-amlogic@archiver.kernel.org>; Sun,  2 Dec 2018 22:09:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AWHeiMEl";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Rx8SBlLC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D518D20881
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kRYW//ap";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="K1tWG2B4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BA5220834
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=53vOzXkMh+EpePNiSWBRtlczZBwRNFJqtUt2isOLxBo=; b=AWHeiMElMamWzF
-	rZo7zUAq4vzfvq3vsCX0PGMr80csekFLLKrSgpWM1QTooPW8f7k0Ysw27D+Z5DOxQp+xqs5T9waXO
-	oP9t2u/Vl/ow/FgA87y7ie+TTp3j9VshetVu0w+gmXLx6gmdb0jKUoeyHmTFoxE3FXQ0dkeI0qLy3
-	zOcU6XhgSBjXh5PBIPfwpnWDv+hdRAfhoLd7TiJAWZnBOyBKUiUfzqIfj76dEcSEvF/eDmQmVRHVz
-	IIuxtDPwF9lbAEAGMU1BKu6fzL0NhtN0U8veJx2MM+QmHX5wEzkM4Jx9JMfMrxQWy1w9nhtjkU51H
-	X0PuyQL3/UUw0wL6OEYA==;
+	List-Owner; bh=CfD4Z86mOI/lrSz0KZtvsUeJknHHVQhE0jpgQw4U1WI=; b=kRYW//apGTDBFZ
+	BiRihuR3VBaC+2JwmJ7/VNd2imM4s8I5HXoXa2G6Gw2zW6quMsOGTnrzzOkPKlGhaGAbdi7NtIKBZ
+	565LLckZFdbMySDxJINHECWxyrF+XssbtP/PNcTdlCLbsRXpg301TeCrMVT2F9VgB98dQskld8Tlb
+	LRFSDJIERCtUhOX6/JwacTIVpP5b9O6Qh7Yz41EcMW9GcrZbybdlgN3+3QyjxHA2AZyAYRvddS3qb
+	0RyACfGvaafnwtQQ8ntWFCGiJzn2UEZkkTFXAwglORzhrFxO4Phuzm5eDGzF4GLPHgjZncLCaA5+t
+	Q/x6588G7DEeRdVzAiPw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTZhs-0001j8-A5; Sun, 02 Dec 2018 21:55:16 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gTZvL-00067T-L9; Sun, 02 Dec 2018 22:09:11 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTZVp-0003y3-Ed; Sun, 02 Dec 2018 21:42:58 +0000
-Received: by mail-wr1-x444.google.com with SMTP id r10so10137635wrs.10;
- Sun, 02 Dec 2018 13:42:39 -0800 (PST)
+ id 1gTZvI-00065D-Gj; Sun, 02 Dec 2018 22:09:10 +0000
+Received: by mail-wm1-x344.google.com with SMTP id r24so5620726wmh.0;
+ Sun, 02 Dec 2018 14:08:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=v1FNrPYfWMF3/vBQtyNC2xejvYpCaQUsX5uXu6fwKsI=;
- b=Rx8SBlLChYpA1IXqetgitpRqkTb9nY7sFJpn4/5eFmjAUhTnHQu0BtA0E5rhCjJ0zu
- e8NJfHczroVmvcedNvlnmUHyYngPz4kY1hf/sig+ts7nfW+x6//TDUqE7WGOhk/oIlpo
- Qsn0a4LJw4yf7HKokuxFg7XzP1PC1vCZ7gQJmSDLeJjjBbZU8jVToqR/76d2REnZFkXw
- yXmN2GqcX1Sn8Agzdv2eUgxudO6ClNxn7YDdoYKHnCsP/M6vk+GlOX3mtVO9GPhmKRT8
- 71pthcQA8nDnXGItjDZwl/YG1usCxpAiO0+6oMNXcfJPVSW//uaHkPJSqEBr/VQPfEx+
- EQvw==
+ bh=sVFm4iQFARb7LSpeEYqu6l+42fPoWzaNkx6zpzMl+0I=;
+ b=K1tWG2B4/2q6qBnbeh5tSNzG+hXAYd+XsWRhHn/ZtANd09DBEFd1fEPsPGOCBt59eO
+ toGQGVaeV6NgFtNOUhfL2kuWZIYTGyWB+wUxwPlaW5evhav1DKjDTuiP/Jc0Kmw4l5bq
+ Pg/gcxGBLq9351OUvlVoE0p+qqeyo7IyLzzfrMfe2XoY2xbugDzoLn5b3mnkYwoZYX0T
+ Maff9JbGsBxY4zqKAnaCpWMPKx2dYwKhcsLxU/yMaIbSywgQwonDg7nNNoQGPm4rbvGz
+ L3gQaHkjP2vXJanla3dz9TlTQjiJFFUNDe7TAS4BPNXPDgUAYBczBSIIhiiagAWETuMN
+ VGng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=v1FNrPYfWMF3/vBQtyNC2xejvYpCaQUsX5uXu6fwKsI=;
- b=eNbXBWzDD8l0B5dIZHey50RAJzEbmv5HyYbgSSMFLQ9KPGSZbJ0D5yi50sVWvApfqK
- kmuuC0Xz7ls3YUt5VvIQHRzONfLlgMXOA+7B3Ek2EXaUhUnb1DqLWGuqjlsLTVUFFDsr
- OyxiOWwdMB6EVvc5PUjqriZHID9l3SJSl2EvJgELPLO9RC24l0OvTj2l2YhZvlZ6GbDa
- hMKCm2f3sAx7gkVyhP9NsV+cc8mHArUWG1YR0giTinGe2zWWvNKPlmzEqfSVk2KLS4Q0
- VGKjUFWq6lfYfxVUzThVFXi9grRCzsCZjvVRub6duISJoJB/05/smAv777FFf6APh0I2
- Q+eQ==
-X-Gm-Message-State: AA+aEWYRQnQ6GaFJLtkIu016UYYEKJLZ0gq8495vTLXMY+ruF7OueALi
- 1OdGMZSrE9Ypm3f4q8E+PwqI/XfC
-X-Google-Smtp-Source: AFSGD/Xf5ccIaKr/r81nR0nHttMVPKYxQP8sDDbrOT9k1N+ZAW62Nih0l5FYNS30Ircux4C5dbThkQ==
-X-Received: by 2002:adf:900f:: with SMTP id h15mr11731230wrh.18.1543786957114; 
- Sun, 02 Dec 2018 13:42:37 -0800 (PST)
+ bh=sVFm4iQFARb7LSpeEYqu6l+42fPoWzaNkx6zpzMl+0I=;
+ b=Q7yB8KA+YVYbH28Z60At/Q25P/hfPaZKZyt+Xs8wv0w1GM1lwWbZ6tRzys4SJxqzfP
+ Fho6sCZkLwjfUCDHBU9mIuQckNZDpAjE3QuFgyMGZx6wggQ5WhLHfRBBQAjc87vH3RSI
+ oskepuMcfKA0VH4nEAkR72dYnoxfctb3UU3Mn4trMcs0blR4KR1rGE+Y/gQs4WlupOhX
+ f16eKAy5dzkEUPBX9eLzJZYP8ONIXrPDKz9elEEQVuDGdHvA2VKCiJyTCDK3jrEJVv1T
+ kAuHBFWZhvkufhpFWBtX0zhieEXKKRU4M957cQ5d3XvjtI7iDHkrgtkquoBwuzw49OAb
+ zmRw==
+X-Gm-Message-State: AA+aEWZD18Ex8C3xCPe3Og/bZxmqef4537UC/hSDEGIOBfsMZjBQ1mrv
+ VqX/MCU36bml63tuzhxlK+0LZXon
+X-Google-Smtp-Source: AFSGD/VFDdu+XpEtmybrNxO2yDzk+pu1fJsQJjF2YxYrJy4CXKcyNH399hdbb18P2N6ydbzJyg6Mjw==
+X-Received: by 2002:a1c:cc3:: with SMTP id 186mr437276wmm.143.1543788536654;
+ Sun, 02 Dec 2018 14:08:56 -0800 (PST)
 Received: from blackbox.darklights.net
  (p200300DCD73FBA00B1CC0EB38CD20A4E.dip0.t-ipconnect.de.
  [2003:dc:d73f:ba00:b1cc:eb3:8cd2:a4e])
- by smtp.googlemail.com with ESMTPSA id a18sm13073110wrp.13.2018.12.02.13.42.35
+ by smtp.googlemail.com with ESMTPSA id m15sm8503351wrr.95.2018.12.02.14.08.55
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 02 Dec 2018 13:42:36 -0800 (PST)
+ Sun, 02 Dec 2018 14:08:56 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
- narmstrong@baylibre.com
-Subject: [PATCH 0/3] - clk: meson8b: add the (read-only) video clock trees
-Date: Sun,  2 Dec 2018 22:42:17 +0100
-Message-Id: <20181202214220.7715-1-martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+ alexandre.belloni@bootlin.com, a.zummo@towertech.it
+Subject: [PATCH v5 0/2] Amlogic Meson6/8/8b/8m2 SoC RTC driver
+Date: Sun,  2 Dec 2018 23:08:45 +0100
+Message-Id: <20181202220847.24364-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.19.2
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181202_134250_165613_9295903C 
-X-CRM114-Status: GOOD (  15.94  )
+X-CRM114-CacheID: sfid-20181202_140908_554696_8C532F2C 
+X-CRM114-Status: GOOD (  15.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,220 +95,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-kernel@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ ben.dooks@codethink.co.uk, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, ccaione@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This is the Meson8b variant of Neil's series from [0] called "- clk:
-meson: Add video clocks path".
-GXBB and newer use a -- vid_pll divider IP block which doesn't exist on
-the 32-bit SoCs. Instead the 32-bit SoCs use three simple dividers,
-a few muxes and some fixed dividers.
+This series adds support for the RTC on the 32-bit Amlogic Meson SoCs.
 
-I used Neil's GXBB patches as initial reference, together with Amlogic's
-3.10 kernel sources (drivers/amlogic/display/vout/enc_clk_config.c): [1]
+The series does not have any build dependencies, but does require
+device-tree entries for the relevant boards.
 
-With Jianxin's help I was able to get the clock tree into a state where
-the code is now able to recalculate the frequencies of the video clocks.
-I am using the clock measurer as "expected" values, together with the
-data from enc_clk_config.c where all the dividers are documented. My
-test protocol on Meson8b and Meson8m2 is attached below.
+The series is tested by myself on the Meson8b EC-100 board. Earlier
+versions of this series were tested on an Odroid-C1 board with a
+battery pack attached by Ben Dooks and Kevin Hilman.
 
-One note for all brave people who look at enc_clk_config.c from
-Amlogic's 3.10 kernel: some frequencies seem to be doubled there.
-VMODE_1080P is defined with hpll_clk_out = 2970, but it's only using
-the following PLL parameters: M = 61, N = 1, FRAC = 3584. At first I
-though that there's a pre-multiplier like on GXBB, but after digging
-deeper into the code I don't believe that pre-multiplier exists. The
-reason for this is for example VMODE_1080P_30HZ which uses
-hpll_clk_out = 1485 with the same PLL parameters as 2970 MHz. However,
-since the current code can recalculate the frequencies correctly I will
-leave it to a future patch to solve this "frequency doubling" - more
-work is needed anyways for actually changing the PLL's frequency (as
-there are many bits in HHI_VID_PLL_CNTL2, HHI_VID_PLL_CNTL3,
-HHI_VID_PLL_CNTL4 and HHI_VID_PLL_CNTL5 which the Amlogic 3.10 kernel
-is changing together with the M/N/FRAC values.
+I will send the DT changes in a second series so that they can be
+merged once the dependencies have been satisfied.
 
 
-[0] https://patchwork.kernel.org/cover/10670657/
-[1] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/drivers/amlogic/display/vout/enc_clk_config.c
+Changes since v4 at [0]:
+- resurrected Ben's patches after 2 years: first I made it apply
+  onto linux-next again
+- I decided to update the author of the patch to my own name since I
+  made a lot of changes compared to Ben's implementation (list of
+  changes below, the diff-stat was: 223 insertions, 163 deletions)
+- make the dt-bindings file name (rtc-meson.txt) match the driver name
+- add a Meson8m2 compatible
+- add the clocks and vdd-supply properties to the match the actual IP
+  block implementation
+- make the resets and interrupts properties mandatory to match the
+  actual IP block implementation
+- removed the status property from the dt-bindings example
+- fix MODULE_LICENSE to match the actual license (GPL v2)
+- switch to SPDX-License-Identifier
+- sort the Kconfig option alphabetically
+- use BIT() and GENMASK() macros consistenly
+- replace #define RTC_REG(x) with actual #defines which match the names
+  from the public S805 datasheet
+- adjust existing #defines to align with the public S805 datasheet
+- add support for the 4x32bit NVMEM (regmem) data
+- implement regmap_bus to access the serial registers. this allows
+  getting rid of the custom locking code and makes the NVMEM
+  implementation much easier.
+- use regmap also for accessing the peripheral registers to make the
+  code shorter
+- add support for the vdd-supply regulator
+- switch from devm_rtc_device_register to devm_rtc_allocate_device and
+  rtc_register_device
+- set range_max to U32_MAX
+- use rtc_time64_to_tm and rtc_tm_to_time64
+- simplify timeout handling and use shorter timeouts (the driver from
+  the 3.10 BSP kernel uses udelay resolution (100us after the reset, 5us
+  for the "comm delay") as well as busy-looping from 0..40000 to wait
+  for "s_ready"
+- removed debug messages which are only printing register values (as
+  these can now be seen in
+  <debugfs>/regmap/c8100740.rtc-peripheral-registers/registers)
 
 
-1080P / Meson8b Odroid-C1
-- u-boot:
--- odroidc#video dev open 1080P
--- mode = 8 vic = 16
--- set HDMI vic: 16
--- mode is: 8
--- viu chan = 1
--- config HPLL
--- config HPLL done
--- reconfig packet setting done
-- clkmsr:
--- vid_pll 148497596 +/-4807Hz
--- encp 148497596 +/-4807Hz
--- encl 0 +/-3125Hz
--- hdmi_ch0_tmds 148500000 +/-4807Hz
--- hdmi_tx_pixel 148497596 +/-4807Hz
-- clk:
--- hdmi_pll_dco 0 0 0 1485000000 0 0 50000
--- vid_pll 0 0 0 148500000 0 0 50000
--- cts_encp 0 0 0 148500000 0 0 50000
--- cts_encl 0 0 0 148500000 0 0 50000
--- hdmi_tx_pixel 0 0 0 148500000 0 0 50000
-
-720P / Meson8b Odroid-C1
-- u-boot:
--- odroidc#video dev open 720P
--- mode = 6 vic = 4
--- set HDMI vic: 4
--- mode is: 6
--- viu chan = 1
--- config HPLL
--- config HPLL done
--- reconfig packet setting done
-- clkmsr:
--- vid_pll 148497596 +/-4807Hz
--- encp 148497596 +/-4807Hz
--- encl 0 +/-3125Hz
--- hdmi_ch0_tmds 74250000 +/-3125Hz
--- hdmi_tx_pixel 74248438 +/-3125Hz
-- clk:
--- hdmi_pll_dco 0 0 0 1485000000 0 0 50000
--- vid_pll 0 0 0 148500000 0 0 50000
--- cts_encp 0 0 0 148500000 0 0 50000
--- cts_encl 0 0 0 148500000 0 0 50000
--- hdmi_tx_pixel 0 0 0 74250000 0 0 50000
-
-480P / Meson8b Odroid-C1
-- u-boot:
--- odroidc#video dev open 480P
--- mode = 2 vic = 3
--- set HDMI vic: 3
--- mode is: 2
--- viu chan = 1
--- config HPLL
--- config HPLL done
--- reconfig packet setting done
-- clkmsr:
--- vid_pll 215996528 +/-6944Hz
--- encp 53998438 +/-3125Hz
--- encl 0 +/-3125Hz
--- hdmi_ch0_tmds 26998438 +/-3125Hz
--- hdmi_tx_pixel 27000000 +/-3125Hz
-- clk:
--- hdmi_pll_dco 0 0 0 1080000000 0 0 50000
--- vid_pll 0 0 0 216000000 0 0 50000
--- cts_encp 0 0 0 54000000 0 0 50000
--- cts_encl 0 0 0 54000000 0 0 50000
--- hdmi_tx_pixel 0 0 0 27000000 0 0 50000
+[0] https://www.spinics.net/lists/devicetree/msg135413.html
 
 
-4K2K30HZ / Meson8m2 M8S
-- u-boot:
--- m8m2_n200_v1#video dev open 4K2K30HZ
--- mode = 13 vic = 68
--- set HDMI vic: 68
--- config HPLL
--- config HPLL done
--- reconfig packet setting done
-- clkmsr:
--- vid_pll 297000000 +/-10416Hz
--- encp 296989583 +/-10416Hz
--- encl 296989583 +/-10416Hz
--- hdmi_ch0_tmds 296984375 +/-10416Hz
--- hdmi_tx_pixel 296979167 +/-10416Hz
--- hdmi_sys 23998438 +/-3125Hz
-- clk:
--- hdmi_pll_dco 0 0 0 1485000000 0 0 50000
--- vid_pll 0 0 0 297000000 0 0 50000
--- cts_encp 0 0 0 297000000 0 0 50000
--- cts_encl 0 0 0 297000000 0 0 50000
--- hdmi_tx_pixel 0 0 0 297000000 0 0 50000
--- hdmi_sys 0 0 0 24000000 0 0 50000
+Martin Blumenstingl (2):
+  dt-bindings: rtc: add device-tree bindings for the Amlogic Meson RTC
+  rtc: support for the Amlogic Meson RTC
 
-1080P / Meson8m2 M8S
-- u-boot:
--- m8m2_n200_v1#video dev open 1080P
--- mode = 8 vic = 16
--- set HDMI vic: 16
--- config HPLL
--- config HPLL done
--- reconfig packet setting done
-- clkmsr:
--- vid_pll 148500000 +/-4807Hz
--- encp 148500000 +/-4807Hz
--- encl 148497596 +/-4807Hz
--- hdmi_ch0_tmds 148497596 +/-4807Hz
--- hdmi_tx_pixel 148497596 +/-4807Hz
--- hdmi_sys 24000000 +/-3125Hz
-- clk:
--- hdmi_pll_dco 0 0 0 1485000000 0 0 50000
--- vid_pll 0 0 0 148500000 0 0 50000
--- cts_encp 0 0 0 148500000 0 0 50000
--- cts_encl 0 0 0 148500000 0 0 50000
--- hdmi_tx_pixel 0 0 0 148500000 0 0 50000
--- hdmi_sys 0 0 0 24000000 0 0 50000
-
-720P / Meson8m2 M8S
-- u-boot:
--- m8m2_n200_v1#video dev open 720P
--- mode = 6 vic = 4
--- set HDMI vic: 4
--- config HPLL
--- config HPLL done
--- reconfig packet setting done
-- clkmsr:
--- vid_pll 148500000 +/-4807Hz
--- encp 148500000 +/-4807Hz
--- encl 148497596 +/-4807Hz
--- hdmi_ch0_tmds 74248438 +/-3125Hz
--- hdmi_tx_pixel 74248438 +/-3125Hz
--- hdmi_sys 24000000 +/-3125Hz
-- clk:
--- hdmi_pll_dco 0 0 0 1485000000 0 0 50000
--- vid_pll 0 0 0 148500000 0 0 50000
--- cts_encp 0 0 0 148500000 0 0 50000
--- cts_encl 0 0 0 148500000 0 0 50000
--- hdmi_tx_pixel 0 0 0 74250000 0 0 50000
--- hdmi_sys 0 0 0 24000000 0 0 50000
-
-480P / Meson8m2 M8S
-- u-boot:
--- m8m2_n200_v1#video dev open 480P
--- mode = 2 vic = 3
--- set HDMI vic: 3
--- config HPLL
--- config HPLL done
--- reconfig packet setting done
-- - clkmsr:
--- vid_pll 215996528 +/-6944Hz
--- encp 54000000 +/-3125Hz
--- encl 53998438 +/-3125Hz
--- hdmi_ch0_tmds 27000000 +/-3125Hz
--- hdmi_tx_pixel 27000000 +/-3125Hz
--- hdmi_sys 24000000 +/-3125Hz
-- - clk:
--- hdmi_pll_dco 0 0 0 1080000000 0 0 50000
--- vid_pll 0 0 0 216000000 0 0 50000
--- cts_encp 0 0 0 54000000 0 0 50000
--- cts_encl 0 0 0 54000000 0 0 50000
--- hdmi_tx_pixel 0 0 0 27000000 0 0 50000
--- hdmi_sys 0 0 0 24000000 0 0 50000
-
-
-Martin Blumenstingl (3):
-  - clk: meson: meson8b: fix the offset of -- vid_pll_dco's N value
-  - clk: meson: meson8b: add the fractional divider for -- vid_pll_dco
-  - clk: meson: meson8b: add the read-only video clock trees
-
- drivers/clk/meson/meson8b.c | 746 +++++++++++++++++++++++++++++++++++-
- drivers/clk/meson/meson8b.h |  54 ++-
- 2 files changed, 789 insertions(+), 11 deletions(-)
+ .../devicetree/bindings/rtc/rtc-meson.txt     |  32 ++
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-meson.c                       | 409 ++++++++++++++++++
+ 4 files changed, 453 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-meson.txt
+ create mode 100644 drivers/rtc/rtc-meson.c
 
 -- 
 2.19.2
