@@ -2,64 +2,90 @@ Return-Path: <SRS0=94bh=OM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0361C65BAE
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 09:28:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 95494C04EB9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 09:43:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7C27520851
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 09:28:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 64F8720666
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 09:43:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p5Q68bnj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C27520851
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Wv5S9CVd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="E9hm9DQK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64F8720666
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8eCzYHekApsNEJD8MDAyuQg/eqkQujHho27038lJs3Q=; b=p5Q68bnjFPQXO63VzVQvxMHSL
-	PfpbsGu5P6aPkT8F8ERL2fY1lkExyDx0ipB6ZSUxvHFUP5wcNKXTTfWpGDoge7XTC/135JnSDZXzo
-	bhhvrZrvikK0MDIdmDVTRLBCsM8JjNaVQQpfeInTogu3Fv9aZZj5sKIiFMYJQx3zNHKwVXz0qRyhJ
-	EAjCzEIJQR1xWUBs3L8wyZP4lpIjvr5dH2kK7pP+EegEHVShG3fb8oBtvLGx4JETdWwrd0GTprPOn
-	T0LSXTD06dzmIO8B6aZhqgUhOgAWcWdABZ9/WGZeKy6SO/sXlKcC5k7UZIPDRmdTrmtzddv/MXvV8
-	Zn/7Aj2qQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=IEybObJHtewkNxO9uw6uJaLl+WFjx/X6MtevNiLiJdA=; b=Wv5S9CVdfTO7c9
+	HdAiCUxptI5HfFt9BHDbxeC+21oJ1p5OC1GOvkYQ/iN3saeIJ6FtvbhjYcK9i076+LmCJuVjn9jz+
+	SdrZTJ5hMghdSEaoQD3wTGlJWzGviiuzPvVx7LUhhVmfgXtrKQRi7Xy0ehJcSZo/mMY+WrJPBg+ME
+	go39WEBSXef5Zhj0+d0SJOIGNqH8bJvD2jVRV0C299Ppt4y0P7a8ug1pRC9KOFURluYk0+vhO3ey2
+	NVp8UVFQI28eyanfG+mBw93n0LApzWTL3hxBQmFjqmVvEUgIbg0J+OXa7pLewj7e+ca1u9oRzmKmz
+	rH3DUb6hsdpkc5LiFOmg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTkWx-0007Yd-J8; Mon, 03 Dec 2018 09:28:43 +0000
-Received: from mail-sz2.amlogic.com ([211.162.65.114])
+	id 1gTklA-000677-7k; Mon, 03 Dec 2018 09:43:24 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTkWp-0007LS-U7; Mon, 03 Dec 2018 09:28:39 +0000
-Received: from [10.28.18.81] (10.28.18.81) by mail-sz2.amlogic.com
- (10.28.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Mon, 3 Dec 2018
- 17:28:26 +0800
-Subject: Re: [PATCH 2/2] irqchip/meson-gpio: Add support for Meson-G12A SoC
-To: Jerome Brunet <jbrunet@baylibre.com>, Marc Zyngier <marc.zyngier@arm.com>, 
- Jason Cooper <jason@lakedaemon.net>, Thomas Gleixner <tglx@linutronix.de>, 
- Kevin Hilman <khilman@baylibre.com>
-References: <20181203061324.36248-1-xingyu.chen@amlogic.com>
- <20181203061324.36248-3-xingyu.chen@amlogic.com>
- <7a2f88d849ada782de6e27676518d0b9897e30e7.camel@baylibre.com>
-From: Xingyu Chen <xingyu.chen@amlogic.com>
-Message-ID: <dc42e7df-a3de-7323-177f-56a08564fb60@amlogic.com>
-Date: Mon, 3 Dec 2018 17:28:26 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.2
-MIME-Version: 1.0
-In-Reply-To: <7a2f88d849ada782de6e27676518d0b9897e30e7.camel@baylibre.com>
-Content-Language: en-GB
-X-Originating-IP: [10.28.18.81]
-X-ClientProxiedBy: mail-sz2.amlogic.com (10.28.11.6) To mail-sz2.amlogic.com
- (10.28.11.6)
+ id 1gTkkk-0005i0-1K
+ for linux-amlogic@lists.infradead.org; Mon, 03 Dec 2018 09:43:03 +0000
+Received: by mail-wm1-x343.google.com with SMTP id s14so5012385wmh.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Dec 2018 01:42:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=ZZvre/H46WpeUXFq0et7nHwNI50jgdXDNyFmlD+6BSQ=;
+ b=E9hm9DQKx48tCmOd36diBiaMaW0azrsRN3JZYKkoXScI7xO7td1QnW0sDRZdVktSwF
+ 94DTMFFdKqzY/d7GJSeIXis13a87YQ2EtrULTUuMVWlTFd9dOF6rM12eWSKkJ+Xm7voF
+ G4wTM8jdRUw8nLAuGCZD1kyyB6R0W/jpiOk0ArxTW4npj7I5xae8+CFb4jMLPsmnOMwL
+ xABjDPpK7GkArSxTEAhrrbWAwkIJLUsq3eQyPnjZUbm4MQVL/gUeBfrGIXl1NSgdni2s
+ UkBZgvANZAaBCjobyTMQj+hb/5uReHsL6BtBoDq77M4mGFuZNoCkdc1c94P6A9GvKc8X
+ BLvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=ZZvre/H46WpeUXFq0et7nHwNI50jgdXDNyFmlD+6BSQ=;
+ b=Ge6ypWAKgjiRy9sxp5zflU+VM5dyGxiw16MQp2HcoSYkSOzu9XKylqFmTrS+tfxnwt
+ zsA67IJzqvupZ3H8/bpuFx1/R3irHCxvL+wo00S1IUrNFtOqzKjYxf/g0jiZrXIZKi3+
+ pzsf/H6bPif+lfxq94sTjqTQRK+gt2HtHtYsJ+bYd8c8hOrkZ3vlPhBJwQKfzLeKBkVr
+ 617Y1DkoRNI1Xs5H5NHMKF9cP6pm05fjibpFXXkHQIX3jpVneyyZQlsItKJ0CiE2p/7o
+ 0bVoxlOuSBIK3MNCKeg0WmRYw0HgAC9pouPy2IxvUj30A6qlHbEVfgORZscx13UETcVJ
+ xpjQ==
+X-Gm-Message-State: AA+aEWah1AkyzLewbdrtFW1BH1ITI9qQ/wxe+AHQQXE/Zvrf2AWk8fsl
+ SClKCCU62d3eNXRK0b6h7TdJ8JwVpzQ=
+X-Google-Smtp-Source: AFSGD/XnTMiELjUeNxWjC6swx2wr5MBqPiwu0fqjZNBs0w9jtRK92Ex2AgowB4oVGbrXkbQAmd1RWQ==
+X-Received: by 2002:a1c:e513:: with SMTP id c19mr8004574wmh.101.1543830166448; 
+ Mon, 03 Dec 2018 01:42:46 -0800 (PST)
+Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.gmail.com with ESMTPSA id
+ h12sm20248605wma.48.2018.12.03.01.42.45
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 03 Dec 2018 01:42:45 -0800 (PST)
+Message-ID: <d52679a197a46fa19fb44c446c52fd286ad639f2.camel@baylibre.com>
+Subject: Re: [PATCH 0/3] - clk: meson8b: add the (read-only) video clock trees
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-amlogic@lists.infradead.org, narmstrong@baylibre.com
+Date: Mon, 03 Dec 2018 10:42:44 +0100
+In-Reply-To: <20181202214220.7715-1-martin.blumenstingl@googlemail.com>
+References: <20181202214220.7715-1-martin.blumenstingl@googlemail.com>
+User-Agent: Evolution 3.30.2 (3.30.2-2.fc29) 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181203_012836_524061_FE842DEC 
-X-CRM114-Status: GOOD (  14.08  )
+X-CRM114-CacheID: sfid-20181203_014258_075270_59B2F000 
+X-CRM114-Status: UNSURE (   9.53  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -71,75 +97,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
- linux-kernel@vger.kernel.org, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Heiner Kallweit <hkallweit1@gmail.com>
+Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Sun, 2018-12-02 at 22:42 +0100, Martin Blumenstingl wrote:
+> Martin Blumenstingl (3):
+>   - clk: meson: meson8b: fix the offset of -- vid_pll_dco's N value
+>   - clk: meson: meson8b: add the fractional divider for -- vid_pll_dco
+>   - clk: meson: meson8b: add the read-only video clock trees
+> 
+>  drivers/clk/meson/meson8b.c | 746 +++++++++++++++++++++++++++++++++++-
+>  drivers/clk/meson/meson8b.h |  54 ++-
+>  2 files changed, 789 insertions(+), 11 deletions(-)
 
+Looks good to me
 
-On 2018/12/3 17:19, Jerome Brunet wrote:
-> On Mon, 2018-12-03 at 14:13 +0800, Xingyu Chen wrote:
->> The Meson-G12A SoC uses the same GPIO interrupt controller IP block as the
->> other Meson SoCs, A totle of 100 pins can be spied on, which is the sum of:
->>
->> - 223:100 undefined (no interrupt)
->> - 99:97   3 pins on bank GPIOE
->> - 96:77   20 pins on bank GPIOX
->> - 76:61   16 pins on bank GPIOA
->> - 60:53   8 pins on bank GPIOC
->> - 52:37   16 pins on bank BOOT
->> - 36:28   9 pins on bank GPIOH
->> - 27:12   16 pins on bank GPIOZ
->> - 11:0    12 pins in the AO domain
->>
->> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>   drivers/irqchip/irq-meson-gpio.c | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-
->> gpio.c
->> index 7b531fd075b8..971e8dea069a 100644
->> --- a/drivers/irqchip/irq-meson-gpio.c
->> +++ b/drivers/irqchip/irq-meson-gpio.c
->> @@ -67,12 +67,17 @@ static const struct meson_gpio_irq_params axg_params = {
->>   	.nr_hwirq = 100,
->>   };
->>   
->> +static const struct meson_gpio_irq_params g12a_params = {
->> +	.nr_hwirq = 100,
->> +};
->> +
-> 
-> Same comment as on i2c, the g12 seems compatible with the axg.
-> Is this patchset patchset really necessary ?
-> 
-Although the total number of pins is the same as the Meson-AXG SoC, the 
-gpio banks and irq numbers are different. To avoid confusion on use, i 
-think the new compatible string is needed.
->>   static const struct of_device_id meson_irq_gpio_matches[] = {
->>   	{ .compatible = "amlogic,meson8-gpio-intc", .data = &meson8_params },
->>   	{ .compatible = "amlogic,meson8b-gpio-intc", .data = &meson8b_params
->> },
->>   	{ .compatible = "amlogic,meson-gxbb-gpio-intc", .data = &gxbb_params
->> },
->>   	{ .compatible = "amlogic,meson-gxl-gpio-intc", .data = &gxl_params },
->>   	{ .compatible = "amlogic,meson-axg-gpio-intc", .data = &axg_params },
->> +	{ .compatible = "amlogic,meson-g12a-gpio-intc", .data = &g12a_params
->> },
->>   	{ }
->>   };
->>   
-> 
-> 
-> .
-> 
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+
 
 _______________________________________________
 linux-amlogic mailing list
