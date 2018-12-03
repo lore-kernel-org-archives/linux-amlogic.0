@@ -2,77 +2,68 @@ Return-Path: <SRS0=94bh=OM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F20CC04EB9
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 21:38:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67FEAC04EB9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 21:54:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E35E320851
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 21:38:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 362EC20850
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 21:54:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cmp389vd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E35E320851
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XSmLpRHW";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="GNVs5ODp"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 362EC20850
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-ID:References:
+	In-Reply-To:From:To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7u5AtAY2GKaBpxfLowQsMCJCMLWLjD6DFYxFTNSsAkc=; b=Cmp389vdbVIXPl
-	YhXa6FtHS1J942XT4I+tp/ZoIEGHuXyk2LAvQrJF0y01gL+m++E9c5v3uGHz+DmyL0Rm98L6Gw4Dl
-	lAZ2T2M9T8aRDtowiLLChOxC5M+hc+W/dUMHYCe41Pl/lzI5eYBaHpbWcgkU1mbwPFratc+1opm2f
-	MrN0U3EeytAr7lT7qXTOAmAoAxzfWfkvpdPY7Td4zGFx3q4QIigzfMpD2JQMxRt1AFWf/TmCYLTI1
-	RXQVzFRKfIAnT5BeFF0AWwjOzf75xuobP1NXuQvGW+fjIeEnEXBY7pbQ1TCTCSq4R325TMOJ7hBM2
-	2REHxehYfxWc61Pt8MBw==;
+	List-Owner; bh=ngJof8I10iCwMiKvdzM+WVBLODGZ7xWCN9knam+33UE=; b=XSmLpRHWASnnwr
+	YwpCo+5QjvPs8y++Uj2G3uqdpLIgHP7XEfX/F0kWQ9fHMoBcalRmxd5UHWG/jeW4kBv2ZwBiYyQyL
+	ROjUG+LH+Wwu+ssfenl6BrZEVY217r+OsspC/i28JmLWvQGOfGdljWoWBa9m/tLxHIyLLkzD4aLpJ
+	oNCBj9Z1LVg+xZyTaZvi7SdxjAfLV0O0wKuMlAKNO9Ar1ezf357kL/p+5Ht6O37+8Ej7JuBDVGIAO
+	WjUxJahGwGRFDz4DaKWw5So/e1wFXNTZ24mNL0P5O0FXZQpxRCOknvMxvjEDja7UY8ZTLjPWM7aVR
+	hlzpFlrNB5Qz7nL3pK3g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTvuu-0000Mi-VL; Mon, 03 Dec 2018 21:38:12 +0000
-Received: from mail-oi1-f196.google.com ([209.85.167.196])
+	id 1gTwAi-00087w-CN; Mon, 03 Dec 2018 21:54:32 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTvpk-000247-04; Mon, 03 Dec 2018 21:33:12 +0000
-Received: by mail-oi1-f196.google.com with SMTP id a77so12342673oii.5;
- Mon, 03 Dec 2018 13:32:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=4IIdvslIkKvyI14uCjPFuiKDQb0ro77CNIToQQS9yUU=;
- b=qqML7HCvcAlMSAtM0Z+O7/cE3KxZm8q7eT09UKAvj9/b8CSlMVB25GoF7j5u+t/I18
- 8RxVSGDL6tVGVY9cclR+DpK9/2kuCJZmLvAIzae2IBKJzIHbNgnp2rVgqzZcmt1vwd7i
- rn5AzXZ3OWM5HE6ksP/DWDzC8TznvATzG5YBeJ8sCgYFBsYGYSDGoFdbxmNiYgG/uKGZ
- EVzQmxHJd+oZiWZvSqCDpOcnOIxRBYRLrTPqS1TVVzyMKxL6X3tSWxelR0V/sb71FwDH
- aqrF/vEIHxwCzFrZe6nvg1GcrsiydmDUj/dRmpbraiColy3XRPGWZ19ty2NoZJIDRA8K
- gyvA==
-X-Gm-Message-State: AA+aEWZEebcgA1NAzuVpYNL4TItcjWM6QcEU+vWyWZtO8pmk5W1ksQbG
- c1IBCvLLfBOZHRV8wI5OMg==
-X-Google-Smtp-Source: AFSGD/V0RKWgiV+8v5o/ObZn40fBtu+tEnkBn3Y8PAKZCP7bxtrjWb3WwwWiIO1daI7k6IqgrdhdMQ==
-X-Received: by 2002:aca:ad53:: with SMTP id w80mr10278765oie.148.1543872761266; 
- Mon, 03 Dec 2018 13:32:41 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.googlemail.com with ESMTPSA id c78sm8545501oig.30.2018.12.03.13.32.40
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 03 Dec 2018 13:32:40 -0800 (PST)
-From: Rob Herring <robh@kernel.org>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 13/34] dt-bindings: arm: amlogic: Move 'amlogic,
- meson-gx-ao-secure' binding to its own file
-Date: Mon,  3 Dec 2018 15:32:02 -0600
-Message-Id: <20181203213223.16986-14-robh@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20181203213223.16986-1-robh@kernel.org>
-References: <20181203213223.16986-1-robh@kernel.org>
+ id 1gTwAe-00085a-So
+ for linux-amlogic@lists.infradead.org; Mon, 03 Dec 2018 21:54:30 +0000
+Received: from localhost (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 4E08B20864;
+ Mon,  3 Dec 2018 21:54:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1543874056;
+ bh=2Wp/1VZ19iUdG965GD+O05IBYwAn8sHWLKyP+buAeI8=;
+ h=To:From:In-Reply-To:Cc:References:Subject:Date:From;
+ b=GNVs5ODpLxJrCOoWU07LeldxQuzX0J2t+M3qTzXdnZAizgYx+d6G6BPeDlYiDeVS4
+ dp28eWLQqSlWKymFYSSgfjFq61o6GKxCkwr77MbP5ufHwxDB+GJDMq/rpOQD3gYtka
+ LsCZpdAWhsibgfDlaygpTEugpZLbN2IY01xlvvbE=
 MIME-Version: 1.0
+To: Neil Armstrong <narmstrong@baylibre.com>, mturquette@baylibre.com
+From: Stephen Boyd <sboyd@kernel.org>
+X-Patchwork-Hint: ignore
+In-Reply-To: <8b905b7b-d72a-010f-bb2c-3cadeca603ed@baylibre.com>
+References: <8b905b7b-d72a-010f-bb2c-3cadeca603ed@baylibre.com>
+Message-ID: <154387405554.88331.5413259014915237358@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.7
+Subject: Re: [GIT PULL] clk: meson: updates for v4.21
+Date: Mon, 03 Dec 2018 13:54:15 -0800
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181203_133252_621240_C617D2D7 
-X-CRM114-Status: GOOD (  12.96  )
+X-CRM114-CacheID: sfid-20181203_135428_964437_FC61F844 
+X-CRM114-Status: UNSURE (   8.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -84,106 +75,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Kumar Gala <kumar.gala@linaro.org>,
- arm@kernel.org, Sean Hudson <darknighte@darknighte.com>,
- Frank Rowand <frowand.list@gmail.com>, Grant Likely <grant.likely@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It is best practice to have 1 binding per file, so board level bindings
-should be separate for various misc SoC bindings.
+Quoting Neil Armstrong (2018-11-23 07:23:33)
+> Dear clock maintainers,
+> 
+> Below is a request to pull updates for Amlogic clocks.
+> 
+> It covers essentially Meson GX Video clocks, Meson8b CPU clocks
+> and 2 bindings changes.
 
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/arm/amlogic.txt       | 29 -------------------
- .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 ++++++++++++++++++
- 2 files changed, 28 insertions(+), 29 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+Pulled into clk-next now.
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-index 4498292b833d..f5c8d50a3506 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.txt
-+++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-@@ -107,32 +107,3 @@ Board compatible values (alphabetically, grouped by SoC):
-   - "amlogic,s400" (Meson axg a113d)
+I got this when testing:
+
+drivers/clk/meson/vid-pll-div.c:58:26: warning: symbol '_get_table_val' was not declared. Should it be static?
+drivers/clk/meson/gxbb.c:1585:12: warning: symbol 'gxbb_vid_pll_parent_names' was not declared. Should it be static?
+drivers/clk/meson/gxbb.c:1620:12: warning: symbol 'gxbb_vclk_parent_names' was not declared. Should it be static?
+drivers/clk/meson/gxbb.c:1980:12: warning: symbol 'gxbb_cts_parent_names' was not declared. Should it be static?
+drivers/clk/meson/gxbb.c:2036:12: warning: symbol 'gxbb_cts_hdmi_tx_parent_names' was not declared. Should it be static?
+
+which looks like nice sparse noise to silence.
+
+It would also be nice to make that table of mux selectors const, is that
+possible?
+
+---8<----
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 30fbf8f1f190..b92df222f553 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -1582,7 +1582,7 @@ static struct clk_regmap gxbb_vid_pll_div = {
+ 	},
+ };
  
-   - "amlogic,u200" (Meson g12a s905d2)
--
--Amlogic Meson Firmware registers Interface
--------------------------------------------
--
--The Meson SoCs have a register bank with status and data shared with the
--secure firmware.
--
--Required properties:
-- - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
--
--Properties should indentify components of this register interface :
--
--Meson GX SoC Information
--------------------------
--A firmware register encodes the SoC type, package and revision information on
--the Meson GX SoCs.
--If present, the following property should be added :
--
--Optional properties:
--  - amlogic,has-chip-id: If present, the interface gives the current SoC version.
--
--Example
---------
--
--ao-secure@140 {
--	compatible = "amlogic,meson-gx-ao-secure", "syscon";
--	reg = <0x0 0x140 0x0 0x140>;
--	amlogic,has-chip-id;
--};
-diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
-new file mode 100644
-index 000000000000..c67d9f48fb91
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
-@@ -0,0 +1,28 @@
-+Amlogic Meson Firmware registers Interface
-+------------------------------------------
-+
-+The Meson SoCs have a register bank with status and data shared with the
-+secure firmware.
-+
-+Required properties:
-+ - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
-+
-+Properties should indentify components of this register interface :
-+
-+Meson GX SoC Information
-+------------------------
-+A firmware register encodes the SoC type, package and revision information on
-+the Meson GX SoCs.
-+If present, the following property should be added :
-+
-+Optional properties:
-+  - amlogic,has-chip-id: If present, the interface gives the current SoC version.
-+
-+Example
-+-------
-+
-+ao-secure@140 {
-+	compatible = "amlogic,meson-gx-ao-secure", "syscon";
-+	reg = <0x0 0x140 0x0 0x140>;
-+	amlogic,has-chip-id;
-+};
--- 
-2.19.1
+-const char *gxbb_vid_pll_parent_names[] = { "vid_pll_div", "hdmi_pll" };
++static const char * const gxbb_vid_pll_parent_names[] = { "vid_pll_div", "hdmi_pll" };
+ 
+ static struct clk_regmap gxbb_vid_pll_sel = {
+ 	.data = &(struct clk_regmap_mux_data){
+@@ -1617,7 +1617,7 @@ static struct clk_regmap gxbb_vid_pll = {
+ 	},
+ };
+ 
+-const char *gxbb_vclk_parent_names[] = {
++static const char * const gxbb_vclk_parent_names[] = {
+ 	"vid_pll", "fclk_div4", "fclk_div3", "fclk_div5", "vid_pll",
+ 	"fclk_div7", "mpll1",
+ };
+@@ -1977,7 +1977,7 @@ static struct clk_fixed_factor gxbb_vclk2_div12 = {
+ };
+ 
+ static u32 mux_table_cts_sel[] = { 0, 1, 2, 3, 4, 8, 9, 10, 11, 12 };
+-const char *gxbb_cts_parent_names[] = {
++static const char * const gxbb_cts_parent_names[] = {
+ 	"vclk_div1", "vclk_div2", "vclk_div4", "vclk_div6",
+ 	"vclk_div12", "vclk2_div1", "vclk2_div2", "vclk2_div4",
+ 	"vclk2_div6", "vclk2_div12"
+@@ -2033,7 +2033,7 @@ static struct clk_regmap gxbb_cts_vdac_sel = {
+ 
+ /* TOFIX: add support for cts_tcon */
+ static u32 mux_table_hdmi_tx_sel[] = { 0, 1, 2, 3, 4, 8, 9, 10, 11, 12 };
+-const char *gxbb_cts_hdmi_tx_parent_names[] = {
++static const char * const gxbb_cts_hdmi_tx_parent_names[] = {
+ 	"vclk_div1", "vclk_div2", "vclk_div4", "vclk_div6",
+ 	"vclk_div12", "vclk2_div1", "vclk2_div2", "vclk2_div4",
+ 	"vclk2_div6", "vclk2_div12"
+diff --git a/drivers/clk/meson/vid-pll-div.c b/drivers/clk/meson/vid-pll-div.c
+index b3370ea7beac..88af0e282ea0 100644
+--- a/drivers/clk/meson/vid-pll-div.c
++++ b/drivers/clk/meson/vid-pll-div.c
+@@ -55,8 +55,8 @@ static const struct vid_pll_div vid_pll_div_table[] = {
+ #define to_meson_vid_pll_div(_hw) \
+ 	container_of(_hw, struct meson_vid_pll_div, hw)
+ 
+-const struct vid_pll_div *_get_table_val(unsigned int shift_val,
+-					 unsigned int shift_sel)
++static const struct vid_pll_div *_get_table_val(unsigned int shift_val,
++						unsigned int shift_sel)
+ {
+ 	int i;
+ 
 
 
 _______________________________________________
