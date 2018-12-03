@@ -2,94 +2,86 @@ Return-Path: <SRS0=94bh=OM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-14.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BE26C04EB9
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 14:50:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F130DC04EB9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 15:33:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DEDE52082F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 14:50:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C284D20834
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 15:33:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u9z9ZkhW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gvcu1RbV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DEDE52082F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s2o52mdK";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b="W5wdPl3Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C284D20834
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=konsulko.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=maZVXCL/+ZyxkFVnE45ZuDp1MKZKU5p0oS7W5MLEcsQ=; b=u9z9ZkhWiSyMNG
-	VW39jZ9PyLvQ/6ydcScP9YAsf4u7ZQtt1LYBz5TWBPA+K6Ys3pPm5MrwbeEsQL8caFABfrjt2URCZ
-	eVfySbP5jNTaXAnbD7a76Suyr7xaeS5x9KQ3qz7fdYLIS0sheqwshb9G0dLbxbRSGmxSIuE4J1yT0
-	5MxA+9WAg9qDSRnOns51l0vuroGqFNmf1D6CAJsXtBBNmqj2iZQO2Rymd0xZ2oANaTalxsCiEjiaG
-	hAJYzj3IlJF30EmOCMmJueTPJNbef2mPa+Yla70azzVWSCDYnLdiE39qzOPcO03NbSfXWlgxMT8lg
-	wp1JXPiJwZ7FuoC8w2gQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=bSeL+Bo78VN6rVX6zNYwzCH80RmUZeF4T1XkF9mXbQM=; b=s2o52mdKq5IgXnVVRbK65QJz/
+	dZAueyfQs1rpV4BzsiqSGOruXhfrvfGQccbJoL3m1B4itQ1SFBzuOs5MqtLbwSLEiWN1ihXaHqa5P
+	vrVSvXW5iAhuCpPq+KwB0H3lqXdiZwIc6LdvsaJ48kg13wxEPZYYmdEjago/8X8HSYR1c8bHGyoGo
+	gN1GuN24oDOoCMB6mR0ucL5j0usSP2T1162ZySG3LEe/QL2dN4XqrFI134mFdRv/yFFbuZaAf/B/9
+	QcDHDLAqm7ckYLhro7gD19YrsDgI8cLVPF4xgxUXeBJTp5W3Ck67YBySIkg2h6KTp863AJ15zNmxg
+	XHjrEwL8g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTpYc-0002vh-5a; Mon, 03 Dec 2018 14:50:46 +0000
-Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
+	id 1gTqDv-00007c-SP; Mon, 03 Dec 2018 15:33:27 +0000
+Received: from mail-yb1-xb41.google.com ([2607:f8b0:4864:20::b41])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTpYZ-0002v2-7y
- for linux-amlogic@lists.infradead.org; Mon, 03 Dec 2018 14:50:44 +0000
-Received: by mail-pl1-x641.google.com with SMTP id p8so6603080plo.2
- for <linux-amlogic@lists.infradead.org>; Mon, 03 Dec 2018 06:50:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=LjiDNC3+i8Yto80bwvg30vwi7mkUXXXxWbLMnLl+3j8=;
- b=gvcu1RbVNcCrm3rCgtkExtdfspNNfjhHS//lVoJmnHW8n40FnLHVrORrHhRdyd4nTO
- DqVTkP+bUhXfy0yquh2mw0U98O+dwF+QuruKWaeQEyP3hIP7aDlUzDxEP8Pd2Z4rZTsf
- vGJXvYSZgWkpFWpTl2JNMXoQiCKQu5yJsH5JGSmcfHM1kruF1Eqdp3Su4dT8LE25MQy6
- NgBhdkM/IoZESahGJxXhFHPVoxbuQU3jjAjROb/eLYWbpDro94WZEbMzz2pkHlxTpHKR
- OikghHaqTLpv07nrSonKBL038nZbh2N0wj+Fk+yxzfTtr1kvHakIrI9oKEHhABQX1Gu2
- 2W+g==
+ id 1gTqDq-0008Ub-OF
+ for linux-amlogic@lists.infradead.org; Mon, 03 Dec 2018 15:33:25 +0000
+Received: by mail-yb1-xb41.google.com with SMTP id s8so3270089ybe.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Dec 2018 07:33:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=9q+ur5MgTEAWYVff9wgMkDirClxqCUlnwMuzLFdmCrw=;
+ b=W5wdPl3Y4gfQjOdmZf/aD7rYznFSy851NZhP0vm5ZS2aOZVXf4CmK8QhE72kXjV+wX
+ 1l9BRrRosggXdQxKSUcQt7MnJ45DwXbz7FoKk8FdieZ+q3DoVKkqcF6Pu+x3qaxUK1TF
+ KHqYQ5+PD8PeSjaS4H1LgoxofSn2UzMCpskCo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to:user-agent;
- bh=LjiDNC3+i8Yto80bwvg30vwi7mkUXXXxWbLMnLl+3j8=;
- b=AIbxQfFLB1pjSRu++9OULnsZ+qgXJBRCtJNyOgeh/dL61wdMRjqz+tkqADmtj9vzxk
- PNUzXaQ7JNMloo/TDeoW4vxgRTPTM6fCrEuMTmLRxmdrVf6ZG3nSrWfy4f0WzfCsyP6w
- 5l1EDC3R3bULwr8PXWCQSdWiQL/LLdwKf6Sa/a+ZzCsWfcyvqxflObXq4udCBV15rhgY
- KVFD5h40dxukAKwgV8MYVed8KAnsv4HT+OwUNjo/H5B4FfM1jh5g2AwBEYlNHj6e36hf
- DXu872r85fR25+dF9IMf8k4o04e7t1QQKycXTKe8FN24DsvnzmAZ5LK1GFDcKY648r+9
- /WMw==
-X-Gm-Message-State: AA+aEWYOFvxwmbxI2+4Zrma2vo+iynLNJ1ybYHbTrFd5K4NcxqmIjpeD
- 0/2zLCgL7/De93b1QDmdVxQ8H1JGiPc=
-X-Google-Smtp-Source: AFSGD/X5O1Arjg4tK+yw3k+qNqorjLluU9rJOWkUuWP2pyhMHTEksPEW5P53vTw1Yc2qCY715izD4g==
-X-Received: by 2002:a17:902:2a0a:: with SMTP id
- i10mr15906554plb.323.1543848631778; 
- Mon, 03 Dec 2018 06:50:31 -0800 (PST)
-Received: from raspberrypi ([45.76.192.69])
- by smtp.gmail.com with ESMTPSA id g185sm10916227pfc.174.2018.12.03.06.50.28
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 03 Dec 2018 06:50:30 -0800 (PST)
-Date: Mon, 3 Dec 2018 22:50:17 +0800
-From: He Yangxuan <yangxuan8282@gmail.com>
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=9q+ur5MgTEAWYVff9wgMkDirClxqCUlnwMuzLFdmCrw=;
+ b=IazVEEIAYMKEZXygIs5ji2WqbymcNaJ/X50a/Y4c3/n3i7+SFWkudUmFUrdQzUpMZC
+ VZUgRcXYKsCGfxKJX7pZV2B8btRtxbysekb9WPs1z2+zhFmWXpvyT9D/QYULWnMJQveA
+ boQ9y4hv6X0sZPSUW88vY/CJ8LRRLf8VSIKutYPoQYz3tsjHjkqXZkcsB9mkckQTBzqv
+ 3tTcNwt0BVN8FkqlmPY6oFZ2lhW66gFQkCgelJqNL3Scdz4EuhAQFGYjI7xzB5G8eSvR
+ LdNqZpuQq0Dz47+hRL18JJkEcuLno1gXWhzuQMxzawLH3BIlnwRhen4KjONTAmK8ky5K
+ zJfQ==
+X-Gm-Message-State: AA+aEWZLVWECdT9nRnfCWn6dElc8hhYAUMKp/vn/J8SbI/2KimVrOL9D
+ vn2xltMipMfeWokpbfZX+/MSmmTl7U0=
+X-Google-Smtp-Source: AFSGD/UX9fv1dPuNm+jD5BBQN8q/WBd6HvjtXqA45Iulm8G78q8XJ0JUT8aT/EYrjPIowE8rQI3pdA==
+X-Received: by 2002:a5b:2cd:: with SMTP id
+ h13-v6mr15469369ybp.258.1543851191080; 
+ Mon, 03 Dec 2018 07:33:11 -0800 (PST)
+Received: from bill-the-cat (cpe-65-184-133-47.ec.res.rr.com. [65.184.133.47])
+ by smtp.gmail.com with ESMTPSA id
+ u127sm3011431ywa.109.2018.12.03.07.33.09
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 03 Dec 2018 07:33:10 -0800 (PST)
+Date: Mon, 3 Dec 2018 10:33:08 -0500
+From: Tom Rini <trini@konsulko.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: Amlogic support on Alpine Linux
-Message-ID: <20181203145017.24t25ifljc734pga@raspberrypi>
-Mail-Followup-To: Neil Armstrong <narmstrong@baylibre.com>,
- linux-amlogic@lists.infradead.org, mjourdan@baylibre.com
-References: <20181128152257.nhrirxtxlsll6735@raspberrypi>
- <b4fea03d-4446-6512-78f3-6fad6dfc3700@baylibre.com>
+Subject: Re: [PULL u-boot] Please pull u-boot-amlogic-20181203
+Message-ID: <20181203153308.GQ5048@bill-the-cat>
+References: <7769afc3-d778-7501-eb5a-dbf30934c93f@baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <b4fea03d-4446-6512-78f3-6fad6dfc3700@baylibre.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <7769afc3-d778-7501-eb5a-dbf30934c93f@baylibre.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181203_065043_281320_D9FC9905 
-X-CRM114-Status: GOOD (  19.22  )
+X-CRM114-CacheID: sfid-20181203_073322_793099_7318B678 
+X-CRM114-Status: GOOD (  13.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,87 +93,89 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mjourdan@baylibre.com, linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ U-Boot Mailing List <u-boot@lists.denx.de>
+Content-Type: multipart/mixed; boundary="===============7642879087582875963=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
 
-> On Wed, Nov 28, 2018 at 04:54:53PM +0100, Neil Armstrong wrote:
-> Hi Yangxuan,
-> 
-> On 28/11/2018 16:22, He Yangxuan wrote:
-> > Hi Neil,
-> > 
-> > The alpine kernel package `linux-amlogic` have been merged in alpine upstream:
-> > https://github.com/alpinelinux/aports/commit/8dc0e43d5a410a6f173c14caaa625adaf45f11f4
-> > The current kernel config only include arm64, maybe somebody can add armhf or armv7 
-> > kernel config later.
-> > And alpine u-boot package have add Odroid C2 support: 
-> > https://github.com/alpinelinux/aports/commit/706b2721976b16d73274f23966f3f1a5735bf301#diff-bf45357b9515f24851da3b650e49829e 
-> 
-> Good news, thanks for pushing this !
-> 
-> > will add Khadas Vim and Nanopi K2 in alpine u-boot package later. 
-> 
-> Could you also add the libretech-cc ?
-
-I have created git PR for libretech-cc: https://github.com/alpinelinux/aports/pull/5739
- 
-> > So after the alpine builder build the package, we will have basic support for amlogic
-> > devices in alpine.
-> > I'm thinking about package mali driver. Based on this mail: 
-> > https://lists.infradead.org/pipermail/linux-amlogic/2017-June/004092.html
-> > and Joseph's archlinuxarm package:
-> > https://github.com/archlinuxarm/PKGBUILDs/blob/master/alarm/dkms-mali-utgard-meson
-> > https://github.com/archlinuxarm/PKGBUILDs/blob/master/alarm/mali-utgard-meson-libgl
-> > https://github.com/archlinuxarm/PKGBUILDs/tree/master/alarm/xf86-video-armsoc-meson
-> > I have wrote the alpine APKBUILD for those three packages.
-> > Most part is same as Joseph's work, but use your repositories as source. 
-> > Actually I want to add wayland support and video acceleration.
-> > In your this releases: https://github.com/superna9999/meson_gx_mali_450/releases/download/for-4.15/buildroot_openlinux_kernel_4.9_20180131_mali.tar.gz
-> > there are several libMali.so (r7p0/m450/dummy,fbdev,wayland,r7p0/m450-X), I should use which one for wayland or video?
-> 
-> For wayland you should obviously use the wayland one, but this one is buggy, you should take the ARM HiKey binary instead at https://developer.arm.com/-/media/Files/downloads/mali-drivers/user-space/hikey/mali-450_r7p0-01rel0_linux_1arm64.tar.gz?revision=b8764bbe-c4d6-4825-a0d9-bceca4ee4b2d
-
-I have tried the libMali.so, both of them work on debian stretch, but none of them work for alpine:
-
-```
-phicomm:~# LD_LIBRARY_PATH=/usr/lib/mali weston
-Date: 2018-11-29 CST
-[23:39:18.762] weston 5.0.0
-               https://wayland.freedesktop.org
-               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
-               Build: unknown (not built from git or tarball)
-[23:39:18.763] Command line: weston
-[23:39:18.763] OS: Linux, 4.18.18-0-amlogic, #1-Alpine SMP PREEMPT Tue Nov 27 13:19:48 UTC 2018, aarch64
-[23:39:18.763] Starting with no config file.
-[23:39:18.763] Output repaint window is 7 ms maximum.
-[23:39:18.763] Loading module '/usr/lib/libweston-5/drm-backend.so'
-[23:39:18.765] Failed to load module: Error relocating /usr/lib/libweston-5/drm-backend.so: gbm_bo_get_offset: symbol not found
-[23:39:18.765] fatal: failed to create compositor backend
-```
-
-Maybe this related to alpine use musl instead of glibc(from readelf output, 
-libMali.so need some glibc related shared library)? And if lima work for amlogic wayland now?
-
-> For video acceleration, Mali is not involved her at all.
-
-Still trying to get video acceleration work based on this posts:
-https://forum.odroid.com/viewtopic.php?f=135&t=22717&start=900
-Seems Maxime have got mpv with v4l2+drmprime in zerocopy use r7p0/m450/dummy/libMali.so .
- 
-> > And besides xf86-video-armsoc-meson do we still need xf86-video-fbdev or xf86-video-fbturbo?
-> 
-> 
-> No, the armsoc driver doesn't need other x11 driver.
+--===============7642879087582875963==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="mHNxlnn48ELheE/j"
+Content-Disposition: inline
 
 
-Yangxuan
+--mHNxlnn48ELheE/j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Dec 03, 2018 at 01:38:18PM +0100, Neil Armstrong wrote:
+
+> Hi Tom,
+>=20
+> I hope it's not too late, It's a single patch from Loic he reposted last =
+week.
+>=20
+> Thanks,
+> Neil
+>=20
+> The following changes since commit 952061352acfd24034e6990b6b7d32cded020c=
+0a:
+>=20
+>   drivers: rtc: correctly convert seconds to time structure (2018-12-01 1=
+8:03:14 -0500)
+>=20
+> are available in the Git repository at:
+>=20
+>   git://git.denx.de/u-boot-amlogic.git tags/u-boot-amlogic-20181203
+>=20
+> for you to fetch changes up to 8973d816588a8479eeb0e3a9f1e730922d3efc07:
+>=20
+>   ARM: meson: Add regmap support for clock driver (2018-12-03 13:34:21 +0=
+100)
+>=20
+
+Applied to u-boot/master, thanks!
+
+--=20
+Tom
+
+--mHNxlnn48ELheE/j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIcBAEBAgAGBQJcBUy0AAoJEIf59jXTHXZSpa4P/2U8O1df2ZLi9ivuVBy91jRN
+99XM022tLeQcDU+p6uoNWf2GkmNmtQpewT0b+9kaqvXKRefNWJPE2vEAB1qG6QU+
+LW9IB9fhUdqmbjWrXIxU42txFcUetb8vaRIZ1kC2tYHa7x/jfTrM+puaXmvYJI3j
+aFEHLOQyK1EYN0eI8UHJt7pLaS5dEGWCn6wn14Oed2TQeABMAHZQ+IIYoCP0E02o
+u2EtcNy7yVdqm/FQo5Ln0GHdjr0lHTQ/oaxlOfYl46MT2AElVuxvWW7szXYFW/BG
+BUO6yksKe5gWfpuvSP85KgJm82rvOwwnEZkuABa0vw7pB+hQqRl5k5Jc9XYRPrNf
+OXaD0nTTWyylwpp+SdUQngvdYuyZRJu0zghNjkSD6Pis6pWc5uK4CsbVik0CqaV6
+V3ymfdnJnKMAdpOZW6tSW4YlGzCZy9W9UnSw/e+nCJs965ScLR62nrBMNpjRoUKR
+BhsC6bePyHfPGmiROFeDMAnZ8aP5P2MYYNPM8pB6cwo5GSrOWh5SZp7QVhwM7I9O
+HEga3VLLo3njWy0usu282X+kH7hK2COM/Xpy4Wlo7lMlKruj9wVAU9tETaMW3Cp7
+4Tphnn8/Lh0yHDN/mMaqCHinVEm1cauhK+QpDK4VJD5NWwEX+Sy8l4aO+EGt1Qnw
+Zgf9+47ZS0PolK7ibpYA
+=hMDD
+-----END PGP SIGNATURE-----
+
+--mHNxlnn48ELheE/j--
+
+
+--===============7642879087582875963==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============7642879087582875963==--
+
