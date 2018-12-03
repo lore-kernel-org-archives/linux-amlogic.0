@@ -2,86 +2,65 @@ Return-Path: <SRS0=94bh=OM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F130DC04EB9
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 15:33:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BE962C04EB9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 16:42:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C284D20834
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 15:33:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 916FC20672
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 16:42:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s2o52mdK";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b="W5wdPl3Y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C284D20834
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=konsulko.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dS9GB+1G"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 916FC20672
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=bSeL+Bo78VN6rVX6zNYwzCH80RmUZeF4T1XkF9mXbQM=; b=s2o52mdKq5IgXnVVRbK65QJz/
-	dZAueyfQs1rpV4BzsiqSGOruXhfrvfGQccbJoL3m1B4itQ1SFBzuOs5MqtLbwSLEiWN1ihXaHqa5P
-	vrVSvXW5iAhuCpPq+KwB0H3lqXdiZwIc6LdvsaJ48kg13wxEPZYYmdEjago/8X8HSYR1c8bHGyoGo
-	gN1GuN24oDOoCMB6mR0ucL5j0usSP2T1162ZySG3LEe/QL2dN4XqrFI134mFdRv/yFFbuZaAf/B/9
-	QcDHDLAqm7ckYLhro7gD19YrsDgI8cLVPF4xgxUXeBJTp5W3Ck67YBySIkg2h6KTp863AJ15zNmxg
-	XHjrEwL8g==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=K5d5V1bAZAjG1KCT4npvNisVbI8i9H9H4iD5VyAGp8I=; b=dS9GB+1GVbbAvy
+	RSXSuaYX3xWHMo3ZjdMrEIxCbh/O7ZsgWIyaEfsbg/yQ69A9NnebwkqjgYsea80mvpvcDOeV4VkGB
+	7oVEPlUz7RJx/+EI1cle7HamPst4NuX8hCn8nR5d/U9G7R5P5S1hLxONQYgxCw06SXZHCA0bc1o3F
+	PBOp8WhbtjEAnQP+jU32ytaVb4M+owX463TI4T2dCJ55QTetxA7U4sTSFU/W78ateBMzm43ZfeTPK
+	SAOpQPvNLYo327WaZmxr7sbigaOpId2B4FHcUNsomk5Sx1ZB0WPIIe3wkYrdkT1dOIAVqKtnu3j8G
+	7XzT7BRzxWYy3MHkH/sA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTqDv-00007c-SP; Mon, 03 Dec 2018 15:33:27 +0000
-Received: from mail-yb1-xb41.google.com ([2607:f8b0:4864:20::b41])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTqDq-0008Ub-OF
- for linux-amlogic@lists.infradead.org; Mon, 03 Dec 2018 15:33:25 +0000
-Received: by mail-yb1-xb41.google.com with SMTP id s8so3270089ybe.9
- for <linux-amlogic@lists.infradead.org>; Mon, 03 Dec 2018 07:33:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=9q+ur5MgTEAWYVff9wgMkDirClxqCUlnwMuzLFdmCrw=;
- b=W5wdPl3Y4gfQjOdmZf/aD7rYznFSy851NZhP0vm5ZS2aOZVXf4CmK8QhE72kXjV+wX
- 1l9BRrRosggXdQxKSUcQt7MnJ45DwXbz7FoKk8FdieZ+q3DoVKkqcF6Pu+x3qaxUK1TF
- KHqYQ5+PD8PeSjaS4H1LgoxofSn2UzMCpskCo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=9q+ur5MgTEAWYVff9wgMkDirClxqCUlnwMuzLFdmCrw=;
- b=IazVEEIAYMKEZXygIs5ji2WqbymcNaJ/X50a/Y4c3/n3i7+SFWkudUmFUrdQzUpMZC
- VZUgRcXYKsCGfxKJX7pZV2B8btRtxbysekb9WPs1z2+zhFmWXpvyT9D/QYULWnMJQveA
- boQ9y4hv6X0sZPSUW88vY/CJ8LRRLf8VSIKutYPoQYz3tsjHjkqXZkcsB9mkckQTBzqv
- 3tTcNwt0BVN8FkqlmPY6oFZ2lhW66gFQkCgelJqNL3Scdz4EuhAQFGYjI7xzB5G8eSvR
- LdNqZpuQq0Dz47+hRL18JJkEcuLno1gXWhzuQMxzawLH3BIlnwRhen4KjONTAmK8ky5K
- zJfQ==
-X-Gm-Message-State: AA+aEWZLVWECdT9nRnfCWn6dElc8hhYAUMKp/vn/J8SbI/2KimVrOL9D
- vn2xltMipMfeWokpbfZX+/MSmmTl7U0=
-X-Google-Smtp-Source: AFSGD/UX9fv1dPuNm+jD5BBQN8q/WBd6HvjtXqA45Iulm8G78q8XJ0JUT8aT/EYrjPIowE8rQI3pdA==
-X-Received: by 2002:a5b:2cd:: with SMTP id
- h13-v6mr15469369ybp.258.1543851191080; 
- Mon, 03 Dec 2018 07:33:11 -0800 (PST)
-Received: from bill-the-cat (cpe-65-184-133-47.ec.res.rr.com. [65.184.133.47])
- by smtp.gmail.com with ESMTPSA id
- u127sm3011431ywa.109.2018.12.03.07.33.09
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 03 Dec 2018 07:33:10 -0800 (PST)
-Date: Mon, 3 Dec 2018 10:33:08 -0500
-From: Tom Rini <trini@konsulko.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PULL u-boot] Please pull u-boot-amlogic-20181203
-Message-ID: <20181203153308.GQ5048@bill-the-cat>
-References: <7769afc3-d778-7501-eb5a-dbf30934c93f@baylibre.com>
+	id 1gTrIT-0002mK-3b; Mon, 03 Dec 2018 16:42:13 +0000
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]
+ helo=foss.arm.com)
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gTrIQ-0002kx-KC; Mon, 03 Dec 2018 16:42:12 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A8EB31682;
+ Mon,  3 Dec 2018 08:41:58 -0800 (PST)
+Received: from e107981-ln.cambridge.arm.com (e107981-ln.cambridge.arm.com
+ [10.1.197.40])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6ED583F59C;
+ Mon,  3 Dec 2018 08:41:55 -0800 (PST)
+Date: Mon, 3 Dec 2018 16:41:50 +0000
+From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To: Hanjie Lin <hanjie.lin@amlogic.com>,
+	Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v6 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
+ controller driver
+Message-ID: <20181203164150.GA11855@e107981-ln.cambridge.arm.com>
+References: <1542876836-191355-1-git-send-email-hanjie.lin@amlogic.com>
+ <1542876836-191355-3-git-send-email-hanjie.lin@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <7769afc3-d778-7501-eb5a-dbf30934c93f@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <1542876836-191355-3-git-send-email-hanjie.lin@amlogic.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181203_073322_793099_7318B678 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20181203_084210_675519_40466ACC 
+X-CRM114-Status: GOOD (  17.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,89 +72,237 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: multipart/mixed; boundary="===============7642879087582875963=="
+Cc: Yixun Lan <yixun.lan@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Philippe Ombredanne <pombredanne@nexb.com>, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Liang Yang <liang.yang@amlogic.com>,
+ Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Thu, Nov 22, 2018 at 04:53:54PM +0800, Hanjie Lin wrote:
 
---===============7642879087582875963==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="mHNxlnn48ELheE/j"
-Content-Disposition: inline
+[...]
 
+> +static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
+> +				  u32 *val)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +
+> +	/*
+> +	 * there is a bug of MESON AXG pcie controller that software can not
+> +	 * programe PCI_CLASS_DEVICE register, so we must return a fake right
+> +	 * value to ensure driver could probe successfully.
+> +	 */
+> +	if (where == PCI_CLASS_REVISION) {
+> +		*val = readl(pci->dbi_base + PCI_CLASS_REVISION);
+> +		/* keep revision id */
+> +		*val &= PCI_CLASS_REVISION_MASK;
+> +		*val |= PCI_CLASS_BRIDGE_PCI << 16;
+> +		return PCIBIOS_SUCCESSFUL;
+> +	}
 
---mHNxlnn48ELheE/j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+As I said before, this looks broken. If this code (or other drivers with
+the same broken assumptions, eg dwc/pcie-qcom.c) carries out a, say,
+byte sized config access of eg PCI_CLASS_DEVICE you will get junk out of
+it according to your comment above.
 
-On Mon, Dec 03, 2018 at 01:38:18PM +0100, Neil Armstrong wrote:
+I would like to pick Bjorn's brain on this to see what we can really do
+to fix this (and other) drivers.
 
-> Hi Tom,
->=20
-> I hope it's not too late, It's a single patch from Loic he reposted last =
-week.
->=20
-> Thanks,
-> Neil
->=20
-> The following changes since commit 952061352acfd24034e6990b6b7d32cded020c=
-0a:
->=20
->   drivers: rtc: correctly convert seconds to time structure (2018-12-01 1=
-8:03:14 -0500)
->=20
-> are available in the Git repository at:
->=20
->   git://git.denx.de/u-boot-amlogic.git tags/u-boot-amlogic-20181203
->=20
-> for you to fetch changes up to 8973d816588a8479eeb0e3a9f1e730922d3efc07:
->=20
->   ARM: meson: Add regmap support for clock driver (2018-12-03 13:34:21 +0=
-100)
->=20
+Thanks,
+Lorenzo
 
-Applied to u-boot/master, thanks!
-
---=20
-Tom
-
---mHNxlnn48ELheE/j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQIcBAEBAgAGBQJcBUy0AAoJEIf59jXTHXZSpa4P/2U8O1df2ZLi9ivuVBy91jRN
-99XM022tLeQcDU+p6uoNWf2GkmNmtQpewT0b+9kaqvXKRefNWJPE2vEAB1qG6QU+
-LW9IB9fhUdqmbjWrXIxU42txFcUetb8vaRIZ1kC2tYHa7x/jfTrM+puaXmvYJI3j
-aFEHLOQyK1EYN0eI8UHJt7pLaS5dEGWCn6wn14Oed2TQeABMAHZQ+IIYoCP0E02o
-u2EtcNy7yVdqm/FQo5Ln0GHdjr0lHTQ/oaxlOfYl46MT2AElVuxvWW7szXYFW/BG
-BUO6yksKe5gWfpuvSP85KgJm82rvOwwnEZkuABa0vw7pB+hQqRl5k5Jc9XYRPrNf
-OXaD0nTTWyylwpp+SdUQngvdYuyZRJu0zghNjkSD6Pis6pWc5uK4CsbVik0CqaV6
-V3ymfdnJnKMAdpOZW6tSW4YlGzCZy9W9UnSw/e+nCJs965ScLR62nrBMNpjRoUKR
-BhsC6bePyHfPGmiROFeDMAnZ8aP5P2MYYNPM8pB6cwo5GSrOWh5SZp7QVhwM7I9O
-HEga3VLLo3njWy0usu282X+kH7hK2COM/Xpy4Wlo7lMlKruj9wVAU9tETaMW3Cp7
-4Tphnn8/Lh0yHDN/mMaqCHinVEm1cauhK+QpDK4VJD5NWwEX+Sy8l4aO+EGt1Qnw
-Zgf9+47ZS0PolK7ibpYA
-=hMDD
------END PGP SIGNATURE-----
-
---mHNxlnn48ELheE/j--
-
-
---===============7642879087582875963==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> +	return dw_pcie_read(pci->dbi_base + where, size, val);
+> +}
+> +
+> +static int meson_pcie_wr_own_conf(struct pcie_port *pp, int where,
+> +				  int size, u32 val)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +
+> +	return dw_pcie_write(pci->dbi_base + where, size, val);
+> +}
+> +
+> +static int meson_pcie_link_up(struct dw_pcie *pci)
+> +{
+> +	struct meson_pcie *mp = to_meson_pcie(pci);
+> +	struct device *dev = pci->dev;
+> +	u32 smlh_up = 0;
+> +	u32 ltssm_up = 0;
+> +	u32 rdlh_up = 0;
+> +	u32 speed_okay = 0;
+> +	u32 cnt = 0;
+> +	u32 state12, state17;
+> +
+> +	while (smlh_up == 0 || rdlh_up == 0 || ltssm_up == 0 ||
+> +	       speed_okay == 0) {
+> +		udelay(20);
+> +
+> +		state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
+> +		state17 = meson_cfg_readl(mp, PCIE_CFG_STATUS17);
+> +		smlh_up = IS_SMLH_LINK_UP(state12);
+> +		rdlh_up = IS_RDLH_LINK_UP(state12);
+> +		ltssm_up = IS_LTSSM_UP(state12);
+> +
+> +		if (PM_CURRENT_STATE(state17) < PCIE_GEN3)
+> +			speed_okay = 1;
+> +
+> +		if (smlh_up)
+> +			dev_dbg(dev, "smlh_link_up is on\n");
+> +		if (rdlh_up)
+> +			dev_dbg(dev, "rdlh_link_up is on\n");
+> +		if (ltssm_up)
+> +			dev_dbg(dev, "ltssm_up is on\n");
+> +		if (speed_okay)
+> +			dev_dbg(dev, "speed_okay\n");
+> +
+> +		cnt++;
+> +
+> +		if (cnt >= WAIT_LINKUP_TIMEOUT) {
+> +			dev_err(dev, "Error: Wait linkup timeout.\n");
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	return 1;
+> +}
+> +
+> +static int meson_pcie_host_init(struct pcie_port *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct meson_pcie *mp = to_meson_pcie(pci);
+> +	int ret;
+> +
+> +	ret = meson_pcie_establish_link(mp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	meson_pcie_enable_interrupts(mp);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dw_pcie_host_ops meson_pcie_host_ops = {
+> +	.rd_own_conf = meson_pcie_rd_own_conf,
+> +	.wr_own_conf = meson_pcie_wr_own_conf,
+> +	.host_init = meson_pcie_host_init,
+> +};
+> +
+> +static int meson_add_pcie_port(struct meson_pcie *mp,
+> +			       struct platform_device *pdev)
+> +{
+> +	struct dw_pcie *pci = &mp->pci;
+> +	struct pcie_port *pp = &pci->pp;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	if (IS_ENABLED(CONFIG_PCI_MSI)) {
+> +		pp->msi_irq = platform_get_irq(pdev, 0);
+> +		if (pp->msi_irq < 0) {
+> +			dev_err(dev, "failed to get msi irq\n");
+> +			return pp->msi_irq;
+> +		}
+> +	}
+> +
+> +	pp->ops = &meson_pcie_host_ops;
+> +	pci->dbi_base = mp->mem_res.elbi_base;
+> +
+> +	ret = dw_pcie_host_init(pp);
+> +	if (ret) {
+> +		dev_err(dev, "failed to initialize host\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dw_pcie_ops dw_pcie_ops = {
+> +	.link_up = meson_pcie_link_up,
+> +};
+> +
+> +static int meson_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct dw_pcie *pci;
+> +	struct meson_pcie *mp;
+> +	int ret;
+> +
+> +	mp = devm_kzalloc(dev, sizeof(*mp), GFP_KERNEL);
+> +	if (!mp)
+> +		return -ENOMEM;
+> +
+> +	pci = &mp->pci;
+> +	pci->dev = dev;
+> +	pci->ops = &dw_pcie_ops;
+> +
+> +	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(mp->reset_gpio)) {
+> +		dev_err(dev, "Get reset gpio failed\n");
+> +		return PTR_ERR(mp->reset_gpio);
+> +	}
+> +
+> +	ret = meson_pcie_get_resets(mp);
+> +	if (ret) {
+> +		dev_err(dev, "Get reset resource failed, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = meson_pcie_get_mems(pdev, mp);
+> +	if (ret) {
+> +		dev_err(dev, "Get memory resource failed, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	meson_pcie_power_on(mp);
+> +	meson_pcie_reset(mp);
+> +
+> +	ret = meson_pcie_probe_clocks(mp);
+> +	if (ret) {
+> +		dev_err(dev, "Init clock resources failed, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, mp);
+> +
+> +	ret = meson_add_pcie_port(mp, pdev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Add PCIE port failed, %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id meson_pcie_of_match[] = {
+> +	{
+> +		.compatible = "amlogic,axg-pcie",
+> +	},
+> +	{},
+> +};
+> +
+> +static struct platform_driver meson_pcie_driver = {
+> +	.probe = meson_pcie_probe,
+> +	.driver = {
+> +		.name = "meson-pcie",
+> +		.of_match_table = meson_pcie_of_match,
+> +	},
+> +};
+> +
+> +builtin_platform_driver(meson_pcie_driver);
+> -- 
+> 2.7.4
+> 
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7642879087582875963==--
-
