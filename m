@@ -2,92 +2,94 @@ Return-Path: <SRS0=94bh=OM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-7.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFE0CC04EB9
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 14:11:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BE26C04EB9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 14:50:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AFCA42082F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 14:11:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DEDE52082F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 14:50:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jDJM0Dn4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="F9JB56gr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AFCA42082F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u9z9ZkhW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gvcu1RbV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DEDE52082F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MuZdPKkHRhheIOVixKUyS6oJIsOXCws59wi8J/aD7k8=; b=jDJM0Dn4PpmkOH
-	s1hg/lvWboF7dG4qP5ULHWogyQtdcPgxYI5qYQQo59xXET/yQodNUAarYjPkn6EKGAzFWkgukMFvu
-	6720Pk1UkEujQDsp79yqzwFhQ1r14tS0gymt1XuyeM3y5Ii4nrWREYsJw+xggm9UDEdpMW02RamKG
-	IX4K+nT4HJfDnRp/TeFCbfKNE285yIWe4QW/sUOFJdi3uebzcS8jXZxycZz1/UyKGpeDYrWLqgjYv
-	CsRkBqObk3Px33/PXUmPDzF2vMO21bJ1DoWLCqsLX5efhsLL7T5Lc5w05f/PzXSpRsqwBAYe0B/2k
-	2w2ImUX76i4e+jYW3uqQ==;
+	List-Owner; bh=maZVXCL/+ZyxkFVnE45ZuDp1MKZKU5p0oS7W5MLEcsQ=; b=u9z9ZkhWiSyMNG
+	VW39jZ9PyLvQ/6ydcScP9YAsf4u7ZQtt1LYBz5TWBPA+K6Ys3pPm5MrwbeEsQL8caFABfrjt2URCZ
+	eVfySbP5jNTaXAnbD7a76Suyr7xaeS5x9KQ3qz7fdYLIS0sheqwshb9G0dLbxbRSGmxSIuE4J1yT0
+	5MxA+9WAg9qDSRnOns51l0vuroGqFNmf1D6CAJsXtBBNmqj2iZQO2Rymd0xZ2oANaTalxsCiEjiaG
+	hAJYzj3IlJF30EmOCMmJueTPJNbef2mPa+Yla70azzVWSCDYnLdiE39qzOPcO03NbSfXWlgxMT8lg
+	wp1JXPiJwZ7FuoC8w2gQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTowF-00017N-1Q; Mon, 03 Dec 2018 14:11:07 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1gTpYc-0002vh-5a; Mon, 03 Dec 2018 14:50:46 +0000
+Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTowB-00016k-2C
- for linux-amlogic@lists.infradead.org; Mon, 03 Dec 2018 14:11:05 +0000
-Received: by mail-wm1-x344.google.com with SMTP id z18so5982401wmc.4
- for <linux-amlogic@lists.infradead.org>; Mon, 03 Dec 2018 06:10:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=zZLk8OmqJ8tdp8dvej57iykCxTP7RI8TbT8Mq/Ra6EE=;
- b=F9JB56gr0Mba7VFYiPL2xBI3z+b3JiIo3uXGrjdemRF5odFNmVOmlJY7JcczKVTy+L
- NAwKvNpnznsu3bDTXmm1nxN2XM89sYHGDvThaUhsueFi0TU+Xb3bCGFU5NL6awNoqafi
- a/+8DabGJf1f2zqlSM7MAV4n3ucpbgSrVSj7+ed1O/AVs0tzSBh2j8N/+73iYewnwJrJ
- LAnd5UBpgUPrM2PNk9PqG7ruV0/rKcYopF1kApF67npX3JWmdixuIvHGYfkxy3M83NHf
- CZWNzq2CYa7NegY+liAY+7N9I61gAOmAEvXYusPQS7UfqRFehbSB1czSSszeA/tZWhLN
- tMsQ==
+ id 1gTpYZ-0002v2-7y
+ for linux-amlogic@lists.infradead.org; Mon, 03 Dec 2018 14:50:44 +0000
+Received: by mail-pl1-x641.google.com with SMTP id p8so6603080plo.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Dec 2018 06:50:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=LjiDNC3+i8Yto80bwvg30vwi7mkUXXXxWbLMnLl+3j8=;
+ b=gvcu1RbVNcCrm3rCgtkExtdfspNNfjhHS//lVoJmnHW8n40FnLHVrORrHhRdyd4nTO
+ DqVTkP+bUhXfy0yquh2mw0U98O+dwF+QuruKWaeQEyP3hIP7aDlUzDxEP8Pd2Z4rZTsf
+ vGJXvYSZgWkpFWpTl2JNMXoQiCKQu5yJsH5JGSmcfHM1kruF1Eqdp3Su4dT8LE25MQy6
+ NgBhdkM/IoZESahGJxXhFHPVoxbuQU3jjAjROb/eLYWbpDro94WZEbMzz2pkHlxTpHKR
+ OikghHaqTLpv07nrSonKBL038nZbh2N0wj+Fk+yxzfTtr1kvHakIrI9oKEHhABQX1Gu2
+ 2W+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=zZLk8OmqJ8tdp8dvej57iykCxTP7RI8TbT8Mq/Ra6EE=;
- b=fEvcvBnteNDM09vaG4Nc+4hjGC1RDRrpduLUOKM9eF58TwF8IXxASngvEFaos7JfA8
- b1/FaFvfQ9CZJvSAzJe5OoCrujUslVtooUQFghT5Sc8COYYH72VY8oekjgQ0V7zn4vZz
- AA4mdAh7RZ53fTLdsKGnhJavvWTwUg1FbjPgxJrmoKfLFNpbWqAdq3nqdia/maW6gWX8
- JqWt79A9JvVhIGVmglBtmYJU0bTGTujUZetknG7MYEd3zxWClKsg9m+Z9dB3ia+oLOL0
- ggmFwI96VZDpPBizVFaS6p3QpbTrfkxhkTm+unhQbl78s7TeGQItLxBe41B2z1gKqgPN
- XGcw==
-X-Gm-Message-State: AA+aEWZrH5ye3mvYioOmhq3Z21BVJ49BaScmCcOssPzngjnhFv9jS1l2
- 3jdwTPWSTczm1HUK28O8dMzJcA==
-X-Google-Smtp-Source: AFSGD/WdVTNfm5/h1habuLkaCXtA3/WY/BNFDBLQuNgXIuwTJTSBGrhkPWSAwRH9yS4f31oZZqDfSw==
-X-Received: by 2002:a1c:f916:: with SMTP id x22mr8841691wmh.87.1543846250914; 
- Mon, 03 Dec 2018 06:10:50 -0800 (PST)
-Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.gmail.com with ESMTPSA id
- y138sm6956398wmc.16.2018.12.03.06.10.49
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to:user-agent;
+ bh=LjiDNC3+i8Yto80bwvg30vwi7mkUXXXxWbLMnLl+3j8=;
+ b=AIbxQfFLB1pjSRu++9OULnsZ+qgXJBRCtJNyOgeh/dL61wdMRjqz+tkqADmtj9vzxk
+ PNUzXaQ7JNMloo/TDeoW4vxgRTPTM6fCrEuMTmLRxmdrVf6ZG3nSrWfy4f0WzfCsyP6w
+ 5l1EDC3R3bULwr8PXWCQSdWiQL/LLdwKf6Sa/a+ZzCsWfcyvqxflObXq4udCBV15rhgY
+ KVFD5h40dxukAKwgV8MYVed8KAnsv4HT+OwUNjo/H5B4FfM1jh5g2AwBEYlNHj6e36hf
+ DXu872r85fR25+dF9IMf8k4o04e7t1QQKycXTKe8FN24DsvnzmAZ5LK1GFDcKY648r+9
+ /WMw==
+X-Gm-Message-State: AA+aEWYOFvxwmbxI2+4Zrma2vo+iynLNJ1ybYHbTrFd5K4NcxqmIjpeD
+ 0/2zLCgL7/De93b1QDmdVxQ8H1JGiPc=
+X-Google-Smtp-Source: AFSGD/X5O1Arjg4tK+yw3k+qNqorjLluU9rJOWkUuWP2pyhMHTEksPEW5P53vTw1Yc2qCY715izD4g==
+X-Received: by 2002:a17:902:2a0a:: with SMTP id
+ i10mr15906554plb.323.1543848631778; 
+ Mon, 03 Dec 2018 06:50:31 -0800 (PST)
+Received: from raspberrypi ([45.76.192.69])
+ by smtp.gmail.com with ESMTPSA id g185sm10916227pfc.174.2018.12.03.06.50.28
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 03 Dec 2018 06:10:50 -0800 (PST)
-Message-ID: <921f7fbc2091cc7973645d18a5c7e6257a798b4d.camel@baylibre.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: clk: meson: add ao controller clock
- inputs
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, Carlo Caione
- <carlo@caione.org>,  Kevin Hilman <khilman@baylibre.com>
-Date: Mon, 03 Dec 2018 15:10:48 +0100
-In-Reply-To: <20181203131850.31388-2-jbrunet@baylibre.com>
-References: <20181203131850.31388-1-jbrunet@baylibre.com>
- <20181203131850.31388-2-jbrunet@baylibre.com>
-User-Agent: Evolution 3.30.2 (3.30.2-2.fc29) 
-Mime-Version: 1.0
+ Mon, 03 Dec 2018 06:50:30 -0800 (PST)
+Date: Mon, 3 Dec 2018 22:50:17 +0800
+From: He Yangxuan <yangxuan8282@gmail.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: Amlogic support on Alpine Linux
+Message-ID: <20181203145017.24t25ifljc734pga@raspberrypi>
+Mail-Followup-To: Neil Armstrong <narmstrong@baylibre.com>,
+ linux-amlogic@lists.infradead.org, mjourdan@baylibre.com
+References: <20181128152257.nhrirxtxlsll6735@raspberrypi>
+ <b4fea03d-4446-6512-78f3-6fad6dfc3700@baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <b4fea03d-4446-6512-78f3-6fad6dfc3700@baylibre.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181203_061103_112052_6552DF35 
-X-CRM114-Status: GOOD (  15.24  )
+X-CRM114-CacheID: sfid-20181203_065043_281320_D9FC9905 
+X-CRM114-Status: GOOD (  19.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,58 +101,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: mjourdan@baylibre.com, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2018-12-03 at 14:18 +0100, Jerome Brunet wrote:
-> Add the clock inputs of amlogic AO clock controller
+Hi Neil,
+
+> On Wed, Nov 28, 2018 at 04:54:53PM +0100, Neil Armstrong wrote:
+> Hi Yangxuan,
 > 
-> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt     | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+> On 28/11/2018 16:22, He Yangxuan wrote:
+> > Hi Neil,
+> > 
+> > The alpine kernel package `linux-amlogic` have been merged in alpine upstream:
+> > https://github.com/alpinelinux/aports/commit/8dc0e43d5a410a6f173c14caaa625adaf45f11f4
+> > The current kernel config only include arm64, maybe somebody can add armhf or armv7 
+> > kernel config later.
+> > And alpine u-boot package have add Odroid C2 support: 
+> > https://github.com/alpinelinux/aports/commit/706b2721976b16d73274f23966f3f1a5735bf301#diff-bf45357b9515f24851da3b650e49829e 
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt 
-> b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-> index 3a880528030e..c480db8f4793 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
-> @@ -11,6 +11,11 @@ Required Properties:
->  	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
->  	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
->  	followed by the common "amlogic,meson-gx-aoclkc"
-> +- clocks: list of clock phandle, one for each entry clock-names.
-> +- clock-names: should contain the following:
-> +  * "xtal"     : the platform xtal
-> +  * "mpeg-clk" : the main clock controller mother clock (aka clk81)
-> +  * "ext-32k"  : external 32kHz reference if any (optional)
+> Good news, thanks for pushing this !
+> 
+> > will add Khadas Vim and Nanopi K2 in alpine u-boot package later. 
+> 
+> Could you also add the libretech-cc ?
 
-While chip like the AXG have only 1 external 32k input, the gx family appears
-to have 3 :( I missed that detail when preparing this patchset. Please hold
-on, I'll send a v3
+I have created git PR for libretech-cc: https://github.com/alpinelinux/aports/pull/5739
+ 
+> > So after the alpine builder build the package, we will have basic support for amlogic
+> > devices in alpine.
+> > I'm thinking about package mali driver. Based on this mail: 
+> > https://lists.infradead.org/pipermail/linux-amlogic/2017-June/004092.html
+> > and Joseph's archlinuxarm package:
+> > https://github.com/archlinuxarm/PKGBUILDs/blob/master/alarm/dkms-mali-utgard-meson
+> > https://github.com/archlinuxarm/PKGBUILDs/blob/master/alarm/mali-utgard-meson-libgl
+> > https://github.com/archlinuxarm/PKGBUILDs/tree/master/alarm/xf86-video-armsoc-meson
+> > I have wrote the alpine APKBUILD for those three packages.
+> > Most part is same as Joseph's work, but use your repositories as source. 
+> > Actually I want to add wayland support and video acceleration.
+> > In your this releases: https://github.com/superna9999/meson_gx_mali_450/releases/download/for-4.15/buildroot_openlinux_kernel_4.9_20180131_mali.tar.gz
+> > there are several libMali.so (r7p0/m450/dummy,fbdev,wayland,r7p0/m450-X), I should use which one for wayland or video?
+> 
+> For wayland you should obviously use the wayland one, but this one is buggy, you should take the ARM HiKey binary instead at https://developer.arm.com/-/media/Files/downloads/mali-drivers/user-space/hikey/mali-450_r7p0-01rel0_linux_1arm64.tar.gz?revision=b8764bbe-c4d6-4825-a0d9-bceca4ee4b2d
 
->  
->  - #clock-cells: should be 1.
->  
-> @@ -40,8 +45,9 @@ ao_sysctrl: sys-ctrl@0 {
->  		compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-
-> aoclkc";
->  		#clock-cells = <1>;
->  		#reset-cells = <1>;
-> +		clocks = <&xtal>, <&clkc CLKID_CLK81>;
-> +		clock-names = "xtal", "mpeg-clk";
->  	};
-> -};
->  
->  Example: UART controller node that consumes the clock and reset generated
->    by the clock controller:
+I have tried the libMali.so, both of them work on debian stretch, but none of them work for alpine:
+
+```
+phicomm:~# LD_LIBRARY_PATH=/usr/lib/mali weston
+Date: 2018-11-29 CST
+[23:39:18.762] weston 5.0.0
+               https://wayland.freedesktop.org
+               Bug reports to: https://gitlab.freedesktop.org/wayland/weston/issues/
+               Build: unknown (not built from git or tarball)
+[23:39:18.763] Command line: weston
+[23:39:18.763] OS: Linux, 4.18.18-0-amlogic, #1-Alpine SMP PREEMPT Tue Nov 27 13:19:48 UTC 2018, aarch64
+[23:39:18.763] Starting with no config file.
+[23:39:18.763] Output repaint window is 7 ms maximum.
+[23:39:18.763] Loading module '/usr/lib/libweston-5/drm-backend.so'
+[23:39:18.765] Failed to load module: Error relocating /usr/lib/libweston-5/drm-backend.so: gbm_bo_get_offset: symbol not found
+[23:39:18.765] fatal: failed to create compositor backend
+```
+
+Maybe this related to alpine use musl instead of glibc(from readelf output, 
+libMali.so need some glibc related shared library)? And if lima work for amlogic wayland now?
+
+> For video acceleration, Mali is not involved her at all.
+
+Still trying to get video acceleration work based on this posts:
+https://forum.odroid.com/viewtopic.php?f=135&t=22717&start=900
+Seems Maxime have got mpv with v4l2+drmprime in zerocopy use r7p0/m450/dummy/libMali.so .
+ 
+> > And besides xf86-video-armsoc-meson do we still need xf86-video-fbdev or xf86-video-fbturbo?
+> 
+> 
+> No, the armsoc driver doesn't need other x11 driver.
 
 
+Yangxuan
 
 _______________________________________________
 linux-amlogic mailing list
