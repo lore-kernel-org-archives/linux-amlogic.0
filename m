@@ -2,55 +2,59 @@ Return-Path: <SRS0=94bh=OM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D33D2C65BAF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 06:13:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8387AC65BAE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 06:14:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A4A342145D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 06:13:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5552C20881
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 06:14:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PTPJ5zaI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A4A342145D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p4YLUTJ3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5552C20881
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=km7q/ED1ZnxBWUEUQ4qegPXo5oZa/Iaiyp9KyuswhFk=; b=PTPJ5zaItGijMe
-	dmm+zVo69BfeZ/hZABtFQtBeHhrCAKqbog2zPlM8sS0d2wyMH8PpHkLUDjtanCuST72onc8yCj7Wf
-	F8V8fIGeChaRV8JRkvOGM2w9eHSweRuYV4CYATpBJy7wziXtUcYt1RFjLwllsMLHxYEuVRTt0rliE
-	ElS/i1cPFUT9+iqo46O+KzLIJB2ADfSnOZGOXW/Chpc45jW4spVcYo+5fWUQ8NhowyLQOXkJ9aGp0
-	zBut9amcLTe3luLZvLz5mfE4jpqq5ovB0L1XJk4GShi2xP47ENeVQ3M/JOUtlNnS+uRg4stg0yiTq
-	z8nWLw+wut7XhV49tVeQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=wlVIhaPS1YAa7o2sysRK+X9c9V87h6CoPCBVQSqQHCo=; b=p4YLUTJ3Tv7/nJ
+	YJTAe5FK8q4AuEhJjLQu2s39pgthdnUic5/sehuGsKUKfAICkRc71VfSrA5uPFCOveNQfiGHOqSVT
+	uMnzODoOM/Ut6Nq6zp2z3oUEqMgO7kLnVnKKMrJX9IODq4mGi0R37jdc8oJsFQo0M79dJkkwUv+TA
+	ncxNmDSWuIyIhha52GkXXYTOpwLP+zj2q1QMHXFV0ytC1EKVNdPK/mRDWGhpLqD9PNZG6pLpwe/83
+	yqtcSOtBkjhVop1gPQRnhtjmUs91vK1pj5dk1xJ2cxSM3oJ8aXi3wjp/Rdr6bzB0H/eSrj9bO4Qom
+	WExzmdi+3PlfoO/iMTZQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gThUN-0007aI-Mj; Mon, 03 Dec 2018 06:13:51 +0000
+	id 1gThUa-0007o3-2G; Mon, 03 Dec 2018 06:14:04 +0000
 Received: from mail-sh2.amlogic.com ([58.32.228.45])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gThUK-0007Yf-Cx; Mon, 03 Dec 2018 06:13:49 +0000
+ id 1gThUX-0007aH-6x; Mon, 03 Dec 2018 06:14:02 +0000
 Received: from localhost.localdomain (10.28.8.22) by mail-sh2.amlogic.com
  (10.18.11.6) with Microsoft SMTP Server id 15.0.1320.4; Mon, 3 Dec 2018
- 14:13:49 +0800
+ 14:13:52 +0800
 From: Xingyu Chen <xingyu.chen@amlogic.com>
 To: Marc Zyngier <marc.zyngier@arm.com>, Jason Cooper <jason@lakedaemon.net>, 
  Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 0/2] irqchip/meson-gpio: Add support for Meson-G12A SoC
-Date: Mon, 3 Dec 2018 14:13:22 +0800
-Message-ID: <20181203061324.36248-1-xingyu.chen@amlogic.com>
+Subject: [PATCH 1/2] dt-bindings: interrupt-controller: New binding for
+ Meson-G12A SoC
+Date: Mon, 3 Dec 2018 14:13:23 +0800
+Message-ID: <20181203061324.36248-2-xingyu.chen@amlogic.com>
 X-Mailer: git-send-email 2.19.2
+In-Reply-To: <20181203061324.36248-1-xingyu.chen@amlogic.com>
+References: <20181203061324.36248-1-xingyu.chen@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.22]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181202_221348_438473_E64B6B16 
-X-CRM114-Status: UNSURE (   6.55  )
+X-CRM114-CacheID: sfid-20181202_221401_524870_F5634252 
+X-CRM114-Status: UNSURE (   8.28  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -73,19 +77,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This series try to add GPIO interrupt controller support for Meson-G12A SoCs.
-Although the total number of pins is the same as the Meson-AXG SoC, the gpio
-banks and irq numbers are different. To avoid confusion on use, i think the
-new compatible string is needed.
+Update the dt-binding document to support new compatible string for the
+GPIO interrupt controller which found in Amlogic's Meson-G12A SoC.
 
-Xingyu Chen (2):
-  dt-bindings: interrupt-controller: New binding for Meson-G12A SoC
-  irqchip/meson-gpio: Add support for Meson-G12A SoC
+Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+---
+ .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../interrupt-controller/amlogic,meson-gpio-intc.txt         | 1 +
- drivers/irqchip/irq-meson-gpio.c                             | 5 +++++
- 2 files changed, 6 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+index 1502a51548bb..7d531d5fff29 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+@@ -15,6 +15,7 @@ Required properties:
+     "amlogic,meson-gxbb-gpio-intc" for GXBB SoCs (S905) or
+     "amlogic,meson-gxl-gpio-intc" for GXL SoCs (S905X, S912)
+     "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
++    "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
+ - reg : Specifies base physical address and size of the registers.
+ - interrupt-controller : Identifies the node as an interrupt controller.
+ - #interrupt-cells : Specifies the number of cells needed to encode an
 -- 
 2.19.2
 
