@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CA84C04EBF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:58:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B53ACC04EBF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:58:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D5C3A20850
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:58:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8A67220659
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:58:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oFBm7ik7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OrY9HI5d"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D5C3A20850
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GGVBmFdT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FQqO74ty"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8A67220659
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q7FagTITVQpiQbAExSIUNgNTLpZOlRRSPAetDAInNOE=; b=oFBm7ik7pcuJ8n
-	EUkAJyB0+4GkB4Blh7W69f2n3MXI1Re2B4C6U9wg6nwnwDr19OvrjoKf34+6glcQ0gSM6hYpWlkV8
-	IgbDEUEnwZeGFMD41+sfcK2/rD081So24DZM6YFRZzJJ7woF7xSZTeF9xCUGtjOCfYnbur2ehtsCX
-	JscX7zdhX/21Ia8gMKBqyR1Fc72FjqMzlgwa5Nr51/WDf7TsjMu1+S8UlKUUWt3ZZiz9coXntEKjp
-	fhFDAhROHtWyygMRI55un4BfXjwZ6D3XhoOYRtcjTAMUw67UQLHpwTzFzj6KX+1EehEWsa3/0GsaX
-	zFqgJJSYCsbZ1fVHVPuA==;
+	List-Owner; bh=IZODB79JjFFLCU9G4u5cY0oyJmFzuN/3Drasj8mOuNM=; b=GGVBmFdTG3PUOq
+	qjhc3zeSqJv3i2hunGPywy+MR1cdvz6wj9TB91vAyeOgomBbvr8KhFiJhOrSHJqDsBDVDKcgQFhg8
+	vctx8BJU6zFx3sY+d27HEOq8hqPkPZm9h5NpuTAdJJYmxy8Mx9OCDXxu8wqpcjjaVss4OPjOeTG8D
+	4Eo9DSxZ43s5I4XHOrn6ZbEWZBAe8x0VpecXivZA+FQ51OalRCzetGu6Rvs9mo3FanJAg9dbtP9Kj
+	mg80YRYTGQNpngVLrg7HWOOhWdBQPv9T/xOtWLwo6q8m3+KyU7ThMMRGVnT+99kljV6uizoZ8ObbA
+	tYWM3TRr9rNDGF95MUTw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUE20-0004D2-8l; Tue, 04 Dec 2018 16:58:44 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1gUE23-0004G1-5j; Tue, 04 Dec 2018 16:58:47 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUE1x-0004Ah-FP
- for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 16:58:42 +0000
-Received: by mail-wm1-x341.google.com with SMTP id y139so10326271wmc.5
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 08:58:31 -0800 (PST)
+ id 1gUE1z-0004Aj-62
+ for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 16:58:45 +0000
+Received: by mail-wr1-x444.google.com with SMTP id t27so16737692wra.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 08:58:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=wJVyGLtCFC0e76IubhfRv1J+zqc3cu+QjOGSxAy/OS4=;
- b=OrY9HI5dHrgEl05gg4L5JsWStECOaFrTHEECl/2rKKA0DT+0qDdx2wP4EubHbq8FOM
- NcNOQSWITVlfMEi7qjYR22wtWUpENhWsPBJ4Cem/nXpflYiNbO0rkedcdYnWhzC2enxH
- 5bnfC6OLEYZFsxXVlDLdK/OqYhKShttQElp7ADCey2DLnEnW2WitdsIbnMxEq7qvL7b+
- dtJakC2lQfu7fp8UeR70EIBV+eho2aI2qo7qDnWnXITYCi9RKyHoclnIQaw08QRAOTY9
- 1IRCPMYeExz7z/e1+ordGEgrq1UjgJkGsHdtu/+iRk4NeYlUofFNamcnazsiLovHVIQU
- RtQw==
+ bh=QexVJLOcv8y3bTpNXNLUpoDtvoGi99S6MUCsYAM8CRc=;
+ b=FQqO74tybSN6ZzpP8nkyCnk5REj5HgC0rtTZ59/fMkGAZWtMvvyyIcAVJ+puYiCsDR
+ E/SqYIMjkdLbKRDM5Khucml56wOebg9QpoOyK16N74kgE+Yng9jAupkrMdeAzTWpFIdF
+ EEaQvbgi9ZeQTczsmQXuZcoZDhNlSOuZxsWpOTfpPypQoApIoeLs6lct1C5trseZM+tw
+ WXfZ2lxCtp/djnrVgg6aM8yltj4ByF4X4uOmThquR/9/LWKegsAXrDsHHvays/KDkhJ9
+ NwUXLR0dBSDzYklJQ/flLkRNjh94aW0062UVp9pCCib7ifWUGag2xND5rPJncQmcD41q
+ RUFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=wJVyGLtCFC0e76IubhfRv1J+zqc3cu+QjOGSxAy/OS4=;
- b=BI3vhzEidtsqyHZu/0kMhKhc6ZCP89Mr1DQhv3sAILpPB6qOWyV1vVl7d2a+0WuABc
- 1MQBvosTS7xaemof12OmHSMHCTDSJI0T8W80IyunDZgojtsfM3rauDeAEVdES9oVChG4
- kkTXJjGfiigei8Xlx9bHyuo6xOmTDYQH8+NIpK/EzdmGlPbAPXastCalLd8KuXNuurMS
- 5/lnKXX23vdvNlAKQtJilUPde/VaiFkx6yKoVLqYPFxcMbIOOw73DB5QOnyRSBqJyTkv
- bjM8xCpr8AdeEVt42vy/tJB5TlZLFS2+j2CwYi8vzPdiBdtLyBCw+LglxVvmRPFOwB2/
- pSTg==
-X-Gm-Message-State: AA+aEWZhBV4Nq6olH87NztqlQW1WJS5AbY//7A8Vzc02RsjaL7Jd8mOt
- rFIgtrK5FeS7wUbC3BCytWNP8A==
-X-Google-Smtp-Source: AFSGD/XCtQRzW+7kgW3/fYyh3qJUlzTx1r8MlcU+XPa4KWpHKWQoIlm2AKGBANnHGpp4bA1p5Wedvw==
-X-Received: by 2002:a1c:7d54:: with SMTP id y81mr12982144wmc.106.1543942710001; 
- Tue, 04 Dec 2018 08:58:30 -0800 (PST)
+ bh=QexVJLOcv8y3bTpNXNLUpoDtvoGi99S6MUCsYAM8CRc=;
+ b=rIxbA8qs1dQ6gG9rUF1+Bo/5bcUoShAj5xKEXMi1VsIpZEIMzv5uCSMleNrApcgLo3
+ Hx61YpXeDi7lE6RtFsRdcbI48B3HSo7QExJS8U/l+Bebuu5I6L6cHYz2C6+OOjoP37zx
+ NDddEGEMmkJbs4hqyu9VSOKBrHxMBIx1/3taUmDj+ZF66CRmKL/U44SDTUs7pBiKcRAw
+ bs8qrMxIAGsrIVTmUtvFnBUj0MIYaGTDLD6PaWY5WPmWEBwXgmE3GGKLdGFbj513INwW
+ dTph1b4B4+GD6dmHKl0xobHYTRXKGAzAScLionZU9oaespYtg/ecCTOPKu+68roY18Zw
+ 3J3w==
+X-Gm-Message-State: AA+aEWY5aWPXR3V8AHEOQk5K5xnPfo4b9t8ajYmpU/V7/tZVpMXxfxuN
+ jqS/+kyrIzqnbu4zM6i+jubZLQ==
+X-Google-Smtp-Source: AFSGD/UMgq/PhM7oa7J4PwCRvyOblmIKxSBNNjyF15wBFEmRB1874ajEyIP9XuaJRro2QGioz8/poA==
+X-Received: by 2002:a5d:4b8b:: with SMTP id b11mr18978382wrt.180.1543942711702; 
+ Tue, 04 Dec 2018 08:58:31 -0800 (PST)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id x81sm10152521wmg.17.2018.12.04.08.58.28
+ by smtp.googlemail.com with ESMTPSA id x81sm10152521wmg.17.2018.12.04.08.58.30
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 04 Dec 2018 08:58:29 -0800 (PST)
+ Tue, 04 Dec 2018 08:58:31 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>
-Subject: [PATCH 1/2] clk: meson: add clk-input helper function
-Date: Tue,  4 Dec 2018 17:58:18 +0100
-Message-Id: <20181204165819.21541-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/2] clk: meson: axg-audio: use the clk input helper function
+Date: Tue,  4 Dec 2018 17:58:19 +0100
+Message-Id: <20181204165819.21541-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20181204165819.21541-1-jbrunet@baylibre.com>
 References: <20181204165819.21541-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_085841_509531_21741795 
-X-CRM114-Status: GOOD (  12.59  )
+X-CRM114-CacheID: sfid-20181204_085843_219212_878E09CB 
+X-CRM114-Status: GOOD (  15.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,95 +104,167 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the clock input helper function. Several amlogic clock controllers
-will now be registering bypass clock input. Instead of copying this
-code in every of them, let's make an helper function for it
+Rework the axg audio clock controller to use the new clk-input helper
+function.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/Makefile    |  2 +-
- drivers/clk/meson/clk-input.c | 44 +++++++++++++++++++++++++++++++++++
- drivers/clk/meson/clkc.h      |  5 ++++
- 3 files changed, 50 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/meson/clk-input.c
+ drivers/clk/meson/axg-audio.c | 83 ++++++++++-------------------------
+ 1 file changed, 24 insertions(+), 59 deletions(-)
 
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 6da1d7082f1a..e8d1c727cf69 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -3,7 +3,7 @@
- #
+diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
+index 5f6c860aa122..72b717e61a68 100644
+--- a/drivers/clk/meson/axg-audio.c
++++ b/drivers/clk/meson/axg-audio.c
+@@ -631,22 +631,23 @@ static struct clk_regmap *const axg_audio_clk_regmaps[] = {
+ 	&axg_tdmout_c_lrclk,
+ };
  
- obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-phase.o vid-pll-div.o
--obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-dualdiv.o
-+obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-dualdiv.o clk-input.o
- obj-$(CONFIG_COMMON_CLK_AMLOGIC_AUDIO)	+= clk-triphase.o sclk-div.o
- obj-$(CONFIG_COMMON_CLK_MESON_AO) += meson-aoclk.o
- obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
-diff --git a/drivers/clk/meson/clk-input.c b/drivers/clk/meson/clk-input.c
-new file mode 100644
-index 000000000000..06b3e3bb6a66
---- /dev/null
-+++ b/drivers/clk/meson/clk-input.c
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (c) 2018 BayLibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include "clkc.h"
-+
-+static const struct clk_ops meson_clk_no_ops = {};
-+
-+struct clk_hw *meson_clk_hw_register_input(struct device *dev,
-+					   const char *of_name,
-+					   const char *clk_name,
-+					   unsigned long flags)
-+{
-+	struct clk *parent_clk = devm_clk_get(dev, of_name);
-+	struct clk_init_data init;
-+	const char *parent_name;
+-static struct clk *devm_clk_get_enable(struct device *dev, char *id)
++static int devm_clk_get_enable(struct device *dev, char *id)
+ {
+ 	struct clk *clk;
+ 	int ret;
+ 
+ 	clk = devm_clk_get(dev, id);
+ 	if (IS_ERR(clk)) {
+-		if (PTR_ERR(clk) != -EPROBE_DEFER)
++		ret = PTR_ERR(clk);
++		if (ret != -EPROBE_DEFER)
+ 			dev_err(dev, "failed to get %s", id);
+-		return clk;
++		return ret;
+ 	}
+ 
+ 	ret = clk_prepare_enable(clk);
+ 	if (ret) {
+ 		dev_err(dev, "failed to enable %s", id);
+-		return ERR_PTR(ret);
++		return ret;
+ 	}
+ 
+ 	ret = devm_add_action_or_reset(dev,
+@@ -654,74 +655,40 @@ static struct clk *devm_clk_get_enable(struct device *dev, char *id)
+ 				       clk);
+ 	if (ret) {
+ 		dev_err(dev, "failed to add reset action on %s", id);
+-		return ERR_PTR(ret);
++		return ret;
+ 	}
+ 
+-	return clk;
+-}
+-
+-static const struct clk_ops axg_clk_no_ops = {};
+-
+-static struct clk_hw *axg_clk_hw_register_bypass(struct device *dev,
+-						 const char *name,
+-						 const char *parent_name)
+-{
+-	struct clk_hw *hw;
+-	struct clk_init_data init;
+-	char *clk_name;
+-	int ret;
+-
+-	hw = devm_kzalloc(dev, sizeof(*hw), GFP_KERNEL);
+-	if (!hw)
+-		return ERR_PTR(-ENOMEM);
+-
+-	clk_name = kasprintf(GFP_KERNEL, "axg_%s", name);
+-	if (!clk_name)
+-		return ERR_PTR(-ENOMEM);
+-
+-	init.name = clk_name;
+-	init.ops = &axg_clk_no_ops;
+-	init.flags = 0;
+-	init.parent_names = parent_name ? &parent_name : NULL;
+-	init.num_parents = parent_name ? 1 : 0;
+-	hw->init = &init;
+-
+-	ret = devm_clk_hw_register(dev, hw);
+-	kfree(clk_name);
+-
+-	return ret ? ERR_PTR(ret) : hw;
++	return 0;
+ }
+ 
+ static int axg_register_clk_hw_input(struct device *dev,
+ 				     const char *name,
+ 				     unsigned int clkid)
+ {
+-	struct clk *parent_clk = devm_clk_get(dev, name);
+-	struct clk_hw *hw = NULL;
++	char *clk_name;
 +	struct clk_hw *hw;
-+	int ret;
-+
-+	if (IS_ERR(parent_clk))
-+		return (struct clk_hw *)parent_clk;
-+
-+	hw = devm_kzalloc(dev, sizeof(*hw), GFP_KERNEL);
-+	if (!hw)
-+		return ERR_PTR(-ENOMEM);
-+
-+	parent_name = __clk_get_name(parent_clk);
-+	init.name = clk_name;
-+	init.ops = &meson_clk_no_ops;
-+	init.flags = flags;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+	hw->init = &init;
-+
-+	ret = devm_clk_hw_register(dev, hw);
-+
-+	return ret ? ERR_PTR(ret) : hw;
-+}
-+EXPORT_SYMBOL_GPL(meson_clk_hw_register_input);
-diff --git a/drivers/clk/meson/clkc.h b/drivers/clk/meson/clkc.h
-index 1efa6be9cfe4..e3cd442db739 100644
---- a/drivers/clk/meson/clkc.h
-+++ b/drivers/clk/meson/clkc.h
-@@ -138,4 +138,9 @@ extern const struct clk_ops meson_vid_pll_div_ro_ops;
- extern const struct clk_ops meson_clk_dualdiv_ops;
- extern const struct clk_ops meson_clk_dualdiv_ro_ops;
++	int err = 0;
  
-+struct clk_hw *meson_clk_hw_register_input(struct device *dev,
-+					   const char *of_name,
-+					   const char *clk_name,
-+					   unsigned long flags);
-+
- #endif /* __CLKC_H */
+-	if (IS_ERR(parent_clk)) {
+-		int err = PTR_ERR(parent_clk);
++	clk_name = kasprintf(GFP_KERNEL, "axg_%s", name);
++	if (!clk_name)
++		return -ENOMEM;
+ 
++	hw = meson_clk_hw_register_input(dev, name, clk_name, 0);
++	if (IS_ERR(hw)) {
+ 		/* It is ok if an input clock is missing */
+-		if (err == -ENOENT) {
++		if (PTR_ERR(hw) == -ENOENT) {
+ 			dev_dbg(dev, "%s not provided", name);
+ 		} else {
++			err = PTR_ERR(hw);
+ 			if (err != -EPROBE_DEFER)
+ 				dev_err(dev, "failed to get %s clock", name);
+-			return err;
+ 		}
+ 	} else {
+-		hw = axg_clk_hw_register_bypass(dev, name,
+-						__clk_get_name(parent_clk));
+-	}
+-
+-	if (IS_ERR(hw)) {
+-		dev_err(dev, "failed to register %s clock", name);
+-		return PTR_ERR(hw);
++		axg_audio_hw_onecell_data.hws[clkid] = hw;
+ 	}
+ 
+-	axg_audio_hw_onecell_data.hws[clkid] = hw;
+-	return 0;
++	kfree(clk_name);
++	return err;
+ }
+ 
+ static int axg_register_clk_hw_inputs(struct device *dev,
+@@ -759,7 +726,6 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 	struct regmap *map;
+ 	struct resource *res;
+ 	void __iomem *regs;
+-	struct clk *clk;
+ 	struct clk_hw *hw;
+ 	int ret, i;
+ 
+@@ -775,9 +741,9 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	/* Get the mandatory peripheral clock */
+-	clk = devm_clk_get_enable(dev, "pclk");
+-	if (IS_ERR(clk))
+-		return PTR_ERR(clk);
++	ret = devm_clk_get_enable(dev, "pclk");
++	if (ret)
++		return ret;
+ 
+ 	ret = device_reset(dev);
+ 	if (ret) {
+@@ -786,8 +752,7 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	/* Register the peripheral input clock */
+-	hw = axg_clk_hw_register_bypass(dev, "audio_pclk",
+-					__clk_get_name(clk));
++	hw = meson_clk_hw_register_input(dev, "pclk", "audio_pclk", 0);
+ 	if (IS_ERR(hw))
+ 		return PTR_ERR(hw);
+ 
 -- 
 2.19.1
 
