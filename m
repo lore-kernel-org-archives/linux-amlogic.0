@@ -1,79 +1,68 @@
-Return-Path: <SRS0=94bh=OM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=ycqe=ON=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,USER_AGENT_MUTT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D83C0C04EB9
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 23:07:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F4DEC04EBF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 01:51:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AA4482087F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Dec 2018 23:07:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 30E0920850
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 01:51:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="faN9u47D"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AA4482087F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="t6uDo0tT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 30E0920850
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=twj1c8pJddnuuMcC7zxhtfYHveMRFtualyyX2J9YM/8=; b=faN9u47DX+hNPe
-	WXGX9svalM762I8gE2BRsSNzuL8v5LCT4obNBkZj64lJoow+nAm31m6weCOIPpO6WosVkuysu2vv6
-	0O/4bz2XaeIiCujSU/DQJKv8J7gUUUjFzDAnH8uorcG6Q7b2N7qq7a1FlbV7WXF/GQxc1zcNF0Vai
-	/MQuUsXcn1axWg+x5fPS0dI46DTlJWZzoz50QBhNsu8rRx7KA0i5WHRXDJiSKWUfCPYy0G3bMb4G1
-	AZBVndJN8twtfuuPzrV1XbjXAWb+PC/+pYtHyRe67NOBZrh5LdtVjsTyhWEXfSIOYy4yOv4aFM3rN
-	T4xLg10PsyUecKNknxSw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=sBlauweXwtsOkqg9+OgZmonEb72UJzqDz+i4zx9SJ3w=; b=t6uDo0tTsqVPRGDbYA0ZFioGr
+	kAoIUAmQckRuevHl2E9MZ0unIapyz0yoPEzRZwRs1ye1hAFZD9YUJHEmptdv/NGFldSLu7jNylN3Z
+	269U5iTNsPgzwg0cw8JBhfy7pgOY0fsjmcvxfteNlbgfWYnNsjt8T+Etb19N3OTpLiQ+Gpun3DwLX
+	MXLOD/ORFp/O45UiEwNHGUBIlppS6ybAz7Lid5XZld/tq1QEAc1OXOWt1pAGSU2Y1ydzTLR3hA7Q5
+	Cvf6EslHnBtTuDfj7wNPNQ2YlbKpwmRZ7ksifJlyBdGNBZj0/AS5xrbRe73xnTwTnzs8cmik9ju4K
+	2RebjMv+A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gTxIq-00009t-Dk; Mon, 03 Dec 2018 23:07:00 +0000
-Received: from mail-oi1-f196.google.com ([209.85.167.196])
+	id 1gTzry-0002yN-Fp; Tue, 04 Dec 2018 01:51:26 +0000
+Received: from mail-sz2.amlogic.com ([211.162.65.114])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gTxIo-00005f-0c; Mon, 03 Dec 2018 23:06:59 +0000
-Received: by mail-oi1-f196.google.com with SMTP id v6so12580550oif.2;
- Mon, 03 Dec 2018 15:06:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=fykzt9+oasdrpA731GUHJsxFDYJLbtBr6RBAlsGsPoY=;
- b=aUCY3KsNOP8hQwj1ZTLaw9lnNmWL9xfvhipcPod0zCtXbV/azIvUAutUf8S8JWAAas
- qth9QOXFtKVBKn1wjleHC7flsAtyWyapNWs+9bVHL5RNT9khpIo0tq2V/27qdXU1F4J9
- P5VGahEz1glYRuPEu5BVdIcD8BkOC+XCfNFCt8ISCwKperhjufEdBy6h/Y4EJSSF49PS
- pOzdkAY1+Gmv91AJiU8ZSllGJbcfsYlQcvIwP4JXUYYOobOnPIoe/4MS2wsNGuVXhZFL
- aEzUhHVBISLW+r8NhVSftqB2TR+S9Qmnys+1DLXkWZo+SwmXc4bo297aruWqCrht4fyZ
- zRlw==
-X-Gm-Message-State: AA+aEWavZ1fbkaYHq8Imz7I0zPgjXbwwuCuoAb9phm/Aur8yQNxjDyY0
- xCR/Go94Q72LqBFOU2rWZSEAT8E=
-X-Google-Smtp-Source: AFSGD/Wa8PXjS5kg5/8uFA3PzaV0srzzLgfPcv/Y9iSFoT7SOgtkrEbBZAr+IyyudAvT3L+T2hr7Lg==
-X-Received: by 2002:aca:3644:: with SMTP id d65mr11462277oia.336.1543878406800; 
- Mon, 03 Dec 2018 15:06:46 -0800 (PST)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id u18sm5614304otk.1.2018.12.03.15.06.45
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 03 Dec 2018 15:06:45 -0800 (PST)
-Date: Mon, 3 Dec 2018 17:06:45 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jian Hu <jian.hu@amlogic.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: clk: meson-g12a: Add G12A EE Clock
- Bindings
-Message-ID: <20181203230645.GA14522@bogus>
-References: <1543498917-98605-1-git-send-email-jian.hu@amlogic.com>
- <1543498917-98605-2-git-send-email-jian.hu@amlogic.com>
+ id 1gTzrv-0002xF-C6; Tue, 04 Dec 2018 01:51:25 +0000
+Received: from [10.28.18.81] (10.28.18.81) by mail-sz2.amlogic.com
+ (10.28.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Tue, 4 Dec 2018
+ 09:51:28 +0800
+Subject: Re: [PATCH 2/2] irqchip/meson-gpio: Add support for Meson-G12A SoC
+To: Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Marc Zyngier <marc.zyngier@arm.com>, Jason Cooper
+ <jason@lakedaemon.net>, Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman
+ <khilman@baylibre.com>
+References: <20181203061324.36248-1-xingyu.chen@amlogic.com>
+ <20181203061324.36248-3-xingyu.chen@amlogic.com>
+ <7a2f88d849ada782de6e27676518d0b9897e30e7.camel@baylibre.com>
+ <dc42e7df-a3de-7323-177f-56a08564fb60@amlogic.com>
+ <4fc0694c-4c00-5abd-5336-ef85ad36d9b5@baylibre.com>
+From: Xingyu Chen <xingyu.chen@amlogic.com>
+Message-ID: <47b58f29-7424-63f4-44fe-0f99a4756862@amlogic.com>
+Date: Tue, 4 Dec 2018 09:51:28 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1543498917-98605-2-git-send-email-jian.hu@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <4fc0694c-4c00-5abd-5336-ef85ad36d9b5@baylibre.com>
+Content-Language: en-GB
+X-Originating-IP: [10.28.18.81]
+X-ClientProxiedBy: mail-sz2.amlogic.com (10.28.11.6) To mail-sz2.amlogic.com
+ (10.28.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181203_150658_139522_5A3DED44 
-X-CRM114-Status: GOOD (  11.01  )
+X-CRM114-CacheID: sfid-20181203_175123_412973_8E2A649A 
+X-CRM114-Status: GOOD (  16.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,36 +74,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
- linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
- Qiufang Dai <qiufang.dai@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ linux-kernel@vger.kernel.org, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Heiner Kallweit <hkallweit1@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Nov 29, 2018 at 09:41:56PM +0800, Jian Hu wrote:
-> Add new clock controller compatible and dt-bingdings headers
-> for the Everything-Else domain of the g12a SoC
-> 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  .../bindings/clock/amlogic,gxbb-clkc.txt           |  1 +
->  include/dt-bindings/clock/g12a-clkc.h              | 93 ++++++++++++++++++++++
->  2 files changed, 94 insertions(+)
->  create mode 100644 include/dt-bindings/clock/g12a-clkc.h
-
-Please add acks/reviewed-bys when posting new versions.
-
-Rob
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpPbiAyMDE4LzEyLzMgMTg6MDYsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+IE9uIDAzLzEyLzIw
+MTggMTA6MjgsIFhpbmd5dSBDaGVuIHdyb3RlOgo+Pgo+Pgo+PiBPbiAyMDE4LzEyLzMgMTc6MTks
+IEplcm9tZSBCcnVuZXQgd3JvdGU6Cj4+PiBPbiBNb24sIDIwMTgtMTItMDMgYXQgMTQ6MTMgKzA4
+MDAsIFhpbmd5dSBDaGVuIHdyb3RlOgo+Pj4+IFRoZSBNZXNvbi1HMTJBIFNvQyB1c2VzIHRoZSBz
+YW1lIEdQSU8gaW50ZXJydXB0IGNvbnRyb2xsZXIgSVAgYmxvY2sgYXMgdGhlCj4+Pj4gb3RoZXIg
+TWVzb24gU29DcywgQSB0b3RsZSBvZiAxMDAgcGlucyBjYW4gYmUgc3BpZWQgb24sIHdoaWNoIGlz
+IHRoZSBzdW0gb2Y6Cj4+Pj4KPj4+PiAtIDIyMzoxMDAgdW5kZWZpbmVkIChubyBpbnRlcnJ1cHQp
+Cj4+Pj4gLSA5OTo5N8KgwqAgMyBwaW5zIG9uIGJhbmsgR1BJT0UKPj4+PiAtIDk2Ojc3wqDCoCAy
+MCBwaW5zIG9uIGJhbmsgR1BJT1gKPj4+PiAtIDc2OjYxwqDCoCAxNiBwaW5zIG9uIGJhbmsgR1BJ
+T0EKPj4+PiAtIDYwOjUzwqDCoCA4IHBpbnMgb24gYmFuayBHUElPQwo+Pj4+IC0gNTI6MzfCoMKg
+IDE2IHBpbnMgb24gYmFuayBCT09UCj4+Pj4gLSAzNjoyOMKgwqAgOSBwaW5zIG9uIGJhbmsgR1BJ
+T0gKPj4+PiAtIDI3OjEywqDCoCAxNiBwaW5zIG9uIGJhbmsgR1BJT1oKPj4+PiAtIDExOjDCoMKg
+wqAgMTIgcGlucyBpbiB0aGUgQU8gZG9tYWluCj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBYaW5n
+eXUgQ2hlbiA8eGluZ3l1LmNoZW5AYW1sb2dpYy5jb20+Cj4+Pj4gU2lnbmVkLW9mZi1ieTogSmlh
+bnhpbiBQYW4gPGppYW54aW4ucGFuQGFtbG9naWMuY29tPgo+Pj4+IC0tLQo+Pj4+ICDCoCBkcml2
+ZXJzL2lycWNoaXAvaXJxLW1lc29uLWdwaW8uYyB8IDUgKysrKysKPj4+PiAgwqAgMSBmaWxlIGNo
+YW5nZWQsIDUgaW5zZXJ0aW9ucygrKQo+Pj4+Cj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaXJx
+Y2hpcC9pcnEtbWVzb24tZ3Bpby5jIGIvZHJpdmVycy9pcnFjaGlwL2lycS1tZXNvbi0KPj4+PiBn
+cGlvLmMKPj4+PiBpbmRleCA3YjUzMWZkMDc1YjguLjk3MWU4ZGVhMDY5YSAxMDA2NDQKPj4+PiAt
+LS0gYS9kcml2ZXJzL2lycWNoaXAvaXJxLW1lc29uLWdwaW8uYwo+Pj4+ICsrKyBiL2RyaXZlcnMv
+aXJxY2hpcC9pcnEtbWVzb24tZ3Bpby5jCj4+Pj4gQEAgLTY3LDEyICs2NywxNyBAQCBzdGF0aWMg
+Y29uc3Qgc3RydWN0IG1lc29uX2dwaW9faXJxX3BhcmFtcyBheGdfcGFyYW1zID0gewo+Pj4+ICDC
+oMKgwqDCoMKgIC5ucl9od2lycSA9IDEwMCwKPj4+PiAgwqAgfTsKPj4+PiAgwqAgK3N0YXRpYyBj
+b25zdCBzdHJ1Y3QgbWVzb25fZ3Bpb19pcnFfcGFyYW1zIGcxMmFfcGFyYW1zID0gewo+Pj4+ICvC
+oMKgwqAgLm5yX2h3aXJxID0gMTAwLAo+Pj4+ICt9Owo+Pj4+ICsKPj4+Cj4+PiBTYW1lIGNvbW1l
+bnQgYXMgb24gaTJjLCB0aGUgZzEyIHNlZW1zIGNvbXBhdGlibGUgd2l0aCB0aGUgYXhnLgo+Pj4g
+SXMgdGhpcyBwYXRjaHNldCBwYXRjaHNldCByZWFsbHkgbmVjZXNzYXJ5ID8KPj4+Cj4+IEFsdGhv
+dWdoIHRoZSB0b3RhbCBudW1iZXIgb2YgcGlucyBpcyB0aGUgc2FtZSBhcyB0aGUgTWVzb24tQVhH
+IFNvQywgdGhlIGdwaW8gYmFua3MgYW5kIGlycSBudW1iZXJzIGFyZSBkaWZmZXJlbnQuIFRvIGF2
+b2lkIGNvbmZ1c2lvbiBvbiB1c2UsIGkgdGhpbmsgdGhlIG5ldyBjb21wYXRpYmxlIHN0cmluZyBp
+cyBuZWVkZWQuCj4gCj4gT0sgZm9yIHRoZSBuZXcgY29tcGF0aWJsZSwgYnV0IHlvdSBjYW4gcmUt
+dXNlIHRoZSBzYW1lIHN0cnVjdCBsaWtlIGZvciBpMmMuCj4gCj4gTmVpbAo+IApUaGFua3MgZm9y
+IHlvdXIgY29tbWVudCwgSSB3aWxsIGZpeCBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uLgoKPj4+PiAg
+wqAgc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgbWVzb25faXJxX2dwaW9fbWF0Y2hl
+c1tdID0gewo+Pj4+ICDCoMKgwqDCoMKgIHsgLmNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbjgt
+Z3Bpby1pbnRjIiwgLmRhdGEgPSAmbWVzb244X3BhcmFtcyB9LAo+Pj4+ICDCoMKgwqDCoMKgIHsg
+LmNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbjhiLWdwaW8taW50YyIsIC5kYXRhID0gJm1lc29u
+OGJfcGFyYW1zCj4+Pj4gfSwKPj4+PiAgwqDCoMKgwqDCoCB7IC5jb21wYXRpYmxlID0gImFtbG9n
+aWMsbWVzb24tZ3hiYi1ncGlvLWludGMiLCAuZGF0YSA9ICZneGJiX3BhcmFtcwo+Pj4+IH0sCj4+
+Pj4gIMKgwqDCoMKgwqAgeyAuY29tcGF0aWJsZSA9ICJhbWxvZ2ljLG1lc29uLWd4bC1ncGlvLWlu
+dGMiLCAuZGF0YSA9ICZneGxfcGFyYW1zIH0sCj4+Pj4gIMKgwqDCoMKgwqAgeyAuY29tcGF0aWJs
+ZSA9ICJhbWxvZ2ljLG1lc29uLWF4Zy1ncGlvLWludGMiLCAuZGF0YSA9ICZheGdfcGFyYW1zIH0s
+Cj4+Pj4gK8KgwqDCoCB7IC5jb21wYXRpYmxlID0gImFtbG9naWMsbWVzb24tZzEyYS1ncGlvLWlu
+dGMiLCAuZGF0YSA9ICZnMTJhX3BhcmFtcwo+Pj4+IH0sCj4+Pj4gIMKgwqDCoMKgwqAgeyB9Cj4+
+Pj4gIMKgIH07Cj4+Pj4gICAgCj4+Pgo+Pj4KPj4+IC4KPj4+Cj4+Cj4+IF9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IGxpbnV4LWFtbG9naWMgbWFpbGlu
+ZyBsaXN0Cj4+IGxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+PiBodHRwOi8vbGlz
+dHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMKPiAKPiAuCj4g
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
+bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
+cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
