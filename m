@@ -2,81 +2,90 @@ Return-Path: <SRS0=ycqe=ON=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A0A5C04EB8
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 19:59:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBB36C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 20:05:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0711420834
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 19:59:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8B1A3206B7
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 20:05:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="e7zuORhb";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="f7oiPUSL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0711420834
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gO17fkgp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hKoN2aik"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B1A3206B7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Pg7Dth2urZzJwV2SvsCRdNbY6vN1C8FoeJW/iwh7U+A=; b=e7zuORhbDlKsTg
-	prxDxPSSxm/LZ5JV8wvDMCZDKULnCMCVGKqRgaDk8SSWqfa63KvJjiE/WztX1qp8psOLFLEo1SPQq
-	1yToyX8/K4iYIcNUAaNq3sQ8UE8x+xdVsnWKWbXSi6BWoEeZTZN2tsJs2pVbDVPEJEzFp32+8Ug5a
-	XNzFIThVaeSEgw6rvR+Z/SLrujpS4VbTRic7DLLTySuxyp9ROogDvna2Ub62uxrAs97g8pBRgHIKI
-	PtFCGzr/uYF1DDmVP5cXiEbay4jgkDL6o/QykKeF1uTihS7tiOvEgXpko8p8ATMDpOt3Ji8E8eW8X
-	JNh9xy8KDQry5699/NzA==;
+	List-Owner; bh=Kg1KukQlyJPMSIBXPQsQyj5y4kIG9PCMYSLDrCQNWcA=; b=gO17fkgpC8xugK
+	W0YwlxF/R0VNzjaOIKp7uWR9Yt32VUzWOgHn2SYDEHf3Eol8FLsaWyQ57L5tK7oE4xvdQC0Q3XmNo
+	6OE7BttZq7lcFJZeQlFg4/+Ubz7d1VxT/kVmAz5+0C/a1qtWaq1YrV2Xuza7KvzOy8EYjOAY1wBYN
+	BwYXPVJj5768XfMIyMdTezOMm6NgqvWaPcieAJaeQV0OS8rlLV5MqAjtMu8xK8pX5spgpS/cEpKWY
+	TGduOWpWlf4cxUfPKdiU5RU/KtO7pW+oJdpaZMjUwpU8LobVWluLyHalQcHnyp6cqWuvWdpVbkayc
+	ztGej1HMT0W5HeWV0atA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUGrJ-0007Z3-KN; Tue, 04 Dec 2018 19:59:53 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1gUGwZ-0003J4-CB; Tue, 04 Dec 2018 20:05:19 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUGr8-0007QG-VZ; Tue, 04 Dec 2018 19:59:44 +0000
-Received: by mail-ot1-x344.google.com with SMTP id i20so16396402otl.0;
- Tue, 04 Dec 2018 11:59:32 -0800 (PST)
+ id 1gUGwW-0002aJ-Bb
+ for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 20:05:18 +0000
+Received: by mail-wr1-x443.google.com with SMTP id t27so17294637wra.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 12:05:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3g5J4Vn2vKkTvpd5IUdSICFJ8/Vj9g5uNchbMKJVvVc=;
- b=f7oiPUSLHIpoyH612mSKYp1dWisUu+A6+GWPltZjFDCRIkDSdOzNanE/9jx6nXCrsQ
- /pNo5Kipa8LIP08xkg4LHv0hAn5+ltqK3S7v0vYIVkpxeasUaKbhO2JUV8hvQCDtV4Yw
- oTjdrm8MsV5UcS9FbZDvJlSzZUtH1owy8MdROLOLfyD8TGM+3u/WX0fqr/oO/CY8B9yj
- 70JilnEIa92TyhvcU4BGYC3o3dpO3VgSRWdFTKxMeDRQPITSkw2MZKp9hUU38rYcURSR
- GsJbyhHToxY+5rr7TH/skV+bBDEjeOwnACUvyCWdfkAJSW5TuKL32ThVRZJA513Z8qvg
- PZTQ==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=7WH9JoQsx+LrhFCXwbF/NWnFA3rwkd4OelYwW8l6xp0=;
+ b=hKoN2aikVpRjyNb8oSh9ixndigMRZl11ufnqkBhIKtXGsPtQSh0U3b0wrni/fAD7tv
+ VRrxL8Y+eudzYumkgwcrihWXC6ucmsHEiK76WZB6k6i59cu3JXMKFvnttOgC40fKbszZ
+ lmIz+pHtX+cH9+4tHqU6a4+vDz1CgpCQcWKq/0uGqYTw8mvwMwPeP/Pxf71aXOY1wPUD
+ ODnPOinYQwUuL1CblksbONRkNXYbsJv6VM4j5RuYNhor7LQj+Hg7LT0sNIw2B1McDblm
+ E/KU+O7P4zWj+39GbV/Sp5ba0WmljrN8Wvb342HOo/WQZSnbbJr/TNivFWPHu0OrQjAL
+ bRtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3g5J4Vn2vKkTvpd5IUdSICFJ8/Vj9g5uNchbMKJVvVc=;
- b=TSk6skq6uFYo5cFV8SXIAiY50MR3/60mMf76W2O2UQFEFpHy6fS8gRYrefHYrzfOYS
- ioD09GPYsN7jF2n8vzKaXpOWzaMX19u3b2I6pS+6iJsQRhnPGj3LxBwnAjH0rPtVU1iP
- aYeC4zKi7QwGtEccEQshOKF55V6b3KP3ZEYxYN3tmSmae22V6YOk18EzCScnzvS/aLf/
- bPKy88tRX8kM09blPhF9o+C7/e16e/ibcAJEbLufPm1XeMNQiLkecSYQmltXTtv8FqpZ
- FUq0ZWNa/U8xzifmSXCnNfOaGqWHzQm85DuJz0S4l2wh98z4EgFPlChRLqT0R+cbR9B4
- sIPw==
-X-Gm-Message-State: AA+aEWZ99wCj2y9X5yH7xxGHwvr5iI3ZjdQmuYwgRSozwXoKg7kIqgdk
- RlfQ3inm328IXOvS7qSGBxePCYS5s222ux3TRTA=
-X-Google-Smtp-Source: AFSGD/W/T8a159KxIQJtVIMIjf7CkVfui4XeYkc2QO5ecX4JwzWNnbUG02RF1bqKpeuonSkoN8lL/NzjaGsqOrxDqFc=
-X-Received: by 2002:a9d:715d:: with SMTP id y29mr14003283otj.148.1543953571272; 
- Tue, 04 Dec 2018 11:59:31 -0800 (PST)
-MIME-Version: 1.0
-References: <20181204160447.27869-1-ccaione@baylibre.com>
-In-Reply-To: <20181204160447.27869-1-ccaione@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 4 Dec 2018 20:59:20 +0100
-Message-ID: <CAFBinCDCE7RP4vgs25bqSZ8vBjrmcuB=qb3U92X6QfpmzeqrBg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] meson: Fix IRQ trigger type
-To: ccaione@baylibre.com, ingrassia@epigenesys.com
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=7WH9JoQsx+LrhFCXwbF/NWnFA3rwkd4OelYwW8l6xp0=;
+ b=KTXqMjpc5Rqv+DtOVaeg/uvSbryXKkt5ce29CCEFPL96BV+4UUJ5lXzFYuzjZd/LVF
+ V/3p9tOES8ROHLEiM6ICAXz4zChPfXFLM+Po4mJRwOW70kezS72eKyc8nj0mR8g5gXkX
+ 4snXvdEA4ybNnjL2GqtIfWO58U4jhDfqa2P8u1JMEDx3MMIOwgrM/9JcGrk/uFFsTd3l
+ w39rq2u2VKmy9MVU/urAOu65bUHZ+VCqKUSUywB9M46gL59OUDO2831lTgp3esKV3Gof
+ ZCEnqS6XQlRSo//06vgsPsJmQtL2XDvPYqdx8CvgUwK+pNPJ02vSZPrnvVaQMtlxw3Oi
+ DvQg==
+X-Gm-Message-State: AA+aEWbY1hGdfgahHhx+ENNAjs0tRWl8BvNA15hiPbIfd0nV7gvacZEh
+ /RWs8CZwn/DKdzf8PDM44YjExA==
+X-Google-Smtp-Source: AFSGD/WAu9R1GRTlJrL0Zb50WTZLNjbk8WFhs2XnaX/wrvCXD4dnHMBMkFJm2nZJOC0MlQf3y5LaBw==
+X-Received: by 2002:adf:fe43:: with SMTP id m3mr18768268wrs.290.1543953904416; 
+ Tue, 04 Dec 2018 12:05:04 -0800 (PST)
+Received: from boomer.baylibre.com (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id c12sm12055655wrs.82.2018.12.04.12.05.03
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 04 Dec 2018 12:05:03 -0800 (PST)
+Message-ID: <2341ec89691f6221bab6a9696ed0c05c3d3de663.camel@baylibre.com>
+Subject: Re: [PATCH] clk: meson-gxbb: switch video clocks mux tables to static
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
+Date: Tue, 04 Dec 2018 21:05:02 +0100
+In-Reply-To: <5C06D686.50108@baylibre.com>
+References: <20181204125839.14505-1-narmstrong@baylibre.com>
+ <154394543049.88331.11854270462393390489@swboyd.mtv.corp.google.com>
+ <5C06D686.50108@baylibre.com>
+User-Agent: Evolution 3.30.2 (3.30.2-2.fc29) 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_115943_039235_4E5C9128 
-X-CRM114-Status: GOOD (  13.84  )
+X-CRM114-CacheID: sfid-20181204_120516_399532_C85BF31E 
+X-CRM114-Status: GOOD (  12.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,69 +97,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, khilman@baylibre.com,
- robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-adding Emiliano because he experienced high packet loss on Odroid-C1
-without "eee-broken-1000t"
-
-On Tue, Dec 4, 2018 at 5:05 PM Carlo Caione <ccaione@baylibre.com> wrote:
->
-> The wrong IRQ trigger type for the macirq was causing the connection
-> speed to drop after a few hours when stress testing the DUT. The fix
-> seems also to fix another long standing issue with EEE.
-the other two DesignWare controllers (2x dwc2) are also using
-IRQ_TYPE_LEVEL_HIGH
-so this is not unlikely - good job detective!
-
-> The fixes are tested on a AXG board but we think that the same fix is
-> valid also for all the others Amlogic SoC families.
-I checked Amlogic's 3.10 kernel for the 32-bit SoCs and it seems they
-are setting all IRQs to be edge triggered: [0]
-however, Emiliano reported an issue with IRQ_TYPE_EDGE_RISING for the
-dwc2 controllers as well. 291f45dd6da5fa6 "ARM: dts: meson: fixing USB
-support on Meson6, Meson8 and Meson8b" fixed it for him whereas it
-worked for me with IRQ_TYPE_EDGE_RISING
-
-I find it strange though that Amlogic's buildroot kernel (even the
-latest buildroot_openlinux_kernel_4.9_fbdev_20180706) uses:
-  interrupts = <0 8 1>
-which translates to:
-  interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>
-
-does the datasheet give a hint that this IRQ should be level triggered
-or did you find out by trial and error?
-
-> Carlo Caione (2):
->   arm64: dts: meson: Fix IRQ trigger type for macirq
->   arm64: dts: meson: Remove eee-broken-1000t quirk
->
->  arch/arm/boot/dts/meson.dtsi                        | 2 +-
->  arch/arm/boot/dts/meson8b-odroidc1.dts              | 1 -
-these two should be in separate patches with "ARM: dts: " as prefix
-
->  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts      | 1 -
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi          | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
->  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi   | 1 -
->  7 files changed, 3 insertions(+), 7 deletions(-)
->
-> --
-> 2.19.1
->
-
-Regards
-Martin
-
-[0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/drivers/irqchip/irq-gic.c#L400
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCAyMDE4LTEyLTA0IGF0IDIwOjMzICswMTAwLCBOZWlsIEFybXN0cm9uZyB3cm90ZToK
+PiBIaSBTdGVwaGVuLAo+IAo+IExlIDA0LzEyLzIwMTggMTg6NDMsIFN0ZXBoZW4gQm95ZCBhIMOp
+Y3JpdCA6Cj4gPiBRdW90aW5nIE5laWwgQXJtc3Ryb25nICgyMDE4LTEyLTA0IDA0OjU4OjM5KQo+
+ID4gPiBNYWtlcyB0aGUgZm9sbG93aW5nIHNwYXJzZSB3YXJuaW5ncyBzaWxlbnQ6Cj4gPiA+IGRy
+aXZlcnMvY2xrL21lc29uL3ZpZC1wbGwtZGl2LmM6NTg6MjY6IHdhcm5pbmc6IHN5bWJvbCAnX2dl
+dF90YWJsZV92YWwnCj4gPiA+IHdhcyBub3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0aWM/
+Cj4gPiA+IGRyaXZlcnMvY2xrL21lc29uL2d4YmIuYzoxNTg1OjEyOiB3YXJuaW5nOiBzeW1ib2wK
+PiA+ID4gJ2d4YmJfdmlkX3BsbF9wYXJlbnRfbmFtZXMnIHdhcyBub3QgZGVjbGFyZWQuIFNob3Vs
+ZCBpdCBiZSBzdGF0aWM/Cj4gPiA+IGRyaXZlcnMvY2xrL21lc29uL2d4YmIuYzoxNjIwOjEyOiB3
+YXJuaW5nOiBzeW1ib2wKPiA+ID4gJ2d4YmJfdmNsa19wYXJlbnRfbmFtZXMnIHdhcyBub3QgZGVj
+bGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0aWM/Cj4gPiA+IGRyaXZlcnMvY2xrL21lc29uL2d4YmIu
+YzoxOTgwOjEyOiB3YXJuaW5nOiBzeW1ib2wKPiA+ID4gJ2d4YmJfY3RzX3BhcmVudF9uYW1lcycg
+d2FzIG5vdCBkZWNsYXJlZC4gU2hvdWxkIGl0IGJlIHN0YXRpYz8KPiA+ID4gZHJpdmVycy9jbGsv
+bWVzb24vZ3hiYi5jOjIwMzY6MTI6IHdhcm5pbmc6IHN5bWJvbAo+ID4gPiAnZ3hiYl9jdHNfaGRt
+aV90eF9wYXJlbnRfbmFtZXMnIHdhcyBub3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0aWM/
+Cj4gPiAKPiA+IEkgZml4ZWQgYWxsIG9mIHRoZXNlIGFscmVhZHkgaW4gdGhlIHBhdGNoIEkgc2Vu
+dCB5b3UuCj4gCj4gU29ycnkgSSBtaXN1bmRlcnN0b29kLi4uCj4gCj4gCj4gPiA+IEBAIC0xOTgz
+LDcgKzE5ODMsNyBAQCBzdGF0aWMgc3RydWN0IGNsa19maXhlZF9mYWN0b3IgZ3hiYl92Y2xrMl9k
+aXYxMiA9Cj4gPiA+IHsKPiA+ID4gIH07Cj4gPiA+ICAKPiA+ID4gIHN0YXRpYyB1MzIgbXV4X3Rh
+YmxlX2N0c19zZWxbXSA9IHsgMCwgMSwgMiwgMywgNCwgOCwgOSwgMTAsIDExLCAxMiB9Owo+ID4g
+Cj4gPiBJIHdhcyB0YWxraW5nIGFib3V0IHRoaXMgbXV4X3RhYmxlX2N0c19zZWwgYXJyYXkuIENh
+biB0aGlzIGJlIGNvbnN0Pwo+ID4gCj4gCj4gT3RoZXIgbXV4IHRhYmxlcyBhcmVuJ3QgY29uc3Qs
+IEplcm9tZSBzbyB5b3Ugc2VlIGEgcmVhc29uIHdoeSB0aGV5IGFyZW4ndAo+IGNvbnN0ID8KCkkn
+bSBzdXJwaXNlZCB3ZSBtaXNzZWQgdGhhdC4gVGhlIFBMTCBwYXJhbXMgdGFibGVzIG9mIGFtbG9n
+aWMgYXJlIGFsbCAnc3RhdGljCmNvbnN0JyBidXQgYWxsIHRoZSBtdXggdGFibGVzIGFyZSBqdXN0
+ICdzdGF0aWMnICwgaHVtbQoKWy4uLl0gNSBtaW4gbGF0ZXIgWy4uLl0KCkFjdHVhbGx5IHRoZSB0
+YWJsZSBmaWVsZCBvZiBjbGtfbXV4IGlzIG5vdCBjb25zdCwgc28gZ2l2aW5nIGl0IGEgY29uc3Qg
+dGFibGUKd291bGQgcHJvZHVjZSBhIHdhcm5pbmcgYWJvdXQgZGlzY2FyZGluZyBjb25zdCBxdWFs
+aWZpZXIKCkkgZ3Vlc3MgdGhlcmUgc2hvdWxkIG5vIHByb2JsZW0gYWRkaW5nIGNvbnN0IHRvIHRo
+ZSB0YWJsZSBmaWVsZCBvZiBzdHJ1Y3QKY2xrX211eC4gV2hhdCBkbyB5b3UgdGhpbmsgU3RlcGhl
+biAgPwoKPiAKPiBOZWlsCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
+aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2xpbnV4LWFtbG9naWMK
