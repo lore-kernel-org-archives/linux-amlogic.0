@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CECEFC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:06:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FC0CC04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:53:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9C8B82081B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:06:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 13C2C20659
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:53:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tJbAafcU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Tgpo0w35"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9C8B82081B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ig/ZqWXW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aKSGKmWM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 13C2C20659
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,64 +25,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=qZDBoRhfTM7pHst8f6y9m58cIXz9jffcBTTQ5cMJV7E=; b=tJbAafcUGCNWhz
-	mEVQ3aKaWFD8vuaMDvMOapZdM+9fthOOYr0qtRaE8EFwrgHHgwtdNJMfp/thdYPXU3f+LB72UcPOg
-	VRcVazB6jSnHuXg9ktcHlEmG4Yy67qnKUvKYJBu3DEDuSZwY4ZmO/UsIr8OB1P3p97klwCjXtqWdB
-	RUZz1xN5fJil81Qpof55eNUS9KBtQOwWgb1xCrWAPWSgASqyGU6eOTEEQyhx57nQuMdZ0k8ZkSzCp
-	4mU8igbG18UeRjLsaTdsWUqF8f/E1BY7zleDdQ8CwrsAGg4Uksbhm+RBQIzdH6Am5OTvUauxPogAH
-	fhmm/k7gimDLOxA6qFbQ==;
+	List-Owner; bh=NchJljJ/3+lSO++5aCj+J8APyhonj2crw53nL+8ha8Q=; b=ig/ZqWXW/7NrEC
+	YXp8Uy19HcFaTi0m/fjGYnesG672EPvP4FdkhxClAQtQsKTXwN8YUB6NJlZgPsLP5xRCGrkOpuxuV
+	ukd0DgPVkVhRtLjgPDuka7YIwVtHukIjoziiq7qaSuK1SrYYqrQyrB8dMgmqJjyFerQgzPtjpyCqQ
+	7eSH+AAENQcdPiVzpY8YdIDgDDKHXSNExQ4fM1+iYLJX3l5DXHayMK+5DliCkzadPPHnSz8XwPvtz
+	iGnfxs2lpeN+QU0X7VlJnRuPitUABwOSMDccMnvO0Ium9D3b8XalE9EMmEkeCe7O3Aru/BEnhfqZS
+	UlOFScoM6S3+AlVSvhJQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUDCy-00065f-Rg; Tue, 04 Dec 2018 16:06:00 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1gUDwz-0001zo-2a; Tue, 04 Dec 2018 16:53:33 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUDCB-00040W-Fw
- for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 16:05:18 +0000
-Received: by mail-wr1-x443.google.com with SMTP id b14so2950970wru.12
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 08:05:00 -0800 (PST)
+ id 1gUDwt-0001jM-TX
+ for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 16:53:31 +0000
+Received: by mail-wr1-x442.google.com with SMTP id p4so16700227wrt.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 08:53:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=uh+PFowAKQvogk55Z+R1IT+39Udfd4McmTR0V+3GPZ4=;
- b=Tgpo0w351A+NwCYzBNdnWZAOVeqJWFCTcpvWB0p3zOeTBJbJUNV1f64MiQj/Z/Z+zB
- SBM6C7Qq2Y2CpiPgIrPFYoYKYszU51o9Svrc2TGLDDPw9Ae/z1Z4lg31gEN2mdNrr8qr
- NUHkOdZbEYJbIRtYEnBb7sjRtBQxHAzWxDAtznHGVauW8CRCY4MPIvnmvQOYHHzEqkqw
- asWy4pZ+OEAetBL96F9177ks00FSH6bYCk/41jWZSnitUC6leQzCZIiuv0XPCw2UCdxi
- hZueCqOwhEmxheJXR9DkSmt3pz4smEvLQpPIfKqSPlub9dvhHzyEogRXON+8AZmShZOU
- zb1Q==
+ bh=R3lu1O3dzevjwf1kiOi6nnvjRZAndn2B6xOh4odokpA=;
+ b=aKSGKmWM8td3reog3gZJIfKDs07EBcHOCuCLVlvinTdBPUNsU6lkv3yhZave9icP91
+ YBC4na8hj2iyTj3c+9rkxteLCChZ457hZIG3r22LfghWpyT/DuacUQV+RmAGJIniwa5G
+ e8T/YEPTxbEc5v0xYen/HBZZribpWxuJJgOEl0YCtTsIdlSk+091C/eZL8oUJNjhBvrW
+ 9nts0Ix7e3NPZKTMQGM+YMjQjrn28ngecRB1abZWpoX9Ir/askXlpRqlTWpsHoQnYOhI
+ x6pcz4v6ltm2g2JpaFkygU00ny7/VR8RWWJrUzrbxsOLxIjsHiLzH9jIQm+Wyp09p/Ul
+ OzwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=uh+PFowAKQvogk55Z+R1IT+39Udfd4McmTR0V+3GPZ4=;
- b=Ph+nhmbJHiXBUj42xqh2yZRKERRQXCO4ZlH4VLPsj0I3lAh2bDhG6i7Sx1wG0ZYYB/
- GlzDwG2bqo8OYZKPtPJiAcz+K0HAubXiwuzMhOZeApyiX9MKJOAgZqBmOEw1toNwfmCD
- na0U2OY1IaAdcRqk610AvhlnxPsAuoA+uP2MzJCF27qzv/sTDahYMKfW80dTQk7s7n8a
- W9lsKciRuc7f+EEtLBC2sC7TFLAAinQ9OgKVIPkycF+YHYyEAs7fRDeDQtbanghzS35W
- PFc2nrApuKBAz6OEZXwla8Z5sHtzO5w64VpmjWzqXBMqM1G0UXqJREwhJ/ieyGpv8mXV
- 4+VQ==
-X-Gm-Message-State: AA+aEWbo7Ek6bY6v2w1K5ciYcokrS3TKjgzQcmBaTnjJoOKm9CWnKskH
- dAdg3/gWuSTz0uJaO41yhIc14A==
-X-Google-Smtp-Source: AFSGD/W69SbVBEzXPJ5Dok89hkHxKl5xnN3f9nGN88KkxPwJLoxe71jaFvRaBYcldtoaOGz4/N4pLA==
-X-Received: by 2002:adf:9d08:: with SMTP id k8mr19830153wre.203.1543939499579; 
- Tue, 04 Dec 2018 08:04:59 -0800 (PST)
-Received: from xps.expressvpn ([2a00:23c4:f7a1:ce00:1581:6f5a:196:51f2])
- by smtp.gmail.com with ESMTPSA id k23sm5451585wmj.32.2018.12.04.08.04.58
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 04 Dec 2018 08:04:58 -0800 (PST)
-From: Carlo Caione <ccaione@baylibre.com>
-To: robh+dt@kernel.org, mark.rutland@arm.com, khilman@baylibre.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, martin.blumenstingl@googlemail.com
-Subject: [PATCH 0/2] meson: Fix IRQ trigger type
-Date: Tue,  4 Dec 2018 16:04:45 +0000
-Message-Id: <20181204160447.27869-1-ccaione@baylibre.com>
+ bh=R3lu1O3dzevjwf1kiOi6nnvjRZAndn2B6xOh4odokpA=;
+ b=f9KWxcCS0+K2s6UqQHSg4v0/mh3sbLfOYtzZeUsEEeoI2PkjTwfRp5oBjGCyJB1p4o
+ 0xPCgml52+RnQcJY+aEuHu8xtapr5NPfn7apSJFtjGfeqwcQL08MTqN9epUreKO25Ukb
+ h3UNLmBc/wKWKv74Wdzp2xWTEH/MiJuxom+EIZiqVUb3j4OLmpeJh9MIHL8KpzIe/LKI
+ Uj35MnU8kGwZrHaIZm69aV2RsQrigYVvxnXcoYEXVBsDTYbB27Pcp3lTQMmDGGPvYuhO
+ 0KkfxSKDrNGsfYgh666kDtk8XbyFcC/BENt/tF4DfXk7v+77NSqtd45V96I4avq2MYs7
+ Cxww==
+X-Gm-Message-State: AA+aEWZ31Ix7I67Nfunj6t+AEScY5ymI/R69PVHG9uiN1Ls3jjOcGPiJ
+ 43wM2FffqzTfzVpbTUg3fzvL+g==
+X-Google-Smtp-Source: AFSGD/WTlf/YYHhc3QbpNCj8zrSV4Lrqsmr2YgfWNABBTkDANhfVDao/uept4NdNhVCcdYo9Q5XzAQ==
+X-Received: by 2002:adf:8464:: with SMTP id 91mr19884579wrf.251.1543942395942; 
+ Tue, 04 Dec 2018 08:53:15 -0800 (PST)
+Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.googlemail.com with ESMTPSA id s66sm11581633wmf.34.2018.12.04.08.53.14
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 04 Dec 2018 08:53:15 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>
+Subject: [PATCH 0/5] clk: meson: axg: add 32k clock generation
+Date: Tue,  4 Dec 2018 17:53:05 +0100
+Message-Id: <20181204165310.20806-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_080511_586024_FD8C9EA5 
-X-CRM114-Status: UNSURE (   8.56  )
+X-CRM114-CacheID: sfid-20181204_085328_531355_101BBCF0 
+X-CRM114-Status: UNSURE (   8.15  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -95,31 +94,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Carlo Caione <ccaione@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The wrong IRQ trigger type for the macirq was causing the connection
-speed to drop after a few hours when stress testing the DUT. The fix
-seems also to fix another long standing issue with EEE.
+The goal of this patchset is to add the internal generation of the
+32768Hz clock within the axg AO clock controller.
 
-The fixes are tested on a AXG board but we think that the same fix is
-valid also for all the others Amlogic SoC families.
+This was initially added has the CEC clock on gxbb. To properly
+integrate it on the axg, a simpler 'dual divider' driver is added.
+Then gxbb AO clock controller is reworked to use it. Finally the 32k
+clock tree is added to the AXG.
 
-Carlo Caione (2):
-  arm64: dts: meson: Fix IRQ trigger type for macirq
-  arm64: dts: meson: Remove eee-broken-1000t quirk
+This patchset requires depends on this CCF change [0]
 
- arch/arm/boot/dts/meson.dtsi                        | 2 +-
- arch/arm/boot/dts/meson8b-odroidc1.dts              | 1 -
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts      | 1 -
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi          | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
- arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi   | 1 -
- 7 files changed, 3 insertions(+), 7 deletions(-)
+[0]: https://lkml.kernel.org/r/20181204163257.32085-1-jbrunet@baylibre.com
+
+Jerome Brunet (5):
+  dt-bindings: clk: meson: add ao slow clock path ids
+  clk: meson: clean-up clock registration
+  clk: meson: add dual divider clock driver
+  clk: meson: gxbb-ao: replace cec-32k with the dual divider
+  clk: meson: axg-ao: add 32k generation subtree
+
+ drivers/clk/meson/Makefile              |   3 +-
+ drivers/clk/meson/axg-aoclk.c           | 175 +++++++++++++++--
+ drivers/clk/meson/axg-aoclk.h           |  13 +-
+ drivers/clk/meson/clk-dualdiv.c         | 130 +++++++++++++
+ drivers/clk/meson/clkc.h                |  19 ++
+ drivers/clk/meson/gxbb-aoclk-32k.c      | 193 -------------------
+ drivers/clk/meson/gxbb-aoclk.c          | 238 +++++++++++++++++++-----
+ drivers/clk/meson/gxbb-aoclk.h          |  20 +-
+ drivers/clk/meson/meson-aoclk.c         |  15 +-
+ include/dt-bindings/clock/axg-aoclkc.h  |   7 +-
+ include/dt-bindings/clock/gxbb-aoclkc.h |   7 +
+ 11 files changed, 527 insertions(+), 293 deletions(-)
+ create mode 100644 drivers/clk/meson/clk-dualdiv.c
+ delete mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
 
 -- 
 2.19.1
