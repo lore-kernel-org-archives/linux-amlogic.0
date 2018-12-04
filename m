@@ -2,76 +2,90 @@ Return-Path: <SRS0=ycqe=ON=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1ED42C07E85
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 14:45:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 59495C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 15:01:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D06A72081C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 14:45:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 297102082B
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 15:01:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="snMEhwPv";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9Kj3r0o"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D06A72081C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LkMK2I07";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="HU70lnAD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 297102082B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yt76Uz0POxw75fFrCuz8mvFPW3xqbXVUzMjSLKn86Lw=; b=snMEhwPv9uZhBs
-	PLrYt4PPslGR+UT9KFFY6NNkG3UrpMdwD/+QYWixaargmez9sCHrPemeXsr76YGM3mfENLWOaCxS4
-	yyxFc2V60tZ6y5k6G+2UkZH0QN5N8P6b1bJg9NUEb3i0nS3cqVG8s8nqMs7TOUvL+8kfnaiP7+Iad
-	3VFoiPSQe4HRjwXLqn4fgnSEM1XM2TLFsGsFeMhOysAFOtsTTYOPFGhOH8dvrIADPEmD3q4d/wEna
-	FixQj/+Q3efK7LNTwnWpIhuWVTnxPmf7jZh5sEiTSVMuARS/Mo/jT6sdCT/nITcKMqfTYco4mAQH0
-	FjLUgbPHi5O2y1hQ1hvQ==;
+	List-Owner; bh=pl8yIvXFjGMKnhx70NgwTNpCl1rwlRcqVKYJ2V6F9gI=; b=LkMK2I07bNjyHC
+	lenkbpA1TJvM4q+l4B7TqWn9iME99fgFnP6nMn+R3QfAFCmMKN1ckMt0Bi+vhtZLFZzaYZKGiYA9g
+	Bt6O2W5sVs+hq+EGa5F6qXmwvoYz5GBwFyFciproUOfmlJqwOyN7SQ9OxbVk+ltfTim8jJND7mfbE
+	17ocksn1Toth9h/ZWKl7tvh/YWGkI2flUG/0VnkkJUd+5Q/9W2oWghAU9UJPm1QZB8+//5gW00geO
+	iq9ap7Ydyj2ZPO/RqlIUqV+9PC4pLrK4GaZguU5TUlhcJrPBADh2F0JTLPVh5J+fi8VmXPuxJ01ae
+	Ixdm2UDcKHUlKVqUcJMg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUBwy-0008El-32; Tue, 04 Dec 2018 14:45:24 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gUCC5-00015U-Vv; Tue, 04 Dec 2018 15:01:01 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUBwq-0006zQ-I9; Tue, 04 Dec 2018 14:45:22 +0000
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
- [209.85.160.172])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5767120834;
- Tue,  4 Dec 2018 14:45:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1543934705;
- bh=hVb8TID6cd1Olg3jtzdBexIhOrCiR/d52f5IOpnmACI=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=I9Kj3r0o3/KmrFHvG5GA+pHQ+dy7Ck2z0nBok1uWJCjEzruGA59yQo0y1FUoCsswk
- o1aUEqebWNFZ+Ip6QC3hVzUmt5fPdbbp1IG8/nQbMgOSbjkGWOSY/gCtPmTyidtwMS
- Yy/BeYZ28OHA5lgEi9DmgXTRG0r6SrbtOljEJnKM=
-Received: by mail-qt1-f172.google.com with SMTP id n32so18228828qte.11;
- Tue, 04 Dec 2018 06:45:05 -0800 (PST)
-X-Gm-Message-State: AA+aEWYV3CAiXbPtPIyLYrPlnfLQw05Fk+uL3zAFhIkAwmkwOPGP6asM
- IdpO/+LWL8Kw8t9crYMOe/L0/tOsxVLfubNLwQ==
-X-Google-Smtp-Source: AFSGD/WGVWJioClsa0lvQGJtAOGi8FkeeWgHBEl1fwnzno8/vkh5RpuvYCjALLTG0ebaUzuRMqN9CWkjmLCc7SNclL4=
-X-Received: by 2002:aed:3ecf:: with SMTP id o15mr19931119qtf.26.1543934704526; 
- Tue, 04 Dec 2018 06:45:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20181203213223.16986-1-robh@kernel.org>
- <20181203213223.16986-15-robh@kernel.org>
- <dfb921ca-63c5-a4c2-f3e2-c2eebdf688f6@baylibre.com>
-In-Reply-To: <dfb921ca-63c5-a4c2-f3e2-c2eebdf688f6@baylibre.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 4 Dec 2018 08:44:52 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+e2m5VaibpvuTYURZ+E=MCSUGH8cokdWYWEjn_jy9iwA@mail.gmail.com>
-Message-ID: <CAL_Jsq+e2m5VaibpvuTYURZ+E=MCSUGH8cokdWYWEjn_jy9iwA@mail.gmail.com>
-Subject: Re: [PATCH v2 14/34] dt-bindings: arm: Convert Amlogic board/soc
- bindings to json-schema
-To: Neil Armstrong <narmstrong@baylibre.com>
+ id 1gUCC1-00010y-Nk
+ for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 15:00:59 +0000
+Received: by mail-wm1-x343.google.com with SMTP id m22so9677499wml.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 07:00:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=FBLaADd8sswfEpin3P/Oq4cisopQsoVq5TfE3mJptgI=;
+ b=HU70lnADugz4Kg/Z5h/C16ianYDHjOv6oG55ivmjxZd+k74qQkxxVos37qCJEgYZ8o
+ 5qzOmBvioE8pMV1z7171XnKbkCzsqIsfGNEbyq3NBI7LaLU4X5lv9VHEXPU246eGZ+gE
+ g29BYtvhUhrq0hMBp4uaQ7kSidT+WhFwcmzG2sFwvF+2isw2uzDAADfad5xC0P4NesJ8
+ EPJ+KHT5fM5AblBU3VN7ouxfBqEW/OYKMFS0LNtRbF4EeAJb2YzhvVxqX1yGmej7Zy+f
+ Mt8L9w7SNz3ocL8frXL/PsitQ+XUfSQGue+mBp7OFh3uEVHdzeBWyW+brDodzrnfHF81
+ zP4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=FBLaADd8sswfEpin3P/Oq4cisopQsoVq5TfE3mJptgI=;
+ b=E4Ec2JVsm+9tCGIhcmia68EDrnKlCdKsYOQKD693cUJMRyNEUNLTeEIm+SEL+R3eMJ
+ 4pBj0u7t9ZoEcQDv6kgIzyW/2TUWi4AILK6fHyrCZ6rxRIdIj2qcuRGZkS0Wof9c8whf
+ cBIpwJ+G+lYToWUUg/xmY9kNseW+LeEDxBdJb6/CZ7OrLjxngFD/srJomCQV5Ss2cF8N
+ FP7Au8pTqOLupZ0Kgt8SZPJGlYDFTV3o6WWfeIPqTxx7TRoTgovzFczhYOqBjJRxrOu1
+ Hz2dszMiIszgtJC5DGx7KVu1K8/P+LICTshORVic4BJnFL0V+ZUQ65MjVd9JgucGvc4/
+ fdwQ==
+X-Gm-Message-State: AA+aEWb+ymzYMoOu9Laouu1rFZZUhfREEig5wx+aJ+/YqQkrrdeHui/f
+ kVmfBQv7QFeZCAugbZN6jPpLWQ==
+X-Google-Smtp-Source: AFSGD/VNr542c3cIjBtxQYiqT6fdD+9tHilEe7kPUaw8xwWAmdyI6wMjHBRLTpDd8c3mD9nrPDBALw==
+X-Received: by 2002:a7b:c04e:: with SMTP id u14mr12193068wmc.113.1543935645511; 
+ Tue, 04 Dec 2018 07:00:45 -0800 (PST)
+Received: from broadband.bt.com ([2a00:23c4:f7a1:ce00:1581:6f5a:196:51f2])
+ by smtp.gmail.com with ESMTPSA id b131sm13216791wma.21.2018.12.04.07.00.44
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 04 Dec 2018 07:00:44 -0800 (PST)
+Message-ID: <eaf25e588c5ab78c607e7168e22871464e7ec8d7.camel@baylibre.com>
+Subject: Re: [PATCH] MAINTAINERS: Remove myself from the list
+From: Carlo Caione <ccaione@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, khilman@baylibre.com
+Date: Tue, 04 Dec 2018 15:00:43 +0000
+In-Reply-To: <928e27de-cb7b-cf40-b8b6-2aa43a69ee39@baylibre.com>
+References: <20181201151749.10932-1-ccaione@baylibre.com>
+ <928e27de-cb7b-cf40-b8b6-2aa43a69ee39@baylibre.com>
+User-Agent: Evolution 3.30.1-1build1 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_064516_635576_69134C50 
-X-CRM114-Status: GOOD (  20.61  )
+X-CRM114-CacheID: sfid-20181204_070057_907219_BACD155E 
+X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -83,84 +97,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Kumar Gala <kumar.gala@linaro.org>, Grant Likely <grant.likely@arm.com>,
- Sean Hudson <darknighte@darknighte.com>, Kevin Hilman <khilman@baylibre.com>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- ARM-SoC Maintainers <arm@kernel.org>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Frank Rowand <frowand.list@gmail.com>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 4, 2018 at 2:39 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi Rob,
->
-> You forgot linux-amlogic in CC...
->
-> On 03/12/2018 22:32, Rob Herring wrote:
-> > Convert Amlogic SoC bindings to DT schema format using json-schema.
-> >
-> > Cc: Carlo Caione <carlo@caione.org>
-> > Cc: Kevin Hilman <khilman@baylibre.com>
-> > Cc: Mark Rutland <mark.rutland@arm.com>
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
+On Mon, 2018-12-03 at 11:21 +0100, Neil Armstrong wrote:
+> On 01/12/2018 16:17, Carlo Caione wrote:
+> > Kevin is basically doing all the work. Remove my name as co-
+> > maintainer.
+> 
+> Sure, but couldn't we move you as reviewer and add Martin as reviewer
+> aswell since he is dedicated to the Meson8X support ?
+> 
+> Or maybe add a separate entry with Kevin as maintainer and Martin as
+> reviewer for Meson8X ?
 
-[...]
+This. At this point I don't think I will be going to work on the
+Meson8X for a while and Martin proved to be the right guy for this job.
 
-> > +      - items:
-> > +          - enum:
-> > +              - amlogic,s400
-> > +          - const: amlogic,a113d
-> > +          - const: amlogic,meson-axg
-> > +      - items:
-> > +          - enum:
-> > +              - amlogic,u200
-> > +          - const: amlogic,g12a
->
-> but all this feels wrong for me.
->
-> First of all, this yaml description is not human friendly and not intuitive at all,
-> and secondly with this conversion we loose all the comments about the SoC family relationship
-> with the compatible strings !
->
-> I really understand the point to have automated verification, but really it's a pain to read
-> (I can't imagine newcomers... the actual DT bindings are already hard to read...) and
-> I feel it will be a real pain to write !
+So, let's remove my name from here first and then Martin can add a new
+entry for Meson8X.
 
-What do you suggest that would be easier? Is it the YAML itself or the
-json-schema vocabulary? For the former, we could use {} and [] to make
-things more json style. But I imagine it is the latter.
+Cheers,
 
-There is some learning curve for json-schema and is certainly a
-concern I have, but there would be a learning curve for anything. Our
-choices are use some existing schema language or invent one. All the
-previous efforts (there's been about 5 since 2013) have been inventing
-one, and they've not gone far. There will be far few resources
-available to train people with if we do something custom.
+--
+Carlo Caione
 
-> Can't we mix an "humam text" with a "yaml" part on a same document ? we are in 2018 (nearly 2019),
-> and it should be easy to extract a yaml description from a text document without pain and
-> keep all the human description, no ?
-
-Yes. Please go look at the annotated example in patch 2.
-
-> What will be the case for all the bindings with ASCII art to describe the architecture of the
-> HW ? will you simply drop it to replace it with cold yaml description ?
-
-No, you can have literal blocks and/or comments with however much
-description you like. In fact, there's some notion to write the
-descriptions in sphinx and extract them to generate documentation, but
-that's a ways off. That's just the extent of what is possible.
-
-Rob
 
 _______________________________________________
 linux-amlogic mailing list
