@@ -3,118 +3,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11BE6C04EB8
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 13:20:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1ED42C07E85
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 14:45:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D030620659
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 13:20:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D06A72081C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 14:45:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ImTgqbir";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sZwCCn0S"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D030620659
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="snMEhwPv";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9Kj3r0o"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D06A72081C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=16FP7RTAXSfo4Y8Efu54ACK31UYL3ibPTB2KRMsQPXc=; b=ImTgqbirXsbc7F
-	g2Hz+S+/9WM/M4TIXv6xJPstBskL5Uu05fSbb+DP5EDac/Nsj+nYSXNgFpVhYqsKFFHBHFDKJ9/Bh
-	faaMeigUnvPIc6EKL1efRBrcp3/64EoolEixvGSNIdiSzS0GmLnivxix9DwMfBnhoqE4RsVx3Joao
-	NxYRI1a92FrUIbLvOOPc+Zn3mtIORfnM2xA8Wuakc+HGk724dMRNtGYkfPM1opJlmKdDvQRRMsUeS
-	YSX+pwe8k2g0W8stQFhP63DLvQji3jEWz9IP+HcS67AevROvrpF+qB/mqL1wq2MY2v2mAewabDQ6f
-	4ZbpvZQeoP8hfzu2BWhg==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yt76Uz0POxw75fFrCuz8mvFPW3xqbXVUzMjSLKn86Lw=; b=snMEhwPv9uZhBs
+	PLrYt4PPslGR+UT9KFFY6NNkG3UrpMdwD/+QYWixaargmez9sCHrPemeXsr76YGM3mfENLWOaCxS4
+	yyxFc2V60tZ6y5k6G+2UkZH0QN5N8P6b1bJg9NUEb3i0nS3cqVG8s8nqMs7TOUvL+8kfnaiP7+Iad
+	3VFoiPSQe4HRjwXLqn4fgnSEM1XM2TLFsGsFeMhOysAFOtsTTYOPFGhOH8dvrIADPEmD3q4d/wEna
+	FixQj/+Q3efK7LNTwnWpIhuWVTnxPmf7jZh5sEiTSVMuARS/Mo/jT6sdCT/nITcKMqfTYco4mAQH0
+	FjLUgbPHi5O2y1hQ1hvQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUAcG-0003Gc-LQ; Tue, 04 Dec 2018 13:19:56 +0000
-Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
+	id 1gUBwy-0008El-32; Tue, 04 Dec 2018 14:45:24 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUAc7-0003Fn-10
- for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 13:19:55 +0000
-Received: by mail-wm1-x336.google.com with SMTP id y185so9400976wmd.1
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 05:19:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=jztrnI64pRPProm1qTBHpiuzuFislqUJ1VKo5w5Z9ZM=;
- b=sZwCCn0SGKZhyhuOuSuTbQhAZo61mbMlkyy2+LjDUMcfBBWu5uoemyA7hZrVO1LKYN
- ctARIgi/Oyf3NjN21FnhpdHT6wnFdSCjwbMC/T0KXxuVnSo9KgmBBa3P9F+CWZHMqARu
- 6nVHJ3gQ3o0h5DMQrRFD3EiFv2OXPDb9vZsPQvmUGKn3Xz3y9Q0TeasMaishS+tMaBvR
- Z7ZaUvo6s4wd9DV3Fs0L4pQD0XL+kagJ0YJOFqHeiXOkB+SuFVhXw4C7PrfHkOmy5FJX
- QyGfIJfdYziJAuVqc8Aufzm8sad1E/koL9AYbc9Ql1YkIsi3EUr/ZZMevVKFt9LHV9wA
- Me5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=jztrnI64pRPProm1qTBHpiuzuFislqUJ1VKo5w5Z9ZM=;
- b=bY+W+SvByz7W4wCYemMZ529s5pJHq1ZIENmtPDjwmASKMDW7/KfHBw8CdQmq3fCw8y
- kqbnYPxjR0Hmy2dhu6U/jMBcS7hjbaZPkgXWa4PPF5eDCtDcS8BpO17Y8J9HIUon3MsK
- zNRJUhQNdjqLIbQSgPiqh3XsjZK06U88wXaX4AAVxdjaKPZ0x6TZsm3zs8sX0WfSgM73
- q+J9qmpmqljaXtMRJphe61GGl8nC8h+JgvHObfJI3ygmk73Xzw1RgqPWDSSVWsV93trl
- 9N4UUeRGocqfyjfGTGgsS+Jh5Wc7wueEsecYTxlqDgy9g4zIrUwEbFbLzrf41DSKemig
- 5zLA==
-X-Gm-Message-State: AA+aEWY9B0TncbzgdP+GQLv9M7sDBV0MLPZjnmD0T4k2McevmliFHQ36
- aZG0OlCcVairQEmNBNOWDNCNsu2/jFeDwg==
-X-Google-Smtp-Source: AFSGD/U+2aId78hk3pYrVy2bHBWKfhFMvzZWzZsAYYkxzk6jOFcph5JOWvRFD1WuFLxjaU3Zq+XtqA==
-X-Received: by 2002:a1c:2382:: with SMTP id j124mr11996799wmj.14.1543929574303; 
- Tue, 04 Dec 2018 05:19:34 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x76sm18017271wmd.27.2018.12.04.05.19.33
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 04 Dec 2018 05:19:33 -0800 (PST)
-Subject: Re: [GIT PULL] clk: meson: updates for v4.21
-To: Stephen Boyd <sboyd@kernel.org>, mturquette@baylibre.com
-References: <8b905b7b-d72a-010f-bb2c-3cadeca603ed@baylibre.com>
- <154387405554.88331.5413259014915237358@swboyd.mtv.corp.google.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT7CwHsEEwEKACUC
- GyMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJXDO2CAhkBAAoJEBaat7Gkz/iubGIH/iyk
- RqvgB62oKOFlgOTYCMkYpm2aAOZZLf6VKHKc7DoVwuUkjHfIRXdslbrxi4pk5VKU6ZP9AKsN
- NtMZntB8WrBTtkAZfZbTF7850uwd3eU5cN/7N1Q6g0JQihE7w4GlIkEpQ8vwSg5W7hkx3yQ6
- 2YzrUZh/b7QThXbNZ7xOeSEms014QXazx8+txR7jrGF3dYxBsCkotO/8DNtZ1R+aUvRfpKg5
- ZgABTC0LmAQnuUUf2PHcKFAHZo5KrdO+tyfL+LgTUXIXkK+tenkLsAJ0cagz1EZ5gntuheLD
- YJuzS4zN+1Asmb9kVKxhjSQOcIh6g2tw7vaYJgL/OzJtZi6JlIXOwE0ETVkGzwEIALyKDN/O
- GURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYpQTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXM
- coJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hi
- SvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY4yG6xI99NIPEVE9lNBXBKIlewIyVlkOa
- YvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoMMtsyw18YoX9BqMFInxqYQQ3j/HpVgTSv
- mo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUXoUk33HEAEQEAAcLAXwQYAQIACQUCTVkG
- zwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfnM7IbRuiSZS1unlySUVYu3SD6YBYnNi3G
- 5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa33eDIHu/zr1HMKErm+2SD6PO9umRef8V8
- 2o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCSKmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+
- RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJ
- C3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTTQbM0WUIBIcGmq38+OgUsMYu4NzLu7uZF
- Acmp6h8g
-Organization: Baylibre
-Message-ID: <b0d85bdf-5257-9c9c-d640-1c5d1ffffd63@baylibre.com>
-Date: Tue, 4 Dec 2018 14:19:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ id 1gUBwq-0006zQ-I9; Tue, 04 Dec 2018 14:45:22 +0000
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
+ [209.85.160.172])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 5767120834;
+ Tue,  4 Dec 2018 14:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1543934705;
+ bh=hVb8TID6cd1Olg3jtzdBexIhOrCiR/d52f5IOpnmACI=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=I9Kj3r0o3/KmrFHvG5GA+pHQ+dy7Ck2z0nBok1uWJCjEzruGA59yQo0y1FUoCsswk
+ o1aUEqebWNFZ+Ip6QC3hVzUmt5fPdbbp1IG8/nQbMgOSbjkGWOSY/gCtPmTyidtwMS
+ Yy/BeYZ28OHA5lgEi9DmgXTRG0r6SrbtOljEJnKM=
+Received: by mail-qt1-f172.google.com with SMTP id n32so18228828qte.11;
+ Tue, 04 Dec 2018 06:45:05 -0800 (PST)
+X-Gm-Message-State: AA+aEWYV3CAiXbPtPIyLYrPlnfLQw05Fk+uL3zAFhIkAwmkwOPGP6asM
+ IdpO/+LWL8Kw8t9crYMOe/L0/tOsxVLfubNLwQ==
+X-Google-Smtp-Source: AFSGD/WGVWJioClsa0lvQGJtAOGi8FkeeWgHBEl1fwnzno8/vkh5RpuvYCjALLTG0ebaUzuRMqN9CWkjmLCc7SNclL4=
+X-Received: by 2002:aed:3ecf:: with SMTP id o15mr19931119qtf.26.1543934704526; 
+ Tue, 04 Dec 2018 06:45:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <154387405554.88331.5413259014915237358@swboyd.mtv.corp.google.com>
-Content-Language: en-US
+References: <20181203213223.16986-1-robh@kernel.org>
+ <20181203213223.16986-15-robh@kernel.org>
+ <dfb921ca-63c5-a4c2-f3e2-c2eebdf688f6@baylibre.com>
+In-Reply-To: <dfb921ca-63c5-a4c2-f3e2-c2eebdf688f6@baylibre.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 4 Dec 2018 08:44:52 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+e2m5VaibpvuTYURZ+E=MCSUGH8cokdWYWEjn_jy9iwA@mail.gmail.com>
+Message-ID: <CAL_Jsq+e2m5VaibpvuTYURZ+E=MCSUGH8cokdWYWEjn_jy9iwA@mail.gmail.com>
+Subject: Re: [PATCH v2 14/34] dt-bindings: arm: Convert Amlogic board/soc
+ bindings to json-schema
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_051947_112389_8946D149 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20181204_064516_635576_69134C50 
+X-CRM114-Status: GOOD (  20.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -126,103 +83,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-clk@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Kumar Gala <kumar.gala@linaro.org>, Grant Likely <grant.likely@arm.com>,
+ Sean Hudson <darknighte@darknighte.com>, Kevin Hilman <khilman@baylibre.com>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ ARM-SoC Maintainers <arm@kernel.org>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, Frank Rowand <frowand.list@gmail.com>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 03/12/2018 22:54, Stephen Boyd wrote:
-> Quoting Neil Armstrong (2018-11-23 07:23:33)
->> Dear clock maintainers,
->>
->> Below is a request to pull updates for Amlogic clocks.
->>
->> It covers essentially Meson GX Video clocks, Meson8b CPU clocks
->> and 2 bindings changes.
-> 
-> Pulled into clk-next now.
+On Tue, Dec 4, 2018 at 2:39 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi Rob,
+>
+> You forgot linux-amlogic in CC...
+>
+> On 03/12/2018 22:32, Rob Herring wrote:
+> > Convert Amlogic SoC bindings to DT schema format using json-schema.
+> >
+> > Cc: Carlo Caione <carlo@caione.org>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
 
-Thanks !
+[...]
 
-> 
-> I got this when testing:
-> 
-> drivers/clk/meson/vid-pll-div.c:58:26: warning: symbol '_get_table_val' was not declared. Should it be static?
-> drivers/clk/meson/gxbb.c:1585:12: warning: symbol 'gxbb_vid_pll_parent_names' was not declared. Should it be static?
-> drivers/clk/meson/gxbb.c:1620:12: warning: symbol 'gxbb_vclk_parent_names' was not declared. Should it be static?
-> drivers/clk/meson/gxbb.c:1980:12: warning: symbol 'gxbb_cts_parent_names' was not declared. Should it be static?
-> drivers/clk/meson/gxbb.c:2036:12: warning: symbol 'gxbb_cts_hdmi_tx_parent_names' was not declared. Should it be static?
-> 
-> which looks like nice sparse noise to silence.
-> 
-> It would also be nice to make that table of mux selectors const, is that
-> possible?
+> > +      - items:
+> > +          - enum:
+> > +              - amlogic,s400
+> > +          - const: amlogic,a113d
+> > +          - const: amlogic,meson-axg
+> > +      - items:
+> > +          - enum:
+> > +              - amlogic,u200
+> > +          - const: amlogic,g12a
+>
+> but all this feels wrong for me.
+>
+> First of all, this yaml description is not human friendly and not intuitive at all,
+> and secondly with this conversion we loose all the comments about the SoC family relationship
+> with the compatible strings !
+>
+> I really understand the point to have automated verification, but really it's a pain to read
+> (I can't imagine newcomers... the actual DT bindings are already hard to read...) and
+> I feel it will be a real pain to write !
 
-I posted a fix for this.
+What do you suggest that would be easier? Is it the YAML itself or the
+json-schema vocabulary? For the former, we could use {} and [] to make
+things more json style. But I imagine it is the latter.
 
-Neil
+There is some learning curve for json-schema and is certainly a
+concern I have, but there would be a learning curve for anything. Our
+choices are use some existing schema language or invent one. All the
+previous efforts (there's been about 5 since 2013) have been inventing
+one, and they've not gone far. There will be far few resources
+available to train people with if we do something custom.
 
-> 
-> ---8<----
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 30fbf8f1f190..b92df222f553 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -1582,7 +1582,7 @@ static struct clk_regmap gxbb_vid_pll_div = {
->  	},
->  };
->  
-> -const char *gxbb_vid_pll_parent_names[] = { "vid_pll_div", "hdmi_pll" };
-> +static const char * const gxbb_vid_pll_parent_names[] = { "vid_pll_div", "hdmi_pll" };
->  
->  static struct clk_regmap gxbb_vid_pll_sel = {
->  	.data = &(struct clk_regmap_mux_data){
-> @@ -1617,7 +1617,7 @@ static struct clk_regmap gxbb_vid_pll = {
->  	},
->  };
->  
-> -const char *gxbb_vclk_parent_names[] = {
-> +static const char * const gxbb_vclk_parent_names[] = {
->  	"vid_pll", "fclk_div4", "fclk_div3", "fclk_div5", "vid_pll",
->  	"fclk_div7", "mpll1",
->  };
-> @@ -1977,7 +1977,7 @@ static struct clk_fixed_factor gxbb_vclk2_div12 = {
->  };
->  
->  static u32 mux_table_cts_sel[] = { 0, 1, 2, 3, 4, 8, 9, 10, 11, 12 };
-> -const char *gxbb_cts_parent_names[] = {
-> +static const char * const gxbb_cts_parent_names[] = {
->  	"vclk_div1", "vclk_div2", "vclk_div4", "vclk_div6",
->  	"vclk_div12", "vclk2_div1", "vclk2_div2", "vclk2_div4",
->  	"vclk2_div6", "vclk2_div12"
-> @@ -2033,7 +2033,7 @@ static struct clk_regmap gxbb_cts_vdac_sel = {
->  
->  /* TOFIX: add support for cts_tcon */
->  static u32 mux_table_hdmi_tx_sel[] = { 0, 1, 2, 3, 4, 8, 9, 10, 11, 12 };
-> -const char *gxbb_cts_hdmi_tx_parent_names[] = {
-> +static const char * const gxbb_cts_hdmi_tx_parent_names[] = {
->  	"vclk_div1", "vclk_div2", "vclk_div4", "vclk_div6",
->  	"vclk_div12", "vclk2_div1", "vclk2_div2", "vclk2_div4",
->  	"vclk2_div6", "vclk2_div12"
-> diff --git a/drivers/clk/meson/vid-pll-div.c b/drivers/clk/meson/vid-pll-div.c
-> index b3370ea7beac..88af0e282ea0 100644
-> --- a/drivers/clk/meson/vid-pll-div.c
-> +++ b/drivers/clk/meson/vid-pll-div.c
-> @@ -55,8 +55,8 @@ static const struct vid_pll_div vid_pll_div_table[] = {
->  #define to_meson_vid_pll_div(_hw) \
->  	container_of(_hw, struct meson_vid_pll_div, hw)
->  
-> -const struct vid_pll_div *_get_table_val(unsigned int shift_val,
-> -					 unsigned int shift_sel)
-> +static const struct vid_pll_div *_get_table_val(unsigned int shift_val,
-> +						unsigned int shift_sel)
->  {
->  	int i;
->  
-> 
+> Can't we mix an "humam text" with a "yaml" part on a same document ? we are in 2018 (nearly 2019),
+> and it should be easy to extract a yaml description from a text document without pain and
+> keep all the human description, no ?
 
+Yes. Please go look at the annotated example in patch 2.
+
+> What will be the case for all the bindings with ASCII art to describe the architecture of the
+> HW ? will you simply drop it to replace it with cold yaml description ?
+
+No, you can have literal blocks and/or comments with however much
+description you like. In fact, there's some notion to write the
+descriptions in sphinx and extract them to generate documentation, but
+that's a ways off. That's just the extent of what is possible.
+
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
