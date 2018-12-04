@@ -2,22 +2,22 @@ Return-Path: <SRS0=ycqe=ON=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.9 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE531C04EBF
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:53:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C383C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:53:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B022E2082B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:53:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3C1E720659
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 16:53:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iwkw3f78";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="x9TFE5l8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B022E2082B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mV1Ny7Qp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WoHlFZNV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C1E720659
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wZdP1rCViZqKWLCIQrgJGpb7oJq8liZkwOkAU9h2ZGI=; b=iwkw3f78xKs063
-	OttVxtQ+vWwK//R++7jie7cUdKNVVatfsAKkGJ7DrDrJiP/Pbj+qDq0SqcHQMNsbaaSXO2G3V2TIC
-	fkHL3wlWryj267w9oi95amLvmqQVsDocX4MnhR5MBg0QxJsqsAF82fcSi17lNyK/JQtsPnCK8YJ8+
-	QYSB8JffK2AL2DRYQTmaqK68yHHZq5qzGkOTUDo4riBc0d/HumJgn+aEL/2ZgdhRoAeccwCjTcgRp
-	uFgIIrEejy4ZhGpA+nnwcH9p8chzf5pDGoH3icH6xeKMQgx7wSQik39b/4pD6USbfJdca+RhfcxNs
-	XfG5rwO83MMgQbheaxzQ==;
+	List-Owner; bh=uAnaAqNhVBvm5g7K0Y8JfCSq1Wtwysf9XD6sn9+CFlk=; b=mV1Ny7Qp2Ja4sg
+	KnVDAWxwq5k5xYnKhEgwrRaZp2L9vEO8B0RS0TnIyaMV8dFJm/yOXrgSHltvaiKqPcCh5BNTmvY8Q
+	sH2so90K2wiB9EMklJpfCpKXCgu4e8xNu43aueuOxi1gMYbPou9bW6JXfqTiMS9lLD3YfVfO14+IR
+	sKaZv4bp0EeBRORx13g0HhrzH7JOQy3YKG+am6LcnlQr2Z3GghmoLfKrQb63lHSKwtJ5Y2pPovop6
+	wasIDaXojGUC9ILpyqe4VJMIZSaLCWyYLLQWsmTm9S/ZTh7ery5hoi3vc0ww6L5kvaKpCNNFy7/wT
+	bhW1yUSWzH951+roFuoQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUDx4-00025r-UU; Tue, 04 Dec 2018 16:53:38 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1gUDx7-00028j-6Q; Tue, 04 Dec 2018 16:53:41 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUDww-0001jg-Vr
- for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 16:53:33 +0000
-Received: by mail-wm1-x343.google.com with SMTP id n190so7918782wmd.0
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 08:53:20 -0800 (PST)
+ id 1gUDwz-0001sX-3p
+ for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 16:53:37 +0000
+Received: by mail-wr1-x443.google.com with SMTP id q18so16699502wrx.9
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 08:53:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=K40kWu2bFnwxaEfpkYLrLkpBZbXIIj4vA9lroIFYCFY=;
- b=x9TFE5l8GS7goMvDCBMrggwMzWFPJewP9EWehtKPz+C74GBF1wjzGEA0Esix8yZoMs
- qwXb+gjJTPhZ3uaYsm5PMrzFNvtbq+67jMLYb3rO011WaS/udaXsUlP1fXIa/3ePHamD
- aVGJ6Ikl++hZUS+lUp3Vn3hCqeXR5Fsqrckht/uh7yfwDOsD+PwxiJ8Gu3FB69Df3XqH
- TXow5eFRDl2rVgrACLyotp93fPlOBYw4OinzZecX4jZrHYkwQ7kAY/UwgYHPBnUEqzV5
- THeQqj3oAqVxcsP3sjX62SwLZ0HgHIEDMKB5df+WJ+Ls0u3c1va+iEi+MSu7K7NnOCug
- vKaA==
+ bh=QCM3RFYsWLjUZObZsaZJYw0tcQdErTU1Tp3H4V4iqCo=;
+ b=WoHlFZNVuHVfp4QGP7GPJFMTlvqX12F7KCCwPhv4Wkh2T+nb7Qmf+KjWBVKgQ/5v0s
+ ZBSRY+B94GL4xlHD9AEBEysnxO4IHvSWghYdhs8ntST7h4dAGmCXeUO8c76jtDEgJIOO
+ GtwCxB2gW/dZMhYUG5aOsk8pudFGQcPVN06akG3MQeP4F8MolfLlrvie8uo9WgX653GY
+ QepR7BM5WkRzmhLRNnDvj0n2Yk72/s0fAU6CODNYQLySqqpdpnOavRA4AZzmuq1ee8NQ
+ muoZjZmAKo6AmimfJed/q9atSGHniNwrZ9YrOlEVgyAJ9zCbybcKuTeXHuGUp0uqcXAg
+ Z68Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=K40kWu2bFnwxaEfpkYLrLkpBZbXIIj4vA9lroIFYCFY=;
- b=Op20G85IFOa+IkzKxMzJwsOfRcRNmw1e1QIJcX9U9fPIJ/BkB95AtJ/NyO6BvxDHNe
- suTDyKqSsPlrPAsS7eLwYw2Dypu13FdqDscJaXkH/PTCY0ArULA3uUvatILeDI41qAm2
- wIx5h+SywYRcSwAuPqVuT5mwP7Up+E5epu29R38Zoop1UNAc3/lOn79Ys9SvdclQI7+P
- ddjOqBx+4LgiPWu7nv7KZni4vmgwKbGOY3mLbrKnvykTzjDSt+Z4eD1O1BWpLL4GvWS6
- EOAEOv5otuIVM0iZ+g8KioV1M72fxvZpR2nvagabF2KoNSVJYxGGR5oLOgo5ac7o3trw
- 9LBw==
-X-Gm-Message-State: AA+aEWapafgXvzM6lcbL64hdfU/5RBRn8cfiRxB3BvVHrpzR7PfY9OYi
- +SQw7aXjsJqUpKDsMJOi1tQl4w==
-X-Google-Smtp-Source: AFSGD/XPqhimKpWte2wk1Eo37C89ytBiK4mTyBVgUXcKqbOMtkraPZ6t9wA4bmsy2i3hDxh1TA8BFw==
-X-Received: by 2002:a1c:7306:: with SMTP id d6mr2811790wmb.98.1543942399163;
- Tue, 04 Dec 2018 08:53:19 -0800 (PST)
+ bh=QCM3RFYsWLjUZObZsaZJYw0tcQdErTU1Tp3H4V4iqCo=;
+ b=ocDMUbDDoEZ/MT3jWUHTfVM49bqor7wFnUJPQ9kIuS29uh2Zg0cKorh0PI+bCaLFuT
+ C4P0jHkf6DI9jM2h0hOym5pZtWpYEWUCRYo6eiwJl/oSrwlY4jjwZISrFy9TiASqZOp2
+ fPKR54V5ape6asYhy85rb8WtPH6TdOn0vqJeKkS6kd6LBRnxzALIYQ/FYShvZ+c0XMYb
+ kIzAl3zihi29DXsVhzN3lZ1lHHMk6fGCKIXTQ5ZVwpNyyndvxbVt1QsdEx6Tnvpz4xS8
+ lSWw1+s49mQ3MHDh/HU6nN+ZtPZlAYaKQ5zppOkial2qYDRg+5lDNY9TM9NrGAGZi8gz
+ lhlw==
+X-Gm-Message-State: AA+aEWaBp2Tyk+EVSnHof/Jv8g+0b7GWYEhVPPRd2LFQDsZNdfpFHyy6
+ yvvBxRwhb2h555IbVbtWNCdiLQ==
+X-Google-Smtp-Source: AFSGD/UKoxfPSbaMWGvaEsVCJjKZ+3IoPtxRXNc5qRQ0U8Ymv5AQyflcnbpbRsrJDEtP/T5iZ+AP7Q==
+X-Received: by 2002:a5d:488f:: with SMTP id g15mr18802323wrq.15.1543942407261; 
+ Tue, 04 Dec 2018 08:53:27 -0800 (PST)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id s66sm11581633wmf.34.2018.12.04.08.53.17
+ by smtp.googlemail.com with ESMTPSA id s66sm11581633wmf.34.2018.12.04.08.53.25
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 04 Dec 2018 08:53:18 -0800 (PST)
+ Tue, 04 Dec 2018 08:53:26 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>
-Subject: [PATCH 2/5] clk: meson: clean-up clock registration
-Date: Tue,  4 Dec 2018 17:53:07 +0100
-Message-Id: <20181204165310.20806-3-jbrunet@baylibre.com>
+Subject: [PATCH 5/5] clk: meson: axg-ao: add 32k generation subtree
+Date: Tue,  4 Dec 2018 17:53:10 +0100
+Message-Id: <20181204165310.20806-6-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20181204165310.20806-1-jbrunet@baylibre.com>
 References: <20181204165310.20806-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_085331_241268_ADA1E0CA 
-X-CRM114-Status: GOOD (  12.54  )
+X-CRM114-CacheID: sfid-20181204_085333_407035_1ECFB8C1 
+X-CRM114-Status: GOOD (  12.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,48 +104,258 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Order, ids and size  between the table of regmap clocks and the onecell
-data table could be different.
-
-Set regmap pointer in all the regmap clocks before starting the
-registration using the onecell data, to make sure we don't
-get into an incoherent situation.
+Add the clock subtree generating the 32k clock in amlogic axg ao block.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/meson-aoclk.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ drivers/clk/meson/axg-aoclk.c | 175 +++++++++++++++++++++++++++++++---
+ drivers/clk/meson/axg-aoclk.h |  13 +--
+ 2 files changed, 163 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
-index f965845917e3..258c8d259ea1 100644
---- a/drivers/clk/meson/meson-aoclk.c
-+++ b/drivers/clk/meson/meson-aoclk.c
-@@ -65,15 +65,20 @@ int meson_aoclkc_probe(struct platform_device *pdev)
- 		return ret;
- 	}
+diff --git a/drivers/clk/meson/axg-aoclk.c b/drivers/clk/meson/axg-aoclk.c
+index 29e088542387..5f518be144ce 100644
+--- a/drivers/clk/meson/axg-aoclk.c
++++ b/drivers/clk/meson/axg-aoclk.c
+@@ -12,10 +12,23 @@
+ #include <linux/platform_device.h>
+ #include <linux/reset-controller.h>
+ #include <linux/mfd/syscon.h>
+-#include "clk-regmap.h"
++#include "clkc.h"
+ #include "meson-aoclk.h"
+ #include "axg-aoclk.h"
  
--	/*
--	 * Populate regmap and register all clks
--	 */
--	for (clkid = 0; clkid < data->num_clks; clkid++) {
-+	/* Populate regmap */
-+	for (clkid = 0; clkid < data->num_clks; clkid++)
- 		data->clks[clkid]->map = regmap;
- 
-+	/* Register all clks */
-+	for (clkid = 0; clkid < data->hw_data->num; clkid++) {
-+		if (!data->hw_data->hws[clkid])
-+			continue;
++/*
++ * AO Configuration Clock registers offsets
++ * Register offsets from the data sheet must be multiplied by 4.
++ */
++#define AO_RTI_PWR_CNTL_REG1	0x0C
++#define AO_RTI_PWR_CNTL_REG0	0x10
++#define AO_RTI_GEN_CNTL_REG0	0x40
++#define AO_OSCIN_CNTL		0x58
++#define AO_CRT_CLK_CNTL1	0x68
++#define AO_SAR_CLK		0x90
++#define AO_RTC_ALT_CLK_CNTL0	0x94
++#define AO_RTC_ALT_CLK_CNTL1	0x98
 +
- 		ret = devm_clk_hw_register(dev, data->hw_data->hws[clkid]);
--		if (ret)
-+		if (ret) {
-+			dev_err(dev, "Clock registration failed\n");
- 			return ret;
-+		}
- 	}
+ #define AXG_AO_GATE(_name, _bit)					\
+ static struct clk_regmap axg_aoclk_##_name = {				\
+ 	.data = &(struct clk_regmap_gate_data) {			\
+@@ -39,17 +52,141 @@ AXG_AO_GATE(uart2, 5);
+ AXG_AO_GATE(ir_blaster, 6);
+ AXG_AO_GATE(saradc, 7);
  
- 	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++static struct clk_regmap axg_aoclk_cts_oscin = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = AO_RTI_PWR_CNTL_REG0,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "cts_oscin",
++		.ops = &clk_regmap_gate_ro_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap axg_aoclk_32k_pre = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = AO_RTC_ALT_CLK_CNTL0,
++		.bit_idx = 31,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "axg_ao_32k_pre",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "cts_oscin" },
++		.num_parents = 1,
++	},
++};
++
++static const struct meson_clk_dualdiv_param axg_32k_div_table[] = {
++	{
++		.dual	= 1,
++		.n1	= 733,
++		.m1	= 8,
++		.n2	= 732,
++		.m2	= 11,
++	}, {}
++};
++
++static struct clk_regmap axg_aoclk_32k_div = {
++	.data = &(struct meson_clk_dualdiv_data){
++		.n1 = {
++			.reg_off = AO_RTC_ALT_CLK_CNTL0,
++			.shift   = 0,
++			.width   = 12,
++		},
++		.n2 = {
++			.reg_off = AO_RTC_ALT_CLK_CNTL0,
++			.shift   = 12,
++			.width   = 12,
++		},
++		.m1 = {
++			.reg_off = AO_RTC_ALT_CLK_CNTL1,
++			.shift   = 0,
++			.width   = 12,
++		},
++		.m2 = {
++			.reg_off = AO_RTC_ALT_CLK_CNTL1,
++			.shift   = 12,
++			.width   = 12,
++		},
++		.dual = {
++			.reg_off = AO_RTC_ALT_CLK_CNTL0,
++			.shift   = 28,
++			.width   = 1,
++		},
++		.table = axg_32k_div_table,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "axg_ao_32k_div",
++		.ops = &meson_clk_dualdiv_ops,
++		.parent_names = (const char *[]){ "axg_ao_32k_pre" },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap axg_aoclk_32k_sel = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = AO_RTC_ALT_CLK_CNTL1,
++		.mask = 0x1,
++		.shift = 24,
++		.flags = CLK_MUX_ROUND_CLOSEST,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "axg_ao_32k_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_names = (const char *[]){ "axg_ao_32k_div",
++						  "axg_ao_32k_pre" },
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap axg_aoclk_32k = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = AO_RTC_ALT_CLK_CNTL0,
++		.bit_idx = 30,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "axg_ao_32k",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "axg_ao_32k_sel" },
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static struct clk_regmap axg_aoclk_cts_rtc_oscin = {
++	.data = &(struct clk_regmap_mux_data) {
++		.offset = AO_RTI_PWR_CNTL_REG0,
++		.mask = 0x1,
++		.shift = 10,
++		.flags = CLK_MUX_ROUND_CLOSEST,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "axg_ao_cts_rtc_oscin",
++		.ops = &clk_regmap_mux_ops,
++		.parent_names = (const char *[]){ "axg_ao_32k",
++						  "axg_ext_32k" },
++		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
+ static struct clk_regmap axg_aoclk_clk81 = {
+ 	.data = &(struct clk_regmap_mux_data) {
+ 		.offset = AO_RTI_PWR_CNTL_REG0,
+ 		.mask = 0x1,
+ 		.shift = 8,
++		.flags = CLK_MUX_ROUND_CLOSEST,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "axg_ao_clk81",
+ 		.ops = &clk_regmap_mux_ro_ops,
+-		.parent_names = (const char *[]){ "clk81", "ao_alt_xtal"},
++		.parent_names = (const char *[]){ "clk81",
++						  "axg_ao_cts_rtc_oscin"},
+ 		.num_parents = 2,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -106,17 +243,23 @@ static const unsigned int axg_aoclk_reset[] = {
+ };
+ 
+ static struct clk_regmap *axg_aoclk_regmap[] = {
+-	[CLKID_AO_REMOTE]	= &axg_aoclk_remote,
+-	[CLKID_AO_I2C_MASTER]	= &axg_aoclk_i2c_master,
+-	[CLKID_AO_I2C_SLAVE]	= &axg_aoclk_i2c_slave,
+-	[CLKID_AO_UART1]	= &axg_aoclk_uart1,
+-	[CLKID_AO_UART2]	= &axg_aoclk_uart2,
+-	[CLKID_AO_IR_BLASTER]	= &axg_aoclk_ir_blaster,
+-	[CLKID_AO_SAR_ADC]	= &axg_aoclk_saradc,
+-	[CLKID_AO_CLK81]	= &axg_aoclk_clk81,
+-	[CLKID_AO_SAR_ADC_SEL]	= &axg_aoclk_saradc_mux,
+-	[CLKID_AO_SAR_ADC_DIV]	= &axg_aoclk_saradc_div,
+-	[CLKID_AO_SAR_ADC_CLK]	= &axg_aoclk_saradc_gate,
++	&axg_aoclk_remote,
++	&axg_aoclk_i2c_master,
++	&axg_aoclk_i2c_slave,
++	&axg_aoclk_uart1,
++	&axg_aoclk_uart2,
++	&axg_aoclk_ir_blaster,
++	&axg_aoclk_saradc,
++	&axg_aoclk_cts_oscin,
++	&axg_aoclk_32k_pre,
++	&axg_aoclk_32k_div,
++	&axg_aoclk_32k_sel,
++	&axg_aoclk_32k,
++	&axg_aoclk_cts_rtc_oscin,
++	&axg_aoclk_clk81,
++	&axg_aoclk_saradc_mux,
++	&axg_aoclk_saradc_div,
++	&axg_aoclk_saradc_gate,
+ };
+ 
+ static const struct clk_hw_onecell_data axg_aoclk_onecell_data = {
+@@ -132,6 +275,12 @@ static const struct clk_hw_onecell_data axg_aoclk_onecell_data = {
+ 		[CLKID_AO_SAR_ADC_SEL]	= &axg_aoclk_saradc_mux.hw,
+ 		[CLKID_AO_SAR_ADC_DIV]	= &axg_aoclk_saradc_div.hw,
+ 		[CLKID_AO_SAR_ADC_CLK]	= &axg_aoclk_saradc_gate.hw,
++		[CLKID_AO_CTS_OSCIN]	= &axg_aoclk_cts_oscin.hw,
++		[CLKID_AO_32K_PRE]	= &axg_aoclk_32k_pre.hw,
++		[CLKID_AO_32K_DIV]	= &axg_aoclk_32k_div.hw,
++		[CLKID_AO_32K_SEL]	= &axg_aoclk_32k_sel.hw,
++		[CLKID_AO_32K]		= &axg_aoclk_32k.hw,
++		[CLKID_AO_CTS_RTC_OSCIN] = &axg_aoclk_cts_rtc_oscin.hw,
+ 	},
+ 	.num = NR_CLKS,
+ };
+diff --git a/drivers/clk/meson/axg-aoclk.h b/drivers/clk/meson/axg-aoclk.h
+index 91384d8dd844..3cc27e85170f 100644
+--- a/drivers/clk/meson/axg-aoclk.h
++++ b/drivers/clk/meson/axg-aoclk.h
+@@ -10,18 +10,7 @@
+ #ifndef __AXG_AOCLKC_H
+ #define __AXG_AOCLKC_H
+ 
+-#define NR_CLKS	11
+-/* AO Configuration Clock registers offsets
+- * Register offsets from the data sheet must be multiplied by 4.
+- */
+-#define AO_RTI_PWR_CNTL_REG1	0x0C
+-#define AO_RTI_PWR_CNTL_REG0	0x10
+-#define AO_RTI_GEN_CNTL_REG0	0x40
+-#define AO_OSCIN_CNTL		0x58
+-#define AO_CRT_CLK_CNTL1	0x68
+-#define AO_SAR_CLK		0x90
+-#define AO_RTC_ALT_CLK_CNTL0	0x94
+-#define AO_RTC_ALT_CLK_CNTL1	0x98
++#define NR_CLKS	17
+ 
+ #include <dt-bindings/clock/axg-aoclkc.h>
+ #include <dt-bindings/reset/axg-aoclkc.h>
 -- 
 2.19.1
 
