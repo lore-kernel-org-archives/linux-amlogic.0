@@ -2,21 +2,21 @@ Return-Path: <SRS0=ycqe=ON=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9500CC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 22:36:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 42951C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 22:57:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 61E17206B7
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 22:36:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0BD5D2081C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 22:57:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QSvzul72";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rHNG0HbA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 61E17206B7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W6FDrrRQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aFWyZEgf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BD5D2081C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,63 +25,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DvKHjejwQldr+plv6TBaWmO+9bOoQXlRwlox+67jllM=; b=QSvzul72q9pxpe
-	pY9oc+rOBwLPUfBQTTxH3bcesuQFop1T4wCiXj2uv191IJdlMBymQf7fypSQnQw7v6uasM9oyWZ7k
-	StdF0qKOkhEFTFvNJkSM2GzhVAGw7kM6zjgRYBWcrwx5WzGLEsWgYZ0f2/DFFWCV1kuECkSA2SMiH
-	r0Dcc1PewWPVCErqEDTx82Ypm8431r5gOc+/c0qFnuTD+/rl4CZZ4r0r5R6QPgU+erRQ12LfReCx2
-	5iJKLBLq4GKAyRV+ZAXgBnj2Kw5Bhrwd0ItFu1znoSozIue+F0IxA4dGqCfmgROA/NqxBNrRMaeg2
-	jaWhsPi6RloQPmD5mK4w==;
+	List-Owner; bh=O1vxV7gXMZYwZy5D+T18CkW9ONGLYWxa9PoVr/Zs7iw=; b=W6FDrrRQUxUMm3
+	KBOKQ59v2Xrm8Z81WJrCvAaIjuC4BLcVV0TqUqMw2wwAH9+chy54ITYdLXX108kHm6QHYGLSJlxv3
+	XbYFAr+Q8HZD50gYA824L2khj+F6Kf8bS1o9xpwrsQ2/K9CKVLPEc6lZe3885T+gDnVEnVOzFCPtI
+	iHjcxZwGAJBB1mbewMVz9GKtcnqYecVh6AHUSUz2Qy/5aw5b5tkkAFHykQisjYw8x1amWEnPLRjD4
+	t5bk1lbL35zthZXVVgTCEI92aEKUDnUi4TPEUL5carJRQuuR7LAk3HtYEQnNtz/9XmOUXGHsS1qHw
+	UD/K2edOZrPFJNht1fIQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUJIp-0000d6-1O; Tue, 04 Dec 2018 22:36:27 +0000
-Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
+	id 1gUJcy-00081s-5h; Tue, 04 Dec 2018 22:57:16 +0000
+Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUJIl-0000bq-4G
- for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 22:36:25 +0000
-Received: by mail-pf1-x442.google.com with SMTP id b85so8952554pfc.3
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 14:36:12 -0800 (PST)
+ id 1gUJct-00080a-Ud
+ for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 22:57:13 +0000
+Received: by mail-pg1-x542.google.com with SMTP id z11so8065335pgu.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 14:57:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=Vsg786idVHVwxGNQjEZIy5vnbRZd1Pj4iJlij1oGBAY=;
- b=rHNG0HbA2hZ6DbxYBpJ802GrOfohI2KUjrB1oz+2FvksO8gHumiWy2o5hlcMHeUAQw
- CBHrGNDznpcRGMQlNk0+RwoNIdQP+FJ7JVUkhymM5rCyMdtNbZZ9pfvuafYLmUehXgbh
- Mc66saEbOhmUalAjXnVqPno6y/cIeZkOe+2CLaMPM9elSGP12R+eac9KFpEdVXzIpT7S
- 0xqTW4xEw/aOmtf3Z7/PlsC7zDFpPxZVF0ktcGvWrdYcsUNxzm0G7ihnFX99hBGhg4tA
- M3TYUOAQVBJ0Xx+kisOoXPf8De3QXwOeDZsFDv02aMeM7a/IUYjtrKyboxC+a+DzDYaq
- eGkg==
+ :mime-version; bh=i2+DMdcqApk+P/ibwUlPG7DwsMjp64Zc3yUJQHBMHY0=;
+ b=aFWyZEgfq6LOKbj6IYfpCLMrqkbjMFvlqPMPBJ3UT3DEIJWoF+jM7nkcBBgjG7nsrz
+ Ersn/K4kQLJcjbf1WsNwCxVrd/uShiziJ2vTj+9Bl+4Bfm0Qj6uwA195N8fxkwExLyXZ
+ eJSHkBKA82jwWaCG231rFA6XJAdutD5X6T1n66Asm1nBT84xNWjOwgF+r+pLfUTLWP5F
+ fqXDz55dJPVh4SX9bh4TP/UJrB3dAsl0LJhdLeuILkR0qgUfZ9FFIM5gMxSnLrNBUBcE
+ IJfQL3AGWPeET/HdKzUGatwTmsjS1aUYOZ/3XCNgqC0txB1AUNdYYIvTEvpi3glLEJn7
+ fYFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=Vsg786idVHVwxGNQjEZIy5vnbRZd1Pj4iJlij1oGBAY=;
- b=khUiRnVFBkQg+0S1Wetoxi8A9ZF73d3eUimSLi/cLIoLz2I4xH9WITfzl7Q7zoF/hp
- srIcBPn9HaNQExJU+oN4eoXQPIk7tgeQDsQBVuXLbeGGdQvmfQcR9DsIiSup9/mHSkJH
- WXLyHwPsjALY5hlGPXEVOXr2IFCV1bcTp0JXjBvRS4BqvxjiHkjlzqd4VjrgbUpjrHZy
- s9aZAQUJCV5KxXiJNrAZLMQNZgqjDDpfCOG1i+9bA6laHo9UB17dbErZ/s76PTa4sKo4
- a04w6iyz2pcpJyO5w47PBr/s18IYSwHt2FO9T9BbBrdS2esRwPlm02iX6rm2pm1KsFzB
- /fng==
-X-Gm-Message-State: AA+aEWZ1NFwkVHU4EAlAyqf35k2cs9gITQ6FWmACH+Wi/Ox5BSXmHlVi
- 7b0du3sRUM1MlbNU+nTXysnJPQ==
-X-Google-Smtp-Source: AFSGD/W2WAVVT8g5ZQhZE1RFiY/NtCCKwME1tFyxpyG7j9jayKRfukdgMs07QylTG1AcnAFYfQkPGw==
-X-Received: by 2002:a63:f047:: with SMTP id s7mr18251267pgj.441.1543962971559; 
- Tue, 04 Dec 2018 14:36:11 -0800 (PST)
+ bh=i2+DMdcqApk+P/ibwUlPG7DwsMjp64Zc3yUJQHBMHY0=;
+ b=Z0gWp01GnGEvU7dl2BxbfTpmoFI1vFYerDACEATd6eA9BlUqnCQqoMKZTbSwOYw6jh
+ CLoHV/zBXva0MD8vn70njr7KGajMm/rOMmVXq6jhctFWvxFpdII42Bj4DCoGf7WcD4iH
+ qTiIzQzGArZ+pYVStdMg+ppb6WrTafpTrEZITsSppLT8qugY2FxfkkBQsWGQ7X77wN9t
+ U0e17+Qmq7p3FPB2zWmBAaqZh8zEK14rKid499H6fN6MirwNebJPvF1H75n27rB0lQxH
+ Bs51NHqGPaXbeV0JdAl9u86qMjk3h/AUSuk9Imx7KzlmVYvv36uh0vLBsktVejEr3TtP
+ OCaA==
+X-Gm-Message-State: AA+aEWb53L1ExnIT2mUDjfs3Ej55DroG59+G6hxH5ipoKDBJ0wE0FNgU
+ oj2Zsm+vcH8Xpb//MeLPazHFDA==
+X-Google-Smtp-Source: AFSGD/WWbFVWwo2zBRfzf0u7jHSRlcR67IHNdkb2x8ANhs877IRNQNfZi7VqKWl3tT8dcXP3ESPJgQ==
+X-Received: by 2002:a62:6f49:: with SMTP id k70mr21800069pfc.7.1543964220889; 
+ Tue, 04 Dec 2018 14:57:00 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id y6sm50525475pfd.104.2018.12.04.14.36.10
+ by smtp.googlemail.com with ESMTPSA id z7sm32354657pga.6.2018.12.04.14.57.00
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 04 Dec 2018 14:36:10 -0800 (PST)
+ Tue, 04 Dec 2018 14:57:00 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Rob Herring <robh@kernel.org>, arm@kernel.org
-Subject: Re: [PATCH] ARM: dts: Kill off skeleton{64}.dtsi
-In-Reply-To: <20181130170634.9467-1-robh@kernel.org>
-References: <20181130170634.9467-1-robh@kernel.org>
-Date: Tue, 04 Dec 2018 14:36:10 -0800
-Message-ID: <7h7egoor6t.fsf@baylibre.com>
+To: Carlo Caione <ccaione@baylibre.com>, robh+dt@kernel.org,
+ mark.rutland@arm.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ jbrunet@baylibre.com
+Subject: Re: [PATCH v2] arm64: dts: meson-axg: Enable watchdog on Meson AXG
+ SoCs
+In-Reply-To: <20181123144541.15114-1-ccaione@baylibre.com>
+References: <20181123144541.15114-1-ccaione@baylibre.com>
+Date: Tue, 04 Dec 2018 14:56:59 -0800
+Message-ID: <7h8t14dhok.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_143623_166595_908A8ABD 
-X-CRM114-Status: GOOD (  13.77  )
+X-CRM114-CacheID: sfid-20181204_145711_992547_1E4D7EBD 
+X-CRM114-Status: UNSURE (   6.06  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,77 +98,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>,
- Linus Walleij <linus.walleij@linaro.org>, Baruch Siach <baruch@tkos.co.il>,
- David Brown <david.brown@linaro.org>, Jamie Iles <jamie@jamieiles.com>,
- Robert Jarzmik <robert.jarzmik@free.fr>,
- linux-stm32@st-md-mailman.stormreply.com,
- Alexandre Torgue <alexandre.torgue@st.com>,
- Jesper Nilsson <jesper.nilsson@axis.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
- Gregory Clement <gregory.clement@bootlin.com>,
- =?utf-8?Q?Rafa?= =?utf-8?Q?=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
- Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@axis.com,
- Jon Mason <jonmason@broadcom.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- bcm-kernel-feedback-list@broadcom.com, Hauke Mehrtens <hauke@hauke-m.de>,
- Andy Gross <andy.gross@linaro.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- Jason Cooper <jason@lakedaemon.net>,
- Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
- Sylvain Lemieux <slemieux.tyco@gmail.com>,
- Haojian Zhuang <haojian.zhuang@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>,
- linux-mediatek@lists.infradead.org, Lars Persson <lars.persson@axis.com>,
- Gregory Fong <gregory.0xf0@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Barry Song <baohua@kernel.org>, linux-oxnas@groups.io,
- Eric Miao <eric.y.miao@gmail.com>, Scott Branden <sbranden@broadcom.com>,
- Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, Li Yang <leoyang.li@nxp.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Carlo Caione <carlo@caione.org>,
- Jun Nie <jun.nie@linaro.org>, Brian Norris <computersforpeace@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- Daniel Mack <daniel@zonque.org>
+Cc: Carlo Caione <ccaione@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rob Herring <robh@kernel.org> writes:
+Carlo Caione <ccaione@baylibre.com> writes:
 
-> Remove the usage of skeleton.dtsi in the remaining dts files. It was
-> deprecated since commit 9c0da3cc61f1 ("ARM: dts: explicitly mark
-> skeleton.dtsi as deprecated"). This will make adding a unit-address to
-> memory nodes easier.
+> Add the watchdog node also on the AXG platforms.
 >
-> The main tricky part to removing skeleton.dtsi is we could end up with
-> no /memory node at all when a bootloader depends on one being present. I
-> hacked up dtc to check for this condition.
+> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+> ---
+> V2:
+>  - Remove amlogic,meson-axg-wdt compatible
 
-[...]
+Queued for v4.21 with Neil's tag (branch: v4.21/dt64)
 
-I gave this a spin through the kernelCI on multiple SoCs, and builds and
-no new regressions for build or boot that I spotted.
-
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-
->  arch/arm/boot/dts/meson.dtsi                   |  3 ++-
->  arch/arm/boot/dts/meson6-atv1200.dts           |  1 +
->  arch/arm/boot/dts/meson8-minix-neo-x8.dts      |  1 +
->  arch/arm/boot/dts/meson8b-ec100.dts            |  1 +
->  arch/arm/boot/dts/meson8b-mxq.dts              |  1 +
->  arch/arm/boot/dts/meson8b-odroidc1.dts         |  1 +
->  arch/arm/boot/dts/meson8m2-mxiii-plus.dts      |  1 +
-
-also for the amlogic/meson platforms,
-
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Acked-by: Kevin Hilman <khilman@baylibre.com>
+Thanks,
 
 Kevin
 
