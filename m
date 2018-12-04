@@ -3,69 +3,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C260BC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 20:48:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ADB8C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 20:51:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8F1DA2081C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 20:48:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 26A30206B7
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 20:51:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p0m/fthy";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="apVfSUwK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8F1DA2081C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b6HOxbku";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rWRyte2r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 26A30206B7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Subject:Message-ID:References:
-	In-Reply-To:From:To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fDMDuW0mgdUXX2kf0GEvmMcYZPGrnpPGoffpoB+Tox8=; b=p0m/fthyXR3ZQU
-	MDkU32+ott4A7V6uz1tplq7EiAvj8xSh5xfWdPc8kqkud0HJA6QyGLnvfOWzwV/ykGSxI4zvAHNF5
-	xFodj6ruePKS6SRCIfTlSDrIJYkb5dUmMFzdlKj+YCmDzVky1xC/pRMXYZyXnZu+VnwMmMEPtWmnP
-	5kto/t5Dy+horNUpU5tOfvQR/bPxDXQlgnhqYrsmkV/ZZmd+6DxnqplWTngFverNWajMrKlrw3/Vx
-	eIIuPuEs+p5pTeZ4oJGojHLOlhVod8K0ZpCHEDGhPn/LNVossiAtsSB7XG1Vm/v1DStr6mvhQYGE0
-	tI74Xt316Q+FtPir61GQ==;
+	List-Owner; bh=uNy/H8NlRKEMWR4lHf+GC1A9tptUCZ6y/Ks9AKNfk+4=; b=b6HOxbkuhTBO0t
+	8sbBXK8FVYKgf9HtSQ/y7uLxLLh+VoKqANXXqSwYn9unaojye5NdqRRmZvnf3RdwJ555LhwbQShHc
+	+DizhUiD8+023BlkWTGyqMjYf7fXXEdVU6tMJA/0quhX0DheX5Koc7cpWZrjqsNuDdEJtVhF0RSOZ
+	T3voxuETLIj8K5jdHirnqXxrYyOZOlSApBpw/6m3ImAGLZGhJVGkP4hfD2PNuCYJkOwxOBe1dUT8l
+	KEbeDZdOaPTDkY7W1ZCkyQ5yZQbU8FWV922X0xLo2h6bbVcBq1HnFbYKb8FGTJ4dKPAHHz0ABxSDr
+	BbY+P9/YFE4Mu3PjZ7hw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUHcY-0003mR-Cf; Tue, 04 Dec 2018 20:48:42 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gUHfO-0005QC-6I; Tue, 04 Dec 2018 20:51:38 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUHcV-0003kW-Bn
- for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 20:48:40 +0000
-Received: from localhost (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id E17012081C;
- Tue,  4 Dec 2018 20:48:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1543956509;
- bh=OvBgnq+2LA2p+yjrxYv6kkcxJlY2CrrflOhenOOEWgY=;
- h=To:From:In-Reply-To:Cc:References:Subject:Date:From;
- b=apVfSUwKhsNa4DY0g0wvy4McqOG68xXVOAt9kZEXBwUUBOjAareqPh09LtKuICbqN
- Cx3O9wd+MWLvk5nXhxvn21OurhSDRsx2RKSq9DeP54DIun/Jxt5aU1T2xM2EdryoER
- zodbzbtiQekhDpef6yVPvijO4kV/mcrkpObTWfH8=
-MIME-Version: 1.0
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-From: Stephen Boyd <sboyd@kernel.org>
-In-Reply-To: <2341ec89691f6221bab6a9696ed0c05c3d3de663.camel@baylibre.com>
-References: <20181204125839.14505-1-narmstrong@baylibre.com>
- <154394543049.88331.11854270462393390489@swboyd.mtv.corp.google.com>
- <5C06D686.50108@baylibre.com>
- <2341ec89691f6221bab6a9696ed0c05c3d3de663.camel@baylibre.com>
-Message-ID: <154395650817.88331.14817295166592104160@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.7
-Subject: Re: [PATCH] clk: meson-gxbb: switch video clocks mux tables to static
-Date: Tue, 04 Dec 2018 12:48:28 -0800
+ id 1gUHfL-0005Oj-7W
+ for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 20:51:37 +0000
+Received: by mail-wm1-x341.google.com with SMTP id g67so10711957wmd.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 12:51:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=8idMI1QWpQw1XXwvnboo4kdX5q3L87C3fJ+m2KpY/Rs=;
+ b=rWRyte2r1Qy3etrxaEIS0iZibhZTIp6hXFq50TOxQ7B3sDy/sAWBFObcOKsWSy3Qgq
+ A/nPzQh8bHbvDxuTLv1q+JJE3lk+H5LMnFdsC/enC888fPE0AiSCIDk5XuPNH857nToG
+ nYtDNPRpthIuMEouWrcPouF9Y4UNlJRbR16zYJA41quohR32i0goqBZSgOg5rZPSGyb2
+ 8vrTBXmJ/k7PxbMAnuKR47UIIzYN8v+pcktfLCJVhRwLO9Q0GX+q2mXvIyazjgqLcJQH
+ 6kow7YtrBhc5HecVwERRZvVuigTq2RwjHODUXUCDJy2uN0iuRApL/30icPr/Acejh5AA
+ ZI8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=8idMI1QWpQw1XXwvnboo4kdX5q3L87C3fJ+m2KpY/Rs=;
+ b=JDPJb7d6c9jN60IpZXK3Ss94fyG6ACjYujFAsA7RN+ns5rl5PawFzHD6y8haH0gura
+ 4kKWpUNWtjRl2dHhbhH4s7ANVbwc18EdEEgdm4CSHfS9bWRxay/Vy0/HS20dTAgfruUA
+ zMGwH0B0mcr/2ukIrNnodeDtN6eMPl6r5AdaXOWQ9vOZDVJHC9KHDTZdfGrF0pMAYjd9
+ HFKffr3r+mRex5Z+pwdhXuP7uwmBWpYFcYUdZvPtBXpaRHe7TqdtpncW0wr5idfjZ/Xw
+ ofR6E9QpDJ+46NykX9KMzYb2u4NEtA3aRAqy55GVUbqKf/jBFDf8uLqWjt50vQLITzo6
+ DOoA==
+X-Gm-Message-State: AA+aEWaooiGr4Qf9OpSVre5e+VKk8Tf9uzOv+89r9swNS7om/Q6rjrOr
+ Oi2VLNg7Yl/awNNk0ULdtO4kHg==
+X-Google-Smtp-Source: AFSGD/UtriuerlV8/vlSemH7u2suPxSWnq0Fri8zbBYp2xxipjox7SVrm0QMDeMcOPWQiuq1k67taw==
+X-Received: by 2002:a1c:a6d7:: with SMTP id
+ p206mr13065960wme.143.1543956683733; 
+ Tue, 04 Dec 2018 12:51:23 -0800 (PST)
+Received: from xps ([104.207.76.94])
+ by smtp.gmail.com with ESMTPSA id o64sm3797643wmo.47.2018.12.04.12.51.21
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 04 Dec 2018 12:51:22 -0800 (PST)
+Message-ID: <e152a2b038aa3e3e37e031eff5585008f4637ded.camel@baylibre.com>
+Subject: Re: [PATCH 0/2] meson: Fix IRQ trigger type
+From: Carlo Caione <ccaione@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ ingrassia@epigenesys.com
+Date: Tue, 04 Dec 2018 20:51:21 +0000
+In-Reply-To: <CAFBinCDCE7RP4vgs25bqSZ8vBjrmcuB=qb3U92X6QfpmzeqrBg@mail.gmail.com>
+References: <20181204160447.27869-1-ccaione@baylibre.com>
+ <CAFBinCDCE7RP4vgs25bqSZ8vBjrmcuB=qb3U92X6QfpmzeqrBg@mail.gmail.com>
+User-Agent: Evolution 3.30.1-1build1 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_124839_419126_B8EB7AD5 
-X-CRM114-Status: GOOD (  10.44  )
+X-CRM114-CacheID: sfid-20181204_125135_315000_CAC05199 
+X-CRM114-Status: GOOD (  13.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,33 +97,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, khilman@baylibre.com,
+ robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-UXVvdGluZyBKZXJvbWUgQnJ1bmV0ICgyMDE4LTEyLTA0IDEyOjA1OjAyKQo+IE9uIFR1ZSwgMjAx
-OC0xMi0wNCBhdCAyMDozMyArMDEwMCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gPiBMZSAwNC8x
-Mi8yMDE4IDE4OjQzLCBTdGVwaGVuIEJveWQgYSDDqWNyaXQgOgo+ID4gPiBRdW90aW5nIE5laWwg
-QXJtc3Ryb25nICgyMDE4LTEyLTA0IDA0OjU4OjM5KQo+ID4gPiA+IEBAIC0xOTgzLDcgKzE5ODMs
-NyBAQCBzdGF0aWMgc3RydWN0IGNsa19maXhlZF9mYWN0b3IgZ3hiYl92Y2xrMl9kaXYxMiA9Cj4g
-PiA+ID4gewo+ID4gPiA+ICB9Owo+ID4gPiA+ICAKPiA+ID4gPiAgc3RhdGljIHUzMiBtdXhfdGFi
-bGVfY3RzX3NlbFtdID0geyAwLCAxLCAyLCAzLCA0LCA4LCA5LCAxMCwgMTEsIDEyIH07Cj4gPiA+
-IAo+ID4gPiBJIHdhcyB0YWxraW5nIGFib3V0IHRoaXMgbXV4X3RhYmxlX2N0c19zZWwgYXJyYXku
-IENhbiB0aGlzIGJlIGNvbnN0Pwo+ID4gPiAKPiA+IAo+ID4gT3RoZXIgbXV4IHRhYmxlcyBhcmVu
-J3QgY29uc3QsIEplcm9tZSBzbyB5b3Ugc2VlIGEgcmVhc29uIHdoeSB0aGV5IGFyZW4ndAo+ID4g
-Y29uc3QgPwo+IAo+IEknbSBzdXJwaXNlZCB3ZSBtaXNzZWQgdGhhdC4gVGhlIFBMTCBwYXJhbXMg
-dGFibGVzIG9mIGFtbG9naWMgYXJlIGFsbCAnc3RhdGljCj4gY29uc3QnIGJ1dCBhbGwgdGhlIG11
-eCB0YWJsZXMgYXJlIGp1c3QgJ3N0YXRpYycgLCBodW1tCj4gCj4gWy4uLl0gNSBtaW4gbGF0ZXIg
-Wy4uLl0KPiAKPiBBY3R1YWxseSB0aGUgdGFibGUgZmllbGQgb2YgY2xrX211eCBpcyBub3QgY29u
-c3QsIHNvIGdpdmluZyBpdCBhIGNvbnN0IHRhYmxlCj4gd291bGQgcHJvZHVjZSBhIHdhcm5pbmcg
-YWJvdXQgZGlzY2FyZGluZyBjb25zdCBxdWFsaWZpZXIKPiAKPiBJIGd1ZXNzIHRoZXJlIHNob3Vs
-ZCBubyBwcm9ibGVtIGFkZGluZyBjb25zdCB0byB0aGUgdGFibGUgZmllbGQgb2Ygc3RydWN0Cj4g
-Y2xrX211eC4gV2hhdCBkbyB5b3UgdGhpbmsgU3RlcGhlbiAgPwoKWWVzIGl0IHdvdWxkIG5lZWQg
-dG8gYmUgbWFya2VkIGNvbnN0IGluIHRoZSBzdHJ1Y3QgY2xrX211eCBhcyB3ZWxsLiBHbwpmb3Ig
-aXQgdG8gbW92ZSBtb3JlIHRoaW5ncyB0byB0aGUgUk8gc2VjdGlvbi4KCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcg
-bGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJh
-ZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Tue, 2018-12-04 at 20:59 +0100, Martin Blumenstingl wrote:
+> adding Emiliano because he experienced high packet loss on Odroid-C1
+> without "eee-broken-1000t"
+
+Yes, it would be nice to have confirmation. I tested this using an AXG
+board with iperf3 both in TX/RX.
+
+> I find it strange though that Amlogic's buildroot kernel (even the
+> latest buildroot_openlinux_kernel_4.9_fbdev_20180706) uses:
+>   interrupts = <0 8 1>
+> which translates to:
+>   interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>
+> 
+> does the datasheet give a hint that this IRQ should be level
+> triggered
+> or did you find out by trial and error?
+
+The datasheet says nothing about that. Looking at the GMAC registers
+you can get some clues but we confirmed that with long lasting tests.
+
+> > Carlo Caione (2):
+> >   arm64: dts: meson: Fix IRQ trigger type for macirq
+> >   arm64: dts: meson: Remove eee-broken-1000t quirk
+> > 
+> >  arch/arm/boot/dts/meson.dtsi                        | 2 +-
+> >  arch/arm/boot/dts/meson8b-odroidc1.dts              | 1 -
+> these two should be in separate patches with "ARM: dts: " as prefix
+
+Right, they slipped in after I had already written the commit message.
+
+Kevin, Neil, let me push a V2 so that I can fix the commit messages.
+
+> >  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts      | 1 -
+> >  arch/arm64/boot/dts/amlogic/meson-axg.dtsi          | 2 +-
+> >  arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 2 +-
+> >  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
+> >  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi   | 1 -
+> >  7 files changed, 3 insertions(+), 7 deletions(-)
+> > 
+> > --
+> > 2.19.1
+
+Cheers,
+
+--
+Carlo Caione
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
