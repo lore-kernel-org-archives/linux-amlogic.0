@@ -2,94 +2,81 @@ Return-Path: <SRS0=ycqe=ON=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-5.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D93CAC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 19:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A0A5C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 19:59:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AA1232082B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 19:53:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0711420834
+	for <linux-amlogic@archiver.kernel.org>; Tue,  4 Dec 2018 19:59:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qtw0kjsN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0BrZdJgF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AA1232082B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="e7zuORhb";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="f7oiPUSL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0711420834
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Subject:To:
-	MIME-Version:From:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=o02tD9mSVXpDTe0gzXKB60akakOnU2dDWdJXAZb7iq8=; b=qtw0kjsNumXX1v
-	U/aETKne2otQmFf/sBtSevWRV82z2oYKS+i0Xdrc9MFHu2u5S9Eq4GY+Kk9SnY1iLlSYx/JelpcjY
-	p4NjGQ1bXbdgl7p/1YePmYkkynUq1e2Ks4vVT5860uymUVOdwHrR9rIwCsHdOXv/goq32PS2l0BkO
-	jOMUnIaKqn7Tets/rXhTo6RhCPzmSd8DGP+ycyBiL6uiTyl3J9n7ZikRvwl9FGVe9LxELFI+HHOJS
-	7BqXVwSO+lGndKI3smvdJVJ6Ghiy7Ik+1r8xlkNtPE0d/amrG0OYyrfg1UQkYRmDt4vozR/X4wkgC
-	Iz28OXcJAVG55cYJ9PVw==;
+	List-Owner; bh=Pg7Dth2urZzJwV2SvsCRdNbY6vN1C8FoeJW/iwh7U+A=; b=e7zuORhbDlKsTg
+	prxDxPSSxm/LZ5JV8wvDMCZDKULnCMCVGKqRgaDk8SSWqfa63KvJjiE/WztX1qp8psOLFLEo1SPQq
+	1yToyX8/K4iYIcNUAaNq3sQ8UE8x+xdVsnWKWbXSi6BWoEeZTZN2tsJs2pVbDVPEJEzFp32+8Ug5a
+	XNzFIThVaeSEgw6rvR+Z/SLrujpS4VbTRic7DLLTySuxyp9ROogDvna2Ub62uxrAs97g8pBRgHIKI
+	PtFCGzr/uYF1DDmVP5cXiEbay4jgkDL6o/QykKeF1uTihS7tiOvEgXpko8p8ATMDpOt3Ji8E8eW8X
+	JNh9xy8KDQry5699/NzA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUGkh-0005bq-RF; Tue, 04 Dec 2018 19:53:03 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1gUGrJ-0007Z3-KN; Tue, 04 Dec 2018 19:59:53 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUGkd-0005b4-S4
- for linux-amlogic@lists.infradead.org; Tue, 04 Dec 2018 19:53:01 +0000
-Received: by mail-wm1-x344.google.com with SMTP id g67so10558591wmd.2
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 11:52:49 -0800 (PST)
+ id 1gUGr8-0007QG-VZ; Tue, 04 Dec 2018 19:59:44 +0000
+Received: by mail-ot1-x344.google.com with SMTP id i20so16396402otl.0;
+ Tue, 04 Dec 2018 11:59:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:date:from:user-agent:mime-version:to:subject:references
- :in-reply-to:content-transfer-encoding;
- bh=3xd1Bg6itxV2aJ5QBPr+TjLD9YHOJAmHH09WUH85rfA=;
- b=0BrZdJgFtcSqJ2jctmdnZO+eX03Uiio0rIUDX5aKg4G5qZZjh13jWNEwhq7QHdtHkS
- 8yWUqIJ6bnLMSraKfXzhZebuqj7gt7q/p9nY+i7B9uibQ5K6vRXZPknGA9Fv0iuXuxOa
- b0Hb0rSwbIo/8/pYz0aferaeeYr+S7DJjpZvn+26EXAniZlDiJlk2vO1w6d+mMtoEiqo
- BgDlNFIyqR7WP2pAGNBfl8mZHP10nuvX8meNmE+lNgqVIOY9WXa8Ad4w9E4aUBKRSYh+
- 1+9XkzA6GiE34hdYZIQBFC3lWJ048ByLAeCr025zlc7vEam8ge3XGX20o2VF85OWLzCt
- kcfA==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3g5J4Vn2vKkTvpd5IUdSICFJ8/Vj9g5uNchbMKJVvVc=;
+ b=f7oiPUSLHIpoyH612mSKYp1dWisUu+A6+GWPltZjFDCRIkDSdOzNanE/9jx6nXCrsQ
+ /pNo5Kipa8LIP08xkg4LHv0hAn5+ltqK3S7v0vYIVkpxeasUaKbhO2JUV8hvQCDtV4Yw
+ oTjdrm8MsV5UcS9FbZDvJlSzZUtH1owy8MdROLOLfyD8TGM+3u/WX0fqr/oO/CY8B9yj
+ 70JilnEIa92TyhvcU4BGYC3o3dpO3VgSRWdFTKxMeDRQPITSkw2MZKp9hUU38rYcURSR
+ GsJbyhHToxY+5rr7TH/skV+bBDEjeOwnACUvyCWdfkAJSW5TuKL32ThVRZJA513Z8qvg
+ PZTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :subject:references:in-reply-to:content-transfer-encoding;
- bh=3xd1Bg6itxV2aJ5QBPr+TjLD9YHOJAmHH09WUH85rfA=;
- b=k2wYQFVOUYz+deahk+1JWTduvuuXNWxGAYpcgN5acbxT7Bl18hPL5QgnwAuLB4MFMJ
- eAhL472t4owCGQoFBsQhphjjKwVr1WGLafbV5SS1GgbBAHjlZ50PitHimHhXBeflZhu9
- fQ50/rivAF+GsGOYTfBZCo4SSETh0vaRW5DUR6rWVoQ+l7qLbd3WUnaYZtqo7gyFp29B
- YCz0BKsANKlz/GfwLxh8M5CKDhyrr52BjLkoBeDoA7t1JDCnEXyx/ACRjowodCIP7MIY
- WpOXX34qYLN4t8Gje2u0siM3Gy/+iqwyG06v9dpeSholjAJYqyBHvZ3wKUA6SoNbV6LC
- /KBg==
-X-Gm-Message-State: AA+aEWa1qDBRxZ8GppDBoKr4zWb8iRPDuL/7IvW2Rllx1vkIkjHexvJj
- 1moyYqaqn3x/1+Xo5jzF75vq7w==
-X-Google-Smtp-Source: AFSGD/UMfOxBoy8H0Z1CxMymZZ9V9NFEb5PwSviNV9EOdrbwBtiDYPGkAeygdu+kpg12cFrdQIHBZQ==
-X-Received: by 2002:a1c:d988:: with SMTP id q130mr14238437wmg.41.1543953167753; 
- Tue, 04 Dec 2018 11:52:47 -0800 (PST)
-Received: from Armstrongs-MacBook-Pro.local
- ([2a01:cb1d:4ce:ea00:457b:c7f4:7108:f8c4])
- by smtp.gmail.com with ESMTPSA id v19sm25411386wrd.46.2018.12.04.11.52.46
- (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 04 Dec 2018 11:52:47 -0800 (PST)
-Message-ID: <5C06DB0D.3010306@baylibre.com>
-Date: Tue, 04 Dec 2018 20:52:45 +0100
-From: Neil Armstrong <narmstrong@baylibre.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13;
- rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3g5J4Vn2vKkTvpd5IUdSICFJ8/Vj9g5uNchbMKJVvVc=;
+ b=TSk6skq6uFYo5cFV8SXIAiY50MR3/60mMf76W2O2UQFEFpHy6fS8gRYrefHYrzfOYS
+ ioD09GPYsN7jF2n8vzKaXpOWzaMX19u3b2I6pS+6iJsQRhnPGj3LxBwnAjH0rPtVU1iP
+ aYeC4zKi7QwGtEccEQshOKF55V6b3KP3ZEYxYN3tmSmae22V6YOk18EzCScnzvS/aLf/
+ bPKy88tRX8kM09blPhF9o+C7/e16e/ibcAJEbLufPm1XeMNQiLkecSYQmltXTtv8FqpZ
+ FUq0ZWNa/U8xzifmSXCnNfOaGqWHzQm85DuJz0S4l2wh98z4EgFPlChRLqT0R+cbR9B4
+ sIPw==
+X-Gm-Message-State: AA+aEWZ99wCj2y9X5yH7xxGHwvr5iI3ZjdQmuYwgRSozwXoKg7kIqgdk
+ RlfQ3inm328IXOvS7qSGBxePCYS5s222ux3TRTA=
+X-Google-Smtp-Source: AFSGD/W/T8a159KxIQJtVIMIjf7CkVfui4XeYkc2QO5ecX4JwzWNnbUG02RF1bqKpeuonSkoN8lL/NzjaGsqOrxDqFc=
+X-Received: by 2002:a9d:715d:: with SMTP id y29mr14003283otj.148.1543953571272; 
+ Tue, 04 Dec 2018 11:59:31 -0800 (PST)
 MIME-Version: 1.0
-To: Carlo Caione <ccaione@baylibre.com>, robh+dt@kernel.org, 
- mark.rutland@arm.com, khilman@baylibre.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- martin.blumenstingl@googlemail.com
-Subject: Re: [PATCH 1/2] arm64: dts: meson: Fix IRQ trigger type for macirq
 References: <20181204160447.27869-1-ccaione@baylibre.com>
- <20181204160447.27869-2-ccaione@baylibre.com>
-In-Reply-To: <20181204160447.27869-2-ccaione@baylibre.com>
+In-Reply-To: <20181204160447.27869-1-ccaione@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 4 Dec 2018 20:59:20 +0100
+Message-ID: <CAFBinCDCE7RP4vgs25bqSZ8vBjrmcuB=qb3U92X6QfpmzeqrBg@mail.gmail.com>
+Subject: Re: [PATCH 0/2] meson: Fix IRQ trigger type
+To: ccaione@baylibre.com, ingrassia@epigenesys.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_115259_906578_A22DB894 
-X-CRM114-Status: GOOD (  16.15  )
+X-CRM114-CacheID: sfid-20181204_115943_039235_4E5C9128 
+X-CRM114-Status: GOOD (  13.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,88 +88,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, khilman@baylibre.com,
+ robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Carlo,
+adding Emiliano because he experienced high packet loss on Odroid-C1
+without "eee-broken-1000t"
 
-Le 04/12/2018 17:04, Carlo Caione a =E9crit :
-> A long running stress test on a custom board shipping an AXG SoCs and a
-> Realtek RTL8211F PHY revealed that after a few hours the connection
-> speed would drop drastically, from ~1000Mbps to ~3Mbps. At the same time
-> the 'macirq' (eth0) IRQ would stop being triggered at all and as
-> consequence the GMAC IRQs never ACKed.
-> =
+On Tue, Dec 4, 2018 at 5:05 PM Carlo Caione <ccaione@baylibre.com> wrote:
+>
+> The wrong IRQ trigger type for the macirq was causing the connection
+> speed to drop after a few hours when stress testing the DUT. The fix
+> seems also to fix another long standing issue with EEE.
+the other two DesignWare controllers (2x dwc2) are also using
+IRQ_TYPE_LEVEL_HIGH
+so this is not unlikely - good job detective!
 
-> After a painful investigation the problem seemed to be due to a wrong
-> defined IRQ type for the GMAC IRQ that should be LEVEL_HIGH instead of
-> EDGE_RISING.
+> The fixes are tested on a AXG board but we think that the same fix is
+> valid also for all the others Amlogic SoC families.
+I checked Amlogic's 3.10 kernel for the 32-bit SoCs and it seems they
+are setting all IRQs to be edge triggered: [0]
+however, Emiliano reported an issue with IRQ_TYPE_EDGE_RISING for the
+dwc2 controllers as well. 291f45dd6da5fa6 "ARM: dts: meson: fixing USB
+support on Meson6, Meson8 and Meson8b" fixed it for him whereas it
+worked for me with IRQ_TYPE_EDGE_RISING
 
-This is a good news !
+I find it strange though that Amlogic's buildroot kernel (even the
+latest buildroot_openlinux_kernel_4.9_fbdev_20180706) uses:
+  interrupts = <0 8 1>
+which translates to:
+  interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>
 
-Kevin,
-What's the best procedure here to make it apply on the 4.19, 4.14 and 4.9 s=
-table
-trees ? for 4.14 and 4.9 it will need to be reworked to apply correctly.
+does the datasheet give a hint that this IRQ should be level triggered
+or did you find out by trial and error?
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> Carlo Caione (2):
+>   arm64: dts: meson: Fix IRQ trigger type for macirq
+>   arm64: dts: meson: Remove eee-broken-1000t quirk
+>
+>  arch/arm/boot/dts/meson.dtsi                        | 2 +-
+>  arch/arm/boot/dts/meson8b-odroidc1.dts              | 1 -
+these two should be in separate patches with "ARM: dts: " as prefix
 
-> =
+>  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts      | 1 -
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi          | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 2 +-
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi   | 1 -
+>  7 files changed, 3 insertions(+), 7 deletions(-)
+>
+> --
+> 2.19.1
+>
 
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
-> ---
->  arch/arm/boot/dts/meson.dtsi               | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 2 +-
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi  | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
-> =
+Regards
+Martin
 
-> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index 0d9faf1a51ea..a86b89086334 100644
-> --- a/arch/arm/boot/dts/meson.dtsi
-> +++ b/arch/arm/boot/dts/meson.dtsi
-> @@ -263,7 +263,7 @@
->  			compatible =3D "amlogic,meson6-dwmac", "snps,dwmac";
->  			reg =3D <0xc9410000 0x10000
->  			       0xc1108108 0x4>;
-> -			interrupts =3D <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts =3D <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names =3D "macirq";
->  			status =3D "disabled";
->  		};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot=
-/dts/amlogic/meson-axg.dtsi
-> index df017dbd2e57..b1a42e99cb67 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -143,7 +143,7 @@
->  			compatible =3D "amlogic,meson-axg-dwmac", "snps,dwmac";
->  			reg =3D <0x0 0xff3f0000 0x0 0x10000
->  			       0x0 0xff634540 0x0 0x8>;
-> -			interrupts =3D <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts =3D <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names =3D "macirq";
->  			clocks =3D <&clkc CLKID_ETH>,
->  				 <&clkc CLKID_FCLK_DIV2>,
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/=
-dts/amlogic/meson-gx.dtsi
-> index f1e5cdbade5e..58e6bcaac1d8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -462,7 +462,7 @@
->  			compatible =3D "amlogic,meson-gx-dwmac", "amlogic,meson-gxbb-dwmac", =
-"snps,dwmac";
->  			reg =3D <0x0 0xc9410000 0x0 0x10000
->  			       0x0 0xc8834540 0x0 0x4>;
-> -			interrupts =3D <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts =3D <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names =3D "macirq";
->  			status =3D "disabled";
->  		};
-> =
-
+[0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/drivers/irqchip/irq-gic.c#L400
 
 _______________________________________________
 linux-amlogic mailing list
