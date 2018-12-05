@@ -3,63 +3,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 980D0C04EBF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 03:11:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 327D7C04EBF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 04:18:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4F87720661
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 03:11:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CF1BB2081C
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 04:18:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LVtD+2Nq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F87720661
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hswpJvNx";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="xakBUG63"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CF1BB2081C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=b0TOCCw1pe5PavKrXcTZx3/Qza4Equ18e/7NzTzVarg=; b=LVtD+2Nq/owYhDZaGIgJYpBwT
-	3COEkQhuxzMgP3Pc3XlK1VI9kTcM3GhvBcTIWasn7bjWr7mYTSyOYrMOVuotMqhB9UhwCrwxqvGrZ
-	FKwo7ywIKoB4ELXrtaBJncEz2UHlKMF9MN1Rf4MnzucPbXyTTVO61L3rmBbFhGySEE+WCLUxME80G
-	cSE6HQxSMnx6AkGbyxxrLp8BVCOJH30IYuKVvJSouw6MrN2/59Lr6JGmitODuzqxNr8JHLZ3n9OQC
-	NoRi9Q7xZA5rfB1IXAdDqyLLbCjrjpnry57n1XUmptWyMlYTlCdYCuOiNv9VdTQ8rowoqtdyLBVtR
-	AhdtXfSAw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0DR+xIZvCOym3zShyratXeUybJXzNIegeQ41EDHTyIs=; b=hswpJvNxffQUhj
+	1F4P0Zu7Z/a2gmulutMfnBUfT1w3oNNqicSiQxd1nWZSaa89/wc3N0OIh3pMw+5G+d+H+/n6tM5Tz
+	wNeoml5aTPtzc/DYdMvQLAryULqK36/iJjIlDCfuK17kDCxp8+1yYOAYTUg9KeQ1+NUBoTNsn04gm
+	9HgQqA2J2jzU7pKsAlRn7oJyQ9GeLcAeH11RYVf4oUXWObCcqClB+QO3rh4raDQ248K/+xtjMhnhf
+	GLdG5pabhSrhXolTR/cGqfIDLVj7TALpjWhZ8iqlYb8ll0fvFvTQsNEuwpHe079I631ypMukMIbxZ
+	fPnaNeFiTkv+NJvLU5zA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUNas-0001kC-8D; Wed, 05 Dec 2018 03:11:22 +0000
-Received: from mail-sz2.amlogic.com ([211.162.65.114])
+	id 1gUOe5-0000s9-Sy; Wed, 05 Dec 2018 04:18:45 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUNah-0001bF-Rz; Wed, 05 Dec 2018 03:11:13 +0000
-Received: from [10.28.16.74] (10.28.16.74) by mail-sz2.amlogic.com
- (10.28.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Wed, 5 Dec 2018
- 11:10:54 +0800
-Subject: Re: [PATCH v5 1/2] dt-bindings: clk: meson-g12a: Add G12A EE Clock
- Bindings
-To: Rob Herring <robh@kernel.org>
-References: <1543498917-98605-1-git-send-email-jian.hu@amlogic.com>
- <1543498917-98605-2-git-send-email-jian.hu@amlogic.com>
- <20181203230645.GA14522@bogus>
-From: Jian Hu <jian.hu@amlogic.com>
-Message-ID: <5d181208-1d51-fb1d-da8f-d8e1f55709ac@amlogic.com>
-Date: Wed, 5 Dec 2018 11:10:51 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
- Thunderbird/52.9.1
+ id 1gUOe3-0000rF-0e; Wed, 05 Dec 2018 04:18:44 +0000
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
+ [209.85.160.169])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 755EB208E7;
+ Wed,  5 Dec 2018 04:18:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1543983511;
+ bh=8hFPeaJ4NZs1xCUFjUmp3nPWEvkuJu8DlebMjLI3KWU=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=xakBUG63thzntpcZPytkaVhU7we1d1JUSKnqxD1p9lC0Ff8HH2UkaX/WEyUUlYbyj
+ zwb5QjH7q05xXP0+9YpJIk+9uJkelwdCRddFBLuPIZss5EUlYblDC8+uaqk2bbhmoA
+ CXGxRIgvPYkrqelzI23iM7Alxr+RPK2nUOwAN3rw=
+Received: by mail-qt1-f169.google.com with SMTP id v11so20857231qtc.2;
+ Tue, 04 Dec 2018 20:18:31 -0800 (PST)
+X-Gm-Message-State: AA+aEWYKssN3VKrMj8GS/NEopt+WpQ6u1hZ78Oe/8u4aIrDiYCAE9VuT
+ 37SRWgDb/zRXmHYVR4UOuTmRGUcjIqmueeiEFg==
+X-Google-Smtp-Source: AFSGD/V01+InEWqTizzIInNBqkSOixfMH8Ewf368Pcckr0vw2Ad0e4cKwmByU2t30xL4CMpc3ghoXkkMCZuA1vWVR8A=
+X-Received: by 2002:aed:3ecf:: with SMTP id o15mr22291715qtf.26.1543983510705; 
+ Tue, 04 Dec 2018 20:18:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20181203230645.GA14522@bogus>
-Content-Language: en-US
-X-Originating-IP: [10.28.16.74]
-X-ClientProxiedBy: mail-sz2.amlogic.com (10.28.11.6) To mail-sz2.amlogic.com
- (10.28.11.6)
+References: <20181203213223.16986-1-robh@kernel.org>
+ <20181203213223.16986-14-robh@kernel.org>
+ <7hr2ewbxd4.fsf@baylibre.com>
+In-Reply-To: <7hr2ewbxd4.fsf@baylibre.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 4 Dec 2018 22:18:18 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+hZRJZZ1ZcOxZVXtsUs0013cP0fyf3A=_9J15WbzuUhw@mail.gmail.com>
+Message-ID: <CAL_Jsq+hZRJZZ1ZcOxZVXtsUs0013cP0fyf3A=_9J15WbzuUhw@mail.gmail.com>
+Subject: Re: [PATCH v2 13/34] dt-bindings: arm: amlogic: Move
+ 'amlogic,meson-gx-ao-secure' binding to its own file
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_191111_933321_6C7AE48F 
-X-CRM114-Status: UNSURE (   9.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181204_201843_190122_06A5DA20 
+X-CRM114-Status: GOOD (  13.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -71,42 +83,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
- linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
- Qiufang Dai <qiufang.dai@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Kumar Gala <kumar.gala@linaro.org>, ARM-SoC Maintainers <arm@kernel.org>,
+ Sean Hudson <darknighte@darknighte.com>, Frank Rowand <frowand.list@gmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Grant Likely <grant.likely@arm.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi, Rob
+On Tue, Dec 4, 2018 at 7:01 PM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Rob Herring <robh@kernel.org> writes:
+>
+> > It is best practice to have 1 binding per file, so board level bindings
+> > should be separate for various misc SoC bindings.
+> >
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: Carlo Caione <carlo@caione.org>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: linux-amlogic@lists.infradead.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/arm/amlogic.txt       | 29 -------------------
+> >  .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 ++++++++++++++++++
+> >  2 files changed, 28 insertions(+), 29 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+>
+> Acked-by: Kevin Hilman <khilman@baylibre.com>
+>
+> But this isn't really related to the schema series is it?  If you
+> prefer, I can just queue this one separately via my tree.
 
-I will add it in next version, thanks.
+Yes, you can take it.
 
-On 2018/12/4 7:06, Rob Herring wrote:
-> On Thu, Nov 29, 2018 at 09:41:56PM +0800, Jian Hu wrote:
->> Add new clock controller compatible and dt-bingdings headers
->> for the Everything-Else domain of the g12a SoC
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   .../bindings/clock/amlogic,gxbb-clkc.txt           |  1 +
->>   include/dt-bindings/clock/g12a-clkc.h              | 93 ++++++++++++++++++++++
->>   2 files changed, 94 insertions(+)
->>   create mode 100644 include/dt-bindings/clock/g12a-clkc.h
-> 
-> Please add acks/reviewed-bys when posting new versions.
-> 
-> Rob
-> 
-> .
-> 
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
