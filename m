@@ -4,60 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C1FBC04EBF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 13:37:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23113C07E85
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 14:25:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3CD852081B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 13:37:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E4F742083F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 14:25:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g329kq8b"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CD852081B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=codethink.co.uk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QL/gFBW/";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linaro.org header.i=@linaro.org header.b="f9x34NV+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E4F742083F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=C42vj5jZO3DwflSy9kfEtxQWvKvbZ5Vnm0ZJge0jBxM=; b=g329kq8bvmWw9dXJAPNEABvKJ
-	jYSB6SRzcjxIS6JMAZ8s2l/FQf4iwuGu81HtosGp52S10dLJCvK/FzV3VQc/tjp2UY6REVJaLmT2j
-	4yi/Kei5c0TuXfXlK9bK9aCvo7I4gyX5ESiEGV3rlyR1JBs+JgET5l+2OsO+L6bNQS2Tf19CpvHO5
-	J1qpQmaCXy8wm+INlE5aKoI+HDaArnAe5jN8IxlQSvgEflTsk6QGaDonMAL/c0F0BZMcKLGGnrsCz
-	Xix1DO7lxmCfurDhu4l7uj1pBaeJF1SO5BSccoGzf+bJHqGrdWTx40bY6IpogXcmQSNftBPSelG8I
-	gDly2uAow==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=BSM98z8VXxt92PeRnwCP7oCS3APZTOedDnG78ewgyMQ=; b=QL/gFBW/gjO5IE
+	+hwBdLiqSJWV4LPV+9BHLVTaJrJnw3pk5LIT0PH/dvrkRZ6dedmnj6qCxkUnFYBq9qQSm8HPzMZZq
+	JTZKja7KwJMGETCbKtXvuq4p3CwYH/4QCAe5PaXIAkeDc0Cy8vHDY7u98iBVho5+xurUZw6UttIEu
+	rfrYapGa3XJKV+D+11AlRpOgv+hbJUhZGSMs5P2AdISPxbIyarzMPcC+/ZX4dxfahuqufxlbn/+RP
+	wsDeBMUnkJ83Y3ByqgDBV2XNF0VXemz5WEaUFUIiMFZga5W0H9kL1v+Pt+7E/SX8QZ7Io/ngcFLNa
+	MwmLl7K8ju0jLtCGQbGQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUXMP-0001vG-RP; Wed, 05 Dec 2018 13:37:05 +0000
-Received: from imap1.codethink.co.uk ([176.9.8.82])
+	id 1gUY6r-0005ke-E3; Wed, 05 Dec 2018 14:25:05 +0000
+Received: from mail-ua1-x943.google.com ([2607:f8b0:4864:20::943])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUXME-0001c8-5Q; Wed, 05 Dec 2018 13:36:56 +0000
-Received: from [78.40.148.180] (helo=[0.0.0.0])
- by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
- id 1gUXLz-0001Ek-5q; Wed, 05 Dec 2018 13:36:39 +0000
-Subject: Re: [PATCH v5 2/2] rtc: support for the Amlogic Meson RTC
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
- alexandre.belloni@bootlin.com, a.zummo@towertech.it
-References: <20181202220847.24364-1-martin.blumenstingl@googlemail.com>
- <20181202220847.24364-3-martin.blumenstingl@googlemail.com>
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-Message-ID: <85aa8e12-0bca-6432-e1a8-0faceff1dd5e@codethink.co.uk>
-Date: Wed, 5 Dec 2018 13:36:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.1
+ id 1gUY6R-00057D-Ak
+ for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 14:24:48 +0000
+Received: by mail-ua1-x943.google.com with SMTP id u19so7150348uae.4
+ for <linux-amlogic@lists.infradead.org>; Wed, 05 Dec 2018 06:24:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=vU+1DymT0hEbhZE+aC5foMQklWH3FSZCCg/zl0KH5/o=;
+ b=f9x34NV+1XndHnc3GjC/kpOcNdD147sghGSZiyTkpxwClkvi9brq8hjb+HIQybVc51
+ cSBb3w+ooGhaCKYkqsCMXHJ4YD2QsSZyZGijksAht1Vyh518QA2p0YqJ2dkUSh4GlDth
+ tLCQKEADc2AlhXfjalidDimT1VP7q2IzwdXJw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vU+1DymT0hEbhZE+aC5foMQklWH3FSZCCg/zl0KH5/o=;
+ b=dV82Agx6iUrNawByRcFuHl74JkTA1We1KOnpVWAcrhAVLli14qEbyCtn2fHh9WZEsE
+ D+Pli1i/wuaRa2KB50MSb+SMk6wGLp04V+4RypWyGHwLrGkH0cFMZTLv3jX9gLVmHTKC
+ Gl5dLk98aKvBVHNx8ja3PMGw23ZaaTRFFBoqjiLcHl/MD3LqOFEVcmYyBI55MBuszjzj
+ rYWFeH9ELt8izhha9H4iY90W4GBxVYqbay7HO1A4h8pT/lBGQs+xFVb0SpuV3ND7nuxL
+ 6OttBVclduDuOqc12mumwKre2bt/WA30vjM+E1DCDq0vejrk0V6FaR4kYzZbvcrFmoEK
+ RzeA==
+X-Gm-Message-State: AA+aEWaYHiOqoOJhO26mwM7BCUC6gM+o75NY+RH11WXyDaEVt/8PQPZS
+ zWs/b5bBBGEAhvcQ7rqMY0kG63KWs88u4zPvS/0O3Q==
+X-Google-Smtp-Source: AFSGD/UAcGwOxBo05xwx2+fT13TPm66Iy+FPvgInC1AkScYYfUq8QMqv/baih8Nvh+jjXKVBTnbvQOoYJ+rdYh+vkEk=
+X-Received: by 2002:ab0:526:: with SMTP id 35mr11276901uax.25.1544019867917;
+ Wed, 05 Dec 2018 06:24:27 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20181202220847.24364-3-martin.blumenstingl@googlemail.com>
-Content-Language: en-GB
+References: <1542879319-2196-1-git-send-email-hofrat@osadl.org>
+In-Reply-To: <1542879319-2196-1-git-send-email-hofrat@osadl.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 5 Dec 2018 15:23:52 +0100
+Message-ID: <CAPDyKFpWevQkGncmeJjnsusTBWOc6xecUGsP_8oUMeAwwF4D7Q@mail.gmail.com>
+Subject: Re: [PATCH] mmc: meson-mx-sdio: check devm_kasprintf for failure
+To: Nicholas Mc Guire <hofrat@osadl.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181205_053654_509455_E855DCF8 
-X-CRM114-Status: GOOD (  35.08  )
+X-CRM114-CacheID: sfid-20181205_062439_384917_6E447A65 
+X-CRM114-Status: GOOD (  15.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -69,498 +84,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- ccaione@baylibre.com
+Cc: Kevin Hilman <khilman@baylibre.com>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Carlo Caione <carlo@caione.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 02/12/2018 22:08, Martin Blumenstingl wrote:
-> Add support for the RTC block on the 32-bit Amlogic Meson6, Meson8,
-> Meson8b and Meson8m2 SoCs.
-> 
-> The RTC is split in to two parts, which are both managed by this driver:
-> - the AHB front end
-> - and a simple serial connection to the actual registers
-> 
-> The RTC_COUNTER register which holds the time is 32-bits wide.
-> 
-> There are four 32-bit wide (in total: 16 bytes) "regmem" registers which
-> are exposed using nvmem. On Amlogic's 3.10 kernel this is used to store
-> data which needs to survive a suspend / resume cycle.
-> 
-> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-> [resurrected Ben's patches after 2 years]
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Thu, 22 Nov 2018 at 10:40, Nicholas Mc Guire <hofrat@osadl.org> wrote:
+>
+> devm_kasprintf() may return NULL on failure of internal allocation thus
+> the assignments to  init.name  are not safe if not checked. On error
+> meson_mx_mmc_register_clks() returns negative values so -ENOMEM in the
+> (unlikely) failure case of devm_kasprintf() should be fine here.
+>
+> Signed-off-by: Nicholas Mc Guire <hofrat@osadl.org>
+> Fixes: ed80a13bb4c4 ("mmc: meson-mx-sdio: Add a driver for the Amlogic Meson8 and Meson8b SoCs")
 
-Just checking if the change of author is deliberate?
-not sure how to do >1 author on patches like this.
+Applied for next, thanks!
+
+Kind regards
+Uffe
 
 > ---
->   drivers/rtc/Kconfig     |  11 ++
->   drivers/rtc/Makefile    |   1 +
->   drivers/rtc/rtc-meson.c | 409 ++++++++++++++++++++++++++++++++++++++++
->   3 files changed, 421 insertions(+)
->   create mode 100644 drivers/rtc/rtc-meson.c
-> 
-> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-> index a819ef07b7ec..d5d0e3affdc6 100644
-> --- a/drivers/rtc/Kconfig
-> +++ b/drivers/rtc/Kconfig
-> @@ -1285,6 +1285,17 @@ config RTC_DRV_IMXDI
->   	   This driver can also be built as a module, if so, the module
->   	   will be called "rtc-imxdi".
->   
-> +config RTC_DRV_MESON
-> +	tristate "Amlogic Meson RTC"
-> +	depends on (ARM && ARCH_MESON) || COMPILE_TEST
-> +	select REGMAP_MMIO
-> +	help
-> +	   Support for the RTC block on the Amlogic Meson6, Meson8, Meson8b
-> +	   and Meson8m2 SoCs.
-> +
-> +	   This driver can also be built as a module, if so, the module
-> +	   will be called "rtc-meson".
-> +
->   config RTC_DRV_OMAP
->   	tristate "TI OMAP Real Time Clock"
->   	depends on ARCH_OMAP || ARCH_DAVINCI || COMPILE_TEST
-> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-> index 290c1730fb0a..3b088e75149d 100644
-> --- a/drivers/rtc/Makefile
-> +++ b/drivers/rtc/Makefile
-> @@ -99,6 +99,7 @@ obj-$(CONFIG_RTC_DRV_MAX8997)	+= rtc-max8997.o
->   obj-$(CONFIG_RTC_DRV_MAX8998)	+= rtc-max8998.o
->   obj-$(CONFIG_RTC_DRV_MC13XXX)	+= rtc-mc13xxx.o
->   obj-$(CONFIG_RTC_DRV_MCP795)	+= rtc-mcp795.o
-> +obj-$(CONFIG_RTC_DRV_MESON)	+= rtc-meson.o
->   obj-$(CONFIG_RTC_DRV_MOXART)	+= rtc-moxart.o
->   obj-$(CONFIG_RTC_DRV_MPC5121)	+= rtc-mpc5121.o
->   obj-$(CONFIG_RTC_DRV_MSM6242)	+= rtc-msm6242.o
-> diff --git a/drivers/rtc/rtc-meson.c b/drivers/rtc/rtc-meson.c
-> new file mode 100644
-> index 000000000000..09d6849b804a
-> --- /dev/null
-> +++ b/drivers/rtc/rtc-meson.c
-> @@ -0,0 +1,409 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * RTC driver for the interal RTC block in the Amlogic Meson6, Meson8,
-> + * Meson8b and Meson8m2 SoCs.
-> + *
-> + * The RTC is split in to two parts, the AHB front end and a simple serial
-> + * connection to the actual registers. This driver manages both parts.
-> + *
-> + * Copyright (c) 2018 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> + * Copyright (c) 2015 Ben Dooks <ben.dooks@codethink.co.uk> for Codethink Ltd
-> + * Based on origin by Carlo Caione <carlo@endlessm.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/reset.h>
-> +#include <linux/rtc.h>
-> +
-> +/* registers accessed from cpu bus */
-> +#define RTC_ADDR0				0x00
-> +	#define RTC_ADDR0_LINE_SCLK		BIT(0)
-> +	#define RTC_ADDR0_LINE_SEN		BIT(1)
-> +	#define RTC_ADDR0_LINE_SDI		BIT(2)
-> +	#define RTC_ADDR0_START_SER		BIT(17)
-> +	#define RTC_ADDR0_WAIT_SER		BIT(22)
-> +	#define RTC_ADDR0_DATA			GENMASK(31, 24)
-> +
-> +#define RTC_ADDR1				0x04
-> +	#define RTC_ADDR1_SDO			BIT(0)
-> +	#define RTC_ADDR1_S_READY		BIT(1)
-> +
-> +#define RTC_ADDR2				0x08
-> +#define RTC_ADDR3				0x0c
-> +
-> +#define RTC_REG4				0x10
-> +	#define RTC_REG4_STATIC_VALUE		GENMASK(7, 0)
-> +
-> +/* rtc registers accessed via rtc-serial interface */
-> +#define RTC_COUNTER		(0)
-> +#define RTC_SEC_ADJ		(2)
-> +#define RTC_REGMEM_0		(4)
-> +#define RTC_REGMEM_1		(5)
-> +#define RTC_REGMEM_2		(6)
-> +#define RTC_REGMEM_3		(7)
-> +
-> +#define RTC_ADDR_BITS		(3)	/* number of address bits to send */
-> +#define RTC_DATA_BITS		(32)	/* number of data bits to tx/rx */
-> +
-> +#define MESON_STATIC_BIAS_CUR	(0x5 << 1)
-> +#define MESON_STATIC_VOLTAGE	(0x3 << 11)
-> +#define MESON_STATIC_DEFAULT    (MESON_STATIC_BIAS_CUR | MESON_STATIC_VOLTAGE)
-> +
-> +struct meson_rtc {
-> +	struct rtc_device	*rtc;		/* rtc device we created */
-> +	struct device		*dev;		/* device we bound from */
-> +	struct reset_control	*reset;		/* reset source */
-> +	struct regulator	*vdd;		/* voltage input */
-> +	struct regmap		*peripheral;	/* peripheral registers */
-> +	struct regmap		*serial;	/* serial registers */
-> +};
-> +
-> +static const struct regmap_config meson_rtc_peripheral_regmap_config = {
-> +	.name		= "peripheral-registers",
-> +	.reg_bits	= 8,
-> +	.val_bits	= 32,
-> +	.reg_stride	= 4,
-> +	.max_register	= RTC_REG4,
-> +	.fast_io	= true,
-> +};
-> +
-> +/* RTC front-end serialiser controls */
-> +
-> +static void meson_rtc_sclk_pulse(struct meson_rtc *rtc)
-> +{
-> +	udelay(5);
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SCLK, 0);
-> +	udelay(5);
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SCLK,
-> +			   RTC_ADDR0_LINE_SCLK);
-> +}
-> +
-> +static void meson_rtc_send_bit(struct meson_rtc *rtc, unsigned int bit)
-> +{
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SDI,
-> +			   bit ? RTC_ADDR0_LINE_SDI : 0);
-> +	meson_rtc_sclk_pulse(rtc);
-> +}
-> +
-> +static void meson_rtc_send_bits(struct meson_rtc *rtc, u32 data,
-> +				unsigned int nr)
-> +{
-> +	u32 bit = 1 << (nr - 1);
-> +
-> +	while (bit) {
-> +		meson_rtc_send_bit(rtc, data & bit);
-> +		bit >>= 1;
-> +	}
-> +}
-> +
-> +static void meson_rtc_set_dir(struct meson_rtc *rtc, u32 mode)
-> +{
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SEN, 0);
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SDI, 0);
-> +	meson_rtc_send_bit(rtc, mode);
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SDI, 0);
-> +}
-> +
-> +static u32 meson_rtc_get_data(struct meson_rtc *rtc)
-> +{
-> +	u32 tmp, val = 0;
-> +	int bit;
-> +
-> +	for (bit = 0; bit < RTC_DATA_BITS; bit++) {
-> +		meson_rtc_sclk_pulse(rtc);
-> +		val <<= 1;
-> +
-> +		regmap_read(rtc->peripheral, RTC_ADDR1, &tmp);
-> +		val |= tmp & RTC_ADDR1_SDO;
-> +	}
-> +
-> +	return val;
-> +}
-> +
-> +static int meson_rtc_get_bus(struct meson_rtc *rtc)
-> +{
-> +	int ret, retries = 3;
-> +	u32 val;
-> +
-> +	/* prepare bus for transfers, set all lines low */
-> +	val = RTC_ADDR0_LINE_SDI | RTC_ADDR0_LINE_SEN | RTC_ADDR0_LINE_SCLK;
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, val, 0);
-> +
-> +	for (retries = 0; retries < 3; retries++) {
-> +		/* wait for the bus to be ready */
-> +		if (!regmap_read_poll_timeout(rtc->peripheral, RTC_ADDR1, val,
-> +					      val & RTC_ADDR1_S_READY, 10,
-> +					      10000))
-> +			return 0;
-> +
-> +		dev_warn(rtc->dev, "failed to get bus, resetting RTC\n");
-> +
-> +		ret = reset_control_reset(rtc->reset);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	dev_err(rtc->dev, "bus is not ready\n");
-> +	return -ETIMEDOUT;
-> +}
-> +
-> +static int meson_rtc_serial_bus_reg_read(void *context, unsigned int reg,
-> +					 unsigned int *data)
-> +{
-> +	struct meson_rtc *rtc = context;
-> +	int ret;
-> +
-> +	ret = meson_rtc_get_bus(rtc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SEN,
-> +			   RTC_ADDR0_LINE_SEN);
-> +	meson_rtc_send_bits(rtc, reg, RTC_ADDR_BITS);
-> +	meson_rtc_set_dir(rtc, 0);
-> +	*data = meson_rtc_get_data(rtc);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_rtc_serial_bus_reg_write(void *context, unsigned int reg,
-> +					  unsigned int data)
-> +{
-> +	struct meson_rtc *rtc = context;
-> +	int ret;
-> +
-> +	ret = meson_rtc_get_bus(rtc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0, RTC_ADDR0_LINE_SEN,
-> +			   RTC_ADDR0_LINE_SEN);
-> +	meson_rtc_send_bits(rtc, data, RTC_DATA_BITS);
-> +	meson_rtc_send_bits(rtc, reg, RTC_ADDR_BITS);
-> +	meson_rtc_set_dir(rtc, 1);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct regmap_bus meson_rtc_serial_bus = {
-> +	.reg_read	= meson_rtc_serial_bus_reg_read,
-> +	.reg_write	= meson_rtc_serial_bus_reg_write,
-> +};
-> +
-> +static const struct regmap_config meson_rtc_serial_regmap_config = {
-> +	.name		= "serial-registers",
-> +	.reg_bits	= 4,
-> +	.reg_stride	= 1,
-> +	.val_bits	= 32,
-> +	.max_register	= RTC_REGMEM_3,
-> +	.fast_io	= false,
-> +};
-> +
-> +static int meson_rtc_write_static(struct meson_rtc *rtc, u32 data)
-> +{
-> +	u32 tmp;
-> +
-> +	regmap_write(rtc->peripheral, RTC_REG4,
-> +		     FIELD_PREP(RTC_REG4_STATIC_VALUE, (data >> 8)));
-> +
-> +	/* write the static value and start the auto serializer */
-> +	tmp = FIELD_PREP(RTC_ADDR0_DATA, (data & 0xff)) | RTC_ADDR0_START_SER;
-> +	regmap_update_bits(rtc->peripheral, RTC_ADDR0,
-> +			   RTC_ADDR0_DATA | RTC_ADDR0_START_SER, tmp);
-> +
-> +	/* wait for the auto serializer to complete */
-> +	return regmap_read_poll_timeout(rtc->peripheral, RTC_REG4, tmp,
-> +					!(tmp & RTC_ADDR0_WAIT_SER), 10,
-> +					10000);
-> +}
-> +
-> +/* RTC interface layer functions */
-> +
-> +static int meson_rtc_gettime(struct device *dev, struct rtc_time *tm)
-> +{
-> +	struct meson_rtc *rtc = dev_get_drvdata(dev);
-> +	u32 time;
-> +	int ret;
-> +
-> +	ret = regmap_read(rtc->serial, RTC_COUNTER, &time);
-> +	if (!ret)
-> +		rtc_time64_to_tm(time, tm);
-> +
-> +	return ret;
-> +}
-> +
-> +static int meson_rtc_settime(struct device *dev, struct rtc_time *tm)
-> +{
-> +	struct meson_rtc *rtc = dev_get_drvdata(dev);
-> +
-> +	return regmap_write(rtc->serial, RTC_COUNTER, rtc_tm_to_time64(tm));
-> +}
-> +
-> +static const struct rtc_class_ops meson_rtc_ops = {
-> +	.read_time	= meson_rtc_gettime,
-> +	.set_time	= meson_rtc_settime,
-> +};
-> +
-> +/* NVMEM interface layer functions */
-> +
-> +static int meson_rtc_regmem_read(void *context, unsigned int offset,
-> +				 void *buf, size_t bytes)
-> +{
-> +	struct meson_rtc *rtc = context;
-> +	unsigned int read_offset, read_size;
-> +
-> +	read_offset = RTC_REGMEM_0 + (offset / 4);
-> +	read_size = bytes / 4;
-> +
-> +	return regmap_bulk_read(rtc->serial, read_offset, buf, read_size);
-> +}
-> +
-> +static int meson_rtc_regmem_write(void *context, unsigned int offset,
-> +				  void *buf, size_t bytes)
-> +{
-> +	struct meson_rtc *rtc = context;
-> +	unsigned int write_offset, write_size;
-> +
-> +	write_offset = RTC_REGMEM_0 + (offset / 4);
-> +	write_size = bytes / 4;
-> +
-> +	return regmap_bulk_write(rtc->serial, write_offset, buf, write_size);
-> +}
-> +
-> +static int meson_rtc_probe(struct platform_device *pdev)
-> +{
-> +	struct nvmem_config meson_rtc_nvmem_config = {
-> +		.name = "meson-rtc-regmem",
-> +		.word_size = 4,
-> +		.stride = 4,
-> +		.size = SZ_16,
-> +		.reg_read = meson_rtc_regmem_read,
-> +		.reg_write = meson_rtc_regmem_write,
-> +	};
-> +	struct device *dev = &pdev->dev;
-> +	struct meson_rtc *rtc;
-> +	struct resource *res;
-> +	void __iomem *base;
-> +	int ret;
-> +	u32 tm;
-> +
-> +	rtc = devm_kzalloc(dev, sizeof(struct meson_rtc), GFP_KERNEL);
-> +	if (!rtc)
-> +		return -ENOMEM;
-> +
-> +	rtc->rtc = devm_rtc_allocate_device(dev);
-> +	if (IS_ERR(rtc->rtc))
-> +		return PTR_ERR(rtc->rtc);
-> +
-> +	platform_set_drvdata(pdev, rtc);
-> +
-> +	rtc->dev = dev;
-> +
-> +	rtc->rtc->ops = &meson_rtc_ops;
-> +	rtc->rtc->range_max = U32_MAX;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	rtc->peripheral = devm_regmap_init_mmio(dev, base,
-> +					&meson_rtc_peripheral_regmap_config);
-> +	if (IS_ERR(rtc->peripheral)) {
-> +		dev_err(dev, "failed to create peripheral regmap\n");
-> +		return PTR_ERR(rtc->peripheral);
-> +	}
-> +
-> +	rtc->reset = devm_reset_control_get(dev, NULL);
-> +	if (IS_ERR(rtc->reset)) {
-> +		dev_err(dev, "missing reset line\n");
-> +		return PTR_ERR(rtc->reset);
-> +	}
-> +
-> +	rtc->vdd = devm_regulator_get(dev, "vdd");
-> +	if (IS_ERR(rtc->vdd)) {
-> +		dev_err(dev, "failed to get the vdd-supply\n");
-> +		return PTR_ERR(rtc->vdd);
-> +	}
-> +
-> +	ret = regulator_enable(rtc->vdd);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable vdd-supply\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = meson_rtc_write_static(rtc, MESON_STATIC_DEFAULT);
-> +	if (ret) {
-> +		dev_err(dev, "failed to set static values\n");
-> +		goto out_disable_vdd;
-> +	}
-> +
-> +	rtc->serial = devm_regmap_init(dev, &meson_rtc_serial_bus, rtc,
-> +				       &meson_rtc_serial_regmap_config);
-> +	if (IS_ERR(rtc->serial)) {
-> +		dev_err(dev, "failed to create serial regmap\n");
-> +		ret = PTR_ERR(rtc->serial);
-> +		goto out_disable_vdd;
-> +	}
-> +
-> +	/*
-> +	 * check if we can read RTC counter, if not then the RTC is probably
-> +	 * not functional. If it isn't probably best to not bind.
-> +	 */
-> +	ret = regmap_read(rtc->serial, RTC_COUNTER, &tm);
-> +	if (ret) {
-> +		dev_err(dev, "cannot read RTC counter, RTC not functional\n");
-> +		goto out_disable_vdd;
-> +	}
-> +
-> +	meson_rtc_nvmem_config.priv = rtc;
-> +	ret = rtc_nvmem_register(rtc->rtc, &meson_rtc_nvmem_config);
-> +	if (ret)
-> +		goto out_disable_vdd;
-> +
-> +	ret = rtc_register_device(rtc->rtc);
-> +	if (ret)
-> +		goto out_unregister_nvmem;
-> +
-> +	return 0;
-> +
-> +out_unregister_nvmem:
-> +	rtc_nvmem_unregister(rtc->rtc);
-> +
-> +out_disable_vdd:
-> +	regulator_disable(rtc->vdd);
-> +	return ret;
-> +}
-> +
-> +static const struct of_device_id meson_rtc_dt_match[] = {
-> +	{ .compatible = "amlogic,meson6-rtc", },
-> +	{ .compatible = "amlogic,meson8-rtc", },
-> +	{ .compatible = "amlogic,meson8b-rtc", },
-> +	{ .compatible = "amlogic,meson8m2-rtc", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_rtc_dt_match);
-> +
-> +static struct platform_driver meson_rtc_driver = {
-> +	.probe		= meson_rtc_probe,
-> +	.driver		= {
-> +		.name	= "meson-rtc",
-> +		.of_match_table	= of_match_ptr(meson_rtc_dt_match),
-> +	},
-> +};
-> +module_platform_driver(meson_rtc_driver);
-> +
-> +MODULE_DESCRIPTION("Amlogic Meson RTC Driver");
-> +MODULE_AUTHOR("Ben Dooks <ben.doosk@codethink.co.uk>");
-> +MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_ALIAS("platform:meson-rtc");
-> 
-
-
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+>
+> Problem located with an experimental coccinelle script
+>
+> Patch was compile tested with: multi_v7_defconfig (implies ARCH_MESON=y &
+> MMC_MESON_MX_SDIO=y)
+>
+> Patch is against 4.20-rc3 (localversion-next is next-20181122)
+>
+>  drivers/mmc/host/meson-mx-sdio.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
+> index abe253c..ec980bd 100644
+> --- a/drivers/mmc/host/meson-mx-sdio.c
+> +++ b/drivers/mmc/host/meson-mx-sdio.c
+> @@ -596,6 +596,9 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+>         init.name = devm_kasprintf(host->controller_dev, GFP_KERNEL,
+>                                    "%s#fixed_factor",
+>                                    dev_name(host->controller_dev));
+> +       if (!init.name)
+> +               return -ENOMEM;
+> +
+>         init.ops = &clk_fixed_factor_ops;
+>         init.flags = 0;
+>         init.parent_names = &clk_fixed_factor_parent;
+> @@ -612,6 +615,9 @@ static int meson_mx_mmc_register_clks(struct meson_mx_mmc_host *host)
+>         clk_div_parent = __clk_get_name(host->fixed_factor_clk);
+>         init.name = devm_kasprintf(host->controller_dev, GFP_KERNEL,
+>                                    "%s#div", dev_name(host->controller_dev));
+> +       if (!init.name)
+> +               return -ENOMEM;
+> +
+>         init.ops = &clk_divider_ops;
+>         init.flags = CLK_SET_RATE_PARENT;
+>         init.parent_names = &clk_div_parent;
+> --
+> 2.1.4
+>
 
 _______________________________________________
 linux-amlogic mailing list
