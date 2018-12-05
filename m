@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AAF11C04EBF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:40:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93004C04EB9
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:45:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 75BB820879
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:40:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 63D4D208E7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:45:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gB2owMct";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="acVvzWHv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75BB820879
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UcnpUwwe";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="deOrn0QN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63D4D208E7
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,42 +26,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=Q5JrDMuLr6g/f0VXXiphFyYtGTpTvaDfRSP92aKO2g0=; b=gB2owMctMkDfRL8oYNx52Y61bO
-	cjTMU9f6neaUM+NSE0b1gAn2IrNp9n5gRkbCxZ2DHkjru0SalSJQcOYfAJ+ujm3BLC/pbNFq87kBn
-	x/PX/+VlZXnyODOjChHuhEBAJBjAO3Z4ioZk5LnqSWtc+MVNHFaqrJ3fHN8E4GT3BabY/qGKv1rpM
-	xa3MyyakKqmwc9gZTSZzKKSIXlu8QUwMMJHg52tzyd/i7+oB8HKLf46zewrEMekjhl2Mr6rMJ7vxm
-	hy5cn2T84YlthTm0NcFXsx6tVmbX3l3/jwKy3zfYaiI4rA58KGlYZAgkMO4gSCkic/LMqa46oH+hk
-	hj0vOO6A==;
+	bh=5ROMGkSemmcoiGMzL8jPPCX6R8GLOpMNDbyXgSv7ka8=; b=UcnpUwweOIQmoza3j5AVk2fsXk
+	NSbQe8kb6E4JgfP8W61Mw1Hj8T7/3m4WpkGpvbwtpLNtJXZ4qAbKdyCojG16P9mZf8Ie4avJx4Ayh
+	ZldgLRxh9GUAL2SHO3njxhqLCXQ5ytwynNaWsx6ADmvwn6ud9/wsul8iunce3Xya9GVg4fs1gElxk
+	wgp7X0hZkGYsLn3JXM+YWWpQ1tVfBp0uicOKV4NSJ+yOPT+Peo9taPq9UCln+SpDB5KgspxzhfxQH
+	hGpG0mSQ6+jwvyeDxQ3ST/tBqOODcSgsPoNwZsr6FIykyqY/e1gWvqzDkdz7MZ3I+sN4JaHifPeAF
+	ntFOfFYQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUTfM-0000X3-9L; Wed, 05 Dec 2018 09:40:24 +0000
+	id 1gUTkX-00032e-H3; Wed, 05 Dec 2018 09:45:45 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUTfJ-0000Th-Cj
- for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 09:40:22 +0000
+ id 1gUTkV-000318-4F
+ for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 09:45:44 +0000
 Received: from sasha-vm.mshome.net (unknown [213.57.143.11])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id DE7F820878;
- Wed,  5 Dec 2018 09:40:08 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id A5CFC208E7;
+ Wed,  5 Dec 2018 09:45:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1544002811;
- bh=Z4WJRzy/lr/v7ucLUZpc/LcfFMR/hqLqIVDKUJhrN+8=;
+ s=default; t=1544003132;
+ bh=UNPqv9u2iY10gUFG8UJeI0z2KIeZT51xf/3NeiiWVOs=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=acVvzWHvUUr9XXgaErbUb4jt4TmaoMfXKfQUtypTROLbVdkTmyNduPbfwD48b+sjt
- ii/guw/CQQQpjpkTG74nZuP4VTAgxbeMDiO28o2iZ63jzp3S2qYsgGezEnW6SHcdCl
- lwAvpVCN3Qr5Vea9cJ3m3nmzoHccycuYFFBKgQDI=
+ b=deOrn0QNLvoE+eUL1N5t5XVjYP2piw+a/N3A5GClDVdecsKjw2fMu5uKCrxEBFC/d
+ 9IZeOL0+U5rdeRNIA2KJUrWiodcF6oMmkgt3vPxYPpLbIlJgc6gPvCT1vz1KHeau6d
+ 4ZFmIb1h1tkmb2quf/mf6Z+ScXR3GgcVQwuIPfjQ=
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 074/123] drm/meson: add support for 1080p25 mode
-Date: Wed,  5 Dec 2018 04:35:06 -0500
-Message-Id: <20181205093555.5386-74-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 39/69] drm/meson: add support for 1080p25 mode
+Date: Wed,  5 Dec 2018 04:42:17 -0500
+Message-Id: <20181205094247.6556-39-sashal@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20181205093555.5386-1-sashal@kernel.org>
-References: <20181205093555.5386-1-sashal@kernel.org>
+In-Reply-To: <20181205094247.6556-1-sashal@kernel.org>
+References: <20181205094247.6556-1-sashal@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181205_014021_448902_D10AFC54 
+X-CRM114-CacheID: sfid-20181205_014543_186407_76E69E12 
 X-CRM114-Status: UNSURE (   8.77  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
@@ -102,7 +102,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-index 514245e69b38..0a437a16ad0c 100644
+index 9509017dbded..d5dfe7045cc6 100644
 --- a/drivers/gpu/drm/meson/meson_venc.c
 +++ b/drivers/gpu/drm/meson/meson_venc.c
 @@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
