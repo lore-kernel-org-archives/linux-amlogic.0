@@ -2,21 +2,21 @@ Return-Path: <SRS0=v0PX=OO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E2CEC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 00:53:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97E7BC04EBF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 01:01:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E2BA52082B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 00:53:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 56B672082B
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 01:01:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="r45jS4dB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tAQsFzPy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2BA52082B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qEH0lf0z";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RzfK8pdF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 56B672082B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,66 +25,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bNzc+qCA98qZlUgTTPMr1VDa4WehUJn+fFCw/F8tGho=; b=r45jS4dBHbS6N4
-	XITx1UbclRiSZKblmbz15+oTi2W/BaczMMyvRJngbaq0jUq9ZvjyI+X/pLMEtN7Vh28D57fpM/HJw
-	37rkEVjbUYBW0k9IAXhsJgRws7T3e6zK694BNiFmu2/ZJ+BKU4nPfB7QXu1gu9bcz0QqqM5Y9Lcac
-	6S/+5y+cMx5z4j2kBuBehpE+242ZzT2NRJNW3IUTSy502MrLB98MdzTCf1RPE4nrW90lJdjyV89NP
-	MIFRPHtGdtY6wU9GqwRvswh4HNEWPQuisj6uo61uxZA1Lz1+qHcTnztp+nR7PXqsR0UHxBOwQT0QG
-	gRpfEO3Ng+nGhxw0ophg==;
+	List-Owner; bh=nYuzCOgFLJlMkZapk3sqM8NV8gAkfWWZ/0KJZQU3y2o=; b=qEH0lf0zoDoLAn
+	4pOr1dJEJHDh1R3h7SnIV1gy14xhU4cRnX2xnS+PFM6MMHQA/eaSfivBohthduyZaYoD5ojHf7rcn
+	Yo+UsEUo7prZj96vnwgb5sktDacT7rhW+0CxNAT5PjAhWGZI3a9whKL8lSwfqM0aBGdYpPGoD9pZI
+	XHRY7cxaIBTok9ccDbJ+on5qfC4U7R8lLpYJINsiDx19cyX/BhBXuO2+POszGwhbq+WZ4JCDniC0R
+	q5P9hCfxrU5cleRQdv3Wx8yddzqidHXJy7PrKgSkgTng4E5IGwOuSfqGgNPjiy1KNrcdFqaEwiPky
+	uIQ0kOKGk9uZAJUnzMzw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gULRE-0000ae-QE; Wed, 05 Dec 2018 00:53:16 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1gULZH-0006fU-BO; Wed, 05 Dec 2018 01:01:35 +0000
+Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gULRB-0000Yl-IR
- for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 00:53:15 +0000
-Received: by mail-pl1-x642.google.com with SMTP id w4so9172820plz.1
- for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 16:53:03 -0800 (PST)
+ id 1gULZ5-0006WE-Qd
+ for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 01:01:25 +0000
+Received: by mail-pf1-x442.google.com with SMTP id y126so9109990pfb.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 04 Dec 2018 17:01:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=ATCg9fvTUzVSYrKq8MWA0GV6b6vl2SbhBcgVyZ2mmJs=;
- b=tAQsFzPya0J+e2ukEg4itkrdH8qkWF0z9Gp/TYbIQt0/6MXiT016uFFucX6OrgqwOZ
- J9DImptrsXJ6CAU8ywDio9+/5utflAcvrPBgCCdOMZJUSPRqtmFRozv2cj3e8lMwf4xv
- Eb8jHkb5aaoOT7unz3jUEwFP+wNyJEotQ3OHWKrUgwJv35mMJoh5OlGY7JSZCCsWssMY
- Wpy0K/fvyi9PhG/Zm9SLKxrg44tNKtEAFmf35z0Upmd4yDrbztHpMb1DkMGQ4x4PVgER
- hJxRnhMHqDI3Vzeww6ZaCM3NYZDEfFhjmCpttc44D5KT4/+rAyAU0VAPJ5aHsXxrmiFU
- xzEw==
+ :mime-version; bh=VJ4Xggx/M5TuF1a8xLngAs7VDg7Kg/bcesHAhVDONtY=;
+ b=RzfK8pdFyLksbusmB8e3SXki8e8zPkdYAZia4U+Tfeln+wY1bkAbPX4QFzku5ofR0Z
+ LRAeQft8ftzAr+g0BBTfKC2aWvMEk9rXQU/AYN9hwdmvi9R7rkggzbslm5r7fJzn5WKM
+ 4T/iz9GtYAkwZY3iFlD3lgTgmkv+4RbZzRPfugFpSXAmsvtp5DW8t04rYfE5SECxCua6
+ z3DldOYh4Y3mZgcUQDboEHQu7sXT0BwfCjk8M4frTt/A4/8Gjiy5j9SwA7A/VsnfVZSH
+ Yzu5eMgUlqXbYXPc/jy6Er3rBV1nBNTE+AyuqJFRsOeDpwKNPOedbeVKxpoeAdoYcwyb
+ 5zUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=ATCg9fvTUzVSYrKq8MWA0GV6b6vl2SbhBcgVyZ2mmJs=;
- b=a2jQ/GSyntURTiVPPGR9GZR/SqhESkwXFwSQW2IKHRUc7RMGfv+cggZiFWElTwNOB6
- ZgHuheOUnH+DgTeQXKL/ye+PR/ahtBI4k1Z6uguIQYtEKoPxfg+Gy0zUh5hExqUfW2OP
- z/OKtpDXt5tvmbVdtSW73yF0f3EKD+gb84tBI+eSywYD6rDKX6glg37c/fQ0b6qIZGv9
- Yspg01rZNeyeBf6RLKoC/R+CHvlNuHhJkb9Is3KErKM+wzgFD9+Gsr4CEDrWNbHUgV4B
- yN0cGeY3CdTXNZH07nWVf4oZHvdB00sMruCKiCa91A5QWqd0viBg73OrEtAlKiwUsd0H
- VZUA==
-X-Gm-Message-State: AA+aEWaz38CDZjf+nCjjYjON8om2IPjTs0TjeQggn1vk2UVaD7AiJsa2
- 2a5jT41a4Ie4LDxIAC0qgqtneIF6nF8=
-X-Google-Smtp-Source: AFSGD/U+vln/sVxNumAskd/VD/c9RRfiNGiP38FroUtKg1M+ksNzRjyECAPyB+q7y7lBh+sGHxQP+A==
-X-Received: by 2002:a17:902:2862:: with SMTP id
- e89mr22501733plb.158.1543971182845; 
- Tue, 04 Dec 2018 16:53:02 -0800 (PST)
+ bh=VJ4Xggx/M5TuF1a8xLngAs7VDg7Kg/bcesHAhVDONtY=;
+ b=PaNrtBCryTOzHOwmMjouJBKR23W+jNkF2Qeg1cbYPU2xmOfGtLITSaeUY+0eiNAYGi
+ RbLDPX6So0TOovddnaj8gPUJ8D8Dp/l4TmZAzxIfq0P2X1/16Z5y3zIdmtTo056CY+3i
+ Ki9+ULDyEkSTSfObEFwvX9J1p7QxA4b4AfYZGSHdwfvvySSpeoB6EzBgPK6hxnrz6FrB
+ oh0IG2Fc0SdO40IrjkcXezKmSQBFise4IzsjcCPtgLUZkwz+ScdjvEvjekzQDvz0pGyp
+ QSM3W8Q7+xraX3NfxPT03IAZiw2HkjfvxByQoz641dErXbQAjqSBqCtjwIQ8Y4qAK1o0
+ v2ug==
+X-Gm-Message-State: AA+aEWYVl12ozfPnUIJwyRi29digBaCZuOroODo82LA5Uw/nO2/QQk1p
+ 1D1zv21XUqYv26NVE+UrxH80kA==
+X-Google-Smtp-Source: AFSGD/XucL5NZBkNTnqI9hosWyuzrKRTkweZcEuw0ajmO8GnUu/pgA/O0jxAl3OIKVAVP93NXQy9/w==
+X-Received: by 2002:a63:f658:: with SMTP id u24mr18745008pgj.267.1543971672921; 
+ Tue, 04 Dec 2018 17:01:12 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id 6sm25011955pfv.30.2018.12.04.16.53.02
+ [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
+ e128sm25594123pfe.67.2018.12.04.17.01.11
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 04 Dec 2018 16:53:02 -0800 (PST)
+ Tue, 04 Dec 2018 17:01:12 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, carlo@caione.org
-Subject: Re: [PATCH 0/2] ARM: dts: enable CPU frequency scaling on
- Meson8/Meson8b
-In-Reply-To: <20181129230044.21358-1-martin.blumenstingl@googlemail.com>
-References: <20181129230044.21358-1-martin.blumenstingl@googlemail.com>
-Date: Tue, 04 Dec 2018 16:53:01 -0800
-Message-ID: <7htvjsbxqq.fsf@baylibre.com>
+To: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 13/34] dt-bindings: arm: amlogic: Move 'amlogic,
+ meson-gx-ao-secure' binding to its own file
+In-Reply-To: <20181203213223.16986-14-robh@kernel.org>
+References: <20181203213223.16986-1-robh@kernel.org>
+ <20181203213223.16986-14-robh@kernel.org>
+Date: Tue, 04 Dec 2018 17:01:11 -0800
+Message-ID: <7hr2ewbxd4.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_165313_607351_AB4E21E7 
-X-CRM114-Status: GOOD (  18.78  )
+X-CRM114-CacheID: sfid-20181204_170123_867653_F4D132B5 
+X-CRM114-Status: UNSURE (   8.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,64 +97,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>, Kumar Gala <kumar.gala@linaro.org>,
+ arm@kernel.org, Sean Hudson <darknighte@darknighte.com>,
+ Frank Rowand <frowand.list@gmail.com>, Grant Likely <grant.likely@arm.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Rob Herring <robh@kernel.org> writes:
 
-> This series enables CPU frequency scaling on Meson8 and Meson8b. On
-> these SoCs all CPU cores are using the same clock, so all cores will
-> always run at the same frequency.
+> It is best practice to have 1 binding per file, so board level bindings
+> should be separate for various misc SoC bindings.
 >
-> On Meson8b this is pretty straight-forward by taking the frequency and
-> voltage table from Amlogic's 3.10 vendor kernel and converting it to
-> "operating-points-v2".
->
-> Meson8 (which is inherited by Meson8m2) is not so straight forward:
-> The 3.10 vendor kernel contains two frequency and voltage tables with
-> different voltages for the same frequency. It turns out that this is
-> due to the design of a specific reference board where the output
-> voltage of the regulator is limited. This has nothing to do with the
-> recommended voltages of the chip so this adds the "operating-points-v2"
-> which are used by all boards in the vendor kernel except the special
-> case.
-> The two fastest (clock rates: 1.8GHz and 1.992GHz) operating points are
-> causing my Meson8m2 "M8S" (not upstream yet) board to lock up hard with
-> instruction errors. I'm not sure if this is due to the poor design of
-> the PCB (the LED is getting darker when I switch to 1.8GHz and soon
-> after that it will crash). Thus I decided to play safe and disabled
-> these two frequencies for now.
->
-> Special thanks to Jianxin from Amlogic who patiently replied to all of
-> my questions about the CPU clocks (without his hints I would still be
-> looking at why I'm seeing random lockups when running the CPU off
-> cpu_in_div3 or why the udelay is not working properly)!
->
-> This is successfully tested on:
-> - Meson8b: Odroid-C1 and EC-100
-> - Meson8m2: MXIII-Plus and my "M8S" board (the latter is not upstream
->   yet) with frequencies up to 1.608GHz
->
-> Dependencies of this series:
-> - these patches are based on my other series: [0] "32-bit Meson: add
->   the ARM TWD and Global Timers"
-> - when not running linux-next this requires the the clock driver
->   patches which are queued for v4.21: [1] "[GIT PULL] clk: meson:
->   updates for v4.21"
-> - when not running linux-next there is a runtime dependency on the
->   meson6_timer from [2] "clocksource/meson6_timer: implement ARM
->   delay timer" because changing the CPU clock requires a small udelay
->   which only works properly when using a timer as clocksource (instead
->   of running a jiffies based delay loop where the timing changes with
->   the CPU frequency)
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Carlo Caione <carlo@caione.org>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-amlogic@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/arm/amlogic.txt       | 29 -------------------
+>  .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 ++++++++++++++++++
+>  2 files changed, 28 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
 
-Thanks for the detailed description of dependencies.
+Acked-by: Kevin Hilman <khilman@baylibre.com>
 
-Applied to v4.21/dt,
+But this isn't really related to the schema series is it?  If you
+prefer, I can just queue this one separately via my tree.
 
 Kevin
 
