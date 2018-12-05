@@ -3,119 +3,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E05CCC04EBF
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:51:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9FD8C07E85
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:55:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AF26A2082B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:51:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8CB2720989
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:55:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MPEY5z5A";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="u3YUik7j"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF26A2082B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ctZgSa8+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8CB2720989
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y1SrT9uWNmJ46tZfzA2g57HluSReY/zGdeaNswtSO6k=; b=MPEY5z5Anfi+px
-	MPdq7ep9avMDrQFKCkm3vbT76TU19H9INB9iVx7RPRseZvXnln91xZvU11hVOjHXJbNIrYTN4Ug1J
-	ClIDV8dQdia+yErKeZzM07SaNsM3Ml6JznzLSccQhRWxZC0415xbEG2gKkt9xs+D7ykYVESLvezu5
-	i6VICO2UctXA6AHBTpja6CFAKBotqtEcKUOGSj9VfdO2lYsOwfFEPnUDwELLLrrcXpcVz1/UjS1Fd
-	JuYh6xEuXzmakTEz2+GC/LceKFvwcEkPQydyfAdwTNIAwf8Nb64mqnOgrN7CsvVXid0tob6IY45Zn
-	9G7R88AS8uBcobAFvzwA==;
+	List-Owner; bh=Dc4gMq9l1XayHyrVN/f6Ney1lUQjmfobBiPq3VeaAbo=; b=ctZgSa8+Bdxqw/
+	cTmh7CXamZm7iuCVjDPhIBWhxMBLAphZzibRl7h8nR4yX7waHNXpcg7ACKX+sVeaenfYR/ItcyEpr
+	kd2MtnRRAF8FWet2EiWQ6k3o/fjysOkhJukYiPDqKvE9LfQgH3ODAn/xsbImyayOYwUAsqSYbiRJ1
+	TDPRpe42LFol934m9JXdmZxbkdaKmQQ08ep+Xiqt5EsRDXgTuvXjl+Flz2DEF4w45wj4RvceEGluq
+	Oq7uaMC+LlUy4gKaS9yg72XJRdJjGAzzJZRkog7k4PEBT4SRopDyxXpKrGRwRNmCsK8Av0tRLPqu2
+	a42+pcejXqAtwY2CI0hw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUTqT-0006XS-SN; Wed, 05 Dec 2018 09:51:53 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1gUTtm-0008Oq-A7; Wed, 05 Dec 2018 09:55:18 +0000
+Received: from mail-sh2.amlogic.com ([58.32.228.45])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUTqR-0006VK-2k
- for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 09:51:52 +0000
-Received: by mail-wm1-x341.google.com with SMTP id n190so10082219wmd.0
- for <linux-amlogic@lists.infradead.org>; Wed, 05 Dec 2018 01:51:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:from:to:cc:references:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=AsJlj7TTdyb72m1SKwkKkmtm6HVwnxQK4+r+hq0uuDA=;
- b=u3YUik7j5JhEtKfoLDIHcsx6lrjBru8JtcUSxmIld+yn3Tyr8g5L+uX1tXim42MvGd
- 53qbnfLfxH6HZedUbtBgmD9nzbmYy59E2rtMLUGs/RJztqyGUvRineaJMvC7ujdJni18
- aNyUAb+Y1ADwdggOWxTys964IqNHNUlSamwtj57c3CeqS8iGBZl4FUR3lXTrOng39uyR
- XnpiwBKXj5WuLBWABHPUJyG8yj0ZuPFhipxFg0YS2quphoj0vbZgEwNRWnSGejjTHH7F
- ZiM5gIwApNofnAuDBLoAWnm0KhdRVUHwrswwfzD0WYSwUYPwe9JZY226lzZpRIdMx51g
- EdlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:cc:references:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=AsJlj7TTdyb72m1SKwkKkmtm6HVwnxQK4+r+hq0uuDA=;
- b=hXKbkg+HWtLA8KVvlc15GHLdnSGdhiCsH2gV94enIICcOZ2tTiCpWjNdM18o/X8uGN
- HSTcgnf7oMABUE2m35FxxBo5Xh4aKeHue+z7Gd7+xjbABSkwrCZ/rLyeq2e8NeGrGr4K
- 7r5kOzAu5CRi/aOI6le7uJBCDRm3FeX0P/WDz0hdIPu4spEvRjqxAVV3XgtUOYxYGY5C
- ubu3d3hMgVJsRLifsGGUJZ8PdNI2IJFBof9KkYttXLhwv7wH1AJqiDfjXxdoBrVaUuph
- KCWxDEfOmY5aTwwsEmAlXQCdalRJ0HxsIjWqDyMITiZ1RLYg/2bpUtD6d0VTdlyWI/BP
- jVJg==
-X-Gm-Message-State: AA+aEWZA+CiSEtlbuLLw20FFJ+YrU69zvCYRP6YS7zMBYyKH9ptTStCU
- 82wZiPf7pHD3xkMn0cpDv2CNjg==
-X-Google-Smtp-Source: AFSGD/VhdQyuxXg13sBUAyRXmrIUvmgyWpwT4LequVvKOVPvH1qwGhumZEvQ99umm4SLhHGxzB0HYQ==
-X-Received: by 2002:a1c:cec1:: with SMTP id e184mr15934500wmg.75.1544003499502; 
- Wed, 05 Dec 2018 01:51:39 -0800 (PST)
-Received: from ?IPv6:2a01:cb1d:4ce:ea00:819f:4d34:9af9:e67?
- ([2a01:cb1d:4ce:ea00:819f:4d34:9af9:e67])
- by smtp.gmail.com with ESMTPSA id y34sm49302614wrd.68.2018.12.05.01.51.38
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 05 Dec 2018 01:51:38 -0800 (PST)
-Subject: Re: [PATCH 0/5] clk: meson: axg: add 32k clock generation
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>
-References: <20181204165310.20806-1-jbrunet@baylibre.com>
- <8e7ae6ab-a38b-d2ef-ecfc-58d198821b9c@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT7CwHsEEwEKACUC
- GyMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJXDO2CAhkBAAoJEBaat7Gkz/iubGIH/iyk
- RqvgB62oKOFlgOTYCMkYpm2aAOZZLf6VKHKc7DoVwuUkjHfIRXdslbrxi4pk5VKU6ZP9AKsN
- NtMZntB8WrBTtkAZfZbTF7850uwd3eU5cN/7N1Q6g0JQihE7w4GlIkEpQ8vwSg5W7hkx3yQ6
- 2YzrUZh/b7QThXbNZ7xOeSEms014QXazx8+txR7jrGF3dYxBsCkotO/8DNtZ1R+aUvRfpKg5
- ZgABTC0LmAQnuUUf2PHcKFAHZo5KrdO+tyfL+LgTUXIXkK+tenkLsAJ0cagz1EZ5gntuheLD
- YJuzS4zN+1Asmb9kVKxhjSQOcIh6g2tw7vaYJgL/OzJtZi6JlIXOwE0ETVkGzwEIALyKDN/O
- GURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYpQTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXM
- coJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hi
- SvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY4yG6xI99NIPEVE9lNBXBKIlewIyVlkOa
- YvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoMMtsyw18YoX9BqMFInxqYQQ3j/HpVgTSv
- mo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUXoUk33HEAEQEAAcLAXwQYAQIACQUCTVkG
- zwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfnM7IbRuiSZS1unlySUVYu3SD6YBYnNi3G
- 5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa33eDIHu/zr1HMKErm+2SD6PO9umRef8V8
- 2o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCSKmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+
- RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJ
- C3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTTQbM0WUIBIcGmq38+OgUsMYu4NzLu7uZF
- Acmp6h8g
-Organization: Baylibre
-Message-ID: <e94b0970-a9ae-c273-0c59-fd8fc99d63d1@baylibre.com>
-Date: Wed, 5 Dec 2018 10:51:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ id 1gUTtS-00078a-8E; Wed, 05 Dec 2018 09:55:00 +0000
+Received: from [10.18.29.147] (10.18.29.147) by mail-sh2.amlogic.com
+ (10.18.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Wed, 5 Dec 2018
+ 17:55:00 +0800
+Subject: Re: [PATCH v6 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
+ controller driver
+To: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+References: <1542876836-191355-1-git-send-email-hanjie.lin@amlogic.com>
+ <1542876836-191355-3-git-send-email-hanjie.lin@amlogic.com>
+ <20181203164150.GA11855@e107981-ln.cambridge.arm.com>
+ <20181203225731.GE207198@google.com>
+ <1bc8f5bd-6f69-4867-89ca-e5a611da9136@amlogic.com>
+ <20181204120034.GA25842@e107981-ln.cambridge.arm.com>
+From: Hanjie Lin <hanjie.lin@amlogic.com>
+Message-ID: <b914e35b-f77e-1e42-333f-b5030121cc53@amlogic.com>
+Date: Wed, 5 Dec 2018 17:55:00 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.2
 MIME-Version: 1.0
-In-Reply-To: <8e7ae6ab-a38b-d2ef-ecfc-58d198821b9c@baylibre.com>
+In-Reply-To: <20181204120034.GA25842@e107981-ln.cambridge.arm.com>
 Content-Language: en-US
+X-Originating-IP: [10.18.29.147]
+X-ClientProxiedBy: mail-sh2.amlogic.com (10.18.11.6) To mail-sh2.amlogic.com
+ (10.18.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181205_015151_149928_64B10F05 
-X-CRM114-Status: GOOD (  15.59  )
+X-CRM114-CacheID: sfid-20181205_015458_826147_861E0CCD 
+X-CRM114-Status: GOOD (  18.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -127,67 +73,165 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Kevin Hilman <khilman@baylibre.com>, Shawn Lin <shawn.lin@rock-chips.com>,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Bjorn Helgaas <helgaas@kernel.org>, Philippe Ombredanne <pombredanne@nexb.com>,
+ Carlo Caione <carlo@caione.org>,
+ Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
+ linux-amlogic@lists.infradead.org,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Liang Yang <liang.yang@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 05/12/2018 10:50, Neil Armstrong wrote:
-> On 04/12/2018 17:53, Jerome Brunet wrote:
->> The goal of this patchset is to add the internal generation of the
->> 32768Hz clock within the axg AO clock controller.
+
+
+On 2018/12/4 20:00, Lorenzo Pieralisi wrote:
+> On Tue, Dec 04, 2018 at 06:40:55PM +0800, Hanjie Lin wrote:
 >>
->> This was initially added has the CEC clock on gxbb. To properly
->> integrate it on the axg, a simpler 'dual divider' driver is added.
->> Then gxbb AO clock controller is reworked to use it. Finally the 32k
->> clock tree is added to the AXG.
 >>
->> This patchset requires depends on this CCF change [0]
+>> On 2018/12/4 6:57, Bjorn Helgaas wrote:
+>>> On Mon, Dec 03, 2018 at 04:41:50PM +0000, Lorenzo Pieralisi wrote:
+>>>> On Thu, Nov 22, 2018 at 04:53:54PM +0800, Hanjie Lin wrote:
+>>>>
+>>>> [...]
+>>>>
+>>>>> +static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
+>>>>> +				  u32 *val)
+>>>>> +{
+>>>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>>>> +
+>>>>> +	/*
+>>>>> +	 * there is a bug of MESON AXG pcie controller that software can not
+>>>>> +	 * programe PCI_CLASS_DEVICE register, so we must return a fake right
+>>>>> +	 * value to ensure driver could probe successfully.
+>>>>> +	 */
+>>>>> +	if (where == PCI_CLASS_REVISION) {
+>>>>> +		*val = readl(pci->dbi_base + PCI_CLASS_REVISION);
+>>>>> +		/* keep revision id */
+>>>>> +		*val &= PCI_CLASS_REVISION_MASK;
+>>>>> +		*val |= PCI_CLASS_BRIDGE_PCI << 16;
+>>>>> +		return PCIBIOS_SUCCESSFUL;
+>>>>> +	}
+>>>>
+>>>> As I said before, this looks broken. If this code (or other drivers with
+>>>> the same broken assumptions, eg dwc/pcie-qcom.c) carries out a, say,
+>>>> byte sized config access of eg PCI_CLASS_DEVICE you will get junk out of
+>>>> it according to your comment above.
+>>>>
+>>>> I would like to pick Bjorn's brain on this to see what we can really do
+>>>> to fix this (and other) drivers.
+>>>
+>>>   - Check to see whether you're reading anything in the 32-bit dword at
+>>>     offset 0x08.
+>>>
+>>>   - Do the 32-bit readl().
+>>>
+>>>   - Insert the correct Sub-Class and Base Class code (you also throw
+>>>     away the Programming Interface; not sure why that is)
+>>>
+>>>   - If you're reading something smaller than 32 bits, mask & shift as
+>>>     needed.  pci_bridge_emul_conf_read() does something similar that
+>>>     you might be able to copy.
+>>>
+>>> Out of curiosity, what code depends on PCI_CLASS_BRIDGE_PCI?  There
+>>> are several places in the kernel that currently depend on it, but I
+>>> think several of them *should* be checking dev->hdr_type to identify a
+>>> type 1 header instead.
+>>>
+>>> Bjorn
+>>>
+>>> .
+>>>
 >>
->> [0]: https://lkml.kernel.org/r/20181204163257.32085-1-jbrunet@baylibre.com
+>> Yes, it would be broken in particular scenes(eg: read 1 or 2 bytes from 0xa/PCI_CLASS_DEVICE)
+>> that I didn't considered.
+>>  
+>> As your suggestion, I consider some code below may help this issue:
+>> 1, First call dw_pcie_read() help to read 1/2/4 bytes from register,
+>>    request all other *size* bytes will return error and dw_pcie_read()
+>>    will also check register alignment.
+>>  
+>> 2, If dw_pcie_read() return success and *where* is 0x8/PCI_CLASS_DEVICE or 0xa/PCI_CLASS_REVISION,
+>>    we may need to correct class code.
+>>    As PCI_CLASS_REVISION is two-bytes register, so only when read 4 bytes from 0x8/PCI_CLASS_DEVICE
+>>    or read 2 bytes from 0xa/PCI_CLASS_REVISION we should correct the class code.
+>>  
+>> ps: read 1 byte from 0xa/PCI_CLASS_REVISION or 0xb will get incorrect value.
+> 
+> You can fix this too.
+> 
+>> static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
+>>                 u32 *val)
+>> {
+>>         struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>         int ret;
 >>
->> Jerome Brunet (5):
->>   dt-bindings: clk: meson: add ao slow clock path ids
->>   clk: meson: clean-up clock registration
->>   clk: meson: add dual divider clock driver
->>   clk: meson: gxbb-ao: replace cec-32k with the dual divider
->>   clk: meson: axg-ao: add 32k generation subtree
+>>         ret = dw_pcie_read(pci->dbi_base + where, size, val);
+>>         if (ret != PCIBIOS_SUCCESSFUL)
+>>                 return ret;
 >>
->>  drivers/clk/meson/Makefile              |   3 +-
->>  drivers/clk/meson/axg-aoclk.c           | 175 +++++++++++++++--
->>  drivers/clk/meson/axg-aoclk.h           |  13 +-
->>  drivers/clk/meson/clk-dualdiv.c         | 130 +++++++++++++
->>  drivers/clk/meson/clkc.h                |  19 ++
->>  drivers/clk/meson/gxbb-aoclk-32k.c      | 193 -------------------
->>  drivers/clk/meson/gxbb-aoclk.c          | 238 +++++++++++++++++++-----
->>  drivers/clk/meson/gxbb-aoclk.h          |  20 +-
->>  drivers/clk/meson/meson-aoclk.c         |  15 +-
->>  include/dt-bindings/clock/axg-aoclkc.h  |   7 +-
->>  include/dt-bindings/clock/gxbb-aoclkc.h |   7 +
->>  11 files changed, 527 insertions(+), 293 deletions(-)
->>  create mode 100644 drivers/clk/meson/clk-dualdiv.c
->>  delete mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
->>
+>>         /*
+>>         * there is a bug of MESON AXG pcie controller that software can not
+>>         * programe PCI_CLASS_DEVICE register, so we must return a fake right
 > 
-> Good move, it's good to have a common driver to enable USB device support for
-> GX and AXg families since they depends on the slow_clk path.
-> 
-> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> and
-> 
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> And applied on next/drivers
-> 
-> Neil
+> "There is a bug in the MESON AXG pcie controller whereby software cannot
+> programme the PCI_CLASS_DEVICE register, so we must fabricate the return
+> value in the config accessors."
 > 
 
-In fact, I'll wait until the CCF change at [1] is applied on clk-next.
+Ok, it's more clear :)
 
-Neil
+>>         * value to ensure driver could probe successfully.
+>>         */
+>>         if (where == PCI_CLASS_REVISION && size == 4)
+>>                 *val = (PCI_CLASS_BRIDGE_PCI << 16) | (*val & 0xffff);
+>>         else if (where == PCI_CLASS_DEVICE && size == 2)
+>>                 *val = PCI_CLASS_BRIDGE_PCI;
+> 
+> You can further filter it with (where & 0x1) == PCI_CLASS_DEVICE
+> and handle the size accordingly, so that even a byte access would
+> work, for completeness.
+> 
+> Lorenzo
+>
+
+Of course, I will add process to handle one-byte access from 0xa/0xb register 
+in next-version.
+
+thanks.
+
+hanjie
+ 
+>>         return PCIBIOS_SUCCESSFUL;
+>> }
+>>
+>> 3, We must ensure class is PCI_CLASS_BRIDGE_PCI except right hdr_type,
+>>    or pci_setup_device() will get failed: 
+>>
+>>    ...
+>>    class = pci_class(dev);
+>>    dev->revision = class & 0xff;
+>>    dev->class = class >> 8; /* upper 3 bytes */ 
+>>    ....
+>>    switch (dev->hdr_type) { /* header type */
+>>    ... 
+>>    case PCI_HEADER_TYPE_BRIDGE: /* bridge header */
+>>       if (class != PCI_CLASS_BRIDGE_PCI)  /* class must be PCI_CLASS_BRIDGE_PCI  */
+>>          goto bad; 
+>>
+>>
+>> thanks.
+>>
+>> hanjie
+> 
+> .
+> 
 
 _______________________________________________
 linux-amlogic mailing list
