@@ -2,90 +2,83 @@ Return-Path: <SRS0=v0PX=OO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C8CEC07E85
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 17:11:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 44E05C04EB9
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 22:15:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 200E920892
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 17:11:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1316C2133F
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 22:15:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UJXwgn9l";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SUAQlMuJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 200E920892
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X2VROR0+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="jnnMQP8C"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1316C2133F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=23Ptie99h3u90bqpTuqu1kHhmmevWnocGl2Ya/nm/dI=; b=UJXwgn9lzWnVu+
-	8apNCmAsffaV6nynZyeED45Loz+TesAlywcLd0gWk6Ge2+PXyTcJDGdgdD8WESDFshYMgHZzlNho5
-	wY/fzHfyeaKA2m7vGivBeEsPbHaI692E+WAAemiMwQcAm4Y4tzjp2OomJbNBMFBIr+zG2G7GH3SkY
-	5ItGSZAeJgYVATC7wrdInbUJhZQ0YiGhHP+XBs1ByK+eKBciBnfCNbB++wHrFC3o262PwcJcRO2xQ
-	BG7LRWvpux50cJC6rO0jjQYV5BYRP9SSql4eqnN3snc01joxkoB5qfvULwGfyZKqXd3OKGOdcMCTv
-	LccjVL9xaU0RwycwOtlQ==;
+	List-Owner; bh=yRm4cszEYud+c4jMNavsIR4Dwlkch9NiHzuprQJPaVc=; b=X2VROR0+ZnXZO8
+	ozt3mzQKkCO1JQXk3uAwDn6H63qPmMHCswd4Iv34hEJ3QWWUl3HPXR4HC3obUe+SXN1ZnF1Gfzdtr
+	H1AztOqrCz6MV33QrD4DZdmAdzeclPEj2uNXQsMXCnM3kIJ4Ao4PhshuEnCrSoykoBe+UgbC3Lcxc
+	wxqi7VScfzqKfOe1pGJLIIweZU8Ed1gjfXSYPxodl9SfffjXF29dbQK8pfkeS3bT1RJsWkfrU+zD4
+	CbeA4mgx9t0UKbnoqnOpK7yPKYPogtP/1uut/75GYYAg+Gm7eW+xd8qkUGCxfytJjpufVsTpEnm3f
+	ULRnk7nczO1ZHxhAdvPw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUahO-0007Fc-6n; Wed, 05 Dec 2018 17:10:58 +0000
-Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
+	id 1gUfS8-0002MA-0Q; Wed, 05 Dec 2018 22:15:32 +0000
+Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUahD-00073q-ID
- for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 17:10:49 +0000
-Received: by mail-pf1-x444.google.com with SMTP id b7so10311437pfi.8
- for <linux-amlogic@lists.infradead.org>; Wed, 05 Dec 2018 09:10:37 -0800 (PST)
+ id 1gUfS5-0002Ki-MB; Wed, 05 Dec 2018 22:15:31 +0000
+Received: by mail-ot1-x342.google.com with SMTP id v23so20166378otk.9;
+ Wed, 05 Dec 2018 14:15:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=gO6GDEjeMU0BZEN+8pYig/a6BZs832Cvfmz53SX41bs=;
- b=SUAQlMuJ9rRPXlZkenE9nHTpyAjBxyft+a/eg6mzgTSpdTW2MSkcX9QOeateK2AuZE
- BPv7UM5is2ip1fpgfpQn5wuslMi2uoFH1vlskM3V6Dn/Lmd8Kkv2Q78Zy8/bHlJCMWOB
- /ko0LVoU/Xf12+v5M55ERxjsiNswtMpPsnUJpaa6gMGQt2EjC8K1LPmpDxZ9VN4CfMgg
- xGrxJOOh20bYIG+RC6+IQ3MBQW4W/sbXq51gluCZWGmIU0eUVq7Mf15pPzAmLTURubYi
- k9jkkwBr2g1n5qgFXIj7/abFoBv6WN8w+M08m+UoLNSUbmxzDaQ7VrGRr8u8FccXJgAP
- qeOg==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FtEa9PBuCkLtNZwRds2jfJnsDI0pLbrd9HokepXLzIQ=;
+ b=jnnMQP8CkWcBbAFMMMMun/VLwdRvosfr4S62E21gB4iop0N0pPO5Dm4MayblGdjD1z
+ atH13EfFmNUEJDpa6ipuSwyj/nBo238xiFD/hhojuwFBoQKhtKO4x4IKYJ4MqK+M80Eu
+ BIkNDySF4HJGKd0IRTvF1qj7T0spgT2QnW23zzIcLovjBsJqMsieHg+ZybQpDSXsByNU
+ SGS+Jtt+KdEehdyea1tp4kGsEox4i9hUNi56dvgxmmWELWA1QXK40W0hoQAM7uRjp6+A
+ pENm8oPz1SCaBciW3c6MZKSeY1zfjhs8yq4dlubk/c09lwK7j4PY1id20pZv+88aElHG
+ RbUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=gO6GDEjeMU0BZEN+8pYig/a6BZs832Cvfmz53SX41bs=;
- b=H8GkYxKyfzLybZ7+V83zHuTSrGMJDYSPENzJMhm/lf2EVyQUcGTY/DuH2VN2fMGnCL
- 0v6eczYpw2p33tp8IwMvCb0kDCTg5jB0CBJ2O6Z4BzUght5EM6g1aBOpAY07jSuLAgbw
- RWh82E4qjZW3sAIU22EXSsyiTgZ0OzFUaPelt4kJUvs3ImSSVlIOgbRQHK9uE4bPdqHa
- ksktJSumUJe8C/1Xl5io/X3wONhFzLfq1jXUXWmreH6cPcIJ+G+zd0NAQppylM2UIxLA
- K01NM3cXvoFPCLQeXePjCB19UDCoU28hPUhQOSVXnkpOUGkLDWRYRSWtKXCwVu5pyRs9
- hZOg==
-X-Gm-Message-State: AA+aEWaAsv23gxBXDQeG8BSWqIk8C69ppvgzrDCs45doLz0Lz4s04nXg
- mnl4jPkmHV6cEQqO5Vq7enUglw==
-X-Google-Smtp-Source: AFSGD/Wv7/0LALtDZ/KKhJHPun0A98iob2IEMh/t2ak4zWOs2mnu6l+65ZYCs+fcOOc0S7HEDjBDEA==
-X-Received: by 2002:a63:7154:: with SMTP id b20mr21139922pgn.342.1544029836712; 
- Wed, 05 Dec 2018 09:10:36 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
- p24sm40663837pfk.155.2018.12.05.09.10.35
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 05 Dec 2018 09:10:35 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Carlo Caione <ccaione@baylibre.com>, robh+dt@kernel.org,
- mark.rutland@arm.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- jbrunet@baylibre.com
-Subject: Re: [PATCH] arm64: dts: meson-axg: s400: Enable PHY interrupt
-In-Reply-To: <20181205155207.25568-1-ccaione@baylibre.com>
-References: <20181205155207.25568-1-ccaione@baylibre.com>
-Date: Wed, 05 Dec 2018 09:10:34 -0800
-Message-ID: <7h8t13lx11.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FtEa9PBuCkLtNZwRds2jfJnsDI0pLbrd9HokepXLzIQ=;
+ b=SwxlDUL9aU1zqa90pPJhaIZCL9VHq4aT1+CdwEep4u3PgoXtqAE/fH3U6N/SwGK6MU
+ gR6Ig9sihinNZPgeWH/95pBxQhYFhDSZIbcuou5fQAbUy1z7t1pwuDBwi9Z9mTF1r0Tn
+ i/lxmKNKcSSWdJYU850QG5SI0UAE52ZUI4LrPZAXVsVakbA3/6X4CNPN76j21pETSYJW
+ cmPP73haDS0O0uFkAPk8vFDx+NLnme77DltBGJtB5ggmpSTowhQilanAdGA1rs52wvZz
+ ze7vCBC2Cj/Wd3W21t5H1dm4opoKgvdGDid2WDJvnOyk/YiTyDKJk6GyGL0aeVSjnNjc
+ wmfA==
+X-Gm-Message-State: AA+aEWYRdzbl0KGMQn+DtoydxEtLdyS/fx1yMGHFUHaEhYnxE7RwdJgh
+ lzauJUTSl8CLM0nfHuBeVSx1cNIH7PnptsW5+8g=
+X-Google-Smtp-Source: AFSGD/XcV4MbePvWOb/dsxZgutiYAyVS/wpqVtPdL69MIJ5A68Aehd82v1ROx4a2yNL5rvPVO0xI3B0E+jm/w2eikBA=
+X-Received: by 2002:a9d:6a8e:: with SMTP id l14mr166037otq.348.1544048118115; 
+ Wed, 05 Dec 2018 14:15:18 -0800 (PST)
 MIME-Version: 1.0
+References: <20181202220847.24364-1-martin.blumenstingl@googlemail.com>
+ <20181202220847.24364-3-martin.blumenstingl@googlemail.com>
+ <85aa8e12-0bca-6432-e1a8-0faceff1dd5e@codethink.co.uk>
+In-Reply-To: <85aa8e12-0bca-6432-e1a8-0faceff1dd5e@codethink.co.uk>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 5 Dec 2018 23:15:07 +0100
+Message-ID: <CAFBinCBDUxTc+ofCYm-zEeiFdU90U6DQOkX4B659q=MvRK64fg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] rtc: support for the Amlogic Meson RTC
+To: ben.dooks@codethink.co.uk
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181205_091047_603966_2BBCC04F 
-X-CRM114-Status: UNSURE (   7.06  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181205_141529_720283_EEB7CD3B 
+X-CRM114-Status: GOOD (  17.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,29 +90,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Carlo Caione <ccaione@baylibre.com>
+Cc: linux-rtc@vger.kernel.org, a.zummo@towertech.it,
+ alexandre.belloni@bootlin.com, ccaione@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Carlo Caione <ccaione@baylibre.com> writes:
+Hi Ben,
 
-> Now that the GPIO controller has been enabled also on AXG we can hook up
-> the GPIO interrupt for the PHY.
+On Wed, Dec 5, 2018 at 2:36 PM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
 >
-> Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
-> ---
+> On 02/12/2018 22:08, Martin Blumenstingl wrote:
+> > Add support for the RTC block on the 32-bit Amlogic Meson6, Meson8,
+> > Meson8b and Meson8m2 SoCs.
+> >
+> > The RTC is split in to two parts, which are both managed by this driver:
+> > - the AHB front end
+> > - and a simple serial connection to the actual registers
+> >
+> > The RTC_COUNTER register which holds the time is 32-bits wide.
+> >
+> > There are four 32-bit wide (in total: 16 bytes) "regmem" registers which
+> > are exposed using nvmem. On Amlogic's 3.10 kernel this is used to store
+> > data which needs to survive a suspend / resume cycle.
+> >
+> > Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+> > [resurrected Ben's patches after 2 years]
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 >
-> This depends on https://patchwork.kernel.org/patch/10707741/
+> Just checking if the change of author is deliberate?
+> not sure how to do >1 author on patches like this.
+I changed the author on purpose after seeing how much I changed
+(compared to your v4). this is also why I added you to the CC list
+however, I left in your copyright (just like you kept Carlo's
+copyright note) and MODULE_AUTHOR
 
-Queued for v4.21 on top of dependency (thanks for noting it!)
+if you're uncomfortable with this author change then please let me
+know so I can undo it for the next iteration (which I need to fix the
+issue found by the kbuild test robot).
 
-Kevin
+in any case: thank you for your work on the previous iterations of
+this series - that made life much easier for me :)
 
 
-
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
