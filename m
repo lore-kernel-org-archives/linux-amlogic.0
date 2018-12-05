@@ -3,57 +3,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A0E4C04EB9
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 06:47:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AAF11C04EBF
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:40:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DC0972082B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 06:47:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 75BB820879
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Dec 2018 09:40:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZUB217Rn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DC0972082B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gB2owMct";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="acVvzWHv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75BB820879
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aLg25Y0qcg/lz1hU1oqjdeuNkiHxrUuO/eES1ssNRyc=; b=ZUB217RnnMds/R
-	+ZmfmFYwWVkL7gEsqtiTrbubu3cfDSn3rg4DBhpPoNbmP8ZVHZILkyU3y/+5/ztGCy6UqhowzfdPk
-	PhoOAM0Hxo7L3Mxz5lYl/KqzdOrWoqXiXLidoOIeQEm6LGIxwz5rTqhhLMKsDjhJSy8oEjobm3C+C
-	Ggsg2RYo6C8awmGMhSpdkfwdBs7g+ifzSDmpzMXc9kFxX6tstSAdMwjQm+OVlnJ3yTAdXyDv1p4+7
-	Imx4TY6YixTAeKQNgbsdiNMYNgZ+LwrIfnhSUCbfCBHYVh42VkuLqApY0/KYnJfDakYbWxpk8kZrr
-	U1qH5bwTEKhv/I0aI2Gg==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=Q5JrDMuLr6g/f0VXXiphFyYtGTpTvaDfRSP92aKO2g0=; b=gB2owMctMkDfRL8oYNx52Y61bO
+	cjTMU9f6neaUM+NSE0b1gAn2IrNp9n5gRkbCxZ2DHkjru0SalSJQcOYfAJ+ujm3BLC/pbNFq87kBn
+	x/PX/+VlZXnyODOjChHuhEBAJBjAO3Z4ioZk5LnqSWtc+MVNHFaqrJ3fHN8E4GT3BabY/qGKv1rpM
+	xa3MyyakKqmwc9gZTSZzKKSIXlu8QUwMMJHg52tzyd/i7+oB8HKLf46zewrEMekjhl2Mr6rMJ7vxm
+	hy5cn2T84YlthTm0NcFXsx6tVmbX3l3/jwKy3zfYaiI4rA58KGlYZAgkMO4gSCkic/LMqa46oH+hk
+	hj0vOO6A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUQyE-0005J9-0o; Wed, 05 Dec 2018 06:47:42 +0000
-Received: from mail-sh2.amlogic.com ([58.32.228.45])
+	id 1gUTfM-0000X3-9L; Wed, 05 Dec 2018 09:40:24 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUQxi-0004hH-BC; Wed, 05 Dec 2018 06:47:13 +0000
-Received: from localhost.localdomain (10.28.8.22) by mail-sh2.amlogic.com
- (10.18.11.6) with Microsoft SMTP Server id 15.0.1320.4; Wed, 5 Dec 2018
- 14:46:48 +0800
-From: Xingyu Chen <xingyu.chen@amlogic.com>
-To: Marc Zyngier <marc.zyngier@arm.com>, Jason Cooper <jason@lakedaemon.net>, 
- Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 2/2] irqchip/meson-gpio: Add support for Meson-G12A SoC
-Date: Wed, 5 Dec 2018 14:46:11 +0800
-Message-ID: <20181205064611.29076-3-xingyu.chen@amlogic.com>
-X-Mailer: git-send-email 2.19.2
-In-Reply-To: <20181205064611.29076-1-xingyu.chen@amlogic.com>
-References: <20181205064611.29076-1-xingyu.chen@amlogic.com>
-MIME-Version: 1.0
-X-Originating-IP: [10.28.8.22]
+ id 1gUTfJ-0000Th-Cj
+ for linux-amlogic@lists.infradead.org; Wed, 05 Dec 2018 09:40:22 +0000
+Received: from sasha-vm.mshome.net (unknown [213.57.143.11])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id DE7F820878;
+ Wed,  5 Dec 2018 09:40:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1544002811;
+ bh=Z4WJRzy/lr/v7ucLUZpc/LcfFMR/hqLqIVDKUJhrN+8=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=acVvzWHvUUr9XXgaErbUb4jt4TmaoMfXKfQUtypTROLbVdkTmyNduPbfwD48b+sjt
+ ii/guw/CQQQpjpkTG74nZuP4VTAgxbeMDiO28o2iZ63jzp3S2qYsgGezEnW6SHcdCl
+ lwAvpVCN3Qr5Vea9cJ3m3nmzoHccycuYFFBKgQDI=
+From: Sasha Levin <sashal@kernel.org>
+To: stable@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 074/123] drm/meson: add support for 1080p25 mode
+Date: Wed,  5 Dec 2018 04:35:06 -0500
+Message-Id: <20181205093555.5386-74-sashal@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20181205093555.5386-1-sashal@kernel.org>
+References: <20181205093555.5386-1-sashal@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181204_224710_889124_90B52E11 
-X-CRM114-Status: UNSURE (   9.90  )
+X-CRM114-CacheID: sfid-20181205_014021_448902_D10AFC54 
+X-CRM114-Status: UNSURE (   8.77  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -66,50 +75,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Sasha Levin <sashal@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>, dri-devel@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, linux-amlogic@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Meson-G12A SoC uses the same GPIO interrupt controller IP block as the
-other Meson SoCs, A totle of 100 pins can be spied on, which is the sum of:
+From: Christian Hewitt <christianshewitt@gmail.com>
 
-- 223:100 undefined (no interrupt)
-- 99:97   3 pins on bank GPIOE
-- 96:77   20 pins on bank GPIOX
-- 76:61   16 pins on bank GPIOA
-- 60:53   8 pins on bank GPIOC
-- 52:37   16 pins on bank BOOT
-- 36:28   9 pins on bank GPIOH
-- 27:12   16 pins on bank GPIOZ
-- 11:0    12 pins in the AO domain
+[ Upstream commit 31e1ab494559fb46de304cc6c2aed1528f94b298 ]
 
-Change-Id: I977b19380b3dc730b5b81583178af743d0ba0338
-Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+This essential mode for PAL users is missing, so add it.
+
+Fixes: 335e3713afb87 ("drm/meson: Add support for HDMI venc modes and settings")
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/1542793169-13008-1-git-send-email-christianshewitt@gmail.com
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/irqchip/irq-meson-gpio.c | 1 +
+ drivers/gpu/drm/meson/meson_venc.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index 7b531fd075b8..7599b10ecf09 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -73,6 +73,7 @@ static const struct of_device_id meson_irq_gpio_matches[] = {
- 	{ .compatible = "amlogic,meson-gxbb-gpio-intc", .data = &gxbb_params },
- 	{ .compatible = "amlogic,meson-gxl-gpio-intc", .data = &gxl_params },
- 	{ .compatible = "amlogic,meson-axg-gpio-intc", .data = &axg_params },
-+	{ .compatible = "amlogic,meson-g12a-gpio-intc", .data = &axg_params },
- 	{ }
- };
- 
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index 514245e69b38..0a437a16ad0c 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -714,6 +714,7 @@ struct meson_hdmi_venc_vic_mode {
+ 	{ 5, &meson_hdmi_encp_mode_1080i60 },
+ 	{ 20, &meson_hdmi_encp_mode_1080i50 },
+ 	{ 32, &meson_hdmi_encp_mode_1080p24 },
++	{ 33, &meson_hdmi_encp_mode_1080p50 },
+ 	{ 34, &meson_hdmi_encp_mode_1080p30 },
+ 	{ 31, &meson_hdmi_encp_mode_1080p50 },
+ 	{ 16, &meson_hdmi_encp_mode_1080p60 },
 -- 
-2.19.2
+2.17.1
 
 
 _______________________________________________
