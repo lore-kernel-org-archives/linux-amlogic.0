@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS,USER_AGENT_MUTT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F367C64EB1
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:52:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 670AEC04EB8
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 16:24:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1CCB9208E7
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:52:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2447C20659
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 16:24:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="N5ffTenK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1CCB9208E7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hFw64iFS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2447C20659
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=epigenesys.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,58 +25,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gS+kz37PHSEKgG5DRMYGrsQgyONIXSBn0ssQlgsG9xI=; b=N5ffTenKLoK+NY
-	0i8cyfTapobouT9CWmksV3UZ3o6cZ+CTi5JUa71aTzEVs3UDtdVWFHMgGAwrO5LtCPJTD7K3U5vvm
-	2DxhaegUyNtMpoz1vs5gum8y8xLcKeSFtSqYhuMg7z3Gxi4mPG5+aHQg47lVLz/xNRNPaPEVSh9My
-	JBpLvg6491ZIVD0B1hvjv/WbJxakrdouzzeym4EIrHaEQySut59V8gGZtbHi/4cra1/2FJLdnfgk0
-	1l/0tenNlSwXXpqOZLGqDgXGjWd4BjosbmmxE1ZRZKzY/8MFfYiiuY4G/zBLFT9OaUgxOcDLPntRz
-	j+iVENrjoq6+8I8dyYHg==;
+	List-Owner; bh=mr+OWBQs0hFq9q8J0bZPoUF5Pfn9UkhclKecuKjCacM=; b=hFw64iFSju45ac
+	/i8UN0ogJOsDFW/dxtxdZeGVlnOSnNe1O7MjbtsqYrAFwP9cO7djggJRgfKZZllCtV2YUOIsxknlG
+	/rpbcR83L1t0PjWSvasHTD54T1kRrIZqoGNu8GcUSrXwEMGiL6gT5m4XFtGlSRJjUcbSE7BJ8uycT
+	OxvlzD8ycgRzuzr57oQ9njA5IXSgIV13xvXxNiRxhz2cQTsaq4Qq+sRM7LKBGZEnZLivccoLMxjcw
+	irBIRzxQS+iAQ4dgXBUlp78MqWMRW9t8mjbEG6O5h4MoWDzhOPMzhhTOOeXMLUgbaFICkcrPPHdV3
+	DmgfgCv2TUjonQ5OypQQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUvxG-00088A-Vs; Thu, 06 Dec 2018 15:52:46 +0000
-Received: from mail-wr1-f65.google.com ([209.85.221.65])
+	id 1gUwS4-00076z-Kv; Thu, 06 Dec 2018 16:24:36 +0000
+Received: from mail-wr1-f68.google.com ([209.85.221.68])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUvxD-00087X-Ef; Thu, 06 Dec 2018 15:52:45 +0000
-Received: by mail-wr1-f65.google.com with SMTP id b14so935085wru.12;
- Thu, 06 Dec 2018 07:52:33 -0800 (PST)
+ id 1gUwS0-00074e-QI; Thu, 06 Dec 2018 16:24:35 +0000
+Received: by mail-wr1-f68.google.com with SMTP id q18so1063274wrx.9;
+ Thu, 06 Dec 2018 08:24:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=eVkmmt8mDus3xwhFaWG+oJzkHqmOlGdBmMtv+Lg4LS0=;
- b=A2Sr2xfYJsu+KjMr1grG/NywesQYtNlyCFd3Es/xK7cIjBf1M+E6oq+T+SvqCcwgcg
- AFRcpZBLAKODiuB3TLPVCYjE/YrMSPr6BQ9QIFYIJivxs4scDshQUyAWp2S3+LutkWwW
- eKbmB/i0Y80MK8SdsnpuaH+QN+Gh6bgfcbuk5AyYZKpZsKXIiqnoPhyMYYjrDn67vAOK
- fyJRq8WVL38WTj6flxl2Vd9+XiQUa0C0WrEKIILOffgWxD19dxSY8zSjBogmam8VXZAE
- Iihp0IFY8vUpC6wHQqqkq7HqP66Z2TVZ78LHJS6Cly3/Fz45T7sQ6cuv1nFLaIpGg+7C
- WbsA==
-X-Gm-Message-State: AA+aEWZhzRvkptK8k4h13SfeQdxlbVWTd+t2Z/CWEI1uJT2RFv+RWWOm
- 04hoYaAV5H77nX1B6r42NDo=
-X-Google-Smtp-Source: AFSGD/XD6VtFkeuKRs2u8U+/FHG63uisR9PWhDBT14EYlz9Vxkb/4WCK0ewUE3ovyWelntEZ5Re9LA==
-X-Received: by 2002:adf:8c09:: with SMTP id z9mr26178029wra.301.1544111551554; 
- Thu, 06 Dec 2018 07:52:31 -0800 (PST)
+ bh=sa7soAgLrBjLefwDH2STTzbfO5UGIOdQp+DJVcKw5Rw=;
+ b=Sn2/8EMIaj5nVPp5Ga0vdPpvdNOO7rJFVRV12vP9RUS/nOb3PQosC/fewR0P5IKvE1
+ va1QOvPr79NDryIo37B+80VrQr7BXww2ysAFfS2kT3sZJwbS+zjnlWEfZVyu8WQkg1OE
+ M8BAx46iRDHLhGleKMbl9lN8JZ+JEB9+GYRb+MjvVPfb/+zpm6SbRSYdwwB3wpyjp0Mr
+ +symcL0etqakO1Xg+k5Iu98hYuXQXiZ1U0B/EsWk9VQm2ojUq8tcsRgof53Wwjqm8eKY
+ 4mo6WFD7EzwwqKHgY7ROGfvP21J8/PbaweI0/5sgf6PjnLvLKWlWiuMCuYlZlJVajKTf
+ n/kA==
+X-Gm-Message-State: AA+aEWbbFm2rAp5u6tMTX2ZDKid+2ZFCEkkfVJxFVrjYHTRSufExToHe
+ gI7fo+07xLWmGZjpFENRrsY=
+X-Google-Smtp-Source: AFSGD/Uri+3U5/QLR/JxP/e8G+M8J1G9PpwsUXOo9JtgMlGC71q8VM4HdXQTZQrgfQzt0EbfjZ/m9g==
+X-Received: by 2002:a5d:5089:: with SMTP id a9mr26676178wrt.327.1544113457523; 
+ Thu, 06 Dec 2018 08:24:17 -0800 (PST)
 Received: from ingrassia.epigenesys.com
  (host194-85-static.3-79-b.business.telecomitalia.it. [79.3.85.194])
- by smtp.gmail.com with ESMTPSA id s66sm1536919wmf.34.2018.12.06.07.52.30
+ by smtp.gmail.com with ESMTPSA id c65sm1244062wma.24.2018.12.06.08.24.15
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 06 Dec 2018 07:52:30 -0800 (PST)
-Date: Thu, 6 Dec 2018 16:52:28 +0100
+ Thu, 06 Dec 2018 08:24:16 -0800 (PST)
+Date: Thu, 6 Dec 2018 17:24:14 +0100
 From: Emiliano Ingrassia <ingrassia@epigenesys.com>
-To: Carlo Caione <ccaione@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Carlo Caione <ccaione@baylibre.com>
 Subject: Re: [PATCH 0/2] meson: Fix IRQ trigger type
-Message-ID: <20181206155228.GA15225@ingrassia.epigenesys.com>
+Message-ID: <20181206162414.GA17048@ingrassia.epigenesys.com>
 References: <20181204160447.27869-1-ccaione@baylibre.com>
  <CAFBinCDCE7RP4vgs25bqSZ8vBjrmcuB=qb3U92X6QfpmzeqrBg@mail.gmail.com>
  <20181206124347.GA10676@ingrassia.epigenesys.com>
- <85973a9cd43c677ffa5c80853e86d79f36a9eb3a.camel@baylibre.com>
+ <8dd5d9da52d799f5b87272d276754e21a5e93464.camel@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <85973a9cd43c677ffa5c80853e86d79f36a9eb3a.camel@baylibre.com>
+In-Reply-To: <8dd5d9da52d799f5b87272d276754e21a5e93464.camel@baylibre.com>
 User-Agent: Mutt/1.11.1 (2018-12-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181206_075243_493446_CBAD3D23 
-X-CRM114-Status: GOOD (  26.37  )
+X-CRM114-CacheID: sfid-20181206_082432_857969_590339AC 
+X-CRM114-Status: GOOD (  47.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,16 +97,12 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Carlo,
+Hi Jerome,
 
-thanks for the answer.
-
-On Thu, Dec 06, 2018 at 01:17:58PM +0000, Carlo Caione wrote:
+On Thu, Dec 06, 2018 at 02:26:34PM +0100, Jerome Brunet wrote:
 > On Thu, 2018-12-06 at 13:43 +0100, Emiliano Ingrassia wrote:
 > > Hi all,
->
-> Hi Emiliano,
->
+> >
 > > thank you for involving me.
 > >
 > > I applied Carlo's patches[0] on a kernel vanilla 4.19.6
@@ -129,13 +126,8 @@ On Thu, Dec 06, 2018 at 01:17:58PM +0000, Carlo Caione wrote:
 > >
 > > 5) Keep packet generator active on the board and
 > >    start the packet generator on the laptop.
->
-> out of curiosity: why do you expect to see something different from
-> point (2)?
->
-
-I did not expect it indeed, I tried and got different results.
-
+> >
+> >
 > > Test results without Carlo's patches applied:
 > >
 > > 1) "nload" shows an incoming traffic of ~950Mbps;
@@ -150,75 +142,188 @@ I did not expect it indeed, I tried and got different results.
 > > 5) "nload" shows incoming traffic of 0Mbps
 > >    and an outgoing traffic of ~950Mbps.
 > >
-> > Applying only the first patch (change mac IRQ type) I got the same
-> > results.
->
-> This is expected. The change in the IRQ type is solving an issue that
-> you can see if the run a stress test involving multiple components for
-> several hours.
->
-
-OK, did you use "stress-ng" tool for tests?
-
+> > Applying only the first patch (change mac IRQ type) I got the same results.
+> >
 > > Applying only the second patch (drop eee-broken-1000t) I got the same
 > > results!
->
-> I am a bit confused here. Wasn't the eee-broken-1000t added to fix a
-> problem with the ethernet? Are you suggesting that for some reason you
-> cannot reproduce anymore the problem for which the quirk was
-> introduced?
->
-
-Problems without the "eee-broken-1000t" flags were experimented
-one and a half years ago on a Amlogic development kernel from [0],
-probably a 4.14 version.
-Many patches about Meson8b SoC, dwmac-meson8b and dwmac driver
-were introduced so yes, the "eee-broken-1000t" was added
-to fix a problem with the ethernet (one and a half years ago),
-but new tests are needed to say if it still necessary.
-
+> >
 > > With both patches applied I got the same results but with an incoming
 > > traffic
 > > of ~3Mbps on the board.
 >
-> On all the tests and immediately from the start of the tests?
+> Are you sure you did not mix up the result ?
+> I would expect this kind of drop when only the eee patch is applied.
+
+Yes, I'm sure.
+
 >
-
-Yes, in all the 5 steps immediately from the start.
-
-I also tried to execute "nload" on both sides to see the bandwidth
-usage.
-
-With bot patches applied, after starting kernel packet generator
-on my laptop with 1Gbps rate, "nload" on the laptop side shows me
-an outgoing traffic of ~940Mbps while "nload" on the board side shows
-me an incoming traffic of ~3Mbps.
-
-Also consider that a pinging test from my laptop to the board shows
-a packet loss of about 90%.
-
-> When you hit the problem con you check in /proc/interrupts if you see
-> the IRQ counter for the eth0 incrementing or not?
+> >
+> > Consider that the described tests were performed for a few minutes.
+> >
+> >
+> > The tests I performed clearly show that currently the MAC does not
+> > perform as 1G full-duplex.
 >
+> Do you really get 1G full duplex w/o any of these patch ?
+> I would be surprised if they had any meaningful impact on throughput
 
-The eth0 IRQ counter is incremented during the test.
+As I wrote in the previous mail, without the two patches applied
+I see an incoming traffic on the board of about 460 Mbps and an outgoing
+of 256 Mbps.
+On the laptop side I see an outgoing of about 940 Mbps and an incoming
+of about 256 Mbps.
+So it seems that the board (without the Carlo's patches) is losing traffic.
+I'll keep investigating to see if they can solve this problem.
 
-> Cheers,
 >
-> --
-> Carlo Caione
+> > I can't say if this depends on the hardware, the driver or
+> > the IP description in the board's device tree.
+> >
+> > From the results shown above I think that the patches regarding 32 bit
+> > Meson SoCs should NOT be applied together, but you can consider to apply
+> > only the second one which remove the "eee-broken-1000t" flag
+> > from the board MAC IP description.
+>
+> I would defenitely advise against that.
+>
+> > In particular, I think that more tests are needed to better understand
+> > what's happening in the case of Meson8b SoC.
+> >
+> > To better investigate the MAC behaviour on Odroid-C1+, should I use
+> > the Amlogic development kernel[1]? If yes, what branch should I use?
+>
+> And bit of background:
+> The MAC found in all Amlogic SoC we have seen so far comes from Synopsys
+> (dwmac).
+
+Yes, I know. I was referring to the patches regarding Meson8b SoCs
+currently not in mainline that possibly can impact this problem.
+
+>
+> The kernel provided by the vendor use the IRQ type 'EDGE_RISING' for this IP
+> This means that the HW block is supposed to generate a rising edge on the irq
+> line every time there is an event. This is opposed to the Type "LEVEL_HIGH"
+> with keep the irq line high as long as their pending IRQs
+>
+> Of course, when adding mainline support, we did the same as the vendor without
+> thinking about it
+>
+> We started to investigate the network because, after a while, we noticed
+> severe performance drops on the AXG family: the throughput would drop from
+> 900MBps to 30MBps after somethings 12+ hours of iperf tests.
+>
+> We noticed that irqs were not triggered anymore. Manually acking the IRQ in
+> the register would revive the interface. Since the IRQ is supposed to be acked
+> in the ISR, we were clearly missing IRQs and as a consequence, never acking
+> them.
+>
+> All HW using the dwmac out there are using "LEVEL_HIGH", except amlogic.
+> Changing this fixes the problem.
+>
+> Now regarding EEE: about 2 years ago, the network would break on the OC-2. We
+> noticed the EEE was generating a *LOT* of IRQs. Deactivating EEE solved the
+> problem ... or so we thought. Fact is, it was an un-acked IRQ as well, and we
+> just made it harder to trigger by disabling EEE.
+>
+> So applying the EEE patch without the IRQ_LEVEL would clearly be a mistake,
+> you would be back in the situation we investigated 2 years, with a very
+> unstable ethernet connection.
+>
+> Anyways, I have been able to test it on S905 and A113 and I think this series
+> should applied, at least for the arm64 family ... most likely of all.
+>
+> If issues persist on meson8, maybe there is something else ? soemthing hidden
+> before ?
+>
+> >
+> >
+> > On Tue, Dec 04, 2018 at 08:59:20PM +0100, Martin Blumenstingl wrote:
+> > > adding Emiliano because he experienced high packet loss on Odroid-C1
+> > > without "eee-broken-1000t"
+> > >
+> > > On Tue, Dec 4, 2018 at 5:05 PM Carlo Caione <ccaione@baylibre.com> wrote:
+> > > > The wrong IRQ trigger type for the macirq was causing the connection
+> > > > speed to drop after a few hours when stress testing the DUT. The fix
+> > > > seems also to fix another long standing issue with EEE.
+> >
+> > Carlo, can you describe precisely the tests you conducted
+> > on your board and the tools used?
+> >
+> >
+> > > the other two DesignWare controllers (2x dwc2) are also using
+> > > IRQ_TYPE_LEVEL_HIGH
+> > > so this is not unlikely - good job detective!
+> > >
+> >
+> > Consider that currently the USB ports do not work correctly.
+> > In particular, USB pendrive insertion is not recognized at runtime.
+> >
+> >
+> > > > The fixes are tested on a AXG board but we think that the same fix is
+> > > > valid also for all the others Amlogic SoC families.
+> > > I checked Amlogic's 3.10 kernel for the 32-bit SoCs and it seems they
+> > > are setting all IRQs to be edge triggered: [0]
+> > > however, Emiliano reported an issue with IRQ_TYPE_EDGE_RISING for the
+> > > dwc2 controllers as well. 291f45dd6da5fa6 "ARM: dts: meson: fixing USB
+> > > support on Meson6, Meson8 and Meson8b" fixed it for him whereas it
+> > > worked for me with IRQ_TYPE_EDGE_RISING
+> > >
+> > > I find it strange though that Amlogic's buildroot kernel (even the
+> > > latest buildroot_openlinux_kernel_4.9_fbdev_20180706) uses:
+> > >   interrupts = <0 8 1>
+> > > which translates to:
+> > >   interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>
+> > >
+> > > does the datasheet give a hint that this IRQ should be level triggered
+> > > or did you find out by trial and error?
+> > >
+> > > > Carlo Caione (2):
+> > > >   arm64: dts: meson: Fix IRQ trigger type for macirq
+> > > >   arm64: dts: meson: Remove eee-broken-1000t quirk
+> > > >
+> > > >  arch/arm/boot/dts/meson.dtsi                        | 2 +-
+> > > >  arch/arm/boot/dts/meson8b-odroidc1.dts              | 1 -
+> > > these two should be in separate patches with "ARM: dts: " as prefix
+> > >
+> > > >  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts      | 1 -
+> > > >  arch/arm64/boot/dts/amlogic/meson-axg.dtsi          | 2 +-
+> > > >  arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 2 +-
+> > > >  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
+> > > >  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi   | 1 -
+> > > >  7 files changed, 3 insertions(+), 7 deletions(-)
+> > > >
+> > > > --
+> > > > 2.19.1
+> > > >
+> > >
+> > > Regards
+> > > Martin
+> > >
+> > > [0]
+> > > https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/drivers/irqchip/irq-gic.c#L400
+> > >
+> > > _______________________________________________
+> > > linux-amlogic mailing list
+> > > linux-amlogic@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> >
+> > Best regards,
+> >
+> > Emiliano
+> >
+> > [0]
+> > http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009325.html
+> > [1]
+> > https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git/
+> >
+> > _______________________________________________
+> > linux-amlogic mailing list
+> > linux-amlogic@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
 >
 >
-
-I would like to conduct other tests with iperf3 to be sure about
-the obtained results. What do you think?
-Should I apply your patches on the latest Amlogic development kernel?
-
-Regards,
 
 Emiliano
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git/
 
 _______________________________________________
 linux-amlogic mailing list
