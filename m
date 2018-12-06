@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66C06C04EB8
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2467CC65BAF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:19:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3880320700
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:19:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E94C520700
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:19:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T42WLTaf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NM1hsxe2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3880320700
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iSwS3Kjd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="c+bM7IaW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E94C520700
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Gr565SL9KRa0ZYGzJgRkUsEyicm2sYbl1GkwKvbWrgQ=; b=T42WLTaf8KmBEO
-	GBlH22RgFOzYT/X3s3YHSqso8UaXfAi6SgtRHtjz4XjcqKUQzZUfXC0QKnMreofQcsOLxSRGv+O1g
-	ER05Lz6q4XMS4hmH0kiYTFOmJ3dbkHodZfnZaDh54xLYo6P4vyqpvwAlwYUo/MZAMjqUTHlZjyz1d
-	vdJF1eTWLTePMqXOKKccHxGSNpstKDj5aiNdM/b5oO2TZX3//VoBbPYSplLFAgP3uNSF2ldZ6HNO8
-	rSU3WHV0kbOLmmeJXzxQ2OqfRSTrX+tzK9T/H7dpL37QmP4klhT1bolb9RMMg7kOTN7Ivo2Napan2
-	vLfBBDvWZPSfOrvVgl8g==;
+	List-Owner; bh=BvFUV4JUybr8vE1dOuX/tpcJfF6dcuKTxCxL/71R+bk=; b=iSwS3KjdP5AvRA
+	2AhBJjs7tS4qLiwre99sisWk1q5jwNyFIsIfPfjONkk0eKNR6hjhLRv+aV0s5I3i2GYY3onYQtmqN
+	88zZ3sWc9n5NjVkWyY41TQ7jDKNYLXlN2bJ2p7BdO+d1yZSq8Qkyx/jcpMYXJOOwxrZ9BRFX5zoiI
+	nOqYy9y1xd3hcgaTjXydP6csiyx738tH9meMjIz1y7bqmanxFa7F8obpbwynRr2NUQwAXXgyRp4bw
+	nqz+U9HuJvYebU8PKPO1sQOrrSDeU0BXXNfI2clVOGdd0N+jVwMOv6bbG1E8z0UgVu0fgGGr9yDCC
+	MsCyBl//wDQBxYseYnDQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUvQX-0008IY-MD; Thu, 06 Dec 2018 15:18:57 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1gUvQZ-0008Kn-Qd; Thu, 06 Dec 2018 15:18:59 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUvQT-0008AL-J5
- for linux-amlogic@lists.infradead.org; Thu, 06 Dec 2018 15:18:56 +0000
-Received: by mail-wm1-x343.google.com with SMTP id f81so1416288wmd.4
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Dec 2018 07:18:43 -0800 (PST)
+ id 1gUvQS-00089k-94
+ for linux-amlogic@lists.infradead.org; Thu, 06 Dec 2018 15:18:58 +0000
+Received: by mail-wm1-x342.google.com with SMTP id a18so1462395wmj.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 06 Dec 2018 07:18:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=zFuzQAonVH5LBUCWgd9kxnQqOxUMhbJSx8M/Xm/UTNE=;
- b=NM1hsxe20rGBoKEM0JaW2QIYofsAFl0EeGKtnT2NnuqP0PzMp5TF7JSaBz5V3odkY3
- pPUQ76CO16LVvd9exqW4s3b97+TfNK/ryjW27OvZSy9ZFvPVjpKhogSbJFp5ORBm/k9n
- j2raMNxBEMjSFw0SR4qLVdn1Stzi42R+3CC0WiLZDBJeJJR6zJt5nlFOVbUg/pR482Tx
- gWHDv+xH78uosEKO/46RRa3OYXlErksskp29L6ga6u2/A5BsTOr/bD5Ed9bY9HDqZLUg
- /fwB9HtbEAcuFr99Ga2DnOxcLWTVYWACBChB3eNYyZvmpY/xYZmabqLcfLIrfYO9I+1y
- 0Mhg==
+ bh=Y7CGHPuU0cKd8uxanXCkssfy7HoOVVH2fzqpoBO3MJk=;
+ b=c+bM7IaWZi1H/3FYMQILbAyq3SkhW7Uih01O/P0gAfzhOuiZ5bnjA7L7I8NlwiHI/h
+ H3OzC5LtUaJ3Tt+AqTqgP6zvsv3H3STi6sCHOoc3iiUkw9VJrjD4nw/ljk7rlFdYfZPZ
+ n9lPPlK5rN0Rt2KtNVt7DMayET1i97tQKB+A5OnowPY5mN2MIKF5C1RarI4cDEb+fwkb
+ IkTZ+bGtP7E5G0DsA5fVu/lPbzIQ+6aL4I1rL7Nn9MWo8aAK30cScv/o+rlOFACB4wVa
+ 8Gbqh2mm58L1zsQhs1IgVCxGbY17DH2CUdB7UUG5H4rwVYbzRKmnjuPV8alx7YokJN9m
+ wi+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=zFuzQAonVH5LBUCWgd9kxnQqOxUMhbJSx8M/Xm/UTNE=;
- b=I8KFlERW6tX526BnSUpLIRs9RG6cEq5iJ8dZ/TyUkqDJVorf7VJueMddQ0ha5H6Gxs
- EMdc1LYZfOBLf/rzQWE1geN5c+cKYsHVwRw9JY+EZPMNDF8UW/Q7adZFGPfTPsozCGot
- uUVuzTMdbdqTdWEzpgqyeTm0bxT7hOaB6N7aWatxg8MqJfHSjwnFVh0eIlqkcI+bOrAm
- vInuSiBkn2UDcg/qvEp1HTkVOkEkLbkxbbsG7YgmS80Q6oTSeqyHx35+IED2Ex4Yklh5
- 87uJR+jpsscn6EgAYvBnCYJnA25RHpnyaCXU4677EuARrlaVU03HoOAXdQ2v7KRItbtS
- NtIw==
-X-Gm-Message-State: AA+aEWab3c+cj8BKp56uqZnxn0c/xxGlwwxtsC5PYFNX8yysbVBaQKJ8
- SDKZ06YMEA3bbkL8yXPCpvFGyA==
-X-Google-Smtp-Source: AFSGD/WPuB8R+c4BlfluBlJMpa2T2e3fr20rQlDhnG1K/3zIfrNTc9/AYDvHDgs3Zf4DS2ZlivQvbQ==
-X-Received: by 2002:a1c:e513:: with SMTP id c19mr21131061wmh.101.1544109522035; 
- Thu, 06 Dec 2018 07:18:42 -0800 (PST)
+ bh=Y7CGHPuU0cKd8uxanXCkssfy7HoOVVH2fzqpoBO3MJk=;
+ b=eJgqyoloLdn7rdiv3g//Y9/rWphsvZpvJBw9KBJdGFe4tZ9XdxmOu5S6G82JQVVa0E
+ nT2s0/Gl4+T5ZT0GKIayRaQ84Gz4nJLEhVYNYTX/3c9li4RiAtoFiaZaC8PxblBH/YjM
+ CnICkjw7arfbPcO6o19zmpWHDdNdZQP68w3FIuB6wQdIyTvT3gnSW6HFTOTa1xKEXicw
+ Qvqt1TuCQQoPfSM4uCVI1V6QqU72K1zdPlKLPDi1i1sRbdiOmli9mYM6PjNGFtIdceZh
+ Ate8MGfc0+/9GJOZJXhJYqwiPUu77NZjJbYo4HxdkEkWPe7om7L3ZAzqzllfk5e0Ohwc
+ zrJQ==
+X-Gm-Message-State: AA+aEWYCUml4BbEl+5Ql3/dcIGtVTHBAENd0wA7JxO6a9vS5idj5UpF/
+ ILhpZ+b42I/DuTCeE+Y6O2/6tg==
+X-Google-Smtp-Source: AFSGD/Xv9y5Gp69PrLbFCQosYzPu0t940Sru5qC/QjA70Z1iyheNfOgkmA5JlbjaAS+UP/JrjTlFjw==
+X-Received: by 2002:a7b:c1d7:: with SMTP id a23mr19076799wmj.48.1544109519103; 
+ Thu, 06 Dec 2018 07:18:39 -0800 (PST)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id j33sm939652wre.91.2018.12.06.07.18.40
+ by smtp.googlemail.com with ESMTPSA id j33sm939652wre.91.2018.12.06.07.18.37
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 06 Dec 2018 07:18:41 -0800 (PST)
+ Thu, 06 Dec 2018 07:18:38 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>, Carlo Caione <carlo@caione.org>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [RFT PATCH 4/4] mmc: meson-gx: add signal resampling
-Date: Thu,  6 Dec 2018 16:18:28 +0100
-Message-Id: <20181206151828.24417-5-jbrunet@baylibre.com>
+Subject: [PATCH 2/4] mmc: meson-gx: remove useless lock
+Date: Thu,  6 Dec 2018 16:18:26 +0100
+Message-Id: <20181206151828.24417-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.19.2
 In-Reply-To: <20181206151828.24417-1-jbrunet@baylibre.com>
 References: <20181206151828.24417-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181206_071853_649795_FF34F00A 
-X-CRM114-Status: GOOD (  13.69  )
+X-CRM114-CacheID: sfid-20181206_071852_574957_0B4AC0C7 
+X-CRM114-Status: GOOD (  10.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,72 +103,60 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-With some eMMC devices, there is still issues with the new phase
-settings. Enabling signal resampling seems to solve the problem
-for these.
+The spinlock is only used within the irq handler so it does not
+seem very useful.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ drivers/mmc/host/meson-gx-mmc.c | 7 -------
+ 1 file changed, 7 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 837bed0b8c01..c2690c1a50ff 100644
+index fcb5d693c897..5cc31e434ca1 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -66,6 +66,9 @@
+@@ -26,7 +26,6 @@
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+ #include <linux/ioport.h>
+-#include <linux/spinlock.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/mmc/host.h>
+ #include <linux/mmc/mmc.h>
+@@ -159,7 +158,6 @@ struct meson_host {
+ 	struct	mmc_host	*mmc;
+ 	struct	mmc_command	*cmd;
  
- #define SD_EMMC_DELAY 0x4
- #define SD_EMMC_ADJUST 0x8
-+#define   ADJUST_ADJ_DELAY_MASK GENMASK(21, 16)
-+#define   ADJUST_DS_EN BIT(15)
-+#define   ADJUST_ADJ_EN BIT(13)
+-	spinlock_t lock;
+ 	void __iomem *regs;
+ 	struct clk *core_clk;
+ 	struct clk *mmc_clk;
+@@ -1040,8 +1038,6 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (WARN_ON(!host) || WARN_ON(!host->cmd))
+ 		return IRQ_NONE;
  
- #define SD_EMMC_DELAY1 0x4
- #define SD_EMMC_DELAY2 0x8
-@@ -143,6 +146,7 @@ struct meson_mmc_data {
- 	unsigned int tx_delay_mask;
- 	unsigned int rx_delay_mask;
- 	unsigned int always_on;
-+	unsigned int adjust;
- };
+-	spin_lock(&host->lock);
+-
+ 	cmd = host->cmd;
+ 	data = cmd->data;
+ 	cmd->error = 0;
+@@ -1091,7 +1087,6 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (ret == IRQ_HANDLED)
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
  
- struct sd_emmc_desc {
-@@ -1162,7 +1166,7 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
- 
- static void meson_mmc_cfg_init(struct meson_host *host)
- {
--	u32 cfg = 0;
-+	u32 cfg = 0, adj = 0;
- 
- 	cfg |= FIELD_PREP(CFG_RESP_TIMEOUT_MASK,
- 			  ilog2(SD_EMMC_CFG_RESP_TIMEOUT));
-@@ -1173,6 +1177,10 @@ static void meson_mmc_cfg_init(struct meson_host *host)
- 	cfg |= CFG_ERR_ABORT;
- 
- 	writel(cfg, host->regs + SD_EMMC_CFG);
-+
-+	/* enable signal resampling w/o delay */
-+	adj = ADJUST_ADJ_EN;
-+	writel(adj, host->regs + host->data->adjust);
+-	spin_unlock(&host->lock);
+ 	return ret;
  }
  
- static int meson_mmc_card_busy(struct mmc_host *mmc)
-@@ -1396,12 +1404,14 @@ static const struct meson_mmc_data meson_gx_data = {
- 	.tx_delay_mask	= CLK_V2_TX_DELAY_MASK,
- 	.rx_delay_mask	= CLK_V2_RX_DELAY_MASK,
- 	.always_on	= CLK_V2_ALWAYS_ON,
-+	.adjust		= SD_EMMC_ADJUST,
- };
+@@ -1244,8 +1239,6 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	host->dev = &pdev->dev;
+ 	dev_set_drvdata(&pdev->dev, host);
  
- static const struct meson_mmc_data meson_axg_data = {
- 	.tx_delay_mask	= CLK_V3_TX_DELAY_MASK,
- 	.rx_delay_mask	= CLK_V3_RX_DELAY_MASK,
- 	.always_on	= CLK_V3_ALWAYS_ON,
-+	.adjust		= SD_EMMC_V3_ADJUST,
- };
- 
- static const struct of_device_id meson_mmc_of_match[] = {
+-	spin_lock_init(&host->lock);
+-
+ 	/* Get regulators and the supported OCR mask */
+ 	host->vqmmc_enabled = false;
+ 	ret = mmc_regulator_get_supply(mmc);
 -- 
 2.19.2
 
