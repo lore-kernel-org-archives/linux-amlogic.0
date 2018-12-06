@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 670AEC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 16:24:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79718C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 18:52:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2447C20659
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 16:24:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2CEB720989
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 18:52:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hFw64iFS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2447C20659
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hPDIZgPP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2CEB720989
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=epigenesys.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,59 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mr+OWBQs0hFq9q8J0bZPoUF5Pfn9UkhclKecuKjCacM=; b=hFw64iFSju45ac
-	/i8UN0ogJOsDFW/dxtxdZeGVlnOSnNe1O7MjbtsqYrAFwP9cO7djggJRgfKZZllCtV2YUOIsxknlG
-	/rpbcR83L1t0PjWSvasHTD54T1kRrIZqoGNu8GcUSrXwEMGiL6gT5m4XFtGlSRJjUcbSE7BJ8uycT
-	OxvlzD8ycgRzuzr57oQ9njA5IXSgIV13xvXxNiRxhz2cQTsaq4Qq+sRM7LKBGZEnZLivccoLMxjcw
-	irBIRzxQS+iAQ4dgXBUlp78MqWMRW9t8mjbEG6O5h4MoWDzhOPMzhhTOOeXMLUgbaFICkcrPPHdV3
-	DmgfgCv2TUjonQ5OypQQ==;
+	List-Owner; bh=L0igEqRtk4WueXw3WZPqo4aj5JwwVTnjeVgVOwv4bZk=; b=hPDIZgPPDBsLoE
+	MO4YdQ1JpRFcq79IFo4WKuJ+rx3Uk47E3Ut6Hs8rWP3/sizUa0Pjrk09UfvzFgz2iggEdXzgXxA+z
+	X17Ekp2aJVEUHFYw8AD4nyZqoN2ZYtDdM1z8UBnmXUoQ0CsfT5VypRPGEMkhAEZ7qhWnywTSmMOcJ
+	YjcLmrvhAKl5POCWO3L9SOBaiCRgvVu65DIvmFdTehgR5IFbMT9jQAJmMDs1KtQMU/s+8da2pMdrG
+	DAJryuJtq+b/yKYrX9FLxkp7OS32kpwc694Bmnloii57yrJuqTICSns4Xa/DqRhJglSvpAp341Sxd
+	0PMGEvUFY5+u497Vl2PA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUwS4-00076z-Kv; Thu, 06 Dec 2018 16:24:36 +0000
-Received: from mail-wr1-f68.google.com ([209.85.221.68])
+	id 1gUyl9-0003it-Ev; Thu, 06 Dec 2018 18:52:27 +0000
+Received: from mail-wm1-f68.google.com ([209.85.128.68])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUwS0-00074e-QI; Thu, 06 Dec 2018 16:24:35 +0000
-Received: by mail-wr1-f68.google.com with SMTP id q18so1063274wrx.9;
- Thu, 06 Dec 2018 08:24:19 -0800 (PST)
+ id 1gUykw-0003Lz-DC; Thu, 06 Dec 2018 18:52:16 +0000
+Received: by mail-wm1-f68.google.com with SMTP id y139so2003370wmc.5;
+ Thu, 06 Dec 2018 10:52:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=sa7soAgLrBjLefwDH2STTzbfO5UGIOdQp+DJVcKw5Rw=;
- b=Sn2/8EMIaj5nVPp5Ga0vdPpvdNOO7rJFVRV12vP9RUS/nOb3PQosC/fewR0P5IKvE1
- va1QOvPr79NDryIo37B+80VrQr7BXww2ysAFfS2kT3sZJwbS+zjnlWEfZVyu8WQkg1OE
- M8BAx46iRDHLhGleKMbl9lN8JZ+JEB9+GYRb+MjvVPfb/+zpm6SbRSYdwwB3wpyjp0Mr
- +symcL0etqakO1Xg+k5Iu98hYuXQXiZ1U0B/EsWk9VQm2ojUq8tcsRgof53Wwjqm8eKY
- 4mo6WFD7EzwwqKHgY7ROGfvP21J8/PbaweI0/5sgf6PjnLvLKWlWiuMCuYlZlJVajKTf
- n/kA==
-X-Gm-Message-State: AA+aEWbbFm2rAp5u6tMTX2ZDKid+2ZFCEkkfVJxFVrjYHTRSufExToHe
- gI7fo+07xLWmGZjpFENRrsY=
-X-Google-Smtp-Source: AFSGD/Uri+3U5/QLR/JxP/e8G+M8J1G9PpwsUXOo9JtgMlGC71q8VM4HdXQTZQrgfQzt0EbfjZ/m9g==
-X-Received: by 2002:a5d:5089:: with SMTP id a9mr26676178wrt.327.1544113457523; 
- Thu, 06 Dec 2018 08:24:17 -0800 (PST)
+ bh=+t9kXIoCE3qlpaw+lyFzecaWOWibnAWKGmp8FFlEkfM=;
+ b=haZGLfQt8OHdzMTMUA0u1Xd+SJIYVap6k1fE6AQF+jTuoqT5oehgMuG+9l6o+UNcxp
+ b8ogIEc84dX9GnGw06BlchvBy5UlM+rj5rd4nkKRoJfV4iW9tSd8HEbjEa52H4qwPcXm
+ oq/xaoDVIR5OcG+/JOdy5mLs0P5Vh0ZJtxOXAFEyFttiYIUZpLdFepeQfT1MukNZ9ek1
+ zPDba4T1iZTm/MZ7Trw9RMW12gGMBdJEoi24MZjljqOQWU6bC8qYBNH0K2Fd7344zJ/O
+ cg2LqdFDCoRCMQHb/rgabjnCHx8u0MP27EltNt1GFrnjS0QB62aaCb3mkOfMNdjpn6j9
+ sD0A==
+X-Gm-Message-State: AA+aEWZ6N0QQEkul6kFaJZfCeD6UOq/mvgxhXRhgwvLsfhdZYRlaaupQ
+ aLzNkglJxWff0k5K4xTILH8=
+X-Google-Smtp-Source: AFSGD/UdYdTLhlyNyHpBZLLR605L+9UiC5kVx8aJsnkjUT0us7+MwCGrR4u5QBgcNwav8UHzd2twTA==
+X-Received: by 2002:a1c:35ca:: with SMTP id
+ c193mr20318848wma.146.1544122322425; 
+ Thu, 06 Dec 2018 10:52:02 -0800 (PST)
 Received: from ingrassia.epigenesys.com
  (host194-85-static.3-79-b.business.telecomitalia.it. [79.3.85.194])
- by smtp.gmail.com with ESMTPSA id c65sm1244062wma.24.2018.12.06.08.24.15
+ by smtp.gmail.com with ESMTPSA id s66sm2158602wmf.34.2018.12.06.10.52.00
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 06 Dec 2018 08:24:16 -0800 (PST)
-Date: Thu, 6 Dec 2018 17:24:14 +0100
+ Thu, 06 Dec 2018 10:52:00 -0800 (PST)
+Date: Thu, 6 Dec 2018 19:51:58 +0100
 From: Emiliano Ingrassia <ingrassia@epigenesys.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Carlo Caione <ccaione@baylibre.com>
+To: Carlo Caione <ccaione@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Subject: Re: [PATCH 0/2] meson: Fix IRQ trigger type
-Message-ID: <20181206162414.GA17048@ingrassia.epigenesys.com>
+Message-ID: <20181206185158.GA19901@ingrassia.epigenesys.com>
 References: <20181204160447.27869-1-ccaione@baylibre.com>
  <CAFBinCDCE7RP4vgs25bqSZ8vBjrmcuB=qb3U92X6QfpmzeqrBg@mail.gmail.com>
  <20181206124347.GA10676@ingrassia.epigenesys.com>
- <8dd5d9da52d799f5b87272d276754e21a5e93464.camel@baylibre.com>
+ <85973a9cd43c677ffa5c80853e86d79f36a9eb3a.camel@baylibre.com>
+ <20181206155228.GA15225@ingrassia.epigenesys.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <8dd5d9da52d799f5b87272d276754e21a5e93464.camel@baylibre.com>
+In-Reply-To: <20181206155228.GA15225@ingrassia.epigenesys.com>
 User-Agent: Mutt/1.11.1 (2018-12-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181206_082432_857969_590339AC 
-X-CRM114-Status: GOOD (  47.47  )
+X-CRM114-CacheID: sfid-20181206_105214_444644_30EA9597 
+X-CRM114-Status: GOOD (  32.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,231 +98,269 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+Hi Carlo,
 
-On Thu, Dec 06, 2018 at 02:26:34PM +0100, Jerome Brunet wrote:
-> On Thu, 2018-12-06 at 13:43 +0100, Emiliano Ingrassia wrote:
-> > Hi all,
-> >
-> > thank you for involving me.
-> >
-> > I applied Carlo's patches[0] on a kernel vanilla 4.19.6
-> > and tested it with kernel packet generator, monitoring
-> > bandwidth usage with "nload".
-> >
-> > All tests were conducted on an Odroid-C1+ Rev. 0.4-20150930 board
-> > with a short ethernet cable directly attached to a laptop with
-> > 1G ethernet interface, with "nload" running on the board.
-> >
-> > The tests I performed are composed by the following steps:
-> >
-> > 1) Start packet generator with "rate 1000M" on laptop;
-> >
-> > 2) Keep packet generator active on the laptop and
-> >    start the packet generator on the board with "rate 1000M";
-> >
-> > 3) Stop both packet generators;
-> >
-> > 4) Start packet generator on the board;
-> >
-> > 5) Keep packet generator active on the board and
-> >    start the packet generator on the laptop.
-> >
-> >
-> > Test results without Carlo's patches applied:
-> >
-> > 1) "nload" shows an incoming traffic of ~950Mbps;
-> >
-> > 2) "nload" shows an incoming traffic of ~400Mbps
-> >    and an outgoing traffic of ~250Mbps;
-> >
-> > 3) "nload" shows 0Mbps both for incoming and outgoing traffic;
-> >
-> > 4) "nload" shows an outgoing traffic of ~950Mbps from the board;
-> >
-> > 5) "nload" shows incoming traffic of 0Mbps
-> >    and an outgoing traffic of ~950Mbps.
-> >
-> > Applying only the first patch (change mac IRQ type) I got the same results.
-> >
-> > Applying only the second patch (drop eee-broken-1000t) I got the same
-> > results!
-> >
-> > With both patches applied I got the same results but with an incoming
-> > traffic
-> > of ~3Mbps on the board.
->
-> Are you sure you did not mix up the result ?
-> I would expect this kind of drop when only the eee patch is applied.
+I keep running tests with packet generator,
+using nload to show bandwidth usage.
 
-Yes, I'm sure.
+Here is my test results with packet generators
+both running on laptop and board with rate 1 Gbps.
 
->
-> >
-> > Consider that the described tests were performed for a few minutes.
-> >
-> >
-> > The tests I performed clearly show that currently the MAC does not
-> > perform as 1G full-duplex.
->
-> Do you really get 1G full duplex w/o any of these patch ?
-> I would be surprised if they had any meaningful impact on throughput
+TEST 0: no patch applied.
 
-As I wrote in the previous mail, without the two patches applied
-I see an incoming traffic on the board of about 460 Mbps and an outgoing
-of 256 Mbps.
-On the laptop side I see an outgoing of about 940 Mbps and an incoming
-of about 256 Mbps.
-So it seems that the board (without the Carlo's patches) is losing traffic.
-I'll keep investigating to see if they can solve this problem.
+1) Start packet generator on laptop:
 
->
-> > I can't say if this depends on the hardware, the driver or
-> > the IP description in the board's device tree.
-> >
-> > From the results shown above I think that the patches regarding 32 bit
-> > Meson SoCs should NOT be applied together, but you can consider to apply
-> > only the second one which remove the "eee-broken-1000t" flag
-> > from the board MAC IP description.
->
-> I would defenitely advise against that.
->
-> > In particular, I think that more tests are needed to better understand
-> > what's happening in the case of Meson8b SoC.
-> >
-> > To better investigate the MAC behaviour on Odroid-C1+, should I use
-> > the Amlogic development kernel[1]? If yes, what branch should I use?
->
-> And bit of background:
-> The MAC found in all Amlogic SoC we have seen so far comes from Synopsys
-> (dwmac).
+              | incoming traffic | outgoing traffic
+=====================================================
+nload (board) |     ~940 Mbps    |       0 Mbps
+-----------------------------------------------------
+nload (laptop)|       0 Mbps     |     ~940 Mbps
+=====================================================
 
-Yes, I know. I was referring to the patches regarding Meson8b SoCs
-currently not in mainline that possibly can impact this problem.
+2) Start packet generator on board:
 
+              | incoming traffic  | outgoing traffic
+==============+===================+==================
+nload (board) |     ~460 Mbps     |     ~256 Mbps
+--------------+-------------------+------------------
+nload (laptop)|     ~256 Mbps     |     ~940 Mbps
+=====================================================
+
+3) Stop packet generator on laptop:
+
+              | incoming traffic | outgoing traffic
+=====================================================
+nload (board) |       0 Mbps     |    ~940 Mbps
+-----------------------------------------------------
+nload (laptop)|       ~940 Mbps  |      0 Mbps
+=====================================================
+
+4) Restart packet generator on laptop:
+
+              | incoming traffic | outgoing traffic
+=====================================================
+nload (board) |     ~0 Mbps      |     ~940 Mbps
+-----------------------------------------------------
+nload (laptop)|     ~940 Mbps    |     ~940 Mbps
+=====================================================
+
+In the last case the "ifconfig" statistics about RX packets
+remain fixed which probably indicates that the incoming traffic
+to the board is effectively being dropped.
+
+The eth0 interrupt counter keeps incrementing.
+Simple ping test works correctly.
+
+
+TEST 1: IRQ type patch applied
+
+Same results as TEST 0.
+
+
+TEST 2: eee-broken-1000t flag removed
+
+1) Start packet generator on laptop:
+
+              | incoming traffic | outgoing traffic
+=====================================================
+nload (board) |      ~3Mbps      |       0 Mbps
+-----------------------------------------------------
+nload (laptop)|       0 Mbps     |     ~940 Mbps
+=====================================================
+
+2) Start packet generator on board:
+
+              | incoming traffic  | outgoing traffic
+==============+===================+==================
+nload (board) |     ~0 Mbps       |     ~940 Mbps
+--------------+-------------------+------------------
+nload (laptop)|     ~940 Mbps     |     ~940 Mbps
+=====================================================
+
+3) Stop packet generator on laptop:
+
+              | incoming traffic | outgoing traffic
+=====================================================
+nload (board) |       0 Mbps     |    ~940 Mbps
+-----------------------------------------------------
+nload (laptop)|       ~940 Mbps  |      0 Mbps
+=====================================================
+
+4) Restart packet generator on laptop:
+
+              | incoming traffic | outgoing traffic
+=====================================================
+nload (board) |     ~0 Mbps      |     ~940 Mbps
+-----------------------------------------------------
+nload (laptop)|     ~940 Mbps    |     ~940 Mbps
+=====================================================
+
+In the first case the "ifconfig" statistics about RX packets
+are incremented consistently with the incoming traffic value
+showed by the nload (board side).
+
+In the last case the "ifconfig" statistics about RX packets
+remain fixed which probably indicates that the incoming traffic
+to the board is effectively being dropped.
+
+The eth0 interrupt counter keeps incrementing.
+Simple ping test from laptop to board shows a packet loss
+of 90% and more while no packet loss achieved pinging
+the laptop from the board.
+
+
+TEST 3: both patches applied.
+
+Same results as TEST 2.
+
+
+From the results obtained from these tests,
+which are more accurate than the previous one,
+I can say that the second patch (remove eee-broken-1000t flag)
+should NOT be applied.
+
+About the first one (change MAC IRQ type), I would like
+to do other tests with other tools like iperf3.
+With these results only, I would say to not apply it
+because nothing changed but if your stress test failed on
+long running and this patch fix it I would like to test it more deeply.
+
+As final thought, the conducted tests clearly show that if the board
+transmits at full rate, all the incoming traffic is dropped.
+I think that this behaviour should be fixed but don't know if
+it depends on the driver or device tree description.
+I'll keep investigating.
+
+Regards,
+
+Emiliano
+
+On Thu, Dec 06, 2018 at 04:52:28PM +0100, Emiliano Ingrassia wrote:
+> Hi Carlo,
 >
-> The kernel provided by the vendor use the IRQ type 'EDGE_RISING' for this IP
-> This means that the HW block is supposed to generate a rising edge on the irq
-> line every time there is an event. This is opposed to the Type "LEVEL_HIGH"
-> with keep the irq line high as long as their pending IRQs
+> thanks for the answer.
 >
-> Of course, when adding mainline support, we did the same as the vendor without
-> thinking about it
->
-> We started to investigate the network because, after a while, we noticed
-> severe performance drops on the AXG family: the throughput would drop from
-> 900MBps to 30MBps after somethings 12+ hours of iperf tests.
->
-> We noticed that irqs were not triggered anymore. Manually acking the IRQ in
-> the register would revive the interface. Since the IRQ is supposed to be acked
-> in the ISR, we were clearly missing IRQs and as a consequence, never acking
-> them.
->
-> All HW using the dwmac out there are using "LEVEL_HIGH", except amlogic.
-> Changing this fixes the problem.
->
-> Now regarding EEE: about 2 years ago, the network would break on the OC-2. We
-> noticed the EEE was generating a *LOT* of IRQs. Deactivating EEE solved the
-> problem ... or so we thought. Fact is, it was an un-acked IRQ as well, and we
-> just made it harder to trigger by disabling EEE.
->
-> So applying the EEE patch without the IRQ_LEVEL would clearly be a mistake,
-> you would be back in the situation we investigated 2 years, with a very
-> unstable ethernet connection.
->
-> Anyways, I have been able to test it on S905 and A113 and I think this series
-> should applied, at least for the arm64 family ... most likely of all.
->
-> If issues persist on meson8, maybe there is something else ? soemthing hidden
-> before ?
->
+> On Thu, Dec 06, 2018 at 01:17:58PM +0000, Carlo Caione wrote:
+> > On Thu, 2018-12-06 at 13:43 +0100, Emiliano Ingrassia wrote:
+> > > Hi all,
 > >
+> > Hi Emiliano,
 > >
-> > On Tue, Dec 04, 2018 at 08:59:20PM +0100, Martin Blumenstingl wrote:
-> > > adding Emiliano because he experienced high packet loss on Odroid-C1
-> > > without "eee-broken-1000t"
+> > > thank you for involving me.
 > > >
-> > > On Tue, Dec 4, 2018 at 5:05 PM Carlo Caione <ccaione@baylibre.com> wrote:
-> > > > The wrong IRQ trigger type for the macirq was causing the connection
-> > > > speed to drop after a few hours when stress testing the DUT. The fix
-> > > > seems also to fix another long standing issue with EEE.
-> >
-> > Carlo, can you describe precisely the tests you conducted
-> > on your board and the tools used?
-> >
-> >
-> > > the other two DesignWare controllers (2x dwc2) are also using
-> > > IRQ_TYPE_LEVEL_HIGH
-> > > so this is not unlikely - good job detective!
+> > > I applied Carlo's patches[0] on a kernel vanilla 4.19.6
+> > > and tested it with kernel packet generator, monitoring
+> > > bandwidth usage with "nload".
 > > >
-> >
-> > Consider that currently the USB ports do not work correctly.
-> > In particular, USB pendrive insertion is not recognized at runtime.
-> >
-> >
-> > > > The fixes are tested on a AXG board but we think that the same fix is
-> > > > valid also for all the others Amlogic SoC families.
-> > > I checked Amlogic's 3.10 kernel for the 32-bit SoCs and it seems they
-> > > are setting all IRQs to be edge triggered: [0]
-> > > however, Emiliano reported an issue with IRQ_TYPE_EDGE_RISING for the
-> > > dwc2 controllers as well. 291f45dd6da5fa6 "ARM: dts: meson: fixing USB
-> > > support on Meson6, Meson8 and Meson8b" fixed it for him whereas it
-> > > worked for me with IRQ_TYPE_EDGE_RISING
+> > > All tests were conducted on an Odroid-C1+ Rev. 0.4-20150930 board
+> > > with a short ethernet cable directly attached to a laptop with
+> > > 1G ethernet interface, with "nload" running on the board.
 > > >
-> > > I find it strange though that Amlogic's buildroot kernel (even the
-> > > latest buildroot_openlinux_kernel_4.9_fbdev_20180706) uses:
-> > >   interrupts = <0 8 1>
-> > > which translates to:
-> > >   interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>
+> > > The tests I performed are composed by the following steps:
 > > >
-> > > does the datasheet give a hint that this IRQ should be level triggered
-> > > or did you find out by trial and error?
+> > > 1) Start packet generator with "rate 1000M" on laptop;
 > > >
-> > > > Carlo Caione (2):
-> > > >   arm64: dts: meson: Fix IRQ trigger type for macirq
-> > > >   arm64: dts: meson: Remove eee-broken-1000t quirk
-> > > >
-> > > >  arch/arm/boot/dts/meson.dtsi                        | 2 +-
-> > > >  arch/arm/boot/dts/meson8b-odroidc1.dts              | 1 -
-> > > these two should be in separate patches with "ARM: dts: " as prefix
+> > > 2) Keep packet generator active on the laptop and
+> > >    start the packet generator on the board with "rate 1000M";
 > > >
-> > > >  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts      | 1 -
-> > > >  arch/arm64/boot/dts/amlogic/meson-axg.dtsi          | 2 +-
-> > > >  arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 2 +-
-> > > >  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
-> > > >  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi   | 1 -
-> > > >  7 files changed, 3 insertions(+), 7 deletions(-)
-> > > >
-> > > > --
-> > > > 2.19.1
-> > > >
+> > > 3) Stop both packet generators;
 > > >
-> > > Regards
-> > > Martin
+> > > 4) Start packet generator on the board;
 > > >
-> > > [0]
-> > > https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/drivers/irqchip/irq-gic.c#L400
-> > >
-> > > _______________________________________________
-> > > linux-amlogic mailing list
-> > > linux-amlogic@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> > > 5) Keep packet generator active on the board and
+> > >    start the packet generator on the laptop.
 > >
-> > Best regards,
+> > out of curiosity: why do you expect to see something different from
+> > point (2)?
 > >
-> > Emiliano
-> >
-> > [0]
-> > http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009325.html
-> > [1]
-> > https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git/
-> >
-> > _______________________________________________
-> > linux-amlogic mailing list
-> > linux-amlogic@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
 >
+> I did not expect it indeed, I tried and got different results.
 >
+> > > Test results without Carlo's patches applied:
+> > >
+> > > 1) "nload" shows an incoming traffic of ~950Mbps;
+> > >
+> > > 2) "nload" shows an incoming traffic of ~400Mbps
+> > >    and an outgoing traffic of ~250Mbps;
+> > >
+> > > 3) "nload" shows 0Mbps both for incoming and outgoing traffic;
+> > >
+> > > 4) "nload" shows an outgoing traffic of ~950Mbps from the board;
+> > >
+> > > 5) "nload" shows incoming traffic of 0Mbps
+> > >    and an outgoing traffic of ~950Mbps.
+> > >
+> > > Applying only the first patch (change mac IRQ type) I got the same
+> > > results.
+> >
+> > This is expected. The change in the IRQ type is solving an issue that
+> > you can see if the run a stress test involving multiple components for
+> > several hours.
+> >
+>
+> OK, did you use "stress-ng" tool for tests?
+>
+> > > Applying only the second patch (drop eee-broken-1000t) I got the same
+> > > results!
+> >
+> > I am a bit confused here. Wasn't the eee-broken-1000t added to fix a
+> > problem with the ethernet? Are you suggesting that for some reason you
+> > cannot reproduce anymore the problem for which the quirk was
+> > introduced?
+> >
+>
+> Problems without the "eee-broken-1000t" flags were experimented
+> one and a half years ago on a Amlogic development kernel from [0],
+> probably a 4.14 version.
+> Many patches about Meson8b SoC, dwmac-meson8b and dwmac driver
+> were introduced so yes, the "eee-broken-1000t" was added
+> to fix a problem with the ethernet (one and a half years ago),
+> but new tests are needed to say if it still necessary.
+>
+> > > With both patches applied I got the same results but with an incoming
+> > > traffic
+> > > of ~3Mbps on the board.
+> >
+> > On all the tests and immediately from the start of the tests?
+> >
+>
+> Yes, in all the 5 steps immediately from the start.
+>
+> I also tried to execute "nload" on both sides to see the bandwidth
+> usage.
+>
+> With bot patches applied, after starting kernel packet generator
+> on my laptop with 1Gbps rate, "nload" on the laptop side shows me
+> an outgoing traffic of ~940Mbps while "nload" on the board side shows
+> me an incoming traffic of ~3Mbps.
+>
+> Also consider that a pinging test from my laptop to the board shows
+> a packet loss of about 90%.
+>
+> > When you hit the problem con you check in /proc/interrupts if you see
+> > the IRQ counter for the eth0 incrementing or not?
+> >
+>
+> The eth0 IRQ counter is incremented during the test.
+>
+> > Cheers,
+> >
+> > --
+> > Carlo Caione
+> >
+> >
+>
+> I would like to conduct other tests with iperf3 to be sure about
+> the obtained results. What do you think?
+> Should I apply your patches on the latest Amlogic development kernel?
+>
+> Regards,
+>
+> Emiliano
+>
+> [0] https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git/
+
+Cheers,
 
 Emiliano
 
