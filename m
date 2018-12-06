@@ -2,23 +2,23 @@ Return-Path: <SRS0=x061=OP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_RHS_DOB,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CC11EC04EB9
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 14:44:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C9631C65BAF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:18:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8178C20892
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 14:44:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9A28120700
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 15:18:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YnhfTfp3";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="uGawKfyY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8178C20892
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linuxfoundation.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fdlpkaUC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="acMyHwrt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9A28120700
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -26,46 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Qf1zC/Hr7pRk8QMrkKAWzaDyWya5z9IycDQDR84VQ1U=; b=YnhfTfp3rUw79+
-	J2vHXXRA1sRQmn2v048Gv6xM8GOVCq09FZ/gG4ZMY5UstnCBwj5BaitOfNXpHTpYe2HGkofAkp5OW
-	i0HsBpulMxl444w75YlDDh1Bg1sBmOnMmhfqo5WdF6q5rcSyHk3sP/y7Xwj4cLoxprofexJoaMNFO
-	w+QW35hX6tDs8VXldvBY2Hj7wSJvroOncTC/PEpERy6Zcrxqgnms2qcIEk2UEDm5OZsSlJbLcubdr
-	22umj5EDFwto/52nvYVuVdXkxRvhexje9jCHoh0ftA+DeVgo6gOnYGSSvisjg/JaAsbsJdbOz80cx
-	QQxvaZOQeTGXlE+l/wXg==;
+	List-Owner; bh=igdGioWgLuBc3nhFc/2B6fiO8Zn9dAFwGy/jEzgOt5s=; b=fdlpkaUC9oDAdY
+	Uf8BWQowsJ8DVSYCqKnuSd20mNODwwWo8d7sRT+ebdLPKV0flr45aCk/UvpHBYmpqEjxlsXE54m2y
+	JIfaVvB9PEcImLOlNWsPcztDhogDBteYMUdriaOtoeOsSFvWgCneYPjb4He363qwLxneQYGF8yOVs
+	HrVMZpRfZiCP3jTsL4FA/9+pl+y+PvlprTebdgMFadg5Eds2pLKCFFk1q1FkldSTq4Cg2ZIGSA+je
+	UjgjqIKKBKO3J0jHsidFP2ZEEIBxKnv755ola7Rml+vOJUWC1FweQRWe4PsWfpcO48xeuZZO7jGi8
+	iKaulMrplnSOn8QNlmfw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUusd-0007bF-MQ; Thu, 06 Dec 2018 14:43:55 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gUvQR-0008Ce-Iu; Thu, 06 Dec 2018 15:18:51 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUusZ-0007M7-MT; Thu, 06 Dec 2018 14:43:53 +0000
-Received: from localhost (5356596B.cm-6-7b.dynamic.ziggo.nl [83.86.89.107])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id D2F562082B;
- Thu,  6 Dec 2018 14:43:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1544107421;
- bh=cam+E+F7uqsaNknv2th6KtRUGoXkJ0sj0/ywuuWU0PM=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=uGawKfyYfk7LUl9d0b+AOv76lRdKqo6wwx2fQ4NiMTkaAoB0dfu8z0bJyOP0bRg0/
- /CticpwDYlzwqqCLRB0B9J55PWtRXuF4HBJp6D1C9rpHzvNAMLf3hgQKfMzqyyFViQ
- Cvs7eNPwKLS/q6qiE6lAqr1QGKZZe5nphTaPHR/o=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH 4.14 21/55] drm/meson: Fix OOB memory accesses in
- meson_viu_set_osd_lut()
-Date: Thu,  6 Dec 2018 15:38:55 +0100
-Message-Id: <20181206143002.881189154@linuxfoundation.org>
+ id 1gUvQO-00089i-3h
+ for linux-amlogic@lists.infradead.org; Thu, 06 Dec 2018 15:18:50 +0000
+Received: by mail-wr1-x443.google.com with SMTP id p4so852981wrt.7
+ for <linux-amlogic@lists.infradead.org>; Thu, 06 Dec 2018 07:18:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=IQ1pNjxAYQJEy/wzhy8LaXlzyI+EffZDKMSvsOZcQ9o=;
+ b=acMyHwrt8WgUGbImx9XBPcsSw2WvrcbkjNowHm4RCMrQJ7XXJZ9LcOpXwNKXzOoXB+
+ QsQd2L97Ag48Goc5hiLqAq4RoklHafsgH26vd19mbEdTDx/sD1J5yb2UXZzhjl79pNQU
+ Vawqbb1mvm6KUoh+nFgzlbgppYUIW7Bo0pOqNtyZSBBI1p9VmAzEkgOn6f9NdYDO3DWb
+ VR5PqVvPcgZUVbTT1nVfSBolvwRzQm2UYbpfmCVtog01V4Hxc2WJL5ROpb3oKmM5ju1u
+ 8iZse5p76cdHWXAMkM0VV0VPqL1UYWk819PXPt7XxQZ31VTHoHLM/UF05srG9VNBmuLC
+ dE1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=IQ1pNjxAYQJEy/wzhy8LaXlzyI+EffZDKMSvsOZcQ9o=;
+ b=JtTmpSjLuLRRFjN7LAT7+6efpQQGSmAVvf/HLEyhnOiQBNwr8W35RkCw7cdekHxuhV
+ 4iLsMxtJ3+4S4tUNJT/perYMtuM+3PTFiVfbJedymL51TEANxanO4wc2S6KUVB3uSmmT
+ eoSRJzkDcuw2B+cnmIJ36vaMUbhjMWnt4+OjnrN9lYcaHcgS6hsux8u8NaYQkFWbDm4R
+ 8pmkivs5GLCoP30LqIWzobjih3suxasY7KocW77W0QodpUrl5emcaCEYMKdpdPf1271B
+ WRMjsiEOxGGG8l6qFX0xo10CulINuggz05Mu5kgK2jI1FIFGyGwMywt3tj+7kRchOhrz
+ 7y2g==
+X-Gm-Message-State: AA+aEWZc9ZEMMNiHG0GHGojgVfbQksEg4jkv4a5bvlsZmtqTC4lTcunm
+ p6V1y1GOn86VdWs3opyW0m3d3A==
+X-Google-Smtp-Source: AFSGD/U8nu1DsCPYsh2NpH8OPun8NLHb8LoJrqrEDBbNcqDltn6ibXdObfZSfShbSLcVoun+L/F78w==
+X-Received: by 2002:adf:ce86:: with SMTP id r6mr27113095wrn.257.1544109517755; 
+ Thu, 06 Dec 2018 07:18:37 -0800 (PST)
+Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.googlemail.com with ESMTPSA id j33sm939652wre.91.2018.12.06.07.18.36
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 06 Dec 2018 07:18:37 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Carlo Caione <carlo@caione.org>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 1/4] mmc: meson-gx: make sure the descriptor is stopped on
+ errors
+Date: Thu,  6 Dec 2018 16:18:25 +0100
+Message-Id: <20181206151828.24417-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.19.2
-In-Reply-To: <20181206143001.749982936@linuxfoundation.org>
-References: <20181206143001.749982936@linuxfoundation.org>
-User-Agent: quilt/0.65
-X-stable: review
-X-Patchwork-Hint: ignore
+In-Reply-To: <20181206151828.24417-1-jbrunet@baylibre.com>
+References: <20181206151828.24417-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181206_064351_776206_61549242 
-X-CRM114-Status: GOOD (  10.55  )
+X-CRM114-CacheID: sfid-20181206_071848_158369_0FF821C0 
+X-CRM114-Status: GOOD (  17.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,155 +97,182 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Lyude Paul <lyude@redhat.com>, Neil Armstrong <narmstrong@baylibre.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, stable@vger.kernel.org,
- Sean Paul <seanpaul@chromium.org>, dri-devel@lists.freedesktop.org,
- Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-4.14-stable review patch.  If anyone has any objections, please let me know.
+On errors, if we don't stop the descriptor chain, it may continue to
+run and raise IRQ after we have called mmc_request_done(). This is bad
+because we won't be able to get cmd anymore and properly deal with the
+IRQ.
 
-------------------
+This patch makes sure the descriptor chain is stopped before
+calling mmc_request_done()
 
-From: Lyude Paul <lyude@redhat.com>
-
-commit 97b2a3180a559a33852ac0cd77904166069484fd upstream.
-
-Currently on driver bringup with KASAN enabled, meson triggers an OOB
-memory access as shown below:
-
-[  117.904528] ==================================================================
-[  117.904560] BUG: KASAN: global-out-of-bounds in meson_viu_set_osd_lut+0x7a0/0x890
-[  117.904588] Read of size 4 at addr ffff20000a63ce24 by task systemd-udevd/498
-[  117.904601]
-[  118.083372] CPU: 4 PID: 498 Comm: systemd-udevd Not tainted 4.20.0-rc3Lyude-Test+ #20
-[  118.091143] Hardware name: amlogic khadas-vim2/khadas-vim2, BIOS 2018.07-rc2-armbian 09/11/2018
-[  118.099768] Call trace:
-[  118.102181]  dump_backtrace+0x0/0x3e8
-[  118.105796]  show_stack+0x14/0x20
-[  118.109083]  dump_stack+0x130/0x1c4
-[  118.112539]  print_address_description+0x60/0x25c
-[  118.117214]  kasan_report+0x1b4/0x368
-[  118.120851]  __asan_report_load4_noabort+0x18/0x20
-[  118.125566]  meson_viu_set_osd_lut+0x7a0/0x890
-[  118.129953]  meson_viu_init+0x10c/0x290
-[  118.133741]  meson_drv_bind_master+0x474/0x748
-[  118.138141]  meson_drv_bind+0x10/0x18
-[  118.141760]  try_to_bring_up_master+0x3d8/0x768
-[  118.146249]  component_add+0x214/0x570
-[  118.149978]  meson_dw_hdmi_probe+0x18/0x20 [meson_dw_hdmi]
-[  118.155404]  platform_drv_probe+0x98/0x138
-[  118.159455]  really_probe+0x2a0/0xa70
-[  118.163070]  driver_probe_device+0x1b4/0x2d8
-[  118.167299]  __driver_attach+0x200/0x280
-[  118.171189]  bus_for_each_dev+0x10c/0x1a8
-[  118.175144]  driver_attach+0x38/0x50
-[  118.178681]  bus_add_driver+0x330/0x608
-[  118.182471]  driver_register+0x140/0x388
-[  118.186361]  __platform_driver_register+0xc8/0x108
-[  118.191117]  meson_dw_hdmi_platform_driver_init+0x1c/0x1000 [meson_dw_hdmi]
-[  118.198022]  do_one_initcall+0x12c/0x3bc
-[  118.201883]  do_init_module+0x1fc/0x638
-[  118.205673]  load_module+0x4b4c/0x6808
-[  118.209387]  __se_sys_init_module+0x2e8/0x3c0
-[  118.213699]  __arm64_sys_init_module+0x68/0x98
-[  118.218100]  el0_svc_common+0x104/0x210
-[  118.221893]  el0_svc_handler+0x48/0xb8
-[  118.225594]  el0_svc+0x8/0xc
-[  118.228429]
-[  118.229887] The buggy address belongs to the variable:
-[  118.235007]  eotf_33_linear_mapping+0x84/0xc0
-[  118.239301]
-[  118.240752] Memory state around the buggy address:
-[  118.245522]  ffff20000a63cd00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-[  118.252695]  ffff20000a63cd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-[  118.259850] >ffff20000a63ce00: 00 00 00 00 04 fa fa fa fa fa fa fa 00 00 00 00
-[  118.267000]                                ^
-[  118.271222]  ffff20000a63ce80: 00 fa fa fa fa fa fa fa 00 00 00 00 00 00 00 00
-[  118.278393]  ffff20000a63cf00: 00 00 00 00 00 00 00 00 00 00 00 00 04 fa fa fa
-[  118.285542] ==================================================================
-[  118.292699] Disabling lock debugging due to kernel taint
-
-It seems that when looping through the OSD EOTF LUT maps, we use the
-same max iterator for OETF: 20. This is wrong though, since 20*2 is 40,
-which means that we'll stop out of bounds on the EOTF maps.
-
-But, this whole thing is already confusing enough to read through as-is,
-so let's just replace all of the hardcoded sizes with
-OSD_(OETF/EOTF)_LUT_SIZE / 2.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-Cc: Carlo Caione <carlo@caione.org>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: <stable@vger.kernel.org> # v4.10+
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20181125012117.31915-1-lyude@redhat.com
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-
+Fixes: 79ed05e329c3 ("mmc: meson-gx: add support for descriptor chain mode")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_viu.c |   12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 73 ++++++++++++++++++++++++++++-----
+ 1 file changed, 63 insertions(+), 10 deletions(-)
 
---- a/drivers/gpu/drm/meson/meson_viu.c
-+++ b/drivers/gpu/drm/meson/meson_viu.c
-@@ -184,18 +184,18 @@ void meson_viu_set_osd_lut(struct meson_
- 	if (lut_sel == VIU_LUT_OSD_OETF) {
- 		writel(0, priv->io_base + _REG(addr_port));
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index c201c378537e..fcb5d693c897 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -21,6 +21,7 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/init.h>
++#include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+@@ -90,9 +91,11 @@
+ #define   CFG_CLK_ALWAYS_ON BIT(18)
+ #define   CFG_CHK_DS BIT(20)
+ #define   CFG_AUTO_CLK BIT(23)
++#define   CFG_ERR_ABORT BIT(27)
  
--		for (i = 0; i < 20; i++)
-+		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
- 			writel(r_map[i * 2] | (r_map[i * 2 + 1] << 16),
- 				priv->io_base + _REG(data_port));
+ #define SD_EMMC_STATUS 0x48
+ #define   STATUS_BUSY BIT(31)
++#define   STATUS_DESC_BUSY BIT(30)
+ #define   STATUS_DATI GENMASK(23, 16)
  
- 		writel(r_map[OSD_OETF_LUT_SIZE - 1] | (g_map[0] << 16),
- 			priv->io_base + _REG(data_port));
+ #define SD_EMMC_IRQ_EN 0x4c
+@@ -928,6 +931,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
  
--		for (i = 0; i < 20; i++)
-+		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
- 			writel(g_map[i * 2 + 1] | (g_map[i * 2 + 2] << 16),
- 				priv->io_base + _REG(data_port));
+ 	cmd_cfg |= FIELD_PREP(CMD_CFG_CMD_INDEX_MASK, cmd->opcode);
+ 	cmd_cfg |= CMD_CFG_OWNER;  /* owned by CPU */
++	cmd_cfg |= CMD_CFG_ERROR; /* stop in case of error */
  
--		for (i = 0; i < 20; i++)
-+		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
- 			writel(b_map[i * 2] | (b_map[i * 2 + 1] << 16),
- 				priv->io_base + _REG(data_port));
+ 	meson_mmc_set_response_bits(cmd, &cmd_cfg);
  
-@@ -211,18 +211,18 @@ void meson_viu_set_osd_lut(struct meson_
- 	} else if (lut_sel == VIU_LUT_OSD_EOTF) {
- 		writel(0, priv->io_base + _REG(addr_port));
+@@ -1022,6 +1026,17 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	u32 irq_en, status, raw_status;
+ 	irqreturn_t ret = IRQ_NONE;
  
--		for (i = 0; i < 20; i++)
-+		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
- 			writel(r_map[i * 2] | (r_map[i * 2 + 1] << 16),
- 				priv->io_base + _REG(data_port));
++	irq_en = readl(host->regs + SD_EMMC_IRQ_EN);
++	raw_status = readl(host->regs + SD_EMMC_STATUS);
++	status = raw_status & irq_en;
++
++	if (!status) {
++		dev_dbg(host->dev,
++			"Unexpected IRQ! irq_en 0x%08x - status 0x%08x\n",
++			 irq_en, raw_status);
++		return IRQ_NONE;
++	}
++
+ 	if (WARN_ON(!host) || WARN_ON(!host->cmd))
+ 		return IRQ_NONE;
  
- 		writel(r_map[OSD_EOTF_LUT_SIZE - 1] | (g_map[0] << 16),
- 			priv->io_base + _REG(data_port));
+@@ -1029,22 +1044,18 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
  
--		for (i = 0; i < 20; i++)
-+		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
- 			writel(g_map[i * 2 + 1] | (g_map[i * 2 + 2] << 16),
- 				priv->io_base + _REG(data_port));
+ 	cmd = host->cmd;
+ 	data = cmd->data;
+-	irq_en = readl(host->regs + SD_EMMC_IRQ_EN);
+-	raw_status = readl(host->regs + SD_EMMC_STATUS);
+-	status = raw_status & irq_en;
+-
+ 	cmd->error = 0;
+ 	if (status & IRQ_CRC_ERR) {
+ 		dev_dbg(host->dev, "CRC Error - status 0x%08x\n", status);
+ 		cmd->error = -EILSEQ;
+-		ret = IRQ_HANDLED;
++		ret = IRQ_WAKE_THREAD;
+ 		goto out;
+ 	}
  
--		for (i = 0; i < 20; i++)
-+		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
- 			writel(b_map[i * 2] | (b_map[i * 2 + 1] << 16),
- 				priv->io_base + _REG(data_port));
+ 	if (status & IRQ_TIMEOUTS) {
+ 		dev_dbg(host->dev, "Timeout - status 0x%08x\n", status);
+ 		cmd->error = -ETIMEDOUT;
+-		ret = IRQ_HANDLED;
++		ret = IRQ_WAKE_THREAD;
+ 		goto out;
+ 	}
  
-
+@@ -1069,17 +1080,49 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	/* ack all enabled interrupts */
+ 	writel(irq_en, host->regs + SD_EMMC_STATUS);
+ 
++	if (cmd->error) {
++		/* Stop desc in case of errors */
++		u32 start = readl(host->regs + SD_EMMC_START);
++
++		start &= ~START_DESC_BUSY;
++		writel(start, host->regs + SD_EMMC_START);
++	}
++
+ 	if (ret == IRQ_HANDLED)
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+-	else if (ret == IRQ_NONE)
+-		dev_warn(host->dev,
+-			 "Unexpected IRQ! status=0x%08x, irq_en=0x%08x\n",
+-			 raw_status, irq_en);
+ 
+ 	spin_unlock(&host->lock);
+ 	return ret;
+ }
+ 
++static int meson_mmc_wait_desc_stop(struct meson_host *host)
++{
++	int loop;
++	u32 status;
++
++	/*
++	 * It may sometimes take a while for it to actually halt. Here, we
++	 * are giving it 5ms to comply
++	 *
++	 * If we don't confirm the descriptor is stopped, it might raise new
++	 * IRQs after we have called mmc_request_done() which is bad.
++	 */
++	for (loop = 50; loop; loop--) {
++		status = readl(host->regs + SD_EMMC_STATUS);
++		if (status & (STATUS_BUSY | STATUS_DESC_BUSY))
++			udelay(100);
++		else
++			break;
++	}
++
++	if (status & (STATUS_BUSY | STATUS_DESC_BUSY)) {
++		dev_err(host->dev, "Timed out waiting for host to stop\n");
++		return -ETIMEDOUT;
++	}
++
++	return 0;
++}
++
+ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+ {
+ 	struct meson_host *host = dev_id;
+@@ -1090,6 +1133,13 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+ 	if (WARN_ON(!cmd))
+ 		return IRQ_NONE;
+ 
++	if (cmd->error) {
++		meson_mmc_wait_desc_stop(host);
++		meson_mmc_request_done(host->mmc, cmd->mrq);
++
++		return IRQ_HANDLED;
++	}
++
+ 	data = cmd->data;
+ 	if (meson_mmc_bounce_buf_read(data)) {
+ 		xfer_bytes = data->blksz * data->blocks;
+@@ -1130,6 +1180,9 @@ static void meson_mmc_cfg_init(struct meson_host *host)
+ 	cfg |= FIELD_PREP(CFG_RC_CC_MASK, ilog2(SD_EMMC_CFG_CMD_GAP));
+ 	cfg |= FIELD_PREP(CFG_BLK_LEN_MASK, ilog2(SD_EMMC_CFG_BLK_SIZE));
+ 
++	/* abort chain on R/W errors */
++	cfg |= CFG_ERR_ABORT;
++
+ 	writel(cfg, host->regs + SD_EMMC_CFG);
+ }
+ 
+-- 
+2.19.2
 
 
 _______________________________________________
