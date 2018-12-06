@@ -3,90 +3,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2474C04EB9
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 13:27:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A00EEC04EBF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 14:40:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A2B3420868
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 13:27:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6EAC120892
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Dec 2018 14:40:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n8Z1w/W4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ttGEtxft"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A2B3420868
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Yuh+d6Pe";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="a7twKtms"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6EAC120892
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linuxfoundation.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3ad0yS4UkWoWdP/ZdzdwIy36oHvKh+3klhwBsKIKYVo=; b=n8Z1w/W4ENXqGS
-	5dzyYTZSuYteOPaO0pGVKeCk0gs4FDo0LDKG0HX9bG2FOgv/ETk2ZgvweqD41c/bzxWt/qZDAP9Mc
-	GfoRqC9Hf4YMrARE/E3SVLDrl9J6HkWTXE9xYnlestM/fafcYnUi5hBtHmF252/+XER2bxf6c/H4G
-	r7y3HbM1DJVl4dpHYvKIJHLtunwVRWm5ra/GTBQD3Yqg83Tt6HRmLNZbveoA7Ocq65mgwMwbazbyq
-	RgFOKBEymqf4QMrT9FVoS0ZKVQxeSDPKAq2Nmf4Nxw30e7Emh/5drMh5ns/pViHUltpPjYEKsIARm
-	//tV3faGrIf2p3HCzxgQ==;
+	List-Owner; bh=SeM30a2sYgPQZDaTG2YEsrYPJ1MiX4hvoruHzCigXv4=; b=Yuh+d6PeL60pxj
+	8cXQ35JAlQ2C3d8MDbdsk5t8CETzrp03uWSGQcoazShNhI0ZpnHLC6FI7SXv8hOo+kQZtbxkI/BsI
+	8ReU+cjrw8x44lbEPutR3JeUJ/oOsvizTU5jOYVIkWhyMWvHP4ROEZoTbilU86rVu+kAJNoGYO/GE
+	hpGdgvTwRrDCl8O416hfHEwtYNgZMjzMPkF2H2HaqXArhQUszelhCHSi+hDADkWBzrglvIz/bbVB2
+	JlnBiKQtMk481AUvzJDQZTuYRg8N1wthtSFOmVeHfi/S+S73OcaO0ohOVul4r25m4T8xqYRznQDPJ
+	HLWpb8HDe1mDnEi7fzWQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gUtgU-0007SA-A0; Thu, 06 Dec 2018 13:27:18 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1gUupL-0006C8-2M; Thu, 06 Dec 2018 14:40:31 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gUtg2-0006wF-Uj
- for linux-amlogic@lists.infradead.org; Thu, 06 Dec 2018 13:26:54 +0000
-Received: by mail-wm1-x343.google.com with SMTP id y1so967802wmi.3
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Dec 2018 05:26:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=k52eM3XNZBVJoDP7Fd48ELZUcFJ0MBCi9X88VmdwBl8=;
- b=ttGEtxftrWIqN6R4dZfRka0TH5zJH/jqVO6PH/h4a12PC2H3GSMjRnRBTrlyygvIYm
- Pe/gRJ48R97ZJO6qNIs8AhVM7kVKAPgjsanFIY5Ayia4aCTtqe0Vu2+hoFNzNaUU92o/
- 7RxH7VxpWzA9DJvr4iQDlRl4ifb0/jUJ+1BBHJE1EuSZzsX1pRR2zN+GvCaUQ2YGzH7Z
- /WtMYfbUUSsCwBVP2BGCvYSVj6xYOC0U/UPya2GZqR0+FMRa2IeoMcJiXPwhZ2uE+Sy6
- B0FRUoOHH1Kdnk65jq6ZHSIEdlZ8ULNbPw39l18iktDUvPtaf/o0AQN2lPtqIqLH313W
- xnyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=k52eM3XNZBVJoDP7Fd48ELZUcFJ0MBCi9X88VmdwBl8=;
- b=BlA9H40b2/9a0Dm2mnfcE5iHe2afjwg/dt8q+NN3N8/xAJW2vuhIhPQ7CRW+dYe5kk
- +7E17KTdWu/TcJOEya9KQ3ajGEMynAQ3Csge+62niLoRaFLyAXWO5SwurEQH/RF47J9k
- Ex+J6vVVSEBwb+AWG/IUIoUs+5sBI4EgQeQrivDQynFf+GPGMRq/rPZ4ZMEgvjQQJJ9n
- q5YzFGl4abFCCDyuieIvOMEZ7QCnqhNRpQPqpdBWZYgVjP9yhziPR4TqaPVJ7MeleOhV
- WMB29TQD2m4OzFBSQKfNNL7zOB2gWeQfRSdtblboocrXrrLLlQkKMTmeT14IeG4mDfA+
- 0xyg==
-X-Gm-Message-State: AA+aEWZU8JsJuot+2uuIpjLOKjrNTGyFp5xg+K1Np5LHT9wSScu9t8jh
- 6ll+HoffKEdTIP28vcWsjmT+Hg==
-X-Google-Smtp-Source: AFSGD/X/E52wou7TgbhsWGlG4D2UK6CM5wEOoc5+qlFCwZUXBzUJ2uoX+NmKkzXqRcGhJI0xfm72yQ==
-X-Received: by 2002:a1c:7011:: with SMTP id l17mr19105561wmc.34.1544102798357; 
- Thu, 06 Dec 2018 05:26:38 -0800 (PST)
-Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.gmail.com with ESMTPSA id w8sm563407wrv.7.2018.12.06.05.26.36
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 06 Dec 2018 05:26:37 -0800 (PST)
-Message-ID: <8dd5d9da52d799f5b87272d276754e21a5e93464.camel@baylibre.com>
-Subject: Re: [PATCH 0/2] meson: Fix IRQ trigger type
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Emiliano Ingrassia <ingrassia@epigenesys.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Carlo Caione <ccaione@baylibre.com>
-Date: Thu, 06 Dec 2018 14:26:34 +0100
-In-Reply-To: <20181206124347.GA10676@ingrassia.epigenesys.com>
-References: <20181204160447.27869-1-ccaione@baylibre.com>
- <CAFBinCDCE7RP4vgs25bqSZ8vBjrmcuB=qb3U92X6QfpmzeqrBg@mail.gmail.com>
- <20181206124347.GA10676@ingrassia.epigenesys.com>
-User-Agent: Evolution 3.30.2 (3.30.2-2.fc29) 
-Mime-Version: 1.0
+ id 1gUupF-0006AQ-Ps; Thu, 06 Dec 2018 14:40:29 +0000
+Received: from localhost (5356596B.cm-6-7b.dynamic.ziggo.nl [83.86.89.107])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id F157520672;
+ Thu,  6 Dec 2018 14:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1544107221;
+ bh=lvRvlbmU6XrNzyFm2WuTvsw6Puy1hwa4kYs7N/5Sj7s=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=a7twKtmsfDswwNZ6ZdDtJoPmGqi+t44NTWUHVTKAA54UtwwR5kMTHYHvPsVfwK4Re
+ qAIcReMSDpQDU0x9PoUds7iQjO98PF99EgK6R0XkvO3TswgvAMf0J7p1yHXSdp2lO4
+ 53k0dvYNDcQmgQn1Cv1mQrQNKwWZPYG6KZerIp7w=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH 4.19 20/41] drm/meson: Fix OOB memory accesses in
+ meson_viu_set_osd_lut()
+Date: Thu,  6 Dec 2018 15:39:00 +0100
+Message-Id: <20181206142951.442912428@linuxfoundation.org>
+X-Mailer: git-send-email 2.19.2
+In-Reply-To: <20181206142949.757402551@linuxfoundation.org>
+References: <20181206142949.757402551@linuxfoundation.org>
+User-Agent: quilt/0.65
+X-stable: review
+X-Patchwork-Hint: ignore
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181206_052651_040118_DF6EDC18 
-X-CRM114-Status: GOOD (  37.95  )
+X-CRM114-CacheID: sfid-20181206_064025_886005_9726A1D2 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,219 +77,154 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, khilman@baylibre.com,
- robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Lyude Paul <lyude@redhat.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, stable@vger.kernel.org,
+ Sean Paul <seanpaul@chromium.org>, dri-devel@lists.freedesktop.org,
+ Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 2018-12-06 at 13:43 +0100, Emiliano Ingrassia wrote:
-> Hi all,
-> 
-> thank you for involving me.
-> 
-> I applied Carlo's patches[0] on a kernel vanilla 4.19.6
-> and tested it with kernel packet generator, monitoring
-> bandwidth usage with "nload".
-> 
-> All tests were conducted on an Odroid-C1+ Rev. 0.4-20150930 board
-> with a short ethernet cable directly attached to a laptop with
-> 1G ethernet interface, with "nload" running on the board.
-> 
-> The tests I performed are composed by the following steps:
-> 
-> 1) Start packet generator with "rate 1000M" on laptop;
-> 
-> 2) Keep packet generator active on the laptop and
->    start the packet generator on the board with "rate 1000M";
-> 
-> 3) Stop both packet generators;
-> 
-> 4) Start packet generator on the board;
-> 
-> 5) Keep packet generator active on the board and
->    start the packet generator on the laptop.
-> 
-> 
-> Test results without Carlo's patches applied:
-> 
-> 1) "nload" shows an incoming traffic of ~950Mbps;
-> 
-> 2) "nload" shows an incoming traffic of ~400Mbps
->    and an outgoing traffic of ~250Mbps;
-> 
-> 3) "nload" shows 0Mbps both for incoming and outgoing traffic;
-> 
-> 4) "nload" shows an outgoing traffic of ~950Mbps from the board;
-> 
-> 5) "nload" shows incoming traffic of 0Mbps
->    and an outgoing traffic of ~950Mbps.
-> 
-> Applying only the first patch (change mac IRQ type) I got the same results.
-> 
-> Applying only the second patch (drop eee-broken-1000t) I got the same
-> results!
-> 
-> With both patches applied I got the same results but with an incoming
-> traffic
-> of ~3Mbps on the board.
+4.19-stable review patch.  If anyone has any objections, please let me know.
 
-Are you sure you did not mix up the result ?
-I would expect this kind of drop when only the eee patch is applied.
+------------------
 
-> 
-> Consider that the described tests were performed for a few minutes.
-> 
-> 
-> The tests I performed clearly show that currently the MAC does not
-> perform as 1G full-duplex.
+From: Lyude Paul <lyude@redhat.com>
 
-Do you really get 1G full duplex w/o any of these patch ?
-I would be surprised if they had any meaningful impact on throughput
+commit 97b2a3180a559a33852ac0cd77904166069484fd upstream.
 
+Currently on driver bringup with KASAN enabled, meson triggers an OOB
+memory access as shown below:
 
-> I can't say if this depends on the hardware, the driver or
-> the IP description in the board's device tree.
-> 
-> From the results shown above I think that the patches regarding 32 bit
-> Meson SoCs should NOT be applied together, but you can consider to apply
-> only the second one which remove the "eee-broken-1000t" flag
-> from the board MAC IP description.
+[  117.904528] ==================================================================
+[  117.904560] BUG: KASAN: global-out-of-bounds in meson_viu_set_osd_lut+0x7a0/0x890
+[  117.904588] Read of size 4 at addr ffff20000a63ce24 by task systemd-udevd/498
+[  117.904601]
+[  118.083372] CPU: 4 PID: 498 Comm: systemd-udevd Not tainted 4.20.0-rc3Lyude-Test+ #20
+[  118.091143] Hardware name: amlogic khadas-vim2/khadas-vim2, BIOS 2018.07-rc2-armbian 09/11/2018
+[  118.099768] Call trace:
+[  118.102181]  dump_backtrace+0x0/0x3e8
+[  118.105796]  show_stack+0x14/0x20
+[  118.109083]  dump_stack+0x130/0x1c4
+[  118.112539]  print_address_description+0x60/0x25c
+[  118.117214]  kasan_report+0x1b4/0x368
+[  118.120851]  __asan_report_load4_noabort+0x18/0x20
+[  118.125566]  meson_viu_set_osd_lut+0x7a0/0x890
+[  118.129953]  meson_viu_init+0x10c/0x290
+[  118.133741]  meson_drv_bind_master+0x474/0x748
+[  118.138141]  meson_drv_bind+0x10/0x18
+[  118.141760]  try_to_bring_up_master+0x3d8/0x768
+[  118.146249]  component_add+0x214/0x570
+[  118.149978]  meson_dw_hdmi_probe+0x18/0x20 [meson_dw_hdmi]
+[  118.155404]  platform_drv_probe+0x98/0x138
+[  118.159455]  really_probe+0x2a0/0xa70
+[  118.163070]  driver_probe_device+0x1b4/0x2d8
+[  118.167299]  __driver_attach+0x200/0x280
+[  118.171189]  bus_for_each_dev+0x10c/0x1a8
+[  118.175144]  driver_attach+0x38/0x50
+[  118.178681]  bus_add_driver+0x330/0x608
+[  118.182471]  driver_register+0x140/0x388
+[  118.186361]  __platform_driver_register+0xc8/0x108
+[  118.191117]  meson_dw_hdmi_platform_driver_init+0x1c/0x1000 [meson_dw_hdmi]
+[  118.198022]  do_one_initcall+0x12c/0x3bc
+[  118.201883]  do_init_module+0x1fc/0x638
+[  118.205673]  load_module+0x4b4c/0x6808
+[  118.209387]  __se_sys_init_module+0x2e8/0x3c0
+[  118.213699]  __arm64_sys_init_module+0x68/0x98
+[  118.218100]  el0_svc_common+0x104/0x210
+[  118.221893]  el0_svc_handler+0x48/0xb8
+[  118.225594]  el0_svc+0x8/0xc
+[  118.228429]
+[  118.229887] The buggy address belongs to the variable:
+[  118.235007]  eotf_33_linear_mapping+0x84/0xc0
+[  118.239301]
+[  118.240752] Memory state around the buggy address:
+[  118.245522]  ffff20000a63cd00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  118.252695]  ffff20000a63cd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[  118.259850] >ffff20000a63ce00: 00 00 00 00 04 fa fa fa fa fa fa fa 00 00 00 00
+[  118.267000]                                ^
+[  118.271222]  ffff20000a63ce80: 00 fa fa fa fa fa fa fa 00 00 00 00 00 00 00 00
+[  118.278393]  ffff20000a63cf00: 00 00 00 00 00 00 00 00 00 00 00 00 04 fa fa fa
+[  118.285542] ==================================================================
+[  118.292699] Disabling lock debugging due to kernel taint
 
-I would defenitely advise against that.
+It seems that when looping through the OSD EOTF LUT maps, we use the
+same max iterator for OETF: 20. This is wrong though, since 20*2 is 40,
+which means that we'll stop out of bounds on the EOTF maps.
 
-> In particular, I think that more tests are needed to better understand
-> what's happening in the case of Meson8b SoC.
-> 
-> To better investigate the MAC behaviour on Odroid-C1+, should I use
-> the Amlogic development kernel[1]? If yes, what branch should I use?
+But, this whole thing is already confusing enough to read through as-is,
+so let's just replace all of the hardcoded sizes with
+OSD_(OETF/EOTF)_LUT_SIZE / 2.
 
-And bit of background:
-The MAC found in all Amlogic SoC we have seen so far comes from Synopsys
-(dwmac).
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: <stable@vger.kernel.org> # v4.10+
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20181125012117.31915-1-lyude@redhat.com
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-The kernel provided by the vendor use the IRQ type 'EDGE_RISING' for this IP
-This means that the HW block is supposed to generate a rising edge on the irq
-line every time there is an event. This is opposed to the Type "LEVEL_HIGH"
-with keep the irq line high as long as their pending IRQs
+---
+ drivers/gpu/drm/meson/meson_viu.c |   12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Of course, when adding mainline support, we did the same as the vendor without
-thinking about it
-
-We started to investigate the network because, after a while, we noticed
-severe performance drops on the AXG family: the throughput would drop from
-900MBps to 30MBps after somethings 12+ hours of iperf tests.
-
-We noticed that irqs were not triggered anymore. Manually acking the IRQ in
-the register would revive the interface. Since the IRQ is supposed to be acked
-in the ISR, we were clearly missing IRQs and as a consequence, never acking
-them.
-
-All HW using the dwmac out there are using "LEVEL_HIGH", except amlogic.
-Changing this fixes the problem.
-
-Now regarding EEE: about 2 years ago, the network would break on the OC-2. We
-noticed the EEE was generating a *LOT* of IRQs. Deactivating EEE solved the
-problem ... or so we thought. Fact is, it was an un-acked IRQ as well, and we
-just made it harder to trigger by disabling EEE.
-
-So applying the EEE patch without the IRQ_LEVEL would clearly be a mistake,
-you would be back in the situation we investigated 2 years, with a very
-unstable ethernet connection.
-
-Anyways, I have been able to test it on S905 and A113 and I think this series
-should applied, at least for the arm64 family ... most likely of all.
-
-If issues persist on meson8, maybe there is something else ? soemthing hidden
-before ?
-
-> 
-> 
-> On Tue, Dec 04, 2018 at 08:59:20PM +0100, Martin Blumenstingl wrote:
-> > adding Emiliano because he experienced high packet loss on Odroid-C1
-> > without "eee-broken-1000t"
-> > 
-> > On Tue, Dec 4, 2018 at 5:05 PM Carlo Caione <ccaione@baylibre.com> wrote:
-> > > The wrong IRQ trigger type for the macirq was causing the connection
-> > > speed to drop after a few hours when stress testing the DUT. The fix
-> > > seems also to fix another long standing issue with EEE.
-> 
-> Carlo, can you describe precisely the tests you conducted
-> on your board and the tools used?
-> 
-> 
-> > the other two DesignWare controllers (2x dwc2) are also using
-> > IRQ_TYPE_LEVEL_HIGH
-> > so this is not unlikely - good job detective!
-> > 
-> 
-> Consider that currently the USB ports do not work correctly.
-> In particular, USB pendrive insertion is not recognized at runtime.
-> 
-> 
-> > > The fixes are tested on a AXG board but we think that the same fix is
-> > > valid also for all the others Amlogic SoC families.
-> > I checked Amlogic's 3.10 kernel for the 32-bit SoCs and it seems they
-> > are setting all IRQs to be edge triggered: [0]
-> > however, Emiliano reported an issue with IRQ_TYPE_EDGE_RISING for the
-> > dwc2 controllers as well. 291f45dd6da5fa6 "ARM: dts: meson: fixing USB
-> > support on Meson6, Meson8 and Meson8b" fixed it for him whereas it
-> > worked for me with IRQ_TYPE_EDGE_RISING
-> > 
-> > I find it strange though that Amlogic's buildroot kernel (even the
-> > latest buildroot_openlinux_kernel_4.9_fbdev_20180706) uses:
-> >   interrupts = <0 8 1>
-> > which translates to:
-> >   interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>
-> > 
-> > does the datasheet give a hint that this IRQ should be level triggered
-> > or did you find out by trial and error?
-> > 
-> > > Carlo Caione (2):
-> > >   arm64: dts: meson: Fix IRQ trigger type for macirq
-> > >   arm64: dts: meson: Remove eee-broken-1000t quirk
-> > > 
-> > >  arch/arm/boot/dts/meson.dtsi                        | 2 +-
-> > >  arch/arm/boot/dts/meson8b-odroidc1.dts              | 1 -
-> > these two should be in separate patches with "ARM: dts: " as prefix
-> > 
-> > >  arch/arm64/boot/dts/amlogic/meson-axg-s400.dts      | 1 -
-> > >  arch/arm64/boot/dts/amlogic/meson-axg.dtsi          | 2 +-
-> > >  arch/arm64/boot/dts/amlogic/meson-gx.dtsi           | 2 +-
-> > >  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 1 -
-> > >  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi   | 1 -
-> > >  7 files changed, 3 insertions(+), 7 deletions(-)
-> > > 
-> > > --
-> > > 2.19.1
-> > > 
-> > 
-> > Regards
-> > Martin
-> > 
-> > [0] 
-> > https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/drivers/irqchip/irq-gic.c#L400
-> > 
-> > _______________________________________________
-> > linux-amlogic mailing list
-> > linux-amlogic@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
-> Best regards,
-> 
-> Emiliano
-> 
-> [0] 
-> http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009325.html
-> [1] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git/
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+--- a/drivers/gpu/drm/meson/meson_viu.c
++++ b/drivers/gpu/drm/meson/meson_viu.c
+@@ -184,18 +184,18 @@ void meson_viu_set_osd_lut(struct meson_
+ 	if (lut_sel == VIU_LUT_OSD_OETF) {
+ 		writel(0, priv->io_base + _REG(addr_port));
+ 
+-		for (i = 0; i < 20; i++)
++		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
+ 			writel(r_map[i * 2] | (r_map[i * 2 + 1] << 16),
+ 				priv->io_base + _REG(data_port));
+ 
+ 		writel(r_map[OSD_OETF_LUT_SIZE - 1] | (g_map[0] << 16),
+ 			priv->io_base + _REG(data_port));
+ 
+-		for (i = 0; i < 20; i++)
++		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
+ 			writel(g_map[i * 2 + 1] | (g_map[i * 2 + 2] << 16),
+ 				priv->io_base + _REG(data_port));
+ 
+-		for (i = 0; i < 20; i++)
++		for (i = 0; i < (OSD_OETF_LUT_SIZE / 2); i++)
+ 			writel(b_map[i * 2] | (b_map[i * 2 + 1] << 16),
+ 				priv->io_base + _REG(data_port));
+ 
+@@ -211,18 +211,18 @@ void meson_viu_set_osd_lut(struct meson_
+ 	} else if (lut_sel == VIU_LUT_OSD_EOTF) {
+ 		writel(0, priv->io_base + _REG(addr_port));
+ 
+-		for (i = 0; i < 20; i++)
++		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
+ 			writel(r_map[i * 2] | (r_map[i * 2 + 1] << 16),
+ 				priv->io_base + _REG(data_port));
+ 
+ 		writel(r_map[OSD_EOTF_LUT_SIZE - 1] | (g_map[0] << 16),
+ 			priv->io_base + _REG(data_port));
+ 
+-		for (i = 0; i < 20; i++)
++		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
+ 			writel(g_map[i * 2 + 1] | (g_map[i * 2 + 2] << 16),
+ 				priv->io_base + _REG(data_port));
+ 
+-		for (i = 0; i < 20; i++)
++		for (i = 0; i < (OSD_EOTF_LUT_SIZE / 2); i++)
+ 			writel(b_map[i * 2] | (b_map[i * 2 + 1] << 16),
+ 				priv->io_base + _REG(data_port));
+ 
 
 
 
