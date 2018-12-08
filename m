@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F55BC64EB1
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Dec 2018 16:47:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 528C0C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Dec 2018 16:47:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4B28B2082D
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Dec 2018 16:47:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 21E052082D
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Dec 2018 16:47:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="es6eg8UK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="U+oBnd0C"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B28B2082D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oTL1E0Ek";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="tWzBnSi3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 21E052082D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,65 +27,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=l2EnxpUUijfLEYnaCrNOuaWH+L9S0kzoYOLqK+O0J70=; b=es6eg8UKtJIuij
-	rrJdML8xSpM8ln86W80ONrv2QkWc0NaStDgp6UdK/mPSTTqokKM4ZIv90A0cq0RlX86BgICa13Cy2
-	e1m5bzTgpUnoSZvcWd9ofeJhdyyH9QRGXjobgDpN1Awl4iDTEkJXcImKo3/v0l94+Bv6pW/NqzVNM
-	0quflvRhJYzN54z5dLZcqQ1R3W0oKvkjn+Rh9EJS3CLjS3Q1clJp5d/dADdmTPFPXVs849cHslEcS
-	yXGbR0Ii+Qsa2rICwrPRzRpQXTKrpt8mq2n0N6OsQAlww68Ds9anD34KG/yWlYzu7M45M0mF1ZoJH
-	K4QpzNfWMkodRIGDMSmw==;
+	List-Owner; bh=SjgF64OLDzvbmrHkun5sNVJSIfsiFkfsqGhd9Vjdmd4=; b=oTL1E0Eky6lOjk
+	qNDUJNtcfmFv83o6W8PlKzug7mZ2kFl0JBVTj4lhbiDt3U3vE86XVxrrjMncAxZgMU/8iEijvu+LD
+	9peCl4m1PdHe627dpok07Wc3fg56b1GK+UbVMtriQK02uSDGOMsylRsEMp2VZsobgWoNKvhzbQgob
+	7l0yGjNHAEkb11ILrEuvqmmyKG1hSyCgiHCc3F6uJhoJ3WKXzJCfPM2iUsFeYAUJ6lK6skX6t1hCW
+	idWi3gHHUFK8cYKopR2jVpFWXk+XfVQBYOOT7skfNAlpzAVTr5Nj7jvSUT5nJwiVwyuUWy93CAiIo
+	I/9mF1a0oeSTLvoyr67w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gVflS-0007Vn-7i; Sat, 08 Dec 2018 16:47:38 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1gVflU-0007Yk-VA; Sat, 08 Dec 2018 16:47:40 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gVfkx-0006vM-RN; Sat, 08 Dec 2018 16:47:10 +0000
-Received: by mail-wr1-x443.google.com with SMTP id t27so6532465wra.6;
- Sat, 08 Dec 2018 08:46:57 -0800 (PST)
+ id 1gVfkz-0006vR-2E; Sat, 08 Dec 2018 16:47:10 +0000
+Received: by mail-wr1-x441.google.com with SMTP id z5so6508301wrt.11;
+ Sat, 08 Dec 2018 08:46:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=4QoWFYdjwYMC8tWsTDBT1tQNmYukVHcS0fTvruwJ7zY=;
- b=U+oBnd0CrhKfSQMnfdw2hd4TW5z4VvZ8OGRW/GCG+BMTqTHElrff+8v/R4BqmzcLAd
- /nxh22SekA4SKafSWuxH/fXR/dNzxc3kFjmegT1OQmR+dlw50ndgWcIDaMUQcBkFLyz5
- O2TOcsKFa5oMAWSXhn4JLSW9tWrjvh/dipNVJeqlWJNoCpSm9NOERsJf14SMfzxgC3vf
- Apz3DvIBWeYKHGJCPa3nc5Vq/LVr0K/M4EDcewiFdpJYWPndWxV6c1QgCDx4sbui6Zuj
- fXIp/MjqbLSAqYx0DMDSkbp22SK3iacgREnAwRexFeR9aXIepRAn/gUH+x1aE3yM33GI
- Cd4g==
+ bh=umYSWlSr7sstay9sv45lhSgivwtvIUtFs8hUY3ac4fM=;
+ b=tWzBnSi3wl1J8eqTMR4/I38FweFSShrhpxW+/yfm5L2QM3pXYDUDagepaTjvoeQZkC
+ ZuJMX90RP/iRxlOoUUuWGFDupwlIqXQ9zAZo65vpvam4U7KUvzLlzVaf/OSub4B/syRa
+ kO+YjA1CUokD5SFGuHI9iWxI+wG0Pi4eRim5ajdqqpBNRCJIyZkUrsl8uAbkBDVlucva
+ UMv2g9kTCZ0Mtj9FgcUjJ07log8ib7F3f3xSj8fnQsWK5xg/7bE6NFUDAE9m6nIVRp1G
+ nf20/jKZtJsXqHpmZzb7vTpcNPQkGbWI8LAeaxLu19s9fNhwoiBCN8vhSPJfUCpRbLJ2
+ l0tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=4QoWFYdjwYMC8tWsTDBT1tQNmYukVHcS0fTvruwJ7zY=;
- b=qnG64qo78IOm8RiNvkzAQbwsNyyb7C+wClZCpN2IhBSpBFGW3xZiq/vybWeWeTdxef
- TxlLicpZ8DR/BgMMVwrBQZOJBvPRW2gNaS6UHmYd/Aqm28kfl/K/5GALOAOMLnWV0TT4
- FVVH1nC2XTFjEPMfMAXXzIXy0DGLRi14i9ZhkR3Mkk2yezIuRVD8rgDCsfohYPgghYZa
- dXyDPP8D5yFPQWNrvRoCJY1mvJA8iicHKvBpTNvGkOrY1OrQZYHenOfIQP+WW7t/0MbR
- lGp1SeupqiJcxLSIWNduBDdXknCf/lLNqCikIXAH/X3EegeBAhinKoxhchexbLMLJMNE
- Z+4Q==
-X-Gm-Message-State: AA+aEWbKTZOOsnuvIO9hx3kfhrHvhh6nVI9+95S7wA0lKxzjm8LLqa2z
- Ua66GMZ9sK14LWeUgALsDkTSKJz+
-X-Google-Smtp-Source: AFSGD/Xnfu5LTM5cPck9zzFRHTAxDzOMOgTVmfs6xzi0HozgAbm/PTKvsHLD5yeN1UBT4If70ODGug==
-X-Received: by 2002:a5d:68c3:: with SMTP id p3mr5257378wrw.34.1544287615561;
- Sat, 08 Dec 2018 08:46:55 -0800 (PST)
+ bh=umYSWlSr7sstay9sv45lhSgivwtvIUtFs8hUY3ac4fM=;
+ b=uSPCGpQuy726tROY8Kg7eVyPxmV5Frq/2il/mzZQNZBOUOGUL31m8LiR+MheNYL4f/
+ JU/Cq9ROshOEztjD5mtAZRwksupGdDL0Z9kWw0bXHsG8btGL1qpSEsxz4ZYtkHaFfGzr
+ hmombopEiPrvf4RvJ++tAzsUwB/0AnYDWRkq4+XiEiPm9uh0JO4N4/91zCAGb01jQ3Hb
+ qmbecmDWmTq/TKGU9IxC2UUoMfDCp4eBLWvgyiLafJlInjhN7JiGZX/SdpQ1piPgO+hs
+ Ki0smP8lsS14ohRmaZQNlB3ugfxCd7NNpUxxbhVhs+Hp9FGhWFrPPiJfYFgt/KuL9pT8
+ h13Q==
+X-Gm-Message-State: AA+aEWYMG6f1gHNMMWxTTLA2cv+d/rVflGNT8gQfsP9XlT6aNorPsi4n
+ gdWhLQR9nYV1uO5jrfFRNDhpiYgQ
+X-Google-Smtp-Source: AFSGD/U8uEnraJG8lnAFH542hqH/Tao0IDQKw2aqJJhA+wb971UT84yAz13K1mA9R+UKx2yEbPa5KA==
+X-Received: by 2002:adf:82a8:: with SMTP id 37mr4682505wrc.252.1544287616667; 
+ Sat, 08 Dec 2018 08:46:56 -0800 (PST)
 Received: from blackbox.darklights.net
  (p200300DCD73FBA00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:dc:d73f:ba00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id c9sm11100690wmh.27.2018.12.08.08.46.54
+ by smtp.googlemail.com with ESMTPSA id c9sm11100690wmh.27.2018.12.08.08.46.55
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
  Sat, 08 Dec 2018 08:46:55 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	khilman@baylibre.com
-Subject: [PATCH 1/3] ARM: dts: meson6: add the ABP2 bus
-Date: Sat,  8 Dec 2018 17:45:50 +0100
-Message-Id: <20181208164555.26527-2-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 1/3] ARM: dts: meson6: add the APB2 bus
+Date: Sat,  8 Dec 2018 17:45:51 +0100
+Message-Id: <20181208164555.26527-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.19.2
 In-Reply-To: <20181208164555.26527-1-martin.blumenstingl@googlemail.com>
 References: <20181208164555.26527-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181208_084707_887460_C88B3B4E 
+X-CRM114-CacheID: sfid-20181208_084709_161055_978BCE97 
 X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -106,7 +106,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Mali GPU and the DVB demulator are located in the ABP2 bus. Describe
+The Mali GPU and the DVB demulator are located in the APB2 bus. Describe
 this bus so we can add devices to it.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
