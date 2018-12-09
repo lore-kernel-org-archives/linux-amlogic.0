@@ -2,91 +2,79 @@ Return-Path: <SRS0=RQ4l=OS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-0.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A3546C65BAF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 19:53:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA1EAC07E85
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 20:13:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C03520672
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 19:53:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 95E8720645
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 20:13:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qihR8bGN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="rjV46Cuo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C03520672
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XMqpzgLa";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="h7QUwNgS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 95E8720645
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3Nr/ktiIjLw3gtWaozYA9Vja+LCA8c+dAl6Wju9FPzo=; b=qihR8bGNl6Dkn5
-	pgttmAW5jV/npwthQ+ISSBF8l3txiJUV2fXe86Gy0rWB+BlTU9R2QNIfeqyht8KFhCocv/h7EYVBx
-	xb9gRUPEy4cv6FGFgaUApqTBammgDX1AVg2YkGEVuk1RDbyjmxaFltCapGskrDT6ONISHw2YemE+/
-	hhIIGGrheEooj27GhmnqA2DeX7Lc0FwpRXPuOBW9USUd4dT9vD/78xmAiyCD0OsTaQCz1YIIlDkmR
-	m/Bo96Ab/d/SbKqXf2WFe36F8pJLAQuzRIqfp+B/pzFhSwGhyfHvW7tIa0MEgSXCJ10aKhQBYzEMJ
-	8JnaPFqBxf6aL6y3Ac5A==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=m1PpKNUKL0JYCHhOFzu8wFQhMtrLu+sA0Jc2PXHskt4=; b=XMqpzgLaKcNS5Y
+	XZXRExHsDRvANX2isOENmTf/KsDnCy1s9fnikfFAlmabdXlp5pG/MjGHxlgzc/wkdk70SotG3snVj
+	/ucW38HMTPf9BOOxoglelP8M/hMXpGKQ59I0v1WAZI2+NFCpkOo46jEPmksv+7oMXwGO8FxKxii7Q
+	qFEMVzJqgqNb149L6AgKmdXvKT4iGBypKRaTkBS8xSxXldWxdxds2GDc9aErqGuujWz3eWXsScZgD
+	IqTw3YYBM3PVxwaXAXuHFQzG+FgOY6GKinPs9NX8Ep1KdsItm84I9Z57GtD3jx47g926dYAWlCij6
+	M9r5CoWKZGdbspmdGYBA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gW58L-0007bN-QB; Sun, 09 Dec 2018 19:52:57 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gW5Ry-00074J-MS; Sun, 09 Dec 2018 20:13:14 +0000
+Received: from mail-oi1-x22a.google.com ([2607:f8b0:4864:20::22a])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gW56l-00064K-G8; Sun, 09 Dec 2018 19:51:23 +0000
-Received: by mail-wr1-x444.google.com with SMTP id r10so8402655wrs.10;
- Sun, 09 Dec 2018 11:51:09 -0800 (PST)
+ id 1gW5Rv-00073g-Rj
+ for linux-amlogic@lists.infradead.org; Sun, 09 Dec 2018 20:13:13 +0000
+Received: by mail-oi1-x22a.google.com with SMTP id h25so7425083oig.1
+ for <linux-amlogic@lists.infradead.org>; Sun, 09 Dec 2018 12:13:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=73UkkgA13PS5wgqSSg53HYdLX82FskY2VGqT47R/Ls8=;
- b=rjV46CuohTjDWjmOlylN0PPJ4QoyI0TphLd0mYyVgxiOk9CkdZiCuDJ9WkXfmZhcA0
- dgiI0INUsNYU5oxmi25WlwEXpLerXMXzJpqMIbhUK+RhP/1K5vkw7Navj7iUYJgB3Npy
- EkQso7Xf5kogTb0IPOI2m4e8uylsv/UQ1i9LDFCT/haTRJedKi9CBA+A++IqAy5b4B74
- hrXDcqu5GLugag4xXcNfO3fT/voKaCpH/m0OuuFy2fANcMOsGxuVMHeE0lZAb7Xc3Et8
- Lb2FY3DF4+FfRA6lis0ek4RncEVv8tECgzwuUmtfM0wXGhUryeKF9UGByRvp0ZDN1tYv
- QfNA==
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=mlQ6N0uINjuCcuVQPXSxFQT9BQFp8Tz9j+YsCoXl3EI=;
+ b=h7QUwNgS1i0NRTIda1ku7xkE6N8uf03Xa/5kCBYkIvdwZZ2A0mAHerXuxoa5o0mfbL
+ 4JdpfUX3ojx2tkAWPC989UFkjELYK4qqsdxIitkz6Rl68RpF3UTPve/gRwxGTvk51tpV
+ xkhCkNxwIz+AwYnv90ClKzEM5QS129XdxqITXY8u/x1LxzkLDyIbBsxMeAqID5KcU9yV
+ ufojo543J3/qHtf4OXplMgnfrhL+4nggBX1sxekpcJ2PH2Ih16cogxa0ZkKaAFr3BCH8
+ QoaflO4Mcj9pMMSEcJ7RVy89/gUX/GrkivfUHdsTRjzYfUwYbVtOEV/pOTC7IbLsHylU
+ 297g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=73UkkgA13PS5wgqSSg53HYdLX82FskY2VGqT47R/Ls8=;
- b=Yn6UuWUv5+op/5G1G74GPEzl92NRCf/dOU6QRg4rPMYB17akE3t4T3WElRB5+9te0K
- SSmJBkk0fRLIGxKeW/towQj61ouSJhgxt9aEyDs3v93jjcwIc/72X4nu1KoDZUICGYqk
- WXMEf/gNhW5/FrzvJwtV3TRje247ZFTrU/VRvabCqLpZX8uBBlO+F7AaKVIO5xKN7aYD
- FRGBYVJ3rJExOSSkP3HB2A9OxB6DVWx00hxh7gQ2hR0kkbVLLos26fFm3nsIzXokgu3+
- VHY/TiDz6qGvKt3gRcbokpCAdb3upwjIGKk3YWR6qaJf50bufWlYFE17zp8jMCEfCX5t
- WXIg==
-X-Gm-Message-State: AA+aEWaEYjRqRepXXixLOwY0p9InjbEZHzAFmjR/xhKz4sVMjgjKl+e/
- gyc59QgOfXrZwHi07zO9ufA70oAn
-X-Google-Smtp-Source: AFSGD/WpDg8nYCDo+bcLfGzSW/+YQAqSKzR/ZupWv1uc5LyOCMp9VZZPsHKhN5JdEYkipi3BwpSeug==
-X-Received: by 2002:a5d:664a:: with SMTP id f10mr154720wrw.311.1544385067544; 
- Sun, 09 Dec 2018 11:51:07 -0800 (PST)
-Received: from blackbox.darklights.net
- (p200300DCD73FBA00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
- [2003:dc:d73f:ba00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id x20sm20270941wme.6.2018.12.09.11.51.06
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 09 Dec 2018 11:51:07 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
- linus.walleij@linaro.org
-Subject: [PATCH 5/6] pinctrl: meson: meson8: add the missing GPIO_GROUPs for
- BOOT and CARD
-Date: Sun,  9 Dec 2018 20:50:54 +0100
-Message-Id: <20181209195055.26813-6-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.19.2
-In-Reply-To: <20181209195055.26813-1-martin.blumenstingl@googlemail.com>
-References: <20181209195055.26813-1-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=mlQ6N0uINjuCcuVQPXSxFQT9BQFp8Tz9j+YsCoXl3EI=;
+ b=I6zY1NBGfqog02PrG5eSNZ+lCdQAAOujNlX7yO0OE/uHFQW02dg7jc30UNLcOBjnz7
+ n0Z676dTSo4aPTxc87cQU1mj9yYq78MgeXS1kqSUnKL1iq6Mq5yZiBbrDVtZCSFt4k/p
+ 2NFFio5uH0sdf1G4MQyaHx0IqQKUVqbwLDM9HQwPk1DJyuxa40IsR0dYFu4WDsteQggI
+ 4zqErA8Q3WqyNFIhySIo6zUjdcG/w6tigftwfOGznJ2ghE9chY+gW+e3gSxKqmQi/yxz
+ KuwMNfJp+vyxIYA4piqN1NloWHw+WWlFqSOfvQqyLvfEIc+ASYXl5VThUCfrDkoqt0Nf
+ 2tXg==
+X-Gm-Message-State: AA+aEWYClBY07EySvavH886qvBlXHvcUYMow0MUvcEx0IKyys5Ew468w
+ iNHtOp3PdslqlbfRP7I0gL4jAMUUpfxIFEs4NqbaGAH3DYw=
+X-Google-Smtp-Source: AFSGD/U0bkCkw6rTclnST/qAvUahwiH+90CoeGa8VexGmeIiu9w0xIt7Wgor1aMkquBWcoZckMw2zBJ7vW3N6aCDV+k=
+X-Received: by 2002:aca:4b48:: with SMTP id y69mr6249334oia.200.1544386380757; 
+ Sun, 09 Dec 2018 12:13:00 -0800 (PST)
 MIME-Version: 1.0
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 9 Dec 2018 21:12:49 +0100
+Message-ID: <CAFBinCBcYxAmeZz6Tx_P23Z--GstA5wC2JV=G7QSHssJpHKZRg@mail.gmail.com>
+Subject: USB issues on Odroid-C1
+To: brian.kim@hardkernel.com, Mauro Ribeiro <mauro.ribeiro@hardkernel.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181209_115119_807905_13DD2E54 
-X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-CacheID: sfid-20181209_121311_917841_98A113B8 
+X-CRM114-Status: UNSURE (   8.91  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -99,65 +87,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: carlo@caione.org, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the BOOT and CARD pins as GROUP_GROUPs as well so they can be
-configured in devicetree using groups = BOOTx or groups = CARDx. This
-makes the behavior consistent with other pins inside the same driver as
-well as with the BOOT and CARD pins of the GXBB and GXL pinctrl drivers.
+Hello Brian, Hello Mauro,
 
-Fixes: 6ac730951104a4 ("pinctrl: add driver for Amlogic Meson SoCs")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/pinctrl/meson/pinctrl-meson8.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+I debugged USB issues on my Odroid-C1 today which doesn't detect USB
+devices connected to any of the four USB ports.
+This issue only exists on the mainline Linux kernel - USB works fine
+with an older Armbian image on the same board (this is why I assume
+that the hardware itself is fine and I'm chasing a software issue).
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
-index 5f4935a81295..785e29e74a56 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8.c
-@@ -506,6 +506,32 @@ static struct meson_pmx_group meson8_cbus_groups[] = {
- 	GPIO_GROUP(GPIOZ_12),
- 	GPIO_GROUP(GPIOZ_13),
- 	GPIO_GROUP(GPIOZ_14),
-+	GPIO_GROUP(CARD_0),
-+	GPIO_GROUP(CARD_1),
-+	GPIO_GROUP(CARD_2),
-+	GPIO_GROUP(CARD_3),
-+	GPIO_GROUP(CARD_4),
-+	GPIO_GROUP(CARD_5),
-+	GPIO_GROUP(CARD_6),
-+	GPIO_GROUP(BOOT_0),
-+	GPIO_GROUP(BOOT_1),
-+	GPIO_GROUP(BOOT_2),
-+	GPIO_GROUP(BOOT_3),
-+	GPIO_GROUP(BOOT_4),
-+	GPIO_GROUP(BOOT_5),
-+	GPIO_GROUP(BOOT_6),
-+	GPIO_GROUP(BOOT_7),
-+	GPIO_GROUP(BOOT_8),
-+	GPIO_GROUP(BOOT_9),
-+	GPIO_GROUP(BOOT_10),
-+	GPIO_GROUP(BOOT_11),
-+	GPIO_GROUP(BOOT_12),
-+	GPIO_GROUP(BOOT_13),
-+	GPIO_GROUP(BOOT_14),
-+	GPIO_GROUP(BOOT_15),
-+	GPIO_GROUP(BOOT_16),
-+	GPIO_GROUP(BOOT_17),
-+	GPIO_GROUP(BOOT_18),
- 
- 	/* bank X */
- 	GROUP(sd_d0_a,		8,	5),
--- 
-2.19.2
+version code on my PCB:
+ODROID-C1+ REV 0.4 20150615
 
+The USB hub is detected fine since the mainline kernel is pulling
+GPIOAO_4 (GPIOAO.BIT4) HIGH.
+I have also seen that there's a PWREN signal (GPIOAO.BIT5) in the
+schematics. I verified that this goes to the EN pin of the Richtek
+RT9715EGB next to the micro-USB connector.
+I'm not sure if the same signal has any impact on the USB-A ports.
+
+I started to look for any clues in the schematics so I started
+measuring the voltages at MOSFET "Q5".
+Here are my results:
+armbian:
+- 1: 3.3V
+- 2: 0V
+- 3: 0V
+
+mainline:
+- 1: 0V (during boot it goes to 3.3V for 1 second or two, but then
+goes back to 0V)
+- 2: 0V
+- 3: 3.3V
+(I did two measurements: with GPIOAO_5 LOW and GPIOAO_5 HIGH - I get
+the same result in both tests)
+
+the pin names for the numbering in the schematics:
+- 1 = Drain
+- 2 = Source
+- 3 = Gate
+
+Can you please look into my test results and let me know if you have
+any idea what we may be doing wrong in the mainline kernel? I can also
+do more measurements, please let me know what to measure exactly.
+
+
+Thank you!
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
