@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-8.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CB46C67838
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 19:52:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 463ECC07E85
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 19:52:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DD1482082F
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 19:52:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1124320672
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Dec 2018 19:52:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lNnb51sa";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="qigJXV7e"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DD1482082F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S+DkqjMo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="nKb6wfX/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1124320672
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,68 +27,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CKXUSdPGr2cWJ0o50104SwXSYftMKSqRzErs9vxg6WU=; b=lNnb51sayQ9CjY
-	b0o1vEy9AK3uk9W4XjLTz4VptdKo6ENkgVtIj/vYFC4zQrZ4J8zyBr6MJtNElUw/JSDQPUf3VAPDD
-	gnSG+NJyJzjGFWPeRuBI3wGpJKtMvJ/IzkYnQ8Mfa4i1ueq6b0b3nSULnsdsYkxT8QZlKViVuw3sC
-	blQ+EXU331h515Jn8A1XyTz7NcDoqd1ZwDyUh5c34WyrrU4mPgrC74PyQhHODbVi2EM24/wCljEyu
-	ap18jdOaZsgj9TZYPQolhcfIIm06xSpBCim7NPkTN0BOf6bHnQB4uRSHglNtDHWwu1ka5jFbDnZKv
-	ptFBnVMjxdpFWazuQ+fQ==;
+	List-Owner; bh=GVlcjSkVdTkg2wfnYlAsvdX5kaGcyiuF6Rzvwv+Q7ME=; b=S+DkqjMocWmMq9
+	7qImeo5rV/Z+5/+bpPbjxiGMdjRZGalfY6SepQspzpLmHULgrLWwyW+KJ+/QKOZABgnT+DGd9qNNi
+	58xmts6LhPPs7MrrG19Bt6feWpqYVWTFkt+GI474XhD7+kuzZG5jDx/XDqtvpkJ6j5GltD72XcwY7
+	xEoKKLB9gbK2IaNTy2M1tKAbzoStQeHMTUTiQwj5+nEd7+syGdq8t4IPbBCflbL1l3A5oWnDAuybA
+	cDa2WmT3nb/f7au8/M3c0fouXjmMXrbeqe9WSowHRC5zAab6UxVFlaZoMN6vXOt/09mxcTxSapqfA
+	cqXZqVEzRTER4thXfZDQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gW57J-0006fE-2I; Sun, 09 Dec 2018 19:51:53 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1gW581-0007Hj-94; Sun, 09 Dec 2018 19:52:37 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gW56i-00064I-Op; Sun, 09 Dec 2018 19:51:18 +0000
-Received: by mail-wr1-x441.google.com with SMTP id p4so8415722wrt.7;
- Sun, 09 Dec 2018 11:51:08 -0800 (PST)
+ id 1gW56k-00064N-0h; Sun, 09 Dec 2018 19:51:21 +0000
+Received: by mail-wr1-x443.google.com with SMTP id j10so8432094wru.4;
+ Sun, 09 Dec 2018 11:51:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=uWw97g7ElUgJ2je8JI19vSCNfFEnazDluRAzx8g6jHM=;
- b=qigJXV7eykLEw2HNvRSnSafNDXB74tVhzTxsoMna/5OFyTN4EHbbjF69nWhsKLz5H7
- Bl6SLcqokgsLdjP6pm3tlArBxEM0Mh5+XMW8U2R8Jjz86zF7K5f9gr0+mM0mIkSacKZD
- xaeNDnVtGwmKLhRkHnG3SnEX0AU8SrbtxumT16OGjySJxdAafY1+CkMv0k0XARHKRjox
- 4sYaesWY2NgENwweK5m//iXkcvYAIsFWEwZ9qAzlqvjTbyPE2WbhRy97/YBA3dkKO2Dn
- vLmX5cequ3KYMDn6l5bjId7bnrrggCwKy46DqP2fU7HHhfMowjYFjnYXKvW+cQ2oGV9x
- 4saw==
+ bh=urCU7YQjDTJrG7L2Euwj/N64dJUSTa6MEsTdrSmy+1E=;
+ b=nKb6wfX/rw5GoEOT0rpZUQ/Lbm5/f+gtcYsGQ8oKTEAAdvv+KRMIy6wLViagKYuiiJ
+ 6aGvbYWt8b3UaDw6TZnsrpCg6o4aRQZNCXi7vlFInG72DPaXaoLlG9nmvLopf6FT10Xo
+ PJGK4/3xFUJzDDZcI7IRGwns+29o8HFNdojMh1ckJ+rQ5Hg0Oy5SRdRm3clsWJ7+hqdo
+ uuAOEs31cKHP+0wLksEHZqwbQYumM4VF2/VU2T6gZ5YWlQr6uAqFosNi6LSIrYTgpvZ6
+ oZpoXYX0F+BI72w2c5lJoYl9QGscssE4Mf2vR39eicvQy1vYXZ6lBJo4XcxAUWPUUe8R
+ rNOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=uWw97g7ElUgJ2je8JI19vSCNfFEnazDluRAzx8g6jHM=;
- b=glj+tUBh2NIv2iexc84rmmlEEzxJvgzVXr/MhA8MKy+ACcsHnSZAWiekBeX+AZSER/
- JOSIROu7sUeZwlAxCdWR6HLpzjdsuD+MzapZUB0+LJMRFEWA1wWfV0MR2mX823D5yEqq
- wtkRYh3BFfYqD5ydv9gjW+64CYFw0bVOWXTw56pMbvIZF0bcfl9n3s714WLjysWaM2x7
- 2uVda9u6N4LMPmneN4PBKOl79n2mV4SFfTGTAZ0NcgwJ/ShmSIn6gcvJL3O934C9lPip
- KMROWxrPCYVqlt0NXejwG8q8gXQYcrUb54Ha6OfA33gDHMUjaiopWSAV7Hmfm56bVioe
- mPMw==
-X-Gm-Message-State: AA+aEWbuBocSEhZD+c4XpSsE5WJKx6tHhghGeJYMTFNWekLLsMzCsSb+
- sHumt0xMK9/EWPSBX7gIz561K4g4
-X-Google-Smtp-Source: AFSGD/WuNWoIvyybaMiPYlUdNs8S2clBrxB604ziXFmNaZ4F3Fc5rQZqWqB7gs3uAhxj38Z0YZd5OQ==
-X-Received: by 2002:a05:6000:10d1:: with SMTP id
- b17mr7593184wrx.306.1544385066607; 
- Sun, 09 Dec 2018 11:51:06 -0800 (PST)
+ bh=urCU7YQjDTJrG7L2Euwj/N64dJUSTa6MEsTdrSmy+1E=;
+ b=kOUjuC6EhIy0rrZRXzx+9QRuCGb4+sxcWrDvw386mGX94GCH6uKTOMR1+5otHL2mDM
+ SukCxHuGGYDzSbKguDJcGPkiHSdMS0QwknPRuXGf9ENKCChc/cW4XAs97w4hPfvLC/WE
+ oREqmTahYWPnFWLB5/WwQw8qo48ygfs2sAIDoPDCbgFGediXdHACU8GG87RIAxAlgwEc
+ YW+RosX+YnVRdZSxV9kr2hw2H+cqKZHXtnJbUa/XOal1g5ySAxU4pGaamdhBBdrmZchQ
+ hi0DsDkYxaBmsIoXqPnprZ3zQ1tkdJAVwjEEftkSlVEBLuGZJzQra5ME0pBbb+A05LDL
+ 7Aqw==
+X-Gm-Message-State: AA+aEWYefGTg/LCkKgIBRE2c+wBdJiAue6OmgSCHE03ulCELP42Yf4zX
+ +VnFpXuV98shGfTsozlSQ5pUtNjl
+X-Google-Smtp-Source: AFSGD/Ucthwo9Mxtp42S1MnvflXgUPHtWaXWEFRfExBiGs+jzi2+kbxRlXUhB7s3Bki3zzDlkCj5mQ==
+X-Received: by 2002:adf:f350:: with SMTP id e16mr7334928wrp.125.1544385068479; 
+ Sun, 09 Dec 2018 11:51:08 -0800 (PST)
 Received: from blackbox.darklights.net
  (p200300DCD73FBA00428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:dc:d73f:ba00:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id x20sm20270941wme.6.2018.12.09.11.51.05
+ by smtp.googlemail.com with ESMTPSA id x20sm20270941wme.6.2018.12.09.11.51.07
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 09 Dec 2018 11:51:06 -0800 (PST)
+ Sun, 09 Dec 2018 11:51:07 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
  linus.walleij@linaro.org
-Subject: [PATCH 4/6] pinctrl: meson: meson8: rename the "gpio" function to
- "gpio_periphs"
-Date: Sun,  9 Dec 2018 20:50:53 +0100
-Message-Id: <20181209195055.26813-5-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 6/6] pinctrl: meson: meson8b: add the missing GPIO_GROUPs for
+ BOOT and CARD
+Date: Sun,  9 Dec 2018 20:50:55 +0100
+Message-Id: <20181209195055.26813-7-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.19.2
 In-Reply-To: <20181209195055.26813-1-martin.blumenstingl@googlemail.com>
 References: <20181209195055.26813-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181209_115116_822800_48A24EE0 
-X-CRM114-Status: GOOD (  12.69  )
+X-CRM114-CacheID: sfid-20181209_115118_147936_89719EA7 
+X-CRM114-Status: UNSURE (   9.62  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,40 +108,56 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rename the existing "gpio" function to "gpio_periphs". This makes it
-consistent with the "gpio_aobus" function. Also GXBB and GXL are also
-using the "gpio_periphs" naming, so this makes the code here consistent
-with other Amlogic pinctrl drivers.
+Add the BOOT and CARD pins as GROUP_GROUPs as well so they can be
+configured in devicetree using groups = BOOTx or groups = CARDx. This
+makes the behavior consistent with other pins inside the same driver as
+well as with the BOOT and CARD pins of the GXBB and GXL pinctrl drivers.
 
-No functional changes since thee "gpio" function is currently not used.
-
+Fixes: 0fefcb6876d0d6 ("pinctrl: Add support for Meson8b")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson8b.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/pinctrl/meson/pinctrl-meson8b.c | 28 +++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
 diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
-index 91cffc051055..b455e0c7a282 100644
+index b455e0c7a282..c69ca95b1ad5 100644
 --- a/drivers/pinctrl/meson/pinctrl-meson8b.c
 +++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
-@@ -622,7 +622,7 @@ static struct meson_pmx_group meson8b_aobus_groups[] = {
- 	GROUP(i2s_lr_clk_in,	0,	14),
- };
+@@ -403,6 +403,34 @@ static struct meson_pmx_group meson8b_cbus_groups[] = {
+ 	GPIO_GROUP(GPIOH_8),
+ 	GPIO_GROUP(GPIOH_9),
  
--static const char * const gpio_groups[] = {
-+static const char * const gpio_periphs_groups[] = {
- 	"GPIOX_0", "GPIOX_1", "GPIOX_2", "GPIOX_3", "GPIOX_4",
- 	"GPIOX_5", "GPIOX_6", "GPIOX_7", "GPIOX_8", "GPIOX_9",
- 	"GPIOX_10", "GPIOX_11", "GPIOX_16", "GPIOX_17", "GPIOX_18",
-@@ -839,7 +839,7 @@ static const char * const tsin_b_groups[] = {
- };
- 
- static struct meson_pmx_func meson8b_cbus_functions[] = {
--	FUNCTION(gpio),
-+	FUNCTION(gpio_periphs),
- 	FUNCTION(sd_a),
- 	FUNCTION(sdxc_a),
- 	FUNCTION(pcm_a),
++	GPIO_GROUP(CARD_0),
++	GPIO_GROUP(CARD_1),
++	GPIO_GROUP(CARD_2),
++	GPIO_GROUP(CARD_3),
++	GPIO_GROUP(CARD_4),
++	GPIO_GROUP(CARD_5),
++	GPIO_GROUP(CARD_6),
++
++	GPIO_GROUP(BOOT_0),
++	GPIO_GROUP(BOOT_1),
++	GPIO_GROUP(BOOT_2),
++	GPIO_GROUP(BOOT_3),
++	GPIO_GROUP(BOOT_4),
++	GPIO_GROUP(BOOT_5),
++	GPIO_GROUP(BOOT_6),
++	GPIO_GROUP(BOOT_7),
++	GPIO_GROUP(BOOT_8),
++	GPIO_GROUP(BOOT_9),
++	GPIO_GROUP(BOOT_10),
++	GPIO_GROUP(BOOT_11),
++	GPIO_GROUP(BOOT_12),
++	GPIO_GROUP(BOOT_13),
++	GPIO_GROUP(BOOT_14),
++	GPIO_GROUP(BOOT_15),
++	GPIO_GROUP(BOOT_16),
++	GPIO_GROUP(BOOT_17),
++	GPIO_GROUP(BOOT_18),
++
+ 	GPIO_GROUP(DIF_0_P),
+ 	GPIO_GROUP(DIF_0_N),
+ 	GPIO_GROUP(DIF_1_P),
 -- 
 2.19.2
 
