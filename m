@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-11.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3AB1C04EB8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 20:37:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BAB23C5CFFE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 20:47:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7CAD020821
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 20:37:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 84D6D20821
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 20:47:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B1DIRIYj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZVzmuFNk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7CAD020821
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gdBFthMR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NIGNCo0o"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 84D6D20821
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=szuuMi3TxIBN/E5XUyEYmrN2n4TaaF4R7K5Aid7IYxQ=; b=B1DIRIYj47XnFY
-	fftvqCZ3Fpr2xFEpq68xbHsC2q3LeR/mqXXko1WqD6YQaq1sfFtdxn9BF1rMr+1Ki6fy/ttj3xsvY
-	CikfBcUMASdlWxa0LkVnUt0L7SA/BLHOXADHM4uQd5adtSGvc3/nfmDPk89TdI/m/8M/24wtSeZm+
-	9s/OoVONj4hrmsrtsFCxWRUMry9QtULqVlJVBPWIOlJQpnRLasdDwe2RqFV3JkPKlbxPvCowXFskG
-	asCNXRO9+6pbQvQGUG7J8kV0FCLnQwN15t2OH72hmLcAApU1T2E/oD44LA3mRQucPnP0pYEHt4m2w
-	X49B3rMPlI1Zso9yTbhQ==;
+	List-Owner; bh=EV7zaOU8a5RKfXlQibFoDSz0u/gsAWmBjl0LiP6U9gY=; b=gdBFthMRoCeDvf
+	hp+kYAz0q5d1PwNOzw551x910akR5cjFxOAps2odknRdWMv4PL04mkegfYjFhmXUVXVmXaNhdVnw0
+	J+PuA6hS92HgMNoIc57TAuFkX1/BC1br/UrNX3Pi03Dr0bmo3QGceyDxBUOMA3Ce192P4glUxYCTA
+	f4rftue7oTPpOgUGkbvvfagUoaLbUCASn6e9RQQZF3vZrI2P7nWuiTJXS3kKGjquyz+HwvPVAisjZ
+	qg1x5udmVDu2DlJx/W1eTD8jQAwRrseTeJ9FH+mU9cFL2PejubCsrKJQ29s9LcTcroVdovSsFpiZ9
+	2JMdq6klzANZ1jZOw4Jg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWSJI-0004qx-OY; Mon, 10 Dec 2018 20:37:48 +0000
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
+	id 1gWSSY-0001X9-0M; Mon, 10 Dec 2018 20:47:22 +0000
+Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWSJE-0004h3-Pa
- for linux-amlogic@lists.infradead.org; Mon, 10 Dec 2018 20:37:47 +0000
-Received: by mail-pf1-x441.google.com with SMTP id w73so5942913pfk.10
- for <linux-amlogic@lists.infradead.org>; Mon, 10 Dec 2018 12:37:34 -0800 (PST)
+ id 1gWSSM-0001D5-4A
+ for linux-amlogic@lists.infradead.org; Mon, 10 Dec 2018 20:47:11 +0000
+Received: by mail-pg1-x542.google.com with SMTP id w6so5513799pgl.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 10 Dec 2018 12:46:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version;
- bh=NQBOasqUrtZBY78xlBbpNxaOgWK4CYjJhjAgPLm+nfI=;
- b=ZVzmuFNkfFC287m0ABVjLnjnXk7k5sUjvTU0W+rcIjoZ0ux8RLMJM12/+LqKrl//wC
- zpzqlsoblhwKLHuV0Cq5QgeYyHqBU7pa1bJr2z0mnmPaWZ5K2CES6mqpgJAgZrNqpbxO
- z3zG2EUGwtv2oKSiTumAfxISTD+MT5xdC/wTtd67F3dwEY+v+WTbBcFqzNhoQPsVPVFy
- Q66soQgARVz3fSlUAjj1PcJGdjK1D38kecpCVg7QykkUDr0frqyZSAiKVigfRNC6t+B/
- 57oxjt4RWshW40SDfNbkyKxS04/DgYWyUniJ1hmKueDJaeDpjX4G9QUksc4Nhkw3oY7q
- +CDg==
+ bh=H00Z+KudCaw2SE21tWDOFnCHGtg8lclWR0YeXLHbXkU=;
+ b=NIGNCo0oMBotoGr2cd4907iNlF6cFkANtB/hGw6NFLFOXaA0ezI6G2gvabWguVRrTK
+ nfkLX/OJcgsi1s2M+4J+18uCPh1wNPz8z2fRhi5cYNeIIlJK0IGOU7S2/yOVb8DadT6o
+ RnF5ZeQ/9GpXFH4Ubaz0DSeedN6BArQFZpcrrA+nWm1wfa4Eg2BpowMxJV15GHSav9xK
+ 2a3INgRxylkY+lWM89Y7CTbA/xjILfJeNygr4TLnezUQZMl8Yx1x2PAYI+P9zBTyKHnM
+ Kz/xmIQwaqwEzr8DSAhEnG+mINy7RvRCM+wcNEzUI7oifv8aon3ehyOh8fSQePEHZYBq
+ 1xkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=NQBOasqUrtZBY78xlBbpNxaOgWK4CYjJhjAgPLm+nfI=;
- b=LpTv/Vekl+nMucI5lwq33RpuUwX9PKBAVhb5wXEUX74FIjwFBYmSl4/tuDSYp9Ib2F
- uBovkt3QaVC9Az444WX0DBHsmqL4LP4S4mHM9AasQkMH+19To0eOUAh3YjncTtLPJ2lA
- 2luz1sVT3AXJP/N/F8fHw/U3SjccJr5Tftist4fNcyPwaBNPs8gwVAD4LPDcTTlH2BJb
- YaavzXDne9GfCOxZ3qVY4D1tWReazzXKwxcjsNPBI1l13KBLgFuJbfrZFzFfmnGYtwA+
- trk2nTBW/6f26POw+TIaTcSJcRuljGKXMKKhWx1xXGxvRqZHP/aX4hNO21LwTTrBCfpq
- SKiw==
-X-Gm-Message-State: AA+aEWYOtF5RymO7A4uHasTW5G1Bifxm5FchnBZHK4u394lX0QWIAH5a
- jpO0URLXoVyiHEO4IskRy9hgQtBTO4g=
-X-Google-Smtp-Source: AFSGD/XC9HyERYFA29JIsz54h0nWy6yANGKvHzGgtSeUsm0vllwYS37eeO0UakXh8Aux0XwgX05Xjw==
-X-Received: by 2002:a62:509b:: with SMTP id g27mr13858277pfj.48.1544474253732; 
- Mon, 10 Dec 2018 12:37:33 -0800 (PST)
+ bh=H00Z+KudCaw2SE21tWDOFnCHGtg8lclWR0YeXLHbXkU=;
+ b=IjnkmSmeM69rHJA4f/pBJN2E9EZwpDK5bi0ypiVUrV1WK7E4nvfZh3PwaMF4j4P2MJ
+ vD/VJ/Ijx0k1YX0dn6ZXOnSM+E1xiiRAB6EB/XOBWVytCVnl11fdq3o6Sxl330uCMGmI
+ cO5vQ+4n5/DoExzFfXY/bUetYXLmPmFMIeVbl7+54qr8jPbdIb6uNJ/wIAz+T0tphW8c
+ kHJIAemxxSoaVPeUOIWAMxiWvJ6G15nlKMdhPEEkHOk9YivV87TbdhLx99zgXpzJXgSJ
+ iNszg4ee3sGrMXM8gjvJvKupK260Mw5kJgEQSaOUtt1RUMzPkh/qTqaYvnfrEMj63pJY
+ HosQ==
+X-Gm-Message-State: AA+aEWb/n+JnE9mXi3X8XhFoDztWW+m15x1WlGWD12Purv3AHC5kTmDz
+ l05iaxx3sHIGuFpMmO8aemDx4HvdZEU=
+X-Google-Smtp-Source: AFSGD/Vfo1W+9up51unVq86J4IhkOGrjwPesxZUthTfxsRnJwfJ5wR7YrT9Uj1QmX5VTIt9SzUCgOg==
+X-Received: by 2002:a63:2a4a:: with SMTP id q71mr12068260pgq.374.1544474819198; 
+ Mon, 10 Dec 2018 12:46:59 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
- i72sm18373728pfe.181.2018.12.10.12.37.33
+ [71.197.186.152])
+ by smtp.googlemail.com with ESMTPSA id v9sm17270201pfg.144.2018.12.10.12.46.58
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 10 Dec 2018 12:37:33 -0800 (PST)
+ Mon, 10 Dec 2018 12:46:58 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
 To: arm@kernel.org
-Subject: [GIT PULL] arm64: dts: Amlogic updates for v4.21, round 2
-Date: Mon, 10 Dec 2018 12:37:32 -0800
-Message-ID: <7hpnu9w22b.fsf@baylibre.com>
+Subject: [GIT PULL] soc: Amlogic updates for v4.21
+Date: Mon, 10 Dec 2018 12:46:58 -0800
+Message-ID: <7hh8flw1ml.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181210_123744_938776_60E95476 
-X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-CacheID: sfid-20181210_124710_164377_A026785B 
+X-CRM114-Status: UNSURE (   9.02  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -98,57 +98,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The following changes since commit 5e339a1d7e438b2cc9f46ec9f2682efb58ee2dd3:
+The following changes since commit 651022382c7f8da46cb4872a545ee1da6d097d2a:
 
-  arm64: dts: meson-gx: Add Internal Clock Measurer node (2018-11-29 12:30:09 -0800)
+  Linux 4.20-rc1 (2018-11-04 15:37:52 -0800)
 
 are available in the Git repository at:
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-soc
 
-for you to fetch changes up to b29e9eccaaa721c2a303db6540535ee77a515f61:
+for you to fetch changes up to e9e863dc1dc88212b09d279a143027e1521b35d1:
 
-  arm64: dts: meson-gxm: Add Mali-T820 node (2018-12-10 12:11:32 -0800)
-
-----------------------------------------------------------------
-arm64: dts: Amlogic updates for v4.21, round2
-
-Highlights:
-- GXM: add Mali T820
-- fix IRQ trigger type
-- AXG: enable GPIO IRQs, PHY IRQ, watchdog
+  ARM: meson: select HAVE_ARM_TWD and ARM_GLOBAL_TIMER (2018-12-10 12:43:40 -0800)
 
 ----------------------------------------------------------------
-Carlo Caione (4):
-      arm64: dts: meson-axg: Enable watchdog on Meson AXG SoCs
-      arm64: dts: meson-axg: s400: Enable PHY interrupt
-      arm64: dts: meson-axg: Enable GPIO interrupt controller
-      arm64: dts: meson: Fix IRQ trigger type for macirq
+soc: Amlogic updates for v4.21
+- ARM: meson: Kconfig: select HAVE_ARM_TWD and ARM_GLOBAL_TIMER
+- misc MAINTAINERS updates
 
-Christian Hewitt (1):
-      arm64: dts: meson-gxm: Add Mali-T820 node
+----------------------------------------------------------------
+Carlo Caione (1):
+      MAINTAINERS: Remove myself from the list
 
-Jerome Brunet (4):
-      arm64: dts: meson-axg: remove alternate xtal
-      dt-bindings: clk: meson: add ao controller clock inputs
-      dt-bindings: clk: meson: add main controller clock input
-      arm64: dts: meson: add clock controller clock inputs
+Corentin Labbe (1):
+      MAINTAINERS: add drivers/soc/amlogic/ to amlogic list
 
-Neil Armstrong (1):
-      dt-bindings: gpu: mali-midgard: Add resets property
+Martin Blumenstingl (1):
+      ARM: meson: select HAVE_ARM_TWD and ARM_GLOBAL_TIMER
 
- Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt | 10 +++++++++-
- Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt   |  5 +++++
- Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt      |  2 ++
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts                  |  2 ++
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi                      | 23 +++++++++++++----------
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                       |  2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts             |  1 -
- arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi               |  1 -
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi                     |  4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                      |  4 ++++
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi                      | 27 +++++++++++++++++++++++++++
- 11 files changed, 67 insertions(+), 14 deletions(-)
+ MAINTAINERS                 | 2 +-
+ arch/arm/mach-meson/Kconfig | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
 _______________________________________________
 linux-amlogic mailing list
