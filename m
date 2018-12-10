@@ -7,73 +7,75 @@ X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88AD6C04EB8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 10:11:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D30F9C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 10:12:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4032320821
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 10:11:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8285D20880
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 10:12:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jUs3YO4l";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="IBtsqOx8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4032320821
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bcH8TWeT";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="iT4mcL0n"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8285D20880
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=8m61DzgbE1eL+ZD0cSp5E0MnxREFECHIXKLDCqBNN84=; b=jUs3YO4lCUhakF
-	4tYnXm6mAaPhJecs8YckaWP8VbWtDl9/T2seTzC/4QwabWd8ZhNh0HHKFte43FkAu8MkB5kjm+OuU
-	agWp70aA9n456WNFOdu+EvWwdK9E3UVsQt2FkwFJArexEATUqGrjwBomQnaDMYjBKu7ccWDGFr99X
-	BgrdMgiCmV+yb6eGlQmdV2H8NTFNrezpiM4e9atz/cRAKNkOYmW2UCRgLOZu0e9k2Oa0Mj2hrm9lc
-	jo0tleEGCmnflIrB/LG3ooCFJrurEYXMQxADs7Fzaw5AGc2Xbg9ozVXLcuDO9OqNT+zOw9gnS7sjS
-	Dl97BeFFTD1Y3j3qRQag==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8m61DzgbE1eL+ZD0cSp5E0MnxREFECHIXKLDCqBNN84=; b=bcH8TWeTf4sO3w
+	Ana4Lp6lCPqh7G0pmDddkbTNqf3Jxe3VSap5HrPF3liJX5sf55bMszQBgUUv5MCOhnKg4Ht587jUa
+	m27ECK506FoJzUiOcGvnULpk8KYH7uCp9g3HkvGJ4vxW5XCKKIHDZ8vjdL1rC7DKDnbxJ0t8d0AnW
+	9D4Kocu03jC+2zW6BBXX88vz/eMPY2Y3xnBMlBWGiqtpyMhGvCIe8IP19hsg8Y2CeaPymXV2Cq9Uy
+	aeTLPo//w83hoWs7SC4/t6RXCF1yGrTCwbJrcc9uBHwstQ0d9PIK285AEgz/ilBofhg7RA3/t5vs5
+	wiW/15t8lUgS4gvWu6xg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWIX1-0004xU-N2; Mon, 10 Dec 2018 10:11:19 +0000
+	id 1gWIXp-00057r-Qs; Mon, 10 Dec 2018 10:12:09 +0000
 Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWIWs-0004x1-UR
- for linux-amlogic@lists.infradead.org; Mon, 10 Dec 2018 10:11:18 +0000
-Received: by mail-ed1-x544.google.com with SMTP id p6so8985789eds.0
- for <linux-amlogic@lists.infradead.org>; Mon, 10 Dec 2018 02:11:00 -0800 (PST)
+ id 1gWIXX-00054Q-En
+ for linux-amlogic@lists.infradead.org; Mon, 10 Dec 2018 10:12:08 +0000
+Received: by mail-ed1-x544.google.com with SMTP id d3so8953175edx.7
+ for <linux-amlogic@lists.infradead.org>; Mon, 10 Dec 2018 02:11:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
  bh=5+uuYDJS0fjC2z/LxEteA+atoYJLiW2ao0o09yvwDYQ=;
- b=IBtsqOx8+rb9r4q3bbPh78oBVMTzvOBJj3opA6lyRLu0uYdnficPMEP5dyWpAUaYvk
- siMowy9KvONvjbK+F2+XN/gTy7JH5zW29NPcogzXpQfwgewW/pg0V8sa9mCIUKIDzA5L
- 8o6IMQkbfW62JHQiszK3CLmCbxhCIxaycXinw=
+ b=iT4mcL0neyFo3wfPK5V7viaeFZrz7eRVqxZUA+O6ZBrMM7stpBEXzsuiU/qkCcNNG7
+ WRbbBSXySMIxoIoLKg76K5Mz0DJ8ux9Xx2ih0AqW3YbPcy0dwhozJmdl+CzkCm+Dra/q
+ 9kCrwJwxy+PTNG8wQN91ozFyGCTqu3d9ac5jg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
  bh=5+uuYDJS0fjC2z/LxEteA+atoYJLiW2ao0o09yvwDYQ=;
- b=SSSS/qYtnOT9UTdEOq8Dt9bNjs6ehTAbnSq+VDUcfojU05SWkstOlXfpFKO2DlSUwn
- 9hS1JcAw3Shnkb7AYiwUwmu/BpvXAs9JtMjGAm2EWH7SiVPvfcHD03+9X7278xCrCu0A
- 5cfqMW62fAVkA+l2JN2ZbW7KpLScAGseTV9pENw79AhBMb0+8bLwWAQ+XJOBzdd2thqv
- 0eUruZKkcHHWMXqN2NbLPinHytZzJnB36iH4U+6KWufUvncOU1XBFlSXmLJB0GesDz5A
- aa1V5wbi54rNqUfpbv28Wa8qXAlLW0XFqq09hHwZz5kGImGoBZJuS3iCUWa0rGXpfd93
- SHvQ==
-X-Gm-Message-State: AA+aEWY+0NSPh5GqYoIjMQJWvCd5Leq3Vfqii4guGdzE02/CcylPWQC4
- kcrIotGllqHI68dZ65AIOYWTPg==
-X-Google-Smtp-Source: AFSGD/UVX+OKo5U+wTZ3gGaU9bYlZCXZ3LLI+ZcgQj2dc/5kRQ1L8ozgl1h9/ObPft4c0jUxIFNUaQ==
-X-Received: by 2002:a50:d2d6:: with SMTP id q22mr11166042edg.121.1544436657824; 
- Mon, 10 Dec 2018 02:10:57 -0800 (PST)
+ b=Lj5qkECx/8ZnAG9HSHLXC2CB4SHo8y2V2NkY/i8Vxlq39LDk6WhifJBtk8UTI2ndx5
+ i8CHRewHfB0VKu1CnGDvW7e3kZCL7lNvCH6mV3lg9G3+qWN7qy486Ch6Nic0W4U3rV7z
+ gCBnp7c3YFqVP3m4O/KRjZlyCcfjdR3AFU27E7X7UejANkM0ixASdl3kNR9kBjSVsu0X
+ IMGt74vdGy/3skk9F4mXoLra9t10dHMCZwwqTyiOqHgjZtBgvqarDLCue4XjblUSJ6GN
+ q6RrWFY0LEyXONv6SA+Gq921j9zA38VQ2saYNjFkD/z1/ivktp7+1yhUW/3WHV8jRlZS
+ 1H8A==
+X-Gm-Message-State: AA+aEWaFFCYlC+jMDISx6VhWJf530bBruKXb0UJNfwH0tSdhGVlASH/Q
+ 6AYFxKEBvZVj4ZW5Kk1tJVLflQ==
+X-Google-Smtp-Source: AFSGD/WC8MVEUngZ1Z6610drLOlA5MSe5YSe2si5n+F2sKL2RCtJIiLSr5wtDfeMxLYK8dE7C+gDBg==
+X-Received: by 2002:a50:f5af:: with SMTP id u44mr11429695edm.172.1544436699292; 
+ Mon, 10 Dec 2018 02:11:39 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
- by smtp.gmail.com with ESMTPSA id a11sm3279968edc.28.2018.12.10.02.10.56
+ by smtp.gmail.com with ESMTPSA id p16-v6sm1751567eju.73.2018.12.10.02.11.37
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 10 Dec 2018 02:10:56 -0800 (PST)
+ Mon, 10 Dec 2018 02:11:38 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Subject: [PATCH 7/7] drm: Split out drm_probe_helper.h
-Date: Mon, 10 Dec 2018 11:10:51 +0100
-Message-Id: <20181210101052.5267-1-daniel.vetter@ffwll.ch>
+Date: Mon, 10 Dec 2018 11:11:33 +0100
+Message-Id: <20181210101133.5364-1-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.20.0.rc1
+In-Reply-To: <20181210100359.22507-1-daniel.vetter@ffwll.ch>
+References: <20181210100359.22507-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
