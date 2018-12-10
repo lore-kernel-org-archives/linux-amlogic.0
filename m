@@ -2,95 +2,91 @@ Return-Path: <SRS0=ipOD=OT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E814C5CFFE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 13:21:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B710C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 13:23:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3CAC720821
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 13:21:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D31D820821
+	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 13:23:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AeeS+21k";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xq9YAwoc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CAC720821
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RYjzGWJc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iooce9HI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D31D820821
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=89M71rUFIztSwb5tL6qV75t055vJbdffy4r/Yixbpoc=; b=AeeS+21kU2aZXb5dhf19RpI+L
-	Lye6ZMUp9rsAg3p32AKsrOltkcm9hHddJBdXkNjldglUkQWA+LqYopx/vLXcQc3fjOdS9ga8nFw6r
-	PYFQE+zylCV6k7wo7w7lOBE1tH/BJw3Ci1i6IWxI8hvCTKsd2k/yVGVOgdBwDDDA+vqIcrYvlVMu2
-	TCL1P8lHg7aeHpGy2TFOwDKEZN2g3oQdut4/zSCtoP9X/MJaPI2VoS7thVmZmCGc/aGyWKYx1J+SF
-	HfurE3UJbnvbPBJGjkpNuqUPj6Nt2cweNAjWTcyqZ0FoCPlrm85b62Xdb+W3G1nIdgZ2omck7dl2r
-	CgF8vgCDQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Hhb6i70dY8xpvCxQWtRksXJnyjZ/lB3w/r3s5WKAymw=; b=RYjzGWJcCZ9jIp
+	4JjAFinxOfmC5C3I3XWSyJNl3JYHrJJyTQUk9STae3dqm6mIzfM88ZtUdTG8B8Qb9XbhFtkkLI9+8
+	bdsmB6WSc6aqhYdOoH931gg12sxHegAu9Mji9bPfo/IRk6Q3grTzm/xtd5BiWGFgXYPc2Hwlsk7R0
+	90PgGQXQ5vKscQ66jZFFTc8hE1y0wrAzmxWSE/m+gAfkZxAcewcJVgqJfDeS69hUtVc2nzIKvKlum
+	m8XwV808QpzzBR94sPuD2AVK5WFm17VL7VP0SmOSyw4n++IL8HNxxUW2tN7x2EUAmx15DmjdT7WoK
+	Ptfxs7x6z6bcQZiOaAnA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWLUb-00058W-Mg; Mon, 10 Dec 2018 13:21:01 +0000
-Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
+	id 1gWLWw-0005wo-Hx; Mon, 10 Dec 2018 13:23:26 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWLUZ-00057k-HP
- for linux-amlogic@lists.infradead.org; Mon, 10 Dec 2018 13:21:00 +0000
-Received: by mail-pl1-x641.google.com with SMTP id u18so5244646plq.7
- for <linux-amlogic@lists.infradead.org>; Mon, 10 Dec 2018 05:20:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=yztR7wv9WVTETIuuWQuG3q3HlE0Hz1iQ49yrKE0yleA=;
- b=Xq9YAwocZWgc932zPArJkdqerA+V1ciK9b+Iv+IP8hYVf4qhQuZPRCG2irY+0k7bzh
- s3sG7ed5U3VTKkxEXA8Zul293bJLCdYYNccgY5XMTObYUfTJGz4REgNfrDwPxXwI6+ZY
- hOKzHI6VikSXPF+xiDgYRxXFT1ph2WuF89ULi5ad+ug9Lsy2MAFqPZKba6KlHT6Wdtm2
- EGxUiYdfDBew3JnMrWcs1XDvnJNTkYERt8LqMxXiJoy5vRGpqJP5yRRKpuS4TvsMjseR
- 9KM4sdimsu3BotCF9No5DeWVHcy6Tot5bzSxgmYIDn1an+d6W1AwSXWcGod7v+4vFkUW
- 4LhQ==
+ id 1gWLWF-0005Cu-C8
+ for linux-amlogic@lists.infradead.org; Mon, 10 Dec 2018 13:22:46 +0000
+Received: by mail-wr1-x444.google.com with SMTP id z5so10419384wrt.11
+ for <linux-amlogic@lists.infradead.org>; Mon, 10 Dec 2018 05:22:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=wPFj6MLu/M8G4PTHe2LZz+FX5iaOvPF1UuFtv4gFdoM=;
+ b=iooce9HIO/IlQvwj9SUjEVZnfs4JA8YOgJDRilfuZl6auKf8xTrYC9R5wRQ+C0bHxX
+ ZoFdLXyU3el2I9dN9udnFGLs4UxW6Gg5ijO2IoI9UK+vPkV3zubFGZUNq3RRD7yR0si5
+ 66F9q1JZHKxsUODKLPhESXtIAOv+SDnoCVVfNIezW2czQtrLsbRQIs2xotIRdGhS1Wl1
+ xdUkmfyWQD++JJNL9TQVCq08kwEK4ZRHGDCJ6oaYtwoRRXp3otKtUoEHPJBCX7gWrcSM
+ Ewwf5pqG3wqhf9DckZw2fqS9rqIWcZ271KOBsQHQ/Y5GvgJdW2lwVzUWjy+zssTlFyef
+ 1TiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=yztR7wv9WVTETIuuWQuG3q3HlE0Hz1iQ49yrKE0yleA=;
- b=KOZiTOz2BH4vWBkQpgECV+6nZ9FMAkYtDlwg6Ir4yjv97Gzc4X0zhtQj4ApqFehSU0
- pHd6PMpaFMzjQWQ21Sv0GBnZjybWYzF46QgbkEjWWBnjJmMUKa8jf+14KrYbu9m+REeP
- 9VF4+yCg2lZGyv5vooIg37b4vA7oFS6MeEJChHDUrCKo0tYXuBY+O/yElBl25nLtSYt2
- McZ95m8us7YRWXr7boFviBKAeKqyU8MacMzBpdulYXGmn2THBOQuQPbyjIWBh0RaQNRL
- 8uJL82k6ztcAdN75cLtNaWmshfu6QLuxeWhH8QsSrG11nGI8MJFBqwx6ewFF/EQtT8Bv
- 45ag==
-X-Gm-Message-State: AA+aEWai1VTQjowlHSkLcUw7gnRSatO7FKjBRmhZm48yQgWctwXr7ZaW
- Xx2WmC6o0MbqQ48Ed257Y8UmxNExlAE=
-X-Google-Smtp-Source: AFSGD/U9HskEw1WvAhfP2TUvcxP3L53IAJgZ48GyNzAwYfEshPRDZ0vRWSWGaathwsciJ06a3FCcNA==
-X-Received: by 2002:a17:902:4324:: with SMTP id
- i33mr11820354pld.227.1544448048454; 
- Mon, 10 Dec 2018 05:20:48 -0800 (PST)
-Received: from [10.1.1.7] (ppp118-209-129-45.lns20.mel8.internode.on.net.
- [118.209.129.45])
- by smtp.gmail.com with ESMTPSA id o8sm20100892pfa.42.2018.12.10.05.20.43
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 10 Dec 2018 05:20:46 -0800 (PST)
-Subject: Re: [PATCH 1/1] usb: dwc2: disable power_down on Amlogic devices
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-usb@vger.kernel.org, hminas@synopsys.com, gregkh@linuxfoundation.org
-References: <20181209190129.11870-1-martin.blumenstingl@googlemail.com>
- <20181209190129.11870-2-martin.blumenstingl@googlemail.com>
-From: Brad Harper <bjharper@gmail.com>
-Message-ID: <81fb7231-8bc1-c8e9-4901-20676632a10b@gmail.com>
-Date: Tue, 11 Dec 2018 00:20:41 +1100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.3
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=wPFj6MLu/M8G4PTHe2LZz+FX5iaOvPF1UuFtv4gFdoM=;
+ b=X1MjlnaGO0iynVJFPnIGoLo4OEXMms8++9fk3dAUIxAA+B6vyZoD4eKRbM9NURLO2e
+ 5asWuwYW6IGcR+aKJrnYQf05LhOnnvDp45zJJZdTgnEoQPXNa2bdzZ88hOhYjz4NqtNs
+ ZnQriQlsbJPYjZ5el63CIl+ec//ccoa4YzAXt/r42oj65GTVMJATnkxLXvkv3EA00RuK
+ O/5TFKlc2jGFH7MVTyoVmqM9iOHbqZtnMSXjj6Bw+O5TPzN0ef0eFsT6K9RuXyAoMm3V
+ jn13WTmnnqsiHmi2B3Wey8emH+DG5VGSGLNpQh24v1936Dy0pTRZC7hr0/2QMS5jHnay
+ Sp/A==
+X-Gm-Message-State: AA+aEWajLj6q08ss771cmSirzmLnxodIX3LtxrTAbvyI9pyKglocnbzQ
+ VfiQHBCsDfycN6qWl6nPWp3qQA==
+X-Google-Smtp-Source: AFSGD/VMEYq9rPP0ewBLKlh/rB6emjkoSuKndni9TE55hTZ/5s2L+oaavtKw/KDurpcOrw1X+emiDw==
+X-Received: by 2002:adf:92a4:: with SMTP id 33mr9607298wrn.11.1544448151513;
+ Mon, 10 Dec 2018 05:22:31 -0800 (PST)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id l3sm11208424wru.36.2018.12.10.05.22.30
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Mon, 10 Dec 2018 05:22:30 -0800 (PST)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: devicetree@vger.kernel.org,
+	khilman@baylibre.com
+Subject: [PATCH 1/2] dt-bindings: gpu: mali-midgard: Add resets property
+Date: Mon, 10 Dec 2018 14:22:26 +0100
+Message-Id: <20181210132227.29262-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.19.2
+In-Reply-To: <20181210132227.29262-1-narmstrong@baylibre.com>
+References: <20181210132227.29262-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20181209190129.11870-2-martin.blumenstingl@googlemail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181210_052059_594146_980D183A 
-X-CRM114-Status: GOOD (  19.67  )
+X-CRM114-CacheID: sfid-20181210_052243_408648_DC1F689C 
+X-CRM114-Status: UNSURE (   9.96  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,56 +98,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Arthur.Petrosyan@synopsys.com, christianshewitt@gmail.com,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/12/2018 6:01 am, Martin Blumenstingl wrote:
-> Disable power_down by setting the parameter to
-> DWC2_POWER_DOWN_PARAM_NONE. This fixes a problem on various Amlogic
-> Meson SoCs where USB devices are only recognized when plugged in before
-> booting Linux. A hot-plugged USB device was not detected even though the
-> device got power (my USB thumb drive for example has an LED which lit
-> up).
-> 
-> A similar fix was implemented for Rockchip SoCs in commit c216765d3a1def
-> ("usb: dwc2: disable power_down on rockchip devices"). That commit
-> suggests that a change in the dwc2 driver is the cause because the
-> default value for the "hibernate" parameter (which then got renamed to
-> "power_down" to support other modes) was changed in the v4.17 merge
-> window with:
-> commit 6d23ee9caa6790 ("Merge tag 'usb-for-v4.17' of git://git.kernel.org/pub/scm/linux/kernel/git/balbi/usb into usb-testing").
-> 
-> Cc: <stable@vger.kernel.org> # 4.19
-> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+The Amlogic ARM Mali Midgard requires reset controls to power on and
+software reset the GPU, adds these as optional in the bindings.
 
-Fixed the issue on the Odroid C2 sbc with amlogic meson gxbb soc, 
-devices are now detected when connected after boot
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Tested-by: Brad Harper <bjharper@gmail.com>
-
-> ---
->   drivers/usb/dwc2/params.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/usb/dwc2/params.c b/drivers/usb/dwc2/params.c
-> index 7c1b6938f212..38c813b1d203 100644
-> --- a/drivers/usb/dwc2/params.c
-> +++ b/drivers/usb/dwc2/params.c
-> @@ -111,6 +111,7 @@ static void dwc2_set_amlogic_params(struct dwc2_hsotg *hsotg)
->   	p->phy_type = DWC2_PHY_TYPE_PARAM_UTMI;
->   	p->ahbcfg = GAHBCFG_HBSTLEN_INCR8 <<
->   		GAHBCFG_HBSTLEN_SHIFT;
-> +	p->power_down = DWC2_POWER_DOWN_PARAM_NONE;
->   }
->   
->   static void dwc2_set_amcc_params(struct dwc2_hsotg *hsotg)
-> 
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+index 18a2cde2e5f3..24d83ec952f1 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+@@ -37,6 +37,8 @@ Optional properties:
+ - operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
+   for details.
+ 
++- resets : Phandle to the reset controls for the Mali Midgard device.
++
+ 
+ Example for a Mali-T760:
+ 
+-- 
+2.19.2
 
 
 _______________________________________________
