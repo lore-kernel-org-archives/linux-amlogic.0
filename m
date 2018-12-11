@@ -2,89 +2,91 @@ Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35DF6C5CFFE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 17:10:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A75CC07E85
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 17:17:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F16A52081B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 17:10:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4CA112086D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 17:17:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KuCvuDut";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OYOvDDQF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F16A52081B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H+4zVHKC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qVf9KPW7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4CA112086D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OyKHRtfOZwRfeHdUYnpiyT/uqbJWkpwHJkvf4PsiQQc=; b=KuCvuDutBexxk3
-	HgXUH350YM1sPHPxZjMY0voKprt5X8riSAw/6eavsbZ0wd9zbjv/2+T3VZiPkHlxx19ayMqSmja0+
-	xfre7/P+FD7/75QmCF/5ubFRIj5YHITU3KBXqJUwB4iGcRbWS1BCkFNz/DaoZfbOa0V6aCBhETHPU
-	IzS+cs9JP0N30ZE8tu1G0uM8h5+c0WEWrijXM0EJ+xEaeOJUIKC/IlVcZvs2hGAlps79y2ljATI55
-	Yh1g4jlRat0H2wnKmp83ZdHDd9ONviaq+mzpb8iyeBK9MH8+EbvIqOr1sfc5adnKuc2c+/NfFoxYy
-	suzDmOS0LzZNqw/3hAeQ==;
+	List-Owner; bh=en3FXVRRAtMWnIMrvndqCpzE2hnrsHYeqfc9nvaiPYw=; b=H+4zVHKCYxT3M1
+	qMF13oNWPOgP2GVjfZjzaX9p0/aashjU+IhahTFZu0WKiw7Hizn9intuP799OHBtXf1TkZkTrEuGm
+	lAQVMfPWxCMRUZXP/vQH7vF5c+hReNbhUuunSMgcUqPyCJAhWf5Y6EkGLWlzoOATyeyu4sV01vZkf
+	+nlMmglskLPbWT9f2HsFOO+ETzaGO5zm5Zo4N3Zdp7l7ldAyHD1nTVzKoHQ0xHkZrB4IC3tKylc4W
+	IjWopB5AeZF0TxjSnG3ZpMqWo5A0vbk2cN3To2sa8YnQvZ8HXaBKykbAqP+wb1SPRptJLLFX1ouCf
+	YcnXToP0TxlO2f3NqK4g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWlY1-00028B-H4; Tue, 11 Dec 2018 17:10:17 +0000
-Received: from mail-yb1-xb30.google.com ([2607:f8b0:4864:20::b30])
+	id 1gWleh-00073B-Bj; Tue, 11 Dec 2018 17:17:11 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWlXn-0000cf-MC
- for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 17:10:09 +0000
-Received: by mail-yb1-xb30.google.com with SMTP id r11so2067121ybp.12
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 09:09:53 -0800 (PST)
+ id 1gWlee-00072N-TF
+ for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 17:17:10 +0000
+Received: by mail-wm1-x342.google.com with SMTP id y1so3020172wmi.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 09:16:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=isO2lANIsBVerOp9/+QCe4JcFwBPboQ0U8MIF8oqQdU=;
- b=OYOvDDQFgjozMi950T2wJ93zbDHzYcx+bfPnyIb6rdTSFYHlViftwQSOQcY4QG775t
- 09y1zJ5g4smFLTtIjNTDmVm/1VpgPUyEzTnL/ebxBWyjk02/QnCGxdOQ75x8ngM2KA60
- 4laWTqPVVGIE8As0SAH931j74l1PdaVwr+WxU4xdc26T3TD8pF9rdjErrGsazJf36OQ/
- z6fejXl7yzurPttsfkPGkhBn+QdCfv72XRHz1/5syIfJsF6xFbKvrVEI4yaIQvXMBW2X
- E1yPEVKVE+OpgD3AI5oeqNc4JSltXTAVTr0i2CqTklCmkOpdeoS9dbq58osmKyi9QUQg
- NmEA==
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=75yFl6t0VNl6aeKQPwOYA9vmVdauYThH+a/zVHyk1HY=;
+ b=qVf9KPW7ufg1mhiOVOV9ukDNT606L4vnOvmwKM+QyODjR5A3W6N5wpNMAYWoTvR+iI
+ tHiS7EshfrV7+f1kojxBTEWXa49X0DjW6usNLX9udJkP/t3Ob/Q0UHRoVgovXx61Q2tQ
+ 1QZ4SfCzjYyFN6DvJ/XsZPQvg7MUYDE3ln65pFD5YdqbdJgEa2Xq2wvDbyTG/j6V6jiC
+ m7D/9LXfi+cNom5P6VNTno8LJ3yVilpH8TKKgOBnbO7oCQ1biwVUKQ7IMacabGOjaU8x
+ eamOorEYgCvUJQ7CLtEGK1InCiGZUVzMMps2dru0LBWNlrkF0M5ptY/WCBtTkHJP5vSj
+ Fqmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=isO2lANIsBVerOp9/+QCe4JcFwBPboQ0U8MIF8oqQdU=;
- b=Pc38OfLemo1kfEKOT9cbE/TaCW8Q5o7sOEUMPnoOunfzX8XnzOGQZpN1ilMBVPmw0r
- t/UY0RPlBBO7pxrYnu21p0ty+yfeKE0S2jd8XY+UG99BHqvS3Qx0hPk3bR3vIt2IesG4
- Kw0iQk93k/mHE8b85x5HCXjiwdn7pwfYQ00aHvzm0zoaDIJjKcRAD3BA0D7XZpbRi4YT
- FvOLC54sQxGV/ZSWVzaMUe3tuwEqdluTBuvbB+G0QMoSInhvLMK/sn3f5qMVNPnmsq3K
- DHfnW5yXKTtOGyfta0rrr9hmKI1iPU19Vi0WoieaaA5NSM0GqCzC86aoiwPiszrKvMV/
- MuPw==
-X-Gm-Message-State: AA+aEWb5baL+KKpNC9mO8DWCX5Hhf0QkNWFC5r6JSxb9ek8ysN1H37Vf
- NGvdVuqcyc72TVFma+k9taZGRLdJuBw=
-X-Google-Smtp-Source: AFSGD/X4yQhW/rhJ7yUmhw+Fo7vORTq6PUCcBWTLcqmXZBn51hSXskaboJZ8Y/yaRD8xYOVLbyRh1Q==
-X-Received: by 2002:a25:4b86:: with SMTP id y128mr17018799yba.10.1544548191724; 
- Tue, 11 Dec 2018 09:09:51 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id j6sm4929467ywi.110.2018.12.11.09.09.50
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=75yFl6t0VNl6aeKQPwOYA9vmVdauYThH+a/zVHyk1HY=;
+ b=L6wNuQ/vKfRzH41Ag1TXvGKDOatDl0YQWNkthW2hs3G0UDVofyZblQdjnXFx9QwdKC
+ yV/RcZDKDi/cQOGsKHpGaOsKQBPkQqpCjKvb+91PVb+aHz/xX/9vjI77QGFjNd0wdT9i
+ u7v45svjhPdRknJTtNHfhzSnn/tvuurQ4U18HMpgd8crBAs2Ay0RMaZyJUDvgGfdTJ6i
+ eowrdPs3zNne0AS/UoYESOBdcuzwqL/JwC62IxUlFo//mZoSokDK0L5IlCLQ/1KutVjT
+ W610nQHvRK/UnQuDD8nrfRTLWQBIexm0yYYZkv8k6uSlH0vwKf/CW8AI+GnzIttm/DTo
+ G3Ug==
+X-Gm-Message-State: AA+aEWb2euW7Rj1zr9cl3Gc5eJdKpBHC7jVxvtb6RDSnDbBEobrEMy/P
+ Ek5M1tNsDjVT5SytxXjhVEytcA==
+X-Google-Smtp-Source: AFSGD/X23cOw1RneKhFub57TRd9Ur2MpdQD4WlwVOgAzARNURpNzd8lJUNxGbln5ZpRekOux8hFXFw==
+X-Received: by 2002:a1c:91d1:: with SMTP id t200mr3109373wmd.111.1544548617073; 
+ Tue, 11 Dec 2018 09:16:57 -0800 (PST)
+Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.gmail.com with ESMTPSA id v4sm738924wme.6.2018.12.11.09.16.54
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 11 Dec 2018 09:09:51 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [GIT PULL] arm64: dts: Amlogic updates for v4.21, round 2
-In-Reply-To: <CAL_Jsq+SdoMCsk2uf=W_bs7ObCL6KvLA7gaojteFJmRhm4QjwQ@mail.gmail.com>
-References: <7hpnu9w22b.fsf@baylibre.com>
- <CAL_Jsq+SdoMCsk2uf=W_bs7ObCL6KvLA7gaojteFJmRhm4QjwQ@mail.gmail.com>
-Date: Tue, 11 Dec 2018 09:09:49 -0800
-Message-ID: <7hftv4uh0i.fsf@baylibre.com>
-MIME-Version: 1.0
+ Tue, 11 Dec 2018 09:16:56 -0800 (PST)
+Message-ID: <4da764c237b8f752af1dc33a011e2a4b73068f02.camel@baylibre.com>
+Subject: Re: [PATCH RESEND v7 4/4] clk: meson: add one based divider support
+ for sclk divider
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jianxin Pan <jianxin.pan@amlogic.com>, Neil Armstrong
+ <narmstrong@baylibre.com>
+Date: Tue, 11 Dec 2018 18:16:53 +0100
+In-Reply-To: <1544457877-51301-5-git-send-email-jianxin.pan@amlogic.com>
+References: <1544457877-51301-1-git-send-email-jianxin.pan@amlogic.com>
+ <1544457877-51301-5-git-send-email-jianxin.pan@amlogic.com>
+User-Agent: Evolution 3.30.2 (3.30.2-2.fc29) 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_091003_754703_B829D130 
-X-CRM114-Status: UNSURE (   8.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181211_091708_940707_23293272 
+X-CRM114-Status: GOOD (  20.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,66 +98,155 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, ARM-SoC Maintainers <arm@kernel.org>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
+Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
+ Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Qiufang Dai <qiufang.dai@amlogic.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rob Herring <robh@kernel.org> writes:
+On Tue, 2018-12-11 at 00:04 +0800, Jianxin Pan wrote:
+> When CLK_DIVIDER_ONE_BASED flag is set, the sclk divider will be:
+> one based divider (div = val), and zero value gates the clock
+> 
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  drivers/clk/meson/clkc-audio.h |  1 +
+>  drivers/clk/meson/sclk-div.c   | 28 ++++++++++++++++++----------
+>  2 files changed, 19 insertions(+), 10 deletions(-)
 
-> On Mon, Dec 10, 2018 at 2:37 PM Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> The following changes since commit 5e339a1d7e438b2cc9f46ec9f2682efb58ee2dd3:
->>
->>   arm64: dts: meson-gx: Add Internal Clock Measurer node (2018-11-29 12:30:09 -0800)
->>
->> are available in the Git repository at:
->>
->>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2
->>
->> for you to fetch changes up to b29e9eccaaa721c2a303db6540535ee77a515f61:
->>
->>   arm64: dts: meson-gxm: Add Mali-T820 node (2018-12-10 12:11:32 -0800)
->>
->> ----------------------------------------------------------------
->> arm64: dts: Amlogic updates for v4.21, round2
->>
->> Highlights:
->> - GXM: add Mali T820
->> - fix IRQ trigger type
->> - AXG: enable GPIO IRQs, PHY IRQ, watchdog
->>
->> ----------------------------------------------------------------
->> Carlo Caione (4):
->>       arm64: dts: meson-axg: Enable watchdog on Meson AXG SoCs
->>       arm64: dts: meson-axg: s400: Enable PHY interrupt
->>       arm64: dts: meson-axg: Enable GPIO interrupt controller
->>       arm64: dts: meson: Fix IRQ trigger type for macirq
->>
->> Christian Hewitt (1):
->>       arm64: dts: meson-gxm: Add Mali-T820 node
->>
->> Jerome Brunet (4):
->>       arm64: dts: meson-axg: remove alternate xtal
->>       dt-bindings: clk: meson: add ao controller clock inputs
->>       dt-bindings: clk: meson: add main controller clock input
->>       arm64: dts: meson: add clock controller clock inputs
->>
->> Neil Armstrong (1):
->>       dt-bindings: gpu: mali-midgard: Add resets property
->
-> Submitted, applied and a pull request all in one day. I have review
-> comments on this.
+Such a patch should be done earlier in the series, at least before using sclk
+in your controller, otherwise thing will be broken in between
 
-Sorry, I didn't expect this one to be controversial.
+In general, I would prefer if you had added two helper function to deal with
+the translation between register value and divider value.
 
-I'll respin without the GPU one, all the others have been in my queue
-for awhile.
+Only these function should care about CLK_DIVIDER_ONE_BASED, the rest should
+just call them.
 
-Kevin
+This, we will be able to deal the with HI (duty cycle) part as well, which you
+completly skiped.
+
+I know your device does not have this, but still the code has to make sense.
+
+> 
+> diff --git a/drivers/clk/meson/clkc-audio.h b/drivers/clk/meson/clkc-audio.h
+> index 0a7c157..9bd6ced 100644
+> --- a/drivers/clk/meson/clkc-audio.h
+> +++ b/drivers/clk/meson/clkc-audio.h
+> @@ -20,6 +20,7 @@ struct meson_sclk_div_data {
+>  	struct parm hi;
+>  	unsigned int cached_div;
+>  	struct clk_duty cached_duty;
+> +	u8	flags;
+>  };
+>  
+>  extern const struct clk_ops meson_clk_triphase_ops;
+> diff --git a/drivers/clk/meson/sclk-div.c b/drivers/clk/meson/sclk-div.c
+> index bc64019..d98707b 100644
+> --- a/drivers/clk/meson/sclk-div.c
+> +++ b/drivers/clk/meson/sclk-div.c
+> @@ -24,22 +24,23 @@
+>  	return (struct meson_sclk_div_data *)clk->data;
+>  }
+>  
+> -static int sclk_div_maxval(struct meson_sclk_div_data *sclk)
+> -{
+> -	return (1 << sclk->div.width) - 1;
+> -}
+> -
+>  static int sclk_div_maxdiv(struct meson_sclk_div_data *sclk)
+>  {
+> -	return sclk_div_maxval(sclk) + 1;
+> +	if (sclk->flags & CLK_DIVIDER_ONE_BASED)
+> +		return clk_div_mask(sclk->div.width);
+> +	else
+> +		return clk_div_mask(sclk->div.width) + 1;
+
+seems over complicated.
+why no call clk_div_mask just once, and add 1 if necessary ?
+
+>  }
+>  
+>  static int sclk_div_getdiv(struct clk_hw *hw, unsigned long rate,
+>  			   unsigned long prate, int maxdiv)
+>  {
+>  	int div = DIV_ROUND_CLOSEST_ULL((u64)prate, rate);
+> +	struct clk_regmap *clk = to_clk_regmap(hw);
+> +	struct meson_sclk_div_data *sclk = meson_sclk_div_data(clk);
+> +	int mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
+
+This is why I want helpers, don't like this above
+
+>  
+> -	return clamp(div, 2, maxdiv);
+> +	return clamp(div, mindiv, maxdiv);
+>  }
+>  
+>  static int sclk_div_bestdiv(struct clk_hw *hw, unsigned long rate,
+> @@ -47,7 +48,7 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
+> long rate,
+>  			    struct meson_sclk_div_data *sclk)
+>  {
+>  	struct clk_hw *parent = clk_hw_get_parent(hw);
+> -	int bestdiv = 0, i;
+> +	int bestdiv = 0, i, mindiv;
+>  	unsigned long maxdiv, now, parent_now;
+>  	unsigned long best = 0, best_parent = 0;
+>  
+> @@ -64,8 +65,9 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
+> long rate,
+>  	 * unsigned long in rate * i below
+>  	 */
+>  	maxdiv = min(ULONG_MAX / rate, maxdiv);
+> +	mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
+>  
+> -	for (i = 2; i <= maxdiv; i++) {
+> +	for (i = mindiv; i <= maxdiv; i++) {
+>  		/*
+>  		 * It's the most ideal case if the requested rate can be
+>  		 * divided from parent clock without needing to change
+> @@ -153,10 +155,14 @@ static int sclk_div_get_duty_cycle(struct clk_hw *hw,
+>  static void sclk_apply_divider(struct clk_regmap *clk,
+>  			       struct meson_sclk_div_data *sclk)
+>  {
+> +	unsigned int div;
+> +
+>  	if (MESON_PARM_APPLICABLE(&sclk->hi))
+>  		sclk_apply_ratio(clk, sclk);
+>  
+> -	meson_parm_write(clk->map, &sclk->div, sclk->cached_div - 1);
+> +	div = (sclk->flags & CLK_DIVIDER_ONE_BASED) ?
+> +		sclk->cached_div : (sclk->cached_div - 1);
+
+helpers again.
+
+> +	meson_parm_write(clk->map, &sclk->div, div);
+>  }
+>  
+>  static int sclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
+> @@ -223,6 +229,8 @@ static void sclk_div_init(struct clk_hw *hw)
+>  	/* if the divider is initially disabled, assume max */
+>  	if (!val)
+>  		sclk->cached_div = sclk_div_maxdiv(sclk);
+> +	else if (sclk->flags & CLK_DIVIDER_ONE_BASED)
+> +		sclk->cached_div = val;
+>  	else
+>  		sclk->cached_div = val + 1;
+
+same ...
+
+>  
+
 
 
 _______________________________________________
