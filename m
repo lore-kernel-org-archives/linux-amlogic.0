@@ -2,22 +2,23 @@ Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BEB6C67839
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 22:10:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A1585C6783B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 22:21:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 391B92084E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 22:10:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6FA832084C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 22:21:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FPmaz2nj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lYedVqQZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 391B92084E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EtzXoOvj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dCZeUkrm"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6FA832084C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=URqGES1kWqf3izdbZWJX3YYlR6cyHPO+vC9XuNDMfgk=; b=FPmaz2njeu0QyP
-	ksN+LO4cDCyrlzE4eymWGqRYYewwQ8ivXmvuGd2p9pN5QTFWnhVHgR/9Os6di7mRG9AbNZkLlDfRP
-	zdSVBWLWJm2kYTeIj3PMsU3u709GfGR5t69AS4FqT9WWTN1lMnVIlJ+sVk7QptAwZMotcVHEofBNY
-	iJxN3N05A8FC+LhgjSWlRZWzu4fbcn/hiuxAfH52rpjrIl18B9yR9uya63ZUBFGR++9eEuOaqlrvV
-	xpdU+U/LFAANtKxLgkIwQGpHMk+2aJWbsGvswNgzpYRc/86FVxLCuyRwfCQXIk3tzZhpSmC/P/yzL
-	qDOAYXKYPhWcxu0N+JZw==;
+	List-Owner; bh=4t/LiLsXQ8MQisOec3Qruo2J2Azr6l1JE+ZBOLUPK7I=; b=EtzXoOvj1f9Py+
+	ubHAkdyrwYPAoO6lV3n7ieQ3CCjrc/Ej+riWS5oc24TfLHmOwdT3HvTj5dflMEOpAWLgBcernsohn
+	qTB5uXwilS2e4kryArlAQPcQKJv89sV8OHx2ot1wTo4OIkC814iSleBA+7d8oPoMOTV62subxMwRj
+	u7D7wmZXyFuw1GS/fO/mmjduqBsMFNgdn6pXk0TE2a2J5qQymr3WTe7JU5xRG90JGnQ3uk6rWF3YJ
+	sNQEg9I+ACzIdRS8xzk46vKYa1wAuEc8wl8ve5YmuP7e1VS2MfLoa3dv8FmCJYSlplc9fXlkQ2+rt
+	SrOeIB5qpF0GTFX6pgHg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWqE2-0008RP-9R; Tue, 11 Dec 2018 22:09:58 +0000
-Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+	id 1gWqOl-00060h-6P; Tue, 11 Dec 2018 22:21:03 +0000
+Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWqDz-0008Qg-6K; Tue, 11 Dec 2018 22:09:56 +0000
-Received: by mail-oi1-x241.google.com with SMTP id y23so13379096oia.4;
- Tue, 11 Dec 2018 14:09:42 -0800 (PST)
+ id 1gWqOh-0005zz-3j; Tue, 11 Dec 2018 22:21:01 +0000
+Received: by mail-ot1-x342.google.com with SMTP id s5so15684338oth.7;
+ Tue, 11 Dec 2018 14:20:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eI5IGdZLbihoM1JpOCBJmDZFFsM5cSSnLSPPgCxAhxk=;
- b=lYedVqQZ3hqB7908uJavjK0ActWFskQNhfRu/+U8sFPEicionz+F4zXfkoBWB7MTMv
- nrpTV249UI8OByccj+DNfZJ5xnMuEXGYE4F36ZwtOALheYYEtd8ornGZyAwNvsXKw6nB
- OI0ufxjbfmFQ2JDHaFLSAK/hmv7+senKJrKhyeNvWpWXDUKkiGwVzJTxaRz3wdVjD4hp
- NmDDJmKtN2Azl/2TUzYP8vVcdYr2sm4kq5PLlO/n+p+KBi5IIn4sybbYSwuDiUNimUMq
- 4W1erBZT5etP3t4ANa42ek3Q6kczPK65Xkl1UxFHoN7f7V6QWiugpOfFGoudCfCkNS82
- WdOA==
+ :cc; bh=P9a11awUfFqdRCRlsiMdMfxUKo4+WuSnI5J0mWUVE0I=;
+ b=dCZeUkrmfE5hCPFIEfLxextyNAFYumyrItKcLIm/6AXacSIqyjD8miZ5nCYdL5fTpN
+ 51F43RoQIUIIJqVWMHV5pZcC+7h0M+vQFHwFaGlIPkbuXUFwVPIhcNiDWvAShVLqawze
+ 6fo0vYlzQzdSBshO/lvo/SkXCW80ueWG58CbS3OHNpWcMQSCEgjZyz29yCyBY2fJ3TUA
+ x5rWXDe/ZOuIDnAxdg9TVZ9ml4/lQXVdkd2WCex+RLcQ6e/3D5SNYL80TZYLzdTbnRkq
+ 5HOYtsthu8POJeh1qDQgKChgE/44jJ8A4W67P3k+/sOdHvB7DENuGS7qgG4KOsE0GL+d
+ ZdbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=eI5IGdZLbihoM1JpOCBJmDZFFsM5cSSnLSPPgCxAhxk=;
- b=HzHJUXIaNvt480AfwXnzt3e5aSVc+HQJjvLNYWayJGLhoFAWnjOzigZx48ZD/496LS
- vv/DRqA1BjIu7VU8erKtfP7g6NNyFVCsnugq3AfZfKKrKaE39vdxMgPFjCDfIe5tP0bS
- 4nbpgYfYu6ADGCKSYdgWvQIwZ6e2b13NAnW+/LRBVDunzpU6ze10AjXUDyiQb21pJcEb
- ses2+o2PXTQ7qQRvUH4V1FOrCVJ87ORobOCtEsx0tQGtBBFY81W12q0fpX5iHe7VrywV
- U2nhk/D5QS1FtwFLJsBWhscvwHcltcQKl9obLqQLjyJedKIKXAYdvh1HnCuywWnXEVAF
- WWqw==
-X-Gm-Message-State: AA+aEWYVzm/0hNla2KQxtMRZ8wUjibIaeicEros19DBupksGsRDCT5a3
- nrmPkW87uVNp5GmJi7NPPBfvt8je/PNqG/HceO4=
-X-Google-Smtp-Source: AFSGD/Wd/Z4vd02AtSBwuc1xmWjmPFLv8kqXsfTFz7+LnpbfgEAjbmcFHJYvFjMlfJ1RZphs6yginarIxzFkIPWxYhY=
-X-Received: by 2002:aca:4ace:: with SMTP id x197mr2461612oia.129.1544566181810; 
- Tue, 11 Dec 2018 14:09:41 -0800 (PST)
+ bh=P9a11awUfFqdRCRlsiMdMfxUKo4+WuSnI5J0mWUVE0I=;
+ b=Wyhd7YC30rqFtADP+WYrzq07PbasstQHhKr7+XV9g8NWYALcL528KAf2g04ZbLOYs4
+ W9kuAYVMo9b4U0AVWruejH80chIuLwqURdxoYhL0KszPa3FHfmxn7aywZLplgjBueyI1
+ NFzgGjeF9QUpJCLhabR7CJUqUnROpgPaLKCVQiEW0W6BUaiSXuVuU39T33jE1GJK1G9a
+ pwfoZ+VF4/Pd1d+AXxZK+4BT4A9/fY0QnrxLsKxzkGZe++QhiyFcpwRmgmTMj031Ks4m
+ 1bdImAZK0+28yL74xX3cbqjWsYVCGz/jrZkCg2i4HaJnAZOzNwOtosLLF8C7RKUexsA3
+ ReNw==
+X-Gm-Message-State: AA+aEWZoa1znFFUscMHsqY4Y5fQ/FCDNj+WAz1RjndCjzkJrAPlAxbnS
+ G9spTEG/pDxKb63Tk8g7WYAaU5VQ3hjfU7lh1JY=
+X-Google-Smtp-Source: AFSGD/UlGbcwYWT5VWH3PcFpAjNgEObsSZ4VLLCE5Bpl12tJ4bYs0UfGyIQmlSa7JC9L5dGa1b6UkPXvYF4XSsDkDII=
+X-Received: by 2002:a9d:715d:: with SMTP id y29mr13001891otj.148.1544566848196; 
+ Tue, 11 Dec 2018 14:20:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20181208165025.27689-1-martin.blumenstingl@googlemail.com>
- <ba3e4fef-7a18-8c7d-e0ea-05c541b29913@baylibre.com>
-In-Reply-To: <ba3e4fef-7a18-8c7d-e0ea-05c541b29913@baylibre.com>
+References: <20181208171247.22238-1-martin.blumenstingl@googlemail.com>
+ <20181208171247.22238-4-martin.blumenstingl@googlemail.com>
+ <7345cb90-b63d-5461-d97c-89ef563dc421@baylibre.com>
+In-Reply-To: <7345cb90-b63d-5461-d97c-89ef563dc421@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 11 Dec 2018 23:09:30 +0100
-Message-ID: <CAFBinCBYBAqtKp_edgs6b44MpOhc-iN_FwR425bkU4xirGQKvA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] ARM: dts: meson: add the APB/APB2 busses
+Date: Tue, 11 Dec 2018 23:20:36 +0100
+Message-ID: <CAFBinCABGbMu--+dr68CHoTcbis-TsUE3sA8QHhQofgv3eJs5w@mail.gmail.com>
+Subject: Re: [PATCH 3/5] clk: meson: meson8b: add the GPU clock tree
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_140955_236492_47C30666 
-X-CRM114-Status: GOOD (  19.42  )
+X-CRM114-CacheID: sfid-20181211_142059_160263_6AB736AE 
+X-CRM114-Status: GOOD (  25.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,9 +91,11 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- khilman@baylibre.com
+Cc: devicetree@vger.kernel.org, sboyd@kernel.org, khilman@baylibre.com,
+ mturquette@baylibre.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -99,60 +103,264 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Neil,
 
-On Tue, Dec 11, 2018 at 10:16 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Tue, Dec 11, 2018 at 10:21 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> On 08/12/2018 17:50, Martin Blumenstingl wrote:
-> > This adds the APB bus on Meson8 and Meson8b as well as the APB2 bus on
-> > Meson6. This is preparation work for adding the Mali GPU which is
-> > located on theses busses.
+> On 08/12/2018 18:12, Martin Blumenstingl wrote:
+> > Add the GPU clock tree on Meson8, Meson8b and Meson8m2.
 > >
-> > Meson6 seems to have it's APB at 0xc8000000 instead of 0xd0000000. The
-> > region at 0xd0000000 is called APB2 or A9_APB and it has a different
-> > size (256k) compared to Meson8 and Meson8b (2M).
+> > The GPU clock tree on Meson8b and Meson8m2 is almost identical to the
+> > one one GXBB:
+> > - there's a glitch-free mux at HHI_MALI_CLK_CNTL[31]
+> > - there are two identical parents for this mux: mali_0 and mali_1, each
+> >   with a gate, divider and mux
+> > - the parents of mali_0_sel and mali_1_sel are identical to GXBB except
+> >   there's no GP0_PLL on these 32-bit SoCs
 > >
-> > Addresses and sizes are taken from the Amlogic 3.10 kernel sources:
-> > - Meson6: [0]
-> > - Meson8: [1]
-> > - Meson8b: [2]
+> > Meson8 is different because it does not have the glitch-free mux.
+> > Instead if only has the mali_0 clock tree. The parents of mali_0_sel are
+> > identical to the ones on Meson8b and Meson8m2.
 > >
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> >  drivers/clk/meson/meson8b.c | 146 ++++++++++++++++++++++++++++++++++++
+> >  drivers/clk/meson/meson8b.h |   9 ++-
+> >  2 files changed, 154 insertions(+), 1 deletion(-)
 > >
-> > Changes since v1 at [3]:
-> > - re-send the patches but this time don't include the old patches
-> >   which still had a typo in the patch description (ABP vs APB)
+> > diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> > index 0b9353d8d4fd..748552c5f6c8 100644
+> > --- a/drivers/clk/meson/meson8b.c
+> > +++ b/drivers/clk/meson/meson8b.c
+> > @@ -1573,6 +1573,135 @@ static struct clk_regmap meson8b_hdmi_sys = {
+> >       },
+> >  };
 > >
+> > +/*
+> > + * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
+> > + * muxed by a glitch-free switch on Meson8b and Meson8m2. Meson8 only
+> > + * has mali_0 and no glitch-free mux.
+> > + */
+> > +static const char * const meson8b_mali_0_1_parent_names[] = {
+> > +     "xtal", "mpll2", "mpll1", "fclk_div7", "fclk_div4", "fclk_div3",
+> > +     "fclk_div5"
+> > +};
+> > +
+> > +static u32 meson8b_mali_0_1_mux_table[] = { 0, 2, 3, 4, 5, 6, 7 };
+> > +
+> > +static struct clk_regmap meson8b_mali_0_sel = {
+> > +     .data = &(struct clk_regmap_mux_data){
+> > +             .offset = HHI_MALI_CLK_CNTL,
+> > +             .mask = 0x7,
+> > +             .shift = 9,
+> > +             .table = meson8b_mali_0_1_mux_table,
+> > +     },
+> > +     .hw.init = &(struct clk_init_data){
+> > +             .name = "mali_0_sel",
+> > +             .ops = &clk_regmap_mux_ops,
+> > +             .parent_names = meson8b_mali_0_1_parent_names,
+> > +             .num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_names),
+> > +             /*
+> > +              * Don't propagate rate changes up because the only changeable
+> > +              * parents are mpll1 and mpll2 but we need those for audio and
+> > +              * RGMII (Ethernet). We don't want to change the audio or
+> > +              * Ethernet clocks when setting the GPU frequency.
+> > +              */
+> > +             .flags = 0,
+> > +     },
+> > +};
+> > +
+> > +static struct clk_regmap meson8b_mali_0_div = {
+> > +     .data = &(struct clk_regmap_div_data){
+> > +             .offset = HHI_MALI_CLK_CNTL,
+> > +             .shift = 0,
+> > +             .width = 7,
+> > +     },
+> > +     .hw.init = &(struct clk_init_data){
+> > +             .name = "mali_0_div",
+> > +             .ops = &clk_regmap_divider_ops,
+> > +             .parent_names = (const char *[]){ "mali_0_sel" },
+> > +             .num_parents = 1,
+> > +             .flags = CLK_SET_RATE_PARENT,
+> > +     },
+> > +};
+> > +
+> > +static struct clk_regmap meson8b_mali_0 = {
+> > +     .data = &(struct clk_regmap_gate_data){
+> > +             .offset = HHI_MALI_CLK_CNTL,
+> > +             .bit_idx = 8,
+> > +     },
+> > +     .hw.init = &(struct clk_init_data){
+> > +             .name = "mali_0",
+> > +             .ops = &clk_regmap_gate_ops,
+> > +             .parent_names = (const char *[]){ "mali_0_div" },
+> > +             .num_parents = 1,
+> > +             .flags = CLK_SET_RATE_PARENT,
+> > +     },
+> > +};
+> > +
+> > +static struct clk_regmap meson8b_mali_1_sel = {
+> > +     .data = &(struct clk_regmap_mux_data){
+> > +             .offset = HHI_MALI_CLK_CNTL,
+> > +             .mask = 0x7,
+> > +             .shift = 25,
+> > +             .table = meson8b_mali_0_1_mux_table,
+> > +     },
+> > +     .hw.init = &(struct clk_init_data){
+> > +             .name = "mali_1_sel",
+> > +             .ops = &clk_regmap_mux_ops,
+> > +             .parent_names = meson8b_mali_0_1_parent_names,
+> > +             .num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_names),
+> > +             /*
+> > +              * Don't propagate rate changes up because the only changeable
+> > +              * parents are mpll1 and mpll2 but we need those for audio and
+> > +              * RGMII (Ethernet). We don't want to change the audio or
+> > +              * Ethernet clocks when setting the GPU frequency.
+> > +              */
+> > +             .flags = 0,
+> > +     },
+> > +};
+> > +
+> > +static struct clk_regmap meson8b_mali_1_div = {
+> > +     .data = &(struct clk_regmap_div_data){
+> > +             .offset = HHI_MALI_CLK_CNTL,
+> > +             .shift = 16,
+> > +             .width = 7,
+> > +     },
+> > +     .hw.init = &(struct clk_init_data){
+> > +             .name = "mali_1_div",
+> > +             .ops = &clk_regmap_divider_ops,
+> > +             .parent_names = (const char *[]){ "mali_1_sel" },
+> > +             .num_parents = 1,
+> > +             .flags = CLK_SET_RATE_PARENT,
+> > +     },
+> > +};
+> > +
+> > +static struct clk_regmap meson8b_mali_1 = {
+> > +     .data = &(struct clk_regmap_gate_data){
+> > +             .offset = HHI_MALI_CLK_CNTL,
+> > +             .bit_idx = 24,
+> > +     },
+> > +     .hw.init = &(struct clk_init_data){
+> > +             .name = "mali_1",
+> > +             .ops = &clk_regmap_gate_ops,
+> > +             .parent_names = (const char *[]){ "mali_1_div" },
+> > +             .num_parents = 1,
+> > +             .flags = CLK_SET_RATE_PARENT,
+> > +     },
+> > +};
+> > +
+> > +static struct clk_regmap meson8b_mali = {
+> > +     .data = &(struct clk_regmap_mux_data){
+> > +             .offset = HHI_MALI_CLK_CNTL,
+> > +             .mask = 1,
+> > +             .shift = 31,
+> > +     },
+> > +     .hw.init = &(struct clk_init_data){
+> > +             .name = "mali",
+> > +             .ops = &clk_regmap_mux_ops,
+> > +             .parent_names = (const char *[]){ "mali_0", "mali_1" },
+> > +             .num_parents = 2,
+> > +             .flags = CLK_SET_RATE_PARENT,
+> > +     },
+> > +};
+> > +
+> >  /* Everything Else (EE) domain gates */
 > >
-> > [0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson6/include/mach/io.h#L61
-> > [1] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8/include/mach/io.h#L53
-> > [2] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8b/include/mach/io.h#L53
-> > [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009424.html
+> >  static MESON_GATE(meson8b_ddr, HHI_GCLK_MPEG0, 0);
+> > @@ -1833,6 +1962,9 @@ static struct clk_hw_onecell_data meson8_hw_onecell_data = {
+> >               [CLKID_HDMI_SYS_SEL]        = &meson8b_hdmi_sys_sel.hw,
+> >               [CLKID_HDMI_SYS_DIV]        = &meson8b_hdmi_sys_div.hw,
+> >               [CLKID_HDMI_SYS]            = &meson8b_hdmi_sys.hw,
+> > +             [CLKID_MALI_0_SEL]          = &meson8b_mali_0_sel.hw,
+> > +             [CLKID_MALI_0_DIV]          = &meson8b_mali_0_div.hw,
+> > +             [CLKID_MALI]                = &meson8b_mali_0.hw,
+> >               [CLK_NR_CLKS]               = NULL,
+> >       },
+> >       .num = CLK_NR_CLKS,
+> > @@ -2012,6 +2144,13 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+> >               [CLKID_HDMI_SYS_SEL]        = &meson8b_hdmi_sys_sel.hw,
+> >               [CLKID_HDMI_SYS_DIV]        = &meson8b_hdmi_sys_div.hw,
+> >               [CLKID_HDMI_SYS]            = &meson8b_hdmi_sys.hw,
+> > +             [CLKID_MALI_0_SEL]          = &meson8b_mali_0_sel.hw,
+> > +             [CLKID_MALI_0_DIV]          = &meson8b_mali_0_div.hw,
+> > +             [CLKID_MALI_0]              = &meson8b_mali_0.hw,
+> > +             [CLKID_MALI_1_SEL]          = &meson8b_mali_1_sel.hw,
+> > +             [CLKID_MALI_1_DIV]          = &meson8b_mali_1_div.hw,
+> > +             [CLKID_MALI_1]              = &meson8b_mali_1.hw,
+> > +             [CLKID_MALI]                = &meson8b_mali.hw,
+> >               [CLK_NR_CLKS]               = NULL,
+> >       },
+> >       .num = CLK_NR_CLKS,
+> > @@ -2167,6 +2306,13 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
+> >       &meson8b_hdmi_sys_sel,
+> >       &meson8b_hdmi_sys_div,
+> >       &meson8b_hdmi_sys,
+> > +     &meson8b_mali_0_sel,
+> > +     &meson8b_mali_0_div,
+> > +     &meson8b_mali_0,
+> > +     &meson8b_mali_1_sel,
+> > +     &meson8b_mali_1_div,
+> > +     &meson8b_mali_1,
+> > +     &meson8b_mali,
+> >  };
 > >
+> >  static const struct meson8b_clk_reset_line {
+> > diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+> > index 87fba739af81..f212e2304ff5 100644
+> > --- a/drivers/clk/meson/meson8b.h
+> > +++ b/drivers/clk/meson/meson8b.h
+> > @@ -33,6 +33,7 @@
+> >  #define HHI_VID_CLK_CNTL2            0x194 /* 0x65 offset in data sheet */
+> >  #define HHI_VID_DIVIDER_CNTL         0x198 /* 0x66 offset in data sheet */
+> >  #define HHI_SYS_CPU_CLK_CNTL0                0x19c /* 0x67 offset in data sheet */
+> > +#define HHI_MALI_CLK_CNTL            0x1b0 /* 0x6c offset in data sheet */
+> >  #define HHI_HDMI_CLK_CNTL            0x1cc /* 0x73 offset in data sheet */
+> >  #define HHI_NAND_CLK_CNTL            0x25c /* 0x97 offset in data sheet */
+> >  #define HHI_MPLL_CNTL                        0x280 /* 0xa0 offset in data sheet */
+> > @@ -139,8 +140,14 @@
+> >  #define CLKID_HDMI_SYS_SEL   172
+> >  #define CLKID_HDMI_SYS_DIV   173
+> >  #define CLKID_HDMI_SYS               174
+> > +#define CLKID_MALI_0_SEL     175
+> > +#define CLKID_MALI_0_DIV     176
+> > +#define CLKID_MALI_0         177
+> > +#define CLKID_MALI_1_SEL     178
+> > +#define CLKID_MALI_1_DIV     179
+> > +#define CLKID_MALI_1         180
 > >
-> > Martin Blumenstingl (3):
-> >   ARM: dts: meson6: add the APB2 bus
-> >   ARM: dts: meson8: add the APB bus
-> >   ARM: dts: meson8b: add the APB bus
+> > -#define CLK_NR_CLKS          175
+> > +#define CLK_NR_CLKS          181
 > >
-> >  arch/arm/boot/dts/meson6.dtsi  | 8 ++++++++
-> >  arch/arm/boot/dts/meson8.dtsi  | 8 ++++++++
-> >  arch/arm/boot/dts/meson8b.dtsi | 8 ++++++++
-> >  3 files changed, 24 insertions(+)
+> >  /*
+> >   * include the CLKID and RESETID that have
 > >
 >
 > Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-thank you for taking the time to review this!
+thank you for reviewing this!
 
-> But frankly I'll squash the meson8/meson8b patches with the mali node patches !
-I didn't do this because I realized that there are different busses
-between Meson6 and Meson8/Meson8b. so I wanted to have a commit
-message which describes this.
-if you prefer I can still squash the Meson8 and Meson8b patches into
-their corresponding GPU .dts patch but I would like to keep the Meson6
-patch (as I'm not planning to add the Mali GPU until someone can
-actually test it on that SoC)
+> Changing mali clock for Meson8 will be fun aswell !
+> How amlogic does that ? the only change the divider ?
+I'm not sure how it works in practice, but the sequence is:
+- spin_lock_irqsave (from mali_clock_critical)
+- disable the clock
+- change the divider and mux
+- enable the clock again
+- spin_unlock_irqrestore
+(this is identical to the glitch-free mux setup except there's an
+additional step for changing the mux before disabling the mali_0 clock
+and after enabling the mali_0 clock again)
+
+I learned the hard way that we can't access the Mali registers if the
+clock is disabled.
+so we need to be careful with this. my plan is to check the progress
+of the lima driver from time to time - once there's frequency scaling
+code I'll test it to see whether it works (or what I have to adjust)
 
 
 Regards
 Martin
+
+
+[0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/drivers/amlogic/gpu/mali/platform/mali_clock.c#L54
 
 _______________________________________________
 linux-amlogic mailing list
