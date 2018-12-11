@@ -2,90 +2,91 @@ Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BE324C5CFFE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 13:47:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 780ABC5CFFE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 14:39:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8D4B02054F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 13:47:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 307842054F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 14:39:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xy5skIoO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XqIlSK4W"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D4B02054F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kHokpXql";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CpMJl7pq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 307842054F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hhNY1acrZqCvAHCCsxi0qfKiCOhmo7WL0X6hl9DvExo=; b=Xy5skIoOg0doQ2
-	xCfs5TcyR+bv7QMsGdUE0i8rjM5Uu+1YXdV/ds/JnW4wI+WvRWPlRR0q5O05RIPDOgCzG0Y3JOj5z
-	WvsmOaDPreXJ18cgzr0aMfYunqlNKWZnJEPnxprcEBfL6sSuK/qLiqO6t3tsZvwAu7MpZMlxlGqfg
-	d4JHIA4qzTtq8Rq1+BTu0FSV1L+aaopxZmhzvqIdvE5sGNzWbhpeS8eqSKdMGELydU7a+0HP8AhXp
-	euoli5u2ucWigcdlHUtcGZU20L6JhSY/4JpHHlRNWMUTCp0CaCBOV1Z7NnoFU/BNIIsQSZk6EFJuP
-	yC3nIDiIxlQgu716u+UQ==;
+	List-Owner; bh=Cc7uqVrVMlxxatAmMudHJAueoFxWeyc/WPIV9c3lW2Q=; b=kHokpXqlz+jPVe
+	6nAur04tENJoTxVeTqFDUKYcXU/hZCGyTISWlMtO1s0nq7Zp9CtgjuTw1DkSvBndngZJBRIlG6hO4
+	GPjkJlyh9B36uTTgssewA4s/gbwFO5iqRvhk37WaoE3T1kNanDiWb6EW2k0OAxGZ+wfGmE1DzrRdS
+	04uWi1O80ZwfLnVkmF7K4l5WjI4XCZlmMMyom8c1Gov4XyTDseFBuD6LnjoOfAd+VWwUGU9K0o12Z
+	kiIOuWBST23J8p8ps1QzQB4bPcmo7A/U4sSnlTJSRxFNlb+VeaPvJfX/lFYHI4ky+h+L6YUmyuFzI
+	BVxN5/mLhcWxUZ7i7hXA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWiO7-0001xT-5A; Tue, 11 Dec 2018 13:47:51 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1gWjCF-0008D0-0I; Tue, 11 Dec 2018 14:39:39 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWiNx-0001mT-Qn
- for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 13:47:44 +0000
-Received: by mail-wr1-x443.google.com with SMTP id j2so14178068wrw.1
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 05:47:31 -0800 (PST)
+ id 1gWjCB-0008BO-0i
+ for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 14:39:37 +0000
+Received: by mail-wm1-x343.google.com with SMTP id y185so9160868wmd.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 06:39:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=gFepgdqrcGgU+6Pt3bNOl0J8Hvcm4qcs2uMepngl8Wk=;
- b=XqIlSK4WqU6U+WpnG+Rzgx1t7X1cPbvYK249iOAysDhd4K1d2UFyJtcw0Exij+3M8p
- peKF9TYvtcQWeZjlcrdMawexTDb3v1tuHDfXJz6p3PO1BMXAjKYysK9KKTLAvuacZ+90
- 4w4Q2h6+inycHTvwf5WXksx8q7a5Am932uqPZINQ4CnMltoKKoz5qLX3XsyLHvJooCww
- TuWhjWo/eCH2kupGRKDXdk0ndWcPzeoJGl8PyoULpvbO6LGRcN+sDFFG2HFCwn7SpgTB
- gaNHps4JoiMaOnuLXALAIkJKxPk406TJj8Exue+Fc/XIG0HIS8qhPE+8jYOLKVtRm+L0
- CPkw==
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=QD3eJs/RaEFfBBcOak7at7J5XZS3rHC6GMqA/4qo2JE=;
+ b=CpMJl7pqUmM5M5gdmlDWsZSyzrLV2h5NybK4gJFeQxAT/PnGYf4x9sTQFM+cwMrM/L
+ mJLvm32K99KXFv7zwWiHuAAJWi0ARa04mVliBSaV5zTJ/85tSF4HBuUhydsFwIwgq1PC
+ fRtCSYx7/tJ6gBoND4XqVgXgBhAZhUQ7hdrMdypuUdc501Kc9HUrVNf4kT0WxS0ftCUP
+ tMZJ8tlldoRp9cSYW2OLMYHTOSU1b0Nj71AqOLDVaH1thu4Gb9+ZInppJ+UaQLKPZAGo
+ vUJnqJiKXbinCjaE/dDiEKMv7m3I6q0Fx9NLocKlShqnJueoQQvg5K74LT/RqF34xQhh
+ FkMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=gFepgdqrcGgU+6Pt3bNOl0J8Hvcm4qcs2uMepngl8Wk=;
- b=uLWuw5G8r1bfTICsj7vn40+3V3RSvWtIZmfkm/y2xn2+EeyEvbvrwFd1ut85X+y7D/
- bKUiGH5NaBl0kXrnnrnht5N7ONCle9CBU74Wd5z+2EZ5KqFqD7ol/A8L17pZUoT/8BN0
- 6ijgtXgq//k8wRn+yLf7W2aCp0YmBwlkI5zct1Okxk1VjhmkbxfVoTieiaZZ9R4HpFIG
- VQsnFxnJLJ446Ej2/xZ0xxwgHCsPFrFMpgCBvxqzyQK0kMYbFkWDe3QC4jZpsVq2VUJ0
- yH8YRQHCwmXYw+fRlMEDRhCg8Cp7gJSvLXPHNgxU8WzDVWCC5o2+LBNeb7+QgzodUJV9
- FJOQ==
-X-Gm-Message-State: AA+aEWZlD9DOiwwG3cqJJ6+IKky39eNuPV9uOJsjSRrFGO6SGHNYwPZ0
- Ne02TSDU92LDjIjAyP7HgzW0zA==
-X-Google-Smtp-Source: AFSGD/XHKbng+NVNLfQRPKImX8LeMzp3HIojH/DImKjbPl/GSViSVK5ZrG4OfMUhmIo1pDTsZpTP9g==
-X-Received: by 2002:a05:6000:120a:: with SMTP id
- e10mr13603584wrx.85.1544536049797; 
- Tue, 11 Dec 2018 05:47:29 -0800 (PST)
-Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id 126sm113768wmd.1.2018.12.11.05.47.27
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=QD3eJs/RaEFfBBcOak7at7J5XZS3rHC6GMqA/4qo2JE=;
+ b=J+CdF0vmZDwZwwHyN6iLTTOTXlH4/n5V0VbaX8h+eX+y5QeHmX+oRR8lv131x0fBEi
+ LUP3TNnLwGBgo0DmQvZIq+BEDWRFuWptqujPBC6Ci9d3j+6J1XhL0LE6rzVkBNce5lHn
+ J0l7PI2/swZLGqqyO+RQMTMl6ud+F1b0J9RquZxUvt7oATT0864N9ttNaLD5Nhtj+MmJ
+ QL9WwNLa1IExNoHTLqO/Mf50B1TNyQxCTeKk1q0/aKA7D5rxsbA7Ys2xKPo4JCdpTRnf
+ jzvvxMbPr5BQ/ntIBavaFhpFOT/F9EoSlT4hNxnqOfBI0IYpkCC13xTKrLnyzvtshFmR
+ mMmg==
+X-Gm-Message-State: AA+aEWYZYLvCIXzO6vjLIkjEAhdc1I34o64sLy+fd50MmzbPTJHqY0Dj
+ TVzMEjIL6eNf8b497rx6EVeXbw==
+X-Google-Smtp-Source: AFSGD/W39xHPT4eyXXzepuA82xS6hyVMU31nUqHw4EPBUjPMfFO3ijoACBQhkihSZjwMJsdrM/NNpA==
+X-Received: by 2002:a1c:aad2:: with SMTP id t201mr2482648wme.148.1544539162989; 
+ Tue, 11 Dec 2018 06:39:22 -0800 (PST)
+Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.gmail.com with ESMTPSA id
+ v1sm19160147wrw.90.2018.12.11.06.39.20
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 11 Dec 2018 05:47:29 -0800 (PST)
+ Tue, 11 Dec 2018 06:39:22 -0800 (PST)
+Message-ID: <48899a9beb0c32103ae7edea14cec890779d498e.camel@baylibre.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: clk: meson-g12a: Add G12A EE Clock
+ Bindings
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Carlo Caione <carlo@caione.org>
-Subject: [PATCH 3/4] ASoC: meson: add axg spdif input
-Date: Tue, 11 Dec 2018 14:47:12 +0100
-Message-Id: <20181211134713.4908-4-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.19.2
-In-Reply-To: <20181211134713.4908-1-jbrunet@baylibre.com>
-References: <20181211134713.4908-1-jbrunet@baylibre.com>
-MIME-Version: 1.0
+To: Jian Hu <jian.hu@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
+Date: Tue, 11 Dec 2018 15:39:19 +0100
+In-Reply-To: <1543498917-98605-2-git-send-email-jian.hu@amlogic.com>
+References: <1543498917-98605-1-git-send-email-jian.hu@amlogic.com>
+ <1543498917-98605-2-git-send-email-jian.hu@amlogic.com>
+User-Agent: Evolution 3.30.2 (3.30.2-2.fc29) 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_054741_929139_0F82CBFC 
-X-CRM114-Status: GOOD (  23.61  )
+X-CRM114-CacheID: sfid-20181211_063935_067834_C949C0B9 
+X-CRM114-Status: GOOD (  15.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,604 +98,155 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the spdif input decoder of the axg SoC family
+On Thu, 2018-11-29 at 21:41 +0800, Jian Hu wrote:
+> Add new clock controller compatible and dt-bingdings headers
+> for the Everything-Else domain of the g12a SoC
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,gxbb-clkc.txt           |  1 +
+>  include/dt-bindings/clock/g12a-clkc.h              | 93
+> ++++++++++++++++++++++
+>  2 files changed, 94 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/g12a-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> index e950599..0833006 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+> @@ -9,6 +9,7 @@ Required Properties:
+>  		"amlogic,gxbb-clkc" for GXBB SoC,
+>  		"amlogic,gxl-clkc" for GXL and GXM SoC,
+>  		"amlogic,axg-clkc" for AXG SoC.
+> +		"amlogic,g12a-clkc" for G12A SoC.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/Kconfig       |   9 +-
- sound/soc/meson/Makefile      |   2 +
- sound/soc/meson/axg-spdifin.c | 521 ++++++++++++++++++++++++++++++++++
- 3 files changed, 531 insertions(+), 1 deletion(-)
- create mode 100644 sound/soc/meson/axg-spdifin.c
 
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index 8b8426ed2363..8779fe23671d 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -54,6 +54,7 @@ config SND_MESON_AXG_SOUND_CARD
- 	imply SND_MESON_AXG_TDMIN
- 	imply SND_MESON_AXG_TDMOUT
- 	imply SND_MESON_AXG_SPDIFOUT
-+	imply SND_MESON_AXG_SPDIFIN
- 	imply SND_MESON_AXG_PDM
- 	help
- 	  Select Y or M to add support for the AXG SoC sound card
-@@ -67,6 +68,13 @@ config SND_MESON_AXG_SPDIFOUT
- 	  Select Y or M to add support for SPDIF output serializer embedded
- 	  in the Amlogic AXG SoC family
- 
-+config SND_MESON_AXG_SPDIFIN
-+	tristate "Amlogic AXG SPDIF Input Support"
-+	imply SND_SOC_SPDIF
-+	help
-+	  Select Y or M to add support for SPDIF input embedded
-+	  in the Amlogic AXG SoC family
-+
- config SND_MESON_AXG_PDM
- 	tristate "Amlogic AXG PDM Input Support"
- 	imply SND_SOC_DMIC
-@@ -74,5 +82,4 @@ config SND_MESON_AXG_PDM
- 	help
- 	  Select Y or M to add support for PDM input embedded
- 	  in the Amlogic AXG SoC family
--
- endmenu
-diff --git a/sound/soc/meson/Makefile b/sound/soc/meson/Makefile
-index 4cd25104029d..b45dfb9e2f88 100644
---- a/sound/soc/meson/Makefile
-+++ b/sound/soc/meson/Makefile
-@@ -8,6 +8,7 @@ snd-soc-meson-axg-tdm-interface-objs := axg-tdm-interface.o
- snd-soc-meson-axg-tdmin-objs := axg-tdmin.o
- snd-soc-meson-axg-tdmout-objs := axg-tdmout.o
- snd-soc-meson-axg-sound-card-objs := axg-card.o
-+snd-soc-meson-axg-spdifin-objs := axg-spdifin.o
- snd-soc-meson-axg-spdifout-objs := axg-spdifout.o
- snd-soc-meson-axg-pdm-objs := axg-pdm.o
- 
-@@ -19,5 +20,6 @@ obj-$(CONFIG_SND_MESON_AXG_TDM_INTERFACE) += snd-soc-meson-axg-tdm-interface.o
- obj-$(CONFIG_SND_MESON_AXG_TDMIN) += snd-soc-meson-axg-tdmin.o
- obj-$(CONFIG_SND_MESON_AXG_TDMOUT) += snd-soc-meson-axg-tdmout.o
- obj-$(CONFIG_SND_MESON_AXG_SOUND_CARD) += snd-soc-meson-axg-sound-card.o
-+obj-$(CONFIG_SND_MESON_AXG_SPDIFIN) += snd-soc-meson-axg-spdifin.o
- obj-$(CONFIG_SND_MESON_AXG_SPDIFOUT) += snd-soc-meson-axg-spdifout.o
- obj-$(CONFIG_SND_MESON_AXG_PDM) += snd-soc-meson-axg-pdm.o
-diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
-new file mode 100644
-index 000000000000..09f385a2bbba
---- /dev/null
-+++ b/sound/soc/meson/axg-spdifin.c
-@@ -0,0 +1,521 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+//
-+// Copyright (c) 2018 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/regmap.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+#include <sound/pcm_params.h>
-+
-+#define SPDIFIN_CTRL0			0x00
-+#define  SPDIFIN_CTRL0_EN		BIT(31)
-+#define  SPDIFIN_CTRL0_RST_OUT		BIT(29)
-+#define  SPDIFIN_CTRL0_RST_IN		BIT(28)
-+#define  SPDIFIN_CTRL0_WIDTH_SEL	BIT(24)
-+#define  SPDIFIN_CTRL0_STATUS_CH_SHIFT	11
-+#define  SPDIFIN_CTRL0_STATUS_SEL	GENMASK(10, 8)
-+#define  SPDIFIN_CTRL0_SRC_SEL		GENMASK(5, 4)
-+#define  SPDIFIN_CTRL0_CHK_VALID	BIT(3)
-+#define SPDIFIN_CTRL1			0x04
-+#define  SPDIFIN_CTRL1_BASE_TIMER	GENMASK(19, 0)
-+#define  SPDIFIN_CTRL1_IRQ_MASK		GENMASK(27, 20)
-+#define SPDIFIN_CTRL2			0x08
-+#define  SPDIFIN_THRES_PER_REG		3
-+#define  SPDIFIN_THRES_WIDTH		10
-+#define SPDIFIN_CTRL3			0x0c
-+#define SPDIFIN_CTRL4			0x10
-+#define  SPDIFIN_TIMER_PER_REG		4
-+#define  SPDIFIN_TIMER_WIDTH		8
-+#define SPDIFIN_CTRL5			0x14
-+#define SPDIFIN_CTRL6			0x18
-+#define SPDIFIN_STAT0			0x1c
-+#define  SPDIFIN_STAT0_MODE		GENMASK(30, 28)
-+#define  SPDIFIN_STAT0_MAXW		GENMASK(17, 8)
-+#define  SPDIFIN_STAT0_IRQ		GENMASK(7, 0)
-+#define  SPDIFIN_IRQ_MODE_CHANGED	BIT(2)
-+#define SPDIFIN_STAT1			0x20
-+#define SPDIFIN_STAT2			0x24
-+#define SPDIFIN_MUTE_VAL		0x28
-+
-+#define SPDIFIN_MODE_NUM		7
-+
-+struct axg_spdifin_cfg {
-+	const unsigned int *mode_rates;
-+	unsigned int ref_rate;
-+};
-+
-+struct axg_spdifin {
-+	const struct axg_spdifin_cfg *conf;
-+	struct regmap *map;
-+	struct clk *refclk;
-+	struct clk *pclk;
-+};
-+
-+/*
-+ * TODO:
-+ * It would have been nice to check the actual rate against the sample rate
-+ * requested in hw_params(). Unfortunately, I was not able to make the mode
-+ * detection and IRQ work reliably:
-+ *
-+ * 1. IRQs are generated on mode change only, so there is no notification
-+ *    on transition between no signal and mode 0 (32kHz).
-+ * 2. Mode detection very often has glitches, and may detects the
-+ *    lowest or the highest mode before zeroing in on the actual mode.
-+ *
-+ * This makes calling snd_pcm_stop() difficult to get right. Even notifying
-+ * the kcontrol would be very unreliable at this point.
-+ * Let's keep things simple until the magic spell that makes this work is
-+ * found.
-+ */
-+
-+static unsigned int axg_spdifin_get_rate(struct axg_spdifin *priv)
-+{
-+	unsigned int stat, mode, rate = 0;
-+
-+	regmap_read(priv->map, SPDIFIN_STAT0, &stat);
-+	mode = FIELD_GET(SPDIFIN_STAT0_MODE, stat);
-+
-+	/*
-+	 * If max width is zero, we are not capturing anything.
-+	 * Also Sometimes, when the capture is on but there is no data,
-+	 * mode is SPDIFIN_MODE_NUM, but not always ...
-+	 */
-+	if (FIELD_GET(SPDIFIN_STAT0_MAXW, stat) &&
-+	    mode < SPDIFIN_MODE_NUM)
-+		rate = priv->conf->mode_rates[mode];
-+
-+	return rate;
-+}
-+
-+static int axg_spdifin_prepare(struct snd_pcm_substream *substream,
-+			       struct snd_soc_dai *dai)
-+{
-+	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
-+
-+	/* Apply both reset */
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0,
-+			   SPDIFIN_CTRL0_RST_OUT |
-+			   SPDIFIN_CTRL0_RST_IN,
-+			   0);
-+
-+	/* Clear out reset before in reset */
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0,
-+			   SPDIFIN_CTRL0_RST_OUT, SPDIFIN_CTRL0_RST_OUT);
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0,
-+			   SPDIFIN_CTRL0_RST_IN,  SPDIFIN_CTRL0_RST_IN);
-+
-+	return 0;
-+}
-+
-+static int axg_spdifin_startup(struct snd_pcm_substream *substream,
-+			       struct snd_soc_dai *dai)
-+{
-+	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->refclk);
-+	if (ret) {
-+		dev_err(dai->dev,
-+			"failed to enable spdifin reference clock\n");
-+		return ret;
-+	}
-+
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN,
-+			   SPDIFIN_CTRL0_EN);
-+
-+	return 0;
-+}
-+
-+static void axg_spdifin_shutdown(struct snd_pcm_substream *substream,
-+				 struct snd_soc_dai *dai)
-+{
-+	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
-+
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0, SPDIFIN_CTRL0_EN, 0);
-+	clk_disable_unprepare(priv->refclk);
-+}
-+
-+static void axg_spdifin_write_mode_param(struct regmap *map, int mode,
-+					 unsigned int val,
-+					 unsigned int num_per_reg,
-+					 unsigned int base_reg,
-+					 unsigned int width)
-+{
-+	unsigned int offset = mode, rem;
-+	unsigned int reg, shift;
-+
-+	rem = do_div(offset, num_per_reg);
-+
-+	reg = offset * regmap_get_reg_stride(map) + base_reg;
-+	shift = width * (num_per_reg - 1 - rem);
-+
-+	regmap_update_bits(map, reg, GENMASK(width - 1, 0) << shift,
-+			   val << shift);
-+}
-+
-+static void axg_spdifin_write_timer(struct regmap *map, int mode,
-+				    unsigned int val)
-+{
-+	axg_spdifin_write_mode_param(map, mode, val, SPDIFIN_TIMER_PER_REG,
-+				     SPDIFIN_CTRL4, SPDIFIN_TIMER_WIDTH);
-+}
-+
-+static void axg_spdifin_write_threshold(struct regmap *map, int mode,
-+					unsigned int val)
-+{
-+	axg_spdifin_write_mode_param(map, mode, val, SPDIFIN_THRES_PER_REG,
-+				     SPDIFIN_CTRL2, SPDIFIN_THRES_WIDTH);
-+}
-+
-+static unsigned int axg_spdifin_mode_timer(struct axg_spdifin *priv,
-+					   int mode,
-+					   unsigned int rate)
-+{
-+	/*
-+	 * Number of period of the reference clock during a period of the
-+	 * input signal reference clock
-+	 */
-+	return rate / (128 * priv->conf->mode_rates[mode]);
-+}
-+
-+static int axg_spdifin_sample_mode_config(struct snd_soc_dai *dai,
-+					  struct axg_spdifin *priv)
-+{
-+	unsigned int rate, t_next;
-+	int ret, i = SPDIFIN_MODE_NUM - 1;
-+
-+	/* Set spdif input reference clock */
-+	ret = clk_set_rate(priv->refclk, priv->conf->ref_rate);
-+	if (ret) {
-+		dev_err(dai->dev, "reference clock rate set failed\n");
-+		return ret;
-+	}
-+
-+	/*
-+	 * The rate actually set might be slightly different, get
-+	 * the actual rate for the following mode calculation
-+	 */
-+	rate = clk_get_rate(priv->refclk);
-+
-+	/* HW will update mode every 1ms */
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL1,
-+			   SPDIFIN_CTRL1_BASE_TIMER,
-+			   FIELD_PREP(SPDIFIN_CTRL1_BASE_TIMER, rate / 1000));
-+
-+	/* Threshold based on the minimum width between two edges */
-+	regmap_update_bits(priv->map, SPDIFIN_CTRL0,
-+			   SPDIFIN_CTRL0_WIDTH_SEL, SPDIFIN_CTRL0_WIDTH_SEL);
-+
-+	/* Calculate the last timer which has no threshold */
-+	t_next = axg_spdifin_mode_timer(priv, i, rate);
-+	axg_spdifin_write_timer(priv->map, i, t_next);
-+
-+	do {
-+		unsigned int t;
-+
-+		i -= 1;
-+
-+		/* Calculate the timer */
-+		t = axg_spdifin_mode_timer(priv, i, rate);
-+
-+		/* Set the timer value */
-+		axg_spdifin_write_timer(priv->map, i, t);
-+
-+		/* Set the threshold value */
-+		axg_spdifin_write_threshold(priv->map, i, t + t_next);
-+
-+		/* Save the current timer for the next threshold calculation */
-+		t_next = t;
-+
-+	} while (i > 0);
-+
-+	return 0;
-+}
-+
-+static int axg_spdifin_dai_probe(struct snd_soc_dai *dai)
-+{
-+	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->pclk);
-+	if (ret) {
-+		dev_err(dai->dev, "failed to enable pclk\n");
-+		return ret;
-+	}
-+
-+	ret = axg_spdifin_sample_mode_config(dai, priv);
-+	if (ret) {
-+		dev_err(dai->dev, "mode configuration failed\n");
-+		clk_disable_unprepare(priv->pclk);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int axg_spdifin_dai_remove(struct snd_soc_dai *dai)
-+{
-+	struct axg_spdifin *priv = snd_soc_dai_get_drvdata(dai);
-+
-+	clk_disable_unprepare(priv->pclk);
-+	return 0;
-+}
-+
-+static const struct snd_soc_dai_ops axg_spdifin_ops = {
-+	.prepare	= axg_spdifin_prepare,
-+	.startup	= axg_spdifin_startup,
-+	.shutdown	= axg_spdifin_shutdown,
-+};
-+
-+static int axg_spdifin_iec958_info(struct snd_kcontrol *kcontrol,
-+				   struct snd_ctl_elem_info *uinfo)
-+{
-+	uinfo->type = SNDRV_CTL_ELEM_TYPE_IEC958;
-+	uinfo->count = 1;
-+
-+	return 0;
-+}
-+
-+static int axg_spdifin_get_status_mask(struct snd_kcontrol *kcontrol,
-+				       struct snd_ctl_elem_value *ucontrol)
-+{
-+	int i;
-+
-+	for (i = 0; i < 24; i++)
-+		ucontrol->value.iec958.status[i] = 0xff;
-+
-+	return 0;
-+}
-+
-+static int axg_spdifin_get_status(struct snd_kcontrol *kcontrol,
-+				  struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *c = snd_kcontrol_chip(kcontrol);
-+	struct axg_spdifin *priv = snd_soc_component_get_drvdata(c);
-+	int i, j;
-+
-+	for (i = 0; i < 6; i++) {
-+		unsigned int val;
-+
-+		regmap_update_bits(priv->map, SPDIFIN_CTRL0,
-+				   SPDIFIN_CTRL0_STATUS_SEL,
-+				   FIELD_PREP(SPDIFIN_CTRL0_STATUS_SEL, i));
-+
-+		regmap_read(priv->map, SPDIFIN_STAT1, &val);
-+
-+		for (j = 0; j < 4; j++) {
-+			unsigned int offset = i * 4 + j;
-+
-+			ucontrol->value.iec958.status[offset] =
-+				(val >> (j * 8)) & 0xff;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+#define AXG_SPDIFIN_IEC958_MASK						\
-+	{								\
-+		.access = SNDRV_CTL_ELEM_ACCESS_READ,			\
-+		.iface = SNDRV_CTL_ELEM_IFACE_PCM,			\
-+		.name = SNDRV_CTL_NAME_IEC958("", CAPTURE, MASK),	\
-+		.info = axg_spdifin_iec958_info,			\
-+		.get = axg_spdifin_get_status_mask,			\
-+	}
-+
-+#define AXG_SPDIFIN_IEC958_STATUS					\
-+	{								\
-+		.access = (SNDRV_CTL_ELEM_ACCESS_READ |			\
-+			   SNDRV_CTL_ELEM_ACCESS_VOLATILE),		\
-+		.iface = SNDRV_CTL_ELEM_IFACE_PCM,			\
-+		.name =	SNDRV_CTL_NAME_IEC958("", CAPTURE, NONE),	\
-+		.info = axg_spdifin_iec958_info,			\
-+		.get = axg_spdifin_get_status,				\
-+	}
-+
-+static const char * const spdifin_chsts_src_texts[] = {
-+	"A", "B",
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(axg_spdifin_chsts_src_enum, SPDIFIN_CTRL0,
-+			    SPDIFIN_CTRL0_STATUS_CH_SHIFT,
-+			    spdifin_chsts_src_texts);
-+
-+static int axg_spdifin_rate_lock_info(struct snd_kcontrol *kcontrol,
-+				      struct snd_ctl_elem_info *uinfo)
-+{
-+	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
-+	uinfo->count = 1;
-+	uinfo->value.integer.min = 0;
-+	uinfo->value.integer.max = 192000;
-+
-+	return 0;
-+}
-+
-+static int axg_spdifin_rate_lock_get(struct snd_kcontrol *kcontrol,
-+				     struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *c = snd_kcontrol_chip(kcontrol);
-+	struct axg_spdifin *priv = snd_soc_component_get_drvdata(c);
-+
-+	ucontrol->value.integer.value[0] = axg_spdifin_get_rate(priv);
-+
-+	return 0;
-+}
-+
-+#define AXG_SPDIFIN_LOCK_RATE(xname)				\
-+	{							\
-+		.iface = SNDRV_CTL_ELEM_IFACE_PCM,		\
-+		.access = (SNDRV_CTL_ELEM_ACCESS_READ |		\
-+			   SNDRV_CTL_ELEM_ACCESS_VOLATILE),	\
-+		.get = axg_spdifin_rate_lock_get,		\
-+		.info = axg_spdifin_rate_lock_info,		\
-+		.name = xname,					\
-+	}
-+
-+static const struct snd_kcontrol_new axg_spdifin_controls[] = {
-+	AXG_SPDIFIN_LOCK_RATE("Capture Rate Lock"),
-+	SOC_DOUBLE("Capture Switch", SPDIFIN_CTRL0, 7, 6, 1, 1),
-+	SOC_ENUM(SNDRV_CTL_NAME_IEC958("", CAPTURE, NONE) "Src",
-+		 axg_spdifin_chsts_src_enum),
-+	AXG_SPDIFIN_IEC958_MASK,
-+	AXG_SPDIFIN_IEC958_STATUS,
-+};
-+
-+static const struct snd_soc_component_driver axg_spdifin_component_drv = {
-+	.controls		= axg_spdifin_controls,
-+	.num_controls		= ARRAY_SIZE(axg_spdifin_controls),
-+};
-+
-+static const struct regmap_config axg_spdifin_regmap_cfg = {
-+	.reg_bits	= 32,
-+	.val_bits	= 32,
-+	.reg_stride	= 4,
-+	.max_register	= SPDIFIN_MUTE_VAL,
-+};
-+
-+static const unsigned int axg_spdifin_mode_rates[SPDIFIN_MODE_NUM] = {
-+	32000, 44100, 48000, 88200, 96000, 176400, 192000,
-+};
-+
-+static const struct axg_spdifin_cfg axg_cfg = {
-+	.mode_rates = axg_spdifin_mode_rates,
-+	.ref_rate = 333333333,
-+};
-+
-+static const struct of_device_id axg_spdifin_of_match[] = {
-+	{
-+		.compatible = "amlogic,axg-spdifin",
-+		.data = &axg_cfg,
-+	}, {}
-+};
-+MODULE_DEVICE_TABLE(of, axg_spdifin_of_match);
-+
-+static struct snd_soc_dai_driver *
-+axg_spdifin_get_dai_drv(struct device *dev, struct axg_spdifin *priv)
-+{
-+	struct snd_soc_dai_driver *drv;
-+	int i;
-+
-+	drv = devm_kzalloc(dev, sizeof(*drv), GFP_KERNEL);
-+	if (!drv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	drv->name = "SPDIF Input";
-+	drv->ops = &axg_spdifin_ops;
-+	drv->probe = axg_spdifin_dai_probe;
-+	drv->remove = axg_spdifin_dai_remove;
-+	drv->capture.stream_name = "Capture";
-+	drv->capture.channels_min = 1;
-+	drv->capture.channels_max = 2;
-+	drv->capture.formats = SNDRV_PCM_FMTBIT_IEC958_SUBFRAME_LE;
-+
-+	for (i = 0; i < SPDIFIN_MODE_NUM; i++) {
-+		unsigned int rb =
-+			snd_pcm_rate_to_rate_bit(priv->conf->mode_rates[i]);
-+
-+		if (rb == SNDRV_PCM_RATE_KNOT)
-+			return ERR_PTR(-EINVAL);
-+
-+		drv->capture.rates |= rb;
-+	}
-+
-+	return drv;
-+}
-+
-+static int axg_spdifin_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct axg_spdifin *priv;
-+	struct snd_soc_dai_driver *dai_drv;
-+	struct resource *res;
-+	void __iomem *regs;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, priv);
-+
-+	priv->conf = of_device_get_match_data(dev);
-+	if (!priv->conf) {
-+		dev_err(dev, "failed to match device\n");
-+		return -ENODEV;
-+	}
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	regs = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	priv->map = devm_regmap_init_mmio(dev, regs, &axg_spdifin_regmap_cfg);
-+	if (IS_ERR(priv->map)) {
-+		dev_err(dev, "failed to init regmap: %ld\n",
-+			PTR_ERR(priv->map));
-+		return PTR_ERR(priv->map);
-+	}
-+
-+	priv->pclk = devm_clk_get(dev, "pclk");
-+	if (IS_ERR(priv->pclk)) {
-+		ret = PTR_ERR(priv->pclk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get pclk: %d\n", ret);
-+		return ret;
-+	}
-+
-+	priv->refclk = devm_clk_get(dev, "refclk");
-+	if (IS_ERR(priv->refclk)) {
-+		ret = PTR_ERR(priv->refclk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get mclk: %d\n", ret);
-+		return ret;
-+	}
-+
-+	dai_drv = axg_spdifin_get_dai_drv(dev, priv);
-+	if (IS_ERR(dai_drv)) {
-+		dev_err(dev, "failed to get dai driver: %ld\n",
-+			PTR_ERR(dai_drv));
-+		return PTR_ERR(dai_drv);
-+	}
-+
-+	return devm_snd_soc_register_component(dev, &axg_spdifin_component_drv,
-+					       dai_drv, 1);
-+}
-+
-+static struct platform_driver axg_spdifin_pdrv = {
-+	.probe = axg_spdifin_probe,
-+	.driver = {
-+		.name = "axg-spdifin",
-+		.of_match_table = axg_spdifin_of_match,
-+	},
-+};
-+module_platform_driver(axg_spdifin_pdrv);
-+
-+MODULE_DESCRIPTION("Amlogic AXG SPDIF Input driver");
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.19.2
+Binding description is not aligned with what the driver does.
+If you are going take clock input from DT, it needs to be documented.
+
+In the meantime this has been done [0] for you but you'll have to rebase.
+
+[0]: 20181203171640.12110-3-jbrunet@baylibre.com
+
+>  
+>  - #clock-cells: should be 1.
+>  
+> diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-
+> bindings/clock/g12a-clkc.h
+> new file mode 100644
+> index 0000000..b55e6e1
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/g12a-clkc.h
+> @@ -0,0 +1,93 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Meson-G12A clock tree IDs
+> + *
+> + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __G12A_CLKC_H
+> +#define __G12A_CLKC_H
+> +
+> +#define CLKID_SYS_PLL				0
+> +#define CLKID_FIXED_PLL				1
+> +#define CLKID_FCLK_DIV2				2
+> +#define CLKID_FCLK_DIV3				3
+> +#define CLKID_FCLK_DIV4				4
+> +#define CLKID_FCLK_DIV5				5
+> +#define CLKID_FCLK_DIV7				6
+> +#define CLKID_GP0_PLL				7
+> +#define CLKID_CLK81				10
+> +#define CLKID_MPLL0				11
+> +#define CLKID_MPLL1				12
+> +#define CLKID_MPLL2				13
+> +#define CLKID_MPLL3				14
+> +#define CLKID_DDR				15
+> +#define CLKID_DOS				16
+> +#define CLKID_AUDIO_LOCKER			17
+> +#define CLKID_MIPI_DSI_HOST			18
+> +#define CLKID_ETH_PHY				19
+> +#define CLKID_ISA				20
+> +#define CLKID_PL301				21
+> +#define CLKID_PERIPHS				22
+> +#define CLKID_SPICC0				23
+> +#define CLKID_I2C				24
+> +#define CLKID_SANA				25
+> +#define CLKID_SD				26
+> +#define CLKID_RNG0				27
+> +#define CLKID_UART0				28
+> +#define CLKID_SPICC1				29
+> +#define CLKID_HIU_IFACE				30
+> +#define CLKID_MIPI_DSI_PHY			31
+> +#define CLKID_ASSIST_MISC			32
+> +#define CLKID_SD_EMMC_A				33
+> +#define CLKID_SD_EMMC_B				34
+> +#define CLKID_SD_EMMC_C				35
+> +#define CLKID_AUDIO_CODEC			36
+> +#define CLKID_AUDIO				37
+> +#define CLKID_ETH				38
+> +#define CLKID_DEMUX				39
+> +#define CLKID_AUDIO_IFIFO			40
+> +#define CLKID_ADC				41
+> +#define CLKID_UART1				42
+> +#define CLKID_G2D				43
+> +#define CLKID_RESET				44
+> +#define CLKID_PCIE_COMB				45
+> +#define CLKID_PARSER				46
+> +#define CLKID_USB				47
+> +#define CLKID_PCIE_PHY				48
+> +#define CLKID_AHB_ARB0				49
+> +#define CLKID_AHB_DATA_BUS			50
+> +#define CLKID_AHB_CTRL_BUS			51
+> +#define CLKID_HTX_HDCP22			52
+> +#define CLKID_HTX_PCLK				53
+> +#define CLKID_BT656				54
+> +#define CLKID_USB1_DDR_BRIDGE			55
+> +#define CLKID_MMC_PCLK				56
+> +#define CLKID_UART2				57
+> +#define CLKID_VPU_INTR				58
+> +#define CLKID_GIC				59
+> +#define CLKID_SD_EMMC_B_CLK0			60
+> +#define CLKID_SD_EMMC_C_CLK0			61
+> +#define CLKID_HIFI_PLL				71
+> +#define CLKID_VCLK2_VENCI0			77
+> +#define CLKID_VCLK2_VENCI1			78
+> +#define CLKID_VCLK2_VENCP0			79
+> +#define CLKID_VCLK2_VENCP1			80
+> +#define CLKID_VCLK2_VENCT0			81
+> +#define CLKID_VCLK2_VENCT1			82
+> +#define CLKID_VCLK2_OTHER			83
+> +#define CLKID_VCLK2_ENCI			84
+> +#define CLKID_VCLK2_ENCP			85
+> +#define CLKID_DAC_CLK				86
+> +#define CLKID_AOCLK				87
+> +#define CLKID_IEC958				88
+> +#define CLKID_ENC480P				89
+> +#define CLKID_RNG1				90
+> +#define CLKID_VCLK2_ENCT			91
+> +#define CLKID_VCLK2_ENCL			92
+> +#define CLKID_VCLK2_VENCLMMC			93
+> +#define CLKID_VCLK2_VENCL			94
+> +#define CLKID_VCLK2_OTHER1			95
+> +#define CLKID_FCLK_DIV2P5			96
+> +
+> +#endif /* __G12A_CLKC_H */
+
 
 
 _______________________________________________
