@@ -2,91 +2,59 @@ Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-3.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A75CC07E85
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 17:17:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EEBCEC67839
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 20:37:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4CA112086D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 17:17:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BE1A82084C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 20:37:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H+4zVHKC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qVf9KPW7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4CA112086D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ezSg706b"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE1A82084C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=the-dreams.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=en3FXVRRAtMWnIMrvndqCpzE2hnrsHYeqfc9nvaiPYw=; b=H+4zVHKCYxT3M1
-	qMF13oNWPOgP2GVjfZjzaX9p0/aashjU+IhahTFZu0WKiw7Hizn9intuP799OHBtXf1TkZkTrEuGm
-	lAQVMfPWxCMRUZXP/vQH7vF5c+hReNbhUuunSMgcUqPyCJAhWf5Y6EkGLWlzoOATyeyu4sV01vZkf
-	+nlMmglskLPbWT9f2HsFOO+ETzaGO5zm5Zo4N3Zdp7l7ldAyHD1nTVzKoHQ0xHkZrB4IC3tKylc4W
-	IjWopB5AeZF0TxjSnG3ZpMqWo5A0vbk2cN3To2sa8YnQvZ8HXaBKykbAqP+wb1SPRptJLLFX1ouCf
-	YcnXToP0TxlO2f3NqK4g==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=KYsEu4d+QPS214eLyTpRv09OzBlEjYuJDGK1/o8cids=; b=ezSg706bQzGyDu4u8hneH8S/T
+	UJ3g5fgR1p/NKuvlZrPOTr7bnpZB3EEc3EWQVWmfyxywQ+6i8lAqTbgWSkTaEoNI2ZMLU60vSk6vk
+	0i5OA9tH71zYto4amH3EfCAs3xdgszL1QQ0WR3LWOSR5RG5Xzgro2m0GrGOJo/rtOyRBKfxO28fQT
+	l92O6tHg5++M/UWv2JVXEuj74fCI7LIIVJf+M/JV7PmWcRcRT7Th6DEveA4BvDY0WhbHw4dsw7fNl
+	QVx/iN2iz/wjqGzsoiRNb62FCqAIML+rsCsDkSXOnhSJqBB4C2fHBEfx2WCssVifSaQNnSYMcYwz9
+	vLY5aMKow==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWleh-00073B-Bj; Tue, 11 Dec 2018 17:17:11 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWlee-00072N-TF
- for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 17:17:10 +0000
-Received: by mail-wm1-x342.google.com with SMTP id y1so3020172wmi.3
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 09:16:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=75yFl6t0VNl6aeKQPwOYA9vmVdauYThH+a/zVHyk1HY=;
- b=qVf9KPW7ufg1mhiOVOV9ukDNT606L4vnOvmwKM+QyODjR5A3W6N5wpNMAYWoTvR+iI
- tHiS7EshfrV7+f1kojxBTEWXa49X0DjW6usNLX9udJkP/t3Ob/Q0UHRoVgovXx61Q2tQ
- 1QZ4SfCzjYyFN6DvJ/XsZPQvg7MUYDE3ln65pFD5YdqbdJgEa2Xq2wvDbyTG/j6V6jiC
- m7D/9LXfi+cNom5P6VNTno8LJ3yVilpH8TKKgOBnbO7oCQ1biwVUKQ7IMacabGOjaU8x
- eamOorEYgCvUJQ7CLtEGK1InCiGZUVzMMps2dru0LBWNlrkF0M5ptY/WCBtTkHJP5vSj
- Fqmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=75yFl6t0VNl6aeKQPwOYA9vmVdauYThH+a/zVHyk1HY=;
- b=L6wNuQ/vKfRzH41Ag1TXvGKDOatDl0YQWNkthW2hs3G0UDVofyZblQdjnXFx9QwdKC
- yV/RcZDKDi/cQOGsKHpGaOsKQBPkQqpCjKvb+91PVb+aHz/xX/9vjI77QGFjNd0wdT9i
- u7v45svjhPdRknJTtNHfhzSnn/tvuurQ4U18HMpgd8crBAs2Ay0RMaZyJUDvgGfdTJ6i
- eowrdPs3zNne0AS/UoYESOBdcuzwqL/JwC62IxUlFo//mZoSokDK0L5IlCLQ/1KutVjT
- W610nQHvRK/UnQuDD8nrfRTLWQBIexm0yYYZkv8k6uSlH0vwKf/CW8AI+GnzIttm/DTo
- G3Ug==
-X-Gm-Message-State: AA+aEWb2euW7Rj1zr9cl3Gc5eJdKpBHC7jVxvtb6RDSnDbBEobrEMy/P
- Ek5M1tNsDjVT5SytxXjhVEytcA==
-X-Google-Smtp-Source: AFSGD/X23cOw1RneKhFub57TRd9Ur2MpdQD4WlwVOgAzARNURpNzd8lJUNxGbln5ZpRekOux8hFXFw==
-X-Received: by 2002:a1c:91d1:: with SMTP id t200mr3109373wmd.111.1544548617073; 
- Tue, 11 Dec 2018 09:16:57 -0800 (PST)
-Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.gmail.com with ESMTPSA id v4sm738924wme.6.2018.12.11.09.16.54
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 11 Dec 2018 09:16:56 -0800 (PST)
-Message-ID: <4da764c237b8f752af1dc33a011e2a4b73068f02.camel@baylibre.com>
-Subject: Re: [PATCH RESEND v7 4/4] clk: meson: add one based divider support
- for sclk divider
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jianxin Pan <jianxin.pan@amlogic.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-Date: Tue, 11 Dec 2018 18:16:53 +0100
-In-Reply-To: <1544457877-51301-5-git-send-email-jianxin.pan@amlogic.com>
-References: <1544457877-51301-1-git-send-email-jianxin.pan@amlogic.com>
- <1544457877-51301-5-git-send-email-jianxin.pan@amlogic.com>
-User-Agent: Evolution 3.30.2 (3.30.2-2.fc29) 
-Mime-Version: 1.0
+	id 1gWomB-0002gf-51; Tue, 11 Dec 2018 20:37:07 +0000
+Received: from sauhun.de ([88.99.104.3] helo=pokefinder.org)
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gWom8-0002ff-L8; Tue, 11 Dec 2018 20:37:06 +0000
+Received: from localhost (p54B334A7.dip0.t-ipconnect.de [84.179.52.167])
+ by pokefinder.org (Postfix) with ESMTPSA id ACF164C0E90;
+ Tue, 11 Dec 2018 21:36:53 +0100 (CET)
+Date: Tue, 11 Dec 2018 21:36:53 +0100
+From: Wolfram Sang <wsa@the-dreams.de>
+To: Jian Hu <jian.hu@amlogic.com>
+Subject: Re: [PATCH 0/2] i2c: meson: add support for Meson G12A SoC i2c
+ controller
+Message-ID: <20181211203652.rogajl4ajwu7cs6f@ninjato>
+References: <1543489197-183181-1-git-send-email-jian.hu@amlogic.com>
+ <8a6a204b28523e5a181f9e85dda18fade76a26a3.camel@baylibre.com>
+ <b2bceaf4-92ce-92a4-c382-713d29ae3b70@amlogic.com>
+MIME-Version: 1.0
+In-Reply-To: <b2bceaf4-92ce-92a4-c382-713d29ae3b70@amlogic.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_091708_940707_23293272 
-X-CRM114-Status: GOOD (  20.69  )
+X-CRM114-CacheID: sfid-20181211_123704_840722_052D16EE 
+X-CRM114-Status: UNSURE (   7.21  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,158 +66,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
- linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org,
+Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+ Hanjie Lin <hanjie.lin@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Qiufang Dai <qiufang.dai@amlogic.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ linux-i2c@vger.kernel.org, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: multipart/mixed; boundary="===============1478254805742828322=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 2018-12-11 at 00:04 +0800, Jianxin Pan wrote:
-> When CLK_DIVIDER_ONE_BASED flag is set, the sclk divider will be:
-> one based divider (div = val), and zero value gates the clock
-> 
-> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
-> ---
->  drivers/clk/meson/clkc-audio.h |  1 +
->  drivers/clk/meson/sclk-div.c   | 28 ++++++++++++++++++----------
->  2 files changed, 19 insertions(+), 10 deletions(-)
 
-Such a patch should be done earlier in the series, at least before using sclk
-in your controller, otherwise thing will be broken in between
-
-In general, I would prefer if you had added two helper function to deal with
-the translation between register value and divider value.
-
-Only these function should care about CLK_DIVIDER_ONE_BASED, the rest should
-just call them.
-
-This, we will be able to deal the with HI (duty cycle) part as well, which you
-completly skiped.
-
-I know your device does not have this, but still the code has to make sense.
-
-> 
-> diff --git a/drivers/clk/meson/clkc-audio.h b/drivers/clk/meson/clkc-audio.h
-> index 0a7c157..9bd6ced 100644
-> --- a/drivers/clk/meson/clkc-audio.h
-> +++ b/drivers/clk/meson/clkc-audio.h
-> @@ -20,6 +20,7 @@ struct meson_sclk_div_data {
->  	struct parm hi;
->  	unsigned int cached_div;
->  	struct clk_duty cached_duty;
-> +	u8	flags;
->  };
->  
->  extern const struct clk_ops meson_clk_triphase_ops;
-> diff --git a/drivers/clk/meson/sclk-div.c b/drivers/clk/meson/sclk-div.c
-> index bc64019..d98707b 100644
-> --- a/drivers/clk/meson/sclk-div.c
-> +++ b/drivers/clk/meson/sclk-div.c
-> @@ -24,22 +24,23 @@
->  	return (struct meson_sclk_div_data *)clk->data;
->  }
->  
-> -static int sclk_div_maxval(struct meson_sclk_div_data *sclk)
-> -{
-> -	return (1 << sclk->div.width) - 1;
-> -}
-> -
->  static int sclk_div_maxdiv(struct meson_sclk_div_data *sclk)
->  {
-> -	return sclk_div_maxval(sclk) + 1;
-> +	if (sclk->flags & CLK_DIVIDER_ONE_BASED)
-> +		return clk_div_mask(sclk->div.width);
-> +	else
-> +		return clk_div_mask(sclk->div.width) + 1;
-
-seems over complicated.
-why no call clk_div_mask just once, and add 1 if necessary ?
-
->  }
->  
->  static int sclk_div_getdiv(struct clk_hw *hw, unsigned long rate,
->  			   unsigned long prate, int maxdiv)
->  {
->  	int div = DIV_ROUND_CLOSEST_ULL((u64)prate, rate);
-> +	struct clk_regmap *clk = to_clk_regmap(hw);
-> +	struct meson_sclk_div_data *sclk = meson_sclk_div_data(clk);
-> +	int mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
-
-This is why I want helpers, don't like this above
-
->  
-> -	return clamp(div, 2, maxdiv);
-> +	return clamp(div, mindiv, maxdiv);
->  }
->  
->  static int sclk_div_bestdiv(struct clk_hw *hw, unsigned long rate,
-> @@ -47,7 +48,7 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
-> long rate,
->  			    struct meson_sclk_div_data *sclk)
->  {
->  	struct clk_hw *parent = clk_hw_get_parent(hw);
-> -	int bestdiv = 0, i;
-> +	int bestdiv = 0, i, mindiv;
->  	unsigned long maxdiv, now, parent_now;
->  	unsigned long best = 0, best_parent = 0;
->  
-> @@ -64,8 +65,9 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
-> long rate,
->  	 * unsigned long in rate * i below
->  	 */
->  	maxdiv = min(ULONG_MAX / rate, maxdiv);
-> +	mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
->  
-> -	for (i = 2; i <= maxdiv; i++) {
-> +	for (i = mindiv; i <= maxdiv; i++) {
->  		/*
->  		 * It's the most ideal case if the requested rate can be
->  		 * divided from parent clock without needing to change
-> @@ -153,10 +155,14 @@ static int sclk_div_get_duty_cycle(struct clk_hw *hw,
->  static void sclk_apply_divider(struct clk_regmap *clk,
->  			       struct meson_sclk_div_data *sclk)
->  {
-> +	unsigned int div;
-> +
->  	if (MESON_PARM_APPLICABLE(&sclk->hi))
->  		sclk_apply_ratio(clk, sclk);
->  
-> -	meson_parm_write(clk->map, &sclk->div, sclk->cached_div - 1);
-> +	div = (sclk->flags & CLK_DIVIDER_ONE_BASED) ?
-> +		sclk->cached_div : (sclk->cached_div - 1);
-
-helpers again.
-
-> +	meson_parm_write(clk->map, &sclk->div, div);
->  }
->  
->  static int sclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
-> @@ -223,6 +229,8 @@ static void sclk_div_init(struct clk_hw *hw)
->  	/* if the divider is initially disabled, assume max */
->  	if (!val)
->  		sclk->cached_div = sclk_div_maxdiv(sclk);
-> +	else if (sclk->flags & CLK_DIVIDER_ONE_BASED)
-> +		sclk->cached_div = val;
->  	else
->  		sclk->cached_div = val + 1;
-
-same ...
-
->  
+--===============1478254805742828322==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r6j4ocolv5vcwqhy"
+Content-Disposition: inline
 
 
+--r6j4ocolv5vcwqhy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+> I am okay if it is reasonable below in file
+> arch/arm64/boot/dts/amlogic/meson-g12a.dtsi. I2c controller node just uses
+> axg's compatible.
+>=20
+> 			i2c0: i2c@1f000 {
+> 				compatible =3D "amlogic,meson-axg-i2c";
+
+Actually, you should have
+
+	compatible =3D "amlogic,meson-g12a-i2c", "amlogic,meson-axg-i2c";
+
+in the DT to have support for future SoC specific additions. And then,
+patch 1 is needed.
+
+Or do you handle this differently? I'd think this is DT standard.
+
+
+--r6j4ocolv5vcwqhy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlwQH+QACgkQFA3kzBSg
+KbYghA//e+Y8jxdhjD74FHRwHJedpaaTeb8kDXLWeywBEDsZikyyg521dDLFYodO
+1fm88aVcj21Of70l3aXd5XlRUndSa701Rm/JStWJR6xgHY1wmU0MiuUAINO3XvbE
+90yyjh5gVOonytSaEM1at5rvgsuMknBPDWigRNEbPfQkXckMYyh+Ini2nAvKs5ZB
+GZUNMt1JZcKRdd599coNfhuKPQAxp+SmikdPBJ+H9RSm58IyU8iitPw9AR6JesMM
+7ihWoNOC5REbI8CzCKlYTFM0J8ppRnpJfzAkDKDl18V147TAmXVBQ+hPSDKfTxYH
+VbtZQ9AUPUawMWhTVmt7ZsZuZPmOoPjccsLo+nWqz/db/JDyhyMzjY/46AWl37U2
+b6H55meUJyPVf/AKDY67ey/DpjA00C6URXkOLCelW0vV4qy71hzYgMXGGJ3yWdwi
+4NmJtPpqax3st/K2/mwDQc4humJ+4FeLw9OREsLhdOw++3fRkYr8ZrysJDmNH7yS
+h5cgVTGqE0rtCt9sct8Om88gut//78pusStosThw+nwHbTOL5gsK405OrSQFoe2N
+nitfLq2ISw/njOwajTWSgdUcWa9kkwmTk/UixXjBe8r5VEiv32qmt/Q/K8vmyDES
+O9MOHcWu3slySjEBzXQs519PblIQJCYgUdHVaXwuIStWkHpkO1k=
+=Uiz1
+-----END PGP SIGNATURE-----
+
+--r6j4ocolv5vcwqhy--
+
+
+--===============1478254805742828322==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============1478254805742828322==--
+
