@@ -2,60 +2,82 @@ Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F5B1C6783B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 21:46:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BEB6C67839
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 22:10:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E2CB92086D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 21:46:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 391B92084E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 22:10:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dwRBDvKV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2CB92086D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=the-dreams.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FPmaz2nj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lYedVqQZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 391B92084E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ESpwjcP4wYKXEgAGbRXQvfxgUUJ0nWemFKr5enN9X6w=; b=dwRBDvKVR+XFeHnumhzvmeCu+
-	PgtOoy5PksknxWGyycFCgqvNTMqduUfCq5lUIbc3bbXCUFhOlFH7M1ZAFsavRDImoVQ6yXv0gvSt/
-	wz0g72nUSKJyBw3Q6q3DmROp8cViIiYpwvp04jJJUc38TVUSiurplN5zgQj728t90fVjYMNnHDRn/
-	Kqpfny0ltJ1fDXS8EXYpKma3tn/b/Mvuxes3lInFnCpUzx2RXN3ysT4PbRitId1yQB7l7sUyBDtSQ
-	zM1HY5fmFYWFKoz0oJmu6aopTwkuebCggE/c/WSTEnus/alPIIXBi6uBKvQBfdTtfKft7Vvb3uzoU
-	e3QXF8jvA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=URqGES1kWqf3izdbZWJX3YYlR6cyHPO+vC9XuNDMfgk=; b=FPmaz2njeu0QyP
+	ksN+LO4cDCyrlzE4eymWGqRYYewwQ8ivXmvuGd2p9pN5QTFWnhVHgR/9Os6di7mRG9AbNZkLlDfRP
+	zdSVBWLWJm2kYTeIj3PMsU3u709GfGR5t69AS4FqT9WWTN1lMnVIlJ+sVk7QptAwZMotcVHEofBNY
+	iJxN3N05A8FC+LhgjSWlRZWzu4fbcn/hiuxAfH52rpjrIl18B9yR9uya63ZUBFGR++9eEuOaqlrvV
+	xpdU+U/LFAANtKxLgkIwQGpHMk+2aJWbsGvswNgzpYRc/86FVxLCuyRwfCQXIk3tzZhpSmC/P/yzL
+	qDOAYXKYPhWcxu0N+JZw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWpqu-0001H5-LO; Tue, 11 Dec 2018 21:46:04 +0000
-Received: from sauhun.de ([88.99.104.3] helo=pokefinder.org)
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWpqV-0000j1-IQ; Tue, 11 Dec 2018 21:46:02 +0000
-Received: from localhost (p54B334A7.dip0.t-ipconnect.de [84.179.52.167])
- by pokefinder.org (Postfix) with ESMTPSA id 5ED834C0E8F;
- Tue, 11 Dec 2018 22:45:28 +0100 (CET)
-Date: Tue, 11 Dec 2018 22:45:27 +0100
-From: Wolfram Sang <wsa@the-dreams.de>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 0/2] i2c: meson: add support for Meson G12A SoC i2c
- controller
-Message-ID: <20181211214527.GA5660@kunai>
-References: <1543489197-183181-1-git-send-email-jian.hu@amlogic.com>
- <8a6a204b28523e5a181f9e85dda18fade76a26a3.camel@baylibre.com>
- <b2bceaf4-92ce-92a4-c382-713d29ae3b70@amlogic.com>
- <20181211203652.rogajl4ajwu7cs6f@ninjato>
- <7hsgz3u4fu.fsf@baylibre.com>
+	id 1gWqE2-0008RP-9R; Tue, 11 Dec 2018 22:09:58 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gWqDz-0008Qg-6K; Tue, 11 Dec 2018 22:09:56 +0000
+Received: by mail-oi1-x241.google.com with SMTP id y23so13379096oia.4;
+ Tue, 11 Dec 2018 14:09:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=eI5IGdZLbihoM1JpOCBJmDZFFsM5cSSnLSPPgCxAhxk=;
+ b=lYedVqQZ3hqB7908uJavjK0ActWFskQNhfRu/+U8sFPEicionz+F4zXfkoBWB7MTMv
+ nrpTV249UI8OByccj+DNfZJ5xnMuEXGYE4F36ZwtOALheYYEtd8ornGZyAwNvsXKw6nB
+ OI0ufxjbfmFQ2JDHaFLSAK/hmv7+senKJrKhyeNvWpWXDUKkiGwVzJTxaRz3wdVjD4hp
+ NmDDJmKtN2Azl/2TUzYP8vVcdYr2sm4kq5PLlO/n+p+KBi5IIn4sybbYSwuDiUNimUMq
+ 4W1erBZT5etP3t4ANa42ek3Q6kczPK65Xkl1UxFHoN7f7V6QWiugpOfFGoudCfCkNS82
+ WdOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=eI5IGdZLbihoM1JpOCBJmDZFFsM5cSSnLSPPgCxAhxk=;
+ b=HzHJUXIaNvt480AfwXnzt3e5aSVc+HQJjvLNYWayJGLhoFAWnjOzigZx48ZD/496LS
+ vv/DRqA1BjIu7VU8erKtfP7g6NNyFVCsnugq3AfZfKKrKaE39vdxMgPFjCDfIe5tP0bS
+ 4nbpgYfYu6ADGCKSYdgWvQIwZ6e2b13NAnW+/LRBVDunzpU6ze10AjXUDyiQb21pJcEb
+ ses2+o2PXTQ7qQRvUH4V1FOrCVJ87ORobOCtEsx0tQGtBBFY81W12q0fpX5iHe7VrywV
+ U2nhk/D5QS1FtwFLJsBWhscvwHcltcQKl9obLqQLjyJedKIKXAYdvh1HnCuywWnXEVAF
+ WWqw==
+X-Gm-Message-State: AA+aEWYVzm/0hNla2KQxtMRZ8wUjibIaeicEros19DBupksGsRDCT5a3
+ nrmPkW87uVNp5GmJi7NPPBfvt8je/PNqG/HceO4=
+X-Google-Smtp-Source: AFSGD/Wd/Z4vd02AtSBwuc1xmWjmPFLv8kqXsfTFz7+LnpbfgEAjbmcFHJYvFjMlfJ1RZphs6yginarIxzFkIPWxYhY=
+X-Received: by 2002:aca:4ace:: with SMTP id x197mr2461612oia.129.1544566181810; 
+ Tue, 11 Dec 2018 14:09:41 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <7hsgz3u4fu.fsf@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20181208165025.27689-1-martin.blumenstingl@googlemail.com>
+ <ba3e4fef-7a18-8c7d-e0ea-05c541b29913@baylibre.com>
+In-Reply-To: <ba3e4fef-7a18-8c7d-e0ea-05c541b29913@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 11 Dec 2018 23:09:30 +0100
+Message-ID: <CAFBinCBYBAqtKp_edgs6b44MpOhc-iN_FwR425bkU4xirGQKvA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] ARM: dts: meson: add the APB/APB2 busses
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_134540_555205_85F5F526 
-X-CRM114-Status: GOOD (  10.96  )
+X-CRM114-CacheID: sfid-20181211_140955_236492_47C30666 
+X-CRM114-Status: GOOD (  19.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -67,92 +89,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
- Hanjie Lin <hanjie.lin@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
- Jian Hu <jian.hu@amlogic.com>, linux-i2c@vger.kernel.org,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: multipart/mixed; boundary="===============0935741619753558755=="
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ khilman@baylibre.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Neil,
 
---===============0935741619753558755==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+HP7ph2BbKc20aGI"
-Content-Disposition: inline
-
-
---+HP7ph2BbKc20aGI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-> >> I am okay if it is reasonable below in file
-> >> arch/arm64/boot/dts/amlogic/meson-g12a.dtsi. I2c controller node just =
-uses
-> >> axg's compatible.
-> >>=20
-> >> 			i2c0: i2c@1f000 {
-> >> 				compatible =3D "amlogic,meson-axg-i2c";
+On Tue, Dec 11, 2018 at 10:16 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 08/12/2018 17:50, Martin Blumenstingl wrote:
+> > This adds the APB bus on Meson8 and Meson8b as well as the APB2 bus on
+> > Meson6. This is preparation work for adding the Mali GPU which is
+> > located on theses busses.
 > >
-> > Actually, you should have
+> > Meson6 seems to have it's APB at 0xc8000000 instead of 0xd0000000. The
+> > region at 0xd0000000 is called APB2 or A9_APB and it has a different
+> > size (256k) compared to Meson8 and Meson8b (2M).
 > >
-> > 	compatible =3D "amlogic,meson-g12a-i2c", "amlogic,meson-axg-i2c";
+> > Addresses and sizes are taken from the Amlogic 3.10 kernel sources:
+> > - Meson6: [0]
+> > - Meson8: [1]
+> > - Meson8b: [2]
 > >
-> > in the DT to have support for future SoC specific additions. And then,
-> > patch 1 is needed.
 > >
-> > Or do you handle this differently? I'd think this is DT standard.
->=20
-> It's a DT standard *if* there are actual hardware differences.  In this
-> case, the IP block is identical, so there are no driver changes.
->=20
-> We prefer to add a new compatible if and when there are actual
-> driver/hardware changes.
+> > Changes since v1 at [3]:
+> > - re-send the patches but this time don't include the old patches
+> >   which still had a typo in the patch description (ABP vs APB)
+> >
+> >
+> > [0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson6/include/mach/io.h#L61
+> > [1] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8/include/mach/io.h#L53
+> > [2] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8b/include/mach/io.h#L53
+> > [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009424.html
+> >
+> >
+> > Martin Blumenstingl (3):
+> >   ARM: dts: meson6: add the APB2 bus
+> >   ARM: dts: meson8: add the APB bus
+> >   ARM: dts: meson8b: add the APB bus
+> >
+> >  arch/arm/boot/dts/meson6.dtsi  | 8 ++++++++
+> >  arch/arm/boot/dts/meson8.dtsi  | 8 ++++++++
+> >  arch/arm/boot/dts/meson8b.dtsi | 8 ++++++++
+> >  3 files changed, 24 insertions(+)
+> >
+>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+thank you for taking the time to review this!
 
-OK, fine with me. I just hope for you guys that there really is no
-change in the IP block, otherwise you need to update DTs later.
+> But frankly I'll squash the meson8/meson8b patches with the mali node patches !
+I didn't do this because I realized that there are different busses
+between Meson6 and Meson8/Meson8b. so I wanted to have a commit
+message which describes this.
+if you prefer I can still squash the Meson8 and Meson8b patches into
+their corresponding GPU .dts patch but I would like to keep the Meson6
+patch (as I'm not planning to add the Mali GPU until someone can
+actually test it on that SoC)
 
 
---+HP7ph2BbKc20aGI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlwQL/IACgkQFA3kzBSg
-KbbXFg//SIq2lU0nge0Dh0BSX8NJGPF/ETdhp8hcEKs5kManXc/Kd+rLlNJC7y84
-AMSGX9pIK899f51uMMgI6AbzNGimTk8Y2nghiHLyq6tum6QeFdOIjDJOC3lICUhx
-z7L+BEZ6hFNJPBZRSCRlio3dag2k8qHhM5ah6Xu6i7mH+g1JrNi6gFyrZsNv8hFy
-3Hg/bL7DwZXQJFknp0tsOglXiJThOz7VDx460zqn5cyl2PRvSaRvhZ67Yzg9I7Sz
-TQIW+KLj/hv2JApKkJtlYFHit+p3ZZvb/JfaGfO2FsKnBL6WJQJT6dLwPiK1guG7
-wSmp3eOqAlgeI3NMNqmAy2SfYqZn3IoVsuNy9us5+hkshxwsgOxkoT1Vvde3o19b
-c42k8bolyzyvdKDGbl1UuahvQLB3pdYvDa1kCzO63BlW6slMVsjhcYuK0yP7AW7F
-4SSumOdaFrd3azSi7pl5eG21J19U45sSxWow9oMRuw9yW9JHDiB5mIKt4dLTIym/
-mAbfHswdxtRDepqmM2UyLRN5RX6bJA8aefum/2jdNg98dbiUHMX8akHqbS//eiOX
-xBZcptougATsy9JIVcw25PSpg0NTUM4udScSsKyptNTFkFoE6PyF7ln67R8M3R2n
-uTW6i946iQ/olPGPhN/yCWg3AoD9mAdaxEOIcGZ3ekgA94NbgUc=
-=J9xG
------END PGP SIGNATURE-----
-
---+HP7ph2BbKc20aGI--
-
-
---===============0935741619753558755==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============0935741619753558755==--
-
