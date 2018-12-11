@@ -2,22 +2,22 @@ Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED805C67839
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:16:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B62E0C07E85
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:18:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD58A2082F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:16:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8000C2082F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:18:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="V1utQ/Uq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1I27N1nc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD58A2082F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eNFtlmwv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="L6N+6ZG6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8000C2082F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Rri9OGKAUw66X7gKwiyArV85f6sg879oOJ3tjNHbeAI=; b=V1utQ/UqnWYnzO
-	qHkaN7AyVa60QfqS18c22UAGKnRYIOv7lw1HWvxl01xtSvW6EURKuwQR0CnBisSpy4eUIrtGPFtXv
-	utQqYAcm06RcurQ4161fuMEQv58B8Pa+sH8p3AiqwLtm/+15UwCzotppYNtDGAfDSLVPBr3pYdsa4
-	Z6Ksu9wZ1bHkNmvetWkEBQccVdVWqhk2T0DtenYCUklcU5Ik1NyqeTbHslhX3pk13ki0xM+USnCJv
-	1yaBtskBNyQuH4y5o0DblFvgUBbaXDpPX/1Ta1P4U5smPFom6hg+k2hcdHwv82doEHa50/Lt14f5C
-	5C+vzsH5GALYMa90YrxQ==;
+	List-Owner; bh=Iz1qmiSrlMDEQa8xBOG7zMJQT/scul1soCnUw/+198E=; b=eNFtlmwv/p1H6p
+	iWHSE/VNA68fJrC08WxC68ymhF00wJqBVEeTVrDjUWxqBqW/pPoMHuBLtaK0BU2coNucZs7GWXmCX
+	alKKy2y9wbF+rtr83LkrcRnW1QWvMgV8Hu07ua/ibiYQH3ThSwRGWPsfzstCSokR21BdqlCCjebet
+	JLKc29UXc/qmKwAP5QHFXcgH5CWp/jpX+2HCkndeIufjIpuAVZudYemnpBdbkKhOUfUfucpLD3DrX
+	txpFoqjpFl2jh/YKa3rcfHMwMwTVv93zOpUibKmM5TInU5+SZtJYy/LMIfQHxBXUJMxnIbJrb9t5B
+	HwsWHb8Timul2C9vEgqA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWe9s-00060G-8j; Tue, 11 Dec 2018 09:16:52 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1gWeBk-0007AF-GJ; Tue, 11 Dec 2018 09:18:48 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWe9o-0005z2-DL
- for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 09:16:50 +0000
-Received: by mail-wm1-x341.google.com with SMTP id a18so1401739wmj.1
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 01:16:35 -0800 (PST)
+ id 1gWeBZ-0006z1-1T
+ for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 09:18:39 +0000
+Received: by mail-wm1-x343.google.com with SMTP id a62so1378415wmh.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 01:18:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=E3P0VB4t6+DqCGyBcLCrB5erX8OZcvz7dPWAblWoNGA=;
- b=1I27N1ncJyt304PlsEgJEzqOyGu4scX0m98ZhGyuRECobPkxvQbgFTopn3fhawiHYj
- vFnlPsc2tFmsu7G2ZnMAL0xY4qJcsONSNnNgWriNOBSSO0GX5aCGm0rSfK03+iKuxZgj
- tT7jL3AMIIYvxVcJOr+WSTHXsSqCbl+VpjfM+HWBpJsN40dPqqivokjeNMCUmbZtJVkr
- 7Du4V9rC7sU+8osxEqmZT64T5fMll9Lf1VVEsVvpvD4krXEZk7CWm7hJqYSGQZGV1UTj
- 9RuwUFjU5h8DqZm2GCCjq8dRbe8y+R8TH6HbomPY+ZWb39WtlozVh9KhVaGeIfnXtkBQ
- SqEg==
+ bh=b50lWC15gu8mZDu9jZhiwWvJxx3xcw0xuUKOWXm5NRc=;
+ b=L6N+6ZG6W9hMLvT1Nw1HM6IhHU/4s9e0jw082cm6BzYDOdrmSoW7qPMUH2pMS444ml
+ t81lCRMmEZagdn177RSuYzpMwHcPygh0Wy7D17npB90O7V8n+e9KL6AlAUb/6s1M84Q3
+ snPWAx834vWzKIUEFmDATA9KSkk8E9TOF/BYf/oy0UpfjBi3ABa26oKKCQXfx7ZYbNq1
+ qFxVyOptqDAAhsPNzOnfw1UccOEbHjuPbtqDSwbgQyMIfVEc3P4MNufL8SicvY/vERiL
+ hPAUU/3/KuK3Ry3g0tj60AE0iAe9Nzd9LAbzXsv91pudrqAGrcrHMJBkHiF2RBDTfk6+
+ E3Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=E3P0VB4t6+DqCGyBcLCrB5erX8OZcvz7dPWAblWoNGA=;
- b=T6BbMJeYl6Y9G8DrKxAs5nAYw9KOry3+8OUdlOh78S4sZR93P48/qqg3Xx8vNrUadn
- EZiFsBMrY0m5uLKcJMPf2AVybFCJxA4z4l72LW1zX+rOqhXGaXP9bOyF2ChcYLWBU6HV
- Aj6+I3FOyhGlOXb0e6yRvE6PdAteCPWZ9opKRGZrrBLpHhPEwluGqe0hHGn8H4Rn2E+b
- YU4ehbvJ1FpA0eun++aV/JsUjSdKHCyY7qsBUF2YA/OGyDpaAKf9xhvrLaVmHfJtvryo
- 9DZSJ8mXagfMHGNxy64CHTfCK/HoH5THbDzl9KapySePsOnUD+pWfIUiXFDfCjMr0cmo
- +vkA==
-X-Gm-Message-State: AA+aEWZSz1tO3R9wP0SG4sYcBk7bKFvIaxEC/9jg7pnYgDO8VFghQbHJ
- YTX/hKX5FMm6HpjWBplOX6CM/w==
-X-Google-Smtp-Source: AFSGD/WfPmpnmda9WPjhcNVXlZ9RE+xqQZ4f+3qKfKYKCOaMCKplEoYR+torXVFcbAHWmHuuV+7lfA==
-X-Received: by 2002:a1c:1a90:: with SMTP id a138mr1589549wma.109.1544519794435; 
- Tue, 11 Dec 2018 01:16:34 -0800 (PST)
+ bh=b50lWC15gu8mZDu9jZhiwWvJxx3xcw0xuUKOWXm5NRc=;
+ b=Ss5Vo+EDuzmJwUqmdUJO0muSAHf0MJovCGTNcycbpiizdeag6v6VAVNUcr1spf6n3B
+ pfwy9XDlwJwD2rbcBW0ghZD2HS9jxVbvD6Y0EuPZZ0ez5EnL7zjySei1hF/BStAbPY+l
+ l1F1LDMdXpuDeWrJ+UO0gfKag2+mcAFVYvLHdgnyIh7r/9jGOzxlOfFxBeYHGPLVjgAa
+ TMNODdjmOtQvt3B6bsZfafC++h30giHfEL8ZjW+wlR3J9Ou/rl4aFcw5Gds3X7I9Hoe+
+ rJEAQe4nCxtYl5mWsqV/Unb5XmBhAw+oFO4ZPldmcT0qoUjQSTNaBFWW0Zas1Z/toYPz
+ 2WdQ==
+X-Gm-Message-State: AA+aEWbK0VGplqGI4GmvQg7IGD7KhpWFnT1htXrAxC0+VP9wAZ9U80op
+ NVTdhznjTTd21wfeRgrpRFqixw==
+X-Google-Smtp-Source: AFSGD/XnPh88ZQiSgA8O7NSdmcvIOrnYTSVikpcQGR30XhOr7w94cs34faXUcmiR0eR/HAALbRJbTA==
+X-Received: by 2002:a1c:6a09:: with SMTP id f9mr1613371wmc.150.1544519903914; 
+ Tue, 11 Dec 2018 01:18:23 -0800 (PST)
 Received: from ?IPv6:2a01:cb1d:4ce:ea00:a5f8:3197:dbfa:c157?
  ([2a01:cb1d:4ce:ea00:a5f8:3197:dbfa:c157])
- by smtp.gmail.com with ESMTPSA id 60sm25778639wrb.81.2018.12.11.01.16.33
+ by smtp.gmail.com with ESMTPSA id y1sm1162297wme.1.2018.12.11.01.18.22
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 11 Dec 2018 01:16:33 -0800 (PST)
-Subject: Re: [PATCH v2 0/3] ARM: dts: meson: add the APB/APB2 busses
+ Tue, 11 Dec 2018 01:18:23 -0800 (PST)
+Subject: Re: [PATCH 2/5] clk: meson: meson8b: use a separate clock table for
+ Meson8
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, khilman@baylibre.com
-References: <20181208165025.27689-1-martin.blumenstingl@googlemail.com>
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ jbrunet@baylibre.com, khilman@baylibre.com, robh+dt@kernel.org
+References: <20181208171247.22238-1-martin.blumenstingl@googlemail.com>
+ <20181208171247.22238-3-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -106,16 +109,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  C3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTTQbM0WUIBIcGmq38+OgUsMYu4NzLu7uZF
  Acmp6h8g
 Organization: Baylibre
-Message-ID: <ba3e4fef-7a18-8c7d-e0ea-05c541b29913@baylibre.com>
-Date: Tue, 11 Dec 2018 10:16:33 +0100
+Message-ID: <91b498fd-f09c-e877-f14b-2f21529d7cb0@baylibre.com>
+Date: Tue, 11 Dec 2018 10:18:22 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20181208165025.27689-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20181208171247.22238-3-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_011648_450255_DF1E9FCD 
-X-CRM114-Status: GOOD (  17.16  )
+X-CRM114-CacheID: sfid-20181211_011837_079308_249613C1 
+X-CRM114-Status: GOOD (  16.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -127,53 +130,286 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+Cc: devicetree@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08/12/2018 17:50, Martin Blumenstingl wrote:
-> This adds the APB bus on Meson8 and Meson8b as well as the APB2 bus on
-> Meson6. This is preparation work for adding the Mali GPU which is
-> located on theses busses.
+On 08/12/2018 18:12, Martin Blumenstingl wrote:
+> The Meson8 SoC is slightly different compared to Meson8b and Meson8m2
+> because it does not have the glitch-free Mali GPU clock mux. For Meson8b
+> and Meson8m2 there are currently no known differences.
 > 
-> Meson6 seems to have it's APB at 0xc8000000 instead of 0xd0000000. The
-> region at 0xd0000000 is called APB2 or A9_APB and it has a different
-> size (256k) compared to Meson8 and Meson8b (2M).
+> Add a separate clk_hw_onecell_data table for Meson8 so these differences
+> can be implemented. For now meson8_hw_onecell_data is a clone of our
+> existing meson8b_hw_onecell_data.
 > 
-> Addresses and sizes are taken from the Amlogic 3.10 kernel sources:
-> - Meson6: [0]
-> - Meson8: [1]
-> - Meson8b: [2]
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/clk/meson/meson8b.c | 203 ++++++++++++++++++++++++++++++++++--
+>  1 file changed, 197 insertions(+), 6 deletions(-)
 > 
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index 950d0e548c75..0b9353d8d4fd 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -1659,6 +1659,185 @@ static MESON_GATE(meson8b_ao_ahb_sram, HHI_GCLK_AO, 1);
+>  static MESON_GATE(meson8b_ao_ahb_bus, HHI_GCLK_AO, 2);
+>  static MESON_GATE(meson8b_ao_iface, HHI_GCLK_AO, 3);
+>  
+> +static struct clk_hw_onecell_data meson8_hw_onecell_data = {
+> +	.hws = {
+> +		[CLKID_XTAL] = &meson8b_xtal.hw,
+> +		[CLKID_PLL_FIXED] = &meson8b_fixed_pll.hw,
+> +		[CLKID_PLL_VID] = &meson8b_vid_pll.hw,
+> +		[CLKID_PLL_SYS] = &meson8b_sys_pll.hw,
+> +		[CLKID_FCLK_DIV2] = &meson8b_fclk_div2.hw,
+> +		[CLKID_FCLK_DIV3] = &meson8b_fclk_div3.hw,
+> +		[CLKID_FCLK_DIV4] = &meson8b_fclk_div4.hw,
+> +		[CLKID_FCLK_DIV5] = &meson8b_fclk_div5.hw,
+> +		[CLKID_FCLK_DIV7] = &meson8b_fclk_div7.hw,
+> +		[CLKID_CPUCLK] = &meson8b_cpu_clk.hw,
+> +		[CLKID_MPEG_SEL] = &meson8b_mpeg_clk_sel.hw,
+> +		[CLKID_MPEG_DIV] = &meson8b_mpeg_clk_div.hw,
+> +		[CLKID_CLK81] = &meson8b_clk81.hw,
+> +		[CLKID_DDR]		    = &meson8b_ddr.hw,
+> +		[CLKID_DOS]		    = &meson8b_dos.hw,
+> +		[CLKID_ISA]		    = &meson8b_isa.hw,
+> +		[CLKID_PL301]		    = &meson8b_pl301.hw,
+> +		[CLKID_PERIPHS]		    = &meson8b_periphs.hw,
+> +		[CLKID_SPICC]		    = &meson8b_spicc.hw,
+> +		[CLKID_I2C]		    = &meson8b_i2c.hw,
+> +		[CLKID_SAR_ADC]		    = &meson8b_sar_adc.hw,
+> +		[CLKID_SMART_CARD]	    = &meson8b_smart_card.hw,
+> +		[CLKID_RNG0]		    = &meson8b_rng0.hw,
+> +		[CLKID_UART0]		    = &meson8b_uart0.hw,
+> +		[CLKID_SDHC]		    = &meson8b_sdhc.hw,
+> +		[CLKID_STREAM]		    = &meson8b_stream.hw,
+> +		[CLKID_ASYNC_FIFO]	    = &meson8b_async_fifo.hw,
+> +		[CLKID_SDIO]		    = &meson8b_sdio.hw,
+> +		[CLKID_ABUF]		    = &meson8b_abuf.hw,
+> +		[CLKID_HIU_IFACE]	    = &meson8b_hiu_iface.hw,
+> +		[CLKID_ASSIST_MISC]	    = &meson8b_assist_misc.hw,
+> +		[CLKID_SPI]		    = &meson8b_spi.hw,
+> +		[CLKID_I2S_SPDIF]	    = &meson8b_i2s_spdif.hw,
+> +		[CLKID_ETH]		    = &meson8b_eth.hw,
+> +		[CLKID_DEMUX]		    = &meson8b_demux.hw,
+> +		[CLKID_AIU_GLUE]	    = &meson8b_aiu_glue.hw,
+> +		[CLKID_IEC958]		    = &meson8b_iec958.hw,
+> +		[CLKID_I2S_OUT]		    = &meson8b_i2s_out.hw,
+> +		[CLKID_AMCLK]		    = &meson8b_amclk.hw,
+> +		[CLKID_AIFIFO2]		    = &meson8b_aififo2.hw,
+> +		[CLKID_MIXER]		    = &meson8b_mixer.hw,
+> +		[CLKID_MIXER_IFACE]	    = &meson8b_mixer_iface.hw,
+> +		[CLKID_ADC]		    = &meson8b_adc.hw,
+> +		[CLKID_BLKMV]		    = &meson8b_blkmv.hw,
+> +		[CLKID_AIU]		    = &meson8b_aiu.hw,
+> +		[CLKID_UART1]		    = &meson8b_uart1.hw,
+> +		[CLKID_G2D]		    = &meson8b_g2d.hw,
+> +		[CLKID_USB0]		    = &meson8b_usb0.hw,
+> +		[CLKID_USB1]		    = &meson8b_usb1.hw,
+> +		[CLKID_RESET]		    = &meson8b_reset.hw,
+> +		[CLKID_NAND]		    = &meson8b_nand.hw,
+> +		[CLKID_DOS_PARSER]	    = &meson8b_dos_parser.hw,
+> +		[CLKID_USB]		    = &meson8b_usb.hw,
+> +		[CLKID_VDIN1]		    = &meson8b_vdin1.hw,
+> +		[CLKID_AHB_ARB0]	    = &meson8b_ahb_arb0.hw,
+> +		[CLKID_EFUSE]		    = &meson8b_efuse.hw,
+> +		[CLKID_BOOT_ROM]	    = &meson8b_boot_rom.hw,
+> +		[CLKID_AHB_DATA_BUS]	    = &meson8b_ahb_data_bus.hw,
+> +		[CLKID_AHB_CTRL_BUS]	    = &meson8b_ahb_ctrl_bus.hw,
+> +		[CLKID_HDMI_INTR_SYNC]	    = &meson8b_hdmi_intr_sync.hw,
+> +		[CLKID_HDMI_PCLK]	    = &meson8b_hdmi_pclk.hw,
+> +		[CLKID_USB1_DDR_BRIDGE]	    = &meson8b_usb1_ddr_bridge.hw,
+> +		[CLKID_USB0_DDR_BRIDGE]	    = &meson8b_usb0_ddr_bridge.hw,
+> +		[CLKID_MMC_PCLK]	    = &meson8b_mmc_pclk.hw,
+> +		[CLKID_DVIN]		    = &meson8b_dvin.hw,
+> +		[CLKID_UART2]		    = &meson8b_uart2.hw,
+> +		[CLKID_SANA]		    = &meson8b_sana.hw,
+> +		[CLKID_VPU_INTR]	    = &meson8b_vpu_intr.hw,
+> +		[CLKID_SEC_AHB_AHB3_BRIDGE] = &meson8b_sec_ahb_ahb3_bridge.hw,
+> +		[CLKID_CLK81_A9]	    = &meson8b_clk81_a9.hw,
+> +		[CLKID_VCLK2_VENCI0]	    = &meson8b_vclk2_venci0.hw,
+> +		[CLKID_VCLK2_VENCI1]	    = &meson8b_vclk2_venci1.hw,
+> +		[CLKID_VCLK2_VENCP0]	    = &meson8b_vclk2_vencp0.hw,
+> +		[CLKID_VCLK2_VENCP1]	    = &meson8b_vclk2_vencp1.hw,
+> +		[CLKID_GCLK_VENCI_INT]	    = &meson8b_gclk_venci_int.hw,
+> +		[CLKID_GCLK_VENCP_INT]	    = &meson8b_gclk_vencp_int.hw,
+> +		[CLKID_DAC_CLK]		    = &meson8b_dac_clk.hw,
+> +		[CLKID_AOCLK_GATE]	    = &meson8b_aoclk_gate.hw,
+> +		[CLKID_IEC958_GATE]	    = &meson8b_iec958_gate.hw,
+> +		[CLKID_ENC480P]		    = &meson8b_enc480p.hw,
+> +		[CLKID_RNG1]		    = &meson8b_rng1.hw,
+> +		[CLKID_GCLK_VENCL_INT]	    = &meson8b_gclk_vencl_int.hw,
+> +		[CLKID_VCLK2_VENCLMCC]	    = &meson8b_vclk2_venclmcc.hw,
+> +		[CLKID_VCLK2_VENCL]	    = &meson8b_vclk2_vencl.hw,
+> +		[CLKID_VCLK2_OTHER]	    = &meson8b_vclk2_other.hw,
+> +		[CLKID_EDP]		    = &meson8b_edp.hw,
+> +		[CLKID_AO_MEDIA_CPU]	    = &meson8b_ao_media_cpu.hw,
+> +		[CLKID_AO_AHB_SRAM]	    = &meson8b_ao_ahb_sram.hw,
+> +		[CLKID_AO_AHB_BUS]	    = &meson8b_ao_ahb_bus.hw,
+> +		[CLKID_AO_IFACE]	    = &meson8b_ao_iface.hw,
+> +		[CLKID_MPLL0]		    = &meson8b_mpll0.hw,
+> +		[CLKID_MPLL1]		    = &meson8b_mpll1.hw,
+> +		[CLKID_MPLL2]		    = &meson8b_mpll2.hw,
+> +		[CLKID_MPLL0_DIV]	    = &meson8b_mpll0_div.hw,
+> +		[CLKID_MPLL1_DIV]	    = &meson8b_mpll1_div.hw,
+> +		[CLKID_MPLL2_DIV]	    = &meson8b_mpll2_div.hw,
+> +		[CLKID_CPU_IN_SEL]	    = &meson8b_cpu_in_sel.hw,
+> +		[CLKID_CPU_IN_DIV2]	    = &meson8b_cpu_in_div2.hw,
+> +		[CLKID_CPU_IN_DIV3]	    = &meson8b_cpu_in_div3.hw,
+> +		[CLKID_CPU_SCALE_DIV]	    = &meson8b_cpu_scale_div.hw,
+> +		[CLKID_CPU_SCALE_OUT_SEL]   = &meson8b_cpu_scale_out_sel.hw,
+> +		[CLKID_MPLL_PREDIV]	    = &meson8b_mpll_prediv.hw,
+> +		[CLKID_FCLK_DIV2_DIV]	    = &meson8b_fclk_div2_div.hw,
+> +		[CLKID_FCLK_DIV3_DIV]	    = &meson8b_fclk_div3_div.hw,
+> +		[CLKID_FCLK_DIV4_DIV]	    = &meson8b_fclk_div4_div.hw,
+> +		[CLKID_FCLK_DIV5_DIV]	    = &meson8b_fclk_div5_div.hw,
+> +		[CLKID_FCLK_DIV7_DIV]	    = &meson8b_fclk_div7_div.hw,
+> +		[CLKID_NAND_SEL]	    = &meson8b_nand_clk_sel.hw,
+> +		[CLKID_NAND_DIV]	    = &meson8b_nand_clk_div.hw,
+> +		[CLKID_NAND_CLK]	    = &meson8b_nand_clk_gate.hw,
+> +		[CLKID_PLL_FIXED_DCO]	    = &meson8b_fixed_pll_dco.hw,
+> +		[CLKID_HDMI_PLL_DCO]	    = &meson8b_hdmi_pll_dco.hw,
+> +		[CLKID_PLL_SYS_DCO]	    = &meson8b_sys_pll_dco.hw,
+> +		[CLKID_CPU_CLK_DIV2]	    = &meson8b_cpu_clk_div2.hw,
+> +		[CLKID_CPU_CLK_DIV3]	    = &meson8b_cpu_clk_div3.hw,
+> +		[CLKID_CPU_CLK_DIV4]	    = &meson8b_cpu_clk_div4.hw,
+> +		[CLKID_CPU_CLK_DIV5]	    = &meson8b_cpu_clk_div5.hw,
+> +		[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
+> +		[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
+> +		[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
+> +		[CLKID_ABP_SEL]		    = &meson8b_abp_clk_sel.hw,
+> +		[CLKID_ABP]		    = &meson8b_abp_clk_gate.hw,
+> +		[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
+> +		[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
+> +		[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
+> +		[CLKID_AXI]		    = &meson8b_axi_clk_gate.hw,
+> +		[CLKID_L2_DRAM_SEL]	    = &meson8b_l2_dram_clk_sel.hw,
+> +		[CLKID_L2_DRAM]		    = &meson8b_l2_dram_clk_gate.hw,
+> +		[CLKID_HDMI_PLL_LVDS_OUT]   = &meson8b_hdmi_pll_lvds_out.hw,
+> +		[CLKID_HDMI_PLL_HDMI_OUT]   = &meson8b_hdmi_pll_hdmi_out.hw,
+> +		[CLKID_VID_PLL_IN_SEL]	    = &meson8b_vid_pll_in_sel.hw,
+> +		[CLKID_VID_PLL_IN_EN]	    = &meson8b_vid_pll_in_en.hw,
+> +		[CLKID_VID_PLL_PRE_DIV]	    = &meson8b_vid_pll_pre_div.hw,
+> +		[CLKID_VID_PLL_POST_DIV]    = &meson8b_vid_pll_post_div.hw,
+> +		[CLKID_VID_PLL_FINAL_DIV]   = &meson8b_vid_pll_final_div.hw,
+> +		[CLKID_VCLK_IN_SEL]	    = &meson8b_vclk_in_sel.hw,
+> +		[CLKID_VCLK_IN_EN]	    = &meson8b_vclk_in_en.hw,
+> +		[CLKID_VCLK_DIV1]	    = &meson8b_vclk_div1_gate.hw,
+> +		[CLKID_VCLK_DIV2_DIV]	    = &meson8b_vclk_div2_div.hw,
+> +		[CLKID_VCLK_DIV2]	    = &meson8b_vclk_div2_div_gate.hw,
+> +		[CLKID_VCLK_DIV4_DIV]	    = &meson8b_vclk_div4_div.hw,
+> +		[CLKID_VCLK_DIV4]	    = &meson8b_vclk_div4_div_gate.hw,
+> +		[CLKID_VCLK_DIV6_DIV]	    = &meson8b_vclk_div6_div.hw,
+> +		[CLKID_VCLK_DIV6]	    = &meson8b_vclk_div6_div_gate.hw,
+> +		[CLKID_VCLK_DIV12_DIV]	    = &meson8b_vclk_div12_div.hw,
+> +		[CLKID_VCLK_DIV12]	    = &meson8b_vclk_div12_div_gate.hw,
+> +		[CLKID_VCLK2_IN_SEL]	    = &meson8b_vclk2_in_sel.hw,
+> +		[CLKID_VCLK2_IN_EN]	    = &meson8b_vclk2_clk_in_en.hw,
+> +		[CLKID_VCLK2_DIV1]	    = &meson8b_vclk2_div1_gate.hw,
+> +		[CLKID_VCLK2_DIV2_DIV]	    = &meson8b_vclk2_div2_div.hw,
+> +		[CLKID_VCLK2_DIV2]	    = &meson8b_vclk2_div2_div_gate.hw,
+> +		[CLKID_VCLK2_DIV4_DIV]	    = &meson8b_vclk2_div4_div.hw,
+> +		[CLKID_VCLK2_DIV4]	    = &meson8b_vclk2_div4_div_gate.hw,
+> +		[CLKID_VCLK2_DIV6_DIV]	    = &meson8b_vclk2_div6_div.hw,
+> +		[CLKID_VCLK2_DIV6]	    = &meson8b_vclk2_div6_div_gate.hw,
+> +		[CLKID_VCLK2_DIV12_DIV]	    = &meson8b_vclk2_div12_div.hw,
+> +		[CLKID_VCLK2_DIV12]	    = &meson8b_vclk2_div12_div_gate.hw,
+> +		[CLKID_CTS_ENCT_SEL]	    = &meson8b_cts_enct_sel.hw,
+> +		[CLKID_CTS_ENCT]	    = &meson8b_cts_enct.hw,
+> +		[CLKID_CTS_ENCP_SEL]	    = &meson8b_cts_encp_sel.hw,
+> +		[CLKID_CTS_ENCP]	    = &meson8b_cts_encp.hw,
+> +		[CLKID_CTS_ENCI_SEL]	    = &meson8b_cts_enci_sel.hw,
+> +		[CLKID_CTS_ENCI]	    = &meson8b_cts_enci.hw,
+> +		[CLKID_HDMI_TX_PIXEL_SEL]   = &meson8b_hdmi_tx_pixel_sel.hw,
+> +		[CLKID_HDMI_TX_PIXEL]	    = &meson8b_hdmi_tx_pixel.hw,
+> +		[CLKID_CTS_ENCL_SEL]	    = &meson8b_cts_encl_sel.hw,
+> +		[CLKID_CTS_ENCL]	    = &meson8b_cts_encl.hw,
+> +		[CLKID_CTS_VDAC0_SEL]	    = &meson8b_cts_vdac0_sel.hw,
+> +		[CLKID_CTS_VDAC0]	    = &meson8b_cts_vdac0.hw,
+> +		[CLKID_HDMI_SYS_SEL]	    = &meson8b_hdmi_sys_sel.hw,
+> +		[CLKID_HDMI_SYS_DIV]	    = &meson8b_hdmi_sys_div.hw,
+> +		[CLKID_HDMI_SYS]	    = &meson8b_hdmi_sys.hw,
+> +		[CLK_NR_CLKS]		    = NULL,
+> +	},
+> +	.num = CLK_NR_CLKS,
+> +};
+> +
+>  static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+>  	.hws = {
+>  		[CLKID_XTAL] = &meson8b_xtal.hw,
+> @@ -2132,7 +2311,6 @@ static int meson8b_cpu_clk_notifier_cb(struct notifier_block *nb,
+>  
+>  static struct meson8b_nb_data meson8b_cpu_nb_data = {
+>  	.nb.notifier_call = meson8b_cpu_clk_notifier_cb,
+> -	.onecell_data = &meson8b_hw_onecell_data,
+>  };
+>  
+>  static const struct regmap_config clkc_regmap_config = {
+> @@ -2141,7 +2319,8 @@ static const struct regmap_config clkc_regmap_config = {
+>  	.reg_stride     = 4,
+>  };
+>  
+> -static void __init meson8b_clkc_init(struct device_node *np)
+> +static void __init meson8b_clkc_init_common(struct device_node *np,
+> +			struct clk_hw_onecell_data *clk_hw_onecell_data)
+>  {
+>  	struct meson8b_clk_reset *rstc;
+>  	const char *notifier_clk_name;
+> @@ -2192,14 +2371,16 @@ static void __init meson8b_clkc_init(struct device_node *np)
+>  	 */
+>  	for (i = CLKID_XTAL; i < CLK_NR_CLKS; i++) {
+>  		/* array might be sparse */
+> -		if (!meson8b_hw_onecell_data.hws[i])
+> +		if (!clk_hw_onecell_data->hws[i])
+>  			continue;
+>  
+> -		ret = clk_hw_register(NULL, meson8b_hw_onecell_data.hws[i]);
+> +		ret = clk_hw_register(NULL, clk_hw_onecell_data->hws[i]);
+>  		if (ret)
+>  			return;
+>  	}
+>  
+> +	meson8b_cpu_nb_data.onecell_data = clk_hw_onecell_data;
+> +
+>  	/*
+>  	 * FIXME we shouldn't program the muxes in notifier handlers. The
+>  	 * tricky programming sequence will be handled by the forthcoming
+> @@ -2215,13 +2396,23 @@ static void __init meson8b_clkc_init(struct device_node *np)
+>  	}
+>  
+>  	ret = of_clk_add_hw_provider(np, of_clk_hw_onecell_get,
+> -				     &meson8b_hw_onecell_data);
+> +				     clk_hw_onecell_data);
+>  	if (ret)
+>  		pr_err("%s: failed to register clock provider\n", __func__);
+>  }
+>  
+> +static void __init meson8_clkc_init(struct device_node *np)
+> +{
+> +	return meson8b_clkc_init_common(np, &meson8_hw_onecell_data);
+> +}
+> +
+> +static void __init meson8b_clkc_init(struct device_node *np)
+> +{
+> +	return meson8b_clkc_init_common(np, &meson8b_hw_onecell_data);
+> +}
+> +
+>  CLK_OF_DECLARE_DRIVER(meson8_clkc, "amlogic,meson8-clkc",
+> -		      meson8b_clkc_init);
+> +		      meson8_clkc_init);
+>  CLK_OF_DECLARE_DRIVER(meson8b_clkc, "amlogic,meson8b-clkc",
+>  		      meson8b_clkc_init);
+>  CLK_OF_DECLARE_DRIVER(meson8m2_clkc, "amlogic,meson8m2-clkc",
 > 
-> Changes since v1 at [3]:
-> - re-send the patches but this time don't include the old patches
->   which still had a typo in the patch description (ABP vs APB)
-> 
-> 
-> [0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson6/include/mach/io.h#L61
-> [1] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8/include/mach/io.h#L53
-> [2] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8b/include/mach/io.h#L53
-> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009424.html
-> 
-> 
-> Martin Blumenstingl (3):
->   ARM: dts: meson6: add the APB2 bus
->   ARM: dts: meson8: add the APB bus
->   ARM: dts: meson8b: add the APB bus
-> 
->  arch/arm/boot/dts/meson6.dtsi  | 8 ++++++++
->  arch/arm/boot/dts/meson8.dtsi  | 8 ++++++++
->  arch/arm/boot/dts/meson8b.dtsi | 8 ++++++++
->  3 files changed, 24 insertions(+)
-> 
+
+This would happen one day !
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-But frankly I'll squash the meson8/meson8b patches with the mali node patches !
 
 Neil
 
