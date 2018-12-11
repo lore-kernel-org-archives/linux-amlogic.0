@@ -1,90 +1,68 @@
-Return-Path: <SRS0=ipOD=OT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60F58C04EB8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 21:17:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70B3DC04EB8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 01:56:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2E10120672
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Dec 2018 21:17:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 35AD820851
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 01:56:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y9hNf1Yf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="q2NWIpH5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E10120672
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oUN5SSda"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 35AD820851
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gNzga0ONHVn+kstxZm/tdawUCnW5+oi4/Nu+3JfhJOU=; b=Y9hNf1Yf/2ZDMN
-	gLcPsozq+9SZH9yBaNBoB8NnNdPZSHMsMFen9cCKzLM2L4VVvHQKNw+mCW/SofT8/mYIthTQAcbMW
-	Ff6MTCiokWzWSDQWHo1Zi/sGTFnloZQax+x9dRs8KmxaeycR/qycg45iP1UXrNOHSOtg29/fco65C
-	kNWX1j2IdYeVZDXGu5V9pprsbbMpp5ib5LYfDgUtB7/OI+hfbza4SL/Z2RvGD0t07LwbOSqoiG+cZ
-	iCFE11ISBmzxKJT+A11otx51y9RZ7jUkoAEIjj6N47cOvfqVrUql8ZFaot2Hhpt4ZFZ5inXonknSQ
-	984iuQhVJcLZPHulo6iQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=dODE44RqIJBWwreSfWU5j1pHxgto8/FrEjwp2RH2jbk=; b=oUN5SSdamc/kjH0efmzA7sWrF
+	WrfkNn8B3vwpjXAx8AM8nDDnqbyoQ7ab00BjCWCOw+VX1oDRyWS4H6DoUHq3uEyYrDhhG1yYTmb4Q
+	2CXYN74KrEyZcmJEx2x6Z/VdkCUOiJ72rpz8CL9totQEv0qXfVBJZfFc4Otf7JfTZSEbmdyBU0x3a
+	nnpknpgwf5iHPZpZkEbb5X/YLjYWQzS6qInTChQ9DwPs6blLdNZt0Z1D/CESK7EYhFeVjKRs6IclA
+	AfLGAyyymb3mXROmunB1Mq4OS1NK6gcyQJiU/aI8sU2u7M7MEJTFv1nbokvyhOzOCMWnqWtHKKFvi
+	tsMIY7g2A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWSw6-0007QK-Fx; Mon, 10 Dec 2018 21:17:54 +0000
-Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
+	id 1gWXHh-0003TB-0x; Tue, 11 Dec 2018 01:56:29 +0000
+Received: from mail-sz2.amlogic.com ([211.162.65.114])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWSw2-0007Nu-Fp
- for linux-amlogic@lists.infradead.org; Mon, 10 Dec 2018 21:17:53 +0000
-Received: by mail-pg1-x544.google.com with SMTP id w6so5550656pgl.6
- for <linux-amlogic@lists.infradead.org>; Mon, 10 Dec 2018 13:17:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=C94QuNa+7VK3Rf2ToYyYT9nrOJ5ofXPZR4RoJw4IVnk=;
- b=q2NWIpH5UM7rq5CcdQ+mPXlrvpsOD20YoycBO2qjFVy2HmACw02Yy3HwIo461Ls9Tl
- n59zFfYtZkX0SHAiHEe2vocOsR3GQfZjgAL25lqEkbH0/W3MXymlsMo9PRD079F5z5Y+
- 2MWUIXa528ti6U4oH9MPXjdZFfu5YQITl2jy296nM11FIxYeIfEt+tL18OxWlnTXKYos
- QRYdXMHpAIln1MuUT5bB3ngCanFjTJ1sdDOSli2+YcxQP9tnLu2U75yo4Jlygci9in7a
- Y4NK5ptBS8kd2JnR2+WPn5knS1BnHGptOlJWvAQqLStHgwt9Jdi+4KkiFOnwPn49cllt
- GwlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=C94QuNa+7VK3Rf2ToYyYT9nrOJ5ofXPZR4RoJw4IVnk=;
- b=rC4SHJ2oTo75CFD94l/BA1gg0wANVNU9Wis0C5BLbM6dc45v6GZzN5vMaFxNHGVJ9c
- NORo31f0a+hUah9Uwe/qAf01SSF6chOHUxKlH8FL3OjrasBf9sjcsuXJ7AsA+JmxJRVS
- J99jfO+tv/pqPIEeD6+1TCGp7YY0BbHXYTQEOBZHLsW5xMeMor6IL3FZrLpJzlRE8/fd
- k8McsnSXLKR+EOPcFCi8O/a8g1a4pvgUYeJPAT/7H1H5RMVKATQLTGxVOu8JTTGg2abN
- NQcHZOj/0vioS+8OqfJTzb102tCuwnId+ggA1w4ra0aUVUYN7qOA+l7Ju7pWzuTQ3Xpc
- grNA==
-X-Gm-Message-State: AA+aEWbHkpt1rh/BLJjHSxWlxKesvy2bh99c4HkgzomGTXyGlQXQj/fh
- Sifsr0pDgvSo7/0aL/aPegv1XA6ueeE=
-X-Google-Smtp-Source: AFSGD/VnBAoBo97r9FRQJg3EcpzMiSTg/VC/2UkFQ+BeeoDoH8wctLqdqrauv95QEjAvRU2P8abXhg==
-X-Received: by 2002:a63:3d03:: with SMTP id k3mr12254348pga.191.1544476659770; 
- Mon, 10 Dec 2018 13:17:39 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
- h128sm14691064pgc.15.2018.12.10.13.17.39
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 10 Dec 2018 13:17:39 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Corentin Labbe <clabbe@baylibre.com>
-Subject: Re: [PATCH 2/2] soc: amlogic: meson-clk-measure: Add missing
- REGMAP_MMIO dependency
-In-Reply-To: <1544471155-26661-2-git-send-email-clabbe@baylibre.com>
-References: <1544471155-26661-1-git-send-email-clabbe@baylibre.com>
- <1544471155-26661-2-git-send-email-clabbe@baylibre.com>
-Date: Mon, 10 Dec 2018 13:17:38 -0800
-Message-ID: <7hr2epuln1.fsf@baylibre.com>
+ id 1gWXHW-0003MP-9F; Tue, 11 Dec 2018 01:56:20 +0000
+Received: from [10.28.18.115] (10.28.18.115) by mail-sz2.amlogic.com
+ (10.28.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Tue, 11 Dec
+ 2018 09:56:25 +0800
+Subject: Re: [PATCH v7 2/2] mtd: rawnand: meson: add support for Amlogic NAND
+ flash controller
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+References: <1542386439-30166-1-git-send-email-jianxin.pan@amlogic.com>
+ <1542386439-30166-3-git-send-email-jianxin.pan@amlogic.com>
+ <20181207102456.1dc67e07@xps13>
+ <823825a3-86fb-9a20-ae29-85cc52d44093@amlogic.com>
+ <20181210123809.5ade45c4@bbrezillon>
+ <79a797c2-f37f-7f7c-e907-2d3c2283ec2d@amlogic.com>
+ <20181210155057.38788656@xps13>
+From: Liang Yang <liang.yang@amlogic.com>
+Message-ID: <d60bac6f-732d-0ddc-2644-17f650dfa885@amlogic.com>
+Date: Tue, 11 Dec 2018 09:56:25 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.2
 MIME-Version: 1.0
+In-Reply-To: <20181210155057.38788656@xps13>
+Content-Language: en-US
+X-Originating-IP: [10.28.18.115]
+X-ClientProxiedBy: mail-sz2.amlogic.com (10.28.11.6) To mail-sz2.amlogic.com
+ (10.28.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181210_131750_526381_074743B2 
-X-CRM114-Status: UNSURE (   6.62  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181210_175618_324141_EA49EECA 
+X-CRM114-Status: GOOD (  14.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,27 +74,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Corentin Labbe <clabbe@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Marek Vasut <marek.vasut@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
+ Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
+ Boris Brezillon <boris.brezillon@bootlin.com>, Jian Hu <jian.hu@amlogic.com>,
+ linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ Brian Norris <computersforpeace@gmail.com>,
+ David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Corentin Labbe <clabbe@baylibre.com> writes:
-
-> This patchs adds a missing dependency on REGMAP_MMIO.
-> This cause the following build failure on SPARC:
-> drivers/soc/amlogic/meson-clk-measure.o: In function `meson_msr_probe':
-> meson-clk-measure.c:(.text+0xc4): undefined reference to `__devm_regmap_init_mmio_clk'
->
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-
-now queued for v4.21 (branch drivers)
-
-Kevin
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTWlxdWVsLAoKT24gMjAxOC8xMi8xMCAyMjo1MCwgTWlxdWVsIFJheW5hbCB3cm90ZToKPiBI
+aSBMaWFuZywKPiAKPiBMaWFuZyBZYW5nIDxsaWFuZy55YW5nQGFtbG9naWMuY29tPiB3cm90ZSBv
+biBNb24sIDEwIERlYyAyMDE4IDIwOjEyOjM5Cj4gKzA4MDA6Cj4gCj4+IE9uIDIwMTgvMTIvMTAg
+MTk6MzgsIEJvcmlzIEJyZXppbGxvbiB3cm90ZToKPj4+IE9uIE1vbiwgMTAgRGVjIDIwMTggMTk6
+MjM6NDYgKzA4MDAKPj4+IExpYW5nIFlhbmcgPGxpYW5nLnlhbmdAYW1sb2dpYy5jb20+IHdyb3Rl
+Ogo+Pj4gICAgCj4+Pj4+PiArCQkJbXRkLT5lY2Nfc3RhdHMuZmFpbGVkKys7Cj4+Pj4+PiArCQkJ
+Y29udGludWU7Cj4+Pj4+PiArCQl9Cj4+Pj4+PiArCQltdGQtPmVjY19zdGF0cy5jb3JyZWN0ZWQg
+Kz0gRUNDX0VSUl9DTlQoKmluZm8pOwo+Pj4+Pj4gKwkJYml0ZmxpcHMgPSBtYXhfdCh1MzIsIGJp
+dGZsaXBzLCBFQ0NfRVJSX0NOVCgqaW5mbykpOwo+Pj4+Pj4gKwl9Cj4+Pj4+Cj4+Pj4+IEFyZSB5
+b3Ugc3VyZSB5b3UgaGFuZGxlIGNvcnJlY3RseSBlbXB0eSBwYWdlcyB3aXRoIGJmPwo+Pj4+PiAg
+ICAgPj4gaWYgc2NyYW1ibGUgaXMgZW5hYmxlLCBpIHdvdWxkIHNheSB5ZXMgaGVyZS4KPj4+PiB3
+aGVuIHNjcmFtYmxlIGlzIGRpc2FibGVkLCBpIGFtIGNvbnNpZGVyaW5nIGhvdyB0byB1c2UgdGhl
+IGhlbHBlcgo+Pj4+IG5hbmRfY2hlY2tfZXJhc2VkX2VjY19jaHVuaywgYnV0IGl0IHNlZW1zIHRo
+YXQgaSBjYW4ndCBnZXQgdGhlIGVjYwo+Pj4+IGJ5dGVzIHdoaWNoIGlzIGNhY3VsYXRlZCBieSBl
+Y2MgZW5naW5lLmJ5IHRoZSB3YXksIG5mYyBkbWEgZG9lc24ndCBzZW5kCj4+Pj4gb3V0IHRoZSBl
+Y2MgcGFyaXR5IGJ5dGVzLgo+Pj4KPj4+IEV2ZW4gaWYgdGhlIEVDQyBlbmdpbmUgaXMgZGlzYWJs
+ZWQ/Cj4+PiAgICAKPj4gTm8uCj4+IFdoZW4gRUNDIGVuZ2luZSBpcyBkaXNhYmxlZCwgaXQgY2Fu
+IHJlYWQgdGhlIGVjYyBwYXJpdHkgYnl0ZXMgOyBidXQgdGhlcmUgaXMgYW5vdGhlciBwcm9ibGVt
+IHRoYXQgaSBuZWVkIHRvIGNvbnNpZGVyIGhvdyBjb2RlIHN0cnVjdCBsb29rcyBiZXR0ZXIgd2hl
+biByZWFkaW5nIGVycm9yIHdpdGggZWNjIG9wZW5lZCBhbmQgdGhlbiB0cnkgdG8gcmF3IHJlYWQu
+Cj4+IElzIHRoZXJlIGEgZ29vZCBpZGVhPwo+IAo+IFdoZW4gcmVhZGluZyB3aXRoIEVDQyBlbmFi
+bGVkLCBpbiBjYXNlIG9mIHVuY29ycmVjdGFibGUgZXJyb3IgeW91Cj4gbXVzdCByZS1yZWFkIHdp
+dGhvdXQgRUNDLCB0aGVuIGNoZWNrIGlmIHRoZSBwYWdlIGlzIGVtcHR5IG9yIG5vdCB3aXRoCj4g
+dGhlIGNvcmUgaGVscGVycyAobmFuZF9jaGVja19lcmFzZWRfKigpKS4KPiAKPiBJcyB0aGlzIHdo
+YXQgeW91IG1lYW50Pwo+IAp5ZXMuIHdoZW4gdW5jb3JyZWN0YWJsZSBFQ0MgZXJyb3IsIGkgbmVl
+ZCBmaXJzdGx5IHJlYWQgb3V0IHRoZSBFQ0MgYnl0ZXMgCndpdGhvdXQgRUNDIGVuZ2luZSBhbmQg
+dGhlbiB1c2UgdGhlIGhlbHBlciBuYW5kX2NoZWNrX2VyYXNlZF9lY2NfY2h1bmsgCnRvIGNoZWNr
+IGlmIGJsYW5rIHBhZ2UuCk9mIGNvdXJzZSwgdGhlIHByZWNvbmRpdGlvbiBpcyB3aXRob3V0IHNj
+cmFtYmxlciwgb3IgdGhlIGJsYW5kIHBhZ2UgY2FuIApiZSBkZXRlY3RlZCBieSBtZXNvbiBORkMu
+Cgo+IFRoYW5rcywKPiBNaXF1w6hsCj4gCj4gLgo+IAoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
+YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
