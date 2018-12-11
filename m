@@ -6,42 +6,49 @@ X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8989DC07E85
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 08:37:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA755C5CFFE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 08:40:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 59A952081B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 08:37:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7ED402084A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 08:40:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eF0PgJuv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 59A952081B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TQrLXTEp"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7ED402084A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=e/lSHlZbcJTAFALpO5kNArr+xHM2gGo1A/HENTK6dy4=; b=eF0PgJuvPmzSgWz8Ccyj3hR7x
-	xv6w2y2a3Dj6koLDiybnOMLeMzcetuNqkfY+kwW0v8Hq7n9KQhJX0itkTSrLI1nl0EZVaN/ff/QjJ
-	8w+e2i5AQfKbA+AoGiSy98UijWIf4DtbBBTDw4izzqSVpKSF+MAMcU1bemGSBq0e9b2ru2BsJPDTz
-	cJAT746dK7vKkMA/i6U+cmSTFX+Q1c1NDZkhrndqg8ndn/IFtFUi+dwjUn8ma1PEGfkNS1IHUTg5s
-	AM2hvJ5Ks+UC2gbzYi/WuEGRi9qweAMli2SXn+5vWxHDAAJs8GPBfCJ+BfEk5P/LlWKa1bPUpw9GR
-	dagVH60dQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fWek9YA+Z+AK7SRcoPEvk9xFAx95QI/xW3ttpBOISBo=; b=TQrLXTEp/bVMBM
+	r/9asQ08WTKIWsRDMyiWxQInBv/Ql/x3SYJH9yWYbwafhCxtDLiI07lskYOUzNZSzSeXt2/2KNgc7
+	KwfdJ9y0aZXcTxsPqt58bmH2lB4swqaZKSiyVT45mBBXi4JV6Sad0zUJEQc34d7/+0tjpbVsjEmLe
+	vzSTjC5bhY4yDDIggLkXmHAFByP5dTSJHJzzA32EUBfv1Y4HgkvZooW1pyQOCK3PwBaXZxWpN3gAV
+	tJfLktSpuJVaung7b3I5ibS8IAF8STuk/LTOkT5uA/wpefm0P2t/1zLbzhczV8QYuwet9CaiUYlVU
+	Unyg/LDgb6I3p9i45YnQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWdXm-0007rY-Ul; Tue, 11 Dec 2018 08:37:30 +0000
-Received: from mail-sz2.amlogic.com ([211.162.65.114])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWdWz-0007X6-Bh; Tue, 11 Dec 2018 08:36:42 +0000
-Received: from [10.28.18.115] (10.28.18.115) by mail-sz2.amlogic.com
- (10.28.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Tue, 11 Dec
- 2018 16:36:47 +0800
-Subject: Re: [PATCH v7 2/2] mtd: rawnand: meson: add support for Amlogic NAND
- flash controller
-To: Miquel Raynal <miquel.raynal@bootlin.com>
+	id 1gWdaK-0001ID-75; Tue, 11 Dec 2018 08:40:08 +0000
+Received: from mail.bootlin.com ([62.4.15.54])
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gWdaG-0000A6-Mx; Tue, 11 Dec 2018 08:40:06 +0000
+Received: by mail.bootlin.com (Postfix, from userid 110)
+ id 34C7320723; Tue, 11 Dec 2018 09:39:52 +0100 (CET)
+Received: from bbrezillon (aaubervilliers-681-1-79-44.w90-88.abo.wanadoo.fr
+ [90.88.21.44])
+ by mail.bootlin.com (Postfix) with ESMTPSA id E1DB820717;
+ Tue, 11 Dec 2018 09:39:32 +0100 (CET)
+Date: Tue, 11 Dec 2018 09:39:33 +0100
+From: Boris Brezillon <boris.brezillon@bootlin.com>
+To: Liang Yang <liang.yang@amlogic.com>
+Subject: Re: [PATCH v7 2/2] mtd: rawnand: meson: add support for Amlogic
+ NAND flash controller
+Message-ID: <20181211093933.2fab8cc3@bbrezillon>
+In-Reply-To: <d60bac6f-732d-0ddc-2644-17f650dfa885@amlogic.com>
 References: <1542386439-30166-1-git-send-email-jianxin.pan@amlogic.com>
  <1542386439-30166-3-git-send-email-jianxin.pan@amlogic.com>
  <20181207102456.1dc67e07@xps13>
@@ -50,21 +57,11 @@ References: <1542386439-30166-1-git-send-email-jianxin.pan@amlogic.com>
  <79a797c2-f37f-7f7c-e907-2d3c2283ec2d@amlogic.com>
  <20181210155057.38788656@xps13>
  <d60bac6f-732d-0ddc-2644-17f650dfa885@amlogic.com>
- <20181211085445.68e57e0e@xps13>
-From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <356aed95-518d-7cd0-4337-184f181472ad@amlogic.com>
-Date: Tue, 11 Dec 2018 16:36:47 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.3.2
+X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20181211085445.68e57e0e@xps13>
-Content-Language: en-US
-X-Originating-IP: [10.28.18.115]
-X-ClientProxiedBy: mail-sz2.amlogic.com (10.28.11.6) To mail-sz2.amlogic.com
- (10.28.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_003641_402542_81C27639 
-X-CRM114-Status: GOOD (  16.84  )
+X-CRM114-CacheID: sfid-20181211_004005_028924_464DDB23 
+X-CRM114-Status: GOOD (  18.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -78,62 +75,72 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
  Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Marek Vasut <marek.vasut@gmail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
- Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
- Boris Brezillon <boris.brezillon@bootlin.com>, Jian Hu <jian.hu@amlogic.com>,
- linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ Richard Weinberger <richard@nod.at>, Yixun Lan <yixun.lan@amlogic.com>,
+ linux-kernel@vger.kernel.org, Marek Vasut <marek.vasut@gmail.com>,
+ Jian Hu <jian.hu@amlogic.com>, linux-mtd@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
  Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
  Brian Norris <computersforpeace@gmail.com>,
  David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
  Jerome Brunet <jbrunet@baylibre.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTWlxdWVsLAoKVGhhbmtzIGZvciB5b3VyIHF1aWNrbHkgcmVwbHkuCgpPbiAyMDE4LzEyLzEx
-IDE1OjU0LCBNaXF1ZWwgUmF5bmFsIHdyb3RlOgo+IEhpIExpYW5nLAo+IAo+IExpYW5nIFlhbmcg
-PGxpYW5nLnlhbmdAYW1sb2dpYy5jb20+IHdyb3RlIG9uIFR1ZSwgMTEgRGVjIDIwMTggMDk6NTY6
-MjUKPiArMDgwMDoKPiAKPj4gSGkgTWlxdWVsLAo+Pgo+PiBPbiAyMDE4LzEyLzEwIDIyOjUwLCBN
-aXF1ZWwgUmF5bmFsIHdyb3RlOgo+Pj4gSGkgTGlhbmcsCj4+Pgo+Pj4gTGlhbmcgWWFuZyA8bGlh
-bmcueWFuZ0BhbWxvZ2ljLmNvbT4gd3JvdGUgb24gTW9uLCAxMCBEZWMgMjAxOCAyMDoxMjozOQo+
-Pj4gKzA4MDA6Cj4+PiAgICAKPj4+PiBPbiAyMDE4LzEyLzEwIDE5OjM4LCBCb3JpcyBCcmV6aWxs
-b24gd3JvdGU6Cj4+Pj4+IE9uIE1vbiwgMTAgRGVjIDIwMTggMTk6MjM6NDYgKzA4MDAKPj4+Pj4g
-TGlhbmcgWWFuZyA8bGlhbmcueWFuZ0BhbWxvZ2ljLmNvbT4gd3JvdGU6Cj4+Pj4+ICAgICA+Pj4+
-Pj4gKwkJCW10ZC0+ZWNjX3N0YXRzLmZhaWxlZCsrOwo+Pj4+Pj4+PiArCQkJY29udGludWU7Cj4+
-Pj4+Pj4+ICsJCX0KPj4+Pj4+Pj4gKwkJbXRkLT5lY2Nfc3RhdHMuY29ycmVjdGVkICs9IEVDQ19F
-UlJfQ05UKCppbmZvKTsKPj4+Pj4+Pj4gKwkJYml0ZmxpcHMgPSBtYXhfdCh1MzIsIGJpdGZsaXBz
-LCBFQ0NfRVJSX0NOVCgqaW5mbykpOwo+Pj4+Pj4+PiArCX0KPj4+Pj4+Pgo+Pj4+Pj4+IEFyZSB5
-b3Ugc3VyZSB5b3UgaGFuZGxlIGNvcnJlY3RseSBlbXB0eSBwYWdlcyB3aXRoIGJmPwo+Pj4+Pj4+
-ICAgICAgPj4gaWYgc2NyYW1ibGUgaXMgZW5hYmxlLCBpIHdvdWxkIHNheSB5ZXMgaGVyZS4KPj4+
-Pj4+IHdoZW4gc2NyYW1ibGUgaXMgZGlzYWJsZWQsIGkgYW0gY29uc2lkZXJpbmcgaG93IHRvIHVz
-ZSB0aGUgaGVscGVyCj4+Pj4+PiBuYW5kX2NoZWNrX2VyYXNlZF9lY2NfY2h1bmssIGJ1dCBpdCBz
-ZWVtcyB0aGF0IGkgY2FuJ3QgZ2V0IHRoZSBlY2MKPj4+Pj4+IGJ5dGVzIHdoaWNoIGlzIGNhY3Vs
-YXRlZCBieSBlY2MgZW5naW5lLmJ5IHRoZSB3YXksIG5mYyBkbWEgZG9lc24ndCBzZW5kCj4+Pj4+
-PiBvdXQgdGhlIGVjYyBwYXJpdHkgYnl0ZXMuCj4+Pj4+Cj4+Pj4+IEV2ZW4gaWYgdGhlIEVDQyBl
-bmdpbmUgaXMgZGlzYWJsZWQ/Cj4+Pj4+ICAgICA+PiBOby4KPj4+PiBXaGVuIEVDQyBlbmdpbmUg
-aXMgZGlzYWJsZWQsIGl0IGNhbiByZWFkIHRoZSBlY2MgcGFyaXR5IGJ5dGVzIDsgYnV0IHRoZXJl
-IGlzIGFub3RoZXIgcHJvYmxlbSB0aGF0IGkgbmVlZCB0byBjb25zaWRlciBob3cgY29kZSBzdHJ1
-Y3QgbG9va3MgYmV0dGVyIHdoZW4gcmVhZGluZyBlcnJvciB3aXRoIGVjYyBvcGVuZWQgYW5kIHRo
-ZW4gdHJ5IHRvIHJhdyByZWFkLgo+Pj4+IElzIHRoZXJlIGEgZ29vZCBpZGVhPwo+Pj4KPj4+IFdo
-ZW4gcmVhZGluZyB3aXRoIEVDQyBlbmFibGVkLCBpbiBjYXNlIG9mIHVuY29ycmVjdGFibGUgZXJy
-b3IgeW91Cj4+PiBtdXN0IHJlLXJlYWQgd2l0aG91dCBFQ0MsIHRoZW4gY2hlY2sgaWYgdGhlIHBh
-Z2UgaXMgZW1wdHkgb3Igbm90IHdpdGgKPj4+IHRoZSBjb3JlIGhlbHBlcnMgKG5hbmRfY2hlY2tf
-ZXJhc2VkXyooKSkuCj4+Pgo+Pj4gSXMgdGhpcyB3aGF0IHlvdSBtZWFudD8KPj4+ICAgIAo+PiB5
-ZXMuIHdoZW4gdW5jb3JyZWN0YWJsZSBFQ0MgZXJyb3IsIGkgbmVlZCBmaXJzdGx5IHJlYWQgb3V0
-IHRoZSBFQ0MgYnl0ZXMgd2l0aG91dCBFQ0MgZW5naW5lIGFuZCB0aGVuIHVzZSB0aGUgaGVscGVy
-IG5hbmRfY2hlY2tfZXJhc2VkX2VjY19jaHVuayB0byBjaGVjayBpZiBibGFuayBwYWdlLgo+PiBP
-ZiBjb3Vyc2UsIHRoZSBwcmVjb25kaXRpb24gaXMgd2l0aG91dCBzY3JhbWJsZXIsIG9yIHRoZSBi
-bGFuZCBwYWdlIGNhbiBiZSBkZXRlY3RlZCBieSBtZXNvbiBORkMuCj4gCj4gQSBzdXBwb3NlIHlv
-dSBtZWFudCAiYmxhbmsgcGFnZSI/IElmIHllcywgdGhlbiB5b3UgZG9uJ3QgbmVlZCB0aGUKPiBo
-ZWxwZXIgdG8gY2hlY2sgZm9yIG9ubHktMHhGRiBwYWdlcy4gSWYgdGhlIGNvbnRyb2xsZXIgdGVs
-bHMgeW91IGlmIHRoZQo+IHBhZ2Ugd2FzIGJsYW5rLCB0aGVuIGp1c3QgY2hlY2sgZm9yIHRoYXQg
-Yml0Lgo+IAoKaSB0aGluayBub3QuIHdlIG5lZWQgdG8gcmV0dXJuIGJhY2sgdGhlIHByZXZpb3Vz
-IHByb2JsZW0gdGhhdCBob3cgaSBjYW4gCmdldCB0aGUgYml0ZmxpcHMgb2Ygb25lIGJsYW5rIHBh
-Z2UuIGkgdGhpbmsgaSBuZWVkIHRoZSBoZWxwZXIuCgo+IAo+IFRoYW5rcywKPiBNaXF1w6hsCj4g
-Cj4gLgo+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQu
-b3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1s
-b2dpYwo=
+On Tue, 11 Dec 2018 09:56:25 +0800
+Liang Yang <liang.yang@amlogic.com> wrote:
+
+> Hi Miquel,
+> 
+> On 2018/12/10 22:50, Miquel Raynal wrote:
+> > Hi Liang,
+> > 
+> > Liang Yang <liang.yang@amlogic.com> wrote on Mon, 10 Dec 2018 20:12:39
+> > +0800:
+> >   
+> >> On 2018/12/10 19:38, Boris Brezillon wrote:  
+> >>> On Mon, 10 Dec 2018 19:23:46 +0800
+> >>> Liang Yang <liang.yang@amlogic.com> wrote:
+> >>>      
+> >>>>>> +			mtd->ecc_stats.failed++;
+> >>>>>> +			continue;
+> >>>>>> +		}
+> >>>>>> +		mtd->ecc_stats.corrected += ECC_ERR_CNT(*info);
+> >>>>>> +		bitflips = max_t(u32, bitflips, ECC_ERR_CNT(*info));
+> >>>>>> +	}  
+> >>>>>
+> >>>>> Are you sure you handle correctly empty pages with bf?  
+> >>>>>     >> if scramble is enable, i would say yes here.  
+> >>>> when scramble is disabled, i am considering how to use the helper
+> >>>> nand_check_erased_ecc_chunk, but it seems that i can't get the ecc
+> >>>> bytes which is caculated by ecc engine.by the way, nfc dma doesn't send
+> >>>> out the ecc parity bytes.  
+> >>>
+> >>> Even if the ECC engine is disabled?
+> >>>      
+> >> No.
+> >> When ECC engine is disabled, it can read the ecc parity bytes ; but there is another problem that i need to consider how code struct looks better when reading error with ecc opened and then try to raw read.
+> >> Is there a good idea?  
+> > 
+> > When reading with ECC enabled, in case of uncorrectable error you
+> > must re-read without ECC, then check if the page is empty or not with
+> > the core helpers (nand_check_erased_*()).
+> > 
+> > Is this what you meant?
+> >   
+> yes. when uncorrectable ECC error, i need firstly read out the ECC bytes 
+> without ECC engine and then use the helper nand_check_erased_ecc_chunk 
+> to check if blank page.
+> Of course, the precondition is without scrambler, or the bland page can 
+> be detected by meson NFC.
+
+Yep, raw accessors should disable both the scrambler and the ECC
+engine (see what's done in sunxi_nand.c).
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
