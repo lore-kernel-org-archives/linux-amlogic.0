@@ -2,69 +2,120 @@ Return-Path: <SRS0=H3eD=OU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A18ABC07E85
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:08:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ED805C67839
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:16:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6D3EF2082F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:08:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BD58A2082F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Dec 2018 09:16:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h/lG17fv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D3EF2082F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="V1utQ/Uq";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1I27N1nc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD58A2082F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+dMTqDwmwe3YRex2KJg67PJv5fNZ/zjo3Z5xjy+stHM=; b=h/lG17fvY+GbMq
-	7r6qeTSQ+IwZnvleGUN8c/NOPHgCD8xLdJUnrK6hlyxtDkr+LI/A6BtsAFkaXypXWqxYnWidAMqAh
-	+w4qfST2THvHktWrZhszZkNHxLHgouoE+Hi+9PDCktpy2IzdRP9pgKTH8Doy8w79blyOFGIQtMu7p
-	F8TA/x71FSeeYYZxA2jTDeklWVW4gATQwpxCwz96P7OlLXb6amZP2EwzApzn6+pBKK8ZTSHS6yuFI
-	tpyXOa4w4GtZPB3ro3Y2dyhWMkr2ruRhBufgsGU7Xm7caQUj9gb0jp5Ny5JLHztdt+TjMRh6hU+Yc
-	yqifbgvTxADq0mnuf6ZQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Rri9OGKAUw66X7gKwiyArV85f6sg879oOJ3tjNHbeAI=; b=V1utQ/UqnWYnzO
+	qHkaN7AyVa60QfqS18c22UAGKnRYIOv7lw1HWvxl01xtSvW6EURKuwQR0CnBisSpy4eUIrtGPFtXv
+	utQqYAcm06RcurQ4161fuMEQv58B8Pa+sH8p3AiqwLtm/+15UwCzotppYNtDGAfDSLVPBr3pYdsa4
+	Z6Ksu9wZ1bHkNmvetWkEBQccVdVWqhk2T0DtenYCUklcU5Ik1NyqeTbHslhX3pk13ki0xM+USnCJv
+	1yaBtskBNyQuH4y5o0DblFvgUBbaXDpPX/1Ta1P4U5smPFom6hg+k2hcdHwv82doEHa50/Lt14f5C
+	5C+vzsH5GALYMa90YrxQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gWe17-0001iH-WF; Tue, 11 Dec 2018 09:07:50 +0000
-Received: from mail.bootlin.com ([62.4.15.54])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gWe13-0001hS-Sw; Tue, 11 Dec 2018 09:07:47 +0000
-Received: by mail.bootlin.com (Postfix, from userid 110)
- id CD42320862; Tue, 11 Dec 2018 10:07:28 +0100 (CET)
-Received: from xps13 (aaubervilliers-681-1-79-44.w90-88.abo.wanadoo.fr
- [90.88.21.44])
- by mail.bootlin.com (Postfix) with ESMTPSA id 504AC20723;
- Tue, 11 Dec 2018 10:07:18 +0100 (CET)
-Date: Tue, 11 Dec 2018 10:07:18 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Liang Yang <liang.yang@amlogic.com>
-Subject: Re: [PATCH v7 2/2] mtd: rawnand: meson: add support for Amlogic
- NAND flash controller
-Message-ID: <20181211100718.51d2cd6c@xps13>
-In-Reply-To: <356aed95-518d-7cd0-4337-184f181472ad@amlogic.com>
-References: <1542386439-30166-1-git-send-email-jianxin.pan@amlogic.com>
- <1542386439-30166-3-git-send-email-jianxin.pan@amlogic.com>
- <20181207102456.1dc67e07@xps13>
- <823825a3-86fb-9a20-ae29-85cc52d44093@amlogic.com>
- <20181210123809.5ade45c4@bbrezillon>
- <79a797c2-f37f-7f7c-e907-2d3c2283ec2d@amlogic.com>
- <20181210155057.38788656@xps13>
- <d60bac6f-732d-0ddc-2644-17f650dfa885@amlogic.com>
- <20181211085445.68e57e0e@xps13>
- <356aed95-518d-7cd0-4337-184f181472ad@amlogic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	id 1gWe9s-00060G-8j; Tue, 11 Dec 2018 09:16:52 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gWe9o-0005z2-DL
+ for linux-amlogic@lists.infradead.org; Tue, 11 Dec 2018 09:16:50 +0000
+Received: by mail-wm1-x341.google.com with SMTP id a18so1401739wmj.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Dec 2018 01:16:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=E3P0VB4t6+DqCGyBcLCrB5erX8OZcvz7dPWAblWoNGA=;
+ b=1I27N1ncJyt304PlsEgJEzqOyGu4scX0m98ZhGyuRECobPkxvQbgFTopn3fhawiHYj
+ vFnlPsc2tFmsu7G2ZnMAL0xY4qJcsONSNnNgWriNOBSSO0GX5aCGm0rSfK03+iKuxZgj
+ tT7jL3AMIIYvxVcJOr+WSTHXsSqCbl+VpjfM+HWBpJsN40dPqqivokjeNMCUmbZtJVkr
+ 7Du4V9rC7sU+8osxEqmZT64T5fMll9Lf1VVEsVvpvD4krXEZk7CWm7hJqYSGQZGV1UTj
+ 9RuwUFjU5h8DqZm2GCCjq8dRbe8y+R8TH6HbomPY+ZWb39WtlozVh9KhVaGeIfnXtkBQ
+ SqEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=E3P0VB4t6+DqCGyBcLCrB5erX8OZcvz7dPWAblWoNGA=;
+ b=T6BbMJeYl6Y9G8DrKxAs5nAYw9KOry3+8OUdlOh78S4sZR93P48/qqg3Xx8vNrUadn
+ EZiFsBMrY0m5uLKcJMPf2AVybFCJxA4z4l72LW1zX+rOqhXGaXP9bOyF2ChcYLWBU6HV
+ Aj6+I3FOyhGlOXb0e6yRvE6PdAteCPWZ9opKRGZrrBLpHhPEwluGqe0hHGn8H4Rn2E+b
+ YU4ehbvJ1FpA0eun++aV/JsUjSdKHCyY7qsBUF2YA/OGyDpaAKf9xhvrLaVmHfJtvryo
+ 9DZSJ8mXagfMHGNxy64CHTfCK/HoH5THbDzl9KapySePsOnUD+pWfIUiXFDfCjMr0cmo
+ +vkA==
+X-Gm-Message-State: AA+aEWZSz1tO3R9wP0SG4sYcBk7bKFvIaxEC/9jg7pnYgDO8VFghQbHJ
+ YTX/hKX5FMm6HpjWBplOX6CM/w==
+X-Google-Smtp-Source: AFSGD/WfPmpnmda9WPjhcNVXlZ9RE+xqQZ4f+3qKfKYKCOaMCKplEoYR+torXVFcbAHWmHuuV+7lfA==
+X-Received: by 2002:a1c:1a90:: with SMTP id a138mr1589549wma.109.1544519794435; 
+ Tue, 11 Dec 2018 01:16:34 -0800 (PST)
+Received: from ?IPv6:2a01:cb1d:4ce:ea00:a5f8:3197:dbfa:c157?
+ ([2a01:cb1d:4ce:ea00:a5f8:3197:dbfa:c157])
+ by smtp.gmail.com with ESMTPSA id 60sm25778639wrb.81.2018.12.11.01.16.33
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 11 Dec 2018 01:16:33 -0800 (PST)
+Subject: Re: [PATCH v2 0/3] ARM: dts: meson: add the APB/APB2 busses
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, khilman@baylibre.com
+References: <20181208165025.27689-1-martin.blumenstingl@googlemail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT7CwHsEEwEKACUC
+ GyMGCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJXDO2CAhkBAAoJEBaat7Gkz/iubGIH/iyk
+ RqvgB62oKOFlgOTYCMkYpm2aAOZZLf6VKHKc7DoVwuUkjHfIRXdslbrxi4pk5VKU6ZP9AKsN
+ NtMZntB8WrBTtkAZfZbTF7850uwd3eU5cN/7N1Q6g0JQihE7w4GlIkEpQ8vwSg5W7hkx3yQ6
+ 2YzrUZh/b7QThXbNZ7xOeSEms014QXazx8+txR7jrGF3dYxBsCkotO/8DNtZ1R+aUvRfpKg5
+ ZgABTC0LmAQnuUUf2PHcKFAHZo5KrdO+tyfL+LgTUXIXkK+tenkLsAJ0cagz1EZ5gntuheLD
+ YJuzS4zN+1Asmb9kVKxhjSQOcIh6g2tw7vaYJgL/OzJtZi6JlIXOwE0ETVkGzwEIALyKDN/O
+ GURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYpQTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXM
+ coJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hi
+ SvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY4yG6xI99NIPEVE9lNBXBKIlewIyVlkOa
+ YvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoMMtsyw18YoX9BqMFInxqYQQ3j/HpVgTSv
+ mo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUXoUk33HEAEQEAAcLAXwQYAQIACQUCTVkG
+ zwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfnM7IbRuiSZS1unlySUVYu3SD6YBYnNi3G
+ 5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa33eDIHu/zr1HMKErm+2SD6PO9umRef8V8
+ 2o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCSKmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+
+ RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJ
+ C3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTTQbM0WUIBIcGmq38+OgUsMYu4NzLu7uZF
+ Acmp6h8g
+Organization: Baylibre
+Message-ID: <ba3e4fef-7a18-8c7d-e0ea-05c541b29913@baylibre.com>
+Date: Tue, 11 Dec 2018 10:16:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
+In-Reply-To: <20181208165025.27689-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181211_010746_212593_E72BC0AC 
-X-CRM114-Status: GOOD (  20.95  )
+X-CRM114-CacheID: sfid-20181211_011648_450255_DF1E9FCD 
+X-CRM114-Status: GOOD (  17.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,73 +127,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Marek Vasut <marek.vasut@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
- Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
- Boris Brezillon <boris.brezillon@bootlin.com>, Jian Hu <jian.hu@amlogic.com>,
- linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Brian Norris <computersforpeace@gmail.com>,
- David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTGlhbmcsCgpMaWFuZyBZYW5nIDxsaWFuZy55YW5nQGFtbG9naWMuY29tPiB3cm90ZSBvbiBU
-dWUsIDExIERlYyAyMDE4IDE2OjM2OjQ3CiswODAwOgoKPiBIaSBNaXF1ZWwsCj4gCj4gVGhhbmtz
-IGZvciB5b3VyIHF1aWNrbHkgcmVwbHkuCj4gCj4gT24gMjAxOC8xMi8xMSAxNTo1NCwgTWlxdWVs
-IFJheW5hbCB3cm90ZToKPiA+IEhpIExpYW5nLAo+ID4gCj4gPiBMaWFuZyBZYW5nIDxsaWFuZy55
-YW5nQGFtbG9naWMuY29tPiB3cm90ZSBvbiBUdWUsIDExIERlYyAyMDE4IDA5OjU2OjI1Cj4gPiAr
-MDgwMDoKPiA+ICAgCj4gPj4gSGkgTWlxdWVsLAo+ID4+Cj4gPj4gT24gMjAxOC8xMi8xMCAyMjo1
-MCwgTWlxdWVsIFJheW5hbCB3cm90ZTogIAo+ID4+PiBIaSBMaWFuZywKPiA+Pj4KPiA+Pj4gTGlh
-bmcgWWFuZyA8bGlhbmcueWFuZ0BhbWxvZ2ljLmNvbT4gd3JvdGUgb24gTW9uLCAxMCBEZWMgMjAx
-OCAyMDoxMjozOQo+ID4+PiArMDgwMDogIAo+ID4+PiAgICA+Pj4+IE9uIDIwMTgvMTIvMTAgMTk6
-MzgsIEJvcmlzIEJyZXppbGxvbiB3cm90ZTogIAo+ID4+Pj4+IE9uIE1vbiwgMTAgRGVjIDIwMTgg
-MTk6MjM6NDYgKzA4MDAKPiA+Pj4+PiBMaWFuZyBZYW5nIDxsaWFuZy55YW5nQGFtbG9naWMuY29t
-PiB3cm90ZTogIAo+ID4+Pj4+ICAgICA+Pj4+Pj4gKwkJCW10ZC0+ZWNjX3N0YXRzLmZhaWxlZCsr
-OyAgCj4gPj4+Pj4+Pj4gKwkJCWNvbnRpbnVlOwo+ID4+Pj4+Pj4+ICsJCX0KPiA+Pj4+Pj4+PiAr
-CQltdGQtPmVjY19zdGF0cy5jb3JyZWN0ZWQgKz0gRUNDX0VSUl9DTlQoKmluZm8pOwo+ID4+Pj4+
-Pj4+ICsJCWJpdGZsaXBzID0gbWF4X3QodTMyLCBiaXRmbGlwcywgRUNDX0VSUl9DTlQoKmluZm8p
-KTsKPiA+Pj4+Pj4+PiArCX0gIAo+ID4+Pj4+Pj4KPiA+Pj4+Pj4+IEFyZSB5b3Ugc3VyZSB5b3Ug
-aGFuZGxlIGNvcnJlY3RseSBlbXB0eSBwYWdlcyB3aXRoIGJmPyAgCj4gPj4+Pj4+PiAgICAgID4+
-IGlmIHNjcmFtYmxlIGlzIGVuYWJsZSwgaSB3b3VsZCBzYXkgeWVzIGhlcmUuICAKPiA+Pj4+Pj4g
-d2hlbiBzY3JhbWJsZSBpcyBkaXNhYmxlZCwgaSBhbSBjb25zaWRlcmluZyBob3cgdG8gdXNlIHRo
-ZSBoZWxwZXIKPiA+Pj4+Pj4gbmFuZF9jaGVja19lcmFzZWRfZWNjX2NodW5rLCBidXQgaXQgc2Vl
-bXMgdGhhdCBpIGNhbid0IGdldCB0aGUgZWNjCj4gPj4+Pj4+IGJ5dGVzIHdoaWNoIGlzIGNhY3Vs
-YXRlZCBieSBlY2MgZW5naW5lLmJ5IHRoZSB3YXksIG5mYyBkbWEgZG9lc24ndCBzZW5kCj4gPj4+
-Pj4+IG91dCB0aGUgZWNjIHBhcml0eSBieXRlcy4gIAo+ID4+Pj4+Cj4gPj4+Pj4gRXZlbiBpZiB0
-aGUgRUNDIGVuZ2luZSBpcyBkaXNhYmxlZD8gIAo+ID4+Pj4+ICAgICA+PiBOby4gIAo+ID4+Pj4g
-V2hlbiBFQ0MgZW5naW5lIGlzIGRpc2FibGVkLCBpdCBjYW4gcmVhZCB0aGUgZWNjIHBhcml0eSBi
-eXRlcyA7IGJ1dCB0aGVyZSBpcyBhbm90aGVyIHByb2JsZW0gdGhhdCBpIG5lZWQgdG8gY29uc2lk
-ZXIgaG93IGNvZGUgc3RydWN0IGxvb2tzIGJldHRlciB3aGVuIHJlYWRpbmcgZXJyb3Igd2l0aCBl
-Y2Mgb3BlbmVkIGFuZCB0aGVuIHRyeSB0byByYXcgcmVhZC4KPiA+Pj4+IElzIHRoZXJlIGEgZ29v
-ZCBpZGVhPyAgCj4gPj4+Cj4gPj4+IFdoZW4gcmVhZGluZyB3aXRoIEVDQyBlbmFibGVkLCBpbiBj
-YXNlIG9mIHVuY29ycmVjdGFibGUgZXJyb3IgeW91Cj4gPj4+IG11c3QgcmUtcmVhZCB3aXRob3V0
-IEVDQywgdGhlbiBjaGVjayBpZiB0aGUgcGFnZSBpcyBlbXB0eSBvciBub3Qgd2l0aAo+ID4+PiB0
-aGUgY29yZSBoZWxwZXJzIChuYW5kX2NoZWNrX2VyYXNlZF8qKCkpLgo+ID4+Pgo+ID4+PiBJcyB0
-aGlzIHdoYXQgeW91IG1lYW50PyAgCj4gPj4+ICAgID4+IHllcy4gd2hlbiB1bmNvcnJlY3RhYmxl
-IEVDQyBlcnJvciwgaSBuZWVkIGZpcnN0bHkgcmVhZCBvdXQgdGhlIEVDQyBieXRlcyB3aXRob3V0
-IEVDQyBlbmdpbmUgYW5kIHRoZW4gdXNlIHRoZSBoZWxwZXIgbmFuZF9jaGVja19lcmFzZWRfZWNj
-X2NodW5rIHRvIGNoZWNrIGlmIGJsYW5rIHBhZ2UuICAKPiA+PiBPZiBjb3Vyc2UsIHRoZSBwcmVj
-b25kaXRpb24gaXMgd2l0aG91dCBzY3JhbWJsZXIsIG9yIHRoZSBibGFuZCBwYWdlIGNhbiBiZSBk
-ZXRlY3RlZCBieSBtZXNvbiBORkMuICAKPiA+IAo+ID4gQSBzdXBwb3NlIHlvdSBtZWFudCAiYmxh
-bmsgcGFnZSI/IElmIHllcywgdGhlbiB5b3UgZG9uJ3QgbmVlZCB0aGUKPiA+IGhlbHBlciB0byBj
-aGVjayBmb3Igb25seS0weEZGIHBhZ2VzLiBJZiB0aGUgY29udHJvbGxlciB0ZWxscyB5b3UgaWYg
-dGhlCj4gPiBwYWdlIHdhcyBibGFuaywgdGhlbiBqdXN0IGNoZWNrIGZvciB0aGF0IGJpdC4KPiA+
-ICAgCj4gCj4gaSB0aGluayBub3QuIHdlIG5lZWQgdG8gcmV0dXJuIGJhY2sgdGhlIHByZXZpb3Vz
-IHByb2JsZW0gdGhhdCBob3cgaSBjYW4gZ2V0IHRoZSBiaXRmbGlwcyBvZiBvbmUgYmxhbmsgcGFn
-ZS4gaSB0aGluayBpIG5lZWQgdGhlIGhlbHBlci4KCllvdSBhcmUgcmlnaHQsIEkgc3VwcG9zZSB0
-aGUgImJsYW5rIHBhZ2UiIGZsYWcgaXMgb25seSB0cmlnZ2VyZWQgaWYKdGhlcmUgaXMgbm8gYml0
-ZmxpcC4gSW4gdGhpcyBjYXNlIHlvdSBjYW4gYXNzdW1lIHRoZXJlIGFyZSBubwpiaXRmbGlwcy4g
-T3RoZXJ3aXNlIHRoZSBjb250cm9sbGVyIHdpbGwgdHJpZ2dlciBhbgp1bmNvcnJlY3RhYmxlIGVy
-cm9yIGV2ZW50IGFuZCB5b3Ugd2lsbCBoYXZlIHRvIHJlLXJlYWQgdGhlIHBhZ2UKd2l0aG91dCBF
-Q0MgYW5kIGNoZWNrIGZvciBiaXRmbGlwcyB3aXRoIHRoZSBoZWxwZXIuCgoKVGhhbmtzLApNaXF1
-w6hsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51
-eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcK
-aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2lj
-Cg==
+On 08/12/2018 17:50, Martin Blumenstingl wrote:
+> This adds the APB bus on Meson8 and Meson8b as well as the APB2 bus on
+> Meson6. This is preparation work for adding the Mali GPU which is
+> located on theses busses.
+> 
+> Meson6 seems to have it's APB at 0xc8000000 instead of 0xd0000000. The
+> region at 0xd0000000 is called APB2 or A9_APB and it has a different
+> size (256k) compared to Meson8 and Meson8b (2M).
+> 
+> Addresses and sizes are taken from the Amlogic 3.10 kernel sources:
+> - Meson6: [0]
+> - Meson8: [1]
+> - Meson8b: [2]
+> 
+> 
+> Changes since v1 at [3]:
+> - re-send the patches but this time don't include the old patches
+>   which still had a typo in the patch description (ABP vs APB)
+> 
+> 
+> [0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson6/include/mach/io.h#L61
+> [1] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8/include/mach/io.h#L53
+> [2] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8b/include/mach/io.h#L53
+> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009424.html
+> 
+> 
+> Martin Blumenstingl (3):
+>   ARM: dts: meson6: add the APB2 bus
+>   ARM: dts: meson8: add the APB bus
+>   ARM: dts: meson8b: add the APB bus
+> 
+>  arch/arm/boot/dts/meson6.dtsi  | 8 ++++++++
+>  arch/arm/boot/dts/meson8.dtsi  | 8 ++++++++
+>  arch/arm/boot/dts/meson8b.dtsi | 8 ++++++++
+>  3 files changed, 24 insertions(+)
+> 
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+But frankly I'll squash the meson8/meson8b patches with the mali node patches !
+
+Neil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
