@@ -2,22 +2,23 @@ Return-Path: <SRS0=dvnd=OV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA67CC65BAF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 09:55:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 970D0C04EB8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 10:26:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A007720849
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 09:55:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1DA7B2084E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 10:26:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Tsp+x5cW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Mx0joKnd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A007720849
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MAiOTZmR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="IO4Qo34v";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hn6s3Fs/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1DA7B2084E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +27,76 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E4Q9o1hg0VKUx2jNs1VMzKGijFoouRNfx6yxlR1Akc0=; b=Tsp+x5cWH/yFRR
-	13Z5Wv7R1pK+SHlM1Nr20SmL2b5Cw0QlCPKFl/2c4/wC/jpARU2S9FJ7rSt6Kg8R0jqtWAEahCgsM
-	4E07sUpB32am5zUVln2iIOqrnMhc/8m797y9uvGr1y93iWHcvClDOt23vax4rIobxoKDr1jBfZdn5
-	bOBCmpbPTyw1ns2ZREkbklebOH82//gIk5s3BmgNepCMy3E+od8IaTPbj1fbcvbWlHtdCZxJE84NJ
-	hh0uWjadqsl5useuLZdZ0h7D7H9XU5f8znNxibIHVk7fU1S49s+PDaWNthDlajhi37oHf+B5NNysG
-	0sXcVHCbEAqWIQrXFD9w==;
+	List-Owner; bh=78k7v/f++iWUPBmdiPhJHUbD/1ft2b2+hmMW/5Bm5G4=; b=MAiOTZmR6iUOTC
+	RHtS9A5B64LwyUBUm7tg783wReaDOh1Tu6csYFLnTl1ddHbOb3H9IHBadFIqNZPmvjaYsa8S0Zd6i
+	tsXhGdojILnuI9uwFfXx6v85B8j5zu9T5Betak/kmOOdU7iL/WKnmT7asB1D8AixIASntadBfHH9P
+	IBgnLGfJEIzpUd/B7zKzsPbtTRyHG565gY7rmeGiuFc2csEhcGv6woJcclrMp1mEznQlnvF1o50lI
+	rSyOEUw/z7HrDvSb0Gv9PankWO3vz75UK47KJV0SE051m82XcVtsf0R/mSYJNidRcsPiyGjRvmnbk
+	9zxbigFspBy2HRc1tnAQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gX1F7-0007BB-LV; Wed, 12 Dec 2018 09:55:49 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1gX1if-0004lE-RI; Wed, 12 Dec 2018 10:26:21 +0000
+Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gX1F4-0007AJ-J1
- for linux-amlogic@lists.infradead.org; Wed, 12 Dec 2018 09:55:47 +0000
-Received: by mail-wr1-x442.google.com with SMTP id u3so17026187wrs.3
- for <linux-amlogic@lists.infradead.org>; Wed, 12 Dec 2018 01:55:36 -0800 (PST)
+ id 1gX1i6-0004IY-QD
+ for linux-amlogic@bombadil.infradead.org; Wed, 12 Dec 2018 10:25:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=nv8bbRUzaZfQDsS8yEcIj3gOlk8xcibqLVUbMTOOInI=; b=IO4Qo34vHF6vKtd9jf0HS8UmTZ
+ jsZ5797cdTMW/s57ASfSwQ9eBcgkMkv3hYl2pp7WlEsKQwe4yZLyruOEtmnpH5f225fBRfbTluUYv
+ c+4ikhaS9eN/nasLSxU18Udvs28MU0zHM2Z+oyfVzTMhIKyrtgLwLQ7UJ8xjLRAGlYxchQJOt0IJE
+ e1qG4fm4/9g2nkOgwTL58rct4GreLylrk3rC/tWhuGrYW7THcmK2y+e7xS86lfTTSK9fCn2dm6IE8
+ DD9V51CwuCk19jzDjel4Fg70JwbchAsUBCDOmiDRDANmkvDJiOCS7zrZzvMDKD6nBoUmU394cZ9hH
+ XI/7mFcA==;
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+ by merlin.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gX1CB-0006pc-G5
+ for linux-amlogic@lists.infradead.org; Wed, 12 Dec 2018 09:52:51 +0000
+Received: by mail-wr1-x441.google.com with SMTP id p4so16984270wrt.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 12 Dec 2018 01:52:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=yz4APOAv/5rPDI+5AhAgwhPWaSULeQZqxdonoNl29f4=;
- b=Mx0joKndQwtDwDEfAuHS2RtHTWDa7j6fKOMAM5OEdHU5ZmqBj21u+3f7yswkeIrjMe
- XvyXDSXNjeT/sqQ5EiOEESHllu9b+E9HZ4PD/AJB7JASnPcosDtgphh0nTdK+pxVyK1k
- HwRsI9RbNJmnSoHzRXduOA6BkQ6yEeh0FApdnHsPkz2Qm2n54L643pjDyOX5h/NHl664
- WptP43ACLPo4BFazlIBJCxDE4SpwQSoHmpf6zFlkL2fIoK+0wwSXbA9PIP4/3yYYv+9J
- XQrEQRvMRne60Cn8w2Gfc21st9ZQ4AOdTi4jLxsyTHaYDiFiis4ICNTjH/92d89S3HYX
- P8Iw==
+ bh=nv8bbRUzaZfQDsS8yEcIj3gOlk8xcibqLVUbMTOOInI=;
+ b=hn6s3Fs/vTQPdf24mHkDcXC2Hbj1+0alDqmBCHE1+3f3rwYM+PbHVWpykJSlF9/SNY
+ gRGKmmafyODbDSwgXUh19ioM3fuC/8ypjRe4wao2ubIcTI9rmNkUa5uKqUMW+WFqvcxm
+ A2nyY7ed0QHqQojroBRQ6Px0WwkA6g4drb925NFSYZQ+8elIenH4O4XHDKGIwolnJhiU
+ ABnhQEf5Zp+10qWKJ5/PqSlJu2Y62A/czQAYQqwe88vFwI3S1hGCBz+gM3HVBGjNTFdg
+ SOnd1sjVKW6ttvblIi+GScP6eYSHZECmc6B8REPqaaNPsq4FutqeHGMVB2AUl6UVK5o8
+ v+ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=yz4APOAv/5rPDI+5AhAgwhPWaSULeQZqxdonoNl29f4=;
- b=suoKAYqVIuBR1du2NA+RLwGe7JGQwnDGX0w1UVcpq/4CFebNrauEAj32UYpi7yjJ7+
- RjQQWIQfZPeCuOkGtWsaqe7TMnpwr3Bwi9f3iD/LFzPOxJG3ZiWSOq3UKnTdRjN26H/L
- IKnWqVkYYFAcrio9cHpRvtUDqgQ9U9f1kP0LGyCMIYTn4jd6UdnLAlu1DAEqKb5fOrZ5
- YYMGNgaH2OOPgRs4oWlyzOUqlrVydPxUJ/P8BVdabtVwgMhm8EcQGEoWbMszu01nGhcs
- uVBAhhSpGC57IYdzd3IIqqYZnTY9Q/mVKvYUCWAk/JfcYTM7BvjiI/6nBBt9Hz2a7p5L
- G6mA==
-X-Gm-Message-State: AA+aEWa8k8jDqfnGeP/WLyN1bBXgIZVpJLh1SuNWRdZiVJSd6aRKSPeg
- 6dBfjPu5nK3DENn+y1M6IrIkbg==
-X-Google-Smtp-Source: AFSGD/XEWHyYKdLFjz+oxQxXo0j3xPeuZ5eN+nnEDGi8J5+uEQU80CYw5w0bhRokd7YMhfM3dAlKDg==
-X-Received: by 2002:adf:9b11:: with SMTP id b17mr17191261wrc.168.1544608535035; 
- Wed, 12 Dec 2018 01:55:35 -0800 (PST)
+ bh=nv8bbRUzaZfQDsS8yEcIj3gOlk8xcibqLVUbMTOOInI=;
+ b=g1dt7vkjHj7oQNDPS7B3o5cVfhSvcQcBKw1SiUWtRawMYJUWmogw7MGUIeJWXHC/Kk
+ rvdbi/8Ls9tN+GJfYSHS8D10eHLYoUg7yhbEqOtAhFM/sm9bvuGMejvWS+tpJVlpENvk
+ 15ys+6bzrul0HiSIm2hCThcUgzfu9HicSpfwiPGMtRzZ710Qzn+MEskzAjsVutT/yBxP
+ wCFJX0WU7/Zq0OdXWY53gQqI1vMdeab1DYt1RhbIqFzR8dm3Fff9x64rgkkIQBzMgpuI
+ QaOsx1TTzgnCIbtx9CRDspFnKe0TcHFQygDzudEi9fJR4eOse4W6V84LMX0Y7lx1GITF
+ MW4A==
+X-Gm-Message-State: AA+aEWYqoIuKlMjS6FwuCj4Oo7UEcg6sqC6g/Kn4PZkOXll08P/4FZBK
+ YuKlvFyr+RccHJhV3TvQjLZ6iQ==
+X-Google-Smtp-Source: AFSGD/VHzTlTXbjrVTR5xJoi4oFPqYWwRPJmN0zGrViJZFr3TL31IG7c7Yri1KPawuhFEVGTz4N4nw==
+X-Received: by 2002:a5d:65ce:: with SMTP id e14mr16110339wrw.150.1544608354032; 
+ Wed, 12 Dec 2018 01:52:34 -0800 (PST)
 Received: from [10.1.3.173] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id d4sm1718525wmb.25.2018.12.12.01.55.34
+ by smtp.gmail.com with ESMTPSA id i192sm2420979wmg.7.2018.12.12.01.52.33
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 12 Dec 2018 01:55:34 -0800 (PST)
-Subject: Re: [PATCH RESEND] drm/meson: remove firmware framebuffers
-To: Maxime Jourdan <mjourdan@baylibre.com>
-References: <20181210092853.13050-1-mjourdan@baylibre.com>
+ Wed, 12 Dec 2018 01:52:33 -0800 (PST)
+Subject: Re: [PATCH v2 0/3] ARM: dts: meson: add the APB/APB2 busses
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20181208165025.27689-1-martin.blumenstingl@googlemail.com>
+ <ba3e4fef-7a18-8c7d-e0ea-05c541b29913@baylibre.com>
+ <CAFBinCBYBAqtKp_edgs6b44MpOhc-iN_FwR425bkU4xirGQKvA@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -105,16 +124,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  C3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTTQbM0WUIBIcGmq38+OgUsMYu4NzLu7uZF
  Acmp6h8g
 Organization: Baylibre
-Message-ID: <c5138091-d801-8b2a-85ab-d815f0508933@baylibre.com>
-Date: Wed, 12 Dec 2018 10:55:34 +0100
+Message-ID: <3aad3554-9320-e356-c78d-5dec0cccb380@baylibre.com>
+Date: Wed, 12 Dec 2018 10:52:32 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20181210092853.13050-1-mjourdan@baylibre.com>
+In-Reply-To: <CAFBinCBYBAqtKp_edgs6b44MpOhc-iN_FwR425bkU4xirGQKvA@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181212_015546_625730_B2C5AE3A 
-X-CRM114-Status: GOOD (  17.22  )
+X-CRM114-CacheID: sfid-20181212_045247_609437_9C501735 
+X-CRM114-Status: GOOD (  21.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -126,67 +145,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ khilman@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
-
-On 10/12/2018 10:28, Maxime Jourdan wrote:
-> In case we are using simplefb or another conflicting framebuffer, make
-> the call to drm_fb_helper_remove_conflicting_framebuffers()
+On 11/12/2018 23:09, Martin Blumenstingl wrote:
+> Hi Neil,
 > 
-> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
-> ---
->  drivers/gpu/drm/meson/meson_drv.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> On Tue, Dec 11, 2018 at 10:16 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> On 08/12/2018 17:50, Martin Blumenstingl wrote:
+>>> This adds the APB bus on Meson8 and Meson8b as well as the APB2 bus on
+>>> Meson6. This is preparation work for adding the Mali GPU which is
+>>> located on theses busses.
+>>>
+>>> Meson6 seems to have it's APB at 0xc8000000 instead of 0xd0000000. The
+>>> region at 0xd0000000 is called APB2 or A9_APB and it has a different
+>>> size (256k) compared to Meson8 and Meson8b (2M).
+>>>
+>>> Addresses and sizes are taken from the Amlogic 3.10 kernel sources:
+>>> - Meson6: [0]
+>>> - Meson8: [1]
+>>> - Meson8b: [2]
+>>>
+>>>
+>>> Changes since v1 at [3]:
+>>> - re-send the patches but this time don't include the old patches
+>>>   which still had a typo in the patch description (ABP vs APB)
+>>>
+>>>
+>>> [0] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson6/include/mach/io.h#L61
+>>> [1] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8/include/mach/io.h#L53
+>>> [2] https://github.com/endlessm/linux-meson/blob/cd4096c3ff4eb5b8a8a5581bb46508601c5470dc/arch/arm/mach-meson8b/include/mach/io.h#L53
+>>> [3] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009424.html
+>>>
+>>>
+>>> Martin Blumenstingl (3):
+>>>   ARM: dts: meson6: add the APB2 bus
+>>>   ARM: dts: meson8: add the APB bus
+>>>   ARM: dts: meson8b: add the APB bus
+>>>
+>>>  arch/arm/boot/dts/meson6.dtsi  | 8 ++++++++
+>>>  arch/arm/boot/dts/meson8.dtsi  | 8 ++++++++
+>>>  arch/arm/boot/dts/meson8b.dtsi | 8 ++++++++
+>>>  3 files changed, 24 insertions(+)
+>>>
+>>
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> thank you for taking the time to review this!
 > 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index d3443125e661..afbb3d707d15 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -159,6 +159,23 @@ static void meson_vpu_init(struct meson_drm *priv)
->  	writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
->  }
->  
-> +static void meson_remove_framebuffers(void)
-> +{
-> +	struct apertures_struct *ap;
-> +
-> +	ap = alloc_apertures(1);
-> +	if (!ap)
-> +		return;
-> +
-> +	/* The framebuffer can be located anywhere in RAM */
-> +	ap->ranges[0].base = 0;
-> +	ap->ranges[0].size = ~0;
-> +
-> +	drm_fb_helper_remove_conflicting_framebuffers(ap, "meson-drm-fb",
-> +						      false);
+>> But frankly I'll squash the meson8/meson8b patches with the mali node patches !
+> I didn't do this because I realized that there are different busses
+> between Meson6 and Meson8/Meson8b. so I wanted to have a commit
+> message which describes this.
+> if you prefer I can still squash the Meson8 and Meson8b patches into
+> their corresponding GPU .dts patch but I would like to keep the Meson6
+> patch (as I'm not planning to add the Mali GPU until someone can
+> actually test it on that SoC)
 
-I always wondered, where does the "meson-drm-fb" comes from ???
+Yes this is what I was thinking actually !
 
 Neil
 
-> +	kfree(ap);
-> +}
-> +
->  static int meson_drv_bind_master(struct device *dev, bool has_components)
->  {
->  	struct platform_device *pdev = to_platform_device(dev);
-> @@ -242,6 +259,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
->  	if (ret)
->  		goto free_drm;
->  
-> +	/* Remove early framebuffers (ie. simplefb) */
-> +	meson_remove_framebuffers();
-> +
->  	drm_mode_config_init(drm);
->  	drm->mode_config.max_width = 3840;
->  	drm->mode_config.max_height = 2160;
+> 
+> 
+> Regards
+> Martin
 > 
 
 
