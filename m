@@ -7,141 +7,78 @@ X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BEB94C04EB8
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 12:40:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E583EC04EB8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 13:29:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7DE842084E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 12:40:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B646A2084E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 13:29:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZxmDlcrP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NfcuQqmW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7DE842084E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Hb6D8J98";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QCwX+367"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B646A2084E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KAyl3oInBT/0wxyBCpYvbjtXFcibzD6fCqjwnHR2/cw=; b=ZxmDlcrPEVN4Pc
-	9oW56aHpT5zRBXW6DQQ3f9FlxkLzSI7DfQb8tGrgy6wGTMpnveZgZeHuppVVb/ZZv98JURII6WRE7
-	DK2UIj+ol0qK53xzru6ZxkjxurfvqAfe2AvV7+65u9M2ce+rrgEEaXvWJ/r2xHaWLqz/J2KTmDhqN
-	d9XSv18PgMAHVIz88/EkGBjVF7LPFk58jwWJvI8hqSkB/84ffPIblxzc59g20hXj+CHAfb0hZJYkz
-	PXO8x1cv3GN0+LzYlMHigFABoPZTOMRZuSHUFA//d4JwydTBMrmu7zoq98A3OuRdLEXCaoLPkW/v1
-	VqjQT69j31PbFSD1JuHw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=d95A+2K75eMs+W/qba9vH4zmuOLebbNUY7Xk5qhepVw=; b=Hb6D8J98UR8iZ0
+	m4/dG5LjLMvhfkby7d13inaD0/tctau5IukHKAiob3+QiLDli7RwqBr0obd3R6LOAJ/pkq2ixUx/b
+	D2NviEppSIaKn8q53uTlIrA4a1nE751Q3q5jD3ezU/Ugt1r0qmuIM+YjoSTat4BqWPr3MC2qKt8Dh
+	m1N5GMaVcLAmjN77rcpZkFKr3qcXEm61K0RuHVS9IpSGDK1N/b0HE9FVKo2tAtd6qsa7Kbw15bTS/
+	dlmMIBu/KLnw/moCMBFT8dhgTAiZriaxN5zG6mDLK0CHM5lRr0Mqp0HfG3kZf04LhtNZ8lKjnQAGZ
+	dA3MGfIlqquw+MumeW6w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gX3nw-0003gl-3E; Wed, 12 Dec 2018 12:39:56 +0000
+	id 1gX4Zi-0001Tz-S0; Wed, 12 Dec 2018 13:29:18 +0000
 Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gX3nt-0003eK-3z
- for linux-amlogic@lists.infradead.org; Wed, 12 Dec 2018 12:39:55 +0000
-Received: by mail-wr1-x444.google.com with SMTP id u3so17566618wrs.3
- for <linux-amlogic@lists.infradead.org>; Wed, 12 Dec 2018 04:39:42 -0800 (PST)
+ id 1gX4ZY-0001Kh-En
+ for linux-amlogic@lists.infradead.org; Wed, 12 Dec 2018 13:29:10 +0000
+Received: by mail-wr1-x444.google.com with SMTP id v13so17712960wrw.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 12 Dec 2018 05:28:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=J0ei1kwZyhqYGIfpGeg+JUNQ8JWaYJvOQ2erDW/ftt0=;
- b=NfcuQqmWCfRnrZ319gPr2DrCIbG3YA86Nhfku31BBeVHB1Ml1cwDJmK/8IxSlfuFi3
- NgkpS4mvhJ+3GiuNy1T5QIxXgswjeWkFZ+XHOEqHkqCcaLg2zrXMvCP9Xer/IDEWZf2i
- 15khR8prPKYzFmmtOYQLq2awJPprfU2RzOFBX8r5DN4hBBdvZ1brUuaVqR3RprRdda3J
- NWCsZhPM1/QqKXaRmWV8H+2zRu4Q2dKDmkrekzryLGld5e14S7w63FTOCtSl+8nlijKJ
- ZZJWDXc/EWbVZv3LxEY3x2uEqofsECDInFD5QNV/GEou9/r4z/0g/N+nza0kQk9iNz5P
- sf3g==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=nHAv5R5QwRmJoCLzBKLZOXFUpzVxkJ8Y6vSdR8cBZGY=;
+ b=QCwX+367wHog/EzWzZZz8NdRumFZVFfyfCBTkcBOHX0VCOIscisr10gLRbkkjExHwz
+ gJNSn6mMGcwR0p9W57KOyOE7FlQ9bY8YBRWiYOY+twMmuQbAwnALnqx86m8pxqUzsBci
+ GVyjbDtwHn6hAsAYMR7DKXx0EpNwmfIFTE3E0upXH7Oo3hOCYMRTuIVVaEOkGJwn2uxz
+ IazBB1yLCLOvRfL0uZVkVsd8369dGPsnKAG9O6Jl/e2RDXi6Y2k6kc5UKL0tTlWlcqCm
+ LsxgFQG1CnAXI+hZBtYZ3HKjLaxdxht603AMQgemdtF1rB/phow/GKH+rzuMpjlLa6/g
+ aKjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=J0ei1kwZyhqYGIfpGeg+JUNQ8JWaYJvOQ2erDW/ftt0=;
- b=KjFVROasMosndSZvaXRZQsbzi5ThIaq95ZQibb9P8dXQOGjz+aY4qcpgCihjA9H+pr
- F0/A8NM6bwtIRCC8lBZxpAx35Bs0JylH79krpPWbgmaZ/vtaEFu1/T7/7NYbQhGJSk8y
- y8+gl8ZG+0ZMqRK6T/gMJuFGyGG2TE+EDkiaRO2ik0VWX2jiLGvZ0BEiPd9L+Txd9vYh
- 6iHo03vCNrvh4c7uchxfqDGAi0IQnD2MsykG27ijpyx8vSGQJpbE37IitYuCa16veCCJ
- Ssfkfh+tkPw1teuDpGhWLi0UzrTvPoH8Zlq9nW8YIrJV9oAEoJkl+yggRjXwGR9+MbNS
- de6w==
-X-Gm-Message-State: AA+aEWaRQXxq+xc+7jZc9AMcYGiL9ssUYYc7zWdAMYFZ2NxbdTzhMHOS
- MIz22H/NsRD3d6hW1CJUnVxtHw==
-X-Google-Smtp-Source: AFSGD/XCS/2Xwv5s62agkojHgttwWO1wilmiS2vYXJMHTvJ88LHf/8izGlVllHN6Lb9gRp+WOtqVeg==
-X-Received: by 2002:adf:fb4c:: with SMTP id c12mr16501960wrs.297.1544618381382; 
- Wed, 12 Dec 2018 04:39:41 -0800 (PST)
-Received: from [10.1.3.173] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j24sm16176525wrd.86.2018.12.12.04.39.40
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 12 Dec 2018 04:39:40 -0800 (PST)
-Subject: Re: [PATCH RESEND] drm/meson: remove firmware framebuffers
-To: Maxime Jourdan <mjourdan@baylibre.com>
-References: <20181210092853.13050-1-mjourdan@baylibre.com>
- <c5138091-d801-8b2a-85ab-d815f0508933@baylibre.com>
- <CAMO6nay4+8Y_O2iTWJ041Bt0+3VUuOQj0WEN3Pyf6L80vuxHTA@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <19df7254-3fec-fb60-7581-54cf22e10509@baylibre.com>
-Date: Wed, 12 Dec 2018 13:39:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nHAv5R5QwRmJoCLzBKLZOXFUpzVxkJ8Y6vSdR8cBZGY=;
+ b=oKyD1xq7/WTYX8TV1xAuvpTD/zs8MCTu8XRvtGtAYWwHfgcSaFIKyoXXBW1qyK5qq4
+ RDIPjvyx1dmfFi/8pd1UXTElcxLu4uEWu+DDePglvXy7AaEQ3Hv9FQs47Q0nniDLR0qf
+ zk3RZEIzC9VwP+znr69dWT7vyR9ve59+gMMzSLVIZ6wKltmKjoxnBm/IAp5fM0ItR6yM
+ +5TYlg2V+g5JEqD++1UT6UHEGT8c9yYWIuQFjuqCV6hI7PV41yFA81yqsL03DxeDgQLl
+ /KuB74xNjfOrkk79m1I2jI9xkyO+gkslaCFJyHLU9LWavbTN7zxPQNEywY4jJwYJ2ZDS
+ r7dQ==
+X-Gm-Message-State: AA+aEWaiDsWNWRx7mEYI5Xf/cxKQ56WqGfeJVOOAAd8MtFc29+0L/X3s
+ 3oo2yufR2XI1HS+/H3JbuQY/SrMaqWWxV4kTjYtnqw==
+X-Google-Smtp-Source: AFSGD/VEVNo4hXgKkuJs4Sxb988az8kXAqw60vyKgmO3r+7u+/iD41jor3t1AmM5VxFCcDXJmKjw+arEkt3im1mDibo=
+X-Received: by 2002:adf:ef0d:: with SMTP id e13mr17261677wro.29.1544621336425; 
+ Wed, 12 Dec 2018 05:28:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAMO6nay4+8Y_O2iTWJ041Bt0+3VUuOQj0WEN3Pyf6L80vuxHTA@mail.gmail.com>
-Content-Language: en-US
+References: <20181210090640.4495-1-mjourdan@baylibre.com>
+ <434d1dc0-3c5e-5cb3-cc88-b565bfb74217@baylibre.com>
+In-Reply-To: <434d1dc0-3c5e-5cb3-cc88-b565bfb74217@baylibre.com>
+From: Maxime Jourdan <mjourdan@baylibre.com>
+Date: Wed, 12 Dec 2018 14:28:45 +0100
+Message-ID: <CAMO6nawq6XsmsucVHPDDc3nuYLEDa4U1QC_5v26jofNv+BKH1A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: meson: add specific simplefb bindings
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181212_043953_162414_D51F634B 
-X-CRM114-Status: GOOD (  17.25  )
+X-CRM114-CacheID: sfid-20181212_052908_495147_C056CED7 
+X-CRM114-Status: GOOD (  17.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,76 +90,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/12/2018 13:22, Maxime Jourdan wrote:
-> Hi Neil,
-> On Wed, Dec 12, 2018 at 10:55 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Hi Maxime,
->>
->> On 10/12/2018 10:28, Maxime Jourdan wrote:
->>> In case we are using simplefb or another conflicting framebuffer, make
->>> the call to drm_fb_helper_remove_conflicting_framebuffers()
->>>
->>> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
->>> ---
->>>  drivers/gpu/drm/meson/meson_drv.c | 20 ++++++++++++++++++++
->>>  1 file changed, 20 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
->>> index d3443125e661..afbb3d707d15 100644
->>> --- a/drivers/gpu/drm/meson/meson_drv.c
->>> +++ b/drivers/gpu/drm/meson/meson_drv.c
->>> @@ -159,6 +159,23 @@ static void meson_vpu_init(struct meson_drm *priv)
->>>       writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
->>>  }
->>>
->>> +static void meson_remove_framebuffers(void)
->>> +{
->>> +     struct apertures_struct *ap;
->>> +
->>> +     ap = alloc_apertures(1);
->>> +     if (!ap)
->>> +             return;
->>> +
->>> +     /* The framebuffer can be located anywhere in RAM */
->>> +     ap->ranges[0].base = 0;
->>> +     ap->ranges[0].size = ~0;
->>> +
->>> +     drm_fb_helper_remove_conflicting_framebuffers(ap, "meson-drm-fb",
->>> +                                                   false);
->>
->> I always wondered, where does the "meson-drm-fb" comes from ???
->>
->> Neil
->>
-> 
-> This name ultimately ends up in a printk and has no functional impact.
-> See drivers/video/fbdev/core/fbmem.c:1613 :
-> 
-> printk(KERN_INFO "fb%d: switching to %s from %s\n", i, name,
-> registered_fb[i]->fix.id);
-> 
-> I just picked one that was similar to the names of other drm drivers
-> calling drm_fb_helper_remove_conflicting_framebuffers().
+Hi Neil,
+On Wed, Dec 12, 2018 at 10:54 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi Maxime,
+>
+> On 10/12/2018 10:06, Maxime Jourdan wrote:
+> > Similar to simple-framebuffer-sunxi, we support different display pipelines
+> > that the firmware is free to choose from.
+> >
+> > This documents the "amlogic,simple-framebuffer" compatible and the
+> > "amlogic,pipeline" extension.
+> >
+> > Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> > ---
+> >  .../display/simple-framebuffer-meson.txt      | 33 +++++++++++++++++++
+> >  1 file changed, 33 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt b/Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt
+> > new file mode 100644
+> > index 000000000000..122a5c005cd9
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt
+> > @@ -0,0 +1,33 @@
+> > +Meson specific Simple Framebuffer bindings
+> > +
+> > +This binding documents meson specific extensions to the simple-framebuffer
+> > +bindings. The meson simplefb u-boot code relies on the devicetree containing
+> > +pre-populated simplefb nodes.
+> > +
+> > +These extensions are intended so that u-boot can select the right node based
+> > +on which pipeline is being used. As such they are solely intended for
+> > +firmware / bootloader use, and the OS should ignore them.
+> > +
+> > +Required properties:
+> > +- compatible: "amlogic,simple-framebuffer"
+> > +- amlogic,pipeline, one of:
+> > +  "vpu-cvbs"
+> > +  "vpu-hdmi"
+> > +
+> > +Example:
+> > +
+> > +chosen {
+> > +     #address-cells = <2>;
+> > +     #size-cells = <2>;
+> > +     ranges;
+> > +
+> > +     framebuffer@0 {
+> > +             compatible = "amlogic,simple-framebuffer",
+> > +                          "simple-framebuffer";
+> > +             amlogic,pipeline = "vpu-hdmi";
+> > +             clocks = <&clkc CLKID_HDMI_PCLK>,
+> > +                      <&clkc CLKID_CLK81>,
+> > +                      <&clkc CLKID_GCLK_VENCI_INT0>;
+> > +             power-domains = <&pwrc_vpu>;
+> > +     };
+> > +};
+> >
+>
+> You should add a cover-letter for this patchset !
+>
+> Neil
 
-Ok Cool !
+Sorry about that, I completely forgot. Thanks for the reminder, will repost.
 
-> 
-> Maxime
-> 
-
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-
-I'll push it when the bindings are acked and when v4.21-rc1 is tagged !
-
-Neil
+Maxime
 
 _______________________________________________
 linux-amlogic mailing list
