@@ -2,83 +2,90 @@ Return-Path: <SRS0=dvnd=OV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-13.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E583EC04EB8
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 13:29:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1A5BC6783B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 21:17:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B646A2084E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 13:29:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 816C720851
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Dec 2018 21:17:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Hb6D8J98";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QCwX+367"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B646A2084E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D+TUzTvK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lixom-net.20150623.gappssmtp.com header.i=@lixom-net.20150623.gappssmtp.com header.b="rahT0ctT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 816C720851
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lixom.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d95A+2K75eMs+W/qba9vH4zmuOLebbNUY7Xk5qhepVw=; b=Hb6D8J98UR8iZ0
-	m4/dG5LjLMvhfkby7d13inaD0/tctau5IukHKAiob3+QiLDli7RwqBr0obd3R6LOAJ/pkq2ixUx/b
-	D2NviEppSIaKn8q53uTlIrA4a1nE751Q3q5jD3ezU/Ugt1r0qmuIM+YjoSTat4BqWPr3MC2qKt8Dh
-	m1N5GMaVcLAmjN77rcpZkFKr3qcXEm61K0RuHVS9IpSGDK1N/b0HE9FVKo2tAtd6qsa7Kbw15bTS/
-	dlmMIBu/KLnw/moCMBFT8dhgTAiZriaxN5zG6mDLK0CHM5lRr0Mqp0HfG3kZf04LhtNZ8lKjnQAGZ
-	dA3MGfIlqquw+MumeW6w==;
+	List-Owner; bh=cKLm0quo8W9V06F37NdSFzcZ52i5tFOPYaR9kb+yb1w=; b=D+TUzTvKUu3SWr
+	pmP6Q6GiUxpYYjA+CyTUu7lM6zet0C1w/1vZQAnqTBfRAQjTzm3J0E+EI1ArJ1t6JXKZUbYsBHPN7
+	vigmF/P2Xm1a3NDAeTQeF6kJTGWiJVnoNh3mMIscOW91AlhfCi5TJQt2l3Fg9TbkKltsJmd8hDTY/
+	olNX6Kyk4jkHtttRYRLZcrWMuFCf2oZfbaZHDFx6DR2h0lZb/gBTA5hfDyNQyipkK4SU+idXMX+Zl
+	PQemDQ5rciMdjmgKFJjhqVw3gzTF+onfmOyfb4Yfd1eOmDkfFXY8Kh9SqVMCyhs8uJJF1VwLzLGkJ
+	pOb1U3d9g5hbjwgf9vhw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gX4Zi-0001Tz-S0; Wed, 12 Dec 2018 13:29:18 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gXBsx-0000UD-JT; Wed, 12 Dec 2018 21:17:39 +0000
+Received: from mail-lj1-x244.google.com ([2a00:1450:4864:20::244])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gX4ZY-0001Kh-En
- for linux-amlogic@lists.infradead.org; Wed, 12 Dec 2018 13:29:10 +0000
-Received: by mail-wr1-x444.google.com with SMTP id v13so17712960wrw.5
- for <linux-amlogic@lists.infradead.org>; Wed, 12 Dec 2018 05:28:57 -0800 (PST)
+ id 1gXBqf-0005dA-4y
+ for linux-amlogic@lists.infradead.org; Wed, 12 Dec 2018 21:15:19 +0000
+Received: by mail-lj1-x244.google.com with SMTP id v1-v6so17634574ljd.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 12 Dec 2018 13:15:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=nHAv5R5QwRmJoCLzBKLZOXFUpzVxkJ8Y6vSdR8cBZGY=;
- b=QCwX+367wHog/EzWzZZz8NdRumFZVFfyfCBTkcBOHX0VCOIscisr10gLRbkkjExHwz
- gJNSn6mMGcwR0p9W57KOyOE7FlQ9bY8YBRWiYOY+twMmuQbAwnALnqx86m8pxqUzsBci
- GVyjbDtwHn6hAsAYMR7DKXx0EpNwmfIFTE3E0upXH7Oo3hOCYMRTuIVVaEOkGJwn2uxz
- IazBB1yLCLOvRfL0uZVkVsd8369dGPsnKAG9O6Jl/e2RDXi6Y2k6kc5UKL0tTlWlcqCm
- LsxgFQG1CnAXI+hZBtYZ3HKjLaxdxht603AMQgemdtF1rB/phow/GKH+rzuMpjlLa6/g
- aKjA==
+ d=lixom-net.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=MQigXgLNMrVjdHttVM8h/wc7o4feonDOnUIY3ArgMWk=;
+ b=rahT0ctTpIAKIZ+5HMOJMqMDEA14FV4PTEzWwaQg5Z2P3OQNLqxfOvokQWcUfkKqyZ
+ mGjliqyj1xfQ26huoau1gVDUIaJEa9l71Y9KD4m7EghATFnAqTf3jbKmXxNyOm2lclC7
+ RfoUtnsGfQUfzaL1g/uLTKLqWwSzo7Graa1gmR3KePtUDuXrx8GZDQ/vOWQ7rNkHqhYc
+ PsWYtYXNDIuiJtpfWuUxwE3XM4ZVKYirZNnj62MTkHNahOSmotHkbsrFG/yaflTsAoZ0
+ WpArhPUkfg+b3dtQr+Q+JHBzDcopaek8CCQ35pNLZx9uhbbEEb2OQNW17hG6JM1Ez/X0
+ ytVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=nHAv5R5QwRmJoCLzBKLZOXFUpzVxkJ8Y6vSdR8cBZGY=;
- b=oKyD1xq7/WTYX8TV1xAuvpTD/zs8MCTu8XRvtGtAYWwHfgcSaFIKyoXXBW1qyK5qq4
- RDIPjvyx1dmfFi/8pd1UXTElcxLu4uEWu+DDePglvXy7AaEQ3Hv9FQs47Q0nniDLR0qf
- zk3RZEIzC9VwP+znr69dWT7vyR9ve59+gMMzSLVIZ6wKltmKjoxnBm/IAp5fM0ItR6yM
- +5TYlg2V+g5JEqD++1UT6UHEGT8c9yYWIuQFjuqCV6hI7PV41yFA81yqsL03DxeDgQLl
- /KuB74xNjfOrkk79m1I2jI9xkyO+gkslaCFJyHLU9LWavbTN7zxPQNEywY4jJwYJ2ZDS
- r7dQ==
-X-Gm-Message-State: AA+aEWaiDsWNWRx7mEYI5Xf/cxKQ56WqGfeJVOOAAd8MtFc29+0L/X3s
- 3oo2yufR2XI1HS+/H3JbuQY/SrMaqWWxV4kTjYtnqw==
-X-Google-Smtp-Source: AFSGD/VEVNo4hXgKkuJs4Sxb988az8kXAqw60vyKgmO3r+7u+/iD41jor3t1AmM5VxFCcDXJmKjw+arEkt3im1mDibo=
-X-Received: by 2002:adf:ef0d:: with SMTP id e13mr17261677wro.29.1544621336425; 
- Wed, 12 Dec 2018 05:28:56 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=MQigXgLNMrVjdHttVM8h/wc7o4feonDOnUIY3ArgMWk=;
+ b=WCpjTkdonF7vjHEDS/dRXuMyEjgL/eyB1o1Sgn3DJp/AivQ2/QlA8sYChMZeCFWO7g
+ YdUlYScIG6PEQwOJxjXx8bkRT2jx3UITUZAHPXguc/ZKoCxhr5wu7+6uk+ctK0mCv4tb
+ NLra1ZOL4WuYORDmbEj9wy+DKGY315Q2k4/EIHqUriwHXSKXs9fooh3GLMjkGpKr0zZp
+ 1UFhPaJD4PQw8886ouFfNh/MDzy5ujGV+CRZFL/OIL+GlKSLTNT0gx5cw3eDnudTSy9G
+ X/rkbCD9/yGSmp2tnuJw5ZtSVsuIU8uT6Di90srrveIw7THg+AiMXIA5S7CGybcx9SQF
+ KyFQ==
+X-Gm-Message-State: AA+aEWZUT0vRm4uV/1XfE68pt0ULOfGoed/VsHQk+fgDdlALdbdj6zlz
+ +CCy4STs3si7SI9oNgMAu7/mhQ==
+X-Google-Smtp-Source: AFSGD/WmduvuYhc6qyfmMz/WEf2BuB9JQ0Zv+NuQEledrYXhPLmaHYN/yTHoy9/rPg1wpuWM6gR7/g==
+X-Received: by 2002:a2e:88cf:: with SMTP id
+ a15-v6mr12818047ljk.76.1544649311340; 
+ Wed, 12 Dec 2018 13:15:11 -0800 (PST)
+Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
+ by smtp.gmail.com with ESMTPSA id e97-v6sm3511354lji.51.2018.12.12.13.15.09
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 12 Dec 2018 13:15:10 -0800 (PST)
+Date: Wed, 12 Dec 2018 13:03:13 -0800
+From: Olof Johansson <olof@lixom.net>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [GIT PULL] ARM: dts: Amlogic updates for v4.21, round 2
+Message-ID: <20181212210313.nusa2cf2yoravfo2@localhost>
+References: <7hbm5tw1it.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20181210090640.4495-1-mjourdan@baylibre.com>
- <434d1dc0-3c5e-5cb3-cc88-b565bfb74217@baylibre.com>
-In-Reply-To: <434d1dc0-3c5e-5cb3-cc88-b565bfb74217@baylibre.com>
-From: Maxime Jourdan <mjourdan@baylibre.com>
-Date: Wed, 12 Dec 2018 14:28:45 +0100
-Message-ID: <CAMO6nawq6XsmsucVHPDDc3nuYLEDa4U1QC_5v26jofNv+BKH1A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: meson: add specific simplefb bindings
-To: Neil Armstrong <narmstrong@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <7hbm5tw1it.fsf@baylibre.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181212_052908_495147_C056CED7 
-X-CRM114-Status: GOOD (  17.49  )
+X-CRM114-CacheID: sfid-20181212_131517_437638_A981E655 
+X-CRM114-Status: GOOD (  13.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,80 +97,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
-On Wed, Dec 12, 2018 at 10:54 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi Maxime,
->
-> On 10/12/2018 10:06, Maxime Jourdan wrote:
-> > Similar to simple-framebuffer-sunxi, we support different display pipelines
-> > that the firmware is free to choose from.
-> >
-> > This documents the "amlogic,simple-framebuffer" compatible and the
-> > "amlogic,pipeline" extension.
-> >
-> > Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
-> > ---
-> >  .../display/simple-framebuffer-meson.txt      | 33 +++++++++++++++++++
-> >  1 file changed, 33 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt b/Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt
-> > new file mode 100644
-> > index 000000000000..122a5c005cd9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/simple-framebuffer-meson.txt
-> > @@ -0,0 +1,33 @@
-> > +Meson specific Simple Framebuffer bindings
-> > +
-> > +This binding documents meson specific extensions to the simple-framebuffer
-> > +bindings. The meson simplefb u-boot code relies on the devicetree containing
-> > +pre-populated simplefb nodes.
-> > +
-> > +These extensions are intended so that u-boot can select the right node based
-> > +on which pipeline is being used. As such they are solely intended for
-> > +firmware / bootloader use, and the OS should ignore them.
-> > +
-> > +Required properties:
-> > +- compatible: "amlogic,simple-framebuffer"
-> > +- amlogic,pipeline, one of:
-> > +  "vpu-cvbs"
-> > +  "vpu-hdmi"
-> > +
-> > +Example:
-> > +
-> > +chosen {
-> > +     #address-cells = <2>;
-> > +     #size-cells = <2>;
-> > +     ranges;
-> > +
-> > +     framebuffer@0 {
-> > +             compatible = "amlogic,simple-framebuffer",
-> > +                          "simple-framebuffer";
-> > +             amlogic,pipeline = "vpu-hdmi";
-> > +             clocks = <&clkc CLKID_HDMI_PCLK>,
-> > +                      <&clkc CLKID_CLK81>,
-> > +                      <&clkc CLKID_GCLK_VENCI_INT0>;
-> > +             power-domains = <&pwrc_vpu>;
-> > +     };
-> > +};
-> >
->
-> You should add a cover-letter for this patchset !
->
-> Neil
+On Mon, Dec 10, 2018 at 12:49:14PM -0800, Kevin Hilman wrote:
+> Arnd, Olof,
+> 
+> Please consider these updates for v4.21.
+> 
+> Note that this pull contains a merge of a stable commit from the clock
+> tree for a new clock ID.
+> 
+> Thanks,
+> 
+> Kevin
+> 
+> The following changes since commit 7b141abe4aa137f362d7324de5a49fd3105f570f:
+> 
+>   ARM: dts: meson: add the clock inputs for the Meson timer (2018-11-28 16:49:03 -0800)
+> 
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt-2
+> 
+> for you to fetch changes up to c311552a8eadf1f9960e6126d23c4bf683ca9ae0:
+> 
+>   ARM: dts: meson: meson8b: add the CPU OPP tables (2018-12-04 16:48:14 -0800)
 
-Sorry about that, I completely forgot. Thanks for the reminder, will repost.
+Merged, thanks!
 
-Maxime
+
+-Olof
 
 _______________________________________________
 linux-amlogic mailing list
