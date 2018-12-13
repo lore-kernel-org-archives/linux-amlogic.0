@@ -2,65 +2,55 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-3.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C5708C65BAE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:03:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8F2CC67839
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:41:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 96BCF20672
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:03:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B8B742075B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:41:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jyrFXPUP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 96BCF20672
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qXETfRDN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B8B742075B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cxjHpIQBhk6QkebesdvRf6xqZ3m7IRI1V0gh85UHYRY=; b=jyrFXPUPUJ7+g3
-	xV0lYxwwcosnIVKMKnHqbfuepM6XATbXVEAnlHsm17n7a9p+b5HQj7GZrpHRduX1rNXEsML2wYeB3
-	/eMlKzQGW4Jd7apgjjmMzkCYKg7DVYyN8wlwzZEhXYsS43yVaykBXQVXJXZWcEvwVJPfSJSbRxyey
-	/DFfrGq7S3vTjuk3CTy6wixO3zuYzrKBqzofypMLiMlIFE7xaV5u2Xi0G2D7VIxKy5hT1i/8Wd2Xv
-	eP94KcLsiB0I/ETjmnoAwPoM/BAyh0ic7YGI9B5b6GdAvHfaNyE2EYi0wFKATrWiy8GXte0l/ZT3r
-	fK053XdfOPC1wrRYm18w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=IZopYnEESFGdz/ElZiFyh0Rnd2wTSuTjK4KW8qDeZxE=; b=qXETfRDNb1bCVu
+	Fumsv2uD7rQUKKXFD8owHnUQ00+v+UfJ4qy4tJWI4w/r1KlBhtMrQJMaWflPzebLxbAKBJKRUtEwt
+	EZqiTy7gD6Y4TozJb0C/dsYy9mmHHLDBpiWMWleGEmcgtMX5muNnF9PNq976xVUpTDNK3iAk4/bUV
+	MVuUUN//ZlYYQhFj97n4xR3A8bFamcD6MTzrQTN+oFhc+5HXbM4Rmo7Z1nFhEGQ3Js/zCbALyHuUQ
+	ttnl4nLhKmtYZUV+ECWmP4m50FZkFCwsHUr/SjSTYNguHoxc/cvFy0Ww6KlpOhfjvhpcqxcNodImL
+	5SfA+D+9XSfv8q1zyqAg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gXLy9-0006E6-Ot; Thu, 13 Dec 2018 08:03:41 +0000
-Received: from mail-sh2.amlogic.com ([58.32.228.45])
+	id 1gXMYH-0005OI-KC; Thu, 13 Dec 2018 08:41:01 +0000
+Received: from mail-sz2.amlogic.com ([211.162.65.114])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gXLy6-0006Co-D1; Thu, 13 Dec 2018 08:03:40 +0000
-Received: from [10.18.29.207] (10.18.29.207) by mail-sh2.amlogic.com
- (10.18.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Thu, 13 Dec
- 2018 16:03:40 +0800
-Subject: Re: [PATCH RESEND v7 4/4] clk: meson: add one based divider support
- for sclk divider
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-References: <1544457877-51301-1-git-send-email-jianxin.pan@amlogic.com>
- <1544457877-51301-5-git-send-email-jianxin.pan@amlogic.com>
- <4da764c237b8f752af1dc33a011e2a4b73068f02.camel@baylibre.com>
-From: Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <d748a030-441f-dab0-83f7-aa8fc1106cb4@amlogic.com>
-Date: Thu, 13 Dec 2018 16:03:39 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.2
+ id 1gXMX3-0002cQ-6x; Thu, 13 Dec 2018 08:39:50 +0000
+Received: from localhost.localdomain (10.28.8.16) by mail-sz2.amlogic.com
+ (10.28.11.6) with Microsoft SMTP Server id 15.0.1320.4; Thu, 13 Dec 2018
+ 16:39:52 +0800
+From: Sunny Luo <sunny.luo@amlogic.com>
+To: Mark Brown <broonie@kernel.org>
+Subject: [PATCH v2 0/3] spi: meson-axg: add few enhanced features
+Date: Thu, 13 Dec 2018 16:39:11 +0800
+Message-ID: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <4da764c237b8f752af1dc33a011e2a4b73068f02.camel@baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.18.29.207]
-X-ClientProxiedBy: mail-sh2.amlogic.com (10.18.11.6) To mail-sh2.amlogic.com
- (10.18.11.6)
+X-Originating-IP: [10.28.8.16]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181213_000338_616502_0AC396F2 
-X-CRM114-Status: GOOD (  21.49  )
+X-CRM114-CacheID: sfid-20181213_003946_177495_EE5C1DAB 
+X-CRM114-Status: UNSURE (   5.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -72,169 +62,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
- linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Qiufang Dai <qiufang.dai@amlogic.com>
+Cc: Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, Sunny Luo <sunny.luo@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+add a few enhanced features for the SPICC controller of Meson-AXG SoC.
 
-Thanks for the fully review, we really appreciate your time.
+These patches are actually quite independent from each other, I send them
+together in case to avoid the file conflicts.
 
-On 2018/12/12 1:16, Jerome Brunet wrote:
-> On Tue, 2018-12-11 at 00:04 +0800, Jianxin Pan wrote:
->> When CLK_DIVIDER_ONE_BASED flag is set, the sclk divider will be:
->> one based divider (div = val), and zero value gates the clock
->>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  drivers/clk/meson/clkc-audio.h |  1 +
->>  drivers/clk/meson/sclk-div.c   | 28 ++++++++++++++++++----------
->>  2 files changed, 19 insertions(+), 10 deletions(-)
-> 
-> Such a patch should be done earlier in the series, at least before using sclk
-> in your controller, otherwise thing will be broken in between
-> 
-I will move it to the first one of the patchset. 
-> In general, I would prefer if you had added two helper function to deal with
-> the translation between register value and divider value.
-> 
-> Only these function should care about CLK_DIVIDER_ONE_BASED, the rest should
-> just call them.
-> 
-> This, we will be able to deal the with HI (duty cycle) part as well, which you
-> completly skiped.
-> 
-> I know your device does not have this, but still the code has to make sense.
-> 
-OK, I will add two helper for value and register translation, and then appy them to both div and hi.
->>
->> diff --git a/drivers/clk/meson/clkc-audio.h b/drivers/clk/meson/clkc-audio.h
->> index 0a7c157..9bd6ced 100644
->> --- a/drivers/clk/meson/clkc-audio.h
->> +++ b/drivers/clk/meson/clkc-audio.h
->> @@ -20,6 +20,7 @@ struct meson_sclk_div_data {
->>  	struct parm hi;
->>  	unsigned int cached_div;
->>  	struct clk_duty cached_duty;
->> +	u8	flags;
->>  };
->>  
->>  extern const struct clk_ops meson_clk_triphase_ops;
->> diff --git a/drivers/clk/meson/sclk-div.c b/drivers/clk/meson/sclk-div.c
->> index bc64019..d98707b 100644
->> --- a/drivers/clk/meson/sclk-div.c
->> +++ b/drivers/clk/meson/sclk-div.c
->> @@ -24,22 +24,23 @@
->>  	return (struct meson_sclk_div_data *)clk->data;
->>  }
->>  
->> -static int sclk_div_maxval(struct meson_sclk_div_data *sclk)
->> -{
->> -	return (1 << sclk->div.width) - 1;
->> -}
->> -
->>  static int sclk_div_maxdiv(struct meson_sclk_div_data *sclk)
->>  {
->> -	return sclk_div_maxval(sclk) + 1;
->> +	if (sclk->flags & CLK_DIVIDER_ONE_BASED)
->> +		return clk_div_mask(sclk->div.width);
->> +	else
->> +		return clk_div_mask(sclk->div.width) + 1;
-> 
-> seems over complicated.
-> why no call clk_div_mask just once, and add 1 if necessary ?
-Yes, I will use helper here.
-> 
->>  }
->>  
->>  static int sclk_div_getdiv(struct clk_hw *hw, unsigned long rate,
->>  			   unsigned long prate, int maxdiv)
->>  {
->>  	int div = DIV_ROUND_CLOSEST_ULL((u64)prate, rate);
->> +	struct clk_regmap *clk = to_clk_regmap(hw);
->> +	struct meson_sclk_div_data *sclk = meson_sclk_div_data(clk);
->> +	int mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
-> 
-> This is why I want helpers, don't like this above
-OK, I will replace it with helpers.
-> 
->>  
->> -	return clamp(div, 2, maxdiv);
->> +	return clamp(div, mindiv, maxdiv);
->>  }
->>  
->>  static int sclk_div_bestdiv(struct clk_hw *hw, unsigned long rate,
->> @@ -47,7 +48,7 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
->> long rate,
->>  			    struct meson_sclk_div_data *sclk)
->>  {
->>  	struct clk_hw *parent = clk_hw_get_parent(hw);
->> -	int bestdiv = 0, i;
->> +	int bestdiv = 0, i, mindiv;
->>  	unsigned long maxdiv, now, parent_now;
->>  	unsigned long best = 0, best_parent = 0;
->>  
->> @@ -64,8 +65,9 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
->> long rate,
->>  	 * unsigned long in rate * i below
->>  	 */
->>  	maxdiv = min(ULONG_MAX / rate, maxdiv);
->> +	mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
->>  
->> -	for (i = 2; i <= maxdiv; i++) {
->> +	for (i = mindiv; i <= maxdiv; i++) {
->>  		/*
->>  		 * It's the most ideal case if the requested rate can be
->>  		 * divided from parent clock without needing to change
->> @@ -153,10 +155,14 @@ static int sclk_div_get_duty_cycle(struct clk_hw *hw,
->>  static void sclk_apply_divider(struct clk_regmap *clk,
->>  			       struct meson_sclk_div_data *sclk)
->>  {
->> +	unsigned int div;
->> +
->>  	if (MESON_PARM_APPLICABLE(&sclk->hi))
->>  		sclk_apply_ratio(clk, sclk);
->>  
->> -	meson_parm_write(clk->map, &sclk->div, sclk->cached_div - 1);
->> +	div = (sclk->flags & CLK_DIVIDER_ONE_BASED) ?
->> +		sclk->cached_div : (sclk->cached_div - 1);
-> 
-> helpers again.
-OK!
-> 
->> +	meson_parm_write(clk->map, &sclk->div, div);
->>  }
->>  
->>  static int sclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
->> @@ -223,6 +229,8 @@ static void sclk_div_init(struct clk_hw *hw)
->>  	/* if the divider is initially disabled, assume max */
->>  	if (!val)
->>  		sclk->cached_div = sclk_div_maxdiv(sclk);
->> +	else if (sclk->flags & CLK_DIVIDER_ONE_BASED)
->> +		sclk->cached_div = val;
->>  	else
->>  		sclk->cached_div = val + 1;
-> 
-> same ...
-OK, I will fix them. Thanks again for your time!
-> 
->>  
-> 
-> 
-> .
-> 
+Changes since v1 at [1]
+- Add OF and COMMON_CLK dependence for SPICC in Kconfig to avoid compiling
+  error.
+
+[1] https://lore.kernel.org/lkml/20180503213645.20694-1-yixun.lan@amlogic.com
+
+Sunny Luo (3):
+  spi: meson-axg: support MAX 80M clock
+  spi: meson-axg: enhance output enable feature
+  spi: meson-axg: add a linear clock divider support
+
+ drivers/spi/Kconfig           |   2 +-
+ drivers/spi/spi-meson-spicc.c | 270 ++++++++++++++++++++++++++++++++++--------
+ 2 files changed, 223 insertions(+), 49 deletions(-)
+
+-- 
+2.7.4
 
 
 _______________________________________________
