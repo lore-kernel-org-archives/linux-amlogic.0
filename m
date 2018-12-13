@@ -2,73 +2,63 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,USER_AGENT_MUTT autolearn=ham
+X-Spam-Status: No, score=-4.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,UNWANTED_LANGUAGE_BODY autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F26FDC65BAE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 11:54:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C30CC67839
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 11:55:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BBADF2086D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 11:54:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 387C02086D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 11:55:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P9ebNG/H";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="wnlOm/lG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BBADF2086D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oueB6dop"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 387C02086D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=8YqwMBGmpYIzIPkMbcy43xipcbHYtVD97DsZt02bQYE=; b=P9ebNG/HGz2TKQyasrMf3DZzc
-	5XkEoxrfOBbaLh2IAx0L/woYdyJk4/jgMSQ8FgFhfvpUp0bej08CvXfyargO5nGGUac8cu0FAsyHW
-	acneEgC8gDkMGNzioUEaNILrdojE5iiWatEaAEseNmh643FKCyIbMtVDpcU2LN5mRTKjmGsifDPCq
-	UrCpKMNhoDixSF36YH6HjlZjda7ryRpgQyXXfaTcbtnA5di2WhZMDuJNYpnzEOkXyzh21+iQQeDia
-	TmKWGwZq3pGHDEOLxFg/UnknzZdhFWLwMtY68z40b6eXZa3HCKmEo9ozP1uxJPTxMhbX8rnOXNzp0
-	C9/nb6ojw==;
+	 bh=VzpubGoqzoNBCx7yuhjHe43qcv17o7Y0C3qY5mRs3oM=; b=oueB6doplBiYRWWoWk4n+WiYD
+	lNGZAvr0s/YNd5Yljo8Q03mumSO/A2otZjYUDF07uFLPBX35zM1XEzQuxDbFZjN7QHox1xR/14lns
+	6Ug8YqWzE8TGUDevqqr6fiqX7e8sBdadH7vgzrUk1Bju22PtXLATKx8xDeoN16jEq1TW13ivNqz2l
+	E516DQYmGkp3zflazd+xPKLeqJvG4zmMDnL8hvohpI8X1HqXZkPJyRVXAyeaulb6ZN3RP/lO33OZu
+	gOb30arelfjPG5p41/lnGxEPvkuvOkLUj2TxIzYU6xTqMtgFr6H3itqZfEfTi0DgocUntfIl97g/T
+	42PXkQonA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gXPZA-0006tM-FX; Thu, 13 Dec 2018 11:54:08 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1gXPaU-0000T0-Ij; Thu, 13 Dec 2018 11:55:30 +0000
+Received: from mail-sz2.amlogic.com ([211.162.65.114])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gXPZ7-0006sq-00; Thu, 13 Dec 2018 11:54:06 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=OmHTCqfoyO9+watM0IFjxiGdHi/Bg5TdaP0AHUfJAFA=; b=wnlOm/lGhouxwLcAu7EnNVOKe
- aOZwsZuiMEvKoCzzfgZU2BsePFiyIrXqzsq4LjysDhSWM4ZIuXMnOPrmfGTWzWyoTlr2bEKMXNEym
- qhor9xA/qZbDPeBylD965G6QPMTJByxwjPU0mm3wh73BITiPH5Y7POsUgZAKUP599r8S0=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=debutante.sirena.org.uk)
- by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
- (envelope-from <broonie@sirena.org.uk>)
- id 1gXPYo-0000vZ-7r; Thu, 13 Dec 2018 11:53:46 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
- id CD13711254D1; Thu, 13 Dec 2018 11:53:45 +0000 (GMT)
-Date: Thu, 13 Dec 2018 11:53:45 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH v2 2/3] spi: meson-axg: enhance output enable feature
-Message-ID: <20181213115345.GC10669@sirena.org.uk>
+ id 1gXPaC-0007DH-4r; Thu, 13 Dec 2018 11:55:14 +0000
+Received: from [10.28.18.96] (10.28.18.96) by mail-sz2.amlogic.com
+ (10.28.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Thu, 13 Dec
+ 2018 19:55:15 +0800
+Subject: Re: [PATCH v2 1/3] spi: meson-axg: support MAX 80M clock
+To: Neil Armstrong <narmstrong@baylibre.com>, Mark Brown <broonie@kernel.org>
 References: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
- <1544690354-16409-3-git-send-email-sunny.luo@amlogic.com>
- <af721e7a752ca468046de0a4ad1ac4a0c220360c.camel@baylibre.com>
+ <1544690354-16409-2-git-send-email-sunny.luo@amlogic.com>
+ <2d438907-91b5-7443-24f9-57a406aaa040@baylibre.com>
+From: Sunny Luo <sunny.luo@amlogic.com>
+Message-ID: <13e10889-50ce-4f67-cf60-f7a4917f84f5@amlogic.com>
+Date: Thu, 13 Dec 2018 19:55:15 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.3
 MIME-Version: 1.0
-In-Reply-To: <af721e7a752ca468046de0a4ad1ac4a0c220360c.camel@baylibre.com>
-X-Cookie: Some optional equipment shown.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <2d438907-91b5-7443-24f9-57a406aaa040@baylibre.com>
+Content-Language: en-GB
+X-Originating-IP: [10.28.18.96]
+X-ClientProxiedBy: mail-sz2.amlogic.com (10.28.11.6) To mail-sz2.amlogic.com
+ (10.28.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181213_035405_194001_C0EEDC5D 
-X-CRM114-Status: UNSURE (   9.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181213_035512_276351_52FCB13E 
+X-CRM114-Status: GOOD (  14.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,78 +70,140 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+Cc: Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
  Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
  linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Sunny Luo <sunny.luo@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>
-Content-Type: multipart/mixed; boundary="===============7589120110374972574=="
+ Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Neil,
 
---===============7589120110374972574==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s9fJI615cBHmzTOP"
-Content-Disposition: inline
+On 2018/12/13 16:49, Neil Armstrong wrote:
+> Hi Sunny,
+> 
+> On 13/12/2018 09:39, Sunny Luo wrote:
+>> The SPICC controller in Meson-AXG is capable of running at 80M clock.
+>> The ASIC IP is improved and the clock is actually running higher than
+>> previous old SoCs.
+>>
+>> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
+>> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+>> ---
+>>   drivers/spi/spi-meson-spicc.c | 37 +++++++++++++++++++++++++++++--------
+>>   1 file changed, 29 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+>> index 7fe4488..b56249d 100644
+>> --- a/drivers/spi/spi-meson-spicc.c
+>> +++ b/drivers/spi/spi-meson-spicc.c
+>> @@ -9,11 +9,13 @@
+>>   
+>>   #include <linux/bitfield.h>
+>>   #include <linux/clk.h>
+>> +#include <linux/clk-provider.h>
+>>   #include <linux/device.h>
+>>   #include <linux/io.h>
+>>   #include <linux/kernel.h>
+>>   #include <linux/module.h>
+>>   #include <linux/of.h>
+>> +#include <linux/of_device.h>
+>>   #include <linux/platform_device.h>
+>>   #include <linux/spi/spi.h>
+>>   #include <linux/types.h>
+>> @@ -34,7 +36,6 @@
+>>    *   to have a CS go down over the full transfer
+>>    */
+>>   
+>> -#define SPICC_MAX_FREQ	30000000
+>>   #define SPICC_MAX_BURST	128
+>>   
+>>   /* Register Map */
+>> @@ -120,6 +121,10 @@
+>>   #define SPICC_BURST_MAX	16
+>>   #define SPICC_FIFO_HALF 10
+>>   
+>> +struct meson_spicc_data {
+>> +	unsigned int			max_speed_hz;
+>> +};
+>> +
+>>   struct meson_spicc_device {
+>>   	struct spi_master		*master;
+>>   	struct platform_device		*pdev;
+>> @@ -127,6 +132,7 @@ struct meson_spicc_device {
+>>   	struct clk			*core;
+>>   	struct spi_message		*message;
+>>   	struct spi_transfer		*xfer;
+>> +	const struct meson_spicc_data	*data;
+>>   	u8				*tx_buf;
+>>   	u8				*rx_buf;
+>>   	unsigned int			bytes_per_word;
+>> @@ -517,6 +523,9 @@ static int meson_spicc_probe(struct platform_device *pdev)
+>>   	spicc->pdev = pdev;
+>>   	platform_set_drvdata(pdev, spicc);
+>>   
+>> +	spicc->data = (const struct meson_spicc_data *)
+>> +		of_device_get_match_data(&pdev->dev);
+>> +
+>>   	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>   	spicc->base = devm_ioremap_resource(&pdev->dev, res);
+>>   	if (IS_ERR(spicc->base)) {
+>> @@ -567,11 +576,9 @@ static int meson_spicc_probe(struct platform_device *pdev)
+>>   	master->unprepare_transfer_hardware = meson_spicc_unprepare_transfer;
+>>   	master->transfer_one = meson_spicc_transfer_one;
+>>   
+>> -	/* Setup max rate according to the Meson GX datasheet */
+>> -	if ((rate >> 2) > SPICC_MAX_FREQ)
+>> -		master->max_speed_hz = SPICC_MAX_FREQ;
+>> -	else
+>> -		master->max_speed_hz = rate >> 2;
+>> +	/* Setup max rate according to the Meson datasheet */
+>> +	master->max_speed_hz = min_t(unsigned int, rate >> 1,
+>> +				     spicc->data->max_speed_hz);
+> 
+> I think "rate >> 1" here depends on patch 3, either move patch 3 before this one
+> or keep "rate >> 2" and change it back to "rate >> 1" on patch 3.
+> 
+Yes, this change should be in patch 3.
 
-
---s9fJI615cBHmzTOP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Dec 13, 2018 at 10:04:56AM +0100, Jerome Brunet wrote:
-> On Thu, 2018-12-13 at 16:39 +0800, Sunny Luo wrote:
-
-> > =20
-> >  	writel_bits_relaxed(BIT(24), BIT(24), spicc->base + SPICC_TESTREG);
-> > =20
-> > +	meson_spicc_oen_enable(spicc);
-> > +
-
-> Any specific reason for doing this in prepare_message() ? It looks like
-> something that could/should be done during the probe ?
-
-If it's for power management then there should be a matching disable in
-unprepare_message() (or this should just be in the runtime PM code,
-though it's possible there's stuff that's only needed while actually
-doing transfers in which case this could make sense).
-
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
-
---s9fJI615cBHmzTOP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlwSSEkACgkQJNaLcl1U
-h9CHGwf8CNMeR7WV+TrBE53uFRRrhrKajnV4JWbLuA67Kua7X2ESoTqkgJ8tc9T/
-8RQ7EfxtVkGspy1ZkjpiGBrWgY0YGk6/R+N/OkMmuCDJmk5cQNdZtRy5WGIEm1ZI
-I751ssIVt3EZCSE/GcpV4bJ8O7x2fGTWRbnjczwnypYeWwBqfnCxta5+N2DS7T8V
-jis/mZjM8VmLv+qtryIqyfrRGlDaXB47AgQeXBCZcQh68/ab8QoUIdh4Dn/Zecl1
-OBpuTheeAmfkjbLiHQNFi/XWclWK7RGACX/Xlmr+9BVmcl6CAFekXKImBoNMj8jv
-kTkvW7/4I1wvzOJIkaRS0DGZFqF7Yg==
-=Aegn
------END PGP SIGNATURE-----
-
---s9fJI615cBHmzTOP--
-
-
---===============7589120110374972574==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>>   
+>>   	ret = devm_spi_register_master(&pdev->dev, master);
+>>   	if (ret) {
+>> @@ -602,9 +609,23 @@ static int meson_spicc_remove(struct platform_device *pdev)
+>>   	return 0;
+>>   }
+>>   
+>> +static const struct meson_spicc_data meson_spicc_gx_data = {
+>> +	.max_speed_hz	= 30000000,
+>> +};
+>> +
+>> +static const struct meson_spicc_data meson_spicc_axg_data = {
+>> +	.max_speed_hz	= 80000000,
+>> +};
+>> +
+>>   static const struct of_device_id meson_spicc_of_match[] = {
+>> -	{ .compatible = "amlogic,meson-gx-spicc", },
+>> -	{ .compatible = "amlogic,meson-axg-spicc", },
+>> +	{
+>> +		.compatible	= "amlogic,meson-gx-spicc",
+>> +		.data		= &meson_spicc_gx_data,
+>> +	},
+>> +	{
+>> +		.compatible = "amlogic,meson-axg-spicc",
+>> +		.data		= &meson_spicc_axg_data,
+>> +	},
+>>   	{ /* sentinel */ }
+>>   };
+>>   MODULE_DEVICE_TABLE(of, meson_spicc_of_match);
+>>
+> 
+> .
+> 
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============7589120110374972574==--
-
